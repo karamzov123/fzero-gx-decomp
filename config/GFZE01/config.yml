@@ -1,0 +1,10 @@
+# F-Zero GX (NTSC-U, GFZE01) main.dol
+# See https://github.com/encounter/dtk-template/blob/main/config.example.yml
+object_base: orig/GFZE01
+object: sys/main.dol
+hash: 421c88106697d3275a3fc26fb7a01bf6d816b271
+symbols: config/GFZE01/symbols.txt
+splits: config/GFZE01/splits.txt
+# Melee-era CodeWarrior linker; adjust after first mwld run if DWARF comments mismatch.
+mw_comment_version: 8
+quick_analysis: true
