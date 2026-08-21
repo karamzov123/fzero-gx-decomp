@@ -7,4 +7,13 @@ symbols: config/GFZE01/symbols.txt
 splits: config/GFZE01/splits.txt
 # Melee-era CodeWarrior linker; adjust after first mwld run if DWARF comments mismatch.
 mw_comment_version: 8
-quick_analysis: true
+quick_analysis: false
+detect_objects: true
+detect_strings: true
+write_asm: true
+
+# Analyzer stalls: overlapping function detection in this range (jump table?).
+skip_cfa_ranges:
+- start: .text:0x8006D000
+  end: .text:0x8006E200
+

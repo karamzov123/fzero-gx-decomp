@@ -8,5 +8,6626 @@ Sections:
 	.bss        type:bss align:8
 	.sdata      type:data align:32
 	.sbss       type:bss align:32
-	.data7      type:data align:4
-	.bss2       type:bss align:4
+	.sdata2     type:rodata align:32
+	.sbss2      type:bss align:4
+
+funcs/main.c:
+	.text       start:0x800055E0 end:0x80005660
+
+funcs/fn_80005660.c:
+	.text       start:0x80005660 end:0x80005738
+
+funcs/fn_80005738.c:
+	.text       start:0x80005738 end:0x800057CC
+
+funcs/fn_800057CC.c:
+	.text       start:0x800057CC end:0x800057F8
+
+funcs/fn_800057F8.c:
+	.text       start:0x800057F8 end:0x80005858
+
+funcs/fn_80005858.c:
+	.text       start:0x80005858 end:0x800058D8
+
+funcs/fn_800058D8.c:
+	.text       start:0x800058D8 end:0x8000591C
+
+funcs/fn_8000591C.c:
+	.text       start:0x8000591C end:0x80005A08
+
+funcs/fn_80005A08.c:
+	.text       start:0x80005A08 end:0x80005AD0
+
+funcs/fn_80005AD0.c:
+	.text       start:0x80005AD0 end:0x80005B10
+
+funcs/fn_80005B10.c:
+	.text       start:0x80005B10 end:0x80005E0C
+
+funcs/fn_80005E0C.c:
+	.text       start:0x80005E0C end:0x80005EDC
+
+funcs/fn_80005EDC.c:
+	.text       start:0x80005EDC end:0x800060D8
+
+funcs/fn_800060D8.c:
+	.text       start:0x800060D8 end:0x80006334
+
+funcs/fn_80006334.c:
+	.text       start:0x80006334 end:0x80006340
+
+funcs/fn_80006340.c:
+	.text       start:0x80006340 end:0x80006354
+
+funcs/fn_80006354.c:
+	.text       start:0x80006354 end:0x800063AC
+
+funcs/fn_800063AC.c:
+	.text       start:0x800063AC end:0x8000659C
+
+funcs/fn_8000659C.c:
+	.text       start:0x8000659C end:0x800068F4
+
+funcs/fn_800068F4.c:
+	.text       start:0x800068F4 end:0x80006904
+
+funcs/fn_80006904.c:
+	.text       start:0x80006904 end:0x80006914
+
+funcs/fn_80006914.c:
+	.text       start:0x80006914 end:0x8000691C
+
+funcs/fn_8000691C.c:
+	.text       start:0x8000691C end:0x80006AEC
+
+funcs/fn_80006AEC.c:
+	.text       start:0x80006AEC end:0x80006AF4
+
+funcs/fn_80006AF4.c:
+	.text       start:0x80006AF4 end:0x80006AFC
+
+funcs/fn_80006AFC.c:
+	.text       start:0x80006AFC end:0x80006B30
+
+funcs/fn_80006B30.c:
+	.text       start:0x80006B30 end:0x80006B4C
+
+funcs/fn_80006B4C.c:
+	.text       start:0x80006B4C end:0x80006B70
+
+funcs/fn_80006B70.c:
+	.text       start:0x80006B70 end:0x80006BDC
+
+funcs/fn_80006BDC.c:
+	.text       start:0x80006BDC end:0x80006C2C
+
+funcs/fn_80006C2C.c:
+	.text       start:0x80006C2C end:0x80006C4C
+
+funcs/fn_80006C4C.c:
+	.text       start:0x80006C4C end:0x80006CE4
+
+funcs/fn_80006CE4.c:
+	.text       start:0x80006CE4 end:0x80006D1C
+
+funcs/fn_80006D1C.c:
+	.text       start:0x80006D1C end:0x80006DAC
+
+funcs/fn_80006DAC.c:
+	.text       start:0x80006DAC end:0x80006DE8
+
+funcs/fn_80006DE8.c:
+	.text       start:0x80006DE8 end:0x80006DFC
+
+funcs/fn_80006DFC.c:
+	.text       start:0x80006DFC end:0x80006E10
+
+funcs/fn_80006E10.c:
+	.text       start:0x80006E10 end:0x80006FE0
+
+funcs/fn_80006FE0.c:
+	.text       start:0x80006FE0 end:0x8000700C
+
+funcs/fn_8000700C.c:
+	.text       start:0x8000700C end:0x800071B8
+
+funcs/fn_800071B8.c:
+	.text       start:0x800071B8 end:0x8000740C
+
+funcs/fn_8000740C.c:
+	.text       start:0x8000740C end:0x800074C4
+
+funcs/fn_800074C4.c:
+	.text       start:0x800074C4 end:0x800075AC
+
+funcs/fn_800075AC.c:
+	.text       start:0x800075AC end:0x80007654
+
+funcs/fn_80007654.c:
+	.text       start:0x80007654 end:0x80007664
+
+funcs/fn_80007664.c:
+	.text       start:0x80007664 end:0x80007700
+
+funcs/fn_80007700.c:
+	.text       start:0x80007700 end:0x80007730
+
+funcs/fn_80007730.c:
+	.text       start:0x80007730 end:0x800077E0
+
+funcs/fn_800077E0.c:
+	.text       start:0x800077E0 end:0x800079A0
+
+funcs/fn_800079A0.c:
+	.text       start:0x800079A0 end:0x800079C4
+
+funcs/fn_800079C4.c:
+	.text       start:0x800079C4 end:0x80007A00
+
+funcs/fn_80007A00.c:
+	.text       start:0x80007A00 end:0x80007A44
+
+funcs/fn_80007A44.c:
+	.text       start:0x80007A44 end:0x80007AB4
+
+funcs/fn_80007AB4.c:
+	.text       start:0x80007AB4 end:0x80007B68
+
+funcs/fn_80007B68.c:
+	.text       start:0x80007B68 end:0x80007C2C
+
+funcs/fn_80007C2C.c:
+	.text       start:0x80007C2C end:0x80007C60
+
+funcs/fn_80007C60.c:
+	.text       start:0x80007C60 end:0x80007CDC
+
+funcs/fn_80007CDC.c:
+	.text       start:0x80007CDC end:0x80007D58
+
+funcs/fn_80007D58.c:
+	.text       start:0x80007D58 end:0x80007F70
+
+funcs/fn_80007F70.c:
+	.text       start:0x80007F70 end:0x800081C8
+
+funcs/fn_800081C8.c:
+	.text       start:0x800081C8 end:0x80008204
+
+funcs/fn_80008204.c:
+	.text       start:0x80008204 end:0x800084E8
+
+funcs/fn_800084E8.c:
+	.text       start:0x800084E8 end:0x800087F4
+
+funcs/fn_800087F4.c:
+	.text       start:0x800087F4 end:0x80008A4C
+
+funcs/fn_80008A4C.c:
+	.text       start:0x80008A4C end:0x80008BA8
+
+funcs/fn_80008BA8.c:
+	.text       start:0x80008BA8 end:0x80008BEC
+
+funcs/fn_80008BEC.c:
+	.text       start:0x80008BEC end:0x80008C20
+
+funcs/fn_80008C20.c:
+	.text       start:0x80008C20 end:0x80008DB4
+
+funcs/fn_80008DB4.c:
+	.text       start:0x80008DB4 end:0x80008E30
+
+funcs/fn_80008E30.c:
+	.text       start:0x80008E30 end:0x80008E34
+
+funcs/fn_80008E34.c:
+	.text       start:0x80008E34 end:0x80008E5C
+
+funcs/fn_80008E5C.c:
+	.text       start:0x80008E5C end:0x80008E84
+
+funcs/fn_80008E84.c:
+	.text       start:0x80008E84 end:0x80008EC8
+
+funcs/fn_80008EC8.c:
+	.text       start:0x80008EC8 end:0x80008F60
+
+funcs/fn_80008F60.c:
+	.text       start:0x80008F60 end:0x80008F88
+
+funcs/fn_80008F88.c:
+	.text       start:0x80008F88 end:0x80008FB0
+
+funcs/fn_80008FB0.c:
+	.text       start:0x80008FB0 end:0x80009064
+
+funcs/fn_80009064.c:
+	.text       start:0x80009064 end:0x800090A4
+
+funcs/fn_800090A4.c:
+	.text       start:0x800090A4 end:0x80009468
+
+funcs/fn_80009468.c:
+	.text       start:0x80009468 end:0x8000951C
+
+funcs/fn_8000951C.c:
+	.text       start:0x8000951C end:0x800095A4
+
+funcs/fn_800095A4.c:
+	.text       start:0x800095A4 end:0x8000961C
+
+funcs/fn_8000961C.c:
+	.text       start:0x8000961C end:0x80009830
+
+funcs/fn_80009830.c:
+	.text       start:0x80009830 end:0x80009AA8
+
+funcs/fn_80009AA8.c:
+	.text       start:0x80009AA8 end:0x80009CAC
+
+funcs/fn_80009CAC.c:
+	.text       start:0x80009CAC end:0x80009CD4
+
+funcs/fn_80009CD4.c:
+	.text       start:0x80009CD4 end:0x80009FA4
+
+funcs/fn_80009FA4.c:
+	.text       start:0x80009FA4 end:0x80009FB4
+
+funcs/fn_80009FB4.c:
+	.text       start:0x80009FB4 end:0x80009FBC
+
+funcs/PPCMfmsr.c:
+	.text       start:0x80009FBC end:0x80009FC4
+
+funcs/PPCMtmsr.c:
+	.text       start:0x80009FC4 end:0x80009FCC
+
+funcs/PPCMfhid0.c:
+	.text       start:0x80009FCC end:0x80009FD4
+
+funcs/fn_80009FD4.c:
+	.text       start:0x80009FD4 end:0x80009FDC
+
+funcs/PPCMfl2cr.c:
+	.text       start:0x80009FDC end:0x80009FE4
+
+funcs/PPCMtl2cr.c:
+	.text       start:0x80009FE4 end:0x80009FEC
+
+funcs/PPCMtdec.c:
+	.text       start:0x80009FEC end:0x80009FF4
+
+funcs/fn_80009FF4.c:
+	.text       start:0x80009FF4 end:0x80009FFC
+
+funcs/PPCHalt.c:
+	.text       start:0x80009FFC end:0x8000A010
+
+funcs/PPCMtmmcr0.c:
+	.text       start:0x8000A010 end:0x8000A018
+
+funcs/PPCMtmmcr1.c:
+	.text       start:0x8000A018 end:0x8000A020
+
+funcs/fn_8000A020.c:
+	.text       start:0x8000A020 end:0x8000A028
+
+funcs/PPCMtpmc1.c:
+	.text       start:0x8000A028 end:0x8000A030
+
+funcs/fn_8000A030.c:
+	.text       start:0x8000A030 end:0x8000A038
+
+funcs/PPCMtpmc2.c:
+	.text       start:0x8000A038 end:0x8000A040
+
+funcs/fn_8000A040.c:
+	.text       start:0x8000A040 end:0x8000A048
+
+funcs/PPCMtpmc3.c:
+	.text       start:0x8000A048 end:0x8000A050
+
+funcs/fn_8000A050.c:
+	.text       start:0x8000A050 end:0x8000A058
+
+funcs/PPCMtpmc4.c:
+	.text       start:0x8000A058 end:0x8000A060
+
+funcs/PPCMffpscr.c:
+	.text       start:0x8000A060 end:0x8000A080
+
+funcs/PPCMtfpscr.c:
+	.text       start:0x8000A080 end:0x8000A0A8
+
+funcs/PPCMfhid2.c:
+	.text       start:0x8000A0A8 end:0x8000A0B0
+
+funcs/PPCMthid2.c:
+	.text       start:0x8000A0B0 end:0x8000A0B8
+
+funcs/fn_8000A0B8.c:
+	.text       start:0x8000A0B8 end:0x8000A0C4
+
+funcs/PPCMtwpar.c:
+	.text       start:0x8000A0C4 end:0x8000A0CC
+
+funcs/PPCDisableSpeculation.c:
+	.text       start:0x8000A0CC end:0x8000A0F4
+
+funcs/PPCSetFpNonIEEEMode.c:
+	.text       start:0x8000A0F4 end:0x8000A0FC
+
+funcs/__OSFPRInit.c:
+	.text       start:0x8000A0FC end:0x8000A224
+
+funcs/fn_8000A224.c:
+	.text       start:0x8000A224 end:0x8000A24C
+
+funcs/ClearArena.c:
+	.text       start:0x8000A24C end:0x8000A374
+
+funcs/InquiryCallback.c:
+	.text       start:0x8000A374 end:0x8000A3B0
+
+funcs/OSInit.c:
+	.text       start:0x8000A3B0 end:0x8000A788
+
+funcs/OSExceptionInit.c:
+	.text       start:0x8000A788 end:0x8000AA08
+
+funcs/__OSDBIntegrator.c:
+	.text       start:0x8000AA08 end:0x8000AA2C
+
+funcs/fn_8000AA2C.c:
+	.text       start:0x8000AA2C end:0x8000AA30
+
+funcs/__OSSetExceptionHandler.c:
+	.text       start:0x8000AA30 end:0x8000AA4C
+
+funcs/__OSGetExceptionHandler.c:
+	.text       start:0x8000AA4C end:0x8000AA60
+
+funcs/OSExceptionVector.c:
+	.text       start:0x8000AA60 end:0x8000AAFC
+
+funcs/OSDefaultExceptionHandler.c:
+	.text       start:0x8000AAFC end:0x8000AB54
+
+funcs/__OSPSInit.c:
+	.text       start:0x8000AB54 end:0x8000ABA8
+
+funcs/fn_8000ABA8.c:
+	.text       start:0x8000ABA8 end:0x8000ABBC
+
+funcs/OSRegisterVersion.c:
+	.text       start:0x8000ABBC end:0x8000ABE8
+
+funcs/OSInitAlarm.c:
+	.text       start:0x8000ABE8 end:0x8000AC34
+
+funcs/OSCreateAlarm.c:
+	.text       start:0x8000AC34 end:0x8000AC44
+
+funcs/InsertAlarm.c:
+	.text       start:0x8000AC44 end:0x8000AE94
+
+funcs/OSSetAlarm.c:
+	.text       start:0x8000AE94 end:0x8000AEFC
+
+funcs/fn_8000AEFC.c:
+	.text       start:0x8000AEFC end:0x8000AF78
+
+funcs/fn_8000AF78.c:
+	.text       start:0x8000AF78 end:0x8000B094
+
+funcs/DecrementerExceptionCallback.c:
+	.text       start:0x8000B094 end:0x8000B2C4
+
+funcs/DecrementerExceptionHandler.c:
+	.text       start:0x8000B2C4 end:0x8000B314
+
+funcs/OSGetArenaHi.c:
+	.text       start:0x8000B314 end:0x8000B31C
+
+funcs/OSGetArenaLo.c:
+	.text       start:0x8000B31C end:0x8000B324
+
+funcs/OSSetArenaHi.c:
+	.text       start:0x8000B324 end:0x8000B32C
+
+funcs/OSSetArenaLo.c:
+	.text       start:0x8000B32C end:0x8000B334
+
+funcs/fn_8000B334.c:
+	.text       start:0x8000B334 end:0x8000B360
+
+funcs/fn_8000B360.c:
+	.text       start:0x8000B360 end:0x8000B380
+
+funcs/__OSInitAudioSystem.c:
+	.text       start:0x8000B380 end:0x8000B53C
+
+funcs/__OSStopAudioSystem.c:
+	.text       start:0x8000B53C end:0x8000B614
+
+funcs/DCEnable.c:
+	.text       start:0x8000B614 end:0x8000B628
+
+funcs/DCInvalidateRange.c:
+	.text       start:0x8000B628 end:0x8000B654
+
+funcs/DCFlushRange.c:
+	.text       start:0x8000B654 end:0x8000B684
+
+funcs/fn_8000B684.c:
+	.text       start:0x8000B684 end:0x8000B6B4
+
+funcs/DCFlushRangeNoSync.c:
+	.text       start:0x8000B6B4 end:0x8000B6E0
+
+funcs/ICInvalidateRange.c:
+	.text       start:0x8000B6E0 end:0x8000B714
+
+funcs/ICFlashInvalidate.c:
+	.text       start:0x8000B714 end:0x8000B724
+
+funcs/ICEnable.c:
+	.text       start:0x8000B724 end:0x8000B738
+
+funcs/fn_8000B738.c:
+	.text       start:0x8000B738 end:0x8000B804
+
+funcs/fn_8000B804.c:
+	.text       start:0x8000B804 end:0x8000B83C
+
+funcs/LCDisable.c:
+	.text       start:0x8000B83C end:0x8000B864
+
+funcs/fn_8000B864.c:
+	.text       start:0x8000B864 end:0x8000B888
+
+funcs/fn_8000B888.c:
+	.text       start:0x8000B888 end:0x8000B8AC
+
+funcs/fn_8000B8AC.c:
+	.text       start:0x8000B8AC end:0x8000B8C0
+
+funcs/L2GlobalInvalidate.c:
+	.text       start:0x8000B8C0 end:0x8000B958
+
+funcs/DMAErrorHandler.c:
+	.text       start:0x8000B958 end:0x8000BAB8
+
+funcs/__OSCacheInit.c:
+	.text       start:0x8000BAB8 end:0x8000BBAC
+
+funcs/__OSLoadFPUContext.c:
+	.text       start:0x8000BBAC end:0x8000BCD0
+
+funcs/__OSSaveFPUContext.c:
+	.text       start:0x8000BCD0 end:0x8000BDF8
+
+funcs/OSSaveFPUContext.c:
+	.text       start:0x8000BDF8 end:0x8000BE00
+
+funcs/OSSetCurrentContext.c:
+	.text       start:0x8000BE00 end:0x8000BE5C
+
+funcs/fn_8000BE5C.c:
+	.text       start:0x8000BE5C end:0x8000BE68
+
+funcs/fn_8000BE68.c:
+	.text       start:0x8000BE68 end:0x8000BEE8
+
+funcs/OSLoadContext.c:
+	.text       start:0x8000BEE8 end:0x8000BFC0
+
+funcs/fn_8000BFC0.c:
+	.text       start:0x8000BFC0 end:0x8000BFC8
+
+funcs/OSClearContext.c:
+	.text       start:0x8000BFC8 end:0x8000BFEC
+
+funcs/fn_8000BFEC.c:
+	.text       start:0x8000BFEC end:0x8000C0A8
+
+funcs/OSDumpContext.c:
+	.text       start:0x8000C0A8 end:0x8000C350
+
+funcs/OSSwitchFPUContext.c:
+	.text       start:0x8000C350 end:0x8000C3D4
+
+funcs/__OSContextInit.c:
+	.text       start:0x8000C3D4 end:0x8000C41C
+
+funcs/OSReport.c:
+	.text       start:0x8000C41C end:0x8000C49C
+
+funcs/fn_8000C49C.c:
+	.text       start:0x8000C49C end:0x8000C5C8
+
+funcs/OSSetErrorHandler.c:
+	.text       start:0x8000C5C8 end:0x8000C7E0
+
+funcs/__OSUnhandledException.c:
+	.text       start:0x8000C7E0 end:0x8000CAC8
+
+funcs/fn_8000CAC8.c:
+	.text       start:0x8000CAC8 end:0x8000CC64
+
+funcs/fn_8000CC64.c:
+	.text       start:0x8000CC64 end:0x8000CDD8
+
+funcs/fn_8000CDD8.c:
+	.text       start:0x8000CDD8 end:0x8000CE30
+
+funcs/fn_8000CE30.c:
+	.text       start:0x8000CE30 end:0x8000CEBC
+
+funcs/fn_8000CEBC.c:
+	.text       start:0x8000CEBC end:0x8000D1F0
+
+funcs/fn_8000D1F0.c:
+	.text       start:0x8000D1F0 end:0x8000D4F4
+
+funcs/OSDisableInterrupts.c:
+	.text       start:0x8000D4F4 end:0x8000D508
+
+funcs/OSEnableInterrupts.c:
+	.text       start:0x8000D508 end:0x8000D51C
+
+funcs/OSRestoreInterrupts.c:
+	.text       start:0x8000D51C end:0x8000D540
+
+funcs/__OSSetInterruptHandler.c:
+	.text       start:0x8000D540 end:0x8000D55C
+
+funcs/fn_8000D55C.c:
+	.text       start:0x8000D55C end:0x8000D570
+
+funcs/__OSInterruptInit.c:
+	.text       start:0x8000D570 end:0x8000D5E4
+
+funcs/fn_8000D5E4.c:
+	.text       start:0x8000D5E4 end:0x8000D8BC
+
+funcs/__OSMaskInterrupts.c:
+	.text       start:0x8000D8BC end:0x8000D944
+
+funcs/__OSUnmaskInterrupts.c:
+	.text       start:0x8000D944 end:0x8000D9CC
+
+funcs/fn_8000D9CC.c:
+	.text       start:0x8000D9CC end:0x8000DD10
+
+funcs/ExternalInterruptHandler.c:
+	.text       start:0x8000DD10 end:0x8000DD60
+
+funcs/fn_8000DD60.c:
+	.text       start:0x8000DD60 end:0x8000DD64
+
+funcs/fn_8000DD64.c:
+	.text       start:0x8000DD64 end:0x8000DD68
+
+funcs/fn_8000DD68.c:
+	.text       start:0x8000DD68 end:0x8000DD74
+
+funcs/fn_8000DD74.c:
+	.text       start:0x8000DD74 end:0x8000E030
+
+funcs/fn_8000E030.c:
+	.text       start:0x8000E030 end:0x8000E310
+
+funcs/fn_8000E310.c:
+	.text       start:0x8000E310 end:0x8000E334
+
+funcs/fn_8000E334.c:
+	.text       start:0x8000E334 end:0x8000E370
+
+funcs/fn_8000E370.c:
+	.text       start:0x8000E370 end:0x8000E5A8
+
+funcs/fn_8000E5A8.c:
+	.text       start:0x8000E5A8 end:0x8000E77C
+
+funcs/__OSModuleInit.c:
+	.text       start:0x8000E77C end:0x8000E794
+
+funcs/fn_8000E794.c:
+	.text       start:0x8000E794 end:0x8000E7A0
+
+funcs/fn_8000E7A0.c:
+	.text       start:0x8000E7A0 end:0x8000E7AC
+
+funcs/fn_8000E7AC.c:
+	.text       start:0x8000E7AC end:0x8000E7E8
+
+funcs/MEMIntrruptHandler.c:
+	.text       start:0x8000E7E8 end:0x8000E854
+
+funcs/Config24MB.c:
+	.text       start:0x8000E854 end:0x8000E8D4
+
+funcs/Config48MB.c:
+	.text       start:0x8000E8D4 end:0x8000E954
+
+funcs/RealMode.c:
+	.text       start:0x8000E954 end:0x8000E96C
+
+funcs/__OSInitMemoryProtection.c:
+	.text       start:0x8000E96C end:0x8000EA84
+
+funcs/fn_8000EA84.c:
+	.text       start:0x8000EA84 end:0x8000EAF4
+
+funcs/fn_8000EAF4.c:
+	.text       start:0x8000EAF4 end:0x8000EB04
+
+funcs/fn_8000EB04.c:
+	.text       start:0x8000EB04 end:0x8000EB10
+
+funcs/__OSReboot.c:
+	.text       start:0x8000EB10 end:0x8000EE50
+
+funcs/fn_8000EE50.c:
+	.text       start:0x8000EE50 end:0x8000EE5C
+
+funcs/fn_8000EE5C.c:
+	.text       start:0x8000EE5C end:0x8000EE70
+
+funcs/OSRegisterResetFunction.c:
+	.text       start:0x8000EE70 end:0x8000EEF4
+
+funcs/Reset.c:
+	.text       start:0x8000EEF4 end:0x8000EF64
+
+funcs/fn_8000EF64.c:
+	.text       start:0x8000EF64 end:0x8000EFAC
+
+funcs/OSResetSystem.c:
+	.text       start:0x8000EFAC end:0x8000F234
+
+funcs/OSGetResetCode.c:
+	.text       start:0x8000F234 end:0x8000F264
+
+funcs/__OSResetSWInterruptHandler.c:
+	.text       start:0x8000F264 end:0x8000F358
+
+funcs/fn_8000F358.c:
+	.text       start:0x8000F358 end:0x8000F5F0
+
+funcs/fn_8000F5F0.c:
+	.text       start:0x8000F5F0 end:0x8000F610
+
+funcs/fn_8000F610.c:
+	.text       start:0x8000F610 end:0x8000F670
+
+funcs/fn_8000F670.c:
+	.text       start:0x8000F670 end:0x8000F788
+
+funcs/__OSInitSram.c:
+	.text       start:0x8000F788 end:0x8000F8BC
+
+funcs/__OSLockSram.c:
+	.text       start:0x8000F8BC end:0x8000F918
+
+funcs/__OSLockSramEx.c:
+	.text       start:0x8000F918 end:0x8000F974
+
+funcs/fn_8000F974.c:
+	.text       start:0x8000F974 end:0x8000FC7C
+
+funcs/__OSUnlockSram.c:
+	.text       start:0x8000FC7C end:0x8000FCA0
+
+funcs/__OSUnlockSramEx.c:
+	.text       start:0x8000FCA0 end:0x8000FCC4
+
+funcs/__OSSyncSram.c:
+	.text       start:0x8000FCC4 end:0x8000FCD4
+
+funcs/fn_8000FCD4.c:
+	.text       start:0x8000FCD4 end:0x8000FDF8
+
+funcs/fn_8000FDF8.c:
+	.text       start:0x8000FDF8 end:0x8000FE78
+
+funcs/fn_8000FE78.c:
+	.text       start:0x8000FE78 end:0x8000FEE8
+
+funcs/fn_8000FEE8.c:
+	.text       start:0x8000FEE8 end:0x8000FF8C
+
+funcs/fn_8000FF8C.c:
+	.text       start:0x8000FF8C end:0x80010010
+
+funcs/fn_80010010.c:
+	.text       start:0x80010010 end:0x800100BC
+
+funcs/fn_800100BC.c:
+	.text       start:0x800100BC end:0x800100DC
+
+funcs/__OSInitSystemCall.c:
+	.text       start:0x800100DC end:0x80010140
+
+funcs/fn_80010140.c:
+	.text       start:0x80010140 end:0x80010144
+
+funcs/__OSThreadInit.c:
+	.text       start:0x80010144 end:0x8001029C
+
+funcs/OSInitThreadQueue.c:
+	.text       start:0x8001029C end:0x800102AC
+
+funcs/fn_800102AC.c:
+	.text       start:0x800102AC end:0x800102B8
+
+funcs/fn_800102B8.c:
+	.text       start:0x800102B8 end:0x800102EC
+
+funcs/OSDisableScheduler.c:
+	.text       start:0x800102EC end:0x8001032C
+
+funcs/OSEnableScheduler.c:
+	.text       start:0x8001032C end:0x8001036C
+
+funcs/fn_8001036C.c:
+	.text       start:0x8001036C end:0x800103D4
+
+funcs/fn_800103D4.c:
+	.text       start:0x800103D4 end:0x80010410
+
+funcs/fn_80010410.c:
+	.text       start:0x80010410 end:0x800105D0
+
+funcs/SelectThread.c:
+	.text       start:0x800105D0 end:0x800107F8
+
+funcs/__OSReschedule.c:
+	.text       start:0x800107F8 end:0x80010828
+
+funcs/fn_80010828.c:
+	.text       start:0x80010828 end:0x80010A10
+
+funcs/fn_80010A10.c:
+	.text       start:0x80010A10 end:0x80010AF4
+
+funcs/OSCancelThread.c:
+	.text       start:0x80010AF4 end:0x80010CB0
+
+funcs/fn_80010CB0.c:
+	.text       start:0x80010CB0 end:0x80010F38
+
+funcs/fn_80010F38.c:
+	.text       start:0x80010F38 end:0x800110A8
+
+funcs/fn_800110A8.c:
+	.text       start:0x800110A8 end:0x80011194
+
+funcs/fn_80011194.c:
+	.text       start:0x80011194 end:0x80011298
+
+funcs/fn_80011298.c:
+	.text       start:0x80011298 end:0x80011358
+
+funcs/fn_80011358.c:
+	.text       start:0x80011358 end:0x80011360
+
+funcs/OSClearStack.c:
+	.text       start:0x80011360 end:0x8001140C
+
+funcs/OSGetTime.c:
+	.text       start:0x8001140C end:0x80011424
+
+funcs/OSGetTick.c:
+	.text       start:0x80011424 end:0x8001142C
+
+funcs/__OSGetSystemTime.c:
+	.text       start:0x8001142C end:0x80011490
+
+funcs/fn_80011490.c:
+	.text       start:0x80011490 end:0x800114E8
+
+funcs/fn_800114E8.c:
+	.text       start:0x800114E8 end:0x80011684
+
+funcs/fn_80011684.c:
+	.text       start:0x80011684 end:0x80011888
+
+funcs/__init_user.c:
+	.text       start:0x80011888 end:0x800118A8
+
+funcs/__init_cpp.c:
+	.text       start:0x800118A8 end:0x800118FC
+
+funcs/_ExitProcess.c:
+	.text       start:0x800118FC end:0x8001191C
+
+funcs/fn_8001191C.c:
+	.text       start:0x8001191C end:0x8001193C
+
+funcs/fn_8001193C.c:
+	.text       start:0x8001193C end:0x80011978
+
+funcs/fn_80011978.c:
+	.text       start:0x80011978 end:0x80011C74
+
+funcs/SIInterruptHandler.c:
+	.text       start:0x80011C74 end:0x80011FB8
+
+funcs/fn_80011FB8.c:
+	.text       start:0x80011FB8 end:0x80012050
+
+funcs/fn_80012050.c:
+	.text       start:0x80012050 end:0x8001211C
+
+funcs/fn_8001211C.c:
+	.text       start:0x8001211C end:0x80012210
+
+funcs/SIInit.c:
+	.text       start:0x80012210 end:0x800122C4
+
+funcs/fn_800122C4.c:
+	.text       start:0x800122C4 end:0x800124D0
+
+funcs/fn_800124D0.c:
+	.text       start:0x800124D0 end:0x8001254C
+
+funcs/fn_8001254C.c:
+	.text       start:0x8001254C end:0x80012560
+
+funcs/fn_80012560.c:
+	.text       start:0x80012560 end:0x80012570
+
+funcs/SISetXY.c:
+	.text       start:0x80012570 end:0x800125DC
+
+funcs/fn_800125DC.c:
+	.text       start:0x800125DC end:0x80012678
+
+funcs/fn_80012678.c:
+	.text       start:0x80012678 end:0x800126E4
+
+funcs/fn_800126E4.c:
+	.text       start:0x800126E4 end:0x800127B8
+
+funcs/fn_800127B8.c:
+	.text       start:0x800127B8 end:0x8001287C
+
+funcs/fn_8001287C.c:
+	.text       start:0x8001287C end:0x80012908
+
+funcs/SITransfer.c:
+	.text       start:0x80012908 end:0x80012A74
+
+funcs/GetTypeCallback.c:
+	.text       start:0x80012A74 end:0x80012D0C
+
+funcs/SIGetType.c:
+	.text       start:0x80012D0C end:0x80012ED0
+
+funcs/fn_80012ED0.c:
+	.text       start:0x80012ED0 end:0x8001300C
+
+funcs/fn_8001300C.c:
+	.text       start:0x8001300C end:0x80013158
+
+funcs/fn_80013158.c:
+	.text       start:0x80013158 end:0x8001317C
+
+funcs/fn_8001317C.c:
+	.text       start:0x8001317C end:0x800132D4
+
+funcs/SISetSamplingRate.c:
+	.text       start:0x800132D4 end:0x800133B8
+
+funcs/fn_800133B8.c:
+	.text       start:0x800133B8 end:0x800133DC
+
+funcs/fn_800133DC.c:
+	.text       start:0x800133DC end:0x800133E0
+
+funcs/fn_800133E0.c:
+	.text       start:0x800133E0 end:0x80013428
+
+funcs/fn_80013428.c:
+	.text       start:0x80013428 end:0x800134DC
+
+funcs/fn_800134DC.c:
+	.text       start:0x800134DC end:0x800135CC
+
+funcs/fn_800135CC.c:
+	.text       start:0x800135CC end:0x800136E8
+
+funcs/fn_800136E8.c:
+	.text       start:0x800136E8 end:0x8001375C
+
+funcs/fn_8001375C.c:
+	.text       start:0x8001375C end:0x800137C4
+
+funcs/fn_800137C4.c:
+	.text       start:0x800137C4 end:0x80013934
+
+funcs/fn_80013934.c:
+	.text       start:0x80013934 end:0x80013994
+
+funcs/fn_80013994.c:
+	.text       start:0x80013994 end:0x800139E8
+
+funcs/fn_800139E8.c:
+	.text       start:0x800139E8 end:0x80013A88
+
+funcs/SetExiInterruptMask.c:
+	.text       start:0x80013A88 end:0x80013B7C
+
+funcs/EXIImm.c:
+	.text       start:0x80013B7C end:0x80013DD8
+
+funcs/fn_80013DD8.c:
+	.text       start:0x80013DD8 end:0x80013E78
+
+funcs/EXIDma.c:
+	.text       start:0x80013E78 end:0x80013F64
+
+funcs/EXISync.c:
+	.text       start:0x80013F64 end:0x800141B0
+
+funcs/EXIClearInterrupts.c:
+	.text       start:0x800141B0 end:0x800141F8
+
+funcs/fn_800141F8.c:
+	.text       start:0x800141F8 end:0x80014274
+
+funcs/__EXIProbe.c:
+	.text       start:0x80014274 end:0x800143E8
+
+funcs/fn_800143E8.c:
+	.text       start:0x800143E8 end:0x80014468
+
+funcs/fn_80014468.c:
+	.text       start:0x80014468 end:0x8001451C
+
+funcs/fn_8001451C.c:
+	.text       start:0x8001451C end:0x80014628
+
+funcs/fn_80014628.c:
+	.text       start:0x80014628 end:0x800146E4
+
+funcs/EXISelect.c:
+	.text       start:0x800146E4 end:0x80014810
+
+funcs/EXIDeselect.c:
+	.text       start:0x80014810 end:0x80014920
+
+funcs/EXIIntrruptHandler.c:
+	.text       start:0x80014920 end:0x800149E8
+
+funcs/TCIntrruptHandler.c:
+	.text       start:0x800149E8 end:0x80014C00
+
+funcs/EXTIntrruptHandler.c:
+	.text       start:0x80014C00 end:0x80014CD0
+
+funcs/EXIInit.c:
+	.text       start:0x80014CD0 end:0x80014EA4
+
+funcs/EXILock.c:
+	.text       start:0x80014EA4 end:0x80014F98
+
+funcs/EXIUnlock.c:
+	.text       start:0x80014F98 end:0x80015074
+
+funcs/fn_80015074.c:
+	.text       start:0x80015074 end:0x8001508C
+
+funcs/UnlockedHandler.c:
+	.text       start:0x8001508C end:0x800150B4
+
+funcs/EXIGetID.c:
+	.text       start:0x800150B4 end:0x80015464
+
+funcs/fn_80015464.c:
+	.text       start:0x80015464 end:0x800155F0
+
+funcs/__OSEnableBarnacle.c:
+	.text       start:0x800155F0 end:0x800157AC
+
+funcs/fn_800157AC.c:
+	.text       start:0x800157AC end:0x8001581C
+
+funcs/fn_8001581C.c:
+	.text       start:0x8001581C end:0x80015A38
+
+funcs/DBInit.c:
+	.text       start:0x80015A38 end:0x80015A60
+
+funcs/fn_80015A60.c:
+	.text       start:0x80015A60 end:0x80015AA8
+
+funcs/__DBExceptionDestination.c:
+	.text       start:0x80015AA8 end:0x80015AB8
+
+funcs/__DBIsExceptionMarked.c:
+	.text       start:0x80015AB8 end:0x80015AD4
+
+funcs/DBPrintf.c:
+	.text       start:0x80015AD4 end:0x80015B24
+
+funcs/fn_80015B24.c:
+	.text       start:0x80015B24 end:0x80015B50
+
+funcs/fn_80015B50.c:
+	.text       start:0x80015B50 end:0x80015B78
+
+funcs/fn_80015B78.c:
+	.text       start:0x80015B78 end:0x80015C1C
+
+funcs/fn_80015C1C.c:
+	.text       start:0x80015C1C end:0x80015CB0
+
+funcs/fn_80015CB0.c:
+	.text       start:0x80015CB0 end:0x80015D7C
+
+funcs/fn_80015D7C.c:
+	.text       start:0x80015D7C end:0x80015E18
+
+funcs/fn_80015E18.c:
+	.text       start:0x80015E18 end:0x80015EE8
+
+funcs/fn_80015EE8.c:
+	.text       start:0x80015EE8 end:0x80015F80
+
+funcs/__DVDInitWA.c:
+	.text       start:0x80015F80 end:0x80015FC0
+
+funcs/__DVDInterruptHandler.c:
+	.text       start:0x80015FC0 end:0x800162A0
+
+funcs/fn_800162A0.c:
+	.text       start:0x800162A0 end:0x80016324
+
+funcs/AlarmHandlerForTimeout.c:
+	.text       start:0x80016324 end:0x80016394
+
+funcs/fn_80016394.c:
+	.text       start:0x80016394 end:0x800164A4
+
+funcs/fn_800164A4.c:
+	.text       start:0x800164A4 end:0x80016524
+
+funcs/fn_80016524.c:
+	.text       start:0x80016524 end:0x800167BC
+
+funcs/fn_800167BC.c:
+	.text       start:0x800167BC end:0x80016850
+
+funcs/DVDLowWaitCoverClose.c:
+	.text       start:0x80016850 end:0x8001687C
+
+funcs/fn_8001687C.c:
+	.text       start:0x8001687C end:0x80016920
+
+funcs/DVDLowStopMotor.c:
+	.text       start:0x80016920 end:0x800169AC
+
+funcs/fn_800169AC.c:
+	.text       start:0x800169AC end:0x80016A38
+
+funcs/fn_80016A38.c:
+	.text       start:0x80016A38 end:0x80016AD4
+
+funcs/fn_80016AD4.c:
+	.text       start:0x80016AD4 end:0x80016B6C
+
+funcs/fn_80016B6C.c:
+	.text       start:0x80016B6C end:0x80016BF8
+
+funcs/fn_80016BF8.c:
+	.text       start:0x80016BF8 end:0x80016C94
+
+funcs/DVDLowReset.c:
+	.text       start:0x80016C94 end:0x80016D50
+
+funcs/fn_80016D50.c:
+	.text       start:0x80016D50 end:0x80016D64
+
+funcs/fn_80016D64.c:
+	.text       start:0x80016D64 end:0x80016D7C
+
+funcs/__DVDLowSetWAType.c:
+	.text       start:0x80016D7C end:0x80016DC0
+
+funcs/__DVDFSInit.c:
+	.text       start:0x80016DC0 end:0x80016DF8
+
+funcs/fn_80016DF8.c:
+	.text       start:0x80016DF8 end:0x800170EC
+
+funcs/fn_800170EC.c:
+	.text       start:0x800170EC end:0x80017160
+
+funcs/fn_80017160.c:
+	.text       start:0x80017160 end:0x80017228
+
+funcs/fn_80017228.c:
+	.text       start:0x80017228 end:0x8001724C
+
+funcs/fn_8001724C.c:
+	.text       start:0x8001724C end:0x800173AC
+
+funcs/fn_800173AC.c:
+	.text       start:0x800173AC end:0x80017470
+
+funcs/fn_80017470.c:
+	.text       start:0x80017470 end:0x800174D0
+
+funcs/fn_800174D0.c:
+	.text       start:0x800174D0 end:0x80017590
+
+funcs/fn_80017590.c:
+	.text       start:0x80017590 end:0x800175C0
+
+funcs/fn_800175C0.c:
+	.text       start:0x800175C0 end:0x800176D8
+
+funcs/fn_800176D8.c:
+	.text       start:0x800176D8 end:0x800176FC
+
+funcs/fn_800176FC.c:
+	.text       start:0x800176FC end:0x80017768
+
+funcs/fn_80017768.c:
+	.text       start:0x80017768 end:0x8001776C
+
+funcs/DVDInit.c:
+	.text       start:0x8001776C end:0x80017838
+
+funcs/fn_80017838.c:
+	.text       start:0x80017838 end:0x800178CC
+
+funcs/fn_800178CC.c:
+	.text       start:0x800178CC end:0x80017958
+
+funcs/cbForStateError.c:
+	.text       start:0x80017958 end:0x80017A04
+
+funcs/fn_80017A04.c:
+	.text       start:0x80017A04 end:0x80017A38
+
+funcs/fn_80017A38.c:
+	.text       start:0x80017A38 end:0x80017A60
+
+funcs/fn_80017A60.c:
+	.text       start:0x80017A60 end:0x80017B14
+
+funcs/fn_80017B14.c:
+	.text       start:0x80017B14 end:0x80017DA8
+
+funcs/fn_80017DA8.c:
+	.text       start:0x80017DA8 end:0x80017E10
+
+funcs/fn_80017E10.c:
+	.text       start:0x80017E10 end:0x80017EA8
+
+funcs/fn_80017EA8.c:
+	.text       start:0x80017EA8 end:0x80017ED0
+
+funcs/fn_80017ED0.c:
+	.text       start:0x80017ED0 end:0x80018028
+
+funcs/fn_80018028.c:
+	.text       start:0x80018028 end:0x80018108
+
+funcs/fn_80018108.c:
+	.text       start:0x80018108 end:0x8001813C
+
+funcs/fn_8001813C.c:
+	.text       start:0x8001813C end:0x80018170
+
+funcs/fn_80018170.c:
+	.text       start:0x80018170 end:0x800181E4
+
+funcs/fn_800181E4.c:
+	.text       start:0x800181E4 end:0x8001821C
+
+funcs/fn_8001821C.c:
+	.text       start:0x8001821C end:0x80018330
+
+funcs/fn_80018330.c:
+	.text       start:0x80018330 end:0x80018414
+
+funcs/fn_80018414.c:
+	.text       start:0x80018414 end:0x80018510
+
+funcs/AlarmHandler.c:
+	.text       start:0x80018510 end:0x80018554
+
+funcs/fn_80018554.c:
+	.text       start:0x80018554 end:0x80018620
+
+funcs/fn_80018620.c:
+	.text       start:0x80018620 end:0x80018650
+
+funcs/fn_80018650.c:
+	.text       start:0x80018650 end:0x800186C0
+
+funcs/fn_800186C0.c:
+	.text       start:0x800186C0 end:0x800186E8
+
+funcs/cbForStateMotorStopped.c:
+	.text       start:0x800186E8 end:0x800187CC
+
+funcs/stateReady.c:
+	.text       start:0x800187CC end:0x800189FC
+
+funcs/stateBusy.c:
+	.text       start:0x800189FC end:0x80018D1C
+
+funcs/fn_80018D1C.c:
+	.text       start:0x80018D1C end:0x80019354
+
+funcs/fn_80019354.c:
+	.text       start:0x80019354 end:0x80019430
+
+funcs/fn_80019430.c:
+	.text       start:0x80019430 end:0x80019500
+
+funcs/DVDReadDiskID.c:
+	.text       start:0x80019500 end:0x800195D4
+
+funcs/fn_800195D4.c:
+	.text       start:0x800195D4 end:0x80019690
+
+funcs/DVDInquiryAsync.c:
+	.text       start:0x80019690 end:0x80019760
+
+funcs/DVDReset.c:
+	.text       start:0x80019760 end:0x800197A4
+
+funcs/fn_800197A4.c:
+	.text       start:0x800197A4 end:0x800197F0
+
+funcs/DVDGetDriveStatus.c:
+	.text       start:0x800197F0 end:0x8001989C
+
+funcs/fn_8001989C.c:
+	.text       start:0x8001989C end:0x800198AC
+
+funcs/fn_800198AC.c:
+	.text       start:0x800198AC end:0x800198FC
+
+funcs/fn_800198FC.c:
+	.text       start:0x800198FC end:0x80019B78
+
+funcs/fn_80019B78.c:
+	.text       start:0x80019B78 end:0x80019C24
+
+funcs/fn_80019C24.c:
+	.text       start:0x80019C24 end:0x80019C48
+
+funcs/fn_80019C48.c:
+	.text       start:0x80019C48 end:0x80019C50
+
+funcs/fn_80019C50.c:
+	.text       start:0x80019C50 end:0x80019D48
+
+funcs/fn_80019D48.c:
+	.text       start:0x80019D48 end:0x80019E64
+
+funcs/__DVDClearWaitingQueue.c:
+	.text       start:0x80019E64 end:0x80019E9C
+
+funcs/__DVDPushWaitingQueue.c:
+	.text       start:0x80019E9C end:0x80019F04
+
+funcs/__DVDPopWaitingQueue.c:
+	.text       start:0x80019F04 end:0x80019FA4
+
+funcs/__DVDCheckWaitingQueue.c:
+	.text       start:0x80019FA4 end:0x80019FFC
+
+funcs/fn_80019FFC.c:
+	.text       start:0x80019FFC end:0x8001A05C
+
+funcs/ErrorCode2Num.c:
+	.text       start:0x8001A05C end:0x8001A178
+
+funcs/__DVDStoreErrorCode.c:
+	.text       start:0x8001A178 end:0x8001A1F4
+
+funcs/fn_8001A1F4.c:
+	.text       start:0x8001A1F4 end:0x8001A2EC
+
+funcs/fn_8001A2EC.c:
+	.text       start:0x8001A2EC end:0x8001A31C
+
+funcs/cb.c:
+	.text       start:0x8001A31C end:0x8001A3F4
+
+funcs/__fstLoad.c:
+	.text       start:0x8001A3F4 end:0x8001A55C
+
+funcs/fn_8001A55C.c:
+	.text       start:0x8001A55C end:0x8001A78C
+
+funcs/fn_8001A78C.c:
+	.text       start:0x8001A78C end:0x8001A7D0
+
+funcs/fn_8001A7D0.c:
+	.text       start:0x8001A7D0 end:0x8001A814
+
+funcs/fn_8001A814.c:
+	.text       start:0x8001A814 end:0x8001A8B4
+
+funcs/fn_8001A8B4.c:
+	.text       start:0x8001A8B4 end:0x8001AAB4
+
+funcs/fn_8001AAB4.c:
+	.text       start:0x8001AAB4 end:0x8001AF64
+
+funcs/fn_8001AF64.c:
+	.text       start:0x8001AF64 end:0x8001AFB8
+
+funcs/fn_8001AFB8.c:
+	.text       start:0x8001AFB8 end:0x8001B28C
+
+funcs/fn_8001B28C.c:
+	.text       start:0x8001B28C end:0x8001B42C
+
+funcs/fn_8001B42C.c:
+	.text       start:0x8001B42C end:0x8001BC54
+
+funcs/fn_8001BC54.c:
+	.text       start:0x8001BC54 end:0x8001BD84
+
+funcs/fn_8001BD84.c:
+	.text       start:0x8001BD84 end:0x8001BDF0
+
+funcs/fn_8001BDF0.c:
+	.text       start:0x8001BDF0 end:0x8001BE6C
+
+funcs/fn_8001BE6C.c:
+	.text       start:0x8001BE6C end:0x8001BE74
+
+funcs/fn_8001BE74.c:
+	.text       start:0x8001BE74 end:0x8001BEDC
+
+funcs/fn_8001BEDC.c:
+	.text       start:0x8001BEDC end:0x8001BF84
+
+funcs/fn_8001BF84.c:
+	.text       start:0x8001BF84 end:0x8001C01C
+
+funcs/VIGetTvFormat.c:
+	.text       start:0x8001C01C end:0x8001C084
+
+funcs/fn_8001C084.c:
+	.text       start:0x8001C084 end:0x8001C0C0
+
+funcs/fn_8001C0C0.c:
+	.text       start:0x8001C0C0 end:0x8001C1F0
+
+funcs/fn_8001C1F0.c:
+	.text       start:0x8001C1F0 end:0x8001C304
+
+funcs/fn_8001C304.c:
+	.text       start:0x8001C304 end:0x8001C4A8
+
+funcs/fn_8001C4A8.c:
+	.text       start:0x8001C4A8 end:0x8001C56C
+
+funcs/fn_8001C56C.c:
+	.text       start:0x8001C56C end:0x8001C62C
+
+funcs/fn_8001C62C.c:
+	.text       start:0x8001C62C end:0x8001C704
+
+funcs/fn_8001C704.c:
+	.text       start:0x8001C704 end:0x8001CA30
+
+funcs/fn_8001CA30.c:
+	.text       start:0x8001CA30 end:0x8001CB64
+
+funcs/fn_8001CB64.c:
+	.text       start:0x8001CB64 end:0x8001CC64
+
+funcs/fn_8001CC64.c:
+	.text       start:0x8001CC64 end:0x8001CD68
+
+funcs/fn_8001CD68.c:
+	.text       start:0x8001CD68 end:0x8001CF80
+
+funcs/fn_8001CF80.c:
+	.text       start:0x8001CF80 end:0x8001D32C
+
+funcs/fn_8001D32C.c:
+	.text       start:0x8001D32C end:0x8001D3E4
+
+funcs/fn_8001D3E4.c:
+	.text       start:0x8001D3E4 end:0x8001D488
+
+funcs/fn_8001D488.c:
+	.text       start:0x8001D488 end:0x8001D4E8
+
+funcs/fn_8001D4E8.c:
+	.text       start:0x8001D4E8 end:0x8001D65C
+
+funcs/fn_8001D65C.c:
+	.text       start:0x8001D65C end:0x8001D7D0
+
+funcs/fn_8001D7D0.c:
+	.text       start:0x8001D7D0 end:0x8001DBC8
+
+funcs/fn_8001DBC8.c:
+	.text       start:0x8001DBC8 end:0x8001DC3C
+
+funcs/fn_8001DC3C.c:
+	.text       start:0x8001DC3C end:0x8001DDD0
+
+funcs/fn_8001DDD0.c:
+	.text       start:0x8001DDD0 end:0x8001DE30
+
+funcs/fn_8001DE30.c:
+	.text       start:0x8001DE30 end:0x8001DE84
+
+funcs/__PADDisableRecalibration.c:
+	.text       start:0x8001DE84 end:0x8001DF00
+
+funcs/fn_8001DF00.c:
+	.text       start:0x8001DF00 end:0x8001DF44
+
+funcs/fn_8001DF44.c:
+	.text       start:0x8001DF44 end:0x8001DFCC
+
+funcs/fn_8001DFCC.c:
+	.text       start:0x8001DFCC end:0x8001DFE4
+
+funcs/fn_8001DFE4.c:
+	.text       start:0x8001DFE4 end:0x8001DFFC
+
+funcs/fn_8001DFFC.c:
+	.text       start:0x8001DFFC end:0x8001E0D4
+
+funcs/fn_8001E0D4.c:
+	.text       start:0x8001E0D4 end:0x8001E0E4
+
+funcs/fn_8001E0E4.c:
+	.text       start:0x8001E0E4 end:0x8001E1C4
+
+funcs/fn_8001E1C4.c:
+	.text       start:0x8001E1C4 end:0x8001E1D8
+
+funcs/fn_8001E1D8.c:
+	.text       start:0x8001E1D8 end:0x8001E2AC
+
+funcs/fn_8001E2AC.c:
+	.text       start:0x8001E2AC end:0x8001E2BC
+
+funcs/fn_8001E2BC.c:
+	.text       start:0x8001E2BC end:0x8001E2D8
+
+funcs/fn_8001E2D8.c:
+	.text       start:0x8001E2D8 end:0x8001E2E8
+
+funcs/fn_8001E2E8.c:
+	.text       start:0x8001E2E8 end:0x8001E304
+
+funcs/fn_8001E304.c:
+	.text       start:0x8001E304 end:0x8001E314
+
+funcs/fn_8001E314.c:
+	.text       start:0x8001E314 end:0x8001E480
+
+funcs/fn_8001E480.c:
+	.text       start:0x8001E480 end:0x8001E4FC
+
+funcs/fn_8001E4FC.c:
+	.text       start:0x8001E4FC end:0x8001E5A8
+
+funcs/fn_8001E5A8.c:
+	.text       start:0x8001E5A8 end:0x8001E600
+
+funcs/fn_8001E600.c:
+	.text       start:0x8001E600 end:0x8001E7E4
+
+funcs/fn_8001E7E4.c:
+	.text       start:0x8001E7E4 end:0x8001E828
+
+funcs/fn_8001E828.c:
+	.text       start:0x8001E828 end:0x8001E864
+
+funcs/fn_8001E864.c:
+	.text       start:0x8001E864 end:0x8001E954
+
+funcs/fn_8001E954.c:
+	.text       start:0x8001E954 end:0x8001E9BC
+
+funcs/fn_8001E9BC.c:
+	.text       start:0x8001E9BC end:0x8001EA30
+
+funcs/fn_8001EA30.c:
+	.text       start:0x8001EA30 end:0x8001EAF4
+
+funcs/fn_8001EAF4.c:
+	.text       start:0x8001EAF4 end:0x8001EB6C
+
+funcs/fn_8001EB6C.c:
+	.text       start:0x8001EB6C end:0x80020360
+
+funcs/fn_80020360.c:
+	.text       start:0x80020360 end:0x80020460
+
+funcs/fn_80020460.c:
+	.text       start:0x80020460 end:0x80020464
+
+funcs/fn_80020464.c:
+	.text       start:0x80020464 end:0x80020530
+
+funcs/fn_80020530.c:
+	.text       start:0x80020530 end:0x800205A0
+
+funcs/fn_800205A0.c:
+	.text       start:0x800205A0 end:0x800206FC
+
+funcs/fn_800206FC.c:
+	.text       start:0x800206FC end:0x8002071C
+
+funcs/fn_8002071C.c:
+	.text       start:0x8002071C end:0x80020724
+
+funcs/fn_80020724.c:
+	.text       start:0x80020724 end:0x80020778
+
+funcs/fn_80020778.c:
+	.text       start:0x80020778 end:0x800207B4
+
+funcs/fn_800207B4.c:
+	.text       start:0x800207B4 end:0x800207E8
+
+funcs/fn_800207E8.c:
+	.text       start:0x800207E8 end:0x80020800
+
+funcs/fn_80020800.c:
+	.text       start:0x80020800 end:0x80020874
+
+funcs/fn_80020874.c:
+	.text       start:0x80020874 end:0x80020928
+
+funcs/fn_80020928.c:
+	.text       start:0x80020928 end:0x800209DC
+
+funcs/fn_800209DC.c:
+	.text       start:0x800209DC end:0x800209FC
+
+funcs/fn_800209FC.c:
+	.text       start:0x800209FC end:0x80020A0C
+
+funcs/fn_80020A0C.c:
+	.text       start:0x80020A0C end:0x80020A28
+
+funcs/fn_80020A28.c:
+	.text       start:0x80020A28 end:0x80020ABC
+
+funcs/fn_80020ABC.c:
+	.text       start:0x80020ABC end:0x80020B3C
+
+funcs/fn_80020B3C.c:
+	.text       start:0x80020B3C end:0x80020CB0
+
+funcs/fn_80020CB0.c:
+	.text       start:0x80020CB0 end:0x80020D58
+
+funcs/fn_80020D58.c:
+	.text       start:0x80020D58 end:0x80020E3C
+
+funcs/fn_80020E3C.c:
+	.text       start:0x80020E3C end:0x80020E4C
+
+funcs/fn_80020E4C.c:
+	.text       start:0x80020E4C end:0x80020E80
+
+funcs/fn_80020E80.c:
+	.text       start:0x80020E80 end:0x80020EA0
+
+funcs/fn_80020EA0.c:
+	.text       start:0x80020EA0 end:0x80020EBC
+
+funcs/fn_80020EBC.c:
+	.text       start:0x80020EBC end:0x80020EDC
+
+funcs/fn_80020EDC.c:
+	.text       start:0x80020EDC end:0x80020EFC
+
+funcs/fn_80020EFC.c:
+	.text       start:0x80020EFC end:0x80020F1C
+
+funcs/fn_80020F1C.c:
+	.text       start:0x80020F1C end:0x80020F50
+
+funcs/fn_80020F50.c:
+	.text       start:0x80020F50 end:0x80020F6C
+
+funcs/fn_80020F6C.c:
+	.text       start:0x80020F6C end:0x80020F88
+
+funcs/fn_80020F88.c:
+	.text       start:0x80020F88 end:0x80020FA4
+
+funcs/fn_80020FA4.c:
+	.text       start:0x80020FA4 end:0x800211E0
+
+funcs/fn_800211E0.c:
+	.text       start:0x800211E0 end:0x800211EC
+
+funcs/fn_800211EC.c:
+	.text       start:0x800211EC end:0x800211F8
+
+funcs/fn_800211F8.c:
+	.text       start:0x800211F8 end:0x80021200
+
+funcs/fn_80021200.c:
+	.text       start:0x80021200 end:0x8002123C
+
+funcs/fn_8002123C.c:
+	.text       start:0x8002123C end:0x800218EC
+
+funcs/fn_800218EC.c:
+	.text       start:0x800218EC end:0x80021910
+
+funcs/fn_80021910.c:
+	.text       start:0x80021910 end:0x80021914
+
+funcs/fn_80021914.c:
+	.text       start:0x80021914 end:0x80021928
+
+funcs/fn_80021928.c:
+	.text       start:0x80021928 end:0x80021930
+
+funcs/fn_80021930.c:
+	.text       start:0x80021930 end:0x80021AB8
+
+funcs/fn_80021AB8.c:
+	.text       start:0x80021AB8 end:0x80021B20
+
+funcs/fn_80021B20.c:
+	.text       start:0x80021B20 end:0x80021B2C
+
+funcs/fn_80021B2C.c:
+	.text       start:0x80021B2C end:0x80021B84
+
+funcs/fn_80021B84.c:
+	.text       start:0x80021B84 end:0x80021BB0
+
+funcs/fn_80021BB0.c:
+	.text       start:0x80021BB0 end:0x80021C7C
+
+funcs/fn_80021C7C.c:
+	.text       start:0x80021C7C end:0x80021FBC
+
+funcs/fn_80021FBC.c:
+	.text       start:0x80021FBC end:0x80022014
+
+funcs/fn_80022014.c:
+	.text       start:0x80022014 end:0x8002201C
+
+funcs/fn_8002201C.c:
+	.text       start:0x8002201C end:0x80022028
+
+funcs/fn_80022028.c:
+	.text       start:0x80022028 end:0x80022420
+
+funcs/fn_80022420.c:
+	.text       start:0x80022420 end:0x8002244C
+
+funcs/fn_8002244C.c:
+	.text       start:0x8002244C end:0x80022450
+
+funcs/fn_80022450.c:
+	.text       start:0x80022450 end:0x800224E4
+
+funcs/fn_800224E4.c:
+	.text       start:0x800224E4 end:0x800224EC
+
+funcs/fn_800224EC.c:
+	.text       start:0x800224EC end:0x80022BF4
+
+funcs/fn_80022BF4.c:
+	.text       start:0x80022BF4 end:0x80022E5C
+
+funcs/fn_80022E5C.c:
+	.text       start:0x80022E5C end:0x80022E68
+
+funcs/fn_80022E68.c:
+	.text       start:0x80022E68 end:0x80022EA4
+
+funcs/fn_80022EA4.c:
+	.text       start:0x80022EA4 end:0x800230A0
+
+funcs/fn_800230A0.c:
+	.text       start:0x800230A0 end:0x800230A4
+
+funcs/fn_800230A4.c:
+	.text       start:0x800230A4 end:0x80023168
+
+funcs/fn_80023168.c:
+	.text       start:0x80023168 end:0x800231C4
+
+funcs/fn_800231C4.c:
+	.text       start:0x800231C4 end:0x80023228
+
+funcs/fn_80023228.c:
+	.text       start:0x80023228 end:0x80023284
+
+funcs/fn_80023284.c:
+	.text       start:0x80023284 end:0x80023394
+
+funcs/fn_80023394.c:
+	.text       start:0x80023394 end:0x80023438
+
+funcs/fn_80023438.c:
+	.text       start:0x80023438 end:0x800234D0
+
+funcs/fn_800234D0.c:
+	.text       start:0x800234D0 end:0x80023568
+
+funcs/fn_80023568.c:
+	.text       start:0x80023568 end:0x800235D4
+
+funcs/fn_800235D4.c:
+	.text       start:0x800235D4 end:0x8002361C
+
+funcs/fn_8002361C.c:
+	.text       start:0x8002361C end:0x80023638
+
+funcs/fn_80023638.c:
+	.text       start:0x80023638 end:0x80023684
+
+funcs/fn_80023684.c:
+	.text       start:0x80023684 end:0x80023B70
+
+funcs/fn_80023B70.c:
+	.text       start:0x80023B70 end:0x80023D00
+
+funcs/fn_80023D00.c:
+	.text       start:0x80023D00 end:0x8002420C
+
+funcs/fn_8002420C.c:
+	.text       start:0x8002420C end:0x80024308
+
+funcs/fn_80024308.c:
+	.text       start:0x80024308 end:0x80024378
+
+funcs/fn_80024378.c:
+	.text       start:0x80024378 end:0x800243C4
+
+funcs/fn_800243C4.c:
+	.text       start:0x800243C4 end:0x800244C8
+
+funcs/fn_800244C8.c:
+	.text       start:0x800244C8 end:0x800248D4
+
+funcs/fn_800248D4.c:
+	.text       start:0x800248D4 end:0x80024C88
+
+funcs/fn_80024C88.c:
+	.text       start:0x80024C88 end:0x80024D84
+
+funcs/fn_80024D84.c:
+	.text       start:0x80024D84 end:0x80024DF0
+
+funcs/fn_80024DF0.c:
+	.text       start:0x80024DF0 end:0x80024E3C
+
+funcs/fn_80024E3C.c:
+	.text       start:0x80024E3C end:0x80024E6C
+
+funcs/fn_80024E6C.c:
+	.text       start:0x80024E6C end:0x80025004
+
+funcs/fn_80025004.c:
+	.text       start:0x80025004 end:0x800251F0
+
+funcs/fn_800251F0.c:
+	.text       start:0x800251F0 end:0x800253F0
+
+funcs/fn_800253F0.c:
+	.text       start:0x800253F0 end:0x80025440
+
+funcs/fn_80025440.c:
+	.text       start:0x80025440 end:0x80025504
+
+funcs/fn_80025504.c:
+	.text       start:0x80025504 end:0x80025854
+
+funcs/fn_80025854.c:
+	.text       start:0x80025854 end:0x80025A24
+
+funcs/fn_80025A24.c:
+	.text       start:0x80025A24 end:0x80025C28
+
+funcs/fn_80025C28.c:
+	.text       start:0x80025C28 end:0x80025C70
+
+funcs/fn_80025C70.c:
+	.text       start:0x80025C70 end:0x80025D00
+
+funcs/fn_80025D00.c:
+	.text       start:0x80025D00 end:0x80025D28
+
+funcs/fn_80025D28.c:
+	.text       start:0x80025D28 end:0x80025D50
+
+funcs/fn_80025D50.c:
+	.text       start:0x80025D50 end:0x80025D5C
+
+funcs/fn_80025D5C.c:
+	.text       start:0x80025D5C end:0x80025E18
+
+funcs/fn_80025E18.c:
+	.text       start:0x80025E18 end:0x80025EE0
+
+funcs/fn_80025EE0.c:
+	.text       start:0x80025EE0 end:0x80025EE4
+
+funcs/fn_80025EE4.c:
+	.text       start:0x80025EE4 end:0x80025EEC
+
+funcs/fn_80025EEC.c:
+	.text       start:0x80025EEC end:0x80025EF4
+
+funcs/fn_80025EF4.c:
+	.text       start:0x80025EF4 end:0x80026D70
+
+funcs/fn_80026D70.c:
+	.text       start:0x80026D70 end:0x80026D90
+
+funcs/fn_80026D90.c:
+	.text       start:0x80026D90 end:0x80026DB8
+
+funcs/fn_80026DB8.c:
+	.text       start:0x80026DB8 end:0x80026DD4
+
+funcs/fn_80026DD4.c:
+	.text       start:0x80026DD4 end:0x80026E04
+
+funcs/fn_80026E04.c:
+	.text       start:0x80026E04 end:0x80026E2C
+
+funcs/fn_80026E2C.c:
+	.text       start:0x80026E2C end:0x80026E54
+
+funcs/fn_80026E54.c:
+	.text       start:0x80026E54 end:0x80026E84
+
+funcs/fn_80026E84.c:
+	.text       start:0x80026E84 end:0x80026EAC
+
+funcs/fn_80026EAC.c:
+	.text       start:0x80026EAC end:0x80026EE0
+
+funcs/fn_80026EE0.c:
+	.text       start:0x80026EE0 end:0x80026F4C
+
+funcs/fn_80026F4C.c:
+	.text       start:0x80026F4C end:0x80026FB8
+
+funcs/fn_80026FB8.c:
+	.text       start:0x80026FB8 end:0x80026FE0
+
+funcs/fn_80026FE0.c:
+	.text       start:0x80026FE0 end:0x8002805C
+
+funcs/fn_8002805C.c:
+	.text       start:0x8002805C end:0x80028090
+
+funcs/fn_80028090.c:
+	.text       start:0x80028090 end:0x800280F0
+
+funcs/fn_800280F0.c:
+	.text       start:0x800280F0 end:0x80028130
+
+funcs/fn_80028130.c:
+	.text       start:0x80028130 end:0x80028164
+
+funcs/fn_80028164.c:
+	.text       start:0x80028164 end:0x80028424
+
+funcs/fn_80028424.c:
+	.text       start:0x80028424 end:0x800284A0
+
+funcs/fn_800284A0.c:
+	.text       start:0x800284A0 end:0x800284CC
+
+funcs/fn_800284CC.c:
+	.text       start:0x800284CC end:0x800284E8
+
+funcs/fn_800284E8.c:
+	.text       start:0x800284E8 end:0x800284FC
+
+funcs/fn_800284FC.c:
+	.text       start:0x800284FC end:0x80028540
+
+funcs/fn_80028540.c:
+	.text       start:0x80028540 end:0x80028554
+
+funcs/fn_80028554.c:
+	.text       start:0x80028554 end:0x80028568
+
+funcs/fn_80028568.c:
+	.text       start:0x80028568 end:0x8002857C
+
+funcs/fn_8002857C.c:
+	.text       start:0x8002857C end:0x80028598
+
+funcs/fn_80028598.c:
+	.text       start:0x80028598 end:0x800285DC
+
+funcs/fn_800285DC.c:
+	.text       start:0x800285DC end:0x800288B4
+
+funcs/fn_800288B4.c:
+	.text       start:0x800288B4 end:0x800288C4
+
+funcs/fn_800288C4.c:
+	.text       start:0x800288C4 end:0x800289C0
+
+funcs/fn_800289C0.c:
+	.text       start:0x800289C0 end:0x80028A1C
+
+funcs/fn_80028A1C.c:
+	.text       start:0x80028A1C end:0x80028A78
+
+funcs/fn_80028A78.c:
+	.text       start:0x80028A78 end:0x80028B2C
+
+funcs/fn_80028B2C.c:
+	.text       start:0x80028B2C end:0x80028B34
+
+funcs/fn_80028B34.c:
+	.text       start:0x80028B34 end:0x80028B3C
+
+funcs/fn_80028B3C.c:
+	.text       start:0x80028B3C end:0x80028CC0
+
+funcs/fn_80028CC0.c:
+	.text       start:0x80028CC0 end:0x80028CD0
+
+funcs/fn_80028CD0.c:
+	.text       start:0x80028CD0 end:0x80028CE0
+
+funcs/fn_80028CE0.c:
+	.text       start:0x80028CE0 end:0x80028CF8
+
+funcs/fn_80028CF8.c:
+	.text       start:0x80028CF8 end:0x80028D0C
+
+funcs/fn_80028D0C.c:
+	.text       start:0x80028D0C end:0x80028DD0
+
+funcs/fn_80028DD0.c:
+	.text       start:0x80028DD0 end:0x80028DD8
+
+funcs/fn_80028DD8.c:
+	.text       start:0x80028DD8 end:0x80028E48
+
+funcs/fn_80028E48.c:
+	.text       start:0x80028E48 end:0x80028E88
+
+funcs/fn_80028E88.c:
+	.text       start:0x80028E88 end:0x80028F50
+
+funcs/fn_80028F50.c:
+	.text       start:0x80028F50 end:0x80028FA0
+
+funcs/fn_80028FA0.c:
+	.text       start:0x80028FA0 end:0x800293C4
+
+funcs/fn_800293C4.c:
+	.text       start:0x800293C4 end:0x80029564
+
+funcs/fn_80029564.c:
+	.text       start:0x80029564 end:0x800296F0
+
+funcs/fn_800296F0.c:
+	.text       start:0x800296F0 end:0x80029790
+
+funcs/fn_80029790.c:
+	.text       start:0x80029790 end:0x80029824
+
+funcs/fn_80029824.c:
+	.text       start:0x80029824 end:0x80029828
+
+funcs/fn_80029828.c:
+	.text       start:0x80029828 end:0x8002985C
+
+funcs/fn_8002985C.c:
+	.text       start:0x8002985C end:0x80029934
+
+funcs/fn_80029934.c:
+	.text       start:0x80029934 end:0x80029A4C
+
+funcs/fn_80029A4C.c:
+	.text       start:0x80029A4C end:0x80029AF4
+
+funcs/fn_80029AF4.c:
+	.text       start:0x80029AF4 end:0x80029B78
+
+funcs/fn_80029B78.c:
+	.text       start:0x80029B78 end:0x80029C38
+
+funcs/fn_80029C38.c:
+	.text       start:0x80029C38 end:0x80029D28
+
+funcs/fn_80029D28.c:
+	.text       start:0x80029D28 end:0x80029DD4
+
+funcs/fn_80029DD4.c:
+	.text       start:0x80029DD4 end:0x80029E78
+
+funcs/fn_80029E78.c:
+	.text       start:0x80029E78 end:0x8002A0A4
+
+funcs/fn_8002A0A4.c:
+	.text       start:0x8002A0A4 end:0x8002A1B4
+
+funcs/fn_8002A1B4.c:
+	.text       start:0x8002A1B4 end:0x8002A368
+
+funcs/fn_8002A368.c:
+	.text       start:0x8002A368 end:0x8002A49C
+
+funcs/fn_8002A49C.c:
+	.text       start:0x8002A49C end:0x8002A5B8
+
+funcs/fn_8002A5B8.c:
+	.text       start:0x8002A5B8 end:0x8002A698
+
+funcs/fn_8002A698.c:
+	.text       start:0x8002A698 end:0x8002A744
+
+funcs/fn_8002A744.c:
+	.text       start:0x8002A744 end:0x8002A74C
+
+funcs/fn_8002A74C.c:
+	.text       start:0x8002A74C end:0x8002A774
+
+funcs/fn_8002A774.c:
+	.text       start:0x8002A774 end:0x8002A7AC
+
+funcs/fn_8002A7AC.c:
+	.text       start:0x8002A7AC end:0x8002A7C4
+
+funcs/fn_8002A7C4.c:
+	.text       start:0x8002A7C4 end:0x8002A83C
+
+funcs/fn_8002A83C.c:
+	.text       start:0x8002A83C end:0x8002A8F4
+
+funcs/fn_8002A8F4.c:
+	.text       start:0x8002A8F4 end:0x8002A958
+
+funcs/fn_8002A958.c:
+	.text       start:0x8002A958 end:0x8002A988
+
+funcs/fn_8002A988.c:
+	.text       start:0x8002A988 end:0x8002AAD8
+
+funcs/fn_8002AAD8.c:
+	.text       start:0x8002AAD8 end:0x8002AB70
+
+funcs/fn_8002AB70.c:
+	.text       start:0x8002AB70 end:0x8002ABC0
+
+funcs/fn_8002ABC0.c:
+	.text       start:0x8002ABC0 end:0x8002AD2C
+
+funcs/fn_8002AD2C.c:
+	.text       start:0x8002AD2C end:0x8002AE70
+
+funcs/fn_8002AE70.c:
+	.text       start:0x8002AE70 end:0x8002AF34
+
+funcs/fn_8002AF34.c:
+	.text       start:0x8002AF34 end:0x8002BA8C
+
+funcs/fn_8002BA8C.c:
+	.text       start:0x8002BA8C end:0x8002BAFC
+
+funcs/fn_8002BAFC.c:
+	.text       start:0x8002BAFC end:0x8002BE20
+
+funcs/fn_8002BE20.c:
+	.text       start:0x8002BE20 end:0x8002BEFC
+
+funcs/fn_8002BEFC.c:
+	.text       start:0x8002BEFC end:0x8002BF60
+
+funcs/fn_8002BF60.c:
+	.text       start:0x8002BF60 end:0x8002C03C
+
+funcs/fn_8002C03C.c:
+	.text       start:0x8002C03C end:0x8002C0A0
+
+funcs/fn_8002C0A0.c:
+	.text       start:0x8002C0A0 end:0x8002C0B8
+
+funcs/fn_8002C0B8.c:
+	.text       start:0x8002C0B8 end:0x8002C0C0
+
+funcs/fn_8002C0C0.c:
+	.text       start:0x8002C0C0 end:0x8002C194
+
+funcs/fn_8002C194.c:
+	.text       start:0x8002C194 end:0x8002C25C
+
+funcs/fn_8002C25C.c:
+	.text       start:0x8002C25C end:0x8002C374
+
+funcs/fn_8002C374.c:
+	.text       start:0x8002C374 end:0x8002C410
+
+funcs/fn_8002C410.c:
+	.text       start:0x8002C410 end:0x8002C4BC
+
+funcs/fn_8002C4BC.c:
+	.text       start:0x8002C4BC end:0x8002C4C4
+
+funcs/fn_8002C4C4.c:
+	.text       start:0x8002C4C4 end:0x8002C594
+
+funcs/fn_8002C594.c:
+	.text       start:0x8002C594 end:0x8002C65C
+
+funcs/fn_8002C65C.c:
+	.text       start:0x8002C65C end:0x8002C720
+
+funcs/fn_8002C720.c:
+	.text       start:0x8002C720 end:0x8002C8D0
+
+funcs/fn_8002C8D0.c:
+	.text       start:0x8002C8D0 end:0x8002CB54
+
+funcs/fn_8002CB54.c:
+	.text       start:0x8002CB54 end:0x8002CD94
+
+funcs/fn_8002CD94.c:
+	.text       start:0x8002CD94 end:0x8002D018
+
+funcs/fn_8002D018.c:
+	.text       start:0x8002D018 end:0x8002D0A4
+
+funcs/fn_8002D0A4.c:
+	.text       start:0x8002D0A4 end:0x8002D634
+
+funcs/fn_8002D634.c:
+	.text       start:0x8002D634 end:0x8002D65C
+
+funcs/fn_8002D65C.c:
+	.text       start:0x8002D65C end:0x8002D6B0
+
+funcs/fn_8002D6B0.c:
+	.text       start:0x8002D6B0 end:0x8002D77C
+
+funcs/fn_8002D77C.c:
+	.text       start:0x8002D77C end:0x8002D8F8
+
+funcs/fn_8002D8F8.c:
+	.text       start:0x8002D8F8 end:0x8002DD08
+
+funcs/fn_8002DD08.c:
+	.text       start:0x8002DD08 end:0x8002DE40
+
+funcs/fn_8002DE40.c:
+	.text       start:0x8002DE40 end:0x8002DFE0
+
+funcs/fn_8002DFE0.c:
+	.text       start:0x8002DFE0 end:0x8002E028
+
+funcs/fn_8002E028.c:
+	.text       start:0x8002E028 end:0x8002E0C4
+
+funcs/fn_8002E0C4.c:
+	.text       start:0x8002E0C4 end:0x8002E170
+
+funcs/fn_8002E170.c:
+	.text       start:0x8002E170 end:0x8002E2B4
+
+funcs/fn_8002E2B4.c:
+	.text       start:0x8002E2B4 end:0x8002E90C
+
+funcs/fn_8002E90C.c:
+	.text       start:0x8002E90C end:0x8002E954
+
+funcs/fn_8002E954.c:
+	.text       start:0x8002E954 end:0x8002E9BC
+
+funcs/fn_8002E9BC.c:
+	.text       start:0x8002E9BC end:0x8002EA54
+
+funcs/fn_8002EA54.c:
+	.text       start:0x8002EA54 end:0x8002EA84
+
+funcs/fn_8002EA84.c:
+	.text       start:0x8002EA84 end:0x8002EBD4
+
+funcs/fn_8002EBD4.c:
+	.text       start:0x8002EBD4 end:0x8002ED4C
+
+funcs/fn_8002ED4C.c:
+	.text       start:0x8002ED4C end:0x8002EDA0
+
+funcs/fn_8002EDA0.c:
+	.text       start:0x8002EDA0 end:0x8002EDA8
+
+funcs/fn_8002EDA8.c:
+	.text       start:0x8002EDA8 end:0x8002EED8
+
+funcs/fn_8002EED8.c:
+	.text       start:0x8002EED8 end:0x8002F0F8
+
+funcs/fn_8002F0F8.c:
+	.text       start:0x8002F0F8 end:0x8002F140
+
+funcs/fn_8002F140.c:
+	.text       start:0x8002F140 end:0x8002F2F8
+
+funcs/fn_8002F2F8.c:
+	.text       start:0x8002F2F8 end:0x8002F428
+
+funcs/fn_8002F428.c:
+	.text       start:0x8002F428 end:0x8002F570
+
+funcs/fn_8002F570.c:
+	.text       start:0x8002F570 end:0x8002F5B8
+
+funcs/fn_8002F5B8.c:
+	.text       start:0x8002F5B8 end:0x8002F728
+
+funcs/fn_8002F728.c:
+	.text       start:0x8002F728 end:0x8002F7D8
+
+funcs/fn_8002F7D8.c:
+	.text       start:0x8002F7D8 end:0x8002F8EC
+
+funcs/fn_8002F8EC.c:
+	.text       start:0x8002F8EC end:0x8002F934
+
+funcs/fn_8002F934.c:
+	.text       start:0x8002F934 end:0x8002F9D8
+
+funcs/fn_8002F9D8.c:
+	.text       start:0x8002F9D8 end:0x8002FB04
+
+funcs/fn_8002FB04.c:
+	.text       start:0x8002FB04 end:0x8002FC14
+
+funcs/fn_8002FC14.c:
+	.text       start:0x8002FC14 end:0x8002FC5C
+
+funcs/fn_8002FC5C.c:
+	.text       start:0x8002FC5C end:0x8002FE54
+
+funcs/fn_8002FE54.c:
+	.text       start:0x8002FE54 end:0x8002FF80
+
+funcs/fn_8002FF80.c:
+	.text       start:0x8002FF80 end:0x800300F4
+
+funcs/fn_800300F4.c:
+	.text       start:0x800300F4 end:0x8003013C
+
+funcs/fn_8003013C.c:
+	.text       start:0x8003013C end:0x80030338
+
+funcs/fn_80030338.c:
+	.text       start:0x80030338 end:0x80030380
+
+funcs/fn_80030380.c:
+	.text       start:0x80030380 end:0x8003043C
+
+funcs/fn_8003043C.c:
+	.text       start:0x8003043C end:0x80030690
+
+funcs/fn_80030690.c:
+	.text       start:0x80030690 end:0x80030754
+
+funcs/fn_80030754.c:
+	.text       start:0x80030754 end:0x800307CC
+
+funcs/fn_800307CC.c:
+	.text       start:0x800307CC end:0x80030848
+
+funcs/fn_80030848.c:
+	.text       start:0x80030848 end:0x8003086C
+
+funcs/fn_8003086C.c:
+	.text       start:0x8003086C end:0x800309FC
+
+funcs/GXInit.c:
+	.text       start:0x800309FC end:0x8003128C
+
+funcs/__GXInitGX.c:
+	.text       start:0x8003128C end:0x80031B50
+
+funcs/fn_80031B50.c:
+	.text       start:0x80031B50 end:0x80031C84
+
+funcs/GXInitFifoBase.c:
+	.text       start:0x80031C84 end:0x80031CF0
+
+funcs/fn_80031CF0.c:
+	.text       start:0x80031CF0 end:0x80031D60
+
+funcs/fn_80031D60.c:
+	.text       start:0x80031D60 end:0x80031D6C
+
+funcs/GXSetCPUFifo.c:
+	.text       start:0x80031D6C end:0x80031E7C
+
+funcs/GXSetGPFifo.c:
+	.text       start:0x80031E7C end:0x80031FF4
+
+funcs/fn_80031FF4.c:
+	.text       start:0x80031FF4 end:0x80032014
+
+funcs/fn_80032014.c:
+	.text       start:0x80032014 end:0x800320F0
+
+funcs/fn_800320F0.c:
+	.text       start:0x800320F0 end:0x80032140
+
+funcs/fn_80032140.c:
+	.text       start:0x80032140 end:0x800321D8
+
+funcs/fn_800321D8.c:
+	.text       start:0x800321D8 end:0x8003221C
+
+funcs/__GXFifoInit.c:
+	.text       start:0x8003221C end:0x80032268
+
+funcs/fn_80032268.c:
+	.text       start:0x80032268 end:0x8003228C
+
+funcs/fn_8003228C.c:
+	.text       start:0x8003228C end:0x800322AC
+
+funcs/fn_800322AC.c:
+	.text       start:0x800322AC end:0x800322E8
+
+funcs/fn_800322E8.c:
+	.text       start:0x800322E8 end:0x80032324
+
+funcs/fn_80032324.c:
+	.text       start:0x80032324 end:0x80032360
+
+funcs/fn_80032360.c:
+	.text       start:0x80032360 end:0x80032368
+
+funcs/fn_80032368.c:
+	.text       start:0x80032368 end:0x80032370
+
+funcs/fn_80032370.c:
+	.text       start:0x80032370 end:0x800324C8
+
+funcs/fn_800324C8.c:
+	.text       start:0x800324C8 end:0x80032818
+
+funcs/fn_80032818.c:
+	.text       start:0x80032818 end:0x80032B8C
+
+funcs/fn_80032B8C.c:
+	.text       start:0x80032B8C end:0x80032BE0
+
+funcs/fn_80032BE0.c:
+	.text       start:0x80032BE0 end:0x80032D04
+
+funcs/fn_80032D04.c:
+	.text       start:0x80032D04 end:0x80032EB8
+
+funcs/fn_80032EB8.c:
+	.text       start:0x80032EB8 end:0x80032F48
+
+funcs/fn_80032F48.c:
+	.text       start:0x80032F48 end:0x80032F80
+
+funcs/fn_80032F80.c:
+	.text       start:0x80032F80 end:0x800332D8
+
+funcs/fn_800332D8.c:
+	.text       start:0x800332D8 end:0x80033650
+
+funcs/fn_80033650.c:
+	.text       start:0x80033650 end:0x800336EC
+
+funcs/fn_800336EC.c:
+	.text       start:0x800336EC end:0x8003396C
+
+funcs/fn_8003396C.c:
+	.text       start:0x8003396C end:0x800339E0
+
+funcs/fn_800339E0.c:
+	.text       start:0x800339E0 end:0x80033A6C
+
+funcs/fn_80033A6C.c:
+	.text       start:0x80033A6C end:0x80033A7C
+
+funcs/fn_80033A7C.c:
+	.text       start:0x80033A7C end:0x80033D4C
+
+funcs/fn_80033D4C.c:
+	.text       start:0x80033D4C end:0x80033D8C
+
+funcs/GXSetMisc.c:
+	.text       start:0x80033D8C end:0x80033E20
+
+funcs/fn_80033E20.c:
+	.text       start:0x80033E20 end:0x80033E7C
+
+funcs/fn_80033E7C.c:
+	.text       start:0x80033E7C end:0x80033EB0
+
+funcs/fn_80033EB0.c:
+	.text       start:0x80033EB0 end:0x8003401C
+
+funcs/fn_8003401C.c:
+	.text       start:0x8003401C end:0x800340D4
+
+funcs/fn_800340D4.c:
+	.text       start:0x800340D4 end:0x8003416C
+
+funcs/fn_8003416C.c:
+	.text       start:0x8003416C end:0x800341EC
+
+funcs/fn_800341EC.c:
+	.text       start:0x800341EC end:0x80034200
+
+funcs/fn_80034200.c:
+	.text       start:0x80034200 end:0x80034214
+
+funcs/fn_80034214.c:
+	.text       start:0x80034214 end:0x80034230
+
+funcs/fn_80034230.c:
+	.text       start:0x80034230 end:0x800342B8
+
+funcs/fn_800342B8.c:
+	.text       start:0x800342B8 end:0x800342D4
+
+funcs/fn_800342D4.c:
+	.text       start:0x800342D4 end:0x800342E8
+
+funcs/fn_800342E8.c:
+	.text       start:0x800342E8 end:0x80034304
+
+funcs/fn_80034304.c:
+	.text       start:0x80034304 end:0x8003432C
+
+funcs/fn_8003432C.c:
+	.text       start:0x8003432C end:0x80034350
+
+funcs/fn_80034350.c:
+	.text       start:0x80034350 end:0x80034378
+
+funcs/fn_80034378.c:
+	.text       start:0x80034378 end:0x800343BC
+
+funcs/fn_800343BC.c:
+	.text       start:0x800343BC end:0x80034444
+
+funcs/fn_80034444.c:
+	.text       start:0x80034444 end:0x80034488
+
+funcs/fn_80034488.c:
+	.text       start:0x80034488 end:0x8003450C
+
+funcs/__GXPEInit.c:
+	.text       start:0x8003450C end:0x8003458C
+
+funcs/fn_8003458C.c:
+	.text       start:0x8003458C end:0x8003462C
+
+funcs/fn_8003462C.c:
+	.text       start:0x8003462C end:0x8003471C
+
+funcs/fn_8003471C.c:
+	.text       start:0x8003471C end:0x800347A4
+
+funcs/fn_800347A4.c:
+	.text       start:0x800347A4 end:0x800347EC
+
+funcs/fn_800347EC.c:
+	.text       start:0x800347EC end:0x80034834
+
+funcs/fn_80034834.c:
+	.text       start:0x80034834 end:0x80034890
+
+funcs/fn_80034890.c:
+	.text       start:0x80034890 end:0x800348DC
+
+funcs/fn_800348DC.c:
+	.text       start:0x800348DC end:0x80034918
+
+funcs/fn_80034918.c:
+	.text       start:0x80034918 end:0x8003493C
+
+funcs/fn_8003493C.c:
+	.text       start:0x8003493C end:0x80034A5C
+
+funcs/fn_80034A5C.c:
+	.text       start:0x80034A5C end:0x80034AEC
+
+funcs/fn_80034AEC.c:
+	.text       start:0x80034AEC end:0x80034B7C
+
+funcs/fn_80034B7C.c:
+	.text       start:0x80034B7C end:0x80034BB8
+
+funcs/fn_80034BB8.c:
+	.text       start:0x80034BB8 end:0x80034D0C
+
+funcs/fn_80034D0C.c:
+	.text       start:0x80034D0C end:0x80034D34
+
+funcs/fn_80034D34.c:
+	.text       start:0x80034D34 end:0x80034D9C
+
+funcs/fn_80034D9C.c:
+	.text       start:0x80034D9C end:0x80034E64
+
+funcs/fn_80034E64.c:
+	.text       start:0x80034E64 end:0x80034ECC
+
+funcs/fn_80034ECC.c:
+	.text       start:0x80034ECC end:0x800350F4
+
+funcs/fn_800350F4.c:
+	.text       start:0x800350F4 end:0x80035110
+
+funcs/fn_80035110.c:
+	.text       start:0x80035110 end:0x8003526C
+
+funcs/fn_8003526C.c:
+	.text       start:0x8003526C end:0x800353E8
+
+funcs/fn_800353E8.c:
+	.text       start:0x800353E8 end:0x80035420
+
+funcs/fn_80035420.c:
+	.text       start:0x80035420 end:0x800355B0
+
+funcs/fn_800355B0.c:
+	.text       start:0x800355B0 end:0x80035680
+
+funcs/fn_80035680.c:
+	.text       start:0x80035680 end:0x80035690
+
+funcs/fn_80035690.c:
+	.text       start:0x80035690 end:0x800356AC
+
+funcs/fn_800356AC.c:
+	.text       start:0x800356AC end:0x800356B8
+
+funcs/fn_800356B8.c:
+	.text       start:0x800356B8 end:0x80035734
+
+funcs/fn_80035734.c:
+	.text       start:0x80035734 end:0x80035828
+
+funcs/fn_80035828.c:
+	.text       start:0x80035828 end:0x8003591C
+
+funcs/fn_8003591C.c:
+	.text       start:0x8003591C end:0x80035960
+
+funcs/fn_80035960.c:
+	.text       start:0x80035960 end:0x80035A2C
+
+funcs/fn_80035A2C.c:
+	.text       start:0x80035A2C end:0x80035B88
+
+funcs/fn_80035B88.c:
+	.text       start:0x80035B88 end:0x80035C50
+
+funcs/fn_80035C50.c:
+	.text       start:0x80035C50 end:0x80035EC4
+
+funcs/fn_80035EC4.c:
+	.text       start:0x80035EC4 end:0x80036058
+
+funcs/fn_80036058.c:
+	.text       start:0x80036058 end:0x80036070
+
+funcs/fn_80036070.c:
+	.text       start:0x80036070 end:0x800360D8
+
+funcs/fn_800360D8.c:
+	.text       start:0x800360D8 end:0x800360E4
+
+funcs/fn_800360E4.c:
+	.text       start:0x800360E4 end:0x800360F4
+
+funcs/fn_800360F4.c:
+	.text       start:0x800360F4 end:0x80036104
+
+funcs/fn_80036104.c:
+	.text       start:0x80036104 end:0x8003610C
+
+funcs/fn_8003610C.c:
+	.text       start:0x8003610C end:0x800361F0
+
+funcs/fn_800361F0.c:
+	.text       start:0x800361F0 end:0x80036388
+
+funcs/fn_80036388.c:
+	.text       start:0x80036388 end:0x800363DC
+
+funcs/GXInitTexCacheRegion.c:
+	.text       start:0x800363DC end:0x800364FC
+
+funcs/GXInitTlutRegion.c:
+	.text       start:0x800364FC end:0x80036544
+
+funcs/fn_80036544.c:
+	.text       start:0x80036544 end:0x8003658C
+
+funcs/fn_8003658C.c:
+	.text       start:0x8003658C end:0x800365A0
+
+funcs/fn_800365A0.c:
+	.text       start:0x800365A0 end:0x800365B4
+
+funcs/fn_800365B4.c:
+	.text       start:0x800365B4 end:0x8003666C
+
+funcs/fn_8003666C.c:
+	.text       start:0x8003666C end:0x800367E8
+
+funcs/__GXSetTmemConfig.c:
+	.text       start:0x800367E8 end:0x80036A28
+
+funcs/fn_80036A28.c:
+	.text       start:0x80036A28 end:0x80036AC4
+
+funcs/fn_80036AC4.c:
+	.text       start:0x80036AC4 end:0x80036C24
+
+funcs/fn_80036C24.c:
+	.text       start:0x80036C24 end:0x80036DA0
+
+funcs/fn_80036DA0.c:
+	.text       start:0x80036DA0 end:0x80036EB4
+
+funcs/fn_80036EB4.c:
+	.text       start:0x80036EB4 end:0x80036EDC
+
+funcs/fn_80036EDC.c:
+	.text       start:0x80036EDC end:0x80036F24
+
+funcs/fn_80036F24.c:
+	.text       start:0x80036F24 end:0x80036FF0
+
+funcs/__GXFlushTextureState.c:
+	.text       start:0x80036FF0 end:0x80037014
+
+funcs/fn_80037014.c:
+	.text       start:0x80037014 end:0x800370A0
+
+funcs/fn_800370A0.c:
+	.text       start:0x800370A0 end:0x800370E4
+
+funcs/fn_800370E4.c:
+	.text       start:0x800370E4 end:0x80037128
+
+funcs/fn_80037128.c:
+	.text       start:0x80037128 end:0x80037190
+
+funcs/fn_80037190.c:
+	.text       start:0x80037190 end:0x800371F8
+
+funcs/fn_800371F8.c:
+	.text       start:0x800371F8 end:0x8003726C
+
+funcs/fn_8003726C.c:
+	.text       start:0x8003726C end:0x800372E0
+
+funcs/fn_800372E0.c:
+	.text       start:0x800372E0 end:0x80037354
+
+funcs/fn_80037354.c:
+	.text       start:0x80037354 end:0x800373C0
+
+funcs/fn_800373C0.c:
+	.text       start:0x800373C0 end:0x8003742C
+
+funcs/fn_8003742C.c:
+	.text       start:0x8003742C end:0x80037480
+
+funcs/fn_80037480.c:
+	.text       start:0x80037480 end:0x80037518
+
+funcs/fn_80037518.c:
+	.text       start:0x80037518 end:0x8003756C
+
+funcs/fn_8003756C.c:
+	.text       start:0x8003756C end:0x800375F0
+
+funcs/fn_800375F0.c:
+	.text       start:0x800375F0 end:0x800377C8
+
+funcs/fn_800377C8.c:
+	.text       start:0x800377C8 end:0x800377F8
+
+funcs/fn_800377F8.c:
+	.text       start:0x800377F8 end:0x80037A14
+
+funcs/fn_80037A14.c:
+	.text       start:0x80037A14 end:0x80037B14
+
+funcs/fn_80037B14.c:
+	.text       start:0x80037B14 end:0x80037B68
+
+funcs/fn_80037B68.c:
+	.text       start:0x80037B68 end:0x80037B94
+
+funcs/fn_80037B94.c:
+	.text       start:0x80037B94 end:0x80037BC0
+
+funcs/fn_80037BC0.c:
+	.text       start:0x80037BC0 end:0x80037BF4
+
+funcs/fn_80037BF4.c:
+	.text       start:0x80037BF4 end:0x80037C2C
+
+funcs/fn_80037C2C.c:
+	.text       start:0x80037C2C end:0x80037D14
+
+funcs/fn_80037D14.c:
+	.text       start:0x80037D14 end:0x80037D40
+
+funcs/fn_80037D40.c:
+	.text       start:0x80037D40 end:0x80037D7C
+
+funcs/fn_80037D7C.c:
+	.text       start:0x80037D7C end:0x80037DB4
+
+funcs/fn_80037DB4.c:
+	.text       start:0x80037DB4 end:0x80037E30
+
+funcs/fn_80037E30.c:
+	.text       start:0x80037E30 end:0x800384FC
+
+funcs/fn_800384FC.c:
+	.text       start:0x800384FC end:0x80038878
+
+funcs/fn_80038878.c:
+	.text       start:0x80038878 end:0x8003887C
+
+funcs/fn_8003887C.c:
+	.text       start:0x8003887C end:0x80038944
+
+funcs/fn_80038944.c:
+	.text       start:0x80038944 end:0x80038A18
+
+funcs/fn_80038A18.c:
+	.text       start:0x80038A18 end:0x80038A88
+
+funcs/fn_80038A88.c:
+	.text       start:0x80038A88 end:0x80038B3C
+
+funcs/fn_80038B3C.c:
+	.text       start:0x80038B3C end:0x80038BFC
+
+funcs/fn_80038BFC.c:
+	.text       start:0x80038BFC end:0x80038C5C
+
+funcs/fn_80038C5C.c:
+	.text       start:0x80038C5C end:0x80038CAC
+
+funcs/fn_80038CAC.c:
+	.text       start:0x80038CAC end:0x80038CFC
+
+funcs/fn_80038CFC.c:
+	.text       start:0x80038CFC end:0x80038D34
+
+funcs/fn_80038D34.c:
+	.text       start:0x80038D34 end:0x80038DE8
+
+funcs/fn_80038DE8.c:
+	.text       start:0x80038DE8 end:0x80038EEC
+
+funcs/fn_80038EEC.c:
+	.text       start:0x80038EEC end:0x80038F10
+
+funcs/fn_80038F10.c:
+	.text       start:0x80038F10 end:0x80038F48
+
+funcs/fn_80038F48.c:
+	.text       start:0x80038F48 end:0x80038FD8
+
+funcs/fn_80038FD8.c:
+	.text       start:0x80038FD8 end:0x80039020
+
+funcs/fn_80039020.c:
+	.text       start:0x80039020 end:0x80039060
+
+funcs/fn_80039060.c:
+	.text       start:0x80039060 end:0x80039088
+
+funcs/fn_80039088.c:
+	.text       start:0x80039088 end:0x8003910C
+
+funcs/fn_8003910C.c:
+	.text       start:0x8003910C end:0x80039954
+
+funcs/fn_80039954.c:
+	.text       start:0x80039954 end:0x80039AFC
+
+funcs/fn_80039AFC.c:
+	.text       start:0x80039AFC end:0x80039B0C
+
+funcs/fn_80039B0C.c:
+	.text       start:0x80039B0C end:0x80039B38
+
+funcs/fn_80039B38.c:
+	.text       start:0x80039B38 end:0x80039B7C
+
+funcs/fn_80039B7C.c:
+	.text       start:0x80039B7C end:0x80039C40
+
+funcs/fn_80039C40.c:
+	.text       start:0x80039C40 end:0x80039E48
+
+funcs/fn_80039E48.c:
+	.text       start:0x80039E48 end:0x8003A1CC
+
+funcs/fn_8003A1CC.c:
+	.text       start:0x8003A1CC end:0x8003A3D4
+
+funcs/fn_8003A3D4.c:
+	.text       start:0x8003A3D4 end:0x8003A4E8
+
+funcs/fn_8003A4E8.c:
+	.text       start:0x8003A4E8 end:0x8003A680
+
+funcs/fn_8003A680.c:
+	.text       start:0x8003A680 end:0x8003A760
+
+funcs/fn_8003A760.c:
+	.text       start:0x8003A760 end:0x8003A91C
+
+funcs/fn_8003A91C.c:
+	.text       start:0x8003A91C end:0x8003AB08
+
+funcs/fn_8003AB08.c:
+	.text       start:0x8003AB08 end:0x8003B010
+
+funcs/fn_8003B010.c:
+	.text       start:0x8003B010 end:0x8003B63C
+
+funcs/fn_8003B63C.c:
+	.text       start:0x8003B63C end:0x8003B798
+
+funcs/fn_8003B798.c:
+	.text       start:0x8003B798 end:0x8003B8A8
+
+funcs/fn_8003B8A8.c:
+	.text       start:0x8003B8A8 end:0x8003B930
+
+funcs/fn_8003B930.c:
+	.text       start:0x8003B930 end:0x8003B9AC
+
+funcs/fn_8003B9AC.c:
+	.text       start:0x8003B9AC end:0x8003BB30
+
+funcs/fn_8003BB30.c:
+	.text       start:0x8003BB30 end:0x8003BCE4
+
+funcs/fn_8003BCE4.c:
+	.text       start:0x8003BCE4 end:0x8003BD78
+
+funcs/fn_8003BD78.c:
+	.text       start:0x8003BD78 end:0x8003BE1C
+
+funcs/fn_8003BE1C.c:
+	.text       start:0x8003BE1C end:0x8003C1A4
+
+funcs/fn_8003C1A4.c:
+	.text       start:0x8003C1A4 end:0x8003C6D0
+
+funcs/fn_8003C6D0.c:
+	.text       start:0x8003C6D0 end:0x8003CBB0
+
+funcs/fn_8003CBB0.c:
+	.text       start:0x8003CBB0 end:0x8003CE74
+
+funcs/fn_8003CE74.c:
+	.text       start:0x8003CE74 end:0x8003D42C
+
+funcs/fn_8003D42C.c:
+	.text       start:0x8003D42C end:0x8003D4C0
+
+funcs/fn_8003D4C0.c:
+	.text       start:0x8003D4C0 end:0x8003D4E0
+
+funcs/fn_8003D4E0.c:
+	.text       start:0x8003D4E0 end:0x8003D588
+
+funcs/fn_8003D588.c:
+	.text       start:0x8003D588 end:0x8003D690
+
+funcs/fn_8003D690.c:
+	.text       start:0x8003D690 end:0x8003D698
+
+funcs/fn_8003D698.c:
+	.text       start:0x8003D698 end:0x8003D918
+
+funcs/fn_8003D918.c:
+	.text       start:0x8003D918 end:0x8003DB54
+
+funcs/fn_8003DB54.c:
+	.text       start:0x8003DB54 end:0x8003DBA0
+
+funcs/fn_8003DBA0.c:
+	.text       start:0x8003DBA0 end:0x8003DC50
+
+funcs/fn_8003DC50.c:
+	.text       start:0x8003DC50 end:0x8003DD48
+
+funcs/fn_8003DD48.c:
+	.text       start:0x8003DD48 end:0x8003DFF8
+
+funcs/fn_8003DFF8.c:
+	.text       start:0x8003DFF8 end:0x8003E13C
+
+funcs/fn_8003E13C.c:
+	.text       start:0x8003E13C end:0x8003E284
+
+funcs/fn_8003E284.c:
+	.text       start:0x8003E284 end:0x8003E344
+
+funcs/fn_8003E344.c:
+	.text       start:0x8003E344 end:0x8003E8CC
+
+funcs/fn_8003E8CC.c:
+	.text       start:0x8003E8CC end:0x8003E958
+
+funcs/fn_8003E958.c:
+	.text       start:0x8003E958 end:0x8003E9EC
+
+funcs/fn_8003E9EC.c:
+	.text       start:0x8003E9EC end:0x8003EAE4
+
+funcs/fn_8003EAE4.c:
+	.text       start:0x8003EAE4 end:0x8003EC44
+
+funcs/fn_8003EC44.c:
+	.text       start:0x8003EC44 end:0x8003F834
+
+funcs/fn_8003F834.c:
+	.text       start:0x8003F834 end:0x8003FF88
+
+funcs/fn_8003FF88.c:
+	.text       start:0x8003FF88 end:0x800410A4
+
+funcs/fn_800410A4.c:
+	.text       start:0x800410A4 end:0x8004115C
+
+funcs/fn_8004115C.c:
+	.text       start:0x8004115C end:0x80041164
+
+funcs/fn_80041164.c:
+	.text       start:0x80041164 end:0x800411F4
+
+funcs/fn_800411F4.c:
+	.text       start:0x800411F4 end:0x80041330
+
+funcs/fn_80041330.c:
+	.text       start:0x80041330 end:0x80041354
+
+funcs/fn_80041354.c:
+	.text       start:0x80041354 end:0x80041378
+
+funcs/fn_80041378.c:
+	.text       start:0x80041378 end:0x800413A4
+
+funcs/fn_800413A4.c:
+	.text       start:0x800413A4 end:0x800413C8
+
+funcs/fn_800413C8.c:
+	.text       start:0x800413C8 end:0x800413EC
+
+funcs/fn_800413EC.c:
+	.text       start:0x800413EC end:0x80041410
+
+funcs/fn_80041410.c:
+	.text       start:0x80041410 end:0x80041434
+
+funcs/fn_80041434.c:
+	.text       start:0x80041434 end:0x80041458
+
+funcs/fn_80041458.c:
+	.text       start:0x80041458 end:0x80041460
+
+funcs/fn_80041460.c:
+	.text       start:0x80041460 end:0x800414D0
+
+funcs/fn_800414D0.c:
+	.text       start:0x800414D0 end:0x80041530
+
+funcs/fn_80041530.c:
+	.text       start:0x80041530 end:0x80041554
+
+funcs/fn_80041554.c:
+	.text       start:0x80041554 end:0x80041578
+
+funcs/fn_80041578.c:
+	.text       start:0x80041578 end:0x800415AC
+
+funcs/fn_800415AC.c:
+	.text       start:0x800415AC end:0x800415D0
+
+funcs/fn_800415D0.c:
+	.text       start:0x800415D0 end:0x800415F4
+
+funcs/fn_800415F4.c:
+	.text       start:0x800415F4 end:0x80041618
+
+funcs/fn_80041618.c:
+	.text       start:0x80041618 end:0x8004163C
+
+funcs/fn_8004163C.c:
+	.text       start:0x8004163C end:0x80041660
+
+funcs/fn_80041660.c:
+	.text       start:0x80041660 end:0x80041684
+
+funcs/fn_80041684.c:
+	.text       start:0x80041684 end:0x800416A8
+
+funcs/fn_800416A8.c:
+	.text       start:0x800416A8 end:0x800416CC
+
+funcs/fn_800416CC.c:
+	.text       start:0x800416CC end:0x800416D4
+
+funcs/fn_800416D4.c:
+	.text       start:0x800416D4 end:0x800416DC
+
+funcs/fn_800416DC.c:
+	.text       start:0x800416DC end:0x800416E4
+
+funcs/fn_800416E4.c:
+	.text       start:0x800416E4 end:0x800416F0
+
+funcs/fn_800416F0.c:
+	.text       start:0x800416F0 end:0x800416F8
+
+funcs/fn_800416F8.c:
+	.text       start:0x800416F8 end:0x80041700
+
+funcs/fn_80041700.c:
+	.text       start:0x80041700 end:0x80041990
+
+funcs/fn_80041990.c:
+	.text       start:0x80041990 end:0x80041BF8
+
+funcs/fn_80041BF8.c:
+	.text       start:0x80041BF8 end:0x80041E00
+
+funcs/fn_80041E00.c:
+	.text       start:0x80041E00 end:0x80041EF8
+
+funcs/fn_80041EF8.c:
+	.text       start:0x80041EF8 end:0x800420F4
+
+funcs/fn_800420F4.c:
+	.text       start:0x800420F4 end:0x8004212C
+
+funcs/fn_8004212C.c:
+	.text       start:0x8004212C end:0x8004216C
+
+funcs/fn_8004216C.c:
+	.text       start:0x8004216C end:0x80042170
+
+funcs/fn_80042170.c:
+	.text       start:0x80042170 end:0x80042198
+
+funcs/fn_80042198.c:
+	.text       start:0x80042198 end:0x800421C0
+
+funcs/fn_800421C0.c:
+	.text       start:0x800421C0 end:0x800421CC
+
+funcs/fn_800421CC.c:
+	.text       start:0x800421CC end:0x80042228
+
+funcs/fn_80042228.c:
+	.text       start:0x80042228 end:0x800424B8
+
+funcs/fn_800424B8.c:
+	.text       start:0x800424B8 end:0x800424E8
+
+funcs/fn_800424E8.c:
+	.text       start:0x800424E8 end:0x8004251C
+
+funcs/fn_8004251C.c:
+	.text       start:0x8004251C end:0x80042568
+
+funcs/fn_80042568.c:
+	.text       start:0x80042568 end:0x800425D0
+
+funcs/fn_800425D0.c:
+	.text       start:0x800425D0 end:0x80042980
+
+funcs/fn_80042980.c:
+	.text       start:0x80042980 end:0x80042D24
+
+funcs/fn_80042D24.c:
+	.text       start:0x80042D24 end:0x80043050
+
+funcs/fn_80043050.c:
+	.text       start:0x80043050 end:0x8004313C
+
+funcs/fn_8004313C.c:
+	.text       start:0x8004313C end:0x800433A4
+
+funcs/fn_800433A4.c:
+	.text       start:0x800433A4 end:0x800433D0
+
+funcs/fn_800433D0.c:
+	.text       start:0x800433D0 end:0x800433F4
+
+funcs/fn_800433F4.c:
+	.text       start:0x800433F4 end:0x8004342C
+
+funcs/fn_8004342C.c:
+	.text       start:0x8004342C end:0x80043460
+
+funcs/fn_80043460.c:
+	.text       start:0x80043460 end:0x80043798
+
+funcs/fn_80043798.c:
+	.text       start:0x80043798 end:0x80043B48
+
+funcs/fn_80043B48.c:
+	.text       start:0x80043B48 end:0x80043CCC
+
+funcs/fn_80043CCC.c:
+	.text       start:0x80043CCC end:0x80043D34
+
+funcs/fn_80043D34.c:
+	.text       start:0x80043D34 end:0x80043FA4
+
+funcs/fn_80043FA4.c:
+	.text       start:0x80043FA4 end:0x80043FE8
+
+funcs/fn_80043FE8.c:
+	.text       start:0x80043FE8 end:0x800443AC
+
+funcs/fn_800443AC.c:
+	.text       start:0x800443AC end:0x800446E4
+
+funcs/fn_800446E4.c:
+	.text       start:0x800446E4 end:0x80044A94
+
+funcs/fn_80044A94.c:
+	.text       start:0x80044A94 end:0x80044C0C
+
+funcs/fn_80044C0C.c:
+	.text       start:0x80044C0C end:0x80044C74
+
+funcs/fn_80044C74.c:
+	.text       start:0x80044C74 end:0x80044E7C
+
+funcs/fn_80044E7C.c:
+	.text       start:0x80044E7C end:0x80044EF8
+
+funcs/fn_80044EF8.c:
+	.text       start:0x80044EF8 end:0x800452FC
+
+funcs/fn_800452FC.c:
+	.text       start:0x800452FC end:0x80045304
+
+funcs/fn_80045304.c:
+	.text       start:0x80045304 end:0x8004530C
+
+funcs/fn_8004530C.c:
+	.text       start:0x8004530C end:0x80045354
+
+funcs/fn_80045354.c:
+	.text       start:0x80045354 end:0x8004538C
+
+funcs/fn_8004538C.c:
+	.text       start:0x8004538C end:0x800453A4
+
+funcs/fn_800453A4.c:
+	.text       start:0x800453A4 end:0x80045414
+
+funcs/fn_80045414.c:
+	.text       start:0x80045414 end:0x8004541C
+
+funcs/fn_8004541C.c:
+	.text       start:0x8004541C end:0x80045468
+
+funcs/fn_80045468.c:
+	.text       start:0x80045468 end:0x800454B4
+
+funcs/fn_800454B4.c:
+	.text       start:0x800454B4 end:0x800454C4
+
+funcs/fn_800454C4.c:
+	.text       start:0x800454C4 end:0x800454CC
+
+funcs/fn_800454CC.c:
+	.text       start:0x800454CC end:0x800454D4
+
+funcs/fn_800454D4.c:
+	.text       start:0x800454D4 end:0x800454DC
+
+funcs/fn_800454DC.c:
+	.text       start:0x800454DC end:0x800454E4
+
+funcs/fn_800454E4.c:
+	.text       start:0x800454E4 end:0x800454FC
+
+funcs/fn_800454FC.c:
+	.text       start:0x800454FC end:0x80045504
+
+funcs/fn_80045504.c:
+	.text       start:0x80045504 end:0x8004550C
+
+funcs/fn_8004550C.c:
+	.text       start:0x8004550C end:0x80045514
+
+funcs/fn_80045514.c:
+	.text       start:0x80045514 end:0x8004551C
+
+funcs/fn_8004551C.c:
+	.text       start:0x8004551C end:0x80045588
+
+funcs/fn_80045588.c:
+	.text       start:0x80045588 end:0x80045594
+
+funcs/fn_80045594.c:
+	.text       start:0x80045594 end:0x8004559C
+
+funcs/fn_8004559C.c:
+	.text       start:0x8004559C end:0x800455A4
+
+funcs/fn_800455A4.c:
+	.text       start:0x800455A4 end:0x800455AC
+
+funcs/fn_800455AC.c:
+	.text       start:0x800455AC end:0x800455B8
+
+funcs/fn_800455B8.c:
+	.text       start:0x800455B8 end:0x800456A0
+
+funcs/fn_800456A0.c:
+	.text       start:0x800456A0 end:0x80045D3C
+
+funcs/fn_80045D3C.c:
+	.text       start:0x80045D3C end:0x80045D90
+
+funcs/fn_80045D90.c:
+	.text       start:0x80045D90 end:0x80045F58
+
+funcs/fn_80045F58.c:
+	.text       start:0x80045F58 end:0x80045F74
+
+funcs/fn_80045F74.c:
+	.text       start:0x80045F74 end:0x80045FA4
+
+funcs/fn_80045FA4.c:
+	.text       start:0x80045FA4 end:0x80045FEC
+
+funcs/fn_80045FEC.c:
+	.text       start:0x80045FEC end:0x80046020
+
+funcs/fn_80046020.c:
+	.text       start:0x80046020 end:0x800462F8
+
+funcs/fn_800462F8.c:
+	.text       start:0x800462F8 end:0x800463E4
+
+funcs/fn_800463E4.c:
+	.text       start:0x800463E4 end:0x80046508
+
+funcs/fn_80046508.c:
+	.text       start:0x80046508 end:0x80046510
+
+funcs/fn_80046510.c:
+	.text       start:0x80046510 end:0x8004651C
+
+funcs/fn_8004651C.c:
+	.text       start:0x8004651C end:0x800466D4
+
+funcs/fn_800466D4.c:
+	.text       start:0x800466D4 end:0x80046718
+
+funcs/fn_80046718.c:
+	.text       start:0x80046718 end:0x80046738
+
+funcs/fn_80046738.c:
+	.text       start:0x80046738 end:0x80046758
+
+funcs/fn_80046758.c:
+	.text       start:0x80046758 end:0x80046768
+
+funcs/fn_80046768.c:
+	.text       start:0x80046768 end:0x80046804
+
+funcs/fn_80046804.c:
+	.text       start:0x80046804 end:0x8004683C
+
+funcs/fn_8004683C.c:
+	.text       start:0x8004683C end:0x800469A4
+
+funcs/fn_800469A4.c:
+	.text       start:0x800469A4 end:0x80046AC0
+
+funcs/fn_80046AC0.c:
+	.text       start:0x80046AC0 end:0x80046B90
+
+funcs/fn_80046B90.c:
+	.text       start:0x80046B90 end:0x80046BE0
+
+funcs/fn_80046BE0.c:
+	.text       start:0x80046BE0 end:0x80046C28
+
+funcs/fn_80046C28.c:
+	.text       start:0x80046C28 end:0x80046D18
+
+funcs/fn_80046D18.c:
+	.text       start:0x80046D18 end:0x80046D94
+
+funcs/fn_80046D94.c:
+	.text       start:0x80046D94 end:0x80046F7C
+
+funcs/fn_80046F7C.c:
+	.text       start:0x80046F7C end:0x80046F88
+
+funcs/fn_80046F88.c:
+	.text       start:0x80046F88 end:0x80047464
+
+funcs/fn_80047464.c:
+	.text       start:0x80047464 end:0x800474E4
+
+funcs/fn_800474E4.c:
+	.text       start:0x800474E4 end:0x80047548
+
+funcs/fn_80047548.c:
+	.text       start:0x80047548 end:0x80047578
+
+funcs/fn_80047578.c:
+	.text       start:0x80047578 end:0x800475C0
+
+funcs/fn_800475C0.c:
+	.text       start:0x800475C0 end:0x80047608
+
+funcs/fn_80047608.c:
+	.text       start:0x80047608 end:0x8004768C
+
+funcs/fn_8004768C.c:
+	.text       start:0x8004768C end:0x80047834
+
+funcs/fn_80047834.c:
+	.text       start:0x80047834 end:0x8004784C
+
+funcs/fn_8004784C.c:
+	.text       start:0x8004784C end:0x80047864
+
+funcs/fn_80047864.c:
+	.text       start:0x80047864 end:0x800478C0
+
+funcs/fn_800478C0.c:
+	.text       start:0x800478C0 end:0x80047A50
+
+funcs/fn_80047A50.c:
+	.text       start:0x80047A50 end:0x80047ADC
+
+funcs/fn_80047ADC.c:
+	.text       start:0x80047ADC end:0x80047AF8
+
+funcs/fn_80047AF8.c:
+	.text       start:0x80047AF8 end:0x80047B04
+
+funcs/fn_80047B04.c:
+	.text       start:0x80047B04 end:0x80047C08
+
+funcs/fn_80047C08.c:
+	.text       start:0x80047C08 end:0x80047C94
+
+funcs/fn_80047C94.c:
+	.text       start:0x80047C94 end:0x800482B8
+
+funcs/fn_800482B8.c:
+	.text       start:0x800482B8 end:0x800482FC
+
+funcs/fn_800482FC.c:
+	.text       start:0x800482FC end:0x80048340
+
+funcs/fn_80048340.c:
+	.text       start:0x80048340 end:0x80049728
+
+funcs/fn_80049728.c:
+	.text       start:0x80049728 end:0x80049958
+
+funcs/fn_80049958.c:
+	.text       start:0x80049958 end:0x80049BF4
+
+funcs/fn_80049BF4.c:
+	.text       start:0x80049BF4 end:0x80049E34
+
+funcs/fn_80049E34.c:
+	.text       start:0x80049E34 end:0x8004A068
+
+funcs/fn_8004A068.c:
+	.text       start:0x8004A068 end:0x8004A530
+
+funcs/fn_8004A530.c:
+	.text       start:0x8004A530 end:0x8004A53C
+
+funcs/fn_8004A53C.c:
+	.text       start:0x8004A53C end:0x8004A544
+
+funcs/fn_8004A544.c:
+	.text       start:0x8004A544 end:0x8004A550
+
+funcs/fn_8004A550.c:
+	.text       start:0x8004A550 end:0x8004A560
+
+funcs/fn_8004A560.c:
+	.text       start:0x8004A560 end:0x8004A578
+
+funcs/fn_8004A578.c:
+	.text       start:0x8004A578 end:0x8004A5F4
+
+funcs/fn_8004A5F4.c:
+	.text       start:0x8004A5F4 end:0x8004A80C
+
+funcs/fn_8004A80C.c:
+	.text       start:0x8004A80C end:0x8004AC04
+
+funcs/fn_8004AC04.c:
+	.text       start:0x8004AC04 end:0x8004AC4C
+
+funcs/fn_8004AC4C.c:
+	.text       start:0x8004AC4C end:0x8004AC58
+
+funcs/fn_8004AC58.c:
+	.text       start:0x8004AC58 end:0x8004AD84
+
+funcs/fn_8004AD84.c:
+	.text       start:0x8004AD84 end:0x8004ADF4
+
+funcs/fn_8004ADF4.c:
+	.text       start:0x8004ADF4 end:0x8004AE78
+
+funcs/fn_8004AE78.c:
+	.text       start:0x8004AE78 end:0x8004AE94
+
+funcs/fn_8004AE94.c:
+	.text       start:0x8004AE94 end:0x8004AEE4
+
+funcs/fn_8004AEE4.c:
+	.text       start:0x8004AEE4 end:0x8004AEF0
+
+funcs/fn_8004AEF0.c:
+	.text       start:0x8004AEF0 end:0x8004B0EC
+
+funcs/fn_8004B0EC.c:
+	.text       start:0x8004B0EC end:0x8004B180
+
+funcs/fn_8004B180.c:
+	.text       start:0x8004B180 end:0x8004B1DC
+
+funcs/fn_8004B1DC.c:
+	.text       start:0x8004B1DC end:0x8004B4E0
+
+funcs/fn_8004B4E0.c:
+	.text       start:0x8004B4E0 end:0x8004B79C
+
+funcs/fn_8004B79C.c:
+	.text       start:0x8004B79C end:0x8004B7A0
+
+funcs/fn_8004B7A0.c:
+	.text       start:0x8004B7A0 end:0x8004B7D4
+
+funcs/fn_8004B7D4.c:
+	.text       start:0x8004B7D4 end:0x8004B7F4
+
+funcs/fn_8004B7F4.c:
+	.text       start:0x8004B7F4 end:0x8004B974
+
+funcs/fn_8004B974.c:
+	.text       start:0x8004B974 end:0x8004B9A4
+
+funcs/fn_8004B9A4.c:
+	.text       start:0x8004B9A4 end:0x8004BA38
+
+funcs/fn_8004BA38.c:
+	.text       start:0x8004BA38 end:0x8004BA40
+
+funcs/fn_8004BA40.c:
+	.text       start:0x8004BA40 end:0x8004BBA4
+
+funcs/fn_8004BBA4.c:
+	.text       start:0x8004BBA4 end:0x8004BBC4
+
+funcs/fn_8004BBC4.c:
+	.text       start:0x8004BBC4 end:0x8004BBC8
+
+funcs/fn_8004BBC8.c:
+	.text       start:0x8004BBC8 end:0x8004BBCC
+
+funcs/fn_8004BBCC.c:
+	.text       start:0x8004BBCC end:0x8004BC0C
+
+funcs/fn_8004BC0C.c:
+	.text       start:0x8004BC0C end:0x8004BD5C
+
+funcs/fn_8004BD5C.c:
+	.text       start:0x8004BD5C end:0x8004BD9C
+
+funcs/fn_8004BD9C.c:
+	.text       start:0x8004BD9C end:0x8004BDD8
+
+funcs/fn_8004BDD8.c:
+	.text       start:0x8004BDD8 end:0x8004BE90
+
+funcs/fn_8004BE90.c:
+	.text       start:0x8004BE90 end:0x8004BE98
+
+funcs/fn_8004BE98.c:
+	.text       start:0x8004BE98 end:0x8004BED0
+
+funcs/fn_8004BED0.c:
+	.text       start:0x8004BED0 end:0x8004BF0C
+
+funcs/fn_8004BF0C.c:
+	.text       start:0x8004BF0C end:0x8004BF68
+
+funcs/fn_8004BF68.c:
+	.text       start:0x8004BF68 end:0x8004BFAC
+
+funcs/fn_8004BFAC.c:
+	.text       start:0x8004BFAC end:0x8004C05C
+
+funcs/fn_8004C05C.c:
+	.text       start:0x8004C05C end:0x8004C0B4
+
+funcs/fn_8004C0B4.c:
+	.text       start:0x8004C0B4 end:0x8004C10C
+
+funcs/fn_8004C10C.c:
+	.text       start:0x8004C10C end:0x8004C164
+
+funcs/fn_8004C164.c:
+	.text       start:0x8004C164 end:0x8004C658
+
+funcs/fn_8004C658.c:
+	.text       start:0x8004C658 end:0x8004C698
+
+funcs/fn_8004C698.c:
+	.text       start:0x8004C698 end:0x8004C794
+
+funcs/fn_8004C794.c:
+	.text       start:0x8004C794 end:0x8004C980
+
+funcs/fn_8004C980.c:
+	.text       start:0x8004C980 end:0x8004CAC8
+
+funcs/fn_8004CAC8.c:
+	.text       start:0x8004CAC8 end:0x8004CD70
+
+funcs/fn_8004CD70.c:
+	.text       start:0x8004CD70 end:0x8004D18C
+
+funcs/fn_8004D18C.c:
+	.text       start:0x8004D18C end:0x8004D220
+
+funcs/fn_8004D220.c:
+	.text       start:0x8004D220 end:0x8004D528
+
+funcs/fn_8004D528.c:
+	.text       start:0x8004D528 end:0x8004D8DC
+
+funcs/fn_8004D8DC.c:
+	.text       start:0x8004D8DC end:0x8004DBBC
+
+funcs/fn_8004DBBC.c:
+	.text       start:0x8004DBBC end:0x8004DDE4
+
+funcs/fn_8004DDE4.c:
+	.text       start:0x8004DDE4 end:0x8004DE70
+
+funcs/fn_8004DE70.c:
+	.text       start:0x8004DE70 end:0x8004DFF0
+
+funcs/fn_8004DFF0.c:
+	.text       start:0x8004DFF0 end:0x8004E098
+
+funcs/fn_8004E098.c:
+	.text       start:0x8004E098 end:0x8004E190
+
+funcs/fn_8004E190.c:
+	.text       start:0x8004E190 end:0x8004E198
+
+funcs/fn_8004E198.c:
+	.text       start:0x8004E198 end:0x8004E1B0
+
+funcs/fn_8004E1B0.c:
+	.text       start:0x8004E1B0 end:0x8004E1E4
+
+funcs/fn_8004E1E4.c:
+	.text       start:0x8004E1E4 end:0x8004E204
+
+funcs/fn_8004E204.c:
+	.text       start:0x8004E204 end:0x8004E238
+
+funcs/fn_8004E238.c:
+	.text       start:0x8004E238 end:0x8004E270
+
+funcs/fn_8004E270.c:
+	.text       start:0x8004E270 end:0x8004E278
+
+funcs/fn_8004E278.c:
+	.text       start:0x8004E278 end:0x8004E2B0
+
+funcs/fn_8004E2B0.c:
+	.text       start:0x8004E2B0 end:0x8004E2CC
+
+funcs/fn_8004E2CC.c:
+	.text       start:0x8004E2CC end:0x8004E2DC
+
+funcs/fn_8004E2DC.c:
+	.text       start:0x8004E2DC end:0x8004E300
+
+funcs/fn_8004E300.c:
+	.text       start:0x8004E300 end:0x8004E324
+
+funcs/fn_8004E324.c:
+	.text       start:0x8004E324 end:0x8004E354
+
+funcs/fn_8004E354.c:
+	.text       start:0x8004E354 end:0x8004E4AC
+
+funcs/fn_8004E4AC.c:
+	.text       start:0x8004E4AC end:0x8004E4DC
+
+funcs/fn_8004E4DC.c:
+	.text       start:0x8004E4DC end:0x8004E580
+
+funcs/fn_8004E580.c:
+	.text       start:0x8004E580 end:0x8004E59C
+
+funcs/fn_8004E59C.c:
+	.text       start:0x8004E59C end:0x8004E7B4
+
+funcs/fn_8004E7B4.c:
+	.text       start:0x8004E7B4 end:0x8004E7D4
+
+funcs/fn_8004E7D4.c:
+	.text       start:0x8004E7D4 end:0x8004E8A0
+
+funcs/fn_8004E8A0.c:
+	.text       start:0x8004E8A0 end:0x8004E8F8
+
+funcs/fn_8004E8F8.c:
+	.text       start:0x8004E8F8 end:0x8004E9A8
+
+funcs/fn_8004E9A8.c:
+	.text       start:0x8004E9A8 end:0x8004E9D8
+
+funcs/fn_8004E9D8.c:
+	.text       start:0x8004E9D8 end:0x8004EA94
+
+funcs/fn_8004EA94.c:
+	.text       start:0x8004EA94 end:0x8004EB00
+
+funcs/fn_8004EB00.c:
+	.text       start:0x8004EB00 end:0x8004EBB4
+
+funcs/fn_8004EBB4.c:
+	.text       start:0x8004EBB4 end:0x8004EBD4
+
+funcs/fn_8004EBD4.c:
+	.text       start:0x8004EBD4 end:0x8004EBF4
+
+funcs/fn_8004EBF4.c:
+	.text       start:0x8004EBF4 end:0x8004EC14
+
+funcs/fn_8004EC14.c:
+	.text       start:0x8004EC14 end:0x8004EC34
+
+funcs/fn_8004EC34.c:
+	.text       start:0x8004EC34 end:0x8004ECF4
+
+funcs/fn_8004ECF4.c:
+	.text       start:0x8004ECF4 end:0x8004ED18
+
+funcs/fn_8004ED18.c:
+	.text       start:0x8004ED18 end:0x8004ED3C
+
+funcs/fn_8004ED3C.c:
+	.text       start:0x8004ED3C end:0x8004ED5C
+
+funcs/fn_8004ED5C.c:
+	.text       start:0x8004ED5C end:0x8004ED80
+
+funcs/fn_8004ED80.c:
+	.text       start:0x8004ED80 end:0x8004ED84
+
+funcs/fn_8004ED84.c:
+	.text       start:0x8004ED84 end:0x8004EDA4
+
+funcs/fn_8004EDA4.c:
+	.text       start:0x8004EDA4 end:0x8004EDC4
+
+funcs/fn_8004EDC4.c:
+	.text       start:0x8004EDC4 end:0x8004EDE4
+
+funcs/fn_8004EDE4.c:
+	.text       start:0x8004EDE4 end:0x8004EE04
+
+funcs/fn_8004EE04.c:
+	.text       start:0x8004EE04 end:0x8004EE24
+
+funcs/fn_8004EE24.c:
+	.text       start:0x8004EE24 end:0x8004EE44
+
+funcs/fn_8004EE44.c:
+	.text       start:0x8004EE44 end:0x8004EE64
+
+funcs/fn_8004EE64.c:
+	.text       start:0x8004EE64 end:0x8004EE84
+
+funcs/fn_8004EE84.c:
+	.text       start:0x8004EE84 end:0x8004EEA4
+
+funcs/fn_8004EEA4.c:
+	.text       start:0x8004EEA4 end:0x8004EEC4
+
+funcs/fn_8004EEC4.c:
+	.text       start:0x8004EEC4 end:0x8004EEE4
+
+funcs/fn_8004EEE4.c:
+	.text       start:0x8004EEE4 end:0x8004EF28
+
+funcs/fn_8004EF28.c:
+	.text       start:0x8004EF28 end:0x8004EF48
+
+funcs/fn_8004EF48.c:
+	.text       start:0x8004EF48 end:0x8004EF68
+
+funcs/fn_8004EF68.c:
+	.text       start:0x8004EF68 end:0x8004EF88
+
+funcs/fn_8004EF88.c:
+	.text       start:0x8004EF88 end:0x8004EFA8
+
+funcs/fn_8004EFA8.c:
+	.text       start:0x8004EFA8 end:0x8004F00C
+
+funcs/fn_8004F00C.c:
+	.text       start:0x8004F00C end:0x8004F26C
+
+funcs/fn_8004F26C.c:
+	.text       start:0x8004F26C end:0x8004F55C
+
+funcs/fn_8004F55C.c:
+	.text       start:0x8004F55C end:0x8004F6B0
+
+funcs/fn_8004F6B0.c:
+	.text       start:0x8004F6B0 end:0x8004F74C
+
+funcs/fn_8004F74C.c:
+	.text       start:0x8004F74C end:0x8004F7F8
+
+funcs/fn_8004F7F8.c:
+	.text       start:0x8004F7F8 end:0x8004F818
+
+funcs/fn_8004F818.c:
+	.text       start:0x8004F818 end:0x8004FAA8
+
+funcs/fn_8004FAA8.c:
+	.text       start:0x8004FAA8 end:0x8004FC38
+
+funcs/fn_8004FC38.c:
+	.text       start:0x8004FC38 end:0x8004FC94
+
+funcs/fn_8004FC94.c:
+	.text       start:0x8004FC94 end:0x8004FF68
+
+funcs/fn_8004FF68.c:
+	.text       start:0x8004FF68 end:0x80050180
+
+funcs/fn_80050180.c:
+	.text       start:0x80050180 end:0x800501EC
+
+funcs/fn_800501EC.c:
+	.text       start:0x800501EC end:0x800501F4
+
+funcs/fn_800501F4.c:
+	.text       start:0x800501F4 end:0x800502A0
+
+funcs/fn_800502A0.c:
+	.text       start:0x800502A0 end:0x800504BC
+
+funcs/fn_800504BC.c:
+	.text       start:0x800504BC end:0x800504EC
+
+funcs/fn_800504EC.c:
+	.text       start:0x800504EC end:0x80050670
+
+funcs/fn_80050670.c:
+	.text       start:0x80050670 end:0x80050698
+
+funcs/fn_80050698.c:
+	.text       start:0x80050698 end:0x80050BD4
+
+funcs/fn_80050BD4.c:
+	.text       start:0x80050BD4 end:0x80050F64
+
+funcs/fn_80050F64.c:
+	.text       start:0x80050F64 end:0x80050F6C
+
+funcs/fn_80050F6C.c:
+	.text       start:0x80050F6C end:0x80050F74
+
+funcs/fn_80050F74.c:
+	.text       start:0x80050F74 end:0x80050F90
+
+funcs/fn_80050F90.c:
+	.text       start:0x80050F90 end:0x800510C4
+
+funcs/fn_800510C4.c:
+	.text       start:0x800510C4 end:0x800510D8
+
+funcs/fn_800510D8.c:
+	.text       start:0x800510D8 end:0x80051448
+
+funcs/fn_80051448.c:
+	.text       start:0x80051448 end:0x80051594
+
+funcs/fn_80051594.c:
+	.text       start:0x80051594 end:0x80051678
+
+funcs/fn_80051678.c:
+	.text       start:0x80051678 end:0x8005174C
+
+funcs/fn_8005174C.c:
+	.text       start:0x8005174C end:0x800517C0
+
+funcs/fn_800517C0.c:
+	.text       start:0x800517C0 end:0x8005190C
+
+funcs/fn_8005190C.c:
+	.text       start:0x8005190C end:0x80051958
+
+funcs/fn_80051958.c:
+	.text       start:0x80051958 end:0x800519B0
+
+funcs/fn_800519B0.c:
+	.text       start:0x800519B0 end:0x80051CC0
+
+funcs/fn_80051CC0.c:
+	.text       start:0x80051CC0 end:0x80051DC4
+
+funcs/fn_80051DC4.c:
+	.text       start:0x80051DC4 end:0x80051E30
+
+funcs/fn_80051E30.c:
+	.text       start:0x80051E30 end:0x80051E64
+
+funcs/fn_80051E64.c:
+	.text       start:0x80051E64 end:0x80051F38
+
+funcs/fn_80051F38.c:
+	.text       start:0x80051F38 end:0x80052430
+
+funcs/fn_80052430.c:
+	.text       start:0x80052430 end:0x80052590
+
+funcs/fn_80052590.c:
+	.text       start:0x80052590 end:0x800526F0
+
+funcs/fn_800526F0.c:
+	.text       start:0x800526F0 end:0x80052850
+
+funcs/fn_80052850.c:
+	.text       start:0x80052850 end:0x800529B0
+
+funcs/fn_800529B0.c:
+	.text       start:0x800529B0 end:0x80052B10
+
+funcs/fn_80052B10.c:
+	.text       start:0x80052B10 end:0x80052C70
+
+funcs/fn_80052C70.c:
+	.text       start:0x80052C70 end:0x80052DD0
+
+funcs/fn_80052DD0.c:
+	.text       start:0x80052DD0 end:0x80052F30
+
+funcs/fn_80052F30.c:
+	.text       start:0x80052F30 end:0x80053090
+
+funcs/fn_80053090.c:
+	.text       start:0x80053090 end:0x800531F0
+
+funcs/fn_800531F0.c:
+	.text       start:0x800531F0 end:0x80053350
+
+funcs/fn_80053350.c:
+	.text       start:0x80053350 end:0x800534B0
+
+funcs/fn_800534B0.c:
+	.text       start:0x800534B0 end:0x80053610
+
+funcs/fn_80053610.c:
+	.text       start:0x80053610 end:0x80053770
+
+funcs/fn_80053770.c:
+	.text       start:0x80053770 end:0x800538D0
+
+funcs/fn_800538D0.c:
+	.text       start:0x800538D0 end:0x80053A30
+
+funcs/fn_80053A30.c:
+	.text       start:0x80053A30 end:0x80053A38
+
+funcs/fn_80053A38.c:
+	.text       start:0x80053A38 end:0x80053A84
+
+funcs/fn_80053A84.c:
+	.text       start:0x80053A84 end:0x80053BB4
+
+funcs/fn_80053BB4.c:
+	.text       start:0x80053BB4 end:0x80053BFC
+
+funcs/fn_80053BFC.c:
+	.text       start:0x80053BFC end:0x80053DB4
+
+funcs/fn_80053DB4.c:
+	.text       start:0x80053DB4 end:0x80053EA0
+
+funcs/fn_80053EA0.c:
+	.text       start:0x80053EA0 end:0x80053EA8
+
+funcs/fn_80053EA8.c:
+	.text       start:0x80053EA8 end:0x80053EB0
+
+funcs/fn_80053EB0.c:
+	.text       start:0x80053EB0 end:0x80053F38
+
+funcs/fn_80053F38.c:
+	.text       start:0x80053F38 end:0x800541EC
+
+funcs/fn_800541EC.c:
+	.text       start:0x800541EC end:0x80054224
+
+funcs/fn_80054224.c:
+	.text       start:0x80054224 end:0x800542B4
+
+funcs/fn_800542B4.c:
+	.text       start:0x800542B4 end:0x800542BC
+
+funcs/fn_800542BC.c:
+	.text       start:0x800542BC end:0x800542C8
+
+funcs/fn_800542C8.c:
+	.text       start:0x800542C8 end:0x80054354
+
+funcs/fn_80054354.c:
+	.text       start:0x80054354 end:0x800545B0
+
+funcs/fn_800545B0.c:
+	.text       start:0x800545B0 end:0x80054608
+
+funcs/fn_80054608.c:
+	.text       start:0x80054608 end:0x8005466C
+
+funcs/fn_8005466C.c:
+	.text       start:0x8005466C end:0x800546A0
+
+funcs/fn_800546A0.c:
+	.text       start:0x800546A0 end:0x80054760
+
+funcs/fn_80054760.c:
+	.text       start:0x80054760 end:0x800547C8
+
+funcs/fn_800547C8.c:
+	.text       start:0x800547C8 end:0x80054870
+
+funcs/fn_80054870.c:
+	.text       start:0x80054870 end:0x80054930
+
+funcs/fn_80054930.c:
+	.text       start:0x80054930 end:0x800549F0
+
+funcs/fn_800549F0.c:
+	.text       start:0x800549F0 end:0x80054AB0
+
+funcs/fn_80054AB0.c:
+	.text       start:0x80054AB0 end:0x80054B6C
+
+funcs/fn_80054B6C.c:
+	.text       start:0x80054B6C end:0x800551D0
+
+funcs/fn_800551D0.c:
+	.text       start:0x800551D0 end:0x80055304
+
+funcs/fn_80055304.c:
+	.text       start:0x80055304 end:0x80055580
+
+funcs/fn_80055580.c:
+	.text       start:0x80055580 end:0x800555C0
+
+funcs/fn_800555C0.c:
+	.text       start:0x800555C0 end:0x800555C4
+
+funcs/fn_800555C4.c:
+	.text       start:0x800555C4 end:0x80055624
+
+funcs/fn_80055624.c:
+	.text       start:0x80055624 end:0x80055708
+
+funcs/fn_80055708.c:
+	.text       start:0x80055708 end:0x80055768
+
+funcs/fn_80055768.c:
+	.text       start:0x80055768 end:0x800557CC
+
+funcs/fn_800557CC.c:
+	.text       start:0x800557CC end:0x8005596C
+
+funcs/fn_8005596C.c:
+	.text       start:0x8005596C end:0x80055D94
+
+funcs/fn_80055D94.c:
+	.text       start:0x80055D94 end:0x80055DF4
+
+funcs/fn_80055DF4.c:
+	.text       start:0x80055DF4 end:0x80055EC0
+
+funcs/fn_80055EC0.c:
+	.text       start:0x80055EC0 end:0x80056084
+
+funcs/fn_80056084.c:
+	.text       start:0x80056084 end:0x80056294
+
+funcs/fn_80056294.c:
+	.text       start:0x80056294 end:0x800563F8
+
+funcs/fn_800563F8.c:
+	.text       start:0x800563F8 end:0x8005640C
+
+funcs/fn_8005640C.c:
+	.text       start:0x8005640C end:0x80056584
+
+funcs/fn_80056584.c:
+	.text       start:0x80056584 end:0x800565F0
+
+funcs/fn_800565F0.c:
+	.text       start:0x800565F0 end:0x800565FC
+
+funcs/fn_800565FC.c:
+	.text       start:0x800565FC end:0x800566BC
+
+funcs/fn_800566BC.c:
+	.text       start:0x800566BC end:0x800566F0
+
+funcs/fn_800566F0.c:
+	.text       start:0x800566F0 end:0x80056710
+
+funcs/fn_80056710.c:
+	.text       start:0x80056710 end:0x80056730
+
+funcs/fn_80056730.c:
+	.text       start:0x80056730 end:0x8005676C
+
+funcs/fn_8005676C.c:
+	.text       start:0x8005676C end:0x800567AC
+
+funcs/fn_800567AC.c:
+	.text       start:0x800567AC end:0x800567EC
+
+funcs/fn_800567EC.c:
+	.text       start:0x800567EC end:0x80056850
+
+funcs/fn_80056850.c:
+	.text       start:0x80056850 end:0x80056950
+
+funcs/fn_80056950.c:
+	.text       start:0x80056950 end:0x80056A50
+
+funcs/fn_80056A50.c:
+	.text       start:0x80056A50 end:0x80056B50
+
+funcs/fn_80056B50.c:
+	.text       start:0x80056B50 end:0x80056BE0
+
+funcs/fn_80056BE0.c:
+	.text       start:0x80056BE0 end:0x80056C20
+
+funcs/fn_80056C20.c:
+	.text       start:0x80056C20 end:0x80056C64
+
+funcs/fn_80056C64.c:
+	.text       start:0x80056C64 end:0x80056CD0
+
+funcs/fn_80056CD0.c:
+	.text       start:0x80056CD0 end:0x80056D8C
+
+funcs/fn_80056D8C.c:
+	.text       start:0x80056D8C end:0x80056E9C
+
+funcs/fn_80056E9C.c:
+	.text       start:0x80056E9C end:0x800570DC
+
+funcs/fn_800570DC.c:
+	.text       start:0x800570DC end:0x8005710C
+
+funcs/fn_8005710C.c:
+	.text       start:0x8005710C end:0x80057114
+
+funcs/fn_80057114.c:
+	.text       start:0x80057114 end:0x800571EC
+
+funcs/fn_800571EC.c:
+	.text       start:0x800571EC end:0x80057378
+
+funcs/fn_80057378.c:
+	.text       start:0x80057378 end:0x8005741C
+
+funcs/fn_8005741C.c:
+	.text       start:0x8005741C end:0x80057494
+
+funcs/fn_80057494.c:
+	.text       start:0x80057494 end:0x800576DC
+
+funcs/fn_800576DC.c:
+	.text       start:0x800576DC end:0x80057728
+
+funcs/fn_80057728.c:
+	.text       start:0x80057728 end:0x80057774
+
+funcs/fn_80057774.c:
+	.text       start:0x80057774 end:0x8005782C
+
+funcs/fn_8005782C.c:
+	.text       start:0x8005782C end:0x8005795C
+
+funcs/fn_8005795C.c:
+	.text       start:0x8005795C end:0x800579F0
+
+funcs/fn_800579F0.c:
+	.text       start:0x800579F0 end:0x80057AD8
+
+funcs/fn_80057AD8.c:
+	.text       start:0x80057AD8 end:0x80057B34
+
+funcs/fn_80057B34.c:
+	.text       start:0x80057B34 end:0x80057B48
+
+funcs/fn_80057B48.c:
+	.text       start:0x80057B48 end:0x80057B54
+
+funcs/fn_80057B54.c:
+	.text       start:0x80057B54 end:0x80057B5C
+
+funcs/fn_80057B5C.c:
+	.text       start:0x80057B5C end:0x80057B9C
+
+funcs/fn_80057B9C.c:
+	.text       start:0x80057B9C end:0x80057CC4
+
+funcs/fn_80057CC4.c:
+	.text       start:0x80057CC4 end:0x80057D0C
+
+funcs/fn_80057D0C.c:
+	.text       start:0x80057D0C end:0x80057D60
+
+funcs/fn_80057D60.c:
+	.text       start:0x80057D60 end:0x80057D88
+
+funcs/fn_80057D88.c:
+	.text       start:0x80057D88 end:0x80057DA0
+
+funcs/fn_80057DA0.c:
+	.text       start:0x80057DA0 end:0x80057DA8
+
+funcs/fn_80057DA8.c:
+	.text       start:0x80057DA8 end:0x80057DB0
+
+funcs/fn_80057DB0.c:
+	.text       start:0x80057DB0 end:0x80057DB8
+
+funcs/fn_80057DB8.c:
+	.text       start:0x80057DB8 end:0x80057EC4
+
+funcs/fn_80057EC4.c:
+	.text       start:0x80057EC4 end:0x80058070
+
+funcs/fn_80058070.c:
+	.text       start:0x80058070 end:0x800581CC
+
+funcs/fn_800581CC.c:
+	.text       start:0x800581CC end:0x80058380
+
+funcs/fn_80058380.c:
+	.text       start:0x80058380 end:0x800583DC
+
+funcs/fn_800583DC.c:
+	.text       start:0x800583DC end:0x80058434
+
+funcs/fn_80058434.c:
+	.text       start:0x80058434 end:0x80058440
+
+funcs/fn_80058440.c:
+	.text       start:0x80058440 end:0x80058448
+
+funcs/fn_80058448.c:
+	.text       start:0x80058448 end:0x80058498
+
+funcs/fn_80058498.c:
+	.text       start:0x80058498 end:0x80058630
+
+funcs/fn_80058630.c:
+	.text       start:0x80058630 end:0x80058680
+
+funcs/fn_80058680.c:
+	.text       start:0x80058680 end:0x800586E4
+
+funcs/fn_800586E4.c:
+	.text       start:0x800586E4 end:0x8005870C
+
+funcs/fn_8005870C.c:
+	.text       start:0x8005870C end:0x80058754
+
+funcs/fn_80058754.c:
+	.text       start:0x80058754 end:0x800587A8
+
+funcs/fn_800587A8.c:
+	.text       start:0x800587A8 end:0x800589BC
+
+funcs/fn_800589BC.c:
+	.text       start:0x800589BC end:0x80058A20
+
+funcs/fn_80058A20.c:
+	.text       start:0x80058A20 end:0x80058A40
+
+funcs/fn_80058A40.c:
+	.text       start:0x80058A40 end:0x80058B54
+
+funcs/fn_80058B54.c:
+	.text       start:0x80058B54 end:0x80058BFC
+
+funcs/fn_80058BFC.c:
+	.text       start:0x80058BFC end:0x80058C94
+
+funcs/fn_80058C94.c:
+	.text       start:0x80058C94 end:0x80058D24
+
+funcs/fn_80058D24.c:
+	.text       start:0x80058D24 end:0x80058DB4
+
+funcs/fn_80058DB4.c:
+	.text       start:0x80058DB4 end:0x80058E44
+
+funcs/fn_80058E44.c:
+	.text       start:0x80058E44 end:0x80058ED4
+
+funcs/fn_80058ED4.c:
+	.text       start:0x80058ED4 end:0x80058EE4
+
+funcs/fn_80058EE4.c:
+	.text       start:0x80058EE4 end:0x80058EF4
+
+funcs/fn_80058EF4.c:
+	.text       start:0x80058EF4 end:0x80058FE4
+
+funcs/fn_80058FE4.c:
+	.text       start:0x80058FE4 end:0x80059028
+
+funcs/fn_80059028.c:
+	.text       start:0x80059028 end:0x8005912C
+
+funcs/fn_8005912C.c:
+	.text       start:0x8005912C end:0x800592E0
+
+funcs/fn_800592E0.c:
+	.text       start:0x800592E0 end:0x80059428
+
+funcs/fn_80059428.c:
+	.text       start:0x80059428 end:0x800595A4
+
+funcs/fn_800595A4.c:
+	.text       start:0x800595A4 end:0x800595FC
+
+funcs/fn_800595FC.c:
+	.text       start:0x800595FC end:0x800596D4
+
+funcs/fn_800596D4.c:
+	.text       start:0x800596D4 end:0x80059764
+
+funcs/fn_80059764.c:
+	.text       start:0x80059764 end:0x800597F4
+
+funcs/fn_800597F4.c:
+	.text       start:0x800597F4 end:0x80059884
+
+funcs/fn_80059884.c:
+	.text       start:0x80059884 end:0x80059914
+
+funcs/fn_80059914.c:
+	.text       start:0x80059914 end:0x8005997C
+
+funcs/fn_8005997C.c:
+	.text       start:0x8005997C end:0x800599E4
+
+funcs/fn_800599E4.c:
+	.text       start:0x800599E4 end:0x80059A4C
+
+funcs/fn_80059A4C.c:
+	.text       start:0x80059A4C end:0x80059AB4
+
+funcs/fn_80059AB4.c:
+	.text       start:0x80059AB4 end:0x80059B44
+
+funcs/fn_80059B44.c:
+	.text       start:0x80059B44 end:0x80059BAC
+
+funcs/fn_80059BAC.c:
+	.text       start:0x80059BAC end:0x80059C0C
+
+funcs/fn_80059C0C.c:
+	.text       start:0x80059C0C end:0x80059CA4
+
+funcs/fn_80059CA4.c:
+	.text       start:0x80059CA4 end:0x80059D04
+
+funcs/fn_80059D04.c:
+	.text       start:0x80059D04 end:0x80059D68
+
+funcs/fn_80059D68.c:
+	.text       start:0x80059D68 end:0x80059DD8
+
+funcs/fn_80059DD8.c:
+	.text       start:0x80059DD8 end:0x8005A060
+
+funcs/fn_8005A060.c:
+	.text       start:0x8005A060 end:0x8005A0C0
+
+funcs/fn_8005A0C0.c:
+	.text       start:0x8005A0C0 end:0x8005A1B4
+
+funcs/fn_8005A1B4.c:
+	.text       start:0x8005A1B4 end:0x8005A24C
+
+funcs/fn_8005A24C.c:
+	.text       start:0x8005A24C end:0x8005A47C
+
+funcs/fn_8005A47C.c:
+	.text       start:0x8005A47C end:0x8005A588
+
+funcs/fn_8005A588.c:
+	.text       start:0x8005A588 end:0x8005A59C
+
+funcs/fn_8005A59C.c:
+	.text       start:0x8005A59C end:0x8005A5A8
+
+funcs/fn_8005A5A8.c:
+	.text       start:0x8005A5A8 end:0x8005A5BC
+
+funcs/fn_8005A5BC.c:
+	.text       start:0x8005A5BC end:0x8005A614
+
+funcs/fn_8005A614.c:
+	.text       start:0x8005A614 end:0x8005A628
+
+funcs/fn_8005A628.c:
+	.text       start:0x8005A628 end:0x8005A648
+
+funcs/fn_8005A648.c:
+	.text       start:0x8005A648 end:0x8005A668
+
+funcs/fn_8005A668.c:
+	.text       start:0x8005A668 end:0x8005A678
+
+funcs/fn_8005A678.c:
+	.text       start:0x8005A678 end:0x8005A680
+
+funcs/fn_8005A680.c:
+	.text       start:0x8005A680 end:0x8005A688
+
+funcs/fn_8005A688.c:
+	.text       start:0x8005A688 end:0x8005A698
+
+funcs/fn_8005A698.c:
+	.text       start:0x8005A698 end:0x8005A74C
+
+funcs/fn_8005A74C.c:
+	.text       start:0x8005A74C end:0x8005A7F8
+
+funcs/fn_8005A7F8.c:
+	.text       start:0x8005A7F8 end:0x8005A94C
+
+funcs/fn_8005A94C.c:
+	.text       start:0x8005A94C end:0x8005A95C
+
+funcs/fn_8005A95C.c:
+	.text       start:0x8005A95C end:0x8005A9B8
+
+funcs/fn_8005A9B8.c:
+	.text       start:0x8005A9B8 end:0x8005ACF0
+
+funcs/fn_8005ACF0.c:
+	.text       start:0x8005ACF0 end:0x8005ADBC
+
+funcs/fn_8005ADBC.c:
+	.text       start:0x8005ADBC end:0x8005AE98
+
+funcs/fn_8005AE98.c:
+	.text       start:0x8005AE98 end:0x8005B010
+
+funcs/fn_8005B010.c:
+	.text       start:0x8005B010 end:0x8005B068
+
+funcs/fn_8005B068.c:
+	.text       start:0x8005B068 end:0x8005B0C4
+
+funcs/fn_8005B0C4.c:
+	.text       start:0x8005B0C4 end:0x8005B264
+
+funcs/fn_8005B264.c:
+	.text       start:0x8005B264 end:0x8005B464
+
+funcs/fn_8005B464.c:
+	.text       start:0x8005B464 end:0x8005B534
+
+funcs/fn_8005B534.c:
+	.text       start:0x8005B534 end:0x8005BC20
+
+funcs/fn_8005BC20.c:
+	.text       start:0x8005BC20 end:0x8005BCB4
+
+funcs/fn_8005BCB4.c:
+	.text       start:0x8005BCB4 end:0x8005BDD4
+
+funcs/fn_8005BDD4.c:
+	.text       start:0x8005BDD4 end:0x8005BE48
+
+funcs/fn_8005BE48.c:
+	.text       start:0x8005BE48 end:0x8005BE68
+
+funcs/fn_8005BE68.c:
+	.text       start:0x8005BE68 end:0x8005BE80
+
+funcs/fn_8005BE80.c:
+	.text       start:0x8005BE80 end:0x8005BE98
+
+funcs/fn_8005BE98.c:
+	.text       start:0x8005BE98 end:0x8005BEAC
+
+funcs/fn_8005BEAC.c:
+	.text       start:0x8005BEAC end:0x8005BFB4
+
+funcs/fn_8005BFB4.c:
+	.text       start:0x8005BFB4 end:0x8005C120
+
+funcs/fn_8005C120.c:
+	.text       start:0x8005C120 end:0x8005C298
+
+funcs/fn_8005C298.c:
+	.text       start:0x8005C298 end:0x8005C478
+
+funcs/fn_8005C478.c:
+	.text       start:0x8005C478 end:0x8005C5C8
+
+funcs/fn_8005C5C8.c:
+	.text       start:0x8005C5C8 end:0x8005C7C0
+
+funcs/fn_8005C7C0.c:
+	.text       start:0x8005C7C0 end:0x8005C9D8
+
+funcs/fn_8005C9D8.c:
+	.text       start:0x8005C9D8 end:0x8005CBF4
+
+funcs/fn_8005CBF4.c:
+	.text       start:0x8005CBF4 end:0x8005D258
+
+funcs/fn_8005D258.c:
+	.text       start:0x8005D258 end:0x8005D5A4
+
+funcs/fn_8005D5A4.c:
+	.text       start:0x8005D5A4 end:0x8005DB68
+
+funcs/fn_8005DB68.c:
+	.text       start:0x8005DB68 end:0x8005DCEC
+
+funcs/fn_8005DCEC.c:
+	.text       start:0x8005DCEC end:0x8005FBDC
+
+funcs/fn_8005FBDC.c:
+	.text       start:0x8005FBDC end:0x8005FCD8
+
+funcs/fn_8005FCD8.c:
+	.text       start:0x8005FCD8 end:0x8005FDE0
+
+funcs/fn_8005FDE0.c:
+	.text       start:0x8005FDE0 end:0x8006060C
+
+funcs/fn_8006060C.c:
+	.text       start:0x8006060C end:0x80060724
+
+funcs/fn_80060724.c:
+	.text       start:0x80060724 end:0x80060950
+
+funcs/fn_80060950.c:
+	.text       start:0x80060950 end:0x80060BDC
+
+funcs/fn_80060BDC.c:
+	.text       start:0x80060BDC end:0x80060C54
+
+funcs/fn_80060C54.c:
+	.text       start:0x80060C54 end:0x800622B0
+
+funcs/fn_800622B0.c:
+	.text       start:0x800622B0 end:0x80062360
+
+funcs/fn_80062360.c:
+	.text       start:0x80062360 end:0x80062654
+
+funcs/fn_80062654.c:
+	.text       start:0x80062654 end:0x80063094
+
+funcs/fn_80063094.c:
+	.text       start:0x80063094 end:0x800631EC
+
+funcs/fn_800631EC.c:
+	.text       start:0x800631EC end:0x8006331C
+
+funcs/fn_8006331C.c:
+	.text       start:0x8006331C end:0x80063EF4
+
+funcs/fn_80063EF4.c:
+	.text       start:0x80063EF4 end:0x80063F38
+
+funcs/fn_80063F38.c:
+	.text       start:0x80063F38 end:0x8006413C
+
+funcs/fn_8006413C.c:
+	.text       start:0x8006413C end:0x800641A8
+
+funcs/fn_800641A8.c:
+	.text       start:0x800641A8 end:0x80064230
+
+funcs/fn_80064230.c:
+	.text       start:0x80064230 end:0x800643F4
+
+funcs/fn_800643F4.c:
+	.text       start:0x800643F4 end:0x800647B8
+
+funcs/fn_800647B8.c:
+	.text       start:0x800647B8 end:0x800647F0
+
+funcs/fn_800647F0.c:
+	.text       start:0x800647F0 end:0x8006496C
+
+funcs/fn_8006496C.c:
+	.text       start:0x8006496C end:0x80064A30
+
+funcs/fn_80064A30.c:
+	.text       start:0x80064A30 end:0x80064D4C
+
+funcs/fn_80064D4C.c:
+	.text       start:0x80064D4C end:0x80064E84
+
+funcs/fn_80064E84.c:
+	.text       start:0x80064E84 end:0x80064FDC
+
+funcs/fn_80064FDC.c:
+	.text       start:0x80064FDC end:0x80065390
+
+funcs/fn_80065390.c:
+	.text       start:0x80065390 end:0x80065528
+
+funcs/fn_80065528.c:
+	.text       start:0x80065528 end:0x800657F4
+
+funcs/fn_800657F4.c:
+	.text       start:0x800657F4 end:0x80065890
+
+funcs/fn_80065890.c:
+	.text       start:0x80065890 end:0x8006589C
+
+funcs/fn_8006589C.c:
+	.text       start:0x8006589C end:0x800658A8
+
+funcs/fn_800658A8.c:
+	.text       start:0x800658A8 end:0x800658B4
+
+funcs/fn_800658B4.c:
+	.text       start:0x800658B4 end:0x80065A7C
+
+funcs/fn_80065A7C.c:
+	.text       start:0x80065A7C end:0x80065AC4
+
+funcs/fn_80065AC4.c:
+	.text       start:0x80065AC4 end:0x80065AD0
+
+funcs/fn_80065AD0.c:
+	.text       start:0x80065AD0 end:0x80065B08
+
+funcs/fn_80065B08.c:
+	.text       start:0x80065B08 end:0x80065D70
+
+funcs/fn_80065D70.c:
+	.text       start:0x80065D70 end:0x80065F34
+
+funcs/fn_80065F34.c:
+	.text       start:0x80065F34 end:0x80066C14
+
+funcs/fn_80066C14.c:
+	.text       start:0x80066C14 end:0x800672E4
+
+funcs/fn_800672E4.c:
+	.text       start:0x800672E4 end:0x80067344
+
+funcs/fn_80067344.c:
+	.text       start:0x80067344 end:0x800674FC
+
+funcs/fn_800674FC.c:
+	.text       start:0x800674FC end:0x80067898
+
+funcs/fn_80067898.c:
+	.text       start:0x80067898 end:0x80067974
+
+funcs/fn_80067974.c:
+	.text       start:0x80067974 end:0x80067DE4
+
+funcs/fn_80067DE4.c:
+	.text       start:0x80067DE4 end:0x80067F68
+
+funcs/fn_80067F68.c:
+	.text       start:0x80067F68 end:0x80068BFC
+
+funcs/fn_80068BFC.c:
+	.text       start:0x80068BFC end:0x80068EB4
+
+funcs/fn_80068EB4.c:
+	.text       start:0x80068EB4 end:0x800692A4
+
+funcs/fn_800692A4.c:
+	.text       start:0x800692A4 end:0x8006953C
+
+funcs/fn_8006953C.c:
+	.text       start:0x8006953C end:0x80069AE0
+
+funcs/fn_80069AE0.c:
+	.text       start:0x80069AE0 end:0x80069B10
+
+funcs/fn_80069B10.c:
+	.text       start:0x80069B10 end:0x80069CE4
+
+funcs/fn_80069CE4.c:
+	.text       start:0x80069CE4 end:0x80069FCC
+
+funcs/fn_80069FCC.c:
+	.text       start:0x80069FCC end:0x8006A1F8
+
+funcs/fn_8006A1F8.c:
+	.text       start:0x8006A1F8 end:0x8006A3DC
+
+funcs/fn_8006A3DC.c:
+	.text       start:0x8006A3DC end:0x8006A480
+
+funcs/fn_8006A480.c:
+	.text       start:0x8006A480 end:0x8006A554
+
+funcs/fn_8006A554.c:
+	.text       start:0x8006A554 end:0x8006A768
+
+funcs/fn_8006A768.c:
+	.text       start:0x8006A768 end:0x8006A8CC
+
+funcs/fn_8006A8CC.c:
+	.text       start:0x8006A8CC end:0x8006A998
+
+funcs/fn_8006A998.c:
+	.text       start:0x8006A998 end:0x8006A9AC
+
+funcs/fn_8006A9AC.c:
+	.text       start:0x8006A9AC end:0x8006A9B4
+
+funcs/fn_8006A9B4.c:
+	.text       start:0x8006A9B4 end:0x8006AA20
+
+funcs/fn_8006AA20.c:
+	.text       start:0x8006AA20 end:0x8006AA44
+
+funcs/fn_8006AA44.c:
+	.text       start:0x8006AA44 end:0x8006AC44
+
+funcs/fn_8006AC44.c:
+	.text       start:0x8006AC44 end:0x8006AE90
+
+funcs/fn_8006AE90.c:
+	.text       start:0x8006AE90 end:0x8006AF94
+
+funcs/fn_8006AF94.c:
+	.text       start:0x8006AF94 end:0x8006B048
+
+funcs/fn_8006B048.c:
+	.text       start:0x8006B048 end:0x8006B188
+
+funcs/fn_8006B188.c:
+	.text       start:0x8006B188 end:0x8006B224
+
+funcs/fn_8006B224.c:
+	.text       start:0x8006B224 end:0x8006B294
+
+funcs/fn_8006B294.c:
+	.text       start:0x8006B294 end:0x8006B3F0
+
+funcs/fn_8006B3F0.c:
+	.text       start:0x8006B3F0 end:0x8006B470
+
+funcs/fn_8006B470.c:
+	.text       start:0x8006B470 end:0x8006B55C
+
+funcs/fn_8006B55C.c:
+	.text       start:0x8006B55C end:0x8006B628
+
+funcs/fn_8006B628.c:
+	.text       start:0x8006B628 end:0x8006B6F8
+
+funcs/fn_8006B6F8.c:
+	.text       start:0x8006B6F8 end:0x8006B7B4
+
+funcs/fn_8006B7B4.c:
+	.text       start:0x8006B7B4 end:0x8006B870
+
+funcs/fn_8006B870.c:
+	.text       start:0x8006B870 end:0x8006B92C
+
+funcs/fn_8006B92C.c:
+	.text       start:0x8006B92C end:0x8006B99C
+
+funcs/fn_8006B99C.c:
+	.text       start:0x8006B99C end:0x8006BA74
+
+funcs/fn_8006BA74.c:
+	.text       start:0x8006BA74 end:0x8006BB30
+
+funcs/fn_8006BB30.c:
+	.text       start:0x8006BB30 end:0x8006BB74
+
+funcs/fn_8006BB74.c:
+	.text       start:0x8006BB74 end:0x8006BB9C
+
+funcs/fn_8006BB9C.c:
+	.text       start:0x8006BB9C end:0x8006BBDC
+
+funcs/fn_8006BBDC.c:
+	.text       start:0x8006BBDC end:0x8006BC1C
+
+funcs/fn_8006BC1C.c:
+	.text       start:0x8006BC1C end:0x8006BC50
+
+funcs/fn_8006BC50.c:
+	.text       start:0x8006BC50 end:0x8006BC84
+
+funcs/fn_8006BC84.c:
+	.text       start:0x8006BC84 end:0x8006BCF8
+
+funcs/fn_8006BCF8.c:
+	.text       start:0x8006BCF8 end:0x8006BE0C
+
+funcs/fn_8006BE0C.c:
+	.text       start:0x8006BE0C end:0x8006C134
+
+funcs/fn_8006C134.c:
+	.text       start:0x8006C134 end:0x8006C17C
+
+funcs/fn_8006C17C.c:
+	.text       start:0x8006C17C end:0x8006C190
+
+funcs/fn_8006C190.c:
+	.text       start:0x8006C190 end:0x8006C570
+
+funcs/fn_8006C570.c:
+	.text       start:0x8006C570 end:0x8006C634
+
+funcs/fn_8006C634.c:
+	.text       start:0x8006C634 end:0x8006C6E8
+
+funcs/fn_8006C6E8.c:
+	.text       start:0x8006C6E8 end:0x8006C788
+
+funcs/fn_8006C788.c:
+	.text       start:0x8006C788 end:0x8006C7E8
+
+funcs/fn_8006C7E8.c:
+	.text       start:0x8006C7E8 end:0x8006C92C
+
+funcs/fn_8006C92C.c:
+	.text       start:0x8006C92C end:0x8006CCC8
+
+funcs/fn_8006CCC8.c:
+	.text       start:0x8006CCC8 end:0x8006CD20
+
+funcs/fn_8006CD20.c:
+	.text       start:0x8006CD20 end:0x8006CD2C
+
+funcs/fn_8006CD2C.c:
+	.text       start:0x8006CD2C end:0x8006CD40
+
+funcs/fn_8006CD40.c:
+	.text       start:0x8006CD40 end:0x8006CD50
+
+funcs/fn_8006CD50.c:
+	.text       start:0x8006CD50 end:0x8006CDA8
+
+funcs/fn_8006CDA8.c:
+	.text       start:0x8006CDA8 end:0x8006CDFC
+
+funcs/fn_8006CDFC.c:
+	.text       start:0x8006CDFC end:0x8006CE1C
+
+funcs/fn_8006CE1C.c:
+	.text       start:0x8006CE1C end:0x8006CE44
+
+funcs/fn_8006CE44.c:
+	.text       start:0x8006CE44 end:0x8006CFF8
+
+funcs/fn_8006CFF8.c:
+	.text       start:0x8006CFF8 end:0x8006D044
+
+data/text_8006D044.c:
+	.text       start:0x8006D044 end:0x8006E200
+
+funcs/fn_8006E200.c:
+	.text       start:0x8006E200 end:0x8006E250
+
+funcs/fn_8006E250.c:
+	.text       start:0x8006E250 end:0x8006E294
+
+funcs/fn_8006E294.c:
+	.text       start:0x8006E294 end:0x8006E2B0
+
+funcs/fn_8006E2B0.c:
+	.text       start:0x8006E2B0 end:0x8006E2C0
+
+data/text_8006E2C0.c:
+	.text       start:0x8006E2C0 end:0x8006E2D8
+
+funcs/fn_8006E2D8.c:
+	.text       start:0x8006E2D8 end:0x8006E324
+
+funcs/fn_8006E324.c:
+	.text       start:0x8006E324 end:0x8006E398
+
+funcs/fn_8006E398.c:
+	.text       start:0x8006E398 end:0x8006E424
+
+funcs/fn_8006E424.c:
+	.text       start:0x8006E424 end:0x8006E498
+
+funcs/fn_8006E498.c:
+	.text       start:0x8006E498 end:0x8006E540
+
+funcs/fn_8006E540.c:
+	.text       start:0x8006E540 end:0x8006E5B4
+
+funcs/fn_8006E5B4.c:
+	.text       start:0x8006E5B4 end:0x8006E5FC
+
+funcs/fn_8006E5FC.c:
+	.text       start:0x8006E5FC end:0x8006E7E4
+
+funcs/fn_8006E7E4.c:
+	.text       start:0x8006E7E4 end:0x8006E8DC
+
+funcs/fn_8006E8DC.c:
+	.text       start:0x8006E8DC end:0x8006E978
+
+funcs/fn_8006E978.c:
+	.text       start:0x8006E978 end:0x8006EB4C
+
+funcs/fn_8006EB4C.c:
+	.text       start:0x8006EB4C end:0x8006ED0C
+
+funcs/fn_8006ED0C.c:
+	.text       start:0x8006ED0C end:0x8006EDBC
+
+funcs/fn_8006EDBC.c:
+	.text       start:0x8006EDBC end:0x8006EE70
+
+funcs/fn_8006EE70.c:
+	.text       start:0x8006EE70 end:0x8006EF10
+
+funcs/fn_8006EF10.c:
+	.text       start:0x8006EF10 end:0x8006EFB4
+
+funcs/fn_8006EFB4.c:
+	.text       start:0x8006EFB4 end:0x8006F038
+
+funcs/fn_8006F038.c:
+	.text       start:0x8006F038 end:0x8006F120
+
+funcs/fn_8006F120.c:
+	.text       start:0x8006F120 end:0x8006F1F0
+
+funcs/fn_8006F1F0.c:
+	.text       start:0x8006F1F0 end:0x8006F394
+
+funcs/fn_8006F394.c:
+	.text       start:0x8006F394 end:0x8006F3E4
+
+funcs/fn_8006F3E4.c:
+	.text       start:0x8006F3E4 end:0x8006F4E0
+
+funcs/fn_8006F4E0.c:
+	.text       start:0x8006F4E0 end:0x8006F5C4
+
+funcs/fn_8006F5C4.c:
+	.text       start:0x8006F5C4 end:0x8006F6A8
+
+funcs/fn_8006F6A8.c:
+	.text       start:0x8006F6A8 end:0x8006F774
+
+funcs/fn_8006F774.c:
+	.text       start:0x8006F774 end:0x8006F78C
+
+funcs/fn_8006F78C.c:
+	.text       start:0x8006F78C end:0x8006F828
+
+funcs/fn_8006F828.c:
+	.text       start:0x8006F828 end:0x8006F900
+
+funcs/fn_8006F900.c:
+	.text       start:0x8006F900 end:0x8006F9A4
+
+funcs/fn_8006F9A4.c:
+	.text       start:0x8006F9A4 end:0x8006FA24
+
+funcs/fn_8006FA24.c:
+	.text       start:0x8006FA24 end:0x8006FB20
+
+funcs/fn_8006FB20.c:
+	.text       start:0x8006FB20 end:0x8006FC1C
+
+funcs/fn_8006FC1C.c:
+	.text       start:0x8006FC1C end:0x8006FC5C
+
+funcs/fn_8006FC5C.c:
+	.text       start:0x8006FC5C end:0x8006FCB4
+
+funcs/fn_8006FCB4.c:
+	.text       start:0x8006FCB4 end:0x8006FD1C
+
+funcs/fn_8006FD1C.c:
+	.text       start:0x8006FD1C end:0x8006FDEC
+
+funcs/fn_8006FDEC.c:
+	.text       start:0x8006FDEC end:0x8006FEFC
+
+funcs/fn_8006FEFC.c:
+	.text       start:0x8006FEFC end:0x8006FF8C
+
+funcs/fn_8006FF8C.c:
+	.text       start:0x8006FF8C end:0x8006FFBC
+
+funcs/fn_8006FFBC.c:
+	.text       start:0x8006FFBC end:0x8006FFC4
+
+funcs/fn_8006FFC4.c:
+	.text       start:0x8006FFC4 end:0x8006FFCC
+
+funcs/fn_8006FFCC.c:
+	.text       start:0x8006FFCC end:0x8006FFDC
+
+funcs/fn_8006FFDC.c:
+	.text       start:0x8006FFDC end:0x8007001C
+
+funcs/fn_8007001C.c:
+	.text       start:0x8007001C end:0x80070068
+
+funcs/fn_80070068.c:
+	.text       start:0x80070068 end:0x800700B4
+
+funcs/fn_800700B4.c:
+	.text       start:0x800700B4 end:0x800700F4
+
+funcs/fn_800700F4.c:
+	.text       start:0x800700F4 end:0x80070100
+
+funcs/fn_80070100.c:
+	.text       start:0x80070100 end:0x80070158
+
+funcs/fn_80070158.c:
+	.text       start:0x80070158 end:0x800702E4
+
+funcs/fn_800702E4.c:
+	.text       start:0x800702E4 end:0x8007048C
+
+funcs/fn_8007048C.c:
+	.text       start:0x8007048C end:0x80070538
+
+funcs/fn_80070538.c:
+	.text       start:0x80070538 end:0x80070620
+
+funcs/fn_80070620.c:
+	.text       start:0x80070620 end:0x80070704
+
+funcs/fn_80070704.c:
+	.text       start:0x80070704 end:0x8007075C
+
+funcs/fn_8007075C.c:
+	.text       start:0x8007075C end:0x80070774
+
+funcs/fn_80070774.c:
+	.text       start:0x80070774 end:0x80070A58
+
+funcs/fn_80070A58.c:
+	.text       start:0x80070A58 end:0x80070AC0
+
+funcs/fn_80070AC0.c:
+	.text       start:0x80070AC0 end:0x80070CF8
+
+funcs/fn_80070CF8.c:
+	.text       start:0x80070CF8 end:0x80070D60
+
+funcs/fn_80070D60.c:
+	.text       start:0x80070D60 end:0x80070D94
+
+funcs/fn_80070D94.c:
+	.text       start:0x80070D94 end:0x80070DE0
+
+funcs/fn_80070DE0.c:
+	.text       start:0x80070DE0 end:0x80070DF0
+
+funcs/fn_80070DF0.c:
+	.text       start:0x80070DF0 end:0x80070E00
+
+funcs/fn_80070E00.c:
+	.text       start:0x80070E00 end:0x80070E1C
+
+funcs/fn_80070E1C.c:
+	.text       start:0x80070E1C end:0x80070F44
+
+funcs/fn_80070F44.c:
+	.text       start:0x80070F44 end:0x80071044
+
+funcs/fn_80071044.c:
+	.text       start:0x80071044 end:0x80071100
+
+funcs/fn_80071100.c:
+	.text       start:0x80071100 end:0x800711A8
+
+funcs/fn_800711A8.c:
+	.text       start:0x800711A8 end:0x80071268
+
+funcs/fn_80071268.c:
+	.text       start:0x80071268 end:0x800712E4
+
+funcs/fn_800712E4.c:
+	.text       start:0x800712E4 end:0x800713E0
+
+funcs/fn_800713E0.c:
+	.text       start:0x800713E0 end:0x80071470
+
+funcs/fn_80071470.c:
+	.text       start:0x80071470 end:0x80071484
+
+funcs/fn_80071484.c:
+	.text       start:0x80071484 end:0x800715A0
+
+funcs/fn_800715A0.c:
+	.text       start:0x800715A0 end:0x80071678
+
+funcs/fn_80071678.c:
+	.text       start:0x80071678 end:0x80071718
+
+funcs/fn_80071718.c:
+	.text       start:0x80071718 end:0x8007174C
+
+funcs/fn_8007174C.c:
+	.text       start:0x8007174C end:0x80071794
+
+funcs/fn_80071794.c:
+	.text       start:0x80071794 end:0x800717BC
+
+funcs/fn_800717BC.c:
+	.text       start:0x800717BC end:0x800718BC
+
+funcs/fn_800718BC.c:
+	.text       start:0x800718BC end:0x80071C04
+
+funcs/fn_80071C04.c:
+	.text       start:0x80071C04 end:0x80071C64
+
+funcs/fn_80071C64.c:
+	.text       start:0x80071C64 end:0x80071C8C
+
+funcs/fn_80071C8C.c:
+	.text       start:0x80071C8C end:0x80071CB4
+
+funcs/fn_80071CB4.c:
+	.text       start:0x80071CB4 end:0x80071CC0
+
+funcs/fn_80071CC0.c:
+	.text       start:0x80071CC0 end:0x80071CE0
+
+funcs/fn_80071CE0.c:
+	.text       start:0x80071CE0 end:0x80071CE8
+
+funcs/fn_80071CE8.c:
+	.text       start:0x80071CE8 end:0x80071D0C
+
+funcs/fn_80071D0C.c:
+	.text       start:0x80071D0C end:0x80071D2C
+
+funcs/fn_80071D2C.c:
+	.text       start:0x80071D2C end:0x80071D30
+
+funcs/fn_80071D30.c:
+	.text       start:0x80071D30 end:0x80071ED4
+
+funcs/fn_80071ED4.c:
+	.text       start:0x80071ED4 end:0x80072014
+
+funcs/fn_80072014.c:
+	.text       start:0x80072014 end:0x800720B0
+
+funcs/fn_800720B0.c:
+	.text       start:0x800720B0 end:0x80072168
+
+funcs/fn_80072168.c:
+	.text       start:0x80072168 end:0x800721FC
+
+funcs/fn_800721FC.c:
+	.text       start:0x800721FC end:0x80072270
+
+funcs/fn_80072270.c:
+	.text       start:0x80072270 end:0x80072344
+
+funcs/fn_80072344.c:
+	.text       start:0x80072344 end:0x80072378
+
+funcs/fn_80072378.c:
+	.text       start:0x80072378 end:0x800723B8
+
+funcs/fn_800723B8.c:
+	.text       start:0x800723B8 end:0x800723D8
+
+funcs/fn_800723D8.c:
+	.text       start:0x800723D8 end:0x800723F8
+
+funcs/fn_800723F8.c:
+	.text       start:0x800723F8 end:0x80072404
+
+funcs/fn_80072404.c:
+	.text       start:0x80072404 end:0x8007245C
+
+funcs/fn_8007245C.c:
+	.text       start:0x8007245C end:0x800724C8
+
+funcs/fn_800724C8.c:
+	.text       start:0x800724C8 end:0x800724CC
+
+funcs/fn_800724CC.c:
+	.text       start:0x800724CC end:0x80072558
+
+funcs/fn_80072558.c:
+	.text       start:0x80072558 end:0x800725DC
+
+funcs/fn_800725DC.c:
+	.text       start:0x800725DC end:0x80072614
+
+funcs/fn_80072614.c:
+	.text       start:0x80072614 end:0x8007264C
+
+funcs/fn_8007264C.c:
+	.text       start:0x8007264C end:0x800726C0
+
+funcs/fn_800726C0.c:
+	.text       start:0x800726C0 end:0x80072778
+
+funcs/fn_80072778.c:
+	.text       start:0x80072778 end:0x80072808
+
+funcs/fn_80072808.c:
+	.text       start:0x80072808 end:0x80072864
+
+funcs/fn_80072864.c:
+	.text       start:0x80072864 end:0x800728A8
+
+funcs/fn_800728A8.c:
+	.text       start:0x800728A8 end:0x800729B0
+
+funcs/fn_800729B0.c:
+	.text       start:0x800729B0 end:0x80072A50
+
+funcs/fn_80072A50.c:
+	.text       start:0x80072A50 end:0x80072AB0
+
+funcs/fn_80072AB0.c:
+	.text       start:0x80072AB0 end:0x80072B28
+
+funcs/fn_80072B28.c:
+	.text       start:0x80072B28 end:0x80072B7C
+
+funcs/fn_80072B7C.c:
+	.text       start:0x80072B7C end:0x80072BD0
+
+funcs/fn_80072BD0.c:
+	.text       start:0x80072BD0 end:0x80072C24
+
+funcs/fn_80072C24.c:
+	.text       start:0x80072C24 end:0x80072CC4
+
+funcs/fn_80072CC4.c:
+	.text       start:0x80072CC4 end:0x80072D64
+
+funcs/fn_80072D64.c:
+	.text       start:0x80072D64 end:0x80072E20
+
+funcs/fn_80072E20.c:
+	.text       start:0x80072E20 end:0x80072EDC
+
+funcs/fn_80072EDC.c:
+	.text       start:0x80072EDC end:0x800734A8
+
+funcs/fn_800734A8.c:
+	.text       start:0x800734A8 end:0x800735C8
+
+funcs/fn_800735C8.c:
+	.text       start:0x800735C8 end:0x80073620
+
+funcs/fn_80073620.c:
+	.text       start:0x80073620 end:0x80073678
+
+funcs/fn_80073678.c:
+	.text       start:0x80073678 end:0x800736C0
+
+funcs/fn_800736C0.c:
+	.text       start:0x800736C0 end:0x80073778
+
+funcs/fn_80073778.c:
+	.text       start:0x80073778 end:0x800737E4
+
+funcs/fn_800737E4.c:
+	.text       start:0x800737E4 end:0x80073898
+
+funcs/fn_80073898.c:
+	.text       start:0x80073898 end:0x800738E0
+
+funcs/fn_800738E0.c:
+	.text       start:0x800738E0 end:0x800739E0
+
+funcs/fn_800739E0.c:
+	.text       start:0x800739E0 end:0x80073A58
+
+funcs/fn_80073A58.c:
+	.text       start:0x80073A58 end:0x80073B50
+
+funcs/fn_80073B50.c:
+	.text       start:0x80073B50 end:0x80073C6C
+
+funcs/fn_80073C6C.c:
+	.text       start:0x80073C6C end:0x80073D60
+
+funcs/fn_80073D60.c:
+	.text       start:0x80073D60 end:0x80073E8C
+
+funcs/fn_80073E8C.c:
+	.text       start:0x80073E8C end:0x80074188
+
+funcs/fn_80074188.c:
+	.text       start:0x80074188 end:0x8007423C
+
+funcs/fn_8007423C.c:
+	.text       start:0x8007423C end:0x80074300
+
+funcs/fn_80074300.c:
+	.text       start:0x80074300 end:0x800743C4
+
+funcs/fn_800743C4.c:
+	.text       start:0x800743C4 end:0x80074438
+
+funcs/fn_80074438.c:
+	.text       start:0x80074438 end:0x800744F8
+
+funcs/fn_800744F8.c:
+	.text       start:0x800744F8 end:0x800745A4
+
+funcs/fn_800745A4.c:
+	.text       start:0x800745A4 end:0x80074660
+
+funcs/fn_80074660.c:
+	.text       start:0x80074660 end:0x800746A8
+
+funcs/fn_800746A8.c:
+	.text       start:0x800746A8 end:0x80074718
+
+funcs/fn_80074718.c:
+	.text       start:0x80074718 end:0x80074788
+
+funcs/fn_80074788.c:
+	.text       start:0x80074788 end:0x800747D0
+
+funcs/fn_800747D0.c:
+	.text       start:0x800747D0 end:0x80074918
+
+funcs/fn_80074918.c:
+	.text       start:0x80074918 end:0x800749B0
+
+funcs/fn_800749B0.c:
+	.text       start:0x800749B0 end:0x80074A60
+
+funcs/fn_80074A60.c:
+	.text       start:0x80074A60 end:0x80074A6C
+
+funcs/fn_80074A6C.c:
+	.text       start:0x80074A6C end:0x80074A7C
+
+funcs/fn_80074A7C.c:
+	.text       start:0x80074A7C end:0x80074A8C
+
+funcs/fn_80074A8C.c:
+	.text       start:0x80074A8C end:0x80074B40
+
+funcs/fn_80074B40.c:
+	.text       start:0x80074B40 end:0x80074BC4
+
+funcs/fn_80074BC4.c:
+	.text       start:0x80074BC4 end:0x80074C74
+
+funcs/fn_80074C74.c:
+	.text       start:0x80074C74 end:0x80074CF4
+
+funcs/fn_80074CF4.c:
+	.text       start:0x80074CF4 end:0x80074D08
+
+funcs/fn_80074D08.c:
+	.text       start:0x80074D08 end:0x80074D18
+
+funcs/fn_80074D18.c:
+	.text       start:0x80074D18 end:0x80074D28
+
+funcs/fn_80074D28.c:
+	.text       start:0x80074D28 end:0x80074D68
+
+funcs/fn_80074D68.c:
+	.text       start:0x80074D68 end:0x80074D78
+
+funcs/fn_80074D78.c:
+	.text       start:0x80074D78 end:0x80074D88
+
+funcs/fn_80074D88.c:
+	.text       start:0x80074D88 end:0x80075080
+
+funcs/fn_80075080.c:
+	.text       start:0x80075080 end:0x80075240
+
+funcs/fn_80075240.c:
+	.text       start:0x80075240 end:0x800756B0
+
+funcs/fn_800756B0.c:
+	.text       start:0x800756B0 end:0x80075908
+
+funcs/fn_80075908.c:
+	.text       start:0x80075908 end:0x80075C78
+
+funcs/fn_80075C78.c:
+	.text       start:0x80075C78 end:0x80075D48
+
+funcs/fn_80075D48.c:
+	.text       start:0x80075D48 end:0x80076134
+
+funcs/fn_80076134.c:
+	.text       start:0x80076134 end:0x80076238
+
+funcs/fn_80076238.c:
+	.text       start:0x80076238 end:0x800764A0
+
+funcs/fn_800764A0.c:
+	.text       start:0x800764A0 end:0x80076790
+
+funcs/fn_80076790.c:
+	.text       start:0x80076790 end:0x8007698C
+
+funcs/fn_8007698C.c:
+	.text       start:0x8007698C end:0x80076CD4
+
+funcs/fn_80076CD4.c:
+	.text       start:0x80076CD4 end:0x80077240
+
+funcs/fn_80077240.c:
+	.text       start:0x80077240 end:0x80077384
+
+funcs/fn_80077384.c:
+	.text       start:0x80077384 end:0x80077488
+
+funcs/fn_80077488.c:
+	.text       start:0x80077488 end:0x800775EC
+
+funcs/fn_800775EC.c:
+	.text       start:0x800775EC end:0x80077654
+
+funcs/fn_80077654.c:
+	.text       start:0x80077654 end:0x80077714
+
+funcs/fn_80077714.c:
+	.text       start:0x80077714 end:0x800777D4
+
+funcs/fn_800777D4.c:
+	.text       start:0x800777D4 end:0x80077848
+
+funcs/fn_80077848.c:
+	.text       start:0x80077848 end:0x8007785C
+
+funcs/fn_8007785C.c:
+	.text       start:0x8007785C end:0x80077A18
+
+funcs/fn_80077A18.c:
+	.text       start:0x80077A18 end:0x80077A20
+
+funcs/fn_80077A20.c:
+	.text       start:0x80077A20 end:0x80077AD0
+
+funcs/fn_80077AD0.c:
+	.text       start:0x80077AD0 end:0x80077B04
+
+funcs/fn_80077B04.c:
+	.text       start:0x80077B04 end:0x80077B14
+
+funcs/fn_80077B14.c:
+	.text       start:0x80077B14 end:0x80077B64
+
+funcs/fn_80077B64.c:
+	.text       start:0x80077B64 end:0x80077BAC
+
+funcs/fn_80077BAC.c:
+	.text       start:0x80077BAC end:0x80077BBC
+
+funcs/fn_80077BBC.c:
+	.text       start:0x80077BBC end:0x80077BD4
+
+funcs/fn_80077BD4.c:
+	.text       start:0x80077BD4 end:0x80077D40
+
+funcs/fn_80077D40.c:
+	.text       start:0x80077D40 end:0x80077E0C
+
+funcs/fn_80077E0C.c:
+	.text       start:0x80077E0C end:0x80077E7C
+
+funcs/fn_80077E7C.c:
+	.text       start:0x80077E7C end:0x80077F8C
+
+funcs/fn_80077F8C.c:
+	.text       start:0x80077F8C end:0x800780A4
+
+funcs/fn_800780A4.c:
+	.text       start:0x800780A4 end:0x800781B8
+
+funcs/fn_800781B8.c:
+	.text       start:0x800781B8 end:0x80078344
+
+funcs/fn_80078344.c:
+	.text       start:0x80078344 end:0x80078360
+
+funcs/fn_80078360.c:
+	.text       start:0x80078360 end:0x80078538
+
+funcs/fn_80078538.c:
+	.text       start:0x80078538 end:0x800786B0
+
+funcs/fn_800786B0.c:
+	.text       start:0x800786B0 end:0x80078768
+
+funcs/fn_80078768.c:
+	.text       start:0x80078768 end:0x80078884
+
+funcs/fn_80078884.c:
+	.text       start:0x80078884 end:0x80078944
+
+funcs/fn_80078944.c:
+	.text       start:0x80078944 end:0x800789D8
+
+funcs/fn_800789D8.c:
+	.text       start:0x800789D8 end:0x80078BC4
+
+funcs/fn_80078BC4.c:
+	.text       start:0x80078BC4 end:0x80078C28
+
+funcs/fn_80078C28.c:
+	.text       start:0x80078C28 end:0x80078CDC
+
+funcs/fn_80078CDC.c:
+	.text       start:0x80078CDC end:0x80078D48
+
+funcs/fn_80078D48.c:
+	.text       start:0x80078D48 end:0x80078D60
+
+funcs/fn_80078D60.c:
+	.text       start:0x80078D60 end:0x80078DA8
+
+funcs/fn_80078DA8.c:
+	.text       start:0x80078DA8 end:0x80078F0C
+
+funcs/fn_80078F0C.c:
+	.text       start:0x80078F0C end:0x800791A4
+
+funcs/fn_800791A4.c:
+	.text       start:0x800791A4 end:0x800791E8
+
+funcs/fn_800791E8.c:
+	.text       start:0x800791E8 end:0x800793D4
+
+funcs/fn_800793D4.c:
+	.text       start:0x800793D4 end:0x800794F0
+
+funcs/fn_800794F0.c:
+	.text       start:0x800794F0 end:0x80079654
+
+funcs/__va_arg.c:
+	.text       start:0x80079654 end:0x8007971C
+
+funcs/__destroy_global_chain.c:
+	.text       start:0x8007971C end:0x80079764
+
+funcs/fn_80079764.c:
+	.text       start:0x80079764 end:0x800797C0
+
+funcs/__save_fpr.c:
+	.text       start:0x800797C0 end:0x8007980C
+
+funcs/__restore_fpr.c:
+	.text       start:0x8007980C end:0x80079858
+
+funcs/__save_gpr.c:
+	.text       start:0x80079858 end:0x800798A4
+
+funcs/__restore_gpr.c:
+	.text       start:0x800798A4 end:0x800798F0
+
+funcs/__div2u.c:
+	.text       start:0x800798F0 end:0x800799DC
+
+funcs/fn_800799DC.c:
+	.text       start:0x800799DC end:0x80079B14
+
+funcs/__mod2u.c:
+	.text       start:0x80079B14 end:0x80079BF8
+
+funcs/fn_80079BF8.c:
+	.text       start:0x80079BF8 end:0x80079D04
+
+funcs/fn_80079D04.c:
+	.text       start:0x80079D04 end:0x80079D28
+
+funcs/fn_80079D28.c:
+	.text       start:0x80079D28 end:0x80079D4C
+
+funcs/fn_80079D4C.c:
+	.text       start:0x80079D4C end:0x80079D74
+
+funcs/fn_80079D74.c:
+	.text       start:0x80079D74 end:0x80079E24
+
+funcs/fn_80079E24.c:
+	.text       start:0x80079E24 end:0x80079EF0
+
+funcs/fn_80079EF0.c:
+	.text       start:0x80079EF0 end:0x80079FA8
+
+funcs/fn_80079FA8.c:
+	.text       start:0x80079FA8 end:0x8007A060
+
+funcs/exit.c:
+	.text       start:0x8007A060 end:0x8007A150
+
+funcs/fn_8007A150.c:
+	.text       start:0x8007A150 end:0x8007A1C0
+
+funcs/fn_8007A1C0.c:
+	.text       start:0x8007A1C0 end:0x8007A23C
+
+funcs/fn_8007A23C.c:
+	.text       start:0x8007A23C end:0x8007A294
+
+funcs/fn_8007A294.c:
+	.text       start:0x8007A294 end:0x8007A2E8
+
+funcs/fn_8007A2E8.c:
+	.text       start:0x8007A2E8 end:0x8007A440
+
+funcs/fn_8007A440.c:
+	.text       start:0x8007A440 end:0x8007A710
+
+funcs/fn_8007A710.c:
+	.text       start:0x8007A710 end:0x8007A9A4
+
+funcs/fn_8007A9A4.c:
+	.text       start:0x8007A9A4 end:0x8007AA7C
+
+funcs/fn_8007AA7C.c:
+	.text       start:0x8007AA7C end:0x8007AB58
+
+funcs/fn_8007AB58.c:
+	.text       start:0x8007AB58 end:0x8007AC0C
+
+funcs/fn_8007AC0C.c:
+	.text       start:0x8007AC0C end:0x8007ADF0
+
+funcs/fn_8007ADF0.c:
+	.text       start:0x8007ADF0 end:0x8007B028
+
+funcs/fn_8007B028.c:
+	.text       start:0x8007B028 end:0x8007B0B4
+
+funcs/fn_8007B0B4.c:
+	.text       start:0x8007B0B4 end:0x8007B124
+
+funcs/__close_all.c:
+	.text       start:0x8007B124 end:0x8007B1CC
+
+funcs/fn_8007B1CC.c:
+	.text       start:0x8007B1CC end:0x8007B2A8
+
+funcs/fn_8007B2A8.c:
+	.text       start:0x8007B2A8 end:0x8007B338
+
+funcs/fn_8007B338.c:
+	.text       start:0x8007B338 end:0x8007C3B8
+
+funcs/fn_8007C3B8.c:
+	.text       start:0x8007C3B8 end:0x8007C55C
+
+funcs/fn_8007C55C.c:
+	.text       start:0x8007C55C end:0x8007C910
+
+funcs/fn_8007C910.c:
+	.text       start:0x8007C910 end:0x8007CE0C
+
+funcs/fn_8007CE0C.c:
+	.text       start:0x8007CE0C end:0x8007CF18
+
+funcs/fn_8007CF18.c:
+	.text       start:0x8007CF18 end:0x8007E69C
+
+funcs/fn_8007E69C.c:
+	.text       start:0x8007E69C end:0x8007E914
+
+funcs/fn_8007E914.c:
+	.text       start:0x8007E914 end:0x8007E96C
+
+funcs/fn_8007E96C.c:
+	.text       start:0x8007E96C end:0x8007EA58
+
+funcs/fn_8007EA58.c:
+	.text       start:0x8007EA58 end:0x8007EBBC
+
+funcs/__flush_buffer.c:
+	.text       start:0x8007EBBC end:0x8007EC80
+
+funcs/fn_8007EC80.c:
+	.text       start:0x8007EC80 end:0x8007ED50
+
+funcs/__prep_buffer.c:
+	.text       start:0x8007ED50 end:0x8007ED84
+
+funcs/__end_critical_region.c:
+	.text       start:0x8007ED84 end:0x8007ED88
+
+funcs/__begin_critical_region.c:
+	.text       start:0x8007ED88 end:0x8007ED8C
+
+funcs/__kill_critical_regions.c:
+	.text       start:0x8007ED8C end:0x8007ED90
+
+funcs/fn_8007ED90.c:
+	.text       start:0x8007ED90 end:0x8007EDB4
+
+funcs/__fwrite.c:
+	.text       start:0x8007EDB4 end:0x8007F0C0
+
+funcs/fwrite.c:
+	.text       start:0x8007F0C0 end:0x8007F13C
+
+funcs/fn_8007F13C.c:
+	.text       start:0x8007F13C end:0x8007F48C
+
+funcs/fn_8007F48C.c:
+	.text       start:0x8007F48C end:0x8007F508
+
+funcs/fn_8007F508.c:
+	.text       start:0x8007F508 end:0x8007F684
+
+funcs/fn_8007F684.c:
+	.text       start:0x8007F684 end:0x8007F8D4
+
+funcs/fn_8007F8D4.c:
+	.text       start:0x8007F8D4 end:0x8007FA0C
+
+funcs/fn_8007FA0C.c:
+	.text       start:0x8007FA0C end:0x8007FBC8
+
+funcs/fseek.c:
+	.text       start:0x8007FBC8 end:0x8007FC34
+
+funcs/fn_8007FC34.c:
+	.text       start:0x8007FC34 end:0x8007FE70
+
+funcs/fn_8007FE70.c:
+	.text       start:0x8007FE70 end:0x8007FF18
+
+funcs/wcstombs.c:
+	.text       start:0x8007FF18 end:0x80080030
+
+funcs/fn_80080030.c:
+	.text       start:0x80080030 end:0x80080150
+
+funcs/fn_80080150.c:
+	.text       start:0x80080150 end:0x8008023C
+
+funcs/fn_8008023C.c:
+	.text       start:0x8008023C end:0x80080288
+
+funcs/__memrchr.c:
+	.text       start:0x80080288 end:0x800802B4
+
+funcs/memchr.c:
+	.text       start:0x800802B4 end:0x800802E0
+
+funcs/memmove.c:
+	.text       start:0x800802E0 end:0x800803AC
+
+funcs/fn_800803AC.c:
+	.text       start:0x800803AC end:0x80080458
+
+funcs/fn_80080458.c:
+	.text       start:0x80080458 end:0x80080518
+
+funcs/fn_80080518.c:
+	.text       start:0x80080518 end:0x800805C0
+
+funcs/fn_800805C0.c:
+	.text       start:0x800805C0 end:0x8008067C
+
+funcs/__stdio_atexit.c:
+	.text       start:0x8008067C end:0x8008068C
+
+funcs/fn_8008068C.c:
+	.text       start:0x8008068C end:0x8008069C
+
+funcs/fn_8008069C.c:
+	.text       start:0x8008069C end:0x8008077C
+
+funcs/fn_8008077C.c:
+	.text       start:0x8008077C end:0x800807F4
+
+funcs/vprintf.c:
+	.text       start:0x800807F4 end:0x8008088C
+
+funcs/fn_8008088C.c:
+	.text       start:0x8008088C end:0x80080974
+
+funcs/fn_80080974.c:
+	.text       start:0x80080974 end:0x800809E0
+
+funcs/__FileWrite.c:
+	.text       start:0x800809E0 end:0x80080A38
+
+funcs/__pformatter.c:
+	.text       start:0x80080A38 end:0x800811AC
+
+funcs/float2str.c:
+	.text       start:0x800811AC end:0x800818C8
+
+funcs/fn_800818C8.c:
+	.text       start:0x800818C8 end:0x800819F4
+
+funcs/double2hex.c:
+	.text       start:0x800819F4 end:0x80081D2C
+
+funcs/longlong2str.c:
+	.text       start:0x80081D2C end:0x80082040
+
+funcs/long2str.c:
+	.text       start:0x80082040 end:0x80082298
+
+funcs/parse_format.c:
+	.text       start:0x80082298 end:0x8008279C
+
+funcs/fn_8008279C.c:
+	.text       start:0x8008279C end:0x80082908
+
+funcs/fn_80082908.c:
+	.text       start:0x80082908 end:0x80082928
+
+funcs/fn_80082928.c:
+	.text       start:0x80082928 end:0x800829EC
+
+funcs/fn_800829EC.c:
+	.text       start:0x800829EC end:0x80082A7C
+
+funcs/fn_80082A7C.c:
+	.text       start:0x80082A7C end:0x80083428
+
+funcs/fn_80083428.c:
+	.text       start:0x80083428 end:0x80083970
+
+funcs/fn_80083970.c:
+	.text       start:0x80083970 end:0x800839D8
+
+funcs/fn_800839D8.c:
+	.text       start:0x800839D8 end:0x80083B14
+
+funcs/fn_80083B14.c:
+	.text       start:0x80083B14 end:0x80083B5C
+
+funcs/strchr.c:
+	.text       start:0x80083B5C end:0x80083B8C
+
+funcs/fn_80083B8C.c:
+	.text       start:0x80083B8C end:0x80083BCC
+
+funcs/fn_80083BCC.c:
+	.text       start:0x80083BCC end:0x80083CF4
+
+funcs/fn_80083CF4.c:
+	.text       start:0x80083CF4 end:0x80083D40
+
+funcs/fn_80083D40.c:
+	.text       start:0x80083D40 end:0x80083D6C
+
+funcs/fn_80083D6C.c:
+	.text       start:0x80083D6C end:0x80083DB0
+
+funcs/fn_80083DB0.c:
+	.text       start:0x80083DB0 end:0x80083E68
+
+funcs/strlen.c:
+	.text       start:0x80083E68 end:0x80083E84
+
+funcs/fn_80083E84.c:
+	.text       start:0x80083E84 end:0x80083F10
+
+funcs/fn_80083F10.c:
+	.text       start:0x80083F10 end:0x80084F1C
+
+funcs/fn_80084F1C.c:
+	.text       start:0x80084F1C end:0x80084FDC
+
+funcs/fn_80084FDC.c:
+	.text       start:0x80084FDC end:0x80085088
+
+funcs/fn_80085088.c:
+	.text       start:0x80085088 end:0x80085494
+
+funcs/fn_80085494.c:
+	.text       start:0x80085494 end:0x8008580C
+
+funcs/fn_8008580C.c:
+	.text       start:0x8008580C end:0x80085814
+
+funcs/fn_80085814.c:
+	.text       start:0x80085814 end:0x800858E4
+
+funcs/fwide.c:
+	.text       start:0x800858E4 end:0x8008596C
+
+funcs/fn_8008596C.c:
+	.text       start:0x8008596C end:0x80085C7C
+
+funcs/fn_80085C7C.c:
+	.text       start:0x80085C7C end:0x80085EF8
+
+funcs/fn_80085EF8.c:
+	.text       start:0x80085EF8 end:0x80086008
+
+funcs/fn_80086008.c:
+	.text       start:0x80086008 end:0x800868BC
+
+funcs/fn_800868BC.c:
+	.text       start:0x800868BC end:0x80086C5C
+
+funcs/fn_80086C5C.c:
+	.text       start:0x80086C5C end:0x80086D50
+
+funcs/fn_80086D50.c:
+	.text       start:0x80086D50 end:0x80087BA4
+
+funcs/fn_80087BA4.c:
+	.text       start:0x80087BA4 end:0x80087C44
+
+funcs/fn_80087C44.c:
+	.text       start:0x80087C44 end:0x80087E58
+
+funcs/fn_80087E58.c:
+	.text       start:0x80087E58 end:0x80087E80
+
+funcs/fn_80087E80.c:
+	.text       start:0x80087E80 end:0x80087F54
+
+funcs/fn_80087F54.c:
+	.text       start:0x80087F54 end:0x8008809C
+
+funcs/fn_8008809C.c:
+	.text       start:0x8008809C end:0x80088128
+
+funcs/fn_80088128.c:
+	.text       start:0x80088128 end:0x800882EC
+
+funcs/fn_800882EC.c:
+	.text       start:0x800882EC end:0x800883E8
+
+funcs/fn_800883E8.c:
+	.text       start:0x800883E8 end:0x800884C0
+
+funcs/fn_800884C0.c:
+	.text       start:0x800884C0 end:0x80088538
+
+funcs/fn_80088538.c:
+	.text       start:0x80088538 end:0x80088558
+
+funcs/fn_80088558.c:
+	.text       start:0x80088558 end:0x80088578
+
+funcs/fn_80088578.c:
+	.text       start:0x80088578 end:0x80088598
+
+funcs/fn_80088598.c:
+	.text       start:0x80088598 end:0x800885B8
+
+funcs/fn_800885B8.c:
+	.text       start:0x800885B8 end:0x800885DC
+
+funcs/fn_800885DC.c:
+	.text       start:0x800885DC end:0x80088600
+
+funcs/fn_80088600.c:
+	.text       start:0x80088600 end:0x80088624
+
+funcs/fn_80088624.c:
+	.text       start:0x80088624 end:0x80088648
+
+funcs/TRKNubMainLoop.c:
+	.text       start:0x80088648 end:0x80088740
+
+funcs/TRKDestructEvent.c:
+	.text       start:0x80088740 end:0x80088764
+
+funcs/fn_80088764.c:
+	.text       start:0x80088764 end:0x8008877C
+
+funcs/fn_8008877C.c:
+	.text       start:0x8008877C end:0x8008885C
+
+funcs/TRKGetNextEvent.c:
+	.text       start:0x8008885C end:0x80088910
+
+funcs/TRKInitializeEventQueue.c:
+	.text       start:0x80088910 end:0x80088968
+
+funcs/TRKNubWelcome.c:
+	.text       start:0x80088968 end:0x80088990
+
+funcs/TRKTerminateNub.c:
+	.text       start:0x80088990 end:0x800889B4
+
+funcs/TRKInitializeNub.c:
+	.text       start:0x800889B4 end:0x80088B00
+
+funcs/fn_80088B00.c:
+	.text       start:0x80088B00 end:0x80088B44
+
+funcs/fn_80088B44.c:
+	.text       start:0x80088B44 end:0x80088C34
+
+funcs/fn_80088C34.c:
+	.text       start:0x80088C34 end:0x80088CCC
+
+funcs/fn_80088CCC.c:
+	.text       start:0x80088CCC end:0x80088DB4
+
+funcs/fn_80088DB4.c:
+	.text       start:0x80088DB4 end:0x80088EB0
+
+funcs/fn_80088EB0.c:
+	.text       start:0x80088EB0 end:0x80088F18
+
+funcs/fn_80088F18.c:
+	.text       start:0x80088F18 end:0x80089014
+
+funcs/fn_80089014.c:
+	.text       start:0x80089014 end:0x800890A0
+
+funcs/fn_800890A0.c:
+	.text       start:0x800890A0 end:0x80089144
+
+funcs/fn_80089144.c:
+	.text       start:0x80089144 end:0x80089174
+
+funcs/fn_80089174.c:
+	.text       start:0x80089174 end:0x800891B4
+
+funcs/fn_800891B4.c:
+	.text       start:0x800891B4 end:0x80089218
+
+funcs/TRKGetBuffer.c:
+	.text       start:0x80089218 end:0x80089244
+
+funcs/fn_80089244.c:
+	.text       start:0x80089244 end:0x8008930C
+
+funcs/TRKInitializeMessageBuffers.c:
+	.text       start:0x8008930C end:0x80089380
+
+funcs/fn_80089380.c:
+	.text       start:0x80089380 end:0x80089388
+
+funcs/TRKInitializeSerialHandler.c:
+	.text       start:0x80089388 end:0x8008944C
+
+funcs/fn_8008944C.c:
+	.text       start:0x8008944C end:0x8008949C
+
+funcs/TRKGetInput.c:
+	.text       start:0x8008949C end:0x800894FC
+
+funcs/fn_800894FC.c:
+	.text       start:0x800894FC end:0x80089638
+
+funcs/usr_put_initialize.c:
+	.text       start:0x80089638 end:0x8008963C
+
+funcs/fn_8008963C.c:
+	.text       start:0x8008963C end:0x800896C4
+
+funcs/TRKDispatchMessage.c:
+	.text       start:0x800896C4 end:0x80089834
+
+funcs/TRKInitializeDispatcher.c:
+	.text       start:0x80089834 end:0x8008983C
+
+funcs/fn_8008983C.c:
+	.text       start:0x8008983C end:0x800898E4
+
+funcs/fn_800898E4.c:
+	.text       start:0x800898E4 end:0x8008998C
+
+funcs/fn_8008998C.c:
+	.text       start:0x8008998C end:0x80089BAC
+
+funcs/fn_80089BAC.c:
+	.text       start:0x80089BAC end:0x80089C5C
+
+funcs/fn_80089C5C.c:
+	.text       start:0x80089C5C end:0x80089EEC
+
+funcs/fn_80089EEC.c:
+	.text       start:0x80089EEC end:0x8008A1CC
+
+funcs/fn_8008A1CC.c:
+	.text       start:0x8008A1CC end:0x8008A3C0
+
+funcs/fn_8008A3C0.c:
+	.text       start:0x8008A3C0 end:0x8008A5AC
+
+funcs/fn_8008A5AC.c:
+	.text       start:0x8008A5AC end:0x8008A5B4
+
+funcs/fn_8008A5B4.c:
+	.text       start:0x8008A5B4 end:0x8008A5BC
+
+funcs/fn_8008A5BC.c:
+	.text       start:0x8008A5BC end:0x8008A614
+
+funcs/fn_8008A614.c:
+	.text       start:0x8008A614 end:0x8008A66C
+
+funcs/fn_8008A66C.c:
+	.text       start:0x8008A66C end:0x8008A6E4
+
+funcs/fn_8008A6E4.c:
+	.text       start:0x8008A6E4 end:0x8008A748
+
+funcs/fn_8008A748.c:
+	.text       start:0x8008A748 end:0x8008A754
+
+funcs/fn_8008A754.c:
+	.text       start:0x8008A754 end:0x8008A764
+
+funcs/fn_8008A764.c:
+	.text       start:0x8008A764 end:0x8008A80C
+
+funcs/fn_8008A80C.c:
+	.text       start:0x8008A80C end:0x8008A91C
+
+funcs/fn_8008A91C.c:
+	.text       start:0x8008A91C end:0x8008AA04
+
+funcs/fn_8008AA04.c:
+	.text       start:0x8008AA04 end:0x8008AB20
+
+funcs/fn_8008AB20.c:
+	.text       start:0x8008AB20 end:0x8008AD00
+
+funcs/fn_8008AD00.c:
+	.text       start:0x8008AD00 end:0x8008AF40
+
+funcs/fn_8008AF40.c:
+	.text       start:0x8008AF40 end:0x8008AF48
+
+funcs/fn_8008AF48.c:
+	.text       start:0x8008AF48 end:0x8008AF50
+
+funcs/fn_8008AF50.c:
+	.text       start:0x8008AF50 end:0x8008AF58
+
+funcs/fn_8008AF58.c:
+	.text       start:0x8008AF58 end:0x8008AFF0
+
+funcs/fn_8008AFF0.c:
+	.text       start:0x8008AFF0 end:0x8008B028
+
+funcs/fn_8008B028.c:
+	.text       start:0x8008B028 end:0x8008B0E0
+
+funcs/fn_8008B0E0.c:
+	.text       start:0x8008B0E0 end:0x8008B0E8
+
+funcs/fn_8008B0E8.c:
+	.text       start:0x8008B0E8 end:0x8008B0F0
+
+funcs/fn_8008B0F0.c:
+	.text       start:0x8008B0F0 end:0x8008B12C
+
+funcs/TRKInterruptHandler.c:
+	.text       start:0x8008B12C end:0x8008B2C0
+
+funcs/TRKExceptionHandler.c:
+	.text       start:0x8008B2C0 end:0x8008B35C
+
+funcs/TRKSwapAndGo.c:
+	.text       start:0x8008B35C end:0x8008B420
+
+funcs/TRKInterruptHandlerEnableInterrupts.c:
+	.text       start:0x8008B420 end:0x8008B474
+
+funcs/TRKTargetSetInputPendingPtr.c:
+	.text       start:0x8008B474 end:0x8008B484
+
+funcs/fn_8008B484.c:
+	.text       start:0x8008B484 end:0x8008B49C
+
+funcs/TRKTargetSetStopped.c:
+	.text       start:0x8008B49C end:0x8008B4AC
+
+funcs/TRKTargetStopped.c:
+	.text       start:0x8008B4AC end:0x8008B4BC
+
+funcs/TRKTargetSupportRequest.c:
+	.text       start:0x8008B4BC end:0x8008B6BC
+
+funcs/fn_8008B6BC.c:
+	.text       start:0x8008B6BC end:0x8008B6CC
+
+funcs/fn_8008B6CC.c:
+	.text       start:0x8008B6CC end:0x8008B784
+
+funcs/fn_8008B784.c:
+	.text       start:0x8008B784 end:0x8008B830
+
+funcs/fn_8008B830.c:
+	.text       start:0x8008B830 end:0x8008B8B4
+
+funcs/fn_8008B8B4.c:
+	.text       start:0x8008B8B4 end:0x8008B940
+
+funcs/TRKTargetInterrupt.c:
+	.text       start:0x8008B940 end:0x8008BAD0
+
+funcs/TRKPostInterruptEvent.c:
+	.text       start:0x8008BAD0 end:0x8008BB7C
+
+funcs/fn_8008BB7C.c:
+	.text       start:0x8008BB7C end:0x8008BFB4
+
+funcs/fn_8008BFB4.c:
+	.text       start:0x8008BFB4 end:0x8008C124
+
+funcs/fn_8008C124.c:
+	.text       start:0x8008C124 end:0x8008C5F0
+
+funcs/fn_8008C5F0.c:
+	.text       start:0x8008C5F0 end:0x8008C6E4
+
+funcs/fn_8008C6E4.c:
+	.text       start:0x8008C6E4 end:0x8008C730
+
+funcs/fn_8008C730.c:
+	.text       start:0x8008C730 end:0x8008C87C
+
+funcs/fn_8008C87C.c:
+	.text       start:0x8008C87C end:0x8008CB20
+
+funcs/fn_8008CB20.c:
+	.text       start:0x8008CB20 end:0x8008CB28
+
+funcs/fn_8008CB28.c:
+	.text       start:0x8008CB28 end:0x8008CB30
+
+funcs/fn_8008CB30.c:
+	.text       start:0x8008CB30 end:0x8008CB38
+
+funcs/fn_8008CB38.c:
+	.text       start:0x8008CB38 end:0x8008CB40
+
+funcs/TRKSaveExtended1Block.c:
+	.text       start:0x8008CB40 end:0x8008CCF8
+
+funcs/TRKRestoreExtended1Block.c:
+	.text       start:0x8008CCF8 end:0x8008CEB0
+
+funcs/InitMetroTRK.c:
+	.text       start:0x8008CEB0 end:0x8008CF44
+
+data/text_8008CF44.c:
+	.text       start:0x8008CF44 end:0x8008CF48
+
+funcs/InitMetroTRK_BBA.c:
+	.text       start:0x8008CF48 end:0x8008CFDC
+
+funcs/TRKInitializeTarget.c:
+	.text       start:0x8008CFDC end:0x8008D028
+
+funcs/fn_8008D028.c:
+	.text       start:0x8008D028 end:0x8008D154
+
+funcs/fn_8008D154.c:
+	.text       start:0x8008D154 end:0x8008D1AC
+
+funcs/EnableMetroTRKInterrupts.c:
+	.text       start:0x8008D1AC end:0x8008D1CC
+
+funcs/TRK_main.c:
+	.text       start:0x8008D1CC end:0x8008D224
+
+funcs/TRKLoadContext.c:
+	.text       start:0x8008D224 end:0x8008D2AC
+
+funcs/TRKUARTInterruptHandler.c:
+	.text       start:0x8008D2AC end:0x8008D2B0
+
+funcs/InitializeProgramEndTrap.c:
+	.text       start:0x8008D2B0 end:0x8008D308
+
+funcs/TRK_board_display.c:
+	.text       start:0x8008D308 end:0x8008D338
+
+funcs/UnreserveEXI2Port.c:
+	.text       start:0x8008D338 end:0x8008D368
+
+funcs/ReserveEXI2Port.c:
+	.text       start:0x8008D368 end:0x8008D398
+
+funcs/fn_8008D398.c:
+	.text       start:0x8008D398 end:0x8008D3D4
+
+funcs/fn_8008D3D4.c:
+	.text       start:0x8008D3D4 end:0x8008D410
+
+funcs/fn_8008D410.c:
+	.text       start:0x8008D410 end:0x8008D440
+
+funcs/fn_8008D440.c:
+	.text       start:0x8008D440 end:0x8008D488
+
+funcs/TRKInitializeIntDrivenUART.c:
+	.text       start:0x8008D488 end:0x8008D4D8
+
+funcs/InitMetroTRKCommTable.c:
+	.text       start:0x8008D4D8 end:0x8008D744
+
+funcs/TRKEXICallBack.c:
+	.text       start:0x8008D744 end:0x8008D77C
+
+funcs/TRKTargetContinue.c:
+	.text       start:0x8008D77C end:0x8008D7B0
+
+funcs/fn_8008D7B0.c:
+	.text       start:0x8008D7B0 end:0x8008D7C0
+
+funcs/fn_8008D7C0.c:
+	.text       start:0x8008D7C0 end:0x8008D7CC
+
+funcs/fn_8008D7CC.c:
+	.text       start:0x8008D7CC end:0x8008D8A8
+
+funcs/fn_8008D8A8.c:
+	.text       start:0x8008D8A8 end:0x8008D92C
+
+funcs/fn_8008D92C.c:
+	.text       start:0x8008D92C end:0x8008DAA8
+
+funcs/fn_8008DAA8.c:
+	.text       start:0x8008DAA8 end:0x8008DB5C
+
+funcs/fn_8008DB5C.c:
+	.text       start:0x8008DB5C end:0x8008DC10
+
+funcs/fn_8008DC10.c:
+	.text       start:0x8008DC10 end:0x8008DCCC
+
+funcs/fn_8008DCCC.c:
+	.text       start:0x8008DCCC end:0x8008DD88
+
+funcs/udp_cc_post_stop.c:
+	.text       start:0x8008DD88 end:0x8008DD90
+
+funcs/udp_cc_pre_continue.c:
+	.text       start:0x8008DD90 end:0x8008DD98
+
+funcs/udp_cc_peek.c:
+	.text       start:0x8008DD98 end:0x8008DDA0
+
+funcs/udp_cc_write.c:
+	.text       start:0x8008DDA0 end:0x8008DDA8
+
+funcs/udp_cc_read.c:
+	.text       start:0x8008DDA8 end:0x8008DDB0
+
+funcs/udp_cc_close.c:
+	.text       start:0x8008DDB0 end:0x8008DDB8
+
+funcs/udp_cc_open.c:
+	.text       start:0x8008DDB8 end:0x8008DDC0
+
+funcs/udp_cc_shutdown.c:
+	.text       start:0x8008DDC0 end:0x8008DDC8
+
+funcs/udp_cc_initialize.c:
+	.text       start:0x8008DDC8 end:0x8008DDD0
+
+funcs/ddh_cc_initinterrupts.c:
+	.text       start:0x8008DDD0 end:0x8008DDF4
+
+funcs/ddh_cc_peek.c:
+	.text       start:0x8008DDF4 end:0x8008DE64
+
+funcs/ddh_cc_post_stop.c:
+	.text       start:0x8008DE64 end:0x8008DE88
+
+funcs/ddh_cc_pre_continue.c:
+	.text       start:0x8008DE88 end:0x8008DEAC
+
+funcs/ddh_cc_write.c:
+	.text       start:0x8008DEAC end:0x8008DF6C
+
+funcs/ddh_cc_read.c:
+	.text       start:0x8008DF6C end:0x8008E058
+
+funcs/ddh_cc_close.c:
+	.text       start:0x8008E058 end:0x8008E060
+
+funcs/ddh_cc_open.c:
+	.text       start:0x8008E060 end:0x8008E084
+
+funcs/ddh_cc_shutdown.c:
+	.text       start:0x8008E084 end:0x8008E08C
+
+funcs/ddh_cc_initialize.c:
+	.text       start:0x8008E08C end:0x8008E114
+
+funcs/fn_8008E114.c:
+	.text       start:0x8008E114 end:0x8008E21C
+
+funcs/fn_8008E21C.c:
+	.text       start:0x8008E21C end:0x8008E324
+
+funcs/fn_8008E324.c:
+	.text       start:0x8008E324 end:0x8008E374
+
+funcs/fn_8008E374.c:
+	.text       start:0x8008E374 end:0x8008E37C
+
+funcs/gdev_cc_initinterrupts.c:
+	.text       start:0x8008E37C end:0x8008E3A0
+
+funcs/gdev_cc_peek.c:
+	.text       start:0x8008E3A0 end:0x8008E410
+
+funcs/gdev_cc_post_stop.c:
+	.text       start:0x8008E410 end:0x8008E434
+
+funcs/gdev_cc_pre_continue.c:
+	.text       start:0x8008E434 end:0x8008E458
+
+funcs/gdev_cc_write.c:
+	.text       start:0x8008E458 end:0x8008E518
+
+funcs/gdev_cc_read.c:
+	.text       start:0x8008E518 end:0x8008E60C
+
+funcs/gdev_cc_close.c:
+	.text       start:0x8008E60C end:0x8008E614
+
+funcs/gdev_cc_open.c:
+	.text       start:0x8008E614 end:0x8008E638
+
+funcs/gdev_cc_shutdown.c:
+	.text       start:0x8008E638 end:0x8008E640
+
+funcs/gdev_cc_initialize.c:
+	.text       start:0x8008E640 end:0x8008E6C8
+
+funcs/MWTRACE.c:
+	.text       start:0x8008E6C8 end:0x8008E718
+
+funcs/fn_8008E718.c:
+	.text       start:0x8008E718 end:0x8008E73C
+
+funcs/fn_8008E73C.c:
+	.text       start:0x8008E73C end:0x8008E76C
+
+funcs/fn_8008E76C.c:
+	.text       start:0x8008E76C end:0x8008E770
+
+funcs/fn_8008E770.c:
+	.text       start:0x8008E770 end:0x8008E9B4
+
+funcs/fn_8008E9B4.c:
+	.text       start:0x8008E9B4 end:0x8008EB4C
+
+funcs/fn_8008EB4C.c:
+	.text       start:0x8008EB4C end:0x8008EB8C
+
+funcs/fn_8008EB8C.c:
+	.text       start:0x8008EB8C end:0x8008EBF8
+
+funcs/fn_8008EBF8.c:
+	.text       start:0x8008EBF8 end:0x8008EC78
+
+funcs/fn_8008EC78.c:
+	.text       start:0x8008EC78 end:0x8008ECE0
+
+funcs/fn_8008ECE0.c:
+	.text       start:0x8008ECE0 end:0x8008ED30
+
+funcs/fn_8008ED30.c:
+	.text       start:0x8008ED30 end:0x8008ED70
+
+funcs/fn_8008ED70.c:
+	.text       start:0x8008ED70 end:0x8008EDB0
+
+funcs/fn_8008EDB0.c:
+	.text       start:0x8008EDB0 end:0x8008EDF0
+
+funcs/fn_8008EDF0.c:
+	.text       start:0x8008EDF0 end:0x8008EEAC
+
+funcs/fn_8008EEAC.c:
+	.text       start:0x8008EEAC end:0x8008EED8
+
+funcs/fn_8008EED8.c:
+	.text       start:0x8008EED8 end:0x8008EFE0
+
+funcs/fn_8008EFE0.c:
+	.text       start:0x8008EFE0 end:0x8008F29C
+
+funcs/fn_8008F29C.c:
+	.text       start:0x8008F29C end:0x8008F44C
+
+funcs/fn_8008F44C.c:
+	.text       start:0x8008F44C end:0x8008F450
+
+funcs/fn_8008F450.c:
+	.text       start:0x8008F450 end:0x8008F454
+
+funcs/fn_8008F454.c:
+	.text       start:0x8008F454 end:0x8008F458
+
+funcs/fn_8008F458.c:
+	.text       start:0x8008F458 end:0x8008F45C
+
+funcs/fn_8008F45C.c:
+	.text       start:0x8008F45C end:0x8008F6BC
+
+funcs/fn_8008F6BC.c:
+	.text       start:0x8008F6BC end:0x8008F748
+
+funcs/fn_8008F748.c:
+	.text       start:0x8008F748 end:0x8008F7E4
+
+funcs/fn_8008F7E4.c:
+	.text       start:0x8008F7E4 end:0x8008F838
+
+funcs/fn_8008F838.c:
+	.text       start:0x8008F838 end:0x8008F8B0
+
+funcs/fn_8008F8B0.c:
+	.text       start:0x8008F8B0 end:0x8008F8F0
+
+funcs/fn_8008F8F0.c:
+	.text       start:0x8008F8F0 end:0x8008F92C
+
+funcs/fn_8008F92C.c:
+	.text       start:0x8008F92C end:0x8008F9D8
+
+funcs/fn_8008F9D8.c:
+	.text       start:0x8008F9D8 end:0x8008FAB4
+
+funcs/fn_8008FAB4.c:
+	.text       start:0x8008FAB4 end:0x8008FB90
+
+funcs/fn_8008FB90.c:
+	.text       start:0x8008FB90 end:0x8008FC3C
+
+funcs/fn_8008FC3C.c:
+	.text       start:0x8008FC3C end:0x8008FED4
+
+funcs/AMC_IsStub.c:
+	.text       start:0x8008FED4 end:0x8008FEDC
+
+funcs/Hu_IsStub.c:
+	.text       start:0x8008FEDC end:0x8008FEE4
+
+funcs/__check_pad3.c:
+	.init       start:0x80003100 end:0x80003140
+
+funcs/__set_debug_bba.c:
+	.init       start:0x80003140 end:0x8000314C
+
+funcs/__get_debug_bba.c:
+	.init       start:0x8000314C end:0x80003154
+
+funcs/__start.c:
+	.init       start:0x80003154 end:0x800032B0
+
+funcs/__init_registers.c:
+	.init       start:0x800032B0 end:0x80003340
+
+funcs/__init_data.c:
+	.init       start:0x80003340 end:0x80003400
+
+funcs/__init_hardware.c:
+	.init       start:0x80003400 end:0x80003424
+
+funcs/__flush_cache.c:
+	.init       start:0x80003424 end:0x80003458
+
+funcs/memset.c:
+	.init       start:0x80003458 end:0x80003488
+
+funcs/__fill_mem.c:
+	.init       start:0x80003488 end:0x80003540
+
+funcs/memcpy.c:
+	.init       start:0x80003540 end:0x80003590
+
+funcs/fn_80003590.c:
+	.init       start:0x80003590 end:0x800035C0
+
+funcs/fn_800035C0.c:
+	.init       start:0x800035C0 end:0x800035E4
+
+data/init_800035E4.c:
+	.init       start:0x800035E4 end:0x80005518
+
+funcs/fn_80005518.c:
+	.init       start:0x80005518 end:0x80005544
+
+data/init_80005544.c:
+	.init       start:0x80005544 end:0x80005544

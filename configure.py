@@ -282,7 +282,7 @@ def MatchingFor(*versions):
     return config.version in versions
 
 
-config.warn_missing_config = True
+config.warn_missing_config = False
 config.warn_missing_source = False
 config.libs = [
     {
