@@ -72,7 +72,13 @@ dolphin/os/OSArena.c:
 	.text       start:0x8000B314 end:0x8000B334
 
 coarse/text_8000B334.c:
-	.text       start:0x8000B334 end:0x8000D4F4
+	.text       start:0x8000B334 end:0x8000B614
+
+dolphin/os/OSCache.c:
+	.text       start:0x8000B614 end:0x8000B738
+
+coarse/text_8000B738.c:
+	.text       start:0x8000B738 end:0x8000D4F4
 
 dolphin/os/OSInterrupts.c:
 	.text       start:0x8000D4F4 end:0x8000D5E4

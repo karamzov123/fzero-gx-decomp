@@ -290,6 +290,7 @@ config.libs = [
         Object(Matching, "dolphin/os/OSTime.c"),
         Object(Matching, "dolphin/os/OSClearStack.c"),
         Object(Matching, "dolphin/os/OSArena.c"),
+        Object(Matching, "dolphin/os/OSCache.c"),
     ]),
     {
         "lib": "Runtime.PPCEABI.H",
