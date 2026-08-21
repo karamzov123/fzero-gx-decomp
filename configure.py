@@ -285,6 +285,9 @@ def MatchingFor(*versions):
 config.warn_missing_config = False
 config.warn_missing_source = False
 config.libs = [
+    DolphinLib("dolphin", [
+        Object(Matching, "dolphin/os/OSInterrupts.c"),
+    ]),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
