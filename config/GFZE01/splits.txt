@@ -69,7 +69,7 @@ coarse/text_800055E0.c:
 	.text       start:0x800055E0 end:0x8000D4F4
 
 dolphin/os/OSInterrupts.c:
-	.text       start:0x8000D4F4 end:0x8000D540
+	.text       start:0x8000D4F4 end:0x8000D5E4
 
 coarse/text_8000DD60.c:
 	.text       start:0x8000DD60 end:0x8001140C
