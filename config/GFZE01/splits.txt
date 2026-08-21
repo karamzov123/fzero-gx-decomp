@@ -72,7 +72,10 @@ dolphin/os/OSInterrupts.c:
 	.text       start:0x8000D4F4 end:0x8000D5E4
 
 coarse/text_8000DD60.c:
-	.text       start:0x8000DD60 end:0x8001140C
+	.text       start:0x8000DD60 end:0x80011358
+
+dolphin/os/OSClearStack.c:
+	.text       start:0x80011358 end:0x8001140C
 
 dolphin/os/OSTime.c:
 	.text       start:0x8001140C end:0x80011490

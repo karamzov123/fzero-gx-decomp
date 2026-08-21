@@ -288,6 +288,7 @@ config.libs = [
     DolphinLib("dolphin", [
         Object(Matching, "dolphin/os/OSInterrupts.c"),
         Object(Matching, "dolphin/os/OSTime.c"),
+        Object(Matching, "dolphin/os/OSClearStack.c"),
     ]),
     {
         "lib": "Runtime.PPCEABI.H",
