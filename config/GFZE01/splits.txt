@@ -66,7 +66,13 @@ coarse/dtors_8008FF20.c:
 	.dtors      start:0x8008FF20 end:0x8008FF24
 
 coarse/text_800055E0.c:
-	.text       start:0x800055E0 end:0x8000D4F4
+	.text       start:0x800055E0 end:0x8000B314
+
+dolphin/os/OSArena.c:
+	.text       start:0x8000B314 end:0x8000B334
+
+coarse/text_8000B334.c:
+	.text       start:0x8000B334 end:0x8000D4F4
 
 dolphin/os/OSInterrupts.c:
 	.text       start:0x8000D4F4 end:0x8000D5E4
