@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Generate an initial per-unit splits.txt from the analyzed symbols.txt.
+"""Generate the coarse initial splits used by the M0 asm-only baseline.
 
-One unit per function (funcs/<name>.c) plus contiguous data chunks bounded by
-alignment-rounded object starts. Section extents are derived from the symbol
-table (max symbol end per section), which matches what dtk validates against.
-This exists only to get the M0 asm-only link green with objects small enough
-for mwld; units get regrouped into real source files as matching progresses.
+The GC/1.3 linker reproduces the retail startup metadata exactly, but becomes
+pathologically slow with one object per function (~2200 objects).  GC/2.7 can
+link that layout quickly, but emits five different startup-table bytes.  M0
+therefore groups each section into roughly 0x8000-byte units without cutting
+through an analyzed symbol.  Real source files replace these coarse units as
+decompilation progresses.
 """
+
 import re
 import sys
 from collections import defaultdict
@@ -14,10 +16,11 @@ from collections import defaultdict
 sym_path = sys.argv[1] if len(sys.argv) > 1 else "config/GFZE01/symbols.txt"
 out_path = sys.argv[2] if len(sys.argv) > 2 else "config/GFZE01/splits.txt"
 
-SYM_RE = re.compile(r"^(.*?) = (\.\w+):0x([0-9A-Fa-f]+);.*type:(\w+) size:0x([0-9A-Fa-f]+)")
+SYM_RE = re.compile(
+    r"^(.*?) = (\.\w+):0x([0-9A-Fa-f]+);.*type:(\w+) size:0x([0-9A-Fa-f]+)"
+)
 
-# section -> (dtk type, align, hard start). Starts are DOL-backed ranges;
-# ends come from symbol extents below.
+# section -> (dtk type, alignment, DOL-backed start)
 SECTIONS = {
     ".init": ("code", 4, 0x80003100),
     ".text": ("code", 32, 0x800055E0),
@@ -28,93 +31,74 @@ SECTIONS = {
     ".bss": ("bss", 8, 0x8015B920),
     ".sdata": ("data", 32, 0x801A63C0),
     ".sbss": ("bss", 32, 0x801A66A0),
-    ".sdata2": ("data", 32, 0x801A6E40),
+    ".sdata2": ("rodata", 32, 0x801A6E40),
     ".sbss2": ("bss", 4, 0x801A7900),
 }
+MAX_CHUNK = 0x8000
+LINKER_GENERATED_SYMBOLS = {"_rom_copy_info", "_bss_init_info"}
 
-syms = []
+symbols = defaultdict(list)
 with open(sym_path) as f:
     for line in f:
-        m = SYM_RE.match(line.strip())
-        if not m:
+        match = SYM_RE.match(line.strip())
+        if not match:
             continue
-        name, sec, addr, typ, size = m.groups()
-        syms.append((name, sec, int(addr, 16), typ, int(size, 16)))
-
-extents = defaultdict(lambda: [1 << 62, 0])
-for _, sec, addr, _, size in syms:
-    e = extents[sec]
-    e[0] = min(e[0], addr)
-    e[1] = max(e[1], addr + size)
-
-units = defaultdict(list)  # unit name -> [(sec, start, end)]
-
-# Functions: one unit each.
-for name, sec, addr, typ, size in sorted(
-    (s for s in syms if s[3] == "function" and s[4] > 0), key=lambda s: (s[1], s[2])
-):
-    units[f"funcs/{name}.c"].append((sec, addr, addr + size))
-
-# Data: one unit per contiguous NON-FUNCTION region ("gap") within each
-# section's extent, split at aligned points so no unit exceeds MAX_CHUNK.
-funcs_by_sec = defaultdict(list)
-objs_by_sec = defaultdict(list)
-for name, sec, addr, typ, size in syms:
-    if sec not in SECTIONS or size <= 0:
-        continue
-    if typ == "function":
-        funcs_by_sec[sec].append((addr, addr + size))
-    else:
-        objs_by_sec[sec].append((addr, size))
-
-MAX_CHUNK = 0x8000
+        name, section, address, symbol_type, size = match.groups()
+        size_int = int(size, 16)
+        # MWLink synthesizes these startup tables from the final section set;
+        # they must not become input ranges in splits.txt.
+        if (
+            section in SECTIONS
+            and size_int > 0
+            and name not in LINKER_GENERATED_SYMBOLS
+        ):
+            symbols[section].append(
+                (name, int(address, 16), int(address, 16) + size_int, symbol_type)
+            )
 
 
-def align_dn(x, a):
-    return x & ~(a - 1)
+def align_up(value, alignment):
+    return (value + alignment - 1) & ~(alignment - 1)
 
 
-for sec, fintervals in funcs_by_sec.items():
-    _, sec_align, hard_start = SECTIONS[sec]
-    start = min(hard_start, extents[sec][0])
-    end = extents[sec][1]
-    if end <= start:
-        continue
-    fmerged = []
-    for a, b in sorted(fintervals):
-        if fmerged and a <= fmerged[-1][1]:
-            fmerged[-1][1] = max(fmerged[-1][1], b)
-        else:
-            fmerged.append([a, b])
-    # Gaps between functions within [start, end).
-    gaps = []
-    cur = start
-    for a, b in fmerged:
-        if a > cur:
-            gaps.append((cur, min(a, end)))
-        cur = max(cur, b)
-        if cur >= end:
-            break
-    if cur < end:
-        gaps.append((cur, end))
-    # Split large gaps at aligned interior points.
-    for g0, g1 in gaps:
-        p = g0
-        while p < g1:
-            nxt = min(align_dn(p + MAX_CHUNK, sec_align) + sec_align, g1)
-            if nxt <= p:
-                nxt = g1
-            units[f"data/{sec.lstrip('.')}_{p:X}.c"].append((sec, p, min(nxt, g1)))
-            p = nxt
+units = []
+# dtk writes DOL input units in reverse section order for MWLink while keeping
+# ranges within each section ascending; emit that stable order directly.
+for section, (_, alignment, start) in reversed(SECTIONS.items()):
+    section_symbols = symbols[section]
+    end = max((symbol_end for _, _, symbol_end, _ in section_symbols), default=start)
+    intervals = sorted((symbol_start, symbol_end) for _, symbol_start, symbol_end, _ in section_symbols)
+
+    position = start
+    while position < end:
+        chunk_end = min(align_up(position + MAX_CHUNK, alignment), end)
+        # Move a proposed boundary forward until it no longer intersects a
+        # symbol. Some early data symbols are opaque and hundreds of KiB long.
+        while chunk_end < end:
+            containing = next(
+                (
+                    (symbol_start, symbol_end)
+                    for symbol_start, symbol_end in intervals
+                    if symbol_start < chunk_end < symbol_end
+                ),
+                None,
+            )
+            if containing is None:
+                break
+            chunk_end = min(align_up(containing[1], alignment), end)
+
+        units.append((f"coarse/{section[1:]}_{position:X}.c", section, position, chunk_end))
+        position = chunk_end
 
 with open(out_path, "w") as f:
     f.write("Sections:\n")
-    for sec, (typ, align, _) in SECTIONS.items():
-        f.write(f"\t{sec:<12}type:{typ} align:{align}\n")
+    for section, (section_type, alignment, _) in SECTIONS.items():
+        f.write(f"\t{section:<12}type:{section_type} align:{alignment}\n")
     f.write("\n")
-    for unit in sorted(units):
+    for index, (unit, section, start, end) in enumerate(units):
         f.write(f"{unit}:\n")
-        for sec, start, end in sorted(units[unit]):
-            f.write(f"\t{sec:<12}start:0x{start:X} end:0x{end:X}\n")
+        f.write(f"\t{section:<12}start:0x{start:X} end:0x{end:X}\n")
+        if index != len(units) - 1:
+            f.write("\n")
 
-print(f"wrote {out_path}: {len(units)} units")
+print(f"wrote {out_path}: {len(units)} coarse units")
