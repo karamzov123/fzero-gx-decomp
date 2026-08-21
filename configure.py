@@ -287,6 +287,7 @@ config.warn_missing_source = False
 config.libs = [
     DolphinLib("dolphin", [
         Object(Matching, "dolphin/os/OSInterrupts.c"),
+        Object(Matching, "dolphin/os/OSTime.c"),
     ]),
     {
         "lib": "Runtime.PPCEABI.H",
