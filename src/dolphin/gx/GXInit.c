@@ -321,4 +321,120 @@ Ldone:
     blr
 }
 
+asm static BOOL GXResetFunc(BOOL final)
+{
+    nofralloc
+    mflr r0
+    stw r0, 0x4(r1)
+    stwu r1, -0x20(r1)
+    stw r31, 0x1c(r1)
+    cmpwi r3, 0
+    bne Lforce
+    lwz r0, -0x77D8(r13) /* lbl_801A6BE8@sda21 */
+    cmplwi r0, 0
+    bne Lsecond
+    lwz r3, -0x77EC(r13) /* __memReg@sda21 */
+    addi r6, r3, 0x4e
+    lhz r4, 0(r6)
+    addi r5, r3, 0x50
+Lp10:
+    b Lp11
+Lp11:
+    b Lp12
+Lp12:
+    mr r0, r4
+    lhz r4, 0(r6)
+    lhz r3, 0(r5)
+    cmplw r4, r0
+    bne Lp12
+    slwi r0, r4, 16
+    or r0, r0, r3
+    stw r0, -0x77E8(r13) /* lbl_801A6BD8@sda21 */
+    bl OSGetTime
+    stw r4, -0x77DC(r13) /* lbl_801A6BE4@sda21 */
+    li r0, 1
+    stw r3, -0x77E0(r13) /* lbl_801A6BE0@sda21 */
+    li r3, 0
+    stw r0, -0x77D8(r13) /* lbl_801A6BE8@sda21 */
+    b Lexit
+Lsecond:
+    bl OSGetTime
+    lwz r5, -0x77EC(r13) /* __memReg */
+    addi r6, r5, 0x4e
+    lhz r7, 0(r6)
+    addi r5, r5, 0x50
+Lp20:
+    b Lp21
+Lp21:
+    b Lp22
+Lp22:
+    mr r0, r7
+    lhz r7, 0(r6)
+    lhz r10, 0(r5)
+    cmplw r7, r0
+    bne Lp22
+    lwz r6, -0x77DC(r13) /* lbl_801A6BE4 */
+    li r0, 0
+    lwz r5, -0x77E0(r13) /* lbl_801A6BE0 */
+    slwi r9, r7, 16
+    subfc r8, r6, r4
+    subfe r5, r5, r3
+    li r7, 0xa
+    xoris r6, r5, 0x8000
+    xoris r5, r0, 0x8000
+    subfc r0, r7, r8
+    subfe r5, r5, r6
+    subfe r5, r6, r6
+    neg r5, r5
+    cmpwi r5, 0
+    or r5, r9, r10
+    beq Lcheck
+    li r3, 0
+    b Lexit
+Lcheck:
+    lwz r0, -0x77E8(r13) /* lbl_801A6BD8 */
+    cmplw r5, r0
+    beq Ltrue
+    stw r4, -0x77DC(r13) /* lbl_801A6BE4 */
+    stw r3, -0x77E0(r13) /* lbl_801A6BE0 */
+    li r3, 0
+    stw r5, -0x77E8(r13) /* lbl_801A6BD8 */
+    b Lexit
+Lforce:
+    li r3, 0
+    bl GXSetBreakPtCallback
+    li r3, 0
+    bl fn_80034378
+    li r3, 0
+    bl fn_80034444
+    li r31, 0
+    lis r3, 0xcc01
+    stw r31, -0x8000(r3)
+    stw r31, -0x8000(r3)
+    stw r31, -0x8000(r3)
+    stw r31, -0x8000(r3)
+    stw r31, -0x8000(r3)
+    stw r31, -0x8000(r3)
+    stw r31, -0x8000(r3)
+    stw r31, -0x8000(r3)
+    bl PPCSync
+    lwz r3, -0x77F4(r13) /* __cpReg@sda21 */
+    li r4, 3
+    li r0, 1
+    sth r31, 2(r3)
+    lwz r3, -0x77F4(r13) /* __cpReg */
+    sth r4, 4(r3)
+    lwz r3, -0x7DE8(r2) /* gx@sda21 */
+    stb r0, 0x4f2(r3)
+    bl fn_80033EB0
+Ltrue:
+    li r3, 1
+Lexit:
+    lwz r0, 0x24(r1)
+    lwz r31, 0x1c(r1)
+    addi r1, r1, 0x20
+    mtlr r0
+    blr
+}
+
 #pragma pop
