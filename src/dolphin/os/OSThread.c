@@ -15,6 +15,9 @@ void OSInitThreadQueue(OSThreadQueue *queue)
     queue->head = 0;
 }
 
+#pragma push
+#pragma force_active on
+
 asm void fn_800102AC(void)
 {
     nofralloc
@@ -42,6 +45,7 @@ _false:
     li      r3, 0
     blr
 }
+#pragma pop
 
 int OSDisableScheduler(void)
 {
