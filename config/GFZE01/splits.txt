@@ -162,7 +162,13 @@ coarse/text_80026EE0.c:
 	.text       start:0x80026EE0 end:0x8002F140
 
 coarse/text_8002F140.c:
-	.text       start:0x8002F140 end:0x80031C84
+	.text       start:0x8002F140 end:0x800307CC
+
+dolphin/gx/GXInit.c:
+	.text       start:0x800307CC end:0x8003086C
+
+coarse/text_8003086C.c:
+	.text       start:0x8003086C end:0x80031C84
 
 dolphin/gx/GXFifo.c:
 	.text       start:0x80031C84 end:0x80032370
