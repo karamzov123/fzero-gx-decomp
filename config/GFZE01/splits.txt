@@ -194,8 +194,11 @@ dolphin/gx/GXTexture.c:
 dolphin/gx/GXLight.c:
 	.text       start:0x800372E0 end:0x8003887C
 
-coarse/text_8003887C.c:
-	.text       start:0x8003887C end:0x80041460
+dolphin/gx/GXDraw.c:
+	.text       start:0x8003887C end:0x8003910C
+
+coarse/text_8003910C.c:
+	.text       start:0x8003910C end:0x80041460
 
 coarse/text_80041460.c:
 	.text       start:0x80041460 end:0x8004A560
