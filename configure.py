@@ -304,6 +304,7 @@ config.libs = [
         Object(Matching, "dolphin/os/PSMathFns.c"),
         Object(Matching, "dolphin/gx/GXFifo.c"),
         Object(Matching, "dolphin/gx/GXGeometry.c"),
+        Object(Matching, "dolphin/gx/GXTexture.c"),
         Object(Matching, "dolphin/os/init/start.c"),
         Object(Matching, "dolphin/os/init/__init_registers.c"),
         Object(Matching, "dolphin/os/init/__init_data.c"),
