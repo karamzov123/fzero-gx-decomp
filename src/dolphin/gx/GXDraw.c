@@ -18,8 +18,20 @@ extern void __GXSendFlushPrim(void);
 asm void fn_80038DE8(register void* p);
 asm void fn_80039088(register void* p);
 
+extern void fn_8003D42C(void);
+
 #pragma push
 #pragma force_active on
+
+asm void fn_80039954(register void* p);
+asm int fn_8003A4E8(register u32 a);
+asm void fn_8003A680(void);
+asm int fn_8003A760(register u32 a);
+asm int fn_8003A91C(register u32 a);
+asm void fn_8003B63C(register u32 a);
+asm int fn_8003B798(register u32 a, register int b);
+asm int fn_8003B8A8(register u32 a);
+asm int fn_8003B930(register u32 a);
 
 asm void fn_8003887C(register void* p1, register void* p2)
 {
@@ -677,17 +689,6 @@ _800390fc:
     sth     r0, 2(r3)
     blr     
 }
-
-
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef signed int s32;
-
-asm void fn_80039954(register void* p);
-
-#pragma push
-#pragma force_active on
 
 asm void fn_8003910C(register u32 cmd)
 {
@@ -1404,15 +1405,6 @@ asm int fn_80039B38(register u32 a)
     sth     r0, 2(r3)
     blr     
 }
-
-
-asm int fn_8003A4E8(register u32 a);
-asm void fn_8003A680(void);
-asm int fn_8003A760(register u32 a);
-asm int fn_8003A91C(register u32 a);
-
-#pragma push
-#pragma force_active on
 
 asm void fn_80039B7C(register u32 a)
 {
@@ -2519,4 +2511,1138 @@ _8003aaf4:
     li      r3, 0
     blr     
 }
+
+asm int fn_8003AB08(register u32 a)
+{
+    nofralloc
+    mflr    r0
+    lis     r4, -0x7fe8
+    stw     r0, 4(r1)
+    stwu    r1, -0x58(r1)
+    stfd    f31, 0x50(r1)
+    stfd    f30, 0x48(r1)
+    stfd    f29, 0x40(r1)
+    stfd    f28, 0x38(r1)
+    stfd    f27, 0x30(r1)
+    stmw    r25, 0x14(r1)
+    addi    r31, r4, -0x7740
+    mr      r29, r3
+    li      r30, 0
+    lfs     f27, -0x7cc0(r2)
+    lfs     f28, -0x7cbc(r2)
+    lfs     f29, -0x7cb8(r2)
+    lfs     f30, -0x7cb4(r2)
+    lfs     f31, -0x7cb0(r2)
+    b       _8003af9c
+_8003ab54:
+    li      r26, 0
+    b       _8003ab80
+_8003ab5c:
+    clrlwi  r3, r26, 0x18
+    rlwinm  r0, r26, 2, 0x16, 0x1d
+    add     r4, r29, r3
+    add     r3, r29, r0
+    lbz     r4, 0x790(r4)
+    lwz     r5, 0x750(r3)
+    mr      r3, r29
+    bl      fn_8003B63C
+    addi    r26, r26, 1
+_8003ab80:
+    lhz     r0, 0x7a2(r29)
+    clrlwi  r3, r26, 0x18
+    cmpw    r3, r0
+    blt     _8003ab5c
+    clrlwi  r0, r30, 0x18
+    li      r4, 0
+    li      r3, 0
+    b       _8003af24
+_8003aba0:
+    clrlwi  r6, r3, 0x18
+    lbz     r5, 0x41b(r29)
+    mulli   r6, r6, 0x30
+    lhz     r8, 0x7aa(r29)
+    addi    r9, r6, 0x6c0
+    add     r9, r29, r9
+    lbz     r7, 2(r9)
+    add     r12, r29, r6
+    li      r6, 0
+    subf    r5, r7, r5
+    sraw    r8, r8, r5
+    b       _8003af10
+_8003abd0:
+    lwz     r7, 0x24(r9)
+    clrlwi  r27, r4, 0x18
+    li      r5, 0
+    mullw   r7, r0, r7
+    b       _8003aef0
+_8003abe4:
+    clrlwi  r10, r5, 0x18
+    lbz     r11, 0x6c3(r12)
+    add     r10, r27, r10
+    slwi    r10, r10, 2
+    add     r28, r29, r10
+    li      r10, 8
+    lwz     r25, 0x750(r28)
+    slwi    r11, r11, 8
+    mtctr   r10
+    add     r28, r29, r11
+    addi    r11, r31, -8
+_8003ac10:
+    lwz     r10, 0xc(r25)
+    cmpwi   r10, 0
+    bne     _8003ad48
+    lwz     r10, 8(r25)
+    cmpwi   r10, 0
+    bne     _8003ad48
+    lwz     r10, 4(r25)
+    cmpwi   r10, 0
+    bne     _8003acc4
+    lhz     r10, 2(r25)
+    cmpwi   r10, 0
+    bne     _8003ac68
+    psq_l   f9, 0x0(r25), 1, 5
+    lfs     f8, 0(r28)
+    addi    r25, r25, 0x10
+            ps_muls0 f9, f8, f9
+    addi    r28, r28, 0x20
+    psq_stu f9, 0x8(r11), 0, 0
+    psq_stu f9, 0x8(r11), 0, 0
+    psq_stu f9, 0x8(r11), 0, 0
+    psq_stu f9, 0x8(r11), 0, 0
+    b       _8003adf8
+_8003ac68:
+    psq_l   f9, 0x0(r25), 0, 5
+    psq_l   f1, 0x0(r28), 0, 0
+            ps_sub f8, f28, f29
+            ps_mul f9, f9, f1
+    addi    r25, r25, 0x10
+            ps_msub f7, f9, f28, f9
+            ps_merge00 f0, f9, f9
+            ps_msub f6, f9, f27, f7
+            ps_merge11 f4, f9, f7
+            ps_nmsub f5, f9, f8, f6
+            ps_add f2, f0, f4
+            ps_sub f4, f0, f4
+            ps_merge11 f3, f6, f5
+    psq_stu f2, 0x8(r11), 0, 0
+            ps_add f1, f0, f3
+            ps_sub f3, f0, f3
+    psq_stu f1, 0x8(r11), 0, 0
+            ps_merge10 f3, f3, f3
+            ps_merge10 f4, f4, f4
+    psq_stu f3, 0x8(r11), 0, 0
+    addi    r28, r28, 0x20
+    psq_stu f4, 0x8(r11), 0, 0
+    b       _8003adf8
+_8003acc4:
+    psq_l   f9, 0x0(r25), 0, 5
+    psq_l   f1, 0x0(r28), 0, 0
+            ps_mul f9, f9, f1
+    psq_l   f8, 0x4(r25), 0, 5
+    psq_l   f0, 0x8(r28), 0, 0
+            ps_mul f8, f8, f0
+    addi    r25, r25, 0x10
+            ps_sub f6, f9, f8
+            ps_add f7, f9, f8
+            ps_madd f5, f8, f27, f6
+            ps_nmsub f4, f8, f27, f7
+            ps_mul f1, f6, f28
+            ps_merge00 f5, f7, f5
+            ps_nmsub f3, f8, f30, f1
+            ps_merge00 f4, f4, f6
+            ps_sub f3, f3, f7
+            ps_nmsub f2, f9, f29, f1
+            ps_merge11 f7, f7, f3
+            ps_msub f1, f6, f27, f3
+            ps_add f0, f5, f7
+            ps_sub f2, f2, f1
+    psq_stu f0, 0x8(r11), 0, 0
+            ps_merge11 f6, f1, f2
+            ps_sub f5, f5, f7
+            ps_add f9, f4, f6
+            ps_sub f8, f4, f6
+    psq_stu f9, 0x8(r11), 0, 0
+            ps_merge10 f8, f8, f8
+            ps_merge10 f5, f5, f5
+    psq_stu f8, 0x8(r11), 0, 0
+    addi    r28, r28, 0x20
+    psq_stu f5, 0x8(r11), 0, 0
+    b       _8003adf8
+_8003ad48:
+    psq_l   f1, 0x0(r25), 0, 5
+    psq_l   f5, 0x0(r28), 0, 0
+            ps_mul f1, f1, f5
+    psq_l   f0, 0x4(r25), 0, 5
+    psq_l   f4, 0x8(r28), 0, 0
+            ps_mul f0, f0, f4
+    psq_l   f7, 0x8(r25), 0, 5
+    psq_l   f3, 0x10(r28), 0, 0
+            ps_merge01 f9, f1, f0
+    psq_l   f6, 0xc(r25), 0, 5
+            ps_merge01 f8, f0, f1
+    psq_l   f2, 0x18(r28), 0, 0
+            ps_madd f5, f7, f3, f9
+            ps_nmsub f4, f7, f3, f9
+            ps_madd f3, f6, f2, f8
+            ps_nmsub f2, f6, f2, f8
+            ps_add f9, f5, f3
+            ps_sub f6, f5, f3
+            ps_msub f7, f2, f27, f3
+            ps_sub f1, f2, f4
+            ps_add f8, f4, f7
+            ps_sub f7, f4, f7
+            ps_mul f1, f1, f28
+            ps_merge00 f8, f9, f8
+            ps_nmsub f3, f4, f30, f1
+            ps_msub f5, f2, f29, f1
+            ps_merge00 f7, f7, f6
+            ps_sub f3, f3, f9
+    addi    r25, r25, 0x10
+            ps_madd f4, f6, f27, f3
+            ps_merge11 f2, f9, f3
+            ps_sub f5, f5, f4
+            ps_add f6, f8, f2
+            ps_merge11 f5, f4, f5
+            ps_sub f9, f8, f2
+    psq_stu f6, 0x8(r11), 0, 0
+            ps_add f4, f7, f5
+            ps_sub f3, f7, f5
+            ps_merge10 f4, f4, f4
+    psq_stu f3, 0x8(r11), 0, 0
+            ps_merge10 f9, f9, f9
+    psq_stu f4, 0x8(r11), 0, 0
+    addi    r28, r28, 0x20
+    psq_stu f9, 0x8(r11), 0, 0
+_8003adf8:
+    bdnz    _8003ac10
+    lwz     r28, 0x6c8(r12)
+    li      r10, 4
+    mtctr   r10
+    lwz     r26, 0x6d4(r12)
+    mullw   r10, r8, r28
+    addi    r11, r31, 0
+    add     r10, r7, r10
+_8003ae18:
+    psq_l   f9, 0x0(r11), 0, 0
+    psq_l   f8, 0x80(r11), 0, 0
+    add     r25, r26, r10
+            ps_add f3, f9, f8
+    psq_l   f7, 0x40(r11), 0, 0
+            ps_sub f1, f9, f8
+            ps_add f3, f3, f31
+    psq_l   f6, 0xc0(r11), 0, 0
+            ps_add f2, f7, f6
+            ps_sub f0, f7, f6
+    psq_l   f5, 0x20(r11), 0, 0
+            ps_add f9, f3, f2
+            ps_add f1, f1, f31
+    psq_l   f4, 0x60(r11), 0, 0
+            ps_msub f0, f0, f27, f2
+            ps_sub f6, f3, f2
+    psq_l   f3, 0xa0(r11), 0, 0
+            ps_add f8, f1, f0
+    psq_l   f2, 0xe0(r11), 0, 0
+            ps_sub f7, f1, f0
+            ps_add f1, f3, f4
+            ps_sub f3, f3, f4
+            ps_add f0, f5, f2
+            ps_sub f5, f5, f2
+            ps_add f2, f0, f1
+            ps_sub f4, f0, f1
+            ps_add f1, f3, f5
+            ps_add f0, f9, f2
+            ps_mul f1, f1, f28
+            ps_sub f9, f9, f2
+            ps_madd f3, f3, f30, f1
+    psq_st  f0, 0x0(r25), 0, 6
+            ps_sub f3, f3, f2
+            ps_msub f5, f5, f29, f1
+            ps_add f0, f8, f3
+            ps_msub f4, f4, f27, f3
+            ps_sub f8, f8, f3
+            psq_stux f0, r25, r28, 0, 6
+            ps_add f1, f7, f4
+            ps_add f5, f5, f4
+            psq_stux f1, r25, r28, 0, 6
+            ps_sub f0, f6, f5
+            ps_add f6, f6, f5
+            psq_stux f0, r25, r28, 0, 6
+            ps_sub f1, f7, f4
+            psq_stux f6, r25, r28, 0, 6
+    addi    r11, r11, 8
+            psq_stux f1, r25, r28, 0, 6
+    addi    r10, r10, 2
+            psq_stux f8, r25, r28, 0, 6
+            psq_stux f9, r25, r28, 0, 6
+    bdnz    _8003ae18
+    addi    r7, r7, 8
+    addi    r5, r5, 1
+_8003aef0:
+    lwz     r10, 0x18(r9)
+    clrlwi  r11, r5, 0x18
+    cmpw    r11, r10
+    blt     _8003abe4
+    clrlwi  r5, r10, 0x18
+    add     r4, r4, r5
+    addi    r6, r6, 1
+    addi    r8, r8, 8
+_8003af10:
+    lwz     r5, 0x1c(r9)
+    clrlwi  r7, r6, 0x18
+    cmpw    r7, r5
+    blt     _8003abd0
+    addi    r3, r3, 1
+_8003af24:
+    lbz     r5, 0x41c(r29)
+    clrlwi  r6, r3, 0x18
+    cmplw   r6, r5
+    blt     _8003aba0
+    lbz     r0, 0x41e(r29)
+    cmplwi  r0, 0
+    beq     _8003af98
+    lhz     r3, 0x7b0(r29)
+    addi    r0, r3, -1
+    sth     r0, 0x7b0(r29)
+    lhz     r0, 0x7b0(r29)
+    cmplwi  r0, 0
+    bne     _8003af98
+    lhz     r4, 0x7ae(r29)
+    li      r0, 0x21
+    li      r3, 0
+    sth     r4, 0x7b0(r29)
+    li      r5, 0
+    stw     r0, 0x414(r29)
+    b       _8003af88
+_8003af74:
+    clrlwi  r0, r3, 0x18
+    mulli   r0, r0, 0x30
+    add     r4, r29, r0
+    sth     r5, 0x6c6(r4)
+    addi    r3, r3, 1
+_8003af88:
+    lbz     r0, 0x41c(r29)
+    clrlwi  r4, r3, 0x18
+    cmplw   r4, r0
+    blt     _8003af74
+_8003af98:
+    addi    r30, r30, 1
+_8003af9c:
+    lhz     r0, 0x7a0(r29)
+    clrlwi  r3, r30, 0x18
+    cmpw    r3, r0
+    blt     _8003ab54
+    lhz     r3, 0x7a6(r29)
+    addi    r0, r3, 1
+    sth     r0, 0x7a6(r29)
+    lhz     r3, 0x7aa(r29)
+    lhz     r0, 0x7a8(r29)
+    add     r0, r3, r0
+    sth     r0, 0x7aa(r29)
+    lhz     r3, 0x7a6(r29)
+    lhz     r0, 0x7a4(r29)
+    cmplw   r3, r0
+    bge     _8003afe0
+    li      r0, 0
+    b       _8003afe4
+_8003afe0:
+    li      r0, 1
+_8003afe4:
+    lmw     r25, 0x14(r1)
+    clrlwi  r3, r0, 0x18
+    lwz     r0, 0x5c(r1)
+    lfd     f31, 0x50(r1)
+    lfd     f30, 0x48(r1)
+    lfd     f29, 0x40(r1)
+    lfd     f28, 0x38(r1)
+    lfd     f27, 0x30(r1)
+    addi    r1, r1, 0x58
+    mtlr    r0
+    blr     
+}
+
+asm int fn_8003B010(register u32 a)
+{
+    nofralloc
+    mflr    r0
+    lis     r4, -0x7fe8
+    stw     r0, 4(r1)
+    stwu    r1, -0x60(r1)
+    stfd    f31, 0x58(r1)
+    stfd    f30, 0x50(r1)
+    stfd    f29, 0x48(r1)
+    stfd    f28, 0x40(r1)
+    stfd    f27, 0x38(r1)
+    stmw    r23, 0x14(r1)
+    addi    r31, r4, -0x7740
+    mr      r29, r3
+    li      r30, 0
+    lfs     f27, -0x7cc0(r2)
+    lfs     f28, -0x7cbc(r2)
+    lfs     f29, -0x7cb8(r2)
+    lfs     f30, -0x7cb4(r2)
+    lfs     f31, -0x7cb0(r2)
+    b       _8003b5c8
+_8003b05c:
+    li      r23, 0
+    b       _8003b088
+_8003b064:
+    clrlwi  r3, r23, 0x18
+    rlwinm  r0, r23, 2, 0x16, 0x1d
+    add     r4, r29, r3
+    add     r3, r29, r0
+    lbz     r4, 0x790(r4)
+    lwz     r5, 0x750(r3)
+    mr      r3, r29
+    bl      fn_8003B63C
+    addi    r23, r23, 1
+_8003b088:
+    lhz     r0, 0x7a2(r29)
+    clrlwi  r3, r23, 0x18
+    cmpw    r3, r0
+    blt     _8003b064
+    clrlwi  r28, r30, 0x18
+    li      r0, 0
+    li      r3, 0
+    b       _8003b550
+_8003b0a8:
+    clrlwi  r5, r3, 0x18
+    lbz     r4, 0x41b(r29)
+    mulli   r5, r5, 0x30
+    lhz     r8, 0x7aa(r29)
+    addi    r7, r5, 0x6c0
+    add     r7, r29, r7
+    lbz     r6, 2(r7)
+    add     r11, r29, r5
+    li      r5, 0
+    subf    r4, r6, r4
+    sraw    r6, r8, r4
+    b       _8003b53c
+_8003b0d8:
+    lwz     r8, 0x24(r7)
+    clrlwi  r12, r0, 0x18
+    li      r4, 0
+    mullw   r8, r28, r8
+    slwi    r8, r8, 2
+    b       _8003b51c
+_8003b0f0:
+    clrlwi  r10, r4, 0x18
+    lbz     r9, 0x6c3(r11)
+    add     r10, r12, r10
+    slwi    r10, r10, 2
+    add     r10, r29, r10
+    slwi    r9, r9, 8
+    lwz     r23, 0x750(r10)
+    add     r27, r29, r9
+    addi    r24, r31, -8
+    li      r10, 8
+    mtctr   r10
+_8003b11c:
+    psq_l   f7, 0x0(r23), 0, 5
+    psq_l   f6, 0x0(r27), 0, 0
+            ps_mul f7, f7, f6
+    lwz     r26, 0xc(r23)
+    lwz     r9, 8(r23)
+    or      r26, r26, r9
+    lwz     r25, 4(r23)
+    lhz     r10, 2(r23)
+_8003b13c:
+    cmpwi   r26, 0
+    bne     _8003b288
+    cmpwi   r25, 0
+    bne     _8003b1ec
+    cmpwi   r10, 0
+    bne     _8003b178
+            ps_merge00 f4, f7, f7
+    addi    r27, r27, 0x20
+    psq_stu f4, 0x8(r24), 0, 0
+    psq_stu f4, 0x8(r24), 0, 0
+    addi    r23, r23, 0x10
+    psq_stu f4, 0x8(r24), 0, 0
+    psq_stu f4, 0x8(r24), 0, 0
+    bdnz    _8003b11c
+    b       _8003b350
+_8003b178:
+            ps_msub f13, f7, f28, f7
+    addi    r23, r23, 0x10
+            ps_merge00 f2, f7, f7
+    addi    r27, r27, 0x20
+            ps_sub f1, f28, f29
+    lwz     r25, 4(r23)
+            ps_msub f12, f7, f27, f13
+    lhz     r10, 2(r23)
+            ps_merge11 f10, f7, f13
+    psq_l   f6, 0x0(r27), 0, 0
+            ps_nmsub f11, f7, f1, f12
+            ps_add f8, f2, f10
+    psq_l   f7, 0x0(r23), 0, 5
+            ps_merge11 f9, f12, f11
+            ps_sub f10, f2, f10
+    lwz     r26, 0xc(r23)
+            ps_add f3, f2, f9
+    lwz     r9, 8(r23)
+            ps_sub f9, f2, f9
+    psq_stu f8, 0x8(r24), 0, 0
+            ps_merge10 f9, f9, f9
+    psq_stu f3, 0x8(r24), 0, 0
+            ps_merge10 f10, f10, f10
+    or      r26, r26, r9
+    psq_stu f9, 0x8(r24), 0, 0
+            ps_mul f7, f7, f6
+    psq_stu f10, 0x8(r24), 0, 0
+    bdnz    _8003b13c
+    b       _8003b350
+_8003b1ec:
+    psq_l   f1, 0x4(r23), 0, 5
+    psq_l   f2, 0x8(r27), 0, 0
+    addi    r23, r23, 0x10
+            ps_mul f1, f1, f2
+    addi    r27, r27, 0x20
+            ps_sub f12, f7, f1
+            ps_add f13, f7, f1
+    lwz     r26, 0xc(r23)
+            ps_madd f11, f1, f27, f12
+            ps_nmsub f10, f1, f27, f13
+            ps_mul f3, f12, f28
+            ps_merge00 f11, f13, f11
+    lwz     r9, 8(r23)
+            ps_nmsub f9, f1, f30, f3
+            ps_merge00 f10, f10, f12
+    lwz     r25, 4(r23)
+            ps_sub f9, f9, f13
+            ps_nmsub f8, f7, f29, f3
+    lhz     r10, 2(r23)
+            ps_merge11 f13, f13, f9
+            ps_msub f3, f12, f27, f9
+    psq_l   f7, 0x0(r23), 0, 5
+            ps_add f2, f11, f13
+            ps_sub f8, f8, f3
+    psq_l   f6, 0x0(r27), 0, 0
+            ps_merge11 f12, f3, f8
+            ps_sub f11, f11, f13
+    psq_stu f2, 0x8(r24), 0, 0
+            ps_add f4, f10, f12
+            ps_sub f1, f10, f12
+    or      r26, r26, r9
+    psq_stu f4, 0x8(r24), 0, 0
+            ps_merge10 f1, f1, f1
+            ps_merge10 f11, f11, f11
+    psq_stu f1, 0x8(r24), 0, 0
+            ps_mul f7, f7, f6
+    psq_stu f11, 0x8(r24), 0, 0
+    bdnz    _8003b13c
+    b       _8003b350
+_8003b288:
+    psq_l   f2, 0x4(r23), 0, 5
+    psq_l   f10, 0x8(r27), 0, 0
+            ps_mul f2, f2, f10
+    psq_l   f13, 0x8(r23), 0, 5
+    psq_l   f9, 0x10(r27), 0, 0
+            ps_merge01 f4, f7, f2
+    psq_l   f12, 0xc(r23), 0, 5
+            ps_merge01 f1, f2, f7
+    psq_l   f8, 0x18(r27), 0, 0
+    addi    r23, r23, 0x10
+            ps_madd f11, f13, f9, f4
+            ps_nmsub f10, f13, f9, f4
+            ps_madd f9, f12, f8, f1
+            ps_nmsub f8, f12, f8, f1
+    addi    r27, r27, 0x20
+            ps_add f4, f11, f9
+            ps_sub f12, f11, f9
+            ps_msub f13, f8, f27, f9
+    lwz     r26, 0xc(r23)
+            ps_sub f3, f8, f10
+            ps_add f1, f10, f13
+            ps_sub f13, f10, f13
+            ps_mul f3, f3, f28
+    lwz     r9, 8(r23)
+            ps_merge00 f1, f4, f1
+            ps_nmsub f9, f10, f30, f3
+            ps_msub f11, f8, f29, f3
+    lwz     r25, 4(r23)
+            ps_sub f9, f9, f4
+            ps_merge00 f13, f13, f12
+    lhz     r10, 2(r23)
+            ps_madd f10, f12, f27, f9
+            ps_merge11 f8, f4, f9
+    psq_l   f7, 0x0(r23), 0, 5
+            ps_sub f11, f11, f10
+            ps_add f12, f1, f8
+    psq_l   f6, 0x0(r27), 0, 0
+            ps_merge11 f11, f10, f11
+            ps_sub f4, f1, f8
+            ps_mul f7, f7, f6
+            ps_add f10, f13, f11
+            ps_sub f9, f13, f11
+    psq_stu f12, 0x8(r24), 0, 0
+            ps_merge10 f10, f10, f10
+    psq_stu f9, 0x8(r24), 0, 0
+            ps_merge10 f4, f4, f4
+    psq_stu f10, 0x8(r24), 0, 0
+    or      r26, r26, r9
+    psq_stu f4, 0x8(r24), 0, 0
+    bdnz    _8003b13c
+_8003b350:
+    lwz     r10, 0x6c8(r11)
+    mr      r24, r31
+    lwz     r23, 0x6d4(r11)
+    psq_l   f7, 0x0(r24), 0, 0
+    mullw   r26, r10, r6
+    psq_l   f6, 0x80(r24), 0, 0
+    psq_l   f5, 0x40(r24), 0, 0
+    slwi    r27, r10, 2
+            ps_add f9, f7, f6
+    add     r26, r26, r8
+    psq_l   f4, 0xc0(r24), 0, 0
+            ps_sub f3, f7, f6
+    add     r27, r26, r27
+            ps_add f9, f9, f31
+    li      r25, 3
+            ps_add f8, f5, f4
+    add     r10, r23, r26
+            ps_sub f2, f5, f4
+    add     r9, r23, r27
+            ps_add f4, f9, f8
+    mtctr   r25
+            ps_add f3, f3, f31
+_8003b3a8:
+    psq_l   f11, 0x20(r24), 0, 0
+            ps_msub f2, f2, f27, f8
+    psq_l   f10, 0x60(r24), 0, 0
+            ps_sub f12, f9, f8
+            ps_add f1, f3, f2
+    psq_l   f9, 0xa0(r24), 0, 0
+            ps_sub f13, f3, f2
+    psq_l   f8, 0xe0(r24), 0, 0
+            ps_add f3, f9, f10
+            ps_sub f9, f9, f10
+            ps_add f2, f11, f8
+            ps_sub f11, f11, f8
+    addi    r24, r24, 8
+            ps_add f8, f2, f3
+            ps_sub f10, f2, f3
+    psq_l   f7, 0x0(r24), 0, 0
+            ps_add f3, f9, f11
+    psq_l   f6, 0x80(r24), 0, 0
+            ps_add f2, f4, f8
+            ps_mul f3, f3, f28
+    psq_l   f5, 0x40(r24), 0, 0
+            ps_sub f0, f4, f8
+            ps_madd f9, f9, f30, f3
+    psq_l   f4, 0xc0(r24), 0, 0
+            ps_sub f9, f9, f8
+    addi    r26, r26, 2
+    psq_st  f2, 0x0(r10), 0, 6
+            ps_msub f11, f11, f29, f3
+            ps_add f2, f1, f9
+            ps_msub f10, f10, f27, f9
+            ps_sub f1, f1, f9
+    psq_stu f2, 0x8(r10), 0, 6
+            ps_add f3, f13, f10
+            ps_add f11, f11, f10
+    psq_stu f3, 0x8(r10), 0, 6
+    addi    r27, r27, 2
+            ps_sub f2, f12, f11
+            ps_add f3, f12, f11
+    psq_stu f2, 0x8(r10), 0, 6
+            ps_sub f2, f13, f10
+            ps_add f9, f7, f6
+    psq_st  f3, 0x0(r9), 0, 6
+            ps_sub f3, f7, f6
+            ps_add f9, f9, f31
+    psq_stu f2, 0x8(r9), 0, 6
+            ps_add f8, f5, f4
+            ps_sub f2, f5, f4
+    psq_stu f1, 0x8(r9), 0, 6
+    add     r10, r23, r26
+            ps_add f4, f9, f8
+    psq_stu f0, 0x8(r9), 0, 6
+            ps_add f3, f3, f31
+    add     r9, r23, r27
+    bdnz    _8003b3a8
+    psq_l   f11, 0x20(r24), 0, 0
+            ps_msub f2, f2, f27, f8
+    psq_l   f10, 0x60(r24), 0, 0
+            ps_sub f12, f9, f8
+            ps_add f1, f3, f2
+    psq_l   f9, 0xa0(r24), 0, 0
+            ps_sub f13, f3, f2
+    psq_l   f8, 0xe0(r24), 0, 0
+            ps_add f3, f9, f10
+            ps_sub f9, f9, f10
+            ps_add f2, f11, f8
+            ps_sub f11, f11, f8
+            ps_add f8, f2, f3
+            ps_sub f10, f2, f3
+            ps_add f3, f9, f11
+            ps_add f2, f4, f8
+            ps_mul f3, f3, f28
+            ps_sub f0, f4, f8
+            ps_madd f9, f9, f30, f3
+    psq_st  f2, 0x0(r10), 0, 6
+            ps_sub f9, f9, f8
+            ps_msub f11, f11, f29, f3
+    psq_st  f0, 0x18(r9), 0, 6
+            ps_add f2, f1, f9
+            ps_msub f10, f10, f27, f9
+            ps_sub f1, f1, f9
+    psq_st  f2, 0x8(r10), 0, 6
+            ps_add f3, f13, f10
+            ps_add f11, f11, f10
+            psq_st f3, 0x10(r10), 0, 6
+            ps_sub f2, f12, f11
+            psq_st f1, 0x10(r9), 0, 6
+            ps_add f3, f12, f11
+    psq_st  f2, 0x18(r10), 0, 6
+            ps_sub f2, f13, f10
+    psq_st  f3, 0x0(r9), 0, 6
+    psq_st  f2, 0x8(r9), 0, 6
+    addi    r8, r8, 0x20
+    addi    r4, r4, 1
+_8003b51c:
+    lwz     r9, 0x18(r7)
+    clrlwi  r10, r4, 0x18
+    cmpw    r10, r9
+    blt     _8003b0f0
+    clrlwi  r4, r9, 0x18
+    add     r0, r0, r4
+    addi    r5, r5, 1
+    addi    r6, r6, 8
+_8003b53c:
+    lwz     r4, 0x1c(r7)
+    clrlwi  r8, r5, 0x18
+    cmpw    r8, r4
+    blt     _8003b0d8
+    addi    r3, r3, 1
+_8003b550:
+    lbz     r4, 0x41c(r29)
+    clrlwi  r5, r3, 0x18
+    cmplw   r5, r4
+    blt     _8003b0a8
+    lbz     r0, 0x41e(r29)
+    cmplwi  r0, 0
+    beq     _8003b5c4
+    lhz     r3, 0x7b0(r29)
+    addi    r0, r3, -1
+    sth     r0, 0x7b0(r29)
+    lhz     r0, 0x7b0(r29)
+    cmplwi  r0, 0
+    bne     _8003b5c4
+    lhz     r4, 0x7ae(r29)
+    li      r0, 0x21
+    li      r3, 0
+    sth     r4, 0x7b0(r29)
+    li      r5, 0
+    stw     r0, 0x414(r29)
+    b       _8003b5b4
+_8003b5a0:
+    clrlwi  r0, r3, 0x18
+    mulli   r0, r0, 0x30
+    add     r4, r29, r0
+    sth     r5, 0x6c6(r4)
+    addi    r3, r3, 1
+_8003b5b4:
+    lbz     r0, 0x41c(r29)
+    clrlwi  r4, r3, 0x18
+    cmplw   r4, r0
+    blt     _8003b5a0
+_8003b5c4:
+    addi    r30, r30, 1
+_8003b5c8:
+    lhz     r0, 0x7a0(r29)
+    clrlwi  r3, r30, 0x18
+    cmpw    r3, r0
+    blt     _8003b05c
+    lhz     r3, 0x7a6(r29)
+    addi    r0, r3, 1
+    sth     r0, 0x7a6(r29)
+    lhz     r3, 0x7aa(r29)
+    lhz     r0, 0x7a8(r29)
+    add     r0, r3, r0
+    sth     r0, 0x7aa(r29)
+    lhz     r3, 0x7a6(r29)
+    lhz     r0, 0x7a4(r29)
+    cmplw   r3, r0
+    bge     _8003b60c
+    li      r0, 0
+    b       _8003b610
+_8003b60c:
+    li      r0, 1
+_8003b610:
+    lmw     r23, 0x14(r1)
+    clrlwi  r3, r0, 0x18
+    lwz     r0, 0x64(r1)
+    lfd     f31, 0x58(r1)
+    lfd     f30, 0x50(r1)
+    lfd     f29, 0x48(r1)
+    lfd     f28, 0x40(r1)
+    lfd     f27, 0x38(r1)
+    addi    r1, r1, 0x60
+    mtlr    r0
+    blr     
+}
+
+asm void fn_8003B63C(register u32 a)
+{
+    nofralloc
+    mflr    r0
+    stw     r0, 4(r1)
+    stwu    r1, -0x30(r1)
+    stmw    r26, 0x18(r1)
+    addi    r28, r3, 0
+    addi    r29, r5, 0
+    dcbz    0, r29
+    clrlwi  r0, r4, 0x18
+    mulli   r31, r0, 0x30
+    add     r30, r28, r31
+    lbz     r3, 0x6c4(r30)
+    li      r0, 0x20
+    rlwinm  r4, r3, 1, 0x18, 0x1e
+    dcbz    r29, r0
+    mr      r3, r28
+    bl      fn_8003B8A8
+    addi    r27, r3, 0
+    li      r0, 0x40
+    dcbz    r29, r0
+    li      r5, 0
+    li      r0, 0x60
+    dcbz    r29, r0
+    lbz     r0, 0x6c5(r30)
+    cmpwi   r27, 0
+    slwi    r3, r0, 1
+    addi    r0, r3, 1
+    clrlwi  r0, r0, 0x18
+    mulli   r3, r0, 0xa8
+    addi    r30, r3, 0x420
+    add     r30, r28, r30
+    beq     _8003b6e8
+    addi    r3, r28, 0
+    clrlwi  r4, r27, 0x18
+    bl      fn_8003B798
+    extsh   r5, r3
+    cntlzw  r3, r5
+    subfic  r0, r27, 0x20
+    cmpw    r3, r0
+    ble     _8003b6e8
+    li      r0, -1
+    slw     r0, r0, r27
+    add     r5, r0, r5
+    addi    r5, r5, 1
+_8003b6e8:
+    add     r4, r28, r31
+    lha     r0, 0x6c6(r4)
+    lis     r3, -0x7ff7
+    addi    r31, r3, -0xb0
+    add     r0, r0, r5
+    sth     r0, 0x6c6(r4)
+    li      r27, 1
+    sth     r0, 0(r29)
+    b       _8003b77c
+_8003b70c:
+    addi    r3, r28, 0
+    addi    r4, r30, 0
+    bl      fn_8003B930
+    clrlwi. r26, r3, 0x1c
+    srawi   r0, r3, 4
+    beq     _8003b76c
+    addi    r3, r28, 0
+    addi    r4, r26, 0
+    add     r27, r27, r0
+    bl      fn_8003B798
+    cntlzw  r4, r3
+    subfic  r0, r26, 0x20
+    cmpw    r4, r0
+    ble     _8003b754
+    li      r0, -1
+    slw     r0, r0, r26
+    add     r3, r0, r3
+    addi    r3, r3, 1
+_8003b754:
+    add     r4, r31, r27
+    lbz     r0, 0(r4)
+    extsh   r3, r3
+    slwi    r0, r0, 1
+    sthx    r3, r29, r0
+    b       _8003b778
+_8003b76c:
+    cmpwi   r0, 0xf
+    bne     _8003b784
+    addi    r27, r27, 0xf
+_8003b778:
+    addi    r27, r27, 1
+_8003b77c:
+    cmpwi   r27, 0x40
+    blt     _8003b70c
+_8003b784:
+    lmw     r26, 0x18(r1)
+    lwz     r0, 0x34(r1)
+    addi    r1, r1, 0x30
+    mtlr    r0
+    blr     
+}
+
+asm int fn_8003B798(register u32 a, register int b)
+{
+    nofralloc
+    mflr    r0
+    stw     r0, 4(r1)
+    stwu    r1, -0x20(r1)
+    stw     r31, 0x1c(r1)
+    stw     r30, 0x18(r1)
+    stw     r29, 0x14(r1)
+    addi    r29, r4, 0
+    stw     r28, 0x10(r1)
+    addi    r28, r3, 0
+    bl      fn_8003D42C
+    clrlwi  r31, r29, 0x18
+    cmplwi  r31, 1
+    addi    r30, r3, 0
+    bne     _8003b7d8
+    mr      r3, r30
+    b       _8003b888
+_8003b7d8:
+    cmplwi  r31, 2
+    bne     _8003b7f4
+    mr      r3, r28
+    bl      fn_8003D42C
+    slwi    r0, r30, 1
+    add     r3, r0, r3
+    b       _8003b888
+_8003b7f4:
+    cmplwi  r31, 3
+    bne     _8003b820
+    mr      r3, r28
+    bl      fn_8003D42C
+    slwi    r0, r30, 1
+    add     r30, r0, r3
+    addi    r3, r28, 0
+    bl      fn_8003D42C
+    slwi    r0, r30, 1
+    add     r3, r0, r3
+    b       _8003b888
+_8003b820:
+    mr      r3, r28
+    bl      fn_8003D42C
+    slwi    r0, r30, 1
+    add     r30, r0, r3
+    addi    r3, r28, 0
+    bl      fn_8003D42C
+    slwi    r0, r30, 1
+    add     r30, r0, r3
+    addi    r3, r28, 0
+    bl      fn_8003D42C
+    cmplwi  r31, 4
+    slwi    r0, r30, 1
+    add     r30, r0, r3
+    bne     _8003b860
+    mr      r3, r30
+    b       _8003b888
+_8003b860:
+    li      r29, 4
+    b       _8003b87c
+_8003b868:
+    mr      r3, r28
+    bl      fn_8003D42C
+    slwi    r0, r30, 1
+    add     r30, r0, r3
+    addi    r29, r29, 1
+_8003b87c:
+    cmpw    r29, r31
+    blt     _8003b868
+    mr      r3, r30
+_8003b888:
+    lwz     r0, 0x24(r1)
+    lwz     r31, 0x1c(r1)
+    lwz     r30, 0x18(r1)
+    lwz     r29, 0x14(r1)
+    lwz     r28, 0x10(r1)
+    addi    r1, r1, 0x20
+    mtlr    r0
+    blr     
+}
+
+asm int fn_8003B8A8(register u32 a)
+{
+    nofralloc
+    mflr    r0
+    stw     r0, 4(r1)
+    clrlwi  r0, r4, 0x18
+    mulli   r4, r0, 0xa8
+    stwu    r1, -0x28(r1)
+    stmw    r27, 0x14(r1)
+    addi    r27, r3, 0
+    addi    r30, r4, 0x420
+    add     r30, r27, r30
+    li      r28, 1
+    bl      fn_8003D42C
+    addi    r29, r3, 0
+    addi    r31, r30, 4
+    b       _8003b8f8
+_8003b8e0:
+    slwi    r29, r29, 1
+    addi    r3, r27, 0
+    bl      fn_8003D42C
+    or      r29, r29, r3
+    addi    r31, r31, 4
+    addi    r28, r28, 1
+_8003b8f8:
+    lwz     r0, 0x14(r31)
+    cmpw    r29, r0
+    bgt     _8003b8e0
+    slwi    r0, r28, 2
+    lwz     r4, 0x10(r30)
+    add     r3, r30, r0
+    lwz     r0, 0x5c(r3)
+    add     r0, r0, r4
+    lbzx    r3, r29, r0
+    lwz     r0, 0x2c(r1)
+    lmw     r27, 0x14(r1)
+    addi    r1, r1, 0x28
+    mtlr    r0
+    blr     
+}
+
+asm int fn_8003B930(register u32 a)
+{
+    nofralloc
+    mflr    r0
+    stw     r0, 4(r1)
+    stwu    r1, -0x28(r1)
+    stmw    r27, 0x14(r1)
+    addi    r27, r3, 0
+    addi    r28, r4, 0
+    li      r29, 1
+    bl      fn_8003D42C
+    addi    r30, r3, 0
+    addi    r31, r28, 4
+    b       _8003b974
+_8003b95c:
+    slwi    r30, r30, 1
+    addi    r3, r27, 0
+    bl      fn_8003D42C
+    or      r30, r30, r3
+    addi    r31, r31, 4
+    addi    r29, r29, 1
+_8003b974:
+    lwz     r0, 0x14(r31)
+    cmpw    r30, r0
+    bgt     _8003b95c
+    slwi    r0, r29, 2
+    lwz     r4, 0x10(r28)
+    add     r3, r28, r0
+    lwz     r0, 0x5c(r3)
+    add     r0, r0, r4
+    lbzx    r3, r30, r0
+    lwz     r0, 0x2c(r1)
+    lmw     r27, 0x14(r1)
+    addi    r1, r1, 0x28
+    mtlr    r0
+    blr     
+}
+
+asm int fn_8003B9AC(register u32 a)
+{
+    nofralloc
+    cmplwi  r7, 0
+    lfs     f0, -0x7cac(r2)
+    addi    r7, r7, 3
+    lfs     f1, -0x7ca8(r2)
+    lfs     f2, -0x7ca4(r2)
+    srwi    r7, r7, 2
+    lfs     f3, -0x7ca0(r2)
+    blelr   
+    rlwinm. r0, r7, 0x1e, 2, 0x1f
+    mtctr   r0
+    beq     _8003bae4
+_8003b9d8:
+            psq_lu f4, 0x2(r4), 0, 2
+            psq_lu f6, 0x2(r5), 0, 2
+            ps_madd f4, f4, f1, f0
+            ps_madd f6, f6, f2, f0
+            psq_lu f5, 0x2(r4), 0, 2
+            psq_lu f7, 0x2(r6), 0, 2
+            ps_madd f5, f5, f1, f0
+            ps_madd f7, f7, f3, f0
+            ps_merge00 f8, f4, f6
+            ps_merge10 f4, f4, f7
+            psq_stu f8, 0x2(r3), 0, 2
+            psq_stu f4, 0x2(r3), 0, 2
+            ps_merge01 f4, f5, f6
+            ps_merge11 f5, f5, f7
+            psq_stu f4, 0x2(r3), 0, 2
+            psq_stu f5, 0x2(r3), 0, 2
+            psq_lu f4, 0x2(r4), 0, 2
+            psq_lu f6, 0x2(r5), 0, 2
+            ps_madd f4, f4, f1, f0
+            ps_madd f6, f6, f2, f0
+            psq_lu f5, 0x2(r4), 0, 2
+            psq_lu f7, 0x2(r6), 0, 2
+            ps_madd f5, f5, f1, f0
+            ps_madd f7, f7, f3, f0
+            ps_merge00 f8, f4, f6
+            ps_merge10 f4, f4, f7
+            psq_stu f8, 0x2(r3), 0, 2
+            psq_stu f4, 0x2(r3), 0, 2
+            ps_merge01 f4, f5, f6
+            ps_merge11 f5, f5, f7
+            psq_stu f4, 0x2(r3), 0, 2
+            psq_stu f5, 0x2(r3), 0, 2
+            psq_lu f4, 0x2(r4), 0, 2
+            psq_lu f6, 0x2(r5), 0, 2
+            ps_madd f4, f4, f1, f0
+            ps_madd f6, f6, f2, f0
+            psq_lu f5, 0x2(r4), 0, 2
+            psq_lu f7, 0x2(r6), 0, 2
+            ps_madd f5, f5, f1, f0
+            ps_madd f7, f7, f3, f0
+            ps_merge00 f8, f4, f6
+            ps_merge10 f4, f4, f7
+            psq_stu f8, 0x2(r3), 0, 2
+            psq_stu f4, 0x2(r3), 0, 2
+            ps_merge01 f4, f5, f6
+            ps_merge11 f5, f5, f7
+            psq_stu f4, 0x2(r3), 0, 2
+            psq_stu f5, 0x2(r3), 0, 2
+            psq_lu f4, 0x2(r4), 0, 2
+            psq_lu f6, 0x2(r5), 0, 2
+            ps_madd f4, f4, f1, f0
+            ps_madd f6, f6, f2, f0
+            psq_lu f5, 0x2(r4), 0, 2
+            psq_lu f7, 0x2(r6), 0, 2
+            ps_madd f5, f5, f1, f0
+            ps_madd f7, f7, f3, f0
+            ps_merge00 f8, f4, f6
+            ps_merge10 f4, f4, f7
+            psq_stu f8, 0x2(r3), 0, 2
+            psq_stu f4, 0x2(r3), 0, 2
+            ps_merge01 f4, f5, f6
+            ps_merge11 f5, f5, f7
+            psq_stu f4, 0x2(r3), 0, 2
+            psq_stu f5, 0x2(r3), 0, 2
+    bdnz    _8003b9d8
+    andi.   r7, r7, 3
+    beqlr   
+_8003bae4:
+    mtctr   r7
+_8003bae8:
+            psq_lu f4, 0x2(r4), 0, 2
+            psq_lu f6, 0x2(r5), 0, 2
+            ps_madd f4, f4, f1, f0
+            ps_madd f6, f6, f2, f0
+            psq_lu f5, 0x2(r4), 0, 2
+            psq_lu f7, 0x2(r6), 0, 2
+            ps_madd f5, f5, f1, f0
+            ps_madd f7, f7, f3, f0
+            ps_merge00 f8, f4, f6
+            ps_merge10 f4, f4, f7
+            psq_stu f8, 0x2(r3), 0, 2
+            psq_stu f4, 0x2(r3), 0, 2
+            ps_merge01 f4, f5, f6
+            ps_merge11 f5, f5, f7
+            psq_stu f4, 0x2(r3), 0, 2
+            psq_stu f5, 0x2(r3), 0, 2
+    bdnz    _8003bae8
+    blr     
+}
+
 

@@ -195,10 +195,10 @@ dolphin/gx/GXLight.c:
 	.text       start:0x800372E0 end:0x8003887C
 
 dolphin/gx/GXDraw.c:
-	.text       start:0x8003887C end:0x8003AB08
+	.text       start:0x8003887C end:0x8003BB30
 
-coarse/text_8003AB08.c:
-	.text       start:0x8003AB08 end:0x80041460
+coarse/text_8003BB30.c:
+	.text       start:0x8003BB30 end:0x80041460
 
 coarse/text_80041460.c:
 	.text       start:0x80041460 end:0x8004A560
