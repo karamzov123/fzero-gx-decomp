@@ -309,6 +309,7 @@ config.libs = [
         Object(Matching, "dolphin/gx/GXAttr.c"),
         Object(Matching, "dolphin/gx/GXLight.c"),
         Object(Matching, "dolphin/gx/GXFog.c"),
+        Object(Matching, "game/fn_8003FF88.c"),
         Object(Matching, "dolphin/gx/GXDraw.c"),
         Object(Matching, "dolphin/game/perfmon.c"),
         Object(Matching, "dolphin/os/init/start.c"),
