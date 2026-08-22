@@ -3,6 +3,8 @@ typedef unsigned int u32;
 typedef void OSContext;
 
 extern void OSRegisterVersion(const char* version);
+extern unsigned long long __OSGetSystemTime(void);
+extern void OSSetAlarm(void* alarm, long long tick, void (*handler)(void*, OSContext*));
 extern int OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(int level);
 extern void __OSSetInterruptHandler(s32 interrupt, void (*handler)(s32, OSContext*));
@@ -551,6 +553,114 @@ _ah_out:
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     addi r1, r1, 0x20
+    mtlr r0
+    blr
+}
+#pragma pop
+
+#pragma push
+#pragma force_active on
+asm int SITransfer(s32 chan, void* output, s32 outputBytes, void* input,
+                   s32 inputBytes, void (*callback)(s32, u32, OSContext*),
+                   u32 delayHi, u32 delayLo)
+{
+    nofralloc
+    mflr r0
+    stw r0, 0x4(r1)
+    stwu r1, -0x60(r1)
+    stmw r19, 0x2c(r1)
+    addi r24, r3, 0x0
+    lis r3, Packet@ha
+    addi r23, r3, Packet@l
+    slwi r0, r24, 5
+    addi r25, r4, 0x0
+    addi r26, r5, 0x0
+    addi r27, r6, 0x0
+    addi r28, r7, 0x0
+    addi r29, r8, 0x0
+    addi r31, r9, 0x0
+    addi r30, r10, 0x0
+    add r22, r23, r0
+    bl OSDisableInterrupts
+    lwz r0, 0x0(r22)
+    addi r21, r3, 0x0
+    cmpwi r0, -0x1
+    bne _tr_busy
+    lis r3, Si@ha
+    lwz r0, Si@l(r3)
+    cmpw r0, r24
+    bne _tr_go
+_tr_busy:
+    mr r3, r21
+    bl OSRestoreInterrupts
+    li r3, 0x0
+    b _tr_ret
+_tr_go:
+    bl __OSGetSystemTime
+    li r0, 0x0
+    xor r5, r30, r0
+    xor r0, r31, r0
+    or. r0, r5, r0
+    bne _tr_delayed
+    addi r19, r4, 0x0
+    addi r20, r3, 0x0
+    b _tr_cmp
+_tr_delayed:
+    slwi r0, r24, 3
+    add r6, r23, r0
+    lwz r5, 0x144(r6)
+    lwz r0, 0x140(r6)
+    addc r19, r30, r5
+    adde r20, r31, r0
+_tr_cmp:
+    xoris r6, r3, 0x8000
+    xoris r5, r20, 0x8000
+    subfc r0, r19, r4
+    subfe r5, r5, r6
+    subfe r5, r6, r6
+    neg. r5, r5
+    beq _tr_now
+    mulli r0, r24, 0x28
+    subfc r30, r4, r19
+    subfe r31, r3, r20
+    lis r4, fn_8001287C@ha
+    add r3, r23, r0
+    addi r7, r4, fn_8001287C@l
+    addi r6, r30, 0x0
+    addi r5, r31, 0x0
+    addi r3, r3, 0x80
+    bl OSSetAlarm
+    b _tr_save
+_tr_now:
+    addi r3, r24, 0x0
+    addi r4, r25, 0x0
+    addi r5, r26, 0x0
+    addi r6, r27, 0x0
+    addi r7, r28, 0x0
+    addi r8, r29, 0x0
+    bl fn_800122C4
+    cmpwi r3, 0x0
+    beq _tr_save
+    mr r3, r21
+    bl OSRestoreInterrupts
+    li r3, 0x1
+    b _tr_ret
+_tr_save:
+    stw r24, 0x0(r22)
+    mr r3, r21
+    stw r25, 0x4(r22)
+    stw r26, 0x8(r22)
+    stw r27, 0xc(r22)
+    stw r28, 0x10(r22)
+    stw r29, 0x14(r22)
+    stw r19, 0x1c(r22)
+    stw r20, 0x18(r22)
+    bl OSRestoreInterrupts
+    li r3, 0x1
+_tr_ret:
+    lmw r19, 0x2c(r1)
+    lwz r0, 0x64(r1)
+    addi r1, r1, 0x60
     mtlr r0
     blr
 }
