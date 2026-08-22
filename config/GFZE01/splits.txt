@@ -84,7 +84,10 @@ dolphin/os/OSException.c:
 	.text       start:0x8000AA30 end:0x8000AB54
 
 coarse/text_8000AB54.c:
-	.text       start:0x8000AB54 end:0x8000B314
+	.text       start:0x8000AB54 end:0x8000ABE8
+
+dolphin/os/OSAlarm.c:
+	.text       start:0x8000ABE8 end:0x8000B314
 
 dolphin/os/OSArena.c:
 	.text       start:0x8000B314 end:0x8000B334

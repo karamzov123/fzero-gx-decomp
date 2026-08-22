@@ -13,7 +13,7 @@ extern void OSRegisterVersion(const char* version);
 extern u32 fn_8000ABA8(void);
 extern u32 fn_8000A224(void);
 extern unsigned long long OSGetTime(void);
-extern u32 fn_800799DC(register u32 hi, register u32 lo, register u32 den_hi,
+extern u32 __div2i(register u32 hi, register u32 lo, register u32 den_hi,
                        register u32 den_lo);
 extern void* memmove(void* dst, const void* src, u32 len);
 
@@ -731,10 +731,10 @@ L_80014304:
     bl          OSGetTime
     li          r5, 0x0
     addi        r6, r27, 0x0
-    bl          fn_800799DC
+    bl          __div2i
     li          r5, 0x0
     li          r6, 0x64
-    bl          fn_800799DC
+    bl          __div2i
     addi        r4, r4, 0x1
     slwi        r0, r28, 2
     addi        r3, r31, 0x30c0

@@ -23,7 +23,7 @@ extern unsigned long long __OSGetSystemTime(void);
 extern u32 fn_8001BF84(void);
 extern void fn_80010010(s32 chan, u32 unk);
 extern u32 fn_8000FF8C(s32 chan);
-extern void fn_8000AF78(void* alarm);
+extern void OSCancelAlarm(void* alarm);
 extern void OSSetAlarm(register void* alarm, register s64 tick,
                        register void (*handler)(void*, OSContext*));
 extern void OSReport(const char* msg, ...);
@@ -430,7 +430,7 @@ L_80011CD0:
     mulli       r0, r26, 0x28
     add         r3, r28, r0
     addi        r3, r3, 0x80
-    bl          fn_8000AF78
+    bl          OSCancelAlarm
     li          r0, -0x1
     stw         r0, 0x0(r25)
     b           L_80011D70

@@ -20,7 +20,7 @@ extern int lbl_80123AF0[];
 extern int lbl_80123B20[];
 extern int OSDisableInterrupts(void);
 extern void fn_80079BF8(void);
-extern void fn_800799DC(void);
+extern void __div2i(void);
 extern void OSRestoreInterrupts(int level);
 
 asm s64 __OSTimeToSystemTime(register s64 time)
@@ -224,7 +224,7 @@ lbl_800116F8:
     mullw       r4, r25, r4
     add         r3, r3, r0
     li          r5, 0x0
-    bl          fn_800799DC
+    bl          __div2i
     li          r5, 0x0
     li          r6, 0x3e8
     bl          fn_80079BF8
@@ -238,7 +238,7 @@ lbl_800116F8:
     mulhwu      r0, r5, r0
     srwi        r6, r0, 6
     li          r5, 0x0
-    bl          fn_800799DC
+    bl          __div2i
     li          r5, 0x0
     li          r6, 0x3e8
     bl          fn_80079BF8
@@ -252,10 +252,10 @@ lbl_800116F8:
     srwi        r6, r0, 2
     mr          r4, r30
     li          r5, 0x0
-    bl          fn_800799DC
+    bl          __div2i
     mr          r6, r25
     li          r5, 0x0
-    bl          fn_800799DC
+    bl          __div2i
     lis         r5, 0xb
     lwz         r0, 0xf8(r27)
     addi        r5, r5, 0x2575
@@ -265,7 +265,7 @@ lbl_800116F8:
     mr          r3, r29
     mr          r4, r30
     li          r5, 0x0
-    bl          fn_800799DC
+    bl          __div2i
     mr          r6, r25
     li          r5, 0x0
     bl          fn_80079BF8
