@@ -116,8 +116,23 @@ dolphin/os/OSClearStack.c:
 dolphin/os/OSTime.c:
 	.text       start:0x8001140C end:0x80011490
 
-dolphin/si/SIBios.c:
-	.text       start:0x80012210 end:0x80012A74
+dolphin/os/OSTimeCal.c:
+	.text       start:0x80011490 end:0x80011888
+
+dolphin/os/init/__ppc_eabi_init.c:
+	.text       start:0x80011888 end:0x8001191C
+
+dolphin/os/SIBios.c:
+	.text       start:0x8001191C end:0x80013A88
+
+dolphin/os/EXIBios.c:
+	.text       start:0x80013A88 end:0x80015A38
+
+dolphin/os/DBInterface.c:
+	.text       start:0x80015A38 end:0x80015B24
+
+dolphin/os/PSMathFns.c:
+	.text       start:0x80015B24 end:0x80015F80
 
 coarse/text_80015F80.c:
 	.text       start:0x80015F80 end:0x8001E480
