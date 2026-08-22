@@ -304,7 +304,7 @@ config.libs = [
         Object(Matching, "dolphin/os/DBInterface.c"),
         Object(Matching, "dolphin/os/PSMathFns.c"),
         Object(Matching, "dolphin/card/CARDRead.c"),
-        Object(Matching, "dolphin/mtx/MTX.c"), (w7-mtxprobe: locate MTX library at 0x8006D000+; carve dolphin/mtx/MTX.c (fn_8006E200/fn_8006E250, 0x124B, all EXACT post-link): raw-word PS decode incl ps_sum0/1 + fused fD,fA,fC,fB order; analyzer fragment merge (shared tails); splits cut at 0x8006E324; registered in configure.py; gate sha1 421c8810 green; findings/19)
+        Object(Matching, "dolphin/mtx/MTX.c"),
         Object(Matching, "dolphin/gx/GXFifo.c"),
         Object(Matching, "dolphin/gx/GXGeometry.c"),
         Object(Matching, "dolphin/gx/GXTexture.c"),

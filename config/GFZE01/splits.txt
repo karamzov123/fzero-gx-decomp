@@ -237,7 +237,10 @@ coarse/text_8005C120.c:
 	.text       start:0x8005C120 end:0x80069AE0
 
 coarse/text_80069AE0.c:
-	.text       start:0x80069AE0 end:0x8006E324
+	.text       start:0x80069AE0 end:0x8006E200
+
+dolphin/mtx/MTX.c:
+	.text       start:0x8006E200 end:0x8006E324
 
 coarse/text_8006E324.c:
 	.text       start:0x8006E324 end:0x80071CC0
