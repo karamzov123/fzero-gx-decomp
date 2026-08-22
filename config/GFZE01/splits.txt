@@ -126,7 +126,10 @@ dolphin/os/OSMutex.c:
 	.text       start:0x8000EA84 end:0x8000EAF4
 
 coarse/text_8000EAF4.c:
-	.text       start:0x8000EAF4 end:0x8001029C
+	.text       start:0x8000EAF4 end:0x80010144
+
+dolphin/os/OSThreadInit.c:
+	.text       start:0x80010144 end:0x8001029C
 
 dolphin/os/OSThread.c:
 	.text       start:0x8001029C end:0x8001036C

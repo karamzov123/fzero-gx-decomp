@@ -294,6 +294,7 @@ config.libs = [
         Object(Matching, "dolphin/os/OSPPC.c"),
         Object(Matching, "dolphin/os/OSException.c"),
         Object(Matching, "dolphin/os/OSThreadTable.c"),
+        Object(Matching, "dolphin/os/OSThreadInit.c"),
         Object(Matching, "dolphin/os/OSThread.c"),
         Object(Matching, "dolphin/os/OSFPR.c"),
         Object(Matching, "dolphin/os/OSTimeCal.c"),
