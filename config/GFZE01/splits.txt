@@ -179,7 +179,7 @@ coarse/text_800309FC.c:
 dolphin/gx/GXFifo.c:
 	.text       start:0x80031C84 end:0x80032370
 
-coarse/text_80032370.c:
+dolphin/gx/GXAttr.c:
 	.text       start:0x80032370 end:0x80033D8C
 
 dolphin/gx/GXMisc.c:
