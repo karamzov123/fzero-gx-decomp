@@ -209,8 +209,11 @@ dolphin/gx/GXDraw.c:
 dolphin/gx/GXFog.c:
 	.text       start:0x8003BB30 end:0x8003E344
 
-coarse/text_8003E344.c:
-	.text       start:0x8003E344 end:0x80041460
+dolphin/game/perfmon.c:
+	.text       start:0x8003E344 end:0x8003EC44
+
+coarse/text_8003EC44.c:
+	.text       start:0x8003EC44 end:0x80041460
 
 coarse/text_80041460.c:
 	.text       start:0x80041460 end:0x8004A560
