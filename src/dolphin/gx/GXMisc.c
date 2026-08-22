@@ -77,7 +77,7 @@ extern void OSInitThreadQueue(OSThreadQueue *queue);
 extern void OSSleepThread(OSThreadQueue *queue);
 extern void OSWakeupThread(OSThreadQueue *queue);
 extern void *GXGetGPFifo(void);
-extern void fn_8003458C(void);
+extern void __GXSetDirtyState(void);
 
 #pragma push
 #pragma force_active on
@@ -127,7 +127,7 @@ void GXFlush(void)
     u32 i;
 
     if (gx->dirtyState != 0) {
-        fn_8003458C();
+        __GXSetDirtyState();
     }
     for (i = 8; i > 0; i--) {
         GXWGFifo->u32 = 0;
@@ -447,7 +447,7 @@ asm void GXSetDrawSync(u16 token)
     lwz     r0, 0x4f4(r4)
     cmplwi  r0, 0
     beq     GXDS_skip
-    bl      fn_8003458C
+    bl      __GXSetDirtyState
 GXDS_skip:
     li      r31, 0
     lis     r3, 0xcc01
@@ -492,7 +492,7 @@ asm void GXSetDrawDone(void)
     lwz     r0, 0x4f4(r4)
     cmplwi  r0, 0
     beq     GXDD_skip
-    bl      fn_8003458C
+    bl      __GXSetDirtyState
 GXDD_skip:
     li      r31, 0
     lis     r3, 0xcc01
