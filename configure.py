@@ -293,6 +293,8 @@ config.libs = [
         Object(Matching, "dolphin/os/OSCache.c"),
         Object(Matching, "dolphin/os/OSPPC.c"),
         Object(Matching, "dolphin/os/OSException.c"),
+        Object(Matching, "dolphin/os/OSThreadTable.c"),
+        Object(Matching, "dolphin/os/OSThread.c"),
     ]),
     {
         "lib": "Runtime.PPCEABI.H",

@@ -66,7 +66,10 @@ coarse/dtors_8008FF20.c:
 	.dtors      start:0x8008FF20 end:0x8008FF24
 
 coarse/text_800055E0.c:
-	.text       start:0x800055E0 end:0x80009FBC
+	.text       start:0x800055E0 end:0x80009FA4
+
+dolphin/os/OSThreadTable.c:
+	.text       start:0x80009FA4 end:0x80009FBC
 
 dolphin/os/OSPPC.c:
 	.text       start:0x80009FBC end:0x8000A0FC
@@ -96,7 +99,13 @@ dolphin/os/OSInterrupts.c:
 	.text       start:0x8000D4F4 end:0x8000D5E4
 
 coarse/text_8000DD60.c:
-	.text       start:0x8000DD60 end:0x80011358
+	.text       start:0x8000DD60 end:0x8001029C
+
+dolphin/os/OSThread.c:
+	.text       start:0x8001029C end:0x8001036C
+
+coarse/text_8001036C.c:
+	.text       start:0x8001036C end:0x80011358
 
 dolphin/os/OSClearStack.c:
 	.text       start:0x80011358 end:0x8001140C
