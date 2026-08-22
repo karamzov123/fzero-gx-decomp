@@ -45,7 +45,7 @@ extern void *__GXCurrentThread;
 extern BOOL GXOverflowSuspendInProgress;
 extern u8 CPGPLinked;
 extern GXBreakPtCallback BreakPointCB;
-extern void fn_80033E20(void);
+extern void GXFlush(void);
 extern void *fn_800102AC(void);
 extern void fn_80031B50(int interrupt, void *context);
 typedef void (*__OSInterruptHandler)(int interrupt, void *context);
@@ -188,7 +188,7 @@ void __GXSaveCPUFifoAux(__GXFifoObj *realFifo)
 {
     BOOL enabled = OSDisableInterrupts();
 
-    fn_80033E20();
+    GXFlush();
     realFifo->base = OSPhysicalToCached(__piReg[3]);
     realFifo->top = OSPhysicalToCached(__piReg[4]);
     realFifo->wrPtr = OSPhysicalToCached(__piReg[5] & 0xFBFFFFFF);
