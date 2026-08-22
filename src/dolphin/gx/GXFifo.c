@@ -27,6 +27,8 @@ typedef void *GXBreakPtCallback;
 
 #define OSPhysicalToCached(p) ((void *)((u32)(p) + 0x80000000))
 #define GET_REG_FIELD(reg, size, pos) (((reg) >> (pos)) & ((1 << (size)) - 1))
+#define SET_REG_FIELD(line, reg, size, pos, val) \
+    ((reg) = (((u32)(reg)) & ~((((1 << (size)) - 1)) << (pos))) | ((u32)(val) << (pos)))
 #define NULL ((void *)0)
 #define FALSE 0
 #define TRUE 1
@@ -52,6 +54,11 @@ extern u32 __OSUnmaskInterrupts(u32 mask);
 extern void GXInitFifoLimits(GXFifoObj *fifo, u32 hiWatermark, u32 loWatermark);
 extern void GXInitFifoPtrs(GXFifoObj *fifo, void *readPtr, void *writePtr);
 extern void __GXSaveCPUFifoAux(__GXFifoObj *realFifo);
+extern void __GXFifoReadEnable(void);
+extern void __GXFifoReadDisable(void);
+extern void __GXFifoLink(u8 en);
+extern void __GXWriteFifoIntEnable(u8 hiWatermarkEn, u8 loWatermarkEn);
+extern void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr);
 
 #pragma push
 #pragma force_active on
@@ -251,6 +258,48 @@ void __GXFifoInit(void)
     GXOverflowSuspendInProgress = FALSE;
     CPUFifo = NULL;
     GPFifo = NULL;
+}
+
+void __GXFifoReadEnable(void)
+{
+    SET_REG_FIELD(0, gx->cpEnable, 1, 0, 1);
+    __cpReg[1] = gx->cpEnable;
+}
+
+void __GXFifoReadDisable(void)
+{
+    SET_REG_FIELD(0, gx->cpEnable, 1, 0, 0);
+    __cpReg[1] = gx->cpEnable;
+}
+
+void __GXFifoLink(u8 en)
+{
+    SET_REG_FIELD(0x4B0, gx->cpEnable, 1, 4, (en != 0) ? 1 : 0);
+    __cpReg[1] = gx->cpEnable;
+}
+
+void __GXWriteFifoIntEnable(u8 hiWatermarkEn, u8 loWatermarkEn)
+{
+    SET_REG_FIELD(0x4C6, gx->cpEnable, 1, 2, hiWatermarkEn);
+    SET_REG_FIELD(0x4C7, gx->cpEnable, 1, 3, loWatermarkEn);
+    __cpReg[1] = gx->cpEnable;
+}
+
+void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr)
+{
+    SET_REG_FIELD(0x4DE, gx->cpClr, 1, 0, hiWatermarkClr);
+    SET_REG_FIELD(0x4DF, gx->cpClr, 1, 1, loWatermarkClr);
+    __cpReg[2] = gx->cpClr;
+}
+
+GXFifoObj *GXGetCPUFifo(void)
+{
+    return (GXFifoObj *)CPUFifo;
+}
+
+GXFifoObj *GXGetGPFifo(void)
+{
+    return (GXFifoObj *)GPFifo;
 }
 
 #pragma pop
