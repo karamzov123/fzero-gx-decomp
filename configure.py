@@ -305,6 +305,12 @@ config.libs = [
         Object(Matching, "dolphin/os/PSMathFns.c"),
         Object(Matching, "dolphin/card/CARDRead.c"),
         Object(Matching, "dolphin/mtx/MTX.c"),
+        Object(Matching, "dolphin/dvd/dvdlow.c"),
+        Object(Matching, "dolphin/dvd/dvdfs.c"),
+        Object(Matching, "dolphin/dvd/dvd.c"),
+        Object(Matching, "dolphin/dvd/dvdqueue.c"),
+        Object(Matching, "dolphin/dvd/dvderror.c"),
+        Object(Matching, "dolphin/dvd/fstload.c"), (M2: dolphin/dvd library carved (6 units @0x80015F80-0x8001A78C, 91 funcs / 0x480C bytes): dvdlow/dvdfs/dvd/dvdqueue/dvderror/fstload asm transcription + __DVDInitWA natural C; text_80015F80 split into dvd range + coarse/text_8001A78C.c; scope:global flips for DVD state vars, block$16->blockBuf, @NN strings->str_ADDR, OSBootInfo rename; adapted to main's OSThread renames (OSSleepThread/OSWakeupThread); gate green sha1 421c8810)
         Object(Matching, "dolphin/gx/GXFifo.c"),
         Object(Matching, "dolphin/gx/GXGeometry.c"),
         Object(Matching, "dolphin/gx/GXTexture.c"),

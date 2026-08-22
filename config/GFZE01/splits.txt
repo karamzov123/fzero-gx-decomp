@@ -167,8 +167,26 @@ dolphin/os/DBInterface.c:
 dolphin/os/PSMathFns.c:
 	.text       start:0x80015B24 end:0x80015F80
 
-coarse/text_80015F80.c:
-	.text       start:0x80015F80 end:0x8001E480
+dolphin/dvd/dvdlow.c:
+	.text       start:0x80015F80 end:0x80016DC0
+
+dolphin/dvd/dvdfs.c:
+	.text       start:0x80016DC0 end:0x8001776C
+
+dolphin/dvd/dvd.c:
+	.text       start:0x8001776C end:0x80019E64
+
+dolphin/dvd/dvdqueue.c:
+	.text       start:0x80019E64 end:0x8001A05C
+
+dolphin/dvd/dvderror.c:
+	.text       start:0x8001A05C end:0x8001A31C
+
+dolphin/dvd/fstload.c:
+	.text       start:0x8001A31C end:0x8001A78C
+
+coarse/text_8001A78C.c:
+	.text       start:0x8001A78C end:0x8001E480
 
 coarse/text_8001E480.c:
 	.text       start:0x8001E480 end:0x80026EE0
