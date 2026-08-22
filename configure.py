@@ -319,6 +319,7 @@ config.libs = [
         Object(Matching, "dolphin/os/Yay0Decode.c"),
         Object(Matching, "dolphin/os/OSAlarm.c"),
         Object(Matching, "dolphin/os/OSMutex.c"),
+        Object(Matching, "dolphin/os/OSAlloc.c"),
         Object(Matching, "dolphin/os/OSThreadScheduler.c"),
     ]),
     {

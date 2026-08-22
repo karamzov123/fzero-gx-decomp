@@ -71,7 +71,7 @@ coarse/text_800055E0.c:
 dolphin/os/OSAllocCtx.c:
 	.text       start:0x80009468 end:0x8000961C
 
-coarse/text_8000961C.c:
+dolphin/os/OSAlloc.c:
 	.text       start:0x8000961C end:0x80009FA4
 
 dolphin/os/OSThreadTable.c:
