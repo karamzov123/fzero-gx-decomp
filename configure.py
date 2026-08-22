@@ -303,6 +303,7 @@ config.libs = [
         Object(Matching, "dolphin/os/EXIBios.c"),
         Object(Matching, "dolphin/os/DBInterface.c"),
         Object(Matching, "dolphin/os/PSMathFns.c"),
+        Object(Matching, "dolphin/card/CARDRead.c"),
         Object(Matching, "dolphin/gx/GXFifo.c"),
         Object(Matching, "dolphin/gx/GXGeometry.c"),
         Object(Matching, "dolphin/gx/GXTexture.c"),
