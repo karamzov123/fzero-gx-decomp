@@ -10,7 +10,7 @@ extern void OSClearContext(register void* context);
 extern void fn_8000BE5C(void);
 extern int fn_8000BE68(register void* context);
 extern void fn_8000BFEC(register void* context, register void* pc, register void* sp);
-extern void fn_8000EA84(register void* thread);
+extern void __OSUnlockAllMutex(register void* thread);
 extern void OSWakeupThread(register void* queue);
 
 asm void UnsetRun(register void* thread)
@@ -564,7 +564,7 @@ _80010a94:
     stw	r28, 0x2d8(r30)
 _80010aa0:
     mr	r3, r30
-    bl      fn_8000EA84
+    bl      __OSUnlockAllMutex
     addi	r3, r30, 0x2e8
     bl      OSWakeupThread
     li	r0, 1
@@ -701,7 +701,7 @@ _80010c60:
     sth	r0, 0x2c8(r30)
 _80010c68:
     mr	r3, r30
-    bl      fn_8000EA84
+    bl      __OSUnlockAllMutex
     addi	r3, r30, 0x2e8
     bl      OSWakeupThread
     lwz	r0, -0x7bc4(r13)
