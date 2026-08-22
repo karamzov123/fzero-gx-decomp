@@ -66,7 +66,13 @@ coarse/dtors_8008FF20.c:
 	.dtors      start:0x8008FF20 end:0x8008FF24
 
 coarse/text_800055E0.c:
-	.text       start:0x800055E0 end:0x80009FA4
+	.text       start:0x800055E0 end:0x80009468
+
+dolphin/os/OSAllocCtx.c:
+	.text       start:0x80009468 end:0x8000961C
+
+coarse/text_8000961C.c:
+	.text       start:0x8000961C end:0x80009FA4
 
 dolphin/os/OSThreadTable.c:
 	.text       start:0x80009FA4 end:0x80009FBC
@@ -98,8 +104,17 @@ coarse/text_8000B334.c:
 dolphin/os/OSCache.c:
 	.text       start:0x8000B614 end:0x8000B738
 
-coarse/text_8000B738.c:
-	.text       start:0x8000B738 end:0x8000D4F4
+dolphin/os/OSCacheRest.c:
+	.text       start:0x8000B738 end:0x8000BBAC
+
+dolphin/os/OSContext.c:
+	.text       start:0x8000BBAC end:0x8000C41C
+
+dolphin/os/OSError.c:
+	.text       start:0x8000C41C end:0x8000CAC8
+
+dolphin/os/Yay0Decode.c:
+	.text       start:0x8000CAC8 end:0x8000D4F4
 
 dolphin/os/OSInterrupts.c:
 	.text       start:0x8000D4F4 end:0x8000D5E4
@@ -185,5 +200,32 @@ coarse/text_80083D40.c:
 coarse/text_8008CB20.c:
 	.text       start:0x8008CB20 end:0x8008FEE4
 
-coarse/init_80003100.c:
-	.init       start:0x80003100 end:0x80005544
+dolphin/os/init/start.c:
+	.init       start:0x80003100 end:0x800032B0
+
+dolphin/os/init/__init_registers.c:
+	.init       start:0x800032B0 end:0x80003340
+
+dolphin/os/init/__init_data.c:
+	.init       start:0x80003340 end:0x80003400
+
+dolphin/os/init/__init_hardware.c:
+	.init       start:0x80003400 end:0x80003424
+
+dolphin/os/init/__flush_cache.c:
+	.init       start:0x80003424 end:0x80003458
+
+dolphin/os/init/fill_mem.c:
+	.init       start:0x80003458 end:0x80003540
+
+dolphin/os/init/memcpy.c:
+	.init       start:0x80003540 end:0x80003590
+
+dolphin/os/init/trk_stubs.c:
+	.init       start:0x80003590 end:0x800035E4
+
+coarse/init_trk_800035E4.c:
+	.init       start:0x800035E4 end:0x80005518
+
+dolphin/os/init/trk_reset.c:
+	.init       start:0x80005518 end:0x80005544
