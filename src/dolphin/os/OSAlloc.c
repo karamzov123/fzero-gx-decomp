@@ -327,7 +327,7 @@ _80009a90:
     blr	
 }
 
-asm int fn_80009AA8(register void* param1)
+asm int OSFreeToHeap(register void* param1)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -472,7 +472,7 @@ _80009c98:
     blr	
 }
 
-asm void fn_80009CAC(void)
+asm void OSDumpHeap(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -480,7 +480,7 @@ asm void fn_80009CAC(void)
     addi	r5, r13, -0x7fac
     li	r6, 0
     stw	r0, 0x14(r1)
-    bl      fn_80009CD4
+    bl      fn_80009CD4 /* OSCheckHeap */
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
