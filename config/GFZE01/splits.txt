@@ -117,7 +117,7 @@ dolphin/os/OSTime.c:
 	.text       start:0x8001140C end:0x80011490
 
 dolphin/si/SIBios.c:
-	.text       start:0x80012210 end:0x800125DC
+	.text       start:0x80012210 end:0x80012908
 
 coarse/text_80015F80.c:
 	.text       start:0x80015F80 end:0x8001E480

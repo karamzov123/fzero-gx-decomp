@@ -15,6 +15,7 @@ extern u32 Packet[32];
 extern u32 Si[5];
 extern u32 Type[4];
 extern unsigned char lbl_80123B50[];
+extern unsigned int lbl_8015CA90[];
 
 #pragma push
 #pragma force_active on
@@ -309,6 +310,247 @@ asm void SISetXY(s32 x, s32 y)
     lwz r0, 0x1c(r1)
     lwz r31, 0x14(r1)
     addi r1, r1, 0x18
+    mtlr r0
+    blr
+}
+#pragma pop
+
+#pragma push
+#pragma force_active on
+asm u32 fn_800125DC(u32 poll)
+{
+    nofralloc
+    mflr r0
+    stw r0, 0x4(r1)
+    stwu r1, -0x18(r1)
+    stw r31, 0x14(r1)
+    mr. r31, r3
+    bne _ep_go
+    lis r3, Si@ha
+    addi r3, r3, Si@l
+    lwz r3, 0x4(r3)
+    b _ep_ret
+_ep_go:
+    bl OSDisableInterrupts
+    lis r4, Si@ha
+    addi r4, r4, Si@l
+    srwi r31, r31, 24
+    lwz r0, 0x4(r4)
+    addi r5, r4, 0x4
+    extrwi r4, r31, 4, 24
+    andc r0, r0, r4
+    stw r0, 0x0(r5)
+    oris r0, r4, 0x3ff
+    ori r0, r0, 0xfff0
+    and r31, r31, r0
+    lwz r0, 0x0(r5)
+    rlwinm r31, r31, 0, 24, 5
+    or r0, r0, r31
+    stw r0, 0x0(r5)
+    lis r4, 0xcc00
+    addi r4, r4, 0x6400
+    lwz r31, 0x0(r5)
+    lis r0, 0x8000
+    stw r0, 0x38(r4)
+    stw r31, 0x30(r4)
+    bl OSRestoreInterrupts
+    mr r3, r31
+_ep_ret:
+    lwz r0, 0x1c(r1)
+    lwz r31, 0x14(r1)
+    addi r1, r1, 0x18
+    mtlr r0
+    blr
+}
+
+asm u32 fn_80012678(u32 poll)
+{
+    nofralloc
+    mflr r0
+    stw r0, 0x4(r1)
+    stwu r1, -0x18(r1)
+    stw r31, 0x14(r1)
+    mr. r31, r3
+    bne _dp_go
+    lis r3, Si@ha
+    addi r3, r3, Si@l
+    lwz r3, 0x4(r3)
+    b _dp_ret
+_dp_go:
+    bl OSDisableInterrupts
+    lis r4, Si@ha
+    addi r4, r4, Si@l
+    lwz r0, 0x4(r4)
+    rlwinm r31, r31, 8, 24, 27
+    addi r5, r4, 0x4
+    lis r4, 0xcc00
+    andc r31, r0, r31
+    stw r31, 0x6430(r4)
+    stw r31, 0x0(r5)
+    bl OSRestoreInterrupts
+    mr r3, r31
+_dp_ret:
+    lwz r0, 0x1c(r1)
+    lwz r31, 0x14(r1)
+    addi r1, r1, 0x18
+    mtlr r0
+    blr
+}
+
+asm int fn_800126E4(s32 chan, void* data)
+{
+    nofralloc
+    mflr r0
+    lis r4, Packet@ha
+    stw r0, 0x4(r1)
+    stwu r1, -0x28(r1)
+    stw r31, 0x24(r1)
+    addi r31, r4, Packet@l
+    stw r30, 0x20(r1)
+    addi r30, r3, 0x0
+    stw r29, 0x1c(r1)
+    bl OSDisableInterrupts
+    lis r4, 0xcc00
+    subfic r0, r30, 0x3
+    lwz r29, 0x6438(r4)
+    slwi r0, r0, 3
+    srw r29, r29, r0
+    rlwinm. r0, r29, 0, 28, 28
+    beq _gr_nostat
+    lis r4, Type@ha
+    slwi r5, r30, 2
+    addi r0, r4, Type@l
+    add r4, r0, r5
+    lwz r0, 0x0(r4)
+    rlwinm. r0, r0, 0, 24, 24
+    bne _gr_nostat
+    li r0, 0x8
+    stw r0, 0x0(r4)
+_gr_nostat:
+    bl OSRestoreInterrupts
+    rlwinm. r0, r29, 0, 26, 26
+    beq _gr_zero
+    mulli r4, r30, 0xc
+    lis r3, 0xcc00
+    addi r0, r3, 0x6400
+    add r3, r0, r4
+    slwi r4, r30, 3
+    lwz r0, 0x4(r3)
+    add r6, r31, r4
+    stw r0, 0x1c0(r6)
+    slwi r0, r30, 2
+    add r4, r31, r0
+    lwz r5, 0x8(r3)
+    li r0, 0x1
+    li r3, 0x1
+    stw r5, 0x1c4(r6)
+    stw r0, 0x1b0(r4)
+    b _gr_ret
+_gr_zero:
+    li r3, 0x0
+_gr_ret:
+    lwz r0, 0x2c(r1)
+    lwz r31, 0x24(r1)
+    lwz r30, 0x20(r1)
+    lwz r29, 0x1c(r1)
+    addi r1, r1, 0x28
+    mtlr r0
+    blr
+}
+
+asm int SIGetResponse(s32 chan, void* data)
+{
+    nofralloc
+    mflr r0
+    lis r5, Packet@ha
+    stw r0, 0x4(r1)
+    stwu r1, -0x28(r1)
+    stmw r27, 0x14(r1)
+    addi r29, r3, 0x0
+    addi r30, r4, 0x0
+    addi r28, r5, Packet@l
+    bl OSDisableInterrupts
+    addi r31, r3, 0x0
+    addi r3, r29, 0x0
+    bl SIGetStatus
+    rlwinm. r0, r3, 0, 26, 26
+    beq _sr_nordst
+    mulli r4, r29, 0xc
+    lis r3, 0xcc00
+    addi r0, r3, 0x6400
+    add r4, r0, r4
+    slwi r3, r29, 3
+    lwz r0, 0x4(r4)
+    add r5, r28, r3
+    stw r0, 0x1c0(r5)
+    slwi r0, r29, 2
+    add r3, r28, r0
+    lwz r4, 0x8(r4)
+    li r0, 0x1
+    stw r4, 0x1c4(r5)
+    stw r0, 0x1b0(r3)
+_sr_nordst:
+    slwi r0, r29, 2
+    add r3, r28, r0
+    lwz r27, 0x1b0(r3)
+    li r0, 0x0
+    cmpwi r27, 0x0
+    stw r0, 0x1b0(r3)
+    beq _sr_empty
+    slwi r0, r29, 3
+    add r3, r28, r0
+    lwz r0, 0x1c0(r3)
+    stw r0, 0x0(r30)
+    lwz r0, 0x1c4(r3)
+    stw r0, 0x4(r30)
+_sr_empty:
+    mr r3, r31
+    bl OSRestoreInterrupts
+    mr r3, r27
+    lmw r27, 0x14(r1)
+    lwz r0, 0x2c(r1)
+    addi r1, r1, 0x28
+    mtlr r0
+    blr
+}
+
+asm void fn_8001287C(void* alarm, OSContext* context)
+{
+    nofralloc
+    mflr r0
+    lis r4, lbl_8015CA90@ha
+    stw r0, 0x4(r1)
+    addi r0, r4, lbl_8015CA90@l
+    lis r4, 0x6666
+    subf r0, r0, r3
+    stwu r1, -0x20(r1)
+    addi r3, r4, 0x6667
+    mulhw r0, r3, r0
+    stw r31, 0x1c(r1)
+    srawi r0, r0, 4
+    srwi r3, r0, 31
+    add r0, r0, r3
+    lis r3, Packet@ha
+    slwi r4, r0, 5
+    addi r0, r3, Packet@l
+    add r31, r0, r4
+    lwz r3, 0x0(r31)
+    cmpwi r3, -0x1
+    beq _ah_out
+    lwz r4, 0x4(r31)
+    lwz r5, 0x8(r31)
+    lwz r6, 0xc(r31)
+    lwz r7, 0x10(r31)
+    lwz r8, 0x14(r31)
+    bl fn_800122C4
+    cmpwi r3, 0x0
+    beq _ah_out
+    li r0, -0x1
+    stw r0, 0x0(r31)
+_ah_out:
+    lwz r0, 0x24(r1)
+    lwz r31, 0x1c(r1)
+    addi r1, r1, 0x20
     mtlr r0
     blr
 }
