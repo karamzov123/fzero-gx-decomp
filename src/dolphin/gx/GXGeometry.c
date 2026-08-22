@@ -46,6 +46,40 @@ extern void fn_80079764(void);
 extern void fn_80088624(void);
 extern void* memset(void* dst, int c, unsigned long n);
 extern void fn_80035B88(register void* p1, register void* p2, register int id, register void* p4);
+extern void fn_80079764(void);
+extern void fn_80032EB8(register void* p);
+extern void fn_8003396C(register void* p);
+extern void fn_80032F48(register void* p);
+extern void fn_800324C8(register void* p, register int a, register int b);
+extern void fn_80032F80(register void* p, register int a, register int b);
+extern void fn_80088600(void);
+extern void fn_80032818(register void* p, register int a, register int b);
+extern void fn_800332D8(register void* p, register int a, register int b);
+extern void fn_80032D04(register void* p, register int a);
+void fn_800372E0(register void* p);
+void fn_80037354(register void* p, register int a);
+void fn_800373C0(register void* p, register int a);
+void fn_8003742C(register void* p);
+void fn_80037480(register void* p, register int a, register int b);
+void fn_80037518(register void* p);
+void fn_8003756C(register void* p, register int a);
+void fn_800375F0(register void* p1, register int a, register int b);
+void fn_800377C8(void);
+void fn_800377F8(register void* p, register int a, register int b);
+void fn_80037A14(register void* p, register int a, register int b);
+void fn_80037B14(register void* p);
+void fn_80037B68(register void* p);
+void fn_80037B94(register void* p);
+void fn_80037BC0(register void* p);
+void fn_80037BF4(register void* p);
+void fn_80037C2C(register void* p, register int a, register int b);
+void fn_80037D14(register void* p);
+void fn_80037D40(register void* p);
+void fn_80037D7C(register void* p);
+void fn_80037DB4(register void* p, register int a);
+void fn_80037E30(register void* p);
+void fn_800384FC(register void* p);
+void fn_80038878(void);
 
 void __GXSetGenMode(void);
 void __GXSendFlushPrim(void);
@@ -2050,5 +2084,6 @@ asm void fn_80036058(register void* p)
     stw	r0, 0xc(r3)
     blr	
 }
+
 
 #pragma pop
