@@ -9,9 +9,6 @@ extern void fn_8008023C(void);
 extern void fn_80043FE8(void);
 extern void fn_800443AC(void);
 extern void fn_800446E4(void);
-extern unsigned char AIFF_str[];
-extern unsigned char FORM_str[];
-extern unsigned char lbl_8012B6F8[];
 
 asm void fn_800433A4(void)
 {
@@ -674,18 +671,18 @@ asm void fn_80043CCC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis     r4, FORM_str@ha
+    lis	r4, -0x7ff7
     li	r5, 4
     stw	r0, 0x14(r1)
-    addi    r4, r4, FORM_str@l
+    addi	r4, r4, 0x80
     stw	r31, 0xc(r1)
     mr	r31, r3
     bl      fn_8008023C
     cmpwi	r3, 0
     bne     _80043d1c
-    lis     r4, AIFF_str@ha
+    lis	r4, -0x7ff7
     addi	r3, r31, 8
-    addi    r4, r4, AIFF_str@l
+    addi	r4, r4, 0x88
     li	r5, 4
     bl      fn_8008023C
     cmpwi	r3, 0
@@ -952,12 +949,12 @@ _80044068:
     addi	r11, r9, -8
     ble     _800441e8
     addi	r10, r11, 7
-    lis     r3, lbl_8012B6F8@ha
+    lis	r3, -0x7fed
     srwi	r10, r10, 3
     mr	r4, r31
     mr	r5, r0
     mr	r6, r7
-    addi    r3, r3, lbl_8012B6F8@l
+    addi	r3, r3, -0x4908
     mtctr	r10
     cmpwi	r11, 0
     ble     _800441e8
@@ -1033,12 +1030,12 @@ _800440d4:
     bdnz    _800440d4
 _800441e8:
     slwi	r10, r8, 1
-    lis     r4, lbl_8012B6F8@ha
+    lis	r4, -0x7fed
     subf	r3, r8, r9
     add	r5, r31, r10
     add	r6, r0, r10
     add	r7, r7, r10
-    addi    r4, r4, lbl_8012B6F8@l
+    addi	r4, r4, -0x4908
     mtctr	r3
     cmpw	r8, r9
     bge     _8004434c
@@ -1064,10 +1061,10 @@ _80044244:
     addi	r7, r9, -8
     ble     _8004430c
     addi	r5, r7, 7
-    lis     r3, lbl_8012B6F8@ha
+    lis	r3, -0x7fed
     srwi	r5, r5, 3
     mr	r4, r0
-    addi    r3, r3, lbl_8012B6F8@l
+    addi	r3, r3, -0x4908
     mtctr	r5
     cmpwi	r7, 0
     ble     _8004430c
@@ -1110,11 +1107,11 @@ _8004427c:
     bdnz    _8004427c
 _8004430c:
     slwi	r7, r6, 1
-    lis     r5, lbl_8012B6F8@ha
+    lis	r5, -0x7fed
     subf	r3, r6, r9
     add	r4, r31, r6
     add	r7, r0, r7
-    addi    r5, r5, lbl_8012B6F8@l
+    addi	r5, r5, -0x4908
     mtctr	r3
     cmpw	r6, r9
     bge     _8004434c

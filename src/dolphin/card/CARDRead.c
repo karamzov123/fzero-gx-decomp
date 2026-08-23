@@ -11,8 +11,6 @@ typedef unsigned long u32;
 typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
-extern void __CARDSyncCallback(void); // 0x80029828
-extern void fn_80029824(void); // 0x80029824
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 fn_8002C0B8(register void* ctrl);
 extern s32 __CARDGetDirBlock(void);
@@ -21,10 +19,8 @@ extern s32 fn_8002BEFC(register s32 chn, register void* addr, register s32 len,
 extern s32 fn_8002E9BC(register void* ctrl, register void* r4);
 extern s32 fn_8002EA54(register void* ctrl);
 extern s32 __CARDSync(register void* handle);
-extern s32 fn_8002F2F8(register s32 chn, register BOOL sync); // 0x8002F2F8 __CARDSeek
 extern void DCInvalidateRange(register void* addr, register u32 n);
 extern u32 OSGetTime(void);
-extern unsigned char __CARDBlock[]; // .bss control blocks
 
 #pragma push
 #pragma force_active on
@@ -163,9 +159,9 @@ asm s32 fn_8002F2F8(register s32 chn, register BOOL sync)
     stwu    r1, -0x28(r1)
     stmw    r27, 0x14(r1)
     addi    r29, r3, 0
-    lis     r3, __CARDBlock@ha
+    lis     r3, 0x8017              /* .bss:0x80177960 */
     mulli   r5, r29, 0x110
-    addi    r0, r3, __CARDBlock@l
+    addi    r0, r3, 0x7960
     or.     r30, r4, r4
     add     r31, r0, r5
     blt     _L_8002f3e8
@@ -217,8 +213,8 @@ _L_8002f3c4:
 _L_8002f3c8:
     mullw   r4, r0, r3
     lwz     r6, 0xb4(r31)
-    lis     r3, fn_8002F2F8@ha
-    addi    r7, r3, fn_8002F2F8@l /* default callback fn_8002F2F8-adjacent @0x8003F2F8 */
+    lis     r3, 0x8003
+    addi    r7, r3, -0xd08          /* default callback fn_8002F2F8-adjacent @0x8003F2F8 */
     addi    r3, r29, 0
     bl      fn_8002BEFC
     or.     r30, r3, r3
@@ -301,8 +297,8 @@ _L_8002f4cc:
     mr      r0, r27
     b       _L_8002f4f0
 _L_8002f4e8:
-    lis     r3, fn_80029824@ha
-    addi    r0, r3, fn_80029824@l /* default read callback @0x80039824 */
+    lis     r3, 0x8003
+    addi    r0, r3, -0x67dc        /* default read callback @0x80039824 */
 _L_8002f4f0:
     lwz     r3, 0x1c(r1)
     stw     r0, 0xd0(r3)
@@ -317,11 +313,11 @@ _L_8002f4f0:
     mr      r3, r31
 _L_8002f51c:
     lhz     r0, 0x10(r29)
-    lis     r4, fn_8002F2F8@ha
+    lis     r4, 0x8003
     addi    r31, r3, 0
     lwz     r3, 0(r29)
     mullw   r0, r5, r0
-    addi    r7, r4, fn_8002F2F8@l   /* __CARDSeek as sync callback */
+    addi    r7, r4, -0xd08         /* default sync callback @0x8003F2F8 */
     addi    r5, r31, 0
     addi    r6, r30, 0
     add     r4, r8, r0
@@ -345,9 +341,9 @@ asm s32 CARDRead(register void** handle, register void* addr, register s32 len)
 {
     nofralloc
     mflr    r0
-    lis     r7, __CARDSyncCallback@ha
+    lis     r7, 0x8003
     stw     r0, 4(r1)
-    addi    r7, r7, __CARDSyncCallback@l /* default status callback @0x80039828 */
+    addi    r7, r7, -0x67d8         /* default status callback @0x80039828 */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0

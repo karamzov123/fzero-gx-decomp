@@ -17,11 +17,6 @@ extern int main(int argc, char* argv[]);
 extern void exit(int status);
 
 extern u8 Debug_BBA;
-extern unsigned char ARENAHI_ADDR[];
-extern unsigned char BOOTINFO2_ADDR[];
-extern unsigned char DEBUGFLAG_ADDR[];
-extern unsigned char DVD_DEVICECODE_ADDR[];
-extern unsigned char EXCEPTIONMASK_ADDR[];
 
 #define PAD3_BUTTON_ADDR 0x800030E4
 #define ARENAHI_ADDR 0x80000034

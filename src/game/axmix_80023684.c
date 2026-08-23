@@ -3,7 +3,6 @@
 
 extern void memset(void);
 extern void fn_800885B8(void);
-extern unsigned char lbl_80128160[];
 
 asm void fn_80023684(void)
 {
@@ -65,8 +64,8 @@ _8002374c:
     li	r5, 0x1c4
     bl      memset
     lfs	f0, -0x7eac(r2)
-    lis     r3, lbl_80128160@ha
-    addi    r3, r3, lbl_80128160@l
+    lis	r3, -0x7fed
+    addi	r21, r3, -0x7ea0
     lfs	f30, -0x7ec0(r2)
     fmuls	f28, f0, f28
     lfd	f29, -0x7ea0(r2)

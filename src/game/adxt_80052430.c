@@ -1,4 +1,3 @@
-extern unsigned char lbl_80091338[];
 #pragma push
 #pragma force_active on
 
@@ -8,9 +7,9 @@ asm void fn_80052430(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -104,9 +103,9 @@ asm void fn_80052590(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -200,9 +199,9 @@ asm void fn_800526F0(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -296,9 +295,9 @@ asm void fn_80052850(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -392,9 +391,9 @@ asm void fn_800529B0(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -488,9 +487,9 @@ asm void fn_80052B10(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -584,9 +583,9 @@ asm void fn_80052C70(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -680,9 +679,9 @@ asm void fn_80052DD0(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -776,9 +775,9 @@ asm void fn_80052F30(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -872,9 +871,9 @@ asm void fn_80053090(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -968,9 +967,9 @@ asm void fn_800531F0(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -1064,9 +1063,9 @@ asm void fn_80053350(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -1160,9 +1159,9 @@ asm void fn_800534B0(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -1256,9 +1255,9 @@ asm void fn_80053610(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -1352,9 +1351,9 @@ asm void fn_80053770(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)
@@ -1448,9 +1447,9 @@ asm void fn_800538D0(void)
     stwu	r1, -0x30(r1)
     stfd	f31, 0x20(r1)
     psq_st	f31, 0x28(r1), 0, 0
-    lis     r6, lbl_80091338@ha
+    lis	r6, -0x7ff7
     li	r8, 0x20
-    addi    r6, r6, lbl_80091338@l
+    addi	r7, r6, 0x1338
     lfd	f1, 0x10(r7)
     lis	r6, 0x4330
     lfs	f3, 4(r7)

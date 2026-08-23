@@ -18,9 +18,6 @@ extern void fn_800332D8(register void* p, register int a, register int b);
 extern void fn_80032D04(register void* p, register int a);
 extern void __GXSetDirtyState(void);
 extern void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts);
-extern unsigned char lbl_8012B3B8[];
-extern unsigned char lbl_8012B3E0[];
-extern unsigned char lbl_80178118[];
 
 #pragma push
 #pragma force_active on
@@ -324,9 +321,9 @@ _80037678:
     li	r0, 7
     b       _800376cc
 _800376b8:
-    lis     r3, lbl_8012B3B8@ha
+    lis	r3, -0x7fed
     slwi	r4, r6, 2
-    addi    r3, r3, lbl_8012B3B8@l
+    addi	r0, r3, -0x4c48
     add	r3, r0, r4
     lwz	r0, 0(r3)
 _800376cc:
@@ -363,9 +360,9 @@ _80037710:
     li	r0, 7
     b       _80037758
 _80037744:
-    lis     r3, lbl_8012B3B8@ha
+    lis	r3, -0x7fed
     slwi	r4, r6, 2
-    addi    r3, r3, lbl_8012B3B8@l
+    addi	r0, r3, -0x4c48
     add	r3, r0, r4
     lwz	r0, 0(r3)
 _80037758:
@@ -739,9 +736,9 @@ asm void fn_80037C2C(register void* p, register int a, register int b)
 {
     nofralloc
     lwz	r7, -0x7de8(r2)
-    lis     r5, lbl_8012B3E0@ha
+    lis	r5, -0x7fed
     slwi	r6, r3, 2
-    addi    r5, r5, lbl_8012B3E0@l
+    addi	r0, r5, -0x4c20
     lwz	r8, 0x1dc(r7)
     add	r10, r0, r6
     lwz	r5, 0(r10)
@@ -897,7 +894,7 @@ asm void fn_80037E30(register void* p)
 {
     nofralloc
     mflr	r0
-    lis     r4, lbl_80178118@ha
+    lis	r4, -0x7fe8
     stw	r0, 4(r1)
     stwu	r1, -0x3c8(r1)
     stfd	f31, 0x3c0(r1)
@@ -907,7 +904,7 @@ asm void fn_80037E30(register void* p)
     stfd	f27, 0x3a0(r1)
     stfd	f26, 0x398(r1)
     stmw	r24, 0x378(r1)
-    addi    r4, r4, lbl_80178118@l
+    addi	r31, r4, -0x7ee8
     addi	r24, r3, 0
     addi	r3, r31, 0
     lfs	f0, -0x7d0c(r2)
@@ -1377,8 +1374,8 @@ asm void fn_800384FC(register void* p)
     lis	r3, 0x4330
     mr	r21, r4
     stw	r0, 0x2c(r1)
-    lis     r4, lbl_80178118@ha
-    addi    r4, r4, lbl_80178118@l
+    lis	r4, -0x7fe8
+    addi	r26, r4, -0x7ee8
     stw	r3, 0x30(r1)
     addi	r4, r1, 0x10
     stw	r3, 0x28(r1)

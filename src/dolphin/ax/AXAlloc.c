@@ -8,14 +8,12 @@ typedef int BOOL;
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void fn_80022E68(register void* p);
-extern unsigned char lbl_8015D100[];
-extern unsigned char lbl_8015D180[];
 
 asm void __AXPushFreeStack(register void* p)
 {
     nofralloc
-    lis     r4, lbl_8015D100@ha
-    addi    r4, r4, lbl_8015D100@l
+    lis	r4, -0x7fea
+    addi	r5, r4, -0x2f00
     lwz	r4, 0(r5)
     li	r0, 0
     stw	r4, 0(r3)
@@ -49,11 +47,11 @@ asm void __AXRemoveFromStack(register void* p)
 {
     nofralloc
     lwz	r0, 0xc(r3)
-    lis     r5, lbl_8015D100@ha
-    lis     r4, lbl_8015D180@ha
+    lis	r5, -0x7fea
+    lis	r4, -0x7fea
     slwi	r6, r0, 2
-    addi    r5, r5, lbl_8015D100@l
-    addi    r4, r4, lbl_8015D180@l
+    addi	r5, r5, -0x2f00
+    addi	r0, r4, -0x2e80
     add	r7, r5, r6
     add	r5, r0, r6
     lwz	r4, 0(r7)
@@ -111,8 +109,8 @@ asm void AXFreeVoice(register void* p)
 _80020af8:
     mr	r3, r30
     bl      fn_80022E68
-    lis     r3, lbl_8015D100@ha
-    addi    r3, r3, lbl_8015D100@l
+    lis	r3, -0x7fea
+    addi	r5, r3, -0x2f00
     lwz	r4, 0(r5)
     li	r0, 0
     addi	r3, r31, 0
@@ -132,14 +130,14 @@ asm void* AXAcquireVoice(register u32 priority, register void* callback, registe
 {
     nofralloc
     mflr	r0
-    lis     r6, lbl_8015D100@ha
+    lis	r6, -0x7fea
     stw	r0, 4(r1)
     stwu	r1, -0x38(r1)
     stmw	r26, 0x20(r1)
     addi	r28, r3, 0
     addi	r29, r4, 0
     addi	r30, r5, 0
-    addi    r6, r6, lbl_8015D100@l
+    addi	r27, r6, -0x2f00
     bl      OSDisableInterrupts
     lwz	r4, 0(r27)
     addi	r31, r3, 0
@@ -251,9 +249,9 @@ asm void AXSetVoicePriority(register void* p, register u32 priority)
     addi	r31, r3, 0
     addi	r3, r29, 0
     bl      __AXRemoveFromStack
-    lis     r3, lbl_8015D100@ha
+    lis	r3, -0x7fea
     slwi	r5, r30, 2
-    addi    r3, r3, lbl_8015D100@l
+    addi	r0, r3, -0x2f00
     add	r4, r0, r5
     lwz	r3, 0(r4)
     li	r0, 0
@@ -267,8 +265,8 @@ asm void AXSetVoicePriority(register void* p, register u32 priority)
     stw	r29, 0(r4)
     b       _80020d30
 _80020d1c:
-    lis     r3, lbl_8015D180@ha
-    addi    r3, r3, lbl_8015D180@l
+    lis	r3, -0x7fea
+    addi	r0, r3, -0x2e80
     add	r3, r0, r5
     stw	r29, 0(r3)
     stw	r29, 0(r4)

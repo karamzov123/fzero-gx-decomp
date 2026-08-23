@@ -16,7 +16,6 @@ extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
 extern s32 __CARDCompareFileName(register void* ent, register char* fileName);
 extern s32 fn_8008023C(register void* a, register void* b, register u32 n);
 extern u32 strlen(register char* s);
-extern void __CARDSyncCallback(void); // 0x80029828
 extern s32 fn_80083D6C(register char* dst, register char* src, register u32 n);
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
@@ -176,9 +175,9 @@ asm s32 CARDRename(register s32 chan, register char* oldName, register char* new
 {
     nofralloc
     mflr    r0
-    lis     r6, __CARDSyncCallback@ha
+    lis     r6, 0x8003
     stw     r0, 4(r1)
-    addi    r6, r6, __CARDSyncCallback@l /* __CARDSyncCallback */
+    addi    r6, r6, -0x67d8         /* __CARDSyncCallback */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0

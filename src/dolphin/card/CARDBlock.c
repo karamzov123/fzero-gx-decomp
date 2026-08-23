@@ -4,7 +4,6 @@
 extern void fn_8002AF34(void);
 extern void fn_8002BA8C(void);
 extern void fn_8002BAFC(void);
-extern unsigned char __CARDBlock[]; // .bss:0x80177960
 extern void fn_8002BE20(void);
 extern void fn_8002BEFC(void);
 extern void fn_8002BF60(void);
@@ -39,7 +38,6 @@ extern void ReadArrayUnlock(void);
 extern void GetInitVal(void);
 extern void fn_8002DD08(void);
 extern void memcpy(void);
-extern unsigned char lbl_8012AA60[];
 
 asm void fn_8002AF34(void)
 {
@@ -49,9 +47,9 @@ asm void fn_8002AF34(void)
     stwu	r1, -0x120(r1)
     stmw	r22, 0xf8(r1)
     addi	r24, r3, 0
-    lis     r3, __CARDBlock@ha
+    lis	r3, -0x7fe9
     mulli	r5, r24, 0x110
-    addi    r3, r3, __CARDBlock@l
+    addi	r0, r3, 0x7960
     add	r31, r0, r5
     addi	r23, r4, 0
     addi	r30, r31, 0x30
@@ -758,9 +756,9 @@ _8002b9ac:
     li	r4, 0x10
     bl      DCFlushRange
     li	r0, 0xff
-    lis     r3, lbl_8012AA60@ha
+    lis	r3, -0x7fed
     stw	r0, 4(r30)
-    addi    r3, r3, lbl_8012AA60@l
+    addi	r3, r3, -0x55a0
     addis	r0, r3, -0x8000
     stw	r0, 0xc(r30)
     li	r0, 0x160
@@ -794,9 +792,9 @@ asm void fn_8002BA8C(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, __CARDBlock@ha
+    lis	r4, -0x7fe9
     stw	r0, 4(r1)
-    addi	r4, r4, __CARDBlock@l
+    addi	r4, r4, 0x7960
     addi	r0, r4, 0x30
     stwu	r1, -0x18(r1)
     cmplw	r0, r3
@@ -830,9 +828,9 @@ asm void fn_8002BAFC(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, __CARDBlock@ha
+    lis	r4, -0x7fe9
     stw	r0, 4(r1)
-    addi	r4, r4, __CARDBlock@l
+    addi	r4, r4, 0x7960
     addi	r0, r4, 0x30
     stwu	r1, -0x88(r1)
     cmplw	r0, r3
@@ -1050,11 +1048,11 @@ asm void fn_8002BE20(void)
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
     addi	r31, r3, 0
-    lis     r3, __CARDBlock@ha
+    lis	r3, -0x7fe9
     stw	r30, 0x18(r1)
     mulli	r5, r31, 0x110
     stw	r29, 0x14(r1)
-    addi    r3, r3, __CARDBlock@l
+    addi	r0, r3, 0x7960
     or.	r29, r4, r4
     add	r30, r0, r5
     blt     _8002bea0
@@ -1111,9 +1109,9 @@ asm void fn_8002BEFC(void)
     mflr	r0
     mulli	r9, r3, 0x110
     stw	r0, 4(r1)
-    lis     r8, __CARDBlock@ha
+    lis	r8, -0x7fe9
     stwu	r1, -8(r1)
-    addi    r8, r8, __CARDBlock@l
+    addi	r0, r8, 0x7960
     add	r8, r0, r9
     lwz	r0, 0(r8)
     cmpwi	r0, 0
@@ -1145,11 +1143,11 @@ asm void fn_8002BF60(void)
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
     addi	r31, r3, 0
-    lis     r3, __CARDBlock@ha
+    lis	r3, -0x7fe9
     stw	r30, 0x18(r1)
     mulli	r5, r31, 0x110
     stw	r29, 0x14(r1)
-    addi    r3, r3, __CARDBlock@l
+    addi	r0, r3, 0x7960
     or.	r29, r4, r4
     add	r30, r0, r5
     blt     _8002bfe0
@@ -1206,9 +1204,9 @@ asm void __CARDWrite(void)
     mflr	r0
     mulli	r9, r3, 0x110
     stw	r0, 4(r1)
-    lis     r8, __CARDBlock@ha
+    lis	r8, -0x7fe9
     stwu	r1, -8(r1)
-    addi    r8, r8, __CARDBlock@l
+    addi	r0, r8, 0x7960
     add	r8, r0, r9
     lwz	r0, 0(r8)
     cmpwi	r0, 0
@@ -1231,8 +1229,8 @@ _8002c090:
     mtlr	r0
     blr	
     mulli	r0, r3, 0x110
-    lis     r3, __CARDBlock@ha
-    addi    r3, r3, __CARDBlock@l
+    lis	r3, -0x7fe9
+    addi	r3, r3, 0x7960
     add	r3, r3, r0
     lwz	r3, 0xb8(r3)
     blr	
@@ -1257,8 +1255,8 @@ asm void fn_8002C0C0(void)
     stw	r29, 0x14(r1)
     addi	r29, r3, 0
     mulli	r5, r29, 0x110
-    lis     r3, __CARDBlock@ha
-    addi    r3, r3, __CARDBlock@l
+    lis	r3, -0x7fe9
+    addi	r0, r3, 0x7960
     add	r31, r0, r5
     blt     _8002c138
     lwz	r3, 0x80(r31)
@@ -1315,11 +1313,11 @@ asm void fn_8002C194(void)
     stwu	r1, -0x28(r1)
     stw	r31, 0x24(r1)
     addi	r31, r3, 0
-    lis     r3, __CARDBlock@ha
+    lis	r3, -0x7fe9
     stw	r30, 0x20(r1)
     mulli	r5, r31, 0x110
     stw	r29, 0x1c(r1)
-    addi    r3, r3, __CARDBlock@l
+    addi	r0, r3, 0x7960
     or.	r29, r4, r4
     add	r30, r0, r5
     blt     _8002c200
@@ -1372,8 +1370,8 @@ asm void __CARDAllocBlock(void)
     mulli	r7, r3, 0x110
     stw	r0, 4(r1)
     stwu	r1, -0x20(r1)
-    lis     r6, __CARDBlock@ha
-    addi    r6, r6, __CARDBlock@l
+    lis	r6, -0x7fe9
+    addi	r0, r6, 0x7960
     stw	r31, 0x1c(r1)
     add	r9, r0, r7
     stw	r30, 0x18(r1)
@@ -1456,9 +1454,9 @@ asm void __CARDFreeBlock(void)
     mflr	r0
     mulli	r7, r3, 0x110
     stw	r0, 4(r1)
-    lis     r6, __CARDBlock@ha
+    lis	r6, -0x7fe9
     stwu	r1, -8(r1)
-    addi    r6, r6, __CARDBlock@l
+    addi	r0, r6, 0x7960
     add	r9, r0, r7
     lwz	r0, 0(r9)
     cmpwi	r0, 0
@@ -1518,9 +1516,9 @@ asm void __CARDUpdateFatBlock(void)
     lhz	r3, 4(r4)
     mulli	r4, r28, 0x110
     addi	r0, r3, 1
-    lis     r3, __CARDBlock@ha
+    lis	r3, -0x7fe9
     sth	r0, 4(r29)
-    addi    r3, r3, __CARDBlock@l
+    addi	r0, r3, 0x7960
     add	r31, r0, r4
     addi	r3, r29, 4
     li	r4, 0x1ffc
@@ -1567,8 +1565,8 @@ asm void fn_8002C4C4(void)
     stw	r29, 0x14(r1)
     addi	r29, r3, 0
     mulli	r5, r29, 0x110
-    lis     r3, __CARDBlock@ha
-    addi    r3, r3, __CARDBlock@l
+    lis	r3, -0x7fe9
+    addi	r0, r3, 0x7960
     add	r31, r0, r5
     blt     _8002c538
     lwz	r3, 0x80(r31)
@@ -1624,11 +1622,11 @@ asm void fn_8002C594(void)
     stwu	r1, -0x28(r1)
     stw	r31, 0x24(r1)
     addi	r31, r3, 0
-    lis     r3, __CARDBlock@ha
+    lis	r3, -0x7fe9
     stw	r30, 0x20(r1)
     mulli	r5, r31, 0x110
     stw	r29, 0x1c(r1)
-    addi    r3, r3, __CARDBlock@l
+    addi	r0, r3, 0x7960
     or.	r29, r4, r4
     add	r30, r0, r5
     blt     _8002c600
@@ -1687,8 +1685,8 @@ asm void __CARDUpdateDir(void)
     stw	r28, 0x18(r1)
     addi	r28, r3, 0
     mulli	r5, r28, 0x110
-    lis     r3, __CARDBlock@ha
-    addi    r3, r3, __CARDBlock@l
+    lis	r3, -0x7fe9
+    addi	r0, r3, 0x7960
     add	r30, r0, r5
     lwz	r0, 0(r30)
     cmpwi	r0, 0

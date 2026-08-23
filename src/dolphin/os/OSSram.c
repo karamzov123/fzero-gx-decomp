@@ -22,7 +22,6 @@ extern s32 EXIImm(register s32 chn, register void* buf, register s32 len,
 extern s32 EXISync(register s32 chn);
 extern s32 EXIDma(register s32 chn, register void* buf, register s32 len,
                   register u32 type, register void* callback);
-void WriteSramCallback(void);
 
 #pragma push
 #pragma force_active on
@@ -31,14 +30,14 @@ asm void __OSInitSram(void)
 {
     nofralloc
     mflr    r0
-    lis     r3, 0x8015
+    lis     r3, 0x8016
     stw     r0, 4(r1)
     li      r4, 0x40
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
     li      r31, 0
     stw     r30, 0x10(r1)
-    addi    r3, r3, -0x4040 /* Scb = 0x8015BFC0 */
+    addi    r30, r3, -0x4040        /* Scb = 0x8015BFC0 */
     addi    r3, r30, 0
     stw     r31, 0x44(r30)
     stw     r31, 0x48(r30)
@@ -116,11 +115,11 @@ asm void __OSLockSram(void)
 {
     nofralloc
     mflr    r0
-    lis     r3, 0x8015
+    lis     r3, 0x8016
     stw     r0, 4(r1)
     stwu    r1, -0x10(r1)
     stw     r31, 0xc(r1)
-    addi    r3, r3, -0x4040
+    addi    r31, r3, -0x4040
     bl      OSDisableInterrupts
     lwz     r0, 0x48(r31)
     addi    r4, r31, 0x48
@@ -146,11 +145,11 @@ asm void __OSLockSramEx(void)
 {
     nofralloc
     mflr    r0
-    lis     r3, 0x8015
+    lis     r3, 0x8016
     stw     r0, 4(r1)
     stwu    r1, -0x10(r1)
     stw     r31, 0xc(r1)
-    addi    r3, r3, -0x4040
+    addi    r31, r3, -0x4040
     bl      OSDisableInterrupts
     lwz     r0, 0x48(r31)
     addi    r4, r31, 0x48
@@ -178,10 +177,10 @@ asm s32 fn_8000F974(register u32 doWrite, register u32 offset)
     mflr    r0
     cmpwi   r3, 0
     stw     r0, 4(r1)
-    lis     r3, 0x8015
+    lis     r3, 0x8016
     stwu    r1, -0x30(r1)
     stmw    r27, 0x1c(r1)
-    addi    r3, r3, -0x4040
+    addi    r31, r3, -0x4040
     beq     _L_8000fc54
     cmplwi  r4, 0
     bne     _L_8000fb48
@@ -304,8 +303,8 @@ _L_8000fb48:
     stw     r4, 0(r30)
 _L_8000fb5c:
     lwz     r29, 0(r30)
-    lis     r3, WriteSramCallback@ha
-    addi    r3, r3, WriteSramCallback@l
+    lis     r3, -0x7fff
+    addi    r5, r3, -0x9f0
     subfic  r27, r29, 0x40
     add     r28, r31, r29
     li      r3, 0
@@ -412,7 +411,7 @@ asm void __OSUnlockSramEx(void)
 asm u32 __OSSyncSram(void)
 {
     nofralloc
-    lis     r3, 0x8015
+    lis     r3, 0x8016
     addi    r3, r3, -0x4040
     lwz     r3, 0x4c(r3)
     blr

@@ -11,7 +11,6 @@ extern u32 __OSUnmaskInterrupts(u32 intrMask);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void __OSUnhandledException(int error, void* context, u32 cause, u32 addr);
 extern void MEMIntrruptHandler(int interrupt, void* context);
-extern unsigned char __OSErrorTable[];
 
 #pragma push
 #pragma force_active on
@@ -74,9 +73,9 @@ asm void MEMIntrruptHandler(register int interrupt, register void* context)
     li	r0, 0
     stwu	r1, -8(r1)
     lhz	r7, 0x4024(r3)
-    lis     r3, __OSErrorTable@ha
+    lis	r3, -0x7fea
     lhz	r6, 0x22(r8)
-    addi    r3, r3, __OSErrorTable@l
+    addi	r3, r3, -0x40b0
     lhz	r5, 0x1e(r8)
     rlwimi	r6, r7, 0x10, 6, 0xf
     sth	r0, 0x20(r8)
@@ -202,8 +201,8 @@ asm void __OSInitMemoryProtection(void)
     sth	r0, 0x10(r28)
     lis	r3, -0x1000
     bl      __OSMaskInterrupts
-    lis     r3, MEMIntrruptHandler@ha
-    addi    r3, r3, MEMIntrruptHandler@l
+    lis	r3, -0x7fff
+    addi	r29, r3, -0x1818
     mr	r4, r29
     li	r3, 0
     bl      __OSSetInterruptHandler
@@ -219,8 +218,8 @@ asm void __OSInitMemoryProtection(void)
     mr	r4, r29
     li	r3, 4
     bl      __OSSetInterruptHandler
-    lis     r3, 0x8012
-    addi    r3, r3, 0x3ae0
+    lis	r3, -0x7fee
+    addi	r3, r3, 0x3ae0
     bl      OSRegisterResetFunction
     lwz	r3, 0xf0(r27)
     lwz	r0, 0x28(r27)
@@ -238,16 +237,16 @@ _8000ea2c:
     lis	r0, 0x180
     cmplw	r31, r0
     bgt     _8000ea48
-    lis     r3, Config24MB@ha
-    addi    r3, r3, Config24MB@l
+    lis	r3, -0x7fff
+    addi	r3, r3, -0x17ac
     bl      RealMode
     b       _8000ea60
 _8000ea48:
     lis	r0, 0x300
     cmplw	r31, r0
     bgt     _8000ea60
-    lis     r3, Config48MB@ha
-    addi    r3, r3, Config48MB@l
+    lis	r3, -0x7fff
+    addi	r3, r3, -0x172c
     bl      RealMode
 _8000ea60:
     lis	r3, 0x800

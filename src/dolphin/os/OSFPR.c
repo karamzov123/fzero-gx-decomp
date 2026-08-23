@@ -10,7 +10,7 @@ asm void __OSFPRInit(void)
     mfspr   r3, 920
     rlwinm. r3, r3, 3, 31, 31
     beq     _nopse
-    lis     r3, 0x801a
+    lis     r3, 0x801A
     addi    r3, r3, 0x6760
     psq_l   f0, 0(r3), 0, 0
     ps_mr   f1, f0

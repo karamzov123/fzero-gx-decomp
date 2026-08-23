@@ -16,8 +16,6 @@ extern void fn_8004E238(void);
 extern void fn_8004E098(void);
 extern void fn_8004E190(void);
 extern void fn_8004E198(void);
-extern unsigned char lbl_80090098[];
-extern unsigned char snd_str[];
 
 asm void fn_800443AC(void)
 {
@@ -605,18 +603,18 @@ asm void fn_80044C0C(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis     r4, snd_str@ha
+    lis	r4, -0x7ff7
     li	r5, 4
     stw	r0, 0x14(r1)
-    addi    r4, r4, snd_str@l
+    addi	r4, r4, 0x90
     stw	r31, 0xc(r1)
     mr	r31, r3
     bl      fn_8008023C
     cmpwi	r3, 0
     beq     _80044c54
-    lis     r4, lbl_80090098@ha
+    lis	r4, -0x7ff7
     mr	r3, r31
-    addi    r4, r4, lbl_80090098@l
+    addi	r4, r4, 0x98
     li	r5, 4
     bl      fn_8008023C
     cmpwi	r3, 0

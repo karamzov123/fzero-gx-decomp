@@ -19,23 +19,22 @@ extern unsigned long TRKInitializeIntDrivenUART(unsigned long, unsigned long,
                                                unsigned long, void**);
 extern void TRKTargetSetInputPendingPtr(void*, void*);
 extern void MWTRACE(unsigned long, char*);
-extern unsigned char lbl_801A36B8[];
 
 asm int TRKInitializeEventQueue(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r3, lbl_801A36B8@ha
+    lis     r3, 0x801A
     stw     r0, 0x14(r1)
-    addi    r3, r3, lbl_801A36B8@l
+    addi    r3, r3, 0x36B8
     bl      fn_8008AF50
-    lis     r3, lbl_801A36B8@ha
-    addi    r3, r3, lbl_801A36B8@l
+    lis     r3, 0x801A
+    addi    r3, r3, 0x36B8
     bl      fn_8008AF48
-    lis     r3, lbl_801A36B8@ha
+    lis     r3, 0x801A
     li      r4, 0
-    addi    r3, r3, lbl_801A36B8@l
+    addi    r3, r3, 0x36B8
     li      r0, 0x100
     stw     r4, 4(r3)
     stw     r4, 8(r3)

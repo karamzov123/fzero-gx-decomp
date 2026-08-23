@@ -10,7 +10,6 @@ extern s32 __shl2i(u32, u32, s32);
 extern s32 __shr2u(u32, u32, s32);
 extern s32 fn_8001AFB8(register void*, register void*, register void*, register void*, register void*);
 extern s32 fn_8001B28C(register s32, register s32, register s32, register s32, register s32, register s32, register s32, register s32, register s32);
-extern unsigned char lbl_8015CF68[];
 
 /* VI retrace-callback waiters over the game's callback state at
    0x8016CF68 (-0x3098 from 0x8016_0000 base). */
@@ -22,11 +21,11 @@ asm s32 fn_8001BC54(register void* param)
 {
     nofralloc
     mflr    r0
-    lis     r3, lbl_8015CF68@ha
+    lis     r3, -0x7fea /* 0x8016 */
     stw     r0, 4(r1)
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
-    addi    r3, r3, lbl_8015CF68@l
+    addi    r31, r3, -0x3098
     stw     r30, 0x18(r1)
     stw     r29, 0x14(r1)
     stw     r28, 0x10(r1)
@@ -107,11 +106,11 @@ asm s32 fn_8001BD84(register s32 param)
 {
     nofralloc
     mflr    r0
-    lis     r4, lbl_8015CF68@ha
+    lis     r4, -0x7fea /* 0x8016 */
     stw     r0, 4(r1)
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
-    addi    r4, r4, lbl_8015CF68@l
+    addi    r31, r4, -0x3098
     stw     r30, 0x10(r1)
     addi    r30, r3, 0
     bl      OSDisableInterrupts
@@ -139,11 +138,11 @@ asm s32 fn_8001BDF0(register s32 param)
 {
     nofralloc
     mflr    r0
-    lis     r4, lbl_8015CF68@ha
+    lis     r4, -0x7fea /* 0x8016 */
     stw     r0, 4(r1)
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
-    addi    r4, r4, lbl_8015CF68@l
+    addi    r31, r4, -0x3098
     stw     r30, 0x18(r1)
     addi    r30, r3, 0
     bl      OSDisableInterrupts

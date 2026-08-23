@@ -19,15 +19,15 @@ extern s32 EXISync(s32 chan);
 extern s32 EXIDeselect(s32 chan);
 extern s32 EXIImmEx(s32 chan, void* buffer, u32 size, s32 periodic);
 
-asm void WriteSramCallback(void)
+static asm void WriteSramCallback(void)
 {
     nofralloc
     mflr	r0
-    lis     r3, 0x8015
+    lis	r3, -0x7fea
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    addi    r3, r3, -0x4040
+    addi	r31, r3, -0x4040
     stw	r30, 0x10(r1)
     addi	r30, r31, 0x40
     lwz	r4, 0x40(r31)
@@ -49,13 +49,13 @@ _8000f658:
     blr	
 }
 
-asm int WriteSram(void* buffer, unsigned long offset, unsigned long size)
+static asm int WriteSram(void* buffer, unsigned long offset, unsigned long size)
 {
     nofralloc
     mflr	r0
-    lis     r6, WriteSramCallback@ha
+    lis	r6, -0x7fff
     stw	r0, 4(r1)
-    addi    r6, r6, WriteSramCallback@l
+    addi	r0, r6, -0x9f0
     stwu	r1, -0x28(r1)
     stw	r31, 0x24(r1)
     addi	r31, r4, 0

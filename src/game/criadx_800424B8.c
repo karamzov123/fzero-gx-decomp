@@ -9,21 +9,16 @@ extern void fn_80042D24(void);
 extern void fn_8008023C(void);
 extern void fn_8004E270(void);
 extern void fn_8004313C(void);
-extern unsigned char RIFF_str[];
-extern unsigned char WAVE_str[];
-extern unsigned char lbl_801798C0[];
-extern unsigned char lbl_8012B6F0[];
-extern unsigned char lbl_8012B6F4[];
 
 asm void fn_800424B8(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis     r3, lbl_801798C0@ha
+    lis	r3, -0x7fe8
     li	r4, 0
     stw	r0, 0x14(r1)
-    addi    r3, r3, lbl_801798C0@l
+    addi	r3, r3, -0x6740
     li	r5, 0x9c0
     bl      memset
     lwz	r0, 0x14(r1)
@@ -39,9 +34,9 @@ asm void fn_800424E8(void)
     mflr	r0
     stw	r0, 0x14(r1)
     bl      fn_80045FA4
-    lis     r3, lbl_801798C0@ha
+    lis	r3, -0x7fe8
     li	r4, 0
-    addi    r3, r3, lbl_801798C0@l
+    addi	r3, r3, -0x6740
     li	r5, 0x9c0
     bl      memset
     lwz	r0, 0x14(r1)
@@ -82,18 +77,18 @@ asm void fn_80042568(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis     r4, RIFF_str@ha
+    lis	r4, -0x7ff7
     li	r5, 4
     stw	r0, 0x14(r1)
-    addi    r4, r4, RIFF_str@l
+    addi	r4, r4, 0x70
     stw	r31, 0xc(r1)
     mr	r31, r3
     bl      fn_8008023C
     cmpwi	r3, 0
     bne     _800425b8
-    lis     r4, WAVE_str@ha
+    lis	r4, -0x7ff7
     addi	r3, r31, 8
-    addi    r4, r4, WAVE_str@l
+    addi	r4, r4, 0x78
     li	r5, 4
     bl      fn_8008023C
     cmpwi	r3, 0
@@ -904,7 +899,7 @@ asm void fn_8004313C(void)
     nofralloc
     stwu	r1, -0x40(r1)
     mflr	r0
-    lis     r11, lbl_8012B6F0@ha
+    lis	r11, -0x7fed
     stw	r0, 0x44(r1)
     stmw	r18, 8(r1)
     mr	r20, r3
@@ -915,7 +910,7 @@ asm void fn_8004313C(void)
     mr	r25, r8
     mr	r26, r9
     mr	r27, r10
-    addi    r11, r11, lbl_8012B6F0@l
+    addi	r19, r11, -0x4910
     li	r18, 0
     lwz	r28, 0x48(r1)
     lwz	r29, 0x4c(r1)
@@ -957,9 +952,9 @@ _800431dc:
     li	r3, -1
     b       _80043390
 _80043200:
-    lis     r3, lbl_8012B6F4@ha
+    lis	r3, -0x7fed
     li	r18, 0
-    addi    r3, r3, lbl_8012B6F4@l
+    addi	r19, r3, -0x490c
     b       _8004322c
 _80043210:
     lwz	r4, 0(r19)

@@ -1,10 +1,3 @@
-extern unsigned char lbl_80095D98[];
-extern unsigned char lbl_801A5658[];
-extern unsigned char lbl_801A5E58[];
-extern unsigned char lbl_80095CD0[];
-extern unsigned char lbl_80095D2C[];
-extern unsigned char lbl_80095D54[];
-extern unsigned char lbl_80095D84[];
 #pragma push
 #pragma force_active on
 
@@ -116,9 +109,9 @@ _8008de18:
     bl      fn_8008EFE0
     cmpwi	r3, 0
     bne     _8008de44
-    lis     r3, lbl_801A5E58@ha
+    lis	r3, -0x7fe6
     mr	r5, r31
-    addi    r3, r3, lbl_801A5E58@l
+    addi	r3, r3, 0x5e58
     addi	r4, r1, 8
     bl      fn_8008E21C
     b       _8008de4c
@@ -168,10 +161,10 @@ asm void ddh_cc_write(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis     r5, lbl_80095CD0@ha
+    lis	r5, -0x7ff7
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
-    addi    r5, r5, lbl_80095CD0@l
+    addi	r31, r5, 0x5cd0
     stw	r30, 0x18(r1)
     mr	r30, r4
     stw	r29, 0x14(r1)
@@ -237,15 +230,15 @@ asm void ddh_cc_read(void)
     li	r3, -0x2711
     b       _8008e044
 _8008df9c:
-    lis     r3, lbl_80095D2C@ha
+    lis	r3, -0x7ff7
     mr	r5, r30
-    addi    r3, r3, lbl_80095D2C@l
+    addi	r4, r3, 0x5d2c
     mr	r6, r30
     li	r3, 1
     crxor	6, 6, 6
     bl      MWTRACE
-    lis     r3, lbl_801A5E58@ha
-    addi    r3, r3, lbl_801A5E58@l
+    lis	r3, -0x7fe6
+    addi	r31, r3, 0x5e58
     b       _8008dff8
 _8008dfc4:
     li	r29, 0
@@ -268,16 +261,16 @@ _8008dff8:
     blt     _8008dfc4
     cmplwi	r29, 0
     bne     _8008e028
-    lis     r3, lbl_801A5E58@ha
+    lis	r3, -0x7fe6
     mr	r4, r27
-    addi    r3, r3, lbl_801A5E58@l
+    addi	r3, r3, 0x5e58
     mr	r5, r30
     bl      fn_8008E114
     b       _8008e040
 _8008e028:
-    lis     r3, lbl_80095D54@ha
+    lis	r3, -0x7ff7
     mr	r5, r29
-    addi    r3, r3, lbl_80095D54@l
+    addi	r4, r3, 0x5d54
     li	r3, 8
     crxor	6, 6, 6
     bl      MWTRACE
@@ -325,9 +318,9 @@ asm void ddh_cc_initialize(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis     r5, lbl_80095D84@ha
+    lis	r5, -0x7ff7
     stw	r0, 0x14(r1)
-    addi    r5, r5, lbl_80095D84@l
+    addi	r0, r5, 0x5d84
     stw	r31, 0xc(r1)
     mr	r31, r4
     mr	r4, r0
@@ -339,16 +332,16 @@ asm void ddh_cc_initialize(void)
     mr	r3, r30
     mr	r4, r31
     bl      fn_8008EDF0
-    lis     r4, lbl_80095D98@ha
+    lis	r4, -0x7ff7
     li	r3, 1
-    addi    r4, r4, lbl_80095D98@l
+    addi	r4, r4, 0x5d98
     crxor	6, 6, 6
     bl      MWTRACE
-    lis     r3, lbl_801A5E58@ha
-    lis     r4, lbl_801A5658@ha
-    addi    r3, r3, lbl_801A5E58@l
+    lis	r3, -0x7fe6
+    lis	r4, -0x7fe6
+    addi	r3, r3, 0x5e58
     li	r5, 0x800
-    addi    r4, r4, lbl_801A5658@l
+    addi	r4, r4, 0x5658
     bl      fn_8008E324
     lwz	r0, 0x14(r1)
     li	r3, 0

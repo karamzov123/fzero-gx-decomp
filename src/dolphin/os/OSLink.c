@@ -4,14 +4,12 @@ typedef int BOOL;
 extern void DCFlushRange(void* addr, u32 size);
 extern void ICInvalidateRange(void* addr, u32 size);
 extern void OSReport(const char* fmt, ...);
-extern char lbl_80123A90[]; // .data:0x80123A90 string
 extern void* memset(void* ptr, int value, u32 num);
 extern void OSNotifyLink(void);
 extern void OSNotifyUnlink(void);
 extern BOOL Relocate(void* newModule, void* module);
 extern BOOL __OSLinkModule(void* module, void* bss, int flag);
 extern BOOL Undo(void* newModule, void* module);
-extern unsigned char lbl_80123AB8[];
 
 #pragma push
 #pragma force_active on
@@ -71,9 +69,9 @@ _8000ddd8:
     li	r3, 0
     b       _8000e01c
 _8000dde0:
-    lis	r3, lbl_80123A90@ha
+    lis	r3, -0x7fee
     lwz	r30, 4(r4)
-    addi	r25, r3, lbl_80123A90@l
+    addi	r25, r3, 0x3a90
     li	r29, 0
     b       _8000dfe4
 _8000ddf4:
@@ -526,9 +524,9 @@ _8000e3c4:
     li	r3, 0
     b       _8000e594
 _8000e3cc:
-    lis     r3, lbl_80123AB8@ha
+    lis	r3, -0x7fee
     lwz	r31, 4(r5)
-    addi    r3, r3, lbl_80123AB8@l
+    addi	r27, r3, 0x3ab8
     li	r30, 0
     b       _8000e55c
 _8000e3e0:

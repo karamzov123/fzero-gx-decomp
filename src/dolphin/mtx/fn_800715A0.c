@@ -7,10 +7,6 @@ extern asm void AIGetDSPInterruptEnable(void);
 extern asm void ARStartDMA(void);
 extern asm void fn_8008069C(void);
 extern asm void fn_8000C49C(void);
-extern unsigned char lbl_8015ABC0[];
-extern unsigned char lbl_8015ABCC[];
-extern unsigned char lbl_8015ABD8[];
-extern unsigned char lbl_8015ABFC[];
 
 asm void fn_800715A0(void)
 {
@@ -32,10 +28,10 @@ asm void fn_800715A0(void)
     bctrl	
     or.	r30, r3, r3
     bne	_800715f8
-    lis     r3, lbl_8015ABD8@ha
-    lis     r4, lbl_8015ABC0@ha
-    addi    r3, r3, lbl_8015ABD8@l
-    addi    r4, r4, lbl_8015ABC0@l
+    lis	r3, -0x7fea
+    lis	r4, -0x7fea
+    addi	r3, r3, -0x5428
+    addi	r4, r4, -0x5440
     bl      fn_8007174C
 _800715f8:
     addi	r0, r30, 0x3f
@@ -92,10 +88,10 @@ asm void fn_80071678(void)
     bctrl	
     or.	r31, r3, r3
     bne	_800716c8
-    lis     r3, lbl_8015ABD8@ha
-    lis     r4, lbl_8015ABCC@ha
-    addi    r3, r3, lbl_8015ABD8@l
-    addi    r4, r4, lbl_8015ABCC@l
+    lis	r3, -0x7fea
+    lis	r4, -0x7fea
+    addi	r3, r3, -0x5428
+    addi	r4, r4, -0x5434
     bl      fn_8007174C
 _800716c8:
     li	r4, 1
@@ -153,9 +149,9 @@ asm void fn_8007174C(void)
     addi	r3, r1, 8
     crxor	6, 6, 6
     bl      fn_8008069C
-    lis     r3, lbl_8015ABFC@ha
+    lis	r3, -0x7fea
     addi	r5, r1, 8
-    addi    r3, r3, lbl_8015ABFC@l
+    addi	r3, r3, -0x5404
     li	r4, 0x1f2
     crxor	6, 6, 6
     bl      fn_8000C49C

@@ -13,8 +13,6 @@ extern void __AXPushFreeStack(void);
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void __cvt_fp2unsigned(void);
-extern unsigned char lbl_80164D60[];
-extern unsigned char lbl_80124710[];
 
 asm void fn_800224E4(void)
 {
@@ -27,8 +25,8 @@ asm void fn_800224EC(void)
 {
     nofralloc
     lwz	r4, -0x7858(r13)
-    lis     r5, lbl_80164D60@ha
-    addi    r5, r5, lbl_80164D60@l
+    lis	r5, -0x7fea
+    addi	r0, r5, 0x4d60
     addi	r4, r4, 1
     stw	r4, -0x7858(r13)
     addi	r6, r3, 0x138
@@ -513,15 +511,15 @@ asm void fn_80022BF4(void)
 {
     nofralloc
     mflr	r0
-    lis     r4, lbl_80164D60@ha
+    lis	r4, -0x7fea
     stw	r0, 4(r1)
     li	r0, 0
     stwu	r1, -0x28(r1)
     stmw	r26, 0x10(r1)
-    addi    r4, r4, lbl_80164D60@l
-    lis     r4, lbl_80124710@ha
+    addi	r30, r4, 0x4d60
+    lis	r4, -0x7fee
     addi	r26, r3, 0
-    addi    r4, r4, lbl_80124710@l
+    addi	r31, r4, 0x4710
     addi	r3, r30, 0
     li	r4, 0x3b00
     stw	r0, -0x7858(r13)
@@ -684,8 +682,8 @@ _80022e1c:
 asm void fn_80022E5C(void)
 {
     nofralloc
-    lis     r3, lbl_80164D60@ha
-    addi    r3, r3, lbl_80164D60@l
+    lis	r3, -0x7fea
+    addi	r3, r3, 0x4d60
     blr	
 }
 
@@ -721,8 +719,8 @@ asm void fn_80022EA4(void)
     stmw	r26, 0x18(r1)
     lwz	r0, 0xf8(r4)
     mulhwu	r0, r3, r0
-    lis     r3, lbl_80164D60@ha
-    addi    r3, r3, lbl_80164D60@l
+    lis	r3, -0x7fea
+    addi	r31, r3, 0x4d60
     srwi	r0, r0, 7
     li	r3, 0
     stw	r0, -0x7860(r13)

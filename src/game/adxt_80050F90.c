@@ -8,9 +8,6 @@ extern void ADXF_Stop(void);
 extern void fn_80050BD4(void);
 extern void fn_80053A30(void);
 extern void fn_80053DB4(void);
-extern unsigned char lbl_80130B48[];
-extern unsigned char lbl_80130B68[];
-extern unsigned char lbl_80187118[];
 
 asm void fn_80050F90(void)
 {
@@ -30,9 +27,9 @@ asm void fn_80050F90(void)
     b       _800510b0
 _80050fc4:
     bl      fn_80053A30
-    lis     r5, lbl_80187118@ha
+    lis	r5, -0x7fe8
     addi	r4, r31, 0x384
-    addi    r5, r5, lbl_80187118@l
+    addi	r6, r5, 0x7118
     addi	r5, r31, 0x3b8
     stw	r3, 0(r6)
     addi	r6, r31, 0x5b8
@@ -42,9 +39,9 @@ _80050fc4:
     srawi	r7, r0, 2
     bl      ADXF_Stop
     bl      fn_80053A30
-    lis     r4, lbl_80187118@ha
+    lis	r4, -0x7fe8
     mr	r30, r27
-    addi    r4, r4, lbl_80187118@l
+    addi	r4, r4, 0x7118
     li	r27, 0
     stw	r3, 0xc(r4)
     li	r29, 0
@@ -61,9 +58,9 @@ _80051010:
     addi	r30, r30, 0x40
     blt     _80051010
     bl      fn_80053A30
-    lis     r4, lbl_80187118@ha
+    lis	r4, -0x7fe8
     cmpwi	r28, 2
-    addi    r4, r4, lbl_80187118@l
+    addi	r4, r4, 0x7118
     stw	r3, 0x10(r4)
     blt     _80051090
     li	r28, 0
@@ -84,8 +81,8 @@ _80051060:
     blt     _80051060
 _80051090:
     bl      fn_80053A30
-    lis     r4, lbl_80187118@ha
-    addi    r4, r4, lbl_80187118@l
+    lis	r4, -0x7fe8
+    addi	r4, r4, 0x7118
     stw	r3, 0x14(r4)
     li	r3, 0x60
     lwz	r4, 0x348(r31)
@@ -210,9 +207,9 @@ _80051238:
     cmpwi	r0, 1
     bne     _8005126c
     lwz	r4, 0x358(r29)
-    lis     r3, lbl_80130B68@ha
+    lis	r3, -0x7fed
     lwz	r0, 0x374(r29)
-    addi    r3, r3, lbl_80130B68@l
+    addi	r3, r3, 0xb68
     slwi	r4, r4, 4
     add	r3, r3, r4
     slwi	r0, r0, 2
@@ -227,9 +224,9 @@ _80051274:
     cmpwi	r0, 0
     bne     _800512a4
     lwz	r4, 0x354(r29)
-    lis     r3, lbl_80130B48@ha
+    lis	r3, -0x7fed
     lwz	r0, 0x364(r29)
-    addi    r3, r3, lbl_80130B48@l
+    addi	r3, r3, 0xb48
     slwi	r4, r4, 4
     add	r3, r3, r4
     slwi	r0, r0, 2

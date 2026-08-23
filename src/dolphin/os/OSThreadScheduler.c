@@ -1,7 +1,6 @@
 #pragma push
 #pragma force_active on
 
-void OSExitThread(register void* val);
 extern int OSDisableInterrupts(void);
 extern void OSEnableInterrupts(void);
 extern void OSRestoreInterrupts(int level);
@@ -13,7 +12,6 @@ extern int fn_8000BE68(register void* context);
 extern void fn_8000BFEC(register void* context, register void* pc, register void* sp);
 extern void __OSUnlockAllMutex(register void* thread);
 extern void OSWakeupThread(register void* queue);
-extern unsigned char __OSErrorTable[];
 
 asm void UnsetRun(register void* thread)
 {
@@ -100,8 +98,8 @@ _80010458:
     mr	r3, r31
     bl      UnsetRun
     stw	r30, 0x2d0(r31)
-    lis     r3, 0x8015
-    addi    r3, r3, -0x3fe8
+    lis	r3, -0x7fea
+    addi	r0, r3, -0x3fe8
     lwz	r3, 0x2d0(r31)
     slwi	r3, r3, 3
     add	r0, r0, r3
@@ -215,11 +213,11 @@ asm void* SelectThread(register int yield)
 {
     nofralloc
     mflr	r0
-    lis     r4, 0x8015
+    lis	r4, -0x7fea
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    addi    r4, r4, -0x3fe8
+    addi	r31, r4, -0x3fe8
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
     lwz	r0, -0x7bc0(r13)
@@ -426,8 +424,8 @@ _80010860:
     stw	r30, -8(r7)
     stw	r30, -4(r7)
     bl      fn_8000BFEC
-    lis     r3, OSExitThread@ha
-    addi    r3, r3, OSExitThread@l
+    lis	r3, -0x7fff
+    addi	r0, r3, 0xa10
     stw	r0, 0x84(r31)
     lis	r3, -0x2152
     subf	r4, r29, r28
@@ -441,8 +439,8 @@ _80010860:
     stw	r30, 0x310(r31)
     stw	r30, 0x314(r31)
     bl      OSDisableInterrupts
-    lis     r4, __OSErrorTable@ha
-    addi    r4, r4, __OSErrorTable@l
+    lis	r4, -0x7fea
+    addi	r4, r4, -0x40b0
     lwz	r0, 0x40(r4)
     cmplwi	r0, 0
     beq     _800109c4
@@ -773,8 +771,8 @@ _80010d48:
     cmplwi	r3, 0
     bne     _80010d28
     stw	r0, 0x2d0(r29)
-    lis     r3, 0x8015
-    addi    r3, r3, -0x3fe8
+    lis	r3, -0x7fea
+    addi	r0, r3, -0x3fe8
     lwz	r3, 0x2d0(r29)
     slwi	r3, r3, 3
     add	r0, r0, r3
@@ -1110,9 +1108,9 @@ asm void OSWakeupThread(register void* queue)
     stw	r30, 0x10(r1)
     mr	r30, r3
     bl      OSDisableInterrupts
-    lis     r4, 0x8015
+    lis	r4, -0x7fea
     addi	r31, r3, 0
-    addi    r4, r4, -0x3fe8
+    addi	r5, r4, -0x3fe8
     b       _80011258
 _800111c0:
     lwz	r3, 0x2e0(r6)

@@ -47,9 +47,6 @@ extern void fn_8005912C(register u32 p1, register u32 p2, register void* p3, reg
 extern void fn_800592E0(register u32 p1, register void* p2);
 extern void fn_80059428(register u32 p1, register void* p2, register u32 p3);
 extern void memset(register void* dst, register int v, register unsigned long n);
-extern unsigned char lbl_80090010[];
-extern unsigned char lbl_80178C18[];
-extern unsigned char lbl_80178CA8[];
 
 #pragma push
 #pragma force_active on
@@ -58,9 +55,9 @@ asm void fn_800410A4(void)
 {
     nofralloc
     mflr    r0
-    lis     r3, lbl_80178C18@ha
+    lis     r3, -0x7fe8
     stw     r0, 4(r1)
-    addi    r3, r3, lbl_80178C18@l
+    addi    r5, r3, -0x73e8
     addi    r3, r5, 0x30
     stwu    r1, -8(r1)
     li      r4, 0
@@ -117,10 +114,10 @@ asm void fn_80041164(void)
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r3, lbl_80178CA8@ha
+    lis     r3, -0x7fe8
     stw     r0, 0x14(r1)
     stw     r31, 0xc(r1)
-    addi    r3, r3, lbl_80178CA8@l
+    addi    r31, r3, -0x7358
     lwz     r3, 0(r31)
     addic.  r0, r3, -1
     stw     r0, 0(r31)
@@ -159,13 +156,13 @@ asm void fn_800411F4(void)
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r3, lbl_80090010@ha
-    lis     r4, lbl_80178CA8@ha
+    lis     r3, -0x7ff7
+    lis     r4, -0x7fe8
     stw     r0, 0x14(r1)
-    addi    r3, r3, lbl_80090010@l
+    addi    r3, r3, 0x10
     lwz     r3, 0(r3)
     stw     r31, 0xc(r1)
-    addi    r4, r4, lbl_80178CA8@l
+    addi    r31, r4, -0x7358
     lwz     r0, 0(r31)
     cmpwi   r0, 0
     bne     _80041310

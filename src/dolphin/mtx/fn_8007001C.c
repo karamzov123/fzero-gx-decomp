@@ -10,7 +10,6 @@ extern asm void GXGetGPStatus(void);
 extern asm void fn_80032F48(void);
 extern asm void fn_800723F8(void);
 extern asm void fn_800726C0(void);
-extern unsigned char lbl_8015A860[];
 
 asm void fn_8007001C(void)
 {
@@ -97,10 +96,10 @@ asm void fn_80070100(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis     r3, lbl_8015A860@ha
+    lis	r3, -0x7fea
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi    r3, r3, lbl_8015A860@l
+    addi	r31, r3, -0x57a0
     bl      fn_80032F48
     bl      fn_800723F8
     addi	r4, r31, 0

@@ -38,10 +38,6 @@ asm int fn_8003D588(register u32 a);
 asm int fn_8003E13C(register u32 a);
 asm int fn_8003E284(register u32 a);
 extern void fn_8003E9EC(void);
-extern unsigned char lbl_8012B590[];
-extern unsigned char lbl_8012B5D0[];
-extern unsigned char lbl_8012B5F8[];
-extern unsigned char lbl_801789C0[];
 
 #pragma push
 #pragma force_active on
@@ -933,8 +929,8 @@ _8003c784:
     li      r3, 0
     bl      PPCMtmmcr0
     bl      PPCMfpmc4
-    lis     r4, lbl_801789C0@ha
-    addi    r4, r4, lbl_801789C0@l
+    lis     r4, -0x7fe8
+    addi    r16, r4, -0x7640
     stw     r3, 0x118(r16)
     bl      PPCMfpmc3
     stw     r3, 0x128(r16)
@@ -1063,8 +1059,8 @@ _8003c970:
     bl      PPCMtmmcr1
     li      r3, 0
     bl      PPCMtmmcr0
-    lis     r3, lbl_801789C0@ha
-    addi    r3, r3, lbl_801789C0@l
+    lis     r3, -0x7fe8
+    addi    r16, r3, -0x7640
     lwz     r3, 0x14c(r16)
     addi    r0, r3, 1
     stw     r0, 0x14c(r16)
@@ -1084,8 +1080,8 @@ _8003c970:
     ble     _8003c9dc
     mr      r4, r0
 _8003c9dc:
-    lis     r3, lbl_801789C0@ha
-    addi    r3, r3, lbl_801789C0@l
+    lis     r3, -0x7fe8
+    addi    r27, r3, -0x7640
     stw     r4, 0x148(r27)
     li      r3, 0x8b
     lwz     r4, 0x118(r27)
@@ -1158,8 +1154,8 @@ _8003c9dc:
     ble     _8003cb00
     mr      r4, r0
 _8003cb00:
-    lis     r3, lbl_801789C0@ha
-    addi    r3, r3, lbl_801789C0@l
+    lis     r3, -0x7fe8
+    addi    r6, r3, -0x7640
     stw     r4, 0x228(r6)
     li      r3, 0x8b
     lwz     r4, 0x1f8(r6)
@@ -1297,8 +1293,8 @@ _8003ccdc:
     li      r3, 0
     bl      PPCMtmmcr0
     bl      PPCMfpmc4
-    lis     r4, lbl_801789C0@ha
-    addi    r4, r4, lbl_801789C0@l
+    lis     r4, -0x7fe8
+    addi    r27, r4, -0x7640
     stw     r3, 0x70(r27)
     bl      PPCMfpmc3
     stw     r3, 0x80(r27)
@@ -1347,8 +1343,8 @@ _8003ccdc:
     ble     _8003cdc4
     mr      r4, r0
 _8003cdc4:
-    lis     r3, lbl_801789C0@ha
-    addi    r3, r3, lbl_801789C0@l
+    lis     r3, -0x7fe8
+    addi    r6, r3, -0x7640
     stw     r4, 0xa0(r6)
     li      r3, 0x8b
     lwz     r4, 0x70(r6)
@@ -1442,8 +1438,8 @@ _8003cefc:
     li      r3, 0
     bl      PPCMtmmcr0
     bl      PPCMfpmc4
-    lis     r4, lbl_801789C0@ha
-    addi    r4, r4, lbl_801789C0@l
+    lis     r4, -0x7fe8
+    addi    r16, r4, -0x7640
     stw     r3, 0x118(r16)
     bl      PPCMfpmc3
     stw     r3, 0x128(r16)
@@ -1641,8 +1637,8 @@ _8003d1d4:
     bl      PPCMtmmcr1
     li      r3, 0
     bl      PPCMtmmcr0
-    lis     r3, lbl_801789C0@ha
-    addi    r3, r3, lbl_801789C0@l
+    lis     r3, -0x7fe8
+    addi    r16, r3, -0x7640
     lwz     r3, 0x14c(r16)
     addi    r0, r3, 1
     stw     r0, 0x14c(r16)
@@ -1662,8 +1658,8 @@ _8003d1d4:
     ble     _8003d244
     mr      r4, r0
 _8003d244:
-    lis     r3, lbl_801789C0@ha
-    addi    r3, r3, lbl_801789C0@l
+    lis     r3, -0x7fe8
+    addi    r16, r3, -0x7640
     stw     r4, 0x148(r16)
     li      r3, 0x8b
     lwz     r4, 0x118(r16)
@@ -1741,8 +1737,8 @@ _8003d244:
     ble     _8003d37c
     mr      r5, r0
 _8003d37c:
-    lis     r3, lbl_801789C0@ha
-    addi    r3, r3, lbl_801789C0@l
+    lis     r3, -0x7fe8
+    addi    r4, r3, -0x7640
     stw     r5, 0xa0(r4)
     li      r3, 0x8b
     lwz     r5, 0x70(r4)
@@ -2606,16 +2602,16 @@ _8003df1c:
     stw     r4, 8(r3)
     b       _8003dfd0
 _8003dfa8:
-    lis     r3, lbl_8012B590@ha
+    lis     r3, -0x7fed
     crxor   6, 6, 6
-    addi    r3, r3, lbl_8012B590@l
+    addi    r3, r3, -0x4a70
     clrlwi  r4, r28, 0x18
     bl      OSReport
     b       _8003dfd0
 _8003dfc0:
-    lis     r3, lbl_8012B5D0@ha
+    lis     r3, -0x7fed
     crxor   6, 6, 6
-    addi    r3, r3, lbl_8012B5D0@l
+    addi    r3, r3, -0x4a30
     bl      OSReport
 _8003dfd0:
     mr      r3, r29
@@ -2648,9 +2644,9 @@ asm int fn_8003DFF8(register u32 a)
     lwz     r29, 8(r4)
     cmpwi   r29, 0
     bge     _8003e050
-    lis     r3, lbl_8012B5F8@ha
+    lis     r3, -0x7fed
     crxor   6, 6, 6
-    addi    r3, r3, lbl_8012B5F8@l
+    addi    r3, r3, -0x4a08
     bl      OSReport
     mr      r3, r30
     bl      OSRestoreInterrupts

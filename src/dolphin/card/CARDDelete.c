@@ -1,6 +1,5 @@
 // dolphin/card/CARDDelete.c -- carved from coarse/text_8002F5B8 (0x8002F934-0x8002FC5C).
 // Melee identity: extern/dolphin/src/dolphin/card/CARDDelete.c
-extern void __CARDSyncCallback(void); // 0x80029828
 //   DeleteCallback (static), CARDFastDeleteAsync, CARDDeleteAsync, CARDDelete.
 // Retail quirk: __CARDIsOpened is an 8-byte stub (fn_8002EDA0: li r3,0; blr).
 // CARD_MAX_FILE == 127 (cmpwi rX, 0x7f range guards).
@@ -11,7 +10,6 @@ typedef unsigned long u32;
 typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
-extern void fn_80029824(void); // 0x80029824
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 __CARDFreeBlock(register s32 chn, register u16 nBlock, register void* callback);
 extern s32 __CARDGetDirBlock(void);
@@ -135,12 +133,12 @@ _L_8002fa80:
     mr      r0, r30
     b       _L_8002fab4
 _L_8002faac:
-    lis     r3, fn_80029824@ha
-    addi    r0, r3, fn_80029824@l /* __CARDDefaultApiCallback */
+    lis     r3, 0x8003
+    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
 _L_8002fab4:
     lwz     r5, 0x14(r1)
     lis     r3, 0x8003
-    addi    r4, r3, -0x6cc /* DeleteCallback */
+    addi    r4, r3, -0x6cc          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r28
     bl      __CARDUpdateDir
@@ -216,12 +214,12 @@ _L_8002fb84:
     mr      r0, r30
     b       _L_8002fbc8
 _L_8002fbc0:
-    lis     r3, fn_80029824@ha
-    addi    r0, r3, fn_80029824@l /* __CARDDefaultApiCallback */
+    lis     r3, 0x8003
+    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
 _L_8002fbc8:
     lwz     r5, 0x18(r1)
     lis     r3, 0x8003
-    addi    r4, r3, -0x6cc /* DeleteCallback */
+    addi    r4, r3, -0x6cc          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r31
     bl      __CARDUpdateDir
@@ -246,9 +244,9 @@ asm s32 CARDDelete(register s32 chan, register char* fileName)
 {
     nofralloc
     mflr    r0
-    lis     r5, __CARDSyncCallback@ha
+    lis     r5, 0x8003
     stw     r0, 4(r1)
-    addi    r5, r5, __CARDSyncCallback@l /* __CARDSyncCallback */
+    addi    r5, r5, -0x67d8         /* __CARDSyncCallback */
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
     addi    r31, r3, 0

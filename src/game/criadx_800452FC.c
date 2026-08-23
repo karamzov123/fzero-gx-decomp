@@ -31,10 +31,6 @@ extern void fn_8004E354(void);
 extern void fn_8004E4AC(void);
 extern void fn_8008023C(void);
 extern void fn_8004E270(void);
-extern unsigned char SPSD_str[];
-extern unsigned char lbl_8017A29C[];
-extern unsigned char lbl_800900A0[];
-extern unsigned char lbl_8017A288[];
 
 asm void fn_800452FC(void)
 {
@@ -417,16 +413,16 @@ asm void fn_800456A0(void)
     nofralloc
     stwu	r1, -0x50(r1)
     mflr	r0
-    lis     r6, lbl_800900A0@ha
+    lis	r6, -0x7ff7
     stw	r0, 0x54(r1)
     li	r0, 1
     stmw	r26, 0x38(r1)
     mr	r29, r3
     mr	r31, r5
     mr	r30, r4
-    lis     r5, lbl_8017A288@ha
-    addi    r6, r6, lbl_800900A0@l
-    addi    r5, r5, lbl_8017A288@l
+    lis	r5, -0x7fe8
+    addi	r27, r6, 0xa0
+    addi	r26, r5, -0x5d78
     mr	r4, r31
     addi	r5, r1, 0x12
     addi	r6, r29, 0xc
@@ -887,10 +883,10 @@ asm void fn_80045D90(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis     r7, lbl_8017A29C@ha
+    lis	r7, -0x7fe8
     stw	r0, 0x24(r1)
     li	r0, 2
-    addi    r7, r7, lbl_8017A29C@l
+    addi	r7, r7, -0x5d64
     stmw	r27, 0xc(r1)
     mr	r27, r3
     mr	r28, r4
@@ -947,9 +943,9 @@ _80045e68:
     b       _80045f44
 _80045e78:
     mulli	r5, r3, 0xd8
-    lis     r3, lbl_8017A29C@ha
+    lis	r3, -0x7fe8
     li	r4, 0
-    addi    r3, r3, lbl_8017A29C@l
+    addi	r0, r3, -0x5d64
     add	r29, r0, r5
     li	r5, 0xd8
     mr	r3, r29
@@ -1033,13 +1029,13 @@ asm void fn_80045FA4(void)
     mflr	r0
     stw	r0, 0x14(r1)
     bl      fn_8004E4AC
-    lis     r4, lbl_8017A288@ha
-    lis     r3, lbl_8017A29C@ha
-    addi    r4, r4, lbl_8017A288@l
+    lis	r4, -0x7fe8
+    lis	r3, -0x7fe8
+    addi	r7, r4, -0x5d78
     li	r5, 0xd80
     lwz	r6, 0(r7)
     li	r4, 0
-    addi    r3, r3, lbl_8017A29C@l
+    addi	r3, r3, -0x5d64
     addi	r0, r6, 1
     stw	r0, 0(r7)
     bl      memset
@@ -1054,10 +1050,10 @@ asm void fn_80045FEC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis     r4, SPSD_str@ha
+    lis	r4, -0x7ff7
     li	r5, 4
     stw	r0, 0x14(r1)
-    addi    r4, r4, SPSD_str@l
+    addi	r4, r4, 0x928
     bl      fn_8008023C
     cntlzw	r0, r3
     srwi	r3, r0, 5

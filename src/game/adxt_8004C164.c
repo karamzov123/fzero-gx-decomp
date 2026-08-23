@@ -32,12 +32,6 @@ extern void fn_8004EEE4(void);
 extern void fn_80056CD0(void);
 extern void fn_80057114(void);
 extern void memset(void);
-extern unsigned char E02080805_ADXT_Destroy_parameter_error_str[];
-extern unsigned char E02080812_ADXT_StartSj_parameter_error_str[];
-extern unsigned char E02080813_ADXT_Stop_parameter_error_str[];
-extern unsigned char E02080814_ADXT_GetStat_parameter_error_str[];
-extern unsigned char E02080860_ADXT_SetKeyString_parameter_error_str[];
-extern unsigned char lbl_8017E568[];
 
 asm void fn_8004C164(void)
 {
@@ -45,15 +39,15 @@ asm void fn_8004C164(void)
 _8004c164:
     stwu	r1, -0x50(r1)
     mflr	r0
-    lis     r6, E02080860_ADXT_SetKeyString_parameter_error_str@ha
+    lis	r6, -0x7ff7
     stw	r0, 0x54(r1)
     stmw	r25, 0x34(r1)
     or.	r27, r3, r3
-    lis     r3, lbl_8017E568@ha
+    lis	r3, -0x7fe8
     mr	r28, r4
     mr	r29, r5
-    addi    r6, r6, E02080860_ADXT_SetKeyString_parameter_error_str@l
-    addi    r3, r3, lbl_8017E568@l
+    addi	r30, r6, 0x9c0
+    addi	r31, r3, -0x1a98
     beq     _8004c1a4
     cmplwi	r28, 0
     beq     _8004c1a4
@@ -396,8 +390,8 @@ asm void fn_8004C658(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004c680
-    lis     r3, E02080814_ADXT_GetStat_parameter_error_str@ha
-    addi    r3, r3, E02080814_ADXT_GetStat_parameter_error_str@l
+    lis	r3, -0x7ff7
+    addi	r3, r3, 0xc60
     bl      fn_800474E4
     li	r3, -1
     b       _8004c688
@@ -420,8 +414,8 @@ asm void fn_8004C698(void)
     stw	r31, 0xc(r1)
     or.	r31, r3, r3
     bne     _8004c6c0
-    lis     r3, E02080813_ADXT_Stop_parameter_error_str@ha
-    addi    r3, r3, E02080813_ADXT_Stop_parameter_error_str@l
+    lis	r3, -0x7ff7
+    addi	r3, r3, 0xfc4
     bl      fn_800474E4
     b       _8004c780
 _8004c6c0:
@@ -501,15 +495,15 @@ asm void fn_8004C794(void)
     cmplwi	r31, 0
     bne     _8004c7d4
 _8004c7c4:
-    lis     r3, E02080812_ADXT_StartSj_parameter_error_str@ha
-    addi    r3, r3, E02080812_ADXT_StartSj_parameter_error_str@l
+    lis	r3, -0x7ff7
+    addi	r3, r3, 0xfec
     bl      fn_800474E4
     b       _8004c960
 _8004c7d4:
     cmplwi	r30, 0
     bne     _8004c7ec
-    lis     r3, E02080813_ADXT_Stop_parameter_error_str@ha
-    addi    r3, r3, E02080813_ADXT_Stop_parameter_error_str@l
+    lis	r3, -0x7ff7
+    addi	r3, r3, 0xfc4
     bl      fn_800474E4
     b       _8004c8ac
 _8004c7ec:
@@ -726,8 +720,8 @@ asm void fn_8004CAC8(void)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
     bne     _8004caf8
-    lis     r3, E02080805_ADXT_Destroy_parameter_error_str@ha
-    addi    r3, r3, E02080805_ADXT_Destroy_parameter_error_str@l
+    lis	r3, -0x7ff7
+    addi	r3, r3, 0x1014
     bl      fn_800474E4
     b       _8004cd54
 _8004caf8:
@@ -743,8 +737,8 @@ _8004cb10:
     bne     _8004cbf4
     cmplwi	r31, 0
     bne     _8004cb34
-    lis     r3, E02080813_ADXT_Stop_parameter_error_str@ha
-    addi    r3, r3, E02080813_ADXT_Stop_parameter_error_str@l
+    lis	r3, -0x7ff7
+    addi	r3, r3, 0xfc4
     bl      fn_800474E4
     b       _8004cbf4
 _8004cb34:
