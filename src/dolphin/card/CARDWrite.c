@@ -10,8 +10,8 @@ typedef int s32;
 typedef unsigned long u32;
 typedef unsigned short u16;
 
-extern s32 fn_8002A83C(register void* card, register void** pctrl);
-extern void fn_8002A8F4(register void* ctrl, register s32 err);
+extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
+extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 fn_8002C0B8(register void* ctrl);
 extern s32 fn_8002C4BC(void);
 extern s32 __CARDEraseSector(register s32 chn, register s32 addr, register void* callback);
@@ -21,7 +21,7 @@ extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
 extern s32 fn_8002F140(register void* fileInfo, register s32 length, register s32 offset,
                        register void** pcard);
 extern s32 fn_8002C65C(register s32 chn, register void* callback);
-extern s32 fn_8002AAD8(register s32 chn);
+extern s32 __CARDSync(register s32 chn);
 extern void DCStoreRange(register void* addr, register u32 n);
 extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
@@ -116,7 +116,7 @@ _L_8002f6dc:
     addi    r3, r31, 0
     stw     r0, 0xd0(r31)
     mr      r4, r28
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     addi    r12, r29, 0
     mtlr    r12
     addi    r3, r30, 0
@@ -167,7 +167,7 @@ _L_8002f78c:
     addi    r3, r31, 0
     stw     r0, 0xd0(r31)
     mr      r4, r29
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     addi    r12, r30, 0
     mtlr    r12
     addi    r3, r28, 0
@@ -214,7 +214,7 @@ _L_8002f818:
     beq     _L_8002f840
 _L_8002f834:
     li      r4, -0x80
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _L_8002f8d8
 _L_8002f840:
     bl      fn_8002C4BC
@@ -226,7 +226,7 @@ _L_8002f840:
     or.     r4, r3, r3
     bge     _L_8002f86c
     lwz     r3, 0x1c(r1)
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _L_8002f8d8
 _L_8002f86c:
     addi    r3, r31, 0
@@ -256,7 +256,7 @@ _L_8002f890:
     bge     _L_8002f8d4
     lwz     r3, 0x1c(r1)
     mr      r4, r30
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _L_8002f8d4:
     mr      r3, r30
 _L_8002f8d8:
@@ -284,7 +284,7 @@ asm s32 CARDWrite(register void* fileInfo, register void* buf, register s32 leng
     b       _L_8002f920
 _L_8002f918:
     lwz     r3, 0(r31)
-    bl      fn_8002AAD8
+    bl      __CARDSync
 _L_8002f920:
     lwz     r0, 0x24(r1)
     lwz     r31, 0x1c(r1)

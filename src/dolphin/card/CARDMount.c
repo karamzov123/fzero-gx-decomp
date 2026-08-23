@@ -9,15 +9,15 @@ extern void fn_8002A74C(void);
 extern void fn_8002A774(void);
 extern void fn_8002A7AC(void);
 extern void fn_8002A7C4(void);
-extern void fn_8002A83C(void);
-extern void fn_8002A8F4(void);
-extern void fn_8002A958(void);
-extern void fn_8002A988(void);
-extern void fn_8002AAD8(void);
+extern void __CARDGetControlBlock(void);
+extern void __CARDPutControlBlock(void);
+extern void CARDGetResultCode(void);
+extern void CARDFreeBlocks(void);
+extern void __CARDSync(void);
 extern void fn_8002AB70(void);
 extern void fn_8002ABC0(void);
-extern void fn_8002AD2C(void);
-extern void fn_8002AE70(void);
+extern void ReadArrayUnlock(void);
+extern void GetInitVal(void);
 extern void DSPInit(void);
 extern void EXIDeselect(void);
 extern void EXIImmEx(void);
@@ -185,7 +185,7 @@ _8002a824:
     blr	
 }
 
-asm void fn_8002A83C(void)
+asm void __CARDGetControlBlock(void)
 {
     nofralloc
     mflr	r0
@@ -242,7 +242,7 @@ _8002a8d8:
     blr	
 }
 
-asm void fn_8002A8F4(void)
+asm void __CARDPutControlBlock(void)
 {
     nofralloc
     mflr	r0
@@ -274,7 +274,7 @@ _8002a938:
     blr	
 }
 
-asm void fn_8002A958(void)
+asm void CARDGetResultCode(void)
 {
     nofralloc
     cmpwi	r3, 0
@@ -293,7 +293,7 @@ _8002a970:
     blr	
 }
 
-asm void fn_8002A988(void)
+asm void CARDFreeBlocks(void)
 {
     nofralloc
     mflr	r0
@@ -305,7 +305,7 @@ asm void fn_8002A988(void)
     stw	r29, 0x24(r1)
     addi	r29, r4, 0
     addi	r4, r1, 0x18
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi	r3, 0
     bge     _8002a9bc
     b       _8002aabc
@@ -395,7 +395,7 @@ _8002aabc:
     blr	
 }
 
-asm void fn_8002AAD8(void)
+asm void __CARDSync(void)
 {
     nofralloc
     mflr	r0
@@ -580,7 +580,7 @@ _8002ad1c:
     blr	
 }
 
-asm void fn_8002AD2C(void)
+asm void ReadArrayUnlock(void)
 {
     nofralloc
     mflr	r0
@@ -671,7 +671,7 @@ _8002ae5c:
     blr	
 }
 
-asm void fn_8002AE70(void)
+asm void GetInitVal(void)
 {
     nofralloc
     mflr	r0

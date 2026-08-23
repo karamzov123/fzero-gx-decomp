@@ -54,9 +54,9 @@ extern void __CARDReadStatus(void);
 extern void __CARDClearStatus(void);
 extern void __CARDEraseSector(void);
 extern void fn_8002A744(void);
-extern void fn_8002A83C(void);
-extern void fn_8002A8F4(void);
-extern void fn_8002AAD8(void);
+extern void __CARDGetControlBlock(void);
+extern void __CARDPutControlBlock(void);
+extern void __CARDSync(void);
 extern void fn_8002AF34(void);
 extern void fn_8002BEFC(void);
 extern void fn_8002C03C(void);
@@ -668,7 +668,7 @@ asm void fn_8002D0A4(void)
 _8002d0d8:
     addi	r3, r25, 0
     addi	r4, r1, 0x30
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi	r3, 0
     bge     _8002d0f0
     b       _8002d620
@@ -678,7 +678,7 @@ _8002d0f0:
     or.	r4, r3, r3
     bge     _8002d10c
     lwz	r3, 0x30(r1)
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _8002d620
 _8002d10c:
     lwz	r3, 0x30(r1)
@@ -693,7 +693,7 @@ _8002d10c:
     ble     _8002d144
     lwz	r3, 0x30(r1)
     li	r4, -6
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _8002d620
 _8002d144:
     lwz	r6, 0x30(r1)
@@ -785,7 +785,7 @@ _8002d254:
 _8002d288:
     lwz	r3, 0x30(r1)
     li	r4, -6
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _8002d620
 _8002d298:
     lwz	r3, 0x88(r5)
@@ -810,7 +810,7 @@ _8002d2c0:
 _8002d2dc:
     lwz	r3, 0x30(r1)
     li	r4, -6
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _8002d620
 _8002d2ec:
     addi	r6, r6, 0x40
@@ -845,7 +845,7 @@ _8002d350:
     cmplwi	r0, 0xffff
     beq     _8002d364
     li	r4, -6
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _8002d620
 _8002d364:
     addi	r5, r5, 2
@@ -1022,7 +1022,7 @@ _8002d5cc:
 _8002d5e4:
     lwz	r3, 0x30(r1)
     li	r4, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     cmplwi	r27, 0
     beq     _8002d61c
     bl      OSDisableInterrupts
@@ -1078,7 +1078,7 @@ asm void fn_8002D65C(void)
     b       _8002d69c
 _8002d694:
     mr	r3, r31
-    bl      fn_8002AAD8
+    bl      __CARDSync
 _8002d69c:
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
@@ -1524,7 +1524,7 @@ _8002dc70:
     bge     _8002dcb4
     addi	r3, r31, 0
     addi	r4, r28, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002dcb4:
     mr	r3, r28
     b       _8002dce8
@@ -1626,7 +1626,7 @@ _8002ddf4:
     addi	r3, r31, 0
     stw	r0, 0xd0(r31)
     mr	r4, r29
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     addi	r12, r30, 0
     mtlr	r12
     addi	r3, r28, 0
@@ -1778,7 +1778,7 @@ asm void fn_8002DFE0(void)
     b       _8002e014
 _8002e00c:
     mr	r3, r31
-    bl      fn_8002AAD8
+    bl      __CARDSync
 _8002e014:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -1843,7 +1843,7 @@ asm void fn_8002E0C4(void)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
     addi	r29, r3, 0
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi	r3, 0
     bge     _8002e0f4
     b       _8002e154
@@ -1956,7 +1956,7 @@ _8002e268:
     addi	r3, r31, 0
     stw	r0, 0xd0(r31)
     mr	r4, r28
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     addi	r12, r29, 0
     mtlr	r12
     addi	r3, r30, 0
@@ -1984,7 +1984,7 @@ asm void fn_8002E2B4(void)
     addi	r22, r3, 0
     addi	r19, r5, 0
     addi	r4, r1, 0x18
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi	r3, 0
     bge     _8002e2e4
     b       _8002e8f8
@@ -2384,7 +2384,7 @@ _8002e88c:
     bge     _8002e8e8
     lwz	r3, 0x18(r1)
     mr	r4, r18
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002e8e8:
     mr	r3, r18
     b       _8002e8f8
@@ -2638,7 +2638,7 @@ asm void fn_8002EBD4(void)
     addi	r27, r3, 0
     addi	r4, r1, 0x14
     stw	r0, 0(r5)
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi	r3, 0
     bge     _8002ec0c
     b       _8002ed38
@@ -2728,7 +2728,7 @@ _8002ed14:
 _8002ed2c:
     lwz	r3, 0x14(r1)
     mr	r4, r23
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002ed38:
     lmw	r23, 0x1c(r1)
     lwz	r0, 0x44(r1)
@@ -2747,7 +2747,7 @@ asm void fn_8002ED4C(void)
     mr	r31, r3
     addi	r4, r1, 0xc
     lwz	r3, 0(r3)
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi	r3, 0
     bge     _8002ed78
     b       _8002ed8c
@@ -2756,7 +2756,7 @@ _8002ed78:
     stw	r0, 0(r31)
     li	r4, 0
     lwz	r3, 0xc(r1)
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002ed8c:
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
@@ -2839,7 +2839,7 @@ asm void fn_8002EDA8(void)
 _8002ee9c:
     addi	r3, r31, 0
     addi	r4, r30, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     cmplwi	r29, 0
     beq     _8002eec4
     addi	r12, r29, 0

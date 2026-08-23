@@ -9,8 +9,8 @@ typedef int s32;
 typedef unsigned long u32;
 typedef unsigned short u16;
 
-extern s32 fn_8002A83C(register void* card, register void** pctrl);
-extern void fn_8002A8F4(register void* ctrl, register s32 err);
+extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
+extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 fn_8002C4BC(void);
 extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
 extern s32 fn_8002E954(register void* ent, register char* fileName);
@@ -18,7 +18,7 @@ extern s32 fn_8008023C(register void* a, register void* b, register u32 n);
 extern u32 strlen(register char* s);
 extern s32 fn_80083D6C(register char* dst, register char* src, register u32 n);
 extern s32 fn_8002C65C(register s32 chn, register void* callback);
-extern s32 fn_8002AAD8(register s32 chn);
+extern s32 __CARDSync(register s32 chn);
 extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
 
@@ -67,7 +67,7 @@ _L_800301b4:
 _L_800301bc:
     addi    r3, r28, 0
     addi    r4, r1, 0x18
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi   r3, 0
     bge     _L_800301d4
     b       _L_80030324
@@ -120,14 +120,14 @@ _L_80030268:
     bne     _L_80030290
     lwz     r3, 0x18(r1)
     li      r4, -4
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _L_80030324
 _L_80030290:
     cmpwi   r24, -1
     beq     _L_800302a8
     lwz     r3, 0x18(r1)
     li      r4, -7
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _L_80030324
 _L_800302a8:
     slwi    r0, r23, 6
@@ -138,7 +138,7 @@ _L_800302a8:
     or.     r4, r3, r3
     bge     _L_800302d0
     lwz     r3, 0x18(r1)
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _L_80030324
 _L_800302d0:
     addi    r4, r30, 0
@@ -160,7 +160,7 @@ _L_800302d0:
     bge     _L_80030320
     lwz     r3, 0x18(r1)
     mr      r4, r27
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _L_80030320:
     mr      r3, r27
 _L_80030324:
@@ -187,7 +187,7 @@ asm s32 CARDRename(register s32 chan, register char* oldName, register char* new
     b       _L_8003036c
 _L_80030364:
     mr      r3, r31
-    bl      fn_8002AAD8
+    bl      __CARDSync
 _L_8003036c:
     lwz     r0, 0x24(r1)
     lwz     r31, 0x1c(r1)

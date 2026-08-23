@@ -14,14 +14,14 @@ typedef int s32;
 typedef unsigned long u32;
 typedef unsigned short u16;
 
-extern s32 fn_8002A83C(register void* card, register void** pctrl);
-extern void fn_8002A8F4(register void* ctrl, register s32 err);
+extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
+extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 fn_8002C4BC(void);
 extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
 extern s32 fn_8002EA54(register void* ent);
 extern void* memcpy(register void* dst, register void* src, register u32 n);
 extern s32 fn_8002C65C(register s32 chn, register void* callback);
-extern s32 fn_8002AAD8(register s32 chn);
+extern s32 __CARDSync(register s32 chn);
 extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
 
@@ -201,7 +201,7 @@ _L_8002fe80:
     b       _L_8002ff64
 _L_8002fe88:
     addi    r4, r1, 0x14
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi   r3, 0
     bge     _L_8002fe9c
     b       _L_8002ff64
@@ -257,7 +257,7 @@ _L_8002fed0:
 _L_8002ff58:
     lwz     r3, 0x14(r1)
     mr      r4, r30
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _L_8002ff64:
     lwz     r0, 0x2c(r1)
     lwz     r31, 0x24(r1)
@@ -306,7 +306,7 @@ _L_8002ffec:
 _L_8002fff4:
     addi    r3, r28, 0
     addi    r4, r1, 0x18
-    bl      fn_8002A83C
+    bl      __CARDGetControlBlock
     cmpwi   r3, 0
     bge     _L_8003000c
     b       _L_800300d4
@@ -321,7 +321,7 @@ _L_8003000c:
     or.     r4, r3, r3
     bge     _L_8003003c
     lwz     r3, 0x18(r1)
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
     b       _L_800300d4
 _L_8003003c:
     lbz     r0, 0x2e(r29)
@@ -361,7 +361,7 @@ _L_80030090:
     bge     _L_800300d0
     lwz     r3, 0x18(r1)
     mr      r4, r28
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _L_800300d0:
     mr      r3, r28
 _L_800300d4:
@@ -391,7 +391,7 @@ asm s32 CARDSetStatus(register s32 chan, register s32 fileNo, register void* sta
     b       _L_80030128
 _L_80030120:
     mr      r3, r31
-    bl      fn_8002AAD8
+    bl      __CARDSync
 _L_80030128:
     lwz     r0, 0x24(r1)
     lwz     r31, 0x1c(r1)

@@ -32,10 +32,10 @@ extern void __CARDReadStatus(void);
 extern void __CARDReadSegment(void);
 extern void __CARDWritePage(void);
 extern void __CARDEraseSector(void);
-extern void fn_8002A8F4(void);
+extern void __CARDPutControlBlock(void);
 extern void fn_8002ABC0(void);
-extern void fn_8002AD2C(void);
-extern void fn_8002AE70(void);
+extern void ReadArrayUnlock(void);
+extern void GetInitVal(void);
 extern void fn_8002DD08(void);
 extern void memcpy(void);
 
@@ -72,14 +72,14 @@ asm void fn_8002AF34(void)
     rlwinm	r0, r0, 0x10, 0x11, 0x1f
     or	r25, r25, r0
     rlwinm	r25, r25, 0, 0, 0x13
-    bl      fn_8002AE70
+    bl      GetInitVal
     addi	r26, r3, 0
     addi	r6, r26, 0
     addi	r3, r24, 0
     addi	r4, r25, 0
     addi	r5, r1, 0xa4
     li	r7, 0
-    bl      fn_8002AD2C
+    bl      ReadArrayUnlock
     cmpwi	r3, 0
     bge     _8002afdc
     li	r3, -3
@@ -195,14 +195,14 @@ _8002b154:
     lwz	r3, 0x2c(r31)
     bl      fn_8002ABC0
     stw	r3, 0x2c(r31)
-    bl      fn_8002AE70
+    bl      GetInitVal
     addi	r27, r3, 0
     addi	r6, r27, 0x14
     addi	r3, r24, 0
     addi	r5, r1, 0xa4
     li	r4, 0
     li	r7, 1
-    bl      fn_8002AD2C
+    bl      ReadArrayUnlock
     cmpwi	r3, 0
     bge     _8002b1b4
     li	r3, -3
@@ -853,7 +853,7 @@ _8002bb50:
     addi	r0, r3, 0x2f
     rlwinm	r3, r0, 0, 0, 0x1a
     lwz	r30, 0x20(r3)
-    bl      fn_8002AE70
+    bl      GetInitVal
     lwz	r0, 0x2c(r29)
     addi	r28, r3, 0
     addi	r6, r28, 0
@@ -862,7 +862,7 @@ _8002bb50:
     addi	r3, r31, 0
     addi	r5, r1, 0x34
     li	r7, 1
-    bl      fn_8002AD2C
+    bl      ReadArrayUnlock
     cmpwi	r3, 0
     bge     _8002bba8
     mr	r3, r31
@@ -983,7 +983,7 @@ _8002bd30:
     srwi	r3, r3, 0x1f
     or	r0, r0, r3
     stw	r0, 0x2c(r29)
-    bl      fn_8002AE70
+    bl      GetInitVal
     lwz	r0, 0x2c(r29)
     slwi	r4, r30, 0x10
     addi	r6, r3, 0
@@ -992,7 +992,7 @@ _8002bd30:
     addi	r3, r31, 0
     addi	r5, r1, 0x34
     li	r7, 1
-    bl      fn_8002AD2C
+    bl      ReadArrayUnlock
     cmpwi	r3, 0
     bge     _8002bd9c
     mr	r3, r31
@@ -1081,7 +1081,7 @@ _8002bea0:
     bne     _8002beb8
     addi	r3, r30, 0
     addi	r4, r29, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002beb8:
     lwz	r0, 0xd4(r30)
     cmplwi	r0, 0
@@ -1176,7 +1176,7 @@ _8002bfe0:
     bne     _8002bff8
     addi	r3, r30, 0
     addi	r4, r29, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002bff8:
     lwz	r0, 0xd4(r30)
     cmplwi	r0, 0
@@ -1283,7 +1283,7 @@ _8002c138:
     bne     _8002c150
     addi	r3, r31, 0
     addi	r4, r30, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002c150:
     lwz	r0, 0xd8(r31)
     cmplwi	r0, 0
@@ -1341,7 +1341,7 @@ _8002c200:
     bne     _8002c218
     addi	r3, r30, 0
     addi	r4, r29, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002c218:
     lwz	r0, 0xd8(r30)
     cmplwi	r0, 0
@@ -1592,7 +1592,7 @@ _8002c538:
     bne     _8002c550
     addi	r3, r31, 0
     addi	r4, r30, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002c550:
     lwz	r0, 0xd8(r31)
     cmplwi	r0, 0
@@ -1650,7 +1650,7 @@ _8002c600:
     bne     _8002c618
     addi	r3, r30, 0
     addi	r4, r29, 0
-    bl      fn_8002A8F4
+    bl      __CARDPutControlBlock
 _8002c618:
     lwz	r0, 0xd8(r30)
     cmplwi	r0, 0
