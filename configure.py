@@ -315,6 +315,7 @@ config.libs = [
         Object(Matching, "dolphin/card/CARDStat.c"),
         Object(Matching, "dolphin/card/CARDRename.c"),
         Object(Matching, "dolphin/mtx/MTX.c"),
+        Object(Matching, "dolphin/mtx/fn_8006E324.c"),
         Object(Matching, "dolphin/ai/AI.c"),
         Object(Matching, "dolphin/ar/AR.c"),
         Object(Matching, "dolphin/ar/ARQ.c"),

@@ -329,8 +329,11 @@ coarse/text_80069AE0.c:
 dolphin/mtx/MTX.c:
 	.text       start:0x8006E200 end:0x8006E324
 
-coarse/text_8006E324.c:
-	.text       start:0x8006E324 end:0x80071CC0
+dolphin/mtx/fn_8006E324.c:
+	.text       start:0x8006E324 end:0x8006E5FC
+
+coarse/text_8006E5FC.c:
+	.text       start:0x8006E5FC end:0x80071CC0
 
 game/fn_80071CC0.c:
 	.text       start:0x80071CC0 end:0x800724CC
