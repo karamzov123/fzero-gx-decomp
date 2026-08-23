@@ -5,7 +5,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned short u16;
 
-extern s32 fn_8000FCD4(s32 arg0, s32 arg1, s32 arg2);
+extern s32 __OSReadROM(s32 arg0, s32 arg1, s32 arg2);
 extern s32 fn_8000CAC8(s32 code);
 extern void fn_8000CC64(void* dst, void* src);
 extern u16 fn_8000CDD8(void);
@@ -310,7 +310,7 @@ Yay0Write_retry:
     addi    r3, r28, 0
     addi    r4, r31, 0
     addi    r5, r30, 0
-    bl      fn_8000FCD4
+    bl      __OSReadROM
     cmpwi   r3, 0
     beq     Yay0Write_retry
     add     r30, r30, r31

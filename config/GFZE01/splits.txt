@@ -98,7 +98,7 @@ dolphin/os/OSAlarm.c:
 dolphin/os/OSArena.c:
 	.text       start:0x8000B314 end:0x8000B334
 
-coarse/text_8000B334.c:
+dolphin/os/OSAudioSystem.c:
 	.text       start:0x8000B334 end:0x8000B614
 
 dolphin/os/OSCache.c:
@@ -146,8 +146,11 @@ dolphin/os/OSRtc.c:
 dolphin/os/OSSram.c:
 	.text       start:0x8000F788 end:0x8000FCD4
 
-coarse/text_8000FCD4.c:
-	.text       start:0x8000FCD4 end:0x80010144
+dolphin/os/OSRtc.c:
+	.text       start:0x8000FCD4 end:0x800100BC
+
+dolphin/os/OSSync.c:
+	.text       start:0x800100BC end:0x80010144
 
 dolphin/os/OSThreadInit.c:
 	.text       start:0x80010144 end:0x8001029C

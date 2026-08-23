@@ -21,8 +21,8 @@ extern int OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(register int level);
 extern unsigned long long __OSGetSystemTime(void);
 extern u32 fn_8001BF84(void);
-extern void fn_80010010(s32 chan, u32 unk);
-extern u32 fn_8000FF8C(s32 chan);
+extern void OSSetWirelessID(s32 chan, u32 unk);
+extern u32 OSGetWirelessID(s32 chan);
 extern void OSCancelAlarm(void* alarm);
 extern void OSSetAlarm(register void* alarm, register s64 tick,
                        register void (*handler)(void*, OSContext*));
@@ -1525,7 +1525,7 @@ asm void GetTypeCallback(register s32 chan, register u32 status,
 L_80012B14:
     addi        r3, r27, 0x0
     li          r4, 0x0
-    bl          fn_80010010
+    bl          OSSetWirelessID
     slwi        r0, r27, 4
     lwz         r30, 0x0(r30)
     add         r31, r31, r0
@@ -1549,7 +1549,7 @@ L_80012B58:
     b           L_80012CF8
 L_80012B6C:
     mr          r3, r27
-    bl          fn_8000FF8C
+    bl          OSGetWirelessID
     cmpwi       r26, 0x0
     clrlslwi    r26, r3, 16, 8
     beq         L_80012BD0
@@ -1587,7 +1587,7 @@ L_80012BD0:
     oris        r26, r3, 0x10
     addi        r3, r27, 0x0
     extrwi      r4, r26, 16, 8
-    bl          fn_80010010
+    bl          OSSetWirelessID
 L_80012C08:
     oris        r0, r26, 0x4e00
     add         r4, r31, r29
@@ -1613,7 +1613,7 @@ L_80012C44:
     oris        r28, r28, 0x10
     addi        r3, r27, 0x0
     extrwi      r4, r28, 16, 8
-    bl          fn_80010010
+    bl          OSSetWirelessID
     oris        r0, r28, 0x4e00
     add         r4, r31, r29
     stwu        r0, 0x1f0(r4)
@@ -1632,7 +1632,7 @@ L_80012C44:
 L_80012CA4:
     addi        r3, r27, 0x0
     li          r4, 0x0
-    bl          fn_80010010
+    bl          OSSetWirelessID
 L_80012CB0:
     slwi        r0, r27, 4
     lwz         r30, 0x0(r30)
