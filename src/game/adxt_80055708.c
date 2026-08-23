@@ -14,8 +14,8 @@ extern void fn_800197A4(void);
 extern void fn_80019B78(void);
 extern void fn_8004AC58(void);
 extern void gcciErrPrintf(void);
-extern void fn_800566F0(void);
-extern void fn_80056710(void);
+extern void gccicrit_leave(void);
+extern void gccicrit_enter(void);
 extern void fn_80057494(void);
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
@@ -27,18 +27,18 @@ extern void strlen(void);
 extern unsigned char E0040301_handl_is_null_str[448];
 extern unsigned char E0092912_handl_is_null_str[24];
 extern void fn_800555C0(void);
-extern unsigned char lbl_80091F50[43];
-extern unsigned char lbl_80092188[35];
-extern unsigned char lbl_800921AC[33];
-extern unsigned char lbl_800921D0[35];
-extern unsigned char lbl_800921F4[32];
-extern unsigned char lbl_80092214[35];
+extern unsigned char gcci_msg_base_str[43];
+extern unsigned char E0003_lsc_null_str[35];
+extern unsigned char E0010_min_param_str[33];
+extern unsigned char E0012_stream_id_not_found_str[35];
+extern unsigned char E0009_no_param_str[32];
+extern unsigned char E0011_fname_param_str[35];
 extern unsigned char lbl_80132260[104];
 extern unsigned char lbl_801878B8[12];
-extern unsigned char lbl_801878C4[4];
+extern unsigned char gcci_nullcheck_callback[4];
 extern unsigned char lbl_801878CC[4004];
 extern unsigned char lbl_80188870[256];
-extern unsigned char lbl_80188970[4];
+extern unsigned char gcci_err_ctx[4];
 extern unsigned char lbl_80188A78[16];
 extern unsigned char lbl_80188A8C[9092];
 extern void fn_800555C0(void);
@@ -55,9 +55,9 @@ asm void fn_80055708(void)
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _8005574c
-    lis     r4, lbl_801878C4@ha
+    lis     r4, gcci_nullcheck_callback@ha
     lis     r3, E0040301_handl_is_null_str@ha
-    addi	r5, r4, lbl_801878C4@l
+    addi	r5, r4, gcci_nullcheck_callback@l
     addi	r4, r3, E0040301_handl_is_null_str@l
     lwz	r3, 0(r5)
     li	r5, 0
@@ -87,9 +87,9 @@ asm void fn_80055768(void)
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _800557ac
-    lis     r4, lbl_801878C4@ha
+    lis     r4, gcci_nullcheck_callback@ha
     lis     r3, E0092912_handl_is_null_str@ha
-    addi	r5, r4, lbl_801878C4@l
+    addi	r5, r4, gcci_nullcheck_callback@l
     addi	r4, r3, E0092912_handl_is_null_str@l
     lwz	r3, 0(r5)
     li	r5, 0
@@ -113,12 +113,12 @@ asm void fn_800557CC(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis     r4, lbl_80091F50@ha
+    lis     r4, gcci_msg_base_str@ha
     stw	r0, 0x34(r1)
     stmw	r25, 0x14(r1)
     or.	r29, r3, r3
     lis     r3, lbl_801878B8@ha
-    addi	r30, r4, lbl_80091F50@l
+    addi	r30, r4, gcci_msg_base_str@l
     addi	r31, r3, lbl_801878B8@l
     bne     _80055818
     lwz	r12, 0x10(r31)
@@ -543,9 +543,9 @@ asm void fn_80055D94(void)
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _80055dd8
-    lis     r4, lbl_801878C4@ha
+    lis     r4, gcci_nullcheck_callback@ha
     lis     r3, E0092912_handl_is_null_str@ha
-    addi	r5, r4, lbl_801878C4@l
+    addi	r5, r4, gcci_nullcheck_callback@l
     addi	r4, r3, E0092912_handl_is_null_str@l
     lwz	r3, 0(r5)
     li	r5, 0
@@ -575,9 +575,9 @@ asm void fn_80055DF4(void)
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _80055e38
-    lis     r4, lbl_801878C4@ha
+    lis     r4, gcci_nullcheck_callback@ha
     lis     r3, E0092912_handl_is_null_str@ha
-    addi	r5, r4, lbl_801878C4@l
+    addi	r5, r4, gcci_nullcheck_callback@l
     addi	r4, r3, E0092912_handl_is_null_str@l
     lwz	r3, 0(r5)
     li	r5, 0
@@ -633,12 +633,12 @@ asm void fn_80055EC0(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis     r5, lbl_80091F50@ha
+    lis     r5, gcci_msg_base_str@ha
     lis     r4, lbl_801878B8@ha
     stw	r0, 0x34(r1)
     stmw	r24, 0x10(r1)
     or.	r28, r3, r3
-    addi	r30, r5, lbl_80091F50@l
+    addi	r30, r5, gcci_msg_base_str@l
     addi	r31, r4, lbl_801878B8@l
     beq     _80056070
     mr	r29, r3
@@ -761,12 +761,12 @@ asm void fn_80056084(void)
     nofralloc
     stwu	r1, -0x120(r1)
     mflr	r0
-    lis     r4, lbl_80091F50@ha
+    lis     r4, gcci_msg_base_str@ha
     stw	r0, 0x124(r1)
     stw	r31, 0x11c(r1)
     stw	r30, 0x118(r1)
     stw	r29, 0x114(r1)
-    addi	r29, r4, lbl_80091F50@l
+    addi	r29, r4, gcci_msg_base_str@l
     stw	r28, 0x110(r1)
     or.	r28, r3, r3
     lis     r3, lbl_801878B8@ha
@@ -918,16 +918,16 @@ asm void fn_80056294(void)
     stw	r31, 0x14c(r1)
     stw	r30, 0x148(r1)
     or.	r30, r3, r3
-    lis     r3, lbl_80091F50@ha
-    addi	r31, r3, lbl_80091F50@l
+    lis     r3, gcci_msg_base_str@ha
+    addi	r31, r3, gcci_msg_base_str@l
     bne     _800562ec
-    lis     r3, lbl_801878C4@ha
+    lis     r3, gcci_nullcheck_callback@ha
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _800562e4
     lis	r3, -0x7fe8
     addi	r4, r31, 0x1ac
-    addi	r3, r3, lbl_801878C4@l
+    addi	r3, r3, gcci_nullcheck_callback@l
     li	r5, 0
     lwz	r3, 0(r3)
     mtctr	r12
@@ -964,13 +964,13 @@ _8005633c:
     bl      DVDOpen
     cmpwi	r3, 0
     bne     _80056384
-    lis     r3, lbl_801878C4@ha
+    lis     r3, gcci_nullcheck_callback@ha
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _8005637c
     lis	r3, -0x7fe8
     addi	r4, r31, 0x1d8
-    addi	r3, r3, lbl_801878C4@l
+    addi	r3, r3, gcci_nullcheck_callback@l
     li	r5, 0
     lwz	r3, 0(r3)
     mtctr	r12
@@ -989,13 +989,13 @@ _80056398:
     bl      fn_80017228
     cmpwi	r3, 0
     bne     _800563dc
-    lis     r3, lbl_801878C4@ha
+    lis     r3, gcci_nullcheck_callback@ha
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _800563d4
     lis	r3, -0x7fe8
     addi	r4, r31, 0x208
-    addi	r3, r3, lbl_801878C4@l
+    addi	r3, r3, gcci_nullcheck_callback@l
     li	r5, 0
     lwz	r3, 0(r3)
     mtctr	r12
@@ -1190,10 +1190,10 @@ asm void gcciErrPrintf(void)
 _80056634:
     addi	r11, r1, 0x88
     addi	r0, r1, 8
-    lis     r30, lbl_80188970@ha
+    lis     r30, gcci_err_ctx@ha
     lis	r12, 0x100
     stw	r4, 0xc(r1)
-    addi	r30, r30, lbl_80188970@l
+    addi	r30, r30, gcci_err_ctx@l
     addi	r31, r1, 0x68
     mr	r4, r3
     stw	r3, 8(r1)
@@ -1244,7 +1244,7 @@ _800566dc:
     blr	
 }
 
-asm void fn_800566F0(void)
+asm void gccicrit_leave(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1257,7 +1257,7 @@ asm void fn_800566F0(void)
     blr	
 }
 
-asm void fn_80056710(void)
+asm void gccicrit_enter(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1278,8 +1278,8 @@ asm void fn_80056730(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80056758
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _8005675c
@@ -1322,8 +1322,8 @@ asm void fn_800567AC(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _800567d8
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1
@@ -1345,8 +1345,8 @@ asm void fn_800567EC(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80056814
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _80056840
@@ -1357,8 +1357,8 @@ _80056814:
     cmpw	r4, r0
     ble     _8005683c
 _80056828:
-    lis     r3, lbl_800921AC@ha
-    addi	r3, r3, lbl_800921AC@l
+    lis     r3, E0010_min_param_str@ha
+    addi	r3, r3, E0010_min_param_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _80056840
@@ -1379,8 +1379,8 @@ asm void fn_80056850(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8005687c
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, 0
@@ -1428,8 +1428,8 @@ _8005688c:
 _80056914:
     cmpwi	r6, 0x10
     bne     _80056934
-    lis     r3, lbl_800921D0@ha
-    addi	r3, r3, lbl_800921D0@l
+    lis     r3, E0012_stream_id_not_found_str@ha
+    addi	r3, r3, E0012_stream_id_not_found_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, 0
@@ -1453,8 +1453,8 @@ asm void fn_80056950(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8005697c
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1
@@ -1502,8 +1502,8 @@ _8005698c:
 _80056a14:
     cmpwi	r6, 0x10
     bne     _80056a34
-    lis     r3, lbl_800921D0@ha
-    addi	r3, r3, lbl_800921D0@l
+    lis     r3, E0012_stream_id_not_found_str@ha
+    addi	r3, r3, E0012_stream_id_not_found_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1
@@ -1527,8 +1527,8 @@ asm void fn_80056A50(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80056a7c
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, 0
@@ -1576,8 +1576,8 @@ _80056a8c:
 _80056b14:
     cmpwi	r6, 0x10
     bne     _80056b34
-    lis     r3, lbl_800921D0@ha
-    addi	r3, r3, lbl_800921D0@l
+    lis     r3, E0012_stream_id_not_found_str@ha
+    addi	r3, r3, E0012_stream_id_not_found_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, 0
@@ -1601,8 +1601,8 @@ asm void fn_80056B50(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80056b7c
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1
@@ -1614,8 +1614,8 @@ _80056b7c:
     cmpw	r4, r0
     blt     _80056ba8
 _80056b90:
-    lis     r3, lbl_800921F4@ha
-    addi	r3, r3, lbl_800921F4@l
+    lis     r3, E0009_no_param_str@ha
+    addi	r3, r3, E0009_no_param_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1
@@ -1646,8 +1646,8 @@ asm void fn_80056BE0(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80056c0c
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1
@@ -1669,8 +1669,8 @@ asm void fn_80056C20(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80056c4c
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1
@@ -1694,7 +1694,7 @@ asm void fn_80056C64(void)
     addi	r3, r1, 8
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
-    bl      fn_80056710
+    bl      gccicrit_enter
     lis     r3, lbl_80188A8C@ha
     li	r30, 0
     addi	r31, r3, lbl_80188A8C@l
@@ -1710,7 +1710,7 @@ _80056ca0:
     cmpwi	r30, 0x10
     blt     _80056c8c
     addi	r3, r1, 8
-    bl      fn_800566F0
+    bl      gccicrit_leave
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     lwz	r30, 0x18(r1)
@@ -1728,8 +1728,8 @@ asm void fn_80056CD0(void)
     stw	r31, 0xc(r1)
     or.	r31, r3, r3
     bne     _80056cfc
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _80056d78
@@ -1753,8 +1753,8 @@ _80056d34:
     cmplwi	r31, 0
     stw	r3, 0x2c(r31)
     bne     _80056d58
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _80056d70
@@ -1785,21 +1785,21 @@ asm void fn_80056D8C(void)
     stw	r31, 0x1c(r1)
     or.	r31, r3, r3
     bne     _80056db8
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _80056e88
 _80056db8:
     addi	r3, r1, 8
-    bl      fn_80056710
+    bl      gccicrit_enter
     lbz	r3, 1(r31)
     extsb.	r0, r3
     beq     _80056e60
     cmplwi	r31, 0
     bne     _80056de8
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _80056e60
@@ -1822,8 +1822,8 @@ _80056e1c:
     cmplwi	r31, 0
     stw	r3, 0x2c(r31)
     bne     _80056e40
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _80056e58
@@ -1849,7 +1849,7 @@ _80056e78:
     stb	r0, 1(r31)
 _80056e80:
     addi	r3, r1, 8
-    bl      fn_800566F0
+    bl      gccicrit_leave
 _80056e88:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -1870,8 +1870,8 @@ asm void fn_80056E9C(void)
     mr	r27, r6
     mr	r28, r7
     bne     _80056ed8
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1
@@ -1885,8 +1885,8 @@ _80056ed8:
 _80056eec:
     cmplwi	r4, 0
     bne     _80056f0c
-    lis     r3, lbl_80092214@ha
-    addi	r3, r3, lbl_80092214@l
+    lis     r3, E0011_fname_param_str@ha
+    addi	r3, r3, E0011_fname_param_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     li	r3, -1

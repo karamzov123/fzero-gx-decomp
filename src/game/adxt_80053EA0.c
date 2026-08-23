@@ -52,7 +52,7 @@ extern unsigned char lbl_801873EC[68];
 extern unsigned char lbl_80187430[4];
 extern unsigned char lbl_80187434[320];
 extern unsigned char lbl_80187574[836];
-extern unsigned char lbl_801878C4[4];
+extern unsigned char gcci_nullcheck_callback[4];
 void fn_80055580(void);
 
 asm void fn_80053EA0(void)
@@ -1806,9 +1806,9 @@ asm void fn_800555C4(void)
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _80055608
-    lis     r4, lbl_801878C4@ha
+    lis     r4, gcci_nullcheck_callback@ha
     lis     r3, E0092912_handl_is_null_str@ha
-    addi	r5, r4, lbl_801878C4@l
+    addi	r5, r4, gcci_nullcheck_callback@l
     addi	r4, r3, E0092912_handl_is_null_str@l
     lwz	r3, 0(r5)
     li	r5, 0
@@ -1838,9 +1838,9 @@ asm void fn_80055624(void)
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _800556f8
-    lis     r4, lbl_801878C4@ha
+    lis     r4, gcci_nullcheck_callback@ha
     lis     r3, E0040302_handl_is_null_str@ha
-    addi	r5, r4, lbl_801878C4@l
+    addi	r5, r4, gcci_nullcheck_callback@l
     addi	r4, r3, E0040302_handl_is_null_str@l
     lwz	r3, 0(r5)
     li	r5, 0
@@ -1859,9 +1859,9 @@ _8005566c:
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _800556f8
-    lis     r4, lbl_801878C4@ha
+    lis     r4, gcci_nullcheck_callback@ha
     lis     r3, E0040303_invalidate_size_str@ha
-    addi	r5, r4, lbl_801878C4@l
+    addi	r5, r4, gcci_nullcheck_callback@l
     addi	r4, r3, E0040303_invalidate_size_str@l
     lwz	r3, 0(r5)
     li	r5, 0

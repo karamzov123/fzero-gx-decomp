@@ -15,8 +15,8 @@ extern void fn_8004B0EC(void);
 extern void fn_8004B180(void);
 extern void gcciErrPrintf(void);
 extern void fn_800566BC(void);
-extern void fn_800566F0(void);
-extern void fn_80056710(void);
+extern void gccicrit_leave(void);
+extern void gccicrit_enter(void);
 extern void fn_8005676C(void);
 extern void fn_80056E9C(void);
 extern void fn_80057114(void);
@@ -28,7 +28,7 @@ extern void memcpy(void);
 extern void memset(void);
 extern unsigned char SJMEM_Error_str[12];
 extern unsigned char SJRBF_Error_str[12];
-extern unsigned char lbl_80092188[35];
+extern unsigned char E0003_lsc_null_str[35];
 extern unsigned char lbl_80092238[42];
 extern unsigned char lbl_80092264[41];
 extern unsigned char lbl_800922C8[21];
@@ -82,8 +82,8 @@ asm void fn_80057114(void)
     or.	r31, r3, r3
     beq     _800571d8
     bne     _80057144
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _800571c0
@@ -107,8 +107,8 @@ _8005717c:
     cmplwi	r31, 0
     stw	r3, 0x2c(r31)
     bne     _800571a0
-    lis     r3, lbl_80092188@ha
-    addi	r3, r3, lbl_80092188@l
+    lis     r3, E0003_lsc_null_str@ha
+    addi	r3, r3, E0003_lsc_null_str@l
     crxor	6, 6, 6
     bl      gcciErrPrintf
     b     _800571b8
@@ -156,7 +156,7 @@ asm void fn_800571EC(void)
     b     _8005735c
 _80057224:
     addi	r3, r1, 8
-    bl      fn_80056710
+    bl      gccicrit_enter
     lis     r3, lbl_80188A8C@ha
     li	r31, 0
     addi	r4, r3, lbl_80188A8C@l
@@ -237,7 +237,7 @@ _80057348:
     stb	r0, 0(r31)
 _80057350:
     addi	r3, r1, 8
-    bl      fn_800566F0
+    bl      gccicrit_leave
     mr	r3, r31
 _8005735c:
     lwz	r0, 0x24(r1)
@@ -258,7 +258,7 @@ asm void fn_80057378(void)
     addi	r3, r1, 8
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
-    bl      fn_80056710
+    bl      gccicrit_enter
     lis     r3, lbl_80188A88@ha
     addi	r4, r3, lbl_80188A88@l
     lwz	r3, 0(r4)
@@ -289,7 +289,7 @@ _800573cc:
     bl      fn_800566BC
 _800573fc:
     addi	r3, r1, 8
-    bl      fn_800566F0
+    bl      gccicrit_leave
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     lwz	r30, 0x18(r1)
@@ -307,7 +307,7 @@ asm void fn_8005741C(void)
     stw	r0, 0x14(r1)
     addi	r3, r1, 8
     lwz	r0, 0x22c0(r4)
-    bl      fn_80056710
+    bl      gccicrit_enter
     lis     r3, lbl_80188A8C@ha
     lwz	r0, -0x7578(r3)
     cmpwi	r0, 0
@@ -327,7 +327,7 @@ _80057468:
     lwz	r4, 0(r5)
     addi	r0, r4, 1
     stw	r0, 0(r5)
-    bl      fn_800566F0
+    bl      gccicrit_leave
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
