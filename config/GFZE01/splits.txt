@@ -224,8 +224,17 @@ dolphin/ax/AX.c:
 dolphin/ax/AXAlloc.c:
 	.text       start:0x800209DC end:0x80020D58
 
-coarse/text_80020D58.c:
-	.text       start:0x80020D58 end:0x80026EE0
+dolphin/ax/AXAux.c:
+	.text       start:0x80020D58 end:0x80021200
+
+dolphin/ax/AXCL.c:
+	.text       start:0x80021200 end:0x80021930
+
+dolphin/ax/AXOut.c:
+	.text       start:0x80021930 end:0x8002201C
+
+coarse/text_8002201C.c:
+	.text       start:0x8002201C end:0x80026EE0
 
 coarse/text_80026EE0.c:
 	.text       start:0x80026EE0 end:0x8002F140
