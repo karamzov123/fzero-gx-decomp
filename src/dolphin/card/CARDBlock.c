@@ -28,10 +28,10 @@ extern void DSPSendMailToDSP(void);
 extern void EXIProbe(void);
 extern void EXIUnlock(void);
 extern void OSGetTick(void);
-extern void fn_80029C38(void);
-extern void fn_8002A368(void);
-extern void fn_8002A49C(void);
-extern void fn_8002A5B8(void);
+extern void __CARDReadStatus(void);
+extern void __CARDReadSegment(void);
+extern void __CARDWritePage(void);
+extern void __CARDEraseSector(void);
 extern void fn_8002A8F4(void);
 extern void fn_8002ABC0(void);
 extern void fn_8002AD2C(void);
@@ -1004,7 +1004,7 @@ _8002bd30:
 _8002bd9c:
     addi	r3, r31, 0
     addi	r4, r1, 0x30
-    bl      fn_80029C38
+    bl      __CARDReadStatus
     addi	r28, r3, 0
     addi	r3, r31, 0
     bl      EXIProbe
@@ -1072,7 +1072,7 @@ asm void fn_8002BE20(void)
     lis	r3, -0x7ffd
     addi	r4, r3, -0x41e0
     addi	r3, r31, 0
-    bl      fn_8002A368
+    bl      __CARDReadSegment
     or.	r29, r3, r3
     bge     _8002bee0
 _8002bea0:
@@ -1127,7 +1127,7 @@ _8002bf2c:
     stw	r4, 0xb0(r8)
     mr	r4, r0
     stw	r6, 0xb4(r8)
-    bl      fn_8002A368
+    bl      __CARDReadSegment
 _8002bf50:
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -1167,7 +1167,7 @@ asm void fn_8002BF60(void)
     lis	r3, -0x7ffd
     addi	r4, r3, -0x40a0
     addi	r3, r31, 0
-    bl      fn_8002A49C
+    bl      __CARDWritePage
     or.	r29, r3, r3
     bge     _8002c020
 _8002bfe0:
@@ -1222,7 +1222,7 @@ _8002c06c:
     stw	r4, 0xb0(r8)
     mr	r4, r0
     stw	r6, 0xb4(r8)
-    bl      fn_8002A49C
+    bl      __CARDWritePage
 _8002c090:
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -1535,7 +1535,7 @@ asm void fn_8002C410(void)
     subf	r0, r0, r29
     srwi	r0, r0, 0xd
     mullw	r4, r4, r0
-    bl      fn_8002A5B8
+    bl      __CARDEraseSector
     lwz	r0, 0x2c(r1)
     lwz	r31, 0x24(r1)
     lwz	r30, 0x20(r1)
@@ -1716,7 +1716,7 @@ _8002c6a4:
     subf	r0, r0, r31
     srwi	r0, r0, 0xd
     mullw	r4, r4, r0
-    bl      fn_8002A5B8
+    bl      __CARDEraseSector
 _8002c700:
     lwz	r0, 0x2c(r1)
     lwz	r31, 0x24(r1)

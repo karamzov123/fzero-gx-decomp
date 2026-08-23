@@ -14,7 +14,7 @@ extern s32 fn_8002A83C(register void* card, register void** pctrl);
 extern void fn_8002A8F4(register void* ctrl, register s32 err);
 extern s32 fn_8002C0B8(register void* ctrl);
 extern s32 fn_8002C4BC(void);
-extern s32 fn_8002A5B8(register s32 chn, register s32 addr, register void* callback);
+extern s32 __CARDEraseSector(register s32 chn, register s32 addr, register void* callback);
 extern s32 fn_8002C03C(register s32 chn, register s32 addr, register s32 len,
                        register void* buf, register void* callback);
 extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
@@ -105,7 +105,7 @@ _L_8002f6b8:
     addi    r5, r3, -0x8d8          /* EraseCallback */
     mullw   r4, r0, r4
     addi    r3, r30, 0
-    bl      fn_8002A5B8
+    bl      __CARDEraseSector
     mr      r28, r3
 _L_8002f6d4:
     cmpwi   r28, 0
@@ -251,7 +251,7 @@ _L_8002f890:
     lwz     r4, 0xc(r3)
     lwz     r3, 0(r30)
     mullw   r4, r4, r0
-    bl      fn_8002A5B8
+    bl      __CARDEraseSector
     or.     r30, r3, r3
     bge     _L_8002f8d4
     lwz     r3, 0x1c(r1)

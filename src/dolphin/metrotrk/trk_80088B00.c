@@ -21,8 +21,8 @@ extern void fn_8008D028(void);
 extern void fn_8008D154(void);
 extern void TRKUARTInterruptHandler(void);
 extern void fn_8008D398(void);
-extern void fn_8008D3D4(void);
-extern void fn_8008D410(void);
+extern void TRK_ReadUARTN(void);
+extern void TRKPollUART(void);
 extern void TRKTargetContinue(void);
 extern void fn_8008D7C0(void);
 extern void MWTRACE(void);
@@ -46,7 +46,7 @@ extern void fn_8008A66C(void);
 extern void fn_8008A6E4(void);
 extern void fn_8008A748(void);
 extern void fn_8008A754(void);
-extern void fn_8008AB20(void);
+extern void TRKRequestSend(void);
 extern void fn_8008AF48(void);
 extern void fn_8008AF50(void);
 extern void fn_8008B484(void);
@@ -55,12 +55,12 @@ extern void fn_8008B6CC(void);
 extern void fn_8008B784(void);
 extern void fn_8008B830(void);
 extern void fn_8008B8B4(void);
-extern void fn_8008BB7C(void);
-extern void fn_8008BFB4(void);
-extern void fn_8008C124(void);
+extern void TRKTargetAccessFP(void);
+extern void TRKTargetAccessExtended1(void);
+extern void TRKTargetAccessExtended2(void);
 extern void fn_8008C5F0(void);
 extern void fn_8008C6E4(void);
-extern void fn_8008C730(void);
+extern void TRKTargetAccessMemory(void);
 extern void fn_8008C87C(void);
 extern void TRKInterruptHandlerEnableInterrupts(void);
 extern void TRKPostInterruptEvent(void);
@@ -863,7 +863,7 @@ asm void fn_800894FC(void)
     stw	r31, 0x8dc(r1)
     addi	r31, r3, 0x56c0
     stw	r30, 0x8d8(r1)
-    bl      fn_8008D410
+    bl      TRKPollUART
     cmpwi	r3, 0
     bc      12, 1, _8008952c
     li	r3, -1
@@ -883,7 +883,7 @@ _8008952c:
     bl      fn_80089144
     addi	r3, r1, 0x10
     li	r4, 0x40
-    bl      fn_8008D3D4
+    bl      TRK_ReadUARTN
     cmpwi	r3, 0
     bc      4, 2, _800895ec
     lwz	r3, 8(r1)
@@ -901,7 +901,7 @@ _8008952c:
     lwz	r4, 0x10(r1)
     addi	r3, r1, 0x50
     addi	r4, r4, -0x40
-    bl      fn_8008D3D4
+    bl      TRK_ReadUARTN
     cmpwi	r3, 0
     bc      4, 2, _800895cc
     lwz	r3, 8(r1)
@@ -1465,7 +1465,7 @@ _80089d28:
     mr	r5, r28
     addi	r6, r1, 8
     li	r7, 0
-    bl      fn_8008C124
+    bl      TRKTargetAccessExtended2
     mr	r31, r3
     b       _80089d8c
 _80089d48:
@@ -1474,7 +1474,7 @@ _80089d48:
     mr	r5, r28
     addi	r6, r1, 8
     li	r7, 0
-    bl      fn_8008BFB4
+    bl      TRKTargetAccessExtended1
     mr	r31, r3
     b       _80089d8c
 _80089d68:
@@ -1483,7 +1483,7 @@ _80089d68:
     mr	r5, r28
     addi	r6, r1, 8
     li	r7, 0
-    bl      fn_8008BB7C
+    bl      TRKTargetAccessFP
     mr	r31, r3
     b       _80089d8c
 _80089d88:
@@ -1668,7 +1668,7 @@ _80089f5c:
     li	r3, 0
     li	r4, 0x21
     li	r7, 1
-    bl      fn_8008C124
+    bl      TRKTargetAccessExtended2
     mr	r30, r3
 _8008a014:
     mr	r5, r30
@@ -1688,7 +1688,7 @@ _8008a014:
     li	r3, 0
     li	r4, 0x60
     li	r7, 1
-    bl      fn_8008BFB4
+    bl      TRKTargetAccessExtended1
     mr	r30, r3
 _8008a060:
     mr	r5, r30
@@ -1708,7 +1708,7 @@ _8008a060:
     li	r3, 0
     li	r4, 0x1f
     li	r7, 1
-    bl      fn_8008BB7C
+    bl      TRKTargetAccessFP
     mr	r30, r3
 _8008a0ac:
     mr	r5, r30
@@ -1849,7 +1849,7 @@ _8008a258:
     addi	r5, r1, 8
     xori	r6, r0, 1
     li	r7, 0
-    bl      fn_8008C730
+    bl      TRKTargetAccessMemory
     mr	r0, r3
     mr	r3, r27
     mr	r30, r0
@@ -1978,7 +1978,7 @@ _8008a44c:
     addi	r5, r1, 8
     xori	r6, r0, 1
     li	r7, 1
-    bl      fn_8008C730
+    bl      TRKTargetAccessMemory
     mr	r0, r3
     mr	r3, r27
     mr	r30, r0
@@ -2314,7 +2314,7 @@ _8008a890:
     stw	r0, 0(r29)
     li	r7, 0
     lwz	r3, 8(r1)
-    bl      fn_8008AB20
+    bl      TRKRequestSend
     or.	r31, r3, r3
     bc      4, 2, _8008a8e8
     lwz	r3, 0x10(r1)
@@ -2382,7 +2382,7 @@ _8008a988:
     li	r6, 3
     li	r7, 0
     lwz	r3, 8(r1)
-    bl      fn_8008AB20
+    bl      TRKRequestSend
     or.	r31, r3, r3
     bc      4, 2, _8008a9c4
     lwz	r3, 0x10(r1)
@@ -2464,7 +2464,7 @@ _8008aaac:
     li	r6, 3
     li	r7, 0
     lwz	r3, 8(r1)
-    bl      fn_8008AB20
+    bl      TRKRequestSend
     or.	r31, r3, r3
     bc      4, 2, _8008aae8
     lwz	r3, 0x10(r1)
@@ -2488,7 +2488,7 @@ _8008ab00:
     blr
 }
 
-asm void fn_8008AB20(void)
+asm void TRKRequestSend(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
@@ -2716,7 +2716,7 @@ _8008ae20:
     cntlzw	r0, r0
     li	r6, 3
     srwi	r7, r0, 5
-    bl      fn_8008AB20
+    bl      TRKRequestSend
     or.	r21, r3, r3
     bc      4, 2, _8008ae54
     lwz	r3, 0x10(r1)
@@ -2843,7 +2843,7 @@ _8008afa4:
     li	r5, 2
     li	r6, 3
     li	r7, 1
-    bl      fn_8008AB20
+    bl      TRKRequestSend
     or.	r31, r3, r3
     bc      4, 2, _8008afcc
     lwz	r3, 0x10(r1)
@@ -3755,7 +3755,7 @@ _8008bb6c:
     blr
 }
 
-asm void fn_8008BB7C(void)
+asm void TRKTargetAccessFP(void)
 {
     nofralloc
     stwu	r1, -0x130(r1)
@@ -4040,7 +4040,7 @@ _8008bfa0:
     blr
 }
 
-asm void fn_8008BFB4(void)
+asm void TRKTargetAccessExtended1(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -4144,7 +4144,7 @@ _8008c10c:
     blr
 }
 
-asm void fn_8008C124(void)
+asm void TRKTargetAccessExtended2(void)
 {
     nofralloc
     stwu	r1, -0xf0(r1)
@@ -4559,7 +4559,7 @@ asm void fn_8008C6E4(void)
     li	r0, 4
     addi	r5, r1, 8
     stw	r0, 8(r1)
-    bl      fn_8008C730
+    bl      TRKTargetAccessMemory
     cmpwi	r3, 0
     bc      4, 2, _8008c720
     lwz	r0, 8(r1)
@@ -4573,7 +4573,7 @@ _8008c720:
     blr
 }
 
-asm void fn_8008C730(void)
+asm void TRKTargetAccessMemory(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)

@@ -49,10 +49,10 @@ extern void __OSLockSramEx(void);
 extern void __OSUnlockSramEx(void);
 extern void __shr2i(void);
 extern void __OSUnlockSram(void);
-extern void fn_80029B78(void);
-extern void fn_80029C38(void);
-extern void fn_80029D28(void);
-extern void fn_8002A5B8(void);
+extern void __CARDReadNintendoID(void);
+extern void __CARDReadStatus(void);
+extern void __CARDClearStatus(void);
+extern void __CARDEraseSector(void);
 extern void fn_8002A744(void);
 extern void fn_8002A83C(void);
 extern void fn_8002A8F4(void);
@@ -1334,12 +1334,12 @@ _8002d974:
     add	r4, r0, r4
     lwz	r0, 0(r4)
     stw	r0, 0x14(r31)
-    bl      fn_80029D28
+    bl      __CARDClearStatus
     or.	r30, r3, r3
     blt     _8002dcbc
     addi	r3, r29, 0
     addi	r4, r1, 0x14
-    bl      fn_80029C38
+    bl      __CARDReadStatus
     or.	r30, r3, r3
     blt     _8002dcbc
     mr	r3, r29
@@ -1494,7 +1494,7 @@ _8002dc2c:
     stw	r0, 0x24(r31)
     addi	r3, r29, 0
     li	r4, 1
-    bl      fn_80029B78
+    bl      __CARDReadNintendoID
     or.	r30, r3, r3
     blt     _8002dcbc
     lis	r3, -0x7ffd
@@ -1911,7 +1911,7 @@ asm void fn_8002E170(void)
     addi	r5, r3, -0x1e90
     mullw	r4, r0, r4
     addi	r3, r30, 0
-    bl      fn_8002A5B8
+    bl      __CARDEraseSector
     or.	r28, r3, r3
     blt     _8002e268
     b       _8002e294
@@ -2379,7 +2379,7 @@ _8002e88c:
     lwz	r4, 0xc(r6)
     lwz	r0, 0x28(r6)
     mullw	r4, r4, r0
-    bl      fn_8002A5B8
+    bl      __CARDEraseSector
     or.	r18, r3, r3
     bge     _8002e8e8
     lwz	r3, 0x18(r1)

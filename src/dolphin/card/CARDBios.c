@@ -4,21 +4,21 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_80029828(void);
-extern void fn_8002985C(void);
-extern void fn_80029934(void);
-extern void fn_80029A4C(void);
+extern void __CARDSyncCallback(void);
+extern void __CARDExtHandler(void);
+extern void __CARDExiHandler(void);
+extern void __CARDTxHandler(void);
 extern void fn_80029AF4(void);
-extern void fn_80029B78(void);
-extern void fn_80029C38(void);
-extern void fn_80029D28(void);
-extern void fn_80029DD4(void);
+extern void __CARDReadNintendoID(void);
+extern void __CARDReadStatus(void);
+extern void __CARDClearStatus(void);
+extern void TimeoutHandler(void);
 extern void fn_80029E78(void);
 extern void fn_8002A0A4(void);
-extern void fn_8002A1B4(void);
-extern void fn_8002A368(void);
-extern void fn_8002A49C(void);
-extern void fn_8002A5B8(void);
+extern void __CARDStart(void);
+extern void __CARDReadSegment(void);
+extern void __CARDWritePage(void);
+extern void __CARDEraseSector(void);
 extern void EXIDeselect(void);
 extern void EXIDma(void);
 extern void EXIImm(void);
@@ -35,7 +35,7 @@ extern void OSRestoreInterrupts(void);
 extern void OSSetAlarm(void);
 extern void OSWakeupThread(void);
 
-asm void fn_80029828(void)
+asm void __CARDSyncCallback(void)
 {
     nofralloc
     mflr	r0
@@ -53,7 +53,7 @@ asm void fn_80029828(void)
     blr	
 }
 
-asm void fn_8002985C(void)
+asm void __CARDExtHandler(void)
 {
     nofralloc
     mflr	r0
@@ -115,7 +115,7 @@ _80029918:
     blr	
 }
 
-asm void fn_80029934(void)
+asm void __CARDExiHandler(void)
 {
     nofralloc
     mflr	r0
@@ -145,11 +145,11 @@ asm void fn_80029934(void)
 _80029994:
     addi	r3, r31, 0
     addi	r4, r1, 0x10
-    bl      fn_80029C38
+    bl      __CARDReadStatus
     or.	r29, r3, r3
     blt     _80029a00
     mr	r3, r31
-    bl      fn_80029D28
+    bl      __CARDClearStatus
     or.	r29, r3, r3
     blt     _80029a00
     lbz	r0, 0x10(r1)
@@ -196,7 +196,7 @@ _80029a30:
     blr	
 }
 
-asm void fn_80029A4C(void)
+asm void __CARDTxHandler(void)
 {
     nofralloc
     mflr	r0
@@ -288,7 +288,7 @@ _80029b60:
     blr	
 }
 
-asm void fn_80029B78(void)
+asm void __CARDReadNintendoID(void)
 {
     nofralloc
     mflr	r0
@@ -346,7 +346,7 @@ _80029c20:
     blr	
 }
 
-asm void fn_80029C38(void)
+asm void __CARDReadStatus(void)
 {
     nofralloc
     mflr	r0
@@ -414,7 +414,7 @@ _80029d0c:
     blr	
 }
 
-asm void fn_80029D28(void)
+asm void __CARDClearStatus(void)
 {
     nofralloc
     mflr	r0
@@ -465,7 +465,7 @@ _80029dbc:
     blr	
 }
 
-asm void fn_80029DD4(void)
+asm void TimeoutHandler(void)
 {
     nofralloc
     mflr	r0
@@ -748,7 +748,7 @@ _8002a19c:
     blr	
 }
 
-asm void fn_8002A1B4(void)
+asm void __CARDStart(void)
 {
     nofralloc
     mflr	r0
@@ -872,7 +872,7 @@ _8002a348:
     blr	
 }
 
-asm void fn_8002A368(void)
+asm void __CARDReadSegment(void)
 {
     nofralloc
     mflr	r0
@@ -906,7 +906,7 @@ asm void fn_8002A368(void)
     stw	r6, 0xa0(r31)
     stw	r0, 0xa4(r31)
     stw	r0, 0xa8(r31)
-    bl      fn_8002A1B4
+    bl      __CARDStart
     cmpwi	r3, -1
     bne     _8002a3f8
     li	r3, 0
@@ -958,7 +958,7 @@ _8002a484:
     blr	
 }
 
-asm void fn_8002A49C(void)
+asm void __CARDWritePage(void)
 {
     nofralloc
     mflr	r0
@@ -994,7 +994,7 @@ asm void fn_8002A49C(void)
     stw	r7, 0xa0(r31)
     stw	r6, 0xa4(r31)
     stw	r0, 0xa8(r31)
-    bl      fn_8002A1B4
+    bl      __CARDStart
     cmpwi	r3, -1
     bne     _8002a534
     li	r3, 0
@@ -1038,7 +1038,7 @@ _8002a5a0:
     blr	
 }
 
-asm void fn_8002A5B8(void)
+asm void __CARDEraseSector(void)
 {
     nofralloc
     mflr	r0
@@ -1065,7 +1065,7 @@ asm void fn_8002A5B8(void)
     stw	r6, 0xa0(r31)
     stw	r0, 0xa4(r31)
     stw	r6, 0xa8(r31)
-    bl      fn_8002A1B4
+    bl      __CARDStart
     addi	r30, r3, 0
     cmpwi	r30, -1
     bne     _8002a630

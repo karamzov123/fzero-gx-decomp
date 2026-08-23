@@ -351,7 +351,7 @@ asm void fn_8008D398(void)
     blr	
 }
 
-asm void fn_8008D3D4(void)
+asm void TRK_ReadUARTN(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -371,7 +371,7 @@ asm void fn_8008D3D4(void)
     blr	
 }
 
-asm void fn_8008D410(void)
+asm void TRKPollUART(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
