@@ -1,3 +1,4 @@
+extern void DCStoreRange(void);
 extern void DVDInit(void);
 extern void GXBegin(void);
 extern void OSGetArenaHi(void);
@@ -12,6 +13,8 @@ extern void OSSetArenaHi(void);
 extern void OSSetArenaLo(void);
 extern void OSSetStringTable(void);
 extern void OSUnlink(void);
+extern void _restgpr_23(void);
+extern void _savegpr_23(void);
 extern void fn_80005660(void);
 extern void fn_80005738(void);
 extern void fn_800057CC(void);
@@ -30,11 +33,17 @@ extern void fn_80006340(void);
 extern void fn_80006354(void);
 extern void fn_800063AC(void);
 extern void fn_8000659C(void);
+extern void fn_80006914(void);
+extern void fn_80006AEC(void);
 extern void fn_80006AFC(void);
 extern void fn_80006B30(void);
 extern void fn_800071B8(void);
 extern void fn_80007A44(void);
+extern void fn_8000B334(void);
 extern void fn_8000B360(void);
+extern void fn_8000CDD8(void);
+extern void fn_8000CEBC(void);
+extern void fn_8000D1F0(void);
 extern void fn_80015EE8(void);
 extern void fn_80017160(void);
 extern void fn_80017228(void);
@@ -1096,6 +1105,149 @@ _80006388:
     lwz	r31, 0xc(r1)
     mtlr	r0
     addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_800063AC(void)
+{
+    nofralloc
+    stwu	r1, -0x40(r1)
+    mflr	r0
+    stw	r0, 0x44(r1)
+    addi	r11, r1, 0x40
+    bl      _savegpr_23
+    bl      fn_8000CDD8
+    clrlwi	r0, r3, 0x10
+    cmplwi	r0, 1
+    bc      4, 2, _800063e8
+    lis	r3, -0x7fee
+    li	r0, 6
+    addi	r3, r3, 0x205c
+    stw	r0, -0x7cd0(r13)
+    stw	r3, -0x7ccc(r13)
+    b       _800063fc
+_800063e8:
+    lis	r3, -0x7fee
+    li	r0, 6
+    addi	r3, r3, 0x205c
+    stw	r0, -0x7cd0(r13)
+    stw	r3, -0x7ccc(r13)
+_800063fc:
+    bl      OSGetArenaHi
+    mr	r31, r3
+    bl      fn_8000CDD8
+    clrlwi	r0, r3, 0x10
+    cmplwi	r0, 1
+    bc      4, 2, _80006440
+    lis	r3, 9
+    li	r4, 0x20
+    addi	r3, r3, 0xee4
+    bl      fn_8000B360
+    lis	r5, 5
+    mr	r27, r3
+    li	r4, 0x20
+    addi	r3, r5, -0x3000
+    bl      fn_8000B360
+    mr	r4, r3
+    b       _80006464
+_80006440:
+    lis	r3, 1
+    li	r4, 0x20
+    addi	r3, r3, 0x120
+    bl      fn_8000B360
+    mr	r27, r3
+    li	r3, 0x3000
+    li	r4, 0x20
+    bl      fn_8000B360
+    mr	r4, r3
+_80006464:
+    mr	r3, r27
+    bl      fn_8000CEBC
+    lwz	r27, -0x7ccc(r13)
+    li	r28, 0
+    b       _8000655c
+_80006478:
+    lwz	r29, 0(r27)
+    li	r30, 0
+    b       _80006548
+_80006484:
+    lwz	r23, 0(r29)
+    lha	r24, -0x7cd4(r13)
+    b       _80006530
+_80006490:
+    rlwinm.	r0, r5, 0, 0x18, 0x18
+    mr	r26, r23
+    bc      12, 2, _800064a8
+    lhz	r5, 0(r23)
+    addi	r23, r23, 2
+    b       _800064ac
+_800064a8:
+    addi	r23, r23, 1
+_800064ac:
+    cmplwi	r5, 0x20
+    bc      12, 2, _80006530
+    lis	r3, -0x7fea
+    li	r4, 0
+    addi	r25, r3, -0x46c0
+    mtctr	r24
+    cmpwi	r24, 0
+    bc      4, 1, _800064e4
+_800064cc:
+    lhz	r0, 4(r25)
+    cmplw	r0, r5
+    bc      12, 2, _800064e4
+    addi	r4, r4, 1
+    addi	r25, r25, 8
+    bc      16, 0, _800064cc
+_800064e4:
+    cmpw	r4, r24
+    bc      12, 0, _80006530
+    sth	r5, 4(r25)
+    li	r3, 0x120
+    li	r4, 0x20
+    bl      fn_8000B334
+    stw	r3, 0(r25)
+    mr	r3, r26
+    addi	r7, r1, 8
+    li	r5, 0
+    lwz	r4, 0(r25)
+    li	r6, 6
+    bl      fn_8000D1F0
+    lwz	r3, 0(r25)
+    li	r4, 0x120
+    bl      DCStoreRange
+    lwz	r0, 8(r1)
+    addi	r24, r24, 1
+    sth	r0, 6(r25)
+_80006530:
+    lbz	r5, 0(r23)
+    cmplwi	r5, 0
+    bc      4, 2, _80006490
+    sth	r24, -0x7cd4(r13)
+    addi	r30, r30, 1
+    addi	r29, r29, 4
+_80006548:
+    lwz	r0, 4(r27)
+    cmpw	r30, r0
+    bc      12, 0, _80006484
+    addi	r28, r28, 1
+    addi	r27, r27, 8
+_8000655c:
+    lwz	r0, -0x7cd0(r13)
+    cmpw	r28, r0
+    bc      12, 0, _80006478
+    mr	r3, r31
+    bl      OSSetArenaHi
+    lis	r3, -0x8000
+    addi	r3, r3, 0x691c
+    bl      fn_80006914
+    li	r3, 0
+    bl      fn_80006AEC
+    addi	r11, r1, 0x40
+    bl      _restgpr_23
+    lwz	r0, 0x44(r1)
+    mtlr	r0
+    addi	r1, r1, 0x40
     blr	
 }
 
