@@ -38,7 +38,7 @@ extern asm void fn_800747D0(void);
 extern asm void fn_80074918(void);
 extern asm void fn_8007ED90(void);
 extern asm void fn_800883E8(void);
-extern asm void fn_80088578(void);
+extern asm void expf(void);
 extern asm void fn_80088598(void);
 
 asm void fn_80069AE0(void);
@@ -514,7 +514,7 @@ _8006a064:
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7af0(r2)
     fmul	f31, f0, f1
     frsp	f31, f31
@@ -534,7 +534,7 @@ _8006a0a8:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7af0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -558,7 +558,7 @@ _8006a0f4:
     lfd	f1, 0x18(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7af0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -582,7 +582,7 @@ _8006a14c:
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7af0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0

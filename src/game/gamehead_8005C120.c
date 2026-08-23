@@ -77,7 +77,7 @@ extern void __cvt_fp2unsigned(void);
 extern void fn_8008069C(void);
 extern void fn_80082908(void);
 extern void fn_80087F54(void);
-extern void fn_80088578(void);
+extern void expf(void);
 extern void fn_80088598(void);
 
 asm void SndInitManager(void);
@@ -511,7 +511,7 @@ _8005c620:
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7c08(r2)
     lfd	f0, -0x7c10(r2)
     fmul	f1, f2, f1
@@ -537,7 +537,7 @@ _8005c67c:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7c08(r2)
     lfd	f0, -0x7c10(r2)
     fmul	f1, f2, f1
@@ -561,7 +561,7 @@ _8005c6e0:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7c08(r2)
     lfd	f0, -0x7c10(r2)
     fmul	f1, f2, f1
@@ -585,7 +585,7 @@ _8005c734:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7c08(r2)
     lfd	f0, -0x7c10(r2)
     fmul	f1, f2, f1
@@ -677,7 +677,7 @@ _8005c868:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     addi	r3, r31, 0x40
     lis	r0, 0x4330
     lbzx	r3, r3, r28
@@ -692,7 +692,7 @@ _8005c868:
     fsubs	f1, f1, f2
     fadds	f30, f31, f3
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     xoris	r3, r27, 0x8000
     lis	r0, 0x4330
     lfd	f0, -0x7c08(r2)
@@ -824,7 +824,7 @@ _8005ca78:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     addi	r3, r31, 0x40
     lis	r0, 0x4330
     lbzx	r3, r3, r28
@@ -839,7 +839,7 @@ _8005ca78:
     fsubs	f1, f1, f2
     fadds	f30, f31, f3
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     xoris	r3, r27, 0x8000
     lis	r0, 0x4330
     lfd	f0, -0x7c08(r2)
@@ -1415,7 +1415,7 @@ _8005d314:
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7c08(r2)
     fmul	f31, f0, f1
     frsp	f31, f31
@@ -1434,7 +1434,7 @@ _8005d358:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7c08(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -1457,7 +1457,7 @@ _8005d3a0:
     lfd	f1, 0x18(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7c08(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -1479,7 +1479,7 @@ _8005d3f4:
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7c08(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -1513,7 +1513,7 @@ _8005d46c:
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7c08(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -1541,7 +1541,7 @@ _8005d4d8:
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7c08(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -2031,7 +2031,7 @@ asm void fn_8005DB68(void)
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lis	r3, -0x7ff7
     lis	r0, 0x4330
     addi	r3, r3, 0x2a18
@@ -2047,7 +2047,7 @@ asm void fn_8005DB68(void)
     fsubs	f1, f1, f2
     fadds	f30, f31, f3
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7c08(r2)
     lis	r0, 0x4330
     extsh	r3, r28
@@ -2542,7 +2542,7 @@ _8005e2e8:
     lfd	f1, 0xb8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     addi	r3, r14, 0x40
     lis	r0, 0x4330
     lbzx	r3, r3, r19
@@ -2557,7 +2557,7 @@ _8005e2e8:
     fsubs	f1, f1, f2
     fadds	f30, f31, f3
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     xoris	r3, r18, 0x8000
     lis	r0, 0x4330
     lfd	f0, -0x7c08(r2)
@@ -2723,7 +2723,7 @@ _8005e5dc:
     lis	r3, -0x7fe6
     lfs	f1, 0x664c(r3)
 _8005e5e4:
-    bl      fn_80088578
+    bl      expf
     lis	r3, -0x7efe
     lfd	f0, -0x7bc8(r2)
     addi	r3, r3, 0x409
@@ -2813,7 +2813,7 @@ _8005e734:
     lis	r3, -0x7fe6
     lfs	f1, 0x664c(r3)
 _8005e73c:
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7c08(r2)
     lis	r3, 0x4330
     xoris	r0, r28, 0x8000
@@ -2880,7 +2880,7 @@ _8005e800:
     lfd	f1, 0xd0(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7c08(r2)
     lfd	f0, -0x7c10(r2)
     fmul	f1, f2, f1
@@ -2906,7 +2906,7 @@ _8005e860:
     lfd	f1, 0xd0(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7c08(r2)
     lfd	f0, -0x7c10(r2)
     fmul	f1, f2, f1
@@ -2931,7 +2931,7 @@ _8005e8c4:
     lfd	f1, 0xd0(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7c08(r2)
     lfd	f0, -0x7c10(r2)
     fmul	f1, f2, f1
@@ -2955,7 +2955,7 @@ _8005e91c:
     lfd	f1, 0xd0(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7c08(r2)
     lfd	f0, -0x7c10(r2)
     fmul	f1, f2, f1
@@ -5104,7 +5104,7 @@ _800607f0:
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7ba0(r2)
     lfd	f0, -0x7ba8(r2)
     fmul	f1, f2, f1
@@ -5171,7 +5171,7 @@ _800608e0:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f2, -0x7ba0(r2)
     lfd	f0, -0x7ba8(r2)
     fmul	f1, f2, f1
@@ -5267,7 +5267,7 @@ _80060a24:
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7ba0(r2)
     fmul	f31, f0, f1
     frsp	f31, f31
@@ -5289,7 +5289,7 @@ _80060a74:
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7ba0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -5312,7 +5312,7 @@ _80060ac8:
     lfd	f1, 0x18(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7ba0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -5336,7 +5336,7 @@ _80060b1c:
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7ba0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
@@ -5774,7 +5774,7 @@ _8006117c:
     lis	r3, -0x7fe6
     lfs	f1, 0x664c(r3)
 _80061184:
-    bl      fn_80088578
+    bl      expf
     lis	r3, -0x7efe
     lfd	f0, -0x7b38(r2)
     addi	r3, r3, 0x409
@@ -5833,7 +5833,7 @@ _80061258:
     lis	r3, -0x7fe6
     lfs	f1, 0x664c(r3)
 _80061260:
-    bl      fn_80088578
+    bl      expf
     lfd	f0, -0x7ba0(r2)
     lis	r3, 0x4330
     extsh	r0, r19

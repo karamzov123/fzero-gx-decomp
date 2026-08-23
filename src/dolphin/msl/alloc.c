@@ -7,7 +7,7 @@ extern void OSReport(char* fmt, ...);
 extern unsigned long OSGetArenaLo(void);
 extern unsigned long OSGetArenaHi(void);
 extern void OSSetArenaLo(unsigned long lo);
-extern void* fn_80008EC8(void* lo, void* hi, int create);
+extern void* OSInitAlloc(void* lo, void* hi, int create);
 extern void fn_80008F60(void* lo, void* hi);
 extern void* OSSetCurrentHeap_thunk(void* heap);
 extern void* OSFree(void* heap, unsigned long size);
@@ -44,7 +44,7 @@ asm void* fn_80079EF0(register unsigned long size)
     mr      r3, r31
     li      r5, 1
     mr      r4, r30
-    bl      fn_80008EC8
+    bl      OSInitAlloc
     mr      r31, r3
     bl      OSSetArenaLo
     addi    r0, r31, 0x1f
@@ -96,7 +96,7 @@ asm void fn_80079FA8(register unsigned long size)
     mr      r3, r31
     li      r5, 1
     mr      r4, r30
-    bl      fn_80008EC8
+    bl      OSInitAlloc
     mr      r31, r3
     bl      OSSetArenaLo
     addi    r0, r31, 0x1f

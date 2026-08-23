@@ -71,11 +71,11 @@ extern void fn_800087F4(void);
 extern void fn_80008A4C(void);
 extern void fn_80008DB4(void);
 extern void fn_80008E30(void);
-extern void fn_80008EC8(void);
+extern void OSInitAlloc(void);
 extern void fn_80008F60(void);
 extern void fn_80008F88(void);
-extern void fn_80008FB0(void);
-extern void fn_80009064(void);
+extern void OSCreateHeap(void);
+extern void OSDestroyHeap(void);
 extern void fn_800090A4(void);
 extern void fn_80009468(void);
 extern void fn_8000951C(void);
@@ -282,7 +282,7 @@ asm void OSSetCurrentHeap_thunk(void)
     blr	
 }
 
-asm void fn_80008EC8(void)
+asm void OSInitAlloc(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -335,7 +335,7 @@ asm void fn_80008F60(void)
     stw	r0, 0x14(r1)
     li	r0, 0
     stw	r0, -0x7c8c(r13)
-    bl      fn_80008FB0
+    bl      OSCreateHeap
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -350,14 +350,14 @@ asm void fn_80008F88(void)
     stw	r0, 0x14(r1)
     li	r0, 1
     stw	r0, -0x7c8c(r13)
-    bl      fn_80008FB0
+    bl      OSCreateHeap
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
     blr	
 }
 
-asm void fn_80008FB0(void)
+asm void OSCreateHeap(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -411,7 +411,7 @@ _80009048:
     blr	
 }
 
-asm void fn_80009064(void)
+asm void OSDestroyHeap(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
