@@ -14,7 +14,6 @@ extern void fn_8000BFEC(register void* context, register void* pc, register void
 extern void __OSUnlockAllMutex(register void* thread);
 extern void OSWakeupThread(register void* queue);
 extern unsigned char __OSErrorTable[];
-extern unsigned char RunQueue[];
 
 asm void UnsetRun(register void* thread)
 {
@@ -216,11 +215,11 @@ asm void* SelectThread(register int yield)
 {
     nofralloc
     mflr	r0
-    lis     r4, RunQueue@ha
+    lis     r4, 0x8015
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    addi    r4, r4, RunQueue@l
+    addi    r4, r4, -0x3fe8
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
     lwz	r0, -0x7bc0(r13)

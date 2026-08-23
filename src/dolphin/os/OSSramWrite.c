@@ -18,17 +18,16 @@ extern s32 EXIImm(s32 chan, void* buffer, u32 size, u32 type, void* callback);
 extern s32 EXISync(s32 chan);
 extern s32 EXIDeselect(s32 chan);
 extern s32 EXIImmEx(s32 chan, void* buffer, u32 size, s32 periodic);
-extern unsigned char Scb[];
 
-static asm void WriteSramCallback(void)
+asm void WriteSramCallback(void)
 {
     nofralloc
     mflr	r0
-    lis     r3, Scb@ha
+    lis     r3, 0x8015
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    addi    r3, r3, Scb@l
+    addi    r3, r3, -0x4040
     stw	r30, 0x10(r1)
     addi	r30, r31, 0x40
     lwz	r4, 0x40(r31)
@@ -50,7 +49,7 @@ _8000f658:
     blr	
 }
 
-static asm int WriteSram(void* buffer, unsigned long offset, unsigned long size)
+asm int WriteSram(void* buffer, unsigned long offset, unsigned long size)
 {
     nofralloc
     mflr	r0

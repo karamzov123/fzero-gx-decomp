@@ -11,7 +11,6 @@ extern u32 __OSUnmaskInterrupts(u32 intrMask);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void __OSUnhandledException(int error, void* context, u32 cause, u32 addr);
 extern void MEMIntrruptHandler(int interrupt, void* context);
-extern unsigned char ResetFunctionInfo[];
 extern unsigned char __OSErrorTable[];
 
 #pragma push
@@ -220,8 +219,8 @@ asm void __OSInitMemoryProtection(void)
     mr	r4, r29
     li	r3, 4
     bl      __OSSetInterruptHandler
-    lis     r3, ResetFunctionInfo@ha
-    addi    r3, r3, ResetFunctionInfo@l
+    lis     r3, 0x8012
+    addi    r3, r3, 0x3ae0
     bl      OSRegisterResetFunction
     lwz	r3, 0xf0(r27)
     lwz	r0, 0x28(r27)
