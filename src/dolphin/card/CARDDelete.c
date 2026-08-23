@@ -10,6 +10,7 @@ typedef unsigned long u32;
 typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
+extern void fn_80029824(void); // 0x80029824
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 __CARDFreeBlock(register s32 chn, register u16 nBlock, register void* callback);
 extern s32 __CARDGetDirBlock(void);
@@ -133,12 +134,12 @@ _L_8002fa80:
     mr      r0, r30
     b       _L_8002fab4
 _L_8002faac:
-    lis     r3, 0x8003
-    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
+    lis     r3, fn_80029824@ha
+    addi    r0, r3, fn_80029824@l /* __CARDDefaultApiCallback */
 _L_8002fab4:
     lwz     r5, 0x14(r1)
     lis     r3, 0x8003
-    addi    r4, r3, -0x6cc          /* DeleteCallback */
+    addi    r4, r3, -0x6cc /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r28
     bl      __CARDUpdateDir
@@ -214,12 +215,12 @@ _L_8002fb84:
     mr      r0, r30
     b       _L_8002fbc8
 _L_8002fbc0:
-    lis     r3, 0x8003
-    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
+    lis     r3, fn_80029824@ha
+    addi    r0, r3, fn_80029824@l /* __CARDDefaultApiCallback */
 _L_8002fbc8:
     lwz     r5, 0x18(r1)
     lis     r3, 0x8003
-    addi    r4, r3, -0x6cc          /* DeleteCallback */
+    addi    r4, r3, -0x6cc /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r31
     bl      __CARDUpdateDir

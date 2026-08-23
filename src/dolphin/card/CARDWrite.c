@@ -11,7 +11,10 @@ typedef unsigned long u32;
 typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
+extern void fn_80029824(void); // default-API callback stub
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
+extern void EraseCallback(register s32 chan, register s32 result);
+extern void WriteCallback(register s32 chan, register s32 result);
 extern s32 fn_8002C0B8(register void* ctrl);
 extern s32 __CARDGetDirBlock(void);
 extern s32 __CARDEraseSector(register s32 chn, register s32 addr, register void* callback);
@@ -101,8 +104,8 @@ _L_8002f6b0:
     b       _L_8002f6dc
 _L_8002f6b8:
     lwz     r0, 0xc(r31)
-    lis     r3, 0x8003
-    addi    r5, r3, -0x8d8          /* EraseCallback */
+    lis     r3, EraseCallback@ha
+    addi    r5, r3, EraseCallback@l /* EraseCallback */
     mullw   r4, r0, r4
     addi    r3, r30, 0
     bl      __CARDEraseSector
@@ -151,8 +154,8 @@ asm void EraseCallback(register s32 chan, register s32 result)
     add     r31, r0, r5
     blt     _L_8002f78c
     lwz     r4, 0xc0(r31)
-    lis     r3, 0x8003
-    addi    r7, r3, -0xa48          /* WriteCallback */
+    lis     r3, WriteCallback@ha
+    addi    r7, r3, WriteCallback@l /* WriteCallback */
     lwz     r5, 0xc(r31)
     lhz     r0, 0x10(r4)
     lwz     r6, 0xb4(r31)
@@ -237,12 +240,12 @@ _L_8002f86c:
     mr      r0, r29
     b       _L_8002f890
 _L_8002f888:
-    lis     r3, 0x8003
-    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
+    lis     r3, fn_80029824@ha
+    addi    r0, r3, fn_80029824@l /* __CARDDefaultApiCallback */
 _L_8002f890:
     lwz     r4, 0x1c(r1)
-    lis     r3, 0x8003
-    addi    r5, r3, -0x8d8          /* EraseCallback */
+    lis     r3, EraseCallback@ha
+    addi    r5, r3, EraseCallback@l /* EraseCallback */
     stw     r0, 0xd0(r4)
     lwz     r3, 0x1c(r1)
     stw     r31, 0xb4(r3)

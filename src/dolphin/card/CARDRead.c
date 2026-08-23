@@ -11,6 +11,7 @@ typedef unsigned long u32;
 typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
+extern void fn_80029824(void); // 0x80029824
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 fn_8002C0B8(register void* ctrl);
 extern s32 __CARDGetDirBlock(void);
@@ -19,6 +20,7 @@ extern s32 fn_8002BEFC(register s32 chn, register void* addr, register s32 len,
 extern s32 fn_8002E9BC(register void* ctrl, register void* r4);
 extern s32 fn_8002EA54(register void* ctrl);
 extern s32 __CARDSync(register void* handle);
+extern s32 fn_8002F2F8(register s32 chn, register BOOL sync); // 0x8002F2F8 __CARDSeek
 extern void DCInvalidateRange(register void* addr, register u32 n);
 extern u32 OSGetTime(void);
 
@@ -213,8 +215,8 @@ _L_8002f3c4:
 _L_8002f3c8:
     mullw   r4, r0, r3
     lwz     r6, 0xb4(r31)
-    lis     r3, 0x8003
-    addi    r7, r3, -0xd08          /* default callback fn_8002F2F8-adjacent @0x8003F2F8 */
+    lis     r3, fn_8002F2F8@ha
+    addi    r7, r3, fn_8002F2F8@l /* default callback fn_8002F2F8-adjacent @0x8003F2F8 */
     addi    r3, r29, 0
     bl      fn_8002BEFC
     or.     r30, r3, r3
@@ -297,8 +299,8 @@ _L_8002f4cc:
     mr      r0, r27
     b       _L_8002f4f0
 _L_8002f4e8:
-    lis     r3, 0x8003
-    addi    r0, r3, -0x67dc        /* default read callback @0x80039824 */
+    lis     r3, fn_80029824@ha
+    addi    r0, r3, fn_80029824@l /* default read callback @0x80039824 */
 _L_8002f4f0:
     lwz     r3, 0x1c(r1)
     stw     r0, 0xd0(r3)
