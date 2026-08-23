@@ -342,6 +342,7 @@ config.libs = [
         Object(Matching, "dolphin/vi/viregs.c"),
         Object(Matching, "dolphin/pad/padmisc.c"),
         Object(Matching, "dolphin/vi/viretrace.c"),
+        Object(Matching, "dolphin/vi/viwait.c"),
         Object(Matching, "dolphin/ai/AI.c"),
         Object(Matching, "dolphin/ar/AR.c"),
         Object(Matching, "dolphin/ar/ARQ.c"),
