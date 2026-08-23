@@ -314,8 +314,50 @@ game/criadx_80048340.c:
 game/criadx_80049728.c:
 	.text       start:0x80049728 end:0x8004A560
 
-coarse/text_8004A560.c:
-	.text       start:0x8004A560 end:0x80053EA0
+game/adxt_8004A560.c:
+	.text       start:0x8004A560 end:0x8004AC04
+
+game/adxt_8004AC04.c:
+	.text       start:0x8004AC04 end:0x8004B7F4
+
+game/adxt_8004B7F4.c:
+	.text       start:0x8004B7F4 end:0x8004C164
+
+game/adxt_8004C164.c:
+	.text       start:0x8004C164 end:0x8004CD70
+
+game/adxt_8004CD70.c:
+	.text       start:0x8004CD70 end:0x8004E098
+
+game/adxt_8004E098.c:
+	.text       start:0x8004E098 end:0x8004F00C
+
+game/adxt_8004F00C.c:
+	.text       start:0x8004F00C end:0x80050180
+
+game/adxt_80050180.c:
+	.text       start:0x80050180 end:0x80050698
+
+game/adxt_80050698.c:
+	.text       start:0x80050698 end:0x80050BD4
+
+game/adxt_80050BD4.c:
+	.text       start:0x80050BD4 end:0x80050F90
+
+game/adxt_80050F90.c:
+	.text       start:0x80050F90 end:0x80051448
+
+game/adxt_80051448.c:
+	.text       start:0x80051448 end:0x80051F38
+
+game/adxt_80051F38.c:
+	.text       start:0x80051F38 end:0x80052430
+
+game/adxt_80052430.c:
+	.text       start:0x80052430 end:0x80053A30
+
+game/adxt_80053A30.c:
+	.text       start:0x80053A30 end:0x80053EA0
 
 coarse/text_80053EA0.c:
 	.text       start:0x80053EA0 end:0x8005C120

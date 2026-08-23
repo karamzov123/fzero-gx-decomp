@@ -51,7 +51,7 @@ for va in range(start, start + length, 4):
     ins = list(md.disasm(w, va))
     if ins:
         mn, ops = ins[0].mnemonic, ins[0].op_str
-        if mn.startswith('xs') or mn.startswith('xv'):
+        if mn.startswith(('xs', 'xv', 'xx')):
             # opcode 60 = psq_st family misdecoded as modern VSX
             op = W >> 26
             if op == 60:
