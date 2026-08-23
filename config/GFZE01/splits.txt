@@ -210,7 +210,13 @@ dolphin/vi/vifuncs.c:
 	.text       start:0x8001A78C end:0x8001A8B4
 
 coarse/text_8001A8B4.c:
-	.text       start:0x8001A8B4 end:0x8001BC54
+	.text       start:0x8001A8B4 end:0x8001AF64
+
+dolphin/vi/viwait.c:
+	.text       start:0x8001AF64 end:0x8001AFB8
+
+coarse/text_8001AFB8.c:
+	.text       start:0x8001AFB8 end:0x8001BC54
 
 dolphin/vi/viretrace.c:
 	.text       start:0x8001BC54 end:0x8001BE6C
