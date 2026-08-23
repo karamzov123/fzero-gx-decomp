@@ -248,8 +248,20 @@ game/axmix_80026EE0.c:
 dolphin/dsp/DSP.c:
 	.text       start:0x80028CC0 end:0x80029828
 
-coarse/text_80029828.c:
-	.text       start:0x80029828 end:0x8002F140
+dolphin/card/CARDBios.c:
+	.text       start:0x80029828 end:0x8002A698
+
+dolphin/card/CARDMount.c:
+	.text       start:0x8002A698 end:0x8002AF34
+
+dolphin/card/CARDBlock.c:
+	.text       start:0x8002AF34 end:0x8002C8D0
+
+dolphin/card/CARDDir.c:
+	.text       start:0x8002C8D0 end:0x8002EED8
+
+coarse/text_8002EED8.c:
+	.text       start:0x8002EED8 end:0x8002F140
 
 dolphin/card/CARDRead.c:
 	.text       start:0x8002F140 end:0x8002F5B8
