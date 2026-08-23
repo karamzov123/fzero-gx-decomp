@@ -26,15 +26,15 @@ extern void _savegpr_24(void);
 extern void _savegpr_26(void);
 extern void _savegpr_27(void);
 extern void fn_80005660(void);
-extern void fn_80005738(void);
+extern void main_read_fze_str(void);
 extern void fn_800057CC(void);
 extern void fn_800057F8(void);
-extern void fn_80005858(void);
+extern void main_load_sample_rel(void);
 extern void fn_800058D8(void);
 extern void fn_8000591C(void);
 extern void fn_80005A08(void);
 extern void fn_80005AD0(void);
-extern void fn_80005B10(void);
+extern void mmu_user_fn(void);
 extern void fn_80005E0C(void);
 extern void fn_80005EDC(void);
 extern void fn_800060D8(void);
@@ -42,7 +42,7 @@ extern void fn_80006334(void);
 extern void fn_80006340(void);
 extern void fn_80006354(void);
 extern void fn_800063AC(void);
-extern void fn_8000659C(void);
+extern void dvdfs_user_fn(void);
 extern void fn_800068F4(void);
 extern void fn_80006904(void);
 extern void fn_80006914(void);
@@ -81,7 +81,7 @@ extern void fn_800079C4(void);
 extern void fn_80007A00(void);
 extern void fn_80007A44(void);
 extern void fn_80007AB4(void);
-extern void fn_80007B68(void);
+extern void dvd_user_fn(void);
 extern void fn_80007C2C(void);
 extern void fn_80007C60(void);
 extern void fn_80007CDC(void);
@@ -303,19 +303,19 @@ _800056e4:
     li	r3, 0x20
     li	r4, 1
     bl      fn_80070AC0
-    bl      fn_80005738
+    bl      main_read_fze_str
     bl      fn_800057CC
     bl      fn_800058D8
     bl      fn_800063AC
     bl      fn_80005A08
-    bl      fn_80005858
+    bl      main_load_sample_rel
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
     blr	
 }
 
-asm void fn_80005738(void)
+asm void main_read_fze_str(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -405,7 +405,7 @@ _80005848:
     blr	
 }
 
-asm void fn_80005858(void)
+asm void main_load_sample_rel(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -561,7 +561,7 @@ _80005a48:
 _80005a64:
     bl      fn_8006FD1C
     mr	r3, r31
-    bl      fn_80005B10
+    bl      mmu_user_fn
     bl      fn_80005E0C
     bl      fn_80005E0C
     bl      fn_8006FDEC
@@ -610,7 +610,7 @@ asm void fn_80005AD0(void)
     blr	
 }
 
-asm void fn_80005B10(void)
+asm void mmu_user_fn(void)
 {
     nofralloc
     stwu	r1, -0x70(r1)
@@ -1201,7 +1201,7 @@ asm void fn_80006354(void)
     bl      fn_800174D0
     b       _80006388
 _80006384:
-    bl      fn_8000659C
+    bl      dvdfs_user_fn
 _80006388:
     lbz	r0, -0x7ce5(r13)
     extsb.	r0, r0
@@ -1357,7 +1357,7 @@ _8000655c:
     blr	
 }
 
-asm void fn_8000659C(void)
+asm void dvdfs_user_fn(void)
 {
     nofralloc
     stwu	r1, -0xa0(r1)
@@ -1436,7 +1436,7 @@ _80006688:
 _800066ac:
     li	r25, 1
 _800066b0:
-    bl      fn_80007B68
+    bl      dvd_user_fn
     cmpwi	r24, 0
     bc      12, 0, _80006858
     bl      fn_80005EDC
@@ -3034,7 +3034,7 @@ _80007b50:
     blr	
 }
 
-asm void fn_80007B68(void)
+asm void dvd_user_fn(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

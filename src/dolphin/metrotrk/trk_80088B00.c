@@ -33,7 +33,7 @@ extern void fn_8008963C(void);
 extern void fn_8008983C(void);
 extern void fn_800898E4(void);
 extern void fn_8008998C(void);
-extern void fn_80089BAC(void);
+extern void TRK_serialIO_init(void);
 extern void fn_80089C5C(void);
 extern void fn_80089EEC(void);
 extern void fn_8008A1CC(void);
@@ -1086,7 +1086,7 @@ asm void TRKDispatchMessage(void)
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_80089BAC
+    bl      TRK_serialIO_init
     mr	r31, r3
     b       _80089800
     mr	r3, r30
@@ -1379,7 +1379,7 @@ _80089b98:
     blr
 }
 
-asm void fn_80089BAC(void)
+asm void TRK_serialIO_init(void)
 {
     nofralloc
     stwu	r1, -0x90(r1)

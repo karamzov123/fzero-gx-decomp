@@ -7,14 +7,14 @@ extern void fn_8004E300(void);
 extern void fn_8004E2CC(void);
 extern void fn_8004E2DC(void);
 extern void fn_8004E2B0(void);
-extern void fn_800456A0(void);
+extern void CRI_FORM_parser(void);
 extern void fn_80045FEC(void);
 extern void fn_800462F8(void);
 extern void fn_80042568(void);
 extern void fn_80043050(void);
 extern void fn_80043CCC(void);
 extern void fn_80043B48(void);
-extern void fn_80044C0C(void);
+extern void CRI_WAVE_parser(void);
 extern void fn_80044A94(void);
 extern void fn_80046C28(void);
 extern void fn_80047464(void);
@@ -361,7 +361,7 @@ asm void fn_800455B8(void)
     lhz	r0, 0(r4)
     cmplwi	r0, 0x8000
     bne     _800455f0
-    bl      fn_800456A0
+    bl      CRI_FORM_parser
     b       _80045684
 _800455f0:
     mr	r3, r30
@@ -395,7 +395,7 @@ _80045638:
     b       _80045684
 _8004565c:
     mr	r3, r30
-    bl      fn_80044C0C
+    bl      CRI_WAVE_parser
     cmpwi	r3, 0
     beq     _80045680
     mr	r3, r29
@@ -415,7 +415,7 @@ _80045684:
     blr	
 }
 
-asm void fn_800456A0(void)
+asm void CRI_FORM_parser(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)

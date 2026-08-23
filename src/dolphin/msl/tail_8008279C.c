@@ -9,7 +9,7 @@ typedef signed int s32;
 
 extern void __va_arg(void);
 extern void fn_80080030(void);
-extern void fn_80083F10(void);
+extern void MSL_device_link_fn(void);
 extern void fn_80085088(void);
 extern void fn_80085494(void);
 extern void fn_80082A7C(void);
@@ -601,7 +601,7 @@ _80082f18:
     mr	r5, r31
     addi	r6, r1, 0x14
     addi	r7, r1, 0xc
-    bl      fn_80083F10
+    bl      MSL_device_link_fn
     lwz	r0, 0x14(r1)
     cmpwi	r0, 0
     bc      12, 2, _800833e0

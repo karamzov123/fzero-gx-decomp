@@ -854,7 +854,7 @@ _80046d84:
     blr	
 }
 
-asm void fn_80046D94(void)
+asm void CRI_SPSD_parser(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)

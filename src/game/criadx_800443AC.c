@@ -600,7 +600,7 @@ _80044bf0:
     blr	
 }
 
-asm void fn_80044C0C(void)
+asm void CRI_WAVE_parser(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

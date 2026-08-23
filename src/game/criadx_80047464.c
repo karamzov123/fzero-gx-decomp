@@ -24,7 +24,7 @@ extern void fn_80047C08(void);
 extern void fn_800482B8(void);
 extern void fn_800478C0(void);
 extern void fn_80048340(void);
-extern void fn_80046D94(void);
+extern void CRI_SPSD_parser(void);
 extern void fn_80047A50(void);
 extern void fn_80049958(void);
 extern void fn_80049728(void);
@@ -453,7 +453,7 @@ _800479d0:
     addi	r6, r1, 0xa
     lwz	r4, 0x5c(r31)
     extsh	r3, r0
-    bl      fn_80046D94
+    bl      CRI_SPSD_parser
     lha	r3, 0xa(r1)
     addi	r27, r27, 4
     lha	r0, 8(r1)

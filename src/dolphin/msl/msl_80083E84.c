@@ -16,7 +16,7 @@ extern void _restfpr_25(void);
 extern void __div2u(void);
 extern void fn_8007B338(void);
 extern void fn_8008DC10(void);
-extern void fn_80083F10(void); // forward decl: label must be declared before first use
+extern void MSL_device_link_fn(void); // forward decl: label must be declared before first use
 extern void fn_80085494(void); // forward decl
 extern void fn_80088128(void); // forward decl
 extern void fn_800883E8(void); // forward decl
@@ -57,7 +57,7 @@ asm void fn_80083E84(void)
     addi	r6, r1, 8
     stw	r0, 0x14(r1)
     addi	r7, r1, 0xc
-    bl      fn_80083F10
+    bl      MSL_device_link_fn
     lwz	r0, 0xc(r1)
     fabs	f2, f1
     cmpwi	r0, 0
@@ -83,7 +83,7 @@ _80083f00:
     blr
 }
 
-asm void fn_80083F10(void)
+asm void MSL_device_link_fn(void)
 {
     nofralloc
     stwu	r1, -0xb0(r1)
@@ -3362,7 +3362,7 @@ _80086c44:
     blr
 }
 
-asm void fn_80086C5C(void)
+asm void MSL_strtod_nan(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -4667,7 +4667,7 @@ asm void fn_80087E80(void)
     cmpw	r3, r0
     bc      12, 1, _80087eb4
     lfd	f2, -0x7598(r2)
-    bl      fn_80086C5C
+    bl      MSL_strtod_nan
     b       _80087f44
 _80087eb4:
     lis	r0, 0x7ff0
@@ -4692,7 +4692,7 @@ _80087eec:
 _80087ef8:
     lfd	f1, 0x10(r1)
     lfd	f2, 0x18(r1)
-    bl      fn_80086C5C
+    bl      MSL_strtod_nan
     b       _80087f44
 _80087f08:
     lfd	f1, 0x10(r1)
@@ -4704,7 +4704,7 @@ _80087f08:
 _80087f20:
     lfd	f1, 0x10(r1)
     lfd	f2, 0x18(r1)
-    bl      fn_80086C5C
+    bl      MSL_strtod_nan
     fneg	f1, f1
     b       _80087f44
 _80087f34:
@@ -5117,7 +5117,7 @@ _80088464:
 _80088478:
     lfd	f1, 0x10(r1)
     lfd	f2, 0x18(r1)
-    bl      fn_80086C5C
+    bl      MSL_strtod_nan
     b       _800884b0
 _80088488:
     lfd	f1, 0x10(r1)
@@ -5129,7 +5129,7 @@ _80088488:
 _800884a0:
     lfd	f1, 0x10(r1)
     lfd	f2, 0x18(r1)
-    bl      fn_80086C5C
+    bl      MSL_strtod_nan
     fneg	f1, f1
 _800884b0:
     lwz	r0, 0x24(r1)

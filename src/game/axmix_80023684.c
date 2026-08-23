@@ -5,7 +5,7 @@ extern void memset(void);
 extern void fn_800885B8(void);
 extern unsigned char lbl_80128160[32];
 
-asm void fn_80023684(void)
+asm void axmix_heap_init(void)
 {
     nofralloc
     mflr	r0

@@ -3,7 +3,7 @@
 
 typedef int BOOL;
 extern BOOL OSDisableInterrupts(void);
-extern void fn_80023684(void);
+extern void axmix_heap_init(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void fn_8002420C(void);
 extern void fn_80023B70(void);
@@ -37,7 +37,7 @@ asm void fn_80024308(void)
     lfs	f4, 0x1d4(r31)
     lfs	f5, 0x1d8(r31)
     lfs	f6, 0x1dc(r31)
-    bl      fn_80023684
+    bl      axmix_heap_init
     mr	r31, r3
     mr	r3, r30
     bl      OSRestoreInterrupts

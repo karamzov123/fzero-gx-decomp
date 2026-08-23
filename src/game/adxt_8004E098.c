@@ -13,7 +13,7 @@ extern void OSSuspendThread(void);
 extern void fn_800102AC(void);
 extern void fn_80011358(void);
 extern void fn_8001AF64(void);
-extern void fn_80046D94(void);
+extern void CRI_SPSD_parser(void);
 extern void fn_800474E4(void);
 extern void fn_8004ED3C(void);
 extern void fn_8004EFA8(void);
@@ -323,7 +323,7 @@ asm void fn_8004E324(void)
     stw	r0, 0x14(r1)
     addi	r5, r6, 0x30
     addi	r6, r6, 0x32
-    bl      fn_80046D94
+    bl      CRI_SPSD_parser
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -410,7 +410,7 @@ _8004e430:
     li	r3, 0x1f4
     stw	r0, 8(r30)
     stw	r0, 0xc(r30)
-    bl      fn_80046D94
+    bl      CRI_SPSD_parser
     addi	r3, r30, 0x28
     li	r4, 0
     li	r5, 8
