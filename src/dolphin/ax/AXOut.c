@@ -7,25 +7,25 @@ extern unsigned long long OSGetTime(void);
 extern void fn_80022BF4(void);
 extern void fn_80022028(void);
 extern void fn_80021200(void);
-extern void fn_80028CF8(void);
-extern void fn_80028CC0(void);
+extern void DSPSendMailToDSP(void);
+extern void DSPCheckMailToDSP(void);
 extern void __AXServiceCallbackStack(void);
 extern void fn_80020FA4(void);
 extern void fn_8002123C(void);
 extern void fn_8001DF44(void);
 extern void fn_800224E4(void);
 extern void fn_800235D4(void);
-extern void fn_80028E88(void);
+extern void DSPAssertTask(void);
 extern void OSWakeupThread(register void* queue);
 extern void OSInitThreadQueue(register void* queue);
-extern void fn_80028DD0(void);
-extern void fn_80028D0C(void);
-extern void fn_80028DD8(void);
+extern void DSPCheckInit(void);
+extern void DSPInit(void);
+extern void DSPAddTask(void);
 extern void DCFlushRange(register void* addr, register u32 nBytes);
 extern void fn_8001DF00(void);
 extern void fn_8001DFCC(void);
 extern BOOL OSDisableInterrupts(void);
-extern void fn_80028E48(void);
+extern void DSPCancelTask(void);
 extern void OSSleepThread(register void* queue);
 extern void fn_8001DFE4(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
@@ -51,15 +51,15 @@ asm void fn_80021930(void)
     lis	r4, -0x4542
     addi	r30, r3, 0
     addi	r3, r4, 0x180
-    bl      fn_80028CF8
+    bl      DSPSendMailToDSP
 _8002197c:
-    bl      fn_80028CC0
+    bl      DSPCheckMailToDSP
     cmplwi	r3, 0
     bne     _8002197c
     mr	r3, r30
-    bl      fn_80028CF8
+    bl      DSPSendMailToDSP
 _80021990:
-    bl      fn_80028CC0
+    bl      DSPCheckMailToDSP
     cmplwi	r3, 0
     bne     _80021990
     bl      __AXServiceCallbackStack
@@ -164,7 +164,7 @@ _80021afc:
     lis	r3, -0x7fea
     stw	r0, -0x78ac(r13)
     addi	r3, r3, 0xc80
-    bl      fn_80028E88
+    bl      DSPAssertTask
 _80021b10:
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -265,13 +265,13 @@ asm void fn_80021BB0(void)
     stw	r9, -0x789c(r13)
     stw	r9, -0x7898(r13)
     bl      OSInitThreadQueue
-    bl      fn_80028DD0
+    bl      DSPCheckInit
     cmpwi	r3, 0
     bne     _80021c54
-    bl      fn_80028D0C
+    bl      DSPInit
 _80021c54:
     addi	r3, r31, 0x780
-    bl      fn_80028DD8
+    bl      DSPAddTask
 _80021c5c:
     lwz	r0, -0x789c(r13)
     cmpwi	r0, 0
@@ -512,7 +512,7 @@ asm void fn_80021FBC(void)
     addi	r0, r4, 0xc80
     addi	r31, r3, 0
     mr	r3, r0
-    bl      fn_80028E48
+    bl      DSPCancelTask
     addi	r3, r13, -0x7890
     bl      OSSleepThread
     bl      fn_8001DFE4
