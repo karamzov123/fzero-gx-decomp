@@ -7,7 +7,7 @@ extern void PPCMfpmc3(register u32 v);
 extern void PPCMfpmc4(register u32 v);
 extern void OSReport(const char* fmt, ...);
 extern void* memcpy(void* dst, const void* src, unsigned long n);
-extern void fn_80079764(register u32 a, register u32 b);
+extern void __cvt_fp2unsigned(register u32 a, register u32 b);
 extern void OSGetTime(void* t);
 extern void OSSetPeriodicAlarm(void* alarm, void* start, void* period, void (*handler)(void));
 extern void OSCancelAlarm(void* alarm);
@@ -428,7 +428,7 @@ asm void fn_8003E8CC(register u32 a)
     lfd	f0, 0x10(r1)
     fsubs	f0, f0, f2
     fmuls	f1, f1, f0
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     mr	r31, r3
     bl      OSGetTime
     lis	r6, -0x7ffc

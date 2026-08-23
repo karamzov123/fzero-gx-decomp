@@ -291,7 +291,19 @@ coarse/text_8006E324.c:
 	.text       start:0x8006E324 end:0x80071CC0
 
 coarse/text_80071CC0.c:
-	.text       start:0x80071CC0 end:0x8007A060
+	.text       start:0x80071CC0 end:0x800794F0
+
+dolphin/msl/runtime.c:
+	.text       start:0x800794F0 end:0x800797C0
+
+coarse/text_800797C0.c:
+	.text       start:0x800797C0 end:0x800798F0
+
+dolphin/msl/longlong.c:
+	.text       start:0x800798F0 end:0x80079EF0
+
+coarse/text_80079EF0.c:
+	.text       start:0x80079EF0 end:0x8007A060
 
 coarse/text_8007A060.c:
 	.text       start:0x8007A060 end:0x80083D40

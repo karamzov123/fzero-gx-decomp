@@ -19,7 +19,7 @@ typedef struct OSCalendarTime {
 extern int lbl_80123AF0[];
 extern int lbl_80123B20[];
 extern int OSDisableInterrupts(void);
-extern void fn_80079BF8(void);
+extern void __mod2i(void);
 extern void __div2i(void);
 extern void OSRestoreInterrupts(int level);
 
@@ -191,7 +191,7 @@ asm void OSTicksToCalendarTime(register s64 ticks, register OSCalendarTime* td)
     mr          r4, r30
     srwi        r6, r0, 2
     li          r5, 0x0
-    bl          fn_80079BF8
+    bl          __mod2i
     mr          r26, r3
     li          r5, 0x0
     mr          r25, r4
@@ -227,7 +227,7 @@ lbl_800116F8:
     bl          __div2i
     li          r5, 0x0
     li          r6, 0x3e8
-    bl          fn_80079BF8
+    bl          __mod2i
     stw         r4, 0x24(r31)
     lis         r3, 0x1062
     addi        r5, r3, 0x4dd3
@@ -241,7 +241,7 @@ lbl_800116F8:
     bl          __div2i
     li          r5, 0x0
     li          r6, 0x3e8
-    bl          fn_80079BF8
+    bl          __mod2i
     stw         r4, 0x20(r31)
     subfc       r30, r25, r30
     subfe       r29, r26, r29
@@ -268,7 +268,7 @@ lbl_800116F8:
     bl          __div2i
     mr          r6, r25
     li          r5, 0x0
-    bl          fn_80079BF8
+    bl          __mod2i
     mr          r27, r4
     cmpwi       r27, 0x0
     bge         lbl_80011804

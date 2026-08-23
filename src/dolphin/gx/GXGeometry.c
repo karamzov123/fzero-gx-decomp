@@ -42,11 +42,11 @@ extern void fn_80036F24(void);
 extern void fn_80032B8C(void);
 extern void fn_80033650(void);
 extern void fn_80032BE0(void);
-extern void fn_80079764(void);
+extern void __cvt_fp2unsigned(void);
 extern void fn_80088624(void);
 extern void* memset(void* dst, int c, unsigned long n);
 extern void fn_80035B88(register void* p1, register void* p2, register int id, register void* p4);
-extern void fn_80079764(void);
+extern void __cvt_fp2unsigned(void);
 extern void fn_80032EB8(register void* p);
 extern void fn_8003396C(register void* p);
 extern void fn_80032F48(register void* p);
@@ -686,7 +686,7 @@ asm void fn_80034D9C(register void* p1, register void* p2, register int id, regi
     stwu	r1, -8(r1)
     lfs	f0, -0x7dc0(r2)
     fdivs	f1, f0, f1
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     clrlwi	r6, r3, 0x17
     lwz	r4, -0x7de8(r2)
     li	r0, 0x61

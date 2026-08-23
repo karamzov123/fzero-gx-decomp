@@ -8,7 +8,7 @@ extern void* memcpy(void*, const void*, unsigned long);
 extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void fn_80038878(void);
-extern void fn_80079764(void);
+extern void __cvt_fp2unsigned(void);
 extern void GXSetCPUFifo(register void* fifo);
 extern void GXSaveCPUFifo(register void* fifo);
 extern void GXGetCPUFifo(void);
@@ -248,7 +248,7 @@ asm void fn_80038B3C(register u32 a)
     stw     r31, 0x14(r1)
     mr      r31, r3
     lfs     f1, 0(r3)
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     lwz     r7, -0x7de8(r2)
     lis     r4, 6
     li      r6, 0x10

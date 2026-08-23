@@ -4,7 +4,7 @@ typedef unsigned int u32;
 typedef signed int s32;
 
 extern void* memset(void*, int, unsigned long);
-extern void fn_80079764(void);
+extern void __cvt_fp2unsigned(void);
 extern void __GXFlushTextureState(void);
 extern void fn_80032EB8(register void* p);
 extern void fn_8003396C(register void* p);
@@ -508,7 +508,7 @@ _800378f8:
     fsubs	f0, f0, f2
     fdivs	f0, f3, f0
     stfs	f0, 0x2c(r1)
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     clrlwi	r3, r3, 8
     clrlwi	r0, r28, 8
     oris	r10, r3, 0xef00

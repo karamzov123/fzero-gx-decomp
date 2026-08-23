@@ -41,8 +41,8 @@ extern void OSWakeupThread(void);
 extern void fn_800133B8(void);
 extern void fn_80019430(void);
 extern void fn_8001BE74(void);
-extern void fn_80079D04(void);
-extern void fn_80079D28(void);
+extern void __shl2i(void);
+extern void __shr2u(void);
 extern void memcpy(void);
 
 /* cb @0x8001A31C | size: 0xD8 */
@@ -291,7 +291,7 @@ lbl_8001A670:
 	li r5, 0x20
 	lwz r27, -0x7A64(r13)
 	addi r4, r27, 0x0
-	bl fn_80079D28
+	bl __shr2u
 	cntlzw r4, r4
 	cmpwi r4, 0x20
 	li r0, -0x1
@@ -309,7 +309,7 @@ lbl_8001A6A4:
 	li r3, 0x0
 	sthx r0, r29, r6
 	li r4, 0x1
-	bl fn_80079D04
+	bl __shl2i
 	lwz r0, -0x7A68(r13)
 	nor r5, r3, r3
 	nor r4, r4, r4

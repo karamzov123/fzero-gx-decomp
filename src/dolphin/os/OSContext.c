@@ -25,7 +25,7 @@ extern void __OSSetExceptionHandler(s32 index, void* handler);
 extern BOOL OSDisableInterrupts(void);
 extern void DBPrintf(char* msg, ...);
 extern void OSReport(const char* msg, ...);
-extern s32 fn_80079764(register double value);
+extern s32 __cvt_fp2unsigned(register double value);
 
 #define __OSCurrentContextPtr ((OSContext**)0x800000D4)
 #define __OSFPUContextPtr     ((OSContext**)0x800000D8)
@@ -508,10 +508,10 @@ Dump_fprCheck2:
     b       Dump_fprBody
 Dump_fprBody:
     lfd     f1, 0x98(r26)
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     mr      r27, r3
     lfd     f1, 0x90(r26)
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     mr      r5, r3
     crxor   6, 6, 6
     mr      r4, r25
@@ -536,10 +536,10 @@ Dump_psfCheck2:
     b       Dump_psfBody
 Dump_psfBody:
     lfd     f1, 0x1D0(r26)
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     mr      r27, r3
     lfd     f1, 0x1C8(r26)
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     mr      r5, r3
     crxor   6, 6, 6
     mr      r4, r25
