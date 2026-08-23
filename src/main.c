@@ -188,7 +188,7 @@ extern void fn_80083D6C(void);
 extern void fn_80083DB0(void);
 extern void lbl_8006D188(void);
 extern void fn_8006D668(void);
-extern void lbl_8006D758(void);
+extern void fn_8006D758(void);
 extern void lbl_8006D7DC(void);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
@@ -697,7 +697,7 @@ asm void fn_80005B10(void)
     bl      fn_800377F8
     li	r3, 2
     bl      fn_80072864
-    bl      lbl_8006D758
+    bl      fn_8006D758
     lwz	r3, -0x76c0(r13)
     li	r4, 0
     bl      fn_80038C5C
@@ -946,7 +946,7 @@ asm void fn_80005EDC(void)
     bl      fn_80071ED4
     li	r3, 2
     bl      fn_80072864
-    bl      lbl_8006D758
+    bl      fn_8006D758
     lwz	r3, -0x76c0(r13)
     li	r4, 0
     bl      fn_80038C5C
@@ -3657,7 +3657,7 @@ _800083f4:
     fmuls	f28, f0, f7
 _80008454:
     bl      lbl_8006DAEC
-    bl      lbl_8006D758
+    bl      fn_8006D758
     lwz	r3, -0x76c0(r13)
     li	r4, 0
     bl      fn_80038C5C
@@ -3715,7 +3715,7 @@ asm void fn_800084E8(void)
     mr	r31, r4
     bl      fn_800087F4
     bl      lbl_8006DAEC
-    bl      lbl_8006D758
+    bl      fn_8006D758
     bl      fn_80072558
     bl      lbl_8006DB30
     addi	r3, r1, 8

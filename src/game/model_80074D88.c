@@ -71,7 +71,7 @@ extern void fn_800789D8(void);
 extern void fn_80078C28(void);
 extern void fn_80078CDC(void);
 extern void fn_80078D60(void);
-extern void lbl_8006D758(void);
+extern void fn_8006D758(void);
 extern void lbl_8006D7F4(void);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
@@ -157,7 +157,7 @@ asm void fn_80074D88(void)
     stfs f1, 0x2c(r6)
     lwz r3, -0x76c0(r13)
     bl fn_80038D34
-    bl lbl_8006D758
+    bl fn_8006D758
     lis r3, -0x7fe6
     lfs f1, -0x79b4(r2)
     addi r6, r3, -0xff8
@@ -178,7 +178,7 @@ asm void fn_80074D88(void)
     stfs f1, 0x18(r3)
     lwz r3, -0x76c0(r13)
     bl fn_80038D34
-    bl lbl_8006D758
+    bl fn_8006D758
     lfs f0, -0x79b4(r2)
     li r4, 0x49
     lwz r3, -0x76c0(r13)
@@ -2003,7 +2003,7 @@ asm void fn_80076790(void)
     li r4, 0x43
     li r5, 0
     bl fn_80038D34
-    bl lbl_8006D758
+    bl fn_8006D758
     lfs f2, -0x79c0(r2)
     addi r3, r1, 0x38
     lwz r4, -0x76c0(r13)
