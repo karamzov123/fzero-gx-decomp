@@ -780,8 +780,8 @@ _80039218:
     lwz     r0, 0x4e4(r5)
     cmplwi  r0, 0x23
     bgt     _80039644
-    lis     r3, -0x7fed
-    addi    r3, r3, -0x4ba4
+    lis     r3, jumptable_8012B45C@ha
+    addi    r3, r3, jumptable_8012B45C@l
     slwi    r0, r0, 2
     lwzx    r0, r3, r0
     mtctr   r0
@@ -1048,8 +1048,8 @@ _80039644:
     lwz     r0, 0x4e8(r3)
     cmplwi  r0, 0x16
     bgt     _80039944
-    lis     r4, -0x7fed
-    addi    r4, r4, -0x4c00
+    lis     r4, jumptable_8012B400@ha
+    addi    r4, r4, jumptable_8012B400@l
     slwi    r0, r0, 2
     lwzx    r0, r4, r0
     mtctr   r0
@@ -1323,8 +1323,8 @@ _80039a54:
     lwz     r0, 0x4e8(r3)
     cmplwi  r0, 0x16
     bgt     _80039af0
-    lis     r3, -0x7fed
-    addi    r3, r3, -0x4b14
+    lis     r3, jumptable_8012B4EC@ha
+    addi    r3, r3, jumptable_8012B4EC@l
     slwi    r0, r0, 2
     lwzx    r0, r3, r0
     mtctr   r0
