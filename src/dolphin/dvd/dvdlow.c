@@ -65,10 +65,10 @@ extern u32 lbl_801A6894;
 extern u32 lbl_801A6898;
 
 static void __DVDLowSetWAType(u32 type, u32 location);
-extern void fn_80016394(u32 addr, u32 len, u32 offset, DVDCallback callback);
-extern void fn_800164A4(void);
-extern void fn_800167BC(void);
-extern u32 DVDGetCurrentDiskID(void);
+extern void Read(u32 addr, u32 len, u32 offset, DVDCallback callback);
+extern void SeekTwiceBeforeRead(void);
+extern void DVDLowSeek(void);
+extern u32 fn_80019C48(void);
 
 #pragma force_active on
 
@@ -237,7 +237,7 @@ lbl_800161a8:
 	lwz r4, 0x8(r6)
 	lwz r5, 0xc(r6)
 	lwz r6, 0x10(r6)
-	bl fn_80016394
+	bl Read
 	li r0, 0x1
 	b lbl_80016220
 lbl_800161f0:
@@ -249,7 +249,7 @@ lbl_800161f0:
 	stw r0, -31524(r13)
 	lwz r3, 0xc(r4)
 	lwz r4, 0x10(r4)
-	bl fn_800167BC
+	bl DVDLowSeek
 	li r0, 0x1
 	b lbl_80016220
 lbl_8001621c:
@@ -294,8 +294,8 @@ lbl_8001628c:
 	blr
 }
 
-/* fn_800162A0 @0x800162A0 | size: 0x84 — nofralloc transcription */
-asm void fn_800162A0(void) {
+/* ProcessNextCommand @0x800162A0 | size: 0x84 — nofralloc transcription */
+asm void ProcessNextCommand(void) {
 nofralloc
 	mflr r0
 	lis r3, CommandList@ha
@@ -315,7 +315,7 @@ nofralloc
 	lwz r4, 0x8(r6)
 	lwz r5, 0xc(r6)
 	lwz r6, 0x10(r6)
-	bl fn_80016394
+	bl Read
 	b lbl_80016314
 lbl_800162F0:
 	cmpwi r3, 0x2
@@ -326,7 +326,7 @@ lbl_800162F0:
 	stw r0, -31524(r13)
 	lwz r3, 0xc(r4)
 	lwz r4, 0x10(r4)
-	bl fn_800167BC
+	bl DVDLowSeek
 lbl_80016314:
 	lwz r0, 0xc(r1)
 	addi r1, r1, 0x8
@@ -367,8 +367,8 @@ lbl_80016370:
 	blr
 }
 
-/* fn_80016394 @0x80016394 | size: 0x110 — nofralloc transcription */
-asm void fn_80016394(register u32 addr, register u32 len, register u32 offset,
+/* Read @0x80016394 | size: 0x110 — nofralloc transcription */
+asm void Read(register u32 addr, register u32 len, register u32 offset,
                      register DVDCallback callback) {
 nofralloc
 	mflr r0
@@ -443,8 +443,8 @@ lbl_80016484:
 	blr
 }
 
-/* fn_800164A4 @0x800164A4 | size: 0x80 — nofralloc transcription */
-asm void fn_800164A4(void) {
+/* SeekTwiceBeforeRead @0x800164A4 | size: 0x80 — nofralloc transcription */
+asm void SeekTwiceBeforeRead(void) {
 nofralloc
 	mflr r0
 	lis r7, CommandList@ha
@@ -475,14 +475,14 @@ lbl_800164D0:
 	stw r6, 0x24(r9)
 	stw r7, 0x28(r9)
 	stw r0, -31524(r13)
-	bl fn_800167BC
+	bl DVDLowSeek
 	lwz r0, 0xc(r1)
 	addi r1, r1, 0x8
 	mtlr r0
 	blr
 }
-/* fn_80016524 @0x80016524 | size: 0x298 — nofralloc transcription */
-asm void fn_80016524(register u32 addr, register u32 len, register u32 offset,
+/* DVDLowRead @0x80016524 | size: 0x298 — nofralloc transcription */
+asm void DVDLowRead(register u32 addr, register u32 len, register u32 offset,
                      register DVDCallback callback) {
 nofralloc
 	mflr r0
@@ -513,7 +513,7 @@ nofralloc
 	addi r4, r25, 0x0
 	addi r5, r26, 0x0
 	addi r6, r27, 0x0
-	bl fn_80016394
+	bl Read
 	b lbl_800167a4
 lbl_8001659c:
 	lwz r0, -31556(r13)
@@ -526,7 +526,7 @@ lbl_8001659c:
 	addi r4, r25, 0x0
 	addi r5, r26, 0x0
 	addi r6, r27, 0x0
-	bl fn_800164A4
+	bl SeekTwiceBeforeRead
 	b lbl_800167a4
 lbl_800165cc:
 	addi r29, r31, 0xbc
@@ -538,7 +538,7 @@ lbl_800165cc:
 	subi r0, r3, 0x1
 	add r0, r4, r0
 	srwi r22, r0, 15
-	bl DVDGetCurrentDiskID
+	bl fn_80019C48
 	lbz r0, 0x8(r3)
 	cmplwi r0, 0x0
 	beq lbl_80016608
@@ -577,7 +577,7 @@ lbl_80016648:
 	addi r4, r25, 0x0
 	addi r5, r26, 0x0
 	addi r6, r27, 0x0
-	bl fn_80016394
+	bl Read
 	b lbl_800167a4
 lbl_80016678:
 	lwz r3, 0x0(r29)
@@ -621,7 +621,7 @@ lbl_800166a8:
 	stw r6, -31524(r13)
 	addi r5, r26, 0x0
 	addi r6, r27, 0x0
-	bl fn_80016394
+	bl Read
 	b lbl_800167a4
 lbl_80016720:
 	li r0, 0x1
@@ -645,8 +645,8 @@ lbl_80016720:
 	adde r22, r4, r6
 	addi r3, r31, 0x40
 	bl OSCreateAlarm
-	lis r3, fn_800162A0@ha
-	addi r7, r3, fn_800162A0@l
+	lis r3, ProcessNextCommand@ha
+	addi r7, r3, ProcessNextCommand@l
 	addi r6, r23, 0x0
 	addi r5, r22, 0x0
 	addi r3, r31, 0x40
@@ -657,7 +657,7 @@ lbl_80016790:
 	addi r4, r25, 0x0
 	addi r5, r26, 0x0
 	addi r6, r27, 0x0
-	bl fn_800164A4
+	bl SeekTwiceBeforeRead
 lbl_800167a4:
 	lmw r22, 0x18(r1)
 	li r3, 0x1
@@ -667,8 +667,8 @@ lbl_800167a4:
 	blr
 }
 
-/* fn_800167BC @0x800167BC | size: 0x94 — nofralloc transcription */
-asm void fn_800167BC(void) {
+/* DVDLowSeek @0x800167BC | size: 0x94 — nofralloc transcription */
+asm void DVDLowSeek(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -723,8 +723,8 @@ nofralloc
 	stw r0, 0x4(r4)
 	blr
 }
-/* fn_8001687C @0x8001687C | size: 0xA4 — nofralloc transcription */
-asm void fn_8001687C(void) {
+/* DVDLowReadDiskID @0x8001687C | size: 0xA4 — nofralloc transcription */
+asm void DVDLowReadDiskID(void) {
 nofralloc
 	mflr r0
 	li r8, 0x0
@@ -807,8 +807,8 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* fn_800169AC @0x800169AC | size: 0x8C — nofralloc transcription */
-asm void fn_800169AC(void) {
+/* DVDLowRequestError @0x800169AC | size: 0x8C — nofralloc transcription */
+asm void DVDLowRequestError(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -846,8 +846,8 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* fn_80016A38 @0x80016A38 | size: 0x9C — nofralloc transcription */
-asm void fn_80016A38(void) {
+/* DVDLowInquiry @0x80016A38 | size: 0x9C — nofralloc transcription */
+asm void DVDLowInquiry(void) {
 nofralloc
 	mflr r0
 	li r6, 0x20
@@ -889,8 +889,8 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* fn_80016AD4 @0x80016AD4 | size: 0x98 — nofralloc transcription */
-asm void fn_80016AD4(void) {
+/* DVDLowAudioStream @0x80016AD4 | size: 0x98 — nofralloc transcription */
+asm void DVDLowAudioStream(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -931,8 +931,8 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* fn_80016B6C @0x80016B6C | size: 0x8C — nofralloc transcription */
-asm void fn_80016B6C(void) {
+/* DVDLowRequestAudioStatus @0x80016B6C | size: 0x8C — nofralloc transcription */
+asm void DVDLowRequestAudioStatus(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -970,8 +970,8 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* fn_80016BF8 @0x80016BF8 | size: 0x9C — nofralloc transcription */
-asm void fn_80016BF8(void) {
+/* DVDLowAudioBufferConfig @0x80016BF8 | size: 0x9C — nofralloc transcription */
+asm void DVDLowAudioBufferConfig(void) {
 nofralloc
 	mflr r0
 	cmpwi r3, 0x0
