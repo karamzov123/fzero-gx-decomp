@@ -14,7 +14,7 @@ extern void fn_8001581C(void);
 extern void _savefpr_25(void);
 extern void _restfpr_25(void);
 extern void __div2u(void);
-extern void fn_8007B338(void);
+extern void __sformatter(void);
 extern void fn_8008DC10(void);
 extern void MSL_device_link_fn(void); // forward decl: label must be declared before first use
 extern void fn_80085494(void); // forward decl
@@ -1140,7 +1140,7 @@ _80084d6c:
 _80084d78:
     sth	r28, 0x2e(r1)
     addi	r3, r1, 0x2c
-    bl      fn_8007B338
+    bl      __sformatter
     lfd	f0, -0x7948(r2)
     stfd	f1, 0x18(r1)
     fcmpu	cr0, f0, f1

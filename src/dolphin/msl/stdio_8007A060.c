@@ -55,9 +55,9 @@ asm void fn_8007ADF0(void);
 asm void fn_8007B028(void);
 asm void fn_8007B0B4(void);
 asm void __close_all(void);
-asm void fn_8007B1CC(void);
+asm void __init_file(void);
 asm void fn_8007B2A8(void);
-asm void fn_8007B338(void);
+asm void __sformatter(void);
 asm void fn_8007C3B8(void);
 asm void fn_8007C55C(void);
 asm void fn_8007C910(void);
@@ -1398,7 +1398,7 @@ _8007b1a8:
     blr
 }
 
-asm void fn_8007B1CC(void)
+asm void __init_file(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1507,7 +1507,7 @@ _8007b320:
     blr
 }
 
-asm void fn_8007B338(void)
+asm void __sformatter(void)
 {
     nofralloc
     stwu	r1, -0x1f0(r1)
@@ -6640,7 +6640,7 @@ _8007f824:
     li	r5, 0
     stw	r0, 0xc(r1)
     li	r6, 0x400
-    bl      fn_8007B1CC
+    bl      __init_file
     lwz	r0, 8(r1)
     mr	r3, r29
     mr	r5, r31
