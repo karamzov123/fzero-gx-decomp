@@ -305,13 +305,13 @@ coarse/text_80072EDC.c:
 game/gxstate_80074A60.c:
 	.text       start:0x80074A60 end:0x80074D88
 
-coarse/text_80074D88.c:
+game/model_80074D88.c:
 	.text       start:0x80074D88 end:0x80078538
 
 game/skinning_80078538.c:
 	.text       start:0x80078538 end:0x800786B0
 
-coarse/text_800786B0.c:
+game/model_800786B0.c:
 	.text       start:0x800786B0 end:0x800794F0
 
 dolphin/msl/runtime.c:
