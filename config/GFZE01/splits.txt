@@ -524,11 +524,53 @@ dolphin/msl/printf.c:
 coarse/text_8008279C.c:
 	.text       start:0x8008279C end:0x80083D40
 
-coarse/text_80083D40.c:
-	.text       start:0x80083D40 end:0x8008CB20
+dolphin/msl/string.c:
+	.text       start:0x80083D40 end:0x80083E84
 
-coarse/text_8008CB20.c:
-	.text       start:0x8008CB20 end:0x8008FEE4
+coarse/text_80083E84.c:
+	.text       start:0x80083E84 end:0x80088600
+
+dolphin/msl/math_80088600.c:
+	.text       start:0x80088600 end:0x80088648
+
+dolphin/trk/nubevent.c:
+	.text       start:0x80088648 end:0x80088910
+
+dolphin/trk/nubinit.c:
+	.text       start:0x80088910 end:0x80088B00
+
+coarse/text_80088B00.c:
+	.text       start:0x80088B00 end:0x8008CB20
+
+dolphin/metrotrk/init.c:
+	.text       start:0x8008CB20 end:0x8008CFDC
+
+dolphin/metrotrk/main.c:
+	.text       start:0x8008CFDC end:0x8008DD88
+
+dolphin/metrotrk/ddh.c:
+	.text       start:0x8008DD88 end:0x8008E114
+
+dolphin/metrotrk/support.c:
+	.text       start:0x8008E114 end:0x8008E37C
+
+dolphin/metrotrk/gdev.c:
+	.text       start:0x8008E37C end:0x8008E6C8
+
+dolphin/metrotrk/mw_trace.c:
+	.text       start:0x8008E6C8 end:0x8008E718
+
+dolphin/metrotrk/custom.c:
+	.text       start:0x8008E718 end:0x8008EEAC
+
+dolphin/metrotrk/userregion.c:
+	.text       start:0x8008EEAC end:0x8008F44C
+
+dolphin/metrotrk/uart.c:
+	.text       start:0x8008F44C end:0x8008FC3C
+
+dolphin/metrotrk/targimpl.c:
+	.text       start:0x8008FC3C end:0x8008FEE4
 
 dolphin/os/init/start.c:
 	.init       start:0x80003100 end:0x800032B0
