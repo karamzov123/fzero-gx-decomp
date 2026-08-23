@@ -66,10 +66,10 @@ coarse/dtors_8008FF20.c:
 	.dtors      start:0x8008FF20 end:0x8008FF24
 
 main.c:
-	.text       start:0x800055E0 end:0x80006E10
+	.text       start:0x800055E0 end:0x8000700C
 
-coarse/text_80006E10.c:
-	.text       start:0x80006E10 end:0x80009468
+coarse/text_8000700C.c:
+	.text       start:0x8000700C end:0x80009468
 
 dolphin/os/OSAllocCtx.c:
 	.text       start:0x80009468 end:0x8000961C
