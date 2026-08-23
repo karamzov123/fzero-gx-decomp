@@ -76,7 +76,9 @@ extern void fn_800079A0(void);
 extern void fn_800079C4(void);
 extern void fn_80007A00(void);
 extern void fn_80007A44(void);
+extern void fn_80007AB4(void);
 extern void fn_80007B68(void);
+extern void fn_80008204(void);
 extern void fn_8000B334(void);
 extern void fn_8000B360(void);
 extern void fn_8000C49C(void);
@@ -143,6 +145,7 @@ extern void fn_80073778(void);
 extern void fn_800737E4(void);
 extern void fn_80073898(void);
 extern void fn_80073C6C(void);
+extern void fn_800744F8(void);
 extern void fn_800745A4(void);
 extern void fn_80074660(void);
 extern void fn_80074788(void);
@@ -2836,6 +2839,203 @@ _80007980:
     lwz	r30, 0x18(r1)
     lwz	r29, 0x14(r1)
     lwz	r28, 0x10(r1)
+    mtlr	r0
+    addi	r1, r1, 0x20
+    blr	
+}
+
+asm void fn_800079A0(void)
+{
+    nofralloc
+    mfspr	r4, 0x19
+    slwi	r0, r4, 0x10
+    rlwinm	r4, r4, 0, 0, 0xf
+    ori	r0, r0, 0xffff
+    and	r0, r0, r3
+    oris	r0, r0, 0x8000
+    or	r4, r4, r0
+    mr	r3, r4
+    blr	
+}
+
+asm void fn_800079C4(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+    stw	r31, 0xc(r1)
+    mr	r31, r3
+    bl      fn_80007654
+    rlwinm	r4, r31, 0x14, 0x10, 0x1f
+    clrlwi	r0, r3, 0xd
+    xor	r0, r4, r0
+    slwi	r3, r0, 6
+    lwz	r31, 0xc(r1)
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80007A00(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+    stw	r31, 0xc(r1)
+    mr	r31, r3
+    bl      fn_80007654
+    rlwinm	r4, r31, 0x14, 0x10, 0x1f
+    clrlwi	r0, r3, 0xd
+    xor	r0, r4, r0
+    slwi	r0, r0, 6
+    xoris	r3, r0, 0x1ff
+    xori	r3, r3, 0xffc0
+    lwz	r31, 0xc(r1)
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80007A44(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    lis	r4, 0x100
+    addi	r6, r13, -0x7fb8
+    stw	r0, 0x14(r1)
+    addi	r3, r1, 8
+    addi	r4, r4, -1
+    lwz	r0, -0x7f40(r2)
+    stw	r0, 0xc(r1)
+    lbz	r8, 0xc(r1)
+    lbz	r7, 0xd(r1)
+    lbz	r5, 0xe(r1)
+    lbz	r0, 0xf(r1)
+    stb	r8, -0x7fb8(r13)
+    stb	r7, 1(r6)
+    stb	r5, 2(r6)
+    stb	r0, 3(r6)
+    lwz	r0, -0x7fb8(r13)
+    stw	r0, 8(r1)
+    bl      fn_800744F8
+    addi	r3, r13, -0x7fb8
+    bl      fn_80008204
+    li	r0, 0
+    stw	r0, -0x7c98(r13)
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80007AB4(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+    lbz	r0, 0(r3)
+    lbz	r4, -0x7fb8(r13)
+    cmplw	r4, r0
+    bc      4, 2, _80007b04
+    addi	r5, r13, -0x7fb8
+    lbz	r0, 1(r3)
+    lbz	r4, 1(r5)
+    cmplw	r4, r0
+    bc      4, 2, _80007b04
+    lbz	r4, 2(r5)
+    lbz	r0, 2(r3)
+    cmplw	r4, r0
+    bc      4, 2, _80007b04
+    lbz	r4, 3(r5)
+    lbz	r0, 3(r3)
+    cmplw	r4, r0
+    bc      12, 2, _80007b50
+_80007b04:
+    lwz	r0, 0(r3)
+    lis	r4, 0x100
+    addi	r6, r13, -0x7fb8
+    addi	r3, r1, 8
+    stw	r0, 0xc(r1)
+    addi	r4, r4, -1
+    lbz	r8, 0xc(r1)
+    lbz	r7, 0xd(r1)
+    lbz	r5, 0xe(r1)
+    lbz	r0, 0xf(r1)
+    stb	r8, -0x7fb8(r13)
+    stb	r7, 1(r6)
+    stb	r5, 2(r6)
+    stb	r0, 3(r6)
+    lwz	r0, -0x7fb8(r13)
+    stw	r0, 8(r1)
+    bl      fn_800744F8
+    addi	r3, r13, -0x7fb8
+    bl      fn_80008204
+_80007b50:
+    li	r0, 1
+    stw	r0, -0x7c98(r13)
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80007B68(void)
+{
+    nofralloc
+    stwu	r1, -0x20(r1)
+    mflr	r0
+    stw	r0, 0x24(r1)
+    lwz	r4, -0x7f3c(r2)
+    lbz	r3, -0x7fb8(r13)
+    stw	r4, 0x18(r1)
+    lbz	r0, 0x18(r1)
+    stw	r4, 8(r1)
+    cmplw	r3, r0
+    stw	r4, 0x14(r1)
+    bc      4, 2, _80007bc8
+    addi	r4, r13, -0x7fb8
+    lbz	r0, 0x19(r1)
+    lbz	r3, 1(r4)
+    cmplw	r3, r0
+    bc      4, 2, _80007bc8
+    lbz	r3, 2(r4)
+    lbz	r0, 0x1a(r1)
+    cmplw	r3, r0
+    bc      4, 2, _80007bc8
+    lbz	r3, 3(r4)
+    lbz	r0, 0x1b(r1)
+    cmplw	r3, r0
+    bc      12, 2, _80007c14
+_80007bc8:
+    lwz	r0, 0x14(r1)
+    lis	r4, 0x100
+    addi	r6, r13, -0x7fb8
+    addi	r3, r1, 0xc
+    stw	r0, 0x10(r1)
+    addi	r4, r4, -1
+    lbz	r8, 0x10(r1)
+    lbz	r7, 0x11(r1)
+    lbz	r5, 0x12(r1)
+    lbz	r0, 0x13(r1)
+    stb	r8, -0x7fb8(r13)
+    stb	r7, 1(r6)
+    stb	r5, 2(r6)
+    stb	r0, 3(r6)
+    lwz	r0, -0x7fb8(r13)
+    stw	r0, 0xc(r1)
+    bl      fn_800744F8
+    addi	r3, r13, -0x7fb8
+    bl      fn_80008204
+_80007c14:
+    li	r0, 1
+    stw	r0, -0x7c98(r13)
+    lwz	r0, 0x24(r1)
     mtlr	r0
     addi	r1, r1, 0x20
     blr	
