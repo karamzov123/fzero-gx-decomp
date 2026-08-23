@@ -47,13 +47,13 @@ asm void fn_80069CE4(void);
 asm void fn_80069FCC(void);
 asm void fn_8006A1F8(void);
 asm void ARCInitHandle(void);
-asm void fn_8006A480(void);
-asm void fn_8006A554(void);
-asm void fn_8006A768(void);
-asm void fn_8006A8CC(void);
-asm void fn_8006A998(void);
-asm void fn_8006A9AC(void);
-asm void fn_8006A9B4(void);
+asm void ARCOpen(void);
+asm void ARCConvertPathToEntrynum(void);
+asm void ARCEntryGetPath(void);
+asm void ARCGetEntryPath(void);
+asm void ARCGetStartAddr(void);
+asm void ARCGetLength(void);
+asm void ARCChangeDir(void);
 asm void fn_8006AA20(void);
 asm void fn_8006AA44(void);
 asm void fn_8006AC44(void);
@@ -790,7 +790,7 @@ _8006a420:
     blr
 }
 
-asm void fn_8006A480(void)
+asm void ARCOpen(void)
 {
     nofralloc
     mflr	r0
@@ -804,13 +804,13 @@ asm void fn_8006A480(void)
     stw	r28, 0x98(r1)
     addi	r28, r3, 0
     lwz	r31, 4(r3)
-    bl      fn_8006A554
+    bl      ARCConvertPathToEntrynum
     cmpwi	r3, 0
     bc      4, 0, _8006a4e8
     addi	r3, r28, 0
     addi	r4, r1, 0x14
     li	r5, 0x80
-    bl      fn_8006A8CC
+    bl      ARCGetEntryPath
     lis	r3, -0x7fed
     crxor	6, 6, 6
     addi	r3, r3, 0x27ac
@@ -854,7 +854,7 @@ _8006a534:
     blr
 }
 
-asm void fn_8006A554(void)
+asm void ARCConvertPathToEntrynum(void)
 {
     nofralloc
     mflr	r0
@@ -1022,7 +1022,7 @@ _8006a754:
     blr
 }
 
-asm void fn_8006A768(void)
+asm void ARCEntryGetPath(void)
 {
     nofralloc
     mflr	r0
@@ -1060,7 +1060,7 @@ _8006a7cc:
     clrlwi	r0, r0, 8
     addi	r6, r30, 0
     add	r28, r8, r0
-    bl      fn_8006A768
+    bl      ARCEntryGetPath
     cmplw	r3, r30
     bc      4, 2, _8006a7fc
     b       _8006a84c
@@ -1128,7 +1128,7 @@ _8006a8ac:
     blr
 }
 
-asm void fn_8006A8CC(void)
+asm void ARCGetEntryPath(void)
 {
     nofralloc
     mflr	r0
@@ -1145,7 +1145,7 @@ asm void fn_8006A8CC(void)
     lwz	r30, 0x18(r3)
     lwz	r31, 4(r3)
     addi	r4, r30, 0
-    bl      fn_8006A768
+    bl      ARCEntryGetPath
     cmplw	r3, r29
     bc      4, 2, _8006a920
     li	r0, 0
@@ -1190,7 +1190,7 @@ _8006a974:
     blr
 }
 
-asm void fn_8006A998(void)
+asm void ARCGetStartAddr(void)
 {
     nofralloc
     lwz	r4, 0(r3)
@@ -1200,14 +1200,14 @@ asm void fn_8006A998(void)
     blr
 }
 
-asm void fn_8006A9AC(void)
+asm void ARCGetLength(void)
 {
     nofralloc
     lwz	r3, 8(r3)
     blr
 }
 
-asm void fn_8006A9B4(void)
+asm void ARCChangeDir(void)
 {
     nofralloc
     mflr	r0
@@ -1215,7 +1215,7 @@ asm void fn_8006A9B4(void)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
     mr	r31, r3
-    bl      fn_8006A554
+    bl      ARCConvertPathToEntrynum
     cmpwi	r3, 0
     lwz	r4, 4(r31)
     bc      12, 0, _8006a9fc
