@@ -11,6 +11,7 @@ typedef unsigned long u32;
 typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
+extern void __CARDSyncCallback(void); // 0x80029828
 extern void fn_80029824(void); // 0x80029824
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 fn_8002C0B8(register void* ctrl);
@@ -344,9 +345,9 @@ asm s32 CARDRead(register void** handle, register void* addr, register s32 len)
 {
     nofralloc
     mflr    r0
-    lis     r7, 0x8003
+    lis     r7, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r7, r7, -0x67d8         /* default status callback @0x80039828 */
+    addi    r7, r7, __CARDSyncCallback@l /* default status callback @0x80039828 */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0

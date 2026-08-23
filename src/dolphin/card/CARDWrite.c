@@ -1,5 +1,6 @@
 // dolphin/card/CARDWrite.c -- carved from coarse/text_8002F5B8 (0x8002F5B8-0x8002F8EC).
 // Melee identity: extern/dolphin/src/dolphin/card/CARDWrite.c
+extern void __CARDSyncCallback(void); // 0x80029828
 //   WriteCallback / EraseCallback (static callbacks), CARDWriteAsync, CARDWrite.
 // __CARDBlock[2] x 0x110 at .bss:0x80177960; apiCallback@0xd0, buffer@0xb4,
 // fileInfo@0xc0, ent->time@0x28, card->startBlock@0xbe.
@@ -275,9 +276,9 @@ asm s32 CARDWrite(register void* fileInfo, register void* buf, register s32 leng
 {
     nofralloc
     mflr    r0
-    lis     r7, 0x8003
+    lis     r7, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r7, r7, -0x67d8         /* __CARDSyncCallback */
+    addi    r7, r7, __CARDSyncCallback@l /* __CARDSyncCallback */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0

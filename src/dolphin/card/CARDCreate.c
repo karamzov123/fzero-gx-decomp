@@ -11,6 +11,7 @@ typedef unsigned long u32;
 typedef unsigned short u16;
 
 extern u32 strlen(register char* s);
+extern void __CARDSyncCallback(void); // 0x80029828
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);      // __CARDGetControlBlock
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);          // __CARDPutControlBlock
 extern void* __CARDGetDirBlock(void);                                          // __CARDGetFatBlock
@@ -188,9 +189,9 @@ asm s32 CARDCreate(register s32 chan, register char* fileName, register u32 size
 {
     nofralloc
     mflr    r0
-    lis     r7, 0x8003
+    lis     r7, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r7, r7, -0x67d8         /* __CARDSyncCallback */
+    addi    r7, r7, __CARDSyncCallback@l /* __CARDSyncCallback */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0

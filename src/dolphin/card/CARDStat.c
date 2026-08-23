@@ -1,5 +1,6 @@
 // dolphin/card/CARDStat.c -- carved from coarse/text_8002F5B8 (0x8002FC5C-0x800300F4).
 // Melee identity: extern/dolphin/src/dolphin/card/CARDStat.c
+extern void __CARDSyncCallback(void); // 0x80029828
 //   UpdateIconOffsets (static), CARDGetStatus, CARDSetStatusAsync, CARDSetStatus.
 // CARDDirEntry: gameName@0 company@4 fileName@8 bannerFormat(b)@7 iconAddr@0x2c
 //   time@0x28 iconFormat(h)@0x30 iconSpeed(h)@0x32 permission(b)@0x34
@@ -379,9 +380,9 @@ asm s32 CARDSetStatus(register s32 chan, register s32 fileNo, register void* sta
 {
     nofralloc
     mflr    r0
-    lis     r6, 0x8003
+    lis     r6, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r6, r6, -0x67d8         /* __CARDSyncCallback */
+    addi    r6, r6, __CARDSyncCallback@l /* __CARDSyncCallback */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0

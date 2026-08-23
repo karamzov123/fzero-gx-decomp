@@ -1,5 +1,6 @@
 // dolphin/card/CARDDelete.c -- carved from coarse/text_8002F5B8 (0x8002F934-0x8002FC5C).
 // Melee identity: extern/dolphin/src/dolphin/card/CARDDelete.c
+extern void __CARDSyncCallback(void); // 0x80029828
 //   DeleteCallback (static), CARDFastDeleteAsync, CARDDeleteAsync, CARDDelete.
 // Retail quirk: __CARDIsOpened is an 8-byte stub (fn_8002EDA0: li r3,0; blr).
 // CARD_MAX_FILE == 127 (cmpwi rX, 0x7f range guards).
@@ -245,9 +246,9 @@ asm s32 CARDDelete(register s32 chan, register char* fileName)
 {
     nofralloc
     mflr    r0
-    lis     r5, 0x8003
+    lis     r5, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r5, r5, -0x67d8         /* __CARDSyncCallback */
+    addi    r5, r5, __CARDSyncCallback@l /* __CARDSyncCallback */
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
     addi    r31, r3, 0
