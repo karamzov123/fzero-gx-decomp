@@ -468,6 +468,7 @@ config.libs = [
             Object(Matching, "dolphin/msl/stdio_8007A060.c"),
             Object(Matching, "dolphin/msl/longlong.c"),
             Object(Matching, "dolphin/msl/printf.c"),
+            Object(Matching, "dolphin/msl/tail_8008279C.c"),
             Object(Matching, "dolphin/msl/multibyte.c"),
             Object(Matching, "dolphin/msl/mem.c"),
             Object(Matching, "dolphin/msl/string.c"),
@@ -482,6 +483,7 @@ config.libs = [
         "objects": [
             Object(Matching, "dolphin/trk/nubevent.c"),
             Object(Matching, "dolphin/trk/nubinit.c"),
+            Object(Matching, "dolphin/metrotrk/trk_80088B00.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
