@@ -233,7 +233,7 @@ dolphin/gx/GXFog.c:
 dolphin/game/perfmon.c:
 	.text       start:0x8003E344 end:0x8003EC44
 
-coarse/text_8003EC44.c:
+game/gauge.c:
 	.text       start:0x8003EC44 end:0x8003FF88
 
 game/fn_8003FF88.c:
