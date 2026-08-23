@@ -7,7 +7,7 @@ extern void fn_8008AF50(unsigned long);
 extern void fn_8008AF48(unsigned long);
 extern void fn_8008AF40(unsigned long);
 extern void TRK_board_display(char*);
-extern void fn_80089380(void);
+extern void TRKAcquireMutex(void);
 extern int usr_put_initialize(void);
 extern int TRKInitializeEventQueue(void);
 extern int TRKInitializeMessageBuffers(void);
@@ -70,7 +70,7 @@ asm int TRKTerminateNub(void)
     stwu    r1, -0x10(r1)
     mflr    r0
     stw     r0, 0x14(r1)
-    bl      fn_80089380
+    bl      TRKAcquireMutex
     lwz     r0, 0x14(r1)
     li      r3, 0
     mtlr    r0

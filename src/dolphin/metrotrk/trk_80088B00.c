@@ -29,7 +29,7 @@ extern void MWTRACE(void);
 extern void fn_8008AF40(void);
 extern void TRKTargetStopped(void);
 extern void TRKTestForPacket(void);
-extern void fn_8008963C(void);
+extern void usr_puts(void);
 extern void TRKDoPing(void);
 extern void TRKDoVersions(void);
 extern void fn_8008998C(void);
@@ -188,7 +188,7 @@ _80088c20:
     blr
 }
 
-asm void fn_80088C34(void)
+asm void TRKReadBuffer(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -487,7 +487,7 @@ _80088fe0:
     blr
 }
 
-asm void fn_80089014(void)
+asm void TRKAppendBuffer1_ui32(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -530,7 +530,7 @@ _80089084:
     blr
 }
 
-asm void fn_800890A0(void)
+asm void TRKAppendBuffer1_ui16(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -720,7 +720,7 @@ _800892d8:
     bc      4, 2, _800892f4
     lis     r3, str_NoBufferAvailable@ha
     addi	r3, r3, str_NoBufferAvailable@l
-    bl      fn_8008963C
+    bl      usr_puts
 _800892f4:
     mr	r3, r30
     lmw	r27, 0xc(r1)
@@ -765,7 +765,7 @@ _80089334:
     blr
 }
 
-asm void fn_80089380(void)
+asm void TRKAcquireMutex(void)
 {
     nofralloc
     li	r3, 0
@@ -976,7 +976,7 @@ asm void usr_put_initialize(void)
     blr
 }
 
-asm void fn_8008963C(void)
+asm void usr_puts(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -1138,15 +1138,15 @@ asm void TRKDoPing(void)
     cmplwi	r0, 1
     bc      4, 2, _80089894
     addi	r3, r31, 0
-    bl      fn_8008963C
+    bl      usr_puts
     cmplwi	r30, 0
     bc      12, 2, _80089884
     addi	r3, r31, 0x20
-    bl      fn_8008963C
+    bl      usr_puts
     b       _8008988c
 _80089884:
     addi	r3, r31, 0x28
-    bl      fn_8008963C
+    bl      usr_puts
 _8008988c:
     mr	r3, r30
     bl      fn_8008D7C0
@@ -1534,7 +1534,7 @@ _80089d8c:
     li	r5, 0x40
     stb	r0, 0x90(r1)
     stb	r31, 0x94(r1)
-    bl      fn_800890A0
+    bl      TRKAppendBuffer1_ui16
     mr	r31, r3
 _80089dd8:
     cmpwi	r31, 0
@@ -1870,7 +1870,7 @@ _8008a258:
     lwz	r5, 8(r1)
     mr	r3, r27
     addi	r4, r1, 0xcc
-    bl      fn_80089014
+    bl      TRKAppendBuffer1_ui32
     rlwinm	r0, r30, 0x1d, 0x1f, 0x1f
     mr	r4, r28
     addi	r3, r1, 0xcc
@@ -1897,7 +1897,7 @@ _8008a258:
     li	r5, 0x40
     stb	r0, 0x90(r1)
     stb	r30, 0x94(r1)
-    bl      fn_800890A0
+    bl      TRKAppendBuffer1_ui16
     mr	r30, r3
 _8008a2e8:
     cmpwi	r30, 0
@@ -2027,11 +2027,11 @@ _8008a44c:
     stw	r4, 0x8c(r1)
     addi	r4, r1, 0x8c
     stb	r0, 0x90(r1)
-    bl      fn_800890A0
+    bl      TRKAppendBuffer1_ui16
     lwz	r5, 8(r1)
     mr	r3, r27
     addi	r4, r1, 0xcc
-    bl      fn_800890A0
+    bl      TRKAppendBuffer1_ui16
     mr	r30, r3
 _8008a4d4:
     cmpwi	r30, 0
@@ -2766,7 +2766,7 @@ _8008ae54:
     mr	r3, r22
     mr	r5, r19
     add	r4, r24, r30
-    bl      fn_80088C34
+    bl      TRKReadBuffer
     mr	r21, r3
     cmpwi	r21, 0x302
     bc      4, 2, _8008aea4
