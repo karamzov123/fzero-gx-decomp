@@ -218,8 +218,11 @@ dolphin/ar/AR.c:
 dolphin/ar/ARQ.c:
 	.text       start:0x80020360 end:0x80020724
 
-coarse/text_80020724.c:
-	.text       start:0x80020724 end:0x80026EE0
+dolphin/ax/AX.c:
+	.text       start:0x80020724 end:0x800209DC
+
+coarse/text_800209DC.c:
+	.text       start:0x800209DC end:0x80026EE0
 
 coarse/text_80026EE0.c:
 	.text       start:0x80026EE0 end:0x8002F140
