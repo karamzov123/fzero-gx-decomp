@@ -3,7 +3,7 @@
 
 extern asm void fn_8000C49C(void);
 extern asm void fn_8006D758(void);
-extern asm void lbl_8006DCDC(void);
+extern asm void fn_8006DCDC(void);
 extern asm void fn_80070CF8(void);
 
 asm void fn_80070A58(void)
@@ -58,7 +58,7 @@ asm void fn_80070AC0(void)
     bl      fn_8000C49C
 _80070b00:
     bl      fn_8006D758
-    bl      lbl_8006DCDC
+    bl      fn_8006DCDC
     cmpwi	r30, 0
     beq	_80070b20
     lwz	r0, -0x76e0(r13)

@@ -1,13 +1,13 @@
 #pragma push
 #pragma force_active on
 
-extern asm void lbl_8006D1C4(void);
+extern asm void fn_8006D1C4(void);
 
 asm void fn_8006E324(void)
 {
     nofralloc
     mflr	r4
-    bl      lbl_8006D1C4
+    bl      fn_8006D1C4
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00 f0, f2, f1
@@ -41,7 +41,7 @@ asm void fn_8006E398(void)
 {
     nofralloc
     mflr	r4
-    bl      lbl_8006D1C4
+    bl      fn_8006D1C4
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00 f0, f1, f2
@@ -81,7 +81,7 @@ asm void fn_8006E424(void)
 {
     nofralloc
     mflr	r4
-    bl      lbl_8006D1C4
+    bl      fn_8006D1C4
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00 f0, f2, f1

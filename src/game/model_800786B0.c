@@ -32,7 +32,7 @@ extern void fn_80075908(void);
 extern void fn_80078344(void);
 extern void fn_80078360(void);
 extern void fn_800794F0(void);
-extern void lbl_8006DFFC(void);
+extern void fn_8006DFFC(void);
 extern void memset(void);
 asm void fn_800786B0(void);
 asm void fn_80078768(void);
@@ -498,7 +498,7 @@ _80078C58:
     lwz r3, -0x76c0(r13)
     lwzx r4, r4, r30
     add r5, r0, r31
-    bl lbl_8006DFFC
+    bl fn_8006DFFC
     addi r31, r31, 0x30
     addi r30, r30, 4
     addi r29, r29, 1
