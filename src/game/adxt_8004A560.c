@@ -14,6 +14,8 @@ extern void fn_800589BC(void);
 extern void fn_80058A40(void);
 extern void fn_80059AB4(void);
 extern void fn_80059B44(void);
+extern unsigned char E02110501_adxstmf_stat_exec_can_t_open_str[];
+extern unsigned char lbl_8017D6FC[];
 
 asm void fn_8004A560(void)
 {
@@ -31,9 +33,9 @@ asm void fn_8004A578(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017D6FC@ha
     stw	r0, 0x14(r1)
-    addi	r3, r3, -0x2904
+    addi    r3, r3, lbl_8017D6FC@l
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     bl      fn_80058A40
@@ -120,9 +122,9 @@ _8004a674:
     cmplwi	r3, 0
     stw	r3, 8(r31)
     bne     _8004a6e0
-    lis	r3, -0x7ff7
+    lis     r3, E02110501_adxstmf_stat_exec_can_t_open_str@ha
     lwz	r4, 0x4c(r31)
-    addi	r3, r3, 0x990
+    addi    r3, r3, E02110501_adxstmf_stat_exec_can_t_open_str@l
     bl      fn_80047464
     li	r3, 4
     li	r0, 0

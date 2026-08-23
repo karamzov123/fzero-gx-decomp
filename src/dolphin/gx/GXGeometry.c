@@ -56,6 +56,10 @@ extern void fn_80088600(void);
 extern void fn_80032818(register void* p, register int a, register int b);
 extern void fn_800332D8(register void* p, register int a, register int b);
 extern void fn_80032D04(register void* p, register int a);
+extern unsigned char jumptable_8012B120[];
+extern unsigned char jumptable_8012B140[];
+extern unsigned char jumptable_8012B234[];
+extern unsigned char jumptable_8012B328[];
 void fn_800372E0(register void* p);
 void fn_80037354(register void* p, register int a);
 void fn_800373C0(register void* p, register int a);
@@ -1178,8 +1182,8 @@ _8003545c:
     bl      fn_80088624
     cmplwi	r31, 6
     bgt     _80035580
-    lis	r3, -0x7fed
-    addi	r3, r3, -0x4ee0
+    lis     r3, jumptable_8012B120@ha
+    addi    r3, r3, jumptable_8012B120@l
     slwi	r0, r31, 2
     lwzx	r0, r3, r0
     mtctr	r0
@@ -1628,8 +1632,8 @@ asm void fn_80035A2C(register void* p1, register void* p2, register int id, regi
     cmplwi	r5, 0x3c
     stw	r31, 0x24(r1)
     bgt     _80035a78
-    lis	r8, -0x7fed
-    addi	r8, r8, -0x4ec0
+    lis     r8, jumptable_8012B140@ha
+    addi    r8, r8, jumptable_8012B140@l
     slwi	r0, r5, 2
     lwzx	r0, r8, r0
     mtctr	r0
@@ -1731,8 +1735,8 @@ asm void fn_80035B88(register void* p1, register void* p2, register int id, regi
     nofralloc
     cmplwi	r3, 0x3c
     bgt     _80035bcc
-    lis	r9, -0x7fed
-    addi	r9, r9, -0x4dcc
+    lis     r9, jumptable_8012B234@ha
+    addi    r9, r9, jumptable_8012B234@l
     slwi	r0, r3, 2
     lwzx	r0, r9, r0
     mtctr	r0
@@ -1897,8 +1901,8 @@ _80035d78:
     or	r0, r5, r0
     stw	r0, 0xc(r31)
     bgt     _80035e5c
-    lis	r5, -0x7fed
-    addi	r5, r5, -0x4cd8
+    lis     r5, jumptable_8012B328@ha
+    addi    r5, r5, jumptable_8012B328@l
     slwi	r0, r7, 2
     lwzx	r0, r5, r0
     mtctr	r0

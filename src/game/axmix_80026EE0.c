@@ -47,6 +47,8 @@ extern void fn_80026D70(void);
 extern void fn_80026D90(void);
 extern void fn_80026E2C(void);
 extern void fn_80026EAC(void);
+extern unsigned char lbl_801295E0[];
+extern unsigned char lbl_801299D0[];
 
 asm void fn_80026EE0(void)
 {
@@ -1719,9 +1721,9 @@ asm void fn_800284FC(void)
     li	r0, 7
     stw	r0, 4(r3)
     li	r5, 0
-    lis	r4, -0x7fed
+    lis     r4, lbl_801299D0@ha
     stw	r5, 0x28(r3)
-    addi	r4, r4, -0x6630
+    addi    r4, r4, lbl_801299D0@l
     li	r0, 0x40
     stw	r4, 8(r3)
     stw	r0, 0xc(r3)
@@ -1783,9 +1785,9 @@ asm void fn_80028598(void)
     li	r0, 0xe
     stw	r0, 4(r3)
     li	r5, 0
-    lis	r4, -0x7fed
+    lis     r4, lbl_801299D0@ha
     stw	r5, 0x28(r3)
-    addi	r4, r4, -0x6630
+    addi    r4, r4, lbl_801299D0@l
     li	r0, 0x40
     stw	r4, 8(r3)
     stw	r0, 0xc(r3)
@@ -2002,8 +2004,8 @@ asm void fn_800288C4(void)
 {
     nofralloc
     cmpwi	r3, 0
-    lis	r4, -0x7fed
-    addi	r4, r4, -0x6a20
+    lis     r4, lbl_801295E0@ha
+    addi    r4, r4, lbl_801295E0@l
     ble     _8002895c
     lis	r5, 0x1b4f
     addi	r0, r5, -0x7e4b

@@ -29,6 +29,8 @@ extern void fn_80047A50(void);
 extern void fn_80049958(void);
 extern void fn_80049728(void);
 extern void fn_80046768(void);
+extern unsigned char lbl_8017B1A0[];
+extern unsigned char lbl_8017BF78[];
 
 asm void fn_80047464(void)
 {
@@ -214,9 +216,9 @@ asm void fn_8004768C(void)
     mr	r27, r5
     mr	r28, r6
     bl      fn_800482FC
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017B1A0@ha
     li	r4, 0x400
-    addi	r3, r3, -0x4e60
+    addi    r3, r3, lbl_8017B1A0@l
     li	r5, 0
     bl      fn_80058498
     lis	r4, -0x7fe8
@@ -1089,11 +1091,11 @@ asm void fn_800482B8(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     lis	r4, -0x7fe8
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017BF78@ha
     stw	r0, 0x14(r1)
     addi	r7, r4, -0x4a58
     li	r4, 0
-    addi	r3, r3, -0x4088
+    addi    r3, r3, lbl_8017BF78@l
     lwz	r6, 0(r7)
     li	r5, 0x1780
     addi	r0, r6, -1
@@ -1111,11 +1113,11 @@ asm void fn_800482FC(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     lis	r4, -0x7fe8
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017BF78@ha
     stw	r0, 0x14(r1)
     addi	r7, r4, -0x4a58
     li	r4, 0
-    addi	r3, r3, -0x4088
+    addi    r3, r3, lbl_8017BF78@l
     lwz	r6, 0(r7)
     li	r5, 0x1780
     addi	r0, r6, 1

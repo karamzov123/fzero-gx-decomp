@@ -25,6 +25,12 @@ extern void fn_800882EC(void);
 extern void fn_80088598(void);
 extern void fn_8008D92C(void);
 extern unsigned char _dtors[]; // .dtors section anchor (0x8008FF20); symbol ref required so linker sees exit() calls destructors
+extern unsigned char __files[];
+extern unsigned char jumptable_8015AFD8[];
+extern unsigned char lbl_80094EC0[];
+extern unsigned char lbl_80094ED8[];
+extern unsigned char lbl_8015B200[];
+extern unsigned char lbl_801A3380[];
 
 asm void exit(void);
 asm void fn_8007A150(void);
@@ -157,17 +163,17 @@ asm void fn_8007A150(void)
     lbz	r0, -0x75e8(r13)
     cmplwi	r0, 0
     bc      4, 2, _8007a194
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A3380@ha
     li	r4, 0
-    addi	r3, r3, 0x3380
+    addi    r3, r3, lbl_801A3380@l
     li	r5, 0x34
     bl      memset
     li	r0, 1
     stb	r0, -0x75e8(r13)
 _8007a194:
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A3380@ha
     mr	r4, r31
-    addi	r3, r3, 0x3380
+    addi    r3, r3, lbl_801A3380@l
     bl      fn_8007A23C
     li	r3, 1
     bl      __end_critical_region
@@ -191,17 +197,17 @@ asm void fn_8007A1C0(void)
     lbz	r0, -0x75e8(r13)
     cmplwi	r0, 0
     bc      4, 2, _8007a204
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A3380@ha
     li	r4, 0
-    addi	r3, r3, 0x3380
+    addi    r3, r3, lbl_801A3380@l
     li	r5, 0x34
     bl      memset
     li	r0, 1
     stb	r0, -0x75e8(r13)
 _8007a204:
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A3380@ha
     mr	r4, r31
-    addi	r3, r3, 0x3380
+    addi    r3, r3, lbl_801A3380@l
     bl      fn_8007A294
     mr	r0, r3
     li	r3, 1
@@ -281,10 +287,10 @@ asm void fn_8007A2E8(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r6, -0x7ff7
+    lis     r6, lbl_80094EC0@ha
     li	r7, 0
     stw	r0, 0x14(r1)
-    addi	r6, r6, 0x4ec0
+    addi    r6, r6, lbl_80094EC0@l
     b       _8007a30c
 _8007a304:
     addi	r6, r6, 4
@@ -381,10 +387,10 @@ asm void fn_8007A440(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80094EC0@ha
     li	r6, 0
     stw	r0, 0x34(r1)
-    addi	r5, r5, 0x4ec0
+    addi    r5, r5, lbl_80094EC0@l
     stmw	r26, 0x18(r1)
     mr	r28, r3
     b       _8007a46c
@@ -1453,9 +1459,9 @@ asm void fn_8007B2A8(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fea
+    lis     r3, __files@ha
     stw	r0, 0x14(r1)
-    addi	r3, r3, -0x51a8
+    addi    r3, r3, __files@l
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     lwz	r3, 0xec(r3)
@@ -1605,8 +1611,8 @@ _8007b494:
     li	r4, -1
     b       _8007b4b0
 _8007b4a4:
-    lis	r4, -0x7fea
-    addi	r4, r4, -0x4e00
+    lis     r4, lbl_8015B200@ha
+    addi    r4, r4, lbl_8015B200@l
     lbzx	r4, r4, r6
 _8007b4b0:
     addi	r0, r4, -0x57
@@ -3585,17 +3591,17 @@ asm void fn_8007CF18(void)
     addi	r0, r30, 0x40
     cmplwi	r0, 0x48
     bc      12, 1, _8007e3f4
-    lis	r3, -0x7fea
+    lis     r3, jumptable_8015AFD8@ha
     slwi	r0, r0, 2
-    addi	r3, r3, -0x5028
+    addi    r3, r3, jumptable_8015AFD8@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr
     li	r0, -0x14
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0x25
     b       _8007cf90
@@ -3664,10 +3670,10 @@ _8007d044:
     b       _8007d00c
     b       _8007e684
     li	r0, -0x10
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0x53
     b       _8007d08c
@@ -3736,10 +3742,10 @@ _8007d140:
     b       _8007d108
     b       _8007e684
     li	r0, -0xa
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0x7a
     b       _8007d188
@@ -3808,10 +3814,10 @@ _8007d23c:
     b       _8007d204
     b       _8007e684
     li	r0, -5
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0x92
     b       _8007d284
@@ -3880,10 +3886,10 @@ _8007d338:
     b       _8007d300
     b       _8007e684
     li	r0, -3
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0x9f
     b       _8007d380
@@ -3952,10 +3958,10 @@ _8007d434:
     b       _8007d3fc
     b       _8007e684
     li	r0, -3
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xa6
     b       _8007d47c
@@ -4024,10 +4030,10 @@ _8007d530:
     b       _8007d4f8
     b       _8007e684
     li	r0, -2
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xac
     b       _8007d578
@@ -4096,10 +4102,10 @@ _8007d62c:
     b       _8007d5f4
     b       _8007e684
     li	r0, -2
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xb2
     b       _8007d674
@@ -4168,10 +4174,10 @@ _8007d728:
     b       _8007d6f0
     b       _8007e684
     li	r0, -2
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xb7
     b       _8007d770
@@ -4240,10 +4246,10 @@ _8007d824:
     b       _8007d7ec
     b       _8007e684
     li	r0, -1
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xbb
     b       _8007d86c
@@ -4312,10 +4318,10 @@ _8007d920:
     b       _8007d8e8
     b       _8007e684
     li	r0, -1
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xbf
     b       _8007d968
@@ -4384,10 +4390,10 @@ _8007da1c:
     b       _8007d9e4
     b       _8007e684
     li	r0, -1
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xc2
     b       _8007da64
@@ -4456,9 +4462,9 @@ _8007db18:
     b       _8007dae0
     b       _8007e684
     li	r4, 0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r4, 2(r31)
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     addi	r5, r3, 0xc4
     stb	r4, 0(r31)
     b       _8007db5c
@@ -4527,9 +4533,9 @@ _8007dc10:
     b       _8007dbd8
     b       _8007e684
     li	r4, 0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r4, 2(r31)
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     addi	r5, r3, 0xc6
     stb	r4, 0(r31)
     b       _8007dc54
@@ -4598,9 +4604,9 @@ _8007dd08:
     b       _8007dcd0
     b       _8007e684
     li	r4, 0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r4, 2(r31)
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     addi	r5, r3, 0xc8
     stb	r4, 0(r31)
     b       _8007dd4c
@@ -4669,9 +4675,9 @@ _8007de00:
     b       _8007ddc8
     b       _8007e684
     li	r4, 0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r4, 2(r31)
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     addi	r5, r3, 0xca
     stb	r4, 0(r31)
     b       _8007de44
@@ -4740,10 +4746,10 @@ _8007def8:
     b       _8007dec0
     b       _8007e684
     li	r0, 1
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xcc
     b       _8007df40
@@ -4812,10 +4818,10 @@ _8007dff4:
     b       _8007dfbc
     b       _8007e684
     li	r0, 1
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xcf
     b       _8007e03c
@@ -4884,10 +4890,10 @@ _8007e0f0:
     b       _8007e0b8
     b       _8007e684
     li	r0, 1
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xd2
     b       _8007e138
@@ -4956,10 +4962,10 @@ _8007e1ec:
     b       _8007e1b4
     b       _8007e684
     li	r0, 2
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xd5
     b       _8007e234
@@ -5028,10 +5034,10 @@ _8007e2e8:
     b       _8007e2b0
     b       _8007e684
     li	r0, 2
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     sth	r0, 2(r31)
     li	r4, 0
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     stb	r4, 0(r31)
     addi	r5, r3, 0xd9
     b       _8007e330
@@ -5208,10 +5214,10 @@ _8007e56c:
     b       _8007e534
 _8007e578:
     li	r5, 0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80094ED8@ha
     li	r0, -1
     stb	r5, 0x34(r1)
-    addi	r3, r3, 0x4ed8
+    addi    r3, r3, lbl_80094ED8@l
     addi	r6, r3, 0xc2
     sth	r0, 0x36(r1)
     addi	r3, r1, 0x34

@@ -1,3 +1,25 @@
+extern void ddh_cc_close(void);
+extern void ddh_cc_initialize(void);
+extern void ddh_cc_peek(void);
+extern void ddh_cc_post_stop(void);
+extern void ddh_cc_pre_continue(void);
+extern void ddh_cc_read(void);
+extern void ddh_cc_shutdown(void);
+extern void ddh_cc_write(void);
+extern unsigned char gDBCommTable[];
+extern unsigned char gTRKCPUState[];
+extern unsigned char gTRKState[];
+extern void gdev_cc_close(void);
+extern void gdev_cc_initialize(void);
+extern void gdev_cc_peek(void);
+extern void gdev_cc_post_stop(void);
+extern void gdev_cc_pre_continue(void);
+extern void gdev_cc_read(void);
+extern void gdev_cc_shutdown(void);
+extern void gdev_cc_write(void);
+extern unsigned char lbl_801A5638[];
+extern unsigned char lbl_801A5650[];
+extern void TRKEXICallBack(void);
 #pragma push
 #pragma force_active on
 
@@ -30,15 +52,15 @@ asm void TRKInitializeTarget(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe6
+    lis     r3, gTRKState@ha
     stw	r0, 0x14(r1)
     li	r0, 1
-    addi	r3, r3, 0x50bc
+    addi    r3, r3, gTRKState@l
     stw	r0, 0x98(r3)
     bl      fn_8008B0E0
-    lis	r5, -0x7fe6
+    lis     r5, gTRKState@ha
     lis	r4, -0x7fe6
-    addi	r5, r5, 0x50bc
+    addi    r5, r5, gTRKState@l
     lis	r0, -0x2000
     stw	r3, 0x8c(r5)
     li	r3, 0
@@ -54,9 +76,9 @@ asm void TRKTargetTranslate(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A5638@ha
     stw	r0, 0x24(r1)
-    addi	r3, r3, 0x5638
+    addi    r3, r3, lbl_801A5638@l
     stmw	r27, 0xc(r1)
     lwz	r3, 0(r3)
     cmplwi	r3, 0x44
@@ -64,8 +86,8 @@ asm void TRKTargetTranslate(void)
     addi	r0, r3, 0x4000
     cmplwi	r0, 0x44
     ble     _8008d074
-    lis	r3, -0x7fe6
-    addi	r3, r3, 0x5160
+    lis     r3, gTRKCPUState@ha
+    addi    r3, r3, gTRKCPUState@l
     lwz	r0, 0x238(r3)
     clrlwi.	r0, r0, 0x1e
     beq     _8008d074
@@ -88,9 +110,9 @@ _8008d094:
     beq     _8008d130
     cmpwi	r30, 4
     beq     _8008d130
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A5638@ha
     lwz	r6, 0(r31)
-    addi	r3, r3, 0x5638
+    addi    r3, r3, lbl_801A5638@l
     lwz	r3, 0(r3)
     cmplw	r6, r3
     blt     _8008d0e4
@@ -139,16 +161,16 @@ _8008d130:
 asm void fn_8008D154(void)
 {
     nofralloc
-    lis	r4, -0x7fe6
-    addi	r4, r4, 0x5638
+    lis     r4, lbl_801A5638@ha
+    addi    r4, r4, lbl_801A5638@l
     lwz	r4, 0(r4)
     cmplw	r3, r4
     blt     _8008d188
     addi	r0, r4, 0x4000
     cmplw	r3, r0
     bge     _8008d188
-    lis	r4, -0x7fe6
-    addi	r4, r4, 0x5160
+    lis     r4, gTRKCPUState@ha
+    addi    r4, r4, gTRKCPUState@l
     lwz	r0, 0x238(r4)
     clrlwi.	r0, r0, 0x1e
     bnelr	
@@ -183,10 +205,10 @@ asm void TRK_main(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7ff7
+    lis     r4, 0x8018
     li	r3, 1
     stw	r0, 0x14(r1)
-    addi	r4, r4, 0x5bb8
+    addi    r4, r4, 0x50
     crxor	6, 6, 6
     bl      MWTRACE
     bl      TRKInitializeNub
@@ -302,9 +324,9 @@ asm void UnreserveEXI2Port(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fea
+    lis     r3, gDBCommTable@ha
     stw	r0, 0x14(r1)
-    addi	r3, r3, -0x4728
+    addi    r3, r3, gDBCommTable@l
     lwz	r12, 0x20(r3)
     mtctr	r12
     bctrl	
@@ -319,9 +341,9 @@ asm void ReserveEXI2Port(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fea
+    lis     r3, gDBCommTable@ha
     stw	r0, 0x14(r1)
-    addi	r3, r3, -0x4728
+    addi    r3, r3, gDBCommTable@l
     lwz	r12, 0x24(r3)
     mtctr	r12
     bctrl	
@@ -336,9 +358,9 @@ asm void fn_8008D398(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r5, -0x7fea
+    lis     r5, gDBCommTable@ha
     stw	r0, 0x14(r1)
-    addi	r5, r5, -0x4728
+    addi    r5, r5, gDBCommTable@l
     lwz	r12, 0x14(r5)
     mtctr	r12
     bctrl	
@@ -356,9 +378,9 @@ asm void TRK_ReadUARTN(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r5, -0x7fea
+    lis     r5, gDBCommTable@ha
     stw	r0, 0x14(r1)
-    addi	r5, r5, -0x4728
+    addi    r5, r5, gDBCommTable@l
     lwz	r12, 0x10(r5)
     mtctr	r12
     bctrl	
@@ -376,9 +398,9 @@ asm void TRKPollUART(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fea
+    lis     r3, gDBCommTable@ha
     stw	r0, 0x14(r1)
-    addi	r3, r3, -0x4728
+    addi    r3, r3, gDBCommTable@l
     lwz	r12, 0xc(r3)
     mtctr	r12
     bctrl	
@@ -398,8 +420,8 @@ asm void EnableEXI2Interrupts(register void* a, register void* b, register void*
     lbz	r0, 0x5648(r3)
     cmplwi	r0, 0
     bne     _8008d478
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x4728
+    lis     r3, gDBCommTable@ha
+    addi    r3, r3, gDBCommTable@l
     lwz	r12, 4(r3)
     cmplwi	r12, 0
     beq     _8008d478
@@ -417,16 +439,16 @@ asm void TRKInitializeIntDrivenUART(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7ff7
-    lis	r3, -0x7fea
+    lis     r4, TRKEXICallBack@ha
+    lis     r3, gDBCommTable@ha
     stw	r0, 0x14(r1)
-    addi	r4, r4, -0x28bc
+    addi    r4, r4, TRKEXICallBack@l
     lwz	r12, -0x4728(r3)
     mr	r3, r6
     mtctr	r12
     bctrl	
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x4728
+    lis     r3, gDBCommTable@ha
+    addi    r3, r3, gDBCommTable@l
     lwz	r12, 0x18(r3)
     mtctr	r12
     bctrl	
@@ -506,27 +528,27 @@ _8008d5c4:
     crxor	6, 6, 6
     bl      OSReport
     bl      Hu_IsStub
-    lis	r31, -0x7ff7
+    lis     r31, gdev_cc_initialize@ha
     lis	r12, -0x7ff7
-    addi	r31, r31, -0x19c0
+    addi    r31, r31, gdev_cc_initialize@l
     lis	r30, -0x7fea
-    lis	r11, -0x7ff7
-    lis	r10, -0x7ff7
-    lis	r9, -0x7ff7
-    lis	r8, -0x7ff7
-    lis	r7, -0x7ff7
-    lis	r6, -0x7ff7
-    lis	r5, -0x7ff7
+    lis     r11, gdev_cc_close@ha
+    lis     r10, gdev_cc_read@ha
+    lis     r9, gdev_cc_write@ha
+    lis     r8, gdev_cc_shutdown@ha
+    lis     r7, gdev_cc_peek@ha
+    lis     r6, gdev_cc_pre_continue@ha
+    lis     r5, gdev_cc_post_stop@ha
     lis	r4, -0x7ff7
     stwu	r31, -0x4728(r30)
     addi	r12, r12, -0x19ec
-    addi	r11, r11, -0x19f4
-    addi	r10, r10, -0x1ae8
-    addi	r9, r9, -0x1ba8
-    addi	r8, r8, -0x19c8
-    addi	r7, r7, -0x1c60
-    addi	r6, r6, -0x1bcc
-    addi	r5, r5, -0x1bf0
+    addi    r11, r11, gdev_cc_close@l
+    addi    r10, r10, gdev_cc_read@l
+    addi    r9, r9, gdev_cc_write@l
+    addi    r8, r8, gdev_cc_shutdown@l
+    addi    r7, r7, gdev_cc_peek@l
+    addi    r6, r6, gdev_cc_pre_continue@l
+    addi    r5, r5, gdev_cc_post_stop@l
     addi	r0, r4, -0x1c84
     stw	r12, 0x18(r30)
     mr	r31, r3
@@ -546,27 +568,27 @@ _8008d660:
     crxor	6, 6, 6
     bl      OSReport
     bl      AMC_IsStub
-    lis	r31, -0x7ff7
+    lis     r31, ddh_cc_initialize@ha
     lis	r12, -0x7ff7
-    addi	r31, r31, -0x1f74
+    addi    r31, r31, ddh_cc_initialize@l
     lis	r30, -0x7fea
-    lis	r11, -0x7ff7
-    lis	r10, -0x7ff7
-    lis	r9, -0x7ff7
-    lis	r8, -0x7ff7
-    lis	r7, -0x7ff7
-    lis	r6, -0x7ff7
-    lis	r5, -0x7ff7
+    lis     r11, ddh_cc_close@ha
+    lis     r10, ddh_cc_read@ha
+    lis     r9, ddh_cc_write@ha
+    lis     r8, ddh_cc_shutdown@ha
+    lis     r7, ddh_cc_peek@ha
+    lis     r6, ddh_cc_pre_continue@ha
+    lis     r5, ddh_cc_post_stop@ha
     lis	r4, -0x7ff7
     stwu	r31, -0x4728(r30)
     addi	r12, r12, -0x1fa0
-    addi	r11, r11, -0x1fa8
-    addi	r10, r10, -0x2094
-    addi	r9, r9, -0x2154
-    addi	r8, r8, -0x1f7c
-    addi	r7, r7, -0x220c
-    addi	r6, r6, -0x2178
-    addi	r5, r5, -0x219c
+    addi    r11, r11, ddh_cc_close@l
+    addi    r10, r10, ddh_cc_read@l
+    addi    r9, r9, ddh_cc_write@l
+    addi    r8, r8, ddh_cc_shutdown@l
+    addi    r7, r7, ddh_cc_peek@l
+    addi    r6, r6, ddh_cc_pre_continue@l
+    addi    r5, r5, ddh_cc_post_stop@l
     addi	r0, r4, -0x2230
     stw	r12, 0x18(r30)
     mr	r31, r3
@@ -642,8 +664,8 @@ asm void TRKTargetContinue(void)
 asm void fn_8008D7B0(void)
 {
     nofralloc
-    lis	r3, -0x7fe6
-    addi	r3, r3, 0x5650
+    lis     r3, lbl_801A5650@ha
+    addi    r3, r3, lbl_801A5650@l
     lbz	r3, 0(r3)
     blr	
 }

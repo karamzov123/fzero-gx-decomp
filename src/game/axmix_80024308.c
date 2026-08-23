@@ -14,6 +14,7 @@ extern void fn_800244C8(void);
 extern void fn_80024C88(void);
 extern void fn_800248D4(void);
 extern void fn_80025440(void);
+extern unsigned char lbl_80128190[];
 
 asm void fn_80024308(void)
 {
@@ -898,8 +899,8 @@ asm void fn_80024E6C(void)
     fsubs	f3, f3, f9
     fsubs	f4, f4, f9
     li	r26, -4
-    lis	r12, -0x7fed
-    addi	r12, r12, -0x7e70
+    lis     r12, lbl_80128190@ha
+    addi    r12, r12, lbl_80128190@l
     li	r9, 0xa0
     mtctr	r9
 _80024f18:
@@ -1010,8 +1011,8 @@ asm void fn_80025004(void)
     fsubs	f3, f3, f9
     fsubs	f4, f4, f9
     li	r26, -4
-    lis	r12, -0x7fed
-    addi	r12, r12, -0x7e70
+    lis     r12, lbl_80128190@ha
+    addi    r12, r12, lbl_80128190@l
     li	r9, 0xa0
     mtctr	r9
 _800250b0:

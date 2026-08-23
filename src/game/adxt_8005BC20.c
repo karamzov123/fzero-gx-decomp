@@ -14,6 +14,11 @@ extern void fn_8005BE98(void);
 extern void fn_8005BFB4(void);
 extern void SndInitManager(void);
 extern void memset(void);
+extern unsigned char lbl_800927BC[];
+extern unsigned char lbl_80092988[];
+extern unsigned char lbl_800929AC[];
+extern unsigned char lbl_80191D4C[];
+extern unsigned char lbl_80192BE4[];
 
 asm void fn_8005BC20(void)
 {
@@ -35,9 +40,9 @@ _8005bc4c:
     cmplw	r3, r4
     bne     _8005bc84
     mulli	r3, r7, 0xe8
-    lis	r4, -0x7fe7
+    lis     r4, lbl_80191D4C@ha
     slwi	r0, r8, 2
-    addi	r4, r4, 0x1d4c
+    addi    r4, r4, lbl_80191D4C@l
     add	r3, r4, r3
     add	r31, r3, r0
     lwzu	r3, 8(r31)
@@ -132,9 +137,9 @@ _8005bd98:
     addi	r28, r28, 0xe8
     cmpwi	r27, 0x10
     blt     _8005bce8
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80191D4C@ha
     li	r4, 0
-    addi	r3, r3, 0x1d4c
+    addi    r3, r3, lbl_80191D4C@l
     li	r5, 0xe80
     bl      memset
     bl      fn_8005BFB4
@@ -151,10 +156,10 @@ asm void fn_8005BDD4(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_800927BC@ha
     lis	r4, -0x7fe7
     stw	r0, 0x14(r1)
-    addi	r3, r3, 0x27bc
+    addi    r3, r3, lbl_800927BC@l
     lwz	r3, 0(r3)
     stw	r31, 0xc(r1)
     addi	r31, r4, 0xc78
@@ -233,11 +238,11 @@ asm void fn_8005BEAC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80192BE4@ha
     li	r4, 0
     stw	r0, 0x14(r1)
     li	r0, 4
-    addi	r3, r3, 0x2be4
+    addi    r3, r3, lbl_80192BE4@l
     mtctr	r0
 _8005becc:
     lwz	r0, 0(r3)
@@ -284,16 +289,16 @@ _8005becc:
 _8005bf70:
     cmpwi	r4, 0x20
     bne     _8005bf8c
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x2988
+    lis     r3, lbl_80092988@ha
+    addi    r3, r3, lbl_80092988@l
     bl      fn_8005A5BC
     li	r3, 0
     b     _8005bfa4
 _8005bf8c:
     mulli	r4, r4, 0xc
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80192BE4@ha
     li	r0, 1
-    addi	r3, r3, 0x2be4
+    addi    r3, r3, lbl_80192BE4@l
     add	r3, r3, r4
     stw	r0, 0(r3)
 _8005bfa4:
@@ -394,8 +399,8 @@ _8005c0b0:
     lwz	r0, 0xc(r31)
     cmplw	r3, r0
     beq     _8005c0fc
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x29ac
+    lis     r3, lbl_800929AC@ha
+    addi    r3, r3, lbl_800929AC@l
     bl      fn_8005A5BC
 _8005c0fc:
     li	r0, 0

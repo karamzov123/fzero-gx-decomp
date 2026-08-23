@@ -69,6 +69,12 @@ extern void fn_80058498(void);
 extern void fn_800589BC(void);
 extern void fn_80083DB0(void);
 extern void memset(void);
+extern unsigned char E02080804_ADXT_Create_parameter_error_str[];
+extern unsigned char E02080807_ADXT_StartFname_parameter_error_str[];
+extern unsigned char E02080842_ADXT_ExecHndl_parameter_error_str[];
+extern unsigned char E8101201_adxt_trap_entry_not_enough_data_str[];
+extern unsigned char E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str[];
+extern unsigned char lbl_80178CBC[];
 
 asm void ADXT_Create(void)
 {
@@ -88,15 +94,15 @@ asm void ADXT_Create(void)
     cmpwi	r5, 0
     bge     _8004cdbc
 _8004cda8:
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x103c
+    lis     r3, E02080804_ADXT_Create_parameter_error_str@ha
+    addi    r3, r3, E02080804_ADXT_Create_parameter_error_str@l
     bl      fn_800474E4
     li	r3, 0
     b       _8004d178
 _8004cdbc:
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CBC@ha
     li	r0, 2
-    addi	r3, r3, -0x7344
+    addi    r3, r3, lbl_80178CBC@l
     li	r4, 0
     mtctr	r0
 _8004cdd0:
@@ -370,8 +376,8 @@ asm void fn_8004D18C(void)
     cmplwi	r31, 0
     bne     _8004d1c4
 _8004d1b4:
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1068
+    lis     r3, E02080807_ADXT_StartFname_parameter_error_str@ha
+    addi    r3, r3, E02080807_ADXT_StartFname_parameter_error_str@l
     bl      fn_800474E4
     b       _8004d208
 _8004d1c4:
@@ -412,8 +418,8 @@ asm void fn_8004D220(void)
     or.	r31, r3, r3
     addi	r30, r4, -0x1a58
     bne     _8004d250
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1098
+    lis     r3, E02080842_ADXT_ExecHndl_parameter_error_str@ha
+    addi    r3, r3, E02080842_ADXT_ExecHndl_parameter_error_str@l
     bl      fn_800474E4
     b       _8004d514
 _8004d250:
@@ -675,9 +681,9 @@ _8004d5bc:
     addi	r5, r1, 0x10
     li	r6, 0x10
     bl      fn_80046F88
-    lis	r3, -0x7ff7
+    lis     r3, E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str@ha
     addi	r4, r1, 0x10
-    addi	r3, r3, 0x10c4
+    addi    r3, r3, E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str@l
     bl      fn_80047464
     mr	r3, r30
     bl      fn_8004C698
@@ -1317,8 +1323,8 @@ _8004dee0:
     lwz	r0, 0x50(r28)
     cmpw	r3, r0
     bge     _8004df1c
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1104
+    lis     r3, E8101201_adxt_trap_entry_not_enough_data_str@ha
+    addi    r3, r3, E8101201_adxt_trap_entry_not_enough_data_str@l
     bl      fn_800474E4
 _8004df1c:
     lwz	r6, 0(r30)

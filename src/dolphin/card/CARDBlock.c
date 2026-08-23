@@ -39,6 +39,7 @@ extern void ReadArrayUnlock(void);
 extern void GetInitVal(void);
 extern void fn_8002DD08(void);
 extern void memcpy(void);
+extern unsigned char lbl_8012AA60[];
 
 asm void fn_8002AF34(void)
 {
@@ -757,9 +758,9 @@ _8002b9ac:
     li	r4, 0x10
     bl      DCFlushRange
     li	r0, 0xff
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012AA60@ha
     stw	r0, 4(r30)
-    addi	r3, r3, -0x55a0
+    addi    r3, r3, lbl_8012AA60@l
     addis	r0, r3, -0x8000
     stw	r0, 0xc(r30)
     li	r0, 0x160
@@ -1230,8 +1231,8 @@ _8002c090:
     mtlr	r0
     blr	
     mulli	r0, r3, 0x110
-    lis	r3, -0x7fe9
-    addi	r3, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r3, r3, __CARDBlock@l
     add	r3, r3, r0
     lwz	r3, 0xb8(r3)
     blr	

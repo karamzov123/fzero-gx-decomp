@@ -8,6 +8,7 @@ typedef int BOOL;
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void fn_80022E68(register void* p);
+extern unsigned char lbl_8015D100[];
 
 asm void __AXPushFreeStack(register void* p)
 {
@@ -47,10 +48,10 @@ asm void __AXRemoveFromStack(register void* p)
 {
     nofralloc
     lwz	r0, 0xc(r3)
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015D100@ha
     lis	r4, -0x7fea
     slwi	r6, r0, 2
-    addi	r5, r5, -0x2f00
+    addi    r5, r5, lbl_8015D100@l
     addi	r0, r4, -0x2e80
     add	r7, r5, r6
     add	r5, r0, r6

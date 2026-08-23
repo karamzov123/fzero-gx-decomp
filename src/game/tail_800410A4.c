@@ -47,6 +47,7 @@ extern void fn_8005912C(register u32 p1, register u32 p2, register void* p3, reg
 extern void fn_800592E0(register u32 p1, register void* p2);
 extern void fn_80059428(register u32 p1, register void* p2, register u32 p3);
 extern void memset(register void* dst, register int v, register unsigned long n);
+extern unsigned char lbl_80090010[];
 
 #pragma push
 #pragma force_active on
@@ -156,10 +157,10 @@ asm void fn_800411F4(void)
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r3, -0x7ff7
+    lis     r3, lbl_80090010@ha
     lis     r4, -0x7fe8
     stw     r0, 0x14(r1)
-    addi    r3, r3, 0x10
+    addi    r3, r3, lbl_80090010@l
     lwz     r3, 0(r3)
     stw     r31, 0xc(r1)
     addi    r31, r4, -0x7358

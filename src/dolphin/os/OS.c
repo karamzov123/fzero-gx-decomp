@@ -66,6 +66,7 @@ extern void __OSResetSWInterruptHandler(int interrupt, void* context);
 extern void* _stack_addr;
 extern u32 __ArenaLo;
 extern u32 __ArenaHi;
+extern unsigned char DriveInfo[];
 
 static asm void OSExceptionInit(void);
 #pragma push
@@ -179,8 +180,8 @@ static asm void InquiryCallback(register int result, register void* block)
     beq     _8000a384
     b       _8000a3a0
 _8000a384:
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x4100
+    lis     r3, DriveInfo@ha
+    addi    r3, r3, DriveInfo@l
     lhz	r0, 2(r3)
     lis	r3, -0x8000
     ori	r0, r0, 0x8000

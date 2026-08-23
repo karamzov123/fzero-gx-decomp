@@ -12,6 +12,7 @@ extern int fn_8000BE68(register void* context);
 extern void fn_8000BFEC(register void* context, register void* pc, register void* sp);
 extern void __OSUnlockAllMutex(register void* thread);
 extern void OSWakeupThread(register void* queue);
+extern unsigned char __OSErrorTable[];
 
 asm void UnsetRun(register void* thread)
 {
@@ -439,8 +440,8 @@ _80010860:
     stw	r30, 0x310(r31)
     stw	r30, 0x314(r31)
     bl      OSDisableInterrupts
-    lis	r4, -0x7fea
-    addi	r4, r4, -0x40b0
+    lis     r4, __OSErrorTable@ha
+    addi    r4, r4, __OSErrorTable@l
     lwz	r0, 0x40(r4)
     cmplwi	r0, 0
     beq     _800109c4

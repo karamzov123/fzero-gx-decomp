@@ -14,6 +14,8 @@ extern void fn_80085088(void);
 extern void fn_80085494(void);
 extern void fn_80082A7C(void);
 extern void fn_80083428(void);
+extern unsigned char jumptable_8015B668[];
+extern unsigned char lbl_8015B100[];
 
 asm void fn_8008279C(void)
 {
@@ -264,8 +266,8 @@ _80082ab4:
     lbzx	r0, r18, r0
     rlwinm.	r0, r0, 0, 0x1d, 0x1e
     bc      12, 2, _80082b38
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x4f00
+    lis     r3, lbl_8015B100@ha
+    addi    r3, r3, lbl_8015B100@l
 _80082acc:
     lbzu	r0, 1(r26)
     lbzx	r0, r3, r0
@@ -1123,9 +1125,9 @@ _80083640:
     stb	r5, 0xb(r1)
     cmplwi	r0, 0x33
     bc      12, 1, _80083904
-    lis	r5, -0x7fea
+    lis     r5, jumptable_8015B668@ha
     slwi	r0, r0, 2
-    addi	r5, r5, -0x4998
+    addi    r5, r5, jumptable_8015B668@l
     lwzx	r0, r5, r0
     mtctr	r0
     bctr

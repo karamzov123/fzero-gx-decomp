@@ -34,6 +34,7 @@ extern void fn_80078360(void);
 extern void fn_800794F0(void);
 extern void fn_8006DFFC(void);
 extern void memset(void);
+extern unsigned char lbl_8019F130[];
 asm void fn_800786B0(void);
 asm void fn_80078768(void);
 asm void fn_80078884(void);
@@ -543,9 +544,9 @@ asm void fn_80078CDC(void)
     bl fn_80038CFC
 _80078CF8:
     lwz r0, -0x7624(r13)
-    lis r3, -0x7fe6
+    lis     r3, lbl_8019F130@ha
     lfs f0, -0x7998(r2)
-    addi r3, r3, -0xed0
+    addi    r3, r3, lbl_8019F130@l
     cmpwi r0, 0
     stfs f0, 0xc(r3)
     beq _80078D18

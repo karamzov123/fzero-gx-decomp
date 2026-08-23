@@ -87,9 +87,9 @@ asm void DSPInit(void)
     lwz	r3, -0x7ec0(r13)
     bl      OSRegisterVersion
     bl      OSDisableInterrupts
-    lis	r4, -0x7ffd
+    lis     r4, __DSPHandler@ha
     addi	r31, r3, 0
-    addi	r4, r4, -0x7060
+    addi    r4, r4, __DSPHandler@l
     li	r3, 7
     bl      __OSSetInterruptHandler
     lis	r3, 0x100

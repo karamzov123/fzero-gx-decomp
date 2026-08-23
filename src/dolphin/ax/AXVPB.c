@@ -13,6 +13,7 @@ extern void __AXPushFreeStack(void);
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void __cvt_fp2unsigned(void);
+extern unsigned char lbl_80164D60[];
 
 asm void fn_800224E4(void)
 {
@@ -682,8 +683,8 @@ _80022e1c:
 asm void fn_80022E5C(void)
 {
     nofralloc
-    lis	r3, -0x7fea
-    addi	r3, r3, 0x4d60
+    lis     r3, lbl_80164D60@ha
+    addi    r3, r3, lbl_80164D60@l
     blr	
 }
 

@@ -31,6 +31,8 @@ extern void fn_8004E354(void);
 extern void fn_8004E4AC(void);
 extern void fn_8008023C(void);
 extern void fn_8004E270(void);
+extern unsigned char SPSD_str[];
+extern unsigned char lbl_8017A29C[];
 
 asm void fn_800452FC(void)
 {
@@ -883,10 +885,10 @@ asm void fn_80045D90(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r7, -0x7fe8
+    lis     r7, lbl_8017A29C@ha
     stw	r0, 0x24(r1)
     li	r0, 2
-    addi	r7, r7, -0x5d64
+    addi    r7, r7, lbl_8017A29C@l
     stmw	r27, 0xc(r1)
     mr	r27, r3
     mr	r28, r4
@@ -1030,12 +1032,12 @@ asm void fn_80045FA4(void)
     stw	r0, 0x14(r1)
     bl      fn_8004E4AC
     lis	r4, -0x7fe8
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017A29C@ha
     addi	r7, r4, -0x5d78
     li	r5, 0xd80
     lwz	r6, 0(r7)
     li	r4, 0
-    addi	r3, r3, -0x5d64
+    addi    r3, r3, lbl_8017A29C@l
     addi	r0, r6, 1
     stw	r0, 0(r7)
     bl      memset
@@ -1050,10 +1052,10 @@ asm void fn_80045FEC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7ff7
+    lis     r4, SPSD_str@ha
     li	r5, 4
     stw	r0, 0x14(r1)
-    addi	r4, r4, 0x928
+    addi    r4, r4, SPSD_str@l
     bl      fn_8008023C
     cntlzw	r0, r3
     srwi	r3, r0, 5

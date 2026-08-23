@@ -17,6 +17,8 @@ extern void TRKTargetContinue(void);
 extern void TRKReleaseBuffer(void*, void*);
 extern void fn_8008AF48(unsigned long);
 extern void fn_8008AF40(unsigned long);
+extern unsigned char gTRKInputPendingPtr[];
+extern unsigned char lbl_801A36B8[];
 
 asm void TRKNubMainLoop(void)
 {
@@ -69,8 +71,8 @@ lbl_800886D4:
 lbl_800886E0:
     cmpwi   r30, 0
     beq     lbl_80088700
-    lis     r3, 0x801A
-    addi    r3, r3, 0x6E00
+    lis     r3, gTRKInputPendingPtr@ha
+    addi    r3, r3, gTRKInputPendingPtr@l
     lwz     r3, 0(r3)
     lbz     r0, 0(r3)
     cmplwi  r0, 0
@@ -173,8 +175,8 @@ lbl_80088824:
     addi    r0, r3, 1
     stw     r0, 4(r30)
 lbl_80088830:
-    lis     r3, 0x801A
-    addi    r3, r3, 0x36B8
+    lis     r3, lbl_801A36B8@ha
+    addi    r3, r3, lbl_801A36B8@l
     bl      fn_8008AF40
     lwz     r0, 0x24(r1)
     mr      r3, r31
@@ -225,8 +227,8 @@ asm int TRKGetNextEvent(void* msg)
 lbl_800888E0:
     li      r30, 1
 lbl_800888E4:
-    lis     r3, 0x801A
-    addi    r3, r3, 0x36B8
+    lis     r3, lbl_801A36B8@ha
+    addi    r3, r3, lbl_801A36B8@l
     bl      fn_8008AF40
     lwz     r0, 0x24(r1)
     mr      r3, r30

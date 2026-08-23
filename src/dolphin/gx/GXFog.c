@@ -38,6 +38,9 @@ asm int fn_8003D588(register u32 a);
 asm int fn_8003E13C(register u32 a);
 asm int fn_8003E284(register u32 a);
 extern void fn_8003E9EC(void);
+extern unsigned char lbl_8012B590[];
+extern unsigned char lbl_8012B5D0[];
+extern unsigned char lbl_8012B5F8[];
 
 #pragma push
 #pragma force_active on
@@ -2602,16 +2605,16 @@ _8003df1c:
     stw     r4, 8(r3)
     b       _8003dfd0
 _8003dfa8:
-    lis     r3, -0x7fed
+    lis     r3, lbl_8012B590@ha
     crxor   6, 6, 6
-    addi    r3, r3, -0x4a70
+    addi    r3, r3, lbl_8012B590@l
     clrlwi  r4, r28, 0x18
     bl      OSReport
     b       _8003dfd0
 _8003dfc0:
-    lis     r3, -0x7fed
+    lis     r3, lbl_8012B5D0@ha
     crxor   6, 6, 6
-    addi    r3, r3, -0x4a30
+    addi    r3, r3, lbl_8012B5D0@l
     bl      OSReport
 _8003dfd0:
     mr      r3, r29
@@ -2644,9 +2647,9 @@ asm int fn_8003DFF8(register u32 a)
     lwz     r29, 8(r4)
     cmpwi   r29, 0
     bge     _8003e050
-    lis     r3, -0x7fed
+    lis     r3, lbl_8012B5F8@ha
     crxor   6, 6, 6
-    addi    r3, r3, -0x4a08
+    addi    r3, r3, lbl_8012B5F8@l
     bl      OSReport
     mr      r3, r30
     bl      OSRestoreInterrupts

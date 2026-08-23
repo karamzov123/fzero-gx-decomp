@@ -223,10 +223,10 @@ _8001ea64:
     bl      OSRegisterVersion
     bl      OSDisableInterrupts
     li	r0, 0
-    lis         r4, -0x7ffe
+    lis     r4, __ARHandler@ha
     stw	r0, -0x79e0(r13)
     addi	r31, r3, 0
-    addi        r4, r4, -0x150c
+    addi    r4, r4, __ARHandler@l
     li	r3, 6
     bl      __OSSetInterruptHandler
     lis	r3, 0x200

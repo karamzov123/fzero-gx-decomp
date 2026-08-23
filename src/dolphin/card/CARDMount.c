@@ -36,6 +36,8 @@ extern void fn_8002C0B8(void);
 extern void __CARDGetDirBlock(void);
 extern void fn_8002E0C4(void);
 extern void memset(void);
+extern unsigned char __CARDBlock[];
+extern unsigned char lbl_8012AA50[];
 
 asm void CARDInit(void)
 {
@@ -75,8 +77,8 @@ _8002a6f0:
     blt     _8002a6f0
     lis	r3, -0x8000
     bl      fn_8002A774
-    lis	r3, -0x7fed
-    addi	r3, r3, -0x55b0
+    lis     r3, lbl_8012AA50@ha
+    addi    r3, r3, lbl_8012AA50@l
     bl      OSRegisterResetFunction
 _8002a728:
     lwz	r0, 0x1c(r1)
@@ -116,8 +118,8 @@ asm void fn_8002A774(void)
 {
     nofralloc
     cmplwi	r3, 0
-    lis	r4, -0x7fe9
-    addi	r4, r4, 0x7960
+    lis     r4, __CARDBlock@ha
+    addi    r4, r4, __CARDBlock@l
     beq     _8002a78c
     mr	r0, r3
     b       _8002a790
@@ -139,8 +141,8 @@ asm void fn_8002A7AC(void)
 {
     nofralloc
     mulli	r0, r3, 0x110
-    lis	r3, -0x7fe9
-    addi	r3, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r3, r3, __CARDBlock@l
     add	r3, r3, r0
     lwz	r3, 0x10c(r3)
     blr	

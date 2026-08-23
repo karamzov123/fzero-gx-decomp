@@ -10,6 +10,7 @@ extern void fn_80058A40(void);
 extern void fn_80059AB4(void);
 extern void fn_80059B44(void);
 extern void memset(void);
+extern unsigned char lbl_8017D708[];
 
 asm void fn_8004AC04(void)
 {
@@ -896,10 +897,10 @@ asm void fn_8004B7A0(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017D708@ha
     li	r4, 0
     stw	r0, 0x14(r1)
-    addi	r3, r3, -0x28f8
+    addi    r3, r3, lbl_8017D708@l
     li	r5, 0xe60
     bl      memset
     lwz	r0, 0x14(r1)

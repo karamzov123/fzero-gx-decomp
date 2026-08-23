@@ -72,6 +72,8 @@ extern void fn_80083D6C(void);
 extern void strlen(void);
 extern void memcpy(void);
 extern void memset(void);
+extern void __CARDSyncCallback(void);
+extern unsigned char lbl_8012ABC0[];
 
 asm void fn_8002C8D0(void)
 {
@@ -1308,8 +1310,8 @@ _8002d974:
     cmpwi	r30, 0
     blt     _8002dcbc
     lwz	r0, 0x18(r1)
-    lis	r4, -0x7fed
-    addi	r4, r4, -0x5440
+    lis     r4, lbl_8012ABC0@ha
+    addi    r4, r4, lbl_8012ABC0@l
     stw	r0, 0x108(r31)
     lis	r3, -0x7fed
     addi	r0, r3, -0x5420
@@ -1766,9 +1768,9 @@ asm void fn_8002DFE0(void)
 {
     nofralloc
     mflr	r0
-    lis	r6, -0x7ffd
+    lis     r6, __CARDSyncCallback@ha
     stw	r0, 4(r1)
-    addi	r6, r6, -0x67d8
+    addi    r6, r6, __CARDSyncCallback@l
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
     addi	r31, r3, 0

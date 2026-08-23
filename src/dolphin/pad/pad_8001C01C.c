@@ -29,6 +29,8 @@ extern void SIGetType(void);
 extern void SIGetTypeAsync(void);
 extern void fn_800133B8(void);
 extern void __shr2i(void);
+extern unsigned char lbl_801245E0[];
+extern unsigned char lbl_8015D0C0[];
 
 asm void VIGetTvFormat(void);
 asm void fn_8001C084(void);
@@ -67,8 +69,8 @@ asm void VIGetTvFormat(void)
     lwz	r5, -0x7a5c(r13)
     cmplwi	r5, 6
     bc      12, 1, _8001c068
-    lis	r4, -0x7fee
-    addi	r4, r4, 0x457c
+    lis     r4, lbl_801245E0@ha
+    addi    r4, r4, lbl_801245E0@l
     slwi	r0, r5, 2
     lwzx	r0, r4, r0
     mtctr	r0
@@ -285,11 +287,11 @@ asm void fn_8001C304(void)
 {
     nofralloc
     mflr	r0
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015D0C0@ha
     stw	r0, 4(r1)
     mulli	r6, r3, 0xc
     stwu	r1, -0x18(r1)
-    addi	r5, r5, -0x2f40
+    addi    r5, r5, lbl_8015D0C0@l
     stw	r31, 0x14(r1)
     add	r31, r5, r6
     lwz	r0, -0x7f04(r13)
@@ -1096,8 +1098,8 @@ _8001ce48:
     oris	r0, r0, 0x4dc0
     stw	r0, 0x4c(r31)
     bl      fn_800133B8
-    lis	r3, -0x7fee
-    addi	r3, r3, 0x45e0
+    lis     r3, lbl_801245E0@ha
+    addi    r3, r3, lbl_801245E0@l
     bl      OSRegisterResetFunction
     lis	r28, -0x1000
     bl      OSDisableInterrupts

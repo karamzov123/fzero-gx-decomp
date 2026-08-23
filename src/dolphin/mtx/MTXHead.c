@@ -40,6 +40,11 @@ extern asm void fn_8007ED90(void);
 extern asm void fn_800883E8(void);
 extern asm void expf(void);
 extern asm void fn_80088598(void);
+extern unsigned char lbl_801327AC[];
+extern unsigned char lbl_80199670[];
+extern unsigned char lbl_8019DF90[];
+extern unsigned char lbl_8019E014[];
+extern unsigned char lbl_8019E094[];
 
 asm void fn_80069AE0(void);
 asm void fn_80069B10(void);
@@ -811,9 +816,9 @@ asm void ARCOpen(void)
     addi	r4, r1, 0x14
     li	r5, 0x80
     bl      ARCGetEntryPath
-    lis	r3, -0x7fed
+    lis     r3, lbl_801327AC@ha
     crxor	6, 6, 6
-    addi	r3, r3, 0x27ac
+    addi    r3, r3, lbl_801327AC@l
     addi	r4, r29, 0
     addi	r5, r1, 0x14
     bl      OSReport
@@ -1250,9 +1255,9 @@ asm void fn_8006AA20(void)
     cmpwi	r4, 0
     beqlr	
     mulli	r0, r3, 0x1248
-    lis	r3, -0x7fe6
+    lis     r3, lbl_80199670@ha
     li	r4, -1
-    addi	r3, r3, -0x6990
+    addi    r3, r3, lbl_80199670@l
     add	r3, r3, r0
     stb	r4, 0x4d(r3)
     blr
@@ -3180,35 +3185,35 @@ _8006c340:
     rlwinm	r5, r3, 0x10, 0x18, 0x1f
     cmplwi	r5, 0x40
     bc      4, 0, _8006c364
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E014@ha
     slwi	r4, r5, 1
-    addi	r3, r3, -0x1fec
+    addi    r3, r3, lbl_8019E014@l
     lhax	r3, r3, r4
     b       _8006c3c0
 _8006c364:
     cmplwi	r5, 0x80
     bc      4, 0, _8006c384
     subfic	r4, r5, 0x7f
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E014@ha
     slwi	r4, r4, 1
-    addi	r3, r3, -0x1fec
+    addi    r3, r3, lbl_8019E014@l
     lhax	r3, r3, r4
     b       _8006c3c0
 _8006c384:
     cmplwi	r5, 0xc0
     bc      4, 0, _8006c3a8
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E014@ha
     slwi	r3, r5, 1
-    addi	r4, r4, -0x1fec
+    addi    r4, r4, lbl_8019E014@l
     add	r3, r4, r3
     lha	r3, -0x100(r3)
     neg	r3, r3
     b       _8006c3c0
 _8006c3a8:
     subfic	r4, r5, 0xff
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E014@ha
     slwi	r4, r4, 1
-    addi	r3, r3, -0x1fec
+    addi    r3, r3, lbl_8019E014@l
     lhax	r3, r3, r4
     neg	r3, r3
 _8006c3c0:
@@ -3227,35 +3232,35 @@ _8006c3e4:
     rlwinm	r5, r3, 0x10, 0x18, 0x1f
     cmplwi	r5, 0x40
     bc      4, 0, _8006c408
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E094@ha
     slwi	r4, r5, 1
-    addi	r3, r3, -0x1f6c
+    addi    r3, r3, lbl_8019E094@l
     lhax	r3, r3, r4
     b       _8006c464
 _8006c408:
     cmplwi	r5, 0x80
     bc      4, 0, _8006c428
     subfic	r4, r5, 0x7f
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E094@ha
     slwi	r4, r4, 1
-    addi	r3, r3, -0x1f6c
+    addi    r3, r3, lbl_8019E094@l
     lhax	r3, r3, r4
     b       _8006c464
 _8006c428:
     cmplwi	r5, 0xc0
     bc      4, 0, _8006c44c
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E094@ha
     slwi	r3, r5, 1
-    addi	r4, r4, -0x1f6c
+    addi    r4, r4, lbl_8019E094@l
     add	r3, r4, r3
     lha	r3, -0x100(r3)
     neg	r3, r3
     b       _8006c464
 _8006c44c:
     subfic	r4, r5, 0xff
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E094@ha
     slwi	r4, r4, 1
-    addi	r3, r3, -0x1f6c
+    addi    r3, r3, lbl_8019E094@l
     lhax	r3, r3, r4
     neg	r3, r3
 _8006c464:
@@ -3263,15 +3268,15 @@ _8006c464:
     b       _8006c4a8
 _8006c46c:
     lwz	r4, 0x38(r31)
-    lis	r3, -0x7fe6
-    addi	r3, r3, -0x1f6c
+    lis     r3, lbl_8019E094@ha
+    addi    r3, r3, lbl_8019E094@l
     rlwinm	r4, r4, 0xf, 0x19, 0x1e
     lhax	r4, r3, r4
     b       _8006c4a8
 _8006c484:
     lwz	r4, 0x38(r31)
-    lis	r3, -0x7fe6
-    addi	r3, r3, -0x1f6c
+    lis     r3, lbl_8019E094@ha
+    addi    r3, r3, lbl_8019E094@l
     rlwinm	r4, r4, 0x10, 0x18, 0x1f
     subfic	r4, r4, 0xff
     rlwinm	r4, r4, 0x1f, 1, 0x1e
@@ -3407,35 +3412,35 @@ asm void fn_8006C634(void)
     clrlwi	r0, r4, 0x18
     cmplwi	r0, 0x40
     bc      4, 0, _8006c654
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E014@ha
     slwi	r0, r0, 1
-    addi	r4, r4, -0x1fec
+    addi    r4, r4, lbl_8019E014@l
     lhax	r0, r4, r0
     b       _8006c6b0
 _8006c654:
     cmplwi	r0, 0x80
     bc      4, 0, _8006c674
     subfic	r0, r0, 0x7f
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E014@ha
     slwi	r0, r0, 1
-    addi	r4, r4, -0x1fec
+    addi    r4, r4, lbl_8019E014@l
     lhax	r0, r4, r0
     b       _8006c6b0
 _8006c674:
     cmplwi	r0, 0xc0
     bc      4, 0, _8006c698
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E014@ha
     slwi	r0, r0, 1
-    addi	r4, r4, -0x1fec
+    addi    r4, r4, lbl_8019E014@l
     add	r4, r4, r0
     lha	r0, -0x100(r4)
     neg	r0, r0
     b       _8006c6b0
 _8006c698:
     subfic	r0, r0, 0xff
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E014@ha
     slwi	r0, r0, 1
-    addi	r4, r4, -0x1fec
+    addi    r4, r4, lbl_8019E014@l
     lhax	r0, r4, r0
     neg	r0, r0
 _8006c6b0:
@@ -3822,15 +3827,15 @@ _8006cbbc:
 _8006cbcc:
     cmpwi	r4, 0
     bc      4, 0, _8006cbec
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019DF90@ha
     addi	r0, r3, -0x2070
     subf	r3, r4, r0
     lbz	r0, 0(r3)
     neg	r4, r0
     b       _8006cbf8
 _8006cbec:
-    lis	r3, -0x7fe6
-    addi	r3, r3, -0x2070
+    lis     r3, lbl_8019DF90@ha
+    addi    r3, r3, lbl_8019DF90@l
     lbzx	r4, r3, r4
 _8006cbf8:
     cmpwi	r6, 0xff

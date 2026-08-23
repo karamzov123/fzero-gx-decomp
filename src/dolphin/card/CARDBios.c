@@ -34,6 +34,7 @@ extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void OSSetAlarm(void);
 extern void OSWakeupThread(void);
+extern unsigned char __CARDBlock[];
 
 asm void __CARDSyncCallback(void)
 {
@@ -469,9 +470,9 @@ asm void TimeoutHandler(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fe9
+    lis     r4, __CARDBlock@ha
     stw	r0, 4(r1)
-    addi	r4, r4, 0x7960
+    addi    r4, r4, __CARDBlock@l
     addi	r0, r4, 0xe0
     stwu	r1, -0x18(r1)
     cmplw	r3, r0

@@ -24,6 +24,8 @@ extern void fn_80057DA8(void);
 extern void fn_80057DA0(void);
 extern void fn_80045D90(void);
 extern void fn_800455AC(void);
+extern unsigned char Can_not_decode_this_file_format_str[];
+extern unsigned char E03010901_ADXB_DecodeHeader_str[];
 
 asm void fn_80041BF8(void)
 {
@@ -299,10 +301,10 @@ _80041fac:
     lwz	r12, 0x1c(r6)
     mtctr	r12
     bctrl	
-    lis	r3, -0x7ff7
-    lis	r4, -0x7ff7
-    addi	r3, r3, 0x18
-    addi	r4, r4, 0x38
+    lis     r3, E03010901_ADXB_DecodeHeader_str@ha
+    lis     r4, Can_not_decode_this_file_format_str@ha
+    addi    r3, r3, E03010901_ADXB_DecodeHeader_str@l
+    addi    r4, r4, Can_not_decode_this_file_format_str@l
     bl      fn_80047464
     li	r0, 4
     stb	r0, 1(r31)

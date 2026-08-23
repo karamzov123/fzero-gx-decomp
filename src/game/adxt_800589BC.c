@@ -12,6 +12,10 @@ extern void fn_80084FDC(void);
 extern void memcpy(void);
 extern void memset(void);
 extern void strlen(void);
+extern unsigned char _SVM_DelCbSvr_illegal_id_str[];
+extern unsigned char _SVM_SetCbSvr_too_many_server_function_str[];
+extern unsigned char lbl_80092384[];
+extern unsigned char lbl_8018FEE0[];
 
 asm void fn_800589BC(void)
 {
@@ -113,9 +117,9 @@ _80058ab8:
     lwz	r0, 8(r31)
     cmpwi	r0, 1
     beq     _80058b1c
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -465,9 +469,9 @@ _80058f58:
     lwz	r0, 8(r31)
     cmpwi	r0, 1
     beq     _80058fac
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -562,9 +566,9 @@ _80059094:
     lwz	r0, 8(r31)
     cmpwi	r0, 1
     beq     _800590f0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -729,9 +733,9 @@ asm void fn_800592E0(void)
     cmpwi	r30, 6
     blt     _80059348
 _80059314:
-    lis	r4, -0x7ff7
+    lis     r4, _SVM_DelCbSvr_illegal_id_str@ha
     addi	r3, r31, 0x30
-    addi	r4, r4, 0x24a4
+    addi    r4, r4, _SVM_DelCbSvr_illegal_id_str@l
     li	r5, 0x7f
     bl      fn_80083D6C
     lwz	r12, 0xb0(r31)
@@ -781,9 +785,9 @@ _80059384:
     lwz	r0, 8(r31)
     cmpwi	r0, 1
     beq     _800593f0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -858,9 +862,9 @@ _800594c4:
 _800594d0:
     cmpwi	r30, 6
     bne     _8005950c
-    lis	r4, -0x7ff7
+    lis     r4, _SVM_SetCbSvr_too_many_server_function_str@ha
     addi	r3, r31, 0x30
-    addi	r4, r4, 0x24c4
+    addi    r4, r4, _SVM_SetCbSvr_too_many_server_function_str@l
     li	r5, 0x7f
     bl      fn_80083D6C
     lwz	r12, 0xb0(r31)
@@ -884,9 +888,9 @@ _8005950c:
     lwz	r0, 8(r31)
     cmpwi	r0, 1
     beq     _80059554
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -980,10 +984,10 @@ _80059634:
     addi	r6, r1, 0x88
     addi	r0, r1, 8
     lis	r4, 0x100
-    lis	r3, -0x7fe7
+    lis     r3, lbl_8018FEE0@ha
     stw	r4, 0x68(r1)
     addi	r5, r1, 0x68
-    addi	r3, r3, -0x120
+    addi    r3, r3, lbl_8018FEE0@l
     mr	r4, r31
     stw	r6, 0x6c(r1)
     stw	r0, 0x70(r1)
@@ -1027,9 +1031,9 @@ asm void fn_800596D4(void)
     lwz	r0, 8(r31)
     cmpwi	r0, 5
     beq     _80059734
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 5
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -1071,9 +1075,9 @@ asm void fn_80059764(void)
     lwz	r0, 8(r31)
     cmpwi	r0, 4
     beq     _800597c4
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 4
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -1115,9 +1119,9 @@ asm void fn_800597F4(void)
     lwz	r0, 8(r31)
     cmpwi	r0, 3
     beq     _80059854
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 3
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -1159,9 +1163,9 @@ asm void fn_80059884(void)
     lwz	r0, 8(r31)
     cmpwi	r0, 2
     beq     _800598e4
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 2
     crxor	6, 6, 6
     bl      fn_800595FC
@@ -1335,9 +1339,9 @@ asm void fn_80059AB4(void)
     lwz	r0, 8(r31)
     cmpwi	r0, 1
     beq     _80059b14
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80092384@ha
     lwz	r4, 8(r31)
-    addi	r3, r3, 0x2384
+    addi    r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
     bl      fn_800595FC

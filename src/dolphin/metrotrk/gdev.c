@@ -1,3 +1,6 @@
+extern unsigned char lbl_80095E78[];
+extern unsigned char lbl_801A5E78[];
+extern unsigned char lbl_801A6378[];
 #pragma push
 #pragma force_active on
 
@@ -46,9 +49,9 @@ _8008e3c4:
     bl      fn_8008F6BC
     cmpwi	r3, 0
     bne     _8008e3f0
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A6378@ha
     mr	r5, r31
-    addi	r3, r3, 0x6378
+    addi    r3, r3, lbl_801A6378@l
     addi	r4, r1, 8
     bl      fn_8008E21C
     b       _8008e3f8
@@ -200,9 +203,9 @@ _8008e5ac:
     blt     _8008e578
     cmplwi	r28, 0
     bne     _8008e5dc
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A6378@ha
     mr	r4, r26
-    addi	r3, r3, 0x6378
+    addi    r3, r3, lbl_801A6378@l
     mr	r5, r29
     bl      fn_8008E114
     b       _8008e5f4
@@ -271,16 +274,16 @@ asm void gdev_cc_initialize(void)
     mr	r3, r30
     mr	r4, r31
     bl      fn_8008F838
-    lis	r4, -0x7ff7
+    lis     r4, lbl_80095E78@ha
     li	r3, 1
-    addi	r4, r4, 0x5e78
+    addi    r4, r4, lbl_80095E78@l
     crxor	6, 6, 6
     bl      MWTRACE
-    lis	r3, -0x7fe6
-    lis	r4, -0x7fe6
-    addi	r3, r3, 0x6378
+    lis     r3, lbl_801A6378@ha
+    lis     r4, lbl_801A5E78@ha
+    addi    r3, r3, lbl_801A6378@l
     li	r5, 0x500
-    addi	r4, r4, 0x5e78
+    addi    r4, r4, lbl_801A5E78@l
     bl      fn_8008E324
     lwz	r0, 0x14(r1)
     li	r3, 0

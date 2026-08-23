@@ -15,6 +15,14 @@ extern void fn_8004FC94(void);
 extern void fn_800502A0(void);
 extern void fn_80083D6C(void);
 extern void memset(void);
+extern unsigned char E9040822_adxf_is_NULL_ADXF_Stop_str[];
+extern unsigned char E9040823_adxf_stm_is_NULL_ADXF_Stop_str[];
+extern unsigned char E9040828_flid_is_range_outside_str[];
+extern unsigned char E9040828_ptid_is_range_outside_str[];
+extern unsigned char lbl_800911E0[];
+extern unsigned char lbl_80091250[];
+extern unsigned char lbl_801309C0[];
+extern unsigned char lbl_80186768[];
 
 asm void fn_8004F00C(void)
 {
@@ -416,8 +424,8 @@ asm void fn_8004F55C(void)
     extsh	r8, r8
     extsh	r7, r7
     stmw	r26, 8(r1)
-    lis	r28, -0x7ff7
-    addi	r28, r28, 0x11e0
+    lis     r28, lbl_800911E0@ha
+    addi    r28, r28, lbl_800911E0@l
     li	r10, 0
     lha	r30, 0x2a(r1)
     lha	r12, 0(r6)
@@ -559,10 +567,10 @@ asm void fn_8004F74C(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80091250@ha
     lis	r4, -0x7fe8
     stw	r0, 0x14(r1)
-    addi	r3, r3, 0x1250
+    addi    r3, r3, lbl_80091250@l
     lwz	r3, 0(r3)
     stw	r31, 0xc(r1)
     addi	r31, r4, 0x6630
@@ -633,20 +641,20 @@ asm void fn_8004F818(void)
     cmpwi	r29, 0x100
     blt     _8004f860
 _8004f84c:
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1258
+    lis     r3, E9040828_ptid_is_range_outside_str@ha
+    addi    r3, r3, E9040828_ptid_is_range_outside_str@l
     bl      fn_800474E4
     li	r31, -3
     b       _8004f8b8
 _8004f860:
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80186768@ha
     slwi	r0, r29, 2
-    addi	r3, r3, 0x6768
+    addi    r3, r3, lbl_80186768@l
     lwzx	r3, r3, r0
     cmplwi	r3, 0
     bne     _8004f88c
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1258
+    lis     r3, E9040828_ptid_is_range_outside_str@ha
+    addi    r3, r3, E9040828_ptid_is_range_outside_str@l
     bl      fn_800474E4
     li	r31, -3
     b       _8004f8b8
@@ -657,8 +665,8 @@ _8004f88c:
     cmpw	r24, r0
     blt     _8004f8b4
 _8004f8a0:
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x127c
+    lis     r3, E9040828_flid_is_range_outside_str@ha
+    addi    r3, r3, E9040828_flid_is_range_outside_str@l
     bl      fn_800474E4
     li	r31, -3
     b       _8004f8b8
@@ -675,9 +683,9 @@ _8004f8b8:
     stw	r0, 0(r28)
     b       _8004fa94
 _8004f8dc:
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80186768@ha
     slwi	r0, r29, 2
-    addi	r3, r3, 0x6768
+    addi    r3, r3, lbl_80186768@l
     lwzx	r30, r3, r0
     lbz	r0, 0xf(r30)
     cmpwi	r0, 1
@@ -1009,8 +1017,8 @@ asm void fn_8004FC94(void)
     stw	r7, 0xc(r9)
     stw	r0, 0(r4)
     bne     _8004fd98
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x12a0
+    lis     r3, E9040822_adxf_is_NULL_ADXF_Stop_str@ha
+    addi    r3, r3, E9040822_adxf_is_NULL_ADXF_Stop_str@l
     bl      fn_800474E4
     b       _8004feb4
 _8004fd98:
@@ -1027,8 +1035,8 @@ _8004fdbc:
     lwz	r3, 4(r30)
     cmplwi	r3, 0
     bne     _8004fdd8
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x12c4
+    lis     r3, E9040823_adxf_stm_is_NULL_ADXF_Stop_str@ha
+    addi    r3, r3, E9040823_adxf_stm_is_NULL_ADXF_Stop_str@l
     bl      fn_800474E4
     b       _8004feb4
 _8004fdd8:
@@ -1144,9 +1152,9 @@ asm void fn_8004FF68(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r4, -0x7fed
+    lis     r4, lbl_801309C0@ha
     stw	r0, 0x24(r1)
-    addi	r4, r4, 0x9c0
+    addi    r4, r4, lbl_801309C0@l
     stmw	r27, 0xc(r1)
     mr	r27, r3
     lwz	r0, 0x10(r3)
@@ -1201,9 +1209,9 @@ _8005001c:
     stw	r5, 0xc(r27)
     b       _8005006c
 _80050040:
-    lis	r3, -0x7fed
+    lis     r3, lbl_801309C0@ha
     lwz	r5, 8(r27)
-    addi	r3, r3, 0x9c0
+    addi    r3, r3, lbl_801309C0@l
     addi	r4, r4, -0xc
     lwz	r0, 0x30(r3)
     sraw	r5, r5, r4

@@ -11,6 +11,9 @@ extern void strlen(void);
 extern void memcpy(void);
 extern void fn_80087E80(void);
 extern void fn_80083CF4(void);
+extern unsigned char c_CRI_str[];
+extern unsigned char lbl_80090970[];
+extern unsigned char lbl_8017B038[];
 
 asm void fn_800462F8(void)
 {
@@ -369,8 +372,8 @@ asm void fn_80046768(void)
     stw	r29, 0x14(r1)
     mr	r29, r4
     bne     _800467c0
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x930
+    lis     r3, c_CRI_str@ha
+    addi    r3, r3, c_CRI_str@l
     bl      strlen
     add	r0, r29, r3
     add	r0, r0, r30
@@ -381,8 +384,8 @@ asm void fn_80046768(void)
     subf	r3, r30, r0
     b       _800467e8
 _800467c0:
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x930
+    lis     r3, c_CRI_str@ha
+    addi    r3, r3, c_CRI_str@l
     bl      strlen
     add	r0, r29, r3
     add	r0, r0, r30
@@ -1071,8 +1074,8 @@ _800470b4:
     addi	r4, r4, 4
     bdnz    _80046fc8
 _800470c0:
-    lis	r3, -0x7fe8
-    addi	r3, r3, -0x4fc8
+    lis     r3, lbl_8017B038@ha
+    addi    r3, r3, lbl_8017B038@l
     bl      strlen
     addi	r4, r30, -1
     cmpw	r3, r4
@@ -1086,10 +1089,10 @@ _800470dc:
     addi	r7, r4, -8
     ble     _8004719c
     addi	r5, r7, 7
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017B038@ha
     srwi	r5, r5, 3
     addi	r0, r4, -1
-    addi	r3, r3, -0x4fc8
+    addi    r3, r3, lbl_8017B038@l
     mtctr	r5
     cmpwi	r7, 0
     ble     _8004719c
@@ -1129,11 +1132,11 @@ _80047114:
     stb	r7, 7(r5)
     bdnz    _80047114
 _8004719c:
-    lis	r5, -0x7fe8
+    lis     r5, lbl_8017B038@ha
     subf	r0, r6, r4
     addi	r7, r4, -1
     add	r3, r31, r6
-    addi	r5, r5, -0x4fc8
+    addi    r5, r5, lbl_8017B038@l
     mtctr	r0
     cmpw	r6, r4
     bge     _800471d4
@@ -1150,8 +1153,8 @@ _800471d4:
     stbx	r0, r31, r6
     bl      strlen
     subf	r5, r3, r30
-    lis	r4, -0x7ff7
-    addi	r4, r4, 0x970
+    lis     r4, lbl_80090970@ha
+    addi    r4, r4, lbl_80090970@l
     mr	r3, r31
     addi	r5, r5, -1
     bl      fn_80083CF4
@@ -1236,8 +1239,8 @@ _8004731c:
     addi	r3, r3, 4
     bdnz    _80047230
 _80047328:
-    lis	r3, -0x7fe8
-    addi	r3, r3, -0x4fc8
+    lis     r3, lbl_8017B038@ha
+    addi    r3, r3, lbl_8017B038@l
     bl      strlen
     addi	r4, r30, -1
     cmpw	r3, r4
@@ -1294,11 +1297,11 @@ _8004737c:
     stb	r5, 7(r28)
     bdnz    _8004737c
 _80047404:
-    lis	r6, -0x7fe8
+    lis     r6, lbl_8017B038@ha
     subf	r0, r3, r4
     addi	r7, r4, -1
     add	r5, r31, r3
-    addi	r6, r6, -0x4fc8
+    addi    r6, r6, lbl_8017B038@l
     mtctr	r0
     cmpw	r3, r4
     bge     _8004743c

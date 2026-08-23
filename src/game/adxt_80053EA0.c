@@ -27,6 +27,9 @@ extern void fn_80083DB0(void);
 extern void memcpy(void);
 extern void memset(void);
 extern void strlen(void);
+extern unsigned char lbl_801873DC[];
+extern unsigned char lbl_801873EC[];
+extern unsigned char lbl_80187434[];
 
 asm void fn_80053EA0(void)
 {
@@ -135,8 +138,8 @@ _80053fa0:
     cmpwi	r3, 0
     beq     _80054030
     bl      fn_80053A30
-    lis	r4, -0x7fe8
-    addi	r4, r4, 0x73dc
+    lis     r4, lbl_801873DC@ha
+    addi    r4, r4, lbl_801873DC@l
     stw	r3, 8(r4)
     mr	r3, r28
     bl      fn_800510D8
@@ -147,8 +150,8 @@ _80053fa0:
     b     _800541d8
 _80054020:
     bl      fn_80053A30
-    lis	r4, -0x7fe8
-    addi	r4, r4, 0x73dc
+    lis     r4, lbl_801873DC@ha
+    addi    r4, r4, lbl_801873DC@l
     stw	r3, 0xc(r4)
 _80054030:
     lwz	r3, 0(r24)
@@ -203,9 +206,9 @@ _800540bc:
     mr	r31, r3
     bl      fn_80053A30
     mullw	r23, r31, r26
-    lis	r4, -0x7fe8
+    lis     r4, lbl_801873DC@ha
     mr	r22, r27
-    addi	r4, r4, 0x73dc
+    addi    r4, r4, lbl_801873DC@l
     stw	r3, 4(r4)
     addi	r21, r1, 8
     li	r25, 0
@@ -377,9 +380,9 @@ _80054318:
     li	r4, 0
     li	r5, 0x4c
     bl      memset
-    lis	r3, -0x7fe8
+    lis     r3, lbl_801873EC@ha
     slwi	r0, r31, 2
-    addi	r3, r3, 0x73ec
+    addi    r3, r3, lbl_801873EC@l
     li	r4, 0
     stwx	r4, r3, r0
 _8005433c:
@@ -396,10 +399,10 @@ asm void fn_80054354(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r8, -0x7fe8
+    lis     r8, lbl_801873EC@ha
     stw	r0, 0x24(r1)
     li	r0, 2
-    addi	r8, r8, 0x73ec
+    addi    r8, r8, lbl_801873EC@l
     stmw	r27, 0xc(r1)
     mr	r27, r3
     mr	r29, r4
@@ -562,14 +565,14 @@ asm void fn_800545B0(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_801873EC@ha
     stw	r0, 0x14(r1)
     lwz	r0, 0x73d8(r3)
     cmpwi	r0, 1
     bne     _800545e4
-    lis	r3, -0x7fe8
+    lis     r3, lbl_801873EC@ha
     li	r4, 0
-    addi	r3, r3, 0x73ec
+    addi    r3, r3, lbl_801873EC@l
     li	r5, 0x40
     bl      memset
     bl      fn_8005190C
@@ -590,7 +593,7 @@ asm void fn_80054608(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_801873EC@ha
     lis	r4, -0x7ff7
     stw	r0, 0x14(r1)
     lwz	r0, 0x73d8(r3)
@@ -599,9 +602,9 @@ asm void fn_80054608(void)
     cmpwi	r0, 0
     bne     _80054648
     bl      fn_80051958
-    lis	r3, -0x7fe8
+    lis     r3, lbl_801873EC@ha
     li	r4, 0
-    addi	r3, r3, 0x73ec
+    addi    r3, r3, lbl_801873EC@l
     li	r5, 0x40
     bl      memset
 _80054648:
@@ -1744,13 +1747,13 @@ asm void fn_80055580(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80187434@ha
     stw	r0, 0x14(r1)
     lwz	r12, 0x7430(r3)
     cmplwi	r12, 0
     beq     _800555b0
-    lis	r3, -0x7fe8
-    addi	r3, r3, 0x7434
+    lis     r3, lbl_80187434@ha
+    addi    r3, r3, lbl_80187434@l
     lwz	r3, 0(r3)
     mtctr	r12
     bctrl	
