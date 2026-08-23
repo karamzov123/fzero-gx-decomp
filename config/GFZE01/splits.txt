@@ -140,7 +140,7 @@ dolphin/os/OSReset.c:
 dolphin/os/OSResetSW.c:
 	.text       start:0x8000F264 end:0x8000F610
 
-dolphin/os/OSRtc.c:
+dolphin/os/OSSramWrite.c:
 	.text       start:0x8000F610 end:0x8000F788
 
 dolphin/os/OSSram.c:
