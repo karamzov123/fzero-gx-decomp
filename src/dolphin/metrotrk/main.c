@@ -23,7 +23,7 @@ asm void fn_8008CB38(register void* a, register void* b, register void* c, regis
 asm void MWTRACE(register void* a, register void* b, register void* c, register void* d);
 asm void AMC_IsStub(register void* a, register void* b, register void* c, register void* d);
 asm void Hu_IsStub(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008D440(register void* a, register void* b, register void* c, register void* d);
+asm void EnableEXI2Interrupts(register void* a, register void* b, register void* c, register void* d);
 
 asm void TRKInitializeTarget(void)
 {
@@ -49,7 +49,7 @@ asm void TRKInitializeTarget(void)
     blr	
 }
 
-asm void fn_8008D028(void)
+asm void TRKTargetTranslate(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -171,7 +171,7 @@ asm void EnableMetroTRKInterrupts(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_8008D440
+    bl      EnableEXI2Interrupts
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -388,7 +388,7 @@ asm void TRKPollUART(void)
     blr	
 }
 
-asm void fn_8008D440(register void* a, register void* b, register void* c, register void* d) // forward-declared
+asm void EnableEXI2Interrupts(register void* a, register void* b, register void* c, register void* d) // forward-declared
 {
     nofralloc
     stwu	r1, -0x10(r1)

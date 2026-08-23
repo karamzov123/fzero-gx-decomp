@@ -14,7 +14,7 @@ extern void TRKTargetSupportRequest(void);
 extern void TRKGetInput(void);
 extern void TRKTargetStopped(void);
 extern void TRKTargetContinue(void);
-extern void fn_800891B4(void*, void*);
+extern void TRKReleaseBuffer(void*, void*);
 extern void fn_8008AF48(unsigned long);
 extern void fn_8008AF40(unsigned long);
 
@@ -104,7 +104,7 @@ asm void TRKDestructEvent(void* msg)
     mflr    r0
     stw     r0, 0x14(r1)
     lwz     r3, 8(r3)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10

@@ -17,7 +17,7 @@ extern void fn_80088764(void);
 extern void fn_8008877C(void);
 extern void TRKSaveExtended1Block(void);
 extern void TRKRestoreExtended1Block(void);
-extern void fn_8008D028(void);
+extern void TRKTargetTranslate(void);
 extern void fn_8008D154(void);
 extern void TRKUARTInterruptHandler(void);
 extern void fn_8008D398(void);
@@ -28,7 +28,7 @@ extern void fn_8008D7C0(void);
 extern void MWTRACE(void);
 extern void fn_8008AF40(void);
 extern void TRKTargetStopped(void);
-extern void fn_800894FC(void);
+extern void TRKTestForPacket(void);
 extern void fn_8008963C(void);
 extern void fn_8008983C(void);
 extern void fn_800898E4(void);
@@ -51,22 +51,22 @@ extern void fn_8008AF48(void);
 extern void fn_8008AF50(void);
 extern void fn_8008B484(void);
 extern void fn_8008B6BC(void);
-extern void fn_8008B6CC(void);
+extern void TRKTargetCheckStep(void);
 extern void fn_8008B784(void);
 extern void fn_8008B830(void);
 extern void fn_8008B8B4(void);
 extern void TRKTargetAccessFP(void);
 extern void TRKTargetAccessExtended1(void);
 extern void TRKTargetAccessExtended2(void);
-extern void fn_8008C5F0(void);
+extern void TRKTargetAccessDefault(void);
 extern void fn_8008C6E4(void);
 extern void TRKTargetAccessMemory(void);
-extern void fn_8008C87C(void);
+extern void TRKValidMemory32(void);
 extern void TRKInterruptHandlerEnableInterrupts(void);
 extern void TRKPostInterruptEvent(void);
 extern void TRKExceptionHandler(void);
 
-asm void fn_80088B00(void)
+asm void TRKMessageSend(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -553,7 +553,7 @@ _80089128:
     blr
 }
 
-asm void fn_80089144(void)
+asm void TRKSetBufferPosition(void)
 {
     nofralloc
     cmplwi	r4, 0x880
@@ -594,7 +594,7 @@ _800891a4:
     blr
 }
 
-asm void fn_800891B4(void)
+asm void TRKReleaseBuffer(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -642,7 +642,7 @@ _8008923c:
     blr
 }
 
-asm void fn_80089244(void)
+asm void TRKGetFreeBuffer(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -798,7 +798,7 @@ asm void TRKInitializeSerialHandler(void)
     blr
 }
 
-asm void fn_8008944C(void)
+asm void TRKProcessInput(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -830,7 +830,7 @@ asm void TRKGetInput(void)
     mflr	r0
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
-    bl      fn_800894FC
+    bl      TRKTestForPacket
     mr	r31, r3
     cmpwi	r31, -1
     bc      12, 2, _800894e8
@@ -853,7 +853,7 @@ _800894e8:
     blr
 }
 
-asm void fn_800894FC(void)
+asm void TRKTestForPacket(void)
 {
     nofralloc
     stwu	r1, -0x8e0(r1)
@@ -871,7 +871,7 @@ asm void fn_800894FC(void)
 _8008952c:
     addi	r3, r1, 0xc
     addi	r4, r1, 8
-    bl      fn_80089244
+    bl      TRKGetFreeBuffer
     mr	r30, r3
     addi	r4, r31, 0xd0
     li	r3, 4
@@ -880,7 +880,7 @@ _8008952c:
     bl      MWTRACE
     lwz	r3, 8(r1)
     li	r4, 0
-    bl      fn_80089144
+    bl      TRKSetBufferPosition
     addi	r3, r1, 0x10
     li	r4, 0x40
     bl      TRK_ReadUARTN
@@ -915,7 +915,7 @@ _800895cc:
     crxor	6, 6, 6
     bl      MWTRACE
     mr	r3, r30
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     li	r30, -1
     b       _80089608
 _800895ec:
@@ -924,7 +924,7 @@ _800895ec:
     crxor	6, 6, 6
     bl      MWTRACE
     mr	r3, r30
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     li	r30, -1
 _80089608:
     mr	r5, r30
@@ -1001,7 +1001,7 @@ asm void TRKDispatchMessage(void)
     li	r31, 0x500
     stw	r30, 8(r1)
     mr	r30, r3
-    bl      fn_80089144
+    bl      TRKSetBufferPosition
     lis	r3, -0x7ff7
     lbz	r5, 0x14(r30)
     addi	r4, r3, 0x5850
@@ -1208,7 +1208,7 @@ asm void fn_8008998C(void)
     stw	r0, 0x164(r1)
     stmw	r27, 0x14c(r1)
     mr	r27, r3
-    bl      fn_80089144
+    bl      TRKSetBufferPosition
     lbz	r31, 0x18(r27)
     lwz	r29, 0x20(r27)
     cmpwi	r31, 0x10
@@ -1342,7 +1342,7 @@ _80089b80:
     cntlzw	r0, r0
     mr	r4, r28
     srwi	r5, r0, 5
-    bl      fn_8008B6CC
+    bl      TRKTargetCheckStep
 _80089b98:
     lmw	r27, 0x14c(r1)
     lwz	r0, 0x164(r1)
@@ -1417,7 +1417,7 @@ asm void fn_80089C5C(void)
     lbz	r31, 0x18(r3)
     lhz	r30, 0x1c(r3)
     lhz	r29, 0x20(r3)
-    bl      fn_80089144
+    bl      TRKSetBufferPosition
     cmplw	r30, r29
     bc      4, 1, _80089cd4
     addi	r3, r1, 0x4c
@@ -1438,7 +1438,7 @@ asm void fn_80089C5C(void)
 _80089cd4:
     mr	r3, r28
     li	r4, 0x40
-    bl      fn_80089144
+    bl      TRKSetBufferPosition
     cmpwi	r31, 2
     bc      12, 2, _80089d48
     bc      4, 0, _80089cfc
@@ -1456,7 +1456,7 @@ _80089d08:
     mr	r5, r28
     addi	r6, r1, 8
     li	r7, 0
-    bl      fn_8008C5F0
+    bl      TRKTargetAccessDefault
     mr	r31, r3
     b       _80089d8c
 _80089d28:
@@ -1572,7 +1572,7 @@ _80089e90:
     crxor	6, 6, 6
     bl      MWTRACE
     mr	r3, r28
-    bl      fn_80088B00
+    bl      TRKMessageSend
     mr	r31, r3
     lis	r4, -0x7ff7
     li	r3, 1
@@ -1649,7 +1649,7 @@ _80089f5c:
     li	r3, 0
     li	r4, 0x24
     li	r7, 1
-    bl      fn_8008C5F0
+    bl      TRKTargetAccessDefault
     mr	r30, r3
     addi	r4, r31, 0xc0
     li	r3, 4
@@ -1778,7 +1778,7 @@ _8008a17c:
     crxor	6, 6, 6
     bl      MWTRACE
     mr	r3, r29
-    bl      fn_80088B00
+    bl      TRKMessageSend
     addi	r4, r31, 0x80
     mr	r31, r3
     li	r3, 1
@@ -1838,7 +1838,7 @@ _8008a258:
     stw	r29, 8(r1)
     mr	r3, r27
     li	r4, 0x40
-    bl      fn_80089144
+    bl      TRKSetBufferPosition
     lwz	r5, 8(r1)
     mr	r3, r27
     addi	r4, r1, 0xcc
@@ -1916,7 +1916,7 @@ _8008a378:
     crxor	6, 6, 6
     bl      MWTRACE
     mr	r3, r27
-    bl      fn_80088B00
+    bl      TRKMessageSend
     addi	r4, r31, 0x80
     mr	r31, r3
     li	r3, 1
@@ -2050,7 +2050,7 @@ _8008a564:
     crxor	6, 6, 6
     bl      MWTRACE
     mr	r3, r27
-    bl      fn_80088B00
+    bl      TRKMessageSend
     addi	r4, r31, 0x80
     mr	r31, r3
     li	r3, 1
@@ -2099,7 +2099,7 @@ asm void fn_8008A5BC(void)
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
     bl      fn_8008D398
-    bl      fn_8008D028
+    bl      TRKTargetTranslate
     lwz	r0, 0x54(r1)
     li	r3, 0
     mtlr	r0
@@ -2294,7 +2294,7 @@ asm void fn_8008A80C(void)
     lwz	r0, 0(r29)
     stw	r0, 0x20(r1)
     stb	r31, 0x24(r1)
-    bl      fn_80089244
+    bl      TRKGetFreeBuffer
     or.	r31, r3, r3
     bc      4, 2, _8008a890
     lwz	r3, 8(r1)
@@ -2327,10 +2327,10 @@ _8008a890:
     stw	r0, 0(r29)
 _8008a8e8:
     lwz	r3, 0x10(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
 _8008a8f0:
     lwz	r3, 0xc(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     lwz	r0, 0x74(r1)
     mr	r3, r31
     lwz	r31, 0x6c(r1)
@@ -2364,7 +2364,7 @@ asm void fn_8008A91C(void)
     addi	r4, r1, 8
     stw	r0, 0x14(r1)
     stw	r31, 0x1c(r1)
-    bl      fn_80089244
+    bl      TRKGetFreeBuffer
     or.	r31, r3, r3
     bc      4, 2, _8008a988
     lwz	r3, 8(r1)
@@ -2395,10 +2395,10 @@ _8008a9c4:
     stw	r0, 0(r29)
 _8008a9d4:
     lwz	r3, 0x10(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
 _8008a9dc:
     lwz	r3, 0xc(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     lwz	r0, 0x74(r1)
     mr	r3, r31
     lwz	r31, 0x6c(r1)
@@ -2439,7 +2439,7 @@ asm void fn_8008AA04(void)
     addi	r3, r1, 0xc
     sth	r0, 0x20(r1)
     addi	r4, r1, 8
-    bl      fn_80089244
+    bl      TRKGetFreeBuffer
     lwz	r3, 8(r1)
     addi	r4, r1, 0x14
     li	r5, 0x40
@@ -2476,10 +2476,10 @@ _8008aae8:
     lwz	r0, 0x18(r30)
     stw	r0, 0(r28)
     lwz	r3, 0x10(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
 _8008ab00:
     lwz	r3, 0xc(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     mr	r3, r31
     lmw	r27, 0x5c(r1)
     lwz	r0, 0x74(r1)
@@ -2512,14 +2512,14 @@ _8008ab5c:
     crxor	6, 6, 6
     bl      MWTRACE
     mr	r3, r21
-    bl      fn_80088B00
+    bl      TRKMessageSend
     or.	r30, r3, r3
     bc      4, 2, _8008acb8
     cmpwi	r23, 0
     bc      12, 2, _8008ab88
     li	r28, 0
 _8008ab88:
-    bl      fn_800894FC
+    bl      TRKTestForPacket
     stw	r3, 0(r22)
     lwz	r3, 0(r22)
     cmpwi	r3, -1
@@ -2538,7 +2538,7 @@ _8008abb8:
     bl      TRKGetBuffer
     li	r4, 0
     mr	r29, r3
-    bl      fn_80089144
+    bl      TRKSetBufferPosition
     lwz	r4, 8(r29)
     addi	r3, r29, 0x10
     bl      fn_8008A764
@@ -2552,7 +2552,7 @@ _8008abb8:
     cmplwi	r26, 0x80
     bc      4, 0, _8008ac18
     lwz	r3, 0(r22)
-    bl      fn_8008944C
+    bl      TRKProcessInput
     li	r0, -1
     stw	r0, 0(r22)
     b       _8008ab88
@@ -2599,7 +2599,7 @@ _8008ac98:
     bc      12, 2, _8008acb8
 _8008aca8:
     lwz	r3, 0(r22)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     li	r0, -1
     stw	r0, 0(r22)
 _8008acb8:
@@ -2626,7 +2626,7 @@ _8008ace8:
     blr
 }
 
-asm void fn_8008AD00(void)
+asm void TRKSuppAccessFile(void)
 {
     nofralloc
     stwu	r1, -0x90(r1)
@@ -2682,7 +2682,7 @@ _8008ada8:
     addi	r4, r1, 8
     stw	r23, 0x1c(r1)
     sth	r31, 0x20(r1)
-    bl      fn_80089244
+    bl      TRKGetFreeBuffer
     lwz	r3, 8(r1)
     addi	r4, r1, 0x14
     li	r5, 0x40
@@ -2734,7 +2734,7 @@ _8008ae54:
     bc      12, 1, _8008aea4
     mr	r3, r22
     li	r4, 0x40
-    bl      fn_80089144
+    bl      TRKSetBufferPosition
     mr	r3, r22
     mr	r5, r19
     add	r4, r24, r30
@@ -2761,15 +2761,15 @@ _8008aed0:
     clrlwi	r0, r20, 0x18
     stw	r0, 0(r26)
     lwz	r3, 0x10(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     b       _8008aef0
 _8008aee4:
     lwz	r3, 8(r1)
-    bl      fn_80088B00
+    bl      TRKMessageSend
     mr	r21, r3
 _8008aef0:
     lwz	r3, 0xc(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
     add	r30, r30, r31
 _8008aefc:
     cmpwi	r29, 0
@@ -2814,7 +2814,7 @@ asm void fn_8008AF50(void)
     blr
 }
 
-asm void fn_8008AF58(void)
+asm void TRKDoNotifyStopped(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -2825,7 +2825,7 @@ asm void fn_8008AF58(void)
     stw	r30, 0x18(r1)
     mr	r30, r3
     addi	r3, r1, 0xc
-    bl      fn_80089244
+    bl      TRKGetFreeBuffer
     or.	r31, r3, r3
     bc      4, 2, _8008afd4
     bc      4, 2, _8008afa4
@@ -2847,10 +2847,10 @@ _8008afa4:
     or.	r31, r3, r3
     bc      4, 2, _8008afcc
     lwz	r3, 0x10(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
 _8008afcc:
     lwz	r3, 0xc(r1)
-    bl      fn_800891B4
+    bl      TRKReleaseBuffer
 _8008afd4:
     lwz	r0, 0x24(r1)
     mr	r3, r31
@@ -3361,7 +3361,7 @@ _8008b624:
     lwz	r4, 0x18(r29)
     mr	r5, r28
     li	r7, 1
-    bl      fn_8008AD00
+    bl      TRKSuppAccessFile
     lwz	r0, 0xc(r1)
     mr	r30, r3
     cmpwi	r0, 0
@@ -3402,7 +3402,7 @@ asm void fn_8008B6BC(void)
     blr
 }
 
-asm void fn_8008B6CC(void)
+asm void TRKTargetCheckStep(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -3689,7 +3689,7 @@ _8008ba88:
     addi	r4, r3, 0x50bc
     li	r3, 0x90
     stw	r0, 0x98(r4)
-    bl      fn_8008AF58
+    bl      TRKDoNotifyStopped
     mr	r30, r3
 _8008bab4:
     lwz	r0, 0x14(r1)
@@ -4477,7 +4477,7 @@ _8008c5dc:
     blr
 }
 
-asm void fn_8008C5F0(void)
+asm void TRKTargetAccessDefault(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -4602,7 +4602,7 @@ asm void TRKTargetAccessMemory(void)
     lwz	r4, 0(r28)
     mr	r25, r3
     srwi	r5, r0, 5
-    bl      fn_8008C87C
+    bl      TRKValidMemory32
     or.	r30, r3, r3
     bc      12, 2, _8008c7b0
     li	r0, 0
@@ -4665,7 +4665,7 @@ _8008c83c:
     blr
 }
 
-asm void fn_8008C87C(void)
+asm void TRKValidMemory32(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -4763,7 +4763,7 @@ _8008c9b4:
     bc      4, 0, _8008c9e0
     mr	r5, r26
     subf	r4, r3, r0
-    bl      fn_8008C87C
+    bl      TRKValidMemory32
     mr	r6, r3
 _8008c9e0:
     cmpwi	r6, 0
@@ -4776,7 +4776,7 @@ _8008c9e0:
     bc      4, 1, _8008ca10
     mr	r5, r26
     subf	r4, r3, r30
-    bl      fn_8008C87C
+    bl      TRKValidMemory32
     mr	r6, r3
 _8008ca10:
     mr	r5, r6
@@ -4834,7 +4834,7 @@ _8008cab4:
     bc      4, 0, _8008cae0
     mr	r5, r26
     subf	r4, r3, r0
-    bl      fn_8008C87C
+    bl      TRKValidMemory32
     mr	r6, r3
 _8008cae0:
     cmpwi	r6, 0
@@ -4844,7 +4844,7 @@ _8008cae0:
     bc      4, 1, _8008cb04
     mr	r5, r26
     subf	r4, r3, r30
-    bl      fn_8008C87C
+    bl      TRKValidMemory32
     mr	r6, r3
 _8008cb04:
     mr	r5, r6
