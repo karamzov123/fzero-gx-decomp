@@ -1,0 +1,413 @@
+#pragma push
+#pragma force_active on
+
+extern void AXFreeVoice(void);
+extern void fn_8001E9BC(void);
+extern void fn_80026D70(void);
+extern void fn_8005A5BC(void);
+extern void fn_8005A614(void);
+extern void fn_8005A628(void);
+extern void fn_8005A648(void);
+extern void fn_8005B0C4(void);
+extern void fn_8005B264(void);
+extern void fn_8005BE98(void);
+extern void fn_8005BFB4(void);
+extern void fn_8005C120(void);
+extern void memset(void);
+
+asm void fn_8005BC20(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    lis	r4, -0x7fe7
+    li	r7, 0
+    stw	r0, 0x14(r1)
+    addi	r6, r4, 0x1d4c
+    li	r0, 2
+    stw	r31, 0xc(r1)
+_8005bc40:
+    mr	r5, r6
+    li	r8, 0
+    mtctr	r0
+_8005bc4c:
+    lwz	r4, 8(r5)
+    cmplw	r3, r4
+    bne     _8005bc84
+    mulli	r3, r7, 0xe8
+    lis	r4, -0x7fe7
+    slwi	r0, r8, 2
+    addi	r4, r4, 0x1d4c
+    add	r3, r4, r3
+    add	r31, r3, r0
+    lwzu	r3, 8(r31)
+    bl      fn_80026D70
+    li	r0, 0
+    stw	r0, 0(r31)
+    b     _8005bca0
+_8005bc84:
+    addi	r5, r5, 4
+    addi	r8, r8, 1
+    bdnz     _8005bc4c
+    addi	r7, r7, 1
+    addi	r6, r6, 0xe8
+    cmpwi	r7, 0x10
+    blt     _8005bc40
+_8005bca0:
+    lwz	r0, 0x14(r1)
+    lwz	r31, 0xc(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_8005BCB4(void)
+{
+    nofralloc
+    stwu	r1, -0x20(r1)
+    mflr	r0
+    lis	r3, -0x7fe7
+    stw	r0, 0x24(r1)
+    addi	r4, r3, 0xc78
+    stmw	r27, 0xc(r1)
+    lwz	r3, 0(r4)
+    addic.	r0, r3, -1
+    stw	r0, 0(r4)
+    bne     _8005bdc0
+    lis	r3, -0x7fe7
+    li	r27, 0
+    addi	r28, r3, 0x1d4c
+_8005bce8:
+    lbz	r0, 0(r28)
+    cmpwi	r0, 1
+    bne     _8005bd98
+    cmplwi	r28, 0
+    beq     _8005bd98
+    mr	r3, r28
+    li	r4, 0
+    bl      fn_8005B0C4
+    mr	r3, r28
+    li	r4, 0
+    bl      fn_8005B264
+    mr	r30, r28
+    addi	r29, r28, 2
+    li	r31, 0
+    b     _8005bd78
+_8005bd24:
+    lwz	r3, 0x38(r30)
+    cmplwi	r3, 0
+    beq     _8005bd40
+    lwz	r4, 0(r3)
+    lwz	r12, 0xc(r4)
+    mtctr	r12
+    bctrl	
+_8005bd40:
+    lwz	r3, 0x10(r30)
+    cmplwi	r3, 0
+    beq     _8005bd50
+    bl      fn_8005BE98
+_8005bd50:
+    bl      fn_8005A648
+    lwz	r3, 8(r30)
+    cmplwi	r3, 0
+    beq     _8005bd6c
+    bl      fn_80026D70
+    lwz	r3, 8(r30)
+    bl      AXFreeVoice
+_8005bd6c:
+    bl      fn_8005A628
+    addi	r30, r30, 4
+    addi	r31, r31, 1
+_8005bd78:
+    lbz	r0, 0(r29)
+    extsb	r0, r0
+    cmpw	r31, r0
+    blt     _8005bd24
+    mr	r3, r28
+    li	r4, 0
+    li	r5, 0xe8
+    bl      memset
+_8005bd98:
+    addi	r27, r27, 1
+    addi	r28, r28, 0xe8
+    cmpwi	r27, 0x10
+    blt     _8005bce8
+    lis	r3, -0x7fe7
+    li	r4, 0
+    addi	r3, r3, 0x1d4c
+    li	r5, 0xe80
+    bl      memset
+    bl      fn_8005BFB4
+_8005bdc0:
+    lmw	r27, 0xc(r1)
+    lwz	r0, 0x24(r1)
+    mtlr	r0
+    addi	r1, r1, 0x20
+    blr	
+}
+
+asm void fn_8005BDD4(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    lis	r3, -0x7ff7
+    lis	r4, -0x7fe7
+    stw	r0, 0x14(r1)
+    addi	r3, r3, 0x27bc
+    lwz	r3, 0(r3)
+    stw	r31, 0xc(r1)
+    addi	r31, r4, 0xc78
+    lwz	r0, 0(r31)
+    cmplwi	r0, 0
+    bne     _8005be28
+    bl      fn_8005C120
+    addi	r3, r31, 0x10d4
+    li	r4, 0
+    li	r5, 0xe80
+    bl      memset
+    addi	r3, r31, 0x94
+    addi	r0, r3, 0x1f
+    rlwinm	r0, r0, 0, 0, 0x1a
+    stw	r0, 4(r31)
+_8005be28:
+    lwz	r3, 0(r31)
+    addi	r0, r3, 1
+    stw	r0, 0(r31)
+    lwz	r31, 0xc(r1)
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_8005BE48(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+    bl      fn_8005A614
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_8005BE68(void)
+{
+    nofralloc
+    cmplwi	r3, 0
+    bne     _8005be78
+    li	r3, 0
+    blr	
+_8005be78:
+    lwz	r3, 8(r3)
+    blr	
+}
+
+asm void fn_8005BE80(void)
+{
+    nofralloc
+    cmplwi	r3, 0
+    bne     _8005be90
+    li	r3, 0
+    blr	
+_8005be90:
+    lwz	r3, 4(r3)
+    blr	
+}
+
+asm void fn_8005BE98(void)
+{
+    nofralloc
+    cmplwi	r3, 0
+    beqlr	
+    li	r0, 0
+    stw	r0, 0(r3)
+    blr	
+}
+
+asm void fn_8005BEAC(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    lis	r3, -0x7fe7
+    li	r4, 0
+    stw	r0, 0x14(r1)
+    li	r0, 4
+    addi	r3, r3, 0x2be4
+    mtctr	r0
+_8005becc:
+    lwz	r0, 0(r3)
+    cmpwi	r0, 0
+    beq     _8005bf70
+    lwz	r0, 0xc(r3)
+    addi	r4, r4, 1
+    addi	r3, r3, 0xc
+    cmpwi	r0, 0
+    beq     _8005bf70
+    lwz	r0, 0xc(r3)
+    addi	r4, r4, 1
+    addi	r3, r3, 0xc
+    cmpwi	r0, 0
+    beq     _8005bf70
+    lwz	r0, 0xc(r3)
+    addi	r4, r4, 1
+    addi	r3, r3, 0xc
+    cmpwi	r0, 0
+    beq     _8005bf70
+    lwz	r0, 0xc(r3)
+    addi	r4, r4, 1
+    addi	r3, r3, 0xc
+    cmpwi	r0, 0
+    beq     _8005bf70
+    lwz	r0, 0xc(r3)
+    addi	r4, r4, 1
+    addi	r3, r3, 0xc
+    cmpwi	r0, 0
+    beq     _8005bf70
+    lwz	r0, 0xc(r3)
+    addi	r4, r4, 1
+    addi	r3, r3, 0xc
+    cmpwi	r0, 0
+    beq     _8005bf70
+    lwz	r0, 0xc(r3)
+    addi	r4, r4, 1
+    addi	r3, r3, 0xc
+    cmpwi	r0, 0
+    beq     _8005bf70
+    addi	r3, r3, 0xc
+    addi	r4, r4, 1
+    bdnz     _8005becc
+_8005bf70:
+    cmpwi	r4, 0x20
+    bne     _8005bf8c
+    lis	r3, -0x7ff7
+    addi	r3, r3, 0x2988
+    bl      fn_8005A5BC
+    li	r3, 0
+    b     _8005bfa4
+_8005bf8c:
+    mulli	r4, r4, 0xc
+    lis	r3, -0x7fe7
+    li	r0, 1
+    addi	r3, r3, 0x2be4
+    add	r3, r3, r4
+    stw	r0, 0(r3)
+_8005bfa4:
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_8005BFB4(void)
+{
+    nofralloc
+    stwu	r1, -0x20(r1)
+    mflr	r0
+    lis	r3, -0x7fe7
+    stw	r0, 0x24(r1)
+    stw	r31, 0x1c(r1)
+    addi	r31, r3, 0x2bd0
+    lwz	r3, 0(r31)
+    addic.	r0, r3, -1
+    stw	r0, 0(r31)
+    bne     _8005c10c
+    li	r0, 4
+    addi	r4, r31, 0x14
+    li	r5, 0
+    li	r3, 0
+    mtctr	r0
+_8005bff0:
+    lwz	r0, 0(r4)
+    cmpwi	r0, 1
+    bne     _8005c008
+    cmplwi	r4, 0
+    beq     _8005c008
+    stw	r3, 0(r4)
+_8005c008:
+    lwzu	r0, 0xc(r4)
+    cmpwi	r0, 1
+    bne     _8005c020
+    cmplwi	r4, 0
+    beq     _8005c020
+    stw	r3, 0(r4)
+_8005c020:
+    lwzu	r0, 0xc(r4)
+    cmpwi	r0, 1
+    bne     _8005c038
+    cmplwi	r4, 0
+    beq     _8005c038
+    stw	r3, 0(r4)
+_8005c038:
+    lwzu	r0, 0xc(r4)
+    cmpwi	r0, 1
+    bne     _8005c050
+    cmplwi	r4, 0
+    beq     _8005c050
+    stw	r3, 0(r4)
+_8005c050:
+    lwzu	r0, 0xc(r4)
+    cmpwi	r0, 1
+    bne     _8005c068
+    cmplwi	r4, 0
+    beq     _8005c068
+    stw	r3, 0(r4)
+_8005c068:
+    lwzu	r0, 0xc(r4)
+    cmpwi	r0, 1
+    bne     _8005c080
+    cmplwi	r4, 0
+    beq     _8005c080
+    stw	r3, 0(r4)
+_8005c080:
+    lwzu	r0, 0xc(r4)
+    cmpwi	r0, 1
+    bne     _8005c098
+    cmplwi	r4, 0
+    beq     _8005c098
+    stw	r3, 0(r4)
+_8005c098:
+    lwzu	r0, 0xc(r4)
+    cmpwi	r0, 1
+    bne     _8005c0b0
+    cmplwi	r4, 0
+    beq     _8005c0b0
+    stw	r3, 0(r4)
+_8005c0b0:
+    addi	r4, r4, 0xc
+    addi	r5, r5, 7
+    bdnz     _8005bff0
+    addi	r3, r31, 0x14
+    li	r4, 0
+    li	r5, 0x180
+    bl      memset
+    lwz	r0, 4(r31)
+    cmplwi	r0, 0
+    bne     _8005c10c
+    addi	r3, r1, 8
+    bl      fn_8001E9BC
+    lwz	r3, 8(r1)
+    lwz	r0, 0xc(r31)
+    cmplw	r3, r0
+    beq     _8005c0fc
+    lis	r3, -0x7ff7
+    addi	r3, r3, 0x29ac
+    bl      fn_8005A5BC
+_8005c0fc:
+    li	r0, 0
+    stw	r0, 8(r31)
+    stw	r0, 0xc(r31)
+    stw	r0, 0x10(r31)
+_8005c10c:
+    lwz	r0, 0x24(r1)
+    lwz	r31, 0x1c(r1)
+    mtlr	r0
+    addi	r1, r1, 0x20
+    blr	
+}
+
+#pragma pop
