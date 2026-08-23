@@ -287,8 +287,11 @@ game/tail_800410A4.c:
 game/criadx_80041460.c:
 	.text       start:0x80041460 end:0x80041BF8
 
-coarse/text_80041BF8.c:
-	.text       start:0x80041BF8 end:0x8004A560
+game/criadx_80041BF8.c:
+	.text       start:0x80041BF8 end:0x800424B8
+
+coarse/text_800424B8.c:
+	.text       start:0x800424B8 end:0x8004A560
 
 coarse/text_8004A560.c:
 	.text       start:0x8004A560 end:0x80053EA0

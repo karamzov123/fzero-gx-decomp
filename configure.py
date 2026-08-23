@@ -372,6 +372,7 @@ config.libs = [
         Object(Matching, "dolphin/os/OSThreadScheduler.c"),
         Object(Matching, "game/tail_800410A4.c"),
         Object(Matching, "game/criadx_80041460.c"),
+        Object(Matching, "game/criadx_80041BF8.c"),
         Object(Matching, "main.c"),
     ]),
     {
