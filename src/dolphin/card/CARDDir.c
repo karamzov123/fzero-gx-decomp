@@ -4,18 +4,18 @@
 #pragma force_active on
 
 extern void fn_8002C8D0(void);
-extern void fn_8002CB54(void);
-extern void fn_8002CD94(void);
-extern void fn_8002D018(void);
-extern void fn_8002D0A4(void);
-extern void fn_8002D634(void);
-extern void fn_8002D65C(void);
+extern void VerifyDir(void);
+extern void VerifyFAT(void);
+extern void __CARDVerify(void);
+extern void CARDCheckExAsync(void);
+extern void CARDCheckAsync(void);
+extern void CARDCheck(void);
 extern void fn_8002D6B0(void);
 extern void fn_8002D77C(void);
 extern void fn_8002D8F8(void);
 extern void fn_8002DD08(void);
 extern void fn_8002DE40(void);
-extern void fn_8002DFE0(void);
+extern void CARDMount(void);
 extern void fn_8002E028(void);
 extern void fn_8002E0C4(void);
 extern void fn_8002E170(void);
@@ -30,7 +30,7 @@ extern unsigned char lbl_8012ABE0[32];
 extern unsigned char lbl_80177B80[32];
 
 extern void fn_8002E2B4(void);
-extern void fn_8002E90C(void);
+extern void CARDFormatAsync(void);
 extern void __CARDCompareFileName(void);
 extern void __CARDAccess(void);
 extern void fn_8002EA54(void);
@@ -263,7 +263,7 @@ _8002cb40:
     blr	
 }
 
-asm void fn_8002CB54(void)
+asm void VerifyDir(void)
 {
     nofralloc
     mflr	r0
@@ -428,7 +428,7 @@ _8002cd74:
     blr	
 }
 
-asm void fn_8002CD94(void)
+asm void VerifyFAT(void)
 {
     nofralloc
     mflr	r0
@@ -614,7 +614,7 @@ _8002cff8:
     blr	
 }
 
-asm void fn_8002D018(void)
+asm void __CARDVerify(void)
 {
     nofralloc
     mflr	r0
@@ -630,11 +630,11 @@ asm void fn_8002D018(void)
 _8002d040:
     addi	r3, r30, 0
     li	r4, 0
-    bl      fn_8002CB54
+    bl      VerifyDir
     addi	r31, r3, 0
     addi	r3, r30, 0
     li	r4, 0
-    bl      fn_8002CD94
+    bl      VerifyFAT
     add	r0, r31, r3
     cmpwi	r0, 1
     beq     _8002d080
@@ -659,7 +659,7 @@ _8002d08c:
     blr	
 }
 
-asm void fn_8002D0A4(void)
+asm void CARDCheckExAsync(void)
 {
     nofralloc
     mflr	r0
@@ -693,11 +693,11 @@ _8002d0f0:
 _8002d10c:
     lwz	r3, 0x30(r1)
     addi	r4, r1, 0x18
-    bl      fn_8002CB54
+    bl      VerifyDir
     mr	r31, r3
     lwz	r3, 0x30(r1)
     addi	r4, r1, 0x1c
-    bl      fn_8002CD94
+    bl      VerifyFAT
     add	r5, r31, r3
     cmpwi	r5, 1
     ble     _8002d144
@@ -1054,7 +1054,7 @@ _8002d620:
     blr	
 }
 
-asm void fn_8002D634(void)
+asm void CARDCheckAsync(void)
 {
     nofralloc
     mflr	r0
@@ -1062,14 +1062,14 @@ asm void fn_8002D634(void)
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     addi	r4, r1, 0x10
-    bl      fn_8002D0A4
+    bl      CARDCheckExAsync
     lwz	r0, 0x1c(r1)
     addi	r1, r1, 0x18
     mtlr	r0
     blr	
 }
 
-asm void fn_8002D65C(void)
+asm void CARDCheck(void)
 {
     nofralloc
     mflr	r0
@@ -1080,7 +1080,7 @@ asm void fn_8002D65C(void)
     stw	r31, 0x14(r1)
     addi	r31, r3, 0
     addi	r4, r1, 0xc
-    bl      fn_8002D0A4
+    bl      CARDCheckExAsync
     cmpwi	r3, 0
     blt     _8002d69c
     addic.	r0, r1, 0xc
@@ -1605,7 +1605,7 @@ _8002dd6c:
     b       _8002de20
 _8002dd94:
     mr	r3, r31
-    bl      fn_8002D018
+    bl      __CARDVerify
     mr	r29, r3
     b       _8002ddf4
 _8002dda4:
@@ -1772,7 +1772,7 @@ _8002dfcc:
     blr	
 }
 
-asm void fn_8002DFE0(void)
+asm void CARDMount(void)
 {
     nofralloc
     mflr	r0
@@ -2409,7 +2409,7 @@ _8002e8f8:
     blr	
 }
 
-asm void fn_8002E90C(void)
+asm void CARDFormatAsync(void)
 {
     nofralloc
     mflr	r0
