@@ -389,7 +389,7 @@ dolphin/mtx/fn_800715A0.c:
 dolphin/mtx/fn_80071794.c:
 	.text       start:0x80071794 end:0x80071C04
 
-coarse/text_80071C04.c:
+dolphin/mtx/fn_80071C04.c:
 	.text       start:0x80071C04 end:0x80071CC0
 
 game/fn_80071CC0.c:
