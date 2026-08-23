@@ -338,8 +338,11 @@ dolphin/mtx/fn_8006E5FC.c:
 dolphin/mtx/fn_8006EB4C.c:
 	.text       start:0x8006EB4C end:0x8006EFB4
 
-coarse/text_8006EFB4.c:
-	.text       start:0x8006EFB4 end:0x80071CC0
+dolphin/mtx/fn_8006EFB4.c:
+	.text       start:0x8006EFB4 end:0x8006F394
+
+coarse/text_8006F394.c:
+	.text       start:0x8006F394 end:0x80071CC0
 
 game/fn_80071CC0.c:
 	.text       start:0x80071CC0 end:0x800724CC
