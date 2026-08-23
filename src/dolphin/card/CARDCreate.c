@@ -13,9 +13,9 @@ typedef unsigned short u16;
 extern u32 strlen(register char* s);
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);      // __CARDGetControlBlock
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);          // __CARDPutControlBlock
-extern void* fn_8002C4BC(void);                                          // __CARDGetFatBlock
+extern void* __CARDGetDirBlock(void);                                          // __CARDGetFatBlock
 extern void fn_8002C0B8(register void* card);                            // __CARDGetDirBlock
-extern s32 fn_8002C25C(register s32 chn, register u16 nBlock, register void* callback); // __CARDAllocBlock
+extern s32 __CARDAllocBlock(register s32 chn, register u16 nBlock, register void* callback); // __CARDAllocBlock
 extern s32 fn_8002E954(register void* ent, register char* fileName);     // __CARDCompareFileName
 extern s32 __CARDSync(register s32 chn);                                // __CARDSync
 extern s32 fn_8008023C(register void* a, register void* b, register u32 n); // memcmp
@@ -66,7 +66,7 @@ _L_8002ef4c:
 _L_8002ef54:
     lis     r4, 1
     addi    r30, r4, -1
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     addi    r31, r3, 0
     addi    r24, r31, 0
     li      r23, 0
@@ -165,7 +165,7 @@ _L_8002f068:
     lwz     r4, 0x1c(r1)
     lwz     r0, 0xc(r4)
     divwu   r4, r27, r0
-    bl      fn_8002C25C
+    bl      __CARDAllocBlock
     or.     r4, r3, r3
     bge     _L_8002f0e0
     lwz     r3, 0x1c(r1)

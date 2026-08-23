@@ -13,14 +13,14 @@ typedef unsigned short u16;
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 fn_8002C0B8(register void* ctrl);
-extern s32 fn_8002C4BC(void);
+extern s32 __CARDGetDirBlock(void);
 extern s32 __CARDEraseSector(register s32 chn, register s32 addr, register void* callback);
-extern s32 fn_8002C03C(register s32 chn, register s32 addr, register s32 len,
+extern s32 __CARDWrite(register s32 chn, register s32 addr, register s32 len,
                        register void* buf, register void* callback);
 extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
 extern s32 fn_8002F140(register void* fileInfo, register s32 length, register s32 offset,
                        register void** pcard);
-extern s32 fn_8002C65C(register s32 chn, register void* callback);
+extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern void DCStoreRange(register void* addr, register u32 n);
 extern unsigned long long OSGetTime(void);
@@ -60,7 +60,7 @@ _L_8002f608:
     cmpwi   r0, 0
     bgt     _L_8002f670
     mr      r3, r31
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     lwz     r5, 4(r29)
     lis     r4, 0x8000              /* __OSBusClock */
     lwz     r0, 0xf8(r4)
@@ -76,7 +76,7 @@ _L_8002f608:
     addi    r3, r30, 0
     lwz     r4, 0xd0(r31)
     stw     r0, 0xd0(r31)
-    bl      fn_8002C65C
+    bl      __CARDUpdateDir
     mr      r28, r3
     b       _L_8002f6d4
 _L_8002f670:
@@ -158,7 +158,7 @@ asm void EraseCallback(register s32 chan, register s32 result)
     lwz     r6, 0xb4(r31)
     addi    r3, r28, 0
     mullw   r4, r5, r0
-    bl      fn_8002C03C
+    bl      __CARDWrite
     or.     r29, r3, r3
     bge     _L_8002f7b8
 _L_8002f78c:
@@ -217,7 +217,7 @@ _L_8002f834:
     bl      __CARDPutControlBlock
     b       _L_8002f8d8
 _L_8002f840:
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     lwz     r0, 4(r30)
     slwi    r0, r0, 6
     add     r4, r3, r0

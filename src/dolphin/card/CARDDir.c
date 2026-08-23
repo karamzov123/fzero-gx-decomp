@@ -59,12 +59,12 @@ extern void __CARDPutControlBlock(void);
 extern void __CARDSync(void);
 extern void fn_8002AF34(void);
 extern void fn_8002BEFC(void);
-extern void fn_8002C03C(void);
+extern void __CARDWrite(void);
 extern void fn_8002C0B8(void);
-extern void fn_8002C25C(void);
-extern void fn_8002C410(void);
-extern void fn_8002C4BC(void);
-extern void fn_8002C65C(void);
+extern void __CARDAllocBlock(void);
+extern void __CARDUpdateFatBlock(void);
+extern void __CARDGetDirBlock(void);
+extern void __CARDUpdateDir(void);
 extern void fn_8002C720(void);
 extern void __div2i(void);
 extern void fn_8008023C(void);
@@ -1003,7 +1003,7 @@ _8002d568:
 _8002d5a4:
     addi	r3, r25, 0
     addi	r4, r27, 0
-    bl      fn_8002C65C
+    bl      __CARDUpdateDir
     b       _8002d620
 _8002d5b4:
     or.	r0, r30, r28
@@ -1017,7 +1017,7 @@ _8002d5cc:
     addi	r3, r25, 0
     addi	r5, r27, 0
     lwz	r4, 0x88(r4)
-    bl      fn_8002C410
+    bl      __CARDUpdateFatBlock
     b       _8002d620
 _8002d5e4:
     lwz	r3, 0x30(r1)
@@ -1928,7 +1928,7 @@ _8002e1e4:
     add	r6, r5, r0
     addi	r3, r30, 0
     li	r5, 0x2000
-    bl      fn_8002C03C
+    bl      __CARDWrite
     or.	r28, r3, r3
     blt     _8002e268
     b       _8002e294
@@ -2540,7 +2540,7 @@ asm void fn_8002EA84(void)
     b       _8002ebc0
 _8002eab4:
     mr	r3, r27
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     lis	r4, -0x7fe9
     addi	r31, r3, 0
     addi	r26, r4, 0x7b80
@@ -2651,7 +2651,7 @@ _8002ec0c:
     b       _8002ecd8
 _8002ec24:
     mr	r3, r31
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     lis	r4, -0x7fe9
     addi	r23, r3, 0
     addi	r26, r4, 0x7b80
@@ -2705,7 +2705,7 @@ _8002ecd8:
     cmpwi	r23, 0
     blt     _8002ed2c
     lwz	r3, 0x14(r1)
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     slwi	r0, r30, 6
     add	r5, r3, r0
     lhz	r4, 0x36(r5)
@@ -2790,7 +2790,7 @@ asm void fn_8002EDA8(void)
     stw	r27, 0xd0(r31)
     blt     _8002ee9c
     mr	r3, r31
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     lhz	r0, 0xbc(r31)
     li	r5, 4
     lwz	r4, 0x10c(r31)
@@ -2833,7 +2833,7 @@ asm void fn_8002EDA8(void)
     stw	r4, 0x28(r30)
     addi	r3, r28, 0
     addi	r4, r29, 0
-    bl      fn_8002C65C
+    bl      __CARDUpdateDir
     or.	r30, r3, r3
     bge     _8002eec4
 _8002ee9c:

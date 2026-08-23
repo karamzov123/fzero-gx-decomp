@@ -33,7 +33,7 @@ extern void OSRestoreInterrupts(void);
 extern void OSSleepThread(void);
 extern void fn_8000CDD8(void);
 extern void fn_8002C0B8(void);
-extern void fn_8002C4BC(void);
+extern void __CARDGetDirBlock(void);
 extern void fn_8002E0C4(void);
 extern void memset(void);
 
@@ -314,7 +314,7 @@ _8002a9bc:
     bl      fn_8002C0B8
     mr	r30, r3
     lwz	r3, 0x18(r1)
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     cmplwi	r30, 0
     beq     _8002a9e0
     cmplwi	r3, 0

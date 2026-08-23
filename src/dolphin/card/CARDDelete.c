@@ -11,12 +11,12 @@ typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
-extern s32 fn_8002C374(register s32 chn, register u16 nBlock, register void* callback);
-extern s32 fn_8002C4BC(void);
+extern s32 __CARDFreeBlock(register s32 chn, register u16 nBlock, register void* callback);
+extern s32 __CARDGetDirBlock(void);
 extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
 extern s32 fn_8002EDA0(register void* ctrl, register s32 fileNo);
 extern s32 fn_8002EA84(register void* ctrl, register void* fileName, register void* pfileNo);
-extern s32 fn_8002C65C(register s32 chn, register void* callback);
+extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern void* memset(register void* dst, register int val, register u32 n);
 
@@ -46,7 +46,7 @@ asm void DeleteCallback(register s32 chan, register s32 result)
     lhz     r4, 0xbe(r31)
     addi    r3, r28, 0
     addi    r5, r30, 0
-    bl      fn_8002C374
+    bl      __CARDFreeBlock
     or.     r29, r3, r3
     bge     _L_8002f9b8
 _L_8002f990:
@@ -99,7 +99,7 @@ _L_8002fa14:
     b       _L_8002fae4
 _L_8002fa2c:
     lwz     r3, 0x14(r1)
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     slwi    r0, r29, 6
     add     r31, r3, r0
     lwz     r3, 0x14(r1)
@@ -141,7 +141,7 @@ _L_8002fab4:
     addi    r4, r3, -0x6cc          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r28
-    bl      fn_8002C65C
+    bl      __CARDUpdateDir
     or.     r31, r3, r3
     bge     _L_8002fae0
     lwz     r3, 0x14(r1)
@@ -199,7 +199,7 @@ _L_8002fb60:
     b       _L_8002fbf8
 _L_8002fb84:
     lwz     r3, 0x18(r1)
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     lwz     r0, 0x14(r1)
     li      r4, 0xff
     lwz     r6, 0x18(r1)
@@ -222,7 +222,7 @@ _L_8002fbc8:
     addi    r4, r3, -0x6cc          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r31
-    bl      fn_8002C65C
+    bl      __CARDUpdateDir
     or.     r31, r3, r3
     bge     _L_8002fbf4
     lwz     r3, 0x18(r1)

@@ -7,17 +7,17 @@ extern void fn_8002BAFC(void);
 extern void fn_8002BE20(void);
 extern void fn_8002BEFC(void);
 extern void fn_8002BF60(void);
-extern void fn_8002C03C(void);
+extern void __CARDWrite(void);
 extern void fn_8002C0B8(void);
 extern void fn_8002C0C0(void);
 extern void fn_8002C194(void);
-extern void fn_8002C25C(void);
-extern void fn_8002C374(void);
-extern void fn_8002C410(void);
-extern void fn_8002C4BC(void);
+extern void __CARDAllocBlock(void);
+extern void __CARDFreeBlock(void);
+extern void __CARDUpdateFatBlock(void);
+extern void __CARDGetDirBlock(void);
 extern void fn_8002C4C4(void);
 extern void fn_8002C594(void);
-extern void fn_8002C65C(void);
+extern void __CARDUpdateDir(void);
 extern void fn_8002C720(void);
 extern void DCFlushRange(void);
 extern void DCInvalidateRange(void);
@@ -1198,7 +1198,7 @@ _8002c020:
     blr	
 }
 
-asm void fn_8002C03C(void)
+asm void __CARDWrite(void)
 {
     nofralloc
     mflr	r0
@@ -1332,7 +1332,7 @@ asm void fn_8002C194(void)
     addi	r6, r5, 0
     addi	r3, r31, 0
     li	r5, 0x2000
-    bl      fn_8002C03C
+    bl      __CARDWrite
     or.	r29, r3, r3
     bge     _8002c240
 _8002c200:
@@ -1363,7 +1363,7 @@ _8002c240:
     blr	
 }
 
-asm void fn_8002C25C(void)
+asm void __CARDAllocBlock(void)
 {
     nofralloc
     mflr	r0
@@ -1438,7 +1438,7 @@ _8002c344:
     sth	r11, 8(r8)
     mr	r4, r8
     sth	r12, 0xbe(r9)
-    bl      fn_8002C410
+    bl      __CARDUpdateFatBlock
 _8002c35c:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -1448,7 +1448,7 @@ _8002c35c:
     blr	
 }
 
-asm void fn_8002C374(void)
+asm void __CARDFreeBlock(void)
 {
     nofralloc
     mflr	r0
@@ -1490,7 +1490,7 @@ _8002c3ec:
     cmplwi	r0, 0xffff
     bne     _8002c3b0
     mr	r4, r8
-    bl      fn_8002C410
+    bl      __CARDUpdateFatBlock
 _8002c400:
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -1498,7 +1498,7 @@ _8002c400:
     blr	
 }
 
-asm void fn_8002C410(void)
+asm void __CARDUpdateFatBlock(void)
 {
     nofralloc
     mflr	r0
@@ -1546,7 +1546,7 @@ asm void fn_8002C410(void)
     blr	
 }
 
-asm void fn_8002C4BC(void)
+asm void __CARDGetDirBlock(void)
 {
     nofralloc
     lwz	r3, 0x84(r3)
@@ -1641,7 +1641,7 @@ asm void fn_8002C594(void)
     addi	r6, r5, 0
     addi	r3, r31, 0
     li	r5, 0x2000
-    bl      fn_8002C03C
+    bl      __CARDWrite
     or.	r29, r3, r3
     bge     _8002c640
 _8002c600:
@@ -1672,7 +1672,7 @@ _8002c640:
     blr	
 }
 
-asm void fn_8002C65C(void)
+asm void __CARDUpdateDir(void)
 {
     nofralloc
     mflr	r0

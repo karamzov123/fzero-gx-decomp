@@ -11,13 +11,13 @@ typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
-extern s32 fn_8002C4BC(void);
+extern s32 __CARDGetDirBlock(void);
 extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
 extern s32 fn_8002E954(register void* ent, register char* fileName);
 extern s32 fn_8008023C(register void* a, register void* b, register u32 n);
 extern u32 strlen(register char* s);
 extern s32 fn_80083D6C(register char* dst, register char* src, register u32 n);
-extern s32 fn_8002C65C(register s32 chn, register void* callback);
+extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
@@ -75,7 +75,7 @@ _L_800301d4:
     lwz     r3, 0x18(r1)
     li      r23, -1
     li      r24, -1
-    bl      fn_8002C4BC
+    bl      __CARDGetDirBlock
     addi    r26, r3, 0
     addi    r27, r26, 0
     li      r25, 0
@@ -155,7 +155,7 @@ _L_800302d0:
     stw     r4, 0x28(r27)
     addi    r3, r28, 0
     addi    r4, r31, 0
-    bl      fn_8002C65C
+    bl      __CARDUpdateDir
     or.     r27, r3, r3
     bge     _L_80030320
     lwz     r3, 0x18(r1)
