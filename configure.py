@@ -353,6 +353,7 @@ config.libs = [
         Object(Matching, "dolphin/mtx/fn_80071C04.c"),
         Object(Matching, "dolphin/vi/vifuncs.c"),
         Object(Matching, "dolphin/vi/vi_8001A8B4.c"),
+        Object(Matching, "dolphin/vi/vi_8001AFB8.c"),
         Object(Matching, "dolphin/dsp/dspleaf.c"),
         Object(Matching, "dolphin/ai/airegs.c"),
         Object(Matching, "dolphin/vi/viregs.c"),
