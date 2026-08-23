@@ -99,7 +99,7 @@ extern void cbForStateCheckID2b(void);
 extern void stateCoverClosed(void);
 extern void cbForStateCoverClosed_CMD(void);
 extern void cbForCoverClosedCheckID(void);
-extern void fn_800186C0(void);
+extern void stateMotorStopped(void);
 extern void cbForStateBusy(void);
 extern void __DVDDequeueWaitingQueue(void);
 extern void cbForCancelSync(void);
@@ -546,7 +546,7 @@ lbl_80017D04:
 	lwz r3, -0x7B00(r13)
 	li r0, 0x5
 	stw r0, 0xc(r3)
-	bl fn_800186C0
+	bl stateMotorStopped
 	b lbl_80017D88
 lbl_80017D24:
 	subis r0, r28, 0x200
@@ -564,7 +564,7 @@ lbl_80017D44:
 	lwz r3, -0x7B00(r13)
 	li r0, 0x4
 	stw r0, 0xc(r3)
-	bl fn_800186C0
+	bl stateMotorStopped
 	b lbl_80017D88
 lbl_80017D64:
 	lwz r4, -0x7B00(r13)
@@ -773,7 +773,7 @@ lbl_80017FFC:
 	lwz r3, -0x7B00(r13)
 	li r0, 0xb
 	stw r0, 0xc(r3)
-	bl fn_800186C0
+	bl stateMotorStopped
 lbl_80018014:
 	lwz r0, 0x1c(r1)
 	lwz r31, 0x14(r1)
@@ -1011,7 +1011,7 @@ lbl_80018304:
 	lwz r3, -0x7B00(r13)
 	li r0, 0x6
 	stw r0, 0xc(r3)
-	bl fn_800186C0
+	bl stateMotorStopped
 lbl_8001831C:
 	lwz r0, 0x1c(r1)
 	lwz r31, 0x14(r1)
@@ -1296,8 +1296,8 @@ lbl_800186B0:
 	blr
 }
 
-/* fn_800186C0 @0x800186C0 | size: 0x28 */
-asm void fn_800186C0(void) {
+/* stateMotorStopped @0x800186C0 | size: 0x28 */
+asm void stateMotorStopped(void) {
 nofralloc
 	mflr r0
 	lis r3, cbForStateMotorStopped@ha
@@ -2529,8 +2529,8 @@ nofralloc
 	blr
 }
 
-/* fn_800197A4 @0x800197A4 | size: 0x4C */
-asm void fn_800197A4(void) {
+/* DVDCancelStream @0x800197A4 | size: 0x4C */
+asm void DVDCancelStream(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2618,8 +2618,8 @@ nofralloc
 	blr
 }
 
-/* fn_800198AC @0x800198AC | size: 0x50 */
-asm void fn_800198AC(void) {
+/* DVDPause @0x800198AC | size: 0x50 */
+asm void DVDPause(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2892,8 +2892,8 @@ nofralloc
 	blr
 }
 
-/* fn_80019C48 @0x80019C48 | size: 0x8 */
-asm void fn_80019C48(void) {
+/* DVDGetCurrentDiskID @0x80019C48 | size: 0x8 */
+asm void DVDGetCurrentDiskID(void) {
 nofralloc
 	lis r3, 0x8000
 	blr
