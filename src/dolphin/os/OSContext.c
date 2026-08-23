@@ -21,6 +21,7 @@ struct OSContext {
 };
 
 extern void OSRestoreInterrupts(register BOOL level);
+extern char lbl_80122A58[]; // .data:0x80122A58
 extern void __OSSetExceptionHandler(s32 index, void* handler);
 extern BOOL OSDisableInterrupts(void);
 extern void DBPrintf(char* msg, ...);
@@ -414,9 +415,9 @@ asm void OSDumpContext(register OSContext* context)
     stwu    r1, -0x2F8(r1)
     stmw    r25, 0x2DC(r1)
     mr      r28, r3
-    lis     r3, 0x8012
+    lis     r3, lbl_80122A58@ha
     crxor   6, 6, 6
-    addi    r31, r3, 0x2A58
+    addi    r31, r3, lbl_80122A58@l
     mr      r3, r31
     mr      r4, r28
     bl      OSReport

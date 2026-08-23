@@ -4,6 +4,7 @@ typedef int BOOL;
 extern void DCFlushRange(void* addr, u32 size);
 extern void ICInvalidateRange(void* addr, u32 size);
 extern void OSReport(const char* fmt, ...);
+extern char lbl_80123A90[]; // .data:0x80123A90 string
 extern void* memset(void* ptr, int value, u32 num);
 extern void OSNotifyLink(void);
 extern void OSNotifyUnlink(void);
@@ -69,9 +70,9 @@ _8000ddd8:
     li	r3, 0
     b       _8000e01c
 _8000dde0:
-    lis	r3, -0x7fee
+    lis	r3, lbl_80123A90@ha
     lwz	r30, 4(r4)
-    addi	r25, r3, 0x3a90
+    addi	r25, r3, lbl_80123A90@l
     li	r29, 0
     b       _8000dfe4
 _8000ddf4:
