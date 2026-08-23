@@ -14,7 +14,7 @@ extern void DCInvalidateRange(void);
 extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void OSGetTick(void);
-extern void fn_80017160(void);
+extern void DVDOpen(void);
 extern void fn_80017228(void);
 extern void fn_800175C0(void);
 extern void fn_8001E954(void);
@@ -74,7 +74,7 @@ extern void fn_80069AE0(void);
 extern void fn_80069CE4(void);
 extern void fn_8006A1F8(void);
 extern void __cvt_fp2unsigned(void);
-extern void fn_8008069C(void);
+extern void sprintf(void);
 extern void fn_80082908(void);
 extern void fn_80087F54(void);
 extern void expf(void);
@@ -11436,7 +11436,7 @@ _80065f60:
     cmplwi	r0, 0xffff
     bc      4, 2, _80066bf8
     addi	r4, r1, 8
-    bl      fn_80017160
+    bl      DVDOpen
     cmpwi	r3, 0
     bc      4, 2, _80065fa8
     lis     r3, Cannot_open_s_str@ha
@@ -11444,7 +11444,7 @@ _80065f60:
     addi	r4, r3, Cannot_open_s_str@l
     addi	r3, r1, 0x44
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     li	r3, -1
     b       _80066c00
 _80065fa8:
@@ -13624,7 +13624,7 @@ asm void fn_80067DE4(void)
     addi	r4, r3, Not_Sound_Allocation_Size_d_str@l
     addi	r3, r1, 0xc
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lwz	r3, 8(r1)
     b       _80067f54
 _80067e80:

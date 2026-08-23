@@ -23,7 +23,7 @@ extern void* memchr(const void* s, int c, unsigned long n);
 extern char* strchr(const char* s, int c);
 extern unsigned long strlen(const char* s);
 extern void fn_8007C3B8(void);
-extern void fn_80083DB0(void);
+extern void strcpy(void);
 extern void __div2u(void);
 extern void __mod2u(void);
 extern unsigned char __files[320];
@@ -829,14 +829,14 @@ _8008127c:
     mr	r3, r28
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 1
-    bl      fn_80083DB0
+    bl      strcpy
     b       _8008131c
 _800812bc:
     lis	r4, -0x7ff7
     mr	r3, r28
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 6
-    bl      fn_80083DB0
+    bl      strcpy
     b       _8008131c
 _800812d4:
     lis     r3, lbl_8015B100@ha
@@ -850,14 +850,14 @@ _800812d4:
     mr	r3, r28
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0xb
-    bl      fn_80083DB0
+    bl      strcpy
     b       _8008131c
 _80081308:
     lis	r4, -0x7ff7
     mr	r3, r28
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0xf
-    bl      fn_80083DB0
+    bl      strcpy
 _8008131c:
     mr	r3, r28
     b       _800818a4
@@ -876,14 +876,14 @@ _80081324:
     mr	r3, r28
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0x13
-    bl      fn_80083DB0
+    bl      strcpy
     b       _800813c4
 _80081364:
     lis	r4, -0x7ff7
     mr	r3, r28
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0x18
-    bl      fn_80083DB0
+    bl      strcpy
     b       _800813c4
 _8008137c:
     lis     r3, lbl_8015B100@ha
@@ -897,14 +897,14 @@ _8008137c:
     mr	r3, r28
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0x1d
-    bl      fn_80083DB0
+    bl      strcpy
     b       _800813c4
 _800813b0:
     lis	r4, -0x7ff7
     mr	r3, r28
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0x21
-    bl      fn_80083DB0
+    bl      strcpy
 _800813c4:
     mr	r3, r28
     b       _800818a4
@@ -1416,14 +1416,14 @@ _80081a2c:
     mr	r3, r30
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 1
-    bl      fn_80083DB0
+    bl      strcpy
     b       _80081adc
 _80081a88:
     lis	r4, -0x7ff7
     mr	r3, r30
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 6
-    bl      fn_80083DB0
+    bl      strcpy
     b       _80081adc
 _80081aa0:
     lbz	r0, 5(r31)
@@ -1434,14 +1434,14 @@ _80081aa0:
     mr	r3, r30
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0xb
-    bl      fn_80083DB0
+    bl      strcpy
     b       _80081adc
 _80081ac8:
     lis	r4, -0x7ff7
     mr	r3, r30
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0xf
-    bl      fn_80083DB0
+    bl      strcpy
 _80081adc:
     mr	r3, r30
     b       _80081d14
@@ -1459,14 +1459,14 @@ _80081ae4:
     mr	r3, r30
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0x13
-    bl      fn_80083DB0
+    bl      strcpy
     b       _80081b74
 _80081b20:
     lis	r4, -0x7ff7
     mr	r3, r30
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0x18
-    bl      fn_80083DB0
+    bl      strcpy
     b       _80081b74
 _80081b38:
     lbz	r0, 5(r31)
@@ -1477,14 +1477,14 @@ _80081b38:
     mr	r3, r30
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0x1d
-    bl      fn_80083DB0
+    bl      strcpy
     b       _80081b74
 _80081b60:
     lis	r4, -0x7ff7
     mr	r3, r30
     addi	r4, r4, 0x4fc0
     addi	r4, r4, 0x21
-    bl      fn_80083DB0
+    bl      strcpy
 _80081b74:
     mr	r3, r30
     b       _80081d14

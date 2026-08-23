@@ -1,10 +1,10 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_8006D24C(void);
+extern asm void atan2f(void);
 extern asm void fn_8006DAEC(void);
 extern asm void lbl_8006E1C0(void);
-extern asm void fn_8006D0B4(void);
+extern asm void sqrtf(void);
 extern asm void fn_8006D8D8(void);
 extern asm void PSMTXRotTrig(void);
 extern asm void PSMTXMultVecSS(void);
@@ -29,7 +29,7 @@ asm void fn_8006F394(void)
     stfs	f1, 8(r1)
     stfs	f0, 0xc(r1)
     stfs	f2, 0x10(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     lwz	r0, 0x24(r1)
     clrlwi	r3, r3, 0x10
     mtlr	r0
@@ -73,14 +73,14 @@ asm void C_MTXRotAxisRad(void)
     lfs	f0, 0x1c(r1)
     fmuls	f1, f1, f1
     fmadds	f1, f0, f0, f1
-    bl      fn_8006D0B4
+    bl      sqrtf
     fmr	f2, f1
     lfs	f1, 0x18(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     sth	r3, 0(r30)
     lfs	f1, 0x14(r1)
     lfs	f2, 0x1c(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     addi	r0, r3, -0x8000
     sth	r0, 0(r29)
     lha	r3, 0(r29)
@@ -92,7 +92,7 @@ asm void C_MTXRotAxisRad(void)
     bl      PSMTXMultVecSS
     lfs	f1, 8(r1)
     lfs	f2, 0xc(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     neg	r0, r3
     sth	r0, 0(r31)
     bl      fn_8006DB30
@@ -137,14 +137,14 @@ asm void fn_8006F4E0(void)
     lfs	f0, 0x10(r1)
     fmuls	f1, f1, f1
     fmadds	f1, f0, f0, f1
-    bl      fn_8006D0B4
+    bl      sqrtf
     fmr	f2, f1
     lfs	f1, 0xc(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     sth	r3, 0(r31)
     lfs	f1, 8(r1)
     lfs	f2, 0x10(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     addi	r0, r3, -0x8000
     sth	r0, 2(r31)
     lha	r3, 2(r31)
@@ -156,7 +156,7 @@ asm void fn_8006F4E0(void)
     bl      PSMTXMultVecSS
     lfs	f1, 0x14(r1)
     lfs	f2, 0x18(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     neg	r0, r3
     sth	r0, 4(r31)
     bl      fn_8006DB30
@@ -196,16 +196,16 @@ asm void C_MTXLookAt(void)
     bl      lbl_8006E1C0
     lfs	f1, 0x18(r1)
     lfs	f2, 0x14(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     sth	r3, 0(r29)
     lfs	f1, 0x18(r1)
     lfs	f0, 0x14(r1)
     fmuls	f1, f1, f1
     fmadds	f1, f0, f0, f1
-    bl      fn_8006D0B4
+    bl      sqrtf
     fmr	f2, f1
     lfs	f1, 0x1c(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     neg	r0, r3
     sth	r0, 0(r30)
     lha	r3, 0(r29)
@@ -217,7 +217,7 @@ asm void C_MTXLookAt(void)
     bl      PSMTXMultVecSS
     lfs	f1, 0x10(r1)
     lfs	f2, 0xc(r1)
-    bl      fn_8006D24C
+    bl      atan2f
     sth	r3, 0(r31)
     bl      fn_8006DB30
     lwz	r0, 0x34(r1)

@@ -20,8 +20,8 @@ lbl_80083D58:
     blr
 }
 
-// fn_80083D6C: padded copy (copy src then zero-fill n bytes)
-asm void fn_80083D6C(void* dst, const void* src, int n)
+// strncpy: padded copy (copy src then zero-fill n bytes)
+asm void strncpy(void* dst, const void* src, int n)
 {
     nofralloc
     addi    r4, r4, -1
@@ -47,8 +47,8 @@ lbl_80083DA4:
     blr
 }
 
-// fn_80083DB0: word-optimized strcpy
-asm char* fn_80083DB0(char* dst, const char* src)
+// strcpy: word-optimized strcpy
+asm char* strcpy(char* dst, const char* src)
 {
     nofralloc
     clrlwi  r0, r3, 0x1e

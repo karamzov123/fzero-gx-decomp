@@ -4,8 +4,8 @@
 unsigned long wcstombs(char* dst, const unsigned short* src, unsigned long n);
 void fn_80080030(void);
 void fn_80080150(void);
-void fn_8008023C(void);
-extern int fn_80083D6C(void);
+void strncmp(void);
+extern int strncpy(void);
 
 asm unsigned long wcstombs(char* dst, const unsigned short* src, unsigned long n)
 {
@@ -81,7 +81,7 @@ _8007fff0:
     mr	r5, r27
     add	r3, r28, r31
     addi	r4, r1, 0xc
-    bl      fn_80083D6C
+    bl      strncpy
     add	r31, r31, r27
 _80080010:
     cmplw	r31, r29
@@ -261,7 +261,7 @@ _80080234:
     blr	
 }
 
-asm void fn_8008023C(void)
+asm void strncmp(void)
 {
     nofralloc
     addi	r6, r3, -1

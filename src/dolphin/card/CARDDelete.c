@@ -13,7 +13,7 @@ extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 __CARDFreeBlock(register s32 chn, register u16 nBlock, register void* callback);
 extern s32 __CARDGetDirBlock(void);
-extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
+extern s32 __CARDAccess(register void* ctrl, register void* ent);
 extern s32 fn_8002EDA0(register void* ctrl, register s32 fileNo);
 extern s32 __CARDGetFileNo(register void* ctrl, register void* fileName, register void* pfileNo);
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
@@ -107,7 +107,7 @@ _L_8002fa2c:
     add     r31, r3, r0
     lwz     r3, 0x14(r1)
     mr      r4, r31
-    bl      fn_8002E9BC
+    bl      __CARDAccess
     or.     r4, r3, r3
     bge     _L_8002fa5c
     lwz     r3, 0x14(r1)

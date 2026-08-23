@@ -19,7 +19,7 @@ extern void fn_80044A94(void);
 extern void fn_80046C28(void);
 extern void fn_80047464(void);
 extern void fn_80046B90(void);
-extern void fn_8008069C(void);
+extern void sprintf(void);
 extern void fn_80046BE0(void);
 extern void fn_80046AC0(void);
 extern void fn_8004E324(void);
@@ -29,7 +29,7 @@ extern void fn_8004E278(void);
 extern void memset(void);
 extern void fn_8004E354(void);
 extern void fn_8004E4AC(void);
-extern void fn_8008023C(void);
+extern void strncmp(void);
 extern void fn_8004E270(void);
 extern unsigned char SPSD_str[5];
 extern void fn_80045F58(void);
@@ -508,7 +508,7 @@ _800457e0:
     addi	r3, r1, 0x1c
     addi	r4, r27, 0x830
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lwz	r3, 0(r26)
     cmpwi	r3, 0
     bne     _8004580c
@@ -1070,7 +1070,7 @@ asm void fn_80045FEC(void)
     li	r5, 4
     stw	r0, 0x14(r1)
     addi	r4, r4, SPSD_str@l
-    bl      fn_8008023C
+    bl      strncmp
     cntlzw	r0, r3
     srwi	r3, r0, 5
     lwz	r0, 0x14(r1)

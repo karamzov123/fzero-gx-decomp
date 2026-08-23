@@ -5,9 +5,9 @@ extern void fn_800595A4(void);
 extern void fn_800595FC(void);
 extern void fn_80059AB4(void);
 extern void fn_80059B44(void);
-extern void fn_8008069C(void);
+extern void sprintf(void);
 extern void fn_8008077C(void);
-extern void fn_80083D6C(void);
+extern void strncpy(void);
 extern void fn_80084FDC(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -624,7 +624,7 @@ _80059168:
     addi	r3, r31, 0x30
     addi	r4, r30, 0xd0
     li	r5, 0x7f
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r12, 0xb0(r31)
     cmplwi	r12, 0
     beq     _80059198
@@ -642,7 +642,7 @@ _800591a8:
     addi	r3, r31, 0x30
     addi	r4, r30, 0xf4
     li	r5, 0x7f
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r12, 0xb0(r31)
     cmplwi	r12, 0
     beq     _800591d8
@@ -680,7 +680,7 @@ _80059214:
     addi	r3, r31, 0x30
     addi	r4, r30, 0x11c
     li	r5, 0x7f
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r12, 0xb0(r31)
     cmplwi	r12, 0
     beq     _80059264
@@ -747,7 +747,7 @@ _80059314:
     addi	r3, r31, 0x30
     addi	r4, r4, _SVM_DelCbSvr_illegal_id_str@l
     li	r5, 0x7f
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r12, 0xb0(r31)
     cmplwi	r12, 0
     beq     _80059348
@@ -876,7 +876,7 @@ _800594d0:
     addi	r3, r31, 0x30
     addi	r4, r4, _SVM_SetCbSvr_too_many_server_function_str@l
     li	r5, 0x7f
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r12, 0xb0(r31)
     cmplwi	r12, 0
     beq     _8005950c
@@ -941,7 +941,7 @@ asm void fn_800595A4(void)
     stw	r0, 0x14(r1)
     addi	r3, r5, lbl_8018FEE0@l
     li	r5, 0x7f
-    bl      fn_80083D6C
+    bl      strncpy
     lis     r3, lbl_8018FF60@ha
     addi	r5, r3, lbl_8018FF60@l
     lwz	r12, 0(r5)
@@ -1679,7 +1679,7 @@ _80059efc:
     addi	r4, r30, 0xc0
     addi	r5, r29, 0x1c
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lwz	r12, 0(r31)
     cmplwi	r12, 0
     beq     _80059f50
@@ -1696,7 +1696,7 @@ _80059f50:
     addi	r4, r30, 0x100
     addi	r5, r29, 0x1c
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lwz	r12, 0(r31)
     cmplwi	r12, 0
     beq     _80059f90

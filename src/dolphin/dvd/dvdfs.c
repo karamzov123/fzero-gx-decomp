@@ -21,10 +21,10 @@ extern unsigned char lbl_801A68B0[];
 extern void OSDisableInterrupts(void);
 extern void OSReport(void);
 extern void OSRestoreInterrupts(void);
-extern void fn_8000C49C(void);
+extern void OSPanic(void);
 extern void OSSleepThread(void);
 extern void OSWakeupThread(void);
-extern void fn_80016DF8(void);
+extern void DVDConvertPathToEntrynum(void);
 extern void fn_8001724C(void);
 extern void fn_800173AC(void);
 extern void fn_80017590(void);
@@ -52,8 +52,8 @@ nofralloc
 	blr
 }
 
-/* fn_80016DF8 @0x80016DF8 | size: 0x2F4 */
-asm void fn_80016DF8(void) {
+/* DVDConvertPathToEntrynum @0x80016DF8 | size: 0x2F4 */
+asm void DVDConvertPathToEntrynum(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -163,7 +163,7 @@ lbl_80016F50:
 	addi r6, r25, 0x0
 	addi r3, r13, -0x7F50
 	li r4, 0x17b
-	bl fn_8000C49C
+	bl OSPanic
 	b lbl_80016F98
 lbl_80016F74:
 	mr r28, r23
@@ -323,8 +323,8 @@ lbl_80017130:
 	blr
 }
 
-/* fn_80017160 @0x80017160 | size: 0xC8 */
-asm void fn_80017160(void) {
+/* DVDOpen @0x80017160 | size: 0xC8 */
+asm void DVDOpen(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -333,7 +333,7 @@ nofralloc
 	addi r31, r4, 0x0
 	stw r30, 0x90(r1)
 	addi r30, r3, 0x0
-	bl fn_80016DF8
+	bl DVDConvertPathToEntrynum
 	cmpwi r3, 0x0
 	bge lbl_800171B4
 	addi r3, r1, 0x10
@@ -568,7 +568,7 @@ nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
-	bl fn_80016DF8
+	bl DVDConvertPathToEntrynum
 	cmpwi r3, 0x0
 	blt lbl_800174B0
 	mulli r0, r3, 0xc
@@ -619,7 +619,7 @@ lbl_80017508:
 	addi r5, r3, lbl_80123F28@l
 	addi r3, r13, -0x7F50
 	li r4, 0x2e6
-	bl fn_8000C49C
+	bl OSPanic
 lbl_80017520:
 	add. r4, r29, r28
 	blt lbl_80017538
@@ -633,7 +633,7 @@ lbl_80017538:
 	addi r5, r3, lbl_80123F28@l
 	addi r3, r13, -0x7F50
 	li r4, 0x2ec
-	bl fn_8000C49C
+	bl OSPanic
 lbl_80017550:
 	stw r30, 0x38(r26)
 	lis r3, fn_80017590@ha
@@ -693,7 +693,7 @@ lbl_800175F4:
 	addi r5, r3, lbl_80123F5C@l
 	addi r3, r13, -0x7F50
 	li r4, 0x32c
-	bl fn_8000C49C
+	bl OSPanic
 lbl_8001760C:
 	add. r4, r29, r28
 	blt lbl_80017624
@@ -707,7 +707,7 @@ lbl_80017624:
 	addi r5, r3, lbl_80123F5C@l
 	addi r3, r13, -0x7F50
 	li r4, 0x332
-	bl fn_8000C49C
+	bl OSPanic
 lbl_8001763C:
 	lwz r0, 0x30(r31)
 	lis r4, fn_800176D8@ha

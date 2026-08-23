@@ -5,8 +5,8 @@ extern asm void fn_8007174C(void);
 extern asm void DCInvalidateRange(void);
 extern asm void AIGetDSPInterruptEnable(void);
 extern asm void ARStartDMA(void);
-extern asm void fn_8008069C(void);
-extern asm void fn_8000C49C(void);
+extern asm void sprintf(void);
+extern asm void OSPanic(void);
 extern unsigned char lbl_8015ABC0[10];
 extern unsigned char lbl_8015ABCC[12];
 extern unsigned char lbl_8015ABD8[35];
@@ -152,13 +152,13 @@ asm void fn_8007174C(void)
     stw	r0, 0x414(r1)
     addi	r3, r1, 8
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lis     r3, lbl_8015ABFC@ha
     addi	r5, r1, 8
     addi	r3, r3, lbl_8015ABFC@l
     li	r4, 0x1f2
     crxor	6, 6, 6
-    bl      fn_8000C49C
+    bl      OSPanic
     lwz	r0, 0x414(r1)
     mtlr	r0
     addi	r1, r1, 0x410

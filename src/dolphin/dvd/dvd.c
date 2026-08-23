@@ -65,7 +65,7 @@ extern void __OSUnmaskInterrupts(void);
 extern void __fstLoad(void);
 extern void cbForStateError(void);
 extern void cbForStateMotorStopped(void);
-extern void fn_8000C49C(void);
+extern void OSPanic(void);
 extern void OSSleepThread(void);
 extern void OSWakeupThread(void);
 extern void fn_80016524(void);
@@ -106,7 +106,7 @@ extern void fn_80019C24(void);
 extern void fn_80019FFC(void);
 extern void fn_8001A1F4(void);
 extern void fn_8001A2EC(void);
-extern void fn_8008023C(void);
+extern void strncmp(void);
 extern void memcpy(void);
 extern void stateBusy(void);
 extern void stateReady(void);
@@ -192,7 +192,7 @@ nofralloc
 	addi r5, r3, lbl_80123FE4@l
 	addi r3, r13, -0x7F3C
 	li r4, 0x287
-	bl fn_8000C49C
+	bl OSPanic
 lbl_8001788C:
 	lis r3, BB2@ha
 	lwz r6, 0x0(r31)
@@ -827,7 +827,7 @@ lbl_800180B8:
 	lwz r4, -0x7AFC(r13)
 	addi r3, r31, 0x20
 	li r5, 0x20
-	bl fn_8008023C
+	bl strncmp
 	cmpwi r3, 0x0
 	beq lbl_800180E0
 	lis r3, fn_8001821C@ha
@@ -1060,7 +1060,7 @@ lbl_80018370:
 	addi r5, r3, lbl_80123FE4@l
 	addi r3, r13, -0x7F3C
 	li r4, 0x287
-	bl fn_8000C49C
+	bl OSPanic
 lbl_800183C4:
 	lis r3, BB2@ha
 	lwz r6, 0x0(r31)

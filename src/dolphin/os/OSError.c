@@ -36,7 +36,7 @@ extern void OSEnableScheduler(void);
 extern void __OSReschedule(void);
 extern void OSLoadContext(register OSContext* context);
 extern void OSSaveFPUContext(register OSContext* context);
-extern u32 fn_8000BFC0(void);
+extern u32 OSGetStackPointer(void);
 extern u32 __OSErrorTable[];
 
 #pragma push
@@ -80,7 +80,7 @@ OSReport_skipSpill:
     blr
 }
 
-asm void fn_8000C49C(const char* file, s32 line, const char* msg, ...)
+asm void OSPanic(const char* file, s32 line, const char* msg, ...)
 {
     nofralloc
     mflr    r0
@@ -132,7 +132,7 @@ OSPanic_skipSpill:
     crxor   6, 6, 6
     bl      OSReport
     li      r30, 0
-    bl      fn_8000BFC0
+    bl      OSGetStackPointer
     mr      r29, r3
     b       OSPanic_check
 OSPanic_loop:

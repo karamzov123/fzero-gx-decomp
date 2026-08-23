@@ -70,7 +70,7 @@ extern void fn_8005710C(void);
 extern void fn_800571EC(void);
 extern void fn_80058498(void);
 extern void fn_800589BC(void);
-extern void fn_80083DB0(void);
+extern void strcpy(void);
 extern void memset(void);
 extern unsigned char E02080804_ADXT_Create_parameter_error_str[39];
 extern unsigned char E02080807_ADXT_StartFname_parameter_error_str[43];
@@ -388,7 +388,7 @@ _8004d1c4:
     bl      fn_8004C698
     lwz	r3, 0xac(r30)
     mr	r4, r31
-    bl      fn_80083DB0
+    bl      strcpy
     lwz	r5, 0xac(r30)
     lis	r3, 0x10
     li	r4, 0

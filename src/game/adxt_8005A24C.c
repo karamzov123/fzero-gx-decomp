@@ -28,9 +28,9 @@ extern void fn_8005BE68(void);
 extern void fn_8005BE80(void);
 extern void fn_8005BE98(void);
 extern void fn_8005BEAC(void);
-extern void fn_8008069C(void);
-extern void fn_80083D6C(void);
-extern void fn_80083DB0(void);
+extern void sprintf(void);
+extern void strncpy(void);
+extern void strcpy(void);
 extern void fn_80084FDC(void);
 extern void memset(void);
 extern void strlen(void);
@@ -124,7 +124,7 @@ _8005a338:
 _8005a340:
     mr	r4, r3
     addi	r3, r31, 0x1c
-    bl      fn_80083DB0
+    bl      strcpy
     li	r0, 0x800
     addi	r3, r31, 0x1c
     stw	r0, 4(r31)
@@ -135,7 +135,7 @@ _8005a340:
     addi	r4, r29, 0xc0
     addi	r5, r31, 0x1c
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lwz	r12, 0(r30)
     cmplwi	r12, 0
     beq     _8005a398
@@ -152,7 +152,7 @@ _8005a398:
     addi	r4, r29, 0x100
     addi	r5, r31, 0x1c
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lwz	r12, 0(r30)
     cmplwi	r12, 0
     beq     _8005a3d8
@@ -227,7 +227,7 @@ asm void fn_8005A47C(void)
     addi	r4, r3, E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str@l
     addi	r3, r31, 8
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lwz	r12, 0(r31)
     cmplwi	r12, 0
     beq     _8005a4e0
@@ -245,7 +245,7 @@ _8005a4e0:
     addi	r4, r3, E01100309_illegal_file_name_format_s_mfci_get_adr_size_str@l
     addi	r3, r31, 8
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
     lwz	r12, 0(r31)
     cmplwi	r12, 0
     beq     _8005a524
@@ -324,7 +324,7 @@ asm void fn_8005A5BC(void)
     addi	r31, r4, lbl_80190B70@l
     mr	r4, r3
     addi	r3, r31, 8
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r12, 0(r31)
     cmplwi	r12, 0
     beq     _8005a600

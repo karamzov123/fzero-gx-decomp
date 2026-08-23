@@ -1,7 +1,7 @@
 #pragma force_active on
 
 extern asm void OSReport(void);
-extern asm void fn_8000C49C(void);
+extern asm void OSPanic(void);
 extern asm void OSDisableInterrupts(void);
 extern asm void OSRestoreInterrupts(void);
 extern asm void OSGetTick(void);
@@ -770,7 +770,7 @@ asm void ARCInitHandle(void)
     addi	r5, r3, ARCInitHandle_bad_archive_format_str@l
     addi	r3, r13, -0x7db0
     li	r4, 0x3b
-    bl      fn_8000C49C
+    bl      OSPanic
 _8006a420:
     stw	r30, 0(r31)
     li	r0, 0

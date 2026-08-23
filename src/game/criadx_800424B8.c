@@ -6,7 +6,7 @@ extern void fn_80045FA4(void);
 extern void fn_800425D0(void);
 extern void fn_80042980(void);
 extern void fn_80042D24(void);
-extern void fn_8008023C(void);
+extern void strncmp(void);
 extern void fn_8004E270(void);
 extern void fn_8004313C(void);
 extern unsigned char RIFF_str[5];
@@ -87,14 +87,14 @@ asm void fn_80042568(void)
     addi	r4, r4, RIFF_str@l
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _800425b8
     lis     r4, WAVE_str@ha
     addi	r3, r31, 8
     addi	r4, r4, WAVE_str@l
     li	r5, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _800425b8
     li	r3, 1
@@ -924,7 +924,7 @@ _80043188:
     lwz	r4, 0(r19)
     add	r3, r20, r18
     li	r5, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     beq     _800431ac
     addi	r18, r18, 1
@@ -964,7 +964,7 @@ _80043210:
     lwz	r4, 0(r19)
     add	r3, r20, r18
     li	r5, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     beq     _80043234
     addi	r18, r18, 1

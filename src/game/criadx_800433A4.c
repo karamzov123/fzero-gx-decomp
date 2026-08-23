@@ -5,7 +5,7 @@ extern void fn_80043460(void);
 extern void fn_80043798(void);
 extern void fn_8004E270(void);
 extern void fn_80043D34(void);
-extern void fn_8008023C(void);
+extern void strncmp(void);
 extern void fn_80043FE8(void);
 extern void fn_800443AC(void);
 extern void fn_800446E4(void);
@@ -680,14 +680,14 @@ asm void fn_80043CCC(void)
     addi	r4, r4, FORM_str@l
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _80043d1c
     lis     r4, AIFF_str@ha
     addi	r3, r31, 8
     addi	r4, r4, AIFF_str@l
     li	r5, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _80043d1c
     li	r3, 1

@@ -21,11 +21,11 @@ extern void _8006e164(void);
 asm void fn_8006CFF8(void);
 asm void fn_8006D044(void);
 asm void fn_8006D088(void);
-asm void fn_8006D0B4(void);
+asm void sqrtf(void);
 asm void fn_8006D0E8(void);
 asm void fn_8006D188(void);
 asm void fn_8006D1C4(void);
-asm void fn_8006D24C(void);
+asm void atan2f(void);
 asm void fn_8006D2AC(void);
 asm void fn_8006D368(void);
 asm void fn_8006D3D0(void);
@@ -125,7 +125,7 @@ asm void fn_8006D088(void)
     blr
 }
 
-asm void fn_8006D0B4(void)
+asm void sqrtf(void)
 {
     nofralloc
     frsp	f0, f1
@@ -257,7 +257,7 @@ _8006d244:
     blr
 }
 
-asm void fn_8006D24C(void)
+asm void atan2f(void)
 {
     nofralloc
     mfcr	r6
@@ -416,7 +416,7 @@ _8006d414:
     fmuls	f0, f31, f31
     lfs	f1, -0x7a7c(r2)
     fsubs	f1, f1, f0
-    bl      fn_8006D0B4
+    bl      sqrtf
     lfs	f0, -0x7a78(r2)
     fcmpo	cr0, f1, f0
     bc      4, 1, _8006d43c
@@ -475,7 +475,7 @@ _8006d4d0:
     fmuls	f0, f31, f31
     lfs	f1, -0x7a7c(r2)
     fsubs	f1, f1, f0
-    bl      fn_8006D0B4
+    bl      sqrtf
     lfs	f0, -0x7a78(r2)
     fcmpo	cr0, f1, f0
     bc      4, 1, _8006d4f8

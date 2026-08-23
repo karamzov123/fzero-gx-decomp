@@ -1,6 +1,6 @@
 typedef unsigned int u32;
 
-extern u32 fn_8000BFC0(void);
+extern u32 OSGetStackPointer(void);
 
 u32 fn_80011358(char *thread)
 {
@@ -19,7 +19,7 @@ asm void OSClearStack(register u32 clearValue)
     stw         r31, 0x14(r1)
     mr          r31, r0
     rlwimi      r31, r3, 0, 24, 31
-    bl          fn_8000BFC0
+    bl          OSGetStackPointer
     lis         r4, 0x8000
     lwz         r5, 0xE4(r4)
     addi        r4, r3, 3

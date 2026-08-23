@@ -45,7 +45,7 @@ extern void fn_80037BC0(void);
 extern void fn_80038F48(void);
 extern void fn_80072270(void);
 extern void fn_800794F0(void);
-extern void fn_8008023C(void);
+extern void strncmp(void);
 extern void fn_8006DD14(void);
 extern unsigned char lbl_8019F040[240];
 asm void fn_80072EDC(void);
@@ -966,7 +966,7 @@ _80073AE0:
     mr r3, r31
     mr r4, r29
     li r5, 0x18
-    bl fn_8008023C
+    bl strncmp
     cmpwi r3, 0
     beq _80073B30
 _80073B0C:
@@ -1360,7 +1360,7 @@ _8007404C:
     mr r3, r31
     addi r4, r1, 0x10
     li r5, 0x18
-    bl fn_8008023C
+    bl strncmp
     cmpwi r3, 0
     beq _80074098
 _80074070:

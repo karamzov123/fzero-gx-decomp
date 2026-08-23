@@ -18,7 +18,7 @@ extern void _savegpr_26(void);
 extern void fn_8000B864(void);
 extern void fn_8000B888(void);
 extern void fn_8000B8AC(void);
-extern void fn_8000C49C(void);
+extern void OSPanic(void);
 extern void fn_80033A6C(void);
 extern void fn_80038CFC(void);
 extern void fn_800702E4(void);
@@ -769,7 +769,7 @@ _80078FBC:
     addi r5, r31, 0xbc
     li r4, 0x96b
     crxor 6, 6, 6
-    bl fn_8000C49C
+    bl OSPanic
     b _80078FF8
 _80078FF0:
     li r0, 0

@@ -18,8 +18,8 @@ extern void fn_8002C0B8(register void* card);                            // __CA
 extern s32 __CARDAllocBlock(register s32 chn, register u16 nBlock, register void* callback); // __CARDAllocBlock
 extern s32 __CARDCompareFileName(register void* ent, register char* fileName);     // __CARDCompareFileName
 extern s32 __CARDSync(register s32 chn);                                // __CARDSync
-extern s32 fn_8008023C(register void* a, register void* b, register u32 n); // memcmp
-extern void fn_80083D6C(register void* dst, register char* src, register u32 n); // strncpy
+extern s32 strncmp(register void* a, register void* b, register u32 n); // memcmp
+extern void strncpy(register void* dst, register char* src, register u32 n); // strncpy
 extern void fn_80029824(void);                                                // default-API callback stub
 extern void CreateCallbackFat(void);                                          // fat-update callback (CARDDir)
 extern void __CARDSyncCallback(void);
@@ -88,7 +88,7 @@ _L_8002ef90:
     addi    r3, r24, 0
     li      r5, 4
     lwz     r4, 0x10c(r4)
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi   r3, 0
     bne     _L_8002eff0
     lwz     r4, 0x1c(r1)
@@ -96,7 +96,7 @@ _L_8002ef90:
     li      r5, 2
     lwz     r4, 0x10c(r4)
     addi    r4, r4, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi   r3, 0
     bne     _L_8002eff0
     addi    r3, r24, 0
@@ -157,7 +157,7 @@ _L_8002f068:
     lwz     r0, 0xc(r6)
     divwu   r0, r27, r0
     sth     r0, 0x38(r7)
-    bl      fn_80083D6C
+    bl      strncpy
     lwz     r4, 0x1c(r1)
     lis     r3, CreateCallbackFat@ha
     addi    r5, r3, CreateCallbackFat@l

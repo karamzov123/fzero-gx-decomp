@@ -3,7 +3,7 @@
 
 extern void fn_8004E270(void);
 extern void fn_80044C74(void);
-extern void fn_8008023C(void);
+extern void strncmp(void);
 extern void fn_80044EF8(void);
 extern void fn_800433A4(void);
 extern void fn_80046020(void);
@@ -611,14 +611,14 @@ asm void CRI_WAVE_parser(void)
     addi	r4, r4, snd_str@l
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     beq     _80044c54
     lis     r4, lbl_80090098@ha
     mr	r3, r31
     addi	r4, r4, lbl_80090098@l
     li	r5, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _80044c5c
 _80044c54:

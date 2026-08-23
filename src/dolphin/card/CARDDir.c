@@ -32,7 +32,7 @@ extern unsigned char lbl_80177B80[32];
 extern void fn_8002E2B4(void);
 extern void fn_8002E90C(void);
 extern void __CARDCompareFileName(void);
-extern void fn_8002E9BC(void);
+extern void __CARDAccess(void);
 extern void fn_8002EA54(void);
 extern void __CARDGetFileNo(void);
 extern void CARDOpen(void);
@@ -77,8 +77,8 @@ extern void __CARDGetDirBlock(void);
 extern void __CARDUpdateDir(void);
 extern void fn_8002C720(void);
 extern void __div2i(void);
-extern void fn_8008023C(void);
-extern void fn_80083D6C(void);
+extern void strncmp(void);
+extern void strncpy(void);
 extern void strlen(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -2467,7 +2467,7 @@ _8002e9b4:
     blr	
 }
 
-asm void fn_8002E9BC(void)
+asm void __CARDAccess(void)
 {
     nofralloc
     mflr	r0
@@ -2490,14 +2490,14 @@ _8002e9ec:
     beq     _8002ea30
     addi	r3, r31, 0
     li	r5, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _8002ea38
     lwz	r4, 0x10c(r30)
     addi	r3, r31, 4
     li	r5, 2
     addi	r4, r4, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _8002ea38
 _8002ea30:
@@ -2567,14 +2567,14 @@ _8002eae0:
     beq     _8002eb1c
     addi	r3, r31, 0
     li	r5, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _8002eb24
     lwz	r4, 0x10c(r27)
     addi	r3, r31, 4
     li	r5, 2
     addi	r4, r4, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _8002eb24
 _8002eb1c:
@@ -2679,14 +2679,14 @@ _8002ec54:
     beq     _8002ec90
     addi	r3, r24, 0
     li	r5, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _8002ec98
     lwz	r4, 0x10c(r31)
     addi	r3, r24, 4
     li	r5, 2
     addi	r4, r4, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi	r3, 0
     bne     _8002ec98
 _8002ec90:

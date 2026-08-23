@@ -3,8 +3,8 @@
 
 extern asm void fn_8006D8D8(void);
 extern asm void PSMTXRotTrig(void);
-extern asm void fn_8006D0B4(void);
-extern asm void fn_8006D24C(void);
+extern asm void sqrtf(void);
+extern asm void atan2f(void);
 extern asm void fn_8006D91C(void);
 extern asm void fn_8006E398(void);
 extern asm void fn_8006E0C8(void);
@@ -79,14 +79,14 @@ asm void PSMTXLookAt(void)
     fmuls	f1, f29, f29
     fsubs	f30, f3, f2
     fmadds	f1, f31, f31, f1
-    bl      fn_8006D0B4
+    bl      sqrtf
     fmr	f2, f1
     fmr	f1, f30
-    bl      fn_8006D24C
+    bl      atan2f
     fmr	f1, f29
     mr	r30, r3
     fmr	f2, f31
-    bl      fn_8006D24C
+    bl      atan2f
     neg	r0, r31
     mr	r31, r3
     extsh	r3, r0
@@ -140,14 +140,14 @@ asm void fn_8006F120(void)
     fmuls	f1, f29, f29
     fsubs	f30, f3, f2
     fmadds	f1, f31, f31, f1
-    bl      fn_8006D0B4
+    bl      sqrtf
     fmr	f2, f1
     fmr	f1, f30
-    bl      fn_8006D24C
+    bl      atan2f
     fmr	f1, f29
     mr	r31, r3
     fmr	f2, f31
-    bl      fn_8006D24C
+    bl      atan2f
     neg	r0, r31
     mr	r31, r3
     extsh	r3, r0

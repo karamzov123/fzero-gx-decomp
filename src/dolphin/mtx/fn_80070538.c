@@ -9,7 +9,7 @@ extern asm void OSSetArenaLo(void);
 extern asm void OSSetArenaHi(void);
 extern asm void fn_80070A58(void);
 extern asm void VIGetTvFormat(void);
-extern asm void fn_8000C49C(void);
+extern asm void OSPanic(void);
 extern asm void fn_8003493C(void);
 extern asm void fn_8001B42C(void);
 extern asm void fn_80034ECC(void);
@@ -138,7 +138,7 @@ _800706a4:
     li	r4, 0x157
     addi	r5, r5, lbl_8015AB24@l
     crxor	6, 6, 6
-    bl      fn_8000C49C
+    bl      OSPanic
 _800706c0:
     lis     r4, lbl_8019E150@ha
     lwz	r3, -0x76cc(r13)

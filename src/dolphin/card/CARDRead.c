@@ -19,7 +19,7 @@ extern s32 fn_8002C0B8(register void* ctrl);
 extern s32 __CARDGetDirBlock(void);
 extern s32 fn_8002BEFC(register s32 chn, register void* addr, register s32 len,
                        register void* r6, register void* r7);
-extern s32 fn_8002E9BC(register void* ctrl, register void* r4);
+extern s32 __CARDAccess(register void* ctrl, register void* r4);
 extern s32 fn_8002EA54(register void* ctrl);
 extern s32 __CARDSync(register void* handle);
 extern void DCInvalidateRange(register void* addr, register u32 n);
@@ -281,7 +281,7 @@ _L_8002f480:
     add     r28, r3, r0
     lwz     r3, 0x1c(r1)
     mr      r4, r28
-    bl      fn_8002E9BC
+    bl      __CARDAccess
     addi    r4, r3, 0
     cmpwi   r4, -0xa
     bne     _L_8002f4b8

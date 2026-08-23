@@ -13,7 +13,7 @@ extern void fn_8004B1DC(void);
 extern void fn_8004FC38(void);
 extern void fn_8004FC94(void);
 extern void fn_800502A0(void);
-extern void fn_80083D6C(void);
+extern void strncpy(void);
 extern void memset(void);
 extern unsigned char E9040822_adxf_is_NULL_ADXF_Stop_str[36];
 extern unsigned char E9040823_adxf_stm_is_NULL_ADXF_Stop_str[41];
@@ -802,7 +802,7 @@ _8004fa6c:
     mr	r3, r25
     addi	r4, r30, 0x10
     li	r5, 0x100
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r0, 0x110(r30)
     mr	r3, r31
     stw	r0, 0(r26)

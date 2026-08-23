@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_8000C49C(void);
+extern asm void OSPanic(void);
 extern asm void fn_8006D758(void);
 extern asm void fn_8006DCDC(void);
 extern asm void fn_80070CF8(void);
@@ -57,7 +57,7 @@ asm void fn_80070AC0(void)
     addi	r5, r31, 0xcc
     li	r4, 0x202
     crxor	6, 6, 6
-    bl      fn_8000C49C
+    bl      OSPanic
 _80070b00:
     bl      fn_8006D758
     bl      fn_8006DCDC
@@ -175,7 +175,7 @@ _80070c90:
     addi	r5, r31, 0xc
     li	r4, 0x9e
     crxor	6, 6, 6
-    bl      fn_8000C49C
+    bl      OSPanic
 _80070cac:
     lwz	r3, -0x76c0(r13)
     stw	r30, 0x90(r3)

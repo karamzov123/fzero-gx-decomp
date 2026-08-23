@@ -5,7 +5,7 @@ extern void DCInvalidateRange(void);
 extern void DCStoreRange(void);
 extern void DVDGetDriveStatus(void);
 extern void OSGetTick(void);
-extern void fn_80017160(void);
+extern void DVDOpen(void);
 extern void fn_80017228(void);
 extern void fn_800174D0(void);
 extern void fn_800175C0(void);
@@ -21,7 +21,7 @@ extern void fn_800576DC(void);
 extern void fn_80057728(void);
 extern void fn_8008077C(void);
 extern void fn_80083D40(void);
-extern void fn_80083DB0(void);
+extern void strcpy(void);
 extern void memset(void);
 extern void strlen(void);
 extern unsigned char E0040301_handl_is_null_str[448];
@@ -833,7 +833,7 @@ _8005617c:
     lis     r4, lbl_80188870@ha
     addi	r3, r1, 8
     addi	r4, r4, lbl_80188870@l
-    bl      fn_80083DB0
+    bl      strcpy
     mr	r4, r28
     addi	r3, r1, 8
     bl      fn_80083D40
@@ -855,7 +855,7 @@ _800561c4:
 _800561cc:
     addi	r3, r1, 8
     addi	r4, r31, 0x28
-    bl      fn_80017160
+    bl      DVDOpen
     cmpwi	r3, 0
     bne     _80056218
     lwz	r12, 0x10(r30)
@@ -939,7 +939,7 @@ _800562ec:
     lis     r4, lbl_80188870@ha
     addi	r3, r1, 0x44
     addi	r4, r4, lbl_80188870@l
-    bl      fn_80083DB0
+    bl      strcpy
     mr	r4, r30
     addi	r3, r1, 0x44
     bl      fn_80083D40
@@ -961,7 +961,7 @@ _80056334:
 _8005633c:
     addi	r3, r1, 0x44
     addi	r4, r1, 8
-    bl      fn_80017160
+    bl      DVDOpen
     cmpwi	r3, 0
     bne     _80056384
     lis     r3, lbl_801878C4@ha

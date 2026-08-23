@@ -97,15 +97,15 @@ extern void fn_80008BEC(void);
 extern void fn_80008C20(void);
 extern void fn_8000B334(void);
 extern void fn_8000B360(void);
-extern void fn_8000C49C(void);
+extern void OSPanic(void);
 extern void fn_8000CDD8(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
 extern void fn_80015B78(void);
 extern void fn_80015EE8(void);
-extern void fn_80016DF8(void);
+extern void DVDConvertPathToEntrynum(void);
 extern void fn_800170EC(void);
-extern void fn_80017160(void);
+extern void DVDOpen(void);
 extern void fn_80017228(void);
 extern void fn_80017470(void);
 extern void fn_800174D0(void);
@@ -187,8 +187,8 @@ extern void __cvt_fp2unsigned(void);
 extern void fn_80083B8C(void);
 extern void fn_80083BCC(void);
 extern void fn_80083D40(void);
-extern void fn_80083D6C(void);
-extern void fn_80083DB0(void);
+extern void strncpy(void);
+extern void strcpy(void);
 extern void fn_8006D188(void);
 extern void fn_8006D668(void);
 extern void fn_8006D758(void);
@@ -414,7 +414,7 @@ asm void main_load_sample_rel(void)
     stw	r0, 0x54(r1)
     addi	r4, r1, 8
     stw	r31, 0x4c(r1)
-    bl      fn_80017160
+    bl      DVDOpen
     cmpwi	r3, 0
     bc      12, 2, _800058c4
     lwz	r3, 0x3c(r1)
@@ -486,7 +486,7 @@ asm void fn_8000591C(void)
     addi	r4, r1, 8
     addi	r3, r3, lbl_80095EA0@l
     slwi	r30, r0, 5
-    bl      fn_80017160
+    bl      DVDOpen
     lwz	r3, 0x3c(r1)
     li	r4, 0x20
     addi	r0, r3, 0x1f
@@ -1785,7 +1785,7 @@ asm void fn_80006AFC(void)
     addi	r4, r13, -0x7fc8
     stw	r0, 0x14(r1)
     addi	r3, r3, lbl_8015BD40@l
-    bl      fn_80083DB0
+    bl      strcpy
     li	r3, 0
     bl      fn_80006B30
     lwz	r0, 0x14(r1)
@@ -1845,7 +1845,7 @@ asm void fn_80006B70(void)
     mr	r3, r30
     stw	r0, 0(r31)
     addi	r4, r31, 4
-    bl      fn_80017160
+    bl      DVDOpen
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     lwz	r30, 8(r1)
@@ -2071,7 +2071,7 @@ _80006e54:
     add	r4, r28, r30
     addi	r3, r3, lbl_8015BD40@l
     addi	r4, r4, -1
-    bl      fn_80083DB0
+    bl      strcpy
     add	r30, r30, r28
     b       _80006f70
 _80006e7c:
@@ -2121,7 +2121,7 @@ _80006f0c:
     cmplwi	r0, 0
     bc      4, 2, _80006f70
     addi	r4, r13, -0x7fc8
-    bl      fn_80083DB0
+    bl      strcpy
     b       _80006f70
 _80006f28:
     lis	r3, -0x7fea
@@ -2186,7 +2186,7 @@ asm void fn_80006FE0(void)
     mr	r5, r4
     stw	r0, 0x14(r1)
     addi	r4, r6, lbl_8015BD40@l
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -2209,7 +2209,7 @@ asm void fn_8000700C(void)
     lwz	r0, -0x7cc8(r13)
     cmplwi	r0, 0
     bc      4, 2, _8000704c
-    bl      fn_80016DF8
+    bl      DVDConvertPathToEntrynum
     mr	r28, r3
     b       _80007194
 _8000704c:
@@ -2220,7 +2220,7 @@ _8000704c:
     addi	r5, r30, 0x80
     li	r4, 0x2ed
     crxor	6, 6, 6
-    bl      fn_8000C49C
+    bl      OSPanic
 _8000706c:
     lbz	r0, 0(r29)
     cmplwi	r0, 0x2f
@@ -2235,7 +2235,7 @@ _80007084:
     add	r4, r28, r29
     addi	r3, r1, 8
     addi	r4, r4, -1
-    bl      fn_80083DB0
+    bl      strcpy
     b       _80007108
 _800070a4:
     addi	r28, r28, 1
@@ -2251,7 +2251,7 @@ _800070c4:
     lis     r4, lbl_8015BD40@ha
     addi	r3, r1, 8
     addi	r4, r4, lbl_8015BD40@l
-    bl      fn_80083DB0
+    bl      strcpy
     lis	r3, -0x7fea
     lbzu	r0, -0x42c0(r3)
     cmplwi	r0, 0x2f
@@ -2499,7 +2499,7 @@ asm void fn_8000740C(void)
     addi	r5, r4, lbl_801221A0@l
     li	r4, 0x1cd
     crxor	6, 6, 6
-    bl      fn_8000C49C
+    bl      OSPanic
 _80007458:
     mr	r3, r26
     bl      fn_80007654
@@ -2559,7 +2559,7 @@ _80007504:
     addi	r5, r4, lbl_801221A0@l
     li	r4, 0x1cd
     crxor	6, 6, 6
-    bl      fn_8000C49C
+    bl      OSPanic
 _8000752c:
     mr	r3, r27
     bl      fn_80007654

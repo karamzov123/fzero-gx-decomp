@@ -29,7 +29,7 @@ asm void fn_8008068C(void)
     blr
 }
 
-asm void fn_8008069C(void)
+asm void sprintf(void)
 {
     nofralloc
     stwu	r1, -0xa0(r1)

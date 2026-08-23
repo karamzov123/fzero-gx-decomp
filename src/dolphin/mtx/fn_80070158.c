@@ -3,7 +3,7 @@
 
 extern asm void fn_8000B804(void);
 extern asm void fn_80070CF8(void);
-extern asm void fn_8000C49C(void);
+extern asm void OSPanic(void);
 extern unsigned char lbl_8015AA78[11];
 extern unsigned char lbl_8015AA84[160];
 extern unsigned char lbl_8019E140[16];
@@ -238,7 +238,7 @@ _80070450:
     li	r4, 0x9e
     addi	r5, r5, lbl_8015AA84@l
     crxor	6, 6, 6
-    bl      fn_8000C49C
+    bl      OSPanic
 _80070474:
     lwz	r0, 0x14(r1)
     mr	r3, r31

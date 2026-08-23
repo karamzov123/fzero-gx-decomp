@@ -14,7 +14,7 @@ asm void fn_80072270(void);
 asm void fn_80072344(void);
 asm void fn_80072378(void);
 
-extern void fn_80017160(void);
+extern void DVDOpen(void);
 extern void fn_80017228(void);
 extern void fn_800175C0(void);
 extern void fn_80015E18(void);
@@ -43,7 +43,7 @@ asm void fn_80071CC0(void)
     stwu    r1, -0x10(r1)
     mflr    r0
     stw     r0, 0x14(r1)
-    bl      fn_80017160
+    bl      DVDOpen
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10

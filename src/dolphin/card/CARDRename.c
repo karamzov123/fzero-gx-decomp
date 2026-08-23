@@ -2,7 +2,7 @@
 // Melee identity: extern/dolphin/src/dolphin/card/CARDRename.c
 //   CARDRenameAsync, CARDRename.
 // Duplicate scan compares ent->gameName/company against card->diskID (@+0x10c).
-// strncpy = fn_80083D6C, memcmp = fn_8008023C, strlen global.
+// strncpy = strncpy, memcmp = strncmp, strlen global.
 
 typedef int BOOL;
 typedef int s32;
@@ -12,11 +12,11 @@ typedef unsigned short u16;
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 __CARDGetDirBlock(void);
-extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
+extern s32 __CARDAccess(register void* ctrl, register void* ent);
 extern s32 __CARDCompareFileName(register void* ent, register char* fileName);
-extern s32 fn_8008023C(register void* a, register void* b, register u32 n);
+extern s32 strncmp(register void* a, register void* b, register u32 n);
 extern u32 strlen(register char* s);
-extern s32 fn_80083D6C(register char* dst, register char* src, register u32 n);
+extern s32 strncpy(register char* dst, register char* src, register u32 n);
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern unsigned long long OSGetTime(void);
@@ -89,7 +89,7 @@ _L_800301f0:
     addi    r3, r27, 0
     li      r5, 4
     lwz     r4, 0x10c(r4)
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi   r3, 0
     bne     _L_80030268
     lwz     r4, 0x18(r1)
@@ -97,7 +97,7 @@ _L_800301f0:
     li      r5, 2
     lwz     r4, 0x10c(r4)
     addi    r4, r4, 4
-    bl      fn_8008023C
+    bl      strncmp
     cmpwi   r3, 0
     bne     _L_80030268
     addi    r3, r27, 0
@@ -136,7 +136,7 @@ _L_800302a8:
     lwz     r3, 0x18(r1)
     add     r27, r26, r0
     addi    r4, r27, 0
-    bl      fn_8002E9BC
+    bl      __CARDAccess
     or.     r4, r3, r3
     bge     _L_800302d0
     lwz     r3, 0x18(r1)
@@ -146,7 +146,7 @@ _L_800302d0:
     addi    r4, r30, 0
     addi    r3, r27, 8
     li      r5, 0x20
-    bl      fn_80083D6C
+    bl      strncpy
     lis     r3, 0x8000              /* __OSBusClock */
     lwz     r0, 0xf8(r3)
     srwi    r29, r0, 2

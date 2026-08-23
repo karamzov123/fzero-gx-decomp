@@ -338,7 +338,7 @@ OSLoadContext_misc:
     rfi
 }
 
-asm u32 fn_8000BFC0()
+asm u32 OSGetStackPointer()
 {
     nofralloc
     mr      r3, r1

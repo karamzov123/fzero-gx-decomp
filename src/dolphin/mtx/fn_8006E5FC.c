@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void _savegpr_25(void);
-extern asm void fn_8006D0B4(void);
+extern asm void sqrtf(void);
 extern asm void _restgpr_25(void);
 extern asm void fn_8006D188(void);
 extern asm void fn_8006D0E8(void);
@@ -36,7 +36,7 @@ asm void fn_8006E5FC(void)
     ble	_8006e6c0
     lfs	f0, -0x7a68(r2)
     fadds	f1, f0, f1
-    bl      fn_8006D0B4
+    bl      sqrtf
     lfs	f0, -0x7a64(r2)
     fdivs	f2, f0, f1
     fmuls	f0, f0, f1
@@ -93,7 +93,7 @@ _8006e6ec:
     fadds	f0, f1, f0
     fsubs	f0, f2, f0
     fadds	f1, f3, f0
-    bl      fn_8006D0B4
+    bl      sqrtf
     lfs	f3, -0x7a64(r2)
     addi	r3, r1, 0x14
     lfs	f0, -0x7a6c(r2)
@@ -304,7 +304,7 @@ _8006ea08:
     fmr	f29, f4
     fmuls	f0, f30, f30
     fadds	f1, f1, f0
-    bl      fn_8006D0B4
+    bl      sqrtf
     lfd	f0, -0x7a58(r2)
     fcmpo	cr0, f1, f0
     bge	_8006ea4c
@@ -351,7 +351,7 @@ _8006ea88:
     fsubs	f0, f0, f30
     fmuls	f28, f28, f1
     fmuls	f1, f2, f0
-    bl      fn_8006D0B4
+    bl      sqrtf
     fmuls	f31, f31, f1
     lfs	f0, -0x7a68(r2)
     fmuls	f29, f29, f1
@@ -362,7 +362,7 @@ _8006ea88:
     stfs	f29, 4(r30)
     fmuls	f1, f2, f0
     stfs	f28, 8(r30)
-    bl      fn_8006D0B4
+    bl      sqrtf
     stfs	f1, 0xc(r30)
 _8006eb14:
     psq_l f31, 0x48(r1), 0, 0

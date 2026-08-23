@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_80083D6C(void);
+extern void strncpy(void);
 extern void fn_80083CF4(void);
 extern void fn_800595FC(void);
 extern void fn_80058EF4(void);
@@ -50,7 +50,7 @@ asm void fn_80047464(void)
     mr	r30, r4
     mr	r4, r3
     addi	r3, r31, 0x28
-    bl      fn_80083D6C
+    bl      strncpy
     mr	r4, r30
     addi	r3, r31, 0x28
     li	r5, 0xff
@@ -86,7 +86,7 @@ asm void fn_800474E4(void)
     addi	r31, r4, lbl_8017B030@l
     mr	r4, r3
     addi	r3, r31, 0x28
-    bl      fn_80083D6C
+    bl      strncpy
     lwz	r12, 0(r31)
     cmplwi	r12, 0
     beq     _80047528

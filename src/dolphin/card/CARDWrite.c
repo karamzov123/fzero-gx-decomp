@@ -17,7 +17,7 @@ extern s32 __CARDGetDirBlock(void);
 extern s32 __CARDEraseSector(register s32 chn, register s32 addr, register void* callback);
 extern s32 __CARDWrite(register s32 chn, register s32 addr, register s32 len,
                        register void* buf, register void* callback);
-extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
+extern s32 __CARDAccess(register void* ctrl, register void* ent);
 extern s32 __CARDSeek(register void* fileInfo, register s32 length, register s32 offset,
                        register void** pcard);
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
@@ -227,7 +227,7 @@ _L_8002f840:
     slwi    r0, r0, 6
     add     r4, r3, r0
     lwz     r3, 0x1c(r1)
-    bl      fn_8002E9BC
+    bl      __CARDAccess
     or.     r4, r3, r3
     bge     _L_8002f86c
     lwz     r3, 0x1c(r1)

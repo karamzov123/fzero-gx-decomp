@@ -4,7 +4,7 @@ typedef unsigned int u32;
 extern s32 OSDisableInterrupts(void);
 extern s32 OSRestoreInterrupts(s32 level);
 extern void OSReport(const char*, ...);
-extern void fn_8000C49C(void);
+extern void OSPanic(void);
 extern void* fn_8001A814(register s32 mode);
 extern unsigned char lbl_801241C8[500];
 extern unsigned char lbl_8015CF68[240];
@@ -419,7 +419,7 @@ _8001b560:
     addi r5, r15, 0x368
     addi r3, r13, -0x7f1c
     li r4, 0x75c
-    bl fn_8000C49C
+    bl OSPanic
 _8001b57c:
     cmplwi r17, 0
     beq _8001b58c

@@ -21,9 +21,9 @@ extern void fn_80051958(void);
 extern void fn_80053A30(void);
 extern void fn_80053F38(void);
 extern void fn_800589BC(void);
-extern void fn_8008069C(void);
+extern void sprintf(void);
 extern void fn_80083B8C(void);
-extern void fn_80083DB0(void);
+extern void strcpy(void);
 extern void memcpy(void);
 extern void memset(void);
 extern void strlen(void);
@@ -1327,13 +1327,13 @@ _80054f7c:
     bne     _80054fa8
     addi	r3, r31, 0xc
     addi	r4, r1, 8
-    bl      fn_80083DB0
+    bl      strcpy
     mr	r5, r23
     addi	r3, r1, 8
     addi	r4, r29, 0x34
     addi	r6, r31, 0xc
     crxor	6, 6, 6
-    bl      fn_8008069C
+    bl      sprintf
 _80054fa8:
     mr	r3, r27
     bl      strlen
@@ -1404,7 +1404,7 @@ _80055080:
 _80055090:
     mr	r4, r28
     addi	r3, r1, 8
-    bl      fn_80083DB0
+    bl      strcpy
 _8005509c:
     addic.	r0, r1, 0x134
     stw	r23, 0(r30)
