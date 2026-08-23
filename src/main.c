@@ -1,4 +1,5 @@
 extern void DVDInit(void);
+extern void GXBegin(void);
 extern void OSGetArenaHi(void);
 extern void OSGetArenaLo(void);
 extern void OSGetProgressiveMode(void);
@@ -29,13 +30,19 @@ extern void fn_80006B30(void);
 extern void fn_800071B8(void);
 extern void fn_80007A44(void);
 extern void fn_8000B360(void);
+extern void fn_80015EE8(void);
 extern void fn_80017160(void);
 extern void fn_80017228(void);
 extern void fn_8001AAB4(void);
 extern void fn_8001CD68(void);
 extern void fn_8001DBC8(void);
+extern void fn_80035C50(void);
+extern void fn_80036544(void);
+extern void fn_800371F8(void);
 extern void fn_80037518(void);
+extern void fn_800377F8(void);
 extern void fn_80037D40(void);
+extern void fn_80038C5C(void);
 extern void fn_8006B188(void);
 extern void fn_8006CCC8(void);
 extern void fn_8006CD40(void);
@@ -55,10 +62,31 @@ extern void fn_8007075C(void);
 extern void fn_80070774(void);
 extern void fn_80070AC0(void);
 extern void fn_800721FC(void);
+extern void fn_800723F8(void);
+extern void fn_8007245C(void);
+extern void fn_80072864(void);
 extern void fn_800728A8(void);
+extern void fn_80072AB0(void);
 extern void fn_80072BD0(void);
+extern void fn_80072C24(void);
+extern void fn_80072CC4(void);
+extern void fn_80072D64(void);
+extern void fn_80072E20(void);
+extern void fn_80072EDC(void);
+extern void fn_800734A8(void);
+extern void fn_80073678(void);
+extern void fn_80073778(void);
+extern void fn_800737E4(void);
+extern void fn_80073898(void);
+extern void fn_80073C6C(void);
+extern void fn_800745A4(void);
+extern void fn_80074660(void);
+extern void fn_80074788(void);
+extern void fn_800747D0(void);
+extern void fn_80074918(void);
 extern void fn_800791A4(void);
 extern void fn_800793D4(void);
+extern void lbl_8006D758(void);
 extern void main(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -436,6 +464,223 @@ _80005a90:
     lwz	r28, 0x10(r1)
     mtlr	r0
     addi	r1, r1, 0x20
+    blr	
+}
+
+asm void fn_80005AD0(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    li	r5, 0x280
+    li	r6, 0x1e0
+    stw	r0, 0x14(r1)
+    li	r7, 0xe
+    li	r8, 0
+    li	r9, 0
+    lwz	r4, -0x7ff0(r13)
+    li	r10, 0
+    bl      fn_80035C50
+    bl      fn_80036544
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80005B10(void)
+{
+    nofralloc
+    stwu	r1, -0x70(r1)
+    mflr	r0
+    stw	r0, 0x74(r1)
+    stw	r31, 0x6c(r1)
+    mr	r31, r3
+    lwz	r0, -0x7fe8(r2)
+    stw	r0, 0x18(r1)
+    bl      fn_800723F8
+    li	r3, 0x2200
+    bl      fn_8007245C
+    bl      fn_800723F8
+    li	r3, 0
+    bl      fn_80074788
+    li	r3, 1
+    bl      fn_80074660
+    li	r3, 1
+    bl      fn_80073678
+    li	r3, 0
+    bl      fn_80073898
+    li	r3, 0
+    bl      fn_80073C6C
+    li	r3, 0
+    li	r4, 0
+    bl      fn_80072EDC
+    li	r3, 0
+    li	r4, 1
+    li	r5, 4
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl      fn_800745A4
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0xff
+    bl      fn_800734A8
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    bl      fn_80072AB0
+    li	r3, 0
+    li	r4, 0xf
+    li	r5, 2
+    li	r6, 8
+    li	r7, 4
+    bl      fn_80072C24
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0
+    li	r7, 1
+    li	r8, 0
+    bl      fn_80072D64
+    li	r3, 0
+    li	r4, 7
+    li	r5, 1
+    li	r6, 4
+    li	r7, 2
+    bl      fn_80072CC4
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0
+    li	r7, 1
+    li	r8, 0
+    bl      fn_80072E20
+    li	r3, 4
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0
+    li	r7, 0
+    li	r8, 2
+    li	r9, 2
+    bl      fn_800747D0
+    lwz	r0, 0x18(r1)
+    addi	r4, r1, 0x14
+    li	r3, 1
+    stw	r0, 0x14(r1)
+    bl      fn_800371F8
+    li	r3, 1
+    li	r4, 1
+    li	r5, 1
+    bl      fn_80074918
+    li	r3, 1
+    li	r4, 4
+    li	r5, 5
+    li	r6, 0
+    bl      fn_800728A8
+    lfs	f1, -0x7fe4(r2)
+    addi	r4, r1, 0x10
+    lfs	f2, -0x7fe0(r2)
+    li	r3, 0
+    lwz	r0, -0x7538(r2)
+    fmr	f3, f1
+    fmr	f4, f2
+    stw	r0, 0x10(r1)
+    bl      fn_800377F8
+    li	r3, 2
+    bl      fn_80072864
+    bl      lbl_8006D758
+    lwz	r3, -0x76c0(r13)
+    li	r4, 0
+    bl      fn_80038C5C
+    lfs	f1, -0x7fe4(r2)
+    addi	r3, r1, 0x1c
+    lfs	f2, -0x7fdc(r2)
+    fmr	f3, f1
+    lfs	f4, -0x7fd8(r2)
+    fmr	f5, f1
+    lfs	f6, -0x7fd4(r2)
+    bl      fn_80015EE8
+    addi	r3, r1, 0x1c
+    li	r4, 1
+    bl      fn_800737E4
+    li	r0, 0xff
+    addi	r4, r1, 0xc
+    stb	r0, 0x18(r1)
+    li	r3, 1
+    stb	r0, 0x19(r1)
+    stb	r0, 0x1a(r1)
+    stb	r0, 0x1b(r1)
+    lwz	r0, 0x18(r1)
+    stw	r0, 0xc(r1)
+    bl      fn_800371F8
+    li	r0, 0
+    addi	r4, r1, 8
+    stb	r0, 0x18(r1)
+    li	r3, 2
+    stb	r0, 0x19(r1)
+    stb	r0, 0x1a(r1)
+    stb	r0, 0x1b(r1)
+    lwz	r0, 0x18(r1)
+    stw	r0, 8(r1)
+    bl      fn_800371F8
+    mr	r3, r31
+    li	r4, 0
+    bl      fn_80073778
+    li	r3, 0x80
+    li	r4, 7
+    li	r5, 4
+    bl      GXBegin
+    lfs	f3, -0x7fd0(r2)
+    lis	r3, -0x33ff
+    lfd	f2, -0x7fc8(r2)
+    lfs	f1, -0x7fc0(r2)
+    lfd	f0, -0x7fb8(r2)
+    fsub	f4, f3, f2
+    fadd	f5, f2, f3
+    fsub	f2, f1, f0
+    frsp	f4, f4
+    fadd	f0, f0, f1
+    frsp	f3, f2
+    stfs	f4, -0x8000(r3)
+    frsp	f2, f5
+    frsp	f1, f0
+    stfs	f3, -0x8000(r3)
+    lfs	f0, -0x7fb0(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7fe4(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7fe4(r2)
+    stfs	f0, -0x8000(r3)
+    stfs	f2, -0x8000(r3)
+    stfs	f3, -0x8000(r3)
+    lfs	f0, -0x7fb0(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7fac(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7fe4(r2)
+    stfs	f0, -0x8000(r3)
+    stfs	f2, -0x8000(r3)
+    stfs	f1, -0x8000(r3)
+    lfs	f0, -0x7fb0(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7fac(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7fac(r2)
+    stfs	f0, -0x8000(r3)
+    stfs	f4, -0x8000(r3)
+    stfs	f1, -0x8000(r3)
+    lfs	f0, -0x7fb0(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7fe4(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7fac(r2)
+    stfs	f0, -0x8000(r3)
+    lwz	r31, 0x6c(r1)
+    lwz	r0, 0x74(r1)
+    mtlr	r0
+    addi	r1, r1, 0x70
     blr	
 }
 
