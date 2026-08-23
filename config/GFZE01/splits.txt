@@ -216,7 +216,10 @@ dolphin/vi/viregs.c:
 	.text       start:0x8001BE6C end:0x8001C01C
 
 coarse/text_8001C01C.c:
-	.text       start:0x8001C01C end:0x8001DFCC
+	.text       start:0x8001C01C end:0x8001DF00
+
+dolphin/pad/padmisc.c:
+	.text       start:0x8001DF00 end:0x8001DFCC
 
 dolphin/ai/airegs.c:
 	.text       start:0x8001DFCC end:0x8001DFFC
