@@ -21,13 +21,13 @@ extern void fn_8002E0C4(void);
 extern void fn_8002E170(void);
 extern void fn_8002E2B4(void);
 extern void fn_8002E90C(void);
-extern void fn_8002E954(void);
+extern void __CARDCompareFileName(void);
 extern void fn_8002E9BC(void);
 extern void fn_8002EA54(void);
-extern void fn_8002EA84(void);
-extern void fn_8002EBD4(void);
-extern void fn_8002ED4C(void);
-extern void fn_8002EDA8(void);
+extern void __CARDGetFileNo(void);
+extern void CARDOpen(void);
+extern void CARDClose(void);
+extern void CreateCallbackFat(void);
 extern void fn_8002EED8(void);
 extern void DCInvalidateRange(void);
 extern void DCStoreRange(void);
@@ -2422,7 +2422,7 @@ asm void fn_8002E90C(void)
     blr	
 }
 
-asm void fn_8002E954(void)
+asm void __CARDCompareFileName(void)
 {
     nofralloc
     addi	r5, r3, 8
@@ -2523,7 +2523,7 @@ _8002ea7c:
     blr	
 }
 
-asm void fn_8002EA84(void)
+asm void __CARDGetFileNo(void)
 {
     nofralloc
     mflr	r0
@@ -2625,7 +2625,7 @@ _8002ebc0:
     blr	
 }
 
-asm void fn_8002EBD4(void)
+asm void CARDOpen(void)
 {
     nofralloc
     mflr	r0
@@ -2689,7 +2689,7 @@ _8002ec9c:
     blt     _8002ecc4
     addi	r3, r23, 0
     addi	r4, r28, 0
-    bl      fn_8002E954
+    bl      __CARDCompareFileName
     cmpwi	r3, 0
     beq     _8002ecc4
     addi	r30, r25, 0
@@ -2737,7 +2737,7 @@ _8002ed38:
     blr	
 }
 
-asm void fn_8002ED4C(void)
+asm void CARDClose(void)
 {
     nofralloc
     mflr	r0
@@ -2772,7 +2772,7 @@ asm void fn_8002EDA0(void)
     blr	
 }
 
-asm void fn_8002EDA8(void)
+asm void CreateCallbackFat(void)
 {
     nofralloc
     mflr	r0

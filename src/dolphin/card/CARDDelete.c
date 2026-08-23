@@ -15,7 +15,7 @@ extern s32 __CARDFreeBlock(register s32 chn, register u16 nBlock, register void*
 extern s32 __CARDGetDirBlock(void);
 extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
 extern s32 fn_8002EDA0(register void* ctrl, register s32 fileNo);
-extern s32 fn_8002EA84(register void* ctrl, register void* fileName, register void* pfileNo);
+extern s32 __CARDGetFileNo(register void* ctrl, register void* fileName, register void* pfileNo);
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern void* memset(register void* dst, register int val, register u32 n);
@@ -181,7 +181,7 @@ _L_8002fb3c:
     lwz     r3, 0x18(r1)
     addi    r4, r29, 0
     addi    r5, r1, 0x14
-    bl      fn_8002EA84
+    bl      __CARDGetFileNo
     or.     r4, r3, r3
     bge     _L_8002fb60
     lwz     r3, 0x18(r1)

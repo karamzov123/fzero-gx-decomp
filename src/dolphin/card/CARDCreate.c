@@ -16,7 +16,7 @@ extern void __CARDPutControlBlock(register void* ctrl, register s32 err);       
 extern void* __CARDGetDirBlock(void);                                          // __CARDGetFatBlock
 extern void fn_8002C0B8(register void* card);                            // __CARDGetDirBlock
 extern s32 __CARDAllocBlock(register s32 chn, register u16 nBlock, register void* callback); // __CARDAllocBlock
-extern s32 fn_8002E954(register void* ent, register char* fileName);     // __CARDCompareFileName
+extern s32 __CARDCompareFileName(register void* ent, register char* fileName);     // __CARDCompareFileName
 extern s32 __CARDSync(register s32 chn);                                // __CARDSync
 extern s32 fn_8008023C(register void* a, register void* b, register u32 n); // memcmp
 extern void fn_80083D6C(register void* dst, register char* src, register u32 n); // strncpy
@@ -98,7 +98,7 @@ _L_8002ef90:
     bne     _L_8002eff0
     addi    r3, r24, 0
     addi    r4, r26, 0
-    bl      fn_8002E954
+    bl      __CARDCompareFileName
     cmpwi   r3, 0
     beq     _L_8002eff0
     lwz     r3, 0x1c(r1)
