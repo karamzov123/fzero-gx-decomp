@@ -1,7 +1,7 @@
 // MSL default-heap malloc/free pair ("GCN_Mem_Alloc.c : InitDefaultHeap").
-// Lazy-init the OS heap arena on first use (flag lbl_801A6410 == -1), then
+// Lazy-init the OS heap arena on first use (flag g_currentHeapHandle == -1), then
 // delegate to OSAlloc/OSFree thunks.
-extern void* lbl_801A6410; // sdata init-flag, -1 until InitDefaultHeap
+extern void* g_currentHeapHandle; // sdata init-flag, -1 until InitDefaultHeap
 
 extern void OSReport(char* fmt, ...);
 extern unsigned long OSGetArenaLo(void);

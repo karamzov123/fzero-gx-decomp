@@ -3,7 +3,7 @@
 
 extern void fn_8004FF68(void);
 extern void fn_800501F4(void);
-extern void fn_80050670(void);
+extern void getCupModeConst(void);
 extern void ADXF_Stop(void);
 extern void fn_80050BD4(void);
 extern void fn_80053A30(void);
@@ -199,7 +199,7 @@ _80051210:
     bne     _80051230
     addi	r4, r29, 0x39c
     li	r3, 0
-    bl      fn_80050670
+    bl      getCupModeConst
     stw	r3, 0x394(r29)
     b       _80051238
 _80051230:

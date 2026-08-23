@@ -371,7 +371,7 @@ _80050654:
     blr	
 }
 
-asm void fn_80050670(void)
+asm void getCupModeConst(void)
 {
     nofralloc
     mulli	r7, r3, 0x3000

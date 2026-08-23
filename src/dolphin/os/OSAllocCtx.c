@@ -6,7 +6,7 @@ extern void *lbl_801A6738; /* ArenaEnd */
 extern void *lbl_801A673C; /* ArenaStart */
 extern void *gAssetBudgetB; /* HeapArray */
 extern int lbl_801A6740;   /* NumHeaps */
-extern int lbl_801A6410;   /* __OSCurrHeap */
+extern int g_currentHeapHandle;   /* __OSCurrHeap */
 extern unsigned char lbl_8015BE40[160];
 extern unsigned char lbl_8015BEE0[32];
 
@@ -71,7 +71,7 @@ asm void OSHeapLockAcquire(void)
     mulli   r0, r0, 0x14
     lis     r3, lbl_8015BE40@ha
     lis     r4, lbl_8015BEE0@ha
-    lwz     r31, -0x7FB0(r13)  /* lbl_801A6410 */
+    lwz     r31, -0x7FB0(r13)  /* g_currentHeapHandle */
     addi    r3, r3, lbl_8015BE40@l
     lwz     r11, -0x7C7C(r13)  /* gAssetBudgetB */
     add     r6, r3, r0
@@ -108,7 +108,7 @@ asm void OSHeapLockRelease(void)
     beqlr
     mulli   r6, r0, 0x14
     lis     r4, lbl_8015BE40@ha
-    lwz     r5, -0x7FB0(r13)   /* lbl_801A6410 */
+    lwz     r5, -0x7FB0(r13)   /* g_currentHeapHandle */
     lis     r3, lbl_8015BEE0@ha
     addi    r4, r4, lbl_8015BE40@l
     lwz     r0, -0x7C7C(r13)   /* gAssetBudgetB */
