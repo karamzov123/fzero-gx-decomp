@@ -18,7 +18,7 @@ extern s32 __CARDEraseSector(register s32 chn, register s32 addr, register void*
 extern s32 __CARDWrite(register s32 chn, register s32 addr, register s32 len,
                        register void* buf, register void* callback);
 extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
-extern s32 fn_8002F140(register void* fileInfo, register s32 length, register s32 offset,
+extern s32 __CARDSeek(register void* fileInfo, register s32 length, register s32 offset,
                        register void** pcard);
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
@@ -200,7 +200,7 @@ asm s32 CARDWriteAsync(register void* fileInfo, register void* buf, register s32
     addi    r4, r27, 0
     addi    r5, r28, 0
     addi    r6, r1, 0x1c
-    bl      fn_8002F140
+    bl      __CARDSeek
     cmpwi   r3, 0
     bge     _L_8002f818
     b       _L_8002f8d8

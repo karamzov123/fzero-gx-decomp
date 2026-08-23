@@ -1,7 +1,7 @@
 // dolphin/card/CARDRead.c -- carved from coarse/text_8002F140 (0x8002F140-0x8002F5B8).
 // Retail layout: CARD control blocks at .bss:0x80177960 (2 x 0x110 bytes).
 // All accesses use absolute-addressed asm bodies to match retail addressing.
-// Probable melee identities: fn_8002F140 = __CARDReadSegment-ish read core,
+// Probable melee identities: __CARDSeek = __CARDReadSegment-ish read core,
 // fn_8002F2F8 = __CARDSeek, fn_8002F428 = __CARDRead internal, fn_8002F570 =
 // CARDRead wrapper.
 
@@ -31,7 +31,7 @@ extern void __CARDSyncCallback(register s32 chn);
 #pragma push
 #pragma force_active on
 
-asm s32 fn_8002F140(register void* r3, register void* r4, register void* r5, register void* r6)
+asm s32 __CARDSeek(register void* r3, register void* r4, register void* r5, register void* r6)
 {
     nofralloc
     mflr    r0
@@ -269,7 +269,7 @@ _L_8002f460:
     addi    r4, r31, 0
     addi    r5, r6, 0
     addi    r6, r1, 0x1c
-    bl      fn_8002F140
+    bl      __CARDSeek
     cmpwi   r3, 0
     bge     _L_8002f480
     b       _L_8002f55c
