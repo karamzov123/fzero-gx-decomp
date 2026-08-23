@@ -1,0 +1,121 @@
+#pragma push
+#pragma force_active on
+
+extern asm void fn_80074918(void);
+extern asm void fn_80037518(void);
+extern asm void fn_80072BD0(void);
+extern asm void GXGetCPUFifo(void);
+extern asm void GXSetCPUFifo(void);
+extern asm void GXGetGPStatus(void);
+extern asm void fn_80032F48(void);
+extern asm void fn_800723F8(void);
+extern asm void fn_800726C0(void);
+
+asm void fn_8007001C(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    li	r3, 1
+    li	r4, 3
+    stw	r0, 0x14(r1)
+    li	r5, 1
+    bl      fn_80074918
+    li	r3, 7
+    li	r4, 0
+    li	r5, 0
+    li	r6, 7
+    li	r7, 0
+    bl      fn_80037518
+    li	r3, 1
+    bl      fn_80072BD0
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80070068(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+    bl      GXGetCPUFifo
+    lwz	r4, -0x7690(r13)
+    lwz	r0, 0x14(r4)
+    cmplw	r3, r0
+    beq	_80070098
+    mr	r3, r0
+    bl      GXSetCPUFifo
+    li	r3, 1
+    b	_800700a4
+_80070098:
+    lwz	r3, 0x18(r4)
+    bl      GXSetCPUFifo
+    li	r3, 0
+_800700a4:
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_800700B4(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+_800700c0:
+    addi	r3, r1, 0xb
+    addi	r5, r1, 0xa
+    mr	r4, r3
+    addi	r6, r1, 9
+    addi	r7, r1, 8
+    bl      GXGetGPStatus
+    lbz	r0, 0xa(r1)
+    cmplwi	r0, 1
+    bne	_800700c0
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_800700F4(void)
+{
+    nofralloc
+    li	r0, 1
+    stb	r0, -0x770c(r13)
+    blr	
+}
+
+asm void fn_80070100(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    lis	r3, -0x7fea
+    stw	r0, 0x14(r1)
+    stw	r31, 0xc(r1)
+    addi	r31, r3, -0x57a0
+    bl      fn_80032F48
+    bl      fn_800723F8
+    addi	r4, r31, 0
+    li	r3, 0
+    bl      fn_800726C0
+    addi	r4, r31, 0xc0
+    li	r3, 1
+    bl      fn_800726C0
+    addi	r4, r31, 0x180
+    li	r3, 7
+    bl      fn_800726C0
+    lwz	r0, 0x14(r1)
+    lwz	r31, 0xc(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+#pragma pop
