@@ -70,16 +70,16 @@ extern void fn_80008204(void);
 extern void fn_800087F4(void);
 extern void fn_80008A4C(void);
 extern void fn_80008DB4(void);
-extern void fn_80008E30(void);
+extern void OSAllocHead_nop_stub(void);
 extern void OSInitAlloc(void);
 extern void fn_80008F60(void);
 extern void fn_80008F88(void);
 extern void OSCreateHeap(void);
 extern void OSDestroyHeap(void);
 extern void fn_800090A4(void);
-extern void fn_80009468(void);
-extern void fn_8000951C(void);
-extern void fn_800095A4(void);
+extern void OSAllocTableInit(void);
+extern void OSHeapLockAcquire(void);
+extern void OSHeapLockRelease(void);
 extern void fn_8000B334(void);
 extern void fn_8000B360(void);
 extern void fn_8000C49C(void);
@@ -225,7 +225,7 @@ asm void fn_80008DB4(void)
     blr	
 }
 
-asm void fn_80008E30(void)
+asm void OSAllocHead_nop_stub(void)
 {
     nofralloc
     blr	
@@ -270,10 +270,10 @@ asm void OSSetCurrentHeap_thunk(void)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     mr	r30, r3
-    bl      fn_8000951C
+    bl      OSHeapLockAcquire
     lwz	r31, -0x7fb0(r13)
     stw	r30, -0x7fb0(r13)
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     lwz	r0, 0x14(r1)
     mr	r3, r31
     lwz	r31, 0xc(r1)
@@ -319,7 +319,7 @@ _80008f14:
     stw	r4, -0x7fb0(r13)
     rlwinm	r31, r0, 0, 0, 0x1a
     stw	r31, -0x7c84(r13)
-    bl      fn_80009468
+    bl      OSAllocTableInit
     lwz	r0, 0x14(r1)
     mr	r3, r31
     lwz	r31, 0xc(r1)
@@ -369,7 +369,7 @@ asm void OSCreateHeap(void)
     mr	r30, r4
     stw	r29, 0x14(r1)
     mr	r29, r3
-    bl      fn_8000951C
+    bl      OSHeapLockAcquire
     lwz	r3, -0x7c80(r13)
     addi	r0, r29, 0x1f
     rlwinm	r29, r0, 0, 0, 0x1a
@@ -392,7 +392,7 @@ _80008ff8:
     stw	r0, 8(r29)
     stw	r29, 4(r4)
     stw	r3, 8(r4)
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     mr	r3, r31
     b       _80009048
 _80009034:
@@ -400,7 +400,7 @@ _80009034:
     addi	r31, r31, 1
     bc      16, 0, _80008ff8
 _80009040:
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
 _80009048:
     lwz	r0, 0x24(r1)
@@ -420,12 +420,12 @@ asm void OSDestroyHeap(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_8000951C
+    bl      OSHeapLockAcquire
     mulli	r0, r31, 0xc
     lwz	r3, -0x7c7c(r13)
     li	r4, -1
     stwx	r4, r3, r0
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     mtlr	r0
@@ -447,7 +447,7 @@ asm void fn_800090A4(void)
     li	r31, 0
     li	r30, 0
     li	r29, 0
-    bl      fn_8000951C
+    bl      OSHeapLockAcquire
     lwz	r3, -0x7c7c(r13)
     cmplwi	r3, 0
     bc      4, 2, _800090fc
@@ -455,7 +455,7 @@ asm void fn_800090A4(void)
     li	r4, 0x350
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _800090fc:
@@ -469,7 +469,7 @@ _80009110:
     li	r4, 0x351
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _8000912c:
@@ -482,7 +482,7 @@ _8000912c:
     li	r4, 0x354
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _8000915c:
@@ -496,7 +496,7 @@ _8000915c:
     li	r4, 0x356
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _80009190:
@@ -514,7 +514,7 @@ _800091b0:
     li	r4, 0x359
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _800091cc:
@@ -524,7 +524,7 @@ _800091cc:
     li	r4, 0x35a
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _800091f0:
@@ -538,7 +538,7 @@ _800091f0:
     li	r4, 0x35b
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _80009224:
@@ -549,7 +549,7 @@ _80009224:
     li	r4, 0x35c
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _8000924c:
@@ -559,7 +559,7 @@ _8000924c:
     li	r4, 0x35d
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _80009270:
@@ -572,7 +572,7 @@ _80009280:
     li	r4, 0x360
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _8000929c:
@@ -590,7 +590,7 @@ _800092a0:
     li	r4, 0x368
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
     b       _80009418
@@ -604,7 +604,7 @@ _800092f0:
     li	r4, 0x36b
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _8000930c:
@@ -614,7 +614,7 @@ _8000930c:
     li	r4, 0x36c
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _80009330:
@@ -628,7 +628,7 @@ _80009330:
     li	r4, 0x36d
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _80009364:
@@ -639,7 +639,7 @@ _80009364:
     li	r4, 0x36e
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _8000938c:
@@ -649,7 +649,7 @@ _8000938c:
     li	r4, 0x36f
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _800093b0:
@@ -662,7 +662,7 @@ _800093b0:
     li	r4, 0x370
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _800093e0:
@@ -677,7 +677,7 @@ _800093f8:
     li	r4, 0x374
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _80009414:
@@ -692,11 +692,11 @@ _80009418:
     li	r4, 0x37c
     crxor	6, 6, 6
     bl      OSReport
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     li	r3, -1
     b       _80009450
 _80009448:
-    bl      fn_800095A4
+    bl      OSHeapLockRelease
     mr	r3, r29
 _80009450:
     addi	r11, r1, 0x20

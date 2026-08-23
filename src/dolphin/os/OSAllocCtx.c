@@ -10,7 +10,7 @@ extern int lbl_801A6410;   /* __OSCurrHeap */
 extern unsigned char lbl_8015BE40[160];
 extern unsigned char lbl_8015BEE0[32];
 
-asm void fn_80009468(void)
+asm void OSAllocTableInit(void)
 {
     nofralloc
     li      r3, -1
@@ -60,7 +60,7 @@ asm void fn_80009468(void)
     blr
 }
 
-asm void fn_8000951C(void)
+asm void OSHeapLockAcquire(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
@@ -100,7 +100,7 @@ swapdone:
     blr
 }
 
-asm void fn_800095A4(void)
+asm void OSHeapLockRelease(void)
 {
     nofralloc
     lwz     r0, -0x7C90(r13)   /* gAssetBudgetA */
