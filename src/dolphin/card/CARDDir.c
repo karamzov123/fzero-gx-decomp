@@ -3,6 +3,7 @@
 #pragma push
 #pragma force_active on
 
+extern unsigned char __CARDBlock[]; // .bss:0x80177960
 extern void fn_8002C8D0(void);
 extern void fn_8002CB54(void);
 extern void fn_8002CD94(void);
@@ -179,8 +180,8 @@ _8002ca30:
     lwz	r31, 0xc(r27)
     lwz	r28, 0x10(r27)
     bl      __OSLockSramEx
-    lis	r4, -0x7fe9
-    addi	r0, r4, 0x7960
+    lis     r4, __CARDBlock@ha
+    addi    r0, r4, __CARDBlock@l
     lis	r4, 0x7878
     subf	r0, r0, r26
     addi	r4, r4, 0x7879
@@ -1179,8 +1180,8 @@ _8002d7ac:
     b       _8002d8e4
 _8002d7c4:
     mulli	r4, r27, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r0, r3, __CARDBlock@l
     add	r30, r0, r4
     bl      OSDisableInterrupts
     addi	r29, r3, 0
@@ -1282,8 +1283,8 @@ asm void fn_8002D8F8(void)
     addi	r29, r3, 0
     mulli	r4, r29, 0x110
     stw	r28, 0x20(r1)
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r0, r3, __CARDBlock@l
     add	r3, r0, r4
     lwz	r0, 0x24(r3)
     addi	r31, r3, 0
@@ -1569,8 +1570,8 @@ asm void fn_8002DD08(void)
     stw	r28, 0x10(r1)
     addi	r28, r3, 0
     mulli	r5, r28, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r0, r3, __CARDBlock@l
     add	r31, r0, r5
     beq     _8002dde8
     bge     _8002dd54
@@ -1671,8 +1672,8 @@ _8002de74:
     b       _8002dfcc
 _8002de8c:
     mulli	r4, r30, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r0, r3, __CARDBlock@l
     add	r31, r0, r4
     bl      OSDisableInterrupts
     lwz	r0, 4(r31)
@@ -1802,8 +1803,8 @@ asm void fn_8002E028(void)
     stw	r28, 0x10(r1)
     addi	r28, r3, 0
     mulli	r5, r28, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r0, r3, __CARDBlock@l
     add	r31, r0, r5
     bl      OSDisableInterrupts
     lwz	r0, 0(r31)
@@ -1851,8 +1852,8 @@ asm void fn_8002E0C4(void)
     b       _8002e154
 _8002e0f4:
     mulli	r4, r29, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r0, r3, __CARDBlock@l
     add	r30, r0, r4
     bl      OSDisableInterrupts
     lwz	r0, 0(r30)
@@ -1894,11 +1895,11 @@ asm void fn_8002E170(void)
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
     addi	r30, r3, 0
-    lis	r3, -0x7fe9
+    lis     r3, __CARDBlock@ha
     stw	r29, 0x14(r1)
     mulli	r5, r30, 0x110
     stw	r28, 0x10(r1)
-    addi	r0, r3, 0x7960
+    addi    r0, r0, __CARDBlock@l
     or.	r28, r4, r4
     add	r31, r0, r5
     blt     _8002e268
@@ -2782,9 +2783,9 @@ asm void CreateCallbackFat(void)
     stwu	r1, -0x28(r1)
     stmw	r27, 0x14(r1)
     addi	r28, r3, 0
-    lis	r3, -0x7fe9
+    lis     r3, __CARDBlock@ha
     mulli	r5, r28, 0x110
-    addi	r0, r3, 0x7960
+    addi    r0, r0, __CARDBlock@l
     add	r31, r0, r5
     lwz	r29, 0xd0(r31)
     li	r27, 0
