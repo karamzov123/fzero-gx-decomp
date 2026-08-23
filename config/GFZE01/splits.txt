@@ -507,7 +507,13 @@ dolphin/msl/string.c:
 	.text       start:0x80083D40 end:0x80083E84
 
 coarse/text_80083E84.c:
-	.text       start:0x80083E84 end:0x8008CB20
+	.text       start:0x80083E84 end:0x80088600
+
+dolphin/msl/math_80088600.c:
+	.text       start:0x80088600 end:0x80088648
+
+coarse/text_80088648.c:
+	.text       start:0x80088648 end:0x8008CB20
 
 coarse/text_8008CB20.c:
 	.text       start:0x8008CB20 end:0x8008FEE4

@@ -436,6 +436,7 @@ config.libs = [
             Object(Matching, "dolphin/msl/multibyte.c"),
             Object(Matching, "dolphin/msl/mem.c"),
             Object(Matching, "dolphin/msl/string.c"),
+            Object(Matching, "dolphin/msl/math_80088600.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
