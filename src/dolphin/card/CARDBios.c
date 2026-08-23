@@ -34,6 +34,10 @@ extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void OSSetAlarm(void);
 extern void OSWakeupThread(void);
+extern void TimeoutHandler(void);
+extern unsigned char __CARDBlock[544];
+extern void __CARDTxHandler(void);
+extern void fn_80029AF4(void);
 
 asm void __CARDSyncCallback(void)
 {
@@ -41,9 +45,9 @@ asm void __CARDSyncCallback(void)
     mflr	r0
     mulli	r4, r3, 0x110
     stw	r0, 4(r1)
-    lis	r3, -0x7fe9
+    lis     r3, __CARDBlock@ha
     stwu	r1, -8(r1)
-    addi	r0, r3, 0x7960
+    addi	r0, r3, __CARDBlock@l
     add	r3, r0, r4
     addi	r3, r3, 0x8c
     bl      OSWakeupThread
@@ -64,8 +68,8 @@ asm void __CARDExtHandler(void)
     stw	r29, 0x14(r1)
     addi	r29, r3, 0
     mulli	r4, r29, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi	r0, r3, __CARDBlock@l
     add	r30, r0, r4
     lwz	r0, 0(r30)
     cmpwi	r0, 0
@@ -125,9 +129,9 @@ asm void __CARDExiHandler(void)
     addi	r31, r3, 0
     mulli	r4, r31, 0x110
     stw	r30, 0x20(r1)
-    lis	r3, -0x7fe9
+    lis     r3, __CARDBlock@ha
     stw	r29, 0x1c(r1)
-    addi	r0, r3, 0x7960
+    addi	r0, r3, __CARDBlock@l
     add	r30, r0, r4
     addi	r3, r30, 0xe0
     bl      OSCancelAlarm
@@ -204,8 +208,8 @@ asm void __CARDTxHandler(void)
     stwu	r1, -0x28(r1)
     stmw	r27, 0x14(r1)
     addi	r27, r3, 0
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi	r0, r3, __CARDBlock@l
     mulli	r4, r27, 0x110
     addi	r3, r27, 0
     add	r29, r0, r4
@@ -257,8 +261,8 @@ asm void fn_80029AF4(void)
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
     mulli	r4, r30, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi	r0, r3, __CARDBlock@l
     add	r3, r0, r4
     lwz	r0, 0xdc(r3)
     cmplwi	r0, 0
@@ -469,9 +473,9 @@ asm void TimeoutHandler(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fe9
+    lis     r4, __CARDBlock@ha
     stw	r0, 4(r1)
-    addi	r4, r4, 0x7960
+    addi	r4, r4, __CARDBlock@l
     addi	r0, r4, 0xe0
     stwu	r1, -0x18(r1)
     cmplw	r3, r0
@@ -524,8 +528,8 @@ asm void fn_80029E78(void)
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
     mulli	r4, r30, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi	r0, r3, __CARDBlock@l
     add	r31, r0, r4
     addi	r3, r30, 0
     li	r4, 0
@@ -555,13 +559,13 @@ _80029efc:
     lis	r3, -0x8000
     lwz	r0, 0xf8(r3)
     lis	r4, 0x1062
-    lis	r3, -0x7ffd
+    lis     r3, TimeoutHandler@ha
     srwi	r0, r0, 2
     addi	r4, r4, 0x4dd3
     mulhwu	r0, r4, r0
     srwi	r0, r0, 6
     mulli	r6, r0, 0x64
-    addi	r7, r3, -0x622c
+    addi	r7, r3, TimeoutHandler@l
     addi	r3, r31, 0xe0
     li	r5, 0
     bl      OSSetAlarm
@@ -644,9 +648,9 @@ _8002a038:
 _8002a04c:
     li	r5, 0x80
 _8002a050:
-    lis	r3, -0x7ffd
+    lis     r3, __CARDTxHandler@ha
     lwz	r4, 0xb4(r31)
-    addi	r7, r3, -0x65b4
+    addi	r7, r3, __CARDTxHandler@l
     lwz	r6, 0xa4(r31)
     mr	r3, r30
     bl      EXIDma
@@ -680,15 +684,15 @@ asm void fn_8002A0A4(void)
     addi	r31, r3, 0
     mulli	r5, r31, 0x110
     stw	r30, 0x10(r1)
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi	r0, r3, __CARDBlock@l
     add	r30, r0, r5
     blt     _8002a118
-    lis	r3, -0x7ffd
-    addi	r0, r3, -0x5f5c
-    lis	r3, -0x7ffd
+    lis     r3, fn_8002A0A4@ha
+    addi	r0, r3, fn_8002A0A4@l
+    lis     r3, fn_80029AF4@ha
     stw	r0, 0xdc(r30)
-    addi	r5, r3, -0x650c
+    addi	r5, r3, fn_80029AF4@l
     addi	r3, r31, 0
     li	r4, 0
     bl      EXILock
@@ -760,8 +764,8 @@ asm void __CARDStart(void)
     addi	r29, r5, 0
     bl      OSDisableInterrupts
     mulli	r5, r27, 0x110
-    lis	r4, -0x7fe9
-    addi	r0, r4, 0x7960
+    lis     r4, __CARDBlock@ha
+    addi	r0, r4, __CARDBlock@l
     add	r31, r0, r5
     lwz	r0, 0(r31)
     addi	r30, r3, 0
@@ -778,11 +782,11 @@ _8002a208:
     beq     _8002a214
     stw	r29, 0xcc(r31)
 _8002a214:
-    lis	r3, -0x7ffd
-    addi	r0, r3, -0x5f5c
-    lis	r3, -0x7ffd
+    lis     r3, fn_8002A0A4@ha
+    addi	r0, r3, fn_8002A0A4@l
+    lis     r3, fn_80029AF4@ha
     stw	r0, 0xdc(r31)
-    addi	r5, r3, -0x650c
+    addi	r5, r3, fn_80029AF4@l
     addi	r3, r27, 0
     li	r4, 0
     bl      EXILock
@@ -822,13 +826,13 @@ _8002a2a8:
     lis	r3, -0x8000
     lwz	r0, 0xf8(r3)
     lis	r4, 0x1062
-    lis	r3, -0x7ffd
+    lis     r3, TimeoutHandler@ha
     srwi	r0, r0, 2
     addi	r4, r4, 0x4dd3
     mulhwu	r0, r4, r0
     srwi	r0, r0, 6
     mulli	r6, r0, 0x64
-    addi	r7, r3, -0x622c
+    addi	r7, r3, TimeoutHandler@l
     addi	r3, r31, 0xe0
     li	r5, 0
     bl      OSSetAlarm
@@ -883,8 +887,8 @@ asm void __CARDReadSegment(void)
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
     mulli	r5, r30, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi	r0, r3, __CARDBlock@l
     add	r31, r0, r5
     li	r0, 0x52
     stb	r0, 0x94(r31)
@@ -929,9 +933,9 @@ _8002a3f8:
     bl      EXIImmEx
     cmpwi	r3, 0
     beq     _8002a460
-    lis	r3, -0x7ffd
+    lis     r3, __CARDTxHandler@ha
     lwz	r4, 0xb4(r31)
-    addi	r7, r3, -0x65b4
+    addi	r7, r3, __CARDTxHandler@l
     lwz	r6, 0xa4(r31)
     addi	r3, r30, 0
     li	r5, 0x200
@@ -970,8 +974,8 @@ asm void __CARDWritePage(void)
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
     mulli	r5, r30, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi	r0, r3, __CARDBlock@l
     add	r31, r0, r5
     li	r0, 0xf2
     stb	r0, 0x94(r31)
@@ -1009,9 +1013,9 @@ _8002a534:
     bl      EXIImmEx
     cmpwi	r3, 0
     beq     _8002a57c
-    lis	r3, -0x7ffd
+    lis     r3, __CARDTxHandler@ha
     lwz	r4, 0xb4(r31)
-    addi	r7, r3, -0x65b4
+    addi	r7, r3, __CARDTxHandler@l
     lwz	r6, 0xa4(r31)
     addi	r3, r30, 0
     li	r5, 0x80
@@ -1049,8 +1053,8 @@ asm void __CARDEraseSector(void)
     stw	r29, 0x1c(r1)
     addi	r29, r3, 0
     mulli	r6, r29, 0x110
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi	r0, r3, __CARDBlock@l
     add	r31, r0, r6
     li	r0, 0xf1
     stb	r0, 0x94(r31)
