@@ -130,11 +130,11 @@ asm void fn_8005FCD8(void);
 asm void SndDispatchCommand(void);
 asm void fn_8006060C(void);
 asm void fn_80060724(void);
-asm void fn_80060950(void);
+asm void SndCalcVoiceEnvelope(void);
 asm void fn_80060BDC(void);
 asm void fn_80060C54(void);
 asm void fn_800622B0(void);
-asm void fn_80062360(void);
+asm void SndStartVoice(void);
 asm void fn_80062654(void);
 asm void fn_80063094(void);
 asm void fn_800631EC(void);
@@ -5226,7 +5226,7 @@ _8006093c:
     blr
 }
 
-asm void fn_80060950(void)
+asm void SndCalcVoiceEnvelope(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -5580,7 +5580,7 @@ _80060e1c:
     mr	r5, r17
     addi	r6, r1, 0x1c
     addi	r7, r1, 8
-    bl      fn_80060950
+    bl      SndCalcVoiceEnvelope
     lbz	r0, 0x3b(r25)
     mr	r19, r3
     cmplwi	r0, 1
@@ -6689,7 +6689,7 @@ _80061e5c:
     mr	r5, r17
     addi	r6, r1, 0x1c
     addi	r7, r1, 8
-    bl      fn_80060950
+    bl      SndCalcVoiceEnvelope
     addi	r5, r16, 0xc
     lbz	r4, 4(r16)
     lbz	r0, 0x11(r16)
@@ -7030,7 +7030,7 @@ _80062340:
     blr
 }
 
-asm void fn_80062360(void)
+asm void SndStartVoice(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
@@ -7313,7 +7313,7 @@ _80062718:
 _80062738:
     mr	r3, r31
     mr	r4, r29
-    bl      fn_80062360
+    bl      SndStartVoice
     b       _80063080
 _80062748:
     mulli	r5, r31, 0x54
