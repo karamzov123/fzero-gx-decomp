@@ -73,7 +73,7 @@ extern unsigned char jumptable_8015B7C0[108];
 extern unsigned char jumptable_8015B830[28];
 extern unsigned char jumptable_8015B84C[28];
 extern unsigned char lbl_80095678[37];
-extern unsigned char lbl_800956A0[29];
+extern unsigned char str_NoBufferAvailable[29];
 extern unsigned char lbl_800956C0[400];
 extern unsigned char lbl_80095850[25];
 extern unsigned char lbl_8009586C[29];
@@ -718,8 +718,8 @@ _800892d8:
     bc      12, 0, _80089270
     cmpwi	r30, 0x300
     bc      4, 2, _800892f4
-    lis     r3, lbl_800956A0@ha
-    addi	r3, r3, lbl_800956A0@l
+    lis     r3, str_NoBufferAvailable@ha
+    addi	r3, r3, str_NoBufferAvailable@l
     bl      fn_8008963C
 _800892f4:
     mr	r3, r30
