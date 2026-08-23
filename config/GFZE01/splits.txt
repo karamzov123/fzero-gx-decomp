@@ -209,13 +209,13 @@ dolphin/dvd/fstload.c:
 dolphin/vi/vifuncs.c:
 	.text       start:0x8001A78C end:0x8001A8B4
 
-dolphin/vi/vi_8001A8B4.c:
+coarse/text_8001A8B4.c:
 	.text       start:0x8001A8B4 end:0x8001AF64
 
 dolphin/vi/viwait.c:
 	.text       start:0x8001AF64 end:0x8001AFB8
 
-dolphin/vi/vi_8001AFB8.c:
+coarse/text_8001AFB8.c:
 	.text       start:0x8001AFB8 end:0x8001BC54
 
 dolphin/vi/viretrace.c:
@@ -224,7 +224,7 @@ dolphin/vi/viretrace.c:
 dolphin/vi/viregs.c:
 	.text       start:0x8001BE6C end:0x8001C01C
 
-dolphin/pad/pad_8001C01C.c:
+coarse/text_8001C01C.c:
 	.text       start:0x8001C01C end:0x8001DF00
 
 dolphin/pad/padmisc.c:
@@ -440,11 +440,8 @@ game/adxt_8005BC20.c:
 game/gamehead_8005C120.c:
 	.text       start:0x8005C120 end:0x80069AE0
 
-dolphin/mtx/MTXHead.c:
-	.text       start:0x80069AE0 end:0x8006CFF8
-
-coarse/text_8006CFF8.c:
-	.text       start:0x8006CFF8 end:0x8006E200
+coarse/text_80069AE0.c:
+	.text       start:0x80069AE0 end:0x8006E200
 
 dolphin/mtx/MTX.c:
 	.text       start:0x8006E200 end:0x8006E324
@@ -563,13 +560,13 @@ coarse/text_8008067C.c:
 dolphin/msl/printf.c:
 	.text       start:0x800807F4 end:0x8008279C
 
-dolphin/msl/tail_8008279C.c:
+coarse/text_8008279C.c:
 	.text       start:0x8008279C end:0x80083D40
 
 dolphin/msl/string.c:
 	.text       start:0x80083D40 end:0x80083E84
 
-dolphin/msl/msl_80083E84.c:
+coarse/text_80083E84.c:
 	.text       start:0x80083E84 end:0x80088600
 
 dolphin/msl/math_80088600.c:
@@ -581,7 +578,7 @@ dolphin/trk/nubevent.c:
 dolphin/trk/nubinit.c:
 	.text       start:0x80088910 end:0x80088B00
 
-dolphin/metrotrk/trk_80088B00.c:
+coarse/text_80088B00.c:
 	.text       start:0x80088B00 end:0x8008CB20
 
 dolphin/metrotrk/init.c:
