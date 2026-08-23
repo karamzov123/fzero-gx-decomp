@@ -19,11 +19,14 @@ extern s32 __CARDGetFileNo(register void* ctrl, register void* fileName, registe
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern void* memset(register void* dst, register int val, register u32 n);
+extern void fn_80029824(void);
+extern void __CARDSyncCallback(void);
+extern unsigned char __CARDBlock[544];
 
 #pragma push
 #pragma force_active on
 
-asm void DeleteCallback(register s32 chan, register s32 result)
+asm void fn_8002F934(register s32 chan, register s32 result)
 {
     nofralloc
     mflr    r0
@@ -36,8 +39,8 @@ asm void DeleteCallback(register s32 chan, register s32 result)
     stw     r28, 0x10(r1)
     addi    r28, r3, 0
     mulli   r5, r28, 0x110
-    lis     r3, 0x8017              /* __CARDBlock */
-    addi    r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r0, r3, __CARDBlock@l
     add     r31, r0, r5
     lwz     r30, 0xd0(r31)
     li      r0, 0
@@ -133,12 +136,12 @@ _L_8002fa80:
     mr      r0, r30
     b       _L_8002fab4
 _L_8002faac:
-    lis     r3, 0x8003
-    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
+    lis     r3, fn_80029824@ha
+    addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
 _L_8002fab4:
     lwz     r5, 0x14(r1)
-    lis     r3, 0x8003
-    addi    r4, r3, -0x6cc          /* DeleteCallback */
+    lis     r3, fn_8002F934@ha
+    addi    r4, r3, fn_8002F934@l          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r28
     bl      __CARDUpdateDir
@@ -214,12 +217,12 @@ _L_8002fb84:
     mr      r0, r30
     b       _L_8002fbc8
 _L_8002fbc0:
-    lis     r3, 0x8003
-    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
+    lis     r3, fn_80029824@ha
+    addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
 _L_8002fbc8:
     lwz     r5, 0x18(r1)
-    lis     r3, 0x8003
-    addi    r4, r3, -0x6cc          /* DeleteCallback */
+    lis     r3, fn_8002F934@ha
+    addi    r4, r3, fn_8002F934@l          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r31
     bl      __CARDUpdateDir
@@ -244,9 +247,9 @@ asm s32 CARDDelete(register s32 chan, register char* fileName)
 {
     nofralloc
     mflr    r0
-    lis     r5, 0x8003
+    lis     r5, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r5, r5, -0x67d8         /* __CARDSyncCallback */
+    addi    r5, r5, __CARDSyncCallback@l
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
     addi    r31, r3, 0
