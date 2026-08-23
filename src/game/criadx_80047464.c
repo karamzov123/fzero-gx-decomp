@@ -29,16 +29,22 @@ extern void fn_80047A50(void);
 extern void fn_80049958(void);
 extern void fn_80049728(void);
 extern void fn_80046768(void);
+extern unsigned char lbl_8017B030[4];
+extern unsigned char lbl_8017B160[64];
+extern unsigned char lbl_8017B1A0[1024];
+extern unsigned char lbl_8017B5A0[8];
+extern unsigned char lbl_8017B5A8[2512];
+extern unsigned char lbl_8017BF78[6016];
 
 asm void fn_80047464(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r5, -0x7fe8
+    lis     r5, lbl_8017B030@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r5, -0x4fd0
+    addi	r31, r5, lbl_8017B030@l
     li	r5, 0xff
     stw	r30, 8(r1)
     mr	r30, r4
@@ -73,11 +79,11 @@ asm void fn_800474E4(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe8
+    lis     r4, lbl_8017B030@ha
     li	r5, 0xff
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r4, -0x4fd0
+    addi	r31, r4, lbl_8017B030@l
     mr	r4, r3
     addi	r3, r31, 0x28
     bl      fn_80083D6C
@@ -121,12 +127,12 @@ asm void fn_80047578(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017B030@ha
     li	r4, 0
     stw	r0, 0x14(r1)
     li	r5, 0x100
     stw	r31, 0xc(r1)
-    addi	r31, r3, -0x4fd0
+    addi	r31, r3, lbl_8017B030@l
     addi	r3, r31, 0x28
     bl      memset
     li	r0, 0
@@ -144,12 +150,12 @@ asm void fn_800475C0(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017B030@ha
     li	r4, 0
     stw	r0, 0x14(r1)
     li	r5, 0x100
     stw	r31, 0xc(r1)
-    addi	r31, r3, -0x4fd0
+    addi	r31, r3, lbl_8017B030@l
     addi	r3, r31, 0x28
     bl      memset
     li	r0, 0
@@ -214,20 +220,20 @@ asm void fn_8004768C(void)
     mr	r27, r5
     mr	r28, r6
     bl      fn_800482FC
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017B1A0@ha
     li	r4, 0x400
-    addi	r3, r3, -0x4e60
+    addi	r3, r3, lbl_8017B1A0@l
     li	r5, 0
     bl      fn_80058498
-    lis	r4, -0x7fe8
+    lis     r4, lbl_8017B160@ha
     mr	r31, r3
-    addi	r0, r4, -0x4ea0
+    addi	r0, r4, lbl_8017B160@l
     li	r4, 0x20
     mr	r3, r0
     bl      fn_80057B9C
-    lis	r4, -0x7fe8
+    lis     r4, lbl_8017B160@ha
     stw	r3, 0x18(r1)
-    addi	r3, r4, -0x4ea0
+    addi	r3, r4, lbl_8017B160@l
     li	r4, 0x20
     addi	r3, r3, 0x20
     bl      fn_80057B9C
@@ -320,14 +326,14 @@ _8004778c:
 asm void fn_80047834(void)
 {
     nofralloc
-    lis	r3, -0x7fe8
-    addi	r4, r3, -0x4a60
+    lis     r3, lbl_8017B5A0@ha
+    addi	r4, r3, lbl_8017B5A0@l
     lwz	r3, 0(r4)
     addi	r0, r3, -1
     stw	r0, 0(r4)
     blr	
-    lis	r3, -0x7fe8
-    addi	r4, r3, -0x4a60
+    lis     r3, lbl_8017B5A0@ha
+    addi	r4, r3, lbl_8017B5A0@l
     lwz	r3, 0(r4)
     addi	r0, r3, 1
     stw	r0, 0(r4)
@@ -339,10 +345,10 @@ asm void fn_80047864(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017BF78@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r3, -0x4088
+    addi	r31, r3, lbl_8017BF78@l
     stw	r30, 8(r1)
     li	r30, 0
 _80047884:
@@ -665,10 +671,10 @@ asm void fn_80047C94(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r6, -0x7fe8
+    lis     r6, lbl_8017B5A8@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r6, -0x4a58
+    addi	r31, r6, lbl_8017B5A8@l
     li	r6, 0
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
@@ -1088,12 +1094,12 @@ asm void fn_800482B8(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe8
-    lis	r3, -0x7fe8
+    lis     r4, lbl_8017B5A8@ha
+    lis     r3, lbl_8017BF78@ha
     stw	r0, 0x14(r1)
-    addi	r7, r4, -0x4a58
+    addi	r7, r4, lbl_8017B5A8@l
     li	r4, 0
-    addi	r3, r3, -0x4088
+    addi	r3, r3, lbl_8017BF78@l
     lwz	r6, 0(r7)
     li	r5, 0x1780
     addi	r0, r6, -1
@@ -1110,12 +1116,12 @@ asm void fn_800482FC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe8
-    lis	r3, -0x7fe8
+    lis     r4, lbl_8017B5A8@ha
+    lis     r3, lbl_8017BF78@ha
     stw	r0, 0x14(r1)
-    addi	r7, r4, -0x4a58
+    addi	r7, r4, lbl_8017B5A8@l
     li	r4, 0
-    addi	r3, r3, -0x4088
+    addi	r3, r3, lbl_8017BF78@l
     lwz	r6, 0(r7)
     li	r5, 0x1780
     addi	r0, r6, 1

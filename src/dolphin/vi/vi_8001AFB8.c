@@ -6,6 +6,8 @@ extern s32 OSRestoreInterrupts(s32 level);
 extern void OSReport(const char*, ...);
 extern void fn_8000C49C(void);
 extern void* fn_8001A814(register s32 mode);
+extern unsigned char lbl_801241C8[500];
+extern unsigned char lbl_8015CF68[240];
 
 /* VI mode-config glue between vi_8001A8B4 and viretrace: pan/word-conversion
    helpers over the game's callback state at 0x8016CF68 (-0x3098 from the
@@ -18,8 +20,8 @@ asm void fn_8001AFB8(register void* a, register void* b, register void* c, regis
 {
     nofralloc
     stwu r1, -0x48(r1)
-    lis r9, -0x7fea
-    addi r9, r9, -0x3098
+    lis     r9, lbl_8015CF68@ha
+    addi r9, r9, lbl_8015CF68@l
     stw r31, 0x44(r1)
     lbz r8, 0x2c(r3)
     lhz r0, 0xe(r3)
@@ -215,8 +217,8 @@ asm void fn_8001B28C(void)
 {
     nofralloc
     stwu r1, -0x28(r1)
-    lis r11, -0x7fea
-    addi r11, r11, -0x3098
+    lis     r11, lbl_8015CF68@ha
+    addi r11, r11, lbl_8015CF68@l
     stw r31, 0x24(r1)
     lwz r31, 0x30(r1)
     stw r30, 0x20(r1)
@@ -329,14 +331,14 @@ asm void fn_8001B42C(register void* param)
 {
     nofralloc
     mflr r0
-    lis r5, -0x7fee
+    lis     r5, lbl_801241C8@ha
     stw r0, 4(r1)
-    lis r4, -0x7fea
+    lis     r4, lbl_8015CF68@ha
     stwu r1, -0x78(r1)
     stmw r14, 0x30(r1)
     addi r31, r3, 0
-    addi r15, r5, 0x41c8
-    addi r29, r4, -0x3098
+    addi r15, r5, lbl_801241C8@l
+    addi r29, r4, lbl_8015CF68@l
     bl OSDisableInterrupts
     lwz r4, 0(r31)
     addi r28, r29, 0x114

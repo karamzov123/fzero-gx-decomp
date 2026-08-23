@@ -3,12 +3,13 @@
 
 typedef unsigned int u32;
 extern void DCFlushRange(register void* addr, register u32 nBytes);
+extern unsigned char lbl_80164D20[64];
 
 asm void fn_8002201C(void)
 {
     nofralloc
-    lis	r3, -0x7fea
-    addi	r3, r3, 0x4d20
+    lis     r3, lbl_80164D20@ha
+    addi	r3, r3, lbl_80164D20@l
     blr	
 }
 
@@ -19,9 +20,9 @@ asm void fn_80022028(void)
     lis	r3, 0x6666
     stw	r0, 4(r1)
     addi	r0, r3, 0x6667
-    lis	r3, -0x7fea
+    lis     r3, lbl_80164D20@ha
     stwu	r1, -8(r1)
-    addi	r3, r3, 0x4d20
+    addi	r3, r3, lbl_80164D20@l
     lwz	r5, -0x7888(r13)
     mulhw	r0, r0, r5
     srawi	r0, r0, 6

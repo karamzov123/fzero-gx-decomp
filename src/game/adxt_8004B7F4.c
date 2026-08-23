@@ -22,6 +22,24 @@ extern void fn_8004EE44(void);
 extern void fn_8004EEA4(void);
 extern void fn_800589BC(void);
 extern void memset(void);
+extern unsigned char E02080817_ADXT_GetNumSmpl_parameter_error_str[100];
+extern unsigned char E02080819_ADXT_GetSfreq_parameter_error_str[236];
+extern unsigned char E02080820_ADXT_GetNumChan_parameter_error_str[43];
+extern unsigned char E02080823_ADXT_SetOutVol_parameter_error_str[140];
+extern unsigned char E02080824_ADXT_GetOutVol_parameter_error_str[42];
+extern unsigned char E02080825_ADXT_SetOutPan_parameter_error_str[42];
+extern unsigned char E02080826_ADXT_GetOutPan_parameter_error_str[42];
+extern unsigned char E02080831_ADXT_IsReadyPlayStart_parameter_error_str[284];
+extern unsigned char E02080840_ADXT_SetSvrFreq_parameter_error_str[43];
+extern unsigned char E02080843_ADXT_GetErrCode_parameter_error_str[196];
+extern unsigned char E02080846_ADXT_Pause_parameter_error_str[38];
+extern unsigned char E02080847_ADXT_GetStatPause_parameter_error_str[45];
+extern unsigned char E8101208_ADXT_SetOutPan_parameter_error_str[132];
+extern unsigned char lbl_80090A20[8];
+extern unsigned char lbl_80178CB8[4];
+extern unsigned char lbl_80178CBC[3076];
+extern unsigned char lbl_8017E568[4];
+extern unsigned char lbl_8017E594[20];
 
 asm void fn_8004B7F4(void)
 {
@@ -206,8 +224,8 @@ asm void ADXT_GetDecNumSmpl(void)
     stw	r0, 0x44(r1)
     stmw	r27, 0x2c(r1)
     mr	r29, r3
-    lis	r3, -0x7fe8
-    addi	r31, r3, -0x1a98
+    lis     r3, lbl_8017E568@ha
+    addi	r31, r3, lbl_8017E568@l
     lbz	r0, 0x72(r29)
     extsb.	r0, r0
     bne     _8004ba70
@@ -230,9 +248,9 @@ _8004ba94:
     bl      fn_80046738
     bl      fn_80041700
     li	r0, 2
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CBC@ha
     stw	r0, 4(r31)
-    addi	r27, r3, -0x7344
+    addi	r27, r3, lbl_80178CBC@l
     li	r28, 0
 _8004babc:
     lbz	r0, 0(r27)
@@ -285,8 +303,8 @@ _8004baf8:
     fmuls	f1, f1, f0
     bl      __cvt_fp2unsigned
     stw	r3, 0x9c(r29)
-    lis	r3, -0x7fe8
-    addi	r4, r3, -0x7348
+    lis     r3, lbl_80178CB8@ha
+    addi	r4, r3, lbl_80178CB8@l
     mr	r3, r30
     lwz	r0, 0(r4)
     stw	r0, 0xa0(r29)
@@ -331,8 +349,8 @@ asm void fn_8004BBCC(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004bbf4
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xa28
+    lis     r3, E02080847_ADXT_GetStatPause_parameter_error_str@ha
+    addi	r3, r3, E02080847_ADXT_GetStatPause_parameter_error_str@l
     bl      fn_800474E4
     li	r3, 0
     b       _8004bbfc
@@ -358,8 +376,8 @@ asm void fn_8004BC0C(void)
     stw	r29, 0x34(r1)
     mr	r29, r4
     bne     _8004bc40
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xa58
+    lis     r3, E02080846_ADXT_Pause_parameter_error_str@ha
+    addi	r3, r3, E02080846_ADXT_Pause_parameter_error_str@l
     bl      fn_800474E4
     b       _8004bd40
 _8004bc40:
@@ -386,13 +404,13 @@ _8004bc88:
     lwz	r3, 0xc(r31)
     li	r4, 1
     bl      fn_8004EEA4
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E568@ha
     lwz	r0, -0x7348(r3)
     stw	r0, 0xa0(r31)
 _8004bca0:
     lis	r3, -0x7fe8
     li	r0, 0
-    addi	r6, r3, -0x1a98
+    addi	r6, r3, lbl_8017E568@l
     mr	r3, r31
     lwz	r30, 0(r6)
     addi	r4, r1, 0xc
@@ -402,15 +420,15 @@ _8004bca0:
     lwz	r3, 0xc(r1)
     lis	r4, 0x4330
     lwz	r0, 8(r1)
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80090A20@ha
     xoris	r3, r3, 0x8000
     stw	r4, 0x18(r1)
     xoris	r0, r0, 0x8000
-    lis	r6, -0x7fe8
+    lis     r6, lbl_8017E594@ha
     stw	r3, 0x1c(r1)
-    addi	r3, r5, 0xa20
+    addi	r3, r5, lbl_80090A20@l
     lfd	f2, 0(r3)
-    addi	r5, r6, -0x1a6c
+    addi	r5, r6, lbl_8017E594@l
     lfd	f0, 0x18(r1)
     lis	r6, -0x7fe8
     stw	r0, 0x24(r1)
@@ -449,8 +467,8 @@ asm void fn_8004BD5C(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004bd84
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xa80
+    lis     r3, E02080831_ADXT_IsReadyPlayStart_parameter_error_str@ha
+    addi	r3, r3, E02080831_ADXT_IsReadyPlayStart_parameter_error_str@l
     bl      fn_800474E4
     li	r3, -1
     b       _8004bd8c
@@ -472,8 +490,8 @@ asm void fn_8004BD9C(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004bdc4
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xb9c
+    lis     r3, E02080843_ADXT_GetErrCode_parameter_error_str@ha
+    addi	r3, r3, E02080843_ADXT_GetErrCode_parameter_error_str@l
     bl      fn_800474E4
     li	r3, -1
     b       _8004bdc8
@@ -509,9 +527,9 @@ _8004be08:
     bl      fn_80041700
     lis	r4, -0x7fe8
     li	r0, 2
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CBC@ha
     stw	r0, -0x1a94(r4)
-    addi	r31, r3, -0x7344
+    addi	r31, r3, lbl_80178CBC@l
     li	r30, 0
 _8004be34:
     lbz	r0, 0(r31)
@@ -556,8 +574,8 @@ asm void fn_8004BE98(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004bebc
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xda0
+    lis     r3, E02080840_ADXT_SetSvrFreq_parameter_error_str@ha
+    addi	r3, r3, E02080840_ADXT_SetSvrFreq_parameter_error_str@l
     bl      fn_800474E4
     b       _8004bec0
 _8004bebc:
@@ -577,8 +595,8 @@ asm void fn_8004BED0(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004bef8
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xdcc
+    lis     r3, E02080824_ADXT_GetOutVol_parameter_error_str@ha
+    addi	r3, r3, E02080824_ADXT_GetOutVol_parameter_error_str@l
     bl      fn_800474E4
     li	r3, 0
     b       _8004befc
@@ -600,8 +618,8 @@ asm void fn_8004BF0C(void)
     stw	r31, 0xc(r1)
     or.	r31, r3, r3
     bne     _8004bf34
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xdf8
+    lis     r3, E02080823_ADXT_SetOutVol_parameter_error_str@ha
+    addi	r3, r3, E02080823_ADXT_SetOutVol_parameter_error_str@l
     bl      fn_800474E4
     b       _8004bf54
 _8004bf34:
@@ -629,8 +647,8 @@ asm void fn_8004BF68(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004bf90
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xe84
+    lis     r3, E02080826_ADXT_GetOutPan_parameter_error_str@ha
+    addi	r3, r3, E02080826_ADXT_GetOutPan_parameter_error_str@l
     bl      fn_800474E4
     li	r3, 0
     b       _8004bf9c
@@ -658,8 +676,8 @@ asm void fn_8004BFAC(void)
     stw	r29, 0x14(r1)
     or.	r29, r3, r3
     bne     _8004bfe4
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xeb0
+    lis     r3, E02080825_ADXT_SetOutPan_parameter_error_str@ha
+    addi	r3, r3, E02080825_ADXT_SetOutPan_parameter_error_str@l
     bl      fn_800474E4
     b       _8004c040
 _8004bfe4:
@@ -685,8 +703,8 @@ _8004bffc:
     bl      fn_8004EDC4
     b       _8004c040
 _8004c034:
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xedc
+    lis     r3, E8101208_ADXT_SetOutPan_parameter_error_str@ha
+    addi	r3, r3, E8101208_ADXT_SetOutPan_parameter_error_str@l
     bl      fn_800474E4
 _8004c040:
     lwz	r0, 0x24(r1)
@@ -706,8 +724,8 @@ asm void fn_8004C05C(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004c084
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xc88
+    lis     r3, E02080820_ADXT_GetNumChan_parameter_error_str@ha
+    addi	r3, r3, E02080820_ADXT_GetNumChan_parameter_error_str@l
     bl      fn_800474E4
     li	r3, -1
     b       _8004c0a4
@@ -736,8 +754,8 @@ asm void fn_8004C0B4(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004c0dc
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xcb4
+    lis     r3, E02080819_ADXT_GetSfreq_parameter_error_str@ha
+    addi	r3, r3, E02080819_ADXT_GetSfreq_parameter_error_str@l
     bl      fn_800474E4
     li	r3, -1
     b       _8004c0fc
@@ -766,8 +784,8 @@ asm void fn_8004C10C(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8004c134
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0xf60
+    lis     r3, E02080817_ADXT_GetNumSmpl_parameter_error_str@ha
+    addi	r3, r3, E02080817_ADXT_GetNumSmpl_parameter_error_str@l
     bl      fn_800474E4
     li	r3, -1
     b       _8004c154

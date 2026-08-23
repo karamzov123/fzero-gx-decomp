@@ -12,6 +12,8 @@ extern void __OSLockSram(void);
 extern void __OSUnlockSram(void);
 extern void OSInitThreadQueue(void);
 extern void fn_8001A814(void);
+extern void fn_8001A55C(void);
+extern unsigned char lbl_8015CF68[240];
 
 asm void fn_8001A8B4(void);
 asm void fn_8001AAB4(void);
@@ -160,11 +162,11 @@ asm void fn_8001AAB4(void)
     mflr	r0
     lis	r4, -0x7fee
     stw	r0, 4(r1)
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015CF68@ha
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
     stw	r30, 0x10(r1)
-    addi	r30, r3, -0x3098
+    addi	r30, r3, lbl_8015CF68@l
     stw	r29, 0xc(r1)
     addi	r29, r4, 0x41c8
     stw	r28, 8(r1)
@@ -459,8 +461,8 @@ _8001ae8c:
     addi	r5, r3, 0x2000
     clrlwi	r0, r0, 0x11
     sth	r0, 0x30(r4)
-    lis	r3, -0x7ffe
-    addi	r4, r3, -0x5aa4
+    lis     r3, fn_8001A55C@ha
+    addi	r4, r3, fn_8001A55C@l
     lhz	r0, 0x34(r5)
     li	r3, 0x18
     clrlwi	r0, r0, 0x11

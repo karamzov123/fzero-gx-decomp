@@ -29,6 +29,9 @@ extern void SIGetType(void);
 extern void SIGetTypeAsync(void);
 extern void fn_800133B8(void);
 extern void __shr2i(void);
+extern unsigned char lbl_801245E0[16];
+extern unsigned char lbl_8015D0B0[16];
+extern unsigned char lbl_8015D0C0[64];
 
 asm void VIGetTvFormat(void);
 asm void fn_8001C084(void);
@@ -285,11 +288,11 @@ asm void fn_8001C304(void)
 {
     nofralloc
     mflr	r0
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015D0C0@ha
     stw	r0, 4(r1)
     mulli	r6, r3, 0xc
     stwu	r1, -0x18(r1)
-    addi	r5, r5, -0x2f40
+    addi	r5, r5, lbl_8015D0C0@l
     stw	r31, 0x14(r1)
     add	r31, r5, r6
     lwz	r0, -0x7f04(r13)
@@ -437,15 +440,15 @@ _8001c504:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi	r0, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
 _8001c558:
     lwz	r0, 0x34(r1)
@@ -552,15 +555,15 @@ _8001c698:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi	r0, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
 _8001c6ec:
     lwz	r0, 0x34(r1)
@@ -608,9 +611,9 @@ asm void fn_8001C704(void)
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
     b       _8001ca10
 _8001c7a0:
@@ -640,9 +643,9 @@ _8001c7c4:
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
     b       _8001ca10
 _8001c818:
@@ -676,9 +679,9 @@ _8001c818:
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
     b       _8001ca10
 _8001c8a4:
@@ -690,9 +693,9 @@ _8001c8b4:
     cmplwi	r5, 0
     bc      12, 2, _8001c8f0
     mulli	r0, r29, 0xc
-    lis	r3, -0x7ffe
+    lis     r3, fn_8001C4A8@ha
     add	r6, r30, r0
-    addi	r8, r3, -0x3b58
+    addi	r8, r3, fn_8001C4A8@l
     addi	r3, r29, 0
     addi	r4, r13, -0x7ef4
     li	r5, 3
@@ -704,9 +707,9 @@ _8001c8b4:
     b       _8001c9ac
 _8001c8f0:
     mulli	r0, r29, 0xc
-    lis	r3, -0x7ffe
+    lis     r3, fn_8001C4A8@ha
     add	r6, r30, r0
-    addi	r8, r3, -0x3b58
+    addi	r8, r3, fn_8001C4A8@l
     addi	r3, r29, 0
     addi	r4, r13, -0x7ef8
     li	r5, 1
@@ -726,9 +729,9 @@ _8001c924:
     rlwinm.	r0, r6, 0, 1, 1
     bc      12, 2, _8001c978
     mulli	r0, r29, 0xc
-    lis	r3, -0x7ffe
+    lis     r3, fn_8001C4A8@ha
     add	r6, r30, r0
-    addi	r8, r3, -0x3b58
+    addi	r8, r3, fn_8001C4A8@l
     addi	r3, r29, 0
     addi	r4, r13, -0x7ef8
     li	r5, 1
@@ -740,10 +743,10 @@ _8001c924:
     b       _8001c9ac
 _8001c978:
     mulli	r0, r29, 0xc
-    lis	r3, -0x7ffe
+    lis     r3, fn_8001C62C@ha
     add	r4, r30, r4
     add	r6, r30, r0
-    addi	r8, r3, -0x39d4
+    addi	r8, r3, fn_8001C62C@l
     addi	r3, r29, 0
     li	r5, 3
     li	r7, 8
@@ -774,9 +777,9 @@ _8001c9ac:
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
 _8001ca10:
     lwz	r0, 0x44(r1)
@@ -827,11 +830,11 @@ asm void fn_8001CA30(void)
     rlwinm.	r0, r3, 0, 0xd, 0xd
     bc      4, 2, _8001caf0
     mulli	r4, r31, 0xc
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
-    lis	r3, -0x7ffe
+    lis     r3, lbl_8015D0C0@ha
+    addi	r0, r3, lbl_8015D0C0@l
+    lis     r3, fn_8001C56C@ha
     add	r6, r0, r4
-    addi	r8, r3, -0x3a94
+    addi	r8, r3, fn_8001C56C@l
     addi	r3, r31, 0
     addi	r4, r13, -0x7ef8
     li	r5, 1
@@ -922,15 +925,15 @@ _8001cbdc:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi	r0, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
 _8001cc40:
     mr	r3, r31
@@ -994,15 +997,15 @@ _8001cce0:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi	r0, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
 _8001cd44:
     mr	r3, r31
@@ -1020,11 +1023,11 @@ asm void fn_8001CD68(void)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015D0B0@ha
     stw	r0, 4(r1)
     stwu	r1, -0x38(r1)
     stmw	r25, 0x1c(r1)
-    addi	r31, r3, -0x2f50
+    addi	r31, r3, lbl_8015D0B0@l
     lwz	r0, -0x7a48(r13)
     cmpwi	r0, 0
     bc      12, 2, _8001cd94
@@ -1096,8 +1099,8 @@ _8001ce48:
     oris	r0, r0, 0x4dc0
     stw	r0, 0x4c(r31)
     bl      fn_800133B8
-    lis	r3, -0x7fee
-    addi	r3, r3, 0x45e0
+    lis     r3, lbl_801245E0@ha
+    addi	r3, r3, lbl_801245E0@l
     bl      OSRegisterResetFunction
     lis	r28, -0x1000
     bl      OSDisableInterrupts
@@ -1145,9 +1148,9 @@ _8001cf00:
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
 _8001cf60:
     mr	r3, r27
@@ -1172,16 +1175,16 @@ asm void fn_8001CF80(void)
     bl      OSDisableInterrupts
     li	r21, 0
     mulli	r0, r21, 0xc
-    lis	r4, -0x7fea
-    addi	r26, r4, -0x2f40
-    lis	r4, -0x7ffe
-    lis	r5, -0x7ffe
-    lis	r6, -0x7ffe
+    lis     r4, lbl_8015D0C0@ha
+    addi	r26, r4, lbl_8015D0C0@l
+    lis     r4, fn_8001C56C@ha
+    lis     r5, fn_8001CA30@ha
+    lis     r6, fn_8001C704@ha
     add	r24, r26, r0
     addi	r22, r3, 0
-    addi	r30, r4, -0x3a94
-    addi	r29, r5, -0x35d0
-    addi	r28, r6, -0x38fc
+    addi	r30, r4, fn_8001C56C@l
+    addi	r29, r5, fn_8001CA30@l
+    addi	r28, r6, fn_8001C704@l
     li	r20, 0
     lis	r27, -0x8000
 _8001cfd0:
@@ -1535,18 +1538,18 @@ _8001d4a8:
     bc      4, 0, _8001d4e0
     b       _8001d4d4
 _8001d4b4:
-    lis	r4, -0x7ffe
-    addi	r0, r4, -0x2b18
+    lis     r4, fn_8001D4E8@ha
+    addi	r0, r4, fn_8001D4E8@l
     stw	r0, -0x7efc(r13)
     b       _8001d4e0
 _8001d4c4:
-    lis	r4, -0x7ffe
-    addi	r0, r4, -0x29a4
+    lis     r4, fn_8001D65C@ha
+    addi	r0, r4, fn_8001D65C@l
     stw	r0, -0x7efc(r13)
     b       _8001d4e0
 _8001d4d4:
-    lis	r4, -0x7ffe
-    addi	r0, r4, -0x2830
+    lis     r4, fn_8001D7D0@ha
+    addi	r0, r4, fn_8001D7D0@l
     stw	r0, -0x7efc(r13)
 _8001d4e0:
     stw	r3, -0x7f00(r13)
@@ -1915,11 +1918,11 @@ _8001d99c:
     stb	r0, 9(r4)
 _8001d9dc:
     lbz	r6, 2(r4)
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015D0C0@ha
     mulli	r3, r3, 0xc
     addi	r0, r6, -0x80
     stb	r0, 2(r4)
-    addi	r0, r5, -0x2f40
+    addi	r0, r5, lbl_8015D0C0@l
     add	r3, r0, r3
     lbz	r5, 3(r4)
     addi	r0, r5, -0x80
@@ -2164,15 +2167,15 @@ _8001dd28:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi	r0, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis	r4, -0x7ffe
+    lis     r4, fn_8001C704@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, -0x38fc
+    addi	r4, r4, fn_8001C704@l
     bl      SIGetTypeAsync
 _8001dd8c:
     mr	r3, r31
@@ -2238,13 +2241,13 @@ asm void fn_8001DE30(void)
     lwz	r31, -0x7a2c(r13)
     stw	r3, -0x7a2c(r13)
     bc      12, 2, _8001de60
-    lis	r3, -0x7ffe
-    addi	r3, r3, -0x2230
+    lis     r3, fn_8001DDD0@ha
+    addi	r3, r3, fn_8001DDD0@l
     bl      SIRegisterPollingHandler
     b       _8001de6c
 _8001de60:
-    lis	r3, -0x7ffe
-    addi	r3, r3, -0x2230
+    lis     r3, fn_8001DDD0@ha
+    addi	r3, r3, fn_8001DDD0@l
     bl      SIUnregisterPollingHandler
 _8001de6c:
     mr	r3, r31

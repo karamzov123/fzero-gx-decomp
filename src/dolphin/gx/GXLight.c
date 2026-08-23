@@ -18,6 +18,9 @@ extern void fn_800332D8(register void* p, register int a, register int b);
 extern void fn_80032D04(register void* p, register int a);
 extern void __GXSetDirtyState(void);
 extern void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts);
+extern unsigned char lbl_8012B3B8[40];
+extern unsigned char lbl_8012B3E0[32];
+extern unsigned char lbl_80178118[648];
 
 #pragma push
 #pragma force_active on
@@ -321,9 +324,9 @@ _80037678:
     li	r0, 7
     b       _800376cc
 _800376b8:
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012B3B8@ha
     slwi	r4, r6, 2
-    addi	r0, r3, -0x4c48
+    addi	r0, r3, lbl_8012B3B8@l
     add	r3, r0, r4
     lwz	r0, 0(r3)
 _800376cc:
@@ -360,9 +363,9 @@ _80037710:
     li	r0, 7
     b       _80037758
 _80037744:
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012B3B8@ha
     slwi	r4, r6, 2
-    addi	r0, r3, -0x4c48
+    addi	r0, r3, lbl_8012B3B8@l
     add	r3, r0, r4
     lwz	r0, 0(r3)
 _80037758:
@@ -736,9 +739,9 @@ asm void fn_80037C2C(register void* p, register int a, register int b)
 {
     nofralloc
     lwz	r7, -0x7de8(r2)
-    lis	r5, -0x7fed
+    lis     r5, lbl_8012B3E0@ha
     slwi	r6, r3, 2
-    addi	r0, r5, -0x4c20
+    addi	r0, r5, lbl_8012B3E0@l
     lwz	r8, 0x1dc(r7)
     add	r10, r0, r6
     lwz	r5, 0(r10)
@@ -1374,8 +1377,8 @@ asm void fn_800384FC(register void* p)
     lis	r3, 0x4330
     mr	r21, r4
     stw	r0, 0x2c(r1)
-    lis	r4, -0x7fe8
-    addi	r26, r4, -0x7ee8
+    lis     r4, lbl_80178118@ha
+    addi	r26, r4, lbl_80178118@l
     stw	r3, 0x30(r1)
     addi	r4, r1, 0x10
     stw	r3, 0x28(r1)

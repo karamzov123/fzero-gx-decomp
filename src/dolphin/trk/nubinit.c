@@ -19,22 +19,24 @@ extern unsigned long TRKInitializeIntDrivenUART(unsigned long, unsigned long,
                                                unsigned long, void**);
 extern void TRKTargetSetInputPendingPtr(void*, void*);
 extern void MWTRACE(unsigned long, char*);
+extern unsigned char gTRKInputPendingPtr[4];
+extern unsigned char lbl_801A36B8[40];
 
 asm int TRKInitializeEventQueue(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r3, 0x801A
+    lis     r3, lbl_801A36B8@ha
     stw     r0, 0x14(r1)
-    addi    r3, r3, 0x36B8
+    addi    r3, r3, lbl_801A36B8@l
     bl      fn_8008AF50
-    lis     r3, 0x801A
-    addi    r3, r3, 0x36B8
+    lis     r3, lbl_801A36B8@ha
+    addi    r3, r3, lbl_801A36B8@l
     bl      fn_8008AF48
-    lis     r3, 0x801A
+    lis     r3, lbl_801A36B8@ha
     li      r4, 0
-    addi    r3, r3, 0x36B8
+    addi    r3, r3, lbl_801A36B8@l
     li      r0, 0x100
     stw     r4, 4(r3)
     stw     r4, 8(r3)
@@ -148,16 +150,16 @@ lbl_80088A8C:
 lbl_80088A9C:
     cmpwi   r31, 0
     bne     lbl_80088AE4
-    lis     r3, 0x801A
+    lis     r3, gTRKInputPendingPtr@ha
     lis     r5, 1
-    addi    r6, r3, 0x6E00
+    addi    r6, r3, gTRKInputPendingPtr@l
     li      r4, 1
     addi    r3, r5, -0x1F00
     li      r5, 0
     bl      TRKInitializeIntDrivenUART
-    lis     r4, 0x801A
+    lis     r4, gTRKInputPendingPtr@ha
     mr      r0, r3
-    addi    r3, r4, 0x6E00
+    addi    r3, r4, gTRKInputPendingPtr@l
     lwz     r3, 0(r3)
     mr      r30, r0
     bl      TRKTargetSetInputPendingPtr

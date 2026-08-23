@@ -2,6 +2,7 @@ typedef unsigned int u32;
 
 #pragma push
 #pragma force_active on
+extern unsigned char lbl_8019E250[184];
 
 asm void fn_800724CC(register void* xf, register u32 base)
 {
@@ -84,9 +85,9 @@ asm void fn_80072558(register u32 a)
 asm void fn_800725DC(register u32 val)
 {
     nofralloc
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     lwz     r5, 0(r3)
-    addi    r3, r4, -0x1db0
+    addi    r3, r4, lbl_8019E250@l
     lis     r4, -0x33ff
     lwz     r0, 0x30(r3)
     cmplw   r0, r5
@@ -103,9 +104,9 @@ asm void fn_800725DC(register u32 val)
 asm void fn_80072614(register u32 val)
 {
     nofralloc
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     lwz     r5, 0(r3)
-    addi    r3, r4, -0x1db0
+    addi    r3, r4, lbl_8019E250@l
     lis     r4, -0x33ff
     lwz     r0, 0x34(r3)
     cmplw   r0, r5

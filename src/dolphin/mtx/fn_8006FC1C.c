@@ -22,6 +22,9 @@ extern asm void _savegpr_27(void);
 extern asm void OSGetTime(void);
 extern asm void OSReport(void);
 extern asm void _restgpr_27(void);
+extern void fn_800700F4(void);
+extern unsigned char lbl_8015AA10[98];
+extern void fn_800700F4(void);
 
 asm void fn_8006FC1C(void)
 {
@@ -82,8 +85,8 @@ asm void fn_8006FCB4(void)
     li	r3, 0
     stw	r0, 0x14(r1)
     bl      fn_8001BDF0
-    lis	r3, -0x7ff9
-    addi	r3, r3, 0xf4
+    lis     r3, fn_800700F4@ha
+    addi	r3, r3, fn_800700F4@l
     bl      GXSetDrawDoneCallback
     li	r0, 0
     stb	r0, -0x770c(r13)
@@ -194,10 +197,10 @@ _8006fe14:
     lhz	r6, -0x7704(r13)
     mulhwu	r0, r0, r5
     slwi	r7, r4, 3
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015AA10@ha
     lhz	r4, -0x76fa(r13)
     lhz	r5, -0x76fc(r13)
-    addi	r3, r3, -0x55f0
+    addi	r3, r3, lbl_8015AA10@l
     srwi	r0, r0, 0xf
     divwu	r7, r7, r0
     crxor	6, 6, 6

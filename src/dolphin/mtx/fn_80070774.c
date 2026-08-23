@@ -25,6 +25,7 @@ extern asm void fn_8001BD84(void);
 extern asm void fn_8001BC54(void);
 extern asm void fn_8001AF64(void);
 extern asm void _restgpr_25(void);
+extern unsigned char lbl_8019E18C[132];
 
 asm void fn_80070774(void)
 {
@@ -69,23 +70,23 @@ _800707e8:
     stw	r3, 0x14(r4)
     beq	_8007085c
     lwz	r5, -0x76e0(r13)
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E18C@ha
     lwz	r4, -0x7690(r13)
-    addi	r0, r3, -0x1e74
+    addi	r0, r3, lbl_8019E18C@l
     ori	r5, r5, 4
     mr	r3, r28
     stw	r5, -0x76e0(r13)
     stw	r0, 0x18(r4)
     bl      fn_80070CF8
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E18C@ha
     mr	r26, r3
-    addi	r3, r4, -0x1e74
+    addi	r3, r4, lbl_8019E18C@l
     mr	r5, r28
     mr	r4, r26
     bl      GXInitFifoBase
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E18C@ha
     mr	r4, r26
-    addi	r3, r3, -0x1e74
+    addi	r3, r3, lbl_8019E18C@l
     mr	r5, r26
     bl      GXInitFifoPtrs
 _8007085c:

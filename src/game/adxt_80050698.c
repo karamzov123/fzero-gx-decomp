@@ -2,6 +2,12 @@
 #pragma force_active on
 
 extern void fn_800501F4(void);
+extern unsigned char lbl_800912F8[8];
+extern unsigned char lbl_80130A48[256];
+extern unsigned char lbl_80130B98[40];
+extern unsigned char lbl_80130C00[96];
+extern unsigned char lbl_80130C60[384];
+extern unsigned char lbl_80130DE0[3072];
 
 asm void ADXF_Stop(void)
 {
@@ -43,10 +49,10 @@ _80050710:
     beq     _80050ae4
     mulli	r5, r0, 0x18
     lwz	r0, 0(r30)
-    lis	r3, -0x7fed
+    lis     r3, lbl_80130A48@ha
     slwi	r4, r0, 2
     add	r5, r25, r5
-    addi	r3, r3, 0xa48
+    addi	r3, r3, lbl_80130A48@l
     lwz	r0, 8(r5)
     lfsx	f2, r3, r4
     lfs	f1, 0x10(r5)
@@ -62,11 +68,11 @@ _80050710:
     mr	r3, r17
     add	r4, r22, r4
     bl      fn_800501F4
-    lis	r6, -0x7fed
+    lis     r6, lbl_80130B98@ha
     lis	r4, 0x4330
     slwi	r0, r22, 2
     lis	r5, -0x7ff7
-    addi	r6, r6, 0xb98
+    addi	r6, r6, lbl_80130B98@l
     sraw	r7, r3, r22
     lwzx	r0, r6, r0
     stw	r4, 8(r1)
@@ -101,9 +107,9 @@ _800507f4:
     bl      fn_800501F4
     xoris	r3, r3, 0x8000
     lis	r0, 0x4330
-    lis	r4, -0x7ff7
+    lis     r4, lbl_800912F8@ha
     stw	r3, 0x1c(r1)
-    addi	r5, r4, 0x12f8
+    addi	r5, r4, lbl_800912F8@l
     mr	r3, r17
     stw	r0, 0x18(r1)
     mr	r4, r22
@@ -115,9 +121,9 @@ _800507f4:
     bl      fn_800501F4
     xoris	r3, r3, 0x8000
     lis	r0, 0x4330
-    lis	r4, -0x7ff7
+    lis     r4, lbl_800912F8@ha
     stw	r3, 0x14(r1)
-    addi	r5, r4, 0x12f8
+    addi	r5, r4, lbl_800912F8@l
     mr	r3, r17
     stw	r0, 0x10(r1)
     mr	r4, r22
@@ -145,9 +151,9 @@ _8005089c:
     bl      fn_800501F4
     cmpwi	r22, 3
     bne     _8005093c
-    lis	r4, -0x7fed
+    lis     r4, lbl_80130C00@ha
     lis	r0, 0x4330
-    addi	r5, r4, 0xc00
+    addi	r5, r4, lbl_80130C00@l
     stw	r0, 0x18(r1)
     add	r5, r5, r3
     lis	r4, -0x7ff7
@@ -182,9 +188,9 @@ _8005089c:
 _8005093c:
     cmpwi	r22, 5
     bne     _800509cc
-    lis	r4, -0x7fed
+    lis     r4, lbl_80130C60@ha
     lis	r0, 0x4330
-    addi	r5, r4, 0xc60
+    addi	r5, r4, lbl_80130C60@l
     stw	r0, 0x18(r1)
     add	r5, r5, r3
     lis	r4, -0x7ff7
@@ -219,9 +225,9 @@ _8005093c:
 _800509cc:
     cmpwi	r22, 9
     bne     _80050a5c
-    lis	r4, -0x7fed
+    lis     r4, lbl_80130DE0@ha
     lis	r0, 0x4330
-    addi	r5, r4, 0xde0
+    addi	r5, r4, lbl_80130DE0@l
     stw	r0, 0x18(r1)
     add	r5, r5, r3
     lis	r4, -0x7ff7

@@ -6,6 +6,7 @@ extern void memset(void);
 extern void fn_8004A068(void);
 extern void fn_80049E34(void);
 extern void fn_80049BF4(void);
+extern unsigned char lbl_80090980[8];
 
 asm void fn_80049728(void)
 {
@@ -806,9 +807,9 @@ _8004a208:
 _8004a228:
     xoris	r4, r0, 0x8000
     lis	r0, 0x4330
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80090980@ha
     stw	r4, 0xc(r1)
-    addi	r4, r5, 0x980
+    addi	r4, r5, lbl_80090980@l
     stw	r0, 8(r1)
     lis	r5, -0x7ff7
     lfd	f1, 0(r4)

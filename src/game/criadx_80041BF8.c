@@ -24,6 +24,9 @@ extern void fn_80057DA8(void);
 extern void fn_80057DA0(void);
 extern void fn_80045D90(void);
 extern void fn_800455AC(void);
+extern unsigned char Can_not_decode_this_file_format_str[33];
+extern unsigned char E03010901_ADXB_DecodeHeader_str[30];
+extern unsigned char lbl_801798C0[2496];
 
 asm void fn_80041BF8(void)
 {
@@ -299,10 +302,10 @@ _80041fac:
     lwz	r12, 0x1c(r6)
     mtctr	r12
     bctrl	
-    lis	r3, -0x7ff7
-    lis	r4, -0x7ff7
-    addi	r3, r3, 0x18
-    addi	r4, r4, 0x38
+    lis     r3, E03010901_ADXB_DecodeHeader_str@ha
+    lis     r4, Can_not_decode_this_file_format_str@ha
+    addi	r3, r3, E03010901_ADXB_DecodeHeader_str@l
+    addi	r4, r4, Can_not_decode_this_file_format_str@l
     bl      fn_80047464
     li	r0, 4
     stb	r0, 1(r31)
@@ -502,13 +505,13 @@ asm void fn_80042228(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r6, -0x7fe8
+    lis     r6, lbl_801798C0@ha
     stw	r0, 0x24(r1)
     li	r0, 2
     stmw	r26, 8(r1)
     mr	r30, r5
     mr	r28, r3
-    addi	r5, r6, -0x6740
+    addi	r5, r6, lbl_801798C0@l
     mr	r29, r4
     li	r3, 0
     lwz	r26, 0(r30)
@@ -562,9 +565,9 @@ _80042300:
     b       _800424a4
 _80042310:
     mulli	r5, r3, 0x9c
-    lis	r4, -0x7fe8
+    lis     r4, lbl_801798C0@ha
     mr	r3, r26
-    addi	r0, r4, -0x6740
+    addi	r0, r4, lbl_801798C0@l
     add	r31, r0, r5
     bl      fn_80057DB0
     mr	r0, r3
@@ -591,9 +594,9 @@ _80042310:
     li	r3, 0
     b       _800424a4
 _80042384:
-    lis	r4, -0x7ffc
+    lis     r4, fn_80041E00@ha
     mr	r5, r31
-    addi	r4, r4, 0x1e00
+    addi	r4, r4, fn_80041E00@l
     bl      fn_800455AC
     stw	r28, 8(r31)
     cmpwi	r29, 0

@@ -12,6 +12,8 @@ typedef struct OSContext {
 extern void OSClearContext(OSContext* context);
 extern void OSSetCurrentContext(OSContext* context);
 extern s64 OSGetTime(void);
+extern unsigned char lbl_801A69A8[4];
+extern unsigned char lbl_801A69AC[4];
 
 asm void __AICallbackStackSwitch(register void* callback);
 
@@ -114,17 +116,17 @@ asm void __AICallbackStackSwitch(register void* callback)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
     mr	r31, r3
-    lis	r5, -0x7fe6
-    addi	r5, r5, 0x69ac
+    lis     r5, lbl_801A69AC@ha
+    addi	r5, r5, lbl_801A69AC@l
     stw	r1, 0(r5)
-    lis	r5, -0x7fe6
-    addi	r5, r5, 0x69a8
+    lis     r5, lbl_801A69A8@ha
+    addi	r5, r5, lbl_801A69A8@l
     lwz	r1, 0(r5)
     addi	r1, r1, -8
     mtlr	r31
     blrl	
-    lis	r5, -0x7fe6
-    addi	r5, r5, 0x69ac
+    lis     r5, lbl_801A69AC@ha
+    addi	r5, r5, lbl_801A69AC@l
     lwz	r1, 0(r5)
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)

@@ -29,6 +29,10 @@ extern void fn_800377C8(register u32 a);
 extern void fn_80037BC0(register u32 a);
 extern void fn_800324C8(register u32 a);
 extern void fn_80032F80(register u32 a);
+extern unsigned char lbl_8012B624[48];
+extern unsigned char lbl_8012B658[144];
+extern unsigned char lbl_80178BF0[40];
+extern unsigned char lbl_80178C18[144];
 
 // Lives in dolphin/gx/GXFog.c
 asm int fn_8003D588(register u32 a);
@@ -275,9 +279,9 @@ _8003e6cc:
     lwz	r0, -0x7e3c(r13)
     cmpwi	r0, 0
     bge     _8003e6ec
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012B624@ha
     crxor	6, 6, 6
-    addi	r3, r3, -0x49dc
+    addi	r3, r3, lbl_8012B624@l
     bl      OSReport
     b       _8003e8b4
 _8003e6ec:
@@ -431,11 +435,11 @@ asm void fn_8003E8CC(register u32 a)
     bl      __cvt_fp2unsigned
     mr	r31, r3
     bl      OSGetTime
-    lis	r6, -0x7ffc
-    addi	r9, r6, -0x1cbc
-    lis	r7, -0x7fe8
+    lis     r6, fn_8003E344@ha
+    addi	r9, r6, fn_8003E344@l
+    lis     r7, lbl_80178BF0@ha
     addi	r5, r3, 0
-    addi	r3, r7, -0x7410
+    addi	r3, r7, lbl_80178BF0@l
     addi	r6, r4, 0
     addi	r8, r31, 0
     li	r7, 0
@@ -478,8 +482,8 @@ asm int fn_8003E958(void)
     add	r3, r3, r0
     bl      fn_8003D588
 _8003e9c4:
-    lis	r3, -0x7fe8
-    addi	r3, r3, -0x7410
+    lis     r3, lbl_80178BF0@ha
+    addi	r3, r3, lbl_80178BF0@l
     bl      OSCancelAlarm
     mr	r3, r31
     bl      OSRestoreInterrupts
@@ -494,13 +498,13 @@ asm void fn_8003E9EC(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fe8
+    lis     r4, lbl_80178C18@ha
     stw	r0, 4(r1)
-    lis	r5, -0x7fed
-    addi	r0, r4, -0x73e8
+    lis     r5, lbl_8012B658@ha
+    addi	r0, r4, lbl_80178C18@l
     stwu	r1, -0x28(r1)
     stw	r31, 0x24(r1)
-    addi	r31, r5, -0x49a8
+    addi	r31, r5, lbl_8012B658@l
     stw	r30, 0x20(r1)
     addi	r30, r3, 0
     mr	r3, r0
@@ -561,11 +565,11 @@ asm int fn_8003EAE4(register u32 a)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178C18@ha
     stw	r0, 4(r1)
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r3, -0x73e8
+    addi	r31, r3, lbl_80178C18@l
     addi	r3, r31, 0x70
     bl      fn_80038BFC
     lfs	f0, -0x7c68(r2)

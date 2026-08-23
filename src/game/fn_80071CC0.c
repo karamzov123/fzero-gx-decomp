@@ -28,6 +28,11 @@ extern void fn_800793D4(void);
 extern void fn_800725DC(void);
 extern void fn_80072614(void);
 extern void* memcpy(void*, const void*, unsigned long);
+extern unsigned char lbl_8015AC68[84];
+extern unsigned char lbl_8015ACBC[84];
+extern unsigned char lbl_8019E250[184];
+extern unsigned char lbl_8019F008[28];
+extern unsigned char lbl_8019F024[28];
 
 #pragma push
 #pragma force_active on
@@ -90,12 +95,12 @@ asm void fn_80071D30(void)
     nofralloc
     stwu    r1, -0x20(r1)
     mflr    r0
-    lis     r3, -0x7fe6
+    lis     r3, lbl_8019E250@ha
     li      r4, 0
     stw     r0, 0x24(r1)
     li      r0, 2
     stw     r31, 0x1c(r1)
-    addi    r31, r3, -0x1db0
+    addi    r31, r3, lbl_8019E250@l
     addi    r3, r31, 0
     lwz     r6, -0x7520(r2)
     addi    r7, r31, 0x38
@@ -206,9 +211,9 @@ asm void fn_80071ED4(void)
     psq_st  f31, 0x28(r1), 0, 0
     stfd    f30, 0x10(r1)
     psq_st  f30, 0x18(r1), 0, 0
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     fmr     f31, f2
-    addi    r7, r4, -0x1db0
+    addi    r7, r4, lbl_8019E250@l
     fmr     f30, f1
     lfs     f0, 0x14(r7)
     lfs     f3, 4(r7)
@@ -234,9 +239,9 @@ _80071f44:
     bl      fn_800720B0
     b       _80071ff4
 _80071f58:
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     fmr     f1, f30
-    addi    r6, r4, -0x1db0
+    addi    r6, r4, lbl_8019E250@l
     fmr     f2, f31
     lwz     r4, 0x2c(r6)
     lwz     r0, 0x20(r6)
@@ -259,8 +264,8 @@ _80071fa8:
     fdivs   f0, f30, f0
 _80071fb0:
     stfs    f0, 0xc(r1)
-    lis     r3, -0x7fe6
-    addi    r4, r3, -0x1db0
+    lis     r3, lbl_8019E250@ha
+    addi    r4, r3, lbl_8019E250@l
     lwz     r5, 0xc(r1)
     lwz     r3, 0x24(r4)
     rlwinm  r0, r5, 0x14, 0x15, 0x1f
@@ -289,9 +294,9 @@ _80071ff4:
 asm void fn_80072014(void)
 {
     nofralloc
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     lbz     r9, 0(r3)
-    addi    r8, r4, -0x1db0
+    addi    r8, r4, lbl_8019E250@l
     lbz     r0, 0x20(r8)
     cmplw   r0, r9
     bne     _8007204c
@@ -305,9 +310,9 @@ asm void fn_80072014(void)
     beqlr
 _8007204c:
     lbz     r5, 2(r3)
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     lbz     r7, 1(r3)
-    addi    r6, r4, -0x1db0
+    addi    r6, r4, lbl_8019E250@l
     rlwinm  r0, r5, 0, 0x18, 0xf
     stb     r5, 0x22(r6)
     mr      r10, r0
@@ -336,8 +341,8 @@ asm void fn_800720B0(void)
     nofralloc
     cmpwi   r3, 0
     beq     _80072118
-    lis     r3, -0x7fe6
-    addi    r6, r3, -0x1db0
+    lis     r3, lbl_8019E250@ha
+    addi    r6, r3, lbl_8019E250@l
     lwz     r3, 0x2c(r6)
     clrlwi. r0, r3, 0x1f
     bnelr
@@ -361,8 +366,8 @@ asm void fn_800720B0(void)
     stw     r5, -0x8000(r3)
     blr
 _80072118:
-    lis     r3, -0x7fe6
-    addi    r6, r3, -0x1db0
+    lis     r3, lbl_8019E250@ha
+    addi    r6, r3, lbl_8019E250@l
     lwz     r3, 0x2c(r6)
     clrlwi. r0, r3, 0x1f
     beqlr
@@ -386,8 +391,8 @@ _80072118:
 asm void fn_80072168(void)
 {
     nofralloc
-    lis     r4, -0x7fe6
-    addi    r6, r4, -0x1db0
+    lis     r4, lbl_8019E250@ha
+    addi    r6, r4, lbl_8019E250@l
     lwz     r0, 0x2c(r6)
     clrlwi. r0, r0, 0x1f
     beqlr
@@ -431,9 +436,9 @@ asm void fn_800721FC(void)
     nofralloc
     stwu    r1, -0x50(r1)
     mflr    r0
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     stw     r0, 0x54(r1)
-    addi    r4, r4, -0x1db0
+    addi    r4, r4, lbl_8019E250@l
     addi    r3, r1, 8
     stfs    f3, 4(r4)
     stfs    f4, 8(r4)
@@ -471,9 +476,9 @@ asm void fn_80072270(void)
     fcmpu   cr0, f1, f0
     bne     _800722b8
     lfs     f1, 0x14(r3)
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     lfs     f0, -0x79e0(r2)
-    addi    r4, r4, -0x1db0
+    addi    r4, r4, lbl_8019E250@l
     lfs     f2, 0x18(r3)
     fsubs   f0, f1, f0
     fdivs   f0, f2, f0
@@ -483,9 +488,9 @@ asm void fn_80072270(void)
     b       _800722e0
 _800722b8:
     lfs     f2, -0x79e0(r2)
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019E250@ha
     lfs     f1, 0x18(r3)
-    addi    r4, r4, -0x1db0
+    addi    r4, r4, lbl_8019E250@l
     lfs     f0, 0x14(r3)
     fadds   f1, f2, f1
     fdivs   f0, f1, f0
@@ -494,9 +499,9 @@ _800722b8:
     stfs    f0, 4(r4)
 _800722e0:
     lfs     f2, 0x18(r3)
-    lis     r5, -0x7fe6
+    lis     r5, lbl_8019E250@ha
     lfs     f1, 0x14(r3)
-    addi    r5, r5, -0x1db0
+    addi    r5, r5, lbl_8019E250@l
     lis     r4, -0x7fe6
     fdivs   f0, f2, f1
     stfs    f0, 8(r5)
@@ -525,12 +530,12 @@ asm void fn_80072344(void)
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r3, -0x7fe6
-    lis     r4, -0x7fe6
+    lis     r3, lbl_8019F024@ha
+    lis     r4, lbl_8019F008@ha
     stw     r0, 0x14(r1)
-    addi    r3, r3, -0xfdc
+    addi    r3, r3, lbl_8019F024@l
     li      r5, 0x1c
-    addi    r4, r4, -0xff8
+    addi    r4, r4, lbl_8019F008@l
     bl      memcpy
     lwz     r0, 0x14(r1)
     mtlr    r0
@@ -543,15 +548,15 @@ asm void fn_80072378(void)
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r3, -0x7fe6
-    lis     r4, -0x7fe6
+    lis     r3, lbl_8019F008@ha
+    lis     r4, lbl_8019F024@ha
     stw     r0, 0x14(r1)
-    addi    r3, r3, -0xff8
+    addi    r3, r3, lbl_8019F008@l
     li      r5, 0x1c
-    addi    r4, r4, -0xfdc
+    addi    r4, r4, lbl_8019F024@l
     bl      memcpy
-    lis     r3, -0x7fe6
-    addi    r3, r3, -0xff8
+    lis     r3, lbl_8019F008@ha
+    addi    r3, r3, lbl_8019F008@l
     bl      fn_80038B3C
     lwz     r0, 0x14(r1)
     mtlr    r0
@@ -596,12 +601,12 @@ asm void fn_800723F8(void)
 asm s32 fn_80072404(register s32 a, register s32 b)
 {
     nofralloc
-    lis     r6, -0x7fea
-    lis     r5, -0x7fea
+    lis     r6, lbl_8015ACBC@ha
+    lis     r5, lbl_8015AC68@ha
     li      r0, 0x11
     li      r7, 0
-    addi    r6, r6, -0x5344
-    addi    r5, r5, -0x5398
+    addi    r6, r6, lbl_8015ACBC@l
+    addi    r5, r5, lbl_8015AC68@l
     mtctr   r0
 _80072420:
     clrlwi. r0, r3, 0x1f

@@ -1,5 +1,7 @@
 #pragma push
 #pragma force_active on
+void fn_8008F8B0(void);
+void fn_8008F8F0(void);
 
 asm void OSDisableInterrupts(register void* a, register void* b, register void* c, register void* d);
 asm void OSRestoreInterrupts(register void* a, register void* b, register void* c, register void* d);
@@ -306,11 +308,11 @@ asm void fn_8008F7E4(void)
     bl      __OSMaskInterrupts
     li	r3, 0x40
     bl      __OSMaskInterrupts
-    lis	r3, -0x7ff7
-    addi	r0, r3, -0x710
-    lis	r3, -0x7ff7
+    lis     r3, fn_8008F8F0@ha
+    addi	r0, r3, fn_8008F8F0@l
+    lis     r3, fn_8008F8B0@ha
     stw	r0, -0x7594(r13)
-    addi	r4, r3, -0x750
+    addi	r4, r3, fn_8008F8B0@l
     li	r3, 0x19
     bl      __OSSetInterruptHandler
     li	r3, 0x40

@@ -66,6 +66,14 @@ extern void __OSResetSWInterruptHandler(int interrupt, void* context);
 extern void* _stack_addr;
 extern u32 __ArenaLo;
 extern u32 __ArenaHi;
+extern void __DBVECTOR(void);
+extern void __DBVECTOR(void);
+extern void __OSDBINTEND(void);
+extern void __OSDBINTSTART(void);
+extern void __OSDBJUMPEND(void);
+extern void __OSEVEnd(void);
+extern void __OSEVSetNumber(void);
+extern void __OSEVStart(void);
 
 static asm void OSExceptionInit(void);
 #pragma push
@@ -179,7 +187,7 @@ static asm void InquiryCallback(register int result, register void* block)
     beq     _8000a384
     b       _8000a3a0
 _8000a384:
-    lis	r3, -0x7fea
+    lis     r3, -0x7fea
     addi	r3, r3, -0x4100
     lhz	r0, 2(r3)
     lis	r3, -0x8000
@@ -204,7 +212,7 @@ asm void OSInit(void)
     stw	r30, 0x10(r1)
     stw	r29, 0xc(r1)
     lwz	r0, -0x7c58(r13)
-    lis	r3, -0x7fea
+    lis     r3, -0x7fea
     addi	r30, r3, -0x4100
     cmpwi	r0, 0
     lis	r3, -0x7fee
@@ -452,7 +460,7 @@ _8000a74c:
     mr	r3, r30
     li	r4, 0x20
     bl      DCInvalidateRange
-    lis	r3, -0x7fff
+    lis     r3, -0x7fff
     addi	r5, r3, -0x5c8c
     mr	r4, r30
     addi	r3, r30, 0x20
@@ -518,8 +526,8 @@ _8000a820:
     li	r26, 0
     b       _8000a840
 _8000a840:
-    lis	r3, -0x7fff
-    addi	r21, r3, -0x5548
+    lis     r3, __DBVECTOR@ha
+    addi	r21, r3, __DBVECTOR@l
     lis	r22, 0x6000
     b       _8000a850
 _8000a850:

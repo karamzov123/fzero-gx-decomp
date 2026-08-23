@@ -29,16 +29,19 @@ extern void DSPCancelTask(void);
 extern void OSSleepThread(register void* queue);
 extern void fn_8001DFE4(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
+extern unsigned char lbl_80126240[7968];
+extern unsigned char lbl_80160500[1920];
+extern unsigned char lbl_80160C80[16544];
 
 asm void fn_80021930(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fea
+    lis     r4, lbl_80160500@ha
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    addi	r31, r4, 0x500
+    addi	r31, r4, lbl_80160500@l
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
     bl      OSGetTime
@@ -161,9 +164,9 @@ _80021adc:
     b       _80021b10
 _80021afc:
     li	r0, 2
-    lis	r3, -0x7fea
+    lis     r3, lbl_80160C80@ha
     stw	r0, -0x78ac(r13)
-    addi	r3, r3, 0xc80
+    addi	r3, r3, lbl_80160C80@l
     bl      DSPAssertTask
 _80021b10:
     lwz	r0, 0xc(r1)
@@ -231,13 +234,13 @@ asm void fn_80021BB0(void)
     mflr	r0
     lis	r5, -0x7ffe
     stw	r0, 4(r1)
-    lis	r3, -0x7fee
-    addi	r0, r3, 0x6240
+    lis     r3, lbl_80126240@ha
+    addi	r0, r3, lbl_80126240@l
     stwu	r1, -0x10(r1)
-    lis	r4, -0x7fea
+    lis     r4, lbl_80160500@ha
     li	r9, 0
     stw	r31, 0xc(r1)
-    addi	r31, r4, 0x500
+    addi	r31, r4, lbl_80160500@l
     lis	r4, -0x7ffe
     stw	r0, 0x78c(r31)
     addi	r8, r31, 0x7d0
@@ -249,10 +252,10 @@ asm void fn_80021BB0(void)
     li	r0, 0x2000
     addi	r4, r4, 0x1b2c
     stw	r9, 0x794(r31)
-    lis	r3, -0x7ffe
+    lis     r3, fn_80021B84@ha
     stw	r8, 0x798(r31)
     stw	r0, 0x79c(r31)
-    addi	r0, r3, 0x1b84
+    addi	r0, r3, fn_80021B84@l
     addi	r3, r13, -0x7890
     stw	r9, 0x7a0(r31)
     sth	r7, 0x7a4(r31)
@@ -290,11 +293,11 @@ asm void fn_80021C7C(void)
     li	r3, 0
     stw	r0, 4(r1)
     li	r0, 4
-    lis	r4, -0x7fea
+    lis     r4, lbl_80160500@ha
     mtctr	r0
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r4, 0x500
+    addi	r31, r4, lbl_80160500@l
     addi	r4, r31, 0
     stw	r3, -0x78b0(r13)
     stw	r3, -0x7894(r13)
@@ -475,8 +478,8 @@ _80021e10:
     li	r4, 0x280
     bl      DCFlushRange
     bl      fn_80021BB0
-    lis	r3, -0x7ffe
-    addi	r3, r3, 0x1ab8
+    lis     r3, fn_80021AB8@ha
+    addi	r3, r3, fn_80021AB8@l
     bl      fn_8001DF00
     addi	r3, r31, 0x500
     addi	r4, r31, 0x280
@@ -507,9 +510,9 @@ asm void fn_80021FBC(void)
     stw	r31, 0xc(r1)
     bl      OSDisableInterrupts
     li	r0, 0
-    lis	r4, -0x7fea
+    lis     r4, lbl_80160C80@ha
     stw	r0, -0x78a0(r13)
-    addi	r0, r4, 0xc80
+    addi	r0, r4, lbl_80160C80@l
     addi	r31, r3, 0
     mr	r3, r0
     bl      DSPCancelTask

@@ -26,6 +26,7 @@ extern BOOL OSDisableInterrupts(void);
 extern void DBPrintf(char* msg, ...);
 extern void OSReport(const char* msg, ...);
 extern s32 __cvt_fp2unsigned(register double value);
+extern unsigned char lbl_80122A58[436];
 
 #define __OSCurrentContextPtr ((OSContext**)0x800000D4)
 #define __OSFPUContextPtr     ((OSContext**)0x800000D8)
@@ -414,9 +415,9 @@ asm void OSDumpContext(register OSContext* context)
     stwu    r1, -0x2F8(r1)
     stmw    r25, 0x2DC(r1)
     mr      r28, r3
-    lis     r3, 0x8012
+    lis     r3, lbl_80122A58@ha
     crxor   6, 6, 6
-    addi    r31, r3, 0x2A58
+    addi    r31, r3, lbl_80122A58@l
     mr      r3, r31
     mr      r4, r28
     bl      OSReport

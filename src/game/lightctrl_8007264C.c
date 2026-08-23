@@ -18,6 +18,7 @@ extern void _savegpr_26(void);
 extern void _savegpr_27(void);
 extern void _restgpr_26(void);
 extern void _restgpr_27(void);
+extern unsigned char lbl_8019E308[3328];
 
 asm void fn_8007264C(void);
 asm void fn_800726C0(void);
@@ -44,9 +45,9 @@ asm void fn_8007264C(void)
     stwu r1, -0x10(r1)
     mflr r0
     mulli r9, r3, 0x1a0
-    lis r8, -0x7fe6
+    lis     r8, lbl_8019E308@ha
     stw r0, 0x14(r1)
-    addi r0, r8, -0x1cf8
+    addi r0, r8, lbl_8019E308@l
     add r9, r0, r9
     lwz r0, 0(r9)
     cmpw r0, r4
@@ -86,8 +87,8 @@ asm void fn_800726C0(void)
     stw r29, 0x14(r1)
     mr r29, r3
     mulli r5, r29, 0x1a0
-    lis r3, -0x7fe6
-    addi r0, r3, -0x1cf8
+    lis     r3, lbl_8019E308@ha
+    addi r0, r3, lbl_8019E308@l
     add r31, r0, r5
     b _80072750
 _800726F4:

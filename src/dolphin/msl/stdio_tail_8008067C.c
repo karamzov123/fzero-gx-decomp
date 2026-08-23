@@ -8,12 +8,14 @@ typedef signed int s32;
 // MSL stdio tail 0x8008067C-0x800807F4 (__stdio_atexit, vfprintf-ish wrappers)
 
 extern void __pformatter(void);
+extern void __close_all(void);
+extern void fn_80080974(void);
 
 asm void __stdio_atexit(void)
 {
     nofralloc
-    lis	r3, -0x7ff8
-    addi	r0, r3, -0x4edc
+    lis     r3, __close_all@ha
+    addi	r0, r3, __close_all@l
     stw	r0, -0x75f0(r13)
     blr
 }
@@ -51,10 +53,10 @@ _800806d8:
     lis	r28, 0x200
     li	r31, -1
     li	r12, 0
-    lis	r11, -0x7ff8
+    lis     r11, fn_80080974@ha
     stw	r4, 0xc(r1)
     addi	r27, r1, 0x74
-    addi	r0, r11, 0x974
+    addi	r0, r11, fn_80080974@l
     addi	r4, r1, 0x68
     stw	r3, 8(r1)
     mr	r3, r0
@@ -104,9 +106,9 @@ asm void fn_8008077C(void)
     addi	r4, r1, 8
     stw	r31, 0x1c(r1)
     mr	r31, r3
-    lis	r3, -0x7ff8
+    lis     r3, fn_80080974@ha
     stw	r31, 8(r1)
-    addi	r3, r3, 0x974
+    addi	r3, r3, fn_80080974@l
     stw	r7, 0xc(r1)
     stw	r0, 0x10(r1)
     bl      __pformatter

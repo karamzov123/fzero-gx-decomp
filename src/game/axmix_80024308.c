@@ -14,6 +14,8 @@ extern void fn_800244C8(void);
 extern void fn_80024C88(void);
 extern void fn_800248D4(void);
 extern void fn_80025440(void);
+extern unsigned char lbl_80128180[16];
+extern unsigned char lbl_80128190[2048];
 
 asm void fn_80024308(void)
 {
@@ -207,9 +209,9 @@ _80024578:
     li	r5, 0x13c
     bl      memset
     lfs	f0, -0x7e6c(r2)
-    lis	r3, -0x7fed
+    lis     r3, lbl_80128180@ha
     lfs	f30, -0x7e80(r2)
-    addi	r30, r3, -0x7e80
+    addi	r30, r3, lbl_80128180@l
     fmuls	f28, f0, f28
     lfd	f29, -0x7e60(r2)
     addi	r27, r23, 0
@@ -898,8 +900,8 @@ asm void fn_80024E6C(void)
     fsubs	f3, f3, f9
     fsubs	f4, f4, f9
     li	r26, -4
-    lis	r12, -0x7fed
-    addi	r12, r12, -0x7e70
+    lis     r12, lbl_80128190@ha
+    addi	r12, r12, lbl_80128190@l
     li	r9, 0xa0
     mtctr	r9
 _80024f18:
@@ -1010,8 +1012,8 @@ asm void fn_80025004(void)
     fsubs	f3, f3, f9
     fsubs	f4, f4, f9
     li	r26, -4
-    lis	r12, -0x7fed
-    addi	r12, r12, -0x7e70
+    lis     r12, lbl_80128190@ha
+    addi	r12, r12, lbl_80128190@l
     li	r9, 0xa0
     mtctr	r9
 _800250b0:

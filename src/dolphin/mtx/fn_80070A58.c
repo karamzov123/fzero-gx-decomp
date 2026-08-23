@@ -5,6 +5,8 @@ extern asm void fn_8000C49C(void);
 extern asm void fn_8006D758(void);
 extern asm void fn_8006DCDC(void);
 extern asm void fn_80070CF8(void);
+extern unsigned char lbl_8015AA78[11];
+extern unsigned char lbl_8019E140[16];
 
 asm void fn_80070A58(void)
 {
@@ -48,8 +50,8 @@ asm void fn_80070AC0(void)
     mr	r30, r4
     stw	r29, 0x14(r1)
     or.	r29, r3, r3
-    lis	r3, -0x7fea
-    addi	r31, r3, -0x5588
+    lis     r3, lbl_8015AA78@ha
+    addi	r31, r3, lbl_8015AA78@l
     bne	_80070b00
     addi	r3, r31, 0
     addi	r5, r31, 0xcc
@@ -69,9 +71,9 @@ _80070b20:
     cmpwi	r30, 0
     beq	_80070cb8
     mulli	r3, r29, 0x30
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E140@ha
     li	r30, 0
-    addi	r8, r4, -0x1ec0
+    addi	r8, r4, lbl_8019E140@l
     addi	r4, r3, 0x3ff
     li	r0, 0x10
     mr	r3, r30
@@ -81,9 +83,9 @@ _80070b4c:
     lbz	r0, 0(r8)
     cmplwi	r0, 0
     bne	_80070c84
-    lis	r5, -0x7fe6
+    lis     r5, lbl_8019E140@ha
     addi	r6, r3, 1
-    addi	r0, r5, -0x1ec0
+    addi	r0, r5, lbl_8019E140@l
     addi	r5, r4, -1
     add	r7, r0, r6
     b	_80070b88
@@ -112,8 +114,8 @@ _80070b98:
     addi	r7, r4, -8
     ble	_80070c4c
     addi	r0, r7, 7
-    lis	r6, -0x7fe6
-    addi	r6, r6, -0x1ec0
+    lis     r6, lbl_8019E140@ha
+    addi	r6, r6, lbl_8019E140@l
     srwi	r0, r0, 3
     add	r10, r6, r3
     mtctr	r0
@@ -147,9 +149,9 @@ _80070be4:
     addi	r10, r10, 8
     bdnz	_80070be4
 _80070c4c:
-    lis	r6, -0x7fe6
+    lis     r6, lbl_8019E140@ha
     subf	r0, r5, r4
-    addi	r6, r6, -0x1ec0
+    addi	r6, r6, lbl_8019E140@l
     add	r3, r6, r3
     add	r3, r3, r5
     mtctr	r0

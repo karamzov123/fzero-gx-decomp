@@ -3,6 +3,7 @@ typedef unsigned int u32;
 
 extern s32 OSDisableInterrupts(void);
 extern s32 OSRestoreInterrupts(s32 level);
+extern unsigned char lbl_8015D058[88];
 
 /* VI register pollers over 0xCC002000 (vertical counter / current line).
    Carved from coarse/text_8001A8B4.c. */
@@ -87,8 +88,8 @@ _8001bf50:
     li      r31, 0
 _8001bf54:
     bl      OSRestoreInterrupts
-    lis     r3, -0x7fea /* 0x8016 */
-    addi    r3, r3, -0x2fa8
+    lis     r3, lbl_8015D058@ha
+    addi    r3, r3, lbl_8015D058@l
     lhz     r0, 0xa(r3)
     xori    r3, r31, 1
     clrlwi  r0, r0, 0x1f

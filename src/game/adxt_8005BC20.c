@@ -14,16 +14,23 @@ extern void fn_8005BE98(void);
 extern void fn_8005BFB4(void);
 extern void SndInitManager(void);
 extern void memset(void);
+extern unsigned char lbl_800927BC[4];
+extern unsigned char lbl_80092988[36];
+extern unsigned char lbl_800929AC[43];
+extern unsigned char lbl_80190C78[4];
+extern unsigned char lbl_80191D4C[3716];
+extern unsigned char lbl_80192BD0[20];
+extern unsigned char lbl_80192BE4[388];
 
 asm void fn_8005BC20(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe7
+    lis     r4, lbl_80191D4C@ha
     li	r7, 0
     stw	r0, 0x14(r1)
-    addi	r6, r4, 0x1d4c
+    addi	r6, r4, lbl_80191D4C@l
     li	r0, 2
     stw	r31, 0xc(r1)
 _8005bc40:
@@ -35,9 +42,9 @@ _8005bc4c:
     cmplw	r3, r4
     bne     _8005bc84
     mulli	r3, r7, 0xe8
-    lis	r4, -0x7fe7
+    lis     r4, lbl_80191D4C@ha
     slwi	r0, r8, 2
-    addi	r4, r4, 0x1d4c
+    addi	r4, r4, lbl_80191D4C@l
     add	r3, r4, r3
     add	r31, r3, r0
     lwzu	r3, 8(r31)
@@ -66,17 +73,17 @@ asm void fn_8005BCB4(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80190C78@ha
     stw	r0, 0x24(r1)
-    addi	r4, r3, 0xc78
+    addi	r4, r3, lbl_80190C78@l
     stmw	r27, 0xc(r1)
     lwz	r3, 0(r4)
     addic.	r0, r3, -1
     stw	r0, 0(r4)
     bne     _8005bdc0
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80191D4C@ha
     li	r27, 0
-    addi	r28, r3, 0x1d4c
+    addi	r28, r3, lbl_80191D4C@l
 _8005bce8:
     lbz	r0, 0(r28)
     cmpwi	r0, 1
@@ -132,9 +139,9 @@ _8005bd98:
     addi	r28, r28, 0xe8
     cmpwi	r27, 0x10
     blt     _8005bce8
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80191D4C@ha
     li	r4, 0
-    addi	r3, r3, 0x1d4c
+    addi	r3, r3, lbl_80191D4C@l
     li	r5, 0xe80
     bl      memset
     bl      fn_8005BFB4
@@ -151,13 +158,13 @@ asm void fn_8005BDD4(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7ff7
-    lis	r4, -0x7fe7
+    lis     r3, lbl_800927BC@ha
+    lis     r4, lbl_80190C78@ha
     stw	r0, 0x14(r1)
-    addi	r3, r3, 0x27bc
+    addi	r3, r3, lbl_800927BC@l
     lwz	r3, 0(r3)
     stw	r31, 0xc(r1)
-    addi	r31, r4, 0xc78
+    addi	r31, r4, lbl_80190C78@l
     lwz	r0, 0(r31)
     cmplwi	r0, 0
     bne     _8005be28
@@ -233,11 +240,11 @@ asm void fn_8005BEAC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80192BE4@ha
     li	r4, 0
     stw	r0, 0x14(r1)
     li	r0, 4
-    addi	r3, r3, 0x2be4
+    addi	r3, r3, lbl_80192BE4@l
     mtctr	r0
 _8005becc:
     lwz	r0, 0(r3)
@@ -284,16 +291,16 @@ _8005becc:
 _8005bf70:
     cmpwi	r4, 0x20
     bne     _8005bf8c
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x2988
+    lis     r3, lbl_80092988@ha
+    addi	r3, r3, lbl_80092988@l
     bl      fn_8005A5BC
     li	r3, 0
     b     _8005bfa4
 _8005bf8c:
     mulli	r4, r4, 0xc
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80192BE4@ha
     li	r0, 1
-    addi	r3, r3, 0x2be4
+    addi	r3, r3, lbl_80192BE4@l
     add	r3, r3, r4
     stw	r0, 0(r3)
 _8005bfa4:
@@ -308,10 +315,10 @@ asm void fn_8005BFB4(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80192BD0@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r3, 0x2bd0
+    addi	r31, r3, lbl_80192BD0@l
     lwz	r3, 0(r31)
     addic.	r0, r3, -1
     stw	r0, 0(r31)
@@ -394,8 +401,8 @@ _8005c0b0:
     lwz	r0, 0xc(r31)
     cmplw	r3, r0
     beq     _8005c0fc
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x29ac
+    lis     r3, lbl_800929AC@ha
+    addi	r3, r3, lbl_800929AC@l
     bl      fn_8005A5BC
 _8005c0fc:
     li	r0, 0

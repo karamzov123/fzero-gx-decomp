@@ -1,5 +1,8 @@
 #pragma push
 #pragma force_active on
+extern void fn_8008EDB0(void);
+extern unsigned char lbl_8015B900[25];
+extern void fn_8008EDB0(void);
 
 asm void fn_8008088C(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008E770(register void* a, register void* b, register void* c, register void* d);
@@ -13,9 +16,9 @@ asm void fn_8008EEAC(void)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7ff7
+    lis     r3, fn_8008EDB0@ha
     stw	r0, 4(r1)
-    addi	r3, r3, -0x1250
+    addi	r3, r3, fn_8008EDB0@l
     stwu	r1, -8(r1)
     bl      fn_8008EB8C
     bl      fn_8008ED30
@@ -55,9 +58,9 @@ _8008ef2c:
     cmpwi	r3, 0
     beq     _8008ef24
     bne     _8008ef4c
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015B900@ha
     crxor	6, 6, 6
-    addi	r3, r3, -0x4700
+    addi	r3, r3, lbl_8015B900@l
     bl      fn_8008088C
     b       _8008ef8c
 _8008ef4c:
@@ -127,9 +130,9 @@ _8008f01c:
     beq     _8008f014
     mr	r27, r3
     bne     _8008f044
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015B900@ha
     crxor	6, 6, 6
-    addi	r3, r3, -0x4700
+    addi	r3, r3, lbl_8015B900@l
     bl      fn_8008088C
     li	r27, 0
     b       _8008f084

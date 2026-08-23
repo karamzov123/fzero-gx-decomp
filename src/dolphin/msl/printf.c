@@ -26,18 +26,24 @@ extern void fn_8007C3B8(void);
 extern void fn_80083DB0(void);
 extern void __div2u(void);
 extern void __mod2u(void);
+extern unsigned char __files[320];
+extern unsigned char jumptable_8015B4BC[132];
+extern unsigned char jumptable_8015B540[224];
+extern unsigned char jumptable_8015B620[68];
+extern unsigned char lbl_8015B100[256];
+void* __FileWrite(void* file, const char* buf, unsigned long n);
 
 asm int vprintf(const char* fmt, void* arg)
 {
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r5, -0x7fea
+    lis     r5, __files@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
     mr	r30, r4
-    addi	r4, r5, -0x51a8
+    addi	r4, r5, __files@l
     stw	r29, 0x14(r1)
     addi	r31, r4, 0x50
     mr	r29, r3
@@ -51,9 +57,9 @@ asm int vprintf(const char* fmt, void* arg)
 _8008083c:
     li	r3, 2
     bl      __begin_critical_region
-    lis	r3, -0x7ff8
+    lis     r3, __FileWrite@ha
     mr	r4, r31
-    addi	r3, r3, 0x9e0
+    addi	r3, r3, __FileWrite@l
     mr	r5, r29
     mr	r6, r30
     bl      __pformatter
@@ -91,9 +97,9 @@ asm int fn_8008088C(void)
     stfd	f7, 0x58(r1)
     stfd	f8, 0x60(r1)
 _800808c8:
-    lis	r11, -0x7fea
+    lis     r11, __files@ha
     stw	r4, 0xc(r1)
-    addi	r11, r11, -0x51a8
+    addi	r11, r11, __files@l
     li	r4, -1
     stw	r3, 8(r1)
     addi	r31, r11, 0x50
@@ -115,10 +121,10 @@ _80080910:
     addi	r5, r1, 0x88
     addi	r0, r1, 8
     lis	r4, 0x100
-    lis	r3, -0x7ff8
+    lis     r3, __FileWrite@ha
     stw	r4, 0x68(r1)
     addi	r6, r1, 0x68
-    addi	r3, r3, 0x9e0
+    addi	r3, r3, __FileWrite@l
     mr	r4, r31
     stw	r5, 0x6c(r1)
     mr	r5, r30
@@ -812,9 +818,9 @@ _8008127c:
     lfd	f0, -0x7958(r2)
     fcmpo	cr0, f31, f0
     bge     _800812d4
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015B100@ha
     lbz	r0, 5(r29)
-    addi	r3, r3, -0x4f00
+    addi	r3, r3, lbl_8015B100@l
     addi	r28, r28, -5
     lbzx	r0, r3, r0
     rlwinm.	r0, r0, 0, 0x18, 0x18
@@ -833,9 +839,9 @@ _800812bc:
     bl      fn_80083DB0
     b       _8008131c
 _800812d4:
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015B100@ha
     lbz	r0, 5(r29)
-    addi	r3, r3, -0x4f00
+    addi	r3, r3, lbl_8015B100@l
     addi	r28, r28, -4
     lbzx	r0, r3, r0
     rlwinm.	r0, r0, 0, 0x18, 0x18
@@ -859,9 +865,9 @@ _80081324:
     lbz	r0, 0xc(r1)
     extsb.	r0, r0
     beq     _8008137c
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015B100@ha
     lbz	r0, 5(r29)
-    addi	r3, r3, -0x4f00
+    addi	r3, r3, lbl_8015B100@l
     addi	r28, r28, -5
     lbzx	r0, r3, r0
     rlwinm.	r0, r0, 0, 0x18, 0x18
@@ -880,9 +886,9 @@ _80081364:
     bl      fn_80083DB0
     b       _800813c4
 _8008137c:
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015B100@ha
     lbz	r0, 5(r29)
-    addi	r3, r3, -0x4f00
+    addi	r3, r3, lbl_8015B100@l
     addi	r28, r28, -4
     lbzx	r0, r3, r0
     rlwinm.	r0, r0, 0, 0x18, 0x18
@@ -1858,7 +1864,7 @@ _80082088:
     addi	r10, r9, -0x58
     cmplwi	r10, 0x20
     bgt     _800820f4
-    lis	r9, -0x7fea
+    lis     r9, -0x7fea
     slwi	r10, r10, 2
     addi	r9, r9, -0x4b44
     lwzx	r9, r9, r10
@@ -2045,7 +2051,7 @@ _80082314:
     li	r4, 1
     cmplwi	r0, 0x10
     bgt     _80082390
-    lis	r3, -0x7fea
+    lis     r3, -0x7fea
     slwi	r0, r0, 2
     addi	r3, r3, -0x49e0
     lwzx	r0, r3, r0
@@ -2099,8 +2105,8 @@ _800823dc:
     extsb	r6, r6
     b       _80082420
 _800823e8:
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x4f00
+    lis     r3, lbl_8015B100@ha
+    addi	r3, r3, lbl_8015B100@l
     b       _80082410
 _800823f4:
     lwz	r0, 0x10(r1)
@@ -2153,8 +2159,8 @@ _8008249c:
     extsb	r6, r6
     b       _800824e0
 _800824a8:
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x4f00
+    lis     r3, lbl_8015B100@ha
+    addi	r3, r3, lbl_8015B100@l
     b       _800824d0
 _800824b4:
     lwz	r0, 0x14(r1)
@@ -2220,7 +2226,7 @@ _8008257c:
     stb	r6, 0xd(r1)
     cmplwi	r0, 0x37
     bgt     _80082754
-    lis	r3, -0x7fea
+    lis     r3, -0x7fea
     slwi	r0, r0, 2
     addi	r3, r3, -0x4ac0
     lwzx	r0, r3, r0

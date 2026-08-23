@@ -4,6 +4,7 @@
 extern asm void fn_800718BC(void);
 extern asm void OSAlloc(void);
 extern asm void OSFree(void);
+extern unsigned char lbl_8019E210[64];
 
 asm void fn_80071C04(void)
 {
@@ -70,8 +71,8 @@ asm void fn_80071C8C(void)
 asm void fn_80071CB4(void)
 {
     nofralloc
-    lis	r3, -0x7fe6
-    addi	r3, r3, -0x1df0
+    lis     r3, lbl_8019E210@ha
+    addi	r3, r3, lbl_8019E210@l
     blr	
 }
 

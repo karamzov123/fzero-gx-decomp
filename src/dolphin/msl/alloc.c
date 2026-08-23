@@ -12,6 +12,8 @@ extern void fn_80008F60(void* lo, void* hi);
 extern void* OSSetCurrentHeap_thunk(void* heap);
 extern void* OSFree(void* heap, unsigned long size);
 extern void OSAlloc(void* heap, unsigned long size);
+extern unsigned char lbl_80094E48[54];
+extern unsigned char lbl_80094E80[57];
 
 #pragma push
 #pragma force_active on
@@ -29,12 +31,12 @@ asm void* fn_80079EF0(register unsigned long size)
     lwz     r0, -0x7FB0(r13)
     cmpwi   r0, -1
     bne     _80079f80
-    lis     r3, 0x8009
-    addi    r3, r3, 0x4e48
+    lis     r3, lbl_80094E48@ha
+    addi    r3, r3, lbl_80094E48@l
     crxor   6, 6, 6
     bl      OSReport
-    lis     r3, 0x8009
-    addi    r3, r3, 0x4e80
+    lis     r3, lbl_80094E80@ha
+    addi    r3, r3, lbl_80094E80@l
     crxor   6, 6, 6
     bl      OSReport
     bl      OSGetArenaLo
@@ -81,12 +83,12 @@ asm void fn_80079FA8(register unsigned long size)
     lwz     r0, -0x7FB0(r13)
     cmpwi   r0, -1
     bne     _8007a038
-    lis     r3, 0x8009
-    addi    r3, r3, 0x4e48
+    lis     r3, lbl_80094E48@ha
+    addi    r3, r3, lbl_80094E48@l
     crxor   6, 6, 6
     bl      OSReport
-    lis     r3, 0x8009
-    addi    r3, r3, 0x4e80
+    lis     r3, lbl_80094E80@ha
+    addi    r3, r3, lbl_80094E80@l
     crxor   6, 6, 6
     bl      OSReport
     bl      OSGetArenaLo

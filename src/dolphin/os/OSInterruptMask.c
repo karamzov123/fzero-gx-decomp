@@ -17,6 +17,7 @@ extern void _8000d98c(void);
 extern void _8000d990(void);
 extern void _8000dc68(void);
 extern void _8000dc6c(void);
+extern unsigned char lbl_80123A60[48];
 
 #pragma push
 #pragma force_active on
@@ -526,8 +527,8 @@ _8000dc3c:
     andc	r4, r0, r3
     cmplwi	r4, 0
     beq     _8000dcec
-    lis	r3, -0x7fee
-    addi	r0, r3, 0x3a60
+    lis     r3, lbl_80123A60@ha
+    addi	r0, r3, lbl_80123A60@l
     mr	r3, r0
     b       _8000dc68
     entry   _8000dc68

@@ -6,6 +6,8 @@ extern asm void fn_80078DA8(void);
 extern asm void _savegpr_27(void);
 extern asm void fn_80083970(void);
 extern asm void _restgpr_27(void);
+extern unsigned char lbl_8015AB70[80];
+extern unsigned char lbl_8015ABCC[12];
 
 asm void fn_80071100(void)
 {
@@ -28,10 +30,10 @@ asm void fn_80071100(void)
     bctrl	
     or.	r29, r3, r3
     bne	_8007115c
-    lis	r3, -0x7fea
-    lis	r4, -0x7fea
-    addi	r3, r3, -0x5490
-    addi	r4, r4, -0x5434
+    lis     r3, lbl_8015AB70@ha
+    lis     r4, lbl_8015ABCC@ha
+    addi	r3, r3, lbl_8015AB70@l
+    addi	r4, r4, lbl_8015ABCC@l
     bl      fn_8007174C
 _8007115c:
     li	r31, 1

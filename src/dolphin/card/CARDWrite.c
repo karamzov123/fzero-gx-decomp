@@ -25,11 +25,16 @@ extern s32 __CARDSync(register s32 chn);
 extern void DCStoreRange(register void* addr, register u32 n);
 extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
+extern void __CARDSyncCallback(void);
+extern void fn_80029824(void);
+extern void fn_8002F5B8(register s32 chan, register s32 result);
+extern void fn_8002F728(register s32 chan, register s32 result);
+extern unsigned char __CARDBlock[544];
 
 #pragma push
 #pragma force_active on
 
-asm void WriteCallback(register s32 chan, register s32 result)
+asm void fn_8002F5B8(register s32 chan, register s32 result)
 {
     nofralloc
     mflr    r0
@@ -38,11 +43,11 @@ asm void WriteCallback(register s32 chan, register s32 result)
     stw     r31, 0x1c(r1)
     stw     r30, 0x18(r1)
     addi    r30, r3, 0
-    lis     r3, 0x8017              /* __CARDBlock */
+    lis     r3, __CARDBlock@ha
     stw     r29, 0x14(r1)
     mulli   r5, r30, 0x110
     stw     r28, 0x10(r1)
-    addi    r0, r3, 0x7960
+    addi    r0, r3, __CARDBlock@l
     or.     r28, r4, r4
     add     r31, r0, r5
     blt     _L_8002f6dc
@@ -101,8 +106,8 @@ _L_8002f6b0:
     b       _L_8002f6dc
 _L_8002f6b8:
     lwz     r0, 0xc(r31)
-    lis     r3, 0x8003
-    addi    r5, r3, -0x8d8          /* EraseCallback */
+    lis     r3, fn_8002F728@ha
+    addi    r5, r3, fn_8002F728@l          /* EraseCallback */
     mullw   r4, r0, r4
     addi    r3, r30, 0
     bl      __CARDEraseSector
@@ -133,7 +138,7 @@ _L_8002f708:
     blr
 }
 
-asm void EraseCallback(register s32 chan, register s32 result)
+asm void fn_8002F728(register s32 chan, register s32 result)
 {
     nofralloc
     mflr    r0
@@ -146,13 +151,13 @@ asm void EraseCallback(register s32 chan, register s32 result)
     stw     r28, 0x10(r1)
     addi    r28, r3, 0
     mulli   r5, r28, 0x110
-    lis     r3, 0x8017              /* __CARDBlock */
-    addi    r0, r3, 0x7960
+    lis     r3, __CARDBlock@ha
+    addi    r0, r3, __CARDBlock@l
     add     r31, r0, r5
     blt     _L_8002f78c
     lwz     r4, 0xc0(r31)
-    lis     r3, 0x8003
-    addi    r7, r3, -0xa48          /* WriteCallback */
+    lis     r3, fn_8002F5B8@ha
+    addi    r7, r3, fn_8002F5B8@l          /* WriteCallback */
     lwz     r5, 0xc(r31)
     lhz     r0, 0x10(r4)
     lwz     r6, 0xb4(r31)
@@ -184,7 +189,7 @@ _L_8002f7b8:
     blr
 }
 
-asm s32 CARDWriteAsync(register void* fileInfo, register void* buf, register s32 length,
+asm s32 fn_8002F7D8(register void* fileInfo, register void* buf, register s32 length,
                        register s32 offset, register void* callback)
 {
     nofralloc
@@ -237,12 +242,12 @@ _L_8002f86c:
     mr      r0, r29
     b       _L_8002f890
 _L_8002f888:
-    lis     r3, 0x8003
-    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
+    lis     r3, fn_80029824@ha
+    addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
 _L_8002f890:
     lwz     r4, 0x1c(r1)
-    lis     r3, 0x8003
-    addi    r5, r3, -0x8d8          /* EraseCallback */
+    lis     r3, fn_8002F728@ha
+    addi    r5, r3, fn_8002F728@l          /* EraseCallback */
     stw     r0, 0xd0(r4)
     lwz     r3, 0x1c(r1)
     stw     r31, 0xb4(r3)
@@ -272,13 +277,13 @@ asm s32 CARDWrite(register void* fileInfo, register void* buf, register s32 leng
 {
     nofralloc
     mflr    r0
-    lis     r7, 0x8003
+    lis     r7, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r7, r7, -0x67d8         /* __CARDSyncCallback */
+    addi    r7, r7, __CARDSyncCallback@l         /* __CARDSyncCallback */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0
-    bl      CARDWriteAsync
+        bl      fn_8002F7D8
     cmpwi   r3, 0
     bge     _L_8002f918
     b       _L_8002f920

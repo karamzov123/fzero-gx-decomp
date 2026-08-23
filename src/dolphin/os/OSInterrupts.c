@@ -80,8 +80,8 @@ asm void __OSInterruptInit(void)
     li      r3, -0x20
     stw     r0, 4(r4)
     bl      __OSMaskInterrupts
-    lis     r3, 0x8001
-    addi    r4, r3, -0x22F0
+    lis     r3, ExternalInterruptHandler@ha
+    addi    r4, r3, ExternalInterruptHandler@l
     li      r3, 4
     bl      __OSSetExceptionHandler
     lwz     r0, 0x14(r1)

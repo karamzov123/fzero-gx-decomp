@@ -22,6 +22,7 @@ extern s32 fn_8008023C(register void* a, register void* b, register u32 n); // m
 extern void fn_80083D6C(register void* dst, register char* src, register u32 n); // strncpy
 extern void fn_80029824(void);                                                // default-API callback stub
 extern void CreateCallbackFat(void);                                          // fat-update callback (CARDDir)
+extern void __CARDSyncCallback(void);
 
 #pragma push
 #pragma force_active on
@@ -188,9 +189,9 @@ asm s32 CARDCreate(register s32 chan, register char* fileName, register u32 size
 {
     nofralloc
     mflr    r0
-    lis     r7, 0x8003
+    lis     r7, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r7, r7, -0x67d8         /* __CARDSyncCallback */
+    addi    r7, r7, __CARDSyncCallback@l         /* __CARDSyncCallback */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0

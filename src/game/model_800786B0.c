@@ -34,6 +34,8 @@ extern void fn_80078360(void);
 extern void fn_800794F0(void);
 extern void fn_8006DFFC(void);
 extern void memset(void);
+extern unsigned char Invalid_Model_str[14];
+extern unsigned char lbl_8019F130[28];
 asm void fn_800786B0(void);
 asm void fn_80078768(void);
 asm void fn_80078884(void);
@@ -543,9 +545,9 @@ asm void fn_80078CDC(void)
     bl fn_80038CFC
 _80078CF8:
     lwz r0, -0x7624(r13)
-    lis r3, -0x7fe6
+    lis     r3, lbl_8019F130@ha
     lfs f0, -0x7998(r2)
-    addi r3, r3, -0xed0
+    addi r3, r3, lbl_8019F130@l
     cmpwi r0, 0
     stfs f0, 0xc(r3)
     beq _80078D18
@@ -713,11 +715,11 @@ asm void fn_80078F0C(void)
     bl _savegpr_23
     or. r27, r4, r4
     mr r26, r3
-    lis r3, -0x7fea
+    lis     r3, Invalid_Model_str@ha
     mr r28, r5
     mr r29, r6
     addi r24, r26, 0x40
-    addi r31, r3, -0x52c8
+    addi r31, r3, Invalid_Model_str@l
     li r30, 0
     bne _80078F88
     lhz r4, 0x18(r26)

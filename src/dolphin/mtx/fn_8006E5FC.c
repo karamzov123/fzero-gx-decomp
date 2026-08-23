@@ -6,6 +6,7 @@ extern asm void fn_8006D0B4(void);
 extern asm void _restgpr_25(void);
 extern asm void fn_8006D188(void);
 extern asm void fn_8006D0E8(void);
+extern unsigned char lbl_80094E10[16];
 
 asm void fn_8006E5FC(void)
 {
@@ -16,8 +17,8 @@ asm void fn_8006E5FC(void)
     addi	r11, r1, 0x50
     bl      _savegpr_25
     lwz	r6, -0x76c0(r13)
-    lis	r4, -0x7ff7
-    addi	r5, r4, 0x4e10
+    lis     r4, lbl_80094E10@ha
+    addi	r5, r4, lbl_80094E10@l
     lfs	f0, -0x7a6c(r2)
     lfs	f2, 0(r6)
     mr	r31, r3

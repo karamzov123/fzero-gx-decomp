@@ -14,6 +14,10 @@ extern void fn_80085088(void);
 extern void fn_80085494(void);
 extern void fn_80082A7C(void);
 extern void fn_80083428(void);
+extern unsigned char jumptable_8015B668[208];
+extern unsigned char lbl_80095010[32];
+extern unsigned char lbl_8015B100[256];
+void fn_800829EC(void);
 
 asm void fn_8008279C(void)
 {
@@ -178,10 +182,10 @@ _800829b0:
     b       _800829d8
 _800829b8:
     li	r0, 0
-    lis	r3, -0x7ff8
+    lis     r3, fn_800829EC@ha
     stw	r0, 0x6c(r1)
     mr	r5, r4
-    addi	r3, r3, 0x29ec
+    addi	r3, r3, fn_800829EC@l
     mr	r6, r31
     addi	r4, r1, 0x68
     bl      fn_80082A7C
@@ -264,15 +268,15 @@ _80082ab4:
     lbzx	r0, r18, r0
     rlwinm.	r0, r0, 0, 0x1d, 0x1e
     bc      12, 2, _80082b38
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x4f00
+    lis     r3, lbl_8015B100@ha
+    addi	r3, r3, lbl_8015B100@l
 _80082acc:
     lbzu	r0, 1(r26)
     lbzx	r0, r3, r0
     rlwinm.	r0, r0, 0, 0x1d, 0x1e
     bc      4, 2, _80082acc
-    lis	r3, -0x7fea
-    addi	r17, r3, -0x4f00
+    lis     r3, lbl_8015B100@ha
+    addi	r17, r3, lbl_8015B100@l
     b       _80082aec
 _80082ae8:
     addi	r29, r29, 1
@@ -712,8 +716,8 @@ _800830a4:
     addi	r27, r27, 1
     b       _800833d4
 _800830ac:
-    lis	r3, -0x7fea
-    addi	r17, r3, -0x4f00
+    lis     r3, lbl_8015B100@ha
+    addi	r17, r3, lbl_8015B100@l
     b       _800830bc
 _800830b8:
     addi	r29, r29, 1
@@ -749,9 +753,9 @@ _80083118:
     li	r5, 0
     mtctr	r12
     bctrl
-    lis	r4, -0x7fea
+    lis     r4, lbl_8015B100@ha
     stb	r3, 8(r1)
-    addi	r17, r4, -0x4f00
+    addi	r17, r4, lbl_8015B100@l
     b       _80083160
 _80083140:
     mr	r12, r30
@@ -1023,9 +1027,9 @@ _800834d0:
     stb	r0, 8(r1)
     extsb	r5, r5
 _800834e8:
-    lis	r6, -0x7fea
+    lis     r6, lbl_8015B100@ha
     clrlwi	r0, r5, 0x18
-    addi	r7, r6, -0x4f00
+    addi	r7, r6, lbl_8015B100@l
     lbzx	r0, r7, r0
     rlwinm.	r0, r0, 0, 0x1b, 0x1b
     bc      12, 2, _800835a0
@@ -1123,7 +1127,7 @@ _80083640:
     stb	r5, 0xb(r1)
     cmplwi	r0, 0x33
     bc      12, 1, _80083904
-    lis	r5, -0x7fea
+    lis     r5, -0x7fea
     slwi	r0, r0, 2
     addi	r5, r5, -0x4998
     lwzx	r0, r5, r0
@@ -1384,9 +1388,9 @@ _800839c4:
 asm void fn_800839D8(void)
 {
     nofralloc
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80095010@ha
     stwu	r1, -0x30(r1)
-    addi	r12, r5, 0x5010
+    addi	r12, r5, lbl_80095010@l
     cmplwi	r3, 0
     lwz	r11, 0(r12)
     lwz	r10, 4(r12)

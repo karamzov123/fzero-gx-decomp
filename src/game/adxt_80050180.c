@@ -4,6 +4,10 @@
 extern void fn_800502A0(void);
 extern void fn_800589BC(void);
 extern void memset(void);
+extern unsigned char lbl_8012D9B8[4];
+extern unsigned char lbl_8012D9BC[12292];
+extern unsigned char lbl_801309C0[136];
+extern unsigned char lbl_80186FAC[356];
 
 asm void fn_80050180(void)
 {
@@ -76,9 +80,9 @@ _80050230:
     stw	r0, 0xc(r31)
     b       _80050288
 _80050258:
-    lis	r3, -0x7fed
+    lis     r3, lbl_801309C0@ha
     slwi	r0, r30, 2
-    addi	r4, r3, 0x9c0
+    addi	r4, r3, lbl_801309C0@l
     lwz	r3, 8(r31)
     lwzx	r0, r4, r0
     subf	r4, r30, r5
@@ -267,13 +271,13 @@ asm void fn_800504EC(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r4, -0x7fe8
+    lis     r4, lbl_80186FAC@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
     mr	r29, r3
-    addi	r3, r4, 0x6fac
+    addi	r3, r4, lbl_80186FAC@l
     li	r4, 0
     lwz	r0, 0(r3)
     cmpwi	r0, 0
@@ -320,9 +324,9 @@ _800505ac:
     b       _80050654
 _800505bc:
     mulli	r5, r4, 0x2c
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80186FAC@ha
     li	r4, 0
-    addi	r0, r3, 0x6fac
+    addi	r0, r3, lbl_80186FAC@l
     add	r30, r0, r5
     li	r5, 0x2c
     mr	r3, r30
@@ -371,13 +375,13 @@ asm void fn_80050670(void)
 {
     nofralloc
     mulli	r7, r3, 0x3000
-    lis	r6, -0x7fed
-    lis	r5, -0x7fed
-    addi	r0, r6, -0x2644
+    lis     r6, lbl_8012D9BC@ha
+    lis     r5, lbl_8012D9B8@ha
+    addi	r0, r6, lbl_8012D9BC@l
     add	r6, r0, r7
     slwi	r0, r3, 2
     stw	r6, 0(r4)
-    addi	r3, r5, -0x2648
+    addi	r3, r5, lbl_8012D9B8@l
     lwzx	r3, r3, r0
     blr	
 }

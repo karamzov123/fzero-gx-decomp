@@ -15,13 +15,15 @@ extern void fn_80020F88(void);
 extern void fn_80020F1C(void);
 extern void fn_80020F50(void);
 extern void DCFlushRange(register void* addr, register u32 nBytes);
+extern unsigned char lbl_80124800[6720];
+extern unsigned char lbl_8015FF00[1536];
 
 asm void fn_80021200(void)
 {
     nofralloc
     lwz	r5, -0x78c8(r13)
-    lis	r3, -0x7fea
-    addi	r4, r3, -0x100
+    lis     r3, lbl_8015FF00@ha
+    addi	r4, r3, lbl_8015FF00@l
     addi	r0, r5, 1
     stw	r0, -0x78c8(r13)
     mulli	r3, r5, 0x300
@@ -393,8 +395,8 @@ _8002178c:
     li	r0, 0x12
     lis	r5, 1
     sth	r0, 0(r3)
-    lis	r3, -0x7fee
-    addi	r4, r3, 0x4800
+    lis     r3, lbl_80124800@ha
+    addi	r4, r3, lbl_80124800@l
     lwz	r3, -0x78c4(r13)
     addi	r6, r5, -0x8000
     li	r5, 0xa
@@ -480,9 +482,9 @@ _80021824:
 asm void fn_800218EC(void)
 {
     nofralloc
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015FF00@ha
     li	r4, 0
-    addi	r3, r3, -0x100
+    addi	r3, r3, lbl_8015FF00@l
     stw	r4, -0x78b8(r13)
     li	r0, 1
     stw	r4, -0x78c8(r13)

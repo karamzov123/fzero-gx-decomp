@@ -56,6 +56,27 @@ extern void fn_8005BCB4(void);
 extern void fn_8005BDD4(void);
 extern void fn_8005BE48(void);
 extern void memset(void);
+extern unsigned char _Internal_Error_adxm_goto_mwidle_border_str[49];
+extern void fn_80056584(void);
+extern void fn_8005A5A8(void);
+extern unsigned char lbl_8009115C[4];
+void fn_8004E7D4(void);
+void fn_8004E8A0(void);
+void fn_8004E8F8(void);
+void fn_8004E9A8(void);
+void fn_8004E9D8(void);
+void fn_8004EA94(void);
+void fn_8004EB00(void);
+void fn_8004ECF4(void);
+extern unsigned char lbl_80091198[72];
+extern unsigned char lbl_8012B918[24];
+extern unsigned char lbl_8012B930[8];
+extern unsigned char lbl_80178CB8[4];
+extern unsigned char lbl_8017E5BC[964];
+extern unsigned char lbl_8017E980[4];
+extern unsigned char lbl_8017E984[31916];
+extern void fn_80056584(void);
+extern void fn_8005A5A8(void);
 
 asm void fn_8004E098(void)
 {
@@ -314,10 +335,10 @@ asm void fn_8004E354(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E5BC@ha
     stw	r0, 0x14(r1)
     li	r0, 2
-    addi	r3, r3, -0x1a44
+    addi	r3, r3, lbl_8017E5BC@l
     stw	r31, 0xc(r1)
     li	r31, 0
     stw	r30, 8(r1)
@@ -371,9 +392,9 @@ _8004e420:
     b       _8004e494
 _8004e430:
     mulli	r5, r31, 0x3c
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E5BC@ha
     li	r4, 0
-    addi	r0, r3, -0x1a44
+    addi	r0, r3, lbl_8017E5BC@l
     add	r30, r0, r5
     li	r5, 0x3c
     mr	r3, r30
@@ -409,10 +430,10 @@ asm void fn_8004E4AC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E5BC@ha
     li	r4, 0
     stw	r0, 0x14(r1)
-    addi	r3, r3, -0x1a44
+    addi	r3, r3, lbl_8017E5BC@l
     li	r5, 0x3c0
     bl      memset
     lwz	r0, 0x14(r1)
@@ -426,10 +447,10 @@ asm void fn_8004E4DC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E980@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r3, -0x1680
+    addi	r31, r3, lbl_8017E980@l
     lwz	r3, 4(r31)
     addic.	r0, r3, -1
     stw	r0, 4(r31)
@@ -475,8 +496,8 @@ _8004e56c:
 asm void fn_8004E580(void)
 {
     nofralloc
-    lis	r3, -0x7fe8
-    addi	r3, r3, -0x167c
+    lis     r3, lbl_8017E984@ha
+    addi	r3, r3, lbl_8017E984@l
     lwz	r3, 0(r3)
     neg	r0, r3
     or	r0, r0, r3
@@ -489,32 +510,32 @@ asm void fn_8004E59C(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r5, -0x7fe8
-    lis	r4, -0x7ff7
+    lis     r5, lbl_8017E980@ha
+    lis     r4, lbl_8009115C@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r5, -0x1680
+    addi	r31, r5, lbl_8017E980@l
     stw	r30, 8(r1)
     mr	r30, r3
-    addi	r3, r4, 0x115c
+    addi	r3, r4, lbl_8009115C@l
     lwz	r0, 4(r31)
     lwz	r3, 0(r3)
     cmpwi	r0, 0
     bne     _8004e790
     bl      fn_80058BFC
-    lis	r3, -0x7ffb
+    lis     r3, fn_8004EB00@ha
     li	r4, 0
-    addi	r3, r3, -0x1500
+    addi	r3, r3, fn_8004EB00@l
     bl      fn_80058EE4
-    lis	r3, -0x7ffb
+    lis     r3, fn_8004EA94@ha
     li	r4, 0
-    addi	r3, r3, -0x156c
+    addi	r3, r3, fn_8004EA94@l
     bl      fn_80058ED4
     cmplwi	r30, 0
     bne     _8004e63c
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012B918@ha
     li	r8, 0x10
-    addi	r7, r3, -0x46e8
+    addi	r7, r3, lbl_8012B918@l
     li	r6, 1
     li	r5, 8
     li	r4, 0xc
@@ -542,48 +563,48 @@ _8004e63c:
     stw	r3, 0x10(r4)
     stw	r0, 0x14(r4)
 _8004e670:
-    lis	r3, -0x7fed
-    lis	r4, -0x7ffb
-    addi	r3, r3, -0x46e8
+    lis     r3, lbl_8012B918@ha
+    lis     r4, fn_8004E9A8@ha
+    addi	r3, r3, lbl_8012B918@l
     addi	r6, r31, 0x6cb0
     lwz	r8, 4(r3)
-    addi	r4, r4, -0x1658
+    addi	r4, r4, fn_8004E9A8@l
     addi	r3, r31, 0x970
     li	r5, 0
     li	r7, 0x1000
     li	r9, 1
     addi	r6, r6, 0x1000
     bl      OSCreateThread
-    lis	r3, -0x7fed
-    lis	r4, -0x7ffb
-    addi	r3, r3, -0x46e8
+    lis     r3, lbl_8012B918@ha
+    lis     r4, fn_8004E8F8@ha
+    addi	r3, r3, lbl_8012B918@l
     addi	r6, r31, 0x4cb0
     lwz	r8, 8(r3)
-    addi	r4, r4, -0x1708
+    addi	r4, r4, fn_8004E8F8@l
     addi	r3, r31, 0x340
     li	r5, 0
     li	r7, 0x2000
     li	r9, 1
     addi	r6, r6, 0x2000
     bl      OSCreateThread
-    lis	r3, -0x7fed
-    lis	r4, -0x7ffb
-    addi	r3, r3, -0x46e8
+    lis     r3, lbl_8012B918@ha
+    lis     r4, fn_8004E8A0@ha
+    addi	r3, r3, lbl_8012B918@l
     addi	r6, r31, 0x2cb0
     lwz	r8, 0xc(r3)
-    addi	r4, r4, -0x1760
+    addi	r4, r4, fn_8004E8A0@l
     addi	r3, r31, 0x658
     li	r5, 0
     li	r7, 0x2000
     li	r9, 1
     addi	r6, r6, 0x2000
     bl      OSCreateThread
-    lis	r3, -0x7fed
-    lis	r4, -0x7ffb
-    addi	r3, r3, -0x46e8
+    lis     r3, lbl_8012B918@ha
+    lis     r4, fn_8004E7D4@ha
+    addi	r3, r3, lbl_8012B918@l
     addi	r6, r31, 0xcb0
     lwz	r8, 0x14(r3)
-    addi	r4, r4, -0x182c
+    addi	r4, r4, fn_8004E7D4@l
     addi	r3, r31, 0x28
     li	r5, 0
     li	r7, 0x2000
@@ -609,9 +630,9 @@ _8004e670:
     bl      OSResumeThread
     addi	r3, r31, 0x28
     bl      OSResumeThread
-    lis	r4, -0x7ffb
+    lis     r4, fn_8004E9D8@ha
     li	r3, 6
-    addi	r4, r4, -0x1628
+    addi	r4, r4, fn_8004E9D8@l
     li	r5, 0
     bl      fn_80059028
 _8004e790:
@@ -645,13 +666,13 @@ asm void fn_8004E7D4(void)
     stwu	r1, -0x20(r1)
     mflr	r0
     lis	r5, -0x7fe8
-    lis	r4, -0x7fed
+    lis     r4, lbl_8012B918@ha
     stw	r0, 0x24(r1)
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012B930@ha
     stw	r31, 0x1c(r1)
-    addi	r31, r3, -0x46d0
+    addi	r31, r3, lbl_8012B930@l
     stw	r30, 0x18(r1)
-    addi	r30, r4, -0x46e8
+    addi	r30, r4, lbl_8012B918@l
     stw	r29, 0x14(r1)
     addi	r29, r5, -0x1680
     b       _8004e870
@@ -705,10 +726,10 @@ asm void fn_8004E8A0(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E980@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r3, -0x1680
+    addi	r31, r3, lbl_8017E980@l
     b       _8004e8d0
 _8004e8bc:
     bl      fn_8001AF64
@@ -735,13 +756,13 @@ asm void fn_8004E8F8(void)
     stwu	r1, -0x20(r1)
     mflr	r0
     lis	r5, -0x7fe8
-    lis	r4, -0x7fed
+    lis     r4, lbl_8012B930@ha
     stw	r0, 0x24(r1)
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CB8@ha
     stw	r31, 0x1c(r1)
-    addi	r31, r3, -0x7348
+    addi	r31, r3, lbl_80178CB8@l
     stw	r30, 0x18(r1)
-    addi	r30, r4, -0x46d0
+    addi	r30, r4, lbl_8012B930@l
     stw	r29, 0x14(r1)
     addi	r29, r5, -0x1680
     b       _8004e978
@@ -783,8 +804,8 @@ _8004e978:
 asm void fn_8004E9A8(void)
 {
     nofralloc
-    lis	r3, -0x7fe8
-    addi	r4, r3, -0x1680
+    lis     r3, lbl_8017E980@ha
+    addi	r4, r3, lbl_8017E980@l
     b       _8004e9c0
 _8004e9b4:
     lwz	r3, 0x10(r4)
@@ -804,11 +825,11 @@ asm void fn_8004E9D8(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E980@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
-    addi	r30, r3, -0x1680
+    addi	r30, r3, lbl_8017E980@l
     stw	r29, 0x14(r1)
     lwz	r0, 0xca0(r30)
     cmpwi	r0, 1
@@ -837,13 +858,13 @@ _8004ea4c:
     addis	r0, r29, -0xbeb
     cmplwi	r0, 0xc200
     bne     _8004ea64
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1160
+    lis     r3, _Internal_Error_adxm_goto_mwidle_border_str@ha
+    addi	r3, r3, _Internal_Error_adxm_goto_mwidle_border_str@l
     bl      fn_800595A4
 _8004ea64:
-    lis	r4, -0x7fed
+    lis     r4, lbl_8012B918@ha
     addi	r3, r30, 0x28
-    addi	r4, r4, -0x46e8
+    addi	r4, r4, lbl_8012B918@l
     lwz	r4, 0x14(r4)
     bl      OSSetThreadPriority
 _8004ea78:
@@ -861,10 +882,10 @@ asm void fn_8004EA94(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E980@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r3, -0x1680
+    addi	r31, r3, lbl_8017E980@l
     stw	r30, 8(r1)
     lwz	r3, 8(r31)
     addi	r0, r3, -1
@@ -894,11 +915,11 @@ asm void fn_8004EB00(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E980@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
-    addi	r30, r3, -0x1680
+    addi	r30, r3, lbl_8017E980@l
     stw	r29, 0x14(r1)
     stw	r28, 0x10(r1)
     lwz	r0, 8(r30)
@@ -912,9 +933,9 @@ asm void fn_8004EB00(void)
     bl      fn_800102AC
     mr	r28, r3
     bl      fn_80011358
-    lis	r4, -0x7fed
+    lis     r4, lbl_8012B918@ha
     mr	r31, r3
-    addi	r4, r4, -0x46e8
+    addi	r4, r4, lbl_8012B918@l
     mr	r3, r28
     lwz	r4, 0(r4)
     bl      OSSetThreadPriority
@@ -997,29 +1018,29 @@ asm void fn_8004EC34(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80091198@ha
     lis	r4, -0x7ffb
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r5, 0x1198
+    addi	r31, r5, lbl_80091198@l
     lwz	r0, 0x3c(r31)
     stw	r30, 8(r1)
     mr	r30, r3
     addi	r3, r4, -0x130c
     li	r4, 0
     bl      fn_8005466C
-    lis	r4, -0x7ffa
+    lis     r4, fn_8005A5A8@ha
     addi	r3, r31, 0x40
-    addi	r4, r4, -0x5a58
+    addi	r4, r4, fn_8005A5A8@l
     li	r5, 0
     bl      fn_80055304
-    lis	r3, -0x7ffb
+    lis     r3, fn_8004ECF4@ha
     li	r4, 0
-    addi	r3, r3, -0x130c
+    addi	r3, r3, fn_8004ECF4@l
     bl      fn_8005466C
-    lis	r4, -0x7ffb
+    lis     r4, fn_80056584@ha
     addi	r3, r31, 0x44
-    addi	r4, r4, 0x6584
+    addi	r4, r4, fn_80056584@l
     li	r5, 0
     bl      fn_80055304
     addi	r3, r31, 0x44

@@ -173,9 +173,9 @@ asm void ARQInit(void)
     li	r31, 0
     li	r0, 0x1000
     stw	r31, -0x79b8(r13)
-    lis	r3, -0x7ffe
+    lis     r3, __ARQInterruptServiceRoutine@ha
     stw	r31, -0x79c0(r13)
-    addi	r3, r3, 0x464
+    addi	r3, r3, __ARQInterruptServiceRoutine@l
     stw	r0, -0x79a0(r13)
     bl      ARRegisterDMACallback
     li	r0, 1
@@ -215,8 +215,8 @@ asm void ARQPostRequest(register struct ARQRequest* request, register u32 owner,
     stw	r10, 0x1c(r29)
     b       _800205f8
 _800205ec:
-    lis	r3, -0x7ffe
-    addi	r0, r3, 0x460
+    lis     r3, __ARQCallbackHack@ha
+    addi	r0, r3, __ARQCallbackHack@l
     stw	r0, 0x1c(r29)
 _800205f8:
     bl      OSDisableInterrupts

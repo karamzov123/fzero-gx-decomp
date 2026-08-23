@@ -13,6 +13,14 @@ extern asm void fn_8000C49C(void);
 extern asm void fn_8003493C(void);
 extern asm void fn_8001B42C(void);
 extern asm void fn_80034ECC(void);
+extern unsigned char lbl_8012AFB8[60];
+extern unsigned char lbl_8012AFF4[60];
+extern unsigned char lbl_8012B030[60];
+extern unsigned char lbl_8012B06C[60];
+extern unsigned char lbl_8012B0A8[60];
+extern unsigned char lbl_8015AA78[11];
+extern unsigned char lbl_8015AB24[76];
+extern unsigned char lbl_8019E150[60];
 
 asm void fn_80070538(void)
 {
@@ -104,42 +112,42 @@ _80070650:
 _8007065c:
     cmpwi	r31, 0
     beq	_80070674
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x4fd0
+    lis     r3, lbl_8012B030@ha
+    addi	r0, r3, lbl_8012B030@l
     stw	r0, -0x76cc(r13)
     b	_800706c0
 _80070674:
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x5048
+    lis     r3, lbl_8012AFB8@ha
+    addi	r0, r3, lbl_8012AFB8@l
     stw	r0, -0x76cc(r13)
     b	_800706c0
 _80070684:
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x4f58
+    lis     r3, lbl_8012B0A8@ha
+    addi	r0, r3, lbl_8012B0A8@l
     stw	r0, -0x76cc(r13)
     b	_800706c0
 _80070694:
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x4f94
+    lis     r3, lbl_8012B06C@ha
+    addi	r0, r3, lbl_8012B06C@l
     stw	r0, -0x76cc(r13)
     b	_800706c0
 _800706a4:
-    lis	r3, -0x7fea
-    lis	r5, -0x7fea
-    addi	r3, r3, -0x5588
+    lis     r3, lbl_8015AA78@ha
+    lis     r5, lbl_8015AB24@ha
+    addi	r3, r3, lbl_8015AA78@l
     li	r4, 0x157
-    addi	r5, r5, -0x54dc
+    addi	r5, r5, lbl_8015AB24@l
     crxor	6, 6, 6
     bl      fn_8000C49C
 _800706c0:
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E150@ha
     lwz	r3, -0x76cc(r13)
-    addi	r4, r4, -0x1eb0
+    addi	r4, r4, lbl_8019E150@l
     li	r5, 0
     li	r6, 0x10
     bl      fn_8003493C
-    lis	r3, -0x7fe6
-    addi	r3, r3, -0x1eb0
+    lis     r3, lbl_8019E150@ha
+    addi	r3, r3, lbl_8019E150@l
     stw	r3, -0x76cc(r13)
     bl      fn_8001B42C
     li	r0, 1
@@ -161,12 +169,12 @@ asm void fn_80070704(void)
     cmpw	r3, r0
     beq	_8007074c
     clrlwi.	r0, r3, 0x18
-    lis	r4, -0x7fed
+    lis     r4, lbl_8012AFF4@ha
     stb	r3, -0x76d6(r13)
-    addi	r5, r4, -0x500c
+    addi	r5, r4, lbl_8012AFF4@l
     beq	_80070738
-    lis	r3, -0x7fed
-    addi	r5, r3, -0x5048
+    lis     r3, lbl_8012AFB8@ha
+    addi	r5, r3, lbl_8012AFB8@l
 _80070738:
     lbz	r3, 0x19(r5)
     addi	r4, r5, 0x1a

@@ -2,6 +2,8 @@
 #pragma force_active on
 
 extern int fn_80009CD4(register void* param1);
+extern unsigned char lbl_8015BE40[160];
+extern unsigned char lbl_8015BEE0[32];
 
 asm int fn_8000961C(register void* param1)
 {
@@ -14,14 +16,14 @@ asm int fn_8000961C(register void* param1)
     cmpwi	r29, -1
     beq     _800096a0
     mulli	r0, r29, 0x14
-    lis	r4, -0x7fea
-    lis	r5, -0x7fea
+    lis     r4, lbl_8015BE40@ha
+    lis     r5, lbl_8015BEE0@ha
     lwz	r30, -0x7fb0(r13)
-    addi	r4, r4, -0x41c0
+    addi	r4, r4, lbl_8015BE40@l
     lwz	r12, -0x7c7c(r13)
     add	r7, r4, r0
     lwzx	r8, r4, r0
-    addi	r31, r5, -0x4120
+    addi	r31, r5, lbl_8015BEE0@l
     lwz	r11, -0x7c80(r13)
     lwz	r10, -0x7c84(r13)
     lwz	r9, -0x7c88(r13)
@@ -49,15 +51,15 @@ _800096b4:
     cmpwi	r29, -1
     beq     _80009724
     mulli	r6, r29, 0x14
-    lis	r4, -0x7fea
+    lis     r4, lbl_8015BE40@ha
     lwz	r5, -0x7fb0(r13)
-    lis	r3, -0x7fea
-    addi	r4, r4, -0x41c0
+    lis     r3, lbl_8015BEE0@ha
+    addi	r4, r4, lbl_8015BE40@l
     lwz	r0, -0x7c7c(r13)
     stwx	r5, r4, r6
     add	r9, r4, r6
     lwz	r4, -0x7c80(r13)
-    addi	r7, r3, -0x4120
+    addi	r7, r3, lbl_8015BEE0@l
     stw	r0, 4(r9)
     lwz	r0, -0x7c84(r13)
     stw	r4, 8(r9)
@@ -87,14 +89,14 @@ _8000972c:
     cmpwi	r29, -1
     beq     _800097ac
     mulli	r6, r29, 0x14
-    lis	r4, -0x7fea
+    lis     r4, lbl_8015BE40@ha
     lwz	r5, -0x7fb0(r13)
-    lis	r3, -0x7fea
-    addi	r4, r4, -0x41c0
+    lis     r3, lbl_8015BEE0@ha
+    addi	r4, r4, lbl_8015BE40@l
     lwz	r0, -0x7c84(r13)
     stwx	r5, r4, r6
     add	r9, r4, r6
-    addi	r7, r3, -0x4120
+    addi	r7, r3, lbl_8015BEE0@l
     lwz	r8, -0x7c88(r13)
     stw	r11, 4(r9)
     lwz	r6, 0(r7)
@@ -117,14 +119,14 @@ _800097b4:
     cmpwi	r29, -1
     beq     _8000981c
     mulli	r7, r29, 0x14
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015BE40@ha
     lwz	r6, -0x7fb0(r13)
-    lis	r4, -0x7fea
-    addi	r5, r5, -0x41c0
+    lis     r4, lbl_8015BEE0@ha
+    addi	r5, r5, lbl_8015BE40@l
     lwz	r0, -0x7c84(r13)
     stwx	r6, r5, r7
     add	r10, r5, r7
-    addi	r8, r4, -0x4120
+    addi	r8, r4, lbl_8015BEE0@l
     lwz	r9, -0x7c88(r13)
     stw	r11, 4(r10)
     lwz	r7, 0(r8)
@@ -160,14 +162,14 @@ asm void* OSAllocFromHeap(register int heap, register unsigned long size)
     cmpwi	r28, -1
     beq     _800098b8
     mulli	r0, r28, 0x14
-    lis	r5, -0x7fea
-    lis	r6, -0x7fea
+    lis     r5, lbl_8015BE40@ha
+    lis     r6, lbl_8015BEE0@ha
     lwz	r29, -0x7fb0(r13)
-    addi	r5, r5, -0x41c0
+    addi	r5, r5, lbl_8015BE40@l
     lwz	r31, -0x7c7c(r13)
     add	r8, r5, r0
     lwzx	r9, r5, r0
-    addi	r30, r6, -0x4120
+    addi	r30, r6, lbl_8015BEE0@l
     lwz	r12, -0x7c80(r13)
     lwz	r11, -0x7c84(r13)
     lwz	r10, -0x7c88(r13)
@@ -208,14 +210,14 @@ _800098f0:
     cmpwi	r28, -1
     beq     _80009964
     mulli	r7, r28, 0x14
-    lis	r4, -0x7fea
+    lis     r4, lbl_8015BE40@ha
     lwz	r0, -0x7fb0(r13)
-    lis	r3, -0x7fea
-    addi	r5, r4, -0x41c0
+    lis     r3, lbl_8015BEE0@ha
+    addi	r5, r4, lbl_8015BE40@l
     lwz	r4, -0x7c80(r13)
     stwx	r0, r5, r7
     add	r9, r5, r7
-    addi	r7, r3, -0x4120
+    addi	r7, r3, lbl_8015BEE0@l
     lwz	r0, -0x7c84(r13)
     stw	r6, 4(r9)
     lwz	r6, 0(r7)
@@ -291,15 +293,15 @@ _80009a14:
     cmpwi	r0, -1
     beq     _80009a8c
     mulli	r7, r0, 0x14
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015BE40@ha
     lwz	r6, -0x7fb0(r13)
-    lis	r4, -0x7fea
-    addi	r5, r5, -0x41c0
+    lis     r4, lbl_8015BEE0@ha
+    addi	r5, r5, lbl_8015BE40@l
     lwz	r0, -0x7c7c(r13)
     stwx	r6, r5, r7
     add	r10, r5, r7
     lwz	r5, -0x7c80(r13)
-    addi	r8, r4, -0x4120
+    addi	r8, r4, lbl_8015BEE0@l
     stw	r0, 4(r10)
     lwz	r0, -0x7c84(r13)
     stw	r5, 8(r10)
@@ -338,14 +340,14 @@ asm int OSFreeToHeap(register void* param1)
     cmpwi	r0, -1
     beq     _80009b2c
     mulli	r0, r0, 0x14
-    lis	r5, -0x7fea
-    lis	r6, -0x7fea
+    lis     r5, lbl_8015BE40@ha
+    lis     r6, lbl_8015BEE0@ha
     lwz	r29, -0x7fb0(r13)
-    addi	r5, r5, -0x41c0
+    addi	r5, r5, lbl_8015BE40@l
     lwz	r31, -0x7c7c(r13)
     add	r8, r5, r0
     lwzx	r9, r5, r0
-    addi	r30, r6, -0x4120
+    addi	r30, r6, lbl_8015BEE0@l
     lwz	r12, -0x7c80(r13)
     lwz	r11, -0x7c84(r13)
     lwz	r10, -0x7c88(r13)
@@ -439,15 +441,15 @@ _80009c20:
     cmpwi	r0, -1
     beq     _80009c98
     mulli	r6, r0, 0x14
-    lis	r4, -0x7fea
+    lis     r4, lbl_8015BE40@ha
     lwz	r5, -0x7fb0(r13)
-    lis	r3, -0x7fea
-    addi	r4, r4, -0x41c0
+    lis     r3, lbl_8015BEE0@ha
+    addi	r4, r4, lbl_8015BE40@l
     lwz	r0, -0x7c7c(r13)
     stwx	r5, r4, r6
     add	r9, r4, r6
     lwz	r4, -0x7c80(r13)
-    addi	r7, r3, -0x4120
+    addi	r7, r3, lbl_8015BEE0@l
     stw	r0, 4(r9)
     lwz	r0, -0x7c84(r13)
     stw	r4, 8(r9)
@@ -500,14 +502,14 @@ asm int fn_80009CD4(register void* param1)
     cmpwi	r0, -1
     beq     _80009d60
     mulli	r0, r0, 0x14
-    lis	r5, -0x7fea
-    lis	r6, -0x7fea
+    lis     r5, lbl_8015BE40@ha
+    lis     r6, lbl_8015BEE0@ha
     lwz	r29, -0x7fb0(r13)
-    addi	r5, r5, -0x41c0
+    addi	r5, r5, lbl_8015BE40@l
     lwz	r31, -0x7c7c(r13)
     add	r8, r5, r0
     lwzx	r9, r5, r0
-    addi	r30, r6, -0x4120
+    addi	r30, r6, lbl_8015BEE0@l
     lwz	r12, -0x7c80(r13)
     lwz	r11, -0x7c84(r13)
     lwz	r10, -0x7c88(r13)
@@ -658,10 +660,10 @@ _80009f14:
     cmpwi	r3, -1
     beq     _80009f88
     mulli	r7, r3, 0x14
-    lis	r4, -0x7fea
+    lis     r4, lbl_8015BE40@ha
     lwz	r6, -0x7fb0(r13)
     lis	r3, -0x7fea
-    addi	r4, r4, -0x41c0
+    addi	r4, r4, lbl_8015BE40@l
     lwz	r5, -0x7c7c(r13)
     stwx	r6, r4, r7
     add	r9, r4, r7

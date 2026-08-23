@@ -9,16 +9,20 @@ extern void fn_80042D24(void);
 extern void fn_8008023C(void);
 extern void fn_8004E270(void);
 extern void fn_8004313C(void);
+extern unsigned char RIFF_str[5];
+extern unsigned char WAVE_str[5];
+extern unsigned char lbl_8012B6F4[4];
+extern unsigned char lbl_801798C0[2496];
 
 asm void fn_800424B8(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_801798C0@ha
     li	r4, 0
     stw	r0, 0x14(r1)
-    addi	r3, r3, -0x6740
+    addi	r3, r3, lbl_801798C0@l
     li	r5, 0x9c0
     bl      memset
     lwz	r0, 0x14(r1)
@@ -34,9 +38,9 @@ asm void fn_800424E8(void)
     mflr	r0
     stw	r0, 0x14(r1)
     bl      fn_80045FA4
-    lis	r3, -0x7fe8
+    lis     r3, lbl_801798C0@ha
     li	r4, 0
-    addi	r3, r3, -0x6740
+    addi	r3, r3, lbl_801798C0@l
     li	r5, 0x9c0
     bl      memset
     lwz	r0, 0x14(r1)
@@ -77,18 +81,18 @@ asm void fn_80042568(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7ff7
+    lis     r4, RIFF_str@ha
     li	r5, 4
     stw	r0, 0x14(r1)
-    addi	r4, r4, 0x70
+    addi	r4, r4, RIFF_str@l
     stw	r31, 0xc(r1)
     mr	r31, r3
     bl      fn_8008023C
     cmpwi	r3, 0
     bne     _800425b8
-    lis	r4, -0x7ff7
+    lis     r4, WAVE_str@ha
     addi	r3, r31, 8
-    addi	r4, r4, 0x78
+    addi	r4, r4, WAVE_str@l
     li	r5, 4
     bl      fn_8008023C
     cmpwi	r3, 0
@@ -952,9 +956,9 @@ _800431dc:
     li	r3, -1
     b       _80043390
 _80043200:
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012B6F4@ha
     li	r18, 0
-    addi	r19, r3, -0x490c
+    addi	r19, r3, lbl_8012B6F4@l
     b       _8004322c
 _80043210:
     lwz	r4, 0(r19)

@@ -180,7 +180,6 @@ extern s32 VIGetTvFormat(void);
 extern s64 OSGetTime(void);
 extern void OSClearContext(OSContext *context);
 extern void OSSetCurrentContext(OSContext *context);
-extern void GXSetBreakPtCallback(GXBreakPtCallback cb);
 extern void fn_80033EB0(void);
 extern void fn_80034378(s32 arg);
 extern void fn_80034444(s32 arg);
@@ -217,8 +216,6 @@ extern void fn_80035960(s32 chan, s32 en, s32 amb, s32 mat, s32 lights, s32 df, 
 extern void fn_80035734(s32 chan, void *color);
 extern void fn_80035828(s32 chan, void *color);
 extern void fn_80036544(void);
-extern void fn_8003658C(void *cb);
-extern void fn_800365A0(void *cb);
 extern void fn_800375F0(s32 stage, s32 coord, s32 map, s32 color);
 extern void fn_800377C8(s32 stages);
 extern void fn_80037014(s32 stage, s32 op);
@@ -261,6 +258,10 @@ extern void fn_800342D4(s32 arg);
 extern void fn_80034304(s32 arg, s32 val0, s32 val1);
 extern void fn_8003910C(s32 a, s32 b);
 extern void fn_80039AFC(void);
+extern void fn_800307CC(void);
+extern void fn_80030848(void);
+extern void fn_800307CC(void);
+extern void fn_80030848(void);
 
 #pragma push
 #pragma force_active on
@@ -455,9 +456,9 @@ asm void *GXInit(void *base, u32 size)
     stmw	r25, 0x34(r1)
     mr	r27, r3
     mr	r25, r4
-    lis	r4, -0x7fe9
+    lis     r4, gxData@ha
     lwz	r3, -0x7ea0(r13)
-    addi	r30, r4, 0x7ba0
+    addi	r30, r4, gxData@l
     bl OSRegisterVersion
     lwz	r5, -0x7de8(r2)
     li	r0, 0
@@ -490,8 +491,8 @@ asm void *GXInit(void *base, u32 size)
     lwz	r0, -0x77d4(r13)
     cmplwi	r0, 0
     bne L80030ab0
-    lis	r3, -0x7fed
-    addi	r3, r3, -0x52d0
+    lis     r3, GXResetFuncInfo@ha
+    addi	r3, r3, GXResetFuncInfo@l
     bl OSRegisterResetFunction
     stw	r26, -0x77d4(r13)
 L80030ab0:
@@ -1049,28 +1050,28 @@ L800312dc:
     beq L80031308
     b L80031328
 L800312e8:
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x5048
+    lis     r3, lbl_8012AFB8@ha
+    addi	r0, r3, lbl_8012AFB8@l
     mr	r31, r0
     b L80031334
 L800312f8:
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x4f58
+    lis     r3, lbl_8012B0A8@ha
+    addi	r0, r3, lbl_8012B0A8@l
     mr	r31, r0
     b L80031334
 L80031308:
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x4f1c
+    lis     r3, lbl_8012B0E4@ha
+    addi	r0, r3, lbl_8012B0E4@l
     mr	r31, r0
     b L80031334
 L80031318:
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x4f94
+    lis     r3, lbl_8012B06C@ha
+    addi	r0, r3, lbl_8012B06C@l
     mr	r31, r0
     b L80031334
 L80031328:
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x5048
+    lis     r3, lbl_8012AFB8@ha
+    addi	r0, r3, lbl_8012AFB8@l
     mr	r31, r0
 L80031334:
     lwz	r0, 0x28(r1)
@@ -1156,8 +1157,8 @@ L8003144c:
     li	r29, 0
     b L80031470
 L80031470:
-    lis	r3, -0x7fed
-    addi	r30, r3, -0x53bc
+    lis     r3, lbl_8012AC44@ha
+    addi	r30, r3, lbl_8012AC44@l
     b L8003147c
 L8003147c:
     b L80031480
@@ -1253,8 +1254,8 @@ L80031480:
     fsubs	f3, f3, f4
     fsubs	f4, f0, f4
     bl fn_80038EEC
-    lis	r3, -0x7fed
-    addi	r3, r3, -0x52ec
+    lis     r3, lbl_8012AD14@ha
+    addi	r3, r3, lbl_8012AD14@l
     bl fn_80038B3C
     li	r3, 0
     bl fn_800348DC
@@ -1311,13 +1312,13 @@ L80031480:
     bl fn_80036544
     lwz	r4, -0x7de8(r2)
     li	r30, 0
-    lis	r3, -0x7ffd
+    lis     r3, fn_800307CC@ha
     stw	r30, 0x2c8(r4)
-    addi	r3, r3, 0x7cc
+    addi	r3, r3, fn_800307CC@l
     stw	r30, 0x2cc(r4)
     bl fn_8003658C
-    lis	r3, -0x7ffd
-    addi	r3, r3, 0x848
+    lis     r3, fn_80030848@ha
+    addi	r3, r3, fn_80030848@l
     bl fn_800365A0
     li	r3, 0
     li	r4, 0

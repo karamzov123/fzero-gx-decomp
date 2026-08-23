@@ -12,6 +12,8 @@ extern asm void _restgpr_27(void);
 extern asm void DCInvalidateRange(void);
 extern asm void AIGetDSPInterruptEnable(void);
 extern asm void ARStartDMA(void);
+extern unsigned char lbl_8015AB70[80];
+extern unsigned char lbl_8015ABC0[10];
 
 asm void fn_80070E1C(void)
 {
@@ -22,10 +24,10 @@ asm void fn_80070E1C(void)
     addi	r11, r1, 0x20
     bl      _savegpr_26
     lwz	r12, -0x769c(r13)
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015AB70@ha
     mr	r26, r3
     mr	r27, r4
-    addi	r31, r5, -0x5490
+    addi	r31, r5, lbl_8015AB70@l
     mtctr	r12
     bctrl	
     lwz	r12, -0x76a0(r13)
@@ -133,9 +135,9 @@ _80070f94:
     bctrl	
     or.	r29, r3, r3
     bne	_80070fd8
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015AB70@ha
     mr	r4, r31
-    addi	r3, r3, -0x5490
+    addi	r3, r3, lbl_8015AB70@l
     bl      fn_8007174C
 _80070fd8:
     lwz	r12, -0x76a8(r13)
@@ -187,10 +189,10 @@ asm void fn_80071044(void)
     bctrl	
     or.	r30, r3, r3
     bne	_80071098
-    lis	r3, -0x7fea
-    lis	r4, -0x7fea
-    addi	r3, r3, -0x5490
-    addi	r4, r4, -0x5440
+    lis     r3, lbl_8015AB70@ha
+    lis     r4, lbl_8015ABC0@ha
+    addi	r3, r3, lbl_8015AB70@l
+    addi	r4, r4, lbl_8015ABC0@l
     bl      fn_8007174C
 _80071098:
     addi	r29, r30, 0x20

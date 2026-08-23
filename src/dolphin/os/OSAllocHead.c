@@ -184,6 +184,7 @@ extern void fn_8006DBAC(void);
 extern void memcpy(void);
 extern void memset(void);
 extern void strlen(void);
+extern unsigned char lbl_801221C0[1008];
 
 #pragma push
 #pragma force_active on
@@ -440,9 +441,9 @@ asm void fn_800090A4(void)
     stw	r0, 0x24(r1)
     addi	r11, r1, 0x20
     bl      _savegpr_27
-    lis	r4, -0x7fee
+    lis     r4, lbl_801221C0@ha
     mr	r27, r3
-    addi	r28, r4, 0x21c0
+    addi	r28, r4, lbl_801221C0@l
     li	r31, 0
     li	r30, 0
     li	r29, 0

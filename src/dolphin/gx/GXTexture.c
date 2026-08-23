@@ -7,6 +7,7 @@ typedef volatile struct GXData {
 } GXData;
 
 extern GXData *const gx;
+extern unsigned char lbl_8012B368[80];
 
 void __GXFlushTextureState(void);
 void fn_800361F0(register void* dst, register void* src, register int a, register int b);
@@ -1197,8 +1198,8 @@ asm void fn_80037014(register void* p)
 {
     nofralloc
     cmpwi	r3, 0
-    lis	r5, -0x7fed
-    addi	r0, r5, -0x4c98
+    lis     r5, lbl_8012B368@ha
+    addi	r0, r5, lbl_8012B368@l
     bne     _80037034
     slwi	r4, r4, 2
     add	r5, r0, r4

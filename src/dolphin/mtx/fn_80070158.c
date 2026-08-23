@@ -4,6 +4,9 @@
 extern asm void fn_8000B804(void);
 extern asm void fn_80070CF8(void);
 extern asm void fn_8000C49C(void);
+extern unsigned char lbl_8015AA78[11];
+extern unsigned char lbl_8015AA84[160];
+extern unsigned char lbl_8019E140[16];
 
 asm void fn_80070158(void)
 {
@@ -34,11 +37,11 @@ _80070194:
     stw	r4, -0x76d4(r13)
     srwi	r4, r0, 5
     li	r5, 0x1dc
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E140@ha
     addi	r0, r4, 1
     stw	r5, -0x76d4(r13)
     slwi	r4, r0, 5
-    addi	r5, r3, -0x1ec0
+    addi	r5, r3, lbl_8019E140@l
     stw	r4, -0x76d4(r13)
     addi	r3, r4, 0xca0
     add	r4, r8, r4
@@ -129,11 +132,11 @@ asm void fn_800702E4(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E140@ha
     li	r5, 0
     stw	r0, 0x14(r1)
     li	r0, 0x10
-    addi	r6, r4, -0x1ec0
+    addi	r6, r4, lbl_8019E140@l
     stw	r31, 0xc(r1)
     li	r31, 0
     mtctr	r0
@@ -141,9 +144,9 @@ _8007030c:
     lbz	r0, 0(r6)
     cmplwi	r0, 0
     bne	_80070444
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E140@ha
     addi	r7, r5, 1
-    addi	r0, r4, -0x1ec0
+    addi	r0, r4, lbl_8019E140@l
     addi	r8, r3, -1
     add	r4, r0, r7
     b	_80070348
@@ -172,8 +175,8 @@ _80070358:
     addi	r7, r3, -8
     ble	_8007040c
     addi	r0, r7, 7
-    lis	r6, -0x7fe6
-    addi	r6, r6, -0x1ec0
+    lis     r6, lbl_8019E140@ha
+    addi	r6, r6, lbl_8019E140@l
     srwi	r0, r0, 3
     add	r10, r6, r5
     mtctr	r0
@@ -207,9 +210,9 @@ _800703a4:
     addi	r10, r10, 8
     bdnz	_800703a4
 _8007040c:
-    lis	r6, -0x7fe6
+    lis     r6, lbl_8019E140@ha
     subf	r0, r4, r3
-    addi	r6, r6, -0x1ec0
+    addi	r6, r6, lbl_8019E140@l
     add	r5, r6, r5
     add	r5, r5, r4
     mtctr	r0
@@ -229,11 +232,11 @@ _80070444:
 _80070450:
     cmplwi	r31, 0
     bne	_80070474
-    lis	r3, -0x7fea
-    lis	r5, -0x7fea
-    addi	r3, r3, -0x5588
+    lis     r3, lbl_8015AA78@ha
+    lis     r5, lbl_8015AA84@ha
+    addi	r3, r3, lbl_8015AA78@l
     li	r4, 0x9e
-    addi	r5, r5, -0x557c
+    addi	r5, r5, lbl_8015AA84@l
     crxor	6, 6, 6
     bl      fn_8000C49C
 _80070474:
@@ -248,9 +251,9 @@ _80070474:
 asm void fn_8007048C(void)
 {
     nofralloc
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E140@ha
     li	r0, 2
-    addi	r3, r3, -0x1ec0
+    addi	r3, r3, lbl_8019E140@l
     li	r5, 0
     li	r4, 0
     mtctr	r0

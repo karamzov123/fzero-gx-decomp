@@ -1,5 +1,6 @@
 #pragma push
 #pragma force_active on
+extern unsigned char lbl_801A6398[24];
 
 asm void memset(register void* a, register void* b, register void* c, register void* d);
 asm void OSDisableInterrupts(register void* a, register void* b, register void* c, register void* d);
@@ -487,8 +488,8 @@ asm void fn_8008ED30(void)
     addi	r3, r3, -0x8000
     stwu	r1, -8(r1)
     bl      __OSMaskInterrupts
-    lis	r3, -0x7ff7
-    addi	r4, r3, -0x1320
+    lis     r3, fn_8008ECE0@ha
+    addi	r4, r3, fn_8008ECE0@l
     li	r3, 0x19
     bl      __OSSetInterruptHandler
     li	r3, 0x40
@@ -503,9 +504,9 @@ asm void fn_8008ED70(void)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A6398@ha
     stw	r0, 4(r1)
-    addi	r3, r3, 0x6398
+    addi	r3, r3, lbl_801A6398@l
     li	r4, 0
     stwu	r1, -8(r1)
     li	r5, 0x18

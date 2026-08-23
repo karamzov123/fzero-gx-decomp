@@ -10,6 +10,8 @@ extern void OSNotifyUnlink(void);
 extern BOOL Relocate(void* newModule, void* module);
 extern BOOL __OSLinkModule(void* module, void* bss, int flag);
 extern BOOL Undo(void* newModule, void* module);
+extern unsigned char lbl_80123A90[37];
+extern unsigned char lbl_80123AB8[39];
 
 #pragma push
 #pragma force_active on
@@ -69,9 +71,9 @@ _8000ddd8:
     li	r3, 0
     b       _8000e01c
 _8000dde0:
-    lis	r3, -0x7fee
+    lis     r3, lbl_80123A90@ha
     lwz	r30, 4(r4)
-    addi	r25, r3, 0x3a90
+    addi	r25, r3, lbl_80123A90@l
     li	r29, 0
     b       _8000dfe4
 _8000ddf4:
@@ -524,9 +526,9 @@ _8000e3c4:
     li	r3, 0
     b       _8000e594
 _8000e3cc:
-    lis	r3, -0x7fee
+    lis     r3, lbl_80123AB8@ha
     lwz	r31, 4(r5)
-    addi	r27, r3, 0x3ab8
+    addi	r27, r3, lbl_80123AB8@l
     li	r30, 0
     b       _8000e55c
 _8000e3e0:

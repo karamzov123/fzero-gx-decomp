@@ -4,6 +4,8 @@
 extern asm void OSReport(void);
 extern asm void fn_80035C50(void);
 extern asm void fn_80035EC4(void);
+extern unsigned char lbl_8015AC08[18];
+extern unsigned char lbl_8015AC1C[69];
 
 asm void fn_80071794(void)
 {
@@ -123,8 +125,8 @@ asm void fn_800718BC(void)
     rlwinm.	r0, r0, 0, 0x17, 0x17
     add	r30, r4, r3
     beq	_80071914
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x53f8
+    lis     r3, lbl_8015AC08@ha
+    addi	r3, r3, lbl_8015AC08@l
     crxor	6, 6, 6
     bl      OSReport
     li	r0, 0
@@ -256,8 +258,8 @@ _80071a84:
     cmpwi	r8, 0
     beq	_80071ab0
 _80071aa0:
-    lis	r3, -0x7fea
-    addi	r3, r3, -0x53e4
+    lis     r3, lbl_8015AC1C@ha
+    addi	r3, r3, lbl_8015AC1C@l
     crxor	6, 6, 6
     bl      OSReport
 _80071ab0:

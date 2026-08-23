@@ -32,6 +32,7 @@ extern s32 fn_80019354(void* block, void* addr, u32 length, u32 offset, void* ca
 extern void ICInvalidateRange(void* addr, u32 nBytes);
 extern void ICFlashInvalidate(void);
 extern void __OSDoHotReset(int arg0);
+extern unsigned char lbl_8015BFA0[32];
 
 static asm void Run(register void* addr)
 {
@@ -57,8 +58,8 @@ asm void __OSReboot(register unsigned long resetCode, register unsigned long boo
     stw	r0, 4(r1)
     stwu	r1, -0x380(r1)
     stmw	r26, 0x368(r1)
-    lis	r3, -0x7fea
-    addi	r30, r3, -0x4060
+    lis     r3, lbl_8015BFA0@ha
+    addi	r30, r3, lbl_8015BFA0@l
     bl      OSDisableInterrupts
     lwz	r5, -0x7c00(r13)
     lis	r4, -0x7ed0

@@ -24,6 +24,8 @@ extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
+extern void __CARDSyncCallback(void);
+extern void __CARDSyncCallback(void);
 
 #pragma push
 #pragma force_active on
@@ -379,9 +381,9 @@ asm s32 CARDSetStatus(register s32 chan, register s32 fileNo, register void* sta
 {
     nofralloc
     mflr    r0
-    lis     r6, 0x8003
+    lis     r6, __CARDSyncCallback@ha
     stw     r0, 4(r1)
-    addi    r6, r6, -0x67d8         /* __CARDSyncCallback */
+    addi    r6, r6, __CARDSyncCallback@l         /* __CARDSyncCallback */
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0

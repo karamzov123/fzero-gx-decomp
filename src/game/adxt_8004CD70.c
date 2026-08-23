@@ -60,6 +60,9 @@ extern void fn_8004EE24(void);
 extern void fn_8004EE64(void);
 extern void fn_8004EE84(void);
 extern void fn_8004EEA4(void);
+void fn_8004D8DC(void);
+void fn_8004DDE4(void);
+void fn_8004DFF0(void);
 extern void fn_8004EEC4(void);
 extern void fn_8004EF28(void);
 extern void fn_80056C20(void);
@@ -69,6 +72,13 @@ extern void fn_80058498(void);
 extern void fn_800589BC(void);
 extern void fn_80083DB0(void);
 extern void memset(void);
+extern unsigned char E02080804_ADXT_Create_parameter_error_str[39];
+extern unsigned char E02080807_ADXT_StartFname_parameter_error_str[43];
+extern unsigned char E02080842_ADXT_ExecHndl_parameter_error_str[41];
+extern unsigned char E8101201_adxt_trap_entry_not_enough_data_str[42];
+extern unsigned char E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str[63];
+extern unsigned char lbl_80178CBC[3076];
+extern unsigned char lbl_8017E5A8[16];
 
 asm void ADXT_Create(void)
 {
@@ -88,15 +98,15 @@ asm void ADXT_Create(void)
     cmpwi	r5, 0
     bge     _8004cdbc
 _8004cda8:
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x103c
+    lis     r3, E02080804_ADXT_Create_parameter_error_str@ha
+    addi	r3, r3, E02080804_ADXT_Create_parameter_error_str@l
     bl      fn_800474E4
     li	r3, 0
     b       _8004d178
 _8004cdbc:
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CBC@ha
     li	r0, 2
-    addi	r3, r3, -0x7344
+    addi	r3, r3, lbl_80178CBC@l
     li	r4, 0
     mtctr	r0
 _8004cdd0:
@@ -148,9 +158,9 @@ _8004ce74:
     b       _8004d178
 _8004ce84:
     mulli	r5, r4, 0xc0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CBC@ha
     li	r4, 0
-    addi	r0, r3, -0x7344
+    addi	r0, r3, lbl_80178CBC@l
     add	r31, r0, r5
     li	r5, 0xc0
     mr	r3, r31
@@ -370,8 +380,8 @@ asm void fn_8004D18C(void)
     cmplwi	r31, 0
     bne     _8004d1c4
 _8004d1b4:
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1068
+    lis     r3, E02080807_ADXT_StartFname_parameter_error_str@ha
+    addi	r3, r3, E02080807_ADXT_StartFname_parameter_error_str@l
     bl      fn_800474E4
     b       _8004d208
 _8004d1c4:
@@ -406,14 +416,14 @@ asm void fn_8004D220(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r4, -0x7fe8
+    lis     r4, lbl_8017E5A8@ha
     stw	r0, 0x34(r1)
     stmw	r26, 0x18(r1)
     or.	r31, r3, r3
-    addi	r30, r4, -0x1a58
+    addi	r30, r4, lbl_8017E5A8@l
     bne     _8004d250
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1098
+    lis     r3, E02080842_ADXT_ExecHndl_parameter_error_str@ha
+    addi	r3, r3, E02080842_ADXT_ExecHndl_parameter_error_str@l
     bl      fn_800474E4
     b       _8004d514
 _8004d250:
@@ -675,9 +685,9 @@ _8004d5bc:
     addi	r5, r1, 0x10
     li	r6, 0x10
     bl      fn_80046F88
-    lis	r3, -0x7ff7
+    lis     r3, E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str@ha
     addi	r4, r1, 0x10
-    addi	r3, r3, 0x10c4
+    addi	r3, r3, E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str@l
     bl      fn_80047464
     mr	r3, r30
     bl      fn_8004C698
@@ -746,9 +756,9 @@ _8004d6a4:
     stw	r4, 0x8c(r30)
     lwz	r3, 8(r30)
     bl      fn_8004AC04
-    lis	r4, -0x7ffb
+    lis     r4, fn_8004DDE4@ha
     lwz	r3, 8(r30)
-    addi	r4, r4, -0x221c
+    addi	r4, r4, fn_8004DDE4@l
     mr	r5, r30
     bl      fn_8004AC4C
 _8004d710:
@@ -766,9 +776,9 @@ _8004d710:
     mr	r3, r31
     li	r4, 0
     bl      fn_800416D4
-    lis	r4, -0x7ffb
+    lis     r4, fn_8004DFF0@ha
     mr	r3, r31
-    addi	r4, r4, -0x2010
+    addi	r4, r4, fn_8004DFF0@l
     mr	r5, r30
     bl      fn_800416E4
     b       _8004d7b8
@@ -791,9 +801,9 @@ _8004d778:
     mr	r3, r31
     li	r4, 0
     bl      fn_800416D4
-    lis	r4, -0x7ffb
+    lis     r4, fn_8004D8DC@ha
     mr	r3, r31
-    addi	r4, r4, -0x2724
+    addi	r4, r4, fn_8004D8DC@l
     mr	r5, r30
     bl      fn_800416E4
 _8004d7b8:
@@ -1317,8 +1327,8 @@ _8004dee0:
     lwz	r0, 0x50(r28)
     cmpw	r3, r0
     bge     _8004df1c
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x1104
+    lis     r3, E8101201_adxt_trap_entry_not_enough_data_str@ha
+    addi	r3, r3, E8101201_adxt_trap_entry_not_enough_data_str@l
     bl      fn_800474E4
 _8004df1c:
     lwz	r6, 0(r30)
@@ -1413,9 +1423,9 @@ asm void fn_8004DFF0(void)
     mr	r3, r29
     mr	r4, r28
     bl      fn_800416F0
-    lis	r4, -0x7ffb
+    lis     r4, fn_8004DE70@ha
     mr	r3, r29
-    addi	r4, r4, -0x2190
+    addi	r4, r4, fn_8004DE70@l
     mr	r5, r30
     bl      fn_800416E4
     lmw	r27, 0xc(r1)

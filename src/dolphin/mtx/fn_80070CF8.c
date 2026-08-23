@@ -5,6 +5,22 @@ extern asm void OSGetArenaHi(void);
 extern asm void OSSetArenaHi(void);
 extern asm void OSGetArenaLo(void);
 extern asm void OSSetArenaLo(void);
+extern void fn_80071C64(void);
+extern void fn_80071C8C(void);
+extern void fn_80071CB4(void);
+extern void fn_80071CC0(void);
+extern void fn_80071CE0(void);
+extern void fn_80071CE8(void);
+extern void fn_80071D0C(void);
+extern void fn_80071D2C(void);
+extern void fn_80071C64(void);
+extern void fn_80071C8C(void);
+extern void fn_80071CB4(void);
+extern void fn_80071CC0(void);
+extern void fn_80071CE0(void);
+extern void fn_80071CE8(void);
+extern void fn_80071D0C(void);
+extern void fn_80071D2C(void);
 
 asm void fn_80070CF8(void)
 {
@@ -60,18 +76,18 @@ asm void fn_80070D60(void)
 asm void fn_80070D94(void)
 {
     nofralloc
-    lis	r8, -0x7ff9
-    lis	r7, -0x7ff9
-    lis	r6, -0x7ff9
-    lis	r5, -0x7ff9
-    lis	r4, -0x7ff9
-    lis	r3, -0x7ff9
-    addi	r8, r8, 0x1cb4
-    addi	r7, r7, 0x1cc0
-    addi	r6, r6, 0x1ce0
-    addi	r5, r5, 0x1ce8
-    addi	r4, r4, 0x1d0c
-    addi	r0, r3, 0x1d2c
+    lis     r8, fn_80071CB4@ha
+    lis     r7, fn_80071CC0@ha
+    lis     r6, fn_80071CE0@ha
+    lis     r5, fn_80071CE8@ha
+    lis     r4, fn_80071D0C@ha
+    lis     r3, fn_80071D2C@ha
+    addi	r8, r8, fn_80071CB4@l
+    addi	r7, r7, fn_80071CC0@l
+    addi	r6, r6, fn_80071CE0@l
+    addi	r5, r5, fn_80071CE8@l
+    addi	r4, r4, fn_80071D0C@l
+    addi	r0, r3, fn_80071D2C@l
     stw	r8, -0x769c(r13)
     stw	r7, -0x76a0(r13)
     stw	r6, -0x76a4(r13)
@@ -102,10 +118,10 @@ asm void fn_80070DF0(void)
 asm void fn_80070E00(void)
 {
     nofralloc
-    lis	r4, -0x7ff9
-    lis	r3, -0x7ff9
-    addi	r4, r4, 0x1c64
-    addi	r0, r3, 0x1c8c
+    lis     r4, fn_80071C64@ha
+    lis     r3, fn_80071C8C@ha
+    addi	r4, r4, fn_80071C64@l
+    addi	r0, r3, fn_80071C8C@l
     stw	r4, -0x76b4(r13)
     stw	r0, -0x76b8(r13)
     blr	
