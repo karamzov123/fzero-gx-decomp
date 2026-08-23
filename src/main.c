@@ -44,6 +44,11 @@ extern void fn_80006AEC(void);
 extern void fn_80006AF4(void);
 extern void fn_80006AFC(void);
 extern void fn_80006B30(void);
+extern void fn_80006B4C(void);
+extern void fn_80006B70(void);
+extern void fn_80006BDC(void);
+extern void fn_80006C2C(void);
+extern void fn_80006C4C(void);
 extern void fn_800071B8(void);
 extern void fn_80007A44(void);
 extern void fn_80007B68(void);
@@ -53,9 +58,11 @@ extern void fn_8000CDD8(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
 extern void fn_80015EE8(void);
+extern void fn_800170EC(void);
 extern void fn_80017160(void);
 extern void fn_80017228(void);
 extern void fn_800174D0(void);
+extern void fn_800175C0(void);
 extern void fn_8001AAB4(void);
 extern void fn_8001AF64(void);
 extern void fn_8001BDF0(void);
@@ -1700,6 +1707,151 @@ asm void fn_80006AFC(void)
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80006B30(void)
+{
+    nofralloc
+    cmplwi	r3, 0
+    bc      12, 2, _80006b3c
+    b       _80006b44
+_80006b3c:
+    lis	r3, -0x8000
+    addi	r3, r3, 0x6b4c
+_80006b44:
+    stw	r3, -0x7cb8(r13)
+    blr	
+}
+
+asm void fn_80006B4C(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    li	r7, 2
+    stw	r0, 0x14(r1)
+    bl      fn_800175C0
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80006B70(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    lis	r5, -0x7fee
+    stw	r0, 0x14(r1)
+    stw	r31, 0xc(r1)
+    mr	r31, r4
+    stw	r30, 8(r1)
+    mr	r30, r3
+    addi	r3, r5, 0x20c0
+    mr	r4, r30
+    crxor	6, 6, 6
+    bl      fn_80006BDC
+    lis	r3, -0x7fee
+    addi	r3, r3, 0x20cc
+    crxor	6, 6, 6
+    bl      fn_80006BDC
+    li	r0, 0
+    mr	r3, r30
+    stw	r0, 0(r31)
+    addi	r4, r31, 4
+    bl      fn_80017160
+    lwz	r0, 0x14(r1)
+    lwz	r31, 0xc(r1)
+    lwz	r30, 8(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80006BDC(void)
+{
+    nofralloc
+    stwu	r1, -0x70(r1)
+    bc      4, 6, _80006c04
+    stfd	f1, 0x28(r1)
+    stfd	f2, 0x30(r1)
+    stfd	f3, 0x38(r1)
+    stfd	f4, 0x40(r1)
+    stfd	f5, 0x48(r1)
+    stfd	f6, 0x50(r1)
+    stfd	f7, 0x58(r1)
+    stfd	f8, 0x60(r1)
+_80006c04:
+    stw	r3, 8(r1)
+    stw	r4, 0xc(r1)
+    stw	r5, 0x10(r1)
+    stw	r6, 0x14(r1)
+    stw	r7, 0x18(r1)
+    stw	r8, 0x1c(r1)
+    stw	r9, 0x20(r1)
+    stw	r10, 0x24(r1)
+    addi	r1, r1, 0x70
+    blr	
+}
+
+asm void fn_80006C2C(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+    bl      fn_80006C4C
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80006C4C(void)
+{
+    nofralloc
+    stwu	r1, -0x20(r1)
+    mflr	r0
+    stw	r0, 0x24(r1)
+    stw	r31, 0x1c(r1)
+    li	r31, 0
+    stw	r30, 0x18(r1)
+    mr	r30, r4
+    stw	r29, 0x14(r1)
+    or.	r29, r3, r3
+    bc      4, 0, _80006c7c
+    li	r3, 0
+    b       _80006cc8
+_80006c7c:
+    lis	r3, -0x7fee
+    mr	r4, r29
+    addi	r3, r3, 0x20e0
+    crxor	6, 6, 6
+    bl      fn_80006BDC
+    rlwinm.	r0, r29, 0, 1, 0xf
+    bc      4, 2, _80006cc4
+    lis	r3, -0x7fee
+    addi	r3, r3, 0x20cc
+    crxor	6, 6, 6
+    bl      fn_80006BDC
+    mr	r3, r29
+    addi	r4, r30, 4
+    bl      fn_800170EC
+    or.	r31, r3, r3
+    bc      12, 2, _80006cc4
+    li	r0, 0
+    stw	r0, 0(r30)
+_80006cc4:
+    mr	r3, r31
+_80006cc8:
+    lwz	r0, 0x24(r1)
+    lwz	r31, 0x1c(r1)
+    lwz	r30, 0x18(r1)
+    lwz	r29, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x20
     blr	
 }
 
