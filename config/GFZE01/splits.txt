@@ -458,11 +458,8 @@ coarse/text_8006E1B0.c:
 dolphin/mtx/MTX.c:
 	.text       start:0x8006E200 end:0x8006E324
 
-dolphin/mtx/fn_8006E324.c:
-	.text       start:0x8006E324 end:0x8006E5FC
-
-dolphin/mtx/fn_8006E5FC.c:
-	.text       start:0x8006E5FC end:0x8006EB4C
+dolphin/mtx/PSMTX.c:
+	.text       start:0x8006E324 end:0x8006EB4C
 
 dolphin/mtx/fn_8006EB4C.c:
 	.text       start:0x8006EB4C end:0x8006EFB4
