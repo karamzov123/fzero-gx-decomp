@@ -497,13 +497,13 @@ game/model_800786B0.c:
 dolphin/msl/runtime.c:
 	.text       start:0x800794F0 end:0x800797C0
 
-coarse/text_800797C0.c:
+dolphin/msl/savegpr.c:
 	.text       start:0x800797C0 end:0x800798F0
 
 dolphin/msl/longlong.c:
 	.text       start:0x800798F0 end:0x80079EF0
 
-coarse/text_80079EF0.c:
+dolphin/msl/alloc.c:
 	.text       start:0x80079EF0 end:0x8007A060
 
 coarse/text_8007A060.c:

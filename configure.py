@@ -439,6 +439,8 @@ config.libs = [
         "progress_category": "sdk",  # str | List[str]
         "objects": [
             Object(Matching, "dolphin/msl/runtime.c"),
+            Object(Matching, "dolphin/msl/savegpr.c"),
+            Object(Matching, "dolphin/msl/alloc.c"),
             Object(Matching, "dolphin/msl/longlong.c"),
             Object(Matching, "dolphin/msl/printf.c"),
             Object(Matching, "dolphin/msl/multibyte.c"),
