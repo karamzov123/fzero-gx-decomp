@@ -387,6 +387,8 @@ config.libs = [
         Object(Matching, "game/adxt_8004C164.c"),
         Object(Matching, "game/adxt_8004CD70.c"),
         Object(Matching, "game/adxt_8004E098.c"),
+        Object(Matching, "game/adxt_8004F00C.c"),
+        Object(Matching, "game/adxt_80050180.c"),
         Object(Matching, "main.c"),
     ]),
     {
