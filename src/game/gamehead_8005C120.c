@@ -171,7 +171,7 @@ asm void fn_80067344(void);
 asm void fn_800674FC(void);
 asm void fn_80067898(void);
 asm void SndTimerUpdate(void);
-asm void fn_80067DE4(void);
+asm void SndCheckAllocSize(void);
 asm void fn_80067F68(void);
 asm void fn_80068BFC(void);
 asm void fn_80068EB4(void);
@@ -13585,7 +13585,7 @@ _80067dc8:
     blr
 }
 
-asm void fn_80067DE4(void)
+asm void SndCheckAllocSize(void)
 {
     nofralloc
     stwu	r1, -0x420(r1)
