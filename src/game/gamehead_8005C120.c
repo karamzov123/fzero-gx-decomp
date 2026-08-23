@@ -80,7 +80,7 @@ extern void fn_80087F54(void);
 extern void fn_80088578(void);
 extern void fn_80088598(void);
 
-asm void fn_8005C120(void);
+asm void SndInitManager(void);
 asm void fn_8005C298(void);
 asm void fn_8005C478(void);
 asm void fn_8005C5C8(void);
@@ -91,9 +91,9 @@ asm void fn_8005D258(void);
 asm void fn_8005D5A4(void);
 asm void fn_8005DB68(void);
 asm void fn_8005DCEC(void);
-asm void fn_8005FBDC(void);
+asm void SndSetVoicePriority(void);
 asm void fn_8005FCD8(void);
-asm void fn_8005FDE0(void);
+asm void SndDispatchCommand(void);
 asm void fn_8006060C(void);
 asm void fn_80060724(void);
 asm void fn_80060950(void);
@@ -114,7 +114,7 @@ asm void fn_800643F4(void);
 asm void fn_800647B8(void);
 asm void fn_800647F0(void);
 asm void fn_8006496C(void);
-asm void fn_80064A30(void);
+asm void SndUpdateVoices(void);
 asm void fn_80064D4C(void);
 asm void fn_80064E84(void);
 asm void fn_80064FDC(void);
@@ -130,21 +130,21 @@ asm void fn_80065AC4(void);
 asm void fn_80065AD0(void);
 asm void fn_80065B08(void);
 asm void fn_80065D70(void);
-asm void fn_80065F34(void);
+asm void SndLoadSamplesARQ(void);
 asm void fn_80066C14(void);
 asm void fn_800672E4(void);
 asm void fn_80067344(void);
 asm void fn_800674FC(void);
 asm void fn_80067898(void);
-asm void fn_80067974(void);
+asm void SndTimerUpdate(void);
 asm void fn_80067DE4(void);
 asm void fn_80067F68(void);
 asm void fn_80068BFC(void);
 asm void fn_80068EB4(void);
 asm void fn_800692A4(void);
-asm void fn_8006953C(void);
+asm void SndAllocBankEntry(void);
 
-asm void fn_8005C120(void)
+asm void SndInitManager(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1339,7 +1339,7 @@ _8005d230:
     lwz	r3, 0x444(r3)
     rlwinm.	r0, r3, 0, 0x19, 0x19
     bc      4, 2, _8005d244
-    bl      fn_8006953C
+    bl      SndAllocBankEntry
 _8005d244:
     lmw	r26, 8(r1)
     lwz	r0, 0x24(r1)
@@ -4222,7 +4222,7 @@ _8005fbb8:
     blr
 }
 
-asm void fn_8005FBDC(void)
+asm void SndSetVoicePriority(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -4370,7 +4370,7 @@ _8005fdc8:
     blr
 }
 
-asm void fn_8005FDE0(void)
+asm void SndDispatchCommand(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -4415,7 +4415,7 @@ _8005fe6c:
     lis	r4, 0xf7f
     addi	r3, r3, -0x8000
     addi	r4, r4, 0xff
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _8005fe84:
     cmplwi	r7, 0
@@ -4429,7 +4429,7 @@ _8005fe9c:
     lis	r4, 0xf7f
     addi	r3, r3, -0x8000
     addi	r4, r4, 0xff
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _8005feb4:
     clrlwi	r0, r4, 0x1c
@@ -4526,7 +4526,7 @@ _8005ffc8:
     rlwinm.	r0, r29, 0, 0x19, 0x19
     bc      4, 2, _800605f0
     mr	r3, r29
-    bl      fn_8006953C
+    bl      SndAllocBankEntry
     b       _800605f0
     lwz	r3, -0x7740(r13)
     li	r4, 1
@@ -4569,7 +4569,7 @@ _80060094:
     addi	r3, r3, -0x5fff
     li	r4, 0
     stb	r7, 0x461(r5)
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
     lis	r3, 1
     addi	r3, r3, -0x5ffe
@@ -4577,7 +4577,7 @@ _80060094:
     rlwinm.	r0, r29, 0, 0x19, 0x19
     bc      4, 2, _800605f0
     mr	r3, r29
-    bl      fn_8006953C
+    bl      SndAllocBankEntry
     b       _800605f0
     bl      fn_80069AE0
     b       _800605f0
@@ -4617,7 +4617,7 @@ _80060094:
     addi	r3, r4, -0x5fe4
     stb	r6, 0x491(r5)
     li	r4, 0xf
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
     lwz	r4, -0x7740(r13)
     lwz	r12, 0x5b18(r4)
@@ -4660,7 +4660,7 @@ _800601ec:
     li	r4, 0
     lha	r0, 0x5a12(r5)
     sth	r0, 0x5a10(r5)
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
     lis	r3, 1
     addi	r3, r3, -0x5fcc
@@ -4772,7 +4772,7 @@ _80060388:
     lis	r4, 0xf00
     clrlwi	r3, r29, 0x10
     addi	r4, r4, 0xf
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _800603ac:
     lis	r3, 1
@@ -4782,7 +4782,7 @@ _800603ac:
     lis	r4, 0xf00
     addi	r3, r3, -0x4ff9
     addi	r4, r4, 0xf
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _800603d0:
     lis	r3, 1
@@ -4792,7 +4792,7 @@ _800603d0:
     lis	r4, 0xf00
     addi	r3, r3, -0x4ff6
     addi	r4, r4, 0xf
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _800603f4:
     lis	r3, 1
@@ -4802,7 +4802,7 @@ _800603f4:
     lis	r4, 0xf00
     addi	r3, r3, -0x4ff3
     addi	r4, r4, 0xf
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _80060418:
     lis	r3, 1
@@ -4812,7 +4812,7 @@ _80060418:
     lis	r4, 0xf00
     addi	r3, r3, -0x4ff3
     addi	r4, r4, 0xf
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _8006043c:
     lis	r3, 1
@@ -4842,13 +4842,13 @@ _8006047c:
     lis	r4, 0xf00
     addi	r3, r3, -0x4fc0
     addi	r4, r4, 0xf
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _800604a0:
     lis	r3, 1
     li	r4, 0xf
     addi	r3, r3, -0x4f88
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     b       _800605f0
 _800604b4:
     lwz	r7, -0x7740(r13)
@@ -4939,7 +4939,7 @@ _800605d0:
     lis	r4, 0xf00
     addi	r3, r3, -0x2000
     addi	r4, r4, 0xf
-    bl      fn_80064A30
+    bl      SndUpdateVoices
 _800605f0:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -4987,12 +4987,12 @@ _80060668:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80060690
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80060690:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _800606a0
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _800606a0:
     li	r0, 0
     stb	r0, 0(r23)
@@ -6968,12 +6968,12 @@ _800622e8:
     lbz	r3, 0x16(r29)
     cmplwi	r3, 0xff
     bc      12, 2, _80062310
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062310:
     lbz	r3, 0x17(r29)
     cmplwi	r3, 0xff
     bc      12, 2, _80062320
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062320:
     stb	r31, 0(r28)
 _80062324:
@@ -7060,12 +7060,12 @@ _8006241c:
     lbz	r3, 0x16(r20)
     cmplwi	r3, 0xff
     bc      12, 2, _80062444
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062444:
     lbz	r3, 0x17(r20)
     cmplwi	r3, 0xff
     bc      12, 2, _80062454
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062454:
     li	r0, 0
     stb	r0, 0(r19)
@@ -7167,12 +7167,12 @@ _800625a0:
     lbz	r3, 0x16(r19)
     cmplwi	r3, 0xff
     bc      12, 2, _800625c8
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _800625c8:
     lbz	r3, 0x17(r19)
     cmplwi	r3, 0xff
     bc      12, 2, _800625d8
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _800625d8:
     li	r0, 0
     stb	r0, 0(r20)
@@ -7325,12 +7325,12 @@ _800627c8:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _800627f0
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _800627f0:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062800
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062800:
     li	r0, 0
     stb	r0, 0(r23)
@@ -7398,12 +7398,12 @@ _800628cc:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _800628f4
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _800628f4:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062904
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062904:
     li	r0, 0
     stb	r0, 0(r25)
@@ -7471,12 +7471,12 @@ _800629d0:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _800629f8
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _800629f8:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062a08
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062a08:
     li	r0, 0
     stb	r0, 0(r25)
@@ -7544,12 +7544,12 @@ _80062ad4:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062afc
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062afc:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062b0c
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062b0c:
     li	r0, 0
     stb	r0, 0(r25)
@@ -7617,12 +7617,12 @@ _80062bd8:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062c00
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062c00:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062c10
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062c10:
     li	r0, 0
     stb	r0, 0(r25)
@@ -7697,12 +7697,12 @@ _80062cf4:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062d1c
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062d1c:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062d2c
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062d2c:
     li	r0, 0
     stb	r0, 0(r25)
@@ -7770,12 +7770,12 @@ _80062df8:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062e20
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062e20:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80062e30
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062e30:
     li	r0, 0
     stb	r0, 0(r25)
@@ -7838,12 +7838,12 @@ _80062ee4:
     lbz	r3, 0x16(r23)
     cmplwi	r3, 0xff
     bc      12, 2, _80062f0c
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062f0c:
     lbz	r3, 0x17(r23)
     cmplwi	r3, 0xff
     bc      12, 2, _80062f1c
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80062f1c:
     li	r0, 0
     stb	r0, 0(r24)
@@ -7916,12 +7916,12 @@ _80062ffc:
     lbz	r3, 0x16(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80063024
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80063024:
     lbz	r3, 0x17(r24)
     cmplwi	r3, 0xff
     bc      12, 2, _80063034
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
 _80063034:
     li	r0, 0
     stb	r0, 0(r28)
@@ -9638,7 +9638,7 @@ asm void fn_800647B8(void)
     rlwinm	r4, r4, 0x1c, 0x1f, 0x1f
     neg	r4, r4
     andc	r4, r0, r4
-    bl      fn_80064A30
+    bl      SndUpdateVoices
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -9813,7 +9813,7 @@ _80064a18:
     blr
 }
 
-asm void fn_80064A30(void)
+asm void SndUpdateVoices(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -9940,7 +9940,7 @@ _80064bc4:
     b       _80064d1c
 _80064bf4:
     mr	r3, r29
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
     b       _80064d1c
 _80064c00:
     mr	r3, r29
@@ -10013,7 +10013,7 @@ _80064ce0:
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
     bc      12, 2, _80064d1c
     mr	r3, r29
-    bl      fn_8005FBDC
+    bl      SndSetVoicePriority
     b       _80064d1c
 _80064cf8:
     rlwinm	r3, r7, 0, 4, 7
@@ -11380,7 +11380,7 @@ _80065f14:
     blr
 }
 
-asm void fn_80065F34(void)
+asm void SndLoadSamplesARQ(void)
 {
     nofralloc
     stwu	r1, -0x480(r1)
@@ -13239,7 +13239,7 @@ _8006795c:
     blr
 }
 
-asm void fn_80067974(void)
+asm void SndTimerUpdate(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -13434,7 +13434,7 @@ _80067bd0:
     stb	r0, 0x440(r5)
 _80067c34:
     ori	r3, r3, 0x40
-    bl      fn_8006953C
+    bl      SndAllocBankEntry
     b       _80067cdc
 _80067c40:
     cmplwi	r0, 0xa8
@@ -13459,7 +13459,7 @@ _80067c40:
 _80067c8c:
     cmplwi	r0, 0xad
     bc      4, 0, _80067c9c
-    bl      fn_8006953C
+    bl      SndAllocBankEntry
     b       _80067cdc
 _80067c9c:
     lbz	r0, 0x440(r6)
@@ -13513,7 +13513,7 @@ _80067d48:
     slwi	r3, r0, 2
     addi	r0, r3, 0x340
     lwzx	r3, r4, r0
-    bl      fn_8005FDE0
+    bl      SndDispatchCommand
     lwz	r4, -0x7740(r13)
     lbz	r0, 0x442(r4)
     slwi	r3, r0, 2
@@ -15156,7 +15156,7 @@ _8006952c:
     blr
 }
 
-asm void fn_8006953C(void)
+asm void SndAllocBankEntry(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

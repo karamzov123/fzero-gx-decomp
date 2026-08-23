@@ -17,7 +17,7 @@ extern asm void fn_80028424(void);
 extern asm void GXBegin(void);
 extern asm void fn_800371F8(void);
 extern asm void fn_80038C5C(void);
-extern asm void fn_8006953C(void);
+extern asm void SndAllocBankEntry(void);
 extern asm void fn_8006D758(void);
 extern asm void fn_8007245C(void);
 extern asm void fn_80072864(void);
@@ -111,7 +111,7 @@ asm void fn_80069AE0(void)
     lwz	r3, 0x444(r3)
     rlwinm.	r0, r3, 0, 0x19, 0x19
     bc      4, 2, _80069b00
-    bl      fn_8006953C
+    bl      SndAllocBankEntry
 _80069b00:
     lwz	r0, 0x14(r1)
     mtlr	r0

@@ -12,7 +12,7 @@ extern void fn_8005B0C4(void);
 extern void fn_8005B264(void);
 extern void fn_8005BE98(void);
 extern void fn_8005BFB4(void);
-extern void fn_8005C120(void);
+extern void SndInitManager(void);
 extern void memset(void);
 
 asm void fn_8005BC20(void)
@@ -161,7 +161,7 @@ asm void fn_8005BDD4(void)
     lwz	r0, 0(r31)
     cmplwi	r0, 0
     bne     _8005be28
-    bl      fn_8005C120
+    bl      SndInitManager
     addi	r3, r31, 0x10d4
     li	r4, 0
     li	r5, 0xe80
