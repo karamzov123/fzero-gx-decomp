@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void fn_80047464(void);
-extern void fn_8004C698(void);
+extern void ADXT_Stop(void);
 extern void fn_8004EBB4(void);
 extern void fn_8004EBD4(void);
 extern void fn_800501F4(void);
@@ -730,7 +730,7 @@ asm void fn_80051DC4(void)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     mr	r30, r3
-    bl      fn_8004C698
+    bl      ADXT_Stop
     lwz	r3, 4(r30)
     lwz	r31, 4(r3)
     lwz	r30, 0xb0(r31)
@@ -773,7 +773,7 @@ _80051e54:
     blr	
 }
 
-asm void fn_80051E64(void)
+asm void ADXT_AttachAHX(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -783,7 +783,7 @@ asm void fn_80051E64(void)
     mr	r27, r3
     mr	r28, r4
     mr	r29, r5
-    bl      fn_8004C698
+    bl      ADXT_Stop
     lis	r3, -0x7fe8
     lwz	r12, -0x1a74(r3)
     cmplwi	r12, 0

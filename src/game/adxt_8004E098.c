@@ -21,7 +21,7 @@ extern void fn_8004F00C(void);
 extern void fn_8004F26C(void);
 extern void fn_8004F55C(void);
 extern void fn_8005466C(void);
-extern void fn_800551D0(void);
+extern void cvFsSetDefDev(void);
 extern void fn_80055304(void);
 extern void fn_800565F0(void);
 extern void fn_80058B54(void);
@@ -1044,7 +1044,7 @@ asm void fn_8004EC34(void)
     li	r5, 0
     bl      fn_80055304
     addi	r3, r31, 0x44
-    bl      fn_800551D0
+    bl      cvFsSetDefDev
     cmplwi	r30, 0
     beq     _8004ecc8
     lwz	r6, 0(r30)

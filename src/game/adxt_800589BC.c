@@ -726,7 +726,7 @@ _800592cc:
     blr	
 }
 
-asm void fn_800592E0(void)
+asm void SVM_DelCbSvr(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

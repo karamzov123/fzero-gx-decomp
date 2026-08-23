@@ -14,7 +14,7 @@ extern void fn_80046C28(void);
 extern void fn_800474E4(void);
 extern void fn_80047548(void);
 extern void fn_8004C164(void);
-extern void fn_8004D220(void);
+extern void ADXT_ExecHndl(void);
 extern void fn_8004ED84(void);
 extern void fn_8004EDC4(void);
 extern void fn_8004EDE4(void);
@@ -257,7 +257,7 @@ _8004babc:
     cmpwi	r0, 1
     bne     _8004bad0
     mr	r3, r27
-    bl      fn_8004D220
+    bl      ADXT_ExecHndl
 _8004bad0:
     addi	r28, r28, 1
     addi	r27, r27, 0xc0
@@ -536,7 +536,7 @@ _8004be34:
     cmpwi	r0, 1
     bne     _8004be48
     mr	r3, r31
-    bl      fn_8004D220
+    bl      ADXT_ExecHndl
 _8004be48:
     addi	r30, r30, 1
     addi	r31, r31, 0xc0
@@ -609,7 +609,7 @@ _8004befc:
     blr	
 }
 
-asm void fn_8004BF0C(void)
+asm void ADXT_SetOutVol(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -639,7 +639,7 @@ _8004bf54:
     blr	
 }
 
-asm void fn_8004BF68(void)
+asm void ADXT_GetOutPan(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -663,7 +663,7 @@ _8004bf9c:
     blr	
 }
 
-asm void fn_8004BFAC(void)
+asm void ADXT_SetOutPan(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -716,7 +716,7 @@ _8004c040:
     blr	
 }
 
-asm void fn_8004C05C(void)
+asm void ADXT_GetNumChan(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -746,7 +746,7 @@ _8004c0a4:
     blr	
 }
 
-asm void fn_8004C0B4(void)
+asm void ADXT_GetSfreq(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -776,7 +776,7 @@ _8004c0fc:
     blr	
 }
 
-asm void fn_8004C10C(void)
+asm void ADXT_GetNumSmpl(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

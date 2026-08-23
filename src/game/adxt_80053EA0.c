@@ -662,7 +662,7 @@ _8005468c:
     blr	
 }
 
-asm void fn_800546A0(void)
+asm void cvFsGetStat(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -753,7 +753,7 @@ _800547a0:
     blr	
 }
 
-asm void fn_800547C8(void)
+asm void cvFsStopTr(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -803,7 +803,7 @@ _80054860:
     blr	
 }
 
-asm void fn_80054870(void)
+asm void cvFsReqRd(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -861,7 +861,7 @@ _8005491c:
     blr	
 }
 
-asm void fn_80054930(void)
+asm void cvFsSeek(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -919,7 +919,7 @@ _800549dc:
     blr	
 }
 
-asm void fn_800549F0(void)
+asm void cvFsTell(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -977,7 +977,7 @@ _80054a9c:
     blr	
 }
 
-asm void fn_80054AB0(void)
+asm void cvFsClose(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1495,7 +1495,7 @@ _800551bc:
     blr	
 }
 
-asm void fn_800551D0(void)
+asm void cvFsSetDefDev(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

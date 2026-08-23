@@ -5,7 +5,7 @@ extern void fn_80046718(void);
 extern void fn_80046738(void);
 extern void fn_80046F7C(void);
 extern void fn_8004A5F4(void);
-extern void fn_800547C8(void);
+extern void cvFsStopTr(void);
 extern void fn_80058A40(void);
 extern void fn_80059AB4(void);
 extern void fn_80059B44(void);
@@ -64,7 +64,7 @@ asm void fn_8004AC58(void)
     lbz	r0, 0x42(r31)
     extsb.	r0, r0
     bne     _8004ac94
-    bl      fn_800547C8
+    bl      cvFsStopTr
 _8004ac94:
     bl      fn_80059B44
     li	r3, 1
@@ -273,7 +273,7 @@ asm void fn_8004AEF0(void)
     lbz	r0, 0x42(r31)
     extsb.	r0, r0
     bne     _8004af2c
-    bl      fn_800547C8
+    bl      cvFsStopTr
 _8004af2c:
     bl      fn_80059B44
     li	r3, 1
@@ -493,7 +493,7 @@ asm void fn_8004B1DC(void)
     lbz	r0, 0x42(r31)
     extsb.	r0, r0
     bne     _8004b21c
-    bl      fn_800547C8
+    bl      cvFsStopTr
 _8004b21c:
     bl      fn_80059B44
     li	r3, 1
@@ -559,7 +559,7 @@ _8004b2d4:
     lbz	r0, 0x42(r31)
     extsb.	r0, r0
     bne     _8004b308
-    bl      fn_800547C8
+    bl      cvFsStopTr
 _8004b308:
     bl      fn_80059B44
     li	r3, 1

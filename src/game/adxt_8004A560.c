@@ -4,11 +4,11 @@
 extern void fn_80047464(void);
 extern void fn_8004A5F4(void);
 extern void fn_8004A80C(void);
-extern void fn_800546A0(void);
-extern void fn_80054870(void);
-extern void fn_80054930(void);
-extern void fn_800549F0(void);
-extern void fn_80054AB0(void);
+extern void cvFsGetStat(void);
+extern void cvFsReqRd(void);
+extern void cvFsSeek(void);
+extern void cvFsTell(void);
+extern void cvFsClose(void);
 extern void fn_80054B6C(void);
 extern void fn_800589BC(void);
 extern void fn_80058A40(void);
@@ -101,7 +101,7 @@ _8004a644:
     beq     _8004a668
     li	r0, 0
     stw	r0, 8(r31)
-    bl      fn_80054AB0
+    bl      cvFsClose
 _8004a668:
     li	r0, 0
     stb	r0, 0x42(r31)
@@ -138,15 +138,15 @@ _8004a6e0:
     lwz	r3, 8(r31)
     li	r4, 0
     li	r5, 2
-    bl      fn_80054930
+    bl      cvFsSeek
     lwz	r3, 8(r31)
-    bl      fn_800549F0
+    bl      cvFsTell
     mr	r30, r3
     lwz	r3, 8(r31)
     slwi	r29, r30, 0xb
     li	r4, 0
     li	r5, 0
-    bl      fn_80054930
+    bl      cvFsSeek
     lwz	r3, 0x10(r31)
     addis	r0, r3, -0x7fff
     cmplwi	r0, 0xf800
@@ -232,7 +232,7 @@ asm void fn_8004A80C(void)
     stw	r29, 0x24(r1)
     lwz	r31, 4(r3)
     lwz	r3, 8(r3)
-    bl      fn_800546A0
+    bl      cvFsGetStat
     mr	r29, r3
     bl      fn_80059B44
     lbz	r0, 2(r30)
@@ -445,11 +445,11 @@ _8004ab34:
     li	r5, 0
     lwz	r3, 8(r30)
     add	r4, r0, r4
-    bl      fn_80054930
+    bl      cvFsSeek
     lwz	r3, 8(r30)
     mr	r4, r29
     lwz	r5, 8(r1)
-    bl      fn_80054870
+    bl      cvFsReqRd
     stw	r3, 0x1c(r30)
     lwz	r0, 8(r1)
     stw	r0, 0x20(r30)
@@ -470,7 +470,7 @@ _8004ab34:
     stw	r0, 0x24(r30)
     stb	r0, 2(r30)
     lwz	r3, 8(r30)
-    bl      fn_800546A0
+    bl      cvFsGetStat
     cmpwi	r3, 3
     bne     _8004abe8
     lis	r3, -0x7fe8

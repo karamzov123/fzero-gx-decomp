@@ -387,7 +387,7 @@ _8004c644:
     blr	
 }
 
-asm void fn_8004C658(void)
+asm void ADXT_GetStat(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -410,7 +410,7 @@ _8004c688:
     blr	
 }
 
-asm void fn_8004C698(void)
+asm void ADXT_Stop(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

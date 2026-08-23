@@ -43,12 +43,12 @@ extern void fn_8004AEE4(void);
 extern void fn_8004B4E0(void);
 extern void fn_8004BBC4(void);
 extern void fn_8004BBC8(void);
-extern void fn_8004C05C(void);
-extern void fn_8004C658(void);
-extern void fn_8004C698(void);
+extern void ADXT_GetNumChan(void);
+extern void ADXT_GetStat(void);
+extern void ADXT_Stop(void);
 extern void fn_8004C980(void);
 extern void fn_8004CAC8(void);
-extern void fn_8004D528(void);
+extern void ADXT_StatDecInfo(void);
 extern void fn_8004DBBC(void);
 extern void fn_8004ED5C(void);
 extern void fn_8004ED80(void);
@@ -366,7 +366,7 @@ _8004d178:
     blr	
 }
 
-asm void fn_8004D18C(void)
+asm void ADXT_StartFname(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -385,7 +385,7 @@ _8004d1b4:
     bl      fn_800474E4
     b       _8004d208
 _8004d1c4:
-    bl      fn_8004C698
+    bl      ADXT_Stop
     lwz	r3, 0xac(r30)
     mr	r4, r31
     bl      strcpy
@@ -411,7 +411,7 @@ _8004d208:
     blr	
 }
 
-asm void fn_8004D220(void)
+asm void ADXT_ExecHndl(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -469,7 +469,7 @@ _8004d2c0:
 _8004d2e0:
     cmpwi	r0, 1
     bne     _8004d2f0
-    bl      fn_8004D528
+    bl      ADXT_StatDecInfo
     b       _8004d460
 _8004d2f0:
     cmpwi	r0, 2
@@ -521,7 +521,7 @@ _8004d390:
     cmpwi	r3, 3
     bne     _8004d460
     mr	r3, r31
-    bl      fn_8004C05C
+    bl      ADXT_GetNumChan
     lwz	r0, 0x48(r31)
     mr	r30, r3
     mr	r26, r31
@@ -576,7 +576,7 @@ _8004d460:
     cmplwi	r0, 0
     beq     _8004d4c4
     mr	r3, r31
-    bl      fn_8004C658
+    bl      ADXT_GetStat
     cmpwi	r3, 0
     beq     _8004d4c4
     lbz	r0, 2(r31)
@@ -629,7 +629,7 @@ _8004d514:
     blr	
 }
 
-asm void fn_8004D528(void)
+asm void ADXT_StatDecInfo(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -690,7 +690,7 @@ _8004d5bc:
     addi	r3, r3, E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str@l
     bl      fn_80047464
     mr	r3, r30
-    bl      fn_8004C698
+    bl      ADXT_Stop
     b       _8004d8c8
 _8004d60c:
     mr	r3, r31
