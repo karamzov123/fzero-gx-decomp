@@ -15,7 +15,7 @@ extern void OSEnableInterrupts(void);
 extern void OSClearContext(void* context);
 extern void OSSetCurrentContext(void* context);
 extern void DVDInit(void);
-extern s32 fn_8001989C(s32);
+extern s32 DVDSetAutoInvalidation(s32);
 extern s32 DVDPause(s32);
 extern s32 DVDCancelAllAsync(void*);
 extern void __OSMaskInterrupts(u32 mask);
@@ -27,7 +27,7 @@ extern void fn_8001DFFC(s32);
 extern void fn_8001E2BC(s32);
 extern void fn_8001E2E8(s32);
 extern s32 DVDBSChangeDiskAsync(void* a, s32 b);
-extern s32 DVDCancelStream(void* block);
+extern s32 DVDGetCommandBlockStatus(void* block);
 extern s32 DVDReadAbsAsyncPrio(void* block, void* addr, u32 length, u32 offset, void* caddr);
 extern void ICInvalidateRange(void* addr, u32 nBytes);
 extern void ICFlashInvalidate(void);
@@ -79,7 +79,7 @@ asm void __OSReboot(register unsigned long resetCode, register unsigned long boo
     bl      OSSetCurrentContext
     bl      DVDInit
     li	r3, 1
-    bl      fn_8001989C
+    bl      DVDSetAutoInvalidation
     bl      DVDPause
     lis	r3, -0x7fff
     stw	r27, -0x7bf8(r13)
@@ -176,7 +176,7 @@ _8000ecbc:
     bl      __OSDoHotReset
 _8000ecc4:
     addi	r3, r1, 0x70
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     cmpwi	r3, 0
     bne     _8000ec88
     li	r3, 0
@@ -222,7 +222,7 @@ _8000ed5c:
     bl      __OSDoHotReset
 _8000ed64:
     addi	r3, r1, 0x40
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     cmpwi	r3, 0
     bne     _8000ed28
     lwz	r5, 0x18(r30)
@@ -270,7 +270,7 @@ _8000ee08:
     bl      __OSDoHotReset
 _8000ee10:
     addi	r3, r1, 0x10
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     cmpwi	r3, 0
     bne     _8000edd4
     lis	r3, -0x7ed0

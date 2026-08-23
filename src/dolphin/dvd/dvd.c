@@ -2529,8 +2529,8 @@ nofralloc
 	blr
 }
 
-/* DVDCancelStream @0x800197A4 | size: 0x4C */
-asm void DVDCancelStream(void) {
+/* DVDGetCommandBlockStatus @0x800197A4 | size: 0x4C */
+asm void DVDGetCommandBlockStatus(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2609,8 +2609,8 @@ lbl_80019878:
 	blr
 }
 
-/* fn_8001989C @0x8001989C | size: 0x10 */
-asm void fn_8001989C(void) {
+/* DVDSetAutoInvalidation @0x8001989C | size: 0x10 */
+asm void DVDSetAutoInvalidation(void) {
 nofralloc
 	lwz r0, -0x7F44(r13)
 	stw r3, -0x7F44(r13)

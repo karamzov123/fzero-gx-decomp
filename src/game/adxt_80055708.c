@@ -10,7 +10,7 @@ extern void fn_80017228(void);
 extern void fn_800174D0(void);
 extern void fn_800175C0(void);
 extern void fn_800176FC(void);
-extern void DVDCancelStream(void);
+extern void DVDGetCommandBlockStatus(void);
 extern void DVDCancel(void);
 extern void fn_8004AC58(void);
 extern void gcciErrPrintf(void);
@@ -139,7 +139,7 @@ _80055818:
     b     _80055958
 _80055830:
     addi	r3, r29, 0x28
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     bl      DVDGetDriveStatus
     addi	r26, r31, 0
     li	r0, 1
@@ -173,7 +173,7 @@ _80055884:
     b     _80055918
 _800558b0:
     addi	r3, r29, 0x28
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     stw	r3, 0xc(r29)
     lwz	r0, 0xc(r29)
     stw	r0, 0(r31)
@@ -217,7 +217,7 @@ _8005593c:
     stb	r0, 2(r29)
     addi	r3, r29, 0x28
     stb	r0, 4(r4)
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     bl      DVDGetDriveStatus
 _80055958:
     lmw	r25, 0x14(r1)
@@ -393,7 +393,7 @@ _80055b84:
     cmpwi	r0, 2
     bne     _80055cb0
     addi	r3, r29, 0x28
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     stw	r3, 0xc(r29)
     lwz	r0, 0xc(r29)
     cmpwi	r0, 0
@@ -659,7 +659,7 @@ _80055f14:
     extsb.	r0, r3
     beq     _80056050
     addi	r3, r29, 0x28
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     bl      DVDGetDriveStatus
     addi	r24, r31, 0
     li	r0, 1
@@ -693,7 +693,7 @@ _80055f7c:
     b     _80056010
 _80055fa8:
     addi	r3, r29, 0x28
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     stw	r3, 0xc(r29)
     lwz	r0, 0xc(r29)
     stw	r0, 0(r31)
@@ -737,7 +737,7 @@ _80056034:
     stb	r0, 2(r29)
     addi	r3, r29, 0x28
     stb	r0, 4(r4)
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     bl      DVDGetDriveStatus
 _80056050:
     addi	r3, r28, 0x28
@@ -1044,7 +1044,7 @@ _80056430:
     cmpwi	r0, 2
     bne     _80056560
     addi	r3, r30, 0x28
-    bl      DVDCancelStream
+    bl      DVDGetCommandBlockStatus
     stw	r3, 0xc(r30)
     lis	r3, -0x7fe8
     lwz	r0, 0xc(r30)
