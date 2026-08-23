@@ -119,9 +119,6 @@ dolphin/os/Yay0Decode.c:
 dolphin/os/OSInterrupts.c:
 	.text       start:0x8000D4F4 end:0x8000D5E4
 
-dolphin/os/OSInterruptMask.c:
-	.text       start:0x8000D5E4 end:0x8000DD10
-
 coarse/text_8000DD60.c:
 	.text       start:0x8000DD60 end:0x8000EA84
 
