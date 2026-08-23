@@ -1,11 +1,11 @@
-extern unsigned int *lbl_801A6744;
+extern unsigned int *gAssetBudgetB;
 
 #pragma push
 #pragma force_active on
 
 unsigned int fn_80009FA4(int index)
 {
-    return *(unsigned int *)((char *)lbl_801A6744 + index * 12);
+    return *(unsigned int *)((char *)gAssetBudgetB + index * 12);
 }
 
 unsigned int fn_80009FB4(unsigned int *ptr)

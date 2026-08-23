@@ -1,10 +1,10 @@
 typedef int s32;
 
-extern int lbl_801A6730; /* allocator context slot index */
+extern int gAssetBudgetA; /* allocator context slot index */
 extern int lbl_801A6734;
 extern void *lbl_801A6738; /* ArenaEnd */
 extern void *lbl_801A673C; /* ArenaStart */
-extern void *lbl_801A6744; /* HeapArray */
+extern void *gAssetBudgetB; /* HeapArray */
 extern int lbl_801A6740;   /* NumHeaps */
 extern int lbl_801A6410;   /* __OSCurrHeap */
 extern unsigned char lbl_8015BE40[160];
@@ -65,7 +65,7 @@ asm void fn_8000951C(void)
     nofralloc
     stwu    r1, -0x10(r1)
     stw     r31, 0xC(r1)
-    lwz     r0, -0x7C90(r13)   /* lbl_801A6730 */
+    lwz     r0, -0x7C90(r13)   /* gAssetBudgetA */
     cmpwi   r0, -1
     beq     swapdone
     mulli   r0, r0, 0x14
@@ -73,7 +73,7 @@ asm void fn_8000951C(void)
     lis     r4, lbl_8015BEE0@ha
     lwz     r31, -0x7FB0(r13)  /* lbl_801A6410 */
     addi    r3, r3, lbl_8015BE40@l
-    lwz     r11, -0x7C7C(r13)  /* lbl_801A6744 */
+    lwz     r11, -0x7C7C(r13)  /* gAssetBudgetB */
     add     r6, r3, r0
     lwzx    r7, r3, r0
     addi    r12, r4, lbl_8015BEE0@l
@@ -103,7 +103,7 @@ swapdone:
 asm void fn_800095A4(void)
 {
     nofralloc
-    lwz     r0, -0x7C90(r13)   /* lbl_801A6730 */
+    lwz     r0, -0x7C90(r13)   /* gAssetBudgetA */
     cmpwi   r0, -1
     beqlr
     mulli   r6, r0, 0x14
@@ -111,7 +111,7 @@ asm void fn_800095A4(void)
     lwz     r5, -0x7FB0(r13)   /* lbl_801A6410 */
     lis     r3, lbl_8015BEE0@ha
     addi    r4, r4, lbl_8015BE40@l
-    lwz     r0, -0x7C7C(r13)   /* lbl_801A6744 */
+    lwz     r0, -0x7C7C(r13)   /* gAssetBudgetB */
     stwx    r5, r4, r6
     add     r9, r4, r6
     lwz     r4, -0x7C80(r13)   /* lbl_801A6740 */
