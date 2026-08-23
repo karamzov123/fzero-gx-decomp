@@ -209,7 +209,7 @@ dolphin/dvd/fstload.c:
 dolphin/vi/vifuncs.c:
 	.text       start:0x8001A78C end:0x8001A8B4
 
-coarse/text_8001A8B4.c:
+dolphin/vi/vi_8001A8B4.c:
 	.text       start:0x8001A8B4 end:0x8001AF64
 
 dolphin/vi/viwait.c:
@@ -224,7 +224,7 @@ dolphin/vi/viretrace.c:
 dolphin/vi/viregs.c:
 	.text       start:0x8001BE6C end:0x8001C01C
 
-coarse/text_8001C01C.c:
+dolphin/pad/pad_8001C01C.c:
 	.text       start:0x8001C01C end:0x8001DF00
 
 dolphin/pad/padmisc.c:
