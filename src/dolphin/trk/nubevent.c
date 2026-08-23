@@ -97,6 +97,20 @@ lbl_80088720:
     blr
 }
 
+asm void TRKDestructEvent(void* msg)
+{
+    nofralloc
+    stwu    r1, -0x10(r1)
+    mflr    r0
+    stw     r0, 0x14(r1)
+    lwz     r3, 8(r3)
+    bl      fn_800891B4
+    lwz     r0, 0x14(r1)
+    mtlr    r0
+    addi    r1, r1, 0x10
+    blr
+}
+
 asm void fn_80088764(void* ev)
 {
     nofralloc
@@ -169,21 +183,6 @@ lbl_80088830:
     lwz     r29, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x20
-    blr
-}
-
-
-asm void TRKDestructEvent(void* msg)
-{
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    stw     r0, 0x14(r1)
-    lwz     r3, 8(r3)
-    bl      fn_800891B4
-    lwz     r0, 0x14(r1)
-    mtlr    r0
-    addi    r1, r1, 0x10
     blr
 }
 

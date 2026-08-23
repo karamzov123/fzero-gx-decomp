@@ -447,6 +447,16 @@ config.libs = [
             Object(Matching, "dolphin/msl/mem.c"),
             Object(Matching, "dolphin/msl/string.c"),
             Object(Matching, "dolphin/msl/math_80088600.c"),
+        ],
+    },
+    {
+        "lib": "MetroTRK",
+        "mw_version": config.linker_version,
+        "cflags": cflags_runtime,
+        "progress_category": "sdk",
+        "objects": [
+            Object(Matching, "dolphin/trk/nubevent.c"),
+            Object(Matching, "dolphin/trk/nubinit.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
