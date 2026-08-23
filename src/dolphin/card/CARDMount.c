@@ -14,7 +14,7 @@ extern void __CARDPutControlBlock(void);
 extern void CARDGetResultCode(void);
 extern void CARDFreeBlocks(void);
 extern void __CARDSync(void);
-extern void fn_8002AB70(void);
+extern void CARDOnReset(void);
 extern void __CARDBitRev(void);
 extern void ReadArrayUnlock(void);
 extern void GetInitVal(void);
@@ -445,7 +445,7 @@ _8002ab38:
     blr	
 }
 
-asm void fn_8002AB70(void)
+asm void CARDOnReset(void)
 {
     nofralloc
     mflr	r0
