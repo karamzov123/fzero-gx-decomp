@@ -440,8 +440,11 @@ game/adxt_8005BC20.c:
 game/gamehead_8005C120.c:
 	.text       start:0x8005C120 end:0x80069AE0
 
-coarse/text_80069AE0.c:
-	.text       start:0x80069AE0 end:0x8006E200
+dolphin/mtx/MTXHead.c:
+	.text       start:0x80069AE0 end:0x8006CFF8
+
+coarse/text_8006CFF8.c:
+	.text       start:0x8006CFF8 end:0x8006E200
 
 dolphin/mtx/MTX.c:
 	.text       start:0x8006E200 end:0x8006E324
@@ -560,7 +563,7 @@ coarse/text_8008067C.c:
 dolphin/msl/printf.c:
 	.text       start:0x800807F4 end:0x8008279C
 
-coarse/text_8008279C.c:
+dolphin/msl/tail_8008279C.c:
 	.text       start:0x8008279C end:0x80083D40
 
 dolphin/msl/string.c:
@@ -578,7 +581,7 @@ dolphin/trk/nubevent.c:
 dolphin/trk/nubinit.c:
 	.text       start:0x80088910 end:0x80088B00
 
-coarse/text_80088B00.c:
+dolphin/metrotrk/trk_80088B00.c:
 	.text       start:0x80088B00 end:0x8008CB20
 
 dolphin/metrotrk/init.c:
