@@ -266,8 +266,14 @@ dolphin/ax/AXSPB.c:
 dolphin/ax/AXVPB.c:
 	.text       start:0x800224E4 end:0x80023684
 
-coarse/text_80023684.c:
-	.text       start:0x80023684 end:0x80026EE0
+game/axmix_80023684.c:
+	.text       start:0x80023684 end:0x80024308
+
+game/axmix_80024308.c:
+	.text       start:0x80024308 end:0x80025504
+
+game/axmix_80025504.c:
+	.text       start:0x80025504 end:0x80026EE0
 
 game/axmix_80026EE0.c:
 	.text       start:0x80026EE0 end:0x80028CC0
