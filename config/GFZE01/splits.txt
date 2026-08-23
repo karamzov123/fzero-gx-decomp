@@ -293,8 +293,11 @@ coarse/text_8006E324.c:
 game/fn_80071CC0.c:
 	.text       start:0x80071CC0 end:0x800724CC
 
-coarse/text_800724CC.c:
-	.text       start:0x800724CC end:0x800794F0
+game/gxfifo_800724CC.c:
+	.text       start:0x800724CC end:0x8007264C
+
+coarse/text_8007264C.c:
+	.text       start:0x8007264C end:0x800794F0
 
 dolphin/msl/runtime.c:
 	.text       start:0x800794F0 end:0x800797C0
