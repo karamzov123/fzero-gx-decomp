@@ -438,3 +438,1259 @@ Lexit:
 }
 
 #pragma pop
+
+/* ==== carved from coarse/text_800309FC.c (pm4-gxtail) ====
+ * GXInit + __GXInitGX (melee GXInit.c identity)
+ * fn_80031B50 = __GXCPInterruptHandler (retail GXInit.c tail;
+ *   melee GXFifo.c GXCPInterruptHandler; kept global: GXFifo.c refs it) */
+#pragma push
+#pragma force_active on
+
+asm void *GXInit(void *base, u32 size)
+{
+    nofralloc
+    mflr	r0
+    stw	r0, 4(r1)
+    stwu	r1, -0x50(r1)
+    stmw	r25, 0x34(r1)
+    mr	r27, r3
+    mr	r25, r4
+    lis	r4, -0x7fe9
+    lwz	r3, -0x7ea0(r13)
+    addi	r30, r4, 0x7ba0
+    bl OSRegisterVersion
+    lwz	r5, -0x7de8(r2)
+    li	r0, 0
+    li	r26, 1
+    stb	r0, 0x4f0(r5)
+    li	r3, 1
+    li	r4, 0
+    stb	r26, 0x4f1(r5)
+    stb	r26, 0x4f2(r5)
+    stw	r0, 0x4dc(r5)
+    stw	r0, 0x4e0(r5)
+    bl GXSetMisc
+    lis	r4, -0x3400
+    addi	r5, r4, 0x3000
+    stw	r4, -0x77f4(r13)
+    addi	r3, r4, 0x1000
+    addi	r0, r4, 0x4000
+    stw	r5, -0x77f8(r13)
+    stw	r3, -0x77f0(r13)
+    stw	r0, -0x77ec(r13)
+    bl __GXFifoInit
+    mr	r4, r27
+    mr	r5, r25
+    addi	r3, r30, 0x4f8
+    bl GXInitFifoBase
+    addi	r3, r30, 0x4f8
+    bl GXSetCPUFifo
+    addi	r3, r30, 0x4f8
+    bl GXSetGPFifo
+    lwz	r0, -0x77d4(r13)
+    cmplwi	r0, 0
+    bne L80030ab0
+    lis	r3, -0x7fed
+    addi	r3, r3, -0x52d0
+    bl OSRegisterResetFunction
+    stw	r26, -0x77d4(r13)
+L80030ab0:
+    bl __GXPEInit
+    bl PPCMtwpar
+    lis	r4, 0xc01
+    mr	r26, r3
+    addi	r3, r4, -0x8000
+    bl PPCMfhid2
+    oris	r3, r26, 0x4000
+    bl PPCMthid2
+    lwz	r7, -0x7de8(r2)
+    li	r4, 0
+    li	r0, 0xff
+    stw	r4, 0x204(r7)
+    addi	r5, r7, 0x204
+    addi	r8, r7, 0x124
+    lwz	r3, 0(r5)
+    addi	r10, r7, 0x7c
+    li	r9, 0
+    clrlwi	r3, r3, 8
+    stw	r3, 0(r5)
+    li	r5, 0xc0
+    li	r6, 0xc1
+    stw	r0, 0x124(r7)
+    lwz	r0, 0(r8)
+    clrlwi	r0, r0, 8
+    oris	r0, r0, 0xf00
+    stw	r0, 0(r8)
+    stw	r4, 0x7c(r7)
+    lwz	r0, 0(r10)
+    clrlwi	r0, r0, 8
+    oris	r0, r0, 0x2200
+    stw	r0, 0(r10)
+    b L80030b30
+L80030b30:
+    li	r0, 8
+    mtctr	r0
+    b L80030b3c
+L80030b3c:
+    b L80030b40
+L80030b40:
+    lwz	r3, -0x7de8(r2)
+    srwi	r7, r9, 1
+    addi	r29, r4, 0x130
+    li	r0, 0
+    addi	r26, r4, 0x170
+    stwx	r0, r3, r29
+    slwi	r11, r7, 2
+    addi	r27, r11, 0x100
+    stwx	r0, r3, r26
+    addi	r10, r4, 0x49c
+    stwx	r0, r3, r27
+    li	r31, 0xff
+    slwi	r28, r5, 0x18
+    stwx	r31, r3, r10
+    add	r25, r3, r29
+    addi	r4, r4, 4
+    lwz	r29, 0(r25)
+    add	r26, r3, r26
+    slwi	r12, r6, 0x18
+    clrlwi	r29, r29, 8
+    or	r28, r29, r28
+    stw	r28, 0(r25)
+    addi	r8, r11, 0x1b0
+    addi	r11, r7, 0xf6
+    lwz	r28, 0(r26)
+    addi	r10, r7, 0x28
+    addi	r29, r4, 0x130
+    clrlwi	r7, r28, 8
+    or	r7, r7, r12
+    stw	r7, 0(r26)
+    add	r8, r3, r8
+    addi	r9, r9, 1
+    lwz	r12, 0(r8)
+    srwi	r7, r9, 1
+    slwi	r11, r11, 0x18
+    clrlwi	r12, r12, 8
+    or	r11, r12, r11
+    stw	r11, 0(r8)
+    add	r25, r3, r27
+    slwi	r11, r7, 2
+    lwz	r8, 0(r25)
+    slwi	r10, r10, 0x18
+    addi	r26, r4, 0x170
+    clrlwi	r8, r8, 8
+    or	r8, r8, r10
+    stw	r8, 0(r25)
+    addi	r27, r11, 0x100
+    addi	r10, r4, 0x49c
+    stwx	r0, r3, r29
+    addi	r5, r5, 2
+    slwi	r28, r5, 0x18
+    stwx	r0, r3, r26
+    addi	r6, r6, 2
+    slwi	r12, r6, 0x18
+    stwx	r0, r3, r27
+    addi	r8, r11, 0x1b0
+    addi	r11, r7, 0xf6
+    stwx	r31, r3, r10
+    add	r25, r3, r29
+    addi	r10, r7, 0x28
+    lwz	r29, 0(r25)
+    add	r26, r3, r26
+    add	r8, r3, r8
+    clrlwi	r29, r29, 8
+    or	r28, r29, r28
+    stw	r28, 0(r25)
+    slwi	r11, r11, 0x18
+    add	r25, r3, r27
+    lwz	r28, 0(r26)
+    slwi	r10, r10, 0x18
+    addi	r4, r4, 4
+    clrlwi	r7, r28, 8
+    or	r7, r7, r12
+    stw	r7, 0(r26)
+    addi	r5, r5, 2
+    addi	r6, r6, 2
+    lwz	r12, 0(r8)
+    addi	r9, r9, 1
+    clrlwi	r12, r12, 8
+    or	r11, r12, r11
+    stw	r11, 0(r8)
+    lwz	r8, 0(r25)
+    clrlwi	r8, r8, 8
+    or	r8, r8, r10
+    stw	r8, 0(r25)
+    bdnz L80030b40
+    stw	r0, 0x120(r3)
+    addi	r4, r3, 0x120
+    mr	r9, r0
+    lwz	r3, 0(r4)
+    li	r10, 0x30
+    li	r11, 0x31
+    clrlwi	r3, r3, 8
+    oris	r3, r3, 0x2700
+    stw	r3, 0(r4)
+    b L80030cc0
+L80030cc0:
+    li	r3, 2
+    mtctr	r3
+    b L80030ccc
+L80030ccc:
+    b L80030cd0
+L80030cd0:
+    lwz	r3, -0x7de8(r2)
+    addi	r8, r9, 0xb8
+    addi	r7, r9, 0xd8
+    stwx	r0, r3, r8
+    slwi	r6, r10, 0x18
+    slwi	r4, r11, 0x18
+    stwx	r0, r3, r7
+    add	r12, r3, r8
+    addi	r9, r9, 4
+    lwz	r5, 0(r12)
+    add	r25, r3, r7
+    addi	r8, r9, 0xb8
+    clrlwi	r5, r5, 8
+    or	r5, r5, r6
+    stw	r5, 0(r12)
+    addi	r7, r9, 0xd8
+    addi	r10, r10, 2
+    lwz	r5, 0(r25)
+    slwi	r6, r10, 0x18
+    add	r12, r3, r8
+    clrlwi	r5, r5, 8
+    or	r4, r5, r4
+    stw	r4, 0(r25)
+    addi	r11, r11, 2
+    slwi	r4, r11, 0x18
+    stwx	r0, r3, r8
+    addi	r9, r9, 4
+    add	r25, r3, r7
+    stwx	r0, r3, r7
+    addi	r8, r9, 0xb8
+    addi	r7, r9, 0xd8
+    lwz	r5, 0(r12)
+    addi	r10, r10, 2
+    addi	r11, r11, 2
+    clrlwi	r5, r5, 8
+    or	r5, r5, r6
+    stw	r5, 0(r12)
+    slwi	r6, r10, 0x18
+    add	r12, r3, r8
+    lwz	r5, 0(r25)
+    addi	r9, r9, 4
+    addi	r10, r10, 2
+    clrlwi	r5, r5, 8
+    or	r4, r5, r4
+    stw	r4, 0(r25)
+    slwi	r4, r11, 0x18
+    add	r25, r3, r7
+    stwx	r0, r3, r8
+    addi	r8, r9, 0xb8
+    addi	r11, r11, 2
+    stwx	r0, r3, r7
+    addi	r7, r9, 0xd8
+    addi	r9, r9, 4
+    lwz	r5, 0(r12)
+    clrlwi	r5, r5, 8
+    or	r5, r5, r6
+    stw	r5, 0(r12)
+    slwi	r6, r10, 0x18
+    add	r12, r3, r8
+    lwz	r5, 0(r25)
+    addi	r10, r10, 2
+    clrlwi	r5, r5, 8
+    or	r4, r5, r4
+    stw	r4, 0(r25)
+    slwi	r4, r11, 0x18
+    add	r25, r3, r7
+    stwx	r0, r3, r8
+    addi	r11, r11, 2
+    stwx	r0, r3, r7
+    lwz	r5, 0(r12)
+    clrlwi	r5, r5, 8
+    or	r5, r5, r6
+    stw	r5, 0(r12)
+    lwz	r5, 0(r25)
+    clrlwi	r5, r5, 8
+    or	r4, r5, r4
+    stw	r4, 0(r25)
+    bdnz L80030cd0
+    addi	r5, r3, 0xf8
+    lwz	r0, 0(r5)
+    lis	r4, 0x1062
+    addi	r6, r3, 0xfc
+    clrlwi	r0, r0, 8
+    oris	r0, r0, 0x2000
+    stw	r0, 0(r5)
+    addi	r7, r3, 0x1d0
+    addi	r8, r3, 0x1d4
+    lwz	r0, 0(r6)
+    addi	r9, r3, 0x1d8
+    addi	r10, r3, 0x1dc
+    clrlwi	r0, r0, 8
+    oris	r0, r0, 0x2100
+    stw	r0, 0(r6)
+    addi	r6, r3, 0x1fc
+    li	r29, 0
+    lwz	r0, 0(r7)
+    lis	r5, -0x8000
+    addi	r4, r4, 0x4dd3
+    clrlwi	r0, r0, 8
+    oris	r0, r0, 0x4100
+    stw	r0, 0(r7)
+    lwz	r0, 0(r8)
+    clrlwi	r0, r0, 8
+    oris	r0, r0, 0x4200
+    stw	r0, 0(r8)
+    lwz	r0, 0(r9)
+    clrlwi	r0, r0, 8
+    oris	r0, r0, 0x4000
+    stw	r0, 0(r9)
+    lwz	r0, 0(r10)
+    clrlwi	r0, r0, 8
+    oris	r0, r0, 0x4300
+    stw	r0, 0(r10)
+    lwz	r0, 0(r6)
+    rlwinm	r0, r0, 0, 0x19, 0x16
+    stw	r0, 0(r6)
+    stw	r29, 0x4f4(r3)
+    stb	r29, 0x4f3(r3)
+    lwz	r0, 0xf8(r5)
+    mulhwu	r0, r4, r0
+    srwi	r25, r0, 5
+    bl __GXFlushTextureState
+    srwi	r0, r25, 0xb
+    oris	r0, r0, 0x6900
+    li	r28, 0x61
+    lis	r31, -0x33ff
+    stb	r28, -0x8000(r31)
+    ori	r0, r0, 0x400
+    stw	r0, -0x8000(r31)
+    bl __GXFlushTextureState
+    lis	r3, 0x3e10
+    stb	r28, -0x8000(r31)
+    addi	r0, r3, -0x7c1f
+    mulhwu	r0, r0, r25
+    srwi	r0, r0, 0xa
+    oris	r0, r0, 0x4600
+    ori	r0, r0, 0x200
+    stw	r0, -0x8000(r31)
+    mr	r7, r29
+    b L80030f00
+L80030f00:
+    li	r0, 2
+    mtctr	r0
+    li	r5, 8
+    b L80030f10
+L80030f10:
+    b L80030f14
+L80030f14:
+    lwz	r6, -0x7de8(r2)
+    addi	r8, r7, 0x1c
+    addi	r9, r7, 0x3c
+    add	r8, r6, r8
+    lwz	r0, 0(r8)
+    ori	r4, r29, 0x80
+    addi	r3, r7, 0x3c
+    rlwinm	r0, r0, 0, 2, 0
+    oris	r0, r0, 0x4000
+    stw	r0, 0(r8)
+    add	r9, r6, r9
+    addi	r7, r7, 4
+    lwz	r0, 0(r9)
+    addi	r8, r7, 0x1c
+    add	r8, r6, r8
+    clrlwi	r0, r0, 1
+    oris	r0, r0, 0x8000
+    stw	r0, 0(r9)
+    addi	r9, r7, 0x3c
+    add	r9, r6, r9
+    stb	r5, -0x8000(r31)
+    addi	r29, r29, 1
+    stb	r4, -0x8000(r31)
+    ori	r4, r29, 0x80
+    addi	r29, r29, 1
+    lwzx	r0, r6, r3
+    addi	r3, r7, 0x3c
+    addi	r7, r7, 4
+    stw	r0, -0x8000(r31)
+    lwz	r0, 0(r8)
+    rlwinm	r0, r0, 0, 2, 0
+    oris	r0, r0, 0x4000
+    stw	r0, 0(r8)
+    addi	r8, r7, 0x1c
+    add	r8, r6, r8
+    lwz	r0, 0(r9)
+    clrlwi	r0, r0, 1
+    oris	r0, r0, 0x8000
+    stw	r0, 0(r9)
+    addi	r9, r7, 0x3c
+    add	r9, r6, r9
+    stb	r5, -0x8000(r31)
+    stb	r4, -0x8000(r31)
+    ori	r4, r29, 0x80
+    addi	r29, r29, 1
+    lwzx	r0, r6, r3
+    addi	r3, r7, 0x3c
+    addi	r7, r7, 4
+    stw	r0, -0x8000(r31)
+    lwz	r0, 0(r8)
+    rlwinm	r0, r0, 0, 2, 0
+    oris	r0, r0, 0x4000
+    stw	r0, 0(r8)
+    addi	r8, r7, 0x1c
+    add	r8, r6, r8
+    lwz	r0, 0(r9)
+    clrlwi	r0, r0, 1
+    oris	r0, r0, 0x8000
+    stw	r0, 0(r9)
+    addi	r9, r7, 0x3c
+    add	r9, r6, r9
+    stb	r5, -0x8000(r31)
+    stb	r4, -0x8000(r31)
+    ori	r4, r29, 0x80
+    addi	r29, r29, 1
+    lwzx	r0, r6, r3
+    addi	r3, r7, 0x3c
+    addi	r7, r7, 4
+    stw	r0, -0x8000(r31)
+    lwz	r0, 0(r8)
+    rlwinm	r0, r0, 0, 2, 0
+    oris	r0, r0, 0x4000
+    stw	r0, 0(r8)
+    lwz	r0, 0(r9)
+    clrlwi	r0, r0, 1
+    oris	r0, r0, 0x8000
+    stw	r0, 0(r9)
+    stb	r5, -0x8000(r31)
+    stb	r4, -0x8000(r31)
+    lwzx	r0, r6, r3
+    stw	r0, -0x8000(r31)
+    bdnz L80030f14
+    li	r4, 0x10
+    lis	r6, -0x33ff
+    stb	r4, -0x8000(r6)
+    li	r0, 0x1000
+    li	r28, 0
+    stw	r0, -0x8000(r6)
+    li	r0, 0x3f
+    slwi	r25, r28, 0xf
+    stw	r0, -0x8000(r6)
+    li	r0, 0x1012
+    li	r5, 1
+    stb	r4, -0x8000(r6)
+    li	r4, 0x61
+    lis	r3, 0x5800
+    stw	r0, -0x8000(r6)
+    addi	r0, r3, 0xf
+    addis	r26, r25, 8
+    stw	r5, -0x8000(r6)
+    slwi	r27, r28, 4
+    stb	r4, -0x8000(r6)
+    stw	r0, -0x8000(r6)
+    b L800310b4
+L800310b4:
+    b L800310b8
+L800310b8:
+    b L800310bc
+L800310bc:
+    lwz	r0, -0x7de8(r2)
+    addi	r3, r27, 0x208
+    mr	r5, r25
+    mr	r7, r26
+    add	r3, r0, r3
+    li	r4, 0
+    li	r6, 0
+    li	r8, 0
+    bl GXInitTexCacheRegion
+    addis	r26, r26, 1
+    addis	r25, r25, 1
+    addi	r26, r26, -0x8000
+    addi	r25, r25, -0x8000
+    addi	r27, r27, 0x10
+    addi	r28, r28, 1
+    cmplwi	r28, 8
+    blt L800310bc
+    li	r25, 0
+    slwi	r3, r25, 1
+    addi	r26, r3, 9
+    addi	r27, r3, 8
+    slwi	r28, r25, 4
+    b L80031118
+L80031118:
+    b L8003111c
+L8003111c:
+    b L80031120
+L80031120:
+    lwz	r0, -0x7de8(r2)
+    addi	r3, r28, 0x288
+    slwi	r5, r27, 0xf
+    add	r3, r0, r3
+    slwi	r7, r26, 0xf
+    li	r4, 0
+    li	r6, 0
+    li	r8, 0
+    bl GXInitTexCacheRegion
+    addi	r26, r26, 2
+    addi	r27, r27, 2
+    addi	r28, r28, 0x10
+    addi	r25, r25, 1
+    cmplwi	r25, 4
+    blt L80031120
+    li	r25, 0
+    slwi	r3, r25, 0xd
+    addis	r26, r3, 0xc
+    slwi	r27, r25, 4
+    b L80031170
+L80031170:
+    b L80031174
+L80031174:
+    b L80031178
+L80031178:
+    lwz	r0, -0x7de8(r2)
+    addi	r3, r27, 0x2d0
+    mr	r4, r26
+    add	r3, r0, r3
+    li	r5, 0x10
+    bl GXInitTlutRegion
+    addi	r26, r26, 0x2000
+    addi	r27, r27, 0x10
+    addi	r25, r25, 1
+    cmplwi	r25, 0x10
+    blt L80031178
+    li	r25, 0
+    slwi	r3, r25, 0xf
+    addis	r26, r3, 0xe
+    b L800311b4
+L800311b4:
+    b L800311b8
+L800311b8:
+    b L800311bc
+L800311bc:
+    addi	r0, r25, 0x10
+    lwz	r5, -0x7de8(r2)
+    slwi	r3, r0, 4
+    addi	r3, r3, 0x2d0
+    mr	r4, r26
+    add	r3, r5, r3
+    li	r5, 0x40
+    bl GXInitTlutRegion
+    addis	r26, r26, 1
+    addi	r26, r26, -0x8000
+    addi	r25, r25, 1
+    cmplwi	r25, 4
+    blt L800311bc
+    lwz	r4, -0x77f4(r13)
+    li	r12, 0
+    li	r3, 8
+    sth	r12, 6(r4)
+    lis	r10, -0x33ff
+    li	r9, 0x20
+    lwz	r11, -0x7de8(r2)
+    li	r8, 0x10
+    li	r7, 0x1006
+    addi	r4, r11, 0x4ec
+    lwz	r0, 0(r4)
+    li	r6, 0x61
+    lis	r5, 0x2300
+    rlwinm	r0, r0, 0, 0x1c, 0x17
+    stw	r0, 0(r4)
+    lis	r4, 0x2400
+    lis	r0, 0x6700
+    stb	r3, -0x8000(r10)
+    li	r3, 0
+    stb	r9, -0x8000(r10)
+    lwz	r9, 0x4ec(r11)
+    stw	r9, -0x8000(r10)
+    stb	r8, -0x8000(r10)
+    stw	r7, -0x8000(r10)
+    stw	r12, -0x8000(r10)
+    stb	r6, -0x8000(r10)
+    stw	r5, -0x8000(r10)
+    stb	r6, -0x8000(r10)
+    stw	r4, -0x8000(r10)
+    stb	r6, -0x8000(r10)
+    stw	r0, -0x8000(r10)
+    bl __GXSetTmemConfig
+    bl __GXInitGX
+    addi	r3, r30, 0x4f8
+    lmw	r25, 0x34(r1)
+    lwz	r0, 0x54(r1)
+    addi	r1, r1, 0x50
+    mtlr	r0
+    blr
+}
+
+asm static void __GXInitGX(void)
+{
+    nofralloc
+    mflr	r0
+    stw	r0, 4(r1)
+    stwu	r1, -0x80(r1)
+    stw	r31, 0x7c(r1)
+    stw	r30, 0x78(r1)
+    stw	r29, 0x74(r1)
+    lwz	r4, -0x7de4(r2)
+    lwz	r3, -0x7de0(r2)
+    lwz	r0, -0x7ddc(r2)
+    stw	r4, 0x28(r1)
+    stw	r3, 0x24(r1)
+    stw	r0, 0x20(r1)
+    bl VIGetTvFormat
+    cmpwi	r3, 2
+    beq L80031318
+    bge L800312dc
+    cmpwi	r3, 0
+    beq L800312e8
+    bge L800312f8
+    b L80031328
+L800312dc:
+    cmpwi	r3, 5
+    beq L80031308
+    b L80031328
+L800312e8:
+    lis	r3, -0x7fed
+    addi	r0, r3, -0x5048
+    mr	r31, r0
+    b L80031334
+L800312f8:
+    lis	r3, -0x7fed
+    addi	r0, r3, -0x4f58
+    mr	r31, r0
+    b L80031334
+L80031308:
+    lis	r3, -0x7fed
+    addi	r0, r3, -0x4f1c
+    mr	r31, r0
+    b L80031334
+L80031318:
+    lis	r3, -0x7fed
+    addi	r0, r3, -0x4f94
+    mr	r31, r0
+    b L80031334
+L80031328:
+    lis	r3, -0x7fed
+    addi	r0, r3, -0x5048
+    mr	r31, r0
+L80031334:
+    lwz	r0, 0x28(r1)
+    lis	r4, 0x100
+    addi	r3, r1, 0x1c
+    stw	r0, 0x1c(r1)
+    addi	r4, r4, -1
+    bl fn_80034E64
+    li	r3, 0
+    li	r4, 1
+    li	r5, 4
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl fn_80033A7C
+    li	r3, 1
+    li	r4, 1
+    li	r5, 5
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl fn_80033A7C
+    li	r3, 2
+    li	r4, 1
+    li	r5, 6
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl fn_80033A7C
+    li	r3, 3
+    li	r4, 1
+    li	r5, 7
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl fn_80033A7C
+    li	r3, 4
+    li	r4, 1
+    li	r5, 8
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl fn_80033A7C
+    li	r3, 5
+    li	r4, 1
+    li	r5, 9
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl fn_80033A7C
+    li	r3, 6
+    li	r4, 1
+    li	r5, 0xa
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl fn_80033A7C
+    li	r3, 7
+    li	r4, 1
+    li	r5, 0xb
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl fn_80033A7C
+    li	r3, 1
+    bl fn_80033D4C
+    bl fn_80032F48
+    bl fn_80033A6C
+    li	r29, 9
+    b L80031444
+L80031444:
+    b L80031448
+L80031448:
+    b L8003144c
+L8003144c:
+    lwz	r4, -0x7de8(r2)
+    mr	r3, r29
+    li	r5, 0
+    bl fn_800339E0
+    addi	r29, r29, 1
+    cmplwi	r29, 0x18
+    ble L8003144c
+    li	r29, 0
+    b L80031470
+L80031470:
+    lis	r3, -0x7fed
+    addi	r30, r3, -0x53bc
+    b L8003147c
+L8003147c:
+    b L80031480
+L80031480:
+    mr	r3, r29
+    mr	r4, r30
+    bl fn_800332D8
+    addi	r29, r29, 1
+    cmplwi	r29, 8
+    blt L80031480
+    li	r3, 6
+    li	r4, 0
+    bl GXSetLineWidth
+    li	r3, 6
+    li	r4, 0
+    bl GXSetPointSize
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    bl fn_80034834
+    li	r3, 1
+    li	r4, 0
+    li	r5, 0
+    bl fn_80034834
+    li	r3, 2
+    li	r4, 0
+    li	r5, 0
+    bl fn_80034834
+    li	r3, 3
+    li	r4, 0
+    li	r5, 0
+    bl fn_80034834
+    li	r3, 4
+    li	r4, 0
+    li	r5, 0
+    bl fn_80034834
+    li	r3, 5
+    li	r4, 0
+    li	r5, 0
+    bl fn_80034834
+    li	r3, 6
+    li	r4, 0
+    li	r5, 0
+    bl fn_80034834
+    li	r3, 7
+    li	r4, 0
+    li	r5, 0
+    bl fn_80034834
+    lfs	f1, -0x7dd8(r2)
+    addi	r3, r1, 0x2c
+    lfs	f0, -0x7dd4(r2)
+    li	r4, 0
+    stfs	f1, 0x2c(r1)
+    stfs	f0, 0x30(r1)
+    stfs	f0, 0x34(r1)
+    stfs	f0, 0x38(r1)
+    stfs	f0, 0x3c(r1)
+    stfs	f1, 0x40(r1)
+    stfs	f0, 0x44(r1)
+    stfs	f0, 0x48(r1)
+    stfs	f0, 0x4c(r1)
+    stfs	f0, 0x50(r1)
+    stfs	f1, 0x54(r1)
+    stfs	f0, 0x58(r1)
+    bl fn_80038C5C
+    addi	r3, r1, 0x2c
+    li	r4, 0
+    bl fn_80038CAC
+    li	r3, 0
+    bl fn_80038CFC
+    addi	r3, r1, 0x2c
+    li	r4, 0x3c
+    li	r5, 0
+    bl fn_80038D34
+    addi	r3, r1, 0x2c
+    li	r4, 0x7d
+    li	r5, 0
+    bl fn_80038D34
+    lhz	r4, 4(r31)
+    lis	r3, 0x4330
+    lhz	r0, 8(r31)
+    stw	r4, 0x6c(r1)
+    lfs	f1, -0x7dd4(r2)
+    stw	r0, 0x64(r1)
+    lfd	f4, -0x7dc8(r2)
+    fmr	f2, f1
+    stw	r3, 0x68(r1)
+    fmr	f5, f1
+    lfs	f6, -0x7dd8(r2)
+    stw	r3, 0x60(r1)
+    lfd	f3, 0x68(r1)
+    lfd	f0, 0x60(r1)
+    fsubs	f3, f3, f4
+    fsubs	f4, f0, f4
+    bl fn_80038EEC
+    lis	r3, -0x7fed
+    addi	r3, r3, -0x52ec
+    bl fn_80038B3C
+    li	r3, 0
+    bl fn_800348DC
+    li	r3, 2
+    bl GXSetCullMode
+    li	r3, 0
+    bl fn_80039060
+    lhz	r5, 4(r31)
+    li	r3, 0
+    lhz	r6, 6(r31)
+    li	r4, 0
+    bl fn_80038F48
+    li	r3, 0
+    li	r4, 0
+    bl fn_80039020
+    li	r3, 0
+    bl fn_8003591C
+    li	r3, 4
+    li	r4, 0
+    li	r5, 0
+    li	r6, 1
+    li	r7, 0
+    li	r8, 0
+    li	r9, 2
+    bl fn_80035960
+    lwz	r0, 0x24(r1)
+    addi	r4, r1, 0x18
+    li	r3, 4
+    stw	r0, 0x18(r1)
+    bl fn_80035734
+    lwz	r0, 0x20(r1)
+    addi	r4, r1, 0x14
+    li	r3, 4
+    stw	r0, 0x14(r1)
+    bl fn_80035828
+    li	r3, 5
+    li	r4, 0
+    li	r5, 0
+    li	r6, 1
+    li	r7, 0
+    li	r8, 0
+    li	r9, 2
+    bl fn_80035960
+    lwz	r0, 0x24(r1)
+    addi	r4, r1, 0x10
+    li	r3, 5
+    stw	r0, 0x10(r1)
+    bl fn_80035734
+    lwz	r0, 0x20(r1)
+    addi	r4, r1, 0xc
+    li	r3, 5
+    stw	r0, 0xc(r1)
+    bl fn_80035828
+    bl fn_80036544
+    lwz	r4, -0x7de8(r2)
+    li	r30, 0
+    lis	r3, -0x7ffd
+    stw	r30, 0x2c8(r4)
+    addi	r3, r3, 0x7cc
+    stw	r30, 0x2cc(r4)
+    bl fn_8003658C
+    lis	r3, -0x7ffd
+    addi	r3, r3, 0x848
+    bl fn_800365A0
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 4
+    bl fn_800375F0
+    li	r3, 1
+    li	r4, 1
+    li	r5, 1
+    li	r6, 4
+    bl fn_800375F0
+    li	r3, 2
+    li	r4, 2
+    li	r5, 2
+    li	r6, 4
+    bl fn_800375F0
+    li	r3, 3
+    li	r4, 3
+    li	r5, 3
+    li	r6, 4
+    bl fn_800375F0
+    li	r3, 4
+    li	r4, 4
+    li	r5, 4
+    li	r6, 4
+    bl fn_800375F0
+    li	r3, 5
+    li	r4, 5
+    li	r5, 5
+    li	r6, 4
+    bl fn_800375F0
+    li	r3, 6
+    li	r4, 6
+    li	r5, 6
+    li	r6, 4
+    bl fn_800375F0
+    li	r3, 7
+    li	r4, 7
+    li	r5, 7
+    li	r6, 4
+    bl fn_800375F0
+    li	r3, 8
+    li	r4, 0xff
+    li	r5, 0xff
+    li	r6, 0xff
+    bl fn_800375F0
+    li	r3, 9
+    li	r4, 0xff
+    li	r5, 0xff
+    li	r6, 0xff
+    bl fn_800375F0
+    li	r3, 0xa
+    li	r4, 0xff
+    li	r5, 0xff
+    li	r6, 0xff
+    bl fn_800375F0
+    li	r3, 0xb
+    li	r4, 0xff
+    li	r5, 0xff
+    li	r6, 0xff
+    bl fn_800375F0
+    li	r3, 0xc
+    li	r4, 0xff
+    li	r5, 0xff
+    li	r6, 0xff
+    bl fn_800375F0
+    li	r3, 0xd
+    li	r4, 0xff
+    li	r5, 0xff
+    li	r6, 0xff
+    bl fn_800375F0
+    li	r3, 0xe
+    li	r4, 0xff
+    li	r5, 0xff
+    li	r6, 0xff
+    bl fn_800375F0
+    li	r3, 0xf
+    li	r4, 0xff
+    li	r5, 0xff
+    li	r6, 0xff
+    bl fn_800375F0
+    li	r3, 1
+    bl fn_800377C8
+    li	r3, 0
+    li	r4, 3
+    bl fn_80037014
+    li	r3, 7
+    li	r4, 0
+    li	r5, 0
+    li	r6, 7
+    li	r7, 0
+    bl fn_80037518
+    li	r3, 0
+    li	r4, 0x11
+    li	r5, 0
+    bl fn_8003756C
+    b L80031874
+L80031874:
+    b L80031878
+L80031878:
+    b L8003187c
+L8003187c:
+    mr	r3, r30
+    li	r4, 6
+    bl fn_80037354
+    mr	r3, r30
+    li	r4, 0
+    bl fn_800373C0
+    mr	r3, r30
+    li	r4, 0
+    li	r5, 0
+    bl fn_8003742C
+    addi	r30, r30, 1
+    cmplwi	r30, 0x10
+    blt L8003187c
+    li	r3, 0
+    li	r4, 0
+    li	r5, 1
+    li	r6, 2
+    li	r7, 3
+    bl fn_80037480
+    li	r3, 1
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0
+    li	r7, 3
+    bl fn_80037480
+    li	r3, 2
+    li	r4, 1
+    li	r5, 1
+    li	r6, 1
+    li	r7, 3
+    bl fn_80037480
+    li	r3, 3
+    li	r4, 2
+    li	r5, 2
+    li	r6, 2
+    li	r7, 3
+    bl fn_80037480
+    li	r30, 0
+    b L80031918
+L80031918:
+    b L8003191c
+L8003191c:
+    b L80031920
+L80031920:
+    mr	r3, r30
+    bl fn_80036EDC
+    addi	r30, r30, 1
+    cmplwi	r30, 0x10
+    blt L80031920
+    li	r3, 0
+    bl fn_80036EB4
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    bl fn_80036C24
+    li	r3, 1
+    li	r4, 0
+    li	r5, 0
+    bl fn_80036C24
+    li	r3, 2
+    li	r4, 0
+    li	r5, 0
+    bl fn_80036C24
+    li	r3, 3
+    li	r4, 0
+    li	r5, 0
+    bl fn_80036C24
+    lfs	f2, -0x7dd8(r2)
+    addi	r4, r1, 8
+    lwz	r0, 0x24(r1)
+    li	r3, 0
+    fmr	f4, f2
+    stw	r0, 8(r1)
+    lfs	f1, -0x7dd4(r2)
+    lfs	f3, -0x7dd0(r2)
+    bl fn_800377F8
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    bl fn_80037A14
+    li	r3, 0
+    li	r4, 4
+    li	r5, 5
+    li	r6, 0
+    bl fn_80037B14
+    li	r3, 1
+    bl fn_80037B68
+    li	r3, 1
+    bl fn_80037B94
+    li	r3, 1
+    li	r4, 3
+    li	r5, 1
+    bl fn_80037BC0
+    li	r3, 1
+    bl fn_80037BF4
+    li	r3, 1
+    bl fn_80037D14
+    li	r3, 0
+    li	r4, 0
+    bl fn_80037D40
+    li	r3, 0
+    li	r4, 0
+    bl fn_80037C2C
+    li	r3, 1
+    li	r4, 1
+    bl fn_80037D7C
+    lhz	r0, 8(r31)
+    lhz	r3, 0x10(r31)
+    slwi	r0, r0, 1
+    cmpw	r3, r0
+    bne L80031a34
+    li	r4, 1
+    b L80031a38
+L80031a34:
+    li	r4, 0
+L80031a38:
+    lbz	r3, 0x18(r31)
+    bl fn_80037DB4
+    lhz	r5, 4(r31)
+    li	r3, 0
+    lhz	r6, 6(r31)
+    li	r4, 0
+    bl fn_80034A5C
+    lhz	r3, 4(r31)
+    lhz	r4, 6(r31)
+    bl fn_80034B7C
+    lhz	r4, 8(r31)
+    lis	r3, 0x4330
+    lhz	r0, 6(r31)
+    stw	r4, 0x64(r1)
+    lfd	f2, -0x7dc8(r2)
+    stw	r0, 0x6c(r1)
+    stw	r3, 0x60(r1)
+    stw	r3, 0x68(r1)
+    lfd	f1, 0x60(r1)
+    lfd	f0, 0x68(r1)
+    fsubs	f1, f1, f2
+    fsubs	f0, f0, f2
+    fdivs	f1, f1, f0
+    bl fn_80034D9C
+    li	r3, 3
+    bl fn_80034D34
+    lbz	r3, 0x19(r31)
+    addi	r4, r31, 0x1a
+    addi	r6, r31, 0x32
+    li	r5, 1
+    bl fn_80034ECC
+    li	r3, 0
+    bl fn_800350F4
+    li	r3, 0
+    bl fn_80034D0C
+    bl fn_800353E8
+    li	r3, 1
+    bl fn_800342B8
+    li	r3, 1
+    bl fn_80034214
+    li	r3, 0
+    bl fn_800342E8
+    li	r3, 0
+    li	r4, 0
+    li	r5, 1
+    li	r6, 0xf
+    bl fn_80034230
+    li	r3, 7
+    li	r4, 0
+    bl fn_800341EC
+    li	r3, 1
+    bl fn_80034200
+    li	r3, 0
+    li	r4, 0
+    bl fn_800342D4
+    li	r3, 1
+    li	r4, 7
+    li	r5, 1
+    bl fn_80034304
+    li	r3, 0x23
+    li	r4, 0x16
+    bl fn_8003910C
+    bl fn_80039AFC
+    lwz	r0, 0x84(r1)
+    lwz	r31, 0x7c(r1)
+    lwz	r30, 0x78(r1)
+    lwz	r29, 0x74(r1)
+    addi	r1, r1, 0x80
+    mtlr	r0
+    blr
+}
+
+asm void fn_80031B50(int interrupt, void *context)
+{
+    nofralloc
+    mflr	r0
+    stw	r0, 4(r1)
+    stwu	r1, -0x2e0(r1)
+    stw	r31, 0x2dc(r1)
+    mr	r31, r4
+    lwz	r5, -0x77f4(r13)
+    lwz	r3, -0x7de8(r2)
+    lhz	r0, 0(r5)
+    stw	r0, 0xc(r3)
+    lwz	r0, 8(r3)
+    rlwinm.	r0, r0, 0x1d, 0x1f, 0x1f
+    beq L80031bb4
+    lwz	r0, 0xc(r3)
+    rlwinm.	r0, r0, 0x1f, 0x1f, 0x1f
+    beq L80031bb4
+    lwz	r3, -0x77c8(r13)
+    bl fn_80010CB0
+    li	r0, 0
+    stw	r0, -0x77c0(r13)
+    li	r3, 1
+    li	r4, 1
+    bl __GXWriteFifoIntReset
+    li	r3, 1
+    li	r4, 0
+    bl __GXWriteFifoIntEnable
+L80031bb4:
+    lwz	r3, -0x7de8(r2)
+    lwz	r0, 8(r3)
+    rlwinm.	r0, r0, 0x1e, 0x1f, 0x1f
+    beq L80031c04
+    lwz	r0, 0xc(r3)
+    clrlwi.	r0, r0, 0x1f
+    beq L80031c04
+    lwz	r5, -0x77b8(r13)
+    li	r3, 0
+    li	r4, 1
+    addi	r0, r5, 1
+    stw	r0, -0x77b8(r13)
+    bl __GXWriteFifoIntEnable
+    li	r3, 1
+    li	r4, 0
+    bl __GXWriteFifoIntReset
+    li	r0, 1
+    lwz	r3, -0x77c8(r13)
+    stw	r0, -0x77c0(r13)
+    bl fn_80010F38
+L80031c04:
+    lwz	r3, -0x7de8(r2)
+    lwz	r4, 8(r3)
+    addi	r5, r3, 8
+    rlwinm.	r0, r4, 0x1b, 0x1f, 0x1f
+    beq L80031c70
+    lwz	r0, 0xc(r3)
+    rlwinm.	r0, r0, 0x1c, 0x1f, 0x1f
+    beq L80031c70
+    rlwinm	r0, r4, 0, 0x1b, 0x19
+    stw	r0, 0(r5)
+    lwz	r0, 8(r3)
+    lwz	r3, -0x77f4(r13)
+    sth	r0, 2(r3)
+    lwz	r0, -0x77bc(r13)
+    cmplwi	r0, 0
+    beq L80031c70
+    addi	r3, r1, 0x10
+    bl OSClearContext
+    addi	r3, r1, 0x10
+    bl OSSetCurrentContext
+    lwz	r12, -0x77bc(r13)
+    mtlr	r12
+    blrl
+    addi	r3, r1, 0x10
+    bl OSClearContext
+    mr	r3, r31
+    bl OSSetCurrentContext
+L80031c70:
+    lwz	r0, 0x2e4(r1)
+    lwz	r31, 0x2dc(r1)
+    addi	r1, r1, 0x2e0
+    mtlr	r0
+    blr
+}
+
+#pragma pop
