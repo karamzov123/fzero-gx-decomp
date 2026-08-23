@@ -6,7 +6,7 @@ extern asm void fn_800883E8(void);
 extern asm void fn_8006D0B4(void);
 extern asm void fn_8006D24C(void);
 
-asm void fn_8006EB4C(void)
+asm void PSMTXQuat_fromMtx(void)
 {
     nofralloc
     stwu	r1, -0x90(r1)
@@ -225,7 +225,7 @@ asm void fn_8006EDBC(void)
     blr	
 }
 
-asm void fn_8006EE70(void)
+asm void PSVECNormalize(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)

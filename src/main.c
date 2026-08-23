@@ -132,7 +132,7 @@ extern void fn_8006CDFC(void);
 extern void fn_8006CE1C(void);
 extern void fn_8006CFF8(void);
 extern void fn_8006E5FC(void);
-extern void fn_8006EB4C(void);
+extern void PSMTXQuat_fromMtx(void);
 extern void fn_8006FCB4(void);
 extern void fn_8006FD1C(void);
 extern void fn_8006FDEC(void);

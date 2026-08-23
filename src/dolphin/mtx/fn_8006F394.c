@@ -7,7 +7,7 @@ extern asm void lbl_8006E1C0(void);
 extern asm void fn_8006D0B4(void);
 extern asm void fn_8006D8D8(void);
 extern asm void fn_8006E324(void);
-extern asm void fn_8006E2B0(void);
+extern asm void PSMTXMultVecSS(void);
 extern asm void fn_8006DB30(void);
 extern asm void fn_8006D91C(void);
 extern asm void fn_8006E398(void);
@@ -89,7 +89,7 @@ asm void fn_8006F3E4(void)
     bl      fn_8006E324
     addi	r3, r1, 8
     mr	r4, r3
-    bl      fn_8006E2B0
+    bl      PSMTXMultVecSS
     lfs	f1, 8(r1)
     lfs	f2, 0xc(r1)
     bl      fn_8006D24C
@@ -153,7 +153,7 @@ asm void fn_8006F4E0(void)
     bl      fn_8006E324
     addi	r3, r1, 0x14
     mr	r4, r3
-    bl      fn_8006E2B0
+    bl      PSMTXMultVecSS
     lfs	f1, 0x14(r1)
     lfs	f2, 0x18(r1)
     bl      fn_8006D24C
@@ -214,7 +214,7 @@ asm void fn_8006F5C4(void)
     bl      fn_8006E398
     addi	r3, r1, 8
     mr	r4, r3
-    bl      fn_8006E2B0
+    bl      PSMTXMultVecSS
     lfs	f1, 0x10(r1)
     lfs	f2, 0xc(r1)
     bl      fn_8006D24C

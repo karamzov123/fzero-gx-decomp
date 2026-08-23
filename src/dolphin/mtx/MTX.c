@@ -28,7 +28,7 @@ asm void fn_8006E200(void)
     blr     
 }
 
-asm void fn_8006E250(void)
+asm void C_MTXMultVec(void)
 {
     nofralloc
     lfs     f1, 0(r3)
@@ -63,7 +63,7 @@ asm void fn_8006E294(void)
     b       fn_8006E2D8
 }
 
-asm void fn_8006E2B0(void)
+asm void PSMTXMultVecSS(void)
 {
     nofralloc
     lfs     f1, 0(r3)

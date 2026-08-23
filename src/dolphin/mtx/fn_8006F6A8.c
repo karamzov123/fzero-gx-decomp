@@ -7,7 +7,7 @@ extern asm void fn_8006D24C(void);
 extern asm void fn_8006D0B4(void);
 extern asm void fn_8006D91C(void);
 extern asm void fn_8006E398(void);
-extern asm void fn_8006E2B0(void);
+extern asm void PSMTXMultVecSS(void);
 extern asm void fn_8006DB30(void);
 extern asm void lbl_8006E1B0(void);
 
@@ -54,7 +54,7 @@ asm void fn_8006F6A8(void)
     bl      fn_8006E398
     addi	r3, r1, 0x14
     mr	r4, r3
-    bl      fn_8006E2B0
+    bl      PSMTXMultVecSS
     lfs	f1, 0x1c(r1)
     lfs	f2, 0x18(r1)
     bl      fn_8006D24C

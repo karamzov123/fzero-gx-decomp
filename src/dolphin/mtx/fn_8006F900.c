@@ -4,7 +4,7 @@
 extern asm void lbl_8006E1B0(void);
 extern asm void fn_8006DBAC(void);
 extern asm void fn_8006E5FC(void);
-extern asm void fn_8006EB4C(void);
+extern asm void PSMTXQuat_fromMtx(void);
 extern asm void fn_8006E498(void);
 extern asm void fn_8006DC34(void);
 extern asm void fn_8006D5A4(void);
@@ -81,7 +81,7 @@ asm void fn_8006F9A4(void)
     addi	r3, r1, 8
     addi	r4, r1, 0x28
     addi	r5, r1, 0x18
-    bl      fn_8006EB4C
+    bl      PSMTXQuat_fromMtx
     addi	r3, r1, 8
     bl      fn_8006E498
     mr	r3, r31
@@ -95,7 +95,7 @@ asm void fn_8006F9A4(void)
     blr	
 }
 
-asm void fn_8006FA24(void)
+asm void PSMTXConcat(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)

@@ -51,7 +51,7 @@ asm void fn_8006EFB4(void)
     blr	
 }
 
-asm void fn_8006F038(void)
+asm void PSMTXLookAt(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
