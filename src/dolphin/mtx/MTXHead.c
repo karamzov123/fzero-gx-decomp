@@ -46,7 +46,7 @@ asm void fn_80069B10(void);
 asm void fn_80069CE4(void);
 asm void fn_80069FCC(void);
 asm void fn_8006A1F8(void);
-asm void fn_8006A3DC(void);
+asm void ARCInitHandle(void);
 asm void fn_8006A480(void);
 asm void fn_8006A554(void);
 asm void fn_8006A768(void);
@@ -743,7 +743,7 @@ _8006a300:
     blr
 }
 
-asm void fn_8006A3DC(void)
+asm void ARCInitHandle(void)
 {
     nofralloc
     mflr	r0
