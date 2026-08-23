@@ -9,14 +9,14 @@ extern void __CARDRead(void);
 extern void __CARDBlockWriteCallback(void);
 extern void __CARDWrite(void);
 extern void __CARDGetFatBlock(void);
-extern void fn_8002C0C0(void);
-extern void fn_8002C194(void);
+extern void __CARDBlockWriteCallback2(void);
+extern void __CARDBlockEraseCallback(void);
 extern void __CARDAllocBlock(void);
 extern void __CARDFreeBlock(void);
 extern void __CARDUpdateFatBlock(void);
 extern void __CARDGetDirBlock(void);
-extern void fn_8002C4C4(void);
-extern void fn_8002C594(void);
+extern void __CARDDirWriteCallback(void);
+extern void __CARDDirEraseCallback(void);
 extern void __CARDUpdateDir(void);
 extern void __CARDCheckSum(void);
 extern void DCFlushRange(void);
@@ -1245,7 +1245,7 @@ asm void __CARDGetFatBlock(void)
     blr	
 }
 
-asm void fn_8002C0C0(void)
+asm void __CARDBlockWriteCallback2(void)
 {
     nofralloc
     mflr	r0
@@ -1307,7 +1307,7 @@ _8002c178:
     blr	
 }
 
-asm void fn_8002C194(void)
+asm void __CARDBlockEraseCallback(void)
 {
     nofralloc
     mflr	r0
@@ -1324,9 +1324,9 @@ asm void fn_8002C194(void)
     add	r30, r0, r5
     blt     _8002c200
     lwz	r5, 0x88(r30)
-    lis     r3, fn_8002C0C0@ha
+    lis     r3, __CARDBlockWriteCallback2@ha
     lwz	r0, 0x80(r30)
-    addi	r7, r3, fn_8002C0C0@l
+    addi	r7, r3, __CARDBlockWriteCallback2@l
     lwz	r3, 0xc(r30)
     subf	r0, r0, r5
     srwi	r0, r0, 0xd
@@ -1529,8 +1529,8 @@ asm void __CARDUpdateFatBlock(void)
     li	r4, 0x2000
     bl      DCStoreRange
     stw	r30, 0xd8(r31)
-    lis     r3, fn_8002C194@ha
-    addi	r5, r3, fn_8002C194@l
+    lis     r3, __CARDBlockEraseCallback@ha
+    addi	r5, r3, __CARDBlockEraseCallback@l
     lwz	r0, 0x80(r31)
     mr	r3, r28
     lwz	r4, 0xc(r31)
@@ -1555,7 +1555,7 @@ asm void __CARDGetDirBlock(void)
     blr	
 }
 
-asm void fn_8002C4C4(void)
+asm void __CARDDirWriteCallback(void)
 {
     nofralloc
     mflr	r0
@@ -1616,7 +1616,7 @@ _8002c578:
     blr	
 }
 
-asm void fn_8002C594(void)
+asm void __CARDDirEraseCallback(void)
 {
     nofralloc
     mflr	r0
@@ -1633,9 +1633,9 @@ asm void fn_8002C594(void)
     add	r30, r0, r5
     blt     _8002c600
     lwz	r5, 0x84(r30)
-    lis     r3, fn_8002C4C4@ha
+    lis     r3, __CARDDirWriteCallback@ha
     lwz	r0, 0x80(r30)
-    addi	r7, r3, fn_8002C4C4@l
+    addi	r7, r3, __CARDDirWriteCallback@l
     lwz	r3, 0xc(r30)
     subf	r0, r0, r5
     srwi	r0, r0, 0xd
@@ -1710,8 +1710,8 @@ _8002c6a4:
     li	r4, 0x2000
     bl      DCStoreRange
     stw	r29, 0xd8(r30)
-    lis     r3, fn_8002C594@ha
-    addi	r5, r3, fn_8002C594@l
+    lis     r3, __CARDDirEraseCallback@ha
+    addi	r5, r3, __CARDDirEraseCallback@l
     lwz	r0, 0x80(r30)
     mr	r3, r28
     lwz	r4, 0xc(r30)
