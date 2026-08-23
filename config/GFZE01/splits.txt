@@ -647,7 +647,7 @@ dolphin/os/init/memcpy.c:
 dolphin/os/init/trk_stubs.c:
 	.init       start:0x80003590 end:0x800035E4
 
-coarse/init_trk_800035E4.c:
+dolphin/metrotrk/init_exceptions.c:
 	.init       start:0x800035E4 end:0x80005518
 
 dolphin/os/init/trk_reset.c:
