@@ -357,6 +357,7 @@ config.libs = [
         Object(Matching, "dolphin/os/OSAlloc.c"),
         Object(Matching, "dolphin/os/OSThreadScheduler.c"),
         Object(Matching, "game/tail_800410A4.c"),
+        Object(Matching, "main.c"),
     ]),
     {
         "lib": "Runtime.PPCEABI.H",

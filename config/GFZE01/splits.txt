@@ -65,8 +65,11 @@ coarse/rodata_8008FF40.c:
 coarse/dtors_8008FF20.c:
 	.dtors      start:0x8008FF20 end:0x8008FF24
 
-coarse/text_800055E0.c:
-	.text       start:0x800055E0 end:0x80009468
+main.c:
+	.text       start:0x800055E0 end:0x800057CC
+
+coarse/text_800057CC.c:
+	.text       start:0x800057CC end:0x80009468
 
 dolphin/os/OSAllocCtx.c:
 	.text       start:0x80009468 end:0x8000961C
