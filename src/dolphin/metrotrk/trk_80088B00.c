@@ -378,7 +378,7 @@ _80088e9c:
     blr
 }
 
-asm void fn_80088EB0(void)
+asm void TRKAppendBuffer(void)
 {
     nofralloc
     li	r9, 0
@@ -917,7 +917,7 @@ _8008952c:
     lwz	r3, 8(r1)
     addi	r4, r1, 0x10
     li	r5, 0x40
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     lwz	r3, 0x10(r1)
     lwz	r30, 0xc(r1)
     addic.	r5, r3, -0x40
@@ -935,7 +935,7 @@ _8008952c:
     lwz	r3, 8(r1)
     addi	r4, r1, 0x50
     lwz	r5, 0x10(r1)
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     b       _80089608
 _800895cc:
     addi	r4, r31, 0x110
@@ -1666,7 +1666,7 @@ _80089f5c:
     mr	r3, r29
     addi	r4, r1, 0x8c
     li	r5, 0x40
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     lwz	r5, 8(r29)
     addi	r4, r31, 0x98
     li	r3, 4
@@ -2328,7 +2328,7 @@ asm void fn_8008A80C(void)
     lwz	r3, 8(r1)
     addi	r4, r1, 0x14
     li	r5, 0x40
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     mr	r31, r3
 _8008a890:
     cmpwi	r31, 0
@@ -2398,7 +2398,7 @@ asm void fn_8008A91C(void)
     lwz	r3, 8(r1)
     addi	r4, r1, 0x14
     li	r5, 0x40
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     mr	r31, r3
 _8008a988:
     cmpwi	r31, 0
@@ -2471,7 +2471,7 @@ asm void fn_8008AA04(void)
     lwz	r3, 8(r1)
     addi	r4, r1, 0x14
     li	r5, 0x40
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     or.	r31, r3, r3
     bc      4, 2, _8008aaac
     mr	r3, r27
@@ -2480,7 +2480,7 @@ asm void fn_8008AA04(void)
     lwz	r3, 8(r1)
     mr	r4, r27
     addi	r5, r5, 1
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     mr	r31, r3
 _8008aaac:
     cmpwi	r31, 0
@@ -2714,7 +2714,7 @@ _8008ada8:
     lwz	r3, 8(r1)
     addi	r4, r1, 0x14
     li	r5, 0x40
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     cmpwi	r28, 0
     mr	r21, r3
     bc      4, 2, _8008adf8
@@ -2723,7 +2723,7 @@ _8008ada8:
     lwz	r3, 8(r1)
     mr	r5, r31
     add	r4, r24, r30
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     mr	r21, r3
 _8008adf8:
     cmpwi	r21, 0
@@ -3567,7 +3567,7 @@ asm void fn_8008B830(void)
     stw	r5, 0x18(r1)
     li	r5, 0x40
     stw	r0, 0x1c(r1)
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     lwz	r0, 0x64(r1)
     lwz	r31, 0x5c(r1)
     mtlr	r0
@@ -3607,7 +3607,7 @@ asm void fn_8008B8B4(void)
     li	r5, 0x40
     clrlwi	r0, r0, 0x10
     stw	r0, 0x1c(r1)
-    bl      fn_80088EB0
+    bl      TRKAppendBuffer
     lwz	r0, 0x64(r1)
     lwz	r31, 0x5c(r1)
     mtlr	r0
