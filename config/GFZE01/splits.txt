@@ -326,8 +326,14 @@ game/adxt_8004B7F4.c:
 game/adxt_8004C164.c:
 	.text       start:0x8004C164 end:0x8004CD70
 
-coarse/text_8004CD70.c:
-	.text       start:0x8004CD70 end:0x80053EA0
+game/adxt_8004CD70.c:
+	.text       start:0x8004CD70 end:0x8004E098
+
+game/adxt_8004E098.c:
+	.text       start:0x8004E098 end:0x8004F00C
+
+coarse/text_8004F00C.c:
+	.text       start:0x8004F00C end:0x80053EA0
 
 coarse/text_80053EA0.c:
 	.text       start:0x80053EA0 end:0x8005C120
