@@ -10,8 +10,8 @@ extern u32 __OSUnmaskInterrupts(u32 mask);
 extern void __OSSetInterruptHandler(s32 interrupt, void* handler);
 extern void* __OSGetInterruptHandler(s32 interrupt);
 extern void OSRegisterVersion(const char* version);
-extern u32 fn_8000ABA8(void);
-extern u32 fn_8000A224(void);
+extern u32 __OSGetDIConfig(void);
+extern u32 OSGetConsoleType(void);
 extern unsigned long long OSGetTime(void);
 extern u32 __div2i(register u32 hi, register u32 lo, register u32 den_hi,
                        register u32 den_lo);
@@ -548,10 +548,10 @@ L_800140EC:
     clrrwi      r0, r0, 2
     stw         r0, 0xc(r31)
 L_800140F8:
-    bl          fn_8000ABA8
+    bl          __OSGetDIConfig
     cmplwi      r3, 0xff
     bne         L_8001417C
-    bl          fn_8000A224
+    bl          OSGetConsoleType
     clrrwi      r3, r3, 28
     subis       r0, r3, 0x2000
     cmplwi      r0, 0x0
@@ -2312,7 +2312,7 @@ asm int fn_800157AC(void)
     li          r3, 0x0
     b           L_8001580C
 L_800157D0:
-    bl          fn_8000A224
+    bl          OSGetConsoleType
     rlwinm.     r0, r3, 0, 3, 3
     bne         L_800157EC
     li          r0, 0x0

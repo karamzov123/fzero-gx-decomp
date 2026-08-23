@@ -83,13 +83,13 @@ dolphin/os/OSPPC.c:
 dolphin/os/OSFPR.c:
 	.text       start:0x8000A0FC end:0x8000A224
 
-coarse/text_8000A224.c:
+dolphin/os/OS.c:
 	.text       start:0x8000A224 end:0x8000AA30
 
 dolphin/os/OSException.c:
 	.text       start:0x8000AA30 end:0x8000AB54
 
-coarse/text_8000AB54.c:
+dolphin/os/OSPSInit.c:
 	.text       start:0x8000AB54 end:0x8000ABE8
 
 dolphin/os/OSAlarm.c:

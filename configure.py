@@ -301,6 +301,8 @@ config.libs = [
         Object(Matching, "dolphin/os/OSThreadInit.c"),
         Object(Matching, "dolphin/os/OSThread.c"),
         Object(Matching, "dolphin/os/OSFPR.c"),
+        Object(Matching, "dolphin/os/OS.c"),
+        Object(Matching, "dolphin/os/OSPSInit.c"),
         Object(Matching, "dolphin/os/OSTimeCal.c"),
         Object(Matching, "dolphin/os/init/__ppc_eabi_init.c"),
         Object(Matching, "dolphin/os/SIBios.c"),
