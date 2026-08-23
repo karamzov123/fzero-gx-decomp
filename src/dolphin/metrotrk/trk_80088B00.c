@@ -20,7 +20,7 @@ extern void TRKRestoreExtended1Block(void);
 extern void TRKTargetTranslate(void);
 extern void fn_8008D154(void);
 extern void TRKUARTInterruptHandler(void);
-extern void fn_8008D398(void);
+extern void TRKDoWrite(void);
 extern void TRK_ReadUARTN(void);
 extern void TRKPollUART(void);
 extern void TRKTargetContinue(void);
@@ -102,7 +102,7 @@ asm void TRKMessageSend(void)
     stw	r0, 0x14(r1)
     lwz	r4, 8(r3)
     addi	r3, r3, 0x10
-    bl      fn_8008D398
+    bl      TRKDoWrite
     lis     r4, lbl_80095678@ha
     mr	r5, r3
     li	r3, 1
@@ -1163,7 +1163,7 @@ _80089894:
     li	r4, 0x40
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     lwz	r0, 0x54(r1)
     li	r3, 0
     lwz	r31, 0x4c(r1)
@@ -1218,7 +1218,7 @@ _80089944:
     li	r4, 0x40
     stw	r0, 8(r1)
     stb	r31, 0x10(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     lwz	r0, 0x54(r1)
     li	r3, 0
     lwz	r31, 0x4c(r1)
@@ -1269,7 +1269,7 @@ _800899e4:
     li	r4, 0x40
     stw	r5, 0x108(r1)
     stb	r0, 0x110(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _80089b98
 _80089a2c:
@@ -1291,7 +1291,7 @@ _80089a40:
     li	r4, 0x40
     stw	r5, 0xc8(r1)
     stb	r0, 0xd0(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _80089b98
 _80089a7c:
@@ -1307,7 +1307,7 @@ _80089a7c:
     li	r4, 0x40
     stw	r5, 0x88(r1)
     stb	r0, 0x90(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _80089b98
 _80089ab8:
@@ -1326,7 +1326,7 @@ _80089ab8:
     li	r4, 0x40
     stw	r5, 0x48(r1)
     stb	r0, 0x50(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _80089b98
 _80089b00:
@@ -1342,7 +1342,7 @@ _80089b00:
     li	r4, 0x40
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     cmpwi	r31, 0x10
     li	r3, 0
     bc      12, 2, _80089b68
@@ -1405,7 +1405,7 @@ asm void TRK_serialIO_init(void)
     li	r4, 0x40
     stw	r5, 0x48(r1)
     stb	r0, 0x50(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _80089c4c
 _80089c14:
@@ -1421,7 +1421,7 @@ _80089c14:
     li	r4, 0x40
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     bl      TRKTargetContinue
 _80089c4c:
     lwz	r0, 0x94(r1)
@@ -1460,7 +1460,7 @@ asm void fn_80089C5C(void)
     li	r4, 0x40
     stw	r5, 0x4c(r1)
     stb	r0, 0x54(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _80089ecc
 _80089cd4:
@@ -1590,7 +1590,7 @@ _80089e58:
     li	r4, 0x40
     stw	r0, 0xc(r1)
     stb	r31, 0x14(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _80089ecc
 _80089e90:
@@ -1648,7 +1648,7 @@ asm void fn_80089EEC(void)
     li	r4, 0x40
     stw	r5, 0x4c(r1)
     stb	r0, 0x54(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _8008a1b0
 _80089f5c:
@@ -1797,7 +1797,7 @@ _8008a144:
     li	r4, 0x40
     stw	r0, 0xc(r1)
     stb	r30, 0x14(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _8008a1b0
 _8008a17c:
@@ -1859,7 +1859,7 @@ asm void fn_8008A1CC(void)
     li	r4, 0x40
     stw	r5, 0x4c(r1)
     stb	r0, 0x54(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _8008a3ac
 _8008a258:
@@ -1935,7 +1935,7 @@ _8008a340:
     li	r4, 0x40
     stw	r0, 0xc(r1)
     stb	r30, 0x14(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _8008a3ac
 _8008a378:
@@ -1995,7 +1995,7 @@ asm void fn_8008A3C0(void)
     li	r4, 0x40
     stw	r5, 0x4c(r1)
     stb	r0, 0x54(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _8008a598
 _8008a44c:
@@ -2069,7 +2069,7 @@ _8008a52c:
     li	r4, 0x40
     stw	r0, 0xc(r1)
     stb	r30, 0x14(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     li	r3, 0
     b       _8008a598
 _8008a564:
@@ -2126,7 +2126,7 @@ asm void fn_8008A5BC(void)
     li	r4, 0x40
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     bl      TRKTargetTranslate
     lwz	r0, 0x54(r1)
     li	r3, 0
@@ -2153,7 +2153,7 @@ asm void fn_8008A614(void)
     li	r4, 0x40
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     bl      fn_80005518
     lwz	r0, 0x54(r1)
     li	r3, 0
@@ -2184,7 +2184,7 @@ asm void fn_8008A66C(void)
     li	r4, 0x40
     stw	r5, 0x14(r1)
     stb	r0, 0x1c(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     addi	r3, r1, 8
     li	r4, 1
     bl      TRKConstructEvent
@@ -2219,7 +2219,7 @@ asm void fn_8008A6E4(void)
     li	r4, 0x40
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
-    bl      fn_8008D398
+    bl      TRKDoWrite
     lwz	r0, 0x54(r1)
     li	r3, 0
     mtlr	r0

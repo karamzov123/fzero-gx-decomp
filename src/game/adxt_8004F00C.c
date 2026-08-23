@@ -4,7 +4,7 @@
 extern void DCInvalidateRange(void);
 extern void fn_80046718(void);
 extern void fn_80046738(void);
-extern void fn_800474E4(void);
+extern void criErr_CallErrCallback(void);
 extern void fn_8004AC58(void);
 extern void fn_8004AE78(void);
 extern void fn_8004AEE4(void);
@@ -649,7 +649,7 @@ asm void fn_8004F818(void)
 _8004f84c:
     lis     r3, E9040828_ptid_is_range_outside_str@ha
     addi	r3, r3, E9040828_ptid_is_range_outside_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r31, -3
     b       _8004f8b8
 _8004f860:
@@ -661,7 +661,7 @@ _8004f860:
     bne     _8004f88c
     lis     r3, E9040828_ptid_is_range_outside_str@ha
     addi	r3, r3, E9040828_ptid_is_range_outside_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r31, -3
     b       _8004f8b8
 _8004f88c:
@@ -673,7 +673,7 @@ _8004f88c:
 _8004f8a0:
     lis     r3, E9040828_flid_is_range_outside_str@ha
     addi	r3, r3, E9040828_flid_is_range_outside_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r31, -3
     b       _8004f8b8
 _8004f8b4:
@@ -1025,7 +1025,7 @@ asm void fn_8004FC94(void)
     bne     _8004fd98
     lis     r3, E9040822_adxf_is_NULL_ADXF_Stop_str@ha
     addi	r3, r3, E9040822_adxf_is_NULL_ADXF_Stop_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     b       _8004feb4
 _8004fd98:
     lbz	r0, 1(r30)
@@ -1043,7 +1043,7 @@ _8004fdbc:
     bne     _8004fdd8
     lis     r3, E9040823_adxf_stm_is_NULL_ADXF_Stop_str@ha
     addi	r3, r3, E9040823_adxf_stm_is_NULL_ADXF_Stop_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     b       _8004feb4
 _8004fdd8:
     bl      fn_8004AC58

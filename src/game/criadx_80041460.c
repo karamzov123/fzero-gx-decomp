@@ -20,7 +20,7 @@ extern void fn_80041BF8(void);
 extern void fn_80044E7C(void);
 extern void fn_80045304(void);
 extern void fn_800452FC(void);
-extern void fn_800589BC(void);
+extern void svm_ringbuf_read(void);
 extern void fn_8004530C(void);
 extern void fn_80041EF8(void);
 extern unsigned char lbl_801798C0[2496];
@@ -348,7 +348,7 @@ _800417a8:
     addi	r3, r28, 0x14
     addi	r5, r1, 8
     addi	r6, r1, 0x10
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r6, 0(r25)
     mr	r3, r25
     addi	r5, r1, 8
@@ -373,7 +373,7 @@ _80041808:
     addi	r3, r24, 0x1c
     addi	r5, r1, 8
     addi	r6, r1, 0x10
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r12, 0x50(r28)
     cmplwi	r12, 0
     beq     _80041840
@@ -522,7 +522,7 @@ _80041a24:
     addi	r3, r27, 0x14
     addi	r5, r1, 8
     addi	r6, r1, 0x10
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r6, 0(r26)
     mr	r3, r26
     addi	r5, r1, 8
@@ -547,7 +547,7 @@ _80041a84:
     addi	r3, r25, 0x1c
     addi	r5, r1, 8
     addi	r6, r1, 0x10
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r12, 0x50(r27)
     cmplwi	r12, 0
     beq     _80041abc

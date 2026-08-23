@@ -5,8 +5,8 @@ extern void fn_800463E4(void);
 extern void memset(void);
 extern void fn_80046738(void);
 extern void fn_80046718(void);
-extern void fn_80059AB4(void);
-extern void fn_80059B44(void);
+extern void svmUnlockServer(void);
+extern void svmLockServer(void);
 extern void strlen(void);
 extern void memcpy(void);
 extern void fn_80087E80(void);
@@ -332,7 +332,7 @@ asm void fn_80046718(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -345,7 +345,7 @@ asm void fn_80046738(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80059B44
+    bl      svmLockServer
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10

@@ -13,10 +13,10 @@ extern void fn_80025EF4(void);
 extern void fn_80026D70(void);
 extern void fn_80026D90(void);
 extern void fn_80026EE0(void);
-extern void fn_800576DC(void);
-extern void fn_80057728(void);
+extern void svmExitCritical(void);
+extern void svmEnterCritical(void);
 extern void fn_80058498(void);
-extern void fn_800589BC(void);
+extern void svm_ringbuf_read(void);
 extern void fn_8005A5BC(void);
 extern void fn_8005A628(void);
 extern void fn_8005A648(void);
@@ -356,7 +356,7 @@ asm void fn_8005A628(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -369,7 +369,7 @@ asm void fn_8005A648(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80057728
+    bl      svmEnterCritical
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -723,7 +723,7 @@ _8005aa94:
     slwi	r30, r0, 5
     mr	r5, r3
     mr	r4, r30
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r3, 0x38(r28)
     addi	r5, r1, 0x30
     li	r4, 0
@@ -735,7 +735,7 @@ _8005aa94:
     mr	r4, r30
     mr	r5, r3
     addi	r6, r1, 0x20
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r3, 0x30(r28)
     addi	r5, r1, 0x20
     li	r4, 1
@@ -827,7 +827,7 @@ _8005abe4:
     addze	r0, r0
     slwi	r30, r0, 5
     mr	r4, r30
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r3, 0x38(r26)
     addi	r5, r1, 0x10
     li	r4, 0

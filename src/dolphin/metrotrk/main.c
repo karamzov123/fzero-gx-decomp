@@ -347,7 +347,7 @@ asm void ReserveEXI2Port(void)
     blr	
 }
 
-asm void fn_8008D398(void)
+asm void TRKDoWrite(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

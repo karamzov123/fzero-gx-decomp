@@ -35,7 +35,7 @@ extern void fn_80046804(void);
 extern void fn_80046D18(void);
 extern void fn_80046F88(void);
 extern void fn_80047464(void);
-extern void fn_800474E4(void);
+extern void criErr_CallErrCallback(void);
 extern void fn_8004AC04(void);
 extern void fn_8004AC4C(void);
 extern void fn_8004AE94(void);
@@ -69,7 +69,7 @@ extern void fn_80056C20(void);
 extern void fn_8005710C(void);
 extern void fn_800571EC(void);
 extern void fn_80058498(void);
-extern void fn_800589BC(void);
+extern void svm_ringbuf_read(void);
 extern void strcpy(void);
 extern void memset(void);
 extern unsigned char E02080804_ADXT_Create_parameter_error_str[39];
@@ -100,7 +100,7 @@ asm void ADXT_Create(void)
 _8004cda8:
     lis     r3, E02080804_ADXT_Create_parameter_error_str@ha
     addi	r3, r3, E02080804_ADXT_Create_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, 0
     b       _8004d178
 _8004cdbc:
@@ -382,7 +382,7 @@ asm void ADXT_StartFname(void)
 _8004d1b4:
     lis     r3, E02080807_ADXT_StartFname_parameter_error_str@ha
     addi	r3, r3, E02080807_ADXT_StartFname_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     b       _8004d208
 _8004d1c4:
     bl      ADXT_Stop
@@ -424,7 +424,7 @@ asm void ADXT_ExecHndl(void)
     bne     _8004d250
     lis     r3, E02080842_ADXT_ExecHndl_parameter_error_str@ha
     addi	r3, r3, E02080842_ADXT_ExecHndl_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     b       _8004d514
 _8004d250:
     lbz	r0, 1(r31)
@@ -999,7 +999,7 @@ _8004da4c:
     mr	r4, r27
     mr	r5, r3
     addi	r6, r1, 0x1c
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r6, 0(r30)
     mr	r3, r30
     addi	r5, r1, 0x24
@@ -1027,7 +1027,7 @@ _8004dac0:
     mr	r4, r26
     mr	r5, r3
     addi	r6, r1, 0xc
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r6, 0(r30)
     mr	r3, r30
     addi	r5, r1, 0x14
@@ -1329,7 +1329,7 @@ _8004dee0:
     bge     _8004df1c
     lis     r3, E8101201_adxt_trap_entry_not_enough_data_str@ha
     addi	r3, r3, E8101201_adxt_trap_entry_not_enough_data_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
 _8004df1c:
     lwz	r6, 0(r30)
     mr	r3, r30

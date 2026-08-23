@@ -72,8 +72,8 @@ extern void fn_80008A4C(void);
 extern void fn_80008DB4(void);
 extern void OSAllocHead_nop_stub(void);
 extern void OSInitAlloc(void);
-extern void fn_80008F60(void);
-extern void fn_80008F88(void);
+extern void OSCreateHeap_wrapper_A(void);
+extern void OSCreateHeap_wrapper_B(void);
 extern void OSCreateHeap(void);
 extern void OSDestroyHeap(void);
 extern void fn_800090A4(void);
@@ -328,7 +328,7 @@ _80008f14:
     blr	
 }
 
-asm void fn_80008F60(void)
+asm void OSCreateHeap_wrapper_A(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -343,7 +343,7 @@ asm void fn_80008F60(void)
     blr	
 }
 
-asm void fn_80008F88(void)
+asm void OSCreateHeap_wrapper_B(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void fn_800502A0(void);
-extern void fn_800589BC(void);
+extern void svm_ringbuf_read(void);
 extern void memset(void);
 extern unsigned char lbl_8012D9B8[4];
 extern unsigned char lbl_8012D9BC[12292];
@@ -127,7 +127,7 @@ asm void fn_800502A0(void)
     subf	r4, r4, r0
     mr	r5, r3
     addi	r6, r1, 8
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r3, 4(r31)
     addi	r5, r1, 0x10
     li	r4, 0

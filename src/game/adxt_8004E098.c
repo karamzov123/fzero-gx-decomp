@@ -14,7 +14,7 @@ extern void fn_800102AC(void);
 extern void fn_80011358(void);
 extern void fn_8001AF64(void);
 extern void CRI_SPSD_parser(void);
-extern void fn_800474E4(void);
+extern void criErr_CallErrCallback(void);
 extern void fn_8004ED3C(void);
 extern void fn_8004EFA8(void);
 extern void fn_8004F00C(void);
@@ -35,8 +35,8 @@ extern void fn_80058EE4(void);
 extern void fn_80058EF4(void);
 extern void fn_80059028(void);
 extern void fn_800595A4(void);
-extern void fn_80059AB4(void);
-extern void fn_80059B44(void);
+extern void svmUnlockServer(void);
+extern void svmLockServer(void);
 extern void fn_8005A668(void);
 extern void fn_8005A678(void);
 extern void fn_8005A680(void);
@@ -237,7 +237,7 @@ _8004e268:
     blr	
 }
 
-asm void fn_8004E270(void)
+asm void ADXT_GetCmdState(void)
 {
     nofralloc
     lwz	r3, 0xc(r3)
@@ -967,7 +967,7 @@ asm void fn_8004EBB4(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -980,7 +980,7 @@ asm void fn_8004EBD4(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80059B44
+    bl      svmLockServer
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1075,7 +1075,7 @@ asm void fn_8004ECF4(void)
     mflr	r0
     mr	r3, r4
     stw	r0, 0x14(r1)
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10

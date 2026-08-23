@@ -10,10 +10,10 @@ extern void cvFsSeek(void);
 extern void cvFsTell(void);
 extern void cvFsClose(void);
 extern void fn_80054B6C(void);
-extern void fn_800589BC(void);
+extern void svm_ringbuf_read(void);
 extern void fn_80058A40(void);
-extern void fn_80059AB4(void);
-extern void fn_80059B44(void);
+extern void svmUnlockServer(void);
+extern void svmLockServer(void);
 extern unsigned char E02110501_adxstmf_stat_exec_can_t_open_str[41];
 extern unsigned char lbl_8017D6FC[4];
 extern unsigned char lbl_8017D704[4];
@@ -107,13 +107,13 @@ _8004a668:
     stb	r0, 0x42(r31)
     stb	r0, 0x45(r31)
 _8004a674:
-    bl      fn_80059B44
+    bl      svmLockServer
     lbz	r0, 0x41(r31)
     cmpwi	r0, 1
     bne     _8004a7b8
     li	r0, 1
     stb	r0, 0x45(r31)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r0, 8(r31)
     cmplwi	r0, 0
     bne     _8004a7bc
@@ -194,7 +194,7 @@ _8004a7ac:
     stb	r0, 0x41(r31)
     b       _8004a7bc
 _8004a7b8:
-    bl      fn_80059AB4
+    bl      svmUnlockServer
 _8004a7bc:
     lbz	r0, 0x43(r31)
     cmpwi	r0, 1
@@ -234,7 +234,7 @@ asm void fn_8004A80C(void)
     lwz	r3, 8(r3)
     bl      cvFsGetStat
     mr	r29, r3
-    bl      fn_80059B44
+    bl      svmLockServer
     lbz	r0, 2(r30)
     cmpwi	r0, 1
     bne     _8004a9fc
@@ -242,14 +242,14 @@ asm void fn_8004A80C(void)
     bne     _8004a980
     li	r0, 0
     stb	r0, 2(r30)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r0, 0x1c(r30)
     addi	r3, r30, 0x20
     addi	r5, r1, 0x18
     addi	r6, r1, 0x10
     slwi	r29, r0, 0xb
     mr	r4, r29
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r6, 0(r31)
     mr	r3, r31
     addi	r5, r1, 0x18
@@ -324,7 +324,7 @@ _8004a980:
     bne     _8004a9f4
     li	r0, 0
     stb	r0, 2(r30)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r6, 0(r31)
     mr	r3, r31
     addi	r5, r30, 0x20
@@ -351,7 +351,7 @@ _8004a9e8:
     stb	r0, 3(r30)
     b       _8004abe8
 _8004a9f4:
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     b       _8004abe8
 _8004a9fc:
     li	r3, 1
@@ -359,7 +359,7 @@ _8004a9fc:
     stb	r3, 2(r30)
     stw	r0, 0x20(r30)
     stw	r0, 0x24(r30)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lbz	r0, 0x40(r30)
     cmpwi	r0, 1
     beq     _8004aa2c

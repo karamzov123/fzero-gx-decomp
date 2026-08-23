@@ -2,9 +2,9 @@
 #pragma force_active on
 
 extern void fn_800595A4(void);
-extern void fn_800595FC(void);
-extern void fn_80059AB4(void);
-extern void fn_80059B44(void);
+extern void svmErrPrintf(void);
+extern void svmUnlockServer(void);
+extern void svmLockServer(void);
 extern void sprintf(void);
 extern void fn_8008077C(void);
 extern void strncpy(void);
@@ -27,7 +27,7 @@ extern unsigned char lbl_8018FF78[512];
 extern unsigned char lbl_80190178[4];
 extern unsigned char lbl_8019017C[2548];
 
-asm void fn_800589BC(void)
+asm void svm_ringbuf_read(void)
 {
     nofralloc
     lwz	r7, 0(r3)
@@ -132,7 +132,7 @@ _80058ab8:
     addi	r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _80058b1c:
     li	r0, 0
     stw	r0, 8(r31)
@@ -484,7 +484,7 @@ _80058f58:
     addi	r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _80058fac:
     li	r0, 0
     stw	r0, 8(r31)
@@ -581,7 +581,7 @@ _80059094:
     addi	r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _800590f0:
     li	r0, 0
     stw	r0, 8(r31)
@@ -708,7 +708,7 @@ _80059264:
     addi	r3, r30, 0x34
     li	r5, 1
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _800592b0:
     li	r0, 0
     stw	r0, 8(r31)
@@ -800,7 +800,7 @@ _80059384:
     addi	r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _800593f0:
     li	r0, 0
     stw	r0, 8(r31)
@@ -903,7 +903,7 @@ _8005950c:
     addi	r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _80059554:
     li	r0, 0
     stw	r0, 8(r31)
@@ -959,7 +959,7 @@ _800595ec:
     blr	
 }
 
-asm void fn_800595FC(void)
+asm void svmErrPrintf(void)
 {
     nofralloc
     stwu	r1, -0x80(r1)
@@ -1046,7 +1046,7 @@ asm void fn_800596D4(void)
     addi	r3, r3, lbl_80092384@l
     li	r5, 5
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _80059734:
     li	r0, 0
     stw	r0, 8(r31)
@@ -1090,7 +1090,7 @@ asm void fn_80059764(void)
     addi	r3, r3, lbl_80092384@l
     li	r5, 4
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _800597c4:
     li	r0, 0
     stw	r0, 8(r31)
@@ -1134,7 +1134,7 @@ asm void fn_800597F4(void)
     addi	r3, r3, lbl_80092384@l
     li	r5, 3
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _80059854:
     li	r0, 0
     stw	r0, 8(r31)
@@ -1178,7 +1178,7 @@ asm void fn_80059884(void)
     addi	r3, r3, lbl_80092384@l
     li	r5, 2
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _800598e4:
     li	r0, 0
     stw	r0, 8(r31)
@@ -1328,7 +1328,7 @@ _80059aa0:
     blr	
 }
 
-asm void fn_80059AB4(void)
+asm void svmUnlockServer(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1354,7 +1354,7 @@ asm void fn_80059AB4(void)
     addi	r3, r3, lbl_80092384@l
     li	r5, 1
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
 _80059b14:
     li	r0, 0
     stw	r0, 8(r31)
@@ -1372,7 +1372,7 @@ _80059b30:
     blr	
 }
 
-asm void fn_80059B44(void)
+asm void svmLockServer(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1570,10 +1570,10 @@ asm void fn_80059D68(void)
     bctrl	
     b     _80059dc4
 _80059db4:
-    bl      fn_80059B44
+    bl      svmLockServer
     li	r0, 0
     stb	r0, 1(r31)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
 _80059dc4:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -1644,7 +1644,7 @@ _80059e90:
     stb	r0, 1(r29)
     b     _8005a04c
 _80059ea8:
-    bl      fn_80059B44
+    bl      svmLockServer
     li	r0, 0
     stw	r0, 0x14(r29)
     lwz	r3, 0x10(r29)
@@ -1663,7 +1663,7 @@ _80059ecc:
     bne     _80059efc
     li	r0, 1
     stb	r0, 1(r29)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     li	r3, 0
     b     _8005a04c
 _80059efc:
@@ -1754,7 +1754,7 @@ _80059ffc:
     add	r3, r4, r3
     stw	r3, 0x10(r29)
     stb	r0, 1(r29)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r3, 0x18(r29)
 _8005a04c:
     lmw	r27, 0x1c(r1)
@@ -1825,7 +1825,7 @@ _8005a118:
     li	r3, 0
     b     _8005a198
 _8005a120:
-    bl      fn_80059B44
+    bl      svmLockServer
     cmpwi	r31, 0
     bne     _8005a134
     stw	r30, 0x10(r29)
@@ -1859,7 +1859,7 @@ _8005a188:
     li	r0, 0
 _8005a18c:
     stw	r0, 0x10(r29)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r3, 0x10(r29)
 _8005a198:
     lwz	r0, 0x24(r1)
@@ -1895,10 +1895,10 @@ asm void fn_8005A1B4(void)
     bctrl	
     b     _8005a214
 _8005a204:
-    bl      fn_80059B44
+    bl      svmLockServer
     li	r0, 0
     stb	r0, 1(r31)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
 _8005a214:
     lbz	r0, 0(r31)
     cmpwi	r0, 1

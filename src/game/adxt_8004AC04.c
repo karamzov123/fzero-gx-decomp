@@ -7,8 +7,8 @@ extern void fn_80046F7C(void);
 extern void fn_8004A5F4(void);
 extern void cvFsStopTr(void);
 extern void fn_80058A40(void);
-extern void fn_80059AB4(void);
-extern void fn_80059B44(void);
+extern void svmUnlockServer(void);
+extern void svmLockServer(void);
 extern void memset(void);
 extern unsigned char lbl_8012B900[16];
 extern unsigned char lbl_8017D6F8[4];
@@ -66,14 +66,14 @@ asm void fn_8004AC58(void)
     bne     _8004ac94
     bl      cvFsStopTr
 _8004ac94:
-    bl      fn_80059B44
+    bl      svmLockServer
     li	r3, 1
     li	r0, 0
     stb	r3, 1(r31)
     stb	r0, 2(r31)
     stw	r0, 0x20(r31)
-    bl      fn_80059AB4
-    bl      fn_80059B44
+    bl      svmUnlockServer
+    bl      svmLockServer
     lbz	r0, 1(r31)
     cmpwi	r0, 2
     bne     _8004acec
@@ -92,7 +92,7 @@ _8004acec:
     li	r0, 1
     stb	r0, 1(r31)
 _8004acf4:
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lis     r3, lbl_8017D6FC@ha
     addi	r30, r3, lbl_8017D6FC@l
 _8004ad00:
@@ -142,7 +142,7 @@ asm void fn_8004AD84(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_80059B44
+    bl      svmLockServer
     lbz	r0, 1(r31)
     cmpwi	r0, 2
     bne     _8004add4
@@ -161,7 +161,7 @@ _8004add4:
     li	r0, 1
     stb	r0, 1(r31)
 _8004addc:
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     mtlr	r0
@@ -275,14 +275,14 @@ asm void fn_8004AEF0(void)
     bne     _8004af2c
     bl      cvFsStopTr
 _8004af2c:
-    bl      fn_80059B44
+    bl      svmLockServer
     li	r3, 1
     li	r0, 0
     stb	r3, 1(r31)
     stb	r0, 2(r31)
     stw	r0, 0x20(r31)
-    bl      fn_80059AB4
-    bl      fn_80059B44
+    bl      svmUnlockServer
+    bl      svmLockServer
     lbz	r0, 1(r31)
     cmpwi	r0, 2
     bne     _8004af84
@@ -301,7 +301,7 @@ _8004af84:
     li	r0, 1
     stb	r0, 1(r31)
 _8004af8c:
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lis     r3, lbl_8017D6FC@ha
     addi	r30, r3, lbl_8017D6FC@l
 _8004af98:
@@ -333,7 +333,7 @@ _8004afe4:
     lwz	r0, 0x20(r31)
     cmplwi	r0, 0
     bne     _8004af98
-    bl      fn_80059B44
+    bl      svmLockServer
     lbz	r0, 1(r31)
     cmpwi	r0, 2
     bne     _8004b038
@@ -352,8 +352,8 @@ _8004b038:
     li	r0, 1
     stb	r0, 1(r31)
 _8004b040:
-    bl      fn_80059AB4
-    bl      fn_80059B44
+    bl      svmUnlockServer
+    bl      svmLockServer
     lbz	r0, 0x45(r31)
     cmpwi	r0, 1
     bne     _8004b05c
@@ -362,7 +362,7 @@ _8004b040:
 _8004b05c:
     li	r0, 0
     stb	r0, 0x41(r31)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lis     r3, lbl_8017D6FC@ha
     addi	r30, r3, lbl_8017D6FC@l
 _8004b070:
@@ -410,7 +410,7 @@ asm void fn_8004B0EC(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_80059B44
+    bl      svmLockServer
     lbz	r0, 1(r31)
     cmpwi	r0, 2
     bne     _8004b13c
@@ -429,8 +429,8 @@ _8004b13c:
     li	r0, 1
     stb	r0, 1(r31)
 _8004b144:
-    bl      fn_80059AB4
-    bl      fn_80059B44
+    bl      svmUnlockServer
+    bl      svmLockServer
     lbz	r0, 0x45(r31)
     cmpwi	r0, 1
     bne     _8004b160
@@ -439,7 +439,7 @@ _8004b144:
 _8004b160:
     li	r0, 0
     stb	r0, 0x41(r31)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     mtlr	r0
@@ -459,7 +459,7 @@ asm void fn_8004B180(void)
     mr	r29, r5
     mr	r30, r6
     mr	r31, r7
-    bl      fn_80059B44
+    bl      svmLockServer
     stw	r30, 0xc(r27)
     slwi	r3, r31, 0xb
     li	r0, 1
@@ -467,7 +467,7 @@ asm void fn_8004B180(void)
     stw	r28, 0x4c(r27)
     stw	r29, 0x50(r27)
     stb	r0, 0x41(r27)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lmw	r27, 0xc(r1)
     lwz	r0, 0x24(r1)
     mtlr	r0
@@ -495,14 +495,14 @@ asm void fn_8004B1DC(void)
     bne     _8004b21c
     bl      cvFsStopTr
 _8004b21c:
-    bl      fn_80059B44
+    bl      svmLockServer
     li	r3, 1
     li	r0, 0
     stb	r3, 1(r31)
     stb	r0, 2(r31)
     stw	r0, 0x20(r31)
-    bl      fn_80059AB4
-    bl      fn_80059B44
+    bl      svmUnlockServer
+    bl      svmLockServer
     lbz	r0, 1(r31)
     cmpwi	r0, 2
     bne     _8004b274
@@ -521,7 +521,7 @@ _8004b274:
     li	r0, 1
     stb	r0, 1(r31)
 _8004b27c:
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lis     r3, lbl_8017D6FC@ha
     addi	r30, r3, lbl_8017D6FC@l
 _8004b288:
@@ -561,14 +561,14 @@ _8004b2d4:
     bne     _8004b308
     bl      cvFsStopTr
 _8004b308:
-    bl      fn_80059B44
+    bl      svmLockServer
     li	r3, 1
     li	r0, 0
     stb	r3, 1(r31)
     stb	r0, 2(r31)
     stw	r0, 0x20(r31)
-    bl      fn_80059AB4
-    bl      fn_80059B44
+    bl      svmUnlockServer
+    bl      svmLockServer
     lbz	r0, 1(r31)
     cmpwi	r0, 2
     bne     _8004b360
@@ -587,7 +587,7 @@ _8004b360:
     li	r0, 1
     stb	r0, 1(r31)
 _8004b368:
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lis     r3, lbl_8017D6FC@ha
     addi	r30, r3, lbl_8017D6FC@l
 _8004b374:
@@ -619,7 +619,7 @@ _8004b3c0:
     lwz	r0, 0x20(r31)
     cmplwi	r0, 0
     bne     _8004b374
-    bl      fn_80059B44
+    bl      svmLockServer
     lbz	r0, 1(r31)
     cmpwi	r0, 2
     bne     _8004b414
@@ -638,8 +638,8 @@ _8004b414:
     li	r0, 1
     stb	r0, 1(r31)
 _8004b41c:
-    bl      fn_80059AB4
-    bl      fn_80059B44
+    bl      svmUnlockServer
+    bl      svmLockServer
     lbz	r0, 0x45(r31)
     cmpwi	r0, 1
     bne     _8004b438
@@ -648,7 +648,7 @@ _8004b41c:
 _8004b438:
     li	r0, 0
     stb	r0, 0x41(r31)
-    bl      fn_80059AB4
+    bl      svmUnlockServer
     lis     r3, lbl_8017D6FC@ha
     addi	r30, r3, lbl_8017D6FC@l
 _8004b44c:

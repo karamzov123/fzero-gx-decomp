@@ -13,12 +13,12 @@ extern void fn_800176FC(void);
 extern void fn_800197A4(void);
 extern void fn_80019B78(void);
 extern void fn_8004AC58(void);
-extern void fn_800565FC(void);
+extern void gcciErrPrintf(void);
 extern void fn_800566F0(void);
 extern void fn_80056710(void);
 extern void fn_80057494(void);
-extern void fn_800576DC(void);
-extern void fn_80057728(void);
+extern void svmExitCritical(void);
+extern void svmEnterCritical(void);
 extern void fn_8008077C(void);
 extern void fn_80083D40(void);
 extern void strcpy(void);
@@ -1170,7 +1170,7 @@ asm void fn_800565F0(void)
     blr	
 }
 
-asm void fn_800565FC(void)
+asm void gcciErrPrintf(void)
 {
     nofralloc
     stwu	r1, -0x80(r1)
@@ -1250,7 +1250,7 @@ asm void fn_800566F0(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1263,7 +1263,7 @@ asm void fn_80056710(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80057728
+    bl      svmEnterCritical
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1281,7 +1281,7 @@ asm void fn_80056730(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _8005675c
 _80056758:
     stb	r4, 3(r3)
@@ -1325,7 +1325,7 @@ asm void fn_800567AC(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _800567dc
 _800567d8:
@@ -1348,7 +1348,7 @@ asm void fn_800567EC(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80056840
 _80056814:
     cmpwi	r4, 0
@@ -1360,7 +1360,7 @@ _80056828:
     lis     r3, lbl_800921AC@ha
     addi	r3, r3, lbl_800921AC@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80056840
 _8005683c:
     stw	r4, 0x14(r3)
@@ -1382,7 +1382,7 @@ asm void fn_80056850(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, 0
     b     _80056940
 _8005687c:
@@ -1431,7 +1431,7 @@ _80056914:
     lis     r3, lbl_800921D0@ha
     addi	r3, r3, lbl_800921D0@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, 0
     b     _80056940
 _80056934:
@@ -1456,7 +1456,7 @@ asm void fn_80056950(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _80056a40
 _8005697c:
@@ -1505,7 +1505,7 @@ _80056a14:
     lis     r3, lbl_800921D0@ha
     addi	r3, r3, lbl_800921D0@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _80056a40
 _80056a34:
@@ -1530,7 +1530,7 @@ asm void fn_80056A50(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, 0
     b     _80056b40
 _80056a7c:
@@ -1579,7 +1579,7 @@ _80056b14:
     lis     r3, lbl_800921D0@ha
     addi	r3, r3, lbl_800921D0@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, 0
     b     _80056b40
 _80056b34:
@@ -1604,7 +1604,7 @@ asm void fn_80056B50(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _80056bd0
 _80056b7c:
@@ -1617,7 +1617,7 @@ _80056b90:
     lis     r3, lbl_800921F4@ha
     addi	r3, r3, lbl_800921F4@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _80056bd0
 _80056ba8:
@@ -1649,7 +1649,7 @@ asm void fn_80056BE0(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _80056c10
 _80056c0c:
@@ -1672,7 +1672,7 @@ asm void fn_80056C20(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _80056c54
 _80056c4c:
@@ -1731,7 +1731,7 @@ asm void fn_80056CD0(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80056d78
 _80056cfc:
     lbz	r0, 1(r31)
@@ -1756,7 +1756,7 @@ _80056d34:
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80056d70
 _80056d58:
     lbz	r0, 1(r31)
@@ -1788,7 +1788,7 @@ asm void fn_80056D8C(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80056e88
 _80056db8:
     addi	r3, r1, 8
@@ -1801,7 +1801,7 @@ _80056db8:
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80056e60
 _80056de8:
     extsb.	r0, r3
@@ -1825,7 +1825,7 @@ _80056e1c:
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80056e58
 _80056e40:
     lbz	r0, 1(r31)
@@ -1873,7 +1873,7 @@ asm void fn_80056E9C(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _800570c8
 _80056ed8:
@@ -1888,7 +1888,7 @@ _80056eec:
     lis     r3, lbl_80092214@ha
     addi	r3, r3, lbl_80092214@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, -1
     b     _800570c8
 _80056f0c:

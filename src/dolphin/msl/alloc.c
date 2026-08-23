@@ -8,7 +8,7 @@ extern unsigned long OSGetArenaLo(void);
 extern unsigned long OSGetArenaHi(void);
 extern void OSSetArenaLo(unsigned long lo);
 extern void* OSInitAlloc(void* lo, void* hi, int create);
-extern void fn_80008F60(void* lo, void* hi);
+extern void OSCreateHeap_wrapper_A(void* lo, void* hi);
 extern void* OSSetCurrentHeap_thunk(void* heap);
 extern void* OSFree(void* heap, unsigned long size);
 extern void OSAlloc(void* heap, unsigned long size);
@@ -53,7 +53,7 @@ asm void* fn_80079EF0(register unsigned long size)
     rlwinm  r30, r30, 0, 0, 0x1a
     rlwinm  r3, r0, 0, 0, 0x1a
     mr      r4, r30
-    bl      fn_80008F60
+    bl      OSCreateHeap_wrapper_A
     bl      OSSetCurrentHeap_thunk
     mr      r3, r30
     bl      OSSetArenaLo
@@ -105,7 +105,7 @@ asm void fn_80079FA8(register unsigned long size)
     rlwinm  r30, r30, 0, 0, 0x1a
     rlwinm  r3, r0, 0, 0, 0x1a
     mr      r4, r30
-    bl      fn_80008F60
+    bl      OSCreateHeap_wrapper_A
     bl      OSSetCurrentHeap_thunk
     mr      r3, r30
     bl      OSSetArenaLo

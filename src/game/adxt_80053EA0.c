@@ -20,7 +20,7 @@ extern void fn_8005190C(void);
 extern void fn_80051958(void);
 extern void fn_80053A30(void);
 extern void fn_80053F38(void);
-extern void fn_800589BC(void);
+extern void svm_ringbuf_read(void);
 extern void sprintf(void);
 extern void fn_80083B8C(void);
 extern void strcpy(void);
@@ -242,7 +242,7 @@ _80054108:
     mr	r4, r23
     mr	r5, r29
     mr	r6, r21
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r3, 0(r22)
     mr	r5, r29
     li	r4, 1

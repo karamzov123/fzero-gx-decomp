@@ -30,7 +30,7 @@ extern void memset(void);
 extern void fn_8004E354(void);
 extern void fn_8004E4AC(void);
 extern void strncmp(void);
-extern void fn_8004E270(void);
+extern void ADXT_GetCmdState(void);
 extern unsigned char SPSD_str[5];
 extern void fn_80045F58(void);
 extern void fn_80045F74(void);
@@ -1093,7 +1093,7 @@ asm void fn_80046020(void)
     cmpwi	r0, 1
     bne     _800462b4
     lwz	r3, 8(r30)
-    bl      fn_8004E270
+    bl      ADXT_GetCmdState
     cmpwi	r3, 0
     bne     _800462b4
     lwz	r12, 0x78(r30)

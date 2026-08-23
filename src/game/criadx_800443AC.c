@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_8004E270(void);
+extern void ADXT_GetCmdState(void);
 extern void fn_80044C74(void);
 extern void strncmp(void);
 extern void fn_80044EF8(void);
@@ -33,7 +33,7 @@ asm void fn_800443AC(void)
     cmpwi	r0, 1
     bne     _800446a0
     lwz	r3, 8(r30)
-    bl      fn_8004E270
+    bl      ADXT_GetCmdState
     cmpwi	r3, 0
     bne     _800446a0
     lwz	r12, 0x78(r30)
@@ -256,7 +256,7 @@ asm void fn_800446E4(void)
     cmpwi	r0, 1
     bne     _80044a50
     lwz	r3, 8(r31)
-    bl      fn_8004E270
+    bl      ADXT_GetCmdState
     cmpwi	r3, 0
     bne     _80044a50
     lwz	r12, 0x78(r31)
@@ -836,7 +836,7 @@ asm void fn_80044EF8(void)
     cmpwi	r0, 1
     bne     _8004505c
     lwz	r3, 8(r27)
-    bl      fn_8004E270
+    bl      ADXT_GetCmdState
     cmpwi	r3, 0
     bne     _8004505c
     lwz	r12, 0x78(r27)
@@ -930,7 +930,7 @@ _8004505c:
     lwz	r3, 8(r27)
     bl      fn_8004E098
     lwz	r3, 8(r27)
-    bl      fn_8004E270
+    bl      ADXT_GetCmdState
     cmpwi	r3, 3
     bne     _800452e8
     lwz	r24, 0x58(r27)

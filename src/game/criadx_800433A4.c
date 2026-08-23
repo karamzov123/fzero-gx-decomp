@@ -3,7 +3,7 @@
 
 extern void fn_80043460(void);
 extern void fn_80043798(void);
-extern void fn_8004E270(void);
+extern void ADXT_GetCmdState(void);
 extern void fn_80043D34(void);
 extern void strncmp(void);
 extern void fn_80043FE8(void);
@@ -97,7 +97,7 @@ asm void fn_80043460(void)
     cmpwi	r0, 1
     bne     _80043754
     lwz	r3, 8(r30)
-    bl      fn_8004E270
+    bl      ADXT_GetCmdState
     cmpwi	r3, 0
     bne     _80043754
     lwz	r12, 0x78(r30)
@@ -320,7 +320,7 @@ asm void fn_80043798(void)
     cmpwi	r0, 1
     bne     _80043b04
     lwz	r3, 8(r31)
-    bl      fn_8004E270
+    bl      ADXT_GetCmdState
     cmpwi	r3, 0
     bne     _80043b04
     lwz	r12, 0x78(r31)
@@ -911,7 +911,7 @@ asm void fn_80043FE8(void)
     cmpwi	r0, 1
     bne     _80044368
     lwz	r3, 8(r30)
-    bl      fn_8004E270
+    bl      ADXT_GetCmdState
     cmpwi	r3, 0
     bne     _80044368
     lwz	r12, 0x78(r30)

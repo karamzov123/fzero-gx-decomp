@@ -3,7 +3,7 @@
 
 extern void strncpy(void);
 extern void fn_80083CF4(void);
-extern void fn_800595FC(void);
+extern void svmErrPrintf(void);
 extern void fn_80058EF4(void);
 extern void memset(void);
 extern void fn_80046738(void);
@@ -65,7 +65,7 @@ asm void fn_80047464(void)
 _800474c0:
     addi	r3, r31, 0x28
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     lwz	r30, 8(r1)
@@ -74,7 +74,7 @@ _800474c0:
     blr	
 }
 
-asm void fn_800474E4(void)
+asm void criErr_CallErrCallback(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -97,7 +97,7 @@ asm void fn_800474E4(void)
 _80047528:
     addi	r3, r31, 0x28
     crxor	6, 6, 6
-    bl      fn_800595FC
+    bl      svmErrPrintf
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     mtlr	r0

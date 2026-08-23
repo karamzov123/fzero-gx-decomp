@@ -13,15 +13,15 @@ extern void fn_8004AE94(void);
 extern void fn_8004AEE4(void);
 extern void fn_8004B0EC(void);
 extern void fn_8004B180(void);
-extern void fn_800565FC(void);
+extern void gcciErrPrintf(void);
 extern void fn_800566BC(void);
 extern void fn_800566F0(void);
 extern void fn_80056710(void);
 extern void fn_8005676C(void);
 extern void fn_80056E9C(void);
 extern void fn_80057114(void);
-extern void fn_800576DC(void);
-extern void fn_80057728(void);
+extern void svmExitCritical(void);
+extern void svmEnterCritical(void);
 extern void fn_80058A20(void);
 extern void fn_80083B8C(void);
 extern void memcpy(void);
@@ -85,7 +85,7 @@ asm void fn_80057114(void)
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _800571c0
 _80057144:
     lbz	r0, 1(r31)
@@ -110,7 +110,7 @@ _8005717c:
     lis     r3, lbl_80092188@ha
     addi	r3, r3, lbl_80092188@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _800571b8
 _800571a0:
     lbz	r0, 1(r31)
@@ -151,7 +151,7 @@ asm void fn_800571EC(void)
     lis     r3, lbl_80092238@ha
     addi	r3, r3, lbl_80092238@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     li	r3, 0
     b     _8005735c
 _80057224:
@@ -182,7 +182,7 @@ _80057270:
     lis     r3, lbl_80092264@ha
     addi	r3, r3, lbl_80092264@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80057350
 _8005728c:
     stw	r29, 8(r31)
@@ -363,7 +363,7 @@ asm void fn_80057494(void)
     lis     r3, lbl_800922C8@ha
     addi	r3, r3, lbl_800922C8@l
     crxor	6, 6, 6
-    bl      fn_800565FC
+    bl      gcciErrPrintf
     b     _80057554
 _80057504:
     addi	r28, r4, 0x38
@@ -494,7 +494,7 @@ _800576c8:
     blr	
 }
 
-asm void fn_800576DC(void)
+asm void svmExitCritical(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -519,7 +519,7 @@ _80057718:
     blr	
 }
 
-asm void fn_80057728(void)
+asm void svmEnterCritical(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -558,7 +558,7 @@ asm void fn_80057774(void)
     mr	r29, r5
     stw	r28, 0x10(r1)
     mr	r28, r3
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmpwi	r31, 0
     bne     _800577b4
     li	r31, 0
@@ -585,7 +585,7 @@ _800577d8:
     bctrl	
 _800577f8:
     stw	r31, 0(r30)
-    bl      fn_800576DC
+    bl      svmExitCritical
     subf	r0, r31, r29
     lwz	r31, 0x1c(r1)
     cntlzw	r0, r0
@@ -619,7 +619,7 @@ asm void fn_8005782C(void)
     bne     _8005786c
     b     _80057940
 _8005786c:
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmpwi	r29, 0
     bne     _80057898
     lwz	r12, 0x1c(r31)
@@ -675,7 +675,7 @@ _80057914:
     mtctr	r12
     bctrl	
 _8005793c:
-    bl      fn_800576DC
+    bl      svmExitCritical
 _80057940:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -706,7 +706,7 @@ asm void fn_8005795C(void)
     bne     _8005799c
     b     _800579d4
 _8005799c:
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmplwi	r30, 1
     ble     _800579d0
     li	r0, 0
@@ -720,7 +720,7 @@ _8005799c:
     mtctr	r12
     bctrl	
 _800579d0:
-    bl      fn_800576DC
+    bl      svmExitCritical
 _800579d4:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -745,7 +745,7 @@ asm void fn_800579F0(void)
     mr	r29, r4
     stw	r28, 0x10(r1)
     mr	r28, r3
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmpwi	r29, 0
     bne     _80057a38
     li	r0, 0
@@ -787,7 +787,7 @@ _80057a8c:
     mtctr	r12
     bctrl	
 _80057ab4:
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     lwz	r30, 0x18(r1)
@@ -1071,7 +1071,7 @@ asm void fn_80057DB8(void)
     mr	r29, r4
     stw	r28, 0x10(r1)
     mr	r28, r3
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmpwi	r29, 0
     bne     _80057e2c
     lwz	r3, 0x14(r28)
@@ -1122,7 +1122,7 @@ _80057e70:
     bctrl	
 _80057e90:
     stw	r29, 0(r31)
-    bl      fn_800576DC
+    bl      svmExitCritical
     subf	r0, r29, r30
     lwz	r31, 0x1c(r1)
     cntlzw	r0, r0
@@ -1156,7 +1156,7 @@ asm void fn_80057EC4(void)
     bne     _80057f04
     b     _80058054
 _80057f04:
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmpwi	r29, 0
     bne     _80057f98
     lwz	r6, 0x20(r30)
@@ -1246,7 +1246,7 @@ _80058028:
     mtctr	r12
     bctrl	
 _80058050:
-    bl      fn_800576DC
+    bl      svmExitCritical
 _80058054:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -1277,7 +1277,7 @@ asm void fn_80058070(void)
     bne     _800580b0
     b     _800581b0
 _800580b0:
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmpwi	r29, 1
     bne     _80058158
     lwz	r3, 0xc(r30)
@@ -1347,7 +1347,7 @@ _80058184:
     mtctr	r12
     bctrl	
 _800581ac:
-    bl      fn_800576DC
+    bl      svmExitCritical
 _800581b0:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -1372,7 +1372,7 @@ asm void fn_800581CC(void)
     mr	r29, r3
     stw	r28, 0x10(r1)
     mr	r28, r4
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmpwi	r28, 0
     bne     _80058298
     lwz	r3, 0x14(r29)
@@ -1468,7 +1468,7 @@ _80058334:
     mtctr	r12
     bctrl	
 _8005835c:
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     lwz	r30, 0x18(r1)
@@ -1519,7 +1519,7 @@ asm void fn_800583DC(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_80057728
+    bl      svmEnterCritical
     li	r3, 0
     stw	r3, 0xc(r31)
     lwz	r0, 0x20(r31)
@@ -1530,7 +1530,7 @@ asm void fn_800583DC(void)
     stw	r3, 0x2c(r31)
     stw	r3, 0x30(r31)
     stw	r3, 0x34(r31)
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     mtlr	r0
@@ -1561,7 +1561,7 @@ asm void fn_80058448(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_80057728
+    bl      svmEnterCritical
     cmplwi	r31, 0
     beq     _80058480
     mr	r3, r31
@@ -1571,7 +1571,7 @@ asm void fn_80058448(void)
     li	r0, 0
     stw	r0, 4(r31)
 _80058480:
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     mtlr	r0
@@ -1592,7 +1592,7 @@ asm void fn_80058498(void)
     stw	r29, 0x14(r1)
     mr	r29, r3
     stw	r28, 0x10(r1)
-    bl      fn_80057728
+    bl      svmEnterCritical
     lis     r3, lbl_8018B2A4@ha
     li	r0, 0x20
     addi	r3, r3, lbl_8018B2A4@l
@@ -1665,7 +1665,7 @@ _8005858c:
     stw	r4, 8(r28)
     stw	r0, 0x38(r28)
     stw	r28, 0x3c(r28)
-    bl      fn_80057728
+    bl      svmEnterCritical
     li	r3, 0
     stw	r3, 0xc(r28)
     lwz	r0, 0x20(r28)
@@ -1676,9 +1676,9 @@ _8005858c:
     stw	r3, 0x2c(r28)
     stw	r3, 0x30(r28)
     stw	r3, 0x34(r28)
-    bl      fn_800576DC
+    bl      svmExitCritical
 _80058608:
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x24(r1)
     mr	r3, r28
     lwz	r31, 0x1c(r1)
@@ -1696,7 +1696,7 @@ asm void fn_80058630(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80057728
+    bl      svmEnterCritical
     lis     r3, lbl_8018B2A0@ha
     addi	r4, r3, lbl_8018B2A0@l
     lwz	r3, 0(r4)
@@ -1709,7 +1709,7 @@ asm void fn_80058630(void)
     li	r5, 0x4000
     bl      memset
 _8005866c:
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1724,7 +1724,7 @@ asm void fn_80058680(void)
     lis	r3, -0x7ff7
     stw	r0, 0x14(r1)
     lwz	r0, 0x232c(r3)
-    bl      fn_80057728
+    bl      svmEnterCritical
     lis     r3, lbl_8018B2A4@ha
     lwz	r0, -0x4d60(r3)
     cmpwi	r0, 0
@@ -1740,7 +1740,7 @@ _800586bc:
     lwz	r3, 0(r4)
     addi	r0, r3, 1
     stw	r0, 0(r4)
-    bl      fn_800576DC
+    bl      svmExitCritical
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10

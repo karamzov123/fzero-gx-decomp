@@ -12,7 +12,7 @@ extern void fn_800455A4(void);
 extern void fn_800455B8(void);
 extern void fn_80047464(void);
 extern void memcpy(void);
-extern void fn_800589BC(void);
+extern void svm_ringbuf_read(void);
 extern void fn_80045354(void);
 extern void fn_800433D0(void);
 extern void fn_800433F4(void);
@@ -357,7 +357,7 @@ _80042080:
     mr	r4, r28
     mr	r5, r3
     addi	r6, r1, 8
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r6, 0(r29)
     mr	r3, r29
     addi	r5, r1, 0x10

@@ -2,7 +2,7 @@
 // Carved from coarse/text_8003E344.c via asm transcription (nofralloc).
 //
 // fn_80041330/54/78/A4/C8/EC/10/34 are small trampolines that forward to
-// game-side helpers (fn_80047608/fn_8004BDD8/fn_80056C64/fn_800474E4/
+// game-side helpers (fn_80047608/fn_8004BDD8/fn_80056C64/criErr_CallErrCallback/
 // fn_8004541C/fn_80045468) and return 0 — callback thunks registered from
 // fn_800411F4. fn_80041458 is a this+0x58 accessor stub.
 typedef unsigned char u8;
@@ -18,7 +18,7 @@ extern int fn_80045468(register void* p1);
 extern void fn_80046718(void);
 extern void fn_80046738(void);
 extern void fn_80046758(void);
-extern void fn_800474E4(register void* p1);
+extern void criErr_CallErrCallback(register void* p1);
 extern void fn_800475C0(void);
 extern void fn_80047578(void);
 extern void fn_80047608(void);
@@ -312,7 +312,7 @@ asm int fn_800413C8(register void* a)
     mflr    r0
     mr      r3, r4
     stw     r0, 0x14(r1)
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10
@@ -326,7 +326,7 @@ asm int fn_800413EC(register void* a)
     mflr    r0
     mr      r3, r4
     stw     r0, 0x14(r1)
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10

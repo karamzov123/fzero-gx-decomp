@@ -11,7 +11,7 @@ extern void fn_80041700(void);
 extern void fn_80046718(void);
 extern void fn_80046738(void);
 extern void fn_80046C28(void);
-extern void fn_800474E4(void);
+extern void criErr_CallErrCallback(void);
 extern void fn_80047548(void);
 extern void fn_8004C164(void);
 extern void ADXT_ExecHndl(void);
@@ -20,7 +20,7 @@ extern void fn_8004EDC4(void);
 extern void fn_8004EDE4(void);
 extern void fn_8004EE44(void);
 extern void fn_8004EEA4(void);
-extern void fn_800589BC(void);
+extern void svm_ringbuf_read(void);
 extern void memset(void);
 extern unsigned char E02080817_ADXT_GetNumSmpl_parameter_error_str[100];
 extern unsigned char E02080819_ADXT_GetSfreq_parameter_error_str[236];
@@ -80,7 +80,7 @@ _8004b828:
     mr	r4, r28
     mr	r5, r3
     addi	r6, r1, 8
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r6, 0(r29)
     mr	r3, r29
     addi	r5, r1, 0x10
@@ -115,7 +115,7 @@ _8004b828:
     mr	r4, r30
     mr	r5, r3
     addi	r6, r1, 8
-    bl      fn_800589BC
+    bl      svm_ringbuf_read
     lwz	r6, 0(r29)
     mr	r3, r29
     addi	r5, r1, 0x10
@@ -351,7 +351,7 @@ asm void fn_8004BBCC(void)
     bne     _8004bbf4
     lis     r3, E02080847_ADXT_GetStatPause_parameter_error_str@ha
     addi	r3, r3, E02080847_ADXT_GetStatPause_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, 0
     b       _8004bbfc
 _8004bbf4:
@@ -378,7 +378,7 @@ asm void fn_8004BC0C(void)
     bne     _8004bc40
     lis     r3, E02080846_ADXT_Pause_parameter_error_str@ha
     addi	r3, r3, E02080846_ADXT_Pause_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     b       _8004bd40
 _8004bc40:
     lbz	r0, 0x72(r31)
@@ -469,7 +469,7 @@ asm void fn_8004BD5C(void)
     bne     _8004bd84
     lis     r3, E02080831_ADXT_IsReadyPlayStart_parameter_error_str@ha
     addi	r3, r3, E02080831_ADXT_IsReadyPlayStart_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, -1
     b       _8004bd8c
 _8004bd84:
@@ -492,7 +492,7 @@ asm void fn_8004BD9C(void)
     bne     _8004bdc4
     lis     r3, E02080843_ADXT_GetErrCode_parameter_error_str@ha
     addi	r3, r3, E02080843_ADXT_GetErrCode_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, -1
     b       _8004bdc8
 _8004bdc4:
@@ -576,7 +576,7 @@ asm void fn_8004BE98(void)
     bne     _8004bebc
     lis     r3, E02080840_ADXT_SetSvrFreq_parameter_error_str@ha
     addi	r3, r3, E02080840_ADXT_SetSvrFreq_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     b       _8004bec0
 _8004bebc:
     stw	r4, 0x38(r3)
@@ -597,7 +597,7 @@ asm void fn_8004BED0(void)
     bne     _8004bef8
     lis     r3, E02080824_ADXT_GetOutVol_parameter_error_str@ha
     addi	r3, r3, E02080824_ADXT_GetOutVol_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, 0
     b       _8004befc
 _8004bef8:
@@ -620,7 +620,7 @@ asm void ADXT_SetOutVol(void)
     bne     _8004bf34
     lis     r3, E02080823_ADXT_SetOutVol_parameter_error_str@ha
     addi	r3, r3, E02080823_ADXT_SetOutVol_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     b       _8004bf54
 _8004bf34:
     sth	r4, 0x40(r31)
@@ -649,7 +649,7 @@ asm void ADXT_GetOutPan(void)
     bne     _8004bf90
     lis     r3, E02080826_ADXT_GetOutPan_parameter_error_str@ha
     addi	r3, r3, E02080826_ADXT_GetOutPan_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, 0
     b       _8004bf9c
 _8004bf90:
@@ -678,7 +678,7 @@ asm void ADXT_SetOutPan(void)
     bne     _8004bfe4
     lis     r3, E02080825_ADXT_SetOutPan_parameter_error_str@ha
     addi	r3, r3, E02080825_ADXT_SetOutPan_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     b       _8004c040
 _8004bfe4:
     lwz	r3, 4(r29)
@@ -705,7 +705,7 @@ _8004bffc:
 _8004c034:
     lis     r3, E8101208_ADXT_SetOutPan_parameter_error_str@ha
     addi	r3, r3, E8101208_ADXT_SetOutPan_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
 _8004c040:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -726,7 +726,7 @@ asm void ADXT_GetNumChan(void)
     bne     _8004c084
     lis     r3, E02080820_ADXT_GetNumChan_parameter_error_str@ha
     addi	r3, r3, E02080820_ADXT_GetNumChan_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, -1
     b       _8004c0a4
 _8004c084:
@@ -756,7 +756,7 @@ asm void ADXT_GetSfreq(void)
     bne     _8004c0dc
     lis     r3, E02080819_ADXT_GetSfreq_parameter_error_str@ha
     addi	r3, r3, E02080819_ADXT_GetSfreq_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, -1
     b       _8004c0fc
 _8004c0dc:
@@ -786,7 +786,7 @@ asm void ADXT_GetNumSmpl(void)
     bne     _8004c134
     lis     r3, E02080817_ADXT_GetNumSmpl_parameter_error_str@ha
     addi	r3, r3, E02080817_ADXT_GetNumSmpl_parameter_error_str@l
-    bl      fn_800474E4
+    bl      criErr_CallErrCallback
     li	r3, -1
     b       _8004c154
 _8004c134:
