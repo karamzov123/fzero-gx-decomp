@@ -4638,7 +4638,7 @@ _80087e48:
     blr
 }
 
-asm void fn_80087E58(void)
+asm void __fp_compare_greater_equal(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -4948,7 +4948,7 @@ _80088230:
     bc      4, 1, _80088254
     lfd	f1, -0x7560(r2)
     lfd	f2, 8(r1)
-    bl      fn_80087E58
+    bl      __fp_compare_greater_equal
     lfd	f0, -0x7560(r2)
     fmul	f1, f0, f1
     b       _800882dc
@@ -4970,14 +4970,14 @@ _80088274:
     bc      4, 1, _800882a4
     lfd	f1, -0x7560(r2)
     lfd	f2, 8(r1)
-    bl      fn_80087E58
+    bl      __fp_compare_greater_equal
     lfd	f0, -0x7560(r2)
     fmul	f1, f0, f1
     b       _800882dc
 _800882a4:
     lfd	f1, -0x7568(r2)
     lfd	f2, 8(r1)
-    bl      fn_80087E58
+    bl      __fp_compare_greater_equal
     lfd	f0, -0x7568(r2)
     fmul	f1, f0, f1
     b       _800882dc

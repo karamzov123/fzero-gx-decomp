@@ -18,7 +18,7 @@ extern void __memrchr(void);
 extern void __stdio_atexit(void);
 extern void fn_8008068C(void);
 extern void fwide(void);
-extern void fn_80087E58(void);
+extern void __fp_compare_greater_equal(void);
 extern void fn_8008809C(void);
 extern void fn_80088128(void);
 extern void fn_800882EC(void);
@@ -1528,7 +1528,7 @@ asm void fn_8007B338(void)
 _8007b374:
     lfd	f2, -0x7980(r2)
 _8007b378:
-    bl      fn_80087E58
+    bl      __fp_compare_greater_equal
     b       _8007c39c
 _8007b380:
     lbz	r0, 5(r3)
@@ -1552,7 +1552,7 @@ _8007b3a8:
 _8007b3c0:
     lfd	f2, -0x7980(r2)
 _8007b3c4:
-    bl      fn_80087E58
+    bl      __fp_compare_greater_equal
     b       _8007c39c
 _8007b3cc:
     lbz	r0, 0(r3)
@@ -1565,7 +1565,7 @@ _8007b3cc:
 _8007b3e8:
     lfd	f2, -0x7980(r2)
 _8007b3ec:
-    bl      fn_80087E58
+    bl      __fp_compare_greater_equal
     b       _8007c39c
 _8007b3f4:
     lbz	r0, 0(r3)
