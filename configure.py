@@ -323,6 +323,8 @@ config.libs = [
         Object(Matching, "dolphin/ax/AXAux.c"),
         Object(Matching, "dolphin/ax/AXCL.c"),
         Object(Matching, "dolphin/ax/AXOut.c"),
+        Object(Matching, "dolphin/ax/AXSPB.c"),
+        Object(Matching, "dolphin/ax/AXVPB.c"),
         Object(Matching, "dolphin/dvd/dvdlow.c"),
         Object(Matching, "dolphin/dvd/dvdfs.c"),
         Object(Matching, "dolphin/dvd/dvd.c"),
