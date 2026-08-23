@@ -78,31 +78,31 @@ extern void DVDLowRequestAudioStatus(void);
 extern void DVDLowAudioBufferConfig(void);
 extern void fn_80016D50(void);
 extern void fn_80016D64(void);
-extern void fn_80017838(void);
-extern void fn_800178CC(void);
-extern void fn_80017A04(void);
-extern void fn_80017A38(void);
-extern void fn_80017A60(void);
-extern void fn_80017B14(void);
-extern void fn_80017DA8(void);
-extern void fn_80017E10(void);
-extern void fn_80017EA8(void);
-extern void fn_80017ED0(void);
-extern void fn_80018028(void);
-extern void fn_80018108(void);
-extern void fn_8001813C(void);
-extern void fn_80018170(void);
-extern void fn_800181E4(void);
-extern void fn_8001821C(void);
-extern void fn_80018330(void);
-extern void fn_80018414(void);
-extern void fn_80018554(void);
-extern void fn_80018620(void);
-extern void fn_80018650(void);
-extern void fn_800186C0(void);
-extern void fn_80018D1C(void);
-extern void fn_800198FC(void);
-extern void fn_80019C24(void);
+extern void stateReadingFST(void);
+extern void cbForStateReadingFST(void);
+extern void stateTimeout(void);
+extern void cbForRetryRequestError(void);
+extern void CategorizeError(void);
+extern void cbForStateGettingError(void);
+extern void cbForUnrecoveredError(void);
+extern void cbForUnrecoveredErrorRetry(void);
+extern void stateGoToRetry(void);
+extern void cbForStateGoToRetry(void);
+extern void stateCheckID(void);
+extern void cbForStateCheckID2(void);
+extern void cbForStateCheckID3(void);
+extern void cbForStateCheckID1(void);
+extern void stateCheckID2(void);
+extern void cbForStateCoverClosed(void);
+extern void cbForStateCheckID2a(void);
+extern void cbForStateCheckID2b(void);
+extern void stateCoverClosed(void);
+extern void cbForStateCoverClosed_CMD(void);
+extern void cbForCoverClosedCheckID(void);
+extern void stateMotorStopped(void);
+extern void cbForStateBusy(void);
+extern void __DVDDequeueWaitingQueue(void);
+extern void cbForCancelSync(void);
 extern void fn_80019FFC(void);
 extern void fn_8001A1F4(void);
 extern void fn_8001A2EC(void);
@@ -169,13 +169,13 @@ lbl_80017824:
 	blr
 }
 
-/* fn_80017838 @0x80017838 | size: 0x94 */
-asm void fn_80017838(void) {
+/* stateReadingFST @0x80017838 | size: 0x94 */
+asm void stateReadingFST(void) {
 nofralloc
 	mflr r0
-	lis r3, fn_80017838@ha
+	lis r3, stateReadingFST@ha
 	stw r0, 0x4(r1)
-	addi r0, r3, fn_80017838@l
+	addi r0, r3, stateReadingFST@l
 	lis r3, BB2@ha
 	stwu r1, -0x10(r1)
 	addi r3, r3, BB2@l
@@ -198,11 +198,11 @@ lbl_8001788C:
 	lwz r6, 0x0(r31)
 	addi r5, r3, BB2@l
 	lwz r7, -0x7AF8(r13)
-	lis r4, fn_800178CC@ha
+	lis r4, cbForStateReadingFST@ha
 	lwz r5, 0x4(r5)
 	addi r0, r6, 0x1f
 	lwz r3, 0x38(r7)
-	addi r6, r4, fn_800178CC@l
+	addi r6, r4, cbForStateReadingFST@l
 	clrrwi r4, r0, 5
 	bl DVDLowRead
 	lwz r0, 0x14(r1)
@@ -212,8 +212,8 @@ lbl_8001788C:
 	blr
 }
 
-/* fn_800178CC @0x800178CC | size: 0x8C */
-asm void fn_800178CC(void) {
+/* cbForStateReadingFST @0x800178CC | size: 0x8C */
+asm void cbForStateReadingFST(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -224,7 +224,7 @@ nofralloc
 	lwz r3, -0x7B00(r13)
 	li r0, -0x1
 	stw r0, 0xc(r3)
-	bl fn_80017A04
+	bl stateTimeout
 	b lbl_80017944
 lbl_800178F8:
 	clrlwi. r0, r3, 31
@@ -247,7 +247,7 @@ lbl_80017938:
 	bl stateReady
 	b lbl_80017944
 lbl_80017940:
-	bl fn_80017A38
+	bl cbForRetryRequestError
 lbl_80017944:
 	lwz r0, 0x1c(r1)
 	lwz r31, 0x14(r1)
@@ -268,7 +268,7 @@ nofralloc
 	lwz r3, -0x7B00(r13)
 	li r0, -0x1
 	stw r0, 0xc(r3)
-	bl fn_80017A04
+	bl stateTimeout
 	b lbl_800179F0
 lbl_80017984:
 	bl fn_8001A2EC
@@ -308,8 +308,8 @@ lbl_800179F0:
 	blr
 }
 
-/* fn_80017A04 @0x80017A04 | size: 0x34 */
-asm void fn_80017A04(void) {
+/* stateTimeout @0x80017A04 | size: 0x34 */
+asm void stateTimeout(void) {
 nofralloc
 	mflr r0
 	lis r3, 0x123
@@ -326,13 +326,13 @@ nofralloc
 	blr
 }
 
-/* fn_80017A38 @0x80017A38 | size: 0x28 */
-asm void fn_80017A38(void) {
+/* cbForRetryRequestError @0x80017A38 | size: 0x28 */
+asm void cbForRetryRequestError(void) {
 nofralloc
 	mflr r0
-	lis r3, fn_80017B14@ha
+	lis r3, cbForStateGettingError@ha
 	stw r0, 0x4(r1)
-	addi r3, r3, fn_80017B14@l
+	addi r3, r3, cbForStateGettingError@l
 	stwu r1, -0x8(r1)
 	bl DVDLowRequestError
 	lwz r0, 0xc(r1)
@@ -341,8 +341,8 @@ nofralloc
 	blr
 }
 
-/* fn_80017A60 @0x80017A60 | size: 0xB4 */
-asm void fn_80017A60(void) {
+/* CategorizeError @0x80017A60 | size: 0xB4 */
+asm void CategorizeError(void) {
 nofralloc
 	subis r0, r3, 0x2
 	cmplwi r0, 0x400
@@ -398,8 +398,8 @@ lbl_80017B0C:
 	blr
 }
 
-/* fn_80017B14 @0x80017B14 | size: 0x294 */
-asm void fn_80017B14(void) {
+/* cbForStateGettingError @0x80017B14 | size: 0x294 */
+asm void cbForStateGettingError(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -438,7 +438,7 @@ lbl_80017B90:
 	lwz r29, 0x6020(r3)
 	addi r3, r29, 0x0
 	clrrwi r28, r29, 24
-	bl fn_80017A60
+	bl CategorizeError
 	addi r31, r3, 0x0
 	cmplwi r31, 0x1
 	bne lbl_80017BD4
@@ -518,7 +518,7 @@ lbl_80017CA0:
 	bne lbl_80017CC0
 	mr r3, r29
 	bl __DVDStoreErrorCode
-	bl fn_80017EA8
+	bl stateGoToRetry
 	b lbl_80017D88
 lbl_80017CC0:
 	cmplwi r31, 0x3
@@ -528,8 +528,8 @@ lbl_80017CC0:
 	cmplwi r0, 0x1100
 	bne lbl_80017CF0
 	lwz r5, -0x7B00(r13)
-	lis r3, fn_80017DA8@ha
-	addi r4, r3, fn_80017DA8@l
+	lis r3, cbForUnrecoveredError@ha
+	addi r4, r3, cbForUnrecoveredError@l
 	lwz r3, 0x10(r5)
 	bl DVDLowSeek
 	b lbl_80017D88
@@ -546,7 +546,7 @@ lbl_80017D04:
 	lwz r3, -0x7B00(r13)
 	li r0, 0x5
 	stw r0, 0xc(r3)
-	bl fn_800186C0
+	bl stateMotorStopped
 	b lbl_80017D88
 lbl_80017D24:
 	subis r0, r28, 0x200
@@ -555,7 +555,7 @@ lbl_80017D24:
 	lwz r3, -0x7B00(r13)
 	li r0, 0x3
 	stw r0, 0xc(r3)
-	bl fn_80018554
+	bl stateCoverClosed
 	b lbl_80017D88
 lbl_80017D44:
 	subis r0, r28, 0x300
@@ -564,7 +564,7 @@ lbl_80017D44:
 	lwz r3, -0x7B00(r13)
 	li r0, 0x4
 	stw r0, 0xc(r3)
-	bl fn_800186C0
+	bl stateMotorStopped
 	b lbl_80017D88
 lbl_80017D64:
 	lwz r4, -0x7B00(r13)
@@ -587,8 +587,8 @@ lbl_80017D88:
 	blr
 }
 
-/* fn_80017DA8 @0x80017DA8 | size: 0x68 */
-asm void fn_80017DA8(void) {
+/* cbForUnrecoveredError @0x80017DA8 | size: 0x68 */
+asm void cbForUnrecoveredError(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -608,11 +608,11 @@ nofralloc
 lbl_80017DE4:
 	clrlwi. r0, r3, 31
 	beq lbl_80017DF4
-	bl fn_80017EA8
+	bl stateGoToRetry
 	b lbl_80017E00
 lbl_80017DF4:
-	lis r3, fn_80017E10@ha
-	addi r3, r3, fn_80017E10@l
+	lis r3, cbForUnrecoveredErrorRetry@ha
+	addi r3, r3, cbForUnrecoveredErrorRetry@l
 	bl DVDLowRequestError
 lbl_80017E00:
 	lwz r0, 0xc(r1)
@@ -621,8 +621,8 @@ lbl_80017E00:
 	blr
 }
 
-/* fn_80017E10 @0x80017E10 | size: 0x98 */
-asm void fn_80017E10(void) {
+/* cbForUnrecoveredErrorRetry @0x80017E10 | size: 0x98 */
+asm void cbForUnrecoveredErrorRetry(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -667,13 +667,13 @@ lbl_80017E98:
 	blr
 }
 
-/* fn_80017EA8 @0x80017EA8 | size: 0x28 */
-asm void fn_80017EA8(void) {
+/* stateGoToRetry @0x80017EA8 | size: 0x28 */
+asm void stateGoToRetry(void) {
 nofralloc
 	mflr r0
-	lis r3, fn_80017ED0@ha
+	lis r3, cbForStateGoToRetry@ha
 	stw r0, 0x4(r1)
-	addi r3, r3, fn_80017ED0@l
+	addi r3, r3, cbForStateGoToRetry@l
 	stwu r1, -0x8(r1)
 	bl DVDLowStopMotor
 	lwz r0, 0xc(r1)
@@ -682,8 +682,8 @@ nofralloc
 	blr
 }
 
-/* fn_80017ED0 @0x80017ED0 | size: 0x158 */
-asm void fn_80017ED0(void) {
+/* cbForStateGoToRetry @0x80017ED0 | size: 0x158 */
+asm void cbForStateGoToRetry(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -773,7 +773,7 @@ lbl_80017FFC:
 	lwz r3, -0x7B00(r13)
 	li r0, 0xb
 	stw r0, 0xc(r3)
-	bl fn_800186C0
+	bl stateMotorStopped
 lbl_80018014:
 	lwz r0, 0x1c(r1)
 	lwz r31, 0x14(r1)
@@ -782,8 +782,8 @@ lbl_80018014:
 	blr
 }
 
-/* fn_80018028 @0x80018028 | size: 0xE0 */
-asm void fn_80018028(void) {
+/* stateCheckID @0x80018028 | size: 0xE0 */
+asm void stateCheckID(void) {
 nofralloc
 	mflr r0
 	lis r3, BB2@ha
@@ -812,15 +812,15 @@ lbl_80018050:
 	stw r0, 0xc(r4)
 	li r4, 0x20
 	bl DCInvalidateRange
-	lis r4, fn_8001813C@ha
+	lis r4, cbForStateCheckID3@ha
 	lwz r3, -0x7B00(r13)
-	addi r0, r4, fn_8001813C@l
+	addi r0, r4, cbForStateCheckID3@l
 	stw r0, -0x7ABC(r13)
-	bl fn_8001813C
+	bl cbForStateCheckID3
 	b lbl_800180F4
 lbl_800180A8:
-	lis r3, fn_8001821C@ha
-	addi r3, r3, fn_8001821C@l
+	lis r3, cbForStateCoverClosed@ha
+	addi r3, r3, cbForStateCoverClosed@l
 	bl DVDLowStopMotor
 	b lbl_800180F4
 lbl_800180B8:
@@ -830,16 +830,16 @@ lbl_800180B8:
 	bl strncmp
 	cmpwi r3, 0x0
 	beq lbl_800180E0
-	lis r3, fn_8001821C@ha
-	addi r3, r3, fn_8001821C@l
+	lis r3, cbForStateCoverClosed@ha
+	addi r3, r3, cbForStateCoverClosed@l
 	bl DVDLowStopMotor
 	b lbl_800180F4
 lbl_800180E0:
-	lis r4, fn_80018108@ha
+	lis r4, cbForStateCheckID2@ha
 	lwz r3, -0x7B00(r13)
-	addi r0, r4, fn_80018108@l
+	addi r0, r4, cbForStateCheckID2@l
 	stw r0, -0x7ABC(r13)
-	bl fn_80018108
+	bl cbForStateCheckID2
 lbl_800180F4:
 	lwz r0, 0x14(r1)
 	lwz r31, 0xc(r1)
@@ -848,13 +848,13 @@ lbl_800180F4:
 	blr
 }
 
-/* fn_80018108 @0x80018108 | size: 0x34 */
-asm void fn_80018108(void) {
+/* cbForStateCheckID2 @0x80018108 | size: 0x34 */
+asm void cbForStateCheckID2(void) {
 nofralloc
 	mflr r0
-	lis r3, fn_80018414@ha
+	lis r3, cbForStateCheckID2b@ha
 	stw r0, 0x4(r1)
-	addi r5, r3, fn_80018414@l
+	addi r5, r3, cbForStateCheckID2b@l
 	stwu r1, -0x8(r1)
 	lwz r4, -0x7AFC(r13)
 	lbz r3, 0x8(r4)
@@ -866,13 +866,13 @@ nofralloc
 	blr
 }
 
-/* fn_8001813C @0x8001813C | size: 0x34 */
-asm void fn_8001813C(void) {
+/* cbForStateCheckID3 @0x8001813C | size: 0x34 */
+asm void cbForStateCheckID3(void) {
 nofralloc
 	mflr r0
-	lis r3, fn_80018170@ha
+	lis r3, cbForStateCheckID1@ha
 	stw r0, 0x4(r1)
-	addi r5, r3, fn_80018170@l
+	addi r5, r3, cbForStateCheckID1@l
 	stwu r1, -0x8(r1)
 	lwz r4, -0x7AFC(r13)
 	lbz r3, 0x8(r4)
@@ -884,8 +884,8 @@ nofralloc
 	blr
 }
 
-/* fn_80018170 @0x80018170 | size: 0x74 */
-asm void fn_80018170(void) {
+/* cbForStateCheckID1 @0x80018170 | size: 0x74 */
+asm void cbForStateCheckID1(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -908,11 +908,11 @@ lbl_800181AC:
 	li r0, 0x0
 	lwz r3, -0x7B00(r13)
 	stw r0, -0x7ACC(r13)
-	bl fn_800181E4
+	bl stateCheckID2
 	b lbl_800181D4
 lbl_800181C8:
-	lis r3, fn_80017B14@ha
-	addi r3, r3, fn_80017B14@l
+	lis r3, cbForStateGettingError@ha
+	addi r3, r3, cbForStateGettingError@l
 	bl DVDLowRequestError
 lbl_800181D4:
 	lwz r0, 0xc(r1)
@@ -921,14 +921,14 @@ lbl_800181D4:
 	blr
 }
 
-/* fn_800181E4 @0x800181E4 | size: 0x38 */
-asm void fn_800181E4(void) {
+/* stateCheckID2 @0x800181E4 | size: 0x38 */
+asm void stateCheckID2(void) {
 nofralloc
 	mflr r0
 	lis r3, BB2@ha
 	stw r0, 0x4(r1)
-	lis r4, fn_80018330@ha
-	addi r6, r4, fn_80018330@l
+	lis r4, cbForStateCheckID2a@ha
+	addi r6, r4, cbForStateCheckID2a@l
 	stwu r1, -0x8(r1)
 	addi r3, r3, BB2@l
 	li r4, 0x20
@@ -940,8 +940,8 @@ nofralloc
 	blr
 }
 
-/* fn_8001821C @0x8001821C | size: 0x114 */
-asm void fn_8001821C(void) {
+/* cbForStateCoverClosed @0x8001821C | size: 0x114 */
+asm void cbForStateCoverClosed(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -1011,7 +1011,7 @@ lbl_80018304:
 	lwz r3, -0x7B00(r13)
 	li r0, 0x6
 	stw r0, 0xc(r3)
-	bl fn_800186C0
+	bl stateMotorStopped
 lbl_8001831C:
 	lwz r0, 0x1c(r1)
 	lwz r31, 0x14(r1)
@@ -1020,8 +1020,8 @@ lbl_8001831C:
 	blr
 }
 
-/* fn_80018330 @0x80018330 | size: 0xE4 */
-asm void fn_80018330(void) {
+/* cbForStateCheckID2a @0x80018330 | size: 0xE4 */
+asm void cbForStateCheckID2a(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -1042,9 +1042,9 @@ nofralloc
 lbl_80018370:
 	clrlwi. r0, r3, 31
 	beq lbl_800183F4
-	lis r3, fn_80017838@ha
+	lis r3, stateReadingFST@ha
 	lwz r4, -0x7AF8(r13)
-	addi r0, r3, fn_80017838@l
+	addi r0, r3, stateReadingFST@l
 	li r5, 0x0
 	stw r0, -0x7ABC(r13)
 	lis r3, BB2@ha
@@ -1066,17 +1066,17 @@ lbl_800183C4:
 	lwz r6, 0x0(r31)
 	addi r5, r3, BB2@l
 	lwz r7, -0x7AF8(r13)
-	lis r4, fn_800178CC@ha
+	lis r4, cbForStateReadingFST@ha
 	lwz r5, 0x4(r5)
 	addi r0, r6, 0x1f
 	lwz r3, 0x38(r7)
-	addi r6, r4, fn_800178CC@l
+	addi r6, r4, cbForStateReadingFST@l
 	clrrwi r4, r0, 5
 	bl DVDLowRead
 	b lbl_80018400
 lbl_800183F4:
-	lis r3, fn_80017B14@ha
-	addi r3, r3, fn_80017B14@l
+	lis r3, cbForStateGettingError@ha
+	addi r3, r3, cbForStateGettingError@l
 	bl DVDLowRequestError
 lbl_80018400:
 	lwz r0, 0x1c(r1)
@@ -1086,8 +1086,8 @@ lbl_80018400:
 	blr
 }
 
-/* fn_80018414 @0x80018414 | size: 0xFC */
-asm void fn_80018414(void) {
+/* cbForStateCheckID2b @0x80018414 | size: 0xFC */
+asm void cbForStateCheckID2b(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -1149,8 +1149,8 @@ lbl_800184D0:
 	bl stateBusy
 	b lbl_800184FC
 lbl_800184F0:
-	lis r3, fn_80017B14@ha
-	addi r3, r3, fn_80017B14@l
+	lis r3, cbForStateGettingError@ha
+	addi r3, r3, cbForStateGettingError@l
 	bl DVDLowRequestError
 lbl_800184FC:
 	lwz r0, 0x1c(r1)
@@ -1171,19 +1171,19 @@ nofralloc
 	addi r3, r3, lbl_8015CE60@l
 	li r4, 0x20
 	bl DCInvalidateRange
-	lis r4, fn_80018620@ha
+	lis r4, cbForStateCoverClosed_CMD@ha
 	lwz r3, -0x7B00(r13)
-	addi r0, r4, fn_80018620@l
+	addi r0, r4, cbForStateCoverClosed_CMD@l
 	stw r0, -0x7ABC(r13)
-	bl fn_80018620
+	bl cbForStateCoverClosed_CMD
 	lwz r0, 0xc(r1)
 	addi r1, r1, 0x8
 	mtlr r0
 	blr
 }
 
-/* fn_80018554 @0x80018554 | size: 0xCC */
-asm void fn_80018554(void) {
+/* stateCoverClosed @0x80018554 | size: 0xCC */
+asm void stateCoverClosed(void) {
 nofralloc
 	mflr r0
 	lis r3, BB2@ha
@@ -1243,16 +1243,16 @@ lbl_8001860C:
 	blr
 }
 
-/* fn_80018620 @0x80018620 | size: 0x30 */
-asm void fn_80018620(void) {
+/* cbForStateCoverClosed_CMD @0x80018620 | size: 0x30 */
+asm void cbForStateCoverClosed_CMD(void) {
 nofralloc
 	mflr r0
 	lis r3, lbl_8015CE60@ha
 	stw r0, 0x4(r1)
-	lis r4, fn_80018650@ha
+	lis r4, cbForCoverClosedCheckID@ha
 	addi r3, r3, lbl_8015CE60@l
 	stwu r1, -0x8(r1)
-	addi r4, r4, fn_80018650@l
+	addi r4, r4, cbForCoverClosedCheckID@l
 	bl DVDLowReadDiskID
 	lwz r0, 0xc(r1)
 	addi r1, r1, 0x8
@@ -1260,8 +1260,8 @@ nofralloc
 	blr
 }
 
-/* fn_80018650 @0x80018650 | size: 0x70 */
-asm void fn_80018650(void) {
+/* cbForCoverClosedCheckID @0x80018650 | size: 0x70 */
+asm void cbForCoverClosedCheckID(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -1283,11 +1283,11 @@ lbl_8001868C:
 	beq lbl_800186A4
 	li r0, 0x0
 	stw r0, -0x7ACC(r13)
-	bl fn_80018028
+	bl stateCheckID
 	b lbl_800186B0
 lbl_800186A4:
-	lis r3, fn_80017B14@ha
-	addi r3, r3, fn_80017B14@l
+	lis r3, cbForStateGettingError@ha
+	addi r3, r3, cbForStateGettingError@l
 	bl DVDLowRequestError
 lbl_800186B0:
 	lwz r0, 0xc(r1)
@@ -1296,8 +1296,8 @@ lbl_800186B0:
 	blr
 }
 
-/* fn_800186C0 @0x800186C0 | size: 0x28 */
-asm void fn_800186C0(void) {
+/* stateMotorStopped @0x800186C0 | size: 0x28 */
+asm void stateMotorStopped(void) {
 nofralloc
 	mflr r0
 	lis r3, cbForStateMotorStopped@ha
@@ -1562,10 +1562,10 @@ nofralloc
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r5, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r5)
 	li r0, 0x20
-	addi r4, r3, fn_80018D1C@l
+	addi r4, r3, cbForStateBusy@l
 	stw r0, 0x1c(r7)
 	lwz r3, 0x18(r7)
 	bl DVDLowReadDiskID
@@ -1604,8 +1604,8 @@ lbl_80018AD8:
 	mr r4, r0
 lbl_80018ADC:
 	stw r4, 0x1c(r7)
-	lis r3, fn_80018D1C@ha
-	addi r6, r3, fn_80018D1C@l
+	lis r3, cbForStateBusy@ha
+	addi r6, r3, cbForStateBusy@l
 	lwz r5, 0x20(r7)
 	lwz r3, 0x18(r7)
 	lwz r0, 0x10(r7)
@@ -1617,18 +1617,18 @@ lbl_80018ADC:
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r5, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r5)
-	addi r4, r3, fn_80018D1C@l
+	addi r4, r3, cbForStateBusy@l
 	lwz r3, 0x10(r7)
 	bl DVDLowSeek
 	b lbl_80018D0C
-	lis r3, fn_80018D1C@ha
-	addi r3, r3, fn_80018D1C@l
+	lis r3, cbForStateBusy@ha
+	addi r3, r3, cbForStateBusy@l
 	bl DVDLowStopMotor
 	b lbl_80018D0C
-	lis r3, fn_80018D1C@ha
-	addi r3, r3, fn_80018D1C@l
+	lis r3, cbForStateBusy@ha
+	addi r3, r3, cbForStateBusy@l
 	bl DVDLowStopMotor
 	b lbl_80018D0C
 	lis r3, 0xcc00
@@ -1640,18 +1640,18 @@ lbl_80018ADC:
 	beq lbl_80018B88
 	lwz r5, -0x7B00(r13)
 	li r0, 0x0
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x1c(r5)
-	addi r4, r3, fn_80018D1C@l
+	addi r4, r3, cbForStateBusy@l
 	li r3, 0x0
 	bl DVDLowRequestAudioStatus
 	b lbl_80018D0C
 lbl_80018B88:
 	lwz r4, -0x7B00(r13)
 	li r0, 0x1
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x1c(r4)
-	addi r6, r3, fn_80018D1C@l
+	addi r6, r3, cbForStateBusy@l
 	li r3, 0x0
 	lwz r4, 0x14(r7)
 	lwz r5, 0x10(r7)
@@ -1660,9 +1660,9 @@ lbl_80018B88:
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r4, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r4)
-	addi r6, r3, fn_80018D1C@l
+	addi r6, r3, cbForStateBusy@l
 	lis r3, 0x1
 	li r4, 0x0
 	li r5, 0x0
@@ -1671,10 +1671,10 @@ lbl_80018B88:
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r4, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r4)
 	li r0, 0x1
-	addi r6, r3, fn_80018D1C@l
+	addi r6, r3, cbForStateBusy@l
 	stw r0, -0x7AEC(r13)
 	li r3, 0x0
 	li r4, 0x0
@@ -1684,45 +1684,45 @@ lbl_80018B88:
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r5, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r5)
-	addi r4, r3, fn_80018D1C@l
+	addi r4, r3, cbForStateBusy@l
 	li r3, 0x0
 	bl DVDLowRequestAudioStatus
 	b lbl_80018D0C
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r5, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r5)
-	addi r4, r3, fn_80018D1C@l
+	addi r4, r3, cbForStateBusy@l
 	lis r3, 0x1
 	bl DVDLowRequestAudioStatus
 	b lbl_80018D0C
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r5, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r5)
-	addi r4, r3, fn_80018D1C@l
+	addi r4, r3, cbForStateBusy@l
 	lis r3, 0x2
 	bl DVDLowRequestAudioStatus
 	b lbl_80018D0C
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r5, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r5)
-	addi r4, r3, fn_80018D1C@l
+	addi r4, r3, cbForStateBusy@l
 	lis r3, 0x3
 	bl DVDLowRequestAudioStatus
 	b lbl_80018D0C
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r4, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r4)
-	addi r5, r3, fn_80018D1C@l
+	addi r5, r3, cbForStateBusy@l
 	lwz r3, 0x10(r7)
 	lwz r4, 0x14(r7)
 	bl DVDLowAudioBufferConfig
@@ -1730,18 +1730,18 @@ lbl_80018B88:
 	lis r3, 0xcc00
 	lwz r0, 0x6004(r3)
 	addi r5, r3, 0x6000
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x4(r5)
 	li r0, 0x20
-	addi r4, r3, fn_80018D1C@l
+	addi r4, r3, cbForStateBusy@l
 	stw r0, 0x1c(r7)
 	lwz r3, 0x18(r7)
 	bl DVDLowInquiry
 	b lbl_80018D0C
 lbl_80018CF4:
 	lwz r12, -0x7F40(r13)
-	lis r3, fn_80018D1C@ha
-	addi r4, r3, fn_80018D1C@l
+	lis r3, cbForStateBusy@ha
+	addi r4, r3, cbForStateBusy@l
 	mtlr r12
 	addi r3, r7, 0x0
 	blrl
@@ -1752,8 +1752,8 @@ lbl_80018D0C:
 	blr
 }
 
-/* fn_80018D1C @0x80018D1C | size: 0x638 */
-asm void fn_80018D1C(void) {
+/* cbForStateBusy @0x80018D1C | size: 0x638 */
+asm void cbForStateBusy(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x10
@@ -2076,9 +2076,9 @@ lbl_80019178:
 	li r0, 0x0
 	stw r0, -0x7AEC(r13)
 	li r0, 0x1
-	lis r3, fn_80018D1C@ha
+	lis r3, cbForStateBusy@ha
 	stw r0, 0x0(r5)
-	addi r6, r3, fn_80018D1C@l
+	addi r6, r3, cbForStateBusy@l
 	li r3, 0x0
 	lwz r5, -0x7B00(r13)
 	lwz r4, 0x14(r5)
@@ -2196,8 +2196,8 @@ lbl_80019328:
 	bl stateReady
 	b lbl_8001933C
 lbl_80019330:
-	lis r3, fn_80017B14@ha
-	addi r3, r3, fn_80017B14@l
+	lis r3, cbForStateGettingError@ha
+	addi r3, r3, cbForStateGettingError@l
 	bl DVDLowRequestError
 lbl_8001933C:
 	lwz r0, 0x1c(r1)
@@ -2208,8 +2208,8 @@ lbl_8001933C:
 	blr
 }
 
-/* fn_80019354 @0x80019354 | size: 0xDC */
-asm void fn_80019354(void) {
+/* DVDReadAbsAsyncPrio @0x80019354 | size: 0xDC */
+asm void DVDReadAbsAsyncPrio(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2271,8 +2271,8 @@ lbl_80019408:
 	blr
 }
 
-/* fn_80019430 @0x80019430 | size: 0xD0 */
-asm void fn_80019430(void) {
+/* DVDReadAbsAsyncForBS @0x80019430 | size: 0xD0 */
+asm void DVDReadAbsAsyncForBS(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2392,8 +2392,8 @@ lbl_800195B0:
 	blr
 }
 
-/* fn_800195D4 @0x800195D4 | size: 0xBC */
-asm void fn_800195D4(void) {
+/* DVDBSChangeDiskAsync @0x800195D4 | size: 0xBC */
+asm void DVDBSChangeDiskAsync(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2529,8 +2529,8 @@ nofralloc
 	blr
 }
 
-/* fn_800197A4 @0x800197A4 | size: 0x4C */
-asm void fn_800197A4(void) {
+/* DVDGetCommandBlockStatus @0x800197A4 | size: 0x4C */
+asm void DVDGetCommandBlockStatus(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2609,8 +2609,8 @@ lbl_80019878:
 	blr
 }
 
-/* fn_8001989C @0x8001989C | size: 0x10 */
-asm void fn_8001989C(void) {
+/* DVDSetAutoInvalidation @0x8001989C | size: 0x10 */
+asm void DVDSetAutoInvalidation(void) {
 nofralloc
 	lwz r0, -0x7F44(r13)
 	stw r3, -0x7F44(r13)
@@ -2618,8 +2618,8 @@ nofralloc
 	blr
 }
 
-/* fn_800198AC @0x800198AC | size: 0x50 */
-asm void fn_800198AC(void) {
+/* DVDPause @0x800198AC | size: 0x50 */
+asm void DVDPause(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2644,8 +2644,8 @@ lbl_800198E0:
 	blr
 }
 
-/* fn_800198FC @0x800198FC | size: 0x27C */
-asm void fn_800198FC(void) {
+/* __DVDDequeueWaitingQueue @0x800198FC | size: 0x27C */
+asm void __DVDDequeueWaitingQueue(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -2825,18 +2825,18 @@ lbl_80019B5C:
 	blr
 }
 
-/* fn_80019B78 @0x80019B78 | size: 0xAC */
-asm void fn_80019B78(void) {
+/* DVDCancel @0x80019B78 | size: 0xAC */
+asm void DVDCancel(void) {
 nofralloc
 	mflr r0
-	lis r4, fn_80019C24@ha
+	lis r4, cbForCancelSync@ha
 	stw r0, 0x4(r1)
-	addi r4, r4, fn_80019C24@l
+	addi r4, r4, cbForCancelSync@l
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	stw r30, 0x10(r1)
 	addi r30, r3, 0x0
-	bl fn_800198FC
+	bl __DVDDequeueWaitingQueue
 	cmpwi r3, 0x0
 	bne lbl_80019BAC
 	li r3, -0x1
@@ -2878,8 +2878,8 @@ lbl_80019C0C:
 	blr
 }
 
-/* fn_80019C24 @0x80019C24 | size: 0x24 */
-asm void fn_80019C24(void) {
+/* cbForCancelSync @0x80019C24 | size: 0x24 */
+asm void cbForCancelSync(void) {
 nofralloc
 	mflr r0
 	addi r3, r13, -0x7B08
@@ -2892,8 +2892,8 @@ nofralloc
 	blr
 }
 
-/* fn_80019C48 @0x80019C48 | size: 0x8 */
-asm void fn_80019C48(void) {
+/* DVDGetCurrentDiskID @0x80019C48 | size: 0x8 */
+asm void DVDGetCurrentDiskID(void) {
 nofralloc
 	lis r3, 0x8000
 	blr
@@ -2975,8 +2975,8 @@ lbl_80019D2C:
 	blr
 }
 
-/* fn_80019D48 @0x80019D48 | size: 0x11C */
-asm void fn_80019D48(void) {
+/* DVDCancelAllAsync @0x80019D48 | size: 0x11C */
+asm void DVDCancelAllAsync(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -3014,7 +3014,7 @@ lbl_80019DBC:
 	b lbl_80019DCC
 lbl_80019DC4:
 	li r4, 0x0
-	bl fn_800198FC
+	bl __DVDDequeueWaitingQueue
 lbl_80019DCC:
 	bl __DVDPopWaitingQueue
 	cmplwi r3, 0x0
@@ -3023,7 +3023,7 @@ lbl_80019DCC:
 	cmplwi r3, 0x0
 	beq lbl_80019DF0
 	mr r4, r30
-	bl fn_800198FC
+	bl __DVDDequeueWaitingQueue
 	b lbl_80019E0C
 lbl_80019DF0:
 	cmplwi r30, 0x0

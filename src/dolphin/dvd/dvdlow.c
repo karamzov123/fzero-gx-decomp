@@ -68,7 +68,7 @@ static void __DVDLowSetWAType(u32 type, u32 location);
 extern void Read(u32 addr, u32 len, u32 offset, DVDCallback callback);
 extern void SeekTwiceBeforeRead(void);
 extern void DVDLowSeek(void);
-extern u32 fn_80019C48(void);
+extern u32 DVDGetCurrentDiskID(void);
 
 #pragma force_active on
 
@@ -538,7 +538,7 @@ lbl_800165cc:
 	subi r0, r3, 0x1
 	add r0, r4, r0
 	srwi r22, r0, 15
-	bl fn_80019C48
+	bl DVDGetCurrentDiskID
 	lbz r0, 0x8(r3)
 	cmplwi r0, 0x0
 	beq lbl_80016608
