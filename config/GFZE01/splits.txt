@@ -398,7 +398,7 @@ game/adxt_8005A24C.c:
 game/adxt_8005BC20.c:
 	.text       start:0x8005BC20 end:0x8005C120
 
-coarse/text_8005C120.c:
+game/gamehead_8005C120.c:
 	.text       start:0x8005C120 end:0x80069AE0
 
 coarse/text_80069AE0.c:
