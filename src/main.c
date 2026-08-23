@@ -17,7 +17,9 @@ extern void OSSetArenaLo(void);
 extern void OSSetStringTable(void);
 extern void OSUnlink(void);
 extern void _restgpr_23(void);
+extern void _restgpr_27(void);
 extern void _savegpr_23(void);
+extern void _savegpr_27(void);
 extern void fn_80005660(void);
 extern void fn_80005738(void);
 extern void fn_800057CC(void);
@@ -49,6 +51,11 @@ extern void fn_80006B70(void);
 extern void fn_80006BDC(void);
 extern void fn_80006C2C(void);
 extern void fn_80006C4C(void);
+extern void fn_80006CE4(void);
+extern void fn_80006D1C(void);
+extern void fn_80006DAC(void);
+extern void fn_80006DE8(void);
+extern void fn_80006DFC(void);
 extern void fn_800071B8(void);
 extern void fn_80007A44(void);
 extern void fn_80007B68(void);
@@ -1852,6 +1859,109 @@ _80006cc8:
     lwz	r29, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x20
+    blr	
+}
+
+asm void fn_80006CE4(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+    lwz	r0, 0(r3)
+    cmpwi	r0, 1
+    bc      12, 2, _80006d08
+    addi	r3, r3, 4
+    bl      fn_80017228
+    mr	r4, r3
+_80006d08:
+    lwz	r0, 0x14(r1)
+    mr	r3, r4
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80006D1C(void)
+{
+    nofralloc
+    stwu	r1, -0x20(r1)
+    mflr	r0
+    stw	r0, 0x24(r1)
+    addi	r11, r1, 0x20
+    bl      _savegpr_27
+    mr	r27, r3
+    mr	r28, r4
+    lwz	r0, 0(r3)
+    mr	r29, r5
+    mr	r30, r6
+    cmpwi	r0, 1
+    bc      12, 2, _80006d7c
+    lis	r3, -0x7fee
+    addi	r3, r3, 0x20f0
+    crxor	6, 6, 6
+    bl      fn_80006BDC
+    lwz	r12, -0x7cb8(r13)
+    mr	r4, r28
+    mr	r5, r29
+    mr	r6, r30
+    addi	r3, r27, 4
+    mtctr	r12
+    bctrl	
+    mr	r31, r3
+_80006d7c:
+    lis	r3, -0x7fee
+    mr	r4, r31
+    addi	r3, r3, 0x2104
+    crxor	6, 6, 6
+    bl      fn_80006BDC
+    mr	r3, r31
+    addi	r11, r1, 0x20
+    bl      _restgpr_27
+    lwz	r0, 0x24(r1)
+    mtlr	r0
+    addi	r1, r1, 0x20
+    blr	
+}
+
+asm void fn_80006DAC(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    stw	r0, 0x14(r1)
+    lwz	r0, 0(r3)
+    cmpwi	r0, 1
+    bc      12, 2, _80006dd4
+    addi	r3, r3, 4
+    li	r8, 2
+    bl      fn_800174D0
+    mr	r8, r3
+_80006dd4:
+    lwz	r0, 0x14(r1)
+    mr	r3, r8
+    mtlr	r0
+    addi	r1, r1, 0x10
+    blr	
+}
+
+asm void fn_80006DE8(void)
+{
+    nofralloc
+    lwz	r0, 0(r3)
+    cmpwi	r0, 1
+    beqlr	
+    lwz	r3, 0x38(r3)
+    blr	
+}
+
+asm void fn_80006DFC(void)
+{
+    nofralloc
+    lwz	r0, 0(r3)
+    cmpwi	r0, 1
+    beqlr	
+    lwz	r3, 0x34(r3)
     blr	
 }
 
