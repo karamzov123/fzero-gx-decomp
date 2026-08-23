@@ -3,7 +3,7 @@
 
 extern asm void fn_8006D1C4(void);
 
-asm void fn_8006E324(void)
+asm void PSMTXRotTrig(void)
 {
     nofralloc
     mflr	r4

@@ -51,7 +51,7 @@ _8006e270:
     b       fn_8006E2D8
 }
 
-asm void fn_8006E294(void)
+asm void C_MTXMultVecSS(void)
 {
     nofralloc
     lis     r5, -0x2000

@@ -126,7 +126,7 @@ _8006ec64:
     blr	
 }
 
-asm void fn_8006ED0C(void)
+asm void MTXLookAt_prep(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
@@ -175,7 +175,7 @@ asm void fn_8006ED0C(void)
     blr	
 }
 
-asm void fn_8006EDBC(void)
+asm void PSMTXLookAt_variant(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
@@ -270,7 +270,7 @@ asm void PSVECNormalize(void)
     blr	
 }
 
-asm void fn_8006EF10(void)
+asm void PSVECScaleNormalize(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)

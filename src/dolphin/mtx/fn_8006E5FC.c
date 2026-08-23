@@ -255,7 +255,7 @@ _8006e934:
     blr	
 }
 
-asm void fn_8006E978(void)
+asm void PSMTXQuat_toQuat(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)

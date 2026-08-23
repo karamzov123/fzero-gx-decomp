@@ -78,7 +78,7 @@ asm void fn_8006F774(void)
     blr	
 }
 
-asm void fn_8006F78C(void)
+asm void PSQUATSlerp_a(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -124,7 +124,7 @@ _8006f80c:
     blr	
 }
 
-asm void fn_8006F828(void)
+asm void PSQUATSlerp_b(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

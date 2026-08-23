@@ -10,7 +10,7 @@ extern asm void fn_8006DC34(void);
 extern asm void fn_8006D5A4(void);
 extern asm void fn_8006D668(void);
 
-asm void fn_8006F900(void)
+asm void PSQUATSlerp_c(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

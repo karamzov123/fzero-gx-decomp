@@ -13,8 +13,8 @@ extern void fn_800035C0(void);
 extern void fn_80005518(void);
 extern void OSReport(void);
 extern void strlen(void);
-extern void fn_80088764(void);
-extern void fn_8008877C(void);
+extern void TRKConstructEvent(void);
+extern void TRKPostEvent(void);
 extern void TRKSaveExtended1Block(void);
 extern void TRKRestoreExtended1Block(void);
 extern void TRKTargetTranslate(void);
@@ -30,8 +30,8 @@ extern void fn_8008AF40(void);
 extern void TRKTargetStopped(void);
 extern void TRKTestForPacket(void);
 extern void fn_8008963C(void);
-extern void fn_8008983C(void);
-extern void fn_800898E4(void);
+extern void TRKDoPing(void);
+extern void TRKDoVersions(void);
 extern void fn_8008998C(void);
 extern void TRK_serialIO_init(void);
 extern void fn_80089C5C(void);
@@ -116,7 +116,7 @@ asm void TRKMessageSend(void)
     blr
 }
 
-asm void fn_80088B44(void)
+asm void TRKAppendBuffer_ui32(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -235,7 +235,7 @@ _80088cb8:
     blr
 }
 
-asm void fn_80088CCC(void)
+asm void TRKAppendBuffer1_ui64(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -302,7 +302,7 @@ _80088d9c:
     blr
 }
 
-asm void fn_80088DB4(void)
+asm void TRKReadBuffer_ui32(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -414,7 +414,7 @@ _80088f10:
     blr
 }
 
-asm void fn_80088F18(void)
+asm void TRKReadBuffer1_ui64(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -600,7 +600,7 @@ _8008916c:
     blr
 }
 
-asm void fn_80089174(void)
+asm void TRKMessageIntoReply(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -836,14 +836,14 @@ asm void TRKProcessInput(void)
     stw	r31, 0x1c(r1)
     mr	r31, r3
     addi	r3, r1, 8
-    bl      fn_80088764
+    bl      TRKConstructEvent
     lis     r3, lbl_801A5098@ha
     li	r0, -1
     addi	r4, r3, lbl_801A5098@l
     stw	r31, 0x10(r1)
     addi	r3, r1, 8
     stw	r0, 0(r4)
-    bl      fn_8008877C
+    bl      TRKPostEvent
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     mtlr	r0
@@ -865,14 +865,14 @@ asm void TRKGetInput(void)
     bl      TRKGetBuffer
     addi	r3, r1, 8
     li	r4, 2
-    bl      fn_80088764
+    bl      TRKConstructEvent
     lis     r3, lbl_801A5098@ha
     li	r0, -1
     addi	r4, r3, lbl_801A5098@l
     stw	r31, 0x10(r1)
     addi	r3, r1, 8
     stw	r0, 0(r4)
-    bl      fn_8008877C
+    bl      TRKPostEvent
 _800894e8:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -1094,11 +1094,11 @@ asm void TRKDispatchMessage(void)
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_800898E4
+    bl      TRKDoVersions
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008983C
+    bl      TRKDoPing
     mr	r31, r3
 _80089800:
     lis     r3, lbl_8009586C@ha
@@ -1123,7 +1123,7 @@ asm void TRKInitializeDispatcher(void)
     blr
 }
 
-asm void fn_8008983C(void)
+asm void TRKDoPing(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -1173,7 +1173,7 @@ _80089894:
     blr
 }
 
-asm void fn_800898E4(void)
+asm void TRKDoVersions(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -1519,7 +1519,7 @@ _80089d88:
 _80089d8c:
     mr	r3, r28
     li	r4, 0
-    bl      fn_80089174
+    bl      TRKMessageIntoReply
     cmpwi	r31, 0
     bc      4, 2, _80089dd8
     addi	r3, r1, 0x8c
@@ -1657,7 +1657,7 @@ _80089f5c:
     stb	r4, 0x90(r1)
     li	r4, 0
     stw	r0, 0x8c(r1)
-    bl      fn_80089174
+    bl      TRKMessageIntoReply
     lwz	r5, 8(r29)
     addi	r4, r31, 0x98
     li	r3, 4
@@ -1882,7 +1882,7 @@ _8008a258:
     mr	r3, r27
     mr	r30, r0
     li	r4, 0
-    bl      fn_80089174
+    bl      TRKMessageIntoReply
     cmpwi	r30, 0
     bc      4, 2, _8008a2e8
     addi	r3, r1, 0x8c
@@ -2011,7 +2011,7 @@ _8008a44c:
     mr	r3, r27
     mr	r30, r0
     li	r4, 0
-    bl      fn_80089174
+    bl      TRKMessageIntoReply
     cmpwi	r30, 0
     bc      4, 2, _8008a4d4
     addi	r3, r1, 0x8c
@@ -2187,9 +2187,9 @@ asm void fn_8008A66C(void)
     bl      fn_8008D398
     addi	r3, r1, 8
     li	r4, 1
-    bl      fn_80088764
+    bl      TRKConstructEvent
     addi	r3, r1, 8
-    bl      fn_8008877C
+    bl      TRKPostEvent
     lwz	r0, 0x64(r1)
     li	r3, 0
     mtlr	r0
@@ -3300,9 +3300,9 @@ asm void TRKTargetSupportRequest(void)
     bc      12, 2, _8008b51c
     addi	r3, r1, 0x10
     li	r4, 4
-    bl      fn_80088764
+    bl      TRKConstructEvent
     addi	r3, r1, 0x10
-    bl      fn_8008877C
+    bl      TRKPostEvent
     li	r3, 0
     b       _8008b6a8
 _8008b51c:
@@ -3773,9 +3773,9 @@ _8008bb58:
     li	r4, 4
 _8008bb5c:
     addi	r3, r1, 0xc
-    bl      fn_80088764
+    bl      TRKConstructEvent
     addi	r3, r1, 0xc
-    bl      fn_8008877C
+    bl      TRKPostEvent
 _8008bb6c:
     lwz	r0, 0x24(r1)
     mtlr	r0
@@ -3985,12 +3985,12 @@ _8008be4c:
     lwz	r5, 0xc(r1)
     mr	r3, r24
     lwz	r6, 0x10(r1)
-    bl      fn_80088F18
+    bl      TRKReadBuffer1_ui64
     b       _8008bf3c
 _8008be94:
     mr	r3, r24
     addi	r4, r1, 0xc
-    bl      fn_80088CCC
+    bl      TRKAppendBuffer1_ui64
     lis	r3, -0x7ff7
     lwzu	r12, 0x5b58(r3)
     cmpwi	r26, 0
@@ -4112,7 +4112,7 @@ _8008bfdc:
     bc      12, 2, _8008c05c
     mr	r3, r5
     mr	r5, r0
-    bl      fn_80088DB4
+    bl      TRKReadBuffer_ui32
     b       _8008c0cc
 _8008c05c:
     addi	r3, r7, 0x1ec
@@ -4144,7 +4144,7 @@ _8008c088:
 _8008c0c0:
     mr	r3, r5
     mr	r5, r0
-    bl      fn_80088B44
+    bl      TRKAppendBuffer_ui32
 _8008c0cc:
     lbz	r0, 0xd(r31)
     cmplwi	r0, 0
@@ -4341,12 +4341,12 @@ _8008c38c:
     lwz	r5, 8(r1)
     mr	r3, r29
     lwz	r6, 0xc(r1)
-    bl      fn_80088F18
+    bl      TRKReadBuffer1_ui64
     b       _8008c578
 _8008c3a0:
     mr	r3, r29
     addi	r4, r1, 8
-    bl      fn_80088CCC
+    bl      TRKAppendBuffer1_ui64
     lis     r3, lbl_80095B80@ha
     cmplwi	r22, 0x20
     addi	r20, r3, lbl_80095B80@l
@@ -4543,12 +4543,12 @@ _8008c618:
     bc      12, 2, _8008c680
     mr	r3, r5
     mr	r5, r12
-    bl      fn_80088DB4
+    bl      TRKReadBuffer_ui32
     b       _8008c68c
 _8008c680:
     mr	r3, r5
     mr	r5, r12
-    bl      fn_80088B44
+    bl      TRKAppendBuffer_ui32
 _8008c68c:
     lbz	r0, 0xd(r30)
     cmplwi	r0, 0

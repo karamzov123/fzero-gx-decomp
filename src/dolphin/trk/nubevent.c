@@ -113,7 +113,7 @@ asm void TRKDestructEvent(void* msg)
     blr
 }
 
-asm void fn_80088764(void* ev)
+asm void TRKConstructEvent(void* ev)
 {
     nofralloc
     stw     r4, 0(r3)
@@ -124,7 +124,7 @@ asm void fn_80088764(void* ev)
     blr
 }
 
-asm int fn_8008877C(void* msg)
+asm int TRKPostEvent(void* msg)
 {
     nofralloc
     stwu    r1, -0x20(r1)
@@ -240,5 +240,5 @@ lbl_800888E4:
     blr
 }
 
-// fn_80088764: event init/clear
+// TRKConstructEvent: event init/clear
 #pragma pop

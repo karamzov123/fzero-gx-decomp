@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void fn_8006D8D8(void);
-extern asm void fn_8006E324(void);
+extern asm void PSMTXRotTrig(void);
 extern asm void fn_8006D0B4(void);
 extern asm void fn_8006D24C(void);
 extern asm void fn_8006D91C(void);
@@ -29,7 +29,7 @@ asm void fn_8006EFB4(void)
     mr	r31, r4
     bl      fn_8006D8D8
     lha	r3, 0(r30)
-    bl      fn_8006E324
+    bl      PSMTXRotTrig
     lis	r3, -0x2000
     fneg	f3, f31
     lfs	f2, 8(r3)
@@ -93,7 +93,7 @@ asm void PSMTXLookAt(void)
     bl      fn_8006D91C
     neg	r0, r30
     extsh	r3, r0
-    bl      fn_8006E324
+    bl      PSMTXRotTrig
     neg	r0, r31
     extsh	r3, r0
     bl      fn_8006E398

@@ -6,7 +6,7 @@ extern asm void fn_8006DAEC(void);
 extern asm void lbl_8006E1C0(void);
 extern asm void fn_8006D0B4(void);
 extern asm void fn_8006D8D8(void);
-extern asm void fn_8006E324(void);
+extern asm void PSMTXRotTrig(void);
 extern asm void PSMTXMultVecSS(void);
 extern asm void fn_8006DB30(void);
 extern asm void fn_8006D91C(void);
@@ -37,7 +37,7 @@ asm void fn_8006F394(void)
     blr	
 }
 
-asm void fn_8006F3E4(void)
+asm void C_MTXRotAxisRad(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -86,7 +86,7 @@ asm void fn_8006F3E4(void)
     lha	r3, 0(r29)
     bl      fn_8006D8D8
     lha	r3, 0(r30)
-    bl      fn_8006E324
+    bl      PSMTXRotTrig
     addi	r3, r1, 8
     mr	r4, r3
     bl      PSMTXMultVecSS
@@ -150,7 +150,7 @@ asm void fn_8006F4E0(void)
     lha	r3, 2(r31)
     bl      fn_8006D8D8
     lha	r3, 0(r31)
-    bl      fn_8006E324
+    bl      PSMTXRotTrig
     addi	r3, r1, 0x14
     mr	r4, r3
     bl      PSMTXMultVecSS
@@ -167,7 +167,7 @@ asm void fn_8006F4E0(void)
     blr	
 }
 
-asm void fn_8006F5C4(void)
+asm void C_MTXLookAt(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
