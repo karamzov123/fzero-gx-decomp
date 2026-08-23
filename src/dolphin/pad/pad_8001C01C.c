@@ -31,28 +31,28 @@ extern void fn_800133B8(void);
 extern void __shr2i(void);
 extern unsigned char lbl_801245E0[16];
 extern unsigned char lbl_8015D0B0[16];
-extern unsigned char lbl_8015D0C0[64];
+extern unsigned char Origin[64];
 
 asm void VIGetTvFormat(void);
-asm void fn_8001C084(void);
-asm void fn_8001C0C0(void);
-asm void fn_8001C1F0(void);
-asm void fn_8001C304(void);
-asm void fn_8001C4A8(void);
-asm void fn_8001C56C(void);
-asm void fn_8001C62C(void);
-asm void fn_8001C704(void);
-asm void fn_8001CA30(void);
-asm void fn_8001CB64(void);
-asm void fn_8001CC64(void);
-asm void fn_8001CD68(void);
-asm void fn_8001CF80(void);
+asm void PADIsMotorEnabled(void);
+asm void ClampS8(void);
+asm void PadClampStatus(void);
+asm void UpdateOrigin(void);
+asm void PADEnable(void);
+asm void PADDisable(void);
+asm void PADEnableWireless(void);
+asm void PADTypeAndStatusCallback(void);
+asm void PADOriginUpdateCallback(void);
+asm void PADReset(void);
+asm void PADRecalibrate(void);
+asm void PADInit(void);
+asm void PADRead(void);
 asm void fn_8001D32C(void);
 asm void fn_8001D3E4(void);
-asm void fn_8001D488(void);
-asm void fn_8001D4E8(void);
-asm void fn_8001D65C(void);
-asm void fn_8001D7D0(void);
+asm void PADSetSpec(void);
+asm void SPEC0_MakeStatus(void);
+asm void SPEC1_MakeStatus(void);
+asm void SPEC2_MakeStatus(void);
 asm void fn_8001DBC8(void);
 asm void fn_8001DC3C(void);
 asm void fn_8001DDD0(void);
@@ -91,7 +91,7 @@ _8001c068:
     blr
 }
 
-asm void fn_8001C084(void)
+asm void PADIsMotorEnabled(void)
 {
     nofralloc
     mflr	r0
@@ -111,7 +111,7 @@ asm void fn_8001C084(void)
     blr
 }
 
-asm void fn_8001C0C0(void)
+asm void ClampS8(void)
 {
     nofralloc
     lbz	r0, 0(r3)
@@ -203,7 +203,7 @@ _8001c1dc:
     blr
 }
 
-asm void fn_8001C1F0(void)
+asm void PadClampStatus(void)
 {
     nofralloc
     mflr	r0
@@ -227,13 +227,13 @@ _8001c220:
     lbz	r6, 4(r28)
     addi	r4, r29, 3
     lbz	r7, 2(r28)
-    bl      fn_8001C0C0
+    bl      ClampS8
     lbz	r5, 6(r28)
     addi	r3, r29, 4
     lbz	r6, 7(r28)
     addi	r4, r29, 5
     lbz	r7, 5(r28)
-    bl      fn_8001C0C0
+    bl      ClampS8
     lbz	r4, 6(r29)
     lbz	r0, 0(r28)
     lbz	r3, 0(r31)
@@ -284,15 +284,15 @@ _8001c2d4:
     blr
 }
 
-asm void fn_8001C304(void)
+asm void UpdateOrigin(void)
 {
     nofralloc
     mflr	r0
-    lis     r5, lbl_8015D0C0@ha
+    lis     r5, Origin@ha
     stw	r0, 4(r1)
     mulli	r6, r3, 0xc
     stwu	r1, -0x18(r1)
-    addi	r5, r5, lbl_8015D0C0@l
+    addi	r5, r5, Origin@l
     stw	r31, 0x14(r1)
     add	r31, r5, r6
     lwz	r0, -0x7f04(r13)
@@ -402,7 +402,7 @@ _8001c494:
     blr
 }
 
-asm void fn_8001C4A8(void)
+asm void PADEnable(void)
 {
     nofralloc
     mflr	r0
@@ -412,7 +412,7 @@ asm void fn_8001C4A8(void)
     stw	r31, 0x2c(r1)
     bc      4, 2, _8001c504
     lwz	r3, -0x7f0c(r13)
-    bl      fn_8001C304
+    bl      UpdateOrigin
     lwz	r31, -0x7f0c(r13)
     lis	r0, -0x8000
     lwz	r3, -0x7a44(r13)
@@ -440,15 +440,15 @@ _8001c504:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis     r3, lbl_8015D0C0@ha
-    addi	r0, r3, lbl_8015D0C0@l
+    lis     r3, Origin@ha
+    addi	r0, r3, Origin@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001c558:
     lwz	r0, 0x34(r1)
@@ -458,7 +458,7 @@ _8001c558:
     blr
 }
 
-asm void fn_8001C56C(void)
+asm void PADDisable(void)
 {
     nofralloc
     mflr	r0
@@ -477,7 +477,7 @@ asm void fn_8001C56C(void)
     clrlwi.	r0, r31, 0x1c
     bc      4, 2, _8001c5b0
     mr	r3, r29
-    bl      fn_8001C304
+    bl      UpdateOrigin
 _8001c5b0:
     rlwinm.	r0, r31, 0, 0x1c, 0x1c
     bc      12, 2, _8001c610
@@ -513,7 +513,7 @@ _8001c610:
     blr
 }
 
-asm void fn_8001C62C(void)
+asm void PADEnableWireless(void)
 {
     nofralloc
     mflr	r0
@@ -555,15 +555,15 @@ _8001c698:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis     r3, lbl_8015D0C0@ha
-    addi	r0, r3, lbl_8015D0C0@l
+    lis     r3, Origin@ha
+    addi	r0, r3, Origin@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001c6ec:
     lwz	r0, 0x34(r1)
@@ -574,7 +574,7 @@ _8001c6ec:
     blr
 }
 
-asm void fn_8001C704(void)
+asm void PADTypeAndStatusCallback(void)
 {
     nofralloc
     mflr	r0
@@ -611,9 +611,9 @@ asm void fn_8001C704(void)
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
     b       _8001ca10
 _8001c7a0:
@@ -643,9 +643,9 @@ _8001c7c4:
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
     b       _8001ca10
 _8001c818:
@@ -679,9 +679,9 @@ _8001c818:
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
     b       _8001ca10
 _8001c8a4:
@@ -693,9 +693,9 @@ _8001c8b4:
     cmplwi	r5, 0
     bc      12, 2, _8001c8f0
     mulli	r0, r29, 0xc
-    lis     r3, fn_8001C4A8@ha
+    lis     r3, PADEnable@ha
     add	r6, r30, r0
-    addi	r8, r3, fn_8001C4A8@l
+    addi	r8, r3, PADEnable@l
     addi	r3, r29, 0
     addi	r4, r13, -0x7ef4
     li	r5, 3
@@ -707,9 +707,9 @@ _8001c8b4:
     b       _8001c9ac
 _8001c8f0:
     mulli	r0, r29, 0xc
-    lis     r3, fn_8001C4A8@ha
+    lis     r3, PADEnable@ha
     add	r6, r30, r0
-    addi	r8, r3, fn_8001C4A8@l
+    addi	r8, r3, PADEnable@l
     addi	r3, r29, 0
     addi	r4, r13, -0x7ef8
     li	r5, 1
@@ -729,9 +729,9 @@ _8001c924:
     rlwinm.	r0, r6, 0, 1, 1
     bc      12, 2, _8001c978
     mulli	r0, r29, 0xc
-    lis     r3, fn_8001C4A8@ha
+    lis     r3, PADEnable@ha
     add	r6, r30, r0
-    addi	r8, r3, fn_8001C4A8@l
+    addi	r8, r3, PADEnable@l
     addi	r3, r29, 0
     addi	r4, r13, -0x7ef8
     li	r5, 1
@@ -743,10 +743,10 @@ _8001c924:
     b       _8001c9ac
 _8001c978:
     mulli	r0, r29, 0xc
-    lis     r3, fn_8001C62C@ha
+    lis     r3, PADEnableWireless@ha
     add	r4, r30, r4
     add	r6, r30, r0
-    addi	r8, r3, fn_8001C62C@l
+    addi	r8, r3, PADEnableWireless@l
     addi	r3, r29, 0
     li	r5, 3
     li	r7, 8
@@ -777,9 +777,9 @@ _8001c9ac:
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001ca10:
     lwz	r0, 0x44(r1)
@@ -792,7 +792,7 @@ _8001ca10:
     blr
 }
 
-asm void fn_8001CA30(void)
+asm void PADOriginUpdateCallback(void)
 {
     nofralloc
     mflr	r0
@@ -830,11 +830,11 @@ asm void fn_8001CA30(void)
     rlwinm.	r0, r3, 0, 0xd, 0xd
     bc      4, 2, _8001caf0
     mulli	r4, r31, 0xc
-    lis     r3, lbl_8015D0C0@ha
-    addi	r0, r3, lbl_8015D0C0@l
-    lis     r3, fn_8001C56C@ha
+    lis     r3, Origin@ha
+    addi	r0, r3, Origin@l
+    lis     r3, PADDisable@ha
     add	r6, r0, r4
-    addi	r8, r3, fn_8001C56C@l
+    addi	r8, r3, PADDisable@l
     addi	r3, r31, 0
     addi	r4, r13, -0x7ef8
     li	r5, 1
@@ -876,7 +876,7 @@ _8001cb48:
     blr
 }
 
-asm void fn_8001CB64(void)
+asm void PADReset(void)
 {
     nofralloc
     mflr	r0
@@ -925,15 +925,15 @@ _8001cbdc:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis     r3, lbl_8015D0C0@ha
-    addi	r0, r3, lbl_8015D0C0@l
+    lis     r3, Origin@ha
+    addi	r0, r3, Origin@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001cc40:
     mr	r3, r31
@@ -947,7 +947,7 @@ _8001cc40:
     blr
 }
 
-asm void fn_8001CC64(void)
+asm void PADRecalibrate(void)
 {
     nofralloc
     mflr	r0
@@ -997,15 +997,15 @@ _8001cce0:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis     r3, lbl_8015D0C0@ha
-    addi	r0, r3, lbl_8015D0C0@l
+    lis     r3, Origin@ha
+    addi	r0, r3, Origin@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001cd44:
     mr	r3, r31
@@ -1019,7 +1019,7 @@ _8001cd44:
     blr
 }
 
-asm void fn_8001CD68(void)
+asm void PADInit(void)
 {
     nofralloc
     mflr	r0
@@ -1039,7 +1039,7 @@ _8001cd94:
     lwz	r3, -0x7a24(r13)
     cmplwi	r3, 0
     bc      12, 2, _8001cdac
-    bl      fn_8001D488
+    bl      PADSetSpec
 _8001cdac:
     lwz	r0, -0x7ba8(r13)
     li	r3, 1
@@ -1148,9 +1148,9 @@ _8001cf00:
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001cf60:
     mr	r3, r27
@@ -1164,7 +1164,7 @@ _8001cf6c:
     blr
 }
 
-asm void fn_8001CF80(void)
+asm void PADRead(void)
 {
     nofralloc
     mflr	r0
@@ -1175,16 +1175,16 @@ asm void fn_8001CF80(void)
     bl      OSDisableInterrupts
     li	r21, 0
     mulli	r0, r21, 0xc
-    lis     r4, lbl_8015D0C0@ha
-    addi	r26, r4, lbl_8015D0C0@l
-    lis     r4, fn_8001C56C@ha
-    lis     r5, fn_8001CA30@ha
-    lis     r6, fn_8001C704@ha
+    lis     r4, Origin@ha
+    addi	r26, r4, Origin@l
+    lis     r4, PADDisable@ha
+    lis     r5, PADOriginUpdateCallback@ha
+    lis     r6, PADTypeAndStatusCallback@ha
     add	r24, r26, r0
     addi	r22, r3, 0
-    addi	r30, r4, fn_8001C56C@l
-    addi	r29, r5, fn_8001CA30@l
-    addi	r28, r6, fn_8001C704@l
+    addi	r30, r4, PADDisable@l
+    addi	r29, r5, PADOriginUpdateCallback@l
+    addi	r28, r6, PADTypeAndStatusCallback@l
     li	r20, 0
     lis	r27, -0x8000
 _8001cfd0:
@@ -1522,7 +1522,7 @@ _8001d464:
     blr
 }
 
-asm void fn_8001D488(void)
+asm void PADSetSpec(void)
 {
     nofralloc
     li	r0, 0
@@ -1538,25 +1538,25 @@ _8001d4a8:
     bc      4, 0, _8001d4e0
     b       _8001d4d4
 _8001d4b4:
-    lis     r4, fn_8001D4E8@ha
-    addi	r0, r4, fn_8001D4E8@l
+    lis     r4, SPEC0_MakeStatus@ha
+    addi	r0, r4, SPEC0_MakeStatus@l
     stw	r0, -0x7efc(r13)
     b       _8001d4e0
 _8001d4c4:
-    lis     r4, fn_8001D65C@ha
-    addi	r0, r4, fn_8001D65C@l
+    lis     r4, SPEC1_MakeStatus@ha
+    addi	r0, r4, SPEC1_MakeStatus@l
     stw	r0, -0x7efc(r13)
     b       _8001d4e0
 _8001d4d4:
-    lis     r4, fn_8001D7D0@ha
-    addi	r0, r4, fn_8001D7D0@l
+    lis     r4, SPEC2_MakeStatus@ha
+    addi	r0, r4, SPEC2_MakeStatus@l
     stw	r0, -0x7efc(r13)
 _8001d4e0:
     stw	r3, -0x7f00(r13)
     blr
 }
 
-asm void fn_8001D4E8(void)
+asm void SPEC0_MakeStatus(void)
 {
     nofralloc
     li	r3, 0
@@ -1665,7 +1665,7 @@ _8001d628:
     blr
 }
 
-asm void fn_8001D65C(void)
+asm void SPEC1_MakeStatus(void)
 {
     nofralloc
     li	r3, 0
@@ -1774,7 +1774,7 @@ _8001d79c:
     blr
 }
 
-asm void fn_8001D7D0(void)
+asm void SPEC2_MakeStatus(void)
 {
     nofralloc
     lwz	r0, 0(r5)
@@ -1918,11 +1918,11 @@ _8001d99c:
     stb	r0, 9(r4)
 _8001d9dc:
     lbz	r6, 2(r4)
-    lis     r5, lbl_8015D0C0@ha
+    lis     r5, Origin@ha
     mulli	r3, r3, 0xc
     addi	r0, r6, -0x80
     stb	r0, 2(r4)
-    addi	r0, r5, lbl_8015D0C0@l
+    addi	r0, r5, Origin@l
     add	r3, r0, r3
     lbz	r5, 3(r4)
     addi	r0, r5, -0x80
@@ -2167,15 +2167,15 @@ _8001dd28:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis     r3, lbl_8015D0C0@ha
-    addi	r0, r3, lbl_8015D0C0@l
+    lis     r3, Origin@ha
+    addi	r0, r3, Origin@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lis     r4, fn_8001C704@ha
+    lis     r4, PADTypeAndStatusCallback@ha
     lwz	r3, -0x7f0c(r13)
-    addi	r4, r4, fn_8001C704@l
+    addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001dd8c:
     mr	r3, r31

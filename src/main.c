@@ -113,8 +113,8 @@ extern void fn_800175C0(void);
 extern void fn_8001AAB4(void);
 extern void fn_8001AF64(void);
 extern void fn_8001BDF0(void);
-extern void fn_8001CD68(void);
-extern void fn_8001CF80(void);
+extern void PADInit(void);
+extern void PADRead(void);
 extern void fn_8001DBC8(void);
 extern void fn_80035C50(void);
 extern void fn_80036544(void);
@@ -453,7 +453,7 @@ asm void fn_800058D8(void)
     lbz	r0, -0x7d14(r13)
     cmplwi	r0, 0
     bc      4, 2, _8000590c
-    bl      fn_8001CD68
+    bl      PADInit
     li	r3, 3
     bl      fn_8001DBC8
     bl      fn_8006B188
@@ -1634,7 +1634,7 @@ asm void fn_8000691C(void)
     stw	r0, 0x74(r1)
     addi	r3, r1, 0x30
     stw	r31, 0x6c(r1)
-    bl      fn_8001CF80
+    bl      PADRead
     addi	r3, r1, 8
     bl      fn_8006B470
     lbz	r3, 0x11(r1)
