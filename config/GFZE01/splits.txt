@@ -296,8 +296,11 @@ game/fn_80071CC0.c:
 game/gxfifo_800724CC.c:
 	.text       start:0x800724CC end:0x8007264C
 
-coarse/text_8007264C.c:
-	.text       start:0x8007264C end:0x80074A60
+game/lightctrl_8007264C.c:
+	.text       start:0x8007264C end:0x80072EDC
+
+coarse/text_80072EDC.c:
+	.text       start:0x80072EDC end:0x80074A60
 
 game/gxstate_80074A60.c:
 	.text       start:0x80074A60 end:0x80074D88

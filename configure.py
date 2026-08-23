@@ -331,6 +331,7 @@ config.libs = [
         Object(Matching, "game/gauge.c"),
         Object(Matching, "game/fn_80071CC0.c"),
         Object(Matching, "game/gxfifo_800724CC.c"),
+        Object(Matching, "game/lightctrl_8007264C.c"),
         Object(Matching, "game/gxstate_80074A60.c"),
         Object(Matching, "game/skinning_80078538.c"),
         Object(Matching, "dolphin/gx/GXDraw.c"),
