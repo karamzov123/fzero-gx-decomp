@@ -46,7 +46,7 @@ extern void fn_80038F48(void);
 extern void fn_80072270(void);
 extern void fn_800794F0(void);
 extern void fn_8008023C(void);
-extern void lbl_8006DD14(void);
+extern void fn_8006DD14(void);
 asm void fn_80072EDC(void);
 asm void fn_800734A8(void);
 asm void fn_800735C8(void);
@@ -2072,7 +2072,7 @@ asm void fn_800749B0(void)
     cmplwi r3, 0
     beq _800749F4
     addi r4, r31, 0x20
-    bl lbl_8006DD14
+    bl fn_8006DD14
     li r0, 1
     stw r0, -0x7648(r13)
     b _80074A48
@@ -2087,7 +2087,7 @@ _80074A00:
     addi r4, r31, 0x50
     mulli r0, r0, 0x30
     add r4, r4, r0
-    bl lbl_8006DD14
+    bl fn_8006DD14
     addi r0, r30, -1
     addi r3, r31, 0xe0
     slwi r0, r0, 2

@@ -1,14 +1,14 @@
 #pragma push
 #pragma force_active on
 
-extern asm void lbl_8006DAEC(void);
+extern asm void fn_8006DAEC(void);
 extern asm void lbl_8006E1C0(void);
-extern asm void lbl_8006D24C(void);
-extern asm void lbl_8006D0B4(void);
-extern asm void lbl_8006D91C(void);
+extern asm void fn_8006D24C(void);
+extern asm void fn_8006D0B4(void);
+extern asm void fn_8006D91C(void);
 extern asm void fn_8006E398(void);
 extern asm void fn_8006E2B0(void);
-extern asm void lbl_8006DB30(void);
+extern asm void fn_8006DB30(void);
 extern asm void lbl_8006E1B0(void);
 
 asm void fn_8006F6A8(void)
@@ -19,7 +19,7 @@ asm void fn_8006F6A8(void)
     stw	r0, 0x34(r1)
     stw	r31, 0x2c(r1)
     mr	r31, r3
-    bl      lbl_8006DAEC
+    bl      fn_8006DAEC
     lfs	f0, -0x7a50(r2)
     addi	r3, r1, 8
     lfs	f1, -0x7a4c(r2)
@@ -36,20 +36,20 @@ asm void fn_8006F6A8(void)
     bl      lbl_8006E1C0
     lfs	f1, 0xc(r1)
     lfs	f2, 8(r1)
-    bl      lbl_8006D24C
+    bl      fn_8006D24C
     sth	r3, 4(r31)
     lfs	f1, 0xc(r1)
     lfs	f0, 8(r1)
     fmuls	f1, f1, f1
     fmadds	f1, f0, f0, f1
-    bl      lbl_8006D0B4
+    bl      fn_8006D0B4
     fmr	f2, f1
     lfs	f1, 0x10(r1)
-    bl      lbl_8006D24C
+    bl      fn_8006D24C
     neg	r0, r3
     sth	r0, 2(r31)
     lha	r3, 4(r31)
-    bl      lbl_8006D91C
+    bl      fn_8006D91C
     lha	r3, 2(r31)
     bl      fn_8006E398
     addi	r3, r1, 0x14
@@ -57,9 +57,9 @@ asm void fn_8006F6A8(void)
     bl      fn_8006E2B0
     lfs	f1, 0x1c(r1)
     lfs	f2, 0x18(r1)
-    bl      lbl_8006D24C
+    bl      fn_8006D24C
     sth	r3, 0(r31)
-    bl      lbl_8006DB30
+    bl      fn_8006DB30
     lwz	r0, 0x34(r1)
     lwz	r31, 0x2c(r1)
     mtlr	r0

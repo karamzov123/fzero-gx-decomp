@@ -1,17 +1,17 @@
 #pragma push
 #pragma force_active on
 
-extern asm void lbl_8006D8D8(void);
+extern asm void fn_8006D8D8(void);
 extern asm void fn_8006E324(void);
-extern asm void lbl_8006D0B4(void);
-extern asm void lbl_8006D24C(void);
-extern asm void lbl_8006D91C(void);
+extern asm void fn_8006D0B4(void);
+extern asm void fn_8006D24C(void);
+extern asm void fn_8006D91C(void);
 extern asm void fn_8006E398(void);
-extern asm void lbl_8006E0C8(void);
-extern asm void lbl_8006D890(void);
+extern asm void fn_8006E0C8(void);
+extern asm void fn_8006D890(void);
 extern asm void fn_8006D668(void);
-extern asm void lbl_8006D7DC(void);
-extern asm void lbl_8006DF44(void);
+extern asm void fn_8006D7DC(void);
+extern asm void fn_8006DF44(void);
 
 asm void fn_8006EFB4(void)
 {
@@ -27,7 +27,7 @@ asm void fn_8006EFB4(void)
     fmr	f31, f1
     lha	r3, 2(r3)
     mr	r31, r4
-    bl      lbl_8006D8D8
+    bl      fn_8006D8D8
     lha	r3, 0(r30)
     bl      fn_8006E324
     lis	r3, -0x2000
@@ -79,18 +79,18 @@ asm void fn_8006F038(void)
     fmuls	f1, f29, f29
     fsubs	f30, f3, f2
     fmadds	f1, f31, f31, f1
-    bl      lbl_8006D0B4
+    bl      fn_8006D0B4
     fmr	f2, f1
     fmr	f1, f30
-    bl      lbl_8006D24C
+    bl      fn_8006D24C
     fmr	f1, f29
     mr	r30, r3
     fmr	f2, f31
-    bl      lbl_8006D24C
+    bl      fn_8006D24C
     neg	r0, r31
     mr	r31, r3
     extsh	r3, r0
-    bl      lbl_8006D91C
+    bl      fn_8006D91C
     neg	r0, r30
     extsh	r3, r0
     bl      fn_8006E324
@@ -98,7 +98,7 @@ asm void fn_8006F038(void)
     extsh	r3, r0
     bl      fn_8006E398
     mr	r3, r29
-    bl      lbl_8006E0C8
+    bl      fn_8006E0C8
     psq_l f31, 0x48(r1), 0, 0
     lfd	f31, 0x40(r1)
     psq_l f30, 0x38(r1), 0, 0
@@ -140,23 +140,23 @@ asm void fn_8006F120(void)
     fmuls	f1, f29, f29
     fsubs	f30, f3, f2
     fmadds	f1, f31, f31, f1
-    bl      lbl_8006D0B4
+    bl      fn_8006D0B4
     fmr	f2, f1
     fmr	f1, f30
-    bl      lbl_8006D24C
+    bl      fn_8006D24C
     fmr	f1, f29
     mr	r31, r3
     fmr	f2, f31
-    bl      lbl_8006D24C
+    bl      fn_8006D24C
     neg	r0, r31
     mr	r31, r3
     extsh	r3, r0
-    bl      lbl_8006D890
+    bl      fn_8006D890
     neg	r0, r31
     extsh	r3, r0
     bl      fn_8006E398
     mr	r3, r30
-    bl      lbl_8006E0C8
+    bl      fn_8006E0C8
     psq_l f31, 0x38(r1), 0, 0
     lfd	f31, 0x30(r1)
     psq_l f30, 0x28(r1), 0, 0
@@ -199,7 +199,7 @@ asm void fn_8006F1F0(void)
     fcmpu	cr0, f0, f1
     bne	_8006f25c
     mr	r3, r30
-    bl      lbl_8006D7DC
+    bl      fn_8006D7DC
     b	_8006f37c
 _8006f25c:
     lfs	f6, 4(r31)
@@ -223,7 +223,7 @@ _8006f25c:
     fcmpu	cr0, f0, f1
     bne	_8006f2b8
     mr	r3, r30
-    bl      lbl_8006D7DC
+    bl      fn_8006D7DC
     b	_8006f37c
 _8006f2b8:
     lfs	f6, 0xc(r1)
@@ -247,7 +247,7 @@ _8006f2b8:
     fcmpu	cr0, f0, f1
     bne	_8006f314
     mr	r3, r30
-    bl      lbl_8006D7DC
+    bl      fn_8006D7DC
     b	_8006f37c
 _8006f314:
     lwz	r3, -0x76c0(r13)
@@ -275,7 +275,7 @@ _8006f314:
     stfs	f0, 0x28(r3)
     lfs	f0, 8(r30)
     stfs	f0, 0x2c(r3)
-    bl      lbl_8006DF44
+    bl      fn_8006DF44
 _8006f37c:
     lwz	r0, 0x44(r1)
     lwz	r31, 0x3c(r1)

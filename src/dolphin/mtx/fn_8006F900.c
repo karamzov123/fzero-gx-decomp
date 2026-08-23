@@ -2,12 +2,12 @@
 #pragma force_active on
 
 extern asm void lbl_8006E1B0(void);
-extern asm void lbl_8006DBAC(void);
+extern asm void fn_8006DBAC(void);
 extern asm void fn_8006E5FC(void);
 extern asm void fn_8006EB4C(void);
 extern asm void fn_8006E498(void);
-extern asm void lbl_8006DC34(void);
-extern asm void lbl_8006D5A4(void);
+extern asm void fn_8006DC34(void);
+extern asm void fn_8006D5A4(void);
 extern asm void fn_8006D668(void);
 
 asm void fn_8006F900(void)
@@ -70,11 +70,11 @@ asm void fn_8006F9A4(void)
     mr	r31, r5
     stw	r30, 0x40(r1)
     mr	r30, r4
-    bl      lbl_8006DBAC
+    bl      fn_8006DBAC
     addi	r3, r1, 0x28
     bl      fn_8006E5FC
     mr	r3, r30
-    bl      lbl_8006DBAC
+    bl      fn_8006DBAC
     addi	r3, r1, 0x18
     bl      fn_8006E5FC
     fmr	f1, f31
@@ -85,7 +85,7 @@ asm void fn_8006F9A4(void)
     addi	r3, r1, 8
     bl      fn_8006E498
     mr	r3, r31
-    bl      lbl_8006DC34
+    bl      fn_8006DC34
     lwz	r0, 0x54(r1)
     lfd	f31, 0x48(r1)
     lwz	r31, 0x44(r1)
@@ -110,12 +110,12 @@ asm void fn_8006FA24(void)
     mr	r29, r3
     mr	r30, r4
     mr	r31, r5
-    bl      lbl_8006D5A4
+    bl      fn_8006D5A4
     fmr	f1, f31
     addi	r3, r29, 0x10
     addi	r4, r30, 0x10
     addi	r5, r31, 0x10
-    bl      lbl_8006D5A4
+    bl      fn_8006D5A4
     lfs	f6, 4(r31)
     mr	r3, r31
     lfs	f3, 0x18(r31)
@@ -179,12 +179,12 @@ asm void fn_8006FB20(void)
     mr	r3, r31
     mr	r5, r31
     mr	r4, r30
-    bl      lbl_8006D5A4
+    bl      fn_8006D5A4
     fmr	f1, f31
     addi	r3, r31, 0x10
     mr	r5, r3
     addi	r4, r30, 0x10
-    bl      lbl_8006D5A4
+    bl      fn_8006D5A4
     lfs	f6, 4(r31)
     mr	r3, r31
     lfs	f3, 0x18(r31)

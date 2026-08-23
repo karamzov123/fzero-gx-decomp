@@ -186,13 +186,13 @@ extern void fn_80083BCC(void);
 extern void fn_80083D40(void);
 extern void fn_80083D6C(void);
 extern void fn_80083DB0(void);
-extern void lbl_8006D188(void);
+extern void fn_8006D188(void);
 extern void fn_8006D668(void);
 extern void fn_8006D758(void);
-extern void lbl_8006D7DC(void);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
-extern void lbl_8006DBAC(void);
+extern void fn_8006D7DC(void);
+extern void fn_8006DAEC(void);
+extern void fn_8006DB30(void);
+extern void fn_8006DBAC(void);
 extern void main(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -3342,7 +3342,7 @@ asm void fn_80007F70(void)
     stfd	f0, 0x18(r1)
     lwz	r0, 0x1c(r1)
     extsh	r3, r0
-    bl      lbl_8006D188
+    bl      fn_8006D188
     lfs	f2, -0x7f2c(r2)
     lfs	f0, -0x7f30(r2)
     fadds	f1, f2, f1
@@ -3656,12 +3656,12 @@ _800083f4:
     fmuls	f30, f1, f7
     fmuls	f28, f0, f7
 _80008454:
-    bl      lbl_8006DAEC
+    bl      fn_8006DAEC
     bl      fn_8006D758
     lwz	r3, -0x76c0(r13)
     li	r4, 0
     bl      fn_80038C5C
-    bl      lbl_8006DB30
+    bl      fn_8006DB30
     li	r3, 0x80
     li	r4, 0
     li	r5, 4
@@ -3714,10 +3714,10 @@ asm void fn_800084E8(void)
     stw	r31, 0x2c(r1)
     mr	r31, r4
     bl      fn_800087F4
-    bl      lbl_8006DAEC
+    bl      fn_8006DAEC
     bl      fn_8006D758
     bl      fn_80072558
-    bl      lbl_8006DB30
+    bl      fn_8006DB30
     addi	r3, r1, 8
     bl      fn_80038BFC
     lfs	f1, -0x7f08(r2)
@@ -4216,7 +4216,7 @@ asm void fn_80008C20(void)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008c80
     mr	r3, r30
-    bl      lbl_8006D7DC
+    bl      fn_8006D7DC
     b       _80008d9c
 _80008c80:
     lfs	f6, 4(r31)
@@ -4240,7 +4240,7 @@ _80008c80:
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008cdc
     mr	r3, r30
-    bl      lbl_8006D7DC
+    bl      fn_8006D7DC
     b       _80008d9c
 _80008cdc:
     lfs	f6, 0xc(r1)
@@ -4264,7 +4264,7 @@ _80008cdc:
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008d38
     mr	r3, r30
-    bl      lbl_8006D7DC
+    bl      fn_8006D7DC
     b       _80008d9c
 _80008d38:
     lwz	r3, -0x76c0(r13)

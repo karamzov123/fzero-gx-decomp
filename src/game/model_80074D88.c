@@ -72,13 +72,13 @@ extern void fn_80078C28(void);
 extern void fn_80078CDC(void);
 extern void fn_80078D60(void);
 extern void fn_8006D758(void);
-extern void lbl_8006D7F4(void);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
-extern void lbl_8006DB74(void);
-extern void lbl_8006DD14(void);
-extern void lbl_8006DFC4(void);
-extern void lbl_8006E14C(void);
+extern void fn_8006D7F4(void);
+extern void fn_8006DAEC(void);
+extern void fn_8006DB30(void);
+extern void fn_8006DB74(void);
+extern void fn_8006DD14(void);
+extern void fn_8006DFC4(void);
+extern void fn_8006E14C(void);
 extern void lbl_8006E1B0(void);
 extern void memset(void);
 asm void fn_80074D88(void);
@@ -136,7 +136,7 @@ asm void fn_80074D88(void)
     lwz r0, -0x766c(r13)
     cmplwi r0, 0
     beq _80075068
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lwz r3, -0x76c0(r13)
     li r4, 0x1e
     li r5, 0
@@ -192,7 +192,7 @@ asm void fn_80074D88(void)
     stfs f0, 0x18(r3)
     lwz r3, -0x76c0(r13)
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     lis r3, -0x7fe6
     lwz r4, 0xc(r31)
     addi r3, r3, -0xea8
@@ -471,9 +471,9 @@ asm void fn_80075240(void)
     stw r0, 0xe0(r31)
     stw r0, 4(r3)
     stw r0, 8(r3)
-    bl lbl_8006D7F4
+    bl fn_8006D7F4
     addi r3, r31, 0x138
-    bl lbl_8006DB74
+    bl fn_8006DB74
     addi r3, r31, 0x138
     li r4, 0x21
     li r5, 0
@@ -1482,7 +1482,7 @@ asm void fn_80076134(void)
     stwu r1, -0x10(r1)
     mflr r0
     stw r0, 0x14(r1)
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1494,12 +1494,12 @@ asm void fn_80076134(void)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     lis r3, -0x7fe6
     li r0, 1
     addi r3, r3, 0x3220
     stw r0, 0x3c(r3)
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lis r4, -0x7fe6
     lis r3, -0x7fea
     addi r4, r4, 0x3220
@@ -1534,12 +1534,12 @@ asm void fn_80076134(void)
     stfs f2, 0x28(r3)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
-    bl lbl_8006E14C
+    bl fn_8006E14C
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     lwz r0, 0x14(r1)
     mtlr r0
     addi r1, r1, 0x10
@@ -1569,7 +1569,7 @@ asm void fn_80076238(void)
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _800762C4
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1581,7 +1581,7 @@ asm void fn_80076238(void)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     li r0, 1
     stw r0, 0x3c(r31)
 _800762C4:
@@ -1590,7 +1590,7 @@ _800762C4:
     lwz r0, 0x40(r31)
     cmpwi r0, 0
     bne _80076384
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lis r4, -0x7fe6
     lis r3, -0x7fea
     addi r4, r4, 0x3220
@@ -1625,12 +1625,12 @@ _800762C4:
     stfs f2, 0x28(r3)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
-    bl lbl_8006E14C
+    bl fn_8006E14C
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     li r0, 1
     stw r0, 0x40(r31)
 _80076384:
@@ -1733,7 +1733,7 @@ asm void fn_800764A0(void)
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _80076530
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1745,7 +1745,7 @@ asm void fn_800764A0(void)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     li r0, 1
     stw r0, 0x3c(r31)
 _80076530:
@@ -1754,7 +1754,7 @@ _80076530:
     lwz r0, 0x40(r31)
     cmpwi r0, 0
     bne _800765F0
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lis r4, -0x7fe6
     lis r3, -0x7fea
     addi r4, r4, 0x3220
@@ -1789,12 +1789,12 @@ _80076530:
     stfs f2, 0x28(r3)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
-    bl lbl_8006E14C
+    bl fn_8006E14C
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     li r0, 1
     stw r0, 0x40(r31)
 _800765F0:
@@ -1918,7 +1918,7 @@ asm void fn_80076790(void)
     stw r4, 0x2c(r1)
     stw r3, 0x30(r1)
     stw r0, 0x34(r1)
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lis r3, -0x7fe6
     lis r6, -0x7fe6
     addi r4, r3, 0x3220
@@ -1969,7 +1969,7 @@ asm void fn_80076790(void)
     stfs f0, 0x10(r1)
     bl fn_8006F1F0
     addi r3, r1, 0x38
-    bl lbl_8006DB74
+    bl fn_8006DB74
     lfs f1, -0x79b4(r2)
     lwz r3, -0x76c0(r13)
     lfs f4, -0x79a4(r2)
@@ -1998,7 +1998,7 @@ asm void fn_80076790(void)
     stfs f2, 0x28(r3)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
-    bl lbl_8006E14C
+    bl fn_8006E14C
     lwz r3, -0x76c0(r13)
     li r4, 0x43
     li r5, 0
@@ -2020,12 +2020,12 @@ asm void fn_80076790(void)
     stfs f2, 0x28(r4)
     lwz r4, -0x76c0(r13)
     stfs f0, 0x2c(r4)
-    bl lbl_8006DFC4
+    bl fn_8006DFC4
     lwz r3, -0x76c0(r13)
     li r4, 0x46
     li r5, 0
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     lis r3, -0x7fe6
     li r0, 1
     addi r3, r3, 0x3220
@@ -2116,7 +2116,7 @@ _80076AA4:
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _80076AF4
-    bl lbl_8006DAEC
+    bl fn_8006DAEC
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -2128,7 +2128,7 @@ _80076AA4:
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
     bl fn_80038D34
-    bl lbl_8006DB30
+    bl fn_8006DB30
     li r0, 1
     stw r0, 0x3c(r31)
 _80076AF4:
@@ -3240,7 +3240,7 @@ _80077A84:
 _80077A8C:
     lwz r4, 0(r28)
     mr r3, r30
-    bl lbl_8006DD14
+    bl fn_8006DD14
     addi r30, r30, 0x30
     addi r28, r28, 4
     addi r31, r31, 1

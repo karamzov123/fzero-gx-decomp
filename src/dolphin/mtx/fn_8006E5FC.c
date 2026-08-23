@@ -2,10 +2,10 @@
 #pragma force_active on
 
 extern asm void _savegpr_25(void);
-extern asm void lbl_8006D0B4(void);
+extern asm void fn_8006D0B4(void);
 extern asm void _restgpr_25(void);
-extern asm void lbl_8006D188(void);
-extern asm void lbl_8006D0E8(void);
+extern asm void fn_8006D188(void);
+extern asm void fn_8006D0E8(void);
 
 asm void fn_8006E5FC(void)
 {
@@ -35,7 +35,7 @@ asm void fn_8006E5FC(void)
     ble	_8006e6c0
     lfs	f0, -0x7a68(r2)
     fadds	f1, f0, f1
-    bl      lbl_8006D0B4
+    bl      fn_8006D0B4
     lfs	f0, -0x7a64(r2)
     fdivs	f2, f0, f1
     fmuls	f0, f0, f1
@@ -92,7 +92,7 @@ _8006e6ec:
     fadds	f0, f1, f0
     fsubs	f0, f2, f0
     fadds	f1, f3, f0
-    bl      lbl_8006D0B4
+    bl      fn_8006D0B4
     lfs	f3, -0x7a64(r2)
     addi	r3, r1, 0x14
     lfs	f0, -0x7a6c(r2)
@@ -174,10 +174,10 @@ _8006e854:
     extsh	r31, r5
     srawi	r0, r31, 1
     extsh	r3, r0
-    bl      lbl_8006D188
+    bl      fn_8006D188
     fmr	f31, f1
     fmr	f1, f30
-    bl      lbl_8006D0E8
+    bl      fn_8006D0E8
     fmuls	f1, f1, f31
     lfs	f0, 0(r30)
     srawi	r0, r31, 1
@@ -192,7 +192,7 @@ _8006e854:
     lfs	f0, 8(r30)
     fmuls	f0, f0, f1
     stfs	f0, 8(r29)
-    bl      lbl_8006D188
+    bl      fn_8006D188
     stfs	f1, 0xc(r29)
 _8006e8b0:
     psq_l f31, 0x38(r1), 0, 0
@@ -230,7 +230,7 @@ asm void fn_8006E8DC(void)
     fadds	f1, f4, f1
     fcmpo	cr0, f1, f0
     ble	_8006e930
-    bl      lbl_8006D0E8
+    bl      fn_8006D0E8
     b	_8006e934
 _8006e930:
     lfs	f1, -0x7a68(r2)
@@ -303,7 +303,7 @@ _8006ea08:
     fmr	f29, f4
     fmuls	f0, f30, f30
     fadds	f1, f1, f0
-    bl      lbl_8006D0B4
+    bl      fn_8006D0B4
     lfd	f0, -0x7a58(r2)
     fcmpo	cr0, f1, f0
     bge	_8006ea4c
@@ -317,7 +317,7 @@ _8006ea4c:
     fmuls	f2, f30, f30
     fadds	f0, f1, f0
     fadds	f1, f2, f0
-    bl      lbl_8006D0E8
+    bl      fn_8006D0E8
     fmuls	f28, f28, f1
     lfs	f0, -0x7a6c(r2)
     fmuls	f29, f29, f1
@@ -342,7 +342,7 @@ _8006ea88:
     fadds	f0, f1, f0
     fmuls	f1, f28, f28
     fadds	f1, f1, f0
-    bl      lbl_8006D0E8
+    bl      fn_8006D0E8
     lfs	f0, -0x7a68(r2)
     fmuls	f31, f31, f1
     lfs	f2, -0x7a64(r2)
@@ -350,7 +350,7 @@ _8006ea88:
     fsubs	f0, f0, f30
     fmuls	f28, f28, f1
     fmuls	f1, f2, f0
-    bl      lbl_8006D0B4
+    bl      fn_8006D0B4
     fmuls	f31, f31, f1
     lfs	f0, -0x7a68(r2)
     fmuls	f29, f29, f1
@@ -361,7 +361,7 @@ _8006ea88:
     stfs	f29, 4(r30)
     fmuls	f1, f2, f0
     stfs	f28, 8(r30)
-    bl      lbl_8006D0B4
+    bl      fn_8006D0B4
     stfs	f1, 0xc(r30)
 _8006eb14:
     psq_l f31, 0x48(r1), 0, 0

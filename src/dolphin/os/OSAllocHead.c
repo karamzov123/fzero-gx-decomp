@@ -174,13 +174,13 @@ extern void fn_80083BCC(void);
 extern void fn_80083D40(void);
 extern void fn_80083D6C(void);
 extern void fn_80083DB0(void);
-extern void lbl_8006D188(void);
+extern void fn_8006D188(void);
 extern void fn_8006D668(void);
 extern void fn_8006D758(void);
-extern void lbl_8006D7DC(void);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
-extern void lbl_8006DBAC(void);
+extern void fn_8006D7DC(void);
+extern void fn_8006DAEC(void);
+extern void fn_8006DB30(void);
+extern void fn_8006DBAC(void);
 extern void memcpy(void);
 extern void memset(void);
 extern void strlen(void);
@@ -200,11 +200,11 @@ asm void fn_80008DB4(void)
     mr	r31, r5
     stw	r30, 0x40(r1)
     mr	r30, r4
-    bl      lbl_8006DBAC
+    bl      fn_8006DBAC
     addi	r3, r1, 0x28
     bl      fn_8006E5FC
     mr	r3, r30
-    bl      lbl_8006DBAC
+    bl      fn_8006DBAC
     addi	r3, r1, 0x18
     bl      fn_8006E5FC
     fmr	f1, f31
