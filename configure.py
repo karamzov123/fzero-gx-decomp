@@ -340,6 +340,7 @@ config.libs = [
         Object(Matching, "dolphin/os/init/memcpy.c"),
         Object(Matching, "dolphin/os/init/trk_stubs.c"),
         Object(Matching, "dolphin/os/init/trk_reset.c"),
+        Object(Matching, "dolphin/os/OSAllocHead.c"),
         Object(Matching, "dolphin/os/OSAllocCtx.c"),
         Object(Matching, "dolphin/os/OSCacheRest.c"),
         Object(Matching, "dolphin/os/OSContext.c"),

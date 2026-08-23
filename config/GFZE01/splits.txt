@@ -68,7 +68,7 @@ coarse/dtors_8008FF20.c:
 main.c:
 	.text       start:0x800055E0 end:0x80008DB4
 
-coarse/text_80008DB4.c:
+dolphin/os/OSAllocHead.c:
 	.text       start:0x80008DB4 end:0x80009468
 
 dolphin/os/OSAllocCtx.c:
