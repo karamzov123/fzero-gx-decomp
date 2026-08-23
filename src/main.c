@@ -180,14 +180,14 @@ extern void fn_800791A4(void);
 extern void fn_800791E8(void);
 extern void fn_800793D4(void);
 extern void fn_800794F0(void);
-extern void fn_80079764(void);
+extern void __cvt_fp2unsigned(void);
 extern void fn_80083B8C(void);
 extern void fn_80083BCC(void);
 extern void fn_80083D40(void);
 extern void fn_80083D6C(void);
 extern void fn_80083DB0(void);
 extern void lbl_8006D188(void);
-extern void lbl_8006D668(void);
+extern void fn_8006D668(void);
 extern void lbl_8006D758(void);
 extern void lbl_8006D7DC(void);
 extern void lbl_8006DAEC(void);
@@ -3601,7 +3601,7 @@ asm void fn_80008204(void)
     lfs	f30, 0x2c(r1)
     lfs	f1, 0x18(r1)
     fdivs	f31, f29, f30
-    bl      fn_80079764
+    bl      __cvt_fp2unsigned
     cmpwi	r3, 0
     bc      12, 2, _80008394
     b       _800083f4
@@ -4211,7 +4211,7 @@ asm void fn_80008C20(void)
     lfs	f0, 8(r5)
     fneg	f0, f0
     stfs	f0, 0x10(r1)
-    bl      lbl_8006D668
+    bl      fn_8006D668
     lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008c80
@@ -4235,7 +4235,7 @@ _80008c80:
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x24(r1)
     stfs	f0, 0x28(r1)
-    bl      lbl_8006D668
+    bl      fn_8006D668
     lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008cdc
@@ -4259,7 +4259,7 @@ _80008cdc:
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x18(r1)
     stfs	f0, 0x1c(r1)
-    bl      lbl_8006D668
+    bl      fn_8006D668
     lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008d38
