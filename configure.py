@@ -332,6 +332,7 @@ config.libs = [
         Object(Matching, "game/fn_80071CC0.c"),
         Object(Matching, "game/gxfifo_800724CC.c"),
         Object(Matching, "game/lightctrl_8007264C.c"),
+        Object(Matching, "game/model_80072EDC.c"),
         Object(Matching, "game/model_80074D88.c"),
         Object(Matching, "game/model_800786B0.c"),
         Object(Matching, "game/gxstate_80074A60.c"),

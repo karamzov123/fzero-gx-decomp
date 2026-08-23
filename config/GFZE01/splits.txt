@@ -299,7 +299,7 @@ game/gxfifo_800724CC.c:
 game/lightctrl_8007264C.c:
 	.text       start:0x8007264C end:0x80072EDC
 
-coarse/text_80072EDC.c:
+game/model_80072EDC.c:
 	.text       start:0x80072EDC end:0x80074A60
 
 game/gxstate_80074A60.c:
