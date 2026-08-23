@@ -374,8 +374,11 @@ game/adxt_80052430.c:
 game/adxt_80053A30.c:
 	.text       start:0x80053A30 end:0x80053EA0
 
-coarse/text_80053EA0.c:
-	.text       start:0x80053EA0 end:0x8005C120
+game/adxt_80053EA0.c:
+	.text       start:0x80053EA0 end:0x80055708
+
+coarse/text_80055708.c:
+	.text       start:0x80055708 end:0x8005C120
 
 coarse/text_8005C120.c:
 	.text       start:0x8005C120 end:0x80069AE0
