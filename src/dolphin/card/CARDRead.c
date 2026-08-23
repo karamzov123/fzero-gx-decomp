@@ -15,9 +15,9 @@ extern void fn_80029824(void);
 extern void __CARDSyncCallback(register s32 chn);
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
-extern s32 fn_8002C0B8(register void* ctrl);
+extern s32 __CARDGetFatBlock(register void* ctrl);
 extern s32 __CARDGetDirBlock(void);
-extern s32 fn_8002BEFC(register s32 chn, register void* addr, register s32 len,
+extern s32 __CARDRead(register s32 chn, register void* addr, register s32 len,
                        register void* r6, register void* r7);
 extern s32 __CARDAccess(register void* ctrl, register void* r4);
 extern s32 fn_8002EA54(register void* ctrl);
@@ -112,7 +112,7 @@ _L_8002f248:
     b       _L_8002f2d8
 _L_8002f258:
     lwz     r3, 0x18(r1)
-    bl      fn_8002C0B8
+    bl      __CARDGetFatBlock
     b       _L_8002f2ac
 _L_8002f264:
     lwz     r0, 8(r28)
@@ -191,7 +191,7 @@ _L_8002f33c:
     cmpwi   r0, 0
     ble     _L_8002f3e8
     mr      r3, r31
-    bl      fn_8002C0B8
+    bl      __CARDGetFatBlock
     lwz     r0, 8(r28)
     add     r0, r0, r27
     stw     r0, 8(r28)
@@ -222,7 +222,7 @@ _L_8002f3c8:
     lis     r3, fn_8002F2F8@ha
     addi    r7, r3, fn_8002F2F8@l
     addi    r3, r29, 0
-    bl      fn_8002BEFC
+    bl      __CARDRead
     or.     r30, r3, r3
     bge     _L_8002f414
 _L_8002f3e8:
@@ -327,7 +327,7 @@ _L_8002f51c:
     addi    r5, r31, 0
     addi    r6, r30, 0
     add     r4, r8, r0
-    bl      fn_8002BEFC
+    bl      __CARDRead
     or.     r29, r3, r3
     bge     _L_8002f558
     lwz     r3, 0x1c(r1)

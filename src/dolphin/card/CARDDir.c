@@ -67,15 +67,15 @@ extern void fn_8002A744(void);
 extern void __CARDGetControlBlock(void);
 extern void __CARDPutControlBlock(void);
 extern void __CARDSync(void);
-extern void fn_8002AF34(void);
-extern void fn_8002BEFC(void);
+extern void __CARDUnlock(void);
+extern void __CARDRead(void);
 extern void __CARDWrite(void);
-extern void fn_8002C0B8(void);
+extern void __CARDGetFatBlock(void);
 extern void __CARDAllocBlock(void);
 extern void __CARDUpdateFatBlock(void);
 extern void __CARDGetDirBlock(void);
 extern void __CARDUpdateDir(void);
-extern void fn_8002C720(void);
+extern void __CARDCheckSum(void);
 extern void __div2i(void);
 extern void strncmp(void);
 extern void strncpy(void);
@@ -1364,7 +1364,7 @@ _8002da20:
     bne     _8002db3c
     addi	r3, r29, 0
     addi	r4, r31, 0x18
-    bl      fn_8002AF34
+    bl      __CARDUnlock
     or.	r30, r3, r3
     blt     _8002dcbc
     bl      __OSLockSramEx
@@ -1529,7 +1529,7 @@ _8002dc70:
     add	r6, r5, r0
     addi	r3, r29, 0
     li	r5, 0x2000
-    bl      fn_8002BEFC
+    bl      __CARDRead
     or.	r28, r3, r3
     bge     _8002dcb4
     addi	r3, r31, 0
@@ -2309,7 +2309,7 @@ _8002e764:
     lwz	r7, 0x18(r1)
     lhz	r0, 8(r7)
     sth	r0, 0x22(r27)
-    bl      fn_8002C720
+    bl      __CARDCheckSum
     b       _8002e7f8
 _8002e7b0:
     lwz	r4, 0x18(r1)
@@ -2328,7 +2328,7 @@ _8002e7b0:
     addi	r5, r4, 0x3c
     addi	r6, r4, 0x3e
     li	r4, 0x1ffc
-    bl      fn_8002C720
+    bl      __CARDCheckSum
     addi	r18, r18, 1
 _8002e7f8:
     extsh	r0, r18
@@ -2358,7 +2358,7 @@ _8002e80c:
     addi	r7, r7, -5
     sth	r7, 6(r20)
     sth	r0, 8(r20)
-    bl      fn_8002C720
+    bl      __CARDCheckSum
     addi	r18, r18, 1
 _8002e868:
     extsh	r0, r18

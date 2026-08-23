@@ -1,14 +1,14 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_8002AF34(void);
+extern void __CARDUnlock(void);
 extern void fn_8002BA8C(void);
 extern void fn_8002BAFC(void);
-extern void fn_8002BE20(void);
-extern void fn_8002BEFC(void);
-extern void fn_8002BF60(void);
+extern void __CARDBlockReadCallback(void);
+extern void __CARDRead(void);
+extern void __CARDBlockWriteCallback(void);
 extern void __CARDWrite(void);
-extern void fn_8002C0B8(void);
+extern void __CARDGetFatBlock(void);
 extern void fn_8002C0C0(void);
 extern void fn_8002C194(void);
 extern void __CARDAllocBlock(void);
@@ -18,7 +18,7 @@ extern void __CARDGetDirBlock(void);
 extern void fn_8002C4C4(void);
 extern void fn_8002C594(void);
 extern void __CARDUpdateDir(void);
-extern void fn_8002C720(void);
+extern void __CARDCheckSum(void);
 extern void DCFlushRange(void);
 extern void DCInvalidateRange(void);
 extern void DCStoreRange(void);
@@ -33,7 +33,7 @@ extern void __CARDReadSegment(void);
 extern void __CARDWritePage(void);
 extern void __CARDEraseSector(void);
 extern void __CARDPutControlBlock(void);
-extern void fn_8002ABC0(void);
+extern void __CARDBitRev(void);
 extern void ReadArrayUnlock(void);
 extern void GetInitVal(void);
 extern void fn_8002DD08(void);
@@ -41,7 +41,7 @@ extern void memcpy(void);
 extern unsigned char __CARDBlock[544];
 extern unsigned char lbl_8012AA60[32];
 
-asm void fn_8002AF34(void)
+asm void __CARDUnlock(void)
 {
     nofralloc
     mflr	r0
@@ -195,7 +195,7 @@ _8002b154:
     or	r0, r25, r0
     stw	r0, 0x2c(r31)
     lwz	r3, 0x2c(r31)
-    bl      fn_8002ABC0
+    bl      __CARDBitRev
     stw	r3, 0x2c(r31)
     bl      GetInitVal
     addi	r27, r3, 0
@@ -1042,7 +1042,7 @@ _8002be00:
     blr	
 }
 
-asm void fn_8002BE20(void)
+asm void __CARDBlockReadCallback(void)
 {
     nofralloc
     mflr	r0
@@ -1071,8 +1071,8 @@ asm void fn_8002BE20(void)
     addic.	r0, r3, -1
     stw	r0, 0xac(r30)
     ble     _8002bea0
-    lis     r3, fn_8002BE20@ha
-    addi	r4, r3, fn_8002BE20@l
+    lis     r3, __CARDBlockReadCallback@ha
+    addi	r4, r3, __CARDBlockReadCallback@l
     addi	r3, r31, 0
     bl      __CARDReadSegment
     or.	r29, r3, r3
@@ -1105,7 +1105,7 @@ _8002bee0:
     blr	
 }
 
-asm void fn_8002BEFC(void)
+asm void __CARDRead(void)
 {
     nofralloc
     mflr	r0
@@ -1123,9 +1123,9 @@ asm void fn_8002BEFC(void)
 _8002bf2c:
     stw	r7, 0xd4(r8)
     srwi	r0, r5, 9
-    lis     r5, fn_8002BE20@ha
+    lis     r5, __CARDBlockReadCallback@ha
     stw	r0, 0xac(r8)
-    addi	r0, r5, fn_8002BE20@l
+    addi	r0, r5, __CARDBlockReadCallback@l
     stw	r4, 0xb0(r8)
     mr	r4, r0
     stw	r6, 0xb4(r8)
@@ -1137,7 +1137,7 @@ _8002bf50:
     blr	
 }
 
-asm void fn_8002BF60(void)
+asm void __CARDBlockWriteCallback(void)
 {
     nofralloc
     mflr	r0
@@ -1166,8 +1166,8 @@ asm void fn_8002BF60(void)
     addic.	r0, r3, -1
     stw	r0, 0xac(r30)
     ble     _8002bfe0
-    lis     r3, fn_8002BF60@ha
-    addi	r4, r3, fn_8002BF60@l
+    lis     r3, __CARDBlockWriteCallback@ha
+    addi	r4, r3, __CARDBlockWriteCallback@l
     addi	r3, r31, 0
     bl      __CARDWritePage
     or.	r29, r3, r3
@@ -1218,9 +1218,9 @@ asm void __CARDWrite(void)
 _8002c06c:
     stw	r7, 0xd4(r8)
     srwi	r0, r5, 7
-    lis     r5, fn_8002BF60@ha
+    lis     r5, __CARDBlockWriteCallback@ha
     stw	r0, 0xac(r8)
-    addi	r0, r5, fn_8002BF60@l
+    addi	r0, r5, __CARDBlockWriteCallback@l
     stw	r4, 0xb0(r8)
     mr	r4, r0
     stw	r6, 0xb4(r8)
@@ -1238,7 +1238,7 @@ _8002c090:
     blr	
 }
 
-asm void fn_8002C0B8(void)
+asm void __CARDGetFatBlock(void)
 {
     nofralloc
     lwz	r3, 0x88(r3)
@@ -1524,7 +1524,7 @@ asm void __CARDUpdateFatBlock(void)
     add	r31, r0, r4
     addi	r3, r29, 4
     li	r4, 0x1ffc
-    bl      fn_8002C720
+    bl      __CARDCheckSum
     addi	r3, r29, 0
     li	r4, 0x2000
     bl      DCStoreRange
@@ -1705,7 +1705,7 @@ _8002c6a4:
     sth	r0, 0x1ffa(r31)
     addi	r5, r6, 0x3c
     addi	r6, r6, 0x3e
-    bl      fn_8002C720
+    bl      __CARDCheckSum
     addi	r3, r31, 0
     li	r4, 0x2000
     bl      DCStoreRange
@@ -1730,7 +1730,7 @@ _8002c700:
     blr	
 }
 
-asm void fn_8002C720(void)
+asm void __CARDCheckSum(void)
 {
     nofralloc
     li	r0, 0

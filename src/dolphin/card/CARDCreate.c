@@ -14,7 +14,7 @@ extern u32 strlen(register char* s);
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);      // __CARDGetControlBlock
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);          // __CARDPutControlBlock
 extern void* __CARDGetDirBlock(void);                                          // __CARDGetFatBlock
-extern void fn_8002C0B8(register void* card);                            // __CARDGetDirBlock
+extern void __CARDGetFatBlock(register void* card);                            // __CARDGetDirBlock
 extern s32 __CARDAllocBlock(register s32 chn, register u16 nBlock, register void* callback); // __CARDAllocBlock
 extern s32 __CARDCompareFileName(register void* ent, register char* fileName);     // __CARDCompareFileName
 extern s32 __CARDSync(register s32 chn);                                // __CARDSync
@@ -124,7 +124,7 @@ _L_8002eff8:
     b       _L_8002f0e4
 _L_8002f020:
     lwz     r3, 0x1c(r1)
-    bl      fn_8002C0B8
+    bl      __CARDGetFatBlock
     lwz     r4, 0x1c(r1)
     lhz     r0, 6(r3)
     lwz     r3, 0xc(r4)

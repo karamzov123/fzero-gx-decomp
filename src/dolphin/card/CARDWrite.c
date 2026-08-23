@@ -12,7 +12,7 @@ typedef unsigned short u16;
 
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
-extern s32 fn_8002C0B8(register void* ctrl);
+extern s32 __CARDGetFatBlock(register void* ctrl);
 extern s32 __CARDGetDirBlock(void);
 extern s32 __CARDEraseSector(register s32 chn, register s32 addr, register void* callback);
 extern s32 __CARDWrite(register s32 chn, register s32 addr, register s32 len,
@@ -86,7 +86,7 @@ _L_8002f608:
     b       _L_8002f6d4
 _L_8002f670:
     mr      r3, r31
-    bl      fn_8002C0B8
+    bl      __CARDGetFatBlock
     lwz     r4, 8(r29)
     lwz     r0, 0xc(r31)
     add     r0, r4, r0

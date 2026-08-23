@@ -6,7 +6,7 @@
 extern void CARDInit(void);
 extern void fn_8002A744(void);
 extern void fn_8002A74C(void);
-extern void fn_8002A774(void);
+extern void __CARDSetDiskID(void);
 extern void fn_8002A7AC(void);
 extern void fn_8002A7C4(void);
 extern void __CARDGetControlBlock(void);
@@ -15,7 +15,7 @@ extern void CARDGetResultCode(void);
 extern void CARDFreeBlocks(void);
 extern void __CARDSync(void);
 extern void fn_8002AB70(void);
-extern void fn_8002ABC0(void);
+extern void __CARDBitRev(void);
 extern void ReadArrayUnlock(void);
 extern void GetInitVal(void);
 extern void DSPInit(void);
@@ -32,7 +32,7 @@ extern void OSRegisterVersion(void);
 extern void OSRestoreInterrupts(void);
 extern void OSSleepThread(void);
 extern void fn_8000CDD8(void);
-extern void fn_8002C0B8(void);
+extern void __CARDGetFatBlock(void);
 extern void __CARDGetDirBlock(void);
 extern void fn_8002E0C4(void);
 extern void memset(void);
@@ -76,7 +76,7 @@ _8002a6f0:
     addi	r30, r30, 0x110
     blt     _8002a6f0
     lis	r3, -0x8000
-    bl      fn_8002A774
+    bl      __CARDSetDiskID
     lis     r3, lbl_8012AA50@ha
     addi	r3, r3, lbl_8012AA50@l
     bl      OSRegisterResetFunction
@@ -114,7 +114,7 @@ _8002a76c:
     blr	
 }
 
-asm void fn_8002A774(void)
+asm void __CARDSetDiskID(void)
 {
     nofralloc
     cmplwi	r3, 0
@@ -313,7 +313,7 @@ asm void CARDFreeBlocks(void)
     b       _8002aabc
 _8002a9bc:
     lwz	r3, 0x18(r1)
-    bl      fn_8002C0B8
+    bl      __CARDGetFatBlock
     mr	r30, r3
     lwz	r3, 0x18(r1)
     bl      __CARDGetDirBlock
@@ -473,7 +473,7 @@ _8002abb0:
     blr	
 }
 
-asm void fn_8002ABC0(void)
+asm void __CARDBitRev(void)
 {
     nofralloc
     li	r0, 8
