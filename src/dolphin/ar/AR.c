@@ -12,6 +12,7 @@ typedef struct OSContext {
     u64 fields[0x59];
 } OSContext;
 
+void __ARHandler(register s32 interrupt, register OSContext* context);
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void OSRegisterVersion(const char* version);

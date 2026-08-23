@@ -1066,9 +1066,9 @@ asm void fn_8002D65C(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7ffd
+    lis	r4, __CARDSyncCallback@ha
     stw	r0, 4(r1)
-    addi	r5, r4, -0x67d8
+    addi	r5, r4, __CARDSyncCallback@l
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
     addi	r31, r3, 0
