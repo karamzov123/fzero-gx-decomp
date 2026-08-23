@@ -242,8 +242,11 @@ dolphin/ax/AXVPB.c:
 coarse/text_80023684.c:
 	.text       start:0x80023684 end:0x80026EE0
 
-coarse/text_80026EE0.c:
-	.text       start:0x80026EE0 end:0x8002F140
+game/axmix_80026EE0.c:
+	.text       start:0x80026EE0 end:0x80028CC0
+
+coarse/text_80028CC0.c:
+	.text       start:0x80028CC0 end:0x8002F140
 
 dolphin/card/CARDRead.c:
 	.text       start:0x8002F140 end:0x8002F5B8
