@@ -8,14 +8,14 @@ typedef int BOOL;
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void fn_80022E68(register void* p);
-extern unsigned char lbl_8015D100[128];
-extern unsigned char lbl_8015D180[128];
+extern unsigned char __AXStackHead[128];
+extern unsigned char __AXStackTail[128];
 
 asm void __AXPushFreeStack(register void* p)
 {
     nofralloc
-    lis     r4, lbl_8015D100@ha
-    addi	r5, r4, lbl_8015D100@l
+    lis     r4, __AXStackHead@ha
+    addi	r5, r4, __AXStackHead@l
     lwz	r4, 0(r5)
     li	r0, 0
     stw	r4, 0(r3)
@@ -49,11 +49,11 @@ asm void __AXRemoveFromStack(register void* p)
 {
     nofralloc
     lwz	r0, 0xc(r3)
-    lis     r5, lbl_8015D100@ha
-    lis     r4, lbl_8015D180@ha
+    lis     r5, __AXStackHead@ha
+    lis     r4, __AXStackTail@ha
     slwi	r6, r0, 2
-    addi	r5, r5, lbl_8015D100@l
-    addi	r0, r4, lbl_8015D180@l
+    addi	r5, r5, __AXStackHead@l
+    addi	r0, r4, __AXStackTail@l
     add	r7, r5, r6
     add	r5, r0, r6
     lwz	r4, 0(r7)
@@ -111,8 +111,8 @@ asm void AXFreeVoice(register void* p)
 _80020af8:
     mr	r3, r30
     bl      fn_80022E68
-    lis     r3, lbl_8015D100@ha
-    addi	r5, r3, lbl_8015D100@l
+    lis     r3, __AXStackHead@ha
+    addi	r5, r3, __AXStackHead@l
     lwz	r4, 0(r5)
     li	r0, 0
     addi	r3, r31, 0
@@ -251,9 +251,9 @@ asm void AXSetVoicePriority(register void* p, register u32 priority)
     addi	r31, r3, 0
     addi	r3, r29, 0
     bl      __AXRemoveFromStack
-    lis     r3, lbl_8015D100@ha
+    lis     r3, __AXStackHead@ha
     slwi	r5, r30, 2
-    addi	r0, r3, lbl_8015D100@l
+    addi	r0, r3, __AXStackHead@l
     add	r4, r0, r5
     lwz	r3, 0(r4)
     li	r0, 0
@@ -267,8 +267,8 @@ asm void AXSetVoicePriority(register void* p, register u32 priority)
     stw	r29, 0(r4)
     b       _80020d30
 _80020d1c:
-    lis     r3, lbl_8015D180@ha
-    addi	r0, r3, lbl_8015D180@l
+    lis     r3, __AXStackTail@ha
+    addi	r0, r3, __AXStackTail@l
     add	r3, r0, r5
     stw	r29, 0(r3)
     stw	r29, 0(r4)

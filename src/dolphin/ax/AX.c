@@ -22,8 +22,8 @@ extern void fn_800230A0(void);
 extern void fn_8002244C(void);
 extern void fn_80020E3C(void);
 extern void fn_80021FBC(void);
-extern unsigned char lbl_8015D100[128];
-extern unsigned char lbl_8015D180[128];
+extern unsigned char __AXStackHead[128];
+extern unsigned char __AXStackTail[128];
 
 asm void fn_80020724(void)
 {
@@ -92,9 +92,9 @@ asm void AXQuit(void)
 asm void* __AXGetStackHead(register u32 priority)
 {
     nofralloc
-    lis     r4, lbl_8015D100@ha
+    lis     r4, __AXStackHead@ha
     slwi	r3, r3, 2
-    addi	r0, r4, lbl_8015D100@l
+    addi	r0, r4, __AXStackHead@l
     add	r3, r0, r3
     lwz	r3, 0(r3)
     blr	
@@ -144,11 +144,11 @@ asm void __AXInitVoiceStacks(void)
     li	r0, 0
     stw	r0, -0x7908(r13)
     li	r0, 2
-    lis     r4, lbl_8015D180@ha
+    lis     r4, __AXStackTail@ha
     mtctr	r0
-    lis     r3, lbl_8015D100@ha
-    addi	r4, r4, lbl_8015D180@l
-    addi	r3, r3, lbl_8015D100@l
+    lis     r3, __AXStackHead@ha
+    addi	r4, r4, __AXStackTail@l
+    addi	r3, r3, __AXStackHead@l
 _80020894:
     li	r0, 0
     stw	r0, 0(r4)
@@ -195,11 +195,11 @@ asm void __AXAllocQuit(void)
     li	r0, 0
     stw	r0, -0x7908(r13)
     li	r0, 2
-    lis     r4, lbl_8015D180@ha
+    lis     r4, __AXStackTail@ha
     mtctr	r0
-    lis     r3, lbl_8015D100@ha
-    addi	r4, r4, lbl_8015D180@l
-    addi	r3, r3, lbl_8015D100@l
+    lis     r3, __AXStackHead@ha
+    addi	r4, r4, __AXStackTail@l
+    addi	r3, r3, __AXStackHead@l
 _80020948:
     li	r0, 0
     stw	r0, 0(r4)
