@@ -119,8 +119,14 @@ dolphin/os/Yay0Decode.c:
 dolphin/os/OSInterrupts.c:
 	.text       start:0x8000D4F4 end:0x8000D5E4
 
-coarse/text_8000DD60.c:
-	.text       start:0x8000DD60 end:0x8000EA84
+dolphin/os/OSInterruptMask.c:
+	.text       start:0x8000D5E4 end:0x8000DD60
+
+dolphin/os/OSLink.c:
+	.text       start:0x8000DD60 end:0x8000E77C
+
+dolphin/os/OSMemory.c:
+	.text       start:0x8000E77C end:0x8000EA84
 
 dolphin/os/OSMutex.c:
 	.text       start:0x8000EA84 end:0x8000EAF4

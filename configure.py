@@ -287,6 +287,9 @@ config.warn_missing_source = False
 config.libs = [
     DolphinLib("dolphin", [
         Object(Matching, "dolphin/os/OSInterrupts.c"),
+        Object(Matching, "dolphin/os/OSInterruptMask.c"),
+        Object(Matching, "dolphin/os/OSLink.c"),
+        Object(Matching, "dolphin/os/OSMemory.c"),
         Object(Matching, "dolphin/os/OSTime.c"),
         Object(Matching, "dolphin/os/OSClearStack.c"),
         Object(Matching, "dolphin/os/OSArena.c"),
