@@ -112,15 +112,15 @@ asm void fn_80077488(void);
 asm void fn_800775EC(void);
 asm void fn_80077654(void);
 asm void fn_80077714(void);
-asm void fn_800777D4(void);
+asm void AvDispInitModel(void);
 asm void fn_80077848(void);
 asm void fn_8007785C(void);
 asm void fn_80077A18(void);
 asm void fn_80077A20(void);
 asm void fn_80077AD0(void);
-asm void fn_80077B04(void);
-asm void fn_80077B14(void);
-asm void fn_80077B64(void);
+asm void AvDispSetAmbient(void);
+asm void avdispWarnNotEffectiveModel(void);
+asm void avdispWarnNotSkinningModel(void);
 asm void fn_80077BAC(void);
 asm void fn_80077BBC(void);
 asm void fn_80077BD4(void);
@@ -3044,7 +3044,7 @@ asm void fn_80077714(void)
     blr
 }
 
-asm void fn_800777D4(void)
+asm void AvDispInitModel(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -3291,7 +3291,7 @@ _80077AF0:
     blr
 }
 
-asm void fn_80077B04(void)
+asm void AvDispSetAmbient(void)
 {
     nofralloc
     lis     r3, lbl_8019F130@ha
@@ -3300,7 +3300,7 @@ asm void fn_80077B04(void)
     blr
 }
 
-asm void fn_80077B14(void)
+asm void avdispWarnNotEffectiveModel(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -3327,7 +3327,7 @@ _80077B54:
     blr
 }
 
-asm void fn_80077B64(void)
+asm void avdispWarnNotSkinningModel(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
