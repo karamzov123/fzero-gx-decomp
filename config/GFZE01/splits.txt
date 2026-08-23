@@ -260,7 +260,7 @@ dolphin/card/CARDBlock.c:
 dolphin/card/CARDDir.c:
 	.text       start:0x8002C8D0 end:0x8002EED8
 
-coarse/text_8002EED8.c:
+dolphin/card/CARDCreate.c:
 	.text       start:0x8002EED8 end:0x8002F140
 
 dolphin/card/CARDRead.c:
@@ -518,7 +518,7 @@ dolphin/msl/longlong.c:
 dolphin/msl/alloc.c:
 	.text       start:0x80079EF0 end:0x8007A060
 
-coarse/text_8007A060.c:
+dolphin/msl/stdio_8007A060.c:
 	.text       start:0x8007A060 end:0x8007FF18
 
 dolphin/msl/multibyte.c:
