@@ -4,8 +4,8 @@
 typedef unsigned int u32;
 extern void DCInvalidateRange(register void* addr, register u32 nBytes);
 extern void DCFlushRangeNoSync(register void* addr, register u32 nBytes);
-extern unsigned char lbl_8015D200[5760];
-extern unsigned char lbl_8015E880[5760];
+extern unsigned char __AXBufferAuxA[5760];
+extern unsigned char __AXBufferAuxB[5760];
 
 asm void fn_80020D58(void)
 {
@@ -14,14 +14,14 @@ asm void fn_80020D58(void)
     li	r6, 1
     stw	r7, -0x7900(r13)
     li	r5, 2
-    lis     r4, lbl_8015D200@ha
+    lis     r4, __AXBufferAuxA@ha
     stw	r7, -0x78fc(r13)
     li	r0, 0x1e
-    lis     r3, lbl_8015E880@ha
+    lis     r3, __AXBufferAuxB@ha
     mtctr	r0
     stw	r7, -0x78f8(r13)
-    addi	r4, r4, lbl_8015D200@l
-    addi	r0, r3, lbl_8015E880@l
+    addi	r4, r4, __AXBufferAuxA@l
+    addi	r0, r3, __AXBufferAuxB@l
     mr	r3, r4
     stw	r7, -0x78f4(r13)
     mr	r4, r0
@@ -86,8 +86,8 @@ asm void fn_80020E4C(void)
     cmplwi	r0, 0
     beq     _80020e74
     lwz	r5, -0x78e0(r13)
-    lis     r4, lbl_8015D200@ha
-    addi	r0, r4, lbl_8015D200@l
+    lis     r4, __AXBufferAuxA@ha
+    addi	r0, r4, __AXBufferAuxA@l
     mulli	r4, r5, 0x780
     add	r0, r0, r4
     stw	r0, 0(r3)
@@ -102,8 +102,8 @@ asm void fn_80020E80(void)
 {
     nofralloc
     lwz	r5, -0x78e0(r13)
-    lis     r4, lbl_8015E880@ha
-    addi	r0, r4, lbl_8015E880@l
+    lis     r4, __AXBufferAuxB@ha
+    addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
     add	r4, r0, r4
     addi	r0, r4, 0x500
@@ -115,8 +115,8 @@ asm void fn_80020EA0(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
-    lis     r4, lbl_8015D200@ha
-    addi	r0, r4, lbl_8015D200@l
+    lis     r4, __AXBufferAuxA@ha
+    addi	r0, r4, __AXBufferAuxA@l
     mulli	r4, r5, 0x780
     add	r0, r0, r4
     stw	r0, 0(r3)
@@ -127,8 +127,8 @@ asm void fn_80020EBC(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
-    lis     r4, lbl_8015D200@ha
-    addi	r0, r4, lbl_8015D200@l
+    lis     r4, __AXBufferAuxA@ha
+    addi	r0, r4, __AXBufferAuxA@l
     mulli	r4, r5, 0x780
     add	r4, r0, r4
     addi	r0, r4, 0x280
@@ -140,8 +140,8 @@ asm void fn_80020EDC(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
-    lis     r4, lbl_8015D200@ha
-    addi	r0, r4, lbl_8015D200@l
+    lis     r4, __AXBufferAuxA@ha
+    addi	r0, r4, __AXBufferAuxA@l
     mulli	r4, r5, 0x780
     add	r4, r0, r4
     addi	r0, r4, 0x500
@@ -153,8 +153,8 @@ asm void fn_80020EFC(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
-    lis     r4, lbl_8015E880@ha
-    addi	r0, r4, lbl_8015E880@l
+    lis     r4, __AXBufferAuxB@ha
+    addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
     add	r4, r0, r4
     addi	r0, r4, 0x500
@@ -169,8 +169,8 @@ asm void fn_80020F1C(void)
     cmplwi	r0, 0
     beq     _80020f44
     lwz	r5, -0x78e0(r13)
-    lis     r4, lbl_8015E880@ha
-    addi	r0, r4, lbl_8015E880@l
+    lis     r4, __AXBufferAuxB@ha
+    addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
     add	r0, r0, r4
     stw	r0, 0(r3)
@@ -185,8 +185,8 @@ asm void fn_80020F50(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
-    lis     r4, lbl_8015E880@ha
-    addi	r0, r4, lbl_8015E880@l
+    lis     r4, __AXBufferAuxB@ha
+    addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
     add	r0, r0, r4
     stw	r0, 0(r3)
@@ -197,8 +197,8 @@ asm void fn_80020F6C(void)
 {
     nofralloc
     lwz	r5, -0x78d8(r13)
-    lis     r4, lbl_8015E880@ha
-    addi	r0, r4, lbl_8015E880@l
+    lis     r4, __AXBufferAuxB@ha
+    addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
     add	r0, r0, r4
     stw	r0, 0(r3)
@@ -209,8 +209,8 @@ asm void fn_80020F88(void)
 {
     nofralloc
     lwz	r5, -0x78d4(r13)
-    lis     r4, lbl_8015E880@ha
-    addi	r0, r4, lbl_8015E880@l
+    lis     r4, __AXBufferAuxB@ha
+    addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
     add	r0, r0, r4
     stw	r0, 0(r3)
@@ -221,11 +221,11 @@ asm void fn_80020FA4(void)
 {
     nofralloc
     mflr	r0
-    lis     r4, lbl_8015D200@ha
+    lis     r4, __AXBufferAuxA@ha
     stw	r0, 4(r1)
     stwu	r1, -0x38(r1)
     stw	r31, 0x34(r1)
-    addi	r31, r4, lbl_8015D200@l
+    addi	r31, r4, __AXBufferAuxA@l
     lwz	r0, -0x78e0(r13)
     lwz	r3, -0x78dc(r13)
     mulli	r4, r0, 0x780
