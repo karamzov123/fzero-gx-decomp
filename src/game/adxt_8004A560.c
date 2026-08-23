@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_80047464(void);
+extern void adx_err_report(void);
 extern void ADXSTMF_StatExec(void);
 extern void fn_8004A80C(void);
 extern void cvFsGetStat(void);
@@ -127,7 +127,7 @@ _8004a674:
     lis     r3, E02110501_adxstmf_stat_exec_can_t_open_str@ha
     lwz	r4, 0x4c(r31)
     addi	r3, r3, E02110501_adxstmf_stat_exec_can_t_open_str@l
-    bl      fn_80047464
+    bl      adx_err_report
     li	r3, 4
     li	r0, 0
     stb	r3, 1(r31)

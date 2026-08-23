@@ -22,7 +22,7 @@ extern void fn_80045304(void);
 extern void fn_800452FC(void);
 extern void svm_ringbuf_read(void);
 extern void fn_8004530C(void);
-extern void fn_80041EF8(void);
+extern void ADXB_DecodeHeader(void);
 extern unsigned char lbl_801798C0[2496];
 
 asm void fn_80041460(void)
@@ -463,7 +463,7 @@ _8004195c:
     cmpwi	r0, 1
     bne     _8004196c
     mr	r3, r28
-    bl      fn_80041EF8
+    bl      ADXB_DecodeHeader
 _8004196c:
     addi	r26, r26, 1
     addi	r28, r28, 0x9c
@@ -636,7 +636,7 @@ _80041bb0:
 _80041bd8:
     cmpwi	r0, 1
     bne     _80041be4
-    bl      fn_80041EF8
+    bl      ADXB_DecodeHeader
 _80041be4:
     lmw	r23, 0x1c(r1)
     lwz	r0, 0x44(r1)

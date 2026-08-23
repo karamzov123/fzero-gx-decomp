@@ -9,8 +9,8 @@ extern void fn_8004538C(void);
 extern void fn_80045588(void);
 extern void fn_80057DB0(void);
 extern void fn_800455A4(void);
-extern void fn_800455B8(void);
-extern void fn_80047464(void);
+extern void criadx_format_dispatch(void);
+extern void adx_err_report(void);
 extern void memcpy(void);
 extern void svm_ringbuf_read(void);
 extern void fn_80045354(void);
@@ -242,7 +242,7 @@ _80041edc:
     blr	
 }
 
-asm void fn_80041EF8(void)
+asm void ADXB_DecodeHeader(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -277,7 +277,7 @@ asm void fn_80041EF8(void)
 _80041f6c:
     lwz	r4, 0x10(r1)
     mr	r3, r30
-    bl      fn_800455B8
+    bl      criadx_format_dispatch
     or.	r28, r3, r3
     beq     _80041f8c
     lwz	r0, 0x14(r1)
@@ -306,7 +306,7 @@ _80041fac:
     lis     r4, Can_not_decode_this_file_format_str@ha
     addi	r3, r3, E03010901_ADXB_DecodeHeader_str@l
     addi	r4, r4, Can_not_decode_this_file_format_str@l
-    bl      fn_80047464
+    bl      adx_err_report
     li	r0, 4
     stb	r0, 1(r31)
     b       _800420d4

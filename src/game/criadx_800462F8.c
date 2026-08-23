@@ -361,7 +361,7 @@ asm void fn_80046758(void)
     blr	
 }
 
-asm void fn_80046768(void)
+asm void criax_cri_tag_padsize(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

@@ -76,7 +76,7 @@ _80042558:
     blr	
 }
 
-asm void fn_80042568(void)
+asm void criadx_wav_probe(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

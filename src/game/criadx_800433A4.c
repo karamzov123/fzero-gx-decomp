@@ -669,7 +669,7 @@ _80043cb0:
     blr	
 }
 
-asm void fn_80043CCC(void)
+asm void criadx_aiff_probe(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

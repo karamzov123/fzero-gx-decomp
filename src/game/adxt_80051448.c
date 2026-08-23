@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_80047464(void);
+extern void adx_err_report(void);
 extern void ADXT_Stop(void);
 extern void fn_8004EBB4(void);
 extern void fn_8004EBD4(void);
@@ -809,7 +809,7 @@ _80051ea0:
     lis     r4, can_not_attach_AHX_str@ha
     addi	r3, r3, E1052501_ADXT_AttachAHX_str@l
     addi	r4, r4, can_not_attach_AHX_str@l
-    bl      fn_80047464
+    bl      adx_err_report
     b       _80051f24
 _80051eec:
     lis     r9, fn_80051DC4@ha

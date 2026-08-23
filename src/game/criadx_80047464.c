@@ -28,7 +28,7 @@ extern void CRI_SPSD_parser(void);
 extern void fn_80047A50(void);
 extern void fn_80049958(void);
 extern void fn_80049728(void);
-extern void fn_80046768(void);
+extern void criax_cri_tag_padsize(void);
 extern unsigned char lbl_8017B030[4];
 extern unsigned char lbl_8017B160[64];
 extern unsigned char lbl_8017B1A0[1024];
@@ -36,7 +36,7 @@ extern unsigned char lbl_8017B5A0[8];
 extern unsigned char lbl_8017B5A8[2512];
 extern unsigned char lbl_8017BF78[6016];
 
-asm void fn_80047464(void)
+asm void adx_err_report(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -787,7 +787,7 @@ _80047e24:
     stw	r7, 0x2c(r30)
     stw	r7, 0x30(r30)
     stw	r0, 0x34(r30)
-    bl      fn_80046768
+    bl      criax_cri_tag_padsize
     stw	r3, 0x48(r30)
     li	r0, 3
     addi	r3, r31, 0x910

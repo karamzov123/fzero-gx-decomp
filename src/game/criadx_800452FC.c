@@ -8,16 +8,16 @@ extern void fn_8004E2CC(void);
 extern void fn_8004E2DC(void);
 extern void fn_8004E2B0(void);
 extern void CRI_FORM_parser(void);
-extern void fn_80045FEC(void);
+extern void criadx_spsd_probe(void);
 extern void fn_800462F8(void);
-extern void fn_80042568(void);
+extern void criadx_wav_probe(void);
 extern void fn_80043050(void);
-extern void fn_80043CCC(void);
+extern void criadx_aiff_probe(void);
 extern void fn_80043B48(void);
 extern void CRI_WAVE_parser(void);
-extern void fn_80044A94(void);
+extern void criadx_snd_probe(void);
 extern void fn_80046C28(void);
-extern void fn_80047464(void);
+extern void adx_err_report(void);
 extern void fn_80046B90(void);
 extern void sprintf(void);
 extern void fn_80046BE0(void);
@@ -346,7 +346,7 @@ asm void fn_800455AC(void)
     blr	
 }
 
-asm void fn_800455B8(void)
+asm void criadx_format_dispatch(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -365,7 +365,7 @@ asm void fn_800455B8(void)
     b       _80045684
 _800455f0:
     mr	r3, r30
-    bl      fn_80045FEC
+    bl      criadx_spsd_probe
     cmpwi	r3, 0
     beq     _80045614
     mr	r3, r29
@@ -375,7 +375,7 @@ _800455f0:
     b       _80045684
 _80045614:
     mr	r3, r30
-    bl      fn_80042568
+    bl      criadx_wav_probe
     cmpwi	r3, 0
     beq     _80045638
     mr	r3, r29
@@ -385,7 +385,7 @@ _80045614:
     b       _80045684
 _80045638:
     mr	r3, r30
-    bl      fn_80043CCC
+    bl      criadx_aiff_probe
     cmpwi	r3, 0
     beq     _8004565c
     mr	r3, r29
@@ -401,7 +401,7 @@ _8004565c:
     mr	r3, r29
     mr	r4, r30
     mr	r5, r31
-    bl      fn_80044A94
+    bl      criadx_snd_probe
     b       _80045684
 _80045680:
     li	r3, -1
@@ -458,7 +458,7 @@ _80045718:
     bne     _80045748
     addi	r3, r27, 0x838
     addi	r4, r27, 0x858
-    bl      fn_80047464
+    bl      adx_err_report
     li	r3, -1
     b       _80045d28
 _80045748:
@@ -1061,7 +1061,7 @@ asm void fn_80045FA4(void)
     blr	
 }
 
-asm void fn_80045FEC(void)
+asm void criadx_spsd_probe(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

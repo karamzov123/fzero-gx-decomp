@@ -495,7 +495,7 @@ _80044a7c:
     blr	
 }
 
-asm void fn_80044A94(void)
+asm void criadx_snd_probe(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)

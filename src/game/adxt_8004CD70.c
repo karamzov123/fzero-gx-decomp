@@ -34,7 +34,7 @@ extern void fn_80046508(void);
 extern void fn_80046804(void);
 extern void fn_80046D18(void);
 extern void fn_80046F88(void);
-extern void fn_80047464(void);
+extern void adx_err_report(void);
 extern void criErr_CallErrCallback(void);
 extern void fn_8004AC04(void);
 extern void fn_8004AC4C(void);
@@ -688,7 +688,7 @@ _8004d5bc:
     lis     r3, E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str@ha
     addi	r4, r1, 0x10
     addi	r3, r3, E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str@l
-    bl      fn_80047464
+    bl      adx_err_report
     mr	r3, r30
     bl      ADXT_Stop
     b       _8004d8c8
