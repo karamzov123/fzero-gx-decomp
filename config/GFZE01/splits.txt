@@ -569,7 +569,7 @@ dolphin/msl/tail_8008279C.c:
 dolphin/msl/string.c:
 	.text       start:0x80083D40 end:0x80083E84
 
-coarse/text_80083E84.c:
+dolphin/msl/msl_80083E84.c:
 	.text       start:0x80083E84 end:0x80088600
 
 dolphin/msl/math_80088600.c:
