@@ -317,6 +317,7 @@ config.libs = [
         Object(Matching, "dolphin/mtx/MTX.c"),
         Object(Matching, "dolphin/ai/AI.c"),
         Object(Matching, "dolphin/ar/AR.c"),
+        Object(Matching, "dolphin/ar/ARQ.c"),
         Object(Matching, "dolphin/dvd/dvdlow.c"),
         Object(Matching, "dolphin/dvd/dvdfs.c"),
         Object(Matching, "dolphin/dvd/dvd.c"),
