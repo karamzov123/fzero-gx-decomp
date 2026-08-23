@@ -3883,4 +3883,162 @@ _800087b8:
     blr	
 }
 
+asm void fn_800087F4(void)
+{
+    nofralloc
+    stwu	r1, -0x20(r1)
+    mflr	r0
+    stw	r0, 0x24(r1)
+    stw	r31, 0x1c(r1)
+    mr	r31, r4
+    li	r4, 0
+    bl      fn_80073778
+    li	r3, 0
+    li	r4, 1
+    li	r5, 0
+    li	r6, 0
+    bl      fn_800728A8
+    li	r3, 1
+    li	r4, 3
+    li	r5, 1
+    bl      fn_80074918
+    li	r3, 0
+    bl      fn_800720B0
+    li	r3, 0
+    bl      fn_80072864
+    lwz	r0, 0x14(r31)
+    cmpwi	r0, 1
+    bc      12, 2, _80008930
+    bc      4, 0, _80008a30
+    cmpwi	r0, 0
+    bc      4, 0, _80008860
+    b       _80008a30
+_80008860:
+    li	r3, 0
+    bl      fn_80073C6C
+    li	r3, 0
+    li	r4, 1
+    li	r5, 4
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl      fn_800745A4
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0xff
+    bl      fn_800734A8
+    li	r3, 0
+    li	r4, 0
+    bl      fn_80073620
+    li	r3, 0
+    li	r4, 0xf
+    li	r5, 8
+    li	r6, 0xc
+    li	r7, 0xf
+    bl      fn_80072C24
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0
+    li	r7, 1
+    li	r8, 0
+    bl      fn_80072D64
+    li	r3, 0
+    li	r4, 7
+    li	r5, 7
+    li	r6, 7
+    li	r7, 6
+    bl      fn_80072CC4
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0
+    li	r7, 1
+    li	r8, 0
+    bl      fn_80072E20
+    li	r3, 1
+    bl      fn_80073678
+    li	r3, 1
+    bl      fn_80074660
+    li	r3, 0
+    bl      fn_80073898
+    li	r3, 0
+    bl      fn_80074788
+    b       _80008a30
+_80008930:
+    li	r3, 0
+    bl      fn_80073C6C
+    li	r3, 0
+    li	r4, 1
+    li	r5, 4
+    li	r6, 0x3c
+    li	r7, 0
+    li	r8, 0x7d
+    bl      fn_800745A4
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0xff
+    bl      fn_800734A8
+    li	r0, 0
+    li	r3, 0xff
+    stb	r3, 0xc(r1)
+    addi	r4, r1, 8
+    li	r3, 0
+    stb	r0, 0xd(r1)
+    stb	r0, 0xe(r1)
+    lwz	r0, 0xc(r1)
+    stw	r0, 8(r1)
+    bl      fn_800736C0
+    li	r3, 0
+    li	r4, 0xc
+    bl      fn_800735C8
+    li	r3, 0
+    li	r4, 0
+    bl      fn_80073620
+    li	r3, 0
+    li	r4, 0xe
+    li	r5, 0xf
+    li	r6, 9
+    li	r7, 0xf
+    bl      fn_80072C24
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0
+    li	r7, 1
+    li	r8, 0
+    bl      fn_80072D64
+    li	r3, 0
+    li	r4, 7
+    li	r5, 7
+    li	r6, 7
+    li	r7, 6
+    bl      fn_80072CC4
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    li	r6, 0
+    li	r7, 1
+    li	r8, 0
+    bl      fn_80072E20
+    li	r3, 1
+    bl      fn_80073678
+    li	r3, 1
+    bl      fn_80074660
+    li	r3, 0
+    bl      fn_80073898
+    li	r3, 0
+    bl      fn_80074788
+_80008a30:
+    li	r3, 0x2200
+    bl      fn_8007245C
+    lwz	r0, 0x24(r1)
+    lwz	r31, 0x1c(r1)
+    mtlr	r0
+    addi	r1, r1, 0x20
+    blr	
+}
+
 #pragma pop
