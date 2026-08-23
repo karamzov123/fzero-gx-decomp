@@ -75,6 +75,10 @@ extern void memcpy(void);
 extern void memset(void);
 extern void __CARDSyncCallback(void);
 extern unsigned char lbl_8012ABC0[];
+extern unsigned char __CARDExiHandler[];
+extern unsigned char __CARDExtHandler[];
+extern unsigned char lbl_8012ABE0[];
+extern unsigned char lbl_80177B80[];
 
 asm void fn_8002C8D0(void)
 {
@@ -1134,9 +1138,9 @@ _8002d730:
     li	r3, 0
     blr	
 _8002d738:
-    lis	r4, -0x7fed
+    lis     r4, lbl_8012ABC0@ha
     rlwinm	r3, r3, 0x17, 0x1b, 0x1d
-    addi	r0, r4, -0x5440
+    addi    r4, r4, lbl_8012ABC0@l
     add	r3, r0, r3
     lwz	r3, 0(r3)
     cmpwi	r3, 0
@@ -1248,8 +1252,8 @@ _8002d8a8:
     cmplwi	r31, 0
     beq     _8002d8cc
     lwz	r4, 0x14(r1)
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x5440
+    lis     r3, lbl_8012ABC0@ha
+    addi    r3, r3, lbl_8012ABC0@l
     rlwinm	r3, r4, 0x17, 0x1b, 0x1d
     add	r3, r0, r3
     lwz	r0, 0(r3)
@@ -1314,8 +1318,8 @@ _8002d974:
     lis     r4, lbl_8012ABC0@ha
     addi    r4, r4, lbl_8012ABC0@l
     stw	r0, 0x108(r31)
-    lis	r3, -0x7fed
-    addi	r0, r3, -0x5420
+    lis     r3, lbl_8012ABE0@ha
+    addi    r3, r3, lbl_8012ABE0@l
     lwz	r5, 0x18(r1)
     addi	r3, r29, 0
     rlwinm	r5, r5, 0, 0x18, 0x1d
@@ -1500,8 +1504,8 @@ _8002dc2c:
     bl      __CARDReadNintendoID
     or.	r30, r3, r3
     blt     _8002dcbc
-    lis	r3, -0x7ffd
-    addi	r4, r3, -0x66cc
+    lis     r3, __CARDExiHandler@ha
+    addi    r3, r3, __CARDExiHandler@l
     addi	r3, r29, 0
     bl      EXISetExiCallback
     mr	r3, r29
@@ -1715,8 +1719,8 @@ _8002df14:
     lwz	r0, 0(r31)
     cmpwi	r0, 0
     bne     _8002df5c
-    lis	r3, -0x7ffd
-    addi	r4, r3, -0x67a4
+    lis     r3, __CARDExtHandler@ha
+    addi    r3, r3, __CARDExtHandler@l
     addi	r3, r30, 0
     bl      EXIAttach
     cmpwi	r3, 0
@@ -2476,9 +2480,9 @@ asm void fn_8002E9BC(void)
     li	r3, -4
     b       _8002ea3c
 _8002e9ec:
-    lis	r3, -0x7fe9
+    lis     r3, lbl_80177B80@ha
     lwz	r4, 0x10c(r30)
-    addi	r0, r3, 0x7b80
+    addi    r3, r3, lbl_80177B80@l
     cmplw	r4, r0
     beq     _8002ea30
     addi	r3, r31, 0
@@ -2544,9 +2548,9 @@ asm void __CARDGetFileNo(void)
 _8002eab4:
     mr	r3, r27
     bl      __CARDGetDirBlock
-    lis	r4, -0x7fe9
+    lis     r4, lbl_80177B80@ha
     addi	r31, r3, 0
-    addi	r26, r4, 0x7b80
+    addi    r4, r4, lbl_80177B80@l
     li	r30, 0
 _8002eacc:
     lbz	r0, 0(r31)
@@ -2655,9 +2659,9 @@ _8002ec0c:
 _8002ec24:
     mr	r3, r31
     bl      __CARDGetDirBlock
-    lis	r4, -0x7fe9
+    lis     r4, lbl_80177B80@ha
     addi	r23, r3, 0
-    addi	r26, r4, 0x7b80
+    addi    r4, r4, lbl_80177B80@l
     li	r25, 0
 _8002ec3c:
     lbz	r0, 0(r23)

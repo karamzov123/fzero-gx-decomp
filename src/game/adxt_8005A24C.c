@@ -40,6 +40,13 @@ extern unsigned char lbl_8013255C[];
 extern unsigned char lbl_80190C7C[];
 extern unsigned char lbl_80190C8C[];
 extern unsigned char lbl_80191D4C[];
+extern unsigned char E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str[];
+extern unsigned char E01100309_illegal_file_name_format_s_mfci_get_adr_size_str[];
+extern unsigned char lbl_800924F8[];
+extern unsigned char lbl_80092790[];
+extern unsigned char lbl_80190178[];
+extern unsigned char lbl_80190B70[];
+extern unsigned char lbl_80190C88[];
 
 asm void fn_8005A24C(void)
 {
@@ -47,14 +54,14 @@ asm void fn_8005A24C(void)
     stwu	r1, -0x20(r1)
     mflr	r0
     cmplwi	r3, 0
-    lis	r6, -0x7ff7
+    lis     r6, lbl_800924F8@ha
     stw	r0, 0x24(r1)
-    lis	r4, -0x7fe7
+    lis     r4, lbl_80190178@ha
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
-    addi	r30, r4, 0x178
+    addi    r4, r4, lbl_80190178@l
     stw	r29, 0x14(r1)
-    addi	r29, r6, 0x24f8
+    addi    r6, r6, lbl_800924F8@l
     bne     _8005a2a4
     lwz	r12, 0(r30)
     cmplwi	r12, 0
@@ -205,18 +212,18 @@ asm void fn_8005A47C(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r4, -0x7fe7
+    lis     r4, lbl_80190178@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r4, 0x178
+    addi    r4, r4, lbl_80190178@l
     stw	r30, 0x18(r1)
     mr	r30, r3
     bl      strlen
     cmplwi	r3, 0x11
     beq     _8005a4e0
-    lis	r3, -0x7ff7
+    lis     r3, E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str@ha
     mr	r5, r30
-    addi	r4, r3, 0x25b8
+    addi    r3, r3, E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str@l
     addi	r3, r31, 8
     crxor	6, 6, 6
     bl      fn_8008069C
@@ -232,9 +239,9 @@ _8005a4e0:
     lbz	r0, 8(r30)
     cmpwi	r0, 0x2e
     beq     _8005a524
-    lis	r3, -0x7ff7
+    lis     r3, E01100309_illegal_file_name_format_s_mfci_get_adr_size_str@ha
     mr	r5, r30
-    addi	r4, r3, 0x25f8
+    addi    r3, r3, E01100309_illegal_file_name_format_s_mfci_get_adr_size_str@l
     addi	r3, r31, 8
     crxor	6, 6, 6
     bl      fn_8008069C
@@ -309,11 +316,11 @@ asm void fn_8005A5BC(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe7
+    lis     r4, lbl_80190B70@ha
     li	r5, 0xff
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r4, 0xb70
+    addi    r4, r4, lbl_80190B70@l
     mr	r4, r3
     addi	r3, r31, 8
     bl      fn_80083D6C
@@ -618,10 +625,10 @@ asm void fn_8005A95C(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80191D4C@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    addi	r31, r3, 0x1d4c
+    addi    r3, r3, lbl_80191D4C@l
     stw	r30, 8(r1)
     li	r30, 0
 _8005a97c:
@@ -841,9 +848,9 @@ _8005abe4:
     lwz	r3, 0(r3)
     bl      DCFlushRange
     li	r0, 1
-    lis	r3, -0x7fe7
+    lis     r3, lbl_80190C7C@ha
     stw	r0, 0x70(r26)
-    addi	r5, r3, 0xc7c
+    addi    r3, r3, lbl_80190C7C@l
     lis	r3, -0x7ffa
     mr	r9, r30
     lwz	r7, 0(r5)
@@ -1006,9 +1013,9 @@ asm void fn_8005AE98(void)
     lwz	r7, 4(r5)
     cmplwi	r7, 0
     beq     _8005affc
-    lis	r4, -0x7fe7
+    lis     r4, lbl_80190C88@ha
     lis     r3, lbl_80190C8C@ha
-    addi	r6, r4, 0xc88
+    addi    r4, r4, lbl_80190C88@l
     lwz	r8, 0x14(r5)
     lwz	r5, 0(r6)
     addi    r3, r3, lbl_80190C8C@l
@@ -1289,8 +1296,8 @@ asm void fn_8005B264(void)
     stw	r0, 0x24(r1)
     stmw	r27, 0xc(r1)
     or.	r31, r3, r3
-    lis	r3, -0x7ff7
-    addi	r5, r3, 0x2790
+    lis     r3, lbl_80092790@ha
+    addi    r3, r3, lbl_80092790@l
     beq     _8005b450
     bne     _8005b290
     li	r0, -1
@@ -1502,10 +1509,10 @@ asm void fn_8005B534(void)
     stwu	r1, -0x30(r1)
     mflr	r0
     cmpwi	r4, 0
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80092790@ha
     stw	r0, 0x34(r1)
     stmw	r26, 0x18(r1)
-    addi	r30, r5, 0x2790
+    addi    r5, r5, lbl_80092790@l
     bgt     _8005b564
     addi	r3, r30, 0xf8
     bl      fn_8005A5BC
@@ -1591,8 +1598,8 @@ _8005b668:
     b     _8005bc0c
 _8005b680:
     mulli	r6, r7, 0xe8
-    lis	r5, -0x7fe7
-    addi	r0, r5, 0x1d4c
+    lis     r5, lbl_80191D4C@ha
+    addi    r5, r5, lbl_80191D4C@l
     add	r31, r0, r6
     stb	r4, 3(r31)
     mr	r5, r31

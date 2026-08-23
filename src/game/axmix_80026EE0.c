@@ -49,6 +49,9 @@ extern void fn_80026E2C(void);
 extern void fn_80026EAC(void);
 extern unsigned char lbl_801295E0[];
 extern unsigned char lbl_801299D0[];
+extern unsigned char lbl_80128990[];
+extern unsigned char lbl_80129FD0[];
+extern unsigned char lbl_80176160[];
 
 asm void fn_80026EE0(void)
 {
@@ -59,9 +62,9 @@ asm void fn_80026EE0(void)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
     lwz	r0, 0x18(r3)
-    lis	r3, -0x7fe9
+    lis     r3, lbl_80176160@ha
     mulli	r5, r0, 0x60
-    addi	r0, r3, 0x6160
+    addi    r3, r3, lbl_80176160@l
     add	r31, r0, r5
     bge     _80026f14
     li	r4, 0
@@ -93,9 +96,9 @@ asm void fn_80026F4C(void)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
     lwz	r0, 0x18(r3)
-    lis	r3, -0x7fe9
+    lis     r3, lbl_80176160@ha
     mulli	r5, r0, 0x60
-    addi	r0, r3, 0x6160
+    addi    r3, r3, lbl_80176160@l
     add	r31, r0, r5
     bge     _80026f80
     li	r4, 0
@@ -122,8 +125,8 @@ asm void fn_80026FB8(void)
 {
     nofralloc
     lwz	r5, 0x18(r3)
-    lis	r3, -0x7fe9
-    addi	r0, r3, 0x6160
+    lis     r3, lbl_80176160@ha
+    addi    r3, r3, lbl_80176160@l
     mulli	r3, r5, 0x60
     add	r3, r0, r3
     stw	r4, 0x1c(r3)
@@ -137,17 +140,17 @@ asm void fn_80026FE0(void)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7fe9
+    lis     r3, lbl_80176160@ha
     stw	r0, 4(r1)
     li	r0, 0x40
-    addi	r4, r3, 0x6160
+    addi    r3, r3, lbl_80176160@l
     mtctr	r0
     stwu	r1, -0xc0(r1)
     lis	r3, 0x6666
     stw	r31, 0xbc(r1)
-    lis	r5, -0x7fed
+    lis     r5, lbl_80128990@ha
     addi	r0, r3, 0x6667
-    addi	r31, r5, -0x7670
+    addi    r5, r5, lbl_80128990@l
     lis	r3, 1
 _80027014:
     lwz	r5, 0(r4)
@@ -1466,9 +1469,9 @@ asm void fn_80028164(void)
     lwz	r3, 8(r3)
     bl      fn_800231C4
     lfs	f1, 0xc(r19)
-    lis	r3, -0x7fed
+    lis     r3, 0x8012
     lfs	f0, -0x7e30(r2)
-    addi	r30, r3, -0x6ab0
+    addi    r3, r3, -0x6ab0
     lwz	r29, 0x10(r19)
     fdivs	f30, f1, f0
     lfd	f31, -0x7e28(r2)
@@ -1822,9 +1825,9 @@ asm void fn_800285DC(void)
     li	r21, 0
     lis	r31, 0x4330
     lfs	f1, 0xc(r3)
-    lis	r3, -0x7fed
+    lis     r3, 0x8012
     lfs	f0, -0x7e18(r2)
-    addi	r30, r3, -0x6a68
+    addi    r3, r3, -0x6a68
     lwz	r29, 0x10(r19)
     fdivs	f30, f1, f0
     lfd	f31, -0x7e10(r2)
@@ -2206,8 +2209,8 @@ asm void fn_80028B3C(void)
     stw	r29, 0x1c(r1)
     stw	r28, 0x18(r1)
     lwz	r0, 0x18(r3)
-    lis	r3, -0x7fed
-    addi	r30, r3, -0x6030
+    lis     r3, lbl_80129FD0@ha
+    addi    r3, r3, lbl_80129FD0@l
     cmplwi	r0, 0
     beq     _80028ca0
     lfs	f2, 8(r31)

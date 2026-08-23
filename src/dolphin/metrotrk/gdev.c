@@ -1,6 +1,10 @@
 extern unsigned char lbl_80095E78[];
 extern unsigned char lbl_801A5E78[];
 extern unsigned char lbl_801A6378[];
+extern unsigned char lbl_80095DB0[];
+extern unsigned char lbl_80095E0C[];
+extern unsigned char lbl_80095E34[];
+extern unsigned char lbl_80095E64[];
 #pragma push
 #pragma force_active on
 
@@ -101,10 +105,10 @@ asm void gdev_cc_write(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80095DB0@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r5, 0x5db0
+    addi    r5, r5, lbl_80095DB0@l
     stw	r30, 0x18(r1)
     mr	r30, r4
     stw	r29, 0x14(r1)
@@ -170,16 +174,16 @@ asm void gdev_cc_read(void)
     li	r3, -0x2711
     b       _8008e5f8
 _8008e548:
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80095E0C@ha
     mr	r5, r27
-    addi	r4, r3, 0x5e0c
+    addi    r3, r3, lbl_80095E0C@l
     mr	r6, r27
     li	r3, 1
     crxor	6, 6, 6
     bl      MWTRACE
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A6378@ha
     mr	r29, r27
-    addi	r31, r3, 0x6378
+    addi    r3, r3, lbl_801A6378@l
     mr	r30, r27
     b       _8008e5ac
 _8008e578:
@@ -210,9 +214,9 @@ _8008e5ac:
     bl      fn_8008E114
     b       _8008e5f4
 _8008e5dc:
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80095E34@ha
     mr	r5, r28
-    addi	r4, r3, 0x5e34
+    addi    r3, r3, lbl_80095E34@l
     li	r3, 8
     crxor	6, 6, 6
     bl      MWTRACE
@@ -260,9 +264,9 @@ asm void gdev_cc_initialize(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80095E64@ha
     stw	r0, 0x14(r1)
-    addi	r0, r5, 0x5e64
+    addi    r5, r5, lbl_80095E64@l
     stw	r31, 0xc(r1)
     mr	r31, r4
     mr	r4, r0

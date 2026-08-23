@@ -8,12 +8,13 @@ typedef signed int s32;
 // MSL stdio tail 0x8008067C-0x800807F4 (__stdio_atexit, vfprintf-ish wrappers)
 
 extern void __pformatter(void);
+extern unsigned char __close_all[];
 
 asm void __stdio_atexit(void)
 {
     nofralloc
-    lis	r3, -0x7ff8
-    addi	r0, r3, -0x4edc
+    lis     r3, __close_all@ha
+    addi    r3, r3, __close_all@l
     stw	r0, -0x75f0(r13)
     blr
 }

@@ -75,6 +75,7 @@ extern unsigned char E02080842_ADXT_ExecHndl_parameter_error_str[];
 extern unsigned char E8101201_adxt_trap_entry_not_enough_data_str[];
 extern unsigned char E9081001_adxt_stat_decinfo_can_t_play_this_number_of_channel_str[];
 extern unsigned char lbl_80178CBC[];
+extern unsigned char lbl_8017E5A8[];
 
 asm void ADXT_Create(void)
 {
@@ -154,9 +155,9 @@ _8004ce74:
     b       _8004d178
 _8004ce84:
     mulli	r5, r4, 0xc0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CBC@ha
     li	r4, 0
-    addi	r0, r3, -0x7344
+    addi    r3, r3, lbl_80178CBC@l
     add	r31, r0, r5
     li	r5, 0xc0
     mr	r3, r31
@@ -412,11 +413,11 @@ asm void fn_8004D220(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r4, -0x7fe8
+    lis     r4, lbl_8017E5A8@ha
     stw	r0, 0x34(r1)
     stmw	r26, 0x18(r1)
     or.	r31, r3, r3
-    addi	r30, r4, -0x1a58
+    addi    r4, r4, lbl_8017E5A8@l
     bne     _8004d250
     lis     r3, E02080842_ADXT_ExecHndl_parameter_error_str@ha
     addi    r3, r3, E02080842_ADXT_ExecHndl_parameter_error_str@l

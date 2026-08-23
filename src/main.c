@@ -206,6 +206,9 @@ extern unsigned char lbl_801220F0[];
 extern unsigned char lbl_80122104[];
 extern unsigned char lbl_8015B940[];
 extern unsigned char lbl_8015BD40[];
+extern unsigned char lbl_801220C0[];
+extern unsigned char lbl_801221A0[];
+extern unsigned char lbl_8015B920[];
 
 #pragma push
 #pragma force_active on
@@ -538,9 +541,9 @@ asm void fn_80005A08(void)
     bl      OSGetArenaLo
     mr	r29, r3
     bl      OSGetArenaHi
-    lis	r4, -0x7fea
+    lis     r4, lbl_8015B920@ha
     mr	r28, r3
-    addi	r0, r4, -0x46e0
+    addi    r4, r4, lbl_8015B920@l
     mr	r3, r0
     bl      fn_80005AD0
     li	r30, 0
@@ -549,9 +552,9 @@ _80005a48:
     addi	r30, r30, 1
     cmpwi	r30, 0x14
     bc      12, 0, _80005a48
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015B920@ha
     li	r30, 0
-    addi	r31, r3, -0x46e0
+    addi    r3, r3, lbl_8015B920@l
 _80005a64:
     bl      fn_8006FD1C
     mr	r3, r31
@@ -1043,8 +1046,8 @@ _8000615c:
     b       _800062e0
 _80006174:
     lha	r0, -0x7cd4(r13)
-    lis	r3, -0x7fea
-    addi	r31, r3, -0x46c0
+    lis     r3, lbl_8015B940@ha
+    addi    r3, r3, lbl_8015B940@l
     mtctr	r0
     cmpwi	r0, 0
     bc      4, 1, _800061a4
@@ -1286,9 +1289,9 @@ _800064a8:
 _800064ac:
     cmplwi	r5, 0x20
     bc      12, 2, _80006530
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015B940@ha
     li	r4, 0
-    addi	r25, r3, -0x46c0
+    addi    r3, r3, lbl_8015B940@l
     mtctr	r24
     cmpwi	r24, 0
     bc      4, 1, _800064e4
@@ -1395,9 +1398,9 @@ _80006628:
     addi	r0, r31, 1
     cmplwi	r0, 0xc
     bc      12, 1, _80006674
-    lis     r3, jumptable_8012208C@ha
+    lis     r3, 0x8012
     slwi	r0, r0, 2
-    addi    r3, r3, jumptable_8012208C@l
+    addi    r3, r3, 0x208c
     lwzx	r0, r3, r0
     mtctr	r0
     bctr	
@@ -1821,13 +1824,13 @@ asm void fn_80006B70(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r5, -0x7fee
+    lis     r5, lbl_801220C0@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r4
     stw	r30, 8(r1)
     mr	r30, r3
-    addi	r3, r5, 0x20c0
+    addi    r5, r5, lbl_801220C0@l
     mr	r4, r30
     crxor	6, 6, 6
     bl      fn_80006BDC
@@ -2048,8 +2051,8 @@ asm void fn_80006E10(void)
     stw	r29, 0x14(r1)
     stw	r28, 0x10(r1)
     bl      fn_80017470
-    lis	r3, -0x7fea
-    addi	r31, r3, -0x42c0
+    lis     r3, lbl_8015BD40@ha
+    addi    r3, r3, lbl_8015BD40@l
     b       _80006fb4
 _80006e40:
     cmplwi	r0, 0x2f
@@ -2149,9 +2152,9 @@ _80006f88:
     lis     r3, lbl_8015BD40@ha
     addi    r3, r3, lbl_8015BD40@l
     bl      strlen
-    lis	r4, -0x7fea
+    lis     r4, lbl_8015BD40@ha
     addi	r5, r3, -1
-    addi	r3, r4, -0x42c0
+    addi    r4, r4, lbl_8015BD40@l
     lbzx	r0, r3, r5
     cmplwi	r0, 0x2f
     bc      4, 2, _80006fb4
@@ -2176,10 +2179,10 @@ asm void fn_80006FE0(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r6, -0x7fea
+    lis     r6, lbl_8015BD40@ha
     mr	r5, r4
     stw	r0, 0x14(r1)
-    addi	r4, r6, -0x42c0
+    addi    r6, r6, lbl_8015BD40@l
     bl      fn_80083D6C
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -2192,11 +2195,11 @@ asm void fn_8000700C(void)
     nofralloc
     stwu	r1, -0xa0(r1)
     mflr	r0
-    lis	r4, -0x7fee
+    lis     r4, lbl_801220C0@ha
     stw	r0, 0xa4(r1)
     stw	r31, 0x9c(r1)
     stw	r30, 0x98(r1)
-    addi	r30, r4, 0x20c0
+    addi    r4, r4, lbl_801220C0@l
     stw	r29, 0x94(r1)
     mr	r29, r3
     stw	r28, 0x90(r1)
@@ -2488,9 +2491,9 @@ asm void fn_8000740C(void)
     bl      fn_80007730
     or.	r31, r3, r3
     bc      4, 2, _80007458
-    lis	r4, -0x7fee
+    lis     r4, lbl_801221A0@ha
     addi	r3, r13, -0x7fc0
-    addi	r5, r4, 0x21a0
+    addi    r4, r4, lbl_801221A0@l
     li	r4, 0x1cd
     crxor	6, 6, 6
     bl      fn_8000C49C
@@ -2548,9 +2551,9 @@ _80007504:
     bl      fn_80007730
     or.	r28, r3, r3
     bc      4, 2, _8000752c
-    lis	r4, -0x7fee
+    lis     r4, lbl_801221A0@ha
     addi	r3, r13, -0x7fc0
-    addi	r5, r4, 0x21a0
+    addi    r4, r4, lbl_801221A0@l
     li	r4, 0x1cd
     crxor	6, 6, 6
     bl      fn_8000C49C

@@ -45,6 +45,13 @@ extern unsigned char lbl_800953D8[];
 extern unsigned char lbl_80095510[];
 extern unsigned char lbl_8015B100[];
 extern unsigned char lbl_8015B300[];
+extern unsigned char INFINITY_str[];
+extern unsigned char lbl_800953A0[];
+extern unsigned char lbl_80095408[];
+extern unsigned char lbl_80095590[];
+extern unsigned char lbl_800955A0[];
+extern unsigned char lbl_800955E0[];
+extern unsigned char lbl_8015B400[];
 
 asm void fn_80083E84(void)
 {
@@ -93,14 +100,14 @@ asm void fn_80083F10(void)
     nofralloc
     stwu	r1, -0xb0(r1)
     mflr	r0
-    lis	r8, -0x7ff7
+    lis     r8, lbl_800953A0@ha
     stw	r0, 0xb4(r1)
     li	r0, 0
     stmw	r14, 0x68(r1)
-    addi	r23, r8, 0x53a0
+    addi    r8, r8, lbl_800953A0@l
     mr	r16, r4
-    lis	r4, -0x7fea
-    addi	r14, r4, -0x4c00
+    lis     r4, lbl_8015B400@ha
+    addi    r4, r4, lbl_8015B400@l
     mr	r17, r5
     mr	r18, r7
     stw	r6, 0xc(r1)
@@ -290,9 +297,9 @@ _800841d8:
     li	r15, 2
     b       _80084c54
 _800841e0:
-    lis	r3, -0x7ff7
+    lis     r3, INFINITY_str@ha
     addi	r15, r1, 0x21
-    addi	r6, r3, 0x53cc
+    addi    r3, r3, INFINITY_str@l
     li	r19, 1
     lwz	r5, 0(r6)
     lwz	r3, 4(r6)
@@ -400,8 +407,8 @@ _80084340:
 _80084350:
     cmpwi	r20, 4
     bc      4, 2, _800843bc
-    lis	r3, -0x7fea
-    addi	r15, r3, -0x4f00
+    lis     r3, lbl_8015B100@ha
+    addi    r3, r3, lbl_8015B100@l
     b       _80084388
 _80084364:
     mr	r12, r16
@@ -489,9 +496,9 @@ _80084454:
     li	r0, -1
     b       _8008449c
 _8008448c:
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015B300@ha
     clrlwi	r0, r3, 0x18
-    addi	r3, r5, -0x4d00
+    addi    r5, r5, lbl_8015B300@l
     lbzx	r0, r3, r0
 _8008449c:
     cmpwi	r0, 0x58
@@ -3343,9 +3350,9 @@ _80086bfc:
     lfd	f0, -8(r4)
     fcmpu	cr0, f1, f0
     bc      12, 2, _80086bf4
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80095408@ha
     mr	r4, r30
-    addi	r8, r3, 0x5408
+    addi    r3, r3, lbl_80095408@l
     li	r7, 2
     addi	r3, r1, 0x18
     bl      fn_80086D50
@@ -3450,11 +3457,11 @@ asm void fn_80086D50(void)
     lis	r9, 0x2aab
     mr	r23, r7
     addi	r0, r5, -3
-    lis	r10, -0x7ff7
+    lis     r10, lbl_80095590@ha
     addi	r7, r9, -0x5555
     slwi	r9, r23, 2
     mulhw	r0, r7, r0
-    addi	r7, r10, 0x5590
+    addi    r10, r10, lbl_80095590@l
     lwzx	r28, r7, r9
     mr	r21, r3
     mr	r22, r4
@@ -4088,11 +4095,11 @@ _80087678:
     addi	r7, r7, -8
     bc      16, 0, _80087678
 _800876a8:
-    lis	r3, -0x7ff7
+    lis     r3, lbl_800955A0@ha
     addi	r0, r31, 1
     mr	r9, r31
     addi	r4, r1, 0x58
-    addi	r5, r3, 0x55a0
+    addi    r3, r3, lbl_800955A0@l
     addi	r3, r1, 0xf8
     mtctr	r0
     cmpwi	r31, 0
@@ -4554,8 +4561,8 @@ _80087ce0:
     stfd	f0, 8(r1)
 _80087d04:
     lfd	f0, 8(r1)
-    lis	r4, -0x7ff7
-    addi	r5, r4, 0x55e0
+    lis     r4, lbl_800955E0@ha
+    addi    r4, r4, lbl_800955E0@l
     lis	r4, 0x3fe6
     fmul	f13, f0, f0
     addi	r0, r4, -0x6bd8

@@ -36,6 +36,8 @@ extern unsigned char E02080805_ADXT_Destroy_parameter_error_str[];
 extern unsigned char E02080812_ADXT_StartSj_parameter_error_str[];
 extern unsigned char E02080813_ADXT_Stop_parameter_error_str[];
 extern unsigned char E02080814_ADXT_GetStat_parameter_error_str[];
+extern unsigned char E02080860_ADXT_SetKeyString_parameter_error_str[];
+extern unsigned char lbl_8017E568[];
 
 asm void fn_8004C164(void)
 {
@@ -43,15 +45,15 @@ asm void fn_8004C164(void)
 _8004c164:
     stwu	r1, -0x50(r1)
     mflr	r0
-    lis	r6, -0x7ff7
+    lis     r6, E02080860_ADXT_SetKeyString_parameter_error_str@ha
     stw	r0, 0x54(r1)
     stmw	r25, 0x34(r1)
     or.	r27, r3, r3
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E568@ha
     mr	r28, r4
     mr	r29, r5
-    addi	r30, r6, 0x9c0
-    addi	r31, r3, -0x1a98
+    addi    r6, r6, E02080860_ADXT_SetKeyString_parameter_error_str@l
+    addi    r3, r3, lbl_8017E568@l
     beq     _8004c1a4
     cmplwi	r28, 0
     beq     _8004c1a4

@@ -27,6 +27,8 @@ extern void OSWakeupThread(void);
 extern void __OSSetInterruptHandler(void);
 extern void __OSUnmaskInterrupts(void);
 extern void __cvt_fp2unsigned(void);
+extern unsigned char lbl_8012A848[];
+extern unsigned char lbl_8012A8C8[];
 
 asm void DSPCheckMailToDSP(void)
 {
@@ -71,9 +73,9 @@ asm void DSPInit(void)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012A848@ha
     stw	r0, 4(r1)
-    addi	r5, r3, -0x57b8
+    addi    r3, r3, lbl_8012A848@l
     crxor	6, 6, 6
     addi	r3, r5, 0x48
     stwu	r1, -0x10(r1)
@@ -702,11 +704,11 @@ asm void __DSP_boot_task(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fed
+    lis     r4, lbl_8012A8C8@ha
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    addi	r31, r4, -0x5738
+    addi    r4, r4, lbl_8012A8C8@l
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
 _80029584:

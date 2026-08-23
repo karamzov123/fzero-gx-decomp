@@ -35,6 +35,11 @@ extern unsigned char E02080843_ADXT_GetErrCode_parameter_error_str[];
 extern unsigned char E02080846_ADXT_Pause_parameter_error_str[];
 extern unsigned char E02080847_ADXT_GetStatPause_parameter_error_str[];
 extern unsigned char E8101208_ADXT_SetOutPan_parameter_error_str[];
+extern unsigned char lbl_80090A20[];
+extern unsigned char lbl_80178CB8[];
+extern unsigned char lbl_80178CBC[];
+extern unsigned char lbl_8017E568[];
+extern unsigned char lbl_8017E594[];
 
 asm void fn_8004B7F4(void)
 {
@@ -219,8 +224,8 @@ asm void ADXT_GetDecNumSmpl(void)
     stw	r0, 0x44(r1)
     stmw	r27, 0x2c(r1)
     mr	r29, r3
-    lis	r3, -0x7fe8
-    addi	r31, r3, -0x1a98
+    lis     r3, lbl_8017E568@ha
+    addi    r3, r3, lbl_8017E568@l
     lbz	r0, 0x72(r29)
     extsb.	r0, r0
     bne     _8004ba70
@@ -243,9 +248,9 @@ _8004ba94:
     bl      fn_80046738
     bl      fn_80041700
     li	r0, 2
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CBC@ha
     stw	r0, 4(r31)
-    addi	r27, r3, -0x7344
+    addi    r3, r3, lbl_80178CBC@l
     li	r28, 0
 _8004babc:
     lbz	r0, 0(r27)
@@ -298,8 +303,8 @@ _8004baf8:
     fmuls	f1, f1, f0
     bl      __cvt_fp2unsigned
     stw	r3, 0x9c(r29)
-    lis	r3, -0x7fe8
-    addi	r4, r3, -0x7348
+    lis     r3, lbl_80178CB8@ha
+    addi    r3, r3, lbl_80178CB8@l
     mr	r3, r30
     lwz	r0, 0(r4)
     stw	r0, 0xa0(r29)
@@ -403,9 +408,9 @@ _8004bc88:
     lwz	r0, -0x7348(r3)
     stw	r0, 0xa0(r31)
 _8004bca0:
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017E568@ha
     li	r0, 0
-    addi	r6, r3, -0x1a98
+    addi    r3, r3, lbl_8017E568@l
     mr	r3, r31
     lwz	r30, 0(r6)
     addi	r4, r1, 0xc
@@ -415,15 +420,15 @@ _8004bca0:
     lwz	r3, 0xc(r1)
     lis	r4, 0x4330
     lwz	r0, 8(r1)
-    lis	r5, -0x7ff7
+    lis     r5, lbl_80090A20@ha
     xoris	r3, r3, 0x8000
     stw	r4, 0x18(r1)
     xoris	r0, r0, 0x8000
-    lis	r6, -0x7fe8
+    lis     r6, lbl_8017E594@ha
     stw	r3, 0x1c(r1)
-    addi	r3, r5, 0xa20
+    addi    r5, r5, lbl_80090A20@l
     lfd	f2, 0(r3)
-    addi	r5, r6, -0x1a6c
+    addi    r6, r6, lbl_8017E594@l
     lfd	f0, 0x18(r1)
     lis	r6, -0x7fe8
     stw	r0, 0x24(r1)
@@ -522,9 +527,9 @@ _8004be08:
     bl      fn_80041700
     lis	r4, -0x7fe8
     li	r0, 2
-    lis	r3, -0x7fe8
+    lis     r3, lbl_80178CBC@ha
     stw	r0, -0x1a94(r4)
-    addi	r31, r3, -0x7344
+    addi    r3, r3, lbl_80178CBC@l
     li	r30, 0
 _8004be34:
     lbz	r0, 0(r31)

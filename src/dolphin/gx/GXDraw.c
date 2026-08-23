@@ -22,6 +22,9 @@ extern void fn_8003D42C(void);
 extern unsigned char jumptable_8012B400[];
 extern unsigned char jumptable_8012B45C[];
 extern unsigned char jumptable_8012B4EC[];
+extern unsigned char lbl_8008FF50[];
+extern unsigned char lbl_801783A0[];
+extern unsigned char lbl_801788C0[];
 
 #pragma push
 #pragma force_active on
@@ -40,11 +43,11 @@ asm void fn_8003887C(register void* p1, register void* p2)
 {
     nofralloc
     mflr    r0
-    lis     r5, -0x7fe8
+    lis     r5, lbl_801783A0@ha
     stw     r0, 4(r1)
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
-    addi    r31, r5, -0x7c60
+    addi    r5, r5, lbl_801783A0@l
     stw     r30, 0x18(r1)
     stw     r29, 0x14(r1)
     addi    r29, r4, 0
@@ -97,11 +100,11 @@ asm void fn_80038944(register void* p)
 {
     nofralloc
     mflr    r0
-    lis     r4, -0x7fe8
+    lis     r4, lbl_801783A0@ha
     stw     r0, 4(r1)
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
-    addi    r31, r4, -0x7c60
+    addi    r4, r4, lbl_801783A0@l
     stw     r30, 0x10(r1)
     stw     r29, 0xc(r1)
     stw     r28, 8(r1)
@@ -778,8 +781,8 @@ _80039218:
     lwz     r0, 0x4e4(r5)
     cmplwi  r0, 0x23
     bgt     _80039644
-    lis     r3, jumptable_8012B45C@ha
-    addi    r3, r3, jumptable_8012B45C@l
+    lis     r3, 0x8012
+    addi    r3, r3, -0x4ba4
     slwi    r0, r0, 2
     lwzx    r0, r3, r0
     mtctr   r0
@@ -1046,8 +1049,8 @@ _80039644:
     lwz     r0, 0x4e8(r3)
     cmplwi  r0, 0x16
     bgt     _80039944
-    lis     r4, jumptable_8012B400@ha
-    addi    r4, r4, jumptable_8012B400@l
+    lis     r4, 0x8012
+    addi    r4, r4, -0x4c00
     slwi    r0, r0, 2
     lwzx    r0, r4, r0
     mtctr   r0
@@ -1321,8 +1324,8 @@ _80039a54:
     lwz     r0, 0x4e8(r3)
     cmplwi  r0, 0x16
     bgt     _80039af0
-    lis     r3, jumptable_8012B4EC@ha
-    addi    r3, r3, jumptable_8012B4EC@l
+    lis     r3, 0x8012
+    addi    r3, r3, -0x4b14
     slwi    r0, r0, 2
     lwzx    r0, r3, r0
     mtctr   r0
@@ -1618,8 +1621,8 @@ asm int fn_80039E48(register u32 a)
 {
     nofralloc
     stwu    r1, -0x180(r1)
-    lis     r4, -0x7ff7
-    addi    r5, r4, -0xb0
+    lis     r4, lbl_8008FF50@ha
+    addi    r4, r4, lbl_8008FF50@l
     stmw    r24, 0x160(r1)
     lwz     r7, 0x400(r3)
     lbz     r6, 0(r7)
@@ -2519,7 +2522,7 @@ asm int fn_8003AB08(register u32 a)
 {
     nofralloc
     mflr    r0
-    lis     r4, -0x7fe8
+    lis     r4, lbl_801788C0@ha
     stw     r0, 4(r1)
     stwu    r1, -0x58(r1)
     stfd    f31, 0x50(r1)
@@ -2528,7 +2531,7 @@ asm int fn_8003AB08(register u32 a)
     stfd    f28, 0x38(r1)
     stfd    f27, 0x30(r1)
     stmw    r25, 0x14(r1)
-    addi    r31, r4, -0x7740
+    addi    r4, r4, lbl_801788C0@l
     mr      r29, r3
     li      r30, 0
     lfs     f27, -0x7cc0(r2)
@@ -2867,7 +2870,7 @@ asm int fn_8003B010(register u32 a)
 {
     nofralloc
     mflr    r0
-    lis     r4, -0x7fe8
+    lis     r4, lbl_801788C0@ha
     stw     r0, 4(r1)
     stwu    r1, -0x60(r1)
     stfd    f31, 0x58(r1)
@@ -2876,7 +2879,7 @@ asm int fn_8003B010(register u32 a)
     stfd    f28, 0x40(r1)
     stfd    f27, 0x38(r1)
     stmw    r23, 0x14(r1)
-    addi    r31, r4, -0x7740
+    addi    r4, r4, lbl_801788C0@l
     mr      r29, r3
     li      r30, 0
     lfs     f27, -0x7cc0(r2)
@@ -3334,8 +3337,8 @@ asm void fn_8003B63C(register u32 a)
 _8003b6e8:
     add     r4, r28, r31
     lha     r0, 0x6c6(r4)
-    lis     r3, -0x7ff7
-    addi    r31, r3, -0xb0
+    lis     r3, lbl_8008FF50@ha
+    addi    r3, r3, lbl_8008FF50@l
     add     r0, r0, r5
     sth     r0, 0x6c6(r4)
     li      r27, 1

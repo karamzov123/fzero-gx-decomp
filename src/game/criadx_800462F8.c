@@ -14,6 +14,9 @@ extern void fn_80083CF4(void);
 extern unsigned char c_CRI_str[];
 extern unsigned char lbl_80090970[];
 extern unsigned char lbl_8017B038[];
+extern unsigned char lbl_80090940[];
+extern unsigned char lbl_80090950[];
+extern unsigned char lbl_80090958[];
 
 asm void fn_800462F8(void)
 {
@@ -879,16 +882,16 @@ asm void fn_80046D94(void)
     mr	r30, r5
     fdivs	f1, f1, f0
     bl      fn_80087E80
-    lis	r3, -0x7ff7
+    lis     r3, lbl_80090940@ha
     lis	r4, -0x7ff7
-    addi	r5, r3, 0x940
+    addi    r3, r3, lbl_80090940@l
     lfd	f2, 0x948(r4)
     lfd	f9, 0(r5)
-    lis	r3, -0x7ff7
-    addi	r5, r3, 0x950
+    lis     r3, lbl_80090950@ha
+    addi    r3, r3, lbl_80090950@l
     frsqrte	f7, f9
-    lis	r3, -0x7ff7
-    addi	r4, r3, 0x958
+    lis     r3, lbl_80090958@ha
+    addi    r3, r3, lbl_80090958@l
     frsqrte	f10, f9
     lis	r3, -0x7ff7
     lfd	f0, 0(r5)
@@ -1254,10 +1257,10 @@ _80047344:
     addi	r7, r4, -8
     ble     _80047404
     addi	r5, r7, 7
-    lis	r6, -0x7fe8
+    lis     r6, lbl_8017B038@ha
     srwi	r5, r5, 3
     addi	r0, r4, -1
-    addi	r12, r6, -0x4fc8
+    addi    r6, r6, lbl_8017B038@l
     mtctr	r5
     cmpwi	r7, 0
     ble     _80047404

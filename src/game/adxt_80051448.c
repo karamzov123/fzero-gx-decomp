@@ -26,6 +26,7 @@ extern unsigned char E1052501_ADXT_AttachAHX_str[];
 extern unsigned char can_not_attach_AHX_str[];
 extern unsigned char lbl_80187130[];
 extern unsigned char lbl_80187330[];
+extern unsigned char lbl_80187110[];
 
 asm void fn_80051448(void)
 {
@@ -414,8 +415,8 @@ asm void fn_80051958(void)
     li	r5, 0x40
     bl      memset
 _8005198c:
-    lis	r3, -0x7fe8
-    addi	r4, r3, 0x7110
+    lis     r3, lbl_80187110@ha
+    addi    r3, r3, lbl_80187110@l
     lwz	r3, 0(r4)
     addi	r0, r3, 1
     stw	r0, 0(r4)

@@ -12,6 +12,8 @@ extern void fn_8004313C(void);
 extern unsigned char RIFF_str[];
 extern unsigned char WAVE_str[];
 extern unsigned char lbl_801798C0[];
+extern unsigned char lbl_8012B6F0[];
+extern unsigned char lbl_8012B6F4[];
 
 asm void fn_800424B8(void)
 {
@@ -902,7 +904,7 @@ asm void fn_8004313C(void)
     nofralloc
     stwu	r1, -0x40(r1)
     mflr	r0
-    lis	r11, -0x7fed
+    lis     r11, lbl_8012B6F0@ha
     stw	r0, 0x44(r1)
     stmw	r18, 8(r1)
     mr	r20, r3
@@ -913,7 +915,7 @@ asm void fn_8004313C(void)
     mr	r25, r8
     mr	r26, r9
     mr	r27, r10
-    addi	r19, r11, -0x4910
+    addi    r11, r11, lbl_8012B6F0@l
     li	r18, 0
     lwz	r28, 0x48(r1)
     lwz	r29, 0x4c(r1)
@@ -955,9 +957,9 @@ _800431dc:
     li	r3, -1
     b       _80043390
 _80043200:
-    lis	r3, -0x7fed
+    lis     r3, lbl_8012B6F4@ha
     li	r18, 0
-    addi	r19, r3, -0x490c
+    addi    r3, r3, lbl_8012B6F4@l
     b       _8004322c
 _80043210:
     lwz	r4, 0(r19)

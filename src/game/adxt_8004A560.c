@@ -16,6 +16,8 @@ extern void fn_80059AB4(void);
 extern void fn_80059B44(void);
 extern unsigned char E02110501_adxstmf_stat_exec_can_t_open_str[];
 extern unsigned char lbl_8017D6FC[];
+extern unsigned char lbl_8017D704[];
+extern unsigned char lbl_8017D708[];
 
 asm void fn_8004A560(void)
 {
@@ -41,9 +43,9 @@ asm void fn_8004A578(void)
     bl      fn_80058A40
     cmpwi	r3, 0
     beq     _8004a5dc
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017D708@ha
     li	r30, 0
-    addi	r31, r3, -0x28f8
+    addi    r3, r3, lbl_8017D708@l
 _8004a5ac:
     lbz	r0, 0(r31)
     cmpwi	r0, 1
@@ -386,9 +388,9 @@ _8004aa5c:
     bne     _8004aa90
 _8004aa70:
     li	r0, 0
-    lis	r3, -0x7fe8
+    lis     r3, lbl_8017D704@ha
     stb	r0, 2(r30)
-    addi	r4, r3, -0x28fc
+    addi    r3, r3, lbl_8017D704@l
     lwz	r3, 0(r4)
     addi	r0, r3, 1
     stw	r0, 0(r4)

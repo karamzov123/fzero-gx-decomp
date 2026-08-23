@@ -129,17 +129,17 @@ asm int fn_8008877C(void* msg)
     nofralloc
     stwu    r1, -0x20(r1)
     mflr    r0
-    lis     r4, 0x801A
+    lis     r4, lbl_801A36B8@ha
     stw     r0, 0x24(r1)
     stw     r31, 0x1c(r1)
     li      r31, 0
     stw     r30, 0x18(r1)
     stw     r29, 0x14(r1)
     mr      r29, r3
-    addi    r3, r4, 0x36B8
+    addi    r4, r4, lbl_801A36B8@l
     bl      fn_8008AF48
-    lis     r3, 0x801A
-    addi    r30, r3, 0x36B8
+    lis     r3, lbl_801A36B8@ha
+    addi    r3, r3, lbl_801A36B8@l
     lwz     r3, 4(r30)
     cmpwi   r3, 2
     bne     lbl_800887C4
@@ -158,8 +158,8 @@ lbl_800887C4:
     add     r3, r30, r29
     addi    r3, r3, 0xC
     bl      fn_800035C0
-    lis     r3, 0x801A
-    addi    r4, r3, 0x36B8
+    lis     r3, lbl_801A36B8@ha
+    addi    r3, r3, lbl_801A36B8@l
     lwz     r0, 0x24(r4)
     add     r3, r4, r29
     stw     r0, 0x10(r3)
@@ -193,17 +193,17 @@ asm int TRKGetNextEvent(void* msg)
     nofralloc
     stwu    r1, -0x20(r1)
     mflr    r0
-    lis     r4, 0x801A
+    lis     r4, lbl_801A36B8@ha
     stw     r0, 0x24(r1)
     stw     r31, 0x1c(r1)
     stw     r30, 0x18(r1)
     li      r30, 0
     stw     r29, 0x14(r1)
     mr      r29, r3
-    addi    r3, r4, 0x36B8
+    addi    r4, r4, lbl_801A36B8@l
     bl      fn_8008AF48
-    lis     r3, 0x801A
-    addi    r31, r3, 0x36B8
+    lis     r3, lbl_801A36B8@ha
+    addi    r3, r3, lbl_801A36B8@l
     lwz     r0, 4(r31)
     cmpwi   r0, 0
     ble     lbl_800888E4

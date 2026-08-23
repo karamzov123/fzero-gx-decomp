@@ -203,8 +203,8 @@ asm void __OSInitMemoryProtection(void)
     sth	r0, 0x10(r28)
     lis	r3, -0x1000
     bl      __OSMaskInterrupts
-    lis	r3, -0x7fff
-    addi	r29, r3, -0x1818
+    lis     r3, MEMIntrruptHandler@ha
+    addi    r3, r3, MEMIntrruptHandler@l
     mr	r4, r29
     li	r3, 0
     bl      __OSSetInterruptHandler

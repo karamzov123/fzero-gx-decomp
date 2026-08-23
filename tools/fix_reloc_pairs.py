@@ -86,7 +86,8 @@ def main():
         files = sorted(near_miss_sources())
     total = 0
     for f in files:
-        p = ROOT / f if not f.is_absolute() else f
+        pp = pathlib.Path(f)
+        p = pp if pp.is_absolute() else ROOT / pp
         if p.exists() and p.suffix == '.c':
             total += fix_file(p)
     print(f'converted {total} lis/addi pairs')

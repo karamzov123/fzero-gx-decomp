@@ -37,11 +37,11 @@ _80070194:
     stw	r4, -0x76d4(r13)
     srwi	r4, r0, 5
     li	r5, 0x1dc
-    lis	r3, -0x7fe6
+    lis     r3, lbl_8019E140@ha
     addi	r0, r4, 1
     stw	r5, -0x76d4(r13)
     slwi	r4, r0, 5
-    addi	r5, r3, -0x1ec0
+    addi    r3, r3, lbl_8019E140@l
     stw	r4, -0x76d4(r13)
     addi	r3, r4, 0xca0
     add	r4, r8, r4
@@ -132,11 +132,11 @@ asm void fn_800702E4(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E140@ha
     li	r5, 0
     stw	r0, 0x14(r1)
     li	r0, 0x10
-    addi	r6, r4, -0x1ec0
+    addi    r4, r4, lbl_8019E140@l
     stw	r31, 0xc(r1)
     li	r31, 0
     mtctr	r0
@@ -144,9 +144,9 @@ _8007030c:
     lbz	r0, 0(r6)
     cmplwi	r0, 0
     bne	_80070444
-    lis	r4, -0x7fe6
+    lis     r4, lbl_8019E140@ha
     addi	r7, r5, 1
-    addi	r0, r4, -0x1ec0
+    addi    r4, r4, lbl_8019E140@l
     addi	r8, r3, -1
     add	r4, r0, r7
     b	_80070348

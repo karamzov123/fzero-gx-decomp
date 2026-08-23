@@ -47,6 +47,7 @@ extern void fn_80072270(void);
 extern void fn_800794F0(void);
 extern void fn_8008023C(void);
 extern void fn_8006DD14(void);
+extern unsigned char lbl_8019F040[];
 asm void fn_80072EDC(void);
 asm void fn_800734A8(void);
 asm void fn_800735C8(void);
@@ -2061,10 +2062,10 @@ asm void fn_800749B0(void)
     nofralloc
     stwu r1, -0x10(r1)
     mflr r0
-    lis r5, -0x7fe6
+    lis     r5, lbl_8019F040@ha
     stw r0, 0x14(r1)
     stw r31, 0xc(r1)
-    addi r31, r5, -0xfc0
+    addi    r5, r5, lbl_8019F040@l
     stw r30, 8(r1)
     or. r30, r3, r3
     mr r3, r4

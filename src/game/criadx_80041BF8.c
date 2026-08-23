@@ -26,6 +26,7 @@ extern void fn_80045D90(void);
 extern void fn_800455AC(void);
 extern unsigned char Can_not_decode_this_file_format_str[];
 extern unsigned char E03010901_ADXB_DecodeHeader_str[];
+extern unsigned char lbl_801798C0[];
 
 asm void fn_80041BF8(void)
 {
@@ -504,13 +505,13 @@ asm void fn_80042228(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r6, -0x7fe8
+    lis     r6, lbl_801798C0@ha
     stw	r0, 0x24(r1)
     li	r0, 2
     stmw	r26, 8(r1)
     mr	r30, r5
     mr	r28, r3
-    addi	r5, r6, -0x6740
+    addi    r6, r6, lbl_801798C0@l
     mr	r29, r4
     li	r3, 0
     lwz	r26, 0(r30)
@@ -564,9 +565,9 @@ _80042300:
     b       _800424a4
 _80042310:
     mulli	r5, r3, 0x9c
-    lis	r4, -0x7fe8
+    lis     r4, lbl_801798C0@ha
     mr	r3, r26
-    addi	r0, r4, -0x6740
+    addi    r4, r4, lbl_801798C0@l
     add	r31, r0, r5
     bl      fn_80057DB0
     mr	r0, r3

@@ -30,9 +30,9 @@ asm void fn_80050F90(void)
     b       _800510b0
 _80050fc4:
     bl      fn_80053A30
-    lis	r5, -0x7fe8
+    lis     r5, lbl_80187118@ha
     addi	r4, r31, 0x384
-    addi	r6, r5, 0x7118
+    addi    r5, r5, lbl_80187118@l
     addi	r5, r31, 0x3b8
     stw	r3, 0(r6)
     addi	r6, r31, 0x5b8

@@ -11,6 +11,7 @@ extern void fn_8000CC64(void* dst, void* src);
 extern u16 fn_8000CDD8(void);
 extern void fn_8000CE30(u8* dest, s32 size, u8* data);
 extern unsigned char lbl_80122F50[];
+extern unsigned char lbl_801230D0[];
 
 /* SDA displacement notes:
    lbl_801A6438 (.sdata) -> -0x7F88(r13)
@@ -121,9 +122,9 @@ Yay0Idx_calc2:
     subi    r3, r3, 1
 Yay0Idx_addBase2:
     add     r0, r5, r3
-    lis     r3, 0x8012
+    lis     r3, lbl_801230D0@ha
     slwi    r4, r0, 1
-    addi    r0, r3, 0x30D0
+    addi    r3, r3, lbl_801230D0@l
     add     r3, r0, r4
     lhz     r3, 0(r3)
     b       Yay0Idx_done

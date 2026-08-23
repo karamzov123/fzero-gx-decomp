@@ -31,6 +31,8 @@ extern void fn_800133B8(void);
 extern void __shr2i(void);
 extern unsigned char lbl_801245E0[];
 extern unsigned char lbl_8015D0C0[];
+extern unsigned char lbl_8008FF40[];
+extern unsigned char lbl_8015D0B0[];
 
 asm void VIGetTvFormat(void);
 asm void fn_8001C084(void);
@@ -206,7 +208,7 @@ asm void fn_8001C1F0(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7ff7
+    lis     r4, lbl_8008FF40@ha
     stw	r0, 4(r1)
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
@@ -215,7 +217,7 @@ asm void fn_8001C1F0(void)
     stw	r29, 0x14(r1)
     addi	r29, r3, 0
     stw	r28, 0x10(r1)
-    addi	r28, r4, -0xc0
+    addi    r4, r4, lbl_8008FF40@l
     addi	r31, r28, 1
 _8001c220:
     lbz	r0, 0xa(r29)
@@ -439,8 +441,8 @@ _8001c504:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi    r3, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
@@ -554,8 +556,8 @@ _8001c698:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi    r3, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
@@ -577,14 +579,14 @@ asm void fn_8001C704(void)
 {
     nofralloc
     mflr	r0
-    lis	r6, -0x7fea
+    lis     r6, lbl_8015D0B0@ha
     stw	r0, 4(r1)
     clrlwi.	r0, r4, 0x1c
     stwu	r1, -0x40(r1)
     stw	r31, 0x3c(r1)
     lis	r31, -0x8000
     stw	r30, 0x38(r1)
-    addi	r30, r6, -0x2f50
+    addi    r6, r6, lbl_8015D0B0@l
     stw	r29, 0x34(r1)
     stw	r28, 0x30(r1)
     lwz	r29, -0x7f0c(r13)
@@ -829,8 +831,8 @@ asm void fn_8001CA30(void)
     rlwinm.	r0, r3, 0, 0xd, 0xd
     bc      4, 2, _8001caf0
     mulli	r4, r31, 0xc
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi    r3, r3, lbl_8015D0C0@l
     lis	r3, -0x7ffe
     add	r6, r0, r4
     addi	r8, r3, -0x3a94
@@ -924,8 +926,8 @@ _8001cbdc:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi    r3, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
@@ -996,8 +998,8 @@ _8001cce0:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi    r3, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc
@@ -1022,11 +1024,11 @@ asm void fn_8001CD68(void)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7fea
+    lis     r3, lbl_8015D0B0@ha
     stw	r0, 4(r1)
     stwu	r1, -0x38(r1)
     stmw	r25, 0x1c(r1)
-    addi	r31, r3, -0x2f50
+    addi    r3, r3, lbl_8015D0B0@l
     lwz	r0, -0x7a48(r13)
     cmpwi	r0, 0
     bc      12, 2, _8001cd94
@@ -1174,8 +1176,8 @@ asm void fn_8001CF80(void)
     bl      OSDisableInterrupts
     li	r21, 0
     mulli	r0, r21, 0xc
-    lis	r4, -0x7fea
-    addi	r26, r4, -0x2f40
+    lis     r4, lbl_8015D0C0@ha
+    addi    r4, r4, lbl_8015D0C0@l
     lis	r4, -0x7ffe
     lis	r5, -0x7ffe
     lis	r6, -0x7ffe
@@ -1917,11 +1919,11 @@ _8001d99c:
     stb	r0, 9(r4)
 _8001d9dc:
     lbz	r6, 2(r4)
-    lis	r5, -0x7fea
+    lis     r5, lbl_8015D0C0@ha
     mulli	r3, r3, 0xc
     addi	r0, r6, -0x80
     stb	r0, 2(r4)
-    addi	r0, r5, -0x2f40
+    addi    r5, r5, lbl_8015D0C0@l
     add	r3, r0, r3
     lbz	r5, 3(r4)
     addi	r0, r5, -0x80
@@ -2166,8 +2168,8 @@ _8001dd28:
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
     stw	r0, -0x7a40(r13)
-    lis	r3, -0x7fea
-    addi	r0, r3, -0x2f40
+    lis     r3, lbl_8015D0C0@ha
+    addi    r3, r3, lbl_8015D0C0@l
     add	r3, r0, r4
     li	r4, 0
     li	r5, 0xc

@@ -3,17 +3,18 @@
 
 extern void strlen(void);
 extern void memcpy(void);
+extern unsigned char lbl_8012B8FC[];
 
 asm void fn_80048340(void)
 {
     nofralloc
     stwu	r1, -0x150(r1)
     mflr	r0
-    lis	r5, -0x7fed
+    lis     r5, lbl_8012B8FC@ha
     stw	r0, 0x154(r1)
     stmw	r27, 0x13c(r1)
     mr	r27, r3
-    addi	r3, r5, -0x4704
+    addi    r5, r5, lbl_8012B8FC@l
     mr	r28, r4
     lwz	r3, 0(r3)
     bl      strlen
@@ -1310,8 +1311,8 @@ _80049668:
     cmpw	r30, r27
     blt     _800495dc
     lwz	r4, 0(r28)
-    lis	r3, -0x7fed
-    addi	r7, r3, -0x4704
+    lis     r3, lbl_8012B8FC@ha
+    addi    r3, r3, lbl_8012B8FC@l
     mr	r3, r28
     lwz	r12, 0x18(r4)
     mr	r5, r31

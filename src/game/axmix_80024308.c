@@ -15,6 +15,7 @@ extern void fn_80024C88(void);
 extern void fn_800248D4(void);
 extern void fn_80025440(void);
 extern unsigned char lbl_80128190[];
+extern unsigned char lbl_80128180[];
 
 asm void fn_80024308(void)
 {
@@ -208,9 +209,9 @@ _80024578:
     li	r5, 0x13c
     bl      memset
     lfs	f0, -0x7e6c(r2)
-    lis	r3, -0x7fed
+    lis     r3, lbl_80128180@ha
     lfs	f30, -0x7e80(r2)
-    addi	r30, r3, -0x7e80
+    addi    r3, r3, lbl_80128180@l
     fmuls	f28, f0, f28
     lfd	f29, -0x7e60(r2)
     addi	r27, r23, 0
