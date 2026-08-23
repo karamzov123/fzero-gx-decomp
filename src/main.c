@@ -115,7 +115,7 @@ extern void fn_8001AF64(void);
 extern void fn_8001BDF0(void);
 extern void PADInit(void);
 extern void PADRead(void);
-extern void fn_8001DBC8(void);
+extern void PADSetAnalogMode(void);
 extern void fn_80035C50(void);
 extern void fn_80036544(void);
 extern void fn_800371F8(void);
@@ -455,7 +455,7 @@ asm void fn_800058D8(void)
     bc      4, 2, _8000590c
     bl      PADInit
     li	r3, 3
-    bl      fn_8001DBC8
+    bl      PADSetAnalogMode
     bl      fn_8006B188
     lbz	r3, -0x7d14(r13)
     addi	r0, r3, 1

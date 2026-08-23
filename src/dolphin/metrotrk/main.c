@@ -27,7 +27,7 @@ asm void TRKNubWelcome(register void* a, register void* b, register void* c, reg
 asm void TRKTerminateNub(register void* a, register void* b, register void* c, register void* d);
 asm void TRKInitializeNub(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008A754(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008AFF0(register void* a, register void* b, register void* c, register void* d);
+asm void TRK_flush_cache(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008B0E0(register void* a, register void* b, register void* c, register void* d);
 asm void TRKInterruptHandler(register void* a, register void* b, register void* c, register void* d);
 asm void TRKSwapAndGo(register void* a, register void* b, register void* c, register void* d);
@@ -139,7 +139,7 @@ _8008d10c:
     bl      fn_800035C0
     mr	r3, r27
     li	r4, 0x100
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
 _8008d130:
     addi	r30, r30, 1
     addi	r31, r31, 4

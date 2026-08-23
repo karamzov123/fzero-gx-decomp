@@ -53,10 +53,10 @@ asm void PADSetSpec(void);
 asm void SPEC0_MakeStatus(void);
 asm void SPEC1_MakeStatus(void);
 asm void SPEC2_MakeStatus(void);
-asm void fn_8001DBC8(void);
+asm void PADSetAnalogMode(void);
 asm void fn_8001DC3C(void);
-asm void fn_8001DDD0(void);
-asm void fn_8001DE30(void);
+asm void SamplingHandler(void);
+asm void PADSetSamplingCallback(void);
 asm void __PADDisableRecalibration(void);
 
 asm void VIGetTvFormat(void)
@@ -2052,7 +2052,7 @@ _8001dbbc:
     blr
 }
 
-asm void fn_8001DBC8(void)
+asm void PADSetAnalogMode(void)
 {
     nofralloc
     mflr	r0
@@ -2099,7 +2099,7 @@ asm void fn_8001DC3C(void)
     cmplwi	r0, 0
     bc      12, 2, _8001dc68
     li	r3, 0
-    bl      fn_8001DE30
+    bl      PADSetSamplingCallback
 _8001dc68:
     cmpwi	r30, 0
     bc      4, 2, _8001ddac
@@ -2200,7 +2200,7 @@ _8001ddb8:
     blr
 }
 
-asm void fn_8001DDD0(void)
+asm void SamplingHandler(void)
 {
     nofralloc
     mflr	r0
@@ -2230,7 +2230,7 @@ _8001de1c:
     blr
 }
 
-asm void fn_8001DE30(void)
+asm void PADSetSamplingCallback(void)
 {
     nofralloc
     mflr	r0
@@ -2241,13 +2241,13 @@ asm void fn_8001DE30(void)
     lwz	r31, -0x7a2c(r13)
     stw	r3, -0x7a2c(r13)
     bc      12, 2, _8001de60
-    lis     r3, fn_8001DDD0@ha
-    addi	r3, r3, fn_8001DDD0@l
+    lis     r3, SamplingHandler@ha
+    addi	r3, r3, SamplingHandler@l
     bl      SIRegisterPollingHandler
     b       _8001de6c
 _8001de60:
-    lis     r3, fn_8001DDD0@ha
-    addi	r3, r3, fn_8001DDD0@l
+    lis     r3, SamplingHandler@ha
+    addi	r3, r3, SamplingHandler@l
     bl      SIUnregisterPollingHandler
 _8001de6c:
     mr	r3, r31

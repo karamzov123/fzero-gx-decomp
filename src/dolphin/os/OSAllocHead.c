@@ -100,7 +100,7 @@ extern void fn_8001AF64(void);
 extern void fn_8001BDF0(void);
 extern void PADInit(void);
 extern void PADRead(void);
-extern void fn_8001DBC8(void);
+extern void PADSetAnalogMode(void);
 extern void fn_80035C50(void);
 extern void fn_80036544(void);
 extern void fn_800371F8(void);

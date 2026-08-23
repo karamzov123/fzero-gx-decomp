@@ -34,15 +34,15 @@ extern void TRKDoPing(void);
 extern void TRKDoVersions(void);
 extern void fn_8008998C(void);
 extern void TRK_serialIO_init(void);
-extern void fn_80089C5C(void);
-extern void fn_80089EEC(void);
-extern void fn_8008A1CC(void);
-extern void fn_8008A3C0(void);
+extern void TRKDoReadRegisters(void);
+extern void TRKDoWriteRegisters(void);
+extern void TRKDoReadMemory(void);
+extern void TRKDoWriteMemory(void);
 extern void fn_8008A5AC(void);
 extern void fn_8008A5B4(void);
 extern void fn_8008A5BC(void);
 extern void fn_8008A614(void);
-extern void fn_8008A66C(void);
+extern void TRKDoDisconnect(void);
 extern void fn_8008A6E4(void);
 extern void fn_8008A748(void);
 extern void fn_8008A754(void);
@@ -1050,7 +1050,7 @@ asm void TRKDispatchMessage(void)
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008A66C
+    bl      TRKDoDisconnect
     mr	r31, r3
     b       _80089800
     mr	r3, r30
@@ -1070,19 +1070,19 @@ asm void TRKDispatchMessage(void)
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008A3C0
+    bl      TRKDoWriteMemory
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008A1CC
+    bl      TRKDoReadMemory
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_80089EEC
+    bl      TRKDoWriteRegisters
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_80089C5C
+    bl      TRKDoReadRegisters
     mr	r31, r3
     b       _80089800
     mr	r3, r30
@@ -1430,7 +1430,7 @@ _80089c4c:
     blr
 }
 
-asm void fn_80089C5C(void)
+asm void TRKDoReadRegisters(void)
 {
     nofralloc
     stwu	r1, -0xe0(r1)
@@ -1620,7 +1620,7 @@ _80089ecc:
     blr
 }
 
-asm void fn_80089EEC(void)
+asm void TRKDoWriteRegisters(void)
 {
     nofralloc
     stwu	r1, -0xe0(r1)
@@ -1824,7 +1824,7 @@ _8008a1b0:
     blr
 }
 
-asm void fn_8008A1CC(void)
+asm void TRKDoReadMemory(void)
 {
     nofralloc
     stwu	r1, -0x8f0(r1)
@@ -1960,7 +1960,7 @@ _8008a3ac:
     blr
 }
 
-asm void fn_8008A3C0(void)
+asm void TRKDoWriteMemory(void)
 {
     nofralloc
     stwu	r1, -0x8f0(r1)
@@ -2162,7 +2162,7 @@ asm void fn_8008A614(void)
     blr
 }
 
-asm void fn_8008A66C(void)
+asm void TRKDoDisconnect(void)
 {
     nofralloc
     stwu	r1, -0x60(r1)
@@ -2889,7 +2889,7 @@ _8008afd4:
     blr
 }
 
-asm void fn_8008AFF0(void)
+asm void TRK_flush_cache(void)
 {
     nofralloc
     lis	r5, -1
@@ -3405,7 +3405,7 @@ _8008b674:
     bc      4, 2, _8008b690
     lwz	r3, 0x18(r29)
     lwz	r4, 0(r28)
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
 _8008b690:
     lis     r4, gTRKCPUState@ha
     mr	r3, r30
@@ -3844,7 +3844,7 @@ _8008bbb0:
     stw	r6, 0xc4(r1)
     stw	r5, 0xc8(r1)
     stw	r0, 0xe8(r1)
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0xc4
     addi	r4, r3, lbl_801A5624@l
@@ -3886,7 +3886,7 @@ _8008bbb0:
     stw	r6, 0x9c(r1)
     stw	r5, 0xa0(r1)
     stw	r0, 0xc0(r1)
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0x9c
     addi	r4, r3, lbl_801A5624@l
@@ -3927,7 +3927,7 @@ _8008bbb0:
     stw	r6, 0x74(r1)
     stw	r5, 0x78(r1)
     stw	r0, 0x98(r1)
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0x74
     addi	r4, r3, lbl_801A5624@l
@@ -3975,7 +3975,7 @@ _8008be4c:
     mr	r3, r29
     stw	r0, 0x70(r1)
     li	r4, 0x28
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0x4c
     addi	r4, r3, lbl_801A5624@l
@@ -4023,7 +4023,7 @@ _8008bf04:
     mr	r3, r28
     stw	r0, 0x48(r1)
     li	r4, 0x28
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0x24
     addi	r4, r3, lbl_801A5624@l
@@ -4252,7 +4252,7 @@ _8008c234:
     mr	r3, r21
     stw	r0, 0xbc(r1)
     li	r4, 0x28
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0x98
     addi	r4, r3, lbl_801A5624@l
@@ -4321,7 +4321,7 @@ _8008c338:
     addi	r0, r4, 0x20
     li	r4, 0x28
     stw	r0, 0x6c(r1)
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0x48
     addi	r4, r3, lbl_801A5624@l
@@ -4383,7 +4383,7 @@ _8008c420:
     mr	r3, r24
     stw	r0, 0x94(r1)
     li	r4, 0x28
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0x70
     addi	r4, r3, lbl_801A5624@l
@@ -4452,7 +4452,7 @@ _8008c524:
     addi	r0, r4, 0x20
     li	r4, 0x28
     stw	r0, 0x44(r1)
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     lis     r3, lbl_801A5624@ha
     addi	r12, r1, 0x20
     addi	r4, r3, lbl_801A5624@l
@@ -4661,12 +4661,12 @@ _8008c7ec:
     bl      fn_8008B0F0
     lwz	r4, 0(r28)
     mr	r3, r25
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
     cmplw	r27, r25
     bc      12, 2, _8008c824
     lwz	r4, 0(r28)
     mr	r3, r27
-    bl      fn_8008AFF0
+    bl      TRK_flush_cache
 _8008c824:
     lbz	r0, 0xd(r31)
     cmplwi	r0, 0
