@@ -88,7 +88,7 @@ extern unsigned char lbl_80095B30[40];
 extern unsigned char lbl_80095B80[40];
 extern unsigned char lbl_80095BA8[16];
 extern unsigned char lbl_8015B884[20];
-extern unsigned char lbl_801A36E8[6576];
+extern unsigned char gTRKMsgBufs[6576];
 extern unsigned char lbl_801A5098[24];
 extern unsigned char lbl_801A50B0[8];
 extern unsigned char lbl_801A5624[20];
@@ -636,8 +636,8 @@ asm void TRKReleaseBuffer(void)
     cmpwi	r3, 3
     bc      4, 0, _80089204
     mulli	r4, r3, 0x890
-    lis     r3, lbl_801A36E8@ha
-    addi	r0, r3, lbl_801A36E8@l
+    lis     r3, gTRKMsgBufs@ha
+    addi	r0, r3, gTRKMsgBufs@l
     add	r31, r0, r4
     mr	r3, r31
     bl      fn_8008AF48
@@ -662,8 +662,8 @@ asm void TRKGetBuffer(void)
     cmpwi	r3, 3
     bc      4, 0, _8008923c
     mulli	r4, r3, 0x890
-    lis     r3, lbl_801A36E8@ha
-    addi	r0, r3, lbl_801A36E8@l
+    lis     r3, gTRKMsgBufs@ha
+    addi	r0, r3, gTRKMsgBufs@l
     add	r0, r0, r4
 _8008923c:
     mr	r3, r0
@@ -691,8 +691,8 @@ _80089270:
     cmpwi	r29, 3
     bc      4, 0, _80089294
     mulli	r4, r29, 0x890
-    lis     r3, lbl_801A36E8@ha
-    addi	r0, r3, lbl_801A36E8@l
+    lis     r3, gTRKMsgBufs@ha
+    addi	r0, r3, gTRKMsgBufs@l
     add	r31, r0, r4
 _80089294:
     mr	r3, r31
@@ -735,12 +735,12 @@ asm void TRKInitializeMessageBuffers(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis     r3, lbl_801A36E8@ha
+    lis     r3, gTRKMsgBufs@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
     li	r31, 0
     stw	r30, 0x18(r1)
-    addi	r30, r3, lbl_801A36E8@l
+    addi	r30, r3, gTRKMsgBufs@l
     stw	r29, 0x14(r1)
     li	r29, 0
 _80089334:
