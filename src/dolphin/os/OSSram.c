@@ -23,6 +23,7 @@ extern s32 EXISync(register s32 chn);
 extern s32 EXIDma(register s32 chn, register void* buf, register s32 len,
                   register u32 type, register void* callback);
 extern void WriteSramCallback(void);
+extern unsigned char Scb[];
 #pragma push
 #pragma force_active on
 
@@ -177,10 +178,10 @@ asm s32 fn_8000F974(register u32 doWrite, register u32 offset)
     mflr    r0
     cmpwi   r3, 0
     stw     r0, 4(r1)
-    lis     r3, -0x7fea
+    lis     r3, Scb@ha
     stwu    r1, -0x30(r1)
     stmw    r27, 0x1c(r1)
-    addi    r31, r3, -0x4040
+    addi    r31, r3, Scb@l
     beq     _L_8000fc54
     cmplwi  r4, 0
     bne     _L_8000fb48
