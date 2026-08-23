@@ -566,7 +566,7 @@ dolphin/msl/multibyte.c:
 dolphin/msl/mem.c:
 	.text       start:0x80080288 end:0x8008067C
 
-coarse/text_8008067C.c:
+dolphin/msl/stdio_tail_8008067C.c:
 	.text       start:0x8008067C end:0x800807F4
 
 dolphin/msl/printf.c:

@@ -478,6 +478,7 @@ config.libs = [
             Object(Matching, "dolphin/msl/tail_8008279C.c"),
             Object(Matching, "dolphin/msl/multibyte.c"),
             Object(Matching, "dolphin/msl/mem.c"),
+            Object(Matching, "dolphin/msl/stdio_tail_8008067C.c"),
             Object(Matching, "dolphin/msl/string.c"),
             Object(Matching, "dolphin/msl/msl_80083E84.c"),
             Object(Matching, "dolphin/msl/math_80088600.c"),
