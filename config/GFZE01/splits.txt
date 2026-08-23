@@ -290,8 +290,17 @@ game/criadx_80041460.c:
 game/criadx_80041BF8.c:
 	.text       start:0x80041BF8 end:0x800424B8
 
-coarse/text_800424B8.c:
-	.text       start:0x800424B8 end:0x8004A560
+game/criadx_800424B8.c:
+	.text       start:0x800424B8 end:0x800433A4
+
+game/criadx_800433A4.c:
+	.text       start:0x800433A4 end:0x800443AC
+
+game/criadx_800443AC.c:
+	.text       start:0x800443AC end:0x800452FC
+
+coarse/text_800452FC.c:
+	.text       start:0x800452FC end:0x8004A560
 
 coarse/text_8004A560.c:
 	.text       start:0x8004A560 end:0x80053EA0

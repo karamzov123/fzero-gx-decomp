@@ -373,6 +373,9 @@ config.libs = [
         Object(Matching, "game/tail_800410A4.c"),
         Object(Matching, "game/criadx_80041460.c"),
         Object(Matching, "game/criadx_80041BF8.c"),
+        Object(Matching, "game/criadx_800424B8.c"),
+        Object(Matching, "game/criadx_800433A4.c"),
+        Object(Matching, "game/criadx_800443AC.c"),
         Object(Matching, "main.c"),
     ]),
     {
