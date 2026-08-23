@@ -154,8 +154,8 @@ asm void fn_800324C8(register void* p, register int a, register int b)
     nofralloc
     cmplwi	r3, 0x19
     bgt     _800327bc
-    lis     r5, -0x7fed
-    addi	r5, r5, -0x52c0
+    lis     r5, jumptable_8012AD40@ha
+    addi	r5, r5, jumptable_8012AD40@l
     slwi	r0, r3, 2
     lwzx	r0, r5, r0
     mtctr	r0
@@ -375,8 +375,8 @@ _80032804:
 asm void fn_80032818(register void* p, register int a, register int b)
 {
     nofralloc
-    lis     r4, -0x7fed
-    addi	r4, r4, -0x5258
+    lis     r4, jumptable_8012ADA8@ha
+    addi	r4, r4, jumptable_8012ADA8@l
     b       _80032b24
 _80032824:
     lwz	r5, 0(r3)
@@ -717,8 +717,8 @@ asm void fn_80032D04(register void* p, register int a)
     nofralloc
     cmplwi	r3, 0x19
     bgt     _80032eac
-    lis     r5, -0x7fed
-    addi	r5, r5, -0x51f0
+    lis     r5, jumptable_8012AE10@ha
+    addi	r5, r5, jumptable_8012AE10@l
     slwi	r0, r3, 2
     lwzx	r0, r5, r0
     mtctr	r0
@@ -903,8 +903,8 @@ asm void fn_80032F80(register void* p, register int a, register int b)
     addi	r8, r9, 0x3c
     addi	r9, r9, 0x5c
     bgt     _800332a8
-    lis     r10, -0x7fed
-    addi	r10, r10, -0x5188
+    lis     r10, jumptable_8012AE78@ha
+    addi	r10, r10, jumptable_8012AE78@l
     slwi	r0, r0, 2
     lwzx	r0, r10, r0
     mtctr	r0
@@ -1402,8 +1402,8 @@ asm void fn_800336EC(register void* p, register int a, register int b)
     addi	r8, r4, 0x3c
     addi	r9, r4, 0x5c
     bgt     _80033954
-    lis     r4, -0x7fed
-    addi	r4, r4, -0x5100
+    lis     r4, jumptable_8012AF00@ha
+    addi	r4, r4, jumptable_8012AF00@l
     slwi	r0, r0, 2
     lwzx	r0, r4, r0
     mtctr	r0
@@ -1767,8 +1767,8 @@ _80033be8:
     stw	r0, -0x8000(r9)
     stw	r4, -0x8000(r9)
     bgt     _80033d18
-    lis     r4, -0x7fed
-    addi	r4, r4, -0x50bc
+    lis     r4, jumptable_8012AF44@ha
+    addi	r4, r4, jumptable_8012AF44@l
     slwi	r0, r3, 2
     lwzx	r0, r4, r0
     mtctr	r0
