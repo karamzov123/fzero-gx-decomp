@@ -413,8 +413,11 @@ game/adxt_8005BC20.c:
 game/gamehead_8005C120.c:
 	.text       start:0x8005C120 end:0x80069AE0
 
-coarse/text_80069AE0.c:
-	.text       start:0x80069AE0 end:0x8006E200
+dolphin/mtx/MTXHead.c:
+	.text       start:0x80069AE0 end:0x8006CFF8
+
+coarse/text_8006CFF8.c:
+	.text       start:0x8006CFF8 end:0x8006E200
 
 dolphin/mtx/MTX.c:
 	.text       start:0x8006E200 end:0x8006E324

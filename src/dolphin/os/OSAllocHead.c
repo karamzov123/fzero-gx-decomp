@@ -176,7 +176,7 @@ extern void fn_80083D6C(void);
 extern void fn_80083DB0(void);
 extern void lbl_8006D188(void);
 extern void fn_8006D668(void);
-extern void lbl_8006D758(void);
+extern void fn_8006D758(void);
 extern void lbl_8006D7DC(void);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);

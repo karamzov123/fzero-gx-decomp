@@ -329,6 +329,7 @@ config.libs = [
         Object(Matching, "dolphin/card/CARDDelete.c"),
         Object(Matching, "dolphin/card/CARDStat.c"),
         Object(Matching, "dolphin/card/CARDRename.c"),
+        Object(Matching, "dolphin/mtx/MTXHead.c"),
         Object(Matching, "dolphin/mtx/MTX.c"),
         Object(Matching, "dolphin/mtx/fn_8006E324.c"),
         Object(Matching, "dolphin/mtx/fn_8006E5FC.c"),
