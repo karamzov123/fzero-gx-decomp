@@ -6,6 +6,8 @@ extern void DCFlushRangeNoSync(register void* addr, register unsigned long n);
 extern void ICInvalidateRange(register void* addr, register unsigned long n);
 extern void __OSSystemCallVectorStart(void);
 extern void __OSSystemCallVectorEnd(void);
+extern void __OSSystemCallVectorEnd(void); // 0x800100D8
+extern void __OSSystemCallVectorStart(void); // 0x800100BC
 
 asm void SystemCallVector(void)
 {
@@ -30,11 +32,11 @@ asm void __OSInitSystemCall(void)
     stwu	r1, -0x10(r1)
     stw	r31, 0xc(r1)
     lis	r5, 0x8000
-    lis	r4, 0x8001
-    lis	r3, 0x8001
+    lis	r4, __OSSystemCallVectorStart@ha
+    lis	r3, __OSSystemCallVectorEnd@ha
     addi	r31, r5, 0xc00
-    addi	r0, r3, 0xd8
-    addi	r4, r4, 0xbc
+    addi	r0, r3, __OSSystemCallVectorEnd@l
+    addi	r4, r4, __OSSystemCallVectorStart@l
     mr	r3, r31
     subf	r5, r4, r0
     bl      memcpy
