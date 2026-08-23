@@ -4,6 +4,7 @@
 extern void fn_8002AF34(void);
 extern void fn_8002BA8C(void);
 extern void fn_8002BAFC(void);
+extern unsigned char __CARDBlock[]; // .bss:0x80177960
 extern void fn_8002BE20(void);
 extern void fn_8002BEFC(void);
 extern void fn_8002BF60(void);
@@ -792,9 +793,9 @@ asm void fn_8002BA8C(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fe9
+    lis	r4, __CARDBlock@ha
     stw	r0, 4(r1)
-    addi	r4, r4, 0x7960
+    addi	r4, r4, __CARDBlock@l
     addi	r0, r4, 0x30
     stwu	r1, -0x18(r1)
     cmplw	r0, r3
@@ -828,9 +829,9 @@ asm void fn_8002BAFC(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fe9
+    lis	r4, __CARDBlock@ha
     stw	r0, 4(r1)
-    addi	r4, r4, 0x7960
+    addi	r4, r4, __CARDBlock@l
     addi	r0, r4, 0x30
     stwu	r1, -0x88(r1)
     cmplw	r0, r3
