@@ -20,6 +20,8 @@ extern s32 __CARDCompareFileName(register void* ent, register char* fileName);  
 extern s32 __CARDSync(register s32 chn);                                // __CARDSync
 extern s32 fn_8008023C(register void* a, register void* b, register u32 n); // memcmp
 extern void fn_80083D6C(register void* dst, register char* src, register u32 n); // strncpy
+extern void fn_80029824(void);                                                // default-API callback stub
+extern void CreateCallbackFat(void);                                          // fat-update callback (CARDDir)
 
 #pragma push
 #pragma force_active on
@@ -138,8 +140,8 @@ _L_8002f050:
     mr      r0, r29
     b       _L_8002f068
 _L_8002f060:
-    lis     r3, 0x8003
-    addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
+    lis     r3, fn_80029824@ha
+    addi    r0, r3, fn_80029824@l
 _L_8002f068:
     stw     r0, 0xd0(r4)
     rlwinm  r0, r30, 6, 0xa, 0x19
@@ -156,8 +158,8 @@ _L_8002f068:
     sth     r0, 0x38(r7)
     bl      fn_80083D6C
     lwz     r4, 0x1c(r1)
-    lis     r3, 0x8003
-    addi    r5, r3, -0x1258         /* CreateCallbackFat */
+    lis     r3, CreateCallbackFat@ha
+    addi    r5, r3, CreateCallbackFat@l
     stw     r28, 0xc0(r4)
     mr      r3, r25
     stw     r25, 0(r28)

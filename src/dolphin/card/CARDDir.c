@@ -28,7 +28,7 @@ extern void __CARDGetFileNo(void);
 extern void CARDOpen(void);
 extern void CARDClose(void);
 extern void CreateCallbackFat(void);
-extern void fn_8002EED8(void);
+extern void CARDCreateAsync(void);
 extern void DCInvalidateRange(void);
 extern void DCStoreRange(void);
 extern void EXIAttach(void);
