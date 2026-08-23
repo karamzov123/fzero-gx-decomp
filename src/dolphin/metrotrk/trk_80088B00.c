@@ -77,7 +77,7 @@ extern unsigned char str_NoBufferAvailable[29];
 extern unsigned char lbl_800956C0[400];
 extern unsigned char lbl_80095850[25];
 extern unsigned char lbl_8009586C[29];
-extern unsigned char lbl_80095890[52];
+extern unsigned char gTRKOptionsBuffer[52];
 extern unsigned char lbl_800958C4[44];
 extern unsigned char lbl_800958F0[31];
 extern unsigned char lbl_80095910[348];
@@ -1128,10 +1128,10 @@ asm void TRKDoPing(void)
     nofralloc
     stwu	r1, -0x50(r1)
     mflr	r0
-    lis     r4, lbl_80095890@ha
+    lis     r4, gTRKOptionsBuffer@ha
     stw	r0, 0x54(r1)
     stw	r31, 0x4c(r1)
-    addi	r31, r4, lbl_80095890@l
+    addi	r31, r4, gTRKOptionsBuffer@l
     stw	r30, 0x48(r1)
     lbz	r0, 0x18(r3)
     lbz	r30, 0x1c(r3)
@@ -1625,10 +1625,10 @@ asm void fn_80089EEC(void)
     nofralloc
     stwu	r1, -0xe0(r1)
     mflr	r0
-    lis     r5, lbl_80095890@ha
+    lis     r5, gTRKOptionsBuffer@ha
     stw	r0, 0xe4(r1)
     stw	r31, 0xdc(r1)
-    addi	r31, r5, lbl_80095890@l
+    addi	r31, r5, gTRKOptionsBuffer@l
     stw	r30, 0xd8(r1)
     stw	r29, 0xd4(r1)
     mr	r29, r3
@@ -1832,8 +1832,8 @@ asm void fn_8008A1CC(void)
     stw	r0, 0x8f4(r1)
     stmw	r27, 0x8dc(r1)
     mr	r27, r3
-    lis     r3, lbl_80095890@ha
-    addi	r31, r3, lbl_80095890@l
+    lis     r3, gTRKOptionsBuffer@ha
+    addi	r31, r3, gTRKOptionsBuffer@l
     addi	r4, r31, 0x180
     li	r3, 1
     lwz	r28, 0x20(r27)
@@ -1968,8 +1968,8 @@ asm void fn_8008A3C0(void)
     stw	r0, 0x8f4(r1)
     stmw	r27, 0x8dc(r1)
     mr	r27, r3
-    lis     r3, lbl_80095890@ha
-    addi	r31, r3, lbl_80095890@l
+    lis     r3, gTRKOptionsBuffer@ha
+    addi	r31, r3, gTRKOptionsBuffer@l
     addi	r4, r31, 0x1b0
     li	r3, 1
     lwz	r28, 0x20(r27)
