@@ -32,11 +32,13 @@ asm void fn_8008CB38(void)
     blr	
 }
 
+extern unsigned char gTRKCPUState[1072];
+
 asm void TRKSaveExtended1Block(void)
 {
     nofralloc
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x5160
+    lis	r2, gTRKCPUState@h
+    ori	r2, r2, gTRKCPUState@l
     mfsr    r16, 0
     mfsr    r17, 1
     mfsr    r18, 2
