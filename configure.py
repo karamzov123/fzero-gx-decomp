@@ -332,6 +332,7 @@ config.libs = [
         Object(Matching, "dolphin/mtx/fn_80070CF8.c"),
         Object(Matching, "dolphin/mtx/fn_80070E1C.c"),
         Object(Matching, "dolphin/mtx/fn_80071100.c"),
+        Object(Matching, "dolphin/mtx/fn_800712E4.c"),
         Object(Matching, "dolphin/ai/AI.c"),
         Object(Matching, "dolphin/ar/AR.c"),
         Object(Matching, "dolphin/ar/ARQ.c"),

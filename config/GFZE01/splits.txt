@@ -380,8 +380,11 @@ dolphin/mtx/fn_80070E1C.c:
 dolphin/mtx/fn_80071100.c:
 	.text       start:0x80071100 end:0x800712E4
 
-coarse/text_800712E4.c:
-	.text       start:0x800712E4 end:0x80071CC0
+dolphin/mtx/fn_800712E4.c:
+	.text       start:0x800712E4 end:0x800715A0
+
+coarse/text_800715A0.c:
+	.text       start:0x800715A0 end:0x80071CC0
 
 game/fn_80071CC0.c:
 	.text       start:0x80071CC0 end:0x800724CC
