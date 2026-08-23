@@ -3,7 +3,7 @@
 
 extern void fn_80051F38(void);
 extern void memset(void);
-extern unsigned char lbl_8012B938[8320];
+extern unsigned char adxt_sincos_table[8320];
 extern unsigned char lbl_80130BC0[64];
 extern unsigned char lbl_801319E0[2176];
 extern unsigned char lbl_80187370[16];
@@ -238,9 +238,9 @@ _80053ca0:
     stfsx	f0, r3, r0
     bdnz    _80053ca0
 _80053d44:
-    lis     r3, lbl_8012B938@ha
+    lis     r3, adxt_sincos_table@ha
     li	r0, 0xaab
-    addi	r4, r3, lbl_8012B938@l
+    addi	r4, r3, adxt_sincos_table@l
     addi	r3, r4, 0x1f
     rlwinm	r3, r3, 0, 0, 0x1a
     addi	r4, r4, 0x2000
