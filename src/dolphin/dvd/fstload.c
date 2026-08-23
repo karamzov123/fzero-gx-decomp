@@ -39,7 +39,7 @@ extern void OSSetCurrentContext(void);
 extern void cb(void);
 extern void OSWakeupThread(void);
 extern void fn_800133B8(void);
-extern void fn_80019430(void);
+extern void DVDReadAbsAsyncForBS(void);
 extern void fn_8001BE74(void);
 extern void __shl2i(void);
 extern void __shr2u(void);
@@ -71,7 +71,7 @@ lbl_8001A354:
 	addi r3, r31, 0x0
 	li r5, 0x20
 	li r6, 0x420
-	bl fn_80019430
+	bl DVDReadAbsAsyncForBS
 	b lbl_8001A3E0
 lbl_8001A37C:
 	li r0, 0x2
@@ -85,7 +85,7 @@ lbl_8001A37C:
 	addi r0, r5, 0x1f
 	lwz r6, 0x4(r6)
 	clrrwi r5, r0, 5
-	bl fn_80019430
+	bl DVDReadAbsAsyncForBS
 	b lbl_8001A3E0
 lbl_8001A3B0:
 	cmpwi r3, -0x1

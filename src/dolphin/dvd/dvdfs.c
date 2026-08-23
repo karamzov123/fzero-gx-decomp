@@ -29,8 +29,8 @@ extern void fn_8001724C(void);
 extern void fn_800173AC(void);
 extern void fn_80017590(void);
 extern void fn_800176D8(void);
-extern void fn_80019354(void);
-extern void fn_80019B78(void);
+extern void DVDReadAbsAsyncPrio(void);
+extern void DVDCancel(void);
 extern void fn_8007ED90(void);
 
 /* __DVDFSInit @0x80016DC0 | size: 0x38 */
@@ -389,7 +389,7 @@ nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
-	bl fn_80019B78
+	bl DVDCancel
 	li r3, 0x1
 	lwz r0, 0xc(r1)
 	addi r1, r1, 0x8
@@ -644,7 +644,7 @@ lbl_80017550:
 	addi r5, r28, 0x0
 	addi r8, r31, 0x0
 	add r6, r0, r29
-	bl fn_80019354
+	bl DVDReadAbsAsyncPrio
 	lmw r26, 0x20(r1)
 	li r3, 0x1
 	lwz r0, 0x3c(r1)
@@ -717,7 +717,7 @@ lbl_8001763C:
 	addi r5, r28, 0x0
 	addi r8, r30, 0x0
 	add r6, r0, r29
-	bl fn_80019354
+	bl DVDReadAbsAsyncPrio
 	cmpwi r3, 0x0
 	bne lbl_80017670
 	li r3, -0x1

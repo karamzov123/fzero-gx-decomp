@@ -17,7 +17,7 @@ extern void OSSetCurrentContext(void* context);
 extern void DVDInit(void);
 extern s32 fn_8001989C(s32);
 extern s32 fn_800198AC(s32);
-extern s32 fn_80019D48(void*);
+extern s32 DVDCancelAllAsync(void*);
 extern void __OSMaskInterrupts(u32 mask);
 extern void __OSUnmaskInterrupts(u32 mask);
 extern u64 OSGetTime(void);
@@ -26,9 +26,9 @@ extern void* fn_80019C48(void);
 extern void fn_8001DFFC(s32);
 extern void fn_8001E2BC(s32);
 extern void fn_8001E2E8(s32);
-extern s32 fn_800195D4(void* a, s32 b);
+extern s32 DVDBSChangeDiskAsync(void* a, s32 b);
 extern s32 fn_800197A4(void* block);
-extern s32 fn_80019354(void* block, void* addr, u32 length, u32 offset, void* caddr);
+extern s32 DVDReadAbsAsyncPrio(void* block, void* addr, u32 length, u32 offset, void* caddr);
 extern void ICInvalidateRange(void* addr, u32 nBytes);
 extern void ICFlashInvalidate(void);
 extern void __OSDoHotReset(int arg0);
@@ -84,7 +84,7 @@ asm void __OSReboot(register unsigned long resetCode, register unsigned long boo
     lis	r3, -0x7fff
     stw	r27, -0x7bf8(r13)
     addi	r3, r3, -0x14fc
-    bl      fn_80019D48
+    bl      DVDCancelAllAsync
     li	r3, -0x20
     bl      __OSMaskInterrupts
     li	r3, 0x400
@@ -142,7 +142,7 @@ _8000ec34:
     bl      fn_8001E2E8
     addi	r3, r1, 0x70
     li	r4, 0
-    bl      fn_800195D4
+    bl      DVDBSChangeDiskAsync
     bl      OSGetTime
     mr	r31, r4
     mr	r29, r3
@@ -188,7 +188,7 @@ _8000ecdc:
     li	r6, 0x2440
     li	r7, 0
     li	r8, 0
-    bl      fn_80019354
+    bl      DVDReadAbsAsyncPrio
     bl      OSGetTime
     mr	r26, r4
     mr	r31, r3
@@ -236,7 +236,7 @@ _8000ed64:
     addi	r6, r6, 0x2440
     li	r7, 0
     li	r8, 0
-    bl      fn_80019354
+    bl      DVDReadAbsAsyncPrio
     bl      OSGetTime
     mr	r27, r4
     mr	r28, r3

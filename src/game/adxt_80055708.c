@@ -11,7 +11,7 @@ extern void fn_800174D0(void);
 extern void fn_800175C0(void);
 extern void fn_800176FC(void);
 extern void fn_800197A4(void);
-extern void fn_80019B78(void);
+extern void DVDCancel(void);
 extern void fn_8004AC58(void);
 extern void gcciErrPrintf(void);
 extern void gccicrit_leave(void);
@@ -145,7 +145,7 @@ _80055830:
     li	r0, 1
     stw	r0, 8(r26)
     addi	r3, r29, 0x28
-    bl      fn_80019B78
+    bl      DVDCancel
     li	r0, 0
     cmpwi	r3, 0
     stw	r0, 8(r26)
@@ -665,7 +665,7 @@ _80055f14:
     li	r0, 1
     stw	r0, 8(r24)
     addi	r3, r29, 0x28
-    bl      fn_80019B78
+    bl      DVDCancel
     li	r0, 0
     cmpwi	r3, 0
     stw	r0, 8(r24)
