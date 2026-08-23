@@ -198,7 +198,7 @@ asm void fn_8004BA38(void)
     blr	
 }
 
-asm void fn_8004BA40(void)
+asm void ADXT_GetDecNumSmpl(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)

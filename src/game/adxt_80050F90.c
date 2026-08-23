@@ -4,7 +4,7 @@
 extern void fn_8004FF68(void);
 extern void fn_800501F4(void);
 extern void fn_80050670(void);
-extern void fn_80050698(void);
+extern void ADXF_Stop(void);
 extern void fn_80050BD4(void);
 extern void fn_80053A30(void);
 extern void fn_80053DB4(void);
@@ -37,7 +37,7 @@ _80050fc4:
     lwz	r3, 0x34c(r31)
     lwz	r8, 0(r31)
     srawi	r7, r0, 2
-    bl      fn_80050698
+    bl      ADXF_Stop
     bl      fn_80053A30
     lis	r4, -0x7fe8
     mr	r30, r27

@@ -70,7 +70,7 @@ extern void fn_800589BC(void);
 extern void fn_80083DB0(void);
 extern void memset(void);
 
-asm void fn_8004CD70(void)
+asm void ADXT_Create(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)

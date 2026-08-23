@@ -3,7 +3,7 @@
 
 extern void fn_800501F4(void);
 
-asm void fn_80050698(void)
+asm void ADXF_Stop(void)
 {
     nofralloc
     stwu	r1, -0x80(r1)
