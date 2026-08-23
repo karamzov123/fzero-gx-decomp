@@ -297,7 +297,13 @@ game/gxfifo_800724CC.c:
 	.text       start:0x800724CC end:0x8007264C
 
 coarse/text_8007264C.c:
-	.text       start:0x8007264C end:0x800794F0
+	.text       start:0x8007264C end:0x80074A60
+
+game/gxstate_80074A60.c:
+	.text       start:0x80074A60 end:0x80074D88
+
+coarse/text_80074D88.c:
+	.text       start:0x80074D88 end:0x800794F0
 
 dolphin/msl/runtime.c:
 	.text       start:0x800794F0 end:0x800797C0
