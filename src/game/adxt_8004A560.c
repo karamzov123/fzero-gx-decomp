@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void fn_80047464(void);
-extern void fn_8004A5F4(void);
+extern void ADXSTMF_StatExec(void);
 extern void fn_8004A80C(void);
 extern void cvFsGetStat(void);
 extern void cvFsReqRd(void);
@@ -51,7 +51,7 @@ _8004a5ac:
     cmpwi	r0, 1
     bne     _8004a5c0
     mr	r3, r31
-    bl      fn_8004A5F4
+    bl      ADXSTMF_StatExec
 _8004a5c0:
     addi	r30, r30, 1
     addi	r31, r31, 0x5c
@@ -69,7 +69,7 @@ _8004a5dc:
     blr	
 }
 
-asm void fn_8004A5F4(void)
+asm void ADXSTMF_StatExec(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

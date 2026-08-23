@@ -484,7 +484,7 @@ _8004c780:
     blr	
 }
 
-asm void fn_8004C794(void)
+asm void ADXT_StartSj(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

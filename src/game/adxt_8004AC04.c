@@ -4,7 +4,7 @@
 extern void fn_80046718(void);
 extern void fn_80046738(void);
 extern void fn_80046F7C(void);
-extern void fn_8004A5F4(void);
+extern void ADXSTMF_StatExec(void);
 extern void cvFsStopTr(void);
 extern void fn_80058A40(void);
 extern void svmUnlockServer(void);
@@ -108,7 +108,7 @@ _8004ad1c:
     cmpwi	r0, 1
     bne     _8004ad30
     mr	r3, r28
-    bl      fn_8004A5F4
+    bl      ADXSTMF_StatExec
 _8004ad30:
     addi	r29, r29, 1
     addi	r28, r28, 0x5c
@@ -317,7 +317,7 @@ _8004afb4:
     cmpwi	r0, 1
     bne     _8004afc8
     mr	r3, r28
-    bl      fn_8004A5F4
+    bl      ADXSTMF_StatExec
 _8004afc8:
     addi	r29, r29, 1
     addi	r28, r28, 0x5c
@@ -381,7 +381,7 @@ _8004b098:
     cmpwi	r0, 1
     bne     _8004b0ac
     mr	r3, r28
-    bl      fn_8004A5F4
+    bl      ADXSTMF_StatExec
 _8004b0ac:
     addi	r29, r29, 1
     addi	r28, r28, 0x5c
@@ -537,7 +537,7 @@ _8004b2a4:
     cmpwi	r0, 1
     bne     _8004b2b8
     mr	r3, r28
-    bl      fn_8004A5F4
+    bl      ADXSTMF_StatExec
 _8004b2b8:
     addi	r29, r29, 1
     addi	r28, r28, 0x5c
@@ -603,7 +603,7 @@ _8004b390:
     cmpwi	r0, 1
     bne     _8004b3a4
     mr	r3, r28
-    bl      fn_8004A5F4
+    bl      ADXSTMF_StatExec
 _8004b3a4:
     addi	r29, r29, 1
     addi	r28, r28, 0x5c
@@ -667,7 +667,7 @@ _8004b474:
     cmpwi	r0, 1
     bne     _8004b488
     mr	r3, r28
-    bl      fn_8004A5F4
+    bl      ADXSTMF_StatExec
 _8004b488:
     addi	r29, r29, 1
     addi	r28, r28, 0x5c
