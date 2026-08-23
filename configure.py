@@ -304,6 +304,7 @@ config.libs = [
         Object(Matching, "dolphin/os/DBInterface.c"),
         Object(Matching, "dolphin/os/PSMathFns.c"),
         Object(Matching, "dolphin/card/CARDRead.c"),
+        Object(Matching, "dolphin/card/CARDWrite.c"),
         Object(Matching, "dolphin/mtx/MTX.c"),
         Object(Matching, "dolphin/dvd/dvdlow.c"),
         Object(Matching, "dolphin/dvd/dvdfs.c"),

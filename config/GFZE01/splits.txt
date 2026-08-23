@@ -197,8 +197,8 @@ coarse/text_80026EE0.c:
 dolphin/card/CARDRead.c:
 	.text       start:0x8002F140 end:0x8002F5B8
 
-coarse/text_8002F5B8.c:
-	.text       start:0x8002F5B8 end:0x800307CC
+dolphin/card/CARDWrite.c:
+	.text       start:0x8002F5B8 end:0x8002F934
 
 dolphin/gx/GXInit.c:
 	.text       start:0x800307CC end:0x80031C84
