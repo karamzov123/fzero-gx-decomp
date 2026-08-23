@@ -6,10 +6,12 @@ extern void OSGetArenaHi(void);
 extern void OSGetArenaLo(void);
 extern void OSGetProgressiveMode(void);
 extern void OSGetResetCode(void);
+extern void OSGetResetSwitchState(void);
 extern void OSGetSaveRegion(void);
 extern void OSGetTick(void);
 extern void OSInit(void);
 extern void OSLink(void);
+extern void OSResetSystem(void);
 extern void OSSetArenaHi(void);
 extern void OSSetArenaLo(void);
 extern void OSSetStringTable(void);
@@ -34,8 +36,12 @@ extern void fn_80006340(void);
 extern void fn_80006354(void);
 extern void fn_800063AC(void);
 extern void fn_8000659C(void);
+extern void fn_800068F4(void);
+extern void fn_80006904(void);
 extern void fn_80006914(void);
+extern void fn_8000691C(void);
 extern void fn_80006AEC(void);
+extern void fn_80006AF4(void);
 extern void fn_80006AFC(void);
 extern void fn_80006B30(void);
 extern void fn_800071B8(void);
@@ -51,7 +57,10 @@ extern void fn_80017160(void);
 extern void fn_80017228(void);
 extern void fn_800174D0(void);
 extern void fn_8001AAB4(void);
+extern void fn_8001AF64(void);
+extern void fn_8001BDF0(void);
 extern void fn_8001CD68(void);
+extern void fn_8001CF80(void);
 extern void fn_8001DBC8(void);
 extern void fn_80035C50(void);
 extern void fn_80036544(void);
@@ -61,6 +70,7 @@ extern void fn_800377F8(void);
 extern void fn_80037D40(void);
 extern void fn_80038C5C(void);
 extern void fn_8006B188(void);
+extern void fn_8006B470(void);
 extern void fn_8006CCC8(void);
 extern void fn_8006CD40(void);
 extern void fn_8006CDFC(void);
@@ -71,6 +81,7 @@ extern void fn_8006FD1C(void);
 extern void fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern void fn_8006FF8C(void);
+extern void fn_8006FFCC(void);
 extern void fn_80070158(void);
 extern void fn_800702E4(void);
 extern void fn_80070538(void);
@@ -105,6 +116,7 @@ extern void fn_80074918(void);
 extern void fn_800791A4(void);
 extern void fn_800793D4(void);
 extern void fn_80083BCC(void);
+extern void fn_80083DB0(void);
 extern void lbl_8006D758(void);
 extern void main(void);
 extern void memcpy(void);
@@ -1495,6 +1507,199 @@ _800068b4:
     lwz	r0, 0xa4(r1)
     mtlr	r0
     addi	r1, r1, 0xa0
+    blr	
+}
+
+asm void fn_800068F4(void)
+{
+    nofralloc
+    lwz	r0, -0x7cd8(r13)
+    stw	r3, -0x7cd8(r13)
+    mr	r3, r0
+    blr	
+}
+
+asm void fn_80006904(void)
+{
+    nofralloc
+    lwz	r0, -0x7cdc(r13)
+    stw	r3, -0x7cdc(r13)
+    mr	r3, r0
+    blr	
+}
+
+asm void fn_80006914(void)
+{
+    nofralloc
+    stw	r3, -0x7ce0(r13)
+    blr	
+}
+
+asm void fn_8000691C(void)
+{
+    nofralloc
+    stwu	r1, -0x70(r1)
+    mflr	r0
+    stw	r0, 0x74(r1)
+    addi	r3, r1, 0x30
+    stw	r31, 0x6c(r1)
+    bl      fn_8001CF80
+    addi	r3, r1, 8
+    bl      fn_8006B470
+    lbz	r3, 0x11(r1)
+    addi	r31, r1, 0x30
+    li	r0, 0
+    extsb	r3, r3
+    cmpwi	r3, -1
+    bc      12, 2, _80006960
+    lhz	r3, 8(r1)
+    stb	r0, 0x3a(r1)
+    sth	r3, 0x30(r1)
+_80006960:
+    lbz	r3, 0x1b(r1)
+    extsb	r3, r3
+    cmpwi	r3, -1
+    bc      12, 2, _8000697c
+    lhz	r3, 0x12(r1)
+    stb	r0, 0x46(r1)
+    sth	r3, 0x3c(r1)
+_8000697c:
+    lbz	r3, 0x25(r1)
+    extsb	r3, r3
+    cmpwi	r3, -1
+    bc      12, 2, _80006998
+    lhz	r3, 0x1c(r1)
+    sth	r3, 0x18(r31)
+    stb	r0, 0x22(r31)
+_80006998:
+    lbz	r3, 0x2f(r1)
+    extsb	r3, r3
+    cmpwi	r3, -1
+    bc      12, 2, _800069b4
+    lhz	r3, 0x26(r1)
+    sth	r3, 0x24(r31)
+    stb	r0, 0x2e(r31)
+_800069b4:
+    lbz	r3, 0x3a(r1)
+    li	r0, 0
+    extsb	r3, r3
+    cmpwi	r3, -3
+    bc      4, 2, _800069cc
+    sth	r0, 0x30(r1)
+_800069cc:
+    lbz	r3, 0x46(r1)
+    extsb	r3, r3
+    cmpwi	r3, -3
+    bc      4, 2, _800069e0
+    sth	r0, 0x3c(r1)
+_800069e0:
+    lbz	r3, 0x22(r31)
+    extsb	r3, r3
+    cmpwi	r3, -3
+    bc      4, 2, _800069f4
+    sth	r0, 0x18(r31)
+_800069f4:
+    lbz	r3, 0x2e(r31)
+    extsb	r3, r3
+    cmpwi	r3, -3
+    bc      4, 2, _80006a08
+    sth	r0, 0x24(r31)
+_80006a08:
+    lbz	r0, -0x7ce6(r13)
+    cmplwi	r0, 1
+    bc      4, 2, _80006a28
+    bl      OSGetResetSwitchState
+    cmpwi	r3, 0
+    bc      4, 2, _80006a28
+    li	r0, 0xff
+    stb	r0, -0x7ce7(r13)
+_80006a28:
+    bl      OSGetResetSwitchState
+    cmpwi	r3, 0
+    bc      12, 2, _80006a3c
+    li	r0, 1
+    stb	r0, -0x7ce6(r13)
+_80006a3c:
+    lbz	r3, -0x7ce7(r13)
+    lis	r0, 0x4330
+    stw	r0, 0x60(r1)
+    lfd	f2, -0x7f78(r2)
+    stw	r3, 0x64(r1)
+    lfd	f0, -0x7f48(r2)
+    lfd	f1, 0x60(r1)
+    fsub	f1, f1, f2
+    fcmpo	cr0, f1, f0
+    bc      4, 1, _80006a90
+    bl      fn_8001AF64
+    li	r3, 1
+    bl      fn_8001BDF0
+    li	r3, 0
+    bl      fn_8006FFCC
+    bl      fn_8006FDEC
+    bl      fn_8006FEFC
+    li	r3, 0
+    li	r4, 0
+    li	r5, 0
+    bl      OSResetSystem
+_80006a90:
+    li	r0, 4
+    li	r4, 0
+    mtctr	r0
+_80006a9c:
+    lhz	r0, 0(r31)
+    andi.	r0, r0, 0x1600
+    cmpwi	r0, 0x1600
+    bc      4, 2, _80006abc
+    lbz	r3, -0x7ce7(r13)
+    addi	r0, r3, 1
+    stb	r0, -0x7ce7(r13)
+    b       _80006ac8
+_80006abc:
+    addi	r31, r31, 0xc
+    addi	r4, r4, 1
+    bc      16, 0, _80006a9c
+_80006ac8:
+    cmplwi	r4, 4
+    bc      4, 2, _80006ad8
+    li	r0, 0
+    stb	r0, -0x7ce7(r13)
+_80006ad8:
+    lwz	r0, 0x74(r1)
+    lwz	r31, 0x6c(r1)
+    mtlr	r0
+    addi	r1, r1, 0x70
+    blr	
+}
+
+asm void fn_80006AEC(void)
+{
+    nofralloc
+    stw	r3, -0x7ce4(r13)
+    blr	
+}
+
+asm void fn_80006AF4(void)
+{
+    nofralloc
+    lbz	r3, -0x7ce8(r13)
+    blr	
+}
+
+asm void fn_80006AFC(void)
+{
+    nofralloc
+    stwu	r1, -0x10(r1)
+    mflr	r0
+    lis	r3, -0x7fea
+    addi	r4, r13, -0x7fc8
+    stw	r0, 0x14(r1)
+    addi	r3, r3, -0x42c0
+    bl      fn_80083DB0
+    li	r3, 0
+    bl      fn_80006B30
+    lwz	r0, 0x14(r1)
+    mtlr	r0
+    addi	r1, r1, 0x10
     blr	
 }
 
