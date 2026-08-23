@@ -386,8 +386,11 @@ game/adxt_800570DC.c:
 game/adxt_800589BC.c:
 	.text       start:0x800589BC end:0x8005A24C
 
-coarse/text_8005A24C.c:
-	.text       start:0x8005A24C end:0x8005C120
+game/adxt_8005A24C.c:
+	.text       start:0x8005A24C end:0x8005BC20
+
+coarse/text_8005BC20.c:
+	.text       start:0x8005BC20 end:0x8005C120
 
 coarse/text_8005C120.c:
 	.text       start:0x8005C120 end:0x80069AE0
