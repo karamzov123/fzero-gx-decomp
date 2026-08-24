@@ -28,7 +28,7 @@ asm void TRKTerminateNub(register void* a, register void* b, register void* c, r
 asm void TRKInitializeNub(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008A754(register void* a, register void* b, register void* c, register void* d);
 asm void TRK_flush_cache(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008B0E0(register void* a, register void* b, register void* c, register void* d);
+asm void __TRK_get_MSR(register void* a, register void* b, register void* c, register void* d);
 asm void TRKInterruptHandler(register void* a, register void* b, register void* c, register void* d);
 asm void TRKSwapAndGo(register void* a, register void* b, register void* c, register void* d);
 asm void TRKTargetSetStopped(register void* a, register void* b, register void* c, register void* d);
@@ -51,7 +51,7 @@ asm void TRKInitializeTarget(void)
     li	r0, 1
     addi	r3, r3, gTRKState@l
     stw	r0, 0x98(r3)
-    bl      fn_8008B0E0
+    bl      __TRK_get_MSR
     lis     r5, gTRKState@ha
     lis	r4, -0x7fe6
     addi	r5, r5, gTRKState@l

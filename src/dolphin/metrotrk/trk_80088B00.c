@@ -2969,14 +2969,14 @@ _8008b0d0:
     blr
 }
 
-asm void fn_8008B0E0(void)
+asm void __TRK_get_MSR(void)
 {
     nofralloc
     mfmsr	r3
     blr
 }
 
-asm void fn_8008B0E8(void)
+asm void __TRK_set_MSR(void)
 {
     nofralloc
     mtmsr	r3
@@ -4201,9 +4201,9 @@ _8008c158:
     stw	r4, 0x18(r1)
     stw	r3, 0x1c(r1)
     stb	r0, 0xd(r27)
-    bl      fn_8008B0E0
+    bl      __TRK_get_MSR
     ori	r3, r3, 0x2000
-    bl      fn_8008B0E8
+    bl      __TRK_set_MSR
     li	r0, 0
     mr	r22, r20
     stw	r0, 0(r30)
@@ -4637,7 +4637,7 @@ asm void TRKTargetAccessMemory(void)
     stw	r0, 0(r28)
     b       _8008c824
 _8008c7b0:
-    bl      fn_8008B0E0
+    bl      __TRK_get_MSR
     lis     r4, gTRKCPUState@ha
     cmpwi	r29, 0
     addi	r4, r4, gTRKCPUState@l
