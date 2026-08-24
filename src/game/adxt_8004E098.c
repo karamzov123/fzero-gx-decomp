@@ -49,7 +49,7 @@ extern void fn_8005A95C(void);
 extern void fn_8005B010(void);
 extern void fn_8005B068(void);
 extern void ADXTServerStateRequest(void);
-extern void fn_8005B264(void);
+extern void mfCiOpen_resource_mgr(void);
 extern void fn_8005B464(void);
 extern void fn_8005B534(void);
 extern void fn_8005BCB4(void);
@@ -1265,7 +1265,7 @@ asm void fn_8004EEC4(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_8005B264
+    bl      mfCiOpen_resource_mgr
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1284,7 +1284,7 @@ asm void fn_8004EEE4(void)
     bl      ADXTServerStateRequest
     mr	r3, r31
     li	r4, 0
-    bl      fn_8005B264
+    bl      mfCiOpen_resource_mgr
     mr	r3, r31
     bl      fn_8005B464
     lwz	r0, 0x14(r1)

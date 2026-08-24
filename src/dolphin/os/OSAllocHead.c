@@ -87,7 +87,7 @@ extern void Yay0ReadyFlagUpdate(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
 extern void PSMTXMultVecPair(void);
-extern void fn_80015EE8(void);
+extern void MTXOrtho(void);
 extern void DVDConvertPathToEntrynum(void);
 extern void fn_800170EC(void);
 extern void DVDOpen(void);

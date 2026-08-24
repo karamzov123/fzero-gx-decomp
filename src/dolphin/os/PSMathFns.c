@@ -293,7 +293,7 @@ asm void fn_80015E18(register f32* m, register f32 t, register f32 b,
     blr
 }
 
-asm void fn_80015EE8(register f32* m, register f32 l, register f32 t,
+asm void MTXOrtho(register f32* m, register f32 l, register f32 t,
                      register f32 r, register f32 b, register f32 n,
                      register f32 f)
 {

@@ -9,7 +9,7 @@ extern asm void SITransferSync(void);
 extern asm void SIGetResponseSync(void);
 extern asm void fn_80013994(void);
 extern asm void fn_800139E8(void);
-extern asm void fn_80015EE8(void);
+extern asm void MTXOrtho(void);
 extern asm void AXFreeVoice(void);
 extern asm void AXSetVoiceType_cached(void);
 extern asm void axmix_device_ctrl_clear(void);
@@ -3969,7 +3969,7 @@ asm void fn_8006CD50(void)
     fmr	f5, f1
     lfs	f2, -0x7720(r13)
     lfs	f4, -0x771c(r13)
-    bl      fn_80015EE8
+    bl      MTXOrtho
     addi	r3, r1, 8
     li	r4, 1
     bl      GXIntToFloatCopy

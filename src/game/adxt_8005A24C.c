@@ -23,7 +23,7 @@ extern void svm_enter_critical_wrapper(void);
 extern void fn_8005A9B8(void);
 extern void fn_8005AE98(void);
 extern void ADXTServerStateRequest(void);
-extern void fn_8005B264(void);
+extern void mfCiOpen_resource_mgr(void);
 extern void fn_8005BE68(void);
 extern void fn_8005BE80(void);
 extern void fn_8005BE98(void);
@@ -1289,7 +1289,7 @@ _8005b248:
     blr	
 }
 
-asm void fn_8005B264(void)
+asm void mfCiOpen_resource_mgr(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -1456,7 +1456,7 @@ asm void fn_8005B464(void)
     bl      ADXTServerStateRequest
     mr	r3, r29
     li	r4, 0
-    bl      fn_8005B264
+    bl      mfCiOpen_resource_mgr
     mr	r31, r29
     li	r30, 0
     b     _8005b4f8
@@ -1647,7 +1647,7 @@ _8005b6fc:
     bl      ADXTServerStateRequest
     mr	r3, r31
     li	r4, 0
-    bl      fn_8005B264
+    bl      mfCiOpen_resource_mgr
     mr	r30, r31
     li	r29, 0
     b     _8005b79c
@@ -1714,7 +1714,7 @@ _8005b7c4:
     bl      ADXTServerStateRequest
     mr	r3, r31
     li	r4, 0
-    bl      fn_8005B264
+    bl      mfCiOpen_resource_mgr
     mr	r30, r31
     li	r29, 0
     b     _8005b88c
@@ -1772,7 +1772,7 @@ _8005b8b4:
     bl      ADXTServerStateRequest
     mr	r3, r31
     li	r4, 0
-    bl      fn_8005B264
+    bl      mfCiOpen_resource_mgr
     mr	r30, r31
     li	r29, 0
     b     _8005b958

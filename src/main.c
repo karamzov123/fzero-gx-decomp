@@ -102,7 +102,7 @@ extern void Yay0ReadyFlagUpdate(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
 extern void PSMTXMultVecPair(void);
-extern void fn_80015EE8(void);
+extern void MTXOrtho(void);
 extern void DVDConvertPathToEntrynum(void);
 extern void fn_800170EC(void);
 extern void DVDOpen(void);
@@ -723,7 +723,7 @@ asm void mmu_user_fn(void)
     lfs	f4, -0x7fd8(r2)
     fmr	f5, f1
     lfs	f6, -0x7fd4(r2)
-    bl      fn_80015EE8
+    bl      MTXOrtho
     addi	r3, r1, 0x1c
     li	r4, 1
     bl      GXIntToFloatCopy
@@ -972,7 +972,7 @@ asm void fn_80005EDC(void)
     lfs	f4, -0x7f98(r2)
     fmr	f5, f1
     lfs	f6, -0x7fa0(r2)
-    bl      fn_80015EE8
+    bl      MTXOrtho
     addi	r3, r1, 0x18
     li	r4, 1
     bl      GXIntToFloatCopy
