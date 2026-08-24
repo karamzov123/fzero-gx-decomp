@@ -22,7 +22,7 @@ void __GXCalculateVatSizes(void);
 void GXGetVtxDesc(register void* p, register int a);
 void GXGetVtxDescv(register void* p);
 void GXClearVtxDesc(register void* p);
-void fn_80032F80(register void* p, register int a, register int b);
+void GXBuildPackedRegister(register void* p, register int a, register int b);
 void fn_800332D8(register void* p, register int a, register int b);
 void __GXSetVAT(void);
 void fn_800336EC(register void* p, register int a, register int b);
@@ -891,7 +891,7 @@ asm void GXClearVtxDesc(register void* p)
     blr	
 }
 
-asm void fn_80032F80(register void* p, register int a, register int b)
+asm void GXBuildPackedRegister(register void* p, register int a, register int b)
 {
     nofralloc
     addi	r0, r4, -9

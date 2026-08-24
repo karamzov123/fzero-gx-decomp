@@ -23,7 +23,7 @@ extern void fn_80057114(void);
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
 extern void fn_80058A20(void);
-extern void fn_80083B8C(void);
+extern void __msl_strncmp(void);
 extern void memcpy(void);
 extern void memset(void);
 extern unsigned char SJMEM_Error_str[12];
@@ -1837,7 +1837,7 @@ _800587ec:
     mr	r3, r30
     mr	r4, r26
     li	r5, 7
-    bl      fn_80083B8C
+    bl      __msl_strncmp
     cmpwi	r3, 0
     bne     _800588bc
     addi	r0, r30, 0x10
@@ -1892,7 +1892,7 @@ _800588bc:
     mr	r3, r30
     mr	r4, r27
     li	r5, 7
-    bl      fn_80083B8C
+    bl      __msl_strncmp
     cmpwi	r3, 0
     bne     _800588e4
     li	r3, 0

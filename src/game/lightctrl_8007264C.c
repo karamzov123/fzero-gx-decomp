@@ -1,6 +1,6 @@
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void fn_80032F80(void);
+extern void GXBuildPackedRegister(void);
 extern void* memset(void*, int, unsigned long);
 extern void GXSetCullMode(void);
 extern void fn_800370A0(void);
@@ -67,7 +67,7 @@ _8007269C:
     stw r5, 4(r9)
     stw r6, 8(r9)
     stb r7, 0xc(r9)
-    bl fn_80032F80
+    bl GXBuildPackedRegister
 _800726B0:
     lwz r0, 0x14(r1)
     mtlr r0
@@ -114,7 +114,7 @@ _80072734:
     stw r5, 4(r31)
     stw r6, 8(r31)
     stb r7, 0xc(r31)
-    bl fn_80032F80
+    bl GXBuildPackedRegister
 _8007274C:
     addi r30, r30, 0x10
 _80072750:

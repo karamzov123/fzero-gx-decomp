@@ -53,7 +53,7 @@ extern void fn_80006AFC(void);
 extern void fn_80006B30(void);
 extern void fn_80006B4C(void);
 extern void fn_80006B70(void);
-extern void fn_80006BDC(void);
+extern void __va_save_registers(void);
 extern void fn_80006C2C(void);
 extern void fn_80006C4C(void);
 extern void fn_80006CE4(void);
@@ -111,14 +111,14 @@ extern void fn_80017470(void);
 extern void DVDReadPrio(void);
 extern void DVDReadAsync(void);
 extern void fn_8001AAB4(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern void fn_8001BDF0(void);
 extern void PADInit(void);
 extern void PADRead(void);
 extern void PADSetAnalogMode(void);
 extern void GXInitTexObj(void);
 extern void fn_80036544(void);
-extern void fn_800371F8(void);
+extern void __GXSetTexRegion(void);
 extern void fn_80037518(void);
 extern void fn_800377F8(void);
 extern void fn_80037D40(void);
@@ -172,7 +172,7 @@ extern void ModelCacheMaterialParams(void);
 extern void GXIntToFloatCopy(void);
 extern void ModelSetCachedState_840(void);
 extern void ModelClearCacheSlot_B28(void);
-extern void fn_800744F8(void);
+extern void ModelMatchCachedSlot_B20(void);
 extern void ModelSetCachedPair5_B28(void);
 extern void GXSetNumTexGensCached(void);
 extern void fn_800746A8(void);
@@ -184,12 +184,12 @@ extern void fn_800791E8(void);
 extern void fn_800793D4(void);
 extern void fn_800794F0(void);
 extern void __cvt_fp2unsigned(void);
-extern void fn_80083B8C(void);
-extern void fn_80083BCC(void);
-extern void fn_80083D40(void);
+extern void __msl_strncmp(void);
+extern void __msl_strcmp(void);
+extern void __msl_strcpy(void);
 extern void strncpy(void);
 extern void strcpy(void);
-extern void fn_8006D188(void);
+extern void MathSin(void);
 extern void PSVecNormalize3(void);
 extern void QuatNormalizeCompare(void);
 extern void fn_8006D7DC(void);
@@ -691,7 +691,7 @@ asm void mmu_user_fn(void)
     addi	r4, r1, 0x14
     li	r3, 1
     stw	r0, 0x14(r1)
-    bl      fn_800371F8
+    bl      __GXSetTexRegion
     li	r3, 1
     li	r4, 1
     li	r5, 1
@@ -736,7 +736,7 @@ asm void mmu_user_fn(void)
     stb	r0, 0x1b(r1)
     lwz	r0, 0x18(r1)
     stw	r0, 0xc(r1)
-    bl      fn_800371F8
+    bl      __GXSetTexRegion
     li	r0, 0
     addi	r4, r1, 8
     stb	r0, 0x18(r1)
@@ -746,7 +746,7 @@ asm void mmu_user_fn(void)
     stb	r0, 0x1b(r1)
     lwz	r0, 0x18(r1)
     stw	r0, 8(r1)
-    bl      fn_800371F8
+    bl      __GXSetTexRegion
     mr	r3, r31
     li	r4, 0
     bl      ModelCacheMaterialParams
@@ -945,7 +945,7 @@ asm void fn_80005EDC(void)
     addi	r4, r1, 0x10
     li	r3, 1
     stw	r0, 0x10(r1)
-    bl      fn_800371F8
+    bl      __GXSetTexRegion
     li	r3, 1
     li	r4, 7
     li	r5, 0
@@ -985,7 +985,7 @@ asm void fn_80005EDC(void)
     stb	r0, 0x17(r1)
     lwz	r0, 0x14(r1)
     stw	r0, 0xc(r1)
-    bl      fn_800371F8
+    bl      __GXSetTexRegion
     li	r0, 0
     addi	r4, r1, 8
     stb	r0, 0x14(r1)
@@ -995,7 +995,7 @@ asm void fn_80005EDC(void)
     stb	r0, 0x17(r1)
     lwz	r0, 0x14(r1)
     stw	r0, 8(r1)
-    bl      fn_800371F8
+    bl      __GXSetTexRegion
     lwz	r0, 0x64(r1)
     mtlr	r0
     addi	r1, r1, 0x60
@@ -1460,12 +1460,12 @@ _800066f0:
 _80006700:
     mr	r3, r27
     addi	r4, r13, -0x7fd0
-    bl      fn_80083BCC
+    bl      __msl_strcmp
     cmpwi	r3, 0
     bc      12, 2, _800067d0
     mr	r3, r27
     addi	r4, r13, -0x7fcc
-    bl      fn_80083BCC
+    bl      __msl_strcmp
     cmpwi	r3, 0
     bc      12, 2, _800067d0
     lbz	r4, 0(r27)
@@ -1721,7 +1721,7 @@ _80006a3c:
     fsub	f1, f1, f2
     fcmpo	cr0, f1, f0
     bc      4, 1, _80006a90
-    bl      fn_8001AF64
+    bl      VIWaitForRetrace
     li	r3, 1
     bl      fn_8001BDF0
     li	r3, 0
@@ -1836,11 +1836,11 @@ asm void fn_80006B70(void)
     addi	r3, r5, lbl_801220C0@l
     mr	r4, r30
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     lis     r3, dvd_open_from_dvd_str@ha
     addi	r3, r3, dvd_open_from_dvd_str@l
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     li	r0, 0
     mr	r3, r30
     stw	r0, 0(r31)
@@ -1854,7 +1854,7 @@ asm void fn_80006B70(void)
     blr	
 }
 
-asm void fn_80006BDC(void)
+asm void __va_save_registers(void)
 {
     nofralloc
     stwu	r1, -0x70(r1)
@@ -1913,13 +1913,13 @@ _80006c7c:
     mr	r4, r29
     addi	r3, r3, lbl_801220E0@l
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     rlwinm.	r0, r29, 0, 1, 0xf
     bc      4, 2, _80006cc4
     lis     r3, dvd_open_from_dvd_str@ha
     addi	r3, r3, dvd_open_from_dvd_str@l
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     mr	r3, r29
     addi	r4, r30, 4
     bl      fn_800170EC
@@ -1977,7 +1977,7 @@ asm void fn_80006D1C(void)
     lis     r3, dvd_reading_from_dvd_str@ha
     addi	r3, r3, dvd_reading_from_dvd_str@l
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     lwz	r12, -0x7cb8(r13)
     mr	r4, r28
     mr	r5, r29
@@ -1991,7 +1991,7 @@ _80006d7c:
     mr	r4, r31
     addi	r3, r3, lbl_80122104@l
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     mr	r3, r31
     addi	r11, r1, 0x20
     bl      _restgpr_27
@@ -2088,7 +2088,7 @@ _80006e9c:
     mr	r3, r30
     addi	r4, r13, -0x7fc4
     li	r5, 2
-    bl      fn_80083B8C
+    bl      __msl_strncmp
     cmpwi	r3, 0
     bc      4, 2, _80006f28
     lis     r3, lbl_8015BD40@ha
@@ -2135,12 +2135,12 @@ _80006f44:
     lis     r3, lbl_8015BD40@ha
     addi	r4, r13, -0x7fc8
     addi	r3, r3, lbl_8015BD40@l
-    bl      fn_80083D40
+    bl      __msl_strcpy
 _80006f54:
     lis     r3, lbl_8015BD40@ha
     mr	r4, r30
     addi	r3, r3, lbl_8015BD40@l
-    bl      fn_80083D40
+    bl      __msl_strcpy
     mr	r3, r30
     bl      strlen
     add	r30, r30, r3
@@ -2262,25 +2262,25 @@ _800070c4:
 _800070f0:
     addi	r3, r1, 8
     addi	r4, r13, -0x7fc8
-    bl      fn_80083D40
+    bl      __msl_strcpy
 _800070fc:
     mr	r4, r29
     addi	r3, r1, 8
-    bl      fn_80083D40
+    bl      __msl_strcpy
 _80007108:
     mr	r4, r29
     addi	r3, r30, 0xa0
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     lis     r4, lbl_8015BD40@ha
     addi	r3, r30, 0xb0
     addi	r4, r4, lbl_8015BD40@l
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     addi	r3, r30, 0xc0
     addi	r4, r1, 8
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
     li	r29, 0
     li	r28, -1
     mr	r31, r29
@@ -2289,7 +2289,7 @@ _8000714c:
     lwz	r3, -0x7cc0(r13)
     addi	r4, r1, 8
     lwzx	r3, r3, r31
-    bl      fn_80083BCC
+    bl      __msl_strcmp
     cmpwi	r3, 0
     bc      4, 2, _8000716c
     oris	r28, r29, 0x7fff
@@ -2306,7 +2306,7 @@ _80007180:
     addi	r4, r1, 8
     oris	r5, r28, 0x7fff
     crxor	6, 6, 6
-    bl      fn_80006BDC
+    bl      __va_save_registers
 _80007194:
     lwz	r0, 0xa4(r1)
     mr	r3, r28
@@ -2971,7 +2971,7 @@ asm void fn_80007A44(void)
     stb	r0, 3(r6)
     lwz	r0, -0x7fb8(r13)
     stw	r0, 8(r1)
-    bl      fn_800744F8
+    bl      ModelMatchCachedSlot_B20
     addi	r3, r13, -0x7fb8
     bl      fn_80008204
     li	r0, 0
@@ -3022,7 +3022,7 @@ _80007b04:
     stb	r0, 3(r6)
     lwz	r0, -0x7fb8(r13)
     stw	r0, 8(r1)
-    bl      fn_800744F8
+    bl      ModelMatchCachedSlot_B20
     addi	r3, r13, -0x7fb8
     bl      fn_80008204
 _80007b50:
@@ -3078,7 +3078,7 @@ _80007bc8:
     stb	r0, 3(r6)
     lwz	r0, -0x7fb8(r13)
     stw	r0, 0xc(r1)
-    bl      fn_800744F8
+    bl      ModelMatchCachedSlot_B20
     addi	r3, r13, -0x7fb8
     bl      fn_80008204
 _80007c14:
@@ -3101,7 +3101,7 @@ asm void fn_80007C2C(void)
     addi	r4, r4, -1
     lwz	r0, -0x7fb8(r13)
     stw	r0, 8(r1)
-    bl      fn_800744F8
+    bl      ModelMatchCachedSlot_B20
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -3136,7 +3136,7 @@ _80007c80:
     stb	r0, 3(r6)
     lwz	r0, -0x7fb8(r13)
     stw	r0, 8(r1)
-    bl      fn_800744F8
+    bl      ModelMatchCachedSlot_B20
 _80007cc4:
     li	r0, 0
     stw	r0, -0x7c98(r13)
@@ -3357,7 +3357,7 @@ asm void fn_80007F70(void)
     stfd	f0, 0x18(r1)
     lwz	r0, 0x1c(r1)
     extsh	r3, r0
-    bl      fn_8006D188
+    bl      MathSin
     lfs	f2, -0x7f2c(r2)
     lfs	f0, -0x7f30(r2)
     fadds	f1, f2, f1

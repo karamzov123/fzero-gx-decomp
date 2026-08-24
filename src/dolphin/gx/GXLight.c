@@ -10,7 +10,7 @@ extern void GXGetVtxDescv(register void* p);
 extern void fn_8003396C(register void* p);
 extern void GXClearVtxDesc(register void* p);
 extern void GXSetVtxDesc(register void* p, register int a, register int b);
-extern void fn_80032F80(register void* p, register int a, register int b);
+extern void GXBuildPackedRegister(register void* p, register int a, register int b);
 extern void fn_80088624(void);
 extern void fn_80088600(void);
 extern void fn_80032818(register void* p, register int a, register int b);
@@ -928,13 +928,13 @@ asm void GXSetupLitVertexData(register void* p)
     li	r5, 1
     li	r6, 4
     li	r7, 0
-    bl      fn_80032F80
+    bl      GXBuildPackedRegister
     li	r3, 3
     li	r4, 0xa
     li	r5, 0
     li	r6, 4
     li	r7, 0
-    bl      fn_80032F80
+    bl      GXBuildPackedRegister
     addi	r29, r1, 0x1d4
     lfs	f27, -0x7d08(r2)
     addi	r28, r1, 0x44
@@ -1410,13 +1410,13 @@ asm void fn_800384FC(register void* p)
     li	r5, 1
     li	r6, 4
     li	r7, 0
-    bl      fn_80032F80
+    bl      GXBuildPackedRegister
     li	r3, 3
     li	r4, 0xa
     li	r5, 0
     li	r6, 4
     li	r7, 0
-    bl      fn_80032F80
+    bl      GXBuildPackedRegister
     lwz	r0, 0x10(r1)
     cmpwi	r0, 0
     beq     _8003862c
@@ -1428,7 +1428,7 @@ asm void fn_800384FC(register void* p)
     li	r5, 1
     li	r6, 4
     li	r7, 0
-    bl      fn_80032F80
+    bl      GXBuildPackedRegister
 _8003862c:
     clrlwi	r23, r21, 0x18
     lfd	f26, -0x7cf8(r2)

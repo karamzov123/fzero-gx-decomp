@@ -4,7 +4,7 @@
 extern void __cvt_fp2unsigned(void);
 extern void fn_800415F4(void);
 extern void fn_8004163C(void);
-extern void fn_80041684(void);
+extern void criadxGetValue(void);
 extern void fn_800416F8(void);
 extern void fn_800420F4(void);
 extern void fn_8004212C(void);
@@ -74,7 +74,7 @@ _8004c1b0:
     bne     _8004c258
 _8004c1d4:
     lwz	r3, 4(r27)
-    bl      fn_80041684
+    bl      criadxGetValue
     stw	r3, 0(r29)
     lwz	r3, 4(r27)
     bl      fn_800416F8
@@ -116,7 +116,7 @@ _8004c258:
     bl      fn_800415F4
     stw	r3, 0(r28)
     lwz	r3, 4(r27)
-    bl      fn_80041684
+    bl      criadxGetValue
     stw	r3, 0(r29)
     lwz	r3, 4(r27)
     bl      fn_8004163C
@@ -175,7 +175,7 @@ _8004c324:
     bne     _8004c3c0
 _8004c33c:
     lwz	r3, 4(r27)
-    bl      fn_80041684
+    bl      criadxGetValue
     stw	r3, 8(r1)
     lwz	r3, 4(r27)
     bl      fn_800416F8
@@ -217,7 +217,7 @@ _8004c3c0:
     bl      fn_800415F4
     stw	r3, 0xc(r1)
     lwz	r3, 4(r27)
-    bl      fn_80041684
+    bl      criadxGetValue
     stw	r3, 8(r1)
     lwz	r3, 4(r27)
     bl      fn_8004163C
@@ -329,7 +329,7 @@ _8004c56c:
     bl      fn_800415F4
     stw	r3, 0xc(r1)
     lwz	r3, 4(r27)
-    bl      fn_80041684
+    bl      criadxGetValue
     stw	r3, 8(r1)
     lwz	r3, 4(r27)
     bl      fn_8004163C

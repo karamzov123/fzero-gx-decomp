@@ -1,10 +1,10 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_8007174C(void);
+extern asm void avload_AssertPanic(void);
 extern asm void fn_80078DA8(void);
 extern asm void _savegpr_27(void);
-extern asm void fn_80083970(void);
+extern asm void __msl_strstr(void);
 extern asm void _restgpr_27(void);
 extern unsigned char lbl_8015AB70[80];
 extern unsigned char lbl_8015ABCC[12];
@@ -34,7 +34,7 @@ asm void fn_80071100(void)
     lis     r4, lbl_8015ABCC@ha
     addi	r3, r3, lbl_8015AB70@l
     addi	r4, r4, lbl_8015ABCC@l
-    bl      fn_8007174C
+    bl      avload_AssertPanic
 _8007115c:
     li	r31, 1
 _80071160:
@@ -135,7 +135,7 @@ _80071290:
     mr	r4, r28
     add	r29, r0, r31
     lwz	r3, 4(r29)
-    bl      fn_80083970
+    bl      __msl_strstr
     cmplwi	r3, 0
     beq	_800712b4
     lwz	r3, 0(r29)

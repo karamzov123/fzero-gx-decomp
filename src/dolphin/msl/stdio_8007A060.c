@@ -22,7 +22,7 @@ extern void __fp_compare_greater_equal(void);
 extern void fn_8008809C(void);
 extern void fn_80088128(void);
 extern void fn_800882EC(void);
-extern void fn_80088598(void);
+extern void __msl_fp_helper(void);
 extern void TRK_OpenFile_Game(void);
 extern unsigned char _dtors[]; // .dtors section anchor (0x8008FF20); symbol ref required so linker sees exit() calls destructors
 extern unsigned char __atexit_funcs[256];
@@ -1832,7 +1832,7 @@ _8007b77c:
     lfd	f1, -0x7978(r2)
     lfd	f0, 0x1d0(r1)
     fsub	f2, f0, f2
-    bl      fn_80088598
+    bl      __msl_fp_helper
     lfd	f0, 0x30(r1)
     fdiv	f1, f0, f1
     b       _8007b7e4
@@ -1845,7 +1845,7 @@ _8007b7b8:
     lfd	f1, -0x7978(r2)
     lfd	f0, 0x1d8(r1)
     fsub	f2, f0, f2
-    bl      fn_80088598
+    bl      __msl_fp_helper
     lfd	f0, 0x30(r1)
     fmul	f1, f0, f1
 _8007b7e4:

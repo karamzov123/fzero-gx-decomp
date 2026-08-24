@@ -27,7 +27,7 @@ extern void fn_800211E0(void);
 extern void fn_800211EC(void);
 extern void fn_80021914(void);
 extern void fn_80021928(void);
-extern void fn_800230A4(void);
+extern void AXSetVoiceState_cached(void);
 extern void AXSetVoiceType_cached(void);
 extern void fn_80023284(void);
 extern void fn_80023394(void);
@@ -59,16 +59,16 @@ extern void fn_80026F4C(void);
 extern void fn_80026FB8(void);
 extern void fn_80028130(void);
 extern void fn_80028164(void);
-extern void fn_80028424(void);
+extern void axmix_device_ctrl_unlink(void);
 extern void axmix_sound_alloc_init(void);
-extern void fn_800284CC(void);
-extern void fn_800284E8(void);
-extern void fn_800284FC(void);
-extern void fn_80028540(void);
-extern void fn_80028554(void);
-extern void fn_80028568(void);
-extern void fn_8002857C(void);
-extern void fn_80028598(void);
+extern void axmix_ctrl_init_type2(void);
+extern void axmix_ctrl_init_type5(void);
+extern void axmix_ctrl_init_type7(void);
+extern void axmix_ctrl_init_type8(void);
+extern void axmix_ctrl_init_type9(void);
+extern void axmix_ctrl_init_type10(void);
+extern void axmix_ctrl_init_type11(void);
+extern void axmix_ctrl_init_type14(void);
 extern void axmix_link_push(void);
 extern void fn_80069AE0(void);
 extern void AvHeapReleaseById(void);
@@ -78,7 +78,7 @@ extern void sprintf(void);
 extern void fn_80082908(void);
 extern void fn_80087F54(void);
 extern void expf(void);
-extern void fn_80088598(void);
+extern void __msl_fp_helper(void);
 extern unsigned char Cannot_open_s_str[15];
 extern unsigned char Not_Sound_Allocation_Size_d_str[29];
 extern void fn_800243C4(void);
@@ -991,7 +991,7 @@ _8005cc20:
     b       _8005ccb4
 _8005ccac:
     addi	r3, r3, 0x1438
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _8005ccb4:
     lwz	r4, -0x7740(r13)
     addi	r0, r30, 0x1408
@@ -1054,7 +1054,7 @@ _8005cd10:
     b       _8005cda0
 _8005cd98:
     addi	r3, r3, 0x1438
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _8005cda0:
     lwz	r4, -0x7740(r13)
     addi	r0, r29, 0x1408
@@ -1120,7 +1120,7 @@ _8005cdfc:
     b       _8005ce98
 _8005ce90:
     addi	r3, r3, 0x1438
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _8005ce98:
     lwz	r4, -0x7740(r13)
     addi	r0, r29, 0x1408
@@ -1188,7 +1188,7 @@ _8005cef4:
     b       _8005cf98
 _8005cf90:
     addi	r3, r3, 0x1438
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _8005cf98:
     lwz	r4, -0x7740(r13)
     addi	r0, r29, 0x1408
@@ -1255,7 +1255,7 @@ _8005cff4:
     b       _8005d094
 _8005d08c:
     addi	r3, r3, 0x1438
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _8005d094:
     lwz	r4, -0x7740(r13)
     addi	r0, r29, 0x1408
@@ -1325,7 +1325,7 @@ _8005d0f0:
     b       _8005d19c
 _8005d194:
     addi	r3, r3, 0x1438
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _8005d19c:
     lwz	r4, -0x7740(r13)
     addi	r0, r29, 0x1408
@@ -3229,39 +3229,39 @@ _8005ec70:
     li	r4, 1
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
-    bl      fn_800230A4
+    bl      AXSetVoiceState_cached
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x1490
     add	r3, r0, r3
-    bl      fn_800284CC
+    bl      axmix_ctrl_init_type2
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x1478
     add	r3, r0, r3
-    bl      fn_800284E8
+    bl      axmix_ctrl_init_type5
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x1484
     add	r3, r0, r3
-    bl      fn_80028540
+    bl      axmix_ctrl_init_type8
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x149c
     add	r3, r0, r3
-    bl      fn_80028554
+    bl      axmix_ctrl_init_type9
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x14a8
     add	r3, r0, r3
-    bl      fn_80028568
+    bl      axmix_ctrl_init_type10
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x14b4
     add	r3, r0, r3
-    bl      fn_8002857C
+    bl      axmix_ctrl_init_type11
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x14c8
     add	r3, r0, r3
-    bl      fn_800284FC
+    bl      axmix_ctrl_init_type7
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x14f4
     add	r3, r0, r3
-    bl      fn_80028598
+    bl      axmix_ctrl_init_type14
     lbz	r0, 0x1e(r31)
     cmplwi	r0, 0
     bc      4, 2, _8005ed80
@@ -3791,35 +3791,35 @@ _8005f4d8:
     sth	r16, 0x22(r1)
     sth	r4, 0x24(r1)
     sth	r18, 0x26(r1)
-    bl      fn_800284CC
+    bl      axmix_ctrl_init_type2
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x1478
     add	r3, r0, r3
-    bl      fn_800284E8
+    bl      axmix_ctrl_init_type5
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x1484
     add	r3, r0, r3
-    bl      fn_80028540
+    bl      axmix_ctrl_init_type8
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x149c
     add	r3, r0, r3
-    bl      fn_80028554
+    bl      axmix_ctrl_init_type9
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x14a8
     add	r3, r0, r3
-    bl      fn_80028568
+    bl      axmix_ctrl_init_type10
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x14b4
     add	r3, r0, r3
-    bl      fn_8002857C
+    bl      axmix_ctrl_init_type11
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x14c8
     add	r3, r0, r3
-    bl      fn_800284FC
+    bl      axmix_ctrl_init_type7
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x14f4
     add	r3, r0, r3
-    bl      fn_80028598
+    bl      axmix_ctrl_init_type14
     lbz	r0, 0x1e(r31)
     cmplwi	r0, 0
     bc      4, 2, _8005f5ac
@@ -4116,7 +4116,7 @@ _8005f988:
     li	r4, 1
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
-    bl      fn_800230A4
+    bl      AXSetVoiceState_cached
     lwz	r0, -0x7740(r13)
     li	r4, 1
     add	r3, r0, r23
@@ -4219,7 +4219,7 @@ _8005fadc:
 _8005fb54:
     addi	r3, r14, 0x1438
     add	r3, r4, r3
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _8005fb60:
     lwz	r0, -0x7740(r13)
     li	r5, 0xff
@@ -4370,7 +4370,7 @@ asm void SndKillChannelVoice(void)
 _8005fd64:
     addi	r3, r31, 0x1438
     add	r3, r4, r3
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _8005fd70:
     lwz	r0, -0x7740(r13)
     li	r5, 0xff
@@ -6310,7 +6310,7 @@ _80061820:
     fdiv	f2, f2, f0
 _800618ec:
     lfd	f1, -0x7b60(r2)
-    bl      fn_80088598
+    bl      __msl_fp_helper
     fmr	f31, f1
     lfd	f1, -0x7b60(r2)
     lfd	f2, -0x7b58(r2)
@@ -6318,7 +6318,7 @@ _800618ec:
     fctiwz	f0, f0
     stfd	f0, 0xf8(r1)
     lwz	r15, 0xfc(r1)
-    bl      fn_80088598
+    bl      __msl_fp_helper
     clrlwi	r3, r15, 0x10
     lis	r0, 0x4330
     stw	r3, 0x104(r1)
@@ -6365,7 +6365,7 @@ _8006195c:
     li	r4, 1
     add	r3, r0, r29
     lwz	r3, 0x1434(r3)
-    bl      fn_800230A4
+    bl      AXSetVoiceState_cached
     lbz	r0, 0x3b(r25)
     cmplwi	r0, 1
     bc      4, 2, _80061ce0
@@ -6544,7 +6544,7 @@ _80061bec:
     li	r4, 1
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
-    bl      fn_800230A4
+    bl      AXSetVoiceState_cached
     lwz	r0, -0x7740(r13)
     addi	r4, r1, 0x28
     add	r3, r0, r24
@@ -6671,7 +6671,7 @@ _80061d74:
     fdiv	f2, f2, f0
 _80061e40:
     lfd	f1, -0x7b60(r2)
-    bl      fn_80088598
+    bl      __msl_fp_helper
     frsp	f31, f1
     lfs	f0, -0x7b30(r2)
     fcmpo	cr0, f31, f0
@@ -9709,7 +9709,7 @@ _80064810:
 _8006484c:
     addi	r3, r31, 0x1438
     add	r3, r6, r3
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
 _80064858:
     lwz	r0, -0x7740(r13)
     li	r5, 0

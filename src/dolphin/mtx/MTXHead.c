@@ -13,9 +13,9 @@ extern asm void fn_80015EE8(void);
 extern asm void AXFreeVoice(void);
 extern asm void AXSetVoiceType_cached(void);
 extern asm void axmix_device_ctrl_clear(void);
-extern asm void fn_80028424(void);
+extern asm void axmix_device_ctrl_unlink(void);
 extern asm void GXBegin(void);
-extern asm void fn_800371F8(void);
+extern asm void __GXSetTexRegion(void);
 extern asm void GXLoadMatIdxTripleToXF(void);
 extern asm void SndAllocBankEntry(void);
 extern asm void QuatNormalizeCompare(void);
@@ -39,7 +39,7 @@ extern asm void GXSetTexGenCached(void);
 extern asm void fn_8007ED90(void);
 extern asm void fn_800883E8(void);
 extern asm void expf(void);
-extern asm void fn_80088598(void);
+extern asm void __msl_fp_helper(void);
 extern unsigned char ARCInitHandle_bad_archive_format_str[34];
 extern unsigned char arc_open_file_not_found_str[70];
 extern unsigned char lbl_801327F8[163944];
@@ -169,7 +169,7 @@ _80069b3c:
     stwx	r5, r4, r0
     lwz	r0, -0x7740(r13)
     add	r3, r0, r3
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
     lwz	r3, -0x7740(r13)
     addi	r5, r29, 0x1408
     lbzx	r0, r3, r5
@@ -219,7 +219,7 @@ _80069bf4:
     stwx	r5, r4, r0
     lwz	r0, -0x7740(r13)
     add	r3, r0, r3
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
     lwz	r3, -0x7740(r13)
     addi	r5, r29, 0x1408
     lbzx	r0, r3, r5
@@ -2466,7 +2466,7 @@ _8006b9b8:
     lfs	f2, -0x7acc(r2)
     fsubs	f1, f1, f3
     fmuls	f1, f1, f0
-    bl      fn_80088598
+    bl      __msl_fp_helper
     frsp	f2, f1
     lfs	f1, -0x7ac4(r2)
     lfs	f0, -0x7ac8(r2)
@@ -2483,7 +2483,7 @@ _8006ba04:
     lfs	f2, -0x7acc(r2)
     fsubs	f1, f1, f3
     fmuls	f1, f1, f0
-    bl      fn_80088598
+    bl      __msl_fp_helper
     frsp	f2, f1
     lfs	f1, -0x7ac4(r2)
     lfs	f0, -0x7ac8(r2)
@@ -4118,7 +4118,7 @@ asm void fn_8006CE44(void)
     addi	r4, r1, 8
     li	r3, 1
     stw	r0, 8(r1)
-    bl      fn_800371F8
+    bl      __GXSetTexRegion
     li	r3, 0x80
     li	r4, 7
     li	r5, 4

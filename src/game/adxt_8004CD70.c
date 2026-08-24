@@ -15,7 +15,7 @@ extern void fn_800415F4(void);
 extern void fn_80041618(void);
 extern void fn_8004163C(void);
 extern void fn_80041660(void);
-extern void fn_80041684(void);
+extern void criadxGetValue(void);
 extern void fn_800416A8(void);
 extern void fn_800416CC(void);
 extern void fn_800416D4(void);
@@ -53,7 +53,7 @@ extern void adxt_trap_entry_not_enough_data(void);
 extern void fn_8004ED5C(void);
 extern void fn_8004ED80(void);
 extern void fn_8004EDA4(void);
-extern void fn_8004EDC4(void);
+extern void adxtSetHandleVolume(void);
 extern void fn_8004EDE4(void);
 extern void fn_8004EE04(void);
 extern void fn_8004EE24(void);
@@ -694,7 +694,7 @@ _8004d5bc:
     b       _8004d8c8
 _8004d60c:
     mr	r3, r31
-    bl      fn_80041684
+    bl      criadxGetValue
     mr	r28, r3
     mr	r3, r31
     bl      fn_800415D0
@@ -808,7 +808,7 @@ _8004d778:
     bl      fn_800416E4
 _8004d7b8:
     mr	r3, r31
-    bl      fn_80041684
+    bl      criadxGetValue
     mr	r29, r3
     mr	r3, r31
     bl      fn_80041660
@@ -1121,7 +1121,7 @@ _8004dbf0:
     lwz	r3, 0xc(r31)
     li	r4, 0
     li	r5, 0
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004ddc4
 _8004dc48:
     cmpwi	r5, -0x80
@@ -1131,7 +1131,7 @@ _8004dc48:
     bne     _8004dc6c
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004ddc4
 _8004dc6c:
     cmpwi	r5, -0x80
@@ -1142,14 +1142,14 @@ _8004dc6c:
     lwz	r3, 0xc(r31)
     mr	r5, r0
     li	r4, 0
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004ddc4
 _8004dc94:
     lwz	r0, 8(r1)
     li	r4, 0
     lwz	r3, 0xc(r31)
     add	r5, r5, r0
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004ddc4
 _8004dcac:
     lha	r5, 0x42(r31)
@@ -1161,7 +1161,7 @@ _8004dcac:
     lwz	r3, 0xc(r31)
     li	r4, 0
     li	r5, -0xf
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004dd38
 _8004dcd8:
     cmpwi	r5, -0x80
@@ -1171,7 +1171,7 @@ _8004dcd8:
     bne     _8004dcfc
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004dd38
 _8004dcfc:
     cmpwi	r5, -0x80
@@ -1182,14 +1182,14 @@ _8004dcfc:
     lwz	r3, 0xc(r31)
     mr	r5, r0
     li	r4, 0
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004dd38
 _8004dd24:
     lwz	r0, 8(r1)
     li	r4, 0
     lwz	r3, 0xc(r31)
     add	r5, r5, r0
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
 _8004dd38:
     lha	r5, 0x44(r31)
     cmpwi	r5, -0x80
@@ -1200,7 +1200,7 @@ _8004dd38:
     lwz	r3, 0xc(r31)
     li	r4, 1
     li	r5, 0xf
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004ddc4
 _8004dd64:
     cmpwi	r5, -0x80
@@ -1210,7 +1210,7 @@ _8004dd64:
     bne     _8004dd88
     lwz	r3, 0xc(r31)
     li	r4, 1
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004ddc4
 _8004dd88:
     cmpwi	r5, -0x80
@@ -1221,14 +1221,14 @@ _8004dd88:
     lwz	r3, 0xc(r31)
     mr	r5, r0
     li	r4, 1
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004ddc4
 _8004ddb0:
     lwz	r0, 0xc(r1)
     li	r4, 1
     lwz	r3, 0xc(r31)
     add	r5, r5, r0
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
 _8004ddc4:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)

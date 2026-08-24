@@ -18,11 +18,11 @@ extern void fn_8005174C(void);
 extern void fn_800517C0(void);
 extern void fn_8005190C(void);
 extern void fn_80051958(void);
-extern void fn_80053A30(void);
+extern void adxtNullCallback(void);
 extern void fn_80053F38(void);
 extern void svm_ringbuf_read(void);
 extern void sprintf(void);
-extern void fn_80083B8C(void);
+extern void __msl_strncmp(void);
 extern void strcpy(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -161,7 +161,7 @@ _80053fa0:
     bl      fn_800510C4
     cmpwi	r3, 0
     beq     _80054030
-    bl      fn_80053A30
+    bl      adxtNullCallback
     lis     r4, lbl_801873DC@ha
     addi	r4, r4, lbl_801873DC@l
     stw	r3, 8(r4)
@@ -173,7 +173,7 @@ _80053fa0:
     stb	r0, 5(r24)
     b     _800541d8
 _80054020:
-    bl      fn_80053A30
+    bl      adxtNullCallback
     lis     r4, lbl_801873DC@ha
     addi	r4, r4, lbl_801873DC@l
     stw	r3, 0xc(r4)
@@ -218,7 +218,7 @@ _800540a8:
 _800540b8:
     b     _800540b8
 _800540bc:
-    bl      fn_80053A30
+    bl      adxtNullCallback
     lis     r5, lbl_801873DC@ha
     mr	r4, r20
     addi	r6, r5, lbl_801873DC@l
@@ -228,7 +228,7 @@ _800540bc:
     mr	r6, r31
     bl      ADXF_StreamTeardown
     mr	r31, r3
-    bl      fn_80053A30
+    bl      adxtNullCallback
     mullw	r23, r31, r26
     lis     r4, lbl_801873DC@ha
     mr	r22, r27
@@ -1291,7 +1291,7 @@ _80054f04:
     mr	r3, r23
     mr	r5, r20
     addi	r4, r21, 4
-    bl      fn_80083B8C
+    bl      __msl_strncmp
     cmpwi	r3, 0
     bne     _80054f2c
     slwi	r0, r22, 4
@@ -1344,7 +1344,7 @@ _80054fbc:
     mr	r3, r27
     mr	r5, r21
     addi	r4, r20, 4
-    bl      fn_80083B8C
+    bl      __msl_strncmp
     cmpwi	r3, 0
     bne     _80054fe4
     slwi	r0, r23, 4
@@ -1383,7 +1383,7 @@ _80055044:
     mr	r3, r27
     mr	r5, r20
     addi	r4, r26, 4
-    bl      fn_80083B8C
+    bl      __msl_strncmp
     cmpwi	r3, 0
     bne     _8005506c
     slwi	r0, r23, 4
@@ -1550,7 +1550,7 @@ _8005527c:
     mr	r3, r27
     mr	r5, r28
     addi	r4, r29, 4
-    bl      fn_80083B8C
+    bl      __msl_strncmp
     cmpwi	r3, 0
     bne     _8005529c
     li	r0, 1
@@ -1656,7 +1656,7 @@ _800553e8:
     mr	r3, r29
     mr	r5, r25
     addi	r4, r26, 4
-    bl      fn_80083B8C
+    bl      __msl_strncmp
     cmpwi	r3, 0
     bne     _80055410
     slwi	r0, r27, 4

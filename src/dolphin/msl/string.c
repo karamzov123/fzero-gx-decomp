@@ -1,8 +1,8 @@
 #pragma push
 #pragma force_active on
 
-// fn_80083D40: byte-copy loop (strncpy-like inner copy)
-asm void fn_80083D40(void* dst, const void* src)
+// __msl_strcpy: byte-copy loop (strncpy-like inner copy)
+asm void __msl_strcpy(void* dst, const void* src)
 {
     nofralloc
     addi    r4, r4, -1

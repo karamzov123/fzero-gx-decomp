@@ -20,7 +20,7 @@ extern void fn_80057494(void);
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
 extern void fn_8008077C(void);
-extern void fn_80083D40(void);
+extern void __msl_strcpy(void);
 extern void strcpy(void);
 extern void memset(void);
 extern void strlen(void);
@@ -836,7 +836,7 @@ _8005617c:
     bl      strcpy
     mr	r4, r28
     addi	r3, r1, 8
-    bl      fn_80083D40
+    bl      __msl_strcpy
     addi	r3, r1, 8
     bl      strlen
     addi	r4, r1, 8
@@ -942,7 +942,7 @@ _800562ec:
     bl      strcpy
     mr	r4, r30
     addi	r3, r1, 0x44
-    bl      fn_80083D40
+    bl      __msl_strcpy
     addi	r3, r1, 0x44
     bl      strlen
     addi	r4, r1, 0x44

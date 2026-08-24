@@ -6,7 +6,7 @@ extern void svm_ringbuf_skip(void);
 extern void getCupModeConst(void);
 extern void ADXF_Stop(void);
 extern void fn_80050BD4(void);
-extern void fn_80053A30(void);
+extern void adxtNullCallback(void);
 extern void fn_80053DB4(void);
 extern unsigned char adxt_sample_rate_table[32];
 extern unsigned char lbl_80130B68[48];
@@ -29,7 +29,7 @@ asm void ADXF_StreamTeardown(void)
     li	r3, 0
     b       _800510b0
 _80050fc4:
-    bl      fn_80053A30
+    bl      adxtNullCallback
     lis     r5, lbl_80187118@ha
     addi	r4, r31, 0x384
     addi	r6, r5, lbl_80187118@l
@@ -41,7 +41,7 @@ _80050fc4:
     lwz	r8, 0(r31)
     srawi	r7, r0, 2
     bl      ADXF_Stop
-    bl      fn_80053A30
+    bl      adxtNullCallback
     lis     r4, lbl_80187118@ha
     mr	r30, r27
     addi	r4, r4, lbl_80187118@l
@@ -60,7 +60,7 @@ _80051010:
     cmpwi	r27, 3
     addi	r30, r30, 0x40
     blt     _80051010
-    bl      fn_80053A30
+    bl      adxtNullCallback
     lis     r4, lbl_80187118@ha
     cmpwi	r28, 2
     addi	r4, r4, lbl_80187118@l
@@ -83,7 +83,7 @@ _80051060:
     addi	r29, r29, 0x40
     blt     _80051060
 _80051090:
-    bl      fn_80053A30
+    bl      adxtNullCallback
     lis     r4, lbl_80187118@ha
     addi	r4, r4, lbl_80187118@l
     stw	r3, 0x14(r4)

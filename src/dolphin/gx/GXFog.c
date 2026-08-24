@@ -34,7 +34,7 @@ asm void fn_8003BB30(register u32 a);
 asm int fn_8003BCE4(register u32 a);
 asm int fn_8003BD78(register u32 a);
 asm int fn_8003D4E0(register u32 a);
-asm int fn_8003D588(register u32 a);
+asm int PerfmonCopyConfig(register u32 a);
 asm int fn_8003E13C(register u32 a);
 asm int fn_8003E284(register u32 a);
 extern void fn_8003E9EC(void);
@@ -1787,7 +1787,7 @@ _8003d37c:
     blr     
 }
 
-asm void fn_8003D42C(void)
+asm void __GXSetFog(void)
 {
     nofralloc
     lwz     r4, 0x414(r3)
@@ -1894,7 +1894,7 @@ asm int fn_8003D4E0(register u32 a)
     blr     
 }
 
-asm int fn_8003D588(register u32 a)
+asm int PerfmonCopyConfig(register u32 a)
 {
     nofralloc
     mflr    r0
@@ -2048,7 +2048,7 @@ _8003d73c:
     slwi    r0, r0, 4
     lwzx    r0, r3, r0
     add     r3, r0, r31
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     lwz     r0, -0x7e3c(r13)
     cmpwi   r0, 0
     blt     _8003d7c0
@@ -2093,7 +2093,7 @@ _8003d7d4:
     slwi    r0, r0, 4
     lwzx    r0, r3, r0
     add     r3, r0, r30
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     b       _8003d864
 _8003d860:
     bl      fn_8003E284
@@ -2133,7 +2133,7 @@ _8003d864:
     slwi    r0, r0, 4
     lwzx    r0, r3, r0
     add     r3, r0, r30
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     clrlwi  r0, r29, 0x10
     stw     r0, -0x7e38(r13)
 _8003d8fc:
@@ -2768,7 +2768,7 @@ _8003e178:
     mulli   r0, r0, 0xb0
     lwzx    r3, r5, r3
     add     r3, r3, r0
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     bl      PPCMfpmc4
     lwz     r4, -0x777c(r13)
     lwz     r0, -0x7e3c(r13)
@@ -2837,7 +2837,7 @@ asm int fn_8003E284(register u32 a)
     mulli   r0, r0, 0xb0
     lwzx    r3, r5, r3
     add     r3, r3, r0
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     bl      PPCMfpmc3
     lwz     r4, -0x777c(r13)
     lwz     r0, -0x7e3c(r13)

@@ -51,7 +51,7 @@ extern void GXGetVtxDescv(register void* p);
 extern void fn_8003396C(register void* p);
 extern void GXClearVtxDesc(register void* p);
 extern void GXSetVtxDesc(register void* p, register int a, register int b);
-extern void fn_80032F80(register void* p, register int a, register int b);
+extern void GXBuildPackedRegister(register void* p, register int a, register int b);
 extern void fn_80088600(void);
 extern void fn_80032818(register void* p, register int a, register int b);
 extern void fn_800332D8(register void* p, register int a, register int b);
@@ -1566,7 +1566,7 @@ asm void __GXSetChanAmbColor(register void* p)
     blr	
 }
 
-asm void fn_80035960(register void* p1, register int a, register int b)
+asm void __GXSetChanCtrl(register void* p1, register int a, register int b)
 {
     nofralloc
     rlwinm	r0, r4, 1, 0x17, 0x1e

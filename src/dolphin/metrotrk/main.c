@@ -152,7 +152,7 @@ _8008d130:
     blr	
 }
 
-asm void fn_8008D154(void)
+asm void TRKFlushCache(void)
 {
     nofralloc
     lis     r4, lbl_801A5638@ha

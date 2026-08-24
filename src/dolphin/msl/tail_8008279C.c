@@ -13,7 +13,7 @@ extern void MSL_device_link_fn(void);
 extern void fn_80085088(void);
 extern void fn_80085494(void);
 extern void fn_80082A7C(void);
-extern void fn_80083428(void);
+extern void __msl_parse_format_specifier(void);
 extern unsigned char jumptable_8015B668[208];
 extern unsigned char lbl_80095010[32];
 extern unsigned char lbl_8015B100[256];
@@ -329,7 +329,7 @@ _80082b8c:
 _80082b98:
     mr	r3, r26
     addi	r4, r1, 0x18
-    bl      fn_80083428
+    bl      __msl_parse_format_specifier
     lbz	r0, 0x18(r1)
     mr	r26, r3
     cmplwi	r0, 0
@@ -974,7 +974,7 @@ _80083414:
     blr
 }
 
-asm void fn_80083428(void)
+asm void __msl_parse_format_specifier(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
@@ -1350,7 +1350,7 @@ _80083960:
     blr
 }
 
-asm void fn_80083970(void)
+asm void __msl_strstr(void)
 {
     nofralloc
     cmplwi	r4, 0
@@ -1385,7 +1385,7 @@ _800839c4:
     blr
 }
 
-asm void fn_800839D8(void)
+asm void __msl_strtok(void)
 {
     nofralloc
     lis     r5, lbl_80095010@ha
@@ -1481,7 +1481,7 @@ _80083b0c:
     blr
 }
 
-asm void fn_80083B14(void)
+asm void __msl_strrchr(void)
 {
     nofralloc
     addi	r5, r3, -1
@@ -1526,7 +1526,7 @@ _80083b70:
     blr
 }
 
-asm void fn_80083B8C(void)
+asm void __msl_strncmp(void)
 {
     nofralloc
     addi	r3, r3, -1
@@ -1551,7 +1551,7 @@ _80083bc4:
     blr
 }
 
-asm void fn_80083BCC(void)
+asm void __msl_strcmp(void)
 {
     nofralloc
     lbz	r5, 0(r3)
@@ -1643,7 +1643,7 @@ _80083ce4:
     blr
 }
 
-asm void fn_80083CF4(void)
+asm void __msl_strncat(void)
 {
     nofralloc
     addi	r4, r4, -1

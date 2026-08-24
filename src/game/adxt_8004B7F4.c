@@ -6,7 +6,7 @@ extern void fn_80041460(void);
 extern void fn_800414D0(void);
 extern void fn_800415F4(void);
 extern void fn_80041660(void);
-extern void fn_80041684(void);
+extern void criadxGetValue(void);
 extern void fn_80041700(void);
 extern void svmUnlockServer_wrapper(void);
 extern void svmLockServer_wrapper(void);
@@ -16,7 +16,7 @@ extern void fn_80047548(void);
 extern void fn_8004C164(void);
 extern void ADXT_ExecHndl(void);
 extern void fn_8004ED84(void);
-extern void fn_8004EDC4(void);
+extern void adxtSetHandleVolume(void);
 extern void fn_8004EDE4(void);
 extern void fn_8004EE44(void);
 extern void fn_8004EEA4(void);
@@ -700,7 +700,7 @@ _8004bffc:
     lwz	r3, 0xc(r29)
     mr	r4, r30
     mr	r5, r31
-    bl      fn_8004EDC4
+    bl      adxtSetHandleVolume
     b       _8004c040
 _8004c034:
     lis     r3, E8101208_ADXT_SetOutPan_parameter_error_str@ha
@@ -765,7 +765,7 @@ _8004c0dc:
     cmpwi	r0, 2
     blt     _8004c0f8
     lwz	r3, 4(r3)
-    bl      fn_80041684
+    bl      criadxGetValue
     b       _8004c0fc
 _8004c0f8:
     li	r3, 0

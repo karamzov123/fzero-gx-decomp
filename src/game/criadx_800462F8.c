@@ -10,7 +10,7 @@ extern void svmLockServer(void);
 extern void strlen(void);
 extern void memcpy(void);
 extern void fn_80087E80(void);
-extern void fn_80083CF4(void);
+extern void __msl_strncat(void);
 extern unsigned char c_CRI_str[7];
 extern unsigned char lbl_80090940[8];
 extern unsigned char lbl_80090950[8];
@@ -1160,7 +1160,7 @@ _800471d4:
     addi	r4, r4, lbl_80090970@l
     mr	r3, r31
     addi	r5, r5, -1
-    bl      fn_80083CF4
+    bl      __msl_strncat
     mr	r3, r31
     bl      strlen
     subfic	r30, r3, 4

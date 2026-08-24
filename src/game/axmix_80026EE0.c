@@ -10,17 +10,17 @@ extern void fn_80028090(void);
 extern void fn_800280F0(void);
 extern void fn_80028130(void);
 extern void fn_80028164(void);
-extern void fn_80028424(void);
+extern void axmix_device_ctrl_unlink(void);
 extern void axmix_sound_alloc_init(void);
-extern void fn_800284CC(void);
-extern void fn_800284E8(void);
-extern void fn_800284FC(void);
-extern void fn_80028540(void);
-extern void fn_80028554(void);
-extern void fn_80028568(void);
-extern void fn_8002857C(void);
-extern void fn_80028598(void);
-extern void fn_800285DC(void);
+extern void axmix_ctrl_init_type2(void);
+extern void axmix_ctrl_init_type5(void);
+extern void axmix_ctrl_init_type7(void);
+extern void axmix_ctrl_init_type8(void);
+extern void axmix_ctrl_init_type9(void);
+extern void axmix_ctrl_init_type10(void);
+extern void axmix_ctrl_init_type11(void);
+extern void axmix_ctrl_init_type14(void);
+extern void axmix_update_voice_state(void);
 extern void axmix_link_push(void);
 extern void fn_800288C4(void);
 extern void fn_800289C0(void);
@@ -28,7 +28,7 @@ extern void fn_80028A1C(void);
 extern void fn_80028A78(void);
 extern void fn_80028B2C(void);
 extern void fn_80028B34(void);
-extern void fn_80028B3C(void);
+extern void axmix_mix_voice_state(void);
 extern void OSDisableInterrupts(void);
 extern void OSEnableInterrupts(void);
 extern void OSRestoreInterrupts(void);
@@ -36,7 +36,7 @@ extern void OSWakeupThread(void);
 extern void __cvt_fp2unsigned(void);
 extern void DSPWriteMailHi(void);
 extern void DSPWriteMailMid(void);
-extern void fn_800230A4(void);
+extern void AXSetVoiceState_cached(void);
 extern void fn_800231C4(void);
 extern void fn_80023228(void);
 extern void fn_800234D0(void);
@@ -1428,7 +1428,7 @@ asm void fn_800280F0(void)
     b       _80028114
 _80028108:
     mr	r3, r31
-    bl      fn_800285DC
+    bl      axmix_update_voice_state
     lwz	r31, 0(r31)
 _80028114:
     cmplwi	r31, 0
@@ -1497,7 +1497,7 @@ _800281d0:
     mtctr	r0
     bctr	
     mr	r3, r29
-    bl      fn_80028B3C
+    bl      axmix_mix_voice_state
     lfs	f0, 0x24(r29)
     lwz	r0, 0x28(r29)
     fadds	f30, f30, f0
@@ -1602,7 +1602,7 @@ _8002836c:
     fmuls	f30, f30, f1
     clrlwi	r4, r22, 0x18
     addi	r3, r28, 0
-    bl      fn_800230A4
+    bl      AXSetVoiceState_cached
     mr	r3, r28
     fmr	f1, f30
     bl      fn_800234D0
@@ -1644,7 +1644,7 @@ _800283f8:
     blr	
 }
 
-asm void fn_80028424(void)
+asm void axmix_device_ctrl_unlink(void)
 {
     nofralloc
     mflr	r0
@@ -1698,7 +1698,7 @@ asm void axmix_sound_alloc_init(void)
     blr	
 }
 
-asm void fn_800284CC(void)
+asm void axmix_ctrl_init_type2(void)
 {
     nofralloc
     li	r0, 2
@@ -1710,7 +1710,7 @@ asm void fn_800284CC(void)
     blr	
 }
 
-asm void fn_800284E8(void)
+asm void axmix_ctrl_init_type5(void)
 {
     nofralloc
     li	r0, 5
@@ -1720,7 +1720,7 @@ asm void fn_800284E8(void)
     blr	
 }
 
-asm void fn_800284FC(void)
+asm void axmix_ctrl_init_type7(void)
 {
     nofralloc
     li	r0, 7
@@ -1742,7 +1742,7 @@ asm void fn_800284FC(void)
     blr	
 }
 
-asm void fn_80028540(void)
+asm void axmix_ctrl_init_type8(void)
 {
     nofralloc
     li	r0, 8
@@ -1752,7 +1752,7 @@ asm void fn_80028540(void)
     blr	
 }
 
-asm void fn_80028554(void)
+asm void axmix_ctrl_init_type9(void)
 {
     nofralloc
     li	r0, 9
@@ -1762,7 +1762,7 @@ asm void fn_80028554(void)
     blr	
 }
 
-asm void fn_80028568(void)
+asm void axmix_ctrl_init_type10(void)
 {
     nofralloc
     li	r0, 0xa
@@ -1772,7 +1772,7 @@ asm void fn_80028568(void)
     blr	
 }
 
-asm void fn_8002857C(void)
+asm void axmix_ctrl_init_type11(void)
 {
     nofralloc
     li	r0, 0xb
@@ -1784,7 +1784,7 @@ asm void fn_8002857C(void)
     blr	
 }
 
-asm void fn_80028598(void)
+asm void axmix_ctrl_init_type14(void)
 {
     nofralloc
     li	r0, 0xe
@@ -1806,7 +1806,7 @@ asm void fn_80028598(void)
     blr	
 }
 
-asm void fn_800285DC(void)
+asm void axmix_update_voice_state(void)
 {
     nofralloc
     mflr	r0
@@ -1843,7 +1843,7 @@ _80028640:
     mtctr	r0
     bctr	
     mr	r3, r29
-    bl      fn_80028B3C
+    bl      axmix_mix_voice_state
     lfs	f0, 0x24(r29)
     lwz	r0, 0x28(r29)
     fadds	f30, f30, f0
@@ -1964,7 +1964,7 @@ _8002881c:
     fmuls	f30, f30, f1
     clrlwi	r4, r22, 0x18
     addi	r3, r19, 0
-    bl      fn_800230A4
+    bl      AXSetVoiceState_cached
     mr	r3, r19
     fmr	f1, f30
     bl      fn_800234D0
@@ -2199,7 +2199,7 @@ asm void fn_80028B34(void)
     blr	
 }
 
-asm void fn_80028B3C(void)
+asm void axmix_mix_voice_state(void)
 {
     nofralloc
     mflr	r0

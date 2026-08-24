@@ -23,7 +23,7 @@ extern void __GXSetScissorBoxOffset(void);
 extern void __GXInitTexObjHW(void);
 extern void __GXSetBlendModePair(void);
 extern void __GXSetChanAmbColor(void);
-extern void fn_80035960(void);
+extern void __GXSetChanCtrl(void);
 extern void fn_800360E4(void);
 extern void fn_800360F4(void);
 extern void fn_80036388(void);
@@ -69,7 +69,7 @@ asm void fn_8007423C(void);
 asm void fn_80074300(void);
 asm void fn_800743C4(void);
 asm void fn_80074438(void);
-asm void fn_800744F8(void);
+asm void ModelMatchCachedSlot_B20(void);
 asm void ModelSetCachedPair5_B28(void);
 asm void GXSetNumTexGensCached(void);
 asm void fn_800746A8(void);
@@ -1694,7 +1694,7 @@ _800744D8:
     blr
 }
 
-asm void fn_800744F8(void)
+asm void ModelMatchCachedSlot_B20(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1996,7 +1996,7 @@ _800748CC:
     mr r7, r29
     mr r8, r30
     mr r9, r31
-    bl fn_80035960
+    bl __GXSetChanCtrl
     stb r26, 0(r25)
     stw r27, 4(r25)
     stw r28, 8(r25)

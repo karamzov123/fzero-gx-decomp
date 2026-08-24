@@ -17,13 +17,13 @@ extern asm void GXSetCopyClear(void);
 extern asm void fn_80037C2C(void);
 extern asm void fn_80037D14(void);
 extern asm void fn_80037D40(void);
-extern asm void fn_800744F8(void);
+extern asm void ModelMatchCachedSlot_B20(void);
 extern asm void fn_80035110(void);
 extern asm void fn_800350F4(void);
 extern asm void fn_8001B42C(void);
 extern asm void fn_8001BD84(void);
 extern asm void fn_8001BC54(void);
-extern asm void fn_8001AF64(void);
+extern asm void VIWaitForRetrace(void);
 extern asm void _restgpr_25(void);
 extern unsigned char lbl_8019E18C[132];
 
@@ -189,7 +189,7 @@ _800709c4:
     addi	r3, r1, 8
     stw	r0, 8(r1)
     addi	r4, r4, -1
-    bl      fn_800744F8
+    bl      ModelMatchCachedSlot_B20
     lwz	r3, -0x7690(r13)
     li	r4, 1
     lwz	r3, 4(r3)
@@ -209,12 +209,12 @@ _800709c4:
     mr	r3, r31
     bl      fn_8001BD84
     bl      fn_8001BC54
-    bl      fn_8001AF64
+    bl      VIWaitForRetrace
     lwz	r3, -0x76cc(r13)
     lwz	r0, 0(r3)
     clrlwi.	r0, r0, 0x1f
     beq	_80070a40
-    bl      fn_8001AF64
+    bl      VIWaitForRetrace
 _80070a40:
     addi	r11, r1, 0x50
     bl      _restgpr_25

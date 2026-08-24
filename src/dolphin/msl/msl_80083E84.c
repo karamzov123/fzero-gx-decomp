@@ -5215,7 +5215,7 @@ asm void expf(void)
     blr
 }
 
-asm void fn_80088598(void)
+asm void __msl_fp_helper(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -5234,7 +5234,7 @@ asm void fn_800885B8(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80088598
+    bl      __msl_fp_helper
     lwz	r0, 0x14(r1)
     frsp	f1, f1
     mtlr	r0

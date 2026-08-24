@@ -212,7 +212,7 @@ extern void fn_80039060(s32 arg);
 extern void fn_80038F48(s32 l, s32 t, s32 r, s32 b);
 extern void fn_80039020(s32 ofs_x, s32 ofs_y);
 extern void __GXSetChanAmbColor(s32 num);
-extern void fn_80035960(s32 chan, s32 en, s32 amb, s32 mat, s32 lights, s32 df, s32 af);
+extern void __GXSetChanCtrl(s32 chan, s32 en, s32 amb, s32 mat, s32 lights, s32 df, s32 af);
 extern void GXSetChanAmbColor(s32 chan, void *color);
 extern void GXSetChanMatColor(s32 chan, void *color);
 extern void fn_80036544(void);
@@ -1280,7 +1280,7 @@ L80031480:
     li	r7, 0
     li	r8, 0
     li	r9, 2
-    bl fn_80035960
+    bl __GXSetChanCtrl
     lwz	r0, 0x24(r1)
     addi	r4, r1, 0x18
     li	r3, 4
@@ -1298,7 +1298,7 @@ L80031480:
     li	r7, 0
     li	r8, 0
     li	r9, 2
-    bl fn_80035960
+    bl __GXSetChanCtrl
     lwz	r0, 0x24(r1)
     addi	r4, r1, 0x10
     li	r3, 5

@@ -10,9 +10,9 @@ asm void __OSMaskInterrupts(register void* a, register void* b, register void* c
 asm void __OSUnmaskInterrupts(register void* a, register void* b, register void* c, register void* d);
 asm void UARTByteEngine(register void* a, register void* b, register void* c, register void* d);
 asm void UART_WriteN_IntDriven(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008FAB4(register void* a, register void* b, register void* c, register void* d);
+asm void UARTWriteFrame(register void* a, register void* b, register void* c, register void* d);
 asm void UART_ReadN_IntDriven(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008FB90(register void* a, register void* b, register void* c, register void* d);
+asm void UARTReadFrame(register void* a, register void* b, register void* c, register void* d);
 
 asm void fn_8008F44C(void)
 {
@@ -235,7 +235,7 @@ _8008f6fc:
     addi	r4, r29, 0
     rlwinm	r5, r0, 0, 0, 0x1d
     addi	r3, r3, -0x2000
-    bl      fn_8008FAB4
+    bl      UARTWriteFrame
     li	r0, 0
     stw	r0, -0x758c(r13)
     mr	r3, r31
@@ -271,7 +271,7 @@ asm void fn_8008F748(void)
     clrlwi.	r0, r0, 0x1f
     beq     _8008f7c4
     addi	r3, r1, 8
-    bl      fn_8008FB90
+    bl      UARTReadFrame
     lwz	r0, 8(r1)
     clrlwi	r0, r0, 3
     stw	r0, 8(r1)
@@ -515,7 +515,7 @@ _8008fa84:
     blr	
 }
 
-asm void fn_8008FAB4(register void* a, register void* b, register void* c, register void* d) // forward-declared
+asm void UARTWriteFrame(register void* a, register void* b, register void* c, register void* d) // forward-declared
 {
     nofralloc
     mflr	r0
@@ -579,7 +579,7 @@ _8008fb60:
     blr	
 }
 
-asm void fn_8008FB90(register void* a, register void* b, register void* c, register void* d) // forward-declared
+asm void UARTReadFrame(register void* a, register void* b, register void* c, register void* d) // forward-declared
 {
     nofralloc
     mflr	r0

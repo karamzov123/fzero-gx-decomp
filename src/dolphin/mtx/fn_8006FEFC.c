@@ -4,7 +4,7 @@
 extern asm void fn_8001BE6C(void);
 extern asm void fn_8001BD84(void);
 extern asm void fn_8001BC54(void);
-extern asm void fn_8001AF64(void);
+extern asm void VIWaitForRetrace(void);
 extern asm void GXSetDrawSync(void);
 
 asm void fn_8006FEFC(void)
@@ -25,7 +25,7 @@ _8006ff08:
     lwz	r3, 0(r3)
     bl      fn_8001BD84
     bl      fn_8001BC54
-    bl      fn_8001AF64
+    bl      VIWaitForRetrace
     lwz	r0, -0x76e0(r13)
     rlwinm.	r0, r0, 0, 0x1a, 0x1a
     bne	_8006ff6c

@@ -20,7 +20,7 @@ extern void _savegpr_27(void);
 extern void __GXGetTexBufferSize(void);
 extern void GXInitTexObj(void);
 extern void fn_80035EC4(void);
-extern void fn_800371F8(void);
+extern void __GXSetTexRegion(void);
 extern void GXWritePrimitiveFifo(void);
 extern void PSVecNormalize3(void);
 extern void PSMTXLookAtNoUp(void);
@@ -2893,7 +2893,7 @@ _80077578:
     stb r0, 0xf(r1)
     lwz r0, 0xc(r1)
     stw r0, 8(r1)
-    bl fn_800371F8
+    bl __GXSetTexRegion
     li r3, 2
     li r0, 1
     stw r3, 8(r31)

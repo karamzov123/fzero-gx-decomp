@@ -225,7 +225,7 @@ asm void fn_80041660(void)
     blr	
 }
 
-asm void fn_80041684(void)
+asm void criadxGetValue(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void _savegpr_26(void);
-extern asm void fn_8007174C(void);
+extern asm void avload_AssertPanic(void);
 extern asm void OSReport(void);
 extern asm void fn_80078F0C(void);
 extern asm void _restgpr_26(void);
@@ -55,7 +55,7 @@ _80070e74:
     bne	_80070eb0
     mr	r4, r26
     addi	r3, r31, 0
-    bl      fn_8007174C
+    bl      avload_AssertPanic
 _80070eb0:
     lwz	r12, -0x76a8(r13)
     mr	r3, r28
@@ -138,7 +138,7 @@ _80070f94:
     lis     r3, lbl_8015AB70@ha
     mr	r4, r31
     addi	r3, r3, lbl_8015AB70@l
-    bl      fn_8007174C
+    bl      avload_AssertPanic
 _80070fd8:
     lwz	r12, -0x76a8(r13)
     addi	r31, r29, 0x20
@@ -193,7 +193,7 @@ asm void fn_80071044(void)
     lis     r4, lbl_8015ABC0@ha
     addi	r3, r3, lbl_8015AB70@l
     addi	r4, r4, lbl_8015ABC0@l
-    bl      fn_8007174C
+    bl      avload_AssertPanic
 _80071098:
     addi	r29, r30, 0x20
     mr	r4, r31

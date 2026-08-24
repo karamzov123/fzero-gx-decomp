@@ -1,13 +1,13 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_8006D1C4(void);
+extern asm void MathSinCos(void);
 
 asm void PSMTXRotTrig(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00 f0, f2, f1
@@ -41,7 +41,7 @@ asm void PSMTXRotTrigVariant(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00 f0, f1, f2
@@ -81,7 +81,7 @@ asm void PSMTXRotTrigConcat(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00 f0, f2, f1

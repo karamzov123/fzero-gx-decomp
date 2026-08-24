@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_8007174C(void);
+extern asm void avload_AssertPanic(void);
 extern asm void DCInvalidateRange(void);
 extern asm void AIGetDSPInterruptEnable(void);
 extern asm void ARStartDMA(void);
@@ -36,7 +36,7 @@ asm void fn_800715A0(void)
     lis     r4, lbl_8015ABC0@ha
     addi	r3, r3, lbl_8015ABD8@l
     addi	r4, r4, lbl_8015ABC0@l
-    bl      fn_8007174C
+    bl      avload_AssertPanic
 _800715f8:
     addi	r0, r30, 0x3f
     mr	r4, r31
@@ -96,7 +96,7 @@ asm void fn_80071678(void)
     lis     r4, lbl_8015ABCC@ha
     addi	r3, r3, lbl_8015ABD8@l
     addi	r4, r4, lbl_8015ABCC@l
-    bl      fn_8007174C
+    bl      avload_AssertPanic
 _800716c8:
     li	r4, 1
 _800716cc:
@@ -142,7 +142,7 @@ _8007173c:
     blr	
 }
 
-asm void fn_8007174C(void)
+asm void avload_AssertPanic(void)
 {
     nofralloc
     stwu	r1, -0x410(r1)

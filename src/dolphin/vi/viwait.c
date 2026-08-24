@@ -11,7 +11,7 @@ extern void OSSleepThread(void*);
 #pragma push
 #pragma force_active on
 
-asm void fn_8001AF64(void)
+asm void VIWaitForRetrace(void)
 {
     nofralloc
     mflr    r0

@@ -1,7 +1,7 @@
-extern void fn_8006D1C4(void);
+extern void MathSinCos(void);
 extern void sqrtf(void);
-extern void fn_8006D188(void);
-extern void fn_8006D0E8(void);
+extern void MathSin(void);
+extern void MathNormalizeFloat(void);
 extern void _savegpr_25(void);
 extern void _restgpr_25(void);
 
@@ -23,7 +23,7 @@ asm void PSMTXRotTrig(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00	f0, f2, f1
@@ -57,7 +57,7 @@ asm void PSMTXRotTrigVariant(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00	f0, f1, f2
@@ -97,7 +97,7 @@ asm void PSMTXRotTrigConcat(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     ps_merge00	f0, f2, f1
@@ -400,10 +400,10 @@ _8006e854:
     extsh	r31, r5
     srawi	r0, r31, 1
     extsh	r3, r0
-    bl      fn_8006D188
+    bl      MathSin
     fmr	f31, f1
     fmr	f1, f30
-    bl      fn_8006D0E8
+    bl      MathNormalizeFloat
     fmuls	f1, f1, f31
     lfs	f0, 0(r30)
     srawi	r0, r31, 1
@@ -418,7 +418,7 @@ _8006e854:
     lfs	f0, 8(r30)
     fmuls	f0, f0, f1
     stfs	f0, 8(r29)
-    bl      fn_8006D188
+    bl      MathSin
     stfs	f1, 0xc(r29)
 _8006e8b0:
     psq_l	f31, 0x38(r1), 0, 0
@@ -456,7 +456,7 @@ asm void PSVECNormalize4(void)
     fadds	f1, f4, f1
     fcmpo	cr0, f1, f0
     ble     _8006e930
-    bl      fn_8006D0E8
+    bl      MathNormalizeFloat
     b       _8006e934
 _8006e930:
     lfs	f1, -0x7a68(r2)
@@ -543,7 +543,7 @@ _8006ea4c:
     fmuls	f2, f30, f30
     fadds	f0, f1, f0
     fadds	f1, f2, f0
-    bl      fn_8006D0E8
+    bl      MathNormalizeFloat
     fmuls	f28, f28, f1
     lfs	f0, -0x7a6c(r2)
     fmuls	f29, f29, f1
@@ -568,7 +568,7 @@ _8006ea88:
     fadds	f0, f1, f0
     fmuls	f1, f28, f28
     fadds	f1, f1, f0
-    bl      fn_8006D0E8
+    bl      MathNormalizeFloat
     lfs	f0, -0x7a68(r2)
     fmuls	f31, f31, f1
     lfs	f2, -0x7a64(r2)

@@ -18,7 +18,7 @@ extern void __GXSendFlushPrim(void);
 asm void GXSetViewport(register void* p);
 asm void fn_80039088(register void* p);
 
-extern void fn_8003D42C(void);
+extern void __GXSetFog(void);
 extern unsigned char jumptable_8012B400[92];
 extern unsigned char jumptable_8012B45C[144];
 extern unsigned char jumptable_8012B4EC[92];
@@ -3398,7 +3398,7 @@ asm int fn_8003B798(register u32 a, register int b)
     addi    r29, r4, 0
     stw     r28, 0x10(r1)
     addi    r28, r3, 0
-    bl      fn_8003D42C
+    bl      __GXSetFog
     clrlwi  r31, r29, 0x18
     cmplwi  r31, 1
     addi    r30, r3, 0
@@ -3409,7 +3409,7 @@ _8003b7d8:
     cmplwi  r31, 2
     bne     _8003b7f4
     mr      r3, r28
-    bl      fn_8003D42C
+    bl      __GXSetFog
     slwi    r0, r30, 1
     add     r3, r0, r3
     b       _8003b888
@@ -3417,25 +3417,25 @@ _8003b7f4:
     cmplwi  r31, 3
     bne     _8003b820
     mr      r3, r28
-    bl      fn_8003D42C
+    bl      __GXSetFog
     slwi    r0, r30, 1
     add     r30, r0, r3
     addi    r3, r28, 0
-    bl      fn_8003D42C
+    bl      __GXSetFog
     slwi    r0, r30, 1
     add     r3, r0, r3
     b       _8003b888
 _8003b820:
     mr      r3, r28
-    bl      fn_8003D42C
+    bl      __GXSetFog
     slwi    r0, r30, 1
     add     r30, r0, r3
     addi    r3, r28, 0
-    bl      fn_8003D42C
+    bl      __GXSetFog
     slwi    r0, r30, 1
     add     r30, r0, r3
     addi    r3, r28, 0
-    bl      fn_8003D42C
+    bl      __GXSetFog
     cmplwi  r31, 4
     slwi    r0, r30, 1
     add     r30, r0, r3
@@ -3447,7 +3447,7 @@ _8003b860:
     b       _8003b87c
 _8003b868:
     mr      r3, r28
-    bl      fn_8003D42C
+    bl      __GXSetFog
     slwi    r0, r30, 1
     add     r30, r0, r3
     addi    r29, r29, 1
@@ -3479,14 +3479,14 @@ asm int fn_8003B8A8(register u32 a)
     addi    r30, r4, 0x420
     add     r30, r27, r30
     li      r28, 1
-    bl      fn_8003D42C
+    bl      __GXSetFog
     addi    r29, r3, 0
     addi    r31, r30, 4
     b       _8003b8f8
 _8003b8e0:
     slwi    r29, r29, 1
     addi    r3, r27, 0
-    bl      fn_8003D42C
+    bl      __GXSetFog
     or      r29, r29, r3
     addi    r31, r31, 4
     addi    r28, r28, 1
@@ -3517,14 +3517,14 @@ asm int fn_8003B930(register u32 a)
     addi    r27, r3, 0
     addi    r28, r4, 0
     li      r29, 1
-    bl      fn_8003D42C
+    bl      __GXSetFog
     addi    r30, r3, 0
     addi    r31, r28, 4
     b       _8003b974
 _8003b95c:
     slwi    r30, r30, 1
     addi    r3, r27, 0
-    bl      fn_8003D42C
+    bl      __GXSetFog
     or      r30, r30, r3
     addi    r31, r31, 4
     addi    r29, r29, 1

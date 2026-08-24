@@ -21,21 +21,21 @@ extern void fn_80033A6C(register u32 a);
 extern void fn_80037B14(register u32 a);
 extern void fn_80037BF4(register u32 a);
 extern void __GXSetChanAmbColor(register u32 a);
-extern void fn_80035960(register u32 a);
+extern void __GXSetChanCtrl(register u32 a);
 extern void GXSetChanCtrl(register u32 a);
 extern void fn_80037014(register u32 a);
 extern void GXSetNumTexGens(register u32 a);
 extern void fn_800377C8(register u32 a);
 extern void fn_80037BC0(register u32 a);
 extern void GXSetVtxDesc(register u32 a);
-extern void fn_80032F80(register u32 a);
+extern void GXBuildPackedRegister(register u32 a);
 extern unsigned char perf_autosample_negative_str[48];
 extern unsigned char lbl_8012B658[144];
 extern unsigned char lbl_80178BF0[40];
 extern unsigned char lbl_80178C18[144];
 
 // Lives in dolphin/gx/GXFog.c
-asm int fn_8003D588(register u32 a);
+asm int PerfmonCopyConfig(register u32 a);
 
 #pragma push
 #pragma force_active on
@@ -81,7 +81,7 @@ asm void fn_8003E344(void)
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     bl      PPCMfpmc3
     lwz	r4, -0x777c(r13)
     lwz	r0, -0x7e3c(r13)
@@ -142,7 +142,7 @@ _8003e45c:
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     bl      PPCMfpmc4
     lwz	r4, -0x777c(r13)
     lwz	r0, -0x7e3c(r13)
@@ -230,7 +230,7 @@ _8003e584:
     slwi	r0, r0, 4
     lwzx	r0, r3, r0
     add	r3, r0, r31
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     lwz	r0, -0x777c(r13)
     li	r4, 0xff
     lwz	r3, -0x7774(r13)
@@ -264,7 +264,7 @@ _8003e584:
     slwi	r0, r0, 4
     lwzx	r0, r3, r0
     add	r3, r0, r30
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     lwz	r3, -0x777c(r13)
     li	r5, 1
     lwz	r4, -0x7774(r13)
@@ -305,7 +305,7 @@ _8003e6ec:
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     bl      PPCMfpmc3
     lwz	r4, -0x777c(r13)
     lwz	r0, -0x7e3c(r13)
@@ -366,7 +366,7 @@ _8003e7bc:
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
     bl      PPCMfpmc4
     lwz	r4, -0x777c(r13)
     lwz	r0, -0x7e3c(r13)
@@ -480,7 +480,7 @@ asm int fn_8003E958(void)
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
-    bl      fn_8003D588
+    bl      PerfmonCopyConfig
 _8003e9c4:
     lis     r3, lbl_80178BF0@ha
     addi	r3, r3, lbl_80178BF0@l
@@ -621,7 +621,7 @@ asm int fn_8003EAE4(register u32 a)
     li	r7, 0
     li	r8, 0
     li	r9, 2
-    bl      fn_80035960
+    bl      __GXSetChanCtrl
     li	r3, 0
     li	r4, 0xff
     li	r5, 0xff
@@ -646,7 +646,7 @@ asm int fn_8003EAE4(register u32 a)
     li	r5, 1
     li	r6, 4
     li	r7, 0
-    bl      fn_80032F80
+    bl      GXBuildPackedRegister
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     addi	r1, r1, 0x20

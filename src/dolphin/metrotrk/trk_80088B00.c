@@ -18,7 +18,7 @@ extern void TRKPostEvent(void);
 extern void TRKSaveExtended1Block(void);
 extern void TRKRestoreExtended1Block(void);
 extern void TRKTargetTranslate(void);
-extern void fn_8008D154(void);
+extern void TRKFlushCache(void);
 extern void TRKUARTInterruptHandler(void);
 extern void TRKDoWrite(void);
 extern void TRK_ReadUARTN(void);
@@ -4625,7 +4625,7 @@ asm void TRKTargetAccessMemory(void)
     stw	r5, 0x10(r1)
     stw	r4, 0x14(r1)
     stb	r0, 0xd(r31)
-    bl      fn_8008D154
+    bl      TRKFlushCache
     cntlzw	r0, r29
     lwz	r4, 0(r28)
     mr	r25, r3

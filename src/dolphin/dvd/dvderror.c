@@ -11,7 +11,7 @@ extern unsigned char lbl_801A6908[];
 extern void ErrorCode2Num(void);
 extern void __OSLockSramEx(void);
 extern void __OSUnlockSramEx(void);
-extern void fn_80083B8C(void);
+extern void __msl_strncmp(void);
 
 /* ErrorCode2Num @0x8001A05C | size: 0x11C */
 asm void ErrorCode2Num(void) {
@@ -159,7 +159,7 @@ nofralloc
 	addi r3, r30, 0x0
 	addi r4, r31, 0x0
 	li r5, 0x4
-	bl fn_80083B8C
+	bl __msl_strncmp
 	cmpwi r3, 0x0
 	beq lbl_8001A248
 	li r3, 0x0
@@ -174,7 +174,7 @@ lbl_8001A248:
 	addi r3, r30, 0x4
 	addi r4, r31, 0x4
 	li r5, 0x2
-	bl fn_80083B8C
+	bl __msl_strncmp
 	cmpwi r3, 0x0
 	beq lbl_8001A280
 lbl_8001A278:

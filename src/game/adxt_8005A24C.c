@@ -5,7 +5,7 @@ extern void ARQPostRequest(void);
 extern void AXAcquireVoice(void);
 extern void AXFreeVoice(void);
 extern void DCFlushRange(void);
-extern void fn_800230A4(void);
+extern void AXSetVoiceState_cached(void);
 extern void AXSetVoiceType_cached(void);
 extern void fn_80023284(void);
 extern void fn_80023438(void);
@@ -17,7 +17,7 @@ extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
 extern void fn_80058498(void);
 extern void svm_ringbuf_read(void);
-extern void fn_8005A5BC(void);
+extern void adxtSetNotifyCallback(void);
 extern void svm_exit_critical_wrapper(void);
 extern void svm_enter_critical_wrapper(void);
 extern void fn_8005A9B8(void);
@@ -312,7 +312,7 @@ asm void fn_8005A5A8(void)
     blr	
 }
 
-asm void fn_8005A5BC(void)
+asm void adxtSetNotifyCallback(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -591,7 +591,7 @@ _8005a8ec:
     sth	r0, 0x14(r1)
     lwz	r3, 8(r31)
     lwz	r4, 0xa4(r25)
-    bl      fn_800230A4
+    bl      AXSetVoiceState_cached
     lwz	r3, 8(r31)
     addi	r4, r1, 8
     bl      fn_80023438
@@ -1276,7 +1276,7 @@ _8005b218:
 _8005b238:
     lis     r3, lbl_800927D0@ha
     addi	r3, r3, lbl_800927D0@l
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
 _8005b244:
     bl      svm_exit_critical_wrapper
 _8005b248:
@@ -1392,7 +1392,7 @@ _8005b3c0:
     cmpwi	r8, 0xc8
     bne     _8005b3d4
     addi	r3, r5, 0x64
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     b     _8005b450
 _8005b3d4:
     li	r8, 0
@@ -1418,7 +1418,7 @@ _8005b414:
     cmpwi	r8, 0xc8
     bne     _8005b428
     addi	r3, r5, 0x9c
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     b     _8005b450
 _8005b428:
     addi	r4, r4, 4
@@ -1432,7 +1432,7 @@ _8005b430:
     b     _8005b450
 _8005b448:
     addi	r3, r5, 0xd4
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
 _8005b450:
     lmw	r27, 0xc(r1)
     lwz	r0, 0x24(r1)
@@ -1516,14 +1516,14 @@ asm void fn_8005B534(void)
     addi	r30, r5, lbl_80092790@l
     bgt     _8005b564
     addi	r3, r30, 0xf8
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     li	r3, 0
     b     _8005bc0c
 _8005b564:
     cmplwi	r3, 0
     bne     _8005b57c
     addi	r3, r30, 0x120
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     li	r3, 0
     b     _8005bc0c
 _8005b57c:
@@ -1536,7 +1536,7 @@ _8005b58c:
     cmplwi	r0, 0
     bne     _8005b5a8
     addi	r3, r30, 0x148
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     li	r3, 0
     b     _8005bc0c
 _8005b5a8:
@@ -1594,7 +1594,7 @@ _8005b668:
     cmplwi	r7, 0x10
     bne     _8005b680
     addi	r3, r30, 0x170
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     li	r3, 0
     b     _8005bc0c
 _8005b680:
@@ -1639,7 +1639,7 @@ _8005b6fc:
     stw	r3, 0x10(r27)
     bne     _8005b7c4
     addi	r3, r30, 0x194
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     cmplwi	r31, 0
     beq     _8005b7bc
     mr	r3, r31
@@ -1706,7 +1706,7 @@ _8005b7c4:
     cmplwi	r0, 0
     bne     _8005b8b4
     addi	r3, r30, 0x1b4
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     cmplwi	r31, 0
     beq     _8005b8ac
     mr	r3, r31
@@ -1764,7 +1764,7 @@ _8005b8b4:
     stw	r3, 8(r27)
     bne     _8005b980
     addi	r3, r30, 0x1d0
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     cmplwi	r31, 0
     beq     _8005b978
     mr	r3, r31
@@ -1887,7 +1887,7 @@ _8005ba68:
     sth	r0, 0x10(r1)
     sth	r0, 0x12(r1)
     sth	r0, 0x14(r1)
-    bl      fn_800230A4
+    bl      AXSetVoiceState_cached
     lwz	r3, 8(r27)
     addi	r4, r1, 8
     bl      fn_80023438

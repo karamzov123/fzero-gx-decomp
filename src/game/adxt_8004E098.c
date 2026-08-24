@@ -12,7 +12,7 @@ extern void OSSetThreadPriority(void);
 extern void OSSuspendThread(void);
 extern void OSGetCurrentThread(void);
 extern void fn_80011358(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern void CRI_SPSD_parser(void);
 extern void criErr_CallErrCallback(void);
 extern void fn_8004ED3C(void);
@@ -732,7 +732,7 @@ asm void fn_8004E8A0(void)
     addi	r31, r3, lbl_8017E980@l
     b       _8004e8d0
 _8004e8bc:
-    bl      fn_8001AF64
+    bl      VIWaitForRetrace
     lwz	r3, 0x18(r31)
     addi	r0, r3, 1
     stw	r0, 0x18(r31)
@@ -767,7 +767,7 @@ asm void fn_8004E8F8(void)
     addi	r29, r5, -0x1680
     b       _8004e978
 _8004e92c:
-    bl      fn_8001AF64
+    bl      VIWaitForRetrace
     lwz	r4, 0x14(r29)
     lwz	r3, 0(r31)
     addi	r4, r4, 1
@@ -1006,7 +1006,7 @@ asm void fn_8004EC14(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_8001AF64
+    bl      VIWaitForRetrace
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1155,7 +1155,7 @@ asm void fn_8004EDA4(void)
     blr	
 }
 
-asm void fn_8004EDC4(void)
+asm void adxtSetHandleVolume(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

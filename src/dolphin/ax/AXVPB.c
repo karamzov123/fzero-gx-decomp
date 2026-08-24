@@ -853,7 +853,7 @@ asm void fn_800230A0(void)
     blr	
 }
 
-asm void fn_800230A4(void)
+asm void AXSetVoiceState_cached(void)
 {
     nofralloc
     mflr	r0

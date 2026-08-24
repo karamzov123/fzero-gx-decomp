@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void strncpy(void);
-extern void fn_80083CF4(void);
+extern void __msl_strncat(void);
 extern void svmErrPrintf(void);
 extern void fn_80058EF4(void);
 extern void memset(void);
@@ -54,7 +54,7 @@ asm void adx_err_report(void)
     mr	r4, r30
     addi	r3, r31, 0x28
     li	r5, 0xff
-    bl      fn_80083CF4
+    bl      __msl_strncat
     lwz	r12, 0(r31)
     cmplwi	r12, 0
     beq     _800474c0

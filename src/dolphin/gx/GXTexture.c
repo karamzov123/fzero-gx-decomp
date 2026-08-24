@@ -1346,7 +1346,7 @@ _800371c8:
     blr	
 }
 
-asm void fn_800371F8(register void* p, register int a)
+asm void __GXSetTexRegion(register void* p, register int a)
 {
     nofralloc
     lbz	r0, 3(r4)

@@ -4,7 +4,7 @@
 extern void AXFreeVoice(void);
 extern void ARFree(void);
 extern void axmix_device_ctrl_clear(void);
-extern void fn_8005A5BC(void);
+extern void adxtSetNotifyCallback(void);
 extern void fn_8005A614(void);
 extern void svm_exit_critical_wrapper(void);
 extern void svm_enter_critical_wrapper(void);
@@ -293,7 +293,7 @@ _8005bf70:
     bne     _8005bf8c
     lis     r3, lbl_80092988@ha
     addi	r3, r3, lbl_80092988@l
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
     li	r3, 0
     b     _8005bfa4
 _8005bf8c:
@@ -403,7 +403,7 @@ _8005c0b0:
     beq     _8005c0fc
     lis     r3, lbl_800929AC@ha
     addi	r3, r3, lbl_800929AC@l
-    bl      fn_8005A5BC
+    bl      adxtSetNotifyCallback
 _8005c0fc:
     li	r0, 0
     stw	r0, 8(r31)

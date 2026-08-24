@@ -22,9 +22,9 @@ asm void fn_8006CFF8(void);
 asm void fn_8006D044(void);
 asm void MathFastInvSqrt(void);
 asm void sqrtf(void);
-asm void fn_8006D0E8(void);
-asm void fn_8006D188(void);
-asm void fn_8006D1C4(void);
+asm void MathNormalizeFloat(void);
+asm void MathSin(void);
+asm void MathSinCos(void);
 asm void atan2f(void);
 asm void atanf(void);
 asm void fn_8006D368(void);
@@ -143,7 +143,7 @@ asm void sqrtf(void)
     blr
 }
 
-asm void fn_8006D0E8(void)
+asm void MathNormalizeFloat(void)
 {
     nofralloc
     frsp	f1, f1
@@ -192,7 +192,7 @@ _8006d178:
     blr
 }
 
-asm void fn_8006D188(void)
+asm void MathSin(void)
 {
     nofralloc
     andi.	r5, r3, 0x4000
@@ -213,7 +213,7 @@ _8006d198:
     b       _8006d1c8
 }
 
-asm void fn_8006D1C4(void)
+asm void MathSinCos(void)
 {
     nofralloc
     crset	6
@@ -766,7 +766,7 @@ asm void fn_8006D890(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     fneg	f3, f1
@@ -789,7 +789,7 @@ asm void fn_8006D8D8(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     fneg	f3, f1
@@ -811,7 +811,7 @@ asm void fn_8006D91C(void)
 {
     nofralloc
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     fneg	f3, f1
@@ -827,7 +827,7 @@ asm void fn_8006D91C(void)
     psq_st	f4, 0x28(r4), 0, 0
     blr
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     fneg	f3, f1
@@ -842,7 +842,7 @@ asm void fn_8006D91C(void)
     stfs	f2, 0x28(r4)
     blr
     mflr	r4
-    bl      fn_8006D1C4
+    bl      MathSinCos
     mtlr	r4
     lis	r4, -0x2000
     psq_l	f4, 0x1ae(r4), 0, 2
