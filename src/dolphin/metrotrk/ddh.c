@@ -8,10 +8,10 @@ extern unsigned char lbl_80095D98[24];
 extern unsigned char lbl_801A5658[2048];
 extern unsigned char lbl_801A5E58[32];
 
-asm void fn_8008E114(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008E21C(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008E324(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008E374(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2_ReadN(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2_WriteN(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2_Init(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2_Poll(register void* a, register void* b, register void* c, register void* d);
 asm void MWTRACE(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EDF0(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EEAC(register void* a, register void* b, register void* c, register void* d);
@@ -120,7 +120,7 @@ _8008de18:
     mr	r5, r31
     addi	r3, r3, lbl_801A5E58@l
     addi	r4, r1, 8
-    bl      fn_8008E21C
+    bl      EXI2_WriteN
     b       _8008de4c
 _8008de44:
     li	r3, -0x2719
@@ -260,10 +260,10 @@ _8008dfc4:
     mr	r3, r31
     mr	r5, r28
     addi	r4, r1, 8
-    bl      fn_8008E21C
+    bl      EXI2_WriteN
 _8008dff8:
     mr	r3, r31
-    bl      fn_8008E374
+    bl      EXI2_Poll
     cmplw	r3, r30
     blt     _8008dfc4
     cmplwi	r29, 0
@@ -272,7 +272,7 @@ _8008dff8:
     mr	r4, r27
     addi	r3, r3, lbl_801A5E58@l
     mr	r5, r30
-    bl      fn_8008E114
+    bl      EXI2_ReadN
     b       _8008e040
 _8008e028:
     lis     r3, lbl_80095D54@ha
@@ -349,7 +349,7 @@ asm void ddh_cc_initialize(void)
     addi	r3, r3, lbl_801A5E58@l
     li	r5, 0x800
     addi	r4, r4, lbl_801A5658@l
-    bl      fn_8008E324
+    bl      EXI2_Init
     lwz	r0, 0x14(r1)
     li	r3, 0
     lwz	r31, 0xc(r1)

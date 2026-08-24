@@ -6,7 +6,7 @@ asm void fn_8008E718(register void* a, register void* b, register void* c, regis
 asm void fn_8008E73C(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008E76C(register void* a, register void* b, register void* c, register void* d);
 
-asm void fn_8008E114(void)
+asm void EXI2_ReadN(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -82,7 +82,7 @@ _8008e1fc:
     blr	
 }
 
-asm void fn_8008E21C(void)
+asm void EXI2_WriteN(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -158,7 +158,7 @@ _8008e304:
     blr	
 }
 
-asm void fn_8008E324(void)
+asm void EXI2_Init(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -183,7 +183,7 @@ asm void fn_8008E324(void)
     blr	
 }
 
-asm void fn_8008E374(void)
+asm void EXI2_Poll(void)
 {
     nofralloc
     lwz	r3, 0x10(r3)
