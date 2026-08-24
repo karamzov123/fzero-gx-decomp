@@ -153,8 +153,8 @@ _8008cc90:
 asm void TRKRestoreExtended1Block(void)
 {
     nofralloc
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x5160
+    lis	r2, gTRKCPUState@ha
+    ori	r2, r2, gTRKCPUState@l
     lis	r5, -0x7feb
     ori	r5, r5, 0xb868
     lbz	r3, 0(r5)
@@ -274,8 +274,8 @@ asm void InitMetroTRK(void)
     nofralloc
     addi	r1, r1, -4
     stw	r3, 0(r1)
-    lis	r3, -0x7fe6
-    ori	r3, r3, 0x5160
+    lis	r3, gTRKCPUState@ha
+    ori	r3, r3, gTRKCPUState@l
     stmw	r0, 0(r3)
     lwz	r4, 0(r1)
     addi	r1, r1, 4
@@ -292,8 +292,8 @@ asm void InitMetroTRK(void)
     mtmsr	r3
     mtspr	0x1b, r4
     bl      TRKSaveExtended1Block
-    lis	r3, -0x7fe6
-    ori	r3, r3, 0x5160
+    lis	r3, gTRKCPUState@ha
+    ori	r3, r3, gTRKCPUState@l
     lmw	r0, 0(r3)
     li	r0, 0
     mtspr	0x3f2, r0
@@ -318,8 +318,8 @@ asm void InitMetroTRK_BBA(void)
     nofralloc
     addi	r1, r1, -4
     stw	r3, 0(r1)
-    lis	r3, -0x7fe6
-    ori	r3, r3, 0x5160
+    lis	r3, gTRKCPUState@ha
+    ori	r3, r3, gTRKCPUState@l
     stmw	r0, 0(r3)
     lwz	r4, 0(r1)
     addi	r1, r1, 4
@@ -335,8 +335,8 @@ asm void InitMetroTRK_BBA(void)
     mtmsr	r3
     mtspr	0x1b, r4
     bl      TRKSaveExtended1Block
-    lis	r3, -0x7fe6
-    ori	r3, r3, 0x5160
+    lis	r3, gTRKCPUState@ha
+    ori	r3, r3, gTRKCPUState@l
     lmw	r0, 0(r3)
     li	r0, 0
     mtspr	0x3f2, r0
