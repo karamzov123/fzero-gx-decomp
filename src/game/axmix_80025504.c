@@ -1839,7 +1839,7 @@ asm void axmix_device_ctrl_clear(void)
     blr	
 }
 
-asm void fn_80026D90(void)
+asm void axmix_set_voice_param_08(void)
 {
     nofralloc
     lwz	r5, 0x18(r3)

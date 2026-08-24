@@ -11,8 +11,8 @@ extern void fn_80023284(void);
 extern void fn_80023438(void);
 extern void fn_80025EF4(void);
 extern void axmix_device_ctrl_clear(void);
-extern void fn_80026D90(void);
-extern void fn_80026EE0(void);
+extern void axmix_set_voice_param_08(void);
+extern void axmix_set_voice_volume(void);
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
 extern void fn_80058498(void);
@@ -449,7 +449,7 @@ _8005a6e8:
     addi	r4, r4, adxt_volume_scale_table@l
     add	r4, r4, r0
     lwz	r4, 0x3c(r4)
-    bl      fn_80026EE0
+    bl      axmix_set_voice_volume
 _8005a72c:
     bl      svm_exit_critical_wrapper
 _8005a730:
@@ -494,7 +494,7 @@ _8005a7a4:
     cmplwi	r3, 0
     beq     _8005a7bc
     mr	r4, r30
-    bl      fn_80026D90
+    bl      axmix_set_voice_param_08
 _8005a7bc:
     bl      svm_exit_critical_wrapper
     addi	r31, r31, 4
@@ -1928,7 +1928,7 @@ _8005bac4:
     addi	r4, r4, adxt_volume_scale_table@l
     add	r4, r4, r0
     lwz	r4, 0x3c(r4)
-    bl      fn_80026EE0
+    bl      axmix_set_voice_volume
 _8005bb20:
     bl      svm_exit_critical_wrapper
 _8005bb24:
@@ -1957,7 +1957,7 @@ _8005bb50:
     addi	r4, r4, adxt_volume_scale_table@l
     add	r4, r4, r0
     lwz	r4, 0x3c(r4)
-    bl      fn_80026EE0
+    bl      axmix_set_voice_volume
 _8005bb88:
     bl      svm_exit_critical_wrapper
     b     _8005bbf8
@@ -1986,7 +1986,7 @@ _8005bb90:
     addi	r4, r4, adxt_volume_scale_table@l
     add	r4, r4, r0
     lwz	r4, 0x3c(r4)
-    bl      fn_80026EE0
+    bl      axmix_set_voice_volume
 _8005bbf4:
     bl      svm_exit_critical_wrapper
 _8005bbf8:

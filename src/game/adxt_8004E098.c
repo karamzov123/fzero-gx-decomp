@@ -1246,7 +1246,7 @@ asm void fn_8004EE84(void)
     blr	
 }
 
-asm void fn_8004EEA4(void)
+asm void ADXTServerStateRequest_wrapper(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

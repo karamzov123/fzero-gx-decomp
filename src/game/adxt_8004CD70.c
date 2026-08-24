@@ -11,7 +11,7 @@ extern void fn_80041554(void);
 extern void fn_80041578(void);
 extern void fn_800415AC(void);
 extern void fn_800415D0(void);
-extern void fn_800415F4(void);
+extern void criadx_get_stream_ptr_wrapper(void);
 extern void fn_80041618(void);
 extern void fn_8004163C(void);
 extern void fn_80041660(void);
@@ -59,7 +59,7 @@ extern void fn_8004EE04(void);
 extern void fn_8004EE24(void);
 extern void fn_8004EE64(void);
 extern void fn_8004EE84(void);
-extern void fn_8004EEA4(void);
+extern void ADXTServerStateRequest_wrapper(void);
 void fn_8004D8DC(void);
 void fn_8004DDE4(void);
 void fn_8004DFF0(void);
@@ -503,7 +503,7 @@ _8004d348:
     bne     _8004d380
     mr	r3, r28
     li	r4, 1
-    bl      fn_8004EEA4
+    bl      ADXTServerStateRequest_wrapper
     li	r0, 0
     lis	r3, -0x7fe8
     stw	r0, 0x9c(r31)
@@ -568,7 +568,7 @@ _8004d428:
     bgt     _8004d460
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EEA4
+    bl      ADXTServerStateRequest_wrapper
     li	r0, 5
     stb	r0, 1(r31)
 _8004d460:
@@ -791,7 +791,7 @@ _8004d760:
     bl      fn_8004AC04
 _8004d778:
     mr	r3, r31
-    bl      fn_800415F4
+    bl      criadx_get_stream_ptr_wrapper
     mr	r4, r3
     mr	r3, r31
     bl      criadx_set_field_3C
@@ -814,7 +814,7 @@ _8004d7b8:
     bl      fn_80041660
     mr	r28, r3
     mr	r3, r31
-    bl      fn_800415F4
+    bl      criadx_get_stream_ptr_wrapper
     mr	r0, r3
     mr	r3, r31
     mr	r27, r0
@@ -1066,7 +1066,7 @@ _8004db70:
     mr	r3, r31
     bl      fn_80042170
     mr	r3, r31
-    bl      fn_800415F4
+    bl      criadx_get_stream_ptr_wrapper
     mr	r4, r3
     mr	r3, r31
     bl      criadx_set_field_3C

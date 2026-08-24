@@ -4,7 +4,7 @@
 extern void __cvt_fp2unsigned(void);
 extern void fn_80041460(void);
 extern void fn_800414D0(void);
-extern void fn_800415F4(void);
+extern void criadx_get_stream_ptr_wrapper(void);
 extern void fn_80041660(void);
 extern void criadxGetValue(void);
 extern void fn_80041700(void);
@@ -19,7 +19,7 @@ extern void fn_8004ED84(void);
 extern void adxtSetHandleVolume(void);
 extern void fn_8004EDE4(void);
 extern void fn_8004EE44(void);
-extern void fn_8004EEA4(void);
+extern void ADXTServerStateRequest_wrapper(void);
 extern void svm_ringbuf_read(void);
 extern void memset(void);
 extern unsigned char E02080817_ADXT_GetNumSmpl_parameter_error_str[100];
@@ -398,12 +398,12 @@ _8004bc70:
     bne     _8004bc88
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EEA4
+    bl      ADXTServerStateRequest_wrapper
     b       _8004bca0
 _8004bc88:
     lwz	r3, 0xc(r31)
     li	r4, 1
-    bl      fn_8004EEA4
+    bl      ADXTServerStateRequest_wrapper
     lis     r3, lbl_8017E568@ha
     lwz	r0, -0x7348(r3)
     stw	r0, 0xa0(r31)
@@ -795,7 +795,7 @@ _8004c134:
     cmpwi	r0, 2
     blt     _8004c150
     lwz	r3, 4(r3)
-    bl      fn_800415F4
+    bl      criadx_get_stream_ptr_wrapper
     b       _8004c154
 _8004c150:
     li	r3, 0

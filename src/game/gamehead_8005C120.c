@@ -46,7 +46,7 @@ extern void fn_80025EE4(void);
 extern void fn_80025EEC(void);
 extern void fn_80025EF4(void);
 extern void axmix_device_ctrl_clear(void);
-extern void fn_80026D90(void);
+extern void axmix_set_voice_param_08(void);
 extern void fn_80026DB8(void);
 extern void fn_80026DD4(void);
 extern void fn_80026E04(void);
@@ -54,7 +54,7 @@ extern void fn_80026E2C(void);
 extern void fn_80026E54(void);
 extern void fn_80026E84(void);
 extern void fn_80026EAC(void);
-extern void fn_80026EE0(void);
+extern void axmix_set_voice_volume(void);
 extern void fn_80026F4C(void);
 extern void fn_80026FB8(void);
 extern void fn_80028130(void);
@@ -6782,7 +6782,7 @@ _80061f68:
     extsh	r4, r14
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
-    bl      fn_80026D90
+    bl      axmix_set_voice_param_08
     addi	r6, r16, 0xc
     lbz	r4, 4(r16)
     lbz	r0, 0xf(r16)
@@ -6850,7 +6850,7 @@ _800620c4:
     lbzx	r0, r4, r5
     lwz	r3, 0x1434(r3)
     extsh	r4, r0
-    bl      fn_80026EE0
+    bl      axmix_set_voice_volume
     lwz	r0, -0x7740(r13)
     extsh	r4, r20
     add	r3, r0, r19
@@ -6930,7 +6930,7 @@ _800621d8:
     lha	r4, 0xc(r1)
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
-    bl      fn_80026D90
+    bl      axmix_set_voice_param_08
     lwz	r0, -0x7740(r13)
     extsh	r15, r20
     mr	r4, r15
@@ -6948,7 +6948,7 @@ _800621d8:
     lha	r4, 0xa(r1)
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
-    bl      fn_80026D90
+    bl      axmix_set_voice_param_08
     lwz	r0, -0x7740(r13)
     mr	r4, r15
     add	r3, r0, r14
@@ -13394,7 +13394,7 @@ _80067b0c:
     lwz	r0, 0x1418(r5)
     add	r4, r3, r0
     lwz	r3, 0x1434(r5)
-    bl      fn_80026D90
+    bl      axmix_set_voice_param_08
     b       _80067bac
 _80067b30:
     lhz	r0, 0x1416(r6)

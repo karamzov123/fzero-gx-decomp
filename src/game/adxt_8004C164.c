@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void __cvt_fp2unsigned(void);
-extern void fn_800415F4(void);
+extern void criadx_get_stream_ptr_wrapper(void);
 extern void fn_8004163C(void);
 extern void criadxGetValue(void);
 extern void fn_800416F8(void);
@@ -26,7 +26,7 @@ extern void fn_8004B0EC(void);
 extern void fn_8004B180(void);
 extern void fn_8004B1DC(void);
 extern void fn_8004EE84(void);
-extern void fn_8004EEA4(void);
+extern void ADXTServerStateRequest_wrapper(void);
 extern void fn_8004EEC4(void);
 extern void fn_8004EEE4(void);
 extern void fn_80056CD0(void);
@@ -113,7 +113,7 @@ _8004c258:
     cmpwi	r0, 5
     bne     _8004c2a8
     lwz	r3, 4(r27)
-    bl      fn_800415F4
+    bl      criadx_get_stream_ptr_wrapper
     stw	r3, 0(r28)
     lwz	r3, 4(r27)
     bl      criadxGetValue
@@ -214,7 +214,7 @@ _8004c3c0:
     cmpwi	r0, 5
     bne     _8004c40c
     lwz	r3, 4(r27)
-    bl      fn_800415F4
+    bl      criadx_get_stream_ptr_wrapper
     stw	r3, 0xc(r1)
     lwz	r3, 4(r27)
     bl      criadxGetValue
@@ -326,7 +326,7 @@ _8004c56c:
     cmpwi	r0, 5
     bne     _8004c624
     lwz	r3, 4(r27)
-    bl      fn_800415F4
+    bl      criadx_get_stream_ptr_wrapper
     stw	r3, 0xc(r1)
     lwz	r3, 4(r27)
     bl      criadxGetValue
@@ -449,7 +449,7 @@ _8004c704:
     bl      fn_8004EEC4
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EEA4
+    bl      ADXTServerStateRequest_wrapper
     lwz	r3, 4(r31)
     bl      fn_800420F4
     lbz	r0, 2(r31)
@@ -537,7 +537,7 @@ _8004c830:
     bl      fn_8004EEC4
     lwz	r3, 0xc(r30)
     li	r4, 0
-    bl      fn_8004EEA4
+    bl      ADXTServerStateRequest_wrapper
     lwz	r3, 4(r30)
     bl      fn_800420F4
     lbz	r0, 2(r30)
@@ -772,7 +772,7 @@ _8004cb78:
     bl      fn_8004EEC4
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EEA4
+    bl      ADXTServerStateRequest_wrapper
     lwz	r3, 4(r31)
     bl      fn_800420F4
     lbz	r0, 2(r31)

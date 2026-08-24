@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_80026EE0(void);
+extern void axmix_set_voice_volume(void);
 extern void fn_80026F4C(void);
 extern void fn_80026FB8(void);
 extern void fn_80026FE0(void);
@@ -44,7 +44,7 @@ extern void fn_80025D5C(void);
 extern void fn_80025EEC(void);
 extern void fn_80025EF4(void);
 extern void axmix_device_ctrl_clear(void);
-extern void fn_80026D90(void);
+extern void axmix_set_voice_param_08(void);
 extern void fn_80026E2C(void);
 extern void fn_80026EAC(void);
 extern unsigned char jumptable_80129550[68];
@@ -55,7 +55,7 @@ extern unsigned char lbl_801299D0[256];
 extern unsigned char lbl_80129FD0[2168];
 extern unsigned char lbl_80176160[6144];
 
-asm void fn_80026EE0(void)
+asm void axmix_set_voice_volume(void)
 {
     nofralloc
     mflr	r0
@@ -1974,7 +1974,7 @@ _8002881c:
     bl      fn_80023228
     addi	r3, r19, 0
     srawi	r4, r27, 0x10
-    bl      fn_80026D90
+    bl      axmix_set_voice_param_08
     addi	r3, r19, 0
     addi	r4, r26, 0
     bl      fn_80026E2C
@@ -1983,7 +1983,7 @@ _8002881c:
     bl      fn_80026EAC
     addi	r3, r19, 0
     clrlwi	r4, r24, 0x18
-    bl      fn_80026EE0
+    bl      axmix_set_voice_volume
     addi	r3, r19, 0
     clrlwi	r4, r23, 0x18
     bl      fn_80026F4C

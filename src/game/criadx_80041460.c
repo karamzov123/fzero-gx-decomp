@@ -169,7 +169,7 @@ asm void fn_800415D0(void)
     blr	
 }
 
-asm void fn_800415F4(void)
+asm void criadx_get_stream_ptr_wrapper(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
