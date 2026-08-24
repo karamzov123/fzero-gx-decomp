@@ -7,7 +7,7 @@ typedef unsigned int u32;
 #pragma push
 #pragma force_active on
 
-asm void fn_8001DFCC(void)
+asm void AIStartDMA(void)
 {
     nofralloc
     lis     r3, -0x3400
@@ -18,7 +18,7 @@ asm void fn_8001DFCC(void)
     blr
 }
 
-asm void fn_8001DFE4(void)
+asm void AIStopDMA(void)
 {
     nofralloc
     lis     r3, -0x3400

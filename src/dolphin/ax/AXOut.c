@@ -23,11 +23,11 @@ extern void DSPInit(void);
 extern void DSPAddTask(void);
 extern void DCFlushRange(register void* addr, register u32 nBytes);
 extern void AIRegisterDMACallback(void);
-extern void fn_8001DFCC(void);
+extern void AIStartDMA(void);
 extern BOOL OSDisableInterrupts(void);
 extern void DSPCancelTask(void);
 extern void OSSleepThread(register void* queue);
-extern void fn_8001DFE4(void);
+extern void AIStopDMA(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern unsigned char lbl_80126240[7968];
 extern unsigned char lbl_80160500[1920];
@@ -493,7 +493,7 @@ _80021e10:
     mulli	r0, r0, 0x280
     add	r3, r31, r0
     bl      AIInitDMA
-    bl      fn_8001DFCC
+    bl      AIStartDMA
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     addi	r1, r1, 0x20
@@ -518,7 +518,7 @@ asm void fn_80021FBC(void)
     bl      DSPCancelTask
     addi	r3, r13, -0x7890
     bl      OSSleepThread
-    bl      fn_8001DFE4
+    bl      AIStopDMA
     mr	r3, r31
     bl      OSRestoreInterrupts
     lwz	r0, 0x14(r1)
