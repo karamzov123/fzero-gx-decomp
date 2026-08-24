@@ -1659,8 +1659,8 @@ asm void GXSetTexCoordGen2(register void* p, register int a, register int b)
     stwu	r1, -8(r1)
     li	r10, 5
     bgt     _80033b30
-    lis     r9, -0x7fed
-    addi	r9, r9, -0x50a0
+    lis     r9, jumptable_8012AF60@ha
+    addi	r9, r9, jumptable_8012AF60@l
     slwi	r0, r5, 2
     lwzx	r0, r9, r0
     mtctr	r0
