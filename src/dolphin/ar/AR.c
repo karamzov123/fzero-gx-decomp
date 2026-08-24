@@ -137,7 +137,7 @@ asm void ARStartDMA(register u32 dir, register u32 memaddr, register u32 aramadd
     blr	
 }
 
-asm u32 fn_8001E954(register u32 length)
+asm u32 ARAlloc(register u32 length)
 {
     nofralloc
     mflr	r0
@@ -168,7 +168,7 @@ asm u32 fn_8001E954(register u32 length)
     blr	
 }
 
-asm u32 fn_8001E9BC(register void* out)
+asm u32 ARFree(register void* out)
 {
     nofralloc
     mflr	r0

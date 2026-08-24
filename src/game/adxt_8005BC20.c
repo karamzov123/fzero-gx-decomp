@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void AXFreeVoice(void);
-extern void fn_8001E9BC(void);
+extern void ARFree(void);
 extern void fn_80026D70(void);
 extern void fn_8005A5BC(void);
 extern void fn_8005A614(void);
@@ -396,7 +396,7 @@ _8005c0b0:
     cmplwi	r0, 0
     bne     _8005c10c
     addi	r3, r1, 8
-    bl      fn_8001E9BC
+    bl      ARFree
     lwz	r3, 8(r1)
     lwz	r0, 0xc(r31)
     cmplw	r3, r0

@@ -17,8 +17,8 @@ extern void OSGetTick(void);
 extern void DVDOpen(void);
 extern void DVDCancelSync(void);
 extern void DVDReadAsync(void);
-extern void fn_8001E954(void);
-extern void fn_8001E9BC(void);
+extern void ARAlloc(void);
+extern void ARFree(void);
 extern void ARQPostRequest(void);
 extern void AXFreeVoice(void);
 extern void AXAcquireVoice(void);
@@ -198,7 +198,7 @@ asm void SndInitManager(void)
     stw	r3, 8(r31)
     lis	r3, 4
     stw	r0, 0xc(r31)
-    bl      fn_8001E954
+    bl      ARAlloc
     stw	r3, 0x10(r31)
 _8005c16c:
     addi	r3, r31, 0x14
@@ -13614,7 +13614,7 @@ asm void SndCheckAllocSize(void)
     lwz	r4, 0x100(r4)
     bl      OSFree
     addi	r3, r1, 8
-    bl      fn_8001E9BC
+    bl      ARFree
     lwz	r3, -0x7740(r13)
     lwz	r5, 8(r1)
     lwz	r0, 0x23c(r3)
@@ -14578,7 +14578,7 @@ _80068ca8:
     b       _80068d0c
 _80068cc8:
     mr	r3, r29
-    bl      fn_8001E954
+    bl      ARAlloc
     lwz	r4, -0x7740(r13)
     stw	r3, 0x1a0(r4)
     lwz	r3, -0x7740(r13)
