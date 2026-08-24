@@ -76,7 +76,7 @@ void __GXSetChanAmbSrcBit(register void* p);
 void __GXSetChanMatSrcBit(register void* p);
 void __GXWriteChanCtrlBitfields(register void* p);
 void __GXXFSetPerfEnableMulti(register void* p);
-void fn_80037C2C(register void* p, register int a, register int b);
+void __GXSetGenModeInline(register void* p, register int a, register int b);
 void __GXSetZModeBits(register void* p);
 void GXWriteLightAttn(register void* p);
 void fn_80037D7C(register void* p);
@@ -1352,7 +1352,7 @@ asm void GXInitSpecularDir(register void* p)
     blr	
 }
 
-asm void fn_800356AC(void)
+asm void __GXInitSpecularDirZ(void)
 {
     nofralloc
     lwz	r0, 0(r4)

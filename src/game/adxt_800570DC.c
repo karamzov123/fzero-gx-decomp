@@ -4,14 +4,14 @@
 extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void fn_8004A550(void);
-extern void fn_8004AC04(void);
-extern void fn_8004AC58(void);
+extern void ADXT_GetVoiceByAxHandle(void);
+extern void ADXT_StartVoice(void);
 extern void fn_8004AD84(void);
 extern void fn_8004ADF4(void);
 extern void fn_8004AE78(void);
 extern void fn_8004AE94(void);
 extern void ADXTGetState(void);
-extern void fn_8004B0EC(void);
+extern void ADXT_StopVoice(void);
 extern void fn_8004B180(void);
 extern void gcciErrPrintf(void);
 extern void gcci_set_critical_value(void);
@@ -99,7 +99,7 @@ _80057144:
     lbz	r0, 2(r31)
     cmpwi	r0, 1
     bne     _8005717c
-    bl      fn_8004AC58
+    bl      ADXT_StartVoice
     li	r0, 0
     stb	r0, 2(r31)
 _8005717c:
@@ -454,7 +454,7 @@ _80057614:
     lwz	r3, 0x28(r27)
     bl      fn_8004AD84
     lwz	r3, 0x28(r27)
-    bl      fn_8004B0EC
+    bl      ADXT_StopVoice
     lwz	r3, 0x28(r27)
     lwz	r4, 4(r28)
     lwz	r5, 0xc(r28)
@@ -463,7 +463,7 @@ _80057614:
     bl      fn_8004B180
     lwz	r3, 0x28(r27)
     lwz	r4, 0x14(r28)
-    bl      fn_8004AC04
+    bl      ADXT_GetVoiceByAxHandle
     lwz	r3, 0x14(r28)
     li	r0, 0
     stw	r3, 0x2c(r27)
@@ -1579,7 +1579,7 @@ _80058480:
     blr	
 }
 
-asm void fn_80058498(void)
+asm void ADXT_ProcessStreamUpdate(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

@@ -14,7 +14,7 @@ extern void fn_800415D0(void);
 extern void criadx_get_stream_ptr_wrapper(void);
 extern void fn_80041618(void);
 extern void fn_8004163C(void);
-extern void fn_80041660(void);
+extern void criadx_set_field_48(void);
 extern void criadxGetValue(void);
 extern void fn_800416A8(void);
 extern void fn_800416CC(void);
@@ -36,7 +36,7 @@ extern void fn_80046D18(void);
 extern void fn_80046F88(void);
 extern void adx_err_report(void);
 extern void criErr_CallErrCallback(void);
-extern void fn_8004AC04(void);
+extern void ADXT_GetVoiceByAxHandle(void);
 extern void fn_8004AC4C(void);
 extern void fn_8004AE94(void);
 extern void ADXTGetState(void);
@@ -68,7 +68,7 @@ extern void fn_8004EF28(void);
 extern void fn_80056C20(void);
 extern void fn_8005710C(void);
 extern void fn_800571EC(void);
-extern void fn_80058498(void);
+extern void ADXT_ProcessStreamUpdate(void);
 extern void svm_ringbuf_read(void);
 extern void strcpy(void);
 extern void memset(void);
@@ -194,7 +194,7 @@ _8004ce84:
     lwz	r3, 0x20(r31)
     lwz	r4, 0x24(r31)
     lwz	r5, 0x28(r31)
-    bl      fn_80058498
+    bl      ADXT_ProcessStreamUpdate
     stw	r3, 0x10(r31)
     lwz	r3, 0x10(r31)
     cmplwi	r3, 0
@@ -227,7 +227,7 @@ _8004cf6c:
     slwi	r5, r0, 1
     slwi	r0, r3, 1
     add	r3, r6, r0
-    bl      fn_80058498
+    bl      ADXT_ProcessStreamUpdate
     stw	r3, 0x18(r29)
     lwz	r0, 0x18(r29)
     cmplwi	r0, 0
@@ -436,7 +436,7 @@ _8004d250:
     cmpwi	r3, 3
     bne     _8004d460
     lwz	r3, 4(r31)
-    bl      fn_80041660
+    bl      criadx_set_field_48
     mr	r29, r3
     mr	r27, r31
     stw	r29, 8(r30)
@@ -677,7 +677,7 @@ _8004d5bc:
     cmpwi	r3, 2
     bne     _8004d8c8
     mr	r3, r31
-    bl      fn_80041660
+    bl      criadx_set_field_48
     lbz	r0, 3(r30)
     extsb	r4, r0
     cmpw	r3, r4
@@ -755,7 +755,7 @@ _8004d6a4:
     stw	r0, 0x50(r30)
     stw	r4, 0x8c(r30)
     lwz	r3, 8(r30)
-    bl      fn_8004AC04
+    bl      ADXT_GetVoiceByAxHandle
     lis     r4, fn_8004DDE4@ha
     lwz	r3, 8(r30)
     addi	r4, r4, fn_8004DDE4@l
@@ -788,7 +788,7 @@ _8004d760:
     beq     _8004d778
     lis	r4, -0x8000
     addi	r4, r4, -1
-    bl      fn_8004AC04
+    bl      ADXT_GetVoiceByAxHandle
 _8004d778:
     mr	r3, r31
     bl      criadx_get_stream_ptr_wrapper
@@ -811,7 +811,7 @@ _8004d7b8:
     bl      criadxGetValue
     mr	r29, r3
     mr	r3, r31
-    bl      fn_80041660
+    bl      criadx_set_field_48
     mr	r28, r3
     mr	r3, r31
     bl      criadx_get_stream_ptr_wrapper
@@ -1096,7 +1096,7 @@ asm void adxt_trap_entry_not_enough_data(void)
     stw	r29, 0x14(r1)
     stw	r28, 0x10(r1)
     lwz	r3, 4(r3)
-    bl      fn_80041660
+    bl      criadx_set_field_48
     mr	r30, r3
     addi	r29, r1, 8
     li	r28, 0
@@ -1267,7 +1267,7 @@ _8004de18:
     lis	r4, -0x8000
     lwz	r3, 8(r30)
     addi	r4, r4, -1
-    bl      fn_8004AC04
+    bl      ADXT_GetVoiceByAxHandle
     b       _8004de58
 _8004de48:
     srawi	r0, r3, 0xb

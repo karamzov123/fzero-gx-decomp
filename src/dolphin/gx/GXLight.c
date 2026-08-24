@@ -735,7 +735,7 @@ asm void __GXXFSetPerfEnableMulti(register void* p)
     blr	
 }
 
-asm void fn_80037C2C(register void* p, register int a, register int b)
+asm void __GXSetGenModeInline(register void* p, register int a, register int b)
 {
     nofralloc
     lwz	r7, -0x7de8(r2)

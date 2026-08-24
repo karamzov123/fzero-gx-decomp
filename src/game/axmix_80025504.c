@@ -10,7 +10,7 @@ extern BOOL OSRestoreInterrupts(BOOL level);
 extern void fn_80025A24(void);
 extern void OSAlloc(void);
 extern void OSFree(void);
-extern void fn_80025D5C(void);
+extern void AXMixProcessVoiceFlags(void);
 extern unsigned char lbl_80128990[3008];
 extern unsigned char lbl_80176160[6144];
 
@@ -613,7 +613,7 @@ asm void fn_80025D50(void)
     blr	
 }
 
-asm void fn_80025D5C(void)
+asm void AXMixProcessVoiceFlags(void)
 {
     nofralloc
     lwz	r0, -0x7838(r13)
@@ -703,7 +703,7 @@ _80025e44:
     sth	r31, 0x40(r29)
     sth	r31, 0x3c(r29)
     sth	r31, 0x38(r29)
-    bl      fn_80025D5C
+    bl      AXMixProcessVoiceFlags
     addi	r28, r28, 1
     cmpwi	r28, 0x40
     addi	r29, r29, 0x60
@@ -735,14 +735,14 @@ asm void fn_80025EE4(void)
     blr	
 }
 
-asm void fn_80025EEC(void)
+asm void AXGetMixStateWord(void)
 {
     nofralloc
     lwz	r3, -0x7838(r13)
     blr	
 }
 
-asm void fn_80025EF4(void)
+asm void AXMixSetupVoiceEntry(void)
 {
     nofralloc
     mflr	r0
@@ -771,7 +771,7 @@ asm void fn_80025EF4(void)
     stw	r8, 0x14(r30)
     stw	r9, 0x18(r30)
     stw	r10, 0x1c(r30)
-    bl      fn_80025D5C
+    bl      AXMixProcessVoiceFlags
     lwz	r0, 4(r30)
     rlwinm.	r0, r0, 0, 0x1d, 0x1d
     beq     _80025f78

@@ -29,10 +29,10 @@ extern void fn_80021914(void);
 extern void fn_80021928(void);
 extern void AXSetVoiceState_cached(void);
 extern void AXSetVoiceType_cached(void);
-extern void fn_80023284(void);
+extern void AXVPBInitChannelState(void);
 extern void fn_80023394(void);
-extern void fn_80023438(void);
-extern void fn_800234D0(void);
+extern void AXVPBSyncChannelA(void);
+extern void AXVPBSyncChannelB(void);
 extern void fn_80023568(void);
 extern void fn_80024308(void);
 extern void fn_80024378(void);
@@ -43,8 +43,8 @@ extern void fn_800253F0(void);
 extern void fn_80025C28(void);
 extern void AXInvokeVoiceStopCallbacks(void);
 extern void fn_80025EE4(void);
-extern void fn_80025EEC(void);
-extern void fn_80025EF4(void);
+extern void AXGetMixStateWord(void);
+extern void AXMixSetupVoiceEntry(void);
 extern void axmix_device_ctrl_clear(void);
 extern void axmix_set_voice_param_08(void);
 extern void fn_80026DB8(void);
@@ -3219,7 +3219,7 @@ _8005ec70:
     sth	r5, 0x34(r1)
     sth	r14, 0x36(r1)
     lwz	r3, 0x1434(r3)
-    bl      fn_80023284
+    bl      AXVPBInitChannelState
     lwz	r0, -0x7740(r13)
     addi	r4, r1, 0x38
     add	r3, r0, r24
@@ -4106,7 +4106,7 @@ _8005f988:
     addi	r4, r1, 0x18
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
-    bl      fn_80023284
+    bl      AXVPBInitChannelState
     lwz	r0, -0x7740(r13)
     addi	r4, r1, 0x38
     add	r3, r0, r23
@@ -4522,7 +4522,7 @@ _8005fee4:
     li	r3, 0
     bl      fn_80021914
 _8005ff88:
-    bl      fn_80025EEC
+    bl      AXGetMixStateWord
     cmplwi	r3, 1
     bc      12, 2, _800605f0
     li	r3, 1
@@ -4539,7 +4539,7 @@ _8005ff88:
     li	r3, 0
     bl      fn_80021914
 _8005ffc8:
-    bl      fn_80025EEC
+    bl      AXGetMixStateWord
     cmplwi	r3, 1
     bc      12, 2, _800605f0
     li	r3, 1
@@ -4574,7 +4574,7 @@ _8005ffc8:
     li	r3, 1
     bl      fn_80021914
 _80060050:
-    bl      fn_80025EEC
+    bl      AXGetMixStateWord
     cmplwi	r3, 2
     bc      12, 2, _800605f0
     li	r3, 2
@@ -4592,7 +4592,7 @@ _80060050:
     li	r3, 2
     bl      fn_80021914
 _80060094:
-    bl      fn_80025EEC
+    bl      AXGetMixStateWord
     cmplwi	r3, 3
     bc      12, 2, _800605f0
     li	r3, 3
@@ -6030,7 +6030,7 @@ _800613e4:
     lwz	r6, 0x18(r1)
     lwz	r3, 0x1434(r3)
     lwz	r7, 0x14(r1)
-    bl      fn_80025EF4
+    bl      AXMixSetupVoiceEntry
     lbz	r0, 0x3a(r25)
     clrlwi.	r0, r0, 0x1e
     bc      4, 2, _8006154c
@@ -6350,12 +6350,12 @@ _8006195c:
     sth	r5, 0x52(r1)
     sth	r5, 0x54(r1)
     lwz	r3, 0x1434(r3)
-    bl      fn_80023438
+    bl      AXVPBSyncChannelA
     lwz	r0, -0x7740(r13)
     addi	r4, r1, 0x58
     add	r3, r0, r29
     lwz	r3, 0x1434(r3)
-    bl      fn_80023284
+    bl      AXVPBInitChannelState
     lwz	r0, -0x7740(r13)
     addi	r4, r1, 0x68
     add	r3, r0, r29
@@ -6436,7 +6436,7 @@ _80061abc:
     lwz	r7, 0x14(r1)
     extsh	r5, r19
     extsh	r8, r26
-    bl      fn_80025EF4
+    bl      AXMixSetupVoiceEntry
     lbz	r0, 0x3a(r25)
     clrlwi.	r0, r0, 0x1e
     bc      4, 2, _80061afc
@@ -6534,7 +6534,7 @@ _80061bec:
     sth	r5, 0x32(r1)
     sth	r5, 0x34(r1)
     lwz	r3, 0x1434(r3)
-    bl      fn_80023284
+    bl      AXVPBInitChannelState
     lwz	r0, -0x7740(r13)
     addi	r4, r1, 0x68
     add	r3, r0, r24
@@ -6549,7 +6549,7 @@ _80061bec:
     addi	r4, r1, 0x28
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
-    bl      fn_80023438
+    bl      AXVPBSyncChannelA
     lwz	r0, -0x7740(r13)
     li	r4, 1
     add	r3, r0, r24
@@ -6683,7 +6683,7 @@ _80061e5c:
     fmr	f1, f31
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
-    bl      fn_800234D0
+    bl      AXVPBSyncChannelB
     mr	r3, r16
     mr	r4, r15
     mr	r5, r17
@@ -6943,7 +6943,7 @@ _800621d8:
     mulli	r14, r0, 0x118
     add	r3, r3, r14
     lwz	r3, 0x1434(r3)
-    bl      fn_800234D0
+    bl      AXVPBSyncChannelB
     lwz	r0, -0x7740(r13)
     lha	r4, 0xa(r1)
     add	r3, r0, r14

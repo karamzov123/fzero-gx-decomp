@@ -5,7 +5,7 @@ extern void __cvt_fp2unsigned(void);
 extern void fn_80041460(void);
 extern void fn_800414D0(void);
 extern void criadx_get_stream_ptr_wrapper(void);
-extern void fn_80041660(void);
+extern void criadx_set_field_48(void);
 extern void criadxGetValue(void);
 extern void fn_80041700(void);
 extern void svmUnlockServer_wrapper(void);
@@ -735,7 +735,7 @@ _8004c084:
     cmpwi	r0, 2
     blt     _8004c0a0
     lwz	r3, 4(r3)
-    bl      fn_80041660
+    bl      criadx_set_field_48
     b       _8004c0a4
 _8004c0a0:
     li	r3, 0

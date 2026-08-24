@@ -227,7 +227,7 @@ extern void __GXSetLightColorAttnSel(s32 stage, s32 swap0, s32 swap1);
 extern void GXSetLightColorAttnRegs(s32 table, s32 r, s32 g, s32 b);
 extern void fn_80036EDC(s32 stage);
 extern void fn_80036EB4(s32 stages);
-extern void fn_80036C24(s32 stage, s32 scale0, s32 scale1);
+extern void __GXInitTexCacheRegs(s32 stage, s32 scale0, s32 scale1);
 extern void GXWriteTextureState(s32 type, f32 start, f32 end, f32 nearz, f32 farz, void *color);
 extern void __GXWriteChanColorRegs(s32 enable, u16 center, u16 edge);
 extern void GXWriteLightColor(s32 mode, s32 src, s32 dst, s32 op);
@@ -237,7 +237,7 @@ extern void __GXWriteChanCtrlBitfields(BOOL compare, s32 op, BOOL update);
 extern void __GXXFSetPerfEnableMulti(BOOL before);
 extern void __GXSetZModeBits(BOOL dither);
 extern void GXWriteLightAttn(BOOL enable, u8 alpha);
-extern void fn_80037C2C(s32 pixFmt, s32 zFmt);
+extern void __GXSetGenModeInline(s32 pixFmt, s32 zFmt);
 extern void fn_80037D7C(BOOL odd, BOOL even);
 extern void fn_80037DB4(BOOL fieldMode, BOOL halfAspect);
 extern void __GXSetScissor_LT(s32 left, s32 top, s32 wd, s32 ht);
@@ -1475,19 +1475,19 @@ L80031920:
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl fn_80036C24
+    bl __GXInitTexCacheRegs
     li	r3, 1
     li	r4, 0
     li	r5, 0
-    bl fn_80036C24
+    bl __GXInitTexCacheRegs
     li	r3, 2
     li	r4, 0
     li	r5, 0
-    bl fn_80036C24
+    bl __GXInitTexCacheRegs
     li	r3, 3
     li	r4, 0
     li	r5, 0
-    bl fn_80036C24
+    bl __GXInitTexCacheRegs
     lfs	f2, -0x7dd8(r2)
     addi	r4, r1, 8
     lwz	r0, 0x24(r1)
@@ -1523,7 +1523,7 @@ L80031920:
     bl GXWriteLightAttn
     li	r3, 0
     li	r4, 0
-    bl fn_80037C2C
+    bl __GXSetGenModeInline
     li	r3, 1
     li	r4, 1
     bl fn_80037D7C

@@ -7,15 +7,15 @@ extern void AXFreeVoice(void);
 extern void DCFlushRange(void);
 extern void AXSetVoiceState_cached(void);
 extern void AXSetVoiceType_cached(void);
-extern void fn_80023284(void);
-extern void fn_80023438(void);
-extern void fn_80025EF4(void);
+extern void AXVPBInitChannelState(void);
+extern void AXVPBSyncChannelA(void);
+extern void AXMixSetupVoiceEntry(void);
 extern void axmix_device_ctrl_clear(void);
 extern void axmix_set_voice_param_08(void);
 extern void axmix_set_voice_volume(void);
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
-extern void fn_80058498(void);
+extern void ADXT_ProcessStreamUpdate(void);
 extern void svm_ringbuf_read(void);
 extern void adxtSetNotifyCallback(void);
 extern void svm_exit_critical_wrapper(void);
@@ -594,7 +594,7 @@ _8005a8ec:
     bl      AXSetVoiceState_cached
     lwz	r3, 8(r31)
     addi	r4, r1, 8
-    bl      fn_80023438
+    bl      AXVPBSyncChannelA
 _8005a91c:
     bl      svm_exit_critical_wrapper
     addi	r31, r31, 4
@@ -1217,7 +1217,7 @@ _8005b124:
     sth	r7, 0x12(r1)
     sth	r0, 0x14(r1)
     sth	r6, 0x16(r1)
-    bl      fn_80023284
+    bl      AXVPBInitChannelState
     lwz	r3, 8(r30)
     li	r4, 1
     bl      AXSetVoiceType_cached
@@ -1700,7 +1700,7 @@ _8005b7c4:
     lwz	r0, 0x20(r31)
     slwi	r3, r3, 1
     slwi	r4, r0, 1
-    bl      fn_80058498
+    bl      ADXT_ProcessStreamUpdate
     stw	r3, 0x38(r27)
     lwz	r0, 0x38(r27)
     cmplwi	r0, 0
@@ -1825,7 +1825,7 @@ _8005b980:
     lwz	r7, 0x98(r31)
     lwz	r9, 0x90(r31)
     lwz	r10, 0x9c(r31)
-    bl      fn_80025EF4
+    bl      AXMixSetupVoiceEntry
 _8005b9b0:
     bl      svm_exit_critical_wrapper
     addi	r28, r28, 1
@@ -1890,7 +1890,7 @@ _8005ba68:
     bl      AXSetVoiceState_cached
     lwz	r3, 8(r27)
     addi	r4, r1, 8
-    bl      fn_80023438
+    bl      AXVPBSyncChannelA
 _8005ba98:
     bl      svm_exit_critical_wrapper
     addi	r27, r27, 4

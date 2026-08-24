@@ -27,9 +27,9 @@ extern void __GXSetChanCtrl(void);
 extern void GXXFormSetupA(void);
 extern void GXXFormSetupB(void);
 extern void fn_80036388(void);
-extern void fn_80036A28(void);
+extern void __GXInitTexObj(void);
 extern void fn_80036AC4(void);
-extern void fn_80036C24(void);
+extern void __GXInitTexCacheRegs(void);
 extern void fn_80036DA0(void);
 extern void fn_80036EB4(void);
 extern void GXWriteCachedParamF0(void);
@@ -905,7 +905,7 @@ asm void fn_800739E0(void)
 _80073A28:
     mr r4, r29
     mr r5, r30
-    bl fn_80036C24
+    bl __GXInitTexCacheRegs
     stw r29, 0(r31)
     stw r30, 4(r31)
 _80073A3C:
@@ -1049,7 +1049,7 @@ _80073C08:
     mr r8, r26
     mr r9, r27
     mr r10, r28
-    bl fn_80036A28
+    bl __GXInitTexObj
     stw r22, 0(r31)
     stw r23, 4(r31)
     stw r24, 8(r31)
@@ -1117,7 +1117,7 @@ _80073CF8:
     li r8, 0
     li r9, 0
     li r10, 0
-    bl fn_80036A28
+    bl __GXInitTexObj
     li r0, 0
     stw r0, 0(r31)
     stw r0, 4(r31)
@@ -1200,7 +1200,7 @@ _80073E20:
     mr r9, r29
     li r5, 0
     li r10, 0
-    bl fn_80036A28
+    bl __GXInitTexObj
     stw r27, 0(r31)
     li r0, 0
     stw r0, 4(r31)
@@ -1418,7 +1418,7 @@ _80074114:
     mr r8, r30
     mr r9, r29
     li r10, 0
-    bl fn_80036A28
+    bl __GXInitTexObj
     stw r24, 0(r31)
     li r3, 0
     li r0, 1

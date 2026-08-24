@@ -17,12 +17,12 @@ extern void svmUnlockServer_wrapper(void);
 extern void svmLockServer_wrapper(void);
 extern void criErr_CallErrCallback(void);
 extern void fn_8004A550(void);
-extern void fn_8004AC04(void);
+extern void ADXT_GetVoiceByAxHandle(void);
 extern void fn_8004AC4C(void);
 extern void fn_8004AD84(void);
 extern void fn_8004ADF4(void);
 extern void fn_8004AE94(void);
-extern void fn_8004B0EC(void);
+extern void ADXT_StopVoice(void);
 extern void fn_8004B180(void);
 extern void fn_8004B1DC(void);
 extern void fn_8004EE84(void);
@@ -427,7 +427,7 @@ _8004c6c0:
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8004c6d0
-    bl      fn_8004B0EC
+    bl      ADXT_StopVoice
 _8004c6d0:
     bl      svmLockServer_wrapper
     lbz	r0, 2(r31)
@@ -515,7 +515,7 @@ _8004c7ec:
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8004c7fc
-    bl      fn_8004B0EC
+    bl      ADXT_StopVoice
 _8004c7fc:
     bl      svmLockServer_wrapper
     lbz	r0, 2(r30)
@@ -644,7 +644,7 @@ asm void fn_8004C980(void)
     bl      fn_8004A550
     lwz	r3, 8(r31)
     li	r4, 0x19
-    bl      fn_8004AC04
+    bl      ADXT_GetVoiceByAxHandle
     lwz	r3, 8(r31)
     li	r4, 0
     li	r5, 0
@@ -655,7 +655,7 @@ asm void fn_8004C980(void)
     lwz	r3, 8(r31)
     bl      fn_8004AD84
     lwz	r3, 8(r31)
-    bl      fn_8004B0EC
+    bl      ADXT_StopVoice
     lwz	r3, 8(r31)
     mr	r4, r27
     mr	r5, r30
@@ -750,7 +750,7 @@ _8004cb34:
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8004cb44
-    bl      fn_8004B0EC
+    bl      ADXT_StopVoice
 _8004cb44:
     bl      svmLockServer_wrapper
     lbz	r0, 2(r31)

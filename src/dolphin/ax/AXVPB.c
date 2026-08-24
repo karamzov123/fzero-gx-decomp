@@ -1001,7 +1001,7 @@ asm void fn_80023228(void)
     blr	
 }
 
-asm void fn_80023284(void)
+asm void AXVPBInitChannelState(void)
 {
     nofralloc
     mflr	r0
@@ -1124,7 +1124,7 @@ asm void fn_80023394(void)
     blr	
 }
 
-asm void fn_80023438(void)
+asm void AXVPBSyncChannelA(void)
 {
     nofralloc
     mflr	r0
@@ -1167,7 +1167,7 @@ asm void fn_80023438(void)
     blr	
 }
 
-asm void fn_800234D0(void)
+asm void AXVPBSyncChannelB(void)
 {
     nofralloc
     mflr	r0

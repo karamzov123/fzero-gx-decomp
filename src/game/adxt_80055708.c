@@ -12,7 +12,7 @@ extern void DVDReadAsync(void);
 extern void DVDGetCommandBlockStatusHalfword(void);
 extern void DVDGetCommandBlockStatus(void);
 extern void DVDCancel(void);
-extern void fn_8004AC58(void);
+extern void ADXT_StartVoice(void);
 extern void gcciErrPrintf(void);
 extern void gccicrit_leave(void);
 extern void gccicrit_enter(void);
@@ -1745,7 +1745,7 @@ _80056cfc:
     lbz	r0, 2(r31)
     cmpwi	r0, 1
     bne     _80056d34
-    bl      fn_8004AC58
+    bl      ADXT_StartVoice
     li	r0, 0
     stb	r0, 2(r31)
 _80056d34:
@@ -1814,7 +1814,7 @@ _80056de8:
     lbz	r0, 2(r31)
     cmpwi	r0, 1
     bne     _80056e1c
-    bl      fn_8004AC58
+    bl      ADXT_StartVoice
     li	r0, 0
     stb	r0, 2(r31)
 _80056e1c:

@@ -15,7 +15,7 @@ extern unsigned char lbl_8017D6F8[4];
 extern unsigned char lbl_8017D6FC[4];
 extern unsigned char lbl_8017D708[3680];
 
-asm void fn_8004AC04(void)
+asm void ADXT_GetVoiceByAxHandle(void)
 {
     nofralloc
     cmpwi	r4, 0
@@ -47,7 +47,7 @@ asm void fn_8004AC4C(void)
     blr	
 }
 
-asm void fn_8004AC58(void)
+asm void ADXT_StartVoice(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -402,7 +402,7 @@ _8004b0cc:
     blr	
 }
 
-asm void fn_8004B0EC(void)
+asm void ADXT_StopVoice(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

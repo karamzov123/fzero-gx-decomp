@@ -12,7 +12,7 @@ extern void fn_8004A578(void);
 extern void fn_80054760(void);
 extern void fn_8004FAA8(void);
 extern void fn_800482FC(void);
-extern void fn_80058498(void);
+extern void ADXT_ProcessStreamUpdate(void);
 extern void fn_80057B9C(void);
 extern void fn_80047C94(void);
 extern void fn_80047ADC(void);
@@ -224,7 +224,7 @@ asm void fn_8004768C(void)
     li	r4, 0x400
     addi	r3, r3, lbl_8017B1A0@l
     li	r5, 0
-    bl      fn_80058498
+    bl      ADXT_ProcessStreamUpdate
     lis     r4, lbl_8017B160@ha
     mr	r31, r3
     addi	r0, r4, lbl_8017B160@l

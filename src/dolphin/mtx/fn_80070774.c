@@ -14,7 +14,7 @@ extern asm void ModelSetCachedScissorLT_AFC(void);
 extern asm void ModelSetCachedScissorOffset_B04(void);
 extern asm void fn_80034D9C(void);
 extern asm void GXSetCopyClear(void);
-extern asm void fn_80037C2C(void);
+extern asm void __GXSetGenModeInline(void);
 extern asm void __GXSetZModeBits(void);
 extern asm void GXWriteLightAttn(void);
 extern asm void ModelMatchCachedSlot_B20(void);
@@ -170,7 +170,7 @@ _80070884:
     beq	_800709b0
     li	r3, 1
     li	r4, 0
-    bl      fn_80037C2C
+    bl      __GXSetGenModeInline
     li	r3, 1
     bl      __GXSetZModeBits
     li	r3, 1
@@ -180,7 +180,7 @@ _80070884:
 _800709b0:
     li	r3, 0
     li	r4, 0
-    bl      fn_80037C2C
+    bl      __GXSetGenModeInline
     li	r3, 0
     bl      __GXSetZModeBits
 _800709c4:

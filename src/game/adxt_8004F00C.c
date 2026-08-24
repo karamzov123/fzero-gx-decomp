@@ -5,7 +5,7 @@ extern void DCInvalidateRange(void);
 extern void svmUnlockServer_wrapper(void);
 extern void svmLockServer_wrapper(void);
 extern void criErr_CallErrCallback(void);
-extern void fn_8004AC58(void);
+extern void ADXT_StartVoice(void);
 extern void fn_8004AE78(void);
 extern void ADXTGetState(void);
 extern void fn_8004AEF0(void);
@@ -1046,7 +1046,7 @@ _8004fdbc:
     bl      criErr_CallErrCallback
     b       _8004feb4
 _8004fdd8:
-    bl      fn_8004AC58
+    bl      ADXT_StartVoice
     bl      svmLockServer_wrapper
     lwz	r3, 4(r30)
     bl      fn_8004AE78

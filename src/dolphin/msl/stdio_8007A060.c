@@ -59,7 +59,7 @@ asm void __init_file(void);
 asm void fn_8007B2A8(void);
 asm void __sformatter(void);
 asm void fn_8007C3B8(void);
-asm void fn_8007C55C(void);
+asm void MSL_PrintfFloat(void);
 asm void fn_8007C910(void);
 asm void fn_8007CE0C(void);
 asm void MSLFormatDecimalRound(void);
@@ -2052,7 +2052,7 @@ _8007ba74:
 _8007ba88:
     lfd	f1, 0x30(r1)
     addi	r3, r1, 0x148
-    bl      fn_8007C55C
+    bl      MSL_PrintfFloat
     addi	r3, r1, 0x148
     addi	r4, r1, 0x1a0
     bl      fn_8007CE0C
@@ -2194,7 +2194,7 @@ _8007bc5c:
     b       _8007c380
 _8007bc6c:
     addi	r3, r1, 0x11c
-    bl      fn_8007C55C
+    bl      MSL_PrintfFloat
     lis	r29, 0x7ff0
     b       _8007bd88
 _8007bc7c:
@@ -2273,7 +2273,7 @@ _8007bd70:
     b       _8007c380
 _8007bd80:
     addi	r3, r1, 0x11c
-    bl      fn_8007C55C
+    bl      MSL_PrintfFloat
 _8007bd88:
     lbz	r0, 0x121(r1)
     cmplwi	r0, 0
@@ -2482,7 +2482,7 @@ _8007c028:
     stw	r4, 0x24(r1)
     stw	r0, 0x20(r1)
     lfd	f1, 0x20(r1)
-    bl      fn_8007C55C
+    bl      MSL_PrintfFloat
     b       _8007c0e4
 _8007c05c:
     lwz	r4, 0x24(r1)
@@ -2518,7 +2518,7 @@ _8007c05c:
     stw	r6, 0x16c(r1)
     sth	r5, 0x170(r1)
     stfd	f0, 0x30(r1)
-    bl      fn_8007C55C
+    bl      MSL_PrintfFloat
 _8007c0e4:
     lbz	r0, 0x1a5(r1)
     cmplwi	r0, 0
@@ -2744,7 +2744,7 @@ asm void fn_8007C3B8(void)
     stw	r30, 8(r1)
     lha	r30, 2(r3)
     mr	r3, r31
-    bl      fn_8007C55C
+    bl      MSL_PrintfFloat
     lbz	r0, 5(r31)
     cmplwi	r0, 9
     bc      12, 1, _8007c544
@@ -2860,7 +2860,7 @@ _8007c544:
     blr
 }
 
-asm void fn_8007C55C(void)
+asm void MSL_PrintfFloat(void)
 {
     nofralloc
     stwu	r1, -0xb0(r1)

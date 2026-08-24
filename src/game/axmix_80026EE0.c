@@ -39,10 +39,10 @@ extern void DSPWriteMailMid(void);
 extern void AXSetVoiceState_cached(void);
 extern void fn_800231C4(void);
 extern void fn_80023228(void);
-extern void fn_800234D0(void);
-extern void fn_80025D5C(void);
-extern void fn_80025EEC(void);
-extern void fn_80025EF4(void);
+extern void AXVPBSyncChannelB(void);
+extern void AXMixProcessVoiceFlags(void);
+extern void AXGetMixStateWord(void);
+extern void AXMixSetupVoiceEntry(void);
 extern void axmix_device_ctrl_clear(void);
 extern void axmix_set_voice_param_08(void);
 extern void fn_80026E2C(void);
@@ -78,7 +78,7 @@ _80026f14:
 _80026f20:
     stw	r4, 0x14(r31)
     mr	r3, r31
-    bl      fn_80025D5C
+    bl      AXMixProcessVoiceFlags
     lwz	r0, 4(r31)
     oris	r0, r0, 0x4000
     stw	r0, 4(r31)
@@ -112,7 +112,7 @@ _80026f80:
 _80026f8c:
     stw	r4, 0x18(r31)
     mr	r3, r31
-    bl      fn_80025D5C
+    bl      AXMixProcessVoiceFlags
     lwz	r0, 4(r31)
     oris	r0, r0, 0x4000
     stw	r0, 4(r31)
@@ -1605,7 +1605,7 @@ _8002836c:
     bl      AXSetVoiceState_cached
     mr	r3, r28
     fmr	f1, f30
-    bl      fn_800234D0
+    bl      AXVPBSyncChannelB
     addi	r3, r28, 0
     addi	r4, r21, 0
     addi	r5, r20, 0
@@ -1618,7 +1618,7 @@ _8002836c:
     clrlwi	r9, r23, 0x18
     li	r4, 0
     li	r10, 0
-    bl      fn_80025EF4
+    bl      AXMixSetupVoiceEntry
     bl      OSDisableInterrupts
     lwz	r4, -0x7830(r13)
     cmplwi	r4, 0
@@ -1967,7 +1967,7 @@ _8002881c:
     bl      AXSetVoiceState_cached
     mr	r3, r19
     fmr	f1, f30
-    bl      fn_800234D0
+    bl      AXVPBSyncChannelB
     addi	r3, r19, 0
     addi	r4, r21, 0
     addi	r5, r20, 0
@@ -2265,7 +2265,7 @@ _80028c14:
 _80028c18:
     li	r0, 0
     stw	r0, 0x18(r31)
-    bl      fn_80025EEC
+    bl      AXGetMixStateWord
     cmplwi	r3, 3
     bne     _80028c3c
     add	r3, r30, r29

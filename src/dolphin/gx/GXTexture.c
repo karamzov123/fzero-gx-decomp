@@ -12,7 +12,7 @@ extern unsigned char lbl_8012B368[80];
 void __GXFlushTextureState(void);
 void fn_800361F0(register void* dst, register void* src, register int a, register int b);
 void fn_800365B4(register void* p, register int a);
-void fn_80036A28(register void* p);
+void __GXInitTexObj(register void* p);
 
 #pragma push
 #pragma force_active on
@@ -749,7 +749,7 @@ _80036a18:
     blr	
 }
 
-asm void fn_80036A28(register void* p)
+asm void __GXInitTexObj(register void* p)
 {
     nofralloc
     stwu	r1, -0x28(r1)
@@ -892,7 +892,7 @@ _80036b14:
     blr	
 }
 
-asm void fn_80036C24(register void* p, register int a, register int b)
+asm void __GXInitTexCacheRegs(register void* p, register int a, register int b)
 {
     nofralloc
     cmpwi	r3, 2
@@ -1109,7 +1109,7 @@ asm void fn_80036EDC(register void* p)
     li	r9, 0
     stw	r0, 0xc(r1)
     li	r10, 0
-    bl      fn_80036A28
+    bl      __GXInitTexObj
     lwz	r0, 0x1c(r1)
     addi	r1, r1, 0x18
     mtlr	r0

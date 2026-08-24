@@ -25,7 +25,7 @@ extern void OSPanic(void);
 extern void OSSleepThread(void);
 extern void OSWakeupThread(void);
 extern void DVDConvertPathToEntrynum(void);
-extern void fn_8001724C(void);
+extern void __DVDFSGetComponentPath(void);
 extern void __DVDGetFSTHomeDir(void);
 extern void __DVDReadDoneCallback(void);
 extern void fn_800176D8(void);
@@ -397,8 +397,8 @@ nofralloc
 	blr
 }
 
-/* fn_8001724C @0x8001724C | size: 0x160 */
-asm void fn_8001724C(void) {
+/* __DVDFSGetComponentPath @0x8001724C | size: 0x160 */
+asm void __DVDFSGetComponentPath(void) {
 nofralloc
 	mflr r0
 	cmplwi r3, 0x0
@@ -434,7 +434,7 @@ lbl_800172B0:
 	addi r5, r30, 0x0
 	clrlwi r0, r0, 8
 	add r28, r6, r0
-	bl fn_8001724C
+	bl __DVDFSGetComponentPath
 	cmplw r3, r30
 	bne lbl_800172DC
 	b lbl_8001732C
@@ -517,7 +517,7 @@ nofralloc
 	addi r4, r29, 0x0
 	lwz r31, -0x7B10(r13)
 	addi r3, r31, 0x0
-	bl fn_8001724C
+	bl __DVDFSGetComponentPath
 	cmplw r3, r30
 	bne lbl_800173F8
 	li r0, 0x0
