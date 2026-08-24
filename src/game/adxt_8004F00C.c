@@ -11,7 +11,7 @@ extern void fn_8004AEE4(void);
 extern void fn_8004AEF0(void);
 extern void fn_8004B1DC(void);
 extern void fn_8004FC38(void);
-extern void fn_8004FC94(void);
+extern void ADXF_Stop_family(void);
 extern void fn_800502A0(void);
 extern void strncpy(void);
 extern void memset(void);
@@ -630,7 +630,7 @@ asm void fn_8004F7F8(void)
     blr	
 }
 
-asm void fn_8004F818(void)
+asm void ADXF_SetPtdId_family(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -945,7 +945,7 @@ _8004fc58:
     cmpwi	r0, 1
     bne     _8004fc6c
     mr	r3, r31
-    bl      fn_8004FC94
+    bl      ADXF_Stop_family
 _8004fc6c:
     addi	r30, r30, 1
     addi	r31, r31, 0x44
@@ -959,7 +959,7 @@ _8004fc6c:
     blr	
 }
 
-asm void fn_8004FC94(void)
+asm void ADXF_Stop_family(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

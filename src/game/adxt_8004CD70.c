@@ -49,7 +49,7 @@ extern void ADXT_Stop(void);
 extern void fn_8004C980(void);
 extern void fn_8004CAC8(void);
 extern void ADXT_StatDecInfo(void);
-extern void fn_8004DBBC(void);
+extern void adxt_trap_entry_not_enough_data(void);
 extern void fn_8004ED5C(void);
 extern void fn_8004ED80(void);
 extern void fn_8004EDA4(void);
@@ -856,7 +856,7 @@ _8004d860:
     bl      fn_8004BBC8
 _8004d870:
     mr	r3, r30
-    bl      fn_8004DBBC
+    bl      adxt_trap_entry_not_enough_data
     lwz	r3, 0x74(r30)
     cmplwi	r3, 0
     beq     _8004d88c
@@ -1084,7 +1084,7 @@ _8004dba8:
     blr	
 }
 
-asm void fn_8004DBBC(void)
+asm void adxt_trap_entry_not_enough_data(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

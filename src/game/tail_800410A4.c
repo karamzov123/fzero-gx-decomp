@@ -45,7 +45,7 @@ extern void fn_80058B54(void);
 extern void fn_80058BFC(void);
 extern void fn_8005912C(register u32 p1, register u32 p2, register void* p3, register u32 p4);
 extern void SVM_DelCbSvr(register u32 p1, register void* p2);
-extern void fn_80059428(register u32 p1, register void* p2, register u32 p3);
+extern void SVM_SetCbSvr_2(register u32 p1, register void* p2, register u32 p3);
 extern void memset(register void* dst, register int v, register unsigned long n);
 extern unsigned char lbl_80090010[8];
 extern unsigned char lbl_80178C18[144];
@@ -216,13 +216,13 @@ asm void fn_800411F4(void)
     li      r3, 4
     addi    r4, r4, fn_80041330@l
     li      r5, 0
-    bl      fn_80059428
+    bl      SVM_SetCbSvr_2
     lis     r4, fn_800413A4@ha
     stw     r3, 0xc(r31)
     addi    r4, r4, fn_800413A4@l
     li      r3, 5
     li      r5, 0
-    bl      fn_80059428
+    bl      SVM_SetCbSvr_2
     stw     r3, 8(r31)
     b       _80041304
 _800412ec:
@@ -230,7 +230,7 @@ _800412ec:
     li      r3, 5
     addi    r4, r4, fn_80041378@l
     li      r5, 0
-    bl      fn_80059428
+    bl      SVM_SetCbSvr_2
     stw     r3, 8(r31)
 _80041304:
     li      r0, 0

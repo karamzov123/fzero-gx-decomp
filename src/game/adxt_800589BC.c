@@ -820,7 +820,7 @@ _8005940c:
     blr	
 }
 
-asm void fn_80059428(void)
+asm void SVM_SetCbSvr_2(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
