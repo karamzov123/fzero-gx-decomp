@@ -154,9 +154,9 @@ extern void fn_8007245C(void);
 extern void fn_80072558(void);
 extern void fn_800725DC(void);
 extern void fn_80072614(void);
-extern void fn_80072864(void);
-extern void fn_800728A8(void);
-extern void fn_80072AB0(void);
+extern void LightCtrl_SetCachedCullMode(void);
+extern void LightCtrl_SetCachedColor_1C(void);
+extern void LightCtrl_SetCachedPair_6C(void);
 extern void fn_80072BD0(void);
 extern void ModelSetCachedParam_F0(void);
 extern void ModelSetCachedParam_1F0(void);
@@ -334,7 +334,7 @@ asm void main_read_fze_str(void)
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      fn_800728A8
+    bl      LightCtrl_SetCachedColor_1C
     li	r3, 4
     li	r4, 0
     li	r5, 0
@@ -652,7 +652,7 @@ asm void mmu_user_fn(void)
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl      fn_80072AB0
+    bl      LightCtrl_SetCachedPair_6C
     li	r3, 0
     li	r4, 0xf
     li	r5, 2
@@ -700,7 +700,7 @@ asm void mmu_user_fn(void)
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      fn_800728A8
+    bl      LightCtrl_SetCachedColor_1C
     lfs	f1, -0x7fe4(r2)
     addi	r4, r1, 0x10
     lfs	f2, -0x7fe0(r2)
@@ -711,7 +711,7 @@ asm void mmu_user_fn(void)
     stw	r0, 0x10(r1)
     bl      fn_800377F8
     li	r3, 2
-    bl      fn_80072864
+    bl      LightCtrl_SetCachedCullMode
     bl      fn_8006D758
     lwz	r3, -0x76c0(r13)
     li	r4, 0
@@ -906,7 +906,7 @@ asm void fn_80005EDC(void)
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl      fn_80072AB0
+    bl      LightCtrl_SetCachedPair_6C
     li	r3, 0
     li	r4, 0xf
     li	r5, 2
@@ -954,13 +954,13 @@ asm void fn_80005EDC(void)
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      fn_800728A8
+    bl      LightCtrl_SetCachedColor_1C
     lfs	f1, -0x7fa4(r2)
     li	r3, 0
     lfs	f2, -0x7fa0(r2)
     bl      fn_80071ED4
     li	r3, 2
-    bl      fn_80072864
+    bl      LightCtrl_SetCachedCullMode
     bl      fn_8006D758
     lwz	r3, -0x76c0(r13)
     li	r4, 0
@@ -3538,7 +3538,7 @@ asm void fn_80008204(void)
     stw	r0, 0x14(r1)
     bl      fn_8007245C
     li	r3, 0
-    bl      fn_80072864
+    bl      LightCtrl_SetCachedCullMode
     li	r3, 0
     bl      fn_80073C6C
     li	r3, 0
@@ -3603,7 +3603,7 @@ asm void fn_80008204(void)
     li	r4, 1
     li	r5, 0
     li	r6, 0
-    bl      fn_800728A8
+    bl      LightCtrl_SetCachedColor_1C
     li	r3, 1
     li	r4, 7
     li	r5, 1
@@ -3925,7 +3925,7 @@ asm void fn_800087F4(void)
     li	r4, 1
     li	r5, 0
     li	r6, 0
-    bl      fn_800728A8
+    bl      LightCtrl_SetCachedColor_1C
     li	r3, 1
     li	r4, 3
     li	r5, 1
@@ -3933,7 +3933,7 @@ asm void fn_800087F4(void)
     li	r3, 0
     bl      fn_800720B0
     li	r3, 0
-    bl      fn_80072864
+    bl      LightCtrl_SetCachedCullMode
     lwz	r0, 0x14(r31)
     cmpwi	r0, 1
     bc      12, 2, _80008930
@@ -4081,7 +4081,7 @@ asm void fn_80008A4C(void)
     stw	r31, 0x1c(r1)
     mr	r31, r3
     li	r3, 0
-    bl      fn_800728A8
+    bl      LightCtrl_SetCachedColor_1C
     li	r3, 1
     li	r4, 3
     li	r5, 1
@@ -4092,7 +4092,7 @@ asm void fn_80008A4C(void)
     li	r4, 0
     bl      fn_800746A8
     li	r3, 0
-    bl      fn_80072864
+    bl      LightCtrl_SetCachedCullMode
     li	r3, 0
     bl      fn_80073C6C
     li	r3, 0

@@ -27,7 +27,7 @@ extern void fn_80071794(void);
 extern void fn_80071C04(void);
 extern void fn_8007245C(void);
 extern void fn_800724CC(void);
-extern void fn_8007264C(void);
+extern void LightCtrl_SetCachedFog(void);
 extern void fn_80075908(void);
 extern void fn_80078344(void);
 extern void fn_80078360(void);
@@ -560,7 +560,7 @@ _80078D18:
     stw r0, 0x18(r6)
     li r6, 4
     li r7, 0
-    bl fn_8007264C
+    bl LightCtrl_SetCachedFog
     lwz r0, 0x14(r1)
     mtlr r0
     addi r1, r1, 0x10

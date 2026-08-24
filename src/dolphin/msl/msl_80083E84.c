@@ -9,7 +9,7 @@ typedef signed int s32;
 
 extern void fn_80087F54(void); // forward decl
 extern void OSGetConsoleType(void);
-extern void fn_800157AC(void);
+extern void InitializeUART(void);
 extern void fn_8001581C(void);
 extern void _savefpr_25(void);
 extern void _restfpr_25(void);
@@ -1945,7 +1945,7 @@ asm void fn_80085814(void)
     bc      4, 2, _80085878
     lis	r3, 1
     addi	r3, r3, -0x1f00
-    bl      fn_800157AC
+    bl      InitializeUART
     cmpwi	r3, 0
     bc      4, 2, _80085878
     li	r0, 1

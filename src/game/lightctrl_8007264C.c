@@ -20,15 +20,15 @@ extern void _restgpr_26(void);
 extern void _restgpr_27(void);
 extern unsigned char lbl_8019E308[3328];
 
-asm void fn_8007264C(void);
-asm void fn_800726C0(void);
-asm void fn_80072778(void);
-asm void fn_80072808(void);
-asm void fn_80072864(void);
-asm void fn_800728A8(void);
+asm void LightCtrl_SetCachedFog(void);
+asm void LightCtrl_SetCachedFogArray(void);
+asm void LightCtrl_InitChannels4(void);
+asm void LightCtrl_InitChannels2(void);
+asm void LightCtrl_SetCachedCullMode(void);
+asm void LightCtrl_SetCachedColor_1C(void);
 asm void fn_800729B0(void);
 asm void fn_80072A50(void);
-asm void fn_80072AB0(void);
+asm void LightCtrl_SetCachedPair_6C(void);
 asm void fn_80072B28(void);
 asm void fn_80072B7C(void);
 asm void fn_80072BD0(void);
@@ -39,7 +39,7 @@ asm void ModelSetCachedParam_430(void);
 #pragma push
 #pragma force_active on
 
-asm void fn_8007264C(void)
+asm void LightCtrl_SetCachedFog(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -75,7 +75,7 @@ _800726B0:
     blr
 }
 
-asm void fn_800726C0(void)
+asm void LightCtrl_SetCachedFogArray(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -130,7 +130,7 @@ _80072750:
     blr
 }
 
-asm void fn_80072778(void)
+asm void LightCtrl_InitChannels4(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -171,7 +171,7 @@ asm void fn_80072778(void)
     blr
 }
 
-asm void fn_80072808(void)
+asm void LightCtrl_InitChannels2(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -199,7 +199,7 @@ asm void fn_80072808(void)
     blr
 }
 
-asm void fn_80072864(void)
+asm void LightCtrl_SetCachedCullMode(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -222,7 +222,7 @@ _80072894:
     blr
 }
 
-asm void fn_800728A8(void)
+asm void LightCtrl_SetCachedColor_1C(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -373,7 +373,7 @@ asm void fn_80072A50(void)
     blr
 }
 
-asm void fn_80072AB0(void)
+asm void LightCtrl_SetCachedPair_6C(void)
 {
     nofralloc
     stwu r1, -0x20(r1)

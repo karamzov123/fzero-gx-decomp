@@ -20,9 +20,9 @@ extern asm void fn_80038C5C(void);
 extern asm void SndAllocBankEntry(void);
 extern asm void fn_8006D758(void);
 extern asm void fn_8007245C(void);
-extern asm void fn_80072864(void);
-extern asm void fn_800728A8(void);
-extern asm void fn_80072AB0(void);
+extern asm void LightCtrl_SetCachedCullMode(void);
+extern asm void LightCtrl_SetCachedColor_1C(void);
+extern asm void LightCtrl_SetCachedPair_6C(void);
 extern asm void ModelSetCachedParam_F0(void);
 extern asm void ModelSetCachedParam_1F0(void);
 extern asm void ModelSetCachedParam_2F0(void);
@@ -4073,7 +4073,7 @@ asm void fn_8006CE44(void)
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl      fn_80072AB0
+    bl      LightCtrl_SetCachedPair_6C
     li	r3, 0
     li	r4, 0xff
     li	r5, 0xff
@@ -4109,9 +4109,9 @@ asm void fn_8006CE44(void)
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      fn_800728A8
+    bl      LightCtrl_SetCachedColor_1C
     li	r3, 2
-    bl      fn_80072864
+    bl      LightCtrl_SetCachedCullMode
     li	r3, 0x200
     bl      fn_8007245C
     lwz	r0, -0x7718(r13)

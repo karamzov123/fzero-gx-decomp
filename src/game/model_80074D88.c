@@ -36,11 +36,11 @@ extern void fn_80072404(void);
 extern void fn_8007245C(void);
 extern void fn_800725DC(void);
 extern void fn_80072614(void);
-extern void fn_8007264C(void);
-extern void fn_80072778(void);
-extern void fn_800728A8(void);
+extern void LightCtrl_SetCachedFog(void);
+extern void LightCtrl_InitChannels4(void);
+extern void LightCtrl_SetCachedColor_1C(void);
 extern void fn_800729B0(void);
-extern void fn_80072AB0(void);
+extern void LightCtrl_SetCachedPair_6C(void);
 extern void ModelSetCachedParam_F0(void);
 extern void ModelSetCachedParam_1F0(void);
 extern void ModelSetCachedParam_2F0(void);
@@ -281,7 +281,7 @@ asm void fn_80074D88(void)
     lwz r3, 0(r31)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r31)
     li r6, 4
     lwz r4, 4(r31)
@@ -689,7 +689,7 @@ _800753F0:
     li r6, 0
     stw r0, -0x7670(r13)
     stfs f0, -0x7674(r13)
-    bl fn_800728A8
+    bl LightCtrl_SetCachedColor_1C
     li r3, 0
     li r4, 0
     li r5, 1
@@ -863,7 +863,7 @@ _80075840:
     li r3, 1
     lwz r5, 0x20(r5)
     li r6, 0
-    bl fn_800728A8
+    bl LightCtrl_SetCachedColor_1C
     lwz r0, -0x7678(r13)
     lis r5, 1
     addi r4, r31, 0x41e0
@@ -1012,7 +1012,7 @@ _80075A58:
     li r5, 0
     li r6, 4
     li r7, 0
-    bl fn_8007264C
+    bl LightCtrl_SetCachedFog
     mr r3, r30
     mr r5, r31
     addi r4, r1, 0x54
@@ -1202,7 +1202,7 @@ _80075D08:
     mr r5, r29
     li r3, 1
     li r6, 0
-    bl fn_800728A8
+    bl LightCtrl_SetCachedColor_1C
     lis     r3, lbl_801A3220@ha
     stw r30, 0x1c(r31)
     addi r3, r3, lbl_801A3220@l
@@ -1232,7 +1232,7 @@ asm void fn_80075D48(void)
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r30)
     li r6, 4
     lwz r4, 4(r30)
@@ -1331,7 +1331,7 @@ _80075E68:
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r30)
     li r6, 0xff
     lwz r4, 4(r30)
@@ -1575,7 +1575,7 @@ asm void fn_80076238(void)
     lwz r3, 0(r27)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lis     r3, lbl_801A3220@ha
     addi r31, r3, lbl_801A3220@l
     lwz r0, 0x3c(r31)
@@ -1739,7 +1739,7 @@ asm void fn_800764A0(void)
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lis     r3, lbl_801A3220@ha
     addi r31, r3, lbl_801A3220@l
     lwz r0, 0x3c(r31)
@@ -1871,7 +1871,7 @@ _800765F0:
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r28)
     li r4, 0xff
     li r5, 0xff
@@ -2161,7 +2161,7 @@ _80076B1C:
     mr r3, r31
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     mr r3, r31
     li r4, 0xd
     bl fn_800735C8
@@ -2208,7 +2208,7 @@ _80076B1C:
     addi r3, r31, 1
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     addi r3, r31, 1
     li r4, 0xd
     bl fn_800735C8
@@ -2387,7 +2387,7 @@ _80076E60:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     b _80076EF4
 _80076E8C:
     li r3, 2
@@ -2399,7 +2399,7 @@ _80076E8C:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     b _80076EF4
 _80076EB8:
     li r3, 2
@@ -2411,13 +2411,13 @@ _80076EB8:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     b _80076EF4
 _80076EE4:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 1
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
 _80076EF4:
     rlwinm. r0, r25, 0, 0xe, 0xe
     beq _80076F1C
@@ -2486,7 +2486,7 @@ _80076FD0:
     addi r25, r6, 0xc
     li r6, 4
     li r7, 0
-    bl fn_8007264C
+    bl LightCtrl_SetCachedFog
     lwz r3, 0(r19)
     bl fn_80073C6C
     lwz r3, 4(r19)
@@ -2504,7 +2504,7 @@ _80076FD0:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r19)
     li r4, 8
     lwz r7, 8(r21)
@@ -2554,7 +2554,7 @@ _80076FD0:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r19)
     li r4, 8
     li r5, 0xf
@@ -3050,7 +3050,7 @@ asm void AvDispInitModel(void)
     stwu r1, -0x10(r1)
     mflr r0
     stw r0, 0x14(r1)
-    bl fn_80072778
+    bl LightCtrl_InitChannels4
     lfs f1, -0x7998(r2)
     lis     r3, lbl_8019F130@ha
     addi r3, r3, lbl_8019F130@l

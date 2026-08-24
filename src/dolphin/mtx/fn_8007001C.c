@@ -9,7 +9,7 @@ extern asm void GXSetCPUFifo(void);
 extern asm void GXGetGPStatus(void);
 extern asm void fn_80032F48(void);
 extern asm void fn_800723F8(void);
-extern asm void fn_800726C0(void);
+extern asm void LightCtrl_SetCachedFogArray(void);
 extern unsigned char lbl_8015A860[432];
 
 asm void fn_8007001C(void)
@@ -105,13 +105,13 @@ asm void fn_80070100(void)
     bl      fn_800723F8
     addi	r4, r31, 0
     li	r3, 0
-    bl      fn_800726C0
+    bl      LightCtrl_SetCachedFogArray
     addi	r4, r31, 0xc0
     li	r3, 1
-    bl      fn_800726C0
+    bl      LightCtrl_SetCachedFogArray
     addi	r4, r31, 0x180
     li	r3, 7
-    bl      fn_800726C0
+    bl      LightCtrl_SetCachedFogArray
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     mtlr	r0

@@ -2296,10 +2296,10 @@ L_80015794:
 }
 #pragma pop
 
-/* ---- fn_800157AC ---- */
+/* ---- InitializeUART ---- */
 #pragma push
 #pragma force_active on
-asm int fn_800157AC(void)
+asm int InitializeUART(void)
 {
     nofralloc
     mflr        r0
