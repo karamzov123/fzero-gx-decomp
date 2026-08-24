@@ -17,7 +17,7 @@ extern void gTRKInterruptVectorTable(void);
 extern void gdev_cc_initialize(void);
 void TRKEXICallBack(void);
 
-asm void fn_800035C0(register void* a, register void* b, register void* c, register void* d);
+asm void fn_800035C0_memcpy(register void* a, register void* b, register void* c, register void* d);
 asm void DCFlushRange(register void* a, register void* b, register void* c, register void* d);
 asm void ICInvalidateRange(register void* a, register void* b, register void* c, register void* d);
 asm void OSReport(register void* a, register void* b, register void* c, register void* d);
@@ -136,7 +136,7 @@ _8008d10c:
     addi	r0, r4, gTRKInterruptVectorTable@l
     li	r5, 0x100
     add	r4, r0, r6
-    bl      fn_800035C0
+    bl      fn_800035C0_memcpy
     mr	r3, r27
     li	r4, 0x100
     bl      TRK_flush_cache
@@ -282,7 +282,7 @@ asm void InitializeProgramEndTrap(void)
     addi	r31, r4, PPCHalt@l
     addi	r4, r3, 0x5bc8
     addi	r3, r31, 4
-    bl      fn_800035C0
+    bl      fn_800035C0_memcpy
     addi	r3, r31, 4
     li	r4, 4
     bl      ICInvalidateRange
