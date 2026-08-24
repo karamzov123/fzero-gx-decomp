@@ -214,7 +214,7 @@ extern void fn_80039020(s32 ofs_x, s32 ofs_y);
 extern void fn_8003591C(s32 num);
 extern void fn_80035960(s32 chan, s32 en, s32 amb, s32 mat, s32 lights, s32 df, s32 af);
 extern void fn_80035734(s32 chan, void *color);
-extern void fn_80035828(s32 chan, void *color);
+extern void GXSetChanMatColor(s32 chan, void *color);
 extern void fn_80036544(void);
 extern void fn_800375F0(s32 stage, s32 coord, s32 map, s32 color);
 extern void fn_800377C8(s32 stages);
@@ -1290,7 +1290,7 @@ L80031480:
     addi	r4, r1, 0x14
     li	r3, 4
     stw	r0, 0x14(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li	r3, 5
     li	r4, 0
     li	r5, 0
@@ -1308,7 +1308,7 @@ L80031480:
     addi	r4, r1, 0xc
     li	r3, 5
     stw	r0, 0xc(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     bl fn_80036544
     lwz	r4, -0x7de8(r2)
     li	r30, 0

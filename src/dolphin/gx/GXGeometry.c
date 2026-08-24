@@ -1470,7 +1470,7 @@ _800357f4:
     blr	
 }
 
-asm void fn_80035828(register void* p1, register int a, register int b)
+asm void GXSetChanMatColor(register void* p1, register int a, register int b)
 {
     nofralloc
     cmpwi	r3, 3

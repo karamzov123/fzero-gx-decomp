@@ -4,7 +4,7 @@ typedef unsigned int u32;
 typedef signed int s32;
 
 extern void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts);
-extern void fn_80035828(register void* p1, register int a, register int b);
+extern void GXSetChanMatColor(register void* p1, register int a, register int b);
 
 #pragma push
 #pragma force_active on
@@ -111,7 +111,7 @@ _8003ed58:
     addi r4, r1, 0x5c
     li r3, 4
     stw r0, 0x5c(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -158,7 +158,7 @@ _8003ee20:
     addi r4, r1, 0x58
     li r3, 4
     stw r0, 0x58(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -205,7 +205,7 @@ _8003eed8:
     addi r4, r1, 0x54
     li r3, 4
     stw r0, 0x54(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -252,7 +252,7 @@ _8003ef90:
     addi r4, r1, 0x50
     li r3, 4
     stw r0, 0x50(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -299,7 +299,7 @@ _8003f048:
     addi r4, r1, 0x4c
     li r3, 4
     stw r0, 0x4c(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -346,7 +346,7 @@ _8003f100:
     addi r4, r1, 0x48
     li r3, 4
     stw r0, 0x48(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -393,7 +393,7 @@ _8003f1b8:
     addi r4, r1, 0x44
     li r3, 4
     stw r0, 0x44(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -440,7 +440,7 @@ _8003f270:
     addi r4, r1, 0x40
     li r3, 4
     stw r0, 0x40(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -487,7 +487,7 @@ _8003f328:
     addi r4, r1, 0x3c
     li r3, 4
     stw r0, 0x3c(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -540,7 +540,7 @@ _8003f3e0:
     addi r4, r1, 0x38
     li r3, 4
     stw r0, 0x38(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -598,7 +598,7 @@ _8003f4ac:
     addi r4, r1, 0x34
     li r3, 4
     stw r0, 0x34(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -623,7 +623,7 @@ _8003f590:
     addi r4, r1, 0x30
     li r3, 4
     stw r0, 0x30(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -702,7 +702,7 @@ _8003f628:
     addi r4, r1, 0x2c
     li r3, 4
     stw r0, 0x2c(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -758,7 +758,7 @@ _8003f728:
     addi r4, r1, 0x28
     li r3, 4
     stw r0, 0x28(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -831,7 +831,7 @@ asm void fn_8003F834(register void* a)
     addi r4, r1, 0x30
     li r3, 4
     stw r0, 0x30(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -877,7 +877,7 @@ _8003f91c:
     addi r4, r1, 0x2c
     li r3, 4
     stw r0, 0x2c(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -923,7 +923,7 @@ _8003f9d0:
     addi r4, r1, 0x28
     li r3, 4
     stw r0, 0x28(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -969,7 +969,7 @@ _8003fa84:
     addi r4, r1, 0x24
     li r3, 4
     stw r0, 0x24(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -1015,7 +1015,7 @@ _8003fb38:
     addi r4, r1, 0x20
     li r3, 4
     stw r0, 0x20(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -1061,7 +1061,7 @@ _8003fbec:
     addi r4, r1, 0x1c
     li r3, 4
     stw r0, 0x1c(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -1107,7 +1107,7 @@ _8003fca0:
     addi r4, r1, 0x18
     li r3, 4
     stw r0, 0x18(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -1153,7 +1153,7 @@ _8003fd54:
     addi r4, r1, 0x14
     li r3, 4
     stw r0, 0x14(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -1199,7 +1199,7 @@ _8003fe08:
     addi r4, r1, 0x10
     li r3, 4
     stw r0, 0x10(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4
@@ -1245,7 +1245,7 @@ _8003febc:
     addi r4, r1, 0xc
     li r3, 4
     stw r0, 0xc(r1)
-    bl fn_80035828
+    bl GXSetChanMatColor
     li r3, 0x80
     li r4, 0
     li r5, 4

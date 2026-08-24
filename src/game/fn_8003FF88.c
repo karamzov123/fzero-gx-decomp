@@ -5,7 +5,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 
-extern void fn_80035828(register u32 a);
+extern void GXSetChanMatColor(register u32 a);
 extern void fn_80038C5C(register void* p);
 extern void GXBegin(void);
 extern void GXSetLineWidth(register u16 width, register u32 fmt);
@@ -86,7 +86,7 @@ _80040004:
     addi	r4, r1, 0x1ec
     li	r3, 4
     stw	r0, 0x1ec(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x80
     li	r4, 0
     li	r5, 4
@@ -112,7 +112,7 @@ _80040004:
     stfs	f2, -0x8000(r17)
     stfs	f1, -0x8000(r17)
     stw	r0, 0x1e8(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0xc
     li	r4, 0
     bl      GXSetLineWidth
@@ -291,7 +291,7 @@ _800403b4:
     addi	r4, r1, 0x1e4
     li	r3, 4
     stw	r0, 0x1e4(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x20
     li	r4, 0
     bl      GXSetLineWidth
@@ -312,7 +312,7 @@ _800403b4:
     stfs	f1, -0x8000(r17)
     stfs	f0, -0x8000(r17)
     stw	r0, 0x1e0(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0xa8
     li	r4, 0
     li	r5, 2
@@ -354,7 +354,7 @@ _800403b4:
     lwz	r0, -0x7e10(r13)
     fadds	f28, f1, f0
     stw	r0, 0x1dc(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x80
     li	r4, 0
     li	r5, 4
@@ -389,7 +389,7 @@ _80040514:
     stw	r0, 0x1d8(r1)
     fadds	f0, f1, f0
     fadds	f28, f2, f0
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x80
     li	r4, 0
     li	r5, 4
@@ -415,7 +415,7 @@ _80040514:
     stfs	f28, -0x8000(r17)
     stw	r0, 0x1d4(r1)
     stfs	f0, -0x8000(r17)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 6
     li	r4, 0
     bl      GXSetLineWidth
@@ -450,7 +450,7 @@ _800405f8:
     stw	r0, 0x1d0(r1)
     fadds	f0, f2, f0
     fadds	f28, f3, f0
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x80
     li	r4, 0
     li	r5, 4
@@ -490,7 +490,7 @@ _80040690:
     fadds	f0, f3, f0
     fadds	f0, f2, f0
     fadds	f28, f3, f0
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x80
     li	r4, 0
     li	r5, 4
@@ -558,7 +558,7 @@ _800407c0:
     addi	r4, r28, 0
     li	r3, 4
     stw	r0, 0x1c8(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x20
     li	r4, 0
     bl      GXSetLineWidth
@@ -624,7 +624,7 @@ _800407c0:
     fsubs	f0, f0, f30
     fdivs	f0, f1, f0
     fmuls	f28, f29, f0
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0xa8
     li	r4, 0
     li	r5, 2
@@ -666,7 +666,7 @@ _80040954:
     addi	r4, r27, 0
     li	r3, 4
     stw	r0, 0x1c0(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x20
     li	r4, 0
     bl      GXSetLineWidth
@@ -710,7 +710,7 @@ _80040954:
     addi	r4, r26, 0
     li	r3, 4
     stw	r0, 0x1bc(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 6
     li	r4, 0
     bl      GXSetLineWidth
@@ -790,7 +790,7 @@ _80040b58:
     addi	r4, r25, 0
     li	r3, 4
     stw	r0, 0x1b8(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x20
     li	r4, 0
     bl      GXSetLineWidth
@@ -834,7 +834,7 @@ _80040b58:
     addi	r4, r24, 0
     li	r3, 4
     stw	r0, 0x1b4(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 6
     li	r4, 0
     bl      GXSetLineWidth
@@ -914,7 +914,7 @@ _80040d44:
     addi	r4, r23, 0
     li	r3, 4
     stw	r0, 0x1b0(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x20
     li	r4, 0
     bl      GXSetLineWidth
@@ -980,7 +980,7 @@ _80040d44:
     fsubs	f0, f0, f30
     fdivs	f0, f1, f0
     fmuls	f28, f29, f0
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0xa8
     li	r4, 0
     li	r5, 2
@@ -1020,7 +1020,7 @@ _80040edc:
     addi	r4, r21, 0
     li	r3, 4
     stw	r0, 0x1a8(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x20
     li	r4, 0
     bl      GXSetLineWidth
@@ -1066,7 +1066,7 @@ _80040f9c:
     addi	r4, r20, 0
     li	r3, 4
     stw	r0, 0x1a4(r1)
-    bl      fn_80035828
+    bl      GXSetChanMatColor
     li	r3, 0x20
     li	r4, 0
     bl      GXSetLineWidth
