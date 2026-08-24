@@ -32,6 +32,7 @@ extern void __shr2i(void);
 extern unsigned char lbl_801245E0[16];
 extern unsigned char lbl_8015D0B0[16];
 extern unsigned char Origin[64];
+extern unsigned char lbl_8008FF40[];
 
 asm void VIGetTvFormat(void);
 asm void PADIsMotorEnabled(void);
@@ -207,16 +208,17 @@ asm void PadClampStatus(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7ff7
-    stw	r0, 4(r1)
-    stwu	r1, -0x20(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    li	r30, 0
-    stw	r29, 0x14(r1)
-    addi	r29, r3, 0
-    stw	r28, 0x10(r1)
-    addi	r28, r4, -0xc0
+    lis     r4, lbl_8008FF40@ha
+    stw     r0, 4(r1)
+    stwu    r1, -0x20(r1)
+    stw     r31, 0x1c(r1)
+    stw     r30, 0x18(r1)
+    li      r30, 0
+
+    stw     r29, 0x14(r1)
+    addi    r29, r3, 0
+    stw     r28, 0x10(r1)
+    addi    r28, r4, lbl_8008FF40@l
     addi	r31, r28, 1
 _8001c220:
     lbz	r0, 0xa(r29)
