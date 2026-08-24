@@ -893,7 +893,7 @@ asm void fn_80037DB4(register void* p, register int a)
     blr	
 }
 
-asm void fn_80037E30(register void* p)
+asm void GXSetupLitVertexData(register void* p)
 {
     nofralloc
     mflr	r0

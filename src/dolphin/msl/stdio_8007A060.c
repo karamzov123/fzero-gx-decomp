@@ -62,7 +62,7 @@ asm void fn_8007C3B8(void);
 asm void fn_8007C55C(void);
 asm void fn_8007C910(void);
 asm void fn_8007CE0C(void);
-asm void fn_8007CF18(void);
+asm void MSLFormatDecimalRound(void);
 asm void fn_8007E69C(void);
 asm void fn_8007E914(void);
 asm void fn_8007E96C(void);
@@ -3060,7 +3060,7 @@ _8007c7dc:
     subfic	r26, r7, 0x35
     addi	r3, r1, 0x38
     subf	r4, r26, r0
-    bl      fn_8007CF18
+    bl      MSLFormatDecimalRound
     fmr	f1, f31
     mr	r3, r26
     bl      fn_80088128
@@ -3585,7 +3585,7 @@ _8007cf10:
     blr
 }
 
-asm void fn_8007CF18(void)
+asm void MSLFormatDecimalRound(void)
 {
     nofralloc
     stwu	r1, -0x70(r1)
@@ -5117,7 +5117,7 @@ _8007e3f4:
     addi	r3, r1, 0x34
     add	r0, r0, r30
     srawi	r4, r0, 1
-    bl      fn_8007CF18
+    bl      MSLFormatDecimalRound
     addi	r4, r1, 0x34
     mr	r3, r31
     mr	r5, r4

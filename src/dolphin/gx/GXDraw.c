@@ -695,7 +695,7 @@ _800390fc:
     blr     
 }
 
-asm void fn_8003910C(register u32 cmd)
+asm void GXWriteCommandRegister(register u32 cmd)
 {
     nofralloc
     lwz     r5, -0x7de8(r2)

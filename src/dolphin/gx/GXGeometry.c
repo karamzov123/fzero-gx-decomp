@@ -81,7 +81,7 @@ void fn_80037D14(register void* p);
 void fn_80037D40(register void* p);
 void fn_80037D7C(register void* p);
 void fn_80037DB4(register void* p, register int a);
-void fn_80037E30(register void* p);
+void GXSetupLitVertexData(register void* p);
 void fn_800384FC(register void* p);
 void fn_80038878(void);
 

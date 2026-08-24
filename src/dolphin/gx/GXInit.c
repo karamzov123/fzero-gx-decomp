@@ -256,7 +256,7 @@ extern void fn_800341EC(s32 metric);
 extern void fn_80034200(s32 metric);
 extern void fn_800342D4(s32 arg);
 extern void fn_80034304(s32 arg, s32 val0, s32 val1);
-extern void fn_8003910C(s32 a, s32 b);
+extern void GXWriteCommandRegister(s32 a, s32 b);
 extern void fn_80039AFC(void);
 extern void fn_800307CC(void);
 extern void fn_80030848(void);
@@ -1598,7 +1598,7 @@ L80031a38:
     bl fn_80034304
     li	r3, 0x23
     li	r4, 0x16
-    bl fn_8003910C
+    bl GXWriteCommandRegister
     bl fn_80039AFC
     lwz	r0, 0x84(r1)
     lwz	r31, 0x7c(r1)
