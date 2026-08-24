@@ -412,8 +412,8 @@ asm void __OSUnlockSramEx(void)
 asm u32 __OSSyncSram(void)
 {
     nofralloc
-    lis     r3, -0x7fea
-    addi    r3, r3, -0x4040
+    lis     r3, Scb@ha
+    addi    r3, r3, Scb@l
     lwz     r3, 0x4c(r3)
     blr
 }
