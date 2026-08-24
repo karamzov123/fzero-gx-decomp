@@ -33,7 +33,7 @@ asm s32 fn_80074A7C(register s32 x)
     blr
 }
 
-asm void fn_80074A8C(register f32 r, register f32 g, register f32 b, register f32 a)
+asm void GXColorClampScale(register f32 r, register f32 g, register f32 b, register f32 a)
 {
     nofralloc
     lfs     f0, -0x79b8(r2)
@@ -86,7 +86,7 @@ _80074b38:
     blr
 }
 
-asm void fn_80074B40(register void* rgba)
+asm void GXColorPack(register void* rgba)
 {
     nofralloc
     lbz     r0, 0(r3)
@@ -126,7 +126,7 @@ _80074ba0:
     blr
 }
 
-asm void fn_80074BC4(register f32 r, register f32 g, register f32 b, register f32 a)
+asm void GXColorScale(register f32 r, register f32 g, register f32 b, register f32 a)
 {
     nofralloc
     lfs     f0, -0x79c0(r2)
@@ -178,7 +178,7 @@ _80074c6c:
     blr
 }
 
-asm void fn_80074C74(register void* rgba)
+asm void GXColorZeroCheck(register void* rgba)
 {
     nofralloc
     lbz     r0, 0(r3)
@@ -245,7 +245,7 @@ asm void fn_80074D18(register s32 x)
     blr
 }
 
-asm void fn_80074D28(register void* mtx)
+asm void GXProjectVec(register void* mtx)
 {
     nofralloc
     stwu    r1, -0x10(r1)

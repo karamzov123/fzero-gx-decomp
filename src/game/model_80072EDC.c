@@ -43,7 +43,7 @@ extern void GXSetChanCtrl(void);
 extern void fn_800377C8(void);
 extern void fn_80037BC0(void);
 extern void fn_80038F48(void);
-extern void fn_80072270(void);
+extern void GXComputeDeltaRatio(void);
 extern void fn_800794F0(void);
 extern void strncmp(void);
 extern void fn_8006DD14(void);
@@ -55,7 +55,7 @@ asm void fn_80073620(void);
 asm void fn_80073678(void);
 asm void fn_800736C0(void);
 asm void fn_80073778(void);
-asm void fn_800737E4(void);
+asm void GXIntToFloatCopy(void);
 asm void fn_80073898(void);
 asm void fn_800738E0(void);
 asm void fn_800739E0(void);
@@ -77,7 +77,7 @@ asm void fn_80074718(void);
 asm void fn_80074788(void);
 asm void fn_800747D0(void);
 asm void fn_80074918(void);
-asm void fn_800749B0(void);
+asm void GXCopyMtxDirty(void);
 #pragma push
 #pragma force_active on
 
@@ -731,7 +731,7 @@ asm void fn_80073778(void)
     blr
 }
 
-asm void fn_800737E4(void)
+asm void GXIntToFloatCopy(void)
 {
     nofralloc
     stwu r1, -0x30(r1)
@@ -777,7 +777,7 @@ _80073850:
     stfs f0, 0x20(r1)
 _80073880:
     addi r3, r1, 8
-    bl fn_80072270
+    bl GXComputeDeltaRatio
     lwz r0, 0x34(r1)
     mtlr r0
     addi r1, r1, 0x30
@@ -2057,7 +2057,7 @@ _80074994:
     blr
 }
 
-asm void fn_800749B0(void)
+asm void GXCopyMtxDirty(void)
 {
     nofralloc
     stwu r1, -0x10(r1)

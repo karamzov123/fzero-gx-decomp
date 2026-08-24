@@ -9,14 +9,14 @@ extern void _restgpr_25(void);
 #pragma force_active on
 
 asm void PSMTXRotTrig(void);
-asm void fn_8006E398(void);
-asm void fn_8006E424(void);
+asm void PSMTXRotTrigVariant(void);
+asm void PSMTXRotTrigConcat(void);
 asm void C_MTXQuat(void);
 asm void fn_8006E540(void);
 asm void fn_8006E5B4(void);
 asm void fn_8006E5FC(void);
-asm void fn_8006E7E4(void);
-asm void fn_8006E8DC(void);
+asm void PSMTXQuatNormalize(void);
+asm void PSVECNormalize4(void);
 asm void PSMTXQuat_toQuat(void);
 
 asm void PSMTXRotTrig(void)
@@ -53,7 +53,7 @@ asm void PSMTXRotTrig(void)
     blr	
 }
 
-asm void fn_8006E398(void)
+asm void PSMTXRotTrigVariant(void)
 {
     nofralloc
     mflr	r4
@@ -93,7 +93,7 @@ asm void fn_8006E398(void)
     blr	
 }
 
-asm void fn_8006E424(void)
+asm void PSMTXRotTrigConcat(void)
 {
     nofralloc
     mflr	r4
@@ -365,7 +365,7 @@ _8006e7cc:
     blr	
 }
 
-asm void fn_8006E7E4(void)
+asm void PSMTXQuatNormalize(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
@@ -434,7 +434,7 @@ _8006e8b0:
     blr	
 }
 
-asm void fn_8006E8DC(void)
+asm void PSVECNormalize4(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

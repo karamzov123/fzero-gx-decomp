@@ -25,7 +25,7 @@ extern void fn_800702E4(void);
 extern void fn_8007048C(void);
 extern void fn_80071794(void);
 extern void fn_80071C04(void);
-extern void fn_8007245C(void);
+extern void GXLoadMtxArray(void);
 extern void fn_800724CC(void);
 extern void LightCtrl_SetCachedFog(void);
 extern void fn_80075908(void);
@@ -328,7 +328,7 @@ _80078A0C:
     bl fn_80078BC4
 _80078A24:
     lwz r3, 0x1c(r30)
-    bl fn_8007245C
+    bl GXLoadMtxArray
     lwz r12, -0x7630(r13)
     addi r31, r30, 0x60
     cmplwi r12, 0

@@ -19,7 +19,7 @@ extern asm void fn_800371F8(void);
 extern asm void fn_80038C5C(void);
 extern asm void SndAllocBankEntry(void);
 extern asm void fn_8006D758(void);
-extern asm void fn_8007245C(void);
+extern asm void GXLoadMtxArray(void);
 extern asm void LightCtrl_SetCachedCullMode(void);
 extern asm void LightCtrl_SetCachedColor_1C(void);
 extern asm void LightCtrl_SetCachedPair_6C(void);
@@ -29,7 +29,7 @@ extern asm void ModelSetCachedParam_2F0(void);
 extern asm void ModelSetCachedParam_430(void);
 extern asm void ModelSetCachedMaterial_570(void);
 extern asm void fn_80073678(void);
-extern asm void fn_800737E4(void);
+extern asm void GXIntToFloatCopy(void);
 extern asm void fn_80073898(void);
 extern asm void fn_80073C6C(void);
 extern asm void fn_80074660(void);
@@ -3972,7 +3972,7 @@ asm void fn_8006CD50(void)
     bl      fn_80015EE8
     addi	r3, r1, 8
     li	r4, 1
-    bl      fn_800737E4
+    bl      GXIntToFloatCopy
     bl      fn_8006D758
     lwz	r3, -0x76c0(r13)
     li	r4, 0
@@ -4113,7 +4113,7 @@ asm void fn_8006CE44(void)
     li	r3, 2
     bl      LightCtrl_SetCachedCullMode
     li	r3, 0x200
-    bl      fn_8007245C
+    bl      GXLoadMtxArray
     lwz	r0, -0x7718(r13)
     addi	r4, r1, 8
     li	r3, 1

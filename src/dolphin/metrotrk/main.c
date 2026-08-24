@@ -26,7 +26,7 @@ asm void TRKNubMainLoop(register void* a, register void* b, register void* c, re
 asm void TRKNubWelcome(register void* a, register void* b, register void* c, register void* d);
 asm void TRKTerminateNub(register void* a, register void* b, register void* c, register void* d);
 asm void TRKInitializeNub(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008A754(register void* a, register void* b, register void* c, register void* d);
+asm void TRK_IsInputPending(register void* a, register void* b, register void* c, register void* d);
 asm void TRK_flush_cache(register void* a, register void* b, register void* c, register void* d);
 asm void __TRK_get_MSR(register void* a, register void* b, register void* c, register void* d);
 asm void TRKInterruptHandler(register void* a, register void* b, register void* c, register void* d);
@@ -655,7 +655,7 @@ asm void TRKTargetContinue(void)
     blr	
 }
 
-asm void fn_8008D7B0(void)
+asm void AMC_IsStub_Game(void)
 {
     nofralloc
     lis     r3, lbl_801A5650@ha
@@ -664,7 +664,7 @@ asm void fn_8008D7B0(void)
     blr	
 }
 
-asm void fn_8008D7C0(void)
+asm void AMC_SetStub_Game(void)
 {
     nofralloc
     lis	r4, -0x7fe6
@@ -672,7 +672,7 @@ asm void fn_8008D7C0(void)
     blr	
 }
 
-asm void fn_8008D7CC(void)
+asm void TRK_PositionFile_Game(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -686,7 +686,7 @@ asm void fn_8008D7CC(void)
     mr	r29, r4
     stw	r28, 0x10(r1)
     mr	r28, r3
-    bl      fn_8008A754
+    bl      TRK_IsInputPending
     cmpwi	r3, 0
     bne     _8008d80c
     li	r3, 1
@@ -741,7 +741,7 @@ _8008d888:
     blr	
 }
 
-asm void fn_8008D8A8(void)
+asm void TRK_CloseFile_Game(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -749,7 +749,7 @@ asm void fn_8008D8A8(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_8008A754
+    bl      TRK_IsInputPending
     cmpwi	r3, 0
     bne     _8008d8d0
     li	r3, 1
@@ -785,7 +785,7 @@ _8008d918:
     blr	
 }
 
-asm void fn_8008D92C(void)
+asm void TRK_OpenFile_Game(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -797,7 +797,7 @@ asm void fn_8008D92C(void)
     mr	r30, r4
     stw	r29, 0x14(r1)
     mr	r29, r3
-    bl      fn_8008A754
+    bl      TRK_IsInputPending
     cmpwi	r3, 0
     bne     _8008d964
     li	r3, 1
@@ -904,7 +904,7 @@ _8008da8c:
     blr	
 }
 
-asm void fn_8008DAA8(void)
+asm void TRK_WriteFile_Game(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -916,7 +916,7 @@ asm void fn_8008DAA8(void)
     mr	r30, r4
     stw	r29, 0x14(r1)
     mr	r29, r3
-    bl      fn_8008A754
+    bl      TRK_IsInputPending
     cmpwi	r3, 0
     bne     _8008dae0
     li	r3, 1
@@ -960,7 +960,7 @@ _8008db40:
     blr	
 }
 
-asm void fn_8008DB5C(void)
+asm void TRK_ReadFile_Game(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -972,7 +972,7 @@ asm void fn_8008DB5C(void)
     mr	r30, r4
     stw	r29, 0x14(r1)
     mr	r29, r3
-    bl      fn_8008A754
+    bl      TRK_IsInputPending
     cmpwi	r3, 0
     bne     _8008db94
     li	r3, 1
@@ -1026,13 +1026,13 @@ asm void fn_8008DC10(void)
     mr	r31, r5
     stw	r30, 0x18(r1)
     mr	r30, r4
-    bl      fn_8008D7B0
+    bl      AMC_IsStub_Game
     clrlwi.	r0, r3, 0x18
     bne     _8008dc40
     li	r3, 1
     b       _8008dcb4
 _8008dc40:
-    bl      fn_8008A754
+    bl      TRK_IsInputPending
     cmpwi	r3, 0
     bne     _8008dc54
     li	r3, 1
@@ -1085,13 +1085,13 @@ asm void fn_8008DCCC(void)
     mr	r31, r5
     stw	r30, 0x18(r1)
     mr	r30, r4
-    bl      fn_8008D7B0
+    bl      AMC_IsStub_Game
     clrlwi.	r0, r3, 0x18
     bne     _8008dcfc
     li	r3, 1
     b       _8008dd70
 _8008dcfc:
-    bl      fn_8008A754
+    bl      TRK_IsInputPending
     cmpwi	r3, 0
     bne     _8008dd10
     li	r3, 1

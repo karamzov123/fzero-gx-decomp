@@ -37,7 +37,7 @@ asm void PSMTXRotTrig(void)
     blr	
 }
 
-asm void fn_8006E398(void)
+asm void PSMTXRotTrigVariant(void)
 {
     nofralloc
     mflr	r4
@@ -77,7 +77,7 @@ asm void fn_8006E398(void)
     blr	
 }
 
-asm void fn_8006E424(void)
+asm void PSMTXRotTrigConcat(void)
 {
     nofralloc
     mflr	r4

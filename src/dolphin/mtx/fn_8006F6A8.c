@@ -6,12 +6,12 @@ extern asm void lbl_8006E1C0(void);
 extern asm void atan2f(void);
 extern asm void sqrtf(void);
 extern asm void fn_8006D91C(void);
-extern asm void fn_8006E398(void);
+extern asm void PSMTXRotTrigVariant(void);
 extern asm void PSMTXMultVecSS(void);
 extern asm void fn_8006DB30(void);
 extern asm void lbl_8006E1B0(void);
 
-asm void fn_8006F6A8(void)
+asm void C_MTXLookAtInPlace(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -51,7 +51,7 @@ asm void fn_8006F6A8(void)
     lha	r3, 4(r31)
     bl      fn_8006D91C
     lha	r3, 2(r31)
-    bl      fn_8006E398
+    bl      PSMTXRotTrigVariant
     addi	r3, r1, 0x14
     mr	r4, r3
     bl      PSMTXMultVecSS
@@ -67,7 +67,7 @@ asm void fn_8006F6A8(void)
     blr	
 }
 
-asm void fn_8006F774(void)
+asm void PSMTXScaleConst(void)
 {
     nofralloc
     lfs	f0, -0x7a44(r2)

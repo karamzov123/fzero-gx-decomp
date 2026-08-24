@@ -6,14 +6,14 @@ extern asm void PSMTXRotTrig(void);
 extern asm void sqrtf(void);
 extern asm void atan2f(void);
 extern asm void fn_8006D91C(void);
-extern asm void fn_8006E398(void);
+extern asm void PSMTXRotTrigVariant(void);
 extern asm void fn_8006E0C8(void);
 extern asm void fn_8006D890(void);
 extern asm void fn_8006D668(void);
 extern asm void fn_8006D7DC(void);
 extern asm void fn_8006DF44(void);
 
-asm void fn_8006EFB4(void)
+asm void PSMTXRotAxisRadVariant(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -96,7 +96,7 @@ asm void PSMTXLookAt(void)
     bl      PSMTXRotTrig
     neg	r0, r31
     extsh	r3, r0
-    bl      fn_8006E398
+    bl      PSMTXRotTrigVariant
     mr	r3, r29
     bl      fn_8006E0C8
     psq_l f31, 0x48(r1), 0, 0
@@ -114,7 +114,7 @@ asm void PSMTXLookAt(void)
     blr	
 }
 
-asm void fn_8006F120(void)
+asm void PSMTXLookAtNoUp(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
@@ -154,7 +154,7 @@ asm void fn_8006F120(void)
     bl      fn_8006D890
     neg	r0, r31
     extsh	r3, r0
-    bl      fn_8006E398
+    bl      PSMTXRotTrigVariant
     mr	r3, r30
     bl      fn_8006E0C8
     psq_l f31, 0x38(r1), 0, 0
@@ -171,7 +171,7 @@ asm void fn_8006F120(void)
     blr	
 }
 
-asm void fn_8006F1F0(void)
+asm void PSMTXReflect(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)

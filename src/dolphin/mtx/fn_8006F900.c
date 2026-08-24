@@ -58,7 +58,7 @@ _8006f988:
     blr	
 }
 
-asm void fn_8006F9A4(void)
+asm void PSMTXFromPosScale(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -163,7 +163,7 @@ asm void PSMTXConcat(void)
     blr	
 }
 
-asm void fn_8006FB20(void)
+asm void PSMTXConcatVariant(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

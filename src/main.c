@@ -146,11 +146,11 @@ extern void fn_80070620(void);
 extern void fn_8007075C(void);
 extern void fn_80070774(void);
 extern void fn_80070AC0(void);
-extern void fn_80071ED4(void);
+extern void GXCompareVecDirty(void);
 extern void fn_800720B0(void);
 extern void fn_800721FC(void);
 extern void fn_800723F8(void);
-extern void fn_8007245C(void);
+extern void GXLoadMtxArray(void);
 extern void fn_80072558(void);
 extern void fn_800725DC(void);
 extern void fn_80072614(void);
@@ -169,7 +169,7 @@ extern void fn_80073620(void);
 extern void fn_80073678(void);
 extern void fn_800736C0(void);
 extern void fn_80073778(void);
-extern void fn_800737E4(void);
+extern void GXIntToFloatCopy(void);
 extern void fn_80073898(void);
 extern void fn_80073C6C(void);
 extern void fn_800744F8(void);
@@ -622,7 +622,7 @@ asm void mmu_user_fn(void)
     stw	r0, 0x18(r1)
     bl      fn_800723F8
     li	r3, 0x2200
-    bl      fn_8007245C
+    bl      GXLoadMtxArray
     bl      fn_800723F8
     li	r3, 0
     bl      fn_80074788
@@ -726,7 +726,7 @@ asm void mmu_user_fn(void)
     bl      fn_80015EE8
     addi	r3, r1, 0x1c
     li	r4, 1
-    bl      fn_800737E4
+    bl      GXIntToFloatCopy
     li	r0, 0xff
     addi	r4, r1, 0xc
     stb	r0, 0x18(r1)
@@ -879,7 +879,7 @@ asm void fn_80005EDC(void)
     stw	r0, 0x64(r1)
     lwz	r0, -0x7fa8(r2)
     stw	r0, 0x14(r1)
-    bl      fn_8007245C
+    bl      GXLoadMtxArray
     li	r3, 0
     bl      fn_80074788
     li	r3, 1
@@ -958,7 +958,7 @@ asm void fn_80005EDC(void)
     lfs	f1, -0x7fa4(r2)
     li	r3, 0
     lfs	f2, -0x7fa0(r2)
-    bl      fn_80071ED4
+    bl      GXCompareVecDirty
     li	r3, 2
     bl      LightCtrl_SetCachedCullMode
     bl      fn_8006D758
@@ -975,7 +975,7 @@ asm void fn_80005EDC(void)
     bl      fn_80015EE8
     addi	r3, r1, 0x18
     li	r4, 1
-    bl      fn_800737E4
+    bl      GXIntToFloatCopy
     li	r0, 0xff
     addi	r4, r1, 0xc
     stb	r0, 0x14(r1)
@@ -3536,7 +3536,7 @@ asm void fn_80008204(void)
     lwz	r0, 0(r3)
     li	r3, 0x200
     stw	r0, 0x14(r1)
-    bl      fn_8007245C
+    bl      GXLoadMtxArray
     li	r3, 0
     bl      LightCtrl_SetCachedCullMode
     li	r3, 0
@@ -4061,7 +4061,7 @@ _80008930:
     bl      fn_80074788
 _80008a30:
     li	r3, 0x2200
-    bl      fn_8007245C
+    bl      GXLoadMtxArray
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     mtlr	r0
@@ -4153,7 +4153,7 @@ asm void fn_80008A4C(void)
     li	r3, 0
     bl      fn_80074788
     li	r3, 0x200
-    bl      fn_8007245C
+    bl      GXLoadMtxArray
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     mtlr	r0

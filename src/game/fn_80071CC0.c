@@ -5,12 +5,12 @@ asm void fn_80071CC0(void);
 asm void fn_80071CE8(void);
 asm void fn_80071D0C(void);
 asm void fn_80071D30(void);
-asm void fn_80071ED4(void);
+asm void GXCompareVecDirty(void);
 asm void fn_80072014(void);
 asm void fn_800720B0(void);
 asm void fn_80072168(void);
 asm void fn_800721FC(void);
-asm void fn_80072270(void);
+asm void GXComputeDeltaRatio(void);
 asm void fn_80072344(void);
 asm void fn_80072378(void);
 
@@ -183,7 +183,7 @@ _80071d84:
     lfs     f1, -0x79e4(r2)
     li      r3, 4
     fmr     f2, f1
-    bl      fn_80071ED4
+    bl      GXCompareVecDirty
     li      r3, 0
     bl      fn_800720B0
     lwz     r0, 0x10(r1)
@@ -201,7 +201,7 @@ _80071d84:
     blr
 }
 
-asm void fn_80071ED4(void)
+asm void GXCompareVecDirty(void)
 {
     nofralloc
     stwu    r1, -0x30(r1)
@@ -465,7 +465,7 @@ asm void fn_800721FC(void)
     blr
 }
 
-asm void fn_80072270(void)
+asm void GXComputeDeltaRatio(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
@@ -628,7 +628,7 @@ _80072444:
     blr
 }
 
-asm void fn_8007245C(register u32 a)
+asm void GXLoadMtxArray(register u32 a)
 {
     nofralloc
     stwu    r1, -0x10(r1)

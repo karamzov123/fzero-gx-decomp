@@ -24,7 +24,7 @@ extern void TRKDoWrite(void);
 extern void TRK_ReadUARTN(void);
 extern void TRKPollUART(void);
 extern void TRKTargetContinue(void);
-extern void fn_8008D7C0(void);
+extern void AMC_SetStub_Game(void);
 extern void MWTRACE(void);
 extern void fn_8008AF40(void);
 extern void TRKTargetStopped(void);
@@ -32,20 +32,20 @@ extern void TRKTestForPacket(void);
 extern void usr_puts(void);
 extern void TRKDoPing(void);
 extern void TRKDoVersions(void);
-extern void fn_8008998C(void);
+extern void TRKDoStop(void);
 extern void TRK_serialIO_init(void);
 extern void TRKDoReadRegisters(void);
 extern void TRKDoWriteRegisters(void);
 extern void TRKDoReadMemory(void);
 extern void TRKDoWriteMemory(void);
-extern void fn_8008A5AC(void);
-extern void fn_8008A5B4(void);
-extern void fn_8008A5BC(void);
-extern void fn_8008A614(void);
+extern void TRKDoUnsupported_Override(void);
+extern void TRKDoUnsupported_SupportMask(void);
+extern void TRKDoOverride(void);
+extern void TRKDoReset(void);
 extern void TRKDoDisconnect(void);
-extern void fn_8008A6E4(void);
-extern void fn_8008A748(void);
-extern void fn_8008A754(void);
+extern void TRKDoSetOption(void);
+extern void TRK_SetInputPendingPtrStore(void);
+extern void TRK_IsInputPending(void);
 extern void TRKRequestSend(void);
 extern void fn_8008AF48(void);
 extern void fn_8008AF50(void);
@@ -990,16 +990,16 @@ asm void usr_puts(void)
     li	r3, 0
     b       _80089690
 _80089664:
-    bl      fn_8008A754
+    bl      TRK_IsInputPending
     stb	r30, 8(r1)
     mr	r30, r3
     li	r3, 0
     stb	r31, 9(r1)
-    bl      fn_8008A748
+    bl      TRK_SetInputPendingPtrStore
     addi	r3, r1, 8
     bl      OSReport
     mr	r3, r30
-    bl      fn_8008A748
+    bl      TRK_SetInputPendingPtrStore
     li	r3, 0
 _80089690:
     cmpwi	r3, 0
@@ -1046,7 +1046,7 @@ asm void TRKDispatchMessage(void)
     mtctr	r0
     bctr
     mr	r3, r30
-    bl      fn_8008A6E4
+    bl      TRKDoSetOption
     mr	r31, r3
     b       _80089800
     mr	r3, r30
@@ -1054,19 +1054,19 @@ asm void TRKDispatchMessage(void)
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008A614
+    bl      TRKDoReset
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008A5BC
+    bl      TRKDoOverride
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008A5B4
+    bl      TRKDoUnsupported_SupportMask
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008A5AC
+    bl      TRKDoUnsupported_Override
     mr	r31, r3
     b       _80089800
     mr	r3, r30
@@ -1090,7 +1090,7 @@ asm void TRKDispatchMessage(void)
     mr	r31, r3
     b       _80089800
     mr	r3, r30
-    bl      fn_8008998C
+    bl      TRKDoStop
     mr	r31, r3
     b       _80089800
     mr	r3, r30
@@ -1149,7 +1149,7 @@ _80089884:
     bl      usr_puts
 _8008988c:
     mr	r3, r30
-    bl      fn_8008D7C0
+    bl      AMC_SetStub_Game
 _80089894:
     addi	r3, r1, 8
     li	r4, 0
@@ -1227,7 +1227,7 @@ _80089944:
     blr
 }
 
-asm void fn_8008998C(void)
+asm void TRKDoStop(void)
 {
     nofralloc
     stwu	r1, -0x160(r1)
@@ -2094,21 +2094,21 @@ _8008a598:
     blr
 }
 
-asm void fn_8008A5AC(void)
+asm void TRKDoUnsupported_Override(void)
 {
     nofralloc
     li	r3, 0
     blr
 }
 
-asm void fn_8008A5B4(void)
+asm void TRKDoUnsupported_SupportMask(void)
 {
     nofralloc
     li	r3, 0
     blr
 }
 
-asm void fn_8008A5BC(void)
+asm void TRKDoOverride(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -2135,7 +2135,7 @@ asm void fn_8008A5BC(void)
     blr
 }
 
-asm void fn_8008A614(void)
+asm void TRKDoReset(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -2197,7 +2197,7 @@ asm void TRKDoDisconnect(void)
     blr
 }
 
-asm void fn_8008A6E4(void)
+asm void TRKDoSetOption(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -2227,7 +2227,7 @@ asm void fn_8008A6E4(void)
     blr
 }
 
-asm void fn_8008A748(void)
+asm void TRK_SetInputPendingPtrStore(void)
 {
     nofralloc
     lis	r4, -0x7fe6
@@ -2235,7 +2235,7 @@ asm void fn_8008A748(void)
     blr
 }
 
-asm void fn_8008A754(void)
+asm void TRK_IsInputPending(void)
 {
     nofralloc
     lis     r3, gTRKInputPendingPtrStore@ha
@@ -2244,7 +2244,7 @@ asm void fn_8008A754(void)
     blr
 }
 
-asm void fn_8008A764(void)
+asm void usr_put(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -2569,7 +2569,7 @@ _8008abb8:
     bl      TRKSetBufferPosition
     lwz	r4, 8(r29)
     addi	r3, r29, 0x10
-    bl      fn_8008A764
+    bl      usr_put
     lbz	r26, 0x14(r29)
     addi	r4, r31, 0x18
     li	r3, 1
@@ -2983,7 +2983,7 @@ asm void __TRK_set_MSR(void)
     blr
 }
 
-asm void fn_8008B0F0(void)
+asm void TRK_ppc_memcpy(void)
 {
     nofralloc
     mfmsr	r8
@@ -4650,7 +4650,7 @@ _8008c7b0:
     mr	r3, r26
     mr	r4, r25
     mr	r6, r8
-    bl      fn_8008B0F0
+    bl      TRK_ppc_memcpy
     b       _8008c824
 _8008c7ec:
     lwz	r5, 0(r28)
@@ -4658,7 +4658,7 @@ _8008c7ec:
     mr	r4, r26
     mr	r6, r7
     mr	r7, r8
-    bl      fn_8008B0F0
+    bl      TRK_ppc_memcpy
     lwz	r4, 0(r28)
     mr	r3, r25
     bl      TRK_flush_cache

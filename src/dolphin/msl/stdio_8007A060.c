@@ -23,14 +23,14 @@ extern void fn_8008809C(void);
 extern void fn_80088128(void);
 extern void fn_800882EC(void);
 extern void fn_80088598(void);
-extern void fn_8008D92C(void);
+extern void TRK_OpenFile_Game(void);
 extern unsigned char _dtors[]; // .dtors section anchor (0x8008FF20); symbol ref required so linker sees exit() calls destructors
 extern unsigned char __atexit_funcs[256];
 extern unsigned char __files[320];
-extern void fn_8008D7CC(void);
-extern void fn_8008D8A8(void);
-extern void fn_8008DAA8(void);
-extern void fn_8008DB5C(void);
+extern void TRK_PositionFile_Game(void);
+extern void TRK_CloseFile_Game(void);
+extern void TRK_WriteFile_Game(void);
+extern void TRK_ReadFile_Game(void);
 extern unsigned char jumptable_8015AFD8[292];
 extern unsigned char lbl_80094EC0[24];
 extern unsigned char lbl_80094ED8[224];
@@ -1439,16 +1439,16 @@ _8007b23c:
     rlwinm	r0, r0, 0x1a, 0x1d, 0x1f
     cmplwi	r0, 1
     bc      4, 2, _8007b28c
-    lis     r4, fn_8008D7CC@ha
-    lis     r3, fn_8008DB5C@ha
-    addi	r0, r4, fn_8008D7CC@l
-    lis     r4, fn_8008DAA8@ha
+    lis     r4, TRK_PositionFile_Game@ha
+    lis     r3, TRK_ReadFile_Game@ha
+    addi	r0, r4, TRK_PositionFile_Game@l
+    lis     r4, TRK_WriteFile_Game@ha
     stw	r0, 0x38(r31)
-    addi	r0, r3, fn_8008DB5C@l
-    lis     r3, fn_8008D8A8@ha
-    addi	r4, r4, fn_8008DAA8@l
+    addi	r0, r3, TRK_ReadFile_Game@l
+    lis     r3, TRK_CloseFile_Game@ha
+    addi	r4, r4, TRK_WriteFile_Game@l
     stw	r0, 0x3c(r31)
-    addi	r0, r3, fn_8008D8A8@l
+    addi	r0, r3, TRK_CloseFile_Game@l
     stw	r4, 0x40(r31)
     stw	r0, 0x44(r31)
 _8007b28c:
@@ -6646,7 +6646,7 @@ _8007f824:
     mr	r5, r31
     addi	r4, r1, 0x10
     stw	r0, 0x10(r1)
-    bl      fn_8008D92C
+    bl      TRK_OpenFile_Game
     cmpwi	r3, 0
     bc      12, 2, _8007f88c
     lhz	r0, 4(r31)

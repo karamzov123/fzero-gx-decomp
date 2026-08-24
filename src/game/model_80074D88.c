@@ -23,8 +23,8 @@ extern void fn_80035EC4(void);
 extern void fn_800371F8(void);
 extern void fn_80038D34(void);
 extern void fn_8006D668(void);
-extern void fn_8006F120(void);
-extern void fn_8006F1F0(void);
+extern void PSMTXLookAtNoUp(void);
+extern void PSMTXReflect(void);
 extern void fn_80070D94(void);
 extern void fn_80070E00(void);
 extern void fn_80071794(void);
@@ -33,7 +33,7 @@ extern void fn_80072168(void);
 extern void fn_800723B8(void);
 extern void fn_800723D8(void);
 extern void fn_80072404(void);
-extern void fn_8007245C(void);
+extern void GXLoadMtxArray(void);
 extern void fn_800725DC(void);
 extern void fn_80072614(void);
 extern void LightCtrl_SetCachedFog(void);
@@ -60,8 +60,8 @@ extern void fn_800745A4(void);
 extern void fn_80074660(void);
 extern void fn_80074788(void);
 extern void fn_800747D0(void);
-extern void fn_80074A8C(void);
-extern void fn_80074BC4(void);
+extern void GXColorClampScale(void);
+extern void GXColorScale(void);
 extern void fn_80078538(void);
 extern void fn_800786B0(void);
 extern void fn_80078768(void);
@@ -1517,7 +1517,7 @@ asm void fn_80076134(void)
     addi r4, r4, lbl_801A3220@l
     addi r3, r3, lbl_8015AD10@l
     addi r4, r4, 0x50
-    bl fn_8006F120
+    bl PSMTXLookAtNoUp
     lfs f1, -0x79b4(r2)
     lwz r3, -0x76c0(r13)
     lfs f4, -0x79a4(r2)
@@ -1608,7 +1608,7 @@ _800762C4:
     addi r4, r4, lbl_801A3220@l
     addi r3, r3, lbl_8015AD1C@l
     addi r4, r4, 0x50
-    bl fn_8006F120
+    bl PSMTXLookAtNoUp
     lfs f1, -0x79b4(r2)
     lwz r3, -0x76c0(r13)
     lfs f4, -0x79a4(r2)
@@ -1772,7 +1772,7 @@ _80076530:
     addi r4, r4, lbl_801A3220@l
     addi r3, r3, lbl_8015AD28@l
     addi r4, r4, 0x50
-    bl fn_8006F120
+    bl PSMTXLookAtNoUp
     lfs f1, -0x79b4(r2)
     lwz r3, -0x76c0(r13)
     lfs f4, -0x79a4(r2)
@@ -1979,7 +1979,7 @@ asm void fn_80076790(void)
     stfs f2, 8(r1)
     stfs f1, 0xc(r1)
     stfs f0, 0x10(r1)
-    bl fn_8006F1F0
+    bl PSMTXReflect
     addi r3, r1, 0x38
     bl fn_8006DB74
     lfs f1, -0x79b4(r2)
@@ -3058,12 +3058,12 @@ asm void AvDispInitModel(void)
     stfs f1, 0xc(r3)
     fmr f3, f1
     fmr f4, f1
-    bl fn_80074A8C
+    bl GXColorClampScale
     lfs f1, -0x7994(r2)
     fmr f2, f1
     fmr f3, f1
     fmr f4, f1
-    bl fn_80074BC4
+    bl GXColorScale
     li r0, 0
     stw r0, -0x7630(r13)
     stw r0, -0x7628(r13)
@@ -3977,7 +3977,7 @@ asm void fn_80078360(void)
 _800783A8:
     lwz r3, 0x1c(r24)
     mr r29, r0
-    bl fn_8007245C
+    bl GXLoadMtxArray
     lwz r12, -0x7630(r13)
     cmplwi r12, 0
     beq _800783DC
