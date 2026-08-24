@@ -1,7 +1,7 @@
 // dolphin/card/CARDDelete.c -- carved from coarse/text_8002F5B8 (0x8002F934-0x8002FC5C).
 // Melee identity: extern/dolphin/src/dolphin/card/CARDDelete.c
 //   DeleteCallback (static), CARDFastDeleteAsync, CARDDeleteAsync, CARDDelete.
-// Retail quirk: __CARDIsOpened is an 8-byte stub (fn_8002EDA0: li r3,0; blr).
+// Retail quirk: __CARDIsOpened is an 8-byte stub (__CARDIsOpened: li r3,0; blr).
 // CARD_MAX_FILE == 127 (cmpwi rX, 0x7f range guards).
 
 typedef int BOOL;
@@ -14,7 +14,7 @@ extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 __CARDFreeBlock(register s32 chn, register u16 nBlock, register void* callback);
 extern s32 __CARDGetDirBlock(void);
 extern s32 __CARDAccess(register void* ctrl, register void* ent);
-extern s32 fn_8002EDA0(register void* ctrl, register s32 fileNo);
+extern s32 __CARDIsOpened(register void* ctrl, register s32 fileNo);
 extern s32 __CARDGetFileNo(register void* ctrl, register void* fileName, register void* pfileNo);
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
@@ -116,7 +116,7 @@ _L_8002fa2c:
 _L_8002fa5c:
     lwz     r3, 0x14(r1)
     mr      r4, r29
-    bl      fn_8002EDA0
+    bl      __CARDIsOpened
     cmpwi   r3, 0
     beq     _L_8002fa80
     lwz     r3, 0x14(r1)
@@ -193,7 +193,7 @@ _L_8002fb3c:
 _L_8002fb60:
     lwz     r3, 0x18(r1)
     lwz     r4, 0x14(r1)
-    bl      fn_8002EDA0
+    bl      __CARDIsOpened
     cmpwi   r3, 0
     beq     _L_8002fb84
     lwz     r3, 0x18(r1)

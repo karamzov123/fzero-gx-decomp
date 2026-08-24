@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void __CARDUnlock(void);
-extern void fn_8002BA8C(void);
+extern void UnlockSendDspMail(void);
 extern void __CARDUnlockInitCallback(void);
 extern void __CARDBlockReadCallback(void);
 extern void __CARDRead(void);
@@ -764,12 +764,12 @@ _8002b9ac:
     addis	r0, r3, -0x8000
     stw	r0, 0xc(r30)
     li	r0, 0x160
-    lis     r4, fn_8002BA8C@ha
+    lis     r4, UnlockSendDspMail@ha
     stw	r0, 0x10(r30)
     lis     r3, __CARDUnlockInitCallback@ha
     li	r5, 0x10
     stw	r27, 0x14(r30)
-    addi	r4, r4, fn_8002BA8C@l
+    addi	r4, r4, UnlockSendDspMail@l
     addi	r0, r3, __CARDUnlockInitCallback@l
     sth	r5, 0x24(r30)
     mr	r3, r30
@@ -790,7 +790,7 @@ _8002ba78:
     blr	
 }
 
-asm void fn_8002BA8C(void)
+asm void UnlockSendDspMail(void)
 {
     nofralloc
     mflr	r0

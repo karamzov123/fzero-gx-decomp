@@ -7,8 +7,8 @@ extern void CARDInit(void);
 extern void __CARDGetFontEncode(void);
 extern void __CARDSetFontEncode(void);
 extern void __CARDSetDiskID(void);
-extern void fn_8002A7AC(void);
-extern void fn_8002A7C4(void);
+extern void __CARDGetDiskID(void);
+extern void __CARDSetDiskIDSafe(void);
 extern void __CARDGetControlBlock(void);
 extern void __CARDPutControlBlock(void);
 extern void CARDGetResultCode(void);
@@ -137,7 +137,7 @@ _8002a7a4:
     blr	
 }
 
-asm void fn_8002A7AC(void)
+asm void __CARDGetDiskID(void)
 {
     nofralloc
     mulli	r0, r3, 0x110
@@ -148,7 +148,7 @@ asm void fn_8002A7AC(void)
     blr	
 }
 
-asm void fn_8002A7C4(void)
+asm void __CARDSetDiskIDSafe(void)
 {
     nofralloc
     mflr	r0

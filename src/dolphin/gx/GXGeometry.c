@@ -932,7 +932,7 @@ asm void fn_800350F4(register int idx)
 }
 
 
-asm void fn_80035110(register int a, register int b)
+asm void __GXSetDispCopy(register int a, register int b)
 {
     nofralloc
     clrlwi.	r0, r4, 0x18
@@ -1029,7 +1029,7 @@ _8003525c:
     blr	
 }
 
-asm void fn_8003526C(register void* p, register int id, register int v)
+asm void __GXSetTexCopy(register void* p, register int id, register int v)
 {
     nofralloc
     clrlwi.	r0, r4, 0x18

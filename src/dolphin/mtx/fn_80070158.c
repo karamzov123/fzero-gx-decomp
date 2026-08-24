@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void LCEnable(void);
-extern asm void fn_80070CF8(void);
+extern asm void OSAllocFromArena(void);
 extern asm void OSPanic(void);
 extern unsigned char lbl_8015AA78[11];
 extern unsigned char lbl_8015AA84[160];
@@ -25,7 +25,7 @@ asm void fn_80070158(void)
     b	_80070194
 _80070188:
     li	r3, 0x4000
-    bl      fn_80070CF8
+    bl      OSAllocFromArena
     stw	r3, -0x76d0(r13)
 _80070194:
     li	r7, 0

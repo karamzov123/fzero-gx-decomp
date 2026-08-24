@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void _savegpr_25(void);
-extern asm void fn_80070CF8(void);
+extern asm void OSAllocFromArena(void);
 extern asm void DCFlushRange(void);
 extern asm void GXInit(void);
 extern asm void GXInitFifoBase(void);
@@ -18,7 +18,7 @@ extern asm void fn_80037C2C(void);
 extern asm void __GXSetZModeBits(void);
 extern asm void GXWriteLightAttn(void);
 extern asm void ModelMatchCachedSlot_B20(void);
-extern asm void fn_80035110(void);
+extern asm void __GXSetDispCopy(void);
 extern asm void fn_800350F4(void);
 extern asm void fn_8001B42C(void);
 extern asm void fn_8001BD84(void);
@@ -45,7 +45,7 @@ asm void fn_80070774(void)
     mulli	r0, r0, 0x210
     slwi	r25, r0, 1
     mr	r3, r25
-    bl      fn_80070CF8
+    bl      OSAllocFromArena
     addi	r0, r25, 0x1f
     mr	r31, r3
     rlwinm	r26, r0, 0, 0, 0x1a
@@ -55,13 +55,13 @@ asm void fn_80070774(void)
     rlwinm.	r0, r0, 0, 0x1b, 0x1b
     bne	_800707e8
     mr	r3, r25
-    bl      fn_80070CF8
+    bl      OSAllocFromArena
     mr	r4, r26
     mr	r30, r3
     bl      DCFlushRange
 _800707e8:
     mr	r3, r28
-    bl      fn_80070CF8
+    bl      OSAllocFromArena
     stw	r28, -0x76dc(r13)
     mr	r4, r28
     bl      GXInit
@@ -77,7 +77,7 @@ _800707e8:
     mr	r3, r28
     stw	r5, -0x76e0(r13)
     stw	r0, 0x18(r4)
-    bl      fn_80070CF8
+    bl      OSAllocFromArena
     lis     r4, lbl_8019E18C@ha
     mr	r26, r3
     addi	r3, r4, lbl_8019E18C@l
@@ -193,15 +193,15 @@ _800709c4:
     lwz	r3, -0x7690(r13)
     li	r4, 1
     lwz	r3, 4(r3)
-    bl      fn_80035110
+    bl      __GXSetDispCopy
     lwz	r3, -0x7690(r13)
     li	r4, 0
     lwz	r3, 8(r3)
-    bl      fn_80035110
+    bl      __GXSetDispCopy
     lwz	r3, -0x7690(r13)
     li	r4, 0
     lwz	r3, 4(r3)
-    bl      fn_80035110
+    bl      __GXSetDispCopy
     li	r3, 0
     bl      fn_800350F4
     lwz	r3, -0x76cc(r13)

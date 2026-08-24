@@ -73,7 +73,7 @@ asm void __prep_buffer(void);
 asm void __end_critical_region(void);
 asm void __begin_critical_region(void);
 asm void __kill_critical_regions(void);
-asm void fn_8007ED90(void);
+asm void MSL_CharAttrLookup(void);
 asm void __fwrite(void);
 asm void fwrite(void);
 asm void fn_8007F13C(void);
@@ -5850,7 +5850,7 @@ asm void __kill_critical_regions(void)
     blr
 }
 
-asm void fn_8007ED90(void)
+asm void MSL_CharAttrLookup(void)
 {
     nofralloc
     cmpwi	r3, -1

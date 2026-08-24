@@ -31,7 +31,7 @@ extern void __DVDReadDoneCallback(void);
 extern void fn_800176D8(void);
 extern void DVDReadAbsAsyncPrio(void);
 extern void DVDCancel(void);
-extern void fn_8007ED90(void);
+extern void MSL_CharAttrLookup(void);
 
 /* __DVDFSInit @0x80016DC0 | size: 0x38 */
 asm void __DVDFSInit(void) {
@@ -214,12 +214,12 @@ lbl_80017000:
 	lbz r0, 0x0(r20)
 	addi r20, r20, 0x1
 	extsb r3, r0
-	bl fn_8007ED90
+	bl MSL_CharAttrLookup
 	lbz r0, 0x0(r21)
 	addi r22, r3, 0x0
 	addi r21, r21, 0x1
 	extsb r3, r0
-	bl fn_8007ED90
+	bl MSL_CharAttrLookup
 	cmpw r3, r22
 	beq lbl_80017034
 	li r0, 0x0

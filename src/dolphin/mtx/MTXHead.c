@@ -36,7 +36,7 @@ extern asm void GXSetNumTexGensCached(void);
 extern asm void GXSetChanAmbColorCached(void);
 extern asm void LightCtrl_SetCachedRec_C30(void);
 extern asm void GXSetTexGenCached(void);
-extern asm void fn_8007ED90(void);
+extern asm void MSL_CharAttrLookup(void);
 extern asm void atan(void);
 extern asm void expf(void);
 extern asm void __msl_fp_helper(void);
@@ -86,7 +86,7 @@ asm void fn_8006BB74(void);
 asm void fn_8006BB9C(void);
 asm void fn_8006BBDC(void);
 asm void fn_8006BC1C(void);
-asm void fn_8006BC50(void);
+asm void Model_ClearCacheArray_F4(void);
 asm void fn_8006BC84(void);
 asm void fn_8006BCF8(void);
 asm void fn_8006BE0C(void);
@@ -962,12 +962,12 @@ _8006a678:
 _8006a68c:
     lbz	r3, 0(r21)
     addi	r21, r21, 1
-    bl      fn_8007ED90
+    bl      MSL_CharAttrLookup
     lbz	r0, 0(r22)
     addi	r23, r3, 0
     addi	r22, r22, 1
     mr	r3, r0
-    bl      fn_8007ED90
+    bl      MSL_CharAttrLookup
     cmpw	r3, r23
     bc      12, 2, _8006a6bc
     li	r0, 0
@@ -2027,7 +2027,7 @@ _8006b430:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     li	r3, 0
     stw	r0, 8(r31)
@@ -2075,7 +2075,7 @@ _8006b4a4:
     lbz	r0, 4(r29)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r29)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r29)
 _8006b4f8:
@@ -2156,7 +2156,7 @@ _8006b5bc:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b604:
@@ -2218,7 +2218,7 @@ _8006b684:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b6d0:
@@ -2275,7 +2275,7 @@ _8006b740:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b78c:
@@ -2332,7 +2332,7 @@ _8006b7fc:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b848:
@@ -2389,7 +2389,7 @@ _8006b8b8:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b904:
@@ -2662,7 +2662,7 @@ _8006bc34:
     blr
 }
 
-asm void fn_8006BC50(void)
+asm void Model_ClearCacheArray_F4(void)
 {
     nofralloc
     li	r4, 0

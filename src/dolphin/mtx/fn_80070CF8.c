@@ -22,7 +22,7 @@ extern void fn_80071CE8(void);
 extern void fn_80071D0C(void);
 extern void fn_80071D2C(void);
 
-asm void fn_80070CF8(void)
+asm void OSAllocFromArena(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

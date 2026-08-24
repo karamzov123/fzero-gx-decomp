@@ -2775,7 +2775,7 @@ _8002ed8c:
     blr	
 }
 
-asm void fn_8002EDA0(void)
+asm void __CARDIsOpened(void)
 {
     nofralloc
     li      r3, 0

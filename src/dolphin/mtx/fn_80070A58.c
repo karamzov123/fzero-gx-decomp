@@ -4,7 +4,7 @@
 extern asm void OSPanic(void);
 extern asm void QuatNormalizeCompare(void);
 extern asm void fn_8006DCDC(void);
-extern asm void fn_80070CF8(void);
+extern asm void OSAllocFromArena(void);
 extern unsigned char lbl_8015AA78[11];
 extern unsigned char lbl_8019E140[16];
 
@@ -182,7 +182,7 @@ _80070cac:
     b	_80070cc8
 _80070cb8:
     mulli	r3, r29, 0x30
-    bl      fn_80070CF8
+    bl      OSAllocFromArena
     lwz	r4, -0x76c0(r13)
     stw	r3, 0x90(r4)
 _80070cc8:

@@ -15,7 +15,7 @@ extern asm void fn_800700B4(void);
 extern asm void fn_80070068(void);
 extern asm void GXSetGPFifo(void);
 extern asm void LightCtrl_SetCachedByte_EC(void);
-extern asm void fn_80035110(void);
+extern asm void __GXSetDispCopy(void);
 extern asm void fn_8001BE6C(void);
 extern asm void OSGetTick(void);
 extern asm void _savegpr_27(void);
@@ -146,7 +146,7 @@ _8006fd74:
     lwz	r3, -0x7690(r13)
     li	r4, 1
     lwz	r3, 0(r3)
-    bl      fn_80035110
+    bl      __GXSetDispCopy
     bl      fn_80070100
     bl      fn_8001BE6C
     stw	r3, -0x76f4(r13)
