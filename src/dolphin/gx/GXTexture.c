@@ -1093,7 +1093,7 @@ asm void fn_80036EB4(register void* p)
     blr	
 }
 
-asm void fn_80036EDC(register void* p)
+asm void __GXInitTexObjDefault(register void* p)
 {
     nofralloc
     mflr	r0

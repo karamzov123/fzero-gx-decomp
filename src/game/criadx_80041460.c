@@ -253,7 +253,7 @@ asm void fn_800416A8(void)
     blr	
 }
 
-asm void fn_800416CC(void)
+asm void criadx_set_field_44(void)
 {
     nofralloc
     stw	r4, 0x44(r3)

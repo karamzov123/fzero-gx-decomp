@@ -225,7 +225,7 @@ extern void __GXSetLightAttnEnable_A(s32 stage, s32 sel);
 extern void __GXSetLightAttnEnable_B(s32 stage, s32 sel);
 extern void __GXSetLightColorAttnSel(s32 stage, s32 swap0, s32 swap1);
 extern void GXSetLightColorAttnRegs(s32 table, s32 r, s32 g, s32 b);
-extern void fn_80036EDC(s32 stage);
+extern void __GXInitTexObjDefault(s32 stage);
 extern void fn_80036EB4(s32 stages);
 extern void __GXInitTexCacheRegs(s32 stage, s32 scale0, s32 scale1);
 extern void GXWriteTextureState(s32 type, f32 start, f32 end, f32 nearz, f32 farz, void *color);
@@ -1466,7 +1466,7 @@ L8003191c:
     b L80031920
 L80031920:
     mr	r3, r30
-    bl fn_80036EDC
+    bl __GXInitTexObjDefault
     addi	r30, r30, 1
     cmplwi	r30, 0x10
     blt L80031920

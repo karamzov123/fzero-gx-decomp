@@ -17,7 +17,7 @@ extern void fn_8004163C(void);
 extern void criadx_set_field_48(void);
 extern void criadxGetValue(void);
 extern void fn_800416A8(void);
-extern void fn_800416CC(void);
+extern void criadx_set_field_44(void);
 extern void criadx_set_field_40(void);
 extern void criadx_set_field_3C(void);
 extern void fn_800416E4(void);
@@ -772,7 +772,7 @@ _8004d710:
     bl      criadx_set_field_3C
     mr	r3, r31
     li	r4, 0
-    bl      fn_800416CC
+    bl      criadx_set_field_44
     mr	r3, r31
     li	r4, 0
     bl      criadx_set_field_40
@@ -797,7 +797,7 @@ _8004d778:
     bl      criadx_set_field_3C
     mr	r3, r31
     li	r4, 0
-    bl      fn_800416CC
+    bl      criadx_set_field_44
     mr	r3, r31
     li	r4, 0
     bl      criadx_set_field_40
@@ -1072,7 +1072,7 @@ _8004db70:
     bl      criadx_set_field_3C
     mr	r3, r31
     li	r4, 0
-    bl      fn_800416CC
+    bl      criadx_set_field_44
     mr	r3, r31
     li	r4, 0
     bl      criadx_set_field_40
@@ -1347,7 +1347,7 @@ _8004df1c:
     bl      criadx_set_field_3C
     mr	r3, r31
     mr	r4, r29
-    bl      fn_800416CC
+    bl      criadx_set_field_44
     mr	r3, r31
     mr	r4, r26
     bl      fn_800416F0
@@ -1419,7 +1419,7 @@ asm void fn_8004DFF0(void)
     bl      criadx_set_field_3C
     mr	r3, r29
     mr	r4, r27
-    bl      fn_800416CC
+    bl      criadx_set_field_44
     mr	r3, r29
     mr	r4, r28
     bl      fn_800416F0
