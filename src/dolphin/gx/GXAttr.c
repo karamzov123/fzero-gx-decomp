@@ -19,8 +19,8 @@ void fn_800324C8(register void* p, register int a, register int b);
 void fn_80032818(register void* p, register int a, register int b);
 void fn_80032B8C(void);
 void fn_80032BE0(void);
-void fn_80032D04(register void* p, register int a);
-void fn_80032EB8(register void* p);
+void GXGetVtxDesc(register void* p, register int a);
+void GXGetVtxDescv(register void* p);
 void fn_80032F48(register void* p);
 void fn_80032F80(register void* p, register int a, register int b);
 void fn_800332D8(register void* p, register int a, register int b);
@@ -712,7 +712,7 @@ _80032c68:
     blr	
 }
 
-asm void fn_80032D04(register void* p, register int a)
+asm void GXGetVtxDesc(register void* p, register int a)
 {
     nofralloc
     cmplwi	r3, 0x19
@@ -830,7 +830,7 @@ _80032eb0:
     blr	
 }
 
-asm void fn_80032EB8(register void* p)
+asm void GXGetVtxDescv(register void* p)
 {
     nofralloc
     mflr	r0
@@ -847,7 +847,7 @@ _80032edc:
     stw	r30, 0(r4)
     addi	r3, r30, 0
     addi	r4, r4, 4
-    bl      fn_80032D04
+    bl      GXGetVtxDesc
     addi	r30, r30, 1
     cmpwi	r30, 0x14
     addi	r31, r31, 8
@@ -858,7 +858,7 @@ _80032edc:
     stw	r0, 0(r3)
     addi	r4, r3, 4
     li	r3, 0x19
-    bl      fn_80032D04
+    bl      GXGetVtxDesc
     addi	r30, r30, 1
     slwi	r0, r30, 3
     li	r3, 0xff

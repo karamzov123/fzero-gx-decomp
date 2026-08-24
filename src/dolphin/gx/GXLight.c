@@ -6,7 +6,7 @@ typedef signed int s32;
 extern void* memset(void*, int, unsigned long);
 extern void __cvt_fp2unsigned(void);
 extern void __GXFlushTextureState(void);
-extern void fn_80032EB8(register void* p);
+extern void GXGetVtxDescv(register void* p);
 extern void fn_8003396C(register void* p);
 extern void fn_80032F48(register void* p);
 extern void fn_800324C8(register void* p, register int a, register int b);
@@ -15,7 +15,7 @@ extern void fn_80088624(void);
 extern void fn_80088600(void);
 extern void fn_80032818(register void* p, register int a, register int b);
 extern void fn_800332D8(register void* p, register int a, register int b);
-extern void fn_80032D04(register void* p, register int a);
+extern void GXGetVtxDesc(register void* p, register int a);
 extern void __GXSetDirtyState(void);
 extern void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts);
 extern unsigned char lbl_8012B3B8[40];
@@ -912,7 +912,7 @@ asm void fn_80037E30(register void* p)
     addi	r3, r31, 0
     lfs	f0, -0x7d0c(r2)
     fneg	f31, f0
-    bl      fn_80032EB8
+    bl      GXGetVtxDescv
     li	r3, 3
     addi	r4, r31, 0xd8
     bl      fn_8003396C
@@ -1392,9 +1392,9 @@ asm void fn_800384FC(register void* p)
     fsubs	f0, f0, f3
     fdivs	f25, f4, f2
     fdivs	f24, f1, f0
-    bl      fn_80032D04
+    bl      GXGetVtxDesc
     mr	r3, r26
-    bl      fn_80032EB8
+    bl      GXGetVtxDescv
     li	r3, 3
     addi	r4, r26, 0xd8
     bl      fn_8003396C
