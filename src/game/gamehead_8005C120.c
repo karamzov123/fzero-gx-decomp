@@ -45,7 +45,7 @@ extern void fn_80025C70(void);
 extern void fn_80025EE4(void);
 extern void fn_80025EEC(void);
 extern void fn_80025EF4(void);
-extern void fn_80026D70(void);
+extern void axmix_device_ctrl_clear(void);
 extern void fn_80026D90(void);
 extern void fn_80026DB8(void);
 extern void fn_80026DD4(void);
@@ -972,7 +972,7 @@ _8005cc20:
     lwz	r3, -0x7740(r13)
     addi	r0, r30, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r30, 0x1434
     lwzx	r3, r3, r0
@@ -1035,7 +1035,7 @@ _8005cd10:
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -1101,7 +1101,7 @@ _8005cdfc:
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -1169,7 +1169,7 @@ _8005cef4:
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -1236,7 +1236,7 @@ _8005cff4:
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -1306,7 +1306,7 @@ _8005d0f0:
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -4199,7 +4199,7 @@ _8005fadc:
     lwz	r0, -0x7740(r13)
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r0, -0x7740(r13)
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
@@ -4350,7 +4350,7 @@ asm void SndKillChannelVoice(void)
     lwz	r0, -0x7740(r13)
     add	r3, r0, r31
     lwz	r3, 0x1434(r3)
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r0, -0x7740(r13)
     add	r3, r0, r31
     lwz	r3, 0x1434(r3)

@@ -10,7 +10,7 @@ extern void fn_80023168(void);
 extern void fn_80023284(void);
 extern void fn_80023438(void);
 extern void fn_80025EF4(void);
-extern void fn_80026D70(void);
+extern void axmix_device_ctrl_clear(void);
 extern void fn_80026D90(void);
 extern void fn_80026EE0(void);
 extern void svmExitCritical(void);
@@ -1478,7 +1478,7 @@ _8005b4d0:
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8005b4ec
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, 8(r31)
     bl      AXFreeVoice
 _8005b4ec:
@@ -1669,7 +1669,7 @@ _8005b774:
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8005b790
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, 8(r30)
     bl      AXFreeVoice
 _8005b790:
@@ -1736,7 +1736,7 @@ _8005b864:
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8005b880
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, 8(r30)
     bl      AXFreeVoice
 _8005b880:
@@ -1794,7 +1794,7 @@ _8005b930:
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8005b94c
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, 8(r30)
     bl      AXFreeVoice
 _8005b94c:

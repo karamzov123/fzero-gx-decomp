@@ -1826,7 +1826,7 @@ _80026d34:
     blr	
 }
 
-asm void fn_80026D70(void)
+asm void axmix_device_ctrl_clear(void)
 {
     nofralloc
     lwz	r4, 0x18(r3)

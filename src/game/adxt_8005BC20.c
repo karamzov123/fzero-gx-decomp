@@ -3,7 +3,7 @@
 
 extern void AXFreeVoice(void);
 extern void ARFree(void);
-extern void fn_80026D70(void);
+extern void axmix_device_ctrl_clear(void);
 extern void fn_8005A5BC(void);
 extern void fn_8005A614(void);
 extern void fn_8005A628(void);
@@ -48,7 +48,7 @@ _8005bc4c:
     add	r3, r4, r3
     add	r31, r3, r0
     lwzu	r3, 8(r31)
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     li	r0, 0
     stw	r0, 0(r31)
     b     _8005bca0
@@ -118,7 +118,7 @@ _8005bd50:
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8005bd6c
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, 8(r30)
     bl      AXFreeVoice
 _8005bd6c:

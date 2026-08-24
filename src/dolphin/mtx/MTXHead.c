@@ -12,7 +12,7 @@ extern asm void fn_800139E8(void);
 extern asm void fn_80015EE8(void);
 extern asm void AXFreeVoice(void);
 extern asm void fn_80023168(void);
-extern asm void fn_80026D70(void);
+extern asm void axmix_device_ctrl_clear(void);
 extern asm void fn_80028424(void);
 extern asm void GXBegin(void);
 extern asm void fn_800371F8(void);
@@ -157,7 +157,7 @@ _80069b3c:
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -207,7 +207,7 @@ _80069bf4:
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0

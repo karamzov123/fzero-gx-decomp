@@ -43,7 +43,7 @@ extern void fn_800234D0(void);
 extern void fn_80025D5C(void);
 extern void fn_80025EEC(void);
 extern void fn_80025EF4(void);
-extern void fn_80026D70(void);
+extern void axmix_device_ctrl_clear(void);
 extern void fn_80026D90(void);
 extern void fn_80026E2C(void);
 extern void fn_80026EAC(void);
@@ -1400,7 +1400,7 @@ asm void fn_80028090(void)
     b       _800280c0
 _800280b4:
     lwz	r3, 8(r30)
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r30, 0(r30)
 _800280c0:
     cmplwi	r30, 0
@@ -1674,7 +1674,7 @@ _80028468:
 _80028480:
     bl      OSRestoreInterrupts
     lwz	r3, 8(r31)
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
     addi	r1, r1, 0x18
