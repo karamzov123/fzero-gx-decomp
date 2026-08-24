@@ -45,8 +45,8 @@ extern u32 SIGetStatus(register s32 chan);
 extern void SISetCommand(register s32 chan, register u32 command);
 extern void SITransferCommands(void);
 extern u32 SISetXY(register u32 x, register u32 y);
-extern void fn_800125DC(register s32 chan, register u32 unk);
-extern void fn_80012678(register s32 chan, register u32 unk);
+extern void SIGetWirelessID(register s32 chan, register u32 unk);
+extern void SIGetWirelessIDBitfield(register s32 chan, register u32 unk);
 extern u32 SIGetResponse(register s32 chan, register void* data);
 extern u32 SIGetType(register s32 chan);
 extern u32 SIGetTypeAsync(register s32 chan, register void (*callback)(s32, u32));
@@ -1106,10 +1106,10 @@ asm u32 SISetXY(register u32 x, register u32 y)
 }
 #pragma pop
 
-/* ---- fn_800125DC ---- */
+/* ---- SIGetWirelessID ---- */
 #pragma push
 #pragma force_active on
-asm void fn_800125DC(register s32 chan, register u32 unk)
+asm void SIGetWirelessID(register s32 chan, register u32 unk)
 {
     nofralloc
     mflr        r0
@@ -1156,10 +1156,10 @@ L_80012664:
 }
 #pragma pop
 
-/* ---- fn_80012678 ---- */
+/* ---- SIGetWirelessIDBitfield ---- */
 #pragma push
 #pragma force_active on
-asm void fn_80012678(register s32 chan, register u32 unk)
+asm void SIGetWirelessIDBitfield(register s32 chan, register u32 unk)
 {
     nofralloc
     mflr        r0
@@ -2520,7 +2520,7 @@ asm void fn_8001375C(register s32 chan)
     addi        r3, r31, 0x0
     bl          SISetCommand
     lwz         r3, -0x7B8C(r13) /* lbl_801A6834@sda21 */
-    bl          fn_800125DC
+    bl          SIGetWirelessID
 L_800137B0:
     lwz         r0, 0x24(r1)
     lwz         r31, 0x1c(r1)
@@ -2573,7 +2573,7 @@ L_80013830:
     addi        r4, r1, 0x10
     bl          SIGetResponse
     mr          r3, r28
-    bl          fn_80012678
+    bl          SIGetWirelessIDBitfield
     lwz         r3, -0x7B8C(r13) /* lbl_801A6834@sda21 */
     li          r0, -0x1
     andc        r3, r3, r28

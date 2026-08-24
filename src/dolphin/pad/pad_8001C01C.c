@@ -21,8 +21,8 @@ extern void SIUnregisterPollingHandler(void);
 extern void SIGetStatus(void);
 extern void SISetCommand(void);
 extern void SITransferCommands(void);
-extern void fn_800125DC(void);
-extern void fn_80012678(void);
+extern void SIGetWirelessID(void);
+extern void SIGetWirelessIDBitfield(void);
 extern void SIGetResponse(void);
 extern void SITransfer(void);
 extern void SIGetType(void);
@@ -427,7 +427,7 @@ asm void PADEnable(void)
     oris	r4, r0, 0x40
     bl      SISetCommand
     lwz	r3, -0x7a44(r13)
-    bl      fn_800125DC
+    bl      SIGetWirelessID
 _8001c504:
     lwz	r5, -0x7a40(r13)
     cntlzw	r0, r5
@@ -484,7 +484,7 @@ _8001c5b0:
     bl      OSDisableInterrupts
     addi	r31, r3, 0
     addi	r3, r30, 0
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     lwz	r6, -0x7a44(r13)
     nor	r8, r30, r30
     lwz	r5, -0x7a38(r13)
@@ -537,7 +537,7 @@ asm void PADEnableWireless(void)
     oris	r4, r0, 0x40
     bl      SISetCommand
     lwz	r3, -0x7a44(r13)
-    bl      fn_800125DC
+    bl      SIGetWirelessID
     lwz	r0, -0x7f0c(r13)
     lwz	r3, -0x7a38(r13)
     srw	r0, r31, r0
@@ -663,7 +663,7 @@ _8001c818:
     oris	r4, r0, 0x40
     bl      SISetCommand
     lwz	r3, -0x7a44(r13)
-    bl      fn_800125DC
+    bl      SIGetWirelessID
     lwz	r4, -0x7a40(r13)
     cntlzw	r0, r4
     stw	r0, -0x7f0c(r13)
@@ -847,7 +847,7 @@ _8001caf0:
     bl      OSDisableInterrupts
     addi	r30, r3, 0
     addi	r3, r29, 0
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     lwz	r6, -0x7a44(r13)
     nor	r8, r29, r29
     lwz	r5, -0x7a38(r13)
@@ -910,7 +910,7 @@ asm void PADReset(void)
     or	r0, r0, r30
     stw	r0, -0x7a3c(r13)
 _8001cbdc:
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     lwz	r0, -0x7f0c(r13)
     cmpwi	r0, 0x20
     bc      4, 2, _8001cc40
@@ -982,7 +982,7 @@ asm void PADRecalibrate(void)
     or	r0, r0, r30
     stw	r0, -0x7a3c(r13)
 _8001cce0:
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     lwz	r0, -0x7f0c(r13)
     cmpwi	r0, 0x20
     bc      4, 2, _8001cd44
@@ -1128,7 +1128,7 @@ _8001ce48:
     or	r0, r0, r28
     stw	r0, -0x7a3c(r13)
 _8001cf00:
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     lwz	r0, -0x7f0c(r13)
     cmpwi	r0, 0x20
     bc      4, 2, _8001cf60
@@ -1216,7 +1216,7 @@ _8001cfd0:
     or	r0, r0, r7
     stw	r0, -0x7a3c(r13)
 _8001d03c:
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     lwz	r0, -0x7f0c(r13)
     cmpwi	r0, 0x20
     bc      4, 2, _8001d090
@@ -1315,7 +1315,7 @@ _8001d1a0:
     bl      OSDisableInterrupts
     addi	r25, r3, 0
     addi	r3, r23, 0
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     lwz	r6, -0x7a44(r13)
     nor	r8, r23, r23
     lwz	r5, -0x7a38(r13)
@@ -2076,7 +2076,7 @@ asm void PADSetAnalogMode(void)
     mr	r3, r8
     stw	r4, -0x7a38(r13)
     stw	r0, -0x7a34(r13)
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     mr	r3, r31
     bl      OSRestoreInterrupts
     lwz	r0, 0x1c(r1)
@@ -2152,7 +2152,7 @@ _8001dcac:
     or	r0, r0, r30
     stw	r0, -0x7a3c(r13)
 _8001dd28:
-    bl      fn_80012678
+    bl      SIGetWirelessIDBitfield
     lwz	r0, -0x7f0c(r13)
     cmpwi	r0, 0x20
     bc      4, 2, _8001dd8c
