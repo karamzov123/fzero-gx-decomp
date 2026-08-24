@@ -354,7 +354,7 @@ void OSClearContext(register OSContext* context)
     }
 }
 
-asm void fn_8000BFEC(register OSContext* context, register u32 pc,
+asm void OSSwitchFiber(register OSContext* context, register u32 pc,
                      register u32 newsp)
 {
     nofralloc

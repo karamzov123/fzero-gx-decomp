@@ -9,7 +9,7 @@ extern void OSLoadContext(register void* context);
 extern void OSClearContext(register void* context);
 extern void fn_8000BE5C(void);
 extern int fn_8000BE68(register void* context);
-extern void fn_8000BFEC(register void* context, register void* pc, register void* sp);
+extern void OSSwitchFiber(register void* context, register void* pc, register void* sp);
 extern void __OSUnlockAllMutex(register void* thread);
 extern void OSWakeupThread(register void* queue);
 extern unsigned char __OSErrorTable[68];
@@ -425,7 +425,7 @@ _80010860:
     stw	r30, 0x2f4(r31)
     stw	r30, -8(r7)
     stw	r30, -4(r7)
-    bl      fn_8000BFEC
+    bl      OSSwitchFiber
     lis     r3, OSExitThread@ha
     addi	r0, r3, OSExitThread@l
     stw	r0, 0x84(r31)
