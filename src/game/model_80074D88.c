@@ -41,11 +41,11 @@ extern void fn_80072778(void);
 extern void fn_800728A8(void);
 extern void fn_800729B0(void);
 extern void fn_80072AB0(void);
-extern void fn_80072C24(void);
-extern void fn_80072CC4(void);
-extern void fn_80072D64(void);
-extern void fn_80072E20(void);
-extern void fn_800734A8(void);
+extern void ModelSetCachedParam_F0(void);
+extern void ModelSetCachedParam_1F0(void);
+extern void ModelSetCachedParam_2F0(void);
+extern void ModelSetCachedParam_430(void);
+extern void ModelSetCachedMaterial_570(void);
 extern void fn_800735C8(void);
 extern void fn_80073620(void);
 extern void fn_80073678(void);
@@ -286,33 +286,33 @@ asm void fn_80074D88(void)
     li r6, 4
     lwz r4, 4(r31)
     lwz r5, 0xc(r31)
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r3, 0(r31)
     li r4, 0
     li r5, 8
     li r6, 0xe
     li r7, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r31)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r31)
     li r4, 0
     li r5, 6
     li r6, 6
     li r7, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r31)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r31)
     addi r0, r3, 1
     stw r0, 0(r31)
@@ -1237,7 +1237,7 @@ asm void fn_80075D48(void)
     li r6, 4
     lwz r4, 4(r30)
     lwz r5, 0xc(r30)
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lha r0, 0x10(r31)
     cmpwi r0, 2
     beq _80075DF8
@@ -1257,14 +1257,14 @@ _80075DC0:
     lwz r7, 8(r31)
     li r5, 8
     li r6, 0xc
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     b _80075F74
 _80075DF8:
     lwz r3, 0(r30)
@@ -1272,14 +1272,14 @@ _80075DF8:
     lwz r7, 8(r31)
     li r5, 8
     li r6, 0xc
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r30)
     li r4, 1
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     b _80075F74
 _80075E30:
     lwz r3, 0(r30)
@@ -1287,14 +1287,14 @@ _80075E30:
     lwz r6, 8(r31)
     li r5, 8
     li r7, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     b _80075F74
 _80075E68:
     lwz r3, 0(r30)
@@ -1302,27 +1302,27 @@ _80075E68:
     li r5, 8
     li r6, 0xa
     li r7, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 3
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r30)
     li r4, 7
     lwz r7, 0xc(r31)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r30)
     addi r0, r3, 1
     stw r0, 0(r30)
@@ -1336,20 +1336,20 @@ _80075E68:
     li r6, 0xff
     lwz r4, 4(r30)
     lwz r5, 0xc(r30)
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r3, 0(r30)
     li r5, 6
     lwz r4, 8(r31)
     li r6, 9
     li r7, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     b _80075F74
 _80075F40:
     lwz r3, 0(r30)
@@ -1357,14 +1357,14 @@ _80075F40:
     lwz r7, 8(r31)
     li r5, 0xf
     li r6, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
 _80075F74:
     lha r0, 0x12(r31)
     cmpwi r0, 3
@@ -1387,14 +1387,14 @@ _80075FAC:
     lwz r7, 0xc(r31)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     b _80076104
 _80075FE4:
     lwz r3, 0(r30)
@@ -1402,14 +1402,14 @@ _80075FE4:
     lwz r7, 0xc(r31)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r30)
     li r4, 1
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     b _80076104
 _8007601C:
     lwz r3, 0(r30)
@@ -1417,14 +1417,14 @@ _8007601C:
     lwz r6, 0xc(r31)
     li r5, 4
     li r7, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     b _80076104
 _80076054:
     lwz r3, 0(r30)
@@ -1432,14 +1432,14 @@ _80076054:
     li r5, 7
     li r6, 7
     li r7, 4
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     b _80076104
 _8007608C:
     lwz r3, 0(r30)
@@ -1450,14 +1450,14 @@ _8007608C:
     li r5, 7
     li r6, 7
     li r7, 6
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     b _80076104
 _800760D0:
     lwz r3, 0(r30)
@@ -1465,14 +1465,14 @@ _800760D0:
     lwz r7, 0xc(r31)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
 _80076104:
     lwz r3, 0(r30)
     addi r0, r3, 1
@@ -1654,7 +1654,7 @@ _80076384:
     stb r29, 0xe(r1)
     lwz r5, 0xc(r27)
     stb r29, 0xf(r1)
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r0, 0xc(r1)
     addi r4, r1, 8
     li r3, 0
@@ -1677,7 +1677,7 @@ _80076384:
     lwz r6, 8(r28)
     li r5, 8
     li r7, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     b _80076420
 _80076408:
     lwz r3, 0(r27)
@@ -1685,7 +1685,7 @@ _80076408:
     lwz r7, 8(r28)
     li r5, 8
     li r6, 0xe
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
 _80076420:
     lwz r3, 0(r27)
     li r4, 0
@@ -1693,20 +1693,20 @@ _80076420:
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r27)
     li r4, 7
     lwz r7, 0xc(r28)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r27)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r27)
     addi r0, r3, 1
     stw r0, 0(r27)
@@ -1818,7 +1818,7 @@ _800765F0:
     stb r30, 0xe(r1)
     lwz r5, 0xc(r28)
     stb r30, 0xf(r1)
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r0, 0xc(r1)
     addi r4, r1, 8
     li r3, 0
@@ -1839,27 +1839,27 @@ _800765F0:
     li r5, 8
     li r6, 0xe
     li r7, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 2
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r28)
     li r4, 7
     lwz r7, 0xc(r29)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 2
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r28)
     addi r0, r3, 1
     stw r0, 0(r28)
@@ -1876,33 +1876,33 @@ _800765F0:
     li r4, 0xff
     li r5, 0xff
     li r6, 0xff
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r3, 0(r28)
     li r4, 0xf
     lwz r7, 8(r29)
     li r5, 4
     li r6, 0xa
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r28)
     li r4, 7
     li r5, 7
     li r6, 7
     li r7, 2
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r28)
     addi r0, r3, 1
     stw r0, 0(r28)
@@ -2176,33 +2176,33 @@ _80076B1C:
     mr r3, r31
     li r5, 0
     li r6, 4
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     mr r3, r31
     li r4, 0xf
     li r5, 8
     li r6, 0xe
     li r7, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     mr r3, r31
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 3
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r7, 0xc(r30)
     mr r3, r31
     li r4, 7
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     mr r3, r31
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 3
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     addi r3, r31, 1
     bl fn_80073C6C
     addi r3, r31, 1
@@ -2225,33 +2225,33 @@ _80076B1C:
     lwz r5, 0xc(r29)
     li r6, 4
     addi r4, r4, 1
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r7, 8(r30)
     addi r3, r31, 1
     li r4, 0xf
     li r5, 8
     li r6, 6
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     addi r3, r31, 1
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r7, 0xc(r30)
     addi r3, r31, 1
     li r4, 7
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     addi r3, r31, 1
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r29)
     addi r0, r3, 2
     stw r0, 0(r29)
@@ -2442,33 +2442,33 @@ _80076F38:
     li r6, 4
     lwz r4, 4(r19)
     lwz r5, 0xc(r19)
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r3, 0(r19)
     li r4, 0xf
     lwz r7, 8(r21)
     li r5, 0xf
     li r6, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r19)
     li r4, 7
     lwz r6, 0xc(r21)
     li r5, 4
     li r7, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r19)
     addi r0, r3, 1
     stw r0, 0(r19)
@@ -2500,7 +2500,7 @@ _80076FD0:
     li r6, 4
     lwz r4, 4(r19)
     lwz r5, 0xc(r19)
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
@@ -2510,27 +2510,27 @@ _80076FD0:
     lwz r7, 8(r21)
     li r5, 0xf
     li r6, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 0
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r19)
     li r4, 7
     lwz r7, 0xc(r21)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r19)
     addi r0, r3, 1
     stw r0, 0(r19)
@@ -2550,7 +2550,7 @@ _80076FD0:
     li r6, 0xff
     lwz r4, 4(r19)
     lwz r5, 0xc(r19)
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
@@ -2560,27 +2560,27 @@ _80076FD0:
     li r5, 0xf
     li r6, 0xf
     li r7, 0
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r19)
     li r4, 1
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r19)
     li r4, 7
     li r5, 7
     li r6, 7
     li r7, 0
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r3, 0(r19)
     addi r0, r3, 1
     stw r0, 0(r19)
@@ -2669,33 +2669,33 @@ _80077288:
     li r4, 0xff
     li r5, 0xff
     li r6, 4
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     lwz r3, 0(r30)
     li r4, 0xf
     lwz r7, 8(r31)
     li r5, 0xf
     li r6, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     lwz r3, 0(r30)
     li r4, 7
     lwz r7, 0xc(r31)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     b _80077350
 _80077308:
     cmpwi r3, 0
@@ -2706,7 +2706,7 @@ _80077308:
     lwz r7, 8(r31)
     li r5, 0xf
     li r6, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
 _8007732C:
     lwz r0, 4(r31)
     cmpwi r0, 0
@@ -2716,7 +2716,7 @@ _8007732C:
     lwz r7, 0xc(r31)
     li r5, 7
     li r6, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
 _80077350:
     lis     r3, lbl_801A3220@ha
     li r0, -1
@@ -2957,33 +2957,33 @@ asm void fn_80077654(void)
     li r4, 0xff
     li r5, 0xff
     li r6, 0xff
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     mr r3, r31
     li r4, 0xf
     li r5, 0
     li r6, 0xe
     li r7, 0xf
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     mr r3, r31
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     mr r3, r31
     li r4, 7
     li r5, 0
     li r6, 6
     li r7, 7
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     mr r3, r31
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r0, 0x14(r1)
     lwz r31, 0xc(r1)
     mtlr r0
@@ -3010,33 +3010,33 @@ asm void fn_80077714(void)
     li r4, 0xff
     li r5, 0xff
     li r6, 0xff
-    bl fn_800734A8
+    bl ModelSetCachedMaterial_570
     mr r3, r31
     li r4, 0
     li r5, 0xf
     li r6, 0xf
     li r7, 0xe
-    bl fn_80072C24
+    bl ModelSetCachedParam_F0
     mr r3, r31
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072D64
+    bl ModelSetCachedParam_2F0
     mr r3, r31
     li r4, 0
     li r5, 7
     li r6, 7
     li r7, 6
-    bl fn_80072CC4
+    bl ModelSetCachedParam_1F0
     mr r3, r31
     li r4, 0
     li r5, 0
     li r6, 0
     li r7, 1
     li r8, 0
-    bl fn_80072E20
+    bl ModelSetCachedParam_430
     lwz r0, 0x14(r1)
     lwz r31, 0xc(r1)
     mtlr r0

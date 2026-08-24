@@ -49,7 +49,7 @@ extern void strncmp(void);
 extern void fn_8006DD14(void);
 extern unsigned char lbl_8019F040[240];
 asm void fn_80072EDC(void);
-asm void fn_800734A8(void);
+asm void ModelSetCachedMaterial_570(void);
 asm void fn_800735C8(void);
 asm void fn_80073620(void);
 asm void fn_80073678(void);
@@ -485,7 +485,7 @@ _80073490:
     blr
 }
 
-asm void fn_800734A8(void)
+asm void ModelSetCachedMaterial_570(void)
 {
     nofralloc
     stwu r1, -0x20(r1)

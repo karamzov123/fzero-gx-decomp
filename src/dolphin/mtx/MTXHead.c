@@ -23,11 +23,11 @@ extern asm void fn_8007245C(void);
 extern asm void fn_80072864(void);
 extern asm void fn_800728A8(void);
 extern asm void fn_80072AB0(void);
-extern asm void fn_80072C24(void);
-extern asm void fn_80072CC4(void);
-extern asm void fn_80072D64(void);
-extern asm void fn_80072E20(void);
-extern asm void fn_800734A8(void);
+extern asm void ModelSetCachedParam_F0(void);
+extern asm void ModelSetCachedParam_1F0(void);
+extern asm void ModelSetCachedParam_2F0(void);
+extern asm void ModelSetCachedParam_430(void);
+extern asm void ModelSetCachedMaterial_570(void);
 extern asm void fn_80073678(void);
 extern asm void fn_800737E4(void);
 extern asm void fn_80073898(void);
@@ -4078,33 +4078,33 @@ asm void fn_8006CE44(void)
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 4
-    bl      fn_800734A8
+    bl      ModelSetCachedMaterial_570
     li	r3, 0
     li	r4, 0xf
     li	r5, 0xf
     li	r6, 0xf
     li	r7, 2
-    bl      fn_80072C24
+    bl      ModelSetCachedParam_F0
     li	r3, 0
     li	r4, 0
     li	r5, 0
     li	r6, 0
     li	r7, 1
     li	r8, 0
-    bl      fn_80072D64
+    bl      ModelSetCachedParam_2F0
     li	r3, 0
     li	r4, 7
     li	r5, 7
     li	r6, 7
     li	r7, 1
-    bl      fn_80072CC4
+    bl      ModelSetCachedParam_1F0
     li	r3, 0
     li	r4, 0
     li	r5, 0
     li	r6, 0
     li	r7, 1
     li	r8, 0
-    bl      fn_80072E20
+    bl      ModelSetCachedParam_430
     li	r3, 1
     li	r4, 4
     li	r5, 5

@@ -32,10 +32,10 @@ asm void fn_80072AB0(void);
 asm void fn_80072B28(void);
 asm void fn_80072B7C(void);
 asm void fn_80072BD0(void);
-asm void fn_80072C24(void);
-asm void fn_80072CC4(void);
-asm void fn_80072D64(void);
-asm void fn_80072E20(void);
+asm void ModelSetCachedParam_F0(void);
+asm void ModelSetCachedParam_1F0(void);
+asm void ModelSetCachedParam_2F0(void);
+asm void ModelSetCachedParam_430(void);
 #pragma push
 #pragma force_active on
 
@@ -494,7 +494,7 @@ _80072C10:
     blr
 }
 
-asm void fn_80072C24(void)
+asm void ModelSetCachedParam_F0(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -541,7 +541,7 @@ _80072CAC:
     blr
 }
 
-asm void fn_80072CC4(void)
+asm void ModelSetCachedParam_1F0(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -588,7 +588,7 @@ _80072D4C:
     blr
 }
 
-asm void fn_80072D64(void)
+asm void ModelSetCachedParam_2F0(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -642,7 +642,7 @@ _80072E08:
     blr
 }
 
-asm void fn_80072E20(void)
+asm void ModelSetCachedParam_430(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
