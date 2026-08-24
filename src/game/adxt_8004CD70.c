@@ -39,7 +39,7 @@ extern void criErr_CallErrCallback(void);
 extern void fn_8004AC04(void);
 extern void fn_8004AC4C(void);
 extern void fn_8004AE94(void);
-extern void fn_8004AEE4(void);
+extern void ADXTGetState(void);
 extern void fn_8004B4E0(void);
 extern void fn_8004BBC4(void);
 extern void fn_8004BBC8(void);
@@ -590,7 +590,7 @@ _8004d460:
     b       _8004d4c4
 _8004d4a0:
     lwz	r3, 8(r31)
-    bl      fn_8004AEE4
+    bl      ADXTGetState
     cmpwi	r3, 3
     bne     _8004d4c4
     lwz	r3, 4(r31)
@@ -603,7 +603,7 @@ _8004d4c4:
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8004d4ec
-    bl      fn_8004AEE4
+    bl      ADXTGetState
     cmpwi	r3, 4
     bne     _8004d4ec
     li	r3, -1
@@ -652,7 +652,7 @@ _8004d564:
     cmpwi	r0, 1
     bne     _8004d5bc
     lwz	r3, 8(r30)
-    bl      fn_8004AEE4
+    bl      ADXTGetState
     cmpwi	r3, 2
     beq     _8004d8c8
     lwz	r3, 0x10(r30)

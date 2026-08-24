@@ -4,7 +4,7 @@
 #pragma push
 #pragma force_active on
 
-extern double fn_800883E8(double);
+extern double atan(double);
 extern double fn_80087E80(double);
 
 asm float fn_80088600(double d)
@@ -13,7 +13,7 @@ asm float fn_80088600(double d)
     stwu    r1, -0x10(r1)
     mflr    r0
     stw     r0, 0x14(r1)
-    bl      fn_800883E8
+    bl      atan
     lwz     r0, 0x14(r1)
     frsp    f1, f1
     mtlr    r0

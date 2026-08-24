@@ -23,8 +23,8 @@ extern void ARQPostRequest(void);
 extern void AXFreeVoice(void);
 extern void AXAcquireVoice(void);
 extern void AXSetVoicePriority(void);
-extern void fn_800211E0(void);
-extern void fn_800211EC(void);
+extern void AXSetAuxCallbackDestA(void);
+extern void AXSetAuxCallbackDestB(void);
 extern void fn_80021914(void);
 extern void fn_80021928(void);
 extern void AXSetVoiceState_cached(void);
@@ -41,7 +41,7 @@ extern void fn_80024DF0(void);
 extern void fn_800251F0(void);
 extern void fn_800253F0(void);
 extern void fn_80025C28(void);
-extern void fn_80025C70(void);
+extern void AXInvokeVoiceStopCallbacks(void);
 extern void fn_80025EE4(void);
 extern void fn_80025EEC(void);
 extern void fn_80025EF4(void);
@@ -160,7 +160,7 @@ asm void SndSetCallback1(void);
 asm void SndSetCallback0(void);
 asm void SndPostRequest(void);
 asm void fn_80065A7C(void);
-asm void fn_80065AC4(void);
+asm void SndClearChannelActiveFlag(void);
 asm void fn_80065AD0(void);
 asm void fn_80065B08(void);
 asm void SndFreeChannel(void);
@@ -8331,11 +8331,11 @@ _80063524:
 _80063534:
     lis     r3, lbl_80193308@ha
     addi	r3, r3, lbl_80193308@l
-    bl      fn_80025C70
+    bl      AXInvokeVoiceStopCallbacks
 _80063540:
     li	r3, 0
     li	r4, 0
-    bl      fn_800211E0
+    bl      AXSetAuxCallbackDestA
     lwz	r3, -0x7740(r13)
     lbz	r0, 0x471(r3)
     cmpwi	r0, 2
@@ -8367,11 +8367,11 @@ _8006359c:
 _800635ac:
     lis     r3, lbl_801932A8@ha
     addi	r3, r3, lbl_801932A8@l
-    bl      fn_80025C70
+    bl      AXInvokeVoiceStopCallbacks
 _800635b8:
     li	r3, 0
     li	r4, 0
-    bl      fn_800211EC
+    bl      AXSetAuxCallbackDestB
     lwz	r0, 0(r31)
     lwz	r3, -0x7740(r13)
     srwi	r0, r0, 0x18
@@ -8461,7 +8461,7 @@ _80063644:
     lis     r4, lbl_801939B4@ha
     addi	r3, r3, fn_80024E3C@l
     addi	r4, r4, lbl_801939B4@l
-    bl      fn_800211E0
+    bl      AXSetAuxCallbackDestA
     b       _80063748
 _80063720:
     li	r0, 0xff
@@ -8538,7 +8538,7 @@ _80063750:
     lis     r4, lbl_80193680@ha
     addi	r3, r3, fn_800243C4@l
     addi	r4, r4, lbl_80193680@l
-    bl      fn_800211E0
+    bl      AXSetAuxCallbackDestA
     b       _80063870
 _80063848:
     li	r0, 0xff
@@ -8571,7 +8571,7 @@ _80063878:
     lis     r4, lbl_80193404@ha
     addi	r3, r3, fn_80025504@l
     addi	r4, r4, lbl_80193404@l
-    bl      fn_800211E0
+    bl      AXSetAuxCallbackDestA
     b       _800638e8
 _800638c0:
     li	r0, 0xff
@@ -8633,7 +8633,7 @@ _800638f0:
     lis     r4, lbl_80193308@ha
     addi	r3, r3, fn_80025854@l
     addi	r4, r4, lbl_80193308@l
-    bl      fn_800211E0
+    bl      AXSetAuxCallbackDestA
     b       _800639d4
 _800639ac:
     li	r0, 0xff
@@ -8727,7 +8727,7 @@ _80063a28:
     lis     r4, lbl_80193860@ha
     addi	r3, r3, fn_80024E3C@l
     addi	r4, r4, lbl_80193860@l
-    bl      fn_800211EC
+    bl      AXSetAuxCallbackDestB
     b       _80063ed4
 _80063b08:
     li	r0, 0xff
@@ -8803,7 +8803,7 @@ _80063b34:
     lis     r4, lbl_801934A0@ha
     addi	r3, r3, fn_800243C4@l
     addi	r4, r4, lbl_801934A0@l
-    bl      fn_800211EC
+    bl      AXSetAuxCallbackDestB
     b       _80063ed4
 _80063c30:
     li	r0, 0xff
@@ -8835,7 +8835,7 @@ _80063c5c:
     lis     r4, lbl_80193368@ha
     addi	r3, r3, fn_80025504@l
     addi	r4, r4, lbl_80193368@l
-    bl      fn_800211EC
+    bl      AXSetAuxCallbackDestB
     b       _80063ed4
 _80063ca8:
     li	r0, 0xff
@@ -8896,7 +8896,7 @@ _80063cd4:
     lis     r4, lbl_801932A8@ha
     addi	r3, r3, fn_80025854@l
     addi	r4, r4, lbl_801932A8@l
-    bl      fn_800211EC
+    bl      AXSetAuxCallbackDestB
     b       _80063ed4
 _80063d94:
     li	r0, 0xff
@@ -8942,11 +8942,11 @@ _80063e10:
 _80063e20:
     lis     r3, lbl_80193308@ha
     addi	r3, r3, lbl_80193308@l
-    bl      fn_80025C70
+    bl      AXInvokeVoiceStopCallbacks
 _80063e2c:
     li	r3, 0
     li	r4, 0
-    bl      fn_800211E0
+    bl      AXSetAuxCallbackDestA
     lwz	r3, -0x7740(r13)
     lbz	r0, 0x471(r3)
     cmpwi	r0, 2
@@ -8978,11 +8978,11 @@ _80063e88:
 _80063e98:
     lis     r3, lbl_801932A8@ha
     addi	r3, r3, lbl_801932A8@l
-    bl      fn_80025C70
+    bl      AXInvokeVoiceStopCallbacks
 _80063ea4:
     li	r3, 0
     li	r4, 0
-    bl      fn_800211EC
+    bl      AXSetAuxCallbackDestB
     lwz	r3, -0x7740(r13)
     li	r0, 0xff
     stb	r0, 0x470(r3)
@@ -11083,7 +11083,7 @@ asm void fn_80065A7C(void)
     blr
 }
 
-asm void fn_80065AC4(void)
+asm void SndClearChannelActiveFlag(void)
 {
     nofralloc
     li	r0, 0
@@ -11836,12 +11836,12 @@ _80066544:
     bc      12, 2, _80066654
     lwz	r0, -0x7740(r13)
     lis     r4, lbl_80193B08@ha
-    lis     r3, fn_80065AC4@ha
+    lis     r3, SndClearChannelActiveFlag@ha
     add	r5, r0, r24
     mr	r24, r25
     lwz	r27, 0x1ac(r5)
     addi	r22, r4, lbl_80193B08@l
-    addi	r21, r3, fn_80065AC4@l
+    addi	r21, r3, SndClearChannelActiveFlag@l
     b       _800665dc
 _80066570:
     mr	r4, r25
@@ -11912,12 +11912,12 @@ _80066654:
     lwz	r31, 0x198(r3)
     add	r5, r3, r24
     lis     r4, lbl_80193B08@ha
-    lis     r3, fn_80065AC4@ha
+    lis     r3, SndClearChannelActiveFlag@ha
     lwz	r24, 0x1ac(r5)
     mr	r25, r23
     mr	r27, r31
     addi	r21, r4, lbl_80193B08@l
-    addi	r22, r3, fn_80065AC4@l
+    addi	r22, r3, SndClearChannelActiveFlag@l
     b       _800666f8
 _8006668c:
     mr	r4, r31
@@ -11964,9 +11964,9 @@ _800666f8:
     bl      DCInvalidateRange
     li	r0, 1
     lis     r3, lbl_80193B08@ha
-    lis     r4, fn_80065AC4@ha
+    lis     r4, SndClearChannelActiveFlag@ha
     stw	r0, -0x7744(r13)
-    addi	r10, r4, fn_80065AC4@l
+    addi	r10, r4, SndClearChannelActiveFlag@l
     addi	r3, r3, lbl_80193B08@l
     mr	r7, r31
     mr	r8, r24
@@ -12553,11 +12553,11 @@ _80066f50:
     lwz	r0, -0x7740(r13)
     lis     r3, lbl_80193B08@ha
     stw	r5, -0x7744(r13)
-    lis     r4, fn_80065AC4@ha
+    lis     r4, SndClearChannelActiveFlag@ha
     add	r5, r0, r6
     addi	r3, r3, lbl_80193B08@l
     lwz	r8, 0x1ac(r5)
-    addi	r10, r4, fn_80065AC4@l
+    addi	r10, r4, SndClearChannelActiveFlag@l
     li	r4, 0
     li	r5, 0
     li	r6, 1
@@ -13655,11 +13655,11 @@ _80067ec8:
     b       _80067edc
 _80067ed4:
     addi	r3, r31, 0x60
-    bl      fn_80025C70
+    bl      AXInvokeVoiceStopCallbacks
 _80067edc:
     li	r3, 0
     li	r4, 0
-    bl      fn_800211E0
+    bl      AXSetAuxCallbackDestA
     lwz	r3, -0x7740(r13)
     lbz	r0, 0x471(r3)
     cmpwi	r0, 2
@@ -13687,11 +13687,11 @@ _80067f30:
     b       _80067f44
 _80067f3c:
     addi	r3, r31, 0
-    bl      fn_80025C70
+    bl      AXInvokeVoiceStopCallbacks
 _80067f44:
     li	r3, 0
     li	r4, 0
-    bl      fn_800211EC
+    bl      AXSetAuxCallbackDestB
     li	r3, 0
 _80067f54:
     lwz	r0, 0x424(r1)
@@ -14665,9 +14665,9 @@ _80068e04:
     li	r0, 1
     lis     r3, lbl_80193B28@ha
     stw	r0, -0x7744(r13)
-    lis     r4, fn_80065AC4@ha
+    lis     r4, SndClearChannelActiveFlag@ha
     lwz	r5, -0x7740(r13)
-    addi	r10, r4, fn_80065AC4@l
+    addi	r10, r4, SndClearChannelActiveFlag@l
     lwz	r7, -0x7af8(r2)
     addi	r3, r3, lbl_80193B28@l
     lwz	r5, 0x1a4(r5)
@@ -14694,10 +14694,10 @@ _80068e4c:
     lwz	r5, -0x7740(r13)
     lwz	r0, 0x100(r5)
     stw	r0, 0x104(r5)
-    bl      fn_800211E0
+    bl      AXSetAuxCallbackDestA
     li	r3, 0
     li	r4, 0
-    bl      fn_800211EC
+    bl      AXSetAuxCallbackDestB
     li	r3, 0
 _80068ea0:
     lmw	r27, 0xc(r1)

@@ -3,13 +3,13 @@ typedef unsigned int u32;
 extern void GXBuildPackedRegister(void);
 extern void* memset(void*, int, unsigned long);
 extern void GXSetCullMode(void);
-extern void fn_800370A0(void);
-extern void fn_800370E4(void);
+extern void GXWriteCachedParamF0(void);
+extern void GXWriteCachedParam1F0(void);
 extern void fn_80037128(void);
 extern void fn_80037190(void);
 extern void fn_8003742C(void);
-extern void fn_80037480(void);
-extern void fn_80037B14(void);
+extern void GXSetLightColorAttnRegs(void);
+extern void GXWriteLightColor(void);
 extern void fn_80037B68(void);
 extern void fn_80037B94(void);
 extern void fn_80037BF4(void);
@@ -250,7 +250,7 @@ _800728F8:
     mr r5, r30
     mr r6, r31
     li r3, 2
-    bl fn_80037B14
+    bl GXWriteLightColor
     lwz r3, -0x7688(r13)
     li r0, 2
     stw r0, 0x1c(r3)
@@ -277,7 +277,7 @@ _8007295C:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80037B14
+    bl GXWriteLightColor
     lwz r3, -0x7688(r13)
     stw r28, 0x1c(r3)
     lwz r3, -0x7688(r13)
@@ -330,7 +330,7 @@ _80072A14:
     mr r5, r28
     mr r6, r29
     mr r7, r30
-    bl fn_80037480
+    bl GXSetLightColorAttnRegs
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)
@@ -360,7 +360,7 @@ asm void LightCtrl_SetCachedParam_2C_Force(void)
     mr r29, r6
     mr r30, r7
     add r31, r0, r31
-    bl fn_80037480
+    bl GXSetLightColorAttnRegs
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)
@@ -527,7 +527,7 @@ _80072C88:
     mr r5, r28
     mr r6, r29
     mr r7, r30
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)
@@ -574,7 +574,7 @@ _80072D28:
     mr r5, r28
     mr r6, r29
     mr r7, r30
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)

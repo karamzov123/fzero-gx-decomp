@@ -368,7 +368,7 @@ _80021128:
     blr	
 }
 
-asm void fn_800211E0(void)
+asm void AXSetAuxCallbackDestA(void)
 {
     nofralloc
     stw	r3, -0x7900(r13)
@@ -376,7 +376,7 @@ asm void fn_800211E0(void)
     blr	
 }
 
-asm void fn_800211EC(void)
+asm void AXSetAuxCallbackDestB(void)
 {
     nofralloc
     stw	r3, -0x78fc(r13)

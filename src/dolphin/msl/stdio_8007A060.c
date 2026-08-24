@@ -20,7 +20,7 @@ extern void fn_8008068C(void);
 extern void fwide(void);
 extern void __fp_compare_greater_equal(void);
 extern void fn_8008809C(void);
-extern void fn_80088128(void);
+extern void __fpclassifyd(void);
 extern void fn_800882EC(void);
 extern void __msl_fp_helper(void);
 extern void TRK_OpenFile_Game(void);
@@ -1851,7 +1851,7 @@ _8007b7b8:
 _8007b7e4:
     stfd	f1, 0x30(r1)
     mr	r3, r31
-    bl      fn_80088128
+    bl      __fpclassifyd
     stfd	f1, 0x18(r1)
     lis	r0, 0x7ff0
     lwz	r4, 0x18(r1)
@@ -3063,7 +3063,7 @@ _8007c7dc:
     bl      MSLFormatDecimalRound
     fmr	f1, f31
     mr	r3, r26
-    bl      fn_80088128
+    bl      __fpclassifyd
     addi	r3, r1, 0x30
     bl      fn_800882EC
     lfd	f1, 0x30(r1)

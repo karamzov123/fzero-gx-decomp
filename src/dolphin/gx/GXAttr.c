@@ -28,7 +28,7 @@ void __GXSetVAT(void);
 void GXGetVtxDescList(register void* p, register int a, register int b);
 void fn_8003396C(register void* p);
 void GXSetArray(register void* p);
-void fn_80033A6C(register void* p);
+void GXWriteAttrRegister(register void* p);
 void GXSetTexCoordGen2(register void* p, register int a, register int b);
 void GXSetNumTexGens(register void* p);
 
@@ -1639,7 +1639,7 @@ _80033a2c:
     blr	
 }
 
-asm void fn_80033A6C(register void* p)
+asm void GXWriteAttrRegister(register void* p)
 {
     nofralloc
     li	r0, 0x48

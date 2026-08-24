@@ -248,7 +248,7 @@ _8004aedc:
     blr	
 }
 
-asm void fn_8004AEE4(void)
+asm void ADXTGetState(void)
 {
     nofralloc
     lbz	r3, 1(r3)

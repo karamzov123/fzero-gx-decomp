@@ -18,8 +18,8 @@ extern void __sformatter(void);
 extern void fn_8008DC10(void);
 extern void MSL_device_link_fn(void); // forward decl: label must be declared before first use
 extern void MSLStrToLong(void); // forward decl
-extern void fn_80088128(void); // forward decl
-extern void fn_800883E8(void); // forward decl
+extern void __fpclassifyd(void); // forward decl
+extern void atan(void); // forward decl
 extern void fn_80087E80(void); // forward decl
 extern void fn_80086D50(void); // forward decl
 extern void fn_800868BC(void); // forward decl
@@ -3084,7 +3084,7 @@ _800867a8:
     add	r0, r0, r4
     srawi.	r0, r0, 0x14
     bc      12, 1, _80086870
-    bl      fn_80088128
+    bl      __fpclassifyd
     stfd	f1, 0x50(r1)
     b       _8008687c
 _80086870:
@@ -3674,7 +3674,7 @@ _8008707c:
     bc      16, 0, _8008707c
 _800870c4:
     mr	r3, r26
-    bl      fn_80088128
+    bl      __fpclassifyd
     fmr	f25, f1
     fmul	f1, f29, f25
     bl      fn_80087F54
@@ -3776,7 +3776,7 @@ _8008721c:
     fsub	f25, f1, f25
     bc      12, 2, _80087240
     mr	r3, r26
-    bl      fn_80088128
+    bl      __fpclassifyd
     fsub	f25, f25, f1
 _80087240:
     fcmpu	cr0, f31, f25
@@ -3967,7 +3967,7 @@ _800874d8:
 _800874e8:
     fmr	f1, f25
     neg	r3, r26
-    bl      fn_80088128
+    bl      __fpclassifyd
     lfd	f3, -0x7638(r2)
     fcmpo	cr0, f1, f3
     cror	2, 1, 2
@@ -4009,7 +4009,7 @@ _80087570:
 _80087588:
     lfd	f1, -0x7618(r2)
     mr	r3, r26
-    bl      fn_80088128
+    bl      __fpclassifyd
     cmpwi	r31, 0
     slwi	r0, r31, 2
     addi	r6, r1, 8
@@ -4862,7 +4862,7 @@ _80088120:
     blr
 }
 
-asm void fn_80088128(void)
+asm void __fpclassifyd(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -5071,7 +5071,7 @@ _800883e0:
     blr
 }
 
-asm void fn_800883E8(void)
+asm void atan(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

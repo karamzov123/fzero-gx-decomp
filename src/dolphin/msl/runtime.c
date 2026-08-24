@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-asm void fn_800794F0(void)
+asm void memcpy_fast(void)
 {
     nofralloc
     srawi.  r0, r5, 4

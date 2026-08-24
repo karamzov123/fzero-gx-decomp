@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void GXSetTexGenCached(void);
-extern asm void fn_80037518(void);
+extern asm void GXWriteLightReg(void);
 extern asm void LightCtrl_SetCachedByte_EE(void);
 extern asm void GXGetCPUFifo(void);
 extern asm void GXSetCPUFifo(void);
@@ -27,7 +27,7 @@ asm void fn_8007001C(void)
     li	r5, 0
     li	r6, 7
     li	r7, 0
-    bl      fn_80037518
+    bl      GXWriteLightReg
     li	r3, 1
     bl      LightCtrl_SetCachedByte_EE
     lwz	r0, 0x14(r1)

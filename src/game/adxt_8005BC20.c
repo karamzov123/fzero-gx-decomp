@@ -8,7 +8,7 @@ extern void adxtSetNotifyCallback(void);
 extern void fn_8005A614(void);
 extern void svm_exit_critical_wrapper(void);
 extern void svm_enter_critical_wrapper(void);
-extern void fn_8005B0C4(void);
+extern void ADXTServerStateRequest(void);
 extern void fn_8005B264(void);
 extern void fn_8005BE98(void);
 extern void fn_8005BFB4(void);
@@ -92,7 +92,7 @@ _8005bce8:
     beq     _8005bd98
     mr	r3, r28
     li	r4, 0
-    bl      fn_8005B0C4
+    bl      ADXTServerStateRequest
     mr	r3, r28
     li	r4, 0
     bl      fn_8005B264

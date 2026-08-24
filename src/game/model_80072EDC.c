@@ -32,8 +32,8 @@ extern void fn_80036AC4(void);
 extern void fn_80036C24(void);
 extern void fn_80036DA0(void);
 extern void fn_80036EB4(void);
-extern void fn_800370A0(void);
-extern void fn_800370E4(void);
+extern void GXWriteCachedParamF0(void);
+extern void GXWriteCachedParam1F0(void);
 extern void fn_80037128(void);
 extern void fn_80037190(void);
 extern void fn_800372E0(void);
@@ -44,7 +44,7 @@ extern void fn_800377C8(void);
 extern void fn_80037BC0(void);
 extern void fn_80038F48(void);
 extern void GXComputeDeltaRatio(void);
-extern void fn_800794F0(void);
+extern void memcpy_fast(void);
 extern void strncmp(void);
 extern void fn_8006DD14(void);
 extern unsigned char lbl_8019F040[240];
@@ -133,7 +133,7 @@ _80072F78:
     li r5, 8
     li r6, 9
     li r7, 0xf
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     stw r31, 0(r28)
     li r4, 8
     li r3, 9
@@ -163,7 +163,7 @@ _80072FE8:
     li r4, 7
     li r5, 7
     li r6, 7
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r0, 7
     stw r0, 0(r28)
     stw r0, 4(r28)
@@ -193,7 +193,7 @@ _80073058:
     li r4, 0xf
     li r5, 8
     li r7, 0xf
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     li r3, 0xf
     li r0, 8
     stw r3, 0(r28)
@@ -222,7 +222,7 @@ _800730C4:
     li r4, 7
     li r5, 4
     li r7, 7
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r3, 7
     li r0, 4
     stw r3, 0(r28)
@@ -253,7 +253,7 @@ _80073138:
     li r5, 0xf
     li r6, 0xf
     li r7, 8
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     li r3, 0xf
     li r0, 8
     stw r3, 0(r28)
@@ -282,7 +282,7 @@ _800731A4:
     li r5, 7
     li r6, 7
     li r7, 4
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r3, 7
     li r0, 4
     stw r3, 0(r28)
@@ -313,7 +313,7 @@ _80073218:
     li r4, 0xf
     li r5, 0xf
     li r6, 0xf
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     li r0, 0xf
     stw r0, 0(r28)
     stw r0, 4(r28)
@@ -341,7 +341,7 @@ _80073280:
     li r4, 7
     li r5, 7
     li r6, 7
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r0, 7
     stw r0, 0(r28)
     stw r0, 4(r28)
@@ -371,7 +371,7 @@ _800732F0:
     li r5, 0xf
     li r6, 8
     li r7, 8
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     stw r31, 0(r28)
     li r3, 0xf
     li r0, 8
@@ -400,7 +400,7 @@ _8007335C:
     li r4, 7
     li r5, 4
     li r7, 7
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r3, 7
     li r0, 4
     stw r3, 0(r28)
@@ -977,7 +977,7 @@ _80073B0C:
     mr r3, r31
     mr r4, r29
     li r5, 0x18
-    bl fn_800794F0
+    bl memcpy_fast
     stb r30, 0x18(r31)
 _80073B30:
     lwz r0, 0x24(r1)
@@ -1371,7 +1371,7 @@ _80074070:
     mr r3, r31
     addi r4, r1, 0x10
     li r5, 0x18
-    bl fn_800794F0
+    bl memcpy_fast
     li r0, 0xa
     stb r0, 0x18(r31)
 _80074098:

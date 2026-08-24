@@ -19,7 +19,7 @@ extern void LCLoadBlocks(void);
 extern void LCStoreBlocks(void);
 extern void LCQueueWait(void);
 extern void OSPanic(void);
-extern void fn_80033A6C(void);
+extern void GXWriteAttrRegister(void);
 extern void fn_80038CFC(void);
 extern void fn_800702E4(void);
 extern void fn_8007048C(void);
@@ -31,7 +31,7 @@ extern void LightCtrl_SetCachedFog(void);
 extern void fn_80075908(void);
 extern void GXWriteFifoByte(void);
 extern void fn_80078360(void);
-extern void fn_800794F0(void);
+extern void memcpy_fast(void);
 extern void fn_8006DFFC(void);
 extern void memset(void);
 extern unsigned char Invalid_Model_str[14];
@@ -68,7 +68,7 @@ asm void fn_800786B0(void)
     mr r28, r5
     addi r30, r27, 0x20
     add r29, r27, r0
-    bl fn_80033A6C
+    bl GXWriteAttrRegister
     li r31, 0
     b _8007870C
 _800786E8:
@@ -124,7 +124,7 @@ asm void fn_80078768(void)
     mr r31, r6
     addi r30, r27, 0x20
     add r29, r27, r0
-    bl fn_80033A6C
+    bl GXWriteAttrRegister
     cmpwi r31, 0
     beq _800787E0
     li r31, 0
@@ -936,7 +936,7 @@ asm void fn_800791E8(void)
     mr r22, r5
     cmpwi r0, 0
     bne _8007921C
-    bl fn_800794F0
+    bl memcpy_fast
     b _800793BC
 _8007921C:
     lbz r5, -0x760c(r13)
@@ -1051,7 +1051,7 @@ _8007939C:
     mr r3, r29
     mr r4, r30
     mr r5, r31
-    bl fn_800794F0
+    bl memcpy_fast
 _800793B4:
     li r3, 0
     bl LCQueueWait

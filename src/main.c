@@ -40,7 +40,7 @@ extern void fn_80005EDC(void);
 extern void fn_800060D8(void);
 extern void fn_80006334(void);
 extern void fn_80006340(void);
-extern void fn_80006354(void);
+extern void dvd_read_sync_wait(void);
 extern void fn_800063AC(void);
 extern void dvdfs_user_fn(void);
 extern void fn_800068F4(void);
@@ -60,7 +60,7 @@ extern void fn_80006CE4(void);
 extern void fn_80006D1C(void);
 extern void fn_80006DAC(void);
 extern void fn_80006DE8(void);
-void fn_80006354(void);
+void dvd_read_sync_wait(void);
 void fn_8000691C(void);
 void fn_80006B4C(void);
 extern void fn_80006DFC(void);
@@ -98,7 +98,7 @@ extern void fn_80008C20(void);
 extern void OSInitArenaPoll(void);
 extern void fn_8000B360(void);
 extern void OSPanic(void);
-extern void fn_8000CDD8(void);
+extern void Yay0ReadyFlagUpdate(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
 extern void PSMTXMultVecPair(void);
@@ -119,9 +119,9 @@ extern void PADSetAnalogMode(void);
 extern void GXInitTexObj(void);
 extern void fn_80036544(void);
 extern void __GXSetTexRegion(void);
-extern void fn_80037518(void);
-extern void fn_800377F8(void);
-extern void fn_80037D40(void);
+extern void GXWriteLightReg(void);
+extern void GXWriteTextureState(void);
+extern void GXWriteLightAttn(void);
 extern void GXGetProjectionv(void);
 extern void GXLoadMatIdxTripleToXF(void);
 extern void fn_8006B188(void);
@@ -182,7 +182,7 @@ extern void GXSetTexGenCached(void);
 extern void fn_800791A4(void);
 extern void fn_800791E8(void);
 extern void fn_800793D4(void);
-extern void fn_800794F0(void);
+extern void memcpy_fast(void);
 extern void __cvt_fp2unsigned(void);
 extern void __msl_strncmp(void);
 extern void __msl_strcmp(void);
@@ -192,7 +192,7 @@ extern void strcpy(void);
 extern void MathSin(void);
 extern void PSVecNormalize3(void);
 extern void QuatNormalizeCompare(void);
-extern void fn_8006D7DC(void);
+extern void PSMTXLoadIdentityFused(void);
 extern void mtx_gpstack_push(void);
 extern void mtx_gpstack_pop(void);
 extern void MTXQuatExtract(void);
@@ -263,8 +263,8 @@ asm void fn_80005660(void)
     bl      OSInit
     bl      DVDInit
     bl      fn_80006AFC
-    lis     r3, fn_80006354@ha
-    addi	r3, r3, fn_80006354@l
+    lis     r3, dvd_read_sync_wait@ha
+    addi	r3, r3, dvd_read_sync_wait@l
     bl      fn_80006B30
     bl      fn_8001AAB4
     bl      fn_8006CFF8
@@ -340,10 +340,10 @@ asm void main_read_fze_str(void)
     li	r5, 0
     li	r6, 4
     li	r7, 0
-    bl      fn_80037518
+    bl      GXWriteLightReg
     li	r3, 0
     li	r4, 0
-    bl      fn_80037D40
+    bl      GXWriteLightAttn
     bl      fn_80007A44
     lwz	r0, 0xc(r1)
     addi	r3, r1, 8
@@ -428,7 +428,7 @@ asm void main_load_sample_rel(void)
     addi	r3, r1, 8
     li	r6, 0
     mr	r4, r31
-    bl      fn_80006354
+    bl      dvd_read_sync_wait
     cmpwi	r3, 0
     bc      12, 2, _800058bc
     mr	r3, r31
@@ -499,7 +499,7 @@ asm void GameMainLoopFrame(void)
     addi	r3, r1, 8
     li	r6, 0
     mr	r4, r30
-    bl      fn_80006354
+    bl      dvd_read_sync_wait
     addi	r3, r1, 8
     bl      DVDCancelSync
     mr	r3, r30
@@ -709,7 +709,7 @@ asm void mmu_user_fn(void)
     fmr	f3, f1
     fmr	f4, f2
     stw	r0, 0x10(r1)
-    bl      fn_800377F8
+    bl      GXWriteTextureState
     li	r3, 2
     bl      LightCtrl_SetCachedCullMode
     bl      QuatNormalizeCompare
@@ -1185,7 +1185,7 @@ asm void fn_80006340(void)
     blr	
 }
 
-asm void fn_80006354(void)
+asm void dvd_read_sync_wait(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1222,7 +1222,7 @@ asm void fn_800063AC(void)
     stw	r0, 0x44(r1)
     addi	r11, r1, 0x40
     bl      _savegpr_23
-    bl      fn_8000CDD8
+    bl      Yay0ReadyFlagUpdate
     clrlwi	r0, r3, 0x10
     cmplwi	r0, 1
     bc      4, 2, _800063e8
@@ -1241,7 +1241,7 @@ _800063e8:
 _800063fc:
     bl      OSGetArenaHi
     mr	r31, r3
-    bl      fn_8000CDD8
+    bl      Yay0ReadyFlagUpdate
     clrlwi	r0, r3, 0x10
     cmplwi	r0, 1
     bc      4, 2, _80006440
@@ -4175,7 +4175,7 @@ asm void fn_80008BA8(void)
 _80008bc8:
     clrlwi.	r0, r6, 0x1b
     bc      12, 2, _80008bd8
-    bl      fn_800794F0
+    bl      memcpy_fast
     b       _80008bdc
 _80008bd8:
     bl      fn_800791E8
@@ -4231,7 +4231,7 @@ asm void fn_80008C20(void)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008c80
     mr	r3, r30
-    bl      fn_8006D7DC
+    bl      PSMTXLoadIdentityFused
     b       _80008d9c
 _80008c80:
     lfs	f6, 4(r31)
@@ -4255,7 +4255,7 @@ _80008c80:
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008cdc
     mr	r3, r30
-    bl      fn_8006D7DC
+    bl      PSMTXLoadIdentityFused
     b       _80008d9c
 _80008cdc:
     lfs	f6, 0xc(r1)
@@ -4279,7 +4279,7 @@ _80008cdc:
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008d38
     mr	r3, r30
-    bl      fn_8006D7DC
+    bl      PSMTXLoadIdentityFused
     b       _80008d9c
 _80008d38:
     lwz	r3, -0x76c0(r13)

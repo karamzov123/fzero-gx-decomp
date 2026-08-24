@@ -7,7 +7,7 @@ extern void svmLockServer_wrapper(void);
 extern void criErr_CallErrCallback(void);
 extern void fn_8004AC58(void);
 extern void fn_8004AE78(void);
-extern void fn_8004AEE4(void);
+extern void ADXTGetState(void);
 extern void fn_8004AEF0(void);
 extern void fn_8004B1DC(void);
 extern void fn_8004FC38(void);
@@ -837,7 +837,7 @@ _8004facc:
     cmpwi	r0, 2
     bne     _8004fb7c
     lwz	r3, 4(r31)
-    bl      fn_8004AEE4
+    bl      ADXTGetState
     stb	r3, 1(r31)
     lwz	r3, 4(r31)
     bl      fn_8004AE78
@@ -881,7 +881,7 @@ _8004fb7c:
     cmpwi	r0, 1
     bne     _8004fc0c
     lwz	r3, 4(r31)
-    bl      fn_8004AEE4
+    bl      ADXTGetState
     cmpwi	r3, 1
     bne     _8004fc0c
     lwz	r3, 4(r31)

@@ -36,7 +36,7 @@ asm void fn_8006D6FC(void);
 asm void QuatNormalizeCompare(void);
 asm void fn_8006D784(void);
 asm void fn_8006D7B0(void);
-asm void fn_8006D7DC(void);
+asm void PSMTXLoadIdentityFused(void);
 asm void fn_8006D7F4(void);
 asm void fn_8006D890(void);
 asm void MTXSinCos(void);
@@ -705,7 +705,7 @@ asm void fn_8006D7B0(void)
     blr
 }
 
-asm void fn_8006D7DC(void)
+asm void PSMTXLoadIdentityFused(void)
 {
     nofralloc
     lis	r4, -0x2000

@@ -31,7 +31,7 @@ extern void OSRegisterResetFunction(void);
 extern void OSRegisterVersion(void);
 extern void OSRestoreInterrupts(void);
 extern void OSSleepThread(void);
-extern void fn_8000CDD8(void);
+extern void Yay0ReadyFlagUpdate(void);
 extern void __CARDGetFatBlock(void);
 extern void __CARDGetDirBlock(void);
 extern void fn_8002E0C4(void);
@@ -57,7 +57,7 @@ asm void CARDInit(void)
     cmplwi	r0, 0
     bne     _8002a728
 _8002a6d0:
-    bl      fn_8000CDD8
+    bl      Yay0ReadyFlagUpdate
     sth	r3, -0x7800(r13)
     lwz	r3, -0x7eb8(r13)
     bl      OSRegisterVersion

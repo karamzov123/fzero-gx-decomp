@@ -10,7 +10,7 @@ extern asm void PSMTXRotTrigVariant(void);
 extern asm void fn_8006E0C8(void);
 extern asm void fn_8006D890(void);
 extern asm void PSVecNormalize3(void);
-extern asm void fn_8006D7DC(void);
+extern asm void PSMTXLoadIdentityFused(void);
 extern asm void fn_8006DF44(void);
 
 asm void PSMTXRotAxisRadVariant(void)
@@ -199,7 +199,7 @@ asm void PSMTXReflect(void)
     fcmpu	cr0, f0, f1
     bne	_8006f25c
     mr	r3, r30
-    bl      fn_8006D7DC
+    bl      PSMTXLoadIdentityFused
     b	_8006f37c
 _8006f25c:
     lfs	f6, 4(r31)
@@ -223,7 +223,7 @@ _8006f25c:
     fcmpu	cr0, f0, f1
     bne	_8006f2b8
     mr	r3, r30
-    bl      fn_8006D7DC
+    bl      PSMTXLoadIdentityFused
     b	_8006f37c
 _8006f2b8:
     lfs	f6, 0xc(r1)
@@ -247,7 +247,7 @@ _8006f2b8:
     fcmpu	cr0, f0, f1
     bne	_8006f314
     mr	r3, r30
-    bl      fn_8006D7DC
+    bl      PSMTXLoadIdentityFused
     b	_8006f37c
 _8006f314:
     lwz	r3, -0x76c0(r13)

@@ -1236,7 +1236,7 @@ _80037048:
     blr	
 }
 
-asm void fn_800370A0(register void* p)
+asm void GXWriteCachedParamF0(register void* p)
 {
     nofralloc
     lwz	r9, -0x7de8(r2)
@@ -1258,7 +1258,7 @@ asm void fn_800370A0(register void* p)
     blr	
 }
 
-asm void fn_800370E4(register void* p)
+asm void GXWriteCachedParam1F0(register void* p)
 {
     nofralloc
     lwz	r9, -0x7de8(r2)

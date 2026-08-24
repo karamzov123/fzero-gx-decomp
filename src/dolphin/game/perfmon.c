@@ -17,8 +17,8 @@ extern void OSRestoreInterrupts(void);
 extern void GXGetProjectionv(register u32 a);
 extern void fn_80038A88(register u32 a);
 extern void GXClearVtxDesc(register u32 a);
-extern void fn_80033A6C(register u32 a);
-extern void fn_80037B14(register u32 a);
+extern void GXWriteAttrRegister(register u32 a);
+extern void GXWriteLightColor(register u32 a);
 extern void fn_80037BF4(register u32 a);
 extern void __GXSetChanAmbColor(register u32 a);
 extern void __GXSetChanCtrl(register u32 a);
@@ -604,12 +604,12 @@ asm int fn_8003EAE4(register u32 a)
     stfs	f0, 0x4c(r31)
     bl      fn_80038A88
     bl      GXClearVtxDesc
-    bl      fn_80033A6C
+    bl      GXWriteAttrRegister
     li	r3, 1
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      fn_80037B14
+    bl      GXWriteLightColor
     li	r3, 0
     bl      fn_80037BF4
     li	r3, 1

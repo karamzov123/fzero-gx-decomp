@@ -48,7 +48,7 @@ extern void fn_8005A94C(void);
 extern void fn_8005A95C(void);
 extern void fn_8005B010(void);
 extern void fn_8005B068(void);
-extern void fn_8005B0C4(void);
+extern void ADXTServerStateRequest(void);
 extern void fn_8005B264(void);
 extern void fn_8005B464(void);
 extern void fn_8005B534(void);
@@ -1252,7 +1252,7 @@ asm void fn_8004EEA4(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_8005B0C4
+    bl      ADXTServerStateRequest
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1281,7 +1281,7 @@ asm void fn_8004EEE4(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_8005B0C4
+    bl      ADXTServerStateRequest
     mr	r3, r31
     li	r4, 0
     bl      fn_8005B264

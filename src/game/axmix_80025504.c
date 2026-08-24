@@ -4,7 +4,7 @@
 typedef int BOOL;
 extern void fn_80024E6C(void);
 extern void fn_80025004(void);
-extern void fn_80025C70(void);
+extern void AXInvokeVoiceStopCallbacks(void);
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void fn_80025A24(void);
@@ -378,7 +378,7 @@ asm void fn_80025A24(void)
     stw	r30, 0x20(r1)
     stw	r29, 0x1c(r1)
     mr	r29, r3
-    bl      fn_80025C70
+    bl      AXInvokeVoiceStopCallbacks
     bl      OSDisableInterrupts
     lwz	r6, 0x3c(r29)
     lis	r4, -0x3333
@@ -531,7 +531,7 @@ asm void fn_80025C28(void)
     blr	
 }
 
-asm void fn_80025C70(void)
+asm void AXInvokeVoiceStopCallbacks(void)
 {
     nofralloc
     mflr	r0

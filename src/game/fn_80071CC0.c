@@ -18,7 +18,7 @@ extern void DVDOpen(void);
 extern void DVDCancelSync(void);
 extern void DVDReadAsync(void);
 extern void fn_80015E18(void);
-extern void fn_800377F8(void);
+extern void GXWriteTextureState(void);
 extern void GXSetProjectionv(void);
 extern void GXBeginDisplayList(void);
 extern void GXEndDisplayList(void);
@@ -254,7 +254,7 @@ _80071f58:
     stfs    f3, 0x1c(r6)
     stw     r5, 0x2c(r6)
     stw     r0, 8(r1)
-    bl      fn_800377F8
+    bl      GXWriteTextureState
     fcmpu   cr0, f30, f31
     bne     _80071fa8
     lfs     f0, -0x79e4(r2)

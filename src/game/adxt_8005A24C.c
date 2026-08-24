@@ -22,7 +22,7 @@ extern void svm_exit_critical_wrapper(void);
 extern void svm_enter_critical_wrapper(void);
 extern void fn_8005A9B8(void);
 extern void fn_8005AE98(void);
-extern void fn_8005B0C4(void);
+extern void ADXTServerStateRequest(void);
 extern void fn_8005B264(void);
 extern void fn_8005BE68(void);
 extern void fn_8005BE80(void);
@@ -1166,7 +1166,7 @@ _8005b0b4:
     blr	
 }
 
-asm void fn_8005B0C4(void)
+asm void ADXTServerStateRequest(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -1453,7 +1453,7 @@ asm void fn_8005B464(void)
     or.	r29, r3, r3
     beq     _8005b518
     li	r4, 0
-    bl      fn_8005B0C4
+    bl      ADXTServerStateRequest
     mr	r3, r29
     li	r4, 0
     bl      fn_8005B264
@@ -1644,7 +1644,7 @@ _8005b6fc:
     beq     _8005b7bc
     mr	r3, r31
     li	r4, 0
-    bl      fn_8005B0C4
+    bl      ADXTServerStateRequest
     mr	r3, r31
     li	r4, 0
     bl      fn_8005B264
@@ -1711,7 +1711,7 @@ _8005b7c4:
     beq     _8005b8ac
     mr	r3, r31
     li	r4, 0
-    bl      fn_8005B0C4
+    bl      ADXTServerStateRequest
     mr	r3, r31
     li	r4, 0
     bl      fn_8005B264
@@ -1769,7 +1769,7 @@ _8005b8b4:
     beq     _8005b978
     mr	r3, r31
     li	r4, 0
-    bl      fn_8005B0C4
+    bl      ADXTServerStateRequest
     mr	r3, r31
     li	r4, 0
     bl      fn_8005B264

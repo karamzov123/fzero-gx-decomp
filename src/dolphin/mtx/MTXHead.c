@@ -37,7 +37,7 @@ extern asm void GXSetChanAmbColorCached(void);
 extern asm void LightCtrl_SetCachedRec_C30(void);
 extern asm void GXSetTexGenCached(void);
 extern asm void fn_8007ED90(void);
-extern asm void fn_800883E8(void);
+extern asm void atan(void);
 extern asm void expf(void);
 extern asm void __msl_fp_helper(void);
 extern unsigned char ARCInitHandle_bad_archive_format_str[34];
@@ -2772,7 +2772,7 @@ _8006bd88:
     fsubs	f1, f1, f2
     fmuls	f1, f3, f1
     fmuls	f1, f1, f0
-    bl      fn_800883E8
+    bl      atan
     li	r0, 0x3f
     addi	r26, r26, 1
     divw	r0, r31, r0

@@ -16,7 +16,7 @@ extern asm void fn_80034D9C(void);
 extern asm void GXSetCopyClear(void);
 extern asm void fn_80037C2C(void);
 extern asm void fn_80037D14(void);
-extern asm void fn_80037D40(void);
+extern asm void GXWriteLightAttn(void);
 extern asm void ModelMatchCachedSlot_B20(void);
 extern asm void fn_80035110(void);
 extern asm void fn_800350F4(void);
@@ -175,7 +175,7 @@ _80070884:
     bl      fn_80037D14
     li	r3, 1
     li	r4, 0
-    bl      fn_80037D40
+    bl      GXWriteLightAttn
     b	_800709c4
 _800709b0:
     li	r3, 0

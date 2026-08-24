@@ -10,7 +10,7 @@ extern void fn_8004AD84(void);
 extern void fn_8004ADF4(void);
 extern void fn_8004AE78(void);
 extern void fn_8004AE94(void);
-extern void fn_8004AEE4(void);
+extern void ADXTGetState(void);
 extern void fn_8004B0EC(void);
 extern void fn_8004B180(void);
 extern void gcciErrPrintf(void);
@@ -368,7 +368,7 @@ asm void fn_80057494(void)
 _80057504:
     addi	r28, r4, 0x38
     add	r28, r27, r28
-    bl      fn_8004AEE4
+    bl      ADXTGetState
     cmpwi	r3, 4
     bne     _80057524
     li	r0, 3

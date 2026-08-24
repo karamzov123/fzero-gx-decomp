@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void fn_80088538(void);
-extern asm void fn_800883E8(void);
+extern asm void atan(void);
 extern asm void sqrtf(void);
 extern asm void atan2f(void);
 
@@ -65,16 +65,16 @@ _8006ec08:
     bl      fn_80088538
     frsp	f25, f1
     fmr	f1, f25
-    bl      fn_800883E8
+    bl      atan
     lfs	f0, -0x7a68(r2)
     frsp	f24, f1
     fsubs	f0, f0, f26
     fmuls	f1, f0, f25
-    bl      fn_800883E8
+    bl      atan
     fdiv	f27, f1, f24
     frsp	f27, f27
     fmuls	f1, f26, f25
-    bl      fn_800883E8
+    bl      atan
     fdiv	f5, f1, f24
     frsp	f5, f5
     b	_8006ec64

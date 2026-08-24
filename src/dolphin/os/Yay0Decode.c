@@ -8,7 +8,7 @@ typedef unsigned short u16;
 extern s32 __OSReadROM(s32 arg0, s32 arg1, s32 arg2);
 extern s32 fn_8000CAC8(s32 code);
 extern void fn_8000CC64(void* dst, void* src);
-extern u16 fn_8000CDD8(void);
+extern u16 Yay0ReadyFlagUpdate(void);
 extern void fn_8000CE30(u8* dest, s32 size, u8* data);
 extern unsigned char lbl_80122F50[384];
 extern unsigned char lbl_801230D0[2448];
@@ -33,7 +33,7 @@ asm s32 fn_8000CAC8(register s32 code)
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
     mr      r31, r3
-    bl      fn_8000CDD8
+    bl      Yay0ReadyFlagUpdate
     clrlwi  r0, r3, 16
     cmplwi  r0, 1
     bne     Yay0Idx_noStream
@@ -253,7 +253,7 @@ Yay0Dec_endIter:
     blr
 }
 
-asm u16 fn_8000CDD8(void)
+asm u16 Yay0ReadyFlagUpdate(void)
 {
     nofralloc
     lhz     r3, -0x7F88(r13)
@@ -343,7 +343,7 @@ asm s32 fn_8000CEBC(register u8* arcData, register void* work)
     stw     r29, 0x34(r1)
     addi    r29, r3, 0
     stw     r0, -0x7C24(r13)
-    bl      fn_8000CDD8
+    bl      Yay0ReadyFlagUpdate
     clrlwi  r0, r3, 16
     cmplwi  r0, 1
     bne     Yay0Arc_notStreaming

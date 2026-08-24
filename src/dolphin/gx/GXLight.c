@@ -153,7 +153,7 @@ asm void fn_8003742C(register void* p)
     blr	
 }
 
-asm void fn_80037480(register void* p, register int a, register int b)
+asm void GXSetLightColorAttnRegs(register void* p, register int a, register int b)
 {
     nofralloc
     slwi	r10, r3, 1
@@ -196,7 +196,7 @@ asm void fn_80037480(register void* p, register int a, register int b)
     blr	
 }
 
-asm void fn_80037518(register void* p)
+asm void GXWriteLightReg(register void* p)
 {
     nofralloc
     clrlwi	r0, r4, 0x18
@@ -418,7 +418,7 @@ asm void fn_800377C8(void)
     blr	
 }
 
-asm void fn_800377F8(register void* p, register int a, register int b)
+asm void GXWriteTextureState(register void* p, register int a, register int b)
 {
     nofralloc
     mflr	r0
@@ -640,7 +640,7 @@ _80037ad8:
     blr	
 }
 
-asm void fn_80037B14(register void* p)
+asm void GXWriteLightColor(register void* p)
 {
     nofralloc
     lwz	r8, -0x7de8(r2)
@@ -818,7 +818,7 @@ asm void fn_80037D14(register void* p)
     blr	
 }
 
-asm void fn_80037D40(register void* p)
+asm void GXWriteLightAttn(register void* p)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)
