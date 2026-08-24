@@ -139,7 +139,7 @@ asm void SndPlaySequenceNotes(void);
 asm void fn_80063094(void);
 asm void SndInitProcTable(void);
 asm void fn_8006331C(void);
-asm void fn_80063EF4(void);
+asm void SndCalcPanMix(void);
 asm void SndSendParamToChannelVoices(void);
 asm void fn_8006413C(void);
 asm void fn_800641A8(void);
@@ -467,7 +467,7 @@ _8005c528:
 _8005c530:
     lbz	r4, 0x19(r7)
     lbz	r5, 0x1a(r7)
-    bl      fn_80063EF4
+    bl      SndCalcPanMix
     rlwinm	r0, r3, 0x1e, 0x1a, 0x1f
     lis	r4, 0x4330
     add	r29, r29, r0
@@ -2321,7 +2321,7 @@ _8005df80:
     lbz	r4, 0x19(r15)
     mr	r3, r22
     lbz	r5, 0x1a(r15)
-    bl      fn_80063EF4
+    bl      SndCalcPanMix
     rlwinm	r0, r3, 0x1e, 0x1a, 0x1f
     lis	r4, 0x4330
     add	r17, r17, r0
@@ -9003,7 +9003,7 @@ _80063ed4:
     blr
 }
 
-asm void fn_80063EF4(void)
+asm void SndCalcPanMix(void)
 {
     nofralloc
     lwz	r6, -0x7740(r13)
