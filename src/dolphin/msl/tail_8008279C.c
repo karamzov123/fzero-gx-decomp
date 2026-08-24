@@ -8,7 +8,7 @@ typedef signed int s32;
 // MSL tail region 0x8008279C-0x80083D40 (pm10-c region A)
 
 extern void __va_arg(void);
-extern void fn_80080030(void);
+extern void mbrtowc(void);
 extern void MSL_device_link_fn(void);
 extern void fn_80085088(void);
 extern void MSLStrToLong(void);
@@ -653,7 +653,7 @@ _80082fbc:
     mr	r3, r22
     addi	r4, r1, 8
     li	r5, 1
-    bl      fn_80080030
+    bl      mbrtowc
     addi	r22, r22, 1
     b       _80082fec
 _80082fe4:
@@ -792,7 +792,7 @@ _800831a4:
     mr	r3, r22
     addi	r4, r1, 8
     li	r5, 1
-    bl      fn_80080030
+    bl      mbrtowc
     addi	r22, r22, 2
     b       _800831d0
 _800831c8:

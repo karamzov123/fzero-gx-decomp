@@ -2,7 +2,7 @@
 #pragma force_active on
 
 unsigned long wcstombs(char* dst, const unsigned short* src, unsigned long n);
-void fn_80080030(void);
+void mbrtowc(void);
 void fn_80080150(void);
 void strncmp(void);
 extern int strncpy(void);
@@ -95,7 +95,7 @@ _8008001c:
     blr	
 }
 
-asm void fn_80080030(void)
+asm void mbrtowc(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

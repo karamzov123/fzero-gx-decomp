@@ -2078,7 +2078,7 @@ _8003601c:
     blr	
 }
 
-asm void fn_80036058(register void* p)
+asm void GXInitTexObjData(register void* p)
 {
     nofralloc
     lwz	r5, 0xc(r3)
