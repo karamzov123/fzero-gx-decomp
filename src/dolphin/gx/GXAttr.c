@@ -14,14 +14,14 @@ extern unsigned char jumptable_8012AF00[68];
 extern unsigned char jumptable_8012AF44[28];
 extern unsigned char jumptable_8012AF60[84];
 
-void fn_80032370(register void* p);
-void fn_800324C8(register void* p, register int a, register int b);
+void __GXXfVtxSpecs(register void* p);
+void GXSetVtxDesc(register void* p, register int a, register int b);
 void fn_80032818(register void* p, register int a, register int b);
-void fn_80032B8C(void);
+void __GXSetVAT(void);
 void fn_80032BE0(void);
 void GXGetVtxDesc(register void* p, register int a);
 void GXGetVtxDescv(register void* p);
-void fn_80032F48(register void* p);
+void GXClearVtxDesc(register void* p);
 void fn_80032F80(register void* p, register int a, register int b);
 void fn_800332D8(register void* p, register int a, register int b);
 void fn_80033650(void);
@@ -29,13 +29,13 @@ void fn_800336EC(register void* p, register int a, register int b);
 void fn_8003396C(register void* p);
 void fn_800339E0(register void* p);
 void fn_80033A6C(register void* p);
-void fn_80033A7C(register void* p, register int a, register int b);
+void GXSetTexCoordGen2(register void* p, register int a, register int b);
 void fn_80033D4C(register void* p);
 
 #pragma push
 #pragma force_active on
 
-asm void fn_80032370(register void* p)
+asm void __GXXfVtxSpecs(register void* p)
 {
     nofralloc
     lwz	r5, -0x7de8(r2)
@@ -149,7 +149,7 @@ _8003248c:
     blr	
 }
 
-asm void fn_800324C8(register void* p, register int a, register int b)
+asm void GXSetVtxDesc(register void* p, register int a, register int b)
 {
     nofralloc
     cmplwi	r3, 0x19
@@ -606,7 +606,7 @@ _80032b78:
     blr	
 }
 
-asm void fn_80032B8C(void)
+asm void __GXSetVAT(void)
 {
     nofralloc
     mflr	r0
@@ -625,7 +625,7 @@ asm void fn_80032B8C(void)
     stb	r0, -0x8000(r5)
     lwz	r0, 0x18(r4)
     stw	r0, -0x8000(r5)
-    bl      fn_80032370
+    bl      __GXXfVtxSpecs
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
     mtlr	r0
@@ -872,7 +872,7 @@ _80032edc:
     blr	
 }
 
-asm void fn_80032F48(register void* p)
+asm void GXClearVtxDesc(register void* p)
 {
     nofralloc
     lwz	r3, -0x7de8(r2)
@@ -1648,7 +1648,7 @@ asm void fn_80033A6C(register void* p)
     blr	
 }
 
-asm void fn_80033A7C(register void* p, register int a, register int b)
+asm void GXSetTexCoordGen2(register void* p, register int a, register int b)
 {
     nofralloc
     mflr	r0

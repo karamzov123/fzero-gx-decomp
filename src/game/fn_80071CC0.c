@@ -22,8 +22,8 @@ extern void fn_800377F8(void);
 extern void fn_80038B3C(void);
 extern void fn_8003887C(void);
 extern void fn_80038944(void);
-extern void fn_80032F48(void);
-extern void fn_800324C8(void);
+extern void GXClearVtxDesc(void);
+extern void GXSetVtxDesc(void);
 extern void fn_800793D4(void);
 extern void fn_800725DC(void);
 extern void fn_80072614(void);
@@ -640,7 +640,7 @@ asm void fn_8007245C(register u32 a)
     lwz     r0, -0x7698(r13)
     cmplw   r30, r0
     beq     _800724b0
-    bl      fn_80032F48
+    bl      GXClearVtxDesc
     stw     r30, -0x7698(r13)
     li      r31, 0
 _8007248c:
@@ -648,7 +648,7 @@ _8007248c:
     beq     _800724a0
     mr      r3, r31
     li      r4, 1
-    bl      fn_800324C8
+    bl      GXSetVtxDesc
 _800724a0:
     addi    r31, r31, 1
     srwi    r30, r30, 1

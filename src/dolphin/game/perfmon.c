@@ -16,7 +16,7 @@ extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void fn_80038BFC(register u32 a);
 extern void fn_80038A88(register u32 a);
-extern void fn_80032F48(register u32 a);
+extern void GXClearVtxDesc(register u32 a);
 extern void fn_80033A6C(register u32 a);
 extern void fn_80037B14(register u32 a);
 extern void fn_80037BF4(register u32 a);
@@ -27,7 +27,7 @@ extern void fn_80037014(register u32 a);
 extern void fn_80033D4C(register u32 a);
 extern void fn_800377C8(register u32 a);
 extern void fn_80037BC0(register u32 a);
-extern void fn_800324C8(register u32 a);
+extern void GXSetVtxDesc(register u32 a);
 extern void fn_80032F80(register u32 a);
 extern unsigned char perf_autosample_negative_str[48];
 extern unsigned char lbl_8012B658[144];
@@ -603,7 +603,7 @@ asm int fn_8003EAE4(register u32 a)
     lfs	f0, -0x7c54(r2)
     stfs	f0, 0x4c(r31)
     bl      fn_80038A88
-    bl      fn_80032F48
+    bl      GXClearVtxDesc
     bl      fn_80033A6C
     li	r3, 1
     li	r4, 4
@@ -640,7 +640,7 @@ asm int fn_8003EAE4(register u32 a)
     bl      fn_80037BC0
     li	r3, 9
     li	r4, 1
-    bl      fn_800324C8
+    bl      GXSetVtxDesc
     li	r3, 0
     li	r4, 9
     li	r5, 1

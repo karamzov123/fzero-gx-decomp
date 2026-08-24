@@ -15,7 +15,7 @@ extern void _savegpr_23(void);
 extern void _savegpr_25(void);
 extern void _savegpr_26(void);
 extern void _savegpr_27(void);
-extern void fn_80033A7C(void);
+extern void GXSetTexCoordGen2(void);
 extern void fn_80033D4C(void);
 extern void fn_80034A5C(void);
 extern void fn_80034AEC(void);
@@ -1783,7 +1783,7 @@ _8007461C:
     mr r6, r28
     mr r7, r29
     mr r8, r30
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     stw r26, 0(r31)
     stw r27, 4(r31)
     stw r28, 8(r31)

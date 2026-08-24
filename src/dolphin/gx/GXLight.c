@@ -8,8 +8,8 @@ extern void __cvt_fp2unsigned(void);
 extern void __GXFlushTextureState(void);
 extern void GXGetVtxDescv(register void* p);
 extern void fn_8003396C(register void* p);
-extern void fn_80032F48(register void* p);
-extern void fn_800324C8(register void* p, register int a, register int b);
+extern void GXClearVtxDesc(register void* p);
+extern void GXSetVtxDesc(register void* p, register int a, register int b);
 extern void fn_80032F80(register void* p, register int a, register int b);
 extern void fn_80088624(void);
 extern void fn_80088600(void);
@@ -916,13 +916,13 @@ asm void fn_80037E30(register void* p)
     li	r3, 3
     addi	r4, r31, 0xd8
     bl      fn_8003396C
-    bl      fn_80032F48
+    bl      GXClearVtxDesc
     li	r3, 9
     li	r4, 1
-    bl      fn_800324C8
+    bl      GXSetVtxDesc
     li	r3, 0xa
     li	r4, 1
-    bl      fn_800324C8
+    bl      GXSetVtxDesc
     li	r3, 3
     li	r4, 9
     li	r5, 1
@@ -1398,13 +1398,13 @@ asm void fn_800384FC(register void* p)
     li	r3, 3
     addi	r4, r26, 0xd8
     bl      fn_8003396C
-    bl      fn_80032F48
+    bl      GXClearVtxDesc
     li	r3, 9
     li	r4, 1
-    bl      fn_800324C8
+    bl      GXSetVtxDesc
     li	r3, 0xa
     li	r4, 1
-    bl      fn_800324C8
+    bl      GXSetVtxDesc
     li	r3, 3
     li	r4, 9
     li	r5, 1
@@ -1422,7 +1422,7 @@ asm void fn_800384FC(register void* p)
     beq     _8003862c
     li	r3, 0xd
     li	r4, 1
-    bl      fn_800324C8
+    bl      GXSetVtxDesc
     li	r3, 3
     li	r4, 0xd
     li	r5, 1

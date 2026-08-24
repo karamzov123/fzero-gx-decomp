@@ -191,9 +191,9 @@ extern s32 fn_80036104(GXTexObj *obj);
 
 /* called from later GX units */
 extern void fn_80034E64(void *color, u32 zvalue);
-extern void fn_80033A7C(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
+extern void GXSetTexCoordGen2(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
 extern void fn_80033D4C(s32 num);
-extern void fn_80032F48(void);
+extern void GXClearVtxDesc(void);
 extern void fn_80033A6C(void);
 extern void fn_800339E0(s32 idx, void *arg, s32 val);
 extern void fn_800332D8(s32 idx, const void *tbl);
@@ -1086,59 +1086,59 @@ L80031334:
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     li	r3, 1
     li	r4, 1
     li	r5, 5
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     li	r3, 2
     li	r4, 1
     li	r5, 6
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     li	r3, 3
     li	r4, 1
     li	r5, 7
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     li	r3, 4
     li	r4, 1
     li	r5, 8
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     li	r3, 5
     li	r4, 1
     li	r5, 9
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     li	r3, 6
     li	r4, 1
     li	r5, 0xa
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     li	r3, 7
     li	r4, 1
     li	r5, 0xb
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     li	r3, 1
     bl fn_80033D4C
-    bl fn_80032F48
+    bl GXClearVtxDesc
     bl fn_80033A6C
     li	r29, 9
     b L80031444

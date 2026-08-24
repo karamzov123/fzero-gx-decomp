@@ -39,7 +39,7 @@ extern GXData *const gx;
 
 extern void fn_8003666C(void);
 extern void fn_80036F24(void);
-extern void fn_80032B8C(void);
+extern void __GXSetVAT(void);
 extern void fn_80033650(void);
 extern void fn_80032BE0(void);
 extern void __cvt_fp2unsigned(void);
@@ -49,8 +49,8 @@ extern void fn_80035B88(register void* p1, register void* p2, register int id, r
 extern void __cvt_fp2unsigned(void);
 extern void GXGetVtxDescv(register void* p);
 extern void fn_8003396C(register void* p);
-extern void fn_80032F48(register void* p);
-extern void fn_800324C8(register void* p, register int a, register int b);
+extern void GXClearVtxDesc(register void* p);
+extern void GXSetVtxDesc(register void* p, register int a, register int b);
 extern void fn_80032F80(register void* p, register int a, register int b);
 extern void fn_80088600(void);
 extern void fn_80032818(register void* p, register int a, register int b);
@@ -100,7 +100,7 @@ void __GXSetDirtyState(void)
     if (gx->dirtyState & 4)
         __GXSetGenMode();
     if (gx->dirtyState & 8)
-        fn_80032B8C();
+        __GXSetVAT();
     if (gx->dirtyState & 0x10)
         fn_80033650();
     if (gx->dirtyState & 0x18)
@@ -144,7 +144,7 @@ _80034694:
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1c, 0x1c
     beq     _800346a8
-    bl      fn_80032B8C
+    bl      __GXSetVAT
 _800346a8:
     lwz	r3, -0x7de8(r2)
     lwz	r0, 0x4f4(r3)

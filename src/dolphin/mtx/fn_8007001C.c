@@ -7,7 +7,7 @@ extern asm void fn_80072BD0(void);
 extern asm void GXGetCPUFifo(void);
 extern asm void GXSetCPUFifo(void);
 extern asm void GXGetGPStatus(void);
-extern asm void fn_80032F48(void);
+extern asm void GXClearVtxDesc(void);
 extern asm void fn_800723F8(void);
 extern asm void LightCtrl_SetCachedFogArray(void);
 extern unsigned char lbl_8015A860[432];
@@ -101,7 +101,7 @@ asm void fn_80070100(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     addi	r31, r3, lbl_8015A860@l
-    bl      fn_80032F48
+    bl      GXClearVtxDesc
     bl      fn_800723F8
     addi	r4, r31, 0
     li	r3, 0
