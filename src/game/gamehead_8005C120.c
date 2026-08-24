@@ -57,8 +57,8 @@ extern void fn_80026EAC(void);
 extern void axmix_set_voice_volume(void);
 extern void axmix_set_voice_volume_clamped(void);
 extern void fn_80026FB8(void);
-extern void fn_80028130(void);
-extern void fn_80028164(void);
+extern void axmix_ctrl_store_time_param(void);
+extern void axmix_device_ctrl_accumulate_mix(void);
 extern void axmix_device_ctrl_unlink(void);
 extern void axmix_sound_alloc_init(void);
 extern void axmix_ctrl_init_type2(void);
@@ -2536,7 +2536,7 @@ _8005e284:
     add	r4, r0, r24
     add	r3, r0, r3
     lwz	r4, 0x1434(r4)
-    bl      fn_80028130
+    bl      axmix_ctrl_store_time_param
     mr	r3, r15
     mr	r4, r31
     mr	r5, r22
@@ -3606,7 +3606,7 @@ _8005f1b4:
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x1438
     add	r3, r0, r3
-    bl      fn_80028164
+    bl      axmix_device_ctrl_accumulate_mix
     clrlwi.	r21, r19, 0x1f
     bc      12, 2, _8005f280
     lwz	r0, -0x7740(r13)
@@ -3704,7 +3704,7 @@ _8005f3c0:
     lwz	r4, 0x1434(r4)
     add	r3, r5, r3
     li	r5, 0x7d00
-    bl      fn_80028130
+    bl      axmix_ctrl_store_time_param
     lbz	r0, 0x3a(r17)
     clrlwi.	r0, r0, 0x1e
     bc      4, 2, _8005f3f0
@@ -4070,7 +4070,7 @@ _8005f880:
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x1438
     add	r3, r0, r3
-    bl      fn_80028164
+    bl      axmix_device_ctrl_accumulate_mix
     cmplwi	r21, 0
     bc      12, 2, _8005f94c
     lwz	r0, -0x7740(r13)

@@ -8,8 +8,8 @@ extern void fn_80026FE0(void);
 extern void fn_8002805C(void);
 extern void fn_80028090(void);
 extern void fn_800280F0(void);
-extern void fn_80028130(void);
-extern void fn_80028164(void);
+extern void axmix_ctrl_store_time_param(void);
+extern void axmix_device_ctrl_accumulate_mix(void);
 extern void axmix_device_ctrl_unlink(void);
 extern void axmix_sound_alloc_init(void);
 extern void axmix_ctrl_init_type2(void);
@@ -22,9 +22,9 @@ extern void axmix_ctrl_init_type11(void);
 extern void axmix_ctrl_init_type14(void);
 extern void axmix_update_voice_state(void);
 extern void axmix_link_push(void);
-extern void fn_800288C4(void);
-extern void fn_800289C0(void);
-extern void fn_80028A1C(void);
+extern void axmix_cent_to_ratio_lerp(void);
+extern void axmix_param_ramp_step(void);
+extern void axmix_param_ramp_step_dup(void);
 extern void fn_80028A78(void);
 extern void fn_80028B2C(void);
 extern void fn_80028B34(void);
@@ -1440,7 +1440,7 @@ _80028114:
     blr	
 }
 
-asm void fn_80028130(void)
+asm void axmix_ctrl_store_time_param(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -1458,7 +1458,7 @@ asm void fn_80028130(void)
     blr	
 }
 
-asm void fn_80028164(void)
+asm void axmix_device_ctrl_accumulate_mix(void)
 {
     nofralloc
     mflr	r0
@@ -1597,7 +1597,7 @@ _8002836c:
     cmplwi	r29, 0
     bne     _800281d0
     srawi	r3, r28, 0x10
-    bl      fn_800288C4
+    bl      axmix_cent_to_ratio_lerp
     lwz	r28, 8(r19)
     fmuls	f30, f30, f1
     clrlwi	r4, r22, 0x18
@@ -1866,7 +1866,7 @@ _80028640:
     add	r28, r28, r0
     b       _80028818
     mr	r3, r29
-    bl      fn_800289C0
+    bl      axmix_param_ramp_step
     lwz	r0, 0x10(r29)
     add	r28, r28, r0
     b       _80028818
@@ -1895,17 +1895,17 @@ _80028640:
     add	r25, r25, r0
     b       _80028818
     mr	r3, r29
-    bl      fn_80028A1C
+    bl      axmix_param_ramp_step_dup
     lwz	r0, 0x10(r29)
     add	r27, r27, r0
     b       _80028818
     mr	r3, r29
-    bl      fn_80028A1C
+    bl      axmix_param_ramp_step_dup
     lwz	r0, 0x10(r29)
     add	r26, r26, r0
     b       _80028818
     mr	r3, r29
-    bl      fn_80028A1C
+    bl      axmix_param_ramp_step_dup
     lwz	r0, 0x10(r29)
     add	r25, r25, r0
     b       _80028818
@@ -1959,7 +1959,7 @@ _8002881c:
     cmplwi	r29, 0
     bne     _80028640
     srawi	r3, r28, 0x10
-    bl      fn_800288C4
+    bl      axmix_cent_to_ratio_lerp
     lwz	r19, 8(r19)
     fmuls	f30, f30, f1
     clrlwi	r4, r22, 0x18
@@ -2005,7 +2005,7 @@ asm void axmix_link_push(void)
     blr	
 }
 
-asm void fn_800288C4(void)
+asm void axmix_cent_to_ratio_lerp(void)
 {
     nofralloc
     cmpwi	r3, 0
@@ -2076,7 +2076,7 @@ _800289b8:
     blr	
 }
 
-asm void fn_800289C0(void)
+asm void axmix_param_ramp_step(void)
 {
     nofralloc
     lwz	r4, 0x10(r3)
@@ -2105,7 +2105,7 @@ _80028a00:
     blr	
 }
 
-asm void fn_80028A1C(void)
+asm void axmix_param_ramp_step_dup(void)
 {
     nofralloc
     lwz	r4, 0x10(r3)
