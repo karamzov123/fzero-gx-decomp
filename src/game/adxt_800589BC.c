@@ -1482,7 +1482,7 @@ _80059c94:
     blr	
 }
 
-asm void fn_80059CA4(void)
+asm void SVM_GetStatusU32(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1514,7 +1514,7 @@ _80059cf4:
     blr	
 }
 
-asm void fn_80059D04(void)
+asm void SVM_GetStatusS8(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1547,7 +1547,7 @@ _80059d58:
     blr	
 }
 
-asm void fn_80059D68(void)
+asm void SVM_ClearStatus(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
