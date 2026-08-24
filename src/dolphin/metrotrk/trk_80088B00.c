@@ -50,7 +50,7 @@ extern void TRKRequestSend(void);
 extern void fn_8008AF48(void);
 extern void fn_8008AF50(void);
 extern void fn_8008B484(void);
-extern void fn_8008B6BC(void);
+extern void TRKTargetGetPC(void);
 extern void TRKTargetCheckStep(void);
 extern void fn_8008B784(void);
 extern void fn_8008B830(void);
@@ -1273,7 +1273,7 @@ _800899e4:
     li	r3, 0
     b       _80089b98
 _80089a2c:
-    bl      fn_8008B6BC
+    bl      TRKTargetGetPC
     cmplw	r3, r29
     bc      12, 0, _80089a40
     cmplw	r3, r28
@@ -3421,7 +3421,7 @@ _8008b6a8:
     blr
 }
 
-asm void fn_8008B6BC(void)
+asm void TRKTargetGetPC(void)
 {
     nofralloc
     lis     r3, gTRKCPUState@ha
