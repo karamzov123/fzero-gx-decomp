@@ -26,7 +26,7 @@ asm void OSGetCurrentThread(void)
     blr
 }
 
-asm BOOL fn_800102B8(void *param1)
+asm BOOL OSIsThreadTerminated(void *param1)
 {
     nofralloc
     lhz     r3, 0x2C8(r3)
