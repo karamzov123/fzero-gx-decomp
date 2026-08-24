@@ -41,7 +41,7 @@ extern void OSSetErrorHandler(s32 error, void (*handler)(s32, OSContext*, ...));
 #pragma push
 #pragma force_active on
 
-asm void fn_8000B738(void)
+asm void __LCEnable(void)
 {
     nofralloc
     mfmsr   r5
@@ -104,7 +104,7 @@ void fn_8000B804(void)
     BOOL enabled;
 
     enabled = OSDisableInterrupts();
-    fn_8000B738();
+    __LCEnable();
     OSRestoreInterrupts(enabled);
 }
 
@@ -124,7 +124,7 @@ B83C_loop:
     blr
 }
 
-asm void fn_8000B864(register void* destTag, register void* srcAddr,
+asm void LCLoadBlocks(register void* destTag, register void* srcAddr,
                       register u32 numBlocks)
 {
     nofralloc
@@ -139,7 +139,7 @@ asm void fn_8000B864(register void* destTag, register void* srcAddr,
     blr
 }
 
-asm void fn_8000B888(register void* destAddr, register void* srcTag,
+asm void LCStoreBlocks(register void* destAddr, register void* srcTag,
                        register u32 numBlocks)
 {
     nofralloc
@@ -154,7 +154,7 @@ asm void fn_8000B888(register void* destAddr, register void* srcTag,
     blr
 }
 
-asm void fn_8000B8AC(register u32 len)
+asm void LCQueueWait(register u32 len)
 {
     nofralloc
 LCQueueWait_loop:

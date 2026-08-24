@@ -15,9 +15,9 @@ extern void _savegpr_22(void);
 extern void _savegpr_23(void);
 extern void _savegpr_25(void);
 extern void _savegpr_26(void);
-extern void fn_8000B864(void);
-extern void fn_8000B888(void);
-extern void fn_8000B8AC(void);
+extern void LCLoadBlocks(void);
+extern void LCStoreBlocks(void);
+extern void LCQueueWait(void);
 extern void OSPanic(void);
 extern void fn_80033A6C(void);
 extern void fn_80038CFC(void);
@@ -964,11 +964,11 @@ _80079264:
     b _80079298
 _80079274:
     li r3, 0xe
-    bl fn_8000B8AC
+    bl LCQueueWait
     mr r3, r22
     mr r4, r30
     li r5, 0x20
-    bl fn_8000B864
+    bl LCLoadBlocks
     addi r22, r22, 0x400
     addi r30, r30, 0x400
     addi r26, r26, 1
@@ -980,11 +980,11 @@ _80079298:
     b _800792D0
 _800792AC:
     li r3, 0xe
-    bl fn_8000B8AC
+    bl LCQueueWait
     mr r3, r29
     mr r4, r23
     li r5, 0x20
-    bl fn_8000B888
+    bl LCStoreBlocks
     addi r29, r29, 0x400
     addi r23, r23, 0x400
     addi r26, r26, 1
@@ -1002,11 +1002,11 @@ _800792E0:
     b _8007931C
 _800792F8:
     li r3, 0xe
-    bl fn_8000B8AC
+    bl LCQueueWait
     mr r3, r28
     mr r4, r30
     li r5, 0x20
-    bl fn_8000B864
+    bl LCLoadBlocks
     addi r28, r28, 0x400
     addi r30, r30, 0x400
     addi r26, r26, 1
@@ -1017,11 +1017,11 @@ _8007931C:
     b _80079350
 _8007932C:
     li r3, 0xe
-    bl fn_8000B8AC
+    bl LCQueueWait
     mr r3, r29
     mr r4, r27
     li r5, 0x20
-    bl fn_8000B888
+    bl LCStoreBlocks
     addi r29, r29, 0x400
     addi r27, r27, 0x400
     addi r26, r26, 1
@@ -1031,19 +1031,19 @@ _80079350:
     cmplwi r24, 0
     beq _8007939C
     li r3, 0xe
-    bl fn_8000B8AC
+    bl LCQueueWait
     mr r3, r28
     mr r4, r30
     mr r5, r24
-    bl fn_8000B864
+    bl LCLoadBlocks
     slwi r28, r24, 5
     li r3, 0xe
     add r30, r30, r28
-    bl fn_8000B8AC
+    bl LCQueueWait
     mr r3, r29
     mr r4, r27
     mr r5, r24
-    bl fn_8000B888
+    bl LCStoreBlocks
     add r29, r29, r28
 _8007939C:
     cmplwi r31, 0
@@ -1054,7 +1054,7 @@ _8007939C:
     bl fn_800794F0
 _800793B4:
     li r3, 0
-    bl fn_8000B8AC
+    bl LCQueueWait
 _800793BC:
     addi r11, r1, 0x30
     bl _restgpr_22
@@ -1101,11 +1101,11 @@ _8007940C:
     b _80079470
 _80079450:
     li r3, 0xe
-    bl fn_8000B8AC
+    bl LCQueueWait
     lwz r4, -0x7610(r13)
     mr r3, r25
     li r5, 0x20
-    bl fn_8000B888
+    bl LCStoreBlocks
     addi r25, r25, 0x400
     addi r31, r31, 1
 _80079470:
@@ -1122,11 +1122,11 @@ _80079478:
     bl memset
 _80079498:
     li r3, 0xe
-    bl fn_8000B8AC
+    bl LCQueueWait
     lwz r4, -0x7610(r13)
     mr r3, r25
     mr r5, r28
-    bl fn_8000B888
+    bl LCStoreBlocks
     slwi r0, r28, 5
     add r25, r25, r0
 _800794B8:
@@ -1138,7 +1138,7 @@ _800794B8:
     bl memset
 _800794D0:
     li r3, 0
-    bl fn_8000B8AC
+    bl LCQueueWait
 _800794D8:
     addi r11, r1, 0x30
     bl _restgpr_25
