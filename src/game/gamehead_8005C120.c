@@ -124,7 +124,7 @@ asm void SndStopAllChannelVoices(void);
 asm void SndExpCurveLookup(void);
 asm void SndApplyVoicePriorities(void);
 asm void SndVelocityToVolume(void);
-asm void fn_8005DCEC(void);
+asm void SndProcessVoiceEnvelope(void);
 asm void SndSetVoicePriority(void);
 asm void SndKillChannelVoice(void);
 asm void SndDispatchCommand(void);
@@ -138,7 +138,7 @@ asm void SndStartVoice(void);
 asm void SndPlaySequenceNotes(void);
 asm void fn_80063094(void);
 asm void SndInitProcTable(void);
-asm void fn_8006331C(void);
+asm void SndFindSlotByKey(void);
 asm void SndCalcPanMix(void);
 asm void SndSendParamToChannelVoices(void);
 asm void fn_8006413C(void);
@@ -153,7 +153,7 @@ asm void SndReleaseProcsForVoices(void);
 asm void fn_80064E84(void);
 asm void fn_80064FDC(void);
 asm void fn_80065390(void);
-asm void fn_80065528(void);
+asm void SndProcessCmdSubfunc(void);
 asm void SndStartChannelSequence(void);
 asm void SndSetCallback2(void);
 asm void SndSetCallback1(void);
@@ -2135,7 +2135,7 @@ _8005dcbc:
     blr
 }
 
-asm void fn_8005DCEC(void)
+asm void SndProcessVoiceEnvelope(void)
 {
     nofralloc
     stwu	r1, -0x150(r1)
@@ -4639,7 +4639,7 @@ _80060094:
     bl      fn_80069AE0
     b       _800605f0
     li	r3, 0
-    bl      fn_80065528
+    bl      SndProcessCmdSubfunc
     b       _800605f0
     lis     r5, lbl_80092AB8@ha
     lis	r4, 1
@@ -4707,7 +4707,7 @@ _800601ec:
     bl      fn_80065390
     b       _800605f0
     li	r3, 1
-    bl      fn_80065528
+    bl      SndProcessCmdSubfunc
     b       _800605f0
     lis	r4, 1
     addi	r3, r4, -0x5fc0
@@ -4730,7 +4730,7 @@ _8006029c:
     lwz	r3, -0x7740(r13)
     mr	r4, r7
     lbz	r3, 0x474(r3)
-    bl      fn_8006331C
+    bl      SndFindSlotByKey
     b       _800605f0
 _800602b0:
     lwz	r3, -0x7740(r13)
@@ -8175,7 +8175,7 @@ _8006330c:
     blr
 }
 
-asm void fn_8006331C(void)
+asm void SndFindSlotByKey(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -9472,25 +9472,25 @@ _80064500:
     bc      12, 2, _80064798
     addi	r3, r3, 8
     mr	r4, r26
-    bl      fn_8005DCEC
+    bl      SndProcessVoiceEnvelope
     lwz	r3, -0x7740(r13)
     addi	r0, r25, 0x5a4
     mr	r4, r26
     lwzx	r3, r3, r0
     addi	r3, r3, 0xa
-    bl      fn_8005DCEC
+    bl      SndProcessVoiceEnvelope
     lwz	r3, -0x7740(r13)
     addi	r0, r25, 0x5a4
     mr	r4, r26
     lwzx	r3, r3, r0
     addi	r3, r3, 0xc
-    bl      fn_8005DCEC
+    bl      SndProcessVoiceEnvelope
     lwz	r3, -0x7740(r13)
     addi	r0, r25, 0x5a4
     mr	r4, r26
     lwzx	r3, r3, r0
     addi	r3, r3, 0xe
-    bl      fn_8005DCEC
+    bl      SndProcessVoiceEnvelope
     b       _80064798
 _8006457c:
     rlwinm	r5, r26, 5, 0x13, 0x1a
@@ -10651,7 +10651,7 @@ _80065514:
     blr
 }
 
-asm void fn_80065528(void)
+asm void SndProcessCmdSubfunc(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -10785,7 +10785,7 @@ _800656ec:
     bl      fn_80064FDC
     lbz	r3, 3(r31)
     lbz	r4, 4(r31)
-    bl      fn_8006331C
+    bl      SndFindSlotByKey
     b       _800657e0
 _80065714:
     cmplwi	r8, 0

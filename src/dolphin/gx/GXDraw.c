@@ -1851,7 +1851,7 @@ _8003a1a4:
     blr     
 }
 
-asm void fn_8003A1CC(register void* p)
+asm void GXCallDisplayList(register void* p)
 {
     nofralloc
     mflr    r0

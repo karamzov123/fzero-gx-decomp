@@ -12,7 +12,7 @@ extern unsigned char adxt_sample_rate_table[32];
 extern unsigned char lbl_80130B68[48];
 extern unsigned char lbl_80187118[24];
 
-asm void fn_80050F90(void)
+asm void ADXF_StreamTeardown(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

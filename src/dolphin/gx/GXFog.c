@@ -9,7 +9,7 @@ extern int fn_80039B38(register u32 a);
 extern void fn_80039B7C(register u32 a);
 extern int fn_80039C40(register u32 a, register u32 b);
 extern int fn_80039E48(register u32 a);
-extern void fn_8003A1CC(register void* p);
+extern void GXCallDisplayList(register void* p);
 extern int fn_8003A3D4(register u32 a);
 extern int fn_8003AB08(register u32 a);
 extern int fn_8003B010(register u32 a);
@@ -642,7 +642,7 @@ _8003c36c:
     cmplwi  r0, 0xc4
     bne     _8003c3ac
     mr      r3, r30
-    bl      fn_8003A1CC
+    bl      GXCallDisplayList
     clrlwi. r0, r3, 0x18
     bne     _8003c694
     b       _8003c664

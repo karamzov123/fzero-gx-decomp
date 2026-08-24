@@ -8,7 +8,7 @@ extern void fn_800504EC(void);
 extern void fn_80050F64(void);
 extern void fn_80050F6C(void);
 extern void fn_80050F74(void);
-extern void fn_80050F90(void);
+extern void ADXF_StreamTeardown(void);
 extern void fn_800510C4(void);
 extern void fn_800510D8(void);
 extern void fn_80051448(void);
@@ -226,7 +226,7 @@ _800540bc:
     stw	r3, 0(r6)
     mr	r3, r28
     mr	r6, r31
-    bl      fn_80050F90
+    bl      ADXF_StreamTeardown
     mr	r31, r3
     bl      fn_80053A30
     mullw	r23, r31, r26
