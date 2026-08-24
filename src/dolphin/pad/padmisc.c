@@ -6,12 +6,12 @@ extern s32 OSDisableInterrupts(void);
 extern s32 OSRestoreInterrupts(s32 level);
 
 /* PAD/DSP-adjacent small helpers at the tail of coarse/text_8001A8B4.c.
-   fn_8001DF44 programs AI DMA registers 0xCC005030/32/36. */
+   AIInitDMA programs AI DMA registers 0xCC005030/32/36. */
 
 #pragma push
 #pragma force_active on
 
-asm s32 fn_8001DF00(register s32 value)
+asm s32 AIRegisterDMACallback(register s32 value)
 {
     nofralloc
     mflr    r0
@@ -33,7 +33,7 @@ asm s32 fn_8001DF00(register s32 value)
     blr
 }
 
-asm void fn_8001DF44(register s32 a, register s32 b)
+asm void AIInitDMA(register s32 a, register s32 b)
 {
     nofralloc
     mflr    r0

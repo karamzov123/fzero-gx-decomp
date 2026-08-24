@@ -12,7 +12,7 @@ extern void DSPCheckMailToDSP(void);
 extern void __AXServiceCallbackStack(void);
 extern void fn_80020FA4(void);
 extern void fn_8002123C(void);
-extern void fn_8001DF44(void);
+extern void AIInitDMA(void);
 extern void fn_800224E4(void);
 extern void fn_800235D4(void);
 extern void DSPAssertTask(void);
@@ -22,7 +22,7 @@ extern void DSPCheckInit(void);
 extern void DSPInit(void);
 extern void DSPAddTask(void);
 extern void DCFlushRange(register void* addr, register u32 nBytes);
-extern void fn_8001DF00(void);
+extern void AIRegisterDMACallback(void);
 extern void fn_8001DFCC(void);
 extern BOOL OSDisableInterrupts(void);
 extern void DSPCancelTask(void);
@@ -100,7 +100,7 @@ _800219dc:
     lwz	r0, -0x78b0(r13)
     mulli	r0, r0, 0x280
     add	r3, r31, r0
-    bl      fn_8001DF44
+    bl      AIInitDMA
     bl      OSGetTime
     stw	r4, 0x47fc(r31)
     stw	r3, 0x47f8(r31)
@@ -480,7 +480,7 @@ _80021e10:
     bl      fn_80021BB0
     lis     r3, fn_80021AB8@ha
     addi	r3, r3, fn_80021AB8@l
-    bl      fn_8001DF00
+    bl      AIRegisterDMACallback
     addi	r3, r31, 0x500
     addi	r4, r31, 0x280
     bl      fn_8002123C
@@ -492,7 +492,7 @@ _80021e10:
     stw	r3, -0x78a0(r13)
     mulli	r0, r0, 0x280
     add	r3, r31, r0
-    bl      fn_8001DF44
+    bl      AIInitDMA
     bl      fn_8001DFCC
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
