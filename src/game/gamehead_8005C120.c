@@ -71,7 +71,7 @@ extern void fn_8002857C(void);
 extern void fn_80028598(void);
 extern void axmix_link_push(void);
 extern void fn_80069AE0(void);
-extern void fn_80069CE4(void);
+extern void AvHeapReleaseById(void);
 extern void fn_8006A1F8(void);
 extern void __cvt_fp2unsigned(void);
 extern void sprintf(void);
@@ -13605,7 +13605,7 @@ asm void SndCheckAllocSize(void)
     li	r3, 0x10
     addi	r4, r4, 0x500
     li	r5, 0
-    bl      fn_80069CE4
+    bl      AvHeapReleaseById
     lwz	r4, -0x7740(r13)
     lwz	r0, 0x454(r4)
     cmplwi	r0, 0

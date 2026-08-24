@@ -1393,7 +1393,7 @@ _8003cdc4:
     blr     
 }
 
-asm int fn_8003CE74(register u32 a)
+asm int GXInitFogAdjTable(register u32 a)
 {
     nofralloc
     mflr    r0

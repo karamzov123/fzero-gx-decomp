@@ -51,7 +51,7 @@ extern unsigned char lbl_8019E114[44];
 
 asm void fn_80069AE0(void);
 asm void fn_80069B10(void);
-asm void fn_80069CE4(void);
+asm void AvHeapReleaseById(void);
 asm void fn_80069FCC(void);
 asm void fn_8006A1F8(void);
 asm void ARCInitHandle(void);
@@ -253,7 +253,7 @@ _80069cb8:
     blr
 }
 
-asm void fn_80069CE4(void)
+asm void AvHeapReleaseById(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
