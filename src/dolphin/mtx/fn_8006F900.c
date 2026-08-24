@@ -8,7 +8,7 @@ extern asm void PSMTXQuat_fromMtx(void);
 extern asm void C_MTXQuat(void);
 extern asm void fn_8006DC34(void);
 extern asm void fn_8006D5A4(void);
-extern asm void fn_8006D668(void);
+extern asm void PSVecNormalize3(void);
 
 asm void PSQUATSlerp_c(void)
 {
@@ -147,11 +147,11 @@ asm void PSMTXConcat(void)
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x14(r31)
     stfs	f0, 0x18(r31)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     addi	r3, r31, 0x10
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     addi	r3, r31, 0x20
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     psq_l f31, 0x28(r1), 0, 0
     lwz	r0, 0x34(r1)
     lfd	f31, 0x20(r1)
@@ -216,11 +216,11 @@ asm void PSMTXConcatVariant(void)
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x14(r31)
     stfs	f0, 0x18(r31)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     addi	r3, r31, 0x10
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     addi	r3, r31, 0x20
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     psq_l f31, 0x18(r1), 0, 0
     lwz	r0, 0x24(r1)
     lfd	f31, 0x10(r1)

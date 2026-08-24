@@ -2,13 +2,13 @@
 #pragma force_active on
 
 extern asm void atan2f(void);
-extern asm void fn_8006DAEC(void);
+extern asm void mtx_gpstack_push(void);
 extern asm void lbl_8006E1C0(void);
 extern asm void sqrtf(void);
 extern asm void fn_8006D8D8(void);
 extern asm void PSMTXRotTrig(void);
 extern asm void PSMTXMultVecSS(void);
-extern asm void fn_8006DB30(void);
+extern asm void mtx_gpstack_pop(void);
 extern asm void fn_8006D91C(void);
 extern asm void PSMTXRotTrigVariant(void);
 
@@ -49,7 +49,7 @@ asm void C_MTXRotAxisRad(void)
     mr	r30, r4
     stw	r29, 0x24(r1)
     mr	r29, r3
-    bl      fn_8006DAEC
+    bl      mtx_gpstack_push
     lfs	f1, -0x7a50(r2)
     addi	r3, r1, 8
     lfs	f0, -0x7a4c(r2)
@@ -95,7 +95,7 @@ asm void C_MTXRotAxisRad(void)
     bl      atan2f
     neg	r0, r3
     sth	r0, 0(r31)
-    bl      fn_8006DB30
+    bl      mtx_gpstack_pop
     lwz	r0, 0x34(r1)
     lwz	r31, 0x2c(r1)
     lwz	r30, 0x28(r1)
@@ -113,7 +113,7 @@ asm void C_MTXRotAxisRadInPlace(void)
     stw	r0, 0x34(r1)
     stw	r31, 0x2c(r1)
     mr	r31, r3
-    bl      fn_8006DAEC
+    bl      mtx_gpstack_push
     lfs	f1, -0x7a50(r2)
     addi	r3, r1, 0x14
     lfs	f0, -0x7a4c(r2)
@@ -159,7 +159,7 @@ asm void C_MTXRotAxisRadInPlace(void)
     bl      atan2f
     neg	r0, r3
     sth	r0, 4(r31)
-    bl      fn_8006DB30
+    bl      mtx_gpstack_pop
     lwz	r0, 0x34(r1)
     lwz	r31, 0x2c(r1)
     mtlr	r0
@@ -179,7 +179,7 @@ asm void C_MTXLookAt(void)
     mr	r30, r4
     stw	r29, 0x24(r1)
     mr	r29, r3
-    bl      fn_8006DAEC
+    bl      mtx_gpstack_push
     lfs	f0, -0x7a50(r2)
     addi	r3, r1, 0x14
     lfs	f1, -0x7a4c(r2)
@@ -219,7 +219,7 @@ asm void C_MTXLookAt(void)
     lfs	f2, 0xc(r1)
     bl      atan2f
     sth	r3, 0(r31)
-    bl      fn_8006DB30
+    bl      mtx_gpstack_pop
     lwz	r0, 0x34(r1)
     lwz	r31, 0x2c(r1)
     lwz	r30, 0x28(r1)

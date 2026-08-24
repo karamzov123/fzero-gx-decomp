@@ -14,7 +14,7 @@ extern void OSRestoreInterrupts(void);
 extern void OSRegisterResetFunction(void);
 extern void OSSetWirelessID(void);
 extern void OSGetTime(void);
-extern void fn_8001191C(void);
+extern void SIChannelValid(void);
 extern void SIIsChanBusy(void);
 extern void SIRegisterPollingHandler(void);
 extern void SIUnregisterPollingHandler(void);
@@ -2115,7 +2115,7 @@ _8001dc68:
 _8001dc94:
     cmpwi	r3, 0
     bc      12, 2, _8001dcac
-    bl      fn_8001191C
+    bl      SIChannelValid
     cmpwi	r3, 0
     bc      4, 2, _8001dcac
     li	r30, 1

@@ -5,7 +5,7 @@
 #pragma force_active on
 
 extern int TRKGetNextEvent(void*);
-extern void fn_800035C0_memcpy(void*, const void*, unsigned long);
+extern void TRK_memcpy(void*, const void*, unsigned long);
 extern void TRKDestructEvent(void*);
 extern void TRKGetBuffer(void);
 extern void TRKDispatchMessage(void);
@@ -157,7 +157,7 @@ lbl_800887C4:
     mulli   r29, r0, 0xC
     add     r3, r30, r29
     addi    r3, r3, 0xC
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
     lis     r3, lbl_801A36B8@ha
     addi    r4, r3, lbl_801A36B8@l
     lwz     r0, 0x24(r4)
@@ -213,7 +213,7 @@ asm int TRKGetNextEvent(void* msg)
     mulli   r0, r0, 0xC
     add     r4, r31, r0
     addi    r4, r4, 0xC
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
     lwz     r3, 8(r31)
     lwz     r4, 4(r31)
     addi    r0, r3, 1

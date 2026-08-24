@@ -9,7 +9,7 @@ typedef signed int s32;
 
 extern void memset(void);
 extern void fn_80003590(void);
-extern void fn_800035C0_memcpy(void);
+extern void TRK_memcpy(void);
 extern void fn_80005518(void);
 extern void OSReport(void);
 extern void strlen(void);
@@ -154,7 +154,7 @@ _80088bb0:
     mr	r3, r25
     mr	r5, r24
     add	r4, r28, r4
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
     lwz	r0, 0xc(r28)
     add	r0, r0, r24
     stw	r0, 0xc(r28)
@@ -216,7 +216,7 @@ _80088c80:
     mr	r5, r30
     add	r3, r27, r29
     add	r4, r26, r4
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
     lwz	r0, 0xc(r26)
     mr	r3, r31
     addi	r29, r29, 1
@@ -267,7 +267,7 @@ _80088d24:
     mr	r3, r31
     mr	r5, r28
     add	r4, r27, r4
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
     lwz	r0, 0xc(r27)
     lis	r3, -0x7fe6
     add	r0, r0, r28
@@ -355,7 +355,7 @@ _80088e5c:
     addi	r3, r5, 0x10
     mr	r5, r25
     add	r3, r27, r3
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
 _80088e6c:
     lwz	r0, 0xc(r27)
     mr	r3, r26
@@ -470,7 +470,7 @@ _80088fd0:
     addi	r3, r3, 0x10
     mr	r5, r29
     add	r3, r31, r3
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
 _80088fe0:
     lwz	r0, 0xc(r31)
     mr	r3, r30
@@ -515,7 +515,7 @@ _80089064:
     addi	r4, r4, 0x10
     mr	r5, r30
     add	r4, r29, r4
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
     lwz	r0, 0xc(r29)
     mr	r3, r31
     add	r0, r0, r30
@@ -563,7 +563,7 @@ _80089100:
     addi	r3, r3, 0x10
     mr	r5, r30
     add	r3, r29, r3
-    bl      fn_800035C0_memcpy
+    bl      TRK_memcpy
 _80089110:
     lwz	r0, 0xc(r29)
     mr	r3, r31

@@ -2,7 +2,7 @@ typedef unsigned int u32;
 typedef signed int s32;
 typedef float f32;
 
-extern void fn_8006D668(void);
+extern void PSVecNormalize3(void);
 
 #pragma push
 #pragma force_active on
@@ -259,7 +259,7 @@ asm void GXProjectVec(register void* mtx)
     lwz     r0, 8(r3)
     mr      r3, r5
     stw     r0, 8(r5)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10

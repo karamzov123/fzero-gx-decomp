@@ -17,12 +17,12 @@ extern void _savegpr_26(void);
 extern void _savegpr_27(void);
 extern void GXSetTexCoordGen2(void);
 extern void GXSetNumTexGens(void);
-extern void fn_80034A5C(void);
-extern void fn_80034AEC(void);
-extern void fn_80034B7C(void);
-extern void fn_80034BB8(void);
-extern void fn_80034E64(void);
-extern void fn_8003591C(void);
+extern void __GXSetScissor_LT(void);
+extern void __GXSetScissor_RB(void);
+extern void __GXSetScissorBoxOffset(void);
+extern void __GXInitTexObjHW(void);
+extern void __GXSetBlendModePair(void);
+extern void __GXSetChanAmbColor(void);
 extern void fn_80035960(void);
 extern void fn_800360E4(void);
 extern void fn_800360F4(void);
@@ -1527,7 +1527,7 @@ _800742AC:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80034A5C
+    bl __GXSetScissor_LT
     lwz r3, -0x7688(r13)
     sth r28, 0xafc(r3)
     lwz r3, -0x7688(r13)
@@ -1583,7 +1583,7 @@ _80074370:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80034AEC
+    bl __GXSetScissor_RB
     lwz r3, -0x7688(r13)
     sth r28, 0xb08(r3)
     lwz r3, -0x7688(r13)
@@ -1625,7 +1625,7 @@ asm void fn_800743C4(void)
 _80074404:
     mr r3, r30
     mr r4, r31
-    bl fn_80034B7C
+    bl __GXSetScissorBoxOffset
     lwz r3, -0x7688(r13)
     sth r30, 0xb04(r3)
     lwz r3, -0x7688(r13)
@@ -1674,7 +1674,7 @@ _800744A4:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80034BB8
+    bl __GXInitTexObjHW
     lwz r3, -0x7688(r13)
     sth r28, 0xb10(r3)
     lwz r3, -0x7688(r13)
@@ -1729,7 +1729,7 @@ _80074564:
     mr r4, r31
     addi r3, r1, 8
     stw r0, 8(r1)
-    bl fn_80034E64
+    bl __GXSetBlendModePair
     lwz r3, -0x7688(r13)
     lwz r0, 0(r30)
     stw r0, 0xb20(r3)
@@ -1905,7 +1905,7 @@ asm void fn_80074788(void)
     lbz r4, 0xc2e(r4)
     cmplw r4, r0
     beq _800747BC
-    bl fn_8003591C
+    bl __GXSetChanAmbColor
     lwz r3, -0x7688(r13)
     stb r31, 0xc2e(r3)
 _800747BC:

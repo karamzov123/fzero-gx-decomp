@@ -39,7 +39,7 @@ extern void __OSSetInterruptHandler(s32 interrupt, void* handler);
 extern u32 __OSUnmaskInterrupts(u32 mask);
 
 /* forward declarations for functions defined below */
-extern s32 fn_8001191C(void);
+extern s32 SIChannelValid(void);
 extern s32 SIIsChanBusy(register s32 chan);
 extern u32 SIGetStatus(register s32 chan);
 extern void SISetCommand(register s32 chan, register u32 command);
@@ -54,10 +54,10 @@ extern u32 fn_8001300C(register u32 type);
 extern char* fn_8001317C(register s32 chan);
 extern void SISetSamplingRate(register s32 msec);
 extern void fn_800133E0(register s32 chan);
-extern int fn_80013428(register s32 chan, register void* callback);
-extern void fn_800134DC(register s32 chan, register u32 status, register OSContext* context);
+extern int SITransferSync(register s32 chan, register void* callback);
+extern void SICallback(register s32 chan, register u32 status, register OSContext* context);
 extern void GetTypeCallback(register s32 chan, register u32 status, register OSContext* context);
-extern void fn_800135CC(register s32 chan, register u32 status);
+extern void SITransferPollCallback(register s32 chan, register u32 status);
 extern int fn_800136E8(register s32 chan, register u32 cmd, register u32 param,
                        register void (*callback)(s32));
 extern void fn_8001375C(register s32 chan);
@@ -110,10 +110,10 @@ extern u64 lbl_801A6828;   /* .sbss:0x801A6828 */
 extern char lbl_80123B50[];     /* .data:0x80123B50 (device names blob) */
 extern u8 XYNTSC[];             /* .data:0x80123C68 (sampling table) */
 
-/* ---- fn_8001191C ---- */
+/* ---- SIChannelValid ---- */
 #pragma push
 #pragma force_active on
-asm s32 fn_8001191C(void)
+asm s32 SIChannelValid(void)
 {
     nofralloc
     lis         r3, Si@ha
@@ -2236,10 +2236,10 @@ L_80013418:
 }
 #pragma pop
 
-/* ---- fn_80013428 ---- */
+/* ---- SITransferSync ---- */
 #pragma push
 #pragma force_active on
-asm int fn_80013428(register s32 chan, register void* callback)
+asm int SITransferSync(register s32 chan, register void* callback)
 {
     nofralloc
     mflr        r0
@@ -2296,10 +2296,10 @@ L_800134C0:
 }
 #pragma pop
 
-/* ---- fn_800134DC ---- */
+/* ---- SICallback ---- */
 #pragma push
 #pragma force_active on
-asm void fn_800134DC(register s32 chan, register u32 status,
+asm void SICallback(register s32 chan, register u32 status,
                      register OSContext* context)
 {
     nofralloc
@@ -2371,10 +2371,10 @@ L_800135B0:
 }
 #pragma pop
 
-/* ---- fn_800135CC ---- */
+/* ---- SITransferPollCallback ---- */
 #pragma push
 #pragma force_active on
-asm void fn_800135CC(register s32 chan, register u32 status)
+asm void SITransferPollCallback(register s32 chan, register u32 status)
 {
     nofralloc
     mflr        r0
@@ -2395,9 +2395,9 @@ asm void fn_800135CC(register s32 chan, register u32 status)
     subis       r0, r3, 0x800
     cmplwi      r0, 0x0
     bne         L_80013650
-    lis         r3, fn_800134DC@ha
+    lis         r3, SICallback@ha
     lwz         r5, 0xc(r30)
-    addi        r8, r3, fn_800134DC@l
+    addi        r8, r3, SICallback@l
     lwz         r7, 0x10(r30)
     addi        r3, r31, 0x0
     addi        r4, r30, 0x0
@@ -2476,10 +2476,10 @@ asm int fn_800136E8(register s32 chan, register u32 cmd, register u32 param,
     add         r30, r0, r7
     bl          OSDisableInterrupts
     stw         r31, 0x24(r30)
-    lis         r4, fn_800135CC@ha
+    lis         r4, SITransferPollCallback@ha
     addi        r31, r3, 0x0
     stw         r28, 0xc(r30)
-    addi        r4, r4, fn_800135CC@l
+    addi        r4, r4, SITransferPollCallback@l
     mr          r3, r27
     stw         r29, 0x10(r30)
     bl          SIGetTypeAsync

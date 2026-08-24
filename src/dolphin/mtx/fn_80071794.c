@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void OSReport(void);
-extern asm void fn_80035C50(void);
+extern asm void GXInitTexObj(void);
 extern asm void fn_80035EC4(void);
 extern unsigned char lbl_8015AC08[18];
 extern unsigned char lbl_8015AC1C[69];
@@ -305,7 +305,7 @@ _80071b20:
     lhz	r6, 0xa(r29)
     srwi	r10, r0, 0x1f
     mr	r4, r30
-    bl      fn_80035C50
+    bl      GXInitTexObj
     stw	r30, 0x14(r28)
     lwz	r7, 0(r28)
     rlwinm.	r0, r7, 0, 0x14, 0x14

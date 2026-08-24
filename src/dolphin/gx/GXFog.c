@@ -3,7 +3,7 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 extern void GXSetDrawSync(register u16 token);
 extern void GXSetDrawSyncCallback(register void* callback);
-extern void fn_80035A2C(register void* p1, register void* p2, register int id, register void* p4);
+extern void __GXGetTexBufferSize(register void* p1, register void* p2, register int id, register void* p4);
 extern int fn_80039AFC(void);
 extern int fn_80039B38(register u32 a);
 extern void fn_80039B7C(register u32 a);
@@ -1714,7 +1714,7 @@ _8003d244:
     lhz     r4, 0x40a(r18)
     li      r6, 0
     li      r7, 0
-    bl      fn_80035A2C
+    bl      __GXGetTexBufferSize
     mr      r4, r3
     lwz     r3, 0x14(r1)
     bl      DCStoreRange

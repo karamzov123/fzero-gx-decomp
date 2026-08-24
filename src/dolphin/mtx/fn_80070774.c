@@ -13,7 +13,7 @@ extern asm void fn_80074188(void);
 extern asm void fn_8007423C(void);
 extern asm void fn_800743C4(void);
 extern asm void fn_80034D9C(void);
-extern asm void fn_80034ECC(void);
+extern asm void GXSetCopyClear(void);
 extern asm void fn_80037C2C(void);
 extern asm void fn_80037D14(void);
 extern asm void fn_80037D40(void);
@@ -165,7 +165,7 @@ _80070884:
     lbz	r3, 0x19(r6)
     addi	r4, r6, 0x1a
     addi	r6, r6, 0x32
-    bl      fn_80034ECC
+    bl      GXSetCopyClear
     cmpwi	r29, 0
     beq	_800709b0
     li	r3, 1

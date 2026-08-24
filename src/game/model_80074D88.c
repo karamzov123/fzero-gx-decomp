@@ -17,12 +17,12 @@ extern void _savegpr_19(void);
 extern void _savegpr_24(void);
 extern void _savegpr_25(void);
 extern void _savegpr_27(void);
-extern void fn_80035A2C(void);
-extern void fn_80035C50(void);
+extern void __GXGetTexBufferSize(void);
+extern void GXInitTexObj(void);
 extern void fn_80035EC4(void);
 extern void fn_800371F8(void);
-extern void fn_80038D34(void);
-extern void fn_8006D668(void);
+extern void GXWritePrimitiveFifo(void);
+extern void PSVecNormalize3(void);
 extern void PSMTXLookAtNoUp(void);
 extern void PSMTXReflect(void);
 extern void fn_80070D94(void);
@@ -73,8 +73,8 @@ extern void fn_80078CDC(void);
 extern void fn_80078D60(void);
 extern void fn_8006D758(void);
 extern void fn_8006D7F4(void);
-extern void fn_8006DAEC(void);
-extern void fn_8006DB30(void);
+extern void mtx_gpstack_push(void);
+extern void mtx_gpstack_pop(void);
 extern void fn_8006DB74(void);
 extern void fn_8006DD14(void);
 extern void fn_8006DFC4(void);
@@ -148,11 +148,11 @@ asm void fn_80074D88(void)
     lwz r0, -0x766c(r13)
     cmplwi r0, 0
     beq _80075068
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lwz r3, -0x76c0(r13)
     li r4, 0x1e
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     lfs f0, -0x79c0(r2)
     lis r6, -0x2000
     lwz r3, -0x76c0(r13)
@@ -168,7 +168,7 @@ asm void fn_80074D88(void)
     stfs f0, 0x1c(r6)
     stfs f1, 0x2c(r6)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     bl fn_8006D758
     lis     r3, lbl_8019F008@ha
     lfs f1, -0x79b4(r2)
@@ -189,7 +189,7 @@ asm void fn_80074D88(void)
     lwz r3, -0x76c0(r13)
     stfs f1, 0x18(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     bl fn_8006D758
     lfs f0, -0x79b4(r2)
     li r4, 0x49
@@ -203,8 +203,8 @@ asm void fn_80074D88(void)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x18(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     lis     r3, lbl_8019F158@ha
     lwz r4, 0xc(r31)
     addi r3, r3, lbl_8019F158@l
@@ -489,7 +489,7 @@ asm void fn_80075240(void)
     addi r3, r31, 0x138
     li r4, 0x21
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     lfs f1, -0x79c0(r2)
     li r6, -1
     lfs f0, -0x79b8(r2)
@@ -505,7 +505,7 @@ asm void fn_80075240(void)
     stw r5, 0x10c(r31)
     stw r4, 0x110(r31)
     stw r0, 0x114(r31)
-    bl fn_8006D668
+    bl PSVecNormalize3
     lfs f0, -0x79b8(r2)
     li r6, 1
     li r0, 0
@@ -540,7 +540,7 @@ asm void fn_80075240(void)
     li r8, 0
     li r9, 0
     li r10, 0
-    bl fn_80035C50
+    bl GXInitTexObj
     lfs f1, -0x79c0(r2)
     addi r3, r31, 0x1c0
     li r4, 1
@@ -668,7 +668,7 @@ _800753F0:
     li r8, 2
     li r9, 2
     li r10, 0
-    bl fn_80035C50
+    bl GXInitTexObj
     lfs f1, -0x79c0(r2)
     addi r3, r31, 0x118
     li r4, 3
@@ -771,13 +771,13 @@ _800756EC:
     addi r3, r31, 0x20
     li r4, 0x24
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     b _8007571C
 _8007570C:
     addi r3, r31, 0x138
     li r4, 0x24
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
 _8007571C:
     addi r28, r31, 0xe0
     addi r26, r31, 0x50
@@ -790,13 +790,13 @@ _8007572C:
     mr r3, r26
     mr r4, r27
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     b _8007575C
 _8007574C:
     mr r4, r27
     addi r3, r31, 0x138
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
 _8007575C:
     addi r25, r25, 1
     addi r27, r27, 3
@@ -904,7 +904,7 @@ _800758CC:
 _800758E4:
     addi r3, r31, 0x41e0
     addi r3, r3, 0x50
-    bl fn_8006D668
+    bl PSVecNormalize3
     addi r11, r1, 0x30
     bl _restgpr_25
     lwz r0, 0x34(r1)
@@ -1494,7 +1494,7 @@ asm void fn_80076134(void)
     stwu r1, -0x10(r1)
     mflr r0
     stw r0, 0x14(r1)
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1505,13 +1505,13 @@ asm void fn_80076134(void)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     lis     r3, lbl_801A3220@ha
     li r0, 1
     addi r3, r3, lbl_801A3220@l
     stw r0, 0x3c(r3)
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lis     r4, lbl_801A3220@ha
     lis     r3, lbl_8015AD10@ha
     addi r4, r4, lbl_801A3220@l
@@ -1550,8 +1550,8 @@ asm void fn_80076134(void)
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     lwz r0, 0x14(r1)
     mtlr r0
     addi r1, r1, 0x10
@@ -1581,7 +1581,7 @@ asm void fn_80076238(void)
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _800762C4
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1592,8 +1592,8 @@ asm void fn_80076238(void)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x3c(r31)
 _800762C4:
@@ -1602,7 +1602,7 @@ _800762C4:
     lwz r0, 0x40(r31)
     cmpwi r0, 0
     bne _80076384
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lis     r4, lbl_801A3220@ha
     lis     r3, lbl_8015AD1C@ha
     addi r4, r4, lbl_801A3220@l
@@ -1641,8 +1641,8 @@ _800762C4:
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x40(r31)
 _80076384:
@@ -1745,7 +1745,7 @@ asm void fn_800764A0(void)
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _80076530
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1756,8 +1756,8 @@ asm void fn_800764A0(void)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x3c(r31)
 _80076530:
@@ -1766,7 +1766,7 @@ _80076530:
     lwz r0, 0x40(r31)
     cmpwi r0, 0
     bne _800765F0
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lis     r4, lbl_801A3220@ha
     lis     r3, lbl_8015AD28@ha
     addi r4, r4, lbl_801A3220@l
@@ -1805,8 +1805,8 @@ _80076530:
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x40(r31)
 _800765F0:
@@ -1930,7 +1930,7 @@ asm void fn_80076790(void)
     stw r4, 0x2c(r1)
     stw r3, 0x30(r1)
     stw r0, 0x34(r1)
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lis     r3, lbl_801A3220@ha
     lis     r6, lbl_8019F14C@ha
     addi r4, r3, lbl_801A3220@l
@@ -2014,7 +2014,7 @@ asm void fn_80076790(void)
     lwz r3, -0x76c0(r13)
     li r4, 0x43
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     bl fn_8006D758
     lfs f2, -0x79c0(r2)
     addi r3, r1, 0x38
@@ -2036,8 +2036,8 @@ asm void fn_80076790(void)
     lwz r3, -0x76c0(r13)
     li r4, 0x46
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     lis     r3, lbl_801A3220@ha
     li r0, 1
     addi r3, r3, lbl_801A3220@l
@@ -2128,7 +2128,7 @@ _80076AA4:
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _80076AF4
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -2139,8 +2139,8 @@ _80076AA4:
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x3c(r31)
 _80076AF4:
@@ -3526,7 +3526,7 @@ _80077DB4:
     srwi r6, r0, 0x1f
     clrlwi r5, r5, 0x1b
     clrlwi r7, r7, 0x18
-    bl fn_80035A2C
+    bl __GXGetTexBufferSize
     add r29, r29, r3
 _80077DDC:
     addi r31, r31, 0x10

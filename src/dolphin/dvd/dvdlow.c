@@ -1067,8 +1067,8 @@ lbl_80016cf8:
 	blr
 }
 
-/* fn_80016D50 @0x80016D50 | size: 0x14 — nofralloc transcription */
-asm void fn_80016D50(void) {
+/* DVDLowStopMotorAtNextInt @0x80016D50 | size: 0x14 — nofralloc transcription */
+asm void DVDLowStopMotorAtNextInt(void) {
 nofralloc
 	li r0, 0x1
 	stw r0, -31592(r13)
@@ -1076,8 +1076,8 @@ nofralloc
 	stw r0, -31560(r13)
 	blr
 }
-/* fn_80016D64 @0x80016D64 | size: 0x18 — nofralloc transcription */
-asm void fn_80016D64(void) {
+/* DVDLowClearCallback @0x80016D64 | size: 0x18 — nofralloc transcription */
+asm void DVDLowClearCallback(void) {
 nofralloc
 	lis r3, 0xcc00
 	li r0, 0x0

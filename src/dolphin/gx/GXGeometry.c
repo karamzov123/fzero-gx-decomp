@@ -45,7 +45,7 @@ extern void __GXCalculateVatSizes(void);
 extern void __cvt_fp2unsigned(void);
 extern void fn_80088624(void);
 extern void* memset(void* dst, int c, unsigned long n);
-extern void fn_80035B88(register void* p1, register void* p2, register int id, register void* p4);
+extern void __GXGetTexTileSize(register void* p1, register void* p2, register int id, register void* p4);
 extern void __cvt_fp2unsigned(void);
 extern void GXGetVtxDescv(register void* p);
 extern void fn_8003396C(register void* p);
@@ -270,7 +270,7 @@ asm void GXSetPointSize(register s32 size, register s32 offset)
     blr	
 }
 
-asm void fn_80034834(register s32 tc, register s32 a, register s32 b)
+asm void __GXSetTexCoordGen_Cache(register s32 tc, register s32 a, register s32 b)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)
@@ -325,7 +325,7 @@ _800348b4:
     blr	
 }
 
-asm void fn_800348DC(register s32 arg)
+asm void __GXSetZMode_Cache(register s32 arg)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)
@@ -440,7 +440,7 @@ _80034a28:
     blr	
 }
 
-asm void fn_80034A5C(register int xl, register int yt, register int xr, register int yb)
+asm void __GXSetScissor_LT(register int xl, register int yt, register int xr, register int yb)
 {
     nofralloc
     lwz	r9, -0x7de8(r2)
@@ -481,7 +481,7 @@ asm void fn_80034A5C(register int xl, register int yt, register int xr, register
     blr	
 }
 
-asm void fn_80034AEC(register int xl, register int yt, register int xr, register int yb)
+asm void __GXSetScissor_RB(register int xl, register int yt, register int xr, register int yb)
 {
     nofralloc
     lwz	r9, -0x7de8(r2)
@@ -522,7 +522,7 @@ asm void fn_80034AEC(register int xl, register int yt, register int xr, register
     blr	
 }
 
-asm void fn_80034B7C(register int arg)
+asm void __GXSetScissorBoxOffset(register int arg)
 {
     nofralloc
     lwz	r4, -0x7de8(r2)
@@ -542,7 +542,7 @@ asm void fn_80034B7C(register int arg)
     blr	
 }
 
-asm void fn_80034BB8(register void* p1, register void* p2, register int id, register void* p4)
+asm void __GXInitTexObjHW(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
     mflr	r0
@@ -601,7 +601,7 @@ _80034c44:
     addi	r5, r7, 0
     clrlwi	r31, r31, 0x1d
     addi	r7, r1, 0x1c
-    bl      fn_80035B88
+    bl      __GXGetTexTileSize
     lwz	r3, -0x7de8(r2)
     li	r0, 0
     stw	r0, 0x1f8(r3)
@@ -741,7 +741,7 @@ _80034e54:
     blr	
 }
 
-asm void fn_80034E64(register int a, register int b, register int c)
+asm void __GXSetBlendModePair(register int a, register int b, register int c)
 {
     nofralloc
     clrlwi	r0, r4, 8
@@ -772,7 +772,7 @@ asm void fn_80034E64(register int a, register int b, register int c)
     blr	
 }
 
-asm void fn_80034ECC(register void* p1, register void* p2, register int id, register void* p4)
+asm void GXSetCopyClear(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -1155,7 +1155,7 @@ asm void fn_800353E8(register int a)
     blr	
 }
 
-asm void fn_80035420(register void* p1, register void* p2, register int id, register void* p4)
+asm void GXInitLightSpot(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
     mflr	r0
@@ -1265,7 +1265,7 @@ _8003558c:
 }
 
 
-asm void fn_800355B0(register void* p1, register void* p2, register int a, register int b)
+asm void GXInitLightDistAttn(register void* p1, register void* p2, register int a, register int b)
 {
     nofralloc
     lfs	f0, -0x7db8(r2)
@@ -1331,7 +1331,7 @@ _80035670:
     blr	
 }
 
-asm void fn_80035680(void)
+asm void GXInitLightAttnCoefs(void)
 {
     nofralloc
     stfs	f1, 0x28(r3)
@@ -1340,7 +1340,7 @@ asm void fn_80035680(void)
     blr	
 }
 
-asm void fn_80035690(register void* p)
+asm void GXInitSpecularDir(register void* p)
 {
     nofralloc
     fneg	f4, f1
@@ -1396,7 +1396,7 @@ asm void fn_800356B8(register void* p)
     blr	
 }
 
-asm void fn_80035734(register void* p1, register int a, register int b)
+asm void GXSetChanAmbColor(register void* p1, register int a, register int b)
 {
     nofralloc
     cmpwi	r3, 3
@@ -1544,7 +1544,7 @@ _800358e8:
     blr	
 }
 
-asm void fn_8003591C(register void* p)
+asm void __GXSetChanAmbColor(register void* p)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)
@@ -1625,7 +1625,7 @@ _80035a1c:
     blr	
 }
 
-asm void fn_80035A2C(register void* p1, register void* p2, register int id, register void* p4)
+asm void __GXGetTexBufferSize(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
     stwu	r1, -0x28(r1)
@@ -1730,7 +1730,7 @@ _80035b78:
     blr	
 }
 
-asm void fn_80035B88(register void* p1, register void* p2, register int id, register void* p4)
+asm void __GXGetTexTileSize(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
     cmplwi	r3, 0x3c
@@ -1792,7 +1792,7 @@ _80035c48:
     blr	
 }
 
-asm void fn_80035C50(register void* p1, register int a, register int b)
+asm void GXInitTexObj(register void* p1, register int a, register int b)
 {
     nofralloc
     mflr	r0

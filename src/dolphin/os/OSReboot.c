@@ -21,7 +21,7 @@ extern s32 DVDCancelAllAsync(void*);
 extern void __OSMaskInterrupts(u32 mask);
 extern void __OSUnmaskInterrupts(u32 mask);
 extern u64 OSGetTime(void);
-extern s32 fn_80019C50(void* block);
+extern s32 DVDCheckCancel(void* block);
 extern void* DVDGetCurrentDiskID(void);
 extern void fn_8001DFFC(s32);
 extern void fn_8001E2BC(s32);
@@ -102,7 +102,7 @@ _8000ebb0:
 _8000ebc0:
     b       _8000ec00
 _8000ebc4:
-    bl      fn_80019C50
+    bl      DVDCheckCancel
     cmpwi	r3, 0
     beq     _8000ebf8
     bl      OSGetTime
@@ -158,7 +158,7 @@ _8000ec68:
 _8000ec84:
     b       _8000ecc4
 _8000ec88:
-    bl      fn_80019C50
+    bl      DVDCheckCancel
     cmpwi	r3, 0
     beq     _8000ecbc
     bl      OSGetTime
@@ -204,7 +204,7 @@ _8000ed08:
 _8000ed24:
     b       _8000ed64
 _8000ed28:
-    bl      fn_80019C50
+    bl      DVDCheckCancel
     cmpwi	r3, 0
     beq     _8000ed5c
     bl      OSGetTime
@@ -252,7 +252,7 @@ _8000edb4:
 _8000edd0:
     b       _8000ee10
 _8000edd4:
-    bl      fn_80019C50
+    bl      DVDCheckCancel
     cmpwi	r3, 0
     beq     _8000ee08
     bl      OSGetTime

@@ -76,8 +76,8 @@ extern void DVDLowInquiry(void);
 extern void DVDLowAudioStream(void);
 extern void DVDLowRequestAudioStatus(void);
 extern void DVDLowAudioBufferConfig(void);
-extern void fn_80016D50(void);
-extern void fn_80016D64(void);
+extern void DVDLowStopMotorAtNextInt(void);
+extern void DVDLowClearCallback(void);
 extern void stateReadingFST(void);
 extern void cbForStateReadingFST(void);
 extern void stateTimeout(void);
@@ -2692,7 +2692,7 @@ lbl_80019988:
 	cmplwi r0, 0x1
 	bne lbl_80019B50
 lbl_800199A8:
-	bl fn_80016D50
+	bl DVDLowStopMotorAtNextInt
 	b lbl_80019B50
 	mr r3, r29
 	bl fn_80019FFC
@@ -2749,7 +2749,7 @@ lbl_80019A68:
 	stw r30, -0x7ADC(r13)
 	stw r0, -0x7AE0(r13)
 	b lbl_80019B50
-	bl fn_80016D64
+	bl DVDLowClearCallback
 	lis r4, cbForStateMotorStopped@ha
 	addi r0, r4, cbForStateMotorStopped@l
 	cmplw r3, r0
@@ -2899,8 +2899,8 @@ nofralloc
 	blr
 }
 
-/* fn_80019C50 @0x80019C50 | size: 0xF8 */
-asm void fn_80019C50(void) {
+/* DVDCheckCancel @0x80019C50 | size: 0xF8 */
+asm void DVDCheckCancel(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)

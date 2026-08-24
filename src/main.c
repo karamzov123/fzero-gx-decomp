@@ -116,7 +116,7 @@ extern void fn_8001BDF0(void);
 extern void PADInit(void);
 extern void PADRead(void);
 extern void PADSetAnalogMode(void);
-extern void fn_80035C50(void);
+extern void GXInitTexObj(void);
 extern void fn_80036544(void);
 extern void fn_800371F8(void);
 extern void fn_80037518(void);
@@ -190,11 +190,11 @@ extern void fn_80083D40(void);
 extern void strncpy(void);
 extern void strcpy(void);
 extern void fn_8006D188(void);
-extern void fn_8006D668(void);
+extern void PSVecNormalize3(void);
 extern void fn_8006D758(void);
 extern void fn_8006D7DC(void);
-extern void fn_8006DAEC(void);
-extern void fn_8006DB30(void);
+extern void mtx_gpstack_push(void);
+extern void mtx_gpstack_pop(void);
 extern void fn_8006DBAC(void);
 extern void main(void);
 extern void memcpy(void);
@@ -602,7 +602,7 @@ asm void fn_80005AD0(void)
     li	r9, 0
     lwz	r4, -0x7ff0(r13)
     li	r10, 0
-    bl      fn_80035C50
+    bl      GXInitTexObj
     bl      fn_80036544
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -1075,7 +1075,7 @@ _800061a8:
     li	r8, 0
     li	r9, 0
     li	r10, 0
-    bl      fn_80035C50
+    bl      GXInitTexObj
     bl      fn_80036544
     addi	r3, r1, 8
     li	r4, 0
@@ -3671,12 +3671,12 @@ _800083f4:
     fmuls	f30, f1, f7
     fmuls	f28, f0, f7
 _80008454:
-    bl      fn_8006DAEC
+    bl      mtx_gpstack_push
     bl      fn_8006D758
     lwz	r3, -0x76c0(r13)
     li	r4, 0
     bl      fn_80038C5C
-    bl      fn_8006DB30
+    bl      mtx_gpstack_pop
     li	r3, 0x80
     li	r4, 0
     li	r5, 4
@@ -3729,10 +3729,10 @@ asm void fn_800084E8(void)
     stw	r31, 0x2c(r1)
     mr	r31, r4
     bl      fn_800087F4
-    bl      fn_8006DAEC
+    bl      mtx_gpstack_push
     bl      fn_8006D758
     bl      fn_80072558
-    bl      fn_8006DB30
+    bl      mtx_gpstack_pop
     addi	r3, r1, 8
     bl      fn_80038BFC
     lfs	f1, -0x7f08(r2)
@@ -4226,7 +4226,7 @@ asm void fn_80008C20(void)
     lfs	f0, 8(r5)
     fneg	f0, f0
     stfs	f0, 0x10(r1)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008c80
@@ -4250,7 +4250,7 @@ _80008c80:
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x24(r1)
     stfs	f0, 0x28(r1)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008cdc
@@ -4274,7 +4274,7 @@ _80008cdc:
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x18(r1)
     stfs	f0, 0x1c(r1)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008d38

@@ -12,7 +12,7 @@ extern asm void VIGetTvFormat(void);
 extern asm void OSPanic(void);
 extern asm void fn_8003493C(void);
 extern asm void fn_8001B42C(void);
-extern asm void fn_80034ECC(void);
+extern asm void GXSetCopyClear(void);
 extern unsigned char lbl_8012AFB8[60];
 extern unsigned char lbl_8012AFF4[60];
 extern unsigned char lbl_8012B030[60];
@@ -180,7 +180,7 @@ _80070738:
     addi	r4, r5, 0x1a
     addi	r6, r5, 0x32
     li	r5, 1
-    bl      fn_80034ECC
+    bl      GXSetCopyClear
 _8007074c:
     lwz	r0, 0x14(r1)
     mtlr	r0

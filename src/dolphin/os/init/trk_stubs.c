@@ -20,7 +20,7 @@ asm __declspec(section ".init") void* fn_80003590(void* arg)
     blr
 }
 
-asm __declspec(section ".init") void fn_800035C0_memcpy(void* dst, const void* src,
+asm __declspec(section ".init") void TRK_memcpy(void* dst, const void* src,
                                                  unsigned long n)
 {
     nofralloc

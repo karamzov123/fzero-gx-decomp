@@ -20,7 +20,7 @@ extern void GXClearVtxDesc(register u32 a);
 extern void fn_80033A6C(register u32 a);
 extern void fn_80037B14(register u32 a);
 extern void fn_80037BF4(register u32 a);
-extern void fn_8003591C(register u32 a);
+extern void __GXSetChanAmbColor(register u32 a);
 extern void fn_80035960(register u32 a);
 extern void GXSetChanCtrl(register u32 a);
 extern void fn_80037014(register u32 a);
@@ -613,7 +613,7 @@ asm int fn_8003EAE4(register u32 a)
     li	r3, 0
     bl      fn_80037BF4
     li	r3, 1
-    bl      fn_8003591C
+    bl      __GXSetChanAmbColor
     li	r3, 4
     li	r4, 0
     li	r5, 0

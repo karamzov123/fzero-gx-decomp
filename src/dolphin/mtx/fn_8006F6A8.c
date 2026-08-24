@@ -1,14 +1,14 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_8006DAEC(void);
+extern asm void mtx_gpstack_push(void);
 extern asm void lbl_8006E1C0(void);
 extern asm void atan2f(void);
 extern asm void sqrtf(void);
 extern asm void fn_8006D91C(void);
 extern asm void PSMTXRotTrigVariant(void);
 extern asm void PSMTXMultVecSS(void);
-extern asm void fn_8006DB30(void);
+extern asm void mtx_gpstack_pop(void);
 extern asm void lbl_8006E1B0(void);
 
 asm void C_MTXLookAtInPlace(void)
@@ -19,7 +19,7 @@ asm void C_MTXLookAtInPlace(void)
     stw	r0, 0x34(r1)
     stw	r31, 0x2c(r1)
     mr	r31, r3
-    bl      fn_8006DAEC
+    bl      mtx_gpstack_push
     lfs	f0, -0x7a50(r2)
     addi	r3, r1, 8
     lfs	f1, -0x7a4c(r2)
@@ -59,7 +59,7 @@ asm void C_MTXLookAtInPlace(void)
     lfs	f2, 0x18(r1)
     bl      atan2f
     sth	r3, 0(r31)
-    bl      fn_8006DB30
+    bl      mtx_gpstack_pop
     lwz	r0, 0x34(r1)
     lwz	r31, 0x2c(r1)
     mtlr	r0

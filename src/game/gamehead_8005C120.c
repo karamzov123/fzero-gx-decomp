@@ -115,14 +115,14 @@ extern unsigned char lbl_80193B28[32];
 extern unsigned char lbl_80193B48[23336];
 
 asm void SndInitManager(void);
-asm void fn_8005C298(void);
+asm void SndApplyChannelVolume(void);
 asm void SndApplyChannelPan(void);
 asm void fn_8005C5C8(void);
 asm void fn_8005C7C0(void);
 asm void fn_8005C9D8(void);
 asm void SndStopAllChannelVoices(void);
 asm void SndExpCurveLookup(void);
-asm void fn_8005D5A4(void);
+asm void SndApplyVoicePriorities(void);
 asm void SndVelocityToVolume(void);
 asm void fn_8005DCEC(void);
 asm void SndSetVoicePriority(void);
@@ -282,7 +282,7 @@ _8005c278:
     blr
 }
 
-asm void fn_8005C298(void)
+asm void SndApplyChannelVolume(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -1621,7 +1621,7 @@ _8005d57c:
     blr
 }
 
-asm void fn_8005D5A4(void)
+asm void SndApplyVoicePriorities(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -2226,7 +2226,7 @@ _8005de0c:
     cmplw	r3, r0
     bc      12, 1, _8005de50
     mr	r3, r31
-    bl      fn_8005D5A4
+    bl      SndApplyVoicePriorities
     cmpwi	r3, 0
     bc      12, 2, _8005de5c
     li	r31, 0
@@ -9999,12 +9999,12 @@ _80064c2c:
 _80064c40:
     mr	r3, r29
     li	r4, 1
-    bl      fn_8005C298
+    bl      SndApplyChannelVolume
     b       _80064d1c
 _80064c50:
     mr	r3, r29
     li	r4, 2
-    bl      fn_8005C298
+    bl      SndApplyChannelVolume
     b       _80064d1c
 _80064c60:
     mr	r3, r29

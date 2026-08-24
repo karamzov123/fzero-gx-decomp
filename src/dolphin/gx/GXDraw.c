@@ -395,7 +395,7 @@ asm void fn_80038CFC(void)
     blr     
 }
 
-asm void fn_80038D34(register void* p)
+asm void GXWritePrimitiveFifo(register void* p)
 {
     nofralloc
     cmplwi  r4, 0x40

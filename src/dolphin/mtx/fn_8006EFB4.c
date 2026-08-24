@@ -9,7 +9,7 @@ extern asm void fn_8006D91C(void);
 extern asm void PSMTXRotTrigVariant(void);
 extern asm void fn_8006E0C8(void);
 extern asm void fn_8006D890(void);
-extern asm void fn_8006D668(void);
+extern asm void PSVecNormalize3(void);
 extern asm void fn_8006D7DC(void);
 extern asm void fn_8006DF44(void);
 
@@ -194,7 +194,7 @@ asm void PSMTXReflect(void)
     lfs	f0, 8(r5)
     fsubs	f0, f1, f0
     stfs	f0, 0x10(r1)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     lfs	f0, -0x7a50(r2)
     fcmpu	cr0, f0, f1
     bne	_8006f25c
@@ -218,7 +218,7 @@ _8006f25c:
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x24(r1)
     stfs	f0, 0x28(r1)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     lfs	f0, -0x7a50(r2)
     fcmpu	cr0, f0, f1
     bne	_8006f2b8
@@ -242,7 +242,7 @@ _8006f2b8:
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x18(r1)
     stfs	f0, 0x1c(r1)
-    bl      fn_8006D668
+    bl      PSVecNormalize3
     lfs	f0, -0x7a50(r2)
     fcmpu	cr0, f0, f1
     bne	_8006f314

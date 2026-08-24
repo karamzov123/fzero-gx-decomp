@@ -190,7 +190,7 @@ extern void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr);
 extern s32 fn_80036104(GXTexObj *obj);
 
 /* called from later GX units */
-extern void fn_80034E64(void *color, u32 zvalue);
+extern void __GXSetBlendModePair(void *color, u32 zvalue);
 extern void GXSetTexCoordGen2(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
 extern void GXSetNumTexGens(s32 num);
 extern void GXClearVtxDesc(void);
@@ -199,21 +199,21 @@ extern void fn_800339E0(s32 idx, void *arg, s32 val);
 extern void fn_800332D8(s32 idx, const void *tbl);
 extern void GXSetLineWidth(s32 width, s32 shift);
 extern void GXSetPointSize(s32 size, s32 shift);
-extern void fn_80034834(s32 coord, s32 en1, s32 en2);
+extern void __GXSetTexCoordGen_Cache(s32 coord, s32 en1, s32 en2);
 extern void fn_80038C5C(void *mtx, s32 id);
 extern void fn_80038CAC(void *mtx, s32 id);
 extern void fn_80038CFC(s32 id);
-extern void fn_80038D34(void *mtx, s32 id, s32 type);
+extern void GXWritePrimitiveFifo(void *mtx, s32 id, s32 type);
 extern void fn_80038EEC(f32 x, f32 y, f32 wd, f32 ht, f32 nearz, f32 farz);
 extern void fn_80038B3C(const void *data);
-extern void fn_800348DC(s32 arg);
+extern void __GXSetZMode_Cache(s32 arg);
 extern void GXSetCullMode(s32 arg);
 extern void fn_80039060(s32 arg);
 extern void fn_80038F48(s32 l, s32 t, s32 r, s32 b);
 extern void fn_80039020(s32 ofs_x, s32 ofs_y);
-extern void fn_8003591C(s32 num);
+extern void __GXSetChanAmbColor(s32 num);
 extern void fn_80035960(s32 chan, s32 en, s32 amb, s32 mat, s32 lights, s32 df, s32 af);
-extern void fn_80035734(s32 chan, void *color);
+extern void GXSetChanAmbColor(s32 chan, void *color);
 extern void GXSetChanMatColor(s32 chan, void *color);
 extern void fn_80036544(void);
 extern void GXSetChanCtrl(s32 stage, s32 coord, s32 map, s32 color);
@@ -240,11 +240,11 @@ extern void fn_80037D40(BOOL enable, u8 alpha);
 extern void fn_80037C2C(s32 pixFmt, s32 zFmt);
 extern void fn_80037D7C(BOOL odd, BOOL even);
 extern void fn_80037DB4(BOOL fieldMode, BOOL halfAspect);
-extern void fn_80034A5C(s32 left, s32 top, s32 wd, s32 ht);
-extern void fn_80034B7C(s32 wd, s32 ht);
+extern void __GXSetScissor_LT(s32 left, s32 top, s32 wd, s32 ht);
+extern void __GXSetScissorBoxOffset(s32 wd, s32 ht);
 extern void fn_80034D9C(f32 yscale);
 extern void fn_80034D34(s32 gamma);
-extern void fn_80034ECC(u8 aa, const u8 *sample, BOOL enable, const u8 *vfilt);
+extern void GXSetCopyClear(u8 aa, const u8 *sample, BOOL enable, const u8 *vfilt);
 extern void fn_800350F4(s32 flag);
 extern void fn_80034D0C(s32 flag);
 extern void fn_800353E8(void);
@@ -1079,7 +1079,7 @@ L80031334:
     addi	r3, r1, 0x1c
     stw	r0, 0x1c(r1)
     addi	r4, r4, -1
-    bl fn_80034E64
+    bl __GXSetBlendModePair
     li	r3, 0
     li	r4, 1
     li	r5, 4
@@ -1178,35 +1178,35 @@ L80031480:
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl fn_80034834
+    bl __GXSetTexCoordGen_Cache
     li	r3, 1
     li	r4, 0
     li	r5, 0
-    bl fn_80034834
+    bl __GXSetTexCoordGen_Cache
     li	r3, 2
     li	r4, 0
     li	r5, 0
-    bl fn_80034834
+    bl __GXSetTexCoordGen_Cache
     li	r3, 3
     li	r4, 0
     li	r5, 0
-    bl fn_80034834
+    bl __GXSetTexCoordGen_Cache
     li	r3, 4
     li	r4, 0
     li	r5, 0
-    bl fn_80034834
+    bl __GXSetTexCoordGen_Cache
     li	r3, 5
     li	r4, 0
     li	r5, 0
-    bl fn_80034834
+    bl __GXSetTexCoordGen_Cache
     li	r3, 6
     li	r4, 0
     li	r5, 0
-    bl fn_80034834
+    bl __GXSetTexCoordGen_Cache
     li	r3, 7
     li	r4, 0
     li	r5, 0
-    bl fn_80034834
+    bl __GXSetTexCoordGen_Cache
     lfs	f1, -0x7dd8(r2)
     addi	r3, r1, 0x2c
     lfs	f0, -0x7dd4(r2)
@@ -1232,11 +1232,11 @@ L80031480:
     addi	r3, r1, 0x2c
     li	r4, 0x3c
     li	r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     addi	r3, r1, 0x2c
     li	r4, 0x7d
     li	r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     lhz	r4, 4(r31)
     lis	r3, 0x4330
     lhz	r0, 8(r31)
@@ -1258,7 +1258,7 @@ L80031480:
     addi	r3, r3, lbl_8012AD14@l
     bl fn_80038B3C
     li	r3, 0
-    bl fn_800348DC
+    bl __GXSetZMode_Cache
     li	r3, 2
     bl GXSetCullMode
     li	r3, 0
@@ -1272,7 +1272,7 @@ L80031480:
     li	r4, 0
     bl fn_80039020
     li	r3, 0
-    bl fn_8003591C
+    bl __GXSetChanAmbColor
     li	r3, 4
     li	r4, 0
     li	r5, 0
@@ -1285,7 +1285,7 @@ L80031480:
     addi	r4, r1, 0x18
     li	r3, 4
     stw	r0, 0x18(r1)
-    bl fn_80035734
+    bl GXSetChanAmbColor
     lwz	r0, 0x20(r1)
     addi	r4, r1, 0x14
     li	r3, 4
@@ -1303,7 +1303,7 @@ L80031480:
     addi	r4, r1, 0x10
     li	r3, 5
     stw	r0, 0x10(r1)
-    bl fn_80035734
+    bl GXSetChanAmbColor
     lwz	r0, 0x20(r1)
     addi	r4, r1, 0xc
     li	r3, 5
@@ -1543,10 +1543,10 @@ L80031a38:
     li	r3, 0
     lhz	r6, 6(r31)
     li	r4, 0
-    bl fn_80034A5C
+    bl __GXSetScissor_LT
     lhz	r3, 4(r31)
     lhz	r4, 6(r31)
-    bl fn_80034B7C
+    bl __GXSetScissorBoxOffset
     lhz	r4, 8(r31)
     lis	r3, 0x4330
     lhz	r0, 6(r31)
@@ -1567,7 +1567,7 @@ L80031a38:
     addi	r4, r31, 0x1a
     addi	r6, r31, 0x32
     li	r5, 1
-    bl fn_80034ECC
+    bl GXSetCopyClear
     li	r3, 0
     bl fn_800350F4
     li	r3, 0

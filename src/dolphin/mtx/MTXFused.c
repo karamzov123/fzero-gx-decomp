@@ -31,7 +31,7 @@ asm void fn_8006D368(void);
 asm void fn_8006D3D0(void);
 asm void fn_8006D46C(void);
 asm void fn_8006D5A4(void);
-asm void fn_8006D668(void);
+asm void PSVecNormalize3(void);
 asm void fn_8006D6FC(void);
 asm void fn_8006D758(void);
 asm void fn_8006D784(void);
@@ -41,8 +41,8 @@ asm void fn_8006D7F4(void);
 asm void fn_8006D890(void);
 asm void fn_8006D8D8(void);
 asm void fn_8006D91C(void);
-asm void fn_8006DAEC(void);
-asm void fn_8006DB30(void);
+asm void mtx_gpstack_push(void);
+asm void mtx_gpstack_pop(void);
 asm void fn_8006DB74(void);
 asm void fn_8006DBAC(void);
 asm void fn_8006DC34(void);
@@ -586,7 +586,7 @@ _8006d654:
     blr
 }
 
-asm void fn_8006D668(void)
+asm void PSVecNormalize3(void)
 {
     nofralloc
     lis	r5, -0x2000
@@ -929,7 +929,7 @@ _8006d9f8:
     blr
 }
 
-asm void fn_8006DAEC(void)
+asm void mtx_gpstack_push(void)
 {
     nofralloc
     lis	r3, -0x2000
@@ -951,7 +951,7 @@ asm void fn_8006DAEC(void)
     blr
 }
 
-asm void fn_8006DB30(void)
+asm void mtx_gpstack_pop(void)
 {
     nofralloc
     lis	r3, -0x2000
