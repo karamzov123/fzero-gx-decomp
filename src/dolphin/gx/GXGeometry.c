@@ -41,7 +41,7 @@ extern void fn_8003666C(void);
 extern void fn_80036F24(void);
 extern void __GXSetVAT(void);
 extern void fn_80033650(void);
-extern void fn_80032BE0(void);
+extern void __GXCalculateVatSizes(void);
 extern void __cvt_fp2unsigned(void);
 extern void fn_80088624(void);
 extern void* memset(void* dst, int c, unsigned long n);
@@ -104,7 +104,7 @@ void __GXSetDirtyState(void)
     if (gx->dirtyState & 0x10)
         fn_80033650();
     if (gx->dirtyState & 0x18)
-        fn_80032BE0();
+        __GXCalculateVatSizes();
     gx->dirtyState = 0;
 }
 
@@ -156,7 +156,7 @@ _800346bc:
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1b, 0x1c
     beq     _800346d0
-    bl      fn_80032BE0
+    bl      __GXCalculateVatSizes
 _800346d0:
     lwz	r3, -0x7de8(r2)
     li	r0, 0

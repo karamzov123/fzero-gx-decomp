@@ -18,7 +18,7 @@ void __GXXfVtxSpecs(register void* p);
 void GXSetVtxDesc(register void* p, register int a, register int b);
 void fn_80032818(register void* p, register int a, register int b);
 void __GXSetVAT(void);
-void fn_80032BE0(void);
+void __GXCalculateVatSizes(void);
 void GXGetVtxDesc(register void* p, register int a);
 void GXGetVtxDescv(register void* p);
 void GXClearVtxDesc(register void* p);
@@ -632,7 +632,7 @@ asm void __GXSetVAT(void)
     blr	
 }
 
-asm void fn_80032BE0(void)
+asm void __GXCalculateVatSizes(void)
 {
     nofralloc
     lwz	r3, -0x7de8(r2)
