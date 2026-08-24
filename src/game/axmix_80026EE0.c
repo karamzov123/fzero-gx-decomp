@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void axmix_set_voice_volume(void);
-extern void fn_80026F4C(void);
+extern void axmix_set_voice_volume_clamped(void);
 extern void fn_80026FB8(void);
 extern void fn_80026FE0(void);
 extern void fn_8002805C(void);
@@ -89,7 +89,7 @@ _80026f20:
     blr	
 }
 
-asm void fn_80026F4C(void)
+asm void axmix_set_voice_volume_clamped(void)
 {
     nofralloc
     mflr	r0
@@ -1986,7 +1986,7 @@ _8002881c:
     bl      axmix_set_voice_volume
     addi	r3, r19, 0
     clrlwi	r4, r23, 0x18
-    bl      fn_80026F4C
+    bl      axmix_set_voice_volume_clamped
     lmw	r19, 0x24(r1)
     lwz	r0, 0x6c(r1)
     lfd	f31, 0x60(r1)

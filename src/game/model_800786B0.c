@@ -50,7 +50,7 @@ asm void fn_80078DA8(void);
 asm void fn_80078F0C(void);
 asm void fn_800791A4(void);
 asm void fn_800791E8(void);
-asm void fn_800793D4(void);
+asm void ModelLoadLcDma(void);
 #pragma push
 #pragma force_active on
 
@@ -1064,7 +1064,7 @@ _800793BC:
     blr
 }
 
-asm void fn_800793D4(void)
+asm void ModelLoadLcDma(void)
 {
     nofralloc
     stwu r1, -0x30(r1)

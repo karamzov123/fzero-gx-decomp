@@ -7,7 +7,7 @@ extern void DCFlushRangeNoSync(register void* addr, register u32 nBytes);
 extern unsigned char __AXBufferAuxA[5760];
 extern unsigned char __AXBufferAuxB[5760];
 
-asm void fn_80020D58(void)
+asm void AXInitAux(void)
 {
     nofralloc
     li	r7, 0

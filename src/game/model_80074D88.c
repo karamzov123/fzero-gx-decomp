@@ -103,7 +103,7 @@ asm void fn_80075D48(void);
 asm void fn_80076134(void);
 asm void fn_80076238(void);
 asm void fn_800764A0(void);
-asm void fn_80076790(void);
+asm void ModelBlendMatrixPush(void);
 asm void fn_8007698C(void);
 asm void AvDispTraverseMaterialCache(void);
 asm void fn_80077240(void);
@@ -1916,7 +1916,7 @@ _800765F0:
     blr
 }
 
-asm void fn_80076790(void)
+asm void ModelBlendMatrixPush(void)
 {
     nofralloc
     stwu r1, -0x70(r1)
@@ -2153,7 +2153,7 @@ _80076AF4:
     li r4, 0
     addi r3, r3, lbl_8019F200@l
     bl ModelCacheMaterialParams
-    bl fn_80076790
+    bl ModelBlendMatrixPush
 _80076B1C:
     lwz r31, 0(r29)
     mr r3, r31

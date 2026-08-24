@@ -175,13 +175,13 @@ extern void ModelClearCacheSlot_B28(void);
 extern void ModelMatchCachedSlot_B20(void);
 extern void ModelSetCachedPair5_B28(void);
 extern void GXSetNumTexGensCached(void);
-extern void fn_800746A8(void);
+extern void GXSetLineWidthCached(void);
 extern void GXSetChanAmbColorCached(void);
 extern void LightCtrl_SetCachedRec_C30(void);
 extern void GXSetTexGenCached(void);
 extern void fn_800791A4(void);
 extern void fn_800791E8(void);
-extern void fn_800793D4(void);
+extern void ModelLoadLcDma(void);
 extern void memcpy_fast(void);
 extern void __cvt_fp2unsigned(void);
 extern void __msl_strncmp(void);
@@ -515,7 +515,7 @@ asm void GameMainLoopFrame(void)
     mr	r3, r30
     clrlwi	r4, r31, 0x18
     li	r5, 0
-    bl      fn_800793D4
+    bl      ModelLoadLcDma
     mr	r3, r29
     bl      OSSetArenaHi
     mr	r12, r28
@@ -4090,7 +4090,7 @@ asm void fn_80008A4C(void)
     bl      Snd_SetOutputModeBit0
     li	r3, 6
     li	r4, 0
-    bl      fn_800746A8
+    bl      GXSetLineWidthCached
     li	r3, 0
     bl      LightCtrl_SetCachedCullMode
     li	r3, 0
@@ -4194,7 +4194,7 @@ asm void fn_80008BEC(void)
     stw	r0, 0x14(r1)
     clrlwi.	r0, r3, 0x1b
     bc      4, 2, _80008c08
-    bl      fn_800793D4
+    bl      ModelLoadLcDma
     b       _80008c10
 _80008c08:
     clrlwi	r4, r4, 0x18

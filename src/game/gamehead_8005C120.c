@@ -48,14 +48,14 @@ extern void fn_80025EF4(void);
 extern void axmix_device_ctrl_clear(void);
 extern void axmix_set_voice_param_08(void);
 extern void fn_80026DB8(void);
-extern void fn_80026DD4(void);
+extern void axmix_voice_clear_flags_and_request_update(void);
 extern void fn_80026E04(void);
 extern void fn_80026E2C(void);
 extern void fn_80026E54(void);
 extern void fn_80026E84(void);
 extern void fn_80026EAC(void);
 extern void axmix_set_voice_volume(void);
-extern void fn_80026F4C(void);
+extern void axmix_set_voice_volume_clamped(void);
 extern void fn_80026FB8(void);
 extern void fn_80028130(void);
 extern void fn_80028164(void);
@@ -3618,7 +3618,7 @@ _8005f280:
     lwz	r0, -0x7740(r13)
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
-    bl      fn_80026DD4
+    bl      axmix_voice_clear_flags_and_request_update
 _8005f290:
     rlwinm.	r20, r19, 0, 0x1e, 0x1e
     bc      12, 2, _8005f2ac
@@ -4082,7 +4082,7 @@ _8005f94c:
     lwz	r0, -0x7740(r13)
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
-    bl      fn_80026DD4
+    bl      axmix_voice_clear_flags_and_request_update
 _8005f95c:
     cmplwi	r20, 0
     bc      12, 2, _8005f978
@@ -6855,7 +6855,7 @@ _800620c4:
     extsh	r4, r20
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
-    bl      fn_80026F4C
+    bl      axmix_set_voice_volume_clamped
     b       _80062294
 _80062100:
     addi	r6, r16, 0xc
@@ -6936,7 +6936,7 @@ _800621d8:
     mr	r4, r15
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
-    bl      fn_80026F4C
+    bl      axmix_set_voice_volume_clamped
     lbz	r0, 0(r17)
     fmr	f1, f31
     lwz	r3, -0x7740(r13)
@@ -6953,7 +6953,7 @@ _800621d8:
     mr	r4, r15
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
-    bl      fn_80026F4C
+    bl      axmix_set_voice_volume_clamped
     lwz	r0, -0x7740(r13)
     lwz	r4, 0x18(r1)
     add	r3, r0, r14

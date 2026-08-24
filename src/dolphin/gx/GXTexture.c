@@ -56,7 +56,7 @@ asm void fn_800360D8(void)
     blr	
 }
 
-asm void fn_800360E4(register void* p)
+asm void GXXFormSetupA(register void* p)
 {
     nofralloc
     lwz	r0, 8(r3)
@@ -65,7 +65,7 @@ asm void fn_800360E4(register void* p)
     blr	
 }
 
-asm void fn_800360F4(register void* p)
+asm void GXXFormSetupB(register void* p)
 {
     nofralloc
     lwz	r0, 8(r3)
@@ -74,7 +74,7 @@ asm void fn_800360F4(register void* p)
     blr	
 }
 
-asm void fn_80036104(void)
+asm void GXGetTexObjMipmap(void)
 {
     nofralloc
     lwz	r3, 0x14(r3)

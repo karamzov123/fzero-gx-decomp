@@ -1,9 +1,9 @@
 typedef unsigned int u32;
 typedef signed int s32;
 
-asm void fn_80071CC0(void);
-asm void fn_80071CE8(void);
-asm void fn_80071D0C(void);
+asm void ModelDVD_OpenFile(void);
+asm void ModelDVD_ReadAsync(void);
+asm void ModelDVD_CancelSync(void);
 asm void fn_80071D30(void);
 asm void GXCompareVecDirty(void);
 asm void fn_80072014(void);
@@ -11,8 +11,8 @@ asm void Snd_SetOutputModeBit0(void);
 asm void fn_80072168(void);
 asm void fn_800721FC(void);
 asm void GXComputeDeltaRatio(void);
-asm void fn_80072344(void);
-asm void fn_80072378(void);
+asm void GXProjCache_Save(void);
+asm void GXProjCache_Restore(void);
 
 extern void DVDOpen(void);
 extern void DVDCancelSync(void);
@@ -24,7 +24,7 @@ extern void GXBeginDisplayList(void);
 extern void GXEndDisplayList(void);
 extern void GXClearVtxDesc(void);
 extern void GXSetVtxDesc(void);
-extern void fn_800793D4(void);
+extern void ModelLoadLcDma(void);
 extern void GXSetMatrixIndexA(void);
 extern void GXSetMatrixIndexB(void);
 extern void* memcpy(void*, const void*, unsigned long);
@@ -37,7 +37,7 @@ extern unsigned char lbl_8019F024[28];
 #pragma push
 #pragma force_active on
 
-asm void fn_80071CC0(void)
+asm void ModelDVD_OpenFile(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
@@ -57,7 +57,7 @@ asm u32 fn_80071CE0(register void* a)
     blr
 }
 
-asm void fn_80071CE8(void)
+asm void ModelDVD_ReadAsync(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
@@ -71,7 +71,7 @@ asm void fn_80071CE8(void)
     blr
 }
 
-asm void fn_80071D0C(void)
+asm void ModelDVD_CancelSync(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
@@ -169,7 +169,7 @@ _80071d84:
     addi    r3, r31, 0xb8
     li      r4, 0xff
     li      r5, 0xd00
-    bl      fn_800793D4
+    bl      ModelLoadLcDma
     lwz     r0, 0x14(r1)
     addi    r3, r31, 0
     lfs     f1, -0x79f4(r2)
@@ -525,7 +525,7 @@ _800722e0:
     blr
 }
 
-asm void fn_80072344(void)
+asm void GXProjCache_Save(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
@@ -543,7 +543,7 @@ asm void fn_80072344(void)
     blr
 }
 
-asm void fn_80072378(void)
+asm void GXProjCache_Restore(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)

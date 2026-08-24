@@ -6,12 +6,12 @@ typedef int BOOL;
 extern unsigned long long OSGetTime(void);
 extern void fn_80022BF4(void);
 extern void fn_80022028(void);
-extern void fn_80021200(void);
+extern void __AXSwapCommandList(void);
 extern void DSPSendMailToDSP(void);
 extern void DSPCheckMailToDSP(void);
 extern void __AXServiceCallbackStack(void);
 extern void fn_80020FA4(void);
-extern void fn_8002123C(void);
+extern void AXPushCLCommands(void);
 extern void AIInitDMA(void);
 extern void fn_800224E4(void);
 extern void fn_800235D4(void);
@@ -33,7 +33,7 @@ extern unsigned char lbl_80126240[7968];
 extern unsigned char lbl_80160500[1920];
 extern unsigned char lbl_80160C80[16544];
 
-asm void fn_80021930(void)
+asm void __AXOutFrameTask(void)
 {
     nofralloc
     mflr	r0
@@ -50,7 +50,7 @@ asm void fn_80021930(void)
     mr	r3, r30
     bl      fn_80022BF4
     bl      fn_80022028
-    bl      fn_80021200
+    bl      __AXSwapCommandList
     lis	r4, -0x4542
     addi	r30, r3, 0
     addi	r3, r4, 0x180
@@ -89,7 +89,7 @@ _800219dc:
     lwz	r0, -0x78b0(r13)
     mulli	r0, r0, 0x280
     add	r4, r31, r0
-    bl      fn_8002123C
+    bl      AXPushCLCommands
     lwz	r3, -0x78b0(r13)
     li	r4, 0x280
     addi	r0, r3, 1
@@ -141,7 +141,7 @@ _80021aa0:
     blr	
 }
 
-asm void fn_80021AB8(void)
+asm void __AXOutFirstFrameCallback(void)
 {
     nofralloc
     mflr	r0
@@ -160,7 +160,7 @@ _80021adc:
     li	r0, 0
     stw	r0, -0x78ac(r13)
     li	r3, 0
-    bl      fn_80021930
+    bl      __AXOutFrameTask
     b       _80021b10
 _80021afc:
     li	r0, 2
@@ -183,7 +183,7 @@ asm void fn_80021B20(void)
     blr	
 }
 
-asm void fn_80021B2C(void)
+asm void __AXOutDspResumeCallback(void)
 {
     nofralloc
     mflr	r0
@@ -200,7 +200,7 @@ asm void fn_80021B2C(void)
     subfc	r0, r0, r4
     srwi	r0, r0, 2
     mr	r3, r0
-    bl      fn_80021930
+    bl      __AXOutFrameTask
     b       _80021b74
 _80021b6c:
     li	r0, 1
@@ -228,7 +228,7 @@ asm void fn_80021B84(void)
     blr	
 }
 
-asm void fn_80021BB0(void)
+asm void AXInitOutput(void)
 {
     nofralloc
     mflr	r0
@@ -477,13 +477,13 @@ _80021e10:
     addi	r3, r31, 0x500
     li	r4, 0x280
     bl      DCFlushRange
-    bl      fn_80021BB0
-    lis     r3, fn_80021AB8@ha
-    addi	r3, r3, fn_80021AB8@l
+    bl      AXInitOutput
+    lis     r3, __AXOutFirstFrameCallback@ha
+    addi	r3, r3, __AXOutFirstFrameCallback@l
     bl      AIRegisterDMACallback
     addi	r3, r31, 0x500
     addi	r4, r31, 0x280
-    bl      fn_8002123C
+    bl      AXPushCLCommands
     li	r0, 1
     stw	r0, -0x78ac(r13)
     li	r3, 0

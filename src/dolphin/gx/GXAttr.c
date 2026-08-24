@@ -23,10 +23,10 @@ void GXGetVtxDesc(register void* p, register int a);
 void GXGetVtxDescv(register void* p);
 void GXClearVtxDesc(register void* p);
 void GXBuildPackedRegister(register void* p, register int a, register int b);
-void fn_800332D8(register void* p, register int a, register int b);
+void __GXSetVATGroup(register void* p, register int a, register int b);
 void __GXSetVAT(void);
 void GXGetVtxDescList(register void* p, register int a, register int b);
-void fn_8003396C(register void* p);
+void __GXWriteXFCmdHeader(register void* p);
 void GXSetArray(register void* p);
 void GXWriteAttrRegister(register void* p);
 void GXSetTexCoordGen2(register void* p, register int a, register int b);
@@ -1112,7 +1112,7 @@ _800332a8:
     blr	
 }
 
-asm void fn_800332D8(register void* p, register int a, register int b)
+asm void __GXSetVATGroup(register void* p, register int a, register int b)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)
@@ -1562,7 +1562,7 @@ _80033954:
     blr	
 }
 
-asm void fn_8003396C(register void* p)
+asm void __GXWriteXFCmdHeader(register void* p)
 {
     nofralloc
     mflr	r0

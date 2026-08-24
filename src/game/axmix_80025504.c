@@ -666,7 +666,7 @@ _80025dd4:
     blr	
 }
 
-asm void fn_80025E18(void)
+asm void axmix_voices_reset_all(void)
 {
     nofralloc
     mflr	r0
@@ -1866,7 +1866,7 @@ asm void fn_80026DB8(void)
     blr	
 }
 
-asm void fn_80026DD4(void)
+asm void axmix_voice_clear_flags_and_request_update(void)
 {
     nofralloc
     lwz	r4, 0x18(r3)

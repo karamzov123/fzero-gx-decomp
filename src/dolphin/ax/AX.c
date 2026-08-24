@@ -14,8 +14,8 @@ extern void* __AXPopCallbackStack(void);
 extern void __AXRemoveFromStack(register void* p);
 extern void fn_80022EA4(void);
 extern void fn_80022420(void);
-extern void fn_80020D58(void);
-extern void fn_800218EC(void);
+extern void AXInitAux(void);
+extern void AXInitCommandList(void);
 extern void fn_80021910(void);
 extern void fn_80021C7C(void);
 extern void fn_800230A0(void);
@@ -62,8 +62,8 @@ asm void AXInit(void)
     bl      __AXInitVoiceStacks
     bl      fn_80022EA4
     bl      fn_80022420
-    bl      fn_80020D58
-    bl      fn_800218EC
+    bl      AXInitAux
+    bl      AXInitCommandList
     bl      fn_80021C7C
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8

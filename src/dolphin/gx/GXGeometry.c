@@ -48,13 +48,13 @@ extern void* memset(void* dst, int c, unsigned long n);
 extern void __GXGetTexTileSize(register void* p1, register void* p2, register int id, register void* p4);
 extern void __cvt_fp2unsigned(void);
 extern void GXGetVtxDescv(register void* p);
-extern void fn_8003396C(register void* p);
+extern void __GXWriteXFCmdHeader(register void* p);
 extern void GXClearVtxDesc(register void* p);
 extern void GXSetVtxDesc(register void* p, register int a, register int b);
 extern void GXBuildPackedRegister(register void* p, register int a, register int b);
 extern void fn_80088600(void);
 extern void GXSetVtxDescv(register void* p, register int a, register int b);
-extern void fn_800332D8(register void* p, register int a, register int b);
+extern void __GXSetVATGroup(register void* p, register int a, register int b);
 extern void GXGetVtxDesc(register void* p, register int a);
 extern unsigned char jumptable_8012B120[28];
 extern unsigned char jumptable_8012B140[244];
@@ -636,7 +636,7 @@ _80034c44:
     blr	
 }
 
-asm void fn_80034D0C(register int arg)
+asm void __GXSetZMode(register int arg)
 {
     nofralloc
     lwz	r4, -0x7de8(r2)
@@ -651,7 +651,7 @@ asm void fn_80034D0C(register int arg)
     blr	
 }
 
-asm void fn_80034D34(register int a, register int b, register int c)
+asm void __GXSetBlendMode(register int a, register int b, register int c)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)
@@ -919,7 +919,7 @@ _800350c4:
     blr	
 }
 
-asm void fn_800350F4(register int idx)
+asm void __GXSetGenMode2(register int idx)
 {
     nofralloc
     lwz	r4, -0x7de8(r2)
@@ -1136,7 +1136,7 @@ _800353d8:
     blr	
 }
 
-asm void fn_800353E8(register int a)
+asm void __GXFlushTextureCache(register int a)
 {
     nofralloc
     li	r6, 0x61

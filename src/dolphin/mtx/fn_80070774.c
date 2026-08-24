@@ -10,8 +10,8 @@ extern asm void GXInitFifoPtrs(void);
 extern asm void fn_80071D30(void);
 extern asm void fn_80038EEC(void);
 extern asm void fn_80074188(void);
-extern asm void fn_8007423C(void);
-extern asm void fn_800743C4(void);
+extern asm void ModelSetCachedScissorLT_AFC(void);
+extern asm void ModelSetCachedScissorOffset_B04(void);
 extern asm void fn_80034D9C(void);
 extern asm void GXSetCopyClear(void);
 extern asm void fn_80037C2C(void);
@@ -19,7 +19,7 @@ extern asm void __GXSetZModeBits(void);
 extern asm void GXWriteLightAttn(void);
 extern asm void ModelMatchCachedSlot_B20(void);
 extern asm void __GXSetDispCopy(void);
-extern asm void fn_800350F4(void);
+extern asm void __GXSetGenMode2(void);
 extern asm void fn_8001B42C(void);
 extern asm void fn_8001BD84(void);
 extern asm void fn_8001BC54(void);
@@ -140,11 +140,11 @@ _80070884:
     li	r4, 0
     lhz	r5, 4(r6)
     lhz	r6, 6(r6)
-    bl      fn_8007423C
+    bl      ModelSetCachedScissorLT_AFC
     lwz	r4, -0x76cc(r13)
     lhz	r3, 4(r4)
     lhz	r4, 8(r4)
-    bl      fn_800743C4
+    bl      ModelSetCachedScissorOffset_B04
     lwz	r5, -0x76cc(r13)
     lis	r3, 0x4330
     stw	r3, 0x20(r1)
@@ -203,7 +203,7 @@ _800709c4:
     lwz	r3, 4(r3)
     bl      __GXSetDispCopy
     li	r3, 0
-    bl      fn_800350F4
+    bl      __GXSetGenMode2
     lwz	r3, -0x76cc(r13)
     bl      fn_8001B42C
     mr	r3, r31

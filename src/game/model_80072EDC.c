@@ -24,8 +24,8 @@ extern void __GXInitTexObjHW(void);
 extern void __GXSetBlendModePair(void);
 extern void __GXSetChanAmbColor(void);
 extern void __GXSetChanCtrl(void);
-extern void fn_800360E4(void);
-extern void fn_800360F4(void);
+extern void GXXFormSetupA(void);
+extern void GXXFormSetupB(void);
 extern void fn_80036388(void);
 extern void fn_80036A28(void);
 extern void fn_80036AC4(void);
@@ -65,15 +65,15 @@ asm void ModelClearCacheSlot_B28(void);
 asm void fn_80073D60(void);
 asm void fn_80073E8C(void);
 asm void fn_80074188(void);
-asm void fn_8007423C(void);
-asm void fn_80074300(void);
-asm void fn_800743C4(void);
-asm void fn_80074438(void);
+asm void ModelSetCachedScissorLT_AFC(void);
+asm void ModelSetCachedScissorRB_B08(void);
+asm void ModelSetCachedScissorOffset_B04(void);
+asm void ModelSetCachedTexObjHW_B10(void);
 asm void ModelMatchCachedSlot_B20(void);
 asm void ModelSetCachedPair5_B28(void);
 asm void GXSetNumTexGensCached(void);
-asm void fn_800746A8(void);
-asm void fn_80074718(void);
+asm void GXSetLineWidthCached(void);
+asm void GXSetPointSizeCached(void);
 asm void GXSetChanAmbColorCached(void);
 asm void LightCtrl_SetCachedRec_C30(void);
 asm void GXSetTexGenCached(void);
@@ -714,10 +714,10 @@ asm void ModelCacheMaterialParams(void)
     lwz r0, -0x7688(r13)
     addi r31, r4, 0x720
     add r31, r0, r31
-    bl fn_800360E4
+    bl GXXFormSetupA
     sth r3, 0x20(r31)
     mr r3, r29
-    bl fn_800360F4
+    bl GXXFormSetupB
     sth r3, 0x22(r31)
     mr r3, r29
     mr r4, r30
@@ -1491,7 +1491,7 @@ _8007421C:
     blr
 }
 
-asm void fn_8007423C(void)
+asm void ModelSetCachedScissorLT_AFC(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1547,7 +1547,7 @@ _800742E0:
     blr
 }
 
-asm void fn_80074300(void)
+asm void ModelSetCachedScissorRB_B08(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1603,7 +1603,7 @@ _800743A4:
     blr
 }
 
-asm void fn_800743C4(void)
+asm void ModelSetCachedScissorOffset_B04(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1639,7 +1639,7 @@ _80074420:
     blr
 }
 
-asm void fn_80074438(void)
+asm void ModelSetCachedTexObjHW_B10(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1822,7 +1822,7 @@ _80074694:
     blr
 }
 
-asm void fn_800746A8(void)
+asm void GXSetLineWidthCached(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1857,7 +1857,7 @@ _80074700:
     blr
 }
 
-asm void fn_80074718(void)
+asm void GXSetPointSizeCached(void)
 {
     nofralloc
     stwu r1, -0x10(r1)

@@ -18,7 +18,7 @@ extern void DCFlushRange(register void* addr, register u32 nBytes);
 extern unsigned char lbl_80124800[6720];
 extern unsigned char lbl_8015FF00[1536];
 
-asm void fn_80021200(void)
+asm void __AXSwapCommandList(void)
 {
     nofralloc
     lwz	r5, -0x78c8(r13)
@@ -38,7 +38,7 @@ asm void fn_80021200(void)
     blr	
 }
 
-asm void fn_8002123C(void)
+asm void AXPushCLCommands(void)
 {
     nofralloc
     mflr	r0
@@ -479,7 +479,7 @@ _80021824:
     blr	
 }
 
-asm void fn_800218EC(void)
+asm void AXInitCommandList(void)
 {
     nofralloc
     lis     r3, lbl_8015FF00@ha

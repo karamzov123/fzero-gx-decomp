@@ -7,14 +7,14 @@ extern void* memset(void*, int, unsigned long);
 extern void __cvt_fp2unsigned(void);
 extern void __GXFlushTextureState(void);
 extern void GXGetVtxDescv(register void* p);
-extern void fn_8003396C(register void* p);
+extern void __GXWriteXFCmdHeader(register void* p);
 extern void GXClearVtxDesc(register void* p);
 extern void GXSetVtxDesc(register void* p, register int a, register int b);
 extern void GXBuildPackedRegister(register void* p, register int a, register int b);
 extern void fn_80088624(void);
 extern void fn_80088600(void);
 extern void GXSetVtxDescv(register void* p, register int a, register int b);
-extern void fn_800332D8(register void* p, register int a, register int b);
+extern void __GXSetVATGroup(register void* p, register int a, register int b);
 extern void GXGetVtxDesc(register void* p, register int a);
 extern void __GXSetDirtyState(void);
 extern void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts);
@@ -915,7 +915,7 @@ asm void GXSetupLitVertexData(register void* p)
     bl      GXGetVtxDescv
     li	r3, 3
     addi	r4, r31, 0xd8
-    bl      fn_8003396C
+    bl      __GXWriteXFCmdHeader
     bl      GXClearVtxDesc
     li	r3, 9
     li	r4, 1
@@ -1320,7 +1320,7 @@ _80038488:
     bl      GXSetVtxDescv
     li	r3, 3
     addi	r4, r31, 0xd8
-    bl      fn_800332D8
+    bl      __GXSetVATGroup
     b       _800384d0
 _800384a0:
     slwi	r0, r6, 2
@@ -1397,7 +1397,7 @@ asm void fn_800384FC(register void* p)
     bl      GXGetVtxDescv
     li	r3, 3
     addi	r4, r26, 0xd8
-    bl      fn_8003396C
+    bl      __GXWriteXFCmdHeader
     bl      GXClearVtxDesc
     li	r3, 9
     li	r4, 1
@@ -1564,7 +1564,7 @@ _80038814:
     bl      GXSetVtxDescv
     li	r3, 3
     addi	r4, r26, 0xd8
-    bl      fn_800332D8
+    bl      __GXSetVATGroup
     lmw	r21, 0x3c(r1)
     lwz	r0, 0xd4(r1)
     lfd	f31, 0xc8(r1)

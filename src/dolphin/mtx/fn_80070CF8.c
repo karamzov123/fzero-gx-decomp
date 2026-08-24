@@ -8,18 +8,18 @@ extern asm void OSSetArenaLo(void);
 extern void fn_80071C64(void);
 extern void fn_80071C8C(void);
 extern void fn_80071CB4(void);
-extern void fn_80071CC0(void);
+extern void ModelDVD_OpenFile(void);
 extern void fn_80071CE0(void);
-extern void fn_80071CE8(void);
-extern void fn_80071D0C(void);
+extern void ModelDVD_ReadAsync(void);
+extern void ModelDVD_CancelSync(void);
 extern void fn_80071D2C(void);
 extern void fn_80071C64(void);
 extern void fn_80071C8C(void);
 extern void fn_80071CB4(void);
-extern void fn_80071CC0(void);
+extern void ModelDVD_OpenFile(void);
 extern void fn_80071CE0(void);
-extern void fn_80071CE8(void);
-extern void fn_80071D0C(void);
+extern void ModelDVD_ReadAsync(void);
+extern void ModelDVD_CancelSync(void);
 extern void fn_80071D2C(void);
 
 asm void OSAllocFromArena(void)
@@ -77,16 +77,16 @@ asm void fn_80070D94(void)
 {
     nofralloc
     lis     r8, fn_80071CB4@ha
-    lis     r7, fn_80071CC0@ha
+    lis     r7, ModelDVD_OpenFile@ha
     lis     r6, fn_80071CE0@ha
-    lis     r5, fn_80071CE8@ha
-    lis     r4, fn_80071D0C@ha
+    lis     r5, ModelDVD_ReadAsync@ha
+    lis     r4, ModelDVD_CancelSync@ha
     lis     r3, fn_80071D2C@ha
     addi	r8, r8, fn_80071CB4@l
-    addi	r7, r7, fn_80071CC0@l
+    addi	r7, r7, ModelDVD_OpenFile@l
     addi	r6, r6, fn_80071CE0@l
-    addi	r5, r5, fn_80071CE8@l
-    addi	r4, r4, fn_80071D0C@l
+    addi	r5, r5, ModelDVD_ReadAsync@l
+    addi	r4, r4, ModelDVD_CancelSync@l
     addi	r0, r3, fn_80071D2C@l
     stw	r8, -0x769c(r13)
     stw	r7, -0x76a0(r13)

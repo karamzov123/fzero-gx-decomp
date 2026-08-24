@@ -187,7 +187,7 @@ extern void fn_80010CB0(void *thread);
 extern void fn_80010F38(void *thread);
 extern void __GXWriteFifoIntEnable(u8 hiWatermarkEn, u8 loWatermarkEn);
 extern void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr);
-extern s32 fn_80036104(GXTexObj *obj);
+extern s32 GXGetTexObjMipmap(GXTexObj *obj);
 
 /* called from later GX units */
 extern void __GXSetBlendModePair(void *color, u32 zvalue);
@@ -196,7 +196,7 @@ extern void GXSetNumTexGens(s32 num);
 extern void GXClearVtxDesc(void);
 extern void GXWriteAttrRegister(void);
 extern void GXSetArray(s32 idx, void *arg, s32 val);
-extern void fn_800332D8(s32 idx, const void *tbl);
+extern void __GXSetVATGroup(s32 idx, const void *tbl);
 extern void GXSetLineWidth(s32 width, s32 shift);
 extern void GXSetPointSize(s32 size, s32 shift);
 extern void __GXSetTexCoordGen_Cache(s32 coord, s32 en1, s32 en2);
@@ -243,11 +243,11 @@ extern void fn_80037DB4(BOOL fieldMode, BOOL halfAspect);
 extern void __GXSetScissor_LT(s32 left, s32 top, s32 wd, s32 ht);
 extern void __GXSetScissorBoxOffset(s32 wd, s32 ht);
 extern void fn_80034D9C(f32 yscale);
-extern void fn_80034D34(s32 gamma);
+extern void __GXSetBlendMode(s32 gamma);
 extern void GXSetCopyClear(u8 aa, const u8 *sample, BOOL enable, const u8 *vfilt);
-extern void fn_800350F4(s32 flag);
-extern void fn_80034D0C(s32 flag);
-extern void fn_800353E8(void);
+extern void __GXSetGenMode2(s32 flag);
+extern void __GXSetZMode(s32 flag);
+extern void __GXFlushTextureCache(void);
 extern void fn_800342B8(s32 flag);
 extern void fn_80034214(s32 flag);
 extern void fn_800342E8(s32 flag);
@@ -258,10 +258,10 @@ extern void fn_800342D4(s32 arg);
 extern void fn_80034304(s32 arg, s32 val0, s32 val1);
 extern void GXWriteCommandRegister(s32 a, s32 b);
 extern void fn_80039AFC(void);
-extern void fn_800307CC(void);
-extern void fn_80030848(void);
-extern void fn_800307CC(void);
-extern void fn_80030848(void);
+extern void __GXInitFifoObjBreakpointCB(void);
+extern void __GXGetFifoPoolEntry(void);
+extern void __GXInitFifoObjBreakpointCB(void);
+extern void __GXGetFifoPoolEntry(void);
 
 #pragma push
 #pragma force_active on
@@ -274,7 +274,7 @@ asm static GXTexRegion *__GXDefaultTexRegionCallback(GXTexObj *obj, s32 unused)
     mflr r0
     stw r0, 0x4(r1)
     stwu r1, -0x8(r1)
-    bl fn_80036104
+    bl GXGetTexObjMipmap
     cmpwi r3, 8
     beq Lci
     cmpwi r3, 9
@@ -1165,7 +1165,7 @@ L8003147c:
 L80031480:
     mr	r3, r29
     mr	r4, r30
-    bl fn_800332D8
+    bl __GXSetVATGroup
     addi	r29, r29, 1
     cmplwi	r29, 8
     blt L80031480
@@ -1312,13 +1312,13 @@ L80031480:
     bl __GXInitTexMapPreload
     lwz	r4, -0x7de8(r2)
     li	r30, 0
-    lis     r3, fn_800307CC@ha
+    lis     r3, __GXInitFifoObjBreakpointCB@ha
     stw	r30, 0x2c8(r4)
-    addi	r3, r3, fn_800307CC@l
+    addi	r3, r3, __GXInitFifoObjBreakpointCB@l
     stw	r30, 0x2cc(r4)
     bl fn_8003658C
-    lis     r3, fn_80030848@ha
-    addi	r3, r3, fn_80030848@l
+    lis     r3, __GXGetFifoPoolEntry@ha
+    addi	r3, r3, __GXGetFifoPoolEntry@l
     bl fn_800365A0
     li	r3, 0
     li	r4, 0
@@ -1562,17 +1562,17 @@ L80031a38:
     fdivs	f1, f1, f0
     bl fn_80034D9C
     li	r3, 3
-    bl fn_80034D34
+    bl __GXSetBlendMode
     lbz	r3, 0x19(r31)
     addi	r4, r31, 0x1a
     addi	r6, r31, 0x32
     li	r5, 1
     bl GXSetCopyClear
     li	r3, 0
-    bl fn_800350F4
+    bl __GXSetGenMode2
     li	r3, 0
-    bl fn_80034D0C
-    bl fn_800353E8
+    bl __GXSetZMode
+    bl __GXFlushTextureCache
     li	r3, 1
     bl fn_800342B8
     li	r3, 1
