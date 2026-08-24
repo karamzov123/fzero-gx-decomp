@@ -52,14 +52,14 @@ extern void fn_8008AF50(void);
 extern void TRKTargetStop(void);
 extern void TRKTargetGetPC(void);
 extern void TRKTargetCheckStep(void);
-extern void fn_8008B784(void);
-extern void fn_8008B830(void);
-extern void fn_8008B8B4(void);
+extern void TRKTargetDoStep(void);
+extern void TRKTargetAddExceptionInfo(void);
+extern void TRKTargetAddStopInfo(void);
 extern void TRKTargetAccessFP(void);
 extern void TRKTargetAccessExtended1(void);
 extern void TRKTargetAccessExtended2(void);
 extern void TRKTargetAccessDefault(void);
-extern void fn_8008C6E4(void);
+extern void TRKTargetReadInstruction(void);
 extern void TRKTargetAccessMemory(void);
 extern void TRKValidMemory32(void);
 extern void TRKInterruptHandlerEnableInterrupts(void);
@@ -1362,7 +1362,7 @@ _80089b68:
     mr	r3, r30
     cntlzw	r0, r0
     srwi	r4, r0, 5
-    bl      fn_8008B784
+    bl      TRKTargetDoStep
     b       _80089b98
 _80089b80:
     subfic	r0, r31, 0x11
@@ -2860,11 +2860,11 @@ asm void TRKDoNotifyStopped(void)
     cmpwi	r30, 0x90
     bc      4, 2, _8008af9c
     lwz	r3, 8(r1)
-    bl      fn_8008B8B4
+    bl      TRKTargetAddStopInfo
     b       _8008afa4
 _8008af9c:
     lwz	r3, 8(r1)
-    bl      fn_8008B830
+    bl      TRKTargetAddExceptionInfo
 _8008afa4:
     lwz	r3, 8(r1)
     addi	r4, r1, 0x10
@@ -3485,7 +3485,7 @@ _8008b770:
     blr
 }
 
-asm void fn_8008B784(void)
+asm void TRKTargetDoStep(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -3537,7 +3537,7 @@ _8008b81c:
     blr
 }
 
-asm void fn_8008B830(void)
+asm void TRKTargetAddExceptionInfo(void)
 {
     nofralloc
     stwu	r1, -0x60(r1)
@@ -3557,7 +3557,7 @@ asm void fn_8008B830(void)
     addi	r3, r1, 8
     stb	r0, 0x10(r1)
     stw	r4, 0x14(r1)
-    bl      fn_8008C6E4
+    bl      TRKTargetReadInstruction
     lis     r3, -0x7fea
     lwz	r5, 8(r1)
     addi	r4, r3, -0x478c
@@ -3575,7 +3575,7 @@ asm void fn_8008B830(void)
     blr
 }
 
-asm void fn_8008B8B4(void)
+asm void TRKTargetAddStopInfo(void)
 {
     nofralloc
     stwu	r1, -0x60(r1)
@@ -3596,7 +3596,7 @@ asm void fn_8008B8B4(void)
     stw	r5, 0xc(r1)
     stb	r0, 0x10(r1)
     stw	r4, 0x14(r1)
-    bl      fn_8008C6E4
+    bl      TRKTargetReadInstruction
     lis     r3, gTRKCPUState@ha
     lwz	r5, 8(r1)
     addi	r4, r3, gTRKCPUState@l
@@ -3759,7 +3759,7 @@ _8008bb24:
     addi	r3, r1, 8
     addi	r4, r4, gTRKCPUState@l
     lwz	r4, 0x80(r4)
-    bl      fn_8008C6E4
+    bl      TRKTargetReadInstruction
     lwz	r3, 8(r1)
     addis	r0, r3, -0xfe0
     cmplwi	r0, 0
@@ -4576,7 +4576,7 @@ _8008c6cc:
     blr
 }
 
-asm void fn_8008C6E4(void)
+asm void TRKTargetReadInstruction(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
