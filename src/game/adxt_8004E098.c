@@ -34,7 +34,7 @@ extern void fn_80058ED4(void);
 extern void fn_80058EE4(void);
 extern void fn_80058EF4(void);
 extern void fn_80059028(void);
-extern void fn_800595A4(void);
+extern void SVM_ReportErrorString(void);
 extern void svmUnlockServer(void);
 extern void svmLockServer(void);
 extern void fn_8005A668(void);
@@ -860,7 +860,7 @@ _8004ea4c:
     bne     _8004ea64
     lis     r3, _Internal_Error_adxm_goto_mwidle_border_str@ha
     addi	r3, r3, _Internal_Error_adxm_goto_mwidle_border_str@l
-    bl      fn_800595A4
+    bl      SVM_ReportErrorString
 _8004ea64:
     lis     r4, lbl_8012B918@ha
     addi	r3, r30, 0x28

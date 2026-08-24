@@ -646,7 +646,7 @@ _80051ca8:
     blr	
 }
 
-asm void fn_80051CC0(void)
+asm void ADXT_AHXExecCallback(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -721,7 +721,7 @@ _80051da4:
     blr	
 }
 
-asm void fn_80051DC4(void)
+asm void ADXT_AHXStopCallback(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -812,14 +812,14 @@ _80051ea0:
     bl      adx_err_report
     b       _80051f24
 _80051eec:
-    lis     r9, fn_80051DC4@ha
-    lis     r7, fn_80051CC0@ha
+    lis     r9, ADXT_AHXStopCallback@ha
+    lis     r7, ADXT_AHXExecCallback@ha
     lis	r5, -0x7ffb
     stw	r3, 0xb0(r31)
     lis	r8, -0x7fe8
-    addi	r9, r9, fn_80051DC4@l
+    addi	r9, r9, ADXT_AHXStopCallback@l
     lis	r6, -0x7fe8
-    addi	r7, r7, fn_80051CC0@l
+    addi	r7, r7, ADXT_AHXExecCallback@l
     lis	r4, -0x7fe8
     addi	r0, r5, 0x42b4
     stw	r9, -0x1a74(r8)
