@@ -503,7 +503,7 @@ _8003c190:
     blr     
 }
 
-asm int fn_8003C1A4(register u32 a)
+asm int GXSetFog(register u32 a)
 {
     nofralloc
     mflr    r0
@@ -871,7 +871,7 @@ _8003c6b0:
     blr     
 }
 
-asm int fn_8003C6D0(register u32 a)
+asm int GXSetFogRangeAdj(register u32 a)
 {
     nofralloc
     mflr    r0

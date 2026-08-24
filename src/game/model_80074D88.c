@@ -95,7 +95,7 @@ extern unsigned char lbl_8019F200[16416];
 extern unsigned char lbl_801A3220[96];
 asm void fn_80074D88(void);
 asm void fn_80075080(void);
-asm void fn_80075240(void);
+asm void AvDispSetupModel(void);
 asm void fn_800756B0(void);
 asm void fn_80075908(void);
 asm void fn_80075C78(void);
@@ -105,7 +105,7 @@ asm void fn_80076238(void);
 asm void fn_800764A0(void);
 asm void fn_80076790(void);
 asm void fn_8007698C(void);
-asm void fn_80076CD4(void);
+asm void AvDispTraverseMaterialCache(void);
 asm void fn_80077240(void);
 asm void fn_80077384(void);
 asm void fn_80077488(void);
@@ -454,7 +454,7 @@ _800751E0:
     blr
 }
 
-asm void fn_80075240(void)
+asm void AvDispSetupModel(void)
 {
     nofralloc
     stwu r1, -0x50(r1)
@@ -1017,7 +1017,7 @@ _80075A58:
     mr r5, r31
     addi r4, r1, 0x54
     addi r6, r1, 8
-    bl fn_80076CD4
+    bl AvDispTraverseMaterialCache
     cmpwi r3, 0
     bne _80075A9C
     mr r3, r30
@@ -2267,7 +2267,7 @@ _80076B1C:
     blr
 }
 
-asm void fn_80076CD4(void)
+asm void AvDispTraverseMaterialCache(void)
 {
     nofralloc
     stwu r1, -0x40(r1)
@@ -3068,7 +3068,7 @@ asm void AvDispInitModel(void)
     stw r0, -0x7630(r13)
     stw r0, -0x7628(r13)
     stw r0, -0x762c(r13)
-    bl fn_80075240
+    bl AvDispSetupModel
     bl AvDispClearMatrixStack
     bl fn_80070E00
     bl fn_80070D94
