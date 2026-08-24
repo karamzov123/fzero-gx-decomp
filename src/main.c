@@ -117,7 +117,7 @@ extern void PADInit(void);
 extern void PADRead(void);
 extern void PADSetAnalogMode(void);
 extern void GXInitTexObj(void);
-extern void fn_80036544(void);
+extern void __GXInitTexMapPreload(void);
 extern void __GXSetTexRegion(void);
 extern void GXWriteLightReg(void);
 extern void GXWriteTextureState(void);
@@ -603,7 +603,7 @@ asm void fn_80005AD0(void)
     lwz	r4, -0x7ff0(r13)
     li	r10, 0
     bl      GXInitTexObj
-    bl      fn_80036544
+    bl      __GXInitTexMapPreload
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1076,7 +1076,7 @@ _800061a8:
     li	r9, 0
     li	r10, 0
     bl      GXInitTexObj
-    bl      fn_80036544
+    bl      __GXInitTexMapPreload
     addi	r3, r1, 8
     li	r4, 0
     bl      ModelCacheMaterialParams

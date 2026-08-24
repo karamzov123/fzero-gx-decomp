@@ -40,7 +40,7 @@ extern void fn_800372E0(void);
 extern void __GXSetLightAttnEnable_A(void);
 extern void __GXSetLightAttnEnable_B(void);
 extern void GXSetChanCtrl(void);
-extern void fn_800377C8(void);
+extern void __GXWriteMatColorRegs(void);
 extern void __GXWriteChanCtrlBitfields(void);
 extern void fn_80038F48(void);
 extern void GXComputeDeltaRatio(void);
@@ -635,7 +635,7 @@ asm void ModelSetCachedNumTexGens(void)
     lbz r4, 0x6f0(r4)
     cmplw r4, r0
     beq _800736AC
-    bl fn_800377C8
+    bl __GXWriteMatColorRegs
     lwz r3, -0x7688(r13)
     stb r31, 0x6f0(r3)
 _800736AC:

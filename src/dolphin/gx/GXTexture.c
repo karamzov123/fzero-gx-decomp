@@ -388,7 +388,7 @@ asm void* GXInitTlutRegion(register void* obj, register void* p2, register int i
     blr	
 }
 
-asm void fn_80036544(register void* p)
+asm void __GXInitTexMapPreload(register void* p)
 {
     nofralloc
     mflr	r0

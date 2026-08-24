@@ -215,15 +215,15 @@ extern void __GXSetChanAmbColor(s32 num);
 extern void __GXSetChanCtrl(s32 chan, s32 en, s32 amb, s32 mat, s32 lights, s32 df, s32 af);
 extern void GXSetChanAmbColor(s32 chan, void *color);
 extern void GXSetChanMatColor(s32 chan, void *color);
-extern void fn_80036544(void);
+extern void __GXInitTexMapPreload(void);
 extern void GXSetChanCtrl(s32 stage, s32 coord, s32 map, s32 color);
-extern void fn_800377C8(s32 stages);
+extern void __GXWriteMatColorRegs(s32 stages);
 extern void fn_80037014(s32 stage, s32 op);
 extern void GXWriteLightReg(s32 comp0, s32 ref0, s32 op, s32 comp1, s32 ref1);
 extern void fn_8003756C(s32 type, s32 fmt, u32 bias);
 extern void __GXSetLightAttnEnable_A(s32 stage, s32 sel);
 extern void __GXSetLightAttnEnable_B(s32 stage, s32 sel);
-extern void fn_8003742C(s32 stage, s32 swap0, s32 swap1);
+extern void __GXSetLightColorAttnSel(s32 stage, s32 swap0, s32 swap1);
 extern void GXSetLightColorAttnRegs(s32 table, s32 r, s32 g, s32 b);
 extern void fn_80036EDC(s32 stage);
 extern void fn_80036EB4(s32 stages);
@@ -231,11 +231,11 @@ extern void fn_80036C24(s32 stage, s32 scale0, s32 scale1);
 extern void GXWriteTextureState(s32 type, f32 start, f32 end, f32 nearz, f32 farz, void *color);
 extern void __GXWriteChanColorRegs(s32 enable, u16 center, u16 edge);
 extern void GXWriteLightColor(s32 mode, s32 src, s32 dst, s32 op);
-extern void fn_80037B68(BOOL update);
-extern void fn_80037B94(BOOL update);
+extern void __GXSetChanAmbSrcBit(BOOL update);
+extern void __GXSetChanMatSrcBit(BOOL update);
 extern void __GXWriteChanCtrlBitfields(BOOL compare, s32 op, BOOL update);
-extern void fn_80037BF4(BOOL before);
-extern void fn_80037D14(BOOL dither);
+extern void __GXXFSetPerfEnableMulti(BOOL before);
+extern void __GXSetZModeBits(BOOL dither);
 extern void GXWriteLightAttn(BOOL enable, u8 alpha);
 extern void fn_80037C2C(s32 pixFmt, s32 zFmt);
 extern void fn_80037D7C(BOOL odd, BOOL even);
@@ -1309,7 +1309,7 @@ L80031480:
     li	r3, 5
     stw	r0, 0xc(r1)
     bl GXSetChanMatColor
-    bl fn_80036544
+    bl __GXInitTexMapPreload
     lwz	r4, -0x7de8(r2)
     li	r30, 0
     lis     r3, fn_800307CC@ha
@@ -1401,7 +1401,7 @@ L80031480:
     li	r6, 0xff
     bl GXSetChanCtrl
     li	r3, 1
-    bl fn_800377C8
+    bl __GXWriteMatColorRegs
     li	r3, 0
     li	r4, 3
     bl fn_80037014
@@ -1430,7 +1430,7 @@ L8003187c:
     mr	r3, r30
     li	r4, 0
     li	r5, 0
-    bl fn_8003742C
+    bl __GXSetLightColorAttnSel
     addi	r30, r30, 1
     cmplwi	r30, 0x10
     blt L8003187c
@@ -1507,17 +1507,17 @@ L80031920:
     li	r6, 0
     bl GXWriteLightColor
     li	r3, 1
-    bl fn_80037B68
+    bl __GXSetChanAmbSrcBit
     li	r3, 1
-    bl fn_80037B94
+    bl __GXSetChanMatSrcBit
     li	r3, 1
     li	r4, 3
     li	r5, 1
     bl __GXWriteChanCtrlBitfields
     li	r3, 1
-    bl fn_80037BF4
+    bl __GXXFSetPerfEnableMulti
     li	r3, 1
-    bl fn_80037D14
+    bl __GXSetZModeBits
     li	r3, 0
     li	r4, 0
     bl GXWriteLightAttn

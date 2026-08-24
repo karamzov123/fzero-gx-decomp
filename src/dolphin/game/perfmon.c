@@ -19,13 +19,13 @@ extern void fn_80038A88(register u32 a);
 extern void GXClearVtxDesc(register u32 a);
 extern void GXWriteAttrRegister(register u32 a);
 extern void GXWriteLightColor(register u32 a);
-extern void fn_80037BF4(register u32 a);
+extern void __GXXFSetPerfEnableMulti(register u32 a);
 extern void __GXSetChanAmbColor(register u32 a);
 extern void __GXSetChanCtrl(register u32 a);
 extern void GXSetChanCtrl(register u32 a);
 extern void fn_80037014(register u32 a);
 extern void GXSetNumTexGens(register u32 a);
-extern void fn_800377C8(register u32 a);
+extern void __GXWriteMatColorRegs(register u32 a);
 extern void __GXWriteChanCtrlBitfields(register u32 a);
 extern void GXSetVtxDesc(register u32 a);
 extern void GXBuildPackedRegister(register u32 a);
@@ -611,7 +611,7 @@ asm int fn_8003EAE4(register u32 a)
     li	r6, 0
     bl      GXWriteLightColor
     li	r3, 0
-    bl      fn_80037BF4
+    bl      __GXXFSetPerfEnableMulti
     li	r3, 1
     bl      __GXSetChanAmbColor
     li	r3, 4
@@ -633,7 +633,7 @@ asm int fn_8003EAE4(register u32 a)
     li	r3, 0
     bl      GXSetNumTexGens
     li	r3, 1
-    bl      fn_800377C8
+    bl      __GXWriteMatColorRegs
     li	r3, 0
     li	r4, 7
     li	r5, 0

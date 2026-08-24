@@ -102,7 +102,7 @@ extern void PADInit(void);
 extern void PADRead(void);
 extern void PADSetAnalogMode(void);
 extern void GXInitTexObj(void);
-extern void fn_80036544(void);
+extern void __GXInitTexMapPreload(void);
 extern void __GXSetTexRegion(void);
 extern void GXWriteLightReg(void);
 extern void GXWriteTextureState(void);

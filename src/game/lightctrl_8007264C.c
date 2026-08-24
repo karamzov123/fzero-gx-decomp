@@ -7,12 +7,12 @@ extern void GXWriteCachedParamF0(void);
 extern void GXWriteCachedParam1F0(void);
 extern void fn_80037128(void);
 extern void fn_80037190(void);
-extern void fn_8003742C(void);
+extern void __GXSetLightColorAttnSel(void);
 extern void GXSetLightColorAttnRegs(void);
 extern void GXWriteLightColor(void);
-extern void fn_80037B68(void);
-extern void fn_80037B94(void);
-extern void fn_80037BF4(void);
+extern void __GXSetChanAmbSrcBit(void);
+extern void __GXSetChanMatSrcBit(void);
+extern void __GXXFSetPerfEnableMulti(void);
 extern void LightCtrl_SetCachedParam_2C_Force(void);
 extern void _savegpr_26(void);
 extern void _savegpr_27(void);
@@ -397,7 +397,7 @@ asm void LightCtrl_SetCachedPair_6C(void)
 _80072AF8:
     mr r4, r29
     mr r5, r30
-    bl fn_8003742C
+    bl __GXSetLightColorAttnSel
     stw r29, 0(r31)
     stw r30, 4(r31)
 _80072B0C:
@@ -427,7 +427,7 @@ asm void LightCtrl_SetCachedByte_EC(void)
     beq _80072B68
 _80072B58:
     mr r3, r31
-    bl fn_80037B68
+    bl __GXSetChanAmbSrcBit
     lwz r3, -0x7688(r13)
     stb r31, 0xec(r3)
 _80072B68:
@@ -455,7 +455,7 @@ asm void LightCtrl_SetCachedByte_ED(void)
     beq _80072BBC
 _80072BAC:
     mr r3, r31
-    bl fn_80037B94
+    bl __GXSetChanMatSrcBit
     lwz r3, -0x7688(r13)
     stb r31, 0xed(r3)
 _80072BBC:
@@ -483,7 +483,7 @@ asm void LightCtrl_SetCachedByte_EE(void)
     beq _80072C10
 _80072C00:
     mr r3, r31
-    bl fn_80037BF4
+    bl __GXXFSetPerfEnableMulti
     lwz r3, -0x7688(r13)
     stb r31, 0xee(r3)
 _80072C10:

@@ -127,7 +127,7 @@ _80037408:
     blr	
 }
 
-asm void fn_8003742C(register void* p)
+asm void __GXSetLightColorAttnSel(register void* p)
 {
     nofralloc
     slwi	r3, r3, 2
@@ -401,7 +401,7 @@ _80037798:
     blr	
 }
 
-asm void fn_800377C8(void)
+asm void __GXWriteMatColorRegs(void)
 {
     nofralloc
     lwz	r4, -0x7de8(r2)
@@ -666,7 +666,7 @@ asm void GXWriteLightColor(register void* p)
     blr	
 }
 
-asm void fn_80037B68(register void* p)
+asm void __GXSetChanAmbSrcBit(register void* p)
 {
     nofralloc
     lwz	r5, -0x7de8(r2)
@@ -682,7 +682,7 @@ asm void fn_80037B68(register void* p)
     blr	
 }
 
-asm void fn_80037B94(register void* p)
+asm void __GXSetChanMatSrcBit(register void* p)
 {
     nofralloc
     lwz	r5, -0x7de8(r2)
@@ -716,7 +716,7 @@ asm void __GXWriteChanCtrlBitfields(register void* p)
     blr	
 }
 
-asm void fn_80037BF4(register void* p)
+asm void __GXXFSetPerfEnableMulti(register void* p)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)
@@ -802,7 +802,7 @@ _80037d04:
     blr	
 }
 
-asm void fn_80037D14(register void* p)
+asm void __GXSetZModeBits(register void* p)
 {
     nofralloc
     lwz	r5, -0x7de8(r2)
