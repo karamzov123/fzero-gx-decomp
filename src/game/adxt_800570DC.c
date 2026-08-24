@@ -22,7 +22,7 @@ extern void gcci_register_filename(void);
 extern void fn_80057114(void);
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
-extern void fn_80058A20(void);
+extern void SVM_ReportError(void);
 extern void __msl_strncmp(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -1018,7 +1018,7 @@ asm void fn_80057D60(void)
     lis     r3, SJMEM_Error_str@ha
     stw	r0, 0x14(r1)
     addi	r3, r3, SJMEM_Error_str@l
-    bl      fn_80058A20
+    bl      SVM_ReportError
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1755,7 +1755,7 @@ asm void fn_800586E4(void)
     lis     r3, SJRBF_Error_str@ha
     stw	r0, 0x14(r1)
     addi	r3, r3, SJRBF_Error_str@l
-    bl      fn_80058A20
+    bl      SVM_ReportError
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10

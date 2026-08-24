@@ -17,7 +17,7 @@ extern void __msl_parse_format_specifier(void);
 extern unsigned char jumptable_8015B668[208];
 extern unsigned char lbl_80095010[32];
 extern unsigned char lbl_8015B100[256];
-void fn_800829EC(void);
+void __StringRead(void);
 
 asm void __qsort(void)
 {
@@ -182,10 +182,10 @@ _800829b0:
     b       _800829d8
 _800829b8:
     li	r0, 0
-    lis     r3, fn_800829EC@ha
+    lis     r3, __StringRead@ha
     stw	r0, 0x6c(r1)
     mr	r5, r4
-    addi	r3, r3, fn_800829EC@l
+    addi	r3, r3, __StringRead@l
     mr	r6, r31
     addi	r4, r1, 0x68
     bl      __scanf
@@ -197,7 +197,7 @@ _800829d8:
     blr
 }
 
-asm void fn_800829EC(void)
+asm void __StringRead(void)
 {
     nofralloc
     cmpwi	r5, 1

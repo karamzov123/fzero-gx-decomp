@@ -27,7 +27,7 @@ extern void fn_80087BA4(void); // forward decl
 extern void fn_80087F54(void); // forward decl
 extern void fn_80087F54(void); // forward decl
 extern unsigned char INFINITY_str[12];
-extern void fn_800829EC(void);
+extern void __StringRead(void);
 extern unsigned char jumptable_8015B738[68];
 extern unsigned char jumptable_8015B77C[68];
 extern unsigned char lbl_800953A0[44];
@@ -46,10 +46,10 @@ asm void atof(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis     r4, fn_800829EC@ha
+    lis     r4, __StringRead@ha
     stw	r0, 0x24(r1)
     li	r0, 0
-    addi	r4, r4, fn_800829EC@l
+    addi	r4, r4, __StringRead@l
     addi	r5, r1, 0x10
     stw	r3, 0x10(r1)
     lis	r3, -0x8000
@@ -1261,10 +1261,10 @@ asm void atoi(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis     r4, fn_800829EC@ha
+    lis     r4, __StringRead@ha
     stw	r0, 0x24(r1)
     li	r0, 0
-    addi	r5, r4, fn_800829EC@l
+    addi	r5, r4, __StringRead@l
     addi	r6, r1, 0x14
     stw	r3, 0x14(r1)
     lis	r3, -0x8000
@@ -1329,8 +1329,8 @@ asm void strtol(void)
     addi	r6, r1, 0x14
     stw	r30, 0x28(r1)
     mr	r30, r3
-    lis     r3, fn_800829EC@ha
-    addi	r0, r3, fn_800829EC@l
+    lis     r3, __StringRead@ha
+    addi	r0, r3, __StringRead@l
     stw	r7, 0x18(r1)
     mr	r3, r5
     addi	r7, r1, 0x10

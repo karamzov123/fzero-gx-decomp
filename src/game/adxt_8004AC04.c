@@ -6,7 +6,7 @@ extern void svmLockServer_wrapper(void);
 extern void fn_80046F7C(void);
 extern void ADXSTMF_StatExec(void);
 extern void cvFsStopTr(void);
-extern void fn_80058A40(void);
+extern void SVM_LockServer(void);
 extern void svmUnlockServer(void);
 extern void svmLockServer(void);
 extern void memset(void);
@@ -97,7 +97,7 @@ _8004acf4:
     addi	r30, r3, lbl_8017D6FC@l
 _8004ad00:
     mr	r3, r30
-    bl      fn_80058A40
+    bl      SVM_LockServer
     cmpwi	r3, 0
     beq     _8004ad4c
     lis     r3, lbl_8017D708@ha
@@ -306,7 +306,7 @@ _8004af8c:
     addi	r30, r3, lbl_8017D6FC@l
 _8004af98:
     mr	r3, r30
-    bl      fn_80058A40
+    bl      SVM_LockServer
     cmpwi	r3, 0
     beq     _8004afe4
     lis     r3, lbl_8017D708@ha
@@ -370,7 +370,7 @@ _8004b070:
     extsb.	r0, r0
     beq     _8004b0cc
     mr	r3, r30
-    bl      fn_80058A40
+    bl      SVM_LockServer
     cmpwi	r3, 0
     beq     _8004b070
     lis     r3, lbl_8017D708@ha
@@ -526,7 +526,7 @@ _8004b27c:
     addi	r30, r3, lbl_8017D6FC@l
 _8004b288:
     mr	r3, r30
-    bl      fn_80058A40
+    bl      SVM_LockServer
     cmpwi	r3, 0
     beq     _8004b2d4
     lis     r3, lbl_8017D708@ha
@@ -592,7 +592,7 @@ _8004b368:
     addi	r30, r3, lbl_8017D6FC@l
 _8004b374:
     mr	r3, r30
-    bl      fn_80058A40
+    bl      SVM_LockServer
     cmpwi	r3, 0
     beq     _8004b3c0
     lis     r3, lbl_8017D708@ha
@@ -656,7 +656,7 @@ _8004b44c:
     extsb.	r0, r0
     beq     _8004b4a8
     mr	r3, r30
-    bl      fn_80058A40
+    bl      SVM_LockServer
     cmpwi	r3, 0
     beq     _8004b44c
     lis     r3, lbl_8017D708@ha

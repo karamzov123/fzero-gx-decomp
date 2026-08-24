@@ -11,7 +11,7 @@ extern void cvFsTell(void);
 extern void cvFsClose(void);
 extern void fn_80054B6C(void);
 extern void svm_ringbuf_read(void);
-extern void fn_80058A40(void);
+extern void SVM_LockServer(void);
 extern void svmUnlockServer(void);
 extern void svmLockServer(void);
 extern unsigned char E02110501_adxstmf_stat_exec_can_t_open_str[41];
@@ -40,7 +40,7 @@ asm void fn_8004A578(void)
     addi	r3, r3, lbl_8017D6FC@l
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
-    bl      fn_80058A40
+    bl      SVM_LockServer
     cmpwi	r3, 0
     beq     _8004a5dc
     lis     r3, lbl_8017D708@ha

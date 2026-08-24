@@ -10,7 +10,7 @@ extern void svm_exit_critical_wrapper(void);
 extern void svm_enter_critical_wrapper(void);
 extern void ADXTServerStateRequest(void);
 extern void mfCiOpen_resource_mgr(void);
-extern void fn_8005BE98(void);
+extern void ADXT_DestroyHandle(void);
 extern void fn_8005BFB4(void);
 extern void SndInitManager(void);
 extern void memset(void);
@@ -112,7 +112,7 @@ _8005bd40:
     lwz	r3, 0x10(r30)
     cmplwi	r3, 0
     beq     _8005bd50
-    bl      fn_8005BE98
+    bl      ADXT_DestroyHandle
 _8005bd50:
     bl      svm_enter_critical_wrapper
     lwz	r3, 8(r30)
@@ -201,7 +201,7 @@ asm void fn_8005BE48(void)
     blr	
 }
 
-asm void fn_8005BE68(void)
+asm void ADXT_GetId(void)
 {
     nofralloc
     cmplwi	r3, 0
@@ -213,7 +213,7 @@ _8005be78:
     blr	
 }
 
-asm void fn_8005BE80(void)
+asm void ADXT_GetNumHandles(void)
 {
     nofralloc
     cmplwi	r3, 0
@@ -225,7 +225,7 @@ _8005be90:
     blr	
 }
 
-asm void fn_8005BE98(void)
+asm void ADXT_DestroyHandle(void)
 {
     nofralloc
     cmplwi	r3, 0

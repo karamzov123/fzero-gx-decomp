@@ -24,9 +24,9 @@ extern void fn_8005A9B8(void);
 extern void fn_8005AE98(void);
 extern void ADXTServerStateRequest(void);
 extern void mfCiOpen_resource_mgr(void);
-extern void fn_8005BE68(void);
-extern void fn_8005BE80(void);
-extern void fn_8005BE98(void);
+extern void ADXT_GetId(void);
+extern void ADXT_GetNumHandles(void);
+extern void ADXT_DestroyHandle(void);
 extern void fn_8005BEAC(void);
 extern void sprintf(void);
 extern void strncpy(void);
@@ -1472,7 +1472,7 @@ _8005b4c0:
     lwz	r3, 0x10(r31)
     cmplwi	r3, 0
     beq     _8005b4d0
-    bl      fn_8005BE98
+    bl      ADXT_DestroyHandle
 _8005b4d0:
     bl      svm_enter_critical_wrapper
     lwz	r3, 8(r31)
@@ -1663,7 +1663,7 @@ _8005b764:
     lwz	r3, 0x10(r30)
     cmplwi	r3, 0
     beq     _8005b774
-    bl      fn_8005BE98
+    bl      ADXT_DestroyHandle
 _8005b774:
     bl      svm_enter_critical_wrapper
     lwz	r3, 8(r30)
@@ -1690,10 +1690,10 @@ _8005b7bc:
     b     _8005bc0c
 _8005b7c4:
     lwz	r3, 0x10(r27)
-    bl      fn_8005BE80
+    bl      ADXT_GetNumHandles
     stw	r3, 0x18(r27)
     lwz	r3, 0x10(r27)
-    bl      fn_8005BE68
+    bl      ADXT_GetId
     stw	r3, 0x20(r31)
     li	r5, 0
     lwz	r3, 0x18(r27)
@@ -1730,7 +1730,7 @@ _8005b854:
     lwz	r3, 0x10(r30)
     cmplwi	r3, 0
     beq     _8005b864
-    bl      fn_8005BE98
+    bl      ADXT_DestroyHandle
 _8005b864:
     bl      svm_enter_critical_wrapper
     lwz	r3, 8(r30)
@@ -1788,7 +1788,7 @@ _8005b920:
     lwz	r3, 0x10(r30)
     cmplwi	r3, 0
     beq     _8005b930
-    bl      fn_8005BE98
+    bl      ADXT_DestroyHandle
 _8005b930:
     bl      svm_enter_critical_wrapper
     lwz	r3, 8(r30)

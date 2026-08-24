@@ -59,7 +59,7 @@ _80058a0c:
     blr	
 }
 
-asm void fn_80058A20(void)
+asm void SVM_ReportError(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -72,7 +72,7 @@ asm void fn_80058A20(void)
     blr	
 }
 
-asm void fn_80058A40(void)
+asm void SVM_LockServer(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
