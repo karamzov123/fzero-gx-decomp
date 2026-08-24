@@ -11,7 +11,7 @@ extern asm void fn_80013994(void);
 extern asm void fn_800139E8(void);
 extern asm void fn_80015EE8(void);
 extern asm void AXFreeVoice(void);
-extern asm void fn_80023168(void);
+extern asm void AXSetVoiceType_cached(void);
 extern asm void axmix_device_ctrl_clear(void);
 extern asm void fn_80028424(void);
 extern asm void GXBegin(void);
@@ -31,10 +31,10 @@ extern asm void ModelSetCachedMaterial_570(void);
 extern asm void fn_80073678(void);
 extern asm void GXIntToFloatCopy(void);
 extern asm void fn_80073898(void);
-extern asm void fn_80073C6C(void);
+extern asm void ModelClearCacheSlot_B28(void);
 extern asm void fn_80074660(void);
 extern asm void fn_80074788(void);
-extern asm void fn_800747D0(void);
+extern asm void LightCtrl_SetCachedRec_C30(void);
 extern asm void fn_80074918(void);
 extern asm void fn_8007ED90(void);
 extern asm void fn_800883E8(void);
@@ -153,7 +153,7 @@ _80069b3c:
     bc      4, 2, _80069cb4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -203,7 +203,7 @@ _80069bf4:
     bc      4, 2, _80069cb4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -4061,7 +4061,7 @@ asm void fn_8006CE44(void)
     li	r3, 0
     bl      fn_80073898
     li	r3, 0
-    bl      fn_80073C6C
+    bl      ModelClearCacheSlot_B28
     li	r3, 4
     li	r4, 0
     li	r5, 0
@@ -4069,7 +4069,7 @@ asm void fn_8006CE44(void)
     li	r7, 0
     li	r8, 2
     li	r9, 2
-    bl      fn_800747D0
+    bl      LightCtrl_SetCachedRec_C30
     li	r3, 0
     li	r4, 0
     li	r5, 0

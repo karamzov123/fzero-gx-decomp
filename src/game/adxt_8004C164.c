@@ -13,8 +13,8 @@ extern void fn_800421CC(void);
 extern void fn_80046510(void);
 extern void fn_8004651C(void);
 extern void fn_800466D4(void);
-extern void fn_80046718(void);
-extern void fn_80046738(void);
+extern void svmUnlockServer_wrapper(void);
+extern void svmLockServer_wrapper(void);
 extern void criErr_CallErrCallback(void);
 extern void fn_8004A550(void);
 extern void fn_8004AC04(void);
@@ -429,7 +429,7 @@ _8004c6c0:
     beq     _8004c6d0
     bl      fn_8004B0EC
 _8004c6d0:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lbz	r0, 2(r31)
     cmpwi	r0, 4
     bne     _8004c704
@@ -443,7 +443,7 @@ _8004c6d0:
     mtctr	r12
     bctrl	
 _8004c704:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lwz	r3, 0xc(r31)
     li	r4, 0
     bl      fn_8004EEC4
@@ -474,8 +474,8 @@ _8004c768:
     stw	r0, 0x14(r31)
     stb	r0, 1(r31)
     stb	r0, 0xa8(r31)
-    bl      fn_80046718
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
+    bl      svmUnlockServer_wrapper
 _8004c780:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -517,7 +517,7 @@ _8004c7ec:
     beq     _8004c7fc
     bl      fn_8004B0EC
 _8004c7fc:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lbz	r0, 2(r30)
     cmpwi	r0, 4
     bne     _8004c830
@@ -531,7 +531,7 @@ _8004c7fc:
     mtctr	r12
     bctrl	
 _8004c830:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lwz	r3, 0xc(r30)
     li	r4, 0
     bl      fn_8004EEC4
@@ -562,10 +562,10 @@ _8004c894:
     stw	r0, 0x14(r30)
     stb	r0, 1(r30)
     stb	r0, 0xa8(r30)
-    bl      fn_80046718
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
+    bl      svmUnlockServer_wrapper
 _8004c8ac:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     mr	r28, r30
     li	r29, 0
     b       _8004c8d8
@@ -612,7 +612,7 @@ _8004c94c:
     li	r0, 1
     stb	r3, 2(r30)
     stb	r0, 0x98(r30)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _8004c960:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -752,7 +752,7 @@ _8004cb34:
     beq     _8004cb44
     bl      fn_8004B0EC
 _8004cb44:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lbz	r0, 2(r31)
     cmpwi	r0, 4
     bne     _8004cb78
@@ -766,7 +766,7 @@ _8004cb44:
     mtctr	r12
     bctrl	
 _8004cb78:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lwz	r3, 0xc(r31)
     li	r4, 0
     bl      fn_8004EEC4
@@ -797,8 +797,8 @@ _8004cbdc:
     stw	r0, 0x14(r31)
     stb	r0, 1(r31)
     stb	r0, 0xa8(r31)
-    bl      fn_80046718
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
+    bl      svmUnlockServer_wrapper
 _8004cbf4:
     lwz	r3, 0xc(r31)
     cmplwi	r3, 0
@@ -833,7 +833,7 @@ _8004cc50:
     stw	r0, 0x94(r31)
     bl      fn_80057114
 _8004cc68:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lwz	r3, 0x10(r31)
     cmplwi	r3, 0
     beq     _8004cc90
@@ -898,7 +898,7 @@ _8004cd38:
     bl      memset
     li	r0, 0
     stb	r0, 0(r31)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _8004cd54:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)

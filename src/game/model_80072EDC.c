@@ -53,7 +53,7 @@ asm void ModelSetCachedMaterial_570(void);
 asm void fn_800735C8(void);
 asm void fn_80073620(void);
 asm void fn_80073678(void);
-asm void fn_800736C0(void);
+asm void ModelSetCachedTex_704(void);
 asm void fn_80073778(void);
 asm void GXIntToFloatCopy(void);
 asm void fn_80073898(void);
@@ -61,7 +61,7 @@ asm void fn_800738E0(void);
 asm void fn_800739E0(void);
 asm void fn_80073A58(void);
 asm void fn_80073B50(void);
-asm void fn_80073C6C(void);
+asm void ModelClearCacheSlot_B28(void);
 asm void fn_80073D60(void);
 asm void fn_80073E8C(void);
 asm void fn_80074188(void);
@@ -70,12 +70,12 @@ asm void fn_80074300(void);
 asm void fn_800743C4(void);
 asm void fn_80074438(void);
 asm void fn_800744F8(void);
-asm void fn_800745A4(void);
+asm void ModelSetCachedPair5_B28(void);
 asm void fn_80074660(void);
 asm void fn_800746A8(void);
 asm void fn_80074718(void);
 asm void fn_80074788(void);
-asm void fn_800747D0(void);
+asm void LightCtrl_SetCachedRec_C30(void);
 asm void fn_80074918(void);
 asm void GXCopyMtxDirty(void);
 #pragma push
@@ -646,7 +646,7 @@ _800736AC:
     blr
 }
 
-asm void fn_800736C0(void)
+asm void ModelSetCachedTex_704(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1068,7 +1068,7 @@ _80073C54:
     blr
 }
 
-asm void fn_80073C6C(void)
+asm void ModelClearCacheSlot_B28(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1744,7 +1744,7 @@ _8007458C:
     blr
 }
 
-asm void fn_800745A4(void)
+asm void ModelSetCachedPair5_B28(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1916,7 +1916,7 @@ _800747BC:
     blr
 }
 
-asm void fn_800747D0(void)
+asm void LightCtrl_SetCachedRec_C30(void)
 {
     nofralloc
     stwu r1, -0x30(r1)
@@ -1958,14 +1958,14 @@ _80074848:
     b _80074880
 _80074854:
     li r3, 0
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     lwz r4, -0x7688(r13)
     li r3, 2
     addi r25, r4, 0xc60
     b _80074880
 _8007486C:
     li r3, 1
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     lwz r4, -0x7688(r13)
     li r3, 3
     addi r25, r4, 0xc78

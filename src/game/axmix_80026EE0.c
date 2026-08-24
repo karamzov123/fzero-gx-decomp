@@ -21,7 +21,7 @@ extern void fn_80028568(void);
 extern void fn_8002857C(void);
 extern void fn_80028598(void);
 extern void fn_800285DC(void);
-extern void fn_800288B4(void);
+extern void axmix_link_push(void);
 extern void fn_800288C4(void);
 extern void fn_800289C0(void);
 extern void fn_80028A1C(void);
@@ -1996,7 +1996,7 @@ _8002881c:
     blr	
 }
 
-asm void fn_800288B4(void)
+asm void axmix_link_push(void)
 {
     nofralloc
     lwz	r0, 0x10(r3)

@@ -1,8 +1,8 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_80046718(void);
-extern void fn_80046738(void);
+extern void svmUnlockServer_wrapper(void);
+extern void svmLockServer_wrapper(void);
 extern void fn_80046F7C(void);
 extern void ADXSTMF_StatExec(void);
 extern void cvFsStopTr(void);
@@ -177,7 +177,7 @@ asm void fn_8004ADF4(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     li	r0, 0
     stw	r0, 0x30(r31)
     stb	r0, 3(r31)
@@ -200,7 +200,7 @@ _8004ae38:
     stw	r5, 0x24(r31)
     stb	r4, 0x43(r31)
     stw	r0, 0x58(r31)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
     lwz	r0, 0x14(r1)
     li	r3, 1
     lwz	r31, 0xc(r1)
@@ -735,7 +735,7 @@ _8004b558:
     li	r31, 0
     b       _8004b644
 _8004b568:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     li	r0, 1
     lis	r3, 0x10
     stb	r0, 1(r31)
@@ -791,7 +791,7 @@ _8004b630:
     li	r0, 1
     stb	r3, 0x40(r31)
     stb	r0, 0(r31)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _8004b644:
     mr	r3, r31
     b       _8004b780
@@ -820,7 +820,7 @@ _8004b690:
     li	r31, 0
     b       _8004b77c
 _8004b6a0:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     li	r0, 1
     lis	r3, 0x10
     stb	r0, 1(r31)
@@ -876,7 +876,7 @@ _8004b768:
     li	r0, 1
     stb	r3, 0x40(r31)
     stb	r0, 0(r31)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _8004b77c:
     mr	r3, r31
 _8004b780:

@@ -17,9 +17,9 @@ extern void fn_80045354(void);
 extern void fn_800433D0(void);
 extern void fn_800433F4(void);
 extern void fn_80045D3C(void);
-extern void fn_80046738(void);
+extern void svmLockServer_wrapper(void);
 extern void memset(void);
-extern void fn_80046718(void);
+extern void svmUnlockServer_wrapper(void);
 extern void fn_80057DA8(void);
 extern void fn_80057DA0(void);
 extern void fn_80045D90(void);
@@ -486,12 +486,12 @@ asm void fn_800421CC(void)
     stw	r0, 4(r31)
     bl      fn_80045D3C
 _800421fc:
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     mr	r3, r31
     li	r4, 0
     li	r5, 0x9c
     bl      memset
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _80042214:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)

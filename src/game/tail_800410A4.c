@@ -15,8 +15,8 @@ extern void fn_800424B8(void);
 extern void fn_800424E8(void);
 extern int fn_8004541C(register void* p1);
 extern int fn_80045468(register void* p1);
-extern void fn_80046718(void);
-extern void fn_80046738(void);
+extern void svmUnlockServer_wrapper(void);
+extern void svmLockServer_wrapper(void);
 extern void fn_80046758(void);
 extern void criErr_CallErrCallback(register void* p1);
 extern void fn_800475C0(void);
@@ -135,7 +135,7 @@ asm void fn_80041164(void)
     bl      fn_8004F6B0
     bl      fn_8004B79C
     bl      fn_80057378
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     li      r3, 2
     li      r4, 1
     bl      SVM_DelCbSvr
@@ -151,7 +151,7 @@ asm void fn_80041164(void)
     bl      fn_80057CC4
     bl      fn_80058630
     bl      fn_8005870C
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _800411e0:
     lwz     r0, 0x14(r1)
     lwz     r31, 0xc(r1)
@@ -176,7 +176,7 @@ asm void fn_800411F4(void)
     cmpwi   r0, 0
     bne     _80041310
     bl      fn_80046758
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     bl      fn_80058754
     bl      fn_80058680
     bl      fn_80057D0C
@@ -235,7 +235,7 @@ _800412ec:
 _80041304:
     li      r0, 0
     stw     r0, 0x10(r31)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _80041310:
     lwz     r3, 0(r31)
     addi    r0, r3, 1

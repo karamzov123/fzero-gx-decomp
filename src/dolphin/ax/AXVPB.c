@@ -914,7 +914,7 @@ _80023140:
     blr	
 }
 
-asm void fn_80023168(void)
+asm void AXSetVoiceType_cached(void)
 {
     nofralloc
     mflr	r0

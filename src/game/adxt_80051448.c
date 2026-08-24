@@ -5,7 +5,7 @@ extern void adx_err_report(void);
 extern void ADXT_Stop(void);
 extern void fn_8004EBB4(void);
 extern void fn_8004EBD4(void);
-extern void fn_800501F4(void);
+extern void svm_ringbuf_skip(void);
 extern void fn_800519B0(void);
 extern void fn_80053A38(void);
 extern void fn_80053A84(void);
@@ -57,7 +57,7 @@ asm void fn_80051448(void)
 _800514a4:
     mr	r3, r28
     li	r4, 8
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stb	r3, 0(r30)
     addi	r30, r30, 1
 _800514b8:
@@ -75,7 +75,7 @@ _800514b8:
 _800514e4:
     mr	r3, r28
     li	r4, 8
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stb	r3, 0(r30)
     addi	r30, r30, 1
 _800514f8:

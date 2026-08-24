@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void fn_8004FF68(void);
-extern void fn_800501F4(void);
+extern void svm_ringbuf_skip(void);
 extern void getCupModeConst(void);
 extern void ADXF_Stop(void);
 extern void fn_80050BD4(void);
@@ -132,54 +132,54 @@ _80051114:
     lwz	r30, 0x34c(r29)
     li	r4, 1
     mr	r3, r30
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x354(r29)
     mr	r3, r30
     li	r4, 2
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     subfic	r0, r3, 4
     mr	r3, r30
     stw	r0, 0x358(r29)
     li	r4, 1
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     cntlzw	r0, r3
     mr	r3, r30
     srwi	r0, r0, 5
     li	r4, 4
     stw	r0, 0x35c(r29)
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x360(r29)
     mr	r3, r30
     li	r4, 2
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x364(r29)
     mr	r3, r30
     li	r4, 1
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x368(r29)
     mr	r3, r30
     li	r4, 1
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x36c(r29)
     mr	r3, r30
     li	r4, 2
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x370(r29)
     mr	r3, r30
     li	r4, 2
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x374(r29)
     mr	r3, r30
     li	r4, 1
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x378(r29)
     mr	r3, r30
     li	r4, 1
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x37c(r29)
     mr	r3, r30
     li	r4, 2
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x380(r29)
     lwz	r0, 0x384(r29)
     cmpwi	r0, 0
@@ -252,7 +252,7 @@ _800512c8:
 _800512d4:
     lwz	r4, 4(r22)
     mr	r3, r25
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x3b8(r24)
     addi	r24, r24, 0x80
     addi	r27, r27, 1
@@ -273,7 +273,7 @@ _80051300:
 _8005131c:
     lwz	r4, 4(r22)
     mr	r3, r25
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x438(r23)
     addi	r22, r22, 0x180
     addi	r21, r21, 1

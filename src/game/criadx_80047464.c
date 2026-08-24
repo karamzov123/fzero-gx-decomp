@@ -6,8 +6,8 @@ extern void fn_80083CF4(void);
 extern void svmErrPrintf(void);
 extern void fn_80058EF4(void);
 extern void memset(void);
-extern void fn_80046738(void);
-extern void fn_80046718(void);
+extern void svmLockServer_wrapper(void);
+extern void svmUnlockServer_wrapper(void);
 extern void fn_8004A578(void);
 extern void fn_80054760(void);
 extern void fn_8004FAA8(void);
@@ -174,17 +174,17 @@ asm void fn_80047608(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lis	r3, -0x7fe8
     lwzu	r0, -0x4ea8(r3)
     cmpwi	r0, 0
     beq     _80047630
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
     b       _8004767c
 _80047630:
     li	r0, 1
     stw	r0, 0(r3)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
     bl      fn_8004A578
     lis	r3, -0x7fe8
     li	r0, 2
@@ -632,7 +632,7 @@ asm void fn_80047C08(void)
     stw	r31, 0xc(r1)
     or.	r31, r3, r3
     beq     _80047c80
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lwz	r3, 0x80(r31)
     cmplwi	r3, 0
     beq     _80047c48
@@ -657,7 +657,7 @@ _80047c6c:
     li	r4, 0
     li	r5, 4
     bl      memset
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _80047c80:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)

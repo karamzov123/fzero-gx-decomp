@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_800501F4(void);
+extern void svm_ringbuf_skip(void);
 
 asm void fn_80050BD4(void)
 {
@@ -31,7 +31,7 @@ _80050c1c:
     beq     _80050c38
     mr	r3, r25
     li	r4, 2
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0(r24)
 _80050c38:
     addi	r31, r31, 0x80
@@ -130,43 +130,43 @@ _80050d74:
 _80050d80:
     mr	r3, r25
     li	r4, 6
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0(r24)
     mr	r3, r25
     li	r4, 6
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x80(r24)
     mr	r3, r25
     li	r4, 6
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x100(r24)
     b       _80050e30
 _80050db4:
     mr	r3, r25
     li	r4, 6
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x80(r24)
     li	r4, 6
     stw	r3, 0(r24)
     mr	r3, r25
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x100(r24)
     b       _80050e30
 _80050ddc:
     mr	r3, r25
     li	r4, 6
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0(r24)
     mr	r3, r25
     li	r4, 6
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x100(r24)
     stw	r3, 0x80(r24)
     b       _80050e30
 _80050e04:
     mr	r3, r25
     li	r4, 6
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     stw	r3, 0x100(r24)
     stw	r3, 0x80(r24)
     stw	r3, 0(r24)

@@ -167,17 +167,17 @@ extern void ModelSetCachedMaterial_570(void);
 extern void fn_800735C8(void);
 extern void fn_80073620(void);
 extern void fn_80073678(void);
-extern void fn_800736C0(void);
+extern void ModelSetCachedTex_704(void);
 extern void fn_80073778(void);
 extern void GXIntToFloatCopy(void);
 extern void fn_80073898(void);
-extern void fn_80073C6C(void);
+extern void ModelClearCacheSlot_B28(void);
 extern void fn_800744F8(void);
-extern void fn_800745A4(void);
+extern void ModelSetCachedPair5_B28(void);
 extern void fn_80074660(void);
 extern void fn_800746A8(void);
 extern void fn_80074788(void);
-extern void fn_800747D0(void);
+extern void LightCtrl_SetCachedRec_C30(void);
 extern void fn_80074918(void);
 extern void fn_800791A4(void);
 extern void fn_800791E8(void);
@@ -633,7 +633,7 @@ asm void mmu_user_fn(void)
     li	r3, 0
     bl      fn_80073898
     li	r3, 0
-    bl      fn_80073C6C
+    bl      ModelClearCacheSlot_B28
     li	r3, 0
     li	r4, 0
     bl      fn_80072EDC
@@ -643,7 +643,7 @@ asm void mmu_user_fn(void)
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      fn_800745A4
+    bl      ModelSetCachedPair5_B28
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -686,7 +686,7 @@ asm void mmu_user_fn(void)
     li	r7, 0
     li	r8, 2
     li	r9, 2
-    bl      fn_800747D0
+    bl      LightCtrl_SetCachedRec_C30
     lwz	r0, 0x18(r1)
     addi	r4, r1, 0x14
     li	r3, 1
@@ -887,7 +887,7 @@ asm void fn_80005EDC(void)
     li	r3, 1
     bl      fn_80073678
     li	r3, 0
-    bl      fn_80073C6C
+    bl      ModelClearCacheSlot_B28
     li	r3, 0
     li	r4, 0
     bl      fn_80072EDC
@@ -897,7 +897,7 @@ asm void fn_80005EDC(void)
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      fn_800745A4
+    bl      ModelSetCachedPair5_B28
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -940,7 +940,7 @@ asm void fn_80005EDC(void)
     li	r7, 0
     li	r8, 2
     li	r9, 2
-    bl      fn_800747D0
+    bl      LightCtrl_SetCachedRec_C30
     lwz	r0, 0x14(r1)
     addi	r4, r1, 0x10
     li	r3, 1
@@ -3540,7 +3540,7 @@ asm void fn_80008204(void)
     li	r3, 0
     bl      LightCtrl_SetCachedCullMode
     li	r3, 0
-    bl      fn_80073C6C
+    bl      ModelClearCacheSlot_B28
     li	r3, 0
     li	r4, 0x1c
     bl      fn_80073620
@@ -3551,7 +3551,7 @@ asm void fn_80008204(void)
     addi	r4, r1, 0x10
     li	r3, 0
     stw	r0, 0x10(r1)
-    bl      fn_800736C0
+    bl      ModelSetCachedTex_704
     li	r3, 0
     li	r4, 0xff
     li	r5, 0xff
@@ -3943,14 +3943,14 @@ asm void fn_800087F4(void)
     b       _80008a30
 _80008860:
     li	r3, 0
-    bl      fn_80073C6C
+    bl      ModelClearCacheSlot_B28
     li	r3, 0
     li	r4, 1
     li	r5, 4
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      fn_800745A4
+    bl      ModelSetCachedPair5_B28
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -3996,14 +3996,14 @@ _80008860:
     b       _80008a30
 _80008930:
     li	r3, 0
-    bl      fn_80073C6C
+    bl      ModelClearCacheSlot_B28
     li	r3, 0
     li	r4, 1
     li	r5, 4
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      fn_800745A4
+    bl      ModelSetCachedPair5_B28
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -4018,7 +4018,7 @@ _80008930:
     stb	r0, 0xe(r1)
     lwz	r0, 0xc(r1)
     stw	r0, 8(r1)
-    bl      fn_800736C0
+    bl      ModelSetCachedTex_704
     li	r3, 0
     li	r4, 0xc
     bl      fn_800735C8
@@ -4094,14 +4094,14 @@ asm void fn_80008A4C(void)
     li	r3, 0
     bl      LightCtrl_SetCachedCullMode
     li	r3, 0
-    bl      fn_80073C6C
+    bl      ModelClearCacheSlot_B28
     li	r3, 0
     li	r4, 1
     li	r5, 4
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      fn_800745A4
+    bl      ModelSetCachedPair5_B28
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -4111,7 +4111,7 @@ asm void fn_80008A4C(void)
     addi	r4, r1, 8
     li	r3, 0
     stw	r0, 8(r1)
-    bl      fn_800736C0
+    bl      ModelSetCachedTex_704
     li	r3, 0
     li	r4, 0xc
     bl      fn_800735C8

@@ -28,7 +28,7 @@ extern void fn_800211EC(void);
 extern void fn_80021914(void);
 extern void fn_80021928(void);
 extern void fn_800230A4(void);
-extern void fn_80023168(void);
+extern void AXSetVoiceType_cached(void);
 extern void fn_80023284(void);
 extern void fn_80023394(void);
 extern void fn_80023438(void);
@@ -69,7 +69,7 @@ extern void fn_80028554(void);
 extern void fn_80028568(void);
 extern void fn_8002857C(void);
 extern void fn_80028598(void);
-extern void fn_800288B4(void);
+extern void axmix_link_push(void);
 extern void fn_80069AE0(void);
 extern void fn_80069CE4(void);
 extern void fn_8006A1F8(void);
@@ -132,7 +132,7 @@ asm void SndBoostVoicePriority(void);
 asm void fn_80060724(void);
 asm void SndCalcVoiceEnvelope(void);
 asm void SndClearVoiceSlot(void);
-asm void fn_80060C54(void);
+asm void SndInitVoiceParams(void);
 asm void fn_800622B0(void);
 asm void SndStartVoice(void);
 asm void SndPlaySequenceNotes(void);
@@ -968,7 +968,7 @@ _8005cc20:
     bc      12, 2, _8005d1f4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r30, 0x1434
     lwzx	r3, r3, r0
@@ -1031,7 +1031,7 @@ _8005cd10:
     bc      12, 2, _8005d1f4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -1097,7 +1097,7 @@ _8005cdfc:
     bc      12, 2, _8005d1f4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -1165,7 +1165,7 @@ _8005cef4:
     bc      12, 2, _8005d1f4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -1232,7 +1232,7 @@ _8005cff4:
     bc      12, 2, _8005d1f4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -1302,7 +1302,7 @@ _8005d0f0:
     bc      12, 2, _8005d1f4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -3567,42 +3567,42 @@ _8005f1b4:
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1478
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1484
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x149c
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14a8
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14b4
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1490
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14c8
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14f4
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     addi	r3, r24, 0x1438
     add	r3, r0, r3
@@ -4031,42 +4031,42 @@ _8005f880:
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1478
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1484
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x149c
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14a8
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14b4
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1490
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14c8
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14f4
-    bl      fn_800288B4
+    bl      axmix_link_push
     lwz	r0, -0x7740(r13)
     addi	r3, r23, 0x1438
     add	r3, r0, r3
@@ -4121,7 +4121,7 @@ _8005f988:
     li	r4, 1
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r0, -0x7740(r13)
     li	r4, 1
     add	r3, r0, r23
@@ -4165,7 +4165,7 @@ _8005fa70:
     li	r4, 1
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r0, -0x7740(r13)
     li	r4, 1
     add	r3, r0, r24
@@ -4195,7 +4195,7 @@ _8005fadc:
     bc      12, 2, _8005fbb8
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r0, -0x7740(r13)
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
@@ -4346,7 +4346,7 @@ asm void SndKillChannelVoice(void)
     bc      12, 2, _8005fdc8
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r0, -0x7740(r13)
     add	r3, r0, r31
     lwz	r3, 0x1434(r3)
@@ -5444,7 +5444,7 @@ _80060c2c:
     blr
 }
 
-asm void fn_80060C54(void)
+asm void SndInitVoiceParams(void)
 {
     nofralloc
     stwu	r1, -0x180(r1)
@@ -6554,7 +6554,7 @@ _80061bec:
     li	r4, 1
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r0, -0x7740(r13)
     li	r4, 1
     add	r3, r0, r24
@@ -6583,7 +6583,7 @@ _80061ce0:
     li	r4, 1
     add	r3, r0, r29
     lwz	r3, 0x1434(r3)
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r0, -0x7740(r13)
     li	r4, 1
     add	r3, r0, r29
@@ -7189,7 +7189,7 @@ _80062568:
     mr	r6, r21
     clrlwi	r3, r22, 0x18
     clrlwi	r5, r31, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _800625e0
 _800625a0:
     rlwinm	r0, r21, 2, 0x16, 0x1d
@@ -7347,7 +7347,7 @@ _80062790:
     mr	r5, r31
     mr	r6, r27
     clrlwi	r3, r25, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _80062808
 _800627c8:
     rlwinm	r0, r27, 2, 0x16, 0x1d
@@ -7420,7 +7420,7 @@ _80062894:
     mr	r5, r31
     mr	r6, r27
     clrlwi	r3, r23, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _8006290c
 _800628cc:
     rlwinm	r0, r27, 2, 0x16, 0x1d
@@ -7493,7 +7493,7 @@ _80062998:
     mr	r5, r31
     mr	r6, r27
     clrlwi	r3, r23, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _80062a10
 _800629d0:
     rlwinm	r0, r27, 2, 0x16, 0x1d
@@ -7566,7 +7566,7 @@ _80062a9c:
     mr	r5, r31
     mr	r6, r27
     clrlwi	r3, r23, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _80062b14
 _80062ad4:
     rlwinm	r0, r27, 2, 0x16, 0x1d
@@ -7639,7 +7639,7 @@ _80062ba0:
     mr	r5, r31
     mr	r6, r27
     clrlwi	r3, r23, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _80062c18
 _80062bd8:
     rlwinm	r0, r27, 2, 0x16, 0x1d
@@ -7719,7 +7719,7 @@ _80062cbc:
     mr	r5, r31
     mr	r6, r27
     clrlwi	r3, r23, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _80062d34
 _80062cf4:
     rlwinm	r0, r27, 2, 0x16, 0x1d
@@ -7792,7 +7792,7 @@ _80062dc0:
     mr	r5, r31
     mr	r6, r27
     clrlwi	r3, r23, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _80062e38
 _80062df8:
     rlwinm	r0, r27, 2, 0x16, 0x1d
@@ -7860,7 +7860,7 @@ _80062eac:
     mr	r5, r31
     mr	r6, r26
     clrlwi	r3, r29, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _80062f24
 _80062ee4:
     rlwinm	r0, r26, 2, 0x16, 0x1d
@@ -7938,7 +7938,7 @@ _80062fc4:
     mr	r5, r31
     mr	r6, r27
     clrlwi	r3, r23, 0x18
-    bl      fn_80060C54
+    bl      SndInitVoiceParams
     b       _8006303c
 _80062ffc:
     rlwinm	r0, r27, 2, 0x16, 0x1d

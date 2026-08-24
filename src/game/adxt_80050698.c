@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_800501F4(void);
+extern void svm_ringbuf_skip(void);
 extern unsigned char lbl_800912F8[8];
 extern unsigned char adxt_attenuation_table[256];
 extern unsigned char lbl_80130B98[40];
@@ -67,7 +67,7 @@ _80050710:
     add	r4, r22, r22
     mr	r3, r17
     add	r4, r22, r4
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     lis     r6, lbl_80130B98@ha
     lis	r4, 0x4330
     slwi	r0, r22, 2
@@ -104,7 +104,7 @@ _80050710:
 _800507f4:
     mr	r3, r17
     mr	r4, r22
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     xoris	r3, r3, 0x8000
     lis	r0, 0x4330
     lis     r4, lbl_800912F8@ha
@@ -118,7 +118,7 @@ _800507f4:
     fsubs	f0, f0, f1
     fmadds	f0, f0, f31, f30
     stfs	f0, 0(r29)
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     xoris	r3, r3, 0x8000
     lis	r0, 0x4330
     lis     r4, lbl_800912F8@ha
@@ -132,7 +132,7 @@ _800507f4:
     fsubs	f0, f0, f1
     fmadds	f0, f0, f31, f30
     stfs	f0, 0x80(r29)
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     xoris	r3, r3, 0x8000
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
@@ -148,7 +148,7 @@ _8005089c:
     lwz	r22, 0(r5)
     mr	r3, r17
     lwz	r4, 4(r5)
-    bl      fn_800501F4
+    bl      svm_ringbuf_skip
     cmpwi	r22, 3
     bne     _8005093c
     lis     r4, lbl_80130C00@ha

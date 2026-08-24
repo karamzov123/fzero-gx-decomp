@@ -6,7 +6,7 @@ extern void AXAcquireVoice(void);
 extern void AXFreeVoice(void);
 extern void DCFlushRange(void);
 extern void fn_800230A4(void);
-extern void fn_80023168(void);
+extern void AXSetVoiceType_cached(void);
 extern void fn_80023284(void);
 extern void fn_80023438(void);
 extern void fn_80025EF4(void);
@@ -1220,7 +1220,7 @@ _8005b124:
     bl      fn_80023284
     lwz	r3, 8(r30)
     li	r4, 1
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
 _8005b188:
     addi	r30, r30, 4
     addi	r29, r29, 1
@@ -1244,7 +1244,7 @@ _8005b1c4:
     cmplwi	r3, 0
     beq     _8005b1d8
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
 _8005b1d8:
     addi	r30, r30, 4
     addi	r29, r29, 1

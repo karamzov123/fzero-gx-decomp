@@ -2,8 +2,8 @@
 #pragma force_active on
 
 extern void DCInvalidateRange(void);
-extern void fn_80046718(void);
-extern void fn_80046738(void);
+extern void svmUnlockServer_wrapper(void);
+extern void svmLockServer_wrapper(void);
 extern void criErr_CallErrCallback(void);
 extern void fn_8004AC58(void);
 extern void fn_8004AE78(void);
@@ -825,7 +825,7 @@ asm void fn_8004FAA8(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lis     r3, lbl_80186B68@ha
     li	r30, 0
     addi	r31, r3, lbl_80186B68@l
@@ -920,7 +920,7 @@ _8004fc0c:
     addi	r31, r31, 0x44
     cmpwi	r30, 0x10
     blt     _8004facc
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     lwz	r30, 8(r1)
@@ -1047,7 +1047,7 @@ _8004fdbc:
     b       _8004feb4
 _8004fdd8:
     bl      fn_8004AC58
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lwz	r3, 4(r30)
     bl      fn_8004AE78
     lwz	r0, 0x14(r30)
@@ -1077,7 +1077,7 @@ _8004fe28:
 _8004fe44:
     li	r0, 1
     stb	r0, 1(r30)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
     lis     r4, lbl_80186640@ha
     lis     r3, lbl_80186664@ha
     addi	r9, r4, lbl_80186640@l

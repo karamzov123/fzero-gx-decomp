@@ -50,7 +50,7 @@ asm void fn_800501EC(void)
     blr	
 }
 
-asm void fn_800501F4(void)
+asm void svm_ringbuf_skip(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

@@ -54,7 +54,7 @@ asm void SPEC0_MakeStatus(void);
 asm void SPEC1_MakeStatus(void);
 asm void SPEC2_MakeStatus(void);
 asm void PADSetAnalogMode(void);
-asm void fn_8001DC3C(void);
+asm void PADResetChannel(void);
 asm void SamplingHandler(void);
 asm void PADSetSamplingCallback(void);
 asm void __PADDisableRecalibration(void);
@@ -2086,7 +2086,7 @@ asm void PADSetAnalogMode(void)
     blr
 }
 
-asm void fn_8001DC3C(void)
+asm void PADResetChannel(void)
 {
     nofralloc
     mflr	r0

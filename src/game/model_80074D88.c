@@ -49,17 +49,17 @@ extern void ModelSetCachedMaterial_570(void);
 extern void fn_800735C8(void);
 extern void fn_80073620(void);
 extern void fn_80073678(void);
-extern void fn_800736C0(void);
+extern void ModelSetCachedTex_704(void);
 extern void fn_80073778(void);
 extern void fn_80073898(void);
 extern void fn_800738E0(void);
 extern void fn_80073A58(void);
 extern void fn_80073B50(void);
-extern void fn_80073C6C(void);
-extern void fn_800745A4(void);
+extern void ModelClearCacheSlot_B28(void);
+extern void ModelSetCachedPair5_B28(void);
 extern void fn_80074660(void);
 extern void fn_80074788(void);
-extern void fn_800747D0(void);
+extern void LightCtrl_SetCachedRec_C30(void);
 extern void GXColorClampScale(void);
 extern void GXColorScale(void);
 extern void fn_80078538(void);
@@ -219,7 +219,7 @@ asm void fn_80074D88(void)
     li r6, 0x2d
     li r7, 0
     li r8, 0x49
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lfs f1, -0x79c0(r2)
     addi r4, r1, 0x14
     lfs f3, -0x7674(r13)
@@ -269,12 +269,12 @@ asm void fn_80074D88(void)
     li r6, 0x1e
     li r7, 0
     li r8, 0x4c
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r0, -0x7670(r13)
     addi r4, r1, 0x10
     li r3, 1
     stw r0, 0x10(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r3, 0(r31)
     li r4, 0xd
     bl fn_800735C8
@@ -718,22 +718,22 @@ _800753F0:
     addi r4, r1, 0x14
     li r3, 0
     stw r0, 0x14(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r0, 0x1c(r1)
     addi r4, r1, 0x10
     li r3, 1
     stw r0, 0x10(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r0, 0x1c(r1)
     addi r4, r1, 0xc
     li r3, 2
     stw r0, 0xc(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r0, 0x1c(r1)
     addi r4, r1, 8
     li r3, 3
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     li r0, 0
     stw r0, -0x7680(r13)
     stw r0, -0x7668(r13)
@@ -829,7 +829,7 @@ _8007575C:
     addi r4, r1, 0xc
     li r3, 2
     stw r0, 0xc(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
 _800757DC:
     lwz r0, -0x763c(r13)
     cmpwi r0, 0
@@ -838,7 +838,7 @@ _800757DC:
     addi r4, r1, 8
     li r3, 3
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
 _800757FC:
     addi r5, r31, 0x41e0
     li r3, 4
@@ -1228,7 +1228,7 @@ asm void fn_80075D48(void)
     stw r30, 8(r1)
     mr r30, r3
     lwz r3, 0(r3)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
@@ -1327,7 +1327,7 @@ _80075E68:
     addi r0, r3, 1
     stw r0, 0(r30)
     lwz r3, 0(r30)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
@@ -1571,7 +1571,7 @@ asm void fn_80076238(void)
     lwz r3, 0(r3)
     mr r29, r5
     mr r30, r6
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r27)
     li r4, 0
     li r5, 0
@@ -1659,7 +1659,7 @@ _80076384:
     addi r4, r1, 8
     li r3, 0
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r3, 0(r27)
     li r4, 0xc
     bl fn_800735C8
@@ -1669,7 +1669,7 @@ _80076384:
     li r6, 0x1e
     li r7, 1
     li r8, 0x40
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     cmpwi r30, 0
     beq _80076408
     lwz r3, 0(r27)
@@ -1735,7 +1735,7 @@ asm void fn_800764A0(void)
     stw r28, 0x10(r1)
     mr r28, r3
     lwz r3, 0(r3)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
@@ -1823,7 +1823,7 @@ _800765F0:
     addi r4, r1, 8
     li r3, 0
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r3, 0(r28)
     li r4, 0xc
     bl fn_800735C8
@@ -1833,7 +1833,7 @@ _800765F0:
     li r6, 0x1e
     li r7, 1
     li r8, 0x40
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r3, 0(r28)
     li r4, 0xf
     li r5, 8
@@ -1867,7 +1867,7 @@ _800765F0:
     addi r0, r3, 1
     stw r0, 4(r28)
     lwz r3, 0(r28)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
@@ -2119,7 +2119,7 @@ _800769FC:
     stb r0, 0xe(r1)
     lwz r0, 0xc(r1)
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     li r0, 1
     stw r0, 0x4c(r31)
 _80076AA4:
@@ -2157,7 +2157,7 @@ _80076AF4:
 _80076B1C:
     lwz r31, 0(r29)
     mr r3, r31
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     mr r3, r31
     li r4, 0
     li r5, 0
@@ -2171,7 +2171,7 @@ _80076B1C:
     li r6, 0x1e
     li r7, 1
     li r8, 0x46
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r4, 4(r29)
     mr r3, r31
     li r5, 0
@@ -2204,7 +2204,7 @@ _80076B1C:
     li r8, 3
     bl ModelSetCachedParam_430
     addi r3, r31, 1
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     addi r3, r31, 1
     li r4, 0
     li r5, 0
@@ -2219,7 +2219,7 @@ _80076B1C:
     addi r3, r3, 1
     li r7, 1
     li r8, 0x43
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r4, 4(r29)
     addi r3, r31, 1
     lwz r5, 0xc(r29)
@@ -2333,7 +2333,7 @@ _80076D70:
     addi r6, r6, 0x30
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     b _80076E08
 _80076DCC:
     lwz r3, 4(r19)
@@ -2342,7 +2342,7 @@ _80076DCC:
     li r6, 0x24
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     b _80076E08
 _80076DEC:
     lwz r3, 4(r19)
@@ -2351,7 +2351,7 @@ _80076DEC:
     li r6, 0x3c
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
 _80076E08:
     mr r3, r19
     mr r4, r21
@@ -2362,7 +2362,7 @@ _80076E18:
     beq _80076FD0
     lwz r25, 0(r27)
     lwz r3, 0(r19)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     rlwinm r3, r25, 0, 0xc, 0xd
     lis r0, 8
     cmpw r3, r0
@@ -2427,7 +2427,7 @@ _80076EF4:
     li r6, 0x24
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     b _80076F38
 _80076F1C:
     lwz r3, 4(r19)
@@ -2436,7 +2436,7 @@ _80076F1C:
     li r6, 0x3c
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
 _80076F38:
     lwz r3, 0(r19)
     li r6, 4
@@ -2488,14 +2488,14 @@ _80076FD0:
     li r7, 0
     bl LightCtrl_SetCachedFog
     lwz r3, 0(r19)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 4(r19)
     mr r5, r29
     li r4, 1
     li r6, 0x3c
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r3, 0(r19)
     li r6, 4
     lwz r4, 4(r19)
@@ -2538,14 +2538,14 @@ _80076FD0:
     addi r0, r3, 1
     stw r0, 4(r19)
     lwz r3, 0(r19)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 4(r19)
     mr r5, r25
     li r4, 2
     li r6, 0x3c
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r3, 0(r19)
     li r6, 0xff
     lwz r4, 4(r19)
@@ -2766,7 +2766,7 @@ _800773E8:
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     lwz r7, -0x764c(r13)
     li r3, 0
     lwz r9, -0x765c(r13)
@@ -2774,7 +2774,7 @@ _800773E8:
     li r5, 0
     li r6, 1
     li r8, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     b _80077478
 _8007741C:
     lis     r3, lbl_801A3220@ha
@@ -2791,7 +2791,7 @@ _8007741C:
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     lwz r7, -0x764c(r13)
     li r3, 0
     lwz r9, -0x765c(r13)
@@ -2799,7 +2799,7 @@ _8007741C:
     li r5, 0
     li r6, 0
     li r8, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
 _80077478:
     lwz r0, 0x14(r1)
     mtlr r0
@@ -2838,7 +2838,7 @@ asm void fn_80077488(void)
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     b _800775D8
 _80077500:
     li r3, 2
@@ -2848,7 +2848,7 @@ _80077500:
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     li r3, 0
     li r4, 0
     li r5, 1
@@ -2856,7 +2856,7 @@ _80077500:
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     b _800775D8
 _80077544:
     lis     r4, lbl_801A3220@ha
@@ -2952,7 +2952,7 @@ asm void fn_80077654(void)
     li r4, 0x1e
     bl fn_80073620
     mr r3, r31
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     mr r3, r31
     li r4, 0xff
     li r5, 0xff
@@ -3005,7 +3005,7 @@ asm void fn_80077714(void)
     li r4, 0x1f
     bl fn_80073620
     mr r3, r31
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     mr r3, r31
     li r4, 0xff
     li r5, 0xff

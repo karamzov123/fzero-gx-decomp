@@ -3,8 +3,8 @@
 
 extern void fn_800463E4(void);
 extern void memset(void);
-extern void fn_80046738(void);
-extern void fn_80046718(void);
+extern void svmLockServer_wrapper(void);
+extern void svmUnlockServer_wrapper(void);
 extern void svmUnlockServer(void);
 extern void svmLockServer(void);
 extern void strlen(void);
@@ -312,12 +312,12 @@ asm void fn_800466D4(void)
     stw	r31, 0xc(r1)
     or.	r31, r3, r3
     beq     _80046704
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     mr	r3, r31
     li	r4, 0
     li	r5, 0x30
     bl      memset
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _80046704:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -326,7 +326,7 @@ _80046704:
     blr	
 }
 
-asm void fn_80046718(void)
+asm void svmUnlockServer_wrapper(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -339,7 +339,7 @@ asm void fn_80046718(void)
     blr	
 }
 
-asm void fn_80046738(void)
+asm void svmLockServer_wrapper(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

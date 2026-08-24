@@ -8,8 +8,8 @@ extern void fn_800415F4(void);
 extern void fn_80041660(void);
 extern void fn_80041684(void);
 extern void fn_80041700(void);
-extern void fn_80046718(void);
-extern void fn_80046738(void);
+extern void svmUnlockServer_wrapper(void);
+extern void svmLockServer_wrapper(void);
 extern void fn_80046C28(void);
 extern void criErr_CallErrCallback(void);
 extern void fn_80047548(void);
@@ -235,17 +235,17 @@ _8004ba70:
     lwz	r3, 0xc(r29)
     bl      fn_8004ED84
     mr	r30, r3
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lwz	r0, 4(r31)
     cmpwi	r0, 0
     beq     _8004ba94
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
     b       _8004baf8
 _8004ba94:
     li	r0, 1
     stw	r0, 4(r31)
-    bl      fn_80046718
-    bl      fn_80046738
+    bl      svmUnlockServer_wrapper
+    bl      svmLockServer_wrapper
     bl      fn_80041700
     li	r0, 2
     lis     r3, lbl_80178CBC@ha
@@ -268,7 +268,7 @@ _8004bad0:
     bl      fn_8004EE44
     li	r0, 0
     stw	r0, 4(r31)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _8004baf8:
     lwz	r27, 0(r31)
     li	r0, 0
@@ -387,7 +387,7 @@ _8004bc40:
     cmpw	r29, r0
     extsb	r30, r30
     beq     _8004bd40
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     cmpwi	r30, 3
     stb	r29, 0x72(r31)
     beq     _8004bc70
@@ -448,7 +448,7 @@ _8004bca0:
     bl      __cvt_fp2unsigned
     stw	r3, 0x9c(r31)
 _8004bd3c:
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _8004bd40:
     lwz	r0, 0x44(r1)
     lwz	r31, 0x3c(r1)
@@ -512,18 +512,18 @@ asm void fn_8004BDD8(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
-    bl      fn_80046738
+    bl      svmLockServer_wrapper
     lis	r3, -0x7fe8
     lwzu	r0, -0x1a94(r3)
     cmpwi	r0, 0
     beq     _8004be08
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
     b       _8004be78
 _8004be08:
     li	r0, 1
     stw	r0, 0(r3)
-    bl      fn_80046718
-    bl      fn_80046738
+    bl      svmUnlockServer_wrapper
+    bl      svmLockServer_wrapper
     bl      fn_80041700
     lis	r4, -0x7fe8
     li	r0, 2
@@ -549,7 +549,7 @@ _8004be48:
     lis	r3, -0x7fe8
     li	r0, 0
     stw	r0, -0x1a94(r3)
-    bl      fn_80046718
+    bl      svmUnlockServer_wrapper
 _8004be78:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
