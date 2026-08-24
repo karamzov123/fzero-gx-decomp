@@ -1360,7 +1360,7 @@ asm void fn_800356AC(void)
     blr	
 }
 
-asm void fn_800356B8(register void* p)
+asm void __GXSetChanColor(register void* p)
 {
     nofralloc
     cntlzw	r0, r4
