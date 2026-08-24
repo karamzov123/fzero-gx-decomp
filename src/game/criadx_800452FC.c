@@ -309,7 +309,7 @@ _80045580:
     blr	
 }
 
-asm void fn_80045588(void)
+asm void criadx_get_field_0E(void)
 {
     nofralloc
     lbz	r3, 0xe(r3)
@@ -317,7 +317,7 @@ asm void fn_80045588(void)
     blr	
 }
 
-asm void fn_80045594(void)
+asm void criadx_get_field_14(void)
 {
     nofralloc
     lwz	r3, 0x14(r3)

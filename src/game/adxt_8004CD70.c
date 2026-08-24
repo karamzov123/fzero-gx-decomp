@@ -18,7 +18,7 @@ extern void fn_80041660(void);
 extern void criadxGetValue(void);
 extern void fn_800416A8(void);
 extern void fn_800416CC(void);
-extern void fn_800416D4(void);
+extern void criadx_set_field_40(void);
 extern void criadx_set_field_3C(void);
 extern void fn_800416E4(void);
 extern void fn_800416F0(void);
@@ -63,7 +63,7 @@ extern void ADXTServerStateRequest_wrapper(void);
 void fn_8004D8DC(void);
 void fn_8004DDE4(void);
 void fn_8004DFF0(void);
-extern void fn_8004EEC4(void);
+extern void ADXT_GetResourceManager(void);
 extern void fn_8004EF28(void);
 extern void fn_80056C20(void);
 extern void fn_8005710C(void);
@@ -462,7 +462,7 @@ _8004d2c0:
     bne     _8004d460
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EEC4
+    bl      ADXT_GetResourceManager
     li	r0, 4
     stb	r0, 1(r31)
     b       _8004d460
@@ -775,7 +775,7 @@ _8004d710:
     bl      fn_800416CC
     mr	r3, r31
     li	r4, 0
-    bl      fn_800416D4
+    bl      criadx_set_field_40
     lis     r4, fn_8004DFF0@ha
     mr	r3, r31
     addi	r4, r4, fn_8004DFF0@l
@@ -800,7 +800,7 @@ _8004d778:
     bl      fn_800416CC
     mr	r3, r31
     li	r4, 0
-    bl      fn_800416D4
+    bl      criadx_set_field_40
     lis     r4, fn_8004D8DC@ha
     mr	r3, r31
     addi	r4, r4, fn_8004D8DC@l
@@ -876,7 +876,7 @@ _8004d88c:
 _8004d8b4:
     lwz	r3, 0xc(r30)
     li	r4, 1
-    bl      fn_8004EEC4
+    bl      ADXT_GetResourceManager
     li	r0, 2
     stb	r0, 1(r30)
 _8004d8c8:
@@ -1075,7 +1075,7 @@ _8004db70:
     bl      fn_800416CC
     mr	r3, r31
     li	r4, 0
-    bl      fn_800416D4
+    bl      criadx_set_field_40
 _8004dba8:
     lmw	r26, 0x38(r1)
     lwz	r0, 0x54(r1)
@@ -1340,7 +1340,7 @@ _8004df1c:
     bctrl	
     mr	r3, r31
     li	r4, 0
-    bl      fn_800416D4
+    bl      criadx_set_field_40
     subf	r4, r26, r27
     mr	r3, r31
     stw	r4, 0x90(r28)
@@ -1412,7 +1412,7 @@ asm void fn_8004DFF0(void)
     bl      fn_80041434
     mr	r3, r29
     li	r4, 0
-    bl      fn_800416D4
+    bl      criadx_set_field_40
     subf	r4, r28, r31
     mr	r3, r29
     stw	r4, 0x90(r30)

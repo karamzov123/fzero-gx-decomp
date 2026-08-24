@@ -67,9 +67,9 @@ extern void fn_800786B0(void);
 extern void fn_80078768(void);
 extern void GXWriteFifoWord(void);
 extern void GXWriteFifoWordPair(void);
-extern void fn_800789D8(void);
-extern void fn_80078C28(void);
-extern void fn_80078CDC(void);
+extern void ModelLoadSkinMatrices(void);
+extern void ModelUploadLights(void);
+extern void ModelResetFogState(void);
 extern void fn_80078D60(void);
 extern void QuatNormalizeCompare(void);
 extern void fn_8006D7F4(void);
@@ -96,7 +96,7 @@ extern unsigned char lbl_801A3220[96];
 asm void fn_80074D88(void);
 asm void fn_80075080(void);
 asm void AvDispSetupModel(void);
-asm void fn_800756B0(void);
+asm void ModelDrawCachedMaterialCmds(void);
 asm void fn_80075908(void);
 asm void fn_80075C78(void);
 asm void fn_80075D48(void);
@@ -746,7 +746,7 @@ _800753F0:
     blr
 }
 
-asm void fn_800756B0(void)
+asm void ModelDrawCachedMaterialCmds(void)
 {
     nofralloc
     stwu r1, -0x30(r1)
@@ -3566,7 +3566,7 @@ _80077E40:
     cmplwi r0, 0
     bne _80077E58
     mr r4, r31
-    bl fn_800756B0
+    bl ModelDrawCachedMaterialCmds
 _80077E58:
     mr r3, r31
     mr r4, r30
@@ -3604,7 +3604,7 @@ _80077EBC:
     rlwinm. r0, r3, 0, 0x1d, 0x1d
     beq _80077ED8
     mr r3, r31
-    bl fn_80078C28
+    bl ModelUploadLights
     b _80077EF0
 _80077ED8:
     rlwinm. r0, r3, 0, 0x1c, 0x1c
@@ -3631,7 +3631,7 @@ _80077F20:
     mr r3, r31
     mr r4, r30
     mr r5, r29
-    bl fn_800789D8
+    bl ModelLoadSkinMatrices
     mr r30, r3
     addi r28, r28, 1
 _80077F38:
@@ -3648,7 +3648,7 @@ _80077F4C:
     stw r0, 4(r31)
     lwz r0, 4(r31)
     rlwinm r3, r0, 0x1e, 0x1f, 0x1f
-    bl fn_80078CDC
+    bl ModelResetFogState
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -3684,7 +3684,7 @@ _80077FCC:
     rlwinm. r0, r3, 0, 0x1d, 0x1d
     beq _80077FE8
     mr r3, r31
-    bl fn_80078C28
+    bl ModelUploadLights
     b _80078000
 _80077FE8:
     rlwinm. r0, r3, 0, 0x1c, 0x1c
@@ -3699,7 +3699,7 @@ _80078000:
     bne _80078018
     mr r3, r31
     mr r4, r30
-    bl fn_800756B0
+    bl ModelDrawCachedMaterialCmds
 _80078018:
     lwz r0, 4(r31)
     rlwinm. r0, r0, 0, 0x1b, 0x1c
@@ -3716,7 +3716,7 @@ _80078040:
     mr r3, r31
     mr r4, r30
     mr r5, r29
-    bl fn_800789D8
+    bl ModelLoadSkinMatrices
     mr r30, r3
     addi r28, r28, 1
 _80078058:
@@ -3731,7 +3731,7 @@ _8007806C:
     stw r0, 4(r31)
     lwz r0, 4(r31)
     rlwinm r3, r0, 0x1e, 0x1f, 0x1f
-    bl fn_80078CDC
+    bl ModelResetFogState
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -3767,7 +3767,7 @@ _800780E4:
     rlwinm. r0, r3, 0, 0x1d, 0x1d
     beq _80078100
     mr r3, r28
-    bl fn_80078C28
+    bl ModelUploadLights
     b _80078118
 _80078100:
     rlwinm. r0, r3, 0, 0x1c, 0x1c
@@ -3782,7 +3782,7 @@ _80078118:
     bne _80078130
     mr r3, r28
     mr r4, r31
-    bl fn_800756B0
+    bl ModelDrawCachedMaterialCmds
 _80078130:
     lwz r0, 4(r28)
     rlwinm. r0, r0, 0, 0x1b, 0x1c
@@ -3800,7 +3800,7 @@ _8007815C:
     mr r3, r28
     mr r4, r31
     mr r5, r30
-    bl fn_800789D8
+    bl ModelLoadSkinMatrices
     mr r31, r3
     addi r29, r29, 1
 _80078174:
@@ -3813,7 +3813,7 @@ _80078180:
     stw r0, 4(r28)
     lwz r0, 4(r28)
     rlwinm r3, r0, 0x1e, 0x1f, 0x1f
-    bl fn_80078CDC
+    bl ModelResetFogState
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -3849,7 +3849,7 @@ _800781F8:
     rlwinm. r0, r3, 0, 0x1d, 0x1d
     beq _80078214
     mr r3, r29
-    bl fn_80078C28
+    bl ModelUploadLights
     b _8007822C
 _80078214:
     rlwinm. r0, r3, 0, 0x1c, 0x1c
@@ -3864,7 +3864,7 @@ _8007822C:
     bne _80078244
     mr r3, r29
     mr r4, r31
-    bl fn_800756B0
+    bl ModelDrawCachedMaterialCmds
 _80078244:
     lwz r0, 4(r29)
     rlwinm. r0, r0, 0, 0x1b, 0x1c
@@ -3917,7 +3917,7 @@ _800782E8:
     mr r3, r29
     mr r4, r31
     mr r5, r30
-    bl fn_800789D8
+    bl ModelLoadSkinMatrices
     mr r31, r3
     addi r28, r28, 1
 _80078300:
@@ -3930,7 +3930,7 @@ _8007830C:
     stw r0, 4(r29)
     lwz r0, 4(r29)
     rlwinm r3, r0, 0x1e, 0x1f, 0x1f
-    bl fn_80078CDC
+    bl ModelResetFogState
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)

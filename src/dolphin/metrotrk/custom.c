@@ -381,7 +381,7 @@ _8008ebc8:
     blr	
 }
 
-asm void fn_8008EBF8(void)
+asm void TRKEnableEXIInterrupts(void)
 {
     nofralloc
     mflr	r0
@@ -565,7 +565,7 @@ asm void EXI2_InitSequence(void)
     b       _8008ee3c
 _8008ee34:
     li	r3, 5
-    bl      fn_8008EBF8
+    bl      TRKEnableEXIInterrupts
 _8008ee3c:
     cmpwi	r3, 0
     beq     _8008ee34

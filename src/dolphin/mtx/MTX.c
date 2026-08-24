@@ -1,4 +1,4 @@
-asm void fn_8006E2D8(void);
+asm void PSMTXMultVec(void);
 
 #pragma push
 #pragma force_active on
@@ -48,7 +48,7 @@ _8006e270:
     fsubs   f1, f1, f10
     fsubs   f2, f2, f11
     fsubs   f3, f3, f12
-    b       fn_8006E2D8
+    b       PSMTXMultVec
 }
 
 asm void C_MTXMultVecSS(void)
@@ -60,7 +60,7 @@ asm void C_MTXMultVecSS(void)
     lfs     f1, 0xc(r5)
     lfs     f2, 0x1c(r5)
     lfs     f3, 0x2c(r5)
-    b       fn_8006E2D8
+    b       PSMTXMultVec
 }
 
 asm void PSMTXMultVecSS(void)
@@ -79,7 +79,7 @@ _8006e2d0:
     crxor   2, 2, 2
 }
 
-asm void fn_8006E2D8(void)
+asm void PSMTXMultVec(void)
 {
     nofralloc
     psq_l   f4, 0x0(r5), 0, 0

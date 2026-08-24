@@ -38,7 +38,7 @@ _80071c54:
     blr	
 }
 
-asm void fn_80071C64(void)
+asm void __OSAllocFromHeap(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -53,7 +53,7 @@ asm void fn_80071C64(void)
     blr	
 }
 
-asm void fn_80071C8C(void)
+asm void __OSFreeToHeap(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -68,7 +68,7 @@ asm void fn_80071C8C(void)
     blr	
 }
 
-asm void fn_80071CB4(void)
+asm void OSGetDefaultHeap(void)
 {
     nofralloc
     lis     r3, lbl_8019E210@ha

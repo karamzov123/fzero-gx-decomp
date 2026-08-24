@@ -6,7 +6,7 @@ extern void criadx_get_stream_ptr(void);
 extern void fn_80045514(void);
 extern void fn_800453A4(void);
 extern void fn_8004538C(void);
-extern void fn_80045588(void);
+extern void criadx_get_field_0E(void);
 extern void fn_80057DB0(void);
 extern void fn_800455A4(void);
 extern void criadx_format_dispatch(void);
@@ -200,7 +200,7 @@ _80041e34:
     addi	r25, r25, 1
 _80041e60:
     lwz	r3, 4(r31)
-    bl      fn_80045588
+    bl      criadx_get_field_0E
     cmpw	r25, r3
     blt     _80041e34
     mr	r3, r26

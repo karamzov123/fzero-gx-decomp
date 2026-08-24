@@ -27,7 +27,7 @@ extern void fn_8004B180(void);
 extern void fn_8004B1DC(void);
 extern void fn_8004EE84(void);
 extern void ADXTServerStateRequest_wrapper(void);
-extern void fn_8004EEC4(void);
+extern void ADXT_GetResourceManager(void);
 extern void fn_8004EEE4(void);
 extern void fn_80056CD0(void);
 extern void fn_80057114(void);
@@ -446,7 +446,7 @@ _8004c704:
     bl      svmLockServer_wrapper
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EEC4
+    bl      ADXT_GetResourceManager
     lwz	r3, 0xc(r31)
     li	r4, 0
     bl      ADXTServerStateRequest_wrapper
@@ -534,7 +534,7 @@ _8004c830:
     bl      svmLockServer_wrapper
     lwz	r3, 0xc(r30)
     li	r4, 0
-    bl      fn_8004EEC4
+    bl      ADXT_GetResourceManager
     lwz	r3, 0xc(r30)
     li	r4, 0
     bl      ADXTServerStateRequest_wrapper
@@ -769,7 +769,7 @@ _8004cb78:
     bl      svmLockServer_wrapper
     lwz	r3, 0xc(r31)
     li	r4, 0
-    bl      fn_8004EEC4
+    bl      ADXT_GetResourceManager
     lwz	r3, 0xc(r31)
     li	r4, 0
     bl      ADXTServerStateRequest_wrapper

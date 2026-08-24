@@ -1259,7 +1259,7 @@ asm void ADXTServerStateRequest_wrapper(void)
     blr	
 }
 
-asm void fn_8004EEC4(void)
+asm void ADXT_GetResourceManager(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

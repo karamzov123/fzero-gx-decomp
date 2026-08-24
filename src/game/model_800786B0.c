@@ -40,10 +40,10 @@ asm void fn_800786B0(void);
 asm void fn_80078768(void);
 asm void GXWriteFifoWord(void);
 asm void GXWriteFifoWordPair(void);
-asm void fn_800789D8(void);
+asm void ModelLoadSkinMatrices(void);
 asm void fn_80078BC4(void);
-asm void fn_80078C28(void);
-asm void fn_80078CDC(void);
+asm void ModelUploadLights(void);
+asm void ModelResetFogState(void);
 asm void GXWriteFifoCommand(void);
 asm void fn_80078D60(void);
 asm void fn_80078DA8(void);
@@ -303,7 +303,7 @@ _800789C4:
     blr
 }
 
-asm void fn_800789D8(void)
+asm void ModelLoadSkinMatrices(void)
 {
     nofralloc
     stwu r1, -0x60(r1)
@@ -479,7 +479,7 @@ _80078C00:
     blr
 }
 
-asm void fn_80078C28(void)
+asm void ModelUploadLights(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -533,7 +533,7 @@ _80078CB0:
     blr
 }
 
-asm void fn_80078CDC(void)
+asm void ModelResetFogState(void)
 {
     nofralloc
     stwu r1, -0x10(r1)

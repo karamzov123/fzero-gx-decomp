@@ -12,8 +12,8 @@ extern void fn_80045504(void);
 extern void criadx_get_stream_ptr(void);
 extern void fn_80045514(void);
 extern void fn_8004551C(void);
-extern void fn_80045588(void);
-extern void fn_80045594(void);
+extern void criadx_get_field_0E(void);
+extern void criadx_get_field_14(void);
 extern void criadx_get_status(void);
 extern void fn_80045414(void);
 extern void fn_80041BF8(void);
@@ -218,7 +218,7 @@ asm void fn_80041660(void)
     mflr	r0
     stw	r0, 0x14(r1)
     lwz	r3, 4(r3)
-    bl      fn_80045588
+    bl      criadx_get_field_0E
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -232,7 +232,7 @@ asm void criadxGetValue(void)
     mflr	r0
     stw	r0, 0x14(r1)
     lwz	r3, 4(r3)
-    bl      fn_80045594
+    bl      criadx_get_field_14
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -260,7 +260,7 @@ asm void fn_800416CC(void)
     blr	
 }
 
-asm void fn_800416D4(void)
+asm void criadx_set_field_40(void)
 {
     nofralloc
     stw	r4, 0x40(r3)
@@ -403,7 +403,7 @@ _80041840:
     addi	r25, r25, 1
 _80041884:
     lwz	r3, 4(r28)
-    bl      fn_80045588
+    bl      criadx_get_field_0E
     cmpw	r25, r3
     blt     _80041808
     lwz	r0, 0x2c(r28)
@@ -577,7 +577,7 @@ _80041abc:
     addi	r26, r26, 1
 _80041b00:
     lwz	r3, 4(r27)
-    bl      fn_80045588
+    bl      criadx_get_field_0E
     cmpw	r26, r3
     blt     _80041a84
     lwz	r0, 0x2c(r27)

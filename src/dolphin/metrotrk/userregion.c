@@ -8,7 +8,7 @@ asm void fn_8008088C(register void* a, register void* b, register void* c, regis
 asm void EXI2_SetupTransfer(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_ExecuteTransfer(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EB8C(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008EBF8(register void* a, register void* b, register void* c, register void* d);
+asm void TRKEnableEXIInterrupts(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EC78(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_SetInterruptHandler(register void* a, register void* b, register void* c, register void* d);
 
@@ -53,7 +53,7 @@ _8008ef10:
     b       _8008ef2c
 _8008ef24:
     li	r3, 5
-    bl      fn_8008EBF8
+    bl      TRKEnableEXIInterrupts
 _8008ef2c:
     cmpwi	r3, 0
     beq     _8008ef24
@@ -124,7 +124,7 @@ _8008f00c:
     b       _8008f01c
 _8008f014:
     li	r3, 5
-    bl      fn_8008EBF8
+    bl      TRKEnableEXIInterrupts
 _8008f01c:
     cmpwi	r3, 0
     beq     _8008f014
@@ -322,7 +322,7 @@ asm void fn_8008F29C(void)
     b       _8008f2d0
 _8008f2c8:
     li	r3, 5
-    bl      fn_8008EBF8
+    bl      TRKEnableEXIInterrupts
 _8008f2d0:
     cmpwi	r3, 0
     beq     _8008f2c8
@@ -389,7 +389,7 @@ _8008f398:
     b       _8008f3b4
 _8008f3ac:
     li	r3, 5
-    bl      fn_8008EBF8
+    bl      TRKEnableEXIInterrupts
 _8008f3b4:
     cmpwi	r3, 0
     beq     _8008f3ac

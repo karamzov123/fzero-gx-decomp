@@ -5,17 +5,17 @@ extern asm void OSGetArenaHi(void);
 extern asm void OSSetArenaHi(void);
 extern asm void OSGetArenaLo(void);
 extern asm void OSSetArenaLo(void);
-extern void fn_80071C64(void);
-extern void fn_80071C8C(void);
-extern void fn_80071CB4(void);
+extern void __OSAllocFromHeap(void);
+extern void __OSFreeToHeap(void);
+extern void OSGetDefaultHeap(void);
 extern void ModelDVD_OpenFile(void);
 extern void fn_80071CE0(void);
 extern void ModelDVD_ReadAsync(void);
 extern void ModelDVD_CancelSync(void);
 extern void fn_80071D2C(void);
-extern void fn_80071C64(void);
-extern void fn_80071C8C(void);
-extern void fn_80071CB4(void);
+extern void __OSAllocFromHeap(void);
+extern void __OSFreeToHeap(void);
+extern void OSGetDefaultHeap(void);
 extern void ModelDVD_OpenFile(void);
 extern void fn_80071CE0(void);
 extern void ModelDVD_ReadAsync(void);
@@ -76,13 +76,13 @@ asm void fn_80070D60(void)
 asm void fn_80070D94(void)
 {
     nofralloc
-    lis     r8, fn_80071CB4@ha
+    lis     r8, OSGetDefaultHeap@ha
     lis     r7, ModelDVD_OpenFile@ha
     lis     r6, fn_80071CE0@ha
     lis     r5, ModelDVD_ReadAsync@ha
     lis     r4, ModelDVD_CancelSync@ha
     lis     r3, fn_80071D2C@ha
-    addi	r8, r8, fn_80071CB4@l
+    addi	r8, r8, OSGetDefaultHeap@l
     addi	r7, r7, ModelDVD_OpenFile@l
     addi	r6, r6, fn_80071CE0@l
     addi	r5, r5, ModelDVD_ReadAsync@l
@@ -118,10 +118,10 @@ asm void fn_80070DF0(void)
 asm void fn_80070E00(void)
 {
     nofralloc
-    lis     r4, fn_80071C64@ha
-    lis     r3, fn_80071C8C@ha
-    addi	r4, r4, fn_80071C64@l
-    addi	r0, r3, fn_80071C8C@l
+    lis     r4, __OSAllocFromHeap@ha
+    lis     r3, __OSFreeToHeap@ha
+    addi	r4, r4, __OSAllocFromHeap@l
+    addi	r0, r3, __OSFreeToHeap@l
     stw	r4, -0x76b4(r13)
     stw	r0, -0x76b8(r13)
     blr	
