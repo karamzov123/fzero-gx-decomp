@@ -26,7 +26,7 @@ asm void fn_8006D0E8(void);
 asm void fn_8006D188(void);
 asm void fn_8006D1C4(void);
 asm void atan2f(void);
-asm void fn_8006D2AC(void);
+asm void atanf(void);
 asm void fn_8006D368(void);
 asm void fn_8006D3D0(void);
 asm void fn_8006D46C(void);
@@ -288,7 +288,7 @@ _8006d29c:
     b       _8006d2f0
 }
 
-asm void fn_8006D2AC(void)
+asm void atanf(void)
 {
     nofralloc
     frsp	f1, f1
@@ -421,7 +421,7 @@ _8006d414:
     fcmpo	cr0, f1, f0
     bc      4, 1, _8006d43c
     fdivs	f1, f31, f1
-    bl      fn_8006D2AC
+    bl      atanf
     b       _8006d454
 _8006d43c:
     lfs	f0, -0x7a80(r2)
@@ -480,7 +480,7 @@ _8006d4d0:
     fcmpo	cr0, f1, f0
     bc      4, 1, _8006d4f8
     fdivs	f1, f31, f1
-    bl      fn_8006D2AC
+    bl      atanf
     b       _8006d510
 _8006d4f8:
     lfs	f0, -0x7a80(r2)
