@@ -2,7 +2,7 @@
 // Retail layout: CARD control blocks at .bss:0x80177960 (2 x 0x110 bytes).
 // All accesses use absolute-addressed asm bodies to match retail addressing.
 // Probable melee identities: __CARDSeek = __CARDReadSegment-ish read core,
-// fn_8002F2F8 = __CARDSeek, fn_8002F428 = __CARDRead internal, fn_8002F570 =
+// fn_8002F2F8 = __CARDSeek, CARDReadAsync = __CARDRead internal, CARDRead =
 // CARDRead wrapper.
 
 typedef int BOOL;
@@ -20,7 +20,7 @@ extern s32 __CARDGetDirBlock(void);
 extern s32 __CARDRead(register s32 chn, register void* addr, register s32 len,
                        register void* r6, register void* r7);
 extern s32 __CARDAccess(register void* ctrl, register void* r4);
-extern s32 fn_8002EA54(register void* ctrl);
+extern s32 __CARDIsPublic(register void* ctrl);
 extern s32 __CARDSync(register void* handle);
 extern void DCInvalidateRange(register void* addr, register u32 n);
 extern u32 OSGetTime(void);
@@ -245,7 +245,7 @@ _L_8002f414:
     blr
 }
 
-asm s32 fn_8002F428(register s32 chn, register void* addr, register s32 len,
+asm s32 CARDReadAsync(register s32 chn, register void* addr, register s32 len,
                     register void* callback)
 {
     nofralloc
@@ -286,7 +286,7 @@ _L_8002f480:
     cmpwi   r4, -0xa
     bne     _L_8002f4b8
     mr      r3, r28
-    bl      fn_8002EA54
+    bl      __CARDIsPublic
     mr      r4, r3
 _L_8002f4b8:
     cmpwi   r4, 0
@@ -353,7 +353,7 @@ asm s32 CARDRead(register void** handle, register void* addr, register s32 len)
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0
-    bl      fn_8002F428
+    bl      CARDReadAsync
     cmpwi   r3, 0
     bge     _L_8002f59c
     b       _L_8002f5a4

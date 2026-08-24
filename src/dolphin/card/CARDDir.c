@@ -33,7 +33,7 @@ extern void fn_8002E2B4(void);
 extern void CARDFormatAsync(void);
 extern void __CARDCompareFileName(void);
 extern void __CARDAccess(void);
-extern void fn_8002EA54(void);
+extern void __CARDIsPublic(void);
 extern void __CARDGetFileNo(void);
 extern void CARDOpen(void);
 extern void CARDClose(void);
@@ -2514,7 +2514,7 @@ _8002ea3c:
     blr	
 }
 
-asm void fn_8002EA54(void)
+asm void __CARDIsPublic(void)
 {
     nofralloc
     lbz	r0, 0(r3)

@@ -18,7 +18,7 @@ extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 __CARDGetDirBlock(void);
 extern s32 __CARDAccess(register void* ctrl, register void* ent);
-extern s32 fn_8002EA54(register void* ent);
+extern s32 __CARDIsPublic(register void* ent);
 extern void* memcpy(register void* dst, register void* src, register u32 n);
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
@@ -219,7 +219,7 @@ _L_8002fe9c:
     cmpwi   r30, -0xa
     bne     _L_8002fed0
     mr      r3, r29
-    bl      fn_8002EA54
+    bl      __CARDIsPublic
     mr      r30, r3
 _L_8002fed0:
     cmpwi   r30, 0

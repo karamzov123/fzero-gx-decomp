@@ -189,7 +189,7 @@ _L_8002f7b8:
     blr
 }
 
-asm s32 fn_8002F7D8(register void* fileInfo, register void* buf, register s32 length,
+asm s32 CARDWriteAsync(register void* fileInfo, register void* buf, register s32 length,
                        register s32 offset, register void* callback)
 {
     nofralloc
@@ -283,7 +283,7 @@ asm s32 CARDWrite(register void* fileInfo, register void* buf, register s32 leng
     stwu    r1, -0x20(r1)
     stw     r31, 0x1c(r1)
     addi    r31, r3, 0
-        bl      fn_8002F7D8
+        bl      CARDWriteAsync
     cmpwi   r3, 0
     bge     _L_8002f918
     b       _L_8002f920

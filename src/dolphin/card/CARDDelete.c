@@ -26,7 +26,7 @@ extern unsigned char __CARDBlock[544];
 #pragma push
 #pragma force_active on
 
-asm void fn_8002F934(register s32 chan, register s32 result)
+asm void DeleteCallback(register s32 chan, register s32 result)
 {
     nofralloc
     mflr    r0
@@ -140,8 +140,8 @@ _L_8002faac:
     addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
 _L_8002fab4:
     lwz     r5, 0x14(r1)
-    lis     r3, fn_8002F934@ha
-    addi    r4, r3, fn_8002F934@l          /* DeleteCallback */
+    lis     r3, DeleteCallback@ha
+    addi    r4, r3, DeleteCallback@l          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r28
     bl      __CARDUpdateDir
@@ -221,8 +221,8 @@ _L_8002fbc0:
     addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
 _L_8002fbc8:
     lwz     r5, 0x18(r1)
-    lis     r3, fn_8002F934@ha
-    addi    r4, r3, fn_8002F934@l          /* DeleteCallback */
+    lis     r3, DeleteCallback@ha
+    addi    r4, r3, DeleteCallback@l          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r31
     bl      __CARDUpdateDir
