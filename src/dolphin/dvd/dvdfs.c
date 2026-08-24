@@ -26,8 +26,8 @@ extern void OSSleepThread(void);
 extern void OSWakeupThread(void);
 extern void DVDConvertPathToEntrynum(void);
 extern void fn_8001724C(void);
-extern void fn_800173AC(void);
-extern void fn_80017590(void);
+extern void __DVDGetFSTHomeDir(void);
+extern void __DVDReadDoneCallback(void);
 extern void fn_800176D8(void);
 extern void DVDReadAbsAsyncPrio(void);
 extern void DVDCancel(void);
@@ -338,7 +338,7 @@ nofralloc
 	bge lbl_800171B4
 	addi r3, r1, 0x10
 	li r4, 0x80
-	bl fn_800173AC
+	bl __DVDGetFSTHomeDir
 	lis r3, lbl_80123EF0@ha
 	crxor 6,6,6
 	addi r3, r3, lbl_80123EF0@l
@@ -383,8 +383,8 @@ lbl_80017210:
 	blr
 }
 
-/* fn_80017228 @0x80017228 | size: 0x24 */
-asm void fn_80017228(void) {
+/* DVDCancelSync @0x80017228 | size: 0x24 */
+asm void DVDCancelSync(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -502,8 +502,8 @@ lbl_8001738C:
 	blr
 }
 
-/* fn_800173AC @0x800173AC | size: 0xC4 */
-asm void fn_800173AC(void) {
+/* __DVDGetFSTHomeDir @0x800173AC | size: 0xC4 */
+asm void __DVDGetFSTHomeDir(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -596,8 +596,8 @@ lbl_800174C0:
 	blr
 }
 
-/* fn_800174D0 @0x800174D0 | size: 0xC0 */
-asm void fn_800174D0(void) {
+/* DVDReadPrio @0x800174D0 | size: 0xC0 */
+asm void DVDReadPrio(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -636,8 +636,8 @@ lbl_80017538:
 	bl OSPanic
 lbl_80017550:
 	stw r30, 0x38(r26)
-	lis r3, fn_80017590@ha
-	addi r7, r3, fn_80017590@l
+	lis r3, __DVDReadDoneCallback@ha
+	addi r7, r3, __DVDReadDoneCallback@l
 	lwz r0, 0x30(r26)
 	addi r3, r26, 0x0
 	addi r4, r27, 0x0
@@ -653,8 +653,8 @@ lbl_80017550:
 	blr
 }
 
-/* fn_80017590 @0x80017590 | size: 0x30 */
-asm void fn_80017590(void) {
+/* __DVDReadDoneCallback @0x80017590 | size: 0x30 */
+asm void __DVDReadDoneCallback(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -671,8 +671,8 @@ lbl_800175B0:
 	blr
 }
 
-/* fn_800175C0 @0x800175C0 | size: 0x118 */
-asm void fn_800175C0(void) {
+/* DVDReadAsync @0x800175C0 | size: 0x118 */
+asm void DVDReadAsync(void) {
 nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
@@ -771,8 +771,8 @@ nofralloc
 	blr
 }
 
-/* fn_800176FC @0x800176FC | size: 0x6C */
-asm void fn_800176FC(void) {
+/* DVDGetCommandBlockStatusHalfword @0x800176FC | size: 0x6C */
+asm void DVDGetCommandBlockStatusHalfword(void) {
 nofralloc
 	lwz r0, 0xc(r3)
 	cmpwi r0, 0x2

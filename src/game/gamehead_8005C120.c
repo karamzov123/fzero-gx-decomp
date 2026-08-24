@@ -15,8 +15,8 @@ extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void OSGetTick(void);
 extern void DVDOpen(void);
-extern void fn_80017228(void);
-extern void fn_800175C0(void);
+extern void DVDCancelSync(void);
+extern void DVDReadAsync(void);
 extern void fn_8001E954(void);
 extern void fn_8001E9BC(void);
 extern void ARQPostRequest(void);
@@ -11463,7 +11463,7 @@ _80065fa8:
     li	r5, 0x20
     li	r6, 0
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r0, r3
     mr	r3, r28
     mr	r4, r0
@@ -11503,7 +11503,7 @@ _80065fa8:
     addi	r3, r1, 8
     li	r5, 0x80
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r4, r3
     mr	r3, r28
     add	r30, r30, r4
@@ -11541,7 +11541,7 @@ _800660c4:
     addi	r3, r1, 8
     li	r5, 0x40
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r4, r3
     mr	r3, r28
     addi	r30, r30, 0x20
@@ -11622,7 +11622,7 @@ _80066214:
     lwz	r20, 0x104(r3)
     addi	r3, r1, 8
     mr	r4, r20
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r4, r3
     mr	r3, r20
     add	r30, r30, r4
@@ -11689,7 +11689,7 @@ _800662e4:
     addi	r3, r1, 8
     li	r5, 0x40
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r4, r3
     mr	r3, r28
     addi	r30, r30, 0x20
@@ -11781,7 +11781,7 @@ _80066418:
     mr	r6, r30
     addi	r3, r1, 8
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r4, r3
     mr	r3, r25
     bl      DCInvalidateRange
@@ -11849,7 +11849,7 @@ _80066570:
     mr	r6, r30
     addi	r3, r1, 8
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r20, r3
     mr	r3, r25
     mr	r4, r20
@@ -11882,7 +11882,7 @@ _800665dc:
     mr	r6, r30
     addi	r3, r1, 8
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r4, r3
     mr	r3, r25
     bl      DCInvalidateRange
@@ -11925,7 +11925,7 @@ _8006668c:
     mr	r6, r30
     addi	r3, r1, 8
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r20, r3
     mr	r3, r31
     mr	r4, r20
@@ -11958,7 +11958,7 @@ _800666f8:
     mr	r6, r30
     addi	r3, r1, 8
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
     mr	r4, r3
     mr	r3, r31
     bl      DCInvalidateRange
@@ -12291,7 +12291,7 @@ _80066be0:
     mr	r4, r28
     bl      OSFree
     addi	r3, r1, 8
-    bl      fn_80017228
+    bl      DVDCancelSync
     b       _80066bfc
 _80066bf8:
     li	r26, -3

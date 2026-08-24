@@ -106,10 +106,10 @@ extern void fn_80015EE8(void);
 extern void DVDConvertPathToEntrynum(void);
 extern void fn_800170EC(void);
 extern void DVDOpen(void);
-extern void fn_80017228(void);
+extern void DVDCancelSync(void);
 extern void fn_80017470(void);
-extern void fn_800174D0(void);
-extern void fn_800175C0(void);
+extern void DVDReadPrio(void);
+extern void DVDReadAsync(void);
 extern void fn_8001AAB4(void);
 extern void fn_8001AF64(void);
 extern void fn_8001BDF0(void);
@@ -435,7 +435,7 @@ asm void main_load_sample_rel(void)
     bl      OSSetStringTable
 _800058bc:
     addi	r3, r1, 8
-    bl      fn_80017228
+    bl      DVDCancelSync
 _800058c4:
     lwz	r0, 0x54(r1)
     lwz	r31, 0x4c(r1)
@@ -501,7 +501,7 @@ asm void fn_8000591C(void)
     mr	r4, r30
     bl      fn_80006354
     addi	r3, r1, 8
-    bl      fn_80017228
+    bl      DVDCancelSync
     mr	r3, r30
     li	r4, 0
     bl      OSLink
@@ -1198,7 +1198,7 @@ asm void fn_80006354(void)
     stw	r31, 0xc(r1)
     mr	r31, r3
     stb	r0, -0x7ce5(r13)
-    bl      fn_800174D0
+    bl      DVDReadPrio
     b       _80006388
 _80006384:
     bl      dvdfs_user_fn
@@ -1815,7 +1815,7 @@ asm void fn_80006B4C(void)
     mflr	r0
     li	r7, 2
     stw	r0, 0x14(r1)
-    bl      fn_800175C0
+    bl      DVDReadAsync
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1949,7 +1949,7 @@ asm void fn_80006CE4(void)
     cmpwi	r0, 1
     bc      12, 2, _80006d08
     addi	r3, r3, 4
-    bl      fn_80017228
+    bl      DVDCancelSync
     mr	r4, r3
 _80006d08:
     lwz	r0, 0x14(r1)
@@ -2012,7 +2012,7 @@ asm void fn_80006DAC(void)
     bc      12, 2, _80006dd4
     addi	r3, r3, 4
     li	r8, 2
-    bl      fn_800174D0
+    bl      DVDReadPrio
     mr	r8, r3
 _80006dd4:
     lwz	r0, 0x14(r1)

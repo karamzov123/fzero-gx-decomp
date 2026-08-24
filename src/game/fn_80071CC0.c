@@ -15,8 +15,8 @@ asm void fn_80072344(void);
 asm void fn_80072378(void);
 
 extern void DVDOpen(void);
-extern void fn_80017228(void);
-extern void fn_800175C0(void);
+extern void DVDCancelSync(void);
+extern void DVDReadAsync(void);
 extern void fn_80015E18(void);
 extern void fn_800377F8(void);
 extern void fn_80038B3C(void);
@@ -64,7 +64,7 @@ asm void fn_80071CE8(void)
     mflr    r0
     li      r7, 2
     stw     r0, 0x14(r1)
-    bl      fn_800175C0
+    bl      DVDReadAsync
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10
@@ -77,7 +77,7 @@ asm void fn_80071D0C(void)
     stwu    r1, -0x10(r1)
     mflr    r0
     stw     r0, 0x14(r1)
-    bl      fn_80017228
+    bl      DVDCancelSync
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10

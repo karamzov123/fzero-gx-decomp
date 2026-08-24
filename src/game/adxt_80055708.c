@@ -6,10 +6,10 @@ extern void DCStoreRange(void);
 extern void DVDGetDriveStatus(void);
 extern void OSGetTick(void);
 extern void DVDOpen(void);
-extern void fn_80017228(void);
-extern void fn_800174D0(void);
-extern void fn_800175C0(void);
-extern void fn_800176FC(void);
+extern void DVDCancelSync(void);
+extern void DVDReadPrio(void);
+extern void DVDReadAsync(void);
+extern void DVDGetCommandBlockStatusHalfword(void);
 extern void DVDGetCommandBlockStatus(void);
 extern void DVDCancel(void);
 extern void fn_8004AC58(void);
@@ -449,7 +449,7 @@ _80055c58:
     b     _80055cb0
 _80055c68:
     addi	r3, r29, 0x28
-    bl      fn_800176FC
+    bl      DVDGetCommandBlockStatusHalfword
     mr	r23, r3
     lwz	r3, 8(r29)
     mr	r4, r23
@@ -504,7 +504,7 @@ _80055d00:
     mr	r6, r24
     addi	r3, r27, 0x28
     li	r8, 2
-    bl      fn_800174D0
+    bl      DVDReadPrio
     b     _80055d60
 _80055d48:
     mr	r4, r26
@@ -512,7 +512,7 @@ _80055d48:
     mr	r6, r24
     addi	r3, r27, 0x28
     li	r7, 2
-    bl      fn_800175C0
+    bl      DVDReadAsync
 _80055d60:
     cmpwi	r3, 0
     bne     _80055d70
@@ -741,7 +741,7 @@ _80056034:
     bl      DVDGetDriveStatus
 _80056050:
     addi	r3, r28, 0x28
-    bl      fn_80017228
+    bl      DVDCancelSync
     li	r0, 0
     mr	r3, r28
     stb	r0, 0(r28)
@@ -986,7 +986,7 @@ _80056384:
     addi	r30, r3, -1
 _80056398:
     addi	r3, r1, 8
-    bl      fn_80017228
+    bl      DVDCancelSync
     cmpwi	r3, 0
     bne     _800563dc
     lis     r3, gcci_nullcheck_callback@ha
@@ -1101,7 +1101,7 @@ _80056508:
     b     _80056560
 _80056518:
     addi	r3, r30, 0x28
-    bl      fn_800176FC
+    bl      DVDGetCommandBlockStatusHalfword
     mr	r27, r3
     lwz	r3, 8(r30)
     mr	r4, r27
