@@ -23,7 +23,7 @@ extern void __OSUnmaskInterrupts(u32 mask);
 extern u64 OSGetTime(void);
 extern s32 DVDCheckCancel(void* block);
 extern void* DVDGetCurrentDiskID(void);
-extern void fn_8001DFFC(s32);
+extern void AISetStreamPlayState(s32);
 extern void fn_8001E2BC(s32);
 extern void fn_8001E2E8(s32);
 extern s32 DVDBSChangeDiskAsync(void* a, s32 b);
@@ -180,7 +180,7 @@ _8000ecc4:
     cmpwi	r3, 0
     bne     _8000ec88
     li	r3, 0
-    bl      fn_8001DFFC
+    bl      AISetStreamPlayState
 _8000ecdc:
     mr	r4, r30
     addi	r3, r1, 0x40

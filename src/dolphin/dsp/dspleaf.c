@@ -9,7 +9,7 @@ typedef unsigned short u16;
 #pragma push
 #pragma force_active on
 
-asm s32 fn_8001E2AC(void)
+asm s32 AIGetStreamPlayState_Leaf(void)
 {
     nofralloc
     lis     r3, -0x3400
