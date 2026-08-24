@@ -27,7 +27,7 @@ void fn_800332D8(register void* p, register int a, register int b);
 void __GXSetVAT(void);
 void fn_800336EC(register void* p, register int a, register int b);
 void fn_8003396C(register void* p);
-void fn_800339E0(register void* p);
+void GXSetArray(register void* p);
 void fn_80033A6C(register void* p);
 void GXSetTexCoordGen2(register void* p, register int a, register int b);
 void GXSetNumTexGens(register void* p);
@@ -1597,7 +1597,7 @@ _80033990:
     blr	
 }
 
-asm void fn_800339E0(register void* p)
+asm void GXSetArray(register void* p)
 {
     nofralloc
     cmpwi	r3, 0x19

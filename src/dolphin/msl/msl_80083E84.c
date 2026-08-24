@@ -1313,7 +1313,7 @@ _80084fcc:
     blr
 }
 
-asm void fn_80084FDC(void)
+asm void strtol(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)

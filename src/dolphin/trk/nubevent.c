@@ -15,8 +15,8 @@ extern void TRKGetInput(void);
 extern void TRKTargetStopped(void);
 extern void TRKTargetContinue(void);
 extern void TRKReleaseBuffer(void*, void*);
-extern void fn_8008AF48(unsigned long);
-extern void fn_8008AF40(unsigned long);
+extern void TRKReleaseMutex_stub(unsigned long);
+extern void TRKAcquireMutex_stub(unsigned long);
 extern unsigned char gTRKInputPendingPtr[4];
 extern unsigned char lbl_801A36B8[40];
 
@@ -137,7 +137,7 @@ asm int TRKPostEvent(void* msg)
     stw     r29, 0x14(r1)
     mr      r29, r3
     addi    r3, r4, 0x36B8
-    bl      fn_8008AF48
+    bl      TRKReleaseMutex_stub
     lis     r3, lbl_801A36B8@ha
     addi    r30, r3, lbl_801A36B8@l
     lwz     r3, 4(r30)
@@ -177,7 +177,7 @@ lbl_80088824:
 lbl_80088830:
     lis     r3, lbl_801A36B8@ha
     addi    r3, r3, lbl_801A36B8@l
-    bl      fn_8008AF40
+    bl      TRKAcquireMutex_stub
     lwz     r0, 0x24(r1)
     mr      r3, r31
     lwz     r31, 0x1c(r1)
@@ -201,7 +201,7 @@ asm int TRKGetNextEvent(void* msg)
     stw     r29, 0x14(r1)
     mr      r29, r3
     addi    r3, r4, 0x36B8
-    bl      fn_8008AF48
+    bl      TRKReleaseMutex_stub
     lis     r3, lbl_801A36B8@ha
     addi    r31, r3, lbl_801A36B8@l
     lwz     r0, 4(r31)
@@ -229,7 +229,7 @@ lbl_800888E0:
 lbl_800888E4:
     lis     r3, lbl_801A36B8@ha
     addi    r3, r3, lbl_801A36B8@l
-    bl      fn_8008AF40
+    bl      TRKAcquireMutex_stub
     lwz     r0, 0x24(r1)
     mr      r3, r30
     lwz     r31, 0x1c(r1)

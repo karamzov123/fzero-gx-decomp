@@ -27,14 +27,14 @@ extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
 extern void __CARDSyncCallback(void);
 extern void fn_80029824(void);
-extern void fn_8002F5B8(register s32 chan, register s32 result);
-extern void fn_8002F728(register s32 chan, register s32 result);
+extern void CARDWrite_WriteCallback(register s32 chan, register s32 result);
+extern void CARDWrite_EraseCallback(register s32 chan, register s32 result);
 extern unsigned char __CARDBlock[544];
 
 #pragma push
 #pragma force_active on
 
-asm void fn_8002F5B8(register s32 chan, register s32 result)
+asm void CARDWrite_WriteCallback(register s32 chan, register s32 result)
 {
     nofralloc
     mflr    r0
@@ -106,8 +106,8 @@ _L_8002f6b0:
     b       _L_8002f6dc
 _L_8002f6b8:
     lwz     r0, 0xc(r31)
-    lis     r3, fn_8002F728@ha
-    addi    r5, r3, fn_8002F728@l          /* EraseCallback */
+    lis     r3, CARDWrite_EraseCallback@ha
+    addi    r5, r3, CARDWrite_EraseCallback@l          /* EraseCallback */
     mullw   r4, r0, r4
     addi    r3, r30, 0
     bl      __CARDEraseSector
@@ -138,7 +138,7 @@ _L_8002f708:
     blr
 }
 
-asm void fn_8002F728(register s32 chan, register s32 result)
+asm void CARDWrite_EraseCallback(register s32 chan, register s32 result)
 {
     nofralloc
     mflr    r0
@@ -156,8 +156,8 @@ asm void fn_8002F728(register s32 chan, register s32 result)
     add     r31, r0, r5
     blt     _L_8002f78c
     lwz     r4, 0xc0(r31)
-    lis     r3, fn_8002F5B8@ha
-    addi    r7, r3, fn_8002F5B8@l          /* WriteCallback */
+    lis     r3, CARDWrite_WriteCallback@ha
+    addi    r7, r3, CARDWrite_WriteCallback@l          /* WriteCallback */
     lwz     r5, 0xc(r31)
     lhz     r0, 0x10(r4)
     lwz     r6, 0xb4(r31)
@@ -246,8 +246,8 @@ _L_8002f888:
     addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
 _L_8002f890:
     lwz     r4, 0x1c(r1)
-    lis     r3, fn_8002F728@ha
-    addi    r5, r3, fn_8002F728@l          /* EraseCallback */
+    lis     r3, CARDWrite_EraseCallback@ha
+    addi    r5, r3, CARDWrite_EraseCallback@l          /* EraseCallback */
     stw     r0, 0xd0(r4)
     lwz     r3, 0x1c(r1)
     stw     r31, 0xb4(r3)

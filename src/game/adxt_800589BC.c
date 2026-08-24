@@ -8,7 +8,7 @@ extern void svmLockServer(void);
 extern void sprintf(void);
 extern void fn_8008077C(void);
 extern void strncpy(void);
-extern void fn_80084FDC(void);
+extern void strtol(void);
 extern void memcpy(void);
 extern void memset(void);
 extern void strlen(void);
@@ -1710,7 +1710,7 @@ _80059f90:
     addi	r4, r1, 8
     stw	r3, 8(r1)
     li	r5, 0x10
-    bl      fn_80084FDC
+    bl      strtol
     lwz	r4, 8(r1)
     mr	r31, r3
     lbz	r0, 0(r4)
@@ -1724,7 +1724,7 @@ _80059fc0:
     lwz	r3, 8(r1)
     addi	r4, r1, 8
     li	r5, 0x10
-    bl      fn_80084FDC
+    bl      strtol
     stw	r3, 0xc(r1)
 _80059fdc:
     lwz	r4, 0x30(r29)

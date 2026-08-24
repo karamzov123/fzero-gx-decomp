@@ -31,7 +31,7 @@ extern void fn_800057CC(void);
 extern void fn_800057F8(void);
 extern void main_load_sample_rel(void);
 extern void fn_800058D8(void);
-extern void fn_8000591C(void);
+extern void GameMainLoopFrame(void);
 extern void fn_80005A08(void);
 extern void fn_80005AD0(void);
 extern void mmu_user_fn(void);
@@ -247,7 +247,7 @@ _80005608:
     stw	r4, 0x1300(r3)
     stw	r0, -0x7d0c(r13)
     bl      fn_80005660
-    bl      fn_8000591C
+    bl      GameMainLoopFrame
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -467,7 +467,7 @@ _8000590c:
     blr	
 }
 
-asm void fn_8000591C(void)
+asm void GameMainLoopFrame(void)
 {
     nofralloc
     stwu	r1, -0x60(r1)

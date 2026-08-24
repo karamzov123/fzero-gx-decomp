@@ -15,10 +15,10 @@ asm void EXI2_Poll(register void* a, register void* b, register void* c, registe
 asm void MWTRACE(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008F454(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008F458(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008F45C(register void* a, register void* b, register void* c, register void* d);
+asm void InitializeUART_IntDriven(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008F6BC(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008F748(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008F7E4(register void* a, register void* b, register void* c, register void* d);
+asm void UART_InstallInterruptHandlers(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008F838(register void* a, register void* b, register void* c, register void* d);
 
 asm void gdev_cc_initinterrupts(void)
@@ -27,7 +27,7 @@ asm void gdev_cc_initinterrupts(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_8008F7E4
+    bl      UART_InstallInterruptHandlers
     lwz	r0, 0x14(r1)
     li	r3, 0
     mtlr	r0
@@ -138,7 +138,7 @@ _8008e4c0:
     bl      MWTRACE
     mr	r3, r29
     mr	r4, r30
-    bl      fn_8008F45C
+    bl      InitializeUART_IntDriven
     cmpwi	r3, 0
     beq     _8008e4f8
     add	r29, r29, r3

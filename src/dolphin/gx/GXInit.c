@@ -195,7 +195,7 @@ extern void GXSetTexCoordGen2(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
 extern void GXSetNumTexGens(s32 num);
 extern void GXClearVtxDesc(void);
 extern void fn_80033A6C(void);
-extern void fn_800339E0(s32 idx, void *arg, s32 val);
+extern void GXSetArray(s32 idx, void *arg, s32 val);
 extern void fn_800332D8(s32 idx, const void *tbl);
 extern void GXSetLineWidth(s32 width, s32 shift);
 extern void GXSetPointSize(s32 size, s32 shift);
@@ -1150,7 +1150,7 @@ L8003144c:
     lwz	r4, -0x7de8(r2)
     mr	r3, r29
     li	r5, 0
-    bl fn_800339E0
+    bl GXSetArray
     addi	r29, r29, 1
     cmplwi	r29, 0x18
     ble L8003144c

@@ -4,8 +4,8 @@
 #pragma force_active on
 
 extern void fn_8008AF50(unsigned long);
-extern void fn_8008AF48(unsigned long);
-extern void fn_8008AF40(unsigned long);
+extern void TRKReleaseMutex_stub(unsigned long);
+extern void TRKAcquireMutex_stub(unsigned long);
 extern void TRK_board_display(char*);
 extern void TRKAcquireMutex(void);
 extern int usr_put_initialize(void);
@@ -33,7 +33,7 @@ asm int TRKInitializeEventQueue(void)
     bl      fn_8008AF50
     lis     r3, lbl_801A36B8@ha
     addi    r3, r3, lbl_801A36B8@l
-    bl      fn_8008AF48
+    bl      TRKReleaseMutex_stub
     lis     r3, lbl_801A36B8@ha
     li      r4, 0
     addi    r3, r3, lbl_801A36B8@l
@@ -41,7 +41,7 @@ asm int TRKInitializeEventQueue(void)
     stw     r4, 4(r3)
     stw     r4, 8(r3)
     stw     r0, 0x24(r3)
-    bl      fn_8008AF40
+    bl      TRKAcquireMutex_stub
     lwz     r0, 0x14(r1)
     li      r3, 0
     mtlr    r0

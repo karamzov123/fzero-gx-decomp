@@ -60,7 +60,7 @@ extern void fn_80026FB8(void);
 extern void fn_80028130(void);
 extern void fn_80028164(void);
 extern void fn_80028424(void);
-extern void fn_800284A0(void);
+extern void axmix_sound_alloc_init(void);
 extern void fn_800284CC(void);
 extern void fn_800284E8(void);
 extern void fn_800284FC(void);
@@ -3272,7 +3272,7 @@ _8005ec70:
     addi	r4, r4, lbl_801299D0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ee58
 _8005ed80:
     cmplwi	r0, 1
@@ -3284,7 +3284,7 @@ _8005ed80:
     addi	r4, r4, lbl_80129AD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ee58
 _8005edac:
     cmplwi	r0, 2
@@ -3296,7 +3296,7 @@ _8005edac:
     addi	r4, r4, lbl_80129BD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ee58
 _8005edd8:
     cmplwi	r0, 3
@@ -3308,7 +3308,7 @@ _8005edd8:
     addi	r4, r4, lbl_80129CD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ee58
 _8005ee04:
     cmplwi	r0, 4
@@ -3320,7 +3320,7 @@ _8005ee04:
     addi	r4, r4, lbl_80129DD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ee58
 _8005ee30:
     cmplwi	r0, 5
@@ -3332,7 +3332,7 @@ _8005ee30:
     addi	r4, r4, lbl_80129ED0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
 _8005ee58:
     lbz	r0, 0x1f(r31)
     cmplwi	r0, 0
@@ -3344,7 +3344,7 @@ _8005ee58:
     addi	r4, r4, lbl_801299D0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ef60
 _8005ee88:
     cmplwi	r0, 1
@@ -3356,7 +3356,7 @@ _8005ee88:
     addi	r4, r4, lbl_80129AD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ef60
 _8005eeb4:
     cmplwi	r0, 2
@@ -3368,7 +3368,7 @@ _8005eeb4:
     addi	r4, r4, lbl_80129BD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ef60
 _8005eee0:
     cmplwi	r0, 3
@@ -3380,7 +3380,7 @@ _8005eee0:
     addi	r4, r4, lbl_80129CD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ef60
 _8005ef0c:
     cmplwi	r0, 4
@@ -3392,7 +3392,7 @@ _8005ef0c:
     addi	r4, r4, lbl_80129DD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005ef60
 _8005ef38:
     cmplwi	r0, 5
@@ -3404,7 +3404,7 @@ _8005ef38:
     addi	r4, r4, lbl_80129ED0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
 _8005ef60:
     lbz	r3, 0xd(r15)
     extsb.	r0, r3
@@ -3830,7 +3830,7 @@ _8005f4d8:
     addi	r4, r4, lbl_801299D0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f684
 _8005f5ac:
     cmplwi	r0, 1
@@ -3842,7 +3842,7 @@ _8005f5ac:
     addi	r4, r4, lbl_80129AD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f684
 _8005f5d8:
     cmplwi	r0, 2
@@ -3854,7 +3854,7 @@ _8005f5d8:
     addi	r4, r4, lbl_80129BD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f684
 _8005f604:
     cmplwi	r0, 3
@@ -3866,7 +3866,7 @@ _8005f604:
     addi	r4, r4, lbl_80129CD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f684
 _8005f630:
     cmplwi	r0, 4
@@ -3878,7 +3878,7 @@ _8005f630:
     addi	r4, r4, lbl_80129DD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f684
 _8005f65c:
     cmplwi	r0, 5
@@ -3890,7 +3890,7 @@ _8005f65c:
     addi	r4, r4, lbl_80129ED0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
 _8005f684:
     lbz	r0, 0x1f(r31)
     cmplwi	r0, 0
@@ -3902,7 +3902,7 @@ _8005f684:
     addi	r4, r4, lbl_801299D0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f78c
 _8005f6b4:
     cmplwi	r0, 1
@@ -3914,7 +3914,7 @@ _8005f6b4:
     addi	r4, r4, lbl_80129AD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f78c
 _8005f6e0:
     cmplwi	r0, 2
@@ -3926,7 +3926,7 @@ _8005f6e0:
     addi	r4, r4, lbl_80129BD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f78c
 _8005f70c:
     cmplwi	r0, 3
@@ -3938,7 +3938,7 @@ _8005f70c:
     addi	r4, r4, lbl_80129CD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f78c
 _8005f738:
     cmplwi	r0, 4
@@ -3950,7 +3950,7 @@ _8005f738:
     addi	r4, r4, lbl_80129DD0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
     b       _8005f78c
 _8005f764:
     cmplwi	r0, 5
@@ -3962,7 +3962,7 @@ _8005f764:
     addi	r4, r4, lbl_80129ED0@l
     li	r5, 0x40
     add	r3, r0, r3
-    bl      fn_800284A0
+    bl      axmix_sound_alloc_init
 _8005f78c:
     lwz	r3, -0x7740(r13)
     subf	r0, r15, r28

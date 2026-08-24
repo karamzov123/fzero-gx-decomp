@@ -12,7 +12,7 @@ asm void PSMTXRotTrig(void);
 asm void PSMTXRotTrigVariant(void);
 asm void PSMTXRotTrigConcat(void);
 asm void C_MTXQuat(void);
-asm void fn_8006E540(void);
+asm void MTXQuatMultiply(void);
 asm void fn_8006E5B4(void);
 asm void fn_8006E5FC(void);
 asm void PSMTXQuatNormalize(void);
@@ -174,7 +174,7 @@ asm void C_MTXQuat(void)
     blr	
 }
 
-asm void fn_8006E540(void)
+asm void MTXQuatMultiply(void)
 {
     nofralloc
     lfs	f4, 0(r4)

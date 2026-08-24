@@ -158,7 +158,7 @@ asm void C_MTXQuat(void)
     blr	
 }
 
-asm void fn_8006E540(void)
+asm void MTXQuatMultiply(void)
 {
     nofralloc
     lfs	f4, 0(r4)

@@ -2,7 +2,7 @@
 #pragma force_active on
 
 
-asm void fn_8008FC3C(void)
+asm void UARTByteEngine(void)
 {
     nofralloc
     stwu	r1, -0x48(r1)

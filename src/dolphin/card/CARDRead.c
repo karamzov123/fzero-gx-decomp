@@ -2,7 +2,7 @@
 // Retail layout: CARD control blocks at .bss:0x80177960 (2 x 0x110 bytes).
 // All accesses use absolute-addressed asm bodies to match retail addressing.
 // Probable melee identities: __CARDSeek = __CARDReadSegment-ish read core,
-// fn_8002F2F8 = __CARDSeek, CARDReadAsync = __CARDRead internal, CARDRead =
+// CARDRead_ReadCallback = __CARDSeek, CARDReadAsync = __CARDRead internal, CARDRead =
 // CARDRead wrapper.
 
 typedef int BOOL;
@@ -157,7 +157,7 @@ _L_8002f2d8:
     blr
 }
 
-asm s32 fn_8002F2F8(register s32 chn, register BOOL sync)
+asm s32 CARDRead_ReadCallback(register s32 chn, register BOOL sync)
 {
     nofralloc
     mflr    r0
@@ -219,8 +219,8 @@ _L_8002f3c4:
 _L_8002f3c8:
     mullw   r4, r0, r3
     lwz     r6, 0xb4(r31)
-    lis     r3, fn_8002F2F8@ha
-    addi    r7, r3, fn_8002F2F8@l
+    lis     r3, CARDRead_ReadCallback@ha
+    addi    r7, r3, CARDRead_ReadCallback@l
     addi    r3, r29, 0
     bl      __CARDRead
     or.     r30, r3, r3
@@ -319,11 +319,11 @@ _L_8002f4f0:
     mr      r3, r31
 _L_8002f51c:
     lhz     r0, 0x10(r29)
-    lis     r4, fn_8002F2F8@ha
+    lis     r4, CARDRead_ReadCallback@ha
     addi    r31, r3, 0
     lwz     r3, 0(r29)
     mullw   r0, r5, r0
-    addi    r7, r4, fn_8002F2F8@l
+    addi    r7, r4, CARDRead_ReadCallback@l
     addi    r5, r31, 0
     addi    r6, r30, 0
     add     r4, r8, r0

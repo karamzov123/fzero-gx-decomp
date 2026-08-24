@@ -26,7 +26,7 @@ extern void TRKPollUART(void);
 extern void TRKTargetContinue(void);
 extern void AMC_SetStub_Game(void);
 extern void MWTRACE(void);
-extern void fn_8008AF40(void);
+extern void TRKAcquireMutex_stub(void);
 extern void TRKTargetStopped(void);
 extern void TRKTestForPacket(void);
 extern void usr_puts(void);
@@ -47,7 +47,7 @@ extern void TRKDoSetOption(void);
 extern void TRK_SetInputPendingPtrStore(void);
 extern void TRK_IsInputPending(void);
 extern void TRKRequestSend(void);
-extern void fn_8008AF48(void);
+extern void TRKReleaseMutex_stub(void);
 extern void fn_8008AF50(void);
 extern void TRKTargetStop(void);
 extern void TRKTargetGetPC(void);
@@ -640,11 +640,11 @@ asm void TRKReleaseBuffer(void)
     addi	r0, r3, gTRKMsgBufs@l
     add	r31, r0, r4
     mr	r3, r31
-    bl      fn_8008AF48
+    bl      TRKReleaseMutex_stub
     li	r0, 0
     mr	r3, r31
     stw	r0, 4(r31)
-    bl      fn_8008AF40
+    bl      TRKAcquireMutex_stub
 _80089204:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -696,7 +696,7 @@ _80089270:
     add	r31, r0, r4
 _80089294:
     mr	r3, r31
-    bl      fn_8008AF48
+    bl      TRKReleaseMutex_stub
     lwz	r0, 4(r31)
     cmpwi	r0, 0
     bc      4, 2, _800892cc
@@ -711,7 +711,7 @@ _80089294:
     li	r29, 3
 _800892cc:
     mr	r3, r31
-    bl      fn_8008AF40
+    bl      TRKAcquireMutex_stub
     addi	r29, r29, 1
 _800892d8:
     cmpwi	r29, 3
@@ -747,10 +747,10 @@ _80089334:
     mr	r3, r30
     bl      fn_8008AF50
     mr	r3, r30
-    bl      fn_8008AF48
+    bl      TRKReleaseMutex_stub
     stw	r31, 4(r30)
     mr	r3, r30
-    bl      fn_8008AF40
+    bl      TRKAcquireMutex_stub
     addi	r29, r29, 1
     addi	r30, r30, 0x890
     cmpwi	r29, 3
@@ -2821,14 +2821,14 @@ _8008af2c:
     blr
 }
 
-asm void fn_8008AF40(void)
+asm void TRKAcquireMutex_stub(void)
 {
     nofralloc
     li	r3, 0
     blr
 }
 
-asm void fn_8008AF48(void)
+asm void TRKReleaseMutex_stub(void)
 {
     nofralloc
     li	r3, 0

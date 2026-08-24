@@ -2,8 +2,8 @@
 #pragma force_active on
 
 asm void memcpy(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008E718(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008E73C(register void* a, register void* b, register void* c, register void* d);
+asm void TRKReleaseMutex_Interrupt(register void* a, register void* b, register void* c, register void* d);
+asm void TRKAcquireMutex_Interrupt(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008E76C(register void* a, register void* b, register void* c, register void* d);
 
 asm void EXI2_ReadN(void)
@@ -26,7 +26,7 @@ asm void EXI2_ReadN(void)
     b       _8008e1fc
 _8008e150:
     addi	r3, r30, 0x18
-    bl      fn_8008E73C
+    bl      TRKAcquireMutex_Interrupt
     lwz	r3, 8(r30)
     lwz	r4, 0(r30)
     lwz	r0, 0xc(r30)
@@ -69,7 +69,7 @@ _8008e1d8:
     lwz	r0, 0x10(r30)
     subf	r0, r31, r0
     stw	r0, 0x10(r30)
-    bl      fn_8008E718
+    bl      TRKReleaseMutex_Interrupt
     li	r3, 0
 _8008e1fc:
     lwz	r0, 0x24(r1)
@@ -102,7 +102,7 @@ asm void EXI2_WriteN(void)
     b       _8008e304
 _8008e258:
     addi	r3, r30, 0x18
-    bl      fn_8008E73C
+    bl      TRKAcquireMutex_Interrupt
     lwz	r4, 8(r30)
     lwz	r3, 4(r30)
     lwz	r0, 0xc(r30)
@@ -145,7 +145,7 @@ _8008e2e0:
     lwz	r0, 0x10(r30)
     add	r0, r0, r31
     stw	r0, 0x10(r30)
-    bl      fn_8008E718
+    bl      TRKReleaseMutex_Interrupt
     li	r3, 0
 _8008e304:
     lwz	r0, 0x24(r1)

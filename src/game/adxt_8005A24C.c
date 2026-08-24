@@ -31,7 +31,7 @@ extern void fn_8005BEAC(void);
 extern void sprintf(void);
 extern void strncpy(void);
 extern void strcpy(void);
-extern void fn_80084FDC(void);
+extern void strtol(void);
 extern void memset(void);
 extern void strlen(void);
 extern unsigned char E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str[61];
@@ -166,7 +166,7 @@ _8005a3d8:
     addi	r4, r1, 8
     stw	r3, 8(r1)
     li	r5, 0x10
-    bl      fn_80084FDC
+    bl      strtol
     lwz	r3, 8(r1)
     lbz	r0, 0(r3)
     extsb.	r0, r0
@@ -179,7 +179,7 @@ _8005a404:
     lwz	r3, 8(r1)
     addi	r4, r1, 8
     li	r5, 0x10
-    bl      fn_80084FDC
+    bl      strtol
     stw	r3, 0xc(r1)
 _8005a420:
     lwz	r5, 0xc(r1)
@@ -259,7 +259,7 @@ _8005a524:
     mr	r3, r30
     addi	r4, r1, 8
     li	r5, 0x10
-    bl      fn_80084FDC
+    bl      strtol
     lwz	r3, 8(r1)
     lbz	r0, 0(r3)
     extsb.	r0, r0
@@ -272,7 +272,7 @@ _8005a550:
     lwz	r3, 8(r1)
     addi	r4, r1, 8
     li	r5, 0x10
-    bl      fn_80084FDC
+    bl      strtol
     stw	r3, 0xc(r1)
 _8005a56c:
     lwz	r0, 0x24(r1)

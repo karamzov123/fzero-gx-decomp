@@ -10,7 +10,7 @@ extern void __CARDVerify(void);
 extern void CARDCheckExAsync(void);
 extern void CARDCheckAsync(void);
 extern void CARDCheck(void);
-extern void fn_8002D6B0(void);
+extern void __CARDValidDevice(void);
 extern void fn_8002D77C(void);
 extern void fn_8002D8F8(void);
 extern void fn_8002DD08(void);
@@ -1097,7 +1097,7 @@ _8002d69c:
     blr	
 }
 
-asm void fn_8002D6B0(void)
+asm void __CARDValidDevice(void)
 {
     nofralloc
     rlwinm.	r0, r3, 0, 0, 0xf
@@ -1243,7 +1243,7 @@ _8002d864:
     b       _8002d8d8
 _8002d884:
     lwz	r3, 0x14(r1)
-    bl      fn_8002D6B0
+    bl      __CARDValidDevice
     cmpwi	r3, 0
     beq     _8002d8d4
     cmplwi	r28, 0
@@ -1307,7 +1307,7 @@ asm void fn_8002D8F8(void)
     b       _8002d974
 _8002d958:
     lwz	r3, 0x18(r1)
-    bl      fn_8002D6B0
+    bl      __CARDValidDevice
     cmpwi	r3, 0
     beq     _8002d970
     li	r30, 0

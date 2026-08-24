@@ -36,7 +36,7 @@ extern void fn_800057CC(void);
 extern void fn_800057F8(void);
 extern void main_load_sample_rel(void);
 extern void fn_800058D8(void);
-extern void fn_8000591C(void);
+extern void GameMainLoopFrame(void);
 extern void fn_80005A08(void);
 extern void fn_80005AD0(void);
 extern void mmu_user_fn(void);

@@ -11,7 +11,7 @@ extern void fn_800280F0(void);
 extern void fn_80028130(void);
 extern void fn_80028164(void);
 extern void fn_80028424(void);
-extern void fn_800284A0(void);
+extern void axmix_sound_alloc_init(void);
 extern void fn_800284CC(void);
 extern void fn_800284E8(void);
 extern void fn_800284FC(void);
@@ -1682,7 +1682,7 @@ _80028480:
     blr	
 }
 
-asm void fn_800284A0(void)
+asm void axmix_sound_alloc_init(void)
 {
     nofralloc
     stw	r4, 0(r3)

@@ -8,10 +8,10 @@ asm void OSRestoreInterrupts(register void* a, register void* b, register void* 
 asm void __OSSetInterruptHandler(register void* a, register void* b, register void* c, register void* d);
 asm void __OSMaskInterrupts(register void* a, register void* b, register void* c, register void* d);
 asm void __OSUnmaskInterrupts(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008FC3C(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008F9D8(register void* a, register void* b, register void* c, register void* d);
+asm void UARTByteEngine(register void* a, register void* b, register void* c, register void* d);
+asm void UART_WriteN_IntDriven(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008FAB4(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008F92C(register void* a, register void* b, register void* c, register void* d);
+asm void UART_ReadN_IntDriven(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008FB90(register void* a, register void* b, register void* c, register void* d);
 
 asm void fn_8008F44C(void)
@@ -38,7 +38,7 @@ asm void fn_8008F458(void)
     blr	
 }
 
-asm void fn_8008F45C(void)
+asm void InitializeUART_IntDriven(void)
 {
     nofralloc
     mflr	r0
@@ -61,7 +61,7 @@ _8008f484:
     ori	r0, r0, 0xc0
     stwu	r0, 0x28(r30)
     stw	r31, 0x50(r1)
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r24, r0, 5
 _8008f4b4:
@@ -72,7 +72,7 @@ _8008f4b4:
     addi	r3, r1, 0x54
     li	r4, 4
     li	r5, 0
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
 _8008f4d4:
     lwz	r0, 0(r29)
     clrlwi.	r0, r0, 0x1f
@@ -102,7 +102,7 @@ _8008f52c:
     addi	r3, r25, 0
     addi	r4, r26, 0
     addi	r5, r24, 0
-    bl      fn_8008F9D8
+    bl      UART_WriteN_IntDriven
     cmpwi	r3, 0
     beq     _8008f52c
     lis	r31, 0x4000
@@ -115,7 +115,7 @@ _8008f548:
     ori	r0, r0, 0xc0
     stw	r0, 0(r30)
     stw	r31, 0x4c(r1)
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r26, r0, 5
 _8008f574:
@@ -125,7 +125,7 @@ _8008f574:
     addi	r3, r1, 0x54
     li	r4, 4
     li	r5, 0
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
 _8008f590:
     lwz	r0, 0(r29)
     clrlwi.	r0, r0, 0x1f
@@ -151,7 +151,7 @@ _8008f5cc:
     ori	r0, r0, 0xc0
     stw	r0, 0(r30)
     stw	r24, 0x44(r1)
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r3, r0, 5
 _8008f5f8:
@@ -173,7 +173,7 @@ _8008f61c:
     ori	r0, r0, 0xc0
     stw	r0, 0(r30)
     stw	r27, 0x3c(r1)
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r26, r0, 5
 _8008f648:
@@ -183,7 +183,7 @@ _8008f648:
     addi	r3, r1, 0x54
     li	r4, 4
     li	r5, 0
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r0, r0, 5
     or	r3, r26, r0
@@ -266,7 +266,7 @@ asm void fn_8008F748(void)
     bl      OSDisableInterrupts
     addi	r31, r3, 0
     addi	r3, r1, 8
-    bl      fn_8008F92C
+    bl      UART_ReadN_IntDriven
     lwz	r0, 8(r1)
     clrlwi.	r0, r0, 0x1f
     beq     _8008f7c4
@@ -297,7 +297,7 @@ _8008f7cc:
     blr	
 }
 
-asm void fn_8008F7E4(void)
+asm void UART_InstallInterruptHandlers(void)
 {
     nofralloc
     mflr	r0
@@ -401,7 +401,7 @@ _8008f91c:
     blr	
 }
 
-asm void fn_8008F92C(register void* a, register void* b, register void* c, register void* d) // forward-declared
+asm void UART_ReadN_IntDriven(register void* a, register void* b, register void* c, register void* d) // forward-declared
 {
     nofralloc
     mflr	r0
@@ -420,7 +420,7 @@ asm void fn_8008F92C(register void* a, register void* b, register void* c, regis
     stwu	r5, 0x28(r29)
     li	r5, 1
     stw	r0, 0x18(r1)
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r31, r0, 5
 _8008f978:
@@ -431,7 +431,7 @@ _8008f978:
     addi	r3, r27, 0
     li	r4, 4
     li	r5, 0
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r0, r0, 5
     or	r3, r31, r0
@@ -451,7 +451,7 @@ _8008f9a4:
     blr	
 }
 
-asm void fn_8008F9D8(register void* a, register void* b, register void* c, register void* d) // forward-declared
+asm void UART_WriteN_IntDriven(register void* a, register void* b, register void* c, register void* d) // forward-declared
 {
     nofralloc
     mflr	r0
@@ -472,7 +472,7 @@ asm void fn_8008F9D8(register void* a, register void* b, register void* c, regis
     ori	r6, r6, 0xc0
     stwu	r6, 0x28(r31)
     stw	r0, 0x24(r1)
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r0, r0, 5
     mr	r27, r0
@@ -489,7 +489,7 @@ _8008fa44:
     stw	r0, 0x20(r1)
     li	r5, 1
     addi	r26, r26, 4
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r0, r0, 5
     or	r27, r27, r0
@@ -536,7 +536,7 @@ asm void fn_8008FAB4(register void* a, register void* b, register void* c, regis
     ori	r6, r6, 0xc0
     stwu	r6, 0x28(r31)
     stw	r0, 0x24(r1)
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r0, r0, 5
     mr	r27, r0
@@ -550,7 +550,7 @@ _8008fb20:
     addi	r3, r1, 0x20
     li	r4, 4
     li	r5, 0
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r0, r0, 5
     or	r27, r27, r0
@@ -598,7 +598,7 @@ asm void fn_8008FB90(register void* a, register void* b, register void* c, regis
     stwu	r5, 0x28(r29)
     li	r5, 1
     stw	r0, 0x18(r1)
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r31, r0, 5
 _8008fbdc:
@@ -609,7 +609,7 @@ _8008fbdc:
     addi	r3, r27, 0
     li	r4, 4
     li	r5, 0
-    bl      fn_8008FC3C
+    bl      UARTByteEngine
     cntlzw	r0, r3
     srwi	r0, r0, 5
     or	r3, r31, r0

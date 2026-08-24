@@ -113,11 +113,11 @@ asm void fn_800775EC(void);
 asm void fn_80077654(void);
 asm void fn_80077714(void);
 asm void AvDispInitModel(void);
-asm void fn_80077848(void);
-asm void fn_8007785C(void);
+asm void AvDispClearMatrixStack(void);
+asm void AvDispAllocMatrixStack(void);
 asm void fn_80077A18(void);
 asm void fn_80077A20(void);
-asm void fn_80077AD0(void);
+asm void AvDispGetModelMatrices(void);
 asm void AvDispSetAmbient(void);
 asm void avdispWarnNotEffectiveModel(void);
 asm void avdispWarnNotSkinningModel(void);
@@ -3069,7 +3069,7 @@ asm void AvDispInitModel(void)
     stw r0, -0x7628(r13)
     stw r0, -0x762c(r13)
     bl fn_80075240
-    bl fn_80077848
+    bl AvDispClearMatrixStack
     bl fn_80070E00
     bl fn_80070D94
     lwz r0, 0x14(r1)
@@ -3078,7 +3078,7 @@ asm void AvDispInitModel(void)
     blr
 }
 
-asm void fn_80077848(void)
+asm void AvDispClearMatrixStack(void)
 {
     nofralloc
     li r0, 0
@@ -3088,7 +3088,7 @@ asm void fn_80077848(void)
     blr
 }
 
-asm void fn_8007785C(void)
+asm void AvDispAllocMatrixStack(void)
 {
     nofralloc
     stwu r1, -0x30(r1)
@@ -3271,7 +3271,7 @@ _80077AB4:
     blr
 }
 
-asm void fn_80077AD0(void)
+asm void AvDispGetModelMatrices(void)
 {
     nofralloc
     li r7, 0

@@ -13,7 +13,7 @@ asm void EXI2_WriteN(register void* a, register void* b, register void* c, regis
 asm void EXI2_Init(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_Poll(register void* a, register void* b, register void* c, register void* d);
 asm void MWTRACE(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008EDF0(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2_InitSequence(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EEAC(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EED8(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EFE0(register void* a, register void* b, register void* c, register void* d);
@@ -338,7 +338,7 @@ asm void ddh_cc_initialize(void)
     bl      MWTRACE
     mr	r3, r30
     mr	r4, r31
-    bl      fn_8008EDF0
+    bl      EXI2_InitSequence
     lis     r4, lbl_80095D98@ha
     li	r3, 1
     addi	r4, r4, lbl_80095D98@l

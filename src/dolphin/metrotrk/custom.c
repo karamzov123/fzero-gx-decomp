@@ -10,7 +10,7 @@ asm void __OSMaskInterrupts(register void* a, register void* b, register void* c
 asm void __OSUnmaskInterrupts(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EB4C(register void* a, register void* b, register void* c, register void* d);
 
-asm void fn_8008E718(void)
+asm void TRKReleaseMutex_Interrupt(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -24,7 +24,7 @@ asm void fn_8008E718(void)
     blr	
 }
 
-asm void fn_8008E73C(void)
+asm void TRKAcquireMutex_Interrupt(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -500,7 +500,7 @@ asm void EXI2_SetInterruptHandler(void)
     blr	
 }
 
-asm void fn_8008ED70(void)
+asm void EXI2_BufferInit(void)
 {
     nofralloc
     mflr	r0
@@ -543,7 +543,7 @@ _8008ede0:
     blr	
 }
 
-asm void fn_8008EDF0(void)
+asm void EXI2_InitSequence(void)
 {
     nofralloc
     mflr	r0
@@ -556,7 +556,7 @@ asm void fn_8008EDF0(void)
     bl      OSDisableInterrupts
     stw	r31, -0x75a0(r13)
     bl      OSRestoreInterrupts
-    bl      fn_8008ED70
+    bl      EXI2_BufferInit
     lis	r4, 0x100
     li	r3, 0
     addi	r0, r4, 3
