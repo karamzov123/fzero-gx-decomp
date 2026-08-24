@@ -11,7 +11,7 @@ extern void __va_arg(void);
 extern void fn_80080030(void);
 extern void MSL_device_link_fn(void);
 extern void fn_80085088(void);
-extern void fn_80085494(void);
+extern void MSLStrToLong(void);
 extern void fn_80082A7C(void);
 extern void __msl_parse_format_specifier(void);
 extern unsigned char jumptable_8015B668[208];
@@ -443,7 +443,7 @@ _80082d08:
     addi	r7, r1, 0x14
     addi	r8, r1, 0x10
     addi	r9, r1, 0xc
-    bl      fn_80085494
+    bl      MSLStrToLong
     mr	r25, r3
 _80082d38:
     lwz	r0, 0x14(r1)
@@ -541,7 +541,7 @@ _80082e44:
     addi	r7, r1, 0x14
     addi	r8, r1, 0x10
     addi	r9, r1, 0xc
-    bl      fn_80085494
+    bl      MSLStrToLong
     mr	r25, r3
 _80082e74:
     lwz	r3, 0x14(r1)

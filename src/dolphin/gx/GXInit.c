@@ -205,7 +205,7 @@ extern void fn_80038CAC(void *mtx, s32 id);
 extern void fn_80038CFC(s32 id);
 extern void GXWritePrimitiveFifo(void *mtx, s32 id, s32 type);
 extern void fn_80038EEC(f32 x, f32 y, f32 wd, f32 ht, f32 nearz, f32 farz);
-extern void fn_80038B3C(const void *data);
+extern void GXSetProjectionv(const void *data);
 extern void __GXSetZMode_Cache(s32 arg);
 extern void GXSetCullMode(s32 arg);
 extern void fn_80039060(s32 arg);
@@ -1256,7 +1256,7 @@ L80031480:
     bl fn_80038EEC
     lis     r3, lbl_8012AD14@ha
     addi	r3, r3, lbl_8012AD14@l
-    bl fn_80038B3C
+    bl GXSetProjectionv
     li	r3, 0
     bl __GXSetZMode_Cache
     li	r3, 2

@@ -25,7 +25,7 @@ void GXClearVtxDesc(register void* p);
 void GXBuildPackedRegister(register void* p, register int a, register int b);
 void fn_800332D8(register void* p, register int a, register int b);
 void __GXSetVAT(void);
-void fn_800336EC(register void* p, register int a, register int b);
+void GXGetVtxDescList(register void* p, register int a, register int b);
 void fn_8003396C(register void* p);
 void GXSetArray(register void* p);
 void fn_80033A6C(register void* p);
@@ -1390,7 +1390,7 @@ _800336d0:
     blr	
 }
 
-asm void fn_800336EC(register void* p, register int a, register int b)
+asm void GXGetVtxDescList(register void* p, register int a, register int b)
 {
     nofralloc
     addi	r0, r4, -9
@@ -1581,7 +1581,7 @@ _80033990:
     addi	r5, r30, 4
     addi	r6, r30, 8
     addi	r7, r30, 0xc
-    bl      fn_800336EC
+    bl      GXGetVtxDescList
     addi	r31, r31, 1
     cmpwi	r31, 0x14
     addi	r30, r30, 0x10

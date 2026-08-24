@@ -19,7 +19,7 @@ extern void DVDCancelSync(void);
 extern void DVDReadAsync(void);
 extern void fn_80015E18(void);
 extern void fn_800377F8(void);
-extern void fn_80038B3C(void);
+extern void GXSetProjectionv(void);
 extern void GXBeginDisplayList(void);
 extern void GXEndDisplayList(void);
 extern void GXClearVtxDesc(void);
@@ -458,7 +458,7 @@ asm void fn_800721FC(void)
     stfs    f2, 0x10(r3)
     stfs    f1, 0x14(r3)
     stfs    f0, 0x18(r3)
-    bl      fn_80038B3C
+    bl      GXSetProjectionv
     lwz     r0, 0x54(r1)
     mtlr    r0
     addi    r1, r1, 0x50
@@ -518,7 +518,7 @@ _800722e0:
     stfs    f0, 0x10(r4)
     stfs    f1, 0x14(r4)
     stfs    f2, 0x18(r4)
-    bl      fn_80038B3C
+    bl      GXSetProjectionv
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10
@@ -557,7 +557,7 @@ asm void fn_80072378(void)
     bl      memcpy
     lis     r3, lbl_8019F008@ha
     addi    r3, r3, lbl_8019F008@l
-    bl      fn_80038B3C
+    bl      GXSetProjectionv
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10

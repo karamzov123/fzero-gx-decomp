@@ -14,7 +14,7 @@ asm void PSMTXRotTrigConcat(void);
 asm void C_MTXQuat(void);
 asm void MTXQuatMultiply(void);
 asm void fn_8006E5B4(void);
-asm void fn_8006E5FC(void);
+asm void MTXQuatInterpolate(void);
 asm void PSMTXQuatNormalize(void);
 asm void PSVECNormalize4(void);
 asm void PSMTXQuat_toQuat(void);
@@ -233,7 +233,7 @@ _8006e5f0:
     blr	
 }
 
-asm void fn_8006E5FC(void)
+asm void MTXQuatInterpolate(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)

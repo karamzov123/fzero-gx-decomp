@@ -51,7 +51,7 @@ extern u32 SIGetResponse(register s32 chan, register void* data);
 extern u32 SIGetType(register s32 chan);
 extern u32 SIGetTypeAsync(register s32 chan, register void (*callback)(s32, u32));
 extern u32 __SIGetTypeNormalize(register u32 type);
-extern char* fn_8001317C(register s32 chan);
+extern char* SITypeNameLookupByRaw(register s32 chan);
 extern void SISetSamplingRate(register s32 msec);
 extern void fn_800133E0(register s32 chan);
 extern int SITransferSync(register s32 chan, register void* callback);
@@ -62,7 +62,7 @@ extern int fn_800136E8(register s32 chan, register u32 cmd, register u32 param,
                        register void (*callback)(s32));
 extern void fn_8001375C(register s32 chan);
 extern int SIGetResponseSync(register s32 chan, register void* out);
-extern void fn_80013934(register s32 interrupt, register OSContext* context);
+extern void SITypeNameLookup(register s32 interrupt, register OSContext* context);
 extern void* fn_80013994(register void* handler);
 extern void fn_800139E8(register s32 chan, register u32 unk, register s32 val);
 extern int __SITransfer(register s32 chan, register void* output,
@@ -2007,10 +2007,10 @@ asm u32 SIProbe(register s32 chan)
 }
 #pragma pop
 
-/* ---- fn_8001317C: device name lookup ---- */
+/* ---- SITypeNameLookupByRaw: device name lookup ---- */
 #pragma push
 #pragma force_active on
-asm char* fn_8001317C(register s32 chan)
+asm char* SITypeNameLookupByRaw(register s32 chan)
 {
     nofralloc
     mflr        r0
@@ -2638,10 +2638,10 @@ L_80013910:
 }
 #pragma pop
 
-/* ---- fn_80013934 ---- */
+/* ---- SITypeNameLookup ---- */
 #pragma push
 #pragma force_active on
-asm void fn_80013934(register s32 interrupt, register OSContext* context)
+asm void SITypeNameLookup(register s32 interrupt, register OSContext* context)
 {
     nofralloc
     mflr        r0
@@ -2686,13 +2686,13 @@ asm void* fn_80013994(register void* handler)
     lwz         r31, -0x7B90(r13) /* lbl_801A6830@sda21 */
     stw         r3, -0x7B90(r13) /* lbl_801A6830@sda21 */
     beq         L_800139C4
-    lis         r3, fn_80013934@ha
-    addi        r3, r3, fn_80013934@l
+    lis         r3, SITypeNameLookup@ha
+    addi        r3, r3, SITypeNameLookup@l
     bl          SIRegisterPollingHandler
     b           L_800139D0
 L_800139C4:
-    lis         r3, fn_80013934@ha
-    addi        r3, r3, fn_80013934@l
+    lis         r3, SITypeNameLookup@ha
+    addi        r3, r3, SITypeNameLookup@l
     bl          SIUnregisterPollingHandler
 L_800139D0:
     mr          r3, r31

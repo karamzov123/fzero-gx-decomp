@@ -55,7 +55,7 @@ extern void __va_save_registers(void);
 extern void fn_80006C4C(void);
 extern void fn_800071B8(void);
 extern void fn_8000740C(void);
-extern void fn_80007654(void);
+extern void OSVirtualToPhysical(void);
 extern void fn_80007664(void);
 extern void fn_80007700(void);
 extern void fn_80007730(void);
@@ -80,7 +80,7 @@ extern void fn_800090A4(void);
 extern void OSAllocTableInit(void);
 extern void OSHeapLockAcquire(void);
 extern void OSHeapLockRelease(void);
-extern void fn_8000B334(void);
+extern void OSInitArenaPoll(void);
 extern void fn_8000B360(void);
 extern void OSPanic(void);
 extern void fn_8000CDD8(void);
@@ -107,7 +107,7 @@ extern void __GXSetTexRegion(void);
 extern void fn_80037518(void);
 extern void fn_800377F8(void);
 extern void fn_80037D40(void);
-extern void fn_80038BFC(void);
+extern void GXGetProjectionv(void);
 extern void GXLoadMatIdxTripleToXF(void);
 extern void fn_8006B188(void);
 extern void fn_8006B470(void);
@@ -116,7 +116,7 @@ extern void fn_8006CD40(void);
 extern void fn_8006CDFC(void);
 extern void fn_8006CE1C(void);
 extern void fn_8006CFF8(void);
-extern void fn_8006E5FC(void);
+extern void MTXQuatInterpolate(void);
 extern void PSMTXQuat_fromMtx(void);
 extern void fn_8006FCB4(void);
 extern void fn_8006FD1C(void);
@@ -136,13 +136,13 @@ extern void fn_800720B0(void);
 extern void fn_800721FC(void);
 extern void fn_800723F8(void);
 extern void GXLoadMtxArray(void);
-extern void fn_80072558(void);
+extern void VIFlush(void);
 extern void fn_800725DC(void);
 extern void fn_80072614(void);
 extern void LightCtrl_SetCachedCullMode(void);
 extern void LightCtrl_SetCachedColor_1C(void);
 extern void LightCtrl_SetCachedPair_6C(void);
-extern void fn_80072BD0(void);
+extern void LightCtrl_SetCachedByte_EE(void);
 extern void ModelSetCachedParam_F0(void);
 extern void ModelSetCachedParam_1F0(void);
 extern void ModelSetCachedParam_2F0(void);
@@ -180,7 +180,7 @@ extern void QuatNormalizeCompare(void);
 extern void fn_8006D7DC(void);
 extern void mtx_gpstack_push(void);
 extern void mtx_gpstack_pop(void);
-extern void fn_8006DBAC(void);
+extern void MTXQuatExtract(void);
 extern void memcpy(void);
 extern void memset(void);
 extern void strlen(void);
@@ -201,13 +201,13 @@ asm void fn_80008DB4(void)
     mr	r31, r5
     stw	r30, 0x40(r1)
     mr	r30, r4
-    bl      fn_8006DBAC
+    bl      MTXQuatExtract
     addi	r3, r1, 0x28
-    bl      fn_8006E5FC
+    bl      MTXQuatInterpolate
     mr	r3, r30
-    bl      fn_8006DBAC
+    bl      MTXQuatExtract
     addi	r3, r1, 0x18
-    bl      fn_8006E5FC
+    bl      MTXQuatInterpolate
     fmr	f1, f31
     addi	r3, r1, 8
     addi	r4, r1, 0x28

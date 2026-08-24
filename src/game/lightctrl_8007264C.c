@@ -13,7 +13,7 @@ extern void fn_80037B14(void);
 extern void fn_80037B68(void);
 extern void fn_80037B94(void);
 extern void fn_80037BF4(void);
-extern void fn_80072A50(void);
+extern void LightCtrl_SetCachedParam_2C_Force(void);
 extern void _savegpr_26(void);
 extern void _savegpr_27(void);
 extern void _restgpr_26(void);
@@ -26,12 +26,12 @@ asm void LightCtrl_InitChannels4(void);
 asm void LightCtrl_InitChannels2(void);
 asm void LightCtrl_SetCachedCullMode(void);
 asm void LightCtrl_SetCachedColor_1C(void);
-asm void fn_800729B0(void);
-asm void fn_80072A50(void);
+asm void LightCtrl_SetCachedParam_2C(void);
+asm void LightCtrl_SetCachedParam_2C_Force(void);
 asm void LightCtrl_SetCachedPair_6C(void);
-asm void fn_80072B28(void);
-asm void fn_80072B7C(void);
-asm void fn_80072BD0(void);
+asm void LightCtrl_SetCachedByte_EC(void);
+asm void LightCtrl_SetCachedByte_ED(void);
+asm void LightCtrl_SetCachedByte_EE(void);
 asm void ModelSetCachedParam_F0(void);
 asm void ModelSetCachedParam_1F0(void);
 asm void ModelSetCachedParam_2F0(void);
@@ -145,25 +145,25 @@ asm void LightCtrl_InitChannels4(void)
     li r5, 1
     li r6, 2
     li r7, 3
-    bl fn_80072A50
+    bl LightCtrl_SetCachedParam_2C_Force
     li r3, 1
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 0
-    bl fn_80072A50
+    bl LightCtrl_SetCachedParam_2C_Force
     li r3, 2
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 1
-    bl fn_80072A50
+    bl LightCtrl_SetCachedParam_2C_Force
     li r3, 3
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 2
-    bl fn_80072A50
+    bl LightCtrl_SetCachedParam_2C_Force
     lwz r0, 0x14(r1)
     li r3, 1
     mtlr r0
@@ -186,13 +186,13 @@ asm void LightCtrl_InitChannels2(void)
     li r5, 1
     li r6, 2
     li r7, 3
-    bl fn_80072A50
+    bl LightCtrl_SetCachedParam_2C_Force
     li r3, 1
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 0
-    bl fn_80072A50
+    bl LightCtrl_SetCachedParam_2C_Force
     lwz r0, 0x14(r1)
     mtlr r0
     addi r1, r1, 0x10
@@ -297,7 +297,7 @@ _80072990:
     blr
 }
 
-asm void fn_800729B0(void)
+asm void LightCtrl_SetCachedParam_2C(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -344,7 +344,7 @@ _80072A38:
     blr
 }
 
-asm void fn_80072A50(void)
+asm void LightCtrl_SetCachedParam_2C_Force(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -410,7 +410,7 @@ _80072B0C:
     blr
 }
 
-asm void fn_80072B28(void)
+asm void LightCtrl_SetCachedByte_EC(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -438,7 +438,7 @@ _80072B68:
     blr
 }
 
-asm void fn_80072B7C(void)
+asm void LightCtrl_SetCachedByte_ED(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -466,7 +466,7 @@ _80072BBC:
     blr
 }
 
-asm void fn_80072BD0(void)
+asm void LightCtrl_SetCachedByte_EE(void)
 {
     nofralloc
     stwu r1, -0x10(r1)

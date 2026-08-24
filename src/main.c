@@ -71,7 +71,7 @@ extern void fn_800071B8(void);
 extern void fn_8000740C(void);
 extern void fn_800074C4(void);
 extern void fn_800075AC(void);
-extern void fn_80007654(void);
+extern void OSVirtualToPhysical(void);
 extern void fn_80007664(void);
 extern void fn_80007700(void);
 extern void fn_80007730(void);
@@ -95,7 +95,7 @@ extern void fn_80008A4C(void);
 extern void fn_80008BA8(void);
 extern void fn_80008BEC(void);
 extern void fn_80008C20(void);
-extern void fn_8000B334(void);
+extern void OSInitArenaPoll(void);
 extern void fn_8000B360(void);
 extern void OSPanic(void);
 extern void fn_8000CDD8(void);
@@ -122,7 +122,7 @@ extern void __GXSetTexRegion(void);
 extern void fn_80037518(void);
 extern void fn_800377F8(void);
 extern void fn_80037D40(void);
-extern void fn_80038BFC(void);
+extern void GXGetProjectionv(void);
 extern void GXLoadMatIdxTripleToXF(void);
 extern void fn_8006B188(void);
 extern void fn_8006B470(void);
@@ -131,7 +131,7 @@ extern void fn_8006CD40(void);
 extern void fn_8006CDFC(void);
 extern void fn_8006CE1C(void);
 extern void fn_8006CFF8(void);
-extern void fn_8006E5FC(void);
+extern void MTXQuatInterpolate(void);
 extern void PSMTXQuat_fromMtx(void);
 extern void fn_8006FCB4(void);
 extern void fn_8006FD1C(void);
@@ -151,13 +151,13 @@ extern void fn_800720B0(void);
 extern void fn_800721FC(void);
 extern void fn_800723F8(void);
 extern void GXLoadMtxArray(void);
-extern void fn_80072558(void);
+extern void VIFlush(void);
 extern void fn_800725DC(void);
 extern void fn_80072614(void);
 extern void LightCtrl_SetCachedCullMode(void);
 extern void LightCtrl_SetCachedColor_1C(void);
 extern void LightCtrl_SetCachedPair_6C(void);
-extern void fn_80072BD0(void);
+extern void LightCtrl_SetCachedByte_EE(void);
 extern void ModelSetCachedParam_F0(void);
 extern void ModelSetCachedParam_1F0(void);
 extern void ModelSetCachedParam_2F0(void);
@@ -195,7 +195,7 @@ extern void QuatNormalizeCompare(void);
 extern void fn_8006D7DC(void);
 extern void mtx_gpstack_push(void);
 extern void mtx_gpstack_pop(void);
-extern void fn_8006DBAC(void);
+extern void MTXQuatExtract(void);
 extern void main(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -329,7 +329,7 @@ asm void main_read_fze_str(void)
     lfs	f4, -0x7ff0(r2)
     bl      fn_800721FC
     li	r3, 1
-    bl      fn_80072BD0
+    bl      LightCtrl_SetCachedByte_EE
     li	r3, 1
     li	r4, 4
     li	r5, 5
@@ -1311,7 +1311,7 @@ _800064e4:
     sth	r5, 4(r25)
     li	r3, 0x120
     li	r4, 0x20
-    bl      fn_8000B334
+    bl      OSInitArenaPoll
     stw	r3, 0(r25)
     mr	r3, r26
     addi	r7, r1, 8
@@ -2502,7 +2502,7 @@ asm void fn_8000740C(void)
     bl      OSPanic
 _80007458:
     mr	r3, r26
-    bl      fn_80007654
+    bl      OSVirtualToPhysical
     lwz	r0, 0(r31)
     rlwimi	r0, r3, 7, 1, 0x18
     mr	r3, r31
@@ -2562,7 +2562,7 @@ _80007504:
     bl      OSPanic
 _8000752c:
     mr	r3, r27
-    bl      fn_80007654
+    bl      OSVirtualToPhysical
     lwz	r0, 0(r28)
     rlwimi	r0, r3, 7, 1, 0x18
     mr	r3, r28
@@ -2646,7 +2646,7 @@ _8000762c:
     blr	
 }
 
-asm void fn_80007654(void)
+asm void OSVirtualToPhysical(void)
 {
     nofralloc
     rlwinm	r3, r3, 0, 0, 3
@@ -2780,7 +2780,7 @@ asm void fn_800077E0(void)
     stw	r29, 0x14(r1)
     stw	r28, 0x10(r1)
     mr	r28, r3
-    bl      fn_80007654
+    bl      OSVirtualToPhysical
     mr	r31, r3
     mr	r3, r28
     rlwinm	r29, r28, 0xa, 0x1a, 0x1f
@@ -2915,7 +2915,7 @@ asm void fn_800079C4(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_80007654
+    bl      OSVirtualToPhysical
     rlwinm	r4, r31, 0x14, 0x10, 0x1f
     clrlwi	r0, r3, 0xd
     xor	r0, r4, r0
@@ -2935,7 +2935,7 @@ asm void fn_80007A00(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      fn_80007654
+    bl      OSVirtualToPhysical
     rlwinm	r4, r31, 0x14, 0x10, 0x1f
     clrlwi	r0, r3, 0xd
     xor	r0, r4, r0
@@ -3611,7 +3611,7 @@ asm void fn_80008204(void)
     li	r3, 0
     bl      fn_800720B0
     addi	r3, r1, 0x18
-    bl      fn_80038BFC
+    bl      GXGetProjectionv
     lfs	f29, 0x30(r1)
     lfs	f30, 0x2c(r1)
     lfs	f1, 0x18(r1)
@@ -3731,10 +3731,10 @@ asm void fn_800084E8(void)
     bl      fn_800087F4
     bl      mtx_gpstack_push
     bl      QuatNormalizeCompare
-    bl      fn_80072558
+    bl      VIFlush
     bl      mtx_gpstack_pop
     addi	r3, r1, 8
-    bl      fn_80038BFC
+    bl      GXGetProjectionv
     lfs	f1, -0x7f08(r2)
     li	r3, 0x80
     lfs	f0, 0xc(r1)

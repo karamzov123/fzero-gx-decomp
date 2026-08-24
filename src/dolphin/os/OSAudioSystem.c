@@ -9,7 +9,7 @@ extern void DCFlushRange(register void* addr, register unsigned long n);
 extern unsigned long OSGetTick(void);
 extern unsigned char DSPInitCode[128];
 
-asm void* fn_8000B334(register u32 size, register u32 align)
+asm void* OSInitArenaPoll(register u32 size, register u32 align)
 {
     nofralloc
     lwz	r0, -0x7f98(r13)

@@ -15,7 +15,7 @@ extern asm void ARStartDMA(void);
 extern unsigned char lbl_8015AB70[80];
 extern unsigned char lbl_8015ABC0[10];
 
-asm void fn_80070E1C(void)
+asm void AvModelFormatErrorStrings(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

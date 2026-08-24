@@ -2,8 +2,8 @@
 #pragma force_active on
 
 extern asm void lbl_8006E1B0(void);
-extern asm void fn_8006DBAC(void);
-extern asm void fn_8006E5FC(void);
+extern asm void MTXQuatExtract(void);
+extern asm void MTXQuatInterpolate(void);
 extern asm void PSMTXQuat_fromMtx(void);
 extern asm void C_MTXQuat(void);
 extern asm void fn_8006DC34(void);
@@ -70,13 +70,13 @@ asm void PSMTXFromPosScale(void)
     mr	r31, r5
     stw	r30, 0x40(r1)
     mr	r30, r4
-    bl      fn_8006DBAC
+    bl      MTXQuatExtract
     addi	r3, r1, 0x28
-    bl      fn_8006E5FC
+    bl      MTXQuatInterpolate
     mr	r3, r30
-    bl      fn_8006DBAC
+    bl      MTXQuatExtract
     addi	r3, r1, 0x18
-    bl      fn_8006E5FC
+    bl      MTXQuatInterpolate
     fmr	f1, f31
     addi	r3, r1, 8
     addi	r4, r1, 0x28

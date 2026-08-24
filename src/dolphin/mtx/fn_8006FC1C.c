@@ -14,7 +14,7 @@ extern asm void GXSaveCPUFifo(void);
 extern asm void fn_800700B4(void);
 extern asm void fn_80070068(void);
 extern asm void GXSetGPFifo(void);
-extern asm void fn_80072B28(void);
+extern asm void LightCtrl_SetCachedByte_EC(void);
 extern asm void fn_80035110(void);
 extern asm void fn_8001BE6C(void);
 extern asm void OSGetTick(void);
@@ -141,7 +141,7 @@ _8006fd74:
     lwz	r0, 8(r1)
     li	r3, 1
     stw	r0, -0x76e8(r13)
-    bl      fn_80072B28
+    bl      LightCtrl_SetCachedByte_EC
     bl      fn_8007001C
     lwz	r3, -0x7690(r13)
     li	r4, 1

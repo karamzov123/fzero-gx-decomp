@@ -143,7 +143,7 @@ asm void SndCalcPanMix(void);
 asm void SndSendParamToChannelVoices(void);
 asm void fn_8006413C(void);
 asm void fn_800641A8(void);
-asm void fn_80064230(void);
+asm void SndMarkChannelVoicesForUpdate(void);
 asm void SndTickChannels(void);
 asm void SndRefreshChannelVoices(void);
 asm void fn_800647F0(void);
@@ -158,7 +158,7 @@ asm void SndStartChannelSequence(void);
 asm void SndSetCallback2(void);
 asm void SndSetCallback1(void);
 asm void SndSetCallback0(void);
-asm void fn_800658B4(void);
+asm void SndPostRequest(void);
 asm void fn_80065A7C(void);
 asm void fn_80065AC4(void);
 asm void fn_80065AD0(void);
@@ -169,7 +169,7 @@ asm void SndLoadSoundArchive(void);
 asm void SndGetSequenceStatus(void);
 asm void fn_80067344(void);
 asm void fn_800674FC(void);
-asm void fn_80067898(void);
+asm void SndPostRequestAlt(void);
 asm void SndTimerUpdate(void);
 asm void SndCheckAllocSize(void);
 asm void fn_80067F68(void);
@@ -4620,7 +4620,7 @@ _80060094:
     addi	r29, r29, -0x6000
     clrlwi	r3, r29, 0x10
     addi	r4, r4, -0x5ffc
-    bl      fn_80064230
+    bl      SndMarkChannelVoicesForUpdate
     lis	r3, 1
     addi	r3, r3, -0x5ffc
     bl      fn_800641A8
@@ -4699,7 +4699,7 @@ _800601ec:
     lis	r3, 1
     addi	r3, r3, -0x5fcc
     mr	r4, r3
-    bl      fn_80064230
+    bl      SndMarkChannelVoicesForUpdate
     lis	r3, 1
     addi	r3, r3, -0x5fcc
     bl      SndRefreshChannelVoices
@@ -4712,7 +4712,7 @@ _800601ec:
     lis	r4, 1
     addi	r3, r4, -0x5fc0
     addi	r4, r4, -0x5fcc
-    bl      fn_80064230
+    bl      SndMarkChannelVoicesForUpdate
     lis	r3, 1
     addi	r3, r3, -0x5fc0
     bl      SndRefreshChannelVoices
@@ -8046,7 +8046,7 @@ _80063158:
     addis	r3, r30, -0x5a90
     rlwinm	r0, r31, 0, 0x11, 0x17
     add	r3, r3, r0
-    bl      fn_80067898
+    bl      SndPostRequestAlt
     cmpwi	r3, 0
     bc      12, 2, _80063174
     b       _800631d4
@@ -8080,7 +8080,7 @@ _800631c8:
     li	r3, -2
     b       _800631d4
 _800631d0:
-    bl      fn_80067898
+    bl      SndPostRequestAlt
 _800631d4:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -9253,7 +9253,7 @@ _80064218:
     blr
 }
 
-asm void fn_80064230(void)
+asm void SndMarkChannelVoicesForUpdate(void)
 {
     nofralloc
     lwz	r8, -0x7740(r13)
@@ -10924,7 +10924,7 @@ asm void SndSetCallback0(void)
     blr
 }
 
-asm void fn_800658B4(void)
+asm void SndPostRequest(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -13207,7 +13207,7 @@ _80067880:
     blr
 }
 
-asm void fn_80067898(void)
+asm void SndPostRequestAlt(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

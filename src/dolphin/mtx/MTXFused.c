@@ -39,12 +39,12 @@ asm void fn_8006D7B0(void);
 asm void fn_8006D7DC(void);
 asm void fn_8006D7F4(void);
 asm void fn_8006D890(void);
-asm void fn_8006D8D8(void);
+asm void MTXSinCos(void);
 asm void fn_8006D91C(void);
 asm void mtx_gpstack_push(void);
 asm void mtx_gpstack_pop(void);
 asm void fn_8006DB74(void);
-asm void fn_8006DBAC(void);
+asm void MTXQuatExtract(void);
 asm void fn_8006DC34(void);
 asm void fn_8006DCDC(void);
 asm void fn_8006DD14(void);
@@ -785,7 +785,7 @@ asm void fn_8006D890(void)
     blr
 }
 
-asm void fn_8006D8D8(void)
+asm void MTXSinCos(void)
 {
     nofralloc
     mflr	r4
@@ -992,7 +992,7 @@ asm void fn_8006DB74(void)
     blr
 }
 
-asm void fn_8006DBAC(void)
+asm void MTXQuatExtract(void)
 {
     nofralloc
     lis	r4, -0x2000

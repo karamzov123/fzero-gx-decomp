@@ -8,7 +8,7 @@ extern asm void MathSin(void);
 extern asm void MathNormalizeFloat(void);
 extern unsigned char lbl_80094E10[16];
 
-asm void fn_8006E5FC(void)
+asm void MTXQuatInterpolate(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)

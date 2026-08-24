@@ -244,7 +244,7 @@ _80038adc:
     blr     
 }
 
-asm void fn_80038B3C(register u32 a)
+asm void GXSetProjectionv(register u32 a)
 {
     nofralloc
     mflr    r0
@@ -297,7 +297,7 @@ asm void fn_80038B3C(register u32 a)
     blr     
 }
 
-asm void fn_80038BFC(register u32 a)
+asm void GXGetProjectionv(register u32 a)
 {
     nofralloc
     stwu    r1, -0x18(r1)
@@ -536,7 +536,7 @@ asm void fn_80038EEC(void)
     blr     
 }
 
-asm void fn_80038F10(register void* p)
+asm void GXGetViewport(register void* p)
 {
     nofralloc
     lwz     r4, -0x7de8(r2)

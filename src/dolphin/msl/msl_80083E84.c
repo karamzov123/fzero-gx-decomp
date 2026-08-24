@@ -17,7 +17,7 @@ extern void __div2u(void);
 extern void __sformatter(void);
 extern void fn_8008DC10(void);
 extern void MSL_device_link_fn(void); // forward decl: label must be declared before first use
-extern void fn_80085494(void); // forward decl
+extern void MSLStrToLong(void); // forward decl
 extern void fn_80088128(void); // forward decl
 extern void fn_800883E8(void); // forward decl
 extern void fn_80087E80(void); // forward decl
@@ -1274,7 +1274,7 @@ asm void atoi(void)
     addi	r8, r1, 0xc
     addi	r9, r1, 0x10
     li	r3, 0xa
-    bl      fn_80085494
+    bl      MSLStrToLong
     lwz	r0, 0x10(r1)
     cmpwi	r0, 0
     bc      4, 2, _80084f98
@@ -1336,7 +1336,7 @@ asm void strtol(void)
     addi	r7, r1, 0x10
     stw	r30, 0x14(r1)
     mr	r5, r0
-    bl      fn_80085494
+    bl      MSLStrToLong
     cmplwi	r31, 0
     bc      12, 2, _80085044
     lwz	r0, 0x10(r1)
@@ -1658,7 +1658,7 @@ _80085460:
     blr
 }
 
-asm void fn_80085494(void)
+asm void MSLStrToLong(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)

@@ -39,7 +39,7 @@ extern void fn_80072614(void);
 extern void LightCtrl_SetCachedFog(void);
 extern void LightCtrl_InitChannels4(void);
 extern void LightCtrl_SetCachedColor_1C(void);
-extern void fn_800729B0(void);
+extern void LightCtrl_SetCachedParam_2C(void);
 extern void LightCtrl_SetCachedPair_6C(void);
 extern void ModelSetCachedParam_F0(void);
 extern void ModelSetCachedParam_1F0(void);
@@ -695,25 +695,25 @@ _800753F0:
     li r5, 1
     li r6, 2
     li r7, 3
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     li r3, 1
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 0
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     li r3, 2
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 1
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     li r3, 3
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 2
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     lwz r0, 0x1c(r1)
     addi r4, r1, 0x14
     li r3, 0
@@ -2383,7 +2383,7 @@ _80076E60:
     li r5, 1
     li r6, 2
     li r7, 1
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2
@@ -2395,7 +2395,7 @@ _80076E8C:
     li r5, 1
     li r6, 2
     li r7, 2
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2
@@ -2407,7 +2407,7 @@ _80076EB8:
     li r5, 1
     li r6, 2
     li r7, 3
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2

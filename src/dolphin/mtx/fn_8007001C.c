@@ -3,7 +3,7 @@
 
 extern asm void GXSetTexGenCached(void);
 extern asm void fn_80037518(void);
-extern asm void fn_80072BD0(void);
+extern asm void LightCtrl_SetCachedByte_EE(void);
 extern asm void GXGetCPUFifo(void);
 extern asm void GXSetCPUFifo(void);
 extern asm void GXGetGPStatus(void);
@@ -29,7 +29,7 @@ asm void fn_8007001C(void)
     li	r7, 0
     bl      fn_80037518
     li	r3, 1
-    bl      fn_80072BD0
+    bl      LightCtrl_SetCachedByte_EE
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10

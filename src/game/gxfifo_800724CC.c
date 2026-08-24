@@ -44,7 +44,7 @@ asm void VIConfigureAndFlush(register void* xf, register u32 base)
     blr
 }
 
-asm void fn_80072558(register u32 a)
+asm void VIFlush(register u32 a)
 {
     nofralloc
     lis     r4, -0x2000

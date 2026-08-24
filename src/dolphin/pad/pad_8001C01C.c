@@ -47,8 +47,8 @@ asm void PADReset(void);
 asm void PADRecalibrate(void);
 asm void PADInit(void);
 asm void PADRead(void);
-asm void fn_8001D32C(void);
-asm void fn_8001D3E4(void);
+asm void SISetCommandByChannel(void);
+asm void SISetCommandByArray(void);
 asm void PADSetSpec(void);
 asm void SPEC0_MakeStatus(void);
 asm void SPEC1_MakeStatus(void);
@@ -1419,7 +1419,7 @@ _8001d2f8:
     blr
 }
 
-asm void fn_8001D32C(void)
+asm void SISetCommandByChannel(void)
 {
     nofralloc
     mflr	r0
@@ -1474,7 +1474,7 @@ _8001d3c8:
     blr
 }
 
-asm void fn_8001D3E4(void)
+asm void SISetCommandByArray(void)
 {
     nofralloc
     mflr	r0

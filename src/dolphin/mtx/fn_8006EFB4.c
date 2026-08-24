@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_8006D8D8(void);
+extern asm void MTXSinCos(void);
 extern asm void PSMTXRotTrig(void);
 extern asm void sqrtf(void);
 extern asm void atan2f(void);
@@ -27,7 +27,7 @@ asm void PSMTXRotAxisRadVariant(void)
     fmr	f31, f1
     lha	r3, 2(r3)
     mr	r31, r4
-    bl      fn_8006D8D8
+    bl      MTXSinCos
     lha	r3, 0(r30)
     bl      PSMTXRotTrig
     lis	r3, -0x2000

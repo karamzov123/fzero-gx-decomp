@@ -14,7 +14,7 @@ extern void OSCancelAlarm(void* alarm);
 extern void psq_st_pair(register u32 a, register u32 b);
 extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
-extern void fn_80038BFC(register u32 a);
+extern void GXGetProjectionv(register u32 a);
 extern void fn_80038A88(register u32 a);
 extern void GXClearVtxDesc(register u32 a);
 extern void fn_80033A6C(register u32 a);
@@ -571,7 +571,7 @@ asm int fn_8003EAE4(register u32 a)
     stw	r31, 0x1c(r1)
     addi	r31, r3, lbl_80178C18@l
     addi	r3, r31, 0x70
-    bl      fn_80038BFC
+    bl      GXGetProjectionv
     lfs	f0, -0x7c68(r2)
     addi	r3, r31, 0x30
     li	r4, 1

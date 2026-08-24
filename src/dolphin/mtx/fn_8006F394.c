@@ -5,7 +5,7 @@ extern asm void atan2f(void);
 extern asm void mtx_gpstack_push(void);
 extern asm void lbl_8006E1C0(void);
 extern asm void sqrtf(void);
-extern asm void fn_8006D8D8(void);
+extern asm void MTXSinCos(void);
 extern asm void PSMTXRotTrig(void);
 extern asm void PSMTXMultVecSS(void);
 extern asm void mtx_gpstack_pop(void);
@@ -84,7 +84,7 @@ asm void C_MTXRotAxisRad(void)
     addi	r0, r3, -0x8000
     sth	r0, 0(r29)
     lha	r3, 0(r29)
-    bl      fn_8006D8D8
+    bl      MTXSinCos
     lha	r3, 0(r30)
     bl      PSMTXRotTrig
     addi	r3, r1, 8
@@ -148,7 +148,7 @@ asm void C_MTXRotAxisRadInPlace(void)
     addi	r0, r3, -0x8000
     sth	r0, 2(r31)
     lha	r3, 2(r31)
-    bl      fn_8006D8D8
+    bl      MTXSinCos
     lha	r3, 0(r31)
     bl      PSMTXRotTrig
     addi	r3, r1, 0x14
