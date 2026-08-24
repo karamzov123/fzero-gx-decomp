@@ -59,7 +59,7 @@ asm void fn_800372E0(register void* p)
     blr	
 }
 
-asm void fn_80037354(register void* p, register int a)
+asm void __GXSetLightAttnEnable_A(register void* p, register int a)
 {
     nofralloc
     srawi	r5, r3, 1
@@ -93,7 +93,7 @@ _8003739c:
     blr	
 }
 
-asm void fn_800373C0(register void* p, register int a)
+asm void __GXSetLightAttnEnable_B(register void* p, register int a)
 {
     nofralloc
     srawi	r5, r3, 1
@@ -570,7 +570,7 @@ _80037948:
     blr	
 }
 
-asm void fn_80037A14(register void* p, register int a, register int b)
+asm void __GXWriteChanColorRegs(register void* p, register int a, register int b)
 {
     nofralloc
     clrlwi.	r0, r3, 0x18
@@ -698,7 +698,7 @@ asm void fn_80037B94(register void* p)
     blr	
 }
 
-asm void fn_80037BC0(register void* p)
+asm void __GXWriteChanCtrlBitfields(register void* p)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)

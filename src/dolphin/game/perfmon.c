@@ -26,7 +26,7 @@ extern void GXSetChanCtrl(register u32 a);
 extern void fn_80037014(register u32 a);
 extern void GXSetNumTexGens(register u32 a);
 extern void fn_800377C8(register u32 a);
-extern void fn_80037BC0(register u32 a);
+extern void __GXWriteChanCtrlBitfields(register u32 a);
 extern void GXSetVtxDesc(register u32 a);
 extern void GXBuildPackedRegister(register u32 a);
 extern unsigned char perf_autosample_negative_str[48];
@@ -637,7 +637,7 @@ asm int fn_8003EAE4(register u32 a)
     li	r3, 0
     li	r4, 7
     li	r5, 0
-    bl      fn_80037BC0
+    bl      __GXWriteChanCtrlBitfields
     li	r3, 9
     li	r4, 1
     bl      GXSetVtxDesc

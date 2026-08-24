@@ -37,11 +37,11 @@ extern void GXWriteCachedParam1F0(void);
 extern void fn_80037128(void);
 extern void fn_80037190(void);
 extern void fn_800372E0(void);
-extern void fn_80037354(void);
-extern void fn_800373C0(void);
+extern void __GXSetLightAttnEnable_A(void);
+extern void __GXSetLightAttnEnable_B(void);
 extern void GXSetChanCtrl(void);
 extern void fn_800377C8(void);
-extern void fn_80037BC0(void);
+extern void __GXWriteChanCtrlBitfields(void);
 extern void fn_80038F48(void);
 extern void GXComputeDeltaRatio(void);
 extern void memcpy_fast(void);
@@ -581,7 +581,7 @@ asm void GXCachedSetTevSwapTable(void)
     lwz r0, 0x670(r5)
     cmpw r0, r30
     beq _80073608
-    bl fn_80037354
+    bl __GXSetLightAttnEnable_A
     lwz r0, -0x7688(r13)
     add r3, r0, r31
     stw r30, 0x670(r3)
@@ -609,7 +609,7 @@ asm void ModelSetCachedState_6B0(void)
     lwz r0, 0x6b0(r5)
     cmpw r0, r30
     beq _80073660
-    bl fn_800373C0
+    bl __GXSetLightAttnEnable_B
     lwz r0, -0x7688(r13)
     add r3, r0, r31
     stw r30, 0x6b0(r3)
@@ -2040,7 +2040,7 @@ _8007496C:
     mr r3, r29
     mr r4, r30
     mr r5, r31
-    bl fn_80037BC0
+    bl __GXWriteChanCtrlBitfields
     lwz r3, -0x7688(r13)
     stb r29, 0(r3)
     lwz r3, -0x7688(r13)

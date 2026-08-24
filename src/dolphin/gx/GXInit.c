@@ -221,19 +221,19 @@ extern void fn_800377C8(s32 stages);
 extern void fn_80037014(s32 stage, s32 op);
 extern void GXWriteLightReg(s32 comp0, s32 ref0, s32 op, s32 comp1, s32 ref1);
 extern void fn_8003756C(s32 type, s32 fmt, u32 bias);
-extern void fn_80037354(s32 stage, s32 sel);
-extern void fn_800373C0(s32 stage, s32 sel);
+extern void __GXSetLightAttnEnable_A(s32 stage, s32 sel);
+extern void __GXSetLightAttnEnable_B(s32 stage, s32 sel);
 extern void fn_8003742C(s32 stage, s32 swap0, s32 swap1);
 extern void GXSetLightColorAttnRegs(s32 table, s32 r, s32 g, s32 b);
 extern void fn_80036EDC(s32 stage);
 extern void fn_80036EB4(s32 stages);
 extern void fn_80036C24(s32 stage, s32 scale0, s32 scale1);
 extern void GXWriteTextureState(s32 type, f32 start, f32 end, f32 nearz, f32 farz, void *color);
-extern void fn_80037A14(s32 enable, u16 center, u16 edge);
+extern void __GXWriteChanColorRegs(s32 enable, u16 center, u16 edge);
 extern void GXWriteLightColor(s32 mode, s32 src, s32 dst, s32 op);
 extern void fn_80037B68(BOOL update);
 extern void fn_80037B94(BOOL update);
-extern void fn_80037BC0(BOOL compare, s32 op, BOOL update);
+extern void __GXWriteChanCtrlBitfields(BOOL compare, s32 op, BOOL update);
 extern void fn_80037BF4(BOOL before);
 extern void fn_80037D14(BOOL dither);
 extern void GXWriteLightAttn(BOOL enable, u8 alpha);
@@ -1423,10 +1423,10 @@ L80031878:
 L8003187c:
     mr	r3, r30
     li	r4, 6
-    bl fn_80037354
+    bl __GXSetLightAttnEnable_A
     mr	r3, r30
     li	r4, 0
-    bl fn_800373C0
+    bl __GXSetLightAttnEnable_B
     mr	r3, r30
     li	r4, 0
     li	r5, 0
@@ -1500,7 +1500,7 @@ L80031920:
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl fn_80037A14
+    bl __GXWriteChanColorRegs
     li	r3, 0
     li	r4, 4
     li	r5, 5
@@ -1513,7 +1513,7 @@ L80031920:
     li	r3, 1
     li	r4, 3
     li	r5, 1
-    bl fn_80037BC0
+    bl __GXWriteChanCtrlBitfields
     li	r3, 1
     bl fn_80037BF4
     li	r3, 1

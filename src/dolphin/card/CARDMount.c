@@ -4,8 +4,8 @@
 #pragma force_active on
 
 extern void CARDInit(void);
-extern void fn_8002A744(void);
-extern void fn_8002A74C(void);
+extern void __CARDGetFontEncode(void);
+extern void __CARDSetFontEncode(void);
 extern void __CARDSetDiskID(void);
 extern void fn_8002A7AC(void);
 extern void fn_8002A7C4(void);
@@ -90,14 +90,14 @@ _8002a728:
     blr	
 }
 
-asm void fn_8002A744(void)
+asm void __CARDGetFontEncode(void)
 {
     nofralloc
     lhz	r3, -0x7800(r13)
     blr	
 }
 
-asm void fn_8002A74C(void)
+asm void __CARDSetFontEncode(void)
 {
     nofralloc
     clrlwi	r0, r3, 0x10

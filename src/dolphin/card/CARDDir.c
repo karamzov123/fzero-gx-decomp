@@ -63,7 +63,7 @@ extern void __CARDReadNintendoID(void);
 extern void __CARDReadStatus(void);
 extern void __CARDClearStatus(void);
 extern void __CARDEraseSector(void);
-extern void fn_8002A744(void);
+extern void __CARDGetFontEncode(void);
 extern void __CARDGetControlBlock(void);
 extern void __CARDPutControlBlock(void);
 extern void __CARDSync(void);
@@ -246,7 +246,7 @@ _8002cad0:
     blt     _8002ca78
     li	r3, 0
     bl      __OSUnlockSramEx
-    bl      fn_8002A744
+    bl      __CARDGetFontEncode
     lhz	r0, 0x24(r27)
     clrlwi	r3, r3, 0x10
     cmplw	r0, r3
@@ -2419,7 +2419,7 @@ asm void CARDFormatAsync(void)
     addi	r31, r4, 0
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
-    bl      fn_8002A744
+    bl      __CARDGetFontEncode
     addi	r4, r3, 0
     addi	r3, r30, 0
     addi	r5, r31, 0
