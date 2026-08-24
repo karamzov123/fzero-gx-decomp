@@ -2336,10 +2336,10 @@ L_8001580C:
 }
 #pragma pop
 
-/* ---- fn_8001581C ---- */
+/* ---- WriteUARTN ---- */
 #pragma push
 #pragma force_active on
-asm int fn_8001581C(register void* buffer, register s32 len)
+asm int WriteUARTN(register void* buffer, register s32 len)
 {
     nofralloc
     mflr        r0

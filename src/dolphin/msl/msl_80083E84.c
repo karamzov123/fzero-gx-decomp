@@ -10,7 +10,7 @@ typedef signed int s32;
 extern void fn_80087F54(void); // forward decl
 extern void OSGetConsoleType(void);
 extern void InitializeUART(void);
-extern void fn_8001581C(void);
+extern void WriteUARTN(void);
 extern void _savefpr_25(void);
 extern void _restfpr_25(void);
 extern void __div2u(void);
@@ -1958,7 +1958,7 @@ _80085878:
 _80085888:
     lwz	r4, 0(r30)
     mr	r3, r29
-    bl      fn_8001581C
+    bl      WriteUARTN
     cmpwi	r3, 0
     bc      12, 2, _800858ac
     li	r0, 0
