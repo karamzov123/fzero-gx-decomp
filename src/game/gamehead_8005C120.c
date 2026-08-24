@@ -165,7 +165,7 @@ asm void fn_80065AD0(void);
 asm void fn_80065B08(void);
 asm void SndFreeChannel(void);
 asm void SndLoadSamplesARQ(void);
-asm void fn_80066C14(void);
+asm void SndLoadSoundArchive(void);
 asm void SndGetSequenceStatus(void);
 asm void fn_80067344(void);
 asm void fn_800674FC(void);
@@ -12305,7 +12305,7 @@ _80066c00:
     blr
 }
 
-asm void fn_80066C14(void)
+asm void SndLoadSoundArchive(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)

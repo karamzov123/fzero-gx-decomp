@@ -41,7 +41,7 @@ extern unsigned char lbl_8015B100[256];
 extern unsigned char lbl_8015B300[256];
 extern unsigned char lbl_8015B400[56];
 
-asm void fn_80083E84(void)
+asm void atof(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -1256,7 +1256,7 @@ _80084f08:
     blr
 }
 
-asm void fn_80084F1C(void)
+asm void atoi(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
