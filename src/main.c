@@ -204,11 +204,11 @@ extern unsigned char jumptable_8012208C[52];
 extern unsigned char lbl_80095EA0[15];
 extern unsigned char lbl_8012205C[48];
 extern unsigned char lbl_801220C0[9];
-extern unsigned char lbl_801220CC[17];
+extern unsigned char dvd_open_from_dvd_str[17];
 extern unsigned char lbl_801220E0[16];
-extern unsigned char lbl_801220F0[20];
+extern unsigned char dvd_reading_from_dvd_str[20];
 extern unsigned char lbl_80122104[156];
-extern unsigned char lbl_801221A0[26];
+extern unsigned char mmu_cant_allocate_pte_str[26];
 extern unsigned char lbl_8015B920[32];
 extern unsigned char lbl_8015B940[1024];
 extern unsigned char lbl_8015BD40[256];
@@ -1837,8 +1837,8 @@ asm void fn_80006B70(void)
     mr	r4, r30
     crxor	6, 6, 6
     bl      fn_80006BDC
-    lis     r3, lbl_801220CC@ha
-    addi	r3, r3, lbl_801220CC@l
+    lis     r3, dvd_open_from_dvd_str@ha
+    addi	r3, r3, dvd_open_from_dvd_str@l
     crxor	6, 6, 6
     bl      fn_80006BDC
     li	r0, 0
@@ -1916,8 +1916,8 @@ _80006c7c:
     bl      fn_80006BDC
     rlwinm.	r0, r29, 0, 1, 0xf
     bc      4, 2, _80006cc4
-    lis     r3, lbl_801220CC@ha
-    addi	r3, r3, lbl_801220CC@l
+    lis     r3, dvd_open_from_dvd_str@ha
+    addi	r3, r3, dvd_open_from_dvd_str@l
     crxor	6, 6, 6
     bl      fn_80006BDC
     mr	r3, r29
@@ -1974,8 +1974,8 @@ asm void fn_80006D1C(void)
     mr	r30, r6
     cmpwi	r0, 1
     bc      12, 2, _80006d7c
-    lis     r3, lbl_801220F0@ha
-    addi	r3, r3, lbl_801220F0@l
+    lis     r3, dvd_reading_from_dvd_str@ha
+    addi	r3, r3, dvd_reading_from_dvd_str@l
     crxor	6, 6, 6
     bl      fn_80006BDC
     lwz	r12, -0x7cb8(r13)
@@ -2494,9 +2494,9 @@ asm void fn_8000740C(void)
     bl      fn_80007730
     or.	r31, r3, r3
     bc      4, 2, _80007458
-    lis     r4, lbl_801221A0@ha
+    lis     r4, mmu_cant_allocate_pte_str@ha
     addi	r3, r13, -0x7fc0
-    addi	r5, r4, lbl_801221A0@l
+    addi	r5, r4, mmu_cant_allocate_pte_str@l
     li	r4, 0x1cd
     crxor	6, 6, 6
     bl      OSPanic
@@ -2554,9 +2554,9 @@ _80007504:
     bl      fn_80007730
     or.	r28, r3, r3
     bc      4, 2, _8000752c
-    lis     r4, lbl_801221A0@ha
+    lis     r4, mmu_cant_allocate_pte_str@ha
     addi	r3, r13, -0x7fc0
-    addi	r5, r4, lbl_801221A0@l
+    addi	r5, r4, mmu_cant_allocate_pte_str@l
     li	r4, 0x1cd
     crxor	6, 6, 6
     bl      OSPanic

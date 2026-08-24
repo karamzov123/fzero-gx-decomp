@@ -6,7 +6,7 @@ typedef unsigned char u8;
 typedef struct OSContext OSContext;
 
 extern void OSReport(const char* msg, ...);
-extern char lbl_80123E10[];
+extern char db_exception_destination_str[];
 extern void OSDumpContext(OSContext* context);
 extern void PPCHalt(void);
 
@@ -43,7 +43,7 @@ static void __DBExceptionDestinationAux(void)
 
     contextAddr = (void*)0xC0;
     context = OSPhysicalToCached(*contextAddr);
-    OSReport(lbl_80123E10);
+    OSReport(db_exception_destination_str);
     OSDumpContext(context);
     PPCHalt();
 }

@@ -26,7 +26,7 @@ extern unsigned char executing[];
 extern unsigned char jumptable_80124018[];
 extern unsigned char jumptable_801240A8[];
 extern unsigned char jumptable_801240DC[];
-extern unsigned char lbl_80123FE4[];
+extern unsigned char dvd_change_disk_fst_too_big_err_str[];
 extern unsigned char lbl_80124058[];
 extern unsigned char lbl_8015CE60[];
 extern unsigned char lbl_801A6480[];
@@ -187,9 +187,9 @@ nofralloc
 	lwz r3, 0x3c(r4)
 	cmplw r3, r0
 	bge lbl_8001788C
-	lis r3, lbl_80123FE4@ha
+	lis r3, dvd_change_disk_fst_too_big_err_str@ha
 	crxor 6,6,6
-	addi r5, r3, lbl_80123FE4@l
+	addi r5, r3, dvd_change_disk_fst_too_big_err_str@l
 	addi r3, r13, -0x7F3C
 	li r4, 0x287
 	bl OSPanic
@@ -1055,9 +1055,9 @@ lbl_80018370:
 	lwz r0, 0x0(r31)
 	cmplw r3, r0
 	bge lbl_800183C4
-	lis r3, lbl_80123FE4@ha
+	lis r3, dvd_change_disk_fst_too_big_err_str@ha
 	crxor 6,6,6
-	addi r5, r3, lbl_80123FE4@l
+	addi r5, r3, dvd_change_disk_fst_too_big_err_str@l
 	addi r3, r13, -0x7F3C
 	li r4, 0x287
 	bl OSPanic

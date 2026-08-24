@@ -12,10 +12,10 @@ extern unsigned char FstStringStart[];
 extern unsigned char MaxEntryNum[];
 extern unsigned char __DVDLongFileNameFlag[];
 extern unsigned char __DVDThreadQueue[];
-extern unsigned char lbl_80123E28[];
-extern unsigned char lbl_80123EF0[];
-extern unsigned char lbl_80123F28[];
-extern unsigned char lbl_80123F5C[];
+extern unsigned char dvd_convert_entrynum_to_path_warn_str[];
+extern unsigned char dvd_open_file_not_found_warn_str[];
+extern unsigned char dvd_read_async_out_of_file_err_str[];
+extern unsigned char dvd_read_out_of_file_err_str[];
 extern unsigned char lbl_801A6470[];
 extern unsigned char lbl_801A68B0[];
 extern void OSDisableInterrupts(void);
@@ -60,9 +60,9 @@ nofralloc
 	stwu r1, -0x48(r1)
 	stmw r20, 0x18(r1)
 	mr r23, r3
-	lis r3, lbl_80123E28@ha
+	lis r3, dvd_convert_entrynum_to_path_warn_str@ha
 	addi r25, r23, 0x0
-	addi r31, r3, lbl_80123E28@l
+	addi r31, r3, dvd_convert_entrynum_to_path_warn_str@l
 	lwz r26, -0x7B10(r13)
 lbl_80016E1C:
 	lbz r3, 0x0(r23)
@@ -339,9 +339,9 @@ nofralloc
 	addi r3, r1, 0x10
 	li r4, 0x80
 	bl __DVDGetFSTHomeDir
-	lis r3, lbl_80123EF0@ha
+	lis r3, dvd_open_file_not_found_warn_str@ha
 	crxor 6,6,6
-	addi r3, r3, lbl_80123EF0@l
+	addi r3, r3, dvd_open_file_not_found_warn_str@l
 	addi r4, r30, 0x0
 	addi r5, r1, 0x10
 	bl OSReport
@@ -614,9 +614,9 @@ nofralloc
 	cmplw r29, r0
 	blt lbl_80017520
 lbl_80017508:
-	lis r3, lbl_80123F28@ha
+	lis r3, dvd_read_async_out_of_file_err_str@ha
 	crxor 6,6,6
-	addi r5, r3, lbl_80123F28@l
+	addi r5, r3, dvd_read_async_out_of_file_err_str@l
 	addi r3, r13, -0x7F50
 	li r4, 0x2e6
 	bl OSPanic
@@ -628,9 +628,9 @@ lbl_80017520:
 	cmplw r4, r0
 	blt lbl_80017550
 lbl_80017538:
-	lis r3, lbl_80123F28@ha
+	lis r3, dvd_read_async_out_of_file_err_str@ha
 	crxor 6,6,6
-	addi r5, r3, lbl_80123F28@l
+	addi r5, r3, dvd_read_async_out_of_file_err_str@l
 	addi r3, r13, -0x7F50
 	li r4, 0x2ec
 	bl OSPanic
@@ -688,9 +688,9 @@ nofralloc
 	cmplw r29, r0
 	blt lbl_8001760C
 lbl_800175F4:
-	lis r3, lbl_80123F5C@ha
+	lis r3, dvd_read_out_of_file_err_str@ha
 	crxor 6,6,6
-	addi r5, r3, lbl_80123F5C@l
+	addi r5, r3, dvd_read_out_of_file_err_str@l
 	addi r3, r13, -0x7F50
 	li r4, 0x32c
 	bl OSPanic
@@ -702,9 +702,9 @@ lbl_8001760C:
 	cmplw r4, r0
 	blt lbl_8001763C
 lbl_80017624:
-	lis r3, lbl_80123F5C@ha
+	lis r3, dvd_read_out_of_file_err_str@ha
 	crxor 6,6,6
-	addi r5, r3, lbl_80123F5C@l
+	addi r5, r3, dvd_read_out_of_file_err_str@l
 	addi r3, r13, -0x7F50
 	li r4, 0x332
 	bl OSPanic
