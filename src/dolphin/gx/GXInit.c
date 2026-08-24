@@ -171,6 +171,11 @@ extern void PPCMtwpar(void *addr);
 extern u32 PPCMfhid2(void);
 extern void PPCMthid2(u32 value);
 extern void PPCSync(void);
+extern void GXSetBreakPtCallback(void *callback);
+extern void GXSetDrawSyncCallback(void (*callback)(u16));
+extern void GXSetDrawDoneCallback(void (*callback)(u16));
+extern void *GXSetTexRegionCallback(void *(*callback)(GXTexObj *, s32));
+extern void *GXSetTlutRegionCallback(void *(*callback)(u32));
 extern void __GXFlushTextureState(void);
 extern void GXInitTexCacheRegion(GXTexRegion *region, u32 tmemEven, u32 mapEven,
                                  u32 tmemOdd, u32 mapOdd, u32 flags);
@@ -180,11 +185,9 @@ extern s32 VIGetTvFormat(void);
 extern s64 OSGetTime(void);
 extern void OSClearContext(OSContext *context);
 extern void OSSetCurrentContext(OSContext *context);
-extern void fn_80033EB0(void);
-extern void fn_80034378(s32 arg);
-extern void fn_80034444(s32 arg);
-extern void fn_80010CB0(void *thread);
-extern void fn_80010F38(void *thread);
+extern void GXAbortFrame(void);
+extern void OSResumeThread(void *thread);
+extern void OSSuspendThread(void *thread);
 extern void __GXWriteFifoIntEnable(u8 hiWatermarkEn, u8 loWatermarkEn);
 extern void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr);
 extern s32 GXGetTexObjMipmap(GXTexObj *obj);
@@ -248,27 +251,23 @@ extern void GXSetCopyClear(u8 aa, const u8 *sample, BOOL enable, const u8 *vfilt
 extern void __GXSetGenMode2(s32 flag);
 extern void __GXSetZMode(s32 flag);
 extern void __GXFlushTextureCache(void);
-extern void fn_800342B8(s32 flag);
-extern void fn_80034214(s32 flag);
-extern void fn_800342E8(s32 flag);
-extern void fn_80034230(s32 metric, s32 clear, s32 arg2, s32 arg3);
-extern void fn_800341EC(s32 metric);
-extern void fn_80034200(s32 metric);
-extern void fn_800342D4(s32 arg);
-extern void fn_80034304(s32 arg, s32 val0, s32 val1);
+extern void GXPokeColorUpdate(s32 flag);
+extern void GXPokeAlphaUpdate(s32 flag);
+extern void GXPokeDither(s32 flag);
+extern void GXPokeBlendMode(s32 metric, s32 clear, s32 arg2, s32 arg3);
+extern void GXPokeAlphaMode(s32 metric);
+extern void GXPokeAlphaRead(s32 metric);
+extern void GXPokeDstAlpha(s32 arg);
+extern void GXPokeZMode(s32 arg, s32 val0, s32 val1);
 extern void GXWriteCommandRegister(s32 a, s32 b);
 extern void fn_80039AFC(void);
-extern void __GXInitFifoObjBreakpointCB(void);
-extern void __GXGetFifoPoolEntry(void);
-extern void __GXInitFifoObjBreakpointCB(void);
-extern void __GXGetFifoPoolEntry(void);
 
 #pragma push
 #pragma force_active on
 
 static void __GXInitGX(void);
 
-asm static GXTexRegion *__GXDefaultTexRegionCallback(GXTexObj *obj, s32 unused)
+asm static GXTexRegion *__GXInitFifoObjBreakpointCB(GXTexObj *obj, s32 unused)
 {
     nofralloc
     mflr r0
@@ -306,7 +305,7 @@ Ldone:
     blr
 }
 
-asm static GXTlutRegion *__GXDefaultTlutRegionCallback(u32 idx)
+asm static GXTlutRegion *__GXGetFifoPoolEntry(u32 idx)
 {
     nofralloc
     cmplwi r3, 0x14
@@ -322,7 +321,7 @@ Ldone:
     blr
 }
 
-asm static BOOL GXResetFunc(BOOL final)
+asm BOOL fn_8003086C(BOOL final)
 {
     nofralloc
     mflr r0
@@ -405,9 +404,9 @@ Lforce:
     li r3, 0
     bl GXSetBreakPtCallback
     li r3, 0
-    bl fn_80034378
+    bl GXSetDrawSyncCallback
     li r3, 0
-    bl fn_80034444
+    bl GXSetDrawDoneCallback
     li r31, 0
     lis r3, 0xcc01
     stw r31, -0x8000(r3)
@@ -427,7 +426,7 @@ Lforce:
     sth r4, 4(r3)
     lwz r3, -0x7DE8(r2) /* gx@sda21 */
     stb r0, 0x4f2(r3)
-    bl fn_80033EB0
+    bl GXAbortFrame
 Ltrue:
     li r3, 1
 Lexit:
@@ -1574,28 +1573,28 @@ L80031a38:
     bl __GXSetZMode
     bl __GXFlushTextureCache
     li	r3, 1
-    bl fn_800342B8
+    bl GXPokeColorUpdate
     li	r3, 1
-    bl fn_80034214
+    bl GXPokeAlphaUpdate
     li	r3, 0
-    bl fn_800342E8
+    bl GXPokeDither
     li	r3, 0
     li	r4, 0
     li	r5, 1
     li	r6, 0xf
-    bl fn_80034230
+    bl GXPokeBlendMode
     li	r3, 7
     li	r4, 0
-    bl fn_800341EC
+    bl GXPokeAlphaMode
     li	r3, 1
-    bl fn_80034200
+    bl GXPokeAlphaRead
     li	r3, 0
     li	r4, 0
-    bl fn_800342D4
+    bl GXPokeDstAlpha
     li	r3, 1
     li	r4, 7
     li	r5, 1
-    bl fn_80034304
+    bl GXPokeZMode
     li	r3, 0x23
     li	r4, 0x16
     bl GXWriteCommandRegister
@@ -1628,7 +1627,7 @@ asm void __GXCPInterruptHandler(int interrupt, void *context)
     rlwinm.	r0, r0, 0x1f, 0x1f, 0x1f
     beq L80031bb4
     lwz	r3, -0x77c8(r13)
-    bl fn_80010CB0
+    bl OSResumeThread
     li	r0, 0
     stw	r0, -0x77c0(r13)
     li	r3, 1
@@ -1657,7 +1656,7 @@ L80031bb4:
     li	r0, 1
     lwz	r3, -0x77c8(r13)
     stw	r0, -0x77c0(r13)
-    bl fn_80010F38
+    bl OSSuspendThread
 L80031c04:
     lwz	r3, -0x7de8(r2)
     lwz	r4, 8(r3)
