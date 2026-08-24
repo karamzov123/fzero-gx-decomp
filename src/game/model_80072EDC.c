@@ -16,7 +16,7 @@ extern void _savegpr_25(void);
 extern void _savegpr_26(void);
 extern void _savegpr_27(void);
 extern void GXSetTexCoordGen2(void);
-extern void fn_80033D4C(void);
+extern void GXSetNumTexGens(void);
 extern void fn_80034A5C(void);
 extern void fn_80034AEC(void);
 extern void fn_80034B7C(void);
@@ -1811,7 +1811,7 @@ asm void fn_80074660(void)
     lbz r4, 0xc28(r4)
     cmplw r4, r0
     beq _80074694
-    bl fn_80033D4C
+    bl GXSetNumTexGens
     lwz r3, -0x7688(r13)
     stb r31, 0xc28(r3)
 _80074694:

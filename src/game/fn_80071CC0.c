@@ -20,8 +20,8 @@ extern void DVDReadAsync(void);
 extern void fn_80015E18(void);
 extern void fn_800377F8(void);
 extern void fn_80038B3C(void);
-extern void fn_8003887C(void);
-extern void fn_80038944(void);
+extern void GXBeginDisplayList(void);
+extern void GXEndDisplayList(void);
 extern void GXClearVtxDesc(void);
 extern void GXSetVtxDesc(void);
 extern void fn_800793D4(void);
@@ -570,7 +570,7 @@ asm void fn_800723B8(void)
     stwu    r1, -0x10(r1)
     mflr    r0
     stw     r0, 0x14(r1)
-    bl      fn_8003887C
+    bl      GXBeginDisplayList
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10
@@ -583,7 +583,7 @@ asm void fn_800723D8(void)
     stwu    r1, -0x10(r1)
     mflr    r0
     stw     r0, 0x14(r1)
-    bl      fn_80038944
+    bl      GXEndDisplayList
     lwz     r0, 0x14(r1)
     mtlr    r0
     addi    r1, r1, 0x10

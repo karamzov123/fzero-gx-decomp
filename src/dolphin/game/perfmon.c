@@ -24,7 +24,7 @@ extern void fn_8003591C(register u32 a);
 extern void fn_80035960(register u32 a);
 extern void GXSetChanCtrl(register u32 a);
 extern void fn_80037014(register u32 a);
-extern void fn_80033D4C(register u32 a);
+extern void GXSetNumTexGens(register u32 a);
 extern void fn_800377C8(register u32 a);
 extern void fn_80037BC0(register u32 a);
 extern void GXSetVtxDesc(register u32 a);
@@ -631,7 +631,7 @@ asm int fn_8003EAE4(register u32 a)
     li	r4, 4
     bl      fn_80037014
     li	r3, 0
-    bl      fn_80033D4C
+    bl      GXSetNumTexGens
     li	r3, 1
     bl      fn_800377C8
     li	r3, 0

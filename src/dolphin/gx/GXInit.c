@@ -192,7 +192,7 @@ extern s32 fn_80036104(GXTexObj *obj);
 /* called from later GX units */
 extern void fn_80034E64(void *color, u32 zvalue);
 extern void GXSetTexCoordGen2(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
-extern void fn_80033D4C(s32 num);
+extern void GXSetNumTexGens(s32 num);
 extern void GXClearVtxDesc(void);
 extern void fn_80033A6C(void);
 extern void fn_800339E0(s32 idx, void *arg, s32 val);
@@ -1137,7 +1137,7 @@ L80031334:
     li	r8, 0x7d
     bl GXSetTexCoordGen2
     li	r3, 1
-    bl fn_80033D4C
+    bl GXSetNumTexGens
     bl GXClearVtxDesc
     bl fn_80033A6C
     li	r29, 9

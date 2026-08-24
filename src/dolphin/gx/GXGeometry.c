@@ -39,8 +39,8 @@ extern GXData *const gx;
 
 extern void fn_8003666C(void);
 extern void fn_80036F24(void);
+extern void __GXSetVCD(void);
 extern void __GXSetVAT(void);
-extern void fn_80033650(void);
 extern void __GXCalculateVatSizes(void);
 extern void __cvt_fp2unsigned(void);
 extern void fn_80088624(void);
@@ -100,9 +100,9 @@ void __GXSetDirtyState(void)
     if (gx->dirtyState & 4)
         __GXSetGenMode();
     if (gx->dirtyState & 8)
-        __GXSetVAT();
+        __GXSetVCD();
     if (gx->dirtyState & 0x10)
-        fn_80033650();
+        __GXSetVAT();
     if (gx->dirtyState & 0x18)
         __GXCalculateVatSizes();
     gx->dirtyState = 0;
@@ -144,13 +144,13 @@ _80034694:
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1c, 0x1c
     beq     _800346a8
-    bl      __GXSetVAT
+    bl      __GXSetVCD
 _800346a8:
     lwz	r3, -0x7de8(r2)
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1b, 0x1b
     beq     _800346bc
-    bl      fn_80033650
+    bl      __GXSetVAT
 _800346bc:
     lwz	r3, -0x7de8(r2)
     lwz	r0, 0x4f4(r3)

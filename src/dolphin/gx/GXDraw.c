@@ -38,7 +38,7 @@ asm int fn_8003B798(register u32 a, register int b);
 asm int fn_8003B8A8(register u32 a);
 asm int fn_8003B930(register u32 a);
 
-asm void fn_8003887C(register void* p1, register void* p2)
+asm void GXBeginDisplayList(register void* p1, register void* p2)
 {
     nofralloc
     mflr    r0
@@ -95,7 +95,7 @@ _800388e0:
     blr     
 }
 
-asm void fn_80038944(register void* p)
+asm void GXEndDisplayList(register void* p)
 {
     nofralloc
     mflr    r0

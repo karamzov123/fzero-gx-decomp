@@ -17,20 +17,20 @@ extern unsigned char jumptable_8012AF60[84];
 void __GXXfVtxSpecs(register void* p);
 void GXSetVtxDesc(register void* p, register int a, register int b);
 void fn_80032818(register void* p, register int a, register int b);
-void __GXSetVAT(void);
+void __GXSetVCD(void);
 void __GXCalculateVatSizes(void);
 void GXGetVtxDesc(register void* p, register int a);
 void GXGetVtxDescv(register void* p);
 void GXClearVtxDesc(register void* p);
 void fn_80032F80(register void* p, register int a, register int b);
 void fn_800332D8(register void* p, register int a, register int b);
-void fn_80033650(void);
+void __GXSetVAT(void);
 void fn_800336EC(register void* p, register int a, register int b);
 void fn_8003396C(register void* p);
 void fn_800339E0(register void* p);
 void fn_80033A6C(register void* p);
 void GXSetTexCoordGen2(register void* p, register int a, register int b);
-void fn_80033D4C(register void* p);
+void GXSetNumTexGens(register void* p);
 
 #pragma push
 #pragma force_active on
@@ -606,7 +606,7 @@ _80032b78:
     blr	
 }
 
-asm void __GXSetVAT(void)
+asm void __GXSetVCD(void)
 {
     nofralloc
     mflr	r0
@@ -1343,7 +1343,7 @@ _80033614:
     blr	
 }
 
-asm void fn_80033650(void)
+asm void __GXSetVAT(void)
 {
     nofralloc
     lwz	r10, -0x7de8(r2)
@@ -1844,7 +1844,7 @@ _80033d34:
     blr	
 }
 
-asm void fn_80033D4C(register void* p)
+asm void GXSetNumTexGens(register void* p)
 {
     nofralloc
     lwz	r6, -0x7de8(r2)
