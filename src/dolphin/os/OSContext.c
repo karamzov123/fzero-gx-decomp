@@ -231,7 +231,7 @@ OSSetCurrentContext_disableFPU:
     blr
 }
 
-asm OSContext * fn_8000BE5C(void)
+asm OSContext * OSGetCurrentContext(void)
 {
     nofralloc
     lis     r3, 0x8000
@@ -239,7 +239,7 @@ asm OSContext * fn_8000BE5C(void)
     blr
 }
 
-asm u32 fn_8000BE68(register OSContext* context)
+asm u32 OSSaveContext(register OSContext* context)
 {
     nofralloc
     stmw    r13, 0x34(r3)

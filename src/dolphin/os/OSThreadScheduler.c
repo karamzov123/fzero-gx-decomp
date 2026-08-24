@@ -7,8 +7,8 @@ extern void OSRestoreInterrupts(int level);
 extern void OSSetCurrentContext(register void* context);
 extern void OSLoadContext(register void* context);
 extern void OSClearContext(register void* context);
-extern void fn_8000BE5C(void);
-extern int fn_8000BE68(register void* context);
+extern void OSGetCurrentContext(void);
+extern int OSSaveContext(register void* context);
 extern void OSSwitchFiber(register void* context, register void* pc, register void* sp);
 extern void __OSUnlockAllMutex(register void* thread);
 extern void OSWakeupThread(register void* queue);
@@ -228,7 +228,7 @@ asm void* SelectThread(register int yield)
     li	r3, 0
     b       _800107e0
 _80010604:
-    bl      fn_8000BE5C
+    bl      OSGetCurrentContext
     lis	r4, -0x8000
     lwz	r6, 0xe4(r4)
     cmplw	r3, r6
@@ -284,7 +284,7 @@ _800106c4:
     lhz	r0, 0x1a2(r6)
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
     bne     _800106e4
-    bl      fn_8000BE68
+    bl      OSSaveContext
     cmplwi	r3, 0
     beq     _800106e4
     li	r3, 0

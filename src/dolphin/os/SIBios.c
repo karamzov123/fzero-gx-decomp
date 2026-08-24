@@ -75,7 +75,7 @@ extern BOOL SIUnregisterPollingHandler(register void* handler);
 extern void OSClearContext(OSContext* context);
 extern void OSSetCurrentContext(OSContext* context);
 extern void __OSReschedule(void);
-extern u32 fn_8000BE5C(void);
+extern u32 OSGetCurrentContext(void);
 
 /*
  * Far globals (.data/.bss): absolute-addressed.
@@ -2426,7 +2426,7 @@ L_80013678:
     lwz         r0, 0x14(r30)
     cmplwi      r0, 0x0
     beq         L_800136CC
-    bl          fn_8000BE5C
+    bl          OSGetCurrentContext
     addi        r29, r3, 0x0
     addi        r3, r1, 0x10
     bl          OSClearContext
