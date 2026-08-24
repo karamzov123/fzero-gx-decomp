@@ -2,6 +2,10 @@
 #pragma force_active on
 
 extern void SVM_ReportErrorString(void);
+extern unsigned char lbl_8018FF68[8];
+extern unsigned char lbl_8018FF70[8];
+extern unsigned char lbl_80092350[52];
+extern unsigned char lbl_800924F8[46];
 extern void svmErrPrintf(void);
 extern void svmUnlockServer(void);
 extern void svmLockServer(void);
@@ -419,8 +423,8 @@ _80058e9c:
 asm void fn_80058ED4(void)
 {
     nofralloc
-    lis	r5, -0x7fe7
-    stwu	r3, -0x98(r5)
+    lis     r5, lbl_8018FF68@ha
+    stwu	r3, lbl_8018FF68@l(r5)
     stw	r4, 4(r5)
     blr	
 }
@@ -428,8 +432,8 @@ asm void fn_80058ED4(void)
 asm void fn_80058EE4(void)
 {
     nofralloc
-    lis	r5, -0x7fe7
-    stwu	r3, -0x90(r5)
+    lis     r5, lbl_8018FF70@ha
+    stwu	r3, lbl_8018FF70@l(r5)
     stw	r4, 4(r5)
     blr	
 }
@@ -607,7 +611,7 @@ asm void fn_8005912C(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r7, -0x7ff7
+    lis     r7, lbl_80092350@ha
     stw	r0, 0x24(r1)
     stmw	r26, 8(r1)
     or.	r27, r4, r4
@@ -615,7 +619,7 @@ asm void fn_8005912C(void)
     mr	r26, r3
     mr	r28, r5
     mr	r29, r6
-    addi	r30, r7, 0x2350
+    addi	r30, r7, lbl_80092350@l
     addi	r31, r4, lbl_8018FEB0@l
     blt     _80059168
     cmpwi	r27, 6
@@ -1413,8 +1417,8 @@ asm void fn_80059BAC(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80059bf8
-    lis	r3, -0x7fe7
-    lwz	r12, 0x178(r3)
+    lis     r3, lbl_80190178@ha
+    lwz	r12, lbl_80190178@l(r3)
     cmplwi	r12, 0
     beq     _80059bf0
     lis     r4, lbl_8019017C@ha
@@ -1445,8 +1449,8 @@ asm void fn_80059C0C(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80059c54
-    lis	r3, -0x7fe7
-    lwz	r12, 0x178(r3)
+    lis     r3, lbl_80190178@ha
+    lwz	r12, lbl_80190178@l(r3)
     cmplwi	r12, 0
     beq     _80059c94
     lis     r4, lbl_8019017C@ha
@@ -1490,8 +1494,8 @@ asm void SVM_GetStatusU32(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80059cf0
-    lis	r3, -0x7fe7
-    lwz	r12, 0x178(r3)
+    lis     r3, lbl_80190178@ha
+    lwz	r12, lbl_80190178@l(r3)
     cmplwi	r12, 0
     beq     _80059ce8
     lis     r4, lbl_8019017C@ha
@@ -1522,8 +1526,8 @@ asm void SVM_GetStatusS8(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80059d50
-    lis	r3, -0x7fe7
-    lwz	r12, 0x178(r3)
+    lis     r3, lbl_80190178@ha
+    lwz	r12, lbl_80190178@l(r3)
     cmplwi	r12, 0
     beq     _80059d48
     lis     r4, lbl_8019017C@ha
@@ -1556,8 +1560,8 @@ asm void SVM_ClearStatus(void)
     stw	r31, 0xc(r1)
     or.	r31, r3, r3
     bne     _80059db4
-    lis	r3, -0x7fe7
-    lwz	r12, 0x178(r3)
+    lis     r3, lbl_80190178@ha
+    lwz	r12, lbl_80190178@l(r3)
     cmplwi	r12, 0
     beq     _80059dc4
     lis     r4, lbl_8019017C@ha
@@ -1587,14 +1591,14 @@ asm void SVM_SetCbSvr(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r6, -0x7ff7
+    lis     r6, lbl_800924F8@ha
     stw	r0, 0x34(r1)
     stmw	r27, 0x1c(r1)
     or.	r29, r3, r3
     lis     r3, lbl_80190178@ha
     mr	r27, r4
     mr	r28, r5
-    addi	r30, r6, 0x24f8
+    addi	r30, r6, lbl_800924F8@l
     addi	r31, r3, lbl_80190178@l
     bne     _80059e30
     lwz	r12, 0(r31)
@@ -1772,8 +1776,8 @@ asm void fn_8005A060(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _8005a0ac
-    lis	r3, -0x7fe7
-    lwz	r12, 0x178(r3)
+    lis     r3, lbl_80190178@ha
+    lwz	r12, lbl_80190178@l(r3)
     cmplwi	r12, 0
     beq     _8005a0a4
     lis     r4, lbl_8019017C@ha
@@ -1809,8 +1813,8 @@ asm void fn_8005A0C0(void)
     stw	r29, 0x14(r1)
     or.	r29, r3, r3
     bne     _8005a120
-    lis	r3, -0x7fe7
-    lwz	r12, 0x178(r3)
+    lis     r3, lbl_80190178@ha
+    lwz	r12, lbl_80190178@l(r3)
     cmplwi	r12, 0
     beq     _8005a118
     lis     r4, lbl_8019017C@ha
@@ -1881,8 +1885,8 @@ asm void fn_8005A1B4(void)
     or.	r31, r3, r3
     beq     _8005a238
     bne     _8005a204
-    lis	r3, -0x7fe7
-    lwz	r12, 0x178(r3)
+    lis     r3, lbl_80190178@ha
+    lwz	r12, lbl_80190178@l(r3)
     cmplwi	r12, 0
     beq     _8005a214
     lis     r4, lbl_8019017C@ha
