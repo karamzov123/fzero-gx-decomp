@@ -31,14 +31,14 @@ asm void __OSInitSram(void)
 {
     nofralloc
     mflr    r0
-    lis     r3, 0x8016
+    lis     r3, Scb@ha
     stw     r0, 4(r1)
     li      r4, 0x40
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
     li      r31, 0
     stw     r30, 0x10(r1)
-    addi    r30, r3, -0x4040        /* Scb = 0x8015BFC0 */
+    addi    r30, r3, Scb@l
     addi    r3, r30, 0
     stw     r31, 0x44(r30)
     stw     r31, 0x48(r30)
