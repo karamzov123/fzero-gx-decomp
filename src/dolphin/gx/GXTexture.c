@@ -482,7 +482,7 @@ asm void fn_800365B4(register void* p, register int a)
     blr	
 }
 
-asm void fn_8003666C(void)
+asm void GXPreLoadEntireTexture(void)
 {
     nofralloc
     mflr	r0

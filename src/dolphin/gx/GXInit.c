@@ -238,8 +238,8 @@ extern void __GXXFSetPerfEnableMulti(BOOL before);
 extern void __GXSetZModeBits(BOOL dither);
 extern void GXWriteLightAttn(BOOL enable, u8 alpha);
 extern void __GXSetGenModeInline(s32 pixFmt, s32 zFmt);
-extern void fn_80037D7C(BOOL odd, BOOL even);
-extern void fn_80037DB4(BOOL fieldMode, BOOL halfAspect);
+extern void GXSetFieldMask(BOOL odd, BOOL even);
+extern void GXSetFieldMode(BOOL fieldMode, BOOL halfAspect);
 extern void __GXSetScissor_LT(s32 left, s32 top, s32 wd, s32 ht);
 extern void __GXSetScissorBoxOffset(s32 wd, s32 ht);
 extern void GXSetDispCopyYScale(f32 yscale);
@@ -1526,7 +1526,7 @@ L80031920:
     bl __GXSetGenModeInline
     li	r3, 1
     li	r4, 1
-    bl fn_80037D7C
+    bl GXSetFieldMask
     lhz	r0, 8(r31)
     lhz	r3, 0x10(r31)
     slwi	r0, r0, 1
@@ -1538,7 +1538,7 @@ L80031a34:
     li	r4, 0
 L80031a38:
     lbz	r3, 0x18(r31)
-    bl fn_80037DB4
+    bl GXSetFieldMode
     lhz	r5, 4(r31)
     li	r3, 0
     lhz	r6, 6(r31)

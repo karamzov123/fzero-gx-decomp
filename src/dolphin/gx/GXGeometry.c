@@ -37,7 +37,7 @@ typedef volatile struct GXData {
 
 extern GXData *const gx;
 
-extern void fn_8003666C(void);
+extern void GXPreLoadEntireTexture(void);
 extern void fn_80036F24(void);
 extern void __GXSetVCD(void);
 extern void __GXSetVAT(void);
@@ -79,8 +79,8 @@ void __GXXFSetPerfEnableMulti(register void* p);
 void __GXSetGenModeInline(register void* p, register int a, register int b);
 void __GXSetZModeBits(register void* p);
 void GXWriteLightAttn(register void* p);
-void fn_80037D7C(register void* p);
-void fn_80037DB4(register void* p, register int a);
+void GXSetFieldMask(register void* p);
+void GXSetFieldMode(register void* p, register int a);
 void GXSetupLitVertexData(register void* p);
 void fn_800384FC(register void* p);
 void fn_80038878(void);
@@ -94,7 +94,7 @@ void __GXSendFlushPrim(void);
 void __GXSetDirtyState(void)
 {
     if (gx->dirtyState & 1)
-        fn_8003666C();
+        GXPreLoadEntireTexture();
     if (gx->dirtyState & 2)
         fn_80036F24();
     if (gx->dirtyState & 4)
@@ -126,7 +126,7 @@ asm void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts)
     beq     _800346dc
     clrlwi.	r0, r0, 0x1f
     beq     _8003466c
-    bl      fn_8003666C
+    bl      GXPreLoadEntireTexture
 _8003466c:
     lwz	r3, -0x7de8(r2)
     lwz	r0, 0x4f4(r3)

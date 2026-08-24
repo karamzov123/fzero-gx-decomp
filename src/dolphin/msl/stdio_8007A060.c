@@ -19,9 +19,9 @@ extern void __stdio_atexit(void);
 extern void fn_8008068C(void);
 extern void fwide(void);
 extern void __fp_compare_greater_equal(void);
-extern void fn_8008809C(void);
+extern void frexp(void);
 extern void __fpclassifyd(void);
-extern void fn_800882EC(void);
+extern void modf(void);
 extern void __msl_fp_helper(void);
 extern void TRK_OpenFile_Game(void);
 extern unsigned char _dtors[]; // .dtors section anchor (0x8008FF20); symbol ref required so linker sees exit() calls destructors
@@ -2981,7 +2981,7 @@ _8007c6cc:
 _8007c6dc:
     lfd	f1, 8(r1)
     addi	r3, r1, 0x10
-    bl      fn_8008809C
+    bl      frexp
     fmr	f31, f1
     stfd	f31, 0x18(r1)
     lwz	r8, 0x1c(r1)
@@ -3065,7 +3065,7 @@ _8007c7dc:
     mr	r3, r26
     bl      __fpclassifyd
     addi	r3, r1, 0x30
-    bl      fn_800882EC
+    bl      modf
     lfd	f1, 0x30(r1)
     bl      __cvt_dbl_usll
     li	r28, 0

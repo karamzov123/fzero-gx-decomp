@@ -838,7 +838,7 @@ asm void GXWriteLightAttn(register void* p)
     blr	
 }
 
-asm void fn_80037D7C(register void* p)
+asm void GXSetFieldMask(register void* p)
 {
     nofralloc
     clrlwi	r0, r4, 0x18
@@ -857,7 +857,7 @@ asm void fn_80037D7C(register void* p)
     blr	
 }
 
-asm void fn_80037DB4(register void* p, register int a)
+asm void GXSetFieldMode(register void* p, register int a)
 {
     nofralloc
     mflr	r0

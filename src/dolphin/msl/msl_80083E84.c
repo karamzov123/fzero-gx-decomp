@@ -4818,7 +4818,7 @@ _80088094:
     blr
 }
 
-asm void fn_8008809C(void)
+asm void frexp(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -4997,7 +4997,7 @@ _800882dc:
     blr
 }
 
-asm void fn_800882EC(void)
+asm void modf(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
