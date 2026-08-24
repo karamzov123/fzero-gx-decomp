@@ -39,7 +39,7 @@ extern unsigned char E01100309_illegal_file_name_format_s_mfci_get_adr_size_str[
 extern unsigned char lbl_80092790[44];
 extern unsigned char lbl_800927D0[440];
 extern unsigned char lbl_801324F0[104];
-extern unsigned char lbl_8013255C[124];
+extern unsigned char adxt_volume_scale_table[124];
 extern unsigned char lbl_80190178[4];
 extern unsigned char lbl_80190B70[4];
 extern unsigned char lbl_80190C7C[4];
@@ -444,9 +444,9 @@ _8005a6e8:
     lwz	r3, 8(r3)
     cmplwi	r3, 0
     beq     _8005a72c
-    lis     r4, lbl_8013255C@ha
+    lis     r4, adxt_volume_scale_table@ha
     slwi	r0, r31, 2
-    addi	r4, r4, lbl_8013255C@l
+    addi	r4, r4, adxt_volume_scale_table@l
     add	r4, r4, r0
     lwz	r4, 0x3c(r4)
     bl      fn_80026EE0
@@ -1923,9 +1923,9 @@ _8005bac4:
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8005bb20
-    lis     r4, lbl_8013255C@ha
+    lis     r4, adxt_volume_scale_table@ha
     slwi	r0, r29, 2
-    addi	r4, r4, lbl_8013255C@l
+    addi	r4, r4, adxt_volume_scale_table@l
     add	r4, r4, r0
     lwz	r4, 0x3c(r4)
     bl      fn_80026EE0
@@ -1952,9 +1952,9 @@ _8005bb50:
     lwz	r3, 0xc(r31)
     cmplwi	r3, 0
     beq     _8005bb88
-    lis     r4, lbl_8013255C@ha
+    lis     r4, adxt_volume_scale_table@ha
     slwi	r0, r30, 2
-    addi	r4, r4, lbl_8013255C@l
+    addi	r4, r4, adxt_volume_scale_table@l
     add	r4, r4, r0
     lwz	r4, 0x3c(r4)
     bl      fn_80026EE0
@@ -1981,9 +1981,9 @@ _8005bb90:
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8005bbf4
-    lis     r4, lbl_8013255C@ha
+    lis     r4, adxt_volume_scale_table@ha
     slwi	r0, r29, 2
-    addi	r4, r4, lbl_8013255C@l
+    addi	r4, r4, adxt_volume_scale_table@l
     add	r4, r4, r0
     lwz	r4, 0x3c(r4)
     bl      fn_80026EE0

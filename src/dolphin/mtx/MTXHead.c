@@ -41,7 +41,7 @@ extern asm void fn_800883E8(void);
 extern asm void expf(void);
 extern asm void fn_80088598(void);
 extern unsigned char ARCInitHandle_bad_archive_format_str[34];
-extern unsigned char lbl_801327AC[70];
+extern unsigned char arc_open_file_not_found_str[70];
 extern unsigned char lbl_801327F8[163944];
 extern unsigned char lbl_80199670[18720];
 extern unsigned char lbl_8019DF90[132];
@@ -819,9 +819,9 @@ asm void ARCOpen(void)
     addi	r4, r1, 0x14
     li	r5, 0x80
     bl      ARCGetEntryPath
-    lis     r3, lbl_801327AC@ha
+    lis     r3, arc_open_file_not_found_str@ha
     crxor	6, 6, 6
-    addi	r3, r3, lbl_801327AC@l
+    addi	r3, r3, arc_open_file_not_found_str@l
     addi	r4, r29, 0
     addi	r5, r1, 0x14
     bl      OSReport
