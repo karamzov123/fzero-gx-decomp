@@ -47,7 +47,7 @@ extern void __OSEnableBarnacle(register s32 chan, register u32 dev);
 extern int EXIProbe(register s32 chan);
 extern int EXIDma(register s32 chan, register void* buf, register s32 len,
                   register u32 type, register EXICallback callback);
-extern int fn_80015464(register s32 chan, register u32 dev, register u32* id);
+extern int __EXIGetID(register s32 chan, register u32 dev, register u32* id);
 extern int EXIDetach(register s32 chan);
 
 /* ---- SetExiInterruptMask ---- */
@@ -2052,10 +2052,10 @@ L_80015450:
 }
 #pragma pop
 
-/* ---- fn_80015464 ---- */
+/* ---- __EXIGetID ---- */
 #pragma push
 #pragma force_active on
-asm int fn_80015464(register s32 chan, register u32 dev, register u32* id)
+asm int __EXIGetID(register s32 chan, register u32 dev, register u32* id)
 {
     nofralloc
     mflr        r0
@@ -2277,7 +2277,7 @@ L_80015764:
     addi        r3, r30, 0x0
     addi        r4, r31, 0x0
     addi        r5, r1, 0x10
-    bl          fn_80015464
+    bl          __EXIGetID
     cmpwi       r3, 0x0
     beq         L_80015794
     lis         r3, 0xa5ff

@@ -111,7 +111,7 @@ asm void fn_8006E424(void)
     blr	
 }
 
-asm void fn_8006E498(void)
+asm void C_MTXQuat(void)
 {
     nofralloc
     lis	r4, -0x2000

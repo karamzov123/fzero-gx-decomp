@@ -5,7 +5,7 @@ extern asm void lbl_8006E1B0(void);
 extern asm void fn_8006DBAC(void);
 extern asm void fn_8006E5FC(void);
 extern asm void PSMTXQuat_fromMtx(void);
-extern asm void fn_8006E498(void);
+extern asm void C_MTXQuat(void);
 extern asm void fn_8006DC34(void);
 extern asm void fn_8006D5A4(void);
 extern asm void fn_8006D668(void);
@@ -83,7 +83,7 @@ asm void fn_8006F9A4(void)
     addi	r5, r1, 0x18
     bl      PSMTXQuat_fromMtx
     addi	r3, r1, 8
-    bl      fn_8006E498
+    bl      C_MTXQuat
     mr	r3, r31
     bl      fn_8006DC34
     lwz	r0, 0x54(r1)

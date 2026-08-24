@@ -15,7 +15,7 @@ extern void OSRegisterResetFunction(void);
 extern void OSSetWirelessID(void);
 extern void OSGetTime(void);
 extern void fn_8001191C(void);
-extern void fn_8001193C(void);
+extern void SIIsChanBusy(void);
 extern void SIRegisterPollingHandler(void);
 extern void SIUnregisterPollingHandler(void);
 extern void SIGetStatus(void);
@@ -1275,7 +1275,7 @@ _8001d0e8:
     b       _8001d2f8
 _8001d110:
     mr	r3, r21
-    bl      fn_8001193C
+    bl      SIIsChanBusy
     cmpwi	r3, 0
     bc      12, 2, _8001d13c
     li	r0, -3

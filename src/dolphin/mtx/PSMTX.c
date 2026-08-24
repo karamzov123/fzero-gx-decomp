@@ -11,7 +11,7 @@ extern void _restgpr_25(void);
 asm void PSMTXRotTrig(void);
 asm void fn_8006E398(void);
 asm void fn_8006E424(void);
-asm void fn_8006E498(void);
+asm void C_MTXQuat(void);
 asm void fn_8006E540(void);
 asm void fn_8006E5B4(void);
 asm void fn_8006E5FC(void);
@@ -127,7 +127,7 @@ asm void fn_8006E424(void)
     blr	
 }
 
-asm void fn_8006E498(void)
+asm void C_MTXQuat(void)
 {
     nofralloc
     lis	r4, -0x2000

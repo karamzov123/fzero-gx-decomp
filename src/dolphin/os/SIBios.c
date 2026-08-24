@@ -40,7 +40,7 @@ extern u32 __OSUnmaskInterrupts(u32 mask);
 
 /* forward declarations for functions defined below */
 extern s32 fn_8001191C(void);
-extern s32 fn_8001193C(register s32 chan);
+extern s32 SIIsChanBusy(register s32 chan);
 extern u32 SIGetStatus(register s32 chan);
 extern void SISetCommand(register s32 chan, register u32 command);
 extern void SITransferCommands(void);
@@ -128,10 +128,10 @@ L_80011934:
 }
 #pragma pop
 
-/* ---- fn_8001193C ---- */
+/* ---- SIIsChanBusy ---- */
 #pragma push
 #pragma force_active on
-asm s32 fn_8001193C(register s32 chan)
+asm s32 SIIsChanBusy(register s32 chan)
 {
     nofralloc
     lis         r4, Packet@ha
@@ -2551,7 +2551,7 @@ asm int fn_800137C4(register s32 chan, register void* out)
     addi        r3, r27, 0x0
     add         r30, r4, r5
     srw         r28, r0, r27
-    bl          fn_8001193C
+    bl          SIIsChanBusy
     cmpwi       r3, 0x0
     beq         L_80013818
     li          r0, -0x2
