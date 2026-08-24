@@ -137,36 +137,36 @@ asm void fn_800622B0(void);
 asm void SndStartVoice(void);
 asm void SndPlaySequenceNotes(void);
 asm void fn_80063094(void);
-asm void fn_800631EC(void);
+asm void SndInitProcTable(void);
 asm void fn_8006331C(void);
 asm void fn_80063EF4(void);
-asm void fn_80063F38(void);
+asm void SndSendParamToChannelVoices(void);
 asm void fn_8006413C(void);
 asm void fn_800641A8(void);
 asm void fn_80064230(void);
 asm void SndTickChannels(void);
-asm void fn_800647B8(void);
+asm void SndRefreshChannelVoices(void);
 asm void fn_800647F0(void);
 asm void SndSwapVoice(void);
 asm void SndUpdateVoices(void);
-asm void fn_80064D4C(void);
+asm void SndReleaseProcsForVoices(void);
 asm void fn_80064E84(void);
 asm void fn_80064FDC(void);
 asm void fn_80065390(void);
 asm void fn_80065528(void);
-asm void fn_800657F4(void);
-asm void fn_80065890(void);
-asm void fn_8006589C(void);
-asm void fn_800658A8(void);
+asm void SndStartChannelSequence(void);
+asm void SndSetCallback2(void);
+asm void SndSetCallback1(void);
+asm void SndSetCallback0(void);
 asm void fn_800658B4(void);
 asm void fn_80065A7C(void);
 asm void fn_80065AC4(void);
 asm void fn_80065AD0(void);
 asm void fn_80065B08(void);
-asm void fn_80065D70(void);
+asm void SndFreeChannel(void);
 asm void SndLoadSamplesARQ(void);
 asm void fn_80066C14(void);
-asm void fn_800672E4(void);
+asm void SndGetSequenceStatus(void);
 asm void fn_80067344(void);
 asm void fn_800674FC(void);
 asm void fn_80067898(void);
@@ -1367,7 +1367,7 @@ _8005d21c:
     bc      4, 2, _8005d230
     mr	r4, r27
     li	r3, 0x11
-    bl      fn_80063F38
+    bl      SndSendParamToChannelVoices
 _8005d230:
     lwz	r3, -0x7740(r13)
     lwz	r3, 0x444(r3)
@@ -4607,7 +4607,7 @@ _80060094:
     b       _800605f0
     lis	r3, 1
     addi	r3, r3, -0x5ffe
-    bl      fn_800647B8
+    bl      SndRefreshChannelVoices
     rlwinm.	r0, r29, 0, 0x19, 0x19
     bc      4, 2, _800605f0
     mr	r3, r29
@@ -4625,14 +4625,14 @@ _80060094:
     addi	r3, r3, -0x5ffc
     bl      fn_800641A8
     clrlwi	r3, r29, 0x10
-    bl      fn_800647B8
+    bl      SndRefreshChannelVoices
     b       _800605f0
     lis	r3, 1
     addi	r3, r3, -0x5ff9
     bl      fn_800641A8
     lis	r3, 1
     addi	r3, r3, -0x5ff9
-    bl      fn_800647B8
+    bl      SndRefreshChannelVoices
     b       _800605f0
     bl      fn_80069AE0
     b       _800605f0
@@ -4702,7 +4702,7 @@ _800601ec:
     bl      fn_80064230
     lis	r3, 1
     addi	r3, r3, -0x5fcc
-    bl      fn_800647B8
+    bl      SndRefreshChannelVoices
     b       _800605f0
     bl      fn_80065390
     b       _800605f0
@@ -4715,7 +4715,7 @@ _800601ec:
     bl      fn_80064230
     lis	r3, 1
     addi	r3, r3, -0x5fc0
-    bl      fn_800647B8
+    bl      SndRefreshChannelVoices
     b       _800605f0
 _8006027c:
     lis	r0, -0x5b90
@@ -8090,7 +8090,7 @@ _800631d4:
     blr
 }
 
-asm void fn_800631EC(void)
+asm void SndInitProcTable(void)
 {
     nofralloc
     lis     r3, lbl_80192D68@ha
@@ -9027,7 +9027,7 @@ _80063f2c:
     blr
 }
 
-asm void fn_80063F38(void)
+asm void SndSendParamToChannelVoices(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -9194,7 +9194,7 @@ _8006415c:
     bc      12, 2, _80064180
     mr	r3, r30
     mr	r4, r31
-    bl      fn_80063F38
+    bl      SndSendParamToChannelVoices
 _80064180:
     addi	r31, r31, 1
 _80064184:
@@ -9233,7 +9233,7 @@ _800641d8:
     bc      12, 2, _800641fc
     mr	r3, r30
     mr	r4, r31
-    bl      fn_80063F38
+    bl      SndSendParamToChannelVoices
 _800641fc:
     addi	r31, r31, 1
 _80064200:
@@ -9243,7 +9243,7 @@ _80064200:
     b       _80064218
 _80064210:
     clrlwi	r4, r4, 0x1c
-    bl      fn_80063F38
+    bl      SndSendParamToChannelVoices
 _80064218:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -9660,7 +9660,7 @@ _80064798:
     blr
 }
 
-asm void fn_800647B8(void)
+asm void SndRefreshChannelVoices(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -10075,7 +10075,7 @@ _80064d1c:
     blr
 }
 
-asm void fn_80064D4C(void)
+asm void SndReleaseProcsForVoices(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -10853,7 +10853,7 @@ _800657e0:
     blr
 }
 
-asm void fn_800657F4(void)
+asm void SndStartChannelSequence(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -10900,7 +10900,7 @@ _80065880:
     blr
 }
 
-asm void fn_80065890(void)
+asm void SndSetCallback2(void)
 {
     nofralloc
     lwz	r4, -0x7740(r13)
@@ -10908,7 +10908,7 @@ asm void fn_80065890(void)
     blr
 }
 
-asm void fn_8006589C(void)
+asm void SndSetCallback1(void)
 {
     nofralloc
     lwz	r4, -0x7740(r13)
@@ -10916,7 +10916,7 @@ asm void fn_8006589C(void)
     blr
 }
 
-asm void fn_800658A8(void)
+asm void SndSetCallback0(void)
 {
     nofralloc
     lwz	r4, -0x7740(r13)
@@ -11288,7 +11288,7 @@ _80065d68:
     blr
 }
 
-asm void fn_80065D70(void)
+asm void SndFreeChannel(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -11313,10 +11313,10 @@ _80065da0:
     bl      SndBoostVoicePriority
     clrlwi	r3, r29, 0x18
     li	r4, 0
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     clrlwi	r3, r29, 0x18
     li	r4, 1
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     lwz	r9, -0x7740(r13)
     li	r7, -1
     li	r6, 0xff
@@ -11660,7 +11660,7 @@ _80066214:
     lbz	r0, 0x460(r4)
     add	r0, r0, r25
     stb	r0, 0x460(r4)
-    bl      fn_800657F4
+    bl      SndStartChannelSequence
     b       _800662e4
 _800662d8:
     li	r26, -6
@@ -11991,10 +11991,10 @@ _80066770:
     bl      SndBoostVoicePriority
     clrlwi	r3, r27, 0x18
     li	r4, 0
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     clrlwi	r3, r27, 0x18
     li	r4, 1
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     lwz	r9, -0x7740(r13)
     li	r7, -1
     li	r6, 0xff
@@ -12092,10 +12092,10 @@ _800668e8:
     bl      SndBoostVoicePriority
     clrlwi	r3, r27, 0x18
     li	r4, 0
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     clrlwi	r3, r27, 0x18
     li	r4, 1
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     lwz	r9, -0x7740(r13)
     li	r7, -1
     li	r6, 0xff
@@ -12194,10 +12194,10 @@ _80066a60:
     bl      SndBoostVoicePriority
     clrlwi	r3, r27, 0x18
     li	r4, 0
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     clrlwi	r3, r27, 0x18
     li	r4, 1
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     lwz	r9, -0x7740(r13)
     li	r7, -1
     li	r6, 0xff
@@ -12466,7 +12466,7 @@ _80066dbc:
     lbz	r0, 0x460(r4)
     add	r0, r0, r25
     stb	r0, 0x460(r4)
-    bl      fn_800657F4
+    bl      SndStartChannelSequence
     b       _80066e74
 _80066e68:
     li	r28, -6
@@ -12578,10 +12578,10 @@ _80066fcc:
     bl      SndBoostVoicePriority
     clrlwi	r3, r24, 0x18
     li	r4, 0
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     clrlwi	r3, r24, 0x18
     li	r4, 1
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     lwz	r9, -0x7740(r13)
     li	r7, -1
     li	r6, 0xff
@@ -12680,10 +12680,10 @@ _80067144:
     bl      SndBoostVoicePriority
     clrlwi	r3, r24, 0x18
     li	r4, 0
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     clrlwi	r3, r24, 0x18
     li	r4, 1
-    bl      fn_80064D4C
+    bl      SndReleaseProcsForVoices
     lwz	r9, -0x7740(r13)
     li	r7, -1
     li	r6, 0xff
@@ -12785,7 +12785,7 @@ _800672d0:
     blr
 }
 
-asm void fn_800672E4(void)
+asm void SndGetSequenceStatus(void)
 {
     nofralloc
     cmplwi	r3, 0x10
@@ -14538,7 +14538,7 @@ asm void fn_80068BFC(void)
     stw	r9, -0x7744(r13)
     stw	r0, -0x7740(r13)
     bl      fn_80067F68
-    bl      fn_800631EC
+    bl      SndInitProcTable
     cmplwi	r28, 0
     bc      4, 2, _80068c54
     li	r3, -1
