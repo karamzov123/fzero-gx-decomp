@@ -152,7 +152,7 @@ _80058b38:
     blr	
 }
 
-asm void fn_80058B54(void)
+asm void SVM_ServerExit(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -200,7 +200,7 @@ _80058be8:
     blr	
 }
 
-asm void fn_80058BFC(void)
+asm void SVM_ServerInit(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

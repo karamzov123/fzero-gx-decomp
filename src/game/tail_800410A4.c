@@ -41,8 +41,8 @@ extern void fn_80058630(void);
 extern void fn_80058680(void);
 extern void fn_8005870C(void);
 extern void fn_80058754(void);
-extern void fn_80058B54(void);
-extern void fn_80058BFC(void);
+extern void SVM_ServerExit(void);
+extern void SVM_ServerInit(void);
 extern void fn_8005912C(register u32 p1, register u32 p2, register void* p3, register u32 p4);
 extern void SVM_DelCbSvr(register u32 p1, register void* p2);
 extern void SVM_SetCbSvr_2(register u32 p1, register void* p2, register u32 p3);
@@ -145,7 +145,7 @@ asm void fn_80041164(void)
     lwz     r4, 8(r31)
     li      r3, 5
     bl      SVM_DelCbSvr
-    bl      fn_80058B54
+    bl      SVM_ServerExit
     bl      fn_800424B8
     bl      fn_80047578
     bl      fn_80057CC4
@@ -186,7 +186,7 @@ asm void fn_800411F4(void)
     bl      fn_8004F74C
     bl      fn_8004EF88
     bl      fn_8005741C
-    bl      fn_80058BFC
+    bl      SVM_ServerInit
     lis     r3, fn_800413EC@ha
     li      r4, 0
     addi    r3, r3, fn_800413EC@l

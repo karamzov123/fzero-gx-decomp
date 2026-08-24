@@ -40,7 +40,7 @@ asm void PSMTXLoadIdentityFused(void);
 asm void fn_8006D7F4(void);
 asm void fn_8006D890(void);
 asm void MTXSinCos(void);
-asm void fn_8006D91C(void);
+asm void PSMTXRotRad(void);
 asm void mtx_gpstack_push(void);
 asm void mtx_gpstack_pop(void);
 asm void fn_8006DB74(void);
@@ -807,7 +807,7 @@ asm void MTXSinCos(void)
     blr
 }
 
-asm void fn_8006D91C(void)
+asm void PSMTXRotRad(void)
 {
     nofralloc
     mflr	r4

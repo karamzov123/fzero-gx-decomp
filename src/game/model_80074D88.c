@@ -34,8 +34,8 @@ extern void fn_800723B8(void);
 extern void fn_800723D8(void);
 extern void fn_80072404(void);
 extern void GXLoadMtxArray(void);
-extern void fn_800725DC(void);
-extern void fn_80072614(void);
+extern void GXSetMatrixIndexA(void);
+extern void GXSetMatrixIndexB(void);
 extern void LightCtrl_SetCachedFog(void);
 extern void LightCtrl_InitChannels4(void);
 extern void LightCtrl_SetCachedColor_1C(void);
@@ -412,7 +412,7 @@ _80075134:
     stb r0, 0x12(r1)
     lwz r0, 0x10(r1)
     stw r0, 0xc(r1)
-    bl fn_80072614
+    bl GXSetMatrixIndexB
     cmpwi r31, 0
     beq _800751D0
     lbz r4, 4(r30)
@@ -443,7 +443,7 @@ _800751E0:
     stb r0, 0x17(r1)
     lwz r0, 0x14(r1)
     stw r0, 8(r1)
-    bl fn_800725DC
+    bl GXSetMatrixIndexA
     psq_l f31, 0x48(r1), 0, 0
     lwz r0, 0x54(r1)
     lfd f31, 0x40(r1)

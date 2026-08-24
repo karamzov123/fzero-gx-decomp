@@ -5,7 +5,7 @@ extern asm void mtx_gpstack_push(void);
 extern asm void lbl_8006E1C0(void);
 extern asm void atan2f(void);
 extern asm void sqrtf(void);
-extern asm void fn_8006D91C(void);
+extern asm void PSMTXRotRad(void);
 extern asm void PSMTXRotTrigVariant(void);
 extern asm void PSMTXMultVecSS(void);
 extern asm void mtx_gpstack_pop(void);
@@ -49,7 +49,7 @@ asm void C_MTXLookAtInPlace(void)
     neg	r0, r3
     sth	r0, 2(r31)
     lha	r3, 4(r31)
-    bl      fn_8006D91C
+    bl      PSMTXRotRad
     lha	r3, 2(r31)
     bl      PSMTXRotTrigVariant
     addi	r3, r1, 0x14

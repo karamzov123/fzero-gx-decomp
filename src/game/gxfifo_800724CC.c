@@ -82,7 +82,7 @@ asm void VIFlush(register u32 a)
     blr
 }
 
-asm void fn_800725DC(register u32 val)
+asm void GXSetMatrixIndexA(register u32 val)
 {
     nofralloc
     lis     r4, lbl_8019E250@ha
@@ -101,7 +101,7 @@ asm void fn_800725DC(register u32 val)
     blr
 }
 
-asm void fn_80072614(register u32 val)
+asm void GXSetMatrixIndexB(register u32 val)
 {
     nofralloc
     lis     r4, lbl_8019E250@ha

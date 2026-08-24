@@ -70,7 +70,7 @@ _80020da8:
     blr	
 }
 
-asm void fn_80020E3C(void)
+asm void AXClearAuxBufferPtrs(void)
 {
     nofralloc
     li	r0, 0
@@ -79,7 +79,7 @@ asm void fn_80020E3C(void)
     blr	
 }
 
-asm void fn_80020E4C(void)
+asm void AXGetAuxBufferA_Active(void)
 {
     nofralloc
     lwz	r0, -0x7900(r13)
@@ -98,7 +98,7 @@ _80020e74:
     blr	
 }
 
-asm void fn_80020E80(void)
+asm void AXGetAuxBufferB_500(void)
 {
     nofralloc
     lwz	r5, -0x78e0(r13)
@@ -111,7 +111,7 @@ asm void fn_80020E80(void)
     blr	
 }
 
-asm void fn_80020EA0(void)
+asm void AXGetAuxBufferA_Current(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
@@ -123,7 +123,7 @@ asm void fn_80020EA0(void)
     blr	
 }
 
-asm void fn_80020EBC(void)
+asm void AXGetAuxBufferA_280(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
@@ -136,7 +136,7 @@ asm void fn_80020EBC(void)
     blr	
 }
 
-asm void fn_80020EDC(void)
+asm void AXGetAuxBufferA_500(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
@@ -149,7 +149,7 @@ asm void fn_80020EDC(void)
     blr	
 }
 
-asm void fn_80020EFC(void)
+asm void AXGetAuxBufferB_Current500(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
@@ -162,7 +162,7 @@ asm void fn_80020EFC(void)
     blr	
 }
 
-asm void fn_80020F1C(void)
+asm void AXGetAuxBufferB_Active(void)
 {
     nofralloc
     lwz	r0, -0x78fc(r13)
@@ -181,7 +181,7 @@ _80020f44:
     blr	
 }
 
-asm void fn_80020F50(void)
+asm void AXGetAuxBufferB_Current(void)
 {
     nofralloc
     lwz	r5, -0x78dc(r13)
@@ -193,7 +193,7 @@ asm void fn_80020F50(void)
     blr	
 }
 
-asm void fn_80020F6C(void)
+asm void AXGetAuxBufferB_280(void)
 {
     nofralloc
     lwz	r5, -0x78d8(r13)
@@ -205,7 +205,7 @@ asm void fn_80020F6C(void)
     blr	
 }
 
-asm void fn_80020F88(void)
+asm void AXGetAuxBufferB_Unknown(void)
 {
     nofralloc
     lwz	r5, -0x78d4(r13)

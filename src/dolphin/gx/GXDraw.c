@@ -16,7 +16,7 @@ extern void __GXSaveCPUFifoAux(void);
 extern void __GXSetDirtyState(void);
 extern void __GXSendFlushPrim(void);
 asm void GXSetViewport(register void* p);
-asm void fn_80039088(register void* p);
+asm void __GXSetMatrixIndex(register void* p);
 
 extern void __GXSetFog(void);
 extern unsigned char jumptable_8012B400[92];
@@ -388,7 +388,7 @@ asm void fn_80038CFC(void)
     or      r0, r0, r3
     stw     r0, 0(r4)
     li      r3, 0
-    bl      fn_80039088
+    bl      __GXSetMatrixIndex
     lwz     r0, 0xc(r1)
     addi    r1, r1, 8
     mtlr    r0
@@ -555,7 +555,7 @@ asm void GXGetViewport(register void* p)
     blr     
 }
 
-asm void fn_80038F48(register void* p)
+asm void GXSetScissor(register void* p)
 {
     nofralloc
     lwz     r8, -0x7de8(r2)
@@ -596,7 +596,7 @@ asm void fn_80038F48(register void* p)
     blr     
 }
 
-asm void fn_80038FD8(register void* p)
+asm void GXGetScissor(register void* p)
 {
     nofralloc
     lwz     r8, -0x7de8(r2)
@@ -619,7 +619,7 @@ asm void fn_80038FD8(register void* p)
     blr     
 }
 
-asm void fn_80039020(register void* p)
+asm void GXSetScissorBoxOffset(register void* p)
 {
     nofralloc
     addi    r5, r3, 0x156
@@ -655,7 +655,7 @@ asm void fn_80039060(void)
     blr     
 }
 
-asm void fn_80039088(register void* p)
+asm void __GXSetMatrixIndex(register void* p)
 {
     nofralloc
     cmpwi   r3, 5

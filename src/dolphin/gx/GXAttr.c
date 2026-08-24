@@ -4,7 +4,7 @@ typedef unsigned int u32;
 typedef signed int s32;
 
 extern void* memset(void*, int, unsigned long);
-extern void fn_80039088(void);
+extern void __GXSetMatrixIndex(void);
 extern unsigned char jumptable_8012AD40[104];
 extern unsigned char jumptable_8012ADA8[104];
 extern unsigned char jumptable_8012AE10[104];
@@ -16,7 +16,7 @@ extern unsigned char jumptable_8012AF60[84];
 
 void __GXXfVtxSpecs(register void* p);
 void GXSetVtxDesc(register void* p, register int a, register int b);
-void fn_80032818(register void* p, register int a, register int b);
+void GXSetVtxDescv(register void* p, register int a, register int b);
 void __GXSetVCD(void);
 void __GXCalculateVatSizes(void);
 void GXGetVtxDesc(register void* p, register int a);
@@ -372,7 +372,7 @@ _80032804:
     blr	
 }
 
-asm void fn_80032818(register void* p, register int a, register int b)
+asm void GXSetVtxDescv(register void* p, register int a, register int b)
 {
     nofralloc
     lis     r4, jumptable_8012ADA8@ha
@@ -1837,7 +1837,7 @@ _80033d18:
     stw	r0, 0(r5)
 _80033d34:
     addi	r3, r3, 1
-    bl      fn_80039088
+    bl      __GXSetMatrixIndex
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
     mtlr	r0

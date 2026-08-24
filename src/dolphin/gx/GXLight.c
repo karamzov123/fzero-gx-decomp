@@ -13,7 +13,7 @@ extern void GXSetVtxDesc(register void* p, register int a, register int b);
 extern void GXBuildPackedRegister(register void* p, register int a, register int b);
 extern void fn_80088624(void);
 extern void fn_80088600(void);
-extern void fn_80032818(register void* p, register int a, register int b);
+extern void GXSetVtxDescv(register void* p, register int a, register int b);
 extern void fn_800332D8(register void* p, register int a, register int b);
 extern void GXGetVtxDesc(register void* p, register int a);
 extern void __GXSetDirtyState(void);
@@ -1317,7 +1317,7 @@ _8003845c:
     bdnz    _8003845c
 _80038488:
     mr	r3, r31
-    bl      fn_80032818
+    bl      GXSetVtxDescv
     li	r3, 3
     addi	r4, r31, 0xd8
     bl      fn_800332D8
@@ -1561,7 +1561,7 @@ _80038814:
     cmpw	r22, r24
     blt     _80038658
     mr	r3, r26
-    bl      fn_80032818
+    bl      GXSetVtxDescv
     li	r3, 3
     addi	r4, r26, 0xd8
     bl      fn_800332D8

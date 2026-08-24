@@ -9,7 +9,7 @@ extern asm void MTXSinCos(void);
 extern asm void PSMTXRotTrig(void);
 extern asm void PSMTXMultVecSS(void);
 extern asm void mtx_gpstack_pop(void);
-extern asm void fn_8006D91C(void);
+extern asm void PSMTXRotRad(void);
 extern asm void PSMTXRotTrigVariant(void);
 
 asm void C_MTXRotAxis(void)
@@ -209,7 +209,7 @@ asm void C_MTXLookAt(void)
     neg	r0, r3
     sth	r0, 0(r30)
     lha	r3, 0(r29)
-    bl      fn_8006D91C
+    bl      PSMTXRotRad
     lha	r3, 0(r30)
     bl      PSMTXRotTrigVariant
     addi	r3, r1, 8

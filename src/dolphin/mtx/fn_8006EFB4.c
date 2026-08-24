@@ -5,7 +5,7 @@ extern asm void MTXSinCos(void);
 extern asm void PSMTXRotTrig(void);
 extern asm void sqrtf(void);
 extern asm void atan2f(void);
-extern asm void fn_8006D91C(void);
+extern asm void PSMTXRotRad(void);
 extern asm void PSMTXRotTrigVariant(void);
 extern asm void fn_8006E0C8(void);
 extern asm void fn_8006D890(void);
@@ -90,7 +90,7 @@ asm void PSMTXLookAt(void)
     neg	r0, r31
     mr	r31, r3
     extsh	r3, r0
-    bl      fn_8006D91C
+    bl      PSMTXRotRad
     neg	r0, r30
     extsh	r3, r0
     bl      PSMTXRotTrig

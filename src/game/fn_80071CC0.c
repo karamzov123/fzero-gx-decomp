@@ -7,7 +7,7 @@ asm void fn_80071D0C(void);
 asm void fn_80071D30(void);
 asm void GXCompareVecDirty(void);
 asm void fn_80072014(void);
-asm void fn_800720B0(void);
+asm void Snd_SetOutputModeBit0(void);
 asm void fn_80072168(void);
 asm void fn_800721FC(void);
 asm void GXComputeDeltaRatio(void);
@@ -25,8 +25,8 @@ extern void GXEndDisplayList(void);
 extern void GXClearVtxDesc(void);
 extern void GXSetVtxDesc(void);
 extern void fn_800793D4(void);
-extern void fn_800725DC(void);
-extern void fn_80072614(void);
+extern void GXSetMatrixIndexA(void);
+extern void GXSetMatrixIndexB(void);
 extern void* memcpy(void*, const void*, unsigned long);
 extern unsigned char lbl_8015AC68[84];
 extern unsigned char lbl_8015ACBC[84];
@@ -185,15 +185,15 @@ _80071d84:
     fmr     f2, f1
     bl      GXCompareVecDirty
     li      r3, 0
-    bl      fn_800720B0
+    bl      Snd_SetOutputModeBit0
     lwz     r0, 0x10(r1)
     addi    r3, r1, 0xc
     stw     r0, 0xc(r1)
-    bl      fn_800725DC
+    bl      GXSetMatrixIndexA
     lwz     r0, 0x10(r1)
     addi    r3, r1, 8
     stw     r0, 8(r1)
-    bl      fn_80072614
+    bl      GXSetMatrixIndexB
     lwz     r0, 0x24(r1)
     lwz     r31, 0x1c(r1)
     mtlr    r0
@@ -236,7 +236,7 @@ _80071f44:
     cmpwi   r3, 0
     bne     _80071f58
     li      r3, 0
-    bl      fn_800720B0
+    bl      Snd_SetOutputModeBit0
     b       _80071ff4
 _80071f58:
     lis     r4, lbl_8019E250@ha
@@ -336,7 +336,7 @@ _8007204c:
     blr
 }
 
-asm void fn_800720B0(void)
+asm void Snd_SetOutputModeBit0(void)
 {
     nofralloc
     cmpwi   r3, 0

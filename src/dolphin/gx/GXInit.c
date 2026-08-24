@@ -209,8 +209,8 @@ extern void GXSetProjectionv(const void *data);
 extern void __GXSetZMode_Cache(s32 arg);
 extern void GXSetCullMode(s32 arg);
 extern void fn_80039060(s32 arg);
-extern void fn_80038F48(s32 l, s32 t, s32 r, s32 b);
-extern void fn_80039020(s32 ofs_x, s32 ofs_y);
+extern void GXSetScissor(s32 l, s32 t, s32 r, s32 b);
+extern void GXSetScissorBoxOffset(s32 ofs_x, s32 ofs_y);
 extern void __GXSetChanAmbColor(s32 num);
 extern void __GXSetChanCtrl(s32 chan, s32 en, s32 amb, s32 mat, s32 lights, s32 df, s32 af);
 extern void GXSetChanAmbColor(s32 chan, void *color);
@@ -442,7 +442,7 @@ Lexit:
 
 /* ==== carved from coarse/text_800309FC.c (pm4-gxtail) ====
  * GXInit + __GXInitGX (melee GXInit.c identity)
- * fn_80031B50 = __GXCPInterruptHandler (retail GXInit.c tail;
+ * __GXCPInterruptHandler = __GXCPInterruptHandler (retail GXInit.c tail;
  *   melee GXFifo.c GXCPInterruptHandler; kept global: GXFifo.c refs it) */
 #pragma push
 #pragma force_active on
@@ -1267,10 +1267,10 @@ L80031480:
     li	r3, 0
     lhz	r6, 6(r31)
     li	r4, 0
-    bl fn_80038F48
+    bl GXSetScissor
     li	r3, 0
     li	r4, 0
-    bl fn_80039020
+    bl GXSetScissorBoxOffset
     li	r3, 0
     bl __GXSetChanAmbColor
     li	r3, 4
@@ -1609,7 +1609,7 @@ L80031a38:
     blr
 }
 
-asm void fn_80031B50(int interrupt, void *context)
+asm void __GXCPInterruptHandler(int interrupt, void *context)
 {
     nofralloc
     mflr	r0

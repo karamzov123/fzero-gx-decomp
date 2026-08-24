@@ -24,8 +24,8 @@ extern void fn_8005466C(void);
 extern void cvFsSetDefDev(void);
 extern void fn_80055304(void);
 extern void fn_800565F0(void);
-extern void fn_80058B54(void);
-extern void fn_80058BFC(void);
+extern void SVM_ServerExit(void);
+extern void SVM_ServerInit(void);
 extern void fn_80058C94(void);
 extern void fn_80058D24(void);
 extern void fn_80058DB4(void);
@@ -484,7 +484,7 @@ _8004e55c:
     lwz	r0, 0xca8(r31)
     cmpwi	r0, 0
     beq     _8004e554
-    bl      fn_80058B54
+    bl      SVM_ServerExit
 _8004e56c:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -522,7 +522,7 @@ asm void fn_8004E59C(void)
     lwz	r3, 0(r3)
     cmpwi	r0, 0
     bne     _8004e790
-    bl      fn_80058BFC
+    bl      SVM_ServerInit
     lis     r3, fn_8004EB00@ha
     li	r4, 0
     addi	r3, r3, fn_8004EB00@l

@@ -53,7 +53,7 @@ extern void GXClearVtxDesc(register void* p);
 extern void GXSetVtxDesc(register void* p, register int a, register int b);
 extern void GXBuildPackedRegister(register void* p, register int a, register int b);
 extern void fn_80088600(void);
-extern void fn_80032818(register void* p, register int a, register int b);
+extern void GXSetVtxDescv(register void* p, register int a, register int b);
 extern void fn_800332D8(register void* p, register int a, register int b);
 extern void GXGetVtxDesc(register void* p, register int a);
 extern unsigned char jumptable_8012B120[28];

@@ -147,13 +147,13 @@ extern void fn_8007075C(void);
 extern void fn_80070774(void);
 extern void fn_80070AC0(void);
 extern void GXCompareVecDirty(void);
-extern void fn_800720B0(void);
+extern void Snd_SetOutputModeBit0(void);
 extern void fn_800721FC(void);
 extern void fn_800723F8(void);
 extern void GXLoadMtxArray(void);
 extern void VIFlush(void);
-extern void fn_800725DC(void);
-extern void fn_80072614(void);
+extern void GXSetMatrixIndexA(void);
+extern void GXSetMatrixIndexB(void);
 extern void LightCtrl_SetCachedCullMode(void);
 extern void LightCtrl_SetCachedColor_1C(void);
 extern void LightCtrl_SetCachedPair_6C(void);
@@ -3560,11 +3560,11 @@ asm void fn_80008204(void)
     lwz	r0, -0x7530(r2)
     addi	r3, r1, 0xc
     stw	r0, 0xc(r1)
-    bl      fn_800725DC
+    bl      GXSetMatrixIndexA
     lwz	r0, -0x752c(r2)
     addi	r3, r1, 8
     stw	r0, 8(r1)
-    bl      fn_80072614
+    bl      GXSetMatrixIndexB
     li	r3, 0
     li	r4, 0xf
     li	r5, 0xf
@@ -3609,7 +3609,7 @@ asm void fn_80008204(void)
     li	r5, 1
     bl      GXSetTexGenCached
     li	r3, 0
-    bl      fn_800720B0
+    bl      Snd_SetOutputModeBit0
     addi	r3, r1, 0x18
     bl      GXGetProjectionv
     lfs	f29, 0x30(r1)
@@ -3931,7 +3931,7 @@ asm void fn_800087F4(void)
     li	r5, 1
     bl      GXSetTexGenCached
     li	r3, 0
-    bl      fn_800720B0
+    bl      Snd_SetOutputModeBit0
     li	r3, 0
     bl      LightCtrl_SetCachedCullMode
     lwz	r0, 0x14(r31)
@@ -4087,7 +4087,7 @@ asm void fn_80008A4C(void)
     li	r5, 1
     bl      GXSetTexGenCached
     li	r3, 0
-    bl      fn_800720B0
+    bl      Snd_SetOutputModeBit0
     li	r3, 6
     li	r4, 0
     bl      fn_800746A8

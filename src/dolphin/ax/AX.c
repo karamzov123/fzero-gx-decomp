@@ -20,7 +20,7 @@ extern void fn_80021910(void);
 extern void fn_80021C7C(void);
 extern void fn_800230A0(void);
 extern void fn_8002244C(void);
-extern void fn_80020E3C(void);
+extern void AXClearAuxBufferPtrs(void);
 extern void fn_80021FBC(void);
 extern unsigned char __AXStackHead[128];
 extern unsigned char __AXStackTail[128];
@@ -80,7 +80,7 @@ asm void AXQuit(void)
     bl      __AXAllocQuit
     bl      fn_800230A0
     bl      fn_8002244C
-    bl      fn_80020E3C
+    bl      AXClearAuxBufferPtrs
     bl      fn_80021910
     bl      fn_80021FBC
     lwz	r0, 0xc(r1)

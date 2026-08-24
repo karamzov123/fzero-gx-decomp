@@ -4,16 +4,16 @@
 typedef unsigned int u32;
 extern void fn_8002201C(void);
 extern void fn_80022E5C(void);
-extern void fn_80020E4C(void);
-extern void fn_80020E80(void);
-extern void fn_80020EA0(void);
-extern void fn_80020EBC(void);
-extern void fn_80020EDC(void);
-extern void fn_80020EFC(void);
-extern void fn_80020F6C(void);
-extern void fn_80020F88(void);
-extern void fn_80020F1C(void);
-extern void fn_80020F50(void);
+extern void AXGetAuxBufferA_Active(void);
+extern void AXGetAuxBufferB_500(void);
+extern void AXGetAuxBufferA_Current(void);
+extern void AXGetAuxBufferA_280(void);
+extern void AXGetAuxBufferA_500(void);
+extern void AXGetAuxBufferB_Current500(void);
+extern void AXGetAuxBufferB_280(void);
+extern void AXGetAuxBufferB_Unknown(void);
+extern void AXGetAuxBufferB_Active(void);
+extern void AXGetAuxBufferB_Current(void);
 extern void DCFlushRange(register void* addr, register u32 nBytes);
 extern unsigned char lbl_80124800[6720];
 extern unsigned char lbl_8015FF00[1536];
@@ -159,7 +159,7 @@ _8002138c:
     stw	r3, -0x78c4(r13)
     bne     _8002163c
     addi	r3, r1, 0x48
-    bl      fn_80020E4C
+    bl      AXGetAuxBufferA_Active
     lwz	r0, 0x48(r1)
     cmplwi	r0, 0
     beq     _8002159c
@@ -183,7 +183,7 @@ _8002138c:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020E80
+    bl      AXGetAuxBufferB_500
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
     lwz	r4, -0x78c4(r13)
@@ -198,7 +198,7 @@ _8002138c:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020EA0
+    bl      AXGetAuxBufferA_Current
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
     lwz	r4, -0x78c4(r13)
@@ -213,7 +213,7 @@ _8002138c:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020EBC
+    bl      AXGetAuxBufferA_280
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
     lwz	r4, -0x78c4(r13)
@@ -228,7 +228,7 @@ _8002138c:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020EDC
+    bl      AXGetAuxBufferA_500
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
     lwz	r4, -0x78c4(r13)
@@ -243,7 +243,7 @@ _8002138c:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020EFC
+    bl      AXGetAuxBufferB_Current500
     lwz	r0, 0x48(r1)
     lwz	r3, -0x78c4(r13)
     srwi	r0, r0, 0x10
@@ -268,7 +268,7 @@ _8002159c:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020F6C
+    bl      AXGetAuxBufferB_280
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
     lwz	r4, -0x78c4(r13)
@@ -283,7 +283,7 @@ _8002159c:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020F88
+    bl      AXGetAuxBufferB_Unknown
     lwz	r0, 0x48(r1)
     lwz	r3, -0x78c4(r13)
     srwi	r0, r0, 0x10
@@ -303,7 +303,7 @@ _8002159c:
     b       _8002178c
 _8002163c:
     addi	r3, r1, 0x48
-    bl      fn_80020E4C
+    bl      AXGetAuxBufferA_Active
     lwz	r0, 0x48(r1)
     cmplwi	r0, 0
     beq     _800216e4
@@ -327,7 +327,7 @@ _8002163c:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020EA0
+    bl      AXGetAuxBufferA_Current
     lwz	r0, 0x48(r1)
     lwz	r3, -0x78c4(r13)
     srwi	r0, r0, 0x10
@@ -346,7 +346,7 @@ _8002163c:
     stw	r0, -0x78c0(r13)
 _800216e4:
     addi	r3, r1, 0x48
-    bl      fn_80020F1C
+    bl      AXGetAuxBufferB_Active
     lwz	r0, 0x48(r1)
     cmplwi	r0, 0
     beq     _8002178c
@@ -373,7 +373,7 @@ _800216e4:
     lwz	r4, -0x78c4(r13)
     addi	r0, r4, 2
     stw	r0, -0x78c4(r13)
-    bl      fn_80020F50
+    bl      AXGetAuxBufferB_Current
     lwz	r0, 0x48(r1)
     lwz	r3, -0x78c4(r13)
     srwi	r0, r0, 0x10

@@ -42,7 +42,7 @@ extern void __GXSetLightAttnEnable_B(void);
 extern void GXSetChanCtrl(void);
 extern void __GXWriteMatColorRegs(void);
 extern void __GXWriteChanCtrlBitfields(void);
-extern void fn_80038F48(void);
+extern void GXSetScissor(void);
 extern void GXComputeDeltaRatio(void);
 extern void memcpy_fast(void);
 extern void strncmp(void);
@@ -1471,7 +1471,7 @@ _800741E8:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80038F48
+    bl GXSetScissor
     lwz r3, -0x7688(r13)
     stw r28, 0xae8(r3)
     lwz r3, -0x7688(r13)

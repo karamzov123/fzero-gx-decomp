@@ -47,7 +47,7 @@ extern u8 CPGPLinked;
 extern GXBreakPtCallback BreakPointCB;
 extern void GXFlush(void);
 extern void *OSGetCurrentThread(void);
-extern void fn_80031B50(int interrupt, void *context);
+extern void __GXCPInterruptHandler(int interrupt, void *context);
 typedef void (*__OSInterruptHandler)(int interrupt, void *context);
 extern __OSInterruptHandler __OSSetInterruptHandler(short interrupt, __OSInterruptHandler handler);
 extern u32 __OSUnmaskInterrupts(u32 mask);
@@ -252,7 +252,7 @@ GXBreakPtCallback GXSetBreakPtCallback(GXBreakPtCallback cb)
 
 void __GXFifoInit(void)
 {
-    __OSSetInterruptHandler(0x11, fn_80031B50);
+    __OSSetInterruptHandler(0x11, __GXCPInterruptHandler);
     __OSUnmaskInterrupts(0x4000);
     __GXCurrentThread = OSGetCurrentThread();
     GXOverflowSuspendInProgress = FALSE;

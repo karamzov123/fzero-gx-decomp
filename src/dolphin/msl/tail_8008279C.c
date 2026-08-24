@@ -12,14 +12,14 @@ extern void fn_80080030(void);
 extern void MSL_device_link_fn(void);
 extern void fn_80085088(void);
 extern void MSLStrToLong(void);
-extern void fn_80082A7C(void);
+extern void __scanf(void);
 extern void __msl_parse_format_specifier(void);
 extern unsigned char jumptable_8015B668[208];
 extern unsigned char lbl_80095010[32];
 extern unsigned char lbl_8015B100[256];
 void fn_800829EC(void);
 
-asm void fn_8008279C(void)
+asm void __qsort(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
@@ -139,7 +139,7 @@ asm void fn_80082908(void)
     blr
 }
 
-asm void fn_80082928(void)
+asm void sscanf(void)
 {
     nofralloc
     stwu	r1, -0x90(r1)
@@ -188,7 +188,7 @@ _800829b8:
     addi	r3, r3, fn_800829EC@l
     mr	r6, r31
     addi	r4, r1, 0x68
-    bl      fn_80082A7C
+    bl      __scanf
 _800829d8:
     lwz	r0, 0x94(r1)
     lwz	r31, 0x8c(r1)
@@ -246,7 +246,7 @@ _80082a74:
     blr
 }
 
-asm void fn_80082A7C(void)
+asm void __scanf(void)
 {
     nofralloc
     stwu	r1, -0x80(r1)
