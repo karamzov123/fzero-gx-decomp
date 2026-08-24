@@ -25,8 +25,8 @@ extern void fn_80029824(void);
 extern void fn_80029AF4(int chn);
 extern void __CARDExiHandler(int chn, void* ctx);
 extern void __CARDExtHandler(int chn, void* ctx);
-extern unsigned char lbl_8012ABC0[32];
-extern unsigned char lbl_8012ABE0[32];
+extern unsigned char card_sector_size_table[32];
+extern unsigned char card_block_count_table[32];
 extern unsigned char lbl_80177B80[32];
 
 extern void fn_8002E2B4(void);
@@ -1141,9 +1141,9 @@ _8002d730:
     li	r3, 0
     blr	
 _8002d738:
-    lis     r4, lbl_8012ABC0@ha
+    lis     r4, card_sector_size_table@ha
     rlwinm	r3, r3, 0x17, 0x1b, 0x1d
-    addi	r0, r4, lbl_8012ABC0@l
+    addi	r0, r4, card_sector_size_table@l
     add	r3, r0, r3
     lwz	r3, 0(r3)
     cmpwi	r3, 0
@@ -1255,8 +1255,8 @@ _8002d8a8:
     cmplwi	r31, 0
     beq     _8002d8cc
     lwz	r4, 0x14(r1)
-    lis     r3, lbl_8012ABC0@ha
-    addi	r0, r3, lbl_8012ABC0@l
+    lis     r3, card_sector_size_table@ha
+    addi	r0, r3, card_sector_size_table@l
     rlwinm	r3, r4, 0x17, 0x1b, 0x1d
     add	r3, r0, r3
     lwz	r0, 0(r3)
@@ -1318,11 +1318,11 @@ _8002d974:
     cmpwi	r30, 0
     blt     _8002dcbc
     lwz	r0, 0x18(r1)
-    lis     r4, lbl_8012ABC0@ha
-    addi	r4, r4, lbl_8012ABC0@l
+    lis     r4, card_sector_size_table@ha
+    addi	r4, r4, card_sector_size_table@l
     stw	r0, 0x108(r31)
-    lis     r3, lbl_8012ABE0@ha
-    addi	r0, r3, lbl_8012ABE0@l
+    lis     r3, card_block_count_table@ha
+    addi	r0, r3, card_block_count_table@l
     lwz	r5, 0x18(r1)
     addi	r3, r29, 0
     rlwinm	r5, r5, 0, 0x18, 0x1d

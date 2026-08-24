@@ -29,7 +29,7 @@ extern void fn_800377C8(register u32 a);
 extern void fn_80037BC0(register u32 a);
 extern void fn_800324C8(register u32 a);
 extern void fn_80032F80(register u32 a);
-extern unsigned char lbl_8012B624[48];
+extern unsigned char perf_autosample_negative_str[48];
 extern unsigned char lbl_8012B658[144];
 extern unsigned char lbl_80178BF0[40];
 extern unsigned char lbl_80178C18[144];
@@ -279,9 +279,9 @@ _8003e6cc:
     lwz	r0, -0x7e3c(r13)
     cmpwi	r0, 0
     bge     _8003e6ec
-    lis     r3, lbl_8012B624@ha
+    lis     r3, perf_autosample_negative_str@ha
     crxor	6, 6, 6
-    addi	r3, r3, lbl_8012B624@l
+    addi	r3, r3, perf_autosample_negative_str@l
     bl      OSReport
     b       _8003e8b4
 _8003e6ec:

@@ -39,7 +39,7 @@ extern void GetInitVal(void);
 extern void fn_8002DD08(void);
 extern void memcpy(void);
 extern unsigned char __CARDBlock[544];
-extern unsigned char lbl_8012AA60[32];
+extern unsigned char card_unlock_dsp_cmd_data[32];
 
 asm void __CARDUnlock(void)
 {
@@ -758,9 +758,9 @@ _8002b9ac:
     li	r4, 0x10
     bl      DCFlushRange
     li	r0, 0xff
-    lis     r3, lbl_8012AA60@ha
+    lis     r3, card_unlock_dsp_cmd_data@ha
     stw	r0, 4(r30)
-    addi	r3, r3, lbl_8012AA60@l
+    addi	r3, r3, card_unlock_dsp_cmd_data@l
     addis	r0, r3, -0x8000
     stw	r0, 0xc(r30)
     li	r0, 0x160

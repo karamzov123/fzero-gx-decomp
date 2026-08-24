@@ -4,7 +4,7 @@
 extern void fn_80051F38(void);
 extern void memset(void);
 extern unsigned char adxt_sincos_table[8320];
-extern unsigned char lbl_80130BC0[64];
+extern unsigned char jumptable_80130BC0[64];
 extern unsigned char lbl_801319E0[2176];
 extern unsigned char lbl_80187370[16];
 extern unsigned char lbl_80187380[64];
@@ -316,8 +316,8 @@ _80053e24:
     srawi	r0, r27, 6
     lis	r5, -0x7fe8
     stw	r3, 0x73c0(r5)
-    lis     r4, lbl_80130BC0@ha
-    addi	r3, r4, lbl_80130BC0@l
+    lis     r4, jumptable_80130BC0@ha
+    addi	r3, r4, jumptable_80130BC0@l
     slwi	r0, r0, 2
     lwzx	r12, r3, r0
     slwi	r6, r27, 2

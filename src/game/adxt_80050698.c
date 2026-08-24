@@ -3,7 +3,7 @@
 
 extern void fn_800501F4(void);
 extern unsigned char lbl_800912F8[8];
-extern unsigned char lbl_80130A48[256];
+extern unsigned char adxt_attenuation_table[256];
 extern unsigned char lbl_80130B98[40];
 extern unsigned char lbl_80130C00[96];
 extern unsigned char lbl_80130C60[384];
@@ -49,10 +49,10 @@ _80050710:
     beq     _80050ae4
     mulli	r5, r0, 0x18
     lwz	r0, 0(r30)
-    lis     r3, lbl_80130A48@ha
+    lis     r3, adxt_attenuation_table@ha
     slwi	r4, r0, 2
     add	r5, r25, r5
-    addi	r3, r3, lbl_80130A48@l
+    addi	r3, r3, adxt_attenuation_table@l
     lwz	r0, 8(r5)
     lfsx	f2, r3, r4
     lfs	f1, 0x10(r5)

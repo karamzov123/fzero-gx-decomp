@@ -38,9 +38,9 @@ asm int fn_8003D588(register u32 a);
 asm int fn_8003E13C(register u32 a);
 asm int fn_8003E284(register u32 a);
 extern void fn_8003E9EC(void);
-extern unsigned char lbl_8012B590[62];
-extern unsigned char lbl_8012B5D0[37];
-extern unsigned char lbl_8012B5F8[44];
+extern unsigned char perf_unknown_event_str[62];
+extern unsigned char perf_event_still_open_cpu_str[37];
+extern unsigned char perf_end_never_started_str[44];
 extern unsigned char lbl_801789C0[560];
 
 #pragma push
@@ -2606,16 +2606,16 @@ _8003df1c:
     stw     r4, 8(r3)
     b       _8003dfd0
 _8003dfa8:
-    lis     r3, lbl_8012B590@ha
+    lis     r3, perf_unknown_event_str@ha
     crxor   6, 6, 6
-    addi    r3, r3, lbl_8012B590@l
+    addi    r3, r3, perf_unknown_event_str@l
     clrlwi  r4, r28, 0x18
     bl      OSReport
     b       _8003dfd0
 _8003dfc0:
-    lis     r3, lbl_8012B5D0@ha
+    lis     r3, perf_event_still_open_cpu_str@ha
     crxor   6, 6, 6
-    addi    r3, r3, lbl_8012B5D0@l
+    addi    r3, r3, perf_event_still_open_cpu_str@l
     bl      OSReport
 _8003dfd0:
     mr      r3, r29
@@ -2648,9 +2648,9 @@ asm int fn_8003DFF8(register u32 a)
     lwz     r29, 8(r4)
     cmpwi   r29, 0
     bge     _8003e050
-    lis     r3, lbl_8012B5F8@ha
+    lis     r3, perf_end_never_started_str@ha
     crxor   6, 6, 6
-    addi    r3, r3, lbl_8012B5F8@l
+    addi    r3, r3, perf_end_never_started_str@l
     bl      OSReport
     mr      r3, r30
     bl      OSRestoreInterrupts

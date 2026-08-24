@@ -8,7 +8,7 @@ extern void ADXF_Stop(void);
 extern void fn_80050BD4(void);
 extern void fn_80053A30(void);
 extern void fn_80053DB4(void);
-extern unsigned char lbl_80130B48[32];
+extern unsigned char adxt_sample_rate_table[32];
 extern unsigned char lbl_80130B68[48];
 extern unsigned char lbl_80187118[24];
 
@@ -227,9 +227,9 @@ _80051274:
     cmpwi	r0, 0
     bne     _800512a4
     lwz	r4, 0x354(r29)
-    lis     r3, lbl_80130B48@ha
+    lis     r3, adxt_sample_rate_table@ha
     lwz	r0, 0x364(r29)
-    addi	r3, r3, lbl_80130B48@l
+    addi	r3, r3, adxt_sample_rate_table@l
     slwi	r4, r4, 4
     add	r3, r3, r4
     slwi	r0, r0, 2

@@ -4,7 +4,7 @@
 extern void fn_800502A0(void);
 extern void svm_ringbuf_read(void);
 extern void memset(void);
-extern unsigned char lbl_8012D9B8[4];
+extern unsigned char getCupModeConst_value_tbl[4];
 extern unsigned char lbl_8012D9BC[12292];
 extern unsigned char lbl_801309C0[136];
 extern unsigned char lbl_80186FAC[356];
@@ -376,12 +376,12 @@ asm void getCupModeConst(void)
     nofralloc
     mulli	r7, r3, 0x3000
     lis     r6, lbl_8012D9BC@ha
-    lis     r5, lbl_8012D9B8@ha
+    lis     r5, getCupModeConst_value_tbl@ha
     addi	r0, r6, lbl_8012D9BC@l
     add	r6, r0, r7
     slwi	r0, r3, 2
     stw	r6, 0(r4)
-    addi	r3, r5, lbl_8012D9B8@l
+    addi	r3, r5, getCupModeConst_value_tbl@l
     lwzx	r3, r3, r0
     blr	
 }
