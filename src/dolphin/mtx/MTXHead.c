@@ -1,80 +1,47 @@
 #pragma force_active on
 
-extern unsigned char lbl_801A7350[8];
-extern unsigned char lbl_801A73A0[8];
-extern unsigned char lbl_801A7380[8];
-extern unsigned char lbl_801A7368[8];
-extern unsigned char lbl_801A7380[8];
-extern unsigned char lbl_801A6CA4[4];
-extern unsigned char lbl_801A6CA0[4];
-extern unsigned char lbl_801A73B0[4];
-extern unsigned char lbl_801A73A8[4];
-extern unsigned char lbl_801A738C[4];
-extern unsigned char lbl_801A7378[4];
-extern unsigned char lbl_801A7370[4];
-extern unsigned char lbl_801A7364[4];
-extern unsigned char lbl_801A7360[4];
-extern unsigned char lbl_801A7358[4];
-extern unsigned char lbl_801A6CA4[4];
-extern unsigned char lbl_801A6CA0[4];
-extern unsigned char lbl_801A73A8[4];
-extern unsigned char lbl_801A7394[4];
-extern unsigned char lbl_801A737C[4];
-extern unsigned char lbl_801A735C[4];
-extern unsigned char lbl_801A6CA0[4];
-extern unsigned char lbl_801A7374[4];
-extern unsigned char lbl_801A7388[4];
-extern unsigned char lbl_801A735C[4];
-extern unsigned char lbl_801A6CA4[4];
-extern unsigned char lbl_801A73AC[4];
-extern unsigned char lbl_801A6CA4[4];
-extern unsigned char lbl_801A6CA0[4];
-extern unsigned char lbl_801A6CA4[4];
-extern unsigned char lbl_801A6CA0[4];
-extern unsigned char lbl_801A6CA0[4];
-
-asm void OSReport(void);
+extern asm void OSReport(void);
 extern asm void OSPanic(void);
 extern asm void OSDisableInterrupts(void);
 extern asm void OSRestoreInterrupts(void);
 extern asm void OSGetTick(void);
-extern asm void SITransferSync(void);
-extern asm void SIGetResponseSync(void);
+extern asm void fn_80013428(void);
+extern asm void fn_800137C4(void);
 extern asm void fn_80013994(void);
-extern asm void SISetInterruptMask(void);
-extern asm void MTXOrtho(void);
+extern asm void fn_800139E8(void);
+extern asm void fn_80015EE8(void);
 extern asm void AXFreeVoice(void);
-extern asm void AXSetVoiceType_cached(void);
-extern asm void axmix_device_ctrl_clear(void);
-extern asm void axmix_device_ctrl_unlink(void);
+extern asm void fn_80023168(void);
+extern asm void fn_80026D70(void);
+extern asm void fn_80028424(void);
 extern asm void GXBegin(void);
-extern asm void __GXSetTexRegion(void);
-extern asm void GXLoadMatIdxTripleToXF(void);
+extern asm void fn_800371F8(void);
+extern asm void fn_80038C5C(void);
 extern asm void SndAllocBankEntry(void);
-extern asm void QuatNormalizeCompare(void);
-extern asm void GXLoadMtxArray(void);
-extern asm void LightCtrl_SetCachedCullMode(void);
-extern asm void LightCtrl_SetCachedColor_1C(void);
-extern asm void LightCtrl_SetCachedPair_6C(void);
+extern asm void fn_8006D758(void);
+extern asm void fn_8007245C(void);
+extern asm void fn_80072864(void);
+extern asm void fn_800728A8(void);
+extern asm void fn_80072AB0(void);
 extern asm void ModelSetCachedParam_F0(void);
 extern asm void ModelSetCachedParam_1F0(void);
 extern asm void ModelSetCachedParam_2F0(void);
 extern asm void ModelSetCachedParam_430(void);
 extern asm void ModelSetCachedMaterial_570(void);
-extern asm void ModelSetCachedNumTexGens(void);
-extern asm void GXIntToFloatCopy(void);
-extern asm void ModelSetCachedState_840(void);
-extern asm void ModelClearCacheSlot_B28(void);
-extern asm void GXSetNumTexGensCached(void);
-extern asm void GXSetChanAmbColorCached(void);
-extern asm void LightCtrl_SetCachedRec_C30(void);
-extern asm void GXSetTexGenCached(void);
-extern asm void MSL_CharAttrLookup(void);
-extern asm void atan(void);
+extern asm void fn_80073678(void);
+extern asm void fn_800737E4(void);
+extern asm void fn_80073898(void);
+extern asm void fn_80073C6C(void);
+extern asm void fn_80074660(void);
+extern asm void fn_80074788(void);
+extern asm void fn_800747D0(void);
+extern asm void fn_80074918(void);
+extern asm void fn_8007ED90(void);
+extern asm void fn_800883E8(void);
 extern asm void expf(void);
-extern asm void __msl_fp_helper(void);
+extern asm void fn_80088598(void);
 extern unsigned char ARCInitHandle_bad_archive_format_str[34];
-extern unsigned char arc_open_file_not_found_str[70];
+extern unsigned char lbl_801327AC[70];
 extern unsigned char lbl_801327F8[163944];
 extern unsigned char lbl_80199670[18720];
 extern unsigned char lbl_8019DF90[132];
@@ -82,23 +49,9 @@ extern unsigned char lbl_8019E014[128];
 extern unsigned char lbl_8019E094[128];
 extern unsigned char lbl_8019E114[44];
 
-extern unsigned char g_sndMgrPtr[8];
-extern unsigned char lbl_801A6C88[4];
-extern unsigned char lbl_801A6C8C[4];
-extern unsigned char lbl_801A6C90[4];
-extern unsigned char lbl_801A6C94[4];
-extern unsigned char lbl_801A6C98[8];
-extern unsigned char arc_c_str[6];
-extern unsigned char lbl_801A73B4[28];
-extern unsigned char lbl_801A6CA8[4];
-extern unsigned char lbl_801A6CAC[4];
-extern unsigned char lbl_801A6CF4[4];
-extern unsigned char lbl_801A6D00[8];
-extern unsigned char lbl_801A7390[4];
-extern unsigned char lbl_801A7398[4];
-asm void SndMaybeAllocBank(void);
+asm void fn_80069AE0(void);
 asm void fn_80069B10(void);
-asm void AvHeapReleaseById(void);
+asm void fn_80069CE4(void);
 asm void fn_80069FCC(void);
 asm void fn_8006A1F8(void);
 asm void ARCInitHandle(void);
@@ -133,7 +86,7 @@ asm void fn_8006BB74(void);
 asm void fn_8006BB9C(void);
 asm void fn_8006BBDC(void);
 asm void fn_8006BC1C(void);
-asm void Model_ClearCacheArray_F4(void);
+asm void fn_8006BC50(void);
 asm void fn_8006BC84(void);
 asm void fn_8006BCF8(void);
 asm void fn_8006BE0C(void);
@@ -156,13 +109,13 @@ asm void fn_8006CDFC(void);
 asm void fn_8006CE1C(void);
 asm void fn_8006CE44(void);
 
-asm void SndMaybeAllocBank(void)
+asm void fn_80069AE0(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     lwz	r3, 0x444(r3)
     rlwinm.	r0, r3, 0, 0x19, 0x19
     bc      4, 2, _80069b00
@@ -192,7 +145,7 @@ _80069b3c:
     cmplwi	r31, 0x500
     bc      4, 2, _80069bf4
     clrlwi	r0, r28, 0x18
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     mulli	r29, r0, 0x118
     add	r3, r3, r29
     lbz	r0, 0x1408(r3)
@@ -200,24 +153,24 @@ _80069b3c:
     bc      4, 2, _80069cb4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      AXSetVoiceType_cached
-    lwz	r3, g_sndMgrPtr
+    bl      fn_80023168
+    lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      axmix_device_ctrl_clear
-    lwz	r3, g_sndMgrPtr
+    bl      fn_80026D70
+    lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      AXFreeVoice
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     addi	r0, r29, 0x1434
     li	r5, 0
     addi	r3, r29, 0x1438
     stwx	r5, r4, r0
-    lwz	r0, g_sndMgrPtr
+    lwz	r0, -0x7740(r13)
     add	r3, r0, r3
-    bl      axmix_device_ctrl_unlink
-    lwz	r3, g_sndMgrPtr
+    bl      fn_80028424
+    lwz	r3, -0x7740(r13)
     addi	r5, r29, 0x1408
     lbzx	r0, r3, r5
     cmplwi	r0, 0xff
@@ -228,18 +181,18 @@ _80069b3c:
     li	r6, 0
     addi	r3, r29, 0x1409
     addi	r0, r29, 0x1430
-    lwz	r5, g_sndMgrPtr
+    lwz	r5, -0x7740(r13)
     stwx	r6, r5, r4
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     stbx	r6, r4, r3
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     stwx	r6, r3, r0
     b       _80069cb4
 _80069bf4:
     cmplwi	r31, 0x1500
     bc      4, 2, _80069cb4
     clrlwi	r0, r28, 0x18
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     mulli	r29, r0, 0x118
     add	r3, r3, r29
     lbz	r0, 0x1408(r3)
@@ -250,24 +203,24 @@ _80069bf4:
     bc      4, 2, _80069cb4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      AXSetVoiceType_cached
-    lwz	r3, g_sndMgrPtr
+    bl      fn_80023168
+    lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      axmix_device_ctrl_clear
-    lwz	r3, g_sndMgrPtr
+    bl      fn_80026D70
+    lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      AXFreeVoice
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     addi	r0, r29, 0x1434
     li	r5, 0
     addi	r3, r29, 0x1438
     stwx	r5, r4, r0
-    lwz	r0, g_sndMgrPtr
+    lwz	r0, -0x7740(r13)
     add	r3, r0, r3
-    bl      axmix_device_ctrl_unlink
-    lwz	r3, g_sndMgrPtr
+    bl      fn_80028424
+    lwz	r3, -0x7740(r13)
     addi	r5, r29, 0x1408
     lbzx	r0, r3, r5
     cmplwi	r0, 0xff
@@ -278,11 +231,11 @@ _80069bf4:
     li	r6, 0
     addi	r3, r29, 0x1409
     addi	r0, r29, 0x1430
-    lwz	r5, g_sndMgrPtr
+    lwz	r5, -0x7740(r13)
     stwx	r6, r5, r4
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     stbx	r6, r4, r3
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     stwx	r6, r3, r0
 _80069cb4:
     addi	r28, r28, 1
@@ -300,7 +253,7 @@ _80069cb8:
     blr
 }
 
-asm void AvHeapReleaseById(void)
+asm void fn_80069CE4(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -340,30 +293,30 @@ _80069d4c:
     b       _80069dd0
 _80069d68:
     rlwinm	r4, r12, 4, 0x14, 0x1b
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     addi	r9, r4, 0x496
     addi	r12, r12, 8
     stbx	r10, r3, r9
     addi	r0, r9, 0x10
     addi	r7, r9, 0x20
     addi	r6, r9, 0x30
-    lwz	r8, g_sndMgrPtr
+    lwz	r8, -0x7740(r13)
     addi	r5, r9, 0x40
     addi	r4, r9, 0x50
     addi	r3, r9, 0x60
     stbx	r10, r8, r0
     addi	r0, r9, 0x70
-    lwz	r8, g_sndMgrPtr
+    lwz	r8, -0x7740(r13)
     stbx	r10, r8, r7
-    lwz	r7, g_sndMgrPtr
+    lwz	r7, -0x7740(r13)
     stbx	r10, r7, r6
-    lwz	r6, g_sndMgrPtr
+    lwz	r6, -0x7740(r13)
     stbx	r10, r6, r5
-    lwz	r5, g_sndMgrPtr
+    lwz	r5, -0x7740(r13)
     stbx	r10, r5, r4
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     stbx	r10, r4, r3
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     stbx	r10, r3, r0
 _80069dd0:
     clrlwi	r0, r12, 0x18
@@ -371,7 +324,7 @@ _80069dd0:
     bc      12, 0, _80069d68
     b       _80069df4
 _80069de0:
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     rlwinm	r0, r11, 4, 0x18, 0x1b
     clrlwi	r4, r29, 0x19
     add	r3, r3, r0
@@ -381,7 +334,7 @@ _80069df4:
     clrlwi	r27, r11, 0x1c
     mr	r28, r29
 _80069e00:
-    lwz	r0, g_sndMgrPtr
+    lwz	r0, -0x7740(r13)
     add	r4, r0, r28
     lbz	r0, 0x1408(r4)
     cmplwi	r0, 4
@@ -395,7 +348,7 @@ _80069e28:
     lwz	r3, 0x1424(r4)
     lbz	r4, 0x1413(r4)
     bl      fn_80069FCC
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     addi	r0, r28, 0x141c
     add	r5, r4, r28
     lwz	r4, 0x151c(r5)
@@ -403,7 +356,7 @@ _80069e28:
     subf	r4, r4, r3
     slwi	r4, r4, 0x10
     stw	r4, 0x148c(r5)
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     stwx	r3, r4, r0
 _80069e5c:
     addi	r29, r29, 1
@@ -425,30 +378,30 @@ _80069e80:
     b       _80069f00
 _80069e98:
     rlwinm	r4, r11, 1, 0x17, 0x1e
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     addi	r9, r4, 0x5a14
     addi	r11, r11, 8
     sthx	r29, r3, r9
     addi	r0, r9, 2
     addi	r7, r9, 4
     addi	r6, r9, 6
-    lwz	r8, g_sndMgrPtr
+    lwz	r8, -0x7740(r13)
     addi	r5, r9, 8
     addi	r4, r9, 0xa
     addi	r3, r9, 0xc
     sthx	r29, r8, r0
     addi	r0, r9, 0xe
-    lwz	r8, g_sndMgrPtr
+    lwz	r8, -0x7740(r13)
     sthx	r29, r8, r7
-    lwz	r7, g_sndMgrPtr
+    lwz	r7, -0x7740(r13)
     sthx	r29, r7, r6
-    lwz	r6, g_sndMgrPtr
+    lwz	r6, -0x7740(r13)
     sthx	r29, r6, r5
-    lwz	r5, g_sndMgrPtr
+    lwz	r5, -0x7740(r13)
     sthx	r29, r5, r4
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     sthx	r29, r4, r3
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     sthx	r29, r3, r0
 _80069f00:
     clrlwi	r0, r11, 0x18
@@ -456,7 +409,7 @@ _80069f00:
     bc      12, 0, _80069e98
     b       _80069f20
 _80069f10:
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     rlwinm	r0, r10, 1, 0x1b, 0x1e
     add	r3, r3, r0
     sth	r29, 0x5a14(r3)
@@ -465,7 +418,7 @@ _80069f20:
     clrlwi	r28, r10, 0x1c
     mr	r27, r29
 _80069f2c:
-    lwz	r0, g_sndMgrPtr
+    lwz	r0, -0x7740(r13)
     add	r4, r0, r27
     lbz	r0, 0x1408(r4)
     cmplwi	r0, 4
@@ -479,7 +432,7 @@ _80069f54:
     lwz	r3, 0x1424(r4)
     lbz	r4, 0x1413(r4)
     bl      fn_80069FCC
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     addi	r0, r27, 0x141c
     add	r5, r4, r27
     lwz	r4, 0x151c(r5)
@@ -487,7 +440,7 @@ _80069f54:
     subf	r4, r4, r3
     slwi	r4, r4, 0x10
     stw	r4, 0x148c(r5)
-    lwz	r4, g_sndMgrPtr
+    lwz	r4, -0x7740(r13)
     stwx	r3, r4, r0
 _80069f88:
     addi	r29, r29, 1
@@ -521,7 +474,7 @@ asm void fn_80069FCC(void)
     stfd	f31, 0x40(r1)
     psq_st	f31, 0x48(r1), 0, 0
     stw	r31, 0x3c(r1)
-    lwz	r5, g_sndMgrPtr
+    lwz	r5, -0x7740(r13)
     mr	r31, r4
     lbz	r0, 0x2c(r3)
     li	r7, 0
@@ -563,42 +516,42 @@ _8006a064:
     bc      12, 2, _8006a0a4
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lfd f2, lbl_801A7368(r2)
+    lfd	f2, -0x7ad8(r2)
     stw	r0, 8(r1)
-    lfs f0, lbl_801A7358(r2)
+    lfs	f0, -0x7ae8(r2)
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd f0, lbl_801A7350(r2)
+    lfd	f0, -0x7af0(r2)
     fmul	f31, f0, f1
     frsp	f31, f31
     b       _8006a0a8
 _8006a0a4:
-    lfs f31, lbl_801A735C(r2)
+    lfs	f31, -0x7ae4(r2)
 _8006a0a8:
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     lbz	r3, 0x5a08(r3)
     cmplwi	r3, 0
     bc      12, 2, _8006a0f0
     lis	r0, 0x4330
     stw	r3, 0x14(r1)
-    lfd f2, lbl_801A7368(r2)
+    lfd	f2, -0x7ad8(r2)
     stw	r0, 0x10(r1)
-    lfs f0, lbl_801A7360(r2)
+    lfs	f0, -0x7ae0(r2)
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd f0, lbl_801A7350(r2)
+    lfd	f0, -0x7af0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f31, f31, f0
     b       _8006a0f4
 _8006a0f0:
-    lfs f31, lbl_801A735C(r2)
+    lfs	f31, -0x7ae4(r2)
 _8006a0f4:
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     rlwinm	r0, r31, 4, 0x14, 0x1b
     clrlwi	r31, r31, 0x18
     add	r3, r3, r0
@@ -607,22 +560,22 @@ _8006a0f4:
     bc      12, 2, _8006a148
     lis	r0, 0x4330
     stw	r3, 0x1c(r1)
-    lfd f2, lbl_801A7368(r2)
+    lfd	f2, -0x7ad8(r2)
     stw	r0, 0x18(r1)
-    lfs f0, lbl_801A7360(r2)
+    lfs	f0, -0x7ae0(r2)
     lfd	f1, 0x18(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd f0, lbl_801A7350(r2)
+    lfd	f0, -0x7af0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f31, f31, f0
     b       _8006a14c
 _8006a148:
-    lfs f31, lbl_801A735C(r2)
+    lfs	f31, -0x7ae4(r2)
 _8006a14c:
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     slwi	r0, r31, 1
     lbz	r4, 0x461(r3)
     add	r3, r3, r0
@@ -631,23 +584,23 @@ _8006a14c:
     bc      12, 2, _8006a1a0
     lis	r0, 0x4330
     stw	r4, 0x24(r1)
-    lfd f2, lbl_801A7368(r2)
+    lfd	f2, -0x7ad8(r2)
     stw	r0, 0x20(r1)
-    lfs f0, lbl_801A7360(r2)
+    lfs	f0, -0x7ae0(r2)
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd f0, lbl_801A7350(r2)
+    lfd	f0, -0x7af0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f1, f31, f0
     b       _8006a1a4
 _8006a1a0:
-    lfs f1, lbl_801A735C(r2)
+    lfs	f1, -0x7ae4(r2)
 _8006a1a4:
-    lfs f0, lbl_801A7364(r2)
-    lwz	r3, g_sndMgrPtr
+    lfs	f0, -0x7adc(r2)
+    lwz	r3, -0x7740(r13)
     fmuls	f0, f0, f1
     lha	r0, 0x5a10(r3)
     fctiwz	f0, f0
@@ -678,14 +631,14 @@ asm void fn_8006A1F8(void)
     li	r5, 1
     li	r0, 2
     stmw	r26, 8(r1)
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     stb	r4, 0x5a08(r3)
     li	r4, 0
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     stw	r5, 0x5a0c(r3)
     mtctr	r0
 _8006a224:
-    lwz	r5, g_sndMgrPtr
+    lwz	r5, -0x7740(r13)
     addi	r0, r4, 0x496
     li	r3, 0x7f
     addi	r6, r4, 0x497
@@ -693,7 +646,7 @@ _8006a224:
     li	r0, 0x40
     addi	r5, r4, 0x4a6
     addi	r30, r4, 0x4a7
-    lwz	r7, g_sndMgrPtr
+    lwz	r7, -0x7740(r13)
     addi	r29, r4, 0x4b6
     addi	r28, r4, 0x4b7
     addi	r27, r4, 0x4c6
@@ -701,7 +654,7 @@ _8006a224:
     addi	r26, r4, 0x4c7
     addi	r12, r4, 0x4d6
     addi	r11, r4, 0x4d7
-    lwz	r6, g_sndMgrPtr
+    lwz	r6, -0x7740(r13)
     addi	r10, r4, 0x4e6
     addi	r9, r4, 0x4e7
     addi	r8, r4, 0x4f6
@@ -709,39 +662,39 @@ _8006a224:
     addi	r7, r4, 0x4f7
     addi	r6, r4, 0x506
     addi	r5, r4, 0x507
-    lwz	r31, g_sndMgrPtr
+    lwz	r31, -0x7740(r13)
     addi	r4, r4, 0x80
     stbx	r0, r31, r30
-    lwz	r30, g_sndMgrPtr
+    lwz	r30, -0x7740(r13)
     stbx	r3, r30, r29
-    lwz	r29, g_sndMgrPtr
+    lwz	r29, -0x7740(r13)
     stbx	r0, r29, r28
-    lwz	r28, g_sndMgrPtr
+    lwz	r28, -0x7740(r13)
     stbx	r3, r28, r27
-    lwz	r27, g_sndMgrPtr
+    lwz	r27, -0x7740(r13)
     stbx	r0, r27, r26
-    lwz	r26, g_sndMgrPtr
+    lwz	r26, -0x7740(r13)
     stbx	r3, r26, r12
-    lwz	r12, g_sndMgrPtr
+    lwz	r12, -0x7740(r13)
     stbx	r0, r12, r11
-    lwz	r11, g_sndMgrPtr
+    lwz	r11, -0x7740(r13)
     stbx	r3, r11, r10
-    lwz	r10, g_sndMgrPtr
+    lwz	r10, -0x7740(r13)
     stbx	r0, r10, r9
-    lwz	r9, g_sndMgrPtr
+    lwz	r9, -0x7740(r13)
     stbx	r3, r9, r8
-    lwz	r8, g_sndMgrPtr
+    lwz	r8, -0x7740(r13)
     stbx	r0, r8, r7
-    lwz	r7, g_sndMgrPtr
+    lwz	r7, -0x7740(r13)
     stbx	r3, r7, r6
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     stbx	r0, r3, r5
     bc      16, 0, _8006a224
     li	r0, 8
     li	r4, 0
     mtctr	r0
 _8006a300:
-    lwz	r5, g_sndMgrPtr
+    lwz	r5, -0x7740(r13)
     addi	r0, r4, 0x1430
     li	r3, 0
     addi	r6, r4, 0x1413
@@ -749,7 +702,7 @@ _8006a300:
     li	r0, 0xff
     addi	r5, r4, 0x1548
     addi	r27, r4, 0x152b
-    lwz	r7, g_sndMgrPtr
+    lwz	r7, -0x7740(r13)
     addi	r28, r4, 0x1660
     addi	r29, r4, 0x1643
     addi	r30, r4, 0x1778
@@ -757,7 +710,7 @@ _8006a300:
     addi	r31, r4, 0x175b
     addi	r12, r4, 0x1890
     addi	r11, r4, 0x1873
-    lwz	r6, g_sndMgrPtr
+    lwz	r6, -0x7740(r13)
     addi	r10, r4, 0x19a8
     addi	r9, r4, 0x198b
     addi	r8, r4, 0x1ac0
@@ -765,32 +718,32 @@ _8006a300:
     addi	r7, r4, 0x1aa3
     addi	r6, r4, 0x1bd8
     addi	r5, r4, 0x1bbb
-    lwz	r26, g_sndMgrPtr
+    lwz	r26, -0x7740(r13)
     addi	r4, r4, 0x8c0
     stbx	r0, r26, r27
-    lwz	r27, g_sndMgrPtr
+    lwz	r27, -0x7740(r13)
     stwx	r3, r27, r28
-    lwz	r28, g_sndMgrPtr
+    lwz	r28, -0x7740(r13)
     stbx	r0, r28, r29
-    lwz	r29, g_sndMgrPtr
+    lwz	r29, -0x7740(r13)
     stwx	r3, r29, r30
-    lwz	r30, g_sndMgrPtr
+    lwz	r30, -0x7740(r13)
     stbx	r0, r30, r31
-    lwz	r31, g_sndMgrPtr
+    lwz	r31, -0x7740(r13)
     stwx	r3, r31, r12
-    lwz	r12, g_sndMgrPtr
+    lwz	r12, -0x7740(r13)
     stbx	r0, r12, r11
-    lwz	r11, g_sndMgrPtr
+    lwz	r11, -0x7740(r13)
     stwx	r3, r11, r10
-    lwz	r10, g_sndMgrPtr
+    lwz	r10, -0x7740(r13)
     stbx	r0, r10, r9
-    lwz	r9, g_sndMgrPtr
+    lwz	r9, -0x7740(r13)
     stwx	r3, r9, r8
-    lwz	r8, g_sndMgrPtr
+    lwz	r8, -0x7740(r13)
     stbx	r0, r8, r7
-    lwz	r7, g_sndMgrPtr
+    lwz	r7, -0x7740(r13)
     stwx	r3, r7, r6
-    lwz	r3, g_sndMgrPtr
+    lwz	r3, -0x7740(r13)
     stbx	r0, r3, r5
     bc      16, 0, _8006a300
     lmw	r26, 8(r1)
@@ -815,7 +768,7 @@ asm void ARCInitHandle(void)
     lis     r3, ARCInitHandle_bad_archive_format_str@ha
     crxor	6, 6, 6
     addi	r5, r3, ARCInitHandle_bad_archive_format_str@l
-    li	r3, arc_c_str
+    addi	r3, r13, -0x7db0
     li	r4, 0x3b
     bl      OSPanic
 _8006a420:
@@ -866,9 +819,9 @@ asm void ARCOpen(void)
     addi	r4, r1, 0x14
     li	r5, 0x80
     bl      ARCGetEntryPath
-    lis     r3, arc_open_file_not_found_str@ha
+    lis     r3, lbl_801327AC@ha
     crxor	6, 6, 6
-    addi	r3, r3, arc_open_file_not_found_str@l
+    addi	r3, r3, lbl_801327AC@l
     addi	r4, r29, 0
     addi	r5, r1, 0x14
     bl      OSReport
@@ -1009,12 +962,12 @@ _8006a678:
 _8006a68c:
     lbz	r3, 0(r21)
     addi	r21, r21, 1
-    bl      MSL_CharAttrLookup
+    bl      fn_8007ED90
     lbz	r0, 0(r22)
     addi	r23, r3, 0
     addi	r22, r22, 1
     mr	r3, r0
-    bl      MSL_CharAttrLookup
+    bl      fn_8007ED90
     cmpw	r3, r23
     bc      12, 2, _8006a6bc
     li	r0, 0
@@ -1738,7 +1691,7 @@ _8006afb4:
     addi	r27, r28, 0xc
     mr	r3, r29
     mr	r4, r27
-    bl      SIGetResponseSync
+    bl      fn_800137C4
     lbz	r0, 8(r27)
     extsb.	r0, r0
     bc      12, 2, _8006b00c
@@ -1869,7 +1822,7 @@ asm void fn_8006B188(void)
     mflr	r0
     stw	r0, 0x24(r1)
     stmw	r27, 0xc(r1)
-    lwz	r0, lbl_801A6C88
+    lwz	r0, -0x7738(r13)
     cmpwi	r0, 0
     bc      4, 2, _8006b210
     lis     r4, lbl_80199670@ha
@@ -1887,10 +1840,10 @@ _8006b1bc:
     bl      fn_8006B048
     mr	r3, r27
     mr	r4, r30
-    bl      SITransferSync
+    bl      fn_80013428
     mr	r3, r27
     addi	r4, r28, 0xc
-    bl      SIGetResponseSync
+    bl      fn_800137C4
     addi	r27, r27, 1
     addi	r31, r31, 0x1248
     cmpwi	r27, 4
@@ -1899,7 +1852,7 @@ _8006b1bc:
     addi	r3, r3, fn_8006AF94@l
     bl      fn_80013994
     li	r0, 1
-    stw	r0, lbl_801A6C88
+    stw	r0, -0x7738(r13)
 _8006b210:
     lmw	r27, 0xc(r1)
     lwz	r0, 0x24(r1)
@@ -1915,7 +1868,7 @@ asm void fn_8006B224(void)
     mflr	r0
     stw	r0, 0x24(r1)
     stmw	r29, 0x14(r1)
-    lwz	r0, lbl_801A6C88
+    lwz	r0, -0x7738(r13)
     cmpwi	r0, 0
     bc      12, 2, _8006b280
     lis     r3, lbl_80199670@ha
@@ -1928,13 +1881,13 @@ _8006b250:
     mr	r3, r29
     li	r4, 0x400
     li	r5, 0
-    bl      SISetInterruptMask
+    bl      fn_800139E8
     addi	r29, r29, 1
     addi	r31, r31, 0x1248
     cmpwi	r29, 4
     bc      12, 0, _8006b250
     li	r0, 0
-    stw	r0, lbl_801A6C88
+    stw	r0, -0x7738(r13)
 _8006b280:
     lmw	r29, 0x14(r1)
     lwz	r0, 0x24(r1)
@@ -1986,7 +1939,7 @@ _8006b314:
     lis     r4, fn_8006AA20@ha
     mr	r3, r28
     addi	r4, r4, fn_8006AA20@l
-    bl      SITransferSync
+    bl      fn_80013428
     cmpwi	r3, -1
     bc      12, 2, _8006b3d8
     mr	r3, r30
@@ -1995,7 +1948,7 @@ _8006b314:
     addi	r27, r30, 0xc
     mr	r3, r28
     mr	r4, r27
-    bl      SIGetResponseSync
+    bl      fn_800137C4
     lis     r3, lbl_80199670@ha
     addi	r0, r3, lbl_80199670@l
     add	r4, r0, r31
@@ -2074,7 +2027,7 @@ _8006b430:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      Model_ClearCacheArray_F4
+    bl      fn_8006BC50
     li	r0, -1
     li	r3, 0
     stw	r0, 8(r31)
@@ -2122,7 +2075,7 @@ _8006b4a4:
     lbz	r0, 4(r29)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r29)
-    bl      Model_ClearCacheArray_F4
+    bl      fn_8006BC50
     li	r0, -1
     stw	r0, 8(r29)
 _8006b4f8:
@@ -2203,7 +2156,7 @@ _8006b5bc:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      Model_ClearCacheArray_F4
+    bl      fn_8006BC50
     li	r0, -1
     stw	r0, 8(r31)
 _8006b604:
@@ -2265,7 +2218,7 @@ _8006b684:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      Model_ClearCacheArray_F4
+    bl      fn_8006BC50
     li	r0, -1
     stw	r0, 8(r31)
 _8006b6d0:
@@ -2322,7 +2275,7 @@ _8006b740:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      Model_ClearCacheArray_F4
+    bl      fn_8006BC50
     li	r0, -1
     stw	r0, 8(r31)
 _8006b78c:
@@ -2379,7 +2332,7 @@ _8006b7fc:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      Model_ClearCacheArray_F4
+    bl      fn_8006BC50
     li	r0, -1
     stw	r0, 8(r31)
 _8006b848:
@@ -2436,7 +2389,7 @@ _8006b8b8:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      Model_ClearCacheArray_F4
+    bl      fn_8006BC50
     li	r0, -1
     stw	r0, 8(r31)
 _8006b904:
@@ -2475,12 +2428,12 @@ _8006b960:
     addi	r3, r3, 4
     stwx	r4, r31, r0
     bc      16, 0, _8006b960
-    lwz	r0, lbl_801A6C8C
+    lwz	r0, -0x7734(r13)
     cmpwi	r0, 0
     bc      4, 2, _8006b988
     bl      fn_8006B99C
     li	r0, 1
-    stw	r0, lbl_801A6C8C
+    stw	r0, -0x7734(r13)
 _8006b988:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -2506,34 +2459,34 @@ _8006b9b8:
     lis	r0, 0x4330
     xoris	r3, r3, 0x8000
     stw	r0, 8(r1)
-    lfd f3, lbl_801A7380(r2)
+    lfd	f3, -0x7ac0(r2)
     stw	r3, 0xc(r1)
-    lfs f0, lbl_801A7370(r2)
+    lfs	f0, -0x7ad0(r2)
     lfd	f1, 8(r1)
-    lfs f2, lbl_801A7374(r2)
+    lfs	f2, -0x7acc(r2)
     fsubs	f1, f1, f3
     fmuls	f1, f1, f0
-    bl      __msl_fp_helper
+    bl      fn_80088598
     frsp	f2, f1
-    lfs f1, lbl_801A737C(r2)
-    lfs f0, lbl_801A7378(r2)
+    lfs	f1, -0x7ac4(r2)
+    lfs	f0, -0x7ac8(r2)
     fnmadds	f0, f1, f2, f0
     b       _8006ba40
 _8006ba04:
     xoris	r3, r30, 0x8000
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lfd f3, lbl_801A7380(r2)
+    lfd	f3, -0x7ac0(r2)
     stw	r0, 8(r1)
-    lfs f0, lbl_801A7370(r2)
+    lfs	f0, -0x7ad0(r2)
     lfd	f1, 8(r1)
-    lfs f2, lbl_801A7374(r2)
+    lfs	f2, -0x7acc(r2)
     fsubs	f1, f1, f3
     fmuls	f1, f1, f0
-    bl      __msl_fp_helper
+    bl      fn_80088598
     frsp	f2, f1
-    lfs f1, lbl_801A737C(r2)
-    lfs f0, lbl_801A7378(r2)
+    lfs	f1, -0x7ac4(r2)
+    lfs	f0, -0x7ac8(r2)
     fmadds	f0, f1, f2, f0
 _8006ba40:
     fctiwz	f0, f0
@@ -2709,7 +2662,7 @@ _8006bc34:
     blr
 }
 
-asm void Model_ClearCacheArray_F4(void)
+asm void fn_8006BC50(void)
 {
     nofralloc
     li	r4, 0
@@ -2733,7 +2686,7 @@ asm void fn_8006BC84(void)
 {
     nofralloc
     li	r0, 0x40
-    lwz	r6, lbl_801A6C90
+    lwz	r6, -0x7730(r13)
     li	r7, -1
     li	r8, 0
     mtctr	r0
@@ -2746,12 +2699,12 @@ _8006bc98:
     cmplwi	r0, 0
     bc      4, 2, _8006bce8
     addi	r0, r4, 1
-    stw	r0, lbl_801A6C90
-    lwz	r0, lbl_801A6C90
+    stw	r0, -0x7730(r13)
+    lwz	r0, -0x7730(r13)
     clrlwi	r0, r0, 0x1a
-    stw	r0, lbl_801A6C90
+    stw	r0, -0x7730(r13)
     lwz	r3, 0xf0(r3)
-    lwz	r0, lbl_801A6C94
+    lwz	r0, -0x772c(r13)
     lwz	r3, 0(r3)
     rlwinm	r0, r0, 8, 0x10, 0x17
     rlwimi	r0, r3, 0x10, 0, 0xf
@@ -2797,7 +2750,7 @@ _8006bd50:
     stbu	r0, 1(r3)
     bc      4, 2, _8006bd50
 _8006bd5c:
-    lwz	r0, lbl_801A6C98
+    lwz	r0, -0x7728(r13)
     cmpwi	r0, 0
     bc      4, 2, _8006bdf8
     lis     r4, lbl_8019E014@ha
@@ -2811,19 +2764,19 @@ _8006bd5c:
 _8006bd88:
     xoris	r0, r26, 0x8000
     stw	r27, 8(r1)
-    lfd f2, lbl_801A7380(r2)
+    lfd	f2, -0x7ac0(r2)
     stw	r0, 0xc(r1)
-    lfs f3, lbl_801A7388(r2)
+    lfs	f3, -0x7ab8(r2)
     lfd	f1, 8(r1)
-    lfs f0, lbl_801A7370(r2)
+    lfs	f0, -0x7ad0(r2)
     fsubs	f1, f1, f2
     fmuls	f1, f3, f1
     fmuls	f1, f1, f0
-    bl      atan
+    bl      fn_800883E8
     li	r0, 0x3f
     addi	r26, r26, 1
     divw	r0, r31, r0
-    lfs f0, lbl_801A738C(r2)
+    lfs	f0, -0x7ab4(r2)
     frsp	f1, f1
     cmpwi	r26, 0x40
     addi	r31, r31, 0x400
@@ -2836,7 +2789,7 @@ _8006bd88:
     addi	r30, r30, 2
     bc      12, 0, _8006bd88
     li	r0, 1
-    stw	r0, lbl_801A6C98
+    stw	r0, -0x7728(r13)
 _8006bdf8:
     lmw	r26, 0x18(r1)
     lwz	r0, 0x34(r1)
@@ -3604,7 +3557,7 @@ asm void fn_8006C7E8(void)
     li	r0, 0x10
     stw	r31, 0x1c(r1)
     mr	r31, r3
-    lwz	r6, lbl_801A7390
+    lwz	r6, -0x7ab0(r2)
     stw	r5, 4(r3)
     mr	r3, r5
     stw	r5, 0x60(r31)
@@ -3653,7 +3606,7 @@ _8006c880:
     li	r3, 0
     mtctr	r0
 _8006c8bc:
-    lfs f1, lbl_801A7394(r2)
+    lfs	f1, -0x7aac(r2)
     lfsx	f0, r5, r3
     fmuls	f0, f1, f0
     fctiwz	f0, f0
@@ -3931,7 +3884,7 @@ _8006cc64:
     li	r5, 0
     lwz	r3, 0xf0(r3)
     lwz	r3, 0(r3)
-    bl      SISetInterruptMask
+    bl      fn_800139E8
     b       _8006ccb0
 _8006cc98:
     lwz	r3, 0(r28)
@@ -3939,7 +3892,7 @@ _8006cc98:
     li	r4, 0x600
     lwz	r3, 0xf0(r3)
     lwz	r3, 0(r3)
-    bl      SISetInterruptMask
+    bl      fn_800139E8
 _8006ccb0:
     mr	r3, r26
     lmw	r25, 0x14(r1)
@@ -3955,23 +3908,23 @@ asm void fn_8006CCC8(void)
     stwu	r1, -0x20(r1)
     lis	r0, 0x4330
     li	r4, 0
-    lfd f1, lbl_801A73A0(r2)
-    lwz	r3, lbl_801A7398
-    lwz	r5, lbl_801A6CF4
-    stw	r4, lbl_801A6CAC
-    stw	r3, lbl_801A6CA8
+    lfd	f1, -0x7aa0(r2)
+    lwz	r3, -0x7aa8(r2)
+    lwz	r5, -0x76cc(r13)
+    stw	r4, -0x7714(r13)
+    stw	r3, -0x7718(r13)
     lhz	r3, 0xe(r5)
     stw	r0, 8(r1)
     stw	r3, 0xc(r1)
     lfd	f0, 8(r1)
     stw	r0, 0x10(r1)
     fsubs	f0, f0, f1
-    stfs f0, lbl_801A6CA4(r13)
+    stfs	f0, -0x771c(r13)
     lhz	r0, 0x10(r5)
     stw	r0, 0x14(r1)
     lfd	f0, 0x10(r1)
     fsubs	f0, f0, f1
-    stfs f0, lbl_801A6CA0(r13)
+    stfs	f0, -0x7720(r13)
     addi	r1, r1, 0x20
     blr
 }
@@ -3979,17 +3932,17 @@ asm void fn_8006CCC8(void)
 asm void fn_8006CD20(void)
 {
     nofralloc
-    stfs f1, lbl_801A6CA4(r13)
-    stfs f2, lbl_801A6CA0(r13)
+    stfs	f1, -0x771c(r13)
+    stfs	f2, -0x7720(r13)
     blr
 }
 
 asm void fn_8006CD2C(void)
 {
     nofralloc
-    lfs f0, lbl_801A6CA4(r13)
+    lfs	f0, -0x771c(r13)
     stfs	f0, 0(r3)
-    lfs f0, lbl_801A6CA0(r13)
+    lfs	f0, -0x7720(r13)
     stfs	f0, 0(r4)
     blr
 }
@@ -3997,8 +3950,8 @@ asm void fn_8006CD2C(void)
 asm void fn_8006CD40(void)
 {
     nofralloc
-    lfs f0, lbl_801A6CA0(r13)
-    stfs f1, lbl_801A6CA0(r13)
+    lfs	f0, -0x7720(r13)
+    stfs	f1, -0x7720(r13)
     fmr	f1, f0
     blr
 }
@@ -4008,22 +3961,22 @@ asm void fn_8006CD50(void)
     nofralloc
     stwu	r1, -0x50(r1)
     mflr	r0
-    lfs f1, lbl_801A73A8(r2)
+    lfs	f1, -0x7a98(r2)
     stw	r0, 0x54(r1)
     addi	r3, r1, 8
     fmr	f3, f1
-    lfs f6, lbl_801A73AC(r2)
+    lfs	f6, -0x7a94(r2)
     fmr	f5, f1
-    lfs f2, lbl_801A6CA0(r13)
-    lfs f4, lbl_801A6CA4(r13)
-    bl      MTXOrtho
+    lfs	f2, -0x7720(r13)
+    lfs	f4, -0x771c(r13)
+    bl      fn_80015EE8
     addi	r3, r1, 8
     li	r4, 1
-    bl      GXIntToFloatCopy
-    bl      QuatNormalizeCompare
-    lwz	r3, lbl_801A6D00
+    bl      fn_800737E4
+    bl      fn_8006D758
+    lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      GXLoadMatIdxTripleToXF
+    bl      fn_80038C5C
     lwz	r0, 0x54(r1)
     mtlr	r0
     addi	r1, r1, 0x50
@@ -4036,20 +3989,20 @@ asm void fn_8006CDA8(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      QuatNormalizeCompare
-    lwz	r3, lbl_801A6D00
+    bl      fn_8006D758
+    lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      GXLoadMatIdxTripleToXF
-    lwz	r12, lbl_801A6CAC
+    bl      fn_80038C5C
+    lwz	r12, -0x7714(r13)
     cmplwi	r12, 0
     bc      12, 2, _8006cdd8
     mtctr	r12
     bctrl
 _8006cdd8:
-    bl      QuatNormalizeCompare
-    lwz	r3, lbl_801A6D00
+    bl      fn_8006D758
+    lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      GXLoadMatIdxTripleToXF
+    bl      fn_80038C5C
     bl      fn_8006CE44
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -4061,10 +4014,10 @@ asm void fn_8006CDFC(void)
 {
     nofralloc
     lbz	r6, 0(r3)
-    li	r4, lbl_801A6CA8
+    addi	r4, r13, -0x7718
     lbz	r5, 1(r3)
     lbz	r0, 2(r3)
-    stb	r6, lbl_801A6CA8
+    stb	r6, -0x7718(r13)
     stb	r5, 1(r4)
     stb	r0, 2(r4)
     blr
@@ -4073,8 +4026,8 @@ asm void fn_8006CDFC(void)
 asm void fn_8006CE1C(void)
 {
     nofralloc
-    lfs f0, lbl_801A73B0(r2)
-    li	r3, lbl_801A6CA8
+    lfs	f0, -0x7a90(r2)
+    addi	r3, r13, -0x7718
     stwu	r1, -0x10(r1)
     fmuls	f0, f0, f1
     fctiwz	f0, f0
@@ -4090,7 +4043,7 @@ asm void fn_8006CE44(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    li	r3, lbl_801A6CA8
+    addi	r3, r13, -0x7718
     stw	r0, 0x14(r1)
     lbz	r0, 3(r3)
     cmplwi	r0, 0
@@ -4098,17 +4051,17 @@ asm void fn_8006CE44(void)
     li	r3, 0
     li	r4, 7
     li	r5, 0
-    bl      GXSetTexGenCached
+    bl      fn_80074918
     li	r3, 1
-    bl      GXSetChanAmbColorCached
+    bl      fn_80074788
     li	r3, 0
-    bl      GXSetNumTexGensCached
+    bl      fn_80074660
     li	r3, 1
-    bl      ModelSetCachedNumTexGens
+    bl      fn_80073678
     li	r3, 0
-    bl      ModelSetCachedState_840
+    bl      fn_80073898
     li	r3, 0
-    bl      ModelClearCacheSlot_B28
+    bl      fn_80073C6C
     li	r3, 4
     li	r4, 0
     li	r5, 0
@@ -4116,11 +4069,11 @@ asm void fn_8006CE44(void)
     li	r7, 0
     li	r8, 2
     li	r9, 2
-    bl      LightCtrl_SetCachedRec_C30
+    bl      fn_800747D0
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl      LightCtrl_SetCachedPair_6C
+    bl      fn_80072AB0
     li	r3, 0
     li	r4, 0xff
     li	r5, 0xff
@@ -4156,42 +4109,42 @@ asm void fn_8006CE44(void)
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      LightCtrl_SetCachedColor_1C
+    bl      fn_800728A8
     li	r3, 2
-    bl      LightCtrl_SetCachedCullMode
+    bl      fn_80072864
     li	r3, 0x200
-    bl      GXLoadMtxArray
-    lwz	r0, lbl_801A6CA8
+    bl      fn_8007245C
+    lwz	r0, -0x7718(r13)
     addi	r4, r1, 8
     li	r3, 1
     stw	r0, 8(r1)
-    bl      __GXSetTexRegion
+    bl      fn_800371F8
     li	r3, 0x80
     li	r4, 7
     li	r5, 4
     bl      GXBegin
-    lfs f0, lbl_801A73A8(r2)
+    lfs	f0, -0x7a98(r2)
     lis	r3, -0x33ff
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A73A8(r2)
+    lfs	f0, -0x7a98(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, -0x7A8C(r2)
+    lfs	f0, -0x7a8c(r2)
     stfs	f0, -0x8000(r3)
-    lfs f1, lbl_801A6CA4(r13)
+    lfs	f1, -0x771c(r13)
     stfs	f1, -0x8000(r3)
-    lfs f0, lbl_801A73A8(r2)
+    lfs	f0, -0x7a98(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, -0x7A8C(r2)
-    stfs	f0, -0x8000(r3)
-    stfs	f1, -0x8000(r3)
-    lfs f1, lbl_801A6CA0(r13)
-    stfs	f1, -0x8000(r3)
-    lfs f0, -0x7A8C(r2)
-    stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A73A8(r2)
+    lfs	f0, -0x7a8c(r2)
     stfs	f0, -0x8000(r3)
     stfs	f1, -0x8000(r3)
-    lfs f0, -0x7A8C(r2)
+    lfs	f1, -0x7720(r13)
+    stfs	f1, -0x8000(r3)
+    lfs	f0, -0x7a8c(r2)
+    stfs	f0, -0x8000(r3)
+    lfs	f0, -0x7a98(r2)
+    stfs	f0, -0x8000(r3)
+    stfs	f1, -0x8000(r3)
+    lfs	f0, -0x7a8c(r2)
     stfs	f0, -0x8000(r3)
 _8006cfe8:
     lwz	r0, 0x14(r1)

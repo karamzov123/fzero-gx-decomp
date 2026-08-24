@@ -1,38 +1,37 @@
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void GXBuildPackedRegister(void);
+extern void fn_80032F80(void);
 extern void* memset(void*, int, unsigned long);
 extern void GXSetCullMode(void);
-extern void GXWriteCachedParamF0(void);
-extern void GXWriteCachedParam1F0(void);
+extern void fn_800370A0(void);
+extern void fn_800370E4(void);
 extern void fn_80037128(void);
 extern void fn_80037190(void);
-extern void __GXSetLightColorAttnSel(void);
-extern void GXSetLightColorAttnRegs(void);
-extern void GXWriteLightColor(void);
-extern void __GXSetChanAmbSrcBit(void);
-extern void __GXSetChanMatSrcBit(void);
-extern void __GXXFSetPerfEnableMulti(void);
-extern void LightCtrl_SetCachedParam_2C_Force(void);
+extern void fn_8003742C(void);
+extern void fn_80037480(void);
+extern void fn_80037B14(void);
+extern void fn_80037B68(void);
+extern void fn_80037B94(void);
+extern void fn_80037BF4(void);
+extern void fn_80072A50(void);
 extern void _savegpr_26(void);
 extern void _savegpr_27(void);
 extern void _restgpr_26(void);
 extern void _restgpr_27(void);
 extern unsigned char lbl_8019E308[3328];
 
-extern unsigned char g_modelSysPtr[8];
-asm void LightCtrl_SetCachedFog(void);
-asm void LightCtrl_SetCachedFogArray(void);
-asm void LightCtrl_InitChannels4(void);
-asm void LightCtrl_InitChannels2(void);
-asm void LightCtrl_SetCachedCullMode(void);
-asm void LightCtrl_SetCachedColor_1C(void);
-asm void LightCtrl_SetCachedParam_2C(void);
-asm void LightCtrl_SetCachedParam_2C_Force(void);
-asm void LightCtrl_SetCachedPair_6C(void);
-asm void LightCtrl_SetCachedByte_EC(void);
-asm void LightCtrl_SetCachedByte_ED(void);
-asm void LightCtrl_SetCachedByte_EE(void);
+asm void fn_8007264C(void);
+asm void fn_800726C0(void);
+asm void fn_80072778(void);
+asm void fn_80072808(void);
+asm void fn_80072864(void);
+asm void fn_800728A8(void);
+asm void fn_800729B0(void);
+asm void fn_80072A50(void);
+asm void fn_80072AB0(void);
+asm void fn_80072B28(void);
+asm void fn_80072B7C(void);
+asm void fn_80072BD0(void);
 asm void ModelSetCachedParam_F0(void);
 asm void ModelSetCachedParam_1F0(void);
 asm void ModelSetCachedParam_2F0(void);
@@ -40,7 +39,7 @@ asm void ModelSetCachedParam_430(void);
 #pragma push
 #pragma force_active on
 
-asm void LightCtrl_SetCachedFog(void)
+asm void fn_8007264C(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -68,7 +67,7 @@ _8007269C:
     stw r5, 4(r9)
     stw r6, 8(r9)
     stb r7, 0xc(r9)
-    bl GXBuildPackedRegister
+    bl fn_80032F80
 _800726B0:
     lwz r0, 0x14(r1)
     mtlr r0
@@ -76,7 +75,7 @@ _800726B0:
     blr
 }
 
-asm void LightCtrl_SetCachedFogArray(void)
+asm void fn_800726C0(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -115,7 +114,7 @@ _80072734:
     stw r5, 4(r31)
     stw r6, 8(r31)
     stb r7, 0xc(r31)
-    bl GXBuildPackedRegister
+    bl fn_80032F80
 _8007274C:
     addi r30, r30, 0x10
 _80072750:
@@ -131,7 +130,7 @@ _80072750:
     blr
 }
 
-asm void LightCtrl_InitChannels4(void)
+asm void fn_80072778(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -139,32 +138,32 @@ asm void LightCtrl_InitChannels4(void)
     li r4, 0xff
     li r5, 0xca0
     stw r0, 0x14(r1)
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     bl memset
     li r3, 0
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 3
-    bl LightCtrl_SetCachedParam_2C_Force
+    bl fn_80072A50
     li r3, 1
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 0
-    bl LightCtrl_SetCachedParam_2C_Force
+    bl fn_80072A50
     li r3, 2
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 1
-    bl LightCtrl_SetCachedParam_2C_Force
+    bl fn_80072A50
     li r3, 3
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 2
-    bl LightCtrl_SetCachedParam_2C_Force
+    bl fn_80072A50
     lwz r0, 0x14(r1)
     li r3, 1
     mtlr r0
@@ -172,7 +171,7 @@ asm void LightCtrl_InitChannels4(void)
     blr
 }
 
-asm void LightCtrl_InitChannels2(void)
+asm void fn_80072808(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -180,27 +179,27 @@ asm void LightCtrl_InitChannels2(void)
     li r4, 0xff
     li r5, 0xca0
     stw r0, 0x14(r1)
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     bl memset
     li r3, 0
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 3
-    bl LightCtrl_SetCachedParam_2C_Force
+    bl fn_80072A50
     li r3, 1
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 0
-    bl LightCtrl_SetCachedParam_2C_Force
+    bl fn_80072A50
     lwz r0, 0x14(r1)
     mtlr r0
     addi r1, r1, 0x10
     blr
 }
 
-asm void LightCtrl_SetCachedCullMode(void)
+asm void fn_80072864(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -208,12 +207,12 @@ asm void LightCtrl_SetCachedCullMode(void)
     stw r0, 0x14(r1)
     stw r31, 0xc(r1)
     mr r31, r3
-    lwz	r4, g_modelSysPtr
+    lwz r4, -0x7688(r13)
     lwz r0, 0x18(r4)
     cmpw r31, r0
     beq _80072894
     bl GXSetCullMode
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     stw r31, 0x18(r3)
 _80072894:
     lwz r0, 0x14(r1)
@@ -223,7 +222,7 @@ _80072894:
     blr
 }
 
-asm void LightCtrl_SetCachedColor_1C(void)
+asm void fn_800728A8(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -239,7 +238,7 @@ asm void LightCtrl_SetCachedColor_1C(void)
     mr r28, r3
     cmpwi r28, 2
     bne _80072934
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     lwz r0, 0x1c(r3)
     cmpwi r0, 2
     bne _800728F8
@@ -251,19 +250,19 @@ _800728F8:
     mr r5, r30
     mr r6, r31
     li r3, 2
-    bl GXWriteLightColor
-    lwz	r3, g_modelSysPtr
+    bl fn_80037B14
+    lwz r3, -0x7688(r13)
     li r0, 2
     stw r0, 0x1c(r3)
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     stw r29, 0x20(r3)
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     stw r30, 0x24(r3)
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     stw r31, 0x28(r3)
     b _80072990
 _80072934:
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     lwz r0, 0x1c(r3)
     cmpw r0, r28
     bne _8007295C
@@ -278,14 +277,14 @@ _8007295C:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl GXWriteLightColor
-    lwz	r3, g_modelSysPtr
+    bl fn_80037B14
+    lwz r3, -0x7688(r13)
     stw r28, 0x1c(r3)
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     stw r29, 0x20(r3)
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     stw r30, 0x24(r3)
-    lwz	r3, g_modelSysPtr
+    lwz r3, -0x7688(r13)
     stw r31, 0x28(r3)
 _80072990:
     lwz r0, 0x24(r1)
@@ -298,7 +297,7 @@ _80072990:
     blr
 }
 
-asm void LightCtrl_SetCachedParam_2C(void)
+asm void fn_800729B0(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -307,7 +306,7 @@ asm void LightCtrl_SetCachedParam_2C(void)
     addi r11, r1, 0x20
     bl _savegpr_27
     slwi r8, r3, 4
-    lwz	r0, g_modelSysPtr
+    lwz r0, -0x7688(r13)
     addi r31, r8, 0x2c
     mr r27, r4
     add r31, r0, r31
@@ -331,7 +330,7 @@ _80072A14:
     mr r5, r28
     mr r6, r29
     mr r7, r30
-    bl GXSetLightColorAttnRegs
+    bl fn_80037480
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)
@@ -345,7 +344,7 @@ _80072A38:
     blr
 }
 
-asm void LightCtrl_SetCachedParam_2C_Force(void)
+asm void fn_80072A50(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -354,14 +353,14 @@ asm void LightCtrl_SetCachedParam_2C_Force(void)
     addi r11, r1, 0x20
     bl _savegpr_27
     slwi r8, r3, 4
-    lwz	r0, g_modelSysPtr
+    lwz r0, -0x7688(r13)
     addi r31, r8, 0x2c
     mr r27, r4
     mr r28, r5
     mr r29, r6
     mr r30, r7
     add r31, r0, r31
-    bl GXSetLightColorAttnRegs
+    bl fn_80037480
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)
@@ -374,7 +373,7 @@ asm void LightCtrl_SetCachedParam_2C_Force(void)
     blr
 }
 
-asm void LightCtrl_SetCachedPair_6C(void)
+asm void fn_80072AB0(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -387,7 +386,7 @@ asm void LightCtrl_SetCachedPair_6C(void)
     mr r30, r5
     stw r29, 0x14(r1)
     mr r29, r4
-    lwz	r0, g_modelSysPtr
+    lwz r0, -0x7688(r13)
     add r31, r0, r31
     lwz r0, 0(r31)
     cmpw r0, r29
@@ -398,7 +397,7 @@ asm void LightCtrl_SetCachedPair_6C(void)
 _80072AF8:
     mr r4, r29
     mr r5, r30
-    bl __GXSetLightColorAttnSel
+    bl fn_8003742C
     stw r29, 0(r31)
     stw r30, 4(r31)
 _80072B0C:
@@ -411,7 +410,7 @@ _80072B0C:
     blr
 }
 
-asm void LightCtrl_SetCachedByte_EC(void)
+asm void fn_80072B28(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -419,7 +418,7 @@ asm void LightCtrl_SetCachedByte_EC(void)
     stw r0, 0x14(r1)
     stw r31, 0xc(r1)
     mr r31, r3
-    lwz	r4, g_modelSysPtr
+    lwz r4, -0x7688(r13)
     lbz r3, 0xec(r4)
     cmplwi r3, 0xff
     beq _80072B58
@@ -428,8 +427,8 @@ asm void LightCtrl_SetCachedByte_EC(void)
     beq _80072B68
 _80072B58:
     mr r3, r31
-    bl __GXSetChanAmbSrcBit
-    lwz	r3, g_modelSysPtr
+    bl fn_80037B68
+    lwz r3, -0x7688(r13)
     stb r31, 0xec(r3)
 _80072B68:
     lwz r0, 0x14(r1)
@@ -439,7 +438,7 @@ _80072B68:
     blr
 }
 
-asm void LightCtrl_SetCachedByte_ED(void)
+asm void fn_80072B7C(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -447,7 +446,7 @@ asm void LightCtrl_SetCachedByte_ED(void)
     stw r0, 0x14(r1)
     stw r31, 0xc(r1)
     mr r31, r3
-    lwz	r4, g_modelSysPtr
+    lwz r4, -0x7688(r13)
     lbz r3, 0xed(r4)
     cmplwi r3, 0xff
     beq _80072BAC
@@ -456,8 +455,8 @@ asm void LightCtrl_SetCachedByte_ED(void)
     beq _80072BBC
 _80072BAC:
     mr r3, r31
-    bl __GXSetChanMatSrcBit
-    lwz	r3, g_modelSysPtr
+    bl fn_80037B94
+    lwz r3, -0x7688(r13)
     stb r31, 0xed(r3)
 _80072BBC:
     lwz r0, 0x14(r1)
@@ -467,7 +466,7 @@ _80072BBC:
     blr
 }
 
-asm void LightCtrl_SetCachedByte_EE(void)
+asm void fn_80072BD0(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -475,7 +474,7 @@ asm void LightCtrl_SetCachedByte_EE(void)
     stw r0, 0x14(r1)
     stw r31, 0xc(r1)
     mr r31, r3
-    lwz	r4, g_modelSysPtr
+    lwz r4, -0x7688(r13)
     lbz r3, 0xee(r4)
     cmplwi r3, 0xff
     beq _80072C00
@@ -484,8 +483,8 @@ asm void LightCtrl_SetCachedByte_EE(void)
     beq _80072C10
 _80072C00:
     mr r3, r31
-    bl __GXXFSetPerfEnableMulti
-    lwz	r3, g_modelSysPtr
+    bl fn_80037BF4
+    lwz r3, -0x7688(r13)
     stb r31, 0xee(r3)
 _80072C10:
     lwz r0, 0x14(r1)
@@ -504,7 +503,7 @@ asm void ModelSetCachedParam_F0(void)
     addi r11, r1, 0x20
     bl _savegpr_27
     slwi r8, r3, 4
-    lwz	r0, g_modelSysPtr
+    lwz r0, -0x7688(r13)
     addi r31, r8, 0xf0
     mr r27, r4
     add r31, r0, r31
@@ -528,7 +527,7 @@ _80072C88:
     mr r5, r28
     mr r6, r29
     mr r7, r30
-    bl GXWriteCachedParamF0
+    bl fn_800370A0
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)
@@ -551,7 +550,7 @@ asm void ModelSetCachedParam_1F0(void)
     addi r11, r1, 0x20
     bl _savegpr_27
     slwi r8, r3, 4
-    lwz	r0, g_modelSysPtr
+    lwz r0, -0x7688(r13)
     addi r31, r8, 0x1f0
     mr r27, r4
     add r31, r0, r31
@@ -575,7 +574,7 @@ _80072D28:
     mr r5, r28
     mr r6, r29
     mr r7, r30
-    bl GXWriteCachedParam1F0
+    bl fn_800370E4
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)
@@ -598,7 +597,7 @@ asm void ModelSetCachedParam_2F0(void)
     addi r11, r1, 0x20
     bl _savegpr_26
     mulli r9, r3, 0x14
-    lwz	r0, g_modelSysPtr
+    lwz r0, -0x7688(r13)
     mr r30, r8
     mr r26, r4
     addi r31, r9, 0x2f0
@@ -652,7 +651,7 @@ asm void ModelSetCachedParam_430(void)
     addi r11, r1, 0x20
     bl _savegpr_26
     mulli r9, r3, 0x14
-    lwz	r0, g_modelSysPtr
+    lwz r0, -0x7688(r13)
     mr r30, r8
     mr r26, r4
     addi r31, r9, 0x430

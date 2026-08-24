@@ -1,14 +1,3 @@
-extern unsigned short gLanguageIndexTable[4];
-extern unsigned char lbl_801A66B0[4];
-extern unsigned char lbl_801A63C4[4];
-extern unsigned char lbl_801A66D0[4];
-extern unsigned char lbl_801A63F0[4];
-extern unsigned char lbl_801A63F4[4];
-extern unsigned char lbl_801A63F8[4];
-extern unsigned char lbl_801A63FC[4];
-extern unsigned char lbl_801A6400[4];
-extern unsigned char lbl_801A66A0[4];
-
 extern void DCStoreRange(void);
 extern void DVDGetDriveStatus(void);
 extern void DVDInit(void);
@@ -42,7 +31,7 @@ extern void fn_800057CC(void);
 extern void fn_800057F8(void);
 extern void main_load_sample_rel(void);
 extern void fn_800058D8(void);
-extern void GameMainLoopFrame(void);
+extern void fn_8000591C(void);
 extern void fn_80005A08(void);
 extern void fn_80005AD0(void);
 extern void mmu_user_fn(void);
@@ -51,7 +40,7 @@ extern void fn_80005EDC(void);
 extern void fn_800060D8(void);
 extern void fn_80006334(void);
 extern void fn_80006340(void);
-extern void dvd_read_sync_wait(void);
+extern void fn_80006354(void);
 extern void fn_800063AC(void);
 extern void dvdfs_user_fn(void);
 extern void fn_800068F4(void);
@@ -64,50 +53,14 @@ extern void fn_80006AFC(void);
 extern void fn_80006B30(void);
 extern void fn_80006B4C(void);
 extern void fn_80006B70(void);
-extern void __va_save_registers(void);
+extern void fn_80006BDC(void);
 extern void fn_80006C2C(void);
 extern void fn_80006C4C(void);
 extern void fn_80006CE4(void);
 extern void fn_80006D1C(void);
 extern void fn_80006DAC(void);
 extern void fn_80006DE8(void);
-extern unsigned char lbl_801A63D0[8];
-extern unsigned char lbl_801A6408[8];
-extern unsigned char lbl_801A66AC[1];
-extern unsigned char lbl_801A66CC[4];
-extern unsigned char lbl_801A66D8[1];
-extern unsigned char lbl_801A66D9[1];
-extern unsigned char lbl_801A66DA[1];
-extern unsigned char lbl_801A66DB[1];
-extern unsigned char lbl_801A66DC[4];
-extern unsigned char lbl_801A66E0[4];
-extern unsigned char lbl_801A66E4[4];
-extern unsigned char lbl_801A66E8[4];
-extern unsigned char lbl_801A66EC[2];
-extern unsigned char lbl_801A66F0[4];
-extern unsigned char lbl_801A66F4[4];
-extern unsigned char lbl_801A66F8[4];
-extern unsigned char lbl_801A66FC[4];
-extern unsigned char lbl_801A6700[4];
-extern unsigned char lbl_801A6704[4];
-extern unsigned char lbl_801A6708[8];
-extern unsigned char lbl_801A6710[4];
-extern unsigned char lbl_801A6714[4];
-extern unsigned char lbl_801A6718[4];
-extern unsigned char lbl_801A671C[4];
-extern unsigned char lbl_801A6720[4];
-extern unsigned char lbl_801A6724[2];
-extern unsigned char lbl_801A6726[2];
-extern unsigned char lbl_801A6728[8];
-extern unsigned char lbl_801A6CE0[4];
-extern unsigned char lbl_801A6CF8[4];
-extern unsigned char lbl_801A6D00[8];
-extern unsigned char lbl_801A6E58[4];
-extern unsigned char lbl_801A6E98[4];
-extern unsigned char lbl_801A6F00[4];
-extern unsigned char lbl_801A6F04[4];
-extern unsigned char lbl_801A6F08[8];
-void dvd_read_sync_wait(void);
+void fn_80006354(void);
 void fn_8000691C(void);
 void fn_80006B4C(void);
 extern void fn_80006DFC(void);
@@ -118,7 +71,7 @@ extern void fn_800071B8(void);
 extern void fn_8000740C(void);
 extern void fn_800074C4(void);
 extern void fn_800075AC(void);
-extern void OSVirtualToPhysical(void);
+extern void fn_80007654(void);
 extern void fn_80007664(void);
 extern void fn_80007700(void);
 extern void fn_80007730(void);
@@ -142,35 +95,35 @@ extern void fn_80008A4C(void);
 extern void fn_80008BA8(void);
 extern void fn_80008BEC(void);
 extern void fn_80008C20(void);
-extern void OSInitArenaPoll(void);
-extern void OSAllocFromArenaLo(void);
+extern void fn_8000B334(void);
+extern void fn_8000B360(void);
 extern void OSPanic(void);
-extern void Yay0ReadyFlagUpdate(void);
+extern void fn_8000CDD8(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
-extern void PSMTXMultVecPair(void);
-extern void MTXOrtho(void);
+extern void fn_80015B78(void);
+extern void fn_80015EE8(void);
 extern void DVDConvertPathToEntrynum(void);
 extern void fn_800170EC(void);
 extern void DVDOpen(void);
-extern void DVDCancelSync(void);
+extern void fn_80017228(void);
 extern void fn_80017470(void);
-extern void DVDReadPrio(void);
-extern void DVDReadAsync(void);
+extern void fn_800174D0(void);
+extern void fn_800175C0(void);
 extern void fn_8001AAB4(void);
-extern void VIWaitForRetrace(void);
+extern void fn_8001AF64(void);
 extern void fn_8001BDF0(void);
 extern void PADInit(void);
 extern void PADRead(void);
 extern void PADSetAnalogMode(void);
-extern void GXInitTexObj(void);
-extern void __GXInitTexMapPreload(void);
-extern void __GXSetTexRegion(void);
-extern void GXWriteLightReg(void);
-extern void GXWriteTextureState(void);
-extern void GXWriteLightAttn(void);
-extern void GXGetProjectionv(void);
-extern void GXLoadMatIdxTripleToXF(void);
+extern void fn_80035C50(void);
+extern void fn_80036544(void);
+extern void fn_800371F8(void);
+extern void fn_80037518(void);
+extern void fn_800377F8(void);
+extern void fn_80037D40(void);
+extern void fn_80038BFC(void);
+extern void fn_80038C5C(void);
 extern void fn_8006B188(void);
 extern void fn_8006B470(void);
 extern void fn_8006CCC8(void);
@@ -178,7 +131,7 @@ extern void fn_8006CD40(void);
 extern void fn_8006CDFC(void);
 extern void fn_8006CE1C(void);
 extern void fn_8006CFF8(void);
-extern void MTXQuatInterpolate(void);
+extern void fn_8006E5FC(void);
 extern void PSMTXQuat_fromMtx(void);
 extern void fn_8006FCB4(void);
 extern void fn_8006FD1C(void);
@@ -193,56 +146,56 @@ extern void fn_80070620(void);
 extern void fn_8007075C(void);
 extern void fn_80070774(void);
 extern void fn_80070AC0(void);
-extern void GXCompareVecDirty(void);
-extern void Snd_SetOutputModeBit0(void);
+extern void fn_80071ED4(void);
+extern void fn_800720B0(void);
 extern void fn_800721FC(void);
 extern void fn_800723F8(void);
-extern void GXLoadMtxArray(void);
-extern void VIFlush(void);
-extern void GXSetMatrixIndexA(void);
-extern void GXSetMatrixIndexB(void);
-extern void LightCtrl_SetCachedCullMode(void);
-extern void LightCtrl_SetCachedColor_1C(void);
-extern void LightCtrl_SetCachedPair_6C(void);
-extern void LightCtrl_SetCachedByte_EE(void);
+extern void fn_8007245C(void);
+extern void fn_80072558(void);
+extern void fn_800725DC(void);
+extern void fn_80072614(void);
+extern void fn_80072864(void);
+extern void fn_800728A8(void);
+extern void fn_80072AB0(void);
+extern void fn_80072BD0(void);
 extern void ModelSetCachedParam_F0(void);
 extern void ModelSetCachedParam_1F0(void);
 extern void ModelSetCachedParam_2F0(void);
 extern void ModelSetCachedParam_430(void);
 extern void fn_80072EDC(void);
 extern void ModelSetCachedMaterial_570(void);
-extern void GXCachedSetTevSwapTable(void);
-extern void ModelSetCachedState_6B0(void);
-extern void ModelSetCachedNumTexGens(void);
-extern void ModelSetCachedTex_704(void);
-extern void ModelCacheMaterialParams(void);
-extern void GXIntToFloatCopy(void);
-extern void ModelSetCachedState_840(void);
-extern void ModelClearCacheSlot_B28(void);
-extern void ModelMatchCachedSlot_B20(void);
-extern void ModelSetCachedPair5_B28(void);
-extern void GXSetNumTexGensCached(void);
-extern void GXSetLineWidthCached(void);
-extern void GXSetChanAmbColorCached(void);
-extern void LightCtrl_SetCachedRec_C30(void);
-extern void GXSetTexGenCached(void);
+extern void fn_800735C8(void);
+extern void fn_80073620(void);
+extern void fn_80073678(void);
+extern void fn_800736C0(void);
+extern void fn_80073778(void);
+extern void fn_800737E4(void);
+extern void fn_80073898(void);
+extern void fn_80073C6C(void);
+extern void fn_800744F8(void);
+extern void fn_800745A4(void);
+extern void fn_80074660(void);
+extern void fn_800746A8(void);
+extern void fn_80074788(void);
+extern void fn_800747D0(void);
+extern void fn_80074918(void);
 extern void fn_800791A4(void);
 extern void fn_800791E8(void);
-extern void ModelLoadLcDma(void);
-extern void memcpy_fast(void);
+extern void fn_800793D4(void);
+extern void fn_800794F0(void);
 extern void __cvt_fp2unsigned(void);
-extern void __msl_strncmp(void);
-extern void __msl_strcmp(void);
-extern void __msl_strcpy(void);
+extern void fn_80083B8C(void);
+extern void fn_80083BCC(void);
+extern void fn_80083D40(void);
 extern void strncpy(void);
 extern void strcpy(void);
-extern void MathSin(void);
-extern void PSVecNormalize3(void);
-extern void QuatNormalizeCompare(void);
-extern void PSMTXLoadIdentityFused(void);
-extern void mtx_gpstack_push(void);
-extern void mtx_gpstack_pop(void);
-extern void MTXQuatExtract(void);
+extern void fn_8006D188(void);
+extern void fn_8006D668(void);
+extern void fn_8006D758(void);
+extern void fn_8006D7DC(void);
+extern void fn_8006DAEC(void);
+extern void fn_8006DB30(void);
+extern void fn_8006DBAC(void);
 extern void main(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -251,61 +204,17 @@ extern unsigned char jumptable_8012208C[52];
 extern unsigned char lbl_80095EA0[15];
 extern unsigned char lbl_8012205C[48];
 extern unsigned char lbl_801220C0[9];
-extern unsigned char dvd_open_from_dvd_str[17];
+extern unsigned char lbl_801220CC[17];
 extern unsigned char lbl_801220E0[16];
-extern unsigned char dvd_reading_from_dvd_str[20];
+extern unsigned char lbl_801220F0[20];
 extern unsigned char lbl_80122104[156];
-extern unsigned char mmu_cant_allocate_pte_str[26];
+extern unsigned char lbl_801221A0[26];
 extern unsigned char lbl_8015B920[32];
 extern unsigned char lbl_8015B940[1024];
 extern unsigned char lbl_8015BD40[256];
 
 #pragma push
 #pragma force_active on
-
-extern unsigned char lbl_801A6F18[8];
-extern unsigned char lbl_801A6EF8[8];
-extern unsigned char lbl_801A6EB8[8];
-extern unsigned char lbl_801A6EB0[8];
-extern unsigned char lbl_801A6E88[8];
-extern unsigned char lbl_801A6EC8[8];
-extern unsigned char lbl_801A6F20[8];
-extern unsigned char lbl_801A6EF0[8];
-extern unsigned char lbl_801A6E78[8];
-extern unsigned char lbl_801A6ED0[8];
-extern unsigned char lbl_801A6ED8[8];
-extern unsigned char lbl_801A6EE0[8];
-extern unsigned char lbl_801A6F28[8];
-extern unsigned char lbl_801A6F38[8];
-extern unsigned char lbl_801A6F30[4];
-extern unsigned char lbl_801A6F14[4];
-extern unsigned char lbl_801A6F10[4];
-extern unsigned char lbl_801A6EC0[4];
-extern unsigned char lbl_801A6E9C[4];
-extern unsigned char lbl_801A6E94[4];
-extern unsigned char lbl_801A6E90[4];
-extern unsigned char lbl_801A6E5C[4];
-extern unsigned char lbl_801A6F34[4];
-extern unsigned char lbl_801A6E80[4];
-extern unsigned char lbl_801A6E54[4];
-extern unsigned char lbl_801A6E44[4];
-extern unsigned char lbl_801A6E40[4];
-extern unsigned char lbl_801A6EA4[4];
-extern unsigned char lbl_801A6EA0[4];
-extern unsigned char lbl_801A6E64[4];
-extern unsigned char lbl_801A6E60[4];
-extern unsigned char lbl_801A6E48[4];
-extern unsigned char lbl_801A6EE8[4];
-extern unsigned char lbl_801A6E70[4];
-extern unsigned char lbl_801A6E4C[4];
-extern unsigned char lbl_801A6EA8[4];
-extern unsigned char lbl_801A6E68[4];
-extern unsigned char lbl_801A6E50[4];
-extern unsigned char lbl_801A6E6C[4];
-extern unsigned char lbl_801A7914[4];
-extern unsigned char lbl_801A7910[4];
-extern unsigned char lbl_801A7908[8];
-extern unsigned char lbl_801A7900[8];
 
 asm void main(void)
 {
@@ -336,9 +245,9 @@ _80005608:
     stw	r4, 0x1100(r3)
     stw	r4, 0x1200(r3)
     stw	r4, 0x1300(r3)
-    stw r0, gLanguageIndexTable
+    stw	r0, -0x7d0c(r13)
     bl      fn_80005660
-    bl      GameMainLoopFrame
+    bl      fn_8000591C
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -354,8 +263,8 @@ asm void fn_80005660(void)
     bl      OSInit
     bl      DVDInit
     bl      fn_80006AFC
-    lis     r3, dvd_read_sync_wait@ha
-    addi	r3, r3, dvd_read_sync_wait@l
+    lis     r3, fn_80006354@ha
+    addi	r3, r3, fn_80006354@l
     bl      fn_80006B30
     bl      fn_8001AAB4
     bl      fn_8006CFF8
@@ -389,7 +298,7 @@ _800056e4:
     bl      fn_80070774
     bl      fn_8006FCB4
     bl      fn_8006CCC8
-    lfs f1, lbl_801A6E40(r2)
+    lfs	f1, -0x8000(r2)
     bl      fn_8006CD40
     li	r3, 0x20
     li	r4, 1
@@ -411,36 +320,36 @@ asm void main_read_fze_str(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lfs f1, lbl_801A6E44(r2)
+    lfs	f1, -0x7ffc(r2)
     stw	r0, 0x14(r1)
-    lfs f2, lbl_801A6E48(r2)
-    lwz r0, lbl_801A7900(r2)
-    lfs f3, lbl_801A6E4C(r2)
+    lfs	f2, -0x7ff8(r2)
+    lwz	r0, -0x7540(r2)
+    lfs	f3, -0x7ff4(r2)
     stw	r0, 0xc(r1)
-    lfs f4, lbl_801A6E50(r2)
+    lfs	f4, -0x7ff0(r2)
     bl      fn_800721FC
     li	r3, 1
-    bl      LightCtrl_SetCachedByte_EE
+    bl      fn_80072BD0
     li	r3, 1
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      LightCtrl_SetCachedColor_1C
+    bl      fn_800728A8
     li	r3, 4
     li	r4, 0
     li	r5, 0
     li	r6, 4
     li	r7, 0
-    bl      GXWriteLightReg
+    bl      fn_80037518
     li	r3, 0
     li	r4, 0
-    bl      GXWriteLightAttn
+    bl      fn_80037D40
     bl      fn_80007A44
     lwz	r0, 0xc(r1)
     addi	r3, r1, 8
     stw	r0, 8(r1)
     bl      fn_8006CDFC
-    lfs f1, lbl_801A6E54(r2)
+    lfs	f1, -0x7fec(r2)
     bl      fn_8006CE1C
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -456,7 +365,7 @@ asm void fn_800057CC(void)
     li	r3, 3
     stw	r0, 0x14(r1)
     bl      fn_800702E4
-    stw	r3, lbl_801A66CC
+    stw	r3, -0x7cf4(r13)
     bl      fn_800791A4
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -480,13 +389,13 @@ asm void fn_800057F8(void)
     cmplwi	r0, 0
     bc      4, 2, _8000583c
 _80005828:
-    li	r3, lbl_801A66B0
+    addi	r3, r13, -0x7d10
     li	r4, 0
     li	r5, 4
     bl      memset
     b       _80005848
 _8000583c:
-    li	r3, lbl_801A66B0
+    addi	r3, r13, -0x7d10
     li	r5, 4
     bl      memcpy
 _80005848:
@@ -501,7 +410,7 @@ asm void main_load_sample_rel(void)
     nofralloc
     stwu	r1, -0x50(r1)
     mflr	r0
-    li	r3, lbl_801A63C4
+    addi	r3, r13, -0x7ffc
     stw	r0, 0x54(r1)
     addi	r4, r1, 8
     stw	r31, 0x4c(r1)
@@ -513,20 +422,20 @@ asm void main_load_sample_rel(void)
     addi	r0, r3, 0x1f
     rlwinm	r31, r0, 0, 0, 0x1a
     mr	r3, r31
-    bl      OSAllocFromArenaLo
+    bl      fn_8000B360
     mr	r5, r31
     mr	r31, r3
     addi	r3, r1, 8
     li	r6, 0
     mr	r4, r31
-    bl      dvd_read_sync_wait
+    bl      fn_80006354
     cmpwi	r3, 0
     bc      12, 2, _800058bc
     mr	r3, r31
     bl      OSSetStringTable
 _800058bc:
     addi	r3, r1, 8
-    bl      DVDCancelSync
+    bl      fn_80017228
 _800058c4:
     lwz	r0, 0x54(r1)
     lwz	r31, 0x4c(r1)
@@ -541,16 +450,16 @@ asm void fn_800058D8(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    lbz	r0, lbl_801A66AC
+    lbz	r0, -0x7d14(r13)
     cmplwi	r0, 0
     bc      4, 2, _8000590c
     bl      PADInit
     li	r3, 3
     bl      PADSetAnalogMode
     bl      fn_8006B188
-    lbz	r3, lbl_801A66AC
+    lbz	r3, -0x7d14(r13)
     addi	r0, r3, 1
-    stb	r0, lbl_801A66AC
+    stb	r0, -0x7d14(r13)
 _8000590c:
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -558,7 +467,7 @@ _8000590c:
     blr	
 }
 
-asm void GameMainLoopFrame(void)
+asm void fn_8000591C(void)
 {
     nofralloc
     stwu	r1, -0x60(r1)
@@ -584,15 +493,15 @@ asm void GameMainLoopFrame(void)
     rlwinm	r28, r0, 0, 0, 0x1a
     add	r31, r28, r30
     mr	r3, r31
-    bl      OSAllocFromArenaLo
+    bl      fn_8000B360
     mr	r30, r3
     mr	r5, r28
     addi	r3, r1, 8
     li	r6, 0
     mr	r4, r30
-    bl      dvd_read_sync_wait
+    bl      fn_80006354
     addi	r3, r1, 8
-    bl      DVDCancelSync
+    bl      fn_80017228
     mr	r3, r30
     li	r4, 0
     bl      OSLink
@@ -606,7 +515,7 @@ asm void GameMainLoopFrame(void)
     mr	r3, r30
     clrlwi	r4, r31, 0x18
     li	r5, 0
-    bl      ModelLoadLcDma
+    bl      fn_800793D4
     mr	r3, r29
     bl      OSSetArenaHi
     mr	r12, r28
@@ -691,10 +600,10 @@ asm void fn_80005AD0(void)
     li	r7, 0xe
     li	r8, 0
     li	r9, 0
-    lwz	r4, lbl_801A63D0
+    lwz	r4, -0x7ff0(r13)
     li	r10, 0
-    bl      GXInitTexObj
-    bl      __GXInitTexMapPreload
+    bl      fn_80035C50
+    bl      fn_80036544
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -709,22 +618,22 @@ asm void mmu_user_fn(void)
     stw	r0, 0x74(r1)
     stw	r31, 0x6c(r1)
     mr	r31, r3
-    lwz	r0, lbl_801A6E58
+    lwz	r0, -0x7fe8(r2)
     stw	r0, 0x18(r1)
     bl      fn_800723F8
     li	r3, 0x2200
-    bl      GXLoadMtxArray
+    bl      fn_8007245C
     bl      fn_800723F8
     li	r3, 0
-    bl      GXSetChanAmbColorCached
+    bl      fn_80074788
     li	r3, 1
-    bl      GXSetNumTexGensCached
+    bl      fn_80074660
     li	r3, 1
-    bl      ModelSetCachedNumTexGens
+    bl      fn_80073678
     li	r3, 0
-    bl      ModelSetCachedState_840
+    bl      fn_80073898
     li	r3, 0
-    bl      ModelClearCacheSlot_B28
+    bl      fn_80073C6C
     li	r3, 0
     li	r4, 0
     bl      fn_80072EDC
@@ -734,7 +643,7 @@ asm void mmu_user_fn(void)
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      ModelSetCachedPair5_B28
+    bl      fn_800745A4
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -743,7 +652,7 @@ asm void mmu_user_fn(void)
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl      LightCtrl_SetCachedPair_6C
+    bl      fn_80072AB0
     li	r3, 0
     li	r4, 0xf
     li	r5, 2
@@ -777,47 +686,47 @@ asm void mmu_user_fn(void)
     li	r7, 0
     li	r8, 2
     li	r9, 2
-    bl      LightCtrl_SetCachedRec_C30
+    bl      fn_800747D0
     lwz	r0, 0x18(r1)
     addi	r4, r1, 0x14
     li	r3, 1
     stw	r0, 0x14(r1)
-    bl      __GXSetTexRegion
+    bl      fn_800371F8
     li	r3, 1
     li	r4, 1
     li	r5, 1
-    bl      GXSetTexGenCached
+    bl      fn_80074918
     li	r3, 1
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      LightCtrl_SetCachedColor_1C
-    lfs f1, lbl_801A6E5C(r2)
+    bl      fn_800728A8
+    lfs	f1, -0x7fe4(r2)
     addi	r4, r1, 0x10
-    lfs f2, lbl_801A6E60(r2)
+    lfs	f2, -0x7fe0(r2)
     li	r3, 0
-    lwz r0, lbl_801A7908(r2)
+    lwz	r0, -0x7538(r2)
     fmr	f3, f1
     fmr	f4, f2
     stw	r0, 0x10(r1)
-    bl      GXWriteTextureState
+    bl      fn_800377F8
     li	r3, 2
-    bl      LightCtrl_SetCachedCullMode
-    bl      QuatNormalizeCompare
-    lwz	r3, lbl_801A6D00
+    bl      fn_80072864
+    bl      fn_8006D758
+    lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      GXLoadMatIdxTripleToXF
-    lfs f1, lbl_801A6E5C(r2)
+    bl      fn_80038C5C
+    lfs	f1, -0x7fe4(r2)
     addi	r3, r1, 0x1c
-    lfs f2, lbl_801A6E64(r2)
+    lfs	f2, -0x7fdc(r2)
     fmr	f3, f1
-    lfs f4, lbl_801A6E68(r2)
+    lfs	f4, -0x7fd8(r2)
     fmr	f5, f1
-    lfs f6, lbl_801A6E6C(r2)
-    bl      MTXOrtho
+    lfs	f6, -0x7fd4(r2)
+    bl      fn_80015EE8
     addi	r3, r1, 0x1c
     li	r4, 1
-    bl      GXIntToFloatCopy
+    bl      fn_800737E4
     li	r0, 0xff
     addi	r4, r1, 0xc
     stb	r0, 0x18(r1)
@@ -827,7 +736,7 @@ asm void mmu_user_fn(void)
     stb	r0, 0x1b(r1)
     lwz	r0, 0x18(r1)
     stw	r0, 0xc(r1)
-    bl      __GXSetTexRegion
+    bl      fn_800371F8
     li	r0, 0
     addi	r4, r1, 8
     stb	r0, 0x18(r1)
@@ -837,19 +746,19 @@ asm void mmu_user_fn(void)
     stb	r0, 0x1b(r1)
     lwz	r0, 0x18(r1)
     stw	r0, 8(r1)
-    bl      __GXSetTexRegion
+    bl      fn_800371F8
     mr	r3, r31
     li	r4, 0
-    bl      ModelCacheMaterialParams
+    bl      fn_80073778
     li	r3, 0x80
     li	r4, 7
     li	r5, 4
     bl      GXBegin
-    lfs f3, lbl_801A6E70(r2)
+    lfs	f3, -0x7fd0(r2)
     lis	r3, -0x33ff
-    lfd f2, lbl_801A6E78(r2)
-    lfs f1, lbl_801A6E80(r2)
-    lfd f0, lbl_801A6E88(r2)
+    lfd	f2, -0x7fc8(r2)
+    lfs	f1, -0x7fc0(r2)
+    lfd	f0, -0x7fb8(r2)
     fsub	f4, f3, f2
     fadd	f5, f2, f3
     fsub	f2, f1, f0
@@ -860,35 +769,35 @@ asm void mmu_user_fn(void)
     frsp	f2, f5
     frsp	f1, f0
     stfs	f3, -0x8000(r3)
-    lfs f0, lbl_801A6E90(r2)
+    lfs	f0, -0x7fb0(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A6E5C(r2)
+    lfs	f0, -0x7fe4(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A6E5C(r2)
+    lfs	f0, -0x7fe4(r2)
     stfs	f0, -0x8000(r3)
     stfs	f2, -0x8000(r3)
     stfs	f3, -0x8000(r3)
-    lfs f0, lbl_801A6E90(r2)
+    lfs	f0, -0x7fb0(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A6E94(r2)
+    lfs	f0, -0x7fac(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A6E5C(r2)
+    lfs	f0, -0x7fe4(r2)
     stfs	f0, -0x8000(r3)
     stfs	f2, -0x8000(r3)
     stfs	f1, -0x8000(r3)
-    lfs f0, lbl_801A6E90(r2)
+    lfs	f0, -0x7fb0(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A6E94(r2)
+    lfs	f0, -0x7fac(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A6E94(r2)
+    lfs	f0, -0x7fac(r2)
     stfs	f0, -0x8000(r3)
     stfs	f4, -0x8000(r3)
     stfs	f1, -0x8000(r3)
-    lfs f0, lbl_801A6E90(r2)
+    lfs	f0, -0x7fb0(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A6E5C(r2)
+    lfs	f0, -0x7fe4(r2)
     stfs	f0, -0x8000(r3)
-    lfs f0, lbl_801A6E94(r2)
+    lfs	f0, -0x7fac(r2)
     stfs	f0, -0x8000(r3)
     lwz	r31, 0x6c(r1)
     lwz	r0, 0x74(r1)
@@ -900,7 +809,7 @@ asm void mmu_user_fn(void)
 asm void fn_80005E0C(void)
 {
     nofralloc
-    li	r3, lbl_801A66D0
+    addi	r3, r13, -0x7cf0
     li	r0, 0x32
     addis	r3, r3, 0x4000
     li	r4, 0
@@ -968,17 +877,17 @@ asm void fn_80005EDC(void)
     mflr	r0
     li	r3, 0x2200
     stw	r0, 0x64(r1)
-    lwz	r0, lbl_801A6E98
+    lwz	r0, -0x7fa8(r2)
     stw	r0, 0x14(r1)
-    bl      GXLoadMtxArray
+    bl      fn_8007245C
     li	r3, 0
-    bl      GXSetChanAmbColorCached
+    bl      fn_80074788
     li	r3, 1
-    bl      GXSetNumTexGensCached
+    bl      fn_80074660
     li	r3, 1
-    bl      ModelSetCachedNumTexGens
+    bl      fn_80073678
     li	r3, 0
-    bl      ModelClearCacheSlot_B28
+    bl      fn_80073C6C
     li	r3, 0
     li	r4, 0
     bl      fn_80072EDC
@@ -988,7 +897,7 @@ asm void fn_80005EDC(void)
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      ModelSetCachedPair5_B28
+    bl      fn_800745A4
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -997,7 +906,7 @@ asm void fn_80005EDC(void)
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl      LightCtrl_SetCachedPair_6C
+    bl      fn_80072AB0
     li	r3, 0
     li	r4, 0xf
     li	r5, 2
@@ -1031,42 +940,42 @@ asm void fn_80005EDC(void)
     li	r7, 0
     li	r8, 2
     li	r9, 2
-    bl      LightCtrl_SetCachedRec_C30
+    bl      fn_800747D0
     lwz	r0, 0x14(r1)
     addi	r4, r1, 0x10
     li	r3, 1
     stw	r0, 0x10(r1)
-    bl      __GXSetTexRegion
+    bl      fn_800371F8
     li	r3, 1
     li	r4, 7
     li	r5, 0
-    bl      GXSetTexGenCached
+    bl      fn_80074918
     li	r3, 1
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      LightCtrl_SetCachedColor_1C
-    lfs f1, lbl_801A6E9C(r2)
+    bl      fn_800728A8
+    lfs	f1, -0x7fa4(r2)
     li	r3, 0
-    lfs f2, lbl_801A6EA0(r2)
-    bl      GXCompareVecDirty
+    lfs	f2, -0x7fa0(r2)
+    bl      fn_80071ED4
     li	r3, 2
-    bl      LightCtrl_SetCachedCullMode
-    bl      QuatNormalizeCompare
-    lwz	r3, lbl_801A6D00
+    bl      fn_80072864
+    bl      fn_8006D758
+    lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      GXLoadMatIdxTripleToXF
-    lfs f1, lbl_801A6E9C(r2)
+    bl      fn_80038C5C
+    lfs	f1, -0x7fa4(r2)
     addi	r3, r1, 0x18
-    lfs f2, lbl_801A6EA4(r2)
+    lfs	f2, -0x7f9c(r2)
     fmr	f3, f1
-    lfs f4, lbl_801A6EA8(r2)
+    lfs	f4, -0x7f98(r2)
     fmr	f5, f1
-    lfs f6, lbl_801A6EA0(r2)
-    bl      MTXOrtho
+    lfs	f6, -0x7fa0(r2)
+    bl      fn_80015EE8
     addi	r3, r1, 0x18
     li	r4, 1
-    bl      GXIntToFloatCopy
+    bl      fn_800737E4
     li	r0, 0xff
     addi	r4, r1, 0xc
     stb	r0, 0x14(r1)
@@ -1076,7 +985,7 @@ asm void fn_80005EDC(void)
     stb	r0, 0x17(r1)
     lwz	r0, 0x14(r1)
     stw	r0, 0xc(r1)
-    bl      __GXSetTexRegion
+    bl      fn_800371F8
     li	r0, 0
     addi	r4, r1, 8
     stb	r0, 0x14(r1)
@@ -1086,7 +995,7 @@ asm void fn_80005EDC(void)
     stb	r0, 0x17(r1)
     lwz	r0, 0x14(r1)
     stw	r0, 8(r1)
-    bl      __GXSetTexRegion
+    bl      fn_800371F8
     lwz	r0, 0x64(r1)
     mtlr	r0
     addi	r1, r1, 0x60
@@ -1114,7 +1023,7 @@ asm void fn_800060D8(void)
     stw	r31, 0x4c(r1)
     stw	r30, 0x48(r1)
     fmr	f28, f2
-    lfd f0, lbl_801A6EB0(r2)
+    lfd	f0, -0x7f90(r2)
     fmr	f27, f1
     mr	r30, r3
     fneg	f30, f3
@@ -1134,12 +1043,12 @@ _80006154:
 _8000615c:
     cmplwi	r4, 0x20
     bc      4, 2, _80006174
-    lfd f0, lbl_801A6EB8(r2)
+    lfd	f0, -0x7f88(r2)
     fadd	f27, f27, f0
     frsp	f27, f27
     b       _800062e0
 _80006174:
-    lha r0, lbl_801A66EC(r13)
+    lha	r0, -0x7cd4(r13)
     lis     r3, lbl_8015B940@ha
     addi	r31, r3, lbl_8015B940@l
     mtctr	r0
@@ -1166,16 +1075,16 @@ _800061a8:
     li	r8, 0
     li	r9, 0
     li	r10, 0
-    bl      GXInitTexObj
-    bl      __GXInitTexMapPreload
+    bl      fn_80035C50
+    bl      fn_80036544
     addi	r3, r1, 8
     li	r4, 0
-    bl      ModelCacheMaterialParams
+    bl      fn_80073778
     lhz	r4, 6(r31)
     lis	r0, 0x4330
     stw	r0, 0x28(r1)
     frsp	f29, f31
-    lfd f1, lbl_801A6EC8(r2)
+    lfd	f1, -0x7f78(r2)
     li	r3, 0x80
     stw	r4, 0x2c(r1)
     li	r4, 7
@@ -1187,14 +1096,14 @@ _800061a8:
     lis	r4, -0x33ff
     lis	r0, 0x4330
     stfs	f27, -0x8000(r4)
-    lfd f2, lbl_801A6EC8(r2)
+    lfd	f2, -0x7f78(r2)
     stfs	f28, -0x8000(r4)
-    lfd f1, lbl_801A6EB0(r2)
+    lfd	f1, -0x7f90(r2)
     stfs	f30, -0x8000(r4)
-    lfs f0, lbl_801A6E9C(r2)
+    lfs	f0, -0x7fa4(r2)
     stw	r0, 0x30(r1)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6E9C(r2)
+    lfs	f0, -0x7fa4(r2)
     stw	r0, 0x38(r1)
     stfs	f0, -0x8000(r4)
     stfs	f26, -0x8000(r4)
@@ -1208,7 +1117,7 @@ _800061a8:
     fdiv	f0, f0, f1
     frsp	f0, f0
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6E9C(r2)
+    lfs	f0, -0x7fa4(r2)
     stfs	f0, -0x8000(r4)
     stfs	f26, -0x8000(r4)
     stfs	f29, -0x8000(r4)
@@ -1220,14 +1129,14 @@ _800061a8:
     fdiv	f0, f0, f1
     frsp	f0, f0
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6EC0(r2)
+    lfs	f0, -0x7f80(r2)
     stfs	f0, -0x8000(r4)
     stfs	f27, -0x8000(r4)
     stfs	f29, -0x8000(r4)
     stfs	f30, -0x8000(r4)
-    lfs f0, lbl_801A6E9C(r2)
+    lfs	f0, -0x7fa4(r2)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6EC0(r2)
+    lfs	f0, -0x7f80(r2)
     stfs	f0, -0x8000(r4)
     lhz	r0, 6(r31)
     stw	r0, 0x44(r1)
@@ -1272,11 +1181,11 @@ asm void fn_80006340(void)
     cmpwi	r3, -1
     beqlr	
     li	r0, 0
-    stb	r0, lbl_801A66DB
+    stb	r0, -0x7ce5(r13)
     blr	
 }
 
-asm void dvd_read_sync_wait(void)
+asm void fn_80006354(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1288,13 +1197,13 @@ asm void dvd_read_sync_wait(void)
     addi	r7, r7, fn_80006340@l
     stw	r31, 0xc(r1)
     mr	r31, r3
-    stb	r0, lbl_801A66DB
-    bl      DVDReadPrio
+    stb	r0, -0x7ce5(r13)
+    bl      fn_800174D0
     b       _80006388
 _80006384:
     bl      dvdfs_user_fn
 _80006388:
-    lbz	r0, lbl_801A66DB
+    lbz	r0, -0x7ce5(r13)
     extsb.	r0, r0
     bc      4, 2, _80006384
     lwz	r0, 0x14(r1)
@@ -1313,54 +1222,54 @@ asm void fn_800063AC(void)
     stw	r0, 0x44(r1)
     addi	r11, r1, 0x40
     bl      _savegpr_23
-    bl      Yay0ReadyFlagUpdate
+    bl      fn_8000CDD8
     clrlwi	r0, r3, 0x10
     cmplwi	r0, 1
     bc      4, 2, _800063e8
     lis     r3, lbl_8012205C@ha
     li	r0, 6
     addi	r3, r3, lbl_8012205C@l
-    stw	r0, lbl_801A66F0
-    stw	r3, lbl_801A66F4
+    stw	r0, -0x7cd0(r13)
+    stw	r3, -0x7ccc(r13)
     b       _800063fc
 _800063e8:
     lis     r3, lbl_8012205C@ha
     li	r0, 6
     addi	r3, r3, lbl_8012205C@l
-    stw	r0, lbl_801A66F0
-    stw	r3, lbl_801A66F4
+    stw	r0, -0x7cd0(r13)
+    stw	r3, -0x7ccc(r13)
 _800063fc:
     bl      OSGetArenaHi
     mr	r31, r3
-    bl      Yay0ReadyFlagUpdate
+    bl      fn_8000CDD8
     clrlwi	r0, r3, 0x10
     cmplwi	r0, 1
     bc      4, 2, _80006440
     lis	r3, 9
     li	r4, 0x20
     addi	r3, r3, 0xee4
-    bl      OSAllocFromArenaLo
+    bl      fn_8000B360
     lis	r5, 5
     mr	r27, r3
     li	r4, 0x20
     addi	r3, r5, -0x3000
-    bl      OSAllocFromArenaLo
+    bl      fn_8000B360
     mr	r4, r3
     b       _80006464
 _80006440:
     lis	r3, 1
     li	r4, 0x20
     addi	r3, r3, 0x120
-    bl      OSAllocFromArenaLo
+    bl      fn_8000B360
     mr	r27, r3
     li	r3, 0x3000
     li	r4, 0x20
-    bl      OSAllocFromArenaLo
+    bl      fn_8000B360
     mr	r4, r3
 _80006464:
     mr	r3, r27
     bl      fn_8000CEBC
-    lwz	r27, lbl_801A66F4
+    lwz	r27, -0x7ccc(r13)
     li	r28, 0
     b       _8000655c
 _80006478:
@@ -1369,7 +1278,7 @@ _80006478:
     b       _80006548
 _80006484:
     lwz	r23, 0(r29)
-    lha r24, lbl_801A66EC(r13)
+    lha	r24, -0x7cd4(r13)
     b       _80006530
 _80006490:
     rlwinm.	r0, r5, 0, 0x18, 0x18
@@ -1402,7 +1311,7 @@ _800064e4:
     sth	r5, 4(r25)
     li	r3, 0x120
     li	r4, 0x20
-    bl      OSInitArenaPoll
+    bl      fn_8000B334
     stw	r3, 0(r25)
     mr	r3, r26
     addi	r7, r1, 8
@@ -1420,7 +1329,7 @@ _80006530:
     lbz	r5, 0(r23)
     cmplwi	r5, 0
     bc      4, 2, _80006490
-    sth	r24, lbl_801A66EC
+    sth	r24, -0x7cd4(r13)
     addi	r30, r30, 1
     addi	r29, r29, 4
 _80006548:
@@ -1430,7 +1339,7 @@ _80006548:
     addi	r28, r28, 1
     addi	r27, r27, 8
 _8000655c:
-    lwz	r0, lbl_801A66F0
+    lwz	r0, -0x7cd0(r13)
     cmpw	r28, r0
     bc      12, 0, _80006478
     mr	r3, r31
@@ -1466,7 +1375,7 @@ asm void dvdfs_user_fn(void)
     psq_st	f27, 0x58(r1), 0, 0
     addi	r11, r1, 0x50
     bl      _savegpr_23
-    lwz	r12, lbl_801A66DC
+    lwz	r12, -0x7ce4(r13)
     cmplwi	r12, 0
     bc      12, 2, _800065f4
     mtctr	r12
@@ -1481,20 +1390,20 @@ _800065fc:
     mr	r31, r3
     cmpwi	r31, -1
     bc      12, 2, _80006628
-    lwz	r12, lbl_801A66E0
+    lwz	r12, -0x7ce0(r13)
     li	r0, 1
-    stb	r0, lbl_801A66D8
+    stb	r0, -0x7ce8(r13)
     mtctr	r12
     bctrl	
     li	r0, 0
-    stb	r0, lbl_801A66D8
+    stb	r0, -0x7ce8(r13)
 _80006628:
     addi	r0, r31, 1
     cmplwi	r0, 0xc
     bc      12, 1, _80006674
-    lis     r3, jumptable_8012208C@ha
+    lis     r3, -0x7fee
     slwi	r0, r0, 2
-    addi	r3, r3, jumptable_8012208C@l
+    addi	r3, r3, 0x208c
     lwzx	r0, r3, r0
     mtctr	r0
     bctr	
@@ -1519,7 +1428,7 @@ _80006688:
     bc      12, 0, _80006864
     cmpwi	r25, 0
     bc      4, 2, _800066b0
-    lwz	r12, lbl_801A66E8
+    lwz	r12, -0x7cd8(r13)
     cmplwi	r12, 0
     bc      12, 2, _800066ac
     mtctr	r12
@@ -1531,17 +1440,17 @@ _800066b0:
     cmpwi	r24, 0
     bc      12, 0, _80006858
     bl      fn_80005EDC
-    lwz	r3, lbl_801A66F4
+    lwz	r3, -0x7ccc(r13)
     slwi	r0, r24, 3
     li	r30, 0
-    lfd f27, lbl_801A6ED0(r2)
-    lfd f28, lbl_801A6ED8(r2)
+    lfd	f27, -0x7f70(r2)
+    lfd	f28, -0x7f68(r2)
     mr	r26, r30
-    lfd f29, lbl_801A6EF0(r2)
+    lfd	f29, -0x7f50(r2)
     add	r29, r3, r0
-    lfd f30, lbl_801A6EE0(r2)
+    lfd	f30, -0x7f60(r2)
     lis	r23, 0x4330
-    lfd f31, lbl_801A6EB0(r2)
+    lfd	f31, -0x7f90(r2)
     b       _8000684c
 _800066f0:
     lwz	r3, 0(r29)
@@ -1550,13 +1459,13 @@ _800066f0:
     b       _800067c4
 _80006700:
     mr	r3, r27
-    li	r4, lbl_801A63F0
-    bl      __msl_strcmp
+    addi	r4, r13, -0x7fd0
+    bl      fn_80083BCC
     cmpwi	r3, 0
     bc      12, 2, _800067d0
     mr	r3, r27
-    li	r4, lbl_801A63F4
-    bl      __msl_strcmp
+    addi	r4, r13, -0x7fcc
+    bl      fn_80083BCC
     cmpwi	r3, 0
     bc      12, 2, _800067d0
     lbz	r4, 0(r27)
@@ -1573,9 +1482,9 @@ _80006744:
     xoris	r3, r28, 0x8000
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lfd f2, lbl_801A6EF0(r2)
+    lfd	f2, -0x7f50(r2)
     stw	r0, 8(r1)
-    lfd f0, lbl_801A6EB8(r2)
+    lfd	f0, -0x7f88(r2)
     lfd	f1, 8(r1)
     fsub	f1, f1, f2
     fadd	f0, f1, f0
@@ -1584,7 +1493,7 @@ _80006744:
     lwz	r28, 0x14(r1)
     b       _800067c4
 _80006780:
-    lha r0, lbl_801A66EC(r13)
+    lha	r0, -0x7cd4(r13)
     lis     r3, lbl_8015B940@ha
     addi	r3, r3, lbl_8015B940@l
     mtctr	r0
@@ -1616,7 +1525,7 @@ _800067d0:
     lwz	r3, 0(r29)
     xoris	r4, r4, 0x8000
     stw	r23, 8(r1)
-    lfs f3, lbl_801A6EE8(r2)
+    lfs	f3, -0x7f58(r2)
     stw	r4, 0xc(r1)
     lwzx	r3, r3, r26
     lfd	f0, 8(r1)
@@ -1668,7 +1577,7 @@ _80006890:
     bc      12, 2, _800065fc
     cmpwi	r25, 0
     bc      12, 2, _800068b4
-    lwz	r12, lbl_801A66E4
+    lwz	r12, -0x7cdc(r13)
     cmplwi	r12, 0
     bc      12, 2, _800068b4
     mtctr	r12
@@ -1695,8 +1604,8 @@ _800068b4:
 asm void fn_800068F4(void)
 {
     nofralloc
-    lwz	r0, lbl_801A66E8
-    stw	r3, lbl_801A66E8
+    lwz	r0, -0x7cd8(r13)
+    stw	r3, -0x7cd8(r13)
     mr	r3, r0
     blr	
 }
@@ -1704,8 +1613,8 @@ asm void fn_800068F4(void)
 asm void fn_80006904(void)
 {
     nofralloc
-    lwz	r0, lbl_801A66E4
-    stw	r3, lbl_801A66E4
+    lwz	r0, -0x7cdc(r13)
+    stw	r3, -0x7cdc(r13)
     mr	r3, r0
     blr	
 }
@@ -1713,7 +1622,7 @@ asm void fn_80006904(void)
 asm void fn_80006914(void)
 {
     nofralloc
-    stw	r3, lbl_801A66E0
+    stw	r3, -0x7ce0(r13)
     blr	
 }
 
@@ -1787,32 +1696,32 @@ _800069f4:
     bc      4, 2, _80006a08
     sth	r0, 0x24(r31)
 _80006a08:
-    lbz	r0, lbl_801A66DA
+    lbz	r0, -0x7ce6(r13)
     cmplwi	r0, 1
     bc      4, 2, _80006a28
     bl      OSGetResetSwitchState
     cmpwi	r3, 0
     bc      4, 2, _80006a28
     li	r0, 0xff
-    stb	r0, lbl_801A66D9
+    stb	r0, -0x7ce7(r13)
 _80006a28:
     bl      OSGetResetSwitchState
     cmpwi	r3, 0
     bc      12, 2, _80006a3c
     li	r0, 1
-    stb	r0, lbl_801A66DA
+    stb	r0, -0x7ce6(r13)
 _80006a3c:
-    lbz	r3, lbl_801A66D9
+    lbz	r3, -0x7ce7(r13)
     lis	r0, 0x4330
     stw	r0, 0x60(r1)
-    lfd f2, lbl_801A6EC8(r2)
+    lfd	f2, -0x7f78(r2)
     stw	r3, 0x64(r1)
-    lfd f0, lbl_801A6EF8(r2)
+    lfd	f0, -0x7f48(r2)
     lfd	f1, 0x60(r1)
     fsub	f1, f1, f2
     fcmpo	cr0, f1, f0
     bc      4, 1, _80006a90
-    bl      VIWaitForRetrace
+    bl      fn_8001AF64
     li	r3, 1
     bl      fn_8001BDF0
     li	r3, 0
@@ -1832,9 +1741,9 @@ _80006a9c:
     andi.	r0, r0, 0x1600
     cmpwi	r0, 0x1600
     bc      4, 2, _80006abc
-    lbz	r3, lbl_801A66D9
+    lbz	r3, -0x7ce7(r13)
     addi	r0, r3, 1
-    stb	r0, lbl_801A66D9
+    stb	r0, -0x7ce7(r13)
     b       _80006ac8
 _80006abc:
     addi	r31, r31, 0xc
@@ -1844,7 +1753,7 @@ _80006ac8:
     cmplwi	r4, 4
     bc      4, 2, _80006ad8
     li	r0, 0
-    stb	r0, lbl_801A66D9
+    stb	r0, -0x7ce7(r13)
 _80006ad8:
     lwz	r0, 0x74(r1)
     lwz	r31, 0x6c(r1)
@@ -1856,14 +1765,14 @@ _80006ad8:
 asm void fn_80006AEC(void)
 {
     nofralloc
-    stw	r3, lbl_801A66DC
+    stw	r3, -0x7ce4(r13)
     blr	
 }
 
 asm void fn_80006AF4(void)
 {
     nofralloc
-    lbz	r3, lbl_801A66D8
+    lbz	r3, -0x7ce8(r13)
     blr	
 }
 
@@ -1873,7 +1782,7 @@ asm void fn_80006AFC(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     lis     r3, lbl_8015BD40@ha
-    li	r4, lbl_801A63F8
+    addi	r4, r13, -0x7fc8
     stw	r0, 0x14(r1)
     addi	r3, r3, lbl_8015BD40@l
     bl      strcpy
@@ -1895,7 +1804,7 @@ _80006b3c:
     lis     r3, fn_80006B4C@ha
     addi	r3, r3, fn_80006B4C@l
 _80006b44:
-    stw	r3, lbl_801A6708
+    stw	r3, -0x7cb8(r13)
     blr	
 }
 
@@ -1906,7 +1815,7 @@ asm void fn_80006B4C(void)
     mflr	r0
     li	r7, 2
     stw	r0, 0x14(r1)
-    bl      DVDReadAsync
+    bl      fn_800175C0
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -1927,11 +1836,11 @@ asm void fn_80006B70(void)
     addi	r3, r5, lbl_801220C0@l
     mr	r4, r30
     crxor	6, 6, 6
-    bl      __va_save_registers
-    lis     r3, dvd_open_from_dvd_str@ha
-    addi	r3, r3, dvd_open_from_dvd_str@l
+    bl      fn_80006BDC
+    lis     r3, lbl_801220CC@ha
+    addi	r3, r3, lbl_801220CC@l
     crxor	6, 6, 6
-    bl      __va_save_registers
+    bl      fn_80006BDC
     li	r0, 0
     mr	r3, r30
     stw	r0, 0(r31)
@@ -1945,7 +1854,7 @@ asm void fn_80006B70(void)
     blr	
 }
 
-asm void __va_save_registers(void)
+asm void fn_80006BDC(void)
 {
     nofralloc
     stwu	r1, -0x70(r1)
@@ -2004,13 +1913,13 @@ _80006c7c:
     mr	r4, r29
     addi	r3, r3, lbl_801220E0@l
     crxor	6, 6, 6
-    bl      __va_save_registers
+    bl      fn_80006BDC
     rlwinm.	r0, r29, 0, 1, 0xf
     bc      4, 2, _80006cc4
-    lis     r3, dvd_open_from_dvd_str@ha
-    addi	r3, r3, dvd_open_from_dvd_str@l
+    lis     r3, lbl_801220CC@ha
+    addi	r3, r3, lbl_801220CC@l
     crxor	6, 6, 6
-    bl      __va_save_registers
+    bl      fn_80006BDC
     mr	r3, r29
     addi	r4, r30, 4
     bl      fn_800170EC
@@ -2040,7 +1949,7 @@ asm void fn_80006CE4(void)
     cmpwi	r0, 1
     bc      12, 2, _80006d08
     addi	r3, r3, 4
-    bl      DVDCancelSync
+    bl      fn_80017228
     mr	r4, r3
 _80006d08:
     lwz	r0, 0x14(r1)
@@ -2065,11 +1974,11 @@ asm void fn_80006D1C(void)
     mr	r30, r6
     cmpwi	r0, 1
     bc      12, 2, _80006d7c
-    lis     r3, dvd_reading_from_dvd_str@ha
-    addi	r3, r3, dvd_reading_from_dvd_str@l
+    lis     r3, lbl_801220F0@ha
+    addi	r3, r3, lbl_801220F0@l
     crxor	6, 6, 6
-    bl      __va_save_registers
-    lwz	r12, lbl_801A6708
+    bl      fn_80006BDC
+    lwz	r12, -0x7cb8(r13)
     mr	r4, r28
     mr	r5, r29
     mr	r6, r30
@@ -2082,7 +1991,7 @@ _80006d7c:
     mr	r4, r31
     addi	r3, r3, lbl_80122104@l
     crxor	6, 6, 6
-    bl      __va_save_registers
+    bl      fn_80006BDC
     mr	r3, r31
     addi	r11, r1, 0x20
     bl      _restgpr_27
@@ -2103,7 +2012,7 @@ asm void fn_80006DAC(void)
     bc      12, 2, _80006dd4
     addi	r3, r3, 4
     li	r8, 2
-    bl      DVDReadPrio
+    bl      fn_800174D0
     mr	r8, r3
 _80006dd4:
     lwz	r0, 0x14(r1)
@@ -2177,9 +2086,9 @@ _80006e84:
     b       _80006f70
 _80006e9c:
     mr	r3, r30
-    li	r4, lbl_801A63FC
+    addi	r4, r13, -0x7fc4
     li	r5, 2
-    bl      __msl_strncmp
+    bl      fn_80083B8C
     cmpwi	r3, 0
     bc      4, 2, _80006f28
     lis     r3, lbl_8015BD40@ha
@@ -2207,16 +2116,16 @@ _80006f00:
     addi	r4, r4, -1
     bc      16, 0, _80006edc
 _80006f0c:
-    lis	r3, lbl_8015BD40@ha
-    lbzu	r0, lbl_8015BD40@l(r3)
+    lis	r3, -0x7fea
+    lbzu	r0, -0x42c0(r3)
     cmplwi	r0, 0
     bc      4, 2, _80006f70
-    li	r4, lbl_801A63F8
+    addi	r4, r13, -0x7fc8
     bl      strcpy
     b       _80006f70
 _80006f28:
-    lis	r3, lbl_8015BD40@ha
-    lbz	r0, lbl_8015BD40@l(r3)
+    lis	r3, -0x7fea
+    lbz	r0, -0x42c0(r3)
     cmplwi	r0, 0x2f
     bc      4, 2, _80006f44
     lbz	r0, 1(r31)
@@ -2224,14 +2133,14 @@ _80006f28:
     bc      12, 2, _80006f54
 _80006f44:
     lis     r3, lbl_8015BD40@ha
-    li	r4, lbl_801A63F8
+    addi	r4, r13, -0x7fc8
     addi	r3, r3, lbl_8015BD40@l
-    bl      __msl_strcpy
+    bl      fn_80083D40
 _80006f54:
     lis     r3, lbl_8015BD40@ha
     mr	r4, r30
     addi	r3, r3, lbl_8015BD40@l
-    bl      __msl_strcpy
+    bl      fn_80083D40
     mr	r3, r30
     bl      strlen
     add	r30, r30, r3
@@ -2297,14 +2206,14 @@ asm void fn_8000700C(void)
     stw	r29, 0x94(r1)
     mr	r29, r3
     stw	r28, 0x90(r1)
-    lwz	r0, lbl_801A66F8
+    lwz	r0, -0x7cc8(r13)
     cmplwi	r0, 0
     bc      4, 2, _8000704c
     bl      DVDConvertPathToEntrynum
     mr	r28, r3
     b       _80007194
 _8000704c:
-    lwz	r0, lbl_801A6704
+    lwz	r0, -0x7cbc(r13)
     cmplwi	r0, 0
     bc      4, 2, _8000706c
     addi	r3, r30, 0x58
@@ -2343,8 +2252,8 @@ _800070c4:
     addi	r3, r1, 8
     addi	r4, r4, lbl_8015BD40@l
     bl      strcpy
-    lis	r3, lbl_8015BD40@ha
-    lbzu	r0, lbl_8015BD40@l(r3)
+    lis	r3, -0x7fea
+    lbzu	r0, -0x42c0(r3)
     cmplwi	r0, 0x2f
     bc      4, 2, _800070f0
     lbz	r0, 1(r3)
@@ -2352,35 +2261,35 @@ _800070c4:
     bc      12, 2, _800070fc
 _800070f0:
     addi	r3, r1, 8
-    li	r4, lbl_801A63F8
-    bl      __msl_strcpy
+    addi	r4, r13, -0x7fc8
+    bl      fn_80083D40
 _800070fc:
     mr	r4, r29
     addi	r3, r1, 8
-    bl      __msl_strcpy
+    bl      fn_80083D40
 _80007108:
     mr	r4, r29
     addi	r3, r30, 0xa0
     crxor	6, 6, 6
-    bl      __va_save_registers
+    bl      fn_80006BDC
     lis     r4, lbl_8015BD40@ha
     addi	r3, r30, 0xb0
     addi	r4, r4, lbl_8015BD40@l
     crxor	6, 6, 6
-    bl      __va_save_registers
+    bl      fn_80006BDC
     addi	r3, r30, 0xc0
     addi	r4, r1, 8
     crxor	6, 6, 6
-    bl      __va_save_registers
+    bl      fn_80006BDC
     li	r29, 0
     li	r28, -1
     mr	r31, r29
     b       _80007174
 _8000714c:
-    lwz	r3, lbl_801A6700
+    lwz	r3, -0x7cc0(r13)
     addi	r4, r1, 8
     lwzx	r3, r3, r31
-    bl      __msl_strcmp
+    bl      fn_80083BCC
     cmpwi	r3, 0
     bc      4, 2, _8000716c
     oris	r28, r29, 0x7fff
@@ -2389,7 +2298,7 @@ _8000716c:
     addi	r31, r31, 4
     addi	r29, r29, 1
 _80007174:
-    lwz	r0, lbl_801A66FC
+    lwz	r0, -0x7cc4(r13)
     cmpw	r29, r0
     bc      12, 0, _8000714c
 _80007180:
@@ -2397,7 +2306,7 @@ _80007180:
     addi	r4, r1, 8
     oris	r5, r28, 0x7fff
     crxor	6, 6, 6
-    bl      __va_save_registers
+    bl      fn_80006BDC
 _80007194:
     lwz	r0, 0xa4(r1)
     mr	r3, r28
@@ -2419,38 +2328,38 @@ asm void fn_800071B8(void)
     li	r0, 1
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
-    stw	r0, lbl_801A6714
+    stw	r0, -0x7cac(r13)
     bl      OSGetArenaHi
     addis	r31, r3, -4
     rlwinm	r31, r31, 0, 0, 0xd
     mr	r3, r31
     bl      OSSetArenaHi
-    lwz	r0, lbl_801A6CE0
+    lwz	r0, -0x76e0(r13)
     li	r4, 0x1000
-    stw	r4, lbl_801A671C
+    stw	r4, -0x7ca4(r13)
     rlwinm.	r0, r0, 0, 0x1c, 0x1c
     bc      12, 2, _80007224
-    lwz	r31, lbl_801A6CF8
+    lwz	r31, -0x76c8(r13)
     slwi	r3, r4, 8
     slwi	r4, r4, 2
-    stw	r3, lbl_801A6718
+    stw	r3, -0x7ca8(r13)
     subf	r31, r3, r31
     addi	r0, r3, -1
     andc	r31, r31, r0
-    stw	r4, lbl_801A671C
-    stw	r31, lbl_801A6CF8
+    stw	r4, -0x7ca4(r13)
+    stw	r31, -0x76c8(r13)
     b       _8000722c
 _80007224:
     slwi	r0, r4, 6
-    stw	r0, lbl_801A6718
+    stw	r0, -0x7ca8(r13)
 _8000722c:
     clrlwi	r0, r31, 4
-    lwz	r5, lbl_801A6718
+    lwz	r5, -0x7ca8(r13)
     oris	r3, r0, 0xc000
     li	r4, 0
-    stw	r3, lbl_801A6710
+    stw	r3, -0x7cb0(r13)
     bl      memset
-    lwz	r3, lbl_801A6718
+    lwz	r3, -0x7ca8(r13)
     li	r4, -0x19
     addi	r0, r3, -1
     srwi	r0, r0, 0x10
@@ -2467,7 +2376,7 @@ _8000722c:
     isync	
     sync	
     li	r30, 0
-    lwz	r3, lbl_801A671C
+    lwz	r3, -0x7ca4(r13)
     li	r0, 2
     srwi	r3, r3, 4
     mtctr	r0
@@ -2525,7 +2434,7 @@ _80007298:
     sync	
     tlbsync	
     sync	
-    lwz	r0, lbl_801A6CE0
+    lwz	r0, -0x76e0(r13)
     rlwinm.	r0, r0, 0, 0x1c, 0x1c
     bc      12, 2, _800073dc
     li	r30, 0
@@ -2558,9 +2467,9 @@ _800073dc:
     lis	r3, 1
     li	r4, 0
     addi	r0, r3, -1
-    sth	r4, lbl_801A6726
-    sth	r0, lbl_801A6724
-    stw	r4, lbl_801A6720
+    sth	r4, -0x7c9a(r13)
+    sth	r0, -0x7c9c(r13)
+    stw	r4, -0x7ca0(r13)
     lwz	r31, 0xc(r1)
     lwz	r30, 8(r1)
     lwz	r0, 0x14(r1)
@@ -2585,15 +2494,15 @@ asm void fn_8000740C(void)
     bl      fn_80007730
     or.	r31, r3, r3
     bc      4, 2, _80007458
-    lis     r4, mmu_cant_allocate_pte_str@ha
-    li	r3, lbl_801A6400
-    addi	r5, r4, mmu_cant_allocate_pte_str@l
+    lis     r4, lbl_801221A0@ha
+    addi	r3, r13, -0x7fc0
+    addi	r5, r4, lbl_801221A0@l
     li	r4, 0x1cd
     crxor	6, 6, 6
     bl      OSPanic
 _80007458:
     mr	r3, r26
-    bl      OSVirtualToPhysical
+    bl      fn_80007654
     lwz	r0, 0(r31)
     rlwimi	r0, r3, 7, 1, 0x18
     mr	r3, r31
@@ -2645,15 +2554,15 @@ _80007504:
     bl      fn_80007730
     or.	r28, r3, r3
     bc      4, 2, _8000752c
-    lis     r4, mmu_cant_allocate_pte_str@ha
-    li	r3, lbl_801A6400
-    addi	r5, r4, mmu_cant_allocate_pte_str@l
+    lis     r4, lbl_801221A0@ha
+    addi	r3, r13, -0x7fc0
+    addi	r5, r4, lbl_801221A0@l
     li	r4, 0x1cd
     crxor	6, 6, 6
     bl      OSPanic
 _8000752c:
     mr	r3, r27
-    bl      OSVirtualToPhysical
+    bl      fn_80007654
     lwz	r0, 0(r28)
     rlwimi	r0, r3, 7, 1, 0x18
     mr	r3, r28
@@ -2737,7 +2646,7 @@ _8000762c:
     blr	
 }
 
-asm void OSVirtualToPhysical(void)
+asm void fn_80007654(void)
 {
     nofralloc
     rlwinm	r3, r3, 0, 0, 3
@@ -2871,7 +2780,7 @@ asm void fn_800077E0(void)
     stw	r29, 0x14(r1)
     stw	r28, 0x10(r1)
     mr	r28, r3
-    bl      OSVirtualToPhysical
+    bl      fn_80007654
     mr	r31, r3
     mr	r3, r28
     rlwinm	r29, r28, 0xa, 0x1a, 0x1f
@@ -3006,7 +2915,7 @@ asm void fn_800079C4(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      OSVirtualToPhysical
+    bl      fn_80007654
     rlwinm	r4, r31, 0x14, 0x10, 0x1f
     clrlwi	r0, r3, 0xd
     xor	r0, r4, r0
@@ -3026,7 +2935,7 @@ asm void fn_80007A00(void)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
-    bl      OSVirtualToPhysical
+    bl      fn_80007654
     rlwinm	r4, r31, 0x14, 0x10, 0x1f
     clrlwi	r0, r3, 0xd
     xor	r0, r4, r0
@@ -3046,27 +2955,27 @@ asm void fn_80007A44(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     lis	r4, 0x100
-    li	r6, lbl_801A6408
+    addi	r6, r13, -0x7fb8
     stw	r0, 0x14(r1)
     addi	r3, r1, 8
     addi	r4, r4, -1
-    lwz	r0, lbl_801A6F00
+    lwz	r0, -0x7f40(r2)
     stw	r0, 0xc(r1)
     lbz	r8, 0xc(r1)
     lbz	r7, 0xd(r1)
     lbz	r5, 0xe(r1)
     lbz	r0, 0xf(r1)
-    stb	r8, lbl_801A6408
+    stb	r8, -0x7fb8(r13)
     stb	r7, 1(r6)
     stb	r5, 2(r6)
     stb	r0, 3(r6)
-    lwz	r0, lbl_801A6408
+    lwz	r0, -0x7fb8(r13)
     stw	r0, 8(r1)
-    bl      ModelMatchCachedSlot_B20
-    li	r3, lbl_801A6408
+    bl      fn_800744F8
+    addi	r3, r13, -0x7fb8
     bl      fn_80008204
     li	r0, 0
-    stw	r0, lbl_801A6728
+    stw	r0, -0x7c98(r13)
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -3080,10 +2989,10 @@ asm void fn_80007AB4(void)
     mflr	r0
     stw	r0, 0x14(r1)
     lbz	r0, 0(r3)
-    lbz	r4, lbl_801A6408
+    lbz	r4, -0x7fb8(r13)
     cmplw	r4, r0
     bc      4, 2, _80007b04
-    li	r5, lbl_801A6408
+    addi	r5, r13, -0x7fb8
     lbz	r0, 1(r3)
     lbz	r4, 1(r5)
     cmplw	r4, r0
@@ -3099,7 +3008,7 @@ asm void fn_80007AB4(void)
 _80007b04:
     lwz	r0, 0(r3)
     lis	r4, 0x100
-    li	r6, lbl_801A6408
+    addi	r6, r13, -0x7fb8
     addi	r3, r1, 8
     stw	r0, 0xc(r1)
     addi	r4, r4, -1
@@ -3107,18 +3016,18 @@ _80007b04:
     lbz	r7, 0xd(r1)
     lbz	r5, 0xe(r1)
     lbz	r0, 0xf(r1)
-    stb	r8, lbl_801A6408
+    stb	r8, -0x7fb8(r13)
     stb	r7, 1(r6)
     stb	r5, 2(r6)
     stb	r0, 3(r6)
-    lwz	r0, lbl_801A6408
+    lwz	r0, -0x7fb8(r13)
     stw	r0, 8(r1)
-    bl      ModelMatchCachedSlot_B20
-    li	r3, lbl_801A6408
+    bl      fn_800744F8
+    addi	r3, r13, -0x7fb8
     bl      fn_80008204
 _80007b50:
     li	r0, 1
-    stw	r0, lbl_801A6728
+    stw	r0, -0x7c98(r13)
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -3131,15 +3040,15 @@ asm void dvd_user_fn(void)
     stwu	r1, -0x20(r1)
     mflr	r0
     stw	r0, 0x24(r1)
-    lwz	r4, lbl_801A6F04
-    lbz	r3, lbl_801A6408
+    lwz	r4, -0x7f3c(r2)
+    lbz	r3, -0x7fb8(r13)
     stw	r4, 0x18(r1)
     lbz	r0, 0x18(r1)
     stw	r4, 8(r1)
     cmplw	r3, r0
     stw	r4, 0x14(r1)
     bc      4, 2, _80007bc8
-    li	r4, lbl_801A6408
+    addi	r4, r13, -0x7fb8
     lbz	r0, 0x19(r1)
     lbz	r3, 1(r4)
     cmplw	r3, r0
@@ -3155,7 +3064,7 @@ asm void dvd_user_fn(void)
 _80007bc8:
     lwz	r0, 0x14(r1)
     lis	r4, 0x100
-    li	r6, lbl_801A6408
+    addi	r6, r13, -0x7fb8
     addi	r3, r1, 0xc
     stw	r0, 0x10(r1)
     addi	r4, r4, -1
@@ -3163,18 +3072,18 @@ _80007bc8:
     lbz	r7, 0x11(r1)
     lbz	r5, 0x12(r1)
     lbz	r0, 0x13(r1)
-    stb	r8, lbl_801A6408
+    stb	r8, -0x7fb8(r13)
     stb	r7, 1(r6)
     stb	r5, 2(r6)
     stb	r0, 3(r6)
-    lwz	r0, lbl_801A6408
+    lwz	r0, -0x7fb8(r13)
     stw	r0, 0xc(r1)
-    bl      ModelMatchCachedSlot_B20
-    li	r3, lbl_801A6408
+    bl      fn_800744F8
+    addi	r3, r13, -0x7fb8
     bl      fn_80008204
 _80007c14:
     li	r0, 1
-    stw	r0, lbl_801A6728
+    stw	r0, -0x7c98(r13)
     lwz	r0, 0x24(r1)
     mtlr	r0
     addi	r1, r1, 0x20
@@ -3190,9 +3099,9 @@ asm void fn_80007C2C(void)
     stw	r0, 0x14(r1)
     addi	r3, r1, 8
     addi	r4, r4, -1
-    lwz	r0, lbl_801A6408
+    lwz	r0, -0x7fb8(r13)
     stw	r0, 8(r1)
-    bl      ModelMatchCachedSlot_B20
+    bl      fn_800744F8
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -3207,13 +3116,13 @@ asm void fn_80007C60(void)
     cmpwi	r3, 0
     stw	r0, 0x14(r1)
     bc      4, 2, _80007c80
-    lwz	r0, lbl_801A6728
+    lwz	r0, -0x7c98(r13)
     cmpwi	r0, 0
     bc      4, 2, _80007cc4
 _80007c80:
-    lwz	r0, lbl_801A6F08
+    lwz	r0, -0x7f38(r2)
     lis	r4, 0x100
-    li	r6, lbl_801A6408
+    addi	r6, r13, -0x7fb8
     addi	r3, r1, 8
     stw	r0, 0xc(r1)
     addi	r4, r4, -1
@@ -3221,16 +3130,16 @@ _80007c80:
     lbz	r7, 0xd(r1)
     lbz	r5, 0xe(r1)
     lbz	r0, 0xf(r1)
-    stb	r8, lbl_801A6408
+    stb	r8, -0x7fb8(r13)
     stb	r7, 1(r6)
     stb	r5, 2(r6)
     stb	r0, 3(r6)
-    lwz	r0, lbl_801A6408
+    lwz	r0, -0x7fb8(r13)
     stw	r0, 8(r1)
-    bl      ModelMatchCachedSlot_B20
+    bl      fn_800744F8
 _80007cc4:
     li	r0, 0
-    stw	r0, lbl_801A6728
+    stw	r0, -0x7c98(r13)
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -3431,7 +3340,7 @@ asm void fn_80007F70(void)
     stwu	r1, -0x80(r1)
     mflr	r0
     rlwinm	r5, r5, 0xa, 0x10, 0x15
-    lfd f2, lbl_801A6F20(r2)
+    lfd	f2, -0x7f20(r2)
     stw	r0, 0x84(r1)
     lis	r0, 0x4330
     xoris	r5, r5, 0x8000
@@ -3448,16 +3357,16 @@ asm void fn_80007F70(void)
     stfd	f0, 0x18(r1)
     lwz	r0, 0x1c(r1)
     extsh	r3, r0
-    bl      MathSin
-    lfs f2, lbl_801A6F14(r2)
-    lfs f0, lbl_801A6F10(r2)
+    bl      fn_8006D188
+    lfs	f2, -0x7f2c(r2)
+    lfs	f0, -0x7f30(r2)
     fadds	f1, f2, f1
     lbz	r3, 0(r30)
     lbz	r0, 0(r31)
     cmplw	r3, r0
     fmuls	f1, f0, f1
     bc      4, 0, _80007ffc
-    lfd f0, lbl_801A6F18(r2)
+    lfd	f0, -0x7f28(r2)
     stb	r3, 0(r31)
     fsub	f3, f0, f1
     stb	r0, 0(r30)
@@ -3470,7 +3379,7 @@ _80008000:
     lbz	r0, 1(r31)
     cmplw	r3, r0
     bc      4, 0, _80008028
-    lfd f0, lbl_801A6F18(r2)
+    lfd	f0, -0x7f28(r2)
     stb	r3, 1(r31)
     fsub	f5, f0, f1
     stb	r0, 1(r30)
@@ -3483,7 +3392,7 @@ _8000802c:
     lbz	r0, 2(r31)
     cmplw	r3, r0
     bc      4, 0, _80008054
-    lfd f0, lbl_801A6F18(r2)
+    lfd	f0, -0x7f28(r2)
     stb	r3, 2(r31)
     fsub	f6, f0, f1
     stb	r0, 2(r30)
@@ -3496,7 +3405,7 @@ _80008058:
     lbz	r0, 3(r31)
     cmplw	r3, r0
     bc      4, 0, _80008080
-    lfd f0, lbl_801A6F18(r2)
+    lfd	f0, -0x7f28(r2)
     stb	r3, 3(r31)
     fsub	f7, f0, f1
     stb	r0, 3(r30)
@@ -3511,7 +3420,7 @@ _80008084:
     stw	r7, 0x1c(r1)
     lbz	r8, 1(r30)
     stw	r6, 0x18(r1)
-    lfd f4, lbl_801A6F28(r2)
+    lfd	f4, -0x7f18(r2)
     lfd	f0, 0x18(r1)
     stw	r5, 0x14(r1)
     fsubs	f2, f0, f4
@@ -3599,7 +3508,7 @@ asm void fn_800081C8(void)
     lwz	r0, 0(r3)
     addi	r3, r1, 0xc
     stw	r5, 8(r1)
-    lwz r5, lbl_801A66A0
+    lwz	r5, -0x7d20(r13)
     stw	r0, 0xc(r1)
     bl      fn_80007F70
     lwz	r0, 0x14(r1)
@@ -3627,35 +3536,35 @@ asm void fn_80008204(void)
     lwz	r0, 0(r3)
     li	r3, 0x200
     stw	r0, 0x14(r1)
-    bl      GXLoadMtxArray
+    bl      fn_8007245C
     li	r3, 0
-    bl      LightCtrl_SetCachedCullMode
+    bl      fn_80072864
     li	r3, 0
-    bl      ModelClearCacheSlot_B28
+    bl      fn_80073C6C
     li	r3, 0
     li	r4, 0x1c
-    bl      ModelSetCachedState_6B0
+    bl      fn_80073620
     li	r3, 0
     li	r4, 0xc
-    bl      GXCachedSetTevSwapTable
+    bl      fn_800735C8
     lwz	r0, 0x14(r1)
     addi	r4, r1, 0x10
     li	r3, 0
     stw	r0, 0x10(r1)
-    bl      ModelSetCachedTex_704
+    bl      fn_800736C0
     li	r3, 0
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 4
     bl      ModelSetCachedMaterial_570
-    lwz r0, lbl_801A7910(r2)
+    lwz	r0, -0x7530(r2)
     addi	r3, r1, 0xc
     stw	r0, 0xc(r1)
-    bl      GXSetMatrixIndexA
-    lwz r0, lbl_801A7914(r2)
+    bl      fn_800725DC
+    lwz	r0, -0x752c(r2)
     addi	r3, r1, 8
     stw	r0, 8(r1)
-    bl      GXSetMatrixIndexB
+    bl      fn_80072614
     li	r3, 0
     li	r4, 0xf
     li	r5, 0xf
@@ -3683,26 +3592,26 @@ asm void fn_80008204(void)
     li	r8, 0
     bl      ModelSetCachedParam_430
     li	r3, 1
-    bl      ModelSetCachedNumTexGens
+    bl      fn_80073678
     li	r3, 1
-    bl      GXSetChanAmbColorCached
+    bl      fn_80074788
     li	r3, 0
-    bl      GXSetNumTexGensCached
+    bl      fn_80074660
     li	r3, 0
-    bl      ModelSetCachedState_840
+    bl      fn_80073898
     li	r3, 0
     li	r4, 1
     li	r5, 0
     li	r6, 0
-    bl      LightCtrl_SetCachedColor_1C
+    bl      fn_800728A8
     li	r3, 1
     li	r4, 7
     li	r5, 1
-    bl      GXSetTexGenCached
+    bl      fn_80074918
     li	r3, 0
-    bl      Snd_SetOutputModeBit0
+    bl      fn_800720B0
     addi	r3, r1, 0x18
-    bl      GXGetProjectionv
+    bl      fn_80038BFC
     lfs	f29, 0x30(r1)
     lfs	f30, 0x2c(r1)
     lfs	f1, 0x18(r1)
@@ -3712,13 +3621,13 @@ asm void fn_80008204(void)
     bc      12, 2, _80008394
     b       _800083f4
 _80008394:
-    lfs f8, lbl_801A6F14(r2)
+    lfs	f8, -0x7f2c(r2)
     lfs	f2, 0x20(r1)
     fsubs	f1, f30, f8
-    lfs f0, lbl_801A6F38(r2)
+    lfs	f0, -0x7f08(r2)
     lfs	f9, 0x28(r1)
     fsubs	f4, f8, f2
-    lfs f6, lbl_801A6F34(r2)
+    lfs	f6, -0x7f0c(r2)
     fsubs	f3, f0, f2
     fdivs	f1, f29, f1
     lfs	f5, 0x1c(r1)
@@ -3737,15 +3646,15 @@ _80008394:
     fmuls	f28, f0, f2
     b       _80008454
 _800083f4:
-    lfs f6, lbl_801A6F14(r2)
+    lfs	f6, -0x7f2c(r2)
     lfs	f1, 0x1c(r1)
     fadds	f2, f6, f29
     lfs	f0, 0x24(r1)
     lfs	f7, 0x20(r1)
     fdivs	f9, f6, f1
-    lfs f3, lbl_801A6F38(r2)
+    lfs	f3, -0x7f08(r2)
     lfs	f8, 0x28(r1)
-    lfs f1, lbl_801A6F34(r2)
+    lfs	f1, -0x7f0c(r2)
     fneg	f5, f2
     fsubs	f4, f6, f7
     fsubs	f2, f3, f7
@@ -3762,12 +3671,12 @@ _800083f4:
     fmuls	f30, f1, f7
     fmuls	f28, f0, f7
 _80008454:
-    bl      mtx_gpstack_push
-    bl      QuatNormalizeCompare
-    lwz	r3, lbl_801A6D00
+    bl      fn_8006DAEC
+    bl      fn_8006D758
+    lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      GXLoadMatIdxTripleToXF
-    bl      mtx_gpstack_pop
+    bl      fn_80038C5C
+    bl      fn_8006DB30
     li	r3, 0x80
     li	r4, 0
     li	r5, 4
@@ -3820,17 +3729,17 @@ asm void fn_800084E8(void)
     stw	r31, 0x2c(r1)
     mr	r31, r4
     bl      fn_800087F4
-    bl      mtx_gpstack_push
-    bl      QuatNormalizeCompare
-    bl      VIFlush
-    bl      mtx_gpstack_pop
+    bl      fn_8006DAEC
+    bl      fn_8006D758
+    bl      fn_80072558
+    bl      fn_8006DB30
     addi	r3, r1, 8
-    bl      GXGetProjectionv
-    lfs f1, lbl_801A6F38(r2)
+    bl      fn_80038BFC
+    lfs	f1, -0x7f08(r2)
     li	r3, 0x80
     lfs	f0, 0xc(r1)
     li	r4, 0
-    lfs f5, lbl_801A6F14(r2)
+    lfs	f5, -0x7f2c(r2)
     li	r5, 4
     lfs	f4, 0x14(r1)
     fdivs	f7, f1, f0
@@ -3855,33 +3764,33 @@ asm void fn_800084E8(void)
     stfs	f30, -0x8000(r4)
     stfs	f29, -0x8000(r4)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6F30(r2)
+    lfs	f0, -0x7f10(r2)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6F30(r2)
+    lfs	f0, -0x7f10(r2)
     stfs	f0, -0x8000(r4)
     lfs	f0, 0(r31)
     stfs	f28, -0x8000(r4)
     stfs	f29, -0x8000(r4)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6F14(r2)
+    lfs	f0, -0x7f2c(r2)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6F30(r2)
+    lfs	f0, -0x7f10(r2)
     stfs	f0, -0x8000(r4)
     lfs	f0, 0(r31)
     stfs	f28, -0x8000(r4)
     stfs	f27, -0x8000(r4)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6F14(r2)
+    lfs	f0, -0x7f2c(r2)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6F14(r2)
+    lfs	f0, -0x7f2c(r2)
     stfs	f0, -0x8000(r4)
     lfs	f0, 0(r31)
     stfs	f30, -0x8000(r4)
     stfs	f27, -0x8000(r4)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6F30(r2)
+    lfs	f0, -0x7f10(r2)
     stfs	f0, -0x8000(r4)
-    lfs f0, lbl_801A6F14(r2)
+    lfs	f0, -0x7f2c(r2)
     stfs	f0, -0x8000(r4)
     bl      fn_80008A4C
     lfs	f31, 0(r31)
@@ -4011,20 +3920,20 @@ asm void fn_800087F4(void)
     stw	r31, 0x1c(r1)
     mr	r31, r4
     li	r4, 0
-    bl      ModelCacheMaterialParams
+    bl      fn_80073778
     li	r3, 0
     li	r4, 1
     li	r5, 0
     li	r6, 0
-    bl      LightCtrl_SetCachedColor_1C
+    bl      fn_800728A8
     li	r3, 1
     li	r4, 3
     li	r5, 1
-    bl      GXSetTexGenCached
+    bl      fn_80074918
     li	r3, 0
-    bl      Snd_SetOutputModeBit0
+    bl      fn_800720B0
     li	r3, 0
-    bl      LightCtrl_SetCachedCullMode
+    bl      fn_80072864
     lwz	r0, 0x14(r31)
     cmpwi	r0, 1
     bc      12, 2, _80008930
@@ -4034,14 +3943,14 @@ asm void fn_800087F4(void)
     b       _80008a30
 _80008860:
     li	r3, 0
-    bl      ModelClearCacheSlot_B28
+    bl      fn_80073C6C
     li	r3, 0
     li	r4, 1
     li	r5, 4
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      ModelSetCachedPair5_B28
+    bl      fn_800745A4
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -4049,7 +3958,7 @@ _80008860:
     bl      ModelSetCachedMaterial_570
     li	r3, 0
     li	r4, 0
-    bl      ModelSetCachedState_6B0
+    bl      fn_80073620
     li	r3, 0
     li	r4, 0xf
     li	r5, 8
@@ -4077,24 +3986,24 @@ _80008860:
     li	r8, 0
     bl      ModelSetCachedParam_430
     li	r3, 1
-    bl      ModelSetCachedNumTexGens
+    bl      fn_80073678
     li	r3, 1
-    bl      GXSetNumTexGensCached
+    bl      fn_80074660
     li	r3, 0
-    bl      ModelSetCachedState_840
+    bl      fn_80073898
     li	r3, 0
-    bl      GXSetChanAmbColorCached
+    bl      fn_80074788
     b       _80008a30
 _80008930:
     li	r3, 0
-    bl      ModelClearCacheSlot_B28
+    bl      fn_80073C6C
     li	r3, 0
     li	r4, 1
     li	r5, 4
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      ModelSetCachedPair5_B28
+    bl      fn_800745A4
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -4109,13 +4018,13 @@ _80008930:
     stb	r0, 0xe(r1)
     lwz	r0, 0xc(r1)
     stw	r0, 8(r1)
-    bl      ModelSetCachedTex_704
+    bl      fn_800736C0
     li	r3, 0
     li	r4, 0xc
-    bl      GXCachedSetTevSwapTable
+    bl      fn_800735C8
     li	r3, 0
     li	r4, 0
-    bl      ModelSetCachedState_6B0
+    bl      fn_80073620
     li	r3, 0
     li	r4, 0xe
     li	r5, 0xf
@@ -4143,16 +4052,16 @@ _80008930:
     li	r8, 0
     bl      ModelSetCachedParam_430
     li	r3, 1
-    bl      ModelSetCachedNumTexGens
+    bl      fn_80073678
     li	r3, 1
-    bl      GXSetNumTexGensCached
+    bl      fn_80074660
     li	r3, 0
-    bl      ModelSetCachedState_840
+    bl      fn_80073898
     li	r3, 0
-    bl      GXSetChanAmbColorCached
+    bl      fn_80074788
 _80008a30:
     li	r3, 0x2200
-    bl      GXLoadMtxArray
+    bl      fn_8007245C
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     mtlr	r0
@@ -4172,27 +4081,27 @@ asm void fn_80008A4C(void)
     stw	r31, 0x1c(r1)
     mr	r31, r3
     li	r3, 0
-    bl      LightCtrl_SetCachedColor_1C
+    bl      fn_800728A8
     li	r3, 1
     li	r4, 3
     li	r5, 1
-    bl      GXSetTexGenCached
+    bl      fn_80074918
     li	r3, 0
-    bl      Snd_SetOutputModeBit0
+    bl      fn_800720B0
     li	r3, 6
     li	r4, 0
-    bl      GXSetLineWidthCached
+    bl      fn_800746A8
     li	r3, 0
-    bl      LightCtrl_SetCachedCullMode
+    bl      fn_80072864
     li	r3, 0
-    bl      ModelClearCacheSlot_B28
+    bl      fn_80073C6C
     li	r3, 0
     li	r4, 1
     li	r5, 4
     li	r6, 0x3c
     li	r7, 0
     li	r8, 0x7d
-    bl      ModelSetCachedPair5_B28
+    bl      fn_800745A4
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -4202,13 +4111,13 @@ asm void fn_80008A4C(void)
     addi	r4, r1, 8
     li	r3, 0
     stw	r0, 8(r1)
-    bl      ModelSetCachedTex_704
+    bl      fn_800736C0
     li	r3, 0
     li	r4, 0xc
-    bl      GXCachedSetTevSwapTable
+    bl      fn_800735C8
     li	r3, 0
     li	r4, 0x1c
-    bl      ModelSetCachedState_6B0
+    bl      fn_80073620
     li	r3, 0
     li	r4, 0xf
     li	r5, 0xf
@@ -4236,15 +4145,15 @@ asm void fn_80008A4C(void)
     li	r8, 0
     bl      ModelSetCachedParam_430
     li	r3, 1
-    bl      ModelSetCachedNumTexGens
+    bl      fn_80073678
     li	r3, 1
-    bl      GXSetNumTexGensCached
+    bl      fn_80074660
     li	r3, 0
-    bl      ModelSetCachedState_840
+    bl      fn_80073898
     li	r3, 0
-    bl      GXSetChanAmbColorCached
+    bl      fn_80074788
     li	r3, 0x200
-    bl      GXLoadMtxArray
+    bl      fn_8007245C
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
     mtlr	r0
@@ -4266,7 +4175,7 @@ asm void fn_80008BA8(void)
 _80008bc8:
     clrlwi.	r0, r6, 0x1b
     bc      12, 2, _80008bd8
-    bl      memcpy_fast
+    bl      fn_800794F0
     b       _80008bdc
 _80008bd8:
     bl      fn_800791E8
@@ -4285,7 +4194,7 @@ asm void fn_80008BEC(void)
     stw	r0, 0x14(r1)
     clrlwi.	r0, r3, 0x1b
     bc      4, 2, _80008c08
-    bl      ModelLoadLcDma
+    bl      fn_800793D4
     b       _80008c10
 _80008c08:
     clrlwi	r4, r4, 0x18
@@ -4317,12 +4226,12 @@ asm void fn_80008C20(void)
     lfs	f0, 8(r5)
     fneg	f0, f0
     stfs	f0, 0x10(r1)
-    bl      PSVecNormalize3
-    lfs f0, lbl_801A6F30(r2)
+    bl      fn_8006D668
+    lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008c80
     mr	r3, r30
-    bl      PSMTXLoadIdentityFused
+    bl      fn_8006D7DC
     b       _80008d9c
 _80008c80:
     lfs	f6, 4(r31)
@@ -4341,12 +4250,12 @@ _80008c80:
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x24(r1)
     stfs	f0, 0x28(r1)
-    bl      PSVecNormalize3
-    lfs f0, lbl_801A6F30(r2)
+    bl      fn_8006D668
+    lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008cdc
     mr	r3, r30
-    bl      PSMTXLoadIdentityFused
+    bl      fn_8006D7DC
     b       _80008d9c
 _80008cdc:
     lfs	f6, 0xc(r1)
@@ -4365,15 +4274,15 @@ _80008cdc:
     fnmsubs	f0, f6, f4, f0
     stfs	f1, 0x18(r1)
     stfs	f0, 0x1c(r1)
-    bl      PSVecNormalize3
-    lfs f0, lbl_801A6F30(r2)
+    bl      fn_8006D668
+    lfs	f0, -0x7f10(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008d38
     mr	r3, r30
-    bl      PSMTXLoadIdentityFused
+    bl      fn_8006D7DC
     b       _80008d9c
 _80008d38:
-    lwz	r3, lbl_801A6D00
+    lwz	r3, -0x76c0(r13)
     lfs	f0, 0x20(r1)
     stfs	f0, 0(r3)
     lfs	f0, 0x14(r1)

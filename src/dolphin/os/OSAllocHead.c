@@ -1,4 +1,3 @@
-extern unsigned char lbl_801A6414[4];
 extern void DCStoreRange(void);
 extern void DVDGetDriveStatus(void);
 extern void DVDInit(void);
@@ -37,7 +36,7 @@ extern void fn_800057CC(void);
 extern void fn_800057F8(void);
 extern void main_load_sample_rel(void);
 extern void fn_800058D8(void);
-extern void GameMainLoopFrame(void);
+extern void fn_8000591C(void);
 extern void fn_80005A08(void);
 extern void fn_80005AD0(void);
 extern void mmu_user_fn(void);
@@ -45,18 +44,18 @@ extern void fn_80005E0C(void);
 extern void fn_80005EDC(void);
 extern void fn_800060D8(void);
 extern void fn_80006334(void);
-extern void dvd_read_sync_wait(void);
+extern void fn_80006354(void);
 extern void fn_800063AC(void);
 extern void dvdfs_user_fn(void);
 extern void fn_80006914(void);
 extern void fn_80006AEC(void);
 extern void fn_80006AFC(void);
 extern void fn_80006B30(void);
-extern void __va_save_registers(void);
+extern void fn_80006BDC(void);
 extern void fn_80006C4C(void);
 extern void fn_800071B8(void);
 extern void fn_8000740C(void);
-extern void OSVirtualToPhysical(void);
+extern void fn_80007654(void);
 extern void fn_80007664(void);
 extern void fn_80007700(void);
 extern void fn_80007730(void);
@@ -81,35 +80,35 @@ extern void fn_800090A4(void);
 extern void OSAllocTableInit(void);
 extern void OSHeapLockAcquire(void);
 extern void OSHeapLockRelease(void);
-extern void OSInitArenaPoll(void);
-extern void OSAllocFromArenaLo(void);
+extern void fn_8000B334(void);
+extern void fn_8000B360(void);
 extern void OSPanic(void);
-extern void Yay0ReadyFlagUpdate(void);
+extern void fn_8000CDD8(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
-extern void PSMTXMultVecPair(void);
-extern void MTXOrtho(void);
+extern void fn_80015B78(void);
+extern void fn_80015EE8(void);
 extern void DVDConvertPathToEntrynum(void);
 extern void fn_800170EC(void);
 extern void DVDOpen(void);
-extern void DVDCancelSync(void);
+extern void fn_80017228(void);
 extern void fn_80017470(void);
-extern void DVDReadPrio(void);
-extern void DVDReadAsync(void);
+extern void fn_800174D0(void);
+extern void fn_800175C0(void);
 extern void fn_8001AAB4(void);
-extern void VIWaitForRetrace(void);
+extern void fn_8001AF64(void);
 extern void fn_8001BDF0(void);
 extern void PADInit(void);
 extern void PADRead(void);
 extern void PADSetAnalogMode(void);
-extern void GXInitTexObj(void);
-extern void __GXInitTexMapPreload(void);
-extern void __GXSetTexRegion(void);
-extern void GXWriteLightReg(void);
-extern void GXWriteTextureState(void);
-extern void GXWriteLightAttn(void);
-extern void GXGetProjectionv(void);
-extern void GXLoadMatIdxTripleToXF(void);
+extern void fn_80035C50(void);
+extern void fn_80036544(void);
+extern void fn_800371F8(void);
+extern void fn_80037518(void);
+extern void fn_800377F8(void);
+extern void fn_80037D40(void);
+extern void fn_80038BFC(void);
+extern void fn_80038C5C(void);
 extern void fn_8006B188(void);
 extern void fn_8006B470(void);
 extern void fn_8006CCC8(void);
@@ -117,7 +116,7 @@ extern void fn_8006CD40(void);
 extern void fn_8006CDFC(void);
 extern void fn_8006CE1C(void);
 extern void fn_8006CFF8(void);
-extern void MTXQuatInterpolate(void);
+extern void fn_8006E5FC(void);
 extern void PSMTXQuat_fromMtx(void);
 extern void fn_8006FCB4(void);
 extern void fn_8006FD1C(void);
@@ -132,70 +131,64 @@ extern void fn_80070620(void);
 extern void fn_8007075C(void);
 extern void fn_80070774(void);
 extern void fn_80070AC0(void);
-extern void GXCompareVecDirty(void);
-extern void Snd_SetOutputModeBit0(void);
+extern void fn_80071ED4(void);
+extern void fn_800720B0(void);
 extern void fn_800721FC(void);
 extern void fn_800723F8(void);
-extern void GXLoadMtxArray(void);
-extern void VIFlush(void);
-extern void GXSetMatrixIndexA(void);
-extern void GXSetMatrixIndexB(void);
-extern void LightCtrl_SetCachedCullMode(void);
-extern void LightCtrl_SetCachedColor_1C(void);
-extern void LightCtrl_SetCachedPair_6C(void);
-extern void LightCtrl_SetCachedByte_EE(void);
+extern void fn_8007245C(void);
+extern void fn_80072558(void);
+extern void fn_800725DC(void);
+extern void fn_80072614(void);
+extern void fn_80072864(void);
+extern void fn_800728A8(void);
+extern void fn_80072AB0(void);
+extern void fn_80072BD0(void);
 extern void ModelSetCachedParam_F0(void);
 extern void ModelSetCachedParam_1F0(void);
 extern void ModelSetCachedParam_2F0(void);
 extern void ModelSetCachedParam_430(void);
 extern void fn_80072EDC(void);
 extern void ModelSetCachedMaterial_570(void);
-extern void GXCachedSetTevSwapTable(void);
-extern void ModelSetCachedState_6B0(void);
-extern void ModelSetCachedNumTexGens(void);
-extern void ModelSetCachedTex_704(void);
-extern void ModelCacheMaterialParams(void);
-extern void GXIntToFloatCopy(void);
-extern void ModelSetCachedState_840(void);
-extern void ModelClearCacheSlot_B28(void);
-extern void ModelMatchCachedSlot_B20(void);
-extern void ModelSetCachedPair5_B28(void);
-extern void GXSetNumTexGensCached(void);
-extern void GXSetLineWidthCached(void);
-extern void GXSetChanAmbColorCached(void);
-extern void LightCtrl_SetCachedRec_C30(void);
-extern void GXSetTexGenCached(void);
+extern void fn_800735C8(void);
+extern void fn_80073620(void);
+extern void fn_80073678(void);
+extern void fn_800736C0(void);
+extern void fn_80073778(void);
+extern void fn_800737E4(void);
+extern void fn_80073898(void);
+extern void fn_80073C6C(void);
+extern void fn_800744F8(void);
+extern void fn_800745A4(void);
+extern void fn_80074660(void);
+extern void fn_800746A8(void);
+extern void fn_80074788(void);
+extern void fn_800747D0(void);
+extern void fn_80074918(void);
 extern void fn_800791A4(void);
 extern void fn_800791E8(void);
-extern void ModelLoadLcDma(void);
-extern void memcpy_fast(void);
+extern void fn_800793D4(void);
+extern void fn_800794F0(void);
 extern void __cvt_fp2unsigned(void);
-extern void __msl_strncmp(void);
-extern void __msl_strcmp(void);
-extern void __msl_strcpy(void);
+extern void fn_80083B8C(void);
+extern void fn_80083BCC(void);
+extern void fn_80083D40(void);
 extern void strncpy(void);
 extern void strcpy(void);
-extern void MathSin(void);
-extern void PSVecNormalize3(void);
-extern void QuatNormalizeCompare(void);
-extern void PSMTXLoadIdentityFused(void);
-extern void mtx_gpstack_push(void);
-extern void mtx_gpstack_pop(void);
-extern void MTXQuatExtract(void);
+extern void fn_8006D188(void);
+extern void fn_8006D668(void);
+extern void fn_8006D758(void);
+extern void fn_8006D7DC(void);
+extern void fn_8006DAEC(void);
+extern void fn_8006DB30(void);
+extern void fn_8006DBAC(void);
 extern void memcpy(void);
 extern void memset(void);
 extern void strlen(void);
-extern unsigned char os_check_heap_assert_str_table[1008];
+extern unsigned char lbl_801221C0[1008];
 
 #pragma push
 #pragma force_active on
 
-extern unsigned char gAssetBudgetB[4];
-extern unsigned char g_currentHeapHandle[4];
-extern unsigned char lbl_801A6734[4];
-extern unsigned char lbl_801A6738[4];
-extern unsigned char lbl_801A673C[4];
-extern unsigned char lbl_801A6740[4];
 asm void fn_80008DB4(void)
 {
     nofralloc
@@ -208,13 +201,13 @@ asm void fn_80008DB4(void)
     mr	r31, r5
     stw	r30, 0x40(r1)
     mr	r30, r4
-    bl      MTXQuatExtract
+    bl      fn_8006DBAC
     addi	r3, r1, 0x28
-    bl      MTXQuatInterpolate
+    bl      fn_8006E5FC
     mr	r3, r30
-    bl      MTXQuatExtract
+    bl      fn_8006DBAC
     addi	r3, r1, 0x18
-    bl      MTXQuatInterpolate
+    bl      fn_8006E5FC
     fmr	f1, f31
     addi	r3, r1, 8
     addi	r4, r1, 0x28
@@ -222,7 +215,7 @@ asm void fn_80008DB4(void)
     bl      PSMTXQuat_fromMtx
     mr	r3, r31
     addi	r4, r1, 8
-    bl      PSMTXMultVecPair
+    bl      fn_80015B78
     lwz	r0, 0x54(r1)
     lfd	f31, 0x48(r1)
     lwz	r31, 0x44(r1)
@@ -243,7 +236,7 @@ asm void OSAlloc(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    li	r5, lbl_801A6414
+    addi	r5, r13, -0x7fac
     li	r6, 0
     stw	r0, 0x14(r1)
     bl      OSAllocFromHeap
@@ -258,7 +251,7 @@ asm void OSFree(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    li	r5, lbl_801A6414
+    addi	r5, r13, -0x7fac
     li	r6, 0
     stw	r0, 0x14(r1)
     bl      OSFreeToHeap
@@ -278,8 +271,8 @@ asm void OSSetCurrentHeap_thunk(void)
     stw	r30, 8(r1)
     mr	r30, r3
     bl      OSHeapLockAcquire
-    lwz	r31, g_currentHeapHandle
-    stw	r30, g_currentHeapHandle
+    lwz	r31, -0x7fb0(r13)
+    stw	r30, -0x7fb0(r13)
     bl      OSHeapLockRelease
     lwz	r0, 0x14(r1)
     mr	r3, r31
@@ -300,13 +293,13 @@ asm void OSInitAlloc(void)
     stw	r0, 0x14(r1)
     li	r8, 0
     stw	r31, 0xc(r1)
-    stw	r3, gAssetBudgetB
+    stw	r3, -0x7c7c(r13)
     mr	r3, r6
-    stw	r5, lbl_801A6740
+    stw	r5, -0x7c80(r13)
     li	r5, -1
     b       _80008f14
 _80008ef8:
-    lwz	r0, gAssetBudgetB
+    lwz	r0, -0x7c7c(r13)
     addi	r8, r8, 1
     add	r9, r0, r6
     addi	r6, r6, 0xc
@@ -314,18 +307,18 @@ _80008ef8:
     stw	r3, 8(r9)
     stw	r3, 4(r9)
 _80008f14:
-    lwz	r0, lbl_801A6740
+    lwz	r0, -0x7c80(r13)
     cmpw	r8, r0
     bc      12, 0, _80008ef8
-    lwz	r3, gAssetBudgetB
+    lwz	r3, -0x7c7c(r13)
     rlwinm	r0, r4, 0, 0, 0x1a
     li	r4, -1
-    stw	r0, lbl_801A6738
+    stw	r0, -0x7c88(r13)
     add	r3, r3, r7
     addi	r0, r3, 0x1f
-    stw	r4, g_currentHeapHandle
+    stw	r4, -0x7fb0(r13)
     rlwinm	r31, r0, 0, 0, 0x1a
-    stw	r31, lbl_801A673C
+    stw	r31, -0x7c84(r13)
     bl      OSAllocTableInit
     lwz	r0, 0x14(r1)
     mr	r3, r31
@@ -342,7 +335,7 @@ asm void OSCreateHeap_wrapper_A(void)
     mflr	r0
     stw	r0, 0x14(r1)
     li	r0, 0
-    stw	r0, lbl_801A6734
+    stw	r0, -0x7c8c(r13)
     bl      OSCreateHeap
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -357,7 +350,7 @@ asm void OSCreateHeap_wrapper_B(void)
     mflr	r0
     stw	r0, 0x14(r1)
     li	r0, 1
-    stw	r0, lbl_801A6734
+    stw	r0, -0x7c8c(r13)
     bl      OSCreateHeap
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -377,11 +370,11 @@ asm void OSCreateHeap(void)
     stw	r29, 0x14(r1)
     mr	r29, r3
     bl      OSHeapLockAcquire
-    lwz	r3, lbl_801A6740
+    lwz	r3, -0x7c80(r13)
     addi	r0, r29, 0x1f
     rlwinm	r29, r0, 0, 0, 0x1a
     rlwinm	r30, r30, 0, 0, 0x1a
-    lwz	r4, gAssetBudgetB
+    lwz	r4, -0x7c7c(r13)
     li	r31, 0
     mtctr	r3
     cmpwi	r3, 0
@@ -429,7 +422,7 @@ asm void OSDestroyHeap(void)
     mr	r31, r3
     bl      OSHeapLockAcquire
     mulli	r0, r31, 0xc
-    lwz	r3, gAssetBudgetB
+    lwz	r3, -0x7c7c(r13)
     li	r4, -1
     stwx	r4, r3, r0
     bl      OSHeapLockRelease
@@ -448,14 +441,14 @@ asm void fn_800090A4(void)
     stw	r0, 0x24(r1)
     addi	r11, r1, 0x20
     bl      _savegpr_27
-    lis     r4, os_check_heap_assert_str_table@ha
+    lis     r4, lbl_801221C0@ha
     mr	r27, r3
-    addi	r28, r4, os_check_heap_assert_str_table@l
+    addi	r28, r4, lbl_801221C0@l
     li	r31, 0
     li	r30, 0
     li	r29, 0
     bl      OSHeapLockAcquire
-    lwz	r3, gAssetBudgetB
+    lwz	r3, -0x7c7c(r13)
     cmplwi	r3, 0
     bc      4, 2, _800090fc
     addi	r3, r28, 0
@@ -468,7 +461,7 @@ asm void fn_800090A4(void)
 _800090fc:
     cmpwi	r27, 0
     bc      12, 0, _80009110
-    lwz	r0, lbl_801A6740
+    lwz	r0, -0x7c80(r13)
     cmpw	r27, r0
     bc      12, 0, _8000912c
 _80009110:
@@ -507,9 +500,9 @@ _8000915c:
     li	r3, -1
     b       _80009450
 _80009190:
-    lwz	r6, lbl_801A673C
+    lwz	r6, -0x7c84(r13)
     mr	r4, r3
-    lwz	r7, lbl_801A6738
+    lwz	r7, -0x7c88(r13)
     b       _800092a0
 _800091a0:
     cmplw	r6, r4
