@@ -99,7 +99,7 @@ B738_lockloop:
     blr
 }
 
-void fn_8000B804(void)
+void LCEnable(void)
 {
     BOOL enabled;
 

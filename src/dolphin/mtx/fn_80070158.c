@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_8000B804(void);
+extern asm void LCEnable(void);
 extern asm void fn_80070CF8(void);
 extern asm void OSPanic(void);
 extern unsigned char lbl_8015AA78[11];
@@ -16,7 +16,7 @@ asm void fn_80070158(void)
     cmpwi	r3, 0
     stw	r0, 0x14(r1)
     beq	_80070188
-    bl      fn_8000B804
+    bl      LCEnable
     lwz	r0, -0x76e0(r13)
     lis	r3, -0x2000
     stw	r3, -0x76d0(r13)
