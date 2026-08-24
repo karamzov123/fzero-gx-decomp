@@ -360,7 +360,7 @@ asm void __GXSetGenMode(void)
 }
 
 
-asm void fn_8003493C(register void* src, register void* dst, register int a, register int b)
+asm void GXAdjustForOverscan(register void* src, register void* dst, register int a, register int b)
 {
     nofralloc
     cmplw	r3, r4
@@ -682,7 +682,7 @@ asm void __GXSetBlendMode(register int a, register int b, register int c)
     blr	
 }
 
-asm void fn_80034D9C(register void* p1, register void* p2, register int id, register void* p4)
+asm void GXSetDispCopyYScale(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
     mflr	r0

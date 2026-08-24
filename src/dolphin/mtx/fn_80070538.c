@@ -10,7 +10,7 @@ extern asm void OSSetArenaHi(void);
 extern asm void fn_80070A58(void);
 extern asm void VIGetTvFormat(void);
 extern asm void OSPanic(void);
-extern asm void fn_8003493C(void);
+extern asm void GXAdjustForOverscan(void);
 extern asm void fn_8001B42C(void);
 extern asm void GXSetCopyClear(void);
 extern unsigned char lbl_8012AFB8[60];
@@ -145,7 +145,7 @@ _800706c0:
     addi	r4, r4, lbl_8019E150@l
     li	r5, 0
     li	r6, 0x10
-    bl      fn_8003493C
+    bl      GXAdjustForOverscan
     lis     r3, lbl_8019E150@ha
     addi	r3, r3, lbl_8019E150@l
     stw	r3, -0x76cc(r13)

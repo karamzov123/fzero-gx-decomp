@@ -26,7 +26,7 @@ extern void __GXSetChanAmbColor(void);
 extern void __GXSetChanCtrl(void);
 extern void GXXFormSetupA(void);
 extern void GXXFormSetupB(void);
-extern void fn_80036388(void);
+extern void GXLoadTexObj(void);
 extern void __GXInitTexObj(void);
 extern void fn_80036AC4(void);
 extern void __GXInitTexCacheRegs(void);
@@ -721,7 +721,7 @@ asm void ModelCacheMaterialParams(void)
     sth r3, 0x22(r31)
     mr r3, r29
     mr r4, r30
-    bl fn_80036388
+    bl GXLoadTexObj
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)

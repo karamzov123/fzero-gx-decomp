@@ -12,7 +12,7 @@ extern asm void fn_80038EEC(void);
 extern asm void fn_80074188(void);
 extern asm void ModelSetCachedScissorLT_AFC(void);
 extern asm void ModelSetCachedScissorOffset_B04(void);
-extern asm void fn_80034D9C(void);
+extern asm void GXSetDispCopyYScale(void);
 extern asm void GXSetCopyClear(void);
 extern asm void __GXSetGenModeInline(void);
 extern asm void __GXSetZModeBits(void);
@@ -159,7 +159,7 @@ _80070884:
     lfd	f0, 0x28(r1)
     fsubs	f0, f0, f2
     fdivs	f1, f1, f0
-    bl      fn_80034D9C
+    bl      GXSetDispCopyYScale
     lwz	r6, -0x76cc(r13)
     li	r5, 1
     lbz	r3, 0x19(r6)

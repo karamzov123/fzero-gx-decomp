@@ -10,14 +10,14 @@ extern GXData *const gx;
 extern unsigned char lbl_8012B368[80];
 
 void __GXFlushTextureState(void);
-void fn_800361F0(register void* dst, register void* src, register int a, register int b);
+void GXInitTexObjLOD(register void* dst, register void* src, register int a, register int b);
 void fn_800365B4(register void* p, register int a);
 void __GXInitTexObj(register void* p);
 
 #pragma push
 #pragma force_active on
 
-asm void fn_80036070(register void* p)
+asm void GXGetTexObjAll(register void* p)
 {
     nofralloc
     lwz	r0, 0xc(r3)
@@ -48,7 +48,7 @@ asm void fn_80036070(register void* p)
     blr	
 }
 
-asm void fn_800360D8(void)
+asm void GXGetTexObjData(void)
 {
     nofralloc
     lwz	r0, 0xc(r3)
@@ -81,7 +81,7 @@ asm void GXGetTexObjMipmap(void)
     blr	
 }
 
-asm void fn_8003610C(register void* p, register int a, register int b)
+asm void GXGetTexObjLODAll(register void* p, register int a, register int b)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -143,7 +143,7 @@ asm void fn_8003610C(register void* p, register int a, register int b)
     blr	
 }
 
-asm void fn_800361F0(register void* dst, register void* src, register int a, register int b)
+asm void GXInitTexObjLOD(register void* dst, register void* src, register int a, register int b)
 {
     nofralloc
     mflr	r0
@@ -251,7 +251,7 @@ _80036338:
     blr	
 }
 
-asm void fn_80036388(register void* p)
+asm void GXLoadTexObj(register void* p)
 {
     nofralloc
     mflr	r0
@@ -268,7 +268,7 @@ asm void fn_80036388(register void* p)
     addi	r4, r3, 0
     addi	r3, r30, 0
     addi	r5, r31, 0
-    bl      fn_800361F0
+    bl      GXInitTexObjLOD
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
     lwz	r30, 0x10(r1)
@@ -411,7 +411,7 @@ asm void __GXInitTexMapPreload(register void* p)
     blr	
 }
 
-asm void fn_8003658C(register void* p)
+asm void GXSetTexRegionCallback(register void* p)
 {
     nofralloc
     lwz	r4, -0x7de8(r2)
@@ -421,7 +421,7 @@ asm void fn_8003658C(register void* p)
     blr	
 }
 
-asm void fn_800365A0(register void* p)
+asm void GXSetTlutRegionCallback(register void* p)
 {
     nofralloc
     lwz	r4, -0x7de8(r2)

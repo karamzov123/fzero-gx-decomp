@@ -242,7 +242,7 @@ extern void fn_80037D7C(BOOL odd, BOOL even);
 extern void fn_80037DB4(BOOL fieldMode, BOOL halfAspect);
 extern void __GXSetScissor_LT(s32 left, s32 top, s32 wd, s32 ht);
 extern void __GXSetScissorBoxOffset(s32 wd, s32 ht);
-extern void fn_80034D9C(f32 yscale);
+extern void GXSetDispCopyYScale(f32 yscale);
 extern void __GXSetBlendMode(s32 gamma);
 extern void GXSetCopyClear(u8 aa, const u8 *sample, BOOL enable, const u8 *vfilt);
 extern void __GXSetGenMode2(s32 flag);
@@ -1316,10 +1316,10 @@ L80031480:
     stw	r30, 0x2c8(r4)
     addi	r3, r3, __GXInitFifoObjBreakpointCB@l
     stw	r30, 0x2cc(r4)
-    bl fn_8003658C
+    bl GXSetTexRegionCallback
     lis     r3, __GXGetFifoPoolEntry@ha
     addi	r3, r3, __GXGetFifoPoolEntry@l
-    bl fn_800365A0
+    bl GXSetTlutRegionCallback
     li	r3, 0
     li	r4, 0
     li	r5, 0
@@ -1560,7 +1560,7 @@ L80031a38:
     fsubs	f1, f1, f2
     fsubs	f0, f0, f2
     fdivs	f1, f1, f0
-    bl fn_80034D9C
+    bl GXSetDispCopyYScale
     li	r3, 3
     bl __GXSetBlendMode
     lbz	r3, 0x19(r31)
