@@ -18,7 +18,7 @@ void OSInitThreadQueue(OSThreadQueue *queue)
 #pragma push
 #pragma force_active on
 
-asm void fn_800102AC(void)
+asm void OSGetCurrentThread(void)
 {
     nofralloc
     lis     r3, 0x8000

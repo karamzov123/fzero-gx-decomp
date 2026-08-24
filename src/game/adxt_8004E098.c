@@ -10,7 +10,7 @@ extern void OSRestoreInterrupts(void);
 extern void OSResumeThread(void);
 extern void OSSetThreadPriority(void);
 extern void OSSuspendThread(void);
-extern void fn_800102AC(void);
+extern void OSGetCurrentThread(void);
 extern void fn_80011358(void);
 extern void fn_8001AF64(void);
 extern void CRI_SPSD_parser(void);
@@ -611,7 +611,7 @@ _8004e670:
     li	r9, 1
     addi	r6, r6, 0x2000
     bl      OSCreateThread
-    bl      fn_800102AC
+    bl      OSGetCurrentThread
     li	r4, 1
     li	r0, 0
     stw	r3, 0x24(r31)
@@ -893,7 +893,7 @@ asm void fn_8004EA94(void)
     lwz	r0, 8(r31)
     cmpwi	r0, 0
     bne     _8004eae8
-    bl      fn_800102AC
+    bl      OSGetCurrentThread
     mr	r0, r3
     addi	r3, r31, 0x970
     mr	r30, r0
@@ -930,7 +930,7 @@ asm void fn_8004EB00(void)
     bl      OSDisableScheduler
     li	r0, 1
     stw	r0, 0xc8c(r30)
-    bl      fn_800102AC
+    bl      OSGetCurrentThread
     mr	r28, r3
     bl      fn_80011358
     lis     r4, lbl_8012B918@ha

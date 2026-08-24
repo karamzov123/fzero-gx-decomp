@@ -46,7 +46,7 @@ extern BOOL GXOverflowSuspendInProgress;
 extern u8 CPGPLinked;
 extern GXBreakPtCallback BreakPointCB;
 extern void GXFlush(void);
-extern void *fn_800102AC(void);
+extern void *OSGetCurrentThread(void);
 extern void fn_80031B50(int interrupt, void *context);
 typedef void (*__OSInterruptHandler)(int interrupt, void *context);
 extern __OSInterruptHandler __OSSetInterruptHandler(short interrupt, __OSInterruptHandler handler);
@@ -254,7 +254,7 @@ void __GXFifoInit(void)
 {
     __OSSetInterruptHandler(0x11, fn_80031B50);
     __OSUnmaskInterrupts(0x4000);
-    __GXCurrentThread = fn_800102AC();
+    __GXCurrentThread = OSGetCurrentThread();
     GXOverflowSuspendInProgress = FALSE;
     CPUFifo = NULL;
     GPFifo = NULL;
