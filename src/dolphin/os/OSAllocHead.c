@@ -81,7 +81,7 @@ extern void OSAllocTableInit(void);
 extern void OSHeapLockAcquire(void);
 extern void OSHeapLockRelease(void);
 extern void OSInitArenaPoll(void);
-extern void fn_8000B360(void);
+extern void OSAllocFromArenaLo(void);
 extern void OSPanic(void);
 extern void Yay0ReadyFlagUpdate(void);
 extern void fn_8000CEBC(void);

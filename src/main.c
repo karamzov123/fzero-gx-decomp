@@ -96,7 +96,7 @@ extern void fn_80008BA8(void);
 extern void fn_80008BEC(void);
 extern void fn_80008C20(void);
 extern void OSInitArenaPoll(void);
-extern void fn_8000B360(void);
+extern void OSAllocFromArenaLo(void);
 extern void OSPanic(void);
 extern void Yay0ReadyFlagUpdate(void);
 extern void fn_8000CEBC(void);
@@ -422,7 +422,7 @@ asm void main_load_sample_rel(void)
     addi	r0, r3, 0x1f
     rlwinm	r31, r0, 0, 0, 0x1a
     mr	r3, r31
-    bl      fn_8000B360
+    bl      OSAllocFromArenaLo
     mr	r5, r31
     mr	r31, r3
     addi	r3, r1, 8
@@ -493,7 +493,7 @@ asm void GameMainLoopFrame(void)
     rlwinm	r28, r0, 0, 0, 0x1a
     add	r31, r28, r30
     mr	r3, r31
-    bl      fn_8000B360
+    bl      OSAllocFromArenaLo
     mr	r30, r3
     mr	r5, r28
     addi	r3, r1, 8
@@ -1248,23 +1248,23 @@ _800063fc:
     lis	r3, 9
     li	r4, 0x20
     addi	r3, r3, 0xee4
-    bl      fn_8000B360
+    bl      OSAllocFromArenaLo
     lis	r5, 5
     mr	r27, r3
     li	r4, 0x20
     addi	r3, r5, -0x3000
-    bl      fn_8000B360
+    bl      OSAllocFromArenaLo
     mr	r4, r3
     b       _80006464
 _80006440:
     lis	r3, 1
     li	r4, 0x20
     addi	r3, r3, 0x120
-    bl      fn_8000B360
+    bl      OSAllocFromArenaLo
     mr	r27, r3
     li	r3, 0x3000
     li	r4, 0x20
-    bl      fn_8000B360
+    bl      OSAllocFromArenaLo
     mr	r4, r3
 _80006464:
     mr	r3, r27

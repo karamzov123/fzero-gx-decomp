@@ -19,7 +19,7 @@ extern void criadxGetValue(void);
 extern void fn_800416A8(void);
 extern void fn_800416CC(void);
 extern void fn_800416D4(void);
-extern void fn_800416DC(void);
+extern void criadx_set_field_3C(void);
 extern void fn_800416E4(void);
 extern void fn_800416F0(void);
 extern void fn_800416F8(void);
@@ -769,7 +769,7 @@ _8004d710:
     stw	r3, 0x90(r30)
     mr	r3, r31
     lwz	r4, 0x90(r30)
-    bl      fn_800416DC
+    bl      criadx_set_field_3C
     mr	r3, r31
     li	r4, 0
     bl      fn_800416CC
@@ -794,7 +794,7 @@ _8004d778:
     bl      fn_800415F4
     mr	r4, r3
     mr	r3, r31
-    bl      fn_800416DC
+    bl      criadx_set_field_3C
     mr	r3, r31
     li	r4, 0
     bl      fn_800416CC
@@ -1069,7 +1069,7 @@ _8004db70:
     bl      fn_800415F4
     mr	r4, r3
     mr	r3, r31
-    bl      fn_800416DC
+    bl      criadx_set_field_3C
     mr	r3, r31
     li	r4, 0
     bl      fn_800416CC
@@ -1263,7 +1263,7 @@ _8004de18:
     bne     _8004de48
     lwz	r3, 4(r30)
     li	r4, -1
-    bl      fn_800416DC
+    bl      criadx_set_field_3C
     lis	r4, -0x8000
     lwz	r3, 8(r30)
     addi	r4, r4, -1
@@ -1312,7 +1312,7 @@ asm void fn_8004DE70(void)
     bne     _8004dee0
     lwz	r3, 4(r28)
     li	r4, -1
-    bl      fn_800416DC
+    bl      criadx_set_field_3C
     b       _8004dfdc
 _8004dee0:
     lwz	r4, 0(r30)
@@ -1344,7 +1344,7 @@ _8004df1c:
     subf	r4, r26, r27
     mr	r3, r31
     stw	r4, 0x90(r28)
-    bl      fn_800416DC
+    bl      criadx_set_field_3C
     mr	r3, r31
     mr	r4, r29
     bl      fn_800416CC
@@ -1416,7 +1416,7 @@ asm void fn_8004DFF0(void)
     subf	r4, r28, r31
     mr	r3, r29
     stw	r4, 0x90(r30)
-    bl      fn_800416DC
+    bl      criadx_set_field_3C
     mr	r3, r29
     mr	r4, r27
     bl      fn_800416CC

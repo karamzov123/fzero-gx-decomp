@@ -1,8 +1,8 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_8004559C(void);
-extern void fn_8004550C(void);
+extern void criadx_get_status(void);
+extern void criadx_get_stream_ptr(void);
 extern void fn_80045514(void);
 extern void fn_800453A4(void);
 extern void fn_8004538C(void);
@@ -79,7 +79,7 @@ _80041c88:
     mtctr	r12
     bctrl	
     mr	r3, r31
-    bl      fn_8004559C
+    bl      criadx_get_status
     cmpwi	r3, 0
     bne     _80041d04
     lwz	r0, 0x18(r29)
@@ -102,7 +102,7 @@ _80041c88:
     b       _80041de0
 _80041d04:
     lwz	r3, 4(r29)
-    bl      fn_8004550C
+    bl      criadx_get_stream_ptr
     lwz	r0, 0x34(r29)
     cmpw	r0, r3
     blt     _80041d40
@@ -142,7 +142,7 @@ _80041d40:
     b       _80041de0
 _80041d9c:
     mr	r3, r31
-    bl      fn_8004559C
+    bl      criadx_get_status
     cmpwi	r3, 0xa
     bne     _80041dc8
     lwz	r6, 0(r30)
@@ -313,14 +313,14 @@ _80041fac:
 _80041ff0:
     stw	r28, 0x98(r31)
     mr	r3, r30
-    bl      fn_8004559C
+    bl      criadx_get_status
     cmpwi	r3, 4
     bne     _8004200c
     li	r0, 1
     stb	r0, 3(r31)
 _8004200c:
     mr	r3, r30
-    bl      fn_8004559C
+    bl      criadx_get_status
     cmpwi	r3, 2
     bne     _8004203c
     lwz	r5, 0x14(r1)
@@ -335,7 +335,7 @@ _80042038:
     bl      memcpy
 _8004203c:
     mr	r3, r30
-    bl      fn_8004559C
+    bl      criadx_get_status
     addi	r0, r3, -0xa
     cmplwi	r0, 1
     ble     _80042060

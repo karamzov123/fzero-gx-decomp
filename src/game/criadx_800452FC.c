@@ -259,7 +259,7 @@ asm void fn_80045504(void)
     blr	
 }
 
-asm void fn_8004550C(void)
+asm void criadx_get_stream_ptr(void)
 {
     nofralloc
     lwz	r3, 0x18(r3)
@@ -324,7 +324,7 @@ asm void fn_80045594(void)
     blr	
 }
 
-asm void fn_8004559C(void)
+asm void criadx_get_status(void)
 {
     nofralloc
     lha	r3, 0x98(r3)

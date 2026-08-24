@@ -9,12 +9,12 @@ extern void fn_800454DC(void);
 extern void fn_800454E4(void);
 extern void fn_800454FC(void);
 extern void fn_80045504(void);
-extern void fn_8004550C(void);
+extern void criadx_get_stream_ptr(void);
 extern void fn_80045514(void);
 extern void fn_8004551C(void);
 extern void fn_80045588(void);
 extern void fn_80045594(void);
-extern void fn_8004559C(void);
+extern void criadx_get_status(void);
 extern void fn_80045414(void);
 extern void fn_80041BF8(void);
 extern void fn_80044E7C(void);
@@ -176,7 +176,7 @@ asm void fn_800415F4(void)
     mflr	r0
     stw	r0, 0x14(r1)
     lwz	r3, 4(r3)
-    bl      fn_8004550C
+    bl      criadx_get_stream_ptr
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -246,7 +246,7 @@ asm void fn_800416A8(void)
     mflr	r0
     stw	r0, 0x14(r1)
     lwz	r3, 4(r3)
-    bl      fn_8004559C
+    bl      criadx_get_status
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -267,7 +267,7 @@ asm void fn_800416D4(void)
     blr	
 }
 
-asm void fn_800416DC(void)
+asm void criadx_set_field_3C(void)
 {
     nofralloc
     stw	r4, 0x3c(r3)
@@ -331,7 +331,7 @@ _80041754:
     lwz	r29, 4(r28)
     lwz	r25, 8(r28)
     mr	r3, r29
-    bl      fn_8004550C
+    bl      criadx_get_stream_ptr
     mr	r27, r3
     mr	r3, r29
     bl      fn_80045304
@@ -436,7 +436,7 @@ _800418d8:
 _800418fc:
     lwz	r25, 4(r28)
     mr	r3, r25
-    bl      fn_8004550C
+    bl      criadx_get_stream_ptr
     mr	r29, r3
     mr	r3, r25
     bl      fn_80045304
@@ -505,7 +505,7 @@ _800419d0:
     lwz	r29, 4(r27)
     lwz	r26, 8(r27)
     mr	r3, r29
-    bl      fn_8004550C
+    bl      criadx_get_stream_ptr
     mr	r28, r3
     mr	r3, r29
     bl      fn_80045304
@@ -610,7 +610,7 @@ _80041b54:
 _80041b78:
     lwz	r26, 4(r27)
     mr	r3, r26
-    bl      fn_8004550C
+    bl      criadx_get_stream_ptr
     mr	r29, r3
     mr	r3, r26
     bl      fn_80045304

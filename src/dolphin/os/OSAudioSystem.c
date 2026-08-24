@@ -25,7 +25,7 @@ asm void* OSInitArenaPoll(register u32 size, register u32 align)
     blr	
 }
 
-asm void* fn_8000B360(register u32 size, register u32 align)
+asm void* OSAllocFromArenaLo(register u32 size, register u32 align)
 {
     nofralloc
     addi	r0, r4, -1
