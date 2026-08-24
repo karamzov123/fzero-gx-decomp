@@ -8,6 +8,15 @@ typedef signed int s32;
 // MSL math/string-glue region 0x80083E84-0x80088600 (pm11-c region A)
 
 extern void fn_80087F54(void); // forward decl
+extern unsigned char lbl_801A6650[8];
+extern unsigned char lbl_801A6658[8];
+extern unsigned char lbl_801A664C[4];
+extern unsigned char lbl_801A6648[4];
+extern unsigned char lbl_801A6660[8];
+extern unsigned char lbl_801A6668[8];
+extern unsigned char lbl_801A6670[8];
+extern unsigned char jumptable_8015B738[68];
+extern unsigned char jumptable_8015B77C[68];
 extern void OSGetConsoleType(void);
 extern void InitializeUART(void);
 extern void WriteUARTN(void);
@@ -65,12 +74,12 @@ asm void atof(void)
     lfd	f0, -0x7948(r2)
     fcmpu	cr0, f0, f1
     bc      12, 2, _80083f00
-    lis	r3, -0x7fe6
-    lfd	f0, 0x6650(r3)
+    lis     r3, lbl_801A6650@ha
+    lfd	f0, lbl_801A6650@l(r3)
     fcmpo	cr0, f2, f0
     bc      12, 0, _80083ef8
-    lis	r3, -0x7fe6
-    lfd	f0, 0x6658(r3)
+    lis     r3, lbl_801A6658@ha
+    lfd	f0, lbl_801A6658@l(r3)
     fcmpo	cr0, f2, f0
     bc      4, 1, _80083f00
 _80083ef8:
@@ -332,13 +341,13 @@ _8008426c:
 _8008427c:
     cmpwi	r14, 0
     bc      12, 2, _80084294
-    lis	r3, -0x7fe6
-    lfs	f0, 0x664c(r3)
+    lis     r3, lbl_801A664C@ha
+    lfs	f0, lbl_801A664C@l(r3)
     fneg	f1, f0
     b       _8008429c
 _80084294:
-    lis	r3, -0x7fe6
-    lfs	f1, 0x664c(r3)
+    lis     r3, lbl_801A664C@ha
+    lfs	f1, lbl_801A664C@l(r3)
 _8008429c:
     lwz	r0, 0x5c(r1)
     lwz	r3, 0xc(r1)
@@ -427,13 +436,13 @@ _800843b8:
 _800843bc:
     cmpwi	r14, 0
     bc      12, 2, _800843d4
-    lis	r3, -0x7fe6
-    lfs	f0, 0x6648(r3)
+    lis     r3, lbl_801A6648@ha
+    lfs	f0, lbl_801A6648@l(r3)
     fneg	f1, f0
     b       _800843dc
 _800843d4:
-    lis	r3, -0x7fe6
-    lfs	f1, 0x6648(r3)
+    lis     r3, lbl_801A6648@ha
+    lfs	f1, lbl_801A6648@l(r3)
 _800843dc:
     lwz	r0, 0x5c(r1)
     add	r3, r20, r19
@@ -1129,13 +1138,13 @@ _80084d34:
 _80084d54:
     cmpwi	r14, 0
     bc      12, 2, _80084d6c
-    lis	r3, -0x7fe6
-    lfd	f0, 0x6660(r3)
+    lis     r3, lbl_801A6660@ha
+    lfd	f0, lbl_801A6660@l(r3)
     fneg	f1, f0
     b       _80084f08
 _80084d6c:
-    lis	r3, -0x7fe6
-    lfd	f1, 0x6660(r3)
+    lis     r3, lbl_801A6660@ha
+    lfd	f1, lbl_801A6660@l(r3)
     b       _80084f08
 _80084d78:
     sth	r28, 0x2e(r1)
@@ -1145,22 +1154,22 @@ _80084d78:
     stfd	f1, 0x18(r1)
     fcmpu	cr0, f0, f1
     bc      12, 2, _80084db0
-    lis	r3, -0x7fe6
-    lfd	f0, 0x6668(r3)
+    lis     r3, lbl_801A6668@ha
+    lfd	f0, lbl_801A6668@l(r3)
     fcmpo	cr0, f1, f0
     bc      4, 0, _80084db0
     li	r0, 1
     stw	r0, 0(r18)
     b       _80084dd4
 _80084db0:
-    lis	r3, -0x7fe6
-    lfd	f0, 0x6670(r3)
+    lis     r3, lbl_801A6670@ha
+    lfd	f0, lbl_801A6670@l(r3)
     fcmpo	cr0, f1, f0
     bc      4, 1, _80084dd4
     li	r0, 1
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A6660@ha
     stw	r0, 0(r18)
-    lfd	f0, 0x6660(r3)
+    lfd	f0, lbl_801A6660@l(r3)
     stfd	f0, 0x18(r1)
 _80084dd4:
     cmpwi	r14, 0
@@ -1218,8 +1227,8 @@ _80084e40:
     stw	r0, 0(r3)
     fcmpu	cr0, f1, f2
     bc      12, 2, _80084ec0
-    lis	r3, -0x7fe6
-    lfd	f0, 0x6668(r3)
+    lis     r3, lbl_801A6668@ha
+    lfd	f0, lbl_801A6668@l(r3)
     fcmpo	cr0, f2, f0
     bc      4, 0, _80084ec0
     li	r0, 1
@@ -1227,14 +1236,14 @@ _80084e40:
     stw	r0, 0(r18)
     b       _80084ee4
 _80084ec0:
-    lis	r3, -0x7fe6
-    lfd	f0, 0x6670(r3)
+    lis     r3, lbl_801A6670@ha
+    lfd	f0, lbl_801A6670@l(r3)
     fcmpo	cr0, f2, f0
     bc      4, 1, _80084ee4
     li	r0, 1
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A6660@ha
     stw	r0, 0(r18)
-    lfd	f0, 0x6660(r3)
+    lfd	f0, lbl_801A6660@l(r3)
     stfd	f0, 0x18(r1)
 _80084ee4:
     cmpwi	r14, 0
@@ -1421,9 +1430,9 @@ _80085120:
 _80085148:
     cmplwi	r30, 0x10
     bc      12, 1, _80085420
-    lis     r3, -0x7fea
+    lis     r3, jumptable_8015B738@ha
     slwi	r0, r30, 2
-    addi	r3, r3, -0x48c8
+    addi	r3, r3, jumptable_8015B738@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr
@@ -1708,9 +1717,9 @@ _80085524:
 _80085538:
     cmplwi	r25, 0x10
     bc      12, 1, _800857a4
-    lis     r3, -0x7fea
+    lis     r3, jumptable_8015B77C@ha
     slwi	r0, r25, 2
-    addi	r3, r3, -0x4884
+    addi	r3, r3, jumptable_8015B77C@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr
@@ -2052,8 +2061,8 @@ _800859a8:
     lfd	f1, -0x7930(r2)
     b       _80085c74
 _800859b0:
-    lis	r3, -0x7fe6
-    lfs	f1, 0x6648(r3)
+    lis     r3, lbl_801A6648@ha
+    lfs	f1, lbl_801A6648@l(r3)
     b       _80085c74
 _800859bc:
     lis	r0, 0x3fe0
@@ -2151,12 +2160,12 @@ _80085b14:
 _80085b20:
     fcmpu	cr0, f1, f11
     bc      12, 2, _80085b34
-    lis	r3, -0x7fe6
-    lfs	f11, 0x6648(r3)
+    lis     r3, lbl_801A6648@ha
+    lfs	f11, lbl_801A6648@l(r3)
     b       _80085b3c
 _80085b34:
-    lis	r3, -0x7fe6
-    lfs	f11, 0x664c(r3)
+    lis     r3, lbl_801A664C@ha
+    lfs	f11, lbl_801A664C@l(r3)
 _80085b3c:
     fdiv	f2, f5, f6
     lfd	f1, -0x7920(r2)
@@ -2201,12 +2210,12 @@ _80085bc8:
 _80085bd4:
     fcmpu	cr0, f0, f9
     bc      12, 2, _80085be8
-    lis	r3, -0x7fe6
-    lfs	f9, 0x6648(r3)
+    lis     r3, lbl_801A6648@ha
+    lfs	f9, lbl_801A6648@l(r3)
     b       _80085bf0
 _80085be8:
-    lis	r3, -0x7fe6
-    lfs	f9, 0x664c(r3)
+    lis     r3, lbl_801A664C@ha
+    lfs	f9, lbl_801A664C@l(r3)
 _80085bf0:
     lfd	f2, -0x78f0(r2)
     li	r0, 0
@@ -2678,12 +2687,12 @@ _8008626c:
 _80086278:
     fcmpu	cr0, f4, f1
     bc      12, 2, _8008628c
-    lis	r3, -0x7fe6
-    lfs	f1, 0x6648(r3)
+    lis     r3, lbl_801A6648@ha
+    lfs	f1, lbl_801A6648@l(r3)
     b       _80086884
 _8008628c:
-    lis	r3, -0x7fe6
-    lfs	f1, 0x664c(r3)
+    lis     r3, lbl_801A664C@ha
+    lfs	f1, lbl_801A664C@l(r3)
     b       _80086884
 _80086298:
     lfd	f0, 8(r1)
@@ -2731,10 +2740,10 @@ _80086328:
     addi	r0, r8, 1
     or.	r8, r0, r4
     bc      4, 2, _8008634c
-    lis	r3, -0x7fe6
+    lis     r3, lbl_801A6648@ha
     li	r0, 0x21
     stw	r0, -0x75e0(r13)
-    lfs	f1, 0x6648(r3)
+    lfs	f1, lbl_801A6648@l(r3)
     b       _80086884
 _8008634c:
     lis	r8, 0x41e0
