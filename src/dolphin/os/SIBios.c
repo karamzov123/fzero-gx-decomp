@@ -61,7 +61,7 @@ extern void fn_800135CC(register s32 chan, register u32 status);
 extern int fn_800136E8(register s32 chan, register u32 cmd, register u32 param,
                        register void (*callback)(s32));
 extern void fn_8001375C(register s32 chan);
-extern int fn_800137C4(register s32 chan, register void* out);
+extern int SIGetResponseSync(register s32 chan, register void* out);
 extern void fn_80013934(register s32 interrupt, register OSContext* context);
 extern void* fn_80013994(register void* handler);
 extern void fn_800139E8(register s32 chan, register u32 unk, register s32 val);
@@ -2530,10 +2530,10 @@ L_800137B0:
 }
 #pragma pop
 
-/* ---- fn_800137C4 ---- */
+/* ---- SIGetResponseSync ---- */
 #pragma push
 #pragma force_active on
-asm int fn_800137C4(register s32 chan, register void* out)
+asm int SIGetResponseSync(register s32 chan, register void* out)
 {
     nofralloc
     mflr        r0

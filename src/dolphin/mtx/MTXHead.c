@@ -6,7 +6,7 @@ extern asm void OSDisableInterrupts(void);
 extern asm void OSRestoreInterrupts(void);
 extern asm void OSGetTick(void);
 extern asm void fn_80013428(void);
-extern asm void fn_800137C4(void);
+extern asm void SIGetResponseSync(void);
 extern asm void fn_80013994(void);
 extern asm void fn_800139E8(void);
 extern asm void fn_80015EE8(void);
@@ -1691,7 +1691,7 @@ _8006afb4:
     addi	r27, r28, 0xc
     mr	r3, r29
     mr	r4, r27
-    bl      fn_800137C4
+    bl      SIGetResponseSync
     lbz	r0, 8(r27)
     extsb.	r0, r0
     bc      12, 2, _8006b00c
@@ -1843,7 +1843,7 @@ _8006b1bc:
     bl      fn_80013428
     mr	r3, r27
     addi	r4, r28, 0xc
-    bl      fn_800137C4
+    bl      SIGetResponseSync
     addi	r27, r27, 1
     addi	r31, r31, 0x1248
     cmpwi	r27, 4
@@ -1948,7 +1948,7 @@ _8006b314:
     addi	r27, r30, 0xc
     mr	r3, r28
     mr	r4, r27
-    bl      fn_800137C4
+    bl      SIGetResponseSync
     lis     r3, lbl_80199670@ha
     addi	r0, r3, lbl_80199670@l
     add	r4, r0, r31
