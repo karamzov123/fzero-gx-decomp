@@ -10,7 +10,7 @@ asm void fn_8008E9B4(register void* a, register void* b, register void* c, regis
 asm void fn_8008EB8C(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EBF8(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EC78(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008ED30(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2_SetInterruptHandler(register void* a, register void* b, register void* c, register void* d);
 
 asm void fn_8008EEAC(void)
 {
@@ -21,7 +21,7 @@ asm void fn_8008EEAC(void)
     addi	r3, r3, fn_8008EDB0@l
     stwu	r1, -8(r1)
     bl      fn_8008EB8C
-    bl      fn_8008ED30
+    bl      EXI2_SetInterruptHandler
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
     mtlr	r0

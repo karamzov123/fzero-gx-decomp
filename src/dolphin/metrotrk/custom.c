@@ -479,7 +479,7 @@ _8008ed20:
     blr	
 }
 
-asm void fn_8008ED30(void)
+asm void EXI2_SetInterruptHandler(void)
 {
     nofralloc
     mflr	r0
