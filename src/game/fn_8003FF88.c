@@ -6,7 +6,7 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 
 extern void GXSetChanMatColor(register u32 a);
-extern void fn_80038C5C(register void* p);
+extern void GXLoadMatIdxTripleToXF(register void* p);
 extern void GXBegin(void);
 extern void GXSetLineWidth(register u16 width, register u32 fmt);
 extern void fn_8003EC44(register u32 a);
@@ -81,7 +81,7 @@ _80040004:
     fsubs	f0, f0, f2
     fdivs	f0, f1, f0
     fmuls	f31, f3, f0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     lwz	r0, -0x7e28(r13)
     addi	r4, r1, 0x1ec
     li	r3, 4

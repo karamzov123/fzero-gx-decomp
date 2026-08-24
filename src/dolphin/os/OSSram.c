@@ -172,7 +172,7 @@ _L_8000f960:
     blr
 }
 
-asm s32 fn_8000F974(register u32 doWrite, register u32 offset)
+asm s32 __OSUnlockSramCore(register u32 doWrite, register u32 offset)
 {
     nofralloc
     mflr    r0
@@ -388,7 +388,7 @@ asm void __OSUnlockSram(void)
     li      r4, 0
     stw     r0, 4(r1)
     stwu    r1, -8(r1)
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
     lwz     r0, 0xc(r1)
     addi    r1, r1, 8
     mtlr    r0
@@ -402,7 +402,7 @@ asm void __OSUnlockSramEx(void)
     li      r4, 0x14
     stw     r0, 4(r1)
     stwu    r1, -8(r1)
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
     lwz     r0, 0xc(r1)
     addi    r1, r1, 8
     mtlr    r0

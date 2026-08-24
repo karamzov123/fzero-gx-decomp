@@ -50,7 +50,7 @@ extern void fn_8006DD14(void);
 extern unsigned char lbl_8019F040[240];
 asm void fn_80072EDC(void);
 asm void ModelSetCachedMaterial_570(void);
-asm void fn_800735C8(void);
+asm void GXCachedSetTevSwapTable(void);
 asm void fn_80073620(void);
 asm void fn_80073678(void);
 asm void ModelSetCachedTex_704(void);
@@ -71,12 +71,12 @@ asm void fn_800743C4(void);
 asm void fn_80074438(void);
 asm void fn_800744F8(void);
 asm void ModelSetCachedPair5_B28(void);
-asm void fn_80074660(void);
+asm void GXSetNumTexGensCached(void);
 asm void fn_800746A8(void);
 asm void fn_80074718(void);
-asm void fn_80074788(void);
+asm void GXSetChanAmbColorCached(void);
 asm void LightCtrl_SetCachedRec_C30(void);
-asm void fn_80074918(void);
+asm void GXSetTexGenCached(void);
 asm void GXCopyMtxDirty(void);
 #pragma push
 #pragma force_active on
@@ -566,7 +566,7 @@ _800735B0:
     blr
 }
 
-asm void fn_800735C8(void)
+asm void GXCachedSetTevSwapTable(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1798,7 +1798,7 @@ _80074648:
     blr
 }
 
-asm void fn_80074660(void)
+asm void GXSetNumTexGensCached(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1892,7 +1892,7 @@ _80074770:
     blr
 }
 
-asm void fn_80074788(void)
+asm void GXSetChanAmbColorCached(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -2012,7 +2012,7 @@ _80074900:
     blr
 }
 
-asm void fn_80074918(void)
+asm void GXSetTexGenCached(void)
 {
     nofralloc
     stwu r1, -0x20(r1)

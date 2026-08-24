@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern asm void OSPanic(void);
-extern asm void fn_8006D758(void);
+extern asm void QuatNormalizeCompare(void);
 extern asm void fn_8006DCDC(void);
 extern asm void fn_80070CF8(void);
 extern unsigned char lbl_8015AA78[11];
@@ -59,7 +59,7 @@ asm void fn_80070AC0(void)
     crxor	6, 6, 6
     bl      OSPanic
 _80070b00:
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     bl      fn_8006DCDC
     cmpwi	r30, 0
     beq	_80070b20

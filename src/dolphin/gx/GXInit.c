@@ -200,7 +200,7 @@ extern void fn_800332D8(s32 idx, const void *tbl);
 extern void GXSetLineWidth(s32 width, s32 shift);
 extern void GXSetPointSize(s32 size, s32 shift);
 extern void __GXSetTexCoordGen_Cache(s32 coord, s32 en1, s32 en2);
-extern void fn_80038C5C(void *mtx, s32 id);
+extern void GXLoadMatIdxTripleToXF(void *mtx, s32 id);
 extern void fn_80038CAC(void *mtx, s32 id);
 extern void fn_80038CFC(s32 id);
 extern void GXWritePrimitiveFifo(void *mtx, s32 id, s32 type);
@@ -1223,7 +1223,7 @@ L80031480:
     stfs	f0, 0x50(r1)
     stfs	f1, 0x54(r1)
     stfs	f0, 0x58(r1)
-    bl fn_80038C5C
+    bl GXLoadMatIdxTripleToXF
     addi	r3, r1, 0x2c
     li	r4, 0
     bl fn_80038CAC

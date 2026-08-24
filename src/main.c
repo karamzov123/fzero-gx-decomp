@@ -123,7 +123,7 @@ extern void fn_80037518(void);
 extern void fn_800377F8(void);
 extern void fn_80037D40(void);
 extern void fn_80038BFC(void);
-extern void fn_80038C5C(void);
+extern void GXLoadMatIdxTripleToXF(void);
 extern void fn_8006B188(void);
 extern void fn_8006B470(void);
 extern void fn_8006CCC8(void);
@@ -164,7 +164,7 @@ extern void ModelSetCachedParam_2F0(void);
 extern void ModelSetCachedParam_430(void);
 extern void fn_80072EDC(void);
 extern void ModelSetCachedMaterial_570(void);
-extern void fn_800735C8(void);
+extern void GXCachedSetTevSwapTable(void);
 extern void fn_80073620(void);
 extern void fn_80073678(void);
 extern void ModelSetCachedTex_704(void);
@@ -174,11 +174,11 @@ extern void fn_80073898(void);
 extern void ModelClearCacheSlot_B28(void);
 extern void fn_800744F8(void);
 extern void ModelSetCachedPair5_B28(void);
-extern void fn_80074660(void);
+extern void GXSetNumTexGensCached(void);
 extern void fn_800746A8(void);
-extern void fn_80074788(void);
+extern void GXSetChanAmbColorCached(void);
 extern void LightCtrl_SetCachedRec_C30(void);
-extern void fn_80074918(void);
+extern void GXSetTexGenCached(void);
 extern void fn_800791A4(void);
 extern void fn_800791E8(void);
 extern void fn_800793D4(void);
@@ -191,7 +191,7 @@ extern void strncpy(void);
 extern void strcpy(void);
 extern void fn_8006D188(void);
 extern void PSVecNormalize3(void);
-extern void fn_8006D758(void);
+extern void QuatNormalizeCompare(void);
 extern void fn_8006D7DC(void);
 extern void mtx_gpstack_push(void);
 extern void mtx_gpstack_pop(void);
@@ -625,9 +625,9 @@ asm void mmu_user_fn(void)
     bl      GXLoadMtxArray
     bl      fn_800723F8
     li	r3, 0
-    bl      fn_80074788
+    bl      GXSetChanAmbColorCached
     li	r3, 1
-    bl      fn_80074660
+    bl      GXSetNumTexGensCached
     li	r3, 1
     bl      fn_80073678
     li	r3, 0
@@ -695,7 +695,7 @@ asm void mmu_user_fn(void)
     li	r3, 1
     li	r4, 1
     li	r5, 1
-    bl      fn_80074918
+    bl      GXSetTexGenCached
     li	r3, 1
     li	r4, 4
     li	r5, 5
@@ -712,10 +712,10 @@ asm void mmu_user_fn(void)
     bl      fn_800377F8
     li	r3, 2
     bl      LightCtrl_SetCachedCullMode
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     lfs	f1, -0x7fe4(r2)
     addi	r3, r1, 0x1c
     lfs	f2, -0x7fdc(r2)
@@ -881,9 +881,9 @@ asm void fn_80005EDC(void)
     stw	r0, 0x14(r1)
     bl      GXLoadMtxArray
     li	r3, 0
-    bl      fn_80074788
+    bl      GXSetChanAmbColorCached
     li	r3, 1
-    bl      fn_80074660
+    bl      GXSetNumTexGensCached
     li	r3, 1
     bl      fn_80073678
     li	r3, 0
@@ -949,7 +949,7 @@ asm void fn_80005EDC(void)
     li	r3, 1
     li	r4, 7
     li	r5, 0
-    bl      fn_80074918
+    bl      GXSetTexGenCached
     li	r3, 1
     li	r4, 4
     li	r5, 5
@@ -961,10 +961,10 @@ asm void fn_80005EDC(void)
     bl      GXCompareVecDirty
     li	r3, 2
     bl      LightCtrl_SetCachedCullMode
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     lfs	f1, -0x7fa4(r2)
     addi	r3, r1, 0x18
     lfs	f2, -0x7f9c(r2)
@@ -3546,7 +3546,7 @@ asm void fn_80008204(void)
     bl      fn_80073620
     li	r3, 0
     li	r4, 0xc
-    bl      fn_800735C8
+    bl      GXCachedSetTevSwapTable
     lwz	r0, 0x14(r1)
     addi	r4, r1, 0x10
     li	r3, 0
@@ -3594,9 +3594,9 @@ asm void fn_80008204(void)
     li	r3, 1
     bl      fn_80073678
     li	r3, 1
-    bl      fn_80074788
+    bl      GXSetChanAmbColorCached
     li	r3, 0
-    bl      fn_80074660
+    bl      GXSetNumTexGensCached
     li	r3, 0
     bl      fn_80073898
     li	r3, 0
@@ -3607,7 +3607,7 @@ asm void fn_80008204(void)
     li	r3, 1
     li	r4, 7
     li	r5, 1
-    bl      fn_80074918
+    bl      GXSetTexGenCached
     li	r3, 0
     bl      fn_800720B0
     addi	r3, r1, 0x18
@@ -3672,10 +3672,10 @@ _800083f4:
     fmuls	f28, f0, f7
 _80008454:
     bl      mtx_gpstack_push
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     bl      mtx_gpstack_pop
     li	r3, 0x80
     li	r4, 0
@@ -3730,7 +3730,7 @@ asm void fn_800084E8(void)
     mr	r31, r4
     bl      fn_800087F4
     bl      mtx_gpstack_push
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     bl      fn_80072558
     bl      mtx_gpstack_pop
     addi	r3, r1, 8
@@ -3929,7 +3929,7 @@ asm void fn_800087F4(void)
     li	r3, 1
     li	r4, 3
     li	r5, 1
-    bl      fn_80074918
+    bl      GXSetTexGenCached
     li	r3, 0
     bl      fn_800720B0
     li	r3, 0
@@ -3988,11 +3988,11 @@ _80008860:
     li	r3, 1
     bl      fn_80073678
     li	r3, 1
-    bl      fn_80074660
+    bl      GXSetNumTexGensCached
     li	r3, 0
     bl      fn_80073898
     li	r3, 0
-    bl      fn_80074788
+    bl      GXSetChanAmbColorCached
     b       _80008a30
 _80008930:
     li	r3, 0
@@ -4021,7 +4021,7 @@ _80008930:
     bl      ModelSetCachedTex_704
     li	r3, 0
     li	r4, 0xc
-    bl      fn_800735C8
+    bl      GXCachedSetTevSwapTable
     li	r3, 0
     li	r4, 0
     bl      fn_80073620
@@ -4054,11 +4054,11 @@ _80008930:
     li	r3, 1
     bl      fn_80073678
     li	r3, 1
-    bl      fn_80074660
+    bl      GXSetNumTexGensCached
     li	r3, 0
     bl      fn_80073898
     li	r3, 0
-    bl      fn_80074788
+    bl      GXSetChanAmbColorCached
 _80008a30:
     li	r3, 0x2200
     bl      GXLoadMtxArray
@@ -4085,7 +4085,7 @@ asm void fn_80008A4C(void)
     li	r3, 1
     li	r4, 3
     li	r5, 1
-    bl      fn_80074918
+    bl      GXSetTexGenCached
     li	r3, 0
     bl      fn_800720B0
     li	r3, 6
@@ -4114,7 +4114,7 @@ asm void fn_80008A4C(void)
     bl      ModelSetCachedTex_704
     li	r3, 0
     li	r4, 0xc
-    bl      fn_800735C8
+    bl      GXCachedSetTevSwapTable
     li	r3, 0
     li	r4, 0x1c
     bl      fn_80073620
@@ -4147,11 +4147,11 @@ asm void fn_80008A4C(void)
     li	r3, 1
     bl      fn_80073678
     li	r3, 1
-    bl      fn_80074660
+    bl      GXSetNumTexGensCached
     li	r3, 0
     bl      fn_80073898
     li	r3, 0
-    bl      fn_80074788
+    bl      GXSetChanAmbColorCached
     li	r3, 0x200
     bl      GXLoadMtxArray
     lwz	r0, 0x24(r1)

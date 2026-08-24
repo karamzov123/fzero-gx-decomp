@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_80074918(void);
+extern asm void GXSetTexGenCached(void);
 extern asm void fn_80037518(void);
 extern asm void fn_80072BD0(void);
 extern asm void GXGetCPUFifo(void);
@@ -21,7 +21,7 @@ asm void fn_8007001C(void)
     li	r4, 3
     stw	r0, 0x14(r1)
     li	r5, 1
-    bl      fn_80074918
+    bl      GXSetTexGenCached
     li	r3, 7
     li	r4, 0
     li	r5, 0

@@ -20,7 +20,7 @@ extern void _8006e164(void);
 
 asm void fn_8006CFF8(void);
 asm void fn_8006D044(void);
-asm void fn_8006D088(void);
+asm void MathFastInvSqrt(void);
 asm void sqrtf(void);
 asm void fn_8006D0E8(void);
 asm void fn_8006D188(void);
@@ -33,7 +33,7 @@ asm void fn_8006D46C(void);
 asm void fn_8006D5A4(void);
 asm void PSVecNormalize3(void);
 asm void fn_8006D6FC(void);
-asm void fn_8006D758(void);
+asm void QuatNormalizeCompare(void);
 asm void fn_8006D784(void);
 asm void fn_8006D7B0(void);
 asm void fn_8006D7DC(void);
@@ -109,7 +109,7 @@ _8006d060:
     b       _8006d044
 }
 
-asm void fn_8006D088(void)
+asm void MathFastInvSqrt(void)
 {
     nofralloc
     fmuls	f4, f2, f1
@@ -137,7 +137,7 @@ asm void sqrtf(void)
     bc      12, 3, _8006d04c
     bc      4, 5, _8006d04c
     mflr	r3
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     mtlr	r3
     fmuls	f1, f1, f0
     blr
@@ -155,7 +155,7 @@ asm void fn_8006D0E8(void)
     bc      12, 3, _8006d054
     bc      4, 5, _8006d054
     mflr	r3
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     mtlr	r3
     blr
     frsp	f0, f1
@@ -167,7 +167,7 @@ asm void fn_8006D0E8(void)
     bc      12, 3, _8006d164
     bc      4, 5, _8006d164
     mflr	r5
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     mtlr	r5
     fmuls	f0, f1, f0
     stfs	f0, 0(r3)
@@ -525,7 +525,7 @@ _8006d51c:
     bc      12, 3, _8006d04c
     bc      4, 5, _8006d04c
     mflr	r5
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     mtlr	r5
     fmuls	f1, f1, f7
     blr
@@ -568,7 +568,7 @@ asm void fn_8006D5A4(void)
     bc      12, 3, _8006d654
     bc      4, 5, _8006d654
     mflr	r5
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     mtlr	r5
     fmuls	f1, f1, f0
     fmuls	f6, f6, f1
@@ -651,13 +651,13 @@ asm void fn_8006D6FC(void)
     lfs	f2, 0x1a0(r5)
     fmuls	f1, f12, f13
     mflr	r6
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     mtlr	r6
     fmuls	f1, f1, f0
     blr
 }
 
-asm void fn_8006D758(void)
+asm void QuatNormalizeCompare(void)
 {
     nofralloc
     lis	r3, -0x2000
@@ -904,11 +904,11 @@ _8006d9f8:
     ps_madd	f12, f10, f10, f12
     fmadds	f13, f11, f11, f13
     fmr	f1, f12
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     frsp	f1, f1
     ps_merge01	f12, f1, f12
     ps_merge11	f1, f12, f12
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     frsp	f1, f1
     ps_merge00	f1, f12, f1
     ps_mul	f6, f6, f1
@@ -918,7 +918,7 @@ _8006d9f8:
     ps_mul	f10, f10, f1
     psq_st	f10, 0x20(r3), 0, 0
     fmr	f1, f13
-    bl      fn_8006D088
+    bl      MathFastInvSqrt
     mtlr	r4
     fmuls	f7, f7, f1
     stfs	f7, 8(r3)

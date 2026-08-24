@@ -326,7 +326,7 @@ asm void fn_80038BFC(register u32 a)
     blr     
 }
 
-asm void fn_80038C5C(register u32 a)
+asm void GXLoadMatIdxTripleToXF(register u32 a)
 {
     nofralloc
     lis     r5, -0x33ff

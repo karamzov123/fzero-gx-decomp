@@ -16,9 +16,9 @@ extern asm void axmix_device_ctrl_clear(void);
 extern asm void fn_80028424(void);
 extern asm void GXBegin(void);
 extern asm void fn_800371F8(void);
-extern asm void fn_80038C5C(void);
+extern asm void GXLoadMatIdxTripleToXF(void);
 extern asm void SndAllocBankEntry(void);
-extern asm void fn_8006D758(void);
+extern asm void QuatNormalizeCompare(void);
 extern asm void GXLoadMtxArray(void);
 extern asm void LightCtrl_SetCachedCullMode(void);
 extern asm void LightCtrl_SetCachedColor_1C(void);
@@ -32,10 +32,10 @@ extern asm void fn_80073678(void);
 extern asm void GXIntToFloatCopy(void);
 extern asm void fn_80073898(void);
 extern asm void ModelClearCacheSlot_B28(void);
-extern asm void fn_80074660(void);
-extern asm void fn_80074788(void);
+extern asm void GXSetNumTexGensCached(void);
+extern asm void GXSetChanAmbColorCached(void);
 extern asm void LightCtrl_SetCachedRec_C30(void);
-extern asm void fn_80074918(void);
+extern asm void GXSetTexGenCached(void);
 extern asm void fn_8007ED90(void);
 extern asm void fn_800883E8(void);
 extern asm void expf(void);
@@ -3973,10 +3973,10 @@ asm void fn_8006CD50(void)
     addi	r3, r1, 8
     li	r4, 1
     bl      GXIntToFloatCopy
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     lwz	r0, 0x54(r1)
     mtlr	r0
     addi	r1, r1, 0x50
@@ -3989,20 +3989,20 @@ asm void fn_8006CDA8(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     lwz	r12, -0x7714(r13)
     cmplwi	r12, 0
     bc      12, 2, _8006cdd8
     mtctr	r12
     bctrl
 _8006cdd8:
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     bl      fn_8006CE44
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -4051,11 +4051,11 @@ asm void fn_8006CE44(void)
     li	r3, 0
     li	r4, 7
     li	r5, 0
-    bl      fn_80074918
+    bl      GXSetTexGenCached
     li	r3, 1
-    bl      fn_80074788
+    bl      GXSetChanAmbColorCached
     li	r3, 0
-    bl      fn_80074660
+    bl      GXSetNumTexGensCached
     li	r3, 1
     bl      fn_80073678
     li	r3, 0

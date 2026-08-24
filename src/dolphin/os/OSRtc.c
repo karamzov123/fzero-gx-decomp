@@ -15,7 +15,7 @@ extern s32 EXIImm(register s32 chn, register void* buf, register s32 len, regist
 extern s32 EXISync(register s32 chn);
 extern s32 EXIDma(register s32 chn, register void* buf, register s32 len, register u32 type, register void* callback);
 extern void EXIDeselect(register s32 chn);
-extern s32 fn_8000F974(register u32 doWrite, register u32 offset);
+extern s32 __OSUnlockSramCore(register u32 doWrite, register u32 offset);
 
 asm int __OSReadROM(register void* buffer, register long length, register long offset)
 {
@@ -130,7 +130,7 @@ _8000fe50:
 _8000fe54:
     li	r3, 0
     li	r4, 0
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
     mr	r3, r31
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -165,7 +165,7 @@ _8000febc:
     li	r3, 0
     li	r4, 0
     rlwinm	r31, r0, 0x19, 0x1f, 0x1f
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
     mr	r3, r31
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
@@ -204,7 +204,7 @@ _8000ff34:
     bne     _8000ff54
     li	r3, 0
     li	r4, 0
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
     b       _8000ff74
 _8000ff54:
     rlwinm	r0, r3, 0, 0x19, 0x17
@@ -214,7 +214,7 @@ _8000ff54:
     lbz	r0, 0x13(r31)
     or	r0, r0, r30
     stb	r0, 0x13(r31)
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
 _8000ff74:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -254,7 +254,7 @@ _8000ffdc:
     lhz	r31, 0x1c(r3)
     li	r3, 0
     li	r4, 0x14
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
     mr	r3, r31
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -300,12 +300,12 @@ _80010068:
     sth	r30, 0(r4)
     li	r3, 1
     li	r4, 0x14
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
     b       _800100a0
 _80010094:
     li	r3, 0
     li	r4, 0x14
-    bl      fn_8000F974
+    bl      __OSUnlockSramCore
 _800100a0:
     lwz	r0, 0x2c(r1)
     lwz	r31, 0x24(r1)
