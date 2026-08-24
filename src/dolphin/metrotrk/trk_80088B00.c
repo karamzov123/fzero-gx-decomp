@@ -49,7 +49,7 @@ extern void fn_8008A754(void);
 extern void TRKRequestSend(void);
 extern void fn_8008AF48(void);
 extern void fn_8008AF50(void);
-extern void fn_8008B484(void);
+extern void TRKTargetStop(void);
 extern void TRKTargetGetPC(void);
 extern void TRKTargetCheckStep(void);
 extern void fn_8008B784(void);
@@ -1180,7 +1180,7 @@ asm void TRKDoVersions(void)
     mflr	r0
     stw	r0, 0x54(r1)
     stw	r31, 0x4c(r1)
-    bl      fn_8008B484
+    bl      TRKTargetStop
     cmpwi	r3, 0x704
     bc      12, 2, _80089928
     bc      4, 0, _80089910
@@ -3249,7 +3249,7 @@ asm void TRKTargetSetInputPendingPtr(void)
     blr
 }
 
-asm void fn_8008B484(void)
+asm void TRKTargetStop(void)
 {
     nofralloc
     lis     r3, gTRKState@ha
