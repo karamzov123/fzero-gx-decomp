@@ -1,6 +1,38 @@
 #pragma push
 #pragma force_active on
 extern void PPCHalt(void);
+void TRKEXICallBack(void);
+void gdev_cc_open();
+void gdev_cc_close();
+void gdev_cc_read();
+void gdev_cc_write();
+void gdev_cc_shutdown();
+void gdev_cc_peek();
+void gdev_cc_pre_continue();
+void gdev_cc_post_stop();
+void gdev_cc_initinterrupts();
+void ddh_cc_open();
+void ddh_cc_close();
+void ddh_cc_read();
+void ddh_cc_write();
+void ddh_cc_shutdown();
+void ddh_cc_peek();
+void ddh_cc_pre_continue();
+void ddh_cc_post_stop();
+void ddh_cc_initinterrupts();
+void gdev_cc_initialize();
+void ddh_cc_initialize();
+void udp_cc_initialize();
+void udp_cc_open();
+void udp_cc_close();
+void udp_cc_read();
+void udp_cc_write();
+void udp_cc_shutdown();
+void udp_cc_peek();
+void udp_cc_pre_continue();
+void udp_cc_post_stop();
+extern unsigned char TRK_Use_BBA[1];
+extern unsigned char TRK_mainError_801A5640[4];
 extern void ddh_cc_initialize(void);
 extern unsigned char gDBCommTable[40];
 extern unsigned char gTRKCPUState[1072];
@@ -15,7 +47,6 @@ extern void PPCHalt(void);
 extern void ddh_cc_initialize(void);
 extern void gTRKInterruptVectorTable(void);
 extern void gdev_cc_initialize(void);
-void TRKEXICallBack(void);
 
 asm void TRK_memcpy(register void* a, register void* b, register void* c, register void* d);
 asm void DCFlushRange(register void* a, register void* b, register void* c, register void* d);
@@ -53,12 +84,12 @@ asm void TRKInitializeTarget(void)
     stw	r0, 0x98(r3)
     bl      __TRK_get_MSR
     lis     r5, gTRKState@ha
-    lis	r4, -0x7fe6
+    lis     r4, lbl_801A5638@ha
     addi	r5, r5, gTRKState@l
     lis	r0, -0x2000
     stw	r3, 0x8c(r5)
     li	r3, 0
-    stw	r0, 0x5638(r4)
+    stw	r0, lbl_801A5638@l(r4)
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -199,23 +230,23 @@ asm void TRK_main(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7ff7
+    lis     r4, -0x7ff7
     li	r3, 1
     stw	r0, 0x14(r1)
     addi	r4, r4, 0x5bb8
     crxor	6, 6, 6
     bl      MWTRACE
     bl      TRKInitializeNub
-    lis	r4, -0x7fe6
+    lis     r4, TRK_mainError_801A5640@ha
     cmpwi	r3, 0
-    stw	r3, 0x5640(r4)
+    stw	r3, TRK_mainError_801A5640@l(r4)
     bne     _8008d208
     bl      TRKNubWelcome
     bl      TRKNubMainLoop
 _8008d208:
     bl      TRKTerminateNub
-    lis	r4, -0x7fe6
-    stw	r3, 0x5640(r4)
+    lis     r4, TRK_mainError_801A5640@ha
+    stw	r3, TRK_mainError_801A5640@l(r4)
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -409,9 +440,9 @@ asm void EnableEXI2Interrupts(register void* a, register void* b, register void*
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe6
+    lis     r3, TRK_Use_BBA@ha
     stw	r0, 0x14(r1)
-    lbz	r0, 0x5648(r3)
+    lbz	r0, TRK_Use_BBA@l(r3)
     cmplwi	r0, 0
     bne     _8008d478
     lis     r3, gDBCommTable@ha
@@ -434,10 +465,10 @@ asm void TRKInitializeIntDrivenUART(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     lis     r4, TRKEXICallBack@ha
-    lis	r3, -0x7fea
+    lis     r3, gDBCommTable@ha
     stw	r0, 0x14(r1)
     addi	r4, r4, TRKEXICallBack@l
-    lwz	r12, -0x4728(r3)
+    lwz	r12, gDBCommTable@l(r3)
     mr	r3, r6
     mtctr	r12
     bctrl	
@@ -470,37 +501,37 @@ asm void InitMetroTRKCommTable(void)
     addi	r3, r29, 8
     crxor	6, 6, 6
     bl      OSReport
-    lis	r3, -0x7fe6
+    lis     r3, TRK_Use_BBA@ha
     li	r0, 0
     cmpwi	r30, 2
-    stb	r0, 0x5648(r3)
+    stb	r0, TRK_Use_BBA@l(r3)
     bne     _8008d5c4
     addi	r3, r29, 0x20
     crxor	6, 6, 6
     bl      OSReport
-    lis	r30, -0x7fe6
-    lis	r12, -0x7ff7
-    lis	r11, -0x7fea
-    lis	r10, -0x7ff7
-    lis	r9, -0x7ff7
-    lis	r8, -0x7ff7
-    lis	r7, -0x7ff7
-    lis	r6, -0x7ff7
-    lis	r5, -0x7ff7
-    lis	r4, -0x7ff7
-    lis	r3, -0x7ff7
-    addi	r31, r30, 0x5648
+    lis     r30, TRK_Use_BBA@ha
+    lis     r12, udp_cc_initialize@ha
+    lis     r11, gDBCommTable@ha
+    lis     r10, udp_cc_open@ha
+    lis     r9, udp_cc_close@ha
+    lis     r8, udp_cc_read@ha
+    lis     r7, udp_cc_write@ha
+    lis     r6, udp_cc_shutdown@ha
+    lis     r5, udp_cc_peek@ha
+    lis     r4, udp_cc_pre_continue@ha
+    lis     r3, udp_cc_post_stop@ha
+    addi	r31, r30, TRK_Use_BBA@l
     li	r29, 1
-    addi	r30, r12, -0x2238
-    addi	r12, r11, -0x4728
-    addi	r11, r10, -0x2248
-    addi	r10, r9, -0x2250
-    addi	r9, r8, -0x2258
-    addi	r8, r7, -0x2260
-    addi	r7, r6, -0x2240
-    addi	r6, r5, -0x2268
-    addi	r5, r4, -0x2270
-    addi	r4, r3, -0x2278
+    addi r30, r12, udp_cc_initialize@l
+    addi	r12, r11, gDBCommTable@l
+    addi r11, r10, udp_cc_open@l
+    addi r10, r9, udp_cc_close@l
+    addi r9, r8, udp_cc_read@l
+    addi r8, r7, udp_cc_write@l
+    addi r7, r6, udp_cc_shutdown@l
+    addi r6, r5, udp_cc_peek@l
+    addi r5, r4, udp_cc_pre_continue@l
+    addi r4, r3, udp_cc_post_stop@l
     li	r0, 0
     stb	r29, 0(r31)
     li	r3, 0
@@ -523,27 +554,27 @@ _8008d5c4:
     bl      OSReport
     bl      Hu_IsStub
     lis     r31, gdev_cc_initialize@ha
-    lis	r12, -0x7ff7
+    lis     r12, gdev_cc_open@ha
     addi	r31, r31, gdev_cc_initialize@l
-    lis	r30, -0x7fea
-    lis	r11, -0x7ff7
-    lis	r10, -0x7ff7
-    lis	r9, -0x7ff7
-    lis	r8, -0x7ff7
-    lis	r7, -0x7ff7
-    lis	r6, -0x7ff7
-    lis	r5, -0x7ff7
-    lis	r4, -0x7ff7
-    stwu	r31, -0x4728(r30)
-    addi	r12, r12, -0x19ec
-    addi	r11, r11, -0x19f4
-    addi	r10, r10, -0x1ae8
-    addi	r9, r9, -0x1ba8
-    addi	r8, r8, -0x19c8
-    addi	r7, r7, -0x1c60
-    addi	r6, r6, -0x1bcc
-    addi	r5, r5, -0x1bf0
-    addi	r0, r4, -0x1c84
+    lis	r30, gDBCommTable@ha
+    lis     r11, gdev_cc_close@ha
+    lis     r10, gdev_cc_read@ha
+    lis     r9, gdev_cc_write@ha
+    lis     r8, gdev_cc_shutdown@ha
+    lis     r7, gdev_cc_peek@ha
+    lis     r6, gdev_cc_pre_continue@ha
+    lis     r5, gdev_cc_post_stop@ha
+    lis     r4, gdev_cc_initinterrupts@ha
+    stwu	r31, gDBCommTable@l(r30)
+    addi r12, r12, gdev_cc_open@l
+    addi r11, r11, gdev_cc_close@l
+    addi r10, r10, gdev_cc_read@l
+    addi r9, r9, gdev_cc_write@l
+    addi r8, r8, gdev_cc_shutdown@l
+    addi r7, r7, gdev_cc_peek@l
+    addi r6, r6, gdev_cc_pre_continue@l
+    addi r5, r5, gdev_cc_post_stop@l
+    addi r0, r4, gdev_cc_initinterrupts@l
     stw	r12, 0x18(r30)
     mr	r31, r3
     stw	r11, 0x1c(r30)
@@ -563,27 +594,27 @@ _8008d660:
     bl      OSReport
     bl      AMC_IsStub
     lis     r31, ddh_cc_initialize@ha
-    lis	r12, -0x7ff7
+    lis     r12, ddh_cc_open@ha
     addi	r31, r31, ddh_cc_initialize@l
-    lis	r30, -0x7fea
-    lis	r11, -0x7ff7
-    lis	r10, -0x7ff7
-    lis	r9, -0x7ff7
-    lis	r8, -0x7ff7
-    lis	r7, -0x7ff7
-    lis	r6, -0x7ff7
-    lis	r5, -0x7ff7
-    lis	r4, -0x7ff7
-    stwu	r31, -0x4728(r30)
-    addi	r12, r12, -0x1fa0
-    addi	r11, r11, -0x1fa8
-    addi	r10, r10, -0x2094
-    addi	r9, r9, -0x2154
-    addi	r8, r8, -0x1f7c
-    addi	r7, r7, -0x220c
-    addi	r6, r6, -0x2178
-    addi	r5, r5, -0x219c
-    addi	r0, r4, -0x2230
+    lis	r30, gDBCommTable@ha
+    lis     r11, ddh_cc_close@ha
+    lis     r10, ddh_cc_read@ha
+    lis     r9, ddh_cc_write@ha
+    lis     r8, ddh_cc_shutdown@ha
+    lis     r7, ddh_cc_peek@ha
+    lis     r6, ddh_cc_pre_continue@ha
+    lis     r5, ddh_cc_post_stop@ha
+    lis     r4, ddh_cc_initinterrupts@ha
+    stwu	r31, gDBCommTable@l(r30)
+    addi r12, r12, ddh_cc_open@l
+    addi r11, r11, ddh_cc_close@l
+    addi r10, r10, ddh_cc_read@l
+    addi r9, r9, ddh_cc_write@l
+    addi r8, r8, ddh_cc_shutdown@l
+    addi r7, r7, ddh_cc_peek@l
+    addi r6, r6, ddh_cc_pre_continue@l
+    addi r5, r5, ddh_cc_post_stop@l
+    addi r0, r4, ddh_cc_initinterrupts@l
     stw	r12, 0x18(r30)
     mr	r31, r3
     stw	r11, 0x1c(r30)
@@ -667,8 +698,8 @@ asm void AMC_IsStub_Game(void)
 asm void AMC_SetStub_Game(void)
 {
     nofralloc
-    lis	r4, -0x7fe6
-    stb	r3, 0x5650(r4)
+    lis     r4, lbl_801A5650@ha
+    stb	r3, lbl_801A5650@l(r4)
     blr	
 }
 
