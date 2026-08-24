@@ -43,7 +43,7 @@ extern void __GXSetVCD(void);
 extern void __GXSetVAT(void);
 extern void __GXCalculateVatSizes(void);
 extern void __cvt_fp2unsigned(void);
-extern void fn_80088624(void);
+extern void tan(void);
 extern void* memset(void* dst, int c, unsigned long n);
 extern void __GXGetTexTileSize(register void* p1, register void* p2, register int id, register void* p4);
 extern void __cvt_fp2unsigned(void);
@@ -1179,7 +1179,7 @@ _8003545c:
     lfs	f0, -0x7dac(r2)
     fmuls	f1, f2, f1
     fdivs	f1, f1, f0
-    bl      fn_80088624
+    bl      tan
     cmplwi	r31, 6
     bgt     _80035580
     lis     r3, -0x7fed

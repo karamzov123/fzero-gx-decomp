@@ -49,7 +49,7 @@ extern unsigned char lbl_8019E014[128];
 extern unsigned char lbl_8019E094[128];
 extern unsigned char lbl_8019E114[44];
 
-asm void fn_80069AE0(void);
+asm void SndMaybeAllocBank(void);
 asm void fn_80069B10(void);
 asm void AvHeapReleaseById(void);
 asm void fn_80069FCC(void);
@@ -109,7 +109,7 @@ asm void fn_8006CDFC(void);
 asm void fn_8006CE1C(void);
 asm void fn_8006CE44(void);
 
-asm void fn_80069AE0(void)
+asm void SndMaybeAllocBank(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

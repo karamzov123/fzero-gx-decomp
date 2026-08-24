@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_80050180(void);
+extern void ADXTReadBits(void);
 extern void fn_800501EC(void);
 extern void fn_800504BC(void);
 extern void fn_800504EC(void);
@@ -133,7 +133,7 @@ asm void fn_80053F38(void)
     cmpwi	r3, 0
     bne     _80053fa0
     lwz	r3, 8(r24)
-    bl      fn_80050180
+    bl      ADXTReadBits
     cmpwi	r3, 1
     bne     _80053fa0
     li	r0, 3

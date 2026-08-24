@@ -9,7 +9,7 @@ extern unsigned char lbl_8012D9BC[12292];
 extern unsigned char lbl_801309C0[136];
 extern unsigned char lbl_80186FAC[356];
 
-asm void fn_80050180(void)
+asm void ADXTReadBits(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

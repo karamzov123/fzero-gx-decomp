@@ -6,7 +6,7 @@ extern void GXSetDrawSyncCallback(register void* callback);
 extern void __GXGetTexBufferSize(register void* p1, register void* p2, register int id, register void* p4);
 extern int fn_80039AFC(void);
 extern int fn_80039B38(register u32 a);
-extern void fn_80039B7C(register u32 a);
+extern void GXReadXfRasMetric(register u32 a);
 extern int fn_80039C40(register u32 a, register u32 b);
 extern int fn_80039E48(register u32 a);
 extern void GXCallDisplayList(register void* p);
@@ -1907,7 +1907,7 @@ asm int PerfmonCopyConfig(register u32 a)
     addi    r4, r31, 0x98
     addi    r5, r31, 0xa0
     addi    r6, r31, 0xa8
-    bl      fn_80039B7C
+    bl      GXReadXfRasMetric
     lwz     r3, -0x77ec(r13)
     lhz     r4, 0x32(r3)
     lhz     r0, 0x34(r3)

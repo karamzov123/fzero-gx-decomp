@@ -1411,7 +1411,7 @@ asm int fn_80039B38(register u32 a)
     blr     
 }
 
-asm void fn_80039B7C(register u32 a)
+asm void GXReadXfRasMetric(register u32 a)
 {
     nofralloc
     lwz     r7, -0x77f4(r13)

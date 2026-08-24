@@ -70,7 +70,7 @@ extern void axmix_ctrl_init_type10(void);
 extern void axmix_ctrl_init_type11(void);
 extern void axmix_ctrl_init_type14(void);
 extern void axmix_link_push(void);
-extern void fn_80069AE0(void);
+extern void SndMaybeAllocBank(void);
 extern void AvHeapReleaseById(void);
 extern void fn_8006A1F8(void);
 extern void __cvt_fp2unsigned(void);
@@ -4613,7 +4613,7 @@ _80060094:
     mr	r3, r29
     bl      SndAllocBankEntry
     b       _800605f0
-    bl      fn_80069AE0
+    bl      SndMaybeAllocBank
     b       _800605f0
     addis	r29, r5, 1
     lis	r4, 1
@@ -4634,9 +4634,9 @@ _80060094:
     addi	r3, r3, -0x5ff9
     bl      SndRefreshChannelVoices
     b       _800605f0
-    bl      fn_80069AE0
+    bl      SndMaybeAllocBank
     b       _800605f0
-    bl      fn_80069AE0
+    bl      SndMaybeAllocBank
     b       _800605f0
     li	r3, 0
     bl      SndProcessCmdSubfunc
@@ -4740,7 +4740,7 @@ _800602bc:
     bl      SndPlaySequenceNotes
     b       _800605f0
 _800602c4:
-    bl      fn_80069AE0
+    bl      SndMaybeAllocBank
     b       _800605f0
 _800602cc:
     cmpwi	r5, 0x27

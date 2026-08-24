@@ -11,7 +11,7 @@ extern void __GXWriteXFCmdHeader(register void* p);
 extern void GXClearVtxDesc(register void* p);
 extern void GXSetVtxDesc(register void* p, register int a, register int b);
 extern void GXBuildPackedRegister(register void* p, register int a, register int b);
-extern void fn_80088624(void);
+extern void tan(void);
 extern void fn_80088600(void);
 extern void GXSetVtxDescv(register void* p, register int a, register int b);
 extern void __GXSetVATGroup(register void* p, register int a, register int b);
@@ -961,7 +961,7 @@ _80037efc:
     fmuls	f1, f27, f1
     fdivs	f26, f1, f0
     fmr	f1, f26
-    bl      fn_80088624
+    bl      tan
     stfs	f1, 0(r26)
     fmr	f1, f26
     bl      fn_80088600
@@ -1456,10 +1456,10 @@ _80038658:
     bl      fn_80088600
     fmuls	f22, f28, f1
     fmr	f1, f20
-    bl      fn_80088624
+    bl      tan
     fmuls	f21, f28, f1
     fmr	f1, f27
-    bl      fn_80088624
+    bl      tan
     fmuls	f20, f28, f1
     clrlwi	r5, r25, 0x10
     li	r3, 0x98
@@ -1479,7 +1479,7 @@ _800386cc:
     fsubs	f0, f0, f26
     fmuls	f19, f0, f24
     fmr	f1, f19
-    bl      fn_80088624
+    bl      tan
     fmr	f27, f1
     fmr	f1, f19
     bl      fn_80088600

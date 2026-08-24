@@ -347,7 +347,7 @@ _8008eb68:
     blr	
 }
 
-asm void fn_8008EB8C(void)
+asm void EXI2LockUnlock(void)
 {
     nofralloc
     mflr	r0
@@ -420,7 +420,7 @@ _8008ec64:
     blr	
 }
 
-asm void fn_8008EC78(void)
+asm void EXI2SetState(void)
 {
     nofralloc
     mflr	r0
@@ -589,7 +589,7 @@ _8008ee3c:
     li	r6, 0
     bl      EXI2_SetupTransfer
     bl      EXI2_ExecuteTransfer
-    bl      fn_8008EC78
+    bl      EXI2SetState
     lwz	r0, 0x34(r1)
     lwz	r31, 0x2c(r1)
     addi	r1, r1, 0x30

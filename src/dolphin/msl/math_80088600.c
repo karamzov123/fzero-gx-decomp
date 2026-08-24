@@ -21,7 +21,7 @@ asm float fn_80088600(double d)
     blr
 }
 
-asm float fn_80088624(double d)
+asm float tan(double d)
 {
     nofralloc
     stwu    r1, -0x10(r1)

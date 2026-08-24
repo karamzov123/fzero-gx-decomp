@@ -11,7 +11,7 @@ extern unsigned char lbl_8012B368[80];
 
 void __GXFlushTextureState(void);
 void GXInitTexObjLOD(register void* dst, register void* src, register int a, register int b);
-void fn_800365B4(register void* p, register int a);
+void GXInvalidateTexRegion(register void* p, register int a);
 void __GXInitTexObj(register void* p);
 
 #pragma push
@@ -431,7 +431,7 @@ asm void GXSetTlutRegionCallback(register void* p)
     blr	
 }
 
-asm void fn_800365B4(register void* p, register int a)
+asm void GXInvalidateTexRegion(register void* p, register int a)
 {
     nofralloc
     lwz	r5, -0x7de8(r2)
@@ -543,7 +543,7 @@ _80036718:
     bne     _8003673c
     addi	r3, r29, 0
     addi	r4, r28, 0
-    bl      fn_800365B4
+    bl      GXInvalidateTexRegion
 _8003673c:
     addi	r31, r31, 1
 _80036740:
@@ -582,7 +582,7 @@ _8003678c:
     beq     _800367c4
     addi	r3, r29, 0
     addi	r4, r28, 0
-    bl      fn_800365B4
+    bl      GXInvalidateTexRegion
 _800367c4:
     addi	r27, r27, 4
     addi	r31, r31, 1

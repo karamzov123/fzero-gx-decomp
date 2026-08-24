@@ -7,9 +7,9 @@ extern void fn_8008EDB0(void);
 asm void fn_8008088C(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_SetupTransfer(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_ExecuteTransfer(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008EB8C(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2LockUnlock(register void* a, register void* b, register void* c, register void* d);
 asm void TRKEnableEXIInterrupts(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008EC78(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2SetState(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_SetInterruptHandler(register void* a, register void* b, register void* c, register void* d);
 
 asm void fn_8008EEAC(void)
@@ -20,7 +20,7 @@ asm void fn_8008EEAC(void)
     stw	r0, 4(r1)
     addi	r3, r3, fn_8008EDB0@l
     stwu	r1, -8(r1)
-    bl      fn_8008EB8C
+    bl      EXI2LockUnlock
     bl      EXI2_SetInterruptHandler
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -287,7 +287,7 @@ _8008f250:
 _8008f258:
     cmplw	r27, r26
     blt     _8008f0d8
-    bl      fn_8008EC78
+    bl      EXI2SetState
     li	r0, 0
     lwz	r4, -0x7d40(r13)
     stw	r0, -0x75a4(r13)
@@ -384,7 +384,7 @@ _8008f37c:
 _8008f398:
     cmplw	r30, r28
     blt     _8008f348
-    bl      fn_8008EC78
+    bl      EXI2SetState
     li	r3, 0
     b       _8008f3b4
 _8008f3ac:
@@ -421,7 +421,7 @@ _8008f400:
     lwz	r0, 0x24(r1)
     rlwinm.	r0, r0, 0x10, 0x1f, 0x1f
     beq     _8008f400
-    bl      fn_8008EC78
+    bl      EXI2SetState
     li	r3, 0
 _8008f42c:
     lwz	r0, 0x44(r1)

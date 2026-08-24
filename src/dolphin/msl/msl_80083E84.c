@@ -15,7 +15,7 @@ extern void _savefpr_25(void);
 extern void _restfpr_25(void);
 extern void __div2u(void);
 extern void __sformatter(void);
-extern void fn_8008DC10(void);
+extern void TRKWriteFileChecked(void);
 extern void MSL_device_link_fn(void); // forward decl: label must be declared before first use
 extern void MSLStrToLong(void); // forward decl
 extern void __fpclassifyd(void); // forward decl
@@ -1970,7 +1970,7 @@ _800858ac:
     mr	r4, r29
     mr	r5, r30
     mr	r6, r31
-    bl      fn_8008DC10
+    bl      TRKWriteFileChecked
     li	r3, 0
 _800858c4:
     lwz	r0, 0x24(r1)

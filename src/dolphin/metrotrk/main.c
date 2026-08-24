@@ -1016,7 +1016,7 @@ _8008dbf4:
     blr	
 }
 
-asm void fn_8008DC10(void)
+asm void TRKWriteFileChecked(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -1075,7 +1075,7 @@ _8008dcb4:
     blr	
 }
 
-asm void fn_8008DCCC(void)
+asm void TRKReadFileChecked(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
