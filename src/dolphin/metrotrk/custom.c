@@ -47,7 +47,7 @@ asm void fn_8008E76C(void)
     blr	
 }
 
-asm void fn_8008E770(void)
+asm void EXI2_SetupTransfer(void)
 {
     nofralloc
     mflr	r0
@@ -209,7 +209,7 @@ _8008e9a0:
     blr	
 }
 
-asm void fn_8008E9B4(void)
+asm void EXI2_ExecuteTransfer(void)
 {
     nofralloc
     mflr	r0
@@ -575,20 +575,20 @@ _8008ee3c:
     li	r4, 2
     li	r5, 1
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     addi	r3, r1, 0x1c
     li	r4, 4
     li	r5, 1
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     addi	r3, r1, 0x20
     li	r4, 4
     li	r5, 1
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     bl      fn_8008EC78
     lwz	r0, 0x34(r1)
     lwz	r31, 0x2c(r1)

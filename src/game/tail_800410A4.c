@@ -31,7 +31,7 @@ extern void fn_8004EF68(void);
 extern void fn_8004EF88(void);
 extern void fn_8004F6B0(void);
 extern void fn_8004F74C(void);
-extern void fn_800566BC(register void* p1, register u32 p2);
+extern void gcci_set_critical_value(register void* p1, register u32 p2);
 extern void fn_80056C64(void);
 extern void fn_80057378(void);
 extern void fn_8005741C(void);
@@ -194,7 +194,7 @@ asm void fn_800411F4(void)
     lis     r3, fn_800413C8@ha
     li      r4, 0
     addi    r3, r3, fn_800413C8@l
-    bl      fn_800566BC
+    bl      gcci_set_critical_value
     addi    r3, r31, 0x14
     li      r4, 0
     li      r5, 0xc00

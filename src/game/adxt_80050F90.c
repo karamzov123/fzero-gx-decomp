@@ -109,7 +109,7 @@ asm void fn_800510C4(void)
     blr	
 }
 
-asm void fn_800510D8(void)
+asm void ADXT_GetStreamStatus(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)

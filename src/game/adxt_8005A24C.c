@@ -18,8 +18,8 @@ extern void svmEnterCritical(void);
 extern void fn_80058498(void);
 extern void svm_ringbuf_read(void);
 extern void fn_8005A5BC(void);
-extern void fn_8005A628(void);
-extern void fn_8005A648(void);
+extern void svm_exit_critical_wrapper(void);
+extern void svm_enter_critical_wrapper(void);
 extern void fn_8005A9B8(void);
 extern void fn_8005AE98(void);
 extern void fn_8005B0C4(void);
@@ -350,7 +350,7 @@ asm void fn_8005A614(void)
     blr	
 }
 
-asm void fn_8005A628(void)
+asm void svm_exit_critical_wrapper(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -363,7 +363,7 @@ asm void fn_8005A628(void)
     blr	
 }
 
-asm void fn_8005A648(void)
+asm void svm_enter_critical_wrapper(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -439,7 +439,7 @@ _8005a6e8:
     cmpw	r31, r0
     beq     _8005a730
     stw	r31, 0x88(r3)
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     add	r3, r29, r30
     lwz	r3, 8(r3)
     cmplwi	r3, 0
@@ -451,7 +451,7 @@ _8005a6e8:
     lwz	r4, 0x3c(r4)
     bl      fn_80026EE0
 _8005a72c:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
 _8005a730:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -489,14 +489,14 @@ _8005a788:
     li	r29, 0
     b     _8005a7c8
 _8005a7a4:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8005a7bc
     mr	r4, r30
     bl      fn_80026D90
 _8005a7bc:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r31, r31, 4
     addi	r29, r29, 1
 _8005a7c8:
@@ -550,7 +550,7 @@ asm void fn_8005A7F8(void)
     clrlwi	r28, r0, 0x10
     b     _8005a928
 _8005a874:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r0, 8(r31)
     cmplwi	r0, 0
     beq     _8005a91c
@@ -596,7 +596,7 @@ _8005a8ec:
     addi	r4, r1, 8
     bl      fn_80023438
 _8005a91c:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r31, r31, 4
     addi	r27, r27, 1
 _8005a928:
@@ -1187,7 +1187,7 @@ _8005b0f4:
 _8005b0fc:
     cmpw	r29, r0
     beq     _8005b248
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     cmpwi	r29, 1
     bne     _8005b1b0
     li	r0, -1
@@ -1278,7 +1278,7 @@ _8005b238:
     addi	r3, r3, lbl_800927D0@l
     bl      fn_8005A5BC
 _8005b244:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
 _8005b248:
     lwz	r0, 0x34(r1)
     lwz	r31, 0x2c(r1)
@@ -1311,7 +1311,7 @@ _8005b298:
     beq     _8005b450
     cmpwi	r4, 1
     bne     _8005b35c
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     mr	r30, r31
     mr	r29, r31
     mr	r28, r31
@@ -1356,7 +1356,7 @@ _8005b31c:
     lbz	r0, 1(r31)
     ori	r0, r0, 1
     stb	r0, 1(r31)
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     b     _8005b450
 _8005b35c:
     cmpwi	r4, 0
@@ -1474,7 +1474,7 @@ _8005b4c0:
     beq     _8005b4d0
     bl      fn_8005BE98
 _8005b4d0:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8005b4ec
@@ -1482,7 +1482,7 @@ _8005b4d0:
     lwz	r3, 8(r31)
     bl      AXFreeVoice
 _8005b4ec:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r31, r31, 4
     addi	r30, r30, 1
 _8005b4f8:
@@ -1665,7 +1665,7 @@ _8005b764:
     beq     _8005b774
     bl      fn_8005BE98
 _8005b774:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8005b790
@@ -1673,7 +1673,7 @@ _8005b774:
     lwz	r3, 8(r30)
     bl      AXFreeVoice
 _8005b790:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r30, r30, 4
     addi	r29, r29, 1
 _8005b79c:
@@ -1732,7 +1732,7 @@ _8005b854:
     beq     _8005b864
     bl      fn_8005BE98
 _8005b864:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8005b880
@@ -1740,7 +1740,7 @@ _8005b864:
     lwz	r3, 8(r30)
     bl      AXFreeVoice
 _8005b880:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r30, r30, 4
     addi	r29, r29, 1
 _8005b88c:
@@ -1790,7 +1790,7 @@ _8005b920:
     beq     _8005b930
     bl      fn_8005BE98
 _8005b930:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8005b94c
@@ -1798,7 +1798,7 @@ _8005b930:
     lwz	r3, 8(r30)
     bl      AXFreeVoice
 _8005b94c:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r30, r30, 4
     addi	r29, r29, 1
 _8005b958:
@@ -1814,7 +1814,7 @@ _8005b978:
     li	r3, 0
     b     _8005bc0c
 _8005b980:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r27)
     cmplwi	r3, 0
     beq     _8005b9b0
@@ -1827,7 +1827,7 @@ _8005b980:
     lwz	r10, 0x9c(r31)
     bl      fn_80025EF4
 _8005b9b0:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r28, r28, 1
     addi	r27, r27, 4
     addi	r26, r26, 1
@@ -1860,7 +1860,7 @@ _8005ba00:
     stw	r0, 0x24(r31)
     b     _8005baa4
 _8005ba24:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r0, 8(r27)
     cmplwi	r0, 0
     beq     _8005ba98
@@ -1892,7 +1892,7 @@ _8005ba68:
     addi	r4, r1, 8
     bl      fn_80023438
 _8005ba98:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r27, r27, 4
     addi	r29, r29, 1
 _8005baa4:
@@ -1919,7 +1919,7 @@ _8005bac4:
     cmpw	r29, r0
     beq     _8005bb24
     stw	r29, 0x88(r31)
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8005bb20
@@ -1930,7 +1930,7 @@ _8005bac4:
     lwz	r4, 0x3c(r4)
     bl      fn_80026EE0
 _8005bb20:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
 _8005bb24:
     cmplwi	r31, 0
     beq     _8005bbf8
@@ -1948,7 +1948,7 @@ _8005bb50:
     cmpw	r30, r0
     beq     _8005bbf8
     stw	r30, 0x8c(r31)
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 0xc(r31)
     cmplwi	r3, 0
     beq     _8005bb88
@@ -1959,7 +1959,7 @@ _8005bb50:
     lwz	r4, 0x3c(r4)
     bl      fn_80026EE0
 _8005bb88:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     b     _8005bbf8
 _8005bb90:
     cmplwi	r31, 0
@@ -1977,7 +1977,7 @@ _8005bb90:
     cmpw	r29, r0
     beq     _8005bbf8
     stw	r29, 0x88(r31)
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r31)
     cmplwi	r3, 0
     beq     _8005bbf4
@@ -1988,7 +1988,7 @@ _8005bb90:
     lwz	r4, 0x3c(r4)
     bl      fn_80026EE0
 _8005bbf4:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
 _8005bbf8:
     li	r3, 0
     li	r0, 1

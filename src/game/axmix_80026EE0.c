@@ -34,8 +34,8 @@ extern void OSEnableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void OSWakeupThread(void);
 extern void __cvt_fp2unsigned(void);
-extern void fn_8001E2BC(void);
-extern void fn_8001E2E8(void);
+extern void DSPWriteMailHi(void);
+extern void DSPWriteMailMid(void);
 extern void fn_800230A4(void);
 extern void fn_800231C4(void);
 extern void fn_80023228(void);
@@ -1342,11 +1342,11 @@ _80027fd8:
     lwz	r0, -0x7840(r13)
     add	r3, r31, r0
     lbz	r3, 0xb8c(r3)
-    bl      fn_8001E2BC
+    bl      DSPWriteMailHi
     lwz	r0, -0x7840(r13)
     add	r3, r31, r0
     lbz	r3, 0xb8c(r3)
-    bl      fn_8001E2E8
+    bl      DSPWriteMailMid
     b       _80028048
 _8002801c:
     bge     _80028048
@@ -1355,11 +1355,11 @@ _8002801c:
     lwz	r0, -0x7840(r13)
     add	r3, r31, r0
     lbz	r3, 0xb8c(r3)
-    bl      fn_8001E2BC
+    bl      DSPWriteMailHi
     lwz	r0, -0x7840(r13)
     add	r3, r31, r0
     lbz	r3, 0xb8c(r3)
-    bl      fn_8001E2E8
+    bl      DSPWriteMailMid
 _80028048:
     lwz	r0, 0xc4(r1)
     lwz	r31, 0xbc(r1)

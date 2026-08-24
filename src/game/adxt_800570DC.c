@@ -14,11 +14,11 @@ extern void fn_8004AEE4(void);
 extern void fn_8004B0EC(void);
 extern void fn_8004B180(void);
 extern void gcciErrPrintf(void);
-extern void fn_800566BC(void);
+extern void gcci_set_critical_value(void);
 extern void gccicrit_leave(void);
 extern void gccicrit_enter(void);
 extern void fn_8005676C(void);
-extern void fn_80056E9C(void);
+extern void gcci_register_filename(void);
 extern void fn_80057114(void);
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
@@ -58,7 +58,7 @@ asm void fn_800570DC(void)
     stw	r0, 0x14(r1)
     addi	r7, r6, -1
     li	r6, 0
-    bl      fn_80056E9C
+    bl      gcci_register_filename
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -286,7 +286,7 @@ _800573cc:
     bl      memset
     li	r3, 0
     li	r4, 0
-    bl      fn_800566BC
+    bl      gcci_set_critical_value
 _800573fc:
     addi	r3, r1, 8
     bl      gccicrit_leave
@@ -319,7 +319,7 @@ asm void fn_8005741C(void)
     bl      memset
     li	r3, 0
     li	r4, 0
-    bl      fn_800566BC
+    bl      gcci_set_critical_value
 _80057468:
     lis     r4, lbl_80188A88@ha
     addi	r3, r1, 8
@@ -438,7 +438,7 @@ _800575f0:
     mr	r5, r29
     mr	r6, r30
     mr	r7, r31
-    bl      fn_80056E9C
+    bl      gcci_register_filename
 _80057614:
     lwz	r0, 0x20(r27)
     slwi	r4, r0, 5

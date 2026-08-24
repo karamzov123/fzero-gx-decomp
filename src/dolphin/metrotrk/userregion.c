@@ -5,8 +5,8 @@ extern unsigned char lbl_8015B900[25];
 extern void fn_8008EDB0(void);
 
 asm void fn_8008088C(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008E770(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008E9B4(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2_SetupTransfer(register void* a, register void* b, register void* c, register void* d);
+asm void EXI2_ExecuteTransfer(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EB8C(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EBF8(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008EC78(register void* a, register void* b, register void* c, register void* d);
@@ -72,21 +72,21 @@ _8008ef4c:
     li	r4, 2
     li	r5, 1
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     addi	r3, r1, 0x14
     li	r4, 2
     li	r5, 0
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
 _8008ef8c:
     addi	r3, r1, 0x18
     li	r4, 4
     li	r5, 0
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     lwz	r5, -0x7d40(r13)
     lbz	r0, 0(r5)
     cmplwi	r0, 0
@@ -145,14 +145,14 @@ _8008f044:
     li	r4, 2
     li	r5, 1
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     addi	r3, r1, 0x1c
     li	r4, 2
     li	r5, 0
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
 _8008f084:
     cmpwi	r27, 0
     bne     _8008f094
@@ -194,8 +194,8 @@ _8008f0fc:
     addi	r3, r1, 0x20
     li	r5, 0
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     subf	r0, r27, r26
     cmplwi	r0, 4
     blt     _8008f124
@@ -336,14 +336,14 @@ _8008f2e4:
     li	r4, 2
     li	r5, 1
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     addi	r3, r1, 0x28
     li	r4, 4
     li	r5, 1
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     lwz	r4, 0x28(r1)
     clrlwi.	r0, r4, 0x1e
     beq     _8008f330
@@ -378,8 +378,8 @@ _8008f37c:
     li	r5, 1
     li	r6, 0
     addi	r29, r29, 4
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     addi	r30, r30, 1
 _8008f398:
     cmplw	r30, r28
@@ -403,21 +403,21 @@ _8008f3c8:
     li	r4, 2
     li	r5, 1
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     addi	r3, r1, 0x24
     li	r4, 2
     li	r5, 0
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
 _8008f400:
     addi	r3, r1, 0x24
     li	r4, 2
     li	r5, 0
     li	r6, 0
-    bl      fn_8008E770
-    bl      fn_8008E9B4
+    bl      EXI2_SetupTransfer
+    bl      EXI2_ExecuteTransfer
     lwz	r0, 0x24(r1)
     rlwinm.	r0, r0, 0x10, 0x1f, 0x1f
     beq     _8008f400

@@ -51,12 +51,12 @@ extern unsigned char lbl_8019F040[240];
 asm void fn_80072EDC(void);
 asm void ModelSetCachedMaterial_570(void);
 asm void GXCachedSetTevSwapTable(void);
-asm void fn_80073620(void);
-asm void fn_80073678(void);
+asm void ModelSetCachedState_6B0(void);
+asm void ModelSetCachedNumTexGens(void);
 asm void ModelSetCachedTex_704(void);
-asm void fn_80073778(void);
+asm void ModelCacheMaterialParams(void);
 asm void GXIntToFloatCopy(void);
-asm void fn_80073898(void);
+asm void ModelSetCachedState_840(void);
 asm void fn_800738E0(void);
 asm void fn_800739E0(void);
 asm void fn_80073A58(void);
@@ -594,7 +594,7 @@ _80073608:
     blr
 }
 
-asm void fn_80073620(void)
+asm void ModelSetCachedState_6B0(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -622,7 +622,7 @@ _80073660:
     blr
 }
 
-asm void fn_80073678(void)
+asm void ModelSetCachedNumTexGens(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -699,7 +699,7 @@ _80073760:
     blr
 }
 
-asm void fn_80073778(void)
+asm void ModelCacheMaterialParams(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -784,7 +784,7 @@ _80073880:
     blr
 }
 
-asm void fn_80073898(void)
+asm void ModelSetCachedState_840(void)
 {
     nofralloc
     stwu r1, -0x10(r1)

@@ -6,8 +6,8 @@ extern void ARFree(void);
 extern void axmix_device_ctrl_clear(void);
 extern void fn_8005A5BC(void);
 extern void fn_8005A614(void);
-extern void fn_8005A628(void);
-extern void fn_8005A648(void);
+extern void svm_exit_critical_wrapper(void);
+extern void svm_enter_critical_wrapper(void);
 extern void fn_8005B0C4(void);
 extern void fn_8005B264(void);
 extern void fn_8005BE98(void);
@@ -114,7 +114,7 @@ _8005bd40:
     beq     _8005bd50
     bl      fn_8005BE98
 _8005bd50:
-    bl      fn_8005A648
+    bl      svm_enter_critical_wrapper
     lwz	r3, 8(r30)
     cmplwi	r3, 0
     beq     _8005bd6c
@@ -122,7 +122,7 @@ _8005bd50:
     lwz	r3, 8(r30)
     bl      AXFreeVoice
 _8005bd6c:
-    bl      fn_8005A628
+    bl      svm_exit_critical_wrapper
     addi	r30, r30, 4
     addi	r31, r31, 1
 _8005bd78:

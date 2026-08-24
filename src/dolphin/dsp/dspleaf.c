@@ -18,7 +18,7 @@ asm s32 AIGetStreamPlayState_Leaf(void)
     blr
 }
 
-asm void fn_8001E2BC(register s32 val)
+asm void DSPWriteMailHi(register s32 val)
 {
     nofralloc
     lis     r4, -0x3400
@@ -30,7 +30,7 @@ asm void fn_8001E2BC(register s32 val)
     blr
 }
 
-asm s32 fn_8001E2D8(void)
+asm s32 DSPReadMailLo(void)
 {
     nofralloc
     lis     r3, -0x3400
@@ -39,7 +39,7 @@ asm s32 fn_8001E2D8(void)
     blr
 }
 
-asm void fn_8001E2E8(register s32 val)
+asm void DSPWriteMailMid(register s32 val)
 {
     nofralloc
     lis     r4, -0x3400
@@ -51,7 +51,7 @@ asm void fn_8001E2E8(register s32 val)
     blr
 }
 
-asm s32 fn_8001E304(void)
+asm s32 DSPReadMailHi(void)
 {
     nofralloc
     lis     r3, -0x3400

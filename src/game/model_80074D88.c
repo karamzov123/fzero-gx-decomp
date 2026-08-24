@@ -47,11 +47,11 @@ extern void ModelSetCachedParam_2F0(void);
 extern void ModelSetCachedParam_430(void);
 extern void ModelSetCachedMaterial_570(void);
 extern void GXCachedSetTevSwapTable(void);
-extern void fn_80073620(void);
-extern void fn_80073678(void);
+extern void ModelSetCachedState_6B0(void);
+extern void ModelSetCachedNumTexGens(void);
 extern void ModelSetCachedTex_704(void);
-extern void fn_80073778(void);
-extern void fn_80073898(void);
+extern void ModelCacheMaterialParams(void);
+extern void ModelSetCachedState_840(void);
 extern void fn_800738E0(void);
 extern void fn_80073A58(void);
 extern void fn_80073B50(void);
@@ -65,8 +65,8 @@ extern void GXColorScale(void);
 extern void fn_80078538(void);
 extern void fn_800786B0(void);
 extern void fn_80078768(void);
-extern void fn_80078884(void);
-extern void fn_80078944(void);
+extern void GXWriteFifoWord(void);
+extern void GXWriteFifoWordPair(void);
 extern void fn_800789D8(void);
 extern void fn_80078C28(void);
 extern void fn_80078CDC(void);
@@ -130,7 +130,7 @@ asm void fn_80077E7C(void);
 asm void fn_80077F8C(void);
 asm void fn_800780A4(void);
 asm void fn_800781B8(void);
-asm void fn_80078344(void);
+asm void GXWriteFifoByte(void);
 asm void fn_80078360(void);
 #pragma push
 #pragma force_active on
@@ -208,7 +208,7 @@ asm void fn_80074D88(void)
     lis     r3, lbl_8019F158@ha
     lwz r4, 0xc(r31)
     addi r3, r3, lbl_8019F158@l
-    bl fn_80073778
+    bl ModelCacheMaterialParams
     lwz r3, 0x10(r31)
     lwz r4, 4(r31)
     lwz r5, 0xc(r31)
@@ -262,7 +262,7 @@ asm void fn_80074D88(void)
     addi r0, r4, 1
     stw r0, 0xc(r31)
     lwz r4, 0xc(r31)
-    bl fn_80073778
+    bl ModelCacheMaterialParams
     lwz r3, 4(r31)
     li r4, 0
     li r5, 0
@@ -1125,13 +1125,13 @@ _80075C04:
     bl GXSetChanAmbColorCached
     lwz r0, 0x54(r1)
     clrlwi r3, r0, 0x18
-    bl fn_80073678
+    bl ModelSetCachedNumTexGens
     lwz r0, 0x58(r1)
     clrlwi r3, r0, 0x18
     bl GXSetNumTexGensCached
     lwz r0, 0x64(r1)
     clrlwi r3, r0, 0x18
-    bl fn_80073898
+    bl ModelSetCachedState_840
     mr r3, r30
     bl fn_80075C78
     li r4, 0
@@ -1444,7 +1444,7 @@ _80076054:
 _8007608C:
     lwz r3, 0(r30)
     li r4, 0
-    bl fn_80073620
+    bl ModelSetCachedState_6B0
     lwz r3, 0(r30)
     li r4, 7
     li r5, 7
@@ -2152,7 +2152,7 @@ _80076AF4:
     lis     r3, lbl_8019F200@ha
     li r4, 0
     addi r3, r3, lbl_8019F200@l
-    bl fn_80073778
+    bl ModelCacheMaterialParams
     bl fn_80076790
 _80076B1C:
     lwz r31, 0(r29)
@@ -2308,7 +2308,7 @@ _80076D54:
     cmplwi r3, 0
     beq _80077210
     lwz r4, 0xc(r19)
-    bl fn_80073778
+    bl ModelCacheMaterialParams
     lhz r0, 0(r26)
     sth r0, 0(r24)
 _80076D70:
@@ -2950,7 +2950,7 @@ asm void fn_80077654(void)
     bl GXCachedSetTevSwapTable
     mr r3, r31
     li r4, 0x1e
-    bl fn_80073620
+    bl ModelSetCachedState_6B0
     mr r3, r31
     bl ModelClearCacheSlot_B28
     mr r3, r31
@@ -3003,7 +3003,7 @@ asm void fn_80077714(void)
     bl GXCachedSetTevSwapTable
     mr r3, r31
     li r4, 0x1f
-    bl fn_80073620
+    bl ModelSetCachedState_6B0
     mr r3, r31
     bl ModelClearCacheSlot_B28
     mr r3, r31
@@ -3941,7 +3941,7 @@ _8007830C:
     blr
 }
 
-asm void fn_80078344(void)
+asm void GXWriteFifoByte(void)
 {
     nofralloc
     li r6, 0x40
@@ -4016,7 +4016,7 @@ _8007840C:
     beq _80078444
     lwz r3, 0x48(r31)
     lwz r4, 0x50(r31)
-    bl fn_80078344
+    bl GXWriteFifoByte
     b _800784FC
 _80078444:
     rlwinm. r0, r3, 0, 0x1a, 0x1a
@@ -4037,7 +4037,7 @@ _8007846C:
     mr r4, r28
     lwz r6, 0x28(r31)
     mr r5, r26
-    bl fn_80078944
+    bl GXWriteFifoWordPair
     lwz r0, 0x28(r31)
     slwi r0, r0, 1
     add r26, r26, r0
@@ -4047,7 +4047,7 @@ _8007849C:
     mr r4, r28
     lwz r6, 0x28(r31)
     mr r5, r26
-    bl fn_80078884
+    bl GXWriteFifoWord
     lwz r0, 0x28(r31)
     slwi r0, r0, 2
     add r26, r26, r0
@@ -4059,7 +4059,7 @@ _800784BC:
     stw r3, 0x50(r31)
     lwz r3, 0x48(r31)
     lwz r4, 0x50(r31)
-    bl fn_80078344
+    bl GXWriteFifoByte
     lwz r3, 0x48(r31)
     lwz r0, 0x50(r31)
     add r0, r3, r0

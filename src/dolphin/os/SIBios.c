@@ -50,7 +50,7 @@ extern void SIGetWirelessIDBitfield(register s32 chan, register u32 unk);
 extern u32 SIGetResponse(register s32 chan, register void* data);
 extern u32 SIGetType(register s32 chan);
 extern u32 SIGetTypeAsync(register s32 chan, register void (*callback)(s32, u32));
-extern u32 fn_8001300C(register u32 type);
+extern u32 __SIGetTypeNormalize(register u32 type);
 extern char* fn_8001317C(register s32 chan);
 extern void SISetSamplingRate(register s32 msec);
 extern void fn_800133E0(register s32 chan);
@@ -1885,10 +1885,10 @@ L_80012FE0:
 }
 #pragma pop
 
-/* ---- fn_8001300C: map raw type to device code ---- */
+/* ---- __SIGetTypeNormalize: map raw type to device code ---- */
 #pragma push
 #pragma force_active on
-asm u32 fn_8001300C(register u32 type)
+asm u32 __SIGetTypeNormalize(register u32 type)
 {
     nofralloc
     rlwinm.     r0, r3, 0, 28, 28
@@ -1989,17 +1989,17 @@ L_80013150:
 }
 #pragma pop
 
-/* ---- fn_80013158 ---- */
+/* ---- SIProbe ---- */
 #pragma push
 #pragma force_active on
-asm u32 fn_80013158(register s32 chan)
+asm u32 SIProbe(register s32 chan)
 {
     nofralloc
     mflr        r0
     stw         r0, 0x4(r1)
     stwu        r1, -0x8(r1)
     bl          SIGetType
-    bl          fn_8001300C
+    bl          __SIGetTypeNormalize
     lwz         r0, 0xc(r1)
     addi        r1, r1, 0x8
     mtlr        r0
@@ -2019,7 +2019,7 @@ asm char* fn_8001317C(register s32 chan)
     stwu        r1, -0x18(r1)
     stw         r31, 0x14(r1)
     addi        r31, r4, lbl_80123B50@l
-    bl          fn_8001300C
+    bl          __SIGetTypeNormalize
     lis         r0, 0x2
     cmpw        r3, r0
     beq         L_8001327C
@@ -2195,10 +2195,10 @@ L_8001337C:
 }
 #pragma pop
 
-/* ---- fn_800133B8 ---- */
+/* ---- SISetSamplingRateRestore ---- */
 #pragma push
 #pragma force_active on
-void fn_800133B8(void)
+void SISetSamplingRateRestore(void)
 {
     SISetSamplingRate(SamplingRate);
 }

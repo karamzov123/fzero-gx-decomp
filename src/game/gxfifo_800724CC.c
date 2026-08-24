@@ -4,7 +4,7 @@ typedef unsigned int u32;
 #pragma force_active on
 extern unsigned char lbl_8019E250[184];
 
-asm void fn_800724CC(register void* xf, register u32 base)
+asm void VIConfigureAndFlush(register void* xf, register u32 base)
 {
     nofralloc
     mr      r5, r4

@@ -24,8 +24,8 @@ extern u64 OSGetTime(void);
 extern s32 DVDCheckCancel(void* block);
 extern void* DVDGetCurrentDiskID(void);
 extern void AISetStreamPlayState(s32);
-extern void fn_8001E2BC(s32);
-extern void fn_8001E2E8(s32);
+extern void DSPWriteMailHi(s32);
+extern void DSPWriteMailMid(s32);
 extern s32 DVDBSChangeDiskAsync(void* a, s32 b);
 extern s32 DVDGetCommandBlockStatus(void* block);
 extern s32 DVDReadAbsAsyncPrio(void* block, void* addr, u32 length, u32 offset, void* caddr);
@@ -137,9 +137,9 @@ _8000ec34:
     cmpwi	r0, 0
     beq     _8000ecdc
     li	r3, 0
-    bl      fn_8001E2BC
+    bl      DSPWriteMailHi
     li	r3, 0
-    bl      fn_8001E2E8
+    bl      DSPWriteMailMid
     addi	r3, r1, 0x70
     li	r4, 0
     bl      DVDBSChangeDiskAsync

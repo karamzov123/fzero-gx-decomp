@@ -28,9 +28,9 @@ extern asm void ModelSetCachedParam_1F0(void);
 extern asm void ModelSetCachedParam_2F0(void);
 extern asm void ModelSetCachedParam_430(void);
 extern asm void ModelSetCachedMaterial_570(void);
-extern asm void fn_80073678(void);
+extern asm void ModelSetCachedNumTexGens(void);
 extern asm void GXIntToFloatCopy(void);
-extern asm void fn_80073898(void);
+extern asm void ModelSetCachedState_840(void);
 extern asm void ModelClearCacheSlot_B28(void);
 extern asm void GXSetNumTexGensCached(void);
 extern asm void GXSetChanAmbColorCached(void);
@@ -4057,9 +4057,9 @@ asm void fn_8006CE44(void)
     li	r3, 0
     bl      GXSetNumTexGensCached
     li	r3, 1
-    bl      fn_80073678
+    bl      ModelSetCachedNumTexGens
     li	r3, 0
-    bl      fn_80073898
+    bl      ModelSetCachedState_840
     li	r3, 0
     bl      ModelClearCacheSlot_B28
     li	r3, 4

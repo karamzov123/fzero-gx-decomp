@@ -43,7 +43,7 @@ extern unsigned char lbl_80188A78[16];
 extern unsigned char lbl_80188A8C[9092];
 extern void fn_800555C0(void);
 
-asm void fn_80055708(void)
+asm void gcci_client_get_field_10(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -75,7 +75,7 @@ _80055758:
     blr	
 }
 
-asm void fn_80055768(void)
+asm void gcci_client_get_field_02(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -108,7 +108,7 @@ _800557bc:
     blr	
 }
 
-asm void fn_800557CC(void)
+asm void gcci_add_device(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -531,7 +531,7 @@ _80055d80:
     blr	
 }
 
-asm void fn_80055D94(void)
+asm void gcci_client_get_field_1C(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -628,7 +628,7 @@ _80055eb0:
     blr	
 }
 
-asm void fn_80055EC0(void)
+asm void gcci_poll_device(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -756,7 +756,7 @@ _80056070:
     blr	
 }
 
-asm void fn_80056084(void)
+asm void gcci_open_file(void)
 {
     nofralloc
     stwu	r1, -0x120(r1)
@@ -909,7 +909,7 @@ _80056274:
     blr	
 }
 
-asm void fn_80056294(void)
+asm void gcci_open_stream(void)
 {
     nofralloc
     stwu	r1, -0x150(r1)
@@ -1014,7 +1014,7 @@ _800563e0:
     blr	
 }
 
-asm void fn_800563F8(void)
+asm void gcci_set_callbacks(void)
 {
     nofralloc
     lis	r6, -0x7fe8
@@ -1225,7 +1225,7 @@ _800566a4:
     blr	
 }
 
-asm void fn_800566BC(void)
+asm void gcci_set_critical_value(void)
 {
     nofralloc
     cmplwi	r3, 0
@@ -1337,7 +1337,7 @@ _800567dc:
     blr	
 }
 
-asm void fn_800567EC(void)
+asm void gcci_set_min_stream(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1371,7 +1371,7 @@ _80056840:
     blr	
 }
 
-asm void fn_80056850(void)
+asm void gcci_find_stream_0(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1445,7 +1445,7 @@ _80056940:
     blr	
 }
 
-asm void fn_80056950(void)
+asm void gcci_find_stream_1(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1519,7 +1519,7 @@ _80056a40:
     blr	
 }
 
-asm void fn_80056A50(void)
+asm void gcci_find_stream_2(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1593,7 +1593,7 @@ _80056b40:
     blr	
 }
 
-asm void fn_80056B50(void)
+asm void gcci_get_stream_by_index(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1858,7 +1858,7 @@ _80056e88:
     blr	
 }
 
-asm void fn_80056E9C(void)
+asm void gcci_register_filename(void)
 {
     nofralloc
     stwu	r1, -0x30(r1)

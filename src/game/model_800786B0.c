@@ -26,10 +26,10 @@ extern void fn_8007048C(void);
 extern void fn_80071794(void);
 extern void fn_80071C04(void);
 extern void GXLoadMtxArray(void);
-extern void fn_800724CC(void);
+extern void VIConfigureAndFlush(void);
 extern void LightCtrl_SetCachedFog(void);
 extern void fn_80075908(void);
-extern void fn_80078344(void);
+extern void GXWriteFifoByte(void);
 extern void fn_80078360(void);
 extern void fn_800794F0(void);
 extern void fn_8006DFFC(void);
@@ -38,13 +38,13 @@ extern unsigned char Invalid_Model_str[14];
 extern unsigned char lbl_8019F130[28];
 asm void fn_800786B0(void);
 asm void fn_80078768(void);
-asm void fn_80078884(void);
-asm void fn_80078944(void);
+asm void GXWriteFifoWord(void);
+asm void GXWriteFifoWordPair(void);
 asm void fn_800789D8(void);
 asm void fn_80078BC4(void);
 asm void fn_80078C28(void);
 asm void fn_80078CDC(void);
-asm void fn_80078D48(void);
+asm void GXWriteFifoCommand(void);
 asm void fn_80078D60(void);
 asm void fn_80078DA8(void);
 asm void fn_80078F0C(void);
@@ -195,7 +195,7 @@ _8007886C:
     blr
 }
 
-asm void fn_80078884(void)
+asm void GXWriteFifoWord(void)
 {
     nofralloc
     lis r9, -0x3400
@@ -255,7 +255,7 @@ _80078934:
     blr
 }
 
-asm void fn_80078944(void)
+asm void GXWriteFifoWordPair(void)
 {
     nofralloc
     lis r9, -0x3400
@@ -365,7 +365,7 @@ _80078A8C:
     bl fn_80078D60
     lwz r4, 0x28(r28)
     mr r3, r31
-    bl fn_80078344
+    bl GXWriteFifoByte
     lwz r0, 0x28(r28)
     add r31, r31, r0
 _80078AB8:
@@ -400,7 +400,7 @@ _80078B10:
 _80078B1C:
     lwz r4, 8(r28)
     mr r3, r31
-    bl fn_80078344
+    bl GXWriteFifoByte
     addi r29, r29, 1
     lwz r0, 8(r28)
     cmpwi r29, 2
@@ -465,7 +465,7 @@ _80078BE0:
     lwz r3, -0x7618(r13)
     addi r4, r30, 1
     add r3, r3, r0
-    bl fn_800724CC
+    bl VIConfigureAndFlush
 _80078C00:
     addi r30, r30, 1
     addi r31, r31, 1
@@ -518,7 +518,7 @@ _80078C8C:
     lwz r3, -0x7618(r13)
     addi r4, r31, 1
     add r3, r3, r0
-    bl fn_800724CC
+    bl VIConfigureAndFlush
 _80078CB0:
     addi r31, r31, 1
     cmpwi r31, 8
@@ -567,7 +567,7 @@ _80078D18:
     blr
 }
 
-asm void fn_80078D48(void)
+asm void GXWriteFifoCommand(void)
 {
     nofralloc
     lis r5, -0x3400
@@ -594,7 +594,7 @@ asm void fn_80078D60(void)
     rlwinm r3, r3, 0, 0x12, 0xf
     or r3, r3, r0
     stw r3, 0x204(r4)
-    bl fn_80078D48
+    bl GXWriteFifoCommand
 _80078D98:
     lwz r0, 0x14(r1)
     mtlr r0

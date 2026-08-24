@@ -86,7 +86,7 @@ extern void OSPanic(void);
 extern void fn_8000CDD8(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
-extern void fn_80015B78(void);
+extern void PSMTXMultVecPair(void);
 extern void fn_80015EE8(void);
 extern void DVDConvertPathToEntrynum(void);
 extern void fn_800170EC(void);
@@ -150,12 +150,12 @@ extern void ModelSetCachedParam_430(void);
 extern void fn_80072EDC(void);
 extern void ModelSetCachedMaterial_570(void);
 extern void GXCachedSetTevSwapTable(void);
-extern void fn_80073620(void);
-extern void fn_80073678(void);
+extern void ModelSetCachedState_6B0(void);
+extern void ModelSetCachedNumTexGens(void);
 extern void ModelSetCachedTex_704(void);
-extern void fn_80073778(void);
+extern void ModelCacheMaterialParams(void);
 extern void GXIntToFloatCopy(void);
-extern void fn_80073898(void);
+extern void ModelSetCachedState_840(void);
 extern void ModelClearCacheSlot_B28(void);
 extern void fn_800744F8(void);
 extern void ModelSetCachedPair5_B28(void);
@@ -215,7 +215,7 @@ asm void fn_80008DB4(void)
     bl      PSMTXQuat_fromMtx
     mr	r3, r31
     addi	r4, r1, 8
-    bl      fn_80015B78
+    bl      PSMTXMultVecPair
     lwz	r0, 0x54(r1)
     lfd	f31, 0x48(r1)
     lwz	r31, 0x44(r1)

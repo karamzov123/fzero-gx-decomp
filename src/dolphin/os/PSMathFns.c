@@ -11,7 +11,7 @@ extern void fn_800885DC(void);
 
 #pragma push
 #pragma force_active on
-asm void fn_80015B24(register f32* m)
+asm void psq_st_pair(register f32* m)
 {
     nofralloc
     lfs     f0, -0x7EF4(r2)
@@ -27,7 +27,7 @@ asm void fn_80015B24(register f32* m)
     blr
 }
 
-asm void fn_80015B50(register f32* m, register f32 a, register f32 b, register f32 c)
+asm void psq_l_pair(register f32* m, register f32 a, register f32 b, register f32 c)
 {
     nofralloc
     lfs     f0, -0x7EF4(r2)
@@ -42,7 +42,7 @@ asm void fn_80015B50(register f32* m, register f32 a, register f32 b, register f
     blr
 }
 
-asm void fn_80015B78(register void* out, register const void* in)
+asm void PSMTXMultVecPair(register void* out, register const void* in)
 {
     nofralloc
     lfs     f1, -0x7EF8(r2)

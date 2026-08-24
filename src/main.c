@@ -101,7 +101,7 @@ extern void OSPanic(void);
 extern void fn_8000CDD8(void);
 extern void fn_8000CEBC(void);
 extern void fn_8000D1F0(void);
-extern void fn_80015B78(void);
+extern void PSMTXMultVecPair(void);
 extern void fn_80015EE8(void);
 extern void DVDConvertPathToEntrynum(void);
 extern void fn_800170EC(void);
@@ -165,12 +165,12 @@ extern void ModelSetCachedParam_430(void);
 extern void fn_80072EDC(void);
 extern void ModelSetCachedMaterial_570(void);
 extern void GXCachedSetTevSwapTable(void);
-extern void fn_80073620(void);
-extern void fn_80073678(void);
+extern void ModelSetCachedState_6B0(void);
+extern void ModelSetCachedNumTexGens(void);
 extern void ModelSetCachedTex_704(void);
-extern void fn_80073778(void);
+extern void ModelCacheMaterialParams(void);
 extern void GXIntToFloatCopy(void);
-extern void fn_80073898(void);
+extern void ModelSetCachedState_840(void);
 extern void ModelClearCacheSlot_B28(void);
 extern void fn_800744F8(void);
 extern void ModelSetCachedPair5_B28(void);
@@ -629,9 +629,9 @@ asm void mmu_user_fn(void)
     li	r3, 1
     bl      GXSetNumTexGensCached
     li	r3, 1
-    bl      fn_80073678
+    bl      ModelSetCachedNumTexGens
     li	r3, 0
-    bl      fn_80073898
+    bl      ModelSetCachedState_840
     li	r3, 0
     bl      ModelClearCacheSlot_B28
     li	r3, 0
@@ -749,7 +749,7 @@ asm void mmu_user_fn(void)
     bl      fn_800371F8
     mr	r3, r31
     li	r4, 0
-    bl      fn_80073778
+    bl      ModelCacheMaterialParams
     li	r3, 0x80
     li	r4, 7
     li	r5, 4
@@ -885,7 +885,7 @@ asm void fn_80005EDC(void)
     li	r3, 1
     bl      GXSetNumTexGensCached
     li	r3, 1
-    bl      fn_80073678
+    bl      ModelSetCachedNumTexGens
     li	r3, 0
     bl      ModelClearCacheSlot_B28
     li	r3, 0
@@ -1079,7 +1079,7 @@ _800061a8:
     bl      fn_80036544
     addi	r3, r1, 8
     li	r4, 0
-    bl      fn_80073778
+    bl      ModelCacheMaterialParams
     lhz	r4, 6(r31)
     lis	r0, 0x4330
     stw	r0, 0x28(r1)
@@ -3543,7 +3543,7 @@ asm void fn_80008204(void)
     bl      ModelClearCacheSlot_B28
     li	r3, 0
     li	r4, 0x1c
-    bl      fn_80073620
+    bl      ModelSetCachedState_6B0
     li	r3, 0
     li	r4, 0xc
     bl      GXCachedSetTevSwapTable
@@ -3592,13 +3592,13 @@ asm void fn_80008204(void)
     li	r8, 0
     bl      ModelSetCachedParam_430
     li	r3, 1
-    bl      fn_80073678
+    bl      ModelSetCachedNumTexGens
     li	r3, 1
     bl      GXSetChanAmbColorCached
     li	r3, 0
     bl      GXSetNumTexGensCached
     li	r3, 0
-    bl      fn_80073898
+    bl      ModelSetCachedState_840
     li	r3, 0
     li	r4, 1
     li	r5, 0
@@ -3920,7 +3920,7 @@ asm void fn_800087F4(void)
     stw	r31, 0x1c(r1)
     mr	r31, r4
     li	r4, 0
-    bl      fn_80073778
+    bl      ModelCacheMaterialParams
     li	r3, 0
     li	r4, 1
     li	r5, 0
@@ -3958,7 +3958,7 @@ _80008860:
     bl      ModelSetCachedMaterial_570
     li	r3, 0
     li	r4, 0
-    bl      fn_80073620
+    bl      ModelSetCachedState_6B0
     li	r3, 0
     li	r4, 0xf
     li	r5, 8
@@ -3986,11 +3986,11 @@ _80008860:
     li	r8, 0
     bl      ModelSetCachedParam_430
     li	r3, 1
-    bl      fn_80073678
+    bl      ModelSetCachedNumTexGens
     li	r3, 1
     bl      GXSetNumTexGensCached
     li	r3, 0
-    bl      fn_80073898
+    bl      ModelSetCachedState_840
     li	r3, 0
     bl      GXSetChanAmbColorCached
     b       _80008a30
@@ -4024,7 +4024,7 @@ _80008930:
     bl      GXCachedSetTevSwapTable
     li	r3, 0
     li	r4, 0
-    bl      fn_80073620
+    bl      ModelSetCachedState_6B0
     li	r3, 0
     li	r4, 0xe
     li	r5, 0xf
@@ -4052,11 +4052,11 @@ _80008930:
     li	r8, 0
     bl      ModelSetCachedParam_430
     li	r3, 1
-    bl      fn_80073678
+    bl      ModelSetCachedNumTexGens
     li	r3, 1
     bl      GXSetNumTexGensCached
     li	r3, 0
-    bl      fn_80073898
+    bl      ModelSetCachedState_840
     li	r3, 0
     bl      GXSetChanAmbColorCached
 _80008a30:
@@ -4117,7 +4117,7 @@ asm void fn_80008A4C(void)
     bl      GXCachedSetTevSwapTable
     li	r3, 0
     li	r4, 0x1c
-    bl      fn_80073620
+    bl      ModelSetCachedState_6B0
     li	r3, 0
     li	r4, 0xf
     li	r5, 0xf
@@ -4145,11 +4145,11 @@ asm void fn_80008A4C(void)
     li	r8, 0
     bl      ModelSetCachedParam_430
     li	r3, 1
-    bl      fn_80073678
+    bl      ModelSetCachedNumTexGens
     li	r3, 1
     bl      GXSetNumTexGensCached
     li	r3, 0
-    bl      fn_80073898
+    bl      ModelSetCachedState_840
     li	r3, 0
     bl      GXSetChanAmbColorCached
     li	r3, 0x200

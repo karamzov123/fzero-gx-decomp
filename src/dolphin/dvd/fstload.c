@@ -38,7 +38,7 @@ extern void OSSetArenaHi(void);
 extern void OSSetCurrentContext(void);
 extern void cb(void);
 extern void OSWakeupThread(void);
-extern void fn_800133B8(void);
+extern void SISetSamplingRateRestore(void);
 extern void DVDReadAbsAsyncForBS(void);
 extern void fn_8001BE74(void);
 extern void __shl2i(void);
@@ -342,7 +342,7 @@ lbl_8001A728:
 	beq lbl_8001A73C
 	li r0, 0x0
 	stw r0, -0x7A98(r13)
-	bl fn_800133B8
+	bl SISetSamplingRateRestore
 lbl_8001A73C:
 	lwz r0, -0x7A88(r13)
 	cmplwi r0, 0x0

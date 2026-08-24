@@ -10,7 +10,7 @@ extern void fn_80050F6C(void);
 extern void fn_80050F74(void);
 extern void ADXF_StreamTeardown(void);
 extern void fn_800510C4(void);
-extern void fn_800510D8(void);
+extern void ADXT_GetStreamStatus(void);
 extern void fn_80051448(void);
 extern void fn_80051594(void);
 extern void fn_80051678(void);
@@ -97,7 +97,7 @@ _80053edc:
     lwz	r3, 0(r31)
     bl      fn_80051448
     lwz	r3, 0(r31)
-    bl      fn_800510D8
+    bl      ADXT_GetStreamStatus
     li	r3, 1
     li	r0, 2
     stb	r3, 7(r31)
@@ -166,7 +166,7 @@ _80053fa0:
     addi	r4, r4, lbl_801873DC@l
     stw	r3, 8(r4)
     mr	r3, r28
-    bl      fn_800510D8
+    bl      ADXT_GetStreamStatus
     cmpwi	r3, 1
     bne     _80054020
     li	r0, 3

@@ -11,7 +11,7 @@ extern void __cvt_fp2unsigned(register u32 a, register u32 b);
 extern void OSGetTime(void* t);
 extern void OSSetPeriodicAlarm(void* alarm, void* start, void* period, void (*handler)(void));
 extern void OSCancelAlarm(void* alarm);
-extern void fn_80015B24(register u32 a, register u32 b);
+extern void psq_st_pair(register u32 a, register u32 b);
 extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 extern void fn_80038BFC(register u32 a);
@@ -508,7 +508,7 @@ asm void fn_8003E9EC(void)
     stw	r30, 0x20(r1)
     addi	r30, r3, 0
     mr	r3, r0
-    bl      fn_80015B24
+    bl      psq_st_pair
     lwz	r7, -0x776c(r13)
     lis	r6, -0x8000
     lis	r4, -0x7777

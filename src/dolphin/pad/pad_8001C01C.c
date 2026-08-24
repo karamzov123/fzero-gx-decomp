@@ -27,7 +27,7 @@ extern void SIGetResponse(void);
 extern void SITransfer(void);
 extern void SIGetType(void);
 extern void SIGetTypeAsync(void);
-extern void fn_800133B8(void);
+extern void SISetSamplingRateRestore(void);
 extern void __shr2i(void);
 extern unsigned char lbl_801245E0[16];
 extern unsigned char lbl_8015D0B0[16];
@@ -1098,7 +1098,7 @@ _8001ce48:
     rlwinm	r0, r0, 8, 0xa, 0x17
     oris	r0, r0, 0x4dc0
     stw	r0, 0x4c(r31)
-    bl      fn_800133B8
+    bl      SISetSamplingRateRestore
     lis     r3, lbl_801245E0@ha
     addi	r3, r3, lbl_801245E0@l
     bl      OSRegisterResetFunction
