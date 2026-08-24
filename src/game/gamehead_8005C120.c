@@ -121,9 +121,9 @@ asm void fn_8005C5C8(void);
 asm void fn_8005C7C0(void);
 asm void fn_8005C9D8(void);
 asm void SndStopAllChannelVoices(void);
-asm void fn_8005D258(void);
+asm void SndExpCurveLookup(void);
 asm void fn_8005D5A4(void);
-asm void fn_8005DB68(void);
+asm void SndVelocityToVolume(void);
 asm void fn_8005DCEC(void);
 asm void SndSetVoicePriority(void);
 asm void SndKillChannelVoice(void);
@@ -672,7 +672,7 @@ asm void fn_8005C7C0(void)
     rlwinm	r6, r0, 0x18, 0x18, 0x1f
     lbz	r5, 0x140a(r4)
     mr	r4, r27
-    bl      fn_8005D258
+    bl      SndExpCurveLookup
     lbz	r5, 6(r27)
     lwz	r4, -0x7740(r13)
     rlwinm.	r0, r5, 0, 0x18, 0x18
@@ -818,7 +818,7 @@ asm void fn_8005C9D8(void)
     rlwinm	r6, r0, 0x18, 0x18, 0x1f
     lbz	r5, 0x140a(r4)
     mr	r4, r27
-    bl      fn_8005D258
+    bl      SndExpCurveLookup
     lwz	r4, -0x7740(r13)
     extsh	r5, r3
     add	r3, r4, r30
@@ -1382,7 +1382,7 @@ _8005d244:
     blr
 }
 
-asm void fn_8005D258(void)
+asm void SndExpCurveLookup(void)
 {
     nofralloc
     stwu	r1, -0x50(r1)
@@ -2031,7 +2031,7 @@ _8005db44:
     blr
 }
 
-asm void fn_8005DB68(void)
+asm void SndVelocityToVolume(void)
 {
     nofralloc
     stwu	r1, -0x70(r1)
@@ -2543,7 +2543,7 @@ _8005e284:
     mr	r6, r19
     addi	r7, r1, 0xc
     addi	r8, r1, 8
-    bl      fn_8005D258
+    bl      SndExpCurveLookup
     lbz	r0, 0x3b(r17)
     extsh	r28, r3
     cmplwi	r0, 1
@@ -5654,7 +5654,7 @@ _80060f2c:
     addi	r5, r1, 0xc
     lha	r4, 8(r1)
     addi	r6, r1, 0xa
-    bl      fn_8005DB68
+    bl      SndVelocityToVolume
     lha	r19, 0xc(r1)
     b       _80061044
 _80060f58:
@@ -6925,7 +6925,7 @@ _800621d8:
     addi	r5, r1, 0xc
     lha	r4, 8(r1)
     addi	r6, r1, 0xa
-    bl      fn_8005DB68
+    bl      SndVelocityToVolume
     lwz	r0, -0x7740(r13)
     lha	r4, 0xc(r1)
     add	r3, r0, r19
