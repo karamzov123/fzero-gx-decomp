@@ -15,7 +15,7 @@ extern void GXGetCPUFifo(void);
 extern void __GXSaveCPUFifoAux(void);
 extern void __GXSetDirtyState(void);
 extern void __GXSendFlushPrim(void);
-asm void fn_80038DE8(register void* p);
+asm void GXSetViewport(register void* p);
 asm void fn_80039088(register void* p);
 
 extern void fn_8003D42C(void);
@@ -450,7 +450,7 @@ _80038dc0:
     blr     
 }
 
-asm void fn_80038DE8(register void* p)
+asm void GXSetViewport(register void* p)
 {
     nofralloc
     mflr    r0
@@ -529,7 +529,7 @@ asm void fn_80038EEC(void)
     li      r3, 1
     stw     r0, 4(r1)
     stwu    r1, -8(r1)
-    bl      fn_80038DE8
+    bl      GXSetViewport
     lwz     r0, 0xc(r1)
     addi    r1, r1, 8
     mtlr    r0

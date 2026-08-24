@@ -22,7 +22,7 @@ extern void fn_80037B14(register u32 a);
 extern void fn_80037BF4(register u32 a);
 extern void fn_8003591C(register u32 a);
 extern void fn_80035960(register u32 a);
-extern void fn_800375F0(register u32 a);
+extern void GXSetChanCtrl(register u32 a);
 extern void fn_80037014(register u32 a);
 extern void fn_80033D4C(register u32 a);
 extern void fn_800377C8(register u32 a);
@@ -626,7 +626,7 @@ asm int fn_8003EAE4(register u32 a)
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 4
-    bl      fn_800375F0
+    bl      GXSetChanCtrl
     li	r3, 0
     li	r4, 4
     bl      fn_80037014

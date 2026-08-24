@@ -39,7 +39,7 @@ extern void fn_80037190(void);
 extern void fn_800372E0(void);
 extern void fn_80037354(void);
 extern void fn_800373C0(void);
-extern void fn_800375F0(void);
+extern void GXSetChanCtrl(void);
 extern void fn_800377C8(void);
 extern void fn_80037BC0(void);
 extern void fn_80038F48(void);
@@ -515,7 +515,7 @@ _80073504:
     mr r4, r27
     mr r5, r28
     mr r6, r29
-    bl fn_800375F0
+    bl GXSetChanCtrl
     stw r27, 0(r31)
     li r3, 0xff
     li r0, 0
@@ -549,7 +549,7 @@ _80073584:
     mr r4, r27
     mr r5, r28
     mr r6, r29
-    bl fn_800375F0
+    bl GXSetChanCtrl
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)

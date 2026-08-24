@@ -266,7 +266,7 @@ _800375b4:
     blr	
 }
 
-asm void fn_800375F0(register void* p1, register int a, register int b)
+asm void GXSetChanCtrl(register void* p1, register int a, register int b)
 {
     nofralloc
     srawi	r7, r3, 1

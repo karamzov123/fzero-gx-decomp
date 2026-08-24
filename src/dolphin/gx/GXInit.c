@@ -216,7 +216,7 @@ extern void fn_80035960(s32 chan, s32 en, s32 amb, s32 mat, s32 lights, s32 df, 
 extern void fn_80035734(s32 chan, void *color);
 extern void GXSetChanMatColor(s32 chan, void *color);
 extern void fn_80036544(void);
-extern void fn_800375F0(s32 stage, s32 coord, s32 map, s32 color);
+extern void GXSetChanCtrl(s32 stage, s32 coord, s32 map, s32 color);
 extern void fn_800377C8(s32 stages);
 extern void fn_80037014(s32 stage, s32 op);
 extern void fn_80037518(s32 comp0, s32 ref0, s32 op, s32 comp1, s32 ref1);
@@ -1324,82 +1324,82 @@ L80031480:
     li	r4, 0
     li	r5, 0
     li	r6, 4
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 1
     li	r4, 1
     li	r5, 1
     li	r6, 4
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 2
     li	r4, 2
     li	r5, 2
     li	r6, 4
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 3
     li	r4, 3
     li	r5, 3
     li	r6, 4
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 4
     li	r4, 4
     li	r5, 4
     li	r6, 4
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 5
     li	r4, 5
     li	r5, 5
     li	r6, 4
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 6
     li	r4, 6
     li	r5, 6
     li	r6, 4
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 7
     li	r4, 7
     li	r5, 7
     li	r6, 4
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 8
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 0xff
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 9
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 0xff
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 0xa
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 0xff
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 0xb
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 0xff
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 0xc
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 0xff
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 0xd
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 0xff
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 0xe
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 0xff
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 0xf
     li	r4, 0xff
     li	r5, 0xff
     li	r6, 0xff
-    bl fn_800375F0
+    bl GXSetChanCtrl
     li	r3, 1
     bl fn_800377C8
     li	r3, 0

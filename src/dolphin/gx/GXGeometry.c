@@ -67,7 +67,7 @@ void fn_8003742C(register void* p);
 void fn_80037480(register void* p, register int a, register int b);
 void fn_80037518(register void* p);
 void fn_8003756C(register void* p, register int a);
-void fn_800375F0(register void* p1, register int a, register int b);
+void GXSetChanCtrl(register void* p1, register int a, register int b);
 void fn_800377C8(void);
 void fn_800377F8(register void* p, register int a, register int b);
 void fn_80037A14(register void* p, register int a, register int b);
