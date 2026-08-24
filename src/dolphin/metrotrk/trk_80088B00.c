@@ -2294,7 +2294,7 @@ _8008a7dc:
     blr
 }
 
-asm void fn_8008A80C(void)
+asm void TRK_PositionFile(void)
 {
     nofralloc
     stwu	r1, -0x70(r1)
@@ -2370,7 +2370,7 @@ _8008a8f0:
     blr
 }
 
-asm void fn_8008A91C(void)
+asm void TRK_CloseFile(void)
 {
     nofralloc
     stwu	r1, -0x70(r1)
@@ -2437,7 +2437,7 @@ _8008a9dc:
     blr
 }
 
-asm void fn_8008AA04(void)
+asm void TRK_OpenFile(void)
 {
     nofralloc
     stwu	r1, -0x70(r1)
@@ -3315,7 +3315,7 @@ _8008b51c:
     lwz	r3, 0x10(r4)
     lwz	r5, 0x18(r4)
     clrlwi	r4, r0, 0x18
-    bl      fn_8008AA04
+    bl      TRK_OpenFile
     lwz	r0, 0xc(r1)
     mr	r30, r3
     cmpwi	r0, 0
@@ -3335,7 +3335,7 @@ _8008b570:
     addi	r4, r1, 0xc
     addi	r3, r3, gTRKCPUState@l
     lwz	r3, 0x10(r3)
-    bl      fn_8008A91C
+    bl      TRK_CloseFile
     lwz	r0, 0xc(r1)
     mr	r30, r3
     cmpwi	r0, 0
@@ -3361,7 +3361,7 @@ _8008b5b8:
     lwz	r3, 0x10(r29)
     clrlwi	r5, r0, 0x18
     stw	r7, 8(r1)
-    bl      fn_8008A80C
+    bl      TRK_PositionFile
     lwz	r0, 0xc(r1)
     mr	r30, r3
     cmpwi	r0, 0
