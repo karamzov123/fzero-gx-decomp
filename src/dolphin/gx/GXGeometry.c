@@ -38,7 +38,7 @@ typedef volatile struct GXData {
 extern GXData *const gx;
 
 extern void GXPreLoadEntireTexture(void);
-extern void fn_80036F24(void);
+extern void __GXFlushGenMode(void);
 extern void __GXSetVCD(void);
 extern void __GXSetVAT(void);
 extern void __GXCalculateVatSizes(void);
@@ -60,7 +60,7 @@ extern unsigned char jumptable_8012B120[28];
 extern unsigned char jumptable_8012B140[244];
 extern unsigned char jumptable_8012B234[244];
 extern unsigned char jumptable_8012B328[60];
-void fn_800372E0(register void* p);
+void __GXSetChanMatColor(register void* p);
 void __GXSetLightAttnEnable_A(register void* p, register int a);
 void __GXSetLightAttnEnable_B(register void* p, register int a);
 void __GXSetLightColorAttnSel(register void* p);
@@ -96,7 +96,7 @@ void __GXSetDirtyState(void)
     if (gx->dirtyState & 1)
         GXPreLoadEntireTexture();
     if (gx->dirtyState & 2)
-        fn_80036F24();
+        __GXFlushGenMode();
     if (gx->dirtyState & 4)
         __GXSetGenMode();
     if (gx->dirtyState & 8)
@@ -132,7 +132,7 @@ _8003466c:
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
     beq     _80034680
-    bl      fn_80036F24
+    bl      __GXFlushGenMode
 _80034680:
     lwz	r3, -0x7de8(r2)
     lwz	r0, 0x4f4(r3)

@@ -8,7 +8,7 @@ extern asm void OSGetTick(void);
 extern asm void SITransferSync(void);
 extern asm void SIGetResponseSync(void);
 extern asm void fn_80013994(void);
-extern asm void fn_800139E8(void);
+extern asm void SISetInterruptMask(void);
 extern asm void MTXOrtho(void);
 extern asm void AXFreeVoice(void);
 extern asm void AXSetVoiceType_cached(void);
@@ -1881,7 +1881,7 @@ _8006b250:
     mr	r3, r29
     li	r4, 0x400
     li	r5, 0
-    bl      fn_800139E8
+    bl      SISetInterruptMask
     addi	r29, r29, 1
     addi	r31, r31, 0x1248
     cmpwi	r29, 4
@@ -3884,7 +3884,7 @@ _8006cc64:
     li	r5, 0
     lwz	r3, 0xf0(r3)
     lwz	r3, 0(r3)
-    bl      fn_800139E8
+    bl      SISetInterruptMask
     b       _8006ccb0
 _8006cc98:
     lwz	r3, 0(r28)
@@ -3892,7 +3892,7 @@ _8006cc98:
     li	r4, 0x600
     lwz	r3, 0xf0(r3)
     lwz	r3, 0(r3)
-    bl      fn_800139E8
+    bl      SISetInterruptMask
 _8006ccb0:
     mr	r3, r26
     lmw	r25, 0x14(r1)

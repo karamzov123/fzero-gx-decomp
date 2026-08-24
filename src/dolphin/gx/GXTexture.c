@@ -793,7 +793,7 @@ asm void __GXInitTexObj(register void* p)
     blr	
 }
 
-asm void fn_80036AC4(register void* p, register int a)
+asm void __GXInitTexObjLOD(register void* p, register int a)
 {
     nofralloc
     cmpwi	r3, 8
@@ -1116,7 +1116,7 @@ asm void __GXInitTexObjDefault(register void* p)
     blr	
 }
 
-asm void fn_80036F24(void)
+asm void __GXFlushGenMode(void)
 {
     nofralloc
     lwz	r3, -0x7de8(r2)
@@ -1380,7 +1380,7 @@ asm void __GXSetTexRegion(register void* p, register int a)
     blr	
 }
 
-asm void fn_8003726C(register void* p)
+asm void __GXWriteLightColor(register void* p)
 {
     nofralloc
     lha	r0, 6(r4)

@@ -25,7 +25,7 @@ extern unsigned char lbl_80178118[648];
 #pragma push
 #pragma force_active on
 
-asm void fn_800372E0(register void* p)
+asm void __GXSetChanMatColor(register void* p)
 {
     nofralloc
     lbz	r0, 3(r4)

@@ -64,7 +64,7 @@ extern void fn_8001375C(register s32 chan);
 extern int SIGetResponseSync(register s32 chan, register void* out);
 extern void SITypeNameLookup(register s32 interrupt, register OSContext* context);
 extern void* fn_80013994(register void* handler);
-extern void fn_800139E8(register s32 chan, register u32 unk, register s32 val);
+extern void SISetInterruptMask(register s32 chan, register u32 unk, register s32 val);
 extern int __SITransfer(register s32 chan, register void* output,
                         register s32 outputBytes, register void* input,
                         register s32 inputBytes,
@@ -2704,10 +2704,10 @@ L_800139D0:
 }
 #pragma pop
 
-/* ---- fn_800139E8 ---- */
+/* ---- SISetInterruptMask ---- */
 #pragma push
 #pragma force_active on
-asm void fn_800139E8(register s32 chan, register u32 unk, register s32 val)
+asm void SISetInterruptMask(register s32 chan, register u32 unk, register s32 val)
 {
     nofralloc
     mflr        r0

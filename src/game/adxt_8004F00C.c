@@ -12,7 +12,7 @@ extern void fn_8004AEF0(void);
 extern void fn_8004B1DC(void);
 extern void fn_8004FC38(void);
 extern void ADXF_Stop_family(void);
-extern void fn_800502A0(void);
+extern void adxt_bitstream_refill(void);
 extern void strncpy(void);
 extern void memset(void);
 extern unsigned char E9040822_adxf_is_NULL_ADXF_Stop_str[36];
@@ -1176,7 +1176,7 @@ asm void fn_8004FF68(void)
     lwz	r0, 0xc(r27)
     cmpw	r0, r29
     bge     _8004ffbc
-    bl      fn_800502A0
+    bl      adxt_bitstream_refill
 _8004ffbc:
     lwz	r4, 0xc(r27)
     cmpw	r29, r4
@@ -1203,7 +1203,7 @@ _8004fff4:
     cmpwi	r0, 0xc
     bge     _8005001c
     mr	r3, r27
-    bl      fn_800502A0
+    bl      adxt_bitstream_refill
 _8005001c:
     lwz	r4, 0xc(r27)
     cmpwi	r4, 0xc
@@ -1254,7 +1254,7 @@ _800500ac:
     cmpwi	r0, 4
     bge     _800500d0
     mr	r3, r27
-    bl      fn_800502A0
+    bl      adxt_bitstream_refill
 _800500d0:
     lwz	r3, 0xc(r27)
     cmpwi	r3, 4

@@ -28,7 +28,7 @@ extern void GXXFormSetupA(void);
 extern void GXXFormSetupB(void);
 extern void GXLoadTexObj(void);
 extern void __GXInitTexObj(void);
-extern void fn_80036AC4(void);
+extern void __GXInitTexObjLOD(void);
 extern void __GXInitTexCacheRegs(void);
 extern void fn_80036DA0(void);
 extern void fn_80036EB4(void);
@@ -36,7 +36,7 @@ extern void GXWriteCachedParamF0(void);
 extern void GXWriteCachedParam1F0(void);
 extern void fn_80037128(void);
 extern void fn_80037190(void);
-extern void fn_800372E0(void);
+extern void __GXSetChanMatColor(void);
 extern void __GXSetLightAttnEnable_A(void);
 extern void __GXSetLightAttnEnable_B(void);
 extern void GXSetChanCtrl(void);
@@ -681,7 +681,7 @@ _80073730:
     lwz r0, 0(r30)
     addi r4, r1, 8
     stw r0, 8(r1)
-    bl fn_800372E0
+    bl __GXSetChanMatColor
     lwz r3, -0x7688(r13)
     li r4, 0
     lwz r0, 0(r30)
@@ -973,7 +973,7 @@ _80073B0C:
     mr r3, r28
     mr r4, r29
     mr r5, r30
-    bl fn_80036AC4
+    bl __GXInitTexObjLOD
     mr r3, r31
     mr r4, r29
     li r5, 0x18
@@ -1367,7 +1367,7 @@ _80074070:
     mr r3, r26
     addi r4, r1, 0x10
     li r5, 0xa
-    bl fn_80036AC4
+    bl __GXInitTexObjLOD
     mr r3, r31
     addi r4, r1, 0x10
     li r5, 0x18

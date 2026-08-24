@@ -35,11 +35,11 @@ extern void AXVPBSyncChannelA(void);
 extern void AXVPBSyncChannelB(void);
 extern void fn_80023568(void);
 extern void fn_80024308(void);
-extern void fn_80024378(void);
+extern void axmix_ctrl_read_param(void);
 extern void fn_80024D84(void);
-extern void fn_80024DF0(void);
+extern void axmix_ctrl_write_param(void);
 extern void fn_800251F0(void);
-extern void fn_800253F0(void);
+extern void axmix_ctrl_flush_buffers(void);
 extern void fn_80025C28(void);
 extern void AXInvokeVoiceStopCallbacks(void);
 extern void fn_80025EE4(void);
@@ -161,7 +161,7 @@ asm void SndSetCallback0(void);
 asm void SndPostRequest(void);
 asm void fn_80065A7C(void);
 asm void SndClearChannelActiveFlag(void);
-asm void fn_80065AD0(void);
+asm void SndChannelFreeCallback(void);
 asm void fn_80065B08(void);
 asm void SndFreeChannel(void);
 asm void SndLoadSamplesARQ(void);
@@ -8316,17 +8316,17 @@ _800634f8:
 _80063504:
     lis     r3, lbl_801939B4@ha
     addi	r3, r3, lbl_801939B4@l
-    bl      fn_80024DF0
+    bl      axmix_ctrl_write_param
     b       _80063540
 _80063514:
     lis     r3, lbl_80193680@ha
     addi	r3, r3, lbl_80193680@l
-    bl      fn_80024378
+    bl      axmix_ctrl_read_param
     b       _80063540
 _80063524:
     lis     r3, lbl_80193404@ha
     addi	r3, r3, lbl_80193404@l
-    bl      fn_800253F0
+    bl      axmix_ctrl_flush_buffers
     b       _80063540
 _80063534:
     lis     r3, lbl_80193308@ha
@@ -8352,17 +8352,17 @@ _80063570:
 _8006357c:
     lis     r3, lbl_80193860@ha
     addi	r3, r3, lbl_80193860@l
-    bl      fn_80024DF0
+    bl      axmix_ctrl_write_param
     b       _800635b8
 _8006358c:
     lis     r3, lbl_801934A0@ha
     addi	r3, r3, lbl_801934A0@l
-    bl      fn_80024378
+    bl      axmix_ctrl_read_param
     b       _800635b8
 _8006359c:
     lis     r3, lbl_80193368@ha
     addi	r3, r3, lbl_80193368@l
-    bl      fn_800253F0
+    bl      axmix_ctrl_flush_buffers
     b       _800635b8
 _800635ac:
     lis     r3, lbl_801932A8@ha
@@ -8927,17 +8927,17 @@ _80063de4:
 _80063df0:
     lis     r3, lbl_801939B4@ha
     addi	r3, r3, lbl_801939B4@l
-    bl      fn_80024DF0
+    bl      axmix_ctrl_write_param
     b       _80063e2c
 _80063e00:
     lis     r3, lbl_80193680@ha
     addi	r3, r3, lbl_80193680@l
-    bl      fn_80024378
+    bl      axmix_ctrl_read_param
     b       _80063e2c
 _80063e10:
     lis     r3, lbl_80193404@ha
     addi	r3, r3, lbl_80193404@l
-    bl      fn_800253F0
+    bl      axmix_ctrl_flush_buffers
     b       _80063e2c
 _80063e20:
     lis     r3, lbl_80193308@ha
@@ -8963,17 +8963,17 @@ _80063e5c:
 _80063e68:
     lis     r3, lbl_80193860@ha
     addi	r3, r3, lbl_80193860@l
-    bl      fn_80024DF0
+    bl      axmix_ctrl_write_param
     b       _80063ea4
 _80063e78:
     lis     r3, lbl_801934A0@ha
     addi	r3, r3, lbl_801934A0@l
-    bl      fn_80024378
+    bl      axmix_ctrl_read_param
     b       _80063ea4
 _80063e88:
     lis     r3, lbl_80193368@ha
     addi	r3, r3, lbl_80193368@l
-    bl      fn_800253F0
+    bl      axmix_ctrl_flush_buffers
     b       _80063ea4
 _80063e98:
     lis     r3, lbl_801932A8@ha
@@ -11091,7 +11091,7 @@ asm void SndClearChannelActiveFlag(void)
     blr
 }
 
-asm void fn_80065AD0(void)
+asm void SndChannelFreeCallback(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -11790,9 +11790,9 @@ _80066418:
     stw	r3, -0x7744(r13)
     lis     r3, lbl_80193B08@ha
     add	r5, r0, r24
-    lis     r4, fn_80065AD0@ha
+    lis     r4, SndChannelFreeCallback@ha
     lwz	r8, 0x1ac(r5)
-    addi	r10, r4, fn_80065AD0@l
+    addi	r10, r4, SndChannelFreeCallback@l
     addi	r3, r3, lbl_80193B08@l
     mr	r7, r25
     mr	r9, r23
@@ -11888,9 +11888,9 @@ _800665dc:
     bl      DCInvalidateRange
     li	r0, 1
     lis     r3, lbl_80193B08@ha
-    lis     r4, fn_80065AD0@ha
+    lis     r4, SndChannelFreeCallback@ha
     stw	r0, -0x7744(r13)
-    addi	r10, r4, fn_80065AD0@l
+    addi	r10, r4, SndChannelFreeCallback@l
     addi	r3, r3, lbl_80193B08@l
     mr	r7, r24
     mr	r8, r27
@@ -13643,15 +13643,15 @@ _80067ea4:
     b       _80067ed4
 _80067eb0:
     addi	r3, r31, 0x70c
-    bl      fn_80024DF0
+    bl      axmix_ctrl_write_param
     b       _80067edc
 _80067ebc:
     addi	r3, r31, 0x3d8
-    bl      fn_80024378
+    bl      axmix_ctrl_read_param
     b       _80067edc
 _80067ec8:
     addi	r3, r31, 0x15c
-    bl      fn_800253F0
+    bl      axmix_ctrl_flush_buffers
     b       _80067edc
 _80067ed4:
     addi	r3, r31, 0x60
@@ -13675,15 +13675,15 @@ _80067f0c:
     b       _80067f3c
 _80067f18:
     addi	r3, r31, 0x5b8
-    bl      fn_80024DF0
+    bl      axmix_ctrl_write_param
     b       _80067f44
 _80067f24:
     addi	r3, r31, 0x1f8
-    bl      fn_80024378
+    bl      axmix_ctrl_read_param
     b       _80067f44
 _80067f30:
     addi	r3, r31, 0xc0
-    bl      fn_800253F0
+    bl      axmix_ctrl_flush_buffers
     b       _80067f44
 _80067f3c:
     addi	r3, r31, 0
@@ -14647,9 +14647,9 @@ _80068d44:
     li	r0, 1
     lis     r3, lbl_80193B28@ha
     stw	r0, -0x7744(r13)
-    lis     r4, fn_80065AD0@ha
+    lis     r4, SndChannelFreeCallback@ha
     lwz	r5, -0x7740(r13)
-    addi	r10, r4, fn_80065AD0@l
+    addi	r10, r4, SndChannelFreeCallback@l
     addi	r3, r3, lbl_80193B28@l
     mr	r7, r31
     lwz	r8, 0x1a4(r5)

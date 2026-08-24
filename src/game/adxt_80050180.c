@@ -1,7 +1,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_800502A0(void);
+extern void adxt_bitstream_refill(void);
 extern void svm_ringbuf_read(void);
 extern void memset(void);
 extern unsigned char getCupModeConst_value_tbl[4];
@@ -67,7 +67,7 @@ asm void svm_ringbuf_skip(void)
     lwz	r0, 0xc(r3)
     cmpw	r0, r30
     bge     _80050230
-    bl      fn_800502A0
+    bl      adxt_bitstream_refill
 _80050230:
     lwz	r5, 0xc(r31)
     cmpw	r30, r5
@@ -101,7 +101,7 @@ _80050288:
     blr	
 }
 
-asm void fn_800502A0(void)
+asm void adxt_bitstream_refill(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

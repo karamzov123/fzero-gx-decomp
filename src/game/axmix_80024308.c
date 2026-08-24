@@ -50,7 +50,7 @@ asm void fn_80024308(void)
     blr	
 }
 
-asm void fn_80024378(void)
+asm void axmix_ctrl_read_param(void)
 {
     nofralloc
     mflr	r0
@@ -816,7 +816,7 @@ asm void fn_80024D84(void)
     blr	
 }
 
-asm void fn_80024DF0(void)
+asm void axmix_ctrl_write_param(void)
 {
     nofralloc
     mflr	r0
@@ -1242,7 +1242,7 @@ _800253d8:
     blr	
 }
 
-asm void fn_800253F0(void)
+asm void axmix_ctrl_flush_buffers(void)
 {
     nofralloc
     mflr	r0
