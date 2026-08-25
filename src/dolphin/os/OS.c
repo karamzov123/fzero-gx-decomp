@@ -12,6 +12,14 @@ typedef unsigned long long u64;
 
 extern void* memset(register void* dst, register int val, register u32 n);
 extern void* memcpy(register void* dst, register const void* src, register u32 n);
+extern int OSBootInfo_801A6748;
+extern unsigned char BI2DebugFlag_801A674C[4];
+extern unsigned char BI2DebugFlagHolder_801A6750[4];
+extern unsigned char AreWeInitialized_801A6768[4];
+extern unsigned char DriveInfo_8015BF00[32];
+extern unsigned char OSExceptionTable_801225B0[0x100];
+extern unsigned char _stack_addr[4];
+extern unsigned char OSVersionStr_801A641C[4];
 extern u32 OSGetResetCode(void);
 extern u64 __OSGetSystemTime(void);
 extern int OSDisableInterrupts(void);
@@ -63,7 +71,6 @@ extern void __OSEVEnd(void);
 extern void __OSEVSetNumber(void);
 extern void OSDefaultExceptionHandler(int exception, void* context);
 extern void __OSResetSWInterruptHandler(int interrupt, void* context);
-extern void* _stack_addr;
 extern unsigned char __ArenaLo[4];
 extern unsigned char __ArenaHi[4];
 extern void __DBVECTOR(void);
@@ -91,7 +98,7 @@ extern unsigned char __PADSpec[4];
 asm void OSGetConsoleType(void)
 {
     nofralloc
-    lwz r3, -0x7c78(r13)
+    lwz r3, OSBootInfo_801A6748
     cmplwi	r3, 0
     beq     _8000a23c
     lwz	r3, 0x2c(r3)
@@ -196,8 +203,8 @@ static asm void InquiryCallback(register int result, register void* block)
     beq     _8000a384
     b       _8000a3a0
 _8000a384:
-    lis     r3, -0x7fea
-    addi	r3, r3, -0x4100
+    lis     r3, DriveInfo_8015BF00@ha
+    addi	r3, r3, DriveInfo_8015BF00@l
     lhz	r0, 2(r3)
     lis	r3, -0x8000
     ori	r0, r0, 0x8000
@@ -220,15 +227,15 @@ asm void OSInit(void)
     stw	r31, 0x14(r1)
     stw	r30, 0x10(r1)
     stw	r29, 0xc(r1)
-    lwz r0, -0x7c58(r13)
-    lis     r3, -0x7fea
-    addi	r30, r3, -0x4100
+    lwz r0, AreWeInitialized_801A6768
+    lis     r3, DriveInfo_8015BF00@ha
+    addi	r30, r3, DriveInfo_8015BF00@l
     cmpwi	r0, 0
-    lis	r3, -0x7fee
-    addi	r31, r3, 0x25b0
+    lis	r3, OSExceptionTable_801225B0@ha
+    addi	r31, r3, OSExceptionTable_801225B0@l
     bne     _8000a76c
     li	r0, 1
-    stw r0, -0x7c58(r13)
+    stw r0, AreWeInitialized_801A6768
     bl      __OSGetSystemTime
     stw r4, -0x7c3c(r13)
     stw	r3, __OSStartTime
@@ -249,16 +256,16 @@ asm void OSInit(void)
     bl      PPCSetFpNonIEEEMode
     li	r0, 0
     lis	r4, -0x8000
-    stw r0, -0x7c74(r13)
-    stw r4, -0x7c78(r13)
+    stw r0, BI2DebugFlag_801A674C
+    stw r4, OSBootInfo_801A6748
     stw	r0, __DVDLongFileNameFlag
     lwz	r3, 0xf4(r4)
     cmplwi	r3, 0
     beq     _8000a484
     addi	r0, r3, 0xc
-    stw r0, -0x7c74(r13)
+    stw r0, BI2DebugFlag_801A674C
     lwz	r0, 0x24(r3)
-    lwz r3, -0x7c74(r13)
+    lwz r3, BI2DebugFlag_801A674C
     stw	r0, __PADSpec
     lwz	r0, 0(r3)
     clrlwi	r0, r0, 0x18
@@ -272,14 +279,14 @@ _8000a484:
     cmplwi	r0, 0
     beq     _8000a4a8
     lbz	r3, 0x30e8(r4)
-    addi	r0, r13, -0x7c70
-    stw r3, -0x7c70(r13)
-    stw r0, -0x7c74(r13)
+    li	r0, BI2DebugFlagHolder_801A6750
+    stw r3, BI2DebugFlagHolder_801A6750
+    stw r0, BI2DebugFlag_801A674C
     lbz	r0, 0x30e9(r4)
     stw	r0, __PADSpec
 _8000a4a8:
     li	r0, 1
-    lwz r3, -0x7c78(r13)
+    lwz r3, OSBootInfo_801A6748
     stw	r0, __DVDLongFileNameFlag
     lwz	r3, 0x30(r3)
     cmplwi	r3, 0
@@ -289,23 +296,23 @@ _8000a4a8:
     b       _8000a4cc
 _8000a4cc:
     bl      OSSetArenaLo
-    lwz r3, -0x7c78(r13)
+    lwz r3, OSBootInfo_801A6748
     lwz	r0, 0x30(r3)
     cmplwi	r0, 0
     bne     _8000a50c
-    lwz r3, -0x7c74(r13)
+    lwz r3, BI2DebugFlag_801A674C
     cmplwi	r3, 0
     beq     _8000a50c
     lwz	r0, 0(r3)
     cmplwi	r0, 2
     bge     _8000a50c
-    lis	r3, -0x7fe5
-    addi	r3, r3, 0x7930
+    lis	r3, _stack_addr@ha
+    addi	r3, r3, _stack_addr@l
     addi	r0, r3, 0x1f
     rlwinm	r3, r0, 0, 0, 0x1a
     bl      OSSetArenaLo
 _8000a50c:
-    lwz r3, -0x7c78(r13)
+    lwz r3, OSBootInfo_801A6748
     lwz	r3, 0x34(r3)
     cmplwi	r3, 0
     bne     _8000a528
@@ -349,7 +356,7 @@ _8000a588:
     addi	r3, r31, 0x84
     crxor	6, 6, 6
     bl      OSReport
-    lwz r3, -0x7c78(r13)
+    lwz r3, OSBootInfo_801A6748
     cmplwi	r3, 0
     beq     _8000a5cc
     lwz	r4, 0x2c(r3)
@@ -427,7 +434,7 @@ _8000a6ac:
     addi	r3, r13, -0x7fa4
     bl      OSReport
 _8000a6b8:
-    lwz r4, -0x7c78(r13)
+    lwz r4, OSBootInfo_801A6748
     addi	r3, r31, 0xfc
     crxor	6, 6, 6
     lwz	r0, 0x28(r4)
@@ -443,7 +450,7 @@ _8000a6b8:
     bl      OSReport
     lwz	r3, __OSVersion
     bl      OSRegisterVersion
-    lwz r3, -0x7c74(r13)
+    lwz r3, BI2DebugFlag_801A674C
     cmplwi	r3, 0
     beq     _8000a714
     lwz	r0, 0(r3)
@@ -500,10 +507,10 @@ static asm void OSExceptionInit(void)
     lis	r4, __OSEVEnd@ha
     addi	r5, r5, __OSEVStart@l
     addi	r4, r4, __OSEVEnd@l
-    lis	r6, -0x7fee
+    lis	r6, OSExceptionTable_801225B0@ha
     cmplwi	r0, 0
     mr	r24, r5
-    addi	r29, r6, 0x25b0
+    addi	r29, r6, OSExceptionTable_801225B0@l
     subf	r23, r5, r4
     addi	r20, r3, 0x60
     bne     _8000a820
@@ -542,7 +549,7 @@ _8000a840:
 _8000a850:
     b       _8000a998
 _8000a854:
-    lwz r3, -0x7c74(r13)
+    lwz r3, BI2DebugFlag_801A674C
     cmplwi	r3, 0
     beq     _8000a890
     lwz	r0, 0(r3)
