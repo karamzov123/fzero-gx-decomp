@@ -1,0 +1,52 @@
+name: GFZE01 progress report
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    # Trusted main pushes only. The runner keeps the retail DOL and MWCC
+    # outside GitHub; only the objdiff report is uploaded.
+    runs-on: [self-hosted, linux, x64, fzero-report]
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Link private build inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          private="$HOME/projects/fzero-gx-decomp"
+          test -d "$HOME/orig"
+          test -d "$private/build/compilers"
+          mkdir -p build
+          for d in compilers binutils tools; do
+            ln -s "$private/build/$d" "build/$d"
+          done
+          ln -s "$HOME/orig" orig
+
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          private="$HOME/projects/fzero-gx-decomp"
+          python3 configure.py -v GFZE01             --compilers "$private/build/compilers"             --binutils "$private/build/binutils"             --dtk "$private/build/tools/dtk"             --objdiff "$private/build/tools/objdiff-cli"             --sjiswrap "$private/build/tools/sjiswrap.exe" configure
+          ninja
+
+      - name: Generate objdiff report
+        run: build/tools/objdiff-cli report generate -o build/GFZE01/report.json
+
+      - name: Upload decomp.dev report
+        uses: actions/upload-artifact@v4
+        with:
+          name: GFZE01_report
+          path: build/GFZE01/report.json
+          if-no-files-found: error
