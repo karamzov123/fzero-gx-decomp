@@ -67,8 +67,8 @@ asm void* fn_8001A814(register s32 mode)
     lis     r4, lbl_801241C8@ha
     addi    r5, r4, lbl_801241C8@l /* lbl_801241C8 */
     bgt     _8001a8b0
-    lis     r4, -0x7fee
-    addi    r4, r4, 0x43bc /* jumptable_801243BC */
+    lis     r4, jumptable_801243BC@ha
+    addi    r4, r4, jumptable_801243BC@l
     slwi    r0, r3, 2
     lwzx    r0, r4, r0
     mtctr   r0

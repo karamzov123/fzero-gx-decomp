@@ -24,6 +24,7 @@ extern unsigned char lbl_801A6970[4];
 extern unsigned char lbl_801A6974[4];
 extern unsigned char lbl_801A6940[2];
 extern unsigned char lbl_801A6942[2];
+extern char vi_c_str[5];
 
 asm void fn_8001AFB8(register void* a, register void* b, register void* c, register void* d, register void* e)
 {
@@ -426,7 +427,7 @@ _8001b560:
     crxor 6, 6, 6
     addi r7, r17, 0
     addi r5, r15, 0x368
-    addi r3, r13, -0x7f1c
+    li r3, vi_c_str
     li r4, 0x75c
     bl OSPanic
 _8001b57c:

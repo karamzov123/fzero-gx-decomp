@@ -133,14 +133,14 @@ asm void* AXAcquireVoice(register u32 priority, register void* callback, registe
 {
     nofralloc
     mflr	r0
-    lis	r6, -0x7fea
+    lis	r6, __AXStackHead@ha
     stw	r0, 4(r1)
     stwu	r1, -0x38(r1)
     stmw	r26, 0x20(r1)
     addi	r28, r3, 0
     addi	r29, r4, 0
     addi	r30, r5, 0
-    addi	r27, r6, -0x2f00
+    addi	r27, r6, __AXStackHead@l
     bl      OSDisableInterrupts
     lwz	r4, 0(r27)
     addi	r31, r3, 0

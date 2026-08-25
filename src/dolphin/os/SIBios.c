@@ -114,7 +114,10 @@ extern u8 XYNTSC[];             /* .data:0x80123C68 (sampling table) */
 #pragma push
 #pragma force_active on
 extern unsigned char __SIVersion[4];
+extern unsigned char lbl_801A644C[5];
+extern unsigned char lbl_801A6454[8];
 extern unsigned char lbl_801A6818[8];
+extern unsigned char lbl_801A6810[4];
 extern unsigned char lbl_801A6834[4];
 asm s32 SIChannelValid(void)
 {
@@ -488,7 +491,7 @@ L_80011DE8:
     addi        r8, r4, GetTypeCallback@l
     srwi        r10, r0, 3
     addi        r3, r23, 0x0
-    addi        r4, r13, -0x7BB0 /* lbl_801A6810@sda21 */
+    li        r4, lbl_801A6810
     li          r5, 0x1
     li          r7, 0x3
     li          r9, 0x0
@@ -1777,7 +1780,7 @@ L_80012E5C:
     mulli       r0, r0, 0x41
     srwi        r10, r0, 3
     addi        r6, r30, 0x0
-    addi        r4, r13, -0x7BAC /* cmdTypeAndStatus$371@sda21 */
+    addi        r4, r13, -0x7BAC /* cmdTypeAndStatus$371@sda21 - $ in name, MWCC-unreachable */
     li          r5, 0x1
     li          r7, 0x3
     li          r9, 0x0
@@ -2081,7 +2084,7 @@ L_8001325C:
     addi        r3, r31, 0x68
     b           L_800132C0
 L_80013264:
-    addi        r3, r13, -0x7F74 /* lbl_801A644C@sda21 */
+    li        r3, lbl_801A644C
     b           L_800132C0
 L_8001326C:
     addi        r3, r31, 0x74
@@ -2114,7 +2117,7 @@ L_800132B4:
     addi        r3, r31, 0x108
     b           L_800132C0
 L_800132BC:
-    addi        r3, r13, -0x7F6C /* lbl_801A6454@sda21 */
+    li        r3, lbl_801A6454
 L_800132C0:
     lwz         r0, 0x1c(r1)
     lwz         r31, 0x14(r1)

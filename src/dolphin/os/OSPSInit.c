@@ -9,6 +9,7 @@ extern u32 PPCMfhid2(void);
 extern void PPCMthid2(register u32 v);
 extern void ICFlashInvalidate(void);
 extern void OSReport(register const char* msg, ...);
+extern unsigned char lbl_801A6424[4];
 
 #pragma push
 #pragma force_active on
@@ -57,7 +58,7 @@ asm void OSRegisterVersion(register char* version)
     stwu	r1, -8(r1)
     mr	r4, r3
     crxor	6, 6, 6
-    addi	r3, r13, -0x7f9c
+    li r3, lbl_801A6424
     bl      OSReport
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8

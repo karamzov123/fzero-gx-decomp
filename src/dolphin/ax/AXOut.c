@@ -34,6 +34,7 @@ extern unsigned char lbl_80160500[1920];
 extern unsigned char lbl_80160C80[16544];
 
 extern unsigned char lbl_801A64F0[8];
+extern unsigned char lbl_801A6B30[8];
 extern unsigned char lbl_801A6B10[4];
 extern unsigned char lbl_801A6B14[4];
 extern unsigned char lbl_801A6B18[4];
@@ -225,7 +226,7 @@ asm void fn_80021B84(void)
 {
     nofralloc
     mflr	r0
-    addi	r3, r13, -0x7890
+    li	r3, lbl_801A6B30
     stw	r0, 4(r1)
     li	r0, 1
     stwu	r1, -8(r1)
@@ -265,7 +266,7 @@ asm void AXInitOutput(void)
     stw	r8, 0x798(r31)
     stw	r0, 0x79c(r31)
     addi	r0, r3, fn_80021B84@l
-    addi	r3, r13, -0x7890
+    li	r3, lbl_801A6B30
     stw	r9, 0x7a0(r31)
     sth	r7, 0x7a4(r31)
     sth	r6, 0x7a6(r31)
@@ -525,7 +526,7 @@ asm void fn_80021FBC(void)
     addi	r31, r3, 0
     mr	r3, r0
     bl      DSPCancelTask
-    addi	r3, r13, -0x7890
+    li	r3, lbl_801A6B30
     bl      OSSleepThread
     bl      AIStopDMA
     mr	r3, r31

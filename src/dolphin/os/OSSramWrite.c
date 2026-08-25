@@ -11,6 +11,7 @@ typedef unsigned long long u64;
 #pragma force_active on
 
 extern asm int WriteSram(void* buffer, unsigned long offset, unsigned long size);
+extern unsigned char Scb[84];
 extern s32 EXILock(s32 chan, s32 dev, void* callback);
 extern s32 EXISelect(s32 chan, s32 dev, s32 freq);
 extern s32 EXIUnlock(s32 chan);
@@ -23,11 +24,11 @@ asm void WriteSramCallback(void)
 {
     nofralloc
     mflr	r0
-    lis     r3, -0x7fea
+    lis     r3, Scb@ha
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    addi	r31, r3, -0x4040
+    addi	r31, r3, Scb@l
     stw	r30, 0x10(r1)
     addi	r30, r31, 0x40
     lwz	r4, 0x40(r31)
