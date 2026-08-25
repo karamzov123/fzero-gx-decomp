@@ -10,6 +10,7 @@ extern unsigned char lbl_80187370[16];
 extern unsigned char lbl_80187380[64];
 extern unsigned char lbl_801873C0[24];
 
+extern unsigned char lbl_80091350[4];
 asm void adxtNullCallback(void)
 {
     nofralloc
@@ -191,9 +192,9 @@ _80053c60:
     li	r10, 0
     cmpwi	r10, 0x200
     bge     _80053d44
-    lis	r3, -0x7ff7
+    lis	r3, lbl_80091350@ha
     li	r0, 0x40
-    lfs	f1, 0x1350(r3)
+    lfs	f1, lbl_80091350@l(r3)
     mtctr	r0
 _80053ca0:
     lwz	r9, 8(r31)
@@ -294,9 +295,9 @@ asm void fn_80053DB4(void)
     addi	r26, r3, 0x14
     add	r26, r31, r26
     bl      adxtNullCallback
-    lis	r4, -0x7fe8
+    lis	r4, lbl_801873C0@ha
     clrlwi.	r0, r25, 0x1b
-    stw	r3, 0x73c0(r4)
+    stw	r3, lbl_801873C0@l(r4)
     bne     _80053e20
     clrlwi.	r0, r28, 0x1b
     beq     _80053e24
@@ -314,8 +315,8 @@ _80053e24:
     lwz	r27, 4(r27)
     bl      adxtNullCallback
     srawi	r0, r27, 6
-    lis	r5, -0x7fe8
-    stw	r3, 0x73c0(r5)
+    lis	r5, lbl_801873C0@ha
+    stw	r3, lbl_801873C0@l(r5)
     lis     r4, jumptable_80130BC0@ha
     addi	r3, r4, jumptable_80130BC0@l
     slwi	r0, r0, 2

@@ -24,6 +24,9 @@ extern unsigned char lbl_801A6D70[4];
 extern unsigned char lbl_801A6D6C[4];
 extern unsigned char lbl_801A6D68[4];
 
+extern unsigned char lbl_8019F130[0x1C];
+extern unsigned char lbl_8019F14C[0xC];
+
 asm void fn_80074A60(register u32 a, register u32 b)
 {
     nofralloc
@@ -66,7 +69,7 @@ asm void GXColorClampScale(register f32 r, register f32 g, register f32 b, regis
 _80074ab4:
     lfs f0, lbl_801A7484(r2)
     li      r0, 1
-    addi    r4, r13, -0x7640
+    addi    r4, r13, lbl_801A6D80
     stw	r0, lbl_801A6D88
     fmuls   f5, f0, f1
     fmuls   f2, f0, f2
@@ -92,7 +95,7 @@ _80074ab4:
 _80074b18:
     li      r4, 0
     li      r0, 0xff
-    addi    r3, r13, -0x7640
+    addi    r3, r13, lbl_801A6D80
     stw	r4, lbl_801A6D88
     stb	r0, lbl_801A6D80
     stb     r0, 1(r3)
@@ -120,7 +123,7 @@ asm void GXColorPack(register void* rgba)
     beq     _80074ba0
 _80074b70:
     li      r0, 1
-    addi    r4, r13, -0x7640
+    addi    r4, r13, lbl_801A6D80
     stw	r0, lbl_801A6D88
     lbz     r0, 0(r3)
     stb	r0, lbl_801A6D80
@@ -134,7 +137,7 @@ _80074b70:
 _80074ba0:
     li      r4, 0
     li      r0, 0xff
-    addi    r3, r13, -0x7640
+    addi    r3, r13, lbl_801A6D80
     stw	r4, lbl_801A6D88
     stb	r0, lbl_801A6D80
     stb     r0, 1(r3)
@@ -159,7 +162,7 @@ asm void GXColorScale(register f32 r, register f32 g, register f32 b, register f
 _80074bec:
     lfs f0, lbl_801A7484(r2)
     li      r0, 1
-    addi    r4, r13, -0x7644
+    addi    r4, r13, lbl_801A6D7C
     stw	r0, lbl_801A6D84
     fmuls   f5, f0, f1
     fmuls   f2, f0, f2
@@ -184,7 +187,7 @@ _80074bec:
     b       _80074c6c
 _80074c50:
     li      r0, 0
-    addi    r3, r13, -0x7644
+    addi    r3, r13, lbl_801A6D7C
     stw	r0, lbl_801A6D84
     stb	r0, lbl_801A6D7C
     stb     r0, 1(r3)
@@ -212,7 +215,7 @@ asm void GXColorZeroCheck(register void* rgba)
     beq     _80074cd4
 _80074ca4:
     li      r0, 1
-    addi    r4, r13, -0x7644
+    addi    r4, r13, lbl_801A6D7C
     stw	r0, lbl_801A6D84
     lbz     r0, 0(r3)
     stb	r0, lbl_801A6D7C
@@ -225,7 +228,7 @@ _80074ca4:
     blr
 _80074cd4:
     li      r0, 0
-    addi    r3, r13, -0x7644
+    addi    r3, r13, lbl_801A6D7C
     stw	r0, lbl_801A6D84
     stb	r0, lbl_801A6D7C
     stb     r0, 1(r3)
@@ -237,8 +240,8 @@ _80074cd4:
 asm void fn_80074CF4(register f32 x, register f32 y, register f32 z)
 {
     nofralloc
-    lis     r3, -0x7fe6
-    stfsu   f1, -0xed0(r3)
+    lis     r3, lbl_8019F130@ha
+    stfsu   f1, lbl_8019F130@l(r3)
     stfs    f2, 4(r3)
     stfs    f3, 8(r3)
     blr
@@ -267,11 +270,11 @@ asm void GXProjectVec(register void* mtx)
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r5, -0x7fe6
+    lis     r5, lbl_8019F14C@ha
     stw     r0, 0x14(r1)
     lwz     r4, 0(r3)
     lwz     r0, 4(r3)
-    stwu    r4, -0xeb4(r5)
+    stwu    r4, lbl_8019F14C@l(r5)
     stw     r0, 4(r5)
     lwz     r0, 8(r3)
     mr      r3, r5
