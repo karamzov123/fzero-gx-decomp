@@ -232,12 +232,10 @@ OSSetCurrentContext_disableFPU:
     blr
 }
 
-asm OSContext * OSGetCurrentContext(void)
+// provenance: original
+OSContext* OSGetCurrentContext(void)
 {
-    nofralloc
-    lis     r3, 0x8000
-    lwz     r3, 0xD4(r3)
-    blr
+    return *(OSContext**)0x800000D4;
 }
 
 asm u32 OSSaveContext(register OSContext* context)

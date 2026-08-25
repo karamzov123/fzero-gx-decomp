@@ -1,4 +1,5 @@
 typedef int BOOL;
+typedef unsigned short u16;
 
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
@@ -18,32 +19,18 @@ void OSInitThreadQueue(OSThreadQueue *queue)
 #pragma push
 #pragma force_active on
 
-asm void OSGetCurrentThread(void)
+// provenance: original
+void* OSGetCurrentThread(void)
 {
-    nofralloc
-    lis     r3, 0x8000
-    lwz     r3, 0xE4(r3)
-    blr
+    return *(void**)0x800000E4;
 }
 
-asm BOOL OSIsThreadTerminated(void *param1)
+// provenance: original; T9 ternary shape
+BOOL OSIsThreadTerminated(void* thread)
 {
-    nofralloc
-    lhz     r3, 0x2C8(r3)
-    li      r0, 1
-    cmplwi  r3, 8
-    beq     _true
-    cmplwi  r3, 0
-    beq     _true
-    li      r0, 0
-_true:
-    cmpwi   r0, 0
-    beq     _false
-    li      r3, 1
-    blr
-_false:
-    li      r3, 0
-    blr
+    u16 state = *(u16*)((char*)thread + 0x2C8);
+
+    return (state == 8 || state == 0) ? 1 : 0;
 }
 #pragma pop
 
