@@ -17,6 +17,7 @@ typedef struct OSContext {
 } OSContext;
 typedef int BOOL;
 
+extern unsigned char cmdTypeAndStatus_371[4];
 extern int OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(register int level);
 extern unsigned long long __OSGetSystemTime(void);
@@ -1328,7 +1329,7 @@ L_8001285C:
 /* ---- AlarmHandler ---- */
 #pragma push
 #pragma force_active on
-asm void fn_8001287C(register void* alarm, register OSContext* context)
+asm void SIAlarmHandler(register void* alarm, register OSContext* context)
 {
     nofralloc
     mflr        r0
@@ -1438,9 +1439,9 @@ L_800129B8:
     mulli       r0, r24, 0x28
     subfc       r30, r4, r19
     subfe       r31, r3, r20
-    lis         r4, fn_8001287C@ha
+    lis         r4, SIAlarmHandler@ha
     add         r3, r23, r0
-    addi        r7, r4, fn_8001287C@l
+    addi        r7, r4, SIAlarmHandler@l
     addi        r6, r30, 0x0
     addi        r5, r31, 0x0
     addi        r3, r3, 0x80
@@ -1780,7 +1781,7 @@ L_80012E5C:
     mulli       r0, r0, 0x41
     srwi        r10, r0, 3
     addi        r6, r30, 0x0
-    addi        r4, r13, -0x7BAC /* cmdTypeAndStatus$371@sda21 - $ in name, MWCC-unreachable */
+    li          r4, cmdTypeAndStatus_371
     li          r5, 0x1
     li          r7, 0x3
     li          r9, 0x0

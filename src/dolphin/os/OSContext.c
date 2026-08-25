@@ -24,6 +24,7 @@ extern void OSRestoreInterrupts(register BOOL level);
 extern void __OSSetExceptionHandler(s32 index, void* handler);
 extern BOOL OSDisableInterrupts(void);
 extern void DBPrintf(char* msg, ...);
+extern unsigned char OSContextFmt_80122C0C[35];
 extern void OSReport(const char* msg, ...);
 extern s32 __cvt_fp2unsigned(register double value);
 extern unsigned char lbl_80122A58[436];
@@ -646,7 +647,7 @@ void __OSContextInit(void)
 {
     __OSSetExceptionHandler(7, OSSwitchFPUContext);
     *__OSFPUContextPtr = 0;
-    DBPrintf((char*)0x80122C0C);
+    DBPrintf((char*)OSContextFmt_80122C0C);
 }
 
 #pragma pop

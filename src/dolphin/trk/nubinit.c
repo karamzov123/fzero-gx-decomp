@@ -49,14 +49,18 @@ asm int TRKInitializeEventQueue(void)
     blr
 }
 
+extern unsigned char TRKNubWelcomeMsg_80095648[27];
+extern unsigned char TRKNubInitMsg_80095664[16];
+extern unsigned char gTRKBigEndian[4];
+
 asm int TRKNubWelcome(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lis     r3, 0x8009
+    lis     r3, TRKNubWelcomeMsg_80095648@ha
     stw     r0, 0x14(r1)
-    addi    r3, r3, 0x5648
+    addi    r3, r3, TRKNubWelcomeMsg_80095648@l
     bl      TRK_board_display
     lwz     r0, 0x14(r1)
     mtlr    r0
@@ -90,7 +94,7 @@ asm int TRKInitializeNub(void)
     li      r0, 0x78
     li      r6, 1
     stb     r5, 8(r1)
-    lis     r5, 0x801A
+    lis     r5, gTRKBigEndian@ha
     stw     r31, 0x1c(r1)
     li      r31, 0
     stw     r30, 0x18(r1)
@@ -98,7 +102,7 @@ asm int TRKInitializeNub(void)
     stb     r3, 0xa(r1)
     stb     r0, 0xb(r1)
     lwz     r3, 8(r1)
-    stwu    r6, 0x36E0(r5)
+    stwu    r6, gTRKBigEndian@l(r5)
     addis   r0, r3, -0x1234
     cmplwi  r0, 0x5678
     bne     lbl_80088A10
@@ -113,8 +117,8 @@ lbl_80088A10:
 lbl_80088A24:
     mr      r31, r6
 lbl_80088A28:
-    lis     r3, 0x8009
-    addi    r4, r3, 0x5664
+    lis     r3, TRKNubInitMsg_80095664@ha
+    addi    r4, r3, TRKNubInitMsg_80095664@l
     li      r3, 1
     crxor   6, 6, 6
     bl      MWTRACE

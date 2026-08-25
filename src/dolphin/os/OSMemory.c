@@ -10,6 +10,7 @@ extern u32 __OSUnmaskInterrupts(u32 intrMask);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void __OSUnhandledException(int error, void* context, u32 cause, u32 addr);
 extern unsigned char __OSErrorTable[68];
+extern unsigned char ResetFunctionInfo_80123AE0[16];
 
 #pragma push
 #pragma force_active on
@@ -200,8 +201,8 @@ asm void __OSInitMemoryProtection(void)
     sth	r0, 0x10(r28)
     lis	r3, -0x1000
     bl      __OSMaskInterrupts
-    lis     r3, -0x7fff
-    addi	r29, r3, -0x1818
+    lis     r3, MEMIntrruptHandler@ha
+    addi	r29, r3, MEMIntrruptHandler@l
     mr	r4, r29
     li	r3, 0
     bl      __OSSetInterruptHandler
@@ -217,8 +218,8 @@ asm void __OSInitMemoryProtection(void)
     mr	r4, r29
     li	r3, 4
     bl      __OSSetInterruptHandler
-    lis     r3, -0x7fee
-    addi	r3, r3, 0x3ae0
+    lis     r3, ResetFunctionInfo_80123AE0@ha
+    addi	r3, r3, ResetFunctionInfo_80123AE0@l
     bl      OSRegisterResetFunction
     lwz	r3, 0xf0(r27)
     lwz	r0, 0x28(r27)
@@ -236,16 +237,16 @@ _8000ea2c:
     lis	r0, 0x180
     cmplw	r31, r0
     bgt     _8000ea48
-    lis     r3, -0x7fff
-    addi	r3, r3, -0x17ac
+    lis     r3, Config24MB@ha
+    addi	r3, r3, Config24MB@l
     bl      RealMode
     b       _8000ea60
 _8000ea48:
     lis	r0, 0x300
     cmplw	r31, r0
     bgt     _8000ea60
-    lis     r3, -0x7fff
-    addi	r3, r3, -0x172c
+    lis     r3, Config48MB@ha
+    addi	r3, r3, Config48MB@l
     bl      RealMode
 _8000ea60:
     lis	r3, 0x800
