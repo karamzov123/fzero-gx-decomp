@@ -910,10 +910,8 @@ _80029800:
     blr	
 }
 
-asm void __CARDDefaultApiCallback(void)
+void __CARDDefaultApiCallback(void)
 {
-    nofralloc
-    blr	
 }
 
 #pragma pop

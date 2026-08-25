@@ -383,12 +383,10 @@ _80021128:
     blr	
 }
 
-asm void AXSetAuxCallbackDestA(void)
+void AXSetAuxCallbackDestA(register void* destA, register void* param_2)
 {
-    nofralloc
-    stw	r3, lbl_801A6AC0
-    stw	r4, lbl_801A6AC8
-    blr	
+    *(volatile void**)lbl_801A6AC0 = destA;
+    *(volatile void**)lbl_801A6AC8 = param_2;
 }
 
 asm void AXSetAuxCallbackDestB(void)
@@ -399,11 +397,9 @@ asm void AXSetAuxCallbackDestB(void)
     blr	
 }
 
-asm void fn_800211F8(void)
+void* fn_800211F8(void)
 {
-    nofralloc
-    lwz	r3, lbl_801A6B00
-    blr	
+    return *(volatile void**)lbl_801A6B00;
 }
 
 #pragma pop

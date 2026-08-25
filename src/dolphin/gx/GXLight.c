@@ -1603,10 +1603,8 @@ _80038814:
     blr	
 }
 
-asm void fn_80038878(void)
+void fn_80038878(void)
 {
-    nofralloc
-    blr	
 }
 
 #pragma pop

@@ -538,11 +538,9 @@ asm void fn_80021FBC(void)
     blr	
 }
 
-asm void fn_80022014(void)
+void fn_80022014(register void* p)
 {
-    nofralloc
-    stw	r3, lbl_801A6B20
-    blr	
+    *(volatile void**)lbl_801A6B20 = p;
 }
 
 #pragma pop
