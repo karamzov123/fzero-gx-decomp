@@ -7,18 +7,18 @@ typedef unsigned int u32;
 
 #pragma force_active on
 
-extern unsigned char BootInfo[];
-extern unsigned char FstStart[];
-extern unsigned char FstStringStart[];
-extern unsigned char MaxEntryNum[];
-extern unsigned char __DVDLongFileNameFlag[];
-extern unsigned char __DVDThreadQueue[];
+extern unsigned char BootInfo[4];
+extern unsigned char FstStart[4];
+extern unsigned char FstStringStart[4];
+extern unsigned char MaxEntryNum[4];
+extern unsigned char __DVDLongFileNameFlag[4];
+extern unsigned char __DVDThreadQueue[4];
 extern unsigned char dvd_convert_entrynum_to_path_warn_str[];
 extern unsigned char dvd_open_file_not_found_warn_str[];
 extern unsigned char dvd_read_async_out_of_file_err_str[];
 extern unsigned char dvd_read_out_of_file_err_str[];
-extern unsigned char lbl_801A6470[];
-extern unsigned char lbl_801A68B0[];
+extern unsigned char lbl_801A6470[4];
+extern unsigned char lbl_801A68B0[4];
 extern void OSDisableInterrupts(void);
 extern void OSReport(void);
 extern void OSRestoreInterrupts(void);
@@ -38,18 +38,18 @@ extern void MSL_CharAttrLookup(void);
 asm void __DVDFSInit(void) {
 nofralloc
 	lis r3, 0x8000
-	stw r3, -0x7b20(r13)
+	stw r3, BootInfo
 	lwz r0, 0x38(r3)
-	stw r0, -0x7b1c(r13)
-	lwz r3, -0x7b1c(r13)
+	stw r0, FstStart
+	lwz r3, FstStart
 	cmplwi r3, 0x0
 	beqlr
 	lwz r0, 0x8(r3)
-	stw r0, -0x7b14(r13)
-	lwz r0, -0x7b14(r13)
+	stw r0, MaxEntryNum
+	lwz r0, MaxEntryNum
 	mulli r0, r0, 0xc
 	add r0, r3, r0
-	stw r0, -0x7b18(r13)
+	stw r0, FstStringStart
 	blr
 }
 
@@ -64,7 +64,7 @@ nofralloc
 	lis r3, dvd_convert_entrynum_to_path_warn_str@ha
 	addi r25, r23, 0x0
 	addi r31, r3, dvd_convert_entrynum_to_path_warn_str@l
-	lwz r26, -0x7b10(r13)
+	lwz r26, lbl_801A68B0
 lbl_80016E1C:
 	lbz r3, 0x0(r23)
 	extsb. r0, r3
@@ -89,7 +89,7 @@ lbl_80016E48:
 	cmpwi r3, 0x2f
 	bne lbl_80016E84
 	mulli r3, r26, 0xc
-	lwz r4, -0x7b1c(r13)
+	lwz r4, FstStart
 	addi r0, r3, 0x4
 	lwzx r26, r4, r0
 	addi r23, r23, 0x3
@@ -98,7 +98,7 @@ lbl_80016E84:
 	extsb. r0, r3
 	bne lbl_80016EC0
 	mulli r0, r26, 0xc
-	lwz r3, -0x7b1c(r13)
+	lwz r3, FstStart
 	add r3, r3, r0
 	lwz r3, 0x4(r3)
 	b lbl_800170D8
@@ -113,7 +113,7 @@ lbl_80016EB0:
 	mr r3, r26
 	b lbl_800170D8
 lbl_80016EC0:
-	lwz r0, -0x7b0c(r13)
+	lwz r0, __DVDLongFileNameFlag
 	cmplwi r0, 0x0
 	bne lbl_80016F74
 	addi r28, r23, 0x0
@@ -162,7 +162,7 @@ lbl_80016F50:
 	addi r5, r31, 0x0
 	crxor 6,6,6
 	addi r6, r25, 0x0
-	addi r3, r13, -0x7F50
+	li r3, lbl_801A6470
 	li r4, 0x17b
 	bl OSPanic
 	b lbl_80016F98
@@ -206,7 +206,7 @@ lbl_80016FDC:
 	cmpwi r30, 0x1
 	beq lbl_80017068
 lbl_80016FEC:
-	lwz r3, -0x7b18(r13)
+	lwz r3, FstStringStart
 	clrlwi r0, r4, 8
 	addi r21, r23, 0x0
 	add r20, r3, r0
@@ -243,7 +243,7 @@ lbl_80017060:
 	cmpwi r0, 0x1
 	beq lbl_800170BC
 lbl_80017068:
-	lwz r0, -0x7b1c(r13)
+	lwz r0, FstStart
 	add r3, r0, r28
 	lwz r0, 0x0(r3)
 	clrrwi. r0, r0, 24
@@ -262,7 +262,7 @@ lbl_80017098:
 lbl_8001709C:
 	mr r26, r0
 lbl_800170A0:
-	lwz r3, -0x7b1c(r13)
+	lwz r3, FstStart
 	addi r0, r3, 0x8
 	lwzx r0, r29, r0
 	cmplw r26, r0
@@ -291,11 +291,11 @@ asm void fn_800170EC(void) {
 nofralloc
 	cmpwi r3, 0x0
 	blt lbl_80017128
-	lwz r0, -0x7b14(r13)
+	lwz r0, MaxEntryNum
 	cmplw r3, r0
 	bge lbl_80017128
 	mulli r6, r3, 0xc
-	lwz r3, -0x7b1c(r13)
+	lwz r3, FstStart
 	lwzx r0, r3, r6
 	clrrwi. r0, r0, 24
 	bne lbl_8001711C
@@ -315,7 +315,7 @@ lbl_80017130:
 	li r0, 0x0
 	li r3, 0x1
 	stw r5, 0x30(r4)
-	lwz r5, -0x7b1c(r13)
+	lwz r5, FstStart
 	add r5, r5, r6
 	lwz r5, 0x8(r5)
 	stw r5, 0x34(r4)
@@ -350,7 +350,7 @@ nofralloc
 	b lbl_80017210
 lbl_800171B4:
 	mulli r5, r3, 0xc
-	lwz r3, -0x7b1c(r13)
+	lwz r3, FstStart
 	lwzx r0, r3, r5
 	clrrwi. r0, r0, 24
 	bne lbl_800171D0
@@ -369,7 +369,7 @@ lbl_800171E4:
 	li r0, 0x0
 	li r3, 0x1
 	stw r4, 0x30(r31)
-	lwz r4, -0x7b1c(r13)
+	lwz r4, FstStart
 	add r4, r4, r5
 	lwz r4, 0x8(r4)
 	stw r4, 0x34(r31)
@@ -415,9 +415,9 @@ nofralloc
 	li r3, 0x0
 	b lbl_8001738C
 lbl_80017280:
-	lwz r4, -0x7b1c(r13)
+	lwz r4, FstStart
 	mulli r3, r3, 0xc
-	lwz r6, -0x7b18(r13)
+	lwz r6, FstStringStart
 	addi r5, r4, 0x4
 	lwzx r0, r4, r3
 	lwzx r3, r5, r3
@@ -516,7 +516,7 @@ nofralloc
 	stw r29, 0x14(r1)
 	addi r29, r3, 0x0
 	addi r4, r29, 0x0
-	lwz r31, -0x7b10(r13)
+	lwz r31, lbl_801A68B0
 	addi r3, r31, 0x0
 	bl __DVDFSGetComponentPath
 	cmplw r3, r30
@@ -527,7 +527,7 @@ nofralloc
 	b lbl_80017450
 lbl_800173F8:
 	mulli r0, r31, 0xc
-	lwz r4, -0x7b1c(r13)
+	lwz r4, FstStart
 	lwzx r0, r4, r0
 	clrrwi. r0, r0, 24
 	bne lbl_80017414
@@ -573,7 +573,7 @@ nofralloc
 	cmpwi r3, 0x0
 	blt lbl_800174B0
 	mulli r0, r3, 0xc
-	lwz r4, -0x7b1c(r13)
+	lwz r4, FstStart
 	lwzx r0, r4, r0
 	clrrwi. r0, r0, 24
 	bne lbl_800174A4
@@ -588,7 +588,7 @@ lbl_800174B0:
 	li r3, 0x0
 	b lbl_800174C0
 lbl_800174B8:
-	stw r3, -0x7b10(r13)
+	stw r3, lbl_801A68B0
 	li r3, 0x1
 lbl_800174C0:
 	lwz r0, 0xc(r1)
@@ -618,7 +618,7 @@ lbl_80017508:
 	lis r3, dvd_read_async_out_of_file_err_str@ha
 	crxor 6,6,6
 	addi r5, r3, dvd_read_async_out_of_file_err_str@l
-	addi r3, r13, -0x7F50
+	li r3, lbl_801A6470
 	li r4, 0x2e6
 	bl OSPanic
 lbl_80017520:
@@ -632,7 +632,7 @@ lbl_80017538:
 	lis r3, dvd_read_async_out_of_file_err_str@ha
 	crxor 6,6,6
 	addi r5, r3, dvd_read_async_out_of_file_err_str@l
-	addi r3, r13, -0x7F50
+	li r3, lbl_801A6470
 	li r4, 0x2ec
 	bl OSPanic
 lbl_80017550:
@@ -692,7 +692,7 @@ lbl_800175F4:
 	lis r3, dvd_read_out_of_file_err_str@ha
 	crxor 6,6,6
 	addi r5, r3, dvd_read_out_of_file_err_str@l
-	addi r3, r13, -0x7F50
+	li r3, lbl_801A6470
 	li r4, 0x32c
 	bl OSPanic
 lbl_8001760C:
@@ -706,7 +706,7 @@ lbl_80017624:
 	lis r3, dvd_read_out_of_file_err_str@ha
 	crxor 6,6,6
 	addi r5, r3, dvd_read_out_of_file_err_str@l
-	addi r3, r13, -0x7F50
+	li r3, lbl_801A6470
 	li r4, 0x332
 	bl OSPanic
 lbl_8001763C:
@@ -743,7 +743,7 @@ lbl_8001769C:
 	li r31, -0x3
 	b lbl_800176B8
 lbl_800176AC:
-	addi r3, r13, -0x7B08
+	li r3, __DVDThreadQueue
 	bl OSSleepThread
 	b lbl_80017678
 lbl_800176B8:
@@ -762,7 +762,7 @@ lbl_800176C4:
 asm void fn_800176D8(void) {
 nofralloc
 	mflr r0
-	addi r3, r13, -0x7B08
+	li r3, __DVDThreadQueue
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
 	bl OSWakeupThread
