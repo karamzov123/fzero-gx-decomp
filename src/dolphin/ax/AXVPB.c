@@ -16,21 +16,28 @@ extern void __cvt_fp2unsigned(void);
 extern unsigned char lbl_80124710[240];
 extern unsigned char lbl_80164D60[70656];
 
+extern unsigned char lbl_801A6B60[4];
+extern unsigned char lbl_801A6B64[4];
+extern unsigned char lbl_801A6B68[8];
+extern unsigned char lbl_801A6B70[4];
+extern unsigned char lbl_801A6B74[4];
+extern unsigned char lbl_801A6B78[4];
+extern unsigned char lbl_801A6B7C[4];
 asm void fn_800224E4(void)
 {
     nofralloc
-    lwz	r3, -0x7858(r13)
+    lwz	r3, lbl_801A6B68
     blr	
 }
 
 asm void fn_800224EC(void)
 {
     nofralloc
-    lwz	r4, -0x7858(r13)
+    lwz	r4, lbl_801A6B68
     lis     r5, lbl_80164D60@ha
     addi	r0, r5, lbl_80164D60@l
     addi	r4, r4, 1
-    stw	r4, -0x7858(r13)
+    stw	r4, lbl_801A6B68
     addi	r6, r3, 0x138
     lwz	r5, 0x18(r3)
     lwz	r4, 0x1c(r3)
@@ -524,7 +531,7 @@ asm void fn_80022BF4(void)
     addi	r31, r4, lbl_80124710@l
     addi	r3, r30, 0
     li	r4, 0x3b00
-    stw	r0, -0x7858(r13)
+    stw	r0, lbl_801A6B68
     bl      DCInvalidateRange
     addi	r3, r30, 0x3b00
     li	r4, 0x1000
@@ -564,7 +571,7 @@ _80022c90:
     add	r29, r29, r0
 _80022cac:
     lhz	r6, 0x144(r27)
-    lwz	r0, -0x7860(r13)
+    lwz	r0, lbl_801A6B60
     rlwinm	r4, r6, 0x19, 0x19, 0x1d
     rlwinm	r3, r6, 0x1e, 0x19, 0x1d
     add	r4, r31, r4
@@ -621,7 +628,7 @@ _80022d70:
     bne     _80022c5c
     addic.	r28, r28, -1
     bne     _80022c4c
-    stw	r29, -0x785c(r13)
+    stw	r29, lbl_801A6B64
     li	r3, 0
     bl      __AXGetStackHead
     mr	r31, r3
@@ -725,9 +732,9 @@ asm void fn_80022EA4(void)
     addi	r31, r3, lbl_80164D60@l
     srwi	r0, r0, 7
     li	r3, 0
-    stw	r0, -0x7860(r13)
+    stw	r0, lbl_801A6B60
     li	r0, 0x1d8
-    stw	r3, -0x785c(r13)
+    stw	r3, lbl_801A6B64
     mtctr	r0
     addi	r4, r31, 0
 _80022eec:
@@ -1246,21 +1253,21 @@ asm void fn_80023568(void)
 asm void fn_800235D4(void)
 {
     nofralloc
-    lwz	r0, -0x7844(r13)
+    lwz	r0, lbl_801A6B7C
     cmplwi	r0, 0
     beq     _80023614
-    lwz	r3, -0x7848(r13)
-    lwz	r4, -0x784c(r13)
+    lwz	r3, lbl_801A6B78
+    lwz	r4, lbl_801A6B74
     addi	r0, r3, 1
-    lwz	r6, -0x7850(r13)
-    stw	r0, -0x7848(r13)
+    lwz	r6, lbl_801A6B70
+    stw	r0, lbl_801A6B78
     mulli	r0, r3, 0x38
-    lwz	r5, -0x7848(r13)
+    lwz	r5, lbl_801A6B78
     add	r3, r6, r0
     divwu	r0, r5, r4
     mullw	r0, r0, r4
     subf	r0, r0, r5
-    stw	r0, -0x7848(r13)
+    stw	r0, lbl_801A6B78
     blr	
 _80023614:
     li	r3, 0
@@ -1271,11 +1278,11 @@ asm void fn_8002361C(void)
 {
     nofralloc
     li	r5, 0
-    stw	r3, -0x7850(r13)
+    stw	r3, lbl_801A6B70
     li	r0, 1
-    stw	r4, -0x784c(r13)
-    stw	r5, -0x7848(r13)
-    stw	r0, -0x7844(r13)
+    stw	r4, lbl_801A6B74
+    stw	r5, lbl_801A6B78
+    stw	r0, lbl_801A6B7C
     blr	
 }
 
@@ -1287,14 +1294,14 @@ asm void fn_80023638(void)
     stwu	r1, -0x10(r1)
     stw	r31, 0xc(r1)
     bl      OSDisableInterrupts
-    lwz	r0, -0x7848(r13)
+    lwz	r0, lbl_801A6B78
     cmplwi	r0, 0
     mr	r31, r0
     beq     _80023660
     addi	r31, r31, -1
 _80023660:
     li	r0, 0
-    stw	r0, -0x7848(r13)
+    stw	r0, lbl_801A6B78
     bl      OSRestoreInterrupts
     mr	r3, r31
     lwz	r0, 0x14(r1)

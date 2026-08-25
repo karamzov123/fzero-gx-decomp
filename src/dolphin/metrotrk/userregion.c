@@ -4,6 +4,8 @@ extern void fn_8008EDB0(void);
 extern unsigned char lbl_8015B900[25];
 extern void fn_8008EDB0(void);
 
+extern unsigned char lbl_801A6680[8];
+extern unsigned char lbl_801A6E1C[4];
 asm void fn_8008088C(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_SetupTransfer(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_ExecuteTransfer(register void* a, register void* b, register void* c, register void* d);
@@ -38,7 +40,7 @@ asm void fn_8008EED8(void)
     stwu	r1, -0x20(r1)
     rlwinm.	r0, r0, 0, 0x13, 0x13
     bne     _8008ef10
-    lwz	r3, -0x7d40(r13)
+    lwz	r3, lbl_801A6680
     lbz	r0, 0(r3)
     cmplwi	r0, 0
     bne     _8008ef10
@@ -46,7 +48,7 @@ asm void fn_8008EED8(void)
     stw	r0, 0x18(r1)
     b       _8008efcc
 _8008ef10:
-    lwz	r0, -0x75a4(r13)
+    lwz	r0, lbl_801A6E1C
     cmpwi	r0, 0
     bne     _8008ef8c
     li	r3, 0
@@ -66,7 +68,7 @@ _8008ef2c:
 _8008ef4c:
     li	r3, 1
     li	r0, 0
-    stw	r3, -0x75a4(r13)
+    stw	r3, lbl_801A6E1C
     addi	r3, r1, 8
     stw	r0, 8(r1)
     li	r4, 2
@@ -87,7 +89,7 @@ _8008ef8c:
     li	r6, 0
     bl      EXI2_SetupTransfer
     bl      EXI2_ExecuteTransfer
-    lwz	r5, -0x7d40(r13)
+    lwz	r5, lbl_801A6680
     lbz	r0, 0(r5)
     cmplwi	r0, 0
     bne     _8008efcc
@@ -114,7 +116,7 @@ asm void fn_8008EFE0(void)
     stmw	r25, 0x2c(r1)
     addi	r25, r3, 0
     addi	r26, r4, 0
-    lwz	r0, -0x75a4(r13)
+    lwz	r0, lbl_801A6E1C
     cmpwi	r0, 0
     beq     _8008f00c
     li	r27, 1
@@ -139,7 +141,7 @@ _8008f01c:
 _8008f044:
     li	r3, 1
     li	r0, 0
-    stw	r3, -0x75a4(r13)
+    stw	r3, lbl_801A6E1C
     addi	r3, r1, 0x14
     stw	r0, 0x14(r1)
     li	r4, 2
@@ -289,8 +291,8 @@ _8008f258:
     blt     _8008f0d8
     bl      EXI2SetState
     li	r0, 0
-    lwz	r4, -0x7d40(r13)
-    stw	r0, -0x75a4(r13)
+    lwz	r4, lbl_801A6680
+    stw	r0, lbl_801A6E1C
     li	r3, 0
     stb	r0, 0(r4)
     b       _8008f288

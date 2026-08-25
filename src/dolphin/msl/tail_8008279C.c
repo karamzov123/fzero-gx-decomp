@@ -17,6 +17,9 @@ extern void __msl_parse_format_specifier(void);
 extern unsigned char jumptable_8015B668[208];
 extern unsigned char lbl_80095010[32];
 extern unsigned char lbl_8015B100[256];
+extern unsigned char lbl_801A6638[8];
+extern unsigned char lbl_801A6640[4];
+extern unsigned char lbl_801A6644[4];
 void __StringRead(void);
 
 asm void __qsort(void)
@@ -130,11 +133,11 @@ asm void fn_80082908(void)
 {
     nofralloc
     lis	r3, 0x41c6
-    lwz	r4, -0x7d88(r13)
+    lwz	r4, lbl_801A6638
     addi	r0, r3, 0x4e6d
     mullw	r3, r4, r0
     addi	r0, r3, 0x3039
-    stw	r0, -0x7d88(r13)
+    stw	r0, lbl_801A6638
     rlwinm	r3, r0, 0x10, 0x11, 0x1f
     blr
 }
@@ -1409,7 +1412,7 @@ asm void __msl_strtok(void)
     stw	r5, 0x20(r1)
     stw	r0, 0x24(r1)
     bc      12, 2, _80083a30
-    stw	r3, -0x7d7c(r13)
+    stw	r3, lbl_801A6644
 _80083a30:
     addi	r7, r4, -1
     addi	r5, r1, 8
@@ -1426,7 +1429,7 @@ _80083a58:
     lbzu	r0, 1(r7)
     cmpwi	r0, 0
     bc      4, 2, _80083a40
-    lwz	r4, -0x7d7c(r13)
+    lwz	r4, lbl_801A6644
     addi	r5, r1, 8
     li	r3, 1
     addi	r7, r4, -1
@@ -1445,9 +1448,9 @@ _80083a90:
 _80083a9c:
     cmpwi	r6, 0
     bc      4, 2, _80083ab4
-    lwz	r0, -0x7d80(r13)
+    lwz	r0, lbl_801A6640
     li	r3, 0
-    stw	r0, -0x7d7c(r13)
+    stw	r0, lbl_801A6644
     b       _80083b0c
 _80083ab4:
     mr	r3, r7
@@ -1468,13 +1471,13 @@ _80083adc:
 _80083ae8:
     cmpwi	r8, 0
     bc      4, 2, _80083afc
-    lwz	r0, -0x7d80(r13)
-    stw	r0, -0x7d7c(r13)
+    lwz	r0, lbl_801A6640
+    stw	r0, lbl_801A6644
     b       _80083b0c
 _80083afc:
     addi	r4, r7, 1
     li	r0, 0
-    stw	r4, -0x7d7c(r13)
+    stw	r4, lbl_801A6644
     stb	r0, 0(r7)
 _80083b0c:
     addi	r1, r1, 0x30

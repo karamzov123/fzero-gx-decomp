@@ -5,6 +5,7 @@ typedef signed int s32;
 
 extern void* memset(void*, int, unsigned long);
 extern void __GXSetMatrixIndex(void);
+extern unsigned char gx[4]; /* sda21: pointer-sized extern so bare operand emits SDA21 */
 extern unsigned char jumptable_8012AD40[104];
 extern unsigned char jumptable_8012ADA8[104];
 extern unsigned char jumptable_8012AE10[104];
@@ -38,7 +39,7 @@ void GXSetNumTexGens(register void* p);
 asm void __GXXfVtxSpecs(register void* p)
 {
     nofralloc
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     lwz	r4, 0x14(r5)
     rlwinm.	r0, r4, 0x13, 0x1e, 0x1f
     beq     _80032388
@@ -133,7 +134,7 @@ _80032488:
     li	r6, 0
 _8003248c:
     li	r0, 0x10
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r5, -0x33ff
     add	r8, r8, r6
     stb	r0, -0x8000(r5)
@@ -160,13 +161,13 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     lwzx	r0, r5, r0
     mtctr	r0
     bctr	
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwzu	r0, 0x14(r3)
     rlwinm	r0, r0, 0, 0, 0x1e
     or	r0, r0, r4
     stw	r0, 0(r3)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 1
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -174,7 +175,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 2
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -182,7 +183,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 3
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -190,7 +191,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 4
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -198,7 +199,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 5
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -206,7 +207,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 6
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -214,7 +215,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 7
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -222,7 +223,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 8
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -230,7 +231,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 9
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -240,7 +241,7 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     b       _800327bc
     cmpwi	r4, 0
     beq     _80032644
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 1
     li	r0, 0
     stb	r5, 0x41c(r3)
@@ -248,13 +249,13 @@ asm void GXSetVtxDesc(register void* p, register int a, register int b)
     stw	r4, 0x418(r3)
     b       _800327bc
 _80032644:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     stb	r0, 0x41c(r3)
     b       _800327bc
     cmpwi	r4, 0
     beq     _80032678
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 1
     li	r0, 0
     stb	r5, 0x41d(r3)
@@ -262,11 +263,11 @@ _80032644:
     stw	r4, 0x418(r3)
     b       _800327bc
 _80032678:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     stb	r0, 0x41d(r3)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 0xd
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -274,7 +275,7 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 0xf
     addi	r4, r3, 0x14
     lwz	r3, 0x14(r3)
@@ -282,13 +283,13 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwzu	r0, 0x18(r3)
     rlwinm	r0, r0, 0, 0, 0x1d
     or	r0, r0, r4
     stw	r0, 0(r3)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 2
     addi	r4, r3, 0x18
     lwz	r3, 0x18(r3)
@@ -296,7 +297,7 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 4
     addi	r4, r3, 0x18
     lwz	r3, 0x18(r3)
@@ -304,7 +305,7 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 6
     addi	r4, r3, 0x18
     lwz	r3, 0x18(r3)
@@ -312,7 +313,7 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 8
     addi	r4, r3, 0x18
     lwz	r3, 0x18(r3)
@@ -320,7 +321,7 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 0xa
     addi	r4, r3, 0x18
     lwz	r3, 0x18(r3)
@@ -328,7 +329,7 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 0xc
     addi	r4, r3, 0x18
     lwz	r3, 0x18(r3)
@@ -336,7 +337,7 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
     b       _800327bc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 0xe
     addi	r4, r3, 0x18
     lwz	r3, 0x18(r3)
@@ -344,7 +345,7 @@ _80032678:
     or	r0, r3, r0
     stw	r0, 0(r4)
 _800327bc:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lbz	r0, 0x41c(r3)
     cmplwi	r0, 0
     bne     _800327d8
@@ -365,7 +366,7 @@ _800327f8:
     rlwinm	r0, r0, 0, 0x15, 0x12
     stw	r0, 0(r3)
 _80032804:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x4f4(r3)
     ori	r0, r0, 8
     stw	r0, 0x4f4(r3)
@@ -387,14 +388,14 @@ _80032824:
     lwzx	r5, r4, r5
     mtctr	r5
     bctr	
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
     rlwinm	r5, r5, 0, 0, 0x1e
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 1
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -402,7 +403,7 @@ _80032824:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 2
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -410,7 +411,7 @@ _80032824:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 3
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -418,7 +419,7 @@ _80032824:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 4
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -426,7 +427,7 @@ _80032824:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 5
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -434,7 +435,7 @@ _80032824:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 6
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -442,7 +443,7 @@ _80032824:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 7
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -450,7 +451,7 @@ _80032824:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 8
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -458,7 +459,7 @@ _80032824:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 9
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -468,7 +469,7 @@ _80032824:
     b       _80032b20
     cmpwi	r0, 0
     beq     _800329a4
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     li	r7, 1
     li	r5, 0
     stb	r7, 0x41c(r6)
@@ -476,13 +477,13 @@ _80032824:
     stw	r0, 0x418(r6)
     b       _80032b20
 _800329a4:
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     li	r0, 0
     stb	r0, 0x41c(r5)
     b       _80032b20
     cmpwi	r0, 0
     beq     _800329d8
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     li	r7, 1
     li	r5, 0
     stb	r7, 0x41d(r6)
@@ -490,11 +491,11 @@ _800329a4:
     stw	r0, 0x418(r6)
     b       _80032b20
 _800329d8:
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     li	r0, 0
     stb	r0, 0x41d(r5)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 0xd
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -502,7 +503,7 @@ _800329d8:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 0xf
     addi	r6, r5, 0x14
     lwz	r5, 0x14(r5)
@@ -510,14 +511,14 @@ _800329d8:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     addi	r6, r5, 0x18
     lwz	r5, 0x18(r5)
     rlwinm	r5, r5, 0, 0, 0x1d
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 2
     addi	r6, r5, 0x18
     lwz	r5, 0x18(r5)
@@ -525,7 +526,7 @@ _800329d8:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 4
     addi	r6, r5, 0x18
     lwz	r5, 0x18(r5)
@@ -533,7 +534,7 @@ _800329d8:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 6
     addi	r6, r5, 0x18
     lwz	r5, 0x18(r5)
@@ -541,7 +542,7 @@ _800329d8:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 8
     addi	r6, r5, 0x18
     lwz	r5, 0x18(r5)
@@ -549,7 +550,7 @@ _800329d8:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 0xa
     addi	r6, r5, 0x18
     lwz	r5, 0x18(r5)
@@ -557,7 +558,7 @@ _800329d8:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 0xc
     addi	r6, r5, 0x18
     lwz	r5, 0x18(r5)
@@ -565,7 +566,7 @@ _800329d8:
     or	r0, r5, r0
     stw	r0, 0(r6)
     b       _80032b20
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r0, r0, 0xe
     addi	r6, r5, 0x18
     lwz	r5, 0x18(r5)
@@ -578,7 +579,7 @@ _80032b24:
     lwz	r0, 0(r3)
     cmpwi	r0, 0xff
     bne     _80032824
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lbz	r0, 0x41c(r3)
     cmplwi	r0, 0
     bne     _80032b4c
@@ -599,7 +600,7 @@ _80032b6c:
     rlwinm	r0, r0, 0, 0x15, 0x12
     stw	r0, 0(r3)
 _80032b78:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x4f4(r3)
     ori	r0, r0, 8
     stw	r0, 0x4f4(r3)
@@ -617,7 +618,7 @@ asm void __GXSetVCD(void)
     stwu	r1, -8(r1)
     li	r0, 0x60
     stb	r6, -0x8000(r5)
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     stb	r3, -0x8000(r5)
     lwz	r3, 0x14(r4)
     stw	r3, -0x8000(r5)
@@ -635,7 +636,7 @@ asm void __GXSetVCD(void)
 asm void __GXCalculateVatSizes(void)
 {
     nofralloc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lhz	r0, 4(r3)
     cmplwi	r0, 0
     beqlr	
@@ -723,47 +724,47 @@ asm void GXGetVtxDesc(register void* p, register int a)
     lwzx	r0, r5, r0
     mtctr	r0
     bctr	
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     clrlwi	r0, r0, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x1f, 0x1f, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x1e, 0x1f, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x1d, 0x1f, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x1c, 0x1f, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x1b, 0x1f, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x1a, 0x1f, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x19, 0x1f, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x18, 0x1f, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x17, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lbz	r0, 0x41c(r3)
     cmplwi	r0, 0
     beq     _80032de0
@@ -773,7 +774,7 @@ asm void GXGetVtxDesc(register void* p, register int a)
 _80032de0:
     li	r0, 0
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lbz	r0, 0x41d(r3)
     cmplwi	r0, 0
     beq     _80032e04
@@ -783,43 +784,43 @@ _80032de0:
 _80032e04:
     li	r0, 0
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x13, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x14(r3)
     rlwinm	r0, r0, 0x11, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x18(r3)
     clrlwi	r0, r0, 0x1e
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x18(r3)
     rlwinm	r0, r0, 0x1e, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x18(r3)
     rlwinm	r0, r0, 0x1c, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x18(r3)
     rlwinm	r0, r0, 0x1a, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x18(r3)
     rlwinm	r0, r0, 0x18, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x18(r3)
     rlwinm	r0, r0, 0x16, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x18(r3)
     rlwinm	r0, r0, 0x14, 0x1e, 0x1f
     b       _80032eb0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x18(r3)
     rlwinm	r0, r0, 0x12, 0x1e, 0x1f
     b       _80032eb0
@@ -875,7 +876,7 @@ _80032edc:
 asm void GXClearVtxDesc(register void* p)
 {
     nofralloc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r4, 0
     stw	r4, 0x14(r3)
     lwz	r0, 0x14(r3)
@@ -895,7 +896,7 @@ asm void GXBuildPackedRegister(register void* p, register int a, register int b)
 {
     nofralloc
     addi	r0, r4, -9
-    lwz	r8, -0x7de8(r2)
+    lwz	r8, gx
     slwi	r4, r3, 2
     add	r9, r8, r4
     cmplwi	r0, 0x10
@@ -1098,7 +1099,7 @@ _80033038:
     rlwimi	r0, r7, 0x1b, 0, 4
     stw	r0, 0(r9)
 _800332a8:
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     clrlwi	r0, r3, 0x18
     li	r3, 1
     lwz	r4, 0x4f4(r5)
@@ -1115,7 +1116,7 @@ _800332a8:
 asm void __GXSetVATGroup(register void* p, register int a, register int b)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     slwi	r0, r3, 2
     lis     r5, -0x7fed
     add	r6, r6, r0
@@ -1329,7 +1330,7 @@ _80033614:
     lwz	r0, 0(r4)
     cmpwi	r0, 0xff
     bne     _800332fc
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     clrlwi	r0, r3, 0x18
     li	r3, 1
     lwz	r4, 0x4f4(r5)
@@ -1346,7 +1347,7 @@ _80033614:
 asm void __GXSetVAT(void)
 {
     nofralloc
-    lwz	r10, -0x7de8(r2)
+    lwz	r10, gx
     li	r12, 0
     li	r11, 0
     lis	r7, -0x33ff
@@ -1384,7 +1385,7 @@ _800336d0:
     clrlwi	r0, r12, 0x18
     cmplwi	r0, 8
     blt     _80033664
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     stb	r0, 0x4f3(r3)
     blr	
@@ -1394,7 +1395,7 @@ asm void GXGetVtxDescList(register void* p, register int a, register int b)
 {
     nofralloc
     addi	r0, r4, -9
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r3, r3, 2
     add	r4, r4, r3
     cmplwi	r0, 0x10
@@ -1616,7 +1617,7 @@ _800339ec:
     blt     _80033a2c
     cmpwi	r0, 4
     bge     _80033a2c
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r0, 2
     add	r3, r3, r0
     stw	r4, 0x88(r3)
@@ -1632,7 +1633,7 @@ _80033a2c:
     bltlr	
     cmpwi	r0, 4
     bgelr	
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r0, 2
     add	r3, r3, r0
     stw	r4, 0x98(r3)
@@ -1773,7 +1774,7 @@ _80033be8:
     lwzx	r0, r4, r0
     mtctr	r0
     bctr	
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r6, 6
     addi	r5, r4, 0x80
     lwz	r4, 0x80(r4)
@@ -1781,7 +1782,7 @@ _80033be8:
     or	r0, r4, r0
     stw	r0, 0(r5)
     b       _80033d34
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r6, 0xc
     addi	r5, r4, 0x80
     lwz	r4, 0x80(r4)
@@ -1789,7 +1790,7 @@ _80033be8:
     or	r0, r4, r0
     stw	r0, 0(r5)
     b       _80033d34
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r6, 0x12
     addi	r5, r4, 0x80
     lwz	r4, 0x80(r4)
@@ -1797,7 +1798,7 @@ _80033be8:
     or	r0, r4, r0
     stw	r0, 0(r5)
     b       _80033d34
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r6, 0x18
     addi	r5, r4, 0x80
     lwz	r4, 0x80(r4)
@@ -1805,13 +1806,13 @@ _80033be8:
     or	r0, r4, r0
     stw	r0, 0(r5)
     b       _80033d34
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lwzu	r0, 0x84(r4)
     rlwinm	r0, r0, 0, 0, 0x19
     or	r0, r0, r6
     stw	r0, 0(r4)
     b       _80033d34
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r6, 6
     addi	r5, r4, 0x84
     lwz	r4, 0x84(r4)
@@ -1819,7 +1820,7 @@ _80033be8:
     or	r0, r4, r0
     stw	r0, 0(r5)
     b       _80033d34
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r6, 0xc
     addi	r5, r4, 0x84
     lwz	r4, 0x84(r4)
@@ -1828,7 +1829,7 @@ _80033be8:
     stw	r0, 0(r5)
     b       _80033d34
 _80033d18:
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r6, 0x12
     addi	r5, r4, 0x84
     lwz	r4, 0x84(r4)
@@ -1847,7 +1848,7 @@ _80033d34:
 asm void GXSetNumTexGens(register void* p)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     clrlwi	r8, r3, 0x18
     li	r4, 0x10
     lwz	r5, 0x204(r6)

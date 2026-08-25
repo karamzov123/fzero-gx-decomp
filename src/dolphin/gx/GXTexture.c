@@ -214,7 +214,7 @@ asm void GXInitTexObjLOD(register void* dst, register void* src, register int a,
     lbz	r0, 0x1f(r28)
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
     bne     _80036338
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lwz	r3, 0x18(r28)
     lwz	r12, 0x414(r4)
     mtlr	r12
@@ -229,7 +229,7 @@ asm void GXInitTexObjLOD(register void* dst, register void* src, register int a,
     lwz	r0, 4(r3)
     stw	r0, -0x8000(r31)
 _80036338:
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r4, r29, 2
     lwz	r3, 8(r28)
     li	r0, 0
@@ -261,7 +261,7 @@ asm void GXLoadTexObj(register void* p)
     addi	r31, r4, 0
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     lwz	r12, 0x410(r5)
     mtlr	r12
     blrl	
@@ -414,7 +414,7 @@ asm void __GXInitTexMapPreload(register void* p)
 asm void GXSetTexRegionCallback(register void* p)
 {
     nofralloc
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lwzu	r0, 0x410(r4)
     stw	r3, 0(r4)
     mr	r3, r0
@@ -424,7 +424,7 @@ asm void GXSetTexRegionCallback(register void* p)
 asm void GXSetTlutRegionCallback(register void* p)
 {
     nofralloc
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lwzu	r0, 0x414(r4)
     stw	r3, 0(r4)
     mr	r3, r0
@@ -434,7 +434,7 @@ asm void GXSetTlutRegionCallback(register void* p)
 asm void GXInvalidateTexRegion(register void* p, register int a)
 {
     nofralloc
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r8, r4, 2
     slwi	r0, r3, 2
     add	r3, r5, r0
@@ -489,7 +489,7 @@ asm void GXPreLoadEntireTexture(void)
     stw	r0, 4(r1)
     stwu	r1, -0x28(r1)
     stmw	r27, 0x14(r1)
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x4dc(r3)
     cmplwi	r0, 0xff
     beq     _800367d4
@@ -512,30 +512,30 @@ _800366c0:
     bge     _80036718
     b       _80036708
 _800366cc:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x120(r3)
     clrlwi	r29, r0, 0x1d
     rlwinm	r28, r0, 0x1d, 0x1d, 0x1f
     b       _80036718
 _800366e0:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x120(r3)
     rlwinm	r29, r0, 0x1a, 0x1d, 0x1f
     rlwinm	r28, r0, 0x17, 0x1d, 0x1f
     b       _80036718
 _800366f4:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x120(r3)
     rlwinm	r29, r0, 0x14, 0x1d, 0x1f
     rlwinm	r28, r0, 0x11, 0x1d, 0x1f
     b       _80036718
 _80036708:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x120(r3)
     rlwinm	r29, r0, 0xe, 0x1d, 0x1f
     rlwinm	r28, r0, 0xb, 0x1d, 0x1f
 _80036718:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 1
     slw	r0, r0, r28
     lwz	r3, 0x4dc(r3)
@@ -553,7 +553,7 @@ _80036740:
     addi	r27, r31, 0
     b       _800367cc
 _80036754:
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     addi	r3, r27, 0x49c
     rlwinm	r4, r31, 1, 0, 0x1d
     lwzx	r3, r5, r3
@@ -760,7 +760,7 @@ asm void __GXInitTexObj(register void* p)
     rlwinm	r5, r0, 0, 0x1c, 0x18
     lbz	r12, 0x33(r1)
     slwi	r0, r6, 4
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     or	r0, r5, r0
     rlwinm	r5, r0, 0, 0x19, 0x16
     slwi	r0, r11, 7
@@ -843,7 +843,7 @@ _80036b14:
     addi	r5, r3, 8
     lwz	r8, 0x74(r1)
     lwz	r7, 0x6c(r1)
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     rlwinm	r7, r7, 0xb, 0xa, 0x14
     rlwimi	r7, r8, 0, 0x15, 0x1f
     rlwinm	r7, r7, 0, 0xa, 7
@@ -907,7 +907,7 @@ _80036c40:
     bge     _80036d90
     b       _80036d40
 _80036c4c:
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     slwi	r5, r5, 4
     li	r0, 0x61
     lwz	r6, 0x128(r7)
@@ -928,7 +928,7 @@ _80036c4c:
     stw	r0, -0x8000(r3)
     b       _80036d90
 _80036c9c:
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     slwi	r6, r4, 8
     slwi	r4, r5, 0xc
     lwz	r5, 0x128(r7)
@@ -950,7 +950,7 @@ _80036c9c:
     stw	r0, -0x8000(r3)
     b       _80036d90
 _80036cf0:
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     slwi	r5, r5, 4
     li	r0, 0x61
     lwz	r6, 0x12c(r7)
@@ -971,7 +971,7 @@ _80036cf0:
     stw	r0, -0x8000(r3)
     b       _80036d90
 _80036d40:
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     slwi	r6, r4, 8
     slwi	r4, r5, 0xc
     lwz	r5, 0x12c(r7)
@@ -992,7 +992,7 @@ _80036d40:
     lwz	r0, 0x12c(r7)
     stw	r0, -0x8000(r3)
 _80036d90:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     sth	r0, 2(r3)
     blr	
@@ -1013,7 +1013,7 @@ _80036dbc:
     bge     _80036e84
     b       _80036e58
 _80036dc8:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r0, r4, 3
     addi	r4, r3, 0x120
     lwz	r3, 0x120(r3)
@@ -1026,7 +1026,7 @@ _80036dc8:
     stw	r0, 0(r4)
     b       _80036e84
 _80036df8:
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     slwi	r0, r4, 9
     slwi	r3, r5, 6
     lwz	r4, 0x120(r6)
@@ -1039,7 +1039,7 @@ _80036df8:
     stw	r0, 0x120(r6)
     b       _80036e84
 _80036e28:
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     slwi	r0, r4, 0xf
     slwi	r3, r5, 0xc
     lwz	r4, 0x120(r6)
@@ -1052,7 +1052,7 @@ _80036e28:
     stw	r0, 0x120(r6)
     b       _80036e84
 _80036e58:
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     slwi	r0, r4, 0x15
     slwi	r3, r5, 0x12
     lwz	r4, 0x120(r6)
@@ -1065,7 +1065,7 @@ _80036e58:
     stw	r0, 0x120(r6)
 _80036e84:
     li	r0, 0x61
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     li	r0, 0
@@ -1081,7 +1081,7 @@ _80036e84:
 asm void fn_80036EB4(register void* p)
 {
     nofralloc
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     rlwinm	r0, r3, 0x10, 8, 0xf
     lwz	r3, 0x204(r4)
     rlwinm	r3, r3, 0, 0x10, 0xc
@@ -1119,7 +1119,7 @@ asm void __GXInitTexObjDefault(register void* p)
 asm void __GXFlushGenMode(void)
 {
     nofralloc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r6, 0
     li	r4, 0
     lwz	r0, 0x204(r3)
@@ -1173,7 +1173,7 @@ _80036fac:
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     li	r0, 0
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lwz	r3, 0x124(r4)
     stw	r3, -0x8000(r5)
     sth	r0, 2(r4)
@@ -1184,7 +1184,7 @@ asm void __GXFlushTextureState(void)
 {
     nofralloc
     li	r0, 0x61
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     li	r0, 0
@@ -1212,7 +1212,7 @@ _80037034:
     addi	r5, r5, 0x14
     addi	r9, r9, 0x3c
 _80037048:
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     slwi	r3, r3, 2
     lwz	r0, 0(r5)
     li	r5, 0x61
@@ -1239,7 +1239,7 @@ _80037048:
 asm void GXWriteCachedParamF0(register void* p)
 {
     nofralloc
-    lwz	r9, -0x7de8(r2)
+    lwz	r9, gx
     slwi	r3, r3, 2
     li	r0, 0x61
     add	r8, r9, r3
@@ -1261,7 +1261,7 @@ asm void GXWriteCachedParamF0(register void* p)
 asm void GXWriteCachedParam1F0(register void* p)
 {
     nofralloc
-    lwz	r9, -0x7de8(r2)
+    lwz	r9, gx
     slwi	r3, r3, 2
     li	r0, 0x61
     add	r8, r9, r3
@@ -1283,7 +1283,7 @@ asm void GXWriteCachedParam1F0(register void* p)
 asm void fn_80037128(register void* p)
 {
     nofralloc
-    lwz	r0, -0x7de8(r2)
+    lwz	r0, gx
     slwi	r9, r3, 2
     cmpwi	r4, 1
     add	r3, r0, r9
@@ -1300,7 +1300,7 @@ _80037154:
     rlwimi	r10, r0, 0x10, 0xe, 0xf
 _80037160:
     li	r0, 0x61
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     rlwimi	r10, r7, 0x13, 0xc, 0xc
@@ -1316,7 +1316,7 @@ _80037160:
 asm void fn_80037190(register void* p)
 {
     nofralloc
-    lwz	r0, -0x7de8(r2)
+    lwz	r0, gx
     slwi	r9, r3, 2
     cmpwi	r4, 1
     add	r3, r0, r9
@@ -1333,7 +1333,7 @@ _800371bc:
     rlwimi	r10, r0, 0x10, 0xe, 0xf
 _800371c8:
     li	r0, 0x61
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     rlwimi	r10, r7, 0x13, 0xc, 0xc
@@ -1359,7 +1359,7 @@ asm void __GXSetTexRegion(register void* p, register int a)
     lbz	r6, 1(r4)
     slwi	r7, r7, 0x18
     li	r5, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r4, -0x33ff
     stb	r5, -0x8000(r4)
     rlwimi	r7, r9, 0, 0xc, 0x1f
@@ -1393,7 +1393,7 @@ asm void __GXWriteLightColor(register void* p)
     lha	r6, 2(r4)
     slwi	r8, r8, 0x18
     li	r5, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r4, -0x33ff
     stb	r5, -0x8000(r4)
     rlwimi	r8, r10, 0, 9, 0x1f

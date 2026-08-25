@@ -18,6 +18,15 @@ extern unsigned char lbl_8015CF68[240];
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6928[4];
+extern unsigned char lbl_801A6944[4];
+extern unsigned char lbl_801A6948[4];
+extern unsigned char lbl_801A694C[4];
+extern unsigned char lbl_801A6950[8];
+extern unsigned char lbl_801A6958[4];
+extern unsigned char lbl_801A695C[4];
+extern unsigned char lbl_801A6968[4];
+extern unsigned char lbl_801A6970[4];
 asm s32 fn_8001BC54(register void* param)
 {
     nofralloc
@@ -31,26 +40,26 @@ asm s32 fn_8001BC54(register void* param)
     stw     r29, 0x14(r1)
     stw     r28, 0x10(r1)
     bl      OSDisableInterrupts
-    lwz     r5, -0x7a70(r13)
+    lwz	r5, lbl_801A6950
     addi    r30, r3, 0
     li      r0, 0
-    lwz     r4, -0x7a7c(r13)
+    lwz	r4, lbl_801A6944
     or      r3, r5, r4
-    stw     r3, -0x7a70(r13)
-    stw     r0, -0x7a7c(r13)
-    lwz     r4, -0x7a68(r13)
-    lwz     r5, -0x7a64(r13)
-    lwz     r0, -0x7a78(r13)
-    lwz     r3, -0x7a74(r13)
+    stw	r3, lbl_801A6950
+    stw	r0, lbl_801A6944
+    lwz	r4, lbl_801A6958
+    lwz	r5, lbl_801A695C
+    lwz	r0, lbl_801A6948
+    lwz	r3, lbl_801A694C
     or      r0, r4, r0
     or      r3, r5, r3
-    stw     r3, -0x7a64(r13)
-    stw     r0, -0x7a68(r13)
+    stw	r3, lbl_801A695C
+    stw	r0, lbl_801A6958
     b       _8001bd30
 _8001bcbc:
-    lwz     r3, -0x7a78(r13)
+    lwz	r3, lbl_801A6948
     li      r5, 0x20
-    lwz     r28, -0x7a74(r13)
+    lwz	r28, lbl_801A694C
     addi    r4, r28, 0
     bl      __shr2u
     cntlzw  r4, r4
@@ -71,27 +80,27 @@ _8001bcf0:
     li      r3, 0
     li      r4, 1
     bl      __shl2i
-    lwz     r0, -0x7a78(r13)
+    lwz	r0, lbl_801A6948
     nor     r5, r3, r3
     nor     r4, r4, r4
-    lwz     r3, -0x7a74(r13)
+    lwz	r3, lbl_801A694C
     and     r0, r0, r5
     and     r3, r3, r4
-    stw     r3, -0x7a74(r13)
-    stw     r0, -0x7a78(r13)
+    stw	r3, lbl_801A694C
+    stw	r0, lbl_801A6948
 _8001bd30:
-    lwz     r0, -0x7a78(r13)
+    lwz	r0, lbl_801A6948
     li      r3, 0
-    lwz     r4, -0x7a74(r13)
+    lwz	r4, lbl_801A694C
     xor     r0, r0, r3
     xor     r3, r4, r3
     or.     r0, r3, r0
     bne     _8001bcbc
     li      r0, 1
-    stw     r0, -0x7a98(r13)
+    stw	r0, lbl_801A6928
     mr      r3, r30
     lwz     r0, 0x120(r31)
-    stw     r0, -0x7a58(r13)
+    stw	r0, lbl_801A6968
     bl      OSRestoreInterrupts
     lwz     r0, 0x24(r1)
     lwz     r31, 0x1c(r1)
@@ -118,7 +127,7 @@ asm s32 fn_8001BD84(register s32 param)
     stw     r30, 0x120(r31)
     li      r0, 1
     addi    r30, r3, 0
-    stw     r0, -0x7a50(r13)
+    stw	r0, lbl_801A6970
     addi    r3, r31, 0xf0
     addi    r4, r31, 0x124
     addi    r5, r31, 0x128

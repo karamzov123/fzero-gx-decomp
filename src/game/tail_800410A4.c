@@ -53,6 +53,8 @@ extern unsigned char lbl_80178CA8[16];
 
 #pragma push
 #pragma force_active on
+extern unsigned char lbl_801A6C6C[4];
+extern unsigned char lbl_801A6C74[4];
 int fn_80041330(void);
 int fn_80041354(void);
 int fn_80041378(void);
@@ -102,7 +104,7 @@ asm void fn_800410A4(void)
     lfs     f0, -0x7c48(r2)
     stfs    f0, 0x68(r5)
     bl      fn_80038A88
-    lwz     r12, -0x774c(r13)
+    lwz	r12, lbl_801A6C74
     mtlr    r12
     blrl
     lwz     r0, 0xc(r1)
@@ -114,7 +116,7 @@ asm void fn_800410A4(void)
 asm void fn_8004115C(register u32 a)
 {
     nofralloc
-    stw     r3, -0x7754(r13)
+    stw	r3, lbl_801A6C6C
     blr
 }
 

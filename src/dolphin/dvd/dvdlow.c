@@ -46,23 +46,23 @@ extern s64 __OSGetSystemTime(void);
 
 extern DVDBlock CommandList[];
 extern OSAlarm AlarmForTimeout;
-extern u32 NextCommandNumber;
-extern u32 StopAtNextInt;
+extern unsigned int NextCommandNumber;
+extern unsigned char StopAtNextInt[4];
 extern DVDCallback Callback;
-extern u32 WaitingCoverClose;
-extern u32 WorkAroundType;
-extern u32 WorkAroundSeekLocation;
-extern u32 ResetOccurred;
+extern unsigned char WaitingCoverClose[4];
+extern unsigned char WorkAroundType[4];
+extern unsigned char WorkAroundSeekLocation[4];
+extern unsigned char ResetOccurred[4];
 extern s64 LastResetEnd;
-extern u32 lbl_801A6468;
-extern u32 lbl_801A685C;
-extern u32 lbl_801A6864;
-extern u32 lbl_801A6878;
-extern u32 lbl_801A6888;
-extern u32 lbl_801A688C;
-extern u32 lbl_801A6890;
-extern u32 lbl_801A6894;
-extern u32 lbl_801A6898;
+extern unsigned char lbl_801A6468[4];
+extern unsigned char lbl_801A685C[4];
+extern unsigned char lbl_801A6864[4];
+extern unsigned char lbl_801A6878[4];
+extern unsigned char lbl_801A6888[4];
+extern unsigned char lbl_801A688C[4];
+extern unsigned char lbl_801A6890[4];
+extern unsigned char lbl_801A6894[4];
+extern unsigned char lbl_801A6898[4];
 
 static void __DVDLowSetWAType(u32 type, u32 location);
 extern void Read(u32 addr, u32 len, u32 offset, DVDCallback callback);
@@ -96,13 +96,13 @@ nofralloc
 	addi r28, r4, 0x0
 	addi r30, r3, CommandList@l
 	li r29, 0x0
-	lwz r0, -0x7B28(r13)
+	lwz	r0, lbl_801A6898
 	cmpwi r0, 0x0
 	beq lbl_80016028
 	bl __OSGetSystemTime
-	stw r4, -0x7B34(r13)
+	stw	r4, lbl_801A688C
 	li r0, 0x0
-	stw r3, -0x7B38(r13)
+	stw	r3, lbl_801A6888
 	stw r0, -32600(r13)
 	lwz r0, 0xc4(r30)
 	stw r0, 0xb8(r30)
@@ -116,7 +116,7 @@ nofralloc
 	ori r29, r29, 0x8
 lbl_80016028:
 	li r0, 0x0
-	stw r0, -0x7B28(r13)
+	stw	r0, lbl_801A6898
 	lis r3, 0xcc00
 	stw r0, -31592(r13)
 	lwz r0, 0x6000(r3)
@@ -403,7 +403,7 @@ nofralloc
 	stw r29, 0x10(r4)
 	stw r28, 0x14(r4)
 	stw r29, 0x18(r4)
-	stw r29, -0x7B64(r13)
+	stw	r29, lbl_801A685C
 	stw r0, 0x1c(r4)
 	ble lbl_80016454
 	lis r3, 0x8000

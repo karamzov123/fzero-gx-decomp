@@ -2,6 +2,9 @@
 #pragma force_active on
 extern unsigned char lbl_801A6398[24];
 
+extern unsigned char lbl_801A6678[8];
+extern unsigned char lbl_801A6680[8];
+extern unsigned char lbl_801A6E20[8];
 asm void memset(register void* a, register void* b, register void* c, register void* d);
 asm void OSDisableInterrupts(register void* a, register void* b, register void* c, register void* d);
 asm void OSRestoreInterrupts(register void* a, register void* b, register void* c, register void* d);
@@ -60,7 +63,7 @@ asm void EXI2_SetupTransfer(void)
     addi	r22, r6, 0
     li	r21, 2
     bl      OSDisableInterrupts
-    lwz	r4, -0x7d48(r13)
+    lwz	r4, lbl_801A6678
     addi	r31, r3, 0
     lwz	r0, 0xc(r4)
     addi	r3, r4, 0xc
@@ -76,7 +79,7 @@ _8008e7bc:
     b       _8008e9a0
 _8008e7cc:
     stw	r22, 4(r4)
-    lwz	r3, -0x7d48(r13)
+    lwz	r3, lbl_801A6678
     lwz	r0, 4(r3)
     cmplwi	r0, 0
     beq     _8008e7fc
@@ -88,7 +91,7 @@ _8008e7cc:
     srw	r3, r3, r0
     bl      __OSUnmaskInterrupts
 _8008e7fc:
-    lwz	r3, -0x7d48(r13)
+    lwz	r3, lbl_801A6678
     cmplwi	r30, 0
     lwz	r0, 0xc(r3)
     ori	r0, r0, 2
@@ -176,7 +179,7 @@ _8008e940:
     lis	r3, -0x3400
     stw	r11, 0x6838(r3)
 _8008e948:
-    lwz	r3, -0x7d48(r13)
+    lwz	r3, lbl_801A6678
     cmplwi	r30, 1
     stw	r28, 0x14(r3)
     beq     _8008e960
@@ -185,7 +188,7 @@ _8008e948:
 _8008e960:
     li	r6, 0
 _8008e964:
-    lwz	r5, -0x7d48(r13)
+    lwz	r5, lbl_801A6678
     slwi	r4, r30, 2
     addi	r0, r29, -1
     stw	r6, 0x10(r5)
@@ -216,14 +219,14 @@ asm void EXI2_ExecuteTransfer(void)
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    lwz	r4, -0x7d48(r13)
+    lwz	r4, lbl_801A6678
     b       _8008eb24
 _8008e9cc:
     lwz	r0, 0x34(r3)
     clrlwi.	r0, r0, 0x1f
     bne     _8008eb2c
     bl      OSDisableInterrupts
-    lwz	r6, -0x7d48(r13)
+    lwz	r6, lbl_801A6678
     lwz	r0, 0xc(r6)
     addi	r4, r6, 0xc
     clrlwi.	r0, r0, 0x1e
@@ -303,7 +306,7 @@ _8008eaf0:
     addi	r5, r5, 1
     bdnz    _8008eaf0
 _8008eb0c:
-    lwz	r4, -0x7d48(r13)
+    lwz	r4, lbl_801A6678
     lwz	r0, 0xc(r4)
     rlwinm	r0, r0, 0, 0, 0x1d
     stw	r0, 0xc(r4)
@@ -367,7 +370,7 @@ _8008ebc0:
     li	r3, 0x40
     bl      __OSMaskInterrupts
 _8008ebc8:
-    lwz	r4, -0x7d48(r13)
+    lwz	r4, lbl_801A6678
     mr	r3, r31
     lwz	r31, 0(r4)
     stw	r30, 0(r4)
@@ -390,7 +393,7 @@ asm void TRKEnableEXIInterrupts(void)
     stw	r31, 0x14(r1)
     mr	r31, r3
     bl      OSDisableInterrupts
-    lwz	r4, -0x7d48(r13)
+    lwz	r4, lbl_801A6678
     lwz	r0, 0xc(r4)
     addi	r5, r4, 0xc
     rlwinm.	r0, r0, 0, 0x1d, 0x1d
@@ -427,7 +430,7 @@ asm void EXI2SetState(void)
     stw	r0, 4(r1)
     stwu	r1, -8(r1)
     bl      OSDisableInterrupts
-    lwz	r4, -0x7d48(r13)
+    lwz	r4, lbl_801A6678
     lwz	r0, 0xc(r4)
     addi	r5, r4, 0xc
     rlwinm.	r0, r0, 0, 0x1d, 0x1d
@@ -462,7 +465,7 @@ asm void fn_8008ECE0(void)
     lwz	r0, 0x3000(r5)
     stwu	r1, -8(r1)
     rlwinm	r0, r0, 0, 0x13, 0x13
-    lwz	r3, -0x7d48(r13)
+    lwz	r3, lbl_801A6678
     ori	r0, r0, 0x1000
     stw	r0, 0x3000(r5)
     lwz	r3, 0(r3)
@@ -528,9 +531,9 @@ asm void fn_8008EDB0(void)
     stw	r0, 4(r1)
     li	r0, 1
     stwu	r1, -8(r1)
-    lwz	r3, -0x7d40(r13)
+    lwz	r3, lbl_801A6680
     stb	r0, 0(r3)
-    lwz	r12, -0x75a0(r13)
+    lwz	r12, lbl_801A6E20
     cmplwi	r12, 0
     beq     _8008ede0
     mtlr	r12
@@ -551,10 +554,10 @@ asm void EXI2_InitSequence(void)
     stwu	r1, -0x30(r1)
     stw	r31, 0x2c(r1)
     mr	r31, r4
-    lwz	r0, -0x7d40(r13)
+    lwz	r0, lbl_801A6680
     stw	r0, 0(r3)
     bl      OSDisableInterrupts
-    stw	r31, -0x75a0(r13)
+    stw	r31, lbl_801A6E20
     bl      OSRestoreInterrupts
     bl      EXI2_BufferInit
     lis	r4, 0x100

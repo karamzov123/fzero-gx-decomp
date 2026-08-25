@@ -10,6 +10,13 @@ extern asm void _restgpr_25(void);
 extern asm void avload_AssertPanic(void);
 extern unsigned char lbl_8015ABD8[35];
 
+extern unsigned char lbl_801A6D0C[4];
+extern unsigned char lbl_801A6D10[4];
+extern unsigned char lbl_801A6D14[4];
+extern unsigned char lbl_801A6D18[4];
+extern unsigned char lbl_801A6D1C[4];
+extern unsigned char lbl_801A6D20[4];
+extern unsigned char lbl_801A6D24[4];
 asm void fn_800712E4(void)
 {
     nofralloc
@@ -155,10 +162,10 @@ asm void fn_80071484(void)
     stw	r29, 0x14(r1)
     mr	r29, r3
     stw	r28, 0x10(r1)
-    lwz	r12, -0x769c(r13)
+    lwz	r12, lbl_801A6D24
     mtctr	r12
     bctrl	
-    lwz	r12, -0x76a0(r13)
+    lwz	r12, lbl_801A6D20
     mr	r28, r3
     mr	r3, r29
     mr	r4, r28
@@ -169,12 +176,12 @@ asm void fn_80071484(void)
     li	r3, 0
     b	_80071580
 _800714d8:
-    lwz	r12, -0x76a4(r13)
+    lwz	r12, lbl_801A6D1C
     mr	r3, r28
     mtctr	r12
     bctrl	
     mr	r31, r3
-    lwz	r12, -0x76b4(r13)
+    lwz	r12, lbl_801A6D0C
     addi	r0, r31, 0x1f
     rlwinm	r3, r0, 0, 0, 0x1a
     addi	r3, r3, 0x20
@@ -188,7 +195,7 @@ _800714d8:
     bl      avload_AssertPanic
 _8007151c:
     addi	r0, r30, 0x3f
-    lwz	r12, -0x76a8(r13)
+    lwz	r12, lbl_801A6D18
     rlwinm	r29, r0, 0, 0, 0x1a
     mr	r3, r28
     mr	r4, r29
@@ -196,11 +203,11 @@ _8007151c:
     li	r6, 0
     mtctr	r12
     bctrl	
-    lwz	r12, -0x76ac(r13)
+    lwz	r12, lbl_801A6D14
     mr	r3, r28
     mtctr	r12
     bctrl	
-    lwz	r12, -0x76b0(r13)
+    lwz	r12, lbl_801A6D10
     mr	r3, r28
     mtctr	r12
     bctrl	

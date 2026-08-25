@@ -56,7 +56,7 @@ asm void OSAllocTableInit(void)
     stw     r0, 0x94(r4)
     stw     r0, 0x98(r4)
     stw     r0, 0x9c(r4)
-    stw     r3, -0x7C90(r13)
+    stw	r3, gAssetBudgetA
     blr
 }
 
@@ -65,21 +65,21 @@ asm void OSHeapLockAcquire(void)
     nofralloc
     stwu    r1, -0x10(r1)
     stw     r31, 0xC(r1)
-    lwz     r0, -0x7C90(r13)   /* gAssetBudgetA */
+    lwz	r0, gAssetBudgetA   /* gAssetBudgetA */
     cmpwi   r0, -1
     beq     swapdone
     mulli   r0, r0, 0x14
     lis     r3, lbl_8015BE40@ha
     lis     r4, lbl_8015BEE0@ha
-    lwz     r31, -0x7FB0(r13)  /* g_currentHeapHandle */
+    lwz	r31, g_currentHeapHandle  /* g_currentHeapHandle */
     addi    r3, r3, lbl_8015BE40@l
-    lwz     r11, -0x7C7C(r13)  /* gAssetBudgetB */
+    lwz	r11, gAssetBudgetB  /* gAssetBudgetB */
     add     r6, r3, r0
     lwzx    r7, r3, r0
     addi    r12, r4, lbl_8015BEE0@l
-    lwz     r10, -0x7C80(r13)  /* lbl_801A6740 */
-    lwz     r9, -0x7C84(r13)   /* lbl_801A673C */
-    lwz     r8, -0x7C88(r13)   /* lbl_801A6738 */
+    lwz	r10, lbl_801A6740  /* lbl_801A6740 */
+    lwz	r9, lbl_801A673C   /* lbl_801A673C */
+    lwz	r8, lbl_801A6738   /* lbl_801A6738 */
     lwz     r5, 4(r6)
     lwz     r4, 8(r6)
     lwz     r3, 0xC(r6)
@@ -89,11 +89,11 @@ asm void OSHeapLockAcquire(void)
     stw     r10, 8(r12)
     stw     r9, 0xC(r12)
     stw     r8, 0x10(r12)
-    stw     r7, -0x7FB0(r13)
-    stw     r5, -0x7C7C(r13)
-    stw     r4, -0x7C80(r13)
-    stw     r3, -0x7C84(r13)
-    stw     r0, -0x7C88(r13)
+    stw	r7, g_currentHeapHandle
+    stw	r5, gAssetBudgetB
+    stw	r4, lbl_801A6740
+    stw	r3, lbl_801A673C
+    stw	r0, lbl_801A6738
 swapdone:
     lwz     r31, 0xC(r1)
     addi    r1, r1, 0x10
@@ -103,34 +103,34 @@ swapdone:
 asm void OSHeapLockRelease(void)
 {
     nofralloc
-    lwz     r0, -0x7C90(r13)   /* gAssetBudgetA */
+    lwz	r0, gAssetBudgetA   /* gAssetBudgetA */
     cmpwi   r0, -1
     beqlr
     mulli   r6, r0, 0x14
     lis     r4, lbl_8015BE40@ha
-    lwz     r5, -0x7FB0(r13)   /* g_currentHeapHandle */
+    lwz	r5, g_currentHeapHandle   /* g_currentHeapHandle */
     lis     r3, lbl_8015BEE0@ha
     addi    r4, r4, lbl_8015BE40@l
-    lwz     r0, -0x7C7C(r13)   /* gAssetBudgetB */
+    lwz	r0, gAssetBudgetB   /* gAssetBudgetB */
     stwx    r5, r4, r6
     add     r9, r4, r6
-    lwz     r4, -0x7C80(r13)   /* lbl_801A6740 */
+    lwz	r4, lbl_801A6740   /* lbl_801A6740 */
     addi    r7, r3, lbl_8015BEE0@l
     stw     r0, 4(r9)
-    lwz     r0, -0x7C84(r13)   /* lbl_801A673C */
+    lwz	r0, lbl_801A673C   /* lbl_801A673C */
     stw     r4, 8(r9)
     lwz     r6, 0(r7)
     lwz     r5, 4(r7)
     lwz     r4, 8(r7)
     lwz     r3, 0xC(r7)
     stw     r0, 0xC(r9)
-    lwz     r8, -0x7C88(r13)   /* lbl_801A6738 */
+    lwz	r8, lbl_801A6738   /* lbl_801A6738 */
     lwz     r0, 0x10(r7)
     stw     r8, 0x10(r9)
-    stw     r6, -0x7FB0(r13)
-    stw     r5, -0x7C7C(r13)
-    stw     r4, -0x7C80(r13)
-    stw     r3, -0x7C84(r13)
-    stw     r0, -0x7C88(r13)
+    stw	r6, g_currentHeapHandle
+    stw	r5, gAssetBudgetB
+    stw	r4, lbl_801A6740
+    stw	r3, lbl_801A673C
+    stw	r0, lbl_801A6738
     blr
 }

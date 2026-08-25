@@ -14,6 +14,8 @@ extern unsigned char lbl_801241C8[500];
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6934[4];
+extern unsigned char lbl_801A6938[4];
 asm s32 fn_8001A78C(register s32 mode)
 {
     nofralloc
@@ -23,9 +25,9 @@ asm s32 fn_8001A78C(register s32 mode)
     stw     r31, 0x14(r1)
     stw     r30, 0x10(r1)
     mr      r30, r3
-    lwz     r31, -0x7a8c(r13)
+    lwz	r31, lbl_801A6934
     bl      OSDisableInterrupts
-    stw     r30, -0x7a8c(r13)
+    stw	r30, lbl_801A6934
     bl      OSRestoreInterrupts
     mr      r3, r31
     lwz     r0, 0x1c(r1)
@@ -45,9 +47,9 @@ asm s32 fn_8001A7D0(register s32 ntsc)
     stw     r31, 0x14(r1)
     stw     r30, 0x10(r1)
     mr      r30, r3
-    lwz     r31, -0x7a88(r13)
+    lwz	r31, lbl_801A6938
     bl      OSDisableInterrupts
-    stw     r30, -0x7a88(r13)
+    stw	r30, lbl_801A6938
     bl      OSRestoreInterrupts
     mr      r3, r31
     lwz     r0, 0x1c(r1)

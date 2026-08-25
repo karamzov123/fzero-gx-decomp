@@ -27,6 +27,10 @@ extern asm void VIWaitForRetrace(void);
 extern asm void _restgpr_25(void);
 extern unsigned char lbl_8019E18C[132];
 
+extern unsigned char lbl_801A6CE0[4];
+extern unsigned char lbl_801A6CE4[4];
+extern unsigned char lbl_801A6CF4[4];
+extern unsigned char lbl_801A6D30[8];
 asm void fn_80070774(void)
 {
     nofralloc
@@ -35,7 +39,7 @@ asm void fn_80070774(void)
     stw	r0, 0x54(r1)
     addi	r11, r1, 0x50
     bl      _savegpr_25
-    lwz	r6, -0x76cc(r13)
+    lwz	r6, lbl_801A6CF4
     mr	r27, r3
     mr	r28, r4
     mr	r29, r5
@@ -51,7 +55,7 @@ asm void fn_80070774(void)
     rlwinm	r26, r0, 0, 0, 0x1a
     mr	r4, r26
     bl      DCFlushRange
-    lwz	r0, -0x76e0(r13)
+    lwz	r0, lbl_801A6CE0
     rlwinm.	r0, r0, 0, 0x1b, 0x1b
     bne	_800707e8
     mr	r3, r25
@@ -62,20 +66,20 @@ asm void fn_80070774(void)
 _800707e8:
     mr	r3, r28
     bl      OSAllocFromArena
-    stw	r28, -0x76dc(r13)
+    stw	r28, lbl_801A6CE4
     mr	r4, r28
     bl      GXInit
-    lwz	r4, -0x7690(r13)
+    lwz	r4, lbl_801A6D30
     cmpwi	r27, 0
     stw	r3, 0x14(r4)
     beq	_8007085c
-    lwz	r5, -0x76e0(r13)
+    lwz	r5, lbl_801A6CE0
     lis     r3, lbl_8019E18C@ha
-    lwz	r4, -0x7690(r13)
+    lwz	r4, lbl_801A6D30
     addi	r0, r3, lbl_8019E18C@l
     ori	r5, r5, 4
     mr	r3, r28
-    stw	r5, -0x76e0(r13)
+    stw	r5, lbl_801A6CE0
     stw	r0, 0x18(r4)
     bl      OSAllocFromArena
     lis     r4, lbl_8019E18C@ha
@@ -90,28 +94,28 @@ _800707e8:
     mr	r5, r26
     bl      GXInitFifoPtrs
 _8007085c:
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     stw	r31, 4(r3)
-    lwz	r0, -0x76e0(r13)
+    lwz	r0, lbl_801A6CE0
     rlwinm.	r0, r0, 0, 0x1b, 0x1b
     beq	_8007087c
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     stw	r31, 8(r3)
     b	_80070884
 _8007087c:
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     stw	r30, 8(r3)
 _80070884:
-    lwz	r4, -0x7690(r13)
+    lwz	r4, lbl_801A6D30
     li	r0, 0
     lwz	r3, 8(r4)
     stw	r3, 0(r4)
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     stw	r0, 0xc(r3)
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     stw	r0, 0x10(r3)
     bl      fn_80071D30
-    lwz	r5, -0x76cc(r13)
+    lwz	r5, lbl_801A6CF4
     lis	r3, 0x4330
     lfs	f1, -0x7a30(r2)
     lhz	r4, 4(r5)
@@ -129,23 +133,23 @@ _80070884:
     lfd	f0, 0x18(r1)
     fsubs	f4, f0, f4
     bl      fn_80038EEC
-    lwz	r6, -0x76cc(r13)
+    lwz	r6, lbl_801A6CF4
     li	r3, 0
     li	r4, 0
     lhz	r5, 4(r6)
     lhz	r6, 6(r6)
     bl      fn_80074188
-    lwz	r6, -0x76cc(r13)
+    lwz	r6, lbl_801A6CF4
     li	r3, 0
     li	r4, 0
     lhz	r5, 4(r6)
     lhz	r6, 6(r6)
     bl      ModelSetCachedScissorLT_AFC
-    lwz	r4, -0x76cc(r13)
+    lwz	r4, lbl_801A6CF4
     lhz	r3, 4(r4)
     lhz	r4, 8(r4)
     bl      ModelSetCachedScissorOffset_B04
-    lwz	r5, -0x76cc(r13)
+    lwz	r5, lbl_801A6CF4
     lis	r3, 0x4330
     stw	r3, 0x20(r1)
     lhz	r4, 8(r5)
@@ -160,7 +164,7 @@ _80070884:
     fsubs	f0, f0, f2
     fdivs	f1, f1, f0
     bl      GXSetDispCopyYScale
-    lwz	r6, -0x76cc(r13)
+    lwz	r6, lbl_801A6CF4
     li	r5, 1
     lbz	r3, 0x19(r6)
     addi	r4, r6, 0x1a
@@ -190,27 +194,27 @@ _800709c4:
     stw	r0, 8(r1)
     addi	r4, r4, -1
     bl      ModelMatchCachedSlot_B20
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     li	r4, 1
     lwz	r3, 4(r3)
     bl      __GXSetDispCopy
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     li	r4, 0
     lwz	r3, 8(r3)
     bl      __GXSetDispCopy
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     li	r4, 0
     lwz	r3, 4(r3)
     bl      __GXSetDispCopy
     li	r3, 0
     bl      __GXSetGenMode2
-    lwz	r3, -0x76cc(r13)
+    lwz	r3, lbl_801A6CF4
     bl      fn_8001B42C
     mr	r3, r31
     bl      fn_8001BD84
     bl      fn_8001BC54
     bl      VIWaitForRetrace
-    lwz	r3, -0x76cc(r13)
+    lwz	r3, lbl_801A6CF4
     lwz	r0, 0(r3)
     clrlwi.	r0, r0, 0x1f
     beq	_80070a40

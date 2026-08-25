@@ -83,6 +83,7 @@ extern void strlen(void);
 extern void memcpy(void);
 extern void memset(void);
 
+extern unsigned char lbl_801A6518[8];
 asm void fn_8002C8D0(void)
 {
     nofralloc
@@ -1105,7 +1106,7 @@ asm void __CARDValidDevice(void)
     addis	r0, r3, -0x8000
     cmplwi	r0, 4
     bne     _8002d6d0
-    lhz	r0, -0x7ea8(r13)
+    lhz	r0, lbl_801A6518
     cmplwi	r0, 0xffff
     bne     _8002d6d8
 _8002d6d0:
@@ -1491,7 +1492,7 @@ _8002dbe0:
     lhzx	r28, r3, r0
     li	r3, 0
     bl      __OSUnlockSramEx
-    lhz	r0, -0x7ea8(r13)
+    lhz	r0, lbl_801A6518
     cmplwi	r0, 0xffff
     beq     _8002dc24
     cmplw	r28, r0

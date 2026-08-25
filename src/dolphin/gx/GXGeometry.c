@@ -120,7 +120,7 @@ asm void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts)
     addi	r30, r4, 0
     stw	r29, 0x1c(r1)
     addi	r29, r3, 0
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     lwz	r0, 0x4f4(r6)
     cmplwi	r0, 0
     beq     _800346dc
@@ -128,41 +128,41 @@ asm void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts)
     beq     _8003466c
     bl      GXPreLoadEntireTexture
 _8003466c:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
     beq     _80034680
     bl      __GXFlushGenMode
 _80034680:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1d, 0x1d
     beq     _80034694
     bl      __GXSetGenMode
 _80034694:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1c, 0x1c
     beq     _800346a8
     bl      __GXSetVCD
 _800346a8:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1b, 0x1b
     beq     _800346bc
     bl      __GXSetVAT
 _800346bc:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0x4f4(r3)
     rlwinm.	r0, r0, 0, 0x1b, 0x1c
     beq     _800346d0
     bl      __GXCalculateVatSizes
 _800346d0:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     stw	r0, 0x4f4(r3)
 _800346dc:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 0(r3)
     cmplwi	r0, 0
     bne     _800346f0
@@ -184,7 +184,7 @@ _800346f0:
 asm void __GXSendFlushPrim(void)
 {
     nofralloc
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0x98
     lis	r5, -0x33ff
     lhz	r6, 4(r3)
@@ -218,7 +218,7 @@ _8003478c:
     stw	r4, -0x8000(r5)
     bdnz    _8003478c
 _80034794:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 1
     sth	r0, 2(r3)
     blr	
@@ -227,7 +227,7 @@ _80034794:
 asm void GXSetLineWidth(register s32 width, register s32 offset)
 {
     nofralloc
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     slwi	r6, r4, 0x10
     li	r5, 0x61
     lwz	r0, 0x7c(r7)
@@ -250,7 +250,7 @@ asm void GXSetLineWidth(register s32 width, register s32 offset)
 asm void GXSetPointSize(register s32 size, register s32 offset)
 {
     nofralloc
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     slwi	r6, r4, 0x13
     li	r5, 0x61
     lwz	r0, 0x7c(r7)
@@ -273,7 +273,7 @@ asm void GXSetPointSize(register s32 size, register s32 offset)
 asm void __GXSetTexCoordGen_Cache(register s32 tc, register s32 a, register s32 b)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     slwi	r8, r3, 2
     add	r7, r6, r8
     lwz	r0, 0xb8(r7)
@@ -313,7 +313,7 @@ _800348a8:
 _800348b0:
     li	r3, 1
 _800348b4:
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r3, 0xe
     lwz	r3, 0x204(r4)
     rlwinm	r3, r3, 0, 0x12, 0xf
@@ -328,7 +328,7 @@ _800348b4:
 asm void __GXSetZMode_Cache(register s32 arg)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     rlwinm	r0, r3, 0x13, 5, 0xc
     li	r4, 0x61
     lwz	r5, 0x204(r6)
@@ -349,7 +349,7 @@ asm void __GXSetGenMode(void)
 {
     nofralloc
     li	r0, 0x61
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     li	r0, 0
@@ -443,7 +443,7 @@ _80034a28:
 asm void __GXSetScissor_LT(register int xl, register int yt, register int xr, register int yb)
 {
     nofralloc
-    lwz	r9, -0x7de8(r2)
+    lwz	r9, gx
     li	r10, 0
     clrlwi	r7, r5, 0x10
     stw	r10, 0x1e0(r9)
@@ -484,7 +484,7 @@ asm void __GXSetScissor_LT(register int xl, register int yt, register int xr, re
 asm void __GXSetScissor_RB(register int xl, register int yt, register int xr, register int yb)
 {
     nofralloc
-    lwz	r9, -0x7de8(r2)
+    lwz	r9, gx
     li	r10, 0
     clrlwi	r7, r5, 0x10
     stw	r10, 0x1f0(r9)
@@ -525,7 +525,7 @@ asm void __GXSetScissor_RB(register int xl, register int yt, register int xr, re
 asm void __GXSetScissorBoxOffset(register int arg)
 {
     nofralloc
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     li	r0, 0
     stw	r0, 0x1e8(r4)
     addi	r5, r4, 0x1e8
@@ -555,7 +555,7 @@ asm void __GXInitTexObjHW(register void* p1, register void* p2, register int id,
     clrlwi	r31, r5, 0x1c
     stw	r30, 0x28(r1)
     addi	r30, r6, 0
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     stb	r0, 0x200(r7)
     addi	r7, r4, 0
     bne     _80034bf4
@@ -570,7 +570,7 @@ _80034bf4:
     bge     _80034c14
     b       _80034c30
 _80034c14:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwzu	r0, 0x1fc(r3)
     rlwinm	r0, r0, 0, 0x11, 0xe
     oris	r0, r0, 1
@@ -578,14 +578,14 @@ _80034c14:
     stw	r0, 0(r3)
     b       _80034c44
 _80034c30:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwzu	r0, 0x1fc(r3)
     rlwinm	r0, r0, 0, 0x11, 0xe
     oris	r0, r0, 1
     stw	r0, 0(r3)
 _80034c44:
     rlwinm	r4, r5, 0, 0x1b, 0x1b
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     addi	r0, r4, -0x10
     cntlzw	r0, r0
     rlwinm	r0, r0, 0x1b, 0x18, 0x1f
@@ -602,7 +602,7 @@ _80034c44:
     clrlwi	r31, r31, 0x1d
     addi	r7, r1, 0x1c
     bl      __GXGetTexTileSize
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     stw	r0, 0x1f8(r3)
     addi	r7, r3, 0x1f8
@@ -639,7 +639,7 @@ _80034c44:
 asm void __GXSetZMode(register int arg)
 {
     nofralloc
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r3, 0xc
     lwz	r3, 0x1ec(r4)
     rlwinm	r3, r3, 0, 0x14, 0x11
@@ -654,7 +654,7 @@ asm void __GXSetZMode(register int arg)
 asm void __GXSetBlendMode(register int a, register int b, register int c)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     clrlwi	r4, r3, 0x1f
     addi	r0, r4, -1
     lwz	r4, 0x1ec(r6)
@@ -692,7 +692,7 @@ asm void GXSetDispCopyYScale(register void* p1, register void* p2, register int 
     fdivs	f1, f0, f1
     bl      __cvt_fp2unsigned
     clrlwi	r6, r3, 0x17
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     li	r0, 0x61
     lis	r3, -0x33ff
     stb	r0, -0x8000(r3)
@@ -749,7 +749,7 @@ asm void __GXSetBlendModePair(register int a, register int b, register int c)
     lbz	r5, 0(r3)
     li	r6, 0x61
     slwi	r7, r4, 8
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     rlwimi	r7, r5, 0, 0x18, 0x1f
     lis	r5, -0x33ff
     clrlwi	r7, r7, 8
@@ -906,7 +906,7 @@ _800350b4:
     addi	r7, r3, 0x15
 _800350c4:
     li	r5, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r4, -0x33ff
     stb	r5, -0x8000(r4)
     li	r0, 0
@@ -922,7 +922,7 @@ _800350c4:
 asm void __GXSetGenMode2(register int idx)
 {
     nofralloc
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     slwi	r0, r3, 7
     lwzu	r3, 0x1ec(r4)
     rlwinm	r3, r3, 0, 0x19, 0x16
@@ -937,7 +937,7 @@ asm void __GXSetDispCopy(register int a, register int b)
     nofralloc
     clrlwi.	r0, r4, 0x18
     beq     _80035150
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     li	r0, 0x61
     lis	r5, -0x33ff
     lwz	r6, 0x1d8(r7)
@@ -955,13 +955,13 @@ _80035150:
     clrlwi.	r0, r4, 0x18
     li	r0, 0
     bne     _80035170
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     lwz	r5, 0x1dc(r5)
     clrlwi	r5, r5, 0x1d
     cmplwi	r5, 3
     bne     _8003519c
 _80035170:
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     lwz	r7, 0x1dc(r5)
     rlwinm	r5, r7, 0x1a, 0x1f, 0x1f
     cmplwi	r5, 1
@@ -974,7 +974,7 @@ _80035170:
     stw	r5, -0x8000(r6)
 _8003519c:
     li	r9, 0x61
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     lis	r8, -0x33ff
     stb	r9, -0x8000(r8)
     rlwinm	r3, r3, 0x1b, 8, 0x1f
@@ -1017,13 +1017,13 @@ _8003523c:
     clrlwi.	r0, r0, 0x18
     beq     _8003525c
     li	r0, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r4, -0x33ff
     stb	r0, -0x8000(r4)
     lwz	r0, 0x1dc(r3)
     stw	r0, -0x8000(r4)
 _8003525c:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     sth	r0, 2(r3)
     blr	
@@ -1034,7 +1034,7 @@ asm void __GXSetTexCopy(register void* p, register int id, register int v)
     nofralloc
     clrlwi.	r0, r4, 0x18
     beq     _800352ac
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     li	r0, 0x61
     lis	r5, -0x33ff
     lwz	r6, 0x1d8(r7)
@@ -1049,7 +1049,7 @@ asm void __GXSetTexCopy(register void* p, register int id, register int v)
     rlwinm	r0, r6, 0, 0, 0x1d
     stw	r0, -0x8000(r5)
 _800352ac:
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     li	r0, 0
     lbz	r5, 0x200(r6)
     lwz	r7, 0x1dc(r6)
@@ -1082,7 +1082,7 @@ _80035304:
     stw	r7, -0x8000(r5)
 _8003531c:
     li	r9, 0x61
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     lis	r8, -0x33ff
     stb	r9, -0x8000(r8)
     rlwinm	r3, r3, 0x1b, 8, 0x1f
@@ -1124,13 +1124,13 @@ _800353b8:
     clrlwi.	r0, r0, 0x18
     beq     _800353d8
     li	r0, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r4, -0x33ff
     stb	r0, -0x8000(r4)
     lwz	r0, 0x1dc(r3)
     stw	r0, -0x8000(r4)
 _800353d8:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     sth	r0, 2(r3)
     blr	
@@ -1140,7 +1140,7 @@ asm void __GXFlushTextureCache(register int a)
 {
     nofralloc
     li	r6, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r5, -0x33ff
     lis	r4, 0x5500
     stb	r6, -0x8000(r5)
@@ -1390,7 +1390,7 @@ asm void __GXSetChanColor(register void* p)
     psq_st	f2, 0x0(r4), 0, 0
     psq_st	f1, 0x0(r4), 0, 0
     psq_st	f0, 0x0(r4), 0, 0
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 1
     sth	r0, 2(r3)
     blr	
@@ -1414,7 +1414,7 @@ _80035758:
     bgelr	
     b       _800357d8
 _80035768:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 0
     lwz	r0, 0(r4)
     lwz	r3, 0xa8(r3)
@@ -1423,7 +1423,7 @@ _80035768:
     rlwimi	r7, r3, 0, 0x18, 0x1f
     b       _800357f4
 _80035788:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 1
     lwz	r0, 0(r4)
     lwz	r3, 0xac(r3)
@@ -1432,14 +1432,14 @@ _80035788:
     rlwimi	r7, r3, 0, 0x18, 0x1f
     b       _800357f4
 _800357a8:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 0
     lbz	r7, 3(r4)
     lwz	r3, 0xa8(r3)
     rlwimi	r7, r3, 0, 0, 0x17
     b       _800357f4
 _800357c0:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 1
     lbz	r7, 3(r4)
     lwz	r3, 0xac(r3)
@@ -1456,7 +1456,7 @@ _800357e4:
     blr	
 _800357f4:
     li	r0, 0x10
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lis	r6, -0x33ff
     stb	r0, -0x8000(r6)
     addi	r3, r5, 0x100a
@@ -1488,7 +1488,7 @@ _8003584c:
     bgelr	
     b       _800358cc
 _8003585c:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 0
     lwz	r0, 0(r4)
     lwz	r3, 0xb0(r3)
@@ -1497,7 +1497,7 @@ _8003585c:
     rlwimi	r7, r3, 0, 0x18, 0x1f
     b       _800358e8
 _8003587c:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 1
     lwz	r0, 0(r4)
     lwz	r3, 0xb4(r3)
@@ -1506,14 +1506,14 @@ _8003587c:
     rlwimi	r7, r3, 0, 0x18, 0x1f
     b       _800358e8
 _8003589c:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 0
     lbz	r7, 3(r4)
     lwz	r3, 0xb0(r3)
     rlwimi	r7, r3, 0, 0, 0x17
     b       _800358e8
 _800358b4:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r5, 1
     lbz	r7, 3(r4)
     lwz	r3, 0xb4(r3)
@@ -1530,7 +1530,7 @@ _800358d8:
     blr	
 _800358e8:
     li	r0, 0x10
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lis	r6, -0x33ff
     stb	r0, -0x8000(r6)
     addi	r3, r5, 0x100c
@@ -1547,7 +1547,7 @@ _800358e8:
 asm void __GXSetChanAmbColor(register void* p)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     rlwinm	r0, r3, 4, 0x14, 0x1b
     clrlwi	r8, r3, 0x18
     lwz	r5, 0x204(r6)
@@ -1619,7 +1619,7 @@ _80035a04:
     stw	r0, -0x8000(r4)
     stw	r6, -0x8000(r4)
 _80035a1c:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 1
     sth	r0, 2(r3)
     blr	

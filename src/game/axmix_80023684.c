@@ -9,6 +9,8 @@ extern void memset(void);
 extern void fn_800885B8(void);
 extern unsigned char lbl_80128160[32];
 
+extern unsigned char lbl_801A64F8[4];
+extern unsigned char lbl_801A64FC[4];
 asm void axmix_heap_init(void)
 {
     nofralloc
@@ -95,7 +97,7 @@ _800237a8:
     slwi	r16, r17, 2
     stw	r16, 0xbc(r22)
     mr	r3, r16
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mtlr	r12
     blrl	
     stw	r3, 0xc0(r22)
@@ -170,7 +172,7 @@ _800238bc:
     slwi	r16, r17, 2
     stw	r16, 8(r22)
     mr	r3, r16
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mtlr	r12
     blrl	
     stw	r3, 0xc(r22)
@@ -225,7 +227,7 @@ _8002397c:
     slwi	r16, r17, 2
     stw	r16, 0x30(r24)
     mr	r3, r16
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mtlr	r12
     blrl	
     stw	r3, 0x34(r24)
@@ -308,7 +310,7 @@ _80023a7c:
     stw	r0, 0x1a4(r30)
     b       _80023b08
 _80023acc:
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     lwz	r0, 0x1a4(r30)
     mtlr	r12
     slwi	r3, r0, 2
@@ -839,7 +841,7 @@ _80024240:
     b       _8002425c
 _80024244:
     lwz	r3, 0xc(r31)
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mtlr	r12
     blrl	
     addi	r31, r31, 0x14
@@ -858,7 +860,7 @@ _8002427c:
     b       _80024298
 _80024280:
     lwz	r3, 0xc0(r31)
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mtlr	r12
     blrl	
     addi	r31, r31, 0x14
@@ -880,7 +882,7 @@ _800242c4:
     b       _800242e0
 _800242c8:
     lwz	r3, 0x1ac(r31)
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mtlr	r12
     blrl	
     addi	r31, r31, 4

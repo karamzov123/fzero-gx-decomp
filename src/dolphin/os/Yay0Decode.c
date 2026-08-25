@@ -25,6 +25,13 @@ extern unsigned char lbl_801230D0[2448];
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6438[8];
+extern unsigned char lbl_801A6798[4];
+extern unsigned char lbl_801A679C[4];
+extern unsigned char lbl_801A67A0[4];
+extern unsigned char lbl_801A67A4[4];
+extern unsigned char lbl_801A6F40[4];
+extern unsigned char lbl_801A6F44[4];
 asm s32 fn_8000CAC8(register s32 code)
 {
     nofralloc
@@ -256,7 +263,7 @@ Yay0Dec_endIter:
 asm u16 Yay0ReadyFlagUpdate(void)
 {
     nofralloc
-    lhz     r3, -0x7F88(r13)
+    lhz	r3, lbl_801A6438
     cmplwi  r3, 1
     blelr
     lis     r3, 0x8000
@@ -275,13 +282,13 @@ Yay0Ready_readHW:
 Yay0Ready_setZero:
     li      r0, 0
 Yay0Ready_store:
-    sth     r0, -0x7F88(r13)
+    sth	r0, lbl_801A6438
     b       Yay0Ready_return
 Yay0Ready_clear:
     li      r0, 0
-    sth     r0, -0x7F88(r13)
+    sth	r0, lbl_801A6438
 Yay0Ready_return:
-    lhz     r3, -0x7F88(r13)
+    lhz	r3, lbl_801A6438
     blr
 }
 
@@ -342,7 +349,7 @@ asm s32 fn_8000CEBC(register u8* arcData, register void* work)
     addi    r30, r4, 0
     stw     r29, 0x34(r1)
     addi    r29, r3, 0
-    stw     r0, -0x7C24(r13)
+    stw	r0, lbl_801A679C
     bl      Yay0ReadyFlagUpdate
     clrlwi  r0, r3, 16
     cmplwi  r0, 1
@@ -380,16 +387,16 @@ Yay0Arc_gotSize:
     addi    r3, r30, 0
     addi    r4, r29, 0
     bl      fn_8000CC64
-    stw     r29, -0x7C28(r13)
-    lhz     r4, -0x7F88(r13)
+    stw	r29, lbl_801A6798
+    lhz	r4, lbl_801A6438
     lhz     r0, 0x22(r29)
     cmplwi  r4, 1
     add     r0, r29, r0
-    stw     r0, -0x7C20(r13)
+    stw	r0, lbl_801A67A0
     lhz     r3, 0x1A(r29)
     lhz     r0, 0x1C(r29)
     mullw   r0, r3, r0
-    stw     r0, -0x7C1C(r13)
+    stw	r0, lbl_801A67A4
     bgt     Yay0Arc_streaming
     b       Yay0Arc_readyCheck
 Yay0Arc_streaming:
@@ -409,25 +416,25 @@ Yay0Arc_readVI:
 Yay0Arc_setReady:
     li      r0, 0
 Yay0Arc_storeReady:
-    sth     r0, -0x7F88(r13)
+    sth	r0, lbl_801A6438
     b       Yay0Arc_afterReady
 Yay0Arc_clearReady:
     li      r0, 0
-    sth     r0, -0x7F88(r13)
+    sth	r0, lbl_801A6438
 Yay0Arc_afterReady:
-    lhz     r4, -0x7F88(r13)
+    lhz	r4, lbl_801A6438
 Yay0Arc_readyCheck:
     clrlwi  r0, r4, 16
     cmplwi  r0, 1
     bne     Yay0Arc_exit
-    lwz     r4, -0x7F00(r2)
+    lwz	r4, lbl_801A6F40
     li      r3, 0x54
-    lwz     r0, -0x7EFC(r2)
+    lwz	r0, lbl_801A6F44
     stw     r4, 0x1C(r1)
     stw     r0, 0x20(r1)
     bl      fn_8000CAC8
-    lwz     r5, -0x7C1C(r13)
-    lwz     r12, -0x7C28(r13)
+    lwz	r5, lbl_801A67A4
+    lwz	r12, lbl_801A6798
     divw    r10, r3, r5
     lhz     r6, 0x1C(r1)
     lhz     r0, 0x1E(r12)
@@ -477,7 +484,7 @@ Yay0Arc_readyCheck:
     sth     r6, 0(r9)
     addi    r10, r5, 5
     addi    r9, r5, 6
-    lwz     r7, -0x7C28(r13)
+    lwz	r7, lbl_801A6798
     addi    r6, r5, 7
     lhz     r5, 0x1E(r1)
     lhz     r7, 0x1E(r7)
@@ -499,7 +506,7 @@ Yay0Arc_readyCheck:
     add     r8, r8, r7
     add     r8, r8, r3
     sth     r5, 0(r8)
-    lwz     r7, -0x7C28(r13)
+    lwz	r7, lbl_801A6798
     lhz     r5, 0x20(r1)
     lhz     r7, 0x1E(r7)
     srawi   r7, r7, 3
@@ -520,7 +527,7 @@ Yay0Arc_readyCheck:
     add     r8, r8, r7
     add     r8, r8, r3
     sth     r5, 0(r8)
-    lwz     r5, -0x7C28(r13)
+    lwz	r5, lbl_801A6798
     lhz     r5, 0x1E(r5)
     srawi   r5, r5, 3
     addze   r5, r5
@@ -573,7 +580,7 @@ asm char* fn_8000D1F0(register char* stream, register u8* texBuffer,
     mr      r3, r28
     b       Yay0Draw_exit
 Yay0Draw_haveCmd:
-    lhz     r0, -0x7F88(r13)
+    lhz	r0, lbl_801A6438
     addi    r28, r28, 1
     cmplwi  r0, 1
     bgt     Yay0Draw_pollReady
@@ -595,13 +602,13 @@ Yay0Draw_readVI:
 Yay0Draw_setReady:
     li      r0, 0
 Yay0Draw_storeReady:
-    sth     r0, -0x7F88(r13)
+    sth	r0, lbl_801A6438
     b       Yay0Draw_afterReady
 Yay0Draw_clearReady:
     li      r0, 0
-    sth     r0, -0x7F88(r13)
+    sth	r0, lbl_801A6438
 Yay0Draw_afterReady:
-    lhz     r0, -0x7F88(r13)
+    lhz	r0, lbl_801A6438
 Yay0Draw_checkReady:
     clrlwi  r0, r0, 16
     cmplwi  r0, 1
@@ -638,12 +645,12 @@ Yay0Draw_isRangeA:
     or      r3, r0, r4
     addi    r28, r28, 1
 Yay0Draw_setup:
-    lwz     r4, -0x7C28(r13)
+    lwz	r4, lbl_801A6798
     addi    r25, r4, 0x2C
     bl      fn_8000CAC8
-    lwz     r6, -0x7C1C(r13)
+    lwz	r6, lbl_801A67A4
     slwi    r0, r24, 2
-    lwz     r12, -0x7C28(r13)
+    lwz	r12, lbl_801A6798
     srawi   r0, r0, 3
     divw    r11, r3, r6
     lwz     r4, 0x14(r12)
@@ -747,19 +754,19 @@ Yay0Draw_merge:
     or      r8, r23, r8
     stb     r8, 0(r9)
 Yay0Draw_colCheck:
-    lwz     r9, -0x7C28(r13)
+    lwz	r9, lbl_801A6798
     lhz     r8, 0x10(r9)
     cmpw    r12, r8
     blt     Yay0Draw_colLoop
     addi    r27, r27, 1
 Yay0Draw_rowCheck:
-    lwz     r4, -0x7C28(r13)
+    lwz	r4, lbl_801A6798
     lhz     r0, 0x12(r4)
     cmpw    r27, r0
     blt     Yay0Draw_rowLoop
     cmplwi  r31, 0
     beq     Yay0Draw_skipOut
-    lwz     r4, -0x7C20(r13)
+    lwz	r4, lbl_801A67A0
     lbzx    r0, r4, r3
     stw     r0, 0(r31)
 Yay0Draw_skipOut:

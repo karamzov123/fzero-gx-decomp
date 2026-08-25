@@ -4,6 +4,7 @@ typedef unsigned int u32;
 typedef signed int s32;
 
 extern void* memset(void*, int, unsigned long);
+extern unsigned char gx[4]; /* sda21 */
 extern void* memcpy(void*, const void*, unsigned long);
 extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
@@ -15,6 +16,9 @@ extern void GXGetCPUFifo(void);
 extern void __GXSaveCPUFifoAux(void);
 extern void __GXSetDirtyState(void);
 extern void __GXSendFlushPrim(void);
+extern unsigned char __cpReg[4];
+extern unsigned char __piReg[4];
+extern unsigned char lbl_801A6C28[8];
 asm void GXSetViewport(register void* p);
 asm void __GXSetMatrixIndex(register void* p);
 
@@ -53,14 +57,14 @@ asm void GXBeginDisplayList(register void* p1, register void* p2)
     stw     r28, 0x10(r1)
     addi    r28, r3, 0
     bl      GXGetCPUFifo
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     mr      r30, r3
     lwz     r0, 0x4f4(r4)
     cmplwi  r0, 0
     beq     _800388c4
     bl      __GXSetDirtyState
 _800388c4:
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     lbz     r0, 0x4f1(r4)
     cmplwi  r0, 0
     beq     _800388e0
@@ -79,10 +83,10 @@ _800388e0:
     stw     r4, 0x1c(r31)
     stw     r28, 0x14(r31)
     stw     r28, 0x18(r31)
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     stb     r0, 0x4f0(r4)
     bl      GXSaveCPUFifo
-    stw     r30, -0x7798(r13)
+    stw	r30, lbl_801A6C28
     mr      r3, r31
     bl      GXSetCPUFifo
     lwz     r0, 0x24(r1)
@@ -107,37 +111,37 @@ asm void GXEndDisplayList(register void* p)
     stw     r30, 0x10(r1)
     stw     r29, 0xc(r1)
     stw     r28, 8(r1)
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     lwz     r0, 0x4f4(r3)
     cmplwi  r0, 0
     beq     _8003897c
     bl      __GXSetDirtyState
 _8003897c:
-    lwz     r4, -0x77f8(r13)
+    lwz	r4, __piReg
     mr      r3, r31
     lwz     r0, 0x14(r4)
     rlwinm  r30, r0, 6, 0x1f, 0x1f
     bl      __GXSaveCPUFifoAux
-    lwz     r3, -0x7798(r13)
+    lwz	r3, lbl_801A6C28
     bl      GXSetCPUFifo
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     lbz     r0, 0x4f1(r3)
     cmplwi  r0, 0
     beq     _800389d8
     bl      OSDisableInterrupts
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     mr      r29, r3
     li      r5, 0x4f8
     lwz     r28, 8(r4)
     addi    r3, r4, 0
     addi    r4, r31, 0x24
     bl      memcpy
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     mr      r3, r29
     stw     r28, 8(r4)
     bl      OSRestoreInterrupts
 _800389d8:
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     li      r0, 0
     cmplwi  r30, 0
     stb     r0, 0x4f0(r3)
@@ -167,13 +171,13 @@ asm void fn_80038A18(register void* p)
     addi    r31, r4, 0
     stw     r30, 0x10(r1)
     addi    r30, r3, 0
-    lwz     r5, -0x7de8(r2)
+    lwz     r5, gx
     lwz     r0, 0x4f4(r5)
     cmplwi  r0, 0
     beq     _80038a48
     bl      __GXSetDirtyState
 _80038a48:
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     lwz     r0, 0(r3)
     cmplwi  r0, 0
     bne     _80038a5c
@@ -195,7 +199,7 @@ _80038a5c:
 asm int fn_80038A88(register void* p)
 {
     nofralloc
-    lwz     r5, -0x7de8(r2)
+    lwz     r5, gx
     cmpwi   r4, 1
     stw     r4, 0x420(r5)
     lfs     f0, 0(r3)
@@ -219,7 +223,7 @@ _80038acc:
     stfs    f0, 0x430(r5)
 _80038adc:
     li      r0, 0x10
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     lis     r5, -0x33ff
     lis     r3, 6
     stb     r0, -0x8000(r5)
@@ -254,7 +258,7 @@ asm void GXSetProjectionv(register u32 a)
     mr      r31, r3
     lfs     f1, 0(r3)
     bl      __cvt_fp2unsigned
-    lwz     r7, -0x7de8(r2)
+    lwz     r7, gx
     lis     r4, 6
     li      r6, 0x10
     stw     r3, 0x420(r7)
@@ -302,7 +306,7 @@ asm void GXGetProjectionv(register u32 a)
     nofralloc
     stwu    r1, -0x18(r1)
     lis     r0, 0x4330
-    lwz     r5, -0x7de8(r2)
+    lwz     r5, gx
     lfd     f1, -0x7cd8(r2)
     lwz     r4, 0x420(r5)
     stw     r4, 0x14(r1)
@@ -382,7 +386,7 @@ asm void fn_80038CFC(void)
     mflr    r0
     stw     r0, 4(r1)
     stwu    r1, -8(r1)
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     lwzu    r0, 0x80(r4)
     rlwinm  r0, r0, 0, 0, 0x19
     or      r0, r0, r3
@@ -472,7 +476,7 @@ _80038e1c:
     lfs     f0, -0x7ccc(r2)
     lfs     f9, -0x7cd0(r2)
     fmuls   f31, f3, f11
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     fmuls   f7, f4, f11
     stfs    f1, 0x43c(r3)
     fadds   f8, f1, f31
@@ -496,7 +500,7 @@ _80038e1c:
     bl      fn_80038878
 _80038e88:
     li      r0, 0x10
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     lis     r5, -0x33ff
     lis     r4, 5
     stb     r0, -0x8000(r5)
@@ -539,7 +543,7 @@ asm void fn_80038EEC(void)
 asm void GXGetViewport(register void* p)
 {
     nofralloc
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     lfs     f0, 0x43c(r4)
     stfs    f0, 0(r3)
     lfs     f0, 0x440(r4)
@@ -558,7 +562,7 @@ asm void GXGetViewport(register void* p)
 asm void GXSetScissor(register void* p)
 {
     nofralloc
-    lwz     r8, -0x7de8(r2)
+    lwz     r8, gx
     addi    r9, r3, 0x156
     addi    r10, r4, 0x156
     lwz     r3, 0xf8(r8)
@@ -599,7 +603,7 @@ asm void GXSetScissor(register void* p)
 asm void GXGetScissor(register void* p)
 {
     nofralloc
-    lwz     r8, -0x7de8(r2)
+    lwz     r8, gx
     lwz     r7, 0xf8(r8)
     lwz     r8, 0xfc(r8)
     rlwinm  r9, r7, 0x14, 0x15, 0x1f
@@ -623,7 +627,7 @@ asm void GXSetScissorBoxOffset(register void* p)
 {
     nofralloc
     addi    r5, r3, 0x156
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     addi    r0, r4, 0x156
     srwi    r4, r5, 1
     rlwinm  r4, r4, 0, 0x16, 0xb
@@ -644,7 +648,7 @@ asm void fn_80039060(void)
 {
     nofralloc
     li      r0, 0x10
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     lis     r6, -0x33ff
     stb     r0, -0x8000(r6)
     li      r5, 0x1005
@@ -661,7 +665,7 @@ asm void __GXSetMatrixIndex(register void* p)
     cmpwi   r3, 5
     bge     _800390c8
     li      r0, 8
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     lis     r5, -0x33ff
     stb     r0, -0x8000(r5)
     li      r0, 0x30
@@ -676,7 +680,7 @@ asm void __GXSetMatrixIndex(register void* p)
     b       _800390fc
 _800390c8:
     li      r0, 8
-    lwz     r4, -0x7de8(r2)
+    lwz     r4, gx
     lis     r5, -0x33ff
     stb     r0, -0x8000(r5)
     li      r0, 0x40
@@ -689,7 +693,7 @@ _800390c8:
     stw     r0, -0x8000(r5)
     stw     r4, -0x8000(r5)
 _800390fc:
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     li      r0, 1
     sth     r0, 2(r3)
     blr     
@@ -698,7 +702,7 @@ _800390fc:
 asm void GXWriteCommandRegister(register u32 cmd)
 {
     nofralloc
-    lwz     r5, -0x7de8(r2)
+    lwz     r5, gx
     lwz     r0, 0x4e4(r5)
     cmpwi   r0, 0x22
     beq     _80039144
@@ -736,7 +740,7 @@ _8003917c:
     lis     r0, 0x2400
     stw     r0, -0x8000(r5)
 _80039190:
-    lwz     r7, -0x7de8(r2)
+    lwz     r7, gx
     lwz     r0, 0x4e8(r7)
     cmpwi   r0, 0x15
     beq     _800391c8
@@ -771,11 +775,11 @@ _800391e0:
     stw     r0, -0x8000(r5)
     b       _80039218
 _8003920c:
-    lwz     r5, -0x77f4(r13)
+    lwz	r5, __cpReg
     li      r0, 0
     sth     r0, 6(r5)
 _80039218:
-    lwz     r5, -0x7de8(r2)
+    lwz     r5, gx
     stw     r3, 0x4e4(r5)
     lwz     r0, 0x4e4(r5)
     cmplwi  r0, 0x23
@@ -1043,7 +1047,7 @@ _80039218:
     addi    r0, r3, -0x3e53
     stw     r0, -0x8000(r5)
 _80039644:
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     stw     r4, 0x4e8(r3)
     lwz     r0, 0x4e8(r3)
     cmplwi  r0, 0x16
@@ -1220,23 +1224,23 @@ _80039644:
     lwz     r0, 0x4ec(r3)
     stw     r0, -0x8000(r4)
     b       _80039944
-    lwz     r3, -0x77f4(r13)
+    lwz	r3, __cpReg
     li      r0, 2
     sth     r0, 6(r3)
     b       _80039944
-    lwz     r3, -0x77f4(r13)
+    lwz	r3, __cpReg
     li      r0, 3
     sth     r0, 6(r3)
     b       _80039944
-    lwz     r3, -0x77f4(r13)
+    lwz	r3, __cpReg
     li      r0, 4
     sth     r0, 6(r3)
     b       _80039944
-    lwz     r3, -0x77f4(r13)
+    lwz	r3, __cpReg
     li      r0, 5
     sth     r0, 6(r3)
 _80039944:
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     li      r0, 0
     sth     r0, 2(r3)
     blr     
@@ -1245,7 +1249,7 @@ _80039944:
 asm void fn_80039954(register void* p)
 {
     nofralloc
-    lwz     r10, -0x77f4(r13)
+    lwz	r10, __cpReg
     addi    r8, r10, 0x42
     lhz     r6, 0x42(r10)
     addi    r7, r10, 0x40
@@ -1290,7 +1294,7 @@ _800399dc:
     bne     _800399dc
     slwi    r0, r9, 0x10
     or      r9, r0, r5
-    lwz     r5, -0x7de8(r2)
+    lwz     r5, gx
     lwz     r0, 0x4e4(r5)
     cmpwi   r0, 0xa
     beq     _80039a28
@@ -1319,7 +1323,7 @@ _80039a4c:
     li      r0, 0
     stw     r0, 0(r3)
 _80039a54:
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     lwz     r0, 0x4e8(r3)
     cmplwi  r0, 0x16
     bgt     _80039af0
@@ -1367,7 +1371,7 @@ _80039af0:
 asm int fn_80039AFC(void)
 {
     nofralloc
-    lwz     r3, -0x77f4(r13)
+    lwz	r3, __cpReg
     li      r0, 4
     sth     r0, 4(r3)
     blr     
@@ -1393,7 +1397,7 @@ asm int fn_80039B38(register u32 a)
 {
     nofralloc
     li      r0, 0x61
-    lwz     r3, -0x7de8(r2)
+    lwz     r3, gx
     lis     r5, -0x33ff
     lis     r4, 0x2403
     stb     r0, -0x8000(r5)
@@ -1414,7 +1418,7 @@ asm int fn_80039B38(register u32 a)
 asm void GXReadXfRasMetric(register u32 a)
 {
     nofralloc
-    lwz     r7, -0x77f4(r13)
+    lwz	r7, __cpReg
     addi    r10, r7, 0x42
     lhz     r8, 0x42(r7)
     addi    r9, r7, 0x40
@@ -1427,7 +1431,7 @@ _80039b8c:
     slwi    r0, r8, 0x10
     or      r0, r0, r7
     stw     r0, 0(r5)
-    lwz     r5, -0x77f4(r13)
+    lwz	r5, __cpReg
     addi    r9, r5, 0x46
     lhz     r7, 0x46(r5)
     addi    r8, r5, 0x44
@@ -1440,7 +1444,7 @@ _80039bbc:
     slwi    r0, r7, 0x10
     or      r0, r0, r5
     stw     r0, 0(r6)
-    lwz     r5, -0x77f4(r13)
+    lwz	r5, __cpReg
     addi    r8, r5, 0x4a
     lhz     r6, 0x4a(r5)
     addi    r7, r5, 0x48
@@ -1453,7 +1457,7 @@ _80039bec:
     slwi    r0, r6, 0x10
     or      r0, r0, r5
     stw     r0, 0(r3)
-    lwz     r3, -0x77f4(r13)
+    lwz	r3, __cpReg
     addi    r7, r3, 0x4e
     lhz     r5, 0x4e(r3)
     addi    r6, r3, 0x4c

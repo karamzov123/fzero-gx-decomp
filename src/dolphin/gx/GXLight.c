@@ -25,6 +25,7 @@ extern unsigned char lbl_80178118[648];
 #pragma push
 #pragma force_active on
 
+extern unsigned char gx[4];
 asm void __GXSetChanMatColor(register void* p)
 {
     nofralloc
@@ -38,7 +39,7 @@ asm void __GXSetChanMatColor(register void* p)
     lbz	r9, 2(r4)
     rlwinm	r0, r0, 0, 0xc, 7
     oris	r8, r0, 0x80
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     slwi	r7, r7, 0x18
     li	r0, 0x61
     lis	r4, -0x33ff
@@ -63,7 +64,7 @@ asm void __GXSetLightAttnEnable_A(register void* p, register int a)
 {
     nofralloc
     srawi	r5, r3, 1
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     clrlwi.	r0, r3, 0x1f
     slwi	r3, r5, 2
     addi	r7, r3, 0x1b0
@@ -83,7 +84,7 @@ _80037388:
     stw	r0, 0(r7)
 _8003739c:
     li	r0, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     li	r0, 0
@@ -97,7 +98,7 @@ asm void __GXSetLightAttnEnable_B(register void* p, register int a)
 {
     nofralloc
     srawi	r5, r3, 1
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     clrlwi.	r0, r3, 0x1f
     slwi	r3, r5, 2
     addi	r7, r3, 0x1b0
@@ -117,7 +118,7 @@ _800373f4:
     stw	r0, 0(r7)
 _80037408:
     li	r0, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     li	r0, 0
@@ -131,7 +132,7 @@ asm void __GXSetLightColorAttnSel(register void* p)
 {
     nofralloc
     slwi	r3, r3, 2
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     addi	r8, r3, 0x170
     add	r8, r7, r8
     lwz	r0, 0(r8)
@@ -157,7 +158,7 @@ asm void GXSetLightColorAttnRegs(register void* p, register int a, register int 
 {
     nofralloc
     slwi	r10, r3, 1
-    lwz	r9, -0x7de8(r2)
+    lwz	r9, gx
     slwi	r3, r3, 3
     addi	r11, r3, 0x1b0
     add	r11, r9, r11
@@ -200,7 +201,7 @@ asm void GXWriteLightReg(register void* p)
 {
     nofralloc
     clrlwi	r0, r4, 0x18
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     oris	r0, r0, 0xf300
     rlwinm	r0, r0, 0, 0x18, 0xf
     rlwimi	r0, r7, 8, 0x10, 0x17
@@ -250,7 +251,7 @@ _800375b0:
     li	r6, 2
 _800375b4:
     li	r0, 0x61
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     rlwinm	r6, r6, 0, 0x1e, 0x1b
@@ -270,7 +271,7 @@ asm void GXSetChanCtrl(register void* p1, register int a, register int b)
 {
     nofralloc
     srawi	r7, r3, 1
-    lwz	r9, -0x7de8(r2)
+    lwz	r9, gx
     rlwinm	r10, r5, 0, 0x18, 0x16
     addze	r7, r7
     slwi	r0, r3, 2
@@ -289,7 +290,7 @@ _8003762c:
 _80037630:
     cmpwi	r4, 8
     blt     _8003765c
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     li	r0, 1
     slw	r0, r0, r3
     lwz	r8, 0x4e0(r4)
@@ -299,7 +300,7 @@ _80037630:
     stw	r0, 0(r10)
     b       _80037678
 _8003765c:
-    lwz	r8, -0x7de8(r2)
+    lwz	r8, gx
     li	r0, 1
     slw	r0, r0, r3
     addi	r10, r8, 0x4e0
@@ -388,7 +389,7 @@ _80037784:
     stw	r0, 0(r7)
 _80037798:
     li	r0, 0x61
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lis	r5, -0x33ff
     stb	r0, -0x8000(r5)
     li	r0, 0
@@ -404,7 +405,7 @@ _80037798:
 asm void __GXWriteMatColorRegs(void)
 {
     nofralloc
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     clrlwi	r3, r3, 0x18
     addi	r0, r3, -1
     lwz	r3, 0x204(r4)
@@ -532,7 +533,7 @@ _80037948:
     stb	r0, -0x8000(r4)
     oris	r7, r7, 0xee00
     slwi	r6, r6, 8
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     stw	r7, -0x8000(r4)
     rlwinm	r7, r12, 0x14, 0xd, 0x14
     stb	r0, -0x8000(r4)
@@ -624,7 +625,7 @@ asm void __GXWriteChanColorRegs(register void* p, register int a, register int b
     stw	r9, -0x8000(r6)
 _80037ad8:
     clrlwi	r5, r4, 0x10
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     addi	r0, r5, 0x156
     rlwinm	r5, r0, 0, 0x16, 0x14
     rlwinm	r0, r3, 0xa, 0xe, 0x15
@@ -643,7 +644,7 @@ _80037ad8:
 asm void GXWriteLightColor(register void* p)
 {
     nofralloc
-    lwz	r8, -0x7de8(r2)
+    lwz	r8, gx
     subfic	r0, r3, 3
     cntlzw	r7, r0
     subfic	r0, r3, 2
@@ -669,7 +670,7 @@ asm void GXWriteLightColor(register void* p)
 asm void __GXSetChanAmbSrcBit(register void* p)
 {
     nofralloc
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     li	r0, 0x61
     lis	r4, -0x33ff
     lwz	r6, 0x1d0(r5)
@@ -685,7 +686,7 @@ asm void __GXSetChanAmbSrcBit(register void* p)
 asm void __GXSetChanMatSrcBit(register void* p)
 {
     nofralloc
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     li	r0, 0x61
     lis	r4, -0x33ff
     lwz	r6, 0x1d0(r5)
@@ -701,7 +702,7 @@ asm void __GXSetChanMatSrcBit(register void* p)
 asm void __GXWriteChanCtrlBitfields(register void* p)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     li	r0, 0x61
     lwz	r7, 0x1d8(r6)
     rlwimi	r7, r3, 0, 0x1f, 0x1f
@@ -719,7 +720,7 @@ asm void __GXWriteChanCtrlBitfields(register void* p)
 asm void __GXXFSetPerfEnableMulti(register void* p)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     rlwinm	r0, r3, 6, 0x12, 0x19
     li	r3, 0x61
     lwz	r5, 0x1dc(r6)
@@ -738,7 +739,7 @@ asm void __GXXFSetPerfEnableMulti(register void* p)
 asm void __GXSetGenModeInline(register void* p, register int a, register int b)
 {
     nofralloc
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     lis     r5, lbl_8012B3E0@ha
     slwi	r6, r3, 2
     addi	r0, r5, lbl_8012B3E0@l
@@ -767,7 +768,7 @@ asm void __GXSetGenModeInline(register void* p, register int a, register int b)
 _80037c94:
     li	r0, 0
 _80037c98:
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     rlwinm	r0, r0, 9, 0xf, 0x16
     lwz	r4, 0x204(r5)
     rlwinm	r4, r4, 0, 0x17, 0x15
@@ -780,7 +781,7 @@ _80037cbc:
     lwz	r0, 0(r10)
     cmplwi	r0, 4
     bne     _80037d04
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     addi	r3, r3, -4
     li	r0, 0x61
     lwz	r4, 0x1d4(r5)
@@ -796,7 +797,7 @@ _80037cbc:
     lwz	r0, 0x1d4(r5)
     stw	r0, -0x8000(r3)
 _80037d04:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     li	r0, 0
     sth	r0, 2(r3)
     blr	
@@ -805,7 +806,7 @@ _80037d04:
 asm void __GXSetZModeBits(register void* p)
 {
     nofralloc
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     li	r0, 0x61
     lis	r4, -0x33ff
     lwz	r6, 0x1d0(r5)
@@ -821,7 +822,7 @@ asm void __GXSetZModeBits(register void* p)
 asm void GXWriteLightAttn(register void* p)
 {
     nofralloc
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     clrlwi	r5, r4, 0x18
     li	r0, 0x61
     lwz	r7, 0x1d4(r6)
@@ -842,7 +843,7 @@ asm void GXSetFieldMask(register void* p)
 {
     nofralloc
     clrlwi	r0, r4, 0x18
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     rlwinm	r5, r0, 0, 0x1f, 0x1d
     rlwinm	r0, r3, 1, 0x17, 0x1e
     or	r0, r5, r0
@@ -870,7 +871,7 @@ asm void GXSetFieldMode(register void* p, register int a)
     li	r30, 0x61
     stw	r29, 0x14(r1)
     mr	r29, r3
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     lwz	r4, 0x7c(r5)
     rlwinm	r4, r4, 0, 0xa, 8
     or	r0, r4, r0

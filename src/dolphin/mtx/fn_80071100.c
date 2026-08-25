@@ -9,6 +9,8 @@ extern asm void _restgpr_27(void);
 extern unsigned char lbl_8015AB70[80];
 extern unsigned char lbl_8015ABCC[12];
 
+extern unsigned char lbl_801A6D08[4];
+extern unsigned char lbl_801A6D0C[4];
 asm void fn_80071100(void)
 {
     nofralloc
@@ -24,7 +26,7 @@ asm void fn_80071100(void)
     stw	r28, 0x10(r1)
     mr	r28, r3
     bne	_80071160
-    lwz	r12, -0x76b4(r13)
+    lwz	r12, lbl_801A6D0C
     li	r3, 0x20
     mtctr	r12
     bctrl	
@@ -83,7 +85,7 @@ _800711d0:
     lwz	r3, 0x24(r3)
     cmplwi	r3, 0
     beq	_80071204
-    lwz	r12, -0x76b8(r13)
+    lwz	r12, lbl_801A6D08
     mtctr	r12
     bctrl	
 _80071204:
@@ -96,14 +98,14 @@ _8007120c:
     lwz	r3, 0x14(r29)
     cmplwi	r3, 0
     beq	_80071230
-    lwz	r12, -0x76b8(r13)
+    lwz	r12, lbl_801A6D08
     mtctr	r12
     bctrl	
 _80071230:
     lwz	r0, 0x10(r29)
     clrlwi.	r0, r0, 0x1f
     bne	_8007124c
-    lwz	r12, -0x76b8(r13)
+    lwz	r12, lbl_801A6D08
     mr	r3, r29
     mtctr	r12
     bctrl	

@@ -1,3 +1,9 @@
+extern unsigned char __OSIsGcam[4];
+extern unsigned char __OSSavedRegionEnd[4];
+extern unsigned char __OSSavedRegionStart[4];
+extern unsigned char lbl_801A67C8[8];
+extern unsigned char lbl_801A67C0[4];
+extern unsigned char lbl_801A67C4[4];
 typedef int BOOL;
 typedef signed char s8;
 typedef short s16;
@@ -47,7 +53,7 @@ static asm void Callback(s32 result, void* block)
 {
     nofralloc
     li	r0, 1
-    stw	r0, -0x7bf8(r13)
+    stw	r0, lbl_801A67C8
     blr	
 }
 
@@ -61,9 +67,9 @@ asm void __OSReboot(register unsigned long resetCode, register unsigned long boo
     lis     r3, lbl_8015BFA0@ha
     addi	r30, r3, lbl_8015BFA0@l
     bl      OSDisableInterrupts
-    lwz	r5, -0x7c00(r13)
+    lwz	r5, lbl_801A67C0
     lis	r4, -0x7ed0
-    lwz	r0, -0x7bfc(r13)
+    lwz	r0, lbl_801A67C4
     li	r27, 0
     lis	r31, -0x7e80
     li	r6, 1
@@ -82,7 +88,7 @@ asm void __OSReboot(register unsigned long resetCode, register unsigned long boo
     bl      DVDSetAutoInvalidation
     bl      DVDPause
     lis	r3, -0x7fff
-    stw	r27, -0x7bf8(r13)
+    stw	r27, lbl_801A67C8
     addi	r3, r3, -0x14fc
     bl      DVDCancelAllAsync
     li	r3, -0x20
@@ -119,10 +125,10 @@ _8000ebf8:
     lwz	r3, -4(r31)
     bl      __OSDoHotReset
 _8000ec00:
-    lwz	r0, -0x7bf8(r13)
+    lwz	r0, lbl_801A67C8
     cmpwi	r0, 1
     bne     _8000ebc4
-    lwz	r0, -0x7c6c(r13)
+    lwz	r0, __OSIsGcam
     cmpwi	r0, 0
     bne     _8000ecdc
     bl      DVDGetCurrentDiskID
@@ -287,20 +293,21 @@ _8000ee10:
     blr	
 }
 
+
 asm void OSSetSaveRegion(void* start, void* end)
 {
     nofralloc
-    stw	r3, -0x7c00(r13)
-    stw	r4, -0x7bfc(r13)
+    stw	r3, lbl_801A67C0
+    stw	r4, lbl_801A67C4
     blr	
 }
 
 asm void OSGetSaveRegion(void* outStart, void* outEnd)
 {
     nofralloc
-    lwz	r0, -0x7c4c(r13)
+    lwz	r0, __OSSavedRegionStart
     stw	r0, 0(r3)
-    lwz	r0, -0x7c50(r13)
+    lwz	r0, __OSSavedRegionEnd
     stw	r0, 0(r4)
     blr	
 }

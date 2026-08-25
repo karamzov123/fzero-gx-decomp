@@ -9,10 +9,12 @@ extern void DCFlushRange(register void* addr, register unsigned long n);
 extern unsigned long OSGetTick(void);
 extern unsigned char DSPInitCode[128];
 
+extern unsigned char __OSArenaHi[4];
+extern unsigned char __OSArenaLo[4];
 asm void* OSInitArenaPoll(register u32 size, register u32 align)
 {
     nofralloc
-    lwz	r0, -0x7f98(r13)
+    lwz	r0, __OSArenaLo
     addi	r4, r4, -1
     nor	r5, r4, r4
     add	r0, r0, r4
@@ -20,7 +22,7 @@ asm void* OSInitArenaPoll(register u32 size, register u32 align)
     add	r0, r6, r3
     add	r0, r0, r4
     and	r0, r5, r0
-    stw	r0, -0x7f98(r13)
+    stw	r0, __OSArenaLo
     mr	r3, r6
     blr	
 }
@@ -29,12 +31,12 @@ asm void* OSAllocFromArenaLo(register u32 size, register u32 align)
 {
     nofralloc
     addi	r0, r4, -1
-    lwz	r4, -0x7c30(r13)
+    lwz	r4, __OSArenaHi
     nor	r0, r0, r0
     and	r4, r4, r0
     subf	r4, r3, r4
     and	r3, r4, r0
-    stw	r3, -0x7c30(r13)
+    stw	r3, __OSArenaHi
     blr	
 }
 

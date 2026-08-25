@@ -26,6 +26,21 @@ extern void fn_800700F4(void);
 extern unsigned char lbl_8015AA10[98];
 extern void fn_800700F4(void);
 
+extern unsigned char lbl_801A6CB0[4];
+extern unsigned char lbl_801A6CB4[1];
+extern unsigned char lbl_801A6CB8[4];
+extern unsigned char lbl_801A6CBC[2];
+extern unsigned char lbl_801A6CC0[4];
+extern unsigned char lbl_801A6CC4[2];
+extern unsigned char lbl_801A6CC6[2];
+extern unsigned char lbl_801A6CC8[4];
+extern unsigned char lbl_801A6CCC[4];
+extern unsigned char lbl_801A6CD0[4];
+extern unsigned char lbl_801A6CD4[4];
+extern unsigned char lbl_801A6CD8[8];
+extern unsigned char lbl_801A6CE0[4];
+extern unsigned char lbl_801A6CE4[4];
+extern unsigned char lbl_801A6D30[8];
 asm void fn_8006FC1C(void)
 {
     nofralloc
@@ -89,19 +104,19 @@ asm void fn_8006FCB4(void)
     addi	r3, r3, fn_800700F4@l
     bl      GXSetDrawDoneCallback
     li	r0, 0
-    stb	r0, -0x770c(r13)
+    stb	r0, lbl_801A6CB4
     bl      GXDrawDone
     li	r0, 0
     li	r4, 1
     li	r3, -1
-    stw	r4, -0x76f0(r13)
-    stw	r3, -0x76f4(r13)
-    sth	r0, -0x76fa(r13)
-    sth	r0, -0x76fc(r13)
+    stw	r4, lbl_801A6CD0
+    stw	r3, lbl_801A6CCC
+    sth	r0, lbl_801A6CC6
+    sth	r0, lbl_801A6CC4
     bl      fn_80070100
     bl      fn_8007001C
     li	r0, 0
-    stw	r0, -0x76ec(r13)
+    stw	r0, lbl_801A6CD4
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -115,9 +130,9 @@ asm void fn_8006FD1C(void)
     mflr	r0
     stw	r0, 0x14(r1)
     li	r0, 0
-    stb	r0, -0x770c(r13)
+    stb	r0, lbl_801A6CB4
     bl      GXSetDrawDone
-    lwz	r0, -0x76e0(r13)
+    lwz	r0, lbl_801A6CE0
     rlwinm.	r0, r0, 0, 0x1d, 0x1d
     beq	_8006fd74
     bl      GXGetGPFifo
@@ -128,7 +143,7 @@ asm void fn_8006FD1C(void)
     bl      GXSaveCPUFifo
     bl      fn_800700B4
     bl      fn_80070068
-    lwz	r0, -0x7690(r13)
+    lwz	r0, lbl_801A6D30
     slwi	r3, r3, 2
     add	r3, r0, r3
     lwz	r3, 0x14(r3)
@@ -140,26 +155,26 @@ _8006fd74:
     bl      GXGetFifoPtrs
     lwz	r0, 8(r1)
     li	r3, 1
-    stw	r0, -0x76e8(r13)
+    stw	r0, lbl_801A6CD8
     bl      LightCtrl_SetCachedByte_EC
     bl      fn_8007001C
-    lwz	r3, -0x7690(r13)
+    lwz	r3, lbl_801A6D30
     li	r4, 1
     lwz	r3, 0(r3)
     bl      __GXSetDispCopy
     bl      fn_80070100
     bl      fn_8001BE6C
-    stw	r3, -0x76f4(r13)
+    stw	r3, lbl_801A6CCC
     bl      OSGetTick
     li	r0, 0
-    stw	r3, -0x76f8(r13)
-    sth	r0, -0x76fa(r13)
-    sth	r0, -0x76fc(r13)
+    stw	r3, lbl_801A6CC8
+    sth	r0, lbl_801A6CC6
+    sth	r0, lbl_801A6CC4
     bl      OSGetTick
     li	r0, 0
-    stw	r3, -0x7708(r13)
-    stw	r0, -0x7700(r13)
-    sth	r0, -0x7704(r13)
+    stw	r3, lbl_801A6CB8
+    stw	r0, lbl_801A6CC0
+    sth	r0, lbl_801A6CBC
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -192,20 +207,20 @@ _8006fe14:
     neg.	r3, r3
     beq	_8006fea0
     lis	r3, 0x431c
-    lwz	r4, -0x7700(r13)
+    lwz	r4, lbl_801A6CC0
     addi	r0, r3, -0x217d
-    lhz	r6, -0x7704(r13)
+    lhz	r6, lbl_801A6CBC
     mulhwu	r0, r0, r5
     slwi	r7, r4, 3
     lis     r3, lbl_8015AA10@ha
-    lhz	r4, -0x76fa(r13)
-    lhz	r5, -0x76fc(r13)
+    lhz	r4, lbl_801A6CC6
+    lhz	r5, lbl_801A6CC4
     addi	r3, r3, lbl_8015AA10@l
     srwi	r0, r0, 0xf
     divwu	r7, r7, r0
     crxor	6, 6, 6
     bl      OSReport
-    lwz	r12, -0x7710(r13)
+    lwz	r12, lbl_801A6CB0
     cmplwi	r12, 0
     beq	_8006fe8c
     mtctr	r12
@@ -218,7 +233,7 @@ _8006fe94:
     lis	r29, -0x8000
     xoris	r30, r0, 0x8000
 _8006fea0:
-    lbz	r0, -0x770c(r13)
+    lbz	r0, lbl_801A6CB4
     cmplwi	r0, 0
     beq	_8006fe14
 _8006feac:
@@ -226,16 +241,16 @@ _8006feac:
     addi	r4, r1, 0xc
     addi	r5, r1, 8
     bl      GXGetFifoPtrs
-    lwz	r4, -0x76e8(r13)
+    lwz	r4, lbl_801A6CD8
     lwz	r3, 8(r1)
     cmplw	r4, r3
     subf	r0, r4, r3
     ble	_8006fedc
-    lwz	r0, -0x76dc(r13)
+    lwz	r0, lbl_801A6CE4
     add	r0, r0, r3
     subf	r0, r4, r0
 _8006fedc:
-    stw	r0, -0x76ec(r13)
+    stw	r0, lbl_801A6CD4
     mr	r3, r31
     addi	r11, r1, 0x30
     bl      _restgpr_27

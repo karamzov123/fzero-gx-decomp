@@ -30,6 +30,22 @@ extern void PPCMfpmc3(register u32 v);
 extern void PPCMtpmc3(register u32 v);
 extern void PPCMfpmc4(register u32 v);
 extern void PPCMtpmc4(register u32 v);
+extern unsigned char __memReg[4];
+extern unsigned char lbl_801A6580[4];
+extern unsigned char lbl_801A6584[4];
+extern unsigned char lbl_801A6588[8];
+extern unsigned char lbl_801A6C30[1];
+extern unsigned char lbl_801A6C34[4];
+extern unsigned char lbl_801A6C38[4];
+extern unsigned char lbl_801A6C3C[4];
+extern unsigned char lbl_801A6C40[4];
+extern unsigned char lbl_801A6C44[4];
+extern unsigned char lbl_801A6C48[4];
+extern unsigned char lbl_801A6C4C[4];
+extern unsigned char lbl_801A6C50[4];
+extern unsigned char lbl_801A6C54[4];
+extern unsigned char lbl_801A6C58[8];
+extern unsigned char lbl_801A71B8[4];
 asm void fn_8003BB30(register u32 a);
 asm int fn_8003BCE4(register u32 a);
 asm int fn_8003BD78(register u32 a);
@@ -1850,46 +1866,46 @@ asm int fn_8003D4C0(register u32 a)
 asm int fn_8003D4E0(register u32 a)
 {
     nofralloc
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     li      r0, 0
     sth     r0, 0x32(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x34(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x36(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x38(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x3c(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x3a(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x40(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x3e(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x44(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x42(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x48(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x46(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x4c(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x4a(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x50(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x4e(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x54(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x52(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x58(r3)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     sth     r0, 0x56(r3)
     blr     
 }
@@ -1908,52 +1924,52 @@ asm int PerfmonCopyConfig(register u32 a)
     addi    r5, r31, 0xa0
     addi    r6, r31, 0xa8
     bl      GXReadXfRasMetric
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r4, 0x32(r3)
     lhz     r0, 0x34(r3)
     rlwimi  r0, r4, 0x10, 0, 0xf
     stw     r0, 0x40(r31)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r4, 0x36(r3)
     lhz     r0, 0x38(r3)
     rlwimi  r0, r4, 0x10, 0, 0xf
     stw     r0, 0x48(r31)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r4, 0x3a(r3)
     lhz     r0, 0x3c(r3)
     rlwimi  r0, r4, 0x10, 0, 0xf
     stw     r0, 0x50(r31)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r4, 0x3e(r3)
     lhz     r0, 0x40(r3)
     rlwimi  r0, r4, 0x10, 0, 0xf
     stw     r0, 0x58(r31)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r4, 0x42(r3)
     lhz     r0, 0x44(r3)
     rlwimi  r0, r4, 0x10, 0, 0xf
     stw     r0, 0x60(r31)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r4, 0x46(r3)
     lhz     r0, 0x48(r3)
     rlwimi  r0, r4, 0x10, 0, 0xf
     stw     r0, 0x68(r31)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r4, 0x4a(r3)
     lhz     r0, 0x4c(r3)
     rlwimi  r0, r4, 0x10, 0, 0xf
     stw     r0, 0x70(r31)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r4, 0x4e(r3)
     lhz     r0, 0x50(r3)
     rlwimi  r0, r4, 0x10, 0, 0xf
     stw     r0, 0x78(r31)
-    lwz     r3, -0x77ec(r13)
+    lwz	r3, __memReg
     lhz     r0, 0x52(r3)
     lhz     r3, 0x54(r3)
     rlwimi  r3, r0, 0x10, 0, 0xf
     stw     r3, 0x80(r31)
-    lwz     r4, -0x77ec(r13)
+    lwz	r4, __memReg
     lhz     r3, 0x56(r4)
     lhz     r0, 0x58(r4)
     rlwimi  r0, r3, 0x10, 0, 0xf
@@ -1968,7 +1984,7 @@ asm int PerfmonCopyConfig(register u32 a)
 asm int fn_8003D690(register u32 a)
 {
     nofralloc
-    stw     r3, -0x7784(r13)
+    stw	r3, lbl_801A6C3C
     blr     
 }
 
@@ -1985,15 +2001,15 @@ asm int fn_8003D698(register u32 a)
     stw     r29, 0x14(r1)
     addi    r29, r3, 0
     blt     _8003d6dc
-    lbz     r0, -0x7790(r13)
+    lbz	r0, lbl_801A6C30
     rlwinm  r3, r31, 0x18, 0x1c, 0x1f
     cmpw    r3, r0
     bne     _8003d6dc
-    lwz     r0, -0x7780(r13)
+    lwz	r0, lbl_801A6C40
     cmpwi   r0, 0
     bne     _8003d6f8
 _8003d6dc:
-    lwz     r12, -0x7784(r13)
+    lwz	r12, lbl_801A6C3C
     cmplwi  r12, 0
     beq     _8003d8fc
     mtlr    r12
@@ -2003,93 +2019,93 @@ _8003d6dc:
 _8003d6f8:
     cmplwi  r31, 0xf000
     blt     _8003d7d4
-    lwz     r0, -0x7e38(r13)
+    lwz	r0, lbl_801A6588
     cmplwi  r0, 0xffff
     bne     _8003d718
     bl      fn_8003E284
     bl      fn_8003E13C
     b       _8003d8fc
 _8003d718:
-    lwz     r0, -0x7e38(r13)
+    lwz	r0, lbl_801A6588
     clrlwi  r3, r31, 0x18
     addi    r29, r3, 0
     clrlwi  r0, r0, 0x18
     cmpw    r0, r3
     beq     _8003d73c
-    lwz     r0, -0x7e38(r13)
+    lwz	r0, lbl_801A6588
     clrlwi  r0, r0, 0x18
     mr      r29, r0
 _8003d73c:
     bl      PPCMfpmc4
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     mulli   r31, r29, 0xb0
-    lwz     r4, -0x7774(r13)
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r31
     stw     r3, 0x10(r4)
     bl      PPCMfpmc3
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r31
     stw     r3, 0x24(r4)
     bl      PPCMfpmc1
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     li      r4, 1
-    lwz     r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r5, r0
     add     r5, r0, r31
     stw     r3, 0x34(r5)
-    lwz     r0, -0x777c(r13)
-    lwz     r3, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r3, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r3, r0
     add     r3, r0, r31
     bl      PerfmonCopyConfig
-    lwz     r0, -0x7e3c(r13)
+    lwz	r0, lbl_801A6584
     cmpwi   r0, 0
     blt     _8003d7c0
     bl      fn_8003E284
 _8003d7c0:
     lis     r3, 1
     addi    r0, r3, -1
-    stw     r0, -0x7e38(r13)
+    stw	r0, lbl_801A6588
     bl      fn_8003E13C
     b       _8003d8fc
 _8003d7d4:
-    lwz     r0, -0x7e38(r13)
+    lwz	r0, lbl_801A6588
     cmplwi  r0, 0xffff
     bge     _8003d860
-    lwz     r0, -0x7e38(r13)
+    lwz	r0, lbl_801A6588
     clrlwi  r30, r0, 0x18
     bl      PPCMfpmc4
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     mulli   r30, r30, 0xb0
-    lwz     r4, -0x7774(r13)
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r30
     stw     r3, 0x10(r4)
     bl      PPCMfpmc3
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r30
     stw     r3, 0x24(r4)
     bl      PPCMfpmc1
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     li      r4, 1
-    lwz     r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r5, r0
     add     r5, r0, r30
     stw     r3, 0x34(r5)
-    lwz     r0, -0x777c(r13)
-    lwz     r3, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r3, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r3, r0
     add     r3, r0, r30
@@ -2099,43 +2115,43 @@ _8003d860:
     bl      fn_8003E284
 _8003d864:
     bl      PPCMfpmc3
-    lwz     r4, -0x777c(r13)
+    lwz	r4, lbl_801A6C44
     clrlwi  r0, r31, 0x18
-    lwz     r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     mulli   r30, r0, 0xb0
     slwi    r0, r4, 4
     lwzx    r0, r5, r0
     add     r4, r0, r30
     stw     r3, 0x20(r4)
     bl      PPCMfpmc1
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r30
     stw     r3, 0x30(r4)
     bl      PPCMfpmc4
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     li      r4, 0
-    lwz     r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r5, r0
     add     r5, r0, r30
     stw     r3, 0x1c(r5)
-    lwz     r0, -0x777c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r5, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r5, r0
     add     r5, r0, r30
     stw     r3, 0xc(r5)
-    lwz     r0, -0x777c(r13)
-    lwz     r3, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r3, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r3, r0
     add     r3, r0, r30
     bl      PerfmonCopyConfig
     clrlwi  r0, r29, 0x10
-    stw     r0, -0x7e38(r13)
+    stw	r0, lbl_801A6588
 _8003d8fc:
     lwz     r0, 0x24(r1)
     lwz     r31, 0x1c(r1)
@@ -2159,16 +2175,16 @@ asm int fn_8003D918(register u32 a)
     addi    r24, r6, 0
     addi    r23, r7, 0
     addi    r30, r8, 0
-    lwz     r3, -0x7e40(r13)
+    lwz	r3, lbl_801A6580
     bl      OSRegisterVersion
     mulli   r25, r27, 0xb0
-    stw     r24, -0x778c(r13)
-    stw     r23, -0x7788(r13)
+    stw	r24, lbl_801A6C34
+    stw	r23, lbl_801A6C38
     mullw   r0, r26, r25
-    stw     r26, -0x7768(r13)
-    stw     r29, -0x776c(r13)
+    stw	r26, lbl_801A6C58
+    stw	r29, lbl_801A6C54
     slwi    r3, r26, 4
-    stw     r27, -0x7770(r13)
+    stw	r27, lbl_801A6C50
     addi    r12, r24, 0
     mtlr    r12
     add     r31, r3, r0
@@ -2176,32 +2192,32 @@ asm int fn_8003D918(register u32 a)
     add     r31, r31, r26
     blrl    
     li      r24, 0
-    stw     r3, -0x7774(r13)
+    stw	r3, lbl_801A6C4C
     addi    r23, r24, 0
     li      r27, 0
     b       _8003d9c0
 _8003d994:
-    lwz     r12, -0x778c(r13)
+    lwz	r12, lbl_801A6C34
     addi    r3, r25, 0
     mtlr    r12
     blrl    
-    lwz     r4, -0x7774(r13)
+    lwz	r4, lbl_801A6C4C
     addi    r0, r24, 4
     addi    r27, r27, 1
     stwx    r3, r4, r24
     addi    r24, r24, 0x10
-    lwz     r3, -0x7774(r13)
+    lwz	r3, lbl_801A6C4C
     stwx    r23, r3, r0
 _8003d9c0:
-    lwz     r0, -0x7768(r13)
+    lwz	r0, lbl_801A6C58
     cmplw   r27, r0
     blt     _8003d994
-    lwz     r12, -0x778c(r13)
+    lwz	r12, lbl_801A6C34
     addi    r3, r26, 0
     mtlr    r12
     blrl    
     cmplwi  r29, 0
-    stw     r3, -0x7778(r13)
+    stw	r3, lbl_801A6C48
     li      r5, 0
     ble     _8003db18
     cmplwi  r29, 8
@@ -2214,56 +2230,56 @@ _8003d9c0:
     addi    r4, r5, 0
     ble     _8003db38
 _8003da10:
-    lwz     r6, -0x7778(r13)
+    lwz	r6, lbl_801A6C48
     li      r3, 0
     addi    r8, r4, 8
     stwx    r3, r6, r4
     li      r0, -1
     addi    r7, r4, 0x10
-    lwz     r9, -0x7778(r13)
+    lwz	r9, lbl_801A6C48
     addi    r6, r4, 0x18
     addi    r24, r4, 0x20
     stwx    r0, r9, r8
     addi    r25, r4, 0x28
     addi    r26, r4, 0x30
-    lwz     r8, -0x7778(r13)
+    lwz	r8, lbl_801A6C48
     addi    r27, r4, 0x38
     addi    r28, r4, 0x40
     stwx    r3, r8, r7
     addi    r12, r4, 0x48
     addi    r11, r4, 0x50
-    lwz     r7, -0x7778(r13)
+    lwz	r7, lbl_801A6C48
     addi    r10, r4, 0x58
     addi    r9, r4, 0x60
     stwx    r0, r7, r6
     addi    r8, r4, 0x68
     addi    r7, r4, 0x70
-    lwz     r23, -0x7778(r13)
+    lwz	r23, lbl_801A6C48
     addi    r6, r4, 0x78
     addi    r4, r4, 0x80
     stwx    r3, r23, r24
     addi    r5, r5, 8
-    lwz     r24, -0x7778(r13)
+    lwz	r24, lbl_801A6C48
     stwx    r0, r24, r25
-    lwz     r25, -0x7778(r13)
+    lwz	r25, lbl_801A6C48
     stwx    r3, r25, r26
-    lwz     r26, -0x7778(r13)
+    lwz	r26, lbl_801A6C48
     stwx    r0, r26, r27
-    lwz     r27, -0x7778(r13)
+    lwz	r27, lbl_801A6C48
     stwx    r3, r27, r28
-    lwz     r28, -0x7778(r13)
+    lwz	r28, lbl_801A6C48
     stwx    r0, r28, r12
-    lwz     r12, -0x7778(r13)
+    lwz	r12, lbl_801A6C48
     stwx    r3, r12, r11
-    lwz     r11, -0x7778(r13)
+    lwz	r11, lbl_801A6C48
     stwx    r0, r11, r10
-    lwz     r10, -0x7778(r13)
+    lwz	r10, lbl_801A6C48
     stwx    r3, r10, r9
-    lwz     r9, -0x7778(r13)
+    lwz	r9, lbl_801A6C48
     stwx    r0, r9, r8
-    lwz     r8, -0x7778(r13)
+    lwz	r8, lbl_801A6C48
     stwx    r3, r8, r7
-    lwz     r3, -0x7778(r13)
+    lwz	r3, lbl_801A6C48
     stwx    r0, r3, r6
     bdnz    _8003da10
     b       _8003db38
@@ -2275,11 +2291,11 @@ _8003dae4:
     li      r4, -1
     bge     _8003db18
 _8003dafc:
-    lwz     r3, -0x7778(r13)
+    lwz	r3, lbl_801A6C48
     addi    r0, r6, 8
     stwx    r5, r3, r6
     addi    r6, r6, 0x10
-    lwz     r3, -0x7778(r13)
+    lwz	r3, lbl_801A6C48
     stwx    r4, r3, r0
     bdnz    _8003dafc
 _8003db18:
@@ -2308,17 +2324,17 @@ asm int fn_8003DB54(register u32 a)
     stwu    r1, -0x18(r1)
     rlwinm  r8, r3, 4, 0x14, 0x1b
     li      r6, -1
-    lwz     r0, -0x7c88(r2)
-    lwz     r7, -0x7778(r13)
+    lwz	r0, lbl_801A71B8
+    lwz	r7, lbl_801A6C48
     stw     r0, 0x14(r1)
     stwx    r4, r7, r8
-    lwz     r0, -0x7778(r13)
+    lwz	r0, lbl_801A6C48
     add     r3, r0, r8
     stw     r5, 4(r3)
-    lwz     r0, -0x7778(r13)
+    lwz	r0, lbl_801A6C48
     add     r3, r0, r8
     stw     r6, 8(r3)
-    lwz     r3, -0x7778(r13)
+    lwz	r3, lbl_801A6C48
     lwz     r0, 0x14(r1)
     add     r3, r3, r8
     stw     r0, 0xc(r3)
@@ -2337,16 +2353,16 @@ asm int fn_8003DBA0(register u32 a)
     bl      OSDisableInterrupts
     li      r31, 0
     lis     r4, 1
-    stw     r31, -0x7780(r13)
+    stw	r31, lbl_801A6C40
     addi    r0, r4, -1
     lis     r4, fn_8003D698@ha
-    stw     r0, -0x7e38(r13)
+    stw	r0, lbl_801A6588
     addi    r0, r4, fn_8003D698@l
     addi    r30, r3, 0
     mr      r3, r0
     bl      GXSetDrawSyncCallback
-    lwz     r0, -0x777c(r13)
-    lwz     r3, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r3, lbl_801A6C4C
     slwi    r0, r0, 4
     add     r3, r3, r0
     stw     r31, 4(r3)
@@ -2385,56 +2401,56 @@ asm int fn_8003DC50(register u32 a)
     bl      OSDisableInterrupts
     mr      r31, r3
     bl      fn_8003E284
-    lwz     r3, -0x7784(r13)
+    lwz	r3, lbl_801A6C3C
     bl      GXSetDrawSyncCallback
     bl      PPCMfpmc4
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     add     r4, r4, r0
     stw     r3, 8(r4)
-    lwz     r0, -0x777c(r13)
-    lwz     r3, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r3, lbl_801A6C4C
     slwi    r0, r0, 4
-    lwz     r4, -0x7780(r13)
+    lwz	r4, lbl_801A6C40
     add     r3, r3, r0
     stw     r4, 4(r3)
     bl      PPCMfpmc3
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     li      r6, 0
-    lwz     r4, -0x7774(r13)
+    lwz	r4, lbl_801A6C4C
     li      r7, 0
     slwi    r0, r0, 4
     add     r4, r4, r0
     stw     r3, 0xc(r4)
     li      r4, -1
-    lwz     r5, -0x777c(r13)
-    lwz     r3, -0x7768(r13)
+    lwz	r5, lbl_801A6C44
+    lwz	r3, lbl_801A6C58
     addi    r5, r5, 1
-    stw     r6, -0x7780(r13)
+    stw	r6, lbl_801A6C40
     divwu   r0, r5, r3
     mullw   r0, r0, r3
     subf    r0, r0, r5
-    stw     r0, -0x777c(r13)
+    stw	r0, lbl_801A6C44
     b       _8003dd00
 _8003dcec:
-    lwz     r3, -0x7778(r13)
+    lwz	r3, lbl_801A6C48
     addi    r0, r6, 8
     addi    r7, r7, 1
     stwx    r4, r3, r0
     addi    r6, r6, 0x10
 _8003dd00:
-    lwz     r0, -0x776c(r13)
+    lwz	r0, lbl_801A6C54
     cmplw   r7, r0
     blt     _8003dcec
-    lbz     r3, -0x7790(r13)
+    lbz	r3, lbl_801A6C30
     addi    r0, r3, 1
-    stb     r0, -0x7790(r13)
-    lbz     r0, -0x7790(r13)
+    stb	r0, lbl_801A6C30
+    lbz	r0, lbl_801A6C30
     cmplwi  r0, 0x10
     blt     _8003dd2c
     li      r0, 0
-    stb     r0, -0x7790(r13)
+    stb	r0, lbl_801A6C30
 _8003dd2c:
     mr      r3, r31
     bl      OSRestoreInterrupts
@@ -2457,41 +2473,41 @@ asm int fn_8003DD48(register u32 a)
     stw     r28, 0x10(r1)
     mr      r28, r3
     bl      OSDisableInterrupts
-    lwz     r0, -0x7778(r13)
+    lwz	r0, lbl_801A6C48
     rlwinm  r5, r28, 4, 0x14, 0x1b
     addi    r29, r3, 0
     add     r4, r0, r5
     lwzu    r0, 8(r4)
     cmpwi   r0, 0
     bge     _8003dfc0
-    lwz     r3, -0x7770(r13)
-    lwz     r0, -0x7780(r13)
+    lwz	r3, lbl_801A6C50
+    lwz	r0, lbl_801A6C40
     addi    r3, r3, -1
     cmplw   r0, r3
     blt     _8003dda8
-    stw     r3, -0x7780(r13)
-    lwz     r31, -0x7780(r13)
+    stw	r3, lbl_801A6C40
+    lwz	r31, lbl_801A6C40
     b       _8003ddb4
 _8003dda8:
-    lwz     r31, -0x7780(r13)
+    lwz	r31, lbl_801A6C40
     addi    r0, r31, 1
-    stw     r0, -0x7780(r13)
+    stw	r0, lbl_801A6C40
 _8003ddb4:
     stw     r31, 0(r4)
     mulli   r30, r31, 0xb0
-    lwz     r3, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     li      r0, 0
     slwi    r3, r3, 4
     lwzx    r3, r4, r3
     stbx    r28, r3, r30
-    lwz     r3, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r3, r3, 4
     lwzx    r3, r4, r3
     add     r3, r3, r30
     stw     r0, 0x14(r3)
-    lwz     r3, -0x7778(r13)
+    lwz	r3, lbl_801A6C48
     add     r3, r3, r5
     lwz     r3, 4(r3)
     cmpwi   r3, 1
@@ -2503,103 +2519,103 @@ _8003ddb4:
 _8003de10:
     cmpwi   r3, 3
     bge     _8003dfa8
-    lwz     r4, -0x777c(r13)
+    lwz	r4, lbl_801A6C44
     clrlwi  r3, r31, 0x10
-    lwz     r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     addis   r3, r3, 1
     slwi    r4, r4, 4
     lwzx    r4, r5, r4
     add     r4, r4, r30
     stw     r0, 0x20(r4)
-    lwz     r4, -0x777c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r5, lbl_801A6C4C
     slwi    r4, r4, 4
     lwzx    r4, r5, r4
     add     r4, r4, r30
     stw     r0, 0x30(r4)
-    lwz     r4, -0x777c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r5, lbl_801A6C4C
     slwi    r4, r4, 4
     lwzx    r4, r5, r4
     add     r4, r4, r30
     stw     r0, 0xc(r4)
-    lwz     r4, -0x777c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r5, lbl_801A6C4C
     slwi    r4, r4, 4
     lwzx    r4, r5, r4
     add     r4, r4, r30
     stw     r0, 0x10(r4)
-    lbz     r0, -0x7790(r13)
+    lbz	r0, lbl_801A6C30
     rlwinm  r0, r0, 8, 0x10, 0x17
     add     r3, r3, r0
     addi    r3, r3, -0x2000
     bl      GXSetDrawSync
     b       _8003dfd0
 _8003de98:
-    lwz     r3, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r3, r3, 4
     lwzx    r3, r4, r3
     add     r3, r3, r30
     stw     r0, 0xc(r3)
-    lwz     r3, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r3, r3, 4
     lwzx    r3, r4, r3
     add     r3, r3, r30
     stw     r0, 0x10(r3)
     bl      PPCMfpmc3
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r30
     stw     r3, 0x20(r4)
     bl      PPCMfpmc1
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     clrlwi  r4, r31, 0x10
-    lwz     r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     addis   r4, r4, 1
     slwi    r0, r0, 4
     lwzx    r0, r5, r0
     add     r5, r0, r30
     stw     r3, 0x30(r5)
-    lbz     r0, -0x7790(r13)
+    lbz	r0, lbl_801A6C30
     rlwinm  r0, r0, 8, 0x10, 0x17
     add     r3, r4, r0
     addi    r3, r3, -0x2000
     bl      GXSetDrawSync
 _8003df1c:
     bl      PPCMfpmc3
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r30
     stw     r3, 0x28(r4)
     bl      PPCMfpmc1
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r30
     stw     r3, 0x38(r4)
     bl      PPCMfpmc4
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     li      r4, 0
-    lwz     r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r5, r0
     add     r5, r0, r30
     stw     r3, 4(r5)
-    lwz     r0, -0x777c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r5, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r5, r0
     add     r5, r0, r30
     stw     r3, 0x18(r5)
-    lwz     r0, -0x777c(r13)
-    lwz     r3, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r3, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r3, r0
     add     r3, r0, r30
@@ -2641,7 +2657,7 @@ asm int fn_8003DFF8(register u32 a)
     stw     r29, 0x14(r1)
     mr      r29, r3
     bl      OSDisableInterrupts
-    lwz     r0, -0x7778(r13)
+    lwz	r0, lbl_801A6C48
     rlwinm  r31, r29, 4, 0x14, 0x1b
     addi    r30, r3, 0
     add     r4, r0, r31
@@ -2666,7 +2682,7 @@ _8003e050:
 _8003e06c:
     cmpwi   r0, 3
     bge     _8003e108
-    lbz     r0, -0x7790(r13)
+    lbz	r0, lbl_801A6C30
     clrlwi  r3, r29, 0x10
     addis   r3, r3, 1
     rlwinm  r0, r0, 8, 0x10, 0x17
@@ -2675,7 +2691,7 @@ _8003e06c:
     bl      GXSetDrawSync
     b       _8003e108
 _8003e094:
-    lbz     r0, -0x7790(r13)
+    lbz	r0, lbl_801A6C30
     clrlwi  r3, r29, 0x10
     addis   r3, r3, 1
     rlwinm  r0, r0, 8, 0x10, 0x17
@@ -2684,29 +2700,29 @@ _8003e094:
     bl      GXSetDrawSync
 _8003e0b0:
     bl      PPCMfpmc4
-    lwz     r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     mulli   r29, r29, 0xb0
-    lwz     r4, -0x7774(r13)
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r29
     stw     r3, 8(r4)
     bl      PPCMfpmc3
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r29
     stw     r3, 0x2c(r4)
     bl      PPCMfpmc1
-    lwz     r0, -0x777c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi    r0, r0, 4
     lwzx    r0, r4, r0
     add     r4, r0, r29
     stw     r3, 0x3c(r4)
 _8003e108:
-    lwz     r0, -0x7778(r13)
+    lwz	r0, lbl_801A6C48
     li      r5, -1
     addi    r3, r30, 0
     add     r4, r0, r31
@@ -2729,76 +2745,76 @@ asm int fn_8003E13C(register u32 a)
     stw     r0, 4(r1)
     stwu    r1, -0x10(r1)
     stw     r31, 0xc(r1)
-    lwz     r3, -0x7770(r13)
-    lwz     r0, -0x7780(r13)
+    lwz	r3, lbl_801A6C50
+    lwz	r0, lbl_801A6C40
     addi    r3, r3, -1
     cmplw   r0, r3
     blt     _8003e16c
-    stw     r3, -0x7780(r13)
-    lwz     r3, -0x7780(r13)
+    stw	r3, lbl_801A6C40
+    lwz	r3, lbl_801A6C40
     b       _8003e178
 _8003e16c:
-    lwz     r3, -0x7780(r13)
+    lwz	r3, lbl_801A6C40
     addi    r0, r3, 1
-    stw     r0, -0x7780(r13)
+    stw	r0, lbl_801A6C40
 _8003e178:
-    stw     r3, -0x7e3c(r13)
+    stw	r3, lbl_801A6584
     li      r5, 0xff
-    lwz     r3, -0x777c(r13)
+    lwz	r3, lbl_801A6C44
     li      r31, 0
-    lwz     r0, -0x7e3c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r0, lbl_801A6584
+    lwz	r4, lbl_801A6C4C
     slwi    r3, r3, 4
     mulli   r0, r0, 0xb0
     lwzx    r3, r4, r3
     stbx    r5, r3, r0
     li      r4, 0
-    lwz     r3, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi    r3, r3, 4
     mulli   r0, r0, 0xb0
     lwzx    r3, r5, r3
     add     r3, r3, r0
     stw     r31, 0x14(r3)
-    lwz     r3, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi    r3, r3, 4
     mulli   r0, r0, 0xb0
     lwzx    r3, r5, r3
     add     r3, r3, r0
     bl      PerfmonCopyConfig
     bl      PPCMfpmc4
-    lwz     r4, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi    r4, r4, 4
     mulli   r0, r0, 0xb0
     lwzx    r4, r5, r4
     add     r4, r4, r0
     stw     r3, 0xc(r4)
-    lwz     r3, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r4, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r4, lbl_801A6C4C
     slwi    r3, r3, 4
     mulli   r0, r0, 0xb0
     lwzx    r3, r4, r3
     add     r3, r3, r0
     stw     r31, 0x10(r3)
     bl      PPCMfpmc3
-    lwz     r4, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi    r4, r4, 4
     mulli   r0, r0, 0xb0
     lwzx    r4, r5, r4
     add     r4, r4, r0
     stw     r3, 0x20(r4)
     bl      PPCMfpmc1
-    lwz     r4, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi    r4, r4, 4
     mulli   r0, r0, 0xb0
     lwzx    r4, r5, r4
@@ -2817,40 +2833,40 @@ asm int fn_8003E284(register u32 a)
     mflr    r0
     stw     r0, 4(r1)
     stwu    r1, -8(r1)
-    lwz     r0, -0x7e3c(r13)
+    lwz	r0, lbl_801A6584
     cmpwi   r0, 0
     blt     _8003e32c
     bl      PPCMfpmc4
-    lwz     r5, -0x777c(r13)
+    lwz	r5, lbl_801A6C44
     li      r4, 1
-    lwz     r0, -0x7e3c(r13)
-    lwz     r6, -0x7774(r13)
+    lwz	r0, lbl_801A6584
+    lwz	r6, lbl_801A6C4C
     slwi    r5, r5, 4
     mulli   r0, r0, 0xb0
     lwzx    r5, r6, r5
     add     r5, r5, r0
     stw     r3, 0x10(r5)
-    lwz     r3, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi    r3, r3, 4
     mulli   r0, r0, 0xb0
     lwzx    r3, r5, r3
     add     r3, r3, r0
     bl      PerfmonCopyConfig
     bl      PPCMfpmc3
-    lwz     r4, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi    r4, r4, 4
     mulli   r0, r0, 0xb0
     lwzx    r4, r5, r4
     add     r4, r4, r0
     stw     r3, 0x24(r4)
     bl      PPCMfpmc1
-    lwz     r4, -0x777c(r13)
-    lwz     r0, -0x7e3c(r13)
-    lwz     r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi    r4, r4, 4
     mulli   r0, r0, 0xb0
     lwzx    r4, r5, r4
@@ -2858,7 +2874,7 @@ asm int fn_8003E284(register u32 a)
     stw     r3, 0x34(r4)
 _8003e32c:
     li      r0, -1
-    stw     r0, -0x7e3c(r13)
+    stw	r0, lbl_801A6584
     lwz     r0, 0xc(r1)
     addi    r1, r1, 8
     mtlr    r0

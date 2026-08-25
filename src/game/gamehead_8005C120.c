@@ -116,6 +116,12 @@ extern unsigned char lbl_80193B08[32];
 extern unsigned char lbl_80193B28[32];
 extern unsigned char lbl_80193B48[23336];
 
+extern unsigned char g_currentHeapHandle[4];
+extern unsigned char g_sndMgrPtr[8];
+extern unsigned char lbl_801A6C78[4];
+extern unsigned char lbl_801A6C7C[4];
+extern unsigned char lbl_801A7328[4];
+extern unsigned char lbl_801A7348[4];
 asm void SndInitManager(void);
 asm void SndApplyChannelVolume(void);
 asm void SndApplyChannelPan(void);
@@ -289,7 +295,7 @@ asm void SndApplyChannelVolume(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mulli	r0, r3, 0x118
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     add	r5, r6, r0
     lbz	r3, 0x140a(r5)
     rlwinm	r3, r3, 5, 0x13, 0x1a
@@ -346,11 +352,11 @@ _8005c314:
 _8005c374:
     lhz	r6, 0x28(r3)
 _8005c378:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     slwi	r5, r6, 0x10
     add	r4, r4, r0
     stw	r5, 0x14f0(r4)
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     lbz	r6, 0xf(r7)
     add	r5, r8, r0
     extsb.	r4, r6
@@ -401,11 +407,11 @@ _8005c3dc:
 _8005c444:
     lhz	r5, 0x2a(r3)
 _8005c448:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     slwi	r4, r5, 0x10
     add	r3, r3, r0
     stw	r4, 0x151c(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r0
     lwz	r0, 0x141c(r3)
     subf	r0, r5, r0
@@ -427,7 +433,7 @@ asm void SndApplyChannelPan(void)
     mulli	r30, r3, 0x118
     stw	r29, 0x24(r1)
     stw	r28, 0x20(r1)
-    lwz	r28, -0x7740(r13)
+    lwz	r28, g_sndMgrPtr
     add	r11, r28, r30
     lbz	r3, 0x140a(r11)
     rlwinm	r0, r3, 5, 0x13, 0x1a
@@ -480,7 +486,7 @@ _8005c530:
     lfd	f3, -0x7c28(r2)
     stw	r3, 0x14(r1)
     xoris	r5, r31, 0x8000
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lfd	f0, 0x10(r1)
     stw	r5, 0xc(r1)
     add	r3, r0, r30
@@ -518,7 +524,7 @@ asm void fn_8005C5C8(void)
     mulli	r31, r3, 0x118
     stw	r30, 0x28(r1)
     stw	r29, 0x24(r1)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r4, r5, r31
     lbz	r6, 0x140a(r4)
     rlwinm	r0, r6, 5, 0x13, 0x1a
@@ -559,7 +565,7 @@ _8005c620:
 _8005c678:
     li	r3, -0x388
 _8005c67c:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mr	r29, r3
     add	r3, r0, r30
     lbz	r3, 0x594(r3)
@@ -633,10 +639,10 @@ _8005c734:
 _8005c788:
     li	r4, -0x388
 _8005c78c:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     stw	r29, 0x14a4(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     stw	r4, 0x14b0(r3)
 _8005c7a4:
@@ -663,7 +669,7 @@ asm void fn_8005C7C0(void)
     mr	r29, r3
     lis     r3, lbl_800929D8@ha
     mulli	r30, r29, 0x118
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r31, r3, lbl_800929D8@l
     addi	r7, r1, 0xc
     add	r4, r0, r30
@@ -676,7 +682,7 @@ asm void fn_8005C7C0(void)
     mr	r4, r27
     bl      SndExpCurveLookup
     lbz	r5, 6(r27)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     rlwinm.	r0, r5, 0, 0x18, 0x18
     add	r3, r4, r30
     lbz	r0, 0x140a(r3)
@@ -763,7 +769,7 @@ _8005c95c:
     bc      4, 0, _8005c96c
     li	r3, -0x3c0
 _8005c96c:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     extsh	r4, r3
     add	r3, r5, r30
     lbz	r0, 0x1411(r3)
@@ -777,7 +783,7 @@ _8005c988:
     subf	r0, r0, r4
     slwi	r0, r0, 0x10
     stw	r0, 0x148c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r30
     stw	r4, 0x141c(r3)
     b       _8005c9b4
@@ -809,7 +815,7 @@ asm void fn_8005C9D8(void)
     mr	r29, r3
     lis     r3, lbl_800929D8@ha
     mulli	r30, r29, 0x118
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r31, r3, lbl_800929D8@l
     addi	r7, r1, 0xc
     add	r4, r0, r30
@@ -821,7 +827,7 @@ asm void fn_8005C9D8(void)
     lbz	r5, 0x140a(r4)
     mr	r4, r27
     bl      SndExpCurveLookup
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     extsh	r5, r3
     add	r3, r4, r30
     lbz	r0, 0x1411(r3)
@@ -910,7 +916,7 @@ _8005cb78:
     bc      4, 0, _8005cb88
     li	r5, -0x3c0
 _8005cb88:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r30
     lbz	r0, 0x1411(r3)
     cmplw	r0, r29
@@ -920,14 +926,14 @@ _8005cb88:
 _8005cba4:
     extsh	r5, r5
 _8005cba8:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r30
     lwz	r0, 0x151c(r3)
     srawi	r0, r0, 0x10
     subf	r0, r0, r5
     slwi	r0, r0, 0x10
     stw	r0, 0x148c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r30
     stw	r5, 0x141c(r3)
     psq_l	f31, 0x78(r1), 0, 0
@@ -951,7 +957,7 @@ asm void SndStopAllChannelVoices(void)
     mr	r26, r3
     addis	r31, r26, 0x6000
     li	r28, 0
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r0, 0x444(r4)
     clrlwi	r27, r0, 0x1b
     b       _8005d1f8
@@ -959,7 +965,7 @@ _8005cc20:
     cmplwi	r31, 0x100
     bc      4, 2, _8005cd10
     clrlwi	r29, r28, 0x18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mulli	r30, r29, 0x118
     add	r3, r0, r30
     lbz	r0, 0x1410(r3)
@@ -971,19 +977,19 @@ _8005cc20:
     lwz	r3, 0x1434(r3)
     li	r4, 0
     bl      AXSetVoiceType_cached
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r30, 0x1434
     lwzx	r3, r3, r0
     bl      axmix_device_ctrl_clear
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r30, 0x1434
     lwzx	r3, r3, r0
     bl      AXFreeVoice
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r30, 0x1434
     li	r4, 0
     stwx	r4, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r30
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 3
@@ -995,18 +1001,18 @@ _8005ccac:
     addi	r3, r3, 0x1438
     bl      axmix_device_ctrl_unlink
 _8005ccb4:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r30, 0x1408
     li	r6, 0xff
     addi	r3, r30, 0x1420
     stbx	r6, r4, r0
     li	r5, 0
     addi	r0, r30, 0x1409
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stwx	r5, r4, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r30
     lbz	r0, 0x1411(r3)
     cmplw	r0, r29
@@ -1023,7 +1029,7 @@ _8005cd10:
     cmplwi	r31, 0x200
     bc      4, 2, _8005cdfc
     clrlwi	r30, r28, 0x18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mulli	r29, r30, 0x118
     add	r3, r0, r29
     lbz	r0, 0x1408(r3)
@@ -1034,19 +1040,19 @@ _8005cd10:
     lwz	r3, 0x1434(r3)
     li	r4, 0
     bl      AXSetVoiceType_cached
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      axmix_device_ctrl_clear
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      AXFreeVoice
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     li	r4, 0
     stwx	r4, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 3
@@ -1058,18 +1064,18 @@ _8005cd98:
     addi	r3, r3, 0x1438
     bl      axmix_device_ctrl_unlink
 _8005cda0:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r29, 0x1408
     li	r6, 0xff
     addi	r3, r29, 0x1420
     stbx	r6, r4, r0
     li	r5, 0
     addi	r0, r29, 0x1409
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stwx	r5, r4, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1411(r3)
     cmplw	r0, r30
@@ -1086,7 +1092,7 @@ _8005cdfc:
     cmplwi	r31, 0x300
     bc      4, 2, _8005cef4
     clrlwi	r30, r28, 0x18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mulli	r29, r30, 0x118
     add	r3, r0, r29
     lbz	r4, 0x1408(r3)
@@ -1100,19 +1106,19 @@ _8005cdfc:
     lwz	r3, 0x1434(r3)
     li	r4, 0
     bl      AXSetVoiceType_cached
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      axmix_device_ctrl_clear
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      AXFreeVoice
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     li	r4, 0
     stwx	r4, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 3
@@ -1124,18 +1130,18 @@ _8005ce90:
     addi	r3, r3, 0x1438
     bl      axmix_device_ctrl_unlink
 _8005ce98:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r29, 0x1408
     li	r6, 0xff
     addi	r3, r29, 0x1420
     stbx	r6, r4, r0
     li	r5, 0
     addi	r0, r29, 0x1409
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stwx	r5, r4, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1411(r3)
     cmplw	r0, r30
@@ -1152,7 +1158,7 @@ _8005cef4:
     cmplwi	r31, 0x1100
     bc      4, 2, _8005cff4
     clrlwi	r30, r28, 0x18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mulli	r29, r30, 0x118
     add	r3, r0, r29
     lwz	r0, 0x1420(r3)
@@ -1168,19 +1174,19 @@ _8005cef4:
     lwz	r3, 0x1434(r3)
     li	r4, 0
     bl      AXSetVoiceType_cached
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      axmix_device_ctrl_clear
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      AXFreeVoice
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     li	r4, 0
     stwx	r4, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 3
@@ -1192,18 +1198,18 @@ _8005cf90:
     addi	r3, r3, 0x1438
     bl      axmix_device_ctrl_unlink
 _8005cf98:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r29, 0x1408
     li	r6, 0xff
     addi	r3, r29, 0x1420
     stbx	r6, r4, r0
     li	r5, 0
     addi	r0, r29, 0x1409
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stwx	r5, r4, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1411(r3)
     cmplw	r0, r30
@@ -1220,7 +1226,7 @@ _8005cff4:
     cmplwi	r31, 0x1200
     bc      4, 2, _8005d0f0
     clrlwi	r30, r28, 0x18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mulli	r29, r30, 0x118
     add	r3, r0, r29
     lbz	r4, 0x1408(r3)
@@ -1235,19 +1241,19 @@ _8005cff4:
     lwz	r3, 0x1434(r3)
     li	r4, 0
     bl      AXSetVoiceType_cached
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      axmix_device_ctrl_clear
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      AXFreeVoice
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     li	r4, 0
     stwx	r4, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 3
@@ -1259,18 +1265,18 @@ _8005d08c:
     addi	r3, r3, 0x1438
     bl      axmix_device_ctrl_unlink
 _8005d094:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r29, 0x1408
     li	r6, 0xff
     addi	r3, r29, 0x1420
     stbx	r6, r4, r0
     li	r5, 0
     addi	r0, r29, 0x1409
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stwx	r5, r4, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1411(r3)
     cmplw	r0, r30
@@ -1287,7 +1293,7 @@ _8005d0f0:
     cmplwi	r31, 0x1300
     bc      4, 2, _8005d1f4
     clrlwi	r30, r28, 0x18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mulli	r29, r30, 0x118
     add	r3, r0, r29
     lbz	r4, 0x1408(r3)
@@ -1305,19 +1311,19 @@ _8005d0f0:
     lwz	r3, 0x1434(r3)
     li	r4, 0
     bl      AXSetVoiceType_cached
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      axmix_device_ctrl_clear
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
     bl      AXFreeVoice
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, 0x1434
     li	r4, 0
     stwx	r4, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 3
@@ -1329,18 +1335,18 @@ _8005d194:
     addi	r3, r3, 0x1438
     bl      axmix_device_ctrl_unlink
 _8005d19c:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r29, 0x1408
     li	r6, 0xff
     addi	r3, r29, 0x1420
     stbx	r6, r4, r0
     li	r5, 0
     addi	r0, r29, 0x1409
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stwx	r5, r4, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     lbz	r0, 0x1411(r3)
     cmplw	r0, r30
@@ -1371,7 +1377,7 @@ _8005d21c:
     li	r3, 0x11
     bl      SndSendParamToChannelVoices
 _8005d230:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r3, 0x444(r3)
     rlwinm.	r0, r3, 0, 0x19, 0x19
     bc      4, 2, _8005d244
@@ -1396,7 +1402,7 @@ asm void SndExpCurveLookup(void)
     stw	r30, 0x38(r1)
     stw	r29, 0x34(r1)
     stw	r28, 0x30(r1)
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     mr	r28, r4
     mr	r29, r5
     mr	r30, r7
@@ -1479,7 +1485,7 @@ _8005d358:
 _8005d39c:
     lfs	f31, -0x7be8(r2)
 _8005d3a0:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     rlwinm	r28, r29, 5, 0x13, 0x1a
     add	r3, r0, r28
     lbz	r3, 0x58f(r3)
@@ -1502,7 +1508,7 @@ _8005d3a0:
 _8005d3f0:
     lfs	f31, -0x7be8(r2)
 _8005d3f4:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r28
     lbz	r3, 0x598(r3)
     cmplwi	r3, 0
@@ -1524,7 +1530,7 @@ _8005d3f4:
 _8005d440:
     lfs	f31, -0x7be8(r2)
 _8005d444:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r3, r4, r28
     lbz	r0, 0x589(r3)
     clrlwi.	r0, r0, 0x1f
@@ -1558,14 +1564,14 @@ _8005d46c:
 _8005d4bc:
     lfs	f0, -0x7be8(r2)
 _8005d4c0:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     fmr	f31, f0
     lbz	r0, 0x45b(r3)
     slwi	r0, r0, 1
     add	r3, r3, r0
     lha	r28, 0x5a34(r3)
 _8005d4d8:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r3, 0x461(r3)
     cmplwi	r3, 0
     bc      12, 2, _8005d520
@@ -1587,7 +1593,7 @@ _8005d520:
     lfs	f1, -0x7be8(r2)
 _8005d524:
     lfs	f0, -0x7bec(r2)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     fmuls	f0, f0, f1
     lha	r0, 0x5a10(r3)
     fctiwz	f0, f0
@@ -1643,7 +1649,7 @@ asm void SndApplyVoicePriorities(void)
     li	r30, 0
     li	r31, 0
 _8005d5e4:
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r7, r8, r31
     lbz	r6, 0x1408(r7)
     cmplwi	r6, 1
@@ -1666,7 +1672,7 @@ _8005d600:
     bc      12, 2, _8005d6fc
     li	r0, 2
     stb	r0, 0x1409(r7)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     lbz	r0, 0x1408(r4)
     cmplwi	r0, 3
@@ -1676,7 +1682,7 @@ _8005d600:
     addi	r5, r31, 0x1418
     divw	r0, r3, r0
     stw	r0, 0x1418(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwzx	r0, r3, r5
     cmpwi	r0, 0
     bc      4, 2, _8005d6c4
@@ -1695,16 +1701,16 @@ _8005d69c:
     lis	r0, -0x3c0
     stw	r0, 0x14bc(r4)
 _8005d6a4:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r3, r31, 0x14c0
     lis	r5, -0x3c0
     addi	r0, r31, 0x1416
     stwx	r5, r4, r3
     li	r4, 2
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sthx	r4, r3, r0
 _8005d6c4:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r5, r31, 0x1410
     lbzx	r4, r3, r5
     cmplwi	r4, 2
@@ -1713,7 +1719,7 @@ _8005d6c4:
     bc      4, 2, _8005d6fc
     addi	r0, r4, -1
     stbx	r0, r3, r5
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     lwz	r3, 0x1434(r4)
     lbz	r4, 0x1410(r4)
@@ -1730,7 +1736,7 @@ _8005d710:
     li	r30, 0
     mr	r31, r30
 _8005d720:
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r7, r8, r31
     lbz	r6, 0x1408(r7)
     cmplwi	r6, 1
@@ -1757,7 +1763,7 @@ _8005d73c:
     bc      12, 2, _8005d848
     li	r0, 2
     stb	r0, 0x1409(r7)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     lbz	r0, 0x1408(r4)
     cmplwi	r0, 3
@@ -1767,7 +1773,7 @@ _8005d73c:
     addi	r5, r31, 0x1418
     divw	r0, r3, r0
     stw	r0, 0x1418(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwzx	r0, r3, r5
     cmpwi	r0, 0
     bc      4, 2, _8005d810
@@ -1786,16 +1792,16 @@ _8005d7e8:
     lis	r0, -0x3c0
     stw	r0, 0x14bc(r4)
 _8005d7f0:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r3, r31, 0x14c0
     lis	r5, -0x3c0
     addi	r0, r31, 0x1416
     stwx	r5, r4, r3
     li	r4, 2
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sthx	r4, r3, r0
 _8005d810:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r5, r31, 0x1410
     lbzx	r4, r3, r5
     cmplwi	r4, 2
@@ -1804,7 +1810,7 @@ _8005d810:
     bc      4, 2, _8005d848
     addi	r0, r4, -1
     stbx	r0, r3, r5
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     lwz	r3, 0x1434(r4)
     lbz	r4, 0x1410(r4)
@@ -1818,7 +1824,7 @@ _8005d848:
 _8005d85c:
     rlwinm.	r0, r3, 0, 0x1e, 0x1e
     bc      12, 2, _8005d938
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     li	r0, 0x20
     li	r8, 0
     mr	r6, r7
@@ -1882,7 +1888,7 @@ _8005d938:
     li	r30, 0
     mr	r31, r30
 _8005d948:
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     add	r5, r6, r31
     lbz	r4, 0x1408(r5)
     cmplwi	r4, 1
@@ -1907,7 +1913,7 @@ _8005d964:
     bc      12, 2, _8005da68
     li	r0, 2
     stb	r0, 0x1409(r5)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     lbz	r0, 0x1408(r4)
     cmplwi	r0, 3
@@ -1917,7 +1923,7 @@ _8005d964:
     addi	r5, r31, 0x1418
     divw	r0, r3, r0
     stw	r0, 0x1418(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwzx	r0, r3, r5
     cmpwi	r0, 0
     bc      4, 2, _8005da30
@@ -1936,16 +1942,16 @@ _8005da08:
     lis	r0, -0x3c0
     stw	r0, 0x14bc(r4)
 _8005da10:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r3, r31, 0x14c0
     lis	r5, -0x3c0
     addi	r0, r31, 0x1416
     stwx	r5, r4, r3
     li	r4, 2
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sthx	r4, r3, r0
 _8005da30:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r5, r31, 0x1410
     lbzx	r4, r3, r5
     cmplwi	r4, 2
@@ -1954,7 +1960,7 @@ _8005da30:
     bc      4, 2, _8005da68
     addi	r0, r4, -1
     stbx	r0, r3, r5
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     lwz	r3, 0x1434(r4)
     lbz	r4, 0x1410(r4)
@@ -1968,7 +1974,7 @@ _8005da68:
 _8005da7c:
     rlwinm.	r0, r3, 0, 0x1c, 0x1c
     bc      12, 2, _8005db44
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     li	r0, 0x20
     li	r6, 0
     mr	r4, r5
@@ -2158,7 +2164,7 @@ asm void SndProcessVoiceEnvelope(void)
     addi	r14, r3, lbl_800929D8@l
     li	r30, -1
     bc      12, 2, _8005fbb8
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     rlwinm	r20, r22, 5, 0x13, 0x1a
     add	r3, r4, r20
     lwz	r16, 0x5a4(r3)
@@ -2241,7 +2247,7 @@ _8005de58:
 _8005de5c:
     cmplwi	r31, 0
     bc      12, 2, _8005fbb8
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r5, 1
     add	r4, r3, r20
     lbz	r0, 0x58a(r4)
@@ -2351,7 +2357,7 @@ _8005df80:
     slwi	r29, r3, 0x10
     cmpw	r29, r0
     bc      4, 1, _8005e00c
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r0, 0x444(r3)
     stw	r0, 0x46c(r3)
     b       _8005e018
@@ -2362,7 +2368,7 @@ _8005e00c:
 _8005e018:
     cmpwi	r30, -1
     bc      12, 2, _8005fbb8
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r3, r5, r20
     lbz	r0, 0x589(r3)
     clrlwi.	r0, r0, 0x1f
@@ -2378,25 +2384,25 @@ _8005e048:
     add	r3, r5, r0
     stb	r4, 0x1408(r3)
 _8005e058:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     mulli	r24, r30, 0x118
     li	r0, 0x80
     lwz	r4, 0x444(r3)
     add	r3, r3, r24
     stw	r4, 0x1420(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stb	r22, 0x140a(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stw	r31, 0x1424(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stw	r15, 0x1428(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     sth	r25, 0x1414(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r3, r4, r20
     lbz	r3, 0x589(r3)
     clrlwi.	r3, r3, 0x1f
@@ -2412,7 +2418,7 @@ _8005e0bc:
 _8005e0d0:
     add	r3, r4, r24
     stb	r0, 0x140b(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r3, r4, r20
     lbz	r0, 0x59a(r3)
     cmplwi	r0, 0
@@ -2422,11 +2428,11 @@ _8005e0d0:
     ori	r0, r0, 1
     stb	r0, 0x140b(r3)
 _8005e0fc:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lbz	r4, 0x1c(r31)
     add	r3, r0, r24
     stb	r4, 0x140c(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r3, r4, r20
     lbz	r0, 0x589(r3)
     clrlwi.	r0, r0, 0x1f
@@ -2448,17 +2454,17 @@ _8005e148:
 _8005e150:
     lbz	r4, 0x1b(r31)
     li	r3, 0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     andi.	r5, r4, 0xcf
     add	r4, r0, r24
     stb	r5, 0x140d(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     sth	r3, 0x1416(r4)
     lhz	r5, 2(r31)
     cmplwi	r5, 0x100
     bc      12, 0, _8005e1f8
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r6, r5, -0x100
     cmplwi	r6, 0
     lbz	r0, 0x45b(r4)
@@ -2532,7 +2538,7 @@ _8005e264:
 _8005e280:
     addi	r17, r1, 0x60
 _8005e284:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x1438
     li	r5, 0x7d00
     add	r4, r0, r24
@@ -2554,7 +2560,7 @@ _8005e284:
     li	r27, 4
     rlwinm.	r0, r3, 0, 0x18, 0x18
     bc      12, 2, _8005e2e8
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r20
     lbz	r3, 0x590(r3)
 _8005e2e8:
@@ -2634,7 +2640,7 @@ _8005e400:
     lbz	r3, 6(r31)
     rlwinm.	r0, r3, 0, 0x18, 0x18
     bc      12, 2, _8005e418
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r20
     lbz	r3, 0x590(r3)
 _8005e418:
@@ -2642,7 +2648,7 @@ _8005e418:
     addi	r3, r14, 0x60
     lbzx	r27, r3, r0
 _8005e424:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x462(r3)
     cmplwi	r0, 0
     bc      4, 2, _8005e7ac
@@ -2881,7 +2887,7 @@ _8005e7ac:
     lbz	r3, 8(r31)
     rlwinm.	r0, r3, 0, 0x18, 0x18
     bc      12, 2, _8005e7d8
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r14, 0
     add	r4, r0, r20
     lbz	r0, 0x58e(r4)
@@ -2902,7 +2908,7 @@ _8005e7e8:
     cmplwi	r3, 0
     bc      4, 2, _8005e8c4
 _8005e800:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r20
     lbz	r4, 0x593(r3)
     lbz	r19, 0x592(r3)
@@ -2928,7 +2934,7 @@ _8005e800:
 _8005e85c:
     li	r3, -0x388
 _8005e860:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     stw	r3, 0xd8(r1)
     add	r3, r0, r20
     lbz	r3, 0x594(r3)
@@ -3006,7 +3012,7 @@ _8005e974:
     lbz	r3, 7(r31)
     rlwinm.	r0, r3, 0, 0x18, 0x18
     bc      12, 2, _8005e98c
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r20
     lbz	r3, 0x591(r3)
 _8005e98c:
@@ -3129,7 +3135,7 @@ _8005eb4c:
     lhz	r0, 2(r31)
     cmplwi	r0, 0x100
     bc      12, 0, _8005eb78
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r4, 0(r17)
     lbz	r0, 0x45b(r3)
     slwi	r0, r0, 4
@@ -3138,7 +3144,7 @@ _8005eb4c:
     add	r3, r4, r0
     b       _8005eb88
 _8005eb78:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r0, 0(r17)
     lwz	r3, 0x1a8(r3)
     add	r3, r3, r0
@@ -3182,7 +3188,7 @@ _8005ebec:
     lhz	r0, 0x38(r17)
     sth	r0, 0x14(r1)
 _8005ec14:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x10
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
@@ -3194,14 +3200,14 @@ _8005ec2c:
     cmplwi	r5, 4
     sth	r0, 0x28(r1)
     bc      12, 2, _8005ec58
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r0, 8(r17)
     lwz	r4, 0x1a4(r4)
     add	r21, r3, r0
     divwu	r22, r4, r5
     b       _8005ec70
 _8005ec58:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r0, 8(r17)
     lwz	r4, 0x1a4(r4)
     add	r21, r3, r0
@@ -3211,7 +3217,7 @@ _8005ec70:
     srwi	r3, r22, 0x10
     srwi	r6, r21, 0x10
     srwi	r5, r14, 0x10
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     sth	r3, 0x2c(r1)
     addi	r4, r1, 0x28
     add	r3, r0, r24
@@ -3222,52 +3228,52 @@ _8005ec70:
     sth	r14, 0x36(r1)
     lwz	r3, 0x1434(r3)
     bl      AXVPBInitChannelState
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x38
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      fn_80023394
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      AXSetVoiceState_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x1490
     add	r3, r0, r3
     bl      axmix_ctrl_init_type2
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x1478
     add	r3, r0, r3
     bl      axmix_ctrl_init_type5
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x1484
     add	r3, r0, r3
     bl      axmix_ctrl_init_type8
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x149c
     add	r3, r0, r3
     bl      axmix_ctrl_init_type9
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x14a8
     add	r3, r0, r3
     bl      axmix_ctrl_init_type10
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x14b4
     add	r3, r0, r3
     bl      axmix_ctrl_init_type11
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x14c8
     add	r3, r0, r3
     bl      axmix_ctrl_init_type7
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x14f4
     add	r3, r0, r3
     bl      axmix_ctrl_init_type14
     lbz	r0, 0x1e(r31)
     cmplwi	r0, 0
     bc      4, 2, _8005ed80
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_801299D0@ha
     addi	r3, r24, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3279,7 +3285,7 @@ _8005ec70:
 _8005ed80:
     cmplwi	r0, 1
     bc      4, 2, _8005edac
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129AD0@ha
     addi	r3, r24, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3291,7 +3297,7 @@ _8005ed80:
 _8005edac:
     cmplwi	r0, 2
     bc      4, 2, _8005edd8
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129BD0@ha
     addi	r3, r24, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3303,7 +3309,7 @@ _8005edac:
 _8005edd8:
     cmplwi	r0, 3
     bc      4, 2, _8005ee04
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129CD0@ha
     addi	r3, r24, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3315,7 +3321,7 @@ _8005edd8:
 _8005ee04:
     cmplwi	r0, 4
     bc      4, 2, _8005ee30
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129DD0@ha
     addi	r3, r24, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3327,7 +3333,7 @@ _8005ee04:
 _8005ee30:
     cmplwi	r0, 5
     bc      4, 2, _8005ee58
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129ED0@ha
     addi	r3, r24, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3339,7 +3345,7 @@ _8005ee58:
     lbz	r0, 0x1f(r31)
     cmplwi	r0, 0
     bc      4, 2, _8005ee88
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_801299D0@ha
     addi	r3, r24, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3351,7 +3357,7 @@ _8005ee58:
 _8005ee88:
     cmplwi	r0, 1
     bc      4, 2, _8005eeb4
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129AD0@ha
     addi	r3, r24, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3363,7 +3369,7 @@ _8005ee88:
 _8005eeb4:
     cmplwi	r0, 2
     bc      4, 2, _8005eee0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129BD0@ha
     addi	r3, r24, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3375,7 +3381,7 @@ _8005eeb4:
 _8005eee0:
     cmplwi	r0, 3
     bc      4, 2, _8005ef0c
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129CD0@ha
     addi	r3, r24, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3387,7 +3393,7 @@ _8005eee0:
 _8005ef0c:
     cmplwi	r0, 4
     bc      4, 2, _8005ef38
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129DD0@ha
     addi	r3, r24, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3399,7 +3405,7 @@ _8005ef0c:
 _8005ef38:
     cmplwi	r0, 5
     bc      4, 2, _8005ef60
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129ED0@ha
     addi	r3, r24, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3412,7 +3418,7 @@ _8005ef60:
     extsb.	r0, r3
     bc      4, 1, _8005efa8
     extsb	r4, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r4, r4, 1
     lhz	r0, 0x28(r31)
     mulli	r4, r4, 0x4b0
@@ -3432,7 +3438,7 @@ _8005efa8:
     extsb	r0, r3
     lis	r4, 0x4330
     xoris	r3, r0, 0x8000
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     stw	r3, 0xd4(r1)
     add	r3, r0, r20
     lfd	f1, -0x7c28(r2)
@@ -3456,7 +3462,7 @@ _8005efa8:
 _8005f010:
     lhz	r4, 0x28(r31)
 _8005f014:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     slwi	r14, r4, 0x10
     add	r3, r0, r24
     stw	r14, 0x14f0(r3)
@@ -3464,7 +3470,7 @@ _8005f014:
     extsb.	r0, r3
     bc      4, 1, _8005f06c
     extsb	r3, r3
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r3, 1
     lhz	r3, 0x2a(r31)
     mulli	r5, r4, 0x78
@@ -3484,7 +3490,7 @@ _8005f06c:
     extsb	r0, r3
     lis	r4, 0x4330
     xoris	r3, r0, 0x8000
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     stw	r3, 0xd4(r1)
     add	r3, r0, r20
     lfd	f1, -0x7c28(r2)
@@ -3508,134 +3514,134 @@ _8005f06c:
 _8005f0d4:
     lhz	r15, 0x2a(r31)
 _8005f0d8:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     subf	r0, r15, r28
     slwi	r22, r15, 0x10
     add	r3, r3, r24
     slwi	r4, r0, 0x10
     stw	r22, 0x151c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stw	r28, 0x141c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stw	r4, 0x148c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stb	r27, 0x1498(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     lwz	r0, 0xe4(r1)
     stb	r0, 0x1499(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stw	r29, 0x1480(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     lwz	r0, 0xd8(r1)
     stw	r0, 0x14a4(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stw	r26, 0x14b0(r3)
     lha	r3, 0xc(r31)
     extsh.	r0, r3
     bc      12, 2, _8005f18c
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     slwi	r6, r3, 0x10
     li	r5, 0
     lis	r4, -0x3c0
     add	r3, r0, r24
     stw	r6, 0x14bc(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stw	r5, 0x14c0(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stw	r4, 0x14c4(r3)
     b       _8005f1b4
 _8005f18c:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 0
     add	r3, r0, r24
     stw	r4, 0x14bc(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stw	r4, 0x14c0(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stw	r4, 0x14c4(r3)
 _8005f1b4:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1478
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1484
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x149c
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14a8
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14b4
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1490
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14c8
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14f4
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r24, 0x1438
     add	r3, r0, r3
     bl      axmix_device_ctrl_accumulate_mix
     clrlwi.	r21, r19, 0x1f
     bc      12, 2, _8005f280
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      fn_80026E04
     b       _8005f290
 _8005f280:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      axmix_voice_clear_flags_and_request_update
 _8005f290:
     rlwinm.	r20, r19, 0, 0x1e, 0x1e
     bc      12, 2, _8005f2ac
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      fn_80026E84
     b       _8005f2bc
 _8005f2ac:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      fn_80026E54
 _8005f2bc:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lha	r19, 0xe0(r1)
     add	r3, r3, r24
     lwz	r3, 0x1434(r3)
@@ -3649,52 +3655,52 @@ _8005f2bc:
     mr	r25, r3
     cmpwi	r25, -1
     bc      12, 2, _8005fa68
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     mulli	r23, r25, 0x118
     addi	r3, r3, 0x1408
     lbzx	r0, r3, r24
     stbx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x1420
     lwzx	r0, r3, r24
     stwx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x140a
     lbzx	r0, r3, r24
     stbx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x1424
     lwzx	r0, r3, r24
     stwx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x1428
     lwzx	r0, r3, r24
     stwx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x140b
     lbzx	r0, r3, r24
     stbx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x140c
     lbzx	r0, r3, r24
     stbx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x1410
     lbzx	r0, r3, r24
     stbx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x140d
     lbzx	r0, r3, r24
     stbx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x1416
     lhzx	r0, r3, r24
     sthx	r0, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x1418
     lwzx	r0, r3, r24
     stwx	r0, r3, r23
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lbz	r0, 0x462(r5)
     cmplwi	r0, 0
     bc      12, 2, _8005f3c0
@@ -3723,7 +3729,7 @@ _8005f404:
     li	r0, 0
     sth	r0, 0x1a(r1)
 _8005f40c:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     clrlwi	r0, r16, 0x18
     lwz	r6, 0x40(r17)
     cmplwi	r0, 4
@@ -3784,7 +3790,7 @@ _8005f4d8:
     srwi	r6, r17, 0x10
     srwi	r5, r16, 0x10
     srwi	r4, r18, 0x10
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x1490
     sth	r6, 0x1c(r1)
     add	r3, r0, r3
@@ -3794,38 +3800,38 @@ _8005f4d8:
     sth	r4, 0x24(r1)
     sth	r18, 0x26(r1)
     bl      axmix_ctrl_init_type2
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x1478
     add	r3, r0, r3
     bl      axmix_ctrl_init_type5
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x1484
     add	r3, r0, r3
     bl      axmix_ctrl_init_type8
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x149c
     add	r3, r0, r3
     bl      axmix_ctrl_init_type9
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x14a8
     add	r3, r0, r3
     bl      axmix_ctrl_init_type10
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x14b4
     add	r3, r0, r3
     bl      axmix_ctrl_init_type11
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x14c8
     add	r3, r0, r3
     bl      axmix_ctrl_init_type7
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x14f4
     add	r3, r0, r3
     bl      axmix_ctrl_init_type14
     lbz	r0, 0x1e(r31)
     cmplwi	r0, 0
     bc      4, 2, _8005f5ac
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_801299D0@ha
     addi	r3, r23, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3837,7 +3843,7 @@ _8005f4d8:
 _8005f5ac:
     cmplwi	r0, 1
     bc      4, 2, _8005f5d8
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129AD0@ha
     addi	r3, r23, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3849,7 +3855,7 @@ _8005f5ac:
 _8005f5d8:
     cmplwi	r0, 2
     bc      4, 2, _8005f604
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129BD0@ha
     addi	r3, r23, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3861,7 +3867,7 @@ _8005f5d8:
 _8005f604:
     cmplwi	r0, 3
     bc      4, 2, _8005f630
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129CD0@ha
     addi	r3, r23, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3873,7 +3879,7 @@ _8005f604:
 _8005f630:
     cmplwi	r0, 4
     bc      4, 2, _8005f65c
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129DD0@ha
     addi	r3, r23, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3885,7 +3891,7 @@ _8005f630:
 _8005f65c:
     cmplwi	r0, 5
     bc      4, 2, _8005f684
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129ED0@ha
     addi	r3, r23, 0x14d0
     lfs	f1, 0x20(r31)
@@ -3897,7 +3903,7 @@ _8005f684:
     lbz	r0, 0x1f(r31)
     cmplwi	r0, 0
     bc      4, 2, _8005f6b4
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_801299D0@ha
     addi	r3, r23, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3909,7 +3915,7 @@ _8005f684:
 _8005f6b4:
     cmplwi	r0, 1
     bc      4, 2, _8005f6e0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129AD0@ha
     addi	r3, r23, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3921,7 +3927,7 @@ _8005f6b4:
 _8005f6e0:
     cmplwi	r0, 2
     bc      4, 2, _8005f70c
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129BD0@ha
     addi	r3, r23, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3933,7 +3939,7 @@ _8005f6e0:
 _8005f70c:
     cmplwi	r0, 3
     bc      4, 2, _8005f738
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129CD0@ha
     addi	r3, r23, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3945,7 +3951,7 @@ _8005f70c:
 _8005f738:
     cmplwi	r0, 4
     bc      4, 2, _8005f764
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129DD0@ha
     addi	r3, r23, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3957,7 +3963,7 @@ _8005f738:
 _8005f764:
     cmplwi	r0, 5
     bc      4, 2, _8005f78c
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80129ED0@ha
     addi	r3, r23, 0x14fc
     lfs	f1, 0x24(r31)
@@ -3966,169 +3972,169 @@ _8005f764:
     add	r3, r0, r3
     bl      axmix_sound_alloc_init
 _8005f78c:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     subf	r0, r15, r28
     slwi	r5, r0, 0x10
     slwi	r4, r28, 0x10
     add	r3, r3, r23
     stw	r14, 0x14f0(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r22, 0x151c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r28, 0x141c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r5, 0x148c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r4, 0x148c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stb	r27, 0x1498(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     lwz	r0, 0xe4(r1)
     stb	r0, 0x1499(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r29, 0x1480(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     lwz	r0, 0xd8(r1)
     stw	r0, 0x14a4(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r26, 0x14b0(r3)
     lha	r3, 0xc(r31)
     extsh.	r0, r3
     bc      12, 2, _8005f858
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     slwi	r6, r3, 0x10
     li	r5, 0
     lis	r4, -0x3c0
     add	r3, r0, r23
     stw	r6, 0x14bc(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r5, 0x14c0(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r4, 0x14c4(r3)
     b       _8005f880
 _8005f858:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 0
     add	r3, r0, r23
     stw	r4, 0x14bc(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r4, 0x14c0(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stw	r4, 0x14c4(r3)
 _8005f880:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1478
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1484
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x149c
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14a8
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14b4
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x1490
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14c8
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     addi	r3, r4, 0x1438
     addi	r4, r4, 0x14f4
     bl      axmix_link_push
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r3, r23, 0x1438
     add	r3, r0, r3
     bl      axmix_device_ctrl_accumulate_mix
     cmplwi	r21, 0
     bc      12, 2, _8005f94c
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      fn_80026E04
     b       _8005f95c
 _8005f94c:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      axmix_voice_clear_flags_and_request_update
 _8005f95c:
     cmplwi	r20, 0
     bc      12, 2, _8005f978
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      fn_80026E84
     b       _8005f988
 _8005f978:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      fn_80026E54
 _8005f988:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mr	r4, r19
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      fn_80026FB8
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x18
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      AXVPBInitChannelState
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x38
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      fn_80023394
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      AXSetVoiceState_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r23
     lwz	r3, 0x1434(r3)
     bl      AXSetVoiceType_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r23
     stb	r4, 0x1409(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     lbz	r3, 0x1410(r4)
     cmplwi	r3, 2
@@ -4137,22 +4143,22 @@ _8005f988:
     bc      4, 2, _8005fa34
     addi	r0, r3, -1
     stb	r0, 0x1410(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r23
     lwz	r3, 0x1434(r4)
     lbz	r4, 0x1410(r4)
     bl      AXSetVoicePriority
 _8005fa34:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stb	r30, 0x1411(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stb	r25, 0x1412(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stb	r30, 0x1411(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r23
     stb	r25, 0x1412(r3)
     b       _8005fa70
@@ -4163,16 +4169,16 @@ _8005fa70:
     lwz	r0, 0xdc(r1)
     cmplwi	r0, 0
     bc      12, 2, _8005fadc
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      AXSetVoiceType_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r24
     stb	r4, 0x1409(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     lbz	r3, 0x1410(r4)
     cmplwi	r3, 2
@@ -4181,7 +4187,7 @@ _8005fa70:
     bc      4, 2, _8005fbb8
     addi	r0, r3, -1
     stb	r0, 0x1410(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     lwz	r3, 0x1434(r4)
     lbz	r4, 0x1410(r4)
@@ -4189,7 +4195,7 @@ _8005fa70:
     b       _8005fbb8
 _8005fadc:
     clrlwi	r15, r30, 0x18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mulli	r14, r15, 0x118
     add	r3, r0, r14
     lbz	r0, 0x1408(r3)
@@ -4198,19 +4204,19 @@ _8005fadc:
     lwz	r3, 0x1434(r3)
     li	r4, 0
     bl      AXSetVoiceType_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
     bl      axmix_device_ctrl_clear
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
     bl      AXFreeVoice
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 0
     add	r3, r0, r14
     stw	r4, 0x1434(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r3, r4, r14
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 3
@@ -4223,18 +4229,18 @@ _8005fb54:
     add	r3, r4, r3
     bl      axmix_device_ctrl_unlink
 _8005fb60:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r5, 0xff
     li	r4, 0
     add	r3, r0, r14
     stb	r5, 0x1408(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r14
     stw	r4, 0x1420(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r14
     stb	r4, 0x1409(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r14
     lbz	r0, 0x1411(r3)
     cmplw	r0, r15
@@ -4265,14 +4271,14 @@ asm void SndSetVoicePriority(void)
     mflr	r0
     mulli	r6, r3, 0x118
     stw	r0, 0x14(r1)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r6
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 0xff
     bc      12, 2, _8005fcc8
     li	r0, 2
     stb	r0, 0x1409(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r6
     lbz	r0, 0x1408(r4)
     cmplwi	r0, 3
@@ -4281,7 +4287,7 @@ asm void SndSetVoicePriority(void)
     li	r3, -0x3c0
     divw	r0, r3, r0
     stw	r0, 0x1418(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r6
     lwz	r0, 0x1418(r3)
     cmpwi	r0, 0
@@ -4301,16 +4307,16 @@ _8005fc68:
     lis	r0, -0x3c0
     stw	r0, 0x14bc(r4)
 _8005fc70:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis	r5, -0x3c0
     li	r4, 2
     add	r3, r0, r6
     stw	r5, 0x14c0(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r6
     sth	r4, 0x1416(r3)
 _8005fc90:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r6
     lbz	r3, 0x1410(r4)
     cmplwi	r3, 2
@@ -4319,7 +4325,7 @@ _8005fc90:
     bc      4, 2, _8005fcc8
     addi	r0, r3, -1
     stb	r0, 0x1410(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r6
     lwz	r3, 0x1434(r4)
     lbz	r4, 0x1410(r4)
@@ -4341,7 +4347,7 @@ asm void SndKillChannelVoice(void)
     stw	r30, 8(r1)
     mr	r30, r3
     mulli	r31, r30, 0x118
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 0xff
@@ -4349,19 +4355,19 @@ asm void SndKillChannelVoice(void)
     lwz	r3, 0x1434(r3)
     li	r4, 0
     bl      AXSetVoiceType_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     lwz	r3, 0x1434(r3)
     bl      axmix_device_ctrl_clear
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     lwz	r3, 0x1434(r3)
     bl      AXFreeVoice
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 0
     add	r3, r0, r31
     stw	r4, 0x1434(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r3, r4, r31
     lbz	r0, 0x1408(r3)
     cmplwi	r0, 3
@@ -4374,18 +4380,18 @@ _8005fd64:
     add	r3, r4, r3
     bl      axmix_device_ctrl_unlink
 _8005fd70:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r5, 0xff
     li	r4, 0
     add	r3, r0, r31
     stb	r5, 0x1408(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     stw	r4, 0x1420(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     stb	r4, 0x1409(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     lbz	r0, 0x1411(r3)
     cmplw	r0, r30
@@ -4417,7 +4423,7 @@ asm void SndDispatchCommand(void)
     stw	r29, 0x14(r1)
     mr	r29, r3
     srwi	r4, r29, 0x18
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     andis.	r6, r29, 0xff70
     cmplwi	r4, 0x80
     rlwinm	r5, r29, 0x10, 0x19, 0x1f
@@ -4513,10 +4519,10 @@ _8005fee4:
     b       _800605f0
     bl      fn_800622B0
     b       _800605f0
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r0, 1
     stb	r0, 0x462(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r0, 0x463(r3)
     bl      fn_80021928
     cmplwi	r3, 0
@@ -4530,10 +4536,10 @@ _8005ff88:
     li	r3, 1
     bl      fn_80025EE4
     b       _800605f0
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r0, 0
     stb	r0, 0x462(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r0, 0x463(r3)
     bl      fn_80021928
     cmplwi	r3, 0
@@ -4564,11 +4570,11 @@ _8005ffc8:
     mr	r3, r29
     bl      SndAllocBankEntry
     b       _800605f0
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r4, 1
     li	r0, 2
     stb	r4, 0x462(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r0, 0x463(r3)
     bl      fn_80021928
     cmplwi	r3, 1
@@ -4582,11 +4588,11 @@ _80060050:
     li	r3, 2
     bl      fn_80025EE4
     b       _800605f0
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r4, 1
     li	r0, 3
     stb	r4, 0x462(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r0, 0x463(r3)
     bl      fn_80021928
     cmplwi	r3, 2
@@ -4600,7 +4606,7 @@ _80060094:
     li	r3, 3
     bl      fn_80025EE4
     b       _800605f0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lis	r3, 1
     addi	r3, r3, -0x5fff
     li	r4, 0
@@ -4646,7 +4652,7 @@ _80060094:
     lis     r5, lbl_80092AB8@ha
     lis	r4, 1
     addi	r6, r5, lbl_80092AB8@l
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     rlwinm	r0, r3, 4, 0x14, 0x1b
     lbzx	r6, r6, r7
     add	r5, r5, r0
@@ -4655,7 +4661,7 @@ _80060094:
     li	r4, 0xf
     bl      SndUpdateVoices
     b       _800605f0
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b18(r4)
     cmplwi	r12, 0
     bc      12, 2, _800605f0
@@ -4670,7 +4676,7 @@ _80060094:
     add	r4, r3, r0
     b       _800601ec
 _800601c0:
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     clrlwi	r0, r7, 0x18
     add	r3, r6, r0
     addi	r0, r3, 0xd88
@@ -4687,10 +4693,10 @@ _800601ec:
     cmplwi	r0, 4
     bc      12, 0, _800601c0
     b       _800605f0
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r7, 0x45e(r3)
     b       _800605f0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lis	r3, 1
     addi	r3, r3, -0x5fff
     li	r4, 0
@@ -4729,13 +4735,13 @@ _8006027c:
     bc      12, 2, _8006029c
     b       _800605f0
 _8006029c:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     mr	r4, r7
     lbz	r3, 0x474(r3)
     bl      SndFindSlotByKey
     b       _800605f0
 _800602b0:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r7, 0x474(r3)
     b       _800605f0
 _800602bc:
@@ -4887,7 +4893,7 @@ _800604a0:
     bl      SndUpdateVoices
     b       _800605f0
 _800604b4:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r6, 0x444(r7)
     rlwinm	r30, r6, 6, 0x16, 0x19
     rlwinm	r4, r6, 4, 0x18, 0x1b
@@ -4951,7 +4957,7 @@ _80060568:
     li	r30, 0
     b       _800605c0
 _80060598:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     clrlwi	r0, r30, 0x18
     add	r3, r3, r0
     addi	r0, r3, 0xd88
@@ -5045,7 +5051,7 @@ _800606b4:
     stb	r0, 0xb(r31)
     b       _800606f0
 _800606d0:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r12, 0x5b1c(r3)
     cmplwi	r12, 0
     bc      12, 2, _800606f0
@@ -5270,7 +5276,7 @@ _800609c4:
     addi	r3, r3, lbl_80192D68@l
     lha	r6, 2(r8)
     clrlwi	r0, r4, 0x18
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbzx	r3, r3, r31
     subf	r0, r5, r0
     mullw	r5, r6, r0
@@ -5357,7 +5363,7 @@ _80060ac8:
 _80060b18:
     lfs	f31, -0x7b90(r2)
 _80060b1c:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     slwi	r0, r30, 1
     lbz	r4, 0x461(r3)
     add	r3, r3, r0
@@ -5382,7 +5388,7 @@ _80060b70:
     lfs	f1, -0x7b90(r2)
 _80060b74:
     lfs	f0, -0x7b8c(r2)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     fmuls	f0, f0, f1
     lha	r0, 0x5a10(r3)
     fctiwz	f0, f0
@@ -5414,7 +5420,7 @@ asm void SndClearVoiceSlot(void)
 {
     nofralloc
     mulli	r0, r3, 0x118
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lis     r4, lbl_80192D68@ha
     add	r5, r5, r0
     addi	r4, r4, lbl_80192D68@l
@@ -5470,7 +5476,7 @@ asm void SndInitVoiceParams(void)
     mulli	r0, r0, 0x54
     addi	r6, r7, -0x100
     addi	r3, r3, lbl_80192D68@l
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     cmplwi	r6, 0
     lbzx	r0, r3, r0
     li	r5, 0
@@ -5725,7 +5731,7 @@ _80061034:
     addi	r3, r3, lbl_80092B58@l
     lbzx	r26, r3, r0
 _80061044:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x462(r3)
     cmplwi	r0, 0
     bc      4, 2, _800612d4
@@ -5975,7 +5981,7 @@ _800613e4:
     lis     r3, lbl_80192D68@ha
     extsh	r14, r14
     addi	r0, r3, lbl_80192D68@l
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r0, r0, r31
     lis	r6, -0x7ff7
     add	r11, r0, r30
@@ -5995,38 +6001,38 @@ _800613e4:
     addi	r3, r11, 0x15
     extsh	r28, r5
     extsh	r5, r19
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     mr	r9, r28
     stw	r3, 0x114(r1)
     extsh	r8, r26
     add	r3, r6, r29
     stb	r7, 0x1408(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r29
     stb	r0, 0x140b(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r29
     stb	r0, 0x140c(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r29
     stb	r4, 0x1410(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r29
     stb	r0, 0x140d(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r4, 7(r16)
     add	r3, r3, r29
     sth	r4, 0x1416(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r29
     stw	r0, 0x1418(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     stb	r17, 0x140e(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     stb	r18, 0x140f(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lwz	r4, 0x10(r1)
     add	r3, r0, r29
     lwz	r6, 0x18(r1)
@@ -6149,7 +6155,7 @@ _80061688:
     cmplwi	r0, 0x100
     bc      12, 0, _800616bc
     lis     r3, lbl_80192D68@ha
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r3, r3, lbl_80192D68@l
     lwz	r5, 0(r25)
     lbzx	r0, r3, r31
@@ -6159,7 +6165,7 @@ _80061688:
     add	r3, r5, r0
     b       _800616cc
 _800616bc:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r0, 0(r25)
     lwz	r3, 0x1a8(r3)
     add	r3, r3, r0
@@ -6203,7 +6209,7 @@ _80061730:
     lhz	r0, 0x38(r25)
     sth	r0, 0x24(r1)
 _80061758:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x20
     add	r3, r0, r29
     lwz	r3, 0x1434(r3)
@@ -6215,14 +6221,14 @@ _80061770:
     cmplwi	r5, 4
     sth	r0, 0x58(r1)
     bc      12, 2, _8006179c
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r0, 8(r25)
     lwz	r4, 0x1a4(r4)
     add	r24, r3, r0
     divwu	r23, r4, r5
     b       _800617b4
 _8006179c:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r0, 8(r25)
     lwz	r4, 0x1a4(r4)
     add	r24, r3, r0
@@ -6341,7 +6347,7 @@ _800618ec:
     li	r22, 0
 _8006195c:
     li	r5, 0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     sth	r15, 0x48(r1)
     addi	r4, r1, 0x48
     add	r3, r0, r29
@@ -6353,17 +6359,17 @@ _8006195c:
     sth	r5, 0x54(r1)
     lwz	r3, 0x1434(r3)
     bl      AXVPBSyncChannelA
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x58
     add	r3, r0, r29
     lwz	r3, 0x1434(r3)
     bl      AXVPBInitChannelState
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x68
     add	r3, r0, r29
     lwz	r3, 0x1434(r3)
     bl      fn_80023394
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r29
     lwz	r3, 0x1434(r3)
@@ -6380,7 +6386,7 @@ _8006195c:
     cmpwi	r23, -1
     bc      12, 2, _80061cd8
     lis     r4, lbl_80192D68@ha
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r4, r4, lbl_80192D68@l
     li	r0, 0
     add	r4, r4, r31
@@ -6394,35 +6400,35 @@ _8006195c:
     lwz	r3, 0x114(r1)
     stb	r7, 0(r3)
     stw	r0, 0x1420(r6)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stb	r5, 0x1408(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stb	r0, 0x140b(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stb	r0, 0x140c(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stb	r4, 0x1410(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stb	r0, 0x140d(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r4, 7(r16)
     add	r3, r3, r24
     sth	r4, 0x1416(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r24
     stw	r0, 0x1418(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stb	r17, 0x140e(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stb	r18, 0x140f(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x462(r3)
     cmplwi	r0, 0
     bc      12, 2, _80061abc
@@ -6458,7 +6464,7 @@ _80061b18:
     lis     r3, lbl_80192D68@ha
     clrlwi	r0, r21, 0x18
     addi	r4, r3, lbl_80192D68@l
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbzx	r4, r4, r31
     cmplwi	r0, 4
     lwz	r6, 0x40(r25)
@@ -6519,7 +6525,7 @@ _80061bec:
     srwi	r3, r16, 0x10
     srwi	r7, r17, 0x10
     srwi	r6, r14, 0x10
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x38
     sth	r3, 0x3c(r1)
     add	r3, r0, r24
@@ -6537,40 +6543,40 @@ _80061bec:
     sth	r5, 0x34(r1)
     lwz	r3, 0x1434(r3)
     bl      AXVPBInitChannelState
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x68
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      fn_80023394
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      AXSetVoiceState_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r4, r1, 0x28
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      AXVPBSyncChannelA
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r24
     lwz	r3, 0x1434(r3)
     bl      AXSetVoiceType_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r24
     stb	r4, 0x1409(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     stb	r20, 0x1411(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r29
     stb	r23, 0x1412(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stb	r20, 0x1411(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r24
     stb	r23, 0x1412(r3)
     b       _80061ce0
@@ -6581,12 +6587,12 @@ _80061ce0:
     lwz	r0, 0x110(r1)
     cmplwi	r0, 0
     bc      12, 2, _80061d18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r29
     lwz	r3, 0x1434(r3)
     bl      AXSetVoiceType_cached
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 1
     add	r3, r0, r29
     stb	r4, 0x1409(r3)
@@ -6681,7 +6687,7 @@ _80061e40:
     fmr	f31, f0
 _80061e5c:
     mulli	r19, r14, 0x118
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     fmr	f1, f31
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
@@ -6763,12 +6769,12 @@ _80061f68:
     addi	r7, r1, 0x18
     addi	r8, r1, 0x14
     bl      fn_80060724
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lwz	r4, 0x18(r1)
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
     bl      fn_80026E2C
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lwz	r4, 0x14(r1)
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
@@ -6780,7 +6786,7 @@ _80061f68:
     lbzu	r0, 0x17(r17)
     cmplwi	r0, 0xff
     bc      4, 2, _80062100
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     extsh	r4, r14
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
@@ -6844,7 +6850,7 @@ _800620b8:
     bc      4, 1, _800620c4
     li	r4, 0x7f
 _800620c4:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r3, lbl_80092B58@ha
     extsh	r5, r4
     addi	r4, r3, lbl_80092B58@l
@@ -6853,7 +6859,7 @@ _800620c4:
     lwz	r3, 0x1434(r3)
     extsh	r4, r0
     bl      axmix_set_voice_volume
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     extsh	r4, r20
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
@@ -6928,12 +6934,12 @@ _800621d8:
     lha	r4, 8(r1)
     addi	r6, r1, 0xa
     bl      SndVelocityToVolume
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lha	r4, 0xc(r1)
     add	r3, r0, r19
     lwz	r3, 0x1434(r3)
     bl      axmix_set_voice_param_08
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     extsh	r15, r20
     mr	r4, r15
     add	r3, r0, r19
@@ -6941,27 +6947,27 @@ _800621d8:
     bl      axmix_set_voice_volume_clamped
     lbz	r0, 0(r17)
     fmr	f1, f31
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     mulli	r14, r0, 0x118
     add	r3, r3, r14
     lwz	r3, 0x1434(r3)
     bl      AXVPBSyncChannelB
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lha	r4, 0xa(r1)
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
     bl      axmix_set_voice_param_08
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mr	r4, r15
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
     bl      axmix_set_voice_volume_clamped
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lwz	r4, 0x18(r1)
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
     bl      fn_80026E2C
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lwz	r4, 0x14(r1)
     add	r3, r0, r14
     lwz	r3, 0x1434(r3)
@@ -7048,7 +7054,7 @@ asm void SndStartVoice(void)
     addi	r0, r3, lbl_80192D68@l
     add	r25, r0, r26
     addi	r5, r25, 2
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     mr	r4, r6
     b       _800623c0
 _800623a0:
@@ -7129,7 +7135,7 @@ _800624a0:
     lis     r3, lbl_80192D68@ha
     extsb	r0, r23
     addi	r4, r3, lbl_80192D68@l
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r7, r4, r26
     slwi	r0, r0, 4
     li	r4, 1
@@ -7256,7 +7262,7 @@ asm void SndPlaySequenceNotes(void)
     stw	r0, 0x34(r1)
     lis	r0, -0x5a90
     stmw	r23, 0xc(r1)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r4, 0x444(r3)
     andis.	r5, r4, 0xff70
     rlwinm	r31, r4, 0x10, 0x1c, 0x1f
@@ -7973,7 +7979,7 @@ _80063048:
     stb	r23, 0(r30)
     b       _80063080
 _80063060:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r12, 0x5b1c(r3)
     cmplwi	r12, 0
     bc      12, 2, _80063080
@@ -8073,7 +8079,7 @@ _800631a0:
     add	r3, r4, r3
     b       _800631d0
 _800631b4:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     slwi	r0, r5, 1
     add	r4, r4, r0
     sth	r31, 0x5af4(r4)
@@ -8203,7 +8209,7 @@ _80063360:
     bc      12, 2, _80063ed4
     cmplwi	r0, 0x7f
     bc      12, 2, _80063dc0
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     li	r0, 4
     clrlwi	r3, r28, 0x18
     li	r7, 0
@@ -8338,7 +8344,7 @@ _80063540:
     li	r3, 0
     li	r4, 0
     bl      AXSetAuxCallbackDestA
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x471(r3)
     cmpwi	r0, 2
     bc      12, 2, _8006359c
@@ -8375,28 +8381,28 @@ _800635b8:
     li	r4, 0
     bl      AXSetAuxCallbackDestB
     lwz	r0, 0(r31)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     srwi	r0, r0, 0x18
     stb	r0, 0x470(r3)
     lwz	r0, 0(r31)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     rlwinm	r0, r0, 0x10, 0x18, 0x1f
     stb	r0, 0x471(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r28, 0x472(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r29, 0x473(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r3, 0x5b20(r3)
     cmpwi	r3, -1
     bc      4, 2, _80063610
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     bl      fn_800090A4
     b       _80063614
 _80063610:
     bl      fn_800090A4
 _80063614:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lbz	r0, 0x470(r5)
     cmpwi	r0, 2
     bc      12, 2, _80063878
@@ -8468,7 +8474,7 @@ _80063644:
 _80063720:
     li	r0, 0xff
     stb	r0, 0x470(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b1c(r4)
     cmplwi	r12, 0
     bc      12, 2, _80063748
@@ -8545,7 +8551,7 @@ _80063750:
 _80063848:
     li	r0, 0xff
     stb	r0, 0x470(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b1c(r4)
     cmplwi	r12, 0
     bc      12, 2, _80063870
@@ -8578,7 +8584,7 @@ _80063878:
 _800638c0:
     li	r0, 0xff
     stb	r0, 0x470(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b1c(r4)
     cmplwi	r12, 0
     bc      12, 2, _800638e8
@@ -8640,7 +8646,7 @@ _800638f0:
 _800639ac:
     li	r0, 0xff
     stb	r0, 0x470(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b1c(r4)
     cmplwi	r12, 0
     bc      12, 2, _800639d4
@@ -8651,17 +8657,17 @@ _800639ac:
 _800639d4:
     li	r30, 0x24
 _800639d8:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r3, 0x5b20(r3)
     cmpwi	r3, -1
     bc      4, 2, _800639f4
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     bl      fn_800090A4
     b       _800639f8
 _800639f4:
     bl      fn_800090A4
 _800639f8:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lbz	r0, 0x471(r5)
     cmpwi	r0, 2
     bc      12, 2, _80063c5c
@@ -8734,7 +8740,7 @@ _80063a28:
 _80063b08:
     li	r0, 0xff
     stb	r0, 0x471(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b1c(r4)
     cmplwi	r12, 0
     bc      12, 2, _80063ed4
@@ -8810,7 +8816,7 @@ _80063b34:
 _80063c30:
     li	r0, 0xff
     stb	r0, 0x471(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b1c(r4)
     cmplwi	r12, 0
     bc      12, 2, _80063ed4
@@ -8842,7 +8848,7 @@ _80063c5c:
 _80063ca8:
     li	r0, 0xff
     stb	r0, 0x471(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b1c(r4)
     cmplwi	r12, 0
     bc      12, 2, _80063ed4
@@ -8903,7 +8909,7 @@ _80063cd4:
 _80063d94:
     li	r0, 0xff
     stb	r0, 0x471(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r12, 0x5b1c(r4)
     cmplwi	r12, 0
     bc      12, 2, _80063ed4
@@ -8913,7 +8919,7 @@ _80063d94:
     bctrl
     b       _80063ed4
 _80063dc0:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x470(r3)
     cmpwi	r0, 2
     bc      12, 2, _80063e10
@@ -8949,7 +8955,7 @@ _80063e2c:
     li	r3, 0
     li	r4, 0
     bl      AXSetAuxCallbackDestA
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x471(r3)
     cmpwi	r0, 2
     bc      12, 2, _80063e88
@@ -8985,14 +8991,14 @@ _80063ea4:
     li	r3, 0
     li	r4, 0
     bl      AXSetAuxCallbackDestB
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r0, 0xff
     stb	r0, 0x470(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r0, 0x471(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r0, 0x472(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r0, 0x473(r3)
 _80063ed4:
     lwz	r0, 0x54(r1)
@@ -9008,7 +9014,7 @@ _80063ed4:
 asm void SndCalcPanMix(void)
 {
     nofralloc
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     rlwinm	r0, r3, 5, 0x13, 0x1a
     add	r3, r6, r0
     lbz	r3, 0x599(r3)
@@ -9038,7 +9044,7 @@ asm void SndSendParamToChannelVoices(void)
     rlwinm	r4, r4, 4, 0x14, 0x1b
     stmw	r27, 0xc(r1)
     li	r8, 0
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r0, 0x444(r7)
     rlwinm	r0, r0, 0x18, 0x19, 0x1f
     extsb	r3, r0
@@ -9051,7 +9057,7 @@ _80063f6c:
     add	r3, r5, r3
     b       _80064114
 _80063f7c:
-    lwz	r28, -0x7740(r13)
+    lwz	r28, g_sndMgrPtr
     clrlwi	r7, r9, 0x18
     add	r7, r28, r7
     addi	r7, r7, 0xd88
@@ -9086,27 +9092,27 @@ _80063fd4:
     li	r28, 0
     addi	r31, r27, 0x59b
     addi	r12, r27, 0x59c
-    lwz	r29, -0x7740(r13)
+    lwz	r29, g_sndMgrPtr
     addi	r11, r27, 0x59d
     addi	r10, r27, 0x596
     addi	r7, r27, 0x597
     stbx	r28, r29, r30
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r28, r30, r31
-    lwz	r31, -0x7740(r13)
+    lwz	r31, g_sndMgrPtr
     stbx	r28, r31, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     stbx	r28, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     add	r12, r11, r27
     lwz	r28, 0x5a0(r12)
     lbz	r11, 0xb(r28)
     stb	r11, 0x590(r12)
     lbz	r12, 0xd(r28)
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     stbx	r12, r11, r10
     lbz	r11, 0xe(r28)
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     stbx	r11, r10, r7
     b       _80064110
 _8006405c:
@@ -9188,7 +9194,7 @@ asm void fn_8006413C(void)
     mr	r30, r3
     b       _80064184
 _8006415c:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     rlwinm	r0, r31, 4, 0x14, 0x1b
     lwzx	r3, r3, r0
     addis	r0, r3, 1
@@ -9220,14 +9226,14 @@ asm void fn_800641A8(void)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     mr	r30, r3
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r4, 0x444(r4)
     rlwinm.	r0, r4, 0, 0x1b, 0x1b
     bc      12, 2, _80064210
     li	r31, 0
     b       _80064200
 _800641d8:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     rlwinm	r0, r31, 4, 0x14, 0x1b
     lwzx	r3, r3, r0
     addis	r0, r3, 1
@@ -9258,7 +9264,7 @@ _80064218:
 asm void SndMarkChannelVoicesForUpdate(void)
 {
     nofralloc
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     lwz	r7, 0x444(r8)
     rlwinm.	r0, r7, 0, 0x1b, 0x1b
     bc      12, 2, _80064328
@@ -9266,7 +9272,7 @@ asm void SndMarkChannelVoicesForUpdate(void)
     li	r9, 0
     b       _80064318
 _8006424c:
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     rlwinm	r0, r9, 4, 0x14, 0x1b
     clrlwi	r8, r9, 0x18
     add	r7, r6, r0
@@ -9397,7 +9403,7 @@ asm void SndTickChannels(void)
     stmw	r23, 0xc(r1)
     clrlwi	r31, r3, 0x10
     li	r24, 0
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r4, 0x444(r4)
     rlwinm	r3, r4, 6, 0x16, 0x19
     rlwinm	r0, r4, 0xa, 0x1a, 0x1d
@@ -9407,7 +9413,7 @@ asm void SndTickChannels(void)
     add	r28, r3, r0
     rlwinm	r27, r4, 4, 0x18, 0x1b
 _80064430:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r3, r4, r24
     addi	r0, r3, 0xd88
     lbzx	r26, r28, r0
@@ -9463,7 +9469,7 @@ _800644e0:
     bc      12, 2, _80064774
     b       _80064798
 _80064500:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     rlwinm	r25, r26, 5, 0x13, 0x1a
     add	r3, r0, r25
     lbz	r0, 0x589(r3)
@@ -9475,19 +9481,19 @@ _80064500:
     addi	r3, r3, 8
     mr	r4, r26
     bl      SndProcessVoiceEnvelope
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r25, 0x5a4
     mr	r4, r26
     lwzx	r3, r3, r0
     addi	r3, r3, 0xa
     bl      SndProcessVoiceEnvelope
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r25, 0x5a4
     mr	r4, r26
     lwzx	r3, r3, r0
     addi	r3, r3, 0xc
     bl      SndProcessVoiceEnvelope
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r25, 0x5a4
     mr	r4, r26
     lwzx	r3, r3, r0
@@ -9496,10 +9502,10 @@ _80064500:
     b       _80064798
 _8006457c:
     rlwinm	r5, r26, 5, 0x13, 0x1a
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r5, 0x58c
     stbx	r29, r3, r0
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r3, r4, r5
     addi	r4, r4, 8
     lbz	r0, 0x589(r3)
@@ -9591,37 +9597,37 @@ _800646bc:
     b       _80064798
 _800646c8:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x59b
     stbx	r29, r4, r0
     b       _80064798
 _800646dc:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x59c
     stbx	r29, r4, r0
     b       _80064798
 _800646f0:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x58f
     stbx	r29, r4, r0
     b       _80064798
 _80064704:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x590
     stbx	r29, r4, r0
     b       _80064798
 _80064718:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x593
     stbx	r29, r4, r0
     b       _80064798
 _8006472c:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x594
     stbx	r29, r4, r0
     b       _80064798
@@ -9629,26 +9635,26 @@ _80064740:
     cmplwi	r29, 0x40
     bc      12, 0, _8006475c
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x59a
     stbx	r29, r4, r0
     b       _80064798
 _8006475c:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x59a
     li	r3, 0
     stbx	r3, r4, r0
     b       _80064798
 _80064774:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x58d
     stbx	r30, r4, r0
     b       _80064798
 _80064788:
     rlwinm	r3, r26, 5, 0x13, 0x1a
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r3, 0x599
     stbx	r29, r4, r0
 _80064798:
@@ -9669,7 +9675,7 @@ asm void SndRefreshChannelVoices(void)
     mflr	r0
     stw	r0, 0x14(r1)
     li	r0, 0xf
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r4, 0x444(r4)
     rlwinm	r4, r4, 0x1c, 0x1f, 0x1f
     neg	r4, r4
@@ -9690,7 +9696,7 @@ asm void fn_800647F0(void)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     li	r30, 0
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     b       _80064944
 _80064810:
     clrlwi	r7, r30, 0x18
@@ -9713,21 +9719,21 @@ _8006484c:
     add	r3, r6, r3
     bl      axmix_device_ctrl_unlink
 _80064858:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r5, 0
     li	r4, 0xff
     add	r3, r0, r31
     stw	r5, 0x1434(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     stb	r4, 0x1408(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     stw	r5, 0x1420(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     stb	r5, 0x1409(r3)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r7, r5, 0x1411
     lbzx	r6, r7, r31
     cmplwi	r6, 0xff
@@ -9745,7 +9751,7 @@ _800648b4:
     lbz	r0, 0x1412(r3)
     mulli	r0, r0, 0x118
     stbx	r4, r7, r0
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r3, r3, 0x1412
     lbzx	r0, r3, r31
     mulli	r0, r0, 0x118
@@ -9759,18 +9765,18 @@ _800648ec:
     mulli	r0, r6, 0x118
     li	r4, 0xff
     stbx	r4, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r3, r5, r31
     lbz	r0, 0x1411(r3)
     mulli	r0, r0, 0x118
     add	r3, r5, r0
     stb	r4, 0x1412(r3)
 _80064920:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 0xff
     add	r3, r0, r31
     stb	r4, 0x1411(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     stb	r4, 0x1412(r3)
     b       _80064950
@@ -9801,12 +9807,12 @@ asm void SndSwapVoice(void)
     addi	r4, r4, fn_800647F0@l
     stw	r31, 0xc(r1)
     li	r31, -1
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lwz	r5, 0x44c(r5)
     bl      AXAcquireVoice
     cmplwi	r3, 0
     bc      12, 2, _800649f4
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     li	r7, 0
     b       _800649e8
 _800649ac:
@@ -9819,7 +9825,7 @@ _800649ac:
     add	r4, r4, r6
     mr	r31, r5
     stw	r3, 0x1434(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r0, 0x44c(r4)
     add	r4, r4, r6
     stw	r0, 0x142c(r4)
@@ -9831,7 +9837,7 @@ _800649e8:
     cmplwi	r0, 0x40
     bc      12, 0, _800649ac
 _800649f4:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     cmplwi	r3, 0
     lwz	r4, 0x44c(r5)
     addi	r0, r4, 1
@@ -9864,7 +9870,7 @@ asm void SndUpdateVoices(void)
     stw	r28, 0x10(r1)
     mr	r28, r4
 _80064a5c:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r5, r3, r31
     lbz	r4, 0x1408(r5)
     cmplwi	r4, 0xff
@@ -10032,7 +10038,7 @@ _80064ca4:
     lbz	r0, 0x140b(r5)
     rlwinm	r0, r0, 0, 0x18, 0x1e
     stb	r0, 0x140b(r5)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r5, r4, r31
     lbz	r0, 0x140a(r5)
     slwi	r3, r0, 5
@@ -10091,7 +10097,7 @@ _80064d60:
     add	r3, r0, r3
     b       _80064e5c
 _80064d70:
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     clrlwi	r5, r7, 0x18
     add	r8, r9, r5
     addi	r8, r8, 0xd88
@@ -10122,7 +10128,7 @@ _80064dc4:
     addi	r27, r26, 0x5a0
     addi	r28, r26, 0x5a4
     addi	r30, r26, 0x58a
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     addi	r31, r26, 0x599
     li	r29, 0x40
     addi	r12, r26, 0x59a
@@ -10130,24 +10136,24 @@ _80064dc4:
     addi	r11, r26, 0x59b
     addi	r10, r26, 0x59c
     addi	r8, r26, 0x59d
-    lwz	r26, -0x7740(r13)
+    lwz	r26, g_sndMgrPtr
     li	r9, 0xff
     stwx	r25, r26, r27
-    lwz	r27, -0x7740(r13)
+    lwz	r27, g_sndMgrPtr
     stwx	r25, r27, r28
-    lwz	r28, -0x7740(r13)
+    lwz	r28, g_sndMgrPtr
     stbx	r25, r28, r30
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r29, r30, r31
-    lwz	r31, -0x7740(r13)
+    lwz	r31, g_sndMgrPtr
     stbx	r25, r31, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     stbx	r25, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     stbx	r25, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     stbx	r25, r10, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r5, r8, r5
     addi	r5, r5, 0xd88
     stbx	r9, r3, r5
@@ -10170,7 +10176,7 @@ _80064e6c:
 asm void fn_80064E84(void)
 {
     nofralloc
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     rlwinm	r6, r4, 5, 0x13, 0x1a
     rlwinm	r4, r3, 4, 0x14, 0x1b
     add	r3, r5, r6
@@ -10285,7 +10291,7 @@ _80064ffc:
     li	r9, 0xff
     rlwinm.	r0, r0, 0, 0x18, 0x18
     bc      12, 2, _80065310
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     li	r6, 0
     b       _80065038
 _80065018:
@@ -10313,7 +10319,7 @@ _80065044:
     addi	r19, r5, 0x58d
     lbz	r18, 0(r10)
     addi	r20, r5, 0x58e
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     addi	r21, r5, 0x58f
     addi	r22, r5, 0x590
     addi	r23, r5, 0x591
@@ -10323,7 +10329,7 @@ _80065044:
     addi	r26, r5, 0x594
     lbz	r12, 2(r10)
     addi	r27, r5, 0x595
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     addi	r28, r5, 0x596
     addi	r29, r5, 0x597
     addi	r31, r5, 0x58b
@@ -10332,44 +10338,44 @@ _80065044:
     addi	r11, r6, 0x589
     li	r0, 0
     lbz	r18, 3(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r18, r30, r19
     lbz	r19, 0xa(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r19, r30, r20
     lbz	r20, 9(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r20, r30, r21
     lbz	r21, 0xb(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r21, r30, r22
     lbz	r22, 0xc(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r22, r30, r23
     lbz	r23, 6(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r23, r30, r24
     lbz	r24, 7(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r24, r30, r25
     lbz	r25, 8(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r25, r30, r26
     lbz	r26, 0xd(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r26, r30, r27
     lbz	r27, 0xd(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r27, r30, r28
     lbz	r28, 0xe(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r28, r30, r29
     lbz	r29, 1(r10)
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r29, r30, r31
-    lwz	r31, -0x7740(r13)
+    lwz	r31, g_sndMgrPtr
     stwx	r10, r31, r12
-    lwz	r18, -0x7740(r13)
+    lwz	r18, g_sndMgrPtr
     lbzx	r11, r18, r11
     rlwinm.	r11, r11, 0, 0x1e, 0x1e
     bc      12, 2, _80065184
@@ -10408,7 +10414,7 @@ _800651c4:
 _800651d0:
     addi	r0, r5, 0x598
     stbx	r11, r18, r0
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     add	r5, r11, r6
     addi	r6, r11, 8
     lbz	r0, 0x589(r5)
@@ -10501,7 +10507,7 @@ _80065310:
     clrlwi	r0, r9, 0x18
     cmplwi	r0, 0xff
     bc      12, 2, _80065370
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     li	r19, 0
     add	r6, r11, r3
     b       _80065364
@@ -10544,7 +10550,7 @@ asm void fn_80065390(void)
     mflr	r0
     stw	r0, 0x34(r1)
     stmw	r22, 8(r1)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r0, 0x444(r4)
     rlwinm	r9, r0, 4, 0x18, 0x1b
     clrlwi	r3, r0, 0x1c
@@ -10564,7 +10570,7 @@ _800653d8:
     add	r6, r7, r0
     b       _800654b8
 _800653e8:
-    lwz	r22, -0x7740(r13)
+    lwz	r22, g_sndMgrPtr
     clrlwi	r8, r4, 0x18
     add	r12, r22, r8
     addi	r0, r12, 0xd88
@@ -10587,7 +10593,7 @@ _80065420:
     addi	r23, r31, 0x5a0
     addi	r24, r31, 0x5a4
     addi	r26, r31, 0x58a
-    lwz	r22, -0x7740(r13)
+    lwz	r22, g_sndMgrPtr
     addi	r27, r31, 0x599
     li	r25, 0x40
     addi	r28, r31, 0x59a
@@ -10595,24 +10601,24 @@ _80065420:
     addi	r29, r31, 0x59b
     addi	r30, r31, 0x59c
     addi	r31, r31, 0x59d
-    lwz	r22, -0x7740(r13)
+    lwz	r22, g_sndMgrPtr
     li	r12, 0xff
     stwx	r0, r22, r23
-    lwz	r23, -0x7740(r13)
+    lwz	r23, g_sndMgrPtr
     stwx	r0, r23, r24
-    lwz	r24, -0x7740(r13)
+    lwz	r24, g_sndMgrPtr
     stbx	r0, r24, r26
-    lwz	r26, -0x7740(r13)
+    lwz	r26, g_sndMgrPtr
     stbx	r25, r26, r27
-    lwz	r27, -0x7740(r13)
+    lwz	r27, g_sndMgrPtr
     stbx	r0, r27, r28
-    lwz	r28, -0x7740(r13)
+    lwz	r28, g_sndMgrPtr
     stbx	r0, r28, r29
-    lwz	r29, -0x7740(r13)
+    lwz	r29, g_sndMgrPtr
     stbx	r0, r29, r30
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r0, r30, r31
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r8, r0, r8
     addi	r0, r8, 0xd88
     stbx	r12, r6, r0
@@ -10628,11 +10634,11 @@ _800654c8:
     cmplwi	r0, 0x10
     bc      12, 0, _800653d8
     lhz	r4, 0x3e(r10)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r5, r11, r4
     add	r4, r0, r9
     stw	r5, 0x48c(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r5, r0, r9
     lwz	r4, 0x48c(r5)
     lbz	r0, 1(r4)
@@ -10660,7 +10666,7 @@ asm void SndProcessCmdSubfunc(void)
     mflr	r0
     stw	r0, 0x34(r1)
     stmw	r24, 0x10(r1)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lwz	r0, 0x444(r5)
     rlwinm	r6, r0, 4, 0x18, 0x1b
     clrlwi	r7, r0, 0x1c
@@ -10700,13 +10706,13 @@ _800655a4:
     add	r3, r5, r6
     stw	r4, 0x488(r3)
     mr	r31, r4
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r6
     stb	r9, 0x490(r3)
     lbz	r4, 1(r4)
     cmplwi	r4, 0x80
     bc      12, 2, _800655f0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r6
     stb	r4, 0x492(r3)
 _800655f0:
@@ -10719,7 +10725,7 @@ _800655fc:
     li	r3, 0
     b       _800656dc
 _8006560c:
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     clrlwi	r6, r3, 0x18
     add	r8, r10, r6
     addi	r8, r8, 0xd88
@@ -10742,7 +10748,7 @@ _80065644:
     addi	r26, r25, 0x5a0
     addi	r27, r25, 0x5a4
     addi	r29, r25, 0x58a
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     addi	r30, r25, 0x599
     li	r28, 0x40
     addi	r12, r25, 0x59a
@@ -10750,24 +10756,24 @@ _80065644:
     addi	r11, r25, 0x59b
     addi	r10, r25, 0x59c
     addi	r8, r25, 0x59d
-    lwz	r25, -0x7740(r13)
+    lwz	r25, g_sndMgrPtr
     li	r9, 0xff
     stwx	r24, r25, r26
-    lwz	r26, -0x7740(r13)
+    lwz	r26, g_sndMgrPtr
     stwx	r24, r26, r27
-    lwz	r27, -0x7740(r13)
+    lwz	r27, g_sndMgrPtr
     stbx	r24, r27, r29
-    lwz	r29, -0x7740(r13)
+    lwz	r29, g_sndMgrPtr
     stbx	r28, r29, r30
-    lwz	r30, -0x7740(r13)
+    lwz	r30, g_sndMgrPtr
     stbx	r24, r30, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     stbx	r24, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     stbx	r24, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     stbx	r24, r10, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r6, r8, r6
     addi	r6, r6, 0xd88
     stbx	r9, r5, r6
@@ -10801,7 +10807,7 @@ _80065728:
     add	r10, r11, r0
     b       _800657c4
 _80065738:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     clrlwi	r0, r25, 0x18
     add	r3, r4, r0
     addi	r0, r3, 0xd88
@@ -10824,17 +10830,17 @@ _80065770:
     li	r8, 0x40
     addi	r5, r12, 0x59a
     addi	r4, r12, 0x59b
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r3, r12, 0x59c
     addi	r0, r12, 0x59d
     stbx	r8, r7, r6
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     stbx	r9, r6, r5
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     stbx	r9, r5, r4
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stbx	r9, r4, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r9, r3, r0
 _800657c0:
     addi	r25, r25, 1
@@ -10864,23 +10870,23 @@ asm void SndStartChannelSequence(void)
     li	r5, 0x7f
     stw	r0, 0x14(r1)
     li	r0, 0xff
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r6, r4, r7
     lwz	r8, 8(r6)
     lwz	r4, 0x18(r8)
     stb	r0, 0x490(r6)
     add	r6, r8, r4
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r7
     stb	r5, 0x491(r4)
     lhz	r4, 0x3e(r8)
     cmplwi	r4, 0
     bc      12, 2, _80065870
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r5, r6, r4
     add	r4, r0, r7
     stw	r5, 0x48c(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r5, r0, r7
     lwz	r4, 0x48c(r5)
     lbz	r0, 1(r4)
@@ -10891,7 +10897,7 @@ _80065868:
     bl      fn_80064FDC
     b       _80065880
 _80065870:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r4, 0
     add	r3, r0, r7
     stw	r4, 0x48c(r3)
@@ -10905,7 +10911,7 @@ _80065880:
 asm void SndSetCallback2(void)
 {
     nofralloc
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x5b20(r4)
     blr
 }
@@ -10913,7 +10919,7 @@ asm void SndSetCallback2(void)
 asm void SndSetCallback1(void)
 {
     nofralloc
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x5b1c(r4)
     blr
 }
@@ -10921,7 +10927,7 @@ asm void SndSetCallback1(void)
 asm void SndSetCallback0(void)
 {
     nofralloc
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x5b18(r4)
     blr
 }
@@ -10941,7 +10947,7 @@ asm void SndPostRequest(void)
     bc      12, 2, _800658e0
     b       _800659ac
 _800658e0:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     rlwinm	r3, r30, 0, 0x11, 0x17
     addis	r29, r3, -0x5b90
     li	r31, 0
@@ -10959,8 +10965,8 @@ _80065904:
     b       _80065984
 _8006591c:
     bl      OSDisableInterrupts
-    stw	r3, -0x7748(r13)
-    lwz	r3, -0x7740(r13)
+    stw	r3, lbl_801A6C78
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x441(r3)
     cmplwi	r0, 0x40
     bc      4, 0, _80065978
@@ -10971,12 +10977,12 @@ _8006591c:
     cmplwi	r0, 0
     bc      4, 2, _80065978
     stw	r29, 0x240(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x443(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x443(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x441(r4)
     addi	r0, r3, 1
     stb	r0, 0x441(r4)
@@ -10984,10 +10990,10 @@ _8006591c:
 _80065978:
     li	r31, -1
 _8006597c:
-    lwz	r3, -0x7748(r13)
+    lwz	r3, lbl_801A6C78
     bl      OSRestoreInterrupts
 _80065984:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r0, 0
     stb	r0, 0x464(r3)
 _80065990:
@@ -11003,7 +11009,7 @@ _800659ac:
     li	r3, -2
     b       _80065a60
 _800659b4:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     li	r31, 0
     lbz	r0, 0x464(r4)
     extsb.	r0, r0
@@ -11019,8 +11025,8 @@ _800659d0:
     b       _80065a50
 _800659e8:
     bl      OSDisableInterrupts
-    stw	r3, -0x7748(r13)
-    lwz	r3, -0x7740(r13)
+    stw	r3, lbl_801A6C78
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x441(r3)
     cmplwi	r0, 0x40
     bc      4, 0, _80065a44
@@ -11031,12 +11037,12 @@ _800659e8:
     cmplwi	r0, 0
     bc      4, 2, _80065a44
     stw	r30, 0x240(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x443(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x443(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x441(r4)
     addi	r0, r3, 1
     stb	r0, 0x441(r4)
@@ -11044,10 +11050,10 @@ _800659e8:
 _80065a44:
     li	r31, -1
 _80065a48:
-    lwz	r3, -0x7748(r13)
+    lwz	r3, lbl_801A6C78
     bl      OSRestoreInterrupts
 _80065a50:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r0, 0
     stb	r0, 0x464(r3)
 _80065a5c:
@@ -11065,7 +11071,7 @@ _80065a60:
 asm void fn_80065A7C(void)
 {
     nofralloc
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r0, 0x440(r4)
     cmplwi	r0, 0x40
     bgelr	
@@ -11073,12 +11079,12 @@ asm void fn_80065A7C(void)
     slwi	r0, r0, 2
     add	r4, r4, r0
     stw	r3, 0x340(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x459(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x459(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x440(r4)
     addi	r0, r3, 1
     stb	r0, 0x440(r4)
@@ -11089,7 +11095,7 @@ asm void SndClearChannelActiveFlag(void)
 {
     nofralloc
     li	r0, 0
-    stw	r0, -0x7744(r13)
+    stw	r0, lbl_801A6C7C
     blr
 }
 
@@ -11102,11 +11108,11 @@ asm void SndChannelFreeCallback(void)
     lwz	r4, 0x10(r3)
     cmplwi	r4, 0
     bc      12, 2, _80065af0
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     bl      OSFree
 _80065af0:
     li	r0, 0
-    stw	r0, -0x7744(r13)
+    stw	r0, lbl_801A6C7C
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
@@ -11123,14 +11129,14 @@ asm void fn_80065B08(void)
     li	r6, 4
     mtctr	r4
 _80065b20:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r5, 0(r3)
     add	r7, r4, r6
     lwz	r4, 0x100(r7)
     add	r10, r10, r5
     stw	r5, 0x140(r7)
     add	r9, r4, r5
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r5, 0x104(r7)
     lwz	r4, 0x194(r7)
     add	r4, r5, r4
@@ -11143,7 +11149,7 @@ _80065b60:
     li	r0, -1
     b       _80065c10
 _80065b68:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r6, r6, 4
     lwzu	r5, 4(r3)
     add	r7, r4, r6
@@ -11151,7 +11157,7 @@ _80065b68:
     add	r10, r10, r5
     stw	r5, 0x140(r7)
     add	r9, r4, r5
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r5, 0x104(r7)
     lwz	r4, 0x194(r7)
     add	r4, r5, r4
@@ -11164,7 +11170,7 @@ _80065bac:
     li	r0, -1
     b       _80065c10
 _80065bb4:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r6, r6, 4
     lwzu	r5, 4(r3)
     add	r7, r4, r6
@@ -11172,7 +11178,7 @@ _80065bb4:
     add	r10, r10, r5
     stw	r5, 0x140(r7)
     add	r9, r4, r5
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r5, 0x104(r7)
     lwz	r4, 0x194(r7)
     add	r4, r5, r4
@@ -11194,29 +11200,29 @@ _80065c10:
     bc      4, 2, _80065d54
     lwz	r6, 0(r3)
     li	r4, 5
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     li	r8, 1
     add	r10, r10, r6
     stw	r6, 0x180(r5)
     li	r6, 4
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r5, 0x104(r7)
     add	r5, r5, r10
     stw	r5, 0x198(r7)
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r5, 0x194(r7)
     subf	r5, r10, r5
     stw	r5, 0x19c(r7)
     mtctr	r4
     addi	r3, r3, 4
 _80065c5c:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r5, 0(r3)
     add	r7, r4, r6
     lwz	r4, 0x1a8(r7)
     stw	r5, 0x1e8(r7)
     add	r9, r4, r5
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r5, 0x1ac(r7)
     lwz	r4, 0x23c(r7)
     add	r4, r5, r4
@@ -11229,14 +11235,14 @@ _80065c98:
     li	r0, -1
     b       _80065d40
 _80065ca0:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r6, r6, 4
     lwzu	r5, 4(r3)
     add	r7, r4, r6
     lwz	r4, 0x1a8(r7)
     stw	r5, 0x1e8(r7)
     add	r9, r4, r5
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r5, 0x1ac(r7)
     lwz	r4, 0x23c(r7)
     add	r4, r5, r4
@@ -11249,14 +11255,14 @@ _80065ce0:
     li	r0, -1
     b       _80065d40
 _80065ce8:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r6, r6, 4
     lwzu	r5, 4(r3)
     add	r7, r4, r6
     lwz	r4, 0x1a8(r7)
     stw	r5, 0x1e8(r7)
     add	r9, r4, r5
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r5, 0x1ac(r7)
     lwz	r4, 0x23c(r7)
     add	r4, r5, r4
@@ -11277,12 +11283,12 @@ _80065d40:
     cmpwi	r0, 0
     bc      4, 2, _80065d54
     lwz	r4, 0(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stw	r4, 0x228(r3)
 _80065d54:
     cmpwi	r0, 0
     bc      4, 2, _80065d68
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r4, 1
     stb	r4, 0x45f(r3)
 _80065d68:
@@ -11306,7 +11312,7 @@ asm void SndFreeChannel(void)
     li	r30, -1
     b       _80065f14
 _80065da0:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     slwi	r31, r29, 4
     lwzx	r4, r4, r31
     addis	r0, r4, 1
@@ -11319,7 +11325,7 @@ _80065da0:
     clrlwi	r3, r29, 0x18
     li	r4, 1
     bl      SndReleaseProcsForVoices
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     li	r7, -1
     li	r6, 0xff
     li	r3, 0
@@ -11330,20 +11336,20 @@ _80065da0:
     li	r4, 0
     subf	r5, r8, r5
     stb	r5, 0x460(r9)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     stwx	r7, r5, r31
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xe(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xd(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r3, 0xc(r5)
     mtctr	r0
 _80065e30:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r3, 0x104
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -11353,11 +11359,11 @@ _80065e30:
     addi	r0, r4, 0x184
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80065e64:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r3, 0x1ac
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -11367,11 +11373,11 @@ _80065e64:
     addi	r0, r4, 0x22c
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _80065e98:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r3, 0x108
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -11381,11 +11387,11 @@ _80065e98:
     addi	r0, r4, 0x185
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80065ecc:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r3, 0x1b0
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -11395,7 +11401,7 @@ _80065ecc:
     addi	r0, r4, 0x22d
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _80065f00:
@@ -11431,7 +11437,7 @@ asm void SndLoadSamplesARQ(void)
     li	r3, -1
     b       _80066c00
 _80065f60:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     slwi	r31, r27, 4
     lwzx	r4, r4, r31
     addis	r0, r4, 1
@@ -11452,7 +11458,7 @@ _80065f60:
 _80065fa8:
     bl      OSDisableInterrupts
     mr	r0, r3
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r20, r0
     li	r4, 0x20
     bl      OSAlloc
@@ -11483,16 +11489,16 @@ _80065fa8:
     lis	r0, 0x228
     cmplw	r3, r0
     bc      12, 0, _800660b8
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x45f(r3)
     cmplwi	r0, 0
     bc      4, 2, _800660b0
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r4, r28
     bl      OSFree
     bl      OSDisableInterrupts
     mr	r0, r3
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r20, r0
     li	r4, 0x80
     bl      OSAlloc
@@ -11525,12 +11531,12 @@ _800660b8:
 _800660c0:
     li	r26, -2
 _800660c4:
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r4, r28
     bl      OSFree
     bl      OSDisableInterrupts
     mr	r0, r3
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r20, r0
     li	r4, 0x40
     bl      OSAlloc
@@ -11554,7 +11560,7 @@ _800660c4:
     bc      4, 2, _800662e4
     cmpwi	r26, 0
     bc      4, 2, _800662e4
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     li	r24, -1
     lwz	r3, 0x28(r28)
     lbz	r0, 0x460(r6)
@@ -11629,36 +11635,36 @@ _80066214:
     mr	r3, r20
     add	r30, r30, r4
     bl      DCInvalidateRange
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r5, 1
     clrlwi	r3, r27, 0x18
     add	r4, r0, r24
     stb	r5, 0x184(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     stw	r20, 8(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     stb	r25, 0xc(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stwx	r23, r4, r31
     lwz	r4, 0x2c(r28)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     srwi	r5, r4, 0x18
     add	r4, r0, r31
     stb	r5, 0xd(r4)
     lwz	r4, 0x2c(r28)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     rlwinm	r5, r4, 0x10, 0x18, 0x1f
     add	r4, r0, r31
     stb	r5, 0xe(r4)
     lwz	r0, 0x30(r28)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r0, 0x478(r4)
     lwz	r0, 0x34(r28)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r0, 0x47c(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r0, 0x460(r4)
     add	r0, r0, r25
     stb	r0, 0x460(r4)
@@ -11673,12 +11679,12 @@ _800662e4:
     cmpwi	r26, 0
     li	r24, -1
     bc      4, 2, _80066be0
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r4, r28
     bl      OSFree
     bl      OSDisableInterrupts
     mr	r0, r3
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r20, r0
     li	r4, 0x40
     bl      OSAlloc
@@ -11700,7 +11706,7 @@ _800662e4:
     addis	r0, r3, -0x5043
     cmplwi	r0, 0x4d44
     bc      4, 2, _80066a60
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     li	r0, 4
     lwz	r23, 0xc(r28)
     li	r6, 0
@@ -11760,7 +11766,7 @@ _80066418:
     stb	r0, 0x22c(r3)
     slwi	r24, r24, 2
     cmplwi	r23, 0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r24
     add	r3, r0, r31
     lwz	r0, 0x1ac(r4)
@@ -11768,7 +11774,7 @@ _80066418:
     bc      12, 2, _80066be0
     bl      OSDisableInterrupts
     mr	r0, r3
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r20, r0
     mr	r4, r23
     bl      OSAlloc
@@ -11787,9 +11793,9 @@ _80066418:
     mr	r4, r3
     mr	r3, r25
     bl      DCInvalidateRange
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r3, 1
-    stw	r3, -0x7744(r13)
+    stw	r3, lbl_801A6C7C
     lis     r3, lbl_80193B08@ha
     add	r5, r0, r24
     lis     r4, SndChannelFreeCallback@ha
@@ -11803,7 +11809,7 @@ _80066418:
     li	r6, 1
     bl      ARQPostRequest
 _800664dc:
-    lwz	r0, -0x7744(r13)
+    lwz	r0, lbl_801A6C7C
     cmpwi	r0, 0
     bc      12, 2, _80066be0
     b       _800664dc
@@ -11818,7 +11824,7 @@ _800664ec:
     li	r20, 0x14
     addi	r21, r4, 0x4000
 _80066510:
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r23, r21
     mr	r4, r21
     bl      OSAlloc
@@ -11836,7 +11842,7 @@ _80066540:
 _80066544:
     cmplwi	r25, 0
     bc      12, 2, _80066654
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r4, lbl_80193B08@ha
     lis     r3, SndClearChannelActiveFlag@ha
     add	r5, r0, r24
@@ -11860,7 +11866,7 @@ _80066570:
     bl      DCInvalidateRange
     li	r0, 1
     mr	r3, r22
-    stw	r0, -0x7744(r13)
+    stw	r0, lbl_801A6C7C
     mr	r7, r25
     mr	r8, r27
     mr	r9, r23
@@ -11870,7 +11876,7 @@ _80066570:
     li	r6, 1
     bl      ARQPostRequest
 _800665cc:
-    lwz	r0, -0x7744(r13)
+    lwz	r0, lbl_801A6C7C
     cmpwi	r0, 0
     bc      4, 2, _800665cc
     add	r27, r27, r20
@@ -11891,7 +11897,7 @@ _800665dc:
     li	r0, 1
     lis     r3, lbl_80193B08@ha
     lis     r4, SndChannelFreeCallback@ha
-    stw	r0, -0x7744(r13)
+    stw	r0, lbl_801A6C7C
     addi	r10, r4, SndChannelFreeCallback@l
     addi	r3, r3, lbl_80193B08@l
     mr	r7, r24
@@ -11902,12 +11908,12 @@ _800665dc:
     li	r6, 1
     bl      ARQPostRequest
 _80066644:
-    lwz	r0, -0x7744(r13)
+    lwz	r0, lbl_801A6C7C
     cmpwi	r0, 0
     bc      12, 2, _80066be0
     b       _80066644
 _80066654:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r23, 0x19c(r3)
     cmplwi	r23, 0
     bc      12, 2, _80066770
@@ -11936,7 +11942,7 @@ _8006668c:
     bl      DCInvalidateRange
     li	r0, 1
     mr	r3, r21
-    stw	r0, -0x7744(r13)
+    stw	r0, lbl_801A6C7C
     mr	r7, r27
     mr	r8, r24
     mr	r9, r23
@@ -11946,7 +11952,7 @@ _8006668c:
     li	r6, 1
     bl      ARQPostRequest
 _800666e8:
-    lwz	r0, -0x7744(r13)
+    lwz	r0, lbl_801A6C7C
     cmpwi	r0, 0
     bc      4, 2, _800666e8
     add	r24, r24, r20
@@ -11967,7 +11973,7 @@ _800666f8:
     li	r0, 1
     lis     r3, lbl_80193B08@ha
     lis     r4, SndClearChannelActiveFlag@ha
-    stw	r0, -0x7744(r13)
+    stw	r0, lbl_801A6C7C
     addi	r10, r4, SndClearChannelActiveFlag@l
     addi	r3, r3, lbl_80193B08@l
     mr	r7, r31
@@ -11978,7 +11984,7 @@ _800666f8:
     li	r6, 1
     bl      ARQPostRequest
 _80066760:
-    lwz	r0, -0x7744(r13)
+    lwz	r0, lbl_801A6C7C
     cmpwi	r0, 0
     bc      12, 2, _80066be0
     b       _80066760
@@ -11997,7 +12003,7 @@ _80066770:
     clrlwi	r3, r27, 0x18
     li	r4, 1
     bl      SndReleaseProcsForVoices
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     li	r7, -1
     li	r6, 0xff
     li	r3, 0
@@ -12008,20 +12014,20 @@ _80066770:
     mr	r4, r3
     subf	r5, r8, r5
     stb	r5, 0x460(r9)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     stwx	r7, r5, r31
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xe(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xd(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r3, 0xc(r5)
     mtctr	r0
 _80066804:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x104
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12031,11 +12037,11 @@ _80066804:
     addi	r0, r3, 0x184
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80066838:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1ac
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12045,11 +12051,11 @@ _80066838:
     addi	r0, r3, 0x22c
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _8006686c:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x108
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12059,11 +12065,11 @@ _8006686c:
     addi	r0, r3, 0x185
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _800668a0:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1b0
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12073,7 +12079,7 @@ _800668a0:
     addi	r0, r3, 0x22d
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _800668d4:
@@ -12098,7 +12104,7 @@ _800668e8:
     clrlwi	r3, r27, 0x18
     li	r4, 1
     bl      SndReleaseProcsForVoices
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     li	r7, -1
     li	r6, 0xff
     li	r3, 0
@@ -12109,20 +12115,20 @@ _800668e8:
     mr	r4, r3
     subf	r5, r8, r5
     stb	r5, 0x460(r9)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     stwx	r7, r5, r31
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xe(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xd(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r3, 0xc(r5)
     mtctr	r0
 _8006697c:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x104
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12132,11 +12138,11 @@ _8006697c:
     addi	r0, r3, 0x184
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _800669b0:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1ac
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12146,11 +12152,11 @@ _800669b0:
     addi	r0, r3, 0x22c
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _800669e4:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x108
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12160,11 +12166,11 @@ _800669e4:
     addi	r0, r3, 0x185
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80066a18:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1b0
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12174,7 +12180,7 @@ _80066a18:
     addi	r0, r3, 0x22d
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _80066a4c:
@@ -12187,7 +12193,7 @@ _80066a58:
 _80066a60:
     cmplwi	r27, 0x10
     bc      4, 0, _80066bd4
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwzx	r3, r3, r31
     addis	r0, r3, 1
     cmplwi	r0, 0xffff
@@ -12200,7 +12206,7 @@ _80066a60:
     clrlwi	r3, r27, 0x18
     li	r4, 1
     bl      SndReleaseProcsForVoices
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     li	r7, -1
     li	r6, 0xff
     li	r3, 0
@@ -12211,20 +12217,20 @@ _80066a60:
     mr	r4, r3
     subf	r5, r8, r5
     stb	r5, 0x460(r9)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     stwx	r7, r5, r31
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xe(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xd(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r3, 0xc(r5)
     mtctr	r0
 _80066af8:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x104
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12234,11 +12240,11 @@ _80066af8:
     addi	r0, r3, 0x184
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80066b2c:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1ac
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12248,11 +12254,11 @@ _80066b2c:
     addi	r0, r3, 0x22c
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _80066b60:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x108
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12262,11 +12268,11 @@ _80066b60:
     addi	r0, r3, 0x185
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80066b94:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1b0
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12276,7 +12282,7 @@ _80066b94:
     addi	r0, r3, 0x22d
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _80066bc8:
@@ -12289,7 +12295,7 @@ _80066bd4:
 _80066bdc:
     li	r26, -2
 _80066be0:
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r4, r28
     bl      OSFree
     addi	r3, r1, 8
@@ -12322,7 +12328,7 @@ asm void SndLoadSoundArchive(void)
     li	r3, -1
     b       _800672d0
 _80066c40:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     slwi	r31, r24, 4
     lwzx	r3, r4, r31
     addis	r0, r3, 1
@@ -12367,7 +12373,7 @@ _80066cc8:
     bc      4, 2, _80066e74
     cmpwi	r28, 0
     bc      4, 2, _80066e74
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     li	r26, -1
     lbz	r25, 0xc9(r23)
     lbz	r0, 0x460(r6)
@@ -12436,35 +12442,35 @@ _80066dbc:
     lwz	r22, 0x104(r3)
     mr	r3, r22
     bl      memcpy
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     li	r5, 1
     add	r27, r27, r30
     clrlwi	r3, r24, 0x18
     add	r4, r0, r26
     stb	r5, 0x184(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     stw	r22, 8(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     stb	r25, 0xc(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stwx	r29, r4, r31
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lbz	r5, 0xcc(r23)
     add	r4, r0, r31
     stb	r5, 0xd(r4)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lbz	r5, 0xcd(r23)
     add	r4, r0, r31
     stb	r5, 0xe(r4)
     lwz	r0, 0xd0(r23)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r0, 0x478(r4)
     lwz	r0, 0xd4(r23)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r0, 0x47c(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r0, 0x460(r4)
     add	r0, r0, r25
     stb	r0, 0x460(r4)
@@ -12484,7 +12490,7 @@ _80066e74:
     addis	r0, r3, -0x5043
     cmplwi	r0, 0x4d44
     bc      4, 2, _80067144
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     li	r0, 4
     lwz	r9, 0xc(r6)
     li	r7, 0
@@ -12545,16 +12551,16 @@ _80066f50:
     add	r7, r27, r23
     slwi	r6, r8, 2
     cmplwi	r9, 0
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     addi	r7, r7, 0x20
     add	r4, r0, r6
     add	r3, r0, r31
     lwz	r0, 0x1ac(r4)
     stw	r0, 4(r3)
     bc      12, 2, _800672cc
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     lis     r3, lbl_80193B08@ha
-    stw	r5, -0x7744(r13)
+    stw	r5, lbl_801A6C7C
     lis     r4, SndClearChannelActiveFlag@ha
     add	r5, r0, r6
     addi	r3, r3, lbl_80193B08@l
@@ -12565,7 +12571,7 @@ _80066f50:
     li	r6, 1
     bl      ARQPostRequest
 _80066fbc:
-    lwz	r0, -0x7744(r13)
+    lwz	r0, lbl_801A6C7C
     cmpwi	r0, 0
     bc      12, 2, _800672cc
     b       _80066fbc
@@ -12584,7 +12590,7 @@ _80066fcc:
     clrlwi	r3, r24, 0x18
     li	r4, 1
     bl      SndReleaseProcsForVoices
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     li	r7, -1
     li	r6, 0xff
     li	r3, 0
@@ -12595,20 +12601,20 @@ _80066fcc:
     mr	r4, r3
     subf	r5, r8, r5
     stb	r5, 0x460(r9)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     stwx	r7, r5, r31
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xe(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xd(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r3, 0xc(r5)
     mtctr	r0
 _80067060:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x104
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12618,11 +12624,11 @@ _80067060:
     addi	r0, r3, 0x184
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80067094:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1ac
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12632,11 +12638,11 @@ _80067094:
     addi	r0, r3, 0x22c
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _800670c8:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x108
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12646,11 +12652,11 @@ _800670c8:
     addi	r0, r3, 0x185
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _800670fc:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1b0
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12660,7 +12666,7 @@ _800670fc:
     addi	r0, r3, 0x22d
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _80067130:
@@ -12673,7 +12679,7 @@ _8006713c:
 _80067144:
     cmplwi	r24, 0x10
     bc      4, 0, _800672b8
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwzx	r3, r3, r31
     addis	r0, r3, 1
     cmplwi	r0, 0xffff
@@ -12686,7 +12692,7 @@ _80067144:
     clrlwi	r3, r24, 0x18
     li	r4, 1
     bl      SndReleaseProcsForVoices
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     li	r7, -1
     li	r6, 0xff
     li	r3, 0
@@ -12697,20 +12703,20 @@ _80067144:
     mr	r4, r3
     subf	r5, r8, r5
     stb	r5, 0x460(r9)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     stwx	r7, r5, r31
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xe(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r6, 0xd(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     add	r5, r5, r31
     stb	r3, 0xc(r5)
     mtctr	r0
 _800671dc:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x104
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12720,11 +12726,11 @@ _800671dc:
     addi	r0, r3, 0x184
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80067210:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1ac
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12734,11 +12740,11 @@ _80067210:
     addi	r0, r3, 0x22c
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _80067244:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x108
     addi	r0, r7, 8
     lwzx	r5, r7, r5
@@ -12748,11 +12754,11 @@ _80067244:
     addi	r0, r3, 0x185
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 8
     stwx	r6, r31, r0
 _80067278:
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r5, r4, 0x1b0
     addi	r0, r7, 4
     lwzx	r5, r7, r5
@@ -12762,7 +12768,7 @@ _80067278:
     addi	r0, r3, 0x22d
     li	r6, 0
     stbx	r6, r7, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r5, 4
     stwx	r6, r31, r0
 _800672ac:
@@ -12804,13 +12810,13 @@ _800672f4:
     bc      12, 2, _80067314
     b       _8006733c
 _80067314:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     slwi	r0, r3, 4
     add	r3, r4, r0
     lbz	r3, 0x492(r3)
     blr
 _80067328:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     slwi	r0, r3, 4
     add	r3, r4, r0
     lbz	r3, 0x493(r3)
@@ -12891,7 +12897,7 @@ _80067430:
     li	r3, -2
     b       _800674e4
 _80067438:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     li	r31, 0
     lbz	r0, 0x464(r4)
     extsb.	r0, r0
@@ -12907,8 +12913,8 @@ _80067454:
     b       _800674d4
 _8006746c:
     bl      OSDisableInterrupts
-    stw	r3, -0x7748(r13)
-    lwz	r3, -0x7740(r13)
+    stw	r3, lbl_801A6C78
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x441(r3)
     cmplwi	r0, 0x40
     bc      4, 0, _800674c8
@@ -12919,12 +12925,12 @@ _8006746c:
     cmplwi	r0, 0
     bc      4, 2, _800674c8
     stw	r30, 0x240(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x443(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x443(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x441(r4)
     addi	r0, r3, 1
     stb	r0, 0x441(r4)
@@ -12932,10 +12938,10 @@ _8006746c:
 _800674c8:
     li	r31, -1
 _800674cc:
-    lwz	r3, -0x7748(r13)
+    lwz	r3, lbl_801A6C78
     bl      OSRestoreInterrupts
 _800674d4:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r0, 0
     stb	r0, 0x464(r3)
 _800674e0:
@@ -13054,7 +13060,7 @@ _80067654:
     add	r30, r30, r0
     b       _800677d4
 _80067668:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5a12(r3)
     b       _800677d4
 _80067674:
@@ -13063,41 +13069,41 @@ _80067674:
     li	r0, 0
     cmpwi	r0, 0x10
     bc      4, 0, _800677d4
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ab4(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ab6(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ab8(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5aba(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5abc(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5abe(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ac0(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ac2(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ac4(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ac6(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ac8(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5aca(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5acc(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ace(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ad0(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ad2(r3)
     b       _800677d4
 _8006770c:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     rlwinm	r0, r3, 1, 0xf, 0x1e
     add	r3, r4, r0
     sth	r5, 0x5ab4(r3)
@@ -13108,41 +13114,41 @@ _80067720:
     li	r0, 0
     cmpwi	r0, 0x10
     bc      4, 0, _800677d4
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ad4(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ad6(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ad8(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ada(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5adc(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ade(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ae0(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ae2(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ae4(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ae6(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5ae8(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5aea(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5aec(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5aee(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5af0(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sth	r5, 0x5af2(r3)
     b       _800677d4
 _800677b8:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     rlwinm	r0, r3, 1, 0xf, 0x1e
     add	r3, r4, r0
     sth	r5, 0x5ad4(r3)
@@ -13151,7 +13157,7 @@ _800677cc:
     li	r3, -2
     b       _80067880
 _800677d4:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     li	r31, 0
     lbz	r0, 0x464(r4)
     extsb.	r0, r0
@@ -13167,8 +13173,8 @@ _800677f0:
     b       _80067870
 _80067808:
     bl      OSDisableInterrupts
-    stw	r3, -0x7748(r13)
-    lwz	r3, -0x7740(r13)
+    stw	r3, lbl_801A6C78
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x441(r3)
     cmplwi	r0, 0x40
     bc      4, 0, _80067864
@@ -13179,12 +13185,12 @@ _80067808:
     cmplwi	r0, 0
     bc      4, 2, _80067864
     stw	r30, 0x240(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x443(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x443(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x441(r4)
     addi	r0, r3, 1
     stb	r0, 0x441(r4)
@@ -13192,10 +13198,10 @@ _80067808:
 _80067864:
     li	r31, -1
 _80067868:
-    lwz	r3, -0x7748(r13)
+    lwz	r3, lbl_801A6C78
     bl      OSRestoreInterrupts
 _80067870:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r0, 0
     stb	r0, 0x464(r3)
 _8006787c:
@@ -13219,7 +13225,7 @@ asm void SndPostRequestAlt(void)
     li	r31, 0
     stw	r30, 8(r1)
     mr	r30, r3
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r0, 0x464(r4)
     extsb.	r0, r0
     bc      12, 2, _800678cc
@@ -13234,8 +13240,8 @@ _800678cc:
     b       _8006794c
 _800678e4:
     bl      OSDisableInterrupts
-    stw	r3, -0x7748(r13)
-    lwz	r3, -0x7740(r13)
+    stw	r3, lbl_801A6C78
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x441(r3)
     cmplwi	r0, 0x40
     bc      4, 0, _80067940
@@ -13246,12 +13252,12 @@ _800678e4:
     cmplwi	r0, 0
     bc      4, 2, _80067940
     stw	r30, 0x240(r3)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x443(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x443(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x441(r4)
     addi	r0, r3, 1
     stb	r0, 0x441(r4)
@@ -13259,10 +13265,10 @@ _800678e4:
 _80067940:
     li	r31, -1
 _80067944:
-    lwz	r3, -0x7748(r13)
+    lwz	r3, lbl_801A6C78
     bl      OSRestoreInterrupts
 _8006794c:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     li	r0, 0
     mr	r3, r31
     stb	r0, 0x464(r4)
@@ -13284,7 +13290,7 @@ asm void SndTimerUpdate(void)
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x45d(r3)
     cmplwi	r0, 1
     bc      4, 2, _80067dc8
@@ -13295,7 +13301,7 @@ asm void SndTimerUpdate(void)
     lis	r4, 0x431c
     lwz	r5, 0xf8(r5)
     lis	r0, 0x4330
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r6, r4, -0x217d
     srwi	r4, r5, 2
     mr	r31, r3
@@ -13317,7 +13323,7 @@ asm void SndTimerUpdate(void)
     frsp	f1, f1
     bl      fn_80087F54
     bl      __cvt_fp2unsigned
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     cmplwi	r3, 0
     stw	r3, 0x450(r4)
     bc      12, 2, _80067a70
@@ -13325,7 +13331,7 @@ asm void SndTimerUpdate(void)
     b       _80067a64
 _80067a28:
     clrlwi	r0, r6, 0x18
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     mulli	r0, r0, 0x28
     add	r5, r4, r0
     lbz	r0, 0x1188(r5)
@@ -13345,13 +13351,13 @@ _80067a64:
     cmplwi	r0, 0x10
     bc      12, 0, _80067a28
 _80067a70:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     li	r30, 0
     stw	r31, 0x5b14(r3)
     b       _80067bb0
 _80067a80:
     clrlwi	r31, r30, 0x18
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     mulli	r29, r31, 0x118
     add	r6, r0, r29
     lbz	r4, 0x1408(r6)
@@ -13377,7 +13383,7 @@ _80067acc:
     cmplwi	r4, 3
     bc      4, 2, _80067b30
     bl      fn_80026DB8
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r6, r29, 0x1416
     lhzx	r4, r5, r6
     cmplwi	r4, 0
@@ -13391,7 +13397,7 @@ _80067b00:
 _80067b0c:
     addi	r0, r4, -1
     sthx	r0, r5, r6
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r5, r0, r29
     lwz	r0, 0x1418(r5)
     add	r4, r3, r0
@@ -13426,10 +13432,10 @@ _80067b58:
     slwi	r5, r5, 0x10
     stw	r5, 0x14bc(r6)
     lha	r6, 0x10(r7)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     slwi	r6, r6, 0x10
     stwx	r6, r5, r3
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     sthx	r4, r3, r0
 _80067bac:
     addi	r30, r30, 1
@@ -13437,13 +13443,13 @@ _80067bb0:
     clrlwi	r0, r30, 0x18
     cmplwi	r0, 0x40
     bc      12, 0, _80067a80
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x441(r3)
     lbz	r30, 0x45e(r3)
     cmplwi	r0, 0
     bc      12, 2, _80067d34
 _80067bd0:
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     lbz	r0, 0x45a(r6)
     slwi	r3, r0, 2
     addi	r0, r3, 0x240
@@ -13459,12 +13465,12 @@ _80067bd0:
     slwi	r4, r0, 2
     addi	r0, r4, 0x340
     stwx	r5, r6, r0
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lbz	r4, 0x459(r5)
     addi	r0, r4, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x459(r5)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lbz	r4, 0x440(r5)
     addi	r0, r4, 1
     stb	r0, 0x440(r5)
@@ -13482,12 +13488,12 @@ _80067c40:
     slwi	r4, r0, 2
     addi	r0, r4, 0x340
     stwx	r3, r6, r0
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x459(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x459(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x440(r4)
     addi	r0, r3, 1
     stb	r0, 0x440(r4)
@@ -13505,77 +13511,77 @@ _80067c9c:
     slwi	r4, r0, 2
     addi	r0, r4, 0x340
     stwx	r3, r6, r0
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x459(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x459(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x440(r4)
     addi	r0, r3, 1
     stb	r0, 0x440(r4)
 _80067cdc:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     li	r4, 0
     addi	r30, r30, -1
     lbz	r0, 0x45a(r5)
     slwi	r3, r0, 2
     addi	r0, r3, 0x240
     stwx	r4, r5, r0
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x45a(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x45a(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x441(r4)
     addi	r0, r3, -1
     stb	r0, 0x441(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x441(r3)
     cmplwi	r0, 0
     bc      12, 2, _80067d34
     clrlwi.	r0, r30, 0x18
     bc      4, 2, _80067bd0
 _80067d34:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x440(r3)
     cmplwi	r0, 0
     bc      12, 2, _80067da8
     li	r30, 0
 _80067d48:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r0, 0x442(r4)
     slwi	r3, r0, 2
     addi	r0, r3, 0x340
     lwzx	r3, r4, r0
     bl      SndDispatchCommand
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r0, 0x442(r4)
     slwi	r3, r0, 2
     addi	r0, r3, 0x340
     stwx	r30, r4, r0
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x442(r4)
     addi	r0, r3, 1
     clrlwi	r0, r0, 0x1a
     stb	r0, 0x442(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lbz	r3, 0x440(r4)
     addi	r0, r3, -1
     stb	r0, 0x440(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x440(r3)
     cmplwi	r0, 0
     bc      4, 2, _80067d48
 _80067da8:
     bl      fn_80068EB4
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     li	r0, 1
     lwz	r3, 0x468(r4)
     addi	r3, r3, 1
     stw	r3, 0x468(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stb	r0, 0x45d(r3)
 _80067dc8:
     lwz	r0, 0x24(r1)
@@ -13598,7 +13604,7 @@ asm void SndCheckAllocSize(void)
     addi	r0, r4, 0x110
     stw	r31, 0x41c(r1)
     addi	r31, r5, lbl_801932A8@l
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stw	r0, 0x444(r3)
     addi	r3, r4, 0x100
     bl      SndStopAllChannelVoices
@@ -13608,16 +13614,16 @@ asm void SndCheckAllocSize(void)
     addi	r4, r4, 0x500
     li	r5, 0
     bl      AvHeapReleaseById
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwz	r0, 0x454(r4)
     cmplwi	r0, 0
     bc      4, 2, _80067e80
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     lwz	r4, 0x100(r4)
     bl      OSFree
     addi	r3, r1, 8
     bl      ARFree
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r5, 8(r1)
     lwz	r0, 0x23c(r3)
     cmplw	r0, r5
@@ -13630,7 +13636,7 @@ asm void SndCheckAllocSize(void)
     lwz	r3, 8(r1)
     b       _80067f54
 _80067e80:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x470(r3)
     cmpwi	r0, 2
     bc      12, 2, _80067ec8
@@ -13662,7 +13668,7 @@ _80067edc:
     li	r3, 0
     li	r4, 0
     bl      AXSetAuxCallbackDestA
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r0, 0x471(r3)
     cmpwi	r0, 2
     bc      12, 2, _80067f30
@@ -13717,63 +13723,63 @@ asm void fn_80067F68(void)
     stmw	r14, 8(r1)
     li	r5, -1
     li	r0, 8
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x440(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x441(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x442(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x443(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x444(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x459(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r9, 0x44c(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r9, 0x45d(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x45a(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x448(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x468(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x45f(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x460(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r8, 0x461(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r9, 0x462(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r9, 0x463(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r7, 0x45e(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x464(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r6, 0x470(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r6, 0x471(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r6, 0x472(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r6, 0x473(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x46c(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x465(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x5b18(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x5b1c(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r5, 0x5b20(r4)
     mtctr	r0
 _80068070:
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r0, r3, 0x240
     li	r4, 0
     addi	r5, r3, 0x340
@@ -13781,7 +13787,7 @@ _80068070:
     addi	r0, r3, 0x244
     addi	r17, r3, 0x344
     addi	r16, r3, 0x248
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r15, r3, 0x348
     addi	r14, r3, 0x24c
     addi	r12, r3, 0x34c
@@ -13789,7 +13795,7 @@ _80068070:
     addi	r11, r3, 0x250
     addi	r10, r3, 0x350
     addi	r9, r3, 0x254
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r8, r3, 0x354
     addi	r7, r3, 0x258
     addi	r6, r3, 0x358
@@ -13797,37 +13803,37 @@ _80068070:
     addi	r5, r3, 0x25c
     addi	r0, r3, 0x35c
     addi	r3, r3, 0x20
-    lwz	r18, -0x7740(r13)
+    lwz	r18, g_sndMgrPtr
     stwx	r4, r18, r17
-    lwz	r17, -0x7740(r13)
+    lwz	r17, g_sndMgrPtr
     stwx	r4, r17, r16
-    lwz	r16, -0x7740(r13)
+    lwz	r16, g_sndMgrPtr
     stwx	r4, r16, r15
-    lwz	r15, -0x7740(r13)
+    lwz	r15, g_sndMgrPtr
     stwx	r4, r15, r14
-    lwz	r14, -0x7740(r13)
+    lwz	r14, g_sndMgrPtr
     stwx	r4, r14, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     stwx	r4, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     stwx	r4, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     stwx	r4, r10, r9
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     stwx	r4, r9, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     stwx	r4, r8, r7
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     stwx	r4, r7, r6
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     stwx	r4, r6, r5
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     stwx	r4, r5, r0
     bc      16, 0, _80068070
     li	r0, 8
     mtctr	r0
 _80068144:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r3, r4, 0x1408
     li	r0, 0xff
     addi	r8, r4, 0x1424
@@ -13835,7 +13841,7 @@ _80068144:
     li	r5, 0
     addi	r7, r4, 0x1428
     addi	r6, r4, 0x1434
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     addi	r3, r4, 0x1409
     addi	r26, r4, 0x1411
     addi	r25, r4, 0x1412
@@ -13843,7 +13849,7 @@ _80068144:
     addi	r24, r4, 0x1520
     addi	r23, r4, 0x153c
     addi	r22, r4, 0x1540
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     addi	r21, r4, 0x154c
     addi	r20, r4, 0x1521
     addi	r19, r4, 0x1529
@@ -13851,7 +13857,7 @@ _80068144:
     addi	r18, r4, 0x152a
     addi	r17, r4, 0x1638
     addi	r16, r4, 0x1654
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r15, r4, 0x1658
     addi	r14, r4, 0x1664
     addi	r12, r4, 0x1639
@@ -13859,55 +13865,55 @@ _80068144:
     addi	r11, r4, 0x1641
     addi	r10, r4, 0x1642
     addi	r9, r4, 0x1750
-    lwz	r27, -0x7740(r13)
+    lwz	r27, g_sndMgrPtr
     addi	r8, r4, 0x176c
     addi	r7, r4, 0x1770
     addi	r6, r4, 0x177c
     stbx	r5, r27, r3
     addi	r3, r4, 0x1751
-    lwz	r27, -0x7740(r13)
+    lwz	r27, g_sndMgrPtr
     stbx	r0, r27, r26
-    lwz	r26, -0x7740(r13)
+    lwz	r26, g_sndMgrPtr
     stbx	r0, r26, r25
-    lwz	r25, -0x7740(r13)
+    lwz	r25, g_sndMgrPtr
     stbx	r0, r25, r24
-    lwz	r24, -0x7740(r13)
+    lwz	r24, g_sndMgrPtr
     stwx	r5, r24, r23
-    lwz	r23, -0x7740(r13)
+    lwz	r23, g_sndMgrPtr
     stwx	r5, r23, r22
-    lwz	r22, -0x7740(r13)
+    lwz	r22, g_sndMgrPtr
     stwx	r5, r22, r21
-    lwz	r21, -0x7740(r13)
+    lwz	r21, g_sndMgrPtr
     stbx	r5, r21, r20
-    lwz	r20, -0x7740(r13)
+    lwz	r20, g_sndMgrPtr
     stbx	r0, r20, r19
-    lwz	r19, -0x7740(r13)
+    lwz	r19, g_sndMgrPtr
     stbx	r0, r19, r18
-    lwz	r18, -0x7740(r13)
+    lwz	r18, g_sndMgrPtr
     stbx	r0, r18, r17
-    lwz	r17, -0x7740(r13)
+    lwz	r17, g_sndMgrPtr
     stwx	r5, r17, r16
-    lwz	r16, -0x7740(r13)
+    lwz	r16, g_sndMgrPtr
     stwx	r5, r16, r15
-    lwz	r15, -0x7740(r13)
+    lwz	r15, g_sndMgrPtr
     stwx	r5, r15, r14
-    lwz	r14, -0x7740(r13)
+    lwz	r14, g_sndMgrPtr
     stbx	r5, r14, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     stbx	r0, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     stbx	r0, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     stbx	r0, r10, r9
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     stwx	r5, r9, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     stwx	r5, r8, r7
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     stwx	r5, r7, r6
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     stbx	r5, r6, r3
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r3, r4, 0x1759
     addi	r8, r4, 0x175a
     addi	r7, r4, 0x1868
@@ -13915,7 +13921,7 @@ _80068144:
     addi	r6, r4, 0x1884
     addi	r3, r4, 0x1888
     addi	r15, r4, 0x1894
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     addi	r16, r4, 0x1869
     addi	r17, r4, 0x1871
     addi	r18, r4, 0x1872
@@ -13923,7 +13929,7 @@ _80068144:
     addi	r19, r4, 0x1980
     addi	r20, r4, 0x199c
     addi	r21, r4, 0x19a0
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     addi	r22, r4, 0x19ac
     addi	r23, r4, 0x1981
     addi	r24, r4, 0x1989
@@ -13931,7 +13937,7 @@ _80068144:
     addi	r25, r4, 0x198a
     addi	r26, r4, 0x1a98
     addi	r27, r4, 0x1ab4
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r28, r4, 0x1ab8
     addi	r29, r4, 0x1ac4
     addi	r30, r4, 0x1a99
@@ -13939,7 +13945,7 @@ _80068144:
     addi	r31, r4, 0x1aa1
     addi	r12, r4, 0x1aa2
     addi	r11, r4, 0x1bb0
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r10, r4, 0x1bcc
     addi	r9, r4, 0x1bd0
     addi	r8, r4, 0x1bdc
@@ -13947,62 +13953,62 @@ _80068144:
     addi	r7, r4, 0x1bb1
     addi	r6, r4, 0x1bb9
     addi	r14, r4, 0x1bba
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r4, r4, 0x8c0
     stwx	r5, r3, r15
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r16
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r17
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r18
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r19
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r20
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r21
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r22
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r24
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r25
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r26
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r27
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r28
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r29
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r30
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r31
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r12
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r11
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r10
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r9
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r5, r3, r8
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r5, r3, r7
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r6
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r14
     bc      16, 0, _80068144
     li	r0, 8
     mtctr	r0
 _800683fc:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r5, 0x588
     li	r4, 0
     addi	r8, r5, 0x58a
@@ -14010,7 +14016,7 @@ _800683fc:
     addi	r7, r5, 0x599
     li	r0, 0x40
     addi	r6, r5, 0x59a
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     addi	r3, r5, 0x59b
     addi	r26, r5, 0x59c
     addi	r25, r5, 0x59d
@@ -14018,7 +14024,7 @@ _800683fc:
     addi	r24, r5, 0x5a8
     addi	r23, r5, 0x5aa
     addi	r22, r5, 0x5b9
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     addi	r21, r5, 0x5ba
     addi	r20, r5, 0x5bb
     addi	r19, r5, 0x5bc
@@ -14026,7 +14032,7 @@ _800683fc:
     addi	r18, r5, 0x5bd
     addi	r17, r5, 0x5c8
     addi	r16, r5, 0x5ca
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r15, r5, 0x5d9
     addi	r14, r5, 0x5da
     addi	r12, r5, 0x5db
@@ -14034,55 +14040,55 @@ _800683fc:
     addi	r11, r5, 0x5dc
     addi	r10, r5, 0x5dd
     addi	r9, r5, 0x5e8
-    lwz	r27, -0x7740(r13)
+    lwz	r27, g_sndMgrPtr
     addi	r8, r5, 0x5ea
     addi	r7, r5, 0x5f9
     addi	r6, r5, 0x5fa
     stbx	r4, r27, r3
     addi	r3, r5, 0x5fb
-    lwz	r27, -0x7740(r13)
+    lwz	r27, g_sndMgrPtr
     stbx	r4, r27, r26
-    lwz	r26, -0x7740(r13)
+    lwz	r26, g_sndMgrPtr
     stbx	r4, r26, r25
-    lwz	r25, -0x7740(r13)
+    lwz	r25, g_sndMgrPtr
     stbx	r4, r25, r24
-    lwz	r24, -0x7740(r13)
+    lwz	r24, g_sndMgrPtr
     stbx	r4, r24, r23
-    lwz	r23, -0x7740(r13)
+    lwz	r23, g_sndMgrPtr
     stbx	r0, r23, r22
-    lwz	r22, -0x7740(r13)
+    lwz	r22, g_sndMgrPtr
     stbx	r4, r22, r21
-    lwz	r21, -0x7740(r13)
+    lwz	r21, g_sndMgrPtr
     stbx	r4, r21, r20
-    lwz	r20, -0x7740(r13)
+    lwz	r20, g_sndMgrPtr
     stbx	r4, r20, r19
-    lwz	r19, -0x7740(r13)
+    lwz	r19, g_sndMgrPtr
     stbx	r4, r19, r18
-    lwz	r18, -0x7740(r13)
+    lwz	r18, g_sndMgrPtr
     stbx	r4, r18, r17
-    lwz	r17, -0x7740(r13)
+    lwz	r17, g_sndMgrPtr
     stbx	r4, r17, r16
-    lwz	r16, -0x7740(r13)
+    lwz	r16, g_sndMgrPtr
     stbx	r0, r16, r15
-    lwz	r15, -0x7740(r13)
+    lwz	r15, g_sndMgrPtr
     stbx	r4, r15, r14
-    lwz	r14, -0x7740(r13)
+    lwz	r14, g_sndMgrPtr
     stbx	r4, r14, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     stbx	r4, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     stbx	r4, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     stbx	r4, r10, r9
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     stbx	r4, r9, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     stbx	r0, r8, r7
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     stbx	r4, r7, r6
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     stbx	r4, r6, r3
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r3, r5, 0x5fc
     addi	r8, r5, 0x5fd
     addi	r7, r5, 0x608
@@ -14090,7 +14096,7 @@ _800683fc:
     addi	r6, r5, 0x60a
     addi	r3, r5, 0x619
     addi	r30, r5, 0x61a
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     addi	r29, r5, 0x61b
     addi	r28, r5, 0x61c
     addi	r27, r5, 0x61d
@@ -14098,7 +14104,7 @@ _800683fc:
     addi	r26, r5, 0x628
     addi	r25, r5, 0x62a
     addi	r24, r5, 0x639
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     addi	r23, r5, 0x63a
     addi	r22, r5, 0x63b
     addi	r21, r5, 0x63c
@@ -14106,7 +14112,7 @@ _800683fc:
     addi	r20, r5, 0x63d
     addi	r19, r5, 0x648
     addi	r18, r5, 0x64a
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r17, r5, 0x659
     addi	r16, r5, 0x65a
     addi	r15, r5, 0x65b
@@ -14114,7 +14120,7 @@ _800683fc:
     addi	r14, r5, 0x65c
     addi	r12, r5, 0x65d
     addi	r11, r5, 0x668
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r10, r5, 0x66a
     addi	r9, r5, 0x679
     addi	r8, r5, 0x67a
@@ -14122,63 +14128,63 @@ _800683fc:
     addi	r7, r5, 0x67b
     addi	r6, r5, 0x67c
     addi	r31, r5, 0x67d
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r5, r5, 0x100
     stbx	r4, r3, r30
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r29
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r28
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r27
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r26
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r25
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r24
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r23
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r22
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r21
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r20
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r19
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r18
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r17
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r16
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r15
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r14
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r12
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r11
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r10
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r0, r3, r9
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r8
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r7
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r6
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stbx	r4, r3, r31
     bc      16, 0, _800683fc
     mr	r5, r4
     mr	r6, r4
     mr	r7, r4
 _800686b8:
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     li	r0, -1
     li	r3, 0
     addi	r9, r5, 8
@@ -14186,7 +14192,7 @@ _800686b8:
     addi	r8, r5, 0xd
     li	r0, 0xff
     addi	r23, r5, 0xe
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     addi	r21, r5, 0x490
     addi	r20, r5, 0x492
     li	r22, 0x7f
@@ -14194,7 +14200,7 @@ _800686b8:
     addi	r18, r5, 0x493
     addi	r17, r5, 0x494
     li	r19, 0x40
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     addi	r16, r5, 0x495
     addi	r15, r4, 0x184
     addi	r14, r6, 0x104
@@ -14202,64 +14208,64 @@ _800686b8:
     addi	r12, r6, 0x144
     addi	r11, r4, 0x22c
     addi	r10, r6, 0x1ac
-    lwz	r24, -0x7740(r13)
+    lwz	r24, g_sndMgrPtr
     addi	r9, r6, 0x1ec
     li	r8, 8
     stbx	r0, r24, r23
-    lwz	r23, -0x7740(r13)
+    lwz	r23, g_sndMgrPtr
     stbx	r0, r23, r21
-    lwz	r21, -0x7740(r13)
+    lwz	r21, g_sndMgrPtr
     stbx	r22, r21, r20
-    lwz	r20, -0x7740(r13)
+    lwz	r20, g_sndMgrPtr
     stbx	r22, r20, r18
-    lwz	r18, -0x7740(r13)
+    lwz	r18, g_sndMgrPtr
     stbx	r19, r18, r17
-    lwz	r17, -0x7740(r13)
+    lwz	r17, g_sndMgrPtr
     stbx	r19, r17, r16
-    lwz	r16, -0x7740(r13)
+    lwz	r16, g_sndMgrPtr
     stbx	r3, r16, r15
-    lwz	r15, -0x7740(r13)
+    lwz	r15, g_sndMgrPtr
     stwx	r3, r15, r14
-    lwz	r14, -0x7740(r13)
+    lwz	r14, g_sndMgrPtr
     stwx	r3, r14, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     stbx	r3, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     stwx	r3, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     stwx	r3, r10, r9
     mtctr	r8
 _80068784:
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r8, r8, r3
     addi	r8, r8, 0xd88
     stbx	r0, r7, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r8, r8, r3
     addi	r8, r8, 0xd89
     stbx	r0, r7, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r8, r8, r3
     addi	r8, r8, 0xd8a
     stbx	r0, r7, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r8, r8, r3
     addi	r3, r3, 4
     addi	r8, r8, 0xd8b
     stbx	r0, r7, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r8, r8, r3
     addi	r8, r8, 0xd88
     stbx	r0, r7, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r8, r8, r3
     addi	r8, r8, 0xd89
     stbx	r0, r7, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r8, r8, r3
     addi	r8, r8, 0xd8a
     stbx	r0, r7, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     add	r8, r8, r3
     addi	r3, r3, 4
     addi	r8, r8, 0xd8b
@@ -14271,47 +14277,47 @@ _80068784:
     addi	r7, r7, 0x40
     addi	r5, r5, 0x10
     bc      12, 0, _800686b8
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     li	r3, 0
     li	r0, 2
     stb	r3, 0x1188(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x11b0(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x11d8(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x1200(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x1228(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x1250(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x1278(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x12a0(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x12c8(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x12f0(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x1318(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x1340(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x1368(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x1390(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x13b8(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stb	r3, 0x13e0(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     sth	r3, 0x5a10(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     sth	r3, 0x5a12(r4)
     mtctr	r0
 _800688c4:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r0, r3, 0x5a14
     li	r4, 0
     addi	r6, r3, 0x5a34
@@ -14319,7 +14325,7 @@ _800688c4:
     addi	r5, r3, 0x5a54
     addi	r0, r3, 0x5ab4
     addi	r26, r3, 0x5ad4
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r25, r3, 0x5a16
     addi	r24, r3, 0x5a36
     addi	r23, r3, 0x5a56
@@ -14327,7 +14333,7 @@ _800688c4:
     addi	r22, r3, 0x5ab6
     addi	r21, r3, 0x5ad6
     addi	r20, r3, 0x5a18
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r19, r3, 0x5a38
     addi	r18, r3, 0x5a58
     addi	r17, r3, 0x5ab8
@@ -14335,7 +14341,7 @@ _800688c4:
     addi	r16, r3, 0x5ad8
     addi	r15, r3, 0x5a1a
     addi	r14, r3, 0x5a3a
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r12, r3, 0x5a5a
     addi	r11, r3, 0x5aba
     addi	r10, r3, 0x5ada
@@ -14343,54 +14349,54 @@ _800688c4:
     addi	r9, r3, 0x5a1c
     addi	r8, r3, 0x5a3c
     addi	r7, r3, 0x5a5c
-    lwz	r27, -0x7740(r13)
+    lwz	r27, g_sndMgrPtr
     addi	r6, r3, 0x5abc
     addi	r5, r3, 0x5adc
     addi	r0, r3, 0x5a1e
     sthx	r4, r27, r26
-    lwz	r26, -0x7740(r13)
+    lwz	r26, g_sndMgrPtr
     sthx	r4, r26, r25
-    lwz	r25, -0x7740(r13)
+    lwz	r25, g_sndMgrPtr
     sthx	r4, r25, r24
-    lwz	r24, -0x7740(r13)
+    lwz	r24, g_sndMgrPtr
     sthx	r4, r24, r23
-    lwz	r23, -0x7740(r13)
+    lwz	r23, g_sndMgrPtr
     sthx	r4, r23, r22
-    lwz	r22, -0x7740(r13)
+    lwz	r22, g_sndMgrPtr
     sthx	r4, r22, r21
-    lwz	r21, -0x7740(r13)
+    lwz	r21, g_sndMgrPtr
     sthx	r4, r21, r20
-    lwz	r20, -0x7740(r13)
+    lwz	r20, g_sndMgrPtr
     sthx	r4, r20, r19
-    lwz	r19, -0x7740(r13)
+    lwz	r19, g_sndMgrPtr
     sthx	r4, r19, r18
-    lwz	r18, -0x7740(r13)
+    lwz	r18, g_sndMgrPtr
     sthx	r4, r18, r17
-    lwz	r17, -0x7740(r13)
+    lwz	r17, g_sndMgrPtr
     sthx	r4, r17, r16
-    lwz	r16, -0x7740(r13)
+    lwz	r16, g_sndMgrPtr
     sthx	r4, r16, r15
-    lwz	r15, -0x7740(r13)
+    lwz	r15, g_sndMgrPtr
     sthx	r4, r15, r14
-    lwz	r14, -0x7740(r13)
+    lwz	r14, g_sndMgrPtr
     sthx	r4, r14, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     sthx	r4, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     sthx	r4, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     sthx	r4, r10, r9
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     sthx	r4, r9, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     sthx	r4, r8, r7
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     sthx	r4, r7, r6
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     sthx	r4, r6, r5
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     sthx	r4, r5, r0
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r5, r3, 0x5a3e
     addi	r0, r3, 0x5a5e
     addi	r16, r3, 0x5abe
@@ -14398,7 +14404,7 @@ _800688c4:
     addi	r15, r3, 0x5ade
     addi	r14, r3, 0x5a20
     addi	r12, r3, 0x5a40
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r11, r3, 0x5a60
     addi	r10, r3, 0x5ac0
     addi	r9, r3, 0x5ae0
@@ -14406,38 +14412,38 @@ _800688c4:
     addi	r8, r3, 0x5a22
     addi	r7, r3, 0x5a42
     addi	r6, r3, 0x5a62
-    lwz	r17, -0x7740(r13)
+    lwz	r17, g_sndMgrPtr
     addi	r5, r3, 0x5ac2
     addi	r0, r3, 0x5ae2
     addi	r3, r3, 0x10
     sthx	r4, r17, r16
-    lwz	r16, -0x7740(r13)
+    lwz	r16, g_sndMgrPtr
     sthx	r4, r16, r15
-    lwz	r15, -0x7740(r13)
+    lwz	r15, g_sndMgrPtr
     sthx	r4, r15, r14
-    lwz	r14, -0x7740(r13)
+    lwz	r14, g_sndMgrPtr
     sthx	r4, r14, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     sthx	r4, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     sthx	r4, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     sthx	r4, r10, r9
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     sthx	r4, r9, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     sthx	r4, r8, r7
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     sthx	r4, r7, r6
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     sthx	r4, r6, r5
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     sthx	r4, r5, r0
     bc      16, 0, _800688c4
     li	r0, 2
     mtctr	r0
 _80068ab8:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r3, r4, 0x5a74
     li	r0, 0
     addi	r6, r4, 0x5a94
@@ -14445,7 +14451,7 @@ _80068ab8:
     addi	r5, r4, 0x5af4
     addi	r3, r4, 0x5a76
     addi	r24, r4, 0x5a96
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     addi	r23, r4, 0x5af6
     addi	r22, r4, 0x5a78
     addi	r21, r4, 0x5a98
@@ -14453,7 +14459,7 @@ _80068ab8:
     addi	r20, r4, 0x5af8
     addi	r19, r4, 0x5a7a
     addi	r18, r4, 0x5a9a
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r17, r4, 0x5afa
     addi	r16, r4, 0x5a7c
     addi	r15, r4, 0x5a9c
@@ -14461,7 +14467,7 @@ _80068ab8:
     addi	r14, r4, 0x5afc
     addi	r12, r4, 0x5a7e
     addi	r11, r4, 0x5a9e
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r10, r4, 0x5afe
     addi	r9, r4, 0x5a80
     addi	r8, r4, 0x5aa0
@@ -14469,47 +14475,47 @@ _80068ab8:
     addi	r7, r4, 0x5b00
     addi	r6, r4, 0x5a82
     addi	r5, r4, 0x5aa2
-    lwz	r25, -0x7740(r13)
+    lwz	r25, g_sndMgrPtr
     addi	r3, r4, 0x5b02
     addi	r4, r4, 0x10
     sthx	r0, r25, r24
-    lwz	r24, -0x7740(r13)
+    lwz	r24, g_sndMgrPtr
     sthx	r0, r24, r23
-    lwz	r23, -0x7740(r13)
+    lwz	r23, g_sndMgrPtr
     sthx	r0, r23, r22
-    lwz	r22, -0x7740(r13)
+    lwz	r22, g_sndMgrPtr
     sthx	r0, r22, r21
-    lwz	r21, -0x7740(r13)
+    lwz	r21, g_sndMgrPtr
     sthx	r0, r21, r20
-    lwz	r20, -0x7740(r13)
+    lwz	r20, g_sndMgrPtr
     sthx	r0, r20, r19
-    lwz	r19, -0x7740(r13)
+    lwz	r19, g_sndMgrPtr
     sthx	r0, r19, r18
-    lwz	r18, -0x7740(r13)
+    lwz	r18, g_sndMgrPtr
     sthx	r0, r18, r17
-    lwz	r17, -0x7740(r13)
+    lwz	r17, g_sndMgrPtr
     sthx	r0, r17, r16
-    lwz	r16, -0x7740(r13)
+    lwz	r16, g_sndMgrPtr
     sthx	r0, r16, r15
-    lwz	r15, -0x7740(r13)
+    lwz	r15, g_sndMgrPtr
     sthx	r0, r15, r14
-    lwz	r14, -0x7740(r13)
+    lwz	r14, g_sndMgrPtr
     sthx	r0, r14, r12
-    lwz	r12, -0x7740(r13)
+    lwz	r12, g_sndMgrPtr
     sthx	r0, r12, r11
-    lwz	r11, -0x7740(r13)
+    lwz	r11, g_sndMgrPtr
     sthx	r0, r11, r10
-    lwz	r10, -0x7740(r13)
+    lwz	r10, g_sndMgrPtr
     sthx	r0, r10, r9
-    lwz	r9, -0x7740(r13)
+    lwz	r9, g_sndMgrPtr
     sthx	r0, r9, r8
-    lwz	r8, -0x7740(r13)
+    lwz	r8, g_sndMgrPtr
     sthx	r0, r8, r7
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     sthx	r0, r7, r6
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     sthx	r0, r6, r5
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     sthx	r0, r5, r3
     bc      16, 0, _80068ab8
     bl      fn_8006A1F8
@@ -14529,16 +14535,16 @@ asm void fn_80068BFC(void)
     li	r9, 0
     stw	r0, 0x24(r1)
     addi	r0, r8, lbl_80193B48@l
-    lwz	r8, -0x7b18(r2)
+    lwz	r8, lbl_801A7328
     stmw	r27, 0xc(r1)
     mr	r27, r3
     mr	r28, r4
     mr	r29, r5
     mr	r30, r6
     mr	r31, r7
-    stw	r9, -0x7748(r13)
-    stw	r9, -0x7744(r13)
-    stw	r0, -0x7740(r13)
+    stw	r9, lbl_801A6C78
+    stw	r9, lbl_801A6C7C
+    stw	r0, g_sndMgrPtr
     bl      fn_80067F68
     bl      SndInitProcTable
     cmplwi	r28, 0
@@ -14551,13 +14557,13 @@ _80068c54:
     li	r3, -2
     b       _80068ea0
 _80068c64:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r29, -0x21e0
     cmplwi	r27, 0
     stw	r28, 0x194(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stw	r0, 0x23c(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stw	r27, 0x454(r3)
     bc      12, 2, _80068cc8
     cmplwi	r30, 0
@@ -14570,36 +14576,36 @@ _80068c98:
     li	r3, -4
     b       _80068ea0
 _80068ca8:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stw	r31, 0x1a0(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r0, 0x1a0(r3)
     stw	r0, 0x1a4(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stw	r30, 0x100(r3)
     b       _80068d0c
 _80068cc8:
     mr	r3, r29
     bl      ARAlloc
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x1a0(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwz	r0, 0x1a0(r3)
     stw	r0, 0x1a4(r3)
     bl      OSDisableInterrupts
     mr	r0, r3
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r31, r0
     mr	r4, r28
     bl      OSAlloc
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     stw	r3, 0x100(r4)
     mr	r3, r31
     bl      OSRestoreInterrupts
 _80068d0c:
     bl      OSDisableInterrupts
     mr	r0, r3
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     mr	r31, r0
     li	r4, 0x100
     bl      OSAlloc
@@ -14648,9 +14654,9 @@ _80068d44:
     bc      16, 0, _80068d44
     li	r0, 1
     lis     r3, lbl_80193B28@ha
-    stw	r0, -0x7744(r13)
+    stw	r0, lbl_801A6C7C
     lis     r4, SndChannelFreeCallback@ha
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r10, r4, SndChannelFreeCallback@l
     addi	r3, r3, lbl_80193B28@l
     mr	r7, r31
@@ -14661,16 +14667,16 @@ _80068d44:
     li	r9, 0x100
     bl      ARQPostRequest
 _80068e04:
-    lwz	r0, -0x7744(r13)
+    lwz	r0, lbl_801A6C7C
     cmpwi	r0, 0
     bc      4, 2, _80068e04
     li	r0, 1
     lis     r3, lbl_80193B28@ha
-    stw	r0, -0x7744(r13)
+    stw	r0, lbl_801A6C7C
     lis     r4, SndClearChannelActiveFlag@ha
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     addi	r10, r4, SndClearChannelActiveFlag@l
-    lwz	r7, -0x7af8(r2)
+    lwz	r7, lbl_801A7348
     addi	r3, r3, lbl_80193B28@l
     lwz	r5, 0x1a4(r5)
     li	r4, 0
@@ -14680,20 +14686,20 @@ _80068e04:
     li	r5, 0
     bl      ARQPostRequest
 _80068e4c:
-    lwz	r0, -0x7744(r13)
+    lwz	r0, lbl_801A6C7C
     cmpwi	r0, 0
     bc      4, 2, _80068e4c
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     li	r3, 0
     li	r4, 0
     lwz	r5, 0x1a4(r6)
     addi	r0, r5, 0x21e0
     stw	r0, 0x1ac(r6)
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     lwz	r5, 0x1a4(r6)
     addi	r0, r5, 0x100
     stw	r0, 0x1a8(r6)
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     lwz	r0, 0x100(r5)
     stw	r0, 0x104(r5)
     bl      AXSetAuxCallbackDestA
@@ -14723,7 +14729,7 @@ asm void fn_80068EB4(void)
     b       _80069278
 _80068ed8:
     clrlwi	r0, r30, 0x18
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     mulli	r31, r0, 0x28
     add	r4, r3, r31
     lbz	r0, 0x1188(r4)
@@ -14736,7 +14742,7 @@ _80068ed8:
     lwz	r0, 0x11ac(r4)
     add	r0, r3, r0
     stw	r0, 0x11a4(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lwzx	r4, r3, r5
     cmpwi	r4, 0
     bc      4, 0, _80068f2c
@@ -14749,7 +14755,7 @@ _80068f2c:
     bc      4, 1, _80068f3c
     stwx	r0, r3, r5
 _80068f3c:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     lbz	r0, 0x1188(r3)
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
@@ -14757,14 +14763,14 @@ _80068f3c:
     lwz	r0, 0x11a4(r3)
     rlwinm	r0, r0, 0, 9, 0xf
     stw	r0, 0x11a4(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     lwz	r4, 0x11a4(r3)
     lwz	r0, 0x11a8(r3)
     cmpw	r4, r0
     bc      12, 2, _80068fe8
     stw	r4, 0x11a8(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r4, r0, r31
     lwz	r3, 0x11a4(r4)
     lbz	r0, 0x118a(r4)
@@ -14772,7 +14778,7 @@ _80068f3c:
     oris	r3, r3, 0xa01c
     or	r3, r3, r0
     bl      fn_80065A7C
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     lwz	r4, 0x11a4(r3)
     cmpwi	r4, 0
@@ -14781,7 +14787,7 @@ _80068f3c:
     oris	r3, r0, 0xa000
     ori	r3, r3, 0x1200
     bl      fn_80065A7C
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r31, 0x1188
     li	r4, 0
     stbx	r4, r3, r0
@@ -14794,7 +14800,7 @@ _80068fd0:
     andi.	r0, r0, 0xf9
     stb	r0, 0x1188(r3)
 _80068fe8:
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r31
     lwz	r0, 0x1194(r3)
     srawi.	r0, r0, 0x10
@@ -14805,7 +14811,7 @@ _80069000:
     mr	r29, r28
     cmpwi	r4, 0xff
     bc      4, 2, _80069118
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r4, 0x119c
     lwzx	r28, r31, r0
     addis	r0, r28, 0x100
@@ -14823,7 +14829,7 @@ _80069038:
     bc      12, 2, _800690f8
     cmplwi	r3, 0x80
     bc      12, 2, _80069090
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     cmplwi	r3, 0x90
     add	r3, r31, r4
     lwz	r0, 0x1198(r3)
@@ -14840,13 +14846,13 @@ _80069084:
     stw	r0, 0x119c(r3)
     b       _80069000
 _80069090:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r3, 0x118a
     lbzx	r0, r31, r0
     rlwimi	r0, r5, 8, 0, 0x17
     ori	r3, r0, 0x80
     bl      fn_80065A7C
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r5, r3, 0x1188
     lbzx	r4, r31, r5
     rlwinm.	r0, r4, 0, 0x1b, 0x1c
@@ -14862,17 +14868,17 @@ _800690d4:
     ori	r3, r3, 0x7f00
     stbx	r0, r31, r5
 _800690e0:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r4, 0x118a
     lbzx	r0, r31, r0
     or	r3, r3, r0
     bl      fn_80065A7C
     b       _80069038
 _800690f8:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r3, 0x119c
     stwx	r28, r31, r0
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r3, 0x1198
     lwzx	r0, r31, r0
     add	r28, r0, r5
@@ -14880,14 +14886,14 @@ _800690f8:
 _80069118:
     rlwinm.	r0, r4, 0, 0x18, 0x18
     bc      12, 2, _80069138
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r29, r28, 1
     addi	r0, r3, 0x118b
     stbx	r4, r31, r0
     lbz	r5, 0(r28)
     b       _80069144
 _80069138:
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     addi	r0, r3, 0x118b
     lbzx	r5, r31, r0
 _80069144:
@@ -14931,7 +14937,7 @@ _800691c0:
     or	r3, r3, r0
     b       _80069208
 _800691d0:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r4, 0x1189
     lbzx	r0, r31, r0
     rlwinm.	r0, r0, 0, 0x18, 0x18
@@ -14946,7 +14952,7 @@ _800691d0:
     or	r0, r4, r0
     or	r3, r3, r0
 _80069208:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     addi	r0, r4, 0x118a
     lbzx	r0, r31, r0
     or	r3, r3, r0
@@ -14966,14 +14972,14 @@ _8006922c:
     rlwimi	r3, r0, 0, 0x19, 0x1f
     clrlwi	r3, r3, 0x12
 _80069250:
-    lwz	r6, -0x7740(r13)
+    lwz	r6, g_sndMgrPtr
     addi	r5, r31, 0x1194
     slwi	r3, r3, 0x10
     addi	r0, r31, 0x11a0
     lwzx	r4, r6, r5
     add	r3, r4, r3
     stwx	r3, r6, r5
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r29, r3, r0
 _80069274:
     addi	r30, r30, 1
@@ -15034,7 +15040,7 @@ _80069328:
     cmplwi	r0, 0
     bc      4, 2, _8006934c
     clrlwi	r3, r7, 0x18
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     mulli	r3, r3, 0x28
     li	r6, 0
     addi	r3, r3, 0x1188
@@ -15042,7 +15048,7 @@ _80069328:
     b       _80069388
 _8006934c:
     clrlwi	r3, r7, 0x18
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     mulli	r3, r3, 0x28
     add	r5, r5, r3
     lbz	r3, 0x118a(r5)
@@ -15071,7 +15077,7 @@ _8006939c:
     b       _800693ec
 _800693ac:
     clrlwi	r3, r8, 0x18
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     mulli	r3, r3, 0x28
     add	r7, r7, r3
     lbz	r3, 0x1189(r7)
@@ -15099,7 +15105,7 @@ _800693fc:
     b       _8006942c
 _80069408:
     clrlwi	r0, r5, 0x18
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     mulli	r0, r0, 0x28
     add	r4, r4, r0
     lbz	r0, 0x1189(r4)
@@ -15120,7 +15126,7 @@ _8006943c:
     b       _8006948c
 _8006944c:
     clrlwi	r3, r8, 0x18
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     mulli	r3, r3, 0x28
     add	r7, r7, r3
     lbz	r3, 0x118a(r7)
@@ -15150,7 +15156,7 @@ _8006949c:
     b       _800694e0
 _800694b0:
     clrlwi	r0, r6, 0x18
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     mulli	r0, r0, 0x28
     add	r5, r5, r0
     lbz	r0, 0x118a(r5)
@@ -15173,7 +15179,7 @@ _800694f0:
     b       _8006952c
 _800694fc:
     clrlwi	r0, r6, 0x18
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     mulli	r0, r0, 0x28
     add	r5, r5, r0
     lbz	r0, 0x118a(r5)
@@ -15240,7 +15246,7 @@ _800695cc:
     b       _80069618
 _800695d8:
     clrlwi	r0, r4, 0x18
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     mulli	r0, r0, 0x28
     add	r6, r3, r0
     lbz	r0, 0x118a(r6)
@@ -15267,7 +15273,7 @@ _80069628:
     b       _80069674
 _80069634:
     clrlwi	r0, r4, 0x18
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     mulli	r0, r0, 0x28
     add	r6, r3, r0
     lbz	r0, 0x118a(r6)
@@ -15289,14 +15295,14 @@ _80069674:
     bc      12, 0, _80069634
     b       _80069acc
 _80069684:
-    lwz	r5, -0x7740(r13)
+    lwz	r5, g_sndMgrPtr
     clrlwi	r6, r3, 0x1c
     lis     r4, lbl_80092C38@ha
     rlwinm	r0, r3, 0x19, 0x18, 0x1e
     stb	r6, 0x458(r5)
     addi	r3, r4, lbl_80092C38@l
     lhzx	r0, r3, r0
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stw	r0, 0x448(r3)
     b       _80069acc
 _800696ac:
@@ -15308,7 +15314,7 @@ _800696ac:
     b       _8006972c
 _800696c4:
     clrlwi	r0, r8, 0x18
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     mulli	r5, r0, 0x28
     add	r4, r3, r5
     lbz	r3, 0x1188(r4)
@@ -15324,9 +15330,9 @@ _800696c4:
     lhzx	r0, r6, r7
     stb	r3, 0x1188(r4)
     addi	r5, r5, 0x11ac
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stwx	r0, r3, r5
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     lwzx	r0, r4, r5
     xoris	r3, r0, 0xffff
     xori	r3, r3, 0xffff
@@ -15340,7 +15346,7 @@ _8006972c:
     bc      12, 0, _800696c4
     b       _80069acc
 _8006973c:
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     srwi	r8, r3, 0x10
     li	r11, 0
     li	r9, 0
@@ -15504,20 +15510,20 @@ _80069954:
     li	r0, 0
     add	r4, r4, r5
     stb	r6, 0x118a(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r4, r4, r5
     stw	r8, 0x118c(r4)
-    lwz	r4, -0x7740(r13)
+    lwz	r4, g_sndMgrPtr
     add	r4, r4, r5
     stw	r3, 0x1190(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r5
     stw	r0, 0x1194(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     lbz	r4, 0(r7)
     add	r3, r3, r5
     stb	r4, 0x1189(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r4, r3, r5
     lbz	r3, 0x1189(r4)
     rlwinm.	r3, r3, 0, 0x18, 0x18
@@ -15526,23 +15532,23 @@ _80069954:
     addi	r8, r7, 4
     stb	r3, 0x1188(r4)
     addi	r4, r13, -0x7db8
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r5
     stw	r7, 0x1198(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r5
     stw	r8, 0x119c(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r5
     stw	r4, 0x11a0(r3)
-    lwz	r7, -0x7740(r13)
+    lwz	r7, g_sndMgrPtr
     lwz	r8, 0x448(r7)
     cmplwi	r8, 0
     bc      4, 2, _80069a14
     add	r3, r7, r5
     lis	r4, 0x7f
     stw	r4, 0x11a4(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r5
     stw	r4, 0x11a8(r3)
     b       _80069aa8
@@ -15553,25 +15559,25 @@ _80069a14:
     bc      4, 2, _80069a64
     add	r3, r7, r5
     stw	r8, 0x11ac(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r5
     stw	r0, 0x11a4(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r3, r3, r5
     stw	r0, 0x11a8(r3)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     add	r4, r3, r5
     lbz	r3, 0x1188(r4)
     xori	r3, r3, 0x98
     stb	r3, 0x1188(r4)
-    lwz	r3, -0x7740(r13)
+    lwz	r3, g_sndMgrPtr
     stw	r0, 0x448(r3)
     b       _80069aa8
 _80069a64:
     add	r3, r7, r5
     lis	r4, 0x7f
     stw	r4, 0x11a4(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r5
     stw	r4, 0x11a8(r3)
     b       _80069aa8
@@ -15580,10 +15586,10 @@ _80069a80:
     lis	r6, -0x100
     stb	r0, 0x1188(r4)
     addi	r4, r7, 1
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r5
     stw	r6, 0x119c(r3)
-    lwz	r0, -0x7740(r13)
+    lwz	r0, g_sndMgrPtr
     add	r3, r0, r5
     stw	r4, 0x11a0(r3)
 _80069aa8:

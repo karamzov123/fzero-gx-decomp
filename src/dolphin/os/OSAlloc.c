@@ -5,6 +5,12 @@ extern int fn_80009CD4(register void* param1);
 extern unsigned char lbl_8015BE40[160];
 extern unsigned char lbl_8015BEE0[32];
 
+extern unsigned char gAssetBudgetA[4];
+extern unsigned char gAssetBudgetB[4];
+extern unsigned char g_currentHeapHandle[4];
+extern unsigned char lbl_801A6738[4];
+extern unsigned char lbl_801A673C[4];
+extern unsigned char lbl_801A6740[4];
 asm int fn_8000961C(register void* param1)
 {
     nofralloc
@@ -12,21 +18,21 @@ asm int fn_8000961C(register void* param1)
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
-    lwz	r29, -0x7c90(r13)
+    lwz	r29, gAssetBudgetA
     cmpwi	r29, -1
     beq     _800096a0
     mulli	r0, r29, 0x14
     lis     r4, lbl_8015BE40@ha
     lis     r5, lbl_8015BEE0@ha
-    lwz	r30, -0x7fb0(r13)
+    lwz	r30, g_currentHeapHandle
     addi	r4, r4, lbl_8015BE40@l
-    lwz	r12, -0x7c7c(r13)
+    lwz	r12, gAssetBudgetB
     add	r7, r4, r0
     lwzx	r8, r4, r0
     addi	r31, r5, lbl_8015BEE0@l
-    lwz	r11, -0x7c80(r13)
-    lwz	r10, -0x7c84(r13)
-    lwz	r9, -0x7c88(r13)
+    lwz	r11, lbl_801A6740
+    lwz	r10, lbl_801A673C
+    lwz	r9, lbl_801A6738
     lwz	r6, 4(r7)
     lwz	r5, 8(r7)
     lwz	r4, 0xc(r7)
@@ -36,15 +42,15 @@ asm int fn_8000961C(register void* param1)
     stw	r11, 8(r31)
     stw	r10, 0xc(r31)
     stw	r9, 0x10(r31)
-    stw	r8, -0x7fb0(r13)
-    stw	r6, -0x7c7c(r13)
-    stw	r5, -0x7c80(r13)
-    stw	r4, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r8, g_currentHeapHandle
+    stw	r6, gAssetBudgetB
+    stw	r5, lbl_801A6740
+    stw	r4, lbl_801A673C
+    stw	r0, lbl_801A6738
 _800096a0:
     cmpwi	r3, 0
     blt     _800096b4
-    lwz	r12, -0x7c80(r13)
+    lwz	r12, lbl_801A6740
     cmpw	r3, r12
     blt     _8000972c
 _800096b4:
@@ -52,36 +58,36 @@ _800096b4:
     beq     _80009724
     mulli	r6, r29, 0x14
     lis     r4, lbl_8015BE40@ha
-    lwz	r5, -0x7fb0(r13)
+    lwz	r5, g_currentHeapHandle
     lis     r3, lbl_8015BEE0@ha
     addi	r4, r4, lbl_8015BE40@l
-    lwz	r0, -0x7c7c(r13)
+    lwz	r0, gAssetBudgetB
     stwx	r5, r4, r6
     add	r9, r4, r6
-    lwz	r4, -0x7c80(r13)
+    lwz	r4, lbl_801A6740
     addi	r7, r3, lbl_8015BEE0@l
     stw	r0, 4(r9)
-    lwz	r0, -0x7c84(r13)
+    lwz	r0, lbl_801A673C
     stw	r4, 8(r9)
     lwz	r6, 0(r7)
     lwz	r5, 4(r7)
     lwz	r4, 8(r7)
     lwz	r3, 0xc(r7)
     stw	r0, 0xc(r9)
-    lwz	r8, -0x7c88(r13)
+    lwz	r8, lbl_801A6738
     lwz	r0, 0x10(r7)
     stw	r8, 0x10(r9)
-    stw	r6, -0x7fb0(r13)
-    stw	r5, -0x7c7c(r13)
-    stw	r4, -0x7c80(r13)
-    stw	r3, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r6, g_currentHeapHandle
+    stw	r5, gAssetBudgetB
+    stw	r4, lbl_801A6740
+    stw	r3, lbl_801A673C
+    stw	r0, lbl_801A6738
 _80009724:
     li	r3, 0
     b       _8000981c
 _8000972c:
     mulli	r0, r3, 0xc
-    lwz	r11, -0x7c7c(r13)
+    lwz	r11, gAssetBudgetB
     add	r3, r11, r0
     lwz	r0, 0(r3)
     cmpwi	r0, 0
@@ -90,14 +96,14 @@ _8000972c:
     beq     _800097ac
     mulli	r6, r29, 0x14
     lis     r4, lbl_8015BE40@ha
-    lwz	r5, -0x7fb0(r13)
+    lwz	r5, g_currentHeapHandle
     lis     r3, lbl_8015BEE0@ha
     addi	r4, r4, lbl_8015BE40@l
-    lwz	r0, -0x7c84(r13)
+    lwz	r0, lbl_801A673C
     stwx	r5, r4, r6
     add	r9, r4, r6
     addi	r7, r3, lbl_8015BEE0@l
-    lwz	r8, -0x7c88(r13)
+    lwz	r8, lbl_801A6738
     stw	r11, 4(r9)
     lwz	r6, 0(r7)
     stw	r12, 8(r9)
@@ -107,11 +113,11 @@ _8000972c:
     lwz	r3, 0xc(r7)
     lwz	r0, 0x10(r7)
     stw	r8, 0x10(r9)
-    stw	r6, -0x7fb0(r13)
-    stw	r5, -0x7c7c(r13)
-    stw	r4, -0x7c80(r13)
-    stw	r3, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r6, g_currentHeapHandle
+    stw	r5, gAssetBudgetB
+    stw	r4, lbl_801A6740
+    stw	r3, lbl_801A673C
+    stw	r0, lbl_801A6738
 _800097ac:
     li	r3, 0
     b       _8000981c
@@ -120,14 +126,14 @@ _800097b4:
     beq     _8000981c
     mulli	r7, r29, 0x14
     lis     r5, lbl_8015BE40@ha
-    lwz	r6, -0x7fb0(r13)
+    lwz	r6, g_currentHeapHandle
     lis     r4, lbl_8015BEE0@ha
     addi	r5, r5, lbl_8015BE40@l
-    lwz	r0, -0x7c84(r13)
+    lwz	r0, lbl_801A673C
     stwx	r6, r5, r7
     add	r10, r5, r7
     addi	r8, r4, lbl_8015BEE0@l
-    lwz	r9, -0x7c88(r13)
+    lwz	r9, lbl_801A6738
     stw	r11, 4(r10)
     lwz	r7, 0(r8)
     stw	r12, 8(r10)
@@ -137,11 +143,11 @@ _800097b4:
     lwz	r4, 0xc(r8)
     lwz	r0, 0x10(r8)
     stw	r9, 0x10(r10)
-    stw	r7, -0x7fb0(r13)
-    stw	r6, -0x7c7c(r13)
-    stw	r5, -0x7c80(r13)
-    stw	r4, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r7, g_currentHeapHandle
+    stw	r6, gAssetBudgetB
+    stw	r5, lbl_801A6740
+    stw	r4, lbl_801A673C
+    stw	r0, lbl_801A6738
 _8000981c:
     lwz	r31, 0x1c(r1)
     lwz	r30, 0x18(r1)
@@ -158,21 +164,21 @@ asm void* OSAllocFromHeap(register int heap, register unsigned long size)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
     stw	r28, 0x10(r1)
-    lwz	r28, -0x7c90(r13)
+    lwz	r28, gAssetBudgetA
     cmpwi	r28, -1
     beq     _800098b8
     mulli	r0, r28, 0x14
     lis     r5, lbl_8015BE40@ha
     lis     r6, lbl_8015BEE0@ha
-    lwz	r29, -0x7fb0(r13)
+    lwz	r29, g_currentHeapHandle
     addi	r5, r5, lbl_8015BE40@l
-    lwz	r31, -0x7c7c(r13)
+    lwz	r31, gAssetBudgetB
     add	r8, r5, r0
     lwzx	r9, r5, r0
     addi	r30, r6, lbl_8015BEE0@l
-    lwz	r12, -0x7c80(r13)
-    lwz	r11, -0x7c84(r13)
-    lwz	r10, -0x7c88(r13)
+    lwz	r12, lbl_801A6740
+    lwz	r11, lbl_801A673C
+    lwz	r10, lbl_801A6738
     lwz	r7, 4(r8)
     lwz	r6, 8(r8)
     lwz	r5, 0xc(r8)
@@ -182,14 +188,14 @@ asm void* OSAllocFromHeap(register int heap, register unsigned long size)
     stw	r12, 8(r30)
     stw	r11, 0xc(r30)
     stw	r10, 0x10(r30)
-    stw	r9, -0x7fb0(r13)
-    stw	r7, -0x7c7c(r13)
-    stw	r6, -0x7c80(r13)
-    stw	r5, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r9, g_currentHeapHandle
+    stw	r7, gAssetBudgetB
+    stw	r6, lbl_801A6740
+    stw	r5, lbl_801A673C
+    stw	r0, lbl_801A6738
 _800098b8:
     mulli	r3, r3, 0xc
-    lwz	r6, -0x7c7c(r13)
+    lwz	r6, gAssetBudgetB
     addi	r0, r4, 0x3f
     add	r7, r6, r3
     rlwinm	r4, r0, 0, 0, 0x1a
@@ -211,14 +217,14 @@ _800098f0:
     beq     _80009964
     mulli	r7, r28, 0x14
     lis     r4, lbl_8015BE40@ha
-    lwz	r0, -0x7fb0(r13)
+    lwz	r0, g_currentHeapHandle
     lis     r3, lbl_8015BEE0@ha
     addi	r5, r4, lbl_8015BE40@l
-    lwz	r4, -0x7c80(r13)
+    lwz	r4, lbl_801A6740
     stwx	r0, r5, r7
     add	r9, r5, r7
     addi	r7, r3, lbl_8015BEE0@l
-    lwz	r0, -0x7c84(r13)
+    lwz	r0, lbl_801A673C
     stw	r6, 4(r9)
     lwz	r6, 0(r7)
     stw	r4, 8(r9)
@@ -226,14 +232,14 @@ _800098f0:
     lwz	r4, 8(r7)
     lwz	r3, 0xc(r7)
     stw	r0, 0xc(r9)
-    lwz	r8, -0x7c88(r13)
+    lwz	r8, lbl_801A6738
     lwz	r0, 0x10(r7)
     stw	r8, 0x10(r9)
-    stw	r6, -0x7fb0(r13)
-    stw	r5, -0x7c7c(r13)
-    stw	r4, -0x7c80(r13)
-    stw	r3, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r6, g_currentHeapHandle
+    stw	r5, gAssetBudgetB
+    stw	r4, lbl_801A6740
+    stw	r3, lbl_801A673C
+    stw	r0, lbl_801A6738
 _80009964:
     li	r3, 0
     b       _80009a90
@@ -289,35 +295,35 @@ _800099f8:
     stw	r3, 0(r4)
 _80009a14:
     stw	r3, 8(r7)
-    lwz	r0, -0x7c90(r13)
+    lwz	r0, gAssetBudgetA
     cmpwi	r0, -1
     beq     _80009a8c
     mulli	r7, r0, 0x14
     lis     r5, lbl_8015BE40@ha
-    lwz	r6, -0x7fb0(r13)
+    lwz	r6, g_currentHeapHandle
     lis     r4, lbl_8015BEE0@ha
     addi	r5, r5, lbl_8015BE40@l
-    lwz	r0, -0x7c7c(r13)
+    lwz	r0, gAssetBudgetB
     stwx	r6, r5, r7
     add	r10, r5, r7
-    lwz	r5, -0x7c80(r13)
+    lwz	r5, lbl_801A6740
     addi	r8, r4, lbl_8015BEE0@l
     stw	r0, 4(r10)
-    lwz	r0, -0x7c84(r13)
+    lwz	r0, lbl_801A673C
     stw	r5, 8(r10)
     lwz	r7, 0(r8)
     lwz	r6, 4(r8)
     lwz	r5, 8(r8)
     lwz	r4, 0xc(r8)
     stw	r0, 0xc(r10)
-    lwz	r9, -0x7c88(r13)
+    lwz	r9, lbl_801A6738
     lwz	r0, 0x10(r8)
     stw	r9, 0x10(r10)
-    stw	r7, -0x7fb0(r13)
-    stw	r6, -0x7c7c(r13)
-    stw	r5, -0x7c80(r13)
-    stw	r4, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r7, g_currentHeapHandle
+    stw	r6, gAssetBudgetB
+    stw	r5, lbl_801A6740
+    stw	r4, lbl_801A673C
+    stw	r0, lbl_801A6738
 _80009a8c:
     addi	r3, r3, 0x20
 _80009a90:
@@ -336,21 +342,21 @@ asm int OSFreeToHeap(register void* param1)
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
-    lwz	r0, -0x7c90(r13)
+    lwz	r0, gAssetBudgetA
     cmpwi	r0, -1
     beq     _80009b2c
     mulli	r0, r0, 0x14
     lis     r5, lbl_8015BE40@ha
     lis     r6, lbl_8015BEE0@ha
-    lwz	r29, -0x7fb0(r13)
+    lwz	r29, g_currentHeapHandle
     addi	r5, r5, lbl_8015BE40@l
-    lwz	r31, -0x7c7c(r13)
+    lwz	r31, gAssetBudgetB
     add	r8, r5, r0
     lwzx	r9, r5, r0
     addi	r30, r6, lbl_8015BEE0@l
-    lwz	r12, -0x7c80(r13)
-    lwz	r11, -0x7c84(r13)
-    lwz	r10, -0x7c88(r13)
+    lwz	r12, lbl_801A6740
+    lwz	r11, lbl_801A673C
+    lwz	r10, lbl_801A6738
     lwz	r7, 4(r8)
     lwz	r6, 8(r8)
     lwz	r5, 0xc(r8)
@@ -360,14 +366,14 @@ asm int OSFreeToHeap(register void* param1)
     stw	r12, 8(r30)
     stw	r11, 0xc(r30)
     stw	r10, 0x10(r30)
-    stw	r9, -0x7fb0(r13)
-    stw	r7, -0x7c7c(r13)
-    stw	r6, -0x7c80(r13)
-    stw	r5, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r9, g_currentHeapHandle
+    stw	r7, gAssetBudgetB
+    stw	r6, lbl_801A6740
+    stw	r5, lbl_801A673C
+    stw	r0, lbl_801A6738
 _80009b2c:
     addi	r8, r4, -0x20
-    lwz	r4, -0x7c7c(r13)
+    lwz	r4, gAssetBudgetB
     mulli	r0, r3, 0xc
     lwz	r5, 4(r8)
     cmplwi	r5, 0
@@ -437,35 +443,35 @@ _80009c1c:
     mr	r6, r8
 _80009c20:
     stw	r6, 4(r7)
-    lwz	r0, -0x7c90(r13)
+    lwz	r0, gAssetBudgetA
     cmpwi	r0, -1
     beq     _80009c98
     mulli	r6, r0, 0x14
     lis     r4, lbl_8015BE40@ha
-    lwz	r5, -0x7fb0(r13)
+    lwz	r5, g_currentHeapHandle
     lis     r3, lbl_8015BEE0@ha
     addi	r4, r4, lbl_8015BE40@l
-    lwz	r0, -0x7c7c(r13)
+    lwz	r0, gAssetBudgetB
     stwx	r5, r4, r6
     add	r9, r4, r6
-    lwz	r4, -0x7c80(r13)
+    lwz	r4, lbl_801A6740
     addi	r7, r3, lbl_8015BEE0@l
     stw	r0, 4(r9)
-    lwz	r0, -0x7c84(r13)
+    lwz	r0, lbl_801A673C
     stw	r4, 8(r9)
     lwz	r6, 0(r7)
     lwz	r5, 4(r7)
     lwz	r4, 8(r7)
     lwz	r3, 0xc(r7)
     stw	r0, 0xc(r9)
-    lwz	r8, -0x7c88(r13)
+    lwz	r8, lbl_801A6738
     lwz	r0, 0x10(r7)
     stw	r8, 0x10(r9)
-    stw	r6, -0x7fb0(r13)
-    stw	r5, -0x7c7c(r13)
-    stw	r4, -0x7c80(r13)
-    stw	r3, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r6, g_currentHeapHandle
+    stw	r5, gAssetBudgetB
+    stw	r4, lbl_801A6740
+    stw	r3, lbl_801A673C
+    stw	r0, lbl_801A6738
 _80009c98:
     lwz	r31, 0x1c(r1)
     lwz	r30, 0x18(r1)
@@ -497,22 +503,22 @@ asm int fn_80009CD4(register void* param1)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
     stw	r28, 0x10(r1)
-    lwz	r0, -0x7c90(r13)
-    lwz	r28, -0x7fb0(r13)
+    lwz	r0, gAssetBudgetA
+    lwz	r28, g_currentHeapHandle
     cmpwi	r0, -1
     beq     _80009d60
     mulli	r0, r0, 0x14
     lis     r5, lbl_8015BE40@ha
     lis     r6, lbl_8015BEE0@ha
-    lwz	r29, -0x7fb0(r13)
+    lwz	r29, g_currentHeapHandle
     addi	r5, r5, lbl_8015BE40@l
-    lwz	r31, -0x7c7c(r13)
+    lwz	r31, gAssetBudgetB
     add	r8, r5, r0
     lwzx	r9, r5, r0
     addi	r30, r6, lbl_8015BEE0@l
-    lwz	r12, -0x7c80(r13)
-    lwz	r11, -0x7c84(r13)
-    lwz	r10, -0x7c88(r13)
+    lwz	r12, lbl_801A6740
+    lwz	r11, lbl_801A673C
+    lwz	r10, lbl_801A6738
     lwz	r7, 4(r8)
     lwz	r6, 8(r8)
     lwz	r5, 0xc(r8)
@@ -522,14 +528,14 @@ asm int fn_80009CD4(register void* param1)
     stw	r12, 8(r30)
     stw	r11, 0xc(r30)
     stw	r10, 0x10(r30)
-    stw	r9, -0x7fb0(r13)
-    stw	r7, -0x7c7c(r13)
-    stw	r6, -0x7c80(r13)
-    stw	r5, -0x7c84(r13)
-    stw	r0, -0x7c88(r13)
+    stw	r9, g_currentHeapHandle
+    stw	r7, gAssetBudgetB
+    stw	r6, lbl_801A6740
+    stw	r5, lbl_801A673C
+    stw	r0, lbl_801A6738
 _80009d60:
     mulli	r0, r28, 0xc
-    lwz	r6, -0x7c7c(r13)
+    lwz	r6, gAssetBudgetB
     addi	r5, r3, -0x20
     lwz	r10, -0x18(r3)
     add	r3, r6, r0
@@ -656,34 +662,34 @@ _80009ef8:
     stw	r5, 0(r6)
 _80009f14:
     stw	r5, 8(r3)
-    lwz	r3, -0x7c90(r13)
+    lwz	r3, gAssetBudgetA
     cmpwi	r3, -1
     beq     _80009f88
     mulli	r7, r3, 0x14
     lis     r4, lbl_8015BE40@ha
-    lwz	r6, -0x7fb0(r13)
+    lwz	r6, g_currentHeapHandle
     lis	r3, -0x7fea
     addi	r4, r4, lbl_8015BE40@l
-    lwz	r5, -0x7c7c(r13)
+    lwz	r5, gAssetBudgetB
     stwx	r6, r4, r7
     add	r9, r4, r7
-    lwz	r4, -0x7c80(r13)
+    lwz	r4, lbl_801A6740
     stw	r5, 4(r9)
     lwzu	r7, -0x4120(r3)
     stw	r4, 8(r9)
-    lwz	r8, -0x7c84(r13)
+    lwz	r8, lbl_801A673C
     lwz	r6, 4(r3)
     lwz	r5, 8(r3)
     lwz	r4, 0xc(r3)
     stw	r8, 0xc(r9)
-    lwz	r8, -0x7c88(r13)
+    lwz	r8, lbl_801A6738
     lwz	r3, 0x10(r3)
     stw	r8, 0x10(r9)
-    stw	r7, -0x7fb0(r13)
-    stw	r6, -0x7c7c(r13)
-    stw	r5, -0x7c80(r13)
-    stw	r4, -0x7c84(r13)
-    stw	r3, -0x7c88(r13)
+    stw	r7, g_currentHeapHandle
+    stw	r6, gAssetBudgetB
+    stw	r5, lbl_801A6740
+    stw	r4, lbl_801A673C
+    stw	r3, lbl_801A6738
 _80009f88:
     neg	r3, r0
 _80009f8c:

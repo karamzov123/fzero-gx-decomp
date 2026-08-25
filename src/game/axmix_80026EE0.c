@@ -55,6 +55,10 @@ extern unsigned char lbl_801299D0[256];
 extern unsigned char lbl_80129FD0[2168];
 extern unsigned char lbl_80176160[6144];
 
+extern unsigned char lbl_801A6B80[4];
+extern unsigned char lbl_801A6B84[4];
+extern unsigned char lbl_801A6B88[8];
+extern unsigned char lbl_801A6B90[8];
 asm void axmix_set_voice_volume(void)
 {
     nofralloc
@@ -234,7 +238,7 @@ _80027124:
     lwz	r9, 4(r4)
     rlwinm.	r9, r9, 0, 1, 1
     beq     _80027cf8
-    lwz	r6, -0x7838(r13)
+    lwz	r6, lbl_801A6B88
     cmpwi	r6, 3
     beq     _80027978
     bge     _80027cdc
@@ -1333,17 +1337,17 @@ _80027fc8:
 _80027fd8:
     addi	r4, r4, 0x60
     bdnz    _80027014
-    lwz	r0, -0x783c(r13)
-    lwz	r3, -0x7840(r13)
+    lwz	r0, lbl_801A6B84
+    lwz	r3, lbl_801A6B80
     cmpw	r0, r3
     ble     _8002801c
     addi	r0, r3, 1
-    stw	r0, -0x7840(r13)
-    lwz	r0, -0x7840(r13)
+    stw	r0, lbl_801A6B80
+    lwz	r0, lbl_801A6B80
     add	r3, r31, r0
     lbz	r3, 0xb8c(r3)
     bl      DSPWriteMailHi
-    lwz	r0, -0x7840(r13)
+    lwz	r0, lbl_801A6B80
     add	r3, r31, r0
     lbz	r3, 0xb8c(r3)
     bl      DSPWriteMailMid
@@ -1351,12 +1355,12 @@ _80027fd8:
 _8002801c:
     bge     _80028048
     addi	r0, r3, -1
-    stw	r0, -0x7840(r13)
-    lwz	r0, -0x7840(r13)
+    stw	r0, lbl_801A6B80
+    lwz	r0, lbl_801A6B80
     add	r3, r31, r0
     lbz	r3, 0xb8c(r3)
     bl      DSPWriteMailHi
-    lwz	r0, -0x7840(r13)
+    lwz	r0, lbl_801A6B80
     add	r3, r31, r0
     lbz	r3, 0xb8c(r3)
     bl      DSPWriteMailMid
@@ -1376,7 +1380,7 @@ asm void fn_8002805C(void)
     li	r0, 0
     stwu	r1, -8(r1)
     lfs	f1, -0x7e40(r2)
-    stw	r0, -0x7830(r13)
+    stw	r0, lbl_801A6B90
     bl      fn_80028B34
     lfs	f1, -0x7e3c(r2)
     bl      fn_80028B2C
@@ -1395,7 +1399,7 @@ asm void fn_80028090(void)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     bl      OSDisableInterrupts
-    lwz	r30, -0x7830(r13)
+    lwz	r30, lbl_801A6B90
     mr	r31, r3
     b       _800280c0
 _800280b4:
@@ -1406,7 +1410,7 @@ _800280c0:
     cmplwi	r30, 0
     bne     _800280b4
     li	r0, 0
-    stw	r0, -0x7830(r13)
+    stw	r0, lbl_801A6B90
     mr	r3, r31
     bl      OSRestoreInterrupts
     lwz	r0, 0x14(r1)
@@ -1424,7 +1428,7 @@ asm void fn_800280F0(void)
     stw	r0, 4(r1)
     stwu	r1, -0x10(r1)
     stw	r31, 0xc(r1)
-    lwz	r31, -0x7830(r13)
+    lwz	r31, lbl_801A6B90
     b       _80028114
 _80028108:
     mr	r3, r31
@@ -1620,11 +1624,11 @@ _8002836c:
     li	r10, 0
     bl      AXMixSetupVoiceEntry
     bl      OSDisableInterrupts
-    lwz	r4, -0x7830(r13)
+    lwz	r4, lbl_801A6B90
     cmplwi	r4, 0
     beq     _800283f0
     stw	r19, 4(r4)
-    lwz	r0, -0x7830(r13)
+    lwz	r0, lbl_801A6B90
     stw	r0, 0(r19)
     b       _800283f8
 _800283f0:
@@ -1633,7 +1637,7 @@ _800283f0:
 _800283f8:
     li	r0, 0
     stw	r0, 4(r19)
-    stw	r19, -0x7830(r13)
+    stw	r19, lbl_801A6B90
     bl      OSRestoreInterrupts
     lmw	r19, 0x24(r1)
     lwz	r0, 0x6c(r1)
@@ -1653,12 +1657,12 @@ asm void axmix_device_ctrl_unlink(void)
     stw	r31, 0x14(r1)
     mr	r31, r3
     bl      OSDisableInterrupts
-    lwz	r0, -0x7830(r13)
+    lwz	r0, lbl_801A6B90
     cmplw	r31, r0
     bne     _80028468
     lwz	r0, 0(r31)
-    stw	r0, -0x7830(r13)
-    lwz	r4, -0x7830(r13)
+    stw	r0, lbl_801A6B90
+    lwz	r4, lbl_801A6B90
     cmplwi	r4, 0
     beq     _80028480
     li	r0, 0

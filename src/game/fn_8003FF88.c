@@ -12,6 +12,27 @@ extern void GXSetLineWidth(register u16 width, register u32 fmt);
 extern void fn_8003EC44(register u32 a);
 extern void fn_8003F834(register u32 a);
 
+extern unsigned char lbl_801A6590[4];
+extern unsigned char lbl_801A6598[4];
+extern unsigned char lbl_801A659C[4];
+extern unsigned char lbl_801A65A0[4];
+extern unsigned char lbl_801A65A4[4];
+extern unsigned char lbl_801A65A8[4];
+extern unsigned char lbl_801A65AC[4];
+extern unsigned char lbl_801A65B0[4];
+extern unsigned char lbl_801A65B4[4];
+extern unsigned char lbl_801A65B8[4];
+extern unsigned char lbl_801A65F0[4];
+extern unsigned char lbl_801A65F4[4];
+extern unsigned char lbl_801A65F8[4];
+extern unsigned char lbl_801A65FC[4];
+extern unsigned char lbl_801A6600[8];
+extern unsigned char lbl_801A6C44[4];
+extern unsigned char lbl_801A6C48[4];
+extern unsigned char lbl_801A6C4C[4];
+extern unsigned char lbl_801A6C60[4];
+extern unsigned char lbl_801A6C6C[4];
+extern unsigned char lbl_801A6C74[4];
 asm void fn_8003FF88(register void* arg0)
 {
     nofralloc
@@ -25,12 +46,12 @@ asm void fn_8003FF88(register void* arg0)
     stfd	f28, 0x2b0(r1)
     stmw	r17, 0x274(r1)
     addi	r28, r3, -0x49a8
-    lwz	r0, -0x774c(r13)
+    lwz	r0, lbl_801A6C74
     cmplwi	r0, 0
     beq     _80041080
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7dd0(r13)
-    lwz	r6, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A65F0
+    lwz	r6, lbl_801A6C4C
     slwi	r5, r3, 4
     cmpwi	r0, 0
     lwzx	r18, r6, r5
@@ -45,9 +66,9 @@ asm void fn_8003FF88(register void* arg0)
     srwi	r0, r0, 5
     divwu	r3, r3, r0
     addi	r0, r3, 1
-    stw	r0, -0x7e30(r13)
+    stw	r0, lbl_801A6590
 _80040004:
-    lwz	r7, -0x7e30(r13)
+    lwz	r7, lbl_801A6590
     lis	r31, -0x8000
     lis	r4, -0x7777
     lfd	f2, -0x7c70(r2)
@@ -64,11 +85,11 @@ _80040004:
     fdivs	f0, f3, f0
     srwi	r0, r0, 5
     mullw	r0, r0, r7
-    stw	r0, -0x7760(r13)
+    stw	r0, lbl_801A6C60
     add	r5, r6, r5
     stfs	f0, -0x7e2c(r13)
     addi	r3, r3, -0x73e8
-    lwz	r0, -0x7760(r13)
+    lwz	r0, lbl_801A6C60
     li	r4, 0
     lwz	r5, 8(r5)
     stw	r0, 0x25c(r1)
@@ -82,7 +103,7 @@ _80040004:
     fdivs	f0, f1, f0
     fmuls	f31, f3, f0
     bl      GXLoadMatIdxTripleToXF
-    lwz	r0, -0x7e28(r13)
+    lwz	r0, lbl_801A6598
     addi	r4, r1, 0x1ec
     li	r3, 4
     stw	r0, 0x1ec(r1)
@@ -93,7 +114,7 @@ _80040004:
     bl      GXBegin
     lfs	f2, -0x7c68(r2)
     lis	r17, -0x33ff
-    lwz	r0, -0x7e24(r13)
+    lwz	r0, lbl_801A659C
     addi	r4, r1, 0x1e8
     stfs	f2, -0x8000(r17)
     lfs	f1, -0x7c48(r2)
@@ -122,7 +143,7 @@ _80040004:
     bl      GXBegin
     lfs	f2, 4(r28)
     lfs	f0, 0(r28)
-    lwz	r3, -0x7e30(r13)
+    lwz	r3, lbl_801A6590
     stfs	f0, -0x8000(r17)
     lfs	f1, -0x7c48(r2)
     cmplwi	r3, 1
@@ -171,11 +192,11 @@ _80040004:
     bl      GXBegin
     lwz	r0, 0xfc(r31)
     li	r6, 1
-    lwz	r3, -0x7e30(r13)
+    lwz	r3, lbl_801A6590
     mulhwu	r0, r29, r0
     lfs	f5, -0x7c78(r2)
     lfd	f4, -0x7c70(r2)
-    lwz	r4, -0x7760(r13)
+    lwz	r4, lbl_801A6C60
     lfs	f0, -0x7c48(r2)
     cmplwi	r3, 1
     srwi	r5, r0, 5
@@ -287,7 +308,7 @@ _80040360:
     stfs	f0, -0x8000(r17)
     bdnz    _80040360
 _800403b4:
-    lwz	r0, -0x7e20(r13)
+    lwz	r0, lbl_801A65A0
     addi	r4, r1, 0x1e4
     li	r3, 4
     stw	r0, 0x1e4(r1)
@@ -301,7 +322,7 @@ _800403b4:
     bl      GXBegin
     lfs	f1, -0x7c68(r2)
     lis	r17, -0x33ff
-    lwz	r0, -0x7e18(r13)
+    lwz	r0, lbl_801A65A8
     addi	r4, r1, 0x1e0
     stfs	f1, -0x8000(r17)
     lfs	f0, -0x7c48(r2)
@@ -319,16 +340,16 @@ _800403b4:
     bl      GXBegin
     lfs	f5, -0x7c68(r2)
     lis	r4, 0x4330
-    lwz	r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     stfs	f5, -0x8000(r17)
-    lwz	r3, -0x7760(r13)
+    lwz	r3, lbl_801A6C60
     slwi	r0, r0, 4
     stfs	f5, -0x8000(r17)
     lfs	f4, -0x7c48(r2)
-    lwz	r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     stfs	f4, -0x8000(r17)
     add	r5, r5, r0
-    lwz	r0, -0x7dcc(r13)
+    lwz	r0, lbl_801A65F4
     lwz	r5, 0xc(r5)
     stw	r3, 0x264(r1)
     cmpwi	r0, 0
@@ -351,7 +372,7 @@ _800403b4:
     addi	r4, r1, 0x1dc
     lfs	f0, -0x775c(r13)
     li	r3, 4
-    lwz	r0, -0x7e10(r13)
+    lwz	r0, lbl_801A65B0
     fadds	f28, f1, f0
     stw	r0, 0x1dc(r1)
     bl      GXSetChanMatColor
@@ -376,14 +397,14 @@ _800403b4:
     stfs	f28, -0x8000(r17)
     stfs	f1, -0x8000(r17)
 _80040514:
-    lwz	r0, -0x7dc8(r13)
+    lwz	r0, lbl_801A65F8
     cmpwi	r0, 0
     beq     _800405f8
     lfs	f2, -0x7c50(r2)
     addi	r4, r1, 0x1d8
     lfs	f0, -0x775c(r13)
     li	r3, 4
-    lwz	r0, -0x7e0c(r13)
+    lwz	r0, lbl_801A65B4
     fadds	f0, f2, f0
     lfs	f1, -0x7c4c(r2)
     stw	r0, 0x1d8(r1)
@@ -400,7 +421,7 @@ _80040514:
     addi	r4, r1, 0x1d4
     stfs	f1, -0x8000(r17)
     fadds	f2, f0, f28
-    lwz	r0, -0x7e14(r13)
+    lwz	r0, lbl_801A65AC
     stfs	f28, -0x8000(r17)
     li	r3, 4
     lfs	f0, -0x7c48(r2)
@@ -434,14 +455,14 @@ _80040514:
     stfs	f2, -0x8000(r17)
     stfs	f0, -0x8000(r17)
 _800405f8:
-    lwz	r0, -0x7dc4(r13)
+    lwz	r0, lbl_801A65FC
     cmpwi	r0, 0
     beq     _80040690
     lfs	f1, -0x7c50(r2)
     addi	r4, r1, 0x1d0
     lfs	f0, -0x775c(r13)
     li	r3, 4
-    lwz	r0, -0x7e08(r13)
+    lwz	r0, lbl_801A65B8
     fadds	f0, f1, f0
     lfs	f1, -0x7c4c(r2)
     lfs	f2, -0x7c44(r2)
@@ -473,14 +494,14 @@ _800405f8:
     stfs	f28, -0x8000(r3)
     stfs	f1, -0x8000(r3)
 _80040690:
-    lwz	r0, -0x7dc0(r13)
+    lwz	r0, lbl_801A6600
     cmpwi	r0, 0
     beq     _8004072c
     lfs	f1, -0x7c50(r2)
     addi	r4, r1, 0x1cc
     lfs	f0, -0x775c(r13)
     li	r3, 4
-    lwz	r0, -0x7e08(r13)
+    lwz	r0, lbl_801A65B8
     fadds	f0, f1, f0
     lfs	f1, -0x7c4c(r2)
     lfs	f3, -0x7c44(r2)
@@ -539,7 +560,7 @@ _80040774:
     bl      fn_8003EC44
     b       _8004104c
 _8004078c:
-    lwz	r3, -0x7778(r13)
+    lwz	r3, lbl_801A6C48
     slwi	r0, r18, 4
     add	r3, r3, r0
     lwz	r0, 4(r3)
@@ -566,7 +587,7 @@ _800407c0:
     li	r4, 0
     li	r5, 2
     bl      GXBegin
-    lwz	r4, -0x7760(r13)
+    lwz	r4, lbl_801A6C60
     addi	r0, r18, 1
     lwz	r5, 4(r19)
     mulli	r18, r0, 7
@@ -611,7 +632,7 @@ _800407c0:
     beq     _80040954
     add	r3, r0, r5
     stw	r4, 0x24c(r1)
-    lwz	r0, -0x7e18(r13)
+    lwz	r0, lbl_801A65A8
     mr	r4, r29
     stw	r3, 0x244(r1)
     li	r3, 4
@@ -630,7 +651,7 @@ _800407c0:
     li	r5, 2
     bl      GXBegin
     lwz	r3, 4(r19)
-    lwz	r0, -0x7760(r13)
+    lwz	r0, lbl_801A6C60
     stw	r3, 0x254(r1)
     stw	r0, 0x25c(r1)
     stw	r30, 0x250(r1)
@@ -662,7 +683,7 @@ _80040954:
     lwz	r0, 0x14(r19)
     cmpwi	r0, 0
     bne     _80040b58
-    lwz	r0, -0x7e1c(r13)
+    lwz	r0, lbl_801A65A4
     addi	r4, r27, 0
     li	r3, 4
     stw	r0, 0x1c0(r1)
@@ -674,7 +695,7 @@ _80040954:
     li	r4, 0
     li	r5, 2
     bl      GXBegin
-    lwz	r0, -0x7760(r13)
+    lwz	r0, lbl_801A6C60
     mr	r3, r19
     lwz	r4, 0xc(r19)
     stw	r0, 0x24c(r1)
@@ -706,7 +727,7 @@ _80040954:
     stfs	f2, -0x8000(r31)
     stfs	f31, -0x8000(r31)
     bl      fn_8003EC44
-    lwz	r0, -0x7e14(r13)
+    lwz	r0, lbl_801A65AC
     addi	r4, r26, 0
     li	r3, 4
     stw	r0, 0x1bc(r1)
@@ -718,7 +739,7 @@ _80040954:
     li	r4, 0
     li	r5, 4
     bl      GXBegin
-    lwz	r3, -0x7760(r13)
+    lwz	r3, lbl_801A6C60
     lwz	r0, 0xc(r19)
     stw	r3, 0x26c(r1)
     lfs	f5, -0x775c(r13)
@@ -786,7 +807,7 @@ _80040954:
     stfs	f31, -0x8000(r31)
     b       _8004104c
 _80040b58:
-    lwz	r0, -0x7e1c(r13)
+    lwz	r0, lbl_801A65A4
     addi	r4, r25, 0
     li	r3, 4
     stw	r0, 0x1b8(r1)
@@ -798,7 +819,7 @@ _80040b58:
     li	r4, 0
     li	r5, 2
     bl      GXBegin
-    lwz	r0, -0x7760(r13)
+    lwz	r0, lbl_801A6C60
     mr	r3, r19
     lwz	r4, 0x1c(r19)
     stw	r0, 0x20c(r1)
@@ -830,7 +851,7 @@ _80040b58:
     stfs	f2, -0x8000(r31)
     stfs	f31, -0x8000(r31)
     bl      fn_8003EC44
-    lwz	r0, -0x7e14(r13)
+    lwz	r0, lbl_801A65AC
     addi	r4, r24, 0
     li	r3, 4
     stw	r0, 0x1b4(r1)
@@ -842,7 +863,7 @@ _80040b58:
     li	r4, 0
     li	r5, 4
     bl      GXBegin
-    lwz	r3, -0x7760(r13)
+    lwz	r3, lbl_801A6C60
     lwz	r0, 0x1c(r19)
     stw	r3, 0x22c(r1)
     lfs	f5, -0x775c(r13)
@@ -922,7 +943,7 @@ _80040d44:
     li	r4, 0
     li	r5, 2
     bl      GXBegin
-    lwz	r4, -0x7760(r13)
+    lwz	r4, lbl_801A6C60
     addi	r0, r18, 1
     lwz	r5, 4(r19)
     mulli	r18, r0, 7
@@ -967,7 +988,7 @@ _80040d44:
     beq     _8004104c
     add	r3, r0, r5
     stw	r4, 0x20c(r1)
-    lwz	r0, -0x7e18(r13)
+    lwz	r0, lbl_801A65A8
     mr	r4, r22
     stw	r3, 0x204(r1)
     li	r3, 4
@@ -986,7 +1007,7 @@ _80040d44:
     li	r5, 2
     bl      GXBegin
     lwz	r3, 4(r19)
-    lwz	r0, -0x7760(r13)
+    lwz	r0, lbl_801A6C60
     stw	r3, 0x214(r1)
     stw	r0, 0x21c(r1)
     stw	r30, 0x210(r1)
@@ -1016,7 +1037,7 @@ _80040edc:
     lwz	r0, 0x14(r19)
     cmpwi	r0, 0
     bne     _80040f9c
-    lwz	r0, -0x7e1c(r13)
+    lwz	r0, lbl_801A65A4
     addi	r4, r21, 0
     li	r3, 4
     stw	r0, 0x1a8(r1)
@@ -1028,7 +1049,7 @@ _80040edc:
     li	r4, 0
     li	r5, 2
     bl      GXBegin
-    lwz	r0, -0x7760(r13)
+    lwz	r0, lbl_801A6C60
     mr	r3, r19
     lwz	r4, 0xc(r19)
     stw	r0, 0x20c(r1)
@@ -1062,7 +1083,7 @@ _80040edc:
     bl      fn_8003EC44
     b       _8004104c
 _80040f9c:
-    lwz	r0, -0x7e1c(r13)
+    lwz	r0, lbl_801A65A4
     addi	r4, r20, 0
     li	r3, 4
     stw	r0, 0x1a4(r1)
@@ -1074,7 +1095,7 @@ _80040f9c:
     li	r4, 0
     li	r5, 2
     bl      GXBegin
-    lwz	r0, -0x7760(r13)
+    lwz	r0, lbl_801A6C60
     mr	r3, r19
     lwz	r4, 0x1c(r19)
     stw	r0, 0x20c(r1)
@@ -1110,14 +1131,14 @@ _8004104c:
     addi	r19, r19, 0xb0
     addi	r17, r17, 1
 _80041054:
-    lwz	r0, -0x777c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi	r3, r0, 4
     addi	r0, r3, 4
     lwzx	r0, r4, r0
     cmplw	r17, r0
     blt     _80040774
-    lwz	r0, -0x7754(r13)
+    lwz	r0, lbl_801A6C6C
     cmpwi	r0, 0
     beq     _80041080
     bl      fn_8003F834

@@ -21,6 +21,8 @@ extern void fn_80025440(void);
 extern unsigned char axmix_vol_coeff_table[16];
 extern unsigned char lbl_80128190[2048];
 
+extern unsigned char lbl_801A64F8[4];
+extern unsigned char lbl_801A64FC[4];
 asm void fn_80024308(void)
 {
     nofralloc
@@ -236,7 +238,7 @@ _800245c8:
     slwi	r19, r20, 2
     stw	r19, 0x80(r26)
     mr	r3, r19
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mtlr	r12
     blrl	
     stw	r3, 0x84(r26)
@@ -311,7 +313,7 @@ _800246dc:
     slwi	r19, r20, 2
     stw	r19, 8(r26)
     mr	r3, r19
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mtlr	r12
     blrl	
     stw	r3, 0xc(r26)
@@ -399,7 +401,7 @@ _800247e4:
     stw	r0, 0x120(r23)
     b       _80024870
 _80024834:
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     lwz	r0, 0x120(r23)
     mtlr	r12
     slwi	r3, r0, 2
@@ -728,7 +730,7 @@ _80024cbc:
     b       _80024cd8
 _80024cc0:
     lwz	r3, 0xc(r31)
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mtlr	r12
     blrl	
     addi	r31, r31, 0x14
@@ -747,7 +749,7 @@ _80024cf8:
     b       _80024d14
 _80024cfc:
     lwz	r3, 0x84(r31)
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mtlr	r12
     blrl	
     addi	r31, r31, 0x14
@@ -769,7 +771,7 @@ _80024d40:
     b       _80024d5c
 _80024d44:
     lwz	r3, 0x124(r31)
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mtlr	r12
     blrl	
     addi	r31, r31, 4
@@ -1118,7 +1120,7 @@ asm void fn_800251F0(void)
     stw	r30, 0x20(r1)
     mr	r30, r3
     bl      OSDisableInterrupts
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mr	r31, r3
     li	r3, 0x1680
     mtlr	r12
@@ -1257,7 +1259,7 @@ asm void axmix_ctrl_flush_buffers(void)
     bl      OSDisableInterrupts
     mr	r0, r3
     lwz	r3, 0(r31)
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mr	r31, r0
     mtlr	r12
     blrl	

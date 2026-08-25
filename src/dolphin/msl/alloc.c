@@ -28,7 +28,7 @@ asm void* fn_80079EF0(register unsigned long size)
     stw     r30, 0x18(r1)
     stw     r29, 0x14(r1)
     mr      r29, r3
-    lwz     r0, -0x7FB0(r13)
+    lwz	r0, g_currentHeapHandle
     cmpwi   r0, -1
     bne     _80079f80
     lis     r3, lbl_80094E48@ha
@@ -58,7 +58,7 @@ asm void* fn_80079EF0(register unsigned long size)
     mr      r3, r30
     bl      OSSetArenaLo
 _80079f80:
-    lwz     r3, -0x7FB0(r13)
+    lwz	r3, g_currentHeapHandle
     mr      r4, r29
     bl      OSFree
     lwz     r0, 0x24(r1)
@@ -80,7 +80,7 @@ asm void fn_80079FA8(register unsigned long size)
     stw     r30, 0x18(r1)
     stw     r29, 0x14(r1)
     mr      r29, r3
-    lwz     r0, -0x7FB0(r13)
+    lwz	r0, g_currentHeapHandle
     cmpwi   r0, -1
     bne     _8007a038
     lis     r3, lbl_80094E48@ha
@@ -110,7 +110,7 @@ asm void fn_80079FA8(register unsigned long size)
     mr      r3, r30
     bl      OSSetArenaLo
 _8007a038:
-    lwz     r3, -0x7FB0(r13)
+    lwz	r3, g_currentHeapHandle
     mr      r4, r29
     bl      OSAlloc
     lwz     r0, 0x24(r1)

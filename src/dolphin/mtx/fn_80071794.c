@@ -7,13 +7,14 @@ extern asm void fn_80035EC4(void);
 extern unsigned char lbl_8015AC08[18];
 extern unsigned char lbl_8015AC1C[69];
 
+extern unsigned char lbl_801A6D0C[4];
 asm void fn_80071794(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    lwz	r12, -0x76b4(r13)
+    lwz	r12, lbl_801A6D0C
     mtctr	r12
     bctrl	
     lwz	r0, 0x14(r1)

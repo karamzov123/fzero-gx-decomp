@@ -9,6 +9,21 @@ typedef struct OSContext {
     u64 fields[0x59];
 } OSContext;
 
+extern unsigned char lbl_801A69B4[4];
+extern unsigned char lbl_801A69B0[4];
+extern unsigned char lbl_801A64D0[8];
+extern unsigned char lbl_801A69BC[4];
+extern unsigned char lbl_801A69C4[4];
+extern unsigned char lbl_801A69CC[4];
+extern unsigned char lbl_801A69DC[4];
+extern unsigned char lbl_801A69D4[4];
+extern unsigned char lbl_801A69B8[4];
+extern unsigned char lbl_801A69C0[4];
+extern unsigned char lbl_801A69C8[4];
+extern unsigned char lbl_801A69D0[4];
+extern unsigned char lbl_801A69D8[4];
+extern unsigned char lbl_801A69A0[4];
+extern unsigned char lbl_801A69A4[4];
 extern void OSClearContext(OSContext* context);
 extern void OSSetCurrentContext(OSContext* context);
 extern s64 OSGetTime(void);
@@ -40,10 +55,10 @@ asm void AIInit(register void* stack)
     stw     r31, 0x14(r1)
     stw     r30, 0x10(r1)
     addi    r30, r3, 0
-    lwz     r0, -0x7a10(r13)
+    lwz	r0, lbl_801A69B0
     cmpwi   r0, 0x1
     beq     _8001E468
-    lwz     r3, -0x7ef0(r13)
+    lwz	r3, lbl_801A64D0
     bl      OSRegisterVersion
     lis     r3, 0x8000
     lwz     r0, 0xf8(r3)
@@ -70,25 +85,25 @@ asm void AIInit(register void* stack)
     mulhwu  r3, r10, r3
     srwi    r8, r8, 9
     srwi    r7, r7, 9
-    stw     r8, -0x7a04(r13)
+    stw	r8, lbl_801A69BC
     srwi    r5, r5, 9
     srwi    r4, r4, 9
-    stw     r7, -0x79fc(r13)
+    stw	r7, lbl_801A69C4
     li      r31, 0x0
     srwi    r3, r3, 9
-    stw     r5, -0x79f4(r13)
+    stw	r5, lbl_801A69CC
     lis     r6, 0xcc00
-    stw     r3, -0x79e4(r13)
+    stw	r3, lbl_801A69DC
     li      r3, 0x1
     lwz     r0, 0x6c00(r6)
-    stw     r4, -0x79ec(r13)
+    stw	r4, lbl_801A69D4
     rlwinm  r0, r0, 0, 27, 25
     ori     r0, r0, 0x20
-    stw     r31, -0x7a08(r13)
-    stw     r31, -0x7a00(r13)
-    stw     r31, -0x79f8(r13)
-    stw     r31, -0x79f0(r13)
-    stw     r31, -0x79e8(r13)
+    stw	r31, lbl_801A69B8
+    stw	r31, lbl_801A69C0
+    stw	r31, lbl_801A69C8
+    stw	r31, lbl_801A69D0
+    stw	r31, lbl_801A69D8
     lwz     r5, 0x6c04(r6)
     stw     r0, 0x6c00(r6)
     rlwinm  r0, r5, 0, 24, 15
@@ -103,11 +118,11 @@ asm void AIInit(register void* stack)
     li      r3, 0x0
     bl      AISetDSPSampleRate
     lis     r3, __AIDHandler@ha
-    stw     r31, -0x7a20(r13)
+    stw	r31, lbl_801A69A0
     addi    r4, r3, __AIDHandler@l
-    stw     r31, -0x7a1c(r13)
+    stw	r31, lbl_801A69A4
     li      r3, 0x5
-    stw     r30, -0x7a18(r13)
+    stw	r30, __CallbackStack
     bl      __OSSetInterruptHandler
     lis     r3, 0x400
     bl      __OSUnmaskInterrupts
@@ -118,7 +133,7 @@ asm void AIInit(register void* stack)
     lis     r3, 0x80
     bl      __OSUnmaskInterrupts
     li      r0, 0x1
-    stw     r0, -0x7a10(r13)
+    stw	r0, lbl_801A69B0
 _8001E468:
     lwz     r0, 0x1c(r1)
     lwz     r31, 0x14(r1)
@@ -150,7 +165,7 @@ asm void __AISHandler(register s32 interrupt, register OSContext* context)
     bl      OSClearContext
     addi	r3, r1, 0x10
     bl      OSSetCurrentContext
-    lwz	r12, -0x7a20(r13)
+    lwz	r12, lbl_801A69A0
     cmplwi	r12, 0
     beq     _8001e4d4
     addi	r3, r31, 0x6c00
@@ -189,15 +204,15 @@ asm void __AIDHandler(register s32 interrupt, register OSContext* context)
     bl      OSClearContext
     addi	r3, r1, 0x10
     bl      OSSetCurrentContext
-    lwz	r3, -0x7a1c(r13)
+    lwz	r3, lbl_801A69A4
     cmplwi	r3, 0
     beq     _8001e584
-    lwz	r0, -0x7a0c(r13)
+    lwz	r0, lbl_801A69B4
     cmpwi	r0, 0
     bne     _8001e584
-    lwz	r0, -0x7a18(r13)
+    lwz	r0, __CallbackStack
     li	r4, 1
-    stw	r4, -0x7a0c(r13)
+    stw	r4, lbl_801A69B4
     cmplwi	r0, 0
     beq     _8001e570
     bl      __AICallbackStackSwitch
@@ -208,7 +223,7 @@ _8001e570:
     blrl	
 _8001e57c:
     li	r0, 0
-    stw	r0, -0x7a0c(r13)
+    stw	r0, lbl_801A69B4
 _8001e584:
     addi	r3, r1, 0x10
     bl      OSClearContext
@@ -309,15 +324,15 @@ _8001e6b8:
     beq     _8001e6b8
     bl      OSGetTime
     subfc	r8, r26, r4
-    lwz	r12, -0x7a04(r13)
+    lwz	r12, lbl_801A69BC
     lwz	r5, 0x6c00(r31)
     subfe	r7, r27, r3
-    lwz	r10, -0x79e4(r13)
+    lwz	r10, lbl_801A69DC
     xoris	r7, r7, 0x8000
     rlwinm	r5, r5, 0, 0x1f, 0x1d
-    lwz	r11, -0x7a08(r13)
+    lwz	r11, lbl_801A69B8
     subfc	r6, r10, r12
-    lwz	r9, -0x79e8(r13)
+    lwz	r9, lbl_801A69D8
     stw	r5, 0x6c00(r31)
     subfe	r0, r9, r11
     xoris	r5, r0, 0x8000
@@ -330,9 +345,9 @@ _8001e6b8:
     cmpwi	r5, 0
     stw	r0, 0x6c00(r31)
     beq     _8001e730
-    lwz	r29, -0x79f8(r13)
+    lwz	r29, lbl_801A69C8
     li	r0, 1
-    lwz	r28, -0x79f4(r13)
+    lwz	r28, lbl_801A69CC
     b       _8001e794
 _8001e730:
     addc	r6, r12, r10
@@ -344,8 +359,8 @@ _8001e730:
     neg	r5, r5
     cmpwi	r5, 0
     bne     _8001e790
-    lwz	r5, -0x79fc(r13)
-    lwz	r0, -0x7a00(r13)
+    lwz	r5, lbl_801A69C4
+    lwz	r0, lbl_801A69C0
     subfc	r6, r10, r5
     subfe	r0, r9, r0
     xoris	r5, r0, 0x8000
@@ -355,9 +370,9 @@ _8001e730:
     neg	r5, r5
     cmpwi	r5, 0
     beq     _8001e790
-    lwz	r29, -0x79f0(r13)
+    lwz	r29, lbl_801A69D0
     li	r0, 1
-    lwz	r28, -0x79ec(r13)
+    lwz	r28, lbl_801A69D4
     b       _8001e794
 _8001e790:
     li	r0, 0
@@ -388,19 +403,4 @@ _8001e7ac:
 
 #pragma pop
 
-extern unsigned char lbl_801A69B0[4];
-extern unsigned char lbl_801A64D0[8];
-extern unsigned char lbl_801A69BC[4];
-extern unsigned char lbl_801A69C4[4];
-extern unsigned char lbl_801A69CC[4];
-extern unsigned char lbl_801A69DC[4];
-extern unsigned char lbl_801A69D4[4];
-extern unsigned char lbl_801A69B8[4];
-extern unsigned char lbl_801A69C0[4];
-extern unsigned char lbl_801A69C8[4];
-extern unsigned char lbl_801A69D0[4];
-extern unsigned char lbl_801A69D8[4];
-extern unsigned char lbl_801A69A0[4];
-extern unsigned char lbl_801A69A4[4];
-extern unsigned char __CallbackStack[4];
 

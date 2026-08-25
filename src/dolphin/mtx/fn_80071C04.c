@@ -6,6 +6,7 @@ extern asm void OSAlloc(void);
 extern asm void OSFree(void);
 extern unsigned char lbl_8019E210[64];
 
+extern unsigned char g_currentHeapHandle[4];
 asm void fn_80071C04(void)
 {
     nofralloc
@@ -45,7 +46,7 @@ asm void __OSAllocFromHeap(void)
     mflr	r0
     mr	r4, r3
     stw	r0, 0x14(r1)
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     bl      OSAlloc
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -60,7 +61,7 @@ asm void __OSFreeToHeap(void)
     mflr	r0
     mr	r4, r3
     stw	r0, 0x14(r1)
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     bl      OSFree
     lwz	r0, 0x14(r1)
     mtlr	r0

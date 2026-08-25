@@ -2,6 +2,7 @@
 #pragma force_active on
 
 unsigned long wcstombs(char* dst, const unsigned short* src, unsigned long n);
+extern unsigned char lbl_801A74E0[4];
 void mbrtowc(void);
 void fn_80080150(void);
 void strncmp(void);
@@ -34,7 +35,7 @@ _8007ff50:
     stbx	r0, r28, r31
     b       _8008001c
 _8007ff68:
-    lwz	r0, -0x7960(r2)
+    lwz	r0, lbl_801A74E0
     cmplwi	r6, 0x80
     addi	r30, r30, 2
     stw	r0, 8(r1)

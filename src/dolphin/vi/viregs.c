@@ -11,10 +11,12 @@ extern unsigned char lbl_8015D058[88];
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6924[4];
+extern unsigned char lbl_801A6960[4];
 asm u32 fn_8001BE6C(void)
 {
     nofralloc
-    lwz     r3, -0x7a9c(r13)
+    lwz	r3, lbl_801A6924
     blr
 }
 
@@ -34,7 +36,7 @@ _8001be88:
     cmplw   r6, r5
     clrlwi  r3, r3, 0x15
     bne     _8001be88
-    lwz     r6, -0x7a60(r13)
+    lwz	r6, lbl_801A6960
     addi    r0, r5, -1
     addi    r4, r3, -1
     lhz     r3, 0x1a(r6)
@@ -72,7 +74,7 @@ _8001bf04:
     cmplw   r7, r6
     clrlwi  r4, r4, 0x15
     bne     _8001bf04
-    lwz     r7, -0x7a60(r13)
+    lwz	r7, lbl_801A6960
     addi    r0, r6, -1
     addi    r5, r4, -1
     lhz     r4, 0x1a(r7)
@@ -109,7 +111,7 @@ asm u32 fn_8001BF84(void)
     stwu    r1, -0x10(r1)
     stw     r31, 0xc(r1)
     stw     r30, 8(r1)
-    lwz     r31, -0x7a60(r13)
+    lwz	r31, lbl_801A6960
     bl      OSDisableInterrupts
     lis     r4, -0x3400
     addi    r8, r4, 0x2000
@@ -125,7 +127,7 @@ _8001bfb4:
     cmplw   r7, r6
     clrlwi  r7, r4, 0x15
     bne     _8001bfb4
-    lwz     r4, -0x7a60(r13)
+    lwz	r4, lbl_801A6960
     addi    r5, r7, -1
     addi    r6, r6, -1
     lhz     r0, 0x1a(r4)

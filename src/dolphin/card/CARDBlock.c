@@ -41,6 +41,7 @@ extern void memcpy(void);
 extern unsigned char __CARDBlock[544];
 extern unsigned char card_unlock_dsp_cmd_data[32];
 
+extern unsigned char lbl_801A6510[8];
 asm void __CARDUnlock(void)
 {
     nofralloc
@@ -61,16 +62,16 @@ asm void __CARDUnlock(void)
     addi	r29, r3, 0
     addi	r22, r28, 0x20
     bl      OSGetTick
-    stw	r3, -0x7eb0(r13)
+    stw	r3, lbl_801A6510
     lis	r3, 0x41c6
     lis	r5, 0x7fed
-    lwz	r4, -0x7eb0(r13)
+    lwz	r4, lbl_801A6510
     addi	r0, r3, 0x4e6d
     addi	r25, r5, -0x8000
     mullw	r3, r4, r0
     addi	r0, r3, 0x3039
-    stw	r0, -0x7eb0(r13)
-    lwz	r0, -0x7eb0(r13)
+    stw	r0, lbl_801A6510
+    lwz	r0, lbl_801A6510
     rlwinm	r0, r0, 0x10, 0x11, 0x1f
     or	r25, r25, r0
     rlwinm	r25, r25, 0, 0, 0x13

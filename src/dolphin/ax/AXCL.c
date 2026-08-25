@@ -18,23 +18,28 @@ extern void DCFlushRange(register void* addr, register u32 nBytes);
 extern unsigned char lbl_80124800[6720];
 extern unsigned char lbl_8015FF00[1536];
 
+extern unsigned char lbl_801A6AF8[4];
+extern unsigned char lbl_801A6AFC[4];
+extern unsigned char lbl_801A6B00[4];
+extern unsigned char lbl_801A6B04[4];
+extern unsigned char lbl_801A6B08[8];
 asm void __AXSwapCommandList(void)
 {
     nofralloc
-    lwz	r5, -0x78c8(r13)
+    lwz	r5, lbl_801A6AF8
     lis     r3, lbl_8015FF00@ha
     addi	r4, r3, lbl_8015FF00@l
     addi	r0, r5, 1
-    stw	r0, -0x78c8(r13)
+    stw	r0, lbl_801A6AF8
     mulli	r3, r5, 0x300
-    lwz	r0, -0x78c8(r13)
+    lwz	r0, lbl_801A6AF8
     add	r3, r4, r3
     clrlwi	r0, r0, 0x1f
-    stw	r0, -0x78c8(r13)
-    lwz	r0, -0x78c8(r13)
+    stw	r0, lbl_801A6AF8
+    lwz	r0, lbl_801A6AF8
     mulli	r0, r0, 0x300
     add	r0, r4, r0
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     blr	
 }
 
@@ -50,34 +55,34 @@ asm void AXPushCLCommands(void)
     addi	r30, r4, 0
     stw	r29, 0x54(r1)
     addi	r29, r3, 0
-    lwz	r31, -0x78c4(r13)
-    stw	r0, -0x78c0(r13)
+    lwz	r31, lbl_801A6AFC
+    stw	r0, lbl_801A6B00
     bl      fn_8002201C
     stw	r3, 0x48(r1)
     li	r0, 0
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
     srwi	r0, r0, 0x10
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r4, -0x78c4(r13)
-    lwz	r3, -0x78c0(r13)
-    lwz	r0, -0x78b8(r13)
+    lwz	r4, lbl_801A6AFC
+    lwz	r3, lbl_801A6B00
+    lwz	r0, lbl_801A6B08
     addi	r4, r4, 2
     addi	r3, r3, 0x2e44
-    stw	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
     cmpwi	r0, 1
-    stw	r3, -0x78c0(r13)
+    stw	r3, lbl_801A6B00
     beq     _8002133c
     bge     _8002138c
     cmpwi	r0, 0
@@ -85,221 +90,221 @@ asm void AXPushCLCommands(void)
     b       _8002138c
     b       _8002138c
 _800212e8:
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     li	r4, 7
     srwi	r0, r29, 0x10
     sth	r4, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r0, r3, 2
-    stw	r0, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r29, 0(r3)
-    lwz	r4, -0x78c4(r13)
-    lwz	r3, -0x78c0(r13)
+    lwz	r4, lbl_801A6AFC
+    lwz	r3, lbl_801A6B00
     addi	r4, r4, 2
     addi	r0, r3, 0x546
-    stw	r4, -0x78c4(r13)
-    stw	r0, -0x78c0(r13)
+    stw	r4, lbl_801A6AFC
+    stw	r0, lbl_801A6B00
     b       _8002138c
 _8002133c:
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     li	r4, 0x11
     srwi	r0, r29, 0x10
     sth	r4, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r0, r3, 2
-    stw	r0, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r29, 0(r3)
-    lwz	r4, -0x78c4(r13)
-    lwz	r3, -0x78c0(r13)
+    lwz	r4, lbl_801A6AFC
+    lwz	r3, lbl_801A6B00
     addi	r4, r4, 2
     addi	r0, r3, 0x5e6
-    stw	r4, -0x78c4(r13)
-    stw	r0, -0x78c0(r13)
+    stw	r4, lbl_801A6AFC
+    stw	r0, lbl_801A6B00
 _8002138c:
     bl      fn_80022E5C
     stw	r3, 0x48(r1)
     li	r4, 2
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     li	r0, 3
     sth	r4, 0(r3)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r3, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
     srwi	r4, r3, 0x10
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     sth	r4, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     lwz	r4, 0x48(r1)
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r4, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
-    lwz	r0, -0x78b8(r13)
+    lwz	r3, lbl_801A6AFC
+    lwz	r0, lbl_801A6B08
     addi	r3, r3, 2
     cmplwi	r0, 2
-    stw	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
     bne     _8002163c
     addi	r3, r1, 0x48
     bl      AXGetAuxBufferA_Active
     lwz	r0, 0x48(r1)
     cmplwi	r0, 0
     beq     _8002159c
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     li	r0, 0x13
     addi	r3, r1, 0x48
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
     srwi	r0, r0, 0x10
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferB_500
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferA_Current
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferA_280
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferA_500
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferB_Current500
     lwz	r0, 0x48(r1)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r4, -0x78c4(r13)
-    lwz	r3, -0x78c0(r13)
+    lwz	r4, lbl_801A6AFC
+    lwz	r3, lbl_801A6B00
     addi	r4, r4, 2
     addi	r0, r3, 0xded
-    stw	r4, -0x78c4(r13)
-    stw	r0, -0x78c0(r13)
+    stw	r4, lbl_801A6AFC
+    stw	r0, lbl_801A6B00
 _8002159c:
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     li	r0, 0x10
     addi	r3, r1, 0x48
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferB_280
     lwz	r0, 0x48(r1)
     addi	r3, r1, 0x48
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferB_Unknown
     lwz	r0, 0x48(r1)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r4, -0x78c4(r13)
-    lwz	r3, -0x78c0(r13)
+    lwz	r4, lbl_801A6AFC
+    lwz	r3, lbl_801A6B00
     addi	r4, r4, 2
     addi	r0, r3, 0xded
-    stw	r4, -0x78c4(r13)
-    stw	r0, -0x78c0(r13)
+    stw	r4, lbl_801A6AFC
+    stw	r0, lbl_801A6B00
     b       _8002178c
 _8002163c:
     addi	r3, r1, 0x48
@@ -307,168 +312,168 @@ _8002163c:
     lwz	r0, 0x48(r1)
     cmplwi	r0, 0
     beq     _800216e4
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     li	r0, 4
     addi	r3, r1, 0x48
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
     srwi	r0, r0, 0x10
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferA_Current
     lwz	r0, 0x48(r1)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r4, -0x78c4(r13)
-    lwz	r3, -0x78c0(r13)
+    lwz	r4, lbl_801A6AFC
+    lwz	r3, lbl_801A6B00
     addi	r4, r4, 2
     addi	r0, r3, 0xded
-    stw	r4, -0x78c4(r13)
-    stw	r0, -0x78c0(r13)
+    stw	r4, lbl_801A6AFC
+    stw	r0, lbl_801A6B00
 _800216e4:
     addi	r3, r1, 0x48
     bl      AXGetAuxBufferB_Active
     lwz	r0, 0x48(r1)
     cmplwi	r0, 0
     beq     _8002178c
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     li	r0, 5
     addi	r3, r1, 0x48
     sth	r0, 0(r4)
-    lwz	r5, -0x78c4(r13)
-    lwz	r4, -0x78c0(r13)
+    lwz	r5, lbl_801A6AFC
+    lwz	r4, lbl_801A6B00
     addi	r5, r5, 2
     lwz	r0, 0x48(r1)
-    stw	r5, -0x78c4(r13)
+    stw	r5, lbl_801A6AFC
     addi	r4, r4, 0xded
     srwi	r0, r0, 0x10
-    stw	r4, -0x78c0(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6B00
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r4, r4, 2
-    stw	r4, -0x78c4(r13)
-    lwz	r4, -0x78c4(r13)
+    stw	r4, lbl_801A6AFC
+    lwz	r4, lbl_801A6AFC
     sth	r0, 0(r4)
-    lwz	r4, -0x78c4(r13)
+    lwz	r4, lbl_801A6AFC
     addi	r0, r4, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     bl      AXGetAuxBufferB_Current
     lwz	r0, 0x48(r1)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     srwi	r0, r0, 0x10
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     lwz	r0, 0x48(r1)
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r0, r3, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
 _8002178c:
-    lwz	r0, -0x78bc(r13)
+    lwz	r0, lbl_801A6B04
     cmplwi	r0, 0
     beq     _80021824
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     li	r0, 0x12
     lis	r5, 1
     sth	r0, 0(r3)
     lis     r3, lbl_80124800@ha
     addi	r4, r3, lbl_80124800@l
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r6, r5, -0x8000
     li	r5, 0xa
     addi	r0, r3, 2
-    stw	r0, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
     srwi	r0, r4, 0x10
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     sth	r6, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r5, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r0, 0(r3)
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     addi	r0, r3, 2
-    stw	r0, -0x78c4(r13)
-    lwz	r3, -0x78c4(r13)
+    stw	r0, lbl_801A6AFC
+    lwz	r3, lbl_801A6AFC
     sth	r4, 0(r3)
-    lwz	r4, -0x78c4(r13)
-    lwz	r3, -0x78c0(r13)
+    lwz	r4, lbl_801A6AFC
+    lwz	r3, lbl_801A6B00
     addi	r4, r4, 2
     addi	r0, r3, 0xbb8
-    stw	r4, -0x78c4(r13)
-    stw	r0, -0x78c0(r13)
+    stw	r4, lbl_801A6AFC
+    stw	r0, lbl_801A6B00
 _80021824:
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     li	r0, 0xe
     srwi	r7, r29, 0x10
     sth	r0, 0(r3)
     srwi	r6, r30, 0x10
     li	r0, 0xf
-    lwz	r3, -0x78c4(r13)
+    lwz	r3, lbl_801A6AFC
     li	r4, 0x300
     addi	r3, r3, 2
-    stw	r3, -0x78c4(r13)
+    stw	r3, lbl_801A6AFC
     addi	r3, r31, 0
-    lwz	r5, -0x78c4(r13)
+    lwz	r5, lbl_801A6AFC
     sth	r7, 0(r5)
-    lwz	r5, -0x78c4(r13)
+    lwz	r5, lbl_801A6AFC
     addi	r5, r5, 2
-    stw	r5, -0x78c4(r13)
-    lwz	r5, -0x78c4(r13)
+    stw	r5, lbl_801A6AFC
+    lwz	r5, lbl_801A6AFC
     sth	r29, 0(r5)
-    lwz	r5, -0x78c4(r13)
+    lwz	r5, lbl_801A6AFC
     addi	r5, r5, 2
-    stw	r5, -0x78c4(r13)
-    lwz	r5, -0x78c4(r13)
+    stw	r5, lbl_801A6AFC
+    lwz	r5, lbl_801A6AFC
     sth	r6, 0(r5)
-    lwz	r5, -0x78c4(r13)
+    lwz	r5, lbl_801A6AFC
     addi	r5, r5, 2
-    stw	r5, -0x78c4(r13)
-    lwz	r5, -0x78c4(r13)
+    stw	r5, lbl_801A6AFC
+    lwz	r5, lbl_801A6AFC
     sth	r30, 0(r5)
-    lwz	r6, -0x78c4(r13)
-    lwz	r5, -0x78c0(r13)
+    lwz	r6, lbl_801A6AFC
+    lwz	r5, lbl_801A6B00
     addi	r6, r6, 2
-    stw	r6, -0x78c4(r13)
+    stw	r6, lbl_801A6AFC
     addi	r5, r5, 0x2710
-    stw	r5, -0x78c0(r13)
-    lwz	r5, -0x78c4(r13)
+    stw	r5, lbl_801A6B00
+    lwz	r5, lbl_801A6AFC
     sth	r0, 0(r5)
-    lwz	r6, -0x78c4(r13)
-    lwz	r5, -0x78c0(r13)
+    lwz	r6, lbl_801A6AFC
+    lwz	r5, lbl_801A6B00
     addi	r6, r6, 2
     addi	r0, r5, 2
-    stw	r6, -0x78c4(r13)
-    stw	r0, -0x78c0(r13)
+    stw	r6, lbl_801A6AFC
+    stw	r0, lbl_801A6B00
     bl      DCFlushRange
     lwz	r0, 0x64(r1)
     lwz	r31, 0x5c(r1)
@@ -485,11 +490,11 @@ asm void AXInitCommandList(void)
     lis     r3, lbl_8015FF00@ha
     li	r4, 0
     addi	r3, r3, lbl_8015FF00@l
-    stw	r4, -0x78b8(r13)
+    stw	r4, lbl_801A6B08
     li	r0, 1
-    stw	r4, -0x78c8(r13)
-    stw	r3, -0x78c4(r13)
-    stw	r0, -0x78bc(r13)
+    stw	r4, lbl_801A6AF8
+    stw	r3, lbl_801A6AFC
+    stw	r0, lbl_801A6B04
     blr	
 }
 
@@ -502,17 +507,17 @@ asm void fn_80021910(void)
 asm void fn_80021914(void)
 {
     nofralloc
-    lwz	r0, -0x78b8(r13)
+    lwz	r0, lbl_801A6B08
     cmplw	r0, r3
     beqlr	
-    stw	r3, -0x78b8(r13)
+    stw	r3, lbl_801A6B08
     blr	
 }
 
 asm void fn_80021928(void)
 {
     nofralloc
-    lwz	r3, -0x78b8(r13)
+    lwz	r3, lbl_801A6B08
     blr	
 }
 

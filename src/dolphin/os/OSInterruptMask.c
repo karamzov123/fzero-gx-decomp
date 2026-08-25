@@ -22,6 +22,10 @@ extern unsigned char lbl_80123A60[48];
 #pragma push
 #pragma force_active on
 
+extern unsigned char InterruptHandlerTable[4];
+extern unsigned char __OSLastInterrupt[2];
+extern unsigned char __OSLastInterruptSrr0[4];
+extern unsigned char __OSLastInterruptTime[8];
 asm u32 SetInterruptMask(register u32 mask, register u32 current)
 {
     nofralloc
@@ -545,19 +549,19 @@ _8000dc88:
     addi	r3, r3, 4
     b       _8000dc6c
 _8000dc90:
-    lwz	r3, -0x7c18(r13)
+    lwz	r3, InterruptHandlerTable
     slwi	r0, r29, 2
     lwzx	r31, r3, r0
     cmplwi	r31, 0
     beq     _8000dcec
     cmpwi	r29, 4
     ble     _8000dcc4
-    sth	r29, -0x7c10(r13)
+    sth	r29, __OSLastInterrupt
     bl      OSGetTime
     stw	r4, -0x7c04(r13)
-    stw	r3, -0x7c08(r13)
+    stw	r3, __OSLastInterruptTime
     lwz	r0, 0x198(r30)
-    stw	r0, -0x7c14(r13)
+    stw	r0, __OSLastInterruptSrr0
 _8000dcc4:
     bl      OSDisableScheduler
     mr	r3, r29

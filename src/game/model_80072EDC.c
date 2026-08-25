@@ -48,6 +48,8 @@ extern void memcpy_fast(void);
 extern void strncmp(void);
 extern void fn_8006DD14(void);
 extern unsigned char lbl_8019F040[240];
+extern unsigned char g_modelSysPtr[8];
+extern unsigned char lbl_801A6D78[4];
 asm void fn_80072EDC(void);
 asm void ModelSetCachedMaterial_570(void);
 asm void GXCachedSetTevSwapTable(void);
@@ -112,7 +114,7 @@ _80072F28:
     b _800730F8
 _80072F38:
     slwi r27, r29, 4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0xf0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -142,7 +144,7 @@ _80072F78:
     stw r3, 8(r28)
     stw r0, 0xc(r28)
 _80072FAC:
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0x1f0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -172,7 +174,7 @@ _80072FE8:
     b _8007338C
 _80073018:
     slwi r27, r29, 4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0xf0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -201,7 +203,7 @@ _80073058:
     stw r31, 8(r28)
     stw r3, 0xc(r28)
 _80073088:
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0x1f0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -232,7 +234,7 @@ _800730C4:
     b _8007338C
 _800730F8:
     slwi r27, r29, 4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0xf0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -261,7 +263,7 @@ _80073138:
     stw r3, 8(r28)
     stw r0, 0xc(r28)
 _80073168:
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0x1f0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -292,7 +294,7 @@ _800731A4:
     b _8007338C
 _800731D8:
     slwi r27, r29, 4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0xf0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -320,7 +322,7 @@ _80073218:
     stw r0, 8(r28)
     stw r31, 0xc(r28)
 _80073244:
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0x1f0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -350,7 +352,7 @@ _80073280:
     b _8007338C
 _800732B0:
     slwi r27, r29, 4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0xf0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -379,7 +381,7 @@ _800732F0:
     stw r0, 8(r28)
     stw r0, 0xc(r28)
 _80073320:
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0x1f0
     add r28, r0, r28
     lwz r0, 0(r28)
@@ -409,7 +411,7 @@ _8007335C:
     stw r3, 0xc(r28)
 _8007338C:
     mulli r27, r29, 0x14
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0x2f0
     add r28, r0, r28
     lwz r0, 0x10(r28)
@@ -443,7 +445,7 @@ _800733D8:
     stb r0, 0xc(r28)
     stw r3, 0x10(r28)
 _80073410:
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r28, r27, 0x430
     add r28, r0, r28
     lwz r0, 0x10(r28)
@@ -495,7 +497,7 @@ asm void ModelSetCachedMaterial_570(void)
     bl _savegpr_27
     mr r28, r5
     slwi r5, r3, 4
-    lwz r7, -0x7688(r13)
+    lwz	r7, g_modelSysPtr
     cmpwi r28, 8
     addi r31, r5, 0x570
     mr r27, r4
@@ -576,13 +578,13 @@ asm void GXCachedSetTevSwapTable(void)
     slwi r31, r3, 2
     stw r30, 8(r1)
     mr r30, r4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     add r5, r0, r31
     lwz r0, 0x670(r5)
     cmpw r0, r30
     beq _80073608
     bl __GXSetLightAttnEnable_A
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     add r3, r0, r31
     stw r30, 0x670(r3)
 _80073608:
@@ -604,13 +606,13 @@ asm void ModelSetCachedState_6B0(void)
     slwi r31, r3, 2
     stw r30, 8(r1)
     mr r30, r4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     add r5, r0, r31
     lwz r0, 0x6b0(r5)
     cmpw r0, r30
     beq _80073660
     bl __GXSetLightAttnEnable_B
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     add r3, r0, r31
     stw r30, 0x6b0(r3)
 _80073660:
@@ -631,12 +633,12 @@ asm void ModelSetCachedNumTexGens(void)
     clrlwi r0, r3, 0x18
     stw r31, 0xc(r1)
     mr r31, r3
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     lbz r4, 0x6f0(r4)
     cmplw r4, r0
     beq _800736AC
     bl __GXWriteMatColorRegs
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r31, 0x6f0(r3)
 _800736AC:
     lwz r0, 0x14(r1)
@@ -656,7 +658,7 @@ asm void ModelSetCachedTex_704(void)
     slwi r31, r3, 2
     stw r30, 0x18(r1)
     mr r30, r4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     add r5, r0, r31
     lbz r0, 0(r4)
     lbz r4, 0x704(r5)
@@ -682,12 +684,12 @@ _80073730:
     addi r4, r1, 8
     stw r0, 8(r1)
     bl __GXSetChanMatColor
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     li r4, 0
     lwz r0, 0(r30)
     add r3, r3, r31
     stw r4, 0x6f4(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     add r3, r3, r31
     stw r0, 0x704(r3)
 _80073760:
@@ -711,7 +713,7 @@ asm void ModelCacheMaterialParams(void)
     mulli r4, r30, 0x24
     stw r29, 0x14(r1)
     mr r29, r3
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r31, r4, 0x720
     add r31, r0, r31
     bl GXXFormSetupA
@@ -793,12 +795,12 @@ asm void ModelSetCachedState_840(void)
     clrlwi r0, r3, 0x18
     stw r31, 0xc(r1)
     mr r31, r3
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     lbz r4, 0x840(r4)
     cmplw r4, r0
     beq _800738CC
     bl fn_80036EB4
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r31, 0x840(r3)
 _800738CC:
     lwz r0, 0x14(r1)
@@ -822,7 +824,7 @@ asm void fn_800738E0(void)
     stw r28, 0x10(r1)
     cmpwi r29, 8
     mr r28, r4
-    lwz r6, -0x7688(r13)
+    lwz	r6, g_modelSysPtr
     addi r31, r5, 0x844
     add r31, r6, r31
     blt _80073958
@@ -894,7 +896,7 @@ asm void fn_800739E0(void)
     mr r30, r5
     stw r29, 0x14(r1)
     mr r29, r4
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     add r31, r0, r31
     lwz r0, 0(r31)
     cmpw r0, r29
@@ -935,7 +937,7 @@ asm void fn_80073A58(void)
     cmpwi r28, 3
     bgt _80073AA4
     addi r0, r28, -1
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     mulli r3, r0, 0x1c
     addi r31, r3, 0x894
     add r31, r4, r31
@@ -944,7 +946,7 @@ _80073AA4:
     cmpwi r28, 7
     bgt _80073AC4
     addi r0, r28, -5
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     mulli r3, r0, 0x1c
     addi r31, r3, 0x894
     add r31, r4, r31
@@ -953,7 +955,7 @@ _80073AC4:
     cmpwi r28, 0xb
     bgt _80073AE0
     addi r0, r28, -9
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     mulli r3, r0, 0x1c
     addi r31, r3, 0x894
     add r31, r4, r31
@@ -999,7 +1001,7 @@ asm void fn_80073B50(void)
     addi r11, r1, 0x40
     bl _savegpr_22
     slwi r11, r3, 5
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r31, r11, 0x8e8
     mr r22, r4
     add r31, r0, r31
@@ -1077,7 +1079,7 @@ asm void ModelClearCacheSlot_B28(void)
     stw r0, 0x24(r1)
     stw r31, 0x1c(r1)
     addi r31, r4, 0x8e8
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     add r31, r0, r31
     lwz r0, 0(r31)
     cmpwi r0, 0
@@ -1158,7 +1160,7 @@ _80073D8C:
     li r5, 7
 _80073DA0:
     slwi r4, r3, 5
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r31, r4, 0x8e8
     mr r30, r5
     add r31, r0, r31
@@ -1331,7 +1333,7 @@ _80073F90:
     cmpwi r26, 3
     bgt _80074010
     addi r0, r26, -1
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     mulli r3, r0, 0x1c
     addi r31, r3, 0x894
     add r31, r4, r31
@@ -1340,7 +1342,7 @@ _80074010:
     cmpwi r26, 7
     bgt _80074030
     addi r0, r26, -5
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     mulli r3, r0, 0x1c
     addi r31, r3, 0x894
     add r31, r4, r31
@@ -1349,7 +1351,7 @@ _80074030:
     cmpwi r26, 0xb
     bgt _8007404C
     addi r0, r26, -9
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     mulli r3, r0, 0x1c
     addi r31, r3, 0x894
     add r31, r4, r31
@@ -1376,7 +1378,7 @@ _80074070:
     stb r0, 0x18(r31)
 _80074098:
     slwi r3, r23, 5
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r31, r3, 0x8e8
     add r31, r0, r31
     lwz r0, 0(r31)
@@ -1453,7 +1455,7 @@ asm void fn_80074188(void)
     mr r29, r4
     stw r28, 0x10(r1)
     mr r28, r3
-    lwz r7, -0x7688(r13)
+    lwz	r7, g_modelSysPtr
     lwz r0, 0xae8(r7)
     cmplw r0, r28
     bne _800741E8
@@ -1472,13 +1474,13 @@ _800741E8:
     mr r5, r30
     mr r6, r31
     bl GXSetScissor
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r28, 0xae8(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r29, 0xaec(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r30, 0xaf0(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r31, 0xaf4(r3)
 _8007421C:
     lwz r0, 0x24(r1)
@@ -1506,7 +1508,7 @@ asm void ModelSetCachedScissorLT_AFC(void)
     mr r29, r4
     stw r28, 0x10(r1)
     mr r28, r3
-    lwz r7, -0x7688(r13)
+    lwz	r7, g_modelSysPtr
     lhz r3, 0xafc(r7)
     cmplw r3, r0
     bne _800742AC
@@ -1528,13 +1530,13 @@ _800742AC:
     mr r5, r30
     mr r6, r31
     bl __GXSetScissor_LT
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r28, 0xafc(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r29, 0xafe(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r30, 0xb00(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r31, 0xb02(r3)
 _800742E0:
     lwz r0, 0x24(r1)
@@ -1562,7 +1564,7 @@ asm void ModelSetCachedScissorRB_B08(void)
     mr r29, r4
     stw r28, 0x10(r1)
     mr r28, r3
-    lwz r7, -0x7688(r13)
+    lwz	r7, g_modelSysPtr
     lhz r3, 0xb08(r7)
     cmplw r3, r0
     bne _80074370
@@ -1584,13 +1586,13 @@ _80074370:
     mr r5, r30
     mr r6, r31
     bl __GXSetScissor_RB
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r28, 0xb08(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r29, 0xb0a(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r30, 0xb0c(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r31, 0xb0e(r3)
 _800743A4:
     lwz r0, 0x24(r1)
@@ -1614,7 +1616,7 @@ asm void ModelSetCachedScissorOffset_B04(void)
     mr r31, r4
     stw r30, 8(r1)
     mr r30, r3
-    lwz r5, -0x7688(r13)
+    lwz	r5, g_modelSysPtr
     lhz r3, 0xb04(r5)
     cmplw r3, r0
     bne _80074404
@@ -1626,9 +1628,9 @@ _80074404:
     mr r3, r30
     mr r4, r31
     bl __GXSetScissorBoxOffset
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r30, 0xb04(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r31, 0xb06(r3)
 _80074420:
     lwz r0, 0x14(r1)
@@ -1654,7 +1656,7 @@ asm void ModelSetCachedTexObjHW_B10(void)
     mr r29, r4
     stw r28, 0x10(r1)
     mr r28, r3
-    lwz r7, -0x7688(r13)
+    lwz	r7, g_modelSysPtr
     lhz r3, 0xb10(r7)
     cmplw r3, r0
     bne _800744A4
@@ -1675,13 +1677,13 @@ _800744A4:
     mr r5, r30
     mr r6, r31
     bl __GXInitTexObjHW
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r28, 0xb10(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     sth r29, 0xb12(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r30, 0xb14(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r31, 0xb18(r3)
 _800744D8:
     lwz r0, 0x24(r1)
@@ -1705,7 +1707,7 @@ asm void ModelMatchCachedSlot_B20(void)
     mr r31, r4
     stw r30, 0x18(r1)
     mr r30, r3
-    lwz r5, -0x7688(r13)
+    lwz	r5, g_modelSysPtr
     lbz r3, 0xb20(r5)
     cmplw r3, r0
     bne _80074564
@@ -1730,10 +1732,10 @@ _80074564:
     addi r3, r1, 8
     stw r0, 8(r1)
     bl __GXSetBlendModePair
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     lwz r0, 0(r30)
     stw r0, 0xb20(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r31, 0xb24(r3)
 _8007458C:
     lwz r0, 0x24(r1)
@@ -1753,7 +1755,7 @@ asm void ModelSetCachedPair5_B28(void)
     addi r11, r1, 0x20
     bl _savegpr_26
     slwi r9, r3, 5
-    lwz r0, -0x7688(r13)
+    lwz	r0, g_modelSysPtr
     addi r31, r9, 0xb28
     mr r26, r4
     add r31, r0, r31
@@ -1807,12 +1809,12 @@ asm void GXSetNumTexGensCached(void)
     clrlwi r0, r3, 0x18
     stw r31, 0xc(r1)
     mr r31, r3
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     lbz r4, 0xc28(r4)
     cmplw r4, r0
     beq _80074694
     bl GXSetNumTexGens
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r31, 0xc28(r3)
 _80074694:
     lwz r0, 0x14(r1)
@@ -1833,7 +1835,7 @@ asm void GXSetLineWidthCached(void)
     mr r31, r4
     stw r30, 8(r1)
     mr r30, r3
-    lwz r5, -0x7688(r13)
+    lwz	r5, g_modelSysPtr
     lbz r3, 9(r5)
     cmplw r3, r0
     bne _800746E4
@@ -1844,9 +1846,9 @@ _800746E4:
     mr r3, r30
     mr r4, r31
     bl GXSetLineWidth
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r30, 9(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r31, 0xc(r3)
 _80074700:
     lwz r0, 0x14(r1)
@@ -1868,7 +1870,7 @@ asm void GXSetPointSizeCached(void)
     mr r31, r4
     stw r30, 8(r1)
     mr r30, r3
-    lwz r5, -0x7688(r13)
+    lwz	r5, g_modelSysPtr
     lbz r3, 0x10(r5)
     cmplw r3, r0
     bne _80074754
@@ -1879,9 +1881,9 @@ _80074754:
     mr r3, r30
     mr r4, r31
     bl GXSetPointSize
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r30, 0x10(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r31, 0x14(r3)
 _80074770:
     lwz r0, 0x14(r1)
@@ -1901,12 +1903,12 @@ asm void GXSetChanAmbColorCached(void)
     clrlwi r0, r3, 0x18
     stw r31, 0xc(r1)
     mr r31, r3
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     lbz r4, 0xc2e(r4)
     cmplw r4, r0
     beq _800747BC
     bl __GXSetChanAmbColor
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r31, 0xc2e(r3)
 _800747BC:
     lwz r0, 0x14(r1)
@@ -1945,28 +1947,28 @@ _80074820:
     bge _80074880
     b _80074854
 _80074830:
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     addi r25, r4, 0xc30
     b _80074880
 _8007483C:
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     addi r25, r4, 0xc48
     b _80074880
 _80074848:
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     addi r25, r4, 0xc60
     b _80074880
 _80074854:
     li r3, 0
     bl LightCtrl_SetCachedRec_C30
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     li r3, 2
     addi r25, r4, 0xc60
     b _80074880
 _8007486C:
     li r3, 1
     bl LightCtrl_SetCachedRec_C30
-    lwz r4, -0x7688(r13)
+    lwz	r4, g_modelSysPtr
     li r3, 3
     addi r25, r4, 0xc78
 _80074880:
@@ -2025,7 +2027,7 @@ asm void GXSetTexGenCached(void)
     mr r30, r4
     stw r29, 0x14(r1)
     mr r29, r3
-    lwz r6, -0x7688(r13)
+    lwz	r6, g_modelSysPtr
     lbz r3, 0(r6)
     cmplw r3, r0
     bne _8007496C
@@ -2041,11 +2043,11 @@ _8007496C:
     mr r4, r30
     mr r5, r31
     bl __GXWriteChanCtrlBitfields
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r29, 0(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stw r30, 4(r3)
-    lwz r3, -0x7688(r13)
+    lwz	r3, g_modelSysPtr
     stb r31, 8(r3)
 _80074994:
     lwz r0, 0x24(r1)
@@ -2075,11 +2077,11 @@ asm void GXCopyMtxDirty(void)
     addi r4, r31, 0x20
     bl fn_8006DD14
     li r0, 1
-    stw r0, -0x7648(r13)
+    stw	r0, lbl_801A6D78
     b _80074A48
 _800749F4:
     li r0, 0
-    stw r0, -0x7648(r13)
+    stw	r0, lbl_801A6D78
     b _80074A48
 _80074A00:
     cmplwi r3, 0

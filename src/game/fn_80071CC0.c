@@ -1,6 +1,10 @@
 typedef unsigned int u32;
 typedef signed int s32;
 
+extern unsigned char gx[4];
+extern unsigned char lbl_801A6D28[4];
+extern unsigned char lbl_801A6D2C[4];
+extern unsigned char lbl_801A7448[4];
 asm void ModelDVD_OpenFile(void);
 asm void ModelDVD_ReadAsync(void);
 asm void ModelDVD_CancelSync(void);
@@ -104,7 +108,7 @@ asm void fn_80071D30(void)
     addi    r3, r31, 0
     lwz     r6, -0x7520(r2)
     addi    r7, r31, 0x38
-    lwz     r5, -0x79f8(r2)
+    lwz	r5, lbl_801A7448
     stw     r6, 0x14(r1)
     stw     r5, 0x10(r1)
     stw     r4, 0x2c(r3)
@@ -112,7 +116,7 @@ asm void fn_80071D30(void)
     stb     r4, 1(r3)
     stb     r4, 2(r3)
     stb     r4, 3(r3)
-    stw     r7, -0x7694(r13)
+    stw	r7, lbl_801A6D2C
     mtctr   r0
 _80071d84:
     li      r0, -1
@@ -320,7 +324,7 @@ _8007204c:
     rlwimi  r10, r7, 8, 0x10, 0x17
     stb     r9, 0x20(r8)
     rlwinm  r0, r10, 0, 0x10, 7
-    lwz     r4, -0x7de8(r2)
+    lwz	r4, gx
     mr      r10, r0
     stb     r7, 0x21(r6)
     rlwimi  r10, r3, 0x10, 8, 0xf
@@ -356,7 +360,7 @@ asm void Snd_SetOutputModeBit0(void)
     rlwinm  r3, r5, 0, 0xb, 7
     slwi    r0, r4, 0x15
     or      r5, r3, r0
-    lwz     r4, -0x7de8(r2)
+    lwz	r4, gx
     stw     r5, 0x24(r6)
     li      r0, 0
     li      r6, 0x61
@@ -377,7 +381,7 @@ _80072118:
     rlwinm. r0, r4, 0xb, 0x1d, 0x1f
     beqlr
     rlwinm  r5, r4, 0, 0xb, 7
-    lwz     r4, -0x7de8(r2)
+    lwz	r4, gx
     stw     r5, 0x24(r6)
     li      r0, 0
     li      r6, 0x61
@@ -406,7 +410,7 @@ asm void fn_80072168(void)
     rlwinm  r3, r3, 0, 0xb, 7
     slwi    r0, r4, 0x15
     or      r5, r3, r0
-    lwz     r4, -0x7de8(r2)
+    lwz	r4, gx
     stw     r5, 0x24(r6)
     li      r0, 0
     li      r6, 0x61
@@ -420,7 +424,7 @@ _800721c8:
     rlwinm. r0, r3, 0xb, 0x1d, 0x1f
     beqlr
     rlwinm  r5, r3, 0, 0xb, 7
-    lwz     r4, -0x7de8(r2)
+    lwz	r4, gx
     stw     r5, 0x24(r6)
     li      r0, 0
     li      r6, 0x61
@@ -594,7 +598,7 @@ asm void fn_800723F8(void)
 {
     nofralloc
     li      r0, 0
-    stw     r0, -0x7698(r13)
+    stw	r0, lbl_801A6D28
     blr
 }
 
@@ -637,11 +641,11 @@ asm void GXLoadMtxArray(register u32 a)
     stw     r31, 0xc(r1)
     stw     r30, 8(r1)
     mr      r30, r3
-    lwz     r0, -0x7698(r13)
+    lwz	r0, lbl_801A6D28
     cmplw   r30, r0
     beq     _800724b0
     bl      GXClearVtxDesc
-    stw     r30, -0x7698(r13)
+    stw	r30, lbl_801A6D28
     li      r31, 0
 _8007248c:
     clrlwi. r0, r30, 0x1f

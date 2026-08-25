@@ -36,6 +36,19 @@ extern void fn_8006DFFC(void);
 extern void memset(void);
 extern unsigned char Invalid_Model_str[14];
 extern unsigned char lbl_8019F130[28];
+extern unsigned char g_modelSysPtr[8];
+extern unsigned char gx[4];
+extern unsigned char lbl_801A6628[8];
+extern unsigned char lbl_801A6D00[8];
+extern unsigned char lbl_801A6D90[4];
+extern unsigned char lbl_801A6D94[4];
+extern unsigned char lbl_801A6D98[4];
+extern unsigned char lbl_801A6D9C[4];
+extern unsigned char lbl_801A6DA4[4];
+extern unsigned char lbl_801A6DA8[8];
+extern unsigned char lbl_801A6DB0[4];
+extern unsigned char lbl_801A6DB4[1];
+extern unsigned char lbl_801A6DB8[8];
 asm void fn_800786B0(void);
 asm void fn_80078768(void);
 asm void GXWriteFifoWord(void);
@@ -312,7 +325,7 @@ asm void ModelLoadSkinMatrices(void)
     addi r11, r1, 0x60
     bl _savegpr_26
     mr r30, r4
-    lwz r0, -0x7628(r13)
+    lwz	r0, lbl_801A6D98
     lwz r4, 0(r4)
     mr r27, r5
     xori r5, r0, 2
@@ -329,7 +342,7 @@ _80078A0C:
 _80078A24:
     lwz r3, 0x1c(r30)
     bl GXLoadMtxArray
-    lwz r12, -0x7630(r13)
+    lwz	r12, lbl_801A6D90
     addi r31, r30, 0x60
     cmplwi r12, 0
     beq _80078A58
@@ -341,7 +354,7 @@ _80078A24:
     clrlwi r0, r3, 0x18
     b _80078A74
 _80078A58:
-    lwz r0, -0x762c(r13)
+    lwz	r0, lbl_801A6D94
     cmpwi r0, 0
     bne _80078A70
     mr r3, r30
@@ -371,7 +384,7 @@ _80078A8C:
 _80078AB8:
     cmpwi r26, 0
     beq _80078AC8
-    lwz r0, -0x7628(r13)
+    lwz	r0, lbl_801A6D98
     xori r26, r0, 1
 _80078AC8:
     addi r27, r27, 1
@@ -389,12 +402,12 @@ _80078AC8:
 _80078AF8:
     cmpwi r29, 0
     bne _80078B10
-    lwz r0, -0x7628(r13)
+    lwz	r0, lbl_801A6D98
     xori r3, r0, 2
     bl fn_80078D60
     b _80078B1C
 _80078B10:
-    lwz r0, -0x7628(r13)
+    lwz	r0, lbl_801A6D98
     xori r3, r0, 1
     bl fn_80078D60
 _80078B1C:
@@ -462,7 +475,7 @@ _80078BE0:
     cmpwi r0, 0xff
     beq _80078C00
     mulli r0, r0, 0x30
-    lwz r3, -0x7618(r13)
+    lwz	r3, lbl_801A6DA8
     addi r4, r30, 1
     add r3, r3, r0
     bl VIConfigureAndFlush
@@ -495,9 +508,9 @@ asm void ModelUploadLights(void)
     mr r28, r3
     b _80078C7C
 _80078C58:
-    lwz r4, -0x761c(r13)
-    lwz r0, -0x7618(r13)
-    lwz r3, -0x76c0(r13)
+    lwz	r4, lbl_801A6DA4
+    lwz	r0, lbl_801A6DA8
+    lwz	r3, lbl_801A6D00
     lwzx r4, r4, r30
     add r5, r0, r31
     bl fn_8006DFFC
@@ -515,7 +528,7 @@ _80078C8C:
     cmpwi r0, 0xff
     beq _80078CB0
     mulli r0, r0, 0x30
-    lwz r3, -0x7618(r13)
+    lwz	r3, lbl_801A6DA8
     addi r4, r31, 1
     add r3, r3, r0
     bl VIConfigureAndFlush
@@ -544,7 +557,7 @@ asm void ModelResetFogState(void)
     li r3, 0
     bl fn_80038CFC
 _80078CF8:
-    lwz r0, -0x7624(r13)
+    lwz	r0, lbl_801A6D9C
     lis     r3, lbl_8019F130@ha
     lfs f0, -0x7998(r2)
     addi r3, r3, lbl_8019F130@l
@@ -553,7 +566,7 @@ _80078CF8:
     beq _80078D18
     xori r0, r0, 3
 _80078D18:
-    lwz r6, -0x7688(r13)
+    lwz	r6, g_modelSysPtr
     li r3, 0
     li r4, 0xa
     li r5, 0
@@ -584,12 +597,12 @@ asm void fn_80078D60(void)
     stwu r1, -0x10(r1)
     mflr r0
     stw r0, 0x14(r1)
-    lwz r0, -0x7624(r13)
+    lwz	r0, lbl_801A6D9C
     cmpw r0, r3
     beq _80078D98
-    stw r3, -0x7624(r13)
+    stw	r3, lbl_801A6D9C
     slwi r0, r3, 0xe
-    lwz r4, -0x7de8(r2)
+    lwz	r4, gx
     lwz r3, 0x204(r4)
     rlwinm r3, r3, 0, 0x12, 0xf
     or r3, r3, r0
@@ -639,7 +652,7 @@ _80078E10:
     cmplwi r0, 0xffff
     bne _80078E38
     stw r6, 0(r8)
-    lwz r0, -0x7d98(r13)
+    lwz	r0, lbl_801A6628
     stw r0, 4(r8)
     b _80078E5C
 _80078E38:
@@ -906,15 +919,15 @@ asm void fn_800791A4(void)
     mflr r0
     stw r0, 0x14(r1)
     bl fn_8007048C
-    stb r3, -0x760c(r13)
+    stb	r3, lbl_801A6DB4
     clrlwi r3, r3, 0x18
     bl fn_800702E4
-    lbz r0, -0x760c(r13)
-    stw r3, -0x7610(r13)
+    lbz	r0, lbl_801A6DB4
+    stw	r3, lbl_801A6DB0
     cmplwi r0, 0
     beq _800791D8
     li r0, 1
-    stw r0, -0x7608(r13)
+    stw	r0, lbl_801A6DB8
 _800791D8:
     lwz r0, 0x14(r1)
     mtlr r0
@@ -930,7 +943,7 @@ asm void fn_800791E8(void)
     stw r0, 0x34(r1)
     addi r11, r1, 0x30
     bl _savegpr_22
-    lwz r0, -0x7608(r13)
+    lwz	r0, lbl_801A6DB8
     mr r29, r3
     mr r30, r4
     mr r22, r5
@@ -939,7 +952,7 @@ asm void fn_800791E8(void)
     bl memcpy_fast
     b _800793BC
 _8007921C:
-    lbz r5, -0x760c(r13)
+    lbz	r5, lbl_801A6DB4
     srwi r25, r22, 0xa
     rlwinm r0, r22, 0, 0, 0x15
     clrlwi r31, r22, 0x1b
@@ -958,7 +971,7 @@ _8007921C:
     li r27, 0
     b _800792E0
 _80079264:
-    lwz r22, -0x7610(r13)
+    lwz	r22, lbl_801A6DB0
     li r26, 0
     mr r23, r22
     b _80079298
@@ -973,7 +986,7 @@ _80079274:
     addi r30, r30, 0x400
     addi r26, r26, 1
 _80079298:
-    lbz r0, -0x760c(r13)
+    lbz	r0, lbl_801A6DB4
     cmplw r26, r0
     blt _80079274
     li r26, 0
@@ -989,14 +1002,14 @@ _800792AC:
     addi r23, r23, 0x400
     addi r26, r26, 1
 _800792D0:
-    lbz r0, -0x760c(r13)
+    lbz	r0, lbl_801A6DB4
     cmplw r26, r0
     blt _800792AC
     addi r27, r27, 1
 _800792E0:
     cmplw r27, r28
     blt _80079264
-    lwz r28, -0x7610(r13)
+    lwz	r28, lbl_801A6DB0
     li r26, 0
     mr r27, r28
     b _8007931C
@@ -1072,7 +1085,7 @@ asm void ModelLoadLcDma(void)
     stw r0, 0x34(r1)
     addi r11, r1, 0x30
     bl _savegpr_25
-    lwz r0, -0x7608(r13)
+    lwz	r0, lbl_801A6DB8
     mr r25, r3
     mr r26, r4
     li r27, 0
@@ -1092,7 +1105,7 @@ _8007940C:
     bl DCFlushRangeNoSync
     cmplwi r30, 0
     beq _80079478
-    lwz r3, -0x7610(r13)
+    lwz	r3, lbl_801A6DB0
     clrlwi r4, r26, 0x18
     li r5, 0x400
     bl memset
@@ -1102,7 +1115,7 @@ _8007940C:
 _80079450:
     li r3, 0xe
     bl LCQueueWait
-    lwz r4, -0x7610(r13)
+    lwz	r4, lbl_801A6DB0
     mr r3, r25
     li r5, 0x20
     bl LCStoreBlocks
@@ -1116,14 +1129,14 @@ _80079478:
     beq _800794B8
     cmpwi r27, 0
     bne _80079498
-    lwz r3, -0x7610(r13)
+    lwz	r3, lbl_801A6DB0
     clrlwi r4, r26, 0x18
     slwi r5, r28, 5
     bl memset
 _80079498:
     li r3, 0xe
     bl LCQueueWait
-    lwz r4, -0x7610(r13)
+    lwz	r4, lbl_801A6DB0
     mr r3, r25
     mr r5, r28
     bl LCStoreBlocks

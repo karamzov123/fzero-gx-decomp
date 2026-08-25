@@ -13,6 +13,7 @@ extern asm void PSVecNormalize3(void);
 extern asm void PSMTXLoadIdentityFused(void);
 extern asm void fn_8006DF44(void);
 
+extern unsigned char lbl_801A6D00[8];
 asm void PSMTXRotAxisRadVariant(void)
 {
     nofralloc
@@ -250,7 +251,7 @@ _8006f2b8:
     bl      PSMTXLoadIdentityFused
     b	_8006f37c
 _8006f314:
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     lfs	f0, 0x20(r1)
     stfs	f0, 0(r3)
     lfs	f0, 0x14(r1)

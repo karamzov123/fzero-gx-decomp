@@ -14,6 +14,11 @@ extern void __OSUnlockAllMutex(register void* thread);
 extern void OSWakeupThread(register void* queue);
 extern unsigned char __OSErrorTable[68];
 extern unsigned char RunQueue_8015C018[];
+extern unsigned char Reschedule[4];
+extern unsigned char RunQueueBits[4];
+extern unsigned char RunQueueHint[4];
+extern unsigned char SwitchThreadCallback[4];
+extern unsigned char lbl_801A6430[4];
 void OSExitThread(void* val);
 
 asm void UnsetRun(register void* thread)
@@ -41,11 +46,11 @@ _800103a0:
     bne     _800103c8
     lwz	r0, 0x2d0(r3)
     li	r4, 1
-    lwz	r5, -0x7bc8(r13)
+    lwz	r5, RunQueueBits
     subfic	r0, r0, 0x1f
     slw	r0, r4, r0
     andc	r0, r5, r0
-    stw	r0, -0x7bc8(r13)
+    stw	r0, RunQueueBits
 _800103c8:
     li	r0, 0
     stw	r0, 0x2dc(r3)
@@ -123,11 +128,11 @@ _80010498:
     lwz	r4, 0x2dc(r31)
     stw	r31, 4(r4)
     lwz	r0, 0x2d0(r31)
-    lwz	r4, -0x7bc8(r13)
+    lwz	r4, RunQueueBits
     subfic	r0, r0, 0x1f
     slw	r0, r3, r0
     or	r0, r4, r0
-    stw	r0, -0x7bc8(r13)
+    stw	r0, RunQueueBits
     stw	r3, -0x7bc4(r13)
     b       _800105b4
 _800104d0:
@@ -223,7 +228,7 @@ asm void* SelectThread(register int yield)
     addi	r31, r4, RunQueue_8015C018@l
     stw	r30, 0x10(r1)
     addi	r30, r3, 0
-    lwz	r0, -0x7bc0(r13)
+    lwz	r0, Reschedule
     cmpwi	r0, 0
     ble     _80010604
     li	r3, 0
@@ -245,7 +250,7 @@ _80010624:
     bne     _800106c4
     cmpwi	r30, 0
     bne     _8001065c
-    lwz	r4, -0x7bc8(r13)
+    lwz	r4, RunQueueBits
     lwz	r0, 0x2d0(r6)
     cntlzw	r4, r4
     cmpw	r0, r4
@@ -275,11 +280,11 @@ _80010690:
     lwz	r5, 0x2dc(r6)
     stw	r6, 4(r5)
     lwz	r0, 0x2d0(r6)
-    lwz	r5, -0x7bc8(r13)
+    lwz	r5, RunQueueBits
     subfic	r0, r0, 0x1f
     slw	r0, r4, r0
     or	r0, r5, r0
-    stw	r0, -0x7bc8(r13)
+    stw	r0, RunQueueBits
     stw	r4, -0x7bc4(r13)
 _800106c4:
     lhz	r0, 0x1a2(r6)
@@ -291,7 +296,7 @@ _800106c4:
     li	r3, 0
     b       _800107e0
 _800106e4:
-    lwz	r0, -0x7bc8(r13)
+    lwz	r0, RunQueueBits
     cmplwi	r0, 0
     bne     _80010740
     lwz	r12, -0x7f80(r13)
@@ -307,11 +312,11 @@ _800106e4:
 _80010718:
     bl      OSEnableInterrupts
 _8001071c:
-    lwz	r0, -0x7bc8(r13)
+    lwz	r0, RunQueueBits
     cmplwi	r0, 0
     beq     _8001071c
     bl      OSDisableInterrupts
-    lwz	r0, -0x7bc8(r13)
+    lwz	r0, RunQueueBits
     cmplwi	r0, 0
     beq     _80010718
     addi	r3, r31, 0x730
@@ -319,7 +324,7 @@ _8001071c:
 _80010740:
     li	r3, 0
     stw	r3, -0x7bc4(r13)
-    lwz	r0, -0x7bc8(r13)
+    lwz	r0, RunQueueBits
     cntlzw	r7, r0
     slwi	r0, r7, 3
     add	r4, r31, r0
@@ -338,11 +343,11 @@ _80010778:
     cmplwi	r0, 0
     bne     _800107a0
     subfic	r0, r7, 0x1f
-    lwz	r4, -0x7bc8(r13)
+    lwz	r4, RunQueueBits
     li	r3, 1
     slw	r0, r3, r0
     andc	r0, r4, r0
-    stw	r0, -0x7bc8(r13)
+    stw	r0, RunQueueBits
 _800107a0:
     li	r0, 0
     stw	r0, 0x2dc(r30)
@@ -456,7 +461,7 @@ _80010860:
     lhz	r0, 0x1a2(r31)
     ori	r0, r0, 1
     sth	r0, 0x1a2(r31)
-    lwz	r0, -0x7f90(r13)
+    lwz	r0, lbl_801A6430
     rlwinm	r0, r0, 0, 0x18, 0x1c
     ori	r0, r0, 4
     stw	r0, 0x194(r31)
@@ -796,11 +801,11 @@ _80010d88:
     lwz	r4, 0x2dc(r29)
     stw	r29, 4(r4)
     lwz	r0, 0x2d0(r29)
-    lwz	r4, -0x7bc8(r13)
+    lwz	r4, RunQueueBits
     subfic	r0, r0, 0x1f
     slw	r0, r3, r0
     or	r0, r4, r0
-    stw	r0, -0x7bc8(r13)
+    stw	r0, RunQueueBits
     stw	r3, -0x7bc4(r13)
     b       _80010efc
 _80010dc0:
@@ -1152,11 +1157,11 @@ _80011224:
     lwz	r4, 0x2dc(r6)
     stw	r6, 4(r4)
     lwz	r0, 0x2d0(r6)
-    lwz	r4, -0x7bc8(r13)
+    lwz	r4, RunQueueBits
     subfic	r0, r0, 0x1f
     slw	r0, r3, r0
     or	r0, r4, r0
-    stw	r0, -0x7bc8(r13)
+    stw	r0, RunQueueBits
     stw	r3, -0x7bc4(r13)
 _80011258:
     lwz	r6, 0(r30)

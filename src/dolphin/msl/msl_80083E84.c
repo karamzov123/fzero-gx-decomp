@@ -37,8 +37,6 @@ extern void fn_80087F54(void); // forward decl
 extern void fn_80087F54(void); // forward decl
 extern unsigned char INFINITY_str[12];
 extern void __StringRead(void);
-extern unsigned char jumptable_8015B738[68];
-extern unsigned char jumptable_8015B77C[68];
 extern unsigned char lbl_800953A0[44];
 extern unsigned char lbl_800953D8[48];
 extern unsigned char lbl_80095408[264];
@@ -50,6 +48,10 @@ extern unsigned char lbl_8015B100[256];
 extern unsigned char lbl_8015B300[256];
 extern unsigned char lbl_8015B400[56];
 
+extern unsigned char NAN_str[4];
+extern unsigned char lbl_801A6DE0[8];
+extern unsigned char lbl_801A6DE8[4];
+extern unsigned char lbl_801A74F4[1];
 asm void atof(void)
 {
     nofralloc
@@ -84,7 +86,7 @@ asm void atof(void)
     bc      4, 1, _80083f00
 _80083ef8:
     li	r0, 0x22
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
 _80083f00:
     lwz	r0, 0x24(r1)
     mtlr	r0
@@ -360,9 +362,9 @@ _800842b8:
     li	r15, 0x1000
     b       _80084c54
 _800842c0:
-    lwz	r3, -0x7950(r2)
+    lwz	r3, NAN_str
     addi	r15, r1, 0x11
-    lbz	r0, -0x794c(r2)
+    lbz	r0, lbl_801A74F4
     li	r20, 1
     stw	r3, 0x10(r1)
     li	r19, 0
@@ -1307,7 +1309,7 @@ _80084f98:
     neg	r4, r5
     addi	r3, r3, -1
     or	r4, r4, r5
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     srwi	r0, r4, 0x1f
     add	r3, r0, r3
     b       _80084fcc
@@ -1357,7 +1359,7 @@ _80085044:
     bc      12, 2, _80085060
     li	r0, 0x22
     li	r3, -1
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     b       _80085070
 _80085060:
     lwz	r0, 0xc(r1)
@@ -1948,7 +1950,7 @@ asm void fn_80085814(void)
     bl      OSGetConsoleType
     rlwinm.	r0, r3, 0, 2, 2
     bc      4, 2, _800858ac
-    lwz	r0, -0x75d8(r13)
+    lwz	r0, lbl_801A6DE8
     li	r3, 0
     cmpwi	r0, 0
     bc      4, 2, _80085878
@@ -1958,7 +1960,7 @@ asm void fn_80085814(void)
     cmpwi	r3, 0
     bc      4, 2, _80085878
     li	r0, 1
-    stw	r0, -0x75d8(r13)
+    stw	r0, lbl_801A6DE8
 _80085878:
     cmpwi	r3, 0
     bc      12, 2, _80085888
@@ -2279,7 +2281,7 @@ _80085cb8:
     fsub	f1, f1, f1
     lfd	f0, -0x75d0(r13)
     li	r0, 0x21
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     fdiv	f1, f1, f0
     b       _80085ef0
 _80085cd8:
@@ -2451,7 +2453,7 @@ asm void __msl_exp(void)
     lfd	f1, -0x7828(r2)
     li	r0, 0x21
     lfd	f0, -0x75c8(r13)
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     fdiv	f1, f1, f0
     b       _80085ff4
 _80085f48:
@@ -2460,7 +2462,7 @@ _80085f48:
     fsub	f1, f1, f1
     lfd	f0, -0x75c8(r13)
     li	r0, 0x21
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     fdiv	f1, f1, f0
     b       _80085ff4
 _80085f68:
@@ -2742,7 +2744,7 @@ _80086328:
     bc      4, 2, _8008634c
     lis     r3, lbl_801A6648@ha
     li	r0, 0x21
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     lfs	f1, lbl_801A6648@l(r3)
     b       _80086884
 _8008634c:

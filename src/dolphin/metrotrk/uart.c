@@ -1,5 +1,12 @@
 #pragma push
 #pragma force_active on
+extern unsigned char lbl_801A6688[1];
+extern unsigned char lbl_801A6E28[4];
+extern unsigned char lbl_801A6E2C[4];
+extern unsigned char lbl_801A6E30[4];
+extern unsigned char lbl_801A6E34[4];
+extern unsigned char lbl_801A6E38[4];
+extern unsigned char lbl_801A6E3C[1];
 void fn_8008F8B0(void);
 void fn_8008F8F0(void);
 
@@ -83,10 +90,10 @@ _8008f4d4:
     lwz	r0, 0x54(r1)
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
     bne     _8008f484
-    lbz	r3, -0x7d38(r13)
+    lbz	r3, lbl_801A6688
     addi	r0, r3, 1
-    stb	r0, -0x7d38(r13)
-    lbz	r0, -0x7d38(r13)
+    stb	r0, lbl_801A6688
+    lbz	r0, lbl_801A6688
     clrlwi.	r0, r0, 0x1f
     beq     _8008f518
     li	r3, 0x1000
@@ -136,7 +143,7 @@ _8008f590:
     lwz	r0, 0x54(r1)
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
     bne     _8008f548
-    lbz	r0, -0x7d38(r13)
+    lbz	r0, lbl_801A6688
     slwi	r0, r0, 0x10
     oris	r0, r0, 0x1f00
     or	r0, r0, r27
@@ -221,7 +228,7 @@ asm void fn_8008F6BC(void)
     stw	r29, 0x14(r1)
     addi	r29, r3, 0
     bl      OSDisableInterrupts
-    lwz	r0, -0x7590(r13)
+    lwz	r0, lbl_801A6E30
     addi	r31, r3, 0
     rlwinm.	r0, r0, 0, 0xf, 0xf
     beq     _8008f6f8
@@ -237,9 +244,9 @@ _8008f6fc:
     addi	r3, r3, -0x2000
     bl      UARTWriteFrame
     li	r0, 0
-    stw	r0, -0x758c(r13)
+    stw	r0, lbl_801A6E34
     mr	r3, r31
-    stb	r0, -0x7584(r13)
+    stb	r0, lbl_801A6E3C
     bl      OSRestoreInterrupts
     lwz	r0, 0x24(r1)
     li	r3, 0
@@ -259,8 +266,8 @@ asm void fn_8008F748(void)
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    lwz	r0, -0x758c(r13)
-    stb	r3, -0x7584(r13)
+    lwz	r0, lbl_801A6E34
+    stb	r3, lbl_801A6E3C
     cmpwi	r0, 0
     bne     _8008f7cc
     bl      OSDisableInterrupts
@@ -281,15 +288,15 @@ asm void fn_8008F748(void)
     cmplwi	r0, 0
     bne     _8008f7c4
     clrlwi	r3, r4, 0x11
-    stw	r4, -0x7590(r13)
+    stw	r4, lbl_801A6E30
     li	r0, 1
-    stw	r3, -0x758c(r13)
-    stb	r0, -0x7584(r13)
+    stw	r3, lbl_801A6E34
+    stb	r0, lbl_801A6E3C
 _8008f7c4:
     mr	r3, r31
     bl      OSRestoreInterrupts
 _8008f7cc:
-    lwz	r3, -0x758c(r13)
+    lwz	r3, lbl_801A6E34
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
     addi	r1, r1, 0x18
@@ -311,7 +318,7 @@ asm void UART_InstallInterruptHandlers(void)
     lis     r3, fn_8008F8F0@ha
     addi	r0, r3, fn_8008F8F0@l
     lis     r3, fn_8008F8B0@ha
-    stw	r0, -0x7594(r13)
+    stw	r0, lbl_801A6E2C
     addi	r4, r3, fn_8008F8B0@l
     li	r3, 0x19
     bl      __OSSetInterruptHandler
@@ -336,13 +343,13 @@ asm void fn_8008F838(void)
     addi	r29, r3, 0
     bl      OSDisableInterrupts
     addi	r0, r13, -0x7584
-    stw	r0, -0x7588(r13)
+    stw	r0, lbl_801A6E38
     lis	r4, 2
     addi	r31, r3, 0
-    lwz	r0, -0x7588(r13)
+    lwz	r0, lbl_801A6E38
     addi	r3, r4, -0x8000
     stw	r0, 0(r29)
-    stw	r30, -0x7598(r13)
+    stw	r30, lbl_801A6E28
     bl      __OSMaskInterrupts
     lis	r3, -0x3400
     li	r0, 0
@@ -366,7 +373,7 @@ asm void fn_8008F8B0(void)
     stw	r0, 4(r1)
     li	r0, 0x1000
     stwu	r1, -8(r1)
-    lwz	r12, -0x7594(r13)
+    lwz	r12, lbl_801A6E2C
     stw	r0, 0x3000(r5)
     cmplwi	r12, 0
     beq     _8008f8e0
@@ -387,8 +394,8 @@ asm void fn_8008F8F0(void)
     stw	r0, 4(r1)
     li	r0, 1
     stwu	r1, -8(r1)
-    lwz	r12, -0x7598(r13)
-    stb	r0, -0x7584(r13)
+    lwz	r12, lbl_801A6E28
+    stb	r0, lbl_801A6E3C
     cmplwi	r12, 0
     beq     _8008f91c
     mtlr	r12

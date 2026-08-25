@@ -22,6 +22,15 @@ extern void ModelDVD_ReadAsync(void);
 extern void ModelDVD_CancelSync(void);
 extern void fn_80071D2C(void);
 
+extern unsigned char lbl_801A6620[1];
+extern unsigned char lbl_801A6D08[4];
+extern unsigned char lbl_801A6D0C[4];
+extern unsigned char lbl_801A6D10[4];
+extern unsigned char lbl_801A6D14[4];
+extern unsigned char lbl_801A6D18[4];
+extern unsigned char lbl_801A6D1C[4];
+extern unsigned char lbl_801A6D20[4];
+extern unsigned char lbl_801A6D24[4];
 asm void OSAllocFromArena(void)
 {
     nofralloc
@@ -32,7 +41,7 @@ asm void OSAllocFromArena(void)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     rlwinm	r30, r3, 0, 0, 0x1a
-    lbz	r0, -0x7da0(r13)
+    lbz	r0, lbl_801A6620
     cmplwi	r0, 0
     beq	_80070d34
     bl      OSGetArenaHi
@@ -59,17 +68,17 @@ asm void fn_80070D60(void)
 {
     nofralloc
     lwz	r0, 0(r3)
-    stw	r0, -0x769c(r13)
+    stw	r0, lbl_801A6D24
     lwz	r0, 4(r3)
-    stw	r0, -0x76a0(r13)
+    stw	r0, lbl_801A6D20
     lwz	r0, 8(r3)
-    stw	r0, -0x76a4(r13)
+    stw	r0, lbl_801A6D1C
     lwz	r0, 0xc(r3)
-    stw	r0, -0x76a8(r13)
+    stw	r0, lbl_801A6D18
     lwz	r0, 0x10(r3)
-    stw	r0, -0x76ac(r13)
+    stw	r0, lbl_801A6D14
     lwz	r0, 0x14(r3)
-    stw	r0, -0x76b0(r13)
+    stw	r0, lbl_801A6D10
     blr	
 }
 
@@ -88,20 +97,20 @@ asm void fn_80070D94(void)
     addi	r5, r5, ModelDVD_ReadAsync@l
     addi	r4, r4, ModelDVD_CancelSync@l
     addi	r0, r3, fn_80071D2C@l
-    stw	r8, -0x769c(r13)
-    stw	r7, -0x76a0(r13)
-    stw	r6, -0x76a4(r13)
-    stw	r5, -0x76a8(r13)
-    stw	r4, -0x76ac(r13)
-    stw	r0, -0x76b0(r13)
+    stw	r8, lbl_801A6D24
+    stw	r7, lbl_801A6D20
+    stw	r6, lbl_801A6D1C
+    stw	r5, lbl_801A6D18
+    stw	r4, lbl_801A6D14
+    stw	r0, lbl_801A6D10
     blr	
 }
 
 asm void fn_80070DE0(void)
 {
     nofralloc
-    lwz	r0, -0x76b4(r13)
-    stw	r3, -0x76b4(r13)
+    lwz	r0, lbl_801A6D0C
+    stw	r3, lbl_801A6D0C
     mr	r3, r0
     blr	
 }
@@ -109,8 +118,8 @@ asm void fn_80070DE0(void)
 asm void fn_80070DF0(void)
 {
     nofralloc
-    lwz	r0, -0x76b8(r13)
-    stw	r3, -0x76b8(r13)
+    lwz	r0, lbl_801A6D08
+    stw	r3, lbl_801A6D08
     mr	r3, r0
     blr	
 }
@@ -122,8 +131,8 @@ asm void fn_80070E00(void)
     lis     r3, __OSFreeToHeap@ha
     addi	r4, r4, __OSAllocFromHeap@l
     addi	r0, r3, __OSFreeToHeap@l
-    stw	r4, -0x76b4(r13)
-    stw	r0, -0x76b8(r13)
+    stw	r4, lbl_801A6D0C
+    stw	r0, lbl_801A6D08
     blr	
 }
 

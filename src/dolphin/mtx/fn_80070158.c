@@ -8,6 +8,12 @@ extern unsigned char lbl_8015AA78[11];
 extern unsigned char lbl_8015AA84[160];
 extern unsigned char lbl_8019E140[16];
 
+extern unsigned char g_modelSysPtr[8];
+extern unsigned char lbl_801A6CE0[4];
+extern unsigned char lbl_801A6CEC[4];
+extern unsigned char lbl_801A6CF0[4];
+extern unsigned char lbl_801A6D00[8];
+extern unsigned char lbl_801A6D30[8];
 asm void fn_80070158(void)
 {
     nofralloc
@@ -17,43 +23,43 @@ asm void fn_80070158(void)
     stw	r0, 0x14(r1)
     beq	_80070188
     bl      LCEnable
-    lwz	r0, -0x76e0(r13)
+    lwz	r0, lbl_801A6CE0
     lis	r3, -0x2000
-    stw	r3, -0x76d0(r13)
+    stw	r3, lbl_801A6CF0
     ori	r0, r0, 2
-    stw	r0, -0x76e0(r13)
+    stw	r0, lbl_801A6CE0
     b	_80070194
 _80070188:
     li	r3, 0x4000
     bl      OSAllocFromArena
-    stw	r3, -0x76d0(r13)
+    stw	r3, lbl_801A6CF0
 _80070194:
     li	r7, 0
-    lwz	r8, -0x76d0(r13)
-    stw	r7, -0x76d4(r13)
+    lwz	r8, lbl_801A6CF0
+    stw	r7, lbl_801A6CEC
     li	r4, 0x1c0
     addi	r6, r8, 0x1c0
     li	r0, 0x1db
-    stw	r4, -0x76d4(r13)
+    stw	r4, lbl_801A6CEC
     srwi	r4, r0, 5
     li	r5, 0x1dc
     lis     r3, lbl_8019E140@ha
     addi	r0, r4, 1
-    stw	r5, -0x76d4(r13)
+    stw	r5, lbl_801A6CEC
     slwi	r4, r0, 5
     addi	r5, r3, lbl_8019E140@l
-    stw	r4, -0x76d4(r13)
+    stw	r4, lbl_801A6CEC
     addi	r3, r4, 0xca0
     add	r4, r8, r4
     addi	r0, r3, 0x3ff
-    stw	r3, -0x76d4(r13)
+    stw	r3, lbl_801A6CEC
     rlwinm	r3, r0, 0, 0, 0x15
-    stw	r8, -0x76c0(r13)
+    stw	r8, lbl_801A6D00
     li	r0, 4
     li	r8, 0
-    stw	r6, -0x7690(r13)
-    stw	r4, -0x7688(r13)
-    stw	r3, -0x76d4(r13)
+    stw	r6, lbl_801A6D30
+    stw	r4, g_modelSysPtr
+    stw	r3, lbl_801A6CEC
     mtctr	r0
 _80070200:
     cmpwi	r8, 0xe
@@ -166,7 +172,7 @@ _80070358:
     cmplwi	r8, 0
     bne	_80070444
     cmplwi	r3, 0
-    lwz	r6, -0x76d0(r13)
+    lwz	r6, lbl_801A6CF0
     slwi	r0, r5, 0xa
     li	r4, 0
     add	r31, r6, r0

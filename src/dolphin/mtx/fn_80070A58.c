@@ -8,33 +8,36 @@ extern asm void OSAllocFromArena(void);
 extern unsigned char lbl_8015AA78[11];
 extern unsigned char lbl_8019E140[16];
 
+extern unsigned char lbl_801A6CE0[4];
+extern unsigned char lbl_801A6CF0[4];
+extern unsigned char lbl_801A6D00[8];
 asm void fn_80070A58(void)
 {
     nofralloc
     lfs	f0, -0x7a30(r2)
     li	r5, -1
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     li	r4, 0
     lfs	f2, -0x7a2c(r2)
     li	r0, 1
     stfs	f0, 0x198(r3)
     lfs	f1, -0x7a20(r2)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     lfs	f0, -0x7a1c(r2)
     stfs	f2, 0x19c(r3)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     stfs	f1, 0x1a0(r3)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     stfs	f0, 0x1a4(r3)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     stw	r5, 0x1a8(r3)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     stb	r4, 0x1ac(r3)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     stb	r0, 0x1ad(r3)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     stb	r0, 0x1ae(r3)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     stb	r4, 0x1af(r3)
     blr	
 }
@@ -63,7 +66,7 @@ _80070b00:
     bl      fn_8006DCDC
     cmpwi	r30, 0
     beq	_80070b20
-    lwz	r0, -0x76e0(r13)
+    lwz	r0, lbl_801A6CE0
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
     bne	_80070b20
     li	r30, 0
@@ -105,7 +108,7 @@ _80070b98:
     cmplwi	r5, 0
     bne	_80070c84
     cmplwi	r4, 0
-    lwz	r6, -0x76d0(r13)
+    lwz	r6, lbl_801A6CF0
     slwi	r0, r3, 0xa
     li	r5, 0
     add	r30, r6, r0
@@ -177,16 +180,16 @@ _80070c90:
     crxor	6, 6, 6
     bl      OSPanic
 _80070cac:
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     stw	r30, 0x90(r3)
     b	_80070cc8
 _80070cb8:
     mulli	r3, r29, 0x30
     bl      OSAllocFromArena
-    lwz	r4, -0x76c0(r13)
+    lwz	r4, lbl_801A6D00
     stw	r3, 0x90(r4)
 _80070cc8:
-    lwz	r4, -0x76c0(r13)
+    lwz	r4, lbl_801A6D00
     mulli	r0, r29, 0x30
     lwz	r3, 0x90(r4)
     add	r0, r3, r0

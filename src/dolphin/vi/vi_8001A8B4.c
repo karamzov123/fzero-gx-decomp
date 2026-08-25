@@ -15,6 +15,23 @@ extern void fn_8001A814(void);
 extern void fn_8001A55C(void);
 extern unsigned char lbl_8015CF68[240];
 
+extern unsigned char CurrTvMode[4];
+extern unsigned char lbl_801A64A0[4];
+extern unsigned char lbl_801A6920[4];
+extern unsigned char lbl_801A6924[4];
+extern unsigned char lbl_801A6928[4];
+extern unsigned char lbl_801A6934[4];
+extern unsigned char lbl_801A6938[4];
+extern unsigned char lbl_801A693C[4];
+extern unsigned char lbl_801A6940[2];
+extern unsigned char lbl_801A6942[2];
+extern unsigned char lbl_801A6944[4];
+extern unsigned char lbl_801A6948[4];
+extern unsigned char lbl_801A694C[4];
+extern unsigned char lbl_801A6950[8];
+extern unsigned char lbl_801A6958[4];
+extern unsigned char lbl_801A695C[4];
+extern unsigned char lbl_801A6960[4];
 asm void fn_8001A8B4(void);
 asm void fn_8001AAB4(void);
 
@@ -170,16 +187,16 @@ asm void fn_8001AAB4(void)
     stw	r29, 0xc(r1)
     addi	r29, r4, 0x41c8
     stw	r28, 8(r1)
-    lwz	r0, -0x7aa0(r13)
+    lwz	r0, lbl_801A6920
     cmpwi	r0, 0
     bc      4, 2, _8001af44
-    lwz	r3, -0x7f20(r13)
+    lwz	r3, lbl_801A64A0
     bl      OSRegisterVersion
     li	r0, 1
-    stw	r0, -0x7aa0(r13)
+    stw	r0, lbl_801A6920
     lis	r3, -0x3400
     addi	r28, r3, 0x2000
-    stw	r0, -0x7a84(r13)
+    stw	r0, lbl_801A693C
     lhzu	r0, 2(r28)
     clrlwi.	r0, r0, 0x1f
     bc      4, 2, _8001ab1c
@@ -187,17 +204,17 @@ asm void fn_8001AAB4(void)
     bl      fn_8001A8B4
 _8001ab1c:
     li	r31, 0
-    stw	r31, -0x7a9c(r13)
+    stw	r31, lbl_801A6924
     lis	r3, -0x3400
     addi	r3, r3, 0x2000
-    stw	r31, -0x7a74(r13)
+    stw	r31, lbl_801A694C
     li	r0, 0x280
-    stw	r31, -0x7a78(r13)
-    stw	r31, -0x7a64(r13)
-    stw	r31, -0x7a68(r13)
-    stw	r31, -0x7a7c(r13)
-    stw	r31, -0x7a70(r13)
-    stw	r31, -0x7a98(r13)
+    stw	r31, lbl_801A6948
+    stw	r31, lbl_801A695C
+    stw	r31, lbl_801A6958
+    stw	r31, lbl_801A6944
+    stw	r31, lbl_801A6950
+    stw	r31, lbl_801A6928
     lhz	r5, 0x1c2(r29)
     lhz	r6, 0x1c0(r29)
     rlwinm	r5, r5, 0xa, 0x10, 0x15
@@ -276,8 +293,8 @@ _8001ab1c:
     lbz	r0, 0x10(r3)
     li	r3, 0
     extsb	r0, r0
-    sth	r31, -0x7a7e(r13)
-    sth	r0, -0x7a80(r13)
+    sth	r31, lbl_801A6942
+    sth	r0, lbl_801A6940
     bl      __OSUnlockSram
     lhz	r29, 0(r28)
     lis	r3, -0x8000
@@ -313,11 +330,11 @@ _8001ace0:
     addi	r6, r30, 0xf6
     lwz	r4, 0(r4)
     addi	r3, r30, 0xf2
-    stw	r4, -0x7a60(r13)
+    stw	r4, lbl_801A6960
     lwz	r4, 0(r28)
-    stw	r4, -0x7a5c(r13)
+    stw	r4, CurrTvMode
     sth	r0, 0xf4(r30)
-    lwz	r4, -0x7a60(r13)
+    lwz	r4, lbl_801A6960
     lhzu	r0, 2(r4)
     rlwinm	r0, r0, 1, 0x10, 0x1e
     sth	r0, 0xf6(r30)
@@ -467,8 +484,8 @@ _8001ae8c:
     li	r3, 0x18
     clrlwi	r0, r0, 0x11
     sth	r0, 0x34(r5)
-    stw	r28, -0x7a8c(r13)
-    stw	r28, -0x7a88(r13)
+    stw	r28, lbl_801A6934
+    stw	r28, lbl_801A6938
     bl      __OSSetInterruptHandler
     li	r3, 0x80
     bl      __OSUnmaskInterrupts

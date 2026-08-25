@@ -66,10 +66,10 @@ asm void __OSInterruptInit(void)
     stw     r31, 0xc(r1)
     lis     r31, 0x8000
     addi    r0, r31, 0x3040
-    stw     r0, -0x7C18(r13)
+    stw	r0, InterruptHandlerTable
     li      r4, 0
     li      r5, 0x80
-    lwz     r3, -0x7C18(r13)
+    lwz	r3, InterruptHandlerTable
     bl      memset
     li      r0, 0
     stw     r0, 0xC4(r31)

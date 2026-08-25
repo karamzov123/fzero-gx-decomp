@@ -35,6 +35,17 @@ extern unsigned char lbl_80178BF0[40];
 extern unsigned char lbl_80178C18[144];
 
 // Lives in dolphin/gx/GXFog.c
+extern unsigned char lbl_801A6584[4];
+extern unsigned char lbl_801A6588[8];
+extern unsigned char lbl_801A6C30[1];
+extern unsigned char lbl_801A6C40[4];
+extern unsigned char lbl_801A6C44[4];
+extern unsigned char lbl_801A6C4C[4];
+extern unsigned char lbl_801A6C50[4];
+extern unsigned char lbl_801A6C54[4];
+extern unsigned char lbl_801A6C60[4];
+extern unsigned char lbl_801A6C68[4];
+extern unsigned char lbl_801A6C74[4];
 asm int PerfmonCopyConfig(register u32 a);
 
 #pragma push
@@ -48,53 +59,53 @@ asm void fn_8003E344(void)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
     stw	r30, 0x10(r1)
-    lwz	r0, -0x7780(r13)
+    lwz	r0, lbl_801A6C40
     cmpwi	r0, 0
     beq     _8003e8b4
-    lwz	r0, -0x7e38(r13)
+    lwz	r0, lbl_801A6588
     cmplwi	r0, 0xffff
     bge     _8003e6cc
-    lwz	r0, -0x7e38(r13)
-    lwz	r3, -0x7e38(r13)
+    lwz	r0, lbl_801A6588
+    lwz	r3, lbl_801A6588
     clrlwi	r4, r0, 0x18
-    lbz	r0, -0x7790(r13)
+    lbz	r0, lbl_801A6C30
     rlwinm	r3, r3, 0x18, 0x1c, 0x1f
     cmpw	r3, r0
     beq     _8003e558
-    lwz	r0, -0x7e3c(r13)
+    lwz	r0, lbl_801A6584
     cmpwi	r0, 0
     blt     _8003e428
     bl      PPCMfpmc4
-    lwz	r5, -0x777c(r13)
+    lwz	r5, lbl_801A6C44
     li	r4, 1
-    lwz	r0, -0x7e3c(r13)
-    lwz	r6, -0x7774(r13)
+    lwz	r0, lbl_801A6584
+    lwz	r6, lbl_801A6C4C
     slwi	r5, r5, 4
     mulli	r0, r0, 0xb0
     lwzx	r5, r6, r5
     add	r5, r5, r0
     stw	r3, 0x10(r5)
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
     bl      PerfmonCopyConfig
     bl      PPCMfpmc3
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
     add	r4, r4, r0
     stw	r3, 0x24(r4)
     bl      PPCMfpmc1
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
@@ -102,77 +113,77 @@ asm void fn_8003E344(void)
     stw	r3, 0x34(r4)
 _8003e428:
     li	r0, -1
-    lwz	r3, -0x7770(r13)
-    stw	r0, -0x7e3c(r13)
+    lwz	r3, lbl_801A6C50
+    stw	r0, lbl_801A6584
     addi	r3, r3, -1
-    lwz	r0, -0x7780(r13)
+    lwz	r0, lbl_801A6C40
     cmplw	r0, r3
     blt     _8003e450
-    stw	r3, -0x7780(r13)
-    lwz	r3, -0x7780(r13)
+    stw	r3, lbl_801A6C40
+    lwz	r3, lbl_801A6C40
     b       _8003e45c
 _8003e450:
-    lwz	r3, -0x7780(r13)
+    lwz	r3, lbl_801A6C40
     addi	r0, r3, 1
-    stw	r0, -0x7780(r13)
+    stw	r0, lbl_801A6C40
 _8003e45c:
-    stw	r3, -0x7e3c(r13)
+    stw	r3, lbl_801A6584
     li	r5, 0xff
-    lwz	r3, -0x777c(r13)
+    lwz	r3, lbl_801A6C44
     li	r31, 0
-    lwz	r0, -0x7e3c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r0, lbl_801A6584
+    lwz	r4, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r4, r3
     stbx	r5, r3, r0
     li	r4, 0
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
     stw	r31, 0x14(r3)
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
     bl      PerfmonCopyConfig
     bl      PPCMfpmc4
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
     add	r4, r4, r0
     stw	r3, 0xc(r4)
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r4, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r4, r3
     add	r3, r3, r0
     stw	r31, 0x10(r3)
     bl      PPCMfpmc3
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
     add	r4, r4, r0
     stw	r3, 0x20(r4)
     bl      PPCMfpmc1
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
@@ -180,22 +191,22 @@ _8003e45c:
     stw	r3, 0x30(r4)
     b       _8003e8b4
 _8003e558:
-    lwz	r3, -0x7770(r13)
-    lwz	r0, -0x7780(r13)
+    lwz	r3, lbl_801A6C50
+    lwz	r0, lbl_801A6C40
     addi	r3, r3, -1
     cmplw	r0, r3
     blt     _8003e578
-    stw	r3, -0x7780(r13)
-    lwz	r3, -0x7780(r13)
+    stw	r3, lbl_801A6C40
+    lwz	r3, lbl_801A6C40
     b       _8003e584
 _8003e578:
-    lwz	r3, -0x7780(r13)
+    lwz	r3, lbl_801A6C40
     addi	r0, r3, 1
-    stw	r0, -0x7780(r13)
+    stw	r0, lbl_801A6C40
 _8003e584:
-    lwz	r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     mulli	r31, r3, 0xb0
-    lwz	r3, -0x7774(r13)
+    lwz	r3, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r3, r0
     mulli	r30, r4, 0xb0
@@ -204,79 +215,79 @@ _8003e584:
     li	r5, 0xb0
     bl      memcpy
     bl      PPCMfpmc4
-    lwz	r0, -0x777c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r4, r0
     add	r4, r0, r31
     stw	r3, 0x10(r4)
     bl      PPCMfpmc3
-    lwz	r0, -0x777c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r4, r0
     add	r4, r0, r31
     stw	r3, 0x24(r4)
     bl      PPCMfpmc1
-    lwz	r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     li	r4, 1
-    lwz	r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r5, r0
     add	r5, r0, r31
     stw	r3, 0x34(r5)
-    lwz	r0, -0x777c(r13)
-    lwz	r3, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r3, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r3, r0
     add	r3, r0, r31
     bl      PerfmonCopyConfig
-    lwz	r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     li	r4, 0xff
-    lwz	r3, -0x7774(r13)
+    lwz	r3, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r3, r3, r0
     stbx	r4, r3, r31
     bl      PPCMfpmc4
-    lwz	r0, -0x777c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r4, r0
     add	r4, r0, r30
     stw	r3, 0xc(r4)
     bl      PPCMfpmc3
-    lwz	r0, -0x777c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r4, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r4, r0
     add	r4, r0, r30
     stw	r3, 0x20(r4)
     bl      PPCMfpmc1
-    lwz	r0, -0x777c(r13)
+    lwz	r0, lbl_801A6C44
     li	r4, 0
-    lwz	r5, -0x7774(r13)
+    lwz	r5, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r5, r0
     add	r5, r0, r30
     stw	r3, 0x30(r5)
-    lwz	r0, -0x777c(r13)
-    lwz	r3, -0x7774(r13)
+    lwz	r0, lbl_801A6C44
+    lwz	r3, lbl_801A6C4C
     slwi	r0, r0, 4
     lwzx	r0, r3, r0
     add	r3, r0, r30
     bl      PerfmonCopyConfig
-    lwz	r3, -0x777c(r13)
+    lwz	r3, lbl_801A6C44
     li	r5, 1
-    lwz	r4, -0x7774(r13)
+    lwz	r4, lbl_801A6C4C
     li	r0, -1
     slwi	r3, r3, 4
     lwzx	r3, r4, r3
     add	r3, r3, r30
     stw	r5, 0x14(r3)
-    stw	r0, -0x7e3c(r13)
+    stw	r0, lbl_801A6584
     b       _8003e8b4
 _8003e6cc:
-    lwz	r0, -0x7e3c(r13)
+    lwz	r0, lbl_801A6584
     cmpwi	r0, 0
     bge     _8003e6ec
     lis     r3, perf_autosample_negative_str@ha
@@ -285,40 +296,40 @@ _8003e6cc:
     bl      OSReport
     b       _8003e8b4
 _8003e6ec:
-    lwz	r0, -0x7e3c(r13)
+    lwz	r0, lbl_801A6584
     cmpwi	r0, 0
     blt     _8003e788
     bl      PPCMfpmc4
-    lwz	r5, -0x777c(r13)
+    lwz	r5, lbl_801A6C44
     li	r4, 1
-    lwz	r0, -0x7e3c(r13)
-    lwz	r6, -0x7774(r13)
+    lwz	r0, lbl_801A6584
+    lwz	r6, lbl_801A6C4C
     slwi	r5, r5, 4
     mulli	r0, r0, 0xb0
     lwzx	r5, r6, r5
     add	r5, r5, r0
     stw	r3, 0x10(r5)
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
     bl      PerfmonCopyConfig
     bl      PPCMfpmc3
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
     add	r4, r4, r0
     stw	r3, 0x24(r4)
     bl      PPCMfpmc1
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
@@ -326,77 +337,77 @@ _8003e6ec:
     stw	r3, 0x34(r4)
 _8003e788:
     li	r0, -1
-    lwz	r3, -0x7770(r13)
-    stw	r0, -0x7e3c(r13)
+    lwz	r3, lbl_801A6C50
+    stw	r0, lbl_801A6584
     addi	r3, r3, -1
-    lwz	r0, -0x7780(r13)
+    lwz	r0, lbl_801A6C40
     cmplw	r0, r3
     blt     _8003e7b0
-    stw	r3, -0x7780(r13)
-    lwz	r3, -0x7780(r13)
+    stw	r3, lbl_801A6C40
+    lwz	r3, lbl_801A6C40
     b       _8003e7bc
 _8003e7b0:
-    lwz	r3, -0x7780(r13)
+    lwz	r3, lbl_801A6C40
     addi	r0, r3, 1
-    stw	r0, -0x7780(r13)
+    stw	r0, lbl_801A6C40
 _8003e7bc:
-    stw	r3, -0x7e3c(r13)
+    stw	r3, lbl_801A6584
     li	r5, 0xff
-    lwz	r3, -0x777c(r13)
+    lwz	r3, lbl_801A6C44
     li	r31, 0
-    lwz	r0, -0x7e3c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r0, lbl_801A6584
+    lwz	r4, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r4, r3
     stbx	r5, r3, r0
     li	r4, 0
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
     stw	r31, 0x14(r3)
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
     add	r3, r3, r0
     bl      PerfmonCopyConfig
     bl      PPCMfpmc4
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
     add	r4, r4, r0
     stw	r3, 0xc(r4)
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r4, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r4, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r4, r3
     add	r3, r3, r0
     stw	r31, 0x10(r3)
     bl      PPCMfpmc3
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
     add	r4, r4, r0
     stw	r3, 0x20(r4)
     bl      PPCMfpmc1
-    lwz	r4, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r4, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r4, r4, 4
     mulli	r0, r0, 0xb0
     lwzx	r4, r5, r4
@@ -459,23 +470,23 @@ asm int fn_8003E958(void)
     stwu	r1, -0x10(r1)
     stw	r31, 0xc(r1)
     bl      OSDisableInterrupts
-    lwz	r0, -0x7e3c(r13)
+    lwz	r0, lbl_801A6584
     addi	r31, r3, 0
     cmpwi	r0, 0
     blt     _8003e9c4
     bl      PPCMfpmc4
-    lwz	r5, -0x777c(r13)
+    lwz	r5, lbl_801A6C44
     li	r4, 1
-    lwz	r0, -0x7e3c(r13)
-    lwz	r6, -0x7774(r13)
+    lwz	r0, lbl_801A6584
+    lwz	r6, lbl_801A6C4C
     slwi	r5, r5, 4
     mulli	r0, r0, 0xb0
     lwzx	r5, r6, r5
     add	r5, r5, r0
     stw	r3, 0x10(r5)
-    lwz	r3, -0x777c(r13)
-    lwz	r0, -0x7e3c(r13)
-    lwz	r5, -0x7774(r13)
+    lwz	r3, lbl_801A6C44
+    lwz	r0, lbl_801A6584
+    lwz	r5, lbl_801A6C4C
     slwi	r3, r3, 4
     mulli	r0, r0, 0xb0
     lwzx	r3, r5, r3
@@ -509,7 +520,7 @@ asm void fn_8003E9EC(void)
     addi	r30, r3, 0
     mr	r3, r0
     bl      psq_st_pair
-    lwz	r7, -0x776c(r13)
+    lwz	r7, lbl_801A6C54
     lis	r6, -0x8000
     lis	r4, -0x7777
     lwz	r5, 0xfc(r6)
@@ -517,7 +528,7 @@ asm void fn_8003E9EC(void)
     mulli	r3, r0, 7
     lwz	r0, 0xf8(r6)
     lfd	f2, -0x7c70(r2)
-    stw	r30, -0x774c(r13)
+    stw	r30, lbl_801A6C74
     addi	r6, r4, -0x7777
     stw	r3, 0x1c(r1)
     lis	r4, 0x4330
@@ -530,9 +541,9 @@ asm void fn_8003E9EC(void)
     stfs	f0, -0x775c(r13)
     mulhwu	r0, r6, r0
     lfs	f0, -0x775c(r13)
-    stw	r5, -0x7760(r13)
+    stw	r5, lbl_801A6C60
     srwi	r3, r0, 6
-    stw	r3, -0x7758(r13)
+    stw	r3, lbl_801A6C68
     addi	r0, r7, 2
     mulli	r0, r0, 0x13
     stfs	f0, 0x5c(r31)

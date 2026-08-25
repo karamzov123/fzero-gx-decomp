@@ -39,6 +39,12 @@ extern unsigned char lbl_8015B100[256];
 extern unsigned char lbl_8015B200[256];
 extern unsigned char lbl_801A3380[56];
 
+extern unsigned char __aborting[4];
+extern unsigned char __atexit_curr_func[4];
+extern unsigned char __console_exit[4];
+extern unsigned char __stdio_exit[4];
+extern unsigned char lbl_801A6DD8[8];
+extern unsigned char lbl_801A6DE0[8];
 asm void exit(void);
 asm void fn_8007A150(void);
 asm void fn_8007A1C0(void);
@@ -93,7 +99,7 @@ asm void exit(void)
     mflr	r0
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
-    lwz	r0, -0x75f8(r13)
+    lwz	r0, __aborting
     cmpwi	r0, 0
     bc      4, 2, _8007a0d4
     li	r3, 0
@@ -113,13 +119,13 @@ _8007a0ac:
     lwz	r12, 0(r31)
     cmplwi	r12, 0
     bc      4, 2, _8007a0a0
-    lwz	r12, -0x75f0(r13)
+    lwz	r12, __stdio_exit
     cmplwi	r12, 0
     bc      12, 2, _8007a0d4
     mtctr	r12
     bctrl
     li	r0, 0
-    stw	r0, -0x75f0(r13)
+    stw	r0, __stdio_exit
 _8007a0d4:
     li	r3, 0
     bl      __begin_critical_region
@@ -127,27 +133,27 @@ _8007a0d4:
     addi	r31, r3, __atexit_funcs@l
     b       _8007a104
 _8007a0e8:
-    lwz	r3, -0x75f4(r13)
+    lwz	r3, __atexit_curr_func
     addi	r3, r3, -1
     slwi	r0, r3, 2
-    stw	r3, -0x75f4(r13)
+    stw	r3, __atexit_curr_func
     lwzx	r12, r31, r0
     mtctr	r12
     bctrl
 _8007a104:
-    lwz	r0, -0x75f4(r13)
+    lwz	r0, __atexit_curr_func
     cmpwi	r0, 0
     bc      12, 1, _8007a0e8
     li	r3, 0
     bl      __end_critical_region
     bl      __kill_critical_regions
-    lwz	r12, -0x75ec(r13)
+    lwz	r12, __console_exit
     cmplwi	r12, 0
     bc      12, 2, _8007a138
     mtctr	r12
     bctrl
     li	r0, 0
-    stw	r0, -0x75ec(r13)
+    stw	r0, __console_exit
 _8007a138:
     bl      _ExitProcess
     lwz	r0, 0x14(r1)
@@ -167,7 +173,7 @@ asm void fn_8007A150(void)
     mr	r31, r3
     li	r3, 1
     bl      __begin_critical_region
-    lbz	r0, -0x75e8(r13)
+    lbz	r0, lbl_801A6DD8
     cmplwi	r0, 0
     bc      4, 2, _8007a194
     lis     r3, lbl_801A3380@ha
@@ -176,7 +182,7 @@ asm void fn_8007A150(void)
     li	r5, 0x34
     bl      memset
     li	r0, 1
-    stb	r0, -0x75e8(r13)
+    stb	r0, lbl_801A6DD8
 _8007a194:
     lis     r3, lbl_801A3380@ha
     mr	r4, r31
@@ -201,7 +207,7 @@ asm void fn_8007A1C0(void)
     mr	r31, r3
     li	r3, 1
     bl      __begin_critical_region
-    lbz	r0, -0x75e8(r13)
+    lbz	r0, lbl_801A6DD8
     cmplwi	r0, 0
     bc      4, 2, _8007a204
     lis     r3, lbl_801A3380@ha
@@ -210,7 +216,7 @@ asm void fn_8007A1C0(void)
     li	r5, 0x34
     bl      memset
     li	r0, 1
-    stb	r0, -0x75e8(r13)
+    stb	r0, lbl_801A6DD8
 _8007a204:
     lis     r3, lbl_801A3380@ha
     mr	r4, r31
@@ -6963,7 +6969,7 @@ asm void fn_8007FC34(void)
 _8007fc70:
     li	r0, 0x28
     li	r3, -1
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     b       _8007fe58
 _8007fc80:
     lbz	r0, 8(r30)
@@ -6980,7 +6986,7 @@ _8007fc80:
     li	r0, 0x28
     li	r3, -1
     stw	r4, 0x28(r30)
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     b       _8007fe58
 _8007fcc0:
     cmpwi	r31, 1
@@ -6999,7 +7005,7 @@ _8007fce4:
 _8007fcf0:
     li	r0, 0x28
     li	r3, -1
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     b       _8007fd38
 _8007fd00:
     lbz	r0, 8(r30)
@@ -7088,7 +7094,7 @@ _8007fde8:
     li	r0, 0x28
     li	r3, -1
     stw	r4, 0x28(r30)
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     b       _8007fe58
 _8007fe40:
     li	r3, 0
@@ -7130,7 +7136,7 @@ _8007fea4:
 _8007feb0:
     li	r0, 0x28
     li	r31, -1
-    stw	r0, -0x75e0(r13)
+    stw	r0, lbl_801A6DE0
     b       _8007fef8
 _8007fec0:
     lbz	r0, 8(r31)

@@ -39,6 +39,9 @@ extern void memset(void);
 extern unsigned char __CARDBlock[544];
 extern unsigned char lbl_8012AA50[32];
 
+extern unsigned char lbl_801A6508[8];
+extern unsigned char lbl_801A6510[8];
+extern unsigned char lbl_801A6BC0[8];
 asm void CARDInit(void)
 {
     nofralloc
@@ -58,8 +61,8 @@ asm void CARDInit(void)
     bne     _8002a728
 _8002a6d0:
     bl      Yay0ReadyFlagUpdate
-    sth	r3, -0x7800(r13)
-    lwz	r3, -0x7eb8(r13)
+    sth	r3, lbl_801A6BC0
+    lwz	r3, lbl_801A6508
     bl      OSRegisterVersion
     bl      DSPInit
     bl      OSInitAlarm
@@ -93,7 +96,7 @@ _8002a728:
 asm void __CARDGetFontEncode(void)
 {
     nofralloc
-    lhz	r3, -0x7800(r13)
+    lhz	r3, lbl_801A6BC0
     blr	
 }
 
@@ -101,14 +104,14 @@ asm void __CARDSetFontEncode(void)
 {
     nofralloc
     clrlwi	r0, r3, 0x10
-    lhz	r4, -0x7800(r13)
+    lhz	r4, lbl_801A6BC0
     cmpwi	r0, 2
     bge     _8002a76c
     cmpwi	r0, 0
     bge     _8002a768
     b       _8002a76c
 _8002a768:
-    sth	r3, -0x7800(r13)
+    sth	r3, lbl_801A6BC0
 _8002a76c:
     mr	r3, r4
     blr	
@@ -685,14 +688,14 @@ asm void GetInitVal(void)
     stw	r29, 0x1c(r1)
     li	r29, 0
     bl      OSGetTick
-    stw	r3, -0x7eb0(r13)
+    stw	r3, lbl_801A6510
     lis	r3, 0x41c6
     addi	r31, r3, 0x4e6d
-    lwz	r0, -0x7eb0(r13)
+    lwz	r0, lbl_801A6510
     mullw	r3, r0, r31
     addi	r0, r3, 0x3039
-    stw	r0, -0x7eb0(r13)
-    lwz	r0, -0x7eb0(r13)
+    stw	r0, lbl_801A6510
+    lwz	r0, lbl_801A6510
     rlwinm	r3, r0, 0x10, 0x1b, 0x1f
     addi	r3, r3, 1
     b       _8002aefc
@@ -704,13 +707,13 @@ _8002aec0:
     ble     _8002aed8
     li	r30, 1
 _8002aed8:
-    stw	r0, -0x7eb0(r13)
+    stw	r0, lbl_801A6510
     addi	r29, r29, 1
-    lwz	r0, -0x7eb0(r13)
+    lwz	r0, lbl_801A6510
     mullw	r3, r0, r31
     addi	r0, r3, 0x3039
-    stw	r0, -0x7eb0(r13)
-    lwz	r0, -0x7eb0(r13)
+    stw	r0, lbl_801A6510
+    lwz	r0, lbl_801A6510
     rlwinm	r3, r0, 0x10, 0x1b, 0x1f
     addi	r3, r3, 1
 _8002aefc:

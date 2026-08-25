@@ -11,6 +11,7 @@ extern void OSSleepThread(void*);
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6924[4];
 asm void VIWaitForRetrace(void)
 {
     nofralloc
@@ -20,12 +21,12 @@ asm void VIWaitForRetrace(void)
     stw     r31, 0xc(r1)
     stw     r30, 8(r1)
     bl      OSDisableInterrupts
-    lwz     r30, -0x7a9c(r13)
+    lwz	r30, lbl_801A6924
     mr      r31, r3
 _8001af84:
     addi    r3, r13, -0x7a94
     bl      OSSleepThread
-    lwz     r0, -0x7a9c(r13)
+    lwz	r0, lbl_801A6924
     cmplw   r30, r0
     beq     _8001af84
     mr      r3, r31

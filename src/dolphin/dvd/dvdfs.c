@@ -37,18 +37,18 @@ extern void MSL_CharAttrLookup(void);
 asm void __DVDFSInit(void) {
 nofralloc
 	lis r3, 0x8000
-	stw r3, -0x7B20(r13)
+	stw	r3, -0x7b20(r13)
 	lwz r0, 0x38(r3)
-	stw r0, -0x7B1C(r13)
-	lwz r3, -0x7B1C(r13)
+	stw	r0, -0x7b1c(r13)
+	lwz	r3, -0x7b1c(r13)
 	cmplwi r3, 0x0
 	beqlr
 	lwz r0, 0x8(r3)
-	stw r0, -0x7B14(r13)
-	lwz r0, -0x7B14(r13)
+	stw	r0, -0x7b14(r13)
+	lwz	r0, -0x7b14(r13)
 	mulli r0, r0, 0xc
 	add r0, r3, r0
-	stw r0, -0x7B18(r13)
+	stw	r0, -0x7b18(r13)
 	blr
 }
 
@@ -63,7 +63,7 @@ nofralloc
 	lis r3, dvd_convert_entrynum_to_path_warn_str@ha
 	addi r25, r23, 0x0
 	addi r31, r3, dvd_convert_entrynum_to_path_warn_str@l
-	lwz r26, -0x7B10(r13)
+	lwz	r26, -0x7b10(r13)
 lbl_80016E1C:
 	lbz r3, 0x0(r23)
 	extsb. r0, r3
@@ -88,7 +88,7 @@ lbl_80016E48:
 	cmpwi r3, 0x2f
 	bne lbl_80016E84
 	mulli r3, r26, 0xc
-	lwz r4, -0x7B1C(r13)
+	lwz	r4, -0x7b1c(r13)
 	addi r0, r3, 0x4
 	lwzx r26, r4, r0
 	addi r23, r23, 0x3
@@ -97,7 +97,7 @@ lbl_80016E84:
 	extsb. r0, r3
 	bne lbl_80016EC0
 	mulli r0, r26, 0xc
-	lwz r3, -0x7B1C(r13)
+	lwz	r3, -0x7b1c(r13)
 	add r3, r3, r0
 	lwz r3, 0x4(r3)
 	b lbl_800170D8
@@ -112,7 +112,7 @@ lbl_80016EB0:
 	mr r3, r26
 	b lbl_800170D8
 lbl_80016EC0:
-	lwz r0, -0x7B0C(r13)
+	lwz	r0, -0x7b0c(r13)
 	cmplwi r0, 0x0
 	bne lbl_80016F74
 	addi r28, r23, 0x0
@@ -205,7 +205,7 @@ lbl_80016FDC:
 	cmpwi r30, 0x1
 	beq lbl_80017068
 lbl_80016FEC:
-	lwz r3, -0x7B18(r13)
+	lwz	r3, -0x7b18(r13)
 	clrlwi r0, r4, 8
 	addi r21, r23, 0x0
 	add r20, r3, r0
@@ -242,7 +242,7 @@ lbl_80017060:
 	cmpwi r0, 0x1
 	beq lbl_800170BC
 lbl_80017068:
-	lwz r0, -0x7B1C(r13)
+	lwz	r0, -0x7b1c(r13)
 	add r3, r0, r28
 	lwz r0, 0x0(r3)
 	clrrwi. r0, r0, 24
@@ -261,7 +261,7 @@ lbl_80017098:
 lbl_8001709C:
 	mr r26, r0
 lbl_800170A0:
-	lwz r3, -0x7B1C(r13)
+	lwz	r3, -0x7b1c(r13)
 	addi r0, r3, 0x8
 	lwzx r0, r29, r0
 	cmplw r26, r0
@@ -290,11 +290,11 @@ asm void fn_800170EC(void) {
 nofralloc
 	cmpwi r3, 0x0
 	blt lbl_80017128
-	lwz r0, -0x7B14(r13)
+	lwz	r0, -0x7b14(r13)
 	cmplw r3, r0
 	bge lbl_80017128
 	mulli r6, r3, 0xc
-	lwz r3, -0x7B1C(r13)
+	lwz	r3, -0x7b1c(r13)
 	lwzx r0, r3, r6
 	clrrwi. r0, r0, 24
 	bne lbl_8001711C
@@ -314,7 +314,7 @@ lbl_80017130:
 	li r0, 0x0
 	li r3, 0x1
 	stw r5, 0x30(r4)
-	lwz r5, -0x7B1C(r13)
+	lwz	r5, -0x7b1c(r13)
 	add r5, r5, r6
 	lwz r5, 0x8(r5)
 	stw r5, 0x34(r4)
@@ -349,7 +349,7 @@ nofralloc
 	b lbl_80017210
 lbl_800171B4:
 	mulli r5, r3, 0xc
-	lwz r3, -0x7B1C(r13)
+	lwz	r3, -0x7b1c(r13)
 	lwzx r0, r3, r5
 	clrrwi. r0, r0, 24
 	bne lbl_800171D0
@@ -368,7 +368,7 @@ lbl_800171E4:
 	li r0, 0x0
 	li r3, 0x1
 	stw r4, 0x30(r31)
-	lwz r4, -0x7B1C(r13)
+	lwz	r4, -0x7b1c(r13)
 	add r4, r4, r5
 	lwz r4, 0x8(r4)
 	stw r4, 0x34(r31)
@@ -414,9 +414,9 @@ nofralloc
 	li r3, 0x0
 	b lbl_8001738C
 lbl_80017280:
-	lwz r4, -0x7B1C(r13)
+	lwz	r4, -0x7b1c(r13)
 	mulli r3, r3, 0xc
-	lwz r6, -0x7B18(r13)
+	lwz	r6, -0x7b18(r13)
 	addi r5, r4, 0x4
 	lwzx r0, r4, r3
 	lwzx r3, r5, r3
@@ -515,7 +515,7 @@ nofralloc
 	stw r29, 0x14(r1)
 	addi r29, r3, 0x0
 	addi r4, r29, 0x0
-	lwz r31, -0x7B10(r13)
+	lwz	r31, -0x7b10(r13)
 	addi r3, r31, 0x0
 	bl __DVDFSGetComponentPath
 	cmplw r3, r30
@@ -526,7 +526,7 @@ nofralloc
 	b lbl_80017450
 lbl_800173F8:
 	mulli r0, r31, 0xc
-	lwz r4, -0x7B1C(r13)
+	lwz	r4, -0x7b1c(r13)
 	lwzx r0, r4, r0
 	clrrwi. r0, r0, 24
 	bne lbl_80017414
@@ -572,7 +572,7 @@ nofralloc
 	cmpwi r3, 0x0
 	blt lbl_800174B0
 	mulli r0, r3, 0xc
-	lwz r4, -0x7B1C(r13)
+	lwz	r4, -0x7b1c(r13)
 	lwzx r0, r4, r0
 	clrrwi. r0, r0, 24
 	bne lbl_800174A4
@@ -587,7 +587,7 @@ lbl_800174B0:
 	li r3, 0x0
 	b lbl_800174C0
 lbl_800174B8:
-	stw r3, -0x7B10(r13)
+	stw	r3, -0x7b10(r13)
 	li r3, 0x1
 lbl_800174C0:
 	lwz r0, 0xc(r1)

@@ -219,7 +219,7 @@ nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
-	lwz r12, -0x7AB8(r13)
+	lwz	r12, -0x7ab8(r13)
 	cmplwi r12, 0x0
 	beq lbl_8001A30C
 	mtlr r12

@@ -11,6 +11,7 @@ extern s32 OSRestoreInterrupts(s32 level);
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A69A4[4];
 asm s32 AIRegisterDMACallback(register s32 value)
 {
     nofralloc
@@ -20,9 +21,9 @@ asm s32 AIRegisterDMACallback(register s32 value)
     stw     r31, 0x14(r1)
     stw     r30, 0x10(r1)
     mr      r30, r3
-    lwz     r31, -0x7a1c(r13)
+    lwz	r31, lbl_801A69A4
     bl      OSDisableInterrupts
-    stw     r30, -0x7a1c(r13)
+    stw	r30, lbl_801A69A4
     bl      OSRestoreInterrupts
     mr      r3, r31
     lwz     r0, 0x1c(r1)

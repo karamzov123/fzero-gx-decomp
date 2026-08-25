@@ -64,8 +64,8 @@ extern void __OSEVSetNumber(void);
 extern void OSDefaultExceptionHandler(int exception, void* context);
 extern void __OSResetSWInterruptHandler(int interrupt, void* context);
 extern void* _stack_addr;
-extern u32 __ArenaLo;
-extern u32 __ArenaHi;
+extern unsigned char __ArenaLo[4];
+extern unsigned char __ArenaHi[4];
 extern void __DBVECTOR(void);
 extern void __DBVECTOR(void);
 extern void __OSDBINTEND(void);
@@ -79,6 +79,19 @@ static asm void OSExceptionInit(void);
 #pragma push
 #pragma force_active on
 
+extern unsigned char AreWeInitialized[4];
+extern unsigned char BI2DebugFlag[4];
+extern unsigned char BI2DebugFlagHolder[4];
+extern unsigned char OSBootInfo[4];
+extern unsigned char OSExceptionTable[4];
+extern unsigned char __DVDLongFileNameFlag[4];
+extern unsigned char __OSInIPL[4];
+extern unsigned char __OSIsGcam[4];
+extern unsigned char __OSSavedRegionEnd[4];
+extern unsigned char __OSSavedRegionStart[4];
+extern unsigned char __OSStartTime[8];
+extern unsigned char __OSVersion[4];
+extern unsigned char __PADSpec[4];
 asm void OSGetConsoleType(void)
 {
     nofralloc
@@ -108,8 +121,8 @@ static asm void ClearArena(void)
     cmplwi	r0, 0
     beq     _8000a29c
     li	r0, 0
-    stw	r0, -0x7c4c(r13)
-    stw	r0, -0x7c50(r13)
+    stw	r0, __OSSavedRegionStart
+    stw	r0, __OSSavedRegionEnd
     bl      OSGetArenaHi
     mr	r31, r3
     bl      OSGetArenaLo
@@ -124,8 +137,8 @@ _8000a29c:
     lwz	r3, -0x2010(r4)
     lwz	r0, -0x2014(r4)
     cmplwi	r3, 0
-    stw	r3, -0x7c4c(r13)
-    stw	r0, -0x7c50(r13)
+    stw	r3, __OSSavedRegionStart
+    stw	r0, __OSSavedRegionEnd
     bne     _8000a2dc
     bl      OSGetArenaHi
     mr	r31, r3
@@ -138,11 +151,11 @@ _8000a29c:
     b       _8000a360
 _8000a2dc:
     bl      OSGetArenaLo
-    lwz	r0, -0x7c4c(r13)
+    lwz	r0, __OSSavedRegionStart
     cmplw	r3, r0
     bge     _8000a360
     bl      OSGetArenaHi
-    lwz	r0, -0x7c4c(r13)
+    lwz	r0, __OSSavedRegionStart
     cmplw	r3, r0
     bgt     _8000a320
     bl      OSGetArenaHi
@@ -156,14 +169,14 @@ _8000a2dc:
     b       _8000a360
 _8000a320:
     bl      OSGetArenaLo
-    lwz	r0, -0x7c4c(r13)
+    lwz	r0, __OSSavedRegionStart
     subf	r31, r3, r0
     bl      OSGetArenaLo
     mr	r5, r31
     li	r4, 0
     bl      memset
     bl      OSGetArenaHi
-    lwz	r31, -0x7c50(r13)
+    lwz	r31, __OSSavedRegionEnd
     cmplw	r3, r31
     ble     _8000a360
     bl      OSGetArenaHi
@@ -222,7 +235,7 @@ asm void OSInit(void)
     stw	r0, -0x7c58(r13)
     bl      __OSGetSystemTime
     stw	r4, -0x7c3c(r13)
-    stw	r3, -0x7c40(r13)
+    stw	r3, __OSStartTime
     bl      OSDisableInterrupts
     li	r3, 0
     bl      PPCMtmmcr0
@@ -242,7 +255,7 @@ asm void OSInit(void)
     lis	r4, -0x8000
     stw	r0, -0x7c74(r13)
     stw	r4, -0x7c78(r13)
-    stw	r0, -0x7b0c(r13)
+    stw	r0, __DVDLongFileNameFlag
     lwz	r3, 0xf4(r4)
     cmplwi	r3, 0
     beq     _8000a484
@@ -250,11 +263,11 @@ asm void OSInit(void)
     stw	r0, -0x7c74(r13)
     lwz	r0, 0x24(r3)
     lwz	r3, -0x7c74(r13)
-    stw	r0, -0x7a24(r13)
+    stw	r0, __PADSpec
     lwz	r0, 0(r3)
     clrlwi	r0, r0, 0x18
     stb	r0, 0x30e8(r4)
-    lwz	r0, -0x7a24(r13)
+    lwz	r0, __PADSpec
     clrlwi	r0, r0, 0x18
     stb	r0, 0x30e9(r4)
     b       _8000a4a8
@@ -267,11 +280,11 @@ _8000a484:
     stw	r3, -0x7c70(r13)
     stw	r0, -0x7c74(r13)
     lbz	r0, 0x30e9(r4)
-    stw	r0, -0x7a24(r13)
+    stw	r0, __PADSpec
 _8000a4a8:
     li	r0, 1
     lwz	r3, -0x7c78(r13)
-    stw	r0, -0x7b0c(r13)
+    stw	r0, __DVDLongFileNameFlag
     lwz	r3, 0x30(r3)
     cmplwi	r3, 0
     bne     _8000a4cc
@@ -324,7 +337,7 @@ _8000a528:
     bl      PPCMfhid2
     rlwinm	r3, r3, 0, 2, 0
     bl      PPCMthid2
-    lwz	r0, -0x7c48(r13)
+    lwz	r0, __OSInIPL
     cmpwi	r0, 0
     bne     _8000a588
     bl      __OSInitMemoryProtection
@@ -432,7 +445,7 @@ _8000a6b8:
     mr	r5, r29
     addi	r3, r31, 0x10c
     bl      OSReport
-    lwz	r3, -0x7fa8(r13)
+    lwz	r3, __OSVersion
     bl      OSRegisterVersion
     lwz	r3, -0x7c74(r13)
     cmplwi	r3, 0
@@ -444,11 +457,11 @@ _8000a6b8:
 _8000a714:
     bl      ClearArena
     bl      OSEnableInterrupts
-    lwz	r0, -0x7c48(r13)
+    lwz	r0, __OSInIPL
     cmpwi	r0, 0
     bne     _8000a76c
     bl      DVDInit
-    lwz	r0, -0x7c6c(r13)
+    lwz	r0, __OSIsGcam
     cmpwi	r0, 0
     beq     _8000a74c
     lis	r3, 1
@@ -628,7 +641,7 @@ _8000a998:
     blt     _8000a854
     lis	r3, -0x8000
     addi	r0, r3, 0x3000
-    stw	r0, -0x7c54(r13)
+    stw	r0, OSExceptionTable
     li	r20, 0
     b       _8000a9b8
 _8000a9b8:

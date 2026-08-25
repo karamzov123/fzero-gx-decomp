@@ -10,6 +10,7 @@ extern asm void fn_8006DC34(void);
 extern asm void fn_8006D5A4(void);
 extern asm void PSVecNormalize3(void);
 
+extern unsigned char lbl_801A6D00[8];
 asm void PSQUATSlerp_c(void)
 {
     nofralloc
@@ -173,7 +174,7 @@ asm void PSMTXConcatVariant(void)
     psq_st f31, 0x18(r1), 0, 0
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
-    lwz	r31, -0x76c0(r13)
+    lwz	r31, lbl_801A6D00
     fmr	f31, f1
     mr	r30, r3
     mr	r3, r31

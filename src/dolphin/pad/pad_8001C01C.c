@@ -34,6 +34,24 @@ extern unsigned char lbl_8015D0B0[16];
 extern unsigned char Origin[64];
 extern unsigned char lbl_8008FF40[];
 
+extern unsigned char CurrTvMode[4];
+extern unsigned char __PADSpec[4];
+extern unsigned char lbl_801A64B0[4];
+extern unsigned char lbl_801A64B4[4];
+extern unsigned char lbl_801A64B8[4];
+extern unsigned char lbl_801A64BC[4];
+extern unsigned char lbl_801A64C0[4];
+extern unsigned char lbl_801A64C4[4];
+extern unsigned char lbl_801A6818[8];
+extern unsigned char lbl_801A6978[4];
+extern unsigned char lbl_801A697C[4];
+extern unsigned char lbl_801A6980[4];
+extern unsigned char lbl_801A6984[4];
+extern unsigned char lbl_801A6988[4];
+extern unsigned char lbl_801A698C[4];
+extern unsigned char lbl_801A6990[4];
+extern unsigned char lbl_801A6994[4];
+extern unsigned char lbl_801A6998[4];
 asm void VIGetTvFormat(void);
 asm void PADIsMotorEnabled(void);
 asm void ClampS8(void);
@@ -68,7 +86,7 @@ asm void VIGetTvFormat(void)
     stwu	r1, -0x10(r1)
     stw	r31, 0xc(r1)
     bl      OSDisableInterrupts
-    lwz	r5, -0x7a5c(r13)
+    lwz	r5, CurrTvMode
     cmplwi	r5, 6
     bc      12, 1, _8001c068
     lis	r4, -0x7fee
@@ -297,7 +315,7 @@ asm void UpdateOrigin(void)
     addi	r5, r5, Origin@l
     stw	r31, 0x14(r1)
     add	r31, r5, r6
-    lwz	r0, -0x7f04(r13)
+    lwz	r0, lbl_801A64BC
     rlwinm	r4, r0, 0, 0x15, 0x17
     cmpwi	r4, 0x400
     lis	r0, -0x8000
@@ -382,7 +400,7 @@ _8001c42c:
     lbz	r4, 5(r31)
     addi	r4, r4, -0x80
     stb	r4, 5(r31)
-    lwz	r4, -0x7f08(r13)
+    lwz	r4, lbl_801A64B8
     and.	r0, r4, r0
     bc      12, 2, _8001c494
     lbz	r0, 2(r31)
@@ -413,35 +431,35 @@ asm void PADEnable(void)
     stwu	r1, -0x30(r1)
     stw	r31, 0x2c(r1)
     bc      4, 2, _8001c504
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     bl      UpdateOrigin
-    lwz	r31, -0x7f0c(r13)
+    lwz	r31, lbl_801A64B4
     lis	r0, -0x8000
-    lwz	r3, -0x7a44(r13)
+    lwz	r3, lbl_801A697C
     addi	r4, r1, 0x1c
     srw	r0, r0, r31
     or	r0, r3, r0
-    stw	r0, -0x7a44(r13)
+    stw	r0, lbl_801A697C
     mr	r3, r31
     bl      SIGetResponse
-    lwz	r0, -0x7f04(r13)
+    lwz	r0, lbl_801A64BC
     addi	r3, r31, 0
     oris	r4, r0, 0x40
     bl      SISetCommand
-    lwz	r3, -0x7a44(r13)
+    lwz	r3, lbl_801A697C
     bl      SIGetWirelessID
 _8001c504:
-    lwz	r5, -0x7a40(r13)
+    lwz	r5, lbl_801A6980
     cntlzw	r0, r5
-    stw	r0, -0x7f0c(r13)
-    lwz	r4, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r4, lbl_801A64B4
     cmpwi	r4, 0x20
     bc      12, 2, _8001c558
     lis	r0, -0x8000
     srw	r0, r0, r4
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
-    stw	r0, -0x7a40(r13)
+    stw	r0, lbl_801A6980
     lis     r3, Origin@ha
     addi	r0, r3, Origin@l
     add	r3, r0, r4
@@ -449,7 +467,7 @@ _8001c504:
     li	r5, 0xc
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001c558:
@@ -473,7 +491,7 @@ asm void PADDisable(void)
     stw	r29, 0x1c(r1)
     mr	r29, r3
     srw	r30, r0, r29
-    lwz	r3, -0x7a44(r13)
+    lwz	r3, lbl_801A697C
     and.	r0, r3, r30
     bc      12, 2, _8001c610
     clrlwi.	r0, r31, 0x1c
@@ -487,21 +505,21 @@ _8001c5b0:
     addi	r31, r3, 0
     addi	r3, r30, 0
     bl      SIGetWirelessIDBitfield
-    lwz	r6, -0x7a44(r13)
+    lwz	r6, lbl_801A697C
     nor	r8, r30, r30
-    lwz	r5, -0x7a38(r13)
+    lwz	r5, lbl_801A6988
     mr	r3, r29
-    lwz	r4, -0x7a34(r13)
-    lwz	r0, -0x7a30(r13)
+    lwz	r4, lbl_801A698C
+    lwz	r0, lbl_801A6990
     and	r7, r6, r8
     and	r6, r5, r8
-    stw	r7, -0x7a44(r13)
+    stw	r7, lbl_801A697C
     and	r5, r4, r8
     and	r0, r0, r8
-    stw	r6, -0x7a38(r13)
+    stw	r6, lbl_801A6988
     li	r4, 0
-    stw	r5, -0x7a34(r13)
-    stw	r0, -0x7a30(r13)
+    stw	r5, lbl_801A698C
+    stw	r0, lbl_801A6990
     bl      OSSetWirelessID
     mr	r3, r31
     bl      OSRestoreInterrupts
@@ -525,38 +543,38 @@ asm void PADEnableWireless(void)
     stw	r31, 0x2c(r1)
     stw	r30, 0x28(r1)
     bc      4, 2, _8001c698
-    lwz	r30, -0x7f0c(r13)
+    lwz	r30, lbl_801A64B4
     lis	r31, -0x8000
-    lwz	r3, -0x7a44(r13)
+    lwz	r3, lbl_801A697C
     addi	r4, r1, 0x1c
     srw	r0, r31, r30
     or	r0, r3, r0
-    stw	r0, -0x7a44(r13)
+    stw	r0, lbl_801A697C
     mr	r3, r30
     bl      SIGetResponse
-    lwz	r0, -0x7f04(r13)
+    lwz	r0, lbl_801A64BC
     addi	r3, r30, 0
     oris	r4, r0, 0x40
     bl      SISetCommand
-    lwz	r3, -0x7a44(r13)
+    lwz	r3, lbl_801A697C
     bl      SIGetWirelessID
-    lwz	r0, -0x7f0c(r13)
-    lwz	r3, -0x7a38(r13)
+    lwz	r0, lbl_801A64B4
+    lwz	r3, lbl_801A6988
     srw	r0, r31, r0
     or	r0, r3, r0
-    stw	r0, -0x7a38(r13)
+    stw	r0, lbl_801A6988
 _8001c698:
-    lwz	r5, -0x7a40(r13)
+    lwz	r5, lbl_801A6980
     cntlzw	r0, r5
-    stw	r0, -0x7f0c(r13)
-    lwz	r4, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r4, lbl_801A64B4
     cmpwi	r4, 0x20
     bc      12, 2, _8001c6ec
     lis	r0, -0x8000
     srw	r0, r0, r4
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
-    stw	r0, -0x7a40(r13)
+    stw	r0, lbl_801A6980
     lis     r3, Origin@ha
     addi	r0, r3, Origin@l
     add	r3, r0, r4
@@ -564,7 +582,7 @@ _8001c698:
     li	r5, 0xc
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001c6ec:
@@ -590,31 +608,31 @@ asm void PADTypeAndStatusCallback(void)
     addi	r30, r6, -0x2f50
     stw	r29, 0x34(r1)
     stw	r28, 0x30(r1)
-    lwz	r29, -0x7f0c(r13)
-    lwz	r5, -0x7a3c(r13)
+    lwz	r29, lbl_801A64B4
+    lwz	r5, lbl_801A6984
     srw	r28, r31, r29
     andc	r3, r5, r28
-    stw	r3, -0x7a3c(r13)
+    stw	r3, lbl_801A6984
     and	r5, r5, r28
     li	r3, 1
     bc      12, 2, _8001c7a0
-    lwz	r4, -0x7a40(r13)
+    lwz	r4, lbl_801A6980
     cntlzw	r0, r4
-    stw	r0, -0x7f0c(r13)
-    lwz	r3, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r3, lbl_801A64B4
     cmpwi	r3, 0x20
     bc      12, 2, _8001ca10
     mulli	r0, r3, 0xc
     srw	r3, r31, r3
     andc	r4, r4, r3
     add	r3, r30, r0
-    stw	r4, -0x7a40(r13)
+    stw	r4, lbl_801A6980
     li	r4, 0
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
     b       _8001ca10
@@ -629,10 +647,10 @@ _8001c7a0:
     rlwinm.	r0, r6, 0, 7, 7
     bc      4, 2, _8001c818
 _8001c7c4:
-    lwz	r5, -0x7a40(r13)
+    lwz	r5, lbl_801A6980
     cntlzw	r0, r5
-    stw	r0, -0x7f0c(r13)
-    lwz	r4, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r4, lbl_801A64B4
     cmpwi	r4, 0x20
     bc      12, 2, _8001ca10
     lis	r3, -0x8000
@@ -640,49 +658,49 @@ _8001c7c4:
     srw	r3, r3, r4
     andc	r4, r5, r3
     add	r3, r30, r0
-    stw	r4, -0x7a40(r13)
+    stw	r4, lbl_801A6980
     li	r4, 0
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
     b       _8001ca10
 _8001c818:
-    lwz	r0, -0x7f00(r13)
+    lwz	r0, lbl_801A64C0
     cmplwi	r0, 2
     bc      4, 0, _8001c8a4
-    lwz	r0, -0x7a44(r13)
+    lwz	r0, lbl_801A697C
     addi	r3, r29, 0
     addi	r4, r1, 0x1c
     or	r0, r0, r28
-    stw	r0, -0x7a44(r13)
+    stw	r0, lbl_801A697C
     bl      SIGetResponse
-    lwz	r0, -0x7f04(r13)
+    lwz	r0, lbl_801A64BC
     addi	r3, r29, 0
     oris	r4, r0, 0x40
     bl      SISetCommand
-    lwz	r3, -0x7a44(r13)
+    lwz	r3, lbl_801A697C
     bl      SIGetWirelessID
-    lwz	r4, -0x7a40(r13)
+    lwz	r4, lbl_801A6980
     cntlzw	r0, r4
-    stw	r0, -0x7f0c(r13)
-    lwz	r3, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r3, lbl_801A64B4
     cmpwi	r3, 0x20
     bc      12, 2, _8001ca10
     mulli	r0, r3, 0xc
     srw	r3, r31, r3
     andc	r4, r4, r3
     add	r3, r30, r0
-    stw	r4, -0x7a40(r13)
+    stw	r4, lbl_801A6980
     li	r4, 0
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
     b       _8001ca10
@@ -760,13 +778,13 @@ _8001c978:
 _8001c9ac:
     cmpwi	r3, 0
     bc      4, 2, _8001ca10
-    lwz	r5, -0x7a40(r13)
-    lwz	r3, -0x7a30(r13)
+    lwz	r5, lbl_801A6980
+    lwz	r3, lbl_801A6990
     cntlzw	r0, r5
-    stw	r0, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
     or	r0, r3, r28
-    lwz	r4, -0x7f0c(r13)
-    stw	r0, -0x7a30(r13)
+    lwz	r4, lbl_801A64B4
+    stw	r0, lbl_801A6990
     cmpwi	r4, 0x20
     bc      12, 2, _8001ca10
     lis	r3, -0x8000
@@ -774,13 +792,13 @@ _8001c9ac:
     srw	r3, r3, r4
     andc	r4, r5, r3
     add	r3, r30, r0
-    stw	r4, -0x7a40(r13)
+    stw	r4, lbl_801A6980
     li	r4, 0
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001ca10:
@@ -806,17 +824,17 @@ asm void PADOriginUpdateCallback(void)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
     srw	r29, r3, r31
-    lwz	r0, -0x7a44(r13)
+    lwz	r0, lbl_801A697C
     and.	r0, r0, r29
     bc      12, 2, _8001cb48
-    lwz	r5, -0x7a38(r13)
+    lwz	r5, lbl_801A6988
     nor	r6, r29, r29
-    lwz	r3, -0x7a34(r13)
+    lwz	r3, lbl_801A698C
     clrlwi.	r0, r4, 0x1c
     and	r5, r5, r6
     and	r3, r3, r6
-    stw	r5, -0x7a38(r13)
-    stw	r3, -0x7a34(r13)
+    stw	r5, lbl_801A6988
+    stw	r3, lbl_801A698C
     rlwinm	r3, r4, 0, 0, 0x17
     bc      4, 2, _8001caf0
     rlwinm.	r0, r3, 0, 0, 0
@@ -850,21 +868,21 @@ _8001caf0:
     addi	r30, r3, 0
     addi	r3, r29, 0
     bl      SIGetWirelessIDBitfield
-    lwz	r6, -0x7a44(r13)
+    lwz	r6, lbl_801A697C
     nor	r8, r29, r29
-    lwz	r5, -0x7a38(r13)
+    lwz	r5, lbl_801A6988
     mr	r3, r31
-    lwz	r4, -0x7a34(r13)
-    lwz	r0, -0x7a30(r13)
+    lwz	r4, lbl_801A698C
+    lwz	r0, lbl_801A6990
     and	r7, r6, r8
     and	r6, r5, r8
-    stw	r7, -0x7a44(r13)
+    stw	r7, lbl_801A697C
     and	r5, r4, r8
     and	r0, r0, r8
-    stw	r6, -0x7a38(r13)
+    stw	r6, lbl_801A6988
     li	r4, 0
-    stw	r5, -0x7a34(r13)
-    stw	r0, -0x7a30(r13)
+    stw	r5, lbl_801A698C
+    stw	r0, lbl_801A6990
     bl      OSSetWirelessID
     mr	r3, r30
     bl      OSRestoreInterrupts
@@ -888,45 +906,45 @@ asm void PADReset(void)
     stw	r30, 0x10(r1)
     mr	r30, r3
     bl      OSDisableInterrupts
-    lwz	r4, -0x7a30(r13)
+    lwz	r4, lbl_801A6990
     li	r7, 0
-    lwz	r5, -0x7a38(r13)
+    lwz	r5, lbl_801A6988
     addi	r31, r3, 0
-    lwz	r0, -0x7a34(r13)
+    lwz	r0, lbl_801A698C
     or	r30, r30, r4
-    lwz	r4, -0x7a40(r13)
+    lwz	r4, lbl_801A6980
     or	r5, r5, r0
-    lwz	r0, -0x7f00(r13)
+    lwz	r0, lbl_801A64C0
     andc	r30, r30, r5
-    lwz	r5, -0x7a44(r13)
+    lwz	r5, lbl_801A697C
     or	r6, r4, r30
-    stw	r7, -0x7a30(r13)
+    stw	r7, lbl_801A6990
     andc	r4, r5, r30
-    stw	r6, -0x7a40(r13)
+    stw	r6, lbl_801A6980
     cmplwi	r0, 4
-    lwz	r0, -0x7a40(r13)
-    stw	r4, -0x7a44(r13)
+    lwz	r0, lbl_801A6980
+    stw	r4, lbl_801A697C
     and	r3, r0, r5
     bc      4, 2, _8001cbdc
-    lwz	r0, -0x7a3c(r13)
+    lwz	r0, lbl_801A6984
     or	r0, r0, r30
-    stw	r0, -0x7a3c(r13)
+    stw	r0, lbl_801A6984
 _8001cbdc:
     bl      SIGetWirelessIDBitfield
-    lwz	r0, -0x7f0c(r13)
+    lwz	r0, lbl_801A64B4
     cmpwi	r0, 0x20
     bc      4, 2, _8001cc40
-    lwz	r5, -0x7a40(r13)
+    lwz	r5, lbl_801A6980
     cntlzw	r0, r5
-    stw	r0, -0x7f0c(r13)
-    lwz	r4, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r4, lbl_801A64B4
     cmpwi	r4, 0x20
     bc      12, 2, _8001cc40
     lis	r0, -0x8000
     srw	r0, r0, r4
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
-    stw	r0, -0x7a40(r13)
+    stw	r0, lbl_801A6980
     lis     r3, Origin@ha
     addi	r0, r3, Origin@l
     add	r3, r0, r4
@@ -934,7 +952,7 @@ _8001cbdc:
     li	r5, 0xc
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001cc40:
@@ -959,46 +977,46 @@ asm void PADRecalibrate(void)
     stw	r30, 0x10(r1)
     mr	r30, r3
     bl      OSDisableInterrupts
-    lwz	r6, -0x7a30(r13)
+    lwz	r6, lbl_801A6990
     li	r7, 0
-    lwz	r5, -0x7a38(r13)
+    lwz	r5, lbl_801A6988
     lis	r4, -0x8000
-    lwz	r0, -0x7a34(r13)
+    lwz	r0, lbl_801A698C
     or	r30, r30, r6
-    lwz	r6, -0x7a40(r13)
+    lwz	r6, lbl_801A6980
     or	r5, r5, r0
     lbz	r0, 0x30e3(r4)
     andc	r30, r30, r5
-    lwz	r5, -0x7a44(r13)
+    lwz	r5, lbl_801A697C
     or	r4, r6, r30
-    stw	r7, -0x7a30(r13)
+    stw	r7, lbl_801A6990
     rlwinm.	r0, r0, 0, 0x19, 0x19
-    stw	r4, -0x7a40(r13)
+    stw	r4, lbl_801A6980
     andc	r4, r5, r30
     addi	r31, r3, 0
-    lwz	r6, -0x7a40(r13)
-    stw	r4, -0x7a44(r13)
+    lwz	r6, lbl_801A6980
+    stw	r4, lbl_801A697C
     and	r3, r6, r5
     bc      4, 2, _8001cce0
-    lwz	r0, -0x7a3c(r13)
+    lwz	r0, lbl_801A6984
     or	r0, r0, r30
-    stw	r0, -0x7a3c(r13)
+    stw	r0, lbl_801A6984
 _8001cce0:
     bl      SIGetWirelessIDBitfield
-    lwz	r0, -0x7f0c(r13)
+    lwz	r0, lbl_801A64B4
     cmpwi	r0, 0x20
     bc      4, 2, _8001cd44
-    lwz	r5, -0x7a40(r13)
+    lwz	r5, lbl_801A6980
     cntlzw	r0, r5
-    stw	r0, -0x7f0c(r13)
-    lwz	r4, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r4, lbl_801A64B4
     cmpwi	r4, 0x20
     bc      12, 2, _8001cd44
     lis	r0, -0x8000
     srw	r0, r0, r4
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
-    stw	r0, -0x7a40(r13)
+    stw	r0, lbl_801A6980
     lis     r3, Origin@ha
     addi	r0, r3, Origin@l
     add	r3, r0, r4
@@ -1006,7 +1024,7 @@ _8001cce0:
     li	r5, 0xc
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001cd44:
@@ -1030,22 +1048,22 @@ asm void PADInit(void)
     stwu	r1, -0x38(r1)
     stmw	r25, 0x1c(r1)
     addi	r31, r3, lbl_8015D0B0@l
-    lwz	r0, -0x7a48(r13)
+    lwz	r0, lbl_801A6978
     cmpwi	r0, 0
     bc      12, 2, _8001cd94
     li	r3, 1
     b       _8001cf6c
 _8001cd94:
-    lwz	r3, -0x7f10(r13)
+    lwz	r3, lbl_801A64B0
     bl      OSRegisterVersion
-    lwz	r3, -0x7a24(r13)
+    lwz	r3, __PADSpec
     cmplwi	r3, 0
     bc      12, 2, _8001cdac
     bl      PADSetSpec
 _8001cdac:
-    lwz	r0, -0x7ba8(r13)
+    lwz	r0, lbl_801A6818
     li	r3, 1
-    stw	r3, -0x7a48(r13)
+    stw	r3, lbl_801A6978
     cmplwi	r0, 0
     bc      12, 2, _8001ce48
     bl      OSGetTime
@@ -1078,7 +1096,7 @@ _8001cdac:
     addc	r5, r0, r29
     lis	r0, -0x1000
     li	r4, 0x3fff
-    stw	r0, -0x7a3c(r13)
+    stw	r0, lbl_801A6984
     and	r0, r5, r4
     lis	r3, -0x8000
     sth	r0, 0x30e0(r3)
@@ -1106,38 +1124,38 @@ _8001ce48:
     bl      OSRegisterResetFunction
     lis	r28, -0x1000
     bl      OSDisableInterrupts
-    lwz	r4, -0x7a30(r13)
+    lwz	r4, lbl_801A6990
     li	r7, 0
-    lwz	r5, -0x7a38(r13)
+    lwz	r5, lbl_801A6988
     addi	r27, r3, 0
-    lwz	r0, -0x7a34(r13)
+    lwz	r0, lbl_801A698C
     or	r28, r28, r4
-    lwz	r4, -0x7a40(r13)
+    lwz	r4, lbl_801A6980
     or	r5, r5, r0
-    lwz	r0, -0x7f00(r13)
+    lwz	r0, lbl_801A64C0
     andc	r28, r28, r5
-    lwz	r5, -0x7a44(r13)
+    lwz	r5, lbl_801A697C
     or	r6, r4, r28
-    stw	r7, -0x7a30(r13)
+    stw	r7, lbl_801A6990
     andc	r4, r5, r28
-    stw	r6, -0x7a40(r13)
+    stw	r6, lbl_801A6980
     cmplwi	r0, 4
-    lwz	r0, -0x7a40(r13)
-    stw	r4, -0x7a44(r13)
+    lwz	r0, lbl_801A6980
+    stw	r4, lbl_801A697C
     and	r3, r0, r5
     bc      4, 2, _8001cf00
-    lwz	r0, -0x7a3c(r13)
+    lwz	r0, lbl_801A6984
     or	r0, r0, r28
-    stw	r0, -0x7a3c(r13)
+    stw	r0, lbl_801A6984
 _8001cf00:
     bl      SIGetWirelessIDBitfield
-    lwz	r0, -0x7f0c(r13)
+    lwz	r0, lbl_801A64B4
     cmpwi	r0, 0x20
     bc      4, 2, _8001cf60
-    lwz	r5, -0x7a40(r13)
+    lwz	r5, lbl_801A6980
     cntlzw	r0, r5
-    stw	r0, -0x7f0c(r13)
-    lwz	r4, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r4, lbl_801A64B4
     cmpwi	r4, 0x20
     bc      12, 2, _8001cf60
     lis	r3, -0x8000
@@ -1145,13 +1163,13 @@ _8001cf00:
     srw	r3, r3, r4
     andc	r4, r5, r3
     add	r3, r31, r0
-    stw	r4, -0x7a40(r13)
+    stw	r4, lbl_801A6980
     li	r4, 0
     li	r5, 0xc
     addi	r3, r3, 0x10
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001cf60:
@@ -1190,53 +1208,53 @@ asm void PADRead(void)
     li	r20, 0
     lis	r27, -0x8000
 _8001cfd0:
-    lwz	r0, -0x7a30(r13)
+    lwz	r0, lbl_801A6990
     srw	r23, r27, r21
     and.	r0, r0, r23
     bc      12, 2, _8001d0b4
     bl      OSDisableInterrupts
-    lwz	r4, -0x7a38(r13)
+    lwz	r4, lbl_801A6988
     li	r6, 0
-    lwz	r0, -0x7a34(r13)
+    lwz	r0, lbl_801A698C
     mr	r25, r3
-    lwz	r5, -0x7a30(r13)
+    lwz	r5, lbl_801A6990
     or	r4, r4, r0
-    lwz	r0, -0x7a40(r13)
+    lwz	r0, lbl_801A6980
     andc	r7, r5, r4
-    lwz	r5, -0x7a44(r13)
+    lwz	r5, lbl_801A697C
     or	r4, r0, r7
-    lwz	r0, -0x7f00(r13)
-    stw	r4, -0x7a40(r13)
+    lwz	r0, lbl_801A64C0
+    stw	r4, lbl_801A6980
     andc	r4, r5, r7
     cmplwi	r0, 4
-    lwz	r0, -0x7a40(r13)
-    stw	r6, -0x7a30(r13)
+    lwz	r0, lbl_801A6980
+    stw	r6, lbl_801A6990
     and	r3, r0, r5
-    stw	r4, -0x7a44(r13)
+    stw	r4, lbl_801A697C
     bc      4, 2, _8001d03c
-    lwz	r0, -0x7a3c(r13)
+    lwz	r0, lbl_801A6984
     or	r0, r0, r7
-    stw	r0, -0x7a3c(r13)
+    stw	r0, lbl_801A6984
 _8001d03c:
     bl      SIGetWirelessIDBitfield
-    lwz	r0, -0x7f0c(r13)
+    lwz	r0, lbl_801A64B4
     cmpwi	r0, 0x20
     bc      4, 2, _8001d090
-    lwz	r4, -0x7a40(r13)
+    lwz	r4, lbl_801A6980
     cntlzw	r0, r4
-    stw	r0, -0x7f0c(r13)
-    lwz	r3, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r3, lbl_801A64B4
     cmpwi	r3, 0x20
     bc      12, 2, _8001d090
     mulli	r0, r3, 0xc
     srw	r3, r27, r3
     andc	r4, r4, r3
-    stw	r4, -0x7a40(r13)
+    stw	r4, lbl_801A6980
     add	r3, r26, r0
     li	r4, 0
     li	r5, 0xc
     bl      memset
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     mr	r4, r28
     bl      SIGetTypeAsync
 _8001d090:
@@ -1250,10 +1268,10 @@ _8001d090:
     bl      memset
     b       _8001d2f8
 _8001d0b4:
-    lwz	r0, -0x7a40(r13)
+    lwz	r0, lbl_801A6980
     and.	r0, r0, r23
     bc      4, 2, _8001d0cc
-    lwz	r0, -0x7f0c(r13)
+    lwz	r0, lbl_801A64B4
     cmpw	r0, r21
     bc      4, 2, _8001d0e8
 _8001d0cc:
@@ -1265,7 +1283,7 @@ _8001d0cc:
     bl      memset
     b       _8001d2f8
 _8001d0e8:
-    lwz	r0, -0x7a44(r13)
+    lwz	r0, lbl_801A697C
     and.	r0, r0, r23
     bc      4, 2, _8001d110
     li	r0, -1
@@ -1295,7 +1313,7 @@ _8001d13c:
     addi	r3, r21, 0
     addi	r4, r1, 0x14
     bl      SIGetResponse
-    lwz	r0, -0x7a38(r13)
+    lwz	r0, lbl_801A6988
     and.	r0, r0, r23
     bc      12, 2, _8001d1a0
     li	r0, 0
@@ -1304,11 +1322,11 @@ _8001d13c:
     li	r4, 0
     li	r5, 0xa
     bl      memset
-    lwz	r3, -0x7a34(r13)
+    lwz	r3, lbl_801A698C
     and.	r0, r3, r23
     bc      4, 2, _8001d2f8
     or	r0, r3, r23
-    stw	r0, -0x7a34(r13)
+    stw	r0, lbl_801A698C
     addi	r3, r21, 0
     addi	r4, r29, 0
     bl      SIGetTypeAsync
@@ -1318,21 +1336,21 @@ _8001d1a0:
     addi	r25, r3, 0
     addi	r3, r23, 0
     bl      SIGetWirelessIDBitfield
-    lwz	r6, -0x7a44(r13)
+    lwz	r6, lbl_801A697C
     nor	r8, r23, r23
-    lwz	r5, -0x7a38(r13)
+    lwz	r5, lbl_801A6988
     mr	r3, r21
-    lwz	r4, -0x7a34(r13)
-    lwz	r0, -0x7a30(r13)
+    lwz	r4, lbl_801A698C
+    lwz	r0, lbl_801A6990
     and	r7, r6, r8
     and	r6, r5, r8
-    stw	r7, -0x7a44(r13)
+    stw	r7, lbl_801A697C
     and	r5, r4, r8
     and	r0, r0, r8
-    stw	r6, -0x7a38(r13)
+    stw	r6, lbl_801A6988
     li	r4, 0
-    stw	r5, -0x7a34(r13)
-    stw	r0, -0x7a30(r13)
+    stw	r5, lbl_801A698C
+    stw	r0, lbl_801A6990
     bl      OSSetWirelessID
     mr	r3, r25
     bl      OSRestoreInterrupts
@@ -1374,7 +1392,7 @@ _8001d258:
     bl      memset
     b       _8001d2f8
 _8001d280:
-    lwz	r12, -0x7efc(r13)
+    lwz	r12, lbl_801A64C4
     addi	r3, r21, 0
     addi	r4, r31, 0
     mtlr	r12
@@ -1435,7 +1453,7 @@ asm void SISetCommandByChannel(void)
     li	r29, 0
     lis	r31, -0x8000
 _8001d354:
-    lwz	r3, -0x7a44(r13)
+    lwz	r3, lbl_801A697C
     srw	r0, r31, r29
     and.	r0, r3, r0
     bc      12, 2, _8001d3ac
@@ -1443,7 +1461,7 @@ _8001d354:
     bl      SIGetType
     rlwinm.	r0, r3, 0, 2, 2
     bc      4, 2, _8001d3ac
-    lwz	r0, -0x7f00(r13)
+    lwz	r0, lbl_801A64C0
     lwz	r3, 0(r27)
     cmplwi	r0, 2
     bc      4, 0, _8001d390
@@ -1451,7 +1469,7 @@ _8001d354:
     bc      4, 2, _8001d390
     li	r3, 0
 _8001d390:
-    lwz	r4, -0x7f04(r13)
+    lwz	r4, lbl_801A64BC
     clrlwi	r0, r3, 0x1e
     addi	r3, r29, 0
     oris	r4, r4, 0x40
@@ -1489,7 +1507,7 @@ asm void SISetCommandByArray(void)
     addi	r29, r3, 0
     bl      OSDisableInterrupts
     lis	r0, -0x8000
-    lwz	r4, -0x7a44(r13)
+    lwz	r4, lbl_801A697C
     srw	r0, r0, r29
     and.	r0, r4, r0
     addi	r31, r3, 0
@@ -1498,14 +1516,14 @@ asm void SISetCommandByArray(void)
     bl      SIGetType
     rlwinm.	r0, r3, 0, 2, 2
     bc      4, 2, _8001d464
-    lwz	r0, -0x7f00(r13)
+    lwz	r0, lbl_801A64C0
     cmplwi	r0, 2
     bc      4, 0, _8001d448
     cmplwi	r30, 2
     bc      4, 2, _8001d448
     li	r30, 0
 _8001d448:
-    lwz	r4, -0x7f04(r13)
+    lwz	r4, lbl_801A64BC
     clrlwi	r0, r30, 0x1e
     addi	r3, r29, 0
     oris	r4, r4, 0x40
@@ -1529,7 +1547,7 @@ asm void PADSetSpec(void)
     nofralloc
     li	r0, 0
     cmpwi	r3, 1
-    stw	r0, -0x7a24(r13)
+    stw	r0, __PADSpec
     bc      12, 2, _8001d4c4
     bc      4, 0, _8001d4a8
     cmpwi	r3, 0
@@ -1542,19 +1560,19 @@ _8001d4a8:
 _8001d4b4:
     lis     r4, SPEC0_MakeStatus@ha
     addi	r0, r4, SPEC0_MakeStatus@l
-    stw	r0, -0x7efc(r13)
+    stw	r0, lbl_801A64C4
     b       _8001d4e0
 _8001d4c4:
     lis     r4, SPEC1_MakeStatus@ha
     addi	r0, r4, SPEC1_MakeStatus@l
-    stw	r0, -0x7efc(r13)
+    stw	r0, lbl_801A64C4
     b       _8001d4e0
 _8001d4d4:
     lis     r4, SPEC2_MakeStatus@ha
     addi	r0, r4, SPEC2_MakeStatus@l
-    stw	r0, -0x7efc(r13)
+    stw	r0, lbl_801A64C4
 _8001d4e0:
-    stw	r3, -0x7f00(r13)
+    stw	r3, lbl_801A64C0
     blr
 }
 
@@ -1789,7 +1807,7 @@ asm void SPEC2_MakeStatus(void)
     lwz	r0, 0(r5)
     extsb	r0, r0
     stb	r0, 3(r4)
-    lwz	r0, -0x7f04(r13)
+    lwz	r0, lbl_801A64BC
     rlwinm	r0, r0, 0, 0x15, 0x17
     cmpwi	r0, 0x400
     bc      12, 2, _8001d99c
@@ -2063,21 +2081,21 @@ asm void PADSetAnalogMode(void)
     stw	r31, 0x14(r1)
     mr	r31, r3
     bl      OSDisableInterrupts
-    lwz	r5, -0x7a44(r13)
+    lwz	r5, lbl_801A697C
     slwi	r6, r31, 8
-    lwz	r4, -0x7a38(r13)
+    lwz	r4, lbl_801A6988
     mr	r31, r3
     addi	r8, r5, 0
     nor	r7, r8, r8
-    lwz	r0, -0x7a34(r13)
+    lwz	r0, lbl_801A698C
     andc	r5, r5, r5
-    stw	r6, -0x7f04(r13)
+    stw	r6, lbl_801A64BC
     and	r4, r4, r7
     and	r0, r0, r7
-    stw	r5, -0x7a44(r13)
+    stw	r5, lbl_801A697C
     mr	r3, r8
-    stw	r4, -0x7a38(r13)
-    stw	r0, -0x7a34(r13)
+    stw	r4, lbl_801A6988
+    stw	r0, lbl_801A698C
     bl      SIGetWirelessIDBitfield
     mr	r3, r31
     bl      OSRestoreInterrupts
@@ -2097,7 +2115,7 @@ asm void PADResetChannel(void)
     stw	r31, 0x24(r1)
     stw	r30, 0x20(r1)
     addi	r30, r3, 0
-    lwz	r0, -0x7a2c(r13)
+    lwz	r0, lbl_801A6994
     cmplwi	r0, 0
     bc      12, 2, _8001dc68
     li	r3, 0
@@ -2105,12 +2123,12 @@ asm void PADResetChannel(void)
 _8001dc68:
     cmpwi	r30, 0
     bc      4, 2, _8001ddac
-    lwz	r0, -0x7a40(r13)
+    lwz	r0, lbl_801A6980
     li	r30, 0
     addi	r3, r30, 0
     cmplwi	r0, 0
     bc      4, 2, _8001dc94
-    lwz	r0, -0x7f0c(r13)
+    lwz	r0, lbl_801A64B4
     cmpwi	r0, 0x20
     bc      4, 2, _8001dc94
     li	r3, 1
@@ -2122,53 +2140,53 @@ _8001dc94:
     bc      4, 2, _8001dcac
     li	r30, 1
 _8001dcac:
-    lwz	r0, -0x7a28(r13)
+    lwz	r0, lbl_801A6998
     cmpwi	r0, 0
     bc      4, 2, _8001dda4
     cmpwi	r30, 0
     bc      12, 2, _8001dda4
     lis	r30, -0x1000
     bl      OSDisableInterrupts
-    lwz	r6, -0x7a30(r13)
+    lwz	r6, lbl_801A6990
     li	r7, 0
-    lwz	r5, -0x7a38(r13)
+    lwz	r5, lbl_801A6988
     lis	r4, -0x8000
-    lwz	r0, -0x7a34(r13)
+    lwz	r0, lbl_801A698C
     or	r30, r30, r6
-    lwz	r6, -0x7a40(r13)
+    lwz	r6, lbl_801A6980
     or	r5, r5, r0
     lbz	r0, 0x30e3(r4)
     andc	r30, r30, r5
-    lwz	r5, -0x7a44(r13)
+    lwz	r5, lbl_801A697C
     or	r4, r6, r30
-    stw	r7, -0x7a30(r13)
+    stw	r7, lbl_801A6990
     rlwinm.	r0, r0, 0, 0x19, 0x19
-    stw	r4, -0x7a40(r13)
+    stw	r4, lbl_801A6980
     andc	r4, r5, r30
     addi	r31, r3, 0
-    lwz	r6, -0x7a40(r13)
-    stw	r4, -0x7a44(r13)
+    lwz	r6, lbl_801A6980
+    stw	r4, lbl_801A697C
     and	r3, r6, r5
     bc      4, 2, _8001dd28
-    lwz	r0, -0x7a3c(r13)
+    lwz	r0, lbl_801A6984
     or	r0, r0, r30
-    stw	r0, -0x7a3c(r13)
+    stw	r0, lbl_801A6984
 _8001dd28:
     bl      SIGetWirelessIDBitfield
-    lwz	r0, -0x7f0c(r13)
+    lwz	r0, lbl_801A64B4
     cmpwi	r0, 0x20
     bc      4, 2, _8001dd8c
-    lwz	r5, -0x7a40(r13)
+    lwz	r5, lbl_801A6980
     cntlzw	r0, r5
-    stw	r0, -0x7f0c(r13)
-    lwz	r4, -0x7f0c(r13)
+    stw	r0, lbl_801A64B4
+    lwz	r4, lbl_801A64B4
     cmpwi	r4, 0x20
     bc      12, 2, _8001dd8c
     lis	r0, -0x8000
     srw	r0, r0, r4
     andc	r0, r5, r0
     mulli	r4, r4, 0xc
-    stw	r0, -0x7a40(r13)
+    stw	r0, lbl_801A6980
     lis     r3, Origin@ha
     addi	r0, r3, Origin@l
     add	r3, r0, r4
@@ -2176,14 +2194,14 @@ _8001dd28:
     li	r5, 0xc
     bl      memset
     lis     r4, PADTypeAndStatusCallback@ha
-    lwz	r3, -0x7f0c(r13)
+    lwz	r3, lbl_801A64B4
     addi	r4, r4, PADTypeAndStatusCallback@l
     bl      SIGetTypeAsync
 _8001dd8c:
     mr	r3, r31
     bl      OSRestoreInterrupts
     li	r0, 1
-    stw	r0, -0x7a28(r13)
+    stw	r0, lbl_801A6998
     li	r3, 0
     b       _8001ddb8
 _8001dda4:
@@ -2191,7 +2209,7 @@ _8001dda4:
     b       _8001ddb8
 _8001ddac:
     li	r0, 0
-    stw	r0, -0x7a28(r13)
+    stw	r0, lbl_801A6998
     li	r3, 1
 _8001ddb8:
     lwz	r0, 0x2c(r1)
@@ -2210,14 +2228,14 @@ asm void SamplingHandler(void)
     stwu	r1, -0x2e0(r1)
     stw	r31, 0x2dc(r1)
     addi	r31, r4, 0
-    lwz	r0, -0x7a2c(r13)
+    lwz	r0, lbl_801A6994
     cmplwi	r0, 0
     bc      12, 2, _8001de1c
     addi	r3, r1, 0x10
     bl      OSClearContext
     addi	r3, r1, 0x10
     bl      OSSetCurrentContext
-    lwz	r12, -0x7a2c(r13)
+    lwz	r12, lbl_801A6994
     mtlr	r12
     blrl
     addi	r3, r1, 0x10
@@ -2240,8 +2258,8 @@ asm void PADSetSamplingCallback(void)
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    lwz	r31, -0x7a2c(r13)
-    stw	r3, -0x7a2c(r13)
+    lwz	r31, lbl_801A6994
+    stw	r3, lbl_801A6994
     bc      12, 2, _8001de60
     lis     r3, SamplingHandler@ha
     addi	r3, r3, SamplingHandler@l

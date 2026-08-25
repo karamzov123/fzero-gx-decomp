@@ -12,6 +12,8 @@ extern asm void fn_800723F8(void);
 extern asm void LightCtrl_SetCachedFogArray(void);
 extern unsigned char lbl_8015A860[432];
 
+extern unsigned char lbl_801A6CB4[1];
+extern unsigned char lbl_801A6D30[8];
 asm void fn_8007001C(void)
 {
     nofralloc
@@ -43,7 +45,7 @@ asm void fn_80070068(void)
     mflr	r0
     stw	r0, 0x14(r1)
     bl      GXGetCPUFifo
-    lwz	r4, -0x7690(r13)
+    lwz	r4, lbl_801A6D30
     lwz	r0, 0x14(r4)
     cmplw	r3, r0
     beq	_80070098
@@ -88,7 +90,7 @@ asm void fn_800700F4(void)
 {
     nofralloc
     li	r0, 1
-    stb	r0, -0x770c(r13)
+    stb	r0, lbl_801A6CB4
     blr	
 }
 

@@ -22,6 +22,14 @@ extern unsigned char lbl_8015AA78[11];
 extern unsigned char lbl_8015AB24[76];
 extern unsigned char lbl_8019E150[60];
 
+extern unsigned char lbl_801A6621[7];
+extern unsigned char lbl_801A6CE0[4];
+extern unsigned char lbl_801A6CE8[1];
+extern unsigned char lbl_801A6CE9[1];
+extern unsigned char lbl_801A6CEA[1];
+extern unsigned char lbl_801A6CF4[4];
+extern unsigned char lbl_801A6CF8[4];
+extern unsigned char lbl_801A6CFC[4];
 asm void fn_80070538(void)
 {
     nofralloc
@@ -36,10 +44,10 @@ asm void fn_80070538(void)
     bl      OSGetArenaHi
     li	r0, 0
     mr	r29, r3
-    stw	r0, -0x76c8(r13)
-    stw	r0, -0x76c4(r13)
+    stw	r0, lbl_801A6CF8
+    stw	r0, lbl_801A6CFC
     bl      OSGetConsoleSimulatedMemSize
-    lbz	r0, -0x76d7(r13)
+    lbz	r0, lbl_801A6CE9
     mr	r31, r3
     cmplwi	r0, 0
     bne	_8007058c
@@ -55,28 +63,28 @@ _80070598:
     lis	r0, 0x180
     cmplw	r3, r0
     ble	_800705e8
-    lwz	r4, -0x76e0(r13)
-    lbz	r0, -0x76d8(r13)
+    lwz	r4, lbl_801A6CE0
+    lbz	r0, lbl_801A6CE8
     ori	r4, r4, 8
     cmplwi	r0, 0
-    stw	r4, -0x76e0(r13)
+    stw	r4, lbl_801A6CE0
     bne	_800705d8
     addis	r0, r31, -0x180
-    stw	r29, -0x76c8(r13)
+    stw	r29, lbl_801A6CF8
     ori	r3, r4, 1
     subf	r29, r0, r29
-    stw	r3, -0x76e0(r13)
-    stw	r29, -0x76c4(r13)
+    stw	r3, lbl_801A6CE0
+    stw	r29, lbl_801A6CFC
     b	_800705e8
 _800705d8:
     subf	r0, r31, r3
-    stw	r29, -0x76c4(r13)
+    stw	r29, lbl_801A6CFC
     add	r0, r29, r0
-    stw	r0, -0x76c8(r13)
+    stw	r0, lbl_801A6CF8
 _800705e8:
     li	r0, 0
     mr	r3, r30
-    stb	r0, -0x7d9f(r13)
+    stb	r0, lbl_801A6621
     bl      OSSetArenaLo
     mr	r3, r29
     bl      OSSetArenaHi
@@ -114,22 +122,22 @@ _8007065c:
     beq	_80070674
     lis     r3, lbl_8012B030@ha
     addi	r0, r3, lbl_8012B030@l
-    stw	r0, -0x76cc(r13)
+    stw	r0, lbl_801A6CF4
     b	_800706c0
 _80070674:
     lis     r3, lbl_8012AFB8@ha
     addi	r0, r3, lbl_8012AFB8@l
-    stw	r0, -0x76cc(r13)
+    stw	r0, lbl_801A6CF4
     b	_800706c0
 _80070684:
     lis     r3, lbl_8012B0A8@ha
     addi	r0, r3, lbl_8012B0A8@l
-    stw	r0, -0x76cc(r13)
+    stw	r0, lbl_801A6CF4
     b	_800706c0
 _80070694:
     lis     r3, lbl_8012B06C@ha
     addi	r0, r3, lbl_8012B06C@l
-    stw	r0, -0x76cc(r13)
+    stw	r0, lbl_801A6CF4
     b	_800706c0
 _800706a4:
     lis     r3, lbl_8015AA78@ha
@@ -141,17 +149,17 @@ _800706a4:
     bl      OSPanic
 _800706c0:
     lis     r4, lbl_8019E150@ha
-    lwz	r3, -0x76cc(r13)
+    lwz	r3, lbl_801A6CF4
     addi	r4, r4, lbl_8019E150@l
     li	r5, 0
     li	r6, 0x10
     bl      GXAdjustForOverscan
     lis     r3, lbl_8019E150@ha
     addi	r3, r3, lbl_8019E150@l
-    stw	r3, -0x76cc(r13)
+    stw	r3, lbl_801A6CF4
     bl      fn_8001B42C
     li	r0, 1
-    stb	r0, -0x76d6(r13)
+    stb	r0, lbl_801A6CEA
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
     mtlr	r0
@@ -165,12 +173,12 @@ asm void fn_80070704(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    lbz	r0, -0x76d6(r13)
+    lbz	r0, lbl_801A6CEA
     cmpw	r3, r0
     beq	_8007074c
     clrlwi.	r0, r3, 0x18
     lis     r4, lbl_8012AFF4@ha
-    stb	r3, -0x76d6(r13)
+    stb	r3, lbl_801A6CEA
     addi	r5, r4, lbl_8012AFF4@l
     beq	_80070738
     lis     r3, lbl_8012AFB8@ha
@@ -193,9 +201,9 @@ asm void fn_8007075C(void)
     nofralloc
     cmpwi	r3, 0
     beqlr	
-    lwz	r0, -0x76e0(r13)
+    lwz	r0, lbl_801A6CE0
     ori	r0, r0, 0x30
-    stw	r0, -0x76e0(r13)
+    stw	r0, lbl_801A6CE0
     blr	
 }
 

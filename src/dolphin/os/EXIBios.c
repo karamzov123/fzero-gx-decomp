@@ -53,6 +53,13 @@ extern int EXIDetach(register s32 chan);
 /* ---- SetExiInterruptMask ---- */
 #pragma push
 #pragma force_active on
+extern unsigned char IDSerialPort1[4];
+extern unsigned char __EXIVersion[4];
+extern unsigned char __OSInIPL[4];
+extern unsigned char lbl_801A6840[4];
+extern unsigned char lbl_801A6844[4];
+extern unsigned char lbl_801A6848[4];
+extern unsigned char lbl_801A684C[4];
 asm void SetExiInterruptMask(register s32 chan, register void* exi)
 {
     nofralloc
@@ -1546,7 +1553,7 @@ L_80014CF4:
     li          r4, 0x2
     addi        r5, r13, -0x7B88 /* IDSerialPort1@sda21 */
     bl          EXIGetID
-    lwz         r0, -0x7C48(r13) /* __OSInIPL@sda21 */
+    lwz	r0, __OSInIPL /* __OSInIPL@sda21 */
     cmpwi       r0, 0x0
     beq         L_80014E10
     lis         r4, 0x8000
@@ -1591,7 +1598,7 @@ L_80014E48:
     li          r4, 0x2
     bl          __OSEnableBarnacle
 L_80014E7C:
-    lwz         r3, -0x7F60(r13) /* __EXIVersion@sda21 */
+    lwz	r3, __EXIVersion /* __EXIVersion@sda21 */
     bl          OSRegisterVersion
     lwz         r0, 0x24(r1)
     lwz         r31, 0x1c(r1)
@@ -1803,7 +1810,7 @@ asm u32 EXIGetID(register s32 chan, register u32 dev, register u32* id)
     bne         L_80015104
     cmplwi      r26, 0x2
     bne         L_80015104
-    lwz         r0, -0x7B88(r13) /* IDSerialPort1@sda21 */
+    lwz	r0, IDSerialPort1 /* IDSerialPort1@sda21 */
     cmplwi      r0, 0x0
     beq         L_80015104
     stw         r0, 0x0(r27)
@@ -2281,11 +2288,11 @@ L_80015764:
     cmpwi       r3, 0x0
     beq         L_80015794
     lis         r3, 0xa5ff
-    stw         r30, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    stw	r30, lbl_801A6840 /* lbl_801A6840@sda21 */
     addi        r0, r3, 0x5a
-    stw         r31, -0x7B7C(r13) /* lbl_801A6844@sda21 */
-    stw         r0, -0x7B74(r13) /* lbl_801A684C@sda21 */
-    stw         r0, -0x7B78(r13) /* lbl_801A6848@sda21 */
+    stw	r31, lbl_801A6844 /* lbl_801A6844@sda21 */
+    stw	r0, lbl_801A684C /* lbl_801A684C@sda21 */
+    stw	r0, lbl_801A6848 /* lbl_801A6848@sda21 */
 L_80015794:
     lwz         r0, 0x24(r1)
     lwz         r31, 0x1c(r1)
@@ -2305,7 +2312,7 @@ asm int InitializeUART(void)
     mflr        r0
     stw         r0, 0x4(r1)
     stwu        r1, -0x8(r1)
-    lwz         r3, -0x7B74(r13) /* lbl_801A684C@sda21 */
+    lwz	r3, lbl_801A684C /* lbl_801A684C@sda21 */
     addis       r0, r3, 0x5a01
     cmplwi      r0, 0x5a
     bne         L_800157D0
@@ -2316,18 +2323,18 @@ L_800157D0:
     rlwinm.     r0, r3, 0, 3, 3
     bne         L_800157EC
     li          r0, 0x0
-    stw         r0, -0x7B78(r13) /* lbl_801A6848@sda21 */
+    stw	r0, lbl_801A6848 /* lbl_801A6848@sda21 */
     li          r3, 0x2
     b           L_8001580C
 L_800157EC:
     lis         r3, 0xa5ff
     addi        r0, r3, 0x5a
     li          r3, 0x0
-    stw         r0, -0x7B78(r13) /* lbl_801A6848@sda21 */
+    stw	r0, lbl_801A6848 /* lbl_801A6848@sda21 */
     li          r0, 0x1
-    stw         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    stw	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     li          r3, 0x0
-    stw         r0, -0x7B7C(r13) /* lbl_801A6844@sda21 */
+    stw	r0, lbl_801A6844 /* lbl_801A6844@sda21 */
 L_8001580C:
     lwz         r0, 0xc(r1)
     addi        r1, r1, 0x8
@@ -2348,7 +2355,7 @@ asm int WriteUARTN(register void* buffer, register s32 len)
     stmw        r25, 0x1c(r1)
     addi        r30, r3, 0x0
     addi        r31, r4, 0x0
-    lwz         r5, -0x7B78(r13) /* lbl_801A6848@sda21 */
+    lwz	r5, lbl_801A6848 /* lbl_801A6848@sda21 */
     addis       r0, r5, 0x5a01
     cmplwi      r0, 0x5a
     beq         L_8001584C
@@ -2357,8 +2364,8 @@ asm int WriteUARTN(register void* buffer, register s32 len)
 L_8001584C:
     bl          OSDisableInterrupts
     mr          r0, r3
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
-    lwz         r4, -0x7B7C(r13) /* lbl_801A6844@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    lwz	r4, lbl_801A6844 /* lbl_801A6844@sda21 */
     mr          r27, r0
     li          r5, 0x0
     bl          EXILock
@@ -2389,9 +2396,9 @@ L_800158A0:
     lis         r29, 0x2001
     b           L_80015A08
 L_800158C0:
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     li          r5, 0x3
-    lwz         r4, -0x7B7C(r13) /* lbl_801A6844@sda21 */
+    lwz	r4, lbl_801A6844 /* lbl_801A6844@sda21 */
     bl          EXISelect
     cmpwi       r3, 0x0
     bne         L_800158E0
@@ -2400,22 +2407,22 @@ L_800158C0:
 L_800158E0:
     stw         r29, 0x10(r1)
     addi        r4, r1, 0x10
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     li          r5, 0x4
     li          r6, 0x1
     li          r7, 0x0
     bl          EXIImm
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     bl          EXISync
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     addi        r4, r1, 0x10
     li          r5, 0x1
     li          r6, 0x0
     li          r7, 0x0
     bl          EXIImm
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     bl          EXISync
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     bl          EXIDeselect
     lwz         r0, 0x10(r1)
     srwi        r0, r0, 24
@@ -2432,22 +2439,22 @@ L_8001594C:
     cmplw       r0, r31
     blt         L_80015A08
 L_8001595C:
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     li          r5, 0x3
-    lwz         r4, -0x7B7C(r13) /* lbl_801A6844@sda21 */
+    lwz	r4, lbl_801A6844 /* lbl_801A6844@sda21 */
     bl          EXISelect
     cmpwi       r3, 0x0
     bne         L_8001597C
     li          r25, 0x3
     b           L_80015A10
 L_8001597C:
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     addi        r4, r1, 0x14
     li          r5, 0x4
     li          r6, 0x1
     li          r7, 0x0
     bl          EXIImm
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     bl          EXISync
     b           L_800159F0
 L_800159A0:
@@ -2463,13 +2470,13 @@ L_800159B0:
 L_800159C0:
     li          r28, 0x4
 L_800159C4:
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     mr          r5, r28
     addi        r4, r30, 0x0
     li          r6, 0x1
     li          r7, 0x0
     bl          EXIImm
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     add         r30, r30, r28
     subf        r31, r28, r31
     subf        r26, r28, r26
@@ -2480,13 +2487,13 @@ L_800159F0:
     cmplwi      r31, 0x0
     bne         L_800159A0
 L_80015A00:
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     bl          EXIDeselect
 L_80015A08:
     cmplwi      r31, 0x0
     bne         L_800158C0
 L_80015A10:
-    lwz         r3, -0x7B80(r13) /* lbl_801A6840@sda21 */
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
     bl          EXIUnlock
     mr          r3, r27
     bl          OSRestoreInterrupts

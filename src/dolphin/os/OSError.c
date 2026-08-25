@@ -42,6 +42,9 @@ extern u32 __OSErrorTable[];
 #pragma push
 #pragma force_active on
 
+extern unsigned char __OSLastInterruptSrr0[4];
+extern unsigned char __OSLastInterruptTime[8];
+extern unsigned char lbl_801A6430[4];
 asm void OSReport(const char* msg, ...)
 {
     nofralloc
@@ -250,7 +253,7 @@ OSSetErrorHandler_fillLoop:
     li      r0, 4
     stw     r0, 0x194(r6)
 OSSetErrorHandler_setField:
-    lwz     r0, -0x7F90(r13)
+    lwz	r0, lbl_801A6430
     lwz     r5, 0x194(r6)
     rlwinm  r0, r0, 0, 24, 28
     or      r0, r5, r0
@@ -262,7 +265,7 @@ OSSetErrorHandler_setField:
 OSSetErrorHandler_ctxCheck:
     cmplwi  r6, 0
     bne     OSSetErrorHandler_ctxLoop
-    lwz     r0, -0x7F90(r13)
+    lwz	r0, lbl_801A6430
     ori     r31, r31, 0x900
     rlwinm  r0, r0, 0, 24, 28
     or      r3, r3, r0
@@ -501,8 +504,8 @@ Unhandled_lastInterrupt:
     lha     r4, -0x7C10(r13)
     addi    r3, r31, 0x2A4
     crxor   6, 6, 6
-    lwz     r5, -0x7C14(r13)
-    lwz     r7, -0x7C08(r13)
+    lwz	r5, __OSLastInterruptSrr0
+    lwz	r7, __OSLastInterruptTime
     lwz     r8, -0x7C04(r13)
     bl      OSReport
     bl      PPCHalt

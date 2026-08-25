@@ -8,6 +8,7 @@ extern asm void MathSin(void);
 extern asm void MathNormalizeFloat(void);
 extern unsigned char lbl_80094E10[16];
 
+extern unsigned char lbl_801A6D00[8];
 asm void MTXQuatInterpolate(void)
 {
     nofralloc
@@ -16,7 +17,7 @@ asm void MTXQuatInterpolate(void)
     stw	r0, 0x54(r1)
     addi	r11, r1, 0x50
     bl      _savegpr_25
-    lwz	r6, -0x76c0(r13)
+    lwz	r6, lbl_801A6D00
     lis     r4, lbl_80094E10@ha
     addi	r5, r4, lbl_80094E10@l
     lfs	f0, -0x7a6c(r2)
@@ -41,19 +42,19 @@ asm void MTXQuatInterpolate(void)
     fdivs	f2, f0, f1
     fmuls	f0, f0, f1
     stfs	f0, 0xc(r31)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     lfs	f1, 0x24(r3)
     lfs	f0, 0x18(r3)
     fsubs	f0, f1, f0
     fmuls	f0, f2, f0
     stfs	f0, 0(r31)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     lfs	f1, 8(r3)
     lfs	f0, 0x20(r3)
     fsubs	f0, f1, f0
     fmuls	f0, f2, f0
     stfs	f0, 4(r31)
-    lwz	r3, -0x76c0(r13)
+    lwz	r3, lbl_801A6D00
     lfs	f1, 0x10(r3)
     lfs	f0, 4(r3)
     fsubs	f0, f1, f0
@@ -103,7 +104,7 @@ _8006e6ec:
     beq	_8006e75c
     fdivs	f1, f3, f1
 _8006e75c:
-    lwz	r0, -0x76c0(r13)
+    lwz	r0, lbl_801A6D00
     addi	r3, r1, 0x14
     add	r6, r0, r26
     add	r4, r0, r27

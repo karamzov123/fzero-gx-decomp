@@ -189,6 +189,12 @@ extern unsigned char os_check_heap_assert_str_table[1008];
 #pragma push
 #pragma force_active on
 
+extern unsigned char gAssetBudgetB[4];
+extern unsigned char g_currentHeapHandle[4];
+extern unsigned char lbl_801A6734[4];
+extern unsigned char lbl_801A6738[4];
+extern unsigned char lbl_801A673C[4];
+extern unsigned char lbl_801A6740[4];
 asm void fn_80008DB4(void)
 {
     nofralloc
@@ -271,8 +277,8 @@ asm void OSSetCurrentHeap_thunk(void)
     stw	r30, 8(r1)
     mr	r30, r3
     bl      OSHeapLockAcquire
-    lwz	r31, -0x7fb0(r13)
-    stw	r30, -0x7fb0(r13)
+    lwz	r31, g_currentHeapHandle
+    stw	r30, g_currentHeapHandle
     bl      OSHeapLockRelease
     lwz	r0, 0x14(r1)
     mr	r3, r31
@@ -293,13 +299,13 @@ asm void OSInitAlloc(void)
     stw	r0, 0x14(r1)
     li	r8, 0
     stw	r31, 0xc(r1)
-    stw	r3, -0x7c7c(r13)
+    stw	r3, gAssetBudgetB
     mr	r3, r6
-    stw	r5, -0x7c80(r13)
+    stw	r5, lbl_801A6740
     li	r5, -1
     b       _80008f14
 _80008ef8:
-    lwz	r0, -0x7c7c(r13)
+    lwz	r0, gAssetBudgetB
     addi	r8, r8, 1
     add	r9, r0, r6
     addi	r6, r6, 0xc
@@ -307,18 +313,18 @@ _80008ef8:
     stw	r3, 8(r9)
     stw	r3, 4(r9)
 _80008f14:
-    lwz	r0, -0x7c80(r13)
+    lwz	r0, lbl_801A6740
     cmpw	r8, r0
     bc      12, 0, _80008ef8
-    lwz	r3, -0x7c7c(r13)
+    lwz	r3, gAssetBudgetB
     rlwinm	r0, r4, 0, 0, 0x1a
     li	r4, -1
-    stw	r0, -0x7c88(r13)
+    stw	r0, lbl_801A6738
     add	r3, r3, r7
     addi	r0, r3, 0x1f
-    stw	r4, -0x7fb0(r13)
+    stw	r4, g_currentHeapHandle
     rlwinm	r31, r0, 0, 0, 0x1a
-    stw	r31, -0x7c84(r13)
+    stw	r31, lbl_801A673C
     bl      OSAllocTableInit
     lwz	r0, 0x14(r1)
     mr	r3, r31
@@ -335,7 +341,7 @@ asm void OSCreateHeap_wrapper_A(void)
     mflr	r0
     stw	r0, 0x14(r1)
     li	r0, 0
-    stw	r0, -0x7c8c(r13)
+    stw	r0, lbl_801A6734
     bl      OSCreateHeap
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -350,7 +356,7 @@ asm void OSCreateHeap_wrapper_B(void)
     mflr	r0
     stw	r0, 0x14(r1)
     li	r0, 1
-    stw	r0, -0x7c8c(r13)
+    stw	r0, lbl_801A6734
     bl      OSCreateHeap
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -370,11 +376,11 @@ asm void OSCreateHeap(void)
     stw	r29, 0x14(r1)
     mr	r29, r3
     bl      OSHeapLockAcquire
-    lwz	r3, -0x7c80(r13)
+    lwz	r3, lbl_801A6740
     addi	r0, r29, 0x1f
     rlwinm	r29, r0, 0, 0, 0x1a
     rlwinm	r30, r30, 0, 0, 0x1a
-    lwz	r4, -0x7c7c(r13)
+    lwz	r4, gAssetBudgetB
     li	r31, 0
     mtctr	r3
     cmpwi	r3, 0
@@ -422,7 +428,7 @@ asm void OSDestroyHeap(void)
     mr	r31, r3
     bl      OSHeapLockAcquire
     mulli	r0, r31, 0xc
-    lwz	r3, -0x7c7c(r13)
+    lwz	r3, gAssetBudgetB
     li	r4, -1
     stwx	r4, r3, r0
     bl      OSHeapLockRelease
@@ -448,7 +454,7 @@ asm void fn_800090A4(void)
     li	r30, 0
     li	r29, 0
     bl      OSHeapLockAcquire
-    lwz	r3, -0x7c7c(r13)
+    lwz	r3, gAssetBudgetB
     cmplwi	r3, 0
     bc      4, 2, _800090fc
     addi	r3, r28, 0
@@ -461,7 +467,7 @@ asm void fn_800090A4(void)
 _800090fc:
     cmpwi	r27, 0
     bc      12, 0, _80009110
-    lwz	r0, -0x7c80(r13)
+    lwz	r0, lbl_801A6740
     cmpw	r27, r0
     bc      12, 0, _8000912c
 _80009110:
@@ -500,9 +506,9 @@ _8000915c:
     li	r3, -1
     b       _80009450
 _80009190:
-    lwz	r6, -0x7c84(r13)
+    lwz	r6, lbl_801A673C
     mr	r4, r3
-    lwz	r7, -0x7c88(r13)
+    lwz	r7, lbl_801A6738
     b       _800092a0
 _800091a0:
     cmplw	r6, r4

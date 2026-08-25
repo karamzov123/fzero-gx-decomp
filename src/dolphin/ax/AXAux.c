@@ -7,29 +7,44 @@ extern void DCFlushRangeNoSync(register void* addr, register u32 nBytes);
 extern unsigned char __AXBufferAuxA[5760];
 extern unsigned char __AXBufferAuxB[5760];
 
+extern unsigned char lbl_801A6AC0[4];
+extern unsigned char lbl_801A6AC4[4];
+extern unsigned char lbl_801A6AC8[4];
+extern unsigned char lbl_801A6ACC[4];
+extern unsigned char lbl_801A6AD0[4];
+extern unsigned char lbl_801A6AD4[4];
+extern unsigned char lbl_801A6AD8[4];
+extern unsigned char lbl_801A6ADC[4];
+extern unsigned char lbl_801A6AE0[4];
+extern unsigned char lbl_801A6AE4[4];
+extern unsigned char lbl_801A6AE8[4];
+extern unsigned char lbl_801A6AEC[4];
+extern unsigned char lbl_801A6AF0[8];
+extern unsigned char lbl_801A6B00[4];
+extern unsigned char lbl_801A6B08[8];
 asm void AXInitAux(void)
 {
     nofralloc
     li	r7, 0
     li	r6, 1
-    stw	r7, -0x7900(r13)
+    stw	r7, lbl_801A6AC0
     li	r5, 2
     lis     r4, __AXBufferAuxA@ha
-    stw	r7, -0x78fc(r13)
+    stw	r7, lbl_801A6AC4
     li	r0, 0x1e
     lis     r3, __AXBufferAuxB@ha
     mtctr	r0
-    stw	r7, -0x78f8(r13)
+    stw	r7, lbl_801A6AC8
     addi	r4, r4, __AXBufferAuxA@l
     addi	r0, r3, __AXBufferAuxB@l
     mr	r3, r4
-    stw	r7, -0x78f4(r13)
+    stw	r7, lbl_801A6ACC
     mr	r4, r0
-    stw	r7, -0x78e0(r13)
-    stw	r6, -0x78dc(r13)
-    stw	r7, -0x78d8(r13)
-    stw	r6, -0x78d4(r13)
-    stw	r5, -0x78d0(r13)
+    stw	r7, lbl_801A6AE0
+    stw	r6, lbl_801A6AE4
+    stw	r7, lbl_801A6AE8
+    stw	r6, lbl_801A6AEC
+    stw	r5, lbl_801A6AF0
 _80020da8:
     li	r0, 0
     stw	r0, 0(r3)
@@ -74,18 +89,18 @@ asm void AXClearAuxBufferPtrs(void)
 {
     nofralloc
     li	r0, 0
-    stw	r0, -0x7900(r13)
-    stw	r0, -0x78fc(r13)
+    stw	r0, lbl_801A6AC0
+    stw	r0, lbl_801A6AC4
     blr	
 }
 
 asm void AXGetAuxBufferA_Active(void)
 {
     nofralloc
-    lwz	r0, -0x7900(r13)
+    lwz	r0, lbl_801A6AC0
     cmplwi	r0, 0
     beq     _80020e74
-    lwz	r5, -0x78e0(r13)
+    lwz	r5, lbl_801A6AE0
     lis     r4, __AXBufferAuxA@ha
     addi	r0, r4, __AXBufferAuxA@l
     mulli	r4, r5, 0x780
@@ -101,7 +116,7 @@ _80020e74:
 asm void AXGetAuxBufferB_500(void)
 {
     nofralloc
-    lwz	r5, -0x78e0(r13)
+    lwz	r5, lbl_801A6AE0
     lis     r4, __AXBufferAuxB@ha
     addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
@@ -114,7 +129,7 @@ asm void AXGetAuxBufferB_500(void)
 asm void AXGetAuxBufferA_Current(void)
 {
     nofralloc
-    lwz	r5, -0x78dc(r13)
+    lwz	r5, lbl_801A6AE4
     lis     r4, __AXBufferAuxA@ha
     addi	r0, r4, __AXBufferAuxA@l
     mulli	r4, r5, 0x780
@@ -126,7 +141,7 @@ asm void AXGetAuxBufferA_Current(void)
 asm void AXGetAuxBufferA_280(void)
 {
     nofralloc
-    lwz	r5, -0x78dc(r13)
+    lwz	r5, lbl_801A6AE4
     lis     r4, __AXBufferAuxA@ha
     addi	r0, r4, __AXBufferAuxA@l
     mulli	r4, r5, 0x780
@@ -139,7 +154,7 @@ asm void AXGetAuxBufferA_280(void)
 asm void AXGetAuxBufferA_500(void)
 {
     nofralloc
-    lwz	r5, -0x78dc(r13)
+    lwz	r5, lbl_801A6AE4
     lis     r4, __AXBufferAuxA@ha
     addi	r0, r4, __AXBufferAuxA@l
     mulli	r4, r5, 0x780
@@ -152,7 +167,7 @@ asm void AXGetAuxBufferA_500(void)
 asm void AXGetAuxBufferB_Current500(void)
 {
     nofralloc
-    lwz	r5, -0x78dc(r13)
+    lwz	r5, lbl_801A6AE4
     lis     r4, __AXBufferAuxB@ha
     addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
@@ -165,10 +180,10 @@ asm void AXGetAuxBufferB_Current500(void)
 asm void AXGetAuxBufferB_Active(void)
 {
     nofralloc
-    lwz	r0, -0x78fc(r13)
+    lwz	r0, lbl_801A6AC4
     cmplwi	r0, 0
     beq     _80020f44
-    lwz	r5, -0x78e0(r13)
+    lwz	r5, lbl_801A6AE0
     lis     r4, __AXBufferAuxB@ha
     addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
@@ -184,7 +199,7 @@ _80020f44:
 asm void AXGetAuxBufferB_Current(void)
 {
     nofralloc
-    lwz	r5, -0x78dc(r13)
+    lwz	r5, lbl_801A6AE4
     lis     r4, __AXBufferAuxB@ha
     addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
@@ -196,7 +211,7 @@ asm void AXGetAuxBufferB_Current(void)
 asm void AXGetAuxBufferB_280(void)
 {
     nofralloc
-    lwz	r5, -0x78d8(r13)
+    lwz	r5, lbl_801A6AE8
     lis     r4, __AXBufferAuxB@ha
     addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
@@ -208,7 +223,7 @@ asm void AXGetAuxBufferB_280(void)
 asm void AXGetAuxBufferB_Unknown(void)
 {
     nofralloc
-    lwz	r5, -0x78d4(r13)
+    lwz	r5, lbl_801A6AEC
     lis     r4, __AXBufferAuxB@ha
     addi	r0, r4, __AXBufferAuxB@l
     mulli	r4, r5, 0x780
@@ -226,25 +241,25 @@ asm void fn_80020FA4(void)
     stwu	r1, -0x38(r1)
     stw	r31, 0x34(r1)
     addi	r31, r4, __AXBufferAuxA@l
-    lwz	r0, -0x78e0(r13)
-    lwz	r3, -0x78dc(r13)
+    lwz	r0, lbl_801A6AE0
+    lwz	r3, lbl_801A6AE4
     mulli	r4, r0, 0x780
-    lwz	r0, -0x7900(r13)
+    lwz	r0, lbl_801A6AC0
     mulli	r3, r3, 0x780
     add	r4, r31, r4
     add	r3, r31, r3
-    stw	r4, -0x78f0(r13)
+    stw	r4, lbl_801A6AD0
     addi	r4, r4, 0x1680
-    stw	r3, -0x78ec(r13)
+    stw	r3, lbl_801A6AD4
     addi	r3, r3, 0x1680
     cmplwi	r0, 0
-    stw	r4, -0x78e8(r13)
-    stw	r3, -0x78e4(r13)
+    stw	r4, lbl_801A6AD8
+    stw	r3, lbl_801A6ADC
     beq     _800210c0
-    lwz	r0, -0x78b8(r13)
+    lwz	r0, lbl_801A6B08
     cmplwi	r0, 2
     bne     _80021074
-    lwz	r0, -0x78d0(r13)
+    lwz	r0, lbl_801A6AF0
     li	r4, 0x780
     mulli	r0, r0, 0x780
     add	r5, r31, r0
@@ -260,9 +275,9 @@ asm void fn_80020FA4(void)
     lwz	r3, 0x2c(r1)
     li	r4, 0x280
     bl      DCInvalidateRange
-    lwz	r12, -0x7900(r13)
+    lwz	r12, lbl_801A6AC0
     addi	r3, r1, 0x20
-    lwz	r4, -0x78f8(r13)
+    lwz	r4, lbl_801A6AC8
     mtlr	r12
     blrl	
     lwz	r3, 0x20(r1)
@@ -273,7 +288,7 @@ asm void fn_80020FA4(void)
     bl      DCFlushRangeNoSync
     b       _800210c0
 _80021074:
-    lwz	r0, -0x78d0(r13)
+    lwz	r0, lbl_801A6AF0
     li	r4, 0x780
     mulli	r0, r0, 0x780
     add	r5, r31, r0
@@ -284,22 +299,22 @@ _80021074:
     stw	r0, 0x1c(r1)
     lwz	r3, 0x14(r1)
     bl      DCInvalidateRange
-    lwz	r12, -0x7900(r13)
+    lwz	r12, lbl_801A6AC0
     addi	r3, r1, 0x14
-    lwz	r4, -0x78f8(r13)
+    lwz	r4, lbl_801A6AC8
     mtlr	r12
     blrl	
     lwz	r3, 0x14(r1)
     li	r4, 0x780
     bl      DCFlushRangeNoSync
 _800210c0:
-    lwz	r0, -0x78fc(r13)
+    lwz	r0, lbl_801A6AC4
     cmplwi	r0, 0
     beq     _80021128
-    lwz	r0, -0x78b8(r13)
+    lwz	r0, lbl_801A6B08
     cmplwi	r0, 2
     beq     _80021128
-    lwz	r0, -0x78d0(r13)
+    lwz	r0, lbl_801A6AF0
     li	r4, 0x780
     mulli	r0, r0, 0x780
     add	r5, r31, r0
@@ -311,39 +326,39 @@ _800210c0:
     stw	r0, 0x10(r1)
     lwz	r3, 8(r1)
     bl      DCInvalidateRange
-    lwz	r12, -0x78fc(r13)
+    lwz	r12, lbl_801A6AC4
     addi	r3, r1, 8
-    lwz	r4, -0x78f4(r13)
+    lwz	r4, lbl_801A6ACC
     mtlr	r12
     blrl	
     lwz	r3, 8(r1)
     li	r4, 0x780
     bl      DCFlushRangeNoSync
 _80021128:
-    lwz	r4, -0x78e0(r13)
+    lwz	r4, lbl_801A6AE0
     lis	r3, -0x5555
-    lwz	r5, -0x78dc(r13)
+    lwz	r5, lbl_801A6AE4
     addi	r8, r3, -0x5555
-    lwz	r3, -0x78d0(r13)
+    lwz	r3, lbl_801A6AF0
     addi	r0, r4, 1
-    lwz	r4, -0x78d8(r13)
+    lwz	r4, lbl_801A6AE8
     addi	r5, r5, 1
-    stw	r0, -0x78e0(r13)
+    stw	r0, lbl_801A6AE0
     addi	r0, r3, 1
-    lwz	r3, -0x78d4(r13)
-    stw	r5, -0x78dc(r13)
+    lwz	r3, lbl_801A6AEC
+    stw	r5, lbl_801A6AE4
     addi	r5, r4, 1
-    lwz	r10, -0x78e0(r13)
+    lwz	r10, lbl_801A6AE0
     addi	r4, r3, 1
-    stw	r0, -0x78d0(r13)
-    lwz	r7, -0x78dc(r13)
+    stw	r0, lbl_801A6AF0
+    lwz	r7, lbl_801A6AE4
     mulhwu	r9, r8, r10
-    lwz	r3, -0x78d0(r13)
-    stw	r5, -0x78d8(r13)
-    stw	r4, -0x78d4(r13)
+    lwz	r3, lbl_801A6AF0
+    stw	r5, lbl_801A6AE8
+    stw	r4, lbl_801A6AEC
     mulhwu	r6, r8, r7
-    lwz	r5, -0x78d8(r13)
-    lwz	r4, -0x78d4(r13)
+    lwz	r5, lbl_801A6AE8
+    lwz	r4, lbl_801A6AEC
     mulhwu	r0, r8, r3
     srwi	r9, r9, 1
     srwi	r6, r6, 1
@@ -353,14 +368,14 @@ _80021128:
     mulli	r0, r0, 3
     subf	r8, r8, r10
     subf	r6, r6, r7
-    stw	r8, -0x78e0(r13)
+    stw	r8, lbl_801A6AE0
     clrlwi	r5, r5, 0x1f
     clrlwi	r4, r4, 0x1f
-    stw	r6, -0x78dc(r13)
+    stw	r6, lbl_801A6AE4
     subf	r0, r0, r3
-    stw	r5, -0x78d8(r13)
-    stw	r4, -0x78d4(r13)
-    stw	r0, -0x78d0(r13)
+    stw	r5, lbl_801A6AE8
+    stw	r4, lbl_801A6AEC
+    stw	r0, lbl_801A6AF0
     lwz	r0, 0x3c(r1)
     lwz	r31, 0x34(r1)
     addi	r1, r1, 0x38
@@ -371,23 +386,23 @@ _80021128:
 asm void AXSetAuxCallbackDestA(void)
 {
     nofralloc
-    stw	r3, -0x7900(r13)
-    stw	r4, -0x78f8(r13)
+    stw	r3, lbl_801A6AC0
+    stw	r4, lbl_801A6AC8
     blr	
 }
 
 asm void AXSetAuxCallbackDestB(void)
 {
     nofralloc
-    stw	r3, -0x78fc(r13)
-    stw	r4, -0x78f4(r13)
+    stw	r3, lbl_801A6AC4
+    stw	r4, lbl_801A6ACC
     blr	
 }
 
 asm void fn_800211F8(void)
 {
     nofralloc
-    lwz	r3, -0x78c0(r13)
+    lwz	r3, lbl_801A6B00
     blr	
 }
 

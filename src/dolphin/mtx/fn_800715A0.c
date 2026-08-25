@@ -12,6 +12,8 @@ extern unsigned char lbl_8015ABCC[12];
 extern unsigned char lbl_8015ABD8[35];
 extern unsigned char lbl_8015ABFC[9];
 
+extern unsigned char lbl_801A6D08[4];
+extern unsigned char lbl_801A6D0C[4];
 asm void fn_800715A0(void)
 {
     nofralloc
@@ -26,7 +28,7 @@ asm void fn_800715A0(void)
     stw	r28, 0x10(r1)
     rlwinm	r31, r0, 0, 0, 0x1a
     mr	r28, r3
-    lwz	r12, -0x76b4(r13)
+    lwz	r12, lbl_801A6D0C
     addi	r3, r31, 0x20
     mtctr	r12
     bctrl	
@@ -86,7 +88,7 @@ asm void fn_80071678(void)
     stw	r30, 8(r1)
     mr	r30, r3
     bne	_800716cc
-    lwz	r12, -0x76b4(r13)
+    lwz	r12, lbl_801A6D0C
     li	r3, 0x20
     mtctr	r12
     bctrl	
@@ -132,7 +134,7 @@ asm void fn_80071718(void)
     lwz	r0, 0xc(r3)
     clrlwi.	r0, r0, 0x1f
     bne	_8007173c
-    lwz	r12, -0x76b8(r13)
+    lwz	r12, lbl_801A6D08
     mtctr	r12
     bctrl	
 _8007173c:

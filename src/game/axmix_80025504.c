@@ -14,6 +14,12 @@ extern void AXMixProcessVoiceFlags(void);
 extern unsigned char lbl_80128990[3008];
 extern unsigned char lbl_80176160[6144];
 
+extern unsigned char g_currentHeapHandle[4];
+extern unsigned char lbl_801A64F8[4];
+extern unsigned char lbl_801A64FC[4];
+extern unsigned char lbl_801A6B80[4];
+extern unsigned char lbl_801A6B84[4];
+extern unsigned char lbl_801A6B88[8];
 asm void fn_80025504(void)
 {
     nofralloc
@@ -441,19 +447,19 @@ asm void fn_80025A24(void)
     srwi	r0, r0, 5
     stw	r0, 0x2c(r29)
     lwz	r0, 0(r29)
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mulli	r3, r0, 0x280
     mtlr	r12
     blrl	
     stw	r3, 0x30(r29)
     lwz	r0, 4(r29)
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mulli	r3, r0, 0x280
     mtlr	r12
     blrl	
     stw	r3, 0x34(r29)
     lwz	r0, 8(r29)
-    lwz	r12, -0x7ec8(r13)
+    lwz	r12, lbl_801A64F8
     mulli	r3, r0, 0x280
     mtlr	r12
     blrl	
@@ -545,7 +551,7 @@ asm void AXInvokeVoiceStopCallbacks(void)
     addi	r31, r3, 0
     cmplwi	r0, 0
     beq     _80025cac
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mr	r3, r0
     mtlr	r12
     blrl	
@@ -553,14 +559,14 @@ _80025cac:
     lwz	r3, 0x34(r30)
     cmplwi	r3, 0
     beq     _80025cc4
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mtlr	r12
     blrl	
 _80025cc4:
     lwz	r3, 0x38(r30)
     cmplwi	r3, 0
     beq     _80025cdc
-    lwz	r12, -0x7ec4(r13)
+    lwz	r12, lbl_801A64FC
     mtlr	r12
     blrl	
 _80025cdc:
@@ -582,7 +588,7 @@ asm void fn_80025D00(void)
     mr	r4, r3
     stw	r0, 4(r1)
     stwu	r1, -8(r1)
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     bl      OSAlloc
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -597,7 +603,7 @@ asm void fn_80025D28(void)
     mr	r4, r3
     stw	r0, 4(r1)
     stwu	r1, -8(r1)
-    lwz	r3, -0x7fb0(r13)
+    lwz	r3, g_currentHeapHandle
     bl      OSFree
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -608,15 +614,15 @@ asm void fn_80025D28(void)
 asm void fn_80025D50(void)
 {
     nofralloc
-    stw	r3, -0x7ec8(r13)
-    stw	r4, -0x7ec4(r13)
+    stw	r3, lbl_801A64F8
+    stw	r4, lbl_801A64FC
     blr	
 }
 
 asm void AXMixProcessVoiceFlags(void)
 {
     nofralloc
-    lwz	r0, -0x7838(r13)
+    lwz	r0, lbl_801A6B88
     lis     r4, lbl_80128990@ha
     lwz	r5, 0x14(r3)
     addi	r9, r4, lbl_80128990@l
@@ -709,9 +715,9 @@ _80025e44:
     addi	r29, r29, 0x60
     blt     _80025e44
     li	r0, 1
-    stw	r31, -0x7840(r13)
-    stw	r31, -0x783c(r13)
-    stw	r0, -0x7838(r13)
+    stw	r31, lbl_801A6B80
+    stw	r31, lbl_801A6B84
+    stw	r0, lbl_801A6B88
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
     lwz	r30, 0x10(r1)
@@ -731,14 +737,14 @@ asm void fn_80025EE0(void)
 asm void fn_80025EE4(void)
 {
     nofralloc
-    stw	r3, -0x7838(r13)
+    stw	r3, lbl_801A6B88
     blr	
 }
 
 asm void AXGetMixStateWord(void)
 {
     nofralloc
-    lwz	r3, -0x7838(r13)
+    lwz	r3, lbl_801A6B88
     blr	
 }
 
@@ -796,7 +802,7 @@ _80025f9c:
 _80025fa8:
     sth	r0, 0x38(r30)
 _80025fac:
-    lwz	r0, -0x7838(r13)
+    lwz	r0, lbl_801A6B88
     li	r29, 0
     cmpwi	r0, 3
     beq     _80026870
@@ -1948,7 +1954,7 @@ asm void fn_80026E84(void)
 asm void fn_80026EAC(void)
 {
     nofralloc
-    lwz	r0, -0x7838(r13)
+    lwz	r0, lbl_801A6B88
     cmplwi	r0, 3
     beqlr	
     lwz	r5, 0x18(r3)

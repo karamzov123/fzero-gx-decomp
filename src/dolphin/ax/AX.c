@@ -25,29 +25,49 @@ extern void fn_80021FBC(void);
 extern unsigned char __AXStackHead[128];
 extern unsigned char __AXStackTail[128];
 
+extern unsigned char lbl_801A64E8[8];
+extern unsigned char lbl_801A6A28[8];
+extern unsigned char lbl_801A6A30[8];
+extern unsigned char lbl_801A6A38[8];
+extern unsigned char lbl_801A6A40[8];
+extern unsigned char lbl_801A6A48[8];
+extern unsigned char lbl_801A6A50[8];
+extern unsigned char lbl_801A6A58[8];
+extern unsigned char lbl_801A6A60[8];
+extern unsigned char lbl_801A6A68[8];
+extern unsigned char lbl_801A6A70[8];
+extern unsigned char lbl_801A6A78[8];
+extern unsigned char lbl_801A6A80[8];
+extern unsigned char lbl_801A6A88[8];
+extern unsigned char lbl_801A6A90[8];
+extern unsigned char lbl_801A6A98[8];
+extern unsigned char lbl_801A6AA0[8];
+extern unsigned char lbl_801A6AA8[8];
+extern unsigned char lbl_801A6AB0[8];
+extern unsigned char lbl_801A6AB8[8];
 asm void fn_80020724(void)
 {
     nofralloc
     li	r0, 0
-    stb	r0, -0x7910(r13)
-    stb	r0, -0x7910(r13)
-    stb	r0, -0x7918(r13)
-    stb	r0, -0x7920(r13)
-    stb	r0, -0x7928(r13)
-    stb	r0, -0x7930(r13)
-    stb	r0, -0x7938(r13)
-    stb	r0, -0x7940(r13)
-    stb	r0, -0x7948(r13)
-    stb	r0, -0x7950(r13)
-    stb	r0, -0x7958(r13)
-    stb	r0, -0x7960(r13)
-    stb	r0, -0x7968(r13)
-    stb	r0, -0x7970(r13)
-    stb	r0, -0x7978(r13)
-    stb	r0, -0x7980(r13)
-    stb	r0, -0x7988(r13)
-    stb	r0, -0x7990(r13)
-    stb	r0, -0x7998(r13)
+    stb	r0, lbl_801A6AB0
+    stb	r0, lbl_801A6AB0
+    stb	r0, lbl_801A6AA8
+    stb	r0, lbl_801A6AA0
+    stb	r0, lbl_801A6A98
+    stb	r0, lbl_801A6A90
+    stb	r0, lbl_801A6A88
+    stb	r0, lbl_801A6A80
+    stb	r0, lbl_801A6A78
+    stb	r0, lbl_801A6A70
+    stb	r0, lbl_801A6A68
+    stb	r0, lbl_801A6A60
+    stb	r0, lbl_801A6A58
+    stb	r0, lbl_801A6A50
+    stb	r0, lbl_801A6A48
+    stb	r0, lbl_801A6A40
+    stb	r0, lbl_801A6A38
+    stb	r0, lbl_801A6A30
+    stb	r0, lbl_801A6A28
     blr	
 }
 
@@ -57,7 +77,7 @@ asm void AXInit(void)
     mflr	r0
     stw	r0, 4(r1)
     stwu	r1, -8(r1)
-    lwz	r3, -0x7ed8(r13)
+    lwz	r3, lbl_801A64E8
     bl      OSRegisterVersion
     bl      __AXInitVoiceStacks
     bl      fn_80022EA4
@@ -142,7 +162,7 @@ asm void __AXInitVoiceStacks(void)
 {
     nofralloc
     li	r0, 0
-    stw	r0, -0x7908(r13)
+    stw	r0, lbl_801A6AB8
     li	r0, 2
     lis     r4, __AXStackTail@ha
     mtctr	r0
@@ -193,7 +213,7 @@ asm void __AXAllocQuit(void)
 {
     nofralloc
     li	r0, 0
-    stw	r0, -0x7908(r13)
+    stw	r0, lbl_801A6AB8
     li	r0, 2
     lis     r4, __AXStackTail@ha
     mtctr	r0

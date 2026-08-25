@@ -33,6 +33,15 @@ extern unsigned char lbl_80126240[7968];
 extern unsigned char lbl_80160500[1920];
 extern unsigned char lbl_80160C80[16544];
 
+extern unsigned char lbl_801A64F0[8];
+extern unsigned char lbl_801A6B10[4];
+extern unsigned char lbl_801A6B14[4];
+extern unsigned char lbl_801A6B18[4];
+extern unsigned char lbl_801A6B1C[4];
+extern unsigned char lbl_801A6B20[4];
+extern unsigned char lbl_801A6B24[4];
+extern unsigned char lbl_801A6B28[4];
+extern unsigned char lbl_801A6B2C[4];
 asm void __AXOutFrameTask(void)
 {
     nofralloc
@@ -76,7 +85,7 @@ _80021990:
     bl      OSGetTime
     stw	r4, 0x47ec(r31)
     stw	r3, 0x47e8(r31)
-    lwz	r12, -0x78a0(r13)
+    lwz	r12, lbl_801A6B20
     cmplwi	r12, 0
     beq     _800219dc
     mtlr	r12
@@ -86,18 +95,18 @@ _800219dc:
     stw	r4, 0x47f4(r31)
     stw	r3, 0x47f0(r31)
     addi	r3, r31, 0x500
-    lwz	r0, -0x78b0(r13)
+    lwz	r0, lbl_801A6B10
     mulli	r0, r0, 0x280
     add	r4, r31, r0
     bl      AXPushCLCommands
-    lwz	r3, -0x78b0(r13)
+    lwz	r3, lbl_801A6B10
     li	r4, 0x280
     addi	r0, r3, 1
-    stw	r0, -0x78b0(r13)
-    lwz	r0, -0x78b0(r13)
+    stw	r0, lbl_801A6B10
+    lwz	r0, lbl_801A6B10
     clrlwi	r0, r0, 0x1f
-    stw	r0, -0x78b0(r13)
-    lwz	r0, -0x78b0(r13)
+    stw	r0, lbl_801A6B10
+    lwz	r0, lbl_801A6B10
     mulli	r0, r0, 0x280
     add	r3, r31, r0
     bl      AIInitDMA
@@ -147,25 +156,25 @@ asm void __AXOutFirstFrameCallback(void)
     mflr	r0
     stw	r0, 4(r1)
     stwu	r1, -8(r1)
-    lwz	r0, -0x78ac(r13)
+    lwz	r0, lbl_801A6B14
     cmplwi	r0, 0
     bne     _80021adc
     bl      OSGetTime
-    stw	r4, -0x78a4(r13)
-    stw	r3, -0x78a8(r13)
+    stw	r4, lbl_801A6B1C
+    stw	r3, lbl_801A6B18
 _80021adc:
-    lwz	r0, -0x78ac(r13)
+    lwz	r0, lbl_801A6B14
     cmplwi	r0, 1
     bne     _80021afc
     li	r0, 0
-    stw	r0, -0x78ac(r13)
+    stw	r0, lbl_801A6B14
     li	r3, 0
     bl      __AXOutFrameTask
     b       _80021b10
 _80021afc:
     li	r0, 2
     lis     r3, lbl_80160C80@ha
-    stw	r0, -0x78ac(r13)
+    stw	r0, lbl_801A6B14
     addi	r3, r3, lbl_80160C80@l
     bl      DSPAssertTask
 _80021b10:
@@ -179,7 +188,7 @@ asm void fn_80021B20(void)
 {
     nofralloc
     li	r0, 1
-    stw	r0, -0x789c(r13)
+    stw	r0, lbl_801A6B24
     blr	
 }
 
@@ -189,14 +198,14 @@ asm void __AXOutDspResumeCallback(void)
     mflr	r0
     stw	r0, 4(r1)
     stwu	r1, -8(r1)
-    lwz	r0, -0x78ac(r13)
+    lwz	r0, lbl_801A6B14
     cmplwi	r0, 2
     bne     _80021b6c
     li	r0, 0
-    stw	r0, -0x78ac(r13)
+    stw	r0, lbl_801A6B14
     bl      OSGetTime
-    lwz	r5, -0x78a8(r13)
-    lwz	r0, -0x78a4(r13)
+    lwz	r5, lbl_801A6B18
+    lwz	r0, lbl_801A6B1C
     subfc	r0, r0, r4
     srwi	r0, r0, 2
     mr	r3, r0
@@ -204,7 +213,7 @@ asm void __AXOutDspResumeCallback(void)
     b       _80021b74
 _80021b6c:
     li	r0, 1
-    stw	r0, -0x78ac(r13)
+    stw	r0, lbl_801A6B14
 _80021b74:
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -220,7 +229,7 @@ asm void fn_80021B84(void)
     stw	r0, 4(r1)
     li	r0, 1
     stwu	r1, -8(r1)
-    stw	r0, -0x7898(r13)
+    stw	r0, lbl_801A6B28
     bl      OSWakeupThread
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -245,7 +254,7 @@ asm void AXInitOutput(void)
     stw	r0, 0x78c(r31)
     addi	r8, r31, 0x7d0
     li	r7, 0x10
-    lhz	r0, -0x7ed0(r13)
+    lhz	r0, lbl_801A64F0
     li	r6, 0x30
     addi	r5, r5, 0x1b20
     stw	r0, 0x790(r31)
@@ -265,8 +274,8 @@ asm void AXInitOutput(void)
     stw	r0, 0x7b0(r31)
     stw	r9, 0x7b4(r31)
     stw	r9, 0x784(r31)
-    stw	r9, -0x789c(r13)
-    stw	r9, -0x7898(r13)
+    stw	r9, lbl_801A6B24
+    stw	r9, lbl_801A6B28
     bl      OSInitThreadQueue
     bl      DSPCheckInit
     cmpwi	r3, 0
@@ -276,7 +285,7 @@ _80021c54:
     addi	r3, r31, 0x780
     bl      DSPAddTask
 _80021c5c:
-    lwz	r0, -0x789c(r13)
+    lwz	r0, lbl_801A6B24
     cmpwi	r0, 0
     beq     _80021c5c
     lwz	r0, 0x14(r1)
@@ -299,8 +308,8 @@ asm void fn_80021C7C(void)
     stw	r31, 0x1c(r1)
     addi	r31, r4, lbl_80160500@l
     addi	r4, r31, 0
-    stw	r3, -0x78b0(r13)
-    stw	r3, -0x7894(r13)
+    stw	r3, lbl_801A6B10
+    stw	r3, lbl_801A6B2C
 _80021cac:
     stw	r3, 0(r4)
     stw	r3, 4(r4)
@@ -485,11 +494,11 @@ _80021e10:
     addi	r4, r31, 0x280
     bl      AXPushCLCommands
     li	r0, 1
-    stw	r0, -0x78ac(r13)
+    stw	r0, lbl_801A6B14
     li	r3, 0
     li	r4, 0x280
-    lwz	r0, -0x78b0(r13)
-    stw	r3, -0x78a0(r13)
+    lwz	r0, lbl_801A6B10
+    stw	r3, lbl_801A6B20
     mulli	r0, r0, 0x280
     add	r3, r31, r0
     bl      AIInitDMA
@@ -511,7 +520,7 @@ asm void fn_80021FBC(void)
     bl      OSDisableInterrupts
     li	r0, 0
     lis     r4, lbl_80160C80@ha
-    stw	r0, -0x78a0(r13)
+    stw	r0, lbl_801A6B20
     addi	r0, r4, lbl_80160C80@l
     addi	r31, r3, 0
     mr	r3, r0
@@ -531,7 +540,7 @@ asm void fn_80021FBC(void)
 asm void fn_80022014(void)
 {
     nofralloc
-    stw	r3, -0x78a0(r13)
+    stw	r3, lbl_801A6B20
     blr	
 }
 

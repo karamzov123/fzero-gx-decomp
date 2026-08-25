@@ -24,6 +24,7 @@ extern void OSEnableScheduler(void);
 extern void __OSReboot(u32 resetCode, u32 bootDol);
 extern void memset(void* ptr, s32 val, u32 size);
 
+extern unsigned char ResetFunctionQueue[8];
 asm void OSRegisterResetFunction(register void* info)
 {
     nofralloc

@@ -11,6 +11,7 @@ extern void fn_80022E68(register void* p);
 extern unsigned char __AXStackHead[128];
 extern unsigned char __AXStackTail[128];
 
+extern unsigned char lbl_801A6AB8[8];
 asm void __AXPushFreeStack(register void* p)
 {
     nofralloc
@@ -27,21 +28,21 @@ asm void __AXPushFreeStack(register void* p)
 asm void __AXPushCallbackStack(register void* p)
 {
     nofralloc
-    lwz	r0, -0x7908(r13)
+    lwz	r0, lbl_801A6AB8
     stw	r0, 8(r3)
-    stw	r3, -0x7908(r13)
+    stw	r3, lbl_801A6AB8
     blr	
 }
 
 asm void* __AXPopCallbackStack(void)
 {
     nofralloc
-    lwz	r0, -0x7908(r13)
+    lwz	r0, lbl_801A6AB8
     cmplwi	r0, 0
     mr	r3, r0
     beqlr	
     lwz	r0, 8(r3)
-    stw	r0, -0x7908(r13)
+    stw	r0, lbl_801A6AB8
     blr	
 }
 

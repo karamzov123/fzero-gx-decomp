@@ -8,6 +8,7 @@ extern unsigned char lbl_80095E78[24];
 extern unsigned char lbl_801A5E78[1280];
 extern unsigned char lbl_801A6378[32];
 
+extern unsigned char lbl_801A6E10[8];
 asm void EXI2_ReadN(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_WriteN(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_Init(register void* a, register void* b, register void* c, register void* d);
@@ -113,7 +114,7 @@ asm void gdev_cc_write(void)
     mr	r30, r4
     stw	r29, 0x14(r1)
     mr	r29, r3
-    lwz	r0, -0x75b0(r13)
+    lwz	r0, lbl_801A6E10
     cmpwi	r0, 0
     bne     _8008e4a4
     addi	r4, r31, 0
@@ -168,7 +169,7 @@ asm void gdev_cc_read(void)
     mr	r26, r3
     mr	r27, r4
     li	r28, 0
-    lwz	r0, -0x75b0(r13)
+    lwz	r0, lbl_801A6E10
     cmpwi	r0, 0
     bne     _8008e548
     li	r3, -0x2711
@@ -240,7 +241,7 @@ asm void gdev_cc_close(void)
 asm void gdev_cc_open(void)
 {
     nofralloc
-    lwz	r0, -0x75b0(r13)
+    lwz	r0, lbl_801A6E10
     cmpwi	r0, 0
     beq     _8008e628
     li	r3, -0x2715
@@ -248,7 +249,7 @@ asm void gdev_cc_open(void)
 _8008e628:
     li	r0, 1
     li	r3, 0
-    stw	r0, -0x75b0(r13)
+    stw	r0, lbl_801A6E10
     blr	
 }
 

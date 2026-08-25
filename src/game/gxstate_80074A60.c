@@ -7,11 +7,21 @@ extern void PSVecNormalize3(void);
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6D40[4];
+extern unsigned char lbl_801A6D58[4];
+extern unsigned char lbl_801A6D5C[4];
+extern unsigned char lbl_801A6D60[4];
+extern unsigned char lbl_801A6D64[4];
+extern unsigned char lbl_801A6D74[4];
+extern unsigned char lbl_801A6D7C[4];
+extern unsigned char lbl_801A6D80[4];
+extern unsigned char lbl_801A6D84[4];
+extern unsigned char lbl_801A6D88[8];
 asm void fn_80074A60(register u32 a, register u32 b)
 {
     nofralloc
-    stw     r3, -0x7660(r13)
-    stw     r4, -0x7664(r13)
+    stw	r3, lbl_801A6D60
+    stw	r4, lbl_801A6D5C
     blr
 }
 
@@ -19,16 +29,16 @@ asm void fn_80074A6C(void)
 {
     nofralloc
     li      r0, -1
-    stw     r0, -0x7660(r13)
-    stw     r0, -0x7664(r13)
+    stw	r0, lbl_801A6D60
+    stw	r0, lbl_801A6D5C
     blr
 }
 
 asm s32 fn_80074A7C(register s32 x)
 {
     nofralloc
-    lwz     r0, -0x7680(r13)
-    stw     r3, -0x7680(r13)
+    lwz	r0, lbl_801A6D40
+    stw	r3, lbl_801A6D40
     mr      r3, r0
     blr
 }
@@ -50,7 +60,7 @@ _80074ab4:
     lfs     f0, -0x79bc(r2)
     li      r0, 1
     addi    r4, r13, -0x7640
-    stw     r0, -0x7638(r13)
+    stw	r0, lbl_801A6D88
     fmuls   f5, f0, f1
     fmuls   f2, f0, f2
     fmuls   f1, f0, f3
@@ -67,7 +77,7 @@ _80074ab4:
     stfd    f0, 0x20(r1)
     lwz     r3, 0x1c(r1)
     lwz     r0, 0x24(r1)
-    stb     r6, -0x7640(r13)
+    stb	r6, lbl_801A6D80
     stb     r5, 1(r4)
     stb     r3, 2(r4)
     stb     r0, 3(r4)
@@ -76,8 +86,8 @@ _80074b18:
     li      r4, 0
     li      r0, 0xff
     addi    r3, r13, -0x7640
-    stw     r4, -0x7638(r13)
-    stb     r0, -0x7640(r13)
+    stw	r4, lbl_801A6D88
+    stb	r0, lbl_801A6D80
     stb     r0, 1(r3)
     stb     r0, 2(r3)
     stb     r0, 3(r3)
@@ -104,9 +114,9 @@ asm void GXColorPack(register void* rgba)
 _80074b70:
     li      r0, 1
     addi    r4, r13, -0x7640
-    stw     r0, -0x7638(r13)
+    stw	r0, lbl_801A6D88
     lbz     r0, 0(r3)
-    stb     r0, -0x7640(r13)
+    stb	r0, lbl_801A6D80
     lbz     r0, 1(r3)
     stb     r0, 1(r4)
     lbz     r0, 2(r3)
@@ -118,8 +128,8 @@ _80074ba0:
     li      r4, 0
     li      r0, 0xff
     addi    r3, r13, -0x7640
-    stw     r4, -0x7638(r13)
-    stb     r0, -0x7640(r13)
+    stw	r4, lbl_801A6D88
+    stb	r0, lbl_801A6D80
     stb     r0, 1(r3)
     stb     r0, 2(r3)
     stb     r0, 3(r3)
@@ -143,7 +153,7 @@ _80074bec:
     lfs     f0, -0x79bc(r2)
     li      r0, 1
     addi    r4, r13, -0x7644
-    stw     r0, -0x763c(r13)
+    stw	r0, lbl_801A6D84
     fmuls   f5, f0, f1
     fmuls   f2, f0, f2
     fmuls   f1, f0, f3
@@ -160,7 +170,7 @@ _80074bec:
     stfd    f0, 0x20(r1)
     lwz     r3, 0x1c(r1)
     lwz     r0, 0x24(r1)
-    stb     r6, -0x7644(r13)
+    stb	r6, lbl_801A6D7C
     stb     r5, 1(r4)
     stb     r3, 2(r4)
     stb     r0, 3(r4)
@@ -168,8 +178,8 @@ _80074bec:
 _80074c50:
     li      r0, 0
     addi    r3, r13, -0x7644
-    stw     r0, -0x763c(r13)
-    stb     r0, -0x7644(r13)
+    stw	r0, lbl_801A6D84
+    stb	r0, lbl_801A6D7C
     stb     r0, 1(r3)
     stb     r0, 2(r3)
     stb     r0, 3(r3)
@@ -196,9 +206,9 @@ asm void GXColorZeroCheck(register void* rgba)
 _80074ca4:
     li      r0, 1
     addi    r4, r13, -0x7644
-    stw     r0, -0x763c(r13)
+    stw	r0, lbl_801A6D84
     lbz     r0, 0(r3)
-    stb     r0, -0x7644(r13)
+    stb	r0, lbl_801A6D7C
     lbz     r0, 1(r3)
     stb     r0, 1(r4)
     lbz     r0, 2(r3)
@@ -209,8 +219,8 @@ _80074ca4:
 _80074cd4:
     li      r0, 0
     addi    r3, r13, -0x7644
-    stw     r0, -0x763c(r13)
-    stb     r0, -0x7644(r13)
+    stw	r0, lbl_801A6D84
+    stb	r0, lbl_801A6D7C
     stb     r0, 1(r3)
     stb     r0, 2(r3)
     stb     r0, 3(r3)
@@ -230,8 +240,8 @@ asm void fn_80074CF4(register f32 x, register f32 y, register f32 z)
 asm s32 fn_80074D08(register s32 x)
 {
     nofralloc
-    lwz     r0, -0x764c(r13)
-    stw     r3, -0x764c(r13)
+    lwz	r0, lbl_801A6D74
+    stw	r3, lbl_801A6D74
     mr      r3, r0
     blr
 }
@@ -241,7 +251,7 @@ asm void fn_80074D18(register s32 x)
     nofralloc
     cntlzw  r0, r3
     srwi    r0, r0, 5
-    stw     r0, -0x765c(r13)
+    stw	r0, lbl_801A6D64
     blr
 }
 
@@ -280,7 +290,7 @@ asm void fn_80074D78(register s32 x)
     nofralloc
     cntlzw  r0, r3
     srwi    r0, r0, 5
-    stw     r0, -0x7668(r13)
+    stw	r0, lbl_801A6D58
     blr
 }
 

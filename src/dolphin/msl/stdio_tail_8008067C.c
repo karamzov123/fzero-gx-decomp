@@ -11,12 +11,13 @@ extern void __pformatter(void);
 extern void __close_all(void);
 extern void fn_80080974(void);
 
+extern unsigned char __stdio_exit[4];
 asm void __stdio_atexit(void)
 {
     nofralloc
     lis     r3, __close_all@ha
     addi	r0, r3, __close_all@l
-    stw	r0, -0x75f0(r13)
+    stw	r0, __stdio_exit
     blr
 }
 

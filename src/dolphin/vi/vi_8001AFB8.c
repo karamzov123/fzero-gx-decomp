@@ -16,6 +16,12 @@ extern unsigned char lbl_8015CF68[240];
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A693C[4];
+extern unsigned char lbl_801A6944[4];
+extern unsigned char lbl_801A6948[4];
+extern unsigned char lbl_801A694C[4];
+extern unsigned char lbl_801A6970[4];
+extern unsigned char lbl_801A6974[4];
 asm void fn_8001AFB8(register void* a, register void* b, register void* c, register void* d, register void* e)
 {
     nofralloc
@@ -141,11 +147,11 @@ _8001b164:
     lis r8, 1
     sth r0, 0x1e(r9)
     lis r0, 2
-    lwz r10, -0x7a78(r13)
-    lwz r12, -0x7a74(r13)
+    lwz	r10, lbl_801A6948
+    lwz	r12, lbl_801A694C
     or r10, r10, r8
-    stw r12, -0x7a74(r13)
-    stw r10, -0x7a78(r13)
+    stw	r12, lbl_801A694C
+    stw	r10, lbl_801A6948
     lwz r10, 0(r4)
     lbz r4, 0x3c(r3)
     srwi r10, r10, 0x10
@@ -153,60 +159,60 @@ _8001b164:
     or r4, r10, r4
     or r4, r11, r4
     sth r4, 0x1c(r9)
-    lwz r4, -0x7a78(r13)
-    lwz r10, -0x7a74(r13)
+    lwz	r4, lbl_801A6948
+    lwz	r10, lbl_801A694C
     or r0, r4, r0
-    stw r10, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r10, lbl_801A694C
+    stw	r0, lbl_801A6948
     lwz r0, 0(r5)
     sth r0, 0x26(r9)
-    lwz r0, -0x7a78(r13)
-    lwz r4, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r4, lbl_801A694C
     ori r0, r0, 0x1000
-    stw r4, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r4, lbl_801A694C
+    stw	r0, lbl_801A6948
     lwz r0, 0(r5)
     srwi r0, r0, 0x10
     sth r0, 0x24(r9)
-    lwz r0, -0x7a78(r13)
-    lwz r4, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r4, lbl_801A694C
     ori r0, r0, 0x2000
-    stw r4, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r4, lbl_801A694C
+    stw	r0, lbl_801A6948
     lwz r0, 0x44(r3)
     cmpwi r0, 0
     beq _8001b280
     lwz r3, 0(r6)
     addi r0, r8, -0x8000
     sth r3, 0x22(r9)
-    lwz r3, -0x7a78(r13)
-    lwz r4, -0x7a74(r13)
+    lwz	r3, lbl_801A6948
+    lwz	r4, lbl_801A694C
     ori r3, r3, 0x4000
-    stw r4, -0x7a74(r13)
-    stw r3, -0x7a78(r13)
+    stw	r4, lbl_801A694C
+    stw	r3, lbl_801A6948
     lwz r3, 0(r6)
     srwi r3, r3, 0x10
     sth r3, 0x20(r9)
-    lwz r3, -0x7a78(r13)
-    lwz r4, -0x7a74(r13)
+    lwz	r3, lbl_801A6948
+    lwz	r4, lbl_801A694C
     or r0, r3, r0
-    stw r4, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r4, lbl_801A694C
+    stw	r0, lbl_801A6948
     lwz r0, 0(r7)
     sth r0, 0x2a(r9)
-    lwz r0, -0x7a78(r13)
-    lwz r3, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r3, lbl_801A694C
     ori r0, r0, 0x400
-    stw r3, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r3, lbl_801A694C
+    stw	r0, lbl_801A6948
     lwz r0, 0(r7)
     srwi r0, r0, 0x10
     sth r0, 0x28(r9)
-    lwz r0, -0x7a78(r13)
-    lwz r3, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r3, lbl_801A694C
     ori r0, r0, 0x800
-    stw r3, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r3, lbl_801A694C
+    stw	r0, lbl_801A6948
 _8001b280:
     lwz r31, 0x44(r1)
     addi r1, r1, 0x48
@@ -288,38 +294,38 @@ _8001b380:
     sth r4, 0(r11)
     lis r4, -0x8000
     lis r9, 0x100
-    lwz r5, -0x7a78(r13)
+    lwz	r5, lbl_801A6948
     lis r8, 0x200
-    lwz r10, -0x7a74(r13)
+    lwz	r10, lbl_801A694C
     or r4, r5, r4
     lis r5, 0x40
-    stw r10, -0x7a74(r13)
-    stw r4, -0x7a78(r13)
+    stw	r10, lbl_801A694C
+    stw	r4, lbl_801A6948
     lis r4, 0x80
     sth r0, 0xe(r11)
-    lwz r0, -0x7a78(r13)
-    lwz r10, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r10, lbl_801A694C
     or r0, r0, r9
-    stw r10, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r10, lbl_801A694C
+    stw	r0, lbl_801A6948
     sth r6, 0xc(r11)
-    lwz r0, -0x7a78(r13)
-    lwz r6, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r6, lbl_801A694C
     or r0, r0, r8
-    stw r6, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r6, lbl_801A694C
+    stw	r0, lbl_801A6948
     sth r3, 0x12(r11)
-    lwz r0, -0x7a78(r13)
-    lwz r3, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r3, lbl_801A694C
     or r0, r0, r5
-    stw r3, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r3, lbl_801A694C
+    stw	r0, lbl_801A6948
     sth r7, 0x10(r11)
-    lwz r0, -0x7a78(r13)
-    lwz r3, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r3, lbl_801A694C
     or r0, r0, r4
-    stw r3, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r3, lbl_801A694C
+    stw	r0, lbl_801A6948
     lwz r31, 0x24(r1)
     lwz r30, 0x20(r1)
     lwz r29, 0x1c(r1)
@@ -348,7 +354,7 @@ asm void fn_8001B42C(register void* param)
     cmplw r0, r4
     beq _8001b47c
     li r0, 1
-    stw r0, -0x7a7c(r13)
+    stw	r0, lbl_801A6944
     stw r4, 0(r28)
 _8001b47c:
     lwz r0, 0(r31)
@@ -358,12 +364,12 @@ _8001b47c:
     cmplwi r0, 4
     mr r17, r0
     bne _8001b500
-    lwz r0, -0x7a4c(r13)
+    lwz	r0, lbl_801A6974
     cmplwi r0, 0
     bne _8001b500
     li r0, 1
     crxor 6, 6, 6
-    stw r0, -0x7a4c(r13)
+    stw	r0, lbl_801A6974
     addi r3, r15, 0x260
     bl OSReport
     addi r3, r15, 0x28c
@@ -610,7 +616,7 @@ _8001b7e8:
     add r0, r5, r0
     subf r0, r4, r0
     sth r0, 0x100(r29)
-    lwz r0, -0x7a84(r13)
+    lwz	r0, lbl_801A693C
     cmplwi r0, 0
     bne _8001b814
     li r0, 3
@@ -635,18 +641,18 @@ _8001b848:
     sth r0, 0x32(r29)
     addi r0, r4, 1
     ori r0, r0, 0x1000
-    lwz r5, -0x7a78(r13)
+    lwz	r5, lbl_801A6948
     addi r4, r29, 2
-    lwz r6, -0x7a74(r13)
+    lwz	r6, lbl_801A694C
     ori r5, r5, 0x40
-    stw r6, -0x7a74(r13)
-    stw r5, -0x7a78(r13)
+    stw	r6, lbl_801A694C
+    stw	r5, lbl_801A6948
     sth r0, 0x30(r29)
-    lwz r0, -0x7a78(r13)
-    lwz r5, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r5, lbl_801A694C
     ori r0, r0, 0x80
-    stw r5, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r5, lbl_801A694C
+    stw	r0, lbl_801A6948
     lwz r0, 0(r28)
     lhz r5, 2(r29)
     cmplwi r0, 2
@@ -682,11 +688,11 @@ _8001b8f0:
     sth r0, 0(r4)
     lis r0, 0x4000
     addi r6, r29, 0x6c
-    lwz r4, -0x7a78(r13)
-    lwz r5, -0x7a74(r13)
+    lwz	r4, lbl_801A6948
+    lwz	r5, lbl_801A694C
     or r0, r4, r0
-    stw r5, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r5, lbl_801A694C
+    stw	r0, lbl_801A6948
     lwz r0, 0(r31)
     lhz r4, 0x6c(r29)
     cmpwi r0, 2
@@ -704,11 +710,11 @@ _8001b93c:
 _8001b940:
     sth r0, 0(r6)
     cmpwi r7, 0
-    lwz r4, -0x7a78(r13)
-    lwz r0, -0x7a74(r13)
+    lwz	r4, lbl_801A6948
+    lwz	r0, lbl_801A694C
     ori r0, r0, 0x200
-    stw r0, -0x7a74(r13)
-    stw r4, -0x7a78(r13)
+    stw	r0, lbl_801A694C
+    stw	r4, lbl_801A6948
     lhz r4, 0(r24)
     lhz r5, 0(r16)
     beq _8001b970
@@ -727,27 +733,27 @@ _8001b974:
     ori r0, r0, 0x1000
     sth r0, 0x4a(r29)
     lis r0, 0x400
-    lwz r6, -0x7a78(r13)
-    lwz r7, -0x7a74(r13)
+    lwz	r6, lbl_801A6948
+    lwz	r7, lbl_801A694C
     or r0, r7, r0
-    stw r0, -0x7a74(r13)
-    stw r6, -0x7a78(r13)
+    stw	r0, lbl_801A694C
+    stw	r6, lbl_801A6948
     sth r8, 0x70(r29)
-    lwz r6, -0x7a78(r13)
-    lwz r0, -0x7a74(r13)
+    lwz	r6, lbl_801A6948
+    lwz	r0, lbl_801A694C
     ori r0, r0, 0x80
-    stw r0, -0x7a74(r13)
-    stw r6, -0x7a78(r13)
+    stw	r0, lbl_801A694C
+    stw	r6, lbl_801A6948
     b _8001b9ec
 _8001b9cc:
     li r0, 0x100
     sth r0, 0x4a(r29)
     lis r0, 0x400
-    lwz r6, -0x7a78(r13)
-    lwz r7, -0x7a74(r13)
+    lwz	r6, lbl_801A6948
+    lwz	r7, lbl_801A694C
     or r0, r7, r0
-    stw r0, -0x7a74(r13)
-    stw r6, -0x7a78(r13)
+    stw	r0, lbl_801A694C
+    stw	r6, lbl_801A6948
 _8001b9ec:
     lhz r0, 0(r3)
     subfic r12, r4, 0x2d0
@@ -757,23 +763,23 @@ _8001b9ec:
     sth r6, 6(r29)
     lis r9, 0x400
     lis r7, 0x800
-    lwz r10, -0x7a78(r13)
+    lwz	r10, lbl_801A6948
     lis r6, 0x10
     lis r4, 0x20
-    lwz r11, -0x7a74(r13)
+    lwz	r11, lbl_801A694C
     or r10, r10, r3
     lis r3, 4
-    stw r11, -0x7a74(r13)
-    stw r10, -0x7a78(r13)
+    stw	r11, lbl_801A694C
+    stw	r10, lbl_801A6948
     lbz r10, 0x1d(r30)
     lbz r11, 0x1e(r30)
     rlwimi r11, r10, 8, 0x10, 0x17
     sth r11, 4(r29)
-    lwz r10, -0x7a78(r13)
-    lwz r11, -0x7a74(r13)
+    lwz	r10, lbl_801A6948
+    lwz	r11, lbl_801A694C
     or r8, r10, r8
-    stw r11, -0x7a74(r13)
-    stw r8, -0x7a78(r13)
+    stw	r11, lbl_801A694C
+    stw	r8, lbl_801A6948
     lbz r8, 0x1f(r30)
     lbz r10, 0x1c(r30)
     add r16, r8, r0
@@ -784,63 +790,63 @@ _8001b9ec:
     sth r8, 0xa(r29)
     add r8, r11, r0
     addi r0, r8, 0x28
-    lwz r10, -0x7a78(r13)
+    lwz	r10, lbl_801A6948
     subf r0, r12, r0
     srwi r8, r16, 9
-    lwz r11, -0x7a74(r13)
+    lwz	r11, lbl_801A694C
     slwi r0, r0, 1
     or r9, r10, r9
-    stw r11, -0x7a74(r13)
+    stw	r11, lbl_801A694C
     or r0, r8, r0
-    stw r9, -0x7a78(r13)
+    stw	r9, lbl_801A6948
     sth r0, 8(r29)
-    lwz r0, -0x7a78(r13)
-    lwz r8, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r8, lbl_801A694C
     or r0, r0, r7
-    stw r8, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r8, lbl_801A694C
+    stw	r0, lbl_801A6948
     lhz r0, 0x10(r30)
     lbz r7, 0xc(r30)
     slwi r0, r0, 5
     or r0, r7, r0
     sth r0, 0x16(r29)
-    lwz r0, -0x7a78(r13)
-    lwz r7, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r7, lbl_801A694C
     or r0, r0, r6
-    stw r7, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r7, lbl_801A694C
+    stw	r0, lbl_801A6948
     lhz r0, 0x14(r30)
     lbz r6, 0xe(r30)
     slwi r0, r0, 5
     or r0, r6, r0
     sth r0, 0x14(r29)
-    lwz r0, -0x7a78(r13)
-    lwz r6, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r6, lbl_801A694C
     or r0, r0, r4
-    stw r6, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r6, lbl_801A694C
+    stw	r0, lbl_801A6948
     lhz r0, 0x12(r30)
     lbz r4, 0xd(r30)
     slwi r0, r0, 5
     or r0, r4, r0
     sth r0, 0x1a(r29)
-    lwz r0, -0x7a78(r13)
-    lwz r4, -0x7a74(r13)
+    lwz	r0, lbl_801A6948
+    lwz	r4, lbl_801A694C
     or r0, r0, r3
-    stw r4, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r4, lbl_801A694C
+    stw	r0, lbl_801A6948
     lhz r0, 0x16(r30)
     lbz r3, 0xf(r30)
     slwi r0, r0, 5
     or r0, r3, r0
     sth r0, 0x18(r29)
-    lwz r3, -0x7a78(r13)
+    lwz	r3, lbl_801A6948
     lis r0, 8
     addi r6, r29, 0x11c
-    lwz r4, -0x7a74(r13)
+    lwz	r4, lbl_801A694C
     or r0, r3, r0
-    stw r4, -0x7a74(r13)
-    stw r0, -0x7a78(r13)
+    stw	r4, lbl_801A694C
+    stw	r0, lbl_801A6948
     lhz r3, 0(r27)
     lwz r4, 0(r25)
     addi r0, r3, 0xf
@@ -873,13 +879,13 @@ _8001bb90:
     lbz r4, 0x11d(r29)
     rlwimi r4, r0, 8, 0x10, 0x17
     sth r4, 0x48(r29)
-    lwz r4, -0x7a78(r13)
-    lwz r0, -0x7a50(r13)
-    lwz r5, -0x7a74(r13)
+    lwz	r4, lbl_801A6948
+    lwz	r0, lbl_801A6970
+    lwz	r5, lbl_801A694C
     cmplwi r0, 0
     or r0, r5, r3
-    stw r0, -0x7a74(r13)
-    stw r4, -0x7a78(r13)
+    stw	r0, lbl_801A694C
+    stw	r4, lbl_801A6948
     beq _8001bc0c
     addi r3, r29, 0xf0
     addi r4, r29, 0x124

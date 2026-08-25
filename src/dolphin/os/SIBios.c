@@ -105,7 +105,7 @@ struct SIReq {
 
 extern struct SIReq lbl_8015CC10[4];   /* .bss:0x8015CC10 */
 extern void (* volatile lbl_801A6830)(s32 interrupt, OSContext* context); /* .sbss */
-extern u32 SamplingRate;   /* .sbss:0x801A6820 */
+extern s32 SamplingRate;   /* .sbss:0x801A6820 */
 extern u64 lbl_801A6828;   /* .sbss:0x801A6828 */
 extern char lbl_80123B50[];     /* .data:0x80123B50 (device names blob) */
 extern u8 XYNTSC[];             /* .data:0x80123C68 (sampling table) */
@@ -113,6 +113,9 @@ extern u8 XYNTSC[];             /* .data:0x80123C68 (sampling table) */
 /* ---- SIChannelValid ---- */
 #pragma push
 #pragma force_active on
+extern unsigned char __SIVersion[4];
+extern unsigned char lbl_801A6818[8];
+extern unsigned char lbl_801A6834[4];
 asm s32 SIChannelValid(void)
 {
     nofralloc
@@ -803,7 +806,7 @@ asm void SIInit(void)
     stwu        r1, -0x10(r1)
     stw         r31, 0xc(r1)
     addi        r31, r4, Packet@l
-    lwz         r3, -0x7F78(r13) /* __SIVersion@sda21 */
+    lwz	r3, __SIVersion /* __SIVersion@sda21 */
     bl          OSRegisterVersion
     li          r5, -0x1
     stw         r5, 0x60(r31)
@@ -1508,10 +1511,10 @@ asm void GetTypeCallback(register s32 chan, register u32 status,
     clrlwi.     r0, r26, 28
     stw         r3, 0x120(r5)
     srw         r4, r4, r27
-    lwz         r3, -0x7BA8(r13) /* lbl_801A6818@sda21 */
+    lwz	r3, lbl_801A6818 /* lbl_801A6818@sda21 */
     lwz         r28, 0x0(r30)
     andc        r0, r3, r4
-    stw         r0, -0x7BA8(r13) /* lbl_801A6818@sda21 */
+    stw	r0, lbl_801A6818 /* lbl_801A6818@sda21 */
     and         r26, r3, r4
     bne         L_80012B14
     rlwinm      r3, r28, 0, 3, 4
@@ -2141,7 +2144,7 @@ asm void SISetSamplingRate(register s32 msec)
     li          r29, 0xb
 L_80013304:
     bl          OSDisableInterrupts
-    stw         r29, -0x7BA0(r13) /* SamplingRate@sda21 */
+    stw	r29, SamplingRate /* SamplingRate@sda21 */
     mr          r30, r3
     bl          VIGetTvFormat
     cmpwi       r3, 0x2
@@ -2224,7 +2227,7 @@ asm void fn_800133E0(register s32 chan)
     lwz         r0, 0x18(r4)
     cmpwi       r0, 0x0
     bne         L_80013418
-    lwz         r0, -0x7B98(r13) /* lbl_801A6828@sda21 */
+    lwz	r0, lbl_801A6828 /* lbl_801A6828@sda21 */
     cmpwi       r0, 0x0
     bne         L_80013418
     bl          fn_8001375C
@@ -2312,7 +2315,7 @@ asm void SICallback(register s32 chan, register u32 status,
     stw         r29, 0x2ec(r1)
     mr          r29, r3
     lis         r3, lbl_8015CC10@ha
-    lwz         r0, -0x7B98(r13) /* lbl_801A6828@sda21 */
+    lwz	r0, lbl_801A6828 /* lbl_801A6828@sda21 */
     mulli       r6, r29, 0x28
     addi        r3, r3, lbl_8015CC10@l
     cmpwi       r0, 0x0
@@ -2387,7 +2390,7 @@ asm void SITransferPollCallback(register s32 chan, register u32 status)
     mulli       r5, r31, 0x28
     stw         r29, 0x2e4(r1)
     addi        r3, r3, lbl_8015CC10@l
-    lwz         r0, -0x7B98(r13) /* lbl_801A6828@sda21 */
+    lwz	r0, lbl_801A6828 /* lbl_801A6828@sda21 */
     add         r30, r3, r5
     cmpwi       r0, 0x0
     bne         L_800136CC
@@ -2507,11 +2510,11 @@ asm void fn_8001375C(register s32 chan)
     stw         r31, 0x1c(r1)
     mr          r31, r3
     srw         r4, r0, r31
-    lwz         r3, -0x7B8C(r13) /* lbl_801A6834@sda21 */
+    lwz	r3, lbl_801A6834 /* lbl_801A6834@sda21 */
     and.        r0, r3, r4
     bne         L_800137B0
     or          r0, r3, r4
-    stw         r0, -0x7B8C(r13) /* lbl_801A6834@sda21 */
+    stw	r0, lbl_801A6834 /* lbl_801A6834@sda21 */
     addi        r3, r31, 0x0
     addi        r4, r1, 0xc
     bl          SIGetResponse
@@ -2519,7 +2522,7 @@ asm void fn_8001375C(register s32 chan)
     addi        r4, r3, 0x680
     addi        r3, r31, 0x0
     bl          SISetCommand
-    lwz         r3, -0x7B8C(r13) /* lbl_801A6834@sda21 */
+    lwz	r3, lbl_801A6834 /* lbl_801A6834@sda21 */
     bl          SIGetWirelessID
 L_800137B0:
     lwz         r0, 0x24(r1)
@@ -2558,7 +2561,7 @@ asm int SIGetResponseSync(register s32 chan, register void* out)
     stw         r0, 0x18(r30)
     b           L_800138FC
 L_80013818:
-    lwz         r0, -0x7B8C(r13) /* lbl_801A6834@sda21 */
+    lwz	r0, lbl_801A6834 /* lbl_801A6834@sda21 */
     and.        r0, r0, r28
     bne         L_80013830
     li          r0, -0x1
@@ -2574,10 +2577,10 @@ L_80013830:
     bl          SIGetResponse
     mr          r3, r28
     bl          SIGetWirelessIDBitfield
-    lwz         r3, -0x7B8C(r13) /* lbl_801A6834@sda21 */
+    lwz	r3, lbl_801A6834 /* lbl_801A6834@sda21 */
     li          r0, -0x1
     andc        r3, r3, r28
-    stw         r3, -0x7B8C(r13) /* lbl_801A6834@sda21 */
+    stw	r3, lbl_801A6834 /* lbl_801A6834@sda21 */
     stw         r0, 0x18(r30)
     b           L_800138FC
 L_8001386C:
@@ -2649,14 +2652,14 @@ asm void SITypeNameLookup(register s32 interrupt, register OSContext* context)
     stwu        r1, -0x2e0(r1)
     stw         r31, 0x2dc(r1)
     addi        r31, r4, 0x0
-    lwz         r0, -0x7B90(r13) /* lbl_801A6830@sda21 */
+    lwz	r0, lbl_801A6830 /* lbl_801A6830@sda21 */
     cmplwi      r0, 0x0
     beq         L_80013980
     addi        r3, r1, 0x10
     bl          OSClearContext
     addi        r3, r1, 0x10
     bl          OSSetCurrentContext
-    lwz         r12, -0x7B90(r13) /* lbl_801A6830@sda21 */
+    lwz	r12, lbl_801A6830 /* lbl_801A6830@sda21 */
     mtlr        r12
     blrl
     addi        r3, r1, 0x10
@@ -2683,8 +2686,8 @@ asm void* fn_80013994(register void* handler)
     stw         r0, 0x4(r1)
     stwu        r1, -0x18(r1)
     stw         r31, 0x14(r1)
-    lwz         r31, -0x7B90(r13) /* lbl_801A6830@sda21 */
-    stw         r3, -0x7B90(r13) /* lbl_801A6830@sda21 */
+    lwz	r31, lbl_801A6830 /* lbl_801A6830@sda21 */
+    stw	r3, lbl_801A6830 /* lbl_801A6830@sda21 */
     beq         L_800139C4
     lis         r3, SITypeNameLookup@ha
     addi        r3, r3, SITypeNameLookup@l
@@ -2734,7 +2737,7 @@ L_80013A2C:
     clrlwi      r30, r30, 21
     bl          OSDisableInterrupts
     lis         r0, 0x8000
-    lwz         r4, -0x7B8C(r13) /* lbl_801A6834@sda21 */
+    lwz	r4, lbl_801A6834 /* lbl_801A6834@sda21 */
     srw         r0, r0, r29
     and.        r0, r4, r0
     addi        r31, r3, 0x0
