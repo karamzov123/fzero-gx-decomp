@@ -1644,13 +1644,9 @@ _80033a2c:
     blr	
 }
 
-asm void GXWriteAttrRegister(register void* p)
+void GXWriteAttrRegister(register void* p)
 {
-    nofralloc
-    li	r0, 0x48
-    lis	r3, -0x33ff
-    stb	r0, -0x8000(r3)
-    blr	
+    *(volatile unsigned char*)0xCC008000 = 0x48;
 }
 
 asm void GXSetTexCoordGen2(register void* p, register int a, register int b)

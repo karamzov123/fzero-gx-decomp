@@ -75,22 +75,16 @@ asm void GXGetTexObjData(void)
     blr	
 }
 
-asm void GXXFormSetupA(register void* p)
+void* GXXFormSetupA(register void* p)
 {
-    nofralloc
-    lwz	r0, 8(r3)
-    clrlwi	r3, r0, 0x16
-    addi	r3, r3, 1
-    blr	
+    u32 t = *(volatile u32*)((char*)p + 8);
+    return (void*)((t & 0x3FF) + 1);
 }
 
-asm void GXXFormSetupB(register void* p)
+void* GXXFormSetupB(register void* p)
 {
-    nofralloc
-    lwz	r0, 8(r3)
-    rlwinm	r3, r0, 0x16, 0x16, 0x1f
-    addi	r3, r3, 1
-    blr	
+    u32 t = (*(volatile u32*)((char*)p + 8) >> 10) & 0x3FF;
+    return (void*)(t + 1);
 }
 
 u32 GXGetTexObjMipmap(register void* obj)
