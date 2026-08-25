@@ -1,3 +1,5 @@
+extern unsigned char OSErrorMsg_80122828[41];
+
 typedef int BOOL;
 typedef unsigned int u32;
 typedef unsigned char u8;
@@ -193,8 +195,8 @@ L2GlobalInvalidate_2:
     bl      PPCMtl2cr
     b       L2GlobalInvalidate_3
 L2GlobalInvalidate_3:
-    lis     r3, 0x8012
-    addi    r31, r3, 0x2828
+    lis     r3, OSErrorMsg_80122828@ha
+    addi    r31, r3, OSErrorMsg_80122828@l
     b       L2GlobalInvalidate_4
 L2GlobalInvalidate_4:
     b       L2GlobalInvalidate_6
@@ -219,7 +221,7 @@ void DMAErrorHandler(s32 error, OSContext* context, ...)
     char* strBase;
     u32 hid2;
 
-    strBase = (char*)0x80122828;
+    strBase = (char*)OSErrorMsg_80122828;
     hid2 = PPCMfhid2();
 
     OSReport(strBase + 0x2C);
@@ -258,8 +260,8 @@ asm void __OSCacheInit(void)
     stwu    r1, -0x10(r1)
     stw     r31, 0xC(r1)
     stw     r30, 8(r1)
-    lis     r3, 0x8012
-    addi    r31, r3, 0x2828
+    lis     r3, OSErrorMsg_80122828@ha
+    addi    r31, r3, OSErrorMsg_80122828@l
     bl      PPCMfhid0
     rlwinm  r0, r3, 0, 16, 16
     cmplwi  r0, 0x0

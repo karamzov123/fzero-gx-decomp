@@ -44,6 +44,9 @@ extern u32 __OSErrorTable[];
 
 extern unsigned char __OSLastInterruptSrr0[4];
 extern unsigned char __OSLastInterruptTime[8];
+extern unsigned char OSErrorFmt_80122C30[22];
+extern unsigned char OSErrorInfo_80122F0C[64];
+extern unsigned short OSProgressPtr_801A6434;
 extern unsigned char lbl_801A6430[4];
 extern unsigned char __OSLastInterrupt[2];
 
@@ -113,8 +116,8 @@ OSPanic_skipSpill:
     addi    r29, r5, 0
     stw     r5, 0x10(r1)
     stw     r6, 0x14(r1)
-    lis     r6, 0x8012
-    addi    r31, r6, 0x2C30
+    lis     r6, OSErrorFmt_80122C30@ha
+    addi    r31, r6, OSErrorFmt_80122C30@l
     stw     r7, 0x18(r1)
     stw     r8, 0x1C(r1)
     stw     r9, 0x20(r1)
@@ -325,7 +328,7 @@ asm void __OSUnhandledException(unsigned char exception, OSContext* context,
     mflr    r0
     lis     r8, __OSErrorTable@ha
     stw     r0, 4(r1)
-    lis     r7, 0x8012
+    lis     r7, OSErrorFmt_80122C30@ha
     stwu    r1, -0x40(r1)
     stmw    r22, 0x18(r1)
     addi    r24, r3, 0
@@ -333,7 +336,7 @@ asm void __OSUnhandledException(unsigned char exception, OSContext* context,
     addi    r26, r5, 0
     addi    r27, r6, 0
     addi    r30, r8, __OSErrorTable@l
-    addi    r31, r7, 0x2C30
+    addi    r31, r7, OSErrorFmt_80122C30@l
     bl      OSGetTime
     lwz     r5, 0x19C(r25)
     addi    r28, r4, 0
@@ -437,7 +440,7 @@ Unhandled_report:
     clrlwi  r4, r24, 24
     bl      OSReport
 Unhandled_afterDispatch:
-    addi    r3, r13, -0x7F8C
+    li      r3, OSProgressPtr_801A6434
     crxor   6, 6, 6
     bl      OSReport
     mr      r3, r25
@@ -455,8 +458,8 @@ Unhandled_afterDispatch:
     clrlwi  r0, r24, 24
     cmplwi  r0, 0xF
     bgt     Unhandled_lastInterrupt
-    lis     r3, 0x8012
-    addi    r3, r3, 0x2F0C
+    lis     r3, OSErrorInfo_80122F0C@ha
+    addi    r3, r3, OSErrorInfo_80122F0C@l
     slwi    r0, r0, 2
     lwzx    r0, r3, r0
     mtctr   r0
@@ -484,7 +487,7 @@ Unhandled_afterDispatch:
     crxor   6, 6, 6
     bl      OSReport
     b       Unhandled_lastInterrupt
-    addi    r3, r13, -0x7F8C
+    li      r3, OSProgressPtr_801A6434
     crxor   6, 6, 6
     bl      OSReport
     lis     r25, 0xCC00
@@ -504,7 +507,7 @@ Unhandled_afterDispatch:
     addi    r3, r31, 0x288
     bl      OSReport
 Unhandled_lastInterrupt:
-    lha     r4, -0x7C10(r13)
+    lha     r4, __OSLastInterrupt
     addi    r3, r31, 0x2A4
     crxor   6, 6, 6
     lwz	r5, __OSLastInterruptSrr0

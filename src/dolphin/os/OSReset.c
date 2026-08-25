@@ -11,6 +11,7 @@ typedef unsigned long long u64;
 #pragma force_active on
 
 extern void OSDisableInterrupts(void);
+extern unsigned char ResetFunctionQueue_801A67D0[8];
 extern void ICFlashInvalidate(void);
 extern void __OSStopAudioSystem(void);
 extern s32 __PADDisableRecalibration(s32);
@@ -27,7 +28,7 @@ extern void memset(void* ptr, s32 val, u32 size);
 asm void OSRegisterResetFunction(register void* info)
 {
     nofralloc
-    lwz r5, -0x7bf0(r13)
+    lwz r5, ResetFunctionQueue_801A67D0
     b       _8000ee7c
 _8000ee78:
     lwz	r5, 8(r5)
@@ -41,11 +42,11 @@ _8000ee7c:
 _8000ee94:
     cmplwi	r5, 0
     bne     _8000eecc
-    addi	r5, r13, -0x7bf0
+    li	r5, ResetFunctionQueue_801A67D0
     lwzu	r4, 4(r5)
     cmplwi	r4, 0
     bne     _8000eeb4
-    stw r3, -0x7bf0(r13)
+    stw r3, ResetFunctionQueue_801A67D0
     b       _8000eeb8
 _8000eeb4:
     stw	r3, 8(r4)
@@ -62,7 +63,7 @@ _8000eecc:
     cmplwi	r4, 0
     stw	r4, 0xc(r3)
     bne     _8000eeec
-    stw r3, -0x7bf0(r13)
+    stw r3, ResetFunctionQueue_801A67D0
     blr	
 _8000eeec:
     stw	r3, 8(r4)
@@ -156,7 +157,7 @@ _8000efe4:
 _8000efe8:
     b       _8000efec
 _8000efec:
-    lwz r27, -0x7bf0(r13)
+    lwz r27, ResetFunctionQueue_801A67D0
     li	r28, 0
     b       _8000eff8
 _8000eff8:
@@ -210,7 +211,7 @@ _8000f08c:
     beq     _8000f08c
 _8000f098:
     bl      OSDisableInterrupts
-    lwz r28, -0x7bf0(r13)
+    lwz r28, ResetFunctionQueue_801A67D0
     li	r27, 0
     b       _8000f0a8
 _8000f0a8:
