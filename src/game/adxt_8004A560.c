@@ -19,6 +19,7 @@ extern unsigned char lbl_8017D6FC[4];
 extern unsigned char lbl_8017D704[4];
 extern unsigned char lbl_8017D708[3680];
 
+extern unsigned char lbl_8017D700[4];
 asm void fn_8004A560(void)
 {
     nofralloc
@@ -57,9 +58,9 @@ _8004a5c0:
     addi	r31, r31, 0x5c
     cmpwi	r30, 0x28
     blt     _8004a5ac
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017D6FC@ha
     li	r0, 0
-    stw	r0, -0x2904(r3)
+    stw	r0, lbl_8017D6FC@l(r3)
 _8004a5dc:
     lwz	r0, 0x14(r1)
     lwz	r31, 0xc(r1)
@@ -333,10 +334,10 @@ _8004a980:
     mtctr	r12
     bctrl	
     li	r0, 0
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017D700@ha
     stw	r0, 0x20(r30)
     stw	r0, 0x24(r30)
-    lwz	r4, -0x2900(r3)
+    lwz	r4, lbl_8017D700@l(r3)
     cmpwi	r4, 0
     blt     _8004abe8
     lbz	r3, 3(r30)
@@ -473,8 +474,8 @@ _8004ab34:
     bl      cvFsGetStat
     cmpwi	r3, 3
     bne     _8004abe8
-    lis	r3, -0x7fe8
-    lwz	r4, -0x2900(r3)
+    lis	r3, lbl_8017D700@ha
+    lwz	r4, lbl_8017D700@l(r3)
     cmpwi	r4, 0
     blt     _8004abe8
     lbz	r3, 3(r30)
