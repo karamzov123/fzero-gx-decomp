@@ -415,7 +415,8 @@ config.libs = [
         Object(Matching, "dolphin/os/init/trk_stubs.c"),
         Object(Matching, "dolphin/metrotrk/init_exceptions.c"),
         Object(Matching, "dolphin/os/init/trk_reset.c"),
-        Object(Matching, "dolphin/os/OSAllocHead.c"),
+        Object(Matching, "dolphin/os/OSAllocHead.c",
+              mw_version="GC/1.3"),  # integrator discriminator re-pin 2026-08-25: findings/109
         Object(Matching, "dolphin/os/OSAllocCtx.c"),
         Object(Matching, "dolphin/os/OSCacheRest.c"),
         Object(Matching, "dolphin/os/OSContext.c"),
