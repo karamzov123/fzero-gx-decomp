@@ -159,7 +159,7 @@ lbl_80016088:
 	lwz r6, 0xf8(r5)
 	lis r5, 0x1062
 	addi r5, r5, 0x4dd3
-	lwz r8, -31572(r13)
+	lwz r8, LastResetEnd+0x4
 	srwi r6, r6, 2
 	mulhwu r5, r5, r6
 	srwi r5, r5, 6
@@ -1062,7 +1062,7 @@ lbl_80016cf8:
 	li r0, 0x1
 	stw r0, ResetOccurred
 	bl __OSGetSystemTime
-	stw r4, -31572(r13)
+	stw r4, LastResetEnd+0x4
 	stw r3, LastResetEnd
 	lmw r26, 0x8(r1)
 	lwz r0, 0x24(r1)
