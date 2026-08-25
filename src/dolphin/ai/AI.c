@@ -17,6 +17,119 @@ extern unsigned char __OldStack[4];
 
 asm void __AICallbackStackSwitch(register void* callback);
 
+// ---- orphan unit auto_01_8001E314_text: AIInit (0x8001E314, 0x16C) ----
+
+extern void OSRegisterVersion(register void* version);
+extern void AISetStreamSampleRate(register unsigned long rate);
+extern void AISetDSPSampleRate(register unsigned long rate);
+extern void __OSSetInterruptHandler(register int interrupt, register void* handler);
+extern void __OSUnmaskInterrupts(register unsigned long mask);
+asm void __AIDHandler(register s32 interrupt, register OSContext* context);
+asm void __AISHandler(register s32 interrupt, register OSContext* context);
+
+#pragma push
+#pragma force_active on
+
+// 0x8001E314 | size: 0x16C
+asm void AIInit(register void* stack)
+{
+    nofralloc
+    mflr    r0
+    stw     r0, 0x4(r1)
+    stwu    r1, -0x18(r1)
+    stw     r31, 0x14(r1)
+    stw     r30, 0x10(r1)
+    addi    r30, r3, 0
+    lwz     r0, -0x7a10(r13)
+    cmpwi   r0, 0x1
+    beq     _8001E468
+    lwz     r3, -0x7ef0(r13)
+    bl      OSRegisterVersion
+    lis     r3, 0x8000
+    lwz     r0, 0xf8(r3)
+    lis     r3, 0x431c
+    lis     r4, 0x1
+    srwi    r0, r0, 2
+    subi    r3, r3, 0x217d
+    mulhwu  r0, r3, r0
+    srwi    r9, r0, 15
+    subi    r5, r4, 0x5bd8
+    subi    r3, r4, 0x5bf0
+    subi    r0, r4, 0x9e8
+    lis     r4, 0x1062
+    mullw   r7, r9, r5
+    addi    r10, r4, 0x4dd3
+    mullw   r5, r9, r3
+    mullw   r4, r9, r0
+    mulli   r8, r9, 0x7b24
+    mulli   r3, r9, 0xbb8
+    mulhwu  r8, r10, r8
+    mulhwu  r7, r10, r7
+    mulhwu  r5, r10, r5
+    mulhwu  r4, r10, r4
+    mulhwu  r3, r10, r3
+    srwi    r8, r8, 9
+    srwi    r7, r7, 9
+    stw     r8, -0x7a04(r13)
+    srwi    r5, r5, 9
+    srwi    r4, r4, 9
+    stw     r7, -0x79fc(r13)
+    li      r31, 0x0
+    srwi    r3, r3, 9
+    stw     r5, -0x79f4(r13)
+    lis     r6, 0xcc00
+    stw     r3, -0x79e4(r13)
+    li      r3, 0x1
+    lwz     r0, 0x6c00(r6)
+    stw     r4, -0x79ec(r13)
+    rlwinm  r0, r0, 0, 27, 25
+    ori     r0, r0, 0x20
+    stw     r31, -0x7a08(r13)
+    stw     r31, -0x7a00(r13)
+    stw     r31, -0x79f8(r13)
+    stw     r31, -0x79f0(r13)
+    stw     r31, -0x79e8(r13)
+    lwz     r5, 0x6c04(r6)
+    stw     r0, 0x6c00(r6)
+    rlwinm  r0, r5, 0, 24, 15
+    nop
+    stw     r0, 0x6c04(r6)
+    lwz     r0, 0x6c04(r6)
+    clrrwi  r0, r0, 8
+    nop
+    stw     r0, 0x6c04(r6)
+    stw     r31, 0x6c0c(r6)
+    bl      AISetStreamSampleRate
+    li      r3, 0x0
+    bl      AISetDSPSampleRate
+    lis     r3, __AIDHandler@ha
+    stw     r31, -0x7a20(r13)
+    addi    r4, r3, __AIDHandler@l
+    stw     r31, -0x7a1c(r13)
+    li      r3, 0x5
+    stw     r30, -0x7a18(r13)
+    bl      __OSSetInterruptHandler
+    lis     r3, 0x400
+    bl      __OSUnmaskInterrupts
+    lis     r3, 0x8002
+    addi    r4, r3, -0x1b80
+    li      r3, 0x8
+    bl      __OSSetInterruptHandler
+    lis     r3, 0x80
+    bl      __OSUnmaskInterrupts
+    li      r0, 0x1
+    stw     r0, -0x7a10(r13)
+_8001E468:
+    lwz     r0, 0x1c(r1)
+    lwz     r31, 0x14(r1)
+    lwz     r30, 0x10(r1)
+    addi    r1, r1, 0x18
+    mtlr    r0
+    blr
+}
+
+#pragma pop
+
 #pragma push
 #pragma force_active on
 
@@ -274,3 +387,20 @@ _8001e7ac:
 }
 
 #pragma pop
+
+extern unsigned char lbl_801A69B0[4];
+extern unsigned char lbl_801A64D0[8];
+extern unsigned char lbl_801A69BC[4];
+extern unsigned char lbl_801A69C4[4];
+extern unsigned char lbl_801A69CC[4];
+extern unsigned char lbl_801A69DC[4];
+extern unsigned char lbl_801A69D4[4];
+extern unsigned char lbl_801A69B8[4];
+extern unsigned char lbl_801A69C0[4];
+extern unsigned char lbl_801A69C8[4];
+extern unsigned char lbl_801A69D0[4];
+extern unsigned char lbl_801A69D8[4];
+extern unsigned char lbl_801A69A0[4];
+extern unsigned char lbl_801A69A4[4];
+extern unsigned char __CallbackStack[4];
+

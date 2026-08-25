@@ -237,7 +237,7 @@ dolphin/dsp/dspleaf.c:
 	.text       start:0x8001E2AC end:0x8001E314
 
 dolphin/ai/AI.c:
-	.text       start:0x8001E480 end:0x8001E7E4
+	.text       start:0x8001E314 end:0x8001E7E4
 
 dolphin/ar/AR.c:
 	.text       start:0x8001E7E4 end:0x80020360
