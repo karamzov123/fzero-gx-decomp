@@ -1,213 +1,113 @@
-// dolphin/card/CARDCreate.c -- tail of coarse/text_80029828 (0x8002EED8-0x8002F140).
-// Melee identity: extern/dolphin/src/dolphin/card/CARDCreate.c
-//   CARDCreateAsync (0x8002EED8), CARDCreate (0x8002F0F8 sync wrapper via
-//   __CARDSyncCallback @0x80029828).
-// Retail quirks: sector-size guard returns -0xC before control-block acquire;
-// free-entry scan over CARD_MAX_FILE==127 entries with stride 0x40;
-// iconSpeed fast-set via sth into dir entry (inlined CARDSetIconSpeed).
+// NATC candidate 1 -- main/dolphin/card/CARDCreate (GFZE01)
+// Seed provenance: ~/.cache/natc/ref/melee/extern/dolphin/src/dolphin/card/CARDCreate.c
+// (exact-name Melee body), adapted to GFZE01 facts from accepted twins
+// CARDRename/CARDDelete/CARDStat (this session):
+//   - __CARDGetDirBlock takes card*, returns entry array
+//   - diskID pointer at card+0x10C; sectorSize u32 at card+0xC
+//   - apiCallback @0xD0, freeNo @0xBC, fileBase? fileInfo @0xC0
+//   - GFZE01 result codes: NAMETOOLONG -12, EXIST -7, NOENT -8, INSSPACE -9,
+//     FATAL -128; CARDFileInfo chan/fileNo/offset/iBlock are 32-bit
+// Hypothesis: direct adaptation matches both functions including stmw/lmw
+// prologue shape (8 live locals force r23..r31 allocation).
 
 typedef int s32;
-typedef unsigned long u32;
+typedef unsigned char u8;
 typedef unsigned short u16;
+typedef unsigned long u32;
+typedef int BOOL;
 
-extern u32 strlen(register char* s);
-extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);      // __CARDGetControlBlock
-extern void __CARDPutControlBlock(register void* ctrl, register s32 err);          // __CARDPutControlBlock
-extern void* __CARDGetDirBlock(void);                                          // __CARDGetFatBlock
-extern void __CARDGetFatBlock(register void* card);                            // __CARDGetDirBlock
-extern s32 __CARDAllocBlock(register s32 chn, register u16 nBlock, register void* callback); // __CARDAllocBlock
-extern s32 __CARDCompareFileName(register void* ent, register char* fileName);     // __CARDCompareFileName
-extern s32 __CARDSync(register s32 chn);                                // __CARDSync
-extern s32 strncmp(register void* a, register void* b, register u32 n); // memcmp
-extern void strncpy(register void* dst, register char* src, register u32 n); // strncpy
-extern void __CARDDefaultApiCallback(void);                                                // default-API callback stub
-extern void CreateCallbackFat(void);                                          // fat-update callback (CARDDir)
-extern void __CARDSyncCallback(void);
+typedef struct CARDDir {  u8 gameName[4];  u8 company[2];  u8 _pad0;  u8 bannerFormat;  u8 fileName[32];  u32 time;  u32 iconAddr;  u16 iconFormat;  u16 iconSpeed;  u8 permission;  u8 copyTimes;  u16 startBlock;  u16 length;  u8 _pad1[2];  u32 commentAddr;
+u8 _pad1_2[0];
+} CARDDir;
+
+typedef struct CARDFileInfo {  s32 chan;  s32 fileNo;  u32 offset;  u16 iBlock;
+} CARDFileInfo;
+
+extern u32 strlen(char* s);
+extern s32 __CARDGetControlBlock(s32 chan, void** pcard);
+extern s32 __CARDPutControlBlock(void* card, s32 err);
+extern CARDDir* __CARDGetDirBlock(void* card);
+extern void* __CARDGetFatBlock(void* card);
+extern s32 __CARDAllocBlock(s32 chn, u32 nBlock, void* callback);
+extern s32 __CARDCompareFileName(CARDDir* ent, char* fileName);
+extern s32 __CARDSync(s32 chn);
+extern s32 strncmp(void* a, void* b, u32 n);
+extern s32 strncpy(char* dst, char* src, u32 n);
+extern void __CARDDefaultApiCallback(void);
+extern void CreateCallbackFat(s32 chan, s32 result);
+extern void __CARDSyncCallback(s32 chan, s32 result);
+
+#define SECTOR_SIZE(card) (*(u32*)((char*)(card) + 0xc))
+#define DISK_ID(card) (*(void**)((char*)(card) + 0x10c))
 
 #pragma push
 #pragma force_active on
 
-asm s32 CARDCreateAsync(register s32 chan, register char* fileName, register u32 size,
-                        register void* fileInfo, register void* callback)
+s32 CARDCreateAsync(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo,
+                    void* callback)
 {
-    nofralloc
-_L_8002eed8:
-    mflr    r0
-    stw     r0, 4(r1)
-    stwu    r1, -0x48(r1)
-    stmw    r23, 0x24(r1)
-    addi    r26, r4, 0
-    addi    r25, r3, 0
-    addi    r27, r5, 0
-    addi    r28, r6, 0
-    addi    r29, r7, 0
-    addi    r3, r26, 0
-    bl      strlen
-    cmplwi  r3, 0x20
-    ble     _L_8002ef14
-    li      r3, -0xc
-    b       _L_8002f0e4
-_L_8002ef14:
-    addi    r3, r25, 0
-    addi    r4, r1, 0x1c
-    bl      __CARDGetControlBlock
-    cmpwi   r3, 0
-    bge     _L_8002ef2c
-    b       _L_8002f0e4
-_L_8002ef2c:
-    cmplwi  r27, 0
-    beq     _L_8002ef4c
-    lwz     r3, 0x1c(r1)
-    lwz     r4, 0xc(r3)
-    divwu   r0, r27, r4
-    mullw   r0, r0, r4
-    subf.   r0, r0, r27
-    beq     _L_8002ef54
-_L_8002ef4c:
-    li      r3, -0x80
-    b       _L_8002f0e4
-_L_8002ef54:
-    lis     r4, 1
-    addi    r30, r4, -1
-    bl      __CARDGetDirBlock
-    addi    r31, r3, 0
-    addi    r24, r31, 0
-    li      r23, 0
-    b       _L_8002eff8
-_L_8002ef70:
-    lbz     r0, 0(r24)
-    cmplwi  r0, 0xff
-    bne     _L_8002ef90
-    clrlwi  r0, r30, 0x10
-    cmplwi  r0, 0xffff
-    bne     _L_8002eff0
-    mr      r30, r23
-    b       _L_8002eff0
-_L_8002ef90:
-    lwz     r4, 0x1c(r1)
-    addi    r3, r24, 0
-    li      r5, 4
-    lwz     r4, 0x10c(r4)
-    bl      strncmp
-    cmpwi   r3, 0
-    bne     _L_8002eff0
-    lwz     r4, 0x1c(r1)
-    addi    r3, r24, 4
-    li      r5, 2
-    lwz     r4, 0x10c(r4)
-    addi    r4, r4, 4
-    bl      strncmp
-    cmpwi   r3, 0
-    bne     _L_8002eff0
-    addi    r3, r24, 0
-    addi    r4, r26, 0
-    bl      __CARDCompareFileName
-    cmpwi   r3, 0
-    beq     _L_8002eff0
-    lwz     r3, 0x1c(r1)
-    li      r4, -7
-    bl      __CARDPutControlBlock
-    b       _L_8002f0e4
-_L_8002eff0:
-    addi    r24, r24, 0x40
-    addi    r23, r23, 1
-_L_8002eff8:
-    clrlwi  r0, r23, 0x10
-    cmplwi  r0, 0x7f
-    blt     _L_8002ef70
-    clrlwi  r0, r30, 0x10
-    cmplwi  r0, 0xffff
-    bne     _L_8002f020
-    lwz     r3, 0x1c(r1)
-    li      r4, -8
-    bl      __CARDPutControlBlock
-    b       _L_8002f0e4
-_L_8002f020:
-    lwz     r3, 0x1c(r1)
-    bl      __CARDGetFatBlock
-    lwz     r4, 0x1c(r1)
-    lhz     r0, 6(r3)
-    lwz     r3, 0xc(r4)
-    mullw   r0, r3, r0
-    cmplw   r0, r27
-    bge     _L_8002f050
-    addi    r3, r4, 0
-    li      r4, -9
-    bl      __CARDPutControlBlock
-    b       _L_8002f0e4
-_L_8002f050:
-    cmplwi  r29, 0
-    beq     _L_8002f060
-    mr      r0, r29
-    b       _L_8002f068
-_L_8002f060:
-    lis     r3, __CARDDefaultApiCallback@ha
-    addi    r0, r3, __CARDDefaultApiCallback@l
-_L_8002f068:
-    stw     r0, 0xd0(r4)
-    rlwinm  r0, r30, 6, 0xa, 0x19
-    add     r7, r31, r0
-    lwz     r3, 0x1c(r1)
-    clrlwi  r29, r30, 0x10
-    addi    r4, r26, 0
-    sth     r30, 0xbc(r3)
-    addi    r3, r7, 8
-    li      r5, 0x20
-    lwz     r6, 0x1c(r1)
-    lwz     r0, 0xc(r6)
-    divwu   r0, r27, r0
-    sth     r0, 0x38(r7)
-    bl      strncpy
-    lwz     r4, 0x1c(r1)
-    lis     r3, CreateCallbackFat@ha
-    addi    r5, r3, CreateCallbackFat@l
-    stw     r28, 0xc0(r4)
-    mr      r3, r25
-    stw     r25, 0(r28)
-    stw     r29, 4(r28)
-    lwz     r4, 0x1c(r1)
-    lwz     r0, 0xc(r4)
-    divwu   r4, r27, r0
-    bl      __CARDAllocBlock
-    or.     r4, r3, r3
-    bge     _L_8002f0e0
-    lwz     r3, 0x1c(r1)
-    bl      __CARDPutControlBlock
-    b       _L_8002f0e4
-_L_8002f0e0:
-    mr      r3, r4
-_L_8002f0e4:
-    lmw     r23, 0x24(r1)
-    lwz     r0, 0x4c(r1)
-    addi    r1, r1, 0x48
-    mtlr    r0
-    blr
+    void* card;
+    CARDDir* dir;
+    CARDDir* ent;
+    u16 fileNo;
+    u16 freeNo;
+    u16* fat;
+    s32 result;
+
+    if (strlen(fileName) > 0x20)
+        return -12;
+
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0)
+        return result;
+
+    if (size == 0 || (size % SECTOR_SIZE(card)) != 0)
+        return -128;
+
+    freeNo = 0xffff;
+    dir = __CARDGetDirBlock(card);
+    for (fileNo = 0; fileNo < 127; fileNo++) {
+        ent = &dir[fileNo];
+        if (ent->gameName[0] == 0xff) {
+            if (freeNo == 0xffff) {
+                freeNo = fileNo;
+            }
+        } else if (strncmp(ent->gameName, DISK_ID(card), 4) == 0 &&
+                   strncmp(ent->company, (char*)DISK_ID(card) + 4, 2) == 0 &&
+                   __CARDCompareFileName(ent, fileName)) {
+            return __CARDPutControlBlock(card, -7);
+        }
+    }
+    if (freeNo == 0xffff)
+        return __CARDPutControlBlock(card, -8);
+
+    fat = __CARDGetFatBlock(card);
+    if (SECTOR_SIZE(card) * fat[3] < size)
+        return __CARDPutControlBlock(card, -9);
+
+    *(void**)((char*)card + 0xd0) = callback ? callback : __CARDDefaultApiCallback;
+    *(u16*)((char*)card + 0xbc) = freeNo;
+    ent = &dir[freeNo];
+    ent->length = (u16)(size / SECTOR_SIZE(card));
+    strncpy((char*)ent->fileName, fileName, 0x20);
+
+    *(void**)((char*)card + 0xc0) = fileInfo;
+    fileInfo->chan = chan;
+    fileInfo->fileNo = freeNo;
+
+    result = __CARDAllocBlock(chan, size / SECTOR_SIZE(card), CreateCallbackFat);
+    if (result < 0)
+        return __CARDPutControlBlock(card, result);
+    return result;
 }
 
-asm s32 CARDCreate(register s32 chan, register char* fileName, register u32 size,
-                   register void* fileInfo)
+s32 CARDCreate(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo)
 {
-    nofralloc
-    mflr    r0
-    lis     r7, __CARDSyncCallback@ha
-    stw     r0, 4(r1)
-    addi    r7, r7, __CARDSyncCallback@l         /* __CARDSyncCallback */
-    stwu    r1, -0x20(r1)
-    stw     r31, 0x1c(r1)
-    addi    r31, r3, 0
-    bl      CARDCreateAsync
-    cmpwi   r3, 0
-    bge     _L_8002f124
-    b       _L_8002f12c
-_L_8002f124:
-    mr      r3, r31
-    bl      __CARDSync
-_L_8002f12c:
-    lwz     r0, 0x24(r1)
-    lwz     r31, 0x1c(r1)
-    addi    r1, r1, 0x20
-    mtlr    r0
-    blr
-}
+    s32 result = CARDCreateAsync(chan, fileName, size, fileInfo, __CARDSyncCallback);
 
+    if (result < 0) {
+        return result;
+    }
+    return __CARDSync(chan);
+}
 #pragma pop
