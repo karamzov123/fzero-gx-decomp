@@ -3,7 +3,7 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_8002C8D0(void);
+extern void VerifyID(void);
 extern void VerifyDir(void);
 extern void VerifyFAT(void);
 extern void __CARDVerify(void);
@@ -12,13 +12,13 @@ extern void CARDCheckAsync(void);
 extern void CARDCheck(void);
 extern void __CARDValidDevice(void);
 extern void fn_8002D77C(void);
-extern void fn_8002D8F8(void);
-extern void fn_8002DD08(void);
-extern void fn_8002DE40(void);
+extern void DoMount(void);
+extern void __CARDMountCallback(void);
+extern void CARDMountAsync(void);
 extern void CARDMount(void);
-extern void fn_8002E028(void);
+extern void DoUnmount(void);
 extern void fn_8002E0C4(void);
-extern void fn_8002E170(void);
+extern void FormatCallback(void);
 extern unsigned char __CARDBlock[544];
 extern void __CARDSyncCallback(int chn);
 extern void __CARDDefaultApiCallback(void);
@@ -29,7 +29,7 @@ extern unsigned char card_sector_size_table[32];
 extern unsigned char card_block_count_table[32];
 extern unsigned char lbl_80177B80[32];
 
-extern void fn_8002E2B4(void);
+extern void __CARDFormatRegionAsync(void);
 extern void CARDFormatAsync(void);
 extern void __CARDCompareFileName(void);
 extern void __CARDAccess(void);
@@ -84,7 +84,7 @@ extern void memcpy(void);
 extern void memset(void);
 
 extern unsigned char lbl_801A6518[8];
-asm void fn_8002C8D0(void)
+asm void VerifyID(void)
 {
     nofralloc
     mflr	r0
@@ -624,7 +624,7 @@ asm void __CARDVerify(void)
     stw	r31, 0x14(r1)
     stw	r30, 0x10(r1)
     mr	r30, r3
-    bl      fn_8002C8D0
+    bl      VerifyID
     cmpwi	r3, 0
     bge     _8002d040
     b       _8002d08c
@@ -685,7 +685,7 @@ _8002d0d8:
     b       _8002d620
 _8002d0f0:
     lwz	r3, 0x30(r1)
-    bl      fn_8002C8D0
+    bl      VerifyID
     or.	r4, r3, r3
     bge     _8002d10c
     lwz	r3, 0x30(r1)
@@ -1279,7 +1279,7 @@ _8002d8e4:
     blr	
 }
 
-asm void fn_8002D8F8(void)
+asm void DoMount(void)
 {
     nofralloc
     mflr	r0
@@ -1520,9 +1520,9 @@ _8002dc2c:
     bl      DCInvalidateRange
 _8002dc70:
     lwz	r4, 0x24(r31)
-    lis     r3, fn_8002DD08@ha
+    lis     r3, __CARDMountCallback@ha
     lwz	r0, 0xc(r31)
-    addi	r7, r3, fn_8002DD08@l
+    addi	r7, r3, __CARDMountCallback@l
     addi	r3, r4, -2
     mullw	r4, r0, r3
     lwz	r5, 0x80(r31)
@@ -1544,7 +1544,7 @@ _8002dcbc:
     bl      EXIUnlock
     addi	r3, r29, 0
     addi	r4, r30, 0
-    bl      fn_8002E028
+    bl      DoUnmount
     mr	r3, r30
     b       _8002dce8
 _8002dcd8:
@@ -1564,7 +1564,7 @@ _8002dce8:
     blr	
 }
 
-asm void fn_8002DD08(void)
+asm void __CARDMountCallback(void)
 {
     nofralloc
     mflr	r0
@@ -1600,7 +1600,7 @@ _8002dd6c:
     stw	r0, 0x24(r31)
     bge     _8002dd94
     mr	r3, r28
-    bl      fn_8002D8F8
+    bl      DoMount
     or.	r29, r3, r3
     blt     _8002ddf4
     b       _8002de20
@@ -1610,8 +1610,8 @@ _8002dd94:
     mr	r29, r3
     b       _8002ddf4
 _8002dda4:
-    lis     r3, fn_8002DD08@ha
-    addi	r0, r3, fn_8002DD08@l
+    lis     r3, __CARDMountCallback@ha
+    addi	r0, r3, __CARDMountCallback@l
     lis     r3, __CARDUnlockedHandler@ha
     stw	r0, 0xdc(r31)
     addi	r5, r3, __CARDUnlockedHandler@l
@@ -1623,14 +1623,14 @@ _8002dda4:
     li	r0, 0
     stw	r0, 0xdc(r31)
     mr	r3, r28
-    bl      fn_8002D8F8
+    bl      DoMount
     or.	r29, r3, r3
     blt     _8002ddf4
     b       _8002de20
 _8002dde8:
     addi	r3, r28, 0
     addi	r4, r29, 0
-    bl      fn_8002E028
+    bl      DoUnmount
 _8002ddf4:
     lwz	r30, 0xd0(r31)
     li	r0, 0
@@ -1654,7 +1654,7 @@ _8002de20:
     blr	
 }
 
-asm void fn_8002DE40(void)
+asm void CARDMountAsync(void)
 {
     nofralloc
     mflr	r0
@@ -1749,8 +1749,8 @@ _8002df5c:
     mr	r3, r28
     stw	r29, 0x88(r31)
     bl      OSRestoreInterrupts
-    lis     r3, fn_8002DD08@ha
-    addi	r0, r3, fn_8002DD08@l
+    lis     r3, __CARDMountCallback@ha
+    addi	r0, r3, __CARDMountCallback@l
     lis     r3, __CARDUnlockedHandler@ha
     stw	r0, 0xdc(r31)
     addi	r5, r3, __CARDUnlockedHandler@l
@@ -1764,7 +1764,7 @@ _8002df5c:
 _8002dfc0:
     stw	r29, 0xdc(r31)
     mr	r3, r30
-    bl      fn_8002D8F8
+    bl      DoMount
 _8002dfcc:
     lmw	r26, 0x18(r1)
     lwz	r0, 0x34(r1)
@@ -1783,7 +1783,7 @@ asm void CARDMount(void)
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
     addi	r31, r3, 0
-    bl      fn_8002DE40
+    bl      CARDMountAsync
     cmpwi	r3, 0
     bge     _8002e00c
     b       _8002e014
@@ -1798,7 +1798,7 @@ _8002e014:
     blr	
 }
 
-asm void fn_8002E028(void)
+asm void DoUnmount(void)
 {
     nofralloc
     mflr	r0
@@ -1894,7 +1894,7 @@ _8002e154:
     blr	
 }
 
-asm void fn_8002E170(void)
+asm void FormatCallback(void)
 {
     nofralloc
     mflr	r0
@@ -1918,8 +1918,8 @@ asm void fn_8002E170(void)
     cmpwi	r4, 5
     bge     _8002e1e4
     lwz	r0, 0xc(r31)
-    lis     r3, fn_8002E170@ha
-    addi	r5, r3, fn_8002E170@l
+    lis     r3, FormatCallback@ha
+    addi	r5, r3, FormatCallback@l
     mullw	r4, r0, r4
     addi	r3, r30, 0
     bl      __CARDEraseSector
@@ -1931,11 +1931,11 @@ _8002e1e4:
     bge     _8002e224
     lwz	r0, 0xc(r31)
     addi	r6, r4, -5
-    lis     r3, fn_8002E170@ha
+    lis     r3, FormatCallback@ha
     lwz	r5, 0x80(r31)
     mullw	r4, r0, r6
     slwi	r0, r6, 0xd
-    addi	r7, r3, fn_8002E170@l
+    addi	r7, r3, FormatCallback@l
     add	r6, r5, r0
     addi	r3, r30, 0
     li	r5, 0x2000
@@ -1984,7 +1984,7 @@ _8002e294:
     blr	
 }
 
-asm void fn_8002E2B4(void)
+asm void __CARDFormatRegionAsync(void)
 {
     nofralloc
     mflr	r0
@@ -2382,9 +2382,9 @@ _8002e88c:
     bl      DCStoreRange
     lwz	r4, 0x18(r1)
     li	r0, 0
-    lis     r3, fn_8002E170@ha
+    lis     r3, FormatCallback@ha
     stw	r0, 0x28(r4)
-    addi	r5, r3, fn_8002E170@l
+    addi	r5, r3, FormatCallback@l
     addi	r3, r22, 0
     lwz	r6, 0x18(r1)
     lwz	r4, 0xc(r6)
@@ -2424,7 +2424,7 @@ asm void CARDFormatAsync(void)
     addi	r4, r3, 0
     addi	r3, r30, 0
     addi	r5, r31, 0
-    bl      fn_8002E2B4
+    bl      __CARDFormatRegionAsync
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
     lwz	r30, 0x10(r1)

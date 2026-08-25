@@ -36,7 +36,7 @@ extern void __CARDPutControlBlock(void);
 extern void __CARDBitRev(void);
 extern void ReadArrayUnlock(void);
 extern void GetInitVal(void);
-extern void fn_8002DD08(void);
+extern void __CARDMountCallback(void);
 extern void memcpy(void);
 extern unsigned char __CARDBlock[544];
 extern unsigned char card_unlock_dsp_cmd_data[32];
@@ -872,7 +872,7 @@ _8002bb50:
     bl      EXIUnlock
     addi	r3, r31, 0
     li	r4, -3
-    bl      fn_8002DD08
+    bl      __CARDMountCallback
     b       _8002be00
 _8002bba8:
     lwz	r4, 0x14(r29)
@@ -1002,7 +1002,7 @@ _8002bd30:
     bl      EXIUnlock
     addi	r3, r31, 0
     li	r4, -3
-    bl      fn_8002DD08
+    bl      __CARDMountCallback
     b       _8002be00
 _8002bd9c:
     addi	r3, r31, 0
@@ -1017,7 +1017,7 @@ _8002bd9c:
     bl      EXIUnlock
     addi	r3, r31, 0
     li	r4, -3
-    bl      fn_8002DD08
+    bl      __CARDMountCallback
     b       _8002be00
 _8002bdd4:
     cmpwi	r28, 0
@@ -1031,7 +1031,7 @@ _8002bdd4:
 _8002bdf4:
     addi	r3, r31, 0
     addi	r4, r28, 0
-    bl      fn_8002DD08
+    bl      __CARDMountCallback
 _8002be00:
     lwz	r0, 0x8c(r1)
     lwz	r31, 0x84(r1)
