@@ -35,3 +35,5 @@ compile_commands.json
 *.exe
 .worktrees/
 natc_runs.sqlite
+natc_runs.sqlite
+.natc-submissions/
