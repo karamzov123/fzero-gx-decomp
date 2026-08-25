@@ -93,11 +93,9 @@ asm void GXXFormSetupB(register void* p)
     blr	
 }
 
-asm void GXGetTexObjMipmap(void)
+u32 GXGetTexObjMipmap(register void* obj)
 {
-    nofralloc
-    lwz	r3, 0x14(r3)
-    blr	
+    return *(volatile u32*)((char*)obj + 0x14);
 }
 
 asm void GXGetTexObjLODAll(register void* p, register int a, register int b)

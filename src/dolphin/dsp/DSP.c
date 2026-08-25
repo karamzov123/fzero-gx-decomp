@@ -6,7 +6,7 @@ extern void DSPCheckMailFromDSP(void);
 extern void DSPReadMailFromDSP(void);
 extern void DSPSendMailToDSP(void);
 extern void DSPInit(void);
-extern void DSPCheckInit(void);
+
 extern void DSPAddTask(void);
 extern void DSPAssertTask(void);
 extern void __DSP_debug_printf(void);
@@ -132,11 +132,9 @@ _80028dbc:
     blr	
 }
 
-asm void DSPCheckInit(void)
+void* DSPCheckInit(void)
 {
-    nofralloc
-    lwz	r3, lbl_801A6BA0
-    blr	
+    return *(volatile void**)lbl_801A6BA0;
 }
 
 asm void DSPAddTask(void)

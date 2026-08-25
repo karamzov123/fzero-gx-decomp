@@ -741,11 +741,9 @@ asm void fn_80025EE4(void)
     blr	
 }
 
-asm void AXGetMixStateWord(void)
+void* AXGetMixStateWord(void)
 {
-    nofralloc
-    lwz	r3, lbl_801A6B88
-    blr	
+    return *(volatile void**)lbl_801A6B88;
 }
 
 asm void AXMixSetupVoiceEntry(void)

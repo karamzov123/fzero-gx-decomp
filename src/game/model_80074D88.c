@@ -89,6 +89,11 @@ extern unsigned char lbl_8015AD48[272];
 extern unsigned char lbl_8019F008[28];
 extern unsigned char lbl_8019F040[240];
 extern unsigned char lbl_8019F130[28];
+extern void* lbl_801A6DA0;
+extern void* lbl_801A6DA4;
+extern void* lbl_801A6DA8;
+extern void* lbl_801A6D90;
+extern int lbl_801A6D98;
 extern unsigned char lbl_8019F14C[12];
 extern unsigned char lbl_8019F158[168];
 extern unsigned char lbl_8019F200[16416];
@@ -113,16 +118,16 @@ asm void fn_800775EC(void);
 asm void fn_80077654(void);
 asm void fn_80077714(void);
 asm void AvDispInitModel(void);
-asm void AvDispClearMatrixStack(void);
+void AvDispClearMatrixStack(void);
 asm void AvDispAllocMatrixStack(void);
-asm void fn_80077A18(void);
+void* fn_80077A18(void);
 asm void fn_80077A20(void);
 asm void AvDispGetModelMatrices(void);
-asm void AvDispSetAmbient(void);
+void AvDispSetAmbient(register f32 amb);
 asm void avdispWarnNotEffectiveModel(void);
 asm void avdispWarnNotSkinningModel(void);
-asm void fn_80077BAC(void);
-asm void fn_80077BBC(void);
+void* fn_80077BAC(void*);
+void fn_80077BBC(int);
 asm void fn_80077BD4(void);
 asm void fn_80077D40(void);
 asm void fn_80077E0C(void);
@@ -3078,14 +3083,11 @@ asm void AvDispInitModel(void)
     blr
 }
 
-asm void AvDispClearMatrixStack(void)
+void AvDispClearMatrixStack(void)
 {
-    nofralloc
-    li r0, 0
-    stw r0, -0x7618(r13)
-    stw r0, -0x761c(r13)
-    stw r0, -0x7620(r13)
-    blr
+    lbl_801A6DA8 = 0;
+    lbl_801A6DA4 = 0;
+    lbl_801A6DA0 = 0;
 }
 
 asm void AvDispAllocMatrixStack(void)
@@ -3209,11 +3211,9 @@ _800779FC:
     blr
 }
 
-asm void fn_80077A18(void)
+void* fn_80077A18(void)
 {
-    nofralloc
-    lwz r3, -0x761c(r13)
-    blr
+    return lbl_801A6DA4;
 }
 
 asm void fn_80077A20(void)
@@ -3291,13 +3291,9 @@ _80077AF0:
     blr
 }
 
-asm void AvDispSetAmbient(void)
+void AvDispSetAmbient(register f32 amb)
 {
-    nofralloc
-    lis     r3, lbl_8019F130@ha
-    addi r3, r3, lbl_8019F130@l
-    stfs f1, 0xc(r3)
-    blr
+    ((f32*)lbl_8019F130)[3] = amb;
 }
 
 asm void avdispWarnNotEffectiveModel(void)
@@ -3352,25 +3348,19 @@ _80077B9C:
     blr
 }
 
-asm void fn_80077BAC(void)
+void* fn_80077BAC(void* value)
 {
-    nofralloc
-    lwz r0, -0x7630(r13)
-    stw r3, -0x7630(r13)
-    mr r3, r0
-    blr
+    void* old = lbl_801A6D90;
+    lbl_801A6D90 = value;
+    return old;
 }
 
-asm void fn_80077BBC(void)
+void fn_80077BBC(int mode)
 {
-    nofralloc
-    cmpwi r3, 0
-    li r0, 0
-    beq _80077BCC
-    li r0, 3
-_80077BCC:
-    stw r0, -0x7628(r13)
-    blr
+    int v = 0;
+    if (mode)
+        v = 3;
+    lbl_801A6D98 = v;
 }
 
 asm void fn_80077BD4(void)
