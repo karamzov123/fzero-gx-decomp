@@ -1231,6 +1231,11 @@ _8002c090:
     addi	r1, r1, 8
     mtlr	r0
     blr	
+}
+
+asm void __CARDGetControlBlockReady(void)
+{
+    nofralloc
     mulli	r0, r3, 0x110
     lis     r3, __CARDBlock@ha
     addi	r3, r3, __CARDBlock@l

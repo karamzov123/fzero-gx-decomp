@@ -1,6 +1,7 @@
 #pragma push
 #pragma force_active on
 extern unsigned char lbl_801A6688[1];
+extern unsigned char lbl_801A6E3C[1];
 extern unsigned char lbl_801A6E28[4];
 extern unsigned char lbl_801A6E2C[4];
 extern unsigned char lbl_801A6E30[4];
@@ -342,7 +343,7 @@ asm void fn_8008F838(void)
     stw	r29, 0x14(r1)
     addi	r29, r3, 0
     bl      OSDisableInterrupts
-    addi	r0, r13, -0x7584
+    li	r0, lbl_801A6E3C
     stw	r0, lbl_801A6E38
     lis	r4, 2
     addi	r31, r3, 0
