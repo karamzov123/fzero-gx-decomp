@@ -1,3 +1,4 @@
+// provenance: original
 #pragma push
 #pragma force_active on
 extern unsigned char lbl_801A6688[1];
@@ -22,28 +23,20 @@ asm void UARTWriteFrame(register void* a, register void* b, register void* c, re
 asm void UART_ReadN_IntDriven(register void* a, register void* b, register void* c, register void* d);
 asm void UARTReadFrame(register void* a, register void* b, register void* c, register void* d);
 
-asm void fn_8008F44C(void)
+void fn_8008F44C(void)
 {
-    nofralloc
-    blr	
 }
 
-asm void fn_8008F450(void)
+void fn_8008F450(void)
 {
-    nofralloc
-    blr	
 }
 
-asm void fn_8008F454(void)
+void fn_8008F454(void)
 {
-    nofralloc
-    blr	
 }
 
-asm void fn_8008F458(void)
+void fn_8008F458(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void InitializeUART_IntDriven(void)
