@@ -237,7 +237,7 @@ asm void OSInit(void)
     li	r0, 1
     stw r0, AreWeInitialized_801A6768
     bl      __OSGetSystemTime
-    stw r4, -0x7c3c(r13)
+    stw r4, __OSStartTime+0x4
     stw	r3, __OSStartTime
     bl      OSDisableInterrupts
     li	r3, 0
@@ -431,7 +431,7 @@ _8000a690:
     b       _8000a6b8
 _8000a6ac:
     crxor	6, 6, 6
-    addi	r3, r13, -0x7fa4
+    addi	r3, r13, __OSVersion+0x4 /* OSVersionStr_801A641C@sda21 */
     bl      OSReport
 _8000a6b8:
     lwz r4, OSBootInfo_801A6748
