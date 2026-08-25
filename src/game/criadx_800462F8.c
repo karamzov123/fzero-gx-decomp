@@ -1,6 +1,14 @@
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_80090960[4];
+extern unsigned char lbl_80090964[4];
+extern unsigned char lbl_8009095C[4];
+extern unsigned char lbl_80090948[8];
+extern unsigned char lbl_80090938[4];
+extern unsigned char lbl_80090968[8];
+extern unsigned char lbl_8017B028[4];
+extern unsigned char lbl_8017B020[4];
 extern void fn_800463E4(void);
 extern void memset(void);
 extern void svmLockServer_wrapper(void);
@@ -355,9 +363,9 @@ asm void svmLockServer_wrapper(void)
 asm void fn_80046758(void)
 {
     nofralloc
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017B020@ha
     li	r0, 0
-    stw	r0, -0x4fe0(r3)
+    stw	r0, lbl_8017B020@l(r3)
     blr	
 }
 
@@ -862,13 +870,13 @@ asm void CRI_SPSD_parser(void)
     lis	r7, 0x4330
     stw	r0, 0x34(r1)
     xoris	r0, r3, 0x8000
-    lis	r3, -0x7ff7
+    lis	r3, lbl_80090968@ha
     stw	r0, 0x1c(r1)
     xoris	r0, r4, 0x8000
-    lfd	f2, 0x968(r3)
-    lis	r4, -0x7ff7
+    lfd	f2, lbl_80090968@l(r3)
+    lis	r4, lbl_80090938@ha
     stw	r7, 0x18(r1)
-    lfs	f3, 0x938(r4)
+    lfs	f3, lbl_80090938@l(r4)
     lfd	f0, 0x18(r1)
     stw	r0, 0x24(r1)
     fsubs	f1, f0, f2
@@ -883,9 +891,9 @@ asm void CRI_SPSD_parser(void)
     fdivs	f1, f1, f0
     bl      fn_80087E80
     lis     r3, lbl_80090940@ha
-    lis	r4, -0x7ff7
+    lis	r4, lbl_80090948@ha
     addi	r5, r3, lbl_80090940@l
-    lfd	f2, 0x948(r4)
+    lfd	f2, lbl_80090948@l(r4)
     lfd	f9, 0(r5)
     lis     r3, lbl_80090950@ha
     addi	r5, r3, lbl_80090950@l
@@ -897,7 +905,7 @@ asm void CRI_SPSD_parser(void)
     lfd	f0, 0(r5)
     fmul	f6, f7, f7
     lfs	f4, 0(r4)
-    lfs	f3, 0x95c(r3)
+    lfs	f3, lbl_8009095C@l(r3)
     fmul	f5, f10, f10
     fmul	f8, f2, f7
     fnmsub	f7, f9, f6, f0
@@ -956,10 +964,10 @@ asm void CRI_SPSD_parser(void)
     lfs	f4, 8(r1)
 _80046f18:
     fsubs	f0, f5, f4
-    lis	r3, -0x7ff7
-    lis	r4, -0x7ff7
-    lfs	f1, 0x964(r3)
-    lfs	f2, 0x960(r4)
+    lis	r3, lbl_80090964@ha
+    lis	r4, lbl_80090960@ha
+    lfs	f1, lbl_80090964@l(r3)
+    lfs	f2, lbl_80090960@l(r4)
     fdivs	f3, f0, f6
     fneg	f0, f3
     fmuls	f1, f1, f3
@@ -985,8 +993,8 @@ _80046f18:
 asm void fn_80046F7C(void)
 {
     nofralloc
-    lis	r4, -0x7fe8
-    stw	r3, -0x4fd8(r4)
+    lis	r4, lbl_8017B028@ha
+    stw	r3, lbl_8017B028@l(r4)
     blr	
 }
 
