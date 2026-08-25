@@ -1,3 +1,6 @@
+extern unsigned char lbl_80090980[];
+extern unsigned char lbl_80090988[];
+extern unsigned char lbl_8012B8F8[];
 #pragma push
 #pragma force_active on
 
@@ -530,9 +533,9 @@ asm void fn_80049E34(void)
     add	r5, r3, r0
     addi	r8, r6, 0x2a8
     lwz	r11, 0x80(r5)
-    lis	r4, -0x7ff7
+    lis	r4, lbl_80090980@ha
     addi	r0, r7, 0x110
-    lfd	f2, 0x980(r4)
+    lfd	f2, lbl_80090980@l(r4)
     add	r8, r3, r8
     addi	r6, r7, 0x190
     mr	r5, r0
@@ -772,11 +775,11 @@ _8004a1a0:
     blt     _8004a0bc
     lwz	r8, 0x78(r9)
     lis	r5, -0x6db7
-    lis	r4, -0x7fed
+    lis	r4, lbl_8012B8F8@ha
     addi	r8, r8, -1
     addi	r0, r5, 0x2493
     mulhw	r5, r0, r8
-    lwz	r11, -0x4708(r4)
+    lwz	r11, lbl_8012B8F8@l(r4)
     mr	r0, r11
     add	r4, r5, r8
     srawi	r4, r4, 2
@@ -800,8 +803,8 @@ _8004a208:
     lwz	r0, 0x78(r9)
     cmpwi	r0, 0
     bne     _8004a228
-    lis	r4, -0x7ff7
-    lfd	f0, 0x988(r4)
+    lis	r4, lbl_80090988@ha
+    lfd	f0, lbl_80090988@l(r4)
     stfd	f0, 0x80(r9)
     b       _8004a25c
 _8004a228:
@@ -811,7 +814,7 @@ _8004a228:
     stw	r4, 0xc(r1)
     addi	r4, r5, lbl_80090980@l
     stw	r0, 8(r1)
-    lis	r5, -0x7ff7
+    lis	r5, lbl_80090988@ha
     lfd	f1, 0(r4)
     lfd	f0, 8(r1)
     lfd	f2, 0x988(r5)
@@ -820,11 +823,11 @@ _8004a228:
     stfd	f0, 0x80(r9)
 _8004a25c:
     lha	r11, 0x8c(r6)
-    lis	r4, -0x7ff7
+    lis	r4, lbl_80090980@ha
     lwz	r8, 0x88(r9)
     li	r5, 0
     lha	r0, 0x88(r6)
-    lfd	f2, 0x980(r4)
+    lfd	f2, lbl_80090980@l(r4)
     mr	r4, r9
     sth	r0, 8(r8)
     lis	r0, 0x4330

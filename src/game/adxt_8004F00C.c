@@ -23,6 +23,7 @@ extern unsigned char lbl_800911E0[64];
 extern unsigned char lbl_80091250[8];
 extern unsigned char lbl_801309C0[136];
 extern unsigned char lbl_80186630[16];
+extern unsigned char lbl_80186764[4];
 extern unsigned char lbl_80186640[4];
 extern unsigned char lbl_80186644[32];
 extern unsigned char lbl_80186664[256];
@@ -861,8 +862,8 @@ _8004fb1c:
     lbz	r0, 2(r31)
     extsb.	r0, r0
     bne     _8004fb7c
-    lis	r3, -0x7fe8
-    lwz	r0, 0x6764(r3)
+    lis	r3, lbl_80186764@ha
+    lwz	r0, lbl_80186764@l(r3)
     cmpwi	r0, 1
     bne     _8004fb60
     lwz	r3, 0x24(r31)
@@ -895,8 +896,8 @@ _8004fb7c:
     lbz	r0, 2(r31)
     extsb.	r0, r0
     bne     _8004fbfc
-    lis	r3, -0x7fe8
-    lwz	r0, 0x6764(r3)
+    lis	r3, lbl_80186764@ha
+    lwz	r0, lbl_80186764@l(r3)
     cmpwi	r0, 1
     bne     _8004fbe0
     lwz	r3, 0x24(r31)
@@ -965,7 +966,7 @@ asm void ADXF_Stop_family(void)
     stwu	r1, -0x20(r1)
     mflr	r0
     lis     r6, lbl_80186664@ha
-    lis	r4, -0x7fe8
+    lis	r4, lbl_80186640@ha
     stw	r0, 0x24(r1)
     addi	r9, r6, lbl_80186664@l
     lis     r5, lbl_80186644@ha
@@ -975,7 +976,7 @@ asm void ADXF_Stop_family(void)
     stw	r30, 0x18(r1)
     or.	r30, r3, r3
     stw	r29, 0x14(r1)
-    lwzu	r7, 0x6640(r4)
+    lwzu	r7, lbl_80186640@l(r4)
     lhz	r5, 6(r31)
     slwi	r0, r7, 0x1c
     srwi	r3, r7, 0x1f
@@ -1059,8 +1060,8 @@ _8004fdd8:
     lbz	r0, 2(r30)
     extsb.	r0, r0
     bne     _8004fe44
-    lis	r3, -0x7fe8
-    lwz	r0, 0x6764(r3)
+    lis	r3, lbl_80186764@ha
+    lwz	r0, lbl_80186764@l(r3)
     cmpwi	r0, 1
     bne     _8004fe28
     lwz	r3, 0x24(r30)

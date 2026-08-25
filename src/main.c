@@ -1401,9 +1401,9 @@ _80006628:
     addi	r0, r31, 1
     cmplwi	r0, 0xc
     bc      12, 1, _80006674
-    lis     r3, -0x7fee
+    lis     r3, jumptable_8012208C@ha
     slwi	r0, r0, 2
-    addi	r3, r3, 0x208c
+    addi	r3, r3, jumptable_8012208C@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr	
@@ -2116,16 +2116,16 @@ _80006f00:
     addi	r4, r4, -1
     bc      16, 0, _80006edc
 _80006f0c:
-    lis	r3, -0x7fea
-    lbzu	r0, -0x42c0(r3)
+    lis	r3, lbl_8015BD40@ha
+    lbzu	r0, lbl_8015BD40@l(r3)
     cmplwi	r0, 0
     bc      4, 2, _80006f70
     addi	r4, r13, -0x7fc8
     bl      strcpy
     b       _80006f70
 _80006f28:
-    lis	r3, -0x7fea
-    lbz	r0, -0x42c0(r3)
+    lis	r3, lbl_8015BD40@ha
+    lbz	r0, lbl_8015BD40@l(r3)
     cmplwi	r0, 0x2f
     bc      4, 2, _80006f44
     lbz	r0, 1(r31)
@@ -2252,8 +2252,8 @@ _800070c4:
     addi	r3, r1, 8
     addi	r4, r4, lbl_8015BD40@l
     bl      strcpy
-    lis	r3, -0x7fea
-    lbzu	r0, -0x42c0(r3)
+    lis	r3, lbl_8015BD40@ha
+    lbzu	r0, lbl_8015BD40@l(r3)
     cmplwi	r0, 0x2f
     bc      4, 2, _800070f0
     lbz	r0, 1(r3)
