@@ -5,6 +5,9 @@ typedef signed int s32;
 
 #pragma force_active on
 
+extern unsigned char lbl_801241C8[0x1F4];
+extern unsigned char lbl_801A692C[8];
+
 extern void OSRegisterVersion(void);
 extern void __OSSetInterruptHandler(void);
 extern void __OSUnmaskInterrupts(void);
@@ -177,7 +180,7 @@ asm void fn_8001AAB4(void)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fee
+    lis	r4, lbl_801241C8@ha
     stw	r0, 4(r1)
     lis     r3, lbl_8015CF68@ha
     stwu	r1, -0x18(r1)
@@ -185,7 +188,7 @@ asm void fn_8001AAB4(void)
     stw	r30, 0x10(r1)
     addi	r30, r3, lbl_8015CF68@l
     stw	r29, 0xc(r1)
-    addi	r29, r4, 0x41c8
+    addi	r29, r4, lbl_801241C8@l
     stw	r28, 8(r1)
     lwz	r0, lbl_801A6920
     cmpwi	r0, 0
@@ -346,7 +349,7 @@ _8001ace0:
     sth	r8, 0xf2(r30)
     lhz	r0, 0xf4(r30)
     lha	r7, 0xf0(r30)
-    lha	r5, -0x7a80(r13)
+    lha r5, lbl_801A6940(r13)
     subfic	r0, r0, 0x2d0
     lhz	r9, 0(r4)
     add	r5, r7, r5
@@ -373,7 +376,7 @@ _8001ad9c:
     li	r11, 1
 _8001ada0:
     lhz	r0, 0(r3)
-    lha	r5, -0x7a7e(r13)
+    lha r5, lbl_801A6942(r13)
     extsh	r7, r0
     clrlwi	r0, r0, 0x1f
     add	r7, r7, r5
@@ -455,7 +458,7 @@ _8001ae8c:
     li	r5, 0x28
     li	r0, 1
     lhz	r6, 0(r4)
-    addi	r3, r13, -0x7a94
+    li	r3, lbl_801A692C
     rlwinm	r6, r6, 1, 0x10, 0x1e
     sth	r6, 0x104(r30)
     sth	r28, 0x106(r30)
