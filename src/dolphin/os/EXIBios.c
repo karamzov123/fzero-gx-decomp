@@ -1551,7 +1551,7 @@ L_80014CF4:
     bl          __OSSetInterruptHandler
     li          r3, 0x0
     li          r4, 0x2
-    addi        r5, r13, -0x7B88 /* IDSerialPort1@sda21 */
+    li          r5, IDSerialPort1
     bl          EXIGetID
     lwz	r0, __OSInIPL /* __OSInIPL@sda21 */
     cmpwi       r0, 0x0

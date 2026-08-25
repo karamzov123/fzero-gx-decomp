@@ -901,7 +901,7 @@ asm void CRI_SPSD_parser(void)
     lis     r3, lbl_80090958@ha
     addi	r4, r3, lbl_80090958@l
     frsqrte	f10, f9
-    lis	r3, -0x7ff7
+    lis	r3, lbl_8009095C@ha
     lfd	f0, 0(r5)
     fmul	f6, f7, f7
     lfs	f4, 0(r4)

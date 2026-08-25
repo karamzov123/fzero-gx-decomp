@@ -88,6 +88,8 @@ extern unsigned char lbl_801A6C8C[4];
 extern unsigned char lbl_801A6C90[4];
 extern unsigned char lbl_801A6C94[4];
 extern unsigned char lbl_801A6C98[8];
+extern unsigned char arc_c_str[6];
+extern unsigned char lbl_801A73B4[28];
 extern unsigned char lbl_801A6CA8[4];
 extern unsigned char lbl_801A6CAC[4];
 extern unsigned char lbl_801A6CF4[4];
@@ -813,7 +815,7 @@ asm void ARCInitHandle(void)
     lis     r3, ARCInitHandle_bad_archive_format_str@ha
     crxor	6, 6, 6
     addi	r5, r3, ARCInitHandle_bad_archive_format_str@l
-    addi	r3, r13, -0x7db0
+    li	r3, arc_c_str
     li	r4, 0x3b
     bl      OSPanic
 _8006a420:
@@ -4059,7 +4061,7 @@ asm void fn_8006CDFC(void)
 {
     nofralloc
     lbz	r6, 0(r3)
-    addi	r4, r13, -0x7718
+    li	r4, lbl_801A6CA8
     lbz	r5, 1(r3)
     lbz	r0, 2(r3)
     stb	r6, lbl_801A6CA8
@@ -4072,7 +4074,7 @@ asm void fn_8006CE1C(void)
 {
     nofralloc
     lfs f0, lbl_801A73B0(r2)
-    addi	r3, r13, -0x7718
+    li	r3, lbl_801A6CA8
     stwu	r1, -0x10(r1)
     fmuls	f0, f0, f1
     fctiwz	f0, f0
@@ -4088,7 +4090,7 @@ asm void fn_8006CE44(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    addi	r3, r13, -0x7718
+    li	r3, lbl_801A6CA8
     stw	r0, 0x14(r1)
     lbz	r0, 3(r3)
     cmplwi	r0, 0
