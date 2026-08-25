@@ -1,3 +1,13 @@
+extern unsigned short gLanguageIndexTable[4];
+extern unsigned char lbl_801A66B0[4];
+extern unsigned char lbl_801A63C4[4];
+extern unsigned char lbl_801A66D0[4];
+extern unsigned char lbl_801A63F0[4];
+extern unsigned char lbl_801A63F4[4];
+extern unsigned char lbl_801A63F8[4];
+extern unsigned char lbl_801A63FC[4];
+extern unsigned char lbl_801A66A0[4];
+
 extern void DCStoreRange(void);
 extern void DVDGetDriveStatus(void);
 extern void DVDInit(void);
@@ -325,7 +335,7 @@ _80005608:
     stw	r4, 0x1100(r3)
     stw	r4, 0x1200(r3)
     stw	r4, 0x1300(r3)
-    stw r0, -0x7d0c(r13)
+    stw r0, gLanguageIndexTable
     bl      fn_80005660
     bl      GameMainLoopFrame
     lwz	r0, 0x14(r1)
@@ -469,13 +479,13 @@ asm void fn_800057F8(void)
     cmplwi	r0, 0
     bc      4, 2, _8000583c
 _80005828:
-    addi	r3, r13, -0x7d10
+    li	r3, lbl_801A66B0
     li	r4, 0
     li	r5, 4
     bl      memset
     b       _80005848
 _8000583c:
-    addi	r3, r13, -0x7d10
+    li	r3, lbl_801A66B0
     li	r5, 4
     bl      memcpy
 _80005848:
@@ -490,7 +500,7 @@ asm void main_load_sample_rel(void)
     nofralloc
     stwu	r1, -0x50(r1)
     mflr	r0
-    addi	r3, r13, -0x7ffc
+    li	r3, lbl_801A63C4
     stw	r0, 0x54(r1)
     addi	r4, r1, 8
     stw	r31, 0x4c(r1)
@@ -889,7 +899,7 @@ asm void mmu_user_fn(void)
 asm void fn_80005E0C(void)
 {
     nofralloc
-    addi	r3, r13, -0x7cf0
+    li	r3, lbl_801A66D0
     li	r0, 0x32
     addis	r3, r3, 0x4000
     li	r4, 0
@@ -1539,12 +1549,12 @@ _800066f0:
     b       _800067c4
 _80006700:
     mr	r3, r27
-    addi	r4, r13, -0x7fd0
+    li	r4, lbl_801A63F0
     bl      __msl_strcmp
     cmpwi	r3, 0
     bc      12, 2, _800067d0
     mr	r3, r27
-    addi	r4, r13, -0x7fcc
+    li	r4, lbl_801A63F4
     bl      __msl_strcmp
     cmpwi	r3, 0
     bc      12, 2, _800067d0
@@ -1862,7 +1872,7 @@ asm void fn_80006AFC(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     lis     r3, lbl_8015BD40@ha
-    addi	r4, r13, -0x7fc8
+    li	r4, lbl_801A63F8
     stw	r0, 0x14(r1)
     addi	r3, r3, lbl_8015BD40@l
     bl      strcpy
@@ -2166,7 +2176,7 @@ _80006e84:
     b       _80006f70
 _80006e9c:
     mr	r3, r30
-    addi	r4, r13, -0x7fc4
+    li	r4, lbl_801A63FC
     li	r5, 2
     bl      __msl_strncmp
     cmpwi	r3, 0
@@ -2200,7 +2210,7 @@ _80006f0c:
     lbzu	r0, lbl_8015BD40@l(r3)
     cmplwi	r0, 0
     bc      4, 2, _80006f70
-    addi	r4, r13, -0x7fc8
+    li	r4, lbl_801A63F8
     bl      strcpy
     b       _80006f70
 _80006f28:
@@ -2213,7 +2223,7 @@ _80006f28:
     bc      12, 2, _80006f54
 _80006f44:
     lis     r3, lbl_8015BD40@ha
-    addi	r4, r13, -0x7fc8
+    li	r4, lbl_801A63F8
     addi	r3, r3, lbl_8015BD40@l
     bl      __msl_strcpy
 _80006f54:
@@ -2341,7 +2351,7 @@ _800070c4:
     bc      12, 2, _800070fc
 _800070f0:
     addi	r3, r1, 8
-    addi	r4, r13, -0x7fc8
+    li	r4, lbl_801A63F8
     bl      __msl_strcpy
 _800070fc:
     mr	r4, r29
@@ -3035,7 +3045,7 @@ asm void fn_80007A44(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     lis	r4, 0x100
-    addi	r6, r13, -0x7fb8
+    li	r6, lbl_801A6408
     stw	r0, 0x14(r1)
     addi	r3, r1, 8
     addi	r4, r4, -1
@@ -3052,7 +3062,7 @@ asm void fn_80007A44(void)
     lwz	r0, lbl_801A6408
     stw	r0, 8(r1)
     bl      ModelMatchCachedSlot_B20
-    addi	r3, r13, -0x7fb8
+    li	r3, lbl_801A6408
     bl      fn_80008204
     li	r0, 0
     stw	r0, lbl_801A6728
@@ -3072,7 +3082,7 @@ asm void fn_80007AB4(void)
     lbz	r4, lbl_801A6408
     cmplw	r4, r0
     bc      4, 2, _80007b04
-    addi	r5, r13, -0x7fb8
+    li	r5, lbl_801A6408
     lbz	r0, 1(r3)
     lbz	r4, 1(r5)
     cmplw	r4, r0
@@ -3088,7 +3098,7 @@ asm void fn_80007AB4(void)
 _80007b04:
     lwz	r0, 0(r3)
     lis	r4, 0x100
-    addi	r6, r13, -0x7fb8
+    li	r6, lbl_801A6408
     addi	r3, r1, 8
     stw	r0, 0xc(r1)
     addi	r4, r4, -1
@@ -3103,7 +3113,7 @@ _80007b04:
     lwz	r0, lbl_801A6408
     stw	r0, 8(r1)
     bl      ModelMatchCachedSlot_B20
-    addi	r3, r13, -0x7fb8
+    li	r3, lbl_801A6408
     bl      fn_80008204
 _80007b50:
     li	r0, 1
@@ -3144,7 +3154,7 @@ asm void dvd_user_fn(void)
 _80007bc8:
     lwz	r0, 0x14(r1)
     lis	r4, 0x100
-    addi	r6, r13, -0x7fb8
+    li	r6, lbl_801A6408
     addi	r3, r1, 0xc
     stw	r0, 0x10(r1)
     addi	r4, r4, -1
@@ -3159,7 +3169,7 @@ _80007bc8:
     lwz	r0, lbl_801A6408
     stw	r0, 0xc(r1)
     bl      ModelMatchCachedSlot_B20
-    addi	r3, r13, -0x7fb8
+    li	r3, lbl_801A6408
     bl      fn_80008204
 _80007c14:
     li	r0, 1
@@ -3202,7 +3212,7 @@ asm void fn_80007C60(void)
 _80007c80:
     lwz	r0, lbl_801A6F08
     lis	r4, 0x100
-    addi	r6, r13, -0x7fb8
+    li	r6, lbl_801A6408
     addi	r3, r1, 8
     stw	r0, 0xc(r1)
     addi	r4, r4, -1
@@ -3588,7 +3598,7 @@ asm void fn_800081C8(void)
     lwz	r0, 0(r3)
     addi	r3, r1, 0xc
     stw	r5, 8(r1)
-    lwz r5, -0x7d20(r13)
+    lwz r5, lbl_801A66A0
     stw	r0, 0xc(r1)
     bl      fn_80007F70
     lwz	r0, 0x14(r1)
