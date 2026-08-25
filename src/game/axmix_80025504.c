@@ -728,11 +728,7 @@ _80025e44:
     blr	
 }
 
-asm void fn_80025EE0(void)
-{
-    nofralloc
-    blr	
-}
+void fn_80025EE0(void) { }
 
 asm void fn_80025EE4(void)
 {

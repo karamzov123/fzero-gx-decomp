@@ -974,11 +974,7 @@ _80089620:
     blr
 }
 
-asm void usr_put_initialize(void)
-{
-    nofralloc
-    blr
-}
+void usr_put_initialize(void) { }
 
 asm void usr_puts(void)
 {

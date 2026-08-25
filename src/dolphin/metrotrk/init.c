@@ -314,11 +314,7 @@ _8008cf40:
     b       TRK_main
 }
 
-asm void gap_01_8008CF44_text(void)
-{
-    nofralloc
-    blr
-}
+void gap_01_8008CF44_text(void) { }
 
 asm void InitMetroTRK_BBA(void)
 {

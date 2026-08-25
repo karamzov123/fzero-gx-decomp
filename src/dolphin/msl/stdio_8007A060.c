@@ -86,9 +86,9 @@ asm void fn_8007EA58(void);
 asm void __flush_buffer(void);
 asm void fn_8007EC80(void);
 asm void __prep_buffer(void);
-asm void __end_critical_region(void);
-asm void __begin_critical_region(void);
-asm void __kill_critical_regions(void);
+void __end_critical_region(void);
+void __begin_critical_region(void);
+void __kill_critical_regions(void);
 asm void MSL_CharAttrLookup(void);
 asm void __fwrite(void);
 asm void fwrite(void);
@@ -5848,23 +5848,11 @@ asm void __prep_buffer(void)
     blr
 }
 
-asm void __end_critical_region(void)
-{
-    nofralloc
-    blr
-}
+void __end_critical_region(void) { }
 
-asm void __begin_critical_region(void)
-{
-    nofralloc
-    blr
-}
+void __begin_critical_region(void) { }
 
-asm void __kill_critical_regions(void)
-{
-    nofralloc
-    blr
-}
+void __kill_critical_regions(void) { }
 
 asm void MSL_CharAttrLookup(void)
 {

@@ -1126,11 +1126,7 @@ asm void fn_8004ED5C(void)
     blr	
 }
 
-asm void fn_8004ED80(void)
-{
-    nofralloc
-    blr	
-}
+void fn_8004ED80(void) { }
 
 asm void fn_8004ED84(void)
 {

@@ -1789,11 +1789,7 @@ _800555b0:
     blr	
 }
 
-asm void fn_800555C0(void)
-{
-    nofralloc
-    blr	
-}
+void fn_800555C0(void) { }
 
 asm void fn_800555C4(void)
 {

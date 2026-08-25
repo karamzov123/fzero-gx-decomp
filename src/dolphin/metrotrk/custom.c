@@ -44,11 +44,7 @@ asm void TRKAcquireMutex_Interrupt(void)
     blr	
 }
 
-asm void fn_8008E76C(void)
-{
-    nofralloc
-    blr	
-}
+void fn_8008E76C(void) { }
 
 asm void EXI2_SetupTransfer(void)
 {

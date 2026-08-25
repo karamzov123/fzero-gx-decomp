@@ -330,17 +330,9 @@ asm void fn_8004BBA4(void)
     blr	
 }
 
-asm void fn_8004BBC4(void)
-{
-    nofralloc
-    blr	
-}
+void fn_8004BBC4(void) { }
 
-asm void fn_8004BBC8(void)
-{
-    nofralloc
-    blr	
-}
+void fn_8004BBC8(void) { }
 
 asm void fn_8004BBCC(void)
 {

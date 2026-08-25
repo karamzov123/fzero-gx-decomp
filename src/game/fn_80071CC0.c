@@ -96,11 +96,7 @@ asm void ModelDVD_CancelSync(void)
     blr
 }
 
-asm void fn_80071D2C(void)
-{
-    nofralloc
-    blr
-}
+void fn_80071D2C(void) { }
 
 asm void fn_80071D30(void)
 {
@@ -675,10 +671,6 @@ _800724b0:
     blr
 }
 
-asm void fn_800724C8(void)
-{
-    nofralloc
-    blr
-}
+void fn_800724C8(void) { }
 
 #pragma pop
