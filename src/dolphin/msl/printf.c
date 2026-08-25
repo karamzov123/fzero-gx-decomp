@@ -1,9 +1,15 @@
 #pragma push
 #pragma force_active on
 
+typedef struct __OutStrCtrl {
+    char* CharStr;
+    unsigned long MaxCharCount;
+    unsigned long CharsWritten;
+} __OutStrCtrl;
+
 int vprintf(const char* fmt, void* arg);
 int fn_8008088C(void);
-int __StringWrite(void);
+void* __StringWrite(void* ctrl, const char* buf, unsigned long n);
 void* __FileWrite(void* file, const char* buf, unsigned long n);
 int __pformatter(void* writeProc, void* writeParam, const char* fmt, void* arg);
 char* float2str(void* arg, char* buff, void* format, unsigned long* prec);
@@ -14,9 +20,9 @@ char* long2str(long num, char* buff, void* format);
 const char* parse_format(const char* fmt, void* arg, void* format);
 extern void __end_critical_region(int region);
 extern void __begin_critical_region(int region);
-extern int fwide(int mode, int n);
+extern int fwide(void* file, int mode);
 extern void* memcpy(void* dst, const void* src, unsigned long n);
-extern unsigned long fwrite(const void* buf, unsigned long size, unsigned long count, void* file);
+extern int fwrite(const void* buf, int size, unsigned long count, void* file);
 extern void* __va_arg(void* params, unsigned long size);
 extern unsigned long wcstombs(char* dst, const unsigned short* src, unsigned long n);
 extern void* memchr(const void* s, int c, unsigned long n);
@@ -34,50 +40,17 @@ extern unsigned char lbl_8015B100[256];
 void* __FileWrite(void* file, const char* buf, unsigned long n);
 
 extern unsigned char lbl_801A74E8[8];
+int vprintf(const char* fmt, void* arg) {
+    int result;
 
-asm int vprintf(const char* fmt, void* arg)
-{
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis     r5, __files@ha
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    mr	r30, r4
-    addi	r4, r5, __files@l
-    stw	r29, 0x14(r1)
-    addi	r31, r4, 0x50
-    mr	r29, r3
-    li	r4, -1
-    mr	r3, r31
-    bl      fwide
-    cmpwi	r3, 0
-    blt     _8008083c
-    li	r3, -1
-    b       _80080870
-_8008083c:
-    li	r3, 2
-    bl      __begin_critical_region
-    lis     r3, __FileWrite@ha
-    mr	r4, r31
-    addi	r3, r3, __FileWrite@l
-    mr	r5, r29
-    mr	r6, r30
-    bl      __pformatter
-    mr	r0, r3
-    li	r3, 2
-    mr	r31, r0
-    bl      __end_critical_region
-    mr	r3, r31
-_80080870:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    if (fwide(&__files[0x50], -1) >= 0) {
+        return -1;
+    }
+
+    __begin_critical_region(2);
+    result = __pformatter((void*)__FileWrite, (void*)&__files[0x50], fmt, arg);
+    __end_critical_region(2);
+    return result;
 }
 
 asm int fn_8008088C(void)
@@ -146,66 +119,24 @@ _8008095c:
     blr	
 }
 
-asm int __StringWrite(void)
-{
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    mr	r30, r3
-    lwz	r3, 8(r3)
-    lwz	r6, 4(r30)
-    add	r0, r3, r5
-    cmplw	r0, r6
-    subf	r31, r3, r6
-    bgt     _800809a8
-    mr	r31, r5
-_800809a8:
-    lwz	r0, 0(r30)
-    mr	r5, r31
-    add	r3, r0, r3
-    bl      memcpy
-    lwz	r0, 8(r30)
-    li	r3, 1
-    add	r0, r0, r31
-    stw	r0, 8(r30)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+void* __StringWrite(void* ctrl0, const char* pBuffer, unsigned long char_num) {
+    __OutStrCtrl* ctrl = ctrl0;
+    unsigned long chars;
+    void* res;
+
+    chars = ((ctrl->CharsWritten + char_num) <= ctrl->MaxCharCount)
+                ? char_num
+                : ctrl->MaxCharCount - ctrl->CharsWritten;
+    memcpy(ctrl->CharStr + ctrl->CharsWritten, pBuffer, chars);
+    ctrl->CharsWritten += chars;
+    return (void*)1;
 }
 
-asm void* __FileWrite(void* file, const char* buf, unsigned long n)
-{
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r5
-    stw	r30, 8(r1)
-    mr	r30, r3
-    mr	r3, r4
-    li	r4, 1
-    mr	r6, r30
-    bl      fwrite
-    cmplw	r31, r3
-    bne     _80080a1c
-    mr	r3, r30
-    b       _80080a20
-_80080a1c:
-    li	r3, 0
-_80080a20:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+void* __FileWrite(void* file, const char* buf, unsigned long n) {
+    if (fwrite(buf, 1, n, file) == n) {
+        return file;
+    }
+    return 0;
 }
 
 asm int __pformatter(void* writeProc, void* writeParam, const char* fmt, void* arg)
