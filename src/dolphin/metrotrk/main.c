@@ -491,7 +491,7 @@ asm void InitMetroTRKCommTable(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r4, -0x7ff7
+    lis	r4, EndofProgramInstruction_80095BC8@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
     li	r31, 1
