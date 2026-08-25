@@ -36,6 +36,10 @@ void GXSetNumTexGens(register void* p);
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6530[8];
+extern unsigned char lbl_801A6528[4];
+extern unsigned char lbl_801A652C[4];
+
 asm void __GXXfVtxSpecs(register void* p)
 {
     nofralloc
@@ -641,7 +645,7 @@ asm void __GXCalculateVatSizes(void)
     cmplwi	r0, 0
     beqlr	
     lwz	r9, 0x14(r3)
-    addi	r5, r13, -0x7e90
+    li      r5, lbl_801A6530
     lwz	r8, 0x1c(r3)
     clrlwi	r0, r9, 0x1f
     lwz	r4, 0x18(r3)
@@ -673,10 +677,10 @@ _80032c64:
     li	r8, 1
 _80032c68:
     rlwinm	r6, r9, 0x15, 0x1e, 0x1f
-    addi	r5, r13, -0x7e90
+    li      r5, lbl_801A6530
     lbzx	r6, r5, r6
     rlwinm	r5, r9, 0x13, 0x1e, 0x1f
-    addi	r7, r13, -0x7e98
+    li      r7, lbl_801A6528
     mullw	r8, r6, r8
     lbzx	r6, r7, r5
     add	r0, r0, r8
@@ -684,7 +688,7 @@ _80032c68:
     lbzx	r9, r7, r5
     add	r0, r0, r6
     clrlwi	r6, r4, 0x1e
-    addi	r8, r13, -0x7e94
+    li      r8, lbl_801A652C
     rlwinm	r5, r4, 0x1e, 0x1e, 0x1f
     lbzx	r7, r8, r6
     add	r0, r0, r9
