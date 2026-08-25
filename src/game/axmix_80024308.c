@@ -221,7 +221,7 @@ _80024578:
     addi	r27, r23, 0
     li	r24, 0
     li	r28, 0
-    lis	r31, lbl_801A6FE8@ha
+    lis	r31, 0x4330
     b       _800247b8
 _800245b4:
     mulli	r21, r28, 0x14
@@ -875,7 +875,7 @@ asm void fn_80024E6C(void)
     lwz	r31, 4(r3)
     lwz	r30, 0(r3)
     lwz	r9, 8(r3)
-    lis	r10, lbl_801A6FF8@ha
+    lis	r10, 0x4330
     stw	r10, 8(r1)
     stw	r10, 0x10(r1)
     stw	r10, 0x18(r1)
