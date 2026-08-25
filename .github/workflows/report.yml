@@ -39,7 +39,7 @@ jobs:
           set -euo pipefail
           private="$HOME/projects/fzero-gx-decomp"
           python3 configure.py -v GFZE01             --compilers "$private/build/compilers"             --binutils "$private/build/binutils"             --dtk "$private/build/tools/dtk"             --objdiff "$private/build/tools/objdiff-cli"             --sjiswrap "$private/build/tools/sjiswrap.exe" configure
-          ninja
+          ninja build/GFZE01/main.dol
 
       - name: Generate objdiff report
         run: build/tools/objdiff-cli report generate -o build/GFZE01/report.json
