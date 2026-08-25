@@ -1,3 +1,4 @@
+typedef signed int s32;
 // dolphin/card/CARDDir.c -- tail of coarse/text_80029828 (0x8002C8D0-0x8002EED8).
 // Melee identity: sram CRC, dir writeback, DoMount/Mount/Unmount, filename helpers.
 #pragma push
@@ -2776,12 +2777,7 @@ _8002ed8c:
     blr	
 }
 
-asm void __CARDIsOpened(void)
-{
-    nofralloc
-    li      r3, 0
-    blr	
-}
+s32 __CARDIsOpened(void) { return 0; }
 
 asm void CreateCallbackFat(void)
 {

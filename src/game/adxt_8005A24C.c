@@ -1,3 +1,4 @@
+typedef signed int s32;
 #pragma push
 #pragma force_active on
 
@@ -392,19 +393,9 @@ asm void fn_8005A668(void)
     blr	
 }
 
-asm void fn_8005A678(void)
-{
-    nofralloc
-    li	r3, 0
-    blr	
-}
+s32 fn_8005A678(void) { return 0; }
 
-asm void fn_8005A680(void)
-{
-    nofralloc
-    li	r3, 0
-    blr	
-}
+s32 fn_8005A680(void) { return 0; }
 
 asm void fn_8005A688(void)
 {

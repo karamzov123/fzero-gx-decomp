@@ -769,12 +769,7 @@ _80089334:
     blr
 }
 
-asm void TRKAcquireMutex(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+s32 TRKAcquireMutex(void) { return 0; }
 
 asm void TRKInitializeSerialHandler(void)
 {
@@ -1116,12 +1111,7 @@ _80089800:
     blr
 }
 
-asm void TRKInitializeDispatcher(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+s32 TRKInitializeDispatcher(void) { return 0; }
 
 asm void TRKDoPing(void)
 {
@@ -2094,19 +2084,9 @@ _8008a598:
     blr
 }
 
-asm void TRKDoUnsupported_Override(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+s32 TRKDoUnsupported_Override(void) { return 0; }
 
-asm void TRKDoUnsupported_SupportMask(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+s32 TRKDoUnsupported_SupportMask(void) { return 0; }
 
 asm void TRKDoOverride(void)
 {
@@ -2821,26 +2801,11 @@ _8008af2c:
     blr
 }
 
-asm void TRKAcquireMutex_stub(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+s32 TRKAcquireMutex_stub(void) { return 0; }
 
-asm void TRKReleaseMutex_stub(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+s32 TRKReleaseMutex_stub(void) { return 0; }
 
-asm void fn_8008AF50(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+s32 fn_8008AF50(void) { return 0; }
 
 asm void TRKDoNotifyStopped(void)
 {

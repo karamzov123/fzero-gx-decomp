@@ -1,3 +1,4 @@
+typedef unsigned char u8;
 #pragma push
 #pragma force_active on
 
@@ -264,19 +265,9 @@ _80050f48:
     blr	
 }
 
-asm void fn_80050F64(void)
-{
-    nofralloc
-    li	r3, 0x60
-    blr	
-}
+u8 fn_80050F64(void) { return 96; }
 
-asm void fn_80050F6C(void)
-{
-    nofralloc
-    li	r3, 0x10
-    blr	
-}
+u8 fn_80050F6C(void) { return 16; }
 
 asm void fn_80050F74(void)
 {

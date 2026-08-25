@@ -2058,12 +2058,7 @@ _800857e0:
     blr
 }
 
-asm void fn_8008580C(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+s32 fn_8008580C(void) { return 0; }
 
 asm void fn_80085814(void)
 {

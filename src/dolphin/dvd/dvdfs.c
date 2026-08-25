@@ -810,4 +810,7 @@ lbl_8001774C:
 }
 
 /* fn_80017768 @0x80017768 | size: 0x4 */
-void fn_80017768(void) { }
+asm void fn_80017768(void) {
+nofralloc
+	blr
+}

@@ -1,3 +1,4 @@
+typedef signed int s32;
 #pragma push
 #pragma force_active on
 extern unsigned char lbl_80095CD0[92];
@@ -36,26 +37,11 @@ asm void udp_cc_pre_continue(void)
     blr	
 }
 
-asm void udp_cc_peek(void)
-{
-    nofralloc
-    li	r3, 0
-    blr	
-}
+s32 udp_cc_peek(void) { return 0; }
 
-asm void udp_cc_write(void)
-{
-    nofralloc
-    li	r3, 0
-    blr	
-}
+s32 udp_cc_write(void) { return 0; }
 
-asm void udp_cc_read(void)
-{
-    nofralloc
-    li	r3, 0
-    blr	
-}
+s32 udp_cc_read(void) { return 0; }
 
 asm void udp_cc_close(void)
 {
@@ -292,12 +278,7 @@ _8008e044:
     blr	
 }
 
-asm void ddh_cc_close(void)
-{
-    nofralloc
-    li	r3, 0
-    blr	
-}
+s32 ddh_cc_close(void) { return 0; }
 
 asm void ddh_cc_open(void)
 {
@@ -314,12 +295,7 @@ _8008e074:
     blr	
 }
 
-asm void ddh_cc_shutdown(void)
-{
-    nofralloc
-    li	r3, 0
-    blr	
-}
+s32 ddh_cc_shutdown(void) { return 0; }
 
 asm void ddh_cc_initialize(void)
 {
