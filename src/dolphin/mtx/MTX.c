@@ -63,22 +63,33 @@ asm void C_MTXMultVecSS(void)
     b       PSMTXMultVec
 }
 
+asm void PSMTXMultVecSS(void);
+asm void lbl_8006E2D0(void);
+
 asm void PSMTXMultVecSS(void)
 {
     nofralloc
     lfs     f1, 0(r3)
     lfs     f2, 4(r3)
     lfs     f3, 8(r3)
-    b       _8006e2d0
+    b       lbl_8006E2D0
+}
+
+asm void lbl_8006E2C0(void)
+{
+    nofralloc
     ps_merge00 f1, f1, f1
     ps_merge00 f2, f2, f2
     ps_merge00 f3, f3, f3
     mr      r4, r3
-_8006e2d0:
+}
+
+asm void lbl_8006E2D0(void)
+{
+    nofralloc
     lis     r5, -0x2000
     crxor   2, 2, 2
 }
-
 asm void PSMTXMultVec(void)
 {
     nofralloc
