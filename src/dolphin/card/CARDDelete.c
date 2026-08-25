@@ -19,7 +19,7 @@ extern s32 __CARDGetFileNo(register void* ctrl, register void* fileName, registe
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern void* memset(register void* dst, register int val, register u32 n);
-extern void fn_80029824(void);
+extern void __CARDDefaultApiCallback(void);
 extern void __CARDSyncCallback(void);
 extern unsigned char __CARDBlock[544];
 
@@ -136,8 +136,8 @@ _L_8002fa80:
     mr      r0, r30
     b       _L_8002fab4
 _L_8002faac:
-    lis     r3, fn_80029824@ha
-    addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
+    lis     r3, __CARDDefaultApiCallback@ha
+    addi    r0, r3, __CARDDefaultApiCallback@l         /* __CARDDefaultApiCallback */
 _L_8002fab4:
     lwz     r5, 0x14(r1)
     lis     r3, DeleteCallback@ha
@@ -217,8 +217,8 @@ _L_8002fb84:
     mr      r0, r30
     b       _L_8002fbc8
 _L_8002fbc0:
-    lis     r3, fn_80029824@ha
-    addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
+    lis     r3, __CARDDefaultApiCallback@ha
+    addi    r0, r3, __CARDDefaultApiCallback@l         /* __CARDDefaultApiCallback */
 _L_8002fbc8:
     lwz     r5, 0x18(r1)
     lis     r3, DeleteCallback@ha

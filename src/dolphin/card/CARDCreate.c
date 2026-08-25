@@ -20,7 +20,7 @@ extern s32 __CARDCompareFileName(register void* ent, register char* fileName);  
 extern s32 __CARDSync(register s32 chn);                                // __CARDSync
 extern s32 strncmp(register void* a, register void* b, register u32 n); // memcmp
 extern void strncpy(register void* dst, register char* src, register u32 n); // strncpy
-extern void fn_80029824(void);                                                // default-API callback stub
+extern void __CARDDefaultApiCallback(void);                                                // default-API callback stub
 extern void CreateCallbackFat(void);                                          // fat-update callback (CARDDir)
 extern void __CARDSyncCallback(void);
 
@@ -141,8 +141,8 @@ _L_8002f050:
     mr      r0, r29
     b       _L_8002f068
 _L_8002f060:
-    lis     r3, fn_80029824@ha
-    addi    r0, r3, fn_80029824@l
+    lis     r3, __CARDDefaultApiCallback@ha
+    addi    r0, r3, __CARDDefaultApiCallback@l
 _L_8002f068:
     stw     r0, 0xd0(r4)
     rlwinm  r0, r30, 6, 0xa, 0x19

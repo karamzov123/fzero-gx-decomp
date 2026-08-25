@@ -26,7 +26,7 @@ extern void DCStoreRange(register void* addr, register u32 n);
 extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
 extern void __CARDSyncCallback(void);
-extern void fn_80029824(void);
+extern void __CARDDefaultApiCallback(void);
 extern void CARDWrite_WriteCallback(register s32 chan, register s32 result);
 extern void CARDWrite_EraseCallback(register s32 chan, register s32 result);
 extern unsigned char __CARDBlock[544];
@@ -242,8 +242,8 @@ _L_8002f86c:
     mr      r0, r29
     b       _L_8002f890
 _L_8002f888:
-    lis     r3, fn_80029824@ha
-    addi    r0, r3, fn_80029824@l         /* __CARDDefaultApiCallback */
+    lis     r3, __CARDDefaultApiCallback@ha
+    addi    r0, r3, __CARDDefaultApiCallback@l         /* __CARDDefaultApiCallback */
 _L_8002f890:
     lwz     r4, 0x1c(r1)
     lis     r3, CARDWrite_EraseCallback@ha

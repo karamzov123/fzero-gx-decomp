@@ -11,7 +11,7 @@ typedef unsigned long u32;
 typedef unsigned short u16;
 
 extern unsigned char __CARDBlock[544];
-extern void fn_80029824(void);
+extern void __CARDDefaultApiCallback(void);
 extern void __CARDSyncCallback(register s32 chn);
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
@@ -25,7 +25,7 @@ extern s32 __CARDSync(register void* handle);
 extern void DCInvalidateRange(register void* addr, register u32 n);
 extern u32 OSGetTime(void);
 extern unsigned char __CARDBlock[544];
-extern void fn_80029824(void);
+extern void __CARDDefaultApiCallback(void);
 extern void __CARDSyncCallback(register s32 chn);
 
 #pragma push
@@ -303,8 +303,8 @@ _L_8002f4cc:
     mr      r0, r27
     b       _L_8002f4f0
 _L_8002f4e8:
-    lis     r3, fn_80029824@ha
-    addi    r0, r3, fn_80029824@l
+    lis     r3, __CARDDefaultApiCallback@ha
+    addi    r0, r3, __CARDDefaultApiCallback@l
 _L_8002f4f0:
     lwz     r3, 0x1c(r1)
     stw     r0, 0xd0(r3)

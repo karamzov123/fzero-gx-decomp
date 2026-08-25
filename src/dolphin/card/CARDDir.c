@@ -21,7 +21,7 @@ extern void fn_8002E0C4(void);
 extern void fn_8002E170(void);
 extern unsigned char __CARDBlock[544];
 extern void __CARDSyncCallback(int chn);
-extern void fn_80029824(void);
+extern void __CARDDefaultApiCallback(void);
 extern void fn_80029AF4(int chn);
 extern void __CARDExiHandler(int chn, void* ctx);
 extern void __CARDExtHandler(int chn, void* ctx);
@@ -1713,8 +1713,8 @@ _8002deec:
     mr	r0, r29
     b       _8002df14
 _8002df0c:
-    lis     r3, fn_80029824@ha
-    addi	r0, r3, fn_80029824@l
+    lis     r3, __CARDDefaultApiCallback@ha
+    addi	r0, r3, __CARDDefaultApiCallback@l
 _8002df14:
     stw	r0, 0xd0(r31)
     li	r0, 0
@@ -2369,8 +2369,8 @@ _8002e868:
     mr	r0, r19
     b       _8002e88c
 _8002e884:
-    lis     r3, fn_80029824@ha
-    addi	r0, r3, fn_80029824@l
+    lis     r3, __CARDDefaultApiCallback@ha
+    addi	r0, r3, __CARDDefaultApiCallback@l
 _8002e88c:
     lwz	r5, 0x18(r1)
     lis	r3, 1

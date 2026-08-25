@@ -16,7 +16,7 @@ extern void __DSP_exec_task(void);
 extern void __DSP_boot_task(void);
 extern void __DSP_insert_task(void);
 extern void __DSP_remove_task(void);
-extern void fn_80029824(void);
+extern void __CARDDefaultApiCallback(void);
 extern void OSClearContext(void);
 extern void OSDisableInterrupts(void);
 extern void OSEnableInterrupts(void);
@@ -912,7 +912,7 @@ _80029800:
     blr	
 }
 
-asm void fn_80029824(void)
+asm void __CARDDefaultApiCallback(void)
 {
     nofralloc
     blr	
