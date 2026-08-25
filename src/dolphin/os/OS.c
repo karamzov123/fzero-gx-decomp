@@ -79,10 +79,6 @@ static asm void OSExceptionInit(void);
 #pragma push
 #pragma force_active on
 
-extern unsigned char AreWeInitialized[4];
-extern unsigned char BI2DebugFlag[4];
-extern unsigned char BI2DebugFlagHolder[4];
-extern unsigned char OSBootInfo[4];
 extern unsigned char OSExceptionTable[4];
 extern unsigned char __DVDLongFileNameFlag[4];
 extern unsigned char __OSInIPL[4];
@@ -95,7 +91,7 @@ extern unsigned char __PADSpec[4];
 asm void OSGetConsoleType(void)
 {
     nofralloc
-    lwz	r3, -0x7c78(r13)
+    lwz r3, -0x7c78(r13)
     cmplwi	r3, 0
     beq     _8000a23c
     lwz	r3, 0x2c(r3)
@@ -224,7 +220,7 @@ asm void OSInit(void)
     stw	r31, 0x14(r1)
     stw	r30, 0x10(r1)
     stw	r29, 0xc(r1)
-    lwz	r0, -0x7c58(r13)
+    lwz r0, -0x7c58(r13)
     lis     r3, -0x7fea
     addi	r30, r3, -0x4100
     cmpwi	r0, 0
@@ -232,9 +228,9 @@ asm void OSInit(void)
     addi	r31, r3, 0x25b0
     bne     _8000a76c
     li	r0, 1
-    stw	r0, -0x7c58(r13)
+    stw r0, -0x7c58(r13)
     bl      __OSGetSystemTime
-    stw	r4, -0x7c3c(r13)
+    stw r4, -0x7c3c(r13)
     stw	r3, __OSStartTime
     bl      OSDisableInterrupts
     li	r3, 0
@@ -253,16 +249,16 @@ asm void OSInit(void)
     bl      PPCSetFpNonIEEEMode
     li	r0, 0
     lis	r4, -0x8000
-    stw	r0, -0x7c74(r13)
-    stw	r4, -0x7c78(r13)
+    stw r0, -0x7c74(r13)
+    stw r4, -0x7c78(r13)
     stw	r0, __DVDLongFileNameFlag
     lwz	r3, 0xf4(r4)
     cmplwi	r3, 0
     beq     _8000a484
     addi	r0, r3, 0xc
-    stw	r0, -0x7c74(r13)
+    stw r0, -0x7c74(r13)
     lwz	r0, 0x24(r3)
-    lwz	r3, -0x7c74(r13)
+    lwz r3, -0x7c74(r13)
     stw	r0, __PADSpec
     lwz	r0, 0(r3)
     clrlwi	r0, r0, 0x18
@@ -277,13 +273,13 @@ _8000a484:
     beq     _8000a4a8
     lbz	r3, 0x30e8(r4)
     addi	r0, r13, -0x7c70
-    stw	r3, -0x7c70(r13)
-    stw	r0, -0x7c74(r13)
+    stw r3, -0x7c70(r13)
+    stw r0, -0x7c74(r13)
     lbz	r0, 0x30e9(r4)
     stw	r0, __PADSpec
 _8000a4a8:
     li	r0, 1
-    lwz	r3, -0x7c78(r13)
+    lwz r3, -0x7c78(r13)
     stw	r0, __DVDLongFileNameFlag
     lwz	r3, 0x30(r3)
     cmplwi	r3, 0
@@ -293,11 +289,11 @@ _8000a4a8:
     b       _8000a4cc
 _8000a4cc:
     bl      OSSetArenaLo
-    lwz	r3, -0x7c78(r13)
+    lwz r3, -0x7c78(r13)
     lwz	r0, 0x30(r3)
     cmplwi	r0, 0
     bne     _8000a50c
-    lwz	r3, -0x7c74(r13)
+    lwz r3, -0x7c74(r13)
     cmplwi	r3, 0
     beq     _8000a50c
     lwz	r0, 0(r3)
@@ -309,7 +305,7 @@ _8000a4cc:
     rlwinm	r3, r0, 0, 0, 0x1a
     bl      OSSetArenaLo
 _8000a50c:
-    lwz	r3, -0x7c78(r13)
+    lwz r3, -0x7c78(r13)
     lwz	r3, 0x34(r3)
     cmplwi	r3, 0
     bne     _8000a528
@@ -353,7 +349,7 @@ _8000a588:
     addi	r3, r31, 0x84
     crxor	6, 6, 6
     bl      OSReport
-    lwz	r3, -0x7c78(r13)
+    lwz r3, -0x7c78(r13)
     cmplwi	r3, 0
     beq     _8000a5cc
     lwz	r4, 0x2c(r3)
@@ -431,7 +427,7 @@ _8000a6ac:
     addi	r3, r13, -0x7fa4
     bl      OSReport
 _8000a6b8:
-    lwz	r4, -0x7c78(r13)
+    lwz r4, -0x7c78(r13)
     addi	r3, r31, 0xfc
     crxor	6, 6, 6
     lwz	r0, 0x28(r4)
@@ -447,7 +443,7 @@ _8000a6b8:
     bl      OSReport
     lwz	r3, __OSVersion
     bl      OSRegisterVersion
-    lwz	r3, -0x7c74(r13)
+    lwz r3, -0x7c74(r13)
     cmplwi	r3, 0
     beq     _8000a714
     lwz	r0, 0(r3)
@@ -546,7 +542,7 @@ _8000a840:
 _8000a850:
     b       _8000a998
 _8000a854:
-    lwz	r3, -0x7c74(r13)
+    lwz r3, -0x7c74(r13)
     cmplwi	r3, 0
     beq     _8000a890
     lwz	r0, 0(r3)

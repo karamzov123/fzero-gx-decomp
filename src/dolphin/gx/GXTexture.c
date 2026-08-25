@@ -17,6 +17,12 @@ void __GXInitTexObj(register void* p);
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A70E8[8];
+extern unsigned char lbl_801A70C0[8];
+extern unsigned char lbl_801A70E4[4];
+extern unsigned char lbl_801A70E0[4];
+extern unsigned char lbl_801A70F0[8];
+
 asm void GXGetTexObjAll(register void* p)
 {
     nofralloc
@@ -97,9 +103,9 @@ asm void GXGetTexObjLODAll(register void* p, register int a, register int b)
     rlwinm	r0, r0, 0x1c, 0x1f, 0x1f
     stw	r0, 0(r5)
     lwz	r0, 4(r3)
-    lfd	f2, -0x7d80(r2)
+    lfd f2, lbl_801A70C0(r2)
     clrlwi	r0, r0, 0x18
-    lfs	f1, -0x7d60(r2)
+    lfs f1, lbl_801A70E0(r2)
     stw	r0, 0x44(r1)
     stw	r12, 0x40(r1)
     lfd	f0, 0x40(r1)
@@ -115,9 +121,9 @@ asm void GXGetTexObjLODAll(register void* p, register int a, register int b)
     fmuls	f0, f0, f1
     stfs	f0, 0(r7)
     lwz	r0, 0(r3)
-    lfd	f2, -0x7d58(r2)
+    lfd f2, lbl_801A70E8(r2)
     rlwinm	r0, r0, 0x17, 0x18, 0x1f
-    lfs	f0, -0x7d5c(r2)
+    lfs f0, lbl_801A70E4(r2)
     extsh	r0, r0
     extsb	r0, r0
     xoris	r0, r0, 0x8000
@@ -822,7 +828,7 @@ _80036b08:
 _80036b10:
     li	r0, 0
 _80036b14:
-    lfs	f2, -0x7d50(r2)
+    lfs f2, lbl_801A70F0(r2)
     mulli	r3, r0, 3
     lfs	f1, 0(r4)
     lfs	f0, 0xc(r4)

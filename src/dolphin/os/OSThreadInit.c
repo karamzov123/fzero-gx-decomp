@@ -12,8 +12,6 @@ typedef unsigned int u32;
 
 extern unsigned char Reschedule[4];
 extern unsigned char RunQueueBits[4];
-extern unsigned char RunQueueHint[4];
-extern unsigned char SwitchThreadCallback[4];
 extern unsigned char RunQueue_8015C018[];
 extern unsigned char _stack_addr[4];
 extern unsigned char _stack_end[4];
@@ -63,7 +61,7 @@ asm void __OSThreadInit(void)
     lwz     r3, 0x720(r28)
     mr      r4, r31
     stw     r0, 0(r3)
-    lwz	r12, -0x7f80(r13)
+    lwz r12, -0x7f80(r13)
     lwz     r3, 0xe4(r30)
     mtlr    r12
     blrl
@@ -73,7 +71,7 @@ asm void __OSThreadInit(void)
     stw	r29, RunQueueBits
     li      r30, 0
     slwi    r0, r30, 3
-    stw	r29, -0x7bc4(r13)
+    stw r29, -0x7bc4(r13)
     add     r29, r28, r0
 _80010220:
     mr      r3, r29

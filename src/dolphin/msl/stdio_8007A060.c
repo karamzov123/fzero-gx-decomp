@@ -45,6 +45,13 @@ extern unsigned char __console_exit[4];
 extern unsigned char __stdio_exit[4];
 extern unsigned char lbl_801A6DD8[8];
 extern unsigned char lbl_801A6DE0[8];
+extern unsigned char lbl_801A74B0[8];
+extern unsigned char lbl_801A74C8[8];
+extern unsigned char lbl_801A74D8[8];
+extern unsigned char lbl_801A74C0[8];
+extern unsigned char lbl_801A74B8[8];
+extern unsigned char lbl_801A74D0[8];
+
 asm void exit(void);
 asm void fn_8007A150(void);
 asm void fn_8007A1C0(void);
@@ -1526,13 +1533,13 @@ asm void __sformatter(void)
     stw	r29, 0x1e4(r1)
     bc      4, 2, _8007b380
     lbz	r0, 0(r3)
-    lfd	f1, -0x7990(r2)
+    lfd f1, lbl_801A74B0(r2)
     extsb.	r0, r0
     bc      4, 2, _8007b374
-    lfd	f2, -0x7988(r2)
+    lfd f2, lbl_801A74B8(r2)
     b       _8007b378
 _8007b374:
-    lfd	f2, -0x7980(r2)
+    lfd f2, lbl_801A74C0(r2)
 _8007b378:
     bl      __fp_compare_greater_equal
     b       _8007c39c
@@ -1550,13 +1557,13 @@ _8007b39c:
     b       _8007b51c
 _8007b3a8:
     lbz	r0, 0(r3)
-    lfd	f1, -0x7990(r2)
+    lfd f1, lbl_801A74B0(r2)
     extsb.	r0, r0
     bc      4, 2, _8007b3c0
-    lfd	f2, -0x7988(r2)
+    lfd f2, lbl_801A74B8(r2)
     b       _8007b3c4
 _8007b3c0:
-    lfd	f2, -0x7980(r2)
+    lfd f2, lbl_801A74C0(r2)
 _8007b3c4:
     bl      __fp_compare_greater_equal
     b       _8007c39c
@@ -1566,10 +1573,10 @@ _8007b3cc:
     lfs	f1, 0x664c(r3)
     extsb.	r0, r0
     bc      4, 2, _8007b3e8
-    lfd	f2, -0x7988(r2)
+    lfd f2, lbl_801A74B8(r2)
     b       _8007b3ec
 _8007b3e8:
-    lfd	f2, -0x7980(r2)
+    lfd f2, lbl_801A74C0(r2)
 _8007b3ec:
     bl      __fp_compare_greater_equal
     b       _8007c39c
@@ -1736,7 +1743,7 @@ _8007b624:
     lis	r7, 0x4330
     lis     r3, lbl_8015AF98@ha
     stw	r7, 0x1d0(r1)
-    lfd	f3, -0x7970(r2)
+    lfd f3, lbl_801A74D0(r2)
     addi	r8, r30, 1
     stw	r4, 0x1d4(r1)
     addi	r5, r3, lbl_8015AF98@l
@@ -1833,9 +1840,9 @@ _8007b77c:
     lis	r0, 0x4330
     xoris	r3, r3, 0x8000
     stw	r0, 0x1d0(r1)
-    lfd	f2, -0x7968(r2)
+    lfd f2, lbl_801A74D8(r2)
     stw	r3, 0x1d4(r1)
-    lfd	f1, -0x7978(r2)
+    lfd f1, lbl_801A74C8(r2)
     lfd	f0, 0x1d0(r1)
     fsub	f2, f0, f2
     bl      __msl_fp_helper
@@ -1846,9 +1853,9 @@ _8007b7b8:
     xoris	r3, r31, 0x8000
     lis	r0, 0x4330
     stw	r3, 0x1dc(r1)
-    lfd	f2, -0x7968(r2)
+    lfd f2, lbl_801A74D8(r2)
     stw	r0, 0x1d8(r1)
-    lfd	f1, -0x7978(r2)
+    lfd f1, lbl_801A74C8(r2)
     lfd	f0, 0x1d8(r1)
     fsub	f2, f0, f2
     bl      __msl_fp_helper
@@ -2871,7 +2878,7 @@ asm void MSL_PrintfFloat(void)
     nofralloc
     stwu	r1, -0xb0(r1)
     mflr	r0
-    lfd	f0, -0x7990(r2)
+    lfd f0, lbl_801A74B0(r2)
     stw	r0, 0xb4(r1)
     fcmpu	cr0, f0, f1
     stfd	f31, 0xa8(r1)

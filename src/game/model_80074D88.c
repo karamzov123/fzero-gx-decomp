@@ -118,6 +118,21 @@ extern unsigned char lbl_801A6DA0[4];
 extern unsigned char lbl_801A6DA4[4];
 extern unsigned char lbl_801A6DA8[8];
 extern unsigned char lbl_801A7498[4];
+extern unsigned char lbl_801A7490[8];
+extern unsigned char lbl_801A6D68[4];
+extern unsigned char lbl_801A748C[4];
+extern unsigned char lbl_801A7488[4];
+extern unsigned char lbl_801A7484[4];
+extern unsigned char lbl_801A7480[4];
+extern unsigned char lbl_801A74AC[4];
+extern unsigned char lbl_801A74A8[4];
+extern unsigned char lbl_801A6D6C[4];
+extern unsigned char lbl_801A74A0[8];
+extern unsigned char lbl_801A749C[4];
+extern unsigned char lbl_801A6D70[4];
+extern unsigned char lbl_801A6D4C[4];
+extern unsigned char lbl_801A7928[4];
+
 asm void fn_80074D88(void);
 asm void fn_80075080(void);
 asm void AvDispSetupModel(void);
@@ -178,11 +193,11 @@ asm void fn_80074D88(void)
     li r4, 0x1e
     li r5, 0
     bl GXWritePrimitiveFifo
-    lfs f0, -0x79c0(r2)
+    lfs f0, lbl_801A7480(r2)
     lis r6, -0x2000
     lwz	r3, lbl_801A6D00
     li r4, 0x2d
-    lfs f1, -0x79b8(r2)
+    lfs f1, lbl_801A7488(r2)
     li r5, 0
     stfs f0, 0x20(r3)
     lwz	r3, lbl_801A6D00
@@ -196,7 +211,7 @@ asm void fn_80074D88(void)
     bl GXWritePrimitiveFifo
     bl QuatNormalizeCompare
     lis     r3, lbl_8019F008@ha
-    lfs f1, -0x79b4(r2)
+    lfs f1, lbl_801A748C(r2)
     addi r6, r3, lbl_8019F008@l
     lwz	r3, lbl_801A6D00
     lfs f0, 4(r6)
@@ -216,7 +231,7 @@ asm void fn_80074D88(void)
     lwz	r3, lbl_801A6D00
     bl GXWritePrimitiveFifo
     bl QuatNormalizeCompare
-    lfs f0, -0x79b4(r2)
+    lfs f0, lbl_801A748C(r2)
     li r4, 0x49
     lwz	r3, lbl_801A6D00
     li r5, 0
@@ -245,13 +260,13 @@ asm void fn_80074D88(void)
     li r7, 0
     li r8, 0x49
     bl ModelSetCachedPair5_B28
-    lfs f1, -0x79c0(r2)
+    lfs f1, lbl_801A7480(r2)
     addi r4, r1, 0x14
-    lfs f3, -0x7674(r13)
+    lfs f3, lbl_801A6D4C(r13)
     li r3, 1
     stfs f1, 0x14(r1)
     li r5, 1
-    lfs f2, -0x79b4(r2)
+    lfs f2, lbl_801A748C(r2)
     stfs f1, 0x18(r1)
     lfs f0, 0x3c(r30)
     fmuls f0, f0, f3
@@ -390,7 +405,7 @@ _800750CC:
     lbz r3, 9(r30)
     lbz r0, 0xa(r30)
     stw r5, 0x1c(r1)
-    lfd f1, -0x79b0(r2)
+    lfd f1, lbl_801A7490(r2)
     stw r4, 0x18(r1)
     lfd f0, 0x18(r1)
     stw r3, 0x24(r1)
@@ -404,12 +419,12 @@ _800750CC:
     fsubs f6, f0, f1
     b _80075134
 _80075128:
-    lfs f4, -0x79bc(r2)
+    lfs f4, lbl_801A7484(r2)
     fmr f5, f4
     fmr f6, f4
 _80075134:
     lis     r3, lbl_8019F130@ha
-    lfs f0, -0x79bc(r2)
+    lfs f0, lbl_801A7484(r2)
     addi r4, r3, lbl_8019F130@l
     addi r3, r1, 0xc
     lfs f2, 0(r4)
@@ -457,7 +472,7 @@ _800751E0:
     lis r0, 0x4330
     stw r0, 0x30(r1)
     addi r3, r1, 8
-    lfd f1, -0x79b0(r2)
+    lfd f1, lbl_801A7490(r2)
     stw r4, 0x34(r1)
     lfd f0, 0x30(r1)
     fsubs f0, f0, f1
@@ -488,13 +503,13 @@ asm void AvDispSetupModel(void)
     addi r11, r1, 0x50
     bl _savegpr_25
     lis     r3, lbl_8019F040@ha
-    lfs f1, -0x79c0(r2)
+    lfs f1, lbl_801A7480(r2)
     addi r31, r3, lbl_8019F040@l
-    lfs f3, -0x79b8(r2)
+    lfs f3, lbl_801A7488(r2)
     addi r5, r31, 0xf0
     li r0, 0
     addi r3, r31, 0xe0
-    lwz r7, -0x7518(r2)
+    lwz r7, lbl_801A7928(r2)
     lwz	r6, lbl_801A7498
     li r4, 1
     fmr f2, f1
@@ -515,9 +530,9 @@ asm void AvDispSetupModel(void)
     li r4, 0x21
     li r5, 0
     bl GXWritePrimitiveFifo
-    lfs f1, -0x79c0(r2)
+    lfs f1, lbl_801A7480(r2)
     li r6, -1
-    lfs f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     addi r3, r31, 0x10c
     stfs f1, 0x20(r1)
     stfs f0, 0x24(r1)
@@ -531,18 +546,18 @@ asm void AvDispSetupModel(void)
     stw r4, 0x110(r31)
     stw r0, 0x114(r31)
     bl PSVecNormalize3
-    lfs f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     li r6, 1
     li r0, 0
-    lfs f2, -0x79a4(r2)
+    lfs f2, lbl_801A749C(r2)
     addi r7, r31, 0x100
-    lfs f1, -0x79c0(r2)
-    stfs f0, -0x7650(r13)
+    lfs f1, lbl_801A7480(r2)
+    stfs f0, lbl_801A6D70(r13)
     addi r3, r31, 0x180
     li r4, 0xff
     li r5, 0x20
-    stfs f0, -0x7654(r13)
-    stfs f0, -0x7658(r13)
+    stfs f0, lbl_801A6D6C(r13)
+    stfs f0, lbl_801A6D68(r13)
     stw	r6, lbl_801A6D64
     stw	r0, lbl_801A6D48
     stfs f1, 0(r7)
@@ -566,7 +581,7 @@ asm void AvDispSetupModel(void)
     li r9, 0
     li r10, 0
     bl GXInitTexObj
-    lfs f1, -0x79c0(r2)
+    lfs f1, lbl_801A7480(r2)
     addi r3, r31, 0x1c0
     li r4, 1
     li r5, 1
@@ -694,7 +709,7 @@ _800753F0:
     li r9, 2
     li r10, 0
     bl GXInitTexObj
-    lfs f1, -0x79c0(r2)
+    lfs f1, lbl_801A7480(r2)
     addi r3, r31, 0x118
     li r4, 3
     li r5, 1
@@ -706,14 +721,14 @@ _800753F0:
     bl fn_80035EC4
     lwz r0, 0x18(r1)
     li r4, 0
-    lfs f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     li r3, 0
     stw	r4, lbl_801A6D54
     li r4, 1
     li r5, 0
     li r6, 0
     stw	r0, lbl_801A6D50
-    stfs f0, -0x7674(r13)
+    stfs f0, lbl_801A6D4C(r13)
     bl LightCtrl_SetCachedColor_1C
     li r3, 0
     li r4, 0
@@ -1520,7 +1535,7 @@ asm void fn_80076134(void)
     mflr r0
     stw r0, 0x14(r1)
     bl mtx_gpstack_push
-    lfs f0, -0x79c0(r2)
+    lfs f0, lbl_801A7480(r2)
     li r4, 0x1e
     lwz	r3, lbl_801A6D00
     li r5, 0
@@ -1543,13 +1558,13 @@ asm void fn_80076134(void)
     addi r3, r3, lbl_8015AD10@l
     addi r4, r4, 0x50
     bl PSMTXLookAtNoUp
-    lfs f1, -0x79b4(r2)
+    lfs f1, lbl_801A748C(r2)
     lwz	r3, lbl_801A6D00
-    lfs f4, -0x79a4(r2)
+    lfs f4, lbl_801A749C(r2)
     stfs f1, 0xc(r3)
-    lfs f2, -0x79c0(r2)
+    lfs f2, lbl_801A7480(r2)
     lwz	r3, lbl_801A6D00
-    lfs f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     lfs f3, 0x10(r3)
     fmuls f3, f3, f4
     stfs f3, 0x10(r3)
@@ -1607,7 +1622,7 @@ asm void fn_80076238(void)
     cmpwi r0, 0
     bne _800762C4
     bl mtx_gpstack_push
-    lfs f0, -0x79c0(r2)
+    lfs f0, lbl_801A7480(r2)
     li r4, 0x1e
     lwz	r3, lbl_801A6D00
     li r5, 0
@@ -1634,13 +1649,13 @@ _800762C4:
     addi r3, r3, lbl_8015AD1C@l
     addi r4, r4, 0x50
     bl PSMTXLookAtNoUp
-    lfs f1, -0x79b4(r2)
+    lfs f1, lbl_801A748C(r2)
     lwz	r3, lbl_801A6D00
-    lfs f4, -0x79a4(r2)
+    lfs f4, lbl_801A749C(r2)
     stfs f1, 0xc(r3)
-    lfs f2, -0x79c0(r2)
+    lfs f2, lbl_801A7480(r2)
     lwz	r3, lbl_801A6D00
-    lfs f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     lfs f3, 0x10(r3)
     fmuls f3, f3, f4
     stfs f3, 0x10(r3)
@@ -1771,7 +1786,7 @@ asm void fn_800764A0(void)
     cmpwi r0, 0
     bne _80076530
     bl mtx_gpstack_push
-    lfs f0, -0x79c0(r2)
+    lfs f0, lbl_801A7480(r2)
     li r4, 0x1e
     lwz	r3, lbl_801A6D00
     li r5, 0
@@ -1798,13 +1813,13 @@ _80076530:
     addi r3, r3, lbl_8015AD28@l
     addi r4, r4, 0x50
     bl PSMTXLookAtNoUp
-    lfs f1, -0x79b4(r2)
+    lfs f1, lbl_801A748C(r2)
     lwz	r3, lbl_801A6D00
-    lfs f4, -0x79a4(r2)
+    lfs f4, lbl_801A749C(r2)
     stfs f1, 0xc(r3)
-    lfs f2, -0x79c0(r2)
+    lfs f2, lbl_801A7480(r2)
     lwz	r3, lbl_801A6D00
-    lfs f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     lfs f3, 0x10(r3)
     fmuls f3, f3, f4
     stfs f3, 0x10(r3)
@@ -1959,7 +1974,7 @@ asm void ModelBlendMatrixPush(void)
     lis     r3, lbl_801A3220@ha
     lis     r6, lbl_8019F14C@ha
     addi r4, r3, lbl_801A3220@l
-    lfs f2, -0x79a0(r2)
+    lfs f2, lbl_801A74A0(r2)
     lwz r5, 0x50(r4)
     addi r8, r6, lbl_8019F14C@l
     lwz r6, 0x54(r4)
@@ -1980,7 +1995,7 @@ asm void ModelBlendMatrixPush(void)
     stw r7, 0x20(r1)
     fmuls f7, f1, f2
     fmuls f6, f0, f2
-    lfs f3, -0x79b4(r2)
+    lfs f3, lbl_801A748C(r2)
     stw r6, 0x24(r1)
     lfs f0, 0x20(r1)
     stw r0, 0x28(r1)
@@ -2007,13 +2022,13 @@ asm void ModelBlendMatrixPush(void)
     bl PSMTXReflect
     addi r3, r1, 0x38
     bl fn_8006DB74
-    lfs f1, -0x79b4(r2)
+    lfs f1, lbl_801A748C(r2)
     lwz	r3, lbl_801A6D00
-    lfs f4, -0x79a4(r2)
+    lfs f4, lbl_801A749C(r2)
     stfs f1, 0xc(r3)
-    lfs f2, -0x79c0(r2)
+    lfs f2, lbl_801A7480(r2)
     lwz	r3, lbl_801A6D00
-    lfs f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     lfs f3, 0x10(r3)
     fmuls f3, f3, f4
     stfs f3, 0x10(r3)
@@ -2041,12 +2056,12 @@ asm void ModelBlendMatrixPush(void)
     li r5, 0
     bl GXWritePrimitiveFifo
     bl QuatNormalizeCompare
-    lfs f2, -0x79c0(r2)
+    lfs f2, lbl_801A7480(r2)
     addi r3, r1, 0x38
     lwz	r4, lbl_801A6D00
-    lfs f1, -0x79b4(r2)
+    lfs f1, lbl_801A748C(r2)
     stfs f2, 0(r4)
-    lfs f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     lwz	r4, lbl_801A6D00
     stfs f1, 8(r4)
     lwz	r4, lbl_801A6D00
@@ -2112,15 +2127,15 @@ _800769FC:
     lbz r0, 0xe(r1)
     li r3, 1
     stw r7, 0x14(r1)
-    lfd f5, -0x79b0(r2)
+    lfd f5, lbl_801A7490(r2)
     stw r6, 0x10(r1)
-    lfs f3, -0x7650(r13)
+    lfs f3, lbl_801A6D70(r13)
     lfd f0, 0x10(r1)
     stw r5, 0x24(r1)
     fsubs f4, f0, f5
-    lfs f2, -0x7654(r13)
+    lfs f2, lbl_801A6D6C(r13)
     stw r6, 0x20(r1)
-    lfs f0, -0x7658(r13)
+    lfs f0, lbl_801A6D68(r13)
     lfd f1, 0x20(r1)
     fmuls f4, f4, f3
     stw r0, 0x34(r1)
@@ -2154,7 +2169,7 @@ _80076AA4:
     cmpwi r0, 0
     bne _80076AF4
     bl mtx_gpstack_push
-    lfs f0, -0x79c0(r2)
+    lfs f0, lbl_801A7480(r2)
     li r4, 0x1e
     lwz	r3, lbl_801A6D00
     li r5, 0
@@ -2775,7 +2790,7 @@ asm void fn_80077384(void)
     lis     r3, lbl_8019F130@ha
     li r0, 4
     addi r3, r3, lbl_8019F130@l
-    lfs f1, -0x79b8(r2)
+    lfs f1, lbl_801A7488(r2)
     lfs f0, 0xc(r3)
     li r3, 2
     stb r0, 2(r4)
@@ -2851,7 +2866,7 @@ asm void fn_80077488(void)
     lis     r3, lbl_8019F130@ha
     li r0, 2
     addi r3, r3, lbl_8019F130@l
-    lfs f1, -0x79b8(r2)
+    lfs f1, lbl_801A7488(r2)
     lfs f0, 0xc(r3)
     stb r0, 2(r4)
     fcmpu cr0, f1, f0
@@ -2904,7 +2919,7 @@ _80077578:
     lis     r3, lbl_8019F130@ha
     stw r0, 0x10(r1)
     addi r3, r3, lbl_8019F130@l
-    lfd f2, -0x79b0(r2)
+    lfd f2, lbl_801A7490(r2)
     stw r4, 0x14(r1)
     addi r4, r1, 8
     lfs f0, 0xc(r3)
@@ -3076,7 +3091,7 @@ asm void AvDispInitModel(void)
     mflr r0
     stw r0, 0x14(r1)
     bl LightCtrl_InitChannels4
-    lfs f1, -0x7998(r2)
+    lfs f1, lbl_801A74A8(r2)
     lis     r3, lbl_8019F130@ha
     addi r3, r3, lbl_8019F130@l
     fmr f2, f1
@@ -3084,7 +3099,7 @@ asm void AvDispInitModel(void)
     fmr f3, f1
     fmr f4, f1
     bl GXColorClampScale
-    lfs f1, -0x7994(r2)
+    lfs f1, lbl_801A74AC(r2)
     fmr f2, f1
     fmr f3, f1
     fmr f4, f1

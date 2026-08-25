@@ -122,6 +122,49 @@ extern unsigned char lbl_801A6C78[4];
 extern unsigned char lbl_801A6C7C[4];
 extern unsigned char lbl_801A7328[4];
 extern unsigned char lbl_801A7348[4];
+extern unsigned char lbl_801A7338[8];
+extern unsigned char lbl_801A7308[8];
+extern unsigned char lbl_801A72D8[8];
+extern unsigned char lbl_801A72D0[8];
+extern unsigned char lbl_801A72A0[8];
+extern unsigned char lbl_801A7298[8];
+extern unsigned char lbl_801A7280[8];
+extern unsigned char lbl_801A7278[8];
+extern unsigned char lbl_801A7238[8];
+extern unsigned char lbl_801A7230[8];
+extern unsigned char lbl_801A72E0[8];
+extern unsigned char lbl_801A72C8[8];
+extern unsigned char lbl_801A7260[8];
+extern unsigned char lbl_801A7228[8];
+extern unsigned char lbl_801A7218[8];
+extern unsigned char lbl_801A7340[8];
+extern unsigned char lbl_801A7320[8];
+extern unsigned char lbl_801A7300[8];
+extern unsigned char lbl_801A72E8[8];
+extern unsigned char lbl_801A7290[8];
+extern unsigned char lbl_801A7288[8];
+extern unsigned char lbl_801A7248[8];
+extern unsigned char lbl_801A7330[8];
+extern unsigned char lbl_801A72F8[8];
+extern unsigned char lbl_801A72C0[8];
+extern unsigned char lbl_801A7220[8];
+extern unsigned char lbl_801A7270[8];
+extern unsigned char lbl_801A72B8[8];
+extern unsigned char lbl_801A7268[8];
+extern unsigned char lbl_801A7310[8];
+extern unsigned char lbl_801A72B4[4];
+extern unsigned char lbl_801A72AC[4];
+extern unsigned char lbl_801A72A8[4];
+extern unsigned char lbl_801A7258[4];
+extern unsigned char lbl_801A7254[4];
+extern unsigned char lbl_801A7250[4];
+extern unsigned char lbl_801A7240[4];
+extern unsigned char lbl_801A7318[4];
+extern unsigned char lbl_801A72B0[4];
+extern unsigned char lbl_801A72F0[4];
+extern unsigned char lbl_801A725C[4];
+
+extern unsigned char lbl_801A6608[8];
 asm void SndInitManager(void);
 asm void SndApplyChannelVolume(void);
 asm void SndApplyChannelPan(void);
@@ -331,7 +374,7 @@ _8005c314:
     lis	r4, 0x4330
     xoris	r5, r5, 0x8000
     stw	r4, 8(r1)
-    lfd	f1, -0x7c28(r2)
+    lfd f1, lbl_801A7218(r2)
     stw	r5, 0xc(r1)
     lbz	r5, 0x59b(r6)
     lfd	f0, 8(r1)
@@ -386,7 +429,7 @@ _8005c3dc:
     rlwinm	r4, r7, 5, 0x13, 0x1a
     stw	r6, 0x14(r1)
     add	r4, r8, r4
-    lfd	f1, -0x7c28(r2)
+    lfd f1, lbl_801A7218(r2)
     stw	r5, 0x10(r1)
     lbz	r4, 0x59b(r4)
     lfd	f0, 0x10(r1)
@@ -483,7 +526,7 @@ _8005c530:
     xoris	r3, r29, 0x8000
     stw	r4, 0x10(r1)
     add	r31, r31, r5
-    lfd	f3, -0x7c28(r2)
+    lfd f3, lbl_801A7218(r2)
     stw	r3, 0x14(r1)
     xoris	r5, r31, 0x8000
     lwz	r0, g_sndMgrPtr
@@ -491,9 +534,9 @@ _8005c530:
     stw	r5, 0xc(r1)
     add	r3, r0, r30
     fsub	f0, f0, f3
-    lfd	f1, -0x7c18(r2)
+    lfd f1, lbl_801A7228(r2)
     stw	r4, 8(r1)
-    lfd	f4, -0x7c20(r2)
+    lfd f4, lbl_801A7220(r2)
     lfd	f2, 8(r1)
     fmul	f0, f1, f0
     fsub	f1, f2, f3
@@ -547,15 +590,15 @@ _8005c620:
     bc      12, 2, _8005c678
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 8(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7c08(r2)
-    lfd	f0, -0x7c10(r2)
+    lfd f2, lbl_801A7238(r2)
+    lfd f0, lbl_801A7230(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -573,15 +616,15 @@ _8005c67c:
     bc      12, 2, _8005c6d8
     lis	r0, 0x4330
     stw	r3, 0x14(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x10(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7c08(r2)
-    lfd	f0, -0x7c10(r2)
+    lfd f2, lbl_801A7238(r2)
+    lfd f0, lbl_801A7230(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -597,15 +640,15 @@ _8005c6e0:
     bc      12, 2, _8005c730
     lis	r0, 0x4330
     stw	r3, 0x14(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x10(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7c08(r2)
-    lfd	f0, -0x7c10(r2)
+    lfd f2, lbl_801A7238(r2)
+    lfd f0, lbl_801A7230(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -621,15 +664,15 @@ _8005c734:
     bc      12, 2, _8005c788
     lis	r0, 0x4330
     stw	r3, 0x14(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x10(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7c08(r2)
-    lfd	f0, -0x7c10(r2)
+    lfd f2, lbl_801A7238(r2)
+    lfd f0, lbl_801A7230(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -709,9 +752,9 @@ _8005c868:
     addze	r4, r4
     stw	r0, 0x10(r1)
     addi	r0, r4, -1
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     clrlwi	r28, r0, 0x18
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     lbzx	r0, r3, r28
     lha	r27, 8(r1)
     stw	r0, 0x14(r1)
@@ -723,12 +766,12 @@ _8005c868:
     addi	r3, r31, 0x40
     lis	r0, 0x4330
     lbzx	r3, r3, r28
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     stw	r3, 0x1c(r1)
     fmul	f3, f0, f1
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x18(r1)
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     lfd	f1, 0x18(r1)
     frsp	f3, f3
     fsubs	f1, f1, f2
@@ -737,12 +780,12 @@ _8005c868:
     bl      expf
     xoris	r3, r27, 0x8000
     lis	r0, 0x4330
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     stw	r3, 0x24(r1)
     fmul	f1, f0, f1
-    lfd	f2, -0x7c28(r2)
+    lfd f2, lbl_801A7218(r2)
     stw	r0, 0x20(r1)
-    lfs	f3, -0x7bec(r2)
+    lfs f3, lbl_801A7254(r2)
     lfd	f0, 0x20(r1)
     frsp	f1, f1
     fsubs	f0, f0, f2
@@ -853,9 +896,9 @@ _8005ca78:
     addi	r3, r31, 0x20
     stw	r0, 0x10(r1)
     extsh	r0, r4
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     srawi	r0, r0, 2
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     addze	r4, r0
     lha	r27, 8(r1)
     addi	r0, r4, -1
@@ -870,12 +913,12 @@ _8005ca78:
     addi	r3, r31, 0x40
     lis	r0, 0x4330
     lbzx	r3, r3, r28
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     stw	r3, 0x1c(r1)
     fmul	f3, f0, f1
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x18(r1)
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     lfd	f1, 0x18(r1)
     frsp	f3, f3
     fsubs	f1, f1, f2
@@ -884,12 +927,12 @@ _8005ca78:
     bl      expf
     xoris	r3, r27, 0x8000
     lis	r0, 0x4330
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     stw	r3, 0x24(r1)
     fmul	f1, f0, f1
-    lfd	f2, -0x7c28(r2)
+    lfd f2, lbl_801A7218(r2)
     stw	r0, 0x20(r1)
-    lfs	f3, -0x7bec(r2)
+    lfs f3, lbl_801A7254(r2)
     lfd	f0, 0x20(r1)
     frsp	f1, f1
     fsubs	f0, f0, f2
@@ -1451,39 +1494,39 @@ _8005d314:
     bc      12, 2, _8005d354
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 8(r1)
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     fmul	f31, f0, f1
     frsp	f31, f31
     b       _8005d358
 _8005d354:
-    lfs	f31, -0x7be8(r2)
+    lfs f31, lbl_801A7258(r2)
 _8005d358:
     lbz	r3, 9(r28)
     cmplwi	r3, 0
     bc      12, 2, _8005d39c
     lis	r0, 0x4330
     stw	r3, 0x14(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x10(r1)
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f31, f31, f0
     b       _8005d3a0
 _8005d39c:
-    lfs	f31, -0x7be8(r2)
+    lfs f31, lbl_801A7258(r2)
 _8005d3a0:
     lwz	r0, g_sndMgrPtr
     rlwinm	r28, r29, 5, 0x13, 0x1a
@@ -1493,20 +1536,20 @@ _8005d3a0:
     bc      12, 2, _8005d3f0
     lis	r0, 0x4330
     stw	r3, 0x1c(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x18(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0x18(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f31, f31, f0
     b       _8005d3f4
 _8005d3f0:
-    lfs	f31, -0x7be8(r2)
+    lfs f31, lbl_801A7258(r2)
 _8005d3f4:
     lwz	r0, g_sndMgrPtr
     add	r3, r0, r28
@@ -1515,20 +1558,20 @@ _8005d3f4:
     bc      12, 2, _8005d440
     lis	r0, 0x4330
     stw	r3, 0x24(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x20(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f31, f31, f0
     b       _8005d444
 _8005d440:
-    lfs	f31, -0x7be8(r2)
+    lfs f31, lbl_801A7258(r2)
 _8005d444:
     lwz	r4, g_sndMgrPtr
     add	r3, r4, r28
@@ -1549,20 +1592,20 @@ _8005d46c:
     bc      12, 2, _8005d4bc
     lis	r0, 0x4330
     stw	r3, 0x24(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x20(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f0, f31, f0
     b       _8005d4c0
 _8005d4bc:
-    lfs	f0, -0x7be8(r2)
+    lfs f0, lbl_801A7258(r2)
 _8005d4c0:
     lwz	r3, g_sndMgrPtr
     fmr	f31, f0
@@ -1577,22 +1620,22 @@ _8005d4d8:
     bc      12, 2, _8005d520
     lis	r0, 0x4330
     stw	r3, 0x24(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0x20(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f1, f31, f0
     b       _8005d524
 _8005d520:
-    lfs	f1, -0x7be8(r2)
+    lfs f1, lbl_801A7258(r2)
 _8005d524:
-    lfs	f0, -0x7bec(r2)
+    lfs f0, lbl_801A7254(r2)
     lwz	r3, g_sndMgrPtr
     fmuls	f0, f0, f1
     lha	r0, 0x5a10(r3)
@@ -1611,7 +1654,7 @@ _8005d560:
     mr	r3, r28
     b       _8005d57c
 _8005d568:
-    lfs	f0, -0x7be8(r2)
+    lfs f0, lbl_801A7258(r2)
     li	r0, -0x3c0
     li	r3, -0x3c0
     stfs	f0, 0(r30)
@@ -2062,10 +2105,10 @@ asm void SndVelocityToVolume(void)
     addi	r7, r7, -1
     stw	r0, 8(r1)
     clrlwi	r31, r7, 0x18
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     lbzx	r0, r3, r31
     fmr	f31, f1
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     mr	r28, r4
     stw	r0, 0xc(r1)
     mr	r29, r5
@@ -2077,32 +2120,32 @@ asm void SndVelocityToVolume(void)
     lis     r3, lbl_80092A18@ha
     lis	r0, 0x4330
     addi	r3, r3, lbl_80092A18@l
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     lbzx	r3, r3, r31
     fmul	f3, f0, f1
     stw	r0, 0x10(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r3, 0x14(r1)
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     lfd	f1, 0x10(r1)
     frsp	f3, f3
     fsubs	f1, f1, f2
     fadds	f30, f31, f3
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     lis	r0, 0x4330
     extsh	r3, r28
     stw	r0, 0x18(r1)
     xoris	r3, r3, 0x8000
     fmul	f1, f0, f1
     stw	r3, 0x1c(r1)
-    lfd	f2, -0x7c28(r2)
+    lfd f2, lbl_801A7218(r2)
     lfd	f0, 0x18(r1)
     frsp	f4, f1
     stw	r3, 0x2c(r1)
     fsubs	f1, f0, f2
-    lfs	f3, -0x7bec(r2)
+    lfs f3, lbl_801A7254(r2)
     stw	r0, 0x28(r1)
     fadds	f4, f31, f4
     lfd	f0, 0x28(r1)
@@ -2337,15 +2380,15 @@ _8005df80:
     xoris	r0, r17, 0x8000
     stw	r4, 0xb0(r1)
     add	r24, r24, r3
-    lfd	f3, -0x7c28(r2)
+    lfd f3, lbl_801A7218(r2)
     stw	r0, 0xb4(r1)
     xoris	r3, r24, 0x8000
-    lfd	f1, -0x7c18(r2)
+    lfd f1, lbl_801A7228(r2)
     lis	r0, 0x960
     lfd	f0, 0xb0(r1)
     stw	r3, 0xac(r1)
     fsub	f0, f0, f3
-    lfd	f4, -0x7c20(r2)
+    lfd f4, lbl_801A7220(r2)
     stw	r4, 0xa8(r1)
     lfd	f2, 0xa8(r1)
     fmul	f0, f1, f0
@@ -2571,9 +2614,9 @@ _8005e2e8:
     addi	r3, r14, 0x20
     stw	r0, 0xb8(r1)
     extsh	r0, r4
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     srawi	r0, r0, 2
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     addze	r4, r0
     lha	r18, 8(r1)
     addi	r0, r4, -1
@@ -2588,12 +2631,12 @@ _8005e2e8:
     addi	r3, r14, 0x40
     lis	r0, 0x4330
     lbzx	r3, r3, r19
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     stw	r3, 0xb4(r1)
     fmul	f3, f0, f1
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0xb0(r1)
-    lfs	f0, -0x7bf0(r2)
+    lfs f0, lbl_801A7250(r2)
     lfd	f1, 0xb0(r1)
     frsp	f3, f3
     fsubs	f1, f1, f2
@@ -2602,12 +2645,12 @@ _8005e2e8:
     bl      expf
     xoris	r3, r18, 0x8000
     lis	r0, 0x4330
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     stw	r3, 0xac(r1)
     fmul	f1, f0, f1
-    lfd	f2, -0x7c28(r2)
+    lfd f2, lbl_801A7218(r2)
     stw	r0, 0xa8(r1)
-    lfs	f3, -0x7bec(r2)
+    lfs f3, lbl_801A7254(r2)
     lfd	f0, 0xa8(r1)
     frsp	f1, f1
     fsubs	f0, f0, f2
@@ -2663,9 +2706,9 @@ _8005e424:
     xoris	r0, r28, 0x8000
     stw	r4, 0xd4(r1)
     li	r27, 0x40
-    lfd	f2, -0x7c28(r2)
+    lfd f2, lbl_801A7218(r2)
     stw	r3, 0xd0(r1)
-    lfs	f3, -0x7be4(r2)
+    lfs f3, lbl_801A725C(r2)
     lfd	f0, 0xd0(r1)
     stw	r0, 0xcc(r1)
     fsubs	f1, f0, f2
@@ -2686,8 +2729,8 @@ _8005e49c:
     addi	r3, r3, 0x409
     stw	r0, 0xd0(r1)
     mulhw	r3, r3, r4
-    lfd	f8, -0x7c28(r2)
-    lfd	f1, -0x7be0(r2)
+    lfd f8, lbl_801A7218(r2)
+    lfd f1, lbl_801A7260(r2)
     add	r3, r3, r4
     srawi	r3, r3, 6
     srwi	r4, r3, 0x1f
@@ -2699,9 +2742,9 @@ _8005e49c:
     fcmpo	cr0, f0, f1
     bc      4, 1, _8005e59c
     stw	r3, 0xd4(r1)
-    lfd	f7, -0x7bd8(r2)
+    lfd f7, lbl_801A7268(r2)
     stw	r0, 0xd0(r1)
-    lfd	f6, -0x7bd0(r2)
+    lfd f6, lbl_801A7270(r2)
     lfd	f0, 0xd0(r1)
     stw	r3, 0xcc(r1)
     fsubs	f0, f0, f8
@@ -2767,14 +2810,14 @@ _8005e5dc:
 _8005e5e4:
     bl      expf
     lis	r3, -0x7efe
-    lfd	f0, -0x7bc8(r2)
+    lfd f0, lbl_801A7278(r2)
     addi	r3, r3, 0x409
     lis	r0, 0x4330
     mulhw	r3, r3, r18
     fmul	f0, f0, f1
     stw	r0, 0xc8(r1)
-    lfd	f8, -0x7c28(r2)
-    lfd	f1, -0x7be0(r2)
+    lfd f8, lbl_801A7218(r2)
+    lfd f1, lbl_801A7260(r2)
     fctiwz	f0, f0
     add	r3, r3, r18
     srawi	r3, r3, 6
@@ -2789,9 +2832,9 @@ _8005e5e4:
     fcmpo	cr0, f0, f1
     bc      4, 1, _8005e6f4
     stw	r3, 0xd4(r1)
-    lfd	f7, -0x7bd8(r2)
+    lfd f7, lbl_801A7268(r2)
     stw	r0, 0xd0(r1)
-    lfd	f6, -0x7bd0(r2)
+    lfd f6, lbl_801A7270(r2)
     lfd	f0, 0xd0(r1)
     stw	r3, 0xcc(r1)
     fsubs	f0, f0, f8
@@ -2856,16 +2899,16 @@ _8005e734:
     lfs	f1, lbl_801A664C@l(r3)
 _8005e73c:
     bl      expf
-    lfd	f0, -0x7c08(r2)
+    lfd f0, lbl_801A7238(r2)
     lis	r3, 0x4330
     xoris	r0, r28, 0x8000
     extsh	r4, r21
     fmul	f0, f0, f1
     stw	r3, 0xc8(r1)
-    lfd	f2, -0x7c28(r2)
+    lfd f2, lbl_801A7218(r2)
     li	r27, 0x40
     stw	r0, 0xc4(r1)
-    lfs	f3, -0x7be4(r2)
+    lfs f3, lbl_801A725C(r2)
     fctiwz	f1, f0
     stw	r3, 0xc0(r1)
     lfd	f0, 0xc0(r1)
@@ -2916,15 +2959,15 @@ _8005e800:
     bc      12, 2, _8005e85c
     lis	r0, 0x4330
     stw	r4, 0xd4(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0xd0(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0xd0(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7c08(r2)
-    lfd	f0, -0x7c10(r2)
+    lfd f2, lbl_801A7238(r2)
+    lfd f0, lbl_801A7230(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -2942,15 +2985,15 @@ _8005e860:
     bc      12, 2, _8005e8bc
     lis	r0, 0x4330
     stw	r3, 0xd4(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0xd0(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0xd0(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7c08(r2)
-    lfd	f0, -0x7c10(r2)
+    lfd f2, lbl_801A7238(r2)
+    lfd f0, lbl_801A7230(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -2967,15 +3010,15 @@ _8005e8c4:
     bc      12, 2, _8005e918
     lis	r0, 0x4330
     stw	r3, 0xd4(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0xd0(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0xd0(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7c08(r2)
-    lfd	f0, -0x7c10(r2)
+    lfd f2, lbl_801A7238(r2)
+    lfd f0, lbl_801A7230(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -2991,15 +3034,15 @@ _8005e91c:
     bc      12, 2, _8005e970
     lis	r0, 0x4330
     stw	r3, 0xd4(r1)
-    lfd	f2, -0x7bf8(r2)
+    lfd f2, lbl_801A7248(r2)
     stw	r0, 0xd0(r1)
-    lfs	f0, -0x7c00(r2)
+    lfs f0, lbl_801A7240(r2)
     lfd	f1, 0xd0(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7c08(r2)
-    lfd	f0, -0x7c10(r2)
+    lfd f2, lbl_801A7238(r2)
+    lfd f0, lbl_801A7230(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -3441,7 +3484,7 @@ _8005efa8:
     lwz	r0, g_sndMgrPtr
     stw	r3, 0xd4(r1)
     add	r3, r0, r20
-    lfd	f1, -0x7c28(r2)
+    lfd f1, lbl_801A7218(r2)
     stw	r4, 0xd0(r1)
     lbz	r3, 0x59b(r3)
     lfd	f0, 0xd0(r1)
@@ -3493,7 +3536,7 @@ _8005f06c:
     lwz	r0, g_sndMgrPtr
     stw	r3, 0xd4(r1)
     add	r3, r0, r20
-    lfd	f1, -0x7c28(r2)
+    lfd f1, lbl_801A7218(r2)
     stw	r4, 0xd0(r1)
     lbz	r3, 0x59b(r3)
     lfd	f0, 0xd0(r1)
@@ -5140,15 +5183,15 @@ _800607f0:
     xoris	r3, r3, 0x8000
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     stw	r0, 8(r1)
-    lfs	f0, -0x7b98(r2)
+    lfs f0, lbl_801A72A8(r2)
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7ba0(r2)
-    lfd	f0, -0x7ba8(r2)
+    lfd f2, lbl_801A72A0(r2)
+    lfd f0, lbl_801A7298(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -5207,15 +5250,15 @@ _800608e0:
     xoris	r3, r5, 0x8000
     lis	r0, 0x4330
     stw	r3, 0x14(r1)
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     stw	r0, 0x10(r1)
-    lfs	f0, -0x7b98(r2)
+    lfs f0, lbl_801A72A8(r2)
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f2, -0x7ba0(r2)
-    lfd	f0, -0x7ba8(r2)
+    lfd f2, lbl_801A72A0(r2)
+    lfd f0, lbl_801A7298(r2)
     fmul	f1, f2, f1
     fmul	f0, f0, f1
     fctiwz	f0, f0
@@ -5303,19 +5346,19 @@ _80060a24:
     bc      12, 2, _80060a70
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lfd	f2, -0x7bb8(r2)
+    lfd f2, lbl_801A7288(r2)
     stw	r0, 8(r1)
-    lfs	f0, -0x7b94(r2)
+    lfs f0, lbl_801A72AC(r2)
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7ba0(r2)
+    lfd f0, lbl_801A72A0(r2)
     fmul	f31, f0, f1
     frsp	f31, f31
     b       _80060a74
 _80060a70:
-    lfs	f31, -0x7b90(r2)
+    lfs f31, lbl_801A72B0(r2)
 _80060a74:
     lis     r3, lbl_80192D68@ha
     addi	r0, r3, lbl_80192D68@l
@@ -5325,20 +5368,20 @@ _80060a74:
     bc      12, 2, _80060ac4
     lis	r0, 0x4330
     stw	r3, 0x14(r1)
-    lfd	f2, -0x7bb8(r2)
+    lfd f2, lbl_801A7288(r2)
     stw	r0, 0x10(r1)
-    lfs	f0, -0x7b98(r2)
+    lfs f0, lbl_801A72A8(r2)
     lfd	f1, 0x10(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7ba0(r2)
+    lfd f0, lbl_801A72A0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f31, f31, f0
     b       _80060ac8
 _80060ac4:
-    lfs	f31, -0x7b90(r2)
+    lfs f31, lbl_801A72B0(r2)
 _80060ac8:
     lis     r3, lbl_80192D68@ha
     addi	r0, r3, lbl_80192D68@l
@@ -5348,20 +5391,20 @@ _80060ac8:
     bc      12, 2, _80060b18
     lis	r0, 0x4330
     stw	r3, 0x1c(r1)
-    lfd	f2, -0x7bb8(r2)
+    lfd f2, lbl_801A7288(r2)
     stw	r0, 0x18(r1)
-    lfs	f0, -0x7b98(r2)
+    lfs f0, lbl_801A72A8(r2)
     lfd	f1, 0x18(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7ba0(r2)
+    lfd f0, lbl_801A72A0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f31, f31, f0
     b       _80060b1c
 _80060b18:
-    lfs	f31, -0x7b90(r2)
+    lfs f31, lbl_801A72B0(r2)
 _80060b1c:
     lwz	r3, g_sndMgrPtr
     slwi	r0, r30, 1
@@ -5372,22 +5415,22 @@ _80060b1c:
     bc      12, 2, _80060b70
     lis	r0, 0x4330
     stw	r4, 0x24(r1)
-    lfd	f2, -0x7bb8(r2)
+    lfd f2, lbl_801A7288(r2)
     stw	r0, 0x20(r1)
-    lfs	f0, -0x7b98(r2)
+    lfs f0, lbl_801A72A8(r2)
     lfd	f1, 0x20(r1)
     fsubs	f1, f1, f2
     fdivs	f1, f1, f0
     bl      expf
-    lfd	f0, -0x7ba0(r2)
+    lfd f0, lbl_801A72A0(r2)
     fmul	f0, f0, f1
     frsp	f0, f0
     fadds	f1, f31, f0
     b       _80060b74
 _80060b70:
-    lfs	f1, -0x7b90(r2)
+    lfs f1, lbl_801A72B0(r2)
 _80060b74:
-    lfs	f0, -0x7b8c(r2)
+    lfs f0, lbl_801A72B4(r2)
     lwz	r3, g_sndMgrPtr
     fmuls	f0, f0, f1
     lha	r0, 0x5a10(r3)
@@ -5625,14 +5668,14 @@ _80060e98:
     lis     r3, lbl_80192D68@ha
     stw	r5, 0xe0(r1)
     addi	r0, r3, lbl_80192D68@l
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     stw	r6, 0xdc(r1)
     xoris	r4, r4, 0x8000
     stw	r5, 0xd8(r1)
     add	r3, r0, r31
-    lfd	f0, -0x7bc0(r2)
+    lfd f0, lbl_801A7280(r2)
     stw	r4, 0xe4(r1)
-    lfd	f4, -0x7bb8(r2)
+    lfd f4, lbl_801A7288(r2)
     lfd	f1, 0xe0(r1)
     lfd	f3, 0xd8(r1)
     fsub	f1, f1, f2
@@ -5697,14 +5740,14 @@ _80060fa0:
     lis     r3, lbl_80192D68@ha
     stw	r5, 0xe0(r1)
     addi	r0, r3, lbl_80192D68@l
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     stw	r6, 0xec(r1)
     xoris	r4, r4, 0x8000
     stw	r5, 0xe8(r1)
     add	r3, r0, r31
-    lfd	f0, -0x7bc0(r2)
+    lfd f0, lbl_801A7280(r2)
     stw	r4, 0xe4(r1)
-    lfd	f4, -0x7bb8(r2)
+    lfd f4, lbl_801A7288(r2)
     lfd	f1, 0xe0(r1)
     lfd	f3, 0xe8(r1)
     fsub	f1, f1, f2
@@ -5745,10 +5788,10 @@ _80061044:
     xoris	r0, r0, 0x8000
     stw	r3, 0xe8(r1)
     add	r4, r5, r4
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     xoris	r4, r4, 0x8000
     stw	r0, 0xe4(r1)
-    lfs	f3, -0x7b50(r2)
+    lfs f3, lbl_801A72F0(r2)
     li	r26, 0x40
     stw	r4, 0xec(r1)
     stw	r3, 0xe0(r1)
@@ -5769,8 +5812,8 @@ _800610bc:
     addi	r3, r3, 0x409
     stw	r0, 0xe8(r1)
     mulhw	r0, r3, r4
-    lfd	f2, -0x7bb0(r2)
-    lfd	f1, -0x7b68(r2)
+    lfd f2, lbl_801A7290(r2)
+    lfd f1, lbl_801A72D8(r2)
     add	r0, r0, r4
     srawi	r0, r0, 6
     srwi	r3, r0, 0x1f
@@ -5782,8 +5825,8 @@ _800610bc:
     fcmpo	cr0, f4, f1
     bc      4, 1, _8006115c
     frsqrte	f1, f4
-    lfd	f3, -0x7b48(r2)
-    lfd	f2, -0x7b40(r2)
+    lfd f3, lbl_801A72F8(r2)
+    lfd f2, lbl_801A7300(r2)
     fmul	f0, f1, f1
     fmul	f1, f3, f1
     fnmsub	f0, f4, f0, f2
@@ -5818,14 +5861,14 @@ _8006117c:
 _80061184:
     bl      expf
     lis	r3, -0x7efe
-    lfd	f0, -0x7b38(r2)
+    lfd f0, lbl_801A7308(r2)
     addi	r3, r3, 0x409
     lis	r0, 0x4330
     mulhw	r3, r3, r14
     fmul	f0, f0, f1
     stw	r0, 0xe0(r1)
-    lfd	f2, -0x7bb0(r2)
-    lfd	f1, -0x7b68(r2)
+    lfd f2, lbl_801A7290(r2)
+    lfd f1, lbl_801A72D8(r2)
     fctiwz	f0, f0
     add	r0, r3, r14
     srawi	r0, r0, 6
@@ -5841,8 +5884,8 @@ _80061184:
     fcmpo	cr0, f4, f1
     bc      4, 1, _80061238
     frsqrte	f1, f4
-    lfd	f3, -0x7b48(r2)
-    lfd	f2, -0x7b40(r2)
+    lfd f3, lbl_801A72F8(r2)
+    lfd f2, lbl_801A7300(r2)
     fmul	f0, f1, f1
     fmul	f1, f3, f1
     fnmsub	f0, f4, f0, f2
@@ -5876,7 +5919,7 @@ _80061258:
     lfs	f1, lbl_801A664C@l(r3)
 _80061260:
     bl      expf
-    lfd	f0, -0x7ba0(r2)
+    lfd f0, lbl_801A72A0(r2)
     lis	r3, 0x4330
     extsh	r0, r19
     lha	r4, 0xc(r1)
@@ -5884,11 +5927,11 @@ _80061260:
     xoris	r0, r0, 0x8000
     stw	r3, 0xe0(r1)
     li	r26, 0x40
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     stw	r0, 0xdc(r1)
     fctiwz	f1, f0
     stw	r3, 0xd8(r1)
-    lfs	f3, -0x7b50(r2)
+    lfs f3, lbl_801A72F0(r2)
     lfd	f0, 0xd8(r1)
     stfd	f1, 0xe8(r1)
     fsubs	f0, f0, f2
@@ -5948,16 +5991,16 @@ _8006134c:
     lbz	r6, 1(r6)
     lis     r3, lbl_80192D68@ha
     stw	r5, 0xe8(r1)
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     addi	r0, r3, lbl_80192D68@l
     xoris	r4, r4, 0x8000
     add	r3, r0, r31
     stw	r4, 0xec(r1)
-    lfd	f0, -0x7bc0(r2)
+    lfd f0, lbl_801A7280(r2)
     lfd	f1, 0xe8(r1)
     stw	r6, 0xf4(r1)
     fsub	f1, f1, f2
-    lfd	f4, -0x7bb8(r2)
+    lfd f4, lbl_801A7288(r2)
     stw	r5, 0xf0(r1)
     lbz	r0, 5(r3)
     lfd	f3, 0xf0(r1)
@@ -5983,7 +6026,7 @@ _800613e4:
     addi	r0, r3, lbl_80192D68@l
     lwz	r3, g_sndMgrPtr
     add	r0, r0, r31
-    lis	r6, -0x7ff7
+    lis	r6, lbl_80092B58@ha
     add	r11, r0, r30
     li	r7, 3
     stb	r20, 0x16(r11)
@@ -6275,7 +6318,7 @@ _80061820:
     lis     r3, lbl_80192D68@ha
     lhz	r4, 2(r7)
     addi	r0, r3, lbl_80192D68@l
-    lfd	f6, -0x7bb0(r2)
+    lfd f6, lbl_801A7290(r2)
     addi	r7, r4, -0xc00
     add	r4, r0, r31
     xoris	r0, r5, 0x8000
@@ -6287,24 +6330,24 @@ _80061820:
     lbz	r3, 9(r4)
     xoris	r0, r0, 0x8000
     fsub	f3, f0, f6
-    lfd	f2, -0x7bc0(r2)
+    lfd f2, lbl_801A7280(r2)
     addi	r3, r3, -0x40
     xoris	r3, r3, 0x8000
     stw	r0, 0xdc(r1)
     fmul	f3, f3, f2
     stw	r6, 0xd8(r1)
-    lfd	f1, -0x7b78(r2)
+    lfd f1, lbl_801A72C8(r2)
     lfd	f0, 0xd8(r1)
     stw	r5, 0xf4(r1)
     fsub	f0, f0, f6
-    lfd	f7, -0x7b88(r2)
+    lfd f7, lbl_801A72B8(r2)
     stw	r6, 0xf0(r1)
-    lfd	f4, -0x7b80(r2)
+    lfd f4, lbl_801A72C0(r2)
     lfd	f2, 0xf0(r1)
     fmul	f1, f1, f0
     stw	r3, 0xe4(r1)
     fsub	f5, f2, f6
-    lfd	f0, -0x7b68(r2)
+    lfd f0, lbl_801A72D8(r2)
     stw	r6, 0xe0(r1)
     lfd	f2, 0xe0(r1)
     fadd	f5, f5, f3
@@ -6314,14 +6357,14 @@ _80061820:
     fadd	f2, f2, f1
     fcmpu	cr0, f2, f0
     bc      12, 2, _800618ec
-    lfd	f0, -0x7b70(r2)
+    lfd f0, lbl_801A72D0(r2)
     fdiv	f2, f2, f0
 _800618ec:
-    lfd	f1, -0x7b60(r2)
+    lfd f1, lbl_801A72E0(r2)
     bl      __msl_fp_helper
     fmr	f31, f1
-    lfd	f1, -0x7b60(r2)
-    lfd	f2, -0x7b58(r2)
+    lfd f1, lbl_801A72E0(r2)
+    lfd f2, lbl_801A72E8(r2)
     fabs	f0, f31
     fctiwz	f0, f0
     stfd	f0, 0xf8(r1)
@@ -6331,7 +6374,7 @@ _800618ec:
     lis	r0, 0x4330
     stw	r3, 0x104(r1)
     cmplwi	r3, 4
-    lfd	f2, -0x7bb8(r2)
+    lfd f2, lbl_801A7288(r2)
     stw	r0, 0x100(r1)
     lfd	f0, 0x100(r1)
     fsub	f0, f0, f2
@@ -6637,7 +6680,7 @@ _80061d74:
     addi	r0, r3, lbl_80192D68@l
     stw	r6, 0x100(r1)
     addi	r7, r4, -0xc00
-    lfd	f6, -0x7bb0(r2)
+    lfd f6, lbl_801A7290(r2)
     add	r4, r0, r31
     xoris	r0, r5, 0x8000
     lbz	r3, 0xa(r4)
@@ -6652,21 +6695,21 @@ _80061d74:
     xoris	r0, r3, 0x8000
     fsub	f2, f0, f6
     stw	r6, 0xf0(r1)
-    lfd	f1, -0x7bc0(r2)
+    lfd f1, lbl_801A7280(r2)
     lfd	f0, 0xf0(r1)
     stw	r5, 0x10c(r1)
     fmul	f3, f2, f1
-    lfd	f1, -0x7b78(r2)
+    lfd f1, lbl_801A72C8(r2)
     stw	r6, 0x108(r1)
     fsub	f0, f0, f6
-    lfd	f7, -0x7b88(r2)
+    lfd f7, lbl_801A72B8(r2)
     lfd	f2, 0x108(r1)
     stw	r0, 0xfc(r1)
     fmul	f1, f1, f0
-    lfd	f4, -0x7b80(r2)
+    lfd f4, lbl_801A72C0(r2)
     stw	r6, 0xf8(r1)
     fsub	f5, f2, f6
-    lfd	f0, -0x7b68(r2)
+    lfd f0, lbl_801A72D8(r2)
     lfd	f2, 0xf8(r1)
     fadd	f5, f5, f3
     fsub	f3, f2, f6
@@ -6675,13 +6718,13 @@ _80061d74:
     fadd	f2, f2, f1
     fcmpu	cr0, f2, f0
     bc      12, 2, _80061e40
-    lfd	f0, -0x7b70(r2)
+    lfd f0, lbl_801A72D0(r2)
     fdiv	f2, f2, f0
 _80061e40:
-    lfd	f1, -0x7b60(r2)
+    lfd f1, lbl_801A72E0(r2)
     bl      __msl_fp_helper
     frsp	f31, f1
-    lfs	f0, -0x7b30(r2)
+    lfs f0, lbl_801A7310(r2)
     fcmpo	cr0, f31, f0
     bc      4, 1, _80061e5c
     fmr	f31, f0
@@ -6728,16 +6771,16 @@ _80061ed8:
     lbz	r6, 1(r6)
     lis     r3, lbl_80192D68@ha
     stw	r5, 0x100(r1)
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     addi	r0, r3, lbl_80192D68@l
     xoris	r4, r4, 0x8000
     add	r3, r0, r31
     stw	r4, 0x104(r1)
-    lfd	f0, -0x7bc0(r2)
+    lfd f0, lbl_801A7280(r2)
     lfd	f1, 0x100(r1)
     stw	r6, 0x10c(r1)
     fsub	f1, f1, f2
-    lfd	f3, -0x7bb8(r2)
+    lfd f3, lbl_801A7288(r2)
     stw	r5, 0x108(r1)
     lbz	r0, 5(r3)
     lfd	f2, 0x108(r1)
@@ -6820,16 +6863,16 @@ _80062034:
     lbz	r6, 1(r6)
     lis     r3, lbl_80192D68@ha
     stw	r5, 0x100(r1)
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     addi	r0, r3, lbl_80192D68@l
     xoris	r4, r4, 0x8000
     add	r3, r0, r31
     stw	r4, 0x104(r1)
-    lfd	f0, -0x7bc0(r2)
+    lfd f0, lbl_801A7280(r2)
     lfd	f1, 0x100(r1)
     stw	r6, 0x10c(r1)
     fsub	f1, f1, f2
-    lfd	f3, -0x7bb8(r2)
+    lfd f3, lbl_801A7288(r2)
     stw	r5, 0x108(r1)
     lbz	r0, 4(r3)
     lfd	f2, 0x108(r1)
@@ -6895,16 +6938,16 @@ _80062148:
     lbz	r6, 1(r6)
     lis     r3, lbl_80192D68@ha
     stw	r5, 0x100(r1)
-    lfd	f2, -0x7bb0(r2)
+    lfd f2, lbl_801A7290(r2)
     addi	r0, r3, lbl_80192D68@l
     xoris	r4, r4, 0x8000
     add	r3, r0, r31
     stw	r4, 0x104(r1)
-    lfd	f0, -0x7bc0(r2)
+    lfd f0, lbl_801A7280(r2)
     lfd	f1, 0x100(r1)
     stw	r6, 0x10c(r1)
     fsub	f1, f1, f2
-    lfd	f3, -0x7bb8(r2)
+    lfd f3, lbl_801A7288(r2)
     stw	r5, 0x108(r1)
     lbz	r0, 4(r3)
     lfd	f2, 0x108(r1)
@@ -8421,10 +8464,10 @@ _80063644:
     addi	r6, r4, lbl_801939B4@l
     li	r4, 0
     stb	r4, 0x13c(r6)
-    lfd	f2, -0x7b20(r2)
+    lfd f2, lbl_801A7320(r2)
     lwz	r4, 4(r31)
     stw	r0, 8(r1)
-    lfs	f1, -0x7b28(r2)
+    lfs f1, lbl_801A7318(r2)
     stw	r4, 0xc(r1)
     lfd	f0, 8(r1)
     stw	r0, 0x10(r1)
@@ -8491,10 +8534,10 @@ _80063750:
     addi	r6, r4, lbl_80193680@l
     li	r4, 0
     stb	r4, 0x1c4(r6)
-    lfd	f2, -0x7b20(r2)
+    lfd f2, lbl_801A7320(r2)
     lwz	r4, 4(r31)
     stw	r0, 0x28(r1)
-    lfs	f1, -0x7b28(r2)
+    lfs f1, lbl_801A7318(r2)
     stw	r4, 0x2c(r1)
     lfd	f0, 0x28(r1)
     stw	r0, 0x20(r1)
@@ -8687,10 +8730,10 @@ _80063a28:
     li	r4, 0
     stb	r4, 0x13c(r6)
     add	r8, r31, r30
-    lfd	f2, -0x7b20(r2)
+    lfd f2, lbl_801A7320(r2)
     lwz	r4, 4(r8)
     stw	r0, 0x30(r1)
-    lfs	f1, -0x7b28(r2)
+    lfs f1, lbl_801A7318(r2)
     stw	r4, 0x34(r1)
     lfd	f0, 0x30(r1)
     stw	r0, 0x28(r1)
@@ -8756,10 +8799,10 @@ _80063b34:
     li	r4, 0
     stb	r4, 0x1c4(r6)
     add	r8, r31, r30
-    lfd	f2, -0x7b20(r2)
+    lfd f2, lbl_801A7320(r2)
     lwz	r4, 4(r8)
     stw	r0, 0x30(r1)
-    lfs	f1, -0x7b28(r2)
+    lfs f1, lbl_801A7318(r2)
     stw	r4, 0x34(r1)
     lfd	f0, 0x30(r1)
     stw	r0, 0x28(r1)
@@ -13309,12 +13352,12 @@ asm void SndTimerUpdate(void)
     lwz	r4, 0x5b14(r7)
     stw	r0, 8(r1)
     subf	r0, r4, r31
-    lfd	f2, -0x7b00(r2)
-    lfd	f0, -0x7b08(r2)
+    lfd f2, lbl_801A7340(r2)
+    lfd f0, lbl_801A7338(r2)
     slwi	r4, r0, 3
     srwi	r0, r3, 0xf
     divwu	r0, r4, r0
-    lfd	f3, -0x7b10(r2)
+    lfd f3, lbl_801A7330(r2)
     stw	r0, 0xc(r1)
     lfd	f1, 8(r1)
     fsubs	f1, f1, f2
@@ -15531,7 +15574,7 @@ _80069954:
     li	r3, 0x90
     addi	r8, r7, 4
     stb	r3, 0x1188(r4)
-    addi	r4, r13, -0x7db8
+    addi    r4, r13, lbl_801A6608
     lwz	r3, g_sndMgrPtr
     add	r3, r3, r5
     stw	r7, 0x1198(r3)

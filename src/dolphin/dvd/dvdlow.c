@@ -1,5 +1,11 @@
 /* dolphin/dvd/dvdlow.c — matched from retail .text 0x80015F80..0x80016DC0.
- * Functions still in exact-asm form carry a "nofralloc transcription" comment;
+ * Functions still in exact-extern unsigned char NextCommandNumber[4];
+extern unsigned char lbl_801A6468[8];
+extern unsigned char Callback[4];
+extern unsigned char NextCommandNumber[4];
+extern unsigned char LastResetEnd[8];
+
+asm form carry a "nofralloc transcription" comment;
  * their s64 arithmetic / register choreography resisted natural C so far.
  */
 
@@ -54,7 +60,6 @@ extern unsigned char WorkAroundType[4];
 extern unsigned char WorkAroundSeekLocation[4];
 extern unsigned char ResetOccurred[4];
 extern s64 LastResetEnd;
-extern unsigned char lbl_801A6468[4];
 extern unsigned char lbl_801A685C[4];
 extern unsigned char lbl_801A6864[4];
 extern unsigned char lbl_801A6878[4];

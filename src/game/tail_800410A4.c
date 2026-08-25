@@ -1,6 +1,10 @@
 // Tail of the GX SDK region: 0x800410A4-0x80041460.
-// Carved from coarse/text_8003E344.c via asm transcription (nofralloc).
+// Carved from coarse/text_8003E344.c via extern unsigned char lbl_801A71F8[4];
+// asm transcription (nofralloc).
 //
+extern unsigned char lbl_801A71D8[4];
+extern unsigned char lbl_801A71F8[4];
+
 // fn_80041330/54/78/A4/C8/EC/10/34 are small trampolines that forward to
 // game-side helpers (fn_80047608/fn_8004BDD8/fn_80056C64/criErr_CallErrCallback/
 // fn_8004541C/fn_80045468) and return 0 — callback thunks registered from
@@ -72,7 +76,7 @@ asm void fn_800410A4(void)
     addi    r3, r5, 0x30
     stwu    r1, -8(r1)
     li      r4, 0
-    lfs     f0, -0x7c68(r2)
+    lfs f0, lbl_801A71D8(r2)
     stfs    f0, 0x30(r5)
     stfs    f0, 0x34(r5)
     stfs    f0, 0x38(r5)
@@ -101,7 +105,7 @@ asm void fn_800410A4(void)
     stfs    f0, 0x58(r5)
     lfs     f0, 0x88(r5)
     stfs    f0, 0x5c(r5)
-    lfs     f0, -0x7c48(r2)
+    lfs f0, lbl_801A71F8(r2)
     stfs    f0, 0x68(r5)
     bl      fn_80038A88
     lwz	r12, lbl_801A6C74

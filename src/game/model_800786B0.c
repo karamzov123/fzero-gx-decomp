@@ -49,6 +49,8 @@ extern unsigned char lbl_801A6DA8[8];
 extern unsigned char lbl_801A6DB0[4];
 extern unsigned char lbl_801A6DB4[1];
 extern unsigned char lbl_801A6DB8[8];
+extern unsigned char lbl_801A74A8[4];
+
 asm void fn_800786B0(void);
 asm void fn_80078768(void);
 asm void GXWriteFifoWord(void);
@@ -559,7 +561,7 @@ asm void ModelResetFogState(void)
 _80078CF8:
     lwz	r0, lbl_801A6D9C
     lis     r3, lbl_8019F130@ha
-    lfs f0, -0x7998(r2)
+    lfs f0, lbl_801A74A8(r2)
     addi r3, r3, lbl_8019F130@l
     cmpwi r0, 0
     stfs f0, 0xc(r3)

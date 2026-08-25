@@ -46,6 +46,17 @@ extern unsigned char lbl_801A6C54[4];
 extern unsigned char lbl_801A6C60[4];
 extern unsigned char lbl_801A6C68[4];
 extern unsigned char lbl_801A6C74[4];
+extern unsigned char lbl_801A71D0[8];
+extern unsigned char lbl_801A71C0[8];
+extern unsigned char lbl_801A6C64[4];
+extern unsigned char lbl_801A71EC[4];
+extern unsigned char lbl_801A71E8[4];
+extern unsigned char lbl_801A71E4[4];
+extern unsigned char lbl_801A71E0[4];
+extern unsigned char lbl_801A71DC[4];
+extern unsigned char lbl_801A71D8[4];
+extern unsigned char lbl_801A71C8[4];
+
 asm int PerfmonCopyConfig(register u32 a);
 
 #pragma push
@@ -433,7 +444,7 @@ asm void fn_8003E8CC(register u32 a)
     lwz	r0, 0xf8(r3)
     lis	r3, 0x1062
     addi	r3, r3, 0x4dd3
-    lfd	f2, -0x7c80(r2)
+    lfd f2, lbl_801A71C0(r2)
     srwi	r0, r0, 2
     mulhwu	r0, r3, r0
     srwi	r0, r0, 6
@@ -527,7 +538,7 @@ asm void fn_8003E9EC(void)
     addi	r0, r7, 1
     mulli	r3, r0, 7
     lwz	r0, 0xf8(r6)
-    lfd	f2, -0x7c70(r2)
+    lfd f2, lbl_801A71D0(r2)
     stw	r30, lbl_801A6C74
     addi	r6, r4, -0x7777
     stw	r3, 0x1c(r1)
@@ -538,9 +549,9 @@ asm void fn_8003E9EC(void)
     fsubs	f0, f0, f2
     srwi	r3, r3, 5
     mulli	r5, r3, 3
-    stfs	f0, -0x775c(r13)
+    stfs f0, lbl_801A6C64(r13)
     mulhwu	r0, r6, r0
-    lfs	f0, -0x775c(r13)
+    lfs f0, lbl_801A6C64(r13)
     stw	r5, lbl_801A6C60
     srwi	r3, r0, 6
     stw	r3, lbl_801A6C68
@@ -552,7 +563,7 @@ asm void fn_8003E9EC(void)
     stfs	f0, 0x34(r31)
     stfs	f0, 0x2c(r31)
     stfs	f0, 0xc(r31)
-    lfs	f1, -0x7c78(r2)
+    lfs f1, lbl_801A71C8(r2)
     stw	r0, 0x14(r1)
     stfs	f1, 0x38(r31)
     stw	r4, 0x10(r1)
@@ -583,7 +594,7 @@ asm int fn_8003EAE4(register u32 a)
     addi	r31, r3, lbl_80178C18@l
     addi	r3, r31, 0x70
     bl      GXGetProjectionv
-    lfs	f0, -0x7c68(r2)
+    lfs f0, lbl_801A71D8(r2)
     addi	r3, r31, 0x30
     li	r4, 1
     stfs	f0, 0x30(r31)
@@ -602,16 +613,16 @@ asm int fn_8003EAE4(register u32 a)
     stfs	f0, 0x64(r31)
     stfs	f0, 0x68(r31)
     stfs	f0, 0x6c(r31)
-    lfs	f0, -0x7c64(r2)
+    lfs f0, lbl_801A71DC(r2)
     stfs	f0, 0x30(r31)
-    lfs	f0, -0x7c60(r2)
+    lfs f0, lbl_801A71E0(r2)
     stfs	f0, 0x44(r31)
-    lfs	f0, -0x7c5c(r2)
+    lfs f0, lbl_801A71E4(r2)
     stfs	f0, 0x58(r31)
     stfs	f0, 0x6c(r31)
-    lfs	f0, -0x7c58(r2)
+    lfs f0, lbl_801A71E8(r2)
     stfs	f0, 0x3c(r31)
-    lfs	f0, -0x7c54(r2)
+    lfs f0, lbl_801A71EC(r2)
     stfs	f0, 0x4c(r31)
     bl      fn_80038A88
     bl      GXClearVtxDesc

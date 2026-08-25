@@ -17,6 +17,13 @@ extern unsigned char lbl_801A6D7C[4];
 extern unsigned char lbl_801A6D80[4];
 extern unsigned char lbl_801A6D84[4];
 extern unsigned char lbl_801A6D88[8];
+extern unsigned char lbl_801A7488[4];
+extern unsigned char lbl_801A7484[4];
+extern unsigned char lbl_801A7480[4];
+extern unsigned char lbl_801A6D70[4];
+extern unsigned char lbl_801A6D6C[4];
+extern unsigned char lbl_801A6D68[4];
+
 asm void fn_80074A60(register u32 a, register u32 b)
 {
     nofralloc
@@ -46,7 +53,7 @@ asm s32 fn_80074A7C(register s32 x)
 asm void GXColorClampScale(register f32 r, register f32 g, register f32 b, register f32 a)
 {
     nofralloc
-    lfs     f0, -0x79b8(r2)
+    lfs f0, lbl_801A7488(r2)
     stwu    r1, -0x30(r1)
     fcmpu   cr0, f0, f1
     bne     _80074ab4
@@ -57,7 +64,7 @@ asm void GXColorClampScale(register f32 r, register f32 g, register f32 b, regis
     fcmpu   cr0, f0, f4
     beq     _80074b18
 _80074ab4:
-    lfs     f0, -0x79bc(r2)
+    lfs f0, lbl_801A7484(r2)
     li      r0, 1
     addi    r4, r13, -0x7640
     stw	r0, lbl_801A6D88
@@ -139,7 +146,7 @@ _80074ba0:
 asm void GXColorScale(register f32 r, register f32 g, register f32 b, register f32 a)
 {
     nofralloc
-    lfs     f0, -0x79c0(r2)
+    lfs f0, lbl_801A7480(r2)
     stwu    r1, -0x30(r1)
     fcmpu   cr0, f0, f1
     bne     _80074bec
@@ -150,7 +157,7 @@ asm void GXColorScale(register f32 r, register f32 g, register f32 b, register f
     fcmpu   cr0, f0, f4
     beq     _80074c50
 _80074bec:
-    lfs     f0, -0x79bc(r2)
+    lfs f0, lbl_801A7484(r2)
     li      r0, 1
     addi    r4, r13, -0x7644
     stw	r0, lbl_801A6D84
@@ -279,9 +286,9 @@ asm void GXProjectVec(register void* mtx)
 asm void fn_80074D68(register f32 x, register f32 y, register f32 z)
 {
     nofralloc
-    stfs    f1, -0x7650(r13)
-    stfs    f2, -0x7654(r13)
-    stfs    f3, -0x7658(r13)
+    stfs f1, lbl_801A6D70(r13)
+    stfs f2, lbl_801A6D6C(r13)
+    stfs f3, lbl_801A6D68(r13)
     blr
 }
 

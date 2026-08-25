@@ -1,4 +1,5 @@
-/* Auto-generated exact-asm transcription (scaffolding).
+/* Auto-generated exact-
+asm transcription (scaffolding).
  * Range covered by this unit: see per-function headers. */
 
 typedef int BOOL;
@@ -55,7 +56,7 @@ nofralloc
 	stw r31, 0x14(r1)
 	addi r31, r4, 0x0
 	ble lbl_8001A3B0
-	lwz	r0, -0x7ab0(r13)
+	lwz r0, -0x7ab0(r13)
 	cmpwi r0, 0x1
 	beq lbl_8001A37C
 	bge lbl_8001A3E0
@@ -64,9 +65,9 @@ nofralloc
 	b lbl_8001A3E0
 lbl_8001A354:
 	li r0, 0x1
-	lwz	r4, -0x7aac(r13)
+	lwz r4, -0x7aac(r13)
 	lis r3, cb@ha
-	stw	r0, -0x7ab0(r13)
+	stw r0, -0x7ab0(r13)
 	addi r7, r3, cb@l
 	addi r3, r31, 0x0
 	li r5, 0x20
@@ -75,8 +76,8 @@ lbl_8001A354:
 	b lbl_8001A3E0
 lbl_8001A37C:
 	li r0, 0x2
-	lwz	r6, -0x7aac(r13)
-	stw	r0, -0x7ab0(r13)
+	lwz r6, -0x7aac(r13)
+	stw r0, -0x7ab0(r13)
 	lis r3, cb@ha
 	addi r7, r3, cb@l
 	lwz r5, 0x8(r6)
@@ -93,10 +94,10 @@ lbl_8001A3B0:
 	cmpwi r3, -0x4
 	bne lbl_8001A3E0
 	li r0, 0x0
-	stw	r0, -0x7ab0(r13)
+	stw r0, -0x7ab0(r13)
 	bl DVDReset
 	lis r3, cb@ha
-	lwz	r4, -0x7aa8(r13)
+	lwz r4, -0x7aa8(r13)
 	addi r5, r3, cb@l
 	addi r3, r31, 0x0
 	bl DVDReadDiskID
@@ -126,11 +127,11 @@ nofralloc
 	addi r0, r3, 0x1f
 	clrrwi r3, r4, 5
 	clrrwi r0, r0, 5
-	stw	r3, -0x7aa8(r13)
-	stw	r0, -0x7aac(r13)
+	stw r3, -0x7aa8(r13)
+	stw r0, -0x7aac(r13)
 	bl DVDReset
 	lis r3, blockBuf@ha
-	lwz	r4, -0x7aa8(r13)
+	lwz r4, -0x7aa8(r13)
 	lis r5, cb@ha
 	addi r3, r3, blockBuf@l
 	addi r5, r5, cb@l
@@ -139,17 +140,17 @@ lbl_8001A454:
 	bl DVDGetDriveStatus
 	cmpwi r3, 0x0
 	bne lbl_8001A454
-	lwz	r3, -0x7aac(r13)
+	lwz r3, -0x7aac(r13)
 	lis r29, 0x8000
 	lis r30, 0x8000
 	lwz r0, 0x10(r3)
 	addi r3, r29, 0x0
 	li r5, 0x20
 	stw r0, 0x38(r30)
-	lwz	r4, -0x7aac(r13)
+	lwz r4, -0x7aac(r13)
 	lwz r0, 0xc(r4)
 	stw r0, 0x3c(r30)
-	lwz	r4, -0x7aa8(r13)
+	lwz r4, -0x7aa8(r13)
 	bl memcpy
 	addi r3, r13, -0x7F30
 	crxor 6,6,6
@@ -194,7 +195,7 @@ lbl_8001A51C:
 	addi r3, r13, -0x7F30
 	crxor 6,6,6
 	bl OSReport
-	lwz	r3, -0x7aac(r13)
+	lwz r3, -0x7aac(r13)
 	lwz r3, 0x10(r3)
 	bl OSSetArenaHi
 	lwz r0, 0x64(r1)
@@ -259,24 +260,24 @@ lbl_8001A600:
 	bl OSSetCurrentContext
 	b lbl_8001A778
 lbl_8001A60C:
-	lwz	r4, -0x7a9c(r13)
+	lwz r4, -0x7a9c(r13)
 	addi r3, r1, 0x18
 	addi r0, r4, 0x1
-	stw	r0, -0x7a9c(r13)
+	stw r0, -0x7a9c(r13)
 	bl OSClearContext
 	addi r3, r1, 0x18
 	bl OSSetCurrentContext
-	lwz	r12, -0x7a8c(r13)
+	lwz r12, -0x7a8c(r13)
 	cmplwi r12, 0x0
 	beq lbl_8001A640
-	lwz	r3, -0x7a9c(r13)
+	lwz r3, -0x7a9c(r13)
 	mtlr r12
 	blrl
 lbl_8001A640:
-	lwz	r0, -0x7a98(r13)
+	lwz r0, -0x7a98(r13)
 	cmplwi r0, 0x0
 	beq lbl_8001A73C
-	lwz	r0, -0x7a70(r13)
+	lwz r0, -0x7a70(r13)
 	cmplwi r0, 0x1
 	bne lbl_8001A664
 	bl fn_8001BE74
@@ -287,9 +288,9 @@ lbl_8001A664:
 	addi r29, r3, 0x2000
 	b lbl_8001A6E4
 lbl_8001A670:
-	lwz	r3, -0x7a68(r13)
+	lwz r3, -0x7a68(r13)
 	li r5, 0x20
-	lwz	r27, -0x7a64(r13)
+	lwz r27, -0x7a64(r13)
 	addi r4, r27, 0x0
 	bl __shr2u
 	cntlzw r4, r4
@@ -310,30 +311,30 @@ lbl_8001A6A4:
 	sthx r0, r29, r6
 	li r4, 0x1
 	bl __shl2i
-	lwz	r0, -0x7a68(r13)
+	lwz r0, -0x7a68(r13)
 	nor r5, r3, r3
 	nor r4, r4, r4
-	lwz	r3, -0x7a64(r13)
+	lwz r3, -0x7a64(r13)
 	and r0, r0, r5
 	and r3, r3, r4
-	stw	r3, -0x7a64(r13)
-	stw	r0, -0x7a68(r13)
+	stw r3, -0x7a64(r13)
+	stw r0, -0x7a68(r13)
 lbl_8001A6E4:
-	lwz	r0, -0x7a68(r13)
+	lwz r0, -0x7a68(r13)
 	li r4, 0x0
-	lwz	r3, -0x7a64(r13)
+	lwz r3, -0x7a64(r13)
 	xor r0, r0, r4
 	xor r3, r3, r4
 	or. r0, r3, r0
 	bne lbl_8001A670
-	stw	r4, -0x7a70(r13)
+	stw r4, -0x7a70(r13)
 	li r4, 0x1
-	lwz	r0, -0x7a58(r13)
+	lwz r0, -0x7a58(r13)
 	lwz r3, 0x144(r31)
-	stw	r3, -0x7a60(r13)
+	stw r3, -0x7a60(r13)
 	lwz r3, 0x118(r31)
-	stw	r3, -0x7a5c(r13)
-	stw	r0, -0x7a54(r13)
+	stw r3, -0x7a5c(r13)
+	stw r0, -0x7a54(r13)
 	b lbl_8001A728
 lbl_8001A724:
 	li r4, 0x0
@@ -341,16 +342,16 @@ lbl_8001A728:
 	cmpwi r4, 0x0
 	beq lbl_8001A73C
 	li r0, 0x0
-	stw	r0, -0x7a98(r13)
+	stw r0, -0x7a98(r13)
 	bl SISetSamplingRateRestore
 lbl_8001A73C:
-	lwz	r0, -0x7a88(r13)
+	lwz r0, -0x7a88(r13)
 	cmplwi r0, 0x0
 	beq lbl_8001A760
 	addi r3, r1, 0x18
 	bl OSClearContext
-	lwz	r12, -0x7a88(r13)
-	lwz	r3, -0x7a9c(r13)
+	lwz r12, -0x7a88(r13)
+	lwz r3, -0x7a9c(r13)
 	mtlr r12
 	blrl
 lbl_8001A760:

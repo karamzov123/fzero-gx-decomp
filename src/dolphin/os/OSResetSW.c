@@ -24,6 +24,7 @@ extern unsigned char lbl_801A67E8[4];
 extern unsigned char lbl_801A67EC[4];
 extern unsigned char lbl_801A67F0[4];
 extern unsigned char lbl_801A67F4[4];
+
 asm void __OSResetSWInterruptHandler(register int exception, register void* context)
 {
     nofralloc
@@ -226,7 +227,7 @@ _8000f518:
     beq     _8000f5c8
     mulli	r10, r0, 0x3c
     lwz	r0, 0xf8(r5)
-    lwz	r9, -0x7c3c(r13)
+    lwz r9, -0x7c3c(r13)
     lwz	r8, __OSStartTime
     srwi	r6, r0, 2
     srawi	r0, r10, 0x1f

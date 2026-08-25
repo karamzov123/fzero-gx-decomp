@@ -1,7 +1,14 @@
 #pragma push
 #pragma force_active on
 
-extern asm void lbl_8006E1B0(void);
+extern unsigned char lbl_801A7400[8];
+extern unsigned char lbl_801A7408[4];
+extern unsigned char lbl_801A6618[4];
+extern unsigned char lbl_801A661C[4];
+extern unsigned char lbl_801A740C[4];
+extern unsigned char lbl_801A73F8[4];
+
+asm void lbl_8006E1B0(void);
 extern asm void MTXQuatExtract(void);
 extern asm void MTXQuatInterpolate(void);
 extern asm void PSMTXQuat_fromMtx(void);
@@ -24,16 +31,16 @@ asm void PSQUATSlerp_c(void)
     fmr	f31, f1
     bl      lbl_8006E1B0
     lfs	f3, 8(r31)
-    lfd	f0, -0x7a40(r2)
+    lfd f0, lbl_801A7400(r2)
     fabs	f1, f3
     fcmpo	cr0, f1, f0
     ble	_8006f97c
-    lfs	f2, -0x7a34(r2)
+    lfs f2, lbl_801A740C(r2)
     fmuls	f3, f3, f31
-    lfs	f1, -0x7da4(r13)
-    lfs	f0, -0x7da8(r13)
+    lfs f1, lbl_801A661C(r13)
+    lfs f0, lbl_801A6618(r13)
     fmuls	f1, f2, f1
-    lfs	f4, -0x7a48(r2)
+    lfs f4, lbl_801A73F8(r2)
     fmuls	f0, f2, f0
     lfs	f2, 0(r31)
     fdivs	f3, f4, f3
@@ -46,7 +53,7 @@ asm void PSQUATSlerp_c(void)
     stfs	f0, 4(r31)
     b	_8006f988
 _8006f97c:
-    lfs	f0, -0x7a38(r2)
+    lfs f0, lbl_801A7408(r2)
     stfs	f0, 0(r31)
     stfs	f0, 4(r31)
 _8006f988:

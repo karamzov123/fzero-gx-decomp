@@ -1,7 +1,11 @@
 #pragma push
 #pragma force_active on
 
-extern asm void fn_80088538(void);
+extern unsigned char lbl_801A73E8[8];
+extern unsigned char lbl_801A73D8[4];
+extern unsigned char lbl_801A73D4[4];
+
+asm void fn_80088538(void);
 extern asm void atan(void);
 extern asm void sqrtf(void);
 extern asm void atan2f(void);
@@ -46,7 +50,7 @@ asm void PSMTXQuat_fromMtx(void)
     fmuls	f2, f2, f29
     fadds	f1, f1, f0
     fmuls	f3, f3, f28
-    lfs	f0, -0x7a6c(r2)
+    lfs f0, lbl_801A73D4(r2)
     fadds	f1, f2, f1
     fadds	f1, f3, f1
     fcmpo	cr0, f1, f0
@@ -57,8 +61,8 @@ asm void PSMTXQuat_fromMtx(void)
     fneg	f29, f29
     fneg	f28, f28
 _8006ec08:
-    lfs	f3, -0x7a68(r2)
-    lfd	f0, -0x7a58(r2)
+    lfs f3, lbl_801A73D8(r2)
+    lfd f0, lbl_801A73E8(r2)
     fsubs	f2, f3, f1
     fcmpo	cr0, f2, f0
     ble	_8006ec5c
@@ -66,7 +70,7 @@ _8006ec08:
     frsp	f25, f1
     fmr	f1, f25
     bl      atan
-    lfs	f0, -0x7a68(r2)
+    lfs f0, lbl_801A73D8(r2)
     frsp	f24, f1
     fsubs	f0, f0, f26
     fmuls	f1, f0, f25

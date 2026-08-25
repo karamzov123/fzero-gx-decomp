@@ -252,6 +252,50 @@ extern unsigned char lbl_8015BD40[256];
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6F18[8];
+extern unsigned char lbl_801A6EF8[8];
+extern unsigned char lbl_801A6EB8[8];
+extern unsigned char lbl_801A6EB0[8];
+extern unsigned char lbl_801A6E88[8];
+extern unsigned char lbl_801A6EC8[8];
+extern unsigned char lbl_801A6F20[8];
+extern unsigned char lbl_801A6EF0[8];
+extern unsigned char lbl_801A6E78[8];
+extern unsigned char lbl_801A6ED0[8];
+extern unsigned char lbl_801A6ED8[8];
+extern unsigned char lbl_801A6EE0[8];
+extern unsigned char lbl_801A6F28[8];
+extern unsigned char lbl_801A6F38[8];
+extern unsigned char lbl_801A6F30[4];
+extern unsigned char lbl_801A6F14[4];
+extern unsigned char lbl_801A6F10[4];
+extern unsigned char lbl_801A6EC0[4];
+extern unsigned char lbl_801A6E9C[4];
+extern unsigned char lbl_801A6E94[4];
+extern unsigned char lbl_801A6E90[4];
+extern unsigned char lbl_801A6E5C[4];
+extern unsigned char lbl_801A6F34[4];
+extern unsigned char lbl_801A6E80[4];
+extern unsigned char lbl_801A6E54[4];
+extern unsigned char lbl_801A6E44[4];
+extern unsigned char lbl_801A6E40[4];
+extern unsigned char lbl_801A6EA4[4];
+extern unsigned char lbl_801A6EA0[4];
+extern unsigned char lbl_801A6E64[4];
+extern unsigned char lbl_801A6E60[4];
+extern unsigned char lbl_801A6E48[4];
+extern unsigned char lbl_801A6EE8[4];
+extern unsigned char lbl_801A6E70[4];
+extern unsigned char lbl_801A6E4C[4];
+extern unsigned char lbl_801A6EA8[4];
+extern unsigned char lbl_801A6E68[4];
+extern unsigned char lbl_801A6E50[4];
+extern unsigned char lbl_801A6E6C[4];
+extern unsigned char lbl_801A7914[4];
+extern unsigned char lbl_801A7910[4];
+extern unsigned char lbl_801A7908[8];
+extern unsigned char lbl_801A7900[8];
+
 asm void main(void)
 {
     nofralloc
@@ -281,7 +325,7 @@ _80005608:
     stw	r4, 0x1100(r3)
     stw	r4, 0x1200(r3)
     stw	r4, 0x1300(r3)
-    stw	r0, -0x7d0c(r13)
+    stw r0, -0x7d0c(r13)
     bl      fn_80005660
     bl      GameMainLoopFrame
     lwz	r0, 0x14(r1)
@@ -334,7 +378,7 @@ _800056e4:
     bl      fn_80070774
     bl      fn_8006FCB4
     bl      fn_8006CCC8
-    lfs	f1, -0x8000(r2)
+    lfs f1, lbl_801A6E40(r2)
     bl      fn_8006CD40
     li	r3, 0x20
     li	r4, 1
@@ -356,13 +400,13 @@ asm void main_read_fze_str(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lfs	f1, -0x7ffc(r2)
+    lfs f1, lbl_801A6E44(r2)
     stw	r0, 0x14(r1)
-    lfs	f2, -0x7ff8(r2)
-    lwz	r0, -0x7540(r2)
-    lfs	f3, -0x7ff4(r2)
+    lfs f2, lbl_801A6E48(r2)
+    lwz r0, lbl_801A7900(r2)
+    lfs f3, lbl_801A6E4C(r2)
     stw	r0, 0xc(r1)
-    lfs	f4, -0x7ff0(r2)
+    lfs f4, lbl_801A6E50(r2)
     bl      fn_800721FC
     li	r3, 1
     bl      LightCtrl_SetCachedByte_EE
@@ -385,7 +429,7 @@ asm void main_read_fze_str(void)
     addi	r3, r1, 8
     stw	r0, 8(r1)
     bl      fn_8006CDFC
-    lfs	f1, -0x7fec(r2)
+    lfs f1, lbl_801A6E54(r2)
     bl      fn_8006CE1C
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -737,11 +781,11 @@ asm void mmu_user_fn(void)
     li	r5, 5
     li	r6, 0
     bl      LightCtrl_SetCachedColor_1C
-    lfs	f1, -0x7fe4(r2)
+    lfs f1, lbl_801A6E5C(r2)
     addi	r4, r1, 0x10
-    lfs	f2, -0x7fe0(r2)
+    lfs f2, lbl_801A6E60(r2)
     li	r3, 0
-    lwz	r0, -0x7538(r2)
+    lwz r0, lbl_801A7908(r2)
     fmr	f3, f1
     fmr	f4, f2
     stw	r0, 0x10(r1)
@@ -752,13 +796,13 @@ asm void mmu_user_fn(void)
     lwz	r3, lbl_801A6D00
     li	r4, 0
     bl      GXLoadMatIdxTripleToXF
-    lfs	f1, -0x7fe4(r2)
+    lfs f1, lbl_801A6E5C(r2)
     addi	r3, r1, 0x1c
-    lfs	f2, -0x7fdc(r2)
+    lfs f2, lbl_801A6E64(r2)
     fmr	f3, f1
-    lfs	f4, -0x7fd8(r2)
+    lfs f4, lbl_801A6E68(r2)
     fmr	f5, f1
-    lfs	f6, -0x7fd4(r2)
+    lfs f6, lbl_801A6E6C(r2)
     bl      MTXOrtho
     addi	r3, r1, 0x1c
     li	r4, 1
@@ -790,11 +834,11 @@ asm void mmu_user_fn(void)
     li	r4, 7
     li	r5, 4
     bl      GXBegin
-    lfs	f3, -0x7fd0(r2)
+    lfs f3, lbl_801A6E70(r2)
     lis	r3, -0x33ff
-    lfd	f2, -0x7fc8(r2)
-    lfs	f1, -0x7fc0(r2)
-    lfd	f0, -0x7fb8(r2)
+    lfd f2, lbl_801A6E78(r2)
+    lfs f1, lbl_801A6E80(r2)
+    lfd f0, lbl_801A6E88(r2)
     fsub	f4, f3, f2
     fadd	f5, f2, f3
     fsub	f2, f1, f0
@@ -805,35 +849,35 @@ asm void mmu_user_fn(void)
     frsp	f2, f5
     frsp	f1, f0
     stfs	f3, -0x8000(r3)
-    lfs	f0, -0x7fb0(r2)
+    lfs f0, lbl_801A6E90(r2)
     stfs	f0, -0x8000(r3)
-    lfs	f0, -0x7fe4(r2)
+    lfs f0, lbl_801A6E5C(r2)
     stfs	f0, -0x8000(r3)
-    lfs	f0, -0x7fe4(r2)
+    lfs f0, lbl_801A6E5C(r2)
     stfs	f0, -0x8000(r3)
     stfs	f2, -0x8000(r3)
     stfs	f3, -0x8000(r3)
-    lfs	f0, -0x7fb0(r2)
+    lfs f0, lbl_801A6E90(r2)
     stfs	f0, -0x8000(r3)
-    lfs	f0, -0x7fac(r2)
+    lfs f0, lbl_801A6E94(r2)
     stfs	f0, -0x8000(r3)
-    lfs	f0, -0x7fe4(r2)
+    lfs f0, lbl_801A6E5C(r2)
     stfs	f0, -0x8000(r3)
     stfs	f2, -0x8000(r3)
     stfs	f1, -0x8000(r3)
-    lfs	f0, -0x7fb0(r2)
+    lfs f0, lbl_801A6E90(r2)
     stfs	f0, -0x8000(r3)
-    lfs	f0, -0x7fac(r2)
+    lfs f0, lbl_801A6E94(r2)
     stfs	f0, -0x8000(r3)
-    lfs	f0, -0x7fac(r2)
+    lfs f0, lbl_801A6E94(r2)
     stfs	f0, -0x8000(r3)
     stfs	f4, -0x8000(r3)
     stfs	f1, -0x8000(r3)
-    lfs	f0, -0x7fb0(r2)
+    lfs f0, lbl_801A6E90(r2)
     stfs	f0, -0x8000(r3)
-    lfs	f0, -0x7fe4(r2)
+    lfs f0, lbl_801A6E5C(r2)
     stfs	f0, -0x8000(r3)
-    lfs	f0, -0x7fac(r2)
+    lfs f0, lbl_801A6E94(r2)
     stfs	f0, -0x8000(r3)
     lwz	r31, 0x6c(r1)
     lwz	r0, 0x74(r1)
@@ -991,9 +1035,9 @@ asm void fn_80005EDC(void)
     li	r5, 5
     li	r6, 0
     bl      LightCtrl_SetCachedColor_1C
-    lfs	f1, -0x7fa4(r2)
+    lfs f1, lbl_801A6E9C(r2)
     li	r3, 0
-    lfs	f2, -0x7fa0(r2)
+    lfs f2, lbl_801A6EA0(r2)
     bl      GXCompareVecDirty
     li	r3, 2
     bl      LightCtrl_SetCachedCullMode
@@ -1001,13 +1045,13 @@ asm void fn_80005EDC(void)
     lwz	r3, lbl_801A6D00
     li	r4, 0
     bl      GXLoadMatIdxTripleToXF
-    lfs	f1, -0x7fa4(r2)
+    lfs f1, lbl_801A6E9C(r2)
     addi	r3, r1, 0x18
-    lfs	f2, -0x7f9c(r2)
+    lfs f2, lbl_801A6EA4(r2)
     fmr	f3, f1
-    lfs	f4, -0x7f98(r2)
+    lfs f4, lbl_801A6EA8(r2)
     fmr	f5, f1
-    lfs	f6, -0x7fa0(r2)
+    lfs f6, lbl_801A6EA0(r2)
     bl      MTXOrtho
     addi	r3, r1, 0x18
     li	r4, 1
@@ -1059,7 +1103,7 @@ asm void fn_800060D8(void)
     stw	r31, 0x4c(r1)
     stw	r30, 0x48(r1)
     fmr	f28, f2
-    lfd	f0, -0x7f90(r2)
+    lfd f0, lbl_801A6EB0(r2)
     fmr	f27, f1
     mr	r30, r3
     fneg	f30, f3
@@ -1079,12 +1123,12 @@ _80006154:
 _8000615c:
     cmplwi	r4, 0x20
     bc      4, 2, _80006174
-    lfd	f0, -0x7f88(r2)
+    lfd f0, lbl_801A6EB8(r2)
     fadd	f27, f27, f0
     frsp	f27, f27
     b       _800062e0
 _80006174:
-    lha	r0, -0x7cd4(r13)
+    lha r0, lbl_801A66EC(r13)
     lis     r3, lbl_8015B940@ha
     addi	r31, r3, lbl_8015B940@l
     mtctr	r0
@@ -1120,7 +1164,7 @@ _800061a8:
     lis	r0, 0x4330
     stw	r0, 0x28(r1)
     frsp	f29, f31
-    lfd	f1, -0x7f78(r2)
+    lfd f1, lbl_801A6EC8(r2)
     li	r3, 0x80
     stw	r4, 0x2c(r1)
     li	r4, 7
@@ -1132,14 +1176,14 @@ _800061a8:
     lis	r4, -0x33ff
     lis	r0, 0x4330
     stfs	f27, -0x8000(r4)
-    lfd	f2, -0x7f78(r2)
+    lfd f2, lbl_801A6EC8(r2)
     stfs	f28, -0x8000(r4)
-    lfd	f1, -0x7f90(r2)
+    lfd f1, lbl_801A6EB0(r2)
     stfs	f30, -0x8000(r4)
-    lfs	f0, -0x7fa4(r2)
+    lfs f0, lbl_801A6E9C(r2)
     stw	r0, 0x30(r1)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7fa4(r2)
+    lfs f0, lbl_801A6E9C(r2)
     stw	r0, 0x38(r1)
     stfs	f0, -0x8000(r4)
     stfs	f26, -0x8000(r4)
@@ -1153,7 +1197,7 @@ _800061a8:
     fdiv	f0, f0, f1
     frsp	f0, f0
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7fa4(r2)
+    lfs f0, lbl_801A6E9C(r2)
     stfs	f0, -0x8000(r4)
     stfs	f26, -0x8000(r4)
     stfs	f29, -0x8000(r4)
@@ -1165,14 +1209,14 @@ _800061a8:
     fdiv	f0, f0, f1
     frsp	f0, f0
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f80(r2)
+    lfs f0, lbl_801A6EC0(r2)
     stfs	f0, -0x8000(r4)
     stfs	f27, -0x8000(r4)
     stfs	f29, -0x8000(r4)
     stfs	f30, -0x8000(r4)
-    lfs	f0, -0x7fa4(r2)
+    lfs f0, lbl_801A6E9C(r2)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f80(r2)
+    lfs f0, lbl_801A6EC0(r2)
     stfs	f0, -0x8000(r4)
     lhz	r0, 6(r31)
     stw	r0, 0x44(r1)
@@ -1314,7 +1358,7 @@ _80006478:
     b       _80006548
 _80006484:
     lwz	r23, 0(r29)
-    lha	r24, -0x7cd4(r13)
+    lha r24, lbl_801A66EC(r13)
     b       _80006530
 _80006490:
     rlwinm.	r0, r5, 0, 0x18, 0x18
@@ -1479,14 +1523,14 @@ _800066b0:
     lwz	r3, lbl_801A66F4
     slwi	r0, r24, 3
     li	r30, 0
-    lfd	f27, -0x7f70(r2)
-    lfd	f28, -0x7f68(r2)
+    lfd f27, lbl_801A6ED0(r2)
+    lfd f28, lbl_801A6ED8(r2)
     mr	r26, r30
-    lfd	f29, -0x7f50(r2)
+    lfd f29, lbl_801A6EF0(r2)
     add	r29, r3, r0
-    lfd	f30, -0x7f60(r2)
+    lfd f30, lbl_801A6EE0(r2)
     lis	r23, 0x4330
-    lfd	f31, -0x7f90(r2)
+    lfd f31, lbl_801A6EB0(r2)
     b       _8000684c
 _800066f0:
     lwz	r3, 0(r29)
@@ -1518,9 +1562,9 @@ _80006744:
     xoris	r3, r28, 0x8000
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lfd	f2, -0x7f50(r2)
+    lfd f2, lbl_801A6EF0(r2)
     stw	r0, 8(r1)
-    lfd	f0, -0x7f88(r2)
+    lfd f0, lbl_801A6EB8(r2)
     lfd	f1, 8(r1)
     fsub	f1, f1, f2
     fadd	f0, f1, f0
@@ -1529,7 +1573,7 @@ _80006744:
     lwz	r28, 0x14(r1)
     b       _800067c4
 _80006780:
-    lha	r0, -0x7cd4(r13)
+    lha r0, lbl_801A66EC(r13)
     lis     r3, lbl_8015B940@ha
     addi	r3, r3, lbl_8015B940@l
     mtctr	r0
@@ -1561,7 +1605,7 @@ _800067d0:
     lwz	r3, 0(r29)
     xoris	r4, r4, 0x8000
     stw	r23, 8(r1)
-    lfs	f3, -0x7f58(r2)
+    lfs f3, lbl_801A6EE8(r2)
     stw	r4, 0xc(r1)
     lwzx	r3, r3, r26
     lfd	f0, 8(r1)
@@ -1750,9 +1794,9 @@ _80006a3c:
     lbz	r3, lbl_801A66D9
     lis	r0, 0x4330
     stw	r0, 0x60(r1)
-    lfd	f2, -0x7f78(r2)
+    lfd f2, lbl_801A6EC8(r2)
     stw	r3, 0x64(r1)
-    lfd	f0, -0x7f48(r2)
+    lfd f0, lbl_801A6EF8(r2)
     lfd	f1, 0x60(r1)
     fsub	f1, f1, f2
     fcmpo	cr0, f1, f0
@@ -3376,7 +3420,7 @@ asm void fn_80007F70(void)
     stwu	r1, -0x80(r1)
     mflr	r0
     rlwinm	r5, r5, 0xa, 0x10, 0x15
-    lfd	f2, -0x7f20(r2)
+    lfd f2, lbl_801A6F20(r2)
     stw	r0, 0x84(r1)
     lis	r0, 0x4330
     xoris	r5, r5, 0x8000
@@ -3394,15 +3438,15 @@ asm void fn_80007F70(void)
     lwz	r0, 0x1c(r1)
     extsh	r3, r0
     bl      MathSin
-    lfs	f2, -0x7f2c(r2)
-    lfs	f0, -0x7f30(r2)
+    lfs f2, lbl_801A6F14(r2)
+    lfs f0, lbl_801A6F10(r2)
     fadds	f1, f2, f1
     lbz	r3, 0(r30)
     lbz	r0, 0(r31)
     cmplw	r3, r0
     fmuls	f1, f0, f1
     bc      4, 0, _80007ffc
-    lfd	f0, -0x7f28(r2)
+    lfd f0, lbl_801A6F18(r2)
     stb	r3, 0(r31)
     fsub	f3, f0, f1
     stb	r0, 0(r30)
@@ -3415,7 +3459,7 @@ _80008000:
     lbz	r0, 1(r31)
     cmplw	r3, r0
     bc      4, 0, _80008028
-    lfd	f0, -0x7f28(r2)
+    lfd f0, lbl_801A6F18(r2)
     stb	r3, 1(r31)
     fsub	f5, f0, f1
     stb	r0, 1(r30)
@@ -3428,7 +3472,7 @@ _8000802c:
     lbz	r0, 2(r31)
     cmplw	r3, r0
     bc      4, 0, _80008054
-    lfd	f0, -0x7f28(r2)
+    lfd f0, lbl_801A6F18(r2)
     stb	r3, 2(r31)
     fsub	f6, f0, f1
     stb	r0, 2(r30)
@@ -3441,7 +3485,7 @@ _80008058:
     lbz	r0, 3(r31)
     cmplw	r3, r0
     bc      4, 0, _80008080
-    lfd	f0, -0x7f28(r2)
+    lfd f0, lbl_801A6F18(r2)
     stb	r3, 3(r31)
     fsub	f7, f0, f1
     stb	r0, 3(r30)
@@ -3456,7 +3500,7 @@ _80008084:
     stw	r7, 0x1c(r1)
     lbz	r8, 1(r30)
     stw	r6, 0x18(r1)
-    lfd	f4, -0x7f18(r2)
+    lfd f4, lbl_801A6F28(r2)
     lfd	f0, 0x18(r1)
     stw	r5, 0x14(r1)
     fsubs	f2, f0, f4
@@ -3544,7 +3588,7 @@ asm void fn_800081C8(void)
     lwz	r0, 0(r3)
     addi	r3, r1, 0xc
     stw	r5, 8(r1)
-    lwz	r5, -0x7d20(r13)
+    lwz r5, -0x7d20(r13)
     stw	r0, 0xc(r1)
     bl      fn_80007F70
     lwz	r0, 0x14(r1)
@@ -3593,11 +3637,11 @@ asm void fn_80008204(void)
     li	r5, 0xff
     li	r6, 4
     bl      ModelSetCachedMaterial_570
-    lwz	r0, -0x7530(r2)
+    lwz r0, lbl_801A7910(r2)
     addi	r3, r1, 0xc
     stw	r0, 0xc(r1)
     bl      GXSetMatrixIndexA
-    lwz	r0, -0x752c(r2)
+    lwz r0, lbl_801A7914(r2)
     addi	r3, r1, 8
     stw	r0, 8(r1)
     bl      GXSetMatrixIndexB
@@ -3657,13 +3701,13 @@ asm void fn_80008204(void)
     bc      12, 2, _80008394
     b       _800083f4
 _80008394:
-    lfs	f8, -0x7f2c(r2)
+    lfs f8, lbl_801A6F14(r2)
     lfs	f2, 0x20(r1)
     fsubs	f1, f30, f8
-    lfs	f0, -0x7f08(r2)
+    lfs f0, lbl_801A6F38(r2)
     lfs	f9, 0x28(r1)
     fsubs	f4, f8, f2
-    lfs	f6, -0x7f0c(r2)
+    lfs f6, lbl_801A6F34(r2)
     fsubs	f3, f0, f2
     fdivs	f1, f29, f1
     lfs	f5, 0x1c(r1)
@@ -3682,15 +3726,15 @@ _80008394:
     fmuls	f28, f0, f2
     b       _80008454
 _800083f4:
-    lfs	f6, -0x7f2c(r2)
+    lfs f6, lbl_801A6F14(r2)
     lfs	f1, 0x1c(r1)
     fadds	f2, f6, f29
     lfs	f0, 0x24(r1)
     lfs	f7, 0x20(r1)
     fdivs	f9, f6, f1
-    lfs	f3, -0x7f08(r2)
+    lfs f3, lbl_801A6F38(r2)
     lfs	f8, 0x28(r1)
-    lfs	f1, -0x7f0c(r2)
+    lfs f1, lbl_801A6F34(r2)
     fneg	f5, f2
     fsubs	f4, f6, f7
     fsubs	f2, f3, f7
@@ -3771,11 +3815,11 @@ asm void fn_800084E8(void)
     bl      mtx_gpstack_pop
     addi	r3, r1, 8
     bl      GXGetProjectionv
-    lfs	f1, -0x7f08(r2)
+    lfs f1, lbl_801A6F38(r2)
     li	r3, 0x80
     lfs	f0, 0xc(r1)
     li	r4, 0
-    lfs	f5, -0x7f2c(r2)
+    lfs f5, lbl_801A6F14(r2)
     li	r5, 4
     lfs	f4, 0x14(r1)
     fdivs	f7, f1, f0
@@ -3800,33 +3844,33 @@ asm void fn_800084E8(void)
     stfs	f30, -0x8000(r4)
     stfs	f29, -0x8000(r4)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f10(r2)
+    lfs f0, lbl_801A6F30(r2)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f10(r2)
+    lfs f0, lbl_801A6F30(r2)
     stfs	f0, -0x8000(r4)
     lfs	f0, 0(r31)
     stfs	f28, -0x8000(r4)
     stfs	f29, -0x8000(r4)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f2c(r2)
+    lfs f0, lbl_801A6F14(r2)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f10(r2)
+    lfs f0, lbl_801A6F30(r2)
     stfs	f0, -0x8000(r4)
     lfs	f0, 0(r31)
     stfs	f28, -0x8000(r4)
     stfs	f27, -0x8000(r4)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f2c(r2)
+    lfs f0, lbl_801A6F14(r2)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f2c(r2)
+    lfs f0, lbl_801A6F14(r2)
     stfs	f0, -0x8000(r4)
     lfs	f0, 0(r31)
     stfs	f30, -0x8000(r4)
     stfs	f27, -0x8000(r4)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f10(r2)
+    lfs f0, lbl_801A6F30(r2)
     stfs	f0, -0x8000(r4)
-    lfs	f0, -0x7f2c(r2)
+    lfs f0, lbl_801A6F14(r2)
     stfs	f0, -0x8000(r4)
     bl      fn_80008A4C
     lfs	f31, 0(r31)
@@ -4263,7 +4307,7 @@ asm void fn_80008C20(void)
     fneg	f0, f0
     stfs	f0, 0x10(r1)
     bl      PSVecNormalize3
-    lfs	f0, -0x7f10(r2)
+    lfs f0, lbl_801A6F30(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008c80
     mr	r3, r30
@@ -4287,7 +4331,7 @@ _80008c80:
     stfs	f1, 0x24(r1)
     stfs	f0, 0x28(r1)
     bl      PSVecNormalize3
-    lfs	f0, -0x7f10(r2)
+    lfs f0, lbl_801A6F30(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008cdc
     mr	r3, r30
@@ -4311,7 +4355,7 @@ _80008cdc:
     stfs	f1, 0x18(r1)
     stfs	f0, 0x1c(r1)
     bl      PSVecNormalize3
-    lfs	f0, -0x7f10(r2)
+    lfs f0, lbl_801A6F30(r2)
     fcmpu	cr0, f0, f1
     bc      4, 2, _80008d38
     mr	r3, r30

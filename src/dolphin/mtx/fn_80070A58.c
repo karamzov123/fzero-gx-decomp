@@ -1,7 +1,12 @@
 #pragma push
 #pragma force_active on
 
-extern asm void OSPanic(void);
+extern unsigned char lbl_801A7424[4];
+extern unsigned char lbl_801A7410[4];
+extern unsigned char lbl_801A7420[4];
+extern unsigned char lbl_801A7414[4];
+
+asm void OSPanic(void);
 extern asm void QuatNormalizeCompare(void);
 extern asm void fn_8006DCDC(void);
 extern asm void OSAllocFromArena(void);
@@ -14,16 +19,16 @@ extern unsigned char lbl_801A6D00[8];
 asm void fn_80070A58(void)
 {
     nofralloc
-    lfs	f0, -0x7a30(r2)
+    lfs f0, lbl_801A7410(r2)
     li	r5, -1
     lwz	r3, lbl_801A6D00
     li	r4, 0
-    lfs	f2, -0x7a2c(r2)
+    lfs f2, lbl_801A7414(r2)
     li	r0, 1
     stfs	f0, 0x198(r3)
-    lfs	f1, -0x7a20(r2)
+    lfs f1, lbl_801A7420(r2)
     lwz	r3, lbl_801A6D00
-    lfs	f0, -0x7a1c(r2)
+    lfs f0, lbl_801A7424(r2)
     stfs	f2, 0x19c(r3)
     lwz	r3, lbl_801A6D00
     stfs	f1, 0x1a0(r3)

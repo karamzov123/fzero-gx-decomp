@@ -43,10 +43,8 @@ extern unsigned char E0009_no_param_str[32];
 extern unsigned char E0011_fname_param_str[35];
 extern unsigned char lbl_80132260[104];
 extern unsigned char lbl_801878B8[12];
-extern unsigned char gcci_nullcheck_callback[4];
 extern unsigned char lbl_801878CC[4004];
 extern unsigned char lbl_80188870[256];
-extern unsigned char gcci_err_ctx[4];
 extern unsigned char lbl_80188A78[16];
 extern unsigned char lbl_80188A8C[9092];
 extern void fn_800555C0(void);
@@ -929,8 +927,8 @@ asm void gcci_open_stream(void)
     lis     r3, gcci_msg_base_str@ha
     addi	r31, r3, gcci_msg_base_str@l
     bne     _800562ec
-    lis     r3, gcci_nullcheck_callback@ha
-    lwz	r12, 0x78c8(r3)
+    lis     r3, gcci_client_ctx@ha
+    lwz	r12, gcci_client_ctx@l(r3)
     cmplwi	r12, 0
     beq     _800562e4
     lis	r3, gcci_nullcheck_callback@ha
@@ -972,8 +970,8 @@ _8005633c:
     bl      DVDOpen
     cmpwi	r3, 0
     bne     _80056384
-    lis     r3, gcci_nullcheck_callback@ha
-    lwz	r12, 0x78c8(r3)
+    lis     r3, gcci_client_ctx@ha
+    lwz	r12, gcci_client_ctx@l(r3)
     cmplwi	r12, 0
     beq     _8005637c
     lis	r3, gcci_nullcheck_callback@ha
@@ -997,8 +995,8 @@ _80056398:
     bl      DVDCancelSync
     cmpwi	r3, 0
     bne     _800563dc
-    lis     r3, gcci_nullcheck_callback@ha
-    lwz	r12, 0x78c8(r3)
+    lis     r3, gcci_client_ctx@ha
+    lwz	r12, gcci_client_ctx@l(r3)
     cmplwi	r12, 0
     beq     _800563d4
     lis	r3, gcci_nullcheck_callback@ha

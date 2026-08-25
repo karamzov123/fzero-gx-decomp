@@ -1,7 +1,9 @@
 #pragma push
 #pragma force_active on
 
-extern asm void MTXSinCos(void);
+extern unsigned char lbl_801A73F0[4];
+
+asm void MTXSinCos(void);
 extern asm void PSMTXRotTrig(void);
 extern asm void sqrtf(void);
 extern asm void atan2f(void);
@@ -196,7 +198,7 @@ asm void PSMTXReflect(void)
     fsubs	f0, f1, f0
     stfs	f0, 0x10(r1)
     bl      PSVecNormalize3
-    lfs	f0, -0x7a50(r2)
+    lfs f0, lbl_801A73F0(r2)
     fcmpu	cr0, f0, f1
     bne	_8006f25c
     mr	r3, r30
@@ -220,7 +222,7 @@ _8006f25c:
     stfs	f1, 0x24(r1)
     stfs	f0, 0x28(r1)
     bl      PSVecNormalize3
-    lfs	f0, -0x7a50(r2)
+    lfs f0, lbl_801A73F0(r2)
     fcmpu	cr0, f0, f1
     bne	_8006f2b8
     mr	r3, r30
@@ -244,7 +246,7 @@ _8006f2b8:
     stfs	f1, 0x18(r1)
     stfs	f0, 0x1c(r1)
     bl      PSVecNormalize3
-    lfs	f0, -0x7a50(r2)
+    lfs f0, lbl_801A73F0(r2)
     fcmpu	cr0, f0, f1
     bne	_8006f314
     mr	r3, r30

@@ -24,7 +24,6 @@ extern s32 __CARDIsPublic(register void* ctrl);
 extern s32 __CARDSync(register void* handle);
 extern void DCInvalidateRange(register void* addr, register u32 n);
 extern u32 OSGetTime(void);
-extern unsigned char __CARDBlock[544];
 extern void __CARDDefaultApiCallback(void);
 extern void __CARDSyncCallback(register s32 chn);
 

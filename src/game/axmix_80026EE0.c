@@ -59,6 +59,23 @@ extern unsigned char lbl_801A6B80[4];
 extern unsigned char lbl_801A6B84[4];
 extern unsigned char lbl_801A6B88[8];
 extern unsigned char lbl_801A6B90[8];
+extern unsigned char lbl_801A7008[8];
+extern unsigned char lbl_801A7030[8];
+extern unsigned char lbl_801A7018[8];
+extern unsigned char lbl_801A6B9C[4];
+extern unsigned char lbl_801A6B98[4];
+extern unsigned char lbl_801A7050[4];
+extern unsigned char lbl_801A7048[4];
+extern unsigned char lbl_801A7040[8];
+extern unsigned char lbl_801A7028[4];
+extern unsigned char lbl_801A7020[8];
+extern unsigned char lbl_801A7010[4];
+extern unsigned char lbl_801A704C[4];
+extern unsigned char lbl_801A7038[8];
+extern unsigned char lbl_801A7004[4];
+extern unsigned char lbl_801A7000[4];
+extern unsigned char lbl_801A7054[4];
+
 asm void axmix_set_voice_volume(void)
 {
     nofralloc
@@ -1379,10 +1396,10 @@ asm void fn_8002805C(void)
     stw	r0, 4(r1)
     li	r0, 0
     stwu	r1, -8(r1)
-    lfs	f1, -0x7e40(r2)
+    lfs f1, lbl_801A7000(r2)
     stw	r0, lbl_801A6B90
     bl      fn_80028B34
-    lfs	f1, -0x7e3c(r2)
+    lfs f1, lbl_801A7004(r2)
     bl      fn_80028B2C
     lwz	r0, 0xc(r1)
     addi	r1, r1, 8
@@ -1454,7 +1471,7 @@ asm void axmix_ctrl_store_time_param(void)
     stw	r6, 0x10(r3)
     stw	r4, 8(r3)
     stw	r0, 0x18(r1)
-    lfd	f1, -0x7e38(r2)
+    lfd f1, lbl_801A7008(r2)
     lfd	f0, 0x18(r1)
     fsubs	f0, f0, f1
     stfs	f0, 0xc(r3)
@@ -1476,11 +1493,11 @@ asm void axmix_device_ctrl_accumulate_mix(void)
     bl      fn_800231C4
     lfs	f1, 0xc(r19)
     lis     r3, -0x7fed
-    lfs	f0, -0x7e30(r2)
+    lfs f0, lbl_801A7010(r2)
     addi	r30, r3, -0x6ab0
     lwz	r29, 0x10(r19)
     fdivs	f30, f1, f0
-    lfd	f31, -0x7e28(r2)
+    lfd f31, lbl_801A7018(r2)
     li	r25, 0
     li	r26, 0
     li	r27, 0
@@ -1694,7 +1711,7 @@ asm void axmix_sound_alloc_init(void)
     stw	r5, 4(r3)
     stfs	f1, 8(r3)
     stw	r0, 0xc(r3)
-    lfs	f0, -0x7e20(r2)
+    lfs f0, lbl_801A7020(r2)
     stfs	f0, 0x1c(r3)
     stfs	f0, 0x18(r3)
     stfs	f0, 0x14(r3)
@@ -1736,7 +1753,7 @@ asm void axmix_ctrl_init_type7(void)
     li	r0, 0x40
     stw	r4, 8(r3)
     stw	r0, 0xc(r3)
-    lfs	f0, -0x7e20(r2)
+    lfs f0, lbl_801A7020(r2)
     stfs	f0, 0x10(r3)
     stw	r5, 0x14(r3)
     stfs	f0, 0x24(r3)
@@ -1800,7 +1817,7 @@ asm void axmix_ctrl_init_type14(void)
     li	r0, 0x40
     stw	r4, 8(r3)
     stw	r0, 0xc(r3)
-    lfs	f0, -0x7e20(r2)
+    lfs f0, lbl_801A7020(r2)
     stfs	f0, 0x10(r3)
     stw	r5, 0x14(r3)
     stfs	f0, 0x24(r3)
@@ -1832,11 +1849,11 @@ asm void axmix_update_voice_state(void)
     lis	r31, 0x4330
     lfs	f1, 0xc(r3)
     lis     r3, -0x7fed
-    lfs	f0, -0x7e18(r2)
+    lfs f0, lbl_801A7028(r2)
     addi	r30, r3, -0x6a68
     lwz	r29, 0x10(r19)
     fdivs	f30, f1, f0
-    lfd	f31, -0x7e10(r2)
+    lfd f31, lbl_801A7030(r2)
     b       _8002881c
 _80028640:
     lwz	r0, 4(r29)
@@ -2076,7 +2093,7 @@ _80028998:
     fmuls	f1, f1, f0
     blr	
 _800289b8:
-    lfs	f1, -0x7e08(r2)
+    lfs f1, lbl_801A7038(r2)
     blr	
 }
 
@@ -2151,7 +2168,7 @@ asm void fn_80028A78(void)
     fadds	f0, f1, f0
     stfs	f0, 0x10(r3)
     lfs	f1, 0x10(r3)
-    lfs	f0, -0x7e00(r2)
+    lfs f0, lbl_801A7040(r2)
     fcmpo	cr0, f1, f0
     cror	2, 1, 2
     bne     _80028afc
@@ -2192,14 +2209,14 @@ _80028afc:
 asm void fn_80028B2C(void)
 {
     nofralloc
-    stfs	f1, -0x7828(r13)
+    stfs f1, lbl_801A6B98(r13)
     blr	
 }
 
 asm void fn_80028B34(void)
 {
     nofralloc
-    stfs	f1, -0x7824(r13)
+    stfs f1, lbl_801A6B9C(r13)
     blr	
 }
 
@@ -2220,11 +2237,11 @@ asm void axmix_mix_voice_state(void)
     cmplwi	r0, 0
     beq     _80028ca0
     lfs	f2, 8(r31)
-    lfs	f0, -0x7df8(r2)
+    lfs f0, lbl_801A7048(r2)
     fcmpo	cr0, f2, f0
     ble     _80028b9c
-    lfs	f0, -0x7df0(r2)
-    lfs	f1, -0x7df4(r2)
+    lfs f0, lbl_801A7050(r2)
+    lfs f1, lbl_801A704C(r2)
     fdivs	f0, f2, f0
     fmuls	f1, f1, f0
     bl      __cvt_fp2unsigned
@@ -2232,8 +2249,8 @@ asm void axmix_mix_voice_state(void)
     b       _80028bc4
 _80028b9c:
     bge     _80028bc0
-    lfs	f0, -0x7df0(r2)
-    lfs	f1, -0x7df4(r2)
+    lfs f0, lbl_801A7050(r2)
+    lfs f1, lbl_801A704C(r2)
     fdivs	f0, f2, f0
     fmuls	f0, f1, f0
     fadds	f1, f1, f0
@@ -2244,11 +2261,11 @@ _80028bc0:
     li	r29, 0
 _80028bc4:
     lfs	f2, 0xc(r31)
-    lfs	f0, -0x7df8(r2)
+    lfs f0, lbl_801A7048(r2)
     fcmpo	cr0, f2, f0
     ble     _80028bf0
-    lfs	f0, -0x7df0(r2)
-    lfs	f1, -0x7df4(r2)
+    lfs f0, lbl_801A7050(r2)
+    lfs f1, lbl_801A704C(r2)
     fdivs	f0, f2, f0
     fmuls	f1, f1, f0
     bl      __cvt_fp2unsigned
@@ -2256,8 +2273,8 @@ _80028bc4:
     b       _80028c18
 _80028bf0:
     bge     _80028c14
-    lfs	f0, -0x7df0(r2)
-    lfs	f1, -0x7df4(r2)
+    lfs f0, lbl_801A7050(r2)
+    lfs f1, lbl_801A704C(r2)
     fdivs	f0, f2, f0
     fmuls	f0, f1, f0
     fadds	f1, f1, f0
@@ -2291,12 +2308,12 @@ _80028c44:
     lbz	r0, 0x708(r3)
     stb	r0, 0x1e(r31)
     lfs	f1, 0x14(r31)
-    lfs	f0, -0x7828(r13)
+    lfs f0, lbl_801A6B98(r13)
     fdivs	f0, f1, f0
     stfs	f0, 0x24(r31)
     lfs	f1, 0x10(r31)
-    lfs	f0, -0x7824(r13)
-    lfs	f2, -0x7dec(r2)
+    lfs f0, lbl_801A6B9C(r13)
+    lfs f2, lbl_801A7054(r2)
     fdivs	f0, f1, f0
     fmuls	f0, f2, f0
     fctiwz	f0, f0

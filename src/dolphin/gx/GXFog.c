@@ -46,6 +46,16 @@ extern unsigned char lbl_801A6C50[4];
 extern unsigned char lbl_801A6C54[4];
 extern unsigned char lbl_801A6C58[8];
 extern unsigned char lbl_801A71B8[4];
+extern unsigned char lbl_801A71A4[4];
+extern unsigned char lbl_801A7194[4];
+extern unsigned char lbl_801A71A8[4];
+extern unsigned char lbl_801A7198[4];
+extern unsigned char lbl_801A71AC[4];
+extern unsigned char lbl_801A719C[4];
+extern unsigned char lbl_801A71B0[4];
+extern unsigned char lbl_801A71A0[4];
+extern unsigned char lbl_801A71B4[4];
+
 asm void fn_8003BB30(register u32 a);
 asm int fn_8003BCE4(register u32 a);
 asm int fn_8003BD78(register u32 a);
@@ -65,10 +75,10 @@ extern unsigned char lbl_801789C0[560];
 asm void fn_8003BB30(register u32 a)
 {
     nofralloc
-    lfs     f0, -0x7cac(r2)
-    lfs     f1, -0x7ca8(r2)
-    lfs     f2, -0x7ca4(r2)
-    lfs     f3, -0x7ca0(r2)
+    lfs f0, lbl_801A7194(r2)
+    lfs f1, lbl_801A7198(r2)
+    lfs f2, lbl_801A719C(r2)
+    lfs f3, lbl_801A71A0(r2)
     ps_merge00 f4, f1, f2
     ps_merge00 f5, f1, f3
     cmplwi  r7, 0
@@ -182,11 +192,11 @@ _8003bcb4:
 asm int fn_8003BCE4(register u32 a)
 {
     nofralloc
-    lfs     f0, -0x7c9c(r2)
-    lfs     f1, -0x7c98(r2)
-    lfs     f2, -0x7c94(r2)
-    lfs     f3, -0x7c90(r2)
-    lfs     f4, -0x7c8c(r2)
+    lfs f0, lbl_801A71A4(r2)
+    lfs f1, lbl_801A71A8(r2)
+    lfs f2, lbl_801A71AC(r2)
+    lfs f3, lbl_801A71B0(r2)
+    lfs f4, lbl_801A71B4(r2)
     psq_l   f5, 0x0(r5), 0, 2
     psq_l   f6, 0x0(r6), 0, 2
     ps_sub  f5, f5, f0
@@ -224,11 +234,11 @@ asm int fn_8003BCE4(register u32 a)
 asm int fn_8003BD78(register u32 a)
 {
     nofralloc
-    lfs     f0, -0x7c9c(r2)
-    lfs     f1, -0x7c98(r2)
-    lfs     f2, -0x7c94(r2)
-    lfs     f3, -0x7c90(r2)
-    lfs     f4, -0x7c8c(r2)
+    lfs f0, lbl_801A71A4(r2)
+    lfs f1, lbl_801A71A8(r2)
+    lfs f2, lbl_801A71AC(r2)
+    lfs f3, lbl_801A71B0(r2)
+    lfs f4, lbl_801A71B4(r2)
     psq_l   f6, 0x0(r5), 0, 2
     psq_l   f7, 0x0(r6), 0, 2
     ps_sub  f6, f6, f0

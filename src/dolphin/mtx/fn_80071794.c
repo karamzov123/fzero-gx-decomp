@@ -1,7 +1,12 @@
 #pragma push
 #pragma force_active on
 
-extern asm void OSReport(void);
+extern unsigned char lbl_801A7440[8];
+extern unsigned char lbl_801A7430[8];
+extern unsigned char lbl_801A7438[4];
+extern unsigned char lbl_801A7428[4];
+
+asm void OSReport(void);
 extern asm void GXInitTexObj(void);
 extern asm void fn_80035EC4(void);
 extern unsigned char lbl_8015AC08[18];
@@ -333,10 +338,10 @@ _80071b88:
     clrlwi	r6, r31, 0x18
     stw	r3, 0x10(r1)
     extsb	r0, r0
-    lfd	f2, -0x7a00(r2)
+    lfd f2, lbl_801A7440(r2)
     xoris	r0, r0, 0x8000
     stw	r6, 0xc(r1)
-    lfs	f0, -0x7a08(r2)
+    lfs f0, lbl_801A7438(r2)
     rlwinm	r7, r7, 0x1a, 0x1f, 0x1f
     stw	r0, 0x14(r1)
     li	r6, 0
@@ -344,11 +349,11 @@ _80071b88:
     lfd	f1, 0x10(r1)
     stw	r3, 8(r1)
     fsubs	f1, f1, f2
-    lfd	f2, -0x7a10(r2)
+    lfd f2, lbl_801A7430(r2)
     lwz	r3, 8(r28)
     fdivs	f3, f1, f0
     lfd	f0, 8(r1)
-    lfs	f1, -0x7a18(r2)
+    lfs f1, lbl_801A7428(r2)
     fsubs	f2, f0, f2
     bl      fn_80035EC4
 _80071be4:

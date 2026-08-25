@@ -24,11 +24,10 @@ extern void OSEnableScheduler(void);
 extern void __OSReboot(u32 resetCode, u32 bootDol);
 extern void memset(void* ptr, s32 val, u32 size);
 
-extern unsigned char ResetFunctionQueue[8];
 asm void OSRegisterResetFunction(register void* info)
 {
     nofralloc
-    lwz	r5, -0x7bf0(r13)
+    lwz r5, -0x7bf0(r13)
     b       _8000ee7c
 _8000ee78:
     lwz	r5, 8(r5)
@@ -46,7 +45,7 @@ _8000ee94:
     lwzu	r4, 4(r5)
     cmplwi	r4, 0
     bne     _8000eeb4
-    stw	r3, -0x7bf0(r13)
+    stw r3, -0x7bf0(r13)
     b       _8000eeb8
 _8000eeb4:
     stw	r3, 8(r4)
@@ -63,7 +62,7 @@ _8000eecc:
     cmplwi	r4, 0
     stw	r4, 0xc(r3)
     bne     _8000eeec
-    stw	r3, -0x7bf0(r13)
+    stw r3, -0x7bf0(r13)
     blr	
 _8000eeec:
     stw	r3, 8(r4)
@@ -157,7 +156,7 @@ _8000efe4:
 _8000efe8:
     b       _8000efec
 _8000efec:
-    lwz	r27, -0x7bf0(r13)
+    lwz r27, -0x7bf0(r13)
     li	r28, 0
     b       _8000eff8
 _8000eff8:
@@ -211,7 +210,7 @@ _8000f08c:
     beq     _8000f08c
 _8000f098:
     bl      OSDisableInterrupts
-    lwz	r28, -0x7bf0(r13)
+    lwz r28, -0x7bf0(r13)
     li	r27, 0
     b       _8000f0a8
 _8000f0a8:

@@ -23,6 +23,19 @@ extern unsigned char lbl_80128190[2048];
 
 extern unsigned char lbl_801A64F8[4];
 extern unsigned char lbl_801A64FC[4];
+extern unsigned char lbl_801A6FE0[8];
+extern unsigned char lbl_801A6FD8[4];
+extern unsigned char lbl_801A6FD4[4];
+extern unsigned char lbl_801A6FD0[4];
+extern unsigned char lbl_801A6FCC[4];
+extern unsigned char lbl_801A6FC8[4];
+extern unsigned char lbl_801A6FC0[4];
+extern unsigned char lbl_801A6FDC[4];
+extern unsigned char lbl_801A6FC4[4];
+extern unsigned char lbl_801A6F80[4];
+extern unsigned char lbl_801A6FBC[4];
+extern unsigned char lbl_801A6F84[4];
+
 asm void fn_80024308(void)
 {
     nofralloc
@@ -100,9 +113,9 @@ asm void fn_800243C4(void)
     lwz	r30, 0(r3)
     b       _80024404
 _80024404:
-    lfs	f30, -0x7e84(r2)
-    lfs	f31, -0x7ebc(r2)
-    lfs	f29, -0x7ec0(r2)
+    lfs f30, lbl_801A6FBC(r2)
+    lfs f31, lbl_801A6F84(r2)
+    lfs f29, lbl_801A6F80(r2)
     b       _80024414
 _80024414:
     b       _8002449c
@@ -181,16 +194,16 @@ asm void fn_800244C8(void)
     fmr	f25, f1
     stmw	r19, 0x3c(r1)
     mr	r23, r3
-    lfs	f6, -0x7e80(r2)
+    lfs f6, lbl_801A6FC0(r2)
     fcmpo	cr0, f25, f6
     blt     _80024570
-    lfs	f1, -0x7e7c(r2)
+    lfs f1, lbl_801A6FC4(r2)
     fcmpo	cr0, f25, f1
     bgt     _80024570
-    lfs	f0, -0x7e78(r2)
+    lfs f0, lbl_801A6FC8(r2)
     fcmpo	cr0, f28, f0
     blt     _80024570
-    lfs	f0, -0x7e74(r2)
+    lfs f0, lbl_801A6FCC(r2)
     fcmpo	cr0, f28, f0
     bgt     _80024570
     fcmpo	cr0, f26, f6
@@ -203,7 +216,7 @@ asm void fn_800244C8(void)
     bgt     _80024570
     fcmpo	cr0, f31, f6
     blt     _80024570
-    lfs	f0, -0x7e70(r2)
+    lfs f0, lbl_801A6FD0(r2)
     fcmpo	cr0, f31, f0
     ble     _80024578
 _80024570:
@@ -214,12 +227,12 @@ _80024578:
     li	r4, 0
     li	r5, 0x13c
     bl      memset
-    lfs	f0, -0x7e6c(r2)
+    lfs f0, lbl_801A6FD4(r2)
     lis     r3, axmix_vol_coeff_table@ha
-    lfs	f30, -0x7e80(r2)
+    lfs f30, lbl_801A6FC0(r2)
     addi	r30, r3, axmix_vol_coeff_table@l
     fmuls	f28, f0, f28
-    lfd	f29, -0x7e60(r2)
+    lfd f29, lbl_801A6FE0(r2)
     addi	r27, r23, 0
     li	r24, 0
     li	r28, 0
@@ -283,7 +296,7 @@ _80024674:
     cmpwi	r0, 0
     blt     _80024664
     lwz	r0, 0(r29)
-    lfs	f1, -0x7e74(r2)
+    lfs f1, lbl_801A6FCC(r2)
     mulli	r0, r0, -3
     xoris	r0, r0, 0x8000
     stw	r0, 0x34(r1)
@@ -375,23 +388,23 @@ _800247b8:
     stfs	f26, 0x118(r23)
     stfs	f27, 0x11c(r23)
     lfs	f1, 0x11c(r23)
-    lfs	f0, -0x7e68(r2)
+    lfs f0, lbl_801A6FD8(r2)
     fcmpo	cr0, f1, f0
     bge     _800247e4
     stfs	f0, 0x11c(r23)
 _800247e4:
-    lfs	f1, -0x7e64(r2)
+    lfs f1, lbl_801A6FDC(r2)
     lfs	f0, 0x11c(r23)
-    lfs	f2, -0x7e68(r2)
+    lfs f2, lbl_801A6FD8(r2)
     fmuls	f0, f1, f0
-    lfs	f1, -0x7e7c(r2)
+    lfs f1, lbl_801A6FC4(r2)
     fadds	f0, f2, f0
     fsubs	f0, f1, f0
     stfs	f0, 0x11c(r23)
-    lfs	f0, -0x7e80(r2)
+    lfs f0, lbl_801A6FC0(r2)
     fcmpu	cr0, f0, f31
     beq     _80024880
-    lfs	f0, -0x7e6c(r2)
+    lfs f0, lbl_801A6FD4(r2)
     addi	r20, r23, 0
     li	r19, 0
     fmuls	f0, f0, f31

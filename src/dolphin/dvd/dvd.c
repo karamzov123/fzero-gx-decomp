@@ -1,4 +1,5 @@
-/* Auto-generated exact-asm transcription (scaffolding).
+/* Auto-generated exact-
+asm transcription (scaffolding).
  * Range covered by this unit: see per-function headers. */
 
 typedef int BOOL;
@@ -118,21 +119,21 @@ nofralloc
 	stw r0, 0x4(r1)
 	stwu r1, -0x10(r1)
 	stw r31, 0xc(r1)
-	lwz	r0, -0x7ac0(r13)
+	lwz r0, -0x7ac0(r13)
 	cmpwi r0, 0x0
 	bne lbl_80017824
-	lwz	r3, -0x7f48(r13)
+	lwz r3, -0x7f48(r13)
 	bl OSRegisterVersion
 	li r31, 0x1
-	stw	r31, -0x7ac0(r13)
+	stw r31, -0x7ac0(r13)
 	bl __DVDFSInit
 	bl __DVDClearWaitingQueue
 	bl __DVDInitWA
 	lis r0, 0x8000
 	lis r3, __DVDInterruptHandler@ha
-	stw	r0, -0x7af8(r13)
+	stw r0, -0x7af8(r13)
 	addi r4, r3, __DVDInterruptHandler@l
-	stw	r0, -0x7afc(r13)
+	stw r0, -0x7afc(r13)
 	li r3, 0x15
 	bl __OSSetInterruptHandler
 	li r3, 0x400
@@ -144,7 +145,7 @@ nofralloc
 	stw r0, 0x6000(r3)
 	li r0, 0x0
 	stw r0, 0x6004(r3)
-	lwz	r3, -0x7af8(r13)
+	lwz r3, -0x7af8(r13)
 	addi r3, r3, 0x20
 	lwz r3, 0x0(r3)
 	addis r0, r3, 0x1ae0
@@ -160,7 +161,7 @@ lbl_80017814:
 	subis r0, r3, 0xd15
 	cmplwi r0, 0xea5e
 	beq lbl_80017824
-	stw	r31, -0x7ac4(r13)
+	stw r31, -0x7ac4(r13)
 lbl_80017824:
 	lwz r0, 0x14(r1)
 	lwz r31, 0xc(r1)
@@ -181,8 +182,8 @@ nofralloc
 	addi r3, r3, BB2@l
 	stw r31, 0xc(r1)
 	addi r31, r3, 0x8
-	stw	r0, -0x7abc(r13)
-	lwz	r4, -0x7af8(r13)
+	stw r0, -0x7abc(r13)
+	lwz r4, -0x7af8(r13)
 	lwz r0, 0x0(r31)
 	lwz r3, 0x3c(r4)
 	cmplw r3, r0
@@ -197,7 +198,7 @@ lbl_8001788C:
 	lis r3, BB2@ha
 	lwz r6, 0x0(r31)
 	addi r5, r3, BB2@l
-	lwz	r7, -0x7af8(r13)
+	lwz r7, -0x7af8(r13)
 	lis r4, cbForStateReadingFST@ha
 	lwz r5, 0x4(r5)
 	addi r0, r6, 0x1f
@@ -221,7 +222,7 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	bne lbl_800178F8
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r0, -0x1
 	stw r0, 0xc(r3)
 	bl stateTimeout
@@ -230,12 +231,12 @@ lbl_800178F8:
 	clrlwi. r0, r3, 31
 	beq lbl_80017940
 	li r31, 0x0
-	stw	r31, -0x7acc(r13)
+	stw r31, -0x7acc(r13)
 	bl __DVDFSInit
 	lis r3, DummyCommandBlock@ha
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r0, r3, DummyCommandBlock@l
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	stw r31, 0xc(r4)
 	lwz r12, 0x28(r4)
 	cmplwi r12, 0x0
@@ -265,7 +266,7 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	bne lbl_80017984
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r0, -0x1
 	stw r0, 0xc(r3)
 	bl stateTimeout
@@ -273,11 +274,11 @@ nofralloc
 lbl_80017984:
 	bl fn_8001A2EC
 	lis r3, DummyCommandBlock@ha
-	lwz	r31, -0x7b00(r13)
+	lwz r31, -0x7b00(r13)
 	addi r0, r3, DummyCommandBlock@l
 	li r3, 0x1
-	stw	r0, -0x7b00(r13)
-	stw	r3, -0x7ae8(r13)
+	stw r0, -0x7b00(r13)
+	stw r3, -0x7ae8(r13)
 	lwz r12, 0x28(r31)
 	cmplwi r12, 0x0
 	beq lbl_800179BC
@@ -286,12 +287,12 @@ lbl_80017984:
 	li r3, -0x1
 	blrl
 lbl_800179BC:
-	lwz	r0, -0x7ae0(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_800179EC
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	li r0, 0x0
-	stw	r0, -0x7ae0(r13)
+	stw r0, -0x7ae0(r13)
 	cmplwi r12, 0x0
 	beq lbl_800179EC
 	mtlr r12
@@ -347,7 +348,7 @@ nofralloc
 	subis r0, r3, 0x2
 	cmplwi r0, 0x400
 	bne lbl_80017A78
-	stw	r3, -0x7ad0(r13)
+	stw r3, -0x7ad0(r13)
 	li r3, 0x1
 	blr
 lbl_80017A78:
@@ -365,28 +366,28 @@ lbl_80017AA0:
 	li r3, 0x0
 	blr
 lbl_80017AA8:
-	lwz	r3, -0x7acc(r13)
+	lwz r3, -0x7acc(r13)
 	addi r0, r3, 0x1
-	stw	r0, -0x7acc(r13)
-	lwz	r0, -0x7acc(r13)
+	stw r0, -0x7acc(r13)
+	lwz r0, -0x7acc(r13)
 	cmpwi r0, 0x2
 	bne lbl_80017AE4
-	lwz	r0, -0x7ad0(r13)
+	lwz r0, -0x7ad0(r13)
 	cmplw r4, r0
 	bne lbl_80017AD8
-	stw	r4, -0x7ad0(r13)
+	stw r4, -0x7ad0(r13)
 	li r3, 0x1
 	blr
 lbl_80017AD8:
-	stw	r4, -0x7ad0(r13)
+	stw r4, -0x7ad0(r13)
 	li r3, 0x2
 	blr
 lbl_80017AE4:
 	subis r0, r4, 0x3
-	stw	r4, -0x7ad0(r13)
+	stw r4, -0x7ad0(r13)
 	cmplwi r0, 0x1100
 	beq lbl_80017B04
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	lwz r0, 0x8(r3)
 	cmplwi r0, 0x5
 	bne lbl_80017B0C
@@ -410,7 +411,7 @@ nofralloc
 	stw r29, 0x14(r1)
 	stw r28, 0x10(r1)
 	bne lbl_80017B60
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -423,7 +424,7 @@ nofralloc
 lbl_80017B60:
 	rlwinm. r0, r3, 0, 30, 30
 	beq lbl_80017B90
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -442,7 +443,7 @@ lbl_80017B90:
 	addi r31, r3, 0x0
 	cmplwi r31, 0x1
 	bne lbl_80017BD4
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	addi r3, r29, 0x0
 	stw r0, 0xc(r4)
@@ -478,17 +479,17 @@ lbl_80017C10:
 lbl_80017C24:
 	li r4, 0x5
 lbl_80017C28:
-	lwz	r0, -0x7ae0(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_80017C9C
 	lis r3, DummyCommandBlock@ha
-	stw	r4, -0x7ad8(r13)
+	stw r4, -0x7ad8(r13)
 	li r0, 0x0
-	lwz	r30, -0x7b00(r13)
+	lwz r30, -0x7b00(r13)
 	addi r3, r3, DummyCommandBlock@l
-	stw	r0, -0x7ae0(r13)
+	stw r0, -0x7ae0(r13)
 	li r0, 0xa
-	stw	r3, -0x7b00(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r30)
 	lwz r12, 0x28(r30)
 	cmplwi r12, 0x0
@@ -498,7 +499,7 @@ lbl_80017C28:
 	li r3, -0x3
 	blrl
 lbl_80017C74:
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	cmplwi r12, 0x0
 	beq lbl_80017C90
 	mtlr r12
@@ -527,15 +528,15 @@ lbl_80017CC0:
 	subis r0, r3, 0x3
 	cmplwi r0, 0x1100
 	bne lbl_80017CF0
-	lwz	r5, -0x7b00(r13)
+	lwz r5, -0x7b00(r13)
 	lis r3, cbForUnrecoveredError@ha
 	addi r4, r3, cbForUnrecoveredError@l
 	lwz r3, 0x10(r5)
 	bl DVDLowSeek
 	b lbl_80017D88
 lbl_80017CF0:
-	lwz	r12, -0x7abc(r13)
-	lwz	r3, -0x7b00(r13)
+	lwz r12, -0x7abc(r13)
+	lwz r3, -0x7b00(r13)
 	mtlr r12
 	blrl
 	b lbl_80017D88
@@ -543,7 +544,7 @@ lbl_80017D04:
 	subis r0, r28, 0x100
 	cmplwi r0, 0x0
 	bne lbl_80017D24
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r0, 0x5
 	stw r0, 0xc(r3)
 	bl stateMotorStopped
@@ -552,7 +553,7 @@ lbl_80017D24:
 	subis r0, r28, 0x200
 	cmplwi r0, 0x0
 	bne lbl_80017D44
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r0, 0x3
 	stw r0, 0xc(r3)
 	bl stateCoverClosed
@@ -561,13 +562,13 @@ lbl_80017D44:
 	subis r0, r28, 0x300
 	cmplwi r0, 0x0
 	bne lbl_80017D64
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r0, 0x4
 	stw r0, 0xc(r3)
 	bl stateMotorStopped
 	b lbl_80017D88
 lbl_80017D64:
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -595,7 +596,7 @@ nofralloc
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
 	bne lbl_80017DE4
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -629,7 +630,7 @@ nofralloc
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
 	bne lbl_80017E4C
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -641,7 +642,7 @@ nofralloc
 	b lbl_80017E98
 lbl_80017E4C:
 	rlwinm. r0, r3, 0, 30, 30
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r4, -0x1
 	stw r4, 0xc(r3)
 	beq lbl_80017E7C
@@ -691,7 +692,7 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	bne lbl_80017F10
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -704,7 +705,7 @@ nofralloc
 lbl_80017F10:
 	rlwinm. r0, r3, 0, 30, 30
 	beq lbl_80017F40
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -716,35 +717,35 @@ lbl_80017F10:
 	b lbl_80018014
 lbl_80017F40:
 	li r0, 0x0
-	stw	r0, -0x7acc(r13)
-	lwz	r0, -0x7ae4(r13)
+	stw r0, -0x7acc(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0x4
 	beq lbl_80017F78
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0x5
 	beq lbl_80017F78
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0xd
 	beq lbl_80017F78
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0xf
 	bne lbl_80017F80
 lbl_80017F78:
 	li r0, 0x1
-	stw	r0, -0x7ac8(r13)
+	stw r0, -0x7ac8(r13)
 lbl_80017F80:
-	lwz	r0, -0x7ae0(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_80017FF8
 	li r0, 0x2
-	lwz	r31, -0x7b00(r13)
+	lwz r31, -0x7b00(r13)
 	lis r3, DummyCommandBlock@ha
-	stw	r0, -0x7ad8(r13)
+	stw r0, -0x7ad8(r13)
 	addi r0, r3, DummyCommandBlock@l
 	li r3, 0x0
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	li r0, 0xa
-	stw	r3, -0x7ae0(r13)
+	stw r3, -0x7ae0(r13)
 	stw r0, 0xc(r31)
 	lwz r12, 0x28(r31)
 	cmplwi r12, 0x0
@@ -754,7 +755,7 @@ lbl_80017F80:
 	li r3, -0x3
 	blrl
 lbl_80017FD0:
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	cmplwi r12, 0x0
 	beq lbl_80017FEC
 	mtlr r12
@@ -770,7 +771,7 @@ lbl_80017FF8:
 lbl_80017FFC:
 	cmpwi r0, 0x0
 	bne lbl_80018014
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r0, 0xb
 	stw r0, 0xc(r3)
 	bl stateMotorStopped
@@ -791,31 +792,31 @@ nofralloc
 	stwu r1, -0x10(r1)
 	stw r31, 0xc(r1)
 	addi r31, r3, BB2@l
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmpwi r0, 0x3
 	beq lbl_80018050
 	b lbl_800180B8
 lbl_80018050:
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r3, r31, 0x20
 	lwz r4, 0x24(r4)
 	bl fn_8001A1F4
 	cmpwi r3, 0x0
 	beq lbl_800180A8
-	lwz	r3, -0x7afc(r13)
+	lwz r3, -0x7afc(r13)
 	addi r4, r31, 0x20
 	li r5, 0x20
 	bl memcpy
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, 0x1
 	addi r3, r31, 0x0
 	stw r0, 0xc(r4)
 	li r4, 0x20
 	bl DCInvalidateRange
 	lis r4, cbForStateCheckID3@ha
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	addi r0, r4, cbForStateCheckID3@l
-	stw	r0, -0x7abc(r13)
+	stw r0, -0x7abc(r13)
 	bl cbForStateCheckID3
 	b lbl_800180F4
 lbl_800180A8:
@@ -824,7 +825,7 @@ lbl_800180A8:
 	bl DVDLowStopMotor
 	b lbl_800180F4
 lbl_800180B8:
-	lwz	r4, -0x7afc(r13)
+	lwz r4, -0x7afc(r13)
 	addi r3, r31, 0x20
 	li r5, 0x20
 	bl strncmp
@@ -836,9 +837,9 @@ lbl_800180B8:
 	b lbl_800180F4
 lbl_800180E0:
 	lis r4, cbForStateCheckID2@ha
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	addi r0, r4, cbForStateCheckID2@l
-	stw	r0, -0x7abc(r13)
+	stw r0, -0x7abc(r13)
 	bl cbForStateCheckID2
 lbl_800180F4:
 	lwz r0, 0x14(r1)
@@ -856,7 +857,7 @@ nofralloc
 	stw r0, 0x4(r1)
 	addi r5, r3, cbForStateCheckID2b@l
 	stwu r1, -0x8(r1)
-	lwz	r4, -0x7afc(r13)
+	lwz r4, -0x7afc(r13)
 	lbz r3, 0x8(r4)
 	li r4, 0xa
 	bl DVDLowAudioBufferConfig
@@ -874,7 +875,7 @@ nofralloc
 	stw r0, 0x4(r1)
 	addi r5, r3, cbForStateCheckID1@l
 	stwu r1, -0x8(r1)
-	lwz	r4, -0x7afc(r13)
+	lwz r4, -0x7afc(r13)
 	lbz r3, 0x8(r4)
 	li r4, 0xa
 	bl DVDLowAudioBufferConfig
@@ -892,7 +893,7 @@ nofralloc
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
 	bne lbl_800181AC
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -906,8 +907,8 @@ lbl_800181AC:
 	clrlwi. r0, r3, 31
 	beq lbl_800181C8
 	li r0, 0x0
-	lwz	r3, -0x7b00(r13)
-	stw	r0, -0x7acc(r13)
+	lwz r3, -0x7b00(r13)
+	stw r0, -0x7acc(r13)
 	bl stateCheckID2
 	b lbl_800181D4
 lbl_800181C8:
@@ -949,7 +950,7 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	bne lbl_8001825C
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -962,7 +963,7 @@ nofralloc
 lbl_8001825C:
 	rlwinm. r0, r3, 0, 30, 30
 	beq lbl_8001828C
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -974,18 +975,18 @@ lbl_8001825C:
 	b lbl_8001831C
 lbl_8001828C:
 	li r4, 0x0
-	stw	r4, -0x7acc(r13)
-	lwz	r0, -0x7ae0(r13)
+	stw r4, -0x7acc(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_80018304
 	li r0, 0x1
-	lwz	r31, -0x7b00(r13)
-	stw	r0, -0x7ad8(r13)
+	lwz r31, -0x7b00(r13)
+	stw r0, -0x7ad8(r13)
 	lis r3, DummyCommandBlock@ha
 	addi r3, r3, DummyCommandBlock@l
-	stw	r4, -0x7ae0(r13)
+	stw r4, -0x7ae0(r13)
 	li r0, 0xa
-	stw	r3, -0x7b00(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r31)
 	lwz r12, 0x28(r31)
 	cmplwi r12, 0x0
@@ -995,7 +996,7 @@ lbl_8001828C:
 	li r3, -0x3
 	blrl
 lbl_800182E0:
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	cmplwi r12, 0x0
 	beq lbl_800182FC
 	mtlr r12
@@ -1008,7 +1009,7 @@ lbl_800182FC:
 lbl_80018304:
 	cmpwi r4, 0x0
 	bne lbl_8001831C
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r0, 0x6
 	stw r0, 0xc(r3)
 	bl stateMotorStopped
@@ -1029,7 +1030,7 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	bne lbl_80018370
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -1043,12 +1044,12 @@ lbl_80018370:
 	clrlwi. r0, r3, 31
 	beq lbl_800183F4
 	lis r3, stateReadingFST@ha
-	lwz	r4, -0x7af8(r13)
+	lwz r4, -0x7af8(r13)
 	addi r0, r3, stateReadingFST@l
 	li r5, 0x0
-	stw	r0, -0x7abc(r13)
+	stw r0, -0x7abc(r13)
 	lis r3, BB2@ha
-	stw	r5, -0x7acc(r13)
+	stw r5, -0x7acc(r13)
 	addi r3, r3, BB2@l
 	addi r31, r3, 0x8
 	lwz r3, 0x3c(r4)
@@ -1065,7 +1066,7 @@ lbl_800183C4:
 	lis r3, BB2@ha
 	lwz r6, 0x0(r31)
 	addi r5, r3, BB2@l
-	lwz	r7, -0x7af8(r13)
+	lwz r7, -0x7af8(r13)
 	lis r4, cbForStateReadingFST@ha
 	lwz r5, 0x4(r5)
 	addi r0, r6, 0x1f
@@ -1095,7 +1096,7 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	bne lbl_80018454
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -1109,17 +1110,17 @@ lbl_80018454:
 	clrlwi. r0, r3, 31
 	beq lbl_800184F0
 	li r4, 0x0
-	stw	r4, -0x7acc(r13)
-	lwz	r0, -0x7ae0(r13)
+	stw r4, -0x7acc(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_800184D0
-	stw	r4, -0x7ad8(r13)
+	stw r4, -0x7ad8(r13)
 	lis r3, DummyCommandBlock@ha
-	lwz	r31, -0x7b00(r13)
+	lwz r31, -0x7b00(r13)
 	addi r3, r3, DummyCommandBlock@l
-	stw	r4, -0x7ae0(r13)
+	stw r4, -0x7ae0(r13)
 	li r0, 0xa
-	stw	r3, -0x7b00(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r31)
 	lwz r12, 0x28(r31)
 	cmplwi r12, 0x0
@@ -1129,7 +1130,7 @@ lbl_80018454:
 	li r3, -0x3
 	blrl
 lbl_800184AC:
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	cmplwi r12, 0x0
 	beq lbl_800184C8
 	mtlr r12
@@ -1142,10 +1143,10 @@ lbl_800184C8:
 lbl_800184D0:
 	cmpwi r4, 0x0
 	bne lbl_800184FC
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r0, 0x1
 	stw r0, 0xc(r3)
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	bl stateBusy
 	b lbl_800184FC
 lbl_800184F0:
@@ -1172,9 +1173,9 @@ nofralloc
 	li r4, 0x20
 	bl DCInvalidateRange
 	lis r4, cbForStateCoverClosed_CMD@ha
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	addi r0, r4, cbForStateCoverClosed_CMD@l
-	stw	r0, -0x7abc(r13)
+	stw r0, -0x7abc(r13)
 	bl cbForStateCoverClosed_CMD
 	lwz r0, 0xc(r1)
 	addi r1, r1, 0x8
@@ -1191,7 +1192,7 @@ nofralloc
 	stwu r1, -0x10(r1)
 	stw r31, 0xc(r1)
 	addi r31, r3, BB2@l
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmpwi r0, 0xd
 	beq lbl_8001859C
 	bge lbl_80018590
@@ -1206,9 +1207,9 @@ lbl_80018590:
 	b lbl_800185CC
 lbl_8001859C:
 	bl __DVDClearWaitingQueue
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r0, r31, 0x40
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	lwz r12, 0x28(r4)
 	cmplwi r12, 0x0
 	beq lbl_800185C4
@@ -1268,7 +1269,7 @@ nofralloc
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
 	bne lbl_8001868C
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -1282,7 +1283,7 @@ lbl_8001868C:
 	clrlwi. r0, r3, 31
 	beq lbl_800186A4
 	li r0, 0x0
-	stw	r0, -0x7acc(r13)
+	stw r0, -0x7acc(r13)
 	bl stateCheckID
 	b lbl_800186B0
 lbl_800186A4:
@@ -1324,9 +1325,9 @@ nofralloc
 	addi r31, r4, BB2@l
 	stw r0, 0x6004(r3)
 	li r0, 0x3
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	stw r0, 0xc(r3)
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmpwi r0, 0xd
 	beq lbl_80018748
 	bge lbl_8001873C
@@ -1341,9 +1342,9 @@ lbl_8001873C:
 	b lbl_80018778
 lbl_80018748:
 	bl __DVDClearWaitingQueue
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r0, r31, 0x40
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	lwz r12, 0x28(r4)
 	cmplwi r12, 0x0
 	beq lbl_80018770
@@ -1391,29 +1392,29 @@ nofralloc
 	cmpwi r3, 0x0
 	bne lbl_800187FC
 	li r0, 0x0
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	b lbl_800189E8
 lbl_800187FC:
-	lwz	r0, -0x7af4(r13)
+	lwz r0, -0x7af4(r13)
 	cmpwi r0, 0x0
 	beq lbl_8001881C
 	li r3, 0x1
 	li r0, 0x0
-	stw	r3, -0x7af0(r13)
-	stw	r0, -0x7b00(r13)
+	stw r3, -0x7af0(r13)
+	stw r0, -0x7b00(r13)
 	b lbl_800189E8
 lbl_8001881C:
 	bl __DVDPopWaitingQueue
-	lwz	r0, -0x7ae8(r13)
-	stw	r3, -0x7b00(r13)
+	lwz r0, -0x7ae8(r13)
+	stw r3, -0x7b00(r13)
 	cmpwi r0, 0x0
 	beq lbl_80018868
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	li r4, -0x1
 	addi r0, r31, 0x40
 	stw r4, 0xc(r3)
-	lwz	r4, -0x7b00(r13)
-	stw	r0, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	lwz r12, 0x28(r4)
 	cmplwi r12, 0x0
 	beq lbl_80018860
@@ -1424,13 +1425,13 @@ lbl_80018860:
 	bl stateReady
 	b lbl_800189E8
 lbl_80018868:
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	lwz r0, 0x8(r4)
-	stw	r0, -0x7ae4(r13)
-	lwz	r0, -0x7ad8(r13)
+	stw r0, -0x7ae4(r13)
+	lwz r0, -0x7ad8(r13)
 	cmplwi r0, 0x0
 	beq lbl_800189D8
-	lwz	r0, -0x7ad8(r13)
+	lwz r0, -0x7ad8(r13)
 	cmpwi r0, 0x4
 	beq lbl_800188EC
 	bge lbl_800188A8
@@ -1470,7 +1471,7 @@ lbl_800188EC:
 lbl_80018904:
 	li r0, 0x3
 	stw r0, 0xc(r4)
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmpwi r0, 0xd
 	beq lbl_8001893C
 	bge lbl_80018930
@@ -1485,9 +1486,9 @@ lbl_80018930:
 	b lbl_8001896C
 lbl_8001893C:
 	bl __DVDClearWaitingQueue
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r0, r31, 0x40
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	lwz r12, 0x28(r4)
 	cmplwi r12, 0x0
 	beq lbl_80018964
@@ -1518,19 +1519,19 @@ lbl_8001896C:
 lbl_800189B0:
 	li r0, -0x1
 	stw r0, 0xc(r4)
-	lwz	r3, -0x7ad4(r13)
+	lwz r3, -0x7ad4(r13)
 	bl __DVDStoreErrorCode
 	lis r3, cbForStateError@ha
 	addi r3, r3, cbForStateError@l
 	bl DVDLowStopMotor
 lbl_800189CC:
 	li r0, 0x0
-	stw	r0, -0x7ad8(r13)
+	stw r0, -0x7ad8(r13)
 	b lbl_800189E8
 lbl_800189D8:
 	li r0, 0x1
 	stw r0, 0xc(r4)
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	bl stateBusy
 lbl_800189E8:
 	lwz r0, 0x14(r1)
@@ -1549,7 +1550,7 @@ nofralloc
 	addi r0, r4, stateBusy@l
 	mr r7, r3
 	stwu r1, -0x8(r1)
-	stw	r0, -0x7abc(r13)
+	stw r0, -0x7abc(r13)
 	lwz r0, 0x8(r3)
 	cmplwi r0, 0xf
 	bgt lbl_80018CF4
@@ -1574,9 +1575,9 @@ nofralloc
 	cmplwi r0, 0x0
 	bne lbl_80018AAC
 	lis r3, DummyCommandBlock@ha
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r0, r3, DummyCommandBlock@l
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	li r0, 0x0
 	stw r0, 0xc(r4)
 	lwz r12, 0x28(r4)
@@ -1635,10 +1636,10 @@ lbl_80018ADC:
 	addi r3, r3, 0x6000
 	lwz r0, 0x4(r3)
 	stw r0, 0x4(r3)
-	lwz	r0, -0x7aec(r13)
+	lwz r0, -0x7aec(r13)
 	cmpwi r0, 0x0
 	beq lbl_80018B88
-	lwz	r5, -0x7b00(r13)
+	lwz r5, -0x7b00(r13)
 	li r0, 0x0
 	lis r3, cbForStateBusy@ha
 	stw r0, 0x1c(r5)
@@ -1647,7 +1648,7 @@ lbl_80018ADC:
 	bl DVDLowRequestAudioStatus
 	b lbl_80018D0C
 lbl_80018B88:
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, 0x1
 	lis r3, cbForStateBusy@ha
 	stw r0, 0x1c(r4)
@@ -1675,7 +1676,7 @@ lbl_80018B88:
 	stw r0, 0x4(r4)
 	li r0, 0x1
 	addi r6, r3, cbForStateBusy@l
-	stw	r0, -0x7aec(r13)
+	stw r0, -0x7aec(r13)
 	li r3, 0x0
 	li r4, 0x0
 	li r5, 0x0
@@ -1739,7 +1740,7 @@ lbl_80018B88:
 	bl DVDLowInquiry
 	b lbl_80018D0C
 lbl_80018CF4:
-	lwz	r12, -0x7f40(r13)
+	lwz r12, -0x7f40(r13)
 	lis r3, cbForStateBusy@ha
 	addi r4, r3, cbForStateBusy@l
 	mtlr r12
@@ -1764,7 +1765,7 @@ nofralloc
 	addi r31, r4, BB2@l
 	stw r30, 0x10(r1)
 	bne lbl_80018D68
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -1775,16 +1776,16 @@ nofralloc
 	bl cbForStateError
 	b lbl_8001933C
 lbl_80018D68:
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0x3
 	beq lbl_80018D80
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0xf
 	bne lbl_80018E68
 lbl_80018D80:
 	rlwinm. r0, r3, 0, 30, 30
 	beq lbl_80018DB0
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -1796,24 +1797,24 @@ lbl_80018D80:
 	b lbl_8001933C
 lbl_80018DB0:
 	li r0, 0x0
-	stw	r0, -0x7acc(r13)
-	lwz	r0, -0x7ae4(r13)
+	stw r0, -0x7acc(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0xf
 	bne lbl_80018DCC
 	li r0, 0x1
-	stw	r0, -0x7ac8(r13)
+	stw r0, -0x7ac8(r13)
 lbl_80018DCC:
-	lwz	r0, -0x7ae0(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_80018E40
 	li r0, 0x7
-	lwz	r30, -0x7b00(r13)
-	stw	r0, -0x7ad8(r13)
+	lwz r30, -0x7b00(r13)
+	stw r0, -0x7ad8(r13)
 	addi r3, r31, 0x40
 	li r0, 0x0
-	stw	r0, -0x7ae0(r13)
+	stw r0, -0x7ae0(r13)
 	li r0, 0xa
-	stw	r3, -0x7b00(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r30)
 	lwz r12, 0x28(r30)
 	cmplwi r12, 0x0
@@ -1823,7 +1824,7 @@ lbl_80018DCC:
 	li r3, -0x3
 	blrl
 lbl_80018E18:
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	cmplwi r12, 0x0
 	beq lbl_80018E34
 	mtlr r12
@@ -1839,7 +1840,7 @@ lbl_80018E40:
 lbl_80018E44:
 	cmpwi r0, 0x0
 	bne lbl_8001933C
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, 0x7
 	lis r3, cbForStateMotorStopped@ha
 	stw r0, 0xc(r4)
@@ -1847,7 +1848,7 @@ lbl_80018E44:
 	bl DVDLowWaitCoverClose
 	b lbl_8001933C
 lbl_80018E68:
-	lwz	r4, -0x7ae4(r13)
+	lwz r4, -0x7ae4(r13)
 	cmplwi r4, 0x1
 	beq lbl_80018E88
 	subi r0, r4, 0x4
@@ -1859,7 +1860,7 @@ lbl_80018E88:
 	li r0, 0x1
 	b lbl_80018EA8
 lbl_80018E90:
-	lwz	r0, -0x7f34(r13)
+	lwz r0, -0x7f34(r13)
 	cmplw r4, r0
 	bne lbl_80018EA4
 	li r0, 0x1
@@ -1869,7 +1870,7 @@ lbl_80018EA4:
 lbl_80018EA8:
 	cmpwi r0, 0x0
 	beq lbl_80018ED4
-	lwz	r6, -0x7b00(r13)
+	lwz r6, -0x7b00(r13)
 	lis r4, 0xcc00
 	addi r4, r4, 0x6000
 	lwz r4, 0x18(r4)
@@ -1881,12 +1882,12 @@ lbl_80018EA8:
 lbl_80018ED4:
 	rlwinm. r0, r3, 0, 28, 28
 	beq lbl_80018F38
-	lwz	r30, -0x7b00(r13)
+	lwz r30, -0x7b00(r13)
 	addi r3, r31, 0x40
 	li r0, 0x0
-	stw	r0, -0x7ae0(r13)
+	stw r0, -0x7ae0(r13)
 	li r0, 0xa
-	stw	r3, -0x7b00(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r30)
 	lwz r12, 0x28(r30)
 	cmplwi r12, 0x0
@@ -1896,7 +1897,7 @@ lbl_80018ED4:
 	li r3, -0x3
 	blrl
 lbl_80018F14:
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	cmplwi r12, 0x0
 	beq lbl_80018F30
 	mtlr r12
@@ -1910,16 +1911,16 @@ lbl_80018F38:
 	clrlwi. r0, r3, 31
 	beq lbl_8001920C
 	li r4, 0x0
-	stw	r4, -0x7acc(r13)
-	lwz	r0, -0x7ae0(r13)
+	stw r4, -0x7acc(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_80018FB0
-	stw	r4, -0x7ad8(r13)
+	stw r4, -0x7ad8(r13)
 	addi r3, r31, 0x40
-	lwz	r30, -0x7b00(r13)
+	lwz r30, -0x7b00(r13)
 	li r0, 0xa
-	stw	r4, -0x7ae0(r13)
-	stw	r3, -0x7b00(r13)
+	stw r4, -0x7ae0(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r30)
 	lwz r12, 0x28(r30)
 	cmplwi r12, 0x0
@@ -1929,7 +1930,7 @@ lbl_80018F38:
 	li r3, -0x3
 	blrl
 lbl_80018F8C:
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	cmplwi r12, 0x0
 	beq lbl_80018FA8
 	mtlr r12
@@ -1942,7 +1943,7 @@ lbl_80018FA8:
 lbl_80018FB0:
 	cmpwi r4, 0x0
 	bne lbl_8001933C
-	lwz	r3, -0x7ae4(r13)
+	lwz r3, -0x7ae4(r13)
 	cmplwi r3, 0x1
 	beq lbl_80018FD8
 	subi r0, r3, 0x4
@@ -1954,7 +1955,7 @@ lbl_80018FD8:
 	li r0, 0x1
 	b lbl_80018FF8
 lbl_80018FE0:
-	lwz	r0, -0x7f34(r13)
+	lwz r0, -0x7f34(r13)
 	cmplw r3, r0
 	bne lbl_80018FF4
 	li r0, 0x1
@@ -1964,7 +1965,7 @@ lbl_80018FF4:
 lbl_80018FF8:
 	cmpwi r0, 0x0
 	beq lbl_80019050
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	lwz r4, 0x20(r3)
 	lwz r0, 0x14(r3)
 	cmplw r4, r0
@@ -1973,7 +1974,7 @@ lbl_80018FF8:
 	b lbl_8001933C
 lbl_8001901C:
 	addi r0, r31, 0x40
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	li r0, 0x0
 	addi r4, r3, 0x0
 	stw r0, 0xc(r3)
@@ -1987,7 +1988,7 @@ lbl_80019048:
 	bl stateReady
 	b lbl_8001933C
 lbl_80019050:
-	lwz	r4, -0x7ae4(r13)
+	lwz r4, -0x7ae4(r13)
 	subi r0, r4, 0x9
 	cmplwi r0, 0x3
 	bgt lbl_80019068
@@ -2017,10 +2018,10 @@ lbl_800190A8:
 lbl_800190AC:
 	cmpwi r0, 0x0
 	beq lbl_80019118
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0xb
 	beq lbl_800190CC
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0xa
 	bne lbl_800190DC
 lbl_800190CC:
@@ -2033,10 +2034,10 @@ lbl_800190DC:
 	addi r3, r3, 0x6000
 	lwz r3, 0x20(r3)
 lbl_800190E8:
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r5, r31, 0x40
 	li r0, 0x0
-	stw	r5, -0x7b00(r13)
+	stw r5, -0x7b00(r13)
 	stw r0, 0xc(r4)
 	lwz r12, 0x28(r4)
 	cmplwi r12, 0x0
@@ -2047,10 +2048,10 @@ lbl_80019110:
 	bl stateReady
 	b lbl_8001933C
 lbl_80019118:
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0x6
 	bne lbl_800191D8
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r5, r4, 0x1c
 	lwz r0, 0x1c(r4)
 	cmplwi r0, 0x0
@@ -2060,7 +2061,7 @@ lbl_80019118:
 	clrlwi. r0, r0, 31
 	beq lbl_80019178
 	addi r0, r31, 0x40
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	li r0, 0x9
 	stw r0, 0xc(r4)
 	lwz r12, 0x28(r4)
@@ -2074,20 +2075,20 @@ lbl_80019170:
 	b lbl_8001933C
 lbl_80019178:
 	li r0, 0x0
-	stw	r0, -0x7aec(r13)
+	stw r0, -0x7aec(r13)
 	li r0, 0x1
 	lis r3, cbForStateBusy@ha
 	stw r0, 0x0(r5)
 	addi r6, r3, cbForStateBusy@l
 	li r3, 0x0
-	lwz	r5, -0x7b00(r13)
+	lwz r5, -0x7b00(r13)
 	lwz r4, 0x14(r5)
 	lwz r5, 0x10(r5)
 	bl DVDLowAudioStream
 	b lbl_8001933C
 lbl_800191A8:
 	addi r0, r31, 0x40
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	li r0, 0x0
 	stw r0, 0xc(r4)
 	lwz r12, 0x28(r4)
@@ -2100,10 +2101,10 @@ lbl_800191D0:
 	bl stateReady
 	b lbl_8001933C
 lbl_800191D8:
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r3, r31, 0x40
 	li r0, 0x0
-	stw	r3, -0x7b00(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r4)
 	lwz r12, 0x28(r4)
 	cmplwi r12, 0x0
@@ -2115,10 +2116,10 @@ lbl_80019204:
 	bl stateReady
 	b lbl_8001933C
 lbl_8001920C:
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0xe
 	bne lbl_80019240
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	li r0, -0x1
 	lis r3, 0x123
 	stw r0, 0xc(r4)
@@ -2129,33 +2130,33 @@ lbl_8001920C:
 	bl DVDLowStopMotor
 	b lbl_8001933C
 lbl_80019240:
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0x1
 	beq lbl_80019270
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0x4
 	beq lbl_80019270
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0x5
 	beq lbl_80019270
-	lwz	r0, -0x7ae4(r13)
+	lwz r0, -0x7ae4(r13)
 	cmplwi r0, 0xe
 	bne lbl_80019330
 lbl_80019270:
-	lwz	r30, -0x7b00(r13)
+	lwz r30, -0x7b00(r13)
 	lwz r3, 0x20(r30)
 	lwz r0, 0x14(r30)
 	cmplw r3, r0
 	bne lbl_80019330
-	lwz	r0, -0x7ae0(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_800192F0
 	li r4, 0x0
-	stw	r4, -0x7ad8(r13)
+	stw r4, -0x7ad8(r13)
 	addi r3, r31, 0x40
 	li r0, 0xa
-	stw	r4, -0x7ae0(r13)
-	stw	r3, -0x7b00(r13)
+	stw r4, -0x7ae0(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r30)
 	lwz r12, 0x28(r30)
 	cmplwi r12, 0x0
@@ -2165,7 +2166,7 @@ lbl_80019270:
 	li r3, -0x3
 	blrl
 lbl_800192C8:
-	lwz	r12, -0x7adc(r13)
+	lwz r12, -0x7adc(r13)
 	cmplwi r12, 0x0
 	beq lbl_800192E4
 	mtlr r12
@@ -2181,10 +2182,10 @@ lbl_800192F0:
 lbl_800192F4:
 	cmpwi r0, 0x0
 	bne lbl_8001933C
-	lwz	r4, -0x7b00(r13)
+	lwz r4, -0x7b00(r13)
 	addi r3, r31, 0x40
 	li r0, 0x0
-	stw	r3, -0x7b00(r13)
+	stw r3, -0x7b00(r13)
 	stw r0, 0xc(r4)
 	lwz r12, 0x28(r4)
 	cmplwi r12, 0x0
@@ -2227,7 +2228,7 @@ nofralloc
 	stw r6, 0x10(r3)
 	stw r0, 0x20(r3)
 	stw r7, 0x28(r3)
-	lwz	r0, -0x7f44(r13)
+	lwz r0, -0x7f44(r13)
 	cmpwi r0, 0x0
 	beq lbl_800193CC
 	lwz r3, 0x8(r29)
@@ -2250,11 +2251,11 @@ lbl_800193CC:
 	addi r3, r31, 0x0
 	addi r4, r29, 0x0
 	bl __DVDPushWaitingQueue
-	lwz	r0, -0x7b00(r13)
+	lwz r0, -0x7b00(r13)
 	addi r31, r3, 0x0
 	cmplwi r0, 0x0
 	bne lbl_80019408
-	lwz	r0, -0x7af4(r13)
+	lwz r0, -0x7af4(r13)
 	cmpwi r0, 0x0
 	bne lbl_80019408
 	bl stateReady
@@ -2288,7 +2289,7 @@ nofralloc
 	stw r6, 0x10(r3)
 	stw r0, 0x20(r3)
 	stw r7, 0x28(r3)
-	lwz	r0, -0x7f44(r13)
+	lwz r0, -0x7f44(r13)
 	cmpwi r0, 0x0
 	beq lbl_800194A0
 	lwz r3, 0x8(r31)
@@ -2311,11 +2312,11 @@ lbl_800194A0:
 	addi r4, r31, 0x0
 	li r3, 0x2
 	bl __DVDPushWaitingQueue
-	lwz	r0, -0x7b00(r13)
+	lwz r0, -0x7b00(r13)
 	addi r31, r3, 0x0
 	cmplwi r0, 0x0
 	bne lbl_800194DC
-	lwz	r0, -0x7af4(r13)
+	lwz r0, -0x7af4(r13)
 	cmpwi r0, 0x0
 	bne lbl_800194DC
 	bl stateReady
@@ -2349,7 +2350,7 @@ nofralloc
 	stw r0, 0x10(r31)
 	stw r0, 0x20(r31)
 	stw r5, 0x28(r31)
-	lwz	r0, -0x7f44(r13)
+	lwz r0, -0x7f44(r13)
 	cmpwi r0, 0x0
 	beq lbl_80019574
 	lwz r3, 0x8(r31)
@@ -2372,11 +2373,11 @@ lbl_80019574:
 	addi r4, r31, 0x0
 	li r3, 0x2
 	bl __DVDPushWaitingQueue
-	lwz	r0, -0x7b00(r13)
+	lwz r0, -0x7b00(r13)
 	addi r31, r3, 0x0
 	cmplwi r0, 0x0
 	bne lbl_800195B0
-	lwz	r0, -0x7af4(r13)
+	lwz r0, -0x7af4(r13)
 	cmpwi r0, 0x0
 	bne lbl_800195B0
 	bl stateReady
@@ -2404,7 +2405,7 @@ nofralloc
 	stw r30, 0x18(r1)
 	stw r0, 0x8(r3)
 	stw r4, 0x28(r3)
-	lwz	r0, -0x7f44(r13)
+	lwz r0, -0x7f44(r13)
 	cmpwi r0, 0x0
 	beq lbl_80019630
 	lwz r3, 0x8(r31)
@@ -2427,11 +2428,11 @@ lbl_80019630:
 	addi r4, r31, 0x0
 	li r3, 0x1
 	bl __DVDPushWaitingQueue
-	lwz	r0, -0x7b00(r13)
+	lwz r0, -0x7b00(r13)
 	addi r31, r3, 0x0
 	cmplwi r0, 0x0
 	bne lbl_8001966C
-	lwz	r0, -0x7af4(r13)
+	lwz r0, -0x7af4(r13)
 	cmpwi r0, 0x0
 	bne lbl_8001966C
 	bl stateReady
@@ -2464,7 +2465,7 @@ nofralloc
 	stw r3, 0x14(r31)
 	stw r0, 0x20(r31)
 	stw r5, 0x28(r31)
-	lwz	r0, -0x7f44(r13)
+	lwz r0, -0x7f44(r13)
 	cmpwi r0, 0x0
 	beq lbl_80019700
 	lwz r3, 0x8(r31)
@@ -2487,11 +2488,11 @@ lbl_80019700:
 	addi r4, r31, 0x0
 	li r3, 0x2
 	bl __DVDPushWaitingQueue
-	lwz	r0, -0x7b00(r13)
+	lwz r0, -0x7b00(r13)
 	addi r31, r3, 0x0
 	cmplwi r0, 0x0
 	bne lbl_8001973C
-	lwz	r0, -0x7af4(r13)
+	lwz r0, -0x7af4(r13)
 	cmpwi r0, 0x0
 	bne lbl_8001973C
 	bl stateReady
@@ -2521,8 +2522,8 @@ nofralloc
 	li r0, 0x0
 	lwz r3, 0x6004(r3)
 	stw r3, 0x4(r4)
-	stw	r0, -0x7ac8(r13)
-	stw	r0, -0x7ad8(r13)
+	stw r0, -0x7ac8(r13)
+	stw r0, -0x7ad8(r13)
 	lwz r0, 0xc(r1)
 	addi r1, r1, 0x8
 	mtlr r0
@@ -2564,20 +2565,20 @@ nofralloc
 	stw r31, 0x14(r1)
 	stw r30, 0x10(r1)
 	bl OSDisableInterrupts
-	lwz	r0, -0x7ae8(r13)
+	lwz r0, -0x7ae8(r13)
 	addi r30, r3, 0x0
 	cmpwi r0, 0x0
 	beq lbl_80019820
 	li r31, -0x1
 	b lbl_80019878
 lbl_80019820:
-	lwz	r0, -0x7af0(r13)
+	lwz r0, -0x7af0(r13)
 	cmpwi r0, 0x0
 	beq lbl_80019834
 	li r31, 0x8
 	b lbl_80019878
 lbl_80019834:
-	lwz	r31, -0x7b00(r13)
+	lwz r31, -0x7b00(r13)
 	cmplwi r31, 0x0
 	bne lbl_80019848
 	li r31, 0x0
@@ -2612,8 +2613,8 @@ lbl_80019878:
 /* DVDSetAutoInvalidation @0x8001989C | size: 0x10 */
 asm void DVDSetAutoInvalidation(void) {
 nofralloc
-	lwz	r0, -0x7f44(r13)
-	stw	r3, -0x7f44(r13)
+	lwz r0, -0x7f44(r13)
+	stw r3, -0x7f44(r13)
 	mr r3, r0
 	blr
 }
@@ -2627,12 +2628,12 @@ nofralloc
 	stw r31, 0xc(r1)
 	bl OSDisableInterrupts
 	li r4, 0x0
-	stw	r4, -0x7af4(r13)
+	stw r4, -0x7af4(r13)
 	mr r31, r3
-	lwz	r0, -0x7af0(r13)
+	lwz r0, -0x7af0(r13)
 	cmpwi r0, 0x0
 	beq lbl_800198E0
-	stw	r4, -0x7af0(r13)
+	stw r4, -0x7af0(r13)
 	bl stateReady
 lbl_800198E0:
 	mr r3, r31
@@ -2675,7 +2676,7 @@ nofralloc
 	li r3, 0x0
 	blrl
 	b lbl_80019B50
-	lwz	r0, -0x7ae0(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_80019988
 	mr r3, r31
@@ -2684,8 +2685,8 @@ nofralloc
 	b lbl_80019B5C
 lbl_80019988:
 	li r0, 0x1
-	stw	r30, -0x7adc(r13)
-	stw	r0, -0x7ae0(r13)
+	stw r30, -0x7adc(r13)
+	stw r0, -0x7ae0(r13)
 	lwz r0, 0x8(r29)
 	cmplwi r0, 0x4
 	beq lbl_800199A8
@@ -2737,7 +2738,7 @@ lbl_80019A2C:
 	blrl
 	b lbl_80019B50
 lbl_80019A4C:
-	lwz	r0, -0x7ae0(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_80019A68
 	mr r3, r31
@@ -2746,8 +2747,8 @@ lbl_80019A4C:
 	b lbl_80019B5C
 lbl_80019A68:
 	li r0, 0x1
-	stw	r30, -0x7adc(r13)
-	stw	r0, -0x7ae0(r13)
+	stw r30, -0x7adc(r13)
+	stw r0, -0x7ae0(r13)
 	b lbl_80019B50
 	bl DVDLowClearCallback
 	lis r4, cbForStateMotorStopped@ha
@@ -2763,35 +2764,35 @@ lbl_80019A9C:
 	cmpwi r0, 0x4
 	bne lbl_80019AB0
 	li r0, 0x3
-	stw	r0, -0x7ad8(r13)
+	stw r0, -0x7ad8(r13)
 lbl_80019AB0:
 	lwz r0, 0xc(r29)
 	cmpwi r0, 0x5
 	bne lbl_80019AC4
 	li r0, 0x4
-	stw	r0, -0x7ad8(r13)
+	stw r0, -0x7ad8(r13)
 lbl_80019AC4:
 	lwz r0, 0xc(r29)
 	cmpwi r0, 0x6
 	bne lbl_80019AD8
 	li r0, 0x1
-	stw	r0, -0x7ad8(r13)
+	stw r0, -0x7ad8(r13)
 lbl_80019AD8:
 	lwz r0, 0xc(r29)
 	cmpwi r0, 0xb
 	bne lbl_80019AEC
 	li r0, 0x2
-	stw	r0, -0x7ad8(r13)
+	stw r0, -0x7ad8(r13)
 lbl_80019AEC:
 	lwz r0, 0xc(r29)
 	cmpwi r0, 0x7
 	bne lbl_80019B00
 	li r0, 0x7
-	stw	r0, -0x7ad8(r13)
+	stw r0, -0x7ad8(r13)
 lbl_80019B00:
 	lis r3, DummyCommandBlock@ha
 	addi r0, r3, DummyCommandBlock@l
-	stw	r0, -0x7b00(r13)
+	stw r0, -0x7b00(r13)
 	li r0, 0xa
 	stw r0, 0xc(r29)
 	lwz r12, 0x28(r29)
@@ -2907,19 +2908,19 @@ nofralloc
 	stwu r1, -0x10(r1)
 	stw r31, 0xc(r1)
 	bl OSDisableInterrupts
-	lwz	r0, -0x7ae8(r13)
+	lwz r0, -0x7ae8(r13)
 	cmpwi r0, 0x0
 	beq lbl_80019C78
 	li r4, -0x1
 	b lbl_80019CBC
 lbl_80019C78:
-	lwz	r0, -0x7af0(r13)
+	lwz r0, -0x7af0(r13)
 	cmpwi r0, 0x0
 	beq lbl_80019C8C
 	li r4, 0x8
 	b lbl_80019CBC
 lbl_80019C8C:
-	lwz	r5, -0x7b00(r13)
+	lwz r5, -0x7b00(r13)
 	cmplwi r5, 0x0
 	bne lbl_80019CA0
 	li r4, 0x0
@@ -2958,7 +2959,7 @@ lbl_80019D0C:
 	li r31, 0x0
 	b lbl_80019D2C
 lbl_80019D14:
-	lwz	r0, -0x7ad8(r13)
+	lwz r0, -0x7ad8(r13)
 	cmplwi r0, 0x0
 	beq lbl_80019D28
 	li r31, 0x0
@@ -2988,13 +2989,13 @@ nofralloc
 	bl OSDisableInterrupts
 	mr r29, r3
 	bl __DVDClearWaitingQueue
-	lwz	r0, -0x7ae0(r13)
+	lwz r0, -0x7ae0(r13)
 	cmplwi r0, 0x0
 	beq lbl_80019D84
-	stw	r30, -0x7adc(r13)
+	stw r30, -0x7adc(r13)
 	b lbl_80019E40
 lbl_80019D84:
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	cmplwi r3, 0x0
 	beq lbl_80019D98
 	li r0, 0x0
@@ -3003,12 +3004,12 @@ lbl_80019D98:
 	bl OSDisableInterrupts
 	mr r31, r3
 	bl OSDisableInterrupts
-	lwz	r0, -0x7b00(r13)
+	lwz r0, -0x7b00(r13)
 	li r4, 0x1
-	stw	r4, -0x7af4(r13)
+	stw r4, -0x7af4(r13)
 	cmplwi r0, 0x0
 	bne lbl_80019DBC
-	stw	r4, -0x7af0(r13)
+	stw r4, -0x7af0(r13)
 lbl_80019DBC:
 	bl OSRestoreInterrupts
 	b lbl_80019DCC
@@ -3019,7 +3020,7 @@ lbl_80019DCC:
 	bl __DVDPopWaitingQueue
 	cmplwi r3, 0x0
 	bne lbl_80019DC4
-	lwz	r3, -0x7b00(r13)
+	lwz r3, -0x7b00(r13)
 	cmplwi r3, 0x0
 	beq lbl_80019DF0
 	mr r4, r30
@@ -3036,12 +3037,12 @@ lbl_80019DF0:
 lbl_80019E0C:
 	bl OSDisableInterrupts
 	li r4, 0x0
-	stw	r4, -0x7af4(r13)
+	stw r4, -0x7af4(r13)
 	mr r30, r3
-	lwz	r0, -0x7af0(r13)
+	lwz r0, -0x7af0(r13)
 	cmpwi r0, 0x0
 	beq lbl_80019E30
-	stw	r4, -0x7af0(r13)
+	stw r4, -0x7af0(r13)
 	bl stateReady
 lbl_80019E30:
 	mr r3, r30

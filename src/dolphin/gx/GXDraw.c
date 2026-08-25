@@ -19,6 +19,21 @@ extern void __GXSendFlushPrim(void);
 extern unsigned char __cpReg[4];
 extern unsigned char __piReg[4];
 extern unsigned char lbl_801A6C28[8];
+extern unsigned char lbl_801A7178[8];
+extern unsigned char lbl_801A7168[8];
+extern unsigned char lbl_801A7194[4];
+extern unsigned char lbl_801A7174[4];
+extern unsigned char lbl_801A7160[4];
+extern unsigned char lbl_801A7198[4];
+extern unsigned char lbl_801A719C[4];
+extern unsigned char lbl_801A7180[4];
+extern unsigned char lbl_801A7184[4];
+extern unsigned char lbl_801A7188[4];
+extern unsigned char lbl_801A71A0[4];
+extern unsigned char lbl_801A718C[4];
+extern unsigned char lbl_801A7190[4];
+extern unsigned char lbl_801A7170[4];
+
 asm void GXSetViewport(register void* p);
 asm void __GXSetMatrixIndex(register void* p);
 
@@ -307,7 +322,7 @@ asm void GXGetProjectionv(register u32 a)
     stwu    r1, -0x18(r1)
     lis     r0, 0x4330
     lwz     r5, gx
-    lfd     f1, -0x7cd8(r2)
+    lfd f1, lbl_801A7168(r2)
     lwz     r4, 0x420(r5)
     stw     r4, 0x14(r1)
     stw     r0, 0x10(r1)
@@ -468,13 +483,13 @@ asm void GXSetViewport(register void* p)
     stfd    f27, 0x38(r1)
     stfd    f26, 0x30(r1)
     bne     _80038e1c
-    lfs     f0, -0x7ce0(r2)
+    lfs f0, lbl_801A7160(r2)
     fsubs   f2, f2, f0
 _80038e1c:
-    lfs     f11, -0x7ce0(r2)
+    lfs f11, lbl_801A7160(r2)
     fneg    f10, f4
-    lfs     f0, -0x7ccc(r2)
-    lfs     f9, -0x7cd0(r2)
+    lfs f0, lbl_801A7174(r2)
+    lfs f9, lbl_801A7170(r2)
     fmuls   f31, f3, f11
     lwz     r3, gx
     fmuls   f7, f4, f11
@@ -1636,7 +1651,7 @@ asm int fn_80039E48(register u32 a)
     stw     r0, 0x400(r3)
     clrlwi  r8, r4, 0x10
     addi    r4, r1, 0x18
-    lfd     f0, -0x7cc8(r2)
+    lfd f0, lbl_801A7178(r2)
     lis     r0, 0x4330
     addi    r8, r8, -2
 _80039e88:
@@ -2537,11 +2552,11 @@ asm int fn_8003AB08(register u32 a)
     addi    r31, r4, -0x7740
     mr      r29, r3
     li      r30, 0
-    lfs     f27, -0x7cc0(r2)
-    lfs     f28, -0x7cbc(r2)
-    lfs     f29, -0x7cb8(r2)
-    lfs     f30, -0x7cb4(r2)
-    lfs     f31, -0x7cb0(r2)
+    lfs f27, lbl_801A7180(r2)
+    lfs f28, lbl_801A7184(r2)
+    lfs f29, lbl_801A7188(r2)
+    lfs f30, lbl_801A718C(r2)
+    lfs f31, lbl_801A7190(r2)
     b       _8003af9c
 _8003ab54:
     li      r26, 0
@@ -2885,11 +2900,11 @@ asm int fn_8003B010(register u32 a)
     addi    r31, r4, -0x7740
     mr      r29, r3
     li      r30, 0
-    lfs     f27, -0x7cc0(r2)
-    lfs     f28, -0x7cbc(r2)
-    lfs     f29, -0x7cb8(r2)
-    lfs     f30, -0x7cb4(r2)
-    lfs     f31, -0x7cb0(r2)
+    lfs f27, lbl_801A7180(r2)
+    lfs f28, lbl_801A7184(r2)
+    lfs f29, lbl_801A7188(r2)
+    lfs f30, lbl_801A718C(r2)
+    lfs f31, lbl_801A7190(r2)
     b       _8003b5c8
 _8003b05c:
     li      r23, 0
@@ -3553,12 +3568,12 @@ asm int fn_8003B9AC(register u32 a)
 {
     nofralloc
     cmplwi  r7, 0
-    lfs     f0, -0x7cac(r2)
+    lfs f0, lbl_801A7194(r2)
     addi    r7, r7, 3
-    lfs     f1, -0x7ca8(r2)
-    lfs     f2, -0x7ca4(r2)
+    lfs f1, lbl_801A7198(r2)
+    lfs f2, lbl_801A719C(r2)
     srwi    r7, r7, 2
-    lfs     f3, -0x7ca0(r2)
+    lfs f3, lbl_801A71A0(r2)
     blelr   
     rlwinm. r0, r7, 0x1e, 2, 0x1f
     mtctr   r0

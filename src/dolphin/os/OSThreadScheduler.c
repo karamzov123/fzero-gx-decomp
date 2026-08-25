@@ -16,8 +16,6 @@ extern unsigned char __OSErrorTable[68];
 extern unsigned char RunQueue_8015C018[];
 extern unsigned char Reschedule[4];
 extern unsigned char RunQueueBits[4];
-extern unsigned char RunQueueHint[4];
-extern unsigned char SwitchThreadCallback[4];
 extern unsigned char lbl_801A6430[4];
 void OSExitThread(void* val);
 
@@ -133,7 +131,7 @@ _80010498:
     slw	r0, r3, r0
     or	r0, r4, r0
     stw	r0, RunQueueBits
-    stw	r3, -0x7bc4(r13)
+    stw r3, -0x7bc4(r13)
     b       _800105b4
 _800104d0:
     lwz	r4, 0x2e0(r31)
@@ -204,7 +202,7 @@ _80010594:
     b       _800105b8
 _800105a8:
     li	r0, 1
-    stw	r0, -0x7bc4(r13)
+    stw r0, -0x7bc4(r13)
     stw	r30, 0x2d0(r31)
 _800105b4:
     li	r3, 0
@@ -285,7 +283,7 @@ _80010690:
     slw	r0, r4, r0
     or	r0, r5, r0
     stw	r0, RunQueueBits
-    stw	r4, -0x7bc4(r13)
+    stw r4, -0x7bc4(r13)
 _800106c4:
     lhz	r0, 0x1a2(r6)
     rlwinm.	r0, r0, 0, 0x1e, 0x1e
@@ -299,7 +297,7 @@ _800106e4:
     lwz	r0, RunQueueBits
     cmplwi	r0, 0
     bne     _80010740
-    lwz	r12, -0x7f80(r13)
+    lwz r12, -0x7f80(r13)
     lis	r30, -0x8000
     lwz	r3, 0xe4(r30)
     li	r4, 0
@@ -323,7 +321,7 @@ _8001071c:
     bl      OSClearContext
 _80010740:
     li	r3, 0
-    stw	r3, -0x7bc4(r13)
+    stw r3, -0x7bc4(r13)
     lwz	r0, RunQueueBits
     cntlzw	r7, r0
     slwi	r0, r7, 3
@@ -355,7 +353,7 @@ _800107a0:
     lis	r31, -0x8000
     sth	r0, 0x2c8(r30)
     mr	r4, r30
-    lwz	r12, -0x7f80(r13)
+    lwz r12, -0x7f80(r13)
     lwz	r3, 0xe4(r31)
     mtlr	r12
     blrl	
@@ -380,7 +378,7 @@ asm void __OSReschedule(void)
     mflr	r0
     stw	r0, 4(r1)
     stwu	r1, -8(r1)
-    lwz	r0, -0x7bc4(r13)
+    lwz r0, -0x7bc4(r13)
     cmpwi	r0, 0
     beq     _80010818
     li	r3, 0
@@ -576,8 +574,8 @@ _80010aa0:
     addi	r3, r30, 0x2e8
     bl      OSWakeupThread
     li	r0, 1
-    stw	r0, -0x7bc4(r13)
-    lwz	r0, -0x7bc4(r13)
+    stw r0, -0x7bc4(r13)
+    lwz r0, -0x7bc4(r13)
     cmpwi	r0, 0
     beq     _80010acc
     li	r3, 0
@@ -628,7 +626,7 @@ _80010b44:
     b       _80010c08
 _80010b5c:
     li	r0, 1
-    stw	r0, -0x7bc4(r13)
+    stw r0, -0x7bc4(r13)
     b       _80010c08
 _80010b68:
     lwz	r4, 0x2e0(r30)
@@ -712,7 +710,7 @@ _80010c68:
     bl      __OSUnlockAllMutex
     addi	r3, r30, 0x2e8
     bl      OSWakeupThread
-    lwz	r0, -0x7bc4(r13)
+    lwz r0, -0x7bc4(r13)
     cmpwi	r0, 0
     beq     _80010c8c
     li	r3, 0
@@ -806,7 +804,7 @@ _80010d88:
     slw	r0, r3, r0
     or	r0, r4, r0
     stw	r0, RunQueueBits
-    stw	r3, -0x7bc4(r13)
+    stw r3, -0x7bc4(r13)
     b       _80010efc
 _80010dc0:
     lwz	r4, 0x2e0(r29)
@@ -905,7 +903,7 @@ _80010ec8:
     or.	r29, r3, r3
     bne     _80010ec8
 _80010efc:
-    lwz	r0, -0x7bc4(r13)
+    lwz r0, -0x7bc4(r13)
     cmpwi	r0, 0
     beq     _80010f10
     li	r3, 0
@@ -954,7 +952,7 @@ _80010f90:
     b       _80010fb8
 _80010f9c:
     li	r0, 1
-    stw	r0, -0x7bc4(r13)
+    stw r0, -0x7bc4(r13)
     sth	r0, 0x2c8(r29)
     b       _8001106c
 _80010fac:
@@ -1015,7 +1013,7 @@ _80011038:
     or.	r29, r3, r3
     bne     _80011038
 _8001106c:
-    lwz	r0, -0x7bc4(r13)
+    lwz r0, -0x7bc4(r13)
     cmpwi	r0, 0
     beq     _80011080
     li	r3, 0
@@ -1089,8 +1087,8 @@ _80011154:
     stw	r4, 0x2e0(r3)
 _80011158:
     li	r0, 1
-    stw	r0, -0x7bc4(r13)
-    lwz	r0, -0x7bc4(r13)
+    stw r0, -0x7bc4(r13)
+    lwz r0, -0x7bc4(r13)
     cmpwi	r0, 0
     beq     _80011174
     li	r3, 0
@@ -1162,12 +1160,12 @@ _80011224:
     slw	r0, r3, r0
     or	r0, r4, r0
     stw	r0, RunQueueBits
-    stw	r3, -0x7bc4(r13)
+    stw r3, -0x7bc4(r13)
 _80011258:
     lwz	r6, 0(r30)
     cmplwi	r6, 0
     bne     _800111c0
-    lwz	r0, -0x7bc4(r13)
+    lwz r0, -0x7bc4(r13)
     cmpwi	r0, 0
     beq     _80011278
     li	r3, 0
@@ -1223,7 +1221,7 @@ _800112e8:
     or.	r31, r3, r3
     bne     _800112e8
 _8001131c:
-    lwz	r0, -0x7bc4(r13)
+    lwz r0, -0x7bc4(r13)
     cmpwi	r0, 0
     beq     _80011330
     li	r3, 0

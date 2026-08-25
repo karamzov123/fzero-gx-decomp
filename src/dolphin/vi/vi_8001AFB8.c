@@ -22,6 +22,9 @@ extern unsigned char lbl_801A6948[4];
 extern unsigned char lbl_801A694C[4];
 extern unsigned char lbl_801A6970[4];
 extern unsigned char lbl_801A6974[4];
+extern unsigned char lbl_801A6940[2];
+extern unsigned char lbl_801A6942[2];
+
 asm void fn_8001AFB8(register void* a, register void* b, register void* c, register void* d, register void* e)
 {
     nofralloc
@@ -514,7 +517,7 @@ _8001b67c:
     stw r30, 0x144(r29)
     lhz r0, 0(r24)
     lha r4, 0xf0(r29)
-    lha r3, -0x7a80(r13)
+    lha r3, lbl_801A6940(r13)
     subfic r5, r0, 0x2d0
     lhz r0, 2(r30)
     add r3, r4, r3
@@ -539,7 +542,7 @@ _8001b6f4:
     li r4, 1
 _8001b6f8:
     lhz r5, 0(r23)
-    lha r6, -0x7a7e(r13)
+    lha r6, lbl_801A6942(r13)
     extsh r7, r5
     clrlwi r5, r5, 0x1f
     add r7, r7, r6

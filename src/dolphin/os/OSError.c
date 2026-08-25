@@ -45,6 +45,8 @@ extern u32 __OSErrorTable[];
 extern unsigned char __OSLastInterruptSrr0[4];
 extern unsigned char __OSLastInterruptTime[8];
 extern unsigned char lbl_801A6430[4];
+extern unsigned char __OSLastInterrupt[2];
+
 asm void OSReport(const char* msg, ...)
 {
     nofralloc

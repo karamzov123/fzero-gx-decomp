@@ -8,6 +8,15 @@ extern void _restgpr_25(void);
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A73E8[8];
+extern unsigned char lbl_801A73E4[4];
+extern unsigned char lbl_801A73E0[4];
+extern unsigned char lbl_801A73DC[4];
+extern unsigned char lbl_801A73D8[4];
+extern unsigned char lbl_801A73D4[4];
+extern unsigned char lbl_801A73D0[4];
+extern unsigned char lbl_801A6D00[8];
+
 asm void PSMTXRotTrig(void);
 asm void PSMTXRotTrigVariant(void);
 asm void PSMTXRotTrigConcat(void);
@@ -241,10 +250,10 @@ asm void MTXQuatInterpolate(void)
     stw	r0, 0x54(r1)
     addi	r11, r1, 0x50
     bl      _savegpr_25
-    lwz	r6, -0x76c0(r13)
+    lwz r6, lbl_801A6D00(r13)
     lis	r4, -0x7ff7
     addi	r5, r4, 0x4e10
-    lfs	f0, -0x7a6c(r2)
+    lfs f0, lbl_801A73D4(r2)
     lfs	f2, 0(r6)
     mr	r31, r3
     lfs	f3, 0x14(r6)
@@ -259,26 +268,26 @@ asm void MTXQuatInterpolate(void)
     fcmpo	cr0, f1, f0
     stw	r0, 0x10(r1)
     ble     _8006e6c0
-    lfs	f0, -0x7a68(r2)
+    lfs f0, lbl_801A73D8(r2)
     fadds	f1, f0, f1
     bl      sqrtf
-    lfs	f0, -0x7a64(r2)
+    lfs f0, lbl_801A73DC(r2)
     fdivs	f2, f0, f1
     fmuls	f0, f0, f1
     stfs	f0, 0xc(r31)
-    lwz	r3, -0x76c0(r13)
+    lwz r3, lbl_801A6D00(r13)
     lfs	f1, 0x24(r3)
     lfs	f0, 0x18(r3)
     fsubs	f0, f1, f0
     fmuls	f0, f2, f0
     stfs	f0, 0(r31)
-    lwz	r3, -0x76c0(r13)
+    lwz r3, lbl_801A6D00(r13)
     lfs	f1, 8(r3)
     lfs	f0, 0x20(r3)
     fsubs	f0, f1, f0
     fmuls	f0, f2, f0
     stfs	f0, 4(r31)
-    lwz	r3, -0x76c0(r13)
+    lwz r3, lbl_801A6D00(r13)
     lfs	f1, 0x10(r3)
     lfs	f0, 4(r3)
     fsubs	f0, f1, f0
@@ -304,7 +313,7 @@ _8006e6ec:
     lwzx	r0, r4, r29
     slwi	r25, r5, 4
     add	r3, r25, r29
-    lfs	f3, -0x7a68(r2)
+    lfs f3, lbl_801A73D8(r2)
     slwi	r30, r0, 2
     slwi	r27, r0, 4
     lwzx	r4, r4, r30
@@ -319,16 +328,16 @@ _8006e6ec:
     fsubs	f0, f2, f0
     fadds	f1, f3, f0
     bl      sqrtf
-    lfs	f3, -0x7a64(r2)
+    lfs f3, lbl_801A73DC(r2)
     addi	r3, r1, 0x14
-    lfs	f0, -0x7a6c(r2)
+    lfs f0, lbl_801A73D4(r2)
     fmuls	f2, f3, f1
     fcmpu	cr0, f0, f1
     stfsx	f2, r3, r29
     beq     _8006e75c
     fdivs	f1, f3, f1
 _8006e75c:
-    lwz	r0, -0x76c0(r13)
+    lwz r0, lbl_801A6D00(r13)
     addi	r3, r1, 0x14
     add	r6, r0, r26
     add	r4, r0, r27
@@ -379,7 +388,7 @@ asm void PSMTXQuatNormalize(void)
     stw	r30, 0x18(r1)
     stw	r29, 0x14(r1)
     mr	r30, r4
-    lfs	f0, -0x7a70(r2)
+    lfs f0, lbl_801A73D0(r2)
     lfs	f1, 0(r4)
     mr	r29, r3
     lfs	f2, 4(r4)
@@ -389,8 +398,8 @@ asm void PSMTXQuatNormalize(void)
     fmadds	f30, f1, f1, f30
     fcmpo	cr0, f30, f0
     bge     _8006e854
-    lfs	f1, -0x7a6c(r2)
-    lfs	f0, -0x7a68(r2)
+    lfs f1, lbl_801A73D4(r2)
+    lfs f0, lbl_801A73D8(r2)
     stfs	f1, 0(r29)
     stfs	f1, 4(r29)
     stfs	f1, 8(r29)
@@ -439,7 +448,7 @@ asm void PSVECNormalize4(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lfs	f0, -0x7a6c(r2)
+    lfs f0, lbl_801A73D4(r2)
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
@@ -459,7 +468,7 @@ asm void PSVECNormalize4(void)
     bl      MathNormalizeFloat
     b       _8006e934
 _8006e930:
-    lfs	f1, -0x7a68(r2)
+    lfs f1, lbl_801A73D8(r2)
 _8006e934:
     lfs	f0, 0(r31)
     fmuls	f0, f0, f1
@@ -506,35 +515,35 @@ asm void PSMTXQuat_toQuat(void)
     lfs	f7, 8(r4)
     fmuls	f1, f5, f6
     lfs	f8, 8(r5)
-    lfs	f0, -0x7a60(r2)
+    lfs f0, lbl_801A73E0(r2)
     fmuls	f3, f7, f8
     fadds	f1, f2, f1
     fadds	f30, f3, f1
     fcmpo	cr0, f30, f0
     ble     _8006ea08
-    lfs	f1, -0x7a6c(r2)
-    lfs	f0, -0x7a68(r2)
+    lfs f1, lbl_801A73D4(r2)
+    lfs f0, lbl_801A73D8(r2)
     stfs	f1, 8(r30)
     stfs	f1, 4(r30)
     stfs	f1, 0(r30)
     stfs	f0, 0xc(r30)
     b       _8006eb14
 _8006ea08:
-    lfs	f0, -0x7a5c(r2)
+    lfs f0, lbl_801A73E4(r2)
     fcmpo	cr0, f30, f0
     bge     _8006ea88
     fneg	f30, f5
-    lfs	f28, -0x7a6c(r2)
+    lfs f28, lbl_801A73D4(r2)
     fmuls	f1, f4, f4
     fmr	f29, f4
     fmuls	f0, f30, f30
     fadds	f1, f1, f0
     bl      sqrtf
-    lfd	f0, -0x7a58(r2)
+    lfd f0, lbl_801A73E8(r2)
     fcmpo	cr0, f1, f0
     bge     _8006ea4c
     lfs	f0, 8(r31)
-    lfs	f29, -0x7a6c(r2)
+    lfs f29, lbl_801A73D4(r2)
     fneg	f28, f0
     lfs	f30, 0(r31)
 _8006ea4c:
@@ -545,7 +554,7 @@ _8006ea4c:
     fadds	f1, f2, f0
     bl      MathNormalizeFloat
     fmuls	f28, f28, f1
-    lfs	f0, -0x7a6c(r2)
+    lfs f0, lbl_801A73D4(r2)
     fmuls	f29, f29, f1
     fmuls	f30, f30, f1
     stfs	f28, 0(r30)
@@ -569,18 +578,18 @@ _8006ea88:
     fmuls	f1, f28, f28
     fadds	f1, f1, f0
     bl      MathNormalizeFloat
-    lfs	f0, -0x7a68(r2)
+    lfs f0, lbl_801A73D8(r2)
     fmuls	f31, f31, f1
-    lfs	f2, -0x7a64(r2)
+    lfs f2, lbl_801A73DC(r2)
     fmuls	f29, f29, f1
     fsubs	f0, f0, f30
     fmuls	f28, f28, f1
     fmuls	f1, f2, f0
     bl      sqrtf
     fmuls	f31, f31, f1
-    lfs	f0, -0x7a68(r2)
+    lfs f0, lbl_801A73D8(r2)
     fmuls	f29, f29, f1
-    lfs	f2, -0x7a64(r2)
+    lfs f2, lbl_801A73DC(r2)
     fadds	f0, f0, f30
     stfs	f31, 0(r30)
     fmuls	f28, f28, f1

@@ -26,6 +26,23 @@ extern unsigned char lbl_80178118[648];
 #pragma force_active on
 
 extern unsigned char gx[4];
+extern unsigned char lbl_801A7118[8];
+extern unsigned char lbl_801A7108[8];
+extern unsigned char lbl_801A7128[8];
+extern unsigned char lbl_801A7148[8];
+extern unsigned char lbl_801A7150[8];
+extern unsigned char lbl_801A7140[4];
+extern unsigned char lbl_801A7134[4];
+extern unsigned char lbl_801A7130[4];
+extern unsigned char lbl_801A7120[4];
+extern unsigned char lbl_801A70F8[4];
+extern unsigned char lbl_801A7158[8];
+extern unsigned char lbl_801A7100[4];
+extern unsigned char lbl_801A7110[4];
+extern unsigned char lbl_801A7138[4];
+extern unsigned char lbl_801A713C[4];
+extern unsigned char lbl_801A70FC[4];
+
 asm void __GXSetChanMatColor(register void* p)
 {
     nofralloc
@@ -440,13 +457,13 @@ asm void GXWriteTextureState(register void* p, register int a, register int b)
     fcmpu	cr0, f2, f1
     bne     _8003784c
 _8003783c:
-    lfs	f0, -0x7d48(r2)
+    lfs f0, lbl_801A70F8(r2)
     stfs	f0, 0x2c(r1)
     stfs	f0, 0x28(r1)
     b       _80037948
 _8003784c:
     fsubs	f5, f2, f1
-    lfs	f6, -0x7d44(r2)
+    lfs f6, lbl_801A70FC(r2)
     fsubs	f2, f4, f3
     fsubs	f0, f1, f3
     fdivs	f3, f6, f5
@@ -461,8 +478,8 @@ _80037874:
     fcmpu	cr0, f2, f1
     bne     _80037894
 _80037884:
-    lfs	f3, -0x7d48(r2)
-    lfs	f4, -0x7d40(r2)
+    lfs f3, lbl_801A70F8(r2)
+    lfs f4, lbl_801A7100(r2)
     fmr	f5, f3
     b       _800378b0
 _80037894:
@@ -474,9 +491,9 @@ _80037894:
     fdivs	f5, f1, f5
     fdivs	f3, f2, f0
 _800378b0:
-    lfs	f1, -0x7d40(r2)
+    lfs f1, lbl_801A7100(r2)
     li	r3, 0
-    lfd	f0, -0x7d38(r2)
+    lfd f0, lbl_801A7108(r2)
     b       _800378c8
 _800378c0:
     fmuls	f4, f4, f1
@@ -484,9 +501,9 @@ _800378c0:
 _800378c8:
     fcmpo	cr0, f4, f0
     bgt     _800378c0
-    lfd	f0, -0x7d28(r2)
-    lfs	f2, -0x7d30(r2)
-    lfs	f1, -0x7d48(r2)
+    lfd f0, lbl_801A7118(r2)
+    lfs f2, lbl_801A7110(r2)
+    lfs f1, lbl_801A70F8(r2)
     b       _800378e8
 _800378e0:
     fmuls	f4, f4, f2
@@ -498,9 +515,9 @@ _800378e8:
     blt     _800378e0
 _800378f8:
     addi	r28, r3, 1
-    lfs	f0, -0x7d20(r2)
+    lfs f0, lbl_801A7120(r2)
     li	r0, 1
-    lfd	f2, -0x7d18(r2)
+    lfd f2, lbl_801A7128(r2)
     slw	r0, r0, r28
     fmuls	f1, f0, f4
     xoris	r3, r0, 0x8000
@@ -911,7 +928,7 @@ asm void GXSetupLitVertexData(register void* p)
     addi	r31, r4, -0x7ee8
     addi	r24, r3, 0
     addi	r3, r31, 0
-    lfs	f0, -0x7d0c(r2)
+    lfs f0, lbl_801A7134(r2)
     fneg	f31, f0
     bl      GXGetVtxDescv
     li	r3, 3
@@ -937,12 +954,12 @@ asm void GXSetupLitVertexData(register void* p)
     li	r7, 0
     bl      GXBuildPackedRegister
     addi	r29, r1, 0x1d4
-    lfs	f27, -0x7d08(r2)
+    lfs f27, lbl_801A7138(r2)
     addi	r28, r1, 0x44
-    lfs	f28, -0x7d04(r2)
-    lfd	f29, -0x7cf8(r2)
+    lfs f28, lbl_801A713C(r2)
+    lfd f29, lbl_801A7148(r2)
     mr	r26, r29
-    lfd	f30, -0x7cf0(r2)
+    lfd f30, lbl_801A7150(r2)
     addi	r25, r28, 0
     clrlwi	r30, r24, 0x18
     li	r24, 0
@@ -979,8 +996,8 @@ _80037f50:
     li	r4, 3
     bl      GXBegin
     cmpwi	r30, 0
-    lfs	f1, -0x7d10(r2)
-    lfs	f0, -0x7d0c(r2)
+    lfs f1, lbl_801A7130(r2)
+    lfs f0, lbl_801A7134(r2)
     addi	r4, r29, 0
     addi	r5, r28, 0
     lis	r3, -0x33ff
@@ -1076,9 +1093,9 @@ _800380d0:
     li	r3, 0xa0
     li	r4, 3
     bl      GXBegin
-    lfs	f2, -0x7d10(r2)
+    lfs f2, lbl_801A7130(r2)
     lis	r3, -0x33ff
-    lfs	f1, -0x7d0c(r2)
+    lfs f1, lbl_801A7134(r2)
     cmpwi	r30, 0
     stfs	f2, -0x8000(r3)
     li	r6, 0
@@ -1179,9 +1196,9 @@ _80038140:
     b       _800384a0
 _80038274:
     addi	r0, r30, 1
-    lfs	f1, -0x7d0c(r2)
+    lfs f1, lbl_801A7134(r2)
     subf	r0, r6, r0
-    lfs	f0, -0x7d10(r2)
+    lfs f0, lbl_801A7130(r2)
     cmpw	r6, r30
     mtctr	r0
     lis	r3, -0x33ff
@@ -1204,9 +1221,9 @@ _800382c4:
     li	r3, 0xa0
     li	r4, 3
     bl      GXBegin
-    lfs	f2, -0x7d10(r2)
+    lfs f2, lbl_801A7130(r2)
     lis	r3, -0x33ff
-    lfs	f1, -0x7d00(r2)
+    lfs f1, lbl_801A7140(r2)
     cmpwi	r30, 0
     stfs	f2, -0x8000(r3)
     li	r6, 0
@@ -1297,9 +1314,9 @@ _80038328:
     b       _800384b8
 _8003843c:
     addi	r0, r30, 1
-    lfs	f1, -0x7d10(r2)
+    lfs f1, lbl_801A7130(r2)
     subf	r0, r6, r0
-    lfs	f0, -0x7d00(r2)
+    lfs f0, lbl_801A7140(r2)
     cmpw	r6, r30
     mtctr	r0
     lis	r3, -0x33ff
@@ -1386,10 +1403,10 @@ asm void fn_800384FC(register void* p)
     li	r3, 0xd
     lfd	f2, 0x30(r1)
     lfd	f0, 0x28(r1)
-    lfd	f3, -0x7cf0(r2)
-    lfs	f4, -0x7d08(r2)
+    lfd f3, lbl_801A7150(r2)
+    lfs f4, lbl_801A7138(r2)
     fsubs	f2, f2, f3
-    lfs	f1, -0x7ce8(r2)
+    lfs f1, lbl_801A7158(r2)
     fsubs	f0, f0, f3
     fdivs	f25, f4, f2
     fdivs	f24, f1, f0
@@ -1432,10 +1449,10 @@ asm void fn_800384FC(register void* p)
     bl      GXBuildPackedRegister
 _8003862c:
     clrlwi	r23, r21, 0x18
-    lfd	f26, -0x7cf8(r2)
+    lfd f26, lbl_801A7148(r2)
     addi	r0, r23, 1
-    lfs	f28, -0x7d0c(r2)
-    lfd	f30, -0x7cf0(r2)
+    lfs f28, lbl_801A7134(r2)
+    lfd f30, lbl_801A7150(r2)
     slwi	r25, r0, 1
     clrlwi	r24, r22, 0x18
     li	r22, 0

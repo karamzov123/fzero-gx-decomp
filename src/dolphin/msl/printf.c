@@ -33,6 +33,8 @@ extern unsigned char jumptable_8015B620[68];
 extern unsigned char lbl_8015B100[256];
 void* __FileWrite(void* file, const char* buf, unsigned long n);
 
+extern unsigned char lbl_801A74E8[8];
+
 asm int vprintf(const char* fmt, void* arg)
 {
     nofralloc
@@ -815,7 +817,7 @@ _80081270:
     sth	r0, 0xe(r1)
     b       _800813cc
 _8008127c:
-    lfd	f0, -0x7958(r2)
+    lfd f0, lbl_801A74E8(r2)
     fcmpo	cr0, f31, f0
     bge     _800812d4
     lis     r3, lbl_8015B100@ha

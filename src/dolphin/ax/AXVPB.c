@@ -23,6 +23,8 @@ extern unsigned char lbl_801A6B70[4];
 extern unsigned char lbl_801A6B74[4];
 extern unsigned char lbl_801A6B78[4];
 extern unsigned char lbl_801A6B7C[4];
+extern unsigned char lbl_801A6F78[8];
+
 asm void fn_800224E4(void)
 {
     nofralloc
@@ -1187,7 +1189,7 @@ asm void AXVPBSyncChannelB(void)
     stw	r29, 0x14(r1)
     mr	r29, r3
     bl      OSDisableInterrupts
-    lfs	f0, -0x7ec8(r2)
+    lfs f0, lbl_801A6F78(r2)
     mr	r30, r3
     fmuls	f31, f0, f31
     fmr	f1, f31

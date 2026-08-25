@@ -108,6 +108,28 @@ void __GXSetDirtyState(void)
     gx->dirtyState = 0;
 }
 
+extern unsigned char lbl_801A70C0[8];
+extern unsigned char lbl_801A70DC[4];
+extern unsigned char lbl_801A70D8[4];
+extern unsigned char lbl_801A70D4[4];
+extern unsigned char lbl_801A70CC[4];
+extern unsigned char lbl_801A70C8[4];
+extern unsigned char lbl_801A70B8[4];
+extern unsigned char lbl_801A70B0[4];
+extern unsigned char lbl_801A70A4[4];
+extern unsigned char lbl_801A70A0[4];
+extern unsigned char lbl_801A7098[4];
+extern unsigned char lbl_801A7094[4];
+extern unsigned char lbl_801A708C[4];
+extern unsigned char lbl_801A7088[4];
+extern unsigned char lbl_801A7080[8];
+extern unsigned char lbl_801A70AC[4];
+extern unsigned char lbl_801A7090[4];
+extern unsigned char lbl_801A70D0[4];
+extern unsigned char lbl_801A70B4[4];
+extern unsigned char lbl_801A70A8[4];
+extern unsigned char lbl_801A709C[4];
+
 asm void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts)
 {
     nofralloc
@@ -688,7 +710,7 @@ asm void GXSetDispCopyYScale(register void* p1, register void* p2, register int 
     mflr	r0
     stw	r0, 4(r1)
     stwu	r1, -8(r1)
-    lfs	f0, -0x7dc0(r2)
+    lfs f0, lbl_801A7080(r2)
     fdivs	f1, f0, f1
     bl      __cvt_fp2unsigned
     clrlwi	r6, r3, 0x17
@@ -1165,18 +1187,18 @@ asm void GXInitLightSpot(register void* p1, register void* p2, register int id, 
     addi	r31, r4, 0
     stw	r30, 0x18(r1)
     addi	r30, r3, 0
-    lfs	f0, -0x7db8(r2)
+    lfs f0, lbl_801A7088(r2)
     fcmpo	cr0, f1, f0
     cror	2, 0, 2
     beq     _80035458
-    lfs	f0, -0x7db4(r2)
+    lfs f0, lbl_801A708C(r2)
     fcmpo	cr0, f1, f0
     ble     _8003545c
 _80035458:
     li	r31, 0
 _8003545c:
-    lfs	f2, -0x7db0(r2)
-    lfs	f0, -0x7dac(r2)
+    lfs f2, lbl_801A7090(r2)
+    lfs f0, lbl_801A7094(r2)
     fmuls	f1, f2, f1
     fdivs	f1, f1, f0
     bl      tan
@@ -1188,29 +1210,29 @@ _8003545c:
     lwzx	r0, r3, r0
     mtctr	r0
     bctr	
-    lfs	f0, -0x7da8(r2)
-    lfs	f4, -0x7da4(r2)
+    lfs f0, lbl_801A7098(r2)
+    lfs f4, lbl_801A709C(r2)
     fmuls	f3, f0, f1
-    lfs	f6, -0x7db8(r2)
+    lfs f6, lbl_801A7088(r2)
     b       _8003558c
-    lfs	f2, -0x7da0(r2)
+    lfs f2, lbl_801A70A0(r2)
     fneg	f0, f1
-    lfs	f6, -0x7db8(r2)
+    lfs f6, lbl_801A7088(r2)
     fsubs	f1, f2, f1
     fdivs	f1, f2, f1
     fmr	f4, f1
     fmuls	f3, f0, f1
     b       _8003558c
-    lfs	f2, -0x7da0(r2)
+    lfs f2, lbl_801A70A0(r2)
     fneg	f0, f1
-    lfs	f3, -0x7db8(r2)
+    lfs f3, lbl_801A7088(r2)
     fsubs	f1, f2, f1
     fdivs	f1, f2, f1
     fmr	f6, f1
     fmuls	f4, f0, f1
     b       _8003558c
-    lfs	f4, -0x7da0(r2)
-    lfs	f2, -0x7d9c(r2)
+    lfs f4, lbl_801A70A0(r2)
+    lfs f2, lbl_801A70A4(r2)
     fsubs	f3, f4, f1
     fsubs	f0, f1, f2
     fmuls	f3, f3, f3
@@ -1220,10 +1242,10 @@ _8003545c:
     fmuls	f4, f2, f1
     fneg	f6, f1
     b       _8003558c
-    lfs	f5, -0x7da0(r2)
-    lfs	f3, -0x7d98(r2)
+    lfs f5, lbl_801A70A0(r2)
+    lfs f3, lbl_801A70A8(r2)
     fsubs	f4, f5, f1
-    lfs	f2, -0x7d94(r2)
+    lfs f2, lbl_801A70AC(r2)
     fadds	f0, f5, f1
     fmuls	f4, f4, f4
     fmuls	f0, f2, f0
@@ -1233,12 +1255,12 @@ _8003545c:
     fmr	f6, f2
     fmuls	f3, f2, f1
     b       _8003558c
-    lfs	f5, -0x7da0(r2)
-    lfs	f0, -0x7d9c(r2)
+    lfs f5, lbl_801A70A0(r2)
+    lfs f0, lbl_801A70A4(r2)
     fsubs	f4, f5, f1
-    lfs	f2, -0x7d94(r2)
+    lfs f2, lbl_801A70AC(r2)
     fmuls	f3, f0, f1
-    lfs	f0, -0x7d90(r2)
+    lfs f0, lbl_801A70B0(r2)
     fmuls	f2, f2, f1
     fmuls	f4, f4, f4
     fmuls	f1, f3, f1
@@ -1249,8 +1271,8 @@ _8003545c:
     fsubs	f3, f5, f1
     b       _8003558c
 _80035580:
-    lfs	f4, -0x7db8(r2)
-    lfs	f3, -0x7da0(r2)
+    lfs f4, lbl_801A7088(r2)
+    lfs f3, lbl_801A70A0(r2)
     fmr	f6, f4
 _8003558c:
     stfs	f3, 0x10(r30)
@@ -1268,16 +1290,16 @@ _8003558c:
 asm void GXInitLightDistAttn(register void* p1, register void* p2, register int a, register int b)
 {
     nofralloc
-    lfs	f0, -0x7db8(r2)
+    lfs f0, lbl_801A7088(r2)
     fcmpo	cr0, f1, f0
     bge     _800355c0
     li	r4, 0
 _800355c0:
-    lfs	f0, -0x7db8(r2)
+    lfs f0, lbl_801A7088(r2)
     fcmpo	cr0, f2, f0
     cror	2, 0, 2
     beq     _800355e0
-    lfs	f0, -0x7da0(r2)
+    lfs f0, lbl_801A70A0(r2)
     fcmpo	cr0, f2, f0
     cror	2, 1, 2
     bne     _800355e4
@@ -1296,16 +1318,16 @@ _80035600:
     bge     _80035664
     b       _80035648
 _8003560c:
-    lfs	f5, -0x7da0(r2)
+    lfs f5, lbl_801A70A0(r2)
     fmuls	f0, f2, f1
-    lfs	f4, -0x7db8(r2)
+    lfs f4, lbl_801A7088(r2)
     fsubs	f1, f5, f2
     fdivs	f3, f1, f0
     b       _80035670
 _80035624:
-    lfs	f5, -0x7da0(r2)
+    lfs f5, lbl_801A70A0(r2)
     fmuls	f4, f2, f1
-    lfs	f3, -0x7d8c(r2)
+    lfs f3, lbl_801A70B4(r2)
     fsubs	f2, f5, f2
     fmuls	f0, f1, f4
     fmuls	f1, f3, f2
@@ -1314,15 +1336,15 @@ _80035624:
     b       _80035670
 _80035648:
     fmuls	f0, f2, f1
-    lfs	f5, -0x7da0(r2)
-    lfs	f3, -0x7db8(r2)
+    lfs f5, lbl_801A70A0(r2)
+    lfs f3, lbl_801A7088(r2)
     fsubs	f2, f5, f2
     fmuls	f0, f1, f0
     fdivs	f4, f2, f0
     b       _80035670
 _80035664:
-    lfs	f3, -0x7db8(r2)
-    lfs	f5, -0x7da0(r2)
+    lfs f3, lbl_801A7088(r2)
+    lfs f5, lbl_801A70A0(r2)
     fmr	f4, f3
 _80035670:
     stfs	f5, 0x1c(r3)
@@ -1857,10 +1879,10 @@ _80035d28:
     lis	r0, 0x4330
     lwz	r3, 4(r31)
     stw	r0, 0x38(r1)
-    lfd	f1, -0x7d80(r2)
+    lfd f1, lbl_801A70C0(r2)
     rlwinm	r3, r3, 0, 0x18, 0xf
     lfd	f0, 0x38(r1)
-    lfs	f2, -0x7d88(r2)
+    lfs f2, lbl_801A70B8(r2)
     fsubs	f0, f0, f1
     fmuls	f0, f2, f0
     fctiwz	f0, f0
@@ -1966,19 +1988,19 @@ asm void fn_80035EC4(register void* p1, register void* p2, register int id, regi
 {
     nofralloc
     stwu	r1, -0x38(r1)
-    lfs	f0, -0x7d78(r2)
+    lfs f0, lbl_801A70C8(r2)
     fcmpo	cr0, f3, f0
     bge     _80035edc
     fmr	f3, f0
     b       _80035ef0
 _80035edc:
-    lfs	f0, -0x7d74(r2)
+    lfs f0, lbl_801A70CC(r2)
     fcmpo	cr0, f3, f0
     cror	2, 1, 2
     bne     _80035ef0
-    lfs	f3, -0x7d70(r2)
+    lfs f3, lbl_801A70D0(r2)
 _80035ef0:
-    lfs	f0, -0x7d6c(r2)
+    lfs f0, lbl_801A70D4(r2)
     cmpwi	r5, 1
     lwz	r0, 0(r3)
     fmuls	f0, f0, f3
@@ -2034,19 +2056,19 @@ _80035f6c:
     rlwinm	r4, r4, 0, 0xb, 9
     or	r0, r4, r0
     stw	r0, 0(r3)
-    lfs	f0, -0x7d68(r2)
+    lfs f0, lbl_801A70D8(r2)
     fcmpo	cr0, f1, f0
     bge     _80035fd4
     fmr	f1, f0
     b       _80035fe4
 _80035fd4:
-    lfs	f0, -0x7d64(r2)
+    lfs f0, lbl_801A70DC(r2)
     fcmpo	cr0, f1, f0
     ble     _80035fe4
     fmr	f1, f0
 _80035fe4:
-    lfs	f3, -0x7d88(r2)
-    lfs	f0, -0x7d68(r2)
+    lfs f3, lbl_801A70B8(r2)
+    lfs f0, lbl_801A70D8(r2)
     fmuls	f1, f3, f1
     fcmpo	cr0, f2, f0
     fctiwz	f1, f1
@@ -2056,7 +2078,7 @@ _80035fe4:
     fmr	f2, f0
     b       _8003601c
 _8003600c:
-    lfs	f0, -0x7d64(r2)
+    lfs f0, lbl_801A70DC(r2)
     fcmpo	cr0, f2, f0
     ble     _8003601c
     fmr	f2, f0
@@ -2065,7 +2087,7 @@ _8003601c:
     rlwinm	r0, r0, 0, 0, 0x17
     rlwimi	r0, r4, 0, 0x18, 0x1f
     stw	r0, 4(r3)
-    lfs	f0, -0x7d88(r2)
+    lfs f0, lbl_801A70B8(r2)
     lwz	r0, 4(r3)
     fmuls	f0, f0, f2
     rlwinm	r4, r0, 0, 0x18, 0xf

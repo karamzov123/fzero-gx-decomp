@@ -5,6 +5,14 @@ extern unsigned char gx[4];
 extern unsigned char lbl_801A6D28[4];
 extern unsigned char lbl_801A6D2C[4];
 extern unsigned char lbl_801A7448[4];
+extern unsigned char lbl_801A7460[4];
+extern unsigned char lbl_801A745C[4];
+extern unsigned char lbl_801A744C[4];
+extern unsigned char lbl_801A7450[4];
+extern unsigned char lbl_801A7454[4];
+extern unsigned char lbl_801A7458[4];
+extern unsigned char lbl_801A7920[8];
+
 asm void ModelDVD_OpenFile(void);
 asm void ModelDVD_ReadAsync(void);
 asm void ModelDVD_CancelSync(void);
@@ -106,7 +114,7 @@ asm void fn_80071D30(void)
     stw     r31, 0x1c(r1)
     addi    r31, r3, lbl_8019E250@l
     addi    r3, r31, 0
-    lwz     r6, -0x7520(r2)
+    lwz r6, lbl_801A7920(r2)
     addi    r7, r31, 0x38
     lwz	r5, lbl_801A7448
     stw     r6, 0x14(r1)
@@ -176,15 +184,15 @@ _80071d84:
     bl      ModelLoadLcDma
     lwz     r0, 0x14(r1)
     addi    r3, r31, 0
-    lfs     f1, -0x79f4(r2)
+    lfs f1, lbl_801A744C(r2)
     stw     r0, 0x20(r3)
-    lfs     f2, -0x79f0(r2)
+    lfs f2, lbl_801A7450(r2)
     stw     r0, 0x30(r3)
-    lfs     f3, -0x79ec(r2)
+    lfs f3, lbl_801A7454(r2)
     stw     r0, 0x34(r3)
-    lfs     f4, -0x79e8(r2)
+    lfs f4, lbl_801A7458(r2)
     bl      fn_800721FC
-    lfs     f1, -0x79e4(r2)
+    lfs f1, lbl_801A745C(r2)
     li      r3, 4
     fmr     f2, f1
     bl      GXCompareVecDirty
@@ -261,7 +269,7 @@ _80071f58:
     bl      GXWriteTextureState
     fcmpu   cr0, f30, f31
     bne     _80071fa8
-    lfs     f0, -0x79e4(r2)
+    lfs f0, lbl_801A745C(r2)
     b       _80071fb0
 _80071fa8:
     fsubs   f0, f31, f30
@@ -447,7 +455,7 @@ asm void fn_800721FC(void)
     stfs    f3, 4(r4)
     stfs    f4, 8(r4)
     bl      fn_80015E18
-    lfs     f6, -0x79e4(r2)
+    lfs f6, lbl_801A745C(r2)
     lis     r3, -0x7fe6
     lfs     f5, 8(r1)
     stfsu   f6, -0xff8(r3)
@@ -474,14 +482,14 @@ asm void GXComputeDeltaRatio(void)
     nofralloc
     stwu    r1, -0x10(r1)
     mflr    r0
-    lfs     f1, -0x79e4(r2)
+    lfs f1, lbl_801A745C(r2)
     stw     r0, 0x14(r1)
     lfs     f0, 0(r3)
     fcmpu   cr0, f1, f0
     bne     _800722b8
     lfs     f1, 0x14(r3)
     lis     r4, lbl_8019E250@ha
-    lfs     f0, -0x79e0(r2)
+    lfs f0, lbl_801A7460(r2)
     addi    r4, r4, lbl_8019E250@l
     lfs     f2, 0x18(r3)
     fsubs   f0, f1, f0
@@ -491,7 +499,7 @@ asm void GXComputeDeltaRatio(void)
     stfs    f0, 4(r4)
     b       _800722e0
 _800722b8:
-    lfs     f2, -0x79e0(r2)
+    lfs f2, lbl_801A7460(r2)
     lis     r4, lbl_8019E250@ha
     lfs     f1, 0x18(r3)
     addi    r4, r4, lbl_8019E250@l

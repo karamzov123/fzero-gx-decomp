@@ -50,6 +50,11 @@ extern void fn_8006DD14(void);
 extern unsigned char lbl_8019F040[240];
 extern unsigned char g_modelSysPtr[8];
 extern unsigned char lbl_801A6D78[4];
+extern unsigned char lbl_801A7468[8];
+extern unsigned char lbl_801A7478[8];
+extern unsigned char lbl_801A7474[4];
+extern unsigned char lbl_801A7470[4];
+
 asm void fn_80072EDC(void);
 asm void ModelSetCachedMaterial_570(void);
 asm void GXCachedSetTevSwapTable(void);
@@ -739,7 +744,7 @@ asm void GXIntToFloatCopy(void)
     stwu r1, -0x30(r1)
     mflr r0
     xoris r5, r4, 0x8000
-    lfd f1, -0x79d8(r2)
+    lfd f1, lbl_801A7468(r2)
     stw r0, 0x34(r1)
     lis r0, 0x4330
     cmpwi r4, 0
@@ -1310,14 +1315,14 @@ _80073F90:
     clrlwi r4, r7, 0x10
     clrlwi r0, r8, 0x10
     stw r4, 0x2c(r1)
-    lfs f1, -0x79cc(r2)
+    lfs f1, lbl_801A7474(r2)
     cmpwi r26, 0
     stw r3, 0x28(r1)
-    lfd f4, -0x79c8(r2)
+    lfd f4, lbl_801A7478(r2)
     lfd f0, 0x28(r1)
     stw r0, 0x34(r1)
     fsubs f2, f0, f4
-    lfs f3, -0x79d0(r2)
+    lfs f3, lbl_801A7470(r2)
     stw r3, 0x30(r1)
     lfd f0, 0x30(r1)
     fmuls f2, f2, f3

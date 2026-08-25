@@ -26,6 +26,7 @@ extern unsigned char InterruptHandlerTable[4];
 extern unsigned char __OSLastInterrupt[2];
 extern unsigned char __OSLastInterruptSrr0[4];
 extern unsigned char __OSLastInterruptTime[8];
+
 asm u32 SetInterruptMask(register u32 mask, register u32 current)
 {
     nofralloc
@@ -558,7 +559,7 @@ _8000dc90:
     ble     _8000dcc4
     sth	r29, __OSLastInterrupt
     bl      OSGetTime
-    stw	r4, -0x7c04(r13)
+    stw r4, -0x7c04(r13)
     stw	r3, __OSLastInterruptTime
     lwz	r0, 0x198(r30)
     stw	r0, __OSLastInterruptSrr0

@@ -18,6 +18,7 @@ extern void _8006e000(void);
 extern void _8006e0f0(void);
 extern void _8006e164(void);
 
+
 asm void fn_8006CFF8(void);
 asm void fn_8006D044(void);
 asm void MathFastInvSqrt(void);
@@ -400,11 +401,11 @@ asm void fn_8006D3D0(void)
     stfd	f31, 0x10(r1)
     psq_st	f31, 0x18(r1), 0, 0
     fmr	f31, f1
-    lfd	f0, -0x7a88(r2)
+    lfd f0, -0x7a88(r2)
     fabs	f1, f31
     fcmpo	cr0, f1, f0
     bc      4, 1, _8006d414
-    lfs	f0, -0x7a80(r2)
+    lfs f0, -0x7a80(r2)
     fcmpo	cr0, f31, f0
     bc      4, 1, _8006d40c
     li	r3, 0x4000
@@ -414,17 +415,17 @@ _8006d40c:
     b       _8006d454
 _8006d414:
     fmuls	f0, f31, f31
-    lfs	f1, -0x7a7c(r2)
+    lfs f1, -0x7a7c(r2)
     fsubs	f1, f1, f0
     bl      sqrtf
-    lfs	f0, -0x7a78(r2)
+    lfs f0, -0x7a78(r2)
     fcmpo	cr0, f1, f0
     bc      4, 1, _8006d43c
     fdivs	f1, f31, f1
     bl      atanf
     b       _8006d454
 _8006d43c:
-    lfs	f0, -0x7a80(r2)
+    lfs f0, -0x7a80(r2)
     fcmpo	cr0, f31, f0
     bc      4, 1, _8006d450
     li	r3, 0x4000
@@ -449,11 +450,11 @@ asm void fn_8006D46C(void)
     stfd	f31, 0x10(r1)
     psq_st	f31, 0x18(r1), 0, 0
     fmr	f31, f1
-    lfd	f0, -0x7a88(r2)
+    lfd f0, -0x7a88(r2)
     fabs	f1, f31
     fcmpo	cr0, f1, f0
     bc      4, 1, _8006d4b0
-    lfs	f0, -0x7a80(r2)
+    lfs f0, -0x7a80(r2)
     fcmpo	cr0, f31, f0
     bc      4, 1, _8006d4a8
     li	r3, 0
@@ -463,7 +464,7 @@ _8006d4a8:
     b       _8006d51c
 _8006d4b0:
     bc      4, 1, _8006d4d0
-    lfs	f0, -0x7a80(r2)
+    lfs f0, -0x7a80(r2)
     fcmpo	cr0, f31, f0
     bc      4, 1, _8006d4c8
     li	r3, 0x4000
@@ -473,17 +474,17 @@ _8006d4c8:
     b       _8006d510
 _8006d4d0:
     fmuls	f0, f31, f31
-    lfs	f1, -0x7a7c(r2)
+    lfs f1, -0x7a7c(r2)
     fsubs	f1, f1, f0
     bl      sqrtf
-    lfs	f0, -0x7a78(r2)
+    lfs f0, -0x7a78(r2)
     fcmpo	cr0, f1, f0
     bc      4, 1, _8006d4f8
     fdivs	f1, f31, f1
     bl      atanf
     b       _8006d510
 _8006d4f8:
-    lfs	f0, -0x7a80(r2)
+    lfs f0, -0x7a80(r2)
     fcmpo	cr0, f31, f0
     bc      4, 1, _8006d50c
     li	r3, 0x4000
