@@ -36,6 +36,7 @@ typedef volatile struct GXData {
 } GXData;
 
 extern GXData *const gx;
+extern unsigned char lbl_801A6570[8];
 
 extern void GXPreLoadEntireTexture(void);
 extern void __GXFlushGenMode(void);
@@ -2022,7 +2023,7 @@ _80035f28:
     rlwinm	r7, r9, 0, 0x1c, 0x1a
     or	r5, r7, r5
     stw	r5, 0(r3)
-    addi	r5, r13, -0x7e50
+    li	r5, lbl_801A6570
     lbzx	r0, r5, r4
     lwz	r7, 0(r3)
     slwi	r0, r0, 5

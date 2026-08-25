@@ -8,14 +8,16 @@ extern void __CARDSyncCallback(void);
 extern void __CARDExtHandler(void);
 extern void __CARDExiHandler(void);
 extern void __CARDTxHandler(void);
-extern void fn_80029AF4(void);
+extern void __CARDUnlockedHandler(void);
 extern void __CARDReadNintendoID(void);
 extern void __CARDReadStatus(void);
 extern void __CARDClearStatus(void);
 extern void TimeoutHandler(void);
 extern void fn_80029E78(void);
-extern void fn_8002A0A4(void);
+extern void UnlockedCallback(void);
 extern void __CARDStart(void);
+extern void UnlockedCallback(void);
+extern void __CARDUnlockedHandler(void);
 extern void __CARDReadSegment(void);
 extern void __CARDWritePage(void);
 extern void __CARDEraseSector(void);
@@ -37,7 +39,7 @@ extern void OSWakeupThread(void);
 extern void TimeoutHandler(void);
 extern unsigned char __CARDBlock[544];
 extern void __CARDTxHandler(void);
-extern void fn_80029AF4(void);
+extern void __CARDUnlockedHandler(void);
 
 asm void __CARDSyncCallback(void)
 {
@@ -251,7 +253,7 @@ _80029ae0:
     blr	
 }
 
-asm void fn_80029AF4(void)
+asm void __CARDUnlockedHandler(void)
 {
     nofralloc
     mflr	r0
@@ -574,7 +576,7 @@ _80029f34:
     lis	r3, -0x8000
     lwz	r4, 0xc(r31)
     lwz	r0, 0xf8(r3)
-    lis	r3, -0x7ffd
+    lis	r3, TimeoutHandler@ha
     srawi	r9, r4, 0xd
     srwi	r7, r0, 2
     li	r0, 2
@@ -588,7 +590,7 @@ _80029f34:
     srawi	r0, r9, 0x1f
     mullw	r4, r0, r5
     mulhwu	r0, r9, r5
-    addi	r7, r3, -0x622c
+    addi	r7, r3, TimeoutHandler@l
     add	r3, r8, r6
     add	r4, r4, r0
     mullw	r0, r9, r3
@@ -673,7 +675,7 @@ _8002a08c:
     blr	
 }
 
-asm void fn_8002A0A4(void)
+asm void UnlockedCallback(void)
 {
     nofralloc
     mflr	r0
@@ -688,11 +690,11 @@ asm void fn_8002A0A4(void)
     addi	r0, r3, __CARDBlock@l
     add	r30, r0, r5
     blt     _8002a118
-    lis     r3, fn_8002A0A4@ha
-    addi	r0, r3, fn_8002A0A4@l
-    lis     r3, fn_80029AF4@ha
+    lis     r3, UnlockedCallback@ha
+    addi	r0, r3, UnlockedCallback@l
+    lis     r3, __CARDUnlockedHandler@ha
     stw	r0, 0xdc(r30)
-    addi	r5, r3, fn_80029AF4@l
+    addi	r5, r3, __CARDUnlockedHandler@l
     addi	r3, r31, 0
     li	r4, 0
     bl      EXILock
@@ -782,11 +784,11 @@ _8002a208:
     beq     _8002a214
     stw	r29, 0xcc(r31)
 _8002a214:
-    lis     r3, fn_8002A0A4@ha
-    addi	r0, r3, fn_8002A0A4@l
-    lis     r3, fn_80029AF4@ha
+    lis     r3, UnlockedCallback@ha
+    addi	r0, r3, UnlockedCallback@l
+    lis     r3, __CARDUnlockedHandler@ha
     stw	r0, 0xdc(r31)
-    addi	r5, r3, fn_80029AF4@l
+    addi	r5, r3, __CARDUnlockedHandler@l
     addi	r3, r27, 0
     li	r4, 0
     bl      EXILock
@@ -841,7 +843,7 @@ _8002a2e0:
     lis	r3, -0x8000
     lwz	r4, 0xc(r31)
     lwz	r0, 0xf8(r3)
-    lis	r3, -0x7ffd
+    lis	r3, TimeoutHandler@ha
     srawi	r9, r4, 0xd
     srwi	r7, r0, 2
     li	r0, 2
@@ -855,7 +857,7 @@ _8002a2e0:
     srawi	r0, r9, 0x1f
     mullw	r4, r0, r5
     mulhwu	r0, r9, r5
-    addi	r7, r3, -0x622c
+    addi	r7, r3, TimeoutHandler@l
     add	r3, r8, r6
     add	r4, r4, r0
     mullw	r0, r9, r3

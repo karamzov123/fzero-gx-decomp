@@ -22,7 +22,7 @@ extern void fn_8002E170(void);
 extern unsigned char __CARDBlock[544];
 extern void __CARDSyncCallback(int chn);
 extern void __CARDDefaultApiCallback(void);
-extern void fn_80029AF4(int chn);
+extern void __CARDUnlockedHandler(int chn);
 extern void __CARDExiHandler(int chn, void* ctx);
 extern void __CARDExtHandler(int chn, void* ctx);
 extern unsigned char card_sector_size_table[32];
@@ -1612,9 +1612,9 @@ _8002dd94:
 _8002dda4:
     lis     r3, fn_8002DD08@ha
     addi	r0, r3, fn_8002DD08@l
-    lis     r3, fn_80029AF4@ha
+    lis     r3, __CARDUnlockedHandler@ha
     stw	r0, 0xdc(r31)
-    addi	r5, r3, fn_80029AF4@l
+    addi	r5, r3, __CARDUnlockedHandler@l
     addi	r3, r28, 0
     li	r4, 0
     bl      EXILock
@@ -1751,9 +1751,9 @@ _8002df5c:
     bl      OSRestoreInterrupts
     lis     r3, fn_8002DD08@ha
     addi	r0, r3, fn_8002DD08@l
-    lis     r3, fn_80029AF4@ha
+    lis     r3, __CARDUnlockedHandler@ha
     stw	r0, 0xdc(r31)
-    addi	r5, r3, fn_80029AF4@l
+    addi	r5, r3, __CARDUnlockedHandler@l
     addi	r3, r30, 0
     li	r4, 0
     bl      EXILock
