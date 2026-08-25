@@ -1,6 +1,10 @@
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_801A6FB8[4];
+extern unsigned char lbl_801A6FB4[4];
+extern unsigned char lbl_801A6FB0[4];
+extern unsigned char lbl_801A6FA8[4];
 extern void memset(void);
 extern void fn_800885B8(void);
 extern unsigned char lbl_80128160[32];
@@ -356,8 +360,8 @@ asm void fn_80023B70(void)
     nofralloc
     stwu	r1, -0x30(r1)
     stfd	f14, 0x28(r1)
-    lis	r5, -0x7fe6
-    lfd	f0, 0x6fa8(r5)
+    lis	r5, lbl_801A6FA8@ha
+    lfd	f0, lbl_801A6FA8@l(r5)
     lis	r5, 0x4330
     stw	r5, 8(r1)
     stw	r5, 0x10(r1)
@@ -365,8 +369,8 @@ asm void fn_80023B70(void)
     stw	r5, 0x20(r1)
     ps_merge00 f3, f2, f1
     ps_merge00 f4, f1, f2
-    lis	r5, -0x7fe6
-    lfs	f5, 0x6fb0(r5)
+    lis	r5, lbl_801A6FB0@ha
+    lfs	f5, lbl_801A6FB0@l(r5)
     li	r5, 0x4f
     mtctr	r5
     li	r10, -8
@@ -476,12 +480,12 @@ asm void fn_80023D00(void)
     stfd	f25, 0xb8(r1)
     stw	r5, 0x50(r1)
     stw	r4, 0x54(r1)
-    lis	r31, -0x7fe6
-    lfs	f6, 0x6fb4(r31)
-    lis	r31, -0x7fe6
-    lfs	f9, 0x6fb8(r31)
-    lis	r31, -0x7fe6
-    lfd	f5, 0x6fa8(r31)
+    lis	r31, lbl_801A6FB4@ha
+    lfs	f6, lbl_801A6FB4@l(r31)
+    lis	r31, lbl_801A6FB8@ha
+    lfs	f9, lbl_801A6FB8@l(r31)
+    lis	r31, lbl_801A6FA8@ha
+    lfd	f5, lbl_801A6FA8@l(r31)
     lfs	f2, 0x168(r4)
     lfs	f15, 0x1a0(r4)
     lfs	f8, 0x19c(r4)
