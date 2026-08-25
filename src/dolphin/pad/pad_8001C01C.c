@@ -6,6 +6,7 @@ typedef signed int s32;
 #pragma force_active on
 
 extern void memset(void);
+extern unsigned char VITvMode_8012457C[28];
 extern void OSRegisterVersion(void);
 extern void OSSetCurrentContext(void);
 extern void OSClearContext(void);
@@ -91,8 +92,8 @@ asm void VIGetTvFormat(void)
     lwz	r5, CurrTvMode
     cmplwi	r5, 6
     bc      12, 1, _8001c068
-    lis	r4, -0x7fee
-    addi	r4, r4, 0x457c
+    lis	r4, VITvMode_8012457C@ha
+    addi	r4, r4, VITvMode_8012457C@l
     slwi	r0, r5, 2
     lwzx	r0, r4, r0
     mtctr	r0

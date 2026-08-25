@@ -1,3 +1,4 @@
+extern unsigned char lbl_801A6414[4];
 extern void DCStoreRange(void);
 extern void DVDGetDriveStatus(void);
 extern void DVDInit(void);
@@ -242,7 +243,7 @@ asm void OSAlloc(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    addi	r5, r13, -0x7fac
+    li	r5, lbl_801A6414
     li	r6, 0
     stw	r0, 0x14(r1)
     bl      OSAllocFromHeap
@@ -257,7 +258,7 @@ asm void OSFree(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    addi	r5, r13, -0x7fac
+    li	r5, lbl_801A6414
     li	r6, 0
     stw	r0, 0x14(r1)
     bl      OSFreeToHeap

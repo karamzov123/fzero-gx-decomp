@@ -14,7 +14,7 @@ asm void OSAllocTableInit(void)
 {
     nofralloc
     li      r3, -1
-    lis     r4, 0x8016
+    lis     r4, lbl_8015BE40@ha
     stwu r3, lbl_8015BE40@l(r4)
     li      r0, 0
     stw     r0, 0x04(r4)

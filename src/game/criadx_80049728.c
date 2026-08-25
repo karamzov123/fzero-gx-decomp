@@ -817,7 +817,7 @@ _8004a228:
     lis	r5, lbl_80090988@ha
     lfd	f1, 0(r4)
     lfd	f0, 8(r1)
-    lfd	f2, 0x988(r5)
+    lfd	f2, lbl_80090988@l(r5)
     fsub	f0, f0, f1
     fdiv	f0, f2, f0
     stfd	f0, 0x80(r9)
@@ -1030,11 +1030,26 @@ _8004a50c:
     lwz	r29, 0x24(r1)
     addi	r1, r1, 0x30
     blr	
+}
+
+asm void fn_8004A530(void)
+{
+    nofralloc
     lbz	r3, 2(r3)
     extsb	r3, r3
     blr	
+}
+
+asm void fn_8004A53C(void)
+{
+    nofralloc
     lwz	r3, 0x10(r3)
     blr	
+}
+
+asm void fn_8004A544(void)
+{
+    nofralloc
     stw	r4, 0x28(r3)
     li	r3, 1
     blr	
