@@ -330,7 +330,8 @@ config.libs = [
         Object(Matching, "dolphin/card/CARDStat.c"),
         Object(Matching, "dolphin/card/CARDReadWrite.c"),
         Object(Matching, "dolphin/card/CARDRename.c"),
-        Object(Matching, "dolphin/mtx/MTXHead.c"),
+        Object(Matching, "dolphin/mtx/MTXHead.c",
+              mw_version="GC/1.3"),  # integrator discriminator re-pin 2026-08-25: findings/109
         Object(Matching, "dolphin/mtx/MTXFused.c"),
         Object(Matching, "dolphin/mtx/MTX.c"),
         Object(Matching, "dolphin/mtx/PSMTX.c"),
@@ -398,8 +399,10 @@ config.libs = [
         Object(Matching, "game/lightctrl_8007264C.c",
               mw_version="GC/1.3.2",
               extra_cflags=["-use_lmw_stmw off", "-str reuse,pool,readonly", "-gccinc", "-common off"]),
-        Object(Matching, "game/model_80072EDC.c"),
-        Object(Matching, "game/model_80074D88.c"),
+        Object(Matching, "game/model_80072EDC.c",
+              mw_version="GC/1.3"),  # integrator discriminator re-pin 2026-08-25: findings/109
+        Object(Matching, "game/model_80074D88.c",
+              mw_version="GC/1.3"),  # integrator discriminator re-pin 2026-08-25: findings/109
         Object(Matching, "game/model_800786B0.c"),
         Object(Matching, "game/gxstate_80074A60.c"),
         Object(Matching, "game/skinning_80078538.c"),
