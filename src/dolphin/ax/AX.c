@@ -25,7 +25,7 @@ extern void fn_80021FBC(void);
 extern unsigned char __AXStackHead[128];
 extern unsigned char __AXStackTail[128];
 
-extern unsigned char lbl_801A64E8[8];
+extern char* lbl_801A64E8;
 extern unsigned char lbl_801A6A28[8];
 extern unsigned char lbl_801A6A30[8];
 extern unsigned char lbl_801A6A38[8];
@@ -71,24 +71,15 @@ asm void fn_80020724(void)
     blr	
 }
 
-asm void AXInit(void)
+void AXInit(void)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    lwz	r3, lbl_801A64E8
-    bl      OSRegisterVersion
-    bl      __AXInitVoiceStacks
-    bl      fn_80022EA4
-    bl      fn_80022420
-    bl      AXInitAux
-    bl      AXInitCommandList
-    bl      fn_80021C7C
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+    OSRegisterVersion(lbl_801A64E8);
+    __AXInitVoiceStacks();
+    fn_80022EA4();
+    fn_80022420();
+    AXInitAux();
+    AXInitCommandList();
+    fn_80021C7C();
 }
 
 asm void AXQuit(void)

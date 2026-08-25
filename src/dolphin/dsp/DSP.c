@@ -8,7 +8,6 @@ extern void DSPSendMailToDSP(void);
 extern void DSPInit(void);
 extern void DSPCheckInit(void);
 extern void DSPAddTask(void);
-extern void DSPCancelTask(void);
 extern void DSPAssertTask(void);
 extern void __DSP_debug_printf(void);
 extern void __DSPHandler(void);
@@ -18,10 +17,10 @@ extern void __DSP_insert_task(void);
 extern void __DSP_remove_task(void);
 extern void __CARDDefaultApiCallback(void);
 extern void OSClearContext(void);
-extern void OSDisableInterrupts(void);
+extern int OSDisableInterrupts(void);
 extern void OSEnableInterrupts(void);
 extern void OSRegisterVersion(void);
-extern void OSRestoreInterrupts(void);
+extern void OSRestoreInterrupts(int level);
 extern void OSSetCurrentContext(void);
 extern void OSWakeupThread(void);
 extern void __OSSetInterruptHandler(void);
@@ -174,25 +173,18 @@ _80028e2c:
     blr	
 }
 
-asm void DSPCancelTask(void)
+typedef struct DSPTaskInfo {
+    unsigned char pad[0x08];
+    unsigned long flags;   /* 0x08 */
+} DSPTaskInfo;
+
+DSPTaskInfo* DSPCancelTask(DSPTaskInfo* task)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x18(r1)
-    stw	r31, 0x14(r1)
-    mr	r31, r3
-    bl      OSDisableInterrupts
-    lwz	r0, 8(r31)
-    ori	r0, r0, 2
-    stw	r0, 8(r31)
-    bl      OSRestoreInterrupts
-    mr	r3, r31
-    lwz	r0, 0x1c(r1)
-    lwz	r31, 0x14(r1)
-    addi	r1, r1, 0x18
-    mtlr	r0
-    blr	
+    int old;
+    old = OSDisableInterrupts();
+    task->flags |= 2;
+    OSRestoreInterrupts(old);
+    return task;
 }
 
 asm void DSPAssertTask(void)
