@@ -2,6 +2,7 @@
 #pragma force_active on
 
 extern void adx_err_report(void);
+extern void fn_800542B4(void);
 extern void ADXT_Stop(void);
 extern void fn_8004EBB4(void);
 extern void fn_8004EBD4(void);
@@ -24,6 +25,9 @@ extern void fn_80054608(void);
 extern void memset(void);
 extern unsigned char E1052501_ADXT_AttachAHX_str[24];
 extern unsigned char can_not_attach_AHX_str[20];
+extern unsigned char lbl_8017E58C[4];
+extern unsigned char lbl_8017A280[4];
+extern unsigned char lbl_8017A284[4];
 extern unsigned char lbl_80187110[4];
 extern unsigned char lbl_80187130[512];
 extern unsigned char lbl_80187330[64];
@@ -403,9 +407,9 @@ asm void fn_80051958(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe8
+    lis	r3, lbl_80187110@ha
     stw	r0, 0x14(r1)
-    lwz	r0, 0x7110(r3)
+    lwz	r0, lbl_80187110@l(r3)
     cmpwi	r0, 0
     bne     _8005198c
     bl      fn_80053BFC
@@ -759,9 +763,9 @@ asm void fn_80051E30(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe8
+    lis	r4, lbl_8017E58C@ha
     stw	r0, 0x14(r1)
-    lwz	r12, -0x1a74(r4)
+    lwz	r12, lbl_8017E58C@l(r4)
     cmplwi	r12, 0
     beq     _80051e54
     mtctr	r12
@@ -784,8 +788,8 @@ asm void ADXT_AttachAHX(void)
     mr	r28, r4
     mr	r29, r5
     bl      ADXT_Stop
-    lis	r3, -0x7fe8
-    lwz	r12, -0x1a74(r3)
+    lis	r3, lbl_8017E58C@ha
+    lwz	r12, lbl_8017E58C@l(r3)
     cmplwi	r12, 0
     beq     _80051ea0
     mr	r3, r27
@@ -814,17 +818,17 @@ _80051ea0:
 _80051eec:
     lis     r9, ADXT_AHXStopCallback@ha
     lis     r7, ADXT_AHXExecCallback@ha
-    lis	r5, -0x7ffb
+    lis	r5, fn_800542B4@ha
     stw	r3, 0xb0(r31)
-    lis	r8, -0x7fe8
+    lis	r8, lbl_8017E58C@ha
     addi	r9, r9, ADXT_AHXStopCallback@l
-    lis	r6, -0x7fe8
+    lis	r6, lbl_8017A280@ha
     addi	r7, r7, ADXT_AHXExecCallback@l
-    lis	r4, -0x7fe8
-    addi	r0, r5, 0x42b4
-    stw	r9, -0x1a74(r8)
-    stw	r7, -0x5d80(r6)
-    stw	r0, -0x5d7c(r4)
+    lis	r4, lbl_8017A284@ha
+    addi	r0, r5, fn_800542B4@l
+    stw	r9, lbl_8017E58C@l(r8)
+    stw	r7, lbl_8017A280@l(r6)
+    stw	r0, lbl_8017A284@l(r4)
     bl      fn_8004EBB4
 _80051f24:
     lmw	r27, 0xc(r1)
