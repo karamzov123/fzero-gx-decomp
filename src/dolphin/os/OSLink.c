@@ -16,24 +16,17 @@ extern unsigned char os_unlink_unknown_reloc_type_str[39];
 #pragma push
 #pragma force_active on
 
-asm void OSNotifyLink(void)
+void OSNotifyLink(void)
 {
-    nofralloc
-    blr	
 }
 
-asm void OSNotifyUnlink(void)
+void OSNotifyUnlink(void)
 {
-    nofralloc
-    blr	
 }
 
-asm void OSSetStringTable(register const void* stringTable)
+void OSSetStringTable(register const void* stringTable)
 {
-    nofralloc
-    lis	r4, -0x8000
-    stw	r3, 0x30d0(r4)
-    blr	
+    *(volatile void**)0x800030d0 = (void*)stringTable;
 }
 
 asm BOOL Relocate(register void* newModule, register void* module)
@@ -474,27 +467,20 @@ asm BOOL OSLink(register void* module, register void* bss)
     blr	
 }
 
-asm BOOL fn_8000E334(register void* module, register void* bss)
+typedef struct OSModuleHeader {
+    unsigned char pad[0x1C];
+    unsigned long revision;   /* 0x1C */
+} OSModuleHeader;
+
+BOOL fn_8000E334(register void* module, register void* bss)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    lwz	r0, 0x1c(r3)
-    cmplwi	r0, 3
-    bgt     _8000e350
-    bge     _8000e358
-_8000e350:
-    li	r3, 0
-    b       _8000e360
-_8000e358:
-    li	r5, 1
-    bl      __OSLinkModule
-_8000e360:
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+    int flag;
+    unsigned long rev = ((OSModuleHeader*)module)->revision;
+    if (rev > 3 || rev < 3) {
+        flag = 0;
+        return 0;
+    }
+    return __OSLinkModule(module, bss, (flag = 1));
 }
 
 asm BOOL Undo(register void* newModule, register void* module)
