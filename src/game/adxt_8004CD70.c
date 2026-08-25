@@ -2,6 +2,8 @@
 #pragma force_active on
 
 extern unsigned char lbl_80178CB8[4];
+extern unsigned char lbl_80090A20[8];
+extern unsigned char lbl_80091064[8];
 
 extern void fn_80041410(void);
 extern void fn_80041434(void);
@@ -285,15 +287,15 @@ _8004d044:
     li	r3, 0x3c
     lis	r0, 0x4330
     stw	r3, 0x38(r31)
-    lis	r3, -0x7ff7
-    lis	r4, -0x7ff7
-    lfd	f1, 0xa20(r3)
+    lis	r3, lbl_80090A20@ha
+    lis	r4, lbl_80091064@ha
+    lfd	f1, lbl_80090A20@l(r3)
     lwz	r5, 0x24(r31)
     li	r6, 0
     stw	r0, 8(r1)
     cmpwi	r28, 0
     srawi	r0, r5, 0xb
-    lfs	f2, 0x1064(r4)
+    lfs	f2, lbl_80091064@l(r4)
     addze	r0, r0
     sth	r0, 0x3c(r31)
     lha	r0, 0x3c(r31)
