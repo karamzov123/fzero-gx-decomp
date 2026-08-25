@@ -280,7 +280,7 @@ asm static GXTexRegion *__GXInitFifoObjBreakpointCB(GXTexObj *obj, s32 unused)
     beq Lci
     cmpwi r3, 0xa
     beq Lci
-    lwz r5, -0x7DE8(r2) /* gx@sda21 */
+    lwz r5, gx /* gx@sda21 */
     lwz r3, 0x2c8(r5)
     clrlwi r0, r3, 29
     addi r4, r3, 1
@@ -290,7 +290,7 @@ asm static GXTexRegion *__GXInitFifoObjBreakpointCB(GXTexObj *obj, s32 unused)
     add r3, r5, r3
     b Ldone
 Lci:
-    lwz r5, -0x7DE8(r2) /* gx@sda21 */
+    lwz r5, gx /* gx@sda21 */
     lwz r3, 0x2cc(r5)
     clrlwi r0, r3, 30
     addi r4, r3, 1
@@ -314,7 +314,7 @@ asm static GXTlutRegion *__GXGetFifoPoolEntry(u32 idx)
     b Ldone
 Lcalc:
     slwi r3, r3, 4
-    lwz r0, -0x7DE8(r2) /* gx@sda21 */
+    lwz r0, gx /* gx@sda21 */
     addi r3, r3, 0x2d0
     add r3, r0, r3
 Ldone:
@@ -330,10 +330,10 @@ asm BOOL fn_8003086C(BOOL final)
     stw r31, 0x1c(r1)
     cmpwi r3, 0
     bne Lforce
-    lwz r0, -0x77D8(r13) /* lbl_801A6BE8@sda21 */
+    lwz r0, lbl_801A6BE8 /* lbl_801A6BE8@sda21 */
     cmplwi r0, 0
     bne Lsecond
-    lwz r3, -0x77EC(r13) /* __memReg@sda21 */
+    lwz r3, __memReg /* __memReg@sda21 */
     addi r6, r3, 0x4e
     lhz r4, 0(r6)
     addi r5, r3, 0x50
@@ -349,17 +349,17 @@ Lp12:
     bne Lp12
     slwi r0, r4, 16
     or r0, r0, r3
-    stw r0, -0x77E8(r13) /* lbl_801A6BD8@sda21 */
+    stw r0, lbl_801A6BD8 /* lbl_801A6BD8@sda21 */
     bl OSGetTime
-    stw r4, -0x77DC(r13) /* lbl_801A6BE4@sda21 */
+    stw r4, lbl_801A6BE4 /* lbl_801A6BE4@sda21 */
     li r0, 1
-    stw r3, -0x77E0(r13) /* lbl_801A6BE0@sda21 */
+    stw r3, lbl_801A6BE0 /* lbl_801A6BE0@sda21 */
     li r3, 0
-    stw r0, -0x77D8(r13) /* lbl_801A6BE8@sda21 */
+    stw r0, lbl_801A6BE8 /* lbl_801A6BE8@sda21 */
     b Lexit
 Lsecond:
     bl OSGetTime
-    lwz r5, -0x77EC(r13) /* __memReg */
+    lwz r5, __memReg
     addi r6, r5, 0x4e
     lhz r7, 0(r6)
     addi r5, r5, 0x50
@@ -373,9 +373,9 @@ Lp22:
     lhz r10, 0(r5)
     cmplw r7, r0
     bne Lp22
-    lwz r6, -0x77DC(r13) /* lbl_801A6BE4 */
+    lwz r6, lbl_801A6BE4
     li r0, 0
-    lwz r5, -0x77E0(r13) /* lbl_801A6BE0 */
+    lwz r5, lbl_801A6BE0
     slwi r9, r7, 16
     subfc r8, r6, r4
     subfe r5, r5, r3
@@ -392,13 +392,13 @@ Lp22:
     li r3, 0
     b Lexit
 Lcheck:
-    lwz r0, -0x77E8(r13) /* lbl_801A6BD8 */
+    lwz r0, lbl_801A6BD8
     cmplw r5, r0
     beq Ltrue
-    stw r4, -0x77DC(r13) /* lbl_801A6BE4 */
-    stw r3, -0x77E0(r13) /* lbl_801A6BE0 */
+    stw r4, lbl_801A6BE4
+    stw r3, lbl_801A6BE0
     li r3, 0
-    stw r5, -0x77E8(r13) /* lbl_801A6BD8 */
+    stw r5, lbl_801A6BD8
     b Lexit
 Lforce:
     li r3, 0
@@ -418,13 +418,13 @@ Lforce:
     stw r31, -0x8000(r3)
     stw r31, -0x8000(r3)
     bl PPCSync
-    lwz r3, -0x77F4(r13) /* __cpReg@sda21 */
+    lwz r3, __cpReg /* __cpReg@sda21 */
     li r4, 3
     li r0, 1
     sth r31, 2(r3)
-    lwz r3, -0x77F4(r13) /* __cpReg */
+    lwz r3, __cpReg
     sth r4, 4(r3)
-    lwz r3, -0x7DE8(r2) /* gx@sda21 */
+    lwz r3, gx /* gx@sda21 */
     stb r0, 0x4f2(r3)
     bl GXAbortFrame
 Ltrue:
@@ -456,10 +456,10 @@ asm void *GXInit(void *base, u32 size)
     mr	r27, r3
     mr	r25, r4
     lis     r4, gxData@ha
-    lwz	r3, -0x7ea0(r13)
+    lwz	r3, __GXVersion
     addi	r30, r4, gxData@l
     bl OSRegisterVersion
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     li	r0, 0
     li	r26, 1
     stb	r0, 0x4f0(r5)
@@ -472,12 +472,12 @@ asm void *GXInit(void *base, u32 size)
     bl GXSetMisc
     lis	r4, -0x3400
     addi	r5, r4, 0x3000
-    stw	r4, -0x77f4(r13)
+    stw	r4, __cpReg
     addi	r3, r4, 0x1000
     addi	r0, r4, 0x4000
-    stw	r5, -0x77f8(r13)
-    stw	r3, -0x77f0(r13)
-    stw	r0, -0x77ec(r13)
+    stw	r5, __piReg
+    stw	r3, __peReg
+    stw	r0, __memReg
     bl __GXFifoInit
     mr	r4, r27
     mr	r5, r25
@@ -487,23 +487,23 @@ asm void *GXInit(void *base, u32 size)
     bl GXSetCPUFifo
     addi	r3, r30, 0x4f8
     bl GXSetGPFifo
-    lwz	r0, -0x77d4(r13)
+    lwz	r0, gxResetRegistered
     cmplwi	r0, 0
     bne L80030ab0
     lis     r3, GXResetFuncInfo@ha
     addi	r3, r3, GXResetFuncInfo@l
     bl OSRegisterResetFunction
-    stw	r26, -0x77d4(r13)
+    stw	r26, gxResetRegistered
 L80030ab0:
     bl __GXPEInit
-    bl PPCMtwpar
+    bl PPCMfhid2
     lis	r4, 0xc01
     mr	r26, r3
     addi	r3, r4, -0x8000
-    bl PPCMfhid2
+    bl PPCMtwpar
     oris	r3, r26, 0x4000
     bl PPCMthid2
-    lwz	r7, -0x7de8(r2)
+    lwz	r7, gx
     li	r4, 0
     li	r0, 0xff
     stw	r4, 0x204(r7)
@@ -534,7 +534,7 @@ L80030b30:
 L80030b3c:
     b L80030b40
 L80030b40:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     srwi	r7, r9, 1
     addi	r29, r4, 0x130
     li	r0, 0
@@ -637,7 +637,7 @@ L80030cc0:
 L80030ccc:
     b L80030cd0
 L80030cd0:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     addi	r8, r9, 0xb8
     addi	r7, r9, 0xd8
     stwx	r0, r3, r8
@@ -785,7 +785,7 @@ L80030f00:
 L80030f10:
     b L80030f14
 L80030f14:
-    lwz	r6, -0x7de8(r2)
+    lwz	r6, gx
     addi	r8, r7, 0x1c
     addi	r9, r7, 0x3c
     add	r8, r6, r8
@@ -894,7 +894,7 @@ L800310b4:
 L800310b8:
     b L800310bc
 L800310bc:
-    lwz	r0, -0x7de8(r2)
+    lwz	r0, gx
     addi	r3, r27, 0x208
     mr	r5, r25
     mr	r7, r26
@@ -922,7 +922,7 @@ L80031118:
 L8003111c:
     b L80031120
 L80031120:
-    lwz	r0, -0x7de8(r2)
+    lwz	r0, gx
     addi	r3, r28, 0x288
     slwi	r5, r27, 0xf
     add	r3, r0, r3
@@ -947,7 +947,7 @@ L80031170:
 L80031174:
     b L80031178
 L80031178:
-    lwz	r0, -0x7de8(r2)
+    lwz	r0, gx
     addi	r3, r27, 0x2d0
     mr	r4, r26
     add	r3, r0, r3
@@ -968,7 +968,7 @@ L800311b8:
     b L800311bc
 L800311bc:
     addi	r0, r25, 0x10
-    lwz	r5, -0x7de8(r2)
+    lwz	r5, gx
     slwi	r3, r0, 4
     addi	r3, r3, 0x2d0
     mr	r4, r26
@@ -980,13 +980,13 @@ L800311bc:
     addi	r25, r25, 1
     cmplwi	r25, 4
     blt L800311bc
-    lwz	r4, -0x77f4(r13)
+    lwz	r4, __cpReg
     li	r12, 0
     li	r3, 8
     sth	r12, 6(r4)
     lis	r10, -0x33ff
     li	r9, 0x20
-    lwz	r11, -0x7de8(r2)
+    lwz	r11, gx
     li	r8, 0x10
     li	r7, 0x1006
     addi	r4, r11, 0x4ec
@@ -1030,9 +1030,9 @@ asm static void __GXInitGX(void)
     stw	r31, 0x7c(r1)
     stw	r30, 0x78(r1)
     stw	r29, 0x74(r1)
-    lwz	r4, -0x7de4(r2)
-    lwz	r3, -0x7de0(r2)
-    lwz	r0, -0x7ddc(r2)
+    lwz	r4, lbl_801A705C
+    lwz	r3, lbl_801A7060
+    lwz	r0, lbl_801A7064
     stw	r4, 0x28(r1)
     stw	r3, 0x24(r1)
     stw	r0, 0x20(r1)
@@ -1146,7 +1146,7 @@ L80031444:
 L80031448:
     b L8003144c
 L8003144c:
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     mr	r3, r29
     li	r5, 0
     bl GXSetArray
@@ -1206,9 +1206,9 @@ L80031480:
     li	r4, 0
     li	r5, 0
     bl __GXSetTexCoordGen_Cache
-    lfs	f1, -0x7dd8(r2)
+    lfs	f1, lbl_801A7068
     addi	r3, r1, 0x2c
-    lfs	f0, -0x7dd4(r2)
+    lfs	f0, lbl_801A706C
     li	r4, 0
     stfs	f1, 0x2c(r1)
     stfs	f0, 0x30(r1)
@@ -1240,13 +1240,13 @@ L80031480:
     lis	r3, 0x4330
     lhz	r0, 8(r31)
     stw	r4, 0x6c(r1)
-    lfs	f1, -0x7dd4(r2)
+    lfs	f1, lbl_801A706C
     stw	r0, 0x64(r1)
-    lfd	f4, -0x7dc8(r2)
+    lfd	f4, lbl_801A7078
     fmr	f2, f1
     stw	r3, 0x68(r1)
     fmr	f5, f1
-    lfs	f6, -0x7dd8(r2)
+    lfs	f6, lbl_801A7068
     stw	r3, 0x60(r1)
     lfd	f3, 0x68(r1)
     lfd	f0, 0x60(r1)
@@ -1309,7 +1309,7 @@ L80031480:
     stw	r0, 0xc(r1)
     bl GXSetChanMatColor
     bl __GXInitTexMapPreload
-    lwz	r4, -0x7de8(r2)
+    lwz	r4, gx
     li	r30, 0
     lis     r3, __GXInitFifoObjBreakpointCB@ha
     stw	r30, 0x2c8(r4)
@@ -1487,14 +1487,14 @@ L80031920:
     li	r4, 0
     li	r5, 0
     bl __GXInitTexCacheRegs
-    lfs	f2, -0x7dd8(r2)
+    lfs	f2, lbl_801A7068
     addi	r4, r1, 8
     lwz	r0, 0x24(r1)
     li	r3, 0
     fmr	f4, f2
     stw	r0, 8(r1)
-    lfs	f1, -0x7dd4(r2)
-    lfs	f3, -0x7dd0(r2)
+    lfs	f1, lbl_801A706C
+    lfs	f3, lbl_801A7070
     bl GXWriteTextureState
     li	r3, 0
     li	r4, 0
@@ -1550,7 +1550,7 @@ L80031a38:
     lis	r3, 0x4330
     lhz	r0, 6(r31)
     stw	r4, 0x64(r1)
-    lfd	f2, -0x7dc8(r2)
+    lfd	f2, lbl_801A7078
     stw	r0, 0x6c(r1)
     stw	r3, 0x60(r1)
     stw	r3, 0x68(r1)
@@ -1616,8 +1616,8 @@ asm void __GXCPInterruptHandler(int interrupt, void *context)
     stwu	r1, -0x2e0(r1)
     stw	r31, 0x2dc(r1)
     mr	r31, r4
-    lwz	r5, -0x77f4(r13)
-    lwz	r3, -0x7de8(r2)
+    lwz	r5, __cpReg
+    lwz	r3, gx
     lhz	r0, 0(r5)
     stw	r0, 0xc(r3)
     lwz	r0, 8(r3)
@@ -1626,10 +1626,10 @@ asm void __GXCPInterruptHandler(int interrupt, void *context)
     lwz	r0, 0xc(r3)
     rlwinm.	r0, r0, 0x1f, 0x1f, 0x1f
     beq L80031bb4
-    lwz	r3, -0x77c8(r13)
+    lwz	r3, __GXCurrentThread
     bl OSResumeThread
     li	r0, 0
-    stw	r0, -0x77c0(r13)
+    stw	r0, GXOverflowSuspendInProgress
     li	r3, 1
     li	r4, 1
     bl __GXWriteFifoIntReset
@@ -1637,28 +1637,28 @@ asm void __GXCPInterruptHandler(int interrupt, void *context)
     li	r4, 0
     bl __GXWriteFifoIntEnable
 L80031bb4:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r0, 8(r3)
     rlwinm.	r0, r0, 0x1e, 0x1f, 0x1f
     beq L80031c04
     lwz	r0, 0xc(r3)
     clrlwi.	r0, r0, 0x1f
     beq L80031c04
-    lwz	r5, -0x77b8(r13)
+    lwz	r5, lbl_801A6C08
     li	r3, 0
     li	r4, 1
     addi	r0, r5, 1
-    stw	r0, -0x77b8(r13)
+    stw	r0, lbl_801A6C08
     bl __GXWriteFifoIntEnable
     li	r3, 1
     li	r4, 0
     bl __GXWriteFifoIntReset
     li	r0, 1
-    lwz	r3, -0x77c8(r13)
-    stw	r0, -0x77c0(r13)
+    lwz	r3, __GXCurrentThread
+    stw	r0, GXOverflowSuspendInProgress
     bl OSSuspendThread
 L80031c04:
-    lwz	r3, -0x7de8(r2)
+    lwz	r3, gx
     lwz	r4, 8(r3)
     addi	r5, r3, 8
     rlwinm.	r0, r4, 0x1b, 0x1f, 0x1f
@@ -1669,16 +1669,16 @@ L80031c04:
     rlwinm	r0, r4, 0, 0x1b, 0x19
     stw	r0, 0(r5)
     lwz	r0, 8(r3)
-    lwz	r3, -0x77f4(r13)
+    lwz	r3, __cpReg
     sth	r0, 2(r3)
-    lwz	r0, -0x77bc(r13)
+    lwz	r0, BreakPointCB
     cmplwi	r0, 0
     beq L80031c70
     addi	r3, r1, 0x10
     bl OSClearContext
     addi	r3, r1, 0x10
     bl OSSetCurrentContext
-    lwz	r12, -0x77bc(r13)
+    lwz	r12, BreakPointCB
     mtlr	r12
     blrl
     addi	r3, r1, 0x10

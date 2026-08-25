@@ -384,6 +384,7 @@ config.libs = [
         Object(Matching, "dolphin/dvd/dvderror.c"),
         Object(Matching, "dolphin/dvd/fstload.c"),
         Object(Matching, "dolphin/gx/GXFifo.c"),
+        Object(Matching, "dolphin/gx/GXInit.c"),
         Object(Matching, "dolphin/gx/GXGeometry.c"),
         Object(Matching, "dolphin/gx/GXTexture.c"),
         Object(Matching, "dolphin/gx/GXAttr.c"),
