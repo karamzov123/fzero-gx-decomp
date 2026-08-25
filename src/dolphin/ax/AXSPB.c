@@ -333,10 +333,8 @@ asm void fn_80022420(void)
     blr	
 }
 
-asm void fn_8002244C(void)
+void fn_8002244C(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void fn_80022450(void)

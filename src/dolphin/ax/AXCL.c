@@ -498,10 +498,8 @@ asm void AXInitCommandList(void)
     blr	
 }
 
-asm void fn_80021910(void)
+void fn_80021910(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void fn_80021914(void)
