@@ -1,4 +1,3 @@
-typedef signed int s32;
 #pragma push
 #pragma force_active on
 extern unsigned char lbl_80095DB0[92];
@@ -232,7 +231,12 @@ _8008e5f8:
     blr	
 }
 
-s32 gdev_cc_close(void) { return 0; }
+asm void gdev_cc_close(void)
+{
+    nofralloc
+    li	r3, 0
+    blr	
+}
 
 asm void gdev_cc_open(void)
 {
@@ -249,7 +253,12 @@ _8008e628:
     blr	
 }
 
-s32 gdev_cc_shutdown(void) { return 0; }
+asm void gdev_cc_shutdown(void)
+{
+    nofralloc
+    li	r3, 0
+    blr	
+}
 
 asm void gdev_cc_initialize(void)
 {

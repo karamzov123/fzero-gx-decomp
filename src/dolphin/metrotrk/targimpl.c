@@ -1,4 +1,3 @@
-typedef signed int s32;
 #pragma push
 #pragma force_active on
 
@@ -186,8 +185,18 @@ _8008fec8:
     blr	
 }
 
-s32 AMC_IsStub(void) { return 0; }
+asm void AMC_IsStub(void)
+{
+    nofralloc
+    li	r3, 0
+    blr	
+}
 
-s32 Hu_IsStub(void) { return 0; }
+asm void Hu_IsStub(void)
+{
+    nofralloc
+    li	r3, 0
+    blr	
+}
 
 #pragma pop

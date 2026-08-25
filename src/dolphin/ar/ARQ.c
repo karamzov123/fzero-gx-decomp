@@ -101,7 +101,11 @@ _80020450:
     blr	
 }
 
-void __ARQCallbackHack(void) { }
+asm void __ARQCallbackHack(void)
+{
+    nofralloc
+    blr	
+}
 
 asm u32 __ARQInterruptServiceRoutine(void)
 {

@@ -296,7 +296,11 @@ _8008d250:
     b       TRKInterruptHandler
 }
 
-void TRKUARTInterruptHandler(void) { }
+asm void TRKUARTInterruptHandler(void)
+{
+    nofralloc
+    blr	
+}
 
 asm void InitializeProgramEndTrap(void)
 {

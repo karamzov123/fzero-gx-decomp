@@ -426,7 +426,11 @@ asm void fn_8004212C(void)
     blr	
 }
 
-void fn_8004216C(void) { }
+asm void fn_8004216C(void)
+{
+    nofralloc
+    blr	
+}
 
 asm void fn_80042170(void)
 {

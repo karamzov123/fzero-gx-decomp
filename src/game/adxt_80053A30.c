@@ -1,4 +1,3 @@
-typedef signed int s32;
 #pragma push
 #pragma force_active on
 
@@ -12,7 +11,12 @@ extern unsigned char lbl_80187380[64];
 extern unsigned char lbl_801873C0[24];
 
 extern unsigned char lbl_80091350[4];
-s32 adxtNullCallback(void) { return 0; }
+asm void adxtNullCallback(void)
+{
+    nofralloc
+    li	r3, 0
+    blr	
+}
 
 asm void fn_80053A38(void)
 {

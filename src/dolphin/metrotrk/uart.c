@@ -22,13 +22,29 @@ asm void UARTWriteFrame(register void* a, register void* b, register void* c, re
 asm void UART_ReadN_IntDriven(register void* a, register void* b, register void* c, register void* d);
 asm void UARTReadFrame(register void* a, register void* b, register void* c, register void* d);
 
-void fn_8008F44C(void) { }
+asm void fn_8008F44C(void)
+{
+    nofralloc
+    blr	
+}
 
-void fn_8008F450(void) { }
+asm void fn_8008F450(void)
+{
+    nofralloc
+    blr	
+}
 
-void fn_8008F454(void) { }
+asm void fn_8008F454(void)
+{
+    nofralloc
+    blr	
+}
 
-void fn_8008F458(void) { }
+asm void fn_8008F458(void)
+{
+    nofralloc
+    blr	
+}
 
 asm void InitializeUART_IntDriven(void)
 {

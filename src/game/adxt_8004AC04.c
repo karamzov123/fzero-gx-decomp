@@ -889,7 +889,11 @@ _8004b780:
     blr	
 }
 
-void fn_8004B79C(void) { }
+asm void fn_8004B79C(void)
+{
+    nofralloc
+    blr	
+}
 
 asm void fn_8004B7A0(void)
 {
