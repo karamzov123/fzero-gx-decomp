@@ -35,6 +35,7 @@ extern unsigned char E02080843_ADXT_GetErrCode_parameter_error_str[196];
 extern unsigned char E02080846_ADXT_Pause_parameter_error_str[38];
 extern unsigned char E02080847_ADXT_GetStatPause_parameter_error_str[45];
 extern unsigned char E8101208_ADXT_SetOutPan_parameter_error_str[132];
+extern unsigned char lbl_8017E56C[4];
 extern unsigned char lbl_80090A20[8];
 extern unsigned char lbl_80178CB8[4];
 extern unsigned char lbl_80178CBC[3076];
@@ -280,11 +281,11 @@ _8004baf8:
     lwz	r3, 0xc(r1)
     lis	r4, 0x4330
     lwz	r0, 8(r1)
-    lis	r5, -0x7ff7
+    lis	r5, lbl_80090A20@ha
     xoris	r3, r3, 0x8000
     stw	r4, 0x18(r1)
     xoris	r0, r0, 0x8000
-    lfd	f2, 0xa20(r5)
+    lfd	f2, lbl_80090A20@l(r5)
     stw	r3, 0x1c(r1)
     lwz	r6, 0x2c(r31)
     lfd	f0, 0x18(r1)
@@ -404,11 +405,11 @@ _8004bc88:
     lwz	r3, 0xc(r31)
     li	r4, 1
     bl      ADXTServerStateRequest_wrapper
-    lis     r3, lbl_8017E568@ha
-    lwz	r0, -0x7348(r3)
+    lis     r3, lbl_80178CB8@ha
+    lwz	r0, lbl_80178CB8@l(r3)
     stw	r0, 0xa0(r31)
 _8004bca0:
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017E568@ha
     li	r0, 0
     addi	r6, r3, lbl_8017E568@l
     mr	r3, r31
@@ -430,7 +431,7 @@ _8004bca0:
     lfd	f2, 0(r3)
     addi	r5, r6, lbl_8017E594@l
     lfd	f0, 0x18(r1)
-    lis	r6, -0x7fe8
+    lis	r6, lbl_8017E568@ha
     stw	r0, 0x24(r1)
     fsubs	f1, f0, f2
     lwz	r0, 0(r5)
@@ -442,7 +443,7 @@ _8004bca0:
     stw	r4, 0x10(r1)
     fdivs	f0, f1, f0
     lfd	f1, 0x10(r1)
-    stw	r30, -0x1a98(r6)
+    stw	r30, lbl_8017E568@l(r6)
     fsubs	f1, f1, f2
     fmuls	f1, f1, f0
     bl      __cvt_fp2unsigned
@@ -513,8 +514,8 @@ asm void fn_8004BDD8(void)
     stw	r31, 0xc(r1)
     stw	r30, 8(r1)
     bl      svmLockServer_wrapper
-    lis	r3, -0x7fe8
-    lwzu	r0, -0x1a94(r3)
+    lis	r3, lbl_8017E56C@ha
+    lwzu	r0, lbl_8017E56C@l(r3)
     cmpwi	r0, 0
     beq     _8004be08
     bl      svmUnlockServer_wrapper
@@ -525,10 +526,10 @@ _8004be08:
     bl      svmUnlockServer_wrapper
     bl      svmLockServer_wrapper
     bl      fn_80041700
-    lis	r4, -0x7fe8
+    lis	r4, lbl_8017E56C@ha
     li	r0, 2
     lis     r3, lbl_80178CBC@ha
-    stw	r0, -0x1a94(r4)
+    stw	r0, lbl_8017E56C@l(r4)
     addi	r31, r3, lbl_80178CBC@l
     li	r30, 0
 _8004be34:
@@ -542,13 +543,13 @@ _8004be48:
     addi	r31, r31, 0xc0
     cmpwi	r30, 0x10
     blt     _8004be34
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017E56C@ha
     li	r0, 3
-    stw	r0, -0x1a94(r3)
+    stw	r0, lbl_8017E56C@l(r3)
     bl      fn_8004EE44
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017E56C@ha
     li	r0, 0
-    stw	r0, -0x1a94(r3)
+    stw	r0, lbl_8017E56C@l(r3)
     bl      svmUnlockServer_wrapper
 _8004be78:
     lwz	r0, 0x14(r1)
