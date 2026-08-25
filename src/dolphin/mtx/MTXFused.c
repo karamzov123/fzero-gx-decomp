@@ -1,6 +1,7 @@
 // Fused MTX float-math translation unit (analyzer-fused; do not split).
 #pragma force_active on
 
+extern unsigned char lbl_801327F8[];
 extern void _8006d04c(void);
 extern void _8006d054(void);
 extern void _8006d070(void);
@@ -201,9 +202,9 @@ asm void MathSin(void)
     bc      12, 2, _8006d198
     subfic	r4, r4, 0x4000
 _8006d198:
-    lis	r6, -0x7fed
+    lis     r6, lbl_801327F8+0x28@h
     slwi	r4, r4, 2
-    ori	r6, r6, 0x2820
+    ori     r6, r6, lbl_801327F8+0x28@l
     andi.	r5, r3, 0x8000
     lfsx	f1, r6, r4
     beqlr	
@@ -227,9 +228,9 @@ asm void MathSinCos(void)
     subfic	r6, r6, 0x4000
 _8006d1e0:
     subfic	r7, r6, 0x4000
-    lis	r8, -0x7fed
+    lis     r8, lbl_801327F8+0x28@h
     slwi	r6, r6, 2
-    ori	r8, r8, 0x2820
+    ori     r8, r8, lbl_801327F8+0x28@l
     slwi	r7, r7, 2
     lfsx	f1, r8, r6
     lfsx	f2, r8, r7
