@@ -598,14 +598,14 @@ asm void PADTypeAndStatusCallback(void)
 {
     nofralloc
     mflr	r0
-    lis	r6, -0x7fea
+    lis	r6, lbl_8015D0B0@ha
     stw	r0, 4(r1)
     clrlwi.	r0, r4, 0x1c
     stwu	r1, -0x40(r1)
     stw	r31, 0x3c(r1)
     lis	r31, -0x8000
     stw	r30, 0x38(r1)
-    addi	r30, r6, -0x2f50
+    addi	r30, r6, lbl_8015D0B0@l
     stw	r29, 0x34(r1)
     stw	r28, 0x30(r1)
     lwz	r29, lbl_801A64B4

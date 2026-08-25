@@ -1,6 +1,8 @@
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_80178CB8[4];
+
 extern void fn_80041410(void);
 extern void fn_80041434(void);
 extern void fn_80041458(void);
@@ -505,9 +507,9 @@ _8004d348:
     li	r4, 1
     bl      ADXTServerStateRequest_wrapper
     li	r0, 0
-    lis	r3, -0x7fe8
+    lis	r3, lbl_80178CB8@ha
     stw	r0, 0x9c(r31)
-    lwz	r0, -0x7348(r3)
+    lwz	r0, lbl_80178CB8@l(r3)
     stw	r0, 0xa0(r31)
 _8004d380:
     li	r0, 3

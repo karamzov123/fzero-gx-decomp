@@ -241,7 +241,7 @@ asm void AXInitOutput(void)
 {
     nofralloc
     mflr	r0
-    lis	r5, -0x7ffe
+    lis	r5, fn_80021B20@ha
     stw	r0, 4(r1)
     lis     r3, lbl_80126240@ha
     addi	r0, r3, lbl_80126240@l
@@ -250,16 +250,16 @@ asm void AXInitOutput(void)
     li	r9, 0
     stw	r31, 0xc(r1)
     addi	r31, r4, lbl_80160500@l
-    lis	r4, -0x7ffe
+    lis	r4, __AXOutDspResumeCallback@ha
     stw	r0, 0x78c(r31)
     addi	r8, r31, 0x7d0
     li	r7, 0x10
     lhz	r0, lbl_801A64F0
     li	r6, 0x30
-    addi	r5, r5, 0x1b20
+    addi	r5, r5, fn_80021B20@l
     stw	r0, 0x790(r31)
     li	r0, 0x2000
-    addi	r4, r4, 0x1b2c
+    addi	r4, r4, __AXOutDspResumeCallback@l
     stw	r9, 0x794(r31)
     lis     r3, fn_80021B84@ha
     stw	r8, 0x798(r31)
