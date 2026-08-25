@@ -456,9 +456,9 @@ asm void fn_800721FC(void)
     stfs    f4, 8(r4)
     bl      fn_80015E18
     lfs f6, lbl_801A745C(r2)
-    lis     r3, -0x7fe6
+    lis     r3, lbl_8019F008@ha
     lfs     f5, 8(r1)
-    stfsu   f6, -0xff8(r3)
+    stfsu   f6, lbl_8019F008@l(r3)
     lfs     f4, 0x10(r1)
     lfs     f3, 0x1c(r1)
     lfs     f2, 0x20(r1)
@@ -514,11 +514,11 @@ _800722e0:
     lis     r5, lbl_8019E250@ha
     lfs     f1, 0x14(r3)
     addi    r5, r5, lbl_8019E250@l
-    lis     r4, -0x7fe6
+    lis     r4, lbl_8019F008@ha
     fdivs   f0, f2, f1
     stfs    f0, 8(r5)
     lfs     f0, 0(r3)
-    stfsu   f0, -0xff8(r4)
+    stfsu   f0, lbl_8019F008@l(r4)
     lfs     f0, 4(r3)
     stfs    f0, 4(r4)
     lfs     f0, 8(r3)

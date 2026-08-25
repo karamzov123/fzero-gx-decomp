@@ -36,6 +36,8 @@ extern unsigned char lbl_8008FF40[];
 
 extern unsigned char CurrTvMode[4];
 extern unsigned char __PADSpec[4];
+extern unsigned char lbl_801A64C8[2];
+extern unsigned char lbl_801A64CC[2];
 extern unsigned char lbl_801A64B0[4];
 extern unsigned char lbl_801A64B4[4];
 extern unsigned char lbl_801A64B8[4];
@@ -717,7 +719,7 @@ _8001c8b4:
     add	r6, r30, r0
     addi	r8, r3, PADEnable@l
     addi	r3, r29, 0
-    addi	r4, r13, -0x7ef4
+    li	r4, lbl_801A64CC
     li	r5, 3
     li	r7, 0xa
     li	r10, 0
@@ -731,7 +733,7 @@ _8001c8f0:
     add	r6, r30, r0
     addi	r8, r3, PADEnable@l
     addi	r3, r29, 0
-    addi	r4, r13, -0x7ef8
+    li	r4, lbl_801A64C8
     li	r5, 1
     li	r7, 0xa
     li	r10, 0
@@ -753,7 +755,7 @@ _8001c924:
     add	r6, r30, r0
     addi	r8, r3, PADEnable@l
     addi	r3, r29, 0
-    addi	r4, r13, -0x7ef8
+    li	r4, lbl_801A64C8
     li	r5, 1
     li	r7, 0xa
     li	r10, 0
@@ -856,7 +858,7 @@ asm void PADOriginUpdateCallback(void)
     add	r6, r0, r4
     addi	r8, r3, PADDisable@l
     addi	r3, r31, 0
-    addi	r4, r13, -0x7ef8
+    li	r4, lbl_801A64C8
     li	r5, 1
     li	r7, 0xa
     li	r10, 0
@@ -1410,7 +1412,7 @@ _8001d280:
     addi	r3, r21, 0
     addi	r6, r24, 0
     addi	r8, r30, 0
-    addi	r4, r13, -0x7ef8
+    li	r4, lbl_801A64C8
     li	r5, 1
     li	r7, 0xa
     li	r10, 0

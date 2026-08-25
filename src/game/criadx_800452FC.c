@@ -2,6 +2,7 @@
 #pragma force_active on
 
 extern void fn_8004E198(void);
+extern unsigned char lbl_800900A0[2184];
 extern void fn_8004E1B0(void);
 extern void fn_8004E300(void);
 extern void fn_8004E2CC(void);
@@ -420,7 +421,7 @@ asm void CRI_FORM_parser(void)
     nofralloc
     stwu	r1, -0x50(r1)
     mflr	r0
-    lis	r6, -0x7ff7
+    lis	r6, lbl_800900A0@ha
     stw	r0, 0x54(r1)
     li	r0, 1
     stmw	r26, 0x38(r1)
@@ -428,7 +429,7 @@ asm void CRI_FORM_parser(void)
     mr	r31, r5
     mr	r30, r4
     lis     r5, lbl_8017A288@ha
-    addi	r27, r6, 0xa0
+    addi	r27, r6, lbl_800900A0@l
     addi	r26, r5, lbl_8017A288@l
     mr	r4, r31
     addi	r5, r1, 0x12

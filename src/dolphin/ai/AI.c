@@ -126,8 +126,8 @@ asm void AIInit(register void* stack)
     bl      __OSSetInterruptHandler
     lis     r3, 0x400
     bl      __OSUnmaskInterrupts
-    lis     r3, 0x8002
-    addi    r4, r3, -0x1b80
+    lis     r3, __AISHandler@ha
+    addi    r4, r3, __AISHandler@l
     li      r3, 0x8
     bl      __OSSetInterruptHandler
     lis     r3, 0x80

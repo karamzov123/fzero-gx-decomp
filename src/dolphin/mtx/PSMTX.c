@@ -3,6 +3,7 @@ extern void sqrtf(void);
 extern void MathSin(void);
 extern void MathNormalizeFloat(void);
 extern void _savegpr_25(void);
+extern unsigned char lbl_80094E10[16];
 extern void _restgpr_25(void);
 
 #pragma push
@@ -251,8 +252,8 @@ asm void MTXQuatInterpolate(void)
     addi	r11, r1, 0x50
     bl      _savegpr_25
     lwz r6, lbl_801A6D00(r13)
-    lis	r4, -0x7ff7
-    addi	r5, r4, 0x4e10
+    lis	r4, lbl_80094E10@ha
+    addi	r5, r4, lbl_80094E10@l
     lfs f0, lbl_801A73D4(r2)
     lfs	f2, 0(r6)
     mr	r31, r3

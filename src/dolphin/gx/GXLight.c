@@ -915,7 +915,7 @@ asm void GXSetupLitVertexData(register void* p)
 {
     nofralloc
     mflr	r0
-    lis	r4, -0x7fe8
+    lis	r4, lbl_80178118@ha
     stw	r0, 4(r1)
     stwu	r1, -0x3c8(r1)
     stfd	f31, 0x3c0(r1)
@@ -925,7 +925,7 @@ asm void GXSetupLitVertexData(register void* p)
     stfd	f27, 0x3a0(r1)
     stfd	f26, 0x398(r1)
     stmw	r24, 0x378(r1)
-    addi	r31, r4, -0x7ee8
+    addi	r31, r4, lbl_80178118@l
     addi	r24, r3, 0
     addi	r3, r31, 0
     lfs f0, lbl_801A7134(r2)
