@@ -512,7 +512,7 @@ Unhandled_lastInterrupt:
     crxor   6, 6, 6
     lwz	r5, __OSLastInterruptSrr0
     lwz	r7, __OSLastInterruptTime
-    lwz     r8, -0x7C04(r13)
+    lwz     r8, __OSLastInterruptTime+0x4
     bl      OSReport
     bl      PPCHalt
     lmw     r22, 0x18(r1)

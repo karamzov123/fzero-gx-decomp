@@ -15,8 +15,6 @@ extern void _8000d904(void);
 extern void _8000d908(void);
 extern void _8000d98c(void);
 extern void _8000d990(void);
-extern void _8000dc68(void);
-extern void _8000dc6c(void);
 extern unsigned char lbl_80123A60[48];
 
 #pragma push
@@ -536,9 +534,9 @@ _8000dc3c:
     addi	r0, r3, lbl_80123A60@l
     mr	r3, r0
     b       _8000dc68
-    entry   _8000dc68
+_8000dc68:
     b       _8000dc6c
-    entry   _8000dc6c
+_8000dc6c:
     lwz	r0, 0(r3)
     and	r0, r4, r0
     cmplwi	r0, 0
@@ -559,7 +557,7 @@ _8000dc90:
     ble     _8000dcc4
     sth	r29, __OSLastInterrupt
     bl      OSGetTime
-    stw r4, -0x7c04(r13)
+    stw r4, __OSLastInterruptTime+0x4
     stw	r3, __OSLastInterruptTime
     lwz	r0, 0x198(r30)
     stw	r0, __OSLastInterruptSrr0
