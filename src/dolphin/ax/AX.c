@@ -45,31 +45,31 @@ extern unsigned char lbl_801A6AA0[8];
 extern unsigned char lbl_801A6AA8[8];
 extern unsigned char lbl_801A6AB0[8];
 extern unsigned char lbl_801A6AB8[8];
-asm void fn_80020724(void)
-{
-    nofralloc
-    li	r0, 0
-    stb	r0, lbl_801A6AB0
-    stb	r0, lbl_801A6AB0
-    stb	r0, lbl_801A6AA8
-    stb	r0, lbl_801A6AA0
-    stb	r0, lbl_801A6A98
-    stb	r0, lbl_801A6A90
-    stb	r0, lbl_801A6A88
-    stb	r0, lbl_801A6A80
-    stb	r0, lbl_801A6A78
-    stb	r0, lbl_801A6A70
-    stb	r0, lbl_801A6A68
-    stb	r0, lbl_801A6A60
-    stb	r0, lbl_801A6A58
-    stb	r0, lbl_801A6A50
-    stb	r0, lbl_801A6A48
-    stb	r0, lbl_801A6A40
-    stb	r0, lbl_801A6A38
-    stb	r0, lbl_801A6A30
-    stb	r0, lbl_801A6A28
-    blr	
+// provenance: original
+// provenance: original
+
+void fn_80020724(void) {
+    lbl_801A6AB0[0] = 0;
+    lbl_801A6AB0[0] = 0;
+    lbl_801A6AA8[0] = 0;
+    lbl_801A6AA0[0] = 0;
+    lbl_801A6A98[0] = 0;
+    lbl_801A6A90[0] = 0;
+    lbl_801A6A88[0] = 0;
+    lbl_801A6A80[0] = 0;
+    lbl_801A6A78[0] = 0;
+    lbl_801A6A70[0] = 0;
+    lbl_801A6A68[0] = 0;
+    lbl_801A6A60[0] = 0;
+    lbl_801A6A58[0] = 0;
+    lbl_801A6A50[0] = 0;
+    lbl_801A6A48[0] = 0;
+    lbl_801A6A40[0] = 0;
+    lbl_801A6A38[0] = 0;
+    lbl_801A6A30[0] = 0;
+    lbl_801A6A28[0] = 0;
 }
+
 
 void AXInit(void)
 {
@@ -82,22 +82,14 @@ void AXInit(void)
     fn_80021C7C();
 }
 
-asm void AXQuit(void)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    bl      __AXAllocQuit
-    bl      fn_800230A0
-    bl      fn_8002244C
-    bl      AXClearAuxBufferPtrs
-    bl      fn_80021910
-    bl      fn_80021FBC
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+// provenance: original
+void AXQuit(void) {
+    __AXAllocQuit();
+    fn_800230A0();
+    fn_8002244C();
+    AXClearAuxBufferPtrs();
+    fn_80021910();
+    fn_80021FBC();
 }
 
 asm void* __AXGetStackHead(register u32 priority)

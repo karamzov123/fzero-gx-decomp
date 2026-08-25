@@ -1,8 +1,9 @@
+typedef unsigned short u16;
 #pragma push
 #pragma force_active on
 
-extern void DSPCheckMailToDSP(void);
-extern void DSPCheckMailFromDSP(void);
+extern int DSPCheckMailToDSP(void);
+extern int DSPCheckMailFromDSP(void);
 extern void DSPReadMailFromDSP(void);
 extern void DSPSendMailToDSP(void);
 extern void DSPInit(void);
@@ -38,22 +39,14 @@ extern unsigned char lbl_801A6BB8[4];
 extern unsigned char lbl_801A6BBC[4];
 void __DSPHandler(void);
 
-asm void DSPCheckMailToDSP(void)
-{
-    nofralloc
-    lis	r3, -0x3400
-    lhz	r0, 0x5000(r3)
-    rlwinm	r3, r0, 0x11, 0x1f, 0x1f
-    blr	
+// provenance: original
+int DSPCheckMailToDSP(void) {
+    return (*(volatile u16*)0xCC005000 >> 15) & 1;
 }
 
-asm void DSPCheckMailFromDSP(void)
-{
-    nofralloc
-    lis	r3, -0x3400
-    lhz	r0, 0x5004(r3)
-    rlwinm	r3, r0, 0x11, 0x1f, 0x1f
-    blr	
+// provenance: original
+int DSPCheckMailFromDSP(void) {
+    return (*(volatile u16*)0xCC005004 >> 15) & 1;
 }
 
 asm void DSPReadMailFromDSP(void)
