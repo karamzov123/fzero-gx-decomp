@@ -1,3 +1,4 @@
+// provenance: original
 #pragma push
 #pragma force_active on
 
@@ -183,11 +184,10 @@ asm void EXI2_Init(void)
     blr	
 }
 
-asm void EXI2_Poll(void)
+// provenance: original
+int EXI2_Poll(void* dev)
 {
-    nofralloc
-    lwz	r3, 0x10(r3)
-    blr	
+    return *(int*)((char*)dev + 0x10);
 }
 
 #pragma pop

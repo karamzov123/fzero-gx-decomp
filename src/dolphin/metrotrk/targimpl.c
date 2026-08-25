@@ -1,3 +1,4 @@
+// provenance: original
 #pragma push
 #pragma force_active on
 
@@ -185,18 +186,16 @@ _8008fec8:
     blr	
 }
 
-asm void AMC_IsStub(void)
+// provenance: original
+int AMC_IsStub(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
-asm void Hu_IsStub(void)
+// provenance: original
+int Hu_IsStub(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
 #pragma pop

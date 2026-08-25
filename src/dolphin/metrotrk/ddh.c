@@ -1,3 +1,4 @@
+// provenance: original
 #pragma push
 #pragma force_active on
 extern unsigned char lbl_80095CD0[92];
@@ -22,67 +23,58 @@ asm void fn_8008F29C(register void* a, register void* b, register void* c, regis
 asm void fn_8008F44C(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008F450(register void* a, register void* b, register void* c, register void* d);
 
-asm void udp_cc_post_stop(void)
+// provenance: original
+int udp_cc_post_stop(void)
 {
-    nofralloc
-    li	r3, -1
-    blr	
+    return -1;
 }
 
-asm void udp_cc_pre_continue(void)
+// provenance: original
+int udp_cc_pre_continue(void)
 {
-    nofralloc
-    li	r3, -1
-    blr	
+    return -1;
 }
 
-asm void udp_cc_peek(void)
+// provenance: original
+int udp_cc_peek(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
-asm void udp_cc_write(void)
+// provenance: original
+int udp_cc_write(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
-asm void udp_cc_read(void)
+// provenance: original
+int udp_cc_read(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
-asm void udp_cc_close(void)
+// provenance: original
+int udp_cc_close(void)
 {
-    nofralloc
-    li	r3, -1
-    blr	
+    return -1;
 }
 
-asm void udp_cc_open(void)
+// provenance: original
+int udp_cc_open(void)
 {
-    nofralloc
-    li	r3, -1
-    blr	
+    return -1;
 }
 
-asm void udp_cc_shutdown(void)
+// provenance: original
+int udp_cc_shutdown(void)
 {
-    nofralloc
-    li	r3, -1
-    blr	
+    return -1;
 }
 
-asm void udp_cc_initialize(void)
+// provenance: original
+int udp_cc_initialize(void)
 {
-    nofralloc
-    li	r3, -1
-    blr	
+    return -1;
 }
 
 asm void ddh_cc_initinterrupts(void)
@@ -292,11 +284,10 @@ _8008e044:
     blr	
 }
 
-asm void ddh_cc_close(void)
+// provenance: original
+int ddh_cc_close(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
 asm void ddh_cc_open(void)
@@ -314,11 +305,10 @@ _8008e074:
     blr	
 }
 
-asm void ddh_cc_shutdown(void)
+// provenance: original
+int ddh_cc_shutdown(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
 asm void ddh_cc_initialize(void)

@@ -1,9 +1,21 @@
+// provenance: original
 typedef signed int s32;
 typedef unsigned int u32;
 typedef int BOOL;
 
 typedef void (*ARQCallback)(void);
 typedef struct ARQRequest ARQRequest;
+typedef struct ARQReq {
+    struct ARQReq* next;   /* 0x00 */
+    u32 owner;             /* 0x04 */
+    u32 type;              /* 0x08 */
+    u32 unk0C;             /* 0x0c */
+    u32 source;            /* 0x10 */
+    u32 dest;              /* 0x14 */
+    u32 length;            /* 0x18 */
+    void (*callback)(u32); /* 0x1c */
+} ARQReq;
+
 
 extern void OSRegisterVersion(const char* version);
 extern BOOL OSDisableInterrupts(void);
@@ -17,94 +29,41 @@ extern ARQCallback ARRegisterDMACallback(register ARQCallback callback);
 extern unsigned char lbl_801A64E0[8];
 extern unsigned char lbl_801A6A00[4];
 extern unsigned char lbl_801A6A04[4];
-extern unsigned char lbl_801A6A08[4];
+extern ARQReq* lbl_801A6A08;
 extern unsigned char lbl_801A6A0C[4];
 extern unsigned char lbl_801A6A10[4];
-extern unsigned char lbl_801A6A14[4];
-extern unsigned char lbl_801A6A18[4];
-extern unsigned char lbl_801A6A1C[4];
-extern unsigned char lbl_801A6A20[4];
+extern ARQReq* lbl_801A6A14;
+extern void (*lbl_801A6A18)(u32);
+extern void (*lbl_801A6A1C)(u32);
+extern u32 lbl_801A6A20;
 extern unsigned char lbl_801A6A24[4];
-asm void __ARQServiceQueueLo(void)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    lwz	r0, lbl_801A6A14
-    cmplwi	r0, 0
-    bne     _80020390
-    lwz	r3, lbl_801A6A08
-    cmplwi	r3, 0
-    beq     _80020390
-    stw	r3, lbl_801A6A14
-    lwz	r0, 0(r3)
-    stw	r0, lbl_801A6A08
-_80020390:
-    lwz	r5, lbl_801A6A14
-    cmplwi	r5, 0
-    beq     _80020450
-    lwz	r6, 0x18(r5)
-    lwz	r0, lbl_801A6A20
-    cmplw	r6, r0
-    bgt     _800203e4
-    lwz	r3, 8(r5)
-    cmplwi	r3, 0
-    bne     _800203c8
-    lwz	r4, 0x10(r5)
-    lwz	r5, 0x14(r5)
-    bl      ARStartDMA
-    b       _800203d4
-_800203c8:
-    lwz	r4, 0x14(r5)
-    lwz	r5, 0x10(r5)
-    bl      ARStartDMA
-_800203d4:
-    lwz	r3, lbl_801A6A14
-    lwz	r0, 0x1c(r3)
-    stw	r0, lbl_801A6A1C
-    b       _80020414
-_800203e4:
-    lwz	r3, 8(r5)
-    cmplwi	r3, 0
-    bne     _80020404
-    lwz	r4, 0x10(r5)
-    mr	r6, r0
-    lwz	r5, 0x14(r5)
-    bl      ARStartDMA
-    b       _80020414
-_80020404:
-    lwz	r4, 0x14(r5)
-    mr	r6, r0
-    lwz	r5, 0x10(r5)
-    bl      ARStartDMA
-_80020414:
-    lwz	r3, lbl_801A6A14
-    lwz	r4, lbl_801A6A20
-    lwz	r0, 0x18(r3)
-    subf	r0, r4, r0
-    stw	r0, 0x18(r3)
-    lwz	r4, lbl_801A6A14
-    lwz	r0, lbl_801A6A20
-    lwz	r3, 0x10(r4)
-    add	r0, r3, r0
-    stw	r0, 0x10(r4)
-    lwz	r4, lbl_801A6A14
-    lwz	r0, lbl_801A6A20
-    lwz	r3, 0x14(r4)
-    add	r0, r3, r0
-    stw	r0, 0x14(r4)
-_80020450:
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+// provenance: original
+void __ARQServiceQueueLo(void) {
+    if (lbl_801A6A14 == 0 && lbl_801A6A08 != 0) {
+        lbl_801A6A14 = lbl_801A6A08;
+        lbl_801A6A08 = lbl_801A6A08->next;
+    }
+    if (lbl_801A6A14 != 0) {
+        if (lbl_801A6A14->length <= lbl_801A6A20) {
+            if (lbl_801A6A14->type == 0) {
+                ARStartDMA(lbl_801A6A14->type, lbl_801A6A14->source, lbl_801A6A14->dest, lbl_801A6A14->length);
+            } else {
+                ARStartDMA(lbl_801A6A14->type, lbl_801A6A14->dest, lbl_801A6A14->source, lbl_801A6A14->length);
+            }
+            lbl_801A6A1C = lbl_801A6A14->callback;
+        } else if (lbl_801A6A14->type == 0) {
+            ARStartDMA(lbl_801A6A14->type, lbl_801A6A14->source, lbl_801A6A14->dest, lbl_801A6A20);
+        } else {
+            ARStartDMA(lbl_801A6A14->type, lbl_801A6A14->dest, lbl_801A6A14->source, lbl_801A6A20);
+        }
+        lbl_801A6A14->length -= lbl_801A6A20;
+        lbl_801A6A14->source += lbl_801A6A20;
+        lbl_801A6A14->dest += lbl_801A6A20;
+    }
 }
 
-asm void __ARQCallbackHack(void)
-{
-    nofralloc
-    blr	
+// provenance: original
+void __ARQCallbackHack(u32 result) {
 }
 
 asm u32 __ARQInterruptServiceRoutine(void)
@@ -322,11 +281,9 @@ _80020714:
     blr	
 }
 
-asm u32 ARQGetChunkSize(void)
-{
-    nofralloc
-    lwz	r3, lbl_801A6A20
-    blr	
+// provenance: original
+u32 ARQGetChunkSize(void) {
+    return lbl_801A6A20;
 }
 
 #pragma pop
