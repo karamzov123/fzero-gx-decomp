@@ -5,6 +5,9 @@ typedef signed int s32;
 
 #pragma force_active on
 
+extern unsigned char lbl_801A664C[4];
+extern unsigned char lbl_801A6658[8];
+
 extern void memset(void);
 extern void memcpy(void);
 extern void _ExitProcess(void);
@@ -1569,8 +1572,8 @@ _8007b3c4:
     b       _8007c39c
 _8007b3cc:
     lbz	r0, 0(r3)
-    lis	r3, -0x7fe6
-    lfs	f1, 0x664c(r3)
+    lis	r3, lbl_801A664C@ha
+    lfs	f1, lbl_801A664C@l(r3)
     extsb.	r0, r0
     bc      4, 2, _8007b3e8
     lfd f2, lbl_801A74B8(r2)
@@ -2059,8 +2062,8 @@ _8007ba60:
 _8007ba74:
     cmpwi	r0, 0
     bc      4, 2, _8007c380
-    lis	r3, -0x7fe6
-    lfd	f0, 0x6658(r3)
+    lis	r3, lbl_801A6658@ha
+    lfd	f0, lbl_801A6658@l(r3)
     stfd	f0, 0x30(r1)
 _8007ba88:
     lfd	f1, 0x30(r1)
@@ -3611,9 +3614,9 @@ asm void MSLFormatDecimalRound(void)
     addi	r0, r30, 0x40
     cmplwi	r0, 0x48
     bc      12, 1, _8007e3f4
-    lis     r3, -0x7fea
+    lis     r3, jumptable_8015AFD8@ha
     slwi	r0, r0, 2
-    addi	r3, r3, -0x5028
+    addi	r3, r3, jumptable_8015AFD8@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr
