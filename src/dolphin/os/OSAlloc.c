@@ -1,7 +1,8 @@
 #pragma push
 #pragma force_active on
 
-extern int fn_80009CD4(register void* param1);
+extern int OSCheckHeap(register void* param1);
+extern unsigned char lbl_801A6414[4];
 extern unsigned char lbl_8015BE40[160];
 extern unsigned char lbl_8015BEE0[32];
 
@@ -485,17 +486,17 @@ asm void OSDumpHeap(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    addi	r5, r13, -0x7fac
+    li	r5, lbl_801A6414
     li	r6, 0
     stw	r0, 0x14(r1)
-    bl      fn_80009CD4 /* OSCheckHeap */
+    bl      OSCheckHeap
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
     blr	
 }
 
-asm int fn_80009CD4(register void* param1)
+asm int OSCheckHeap(register void* param1)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -509,13 +510,13 @@ asm int fn_80009CD4(register void* param1)
     beq     _80009d60
     mulli	r0, r0, 0x14
     lis     r5, lbl_8015BE40@ha
-    lis     r6, lbl_8015BEE0@ha
+    lis     r6, 0x8016
     lwz	r29, g_currentHeapHandle
     addi	r5, r5, lbl_8015BE40@l
     lwz	r31, gAssetBudgetB
     add	r8, r5, r0
     lwzx	r9, r5, r0
-    addi	r30, r6, lbl_8015BEE0@l
+    addi	r30, r6, -0x4120
     lwz	r12, lbl_801A6740
     lwz	r11, lbl_801A673C
     lwz	r10, lbl_801A6738

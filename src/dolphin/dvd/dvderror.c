@@ -7,7 +7,7 @@ typedef unsigned int u32;
 #pragma force_active on
 
 extern unsigned char lbl_80124110[];
-extern unsigned char lbl_801A6908[];
+extern unsigned char lbl_801A6908[4];
 extern void ErrorCode2Num(void);
 extern void __OSLockSramEx(void);
 extern void __OSUnlockSramEx(void);
@@ -219,7 +219,7 @@ nofralloc
 	mflr r0
 	stw r0, 0x4(r1)
 	stwu r1, -0x8(r1)
-	lwz	r12, -0x7ab8(r13)
+	lwz	r12, lbl_801A6908
 	cmplwi r12, 0x0
 	beq lbl_8001A30C
 	mtlr r12

@@ -2,6 +2,7 @@
 #pragma force_active on
 
 extern unsigned char __global_destructor_chain[4];
+extern unsigned char lbl_80094E30[16];
 asm void memcpy_fast(void)
 {
     nofralloc
@@ -193,8 +194,8 @@ asm void __cvt_fp2unsigned(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)
-    lis     r4, -0x7ff7
-    ori     r4, r4, 0x4e30
+    lis     r4, lbl_80094E30@h
+    ori     r4, r4, lbl_80094E30@l
     li      r3, 0
     lfd     f0, 0(r4)
     lfd     f3, 8(r4)
