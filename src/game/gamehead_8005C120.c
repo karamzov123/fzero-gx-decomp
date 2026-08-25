@@ -5,6 +5,8 @@ typedef signed int s32;
 
 #pragma force_active on
 
+extern unsigned char lbl_801A664C;
+extern unsigned char lbl_801A6648;
 extern void memset(void);
 extern void memcpy(void);
 extern void OSAlloc(void);
@@ -2750,12 +2752,12 @@ _8005e5b8:
     fsubs	f0, f0, f8
     fcmpu	cr0, f0, f1
     bc      12, 2, _8005e5dc
-    lis	r3, -0x7fe6
-    lfs	f1, 0x6648(r3)
+    lis	r3, lbl_801A6648@ha
+    lfs	f1, lbl_801A6648@l(r3)
     b       _8005e5e4
 _8005e5dc:
-    lis	r3, -0x7fe6
-    lfs	f1, 0x664c(r3)
+    lis	r3, lbl_801A664C@ha
+    lfs	f1, lbl_801A664C@l(r3)
 _8005e5e4:
     bl      expf
     lis	r3, -0x7efe
@@ -2840,12 +2842,12 @@ _8005e710:
     fsubs	f0, f0, f8
     fcmpu	cr0, f0, f1
     bc      12, 2, _8005e734
-    lis	r3, -0x7fe6
-    lfs	f1, 0x6648(r3)
+    lis	r3, lbl_801A6648@ha
+    lfs	f1, lbl_801A6648@l(r3)
     b       _8005e73c
 _8005e734:
-    lis	r3, -0x7fe6
-    lfs	f1, 0x664c(r3)
+    lis	r3, lbl_801A664C@ha
+    lfs	f1, lbl_801A664C@l(r3)
 _8005e73c:
     bl      expf
     lfd	f0, -0x7c08(r2)
@@ -4482,17 +4484,17 @@ _8005fed0:
 _8005fee4:
     cmplwi	r5, 0x40
     bc      12, 1, _800605f0
-    lis     r4, -0x7fed
+    lis     r4, jumptable_80132680@ha
     slwi	r0, r5, 2
-    addi	r4, r4, 0x2680
+    addi	r4, r4, jumptable_80132680@l
     lwzx	r0, r4, r0
     mtctr	r0
     bctr
     cmplwi	r7, 0x29
     bc      12, 1, _800605f0
-    lis     r3, -0x7fed
+    lis     r3, jumptable_801325D8@ha
     slwi	r0, r7, 2
-    addi	r3, r3, 0x25d8
+    addi	r3, r3, jumptable_801325D8@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr
@@ -5102,14 +5104,14 @@ _80060784:
     bc      12, 0, _80060768
 _80060790:
     clrlwi	r0, r4, 0x18
-    lis	r3, -0x7fe7
+    lis	r3, lbl_80192D68@ha
     clrlwi	r4, r28, 0x18
     clrlwi	r31, r25, 0x18
     mulli	r30, r0, 0x54
     lha	r6, 2(r7)
     subf	r5, r4, r31
     lbz	r4, 1(r7)
-    addi	r0, r3, 0x2d68
+    addi	r0, r3, lbl_80192D68@l
     mullw	r5, r6, r5
     add	r3, r0, r30
     lbz	r3, 6(r3)
@@ -5801,12 +5803,12 @@ _8006115c:
 _80061168:
     fcmpu	cr0, f4, f1
     bc      12, 2, _8006117c
-    lis	r3, -0x7fe6
-    lfs	f1, 0x6648(r3)
+    lis	r3, lbl_801A6648@ha
+    lfs	f1, lbl_801A6648@l(r3)
     b       _80061184
 _8006117c:
-    lis	r3, -0x7fe6
-    lfs	f1, 0x664c(r3)
+    lis	r3, lbl_801A664C@ha
+    lfs	f1, lbl_801A664C@l(r3)
 _80061184:
     bl      expf
     lis	r3, -0x7efe
@@ -5860,12 +5862,12 @@ _80061238:
 _80061244:
     fcmpu	cr0, f4, f1
     bc      12, 2, _80061258
-    lis	r3, -0x7fe6
-    lfs	f1, 0x6648(r3)
+    lis	r3, lbl_801A6648@ha
+    lfs	f1, lbl_801A6648@l(r3)
     b       _80061260
 _80061258:
-    lis	r3, -0x7fe6
-    lfs	f1, 0x664c(r3)
+    lis	r3, lbl_801A664C@ha
+    lfs	f1, lbl_801A664C@l(r3)
 _80061260:
     bl      expf
     lfd	f0, -0x7ba0(r2)
@@ -5986,7 +5988,7 @@ _800613e4:
     add	r3, r3, r29
     extsh	r8, r8
     stb	r5, 0x15(r11)
-    addi	r5, r6, 0x2b58
+    addi	r5, r6, lbl_80092B58@l
     lbzx	r5, r5, r8
     mr	r10, r14
     stw	r0, 0x1420(r3)
