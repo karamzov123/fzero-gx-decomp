@@ -1,11 +1,7 @@
 // dolphin/card/CARDDelete.c -- carved from coarse/text_8002F5B8 (0x8002F934-0x8002FC5C).
 // Melee identity: extern/dolphin/src/dolphin/card/CARDDelete.c
 //   DeleteCallback (static), CARDFastDeleteAsync, CARDDeleteAsync, CARDDelete.
-<<<<<<< HEAD
 // Retail quirk: __CARDIsOpened is an 8-byte stub (__CARDIsOpened: li r3,0; blr).
-=======
-// Retail quirk: __CARDIsOpened is an 8-byte stub (fn_8002EDA0: li r3,0; blr).
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
 // CARD_MAX_FILE == 127 (cmpwi rX, 0x7f range guards).
 
 typedef int BOOL;
@@ -13,7 +9,6 @@ typedef int s32;
 typedef unsigned long u32;
 typedef unsigned short u16;
 
-<<<<<<< HEAD
 extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
 extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern s32 __CARDFreeBlock(register s32 chn, register u16 nBlock, register void* callback);
@@ -24,21 +19,6 @@ extern s32 __CARDGetFileNo(register void* ctrl, register void* fileName, registe
 extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
 extern s32 __CARDSync(register s32 chn);
 extern void* memset(register void* dst, register int val, register u32 n);
-extern void __CARDDefaultApiCallback(void);
-extern void __CARDSyncCallback(void);
-extern unsigned char __CARDBlock[544];
-=======
-extern s32 fn_8002A83C(register void* card, register void** pctrl);
-extern void fn_8002A8F4(register void* ctrl, register s32 err);
-extern s32 fn_8002C374(register s32 chn, register u16 nBlock, register void* callback);
-extern s32 fn_8002C4BC(void);
-extern s32 fn_8002E9BC(register void* ctrl, register void* ent);
-extern s32 fn_8002EDA0(register void* ctrl, register s32 fileNo);
-extern s32 fn_8002EA84(register void* ctrl, register void* fileName, register void* pfileNo);
-extern s32 fn_8002C65C(register s32 chn, register void* callback);
-extern s32 fn_8002AAD8(register s32 chn);
-extern void* memset(register void* dst, register int val, register u32 n);
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
 
 #pragma push
 #pragma force_active on
@@ -56,13 +36,8 @@ asm void DeleteCallback(register s32 chan, register s32 result)
     stw     r28, 0x10(r1)
     addi    r28, r3, 0
     mulli   r5, r28, 0x110
-<<<<<<< HEAD
-    lis     r3, __CARDBlock@ha
-    addi    r0, r3, __CARDBlock@l
-=======
     lis     r3, 0x8017              /* __CARDBlock */
     addi    r0, r3, 0x7960
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     add     r31, r0, r5
     lwz     r30, 0xd0(r31)
     li      r0, 0
@@ -71,21 +46,13 @@ asm void DeleteCallback(register s32 chan, register s32 result)
     lhz     r4, 0xbe(r31)
     addi    r3, r28, 0
     addi    r5, r30, 0
-<<<<<<< HEAD
     bl      __CARDFreeBlock
-=======
-    bl      fn_8002C374
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     or.     r29, r3, r3
     bge     _L_8002f9b8
 _L_8002f990:
     addi    r3, r31, 0
     addi    r4, r29, 0
-<<<<<<< HEAD
     bl      __CARDPutControlBlock
-=======
-    bl      fn_8002A8F4
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     cmplwi  r30, 0
     beq     _L_8002f9b8
     addi    r12, r30, 0
@@ -126,56 +93,32 @@ _L_8002fa0c:
 _L_8002fa14:
     addi    r3, r28, 0
     addi    r4, r1, 0x14
-<<<<<<< HEAD
     bl      __CARDGetControlBlock
-=======
-    bl      fn_8002A83C
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     cmpwi   r3, 0
     bge     _L_8002fa2c
     b       _L_8002fae4
 _L_8002fa2c:
     lwz     r3, 0x14(r1)
-<<<<<<< HEAD
     bl      __CARDGetDirBlock
-=======
-    bl      fn_8002C4BC
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     slwi    r0, r29, 6
     add     r31, r3, r0
     lwz     r3, 0x14(r1)
     mr      r4, r31
-<<<<<<< HEAD
     bl      __CARDAccess
     or.     r4, r3, r3
     bge     _L_8002fa5c
     lwz     r3, 0x14(r1)
     bl      __CARDPutControlBlock
-=======
-    bl      fn_8002E9BC
-    or.     r4, r3, r3
-    bge     _L_8002fa5c
-    lwz     r3, 0x14(r1)
-    bl      fn_8002A8F4
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     b       _L_8002fae4
 _L_8002fa5c:
     lwz     r3, 0x14(r1)
     mr      r4, r29
-<<<<<<< HEAD
     bl      __CARDIsOpened
-=======
-    bl      fn_8002EDA0
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     cmpwi   r3, 0
     beq     _L_8002fa80
     lwz     r3, 0x14(r1)
     li      r4, -1
-<<<<<<< HEAD
     bl      __CARDPutControlBlock
-=======
-    bl      fn_8002A8F4
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     b       _L_8002fae4
 _L_8002fa80:
     lhz     r0, 0x36(r31)
@@ -190,17 +133,6 @@ _L_8002fa80:
     mr      r0, r30
     b       _L_8002fab4
 _L_8002faac:
-<<<<<<< HEAD
-    lis     r3, __CARDDefaultApiCallback@ha
-    addi    r0, r3, __CARDDefaultApiCallback@l         /* __CARDDefaultApiCallback */
-_L_8002fab4:
-    lwz     r5, 0x14(r1)
-    lis     r3, DeleteCallback@ha
-    addi    r4, r3, DeleteCallback@l          /* DeleteCallback */
-    stw     r0, 0xd0(r5)
-    mr      r3, r28
-    bl      __CARDUpdateDir
-=======
     lis     r3, 0x8003
     addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
 _L_8002fab4:
@@ -209,17 +141,12 @@ _L_8002fab4:
     addi    r4, r3, -0x6cc          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r28
-    bl      fn_8002C65C
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
+    bl      __CARDUpdateDir
     or.     r31, r3, r3
     bge     _L_8002fae0
     lwz     r3, 0x14(r1)
     mr      r4, r31
-<<<<<<< HEAD
     bl      __CARDPutControlBlock
-=======
-    bl      fn_8002A8F4
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
 _L_8002fae0:
     mr      r3, r31
 _L_8002fae4:
@@ -246,11 +173,7 @@ asm s32 CARDDeleteAsync(register s32 chan, register char* fileName, register voi
     stw     r29, 0x24(r1)
     addi    r29, r4, 0
     addi    r4, r1, 0x18
-<<<<<<< HEAD
     bl      __CARDGetControlBlock
-=======
-    bl      fn_8002A83C
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     cmpwi   r3, 0
     bge     _L_8002fb3c
     b       _L_8002fbf8
@@ -258,45 +181,25 @@ _L_8002fb3c:
     lwz     r3, 0x18(r1)
     addi    r4, r29, 0
     addi    r5, r1, 0x14
-<<<<<<< HEAD
     bl      __CARDGetFileNo
     or.     r4, r3, r3
     bge     _L_8002fb60
     lwz     r3, 0x18(r1)
     bl      __CARDPutControlBlock
-=======
-    bl      fn_8002EA84
-    or.     r4, r3, r3
-    bge     _L_8002fb60
-    lwz     r3, 0x18(r1)
-    bl      fn_8002A8F4
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     b       _L_8002fbf8
 _L_8002fb60:
     lwz     r3, 0x18(r1)
     lwz     r4, 0x14(r1)
-<<<<<<< HEAD
     bl      __CARDIsOpened
-=======
-    bl      fn_8002EDA0
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     cmpwi   r3, 0
     beq     _L_8002fb84
     lwz     r3, 0x18(r1)
     li      r4, -1
-<<<<<<< HEAD
     bl      __CARDPutControlBlock
     b       _L_8002fbf8
 _L_8002fb84:
     lwz     r3, 0x18(r1)
     bl      __CARDGetDirBlock
-=======
-    bl      fn_8002A8F4
-    b       _L_8002fbf8
-_L_8002fb84:
-    lwz     r3, 0x18(r1)
-    bl      fn_8002C4BC
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     lwz     r0, 0x14(r1)
     li      r4, 0xff
     lwz     r6, 0x18(r1)
@@ -311,17 +214,6 @@ _L_8002fb84:
     mr      r0, r30
     b       _L_8002fbc8
 _L_8002fbc0:
-<<<<<<< HEAD
-    lis     r3, __CARDDefaultApiCallback@ha
-    addi    r0, r3, __CARDDefaultApiCallback@l         /* __CARDDefaultApiCallback */
-_L_8002fbc8:
-    lwz     r5, 0x18(r1)
-    lis     r3, DeleteCallback@ha
-    addi    r4, r3, DeleteCallback@l          /* DeleteCallback */
-    stw     r0, 0xd0(r5)
-    mr      r3, r31
-    bl      __CARDUpdateDir
-=======
     lis     r3, 0x8003
     addi    r0, r3, -0x67dc         /* __CARDDefaultApiCallback */
 _L_8002fbc8:
@@ -330,17 +222,12 @@ _L_8002fbc8:
     addi    r4, r3, -0x6cc          /* DeleteCallback */
     stw     r0, 0xd0(r5)
     mr      r3, r31
-    bl      fn_8002C65C
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
+    bl      __CARDUpdateDir
     or.     r31, r3, r3
     bge     _L_8002fbf4
     lwz     r3, 0x18(r1)
     mr      r4, r31
-<<<<<<< HEAD
     bl      __CARDPutControlBlock
-=======
-    bl      fn_8002A8F4
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
 _L_8002fbf4:
     mr      r3, r31
 _L_8002fbf8:
@@ -357,15 +244,9 @@ asm s32 CARDDelete(register s32 chan, register char* fileName)
 {
     nofralloc
     mflr    r0
-<<<<<<< HEAD
-    lis     r5, __CARDSyncCallback@ha
-    stw     r0, 4(r1)
-    addi    r5, r5, __CARDSyncCallback@l
-=======
     lis     r5, 0x8003
     stw     r0, 4(r1)
     addi    r5, r5, -0x67d8         /* __CARDSyncCallback */
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
     stwu    r1, -0x18(r1)
     stw     r31, 0x14(r1)
     addi    r31, r3, 0
@@ -375,11 +256,7 @@ asm s32 CARDDelete(register s32 chan, register char* fileName)
     b       _L_8002fc48
 _L_8002fc40:
     mr      r3, r31
-<<<<<<< HEAD
     bl      __CARDSync
-=======
-    bl      fn_8002AAD8
->>>>>>> 2d406c3 (card: CARDDelete.c+CARDStat.c+CARDRename.c carved (DeleteCallback/FastDeleteAsync/DeleteAsync/Delete @F934-FC5C; UpdateIconOffsets/GetStatus/SetStatusAsync/SetStatus @FC5C-3013C; RenameAsync/Rename @3013C-30380); splits trimmed; registered; gate sha1 green. trap: heredoc append landed after #pragma pop -> force_active lost -> linker stripped unreferenced funcs)
 _L_8002fc48:
     lwz     r0, 0x1c(r1)
     lwz     r31, 0x14(r1)

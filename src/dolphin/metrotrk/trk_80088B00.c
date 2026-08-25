@@ -10,7 +10,7 @@ typedef signed int s32;
 extern void memset(void);
 extern void fn_80003590(void);
 extern void TRK_memcpy(void);
-extern void fn_80005518(void);
+extern void gTRKInterruptVectorTableEnd(void);
 extern void OSReport(void);
 extern void strlen(void);
 extern void TRKConstructEvent(void);
@@ -2158,7 +2158,7 @@ asm void TRKDoReset(void)
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
     bl      TRKDoWrite
-    bl      fn_80005518
+    bl      gTRKInterruptVectorTableEnd
     lwz	r0, 0x54(r1)
     li	r3, 0
     mtlr	r0

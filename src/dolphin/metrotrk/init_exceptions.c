@@ -2,10 +2,10 @@
 // Layout per melee src/MetroTRK/__exception.s: banner + per-vector reserved
 // slots whose trk_redirect/trk_tlb_redirect stubs live at slot+0xE4 and jump
 // TRKInterruptHandler (0x8008B12C) via SRR0; System Reset slot branches to
-// __TRK_reset (fn_80005518).
+// __TRK_reset (gTRKInterruptVectorTableEnd).
 typedef unsigned char u8;
 
-extern void fn_80005518(void);
+extern void gTRKInterruptVectorTableEnd(void);
 extern void fn_80004538(void);
 
 #pragma push
@@ -28,7 +28,7 @@ __declspec(section ".init") const u8 pad_80003614[0xCC] = { 0 };
 asm __declspec(section ".init") void fn_800036E4(void)
 {
     nofralloc
-    b       fn_80005518
+    b       gTRKInterruptVectorTableEnd
 }
 
 __declspec(section ".init") const u8 pad_800036E8[0xFC] = { 0 };

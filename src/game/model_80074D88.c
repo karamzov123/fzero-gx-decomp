@@ -17,14 +17,14 @@ extern void _savegpr_19(void);
 extern void _savegpr_24(void);
 extern void _savegpr_25(void);
 extern void _savegpr_27(void);
-extern void fn_80035A2C(void);
-extern void fn_80035C50(void);
+extern void __GXGetTexBufferSize(void);
+extern void GXInitTexObj(void);
 extern void fn_80035EC4(void);
-extern void fn_800371F8(void);
-extern void fn_80038D34(void);
-extern void fn_8006D668(void);
-extern void fn_8006F120(void);
-extern void fn_8006F1F0(void);
+extern void __GXSetTexRegion(void);
+extern void GXWritePrimitiveFifo(void);
+extern void PSVecNormalize3(void);
+extern void PSMTXLookAtNoUp(void);
+extern void PSMTXReflect(void);
 extern void fn_80070D94(void);
 extern void fn_80070E00(void);
 extern void fn_80071794(void);
@@ -33,48 +33,48 @@ extern void fn_80072168(void);
 extern void fn_800723B8(void);
 extern void fn_800723D8(void);
 extern void fn_80072404(void);
-extern void fn_8007245C(void);
-extern void fn_800725DC(void);
-extern void fn_80072614(void);
-extern void fn_8007264C(void);
-extern void fn_80072778(void);
-extern void fn_800728A8(void);
-extern void fn_800729B0(void);
-extern void fn_80072AB0(void);
+extern void GXLoadMtxArray(void);
+extern void GXSetMatrixIndexA(void);
+extern void GXSetMatrixIndexB(void);
+extern void LightCtrl_SetCachedFog(void);
+extern void LightCtrl_InitChannels4(void);
+extern void LightCtrl_SetCachedColor_1C(void);
+extern void LightCtrl_SetCachedParam_2C(void);
+extern void LightCtrl_SetCachedPair_6C(void);
 extern void ModelSetCachedParam_F0(void);
 extern void ModelSetCachedParam_1F0(void);
 extern void ModelSetCachedParam_2F0(void);
 extern void ModelSetCachedParam_430(void);
 extern void ModelSetCachedMaterial_570(void);
-extern void fn_800735C8(void);
-extern void fn_80073620(void);
-extern void fn_80073678(void);
-extern void fn_800736C0(void);
-extern void fn_80073778(void);
-extern void fn_80073898(void);
+extern void GXCachedSetTevSwapTable(void);
+extern void ModelSetCachedState_6B0(void);
+extern void ModelSetCachedNumTexGens(void);
+extern void ModelSetCachedTex_704(void);
+extern void ModelCacheMaterialParams(void);
+extern void ModelSetCachedState_840(void);
 extern void fn_800738E0(void);
 extern void fn_80073A58(void);
 extern void fn_80073B50(void);
-extern void fn_80073C6C(void);
-extern void fn_800745A4(void);
-extern void fn_80074660(void);
-extern void fn_80074788(void);
-extern void fn_800747D0(void);
-extern void fn_80074A8C(void);
-extern void fn_80074BC4(void);
+extern void ModelClearCacheSlot_B28(void);
+extern void ModelSetCachedPair5_B28(void);
+extern void GXSetNumTexGensCached(void);
+extern void GXSetChanAmbColorCached(void);
+extern void LightCtrl_SetCachedRec_C30(void);
+extern void GXColorClampScale(void);
+extern void GXColorScale(void);
 extern void fn_80078538(void);
 extern void fn_800786B0(void);
 extern void fn_80078768(void);
-extern void fn_80078884(void);
-extern void fn_80078944(void);
-extern void fn_800789D8(void);
-extern void fn_80078C28(void);
-extern void fn_80078CDC(void);
+extern void GXWriteFifoWord(void);
+extern void GXWriteFifoWordPair(void);
+extern void ModelLoadSkinMatrices(void);
+extern void ModelUploadLights(void);
+extern void ModelResetFogState(void);
 extern void fn_80078D60(void);
-extern void fn_8006D758(void);
+extern void QuatNormalizeCompare(void);
 extern void fn_8006D7F4(void);
-extern void fn_8006DAEC(void);
-extern void fn_8006DB30(void);
+extern void mtx_gpstack_push(void);
+extern void mtx_gpstack_pop(void);
 extern void fn_8006DB74(void);
 extern void fn_8006DD14(void);
 extern void fn_8006DFC4(void);
@@ -95,17 +95,17 @@ extern unsigned char lbl_8019F200[16416];
 extern unsigned char lbl_801A3220[96];
 asm void fn_80074D88(void);
 asm void fn_80075080(void);
-asm void fn_80075240(void);
-asm void fn_800756B0(void);
+asm void AvDispSetupModel(void);
+asm void ModelDrawCachedMaterialCmds(void);
 asm void fn_80075908(void);
 asm void fn_80075C78(void);
 asm void fn_80075D48(void);
 asm void fn_80076134(void);
 asm void fn_80076238(void);
 asm void fn_800764A0(void);
-asm void fn_80076790(void);
+asm void ModelBlendMatrixPush(void);
 asm void fn_8007698C(void);
-asm void fn_80076CD4(void);
+asm void AvDispTraverseMaterialCache(void);
 asm void fn_80077240(void);
 asm void fn_80077384(void);
 asm void fn_80077488(void);
@@ -113,11 +113,11 @@ asm void fn_800775EC(void);
 asm void fn_80077654(void);
 asm void fn_80077714(void);
 asm void AvDispInitModel(void);
-asm void fn_80077848(void);
-asm void fn_8007785C(void);
+asm void AvDispClearMatrixStack(void);
+asm void AvDispAllocMatrixStack(void);
 asm void fn_80077A18(void);
 asm void fn_80077A20(void);
-asm void fn_80077AD0(void);
+asm void AvDispGetModelMatrices(void);
 asm void AvDispSetAmbient(void);
 asm void avdispWarnNotEffectiveModel(void);
 asm void avdispWarnNotSkinningModel(void);
@@ -130,7 +130,7 @@ asm void fn_80077E7C(void);
 asm void fn_80077F8C(void);
 asm void fn_800780A4(void);
 asm void fn_800781B8(void);
-asm void fn_80078344(void);
+asm void GXWriteFifoByte(void);
 asm void fn_80078360(void);
 #pragma push
 #pragma force_active on
@@ -148,11 +148,11 @@ asm void fn_80074D88(void)
     lwz r0, -0x766c(r13)
     cmplwi r0, 0
     beq _80075068
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lwz r3, -0x76c0(r13)
     li r4, 0x1e
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     lfs f0, -0x79c0(r2)
     lis r6, -0x2000
     lwz r3, -0x76c0(r13)
@@ -168,8 +168,8 @@ asm void fn_80074D88(void)
     stfs f0, 0x1c(r6)
     stfs f1, 0x2c(r6)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006D758
+    bl GXWritePrimitiveFifo
+    bl QuatNormalizeCompare
     lis     r3, lbl_8019F008@ha
     lfs f1, -0x79b4(r2)
     addi r6, r3, lbl_8019F008@l
@@ -189,8 +189,8 @@ asm void fn_80074D88(void)
     lwz r3, -0x76c0(r13)
     stfs f1, 0x18(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006D758
+    bl GXWritePrimitiveFifo
+    bl QuatNormalizeCompare
     lfs f0, -0x79b4(r2)
     li r4, 0x49
     lwz r3, -0x76c0(r13)
@@ -203,12 +203,12 @@ asm void fn_80074D88(void)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x18(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     lis     r3, lbl_8019F158@ha
     lwz r4, 0xc(r31)
     addi r3, r3, lbl_8019F158@l
-    bl fn_80073778
+    bl ModelCacheMaterialParams
     lwz r3, 0x10(r31)
     lwz r4, 4(r31)
     lwz r5, 0xc(r31)
@@ -219,7 +219,7 @@ asm void fn_80074D88(void)
     li r6, 0x2d
     li r7, 0
     li r8, 0x49
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lfs f1, -0x79c0(r2)
     addi r4, r1, 0x14
     lfs f3, -0x7674(r13)
@@ -262,26 +262,26 @@ asm void fn_80074D88(void)
     addi r0, r4, 1
     stw r0, 0xc(r31)
     lwz r4, 0xc(r31)
-    bl fn_80073778
+    bl ModelCacheMaterialParams
     lwz r3, 4(r31)
     li r4, 0
     li r5, 0
     li r6, 0x1e
     li r7, 0
     li r8, 0x4c
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r0, -0x7670(r13)
     addi r4, r1, 0x10
     li r3, 1
     stw r0, 0x10(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r3, 0(r31)
     li r4, 0xd
-    bl fn_800735C8
+    bl GXCachedSetTevSwapTable
     lwz r3, 0(r31)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r31)
     li r6, 4
     lwz r4, 4(r31)
@@ -412,7 +412,7 @@ _80075134:
     stb r0, 0x12(r1)
     lwz r0, 0x10(r1)
     stw r0, 0xc(r1)
-    bl fn_80072614
+    bl GXSetMatrixIndexB
     cmpwi r31, 0
     beq _800751D0
     lbz r4, 4(r30)
@@ -443,7 +443,7 @@ _800751E0:
     stb r0, 0x17(r1)
     lwz r0, 0x14(r1)
     stw r0, 8(r1)
-    bl fn_800725DC
+    bl GXSetMatrixIndexA
     psq_l f31, 0x48(r1), 0, 0
     lwz r0, 0x54(r1)
     lfd f31, 0x40(r1)
@@ -454,7 +454,7 @@ _800751E0:
     blr
 }
 
-asm void fn_80075240(void)
+asm void AvDispSetupModel(void)
 {
     nofralloc
     stwu r1, -0x50(r1)
@@ -489,7 +489,7 @@ asm void fn_80075240(void)
     addi r3, r31, 0x138
     li r4, 0x21
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     lfs f1, -0x79c0(r2)
     li r6, -1
     lfs f0, -0x79b8(r2)
@@ -505,7 +505,7 @@ asm void fn_80075240(void)
     stw r5, 0x10c(r31)
     stw r4, 0x110(r31)
     stw r0, 0x114(r31)
-    bl fn_8006D668
+    bl PSVecNormalize3
     lfs f0, -0x79b8(r2)
     li r6, 1
     li r0, 0
@@ -540,7 +540,7 @@ asm void fn_80075240(void)
     li r8, 0
     li r9, 0
     li r10, 0
-    bl fn_80035C50
+    bl GXInitTexObj
     lfs f1, -0x79c0(r2)
     addi r3, r31, 0x1c0
     li r4, 1
@@ -668,7 +668,7 @@ _800753F0:
     li r8, 2
     li r9, 2
     li r10, 0
-    bl fn_80035C50
+    bl GXInitTexObj
     lfs f1, -0x79c0(r2)
     addi r3, r31, 0x118
     li r4, 3
@@ -689,51 +689,51 @@ _800753F0:
     li r6, 0
     stw r0, -0x7670(r13)
     stfs f0, -0x7674(r13)
-    bl fn_800728A8
+    bl LightCtrl_SetCachedColor_1C
     li r3, 0
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 3
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     li r3, 1
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 0
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     li r3, 2
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 1
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     li r3, 3
     li r4, 0
     li r5, 1
     li r6, 2
     li r7, 2
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     lwz r0, 0x1c(r1)
     addi r4, r1, 0x14
     li r3, 0
     stw r0, 0x14(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r0, 0x1c(r1)
     addi r4, r1, 0x10
     li r3, 1
     stw r0, 0x10(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r0, 0x1c(r1)
     addi r4, r1, 0xc
     li r3, 2
     stw r0, 0xc(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r0, 0x1c(r1)
     addi r4, r1, 8
     li r3, 3
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     li r0, 0
     stw r0, -0x7680(r13)
     stw r0, -0x7668(r13)
@@ -746,7 +746,7 @@ _800753F0:
     blr
 }
 
-asm void fn_800756B0(void)
+asm void ModelDrawCachedMaterialCmds(void)
 {
     nofralloc
     stwu r1, -0x30(r1)
@@ -771,13 +771,13 @@ _800756EC:
     addi r3, r31, 0x20
     li r4, 0x24
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     b _8007571C
 _8007570C:
     addi r3, r31, 0x138
     li r4, 0x24
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
 _8007571C:
     addi r28, r31, 0xe0
     addi r26, r31, 0x50
@@ -790,13 +790,13 @@ _8007572C:
     mr r3, r26
     mr r4, r27
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
     b _8007575C
 _8007574C:
     mr r4, r27
     addi r3, r31, 0x138
     li r5, 0
-    bl fn_80038D34
+    bl GXWritePrimitiveFifo
 _8007575C:
     addi r25, r25, 1
     addi r27, r27, 3
@@ -829,7 +829,7 @@ _8007575C:
     addi r4, r1, 0xc
     li r3, 2
     stw r0, 0xc(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
 _800757DC:
     lwz r0, -0x763c(r13)
     cmpwi r0, 0
@@ -838,7 +838,7 @@ _800757DC:
     addi r4, r1, 8
     li r3, 3
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
 _800757FC:
     addi r5, r31, 0x41e0
     li r3, 4
@@ -863,7 +863,7 @@ _80075840:
     li r3, 1
     lwz r5, 0x20(r5)
     li r6, 0
-    bl fn_800728A8
+    bl LightCtrl_SetCachedColor_1C
     lwz r0, -0x7678(r13)
     lis r5, 1
     addi r4, r31, 0x41e0
@@ -904,7 +904,7 @@ _800758CC:
 _800758E4:
     addi r3, r31, 0x41e0
     addi r3, r3, 0x50
-    bl fn_8006D668
+    bl PSVecNormalize3
     addi r11, r1, 0x30
     bl _restgpr_25
     lwz r0, 0x34(r1)
@@ -1012,12 +1012,12 @@ _80075A58:
     li r5, 0
     li r6, 4
     li r7, 0
-    bl fn_8007264C
+    bl LightCtrl_SetCachedFog
     mr r3, r30
     mr r5, r31
     addi r4, r1, 0x54
     addi r6, r1, 8
-    bl fn_80076CD4
+    bl AvDispTraverseMaterialCache
     cmpwi r3, 0
     bne _80075A9C
     mr r3, r30
@@ -1122,16 +1122,16 @@ _80075BF8:
     stw r0, 0x54(r1)
 _80075C04:
     li r3, 1
-    bl fn_80074788
+    bl GXSetChanAmbColorCached
     lwz r0, 0x54(r1)
     clrlwi r3, r0, 0x18
-    bl fn_80073678
+    bl ModelSetCachedNumTexGens
     lwz r0, 0x58(r1)
     clrlwi r3, r0, 0x18
-    bl fn_80074660
+    bl GXSetNumTexGensCached
     lwz r0, 0x64(r1)
     clrlwi r3, r0, 0x18
-    bl fn_80073898
+    bl ModelSetCachedState_840
     mr r3, r30
     bl fn_80075C78
     li r4, 0
@@ -1202,7 +1202,7 @@ _80075D08:
     mr r5, r29
     li r3, 1
     li r6, 0
-    bl fn_800728A8
+    bl LightCtrl_SetCachedColor_1C
     lis     r3, lbl_801A3220@ha
     stw r30, 0x1c(r31)
     addi r3, r3, lbl_801A3220@l
@@ -1228,11 +1228,11 @@ asm void fn_80075D48(void)
     stw r30, 8(r1)
     mr r30, r3
     lwz r3, 0(r3)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r30)
     li r6, 4
     lwz r4, 4(r30)
@@ -1327,11 +1327,11 @@ _80075E68:
     addi r0, r3, 1
     stw r0, 0(r30)
     lwz r3, 0(r30)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r30)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r30)
     li r6, 0xff
     lwz r4, 4(r30)
@@ -1444,7 +1444,7 @@ _80076054:
 _8007608C:
     lwz r3, 0(r30)
     li r4, 0
-    bl fn_80073620
+    bl ModelSetCachedState_6B0
     lwz r3, 0(r30)
     li r4, 7
     li r5, 7
@@ -1494,7 +1494,7 @@ asm void fn_80076134(void)
     stwu r1, -0x10(r1)
     mflr r0
     stw r0, 0x14(r1)
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1505,19 +1505,19 @@ asm void fn_80076134(void)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     lis     r3, lbl_801A3220@ha
     li r0, 1
     addi r3, r3, lbl_801A3220@l
     stw r0, 0x3c(r3)
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lis     r4, lbl_801A3220@ha
     lis     r3, lbl_8015AD10@ha
     addi r4, r4, lbl_801A3220@l
     addi r3, r3, lbl_8015AD10@l
     addi r4, r4, 0x50
-    bl fn_8006F120
+    bl PSMTXLookAtNoUp
     lfs f1, -0x79b4(r2)
     lwz r3, -0x76c0(r13)
     lfs f4, -0x79a4(r2)
@@ -1550,8 +1550,8 @@ asm void fn_80076134(void)
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     lwz r0, 0x14(r1)
     mtlr r0
     addi r1, r1, 0x10
@@ -1571,17 +1571,17 @@ asm void fn_80076238(void)
     lwz r3, 0(r3)
     mr r29, r5
     mr r30, r6
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r27)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lis     r3, lbl_801A3220@ha
     addi r31, r3, lbl_801A3220@l
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _800762C4
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1592,8 +1592,8 @@ asm void fn_80076238(void)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x3c(r31)
 _800762C4:
@@ -1602,13 +1602,13 @@ _800762C4:
     lwz r0, 0x40(r31)
     cmpwi r0, 0
     bne _80076384
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lis     r4, lbl_801A3220@ha
     lis     r3, lbl_8015AD1C@ha
     addi r4, r4, lbl_801A3220@l
     addi r3, r3, lbl_8015AD1C@l
     addi r4, r4, 0x50
-    bl fn_8006F120
+    bl PSMTXLookAtNoUp
     lfs f1, -0x79b4(r2)
     lwz r3, -0x76c0(r13)
     lfs f4, -0x79a4(r2)
@@ -1641,8 +1641,8 @@ _800762C4:
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x40(r31)
 _80076384:
@@ -1659,17 +1659,17 @@ _80076384:
     addi r4, r1, 8
     li r3, 0
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r3, 0(r27)
     li r4, 0xc
-    bl fn_800735C8
+    bl GXCachedSetTevSwapTable
     lwz r3, 4(r27)
     li r4, 0
     li r5, 1
     li r6, 0x1e
     li r7, 1
     li r8, 0x40
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     cmpwi r30, 0
     beq _80076408
     lwz r3, 0(r27)
@@ -1735,17 +1735,17 @@ asm void fn_800764A0(void)
     stw r28, 0x10(r1)
     mr r28, r3
     lwz r3, 0(r3)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lis     r3, lbl_801A3220@ha
     addi r31, r3, lbl_801A3220@l
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _80076530
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -1756,8 +1756,8 @@ asm void fn_800764A0(void)
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x3c(r31)
 _80076530:
@@ -1766,13 +1766,13 @@ _80076530:
     lwz r0, 0x40(r31)
     cmpwi r0, 0
     bne _800765F0
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lis     r4, lbl_801A3220@ha
     lis     r3, lbl_8015AD28@ha
     addi r4, r4, lbl_801A3220@l
     addi r3, r3, lbl_8015AD28@l
     addi r4, r4, 0x50
-    bl fn_8006F120
+    bl PSMTXLookAtNoUp
     lfs f1, -0x79b4(r2)
     lwz r3, -0x76c0(r13)
     lfs f4, -0x79a4(r2)
@@ -1805,8 +1805,8 @@ _80076530:
     lwz r3, -0x76c0(r13)
     li r4, 0x40
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x40(r31)
 _800765F0:
@@ -1823,17 +1823,17 @@ _800765F0:
     addi r4, r1, 8
     li r3, 0
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     lwz r3, 0(r28)
     li r4, 0xc
-    bl fn_800735C8
+    bl GXCachedSetTevSwapTable
     lwz r3, 4(r28)
     li r4, 0
     li r5, 1
     li r6, 0x1e
     li r7, 1
     li r8, 0x40
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r3, 0(r28)
     li r4, 0xf
     li r5, 8
@@ -1867,11 +1867,11 @@ _800765F0:
     addi r0, r3, 1
     stw r0, 4(r28)
     lwz r3, 0(r28)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 0(r28)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r28)
     li r4, 0xff
     li r5, 0xff
@@ -1916,7 +1916,7 @@ _800765F0:
     blr
 }
 
-asm void fn_80076790(void)
+asm void ModelBlendMatrixPush(void)
 {
     nofralloc
     stwu r1, -0x70(r1)
@@ -1930,7 +1930,7 @@ asm void fn_80076790(void)
     stw r4, 0x2c(r1)
     stw r3, 0x30(r1)
     stw r0, 0x34(r1)
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lis     r3, lbl_801A3220@ha
     lis     r6, lbl_8019F14C@ha
     addi r4, r3, lbl_801A3220@l
@@ -1979,7 +1979,7 @@ asm void fn_80076790(void)
     stfs f2, 8(r1)
     stfs f1, 0xc(r1)
     stfs f0, 0x10(r1)
-    bl fn_8006F1F0
+    bl PSMTXReflect
     addi r3, r1, 0x38
     bl fn_8006DB74
     lfs f1, -0x79b4(r2)
@@ -2014,8 +2014,8 @@ asm void fn_80076790(void)
     lwz r3, -0x76c0(r13)
     li r4, 0x43
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006D758
+    bl GXWritePrimitiveFifo
+    bl QuatNormalizeCompare
     lfs f2, -0x79c0(r2)
     addi r3, r1, 0x38
     lwz r4, -0x76c0(r13)
@@ -2036,8 +2036,8 @@ asm void fn_80076790(void)
     lwz r3, -0x76c0(r13)
     li r4, 0x46
     li r5, 0
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     lis     r3, lbl_801A3220@ha
     li r0, 1
     addi r3, r3, lbl_801A3220@l
@@ -2119,7 +2119,7 @@ _800769FC:
     stb r0, 0xe(r1)
     lwz r0, 0xc(r1)
     stw r0, 8(r1)
-    bl fn_800736C0
+    bl ModelSetCachedTex_704
     li r0, 1
     stw r0, 0x4c(r31)
 _80076AA4:
@@ -2128,7 +2128,7 @@ _80076AA4:
     lwz r0, 0x3c(r31)
     cmpwi r0, 0
     bne _80076AF4
-    bl fn_8006DAEC
+    bl mtx_gpstack_push
     lfs f0, -0x79c0(r2)
     li r4, 0x1e
     lwz r3, -0x76c0(r13)
@@ -2139,8 +2139,8 @@ _80076AA4:
     lwz r3, -0x76c0(r13)
     stfs f0, 0x2c(r3)
     lwz r3, -0x76c0(r13)
-    bl fn_80038D34
-    bl fn_8006DB30
+    bl GXWritePrimitiveFifo
+    bl mtx_gpstack_pop
     li r0, 1
     stw r0, 0x3c(r31)
 _80076AF4:
@@ -2152,26 +2152,26 @@ _80076AF4:
     lis     r3, lbl_8019F200@ha
     li r4, 0
     addi r3, r3, lbl_8019F200@l
-    bl fn_80073778
-    bl fn_80076790
+    bl ModelCacheMaterialParams
+    bl ModelBlendMatrixPush
 _80076B1C:
     lwz r31, 0(r29)
     mr r3, r31
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     mr r3, r31
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     mr r3, r31
     li r4, 0xd
-    bl fn_800735C8
+    bl GXCachedSetTevSwapTable
     lwz r3, 4(r29)
     li r4, 0
     li r5, 1
     li r6, 0x1e
     li r7, 1
     li r8, 0x46
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r4, 4(r29)
     mr r3, r31
     li r5, 0
@@ -2204,14 +2204,14 @@ _80076B1C:
     li r8, 3
     bl ModelSetCachedParam_430
     addi r3, r31, 1
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     addi r3, r31, 1
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     addi r3, r31, 1
     li r4, 0xd
-    bl fn_800735C8
+    bl GXCachedSetTevSwapTable
     lwz r3, 4(r29)
     li r4, 0
     li r5, 1
@@ -2219,7 +2219,7 @@ _80076B1C:
     addi r3, r3, 1
     li r7, 1
     li r8, 0x43
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r4, 4(r29)
     addi r3, r31, 1
     lwz r5, 0xc(r29)
@@ -2267,7 +2267,7 @@ _80076B1C:
     blr
 }
 
-asm void fn_80076CD4(void)
+asm void AvDispTraverseMaterialCache(void)
 {
     nofralloc
     stwu r1, -0x40(r1)
@@ -2308,7 +2308,7 @@ _80076D54:
     cmplwi r3, 0
     beq _80077210
     lwz r4, 0xc(r19)
-    bl fn_80073778
+    bl ModelCacheMaterialParams
     lhz r0, 0(r26)
     sth r0, 0(r24)
 _80076D70:
@@ -2333,7 +2333,7 @@ _80076D70:
     addi r6, r6, 0x30
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     b _80076E08
 _80076DCC:
     lwz r3, 4(r19)
@@ -2342,7 +2342,7 @@ _80076DCC:
     li r6, 0x24
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     b _80076E08
 _80076DEC:
     lwz r3, 4(r19)
@@ -2351,7 +2351,7 @@ _80076DEC:
     li r6, 0x3c
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
 _80076E08:
     mr r3, r19
     mr r4, r21
@@ -2362,7 +2362,7 @@ _80076E18:
     beq _80076FD0
     lwz r25, 0(r27)
     lwz r3, 0(r19)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     rlwinm r3, r25, 0, 0xc, 0xd
     lis r0, 8
     cmpw r3, r0
@@ -2383,11 +2383,11 @@ _80076E60:
     li r5, 1
     li r6, 2
     li r7, 1
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     b _80076EF4
 _80076E8C:
     li r3, 2
@@ -2395,11 +2395,11 @@ _80076E8C:
     li r5, 1
     li r6, 2
     li r7, 2
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     b _80076EF4
 _80076EB8:
     li r3, 2
@@ -2407,17 +2407,17 @@ _80076EB8:
     li r5, 1
     li r6, 2
     li r7, 3
-    bl fn_800729B0
+    bl LightCtrl_SetCachedParam_2C
     lwz r3, 0(r19)
     li r4, 0
     li r5, 2
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     b _80076EF4
 _80076EE4:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 1
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
 _80076EF4:
     rlwinm. r0, r25, 0, 0xe, 0xe
     beq _80076F1C
@@ -2427,7 +2427,7 @@ _80076EF4:
     li r6, 0x24
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     b _80076F38
 _80076F1C:
     lwz r3, 4(r19)
@@ -2436,7 +2436,7 @@ _80076F1C:
     li r6, 0x3c
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
 _80076F38:
     lwz r3, 0(r19)
     li r6, 4
@@ -2486,16 +2486,16 @@ _80076FD0:
     addi r25, r6, 0xc
     li r6, 4
     li r7, 0
-    bl fn_8007264C
+    bl LightCtrl_SetCachedFog
     lwz r3, 0(r19)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 4(r19)
     mr r5, r29
     li r4, 1
     li r6, 0x3c
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r3, 0(r19)
     li r6, 4
     lwz r4, 4(r19)
@@ -2504,7 +2504,7 @@ _80076FD0:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r19)
     li r4, 8
     lwz r7, 8(r21)
@@ -2538,14 +2538,14 @@ _80076FD0:
     addi r0, r3, 1
     stw r0, 4(r19)
     lwz r3, 0(r19)
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     lwz r3, 4(r19)
     mr r5, r25
     li r4, 2
     li r6, 0x3c
     li r7, 0
     li r8, 0x7d
-    bl fn_800745A4
+    bl ModelSetCachedPair5_B28
     lwz r3, 0(r19)
     li r6, 0xff
     lwz r4, 4(r19)
@@ -2554,7 +2554,7 @@ _80076FD0:
     lwz r3, 0(r19)
     li r4, 0
     li r5, 0
-    bl fn_80072AB0
+    bl LightCtrl_SetCachedPair_6C
     lwz r3, 0(r19)
     li r4, 8
     li r5, 0xf
@@ -2766,7 +2766,7 @@ _800773E8:
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     lwz r7, -0x764c(r13)
     li r3, 0
     lwz r9, -0x765c(r13)
@@ -2774,7 +2774,7 @@ _800773E8:
     li r5, 0
     li r6, 1
     li r8, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     b _80077478
 _8007741C:
     lis     r3, lbl_801A3220@ha
@@ -2791,7 +2791,7 @@ _8007741C:
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     lwz r7, -0x764c(r13)
     li r3, 0
     lwz r9, -0x765c(r13)
@@ -2799,7 +2799,7 @@ _8007741C:
     li r5, 0
     li r6, 0
     li r8, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
 _80077478:
     lwz r0, 0x14(r1)
     mtlr r0
@@ -2838,7 +2838,7 @@ asm void fn_80077488(void)
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     b _800775D8
 _80077500:
     li r3, 2
@@ -2848,7 +2848,7 @@ _80077500:
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     li r3, 0
     li r4, 0
     li r5, 1
@@ -2856,7 +2856,7 @@ _80077500:
     li r7, 0
     li r8, 0
     li r9, 2
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     b _800775D8
 _80077544:
     lis     r4, lbl_801A3220@ha
@@ -2893,7 +2893,7 @@ _80077578:
     stb r0, 0xf(r1)
     lwz r0, 0xc(r1)
     stw r0, 8(r1)
-    bl fn_800371F8
+    bl __GXSetTexRegion
     li r3, 2
     li r0, 1
     stw r3, 8(r31)
@@ -2947,12 +2947,12 @@ asm void fn_80077654(void)
     stw r0, 0x14(r1)
     stw r31, 0xc(r1)
     mr r31, r3
-    bl fn_800735C8
+    bl GXCachedSetTevSwapTable
     mr r3, r31
     li r4, 0x1e
-    bl fn_80073620
+    bl ModelSetCachedState_6B0
     mr r3, r31
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     mr r3, r31
     li r4, 0xff
     li r5, 0xff
@@ -3000,12 +3000,12 @@ asm void fn_80077714(void)
     stw r0, 0x14(r1)
     stw r31, 0xc(r1)
     mr r31, r3
-    bl fn_800735C8
+    bl GXCachedSetTevSwapTable
     mr r3, r31
     li r4, 0x1f
-    bl fn_80073620
+    bl ModelSetCachedState_6B0
     mr r3, r31
-    bl fn_80073C6C
+    bl ModelClearCacheSlot_B28
     mr r3, r31
     li r4, 0xff
     li r5, 0xff
@@ -3050,7 +3050,7 @@ asm void AvDispInitModel(void)
     stwu r1, -0x10(r1)
     mflr r0
     stw r0, 0x14(r1)
-    bl fn_80072778
+    bl LightCtrl_InitChannels4
     lfs f1, -0x7998(r2)
     lis     r3, lbl_8019F130@ha
     addi r3, r3, lbl_8019F130@l
@@ -3058,18 +3058,18 @@ asm void AvDispInitModel(void)
     stfs f1, 0xc(r3)
     fmr f3, f1
     fmr f4, f1
-    bl fn_80074A8C
+    bl GXColorClampScale
     lfs f1, -0x7994(r2)
     fmr f2, f1
     fmr f3, f1
     fmr f4, f1
-    bl fn_80074BC4
+    bl GXColorScale
     li r0, 0
     stw r0, -0x7630(r13)
     stw r0, -0x7628(r13)
     stw r0, -0x762c(r13)
-    bl fn_80075240
-    bl fn_80077848
+    bl AvDispSetupModel
+    bl AvDispClearMatrixStack
     bl fn_80070E00
     bl fn_80070D94
     lwz r0, 0x14(r1)
@@ -3078,7 +3078,7 @@ asm void AvDispInitModel(void)
     blr
 }
 
-asm void fn_80077848(void)
+asm void AvDispClearMatrixStack(void)
 {
     nofralloc
     li r0, 0
@@ -3088,7 +3088,7 @@ asm void fn_80077848(void)
     blr
 }
 
-asm void fn_8007785C(void)
+asm void AvDispAllocMatrixStack(void)
 {
     nofralloc
     stwu r1, -0x30(r1)
@@ -3271,7 +3271,7 @@ _80077AB4:
     blr
 }
 
-asm void fn_80077AD0(void)
+asm void AvDispGetModelMatrices(void)
 {
     nofralloc
     li r7, 0
@@ -3526,7 +3526,7 @@ _80077DB4:
     srwi r6, r0, 0x1f
     clrlwi r5, r5, 0x1b
     clrlwi r7, r7, 0x18
-    bl fn_80035A2C
+    bl __GXGetTexBufferSize
     add r29, r29, r3
 _80077DDC:
     addi r31, r31, 0x10
@@ -3566,7 +3566,7 @@ _80077E40:
     cmplwi r0, 0
     bne _80077E58
     mr r4, r31
-    bl fn_800756B0
+    bl ModelDrawCachedMaterialCmds
 _80077E58:
     mr r3, r31
     mr r4, r30
@@ -3604,7 +3604,7 @@ _80077EBC:
     rlwinm. r0, r3, 0, 0x1d, 0x1d
     beq _80077ED8
     mr r3, r31
-    bl fn_80078C28
+    bl ModelUploadLights
     b _80077EF0
 _80077ED8:
     rlwinm. r0, r3, 0, 0x1c, 0x1c
@@ -3631,7 +3631,7 @@ _80077F20:
     mr r3, r31
     mr r4, r30
     mr r5, r29
-    bl fn_800789D8
+    bl ModelLoadSkinMatrices
     mr r30, r3
     addi r28, r28, 1
 _80077F38:
@@ -3648,7 +3648,7 @@ _80077F4C:
     stw r0, 4(r31)
     lwz r0, 4(r31)
     rlwinm r3, r0, 0x1e, 0x1f, 0x1f
-    bl fn_80078CDC
+    bl ModelResetFogState
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -3684,7 +3684,7 @@ _80077FCC:
     rlwinm. r0, r3, 0, 0x1d, 0x1d
     beq _80077FE8
     mr r3, r31
-    bl fn_80078C28
+    bl ModelUploadLights
     b _80078000
 _80077FE8:
     rlwinm. r0, r3, 0, 0x1c, 0x1c
@@ -3699,7 +3699,7 @@ _80078000:
     bne _80078018
     mr r3, r31
     mr r4, r30
-    bl fn_800756B0
+    bl ModelDrawCachedMaterialCmds
 _80078018:
     lwz r0, 4(r31)
     rlwinm. r0, r0, 0, 0x1b, 0x1c
@@ -3716,7 +3716,7 @@ _80078040:
     mr r3, r31
     mr r4, r30
     mr r5, r29
-    bl fn_800789D8
+    bl ModelLoadSkinMatrices
     mr r30, r3
     addi r28, r28, 1
 _80078058:
@@ -3731,7 +3731,7 @@ _8007806C:
     stw r0, 4(r31)
     lwz r0, 4(r31)
     rlwinm r3, r0, 0x1e, 0x1f, 0x1f
-    bl fn_80078CDC
+    bl ModelResetFogState
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -3767,7 +3767,7 @@ _800780E4:
     rlwinm. r0, r3, 0, 0x1d, 0x1d
     beq _80078100
     mr r3, r28
-    bl fn_80078C28
+    bl ModelUploadLights
     b _80078118
 _80078100:
     rlwinm. r0, r3, 0, 0x1c, 0x1c
@@ -3782,7 +3782,7 @@ _80078118:
     bne _80078130
     mr r3, r28
     mr r4, r31
-    bl fn_800756B0
+    bl ModelDrawCachedMaterialCmds
 _80078130:
     lwz r0, 4(r28)
     rlwinm. r0, r0, 0, 0x1b, 0x1c
@@ -3800,7 +3800,7 @@ _8007815C:
     mr r3, r28
     mr r4, r31
     mr r5, r30
-    bl fn_800789D8
+    bl ModelLoadSkinMatrices
     mr r31, r3
     addi r29, r29, 1
 _80078174:
@@ -3813,7 +3813,7 @@ _80078180:
     stw r0, 4(r28)
     lwz r0, 4(r28)
     rlwinm r3, r0, 0x1e, 0x1f, 0x1f
-    bl fn_80078CDC
+    bl ModelResetFogState
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -3849,7 +3849,7 @@ _800781F8:
     rlwinm. r0, r3, 0, 0x1d, 0x1d
     beq _80078214
     mr r3, r29
-    bl fn_80078C28
+    bl ModelUploadLights
     b _8007822C
 _80078214:
     rlwinm. r0, r3, 0, 0x1c, 0x1c
@@ -3864,7 +3864,7 @@ _8007822C:
     bne _80078244
     mr r3, r29
     mr r4, r31
-    bl fn_800756B0
+    bl ModelDrawCachedMaterialCmds
 _80078244:
     lwz r0, 4(r29)
     rlwinm. r0, r0, 0, 0x1b, 0x1c
@@ -3917,7 +3917,7 @@ _800782E8:
     mr r3, r29
     mr r4, r31
     mr r5, r30
-    bl fn_800789D8
+    bl ModelLoadSkinMatrices
     mr r31, r3
     addi r28, r28, 1
 _80078300:
@@ -3930,7 +3930,7 @@ _8007830C:
     stw r0, 4(r29)
     lwz r0, 4(r29)
     rlwinm r3, r0, 0x1e, 0x1f, 0x1f
-    bl fn_80078CDC
+    bl ModelResetFogState
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -3941,7 +3941,7 @@ _8007830C:
     blr
 }
 
-asm void fn_80078344(void)
+asm void GXWriteFifoByte(void)
 {
     nofralloc
     li r6, 0x40
@@ -3977,7 +3977,7 @@ asm void fn_80078360(void)
 _800783A8:
     lwz r3, 0x1c(r24)
     mr r29, r0
-    bl fn_8007245C
+    bl GXLoadMtxArray
     lwz r12, -0x7630(r13)
     cmplwi r12, 0
     beq _800783DC
@@ -4016,7 +4016,7 @@ _8007840C:
     beq _80078444
     lwz r3, 0x48(r31)
     lwz r4, 0x50(r31)
-    bl fn_80078344
+    bl GXWriteFifoByte
     b _800784FC
 _80078444:
     rlwinm. r0, r3, 0, 0x1a, 0x1a
@@ -4037,7 +4037,7 @@ _8007846C:
     mr r4, r28
     lwz r6, 0x28(r31)
     mr r5, r26
-    bl fn_80078944
+    bl GXWriteFifoWordPair
     lwz r0, 0x28(r31)
     slwi r0, r0, 1
     add r26, r26, r0
@@ -4047,7 +4047,7 @@ _8007849C:
     mr r4, r28
     lwz r6, 0x28(r31)
     mr r5, r26
-    bl fn_80078884
+    bl GXWriteFifoWord
     lwz r0, 0x28(r31)
     slwi r0, r0, 2
     add r26, r26, r0
@@ -4059,7 +4059,7 @@ _800784BC:
     stw r3, 0x50(r31)
     lwz r3, 0x48(r31)
     lwz r4, 0x50(r31)
-    bl fn_80078344
+    bl GXWriteFifoByte
     lwz r3, 0x48(r31)
     lwz r0, 0x50(r31)
     add r0, r3, r0

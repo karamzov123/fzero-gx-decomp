@@ -34,7 +34,7 @@ extern void OSSleepThread(void);
 extern void Yay0ReadyFlagUpdate(void);
 extern void __CARDGetFatBlock(void);
 extern void __CARDGetDirBlock(void);
-extern void fn_8002E0C4(void);
+extern void CARDUnmount(void);
 extern void memset(void);
 extern unsigned char __CARDBlock[544];
 extern unsigned char lbl_8012AA50[32];
@@ -457,11 +457,11 @@ asm void CARDOnReset(void)
     stwu	r1, -8(r1)
     bne     _8002abac
     li	r3, 0
-    bl      fn_8002E0C4
+    bl      CARDUnmount
     cmpwi	r3, -1
     beq     _8002aba4
     li	r3, 1
-    bl      fn_8002E0C4
+    bl      CARDUnmount
     cmpwi	r3, -1
     bne     _8002abac
 _8002aba4:

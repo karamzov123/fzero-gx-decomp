@@ -5,43 +5,43 @@ extern asm void OSPanic(void);
 extern asm void OSDisableInterrupts(void);
 extern asm void OSRestoreInterrupts(void);
 extern asm void OSGetTick(void);
-extern asm void fn_80013428(void);
-extern asm void fn_800137C4(void);
+extern asm void SITransferSync(void);
+extern asm void SIGetResponseSync(void);
 extern asm void fn_80013994(void);
-extern asm void fn_800139E8(void);
-extern asm void fn_80015EE8(void);
+extern asm void SISetInterruptMask(void);
+extern asm void MTXOrtho(void);
 extern asm void AXFreeVoice(void);
-extern asm void fn_80023168(void);
-extern asm void fn_80026D70(void);
-extern asm void fn_80028424(void);
+extern asm void AXSetVoiceType_cached(void);
+extern asm void axmix_device_ctrl_clear(void);
+extern asm void axmix_device_ctrl_unlink(void);
 extern asm void GXBegin(void);
-extern asm void fn_800371F8(void);
-extern asm void fn_80038C5C(void);
+extern asm void __GXSetTexRegion(void);
+extern asm void GXLoadMatIdxTripleToXF(void);
 extern asm void SndAllocBankEntry(void);
-extern asm void fn_8006D758(void);
-extern asm void fn_8007245C(void);
-extern asm void fn_80072864(void);
-extern asm void fn_800728A8(void);
-extern asm void fn_80072AB0(void);
+extern asm void QuatNormalizeCompare(void);
+extern asm void GXLoadMtxArray(void);
+extern asm void LightCtrl_SetCachedCullMode(void);
+extern asm void LightCtrl_SetCachedColor_1C(void);
+extern asm void LightCtrl_SetCachedPair_6C(void);
 extern asm void ModelSetCachedParam_F0(void);
 extern asm void ModelSetCachedParam_1F0(void);
 extern asm void ModelSetCachedParam_2F0(void);
 extern asm void ModelSetCachedParam_430(void);
 extern asm void ModelSetCachedMaterial_570(void);
-extern asm void fn_80073678(void);
-extern asm void fn_800737E4(void);
-extern asm void fn_80073898(void);
-extern asm void fn_80073C6C(void);
-extern asm void fn_80074660(void);
-extern asm void fn_80074788(void);
-extern asm void fn_800747D0(void);
-extern asm void fn_80074918(void);
-extern asm void fn_8007ED90(void);
-extern asm void fn_800883E8(void);
+extern asm void ModelSetCachedNumTexGens(void);
+extern asm void GXIntToFloatCopy(void);
+extern asm void ModelSetCachedState_840(void);
+extern asm void ModelClearCacheSlot_B28(void);
+extern asm void GXSetNumTexGensCached(void);
+extern asm void GXSetChanAmbColorCached(void);
+extern asm void LightCtrl_SetCachedRec_C30(void);
+extern asm void GXSetTexGenCached(void);
+extern asm void MSL_CharAttrLookup(void);
+extern asm void atan(void);
 extern asm void expf(void);
-extern asm void fn_80088598(void);
+extern asm void __msl_fp_helper(void);
 extern unsigned char ARCInitHandle_bad_archive_format_str[34];
-extern unsigned char lbl_801327AC[70];
+extern unsigned char arc_open_file_not_found_str[70];
 extern unsigned char lbl_801327F8[163944];
 extern unsigned char lbl_80199670[18720];
 extern unsigned char lbl_8019DF90[132];
@@ -49,9 +49,9 @@ extern unsigned char lbl_8019E014[128];
 extern unsigned char lbl_8019E094[128];
 extern unsigned char lbl_8019E114[44];
 
-asm void fn_80069AE0(void);
+asm void SndMaybeAllocBank(void);
 asm void fn_80069B10(void);
-asm void fn_80069CE4(void);
+asm void AvHeapReleaseById(void);
 asm void fn_80069FCC(void);
 asm void fn_8006A1F8(void);
 asm void ARCInitHandle(void);
@@ -86,7 +86,7 @@ asm void fn_8006BB74(void);
 asm void fn_8006BB9C(void);
 asm void fn_8006BBDC(void);
 asm void fn_8006BC1C(void);
-asm void fn_8006BC50(void);
+asm void Model_ClearCacheArray_F4(void);
 asm void fn_8006BC84(void);
 asm void fn_8006BCF8(void);
 asm void fn_8006BE0C(void);
@@ -109,7 +109,7 @@ asm void fn_8006CDFC(void);
 asm void fn_8006CE1C(void);
 asm void fn_8006CE44(void);
 
-asm void fn_80069AE0(void)
+asm void SndMaybeAllocBank(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -153,11 +153,11 @@ _80069b3c:
     bc      4, 2, _80069cb4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -169,7 +169,7 @@ _80069b3c:
     stwx	r5, r4, r0
     lwz	r0, -0x7740(r13)
     add	r3, r0, r3
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
     lwz	r3, -0x7740(r13)
     addi	r5, r29, 0x1408
     lbzx	r0, r3, r5
@@ -203,11 +203,11 @@ _80069bf4:
     bc      4, 2, _80069cb4
     lwz	r3, 0x1434(r3)
     li	r4, 0
-    bl      fn_80023168
+    bl      AXSetVoiceType_cached
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
-    bl      fn_80026D70
+    bl      axmix_device_ctrl_clear
     lwz	r3, -0x7740(r13)
     addi	r0, r29, 0x1434
     lwzx	r3, r3, r0
@@ -219,7 +219,7 @@ _80069bf4:
     stwx	r5, r4, r0
     lwz	r0, -0x7740(r13)
     add	r3, r0, r3
-    bl      fn_80028424
+    bl      axmix_device_ctrl_unlink
     lwz	r3, -0x7740(r13)
     addi	r5, r29, 0x1408
     lbzx	r0, r3, r5
@@ -253,7 +253,7 @@ _80069cb8:
     blr
 }
 
-asm void fn_80069CE4(void)
+asm void AvHeapReleaseById(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -819,9 +819,9 @@ asm void ARCOpen(void)
     addi	r4, r1, 0x14
     li	r5, 0x80
     bl      ARCGetEntryPath
-    lis     r3, lbl_801327AC@ha
+    lis     r3, arc_open_file_not_found_str@ha
     crxor	6, 6, 6
-    addi	r3, r3, lbl_801327AC@l
+    addi	r3, r3, arc_open_file_not_found_str@l
     addi	r4, r29, 0
     addi	r5, r1, 0x14
     bl      OSReport
@@ -962,12 +962,12 @@ _8006a678:
 _8006a68c:
     lbz	r3, 0(r21)
     addi	r21, r21, 1
-    bl      fn_8007ED90
+    bl      MSL_CharAttrLookup
     lbz	r0, 0(r22)
     addi	r23, r3, 0
     addi	r22, r22, 1
     mr	r3, r0
-    bl      fn_8007ED90
+    bl      MSL_CharAttrLookup
     cmpw	r3, r23
     bc      12, 2, _8006a6bc
     li	r0, 0
@@ -1691,7 +1691,7 @@ _8006afb4:
     addi	r27, r28, 0xc
     mr	r3, r29
     mr	r4, r27
-    bl      fn_800137C4
+    bl      SIGetResponseSync
     lbz	r0, 8(r27)
     extsb.	r0, r0
     bc      12, 2, _8006b00c
@@ -1840,10 +1840,10 @@ _8006b1bc:
     bl      fn_8006B048
     mr	r3, r27
     mr	r4, r30
-    bl      fn_80013428
+    bl      SITransferSync
     mr	r3, r27
     addi	r4, r28, 0xc
-    bl      fn_800137C4
+    bl      SIGetResponseSync
     addi	r27, r27, 1
     addi	r31, r31, 0x1248
     cmpwi	r27, 4
@@ -1881,7 +1881,7 @@ _8006b250:
     mr	r3, r29
     li	r4, 0x400
     li	r5, 0
-    bl      fn_800139E8
+    bl      SISetInterruptMask
     addi	r29, r29, 1
     addi	r31, r31, 0x1248
     cmpwi	r29, 4
@@ -1939,7 +1939,7 @@ _8006b314:
     lis     r4, fn_8006AA20@ha
     mr	r3, r28
     addi	r4, r4, fn_8006AA20@l
-    bl      fn_80013428
+    bl      SITransferSync
     cmpwi	r3, -1
     bc      12, 2, _8006b3d8
     mr	r3, r30
@@ -1948,7 +1948,7 @@ _8006b314:
     addi	r27, r30, 0xc
     mr	r3, r28
     mr	r4, r27
-    bl      fn_800137C4
+    bl      SIGetResponseSync
     lis     r3, lbl_80199670@ha
     addi	r0, r3, lbl_80199670@l
     add	r4, r0, r31
@@ -2027,7 +2027,7 @@ _8006b430:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     li	r3, 0
     stw	r0, 8(r31)
@@ -2075,7 +2075,7 @@ _8006b4a4:
     lbz	r0, 4(r29)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r29)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r29)
 _8006b4f8:
@@ -2156,7 +2156,7 @@ _8006b5bc:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b604:
@@ -2218,7 +2218,7 @@ _8006b684:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b6d0:
@@ -2275,7 +2275,7 @@ _8006b740:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b78c:
@@ -2332,7 +2332,7 @@ _8006b7fc:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b848:
@@ -2389,7 +2389,7 @@ _8006b8b8:
     lbz	r0, 4(r31)
     rlwimi	r0, r4, 6, 0x19, 0x19
     stb	r0, 4(r31)
-    bl      fn_8006BC50
+    bl      Model_ClearCacheArray_F4
     li	r0, -1
     stw	r0, 8(r31)
 _8006b904:
@@ -2466,7 +2466,7 @@ _8006b9b8:
     lfs	f2, -0x7acc(r2)
     fsubs	f1, f1, f3
     fmuls	f1, f1, f0
-    bl      fn_80088598
+    bl      __msl_fp_helper
     frsp	f2, f1
     lfs	f1, -0x7ac4(r2)
     lfs	f0, -0x7ac8(r2)
@@ -2483,7 +2483,7 @@ _8006ba04:
     lfs	f2, -0x7acc(r2)
     fsubs	f1, f1, f3
     fmuls	f1, f1, f0
-    bl      fn_80088598
+    bl      __msl_fp_helper
     frsp	f2, f1
     lfs	f1, -0x7ac4(r2)
     lfs	f0, -0x7ac8(r2)
@@ -2662,7 +2662,7 @@ _8006bc34:
     blr
 }
 
-asm void fn_8006BC50(void)
+asm void Model_ClearCacheArray_F4(void)
 {
     nofralloc
     li	r4, 0
@@ -2772,7 +2772,7 @@ _8006bd88:
     fsubs	f1, f1, f2
     fmuls	f1, f3, f1
     fmuls	f1, f1, f0
-    bl      fn_800883E8
+    bl      atan
     li	r0, 0x3f
     addi	r26, r26, 1
     divw	r0, r31, r0
@@ -3884,7 +3884,7 @@ _8006cc64:
     li	r5, 0
     lwz	r3, 0xf0(r3)
     lwz	r3, 0(r3)
-    bl      fn_800139E8
+    bl      SISetInterruptMask
     b       _8006ccb0
 _8006cc98:
     lwz	r3, 0(r28)
@@ -3892,7 +3892,7 @@ _8006cc98:
     li	r4, 0x600
     lwz	r3, 0xf0(r3)
     lwz	r3, 0(r3)
-    bl      fn_800139E8
+    bl      SISetInterruptMask
 _8006ccb0:
     mr	r3, r26
     lmw	r25, 0x14(r1)
@@ -3969,14 +3969,14 @@ asm void fn_8006CD50(void)
     fmr	f5, f1
     lfs	f2, -0x7720(r13)
     lfs	f4, -0x771c(r13)
-    bl      fn_80015EE8
+    bl      MTXOrtho
     addi	r3, r1, 8
     li	r4, 1
-    bl      fn_800737E4
-    bl      fn_8006D758
+    bl      GXIntToFloatCopy
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     lwz	r0, 0x54(r1)
     mtlr	r0
     addi	r1, r1, 0x50
@@ -3989,20 +3989,20 @@ asm void fn_8006CDA8(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     stw	r0, 0x14(r1)
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     lwz	r12, -0x7714(r13)
     cmplwi	r12, 0
     bc      12, 2, _8006cdd8
     mtctr	r12
     bctrl
 _8006cdd8:
-    bl      fn_8006D758
+    bl      QuatNormalizeCompare
     lwz	r3, -0x76c0(r13)
     li	r4, 0
-    bl      fn_80038C5C
+    bl      GXLoadMatIdxTripleToXF
     bl      fn_8006CE44
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -4051,17 +4051,17 @@ asm void fn_8006CE44(void)
     li	r3, 0
     li	r4, 7
     li	r5, 0
-    bl      fn_80074918
+    bl      GXSetTexGenCached
     li	r3, 1
-    bl      fn_80074788
+    bl      GXSetChanAmbColorCached
     li	r3, 0
-    bl      fn_80074660
+    bl      GXSetNumTexGensCached
     li	r3, 1
-    bl      fn_80073678
+    bl      ModelSetCachedNumTexGens
     li	r3, 0
-    bl      fn_80073898
+    bl      ModelSetCachedState_840
     li	r3, 0
-    bl      fn_80073C6C
+    bl      ModelClearCacheSlot_B28
     li	r3, 4
     li	r4, 0
     li	r5, 0
@@ -4069,11 +4069,11 @@ asm void fn_8006CE44(void)
     li	r7, 0
     li	r8, 2
     li	r9, 2
-    bl      fn_800747D0
+    bl      LightCtrl_SetCachedRec_C30
     li	r3, 0
     li	r4, 0
     li	r5, 0
-    bl      fn_80072AB0
+    bl      LightCtrl_SetCachedPair_6C
     li	r3, 0
     li	r4, 0xff
     li	r5, 0xff
@@ -4109,16 +4109,16 @@ asm void fn_8006CE44(void)
     li	r4, 4
     li	r5, 5
     li	r6, 0
-    bl      fn_800728A8
+    bl      LightCtrl_SetCachedColor_1C
     li	r3, 2
-    bl      fn_80072864
+    bl      LightCtrl_SetCachedCullMode
     li	r3, 0x200
-    bl      fn_8007245C
+    bl      GXLoadMtxArray
     lwz	r0, -0x7718(r13)
     addi	r4, r1, 8
     li	r3, 1
     stw	r0, 8(r1)
-    bl      fn_800371F8
+    bl      __GXSetTexRegion
     li	r3, 0x80
     li	r4, 7
     li	r5, 4

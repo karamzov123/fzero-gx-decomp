@@ -11,13 +11,13 @@ extern void CARDCheckExAsync(void);
 extern void CARDCheckAsync(void);
 extern void CARDCheck(void);
 extern void __CARDValidDevice(void);
-extern void fn_8002D77C(void);
+extern void CARDProbeEx(void);
 extern void DoMount(void);
 extern void __CARDMountCallback(void);
 extern void CARDMountAsync(void);
 extern void CARDMount(void);
 extern void DoUnmount(void);
-extern void fn_8002E0C4(void);
+extern void CARDUnmount(void);
 extern void FormatCallback(void);
 extern unsigned char __CARDBlock[544];
 extern void __CARDSyncCallback(int chn);
@@ -1163,7 +1163,7 @@ _8002d774:
     blr	
 }
 
-asm void fn_8002D77C(void)
+asm void CARDProbeEx(void)
 {
     nofralloc
     mflr	r0
@@ -1843,7 +1843,7 @@ _8002e09c:
     blr	
 }
 
-asm void fn_8002E0C4(void)
+asm void CARDUnmount(void)
 {
     nofralloc
     mflr	r0

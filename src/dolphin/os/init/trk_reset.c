@@ -6,7 +6,7 @@ extern void OSResetSystem(BOOL reset, u32 shutdown_flags, BOOL force_menu);
 #pragma push
 #pragma force_active on
 
-asm __declspec(section ".init") void fn_80005518(void)
+asm __declspec(section ".init") void gTRKInterruptVectorTableEnd(void)
 {
     nofralloc
     stwu    r1, -0x10(r1)

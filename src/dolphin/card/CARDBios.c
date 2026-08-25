@@ -13,7 +13,7 @@ extern void __CARDReadNintendoID(void);
 extern void __CARDReadStatus(void);
 extern void __CARDClearStatus(void);
 extern void TimeoutHandler(void);
-extern void fn_80029E78(void);
+extern void Retry(void);
 extern void UnlockedCallback(void);
 extern void __CARDStart(void);
 extern void UnlockedCallback(void);
@@ -174,7 +174,7 @@ _800299d0:
     stw	r0, 0xa8(r30)
     ble     _80029a00
     mr	r3, r31
-    bl      fn_80029E78
+    bl      Retry
     or.	r29, r3, r3
     blt     _80029a08
     b       _80029a30
@@ -519,7 +519,7 @@ _80029e60:
     blr	
 }
 
-asm void fn_80029E78(void)
+asm void Retry(void)
 {
     nofralloc
     mflr	r0
@@ -706,7 +706,7 @@ _8002a104:
     li	r0, 0
     stw	r0, 0xdc(r30)
     mr	r3, r31
-    bl      fn_80029E78
+    bl      Retry
     mr	r4, r3
 _8002a118:
     cmpwi	r4, 0

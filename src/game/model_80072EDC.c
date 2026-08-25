@@ -15,69 +15,69 @@ extern void _savegpr_23(void);
 extern void _savegpr_25(void);
 extern void _savegpr_26(void);
 extern void _savegpr_27(void);
-extern void fn_80033A7C(void);
-extern void fn_80033D4C(void);
-extern void fn_80034A5C(void);
-extern void fn_80034AEC(void);
-extern void fn_80034B7C(void);
-extern void fn_80034BB8(void);
-extern void fn_80034E64(void);
-extern void fn_8003591C(void);
-extern void fn_80035960(void);
-extern void fn_800360E4(void);
-extern void fn_800360F4(void);
-extern void fn_80036388(void);
-extern void fn_80036A28(void);
-extern void fn_80036AC4(void);
-extern void fn_80036C24(void);
+extern void GXSetTexCoordGen2(void);
+extern void GXSetNumTexGens(void);
+extern void __GXSetScissor_LT(void);
+extern void __GXSetScissor_RB(void);
+extern void __GXSetScissorBoxOffset(void);
+extern void __GXInitTexObjHW(void);
+extern void __GXSetBlendModePair(void);
+extern void __GXSetChanAmbColor(void);
+extern void __GXSetChanCtrl(void);
+extern void GXXFormSetupA(void);
+extern void GXXFormSetupB(void);
+extern void GXLoadTexObj(void);
+extern void __GXInitTexObj(void);
+extern void __GXInitTexObjLOD(void);
+extern void __GXInitTexCacheRegs(void);
 extern void fn_80036DA0(void);
 extern void fn_80036EB4(void);
-extern void fn_800370A0(void);
-extern void fn_800370E4(void);
+extern void GXWriteCachedParamF0(void);
+extern void GXWriteCachedParam1F0(void);
 extern void fn_80037128(void);
 extern void fn_80037190(void);
-extern void fn_800372E0(void);
-extern void fn_80037354(void);
-extern void fn_800373C0(void);
-extern void fn_800375F0(void);
-extern void fn_800377C8(void);
-extern void fn_80037BC0(void);
-extern void fn_80038F48(void);
-extern void fn_80072270(void);
-extern void fn_800794F0(void);
+extern void __GXSetChanMatColor(void);
+extern void __GXSetLightAttnEnable_A(void);
+extern void __GXSetLightAttnEnable_B(void);
+extern void GXSetChanCtrl(void);
+extern void __GXWriteMatColorRegs(void);
+extern void __GXWriteChanCtrlBitfields(void);
+extern void GXSetScissor(void);
+extern void GXComputeDeltaRatio(void);
+extern void memcpy_fast(void);
 extern void strncmp(void);
 extern void fn_8006DD14(void);
 extern unsigned char lbl_8019F040[240];
 asm void fn_80072EDC(void);
 asm void ModelSetCachedMaterial_570(void);
-asm void fn_800735C8(void);
-asm void fn_80073620(void);
-asm void fn_80073678(void);
-asm void fn_800736C0(void);
-asm void fn_80073778(void);
-asm void fn_800737E4(void);
-asm void fn_80073898(void);
+asm void GXCachedSetTevSwapTable(void);
+asm void ModelSetCachedState_6B0(void);
+asm void ModelSetCachedNumTexGens(void);
+asm void ModelSetCachedTex_704(void);
+asm void ModelCacheMaterialParams(void);
+asm void GXIntToFloatCopy(void);
+asm void ModelSetCachedState_840(void);
 asm void fn_800738E0(void);
 asm void fn_800739E0(void);
 asm void fn_80073A58(void);
 asm void fn_80073B50(void);
-asm void fn_80073C6C(void);
+asm void ModelClearCacheSlot_B28(void);
 asm void fn_80073D60(void);
 asm void fn_80073E8C(void);
 asm void fn_80074188(void);
-asm void fn_8007423C(void);
-asm void fn_80074300(void);
-asm void fn_800743C4(void);
-asm void fn_80074438(void);
-asm void fn_800744F8(void);
-asm void fn_800745A4(void);
-asm void fn_80074660(void);
-asm void fn_800746A8(void);
-asm void fn_80074718(void);
-asm void fn_80074788(void);
-asm void fn_800747D0(void);
-asm void fn_80074918(void);
-asm void fn_800749B0(void);
+asm void ModelSetCachedScissorLT_AFC(void);
+asm void ModelSetCachedScissorRB_B08(void);
+asm void ModelSetCachedScissorOffset_B04(void);
+asm void ModelSetCachedTexObjHW_B10(void);
+asm void ModelMatchCachedSlot_B20(void);
+asm void ModelSetCachedPair5_B28(void);
+asm void GXSetNumTexGensCached(void);
+asm void GXSetLineWidthCached(void);
+asm void GXSetPointSizeCached(void);
+asm void GXSetChanAmbColorCached(void);
+asm void LightCtrl_SetCachedRec_C30(void);
+asm void GXSetTexGenCached(void);
+asm void GXCopyMtxDirty(void);
 #pragma push
 #pragma force_active on
 
@@ -133,7 +133,7 @@ _80072F78:
     li r5, 8
     li r6, 9
     li r7, 0xf
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     stw r31, 0(r28)
     li r4, 8
     li r3, 9
@@ -163,7 +163,7 @@ _80072FE8:
     li r4, 7
     li r5, 7
     li r6, 7
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r0, 7
     stw r0, 0(r28)
     stw r0, 4(r28)
@@ -193,7 +193,7 @@ _80073058:
     li r4, 0xf
     li r5, 8
     li r7, 0xf
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     li r3, 0xf
     li r0, 8
     stw r3, 0(r28)
@@ -222,7 +222,7 @@ _800730C4:
     li r4, 7
     li r5, 4
     li r7, 7
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r3, 7
     li r0, 4
     stw r3, 0(r28)
@@ -253,7 +253,7 @@ _80073138:
     li r5, 0xf
     li r6, 0xf
     li r7, 8
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     li r3, 0xf
     li r0, 8
     stw r3, 0(r28)
@@ -282,7 +282,7 @@ _800731A4:
     li r5, 7
     li r6, 7
     li r7, 4
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r3, 7
     li r0, 4
     stw r3, 0(r28)
@@ -313,7 +313,7 @@ _80073218:
     li r4, 0xf
     li r5, 0xf
     li r6, 0xf
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     li r0, 0xf
     stw r0, 0(r28)
     stw r0, 4(r28)
@@ -341,7 +341,7 @@ _80073280:
     li r4, 7
     li r5, 7
     li r6, 7
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r0, 7
     stw r0, 0(r28)
     stw r0, 4(r28)
@@ -371,7 +371,7 @@ _800732F0:
     li r5, 0xf
     li r6, 8
     li r7, 8
-    bl fn_800370A0
+    bl GXWriteCachedParamF0
     stw r31, 0(r28)
     li r3, 0xf
     li r0, 8
@@ -400,7 +400,7 @@ _8007335C:
     li r4, 7
     li r5, 4
     li r7, 7
-    bl fn_800370E4
+    bl GXWriteCachedParam1F0
     li r3, 7
     li r0, 4
     stw r3, 0(r28)
@@ -515,7 +515,7 @@ _80073504:
     mr r4, r27
     mr r5, r28
     mr r6, r29
-    bl fn_800375F0
+    bl GXSetChanCtrl
     stw r27, 0(r31)
     li r3, 0xff
     li r0, 0
@@ -549,7 +549,7 @@ _80073584:
     mr r4, r27
     mr r5, r28
     mr r6, r29
-    bl fn_800375F0
+    bl GXSetChanCtrl
     stw r27, 0(r31)
     stw r28, 4(r31)
     stw r29, 8(r31)
@@ -566,7 +566,7 @@ _800735B0:
     blr
 }
 
-asm void fn_800735C8(void)
+asm void GXCachedSetTevSwapTable(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -581,7 +581,7 @@ asm void fn_800735C8(void)
     lwz r0, 0x670(r5)
     cmpw r0, r30
     beq _80073608
-    bl fn_80037354
+    bl __GXSetLightAttnEnable_A
     lwz r0, -0x7688(r13)
     add r3, r0, r31
     stw r30, 0x670(r3)
@@ -594,7 +594,7 @@ _80073608:
     blr
 }
 
-asm void fn_80073620(void)
+asm void ModelSetCachedState_6B0(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -609,7 +609,7 @@ asm void fn_80073620(void)
     lwz r0, 0x6b0(r5)
     cmpw r0, r30
     beq _80073660
-    bl fn_800373C0
+    bl __GXSetLightAttnEnable_B
     lwz r0, -0x7688(r13)
     add r3, r0, r31
     stw r30, 0x6b0(r3)
@@ -622,7 +622,7 @@ _80073660:
     blr
 }
 
-asm void fn_80073678(void)
+asm void ModelSetCachedNumTexGens(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -635,7 +635,7 @@ asm void fn_80073678(void)
     lbz r4, 0x6f0(r4)
     cmplw r4, r0
     beq _800736AC
-    bl fn_800377C8
+    bl __GXWriteMatColorRegs
     lwz r3, -0x7688(r13)
     stb r31, 0x6f0(r3)
 _800736AC:
@@ -646,7 +646,7 @@ _800736AC:
     blr
 }
 
-asm void fn_800736C0(void)
+asm void ModelSetCachedTex_704(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -681,7 +681,7 @@ _80073730:
     lwz r0, 0(r30)
     addi r4, r1, 8
     stw r0, 8(r1)
-    bl fn_800372E0
+    bl __GXSetChanMatColor
     lwz r3, -0x7688(r13)
     li r4, 0
     lwz r0, 0(r30)
@@ -699,7 +699,7 @@ _80073760:
     blr
 }
 
-asm void fn_80073778(void)
+asm void ModelCacheMaterialParams(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -714,14 +714,14 @@ asm void fn_80073778(void)
     lwz r0, -0x7688(r13)
     addi r31, r4, 0x720
     add r31, r0, r31
-    bl fn_800360E4
+    bl GXXFormSetupA
     sth r3, 0x20(r31)
     mr r3, r29
-    bl fn_800360F4
+    bl GXXFormSetupB
     sth r3, 0x22(r31)
     mr r3, r29
     mr r4, r30
-    bl fn_80036388
+    bl GXLoadTexObj
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -731,7 +731,7 @@ asm void fn_80073778(void)
     blr
 }
 
-asm void fn_800737E4(void)
+asm void GXIntToFloatCopy(void)
 {
     nofralloc
     stwu r1, -0x30(r1)
@@ -777,14 +777,14 @@ _80073850:
     stfs f0, 0x20(r1)
 _80073880:
     addi r3, r1, 8
-    bl fn_80072270
+    bl GXComputeDeltaRatio
     lwz r0, 0x34(r1)
     mtlr r0
     addi r1, r1, 0x30
     blr
 }
 
-asm void fn_80073898(void)
+asm void ModelSetCachedState_840(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -905,7 +905,7 @@ asm void fn_800739E0(void)
 _80073A28:
     mr r4, r29
     mr r5, r30
-    bl fn_80036C24
+    bl __GXInitTexCacheRegs
     stw r29, 0(r31)
     stw r30, 4(r31)
 _80073A3C:
@@ -973,11 +973,11 @@ _80073B0C:
     mr r3, r28
     mr r4, r29
     mr r5, r30
-    bl fn_80036AC4
+    bl __GXInitTexObjLOD
     mr r3, r31
     mr r4, r29
     li r5, 0x18
-    bl fn_800794F0
+    bl memcpy_fast
     stb r30, 0x18(r31)
 _80073B30:
     lwz r0, 0x24(r1)
@@ -1049,7 +1049,7 @@ _80073C08:
     mr r8, r26
     mr r9, r27
     mr r10, r28
-    bl fn_80036A28
+    bl __GXInitTexObj
     stw r22, 0(r31)
     stw r23, 4(r31)
     stw r24, 8(r31)
@@ -1068,7 +1068,7 @@ _80073C54:
     blr
 }
 
-asm void fn_80073C6C(void)
+asm void ModelClearCacheSlot_B28(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1117,7 +1117,7 @@ _80073CF8:
     li r8, 0
     li r9, 0
     li r10, 0
-    bl fn_80036A28
+    bl __GXInitTexObj
     li r0, 0
     stw r0, 0(r31)
     stw r0, 4(r31)
@@ -1200,7 +1200,7 @@ _80073E20:
     mr r9, r29
     li r5, 0
     li r10, 0
-    bl fn_80036A28
+    bl __GXInitTexObj
     stw r27, 0(r31)
     li r0, 0
     stw r0, 4(r31)
@@ -1367,11 +1367,11 @@ _80074070:
     mr r3, r26
     addi r4, r1, 0x10
     li r5, 0xa
-    bl fn_80036AC4
+    bl __GXInitTexObjLOD
     mr r3, r31
     addi r4, r1, 0x10
     li r5, 0x18
-    bl fn_800794F0
+    bl memcpy_fast
     li r0, 0xa
     stb r0, 0x18(r31)
 _80074098:
@@ -1418,7 +1418,7 @@ _80074114:
     mr r8, r30
     mr r9, r29
     li r10, 0
-    bl fn_80036A28
+    bl __GXInitTexObj
     stw r24, 0(r31)
     li r3, 0
     li r0, 1
@@ -1471,7 +1471,7 @@ _800741E8:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80038F48
+    bl GXSetScissor
     lwz r3, -0x7688(r13)
     stw r28, 0xae8(r3)
     lwz r3, -0x7688(r13)
@@ -1491,7 +1491,7 @@ _8007421C:
     blr
 }
 
-asm void fn_8007423C(void)
+asm void ModelSetCachedScissorLT_AFC(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1527,7 +1527,7 @@ _800742AC:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80034A5C
+    bl __GXSetScissor_LT
     lwz r3, -0x7688(r13)
     sth r28, 0xafc(r3)
     lwz r3, -0x7688(r13)
@@ -1547,7 +1547,7 @@ _800742E0:
     blr
 }
 
-asm void fn_80074300(void)
+asm void ModelSetCachedScissorRB_B08(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1583,7 +1583,7 @@ _80074370:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80034AEC
+    bl __GXSetScissor_RB
     lwz r3, -0x7688(r13)
     sth r28, 0xb08(r3)
     lwz r3, -0x7688(r13)
@@ -1603,7 +1603,7 @@ _800743A4:
     blr
 }
 
-asm void fn_800743C4(void)
+asm void ModelSetCachedScissorOffset_B04(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1625,7 +1625,7 @@ asm void fn_800743C4(void)
 _80074404:
     mr r3, r30
     mr r4, r31
-    bl fn_80034B7C
+    bl __GXSetScissorBoxOffset
     lwz r3, -0x7688(r13)
     sth r30, 0xb04(r3)
     lwz r3, -0x7688(r13)
@@ -1639,7 +1639,7 @@ _80074420:
     blr
 }
 
-asm void fn_80074438(void)
+asm void ModelSetCachedTexObjHW_B10(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1674,7 +1674,7 @@ _800744A4:
     mr r4, r29
     mr r5, r30
     mr r6, r31
-    bl fn_80034BB8
+    bl __GXInitTexObjHW
     lwz r3, -0x7688(r13)
     sth r28, 0xb10(r3)
     lwz r3, -0x7688(r13)
@@ -1694,7 +1694,7 @@ _800744D8:
     blr
 }
 
-asm void fn_800744F8(void)
+asm void ModelMatchCachedSlot_B20(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1729,7 +1729,7 @@ _80074564:
     mr r4, r31
     addi r3, r1, 8
     stw r0, 8(r1)
-    bl fn_80034E64
+    bl __GXSetBlendModePair
     lwz r3, -0x7688(r13)
     lwz r0, 0(r30)
     stw r0, 0xb20(r3)
@@ -1744,7 +1744,7 @@ _8007458C:
     blr
 }
 
-asm void fn_800745A4(void)
+asm void ModelSetCachedPair5_B28(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -1783,7 +1783,7 @@ _8007461C:
     mr r6, r28
     mr r7, r29
     mr r8, r30
-    bl fn_80033A7C
+    bl GXSetTexCoordGen2
     stw r26, 0(r31)
     stw r27, 4(r31)
     stw r28, 8(r31)
@@ -1798,7 +1798,7 @@ _80074648:
     blr
 }
 
-asm void fn_80074660(void)
+asm void GXSetNumTexGensCached(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1811,7 +1811,7 @@ asm void fn_80074660(void)
     lbz r4, 0xc28(r4)
     cmplw r4, r0
     beq _80074694
-    bl fn_80033D4C
+    bl GXSetNumTexGens
     lwz r3, -0x7688(r13)
     stb r31, 0xc28(r3)
 _80074694:
@@ -1822,7 +1822,7 @@ _80074694:
     blr
 }
 
-asm void fn_800746A8(void)
+asm void GXSetLineWidthCached(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1857,7 +1857,7 @@ _80074700:
     blr
 }
 
-asm void fn_80074718(void)
+asm void GXSetPointSizeCached(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1892,7 +1892,7 @@ _80074770:
     blr
 }
 
-asm void fn_80074788(void)
+asm void GXSetChanAmbColorCached(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
@@ -1905,7 +1905,7 @@ asm void fn_80074788(void)
     lbz r4, 0xc2e(r4)
     cmplw r4, r0
     beq _800747BC
-    bl fn_8003591C
+    bl __GXSetChanAmbColor
     lwz r3, -0x7688(r13)
     stb r31, 0xc2e(r3)
 _800747BC:
@@ -1916,7 +1916,7 @@ _800747BC:
     blr
 }
 
-asm void fn_800747D0(void)
+asm void LightCtrl_SetCachedRec_C30(void)
 {
     nofralloc
     stwu r1, -0x30(r1)
@@ -1958,14 +1958,14 @@ _80074848:
     b _80074880
 _80074854:
     li r3, 0
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     lwz r4, -0x7688(r13)
     li r3, 2
     addi r25, r4, 0xc60
     b _80074880
 _8007486C:
     li r3, 1
-    bl fn_800747D0
+    bl LightCtrl_SetCachedRec_C30
     lwz r4, -0x7688(r13)
     li r3, 3
     addi r25, r4, 0xc78
@@ -1996,7 +1996,7 @@ _800748CC:
     mr r7, r29
     mr r8, r30
     mr r9, r31
-    bl fn_80035960
+    bl __GXSetChanCtrl
     stb r26, 0(r25)
     stw r27, 4(r25)
     stw r28, 8(r25)
@@ -2012,7 +2012,7 @@ _80074900:
     blr
 }
 
-asm void fn_80074918(void)
+asm void GXSetTexGenCached(void)
 {
     nofralloc
     stwu r1, -0x20(r1)
@@ -2040,7 +2040,7 @@ _8007496C:
     mr r3, r29
     mr r4, r30
     mr r5, r31
-    bl fn_80037BC0
+    bl __GXWriteChanCtrlBitfields
     lwz r3, -0x7688(r13)
     stb r29, 0(r3)
     lwz r3, -0x7688(r13)
@@ -2057,7 +2057,7 @@ _80074994:
     blr
 }
 
-asm void fn_800749B0(void)
+asm void GXCopyMtxDirty(void)
 {
     nofralloc
     stwu r1, -0x10(r1)
