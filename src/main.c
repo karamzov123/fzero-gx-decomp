@@ -6,6 +6,7 @@ extern unsigned char lbl_801A63F0[4];
 extern unsigned char lbl_801A63F4[4];
 extern unsigned char lbl_801A63F8[4];
 extern unsigned char lbl_801A63FC[4];
+extern unsigned char lbl_801A6400[4];
 extern unsigned char lbl_801A66A0[4];
 
 extern void DCStoreRange(void);
@@ -2585,7 +2586,7 @@ asm void fn_8000740C(void)
     or.	r31, r3, r3
     bc      4, 2, _80007458
     lis     r4, mmu_cant_allocate_pte_str@ha
-    addi	r3, r13, -0x7fc0
+    li	r3, lbl_801A6400
     addi	r5, r4, mmu_cant_allocate_pte_str@l
     li	r4, 0x1cd
     crxor	6, 6, 6
@@ -2645,7 +2646,7 @@ _80007504:
     or.	r28, r3, r3
     bc      4, 2, _8000752c
     lis     r4, mmu_cant_allocate_pte_str@ha
-    addi	r3, r13, -0x7fc0
+    li	r3, lbl_801A6400
     addi	r5, r4, mmu_cant_allocate_pte_str@l
     li	r4, 0x1cd
     crxor	6, 6, 6
@@ -3138,7 +3139,7 @@ asm void dvd_user_fn(void)
     cmplw	r3, r0
     stw	r4, 0x14(r1)
     bc      4, 2, _80007bc8
-    addi	r4, r13, -0x7fb8
+    li	r4, lbl_801A6408
     lbz	r0, 0x19(r1)
     lbz	r3, 1(r4)
     cmplw	r3, r0
