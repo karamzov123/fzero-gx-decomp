@@ -29,6 +29,8 @@ extern void fn_80047A50(void);
 extern void fn_80049958(void);
 extern void fn_80049728(void);
 extern void criax_cri_tag_padsize(void);
+extern unsigned char lbl_8017B034[4];
+extern unsigned char lbl_8017B158[4];
 extern unsigned char lbl_8017B030[4];
 extern unsigned char lbl_8017B160[64];
 extern unsigned char lbl_8017B1A0[1024];
@@ -110,11 +112,11 @@ asm void fn_80047548(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r6, -0x7fe8
-    lis	r5, -0x7fe8
+    lis	r6, lbl_8017B030@ha
+    lis	r5, lbl_8017B034@ha
     stw	r0, 0x14(r1)
-    stw	r3, -0x4fd0(r6)
-    stw	r4, -0x4fcc(r5)
+    stw	r3, lbl_8017B030@l(r6)
+    stw	r4, lbl_8017B034@l(r5)
     bl      fn_80058EF4
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -175,8 +177,8 @@ asm void fn_80047608(void)
     mflr	r0
     stw	r0, 0x14(r1)
     bl      svmLockServer_wrapper
-    lis	r3, -0x7fe8
-    lwzu	r0, -0x4ea8(r3)
+    lis	r3, lbl_8017B158@ha
+    lwzu	r0, lbl_8017B158@l(r3)
     cmpwi	r0, 0
     beq     _80047630
     bl      svmUnlockServer_wrapper
@@ -186,21 +188,21 @@ _80047630:
     stw	r0, 0(r3)
     bl      svmUnlockServer_wrapper
     bl      fn_8004A578
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017B158@ha
     li	r0, 2
-    stw	r0, -0x4ea8(r3)
+    stw	r0, lbl_8017B158@l(r3)
     bl      fn_80054760
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017B158@ha
     li	r0, 5
-    stw	r0, -0x4ea8(r3)
+    stw	r0, lbl_8017B158@l(r3)
     bl      fn_8004A578
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017B158@ha
     li	r0, 6
-    stw	r0, -0x4ea8(r3)
+    stw	r0, lbl_8017B158@l(r3)
     bl      fn_8004FAA8
-    lis	r3, -0x7fe8
+    lis	r3, lbl_8017B158@ha
     li	r0, 0
-    stw	r0, -0x4ea8(r3)
+    stw	r0, lbl_8017B158@l(r3)
 _8004767c:
     lwz	r0, 0x14(r1)
     mtlr	r0
@@ -332,6 +334,11 @@ asm void fn_80047834(void)
     addi	r0, r3, -1
     stw	r0, 0(r4)
     blr	
+}
+
+asm void fn_8004784C(void)
+{
+    nofralloc
     lis     r3, lbl_8017B5A0@ha
     addi	r4, r3, lbl_8017B5A0@l
     lwz	r3, 0(r4)
