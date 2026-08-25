@@ -1,3 +1,4 @@
+// provenance: original
 #pragma push
 #pragma force_active on
 extern void fn_8008EDB0(void);
@@ -9,25 +10,18 @@ extern unsigned char lbl_801A6E1C[4];
 asm void fn_8008088C(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_SetupTransfer(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2_ExecuteTransfer(register void* a, register void* b, register void* c, register void* d);
-asm void EXI2LockUnlock(register void* a, register void* b, register void* c, register void* d);
+// provenance: original
+void EXI2LockUnlock(int lockState);
 asm void TRKEnableEXIInterrupts(register void* a, register void* b, register void* c, register void* d);
 asm void EXI2SetState(register void* a, register void* b, register void* c, register void* d);
-asm void EXI2_SetInterruptHandler(register void* a, register void* b, register void* c, register void* d);
+// provenance: original
+void EXI2_SetInterruptHandler(void);
 
-asm void fn_8008EEAC(void)
+// provenance: original
+void fn_8008EEAC(void)
 {
-    nofralloc
-    mflr	r0
-    lis     r3, fn_8008EDB0@ha
-    stw	r0, 4(r1)
-    addi	r3, r3, fn_8008EDB0@l
-    stwu	r1, -8(r1)
-    bl      EXI2LockUnlock
-    bl      EXI2_SetInterruptHandler
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+    EXI2LockUnlock((int)fn_8008EDB0);
+    EXI2_SetInterruptHandler();
 }
 
 asm void fn_8008EED8(void)

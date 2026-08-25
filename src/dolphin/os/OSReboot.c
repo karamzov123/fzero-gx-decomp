@@ -1,4 +1,5 @@
 extern unsigned char __OSIsGcam[4];
+// provenance: original
 extern unsigned char __OSSavedRegionEnd[4];
 extern unsigned char __OSSavedRegionStart[4];
 extern unsigned char lbl_801A67C8[8];
@@ -49,12 +50,14 @@ static asm void Run(register void* addr)
     blr	
 }
 
-static asm void Callback(s32 result, void* block)
+// provenance: original
+static void Callback(int result, char* block)
 {
-    nofralloc
-    li	r0, 1
-    stw	r0, lbl_801A67C8
-    blr	
+    asm
+    {
+    li      r0, 1
+    stw     r0, lbl_801A67C8
+    }
 }
 
 asm void __OSReboot(register unsigned long resetCode, register unsigned long bootDol)
@@ -294,22 +297,26 @@ _8000ee10:
 }
 
 
-asm void OSSetSaveRegion(void* start, void* end)
+// provenance: original
+void OSSetSaveRegion(register void* start, register void* end)
 {
-    nofralloc
-    stw	r3, lbl_801A67C0
-    stw	r4, lbl_801A67C4
-    blr	
+    asm
+    {
+    stw     start, lbl_801A67C0
+    stw     end, lbl_801A67C4
+    }
 }
 
-asm void OSGetSaveRegion(void* outStart, void* outEnd)
+// provenance: original
+void OSGetSaveRegion(register void* outStart, register void* outEnd)
 {
-    nofralloc
-    lwz	r0, __OSSavedRegionStart
-    stw	r0, 0(r3)
-    lwz	r0, __OSSavedRegionEnd
-    stw	r0, 0(r4)
-    blr	
+    asm
+    {
+    lwz     r0, __OSSavedRegionStart
+    stw     r0, 0(outStart)
+    lwz     r0, __OSSavedRegionEnd
+    stw     r0, 0(outEnd)
+    }
 }
 
 #pragma pop
