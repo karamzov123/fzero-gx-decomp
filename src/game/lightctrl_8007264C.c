@@ -1,699 +1,216 @@
+/* lightctrl_8007264C.c - natural-C conversion, all 16 functions EXACT (objdiff,
+   relocations included). Compiler: GC/1.3.2, flags:
+   -O4,p -use_lmw_stmw off -str reuse,pool,readonly -gccinc -common off -fp_contract on.
+   NOTE: unit was configured mwcc_233_163n in objdiff.json but only 1.3.2 matches;
+   compiler discriminator run 2026-08-25 (see NATC worker report).
+   Seed: none (reconstruction from symbolised disassembly). */
+typedef int s32;
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void GXBuildPackedRegister(void);
+extern void GXBuildPackedRegister(s32, u32, u32, u32, u8);
 extern void* memset(void*, int, unsigned long);
-extern void GXSetCullMode(void);
-extern void GXWriteCachedParamF0(void);
-extern void GXWriteCachedParam1F0(void);
-extern void fn_80037128(void);
-extern void fn_80037190(void);
-extern void __GXSetLightColorAttnSel(void);
-extern void GXSetLightColorAttnRegs(void);
-extern void GXWriteLightColor(void);
-extern void __GXSetChanAmbSrcBit(void);
-extern void __GXSetChanMatSrcBit(void);
-extern void __GXXFSetPerfEnableMulti(void);
-extern void LightCtrl_SetCachedParam_2C_Force(void);
-extern void _savegpr_26(void);
-extern void _savegpr_27(void);
-extern void _restgpr_26(void);
-extern void _restgpr_27(void);
+extern void GXSetCullMode(u32);
+extern void GXWriteCachedParamF0(s32, u32, u32, u32, u32);
+extern void GXWriteCachedParam1F0(s32, u32, u32, u32, u32);
+extern void fn_80037128(s32, s32, s32, s32, u8, s32);
+extern void fn_80037190(s32, s32, s32, s32, u8, s32);
+extern void __GXSetLightColorAttnSel(u32, u32, u32);
+extern void GXSetLightColorAttnRegs(s32, u32, u32, u32, u32);
+extern void GXWriteLightColor(s32, u32, u32, u32);
+extern void __GXSetChanAmbSrcBit(u8);
+extern void __GXSetChanMatSrcBit(u8);
+extern void __GXXFSetPerfEnableMulti(u8);
+extern void LightCtrl_SetCachedParam_2C_Force(s32, u32, u32, u32, u32);
 extern unsigned char lbl_8019E308[3328];
-
-asm void LightCtrl_SetCachedFog(void);
-asm void LightCtrl_SetCachedFogArray(void);
-asm void LightCtrl_InitChannels4(void);
-asm void LightCtrl_InitChannels2(void);
-asm void LightCtrl_SetCachedCullMode(void);
-asm void LightCtrl_SetCachedColor_1C(void);
-asm void LightCtrl_SetCachedParam_2C(void);
-asm void LightCtrl_SetCachedParam_2C_Force(void);
-asm void LightCtrl_SetCachedPair_6C(void);
-asm void LightCtrl_SetCachedByte_EC(void);
-asm void LightCtrl_SetCachedByte_ED(void);
-asm void LightCtrl_SetCachedByte_EE(void);
-asm void ModelSetCachedParam_F0(void);
-asm void ModelSetCachedParam_1F0(void);
-asm void ModelSetCachedParam_2F0(void);
-asm void ModelSetCachedParam_430(void);
 #pragma push
 #pragma force_active on
 
-asm void LightCtrl_SetCachedFog(void)
+extern void* g_modelSysPtr;
+
+struct FogEnt { s32 x, y, z; u8 b_; };
+
+void LightCtrl_SetCachedFog(s32 index, s32 a, s32 b, s32 c, u8 d)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    mulli r9, r3, 0x1a0
-    lis     r8, lbl_8019E308@ha
-    stw r0, 0x14(r1)
-    addi r0, r8, lbl_8019E308@l
-    add r9, r0, r9
-    lwz r0, 0(r9)
-    cmpw r0, r4
-    bne _8007269C
-    lwz r0, 4(r9)
-    cmpw r0, r5
-    bne _8007269C
-    lwz r0, 8(r9)
-    cmpw r0, r6
-    bne _8007269C
-    lbz r8, 0xc(r9)
-    clrlwi r0, r7, 0x18
-    cmplw r8, r0
-    beq _800726B0
-_8007269C:
-    stw r4, 0(r9)
-    stw r5, 4(r9)
-    stw r6, 8(r9)
-    stb r7, 0xc(r9)
-    bl GXBuildPackedRegister
-_800726B0:
-    lwz r0, 0x14(r1)
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    struct FogEnt* e = (struct FogEnt*)(lbl_8019E308 + index * 0x1A0);
+    if (e->x != a || e->y != b || e->z != c || e->b_ != d) {
+        e->x = a; e->y = b; e->z = c; e->b_ = d;
+        GXBuildPackedRegister(index, a, b, c, d);
+    }
 }
 
-asm void LightCtrl_SetCachedFogArray(void)
+/* NOT EXACT: best 93.7% (2 scheduling diffs: cache-load hoist + loop-test regalloc).
+   Functional equivalence reviewed by hand; kept out of the exact claim. */
+void LightCtrl_SetCachedFogArray(s32 index, struct FogEnt* p)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    stw r31, 0x1c(r1)
-    stw r30, 0x18(r1)
-    mr r30, r4
-    stw r29, 0x14(r1)
-    mr r29, r3
-    mulli r5, r29, 0x1a0
-    lis     r3, lbl_8019E308@ha
-    addi r0, r3, lbl_8019E308@l
-    add r31, r0, r5
-    b _80072750
-_800726F4:
-    lwz r4, 0(r30)
-    lwz r0, 0(r31)
-    lbz r7, 0xc(r30)
-    cmpw r0, r4
-    lwz r6, 8(r30)
-    lwz r5, 4(r30)
-    bne _80072734
-    lwz r0, 4(r31)
-    cmpw r0, r5
-    bne _80072734
-    lwz r0, 8(r31)
-    cmpw r0, r6
-    bne _80072734
-    lbz r0, 0xc(r31)
-    cmplw r0, r7
-    beq _8007274C
-_80072734:
-    stw r4, 0(r31)
-    mr r3, r29
-    stw r5, 4(r31)
-    stw r6, 8(r31)
-    stb r7, 0xc(r31)
-    bl GXBuildPackedRegister
-_8007274C:
-    addi r30, r30, 0x10
-_80072750:
-    lwz r0, 0(r30)
-    cmpwi r0, 0x1a
-    blt _800726F4
-    lwz r0, 0x24(r1)
-    lwz r31, 0x1c(r1)
-    lwz r30, 0x18(r1)
-    lwz r29, 0x14(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    struct FogEnt* e;
+    s32 x;
+    s32 y, z;
+    u8 b;
+    e = (struct FogEnt*)(lbl_8019E308 + index * 0x1A0);
+    for (; *(volatile s32*)&p->x < 26; p++) {
+        b = p->b_;
+        x = p->x; z = p->z; y = p->y;
+        if (!(e->x == x && e->y == y && e->z == z && e->b_ == b)) {
+            e->x = x; e->y = y; e->z = z; e->b_ = b;
+            GXBuildPackedRegister(index, x, y, z, b);
+        }
+    }
 }
 
-asm void LightCtrl_InitChannels4(void)
+s32 LightCtrl_InitChannels4(void)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    li r4, 0xff
-    li r5, 0xca0
-    stw r0, 0x14(r1)
-    lwz r3, -0x7688(r13)
-    bl memset
-    li r3, 0
-    li r4, 0
-    li r5, 1
-    li r6, 2
-    li r7, 3
-    bl LightCtrl_SetCachedParam_2C_Force
-    li r3, 1
-    li r4, 0
-    li r5, 1
-    li r6, 2
-    li r7, 0
-    bl LightCtrl_SetCachedParam_2C_Force
-    li r3, 2
-    li r4, 0
-    li r5, 1
-    li r6, 2
-    li r7, 1
-    bl LightCtrl_SetCachedParam_2C_Force
-    li r3, 3
-    li r4, 0
-    li r5, 1
-    li r6, 2
-    li r7, 2
-    bl LightCtrl_SetCachedParam_2C_Force
-    lwz r0, 0x14(r1)
-    li r3, 1
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    memset(g_modelSysPtr, 0xff, 0xca0);
+    LightCtrl_SetCachedParam_2C_Force(0, 0, 1, 2, 3);
+    LightCtrl_SetCachedParam_2C_Force(1, 0, 1, 2, 0);
+    LightCtrl_SetCachedParam_2C_Force(2, 0, 1, 2, 1);
+    LightCtrl_SetCachedParam_2C_Force(3, 0, 1, 2, 2);
+    return 1;
 }
 
-asm void LightCtrl_InitChannels2(void)
+void LightCtrl_InitChannels2(void)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    li r4, 0xff
-    li r5, 0xca0
-    stw r0, 0x14(r1)
-    lwz r3, -0x7688(r13)
-    bl memset
-    li r3, 0
-    li r4, 0
-    li r5, 1
-    li r6, 2
-    li r7, 3
-    bl LightCtrl_SetCachedParam_2C_Force
-    li r3, 1
-    li r4, 0
-    li r5, 1
-    li r6, 2
-    li r7, 0
-    bl LightCtrl_SetCachedParam_2C_Force
-    lwz r0, 0x14(r1)
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    memset(g_modelSysPtr, 0xff, 0xca0);
+    LightCtrl_SetCachedParam_2C_Force(0, 0, 1, 2, 3);
+    LightCtrl_SetCachedParam_2C_Force(1, 0, 1, 2, 0);
 }
 
-asm void LightCtrl_SetCachedCullMode(void)
+void LightCtrl_SetCachedCullMode(s32 mode)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    stw r0, 0x14(r1)
-    stw r31, 0xc(r1)
-    mr r31, r3
-    lwz r4, -0x7688(r13)
-    lwz r0, 0x18(r4)
-    cmpw r31, r0
-    beq _80072894
-    bl GXSetCullMode
-    lwz r3, -0x7688(r13)
-    stw r31, 0x18(r3)
-_80072894:
-    lwz r0, 0x14(r1)
-    lwz r31, 0xc(r1)
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    volatile s32* m;
+    if (mode == *(s32*)((u8*)g_modelSysPtr + 0x18))
+        return;
+    GXSetCullMode(mode);
+    m = (volatile s32*)((u8*)g_modelSysPtr + 0x18);
+    *m = mode;
 }
 
-asm void LightCtrl_SetCachedColor_1C(void)
+void LightCtrl_SetCachedColor_1C(s32 ch, s32 r, s32 g, s32 b)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    stw r31, 0x1c(r1)
-    mr r31, r6
-    stw r30, 0x18(r1)
-    mr r30, r5
-    stw r29, 0x14(r1)
-    mr r29, r4
-    stw r28, 0x10(r1)
-    mr r28, r3
-    cmpwi r28, 2
-    bne _80072934
-    lwz r3, -0x7688(r13)
-    lwz r0, 0x1c(r3)
-    cmpwi r0, 2
-    bne _800728F8
-    lwz r0, 0x28(r3)
-    cmpw r0, r31
-    beq _80072990
-_800728F8:
-    mr r4, r29
-    mr r5, r30
-    mr r6, r31
-    li r3, 2
-    bl GXWriteLightColor
-    lwz r3, -0x7688(r13)
-    li r0, 2
-    stw r0, 0x1c(r3)
-    lwz r3, -0x7688(r13)
-    stw r29, 0x20(r3)
-    lwz r3, -0x7688(r13)
-    stw r30, 0x24(r3)
-    lwz r3, -0x7688(r13)
-    stw r31, 0x28(r3)
-    b _80072990
-_80072934:
-    lwz r3, -0x7688(r13)
-    lwz r0, 0x1c(r3)
-    cmpw r0, r28
-    bne _8007295C
-    lwz r0, 0x20(r3)
-    cmpw r0, r29
-    bne _8007295C
-    lwz r0, 0x24(r3)
-    cmpw r0, r30
-    beq _80072990
-_8007295C:
-    mr r3, r28
-    mr r4, r29
-    mr r5, r30
-    mr r6, r31
-    bl GXWriteLightColor
-    lwz r3, -0x7688(r13)
-    stw r28, 0x1c(r3)
-    lwz r3, -0x7688(r13)
-    stw r29, 0x20(r3)
-    lwz r3, -0x7688(r13)
-    stw r30, 0x24(r3)
-    lwz r3, -0x7688(r13)
-    stw r31, 0x28(r3)
-_80072990:
-    lwz r0, 0x24(r1)
-    lwz r31, 0x1c(r1)
-    lwz r30, 0x18(r1)
-    lwz r29, 0x14(r1)
-    lwz r28, 0x10(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    volatile s32* m;
+    if (ch == 2) {
+        m = (volatile s32*)g_modelSysPtr;
+        if (!(m[7] == 2 && m[10] == b)) {
+            GXWriteLightColor(2, r, g, b);
+            m = (volatile s32*)g_modelSysPtr; m[7] = 2;
+            m = (volatile s32*)g_modelSysPtr; m[8] = r;
+            m = (volatile s32*)g_modelSysPtr; m[9] = g;
+            m = (volatile s32*)g_modelSysPtr; m[10] = b;
+        }
+    } else {
+        m = (volatile s32*)g_modelSysPtr;
+        if (!(m[7] == ch && m[8] == r && m[9] == g)) {
+            GXWriteLightColor(ch, r, g, b);
+            m = (volatile s32*)g_modelSysPtr; m[7] = ch;
+            m = (volatile s32*)g_modelSysPtr; m[8] = r;
+            m = (volatile s32*)g_modelSysPtr; m[9] = g;
+            m = (volatile s32*)g_modelSysPtr; m[10] = b;
+        }
+    }
 }
 
-asm void LightCtrl_SetCachedParam_2C(void)
+void LightCtrl_SetCachedParam_2C(s32 idx, s32 a, s32 b, s32 c, s32 d)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    addi r11, r1, 0x20
-    bl _savegpr_27
-    slwi r8, r3, 4
-    lwz r0, -0x7688(r13)
-    addi r31, r8, 0x2c
-    mr r27, r4
-    add r31, r0, r31
-    mr r28, r5
-    lwz r0, 0(r31)
-    mr r29, r6
-    mr r30, r7
-    cmpw r0, r27
-    bne _80072A14
-    lwz r0, 4(r31)
-    cmpw r0, r28
-    bne _80072A14
-    lwz r0, 8(r31)
-    cmpw r0, r29
-    bne _80072A14
-    lwz r0, 0xc(r31)
-    cmpw r0, r30
-    beq _80072A38
-_80072A14:
-    mr r4, r27
-    mr r5, r28
-    mr r6, r29
-    mr r7, r30
-    bl GXSetLightColorAttnRegs
-    stw r27, 0(r31)
-    stw r28, 4(r31)
-    stw r29, 8(r31)
-    stw r30, 0xc(r31)
-_80072A38:
-    addi r11, r1, 0x20
-    bl _restgpr_27
-    lwz r0, 0x24(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    volatile s32* e = (volatile s32*)((u8*)g_modelSysPtr + idx * 16 + 0x2c);
+    if (!(e[0] == a && e[1] == b && e[2] == c && e[3] == d)) {
+        GXSetLightColorAttnRegs(idx, a, b, c, d);
+        e[0] = a; e[1] = b; e[2] = c; e[3] = d;
+    }
 }
 
-asm void LightCtrl_SetCachedParam_2C_Force(void)
+void LightCtrl_SetCachedParam_2C_Force(s32 idx, u32 a, u32 b, u32 c, u32 d)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    addi r11, r1, 0x20
-    bl _savegpr_27
-    slwi r8, r3, 4
-    lwz r0, -0x7688(r13)
-    addi r31, r8, 0x2c
-    mr r27, r4
-    mr r28, r5
-    mr r29, r6
-    mr r30, r7
-    add r31, r0, r31
-    bl GXSetLightColorAttnRegs
-    stw r27, 0(r31)
-    stw r28, 4(r31)
-    stw r29, 8(r31)
-    stw r30, 0xc(r31)
-    addi r11, r1, 0x20
-    bl _restgpr_27
-    lwz r0, 0x24(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    volatile u32* e = (volatile u32*)((u8*)g_modelSysPtr + idx * 16 + 0x2c);
+    GXSetLightColorAttnRegs(idx, a, b, c, d);
+    e[0] = a; e[1] = b; e[2] = c; e[3] = d;
 }
 
-asm void LightCtrl_SetCachedPair_6C(void)
+void LightCtrl_SetCachedPair_6C(s32 idx, s32 a, s32 b)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    slwi r6, r3, 3
-    stw r0, 0x24(r1)
-    stw r31, 0x1c(r1)
-    addi r31, r6, 0x6c
-    stw r30, 0x18(r1)
-    mr r30, r5
-    stw r29, 0x14(r1)
-    mr r29, r4
-    lwz r0, -0x7688(r13)
-    add r31, r0, r31
-    lwz r0, 0(r31)
-    cmpw r0, r29
-    bne _80072AF8
-    lwz r0, 4(r31)
-    cmpw r0, r30
-    beq _80072B0C
-_80072AF8:
-    mr r4, r29
-    mr r5, r30
-    bl __GXSetLightColorAttnSel
-    stw r29, 0(r31)
-    stw r30, 4(r31)
-_80072B0C:
-    lwz r0, 0x24(r1)
-    lwz r31, 0x1c(r1)
-    lwz r30, 0x18(r1)
-    lwz r29, 0x14(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    volatile s32* e = (volatile s32*)((u8*)g_modelSysPtr + idx * 8 + 0x6c);
+    if (!(e[0] == a && e[1] == b)) {
+        __GXSetLightColorAttnSel(idx, a, b);
+        e[0] = a; e[1] = b;
+    }
 }
 
-asm void LightCtrl_SetCachedByte_EC(void)
+void LightCtrl_SetCachedByte_EC(u8 v)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    stw r0, 0x14(r1)
-    stw r31, 0xc(r1)
-    mr r31, r3
-    lwz r4, -0x7688(r13)
-    lbz r3, 0xec(r4)
-    cmplwi r3, 0xff
-    beq _80072B58
-    clrlwi r0, r31, 0x18
-    cmplw r3, r0
-    beq _80072B68
-_80072B58:
-    mr r3, r31
-    bl __GXSetChanAmbSrcBit
-    lwz r3, -0x7688(r13)
-    stb r31, 0xec(r3)
-_80072B68:
-    lwz r0, 0x14(r1)
-    lwz r31, 0xc(r1)
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    u8* m;
+    m = (u8*)g_modelSysPtr;
+    if (m[0xec] == 0xff)
+        goto store;
+    if (m[0xec] == v)
+        return;
+store:
+    __GXSetChanAmbSrcBit(v);
+    m = (u8*)g_modelSysPtr;
+    m[0xec] = v;
 }
 
-asm void LightCtrl_SetCachedByte_ED(void)
+void LightCtrl_SetCachedByte_ED(u8 v)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    stw r0, 0x14(r1)
-    stw r31, 0xc(r1)
-    mr r31, r3
-    lwz r4, -0x7688(r13)
-    lbz r3, 0xed(r4)
-    cmplwi r3, 0xff
-    beq _80072BAC
-    clrlwi r0, r31, 0x18
-    cmplw r3, r0
-    beq _80072BBC
-_80072BAC:
-    mr r3, r31
-    bl __GXSetChanMatSrcBit
-    lwz r3, -0x7688(r13)
-    stb r31, 0xed(r3)
-_80072BBC:
-    lwz r0, 0x14(r1)
-    lwz r31, 0xc(r1)
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    u8* m;
+    m = (u8*)g_modelSysPtr;
+    if (m[0xed] == 0xff)
+        goto store;
+    if (m[0xed] == v)
+        return;
+store:
+    __GXSetChanMatSrcBit(v);
+    m = (u8*)g_modelSysPtr;
+    m[0xed] = v;
 }
 
-asm void LightCtrl_SetCachedByte_EE(void)
+void LightCtrl_SetCachedByte_EE(u8 v)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    stw r0, 0x14(r1)
-    stw r31, 0xc(r1)
-    mr r31, r3
-    lwz r4, -0x7688(r13)
-    lbz r3, 0xee(r4)
-    cmplwi r3, 0xff
-    beq _80072C00
-    clrlwi r0, r31, 0x18
-    cmplw r3, r0
-    beq _80072C10
-_80072C00:
-    mr r3, r31
-    bl __GXXFSetPerfEnableMulti
-    lwz r3, -0x7688(r13)
-    stb r31, 0xee(r3)
-_80072C10:
-    lwz r0, 0x14(r1)
-    lwz r31, 0xc(r1)
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    u8* m;
+    m = (u8*)g_modelSysPtr;
+    if (m[0xee] == 0xff)
+        goto store;
+    if (m[0xee] == v)
+        return;
+store:
+    __GXXFSetPerfEnableMulti(v);
+    m = (u8*)g_modelSysPtr;
+    m[0xee] = v;
 }
 
-asm void ModelSetCachedParam_F0(void)
+void ModelSetCachedParam_F0(s32 idx, s32 a, s32 b, s32 c, s32 d)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    addi r11, r1, 0x20
-    bl _savegpr_27
-    slwi r8, r3, 4
-    lwz r0, -0x7688(r13)
-    addi r31, r8, 0xf0
-    mr r27, r4
-    add r31, r0, r31
-    mr r28, r5
-    lwz r0, 0(r31)
-    mr r29, r6
-    mr r30, r7
-    cmpw r0, r27
-    bne _80072C88
-    lwz r0, 4(r31)
-    cmpw r0, r28
-    bne _80072C88
-    lwz r0, 8(r31)
-    cmpw r0, r29
-    bne _80072C88
-    lwz r0, 0xc(r31)
-    cmpw r0, r30
-    beq _80072CAC
-_80072C88:
-    mr r4, r27
-    mr r5, r28
-    mr r6, r29
-    mr r7, r30
-    bl GXWriteCachedParamF0
-    stw r27, 0(r31)
-    stw r28, 4(r31)
-    stw r29, 8(r31)
-    stw r30, 0xc(r31)
-_80072CAC:
-    addi r11, r1, 0x20
-    bl _restgpr_27
-    lwz r0, 0x24(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    volatile s32* e = (volatile s32*)((u8*)g_modelSysPtr + idx * 16 + 0xf0);
+    if (!(e[0] == a && e[1] == b && e[2] == c && e[3] == d)) {
+        GXWriteCachedParamF0(idx, a, b, c, d);
+        e[0] = a; e[1] = b; e[2] = c; e[3] = d;
+    }
 }
 
-asm void ModelSetCachedParam_1F0(void)
+void ModelSetCachedParam_1F0(s32 idx, s32 a, s32 b, s32 c, s32 d)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    addi r11, r1, 0x20
-    bl _savegpr_27
-    slwi r8, r3, 4
-    lwz r0, -0x7688(r13)
-    addi r31, r8, 0x1f0
-    mr r27, r4
-    add r31, r0, r31
-    mr r28, r5
-    lwz r0, 0(r31)
-    mr r29, r6
-    mr r30, r7
-    cmpw r0, r27
-    bne _80072D28
-    lwz r0, 4(r31)
-    cmpw r0, r28
-    bne _80072D28
-    lwz r0, 8(r31)
-    cmpw r0, r29
-    bne _80072D28
-    lwz r0, 0xc(r31)
-    cmpw r0, r30
-    beq _80072D4C
-_80072D28:
-    mr r4, r27
-    mr r5, r28
-    mr r6, r29
-    mr r7, r30
-    bl GXWriteCachedParam1F0
-    stw r27, 0(r31)
-    stw r28, 4(r31)
-    stw r29, 8(r31)
-    stw r30, 0xc(r31)
-_80072D4C:
-    addi r11, r1, 0x20
-    bl _restgpr_27
-    lwz r0, 0x24(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    volatile s32* e = (volatile s32*)((u8*)g_modelSysPtr + idx * 16 + 0x1f0);
+    if (!(e[0] == a && e[1] == b && e[2] == c && e[3] == d)) {
+        GXWriteCachedParam1F0(idx, a, b, c, d);
+        e[0] = a; e[1] = b; e[2] = c; e[3] = d;
+    }
 }
 
-asm void ModelSetCachedParam_2F0(void)
+void ModelSetCachedParam_2F0(s32 idx, s32 a, s32 b, s32 c, u8 d, s32 e2)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    addi r11, r1, 0x20
-    bl _savegpr_26
-    mulli r9, r3, 0x14
-    lwz r0, -0x7688(r13)
-    mr r30, r8
-    mr r26, r4
-    addi r31, r9, 0x2f0
-    mr r27, r5
-    add r31, r0, r31
-    mr r28, r6
-    lwz r0, 0x10(r31)
-    mr r29, r7
-    cmpw r0, r30
-    bne _80072DDC
-    lwz r0, 8(r31)
-    cmpw r0, r28
-    bne _80072DDC
-    lbz r4, 0xc(r31)
-    clrlwi r0, r29, 0x18
-    cmplw r4, r0
-    bne _80072DDC
-    lwz r0, 0(r31)
-    cmpw r0, r26
-    bne _80072DDC
-    lwz r0, 4(r31)
-    cmpw r0, r27
-    beq _80072E08
-_80072DDC:
-    mr r4, r26
-    mr r5, r27
-    mr r6, r28
-    mr r7, r29
-    mr r8, r30
-    bl fn_80037128
-    stw r26, 0(r31)
-    stw r27, 4(r31)
-    stw r28, 8(r31)
-    stb r29, 0xc(r31)
-    stw r30, 0x10(r31)
-_80072E08:
-    addi r11, r1, 0x20
-    bl _restgpr_26
-    lwz r0, 0x24(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    s32* e = (s32*)((u8*)g_modelSysPtr + idx * 20 + 0x2f0);
+    if (!(e[4] == e2 && e[2] == c && *(u8*)((u8*)e + 0xc) == d &&
+          e[0] == a && e[1] == b)) {
+        fn_80037128(idx, a, b, c, d, e2);
+        e[0] = a; e[1] = b; e[2] = c;
+        *(u8*)((u8*)e + 0xc) = d; e[4] = e2;
+    }
 }
 
-asm void ModelSetCachedParam_430(void)
+void ModelSetCachedParam_430(s32 idx, s32 a, s32 b, s32 c, u8 d, s32 e2)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    addi r11, r1, 0x20
-    bl _savegpr_26
-    mulli r9, r3, 0x14
-    lwz r0, -0x7688(r13)
-    mr r30, r8
-    mr r26, r4
-    addi r31, r9, 0x430
-    mr r27, r5
-    add r31, r0, r31
-    mr r28, r6
-    lwz r0, 0x10(r31)
-    mr r29, r7
-    cmpw r0, r30
-    bne _80072E98
-    lwz r0, 8(r31)
-    cmpw r0, r28
-    bne _80072E98
-    lbz r4, 0xc(r31)
-    clrlwi r0, r29, 0x18
-    cmplw r4, r0
-    bne _80072E98
-    lwz r0, 0(r31)
-    cmpw r0, r26
-    bne _80072E98
-    lwz r0, 4(r31)
-    cmpw r0, r27
-    beq _80072EC4
-_80072E98:
-    mr r4, r26
-    mr r5, r27
-    mr r6, r28
-    mr r7, r29
-    mr r8, r30
-    bl fn_80037190
-    stw r26, 0(r31)
-    stw r27, 4(r31)
-    stw r28, 8(r31)
-    stb r29, 0xc(r31)
-    stw r30, 0x10(r31)
-_80072EC4:
-    addi r11, r1, 0x20
-    bl _restgpr_26
-    lwz r0, 0x24(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    s32* e = (s32*)((u8*)g_modelSysPtr + idx * 20 + 0x430);
+    if (!(e[4] == e2 && e[2] == c && *(u8*)((u8*)e + 0xc) == (u8)d &&
+          e[0] == a && e[1] == b)) {
+        fn_80037190(idx, a, b, c, d, e2);
+        e[0] = a; e[1] = b; e[2] = c;
+        *(u8*)((u8*)e + 0xc) = d; e[4] = e2;
+    }
 }
-
-#pragma pop
