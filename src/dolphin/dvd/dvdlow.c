@@ -5,6 +5,9 @@ extern unsigned char Callback[4];
 extern unsigned char NextCommandNumber[4];
 extern unsigned char LastResetEnd[8];
 
+extern unsigned char LastResetEnd+0x4[4];
+extern unsigned char LastResetEnd+0x4[4];
+
 asm form carry a "nofralloc transcription" comment;
  * their s64 arithmetic / register choreography resisted natural C so far.
  */
