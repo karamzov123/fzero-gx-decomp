@@ -22,6 +22,7 @@ extern unsigned char lbl_801A6640[4];
 extern unsigned char lbl_801A6644[4];
 void __StringRead(void);
 
+extern unsigned char lbl_80094FE8[4];
 asm void __qsort(void)
 {
     nofralloc
@@ -254,14 +255,14 @@ asm void __scanf(void)
     nofralloc
     stwu	r1, -0x80(r1)
     mflr	r0
-    lis	r7, -0x7fea
+    lis	r7, lbl_8015B100@ha
     stw	r0, 0x84(r1)
     stmw	r16, 0x40(r1)
     mr	r30, r3
     mr	r31, r4
     mr	r16, r6
     mr	r26, r5
-    addi	r18, r7, -0x4f00
+    addi	r18, r7, lbl_8015B100@l
     li	r29, 0
     li	r28, 0
     li	r27, 0
@@ -981,13 +982,13 @@ asm void __msl_parse_format_specifier(void)
 {
     nofralloc
     stwu	r1, -0x40(r1)
-    lis	r6, -0x7ff7
+    lis	r6, lbl_80094FE8@ha
     lbzu	r5, 1(r3)
     stw	r31, 0x3c(r1)
     extsb	r5, r5
     stw	r30, 0x38(r1)
     cmpwi	r5, 0x25
-    lwzu	r0, 0x4fe8(r6)
+    lwzu	r0, lbl_80094FE8@l(r6)
     lwz	r30, 4(r6)
     lwz	r31, 8(r6)
     lwz	r12, 0xc(r6)
@@ -1130,9 +1131,9 @@ _80083640:
     stb	r5, 0xb(r1)
     cmplwi	r0, 0x33
     bc      12, 1, _80083904
-    lis     r5, -0x7fea
+    lis     r5, jumptable_8015B668@ha
     slwi	r0, r0, 2
-    addi	r5, r5, -0x4998
+    addi	r5, r5, jumptable_8015B668@l
     lwzx	r0, r5, r0
     mtctr	r0
     bctr
