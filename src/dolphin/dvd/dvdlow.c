@@ -1,14 +1,10 @@
-/* dolphin/dvd/dvdlow.c — matched from retail .text 0x80015F80..0x80016DC0.
- * Functions still in exact-extern unsigned char NextCommandNumber[4];
+/* dolphin/dvd/dvdlow.c -- matched from retail .text 0x80015F80..0x80016DC0.
+ * Functions still in exact-
+ */
+
 extern unsigned char lbl_801A6468[8];
-extern unsigned char Callback[4];
-extern unsigned char NextCommandNumber[4];
-extern unsigned char LastResetEnd[8];
 
-extern unsigned char LastResetEnd+0x4[4];
-extern unsigned char LastResetEnd+0x4[4];
-
-asm form carry a "nofralloc transcription" comment;
+/* asm form carry a "nofralloc transcription" comment;
  * their s64 arithmetic / register choreography resisted natural C so far.
  */
 
@@ -93,7 +89,7 @@ void __DVDInitWA(void)
     OSInitAlarm();
 }
 
-/* __DVDInterruptHandler @0x80015FC0 | size: 0x2E0 — nofralloc transcription */
+/* __DVDInterruptHandler @0x80015FC0 | size: 0x2E0 -- nofralloc transcription */
 asm void __DVDInterruptHandler(void) {
 nofralloc
 	mflr r0
@@ -111,14 +107,14 @@ nofralloc
 	stw	r4, lbl_801A688C
 	li r0, 0x0
 	stw	r3, lbl_801A6888
-	stw r0, -32600(r13)
+	stw r0, lbl_801A6468
 	lwz r0, 0xc4(r30)
 	stw r0, 0xb8(r30)
 	lwz r0, 0xc8(r30)
 	stw r0, 0xbc(r30)
 	lwz r0, 0xcc(r30)
 	stw r0, 0xc0(r30)
-	lwz r0, -31592(r13)
+	lwz r0, StopAtNextInt
 	cmpwi r0, 0x1
 	bne lbl_80016028
 	ori r29, r29, 0x8
@@ -126,7 +122,7 @@ lbl_80016028:
 	li r0, 0x0
 	stw	r0, lbl_801A6898
 	lis r3, 0xcc00
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	lwz r0, 0x6000(r3)
 	andi. r31, r0, 0x2a
 	andi. r3, r0, 0x54
@@ -147,19 +143,19 @@ lbl_80016070:
 	cmplwi r29, 0x0
 	beq lbl_80016088
 	li r0, 0x0
-	stw r0, -31568(r13)
+	stw r0, ResetOccurred
 	addi r3, r30, 0x68
 	bl OSCancelAlarm
 lbl_80016088:
 	or r0, r27, r31
 	lis r31, 0xcc00
 	stw r0, 0x6000(r31)
-	lwz r0, -31568(r13)
+	lwz r0, ResetOccurred
 	cmplwi r0, 0x0
 	beq lbl_8001613c
 	bl __OSGetSystemTime
 	lis r5, 0x8000
-	lwz r7, -31576(r13)
+	lwz r7, LastResetEnd
 	lwz r6, 0xf8(r5)
 	lis r5, 0x1062
 	addi r5, r5, 0x4dd3
@@ -185,7 +181,7 @@ lbl_80016088:
 	and r0, r3, r0
 	rlwinm. r0, r0, 0, 29, 29
 	beq lbl_80016130
-	lwz r12, -31580(r13)
+	lwz r12, lbl_801A6864
 	cmplwi r12, 0x0
 	beq lbl_80016128
 	mtlr r12
@@ -193,13 +189,13 @@ lbl_80016088:
 	blrl
 lbl_80016128:
 	li r0, 0x0
-	stw r0, -31580(r13)
+	stw r0, lbl_801A6864
 lbl_80016130:
 	lwz r0, 0x0(r27)
 	stw r0, 0x0(r27)
 	b lbl_80016190
 lbl_8001613c:
-	lwz r0, -31564(r13)
+	lwz r0, WaitingCoverClose
 	cmpwi r0, 0x0
 	beq lbl_80016184
 	lis r3, 0xcc00
@@ -216,7 +212,7 @@ lbl_80016170:
 	or r0, r3, r4
 	stw r0, 0x0(r5)
 	li r0, 0x0
-	stw r0, -31564(r13)
+	stw r0, WaitingCoverClose
 	b lbl_80016190
 lbl_80016184:
 	lis r3, 0xcc00
@@ -225,22 +221,22 @@ lbl_80016184:
 lbl_80016190:
 	rlwinm. r0, r29, 0, 28, 28
 	beq lbl_800161a8
-	lwz r0, -31560(r13)
+	lwz r0, lbl_801A6878
 	cmpwi r0, 0x0
 	bne lbl_800161a8
 	rlwinm r29, r29, 0, 29, 27
 lbl_800161a8:
 	clrlwi. r0, r29, 31
 	beq lbl_8001622c
-	lwz r0, -31524(r13)
+	lwz r0, NextCommandNumber
 	mulli r0, r0, 0x14
 	lwzx r3, r30, r0
 	cmpwi r3, 0x1
 	bne lbl_800161f0
-	lwz r3, -31524(r13)
+	lwz r3, NextCommandNumber
 	add r6, r30, r0
 	addi r0, r3, 0x1
-	stw r0, -31524(r13)
+	stw r0, NextCommandNumber
 	lwz r3, 0x4(r6)
 	lwz r4, 0x8(r6)
 	lwz r5, 0xc(r6)
@@ -251,10 +247,10 @@ lbl_800161a8:
 lbl_800161f0:
 	cmpwi r3, 0x2
 	bne lbl_8001621c
-	lwz r3, -31524(r13)
+	lwz r3, NextCommandNumber
 	add r4, r30, r0
 	addi r0, r3, 0x1
-	stw r0, -31524(r13)
+	stw r0, NextCommandNumber
 	lwz r3, 0xc(r4)
 	lwz r4, 0x10(r4)
 	bl DVDLowSeek
@@ -270,7 +266,7 @@ lbl_8001622c:
 	li r0, -0x1
 	stw r0, 0x0(r30)
 	li r0, 0x0
-	stw r0, -31524(r13)
+	stw r0, NextCommandNumber
 lbl_8001623c:
 	addi r3, r1, 0x10
 	bl OSClearContext
@@ -278,17 +274,17 @@ lbl_8001623c:
 	bl OSSetCurrentContext
 	cmplwi r29, 0x0
 	beq lbl_8001627c
-	lwz r12, -31584(r13)
+	lwz r12, Callback
 	li r0, 0x0
 	cmplwi r12, 0x0
-	stw r0, -31584(r13)
+	stw r0, Callback
 	beq lbl_80016274
 	mtlr r12
 	addi r3, r29, 0x0
 	blrl
 lbl_80016274:
 	li r0, 0x0
-	stw r0, -31560(r13)
+	stw r0, lbl_801A6878
 lbl_8001627c:
 	addi r3, r1, 0x10
 	bl OSClearContext
@@ -302,7 +298,7 @@ lbl_8001628c:
 	blr
 }
 
-/* ProcessNextCommand @0x800162A0 | size: 0x84 — nofralloc transcription */
+/* ProcessNextCommand @0x800162A0 | size: 0x84 -- nofralloc transcription */
 asm void ProcessNextCommand(void) {
 nofralloc
 	mflr r0
@@ -310,15 +306,15 @@ nofralloc
 	stw r0, 0x4(r1)
 	addi r4, r3, CommandList@l
 	stwu r1, -0x8(r1)
-	lwz r0, -31524(r13)
+	lwz r0, NextCommandNumber
 	mulli r0, r0, 0x14
 	lwzx r3, r4, r0
 	cmpwi r3, 0x1
 	bne lbl_800162F0
-	lwz r3, -31524(r13)
+	lwz r3, NextCommandNumber
 	add r6, r4, r0
 	addi r0, r3, 0x1
-	stw r0, -31524(r13)
+	stw r0, NextCommandNumber
 	lwz r3, 0x4(r6)
 	lwz r4, 0x8(r6)
 	lwz r5, 0xc(r6)
@@ -328,10 +324,10 @@ nofralloc
 lbl_800162F0:
 	cmpwi r3, 0x2
 	bne lbl_80016314
-	lwz r3, -31524(r13)
+	lwz r3, NextCommandNumber
 	add r4, r4, r0
 	addi r0, r3, 0x1
-	stw r0, -31524(r13)
+	stw r0, NextCommandNumber
 	lwz r3, 0xc(r4)
 	lwz r4, 0x10(r4)
 	bl DVDLowSeek
@@ -341,7 +337,7 @@ lbl_80016314:
 	mtlr r0
 	blr
 }
-/* AlarmHandlerForTimeout @0x80016324 | size: 0x70 — nofralloc transcription */
+/* AlarmHandlerForTimeout @0x80016324 | size: 0x70 -- nofralloc transcription */
 asm void AlarmHandlerForTimeout(register OSAlarm* alarm, register OSContext* context) {
 nofralloc
 	mflr r0
@@ -355,10 +351,10 @@ nofralloc
 	bl OSClearContext
 	addi r3, r1, 0x10
 	bl OSSetCurrentContext
-	lwz r12, -31584(r13)
+	lwz r12, Callback
 	li r0, 0x0
 	cmplwi r12, 0x0
-	stw r0, -31584(r13)
+	stw r0, Callback
 	beq lbl_80016370
 	mtlr r12
 	li r3, 0x10
@@ -375,7 +371,7 @@ lbl_80016370:
 	blr
 }
 
-/* Read @0x80016394 | size: 0x110 — nofralloc transcription */
+/* Read @0x80016394 | size: 0x110 -- nofralloc transcription */
 asm void Read(register u32 addr, register u32 len, register u32 offset,
                      register DVDCallback callback) {
 nofralloc
@@ -390,17 +386,17 @@ nofralloc
 	addi r29, r4, 0x0
 	stw r28, 0x18(r1)
 	addi r28, r3, 0x0
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	li r0, 0x1
-	stw r6, -31584(r13)
+	stw r6, Callback
 	lis r6, CommandList@ha
 	addi r31, r6, CommandList@l
-	stw r0, -31528(r13)
+	stw r0, lbl_801A6898
 	bl __OSGetSystemTime
-	stw r4, -31532(r13)
+	stw r4, lbl_801A6894
 	lis r4, 0xcc00
 	lis r0, 0xa0
-	stw r3, -31536(r13)
+	stw r3, lbl_801A6890
 	addi r4, r4, 0x6000
 	lis r3, 0xa800
 	stw r3, 0x8(r4)
@@ -451,7 +447,7 @@ lbl_80016484:
 	blr
 }
 
-/* SeekTwiceBeforeRead @0x800164A4 | size: 0x80 — nofralloc transcription */
+/* SeekTwiceBeforeRead @0x800164A4 | size: 0x80 -- nofralloc transcription */
 asm void SeekTwiceBeforeRead(void) {
 nofralloc
 	mflr r0
@@ -464,7 +460,7 @@ nofralloc
 	li r10, 0x0
 	b lbl_800164D0
 lbl_800164C8:
-	lwz r0, -31552(r13)
+	lwz r0, WorkAroundSeekLocation
 	add r10, r8, r0
 lbl_800164D0:
 	li r0, 0x2
@@ -482,14 +478,14 @@ lbl_800164D0:
 	stw r5, 0x20(r9)
 	stw r6, 0x24(r9)
 	stw r7, 0x28(r9)
-	stw r0, -31524(r13)
+	stw r0, NextCommandNumber
 	bl DVDLowSeek
 	lwz r0, 0xc(r1)
 	addi r1, r1, 0x8
 	mtlr r0
 	blr
 }
-/* DVDLowRead @0x80016524 | size: 0x298 — nofralloc transcription */
+/* DVDLowRead @0x80016524 | size: 0x298 -- nofralloc transcription */
 asm void DVDLowRead(register u32 addr, register u32 len, register u32 offset,
                      register DVDCallback callback) {
 nofralloc
@@ -510,24 +506,24 @@ nofralloc
 	stw r24, 0xc4(r31)
 	stw r25, 0xc8(r31)
 	stw r26, 0xcc(r31)
-	lwz r0, -31556(r13)
+	lwz r0, WorkAroundType
 	cmplwi r0, 0x0
 	bne lbl_8001659c
 	li r0, -0x1
 	stw r0, 0x0(r31)
 	li r0, 0x0
 	addi r3, r24, 0x0
-	stw r0, -31524(r13)
+	stw r0, NextCommandNumber
 	addi r4, r25, 0x0
 	addi r5, r26, 0x0
 	addi r6, r27, 0x0
 	bl Read
 	b lbl_800167a4
 lbl_8001659c:
-	lwz r0, -31556(r13)
+	lwz r0, WorkAroundType
 	cmplwi r0, 0x1
 	bne lbl_800167a4
-	lwz r0, -32600(r13)
+	lwz r0, lbl_801A6468
 	cmpwi r0, 0x0
 	beq lbl_800165cc
 	addi r3, r24, 0x0
@@ -581,7 +577,7 @@ lbl_80016648:
 	stw r0, 0x0(r31)
 	li r0, 0x0
 	addi r3, r24, 0x0
-	stw r0, -31524(r13)
+	stw r0, NextCommandNumber
 	addi r4, r25, 0x0
 	addi r5, r26, 0x0
 	addi r6, r27, 0x0
@@ -603,10 +599,10 @@ lbl_80016678:
 lbl_800166a8:
 	bl __OSGetSystemTime
 	lis r5, 0x8000
-	lwz r8, -31544(r13)
+	lwz r8, lbl_801A6888
 	lwz r0, 0xf8(r5)
 	lis r5, 0x1062
-	lwz r9, -31540(r13)
+	lwz r9, lbl_801A688C
 	li r6, 0x0
 	srwi r7, r0, 2
 	addi r0, r5, 0x4dd3
@@ -626,7 +622,7 @@ lbl_800166a8:
 	stw r0, 0x0(r31)
 	addi r3, r24, 0x0
 	addi r4, r25, 0x0
-	stw r6, -31524(r13)
+	stw r6, NextCommandNumber
 	addi r5, r26, 0x0
 	addi r6, r27, 0x0
 	bl Read
@@ -648,7 +644,7 @@ lbl_80016720:
 	subfc r5, r9, r5
 	subfe r4, r8, r6
 	srwi r0, r3, 3
-	stw r6, -31524(r13)
+	stw r6, NextCommandNumber
 	addc r23, r5, r0
 	adde r22, r4, r6
 	addi r3, r31, 0x40
@@ -675,7 +671,7 @@ lbl_800167a4:
 	blr
 }
 
-/* DVDLowSeek @0x800167BC | size: 0x94 — nofralloc transcription */
+/* DVDLowSeek @0x800167BC | size: 0x94 -- nofralloc transcription */
 asm void DVDLowSeek(void) {
 nofralloc
 	mflr r0
@@ -684,10 +680,10 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	stw r30, 0x10(r1)
-	stw r4, -31584(r13)
+	stw r4, Callback
 	lis r4, 0xcc00
 	addi r4, r4, 0x6000
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	lis r0, 0xab00
 	stw r0, 0x8(r4)
 	srwi r0, r3, 2
@@ -716,22 +712,22 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* DVDLowWaitCoverClose @0x80016850 | size: 0x2C — nofralloc transcription */
+/* DVDLowWaitCoverClose @0x80016850 | size: 0x2C -- nofralloc transcription */
 asm void DVDLowWaitCoverClose(void) {
 nofralloc
 	li r0, 0x1
-	stw r3, -31584(r13)
+	stw r3, Callback
 	lis r3, 0xcc00
-	stw r0, -31564(r13)
+	stw r0, WaitingCoverClose
 	li r0, 0x0
 	addi r4, r3, 0x6000
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	li r0, 0x2
 	li r3, 0x1
 	stw r0, 0x4(r4)
 	blr
 }
-/* DVDLowReadDiskID @0x8001687C | size: 0xA4 — nofralloc transcription */
+/* DVDLowReadDiskID @0x8001687C | size: 0xA4 -- nofralloc transcription */
 asm void DVDLowReadDiskID(void) {
 nofralloc
 	mflr r0
@@ -744,10 +740,10 @@ nofralloc
 	lis r5, 0x8000
 	stw r31, 0x14(r1)
 	stw r30, 0x10(r1)
-	stw r4, -31584(r13)
+	stw r4, Callback
 	lis r4, 0xcc00
 	addi r7, r4, 0x6000
-	stw r8, -31592(r13)
+	stw r8, StopAtNextInt
 	stw r0, 0x6008(r4)
 	lis r4, AlarmForTimeout@ha
 	li r0, 0x3
@@ -776,7 +772,7 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* DVDLowStopMotor @0x80016920 | size: 0x8C — nofralloc transcription */
+/* DVDLowStopMotor @0x80016920 | size: 0x8C -- nofralloc transcription */
 asm void DVDLowStopMotor(void) {
 nofralloc
 	mflr r0
@@ -785,10 +781,10 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	stw r30, 0x10(r1)
-	stw r3, -31584(r13)
+	stw r3, Callback
 	lis r3, 0xcc00
 	addi r4, r3, 0x6000
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	lis r0, 0xe300
 	stw r0, 0x6008(r3)
 	li r0, 0x1
@@ -815,7 +811,7 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* DVDLowRequestError @0x800169AC | size: 0x8C — nofralloc transcription */
+/* DVDLowRequestError @0x800169AC | size: 0x8C -- nofralloc transcription */
 asm void DVDLowRequestError(void) {
 nofralloc
 	mflr r0
@@ -824,10 +820,10 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	stw r30, 0x10(r1)
-	stw r3, -31584(r13)
+	stw r3, Callback
 	lis r3, 0xcc00
 	addi r4, r3, 0x6000
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	lis r0, 0xe000
 	stw r0, 0x6008(r3)
 	li r0, 0x1
@@ -854,7 +850,7 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* DVDLowInquiry @0x80016A38 | size: 0x9C — nofralloc transcription */
+/* DVDLowInquiry @0x80016A38 | size: 0x9C -- nofralloc transcription */
 asm void DVDLowInquiry(void) {
 nofralloc
 	mflr r0
@@ -865,10 +861,10 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	stw r30, 0x10(r1)
-	stw r4, -31584(r13)
+	stw r4, Callback
 	lis r4, 0xcc00
 	addi r7, r4, 0x6000
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	lis r0, 0x1200
 	stw r0, 0x6008(r4)
 	lis r4, AlarmForTimeout@ha
@@ -897,7 +893,7 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* DVDLowAudioStream @0x80016AD4 | size: 0x98 — nofralloc transcription */
+/* DVDLowAudioStream @0x80016AD4 | size: 0x98 -- nofralloc transcription */
 asm void DVDLowAudioStream(void) {
 nofralloc
 	mflr r0
@@ -906,10 +902,10 @@ nofralloc
 	stwu r1, -0x20(r1)
 	stw r31, 0x1c(r1)
 	stw r30, 0x18(r1)
-	stw r6, -31584(r13)
+	stw r6, Callback
 	lis r6, 0xcc00
 	addi r6, r6, 0x6000
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	oris r0, r3, 0xe100
 	lis r3, AlarmForTimeout@ha
 	stw r0, 0x8(r6)
@@ -939,7 +935,7 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* DVDLowRequestAudioStatus @0x80016B6C | size: 0x8C — nofralloc transcription */
+/* DVDLowRequestAudioStatus @0x80016B6C | size: 0x8C -- nofralloc transcription */
 asm void DVDLowRequestAudioStatus(void) {
 nofralloc
 	mflr r0
@@ -948,10 +944,10 @@ nofralloc
 	stwu r1, -0x18(r1)
 	stw r31, 0x14(r1)
 	stw r30, 0x10(r1)
-	stw r4, -31584(r13)
+	stw r4, Callback
 	lis r4, 0xcc00
 	addi r4, r4, 0x6000
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	oris r0, r3, 0xe200
 	lis r3, AlarmForTimeout@ha
 	stw r0, 0x8(r4)
@@ -978,7 +974,7 @@ nofralloc
 	mtlr r0
 	blr
 }
-/* DVDLowAudioBufferConfig @0x80016BF8 | size: 0x9C — nofralloc transcription */
+/* DVDLowAudioBufferConfig @0x80016BF8 | size: 0x9C -- nofralloc transcription */
 asm void DVDLowAudioBufferConfig(void) {
 nofralloc
 	mflr r0
@@ -988,8 +984,8 @@ nofralloc
 	stwu r1, -0x20(r1)
 	stw r31, 0x1c(r1)
 	stw r30, 0x18(r1)
-	stw r5, -31584(r13)
-	stw r0, -31592(r13)
+	stw r5, Callback
+	stw r0, StopAtNextInt
 	beq lbl_80016C24
 	lis r0, 0x1
 lbl_80016C24:
@@ -1022,7 +1018,7 @@ lbl_80016C24:
 	mtlr r0
 	blr
 }
-/* DVDLowReset @0x80016C94 | size: 0xBC — nofralloc transcription */
+/* DVDLowReset @0x80016C94 | size: 0xBC -- nofralloc transcription */
 asm void DVDLowReset(void) {
 nofralloc
 	mflr r0
@@ -1064,10 +1060,10 @@ lbl_80016cf8:
 	ori r0, r30, 0x5
 	stw r0, 0x0(r31)
 	li r0, 0x1
-	stw r0, -31568(r13)
+	stw r0, ResetOccurred
 	bl __OSGetSystemTime
 	stw r4, -31572(r13)
-	stw r3, -31576(r13)
+	stw r3, LastResetEnd
 	lmw r26, 0x8(r1)
 	lwz r0, 0x24(r1)
 	addi r1, r1, 0x20
@@ -1075,26 +1071,26 @@ lbl_80016cf8:
 	blr
 }
 
-/* DVDLowStopMotorAtNextInt @0x80016D50 | size: 0x14 — nofralloc transcription */
+/* DVDLowStopMotorAtNextInt @0x80016D50 | size: 0x14 -- nofralloc transcription */
 asm void DVDLowStopMotorAtNextInt(void) {
 nofralloc
 	li r0, 0x1
-	stw r0, -31592(r13)
+	stw r0, StopAtNextInt
 	li r3, 0x1
-	stw r0, -31560(r13)
+	stw r0, lbl_801A6878
 	blr
 }
-/* DVDLowClearCallback @0x80016D64 | size: 0x18 — nofralloc transcription */
+/* DVDLowClearCallback @0x80016D64 | size: 0x18 -- nofralloc transcription */
 asm void DVDLowClearCallback(void) {
 nofralloc
 	lis r3, 0xcc00
 	li r0, 0x0
 	stw r0, 0x6004(r3)
-	lwz r3, -31584(r13)
-	stw r0, -31584(r13)
+	lwz r3, Callback
+	stw r0, Callback
 	blr
 }
-/* __DVDLowSetWAType @0x80016D7C | size: 0x44 — nofralloc transcription */
+/* __DVDLowSetWAType @0x80016D7C | size: 0x44 -- nofralloc transcription */
 asm void __DVDLowSetWAType(register u32 type, register u32 location) {
 nofralloc
 	mflr r0
@@ -1105,8 +1101,8 @@ nofralloc
 	stw r30, 0x10(r1)
 	addi r30, r3, 0x0
 	bl OSDisableInterrupts
-	stw r30, -31556(r13)
-	stw r31, -31552(r13)
+	stw r30, WorkAroundType
+	stw r31, WorkAroundSeekLocation
 	bl OSRestoreInterrupts
 	lwz r0, 0x1c(r1)
 	lwz r31, 0x14(r1)
