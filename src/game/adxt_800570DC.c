@@ -30,12 +30,16 @@ extern unsigned char SJMEM_Error_str[12];
 extern unsigned char SJRBF_Error_str[12];
 extern unsigned char E0003_lsc_null_str[35];
 extern unsigned char lbl_80092238[42];
+extern unsigned char lbl_800922C0[4];
 extern unsigned char lbl_80092264[41];
 extern unsigned char lbl_800922C8[21];
 extern unsigned char lbl_800922E0[16];
 extern unsigned char lbl_801322D0[48];
 extern unsigned char lbl_80132330[448];
 extern unsigned char lbl_80188A88[4];
+extern unsigned char lbl_80132300[8];
+extern unsigned char lbl_80092330[4];
+extern unsigned char lbl_8009232C[4];
 extern unsigned char lbl_80188A8C[9092];
 extern unsigned char lbl_8018AE10[4];
 extern unsigned char lbl_8018AE14[4];
@@ -303,16 +307,16 @@ asm void fn_8005741C(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7ff7
+    lis	r4, lbl_800922C0@ha
     stw	r0, 0x14(r1)
     addi	r3, r1, 8
-    lwz	r0, 0x22c0(r4)
+    lwz	r0, lbl_800922C0@l(r4)
     bl      gccicrit_enter
-    lis     r3, lbl_80188A8C@ha
-    lwz	r0, -0x7578(r3)
+    lis     r3, lbl_80188A88@ha
+    lwz	r0, lbl_80188A88@l(r3)
     cmpwi	r0, 0
     bne     _80057468
-    lis	r3, -0x7fe7
+    lis	r3, lbl_80188A8C@ha
     li	r4, 0
     addi	r3, r3, lbl_80188A8C@l
     li	r5, 0x2380
@@ -524,14 +528,14 @@ asm void svmEnterCritical(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe7
+    lis	r3, lbl_8018AE10@ha
     stw	r0, 0x14(r1)
-    lwz	r0, -0x51f0(r3)
+    lwz	r0, lbl_8018AE10@l(r3)
     cmpwi	r0, 0
     bne     _80057750
     bl      OSDisableInterrupts
-    lis	r4, -0x7fe7
-    stw	r3, -0x51ec(r4)
+    lis	r4, lbl_8018AE14@ha
+    stw	r3, lbl_8018AE14@l(r4)
 _80057750:
     lis     r3, lbl_8018AE10@ha
     addi	r4, r3, lbl_8018AE10@l
@@ -988,9 +992,9 @@ asm void fn_80057D0C(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe7
+    lis	r3, lbl_8018AE18@ha
     stw	r0, 0x14(r1)
-    lwz	r0, -0x51e8(r3)
+    lwz	r0, lbl_8018AE18@l(r3)
     cmpwi	r0, 0
     bne     _80057d3c
     lis     r3, lbl_8018AE1C@ha
@@ -1647,16 +1651,16 @@ _8005857c:
     b     _80058608
 _8005858c:
     lis     r3, lbl_8018B2A4@ha
-    lis	r5, -0x7fed
+    lis	r5, lbl_80132300@ha
     slwi	r6, r4, 6
-    lis	r4, -0x7ff7
+    lis	r4, lbl_80092330@ha
     addi	r3, r3, lbl_8018B2A4@l
     li	r0, 1
     add	r28, r3, r6
     lis     r3, fn_800586E4@ha
     stw	r0, 4(r28)
-    addi	r5, r5, 0x2300
-    addi	r4, r4, 0x2330
+    addi	r5, r5, lbl_80132300@l
+    addi	r4, r4, lbl_80092330@l
     addi	r0, r3, fn_800586E4@l
     stw	r5, 0(r28)
     stw	r29, 0x1c(r28)
@@ -1721,15 +1725,15 @@ asm void fn_80058680(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7ff7
+    lis	r3, lbl_8009232C@ha
     stw	r0, 0x14(r1)
-    lwz	r0, 0x232c(r3)
+    lwz	r0, lbl_8009232C@l(r3)
     bl      svmEnterCritical
-    lis     r3, lbl_8018B2A4@ha
-    lwz	r0, -0x4d60(r3)
+    lis     r3, lbl_8018B2A0@ha
+    lwz	r0, lbl_8018B2A0@l(r3)
     cmpwi	r0, 0
     bne     _800586bc
-    lis	r3, -0x7fe7
+    lis	r3, lbl_8018B2A4@ha
     li	r4, 0
     addi	r3, r3, lbl_8018B2A4@l
     li	r5, 0x4000
@@ -1791,9 +1795,9 @@ asm void fn_80058754(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe7
+    lis	r3, lbl_8018F2A8@ha
     stw	r0, 0x14(r1)
-    lwz	r0, -0xd58(r3)
+    lwz	r0, lbl_8018F2A8@l(r3)
     cmpwi	r0, 0
     bne     _80058784
     lis     r3, lbl_8018F2AC@ha
