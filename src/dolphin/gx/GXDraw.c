@@ -2551,14 +2551,14 @@ asm int fn_8003AB08(register u32 a)
     stfd    f28, 0x38(r1)
     stfd    f27, 0x30(r1)
     stmw    r25, 0x14(r1)
-    addi    r31, r4, -0x7740
+    addi    r31, r4, lbl_801788C0@l
     mr      r29, r3
     li      r30, 0
-    lfs f27, lbl_801A7180(r2)
-    lfs f28, lbl_801A7184(r2)
-    lfs f29, lbl_801A7188(r2)
-    lfs f30, lbl_801A718C(r2)
-    lfs f31, lbl_801A7190(r2)
+    lfs f27, lbl_801A7180
+    lfs f28, lbl_801A7184
+    lfs f29, lbl_801A7188
+    lfs f30, lbl_801A718C
+    lfs f31, lbl_801A7190
     b       _8003af9c
 _8003ab54:
     li      r26, 0
@@ -2899,14 +2899,14 @@ asm int fn_8003B010(register u32 a)
     stfd    f28, 0x40(r1)
     stfd    f27, 0x38(r1)
     stmw    r23, 0x14(r1)
-    addi    r31, r4, -0x7740
+    addi    r31, r4, lbl_801788C0@l
     mr      r29, r3
     li      r30, 0
-    lfs f27, lbl_801A7180(r2)
-    lfs f28, lbl_801A7184(r2)
-    lfs f29, lbl_801A7188(r2)
-    lfs f30, lbl_801A718C(r2)
-    lfs f31, lbl_801A7190(r2)
+    lfs f27, lbl_801A7180
+    lfs f28, lbl_801A7184
+    lfs f29, lbl_801A7188
+    lfs f30, lbl_801A718C
+    lfs f31, lbl_801A7190
     b       _8003b5c8
 _8003b05c:
     li      r23, 0

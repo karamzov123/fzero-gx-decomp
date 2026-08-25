@@ -1,3 +1,5 @@
+extern unsigned char lbl_8012B658[4];
+extern unsigned char lbl_80178C18[4];
 #pragma push
 #pragma force_active on
 
@@ -50,7 +52,7 @@ asm void fn_8003FF88(register void* arg0)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7fed
+    lis	r3, lbl_8012B658@ha
     stw	r0, 4(r1)
     stwu	r1, -0x2d0(r1)
     stfd	f31, 0x2c8(r1)
@@ -58,7 +60,7 @@ asm void fn_8003FF88(register void* arg0)
     stfd	f29, 0x2b8(r1)
     stfd	f28, 0x2b0(r1)
     stmw	r17, 0x274(r1)
-    addi	r28, r3, -0x49a8
+    addi	r28, r3, lbl_8012B658@l
     lwz	r0, lbl_801A6C74
     cmplwi	r0, 0
     beq     _80041080
@@ -91,7 +93,7 @@ _80040004:
     stw	r30, 0x268(r1)
     addi	r29, r4, -0x7777
     lwz	r0, 0xfc(r31)
-    lis	r3, -0x7fe8
+    lis	r3, lbl_80178C18@ha
     lfd	f0, 0x268(r1)
     mulhwu	r0, r29, r0
     fsubs	f0, f0, f2
@@ -101,7 +103,7 @@ _80040004:
     stw	r0, lbl_801A6C60
     add	r5, r6, r5
     stfs f0, lbl_801A6594(r13)
-    addi	r3, r3, -0x73e8
+    addi	r3, r3, lbl_80178C18@l
     lwz	r0, lbl_801A6C60
     li	r4, 0
     lwz	r5, 8(r5)

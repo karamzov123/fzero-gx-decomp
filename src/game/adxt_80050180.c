@@ -1,3 +1,4 @@
+extern unsigned char lbl_80186FA8[4];
 #pragma push
 #pragma force_active on
 
@@ -55,13 +56,13 @@ asm void svm_ringbuf_skip(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r5, -0x7fe8
+    lis	r5, lbl_80186FA8@ha
     stw	r0, 0x14(r1)
     stw	r31, 0xc(r1)
     mr	r31, r3
     stw	r30, 8(r1)
     mr	r30, r4
-    lwzu	r4, 0x6fa8(r5)
+    lwzu	r4, lbl_80186FA8@l(r5)
     addi	r0, r4, 1
     stw	r0, 0(r5)
     lwz	r0, 0xc(r3)

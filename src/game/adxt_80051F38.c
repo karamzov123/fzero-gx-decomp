@@ -1,3 +1,4 @@
+extern unsigned char lbl_80091330[8];
 #pragma push
 #pragma force_active on
 
@@ -132,9 +133,9 @@ _80051f94:
     stfs	f0, 0(r9)
     addi	r9, r9, -4
     bne     _80051f94
-    lis	r6, -0x7ff7
+    lis	r6, lbl_80091330@ha
     addi	r4, r7, 0x1080
-    lfs	f0, 0x1330(r6)
+    lfs	f0, lbl_80091330@l(r6)
     li	r7, 0xf
     stfs	f0, 0x40(r5)
 _80052148:

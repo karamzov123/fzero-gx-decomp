@@ -469,8 +469,8 @@ _8000a74c:
     mr	r3, r30
     li	r4, 0x20
     bl      DCInvalidateRange
-    lis     r3, -0x7fff
-    addi	r5, r3, -0x5c8c
+    lis     r3, InquiryCallback@ha
+    addi	r5, r3, InquiryCallback@l
     mr	r4, r30
     addi	r3, r30, 0x20
     bl      DVDInquiryAsync

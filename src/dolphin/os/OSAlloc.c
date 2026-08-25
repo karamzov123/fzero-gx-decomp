@@ -510,13 +510,13 @@ asm int OSCheckHeap(register void* param1)
     beq     _80009d60
     mulli	r0, r0, 0x14
     lis     r5, lbl_8015BE40@ha
-    lis     r6, 0x8016
+    lis     r6, lbl_8015BEE0@ha
     lwz	r29, g_currentHeapHandle
     addi	r5, r5, lbl_8015BE40@l
     lwz	r31, gAssetBudgetB
     add	r8, r5, r0
     lwzx	r9, r5, r0
-    addi	r30, r6, -0x4120
+    addi	r30, r6, lbl_8015BEE0@l
     lwz	r12, lbl_801A6740
     lwz	r11, lbl_801A673C
     lwz	r10, lbl_801A6738
@@ -669,14 +669,14 @@ _80009f14:
     mulli	r7, r3, 0x14
     lis     r4, lbl_8015BE40@ha
     lwz	r6, g_currentHeapHandle
-    lis	r3, -0x7fea
+    lis	r3, lbl_8015BEE0@ha
     addi	r4, r4, lbl_8015BE40@l
     lwz	r5, gAssetBudgetB
     stwx	r6, r4, r7
     add	r9, r4, r7
     lwz	r4, lbl_801A6740
     stw	r5, 4(r9)
-    lwzu	r7, -0x4120(r3)
+    lwzu	r7, lbl_8015BEE0@l(r3)
     stw	r4, 8(r9)
     lwz	r8, lbl_801A673C
     lwz	r6, 4(r3)

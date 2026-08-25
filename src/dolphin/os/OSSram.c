@@ -116,7 +116,7 @@ asm void __OSLockSram(void)
 {
     nofralloc
     mflr    r0
-    lis     r3, -0x7fea
+    lis     r3, Scb@ha
     stw     r0, 4(r1)
     stwu    r1, -0x10(r1)
     stw     r31, 0xc(r1)
@@ -146,7 +146,7 @@ asm void __OSLockSramEx(void)
 {
     nofralloc
     mflr    r0
-    lis     r3, -0x7fea
+    lis     r3, Scb@ha
     stw     r0, 4(r1)
     stwu    r1, -0x10(r1)
     stw     r31, 0xc(r1)

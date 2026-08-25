@@ -1866,9 +1866,9 @@ _80082088:
     addi	r10, r9, -0x58
     cmplwi	r10, 0x20
     bgt     _800820f4
-    lis     r9, -0x7fea
+    lis     r9, jumptable_8015B4BC@ha
     slwi	r10, r10, 2
-    addi	r9, r9, -0x4b44
+    addi	r9, r9, jumptable_8015B4BC@l
     lwzx	r9, r9, r10
     mtctr	r9
     bctr	
@@ -2053,9 +2053,9 @@ _80082314:
     li	r4, 1
     cmplwi	r0, 0x10
     bgt     _80082390
-    lis     r3, -0x7fea
+    lis     r3, jumptable_8015B620@ha
     slwi	r0, r0, 2
-    addi	r3, r3, -0x49e0
+    addi	r3, r3, jumptable_8015B620@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr	
@@ -2228,9 +2228,9 @@ _8008257c:
     stb	r6, 0xd(r1)
     cmplwi	r0, 0x37
     bgt     _80082754
-    lis     r3, -0x7fea
+    lis     r3, jumptable_8015B540@ha
     slwi	r0, r0, 2
-    addi	r3, r3, -0x4ac0
+    addi	r3, r3, jumptable_8015B540@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr	

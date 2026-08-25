@@ -676,14 +676,14 @@ asm void axmix_voices_reset_all(void)
 {
     nofralloc
     mflr	r0
-    lis	r3, -0x7fe9
+    lis	r3, lbl_80176160@ha
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
     stw	r30, 0x10(r1)
     lis	r30, 0x5000
     stw	r29, 0xc(r1)
-    addi	r29, r3, 0x6160
+    addi	r29, r3, lbl_80176160@l
     stw	r28, 8(r1)
     li	r28, 0
 _80025e44:
