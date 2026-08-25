@@ -25,6 +25,14 @@ extern void strcpy(void);
 extern void memset(void);
 extern void strlen(void);
 extern unsigned char E0040301_handl_is_null_str[448];
+extern unsigned char gcci_client_ctx[4];
+extern unsigned char gcci_nullcheck_callback[4];
+extern unsigned char gcci_dvd_cb_flag[8];
+extern unsigned char gcci_err_ctx[4];
+extern unsigned char lbl_80188974[0x104];
+extern unsigned char lbl_801878B8[0xC];
+
+
 extern unsigned char E0092912_handl_is_null_str[24];
 extern void fn_800555C0(void);
 extern unsigned char gcci_msg_base_str[43];
@@ -51,8 +59,8 @@ asm void gcci_client_get_field_10(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80055754
-    lis	r3, -0x7fe8
-    lwz	r12, 0x78c8(r3)
+    lis	r3, gcci_client_ctx@ha
+    lwz	r12, gcci_client_ctx@l(r3)
     cmplwi	r12, 0
     beq     _8005574c
     lis     r4, gcci_nullcheck_callback@ha
@@ -83,8 +91,8 @@ asm void gcci_client_get_field_02(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _800557b4
-    lis	r3, -0x7fe8
-    lwz	r12, 0x78c8(r3)
+    lis	r3, gcci_client_ctx@ha
+    lwz	r12, gcci_client_ctx@l(r3)
     cmplwi	r12, 0
     beq     _800557ac
     lis     r4, gcci_nullcheck_callback@ha
@@ -232,14 +240,14 @@ asm void fn_8005596C(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r6, -0x7ff7
+    lis	r6, gcci_msg_base_str@ha
     stw	r0, 0x34(r1)
     stmw	r23, 0xc(r1)
     or.	r27, r3, r3
     lis     r3, lbl_801878B8@ha
     mr	r25, r4
     mr	r26, r5
-    addi	r4, r6, 0x1f50
+    addi	r4, r6, gcci_msg_base_str@l
     addi	r31, r3, lbl_801878B8@l
     bne     _800559c4
     lwz	r12, 0x10(r31)
@@ -493,8 +501,8 @@ _80055d00:
     rlwinm	r23, r0, 0, 0, 0x1a
     mr	r4, r23
     bl      DCInvalidateRange
-    lis	r3, -0x7fed
-    lwz	r0, 0x22c8(r3)
+    lis	r3, gcci_dvd_cb_flag@ha
+    lwz	r0, gcci_dvd_cb_flag@l(r3)
     cmpwi	r0, 0
     bne     _80055d48
     lis     r3, fn_800555C0@ha
@@ -539,8 +547,8 @@ asm void gcci_client_get_field_1C(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80055de0
-    lis	r3, -0x7fe8
-    lwz	r12, 0x78c8(r3)
+    lis	r3, gcci_client_ctx@ha
+    lwz	r12, gcci_client_ctx@l(r3)
     cmplwi	r12, 0
     beq     _80055dd8
     lis     r4, gcci_nullcheck_callback@ha
@@ -571,8 +579,8 @@ asm void fn_80055DF4(void)
     cmplwi	r3, 0
     stw	r0, 0x14(r1)
     bne     _80055e40
-    lis	r3, -0x7fe8
-    lwz	r12, 0x78c8(r3)
+    lis	r3, gcci_client_ctx@ha
+    lwz	r12, gcci_client_ctx@l(r3)
     cmplwi	r12, 0
     beq     _80055e38
     lis     r4, gcci_nullcheck_callback@ha
@@ -925,7 +933,7 @@ asm void gcci_open_stream(void)
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _800562e4
-    lis	r3, -0x7fe8
+    lis	r3, gcci_nullcheck_callback@ha
     addi	r4, r31, 0x1ac
     addi	r3, r3, gcci_nullcheck_callback@l
     li	r5, 0
@@ -968,7 +976,7 @@ _8005633c:
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _8005637c
-    lis	r3, -0x7fe8
+    lis	r3, gcci_nullcheck_callback@ha
     addi	r4, r31, 0x1d8
     addi	r3, r3, gcci_nullcheck_callback@l
     li	r5, 0
@@ -993,7 +1001,7 @@ _80056398:
     lwz	r12, 0x78c8(r3)
     cmplwi	r12, 0
     beq     _800563d4
-    lis	r3, -0x7fe8
+    lis	r3, gcci_nullcheck_callback@ha
     addi	r4, r31, 0x208
     addi	r3, r3, gcci_nullcheck_callback@l
     li	r5, 0
@@ -1017,10 +1025,10 @@ _800563e0:
 asm void gcci_set_callbacks(void)
 {
     nofralloc
-    lis	r6, -0x7fe8
-    lis	r5, -0x7fe8
-    stw	r3, 0x78c8(r6)
-    stw	r4, 0x78c4(r5)
+    lis	r6, gcci_client_ctx@ha
+    lis	r5, gcci_nullcheck_callback@ha
+    stw	r3, gcci_client_ctx@l(r6)
+    stw	r4, gcci_nullcheck_callback@l(r5)
     blr	
 }
 
@@ -1046,10 +1054,10 @@ _80056430:
     addi	r3, r30, 0x28
     bl      DVDGetCommandBlockStatus
     stw	r3, 0xc(r30)
-    lis	r3, -0x7fe8
+    lis	r3, lbl_801878B8@ha
     lwz	r0, 0xc(r30)
     cmpwi	r0, 0
-    stw	r0, 0x78b8(r3)
+    stw	r0, lbl_801878B8@l(r3)
     beq     _80056494
     bge     _80056478
     cmpwi	r0, -1
@@ -1165,8 +1173,8 @@ asm void fn_80056584(void)
 asm void fn_800565F0(void)
 {
     nofralloc
-    lis	r3, -0x7fed
-    stw	r6, 0x22c8(r3)
+    lis	r3, gcci_dvd_cb_flag@ha
+    stw	r6, gcci_dvd_cb_flag@l(r3)
     blr	
 }
 
@@ -1230,17 +1238,17 @@ asm void gcci_set_critical_value(void)
     nofralloc
     cmplwi	r3, 0
     bne     _800566dc
-    lis	r4, -0x7fe7
+    lis	r4, gcci_err_ctx@ha
     li	r0, 0
-    lis	r3, -0x7fe7
-    stw	r0, -0x7690(r4)
-    stw	r0, -0x768c(r3)
+    lis	r3, lbl_80188974@ha
+    stw	r0, gcci_err_ctx@l(r4)
+    stw	r0, lbl_80188974@l(r3)
     blr	
 _800566dc:
-    lis	r6, -0x7fe7
-    lis	r5, -0x7fe7
-    stw	r3, -0x7690(r6)
-    stw	r4, -0x768c(r5)
+    lis	r6, gcci_err_ctx@ha
+    lis	r5, lbl_80188974@ha
+    stw	r3, gcci_err_ctx@l(r6)
+    stw	r4, lbl_80188974@l(r5)
     blr	
 }
 
