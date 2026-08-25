@@ -1,6 +1,9 @@
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_8017A280[4];
+extern unsigned char lbl_8017A284[4];
+
 extern void fn_80043460(void);
 extern void fn_80043798(void);
 extern void ADXT_GetCmdState(void);
@@ -18,9 +21,9 @@ asm void fn_800433A4(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r4, -0x7fe8
+    lis	r4, lbl_8017A280@ha
     stw	r0, 0x14(r1)
-    lwz	r12, -0x5d80(r4)
+    lwz	r12, lbl_8017A280@l(r4)
     mtctr	r12
     bctrl	
     lwz	r0, 0x14(r1)
@@ -52,8 +55,8 @@ asm void fn_800433F4(void)
     lwz	r3, 0xb0(r3)
     cmplwi	r3, 0
     beq     _8004341c
-    lis	r5, -0x7fe8
-    lwz	r12, -0x5d7c(r5)
+    lis	r5, lbl_8017A284@ha
+    lwz	r12, lbl_8017A284@l(r5)
     mtctr	r12
     bctrl	
 _8004341c:

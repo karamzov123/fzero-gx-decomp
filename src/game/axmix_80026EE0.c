@@ -1492,9 +1492,9 @@ asm void axmix_device_ctrl_accumulate_mix(void)
     lwz	r3, 8(r3)
     bl      fn_800231C4
     lfs	f1, 0xc(r19)
-    lis     r3, -0x7fed
+    lis     r3, jumptable_80129550@ha
     lfs f0, lbl_801A7010(r2)
-    addi	r30, r3, -0x6ab0
+    addi	r30, r3, jumptable_80129550@l
     lwz	r29, 0x10(r19)
     fdivs	f30, f1, f0
     lfd f31, lbl_801A7018(r2)
@@ -1848,9 +1848,9 @@ asm void axmix_update_voice_state(void)
     li	r21, 0
     lis	r31, 0x4330
     lfs	f1, 0xc(r3)
-    lis     r3, -0x7fed
+    lis     r3, jumptable_80129598@ha
     lfs f0, lbl_801A7028(r2)
-    addi	r30, r3, -0x6a68
+    addi	r30, r3, jumptable_80129598@l
     lwz	r29, 0x10(r19)
     fdivs	f30, f1, f0
     lfd f31, lbl_801A7030(r2)

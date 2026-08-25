@@ -120,7 +120,7 @@ asm void __OSLockSram(void)
     stw     r0, 4(r1)
     stwu    r1, -0x10(r1)
     stw     r31, 0xc(r1)
-    addi    r31, r3, -0x4040
+    addi    r31, r3, Scb@l
     bl      OSDisableInterrupts
     lwz     r0, 0x48(r31)
     addi    r4, r31, 0x48
@@ -150,7 +150,7 @@ asm void __OSLockSramEx(void)
     stw     r0, 4(r1)
     stwu    r1, -0x10(r1)
     stw     r31, 0xc(r1)
-    addi    r31, r3, -0x4040
+    addi    r31, r3, Scb@l
     bl      OSDisableInterrupts
     lwz     r0, 0x48(r31)
     addi    r4, r31, 0x48
