@@ -7,6 +7,19 @@ typedef volatile struct GXData {
 } GXData;
 
 extern GXData *const gx;
+extern unsigned char lbl_801A6556[8];
+extern unsigned char lbl_801A6564[8];
+extern unsigned char lbl_801A6572[8];
+extern unsigned char lbl_801A6580[8];
+extern unsigned char lbl_801A6588[8];
+extern unsigned char lbl_801A6538[8];
+extern unsigned char lbl_801A6540[8];
+extern unsigned char lbl_801A6548[8];
+extern unsigned char lbl_801A6550[8];
+extern unsigned char lbl_801A6558[8];
+extern unsigned char lbl_801A6560[8];
+extern unsigned char lbl_801A6568[8];
+extern unsigned char lbl_801A6578[8];
 extern unsigned char lbl_8012B368[80];
 
 void __GXFlushTextureState(void);
@@ -93,7 +106,7 @@ asm void GXGetTexObjLODAll(register void* p, register int a, register int b)
     stwu	r1, -0x50(r1)
     lis	r12, 0x4330
     stw	r31, 0x4c(r1)
-    addi	r31, r13, -0x7e48
+    li	r31, lbl_801A6578
     lwz	r11, 0x58(r1)
     lwz	r0, 0(r3)
     rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
@@ -153,7 +166,7 @@ asm void GXInitTexObjLOD(register void* dst, register void* src, register int a,
 {
     nofralloc
     mflr	r0
-    addi	r7, r13, -0x7e78
+    li	r7, lbl_801A6548
     stw	r0, 4(r1)
     stwu	r1, -0x28(r1)
     stw	r31, 0x24(r1)
@@ -162,19 +175,19 @@ asm void GXInitTexObjLOD(register void* dst, register void* src, register int a,
     li	r30, 0x61
     stw	r29, 0x1c(r1)
     addi	r29, r5, 0
-    addi	r5, r13, -0x7e68
+    li	r5, lbl_801A6558
     stw	r28, 0x18(r1)
     mr	r28, r3
     lwz	r6, 0(r3)
-    addi	r3, r13, -0x7e88
+    li	r3, lbl_801A6538
     lbzx	r0, r3, r29
-    addi	r3, r13, -0x7e80
+    li	r3, lbl_801A6540
     slwi	r0, r0, 0x18
     rlwimi	r0, r6, 0, 8, 0x1f
     stw	r0, 0(r28)
-    addi	r6, r13, -0x7e70
+    li	r6, lbl_801A6550
     lbzx	r0, r3, r29
-    addi	r3, r13, -0x7e60
+    li	r3, lbl_801A6560
     lwz	r8, 4(r28)
     slwi	r0, r0, 0x18
     rlwimi	r0, r8, 0, 8, 0x1f
@@ -225,7 +238,7 @@ asm void GXInitTexObjLOD(register void* dst, register void* src, register int a,
     lwz	r12, 0x414(r4)
     mtlr	r12
     blrl	
-    addi	r4, r13, -0x7e58
+    li	r4, lbl_801A6568
     lwz	r5, 4(r3)
     lbzx	r0, r4, r29
     slwi	r0, r0, 0x18

@@ -2,6 +2,7 @@
 #pragma force_active on
 
 extern void memset(void);
+extern unsigned char lbl_8012B6F0[4];
 extern void fn_80045FA4(void);
 extern void fn_800425D0(void);
 extern void fn_80042980(void);
@@ -903,7 +904,7 @@ asm void fn_8004313C(void)
     nofralloc
     stwu	r1, -0x40(r1)
     mflr	r0
-    lis	r11, -0x7fed
+    lis	r11, lbl_8012B6F0@ha
     stw	r0, 0x44(r1)
     stmw	r18, 8(r1)
     mr	r20, r3
@@ -914,7 +915,7 @@ asm void fn_8004313C(void)
     mr	r25, r8
     mr	r26, r9
     mr	r27, r10
-    addi	r19, r11, -0x4910
+    addi	r19, r11, lbl_8012B6F0@l
     li	r18, 0
     lwz	r28, 0x48(r1)
     lwz	r29, 0x4c(r1)

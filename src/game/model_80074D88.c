@@ -1076,9 +1076,9 @@ _80075AB8:
     lwz	r12, lbl_801A6D40
     cmplwi r12, 0
     beq _80075B94
-    lis r3, -0x7fe6
+    lis r3, lbl_801A3220@ha
     lwz r28, 0x54(r1)
-    lbz r27, 0x3220(r3)
+    lbz r27, lbl_801A3220@l(r3)
     addi r3, r1, 0x1c
     lwz r29, 0x58(r1)
     lwz r11, 0x5c(r1)
@@ -1175,8 +1175,8 @@ _80075C04:
     mr r3, r30
     bl fn_80075C78
     li r4, 0
-    lis r3, -0x7fe6
-    stbu r4, 0x3220(r3)
+    lis r3, lbl_801A3220@ha
+    stbu r4, lbl_801A3220@l(r3)
     lwz r0, 0(r30)
     rlwinm. r0, r0, 0, 0x18, 0x18
     beq _80075C58

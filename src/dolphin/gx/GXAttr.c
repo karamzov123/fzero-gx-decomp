@@ -1122,12 +1122,12 @@ asm void __GXSetVATGroup(register void* p, register int a, register int b)
     nofralloc
     lwz	r6, gx
     slwi	r0, r3, 2
-    lis     r5, -0x7fed
+    lis     r5, jumptable_8012AEBC@ha
     add	r6, r6, r0
     addi	r8, r6, 0x1c
     addi	r9, r6, 0x3c
     addi	r10, r6, 0x5c
-    addi	r5, r5, -0x5144
+    addi	r5, r5, jumptable_8012AEBC@l
     b       _80033614
 _800332fc:
     lwz	r6, 0(r4)
