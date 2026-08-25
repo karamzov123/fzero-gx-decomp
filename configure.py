@@ -358,6 +358,7 @@ config.libs = [
         Object(Matching, "dolphin/vi/vi_8001AFB8.c"),
         Object(Matching, "dolphin/dsp/dspleaf.c"),
         Object(Matching, "dolphin/ai/airegs.c"),
+        Object(Matching, "dolphin/ai/AISampleRate.c"),
         Object(Matching, "dolphin/vi/viregs.c"),
         Object(Matching, "dolphin/pad/pad_8001C01C.c"),
         Object(Matching, "dolphin/pad/padmisc.c"),
