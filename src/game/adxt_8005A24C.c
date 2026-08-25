@@ -27,6 +27,7 @@ extern void mfCiOpen_resource_mgr(void);
 extern void ADXT_GetId(void);
 extern void ADXT_GetNumHandles(void);
 extern void ADXT_DestroyHandle(void);
+extern void fn_8005BC20(void);
 extern void fn_8005BEAC(void);
 extern void sprintf(void);
 extern void strncpy(void);
@@ -42,6 +43,12 @@ extern unsigned char lbl_801324F0[104];
 extern unsigned char adxt_volume_scale_table[124];
 extern unsigned char lbl_80190178[4];
 extern unsigned char lbl_80190B70[4];
+extern unsigned char lbl_800924F8[46];
+extern unsigned char lbl_80092528[144];
+extern unsigned char lbl_8019017C[2548];
+extern unsigned char lbl_80190B74[260];
+extern unsigned char lbl_80190C80[8];
+extern unsigned char lbl_80132558[4];
 extern unsigned char lbl_80190C7C[4];
 extern unsigned char lbl_80190C88[4];
 extern unsigned char lbl_80190C8C[4288];
@@ -55,14 +62,14 @@ asm void fn_8005A24C(void)
     stwu	r1, -0x20(r1)
     mflr	r0
     cmplwi	r3, 0
-    lis	r6, -0x7ff7
+    lis	r6, lbl_800924F8@ha
     stw	r0, 0x24(r1)
     lis     r4, lbl_80190178@ha
     stw	r31, 0x1c(r1)
     stw	r30, 0x18(r1)
     addi	r30, r4, lbl_80190178@l
     stw	r29, 0x14(r1)
-    addi	r29, r6, 0x24f8
+    addi	r29, r6, lbl_800924F8@l
     bne     _8005a2a4
     lwz	r12, 0(r30)
     cmplwi	r12, 0
@@ -287,10 +294,10 @@ _8005a56c:
 asm void fn_8005A588(void)
 {
     nofralloc
-    lis	r6, -0x7fe7
-    lis	r5, -0x7fe7
-    stw	r3, 0x178(r6)
-    stw	r4, 0x17c(r5)
+    lis	r6, lbl_80190178@ha
+    lis	r5, lbl_8019017C@ha
+    stw	r3, lbl_80190178@l(r6)
+    stw	r4, lbl_8019017C@l(r5)
     blr	
 }
 
@@ -305,9 +312,9 @@ asm void fn_8005A59C(void)
 asm void fn_8005A5A8(void)
 {
     nofralloc
-    lis	r4, -0x7ff7
+    lis	r4, lbl_80092528@ha
     lis     r3, lbl_801324F0@ha
-    lwz	r0, 0x2528(r4)
+    lwz	r0, lbl_80092528@l(r4)
     addi	r3, r3, lbl_801324F0@l
     blr	
 }
@@ -343,10 +350,10 @@ _8005a600:
 asm void fn_8005A614(void)
 {
     nofralloc
-    lis	r6, -0x7fe7
-    lis	r5, -0x7fe7
-    stw	r3, 0xb70(r6)
-    stw	r4, 0xb74(r5)
+    lis	r6, lbl_80190B70@ha
+    lis	r5, lbl_80190B74@ha
+    stw	r3, lbl_80190B70@l(r6)
+    stw	r4, lbl_80190B74@l(r5)
     blr	
 }
 
@@ -1619,14 +1626,14 @@ _8005b6b8:
     cmplw	r6, r0
     blt     _8005b6a4
     li	r26, 0
-    lis	r3, -0x7ffa
+    lis	r3, fn_8005BC20@ha
     stw	r26, 0x84(r31)
     li	r4, 0x7f
     li	r0, -0x3e7
     mr	r27, r31
     stw	r4, 0x90(r31)
     slwi	r28, r7, 1
-    addi	r29, r3, -0x43e0
+    addi	r29, r3, fn_8005BC20@l
     stw	r0, 0x94(r31)
     stw	r0, 0x98(r31)
     stw	r26, 0x9c(r31)
@@ -1836,15 +1843,15 @@ _8005b9c0:
     extsb	r0, r0
     cmplw	r26, r0
     blt     _8005b6fc
-    lis	r3, -0x7fe7
+    lis	r3, lbl_80190C80@ha
     cmplwi	r31, 0
-    lwz	r0, 0xc80(r3)
+    lwz	r0, lbl_80190C80@l(r3)
     beq     _8005b9e4
     sth	r0, 0xa0(r31)
 _8005b9e4:
-    lis	r3, -0x7fed
+    lis	r3, lbl_80132558@ha
     cmplwi	r31, 0
-    lwz	r0, 0x2558(r3)
+    lwz	r0, lbl_80132558@l(r3)
     beq     _8005ba00
     stw	r0, 0xa4(r31)
     li	r0, 1
