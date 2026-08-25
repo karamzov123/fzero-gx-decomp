@@ -2,6 +2,10 @@
 #pragma force_active on
 
 typedef int BOOL;
+extern unsigned char lbl_801A6FF8[4];
+extern unsigned char lbl_801A6FF0[4];
+extern unsigned char lbl_801A6FEC[4];
+extern unsigned char lbl_801A6FE8[4];
 extern BOOL OSDisableInterrupts(void);
 extern void axmix_heap_init(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
@@ -217,7 +221,7 @@ _80024578:
     addi	r27, r23, 0
     li	r24, 0
     li	r28, 0
-    lis	r31, 0x4330
+    lis	r31, lbl_801A6FE8@ha
     b       _800247b8
 _800245b4:
     mulli	r21, r28, 0x14
@@ -453,12 +457,12 @@ asm void fn_800248D4(void)
     stfd	f18, 0x78(r1)
     stfd	f19, 0x80(r1)
     stfd	f20, 0x88(r1)
-    lis	r31, -0x7fe6
-    lfs	f6, 0x6fe8(r31)
-    lis	r31, -0x7fe6
-    lfs	f9, 0x6fec(r31)
-    lis	r31, -0x7fe6
-    lfd	f5, 0x6ff0(r31)
+    lis	r31, lbl_801A6FE8@ha
+    lfs	f6, lbl_801A6FE8@l(r31)
+    lis	r31, lbl_801A6FEC@ha
+    lfs	f9, lbl_801A6FEC@l(r31)
+    lis	r31, lbl_801A6FF0@ha
+    lfd	f5, lbl_801A6FF0@l(r31)
     lfs	f2, 0xf0(r4)
     lfs	f11, 0x11c(r4)
     lfs	f8, 0x118(r4)
@@ -871,13 +875,13 @@ asm void fn_80024E6C(void)
     lwz	r31, 4(r3)
     lwz	r30, 0(r3)
     lwz	r9, 8(r3)
-    lis	r10, 0x4330
+    lis	r10, lbl_801A6FF8@ha
     stw	r10, 8(r1)
     stw	r10, 0x10(r1)
     stw	r10, 0x18(r1)
     stw	r10, 0x20(r1)
-    lis	r10, -0x7fe6
-    lfd	f9, 0x6ff8(r10)
+    lis	r10, lbl_801A6FF8@ha
+    lfd	f9, lbl_801A6FF8@l(r10)
     slwi	r10, r5, 2
     lwz	r11, 0(r9)
     lwz	r29, 4(r9)
@@ -988,8 +992,8 @@ asm void fn_80025004(void)
     stw	r10, 0x10(r1)
     stw	r10, 0x18(r1)
     stw	r10, 0x20(r1)
-    lis	r10, -0x7fe6
-    lfd	f9, 0x6ff8(r10)
+    lis	r10, lbl_801A6FF8@ha
+    lfd	f9, lbl_801A6FF8@l(r10)
     slwi	r10, r5, 2
     lwz	r11, 0(r9)
     lwz	r29, 4(r9)
