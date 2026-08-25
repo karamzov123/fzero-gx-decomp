@@ -1,6 +1,8 @@
 #pragma push
 #pragma force_active on
 extern void PPCHalt(void);
+extern unsigned char TRKProgEndMsg_80095BB8[11];
+extern unsigned char EndofProgramInstruction_80095BC8[4];
 void TRKEXICallBack(void);
 void gdev_cc_open();
 void gdev_cc_close();
@@ -230,10 +232,10 @@ asm void TRK_main(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis     r4, -0x7ff7
+    lis     r4, TRKProgEndMsg_80095BB8@ha
     li	r3, 1
     stw	r0, 0x14(r1)
-    addi	r4, r4, 0x5bb8
+    addi	r4, r4, TRKProgEndMsg_80095BB8@l
     crxor	6, 6, 6
     bl      MWTRACE
     bl      TRKInitializeNub
@@ -306,12 +308,12 @@ asm void InitializeProgramEndTrap(void)
     stwu	r1, -0x10(r1)
     mflr	r0
     lis     r4, PPCHalt@ha
-    lis	r3, -0x7ff7
+    lis	r3, EndofProgramInstruction_80095BC8@ha
     stw	r0, 0x14(r1)
     li	r5, 4
     stw	r31, 0xc(r1)
     addi	r31, r4, PPCHalt@l
-    addi	r4, r3, 0x5bc8
+    addi	r4, r3, EndofProgramInstruction_80095BC8@l
     addi	r3, r31, 4
     bl      TRK_memcpy
     addi	r3, r31, 4
@@ -496,7 +498,7 @@ asm void InitMetroTRKCommTable(void)
     stw	r30, 0x18(r1)
     mr	r30, r3
     stw	r29, 0x14(r1)
-    addi	r29, r4, 0x5bc8
+    addi	r29, r4, EndofProgramInstruction_80095BC8@l
     mr	r4, r30
     addi	r3, r29, 8
     crxor	6, 6, 6
