@@ -2,7 +2,7 @@
 
 ## Adapted reference code
 
-Adaptation from the indexed trees under `~/.cache/natc/ref/` is permitted. Every adapted function MUST carry a `// provenance: <project>:<file>:<line>` comment, and the batch `CARD.md` MUST record the same provenance. `dolsdk2001` is the Dolphin SDK itself and should be tried first; the game trees are useful revision references.
+Adaptation from the indexed trees under `indexed reference trees` is permitted. Every adapted function MUST carry a `// provenance: <project>:<file>:<line>` comment, and the batch `CARD.md` MUST record the same provenance. `dolsdk2001` is the Dolphin SDK itself and should be tried first; the game trees are useful revision references.
 
 The integrator gate mechanically requires a `CARD.md` and provenance on every newly changed function body. Use `// provenance: original` for a reconstruction that did not adapt a reference body.
 
