@@ -433,7 +433,8 @@ config.libs = [
         Object(Matching, "dolphin/os/OSAlloc.c"),
         Object(Matching, "dolphin/os/OSThreadScheduler.c"),
         Object(Matching, "game/axmix_80026EE0.c"),
-        Object(Matching, "game/tail_800410A4.c"),
+        Object(Matching, "game/tail_800410A4.c",
+              mw_version="GC/1.3"),  # integrator re-pin 2026-08-25: retail prologue A-family stwu-first; discriminator 12/13 EXACT under GC/1.3 vs 0/13 under 1.2.5n
         Object(Matching, "game/criadx_80041460.c"),
         Object(Matching, "game/criadx_80041BF8.c"),
         Object(Matching, "game/criadx_800424B8.c"),
