@@ -304,15 +304,20 @@ asm void InitMetroTRK(void)
     ori	r1, r1, _db_stack_addr@l
     mr	r3, r5
     bl      InitMetroTRKCommTable
-    cmpwi	r3, 1
+    cmpwi   r3, 1
     bne     _8008cf40
-    lwz	r4, 0x84(r3)
-    mtlr	r4
-    lmw	r0, 0(r3)
-    blr	
+    lwz     r4, 0x84(r3)
+    mtlr    r4
+    lmw     r0, 0(r3)
+    blr
 _8008cf40:
     b       TRK_main
-    blr	
+}
+
+asm void gap_01_8008CF44_text(void)
+{
+    nofralloc
+    blr
 }
 
 asm void InitMetroTRK_BBA(void)
