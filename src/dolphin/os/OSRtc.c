@@ -16,6 +16,7 @@ extern s32 EXISync(register s32 chn);
 extern s32 EXIDma(register s32 chn, register void* buf, register s32 len, register u32 type, register void* callback);
 extern void EXIDeselect(register s32 chn);
 extern s32 __OSUnlockSramCore(register u32 doWrite, register u32 offset);
+extern unsigned char Scb[];
 
 asm int __OSReadROM(register void* buffer, register long length, register long offset)
 {
@@ -102,11 +103,11 @@ asm u32 OSGetSoundMode(void)
 {
     nofralloc
     mflr	r0
-    lis     r3, -0x7fea
+    lis     r3, Scb@ha
     stw	r0, 4(r1)
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r3, -0x4040
+    addi	r31, r3, Scb@l
     bl      OSDisableInterrupts
     lwz	r0, 0x48(r31)
     addi	r4, r31, 0x48
@@ -143,11 +144,11 @@ asm u32 OSGetProgressiveMode(void)
 {
     nofralloc
     mflr	r0
-    lis     r3, -0x7fea
+    lis     r3, Scb@ha
     stw	r0, 4(r1)
     stwu	r1, -0x18(r1)
     stw	r31, 0x14(r1)
-    addi	r31, r3, -0x4040
+    addi	r31, r3, Scb@l
     bl      OSDisableInterrupts
     lwz	r0, 0x48(r31)
     addi	r4, r31, 0x48
@@ -178,11 +179,11 @@ asm void OSSetProgressiveMode(register u32 mode)
 {
     nofralloc
     mflr	r0
-    lis     r4, -0x7fea
+    lis     r4, Scb@ha
     stw	r0, 4(r1)
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r4, -0x4040
+    addi	r31, r4, Scb@l
     stw	r30, 0x18(r1)
     rlwinm	r30, r3, 7, 0x18, 0x18
     bl      OSDisableInterrupts
@@ -228,11 +229,11 @@ asm u16 OSGetWirelessID(register s32 channel)
 {
     nofralloc
     mflr	r0
-    lis     r4, -0x7fea
+    lis     r4, Scb@ha
     stw	r0, 4(r1)
     stwu	r1, -0x20(r1)
     stw	r31, 0x1c(r1)
-    addi	r31, r4, -0x4040
+    addi	r31, r4, Scb@l
     stw	r30, 0x18(r1)
     addi	r30, r3, 0
     bl      OSDisableInterrupts
@@ -268,11 +269,11 @@ asm void OSSetWirelessID(register s32 channel, register u16 id)
 {
     nofralloc
     mflr	r0
-    lis     r5, -0x7fea
+    lis     r5, Scb@ha
     stw	r0, 4(r1)
     stwu	r1, -0x28(r1)
     stw	r31, 0x24(r1)
-    addi	r31, r5, -0x4040
+    addi	r31, r5, Scb@l
     stw	r30, 0x20(r1)
     addi	r30, r4, 0
     stw	r29, 0x1c(r1)
