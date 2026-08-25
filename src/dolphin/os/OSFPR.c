@@ -1,6 +1,9 @@
 #pragma push
 #pragma force_active on
 
+extern unsigned char ZeroF_801A6758[8];
+extern unsigned char ZeroPS_801A6760[8];
+
 asm void __OSFPRInit(void)
 {
     nofralloc
@@ -10,8 +13,8 @@ asm void __OSFPRInit(void)
     mfspr   r3, 920
     rlwinm. r3, r3, 3, 31, 31
     beq     _nopse
-    lis     r3, -0x7fe6
-    addi    r3, r3, 0x6760
+    lis     r3, ZeroPS_801A6760@ha
+    addi    r3, r3, ZeroPS_801A6760@l
     psq_l   f0, 0(r3), 0, 0
     ps_mr   f1, f0
     ps_mr   f2, f0
@@ -45,7 +48,7 @@ asm void __OSFPRInit(void)
     ps_mr   f30, f0
     ps_mr   f31, f0
 _nopse:
-    lfd     f0, -0x7C68(r13)
+    lfd     f0, ZeroF_801A6758(r13)
     fmr     f1, f0
     fmr     f2, f0
     fmr     f3, f0

@@ -87,9 +87,9 @@ asm void __OSReboot(register unsigned long resetCode, register unsigned long boo
     li	r3, 1
     bl      DVDSetAutoInvalidation
     bl      DVDPause
-    lis	r3, -0x7fff
+    lis	r3, Callback@ha
     stw	r27, lbl_801A67C8
-    addi	r3, r3, -0x14fc
+    addi	r3, r3, Callback@l
     bl      DVDCancelAllAsync
     li	r3, -0x20
     bl      __OSMaskInterrupts

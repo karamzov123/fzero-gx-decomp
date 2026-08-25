@@ -32,11 +32,11 @@ asm void __OSInitSystemCall(void)
     stwu	r1, -0x10(r1)
     stw	r31, 0xc(r1)
     lis	r5, 0x8000
-    lis	r4, 0x8001
+    lis	r4, __OSSystemCallVectorStart@ha
     lis     r3, __OSSystemCallVectorEnd@ha
     addi	r31, r5, 0xc00
     addi	r0, r3, __OSSystemCallVectorEnd@l
-    addi	r4, r4, 0xbc
+    addi	r4, r4, __OSSystemCallVectorStart@l
     mr	r3, r31
     subf	r5, r4, r0
     bl      memcpy

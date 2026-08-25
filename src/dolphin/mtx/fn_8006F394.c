@@ -1,7 +1,11 @@
 #pragma push
 #pragma force_active on
 
-extern asm void atan2f(void);
+extern unsigned char lbl_801A73F0[4];
+extern unsigned char lbl_801A73F4[4];
+extern unsigned char lbl_801A73F8[4];
+
+asm void atan2f(void);
 extern asm void mtx_gpstack_push(void);
 extern asm void lbl_8006E1C0(void);
 extern asm void sqrtf(void);
@@ -18,7 +22,7 @@ asm void C_MTXRotAxis(void)
     stwu	r1, -0x20(r1)
     mflr	r0
     lis	r3, -0x2000
-    lfs	f3, -0x7a4c(r2)
+    lfs	f3, lbl_801A73F4(r2)
     stw	r0, 0x24(r1)
     lfs	f1, 8(r3)
     lfs	f2, 0x28(r3)
@@ -50,13 +54,13 @@ asm void C_MTXRotAxisRad(void)
     stw	r29, 0x24(r1)
     mr	r29, r3
     bl      mtx_gpstack_push
-    lfs	f1, -0x7a50(r2)
+    lfs	f1, lbl_801A73F0(r2)
     addi	r3, r1, 8
-    lfs	f0, -0x7a4c(r2)
+    lfs	f0, lbl_801A73F4(r2)
     lis	r5, -0x2000
     stfs	f1, 8(r1)
     mr	r4, r3
-    lfs	f3, -0x7a48(r2)
+    lfs	f3, lbl_801A73F8(r2)
     stfs	f0, 0xc(r1)
     stfs	f1, 0x10(r1)
     lfs	f2, 8(r5)
@@ -114,13 +118,13 @@ asm void C_MTXRotAxisRadInPlace(void)
     stw	r31, 0x2c(r1)
     mr	r31, r3
     bl      mtx_gpstack_push
-    lfs	f1, -0x7a50(r2)
+    lfs	f1, lbl_801A73F0(r2)
     addi	r3, r1, 0x14
-    lfs	f0, -0x7a4c(r2)
+    lfs	f0, lbl_801A73F4(r2)
     lis	r5, -0x2000
     stfs	f1, 0x14(r1)
     mr	r4, r3
-    lfs	f3, -0x7a48(r2)
+    lfs	f3, lbl_801A73F8(r2)
     stfs	f0, 0x18(r1)
     stfs	f1, 0x1c(r1)
     lfs	f2, 8(r5)
@@ -180,9 +184,9 @@ asm void C_MTXLookAt(void)
     stw	r29, 0x24(r1)
     mr	r29, r3
     bl      mtx_gpstack_push
-    lfs	f0, -0x7a50(r2)
+    lfs	f0, lbl_801A73F0(r2)
     addi	r3, r1, 0x14
-    lfs	f1, -0x7a4c(r2)
+    lfs	f1, lbl_801A73F4(r2)
     mr	r4, r3
     stfs	f0, 0x18(r1)
     stfs	f1, 0x14(r1)

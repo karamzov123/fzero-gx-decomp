@@ -1,6 +1,9 @@
 #pragma push
 #pragma force_active on
 
+extern unsigned char _stack_addr[4];
+extern unsigned char _SDA2_BASE_[4];
+extern unsigned char _SDA_BASE_[4];
 asm __declspec(section ".init") void __init_registers(void)
 {
     nofralloc
@@ -33,12 +36,12 @@ asm __declspec(section ".init") void __init_registers(void)
     li      r29, 0
     li      r30, 0
     li      r31, 0
-    lis     r1, 0x801B
-    ori     r1, r1, 0x7930
-    lis     r2, 0x801A
-    ori     r2, r2, 0xEE40
-    lis     r13, 0x801A
-    ori     r13, r13, 0xE3C0
+    lis     r1, _stack_addr@h
+    ori     r1, r1, _stack_addr@l
+    lis     r2, _SDA2_BASE_@h
+    ori     r2, r2, _SDA2_BASE_@l
+    lis     r13, _SDA_BASE_@h
+    ori     r13, r13, _SDA_BASE_@l
     blr
 }
 

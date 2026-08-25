@@ -1,7 +1,12 @@
 #pragma push
 #pragma force_active on
 
-extern asm void _savegpr_25(void);
+extern unsigned char lbl_801A7410[4];
+extern unsigned char lbl_801A7418[8];
+extern unsigned char lbl_801A7414[4];
+extern unsigned char lbl_801A7918[8];
+
+asm void _savegpr_25(void);
 extern asm void OSAllocFromArena(void);
 extern asm void DCFlushRange(void);
 extern asm void GXInit(void);
@@ -117,15 +122,15 @@ _80070884:
     bl      fn_80071D30
     lwz	r5, lbl_801A6CF4
     lis	r3, 0x4330
-    lfs	f1, -0x7a30(r2)
+    lfs	f1, lbl_801A7410(r2)
     lhz	r4, 4(r5)
     lhz	r0, 6(r5)
     fmr	f2, f1
     stw	r4, 0x14(r1)
     fmr	f5, f1
-    lfd	f4, -0x7a28(r2)
+    lfd	f4, lbl_801A7418(r2)
     stw	r3, 0x10(r1)
-    lfs	f6, -0x7a2c(r2)
+    lfs	f6, lbl_801A7414(r2)
     lfd	f0, 0x10(r1)
     stw	r0, 0x1c(r1)
     fsubs	f3, f0, f4
@@ -155,7 +160,7 @@ _80070884:
     lhz	r4, 8(r5)
     lhz	r0, 6(r5)
     stw	r4, 0x24(r1)
-    lfd	f2, -0x7a28(r2)
+    lfd	f2, lbl_801A7418(r2)
     lfd	f0, 0x20(r1)
     stw	r0, 0x2c(r1)
     fsubs	f1, f0, f2
@@ -188,7 +193,7 @@ _800709b0:
     li	r3, 0
     bl      __GXSetZModeBits
 _800709c4:
-    lwz	r0, -0x7528(r2)
+    lwz	r0, lbl_801A7918(r2)
     lis	r4, 0x100
     addi	r3, r1, 8
     stw	r0, 8(r1)

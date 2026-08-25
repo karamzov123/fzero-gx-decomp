@@ -12,6 +12,8 @@ extern void OSSleepThread(void*);
 #pragma force_active on
 
 extern unsigned char lbl_801A6924[4];
+extern unsigned char lbl_801A692C[8];
+
 asm void VIWaitForRetrace(void)
 {
     nofralloc
@@ -24,7 +26,7 @@ asm void VIWaitForRetrace(void)
     lwz	r30, lbl_801A6924
     mr      r31, r3
 _8001af84:
-    addi    r3, r13, -0x7a94
+    addi    r3, r13, lbl_801A692C
     bl      OSSleepThread
     lwz	r0, lbl_801A6924
     cmplw   r30, r0

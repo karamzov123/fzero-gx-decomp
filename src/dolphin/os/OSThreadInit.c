@@ -14,11 +14,14 @@ extern unsigned char Reschedule[4];
 extern unsigned char RunQueueBits[4];
 extern unsigned char RunQueueHint[4];
 extern unsigned char SwitchThreadCallback[4];
+extern unsigned char RunQueue_8015C018[];
+extern unsigned char _stack_addr[4];
+extern unsigned char _stack_end[4];
 asm void __OSThreadInit(void)
 {
     nofralloc
     mflr    r0
-    lis     r3, 0x8016
+    lis     r3, RunQueue_8015C018@ha
     stw     r0, 4(r1)
     li      r0, 2
     li      r4, 0x10
@@ -28,7 +31,7 @@ asm void __OSThreadInit(void)
     stw     r29, 0xc(r1)
     li      r29, 0
     stw     r28, 8(r1)
-    addi    r28, r3, -0x3fe8
+    addi    r28, r3, RunQueue_8015C018@l
     addi    r31, r28, 0x418
     sth     r0, 0x6e0(r28)
     li      r0, 1
@@ -49,11 +52,11 @@ asm void __OSThreadInit(void)
     bl      OSClearContext
     mr      r3, r31
     bl      OSSetCurrentContext
-    lis     r3, 0x801b
-    addi    r0, r3, 0x7930
-    lis     r3, 0x801a
+    lis     r3, _stack_addr@ha
+    addi    r0, r3, _stack_addr@l
+    lis     r3, _stack_end@ha
     stw     r0, 0x71c(r28)
-    addi    r0, r3, 0x792c
+    addi    r0, r3, _stack_end@l
     stw     r0, 0x720(r28)
     lis     r3, 0xdeae
     addi    r0, r3, -0x4542

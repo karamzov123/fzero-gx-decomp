@@ -21,7 +21,7 @@ asm void fn_80078538(register void* mdl)
     mtspr   0x39a, r11
     mtspr   0x39b, r12
     addi    r4, r4, 0x800
-    lis     r6, lbl_801A6DA4@ha
+    lis     r6, lbl_801A6DA4@h
     ori     r6, r6, lbl_801A6DA4@l
     lwz     r6, 0(r6)
     lwz     r7, 0(r3)
