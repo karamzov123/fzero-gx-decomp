@@ -26,6 +26,17 @@ extern void OSSetCurrentContext(OSContext* context);
 
 asm void __ARChecksize(void);
 
+/* auto: reloc-parity declarations */
+extern unsigned char lbl_801A64D8[8];
+extern unsigned char lbl_801A69E0[4];
+extern unsigned char lbl_801A69E4[4];
+extern unsigned char lbl_801A69E8[4];
+extern unsigned char lbl_801A69EC[4];
+extern unsigned char lbl_801A69F0[4];
+extern unsigned char lbl_801A69F4[4];
+extern unsigned char lbl_801A69F8[4];
+extern unsigned char lbl_801A69FC[4];
+
 #pragma push
 #pragma force_active on
 void __ARHandler(s32 interrupt, OSContext* context);
@@ -39,9 +50,9 @@ asm ARQCallback ARRegisterDMACallback(register ARQCallback callback)
     stw	r31, 0x14(r1)
     stw	r30, 0x10(r1)
     mr	r30, r3
-    lwz	r31, -0x79e0(r13)
+    lwz r31, lbl_801A69E0
     bl      OSDisableInterrupts
-    stw	r30, -0x79e0(r13)
+    stw r30, lbl_801A69E0
     bl      OSRestoreInterrupts
     mr	r3, r31
     lwz	r0, 0x1c(r1)
@@ -147,17 +158,17 @@ asm u32 ARAlloc(register u32 length)
     stw	r30, 0x10(r1)
     mr	r30, r3
     bl      OSDisableInterrupts
-    lwz	r31, -0x79d0(r13)
-    lwz	r4, -0x79c8(r13)
+    lwz r31, lbl_801A69F0
+    lwz r4, lbl_801A69F8
     add	r0, r31, r30
-    stw	r0, -0x79d0(r13)
+    stw r0, lbl_801A69F0
     stw	r30, 0(r4)
-    lwz	r5, -0x79c8(r13)
-    lwz	r4, -0x79cc(r13)
+    lwz r5, lbl_801A69F8
+    lwz r4, lbl_801A69F4
     addi	r5, r5, 4
     addi	r0, r4, -1
-    stw	r5, -0x79c8(r13)
-    stw	r0, -0x79cc(r13)
+    stw r5, lbl_801A69F8
+    stw r0, lbl_801A69F4
     bl      OSRestoreInterrupts
     mr	r3, r31
     lwz	r0, 0x1c(r1)
@@ -177,25 +188,25 @@ asm u32 ARFree(register void* out)
     stw	r31, 0x14(r1)
     mr	r31, r3
     bl      OSDisableInterrupts
-    lwz	r4, -0x79c8(r13)
+    lwz r4, lbl_801A69F8
     cmplwi	r31, 0
     addi	r0, r4, -4
-    stw	r0, -0x79c8(r13)
+    stw r0, lbl_801A69F8
     beq     _8001e9f4
-    lwz	r4, -0x79c8(r13)
+    lwz r4, lbl_801A69F8
     lwz	r0, 0(r4)
     stw	r0, 0(r31)
 _8001e9f4:
-    lwz	r5, -0x79c8(r13)
-    lwz	r4, -0x79cc(r13)
+    lwz r5, lbl_801A69F8
+    lwz r4, lbl_801A69F4
     lwz	r6, 0(r5)
     addi	r0, r4, 1
-    lwz	r5, -0x79d0(r13)
-    stw	r0, -0x79cc(r13)
+    lwz r5, lbl_801A69F0
+    stw r0, lbl_801A69F4
     subf	r0, r6, r5
-    stw	r0, -0x79d0(r13)
+    stw r0, lbl_801A69F0
     bl      OSRestoreInterrupts
-    lwz	r3, -0x79d0(r13)
+    lwz r3, lbl_801A69F0
     lwz	r0, 0x1c(r1)
     lwz	r31, 0x14(r1)
     addi	r1, r1, 0x18
@@ -214,18 +225,18 @@ asm u32 ARInit(register u32* stack_index_addr, register u32 num_entries)
     addi	r30, r4, 0
     stw	r29, 0x14(r1)
     addi	r29, r3, 0
-    lwz	r0, -0x79c4(r13)
+    lwz r0, lbl_801A69FC
     cmpwi	r0, 1
     bne     _8001ea64
     li	r3, 0x4000
     b       _8001ead8
 _8001ea64:
-    lwz	r3, -0x7ee8(r13)
+    lwz r3, lbl_801A64D8
     bl      OSRegisterVersion
     bl      OSDisableInterrupts
     li	r0, 0
     lis     r4, __ARHandler@ha
-    stw	r0, -0x79e0(r13)
+    stw r0, lbl_801A69E0
     addi	r31, r3, 0
     addi        r4, r4, __ARHandler@l
     li	r3, 6
@@ -233,11 +244,11 @@ _8001ea64:
     lis	r3, 0x200
     bl      __OSUnmaskInterrupts
     li	r0, 0x4000
-    stw	r30, -0x79cc(r13)
+    stw r30, lbl_801A69F4
     lis	r3, -0x3400
-    stw	r0, -0x79d0(r13)
+    stw r0, lbl_801A69F0
     addi	r4, r3, 0x5000
-    stw	r29, -0x79c8(r13)
+    stw r29, lbl_801A69F8
     lhz	r0, 0x1a(r4)
     lhz	r3, 0x501a(r3)
     rlwinm	r0, r0, 0, 0, 0x17
@@ -245,10 +256,10 @@ _8001ea64:
     sth	r0, 0x1a(r4)
     bl      __ARChecksize
     li	r0, 1
-    stw	r0, -0x79c4(r13)
+    stw r0, lbl_801A69FC
     mr	r3, r31
     bl      OSRestoreInterrupts
-    lwz	r3, -0x79d0(r13)
+    lwz r3, lbl_801A69F0
 _8001ead8:
     lwz	r0, 0x24(r1)
     lwz	r31, 0x1c(r1)
@@ -278,7 +289,7 @@ asm void __ARHandler(register s32 interrupt, register OSContext* context)
     bl      OSClearContext
     addi	r3, r1, 0x10
     bl      OSSetCurrentContext
-    lwz	r12, -0x79e0(r13)
+    lwz r12, lbl_801A69E0
     cmplwi	r12, 0
     beq     _8001eb48
     mtlr	r12
@@ -313,7 +324,7 @@ _8001eb84:
     stw	r0, 0x248(r1)
     lis	r3, 0x100
     addi	r0, r1, 0x1f3
-    stw	r3, -0x79d8(r13)
+    stw r3, lbl_801A69E8
     lis	r5, -0x2152
     lwz	r4, 0x248(r1)
     rlwinm	r22, r0, 0, 0, 0x1a
@@ -371,7 +382,7 @@ _8001eb84:
     li	r4, 0x20
     bl      DCFlushRange
     li	r0, 0
-    stw	r0, -0x79d4(r13)
+    stw r0, lbl_801A69EC
     addi	r3, r28, 0
     li	r4, 0x20
     bl      DCInvalidateRange
@@ -901,7 +912,7 @@ _8001f480:
     ori	r3, r3, 0x20
     sth	r3, 0(r31)
     addis	r19, r19, 0x20
-    stw	r0, -0x79d4(r13)
+    stw r0, lbl_801A69EC
     b       _80020324
 _8001f4b0:
     lhz	r0, 0(r25)
@@ -1108,7 +1119,7 @@ _8001f7a0:
     sth	r0, 0(r31)
     addis	r19, r19, 0x40
     lhz	r0, 0x270(r1)
-    stw	r3, -0x79d4(r13)
+    stw r3, lbl_801A69EC
     ori	r0, r0, 8
     sth	r0, 0x270(r1)
     b       _80020324
@@ -1359,7 +1370,7 @@ _8001fb70:
     sth	r0, 0(r31)
     addis	r19, r19, 0x80
     lhz	r0, 0x270(r1)
-    stw	r3, -0x79d4(r13)
+    stw r3, lbl_801A69EC
     ori	r0, r0, 0x10
     sth	r0, 0x270(r1)
     b       _80020324
@@ -1650,7 +1661,7 @@ _8001ffdc:
     sth	r0, 0(r31)
     addis	r19, r19, 0x100
     lhz	r0, 0x270(r1)
-    stw	r3, -0x79d4(r13)
+    stw r3, lbl_801A69EC
     ori	r0, r0, 0x18
     sth	r0, 0x270(r1)
     b       _80020324
@@ -1852,7 +1863,7 @@ _800202ec:
     sth	r0, 0(r31)
     addis	r19, r19, 0x200
     lhz	r0, 0x270(r1)
-    stw	r3, -0x79d4(r13)
+    stw r3, lbl_801A69EC
     ori	r0, r0, 0x20
     sth	r0, 0x270(r1)
 _80020324:
@@ -1866,7 +1877,7 @@ _80020324:
 _80020340:
     lis	r3, -0x4000
     stw	r19, 0xd0(r3)
-    stw	r19, -0x79dc(r13)
+    stw r19, lbl_801A69E4
     lwz	r0, 0x2c4(r1)
     lmw	r14, 0x278(r1)
     addi	r1, r1, 0x2c0
