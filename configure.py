@@ -467,7 +467,8 @@ config.libs = [
         Object(Matching, "game/adxt_8005A24C.c"),
         Object(Matching, "game/adxt_8005BC20.c"),
         Object(Matching, "game/gamehead_8005C120.c"),
-        Object(Matching, "main.c"),
+        Object(Matching, "main.c",
+              mw_version="GC/1.3"),
     ]),
     {
         "lib": "Runtime.PPCEABI.H",
