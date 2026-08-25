@@ -3,6 +3,9 @@
 
 extern void svm_ringbuf_skip(void);
 extern unsigned char lbl_800912F8[8];
+extern unsigned char lbl_80187114[4];
+extern unsigned char lbl_80186FA8[4];
+extern unsigned char lbl_800912F0[4];
 extern unsigned char adxt_attenuation_table[256];
 extern unsigned char lbl_80130B98[40];
 extern unsigned char lbl_80130C00[96];
@@ -23,18 +26,18 @@ asm void ADXF_Stop(void)
     lwz	r25, 0x18(r4)
     mr	r18, r8
     lwz	r21, 4(r4)
-    lis	r10, -0x7fe8
+    lis	r10, lbl_80187114@ha
     slwi	r0, r7, 7
     lwz	r20, 0x10(r4)
     lwz	r19, 0x14(r4)
     li	r8, 0
-    lis	r9, -0x7fe8
+    lis	r9, lbl_80186FA8@ha
     mr	r17, r3
-    stw	r8, 0x7114(r10)
+    stw	r8, lbl_80187114@l(r10)
     mr	r28, r5
     mr	r26, r18
     add	r27, r6, r0
-    stw	r8, 0x6fa8(r9)
+    stw	r8, lbl_80186FA8@l(r9)
     li	r24, 0
     b       _80050b5c
 _800506fc:
@@ -71,7 +74,7 @@ _80050710:
     lis     r6, lbl_80130B98@ha
     lis	r4, 0x4330
     slwi	r0, r22, 2
-    lis	r5, -0x7ff7
+    lis	r5, lbl_800912F8@ha
     addi	r6, r6, lbl_80130B98@l
     sraw	r7, r3, r22
     lwzx	r0, r6, r0
@@ -79,7 +82,7 @@ _80050710:
     and	r3, r3, r0
     and	r0, r7, r0
     xoris	r3, r3, 0x8000
-    lfd	f3, 0x12f8(r5)
+    lfd	f3, lbl_800912F8@l(r5)
     stw	r3, 0xc(r1)
     xoris	r3, r0, 0x8000
     sraw	r7, r7, r22
@@ -136,8 +139,8 @@ _800507f4:
     xoris	r3, r3, 0x8000
     lis	r0, 0x4330
     stw	r3, 0xc(r1)
-    lis	r4, -0x7ff7
-    lfd	f1, 0x12f8(r4)
+    lis	r4, lbl_800912F8@ha
+    lfd	f1, lbl_800912F8@l(r4)
     stw	r0, 8(r1)
     lfd	f0, 8(r1)
     fsubs	f0, f0, f1
@@ -156,9 +159,9 @@ _8005089c:
     addi	r5, r4, lbl_80130C00@l
     stw	r0, 0x18(r1)
     add	r5, r5, r3
-    lis	r4, -0x7ff7
+    lis	r4, lbl_800912F8@ha
     lbz	r6, 0(r5)
-    lfd	f1, 0x12f8(r4)
+    lfd	f1, lbl_800912F8@l(r4)
     extsb	r6, r6
     stw	r0, 0x10(r1)
     xoris	r3, r6, 0x8000
@@ -193,9 +196,9 @@ _8005093c:
     addi	r5, r4, lbl_80130C60@l
     stw	r0, 0x18(r1)
     add	r5, r5, r3
-    lis	r4, -0x7ff7
+    lis	r4, lbl_800912F8@ha
     lbz	r6, 0(r5)
-    lfd	f1, 0x12f8(r4)
+    lfd	f1, lbl_800912F8@l(r4)
     extsb	r6, r6
     stw	r0, 0x10(r1)
     xoris	r3, r6, 0x8000
@@ -230,9 +233,9 @@ _800509cc:
     addi	r5, r4, lbl_80130DE0@l
     stw	r0, 0x18(r1)
     add	r5, r5, r3
-    lis	r4, -0x7ff7
+    lis	r4, lbl_800912F8@ha
     lbz	r6, 0(r5)
-    lfd	f1, 0x12f8(r4)
+    lfd	f1, lbl_800912F8@l(r4)
     extsb	r6, r6
     stw	r0, 0x10(r1)
     xoris	r3, r6, 0x8000
@@ -262,9 +265,9 @@ _800509cc:
 _80050a5c:
     divw	r7, r3, r22
     lis	r0, 0x4330
-    lis	r4, -0x7ff7
+    lis	r4, lbl_800912F8@ha
     stw	r0, 0x18(r1)
-    lfd	f3, 0x12f8(r4)
+    lfd	f3, lbl_800912F8@l(r4)
     stw	r0, 0x10(r1)
     divw	r5, r7, r22
     stw	r0, 8(r1)
@@ -295,8 +298,8 @@ _80050a5c:
     stfs	f0, 0x100(r29)
     b       _80050af8
 _80050ae4:
-    lis	r3, -0x7ff7
-    lfs	f0, 0x12f0(r3)
+    lis	r3, lbl_800912F0@ha
+    lfs	f0, lbl_800912F0@l(r3)
     stfs	f0, 0(r29)
     stfs	f0, 0x80(r29)
     stfs	f0, 0x100(r29)
@@ -332,9 +335,9 @@ _80050b40:
 _80050b5c:
     cmpw	r24, r20
     blt     _800506fc
-    lis	r3, -0x7ff7
+    lis	r3, lbl_800912F0@ha
     slwi	r0, r20, 2
-    lfs	f0, 0x12f0(r3)
+    lfs	f0, lbl_800912F0@l(r3)
     mr	r5, r20
     add	r4, r18, r0
     b       _80050ba8
