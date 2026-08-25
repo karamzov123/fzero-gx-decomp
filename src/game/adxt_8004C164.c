@@ -32,10 +32,14 @@ extern void fn_8004EEE4(void);
 extern void fn_80056CD0(void);
 extern void fn_80057114(void);
 extern void memset(void);
+extern unsigned char E02080860_ADXT_SetKeyString_parameter_error_str[64];
 extern unsigned char E02080805_ADXT_Destroy_parameter_error_str[40];
 extern unsigned char E02080812_ADXT_StartSj_parameter_error_str[40];
 extern unsigned char E02080813_ADXT_Stop_parameter_error_str[37];
 extern unsigned char E02080814_ADXT_GetStat_parameter_error_str[40];
+extern unsigned char lbl_80178CB8[4];
+extern unsigned char lbl_8012B910[4];
+extern unsigned char lbl_8017E58C[4];
 extern unsigned char lbl_8017E568[4];
 
 asm void fn_8004C164(void)
@@ -44,14 +48,14 @@ asm void fn_8004C164(void)
 _8004c164:
     stwu	r1, -0x50(r1)
     mflr	r0
-    lis	r6, -0x7ff7
+    lis	r6, E02080860_ADXT_SetKeyString_parameter_error_str@ha
     stw	r0, 0x54(r1)
     stmw	r25, 0x34(r1)
     or.	r27, r3, r3
     lis     r3, lbl_8017E568@ha
     mr	r28, r4
     mr	r29, r5
-    addi	r30, r6, 0x9c0
+    addi	r30, r6, E02080860_ADXT_SetKeyString_parameter_error_str@l
     addi	r31, r3, lbl_8017E568@l
     beq     _8004c1a4
     cmplwi	r28, 0
@@ -154,9 +158,9 @@ _8004c2ec:
     lbz	r0, 0x72(r27)
     extsb.	r0, r0
     bne     _8004c31c
-    lis	r3, -0x7fe8
+    lis	r3, lbl_80178CB8@ha
     lwz	r4, 0xa0(r27)
-    lwz	r0, -0x7348(r3)
+    lwz	r0, lbl_80178CB8@l(r3)
     lwz	r5, 0x9c(r27)
     subf	r0, r4, r0
     mulli	r0, r0, 0x64
@@ -278,8 +282,8 @@ _8004c41c:
     fcmpo	cr0, f1, f0
     bge     _8004c62c
 _8004c4c0:
-    lis	r3, -0x7fed
-    lwz	r0, -0x46f0(r3)
+    lis	r3, lbl_8012B910@ha
+    lwz	r0, lbl_8012B910@l(r3)
     cmplwi	r0, 1
     bne     _8004c4fc
     lwz	r25, 0(r31)
@@ -318,8 +322,8 @@ _8004c4fc:
     fmuls	f1, f1, f0
     bl      __cvt_fp2unsigned
     stw	r3, 0x9c(r27)
-    lis	r4, -0x7fe8
-    lwz	r0, -0x7348(r4)
+    lis	r4, lbl_80178CB8@ha
+    lwz	r0, lbl_80178CB8@l(r4)
     stw	r0, 0xa0(r27)
     b       _8004c62c
 _8004c56c:
@@ -595,13 +599,13 @@ _8004c8d8:
     addi	r4, r4, -1
     li	r0, -1
     stw	r5, 0x4c(r30)
-    lis	r3, -0x7fe8
+    lis	r3, lbl_80178CB8@ha
     stb	r5, 0x71(r30)
     stw	r4, 0x8c(r30)
     stw	r0, 0x90(r30)
     stw	r5, 0x9c(r30)
     stw	r5, 0xa4(r30)
-    lwz	r0, -0x7348(r3)
+    lwz	r0, lbl_80178CB8@l(r3)
     stw	r0, 0xa0(r30)
     lwz	r3, 0x74(r30)
     cmplwi	r3, 0
@@ -694,13 +698,13 @@ _8004ca40:
     addi	r4, r4, -1
     li	r0, -1
     stw	r5, 0x4c(r31)
-    lis	r3, -0x7fe8
+    lis	r3, lbl_80178CB8@ha
     stb	r5, 0x71(r31)
     stw	r4, 0x8c(r31)
     stw	r0, 0x90(r31)
     stw	r5, 0x9c(r31)
     stw	r5, 0xa4(r31)
-    lwz	r0, -0x7348(r3)
+    lwz	r0, lbl_80178CB8@l(r3)
     stw	r0, 0xa0(r31)
     lwz	r3, 0x74(r31)
     cmplwi	r3, 0
@@ -730,8 +734,8 @@ asm void fn_8004CAC8(void)
     bl      criErr_CallErrCallback
     b       _8004cd54
 _8004caf8:
-    lis	r4, -0x7fe8
-    lwz	r12, -0x1a74(r4)
+    lis	r4, lbl_8017E58C@ha
+    lwz	r12, lbl_8017E58C@l(r4)
     cmplwi	r12, 0
     beq     _8004cb10
     mtctr	r12
