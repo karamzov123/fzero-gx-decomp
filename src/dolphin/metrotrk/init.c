@@ -33,6 +33,8 @@ asm void fn_8008CB38(void)
 }
 
 extern unsigned char gTRKCPUState[1072];
+extern unsigned char gTRKRestoreFlags[9];
+extern unsigned char _db_stack_addr[4];
 
 asm void TRKSaveExtended1Block(void)
 {
@@ -153,10 +155,10 @@ _8008cc90:
 asm void TRKRestoreExtended1Block(void)
 {
     nofralloc
-    lis	r2, gTRKCPUState@ha
+    lis	r2, gTRKCPUState@h
     ori	r2, r2, gTRKCPUState@l
-    lis	r5, -0x7feb
-    ori	r5, r5, 0xb868
+    lis	r5, gTRKRestoreFlags@h
+    ori	r5, r5, gTRKRestoreFlags@l
     lbz	r3, 0(r5)
     lbz	r6, 1(r5)
     li	r0, 0
@@ -274,7 +276,7 @@ asm void InitMetroTRK(void)
     nofralloc
     addi	r1, r1, -4
     stw	r3, 0(r1)
-    lis	r3, gTRKCPUState@ha
+    lis	r3, gTRKCPUState@h
     ori	r3, r3, gTRKCPUState@l
     stmw	r0, 0(r3)
     lwz	r4, 0(r1)
@@ -292,14 +294,14 @@ asm void InitMetroTRK(void)
     mtmsr	r3
     mtspr	0x1b, r4
     bl      TRKSaveExtended1Block
-    lis	r3, gTRKCPUState@ha
+    lis	r3, gTRKCPUState@h
     ori	r3, r3, gTRKCPUState@l
     lmw	r0, 0(r3)
     li	r0, 0
     mtspr	0x3f2, r0
     mtspr	0x3f5, r0
-    lis	r1, -0x7fe5
-    ori	r1, r1, 0x9930
+    lis	r1, _db_stack_addr@h
+    ori	r1, r1, _db_stack_addr@l
     mr	r3, r5
     bl      InitMetroTRKCommTable
     cmpwi	r3, 1
@@ -341,8 +343,8 @@ asm void InitMetroTRK_BBA(void)
     li	r0, 0
     mtspr	0x3f2, r0
     mtspr	0x3f5, r0
-    lis	r1, -0x7fe5
-    ori	r1, r1, 0x9930
+    lis	r1, _db_stack_addr@h
+    ori	r1, r1, _db_stack_addr@l
     li	r3, 2
     bl      InitMetroTRKCommTable
     cmpwi	r3, 1

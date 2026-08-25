@@ -3,7 +3,7 @@
 
 int vprintf(const char* fmt, void* arg);
 int fn_8008088C(void);
-int fn_80080974(void);
+int __StringWrite(void);
 void* __FileWrite(void* file, const char* buf, unsigned long n);
 int __pformatter(void* writeProc, void* writeParam, const char* fmt, void* arg);
 char* float2str(void* arg, char* buff, void* format, unsigned long* prec);
@@ -146,7 +146,7 @@ _8008095c:
     blr	
 }
 
-asm int fn_80080974(void)
+asm int __StringWrite(void)
 {
     nofralloc
     stwu	r1, -0x10(r1)

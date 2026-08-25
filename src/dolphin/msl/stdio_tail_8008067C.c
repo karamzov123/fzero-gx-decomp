@@ -9,7 +9,7 @@ typedef signed int s32;
 
 extern void __pformatter(void);
 extern void __close_all(void);
-extern void fn_80080974(void);
+extern void __StringWrite(void);
 
 extern unsigned char __stdio_exit[4];
 asm void __stdio_atexit(void)
@@ -54,10 +54,10 @@ _800806d8:
     lis	r28, 0x200
     li	r31, -1
     li	r12, 0
-    lis     r11, fn_80080974@ha
+    lis     r11, __StringWrite@ha
     stw	r4, 0xc(r1)
     addi	r27, r1, 0x74
-    addi	r0, r11, fn_80080974@l
+    addi	r0, r11, __StringWrite@l
     addi	r4, r1, 0x68
     stw	r3, 8(r1)
     mr	r3, r0
@@ -107,9 +107,9 @@ asm void fn_8008077C(void)
     addi	r4, r1, 8
     stw	r31, 0x1c(r1)
     mr	r31, r3
-    lis     r3, fn_80080974@ha
+    lis     r3, __StringWrite@ha
     stw	r31, 8(r1)
-    addi	r3, r3, fn_80080974@l
+    addi	r3, r3, __StringWrite@l
     stw	r7, 0xc(r1)
     stw	r0, 0x10(r1)
     bl      __pformatter
