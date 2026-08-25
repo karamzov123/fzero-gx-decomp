@@ -225,10 +225,8 @@ asm void fn_80008DB4(void)
     blr	
 }
 
-asm void OSAllocHead_nop_stub(void)
+void OSAllocHead_nop_stub(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void OSAlloc(void)

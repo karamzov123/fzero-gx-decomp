@@ -54,10 +54,8 @@ asm void __OSInitSystemCall(void)
     blr
 }
 
-asm void fn_80010140(void)
+void fn_80010140(void)
 {
-    nofralloc
-    blr
 }
 
 #pragma pop

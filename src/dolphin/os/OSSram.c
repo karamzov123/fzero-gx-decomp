@@ -409,13 +409,9 @@ asm void __OSUnlockSramEx(void)
     blr
 }
 
-asm u32 __OSSyncSram(void)
+u32 __OSSyncSram(void)
 {
-    nofralloc
-    lis     r3, Scb@ha
-    addi    r3, r3, Scb@l
-    lwz     r3, 0x4c(r3)
-    blr
+    return *(volatile unsigned long*)((char*)Scb + 0x4C);
 }
 
 #pragma pop
