@@ -36,6 +36,13 @@ extern unsigned char lbl_801A70E4[4];
 extern unsigned char lbl_801A70E0[4];
 extern unsigned char lbl_801A70F0[8];
 
+#define SET_REG_FIELD(line, reg, size, pos, val) \
+    ((reg) = (((u32)(reg)) & ~((((1 << (size)) - 1)) << (pos))) | ((u32)(val) << (pos)))
+
+struct GXTlutRegion_s {
+    volatile u32 loadTlut1;
+};
+
 // provenance: dolsdk2001:src/gx/GXTexture.c:356 (adapted)
 void GXGetTexObjAll(register void* obj, register void** image_ptr, register u16* width,
     register u16* height, register void* format, register void* wrap_s,
@@ -363,27 +370,14 @@ _800364a8:
     blr	
 }
 
-asm void* GXInitTlutRegion(register void* obj, register void* p2, register int id, register void* p4)
+// provenance: original GXInitTlutRegion
+void GXInitTlutRegion(register volatile struct GXTlutRegion_s* region, register u32 tmem_addr, register u32 tlut_size)
 {
-    nofralloc
-    li	r0, 0
-    stw	r0, 0(r3)
-    addis	r0, r4, -8
-    srwi	r4, r0, 9
-    lwz	r6, 0(r3)
-    slwi	r0, r5, 0xa
-    rlwinm	r5, r6, 0, 0, 0x15
-    or	r4, r5, r4
-    stw	r4, 0(r3)
-    lwz	r4, 0(r3)
-    rlwinm	r4, r4, 0, 0x16, 0xa
-    or	r0, r4, r0
-    stw	r0, 0(r3)
-    lwz	r0, 0(r3)
-    clrlwi	r0, r0, 8
-    oris	r0, r0, 0x6500
-    stw	r0, 0(r3)
-    blr	
+    region->loadTlut1 = 0;
+    tmem_addr -= 0x80000;
+    SET_REG_FIELD(0x588, region->loadTlut1, 10, 0, tmem_addr >> 9);
+    SET_REG_FIELD(0x589, region->loadTlut1, 11, 10, tlut_size);
+    SET_REG_FIELD(0x58A, region->loadTlut1, 8, 24, 0x65);
 }
 
 asm void __GXInitTexMapPreload(register void* p)

@@ -75,7 +75,7 @@ extern void fn_800087F4(void);
 extern void fn_80008A4C(void);
 extern void fn_80008DB4(void);
 extern void OSAllocHead_nop_stub(void);
-extern void OSInitAlloc(void);
+void* OSInitAlloc(void* arenaStart, void* arenaEnd, int maxHeaps);
 extern // provenance: original
 void OSCreateHeap_wrapper_A(void* start, void* end);
 extern void OSCreateHeap_wrapper_B(void* start, void* end);
@@ -280,49 +280,30 @@ unsigned int OSSetCurrentHeap_thunk(unsigned int heap)
     return old;
 }
 
-asm void OSInitAlloc(void)
+// provenance: dolsdk2001:src/os/OSAlloc.c:355
+void* OSInitAlloc(void* arenaStart, void* arenaEnd, int maxHeaps)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    mulli	r7, r5, 0xc
-    li	r6, 0
-    stw	r0, 0x14(r1)
-    li	r8, 0
-    stw	r31, 0xc(r1)
-    stw	r3, gAssetBudgetB(r13)
-    mr	r3, r6
-    stw	r5, lbl_801A6740(r13)
-    li	r5, -1
-    b       _80008f14
-_80008ef8:
-    lwz	r0, gAssetBudgetB(r13)
-    addi	r8, r8, 1
-    add	r9, r0, r6
-    addi	r6, r6, 0xc
-    stw	r5, 0(r9)
-    stw	r3, 8(r9)
-    stw	r3, 4(r9)
-_80008f14:
-    lwz	r0, lbl_801A6740(r13)
-    cmpw	r8, r0
-    bc      12, 0, _80008ef8
-    lwz	r3, gAssetBudgetB(r13)
-    rlwinm	r0, r4, 0, 0, 0x1a
-    li	r4, -1
-    stw	r0, lbl_801A6738(r13)
-    add	r3, r3, r7
-    addi	r0, r3, 0x1f
-    stw	r4, g_currentHeapHandle(r13)
-    rlwinm	r31, r0, 0, 0, 0x1a
-    stw	r31, lbl_801A673C(r13)
-    bl      OSAllocTableInit
-    lwz	r0, 0x14(r1)
-    mr	r3, r31
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    unsigned int arraySize;
+    int i;
+    HeapDesc* hd;
+
+    arraySize = maxHeaps * 12;
+    gAssetBudgetB = (HeapDesc*)arenaStart;
+    lbl_801A6740 = maxHeaps;
+
+    for (i = 0; i < lbl_801A6740; i++) {
+        hd = &gAssetBudgetB[i];
+        hd->size = -1;
+        hd->free = hd->allocated = 0;
+    }
+
+    g_currentHeapHandle = -1;
+    arenaStart = (void*)((char*)gAssetBudgetB + arraySize);
+    arenaStart = (void*)(((unsigned int)arenaStart + 0x1F) & 0xFFFFFFE0);
+    lbl_801A673C = (unsigned int)arenaStart;
+    lbl_801A6738 = (unsigned int)arenaEnd & 0xFFFFFFE0;
+    OSAllocTableInit();
+    return arenaStart;
 }
 
 // provenance: original

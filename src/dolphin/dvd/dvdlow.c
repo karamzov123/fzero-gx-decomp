@@ -52,23 +52,23 @@ extern s64 __OSGetSystemTime(void);
 extern DVDBlock CommandList[];
 extern OSAlarm AlarmForTimeout;
 extern unsigned int NextCommandNumber;
-extern unsigned char StopAtNextInt[4];
+extern u32 StopAtNextInt;
 extern DVDCallback Callback;
-extern unsigned char WaitingCoverClose[4];
-extern unsigned char WorkAroundType[4];
-extern unsigned char WorkAroundSeekLocation[4];
+extern u32 WaitingCoverClose;
+extern u32 WorkAroundType;
+extern u32 WorkAroundSeekLocation;
 extern unsigned char ResetOccurred[4];
 extern s64 LastResetEnd;
 extern unsigned char lbl_801A685C[4];
 extern unsigned char lbl_801A6864[4];
-extern unsigned char lbl_801A6878[4];
+extern u32 lbl_801A6878;
 extern unsigned char lbl_801A6888[4];
 extern unsigned char lbl_801A688C[4];
 extern unsigned char lbl_801A6890[4];
 extern unsigned char lbl_801A6894[4];
 extern unsigned char lbl_801A6898[4];
 
-static void __DVDLowSetWAType(u32 type, u32 location);
+void __DVDLowSetWAType(u32 type, u32 location);
 extern void Read(u32 addr, u32 len, u32 offset, DVDCallback callback);
 extern void SeekTwiceBeforeRead(void);
 extern void DVDLowSeek(void);
@@ -1072,13 +1072,11 @@ lbl_80016cf8:
 }
 
 /* DVDLowStopMotorAtNextInt @0x80016D50 | size: 0x14 -- nofralloc transcription */
-asm void DVDLowStopMotorAtNextInt(void) {
-nofralloc
-	li r0, 0x1
-	stw r0, StopAtNextInt
-	li r3, 0x1
-	stw r0, lbl_801A6878
-	blr
+// provenance: original DVDLowStopMotorAtNextInt
+u32 DVDLowStopMotorAtNextInt(void) {
+    StopAtNextInt = 1;
+    lbl_801A6878 = StopAtNextInt;
+    return 1;
 }
 /* DVDLowClearCallback @0x80016D64 | size: 0x18 -- nofralloc transcription */
 asm void DVDLowClearCallback(void) {
