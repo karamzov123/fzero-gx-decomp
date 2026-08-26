@@ -19,65 +19,73 @@ extern unsigned char SwitchThreadCallback_801A6440[4];
 extern unsigned char RunQueueHint_801A67FC[4];
 extern unsigned char RunQueueBits[4];
 extern unsigned char lbl_801A6430[4];
+// provenance: original
 void OSExitThread(void* val);
 
-asm void UnsetRun(register void* thread)
+// provenance: original
+void UnsetRun(register void* thread)
 {
-    nofralloc
-    lwz	r4, 0x2e0(r3)
-    lwz	r5, 0x2dc(r3)
-    cmplwi	r4, 0
-    lwz	r6, 0x2e4(r3)
-    bne     _80010388
-    stw	r6, 4(r5)
-    b       _8001038c
-_80010388:
-    stw	r6, 0x2e4(r4)
-_8001038c:
-    cmplwi	r6, 0
-    bne     _8001039c
-    stw	r4, 0(r5)
-    b       _800103a0
-_8001039c:
-    stw	r4, 0x2e0(r6)
-_800103a0:
-    lwz	r0, 0(r5)
-    cmplwi	r0, 0
-    bne     _800103c8
-    lwz	r0, 0x2d0(r3)
-    li	r4, 1
-    lwz	r5, RunQueueBits
-    subfic	r0, r0, 0x1f
-    slw	r0, r4, r0
-    andc	r0, r5, r0
-    stw	r0, RunQueueBits
-_800103c8:
-    li	r0, 0
-    stw	r0, 0x2dc(r3)
-    blr	
+    asm
+    {
+    lwz     r4, 0x2e0(r3)
+    lwz     r5, 0x2dc(r3)
+    cmplwi  r4, 0
+    lwz     r6, 0x2e4(r3)
+    bne     L_80010388
+    stw     r6, 4(r5)
+    b       L_8001038c
+L_80010388:
+    stw     r6, 0x2e4(r4)
+L_8001038c:
+    cmplwi  r6, 0
+    bne     L_8001039c
+    stw     r4, 0(r5)
+    b       L_800103a0
+L_8001039c:
+    stw     r4, 0x2e0(r6)
+L_800103a0:
+    lwz     r0, 0(r5)
+    cmplwi  r0, 0
+    bne     L_800103c8
+    lwz     r0, 0x2d0(r3)
+    li      r4, 1
+    lwz     r5, RunQueueBits
+    subfic  r0, r0, 31
+    slw     r0, r4, r0
+    andc    r0, r5, r0
+    stw     r0, RunQueueBits
+L_800103c8:
+    li      r0, 0
+    stw     r0, 0x2dc(r3)
+    }
 }
 
-asm int __OSGetEffectivePriority(register void* thread)
+// provenance: original
+int __OSGetEffectivePriority(register void* thread)
 {
-    nofralloc
-    lwz	r4, 0x2d4(r3)
-    lwz	r5, 0x2f4(r3)
-    b       _80010400
-_800103e0:
-    lwz	r3, 0(r5)
-    cmplwi	r3, 0
-    beq     _800103fc
-    lwz	r0, 0x2d0(r3)
-    cmpw	r0, r4
-    bge     _800103fc
-    mr	r4, r0
-_800103fc:
-    lwz	r5, 0x10(r5)
-_80010400:
-    cmplwi	r5, 0
-    bne     _800103e0
-    mr	r3, r4
-    blr	
+    register int ret;
+
+    asm
+    {
+    lwz     r4, 0x2d4(r3)
+    lwz     r5, 0x2f4(r3)
+    b       L_80010400
+L_800103e0:
+    lwz     r3, 0(r5)
+    cmplwi  r3, 0
+    beq     L_800103fc
+    lwz     r0, 0x2d0(r3)
+    cmpw    r0, r4
+    bge     L_800103fc
+    mr      r4, r0
+L_800103fc:
+    lwz     r5, 16(r5)
+L_80010400:
+    cmplwi  r5, 0
+    bne     L_800103e0
+    mr      ret, r4
+    }
+    return ret;
 }
 
 asm void* SetEffectivePriority(register void* thread, register int priority)
