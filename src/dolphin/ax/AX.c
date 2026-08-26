@@ -56,6 +56,7 @@ extern unsigned char lbl_801A6AB8[8];
 // provenance: original
 // provenance: original
 
+
 void fn_80020724(void) {
     lbl_801A6AB0[0] = 0;
     lbl_801A6AB0[0] = 0;
