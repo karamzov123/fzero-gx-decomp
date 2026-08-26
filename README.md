@@ -12,6 +12,10 @@ Progress is published through the GitHub Actions `GFZE01_report` artifact and tr
 
 See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/splits.txt), and [split documentation](docs/splits.md) for the project inventory.
 
+![F-Zero GX GFZE01 codebase map](assets/codebase-map.svg)
+
+*The diagram is a navigational overview; the [split map](config/GFZE01/splits.txt) remains authoritative for retail objects and addresses.*
+
 ## Project layout
 
 - `src/` — reconstructed C and assembly sources
