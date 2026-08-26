@@ -36,43 +36,30 @@ extern unsigned char lbl_801A70E4[4];
 extern unsigned char lbl_801A70E0[4];
 extern unsigned char lbl_801A70F0[8];
 
-asm void GXGetTexObjAll(register void* p)
+// provenance: dolsdk2001:src/gx/GXTexture.c:356 (adapted)
+void GXGetTexObjAll(register void* obj, register void** image_ptr, register u16* width,
+    register u16* height, register void* format, register void* wrap_s,
+    register void* wrap_t, register u8* mipmap)
 {
-    nofralloc
-    lwz	r0, 0xc(r3)
-    rlwinm	r0, r0, 5, 6, 0x1a
-    stw	r0, 0(r4)
-    lwz	r0, 8(r3)
-    clrlwi	r4, r0, 0x16
-    addi	r0, r4, 1
-    sth	r0, 0(r5)
-    lwz	r0, 8(r3)
-    rlwinm	r4, r0, 0x16, 0x16, 0x1f
-    addi	r0, r4, 1
-    sth	r0, 0(r6)
-    lwz	r0, 0x14(r3)
-    stw	r0, 0(r7)
-    lwz	r0, 0(r3)
-    clrlwi	r0, r0, 0x1e
-    stw	r0, 0(r8)
-    lwz	r0, 0(r3)
-    rlwinm	r0, r0, 0x1e, 0x1e, 0x1f
-    stw	r0, 0(r9)
-    lbz	r0, 0x1f(r3)
-    clrlwi	r3, r0, 0x1f
-    addi	r0, r3, -1
-    cntlzw	r0, r0
-    rlwinm	r0, r0, 0x1b, 0x18, 0x1f
-    stb	r0, 0(r10)
-    blr	
+    u32 im0;
+    u32 flags;
+
+    *image_ptr = (void*)(((*(volatile u32*)((u8*)obj + 0xC)) << 5) & 0x03FFFFFF);
+    im0 = *(volatile u32*)((u8*)obj + 8);
+    *width = (u16)((im0 & 0x3FF) + 1);
+    im0 = *(volatile u32*)((u8*)obj + 8);
+    *height = (u16)((((im0 >> 10) & 0x3FF)) + 1);
+    *(u32*)format = *(volatile u32*)((u8*)obj + 0x14);
+    *(u32*)wrap_s = *(volatile u32*)obj & 3;
+    *(u32*)wrap_t = (*(volatile u32*)obj >> 2) & 3;
+    flags = *(volatile u8*)((u8*)obj + 0x1F);
+    *mipmap = (u8)((flags & 1) == 1);
 }
 
-asm void GXGetTexObjData(void)
+void* GXGetTexObjData(register void* to)
 {
-    nofralloc
-    lwz	r0, 0xc(r3)
-    rlwinm	r3, r0, 5, 6, 0x1a
-    blr	
+    // provenance: dolsdk2001:src/gx/GXTexture.c:370 (adapted; shift-then-mask form)
+    return (void *)(((*(u32 *)((char *)to + 0xC)) << 5) & 0x3FFFFE0u);
 }
 
 void* GXXFormSetupA(register void* p)
