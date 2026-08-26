@@ -1,35 +1,28 @@
+// provenance: original
 #pragma push
 #pragma force_active on
 
 asm void TRK_main(register void* a, register void* b, register void* c, register void* d);
 asm void InitMetroTRKCommTable(register void* a, register void* b, register void* c, register void* d);
 
-asm void fn_8008CB20(void)
+void fn_8008CB20(void)
 {
-    nofralloc
-    twi     31, r0, 0
-    blr	
+    asm { twi 31, r0, 0 };
 }
 
-asm void fn_8008CB28(void)
+void fn_8008CB28(void)
 {
-    nofralloc
-    twi     31, r0, 0
-    blr	
+    asm { twi 31, r0, 0 };
 }
 
-asm void fn_8008CB30(void)
+void fn_8008CB30(void)
 {
-    nofralloc
-    twi     31, r0, 0
-    blr	
+    asm { twi 31, r0, 0 };
 }
 
-asm void fn_8008CB38(void)
+void fn_8008CB38(void)
 {
-    nofralloc
-    twi     31, r0, 0
-    blr	
+    asm { twi 31, r0, 0 };
 }
 
 extern unsigned char gTRKCPUState[1072];
