@@ -1,3 +1,4 @@
+// dest: src/dolphin/ax/AXSPB.c
 // provenance: original
 #pragma push
 #pragma force_active on
@@ -15,7 +16,6 @@ extern unsigned char lbl_801A6B4C[4];
 extern unsigned char lbl_801A6B50[4];
 extern unsigned char lbl_801A6B54[4];
 extern unsigned char lbl_801A6B58[8];
-// provenance: original
 void* fn_8002201C(void)
 {
     return &lbl_80164D20[0];
@@ -317,7 +317,6 @@ _80022408:
     blr	
 }
 
-// provenance: original
 void fn_80022420(void)
 {
     *(u32*)lbl_801A6B58 = 0;
