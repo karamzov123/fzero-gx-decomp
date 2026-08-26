@@ -26,6 +26,10 @@ extern unsigned char lbl_801A6B78[4];
 extern unsigned char lbl_801A6B7C[4];
 extern unsigned char lbl_801A6F78[8];
 
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef unsigned short u16;
 void* fn_800224E4(void)
 {
     return *(void**)lbl_801A6B68;
@@ -692,12 +696,9 @@ _80022e1c:
     blr	
 }
 
-asm void fn_80022E5C(void)
-{
-    nofralloc
-    lis     r3, lbl_80164D60@ha
-    addi	r3, r3, lbl_80164D60@l
-    blr	
+// provenance: original
+void* fn_80022E5C(void) {
+    return lbl_80164D60;
 }
 
 asm void fn_80022E68(void)
