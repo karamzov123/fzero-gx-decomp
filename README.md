@@ -12,10 +12,6 @@ Progress is published through the GitHub Actions `GFZE01_report` artifact and tr
 
 See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/splits.txt), and [split documentation](docs/splits.md) for the project inventory.
 
-![F-Zero GX GFZE01 codebase map](assets/codebase-map.svg)
-
-*The diagram is a navigational overview; the [split map](config/GFZE01/splits.txt) remains authoritative for retail objects and addresses.*
-
 ## Project layout
 
 - `src/` — reconstructed C and assembly sources
@@ -61,3 +57,6 @@ This project builds on the following public resources and tools:
 
 See [ONLINE-RESOURCES.md](docs/ONLINE-RESOURCES.md) and [REFERENCE-POLICY.md](docs/REFERENCE-POLICY.md) for the detailed attribution and adaptation rules.
 
+## Disclaimer
+
+F-Zero GX and related trademarks are property of their respective rights holders. This repository is an educational and research project and does not distribute the game, game assets, or proprietary compiler binaries.
