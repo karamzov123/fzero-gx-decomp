@@ -84,7 +84,7 @@ asm void fn_8007E69C(void);
 asm void fn_8007E914(void);
 asm void fn_8007E96C(void);
 asm void fn_8007EA58(void);
-asm void __flush_buffer(void);
+extern int __flush_buffer(void*, unsigned int*);
 asm void fn_8007EC80(void);
 void __end_critical_region(int region);
 void __begin_critical_region(int region);
@@ -5709,62 +5709,47 @@ _8007eba8:
     blr
 }
 
-asm void __flush_buffer(void)
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/buffer_io.c:27
+int __flush_buffer(void* file_ptr, unsigned int* length)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    stw	r30, 8(r1)
-    mr	r30, r4
-    lwz	r3, 0x1c(r3)
-    lwz	r0, 0x24(r31)
-    subf.	r0, r3, r0
-    bc      12, 2, _8007ec34
-    stw	r0, 0x28(r31)
-    addi	r5, r31, 0x28
-    lwz	r12, 0x40(r31)
-    lwz	r3, 0(r31)
-    lwz	r4, 0x1c(r31)
-    lwz	r6, 0x48(r31)
-    mtctr	r12
-    bctrl
-    cmplwi	r30, 0
-    bc      12, 2, _8007ec18
-    lwz	r0, 0x28(r31)
-    stw	r0, 0(r30)
-_8007ec18:
-    cmpwi	r3, 0
-    bc      12, 2, _8007ec24
-    b       _8007ec68
-_8007ec24:
-    lwz	r3, 0x18(r31)
-    lwz	r0, 0x28(r31)
-    add	r0, r3, r0
-    stw	r0, 0x18(r31)
-_8007ec34:
-    lwz	r0, 0x1c(r31)
-    li	r3, 0
-    stw	r0, 0x24(r31)
-    lwz	r0, 0x20(r31)
-    stw	r0, 0x28(r31)
-    lwz	r5, 0x18(r31)
-    lwz	r4, 0x2c(r31)
-    lwz	r0, 0x28(r31)
-    and	r4, r5, r4
-    subf	r0, r4, r0
-    stw	r0, 0x28(r31)
-    lwz	r0, 0x18(r31)
-    stw	r0, 0x34(r31)
-_8007ec68:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    typedef struct FlushFile {
+        unsigned int handle;
+        unsigned char pad04[0x14];
+        unsigned int position;
+        char* buffer;
+        unsigned int buffer_size;
+        char* buffer_ptr;
+        unsigned int buffer_length;
+        unsigned int buffer_mask;
+        unsigned int pad30;
+        unsigned int buffer_position;
+        unsigned char pad38[8];
+        int (*write_func)(unsigned int, char*, unsigned int*, unsigned int);
+        unsigned char pad44[4];
+        unsigned int ref_con;
+    } FlushFile;
+    FlushFile* file = (FlushFile*)file_ptr;
+    unsigned int buffer_len;
+    int write_code;
+
+    buffer_len = file->buffer_ptr - file->buffer;
+    if (buffer_len != 0) {
+        file->buffer_length = buffer_len;
+        write_code = file->write_func(file->handle, file->buffer, &file->buffer_length, file->ref_con);
+        if (length != 0) {
+            *length = file->buffer_length;
+        }
+        if (write_code != 0) {
+            return write_code;
+        }
+        file->position += file->buffer_length;
+    }
+
+    file->buffer_ptr = file->buffer;
+    file->buffer_length = file->buffer_size;
+    file->buffer_length -= file->position & file->buffer_mask;
+    file->buffer_position = file->position;
+    return 0;
 }
 
 asm void fn_8007EC80(void)
