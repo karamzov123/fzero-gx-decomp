@@ -87,20 +87,60 @@ def build_categories(report, root):
     ]
 
 
-def apply_mission_headline(report, categories):
+def dol_data_measures(root, total_data):
+    """Compare initialized DOL data and account for structurally equal BSS."""
+    original = root / "orig" / "GFZE01" / "sys" / "main.dol"
+    built = root / "build" / "GFZE01" / "main.dol"
+    if not original.is_file() or not built.is_file():
+        raise FileNotFoundError(f"DOL pair required for data progress: {original}, {built}")
+
+    original_bytes = original.read_bytes()
+    built_bytes = built.read_bytes()
+    if len(original_bytes) < 0xe0 or len(built_bytes) < 0xe0:
+        raise ValueError("DOL header is truncated")
+
+    initialized_total = 0
+    initialized_matched = 0
+    for index in range(7):
+        file_offset = int.from_bytes(original_bytes[0x1c + index * 4:0x20 + index * 4], "big")
+        size = int.from_bytes(original_bytes[0xac + index * 4:0xb0 + index * 4], "big")
+        if not size:
+            continue
+        end = file_offset + size
+        if end > len(original_bytes) or end > len(built_bytes):
+            raise ValueError("DOL data section exceeds file size")
+        initialized_total += size
+        initialized_matched += sum(
+            left == right
+            for left, right in zip(original_bytes[file_offset:end], built_bytes[file_offset:end])
+        )
+
+    bss_address = int.from_bytes(original_bytes[0xd8:0xdc], "big")
+    bss_size = int.from_bytes(original_bytes[0xdc:0xe0], "big")
+    built_bss_address = int.from_bytes(built_bytes[0xd8:0xdc], "big")
+    built_bss_size = int.from_bytes(built_bytes[0xdc:0xe0], "big")
+    report_total = int(total_data or 0)
+    bss_report_size = max(0, report_total - initialized_total)
+    bss_matched = bss_report_size if (bss_address, bss_size) == (built_bss_address, built_bss_size) else 0
+    matched = min(report_total, initialized_matched + bss_matched)
+    return {
+        "total_data": str(report_total),
+        "matched_data": str(matched),
+        "matched_data_percent": round(100.0 * matched / report_total, 5) if report_total else 100.0,
+        "complete_data": str(matched),
+        "complete_data_percent": round(100.0 * matched / report_total, 5) if report_total else 100.0,
+    }
+
+
+def apply_mission_headline(report, categories, root):
     """Make decomp.dev's headline the honest mission metric.
 
-    Keep the original objdiff measures in the diagnostic category; otherwise
-    decomp.dev would label assembly parity as decompilation progress.
+    Keep the original objdiff measures untouched in ``diagnostic`` and add a
+    byte-weighted data comparison from the original and rebuilt DOLs.
     """
     natural = next(c["measures"] for c in categories if c["id"] == "natural-c")
-    # objdiff only exposes total_data for the coarse, non-source-backed units;
-    # it does not provide aggregate matched/complete data for this project.
-    # Publishing that denominator alone makes decomp.dev render an apparently
-    # measured 0% Data bar. Keep the raw value in the diagnostic category, but
-    # omit unsupported data progress from the mission headline.
-    for key in ("total_data", "matched_data", "matched_data_percent", "complete_data", "complete_data_percent"):
-        natural.pop(key, None)
+    total_data = report.get("measures", {}).get("total_data", 0)
+    natural.update(dol_data_measures(root, total_data))
     report["measures"] = natural
 
 
@@ -115,7 +155,7 @@ def main():
         raise SystemExit("expected objdiff report version 2")
     categories = build_categories(report, args.root)
     report["categories"] = categories
-    apply_mission_headline(report, categories)
+    apply_mission_headline(report, categories, args.root)
     args.out.write_text(json.dumps(report, indent=2) + "\n")
 
 

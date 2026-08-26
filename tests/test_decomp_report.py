@@ -19,6 +19,17 @@ class DecompReportTest(unittest.TestCase):
                 "asm void hand_asm(void) { }\n"
                 "void partial(void) {}\n"
             )
+            for path in (root / "orig/GFZE01/sys/main.dol", root / "build/GFZE01/main.dol"):
+                path.parent.mkdir(parents=True, exist_ok=True)
+                dol = bytearray(0x110)
+                dol[0x1c:0x20] = (0x100).to_bytes(4, "big")
+                dol[0xac:0xb0] = (16).to_bytes(4, "big")
+                dol[0xd8:0xdc] = (0x8000).to_bytes(4, "big")
+                dol[0xdc:0xe0] = (32).to_bytes(4, "big")
+                dol[0x100:0x110] = bytes(range(16))
+                if path.parts[-3:] == ("build", "GFZE01", "main.dol"):
+                    dol[0x100] = 255
+                path.write_bytes(dol)
             report = {
                 "version": 2,
                 "measures": {
@@ -61,7 +72,9 @@ class DecompReportTest(unittest.TestCase):
             self.assertEqual(cats["c-expressed"]["measures"]["matched_functions"], 1)
             self.assertEqual(cats["diagnostic"]["measures"], report["measures"])
             self.assertEqual(cats["diagnostic"]["measures"]["total_data"], "1000")
-            self.assertNotIn("total_data", got["measures"])
+            self.assertEqual(got["measures"]["total_data"], "1000")
+            self.assertEqual(got["measures"]["matched_data"], "999")
+            self.assertEqual(got["measures"]["matched_data_percent"], 99.9)
 
 
 if __name__ == "__main__":
