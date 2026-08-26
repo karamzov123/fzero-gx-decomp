@@ -87,6 +87,17 @@ def build_categories(report, root):
     ]
 
 
+def apply_mission_headline(report, categories):
+    """Make decomp.dev's headline the honest mission metric.
+
+    Keep the original objdiff measures in the diagnostic category; otherwise
+    decomp.dev would label assembly parity as decompilation progress.
+    """
+    natural = next(c["measures"] for c in categories if c["id"] == "natural-c")
+    natural["total_data"] = report.get("measures", {}).get("total_data", "0")
+    report["measures"] = natural
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--report", required=True, type=Path)
@@ -96,7 +107,9 @@ def main():
     report = json.loads(args.report.read_text())
     if report.get("version") != 2:
         raise SystemExit("expected objdiff report version 2")
-    report["categories"] = build_categories(report, args.root)
+    categories = build_categories(report, args.root)
+    report["categories"] = categories
+    apply_mission_headline(report, categories)
     args.out.write_text(json.dumps(report, indent=2) + "\n")
 
 

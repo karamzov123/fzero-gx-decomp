@@ -50,7 +50,8 @@ class DecompReportTest(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             got = json.loads(out.read_text())
-            self.assertEqual(got["measures"], report["measures"])
+            self.assertEqual(got["measures"]["matched_code_percent"], 20.0)
+            self.assertEqual(got["measures"]["total_functions"], 3)
             cats = {c["id"]: c for c in got["categories"]}
             self.assertEqual(cats["natural-c"]["measures"]["total_functions"], 3)
             self.assertEqual(cats["natural-c"]["measures"]["matched_functions"], 1)
