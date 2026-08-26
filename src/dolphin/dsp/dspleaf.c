@@ -1,63 +1,44 @@
-typedef signed int s32;
-typedef unsigned int u32;
-typedef unsigned short u16;
-
-/* DSP-style register leaf accessors at 0xCC006C00 / 0xCC006C04.
-   Carved from coarse/text_8001A8B4.c; promoted to global scope because
-   the still-coarse 0x8001DFFC/0x8001E0E4/0x8001E1D8 units bl them. */
-
 #pragma push
 #pragma force_active on
 
-asm s32 AIGetStreamPlayState_Leaf(void)
+typedef unsigned int u32;
+
+volatile u32 DSP_REGS_LEAF[] : 0xCC006C00;
+
+struct MAILBITS {
+    u32 lo24 : 24;
+    u32 mid  : 8;
+};
+// provenance: original
+u32 AIGetStreamPlayState_Leaf(void)
 {
-    nofralloc
-    lis     r3, -0x3400
-    lwz     r0, 0x6c00(r3)
-    rlwinm  r3, r0, 0x1f, 0x1f, 0x1f
-    blr
+    return (DSP_REGS_LEAF[0] >> 1) & 1;
 }
 
-asm void DSPWriteMailHi(register s32 val)
+// provenance: original
+void DSPWriteMailHi(u32 mail)
 {
-    nofralloc
-    lis     r4, -0x3400
-    addi    r4, r4, 0x6c00
-    lwz     r0, 4(r4)
-    rlwinm  r0, r0, 0, 0, 0x17
-    rlwimi  r0, r3, 0, 0x18, 0x1f
-    stw     r0, 4(r4)
-    blr
+    u32 v = DSP_REGS_LEAF[1];
+    DSP_REGS_LEAF[1] = (v & 0xFFFFFF00) | (mail & 0xFF);
 }
 
-asm s32 DSPReadMailLo(void)
+// provenance: original
+u32 DSPReadMailLo(void)
 {
-    nofralloc
-    lis     r3, -0x3400
-    lwz     r0, 0x6c04(r3)
-    clrlwi  r3, r0, 0x18
-    blr
+    return DSP_REGS_LEAF[1] & 0xFF;
 }
 
-asm void DSPWriteMailMid(register s32 val)
+// provenance: original
+void DSPWriteMailMid(u32 mail)
 {
-    nofralloc
-    lis     r4, -0x3400
-    addi    r4, r4, 0x6c00
-    lwz     r0, 4(r4)
-    rlwinm  r0, r0, 0, 0x18, 0xf
-    rlwimi  r0, r3, 8, 0x10, 0x17
-    stw     r0, 4(r4)
-    blr
+    u32 v = DSP_REGS_LEAF[1];
+    DSP_REGS_LEAF[1] = (v & 0xFFFF00FF) | ((mail & 0xFF) << 8);
 }
 
-asm s32 DSPReadMailHi(void)
+// provenance: original
+u32 DSPReadMailHi(void)
 {
-    nofralloc
-    lis     r3, -0x3400
-    lwz     r0, 0x6c04(r3)
-    rlwinm  r3, r0, 0x18, 0x18, 0x1f
-    blr
+    return (DSP_REGS_LEAF[1] >> 8) & 0xFF;
 }
 
 #pragma pop
