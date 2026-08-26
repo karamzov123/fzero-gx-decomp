@@ -1,3 +1,4 @@
+// provenance: original
 #pragma push
 #pragma force_active on
 
@@ -25,12 +26,14 @@ extern unsigned char lbl_801A6B78[4];
 extern unsigned char lbl_801A6B7C[4];
 extern unsigned char lbl_801A6F78[8];
 
-asm void fn_800224E4(void)
+// provenance: original
+void* fn_800224E4(void)
 {
-    nofralloc
-    lwz	r3, lbl_801A6B68
-    blr	
+    return *(void**)lbl_801A6B68;
 }
+
+// provenance: original
+
 
 asm void fn_800224EC(void)
 {
@@ -1286,29 +1289,18 @@ asm void fn_8002361C(void)
     blr	
 }
 
-asm void fn_80023638(void)
+
+void* fn_80023638(void)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x10(r1)
-    stw	r31, 0xc(r1)
-    bl      OSDisableInterrupts
-    lwz	r0, lbl_801A6B78
-    cmplwi	r0, 0
-    mr	r31, r0
-    beq     _80023660
-    addi	r31, r31, -1
-_80023660:
-    li	r0, 0
-    stw	r0, lbl_801A6B78
-    bl      OSRestoreInterrupts
-    mr	r3, r31
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    addi	r1, r1, 0x10
-    mtlr	r0
-    blr	
+    void* result;
+    int lev = OSDisableInterrupts();
+    result = *(void**)lbl_801A6B78;
+    if (result != 0) {
+        result = (char*)result - 1;
+    }
+    *(u32*)lbl_801A6B78 = 0;
+    OSRestoreInterrupts(lev);
+    return result;
 }
 
 #pragma pop
