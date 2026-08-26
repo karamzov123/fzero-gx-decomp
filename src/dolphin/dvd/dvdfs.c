@@ -7,10 +7,20 @@ typedef unsigned int u32;
 
 #pragma force_active on
 
-extern unsigned char BootInfo[4];
-extern unsigned char FstStart[4];
-extern unsigned char FstStringStart[4];
-extern unsigned char MaxEntryNum[4];
+typedef struct DVDFst DVDFst;
+typedef struct OSBootInfo {
+    unsigned char _pad[0x38];
+    DVDFst *FSTLocation;
+} OSBootInfo;
+struct DVDFst {
+    u32 type;
+    u32 nameOffset;
+    u32 nextEntryOrLength;
+};
+extern OSBootInfo *BootInfo;
+extern DVDFst *FstStart;
+extern char *FstStringStart;
+extern u32 MaxEntryNum;
 extern unsigned char __DVDLongFileNameFlag[4];
 extern unsigned char __DVDThreadQueue[4];
 extern unsigned char dvd_convert_entrynum_to_path_warn_str[];
@@ -34,23 +44,15 @@ extern void DVDReadAbsAsyncPrio(void);
 extern void DVDCancel(void);
 extern void MSL_CharAttrLookup(void);
 
+// provenance: dolsdk2001:src/dvd/dvdfs.c:33 __DVDFSInit
 /* __DVDFSInit @0x80016DC0 | size: 0x38 */
-asm void __DVDFSInit(void) {
-nofralloc
-	lis r3, 0x8000
-	stw r3, BootInfo
-	lwz r0, 0x38(r3)
-	stw r0, FstStart
-	lwz r3, FstStart
-	cmplwi r3, 0x0
-	beqlr
-	lwz r0, 0x8(r3)
-	stw r0, MaxEntryNum
-	lwz r0, MaxEntryNum
-	mulli r0, r0, 0xc
-	add r0, r3, r0
-	stw r0, FstStringStart
-	blr
+void __DVDFSInit(void) {
+    BootInfo = (OSBootInfo *)0x80000000;
+    FstStart = BootInfo->FSTLocation;
+    if (FstStart != 0) {
+        MaxEntryNum = FstStart->nextEntryOrLength;
+        FstStringStart = (char *)FstStart + MaxEntryNum * 0xC;
+    }
 }
 
 /* DVDConvertPathToEntrynum @0x80016DF8 | size: 0x2F4 */
