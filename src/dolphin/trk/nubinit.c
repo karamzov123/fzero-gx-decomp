@@ -3,9 +3,9 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_8008AF50(unsigned long);
-extern void TRKReleaseMutex_stub(unsigned long);
-extern void TRKAcquireMutex_stub(unsigned long);
+extern void fn_8008AF50(void*);
+extern void TRKReleaseMutex_stub(void*);
+extern void TRKAcquireMutex_stub(void*);
 extern void TRK_board_display(char*);
 extern void TRKAcquireMutex(void);
 extern int usr_put_initialize(void);
@@ -22,31 +22,16 @@ extern void MWTRACE(unsigned long, char*);
 extern unsigned char gTRKInputPendingPtr[4];
 extern unsigned char lbl_801A36B8[40];
 
-asm int TRKInitializeEventQueue(void)
+// provenance: sms:src/TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/nubevent.c:8
+int TRKInitializeEventQueue(void)
 {
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    lis     r3, lbl_801A36B8@ha
-    stw     r0, 0x14(r1)
-    addi    r3, r3, lbl_801A36B8@l
-    bl      fn_8008AF50
-    lis     r3, lbl_801A36B8@ha
-    addi    r3, r3, lbl_801A36B8@l
-    bl      TRKReleaseMutex_stub
-    lis     r3, lbl_801A36B8@ha
-    li      r4, 0
-    addi    r3, r3, lbl_801A36B8@l
-    li      r0, 0x100
-    stw     r4, 4(r3)
-    stw     r4, 8(r3)
-    stw     r0, 0x24(r3)
-    bl      TRKAcquireMutex_stub
-    lwz     r0, 0x14(r1)
-    li      r3, 0
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
+    fn_8008AF50(&lbl_801A36B8);
+    TRKReleaseMutex_stub((void*)(char(*)[40])&lbl_801A36B8);
+    *(unsigned long*)(lbl_801A36B8 + 0x04) = 0;
+    *(unsigned long*)(lbl_801A36B8 + 0x08) = 0;
+    *(unsigned long*)(lbl_801A36B8 + 0x24) = 0x100;
+    TRKAcquireMutex_stub((void*)lbl_801A36B8);
+    return 0;
 }
 
 extern unsigned char TRKNubWelcomeMsg_80095648[27];
