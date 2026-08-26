@@ -9,40 +9,24 @@ void fn_80080458(void);
 void fn_80080518(void);
 void fn_800805C0(void);
 
-asm void* __memrchr(const void* s, int c, unsigned long n)
-{
-    nofralloc
-    clrlwi	r4, r4, 0x18
-    add	r3, r3, r5
-    addi	r5, r5, 1
-    b       _800802a4
-_80080298:
-    lbzu	r0, -1(r3)
-    cmplw	r0, r4
-    beqlr	
-_800802a4:
-    addic.	r5, r5, -1
-    bne     _80080298
-    li	r3, 0
-    blr	
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/mem.c:75
+void* __memrchr(const void* src, int val, unsigned long n) {
+    const unsigned char* p;
+    unsigned int v = (unsigned int)val & 0xFF;
+    for (p = (const unsigned char*)src + n, n++; --n;) {
+        if (*--p == v) return (void*)p;
+    }
+    return 0;
 }
 
-asm void* memchr(const void* s, int c, unsigned long n)
-{
-    nofralloc
-    clrlwi	r4, r4, 0x18
-    addi	r3, r3, -1
-    addi	r5, r5, 1
-    b       _800802d0
-_800802c4:
-    lbzu	r0, 1(r3)
-    cmplw	r0, r4
-    beqlr	
-_800802d0:
-    addic.	r5, r5, -1
-    bne     _800802c4
-    li	r3, 0
-    blr	
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/mem.c:59
+void* memchr(const void* src, int val, unsigned long n) {
+    const unsigned char* p;
+    unsigned int v = (unsigned int)val & 0xFF;
+    for (p = (const unsigned char*)src - 1, n++; --n;) {
+        if ((*++p & 0xFF) == v) return (void*)p;
+    }
+    return 0;
 }
 
 asm void* memmove(void* dst, const void* src, unsigned long n)

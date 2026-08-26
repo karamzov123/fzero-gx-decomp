@@ -307,10 +307,10 @@ _8008cf40:
     b       TRK_main
 }
 
-asm void gap_01_8008CF44_text(void)
+// provenance: original
+// harvested 2026-08-26 from natc5's logged 100% attempt; spliced into the current head
+void gap_01_8008CF44_text(void)
 {
-    nofralloc
-    blr
 }
 
 asm void InitMetroTRK_BBA(void)

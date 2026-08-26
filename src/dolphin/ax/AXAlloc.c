@@ -12,121 +12,77 @@ extern unsigned char __AXStackHead[128];
 extern unsigned char __AXStackTail[128];
 
 extern unsigned char lbl_801A6AB8[8];
-asm void __AXPushFreeStack(register void* p)
-{
-    nofralloc
-    lis     r4, __AXStackHead@ha
-    addi	r5, r4, __AXStackHead@l
-    lwz	r4, 0(r5)
-    li	r0, 0
-    stw	r4, 0(r3)
-    stw	r3, 0(r5)
-    stw	r0, 0xc(r3)
-    blr	
+// provenance: original
+void __AXPushFreeStack(register void* p) {
+    u32* head = (u32*)__AXStackHead;
+    *(u32*)p = head[0];
+    head[0] = (u32)p;
+    *(u32*)((char*)p + 0xc) = 0;
 }
 
-asm void __AXPushCallbackStack(register void* p)
-{
-    nofralloc
-    lwz	r0, lbl_801A6AB8
-    stw	r0, 8(r3)
-    stw	r3, lbl_801A6AB8
-    blr	
+// provenance: original
+void __AXPushCallbackStack(register void* p) {
+    *(u32*)((char*)p + 8) = *(u32*)lbl_801A6AB8;
+    *(u32*)lbl_801A6AB8 = (u32)p;
 }
 
-asm void* __AXPopCallbackStack(void)
-{
-    nofralloc
-    lwz	r0, lbl_801A6AB8
-    cmplwi	r0, 0
-    mr	r3, r0
-    beqlr	
-    lwz	r0, 8(r3)
-    stw	r0, lbl_801A6AB8
-    blr	
+// provenance: original
+void* __AXPopCallbackStack(void) {
+    u32 v = *(u32*)lbl_801A6AB8;
+    if (v != 0) {
+        *(u32*)lbl_801A6AB8 = *(u32*)(v + 8);
+    }
+    return (void*)v;
 }
 
-asm void __AXRemoveFromStack(register void* p)
-{
-    nofralloc
-    lwz	r0, 0xc(r3)
-    lis     r5, __AXStackHead@ha
-    lis     r4, __AXStackTail@ha
-    slwi	r6, r0, 2
-    addi	r5, r5, __AXStackHead@l
-    addi	r0, r4, __AXStackTail@l
-    add	r7, r5, r6
-    add	r5, r0, r6
-    lwz	r4, 0(r7)
-    lwz	r0, 0(r5)
-    cmplw	r4, r0
-    bne     _80020a68
-    li	r0, 0
-    stw	r0, 0(r5)
-    stw	r0, 0(r7)
-    blr	
-_80020a68:
-    cmplw	r3, r4
-    bne     _80020a88
-    lwz	r3, 0(r3)
-    li	r0, 0
-    stw	r3, 0(r7)
-    lwz	r3, 0(r7)
-    stw	r0, 4(r3)
-    blr	
-_80020a88:
-    cmplw	r3, r0
-    bne     _80020aa8
-    lwz	r3, 4(r3)
-    li	r0, 0
-    stw	r3, 0(r5)
-    lwz	r3, 0(r5)
-    stw	r0, 0(r3)
-    blr	
-_80020aa8:
-    lwz	r4, 4(r3)
-    lwz	r3, 0(r3)
-    stw	r3, 0(r4)
-    stw	r4, 4(r3)
-    blr	
+// provenance: original
+void __AXRemoveFromStack(register void* p) {
+    u32 prev;
+    u32 next;
+    u32* head = (u32*)((char*)__AXStackHead + (*(u32*)((char*)p + 0xc) << 2));
+    u32* tail = (u32*)((char*)__AXStackTail + (*(u32*)((char*)p + 0xc) << 2));
+    if (*head == *tail) {
+        *tail = 0;
+        *head = 0;
+        return;
+    }
+    if ((u32)p == *head) {
+        next = *(u32*)p;
+        *head = next;
+        next = *(u32*)head;
+        *(u32*)(next + 4) = 0;
+        return;
+    }
+    if ((u32)p == *tail) {
+        prev = *(u32*)((char*)p + 4);
+        *tail = prev;
+        prev = *(u32*)tail;
+        *(u32*)prev = 0;
+        return;
+    }
+    prev = *(u32*)((char*)p + 4);
+    next = *(u32*)p;
+    *(u32*)prev = next;
+    *(u32*)(next + 4) = prev;
 }
 
-asm void AXFreeVoice(register void* p)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x18(r1)
-    stw	r31, 0x14(r1)
-    stw	r30, 0x10(r1)
-    mr	r30, r3
-    bl      OSDisableInterrupts
-    addi	r31, r3, 0
-    addi	r3, r30, 0
-    bl      __AXRemoveFromStack
-    lhz	r0, 0x146(r30)
-    cmplwi	r0, 1
-    bne     _80020af8
-    li	r0, 1
-    stw	r0, 0x20(r30)
-_80020af8:
-    mr	r3, r30
-    bl      fn_80022E68
-    lis     r3, __AXStackHead@ha
-    addi	r5, r3, __AXStackHead@l
-    lwz	r4, 0(r5)
-    li	r0, 0
-    addi	r3, r31, 0
-    stw	r4, 0(r30)
-    stw	r30, 0(r5)
-    stw	r0, 0xc(r30)
-    bl      OSRestoreInterrupts
-    lwz	r0, 0x1c(r1)
-    lwz	r31, 0x14(r1)
-    lwz	r30, 0x10(r1)
-    addi	r1, r1, 0x18
-    mtlr	r0
-    blr	
+// provenance: original
+void AXFreeVoice(register void* p) {
+    int enabled;
+    enabled = OSDisableInterrupts();
+    __AXRemoveFromStack(p);
+    if (*(unsigned short*)((char*)p + 0x146) == 1) {
+        *(u32*)((char*)p + 0x20) = 1;
+    }
+    fn_80022E68(p);
+    {
+        u32* head = (u32*)__AXStackHead;
+        u32 h = head[0];
+        *(u32*)p = h;
+        head[0] = (u32)p;
+        *(u32*)((char*)p + 0xc) = 0;
+    }
+    OSRestoreInterrupts(enabled);
 }
 
 asm void* AXAcquireVoice(register u32 priority, register void* callback, register u32 userContext)

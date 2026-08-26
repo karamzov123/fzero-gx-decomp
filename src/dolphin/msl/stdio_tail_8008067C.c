@@ -12,23 +12,13 @@ extern void __close_all(void);
 extern void __StringWrite(void);
 
 extern unsigned char __stdio_exit[4];
-asm void __stdio_atexit(void)
-{
-    nofralloc
-    lis     r3, __close_all@ha
-    addi	r0, r3, __close_all@l
-    stw	r0, __stdio_exit
-    blr
-}
+// provenance: original
+// harvested 2026-08-26 from hard's logged 100% attempt; spliced into the current head
+void __stdio_atexit(void) { *(void (**)(void))__stdio_exit = __close_all; }
 
-asm void fn_8008068C(void)
-{
-    nofralloc
-    li	r0, 0
-    stb	r0, 9(r3)
-    stb	r0, 0xa(r3)
-    blr
-}
+// provenance: original
+// harvested 2026-08-26 from hard's logged 100% attempt; spliced into the current head
+void fn_8008068C(unsigned char* p) { p[9] = 0; p[10] = 0; }
 
 asm void sprintf(void)
 {

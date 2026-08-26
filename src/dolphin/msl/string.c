@@ -105,17 +105,12 @@ lbl_80083E54:
     blr
 }
 
-asm int strlen(const char* s)
-{
-    nofralloc
-    addi    r4, r3, -1
-    li      r3, -1
-lbl_80083E70:
-    lbzu    r0, 1(r4)
-    addi    r3, r3, 1
-    cmplwi  r0, 0
-    bne     lbl_80083E70
-    blr
+// provenance: sms:src/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/string.c:6
+int strlen(const char* s) {
+    const unsigned char* p = (const unsigned char*)s - 1;
+    int len = -1;
+    do { ++len; } while (*++p);
+    return len;
 }
 
 #pragma pop

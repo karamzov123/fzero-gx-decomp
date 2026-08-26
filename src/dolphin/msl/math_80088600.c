@@ -7,32 +7,12 @@
 extern double atan(double);
 extern double fn_80087E80(double);
 
-asm float fn_80088600(double d)
-{
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    stw     r0, 0x14(r1)
-    bl      atan
-    lwz     r0, 0x14(r1)
-    frsp    f1, f1
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
-}
+// provenance: original
+// harvested 2026-08-26 from hard's logged 100% attempt; spliced into the current head
+float fn_80088600(double d){ return (float)atan(d); }
 
-asm float tan(double d)
-{
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    stw     r0, 0x14(r1)
-    bl      fn_80087E80
-    lwz     r0, 0x14(r1)
-    frsp    f1, f1
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
-}
+// provenance: original
+// harvested 2026-08-26 from hard's logged 100% attempt; spliced into the current head
+float tan(double d){ return (float)fn_80087E80(d); }
 
 #pragma pop
