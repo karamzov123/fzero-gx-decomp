@@ -165,29 +165,20 @@ _80079714:
     blr
 }
 
-asm void __destroy_global_chain(void)
-{
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    stw     r0, 0x14(r1)
-    b       _80079748
-_8007972c:
-    lwz     r0, 0(r3)
-    li      r4, -1
-    stw	r0, __global_destructor_chain
-    lwz     r12, 4(r3)
-    lwz     r3, 8(r3)
-    mtctr   r12
-    bctrl
-_80079748:
-    lwz	r3, __global_destructor_chain
-    cmplwi  r3, 0
-    bne     _8007972c
-    lwz     r0, 0x14(r1)
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
+// provenance: original
+// harvested 2026-08-26 from hard's logged 100% attempt; spliced into the current head
+typedef struct Dtor {
+    struct Dtor* next;
+    void (*destructor)(void* obj, int flag);
+    void* object;
+} Dtor;
+
+void __destroy_global_chain(void) {
+    Dtor* p;
+    while ((p = *(Dtor* volatile*)&__global_destructor_chain[0]) != 0) {
+        *(Dtor* volatile*)&__global_destructor_chain[0] = p->next;
+        p->destructor(p->object, -1);
+    }
 }
 
 asm void __cvt_fp2unsigned(void)

@@ -85,11 +85,9 @@ asm void fn_8007E96C(void);
 asm void fn_8007EA58(void);
 asm void __flush_buffer(void);
 asm void fn_8007EC80(void);
-asm void __prep_buffer(void);
 void __end_critical_region(int region);
 void __begin_critical_region(int region);
 asm void __kill_critical_regions(void);
-asm void MSL_CharAttrLookup(void);
 asm void __fwrite(void);
 asm void fwrite(void);
 asm void fn_8007F13C(void);
@@ -5830,22 +5828,13 @@ _8007ed38:
     blr
 }
 
-asm void __prep_buffer(void)
-{
-    nofralloc
-    lwz	r0, 0x1c(r3)
-    stw	r0, 0x24(r3)
-    lwz	r0, 0x20(r3)
-    stw	r0, 0x28(r3)
-    lwz	r5, 0x18(r3)
-    lwz	r4, 0x2c(r3)
-    lwz	r0, 0x28(r3)
-    and	r4, r5, r4
-    subf	r0, r4, r0
-    stw	r0, 0x28(r3)
-    lwz	r0, 0x18(r3)
-    stw	r0, 0x34(r3)
-    blr
+// provenance: original
+// harvested 2026-08-26 from hard2's logged 100% attempt; spliced into the current head
+void __prep_buffer(void* p) {
+    ((int*)p)[9]  = ((int*)p)[7];            /* +0x24 = +0x1c */
+    ((int*)p)[10] = ((int*)p)[8];            /* +0x28 = +0x20 */
+    ((int*)p)[10] = ((int*)p)[10] - (((int*)p)[6] & ((int*)p)[11]);
+    ((int*)p)[13] = ((int*)p)[6];            /* +0x34 = +0x18 */
 }
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/PPC_EABI/critical_regions.gamecube.c:10
@@ -5860,20 +5849,9 @@ asm void __kill_critical_regions(void)
     blr
 }
 
-asm void MSL_CharAttrLookup(void)
-{
-    nofralloc
-    cmpwi	r3, -1
-    bc      4, 2, _8007eda0
-    li	r3, -1
-    blr
-_8007eda0:
-    lis     r4, lbl_8015B200@ha
-    clrlwi	r0, r3, 0x18
-    addi	r3, r4, lbl_8015B200@l
-    lbzx	r3, r3, r0
-    blr
-}
+// provenance: original
+// harvested 2026-08-26 from hard2's logged 100% attempt; spliced into the current head
+int MSL_CharAttrLookup(int c) { if (c == -1) return -1; return lbl_8015B200[(unsigned char)c]; }
 
 asm void __fwrite(void)
 {
