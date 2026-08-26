@@ -278,17 +278,10 @@ _8000f5c8:
     blr	
 }
 
-asm BOOL OSGetResetSwitchState(void)
+// provenance: original
+BOOL OSGetResetSwitchState(void)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    bl      OSGetResetButtonState
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+    return OSGetResetButtonState();
 }
 
 #pragma pop

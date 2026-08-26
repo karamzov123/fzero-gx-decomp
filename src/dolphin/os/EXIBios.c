@@ -612,10 +612,12 @@ L_80014198:
 /* ---- EXIClearInterrupts ---- */
 #pragma push
 #pragma force_active on
-asm u32 EXIClearInterrupts(register s32 chan, register int exi,
+// provenance: original
+u32 EXIClearInterrupts(register s32 chan, register int exi,
                            register int tc, register int ext)
 {
-    nofralloc
+    asm
+    {
     mulli       r0, r3, 0x14
     lis         r3, 0xCC00
     addi        r7, r3, 0x6800
@@ -636,7 +638,7 @@ L_800141E4:
     ori         r0, r0, 0x800
 L_800141F0:
     stw         r0, 0x0(r7)
-    blr
+    }
 }
 #pragma pop
 
