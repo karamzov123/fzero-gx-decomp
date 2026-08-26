@@ -1,4 +1,5 @@
 typedef int BOOL;
+// provenance: original
 typedef unsigned int u32;
 typedef void (*__OSInterruptHandler)(int interrupt, void *context);
 
@@ -8,40 +9,57 @@ extern u32 __OSMaskInterrupts(u32 mask);
 extern void __OSSetExceptionHandler(int index, void *handler);
 extern void *ExternalInterruptHandler;
 
-asm BOOL OSDisableInterrupts(void)
+// provenance: original
+#pragma push
+#pragma force_active on
+BOOL OSDisableInterrupts(void)
 {
-    nofralloc
+    register BOOL level;
+
+    asm
+    {
     mfmsr   r3
     rlwinm  r4, r3, 0, 17, 15
     mtmsr   r4
-    extrwi  r3, r3, 1, 16
-    blr
+    extrwi  level, r3, 1, 16
+    }
+    return level;
 }
 
-asm BOOL OSEnableInterrupts(void)
+// provenance: original
+BOOL OSEnableInterrupts(void)
 {
-    nofralloc
+    register BOOL level;
+
+    asm
+    {
     mfmsr   r3
     ori     r4, r3, 0x8000
     mtmsr   r4
-    extrwi  r3, r3, 1, 16
-    blr
+    extrwi  level, r3, 1, 16
+    }
+    return level;
 }
 
-asm BOOL OSRestoreInterrupts(register BOOL level)
+// provenance: original
+BOOL OSRestoreInterrupts(register BOOL level)
 {
-    nofralloc
+    register u32 prev;
+
+    asm
+    {
     cmpwi   level, 0
     mfmsr   r4
-    beq     _disable
+    beq     L_disable
     ori     r5, r4, 0x8000
-    b       _restore
-_disable:
+    b       L_restore
+L_disable:
     rlwinm  r5, r4, 0, 17, 15
-_restore:
+L_restore:
     mtmsr   r5
-    extrwi  r3, r4, 1, 16
-    blr
+    extrwi  prev, r4, 1, 16
+    }
+    return prev;
 }
 
 __OSInterruptHandler __OSSetInterruptHandler(short interrupt, __OSInterruptHandler handler)
@@ -90,3 +108,4 @@ asm void __OSInterruptInit(void)
     mtlr    r0
     blr
 }
+#pragma pop
