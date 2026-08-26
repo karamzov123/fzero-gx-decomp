@@ -1,3 +1,4 @@
+// provenance: original
 #pragma push
 #pragma force_active on
 
@@ -14,13 +15,12 @@ extern unsigned char lbl_801A6B4C[4];
 extern unsigned char lbl_801A6B50[4];
 extern unsigned char lbl_801A6B54[4];
 extern unsigned char lbl_801A6B58[8];
-asm void fn_8002201C(void)
+// provenance: original
+void* fn_8002201C(void)
 {
-    nofralloc
-    lis     r3, lbl_80164D20@ha
-    addi	r3, r3, lbl_80164D20@l
-    blr	
+    return &lbl_80164D20[0];
 }
+
 
 asm void fn_80022028(void)
 {
@@ -317,21 +317,21 @@ _80022408:
     blr	
 }
 
-asm void fn_80022420(void)
+// provenance: original
+void fn_80022420(void)
 {
-    nofralloc
-    li	r0, 0
-    stw	r0, lbl_801A6B58
-    stw	r0, lbl_801A6B54
-    stw	r0, lbl_801A6B50
-    stw	r0, lbl_801A6B4C
-    stw	r0, lbl_801A6B48
-    stw	r0, lbl_801A6B44
-    stw	r0, lbl_801A6B40
-    stw	r0, lbl_801A6B3C
-    stw	r0, lbl_801A6B38
-    blr	
+    *(u32*)lbl_801A6B58 = 0;
+    *(u32*)lbl_801A6B54 = 0;
+    *(u32*)lbl_801A6B50 = 0;
+    *(u32*)lbl_801A6B4C = 0;
+    *(u32*)lbl_801A6B48 = 0;
+    *(u32*)lbl_801A6B44 = 0;
+    *(u32*)lbl_801A6B40 = 0;
+    *(u32*)lbl_801A6B3C = 0;
+    *(u32*)lbl_801A6B38 = 0;
 }
+
+
 
 void fn_8002244C(void)
 {
