@@ -87,60 +87,39 @@ def build_categories(report, root):
     ]
 
 
-def dol_data_measures(root, total_data):
-    """Compare initialized DOL data and account for structurally equal BSS."""
-    original = root / "orig" / "GFZE01" / "sys" / "main.dol"
-    built = root / "build" / "GFZE01" / "main.dol"
-    if not original.is_file() or not built.is_file():
-        raise FileNotFoundError(f"DOL pair required for data progress: {original}, {built}")
-
-    original_bytes = original.read_bytes()
-    built_bytes = built.read_bytes()
-    if len(original_bytes) < 0xe0 or len(built_bytes) < 0xe0:
-        raise ValueError("DOL header is truncated")
-
-    initialized_total = 0
-    initialized_matched = 0
-    for index in range(7):
-        file_offset = int.from_bytes(original_bytes[0x1c + index * 4:0x20 + index * 4], "big")
-        size = int.from_bytes(original_bytes[0xac + index * 4:0xb0 + index * 4], "big")
-        if not size:
+def source_backed_data_measures(report):
+    """Count matching data only from source-backed objdiff units."""
+    total_data = int(report.get("measures", {}).get("total_data", 0) or 0)
+    matched_data = 0
+    data_sections = {".data", ".rodata", ".sdata", ".sdata2", ".dtors", ".bss", ".sbss", ".sbss2"}
+    for unit in report.get("units", []):
+        if not unit.get("metadata", {}).get("source_path"):
             continue
-        end = file_offset + size
-        if end > len(original_bytes) or end > len(built_bytes):
-            raise ValueError("DOL data section exceeds file size")
-        initialized_total += size
-        initialized_matched += sum(
-            left == right
-            for left, right in zip(original_bytes[file_offset:end], built_bytes[file_offset:end])
-        )
-
-    bss_address = int.from_bytes(original_bytes[0xd8:0xdc], "big")
-    bss_size = int.from_bytes(original_bytes[0xdc:0xe0], "big")
-    built_bss_address = int.from_bytes(built_bytes[0xd8:0xdc], "big")
-    built_bss_size = int.from_bytes(built_bytes[0xdc:0xe0], "big")
-    report_total = int(total_data or 0)
-    bss_report_size = max(0, report_total - initialized_total)
-    bss_matched = bss_report_size if (bss_address, bss_size) == (built_bss_address, built_bss_size) else 0
-    matched = min(report_total, initialized_matched + bss_matched)
+        for section in unit.get("sections", []):
+            if section.get("name") not in data_sections:
+                continue
+            size = int(section.get("size", 0) or 0)
+            if float(section.get("fuzzy_match_percent", 0) or 0) >= 100.0:
+                matched_data += size
+    matched_data = min(matched_data, total_data)
+    percent = round(100.0 * matched_data / total_data, 5) if total_data else 100.0
     return {
-        "total_data": str(report_total),
-        "matched_data": str(matched),
-        "matched_data_percent": round(100.0 * matched / report_total, 5) if report_total else 100.0,
-        "complete_data": str(matched),
-        "complete_data_percent": round(100.0 * matched / report_total, 5) if report_total else 100.0,
+        "total_data": str(total_data),
+        "matched_data": str(matched_data),
+        "matched_data_percent": percent,
+        "complete_data": str(matched_data),
+        "complete_data_percent": percent,
     }
 
 
-def apply_mission_headline(report, categories, root):
+def apply_mission_headline(report, categories):
     """Make decomp.dev's headline the honest mission metric.
 
-    Keep the original objdiff measures untouched in ``diagnostic`` and add a
-    byte-weighted data comparison from the original and rebuilt DOLs.
+    Keep objdiff's diagnostic measures untouched and publish source-backed,
+    byte-weighted data progress in the mission headline.
     """
     natural = next(c["measures"] for c in categories if c["id"] == "natural-c")
-    total_data = report.get("measures", {}).get("total_data", 0)
-    natural.update(dol_data_measures(root, total_data))
+    natural.update(source_backed_data_measures(report))
     report["measures"] = natural
 
 
@@ -155,7 +134,7 @@ def main():
         raise SystemExit("expected objdiff report version 2")
     categories = build_categories(report, args.root)
     report["categories"] = categories
-    apply_mission_headline(report, categories, args.root)
+    apply_mission_headline(report, categories)
     args.out.write_text(json.dumps(report, indent=2) + "\n")
 
 

@@ -49,6 +49,7 @@ class DecompReportTest(unittest.TestCase):
                         {"name": "hand_asm", "size": "8", "fuzzy_match_percent": 100.0},
                         {"name": "partial", "size": "8", "fuzzy_match_percent": 50.0},
                     ],
+                    "sections": [{"name": ".data", "size": "16", "fuzzy_match_percent": 100.0}],
                     "metadata": {"source_path": "src/a.c"},
                 }],
                 "categories": [],
@@ -73,8 +74,8 @@ class DecompReportTest(unittest.TestCase):
             self.assertEqual(cats["diagnostic"]["measures"], report["measures"])
             self.assertEqual(cats["diagnostic"]["measures"]["total_data"], "1000")
             self.assertEqual(got["measures"]["total_data"], "1000")
-            self.assertEqual(got["measures"]["matched_data"], "999")
-            self.assertEqual(got["measures"]["matched_data_percent"], 99.9)
+            self.assertEqual(got["measures"]["matched_data"], "16")
+            self.assertEqual(got["measures"]["matched_data_percent"], 1.6)
 
 
 if __name__ == "__main__":
