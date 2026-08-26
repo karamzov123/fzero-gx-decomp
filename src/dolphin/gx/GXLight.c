@@ -1,7 +1,33 @@
+// provenance: dolsdk2001:src/gx/GXPixel.c:261 (adapted; GXSetFieldMode only)
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 typedef signed int s32;
+
+typedef struct GXData {
+    u16 unk;
+    u16 bpSent;
+    u16 vNum;
+    u8 pad[0x7C - 0x6];
+    u32 lpSize;   /* 0x7C */
+    u8 padX[0x1D0 - 0x80];
+    u32 chanCtrlBits; /* 0x1D0 */
+    u8 padY[0x1DC - 0x1D4];
+    u32 xfPerf; /* 0x1DC */
+    u8 pad2[0x204 - 0x80];
+    u32 numChans; /* 0x204 */
+    u8 pad3[0x4F4 - 0x208];
+    u32 dirtyState; /* 0x4F4 */
+} GXData;
+
+typedef unsigned char GXBool;
+
+#define GXWGFifo ((volatile __GXFifoInt *)0xCC008000)
+#define GX_WRITE_RAS_REG(reg)       \
+    do {                            \
+        GXWGFifo->u8 = 0x61;        \
+        GXWGFifo->u32 = (u32)(reg); \
+    } while (0)
 
 extern void* memset(void*, int, unsigned long);
 extern void __cvt_fp2unsigned(void);
@@ -25,7 +51,7 @@ extern unsigned char lbl_80178118[648];
 #pragma push
 #pragma force_active on
 
-extern unsigned char gx[4];
+extern struct GXData *const gx;
 extern unsigned char lbl_801A7118[8];
 extern unsigned char lbl_801A7108[8];
 extern unsigned char lbl_801A7128[8];
