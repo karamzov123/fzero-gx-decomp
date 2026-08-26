@@ -26,7 +26,6 @@ extern unsigned char lbl_801A6B78[4];
 extern unsigned char lbl_801A6B7C[4];
 extern unsigned char lbl_801A6F78[8];
 
-// provenance: original
 void* fn_800224E4(void)
 {
     return *(void**)lbl_801A6B68;
