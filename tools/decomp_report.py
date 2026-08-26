@@ -34,8 +34,7 @@ def number(value):
     return float(value or 0)
 
 
-def measures(functions, fuzzy=False):
-    total_code = sum(int(f.get("size", 0) or 0) for f in functions)
+def measures(functions, total_code, total_functions, fuzzy=False):
     matched_code = 0.0
     complete_code = 0
     matched_functions = 0
@@ -49,7 +48,6 @@ def measures(functions, fuzzy=False):
         if pct >= 100.0:
             complete_code += size
             matched_functions += 1
-    total_functions = len(functions)
     matched_code = int(round(matched_code))
     return {
         "fuzzy_match_percent": round(100.0 * matched_code / total_code, 5) if total_code else 100.0,
@@ -79,10 +77,13 @@ def build_categories(report, root):
             expressed.append(function)
             natural.append(function)
     diagnostic = copy.deepcopy(report.get("measures", {}))
+    totals = report.get("measures", {})
+    total_code = int(totals.get("total_code", 0) or 0)
+    total_functions = int(totals.get("total_functions", 0) or 0)
     return [
         {"id": "diagnostic", "name": "Diagnostic objdiff", "measures": diagnostic},
-        {"id": "natural-c", "name": "Exact natural C", "measures": measures(natural)},
-        {"id": "c-expressed", "name": "C-expressed (fuzzy supplemental)", "measures": measures(expressed, fuzzy=True)},
+        {"id": "natural-c", "name": "Exact natural C", "measures": measures(natural, total_code, total_functions)},
+        {"id": "c-expressed", "name": "C-expressed (fuzzy supplemental)", "measures": measures(expressed, total_code, total_functions, fuzzy=True)},
     ]
 
 

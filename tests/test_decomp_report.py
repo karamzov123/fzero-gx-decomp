@@ -52,8 +52,9 @@ class DecompReportTest(unittest.TestCase):
             got = json.loads(out.read_text())
             self.assertEqual(got["measures"], report["measures"])
             cats = {c["id"]: c for c in got["categories"]}
-            self.assertEqual(cats["natural-c"]["measures"]["total_functions"], 2)
+            self.assertEqual(cats["natural-c"]["measures"]["total_functions"], 3)
             self.assertEqual(cats["natural-c"]["measures"]["matched_functions"], 1)
+            self.assertEqual(cats["natural-c"]["measures"]["total_code"], "20")
             self.assertEqual(cats["natural-c"]["measures"]["complete_code"], "4")
             self.assertEqual(cats["c-expressed"]["measures"]["matched_functions"], 1)
             self.assertEqual(cats["diagnostic"]["measures"], report["measures"])
