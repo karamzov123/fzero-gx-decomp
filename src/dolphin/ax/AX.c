@@ -6,6 +6,14 @@ typedef unsigned int u32;
 
 #define NULL ((void*) 0)
 
+typedef void (*AXCallback)(void*);
+typedef struct AXVPB_ {
+    unsigned char pad[0xC];
+    unsigned int flags;
+    AXCallback callback;
+} AXVPB;
+
+
 extern void OSRegisterVersion(const char* version);
 extern void __AXInitVoiceStacks(void);
 extern void __AXAllocQuit(void);
@@ -92,53 +100,25 @@ void AXQuit(void) {
     fn_80021FBC();
 }
 
-asm void* __AXGetStackHead(register u32 priority)
+// provenance: dolsdk2001:src/ax/AXAlloc.c:11
+void* __AXGetStackHead(s32 priority)
 {
-    nofralloc
-    lis     r4, __AXStackHead@ha
-    slwi	r3, r3, 2
-    addi	r0, r4, __AXStackHead@l
-    add	r3, r0, r3
-    lwz	r3, 0(r3)
-    blr	
+    return *(void**)((char*)__AXStackHead + priority * 4);
 }
 
-asm void __AXServiceCallbackStack(void)
+// provenance: dolsdk2001:src/ax/AXAlloc.c:16 (adapted)
+void __AXServiceCallbackStack(void)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x10(r1)
-    stw	r31, 0xc(r1)
-    bl      __AXPopCallbackStack
-    mr	r31, r3
-    b       _80020858
-_8002081c:
-    lwz	r0, 0xc(r31)
-    cmplwi	r0, 0
-    beq     _80020850
-    lwz	r12, 0x10(r31)
-    cmplwi	r12, 0
-    beq     _80020840
-    mtlr	r12
-    addi	r3, r31, 0
-    blrl	
-_80020840:
-    mr	r3, r31
-    bl      __AXRemoveFromStack
-    mr	r3, r31
-    bl      __AXPushFreeStack
-_80020850:
-    bl      __AXPopCallbackStack
-    mr	r31, r3
-_80020858:
-    cmplwi	r31, 0
-    bne     _8002081c
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    addi	r1, r1, 0x10
-    mtlr	r0
-    blr	
+    AXVPB* p;
+    for (p = __AXPopCallbackStack(); p; p = __AXPopCallbackStack()) {
+        if (p->flags != 0) {
+            if (p->callback != NULL) {
+                p->callback(p);
+            }
+            __AXRemoveFromStack(p);
+            __AXPushFreeStack(p);
+        }
+    }
 }
 
 asm void __AXInitVoiceStacks(void)
