@@ -1,13 +1,18 @@
 typedef unsigned int u32;
+#pragma push
+#pragma force_active on
+// provenance: original
 
-asm void DCEnable(void)
+// provenance: original
+void DCEnable(void)
 {
-    nofralloc
+    asm
+    {
     sync
     mfspr    r3, 1008
     ori      r3, r3, 0x4000
     mtspr    1008, r3
-    blr
+    }
 }
 
 asm void DCInvalidateRange(register void *addr, register u32 nBytes)
@@ -99,21 +104,26 @@ L8000B6FC:
     blr
 }
 
-asm void ICFlashInvalidate(void)
+// provenance: original
+void ICFlashInvalidate(void)
 {
-    nofralloc
+    asm
+    {
     mfspr    r3, 1008
     ori      r3, r3, 0x800
     mtspr    1008, r3
-    blr
+    }
 }
 
-asm void ICEnable(void)
+// provenance: original
+void ICEnable(void)
 {
-    nofralloc
+    asm
+    {
     isync
     mfspr    r3, 1008
     ori      r3, r3, 0x8000
     mtspr    1008, r3
-    blr
+    }
 }
+#pragma pop

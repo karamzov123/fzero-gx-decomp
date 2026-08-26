@@ -1,4 +1,5 @@
 typedef unsigned int u32;
+// provenance: original
 typedef int BOOL;
 
 extern BOOL OSDisableInterrupts(void);
@@ -15,31 +16,43 @@ extern unsigned char ResetFunctionInfo_80123AE0[16];
 #pragma push
 #pragma force_active on
 
-asm void __OSModuleInit(void)
+// provenance: original
+void __OSModuleInit(void)
 {
-    nofralloc
-    lis	r4, -0x8000
-    li	r0, 0
-    stw	r0, 0x30cc(r4)
-    stw	r0, 0x30c8(r4)
-    stw	r0, 0x30d0(r4)
-    blr	
+    asm
+    {
+    lis     r4, 0x8000
+    li      r0, 0
+    stw     r0, 0x30cc(r4)
+    stw     r0, 0x30c8(r4)
+    stw     r0, 0x30d0(r4)
+    }
 }
 
-asm u32 OSGetPhysicalMemSize(void)
+// provenance: original
+u32 OSGetPhysicalMemSize(void)
 {
-    nofralloc
-    lis	r3, -0x8000
-    lwz	r3, 0x28(r3)
-    blr	
+    register u32 v;
+
+    asm
+    {
+    lis     v, -0x8000
+    lwz     v, 0x28(v)
+    }
+    return v;
 }
 
-asm u32 OSGetConsoleSimulatedMemSize(void)
+// provenance: original
+u32 OSGetConsoleSimulatedMemSize(void)
 {
-    nofralloc
-    lis	r3, -0x8000
-    lwz	r3, 0xf0(r3)
-    blr	
+    register u32 v;
+
+    asm
+    {
+    lis     v, -0x8000
+    lwz     v, 0xf0(v)
+    }
+    return v;
 }
 
 asm BOOL OnReset(register BOOL final)
