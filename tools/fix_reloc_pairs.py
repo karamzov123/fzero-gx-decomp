@@ -60,7 +60,7 @@ def fix_file(p):
                 off_s = mb.group(3)
                 off = int(off_s, 16) if off_s.startswith(('0x', '-0x')) else int(off_s)
                 nm = SYM.get(((base << 16) + off) & 0xFFFFFFFF)
-                if nm and not nm.startswith('fn_'):
+                if nm and not nm.startswith('fn_') and re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', nm):
                     comment = ''
                     if '/*' in lines[j]:
                         comment = ' /*' + lines[j].split('/*', 1)[1]
