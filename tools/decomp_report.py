@@ -34,7 +34,14 @@ def number(value):
     return float(value or 0)
 
 
-def measures(functions, total_code, total_functions, fuzzy=False):
+def measures(functions, total_code, total_functions, total_units, total_data=0, fuzzy=False):
+    """Return a complete objdiff ``Measures`` object for a function subset.
+
+    decomp.dev accepts the full objdiff v2 Measures schema.  Categories are
+    still calculated against the whole binary so their percentages remain
+    comparable, but every standard field is emitted rather than relying on
+    protobuf/JSON defaults.
+    """
     matched_code = 0.0
     complete_code = 0
     matched_functions = 0
@@ -49,18 +56,26 @@ def measures(functions, total_code, total_functions, fuzzy=False):
             complete_code += size
             matched_functions += 1
     matched_code = int(round(matched_code))
+    code_pct = round(100.0 * matched_code / total_code, 5) if total_code else 100.0
+    fn_pct = round(100.0 * matched_functions / total_functions, 5) if total_functions else 100.0
     return {
-        "fuzzy_match_percent": round(100.0 * matched_code / total_code, 5) if total_code else 100.0,
+        "fuzzy_match_percent": code_pct,
         "total_code": str(total_code),
         "matched_code": str(matched_code),
-        "matched_code_percent": round(100.0 * matched_code / total_code, 5) if total_code else 100.0,
+        "matched_code_percent": code_pct,
+        "total_data": str(total_data),
+        "matched_data": "0",
+        "matched_data_percent": 100.0 if not total_data else 0.0,
         "total_functions": total_functions,
         "matched_functions": matched_functions,
-        "matched_functions_percent": round(100.0 * matched_functions / total_functions, 5) if total_functions else 100.0,
+        "matched_functions_percent": fn_pct,
         "complete_code": str(complete_code),
         "complete_code_percent": round(100.0 * complete_code / total_code, 5) if total_code else 100.0,
-        "total_units": total_functions,
+        "complete_data": "0",
+        "complete_data_percent": 100.0 if not total_data else 0.0,
+        "total_units": total_units,
         "complete_units": matched_functions,
+        "complete_units_percent": round(100.0 * matched_functions / total_units, 5) if total_units else 100.0,
     }
 
 
@@ -79,11 +94,13 @@ def build_categories(report, root):
     diagnostic = copy.deepcopy(report.get("measures", {}))
     totals = report.get("measures", {})
     total_code = int(totals.get("total_code", 0) or 0)
+    total_data = int(totals.get("total_data", 0) or 0)
     total_functions = int(totals.get("total_functions", 0) or 0)
+    total_units = int(totals.get("total_units", 0) or 0)
     return [
         {"id": "diagnostic", "name": "Diagnostic objdiff", "measures": diagnostic},
-        {"id": "natural-c", "name": "Exact natural C", "measures": measures(natural, total_code, total_functions)},
-        {"id": "c-expressed", "name": "C-expressed (fuzzy supplemental)", "measures": measures(expressed, total_code, total_functions, fuzzy=True)},
+        {"id": "natural-c", "name": "Exact natural C", "measures": measures(natural, total_code, total_functions, total_units, total_data)},
+        {"id": "c-expressed", "name": "C-expressed (fuzzy supplemental)", "measures": measures(expressed, total_code, total_functions, total_units, total_data, fuzzy=True)},
     ]
 
 
