@@ -57,6 +57,3 @@ This project builds on the following public resources and tools:
 
 See [ONLINE-RESOURCES.md](docs/ONLINE-RESOURCES.md) and [REFERENCE-POLICY.md](docs/REFERENCE-POLICY.md) for the detailed attribution and adaptation rules.
 
-## Disclaimer
-
-F-Zero GX and related trademarks are property of their respective rights holders. This repository is an educational and research project and does not distribute the game, game assets, or proprietary compiler binaries.
