@@ -14,7 +14,7 @@ extern void TRKTargetSupportRequest(void);
 extern void TRKGetInput(void);
 extern void TRKTargetStopped(void);
 extern void TRKTargetContinue(void);
-extern void TRKReleaseBuffer(void*, void*);
+extern void TRKReleaseBuffer(void*);
 extern void TRKReleaseMutex_stub(unsigned long);
 extern void TRKAcquireMutex_stub(unsigned long);
 extern unsigned char gTRKInputPendingPtr[4];
@@ -99,29 +99,16 @@ lbl_80088720:
     blr
 }
 
-asm void TRKDestructEvent(void* msg)
-{
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    stw     r0, 0x14(r1)
-    lwz     r3, 8(r3)
-    bl      TRKReleaseBuffer
-    lwz     r0, 0x14(r1)
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
+// provenance: original
+void TRKDestructEvent(void* msg) {
+    TRKReleaseBuffer(*(void**)((char*)msg + 8));
 }
 
-asm void TRKConstructEvent(void* ev)
-{
-    nofralloc
-    stw     r4, 0(r3)
-    li      r4, 0
-    li      r0, -1
-    stw     r4, 4(r3)
-    stw     r0, 8(r3)
-    blr
+// provenance: original
+void TRKConstructEvent(void* ev, int type) {
+    *(int*)ev = type;
+    *(int*)((char*)ev + 4) = 0;
+    *(int*)((char*)ev + 8) = -1;
 }
 
 asm int TRKPostEvent(void* msg)

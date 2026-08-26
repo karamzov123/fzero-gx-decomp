@@ -53,33 +53,15 @@ extern unsigned char TRKNubWelcomeMsg_80095648[27];
 extern unsigned char TRKNubInitMsg_80095664[16];
 extern unsigned char gTRKBigEndian[4];
 
-asm int TRKNubWelcome(void)
-{
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    lis     r3, TRKNubWelcomeMsg_80095648@ha
-    stw     r0, 0x14(r1)
-    addi    r3, r3, TRKNubWelcomeMsg_80095648@l
-    bl      TRK_board_display
-    lwz     r0, 0x14(r1)
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
+// provenance: original
+int TRKNubWelcome(void) {
+    TRK_board_display((char*)TRKNubWelcomeMsg_80095648);
 }
 
-asm int TRKTerminateNub(void)
-{
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    stw     r0, 0x14(r1)
-    bl      TRKAcquireMutex
-    lwz     r0, 0x14(r1)
-    li      r3, 0
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
+// provenance: original
+int TRKTerminateNub(void) {
+    TRKAcquireMutex();
+    return 0;
 }
 
 asm int TRKInitializeNub(void)
