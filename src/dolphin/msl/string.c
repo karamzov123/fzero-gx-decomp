@@ -1,3 +1,4 @@
+// dest: src/dolphin/msl/string.c
 #pragma push
 #pragma force_active on
 
@@ -20,31 +21,21 @@ lbl_80083D58:
     blr
 }
 
-// strncpy: padded copy (copy src then zero-fill n bytes)
-asm void strncpy(void* dst, const void* src, int n)
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/string.c:76
+char* strncpy(char* dst, const char* src, unsigned long n)
 {
-    nofralloc
-    addi    r4, r4, -1
-    addi    r6, r3, -1
-    addi    r5, r5, 1
-    b       lbl_80083DA4
-lbl_80083D7C:
-    lbzu    r0, 1(r4)
-    cmplwi  r0, 0
-    stbu    r0, 1(r6)
-    bne     lbl_80083DA4
-    li      r0, 0
-    b       lbl_80083D98
-lbl_80083D94:
-    stbu    r0, 1(r6)
-lbl_80083D98:
-    addic.  r5, r5, -1
-    bne     lbl_80083D94
-    blr
-lbl_80083DA4:
-    addic.  r5, r5, -1
-    bne     lbl_80083D7C
-    blr
+    const unsigned char* p = (const unsigned char*)src - 1;
+    unsigned char* q = (unsigned char*)dst - 1;
+    unsigned char zero = 0;
+
+    n++;
+    while (--n)
+        if (!(*++q = *++p)) {
+            while (--n)
+                *++q = 0;
+            break;
+        }
+    return dst;
 }
 
 // strcpy: word-optimized strcpy
