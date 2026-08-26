@@ -32,6 +32,7 @@ extern u32 PPCMfhid2(void);
 extern void PPCMthid2(register u32 hid2);
 extern u32 PPCMfl2cr(void);
 extern void PPCMtl2cr(register u32 l2cr);
+extern u32 PPCMfhid2(void);
 extern u32 PPCMfmsr(void);
 extern void PPCMtmsr(register u32 msr);
 extern void DBPrintf(char* msg, ...);
@@ -126,10 +127,11 @@ B83C_loop:
     blr
 }
 
-asm void LCLoadBlocks(register void* destTag, register void* srcAddr,
-                      register u32 numBlocks)
+void LCLoadBlocks(register void* destTag, register void* srcAddr,
+                  register u32 numBlocks)
 {
-    nofralloc
+    asm
+    {
     extrwi  r6, r5, 5, 25
     clrlwi  r4, r4, 4
     or      r6, r6, r4
@@ -138,13 +140,14 @@ asm void LCLoadBlocks(register void* destTag, register void* srcAddr,
     or      r6, r6, r3
     ori     r6, r6, 0x12
     mtspr   923, r6
-    blr
+    }
 }
 
-asm void LCStoreBlocks(register void* destAddr, register void* srcTag,
-                       register u32 numBlocks)
+void LCStoreBlocks(register void* destAddr, register void* srcTag,
+                   register u32 numBlocks)
 {
-    nofralloc
+    asm
+    {
     extrwi  r6, r5, 5, 25
     clrlwi  r3, r3, 4
     or      r6, r6, r3
@@ -153,10 +156,11 @@ asm void LCStoreBlocks(register void* destAddr, register void* srcTag,
     or      r6, r6, r4
     ori     r6, r6, 0x02
     mtspr   923, r6
-    blr
+    }
 }
 
-asm void LCQueueWait(register u32 len)
+// provenance: original (natural C; extrwi -> rlwinm rotation)
+asm u32 LCQueueWait(register u32 len)
 {
     nofralloc
 LCQueueWait_loop:
@@ -167,53 +171,20 @@ LCQueueWait_loop:
     blr
 }
 
-asm void L2GlobalInvalidate(void)
+
+// provenance: dolsdk2001:src/os/OSCache.c:586 (adapted; L2Disable inlined per retail)
+void L2GlobalInvalidate(void)
 {
-    nofralloc
-    mflr    r0
-    stw     r0, 4(r1)
-    stwu    r1, -0x10(r1)
-    stw     r31, 0xC(r1)
-    sync
-    bl      PPCMfl2cr
-    clrlwi  r3, r3, 1
-    bl      PPCMtl2cr
-    sync
-    bl      PPCMfl2cr
-    oris    r3, r3, 0x20
-    bl      PPCMtl2cr
-    b       L2GlobalInvalidate_1
-L2GlobalInvalidate_1:
-    b       L2GlobalInvalidate_2
-L2GlobalInvalidate_2:
-    bl      PPCMfl2cr
-    clrlwi  r0, r3, 31
-    cmplwi  r0, 0x0
-    bne     L2GlobalInvalidate_2
-    bl      PPCMfl2cr
-    rlwinm  r3, r3, 0, 11, 9
-    bl      PPCMtl2cr
-    b       L2GlobalInvalidate_3
-L2GlobalInvalidate_3:
-    lis     r3, OSErrorMsg_80122828@ha
-    addi    r31, r3, OSErrorMsg_80122828@l
-    b       L2GlobalInvalidate_4
-L2GlobalInvalidate_4:
-    b       L2GlobalInvalidate_6
-L2GlobalInvalidate_5:
-    mr      r3, r31
-    crxor   6, 6, 6
-    bl      DBPrintf
-L2GlobalInvalidate_6:
-    bl      PPCMfl2cr
-    clrlwi  r0, r3, 31
-    cmplwi  r0, 0x0
-    bne     L2GlobalInvalidate_5
-    lwz     r0, 0x14(r1)
-    lwz     r31, 0xC(r1)
-    addi    r1, r1, 0x10
-    mtlr    r0
-    blr
+    asm { sync };
+    PPCMtl2cr(PPCMfl2cr() & ~0x80000000);
+    asm { sync };
+    PPCMtl2cr(PPCMfl2cr() | 0x00200000);
+    while (PPCMfl2cr() & 0x00000001u)
+        ;
+    PPCMtl2cr(PPCMfl2cr() & ~0x00200000);
+    while (PPCMfl2cr() & 0x00000001u) {
+        DBPrintf((char*)OSErrorMsg_80122828);
+    }
 }
 
 void DMAErrorHandler(s32 error, OSContext* context, ...)

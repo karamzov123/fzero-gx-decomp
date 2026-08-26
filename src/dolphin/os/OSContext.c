@@ -337,11 +337,16 @@ OSLoadContext_misc:
     rfi
 }
 
-asm u32 OSGetStackPointer()
+// provenance: original
+u32 OSGetStackPointer(void)
 {
-    nofralloc
-    mr      r3, r1
-    blr
+    register u32 sp;
+
+    asm
+    {
+    mr      sp, r1
+    }
+    return sp;
 }
 
 void OSClearContext(register OSContext* context)
