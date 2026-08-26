@@ -1277,16 +1277,13 @@ _80023614:
     blr	
 }
 
-asm void fn_8002361C(void)
+// provenance: original
+void fn_8002361C(register void* p, register void* q)
 {
-    nofralloc
-    li	r5, 0
-    stw	r3, lbl_801A6B70
-    li	r0, 1
-    stw	r4, lbl_801A6B74
-    stw	r5, lbl_801A6B78
-    stw	r0, lbl_801A6B7C
-    blr	
+    *(void**)lbl_801A6B70 = p;
+    *(void**)lbl_801A6B74 = q;
+    *(void**)lbl_801A6B78 = 0;
+    *(u32*)lbl_801A6B7C = 1;
 }
 
 
