@@ -94,7 +94,13 @@ def apply_mission_headline(report, categories):
     decomp.dev would label assembly parity as decompilation progress.
     """
     natural = next(c["measures"] for c in categories if c["id"] == "natural-c")
-    natural["total_data"] = report.get("measures", {}).get("total_data", "0")
+    # objdiff only exposes total_data for the coarse, non-source-backed units;
+    # it does not provide aggregate matched/complete data for this project.
+    # Publishing that denominator alone makes decomp.dev render an apparently
+    # measured 0% Data bar. Keep the raw value in the diagnostic category, but
+    # omit unsupported data progress from the mission headline.
+    for key in ("total_data", "matched_data", "matched_data_percent", "complete_data", "complete_data_percent"):
+        natural.pop(key, None)
     report["measures"] = natural
 
 

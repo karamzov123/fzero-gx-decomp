@@ -27,6 +27,7 @@ class DecompReportTest(unittest.TestCase):
                     "total_functions": 3, "matched_functions": 2,
                     "matched_functions_percent": 66.0,
                     "complete_code": "10", "complete_code_percent": 50.0,
+                    "total_data": "1000",
                     "total_units": 1, "complete_units": 0,
                 },
                 "units": [{
@@ -59,6 +60,8 @@ class DecompReportTest(unittest.TestCase):
             self.assertEqual(cats["natural-c"]["measures"]["complete_code"], "4")
             self.assertEqual(cats["c-expressed"]["measures"]["matched_functions"], 1)
             self.assertEqual(cats["diagnostic"]["measures"], report["measures"])
+            self.assertEqual(cats["diagnostic"]["measures"]["total_data"], "1000")
+            self.assertNotIn("total_data", got["measures"])
 
 
 if __name__ == "__main__":
