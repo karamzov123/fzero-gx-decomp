@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Add public mission metrics to an objdiff v2 progress report.
+
+The original objdiff measures remain untouched and are exposed as ``diagnostic``.
+Two additional categories are derived from report functions and committed source:
+
+* ``natural-c``: non-asm functions, with exact byte matches counted strictly.
+* ``c-expressed``: non-asm functions with source bodies, with fuzzy progress
+  retained as a supplemental view.
+
+This script needs only the public checkout, report JSON, and source files. It
+never reads a DOL, private cache, supervisor state, or local environment path.
+"""
+import argparse
+import copy
+import json
+import re
+from pathlib import Path
+
+ASM_DEF = re.compile(
+    r"(?<!extern\s)\b(?:static\s+)?asm\s+(?:static\s+)?"
+    r"[A-Za-z_][\w \t*]*?\b(\w+)\s*\(", re.MULTILINE,
+)
+GAP_NAME = re.compile(r"^gap_|_pad(?:$|_)", re.IGNORECASE)
+
+
+def asm_names(path):
+    if not path or not path.exists():
+        return set()
+    return {m.group(1) for m in ASM_DEF.finditer(path.read_text(errors="replace"))}
+
+
+def number(value):
+    return float(value or 0)
+
+
+def measures(functions, fuzzy=False):
+    total_code = sum(int(f.get("size", 0) or 0) for f in functions)
+    matched_code = 0.0
+    complete_code = 0
+    matched_functions = 0
+    for f in functions:
+        size = int(f.get("size", 0) or 0)
+        pct = number(f.get("fuzzy_match_percent"))
+        if fuzzy:
+            matched_code += size * pct / 100.0
+        elif pct >= 100.0:
+            matched_code += size
+        if pct >= 100.0:
+            complete_code += size
+            matched_functions += 1
+    total_functions = len(functions)
+    matched_code = int(round(matched_code))
+    return {
+        "fuzzy_match_percent": round(100.0 * matched_code / total_code, 5) if total_code else 100.0,
+        "total_code": str(total_code),
+        "matched_code": str(matched_code),
+        "matched_code_percent": round(100.0 * matched_code / total_code, 5) if total_code else 100.0,
+        "total_functions": total_functions,
+        "matched_functions": matched_functions,
+        "matched_functions_percent": round(100.0 * matched_functions / total_functions, 5) if total_functions else 100.0,
+        "complete_code": str(complete_code),
+        "complete_code_percent": round(100.0 * complete_code / total_code, 5) if total_code else 100.0,
+        "total_units": total_functions,
+        "complete_units": matched_functions,
+    }
+
+
+def build_categories(report, root):
+    natural = []
+    expressed = []
+    for unit in report.get("units", []):
+        source = unit.get("metadata", {}).get("source_path")
+        names = asm_names(root / source) if source else set()
+        for function in unit.get("functions", []):
+            name = function.get("name", "")
+            if not name or GAP_NAME.search(name) or name in names:
+                continue
+            expressed.append(function)
+            natural.append(function)
+    diagnostic = copy.deepcopy(report.get("measures", {}))
+    return [
+        {"id": "diagnostic", "name": "Diagnostic objdiff", "measures": diagnostic},
+        {"id": "natural-c", "name": "Exact natural C", "measures": measures(natural)},
+        {"id": "c-expressed", "name": "C-expressed (fuzzy supplemental)", "measures": measures(expressed, fuzzy=True)},
+    ]
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--report", required=True, type=Path)
+    parser.add_argument("--root", required=True, type=Path)
+    parser.add_argument("--out", required=True, type=Path)
+    args = parser.parse_args()
+    report = json.loads(args.report.read_text())
+    if report.get("version") != 2:
+        raise SystemExit("expected objdiff report version 2")
+    report["categories"] = build_categories(report, args.root)
+    args.out.write_text(json.dumps(report, indent=2) + "\n")
+
+
+if __name__ == "__main__":
+    main()

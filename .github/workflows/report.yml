@@ -42,7 +42,10 @@ jobs:
           ninja build/GFZE01/main.dol
 
       - name: Generate objdiff report
-        run: build/tools/objdiff-cli report generate -o build/GFZE01/report.json
+        run: build/tools/objdiff-cli report generate -o build/GFZE01/report.raw.json
+
+      - name: Add mission-aware public metric layer
+        run: python3 tools/decomp_report.py --report build/GFZE01/report.raw.json --root . --out build/GFZE01/report.json
 
       - name: Upload decomp.dev report
         uses: actions/upload-artifact@v4
