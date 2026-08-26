@@ -4,10 +4,10 @@
 void* __memrchr(const void* s, int c, unsigned long n);
 void* memchr(const void* s, int c, unsigned long n);
 void* memmove(void* dst, const void* src, unsigned long n);
-void fn_800803AC(void);
-void fn_80080458(void);
-void fn_80080518(void);
-void fn_800805C0(void);
+void fn_800803AC();
+void fn_80080458();
+void fn_80080518();
+void fn_800805C0();
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/mem.c:75
 void* __memrchr(const void* src, int val, unsigned long n) {
@@ -29,72 +29,35 @@ void* memchr(const void* src, int val, unsigned long n) {
     return 0;
 }
 
-asm void* memmove(void* dst, const void* src, unsigned long n)
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/mem.c:4
+void* memmove(void* dst, const void* src, unsigned long len)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r5, 0x20
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    xor	r6, r31, r4
-    cntlzw	r0, r6
-    slw	r0, r31, r0
-    srwi	r7, r0, 0x1f
-    blt     _80080348
-    clrlwi.	r0, r6, 0x1e
-    beq     _8008032c
-    cmpwi	r7, 0
-    bne     _80080324
-    bl      fn_80080458
-    b       _80080340
-_80080324:
-    bl      fn_800803AC
-    b       _80080340
-_8008032c:
-    cmpwi	r7, 0
-    bne     _8008033c
-    bl      fn_800805C0
-    b       _80080340
-_8008033c:
-    bl      fn_80080518
-_80080340:
-    mr	r3, r31
-    b       _80080398
-_80080348:
-    cmpwi	r7, 0
-    bne     _80080374
-    addi	r3, r4, -1
-    addi	r4, r31, -1
-    addi	r5, r5, 1
-    b       _80080368
-_80080360:
-    lbzu	r0, 1(r3)
-    stbu	r0, 1(r4)
-_80080368:
-    addic.	r5, r5, -1
-    bne     _80080360
-    b       _80080394
-_80080374:
-    add	r3, r4, r5
-    add	r4, r31, r5
-    addi	r5, r5, 1
-    b       _8008038c
-_80080384:
-    lbzu	r0, -1(r3)
-    stbu	r0, -1(r4)
-_8008038c:
-    addic.	r5, r5, -1
-    bne     _80080384
-_80080394:
-    mr	r3, r31
-_80080398:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    const char* csrc;
+    char* cdst;
+    int reverse = (unsigned long)src < (unsigned long)dst;
+
+    if (len >= 32) {
+        if (((unsigned long)dst ^ (unsigned long)src) & 3) {
+            if (!reverse)
+                fn_80080458(dst, src, len);
+            else
+                fn_800803AC(dst, src, len);
+        } else {
+            if (!reverse)
+                fn_800805C0(dst, src, len);
+            else
+                fn_80080518(dst, src, len);
+        }
+        return dst;
+    }
+    if (!reverse) {
+        for (csrc = (const char*)src - 1, cdst = (char*)dst - 1, len++; --len;)
+            *++cdst = *++csrc;
+    } else {
+        for (csrc = (const char*)src + len, cdst = (char*)dst + len, len++; --len;)
+            *--cdst = *--csrc;
+    }
+    return dst;
 }
 
 asm void fn_800803AC(void)

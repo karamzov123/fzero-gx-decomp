@@ -86,8 +86,8 @@ asm void fn_8007EA58(void);
 asm void __flush_buffer(void);
 asm void fn_8007EC80(void);
 asm void __prep_buffer(void);
-asm void __end_critical_region(void);
-asm void __begin_critical_region(void);
+void __end_critical_region(int region);
+void __begin_critical_region(int region);
 asm void __kill_critical_regions(void);
 asm void MSL_CharAttrLookup(void);
 asm void __fwrite(void);
@@ -5848,17 +5848,11 @@ asm void __prep_buffer(void)
     blr
 }
 
-asm void __end_critical_region(void)
-{
-    nofralloc
-    blr
-}
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/PPC_EABI/critical_regions.gamecube.c:10
+void __end_critical_region(int region) { return; }
 
-asm void __begin_critical_region(void)
-{
-    nofralloc
-    blr
-}
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/PPC_EABI/critical_regions.gamecube.c:8
+void __begin_critical_region(int region) { return; }
 
 asm void __kill_critical_regions(void)
 {

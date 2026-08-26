@@ -17,6 +17,11 @@ extern unsigned char ResetFunctionInfo_80123AE0[16];
 #pragma force_active on
 
 // provenance: original
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef unsigned short u16;
+#define __MEMRegs ((volatile u16*)0xCC004000)
 void __OSModuleInit(void)
 {
     asm
@@ -55,25 +60,17 @@ u32 OSGetConsoleSimulatedMemSize(void)
     return v;
 }
 
-asm BOOL OnReset(register BOOL final)
+// provenance: original
+// harvested 2026-08-26 from natc1's logged 100% attempt; spliced into the current head
+BOOL OnReset(register BOOL final)
 {
-    nofralloc
-    mflr	r0
-    cmpwi	r3, 0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    beq     _8000e7d4
-    lis	r3, -0x3400
-    li	r0, 0xff
-    sth	r0, 0x4010(r3)
-    lis	r3, -0x1000
-    bl      __OSMaskInterrupts
-_8000e7d4:
-    li	r3, 1
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+    register volatile u16* r;
+
+    if (final) {
+        *(r = __MEMRegs + 8) = 0xff;
+        __OSMaskInterrupts(0xf0000000);
+    }
+    return 1;
 }
 
 asm void MEMIntrruptHandler(register int interrupt, register void* context)
