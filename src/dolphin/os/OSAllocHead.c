@@ -2,10 +2,13 @@ extern void DCStoreRange(void);
 extern void DVDGetDriveStatus(void);
 extern void DVDInit(void);
 extern void GXBegin(void);
-extern void OSAlloc(void);
-extern void OSAllocFromHeap(void);
-extern void OSFree(void);
-extern void OSFreeToHeap(void);
+extern // provenance: original
+void* OSAlloc(register int heap, register const char* file);
+extern void* OSAllocFromHeap(int heap, const char* file, void* tbl, int aligned);
+extern char lbl_801A6414;
+extern // provenance: original
+void OSFree(register int heap, register const char* file);
+extern void OSFreeToHeap(int heap, const char* file, void* tbl, void* ptr);
 extern void OSGetArenaHi(void);
 extern void OSGetArenaLo(void);
 extern void OSGetProgressiveMode(void);
@@ -19,7 +22,8 @@ extern void OSReport(void);
 extern void OSResetSystem(void);
 extern void OSSetArenaHi(void);
 extern void OSSetArenaLo(void);
-extern void OSSetCurrentHeap_thunk(void);
+extern // provenance: original
+unsigned int OSSetCurrentHeap_thunk(unsigned int heap);
 extern void OSSetStringTable(void);
 extern void OSUnlink(void);
 extern void _restgpr_23(void);
@@ -72,10 +76,12 @@ extern void fn_80008A4C(void);
 extern void fn_80008DB4(void);
 extern void OSAllocHead_nop_stub(void);
 extern void OSInitAlloc(void);
-extern void OSCreateHeap_wrapper_A(void);
-extern void OSCreateHeap_wrapper_B(void);
-extern void OSCreateHeap(void);
-extern void OSDestroyHeap(void);
+extern // provenance: original
+void OSCreateHeap_wrapper_A(void* start, void* end);
+extern void OSCreateHeap_wrapper_B(void* start, void* end);
+extern // provenance: original
+int OSCreateHeap(void* start, void* end);
+extern int OSDestroyHeap(int heap);
 extern void fn_800090A4(void);
 extern void OSAllocTableInit(void);
 extern void OSHeapLockAcquire(void);
@@ -186,6 +192,29 @@ extern void memset(void);
 extern void strlen(void);
 extern unsigned char os_check_heap_assert_str_table[1008];
 
+
+/* Heap descriptor / cell layout derived from retail field offsets (12 B each). */
+typedef struct HeapDesc {
+    int size;
+    void* free;
+    void* allocated;
+} HeapDesc;
+
+typedef struct HeapCell {
+    unsigned int size;
+    void* next;
+    void* prev;
+} HeapCell;
+
+extern HeapDesc* gAssetBudgetB;
+extern int lbl_801A6740;
+extern unsigned int lbl_801A6734;
+extern unsigned int g_currentHeapHandle;
+extern unsigned int lbl_801A6738;
+extern unsigned int lbl_801A673C;
+extern void OSHeapLockAcquire(void);
+extern void OSHeapLockRelease(void);
+
 #pragma push
 #pragma force_active on
 
@@ -229,56 +258,26 @@ void OSAllocHead_nop_stub(void)
 {
 }
 
-asm void OSAlloc(void)
+void* OSAlloc(register int heap, register const char* file)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    addi	r5, r13, -0x7fac
-    li	r6, 0
-    stw	r0, 0x14(r1)
-    bl      OSAllocFromHeap
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return (void*)OSAllocFromHeap(heap, file, &lbl_801A6414, 0);
 }
 
-asm void OSFree(void)
+void OSFree(register int heap, register const char* file)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    addi	r5, r13, -0x7fac
-    li	r6, 0
-    stw	r0, 0x14(r1)
-    bl      OSFreeToHeap
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    OSFreeToHeap(heap, file, &lbl_801A6414, 0);
 }
 
-asm void OSSetCurrentHeap_thunk(void)
+// provenance: original
+unsigned int OSSetCurrentHeap_thunk(unsigned int heap)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    mr	r30, r3
-    bl      OSHeapLockAcquire
-    lwz	r31, -0x7fb0(r13)
-    stw	r30, -0x7fb0(r13)
-    bl      OSHeapLockRelease
-    lwz	r0, 0x14(r1)
-    mr	r3, r31
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    unsigned int old;
+
+    OSHeapLockAcquire();
+    old = g_currentHeapHandle;
+    g_currentHeapHandle = heap;
+    OSHeapLockRelease();
+    return old;
 }
 
 asm void OSInitAlloc(void)
@@ -291,13 +290,13 @@ asm void OSInitAlloc(void)
     stw	r0, 0x14(r1)
     li	r8, 0
     stw	r31, 0xc(r1)
-    stw	r3, -0x7c7c(r13)
+    stw	r3, gAssetBudgetB(r13)
     mr	r3, r6
-    stw	r5, -0x7c80(r13)
+    stw	r5, lbl_801A6740(r13)
     li	r5, -1
     b       _80008f14
 _80008ef8:
-    lwz	r0, -0x7c7c(r13)
+    lwz	r0, gAssetBudgetB(r13)
     addi	r8, r8, 1
     add	r9, r0, r6
     addi	r6, r6, 0xc
@@ -305,18 +304,18 @@ _80008ef8:
     stw	r3, 8(r9)
     stw	r3, 4(r9)
 _80008f14:
-    lwz	r0, -0x7c80(r13)
+    lwz	r0, lbl_801A6740(r13)
     cmpw	r8, r0
     bc      12, 0, _80008ef8
-    lwz	r3, -0x7c7c(r13)
+    lwz	r3, gAssetBudgetB(r13)
     rlwinm	r0, r4, 0, 0, 0x1a
     li	r4, -1
-    stw	r0, -0x7c88(r13)
+    stw	r0, lbl_801A6738(r13)
     add	r3, r3, r7
     addi	r0, r3, 0x1f
-    stw	r4, -0x7fb0(r13)
+    stw	r4, g_currentHeapHandle(r13)
     rlwinm	r31, r0, 0, 0, 0x1a
-    stw	r31, -0x7c84(r13)
+    stw	r31, lbl_801A673C(r13)
     bl      OSAllocTableInit
     lwz	r0, 0x14(r1)
     mr	r3, r31
@@ -326,109 +325,57 @@ _80008f14:
     blr	
 }
 
-asm void OSCreateHeap_wrapper_A(void)
+// provenance: original
+void OSCreateHeap_wrapper_A(void* start, void* end)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    li	r0, 0
-    stw	r0, -0x7c8c(r13)
-    bl      OSCreateHeap
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    lbl_801A6734 = 0;
+    OSCreateHeap(start, end);
 }
 
-asm void OSCreateHeap_wrapper_B(void)
+// provenance: original
+void OSCreateHeap_wrapper_B(void* start, void* end)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    li	r0, 1
-    stw	r0, -0x7c8c(r13)
-    bl      OSCreateHeap
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    lbl_801A6734 = 1;
+    OSCreateHeap(start, end);
 }
 
-asm void OSCreateHeap(void)
+// provenance: dolsdk2001:src/os/OSAlloc.c:384
+int OSCreateHeap(void* start, void* end)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    mr	r30, r4
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    bl      OSHeapLockAcquire
-    lwz	r3, -0x7c80(r13)
-    addi	r0, r29, 0x1f
-    rlwinm	r29, r0, 0, 0, 0x1a
-    rlwinm	r30, r30, 0, 0, 0x1a
-    lwz	r4, -0x7c7c(r13)
-    li	r31, 0
-    mtctr	r3
-    cmpwi	r3, 0
-    bc      4, 1, _80009040
-_80008ff8:
-    lwz	r0, 0(r4)
-    cmpwi	r0, 0
-    bc      4, 0, _80009034
-    subf	r0, r29, r30
-    li	r3, 0
-    stw	r0, 0(r4)
-    stw	r3, 0(r29)
-    stw	r3, 4(r29)
-    lwz	r0, 0(r4)
-    stw	r0, 8(r29)
-    stw	r29, 4(r4)
-    stw	r3, 8(r4)
-    bl      OSHeapLockRelease
-    mr	r3, r31
-    b       _80009048
-_80009034:
-    addi	r4, r4, 0xc
-    addi	r31, r31, 1
-    bc      16, 0, _80008ff8
-_80009040:
-    bl      OSHeapLockRelease
-    li	r3, -1
-_80009048:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int heap;
+    HeapCell* cell;
+    HeapDesc* hd;
+    int num;
+
+    OSHeapLockAcquire();
+    num = lbl_801A6740;
+    start = (void*)(((unsigned int)start + 0x1F) & ~0x1FU);
+    end = (void*)((unsigned int)end & ~0x1FU);
+    hd = gAssetBudgetB;
+    for (heap = 0; heap < num; heap++) {
+        if (hd->size < 0) {
+            cell = (HeapCell*)start;
+            hd->size = (unsigned int)end - (unsigned int)start;
+            cell->size = 0;
+            cell->next = 0;
+            cell->prev = (void*)(unsigned int)hd->size;
+            hd->free = cell;
+            hd->allocated = 0;
+            OSHeapLockRelease();
+            return heap;
+        }
+        hd++;
+    }
+    OSHeapLockRelease();
+    return -1;
 }
 
-asm void OSDestroyHeap(void)
+// provenance: dolsdk2001:src/os/OSAlloc.c:433
+int OSDestroyHeap(int heap)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    bl      OSHeapLockAcquire
-    mulli	r0, r31, 0xc
-    lwz	r3, -0x7c7c(r13)
-    li	r4, -1
-    stwx	r4, r3, r0
-    bl      OSHeapLockRelease
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    OSHeapLockAcquire();
+    gAssetBudgetB[heap].size = -1;
+    OSHeapLockRelease();
 }
 
 asm void fn_800090A4(void)
@@ -446,7 +393,7 @@ asm void fn_800090A4(void)
     li	r30, 0
     li	r29, 0
     bl      OSHeapLockAcquire
-    lwz	r3, -0x7c7c(r13)
+    lwz	r3, gAssetBudgetB(r13)
     cmplwi	r3, 0
     bc      4, 2, _800090fc
     addi	r3, r28, 0
@@ -459,7 +406,7 @@ asm void fn_800090A4(void)
 _800090fc:
     cmpwi	r27, 0
     bc      12, 0, _80009110
-    lwz	r0, -0x7c80(r13)
+    lwz	r0, lbl_801A6740(r13)
     cmpw	r27, r0
     bc      12, 0, _8000912c
 _80009110:
@@ -498,9 +445,9 @@ _8000915c:
     li	r3, -1
     b       _80009450
 _80009190:
-    lwz	r6, -0x7c84(r13)
+    lwz	r6, lbl_801A673C(r13)
     mr	r4, r3
-    lwz	r7, -0x7c88(r13)
+    lwz	r7, lbl_801A6738(r13)
     b       _800092a0
 _800091a0:
     cmplw	r6, r4
