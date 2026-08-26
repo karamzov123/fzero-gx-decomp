@@ -1,3 +1,4 @@
+// dest: src/dolphin/msl/stdio_8007A060.c
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
@@ -87,7 +88,7 @@ asm void __flush_buffer(void);
 asm void fn_8007EC80(void);
 void __end_critical_region(int region);
 void __begin_critical_region(int region);
-asm void __kill_critical_regions(void);
+void __kill_critical_regions(void);
 asm void __fwrite(void);
 asm void fwrite(void);
 asm void fn_8007F13C(void);
@@ -5843,11 +5844,8 @@ void __end_critical_region(int region) { return; }
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/PPC_EABI/critical_regions.gamecube.c:8
 void __begin_critical_region(int region) { return; }
 
-asm void __kill_critical_regions(void)
-{
-    nofralloc
-    blr
-}
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/PPC_EABI/critical_regions.gamecube.c:6
+void __kill_critical_regions(void) {}
 
 // provenance: original
 // harvested 2026-08-26 from hard2's logged 100% attempt; spliced into the current head
