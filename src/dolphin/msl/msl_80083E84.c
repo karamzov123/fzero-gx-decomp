@@ -2058,12 +2058,8 @@ _800857e0:
     blr
 }
 
-asm void fn_8008580C(void)
-{
-    nofralloc
-    li	r3, 0
-    blr
-}
+// provenance: original
+int fn_8008580C(void) { return 0; }
 
 asm void fn_80085814(void)
 {
@@ -5319,57 +5315,17 @@ _80088528:
     blr
 }
 
-asm void fn_80088538(void)
-{
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8008596C
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
-}
+// provenance: original
+void fn_80088538(void) { fn_8008596C(); }
 
-asm void fn_80088558(void)
-{
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_80085C7C
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
-}
+// provenance: original
+void fn_80088558(void) { fn_80085C7C(); }
 
-asm void expf(void)
-{
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      __msl_exp
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
-}
+// provenance: original
+void expf(void) { __msl_exp(); }
 
-asm void __msl_fp_helper(void)
-{
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_80086008
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
-}
+// provenance: original
+void __msl_fp_helper(void) { fn_80086008(); }
 
 asm void fn_800885B8(void)
 {
