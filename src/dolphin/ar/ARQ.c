@@ -26,17 +26,17 @@ extern ARQCallback ARRegisterDMACallback(register ARQCallback callback);
 #pragma push
 #pragma force_active on
 
-extern unsigned char lbl_801A64E0[8];
-extern unsigned char lbl_801A6A00[4];
-extern unsigned char lbl_801A6A04[4];
+extern char* lbl_801A64E0;
+extern ARQReq* lbl_801A6A00;
+extern ARQReq* lbl_801A6A04;
 extern ARQReq* lbl_801A6A08;
-extern unsigned char lbl_801A6A0C[4];
-extern unsigned char lbl_801A6A10[4];
+extern ARQReq* lbl_801A6A0C;
+extern ARQReq* lbl_801A6A10;
 extern ARQReq* lbl_801A6A14;
 extern void (*lbl_801A6A18)(u32);
 extern void (*lbl_801A6A1C)(u32);
 extern u32 lbl_801A6A20;
-extern unsigned char lbl_801A6A24[4];
+extern s32 lbl_801A6A24;
 // provenance: original
 void __ARQServiceQueueLo(void) {
     if (lbl_801A6A14 == 0 && lbl_801A6A08 != 0) {
@@ -66,100 +66,46 @@ void __ARQServiceQueueLo(void) {
 void __ARQCallbackHack(u32 result) {
 }
 
-asm u32 __ARQInterruptServiceRoutine(void)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    lwz	r12, lbl_801A6A18
-    cmplwi	r12, 0
-    beq     _80020498
-    lwz	r3, lbl_801A6A10
-    mtlr	r12
-    blrl	
-    li	r0, 0
-    stw	r0, lbl_801A6A10
-    stw	r0, lbl_801A6A18
-    b       _800204bc
-_80020498:
-    lwz	r12, lbl_801A6A1C
-    cmplwi	r12, 0
-    beq     _800204bc
-    lwz	r3, lbl_801A6A14
-    mtlr	r12
-    blrl	
-    li	r0, 0
-    stw	r0, lbl_801A6A14
-    stw	r0, lbl_801A6A1C
-_800204bc:
-    lwz	r6, lbl_801A6A00
-    cmplwi	r6, 0
-    beq     _80020510
-    lwz	r3, 8(r6)
-    cmplwi	r3, 0
-    bne     _800204e8
-    lwz	r4, 0x10(r6)
-    lwz	r5, 0x14(r6)
-    lwz	r6, 0x18(r6)
-    bl      ARStartDMA
-    b       _800204f8
-_800204e8:
-    lwz	r4, 0x14(r6)
-    lwz	r5, 0x10(r6)
-    lwz	r6, 0x18(r6)
-    bl      ARStartDMA
-_800204f8:
-    lwz	r3, lbl_801A6A00
-    lwz	r0, 0x1c(r3)
-    stw	r0, lbl_801A6A18
-    stw	r3, lbl_801A6A10
-    lwz	r0, 0(r3)
-    stw	r0, lbl_801A6A00
-_80020510:
-    lwz	r0, lbl_801A6A10
-    cmplwi	r0, 0
-    bne     _80020520
-    bl      __ARQServiceQueueLo
-_80020520:
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+// provenance: dolsdk2001:src/ar/arq.c:60 (adapted; pop-task-queue-hi inlined per retail)
+void __ARQInterruptServiceRoutine(void) {
+    if (lbl_801A6A18) {
+        lbl_801A6A18((u32)lbl_801A6A10);
+        lbl_801A6A10 = 0;
+        lbl_801A6A18 = 0;
+    } else if (lbl_801A6A1C) {
+        lbl_801A6A1C((u32)lbl_801A6A14);
+        lbl_801A6A14 = 0;
+        lbl_801A6A1C = 0;
+    }
+    if (lbl_801A6A00 != 0) {
+        if (lbl_801A6A00->type == 0) {
+            ARStartDMA(lbl_801A6A00->type, lbl_801A6A00->source, lbl_801A6A00->dest, lbl_801A6A00->length);
+        } else {
+            ARStartDMA(lbl_801A6A00->type, lbl_801A6A00->dest, lbl_801A6A00->source, lbl_801A6A00->length);
+        }
+        lbl_801A6A18 = lbl_801A6A00->callback;
+        lbl_801A6A10 = lbl_801A6A00;
+        lbl_801A6A00 = lbl_801A6A00->next;
+    }
+    if (lbl_801A6A10 == 0) {
+        __ARQServiceQueueLo();
+    }
 }
 
-asm void ARQInit(void)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x10(r1)
-    stw	r31, 0xc(r1)
-    lwz	r0, lbl_801A6A24
-    cmpwi	r0, 1
-    beq     _8002058c
-    lwz	r3, lbl_801A64E0
-    bl      OSRegisterVersion
-    li	r31, 0
-    li	r0, 0x1000
-    stw	r31, lbl_801A6A08
-    lis     r3, __ARQInterruptServiceRoutine@ha
-    stw	r31, lbl_801A6A00
-    addi	r3, r3, __ARQInterruptServiceRoutine@l
-    stw	r0, lbl_801A6A20
-    bl      ARRegisterDMACallback
-    li	r0, 1
-    stw	r31, lbl_801A6A10
-    stw	r31, lbl_801A6A14
-    stw	r31, lbl_801A6A18
-    stw	r31, lbl_801A6A1C
-    stw	r0, lbl_801A6A24
-_8002058c:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    addi	r1, r1, 0x10
-    mtlr	r0
-    blr	
+// provenance: dolsdk2001:src/ar/arq.c:91 (adapted: OSRegisterVersion kept, GFZE01 globals)
+void ARQInit(void) {
+    if (lbl_801A6A24 != 1) {
+        OSRegisterVersion(lbl_801A64E0);
+        lbl_801A6A08 = 0;
+        lbl_801A6A00 = 0;
+        lbl_801A6A20 = 0x1000;
+        ARRegisterDMACallback(__ARQInterruptServiceRoutine);
+        lbl_801A6A10 = 0;
+        lbl_801A6A14 = 0;
+        lbl_801A6A18 = 0;
+        lbl_801A6A1C = 0;
+        lbl_801A6A24 = 1;
+    }
 }
 
 asm void ARQPostRequest(register struct ARQRequest* request, register u32 owner, register u32 type, register u32 priority, register u32 source, register u32 dest, register u32 length, register ARQCallback callback)
