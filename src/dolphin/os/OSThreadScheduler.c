@@ -382,22 +382,12 @@ _800107e0:
     blr	
 }
 
-asm void __OSReschedule(void)
+// provenance: dolsdk2001:src/os/OSThread.c:395 (adapted; GFZE01 symbol RunQueueHint_801A67FC)
+void __OSReschedule(void)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    lwz r0, RunQueueHint_801A67FC
-    cmpwi	r0, 0
-    beq     _80010818
-    li	r3, 0
-    bl      SelectThread
-_80010818:
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+    if (*(int*)RunQueueHint_801A67FC != 0) {
+        SelectThread(0);
+    }
 }
 
 asm int OSCreateThread(register void* thread, register void* func, register void* param, register void* stack, register unsigned long stackSize, register int priority, register unsigned short attr)
