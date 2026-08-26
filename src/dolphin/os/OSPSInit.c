@@ -1,4 +1,6 @@
 // dolphin/os/OSPSInit.c -- carved from coarse/text_8000AB54.c (0x8000AB54-0x8000ABE8).
+// provenance: original
+// provenance: original
 // Melee identity: extern/dolphin/src/dolphin/os/OS.c (__OSPSInit/__OSGetDIConfig).
 // Funcs: __OSPSInit, __OSGetDIConfig, OSRegisterVersion.
 // All nofralloc asm transcription; hex SPR numerics proven (OSSync.c).
@@ -40,14 +42,19 @@ asm void __OSPSInit(void)
     blr
 }
 
-asm u32 __OSGetDIConfig(void)
+// provenance: original
+u32 __OSGetDIConfig(void)
 {
-    nofralloc
-    lis	r3, -0x3400
-    addi	r3, r3, 0x6000
-    lwz	r0, 0x24(r3)
-    clrlwi	r3, r0, 0x18
-    blr
+    register u32 v;
+
+    asm
+    {
+    lis     v, -0x3400
+    addi    v, v, 0x6000
+    lwz     r0, 0x24(v)
+    clrlwi  v, r0, 24
+    }
+    return v;
 }
 
 asm void OSRegisterVersion(register char* version)
