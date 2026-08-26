@@ -1,3 +1,4 @@
+// dest: src/dolphin/msl/runtime.c
 #pragma push
 #pragma force_active on
 
@@ -104,65 +105,63 @@ _8007963c:
     blr
 }
 
-asm void __va_arg(void)
+typedef struct NatcVaList {
+    signed char mG_register;
+    signed char mFloat_register;
+    unsigned short pad;
+    char* mInput_arg_area;
+    char* mReg_save_area;
+} NatcVaList;
+
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/Runtime/__va_arg.c:4
+void* __va_arg(NatcVaList* v_list, int type)
 {
-    nofralloc
-    lbz     r7, 0(r3)
-    cmpwi   r4, 3
-    mr      r6, r3
-    li      r0, 8
-    li      r8, 4
-    extsb   r7, r7
-    li      r9, 1
-    li      r5, 0
-    li      r10, 0
-    li      r11, 4
-    bne     _80079698
-    lbz     r7, 1(r3)
-    addi    r6, r3, 1
-    li      r8, 8
-    li      r10, 0x20
-    extsb   r7, r7
-    li      r11, 8
-_80079698:
-    cmpwi   r4, 2
-    bne     _800796b8
-    clrlwi. r0, r7, 0x1f
-    li      r8, 8
-    li      r0, 7
-    beq     _800796b4
-    li      r5, 1
-_800796b4:
-    li      r9, 2
-_800796b8:
-    cmpw    r7, r0
-    bge     _800796e0
-    add     r7, r7, r5
-    lwz     r5, 8(r3)
-    mullw   r3, r7, r11
-    add     r0, r7, r9
-    stb     r0, 0(r6)
-    add     r6, r10, r3
-    add     r6, r5, r6
-    b       _80079708
-_800796e0:
-    li      r5, 8
-    addi    r0, r8, -1
-    stb     r5, 0(r6)
-    nor     r6, r0, r0
-    lwz     r0, 4(r3)
-    add     r5, r8, r0
-    addi    r0, r5, -1
-    and     r6, r6, r0
-    add     r0, r6, r8
-    stw     r0, 4(r3)
-_80079708:
-    cmpwi   r4, 0
-    bne     _80079714
-    lwz     r6, 0(r6)
-_80079714:
-    mr      r3, r6
-    blr
+    char* addr;
+    signed char* reg;
+    int g_reg;
+    int maxsize;
+    int size;
+    int increment;
+    int even;
+    int fpr_offset;
+    int regsize;
+
+    g_reg = v_list->mG_register;
+    reg = &v_list->mG_register;
+    maxsize = 8;
+    size = 4;
+    increment = 1;
+    even = 0;
+    fpr_offset = 0;
+    regsize = 4;
+
+    if (type == 3) {
+        reg = &v_list->mFloat_register;
+        g_reg = v_list->mFloat_register;
+        size = 8;
+        fpr_offset = 32;
+        regsize = 8;
+    }
+    if (type == 2) {
+        size = 8;
+        maxsize--;
+        if (g_reg & 1)
+            even = 1;
+        increment = 2;
+    }
+    if (g_reg < maxsize) {
+        g_reg += even;
+        addr = v_list->mReg_save_area + fpr_offset + (g_reg * regsize);
+        *reg = g_reg + increment;
+    } else {
+        *reg = 8;
+        addr = v_list->mInput_arg_area;
+        addr = (char*)(((unsigned long)addr + (size - 1)) & ~(size - 1));
+        v_list->mInput_arg_area = addr + size;
+    }
+    if (type == 0)
+        addr = *((char**)addr);
+    return addr;
 }
 
 // provenance: original
