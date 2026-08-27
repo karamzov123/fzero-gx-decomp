@@ -7,96 +7,71 @@
 extern int TRKGetNextEvent(void*);
 extern void TRK_memcpy(void*, const void*, unsigned long);
 extern void TRKDestructEvent(void*);
-extern void TRKGetBuffer(void);
-extern void TRKDispatchMessage(void);
-extern void TRKTargetInterrupt(void);
+extern void* TRKGetBuffer(int);
+extern void TRKDispatchMessage(void*);
+extern void TRKTargetInterrupt(void*);
 extern void TRKTargetSupportRequest(void);
 extern void TRKGetInput(void);
-extern void TRKTargetStopped(void);
+extern int TRKTargetStopped(void);
 extern void TRKTargetContinue(void);
 extern void TRKReleaseBuffer(void*);
 extern void TRKReleaseMutex_stub(unsigned long);
 extern void TRKAcquireMutex_stub(unsigned long);
-extern unsigned char gTRKInputPendingPtr[4];
+extern unsigned char gTRKInputPendingPtr[9];
 extern unsigned char lbl_801A36B8[40];
 
-asm void TRKNubMainLoop(void)
+typedef struct {
+    int eventType;
+    int eventID;
+    int msgBufID;
+} TRKEvent;
+
+// TRKNubMainLoop: exact natural-C (100.0%, GC/1.3).
+// Retail dispatch (from asm 1.2.5): eventType 0 = Null (break), 1 = Shutdown,
+// 2 = GetBuffer+DispatchMessage, 3/4 = TargetInterrupt, 5 =
+// TargetSupportRequest. Block order (case 2 before case 1) matches retail
+// basic-block placement; case 0 is kept so MWCC emits the retail comparison
+// skeleton (cmpwi 0x0; beq end before the >=1 test).
+// provenance: sms:src/TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mainloop.c:22
+void TRKNubMainLoop(void)
 {
-    nofralloc
-    stwu    r1, -0x20(r1)
-    mflr    r0
-    stw     r0, 0x24(r1)
-    stw     r31, 0x1c(r1)
-    li      r31, 0
-    stw     r30, 0x18(r1)
-    li      r30, 0
-    b       lbl_80088720
-lbl_80088668:
-    addi    r3, r1, 8
-    bl      TRKGetNextEvent
-    cmpwi   r3, 0
-    beq     lbl_800886E0
-    lwz     r0, 8(r1)
-    li      r30, 0
-    cmpwi   r0, 2
-    beq     lbl_800886AC
-    bge     lbl_8008869C
-    cmpwi   r0, 0
-    beq     lbl_800886D4
-    bge     lbl_800886BC
-    b       lbl_800886D4
-lbl_8008869C:
-    cmpwi   r0, 5
-    beq     lbl_800886D0
-    bge     lbl_800886D4
-    b       lbl_800886C4
-lbl_800886AC:
-    lwz     r3, 0x10(r1)
-    bl      TRKGetBuffer
-    bl      TRKDispatchMessage
-    b       lbl_800886D4
-lbl_800886BC:
-    li      r31, 1
-    b       lbl_800886D4
-lbl_800886C4:
-    addi    r3, r1, 8
-    bl      TRKTargetInterrupt
-    b       lbl_800886D4
-lbl_800886D0:
-    bl      TRKTargetSupportRequest
-lbl_800886D4:
-    addi    r3, r1, 8
-    bl      TRKDestructEvent
-    b       lbl_80088720
-lbl_800886E0:
-    cmpwi   r30, 0
-    beq     lbl_80088700
-    lis     r3, gTRKInputPendingPtr@ha
-    addi    r3, r3, gTRKInputPendingPtr@l
-    lwz     r3, 0(r3)
-    lbz     r0, 0(r3)
-    cmplwi  r0, 0
-    beq     lbl_8008870C
-lbl_80088700:
-    li      r30, 1
-    bl      TRKGetInput
-    b       lbl_80088720
-lbl_8008870C:
-    bl      TRKTargetStopped
-    cmpwi   r3, 0
-    bne     lbl_8008871C
-    bl      TRKTargetContinue
-lbl_8008871C:
-    li      r30, 0
-lbl_80088720:
-    cmpwi   r31, 0
-    beq     lbl_80088668
-    lwz     r0, 0x24(r1)
-    lwz     r31, 0x1c(r1)
-    lwz     r30, 0x18(r1)
-    mtlr    r0
-    addi    r1, r1, 0x20
-    blr
+    TRKEvent event;
+    int isShutdownRequested = 0;
+    int isNewInput = 0;
+    while (isShutdownRequested == 0) {
+        if (TRKGetNextEvent(&event) != 0) {
+            isNewInput = 0;
+            switch (event.eventType) {
+            case 0:
+                break;
+            case 2:
+                TRKDispatchMessage(TRKGetBuffer(event.msgBufID));
+                break;
+            case 1:
+                isShutdownRequested = 1;
+                break;
+            case 3:
+            case 4:
+                TRKTargetInterrupt(&event);
+                break;
+            case 5:
+                TRKTargetSupportRequest();
+                break;
+            }
+            TRKDestructEvent(&event);
+        } else {
+            if (isNewInput == 0 ||
+                **(unsigned char**)(void*)gTRKInputPendingPtr != 0) {
+                isNewInput = 1;
+                TRKGetInput();
+            } else {
+                if (TRKTargetStopped() == 0) {
+                    TRKTargetContinue();
+                }
+                isNewInput = 0;
+            }
+        }
+    }
 }
 
 // provenance: original
@@ -227,5 +202,4 @@ lbl_800888E4:
     blr
 }
 
-// TRKConstructEvent: event init/clear
 #pragma pop
