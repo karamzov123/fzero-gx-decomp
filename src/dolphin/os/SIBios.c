@@ -2635,72 +2635,32 @@ L_80013910:
 }
 #pragma pop
 
-/* ---- SITypeNameLookup ---- */
-#pragma push
-#pragma force_active on
-asm void SITypeNameLookup(register s32 interrupt, register OSContext* context)
+// provenance: original
+// harvested 2026-08-27 from natc1's logged 100% attempt; spliced into the current head
+void SITypeNameLookup(register s32 interrupt, register OSContext* context)
 {
-    nofralloc
-    mflr        r0
-    stw         r0, 0x4(r1)
-    stwu        r1, -0x2e0(r1)
-    stw         r31, 0x2dc(r1)
-    addi        r31, r4, 0x0
-    lwz	r0, lbl_801A6830 /* lbl_801A6830@sda21 */
-    cmplwi      r0, 0x0
-    beq         L_80013980
-    addi        r3, r1, 0x10
-    bl          OSClearContext
-    addi        r3, r1, 0x10
-    bl          OSSetCurrentContext
-    lwz	r12, lbl_801A6830 /* lbl_801A6830@sda21 */
-    mtlr        r12
-    blrl
-    addi        r3, r1, 0x10
-    bl          OSClearContext
-    mr          r3, r31
-    bl          OSSetCurrentContext
-L_80013980:
-    lwz         r0, 0x2e4(r1)
-    lwz         r31, 0x2dc(r1)
-    addi        r1, r1, 0x2e0
-    mtlr        r0
-    blr
+    if (lbl_801A6830 != 0) {
+        OSContext tmp;
+        OSClearContext(&tmp);
+        OSSetCurrentContext(&tmp);
+        ((void (*)(void))(*(void**)&lbl_801A6830))();
+        OSClearContext(&tmp);
+        OSSetCurrentContext(context);
+    }
 }
-#pragma pop
-
-/* ---- fn_80013994 ---- */
-#pragma push
-#pragma force_active on
-asm void* fn_80013994(register void* handler)
+// provenance: original
+// harvested 2026-08-27 from natc1's logged 100% attempt; spliced into the current head
+void* fn_80013994(register void* handler)
 {
-    nofralloc
-    mflr        r0
-    cmplwi      r3, 0x0
-    stw         r0, 0x4(r1)
-    stwu        r1, -0x18(r1)
-    stw         r31, 0x14(r1)
-    lwz	r31, lbl_801A6830 /* lbl_801A6830@sda21 */
-    stw	r3, lbl_801A6830 /* lbl_801A6830@sda21 */
-    beq         L_800139C4
-    lis         r3, SITypeNameLookup@ha
-    addi        r3, r3, SITypeNameLookup@l
-    bl          SIRegisterPollingHandler
-    b           L_800139D0
-L_800139C4:
-    lis         r3, SITypeNameLookup@ha
-    addi        r3, r3, SITypeNameLookup@l
-    bl          SIUnregisterPollingHandler
-L_800139D0:
-    mr          r3, r31
-    lwz         r0, 0x1c(r1)
-    lwz         r31, 0x14(r1)
-    addi        r1, r1, 0x18
-    mtlr        r0
-    blr
+    void* old = *(void**)&lbl_801A6830;
+    *(void**)&lbl_801A6830 = handler;
+    if (handler != 0) {
+        SIRegisterPollingHandler((void*)SITypeNameLookup);
+    } else {
+        SIUnregisterPollingHandler((void*)SITypeNameLookup);
+    }
+    return old;
 }
-#pragma pop
-
 /* ---- SISetInterruptMask ---- */
 #pragma push
 #pragma force_active on

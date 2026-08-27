@@ -1040,11 +1040,10 @@ asm void fn_8004A530(void)
     blr	
 }
 
-asm void fn_8004A53C(void)
+// provenance: original fn_8004A53C
+int fn_8004A53C(char *p)
 {
-    nofralloc
-    lwz	r3, 0x10(r3)
-    blr	
+    return *(int *)(p + 0x10);
 }
 
 asm void fn_8004A544(void)
