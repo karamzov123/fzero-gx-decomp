@@ -1,3 +1,5 @@
+#pragma push
+#pragma force_active on
 typedef unsigned char u8;
 typedef unsigned int u32;
 
@@ -9,7 +11,9 @@ extern void __OSEVSetNumber(void);
 extern void __DBVECTOR(void);
 extern void __OSDBJUMPEND(void);
 
-extern unsigned char OSExceptionTable[4];
+// OSExceptionTable's own storage is 4 bytes (one pointer): it holds the
+// address of the real handler-pointer table, not the table itself.
+extern void** OSExceptionTable;
 asm void __OSSetExceptionHandler(register u8 index, register void *handler)
 {
     nofralloc
@@ -23,14 +27,10 @@ entry __OSDBJUMPEND
     blr
 }
 
-asm void *__OSGetExceptionHandler(register u8 index)
+// provenance: original __OSGetExceptionHandler
+void* __OSGetExceptionHandler(u8 index)
 {
-    nofralloc
-    clrlwi  r0, r3, 24
-    lwz	r3, OSExceptionTable
-    slwi    r0, r0, 2
-    lwzx    r3, r3, r0
-    blr
+    return OSExceptionTable[index];
 }
 
 asm void OSExceptionVector(void)
@@ -108,3 +108,4 @@ asm void OSDefaultExceptionHandler(register int exception, register void *contex
     stwu    r1, -8(r1)
     b       __OSUnhandledException
 }
+#pragma pop
