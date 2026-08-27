@@ -175,11 +175,10 @@ _800464cc:
     blr	
 }
 
-asm void fn_80046508(void)
+// provenance: original fn_80046508
+void fn_80046508(void *p, unsigned int value)
 {
-    nofralloc
-    stw	r4, 0x20(r3)
-    blr	
+    *(unsigned int *)((unsigned char *)p + 0x20) = value;
 }
 
 // provenance: original
