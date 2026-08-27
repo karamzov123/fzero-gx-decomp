@@ -7,6 +7,8 @@ typedef signed int s32;
 
 // MetroTRK remainder 0x80088B00-0x8008CB20 (pm10-c region B)
 
+extern unsigned char gTRKExceptionStatus[0x10];
+extern unsigned char TRK_saved_exceptionID[0x2];
 extern unsigned char gTRKCPUState[0x430];
 extern unsigned char gTRKInputPendingPtrStore[0x8];
 extern unsigned char gTRKMemMap[0x10];
@@ -3024,8 +3026,8 @@ asm void TRKInterruptHandler(void)
     sync	
     mtmsr	r2
     sync	
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50b8
+    lis r2, TRK_saved_exceptionID@h
+    ori r2, r2, TRK_saved_exceptionID@l
     sth	r3, 0(r2)
     cmpwi	r3, 0x500
     bc      4, 2, _8008b1f4
@@ -3044,8 +3046,8 @@ asm void TRKInterruptHandler(void)
     lbz	r2, 0(r2)
     cmpwi	r2, 0
     bc      12, 2, _8008b1d8
-    lis	r2, -0x7feb
-    ori	r2, r2, 0xb874
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
     lbz	r2, 0xc(r2)
     cmpwi	r2, 1
     bc      12, 2, _8008b1d8
@@ -3063,11 +3065,11 @@ _8008b1d8:
     lwz	r2, 8(r2)
     rfi	
 _8008b1f4:
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50b8
+    lis r2, TRK_saved_exceptionID@h
+    ori r2, r2, TRK_saved_exceptionID@l
     lhz	r3, 0(r2)
-    lis	r2, -0x7feb
-    ori	r2, r2, 0xb874
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
     lbz	r2, 0xc(r2)
     cmpwi	r2, 0
     bc      4, 2, TRKExceptionHandler
@@ -3089,8 +3091,8 @@ _8008b1f4:
     mfxer	r31
     stmw	r27, 0x80(r2)
     bl      TRKSaveExtended1Block
-    lis	r2, -0x7feb
-    ori	r2, r2, 0xb874
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
     li	r3, 1
     stb	r3, 0xc(r2)
     lis r2, gTRKState@h
@@ -3119,8 +3121,8 @@ _8008b1f4:
 asm void TRKExceptionHandler(void)
 {
     nofralloc
-    lis	r2, -0x7feb
-    ori	r2, r2, 0xb874
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
     sth	r3, 8(r2)
     mfspr	r3, 0x1a
     stw	r3, 0(r2)
@@ -3151,8 +3153,8 @@ _8008b32c:
     addi	r3, r3, 4
     mtspr	0x1a, r3
 _8008b338:
-    lis	r2, -0x7feb
-    ori	r2, r2, 0xb874
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
     li	r3, 1
     stb	r3, 0xd(r2)
     mfspr	r3, 0x113
@@ -3197,8 +3199,8 @@ asm void TRKSwapAndGo(void)
     stb	r3, 0x9c(r2)
     b       TRKInterruptHandlerEnableInterrupts
 _8008b3d8:
-    lis	r2, -0x7feb
-    ori	r2, r2, 0xb874
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
     li	r3, 0
     stb	r3, 0xc(r2)
     bl      TRKRestoreExtended1Block
@@ -3552,18 +3554,18 @@ asm void TRKTargetAddExceptionInfo(void)
     mr	r31, r3
     addi	r3, r1, 0xc
     bl      memset
-    lis	r3, -0x7fea
+    lis r3, gTRKExceptionStatus@ha
     li	r5, 0x40
-    lwz	r4, -0x478c(r3)
+    lwz r4, gTRKExceptionStatus@l(r3)
     li	r0, 0x91
     stw	r5, 0xc(r1)
     addi	r3, r1, 8
     stb	r0, 0x10(r1)
     stw	r4, 0x14(r1)
     bl      TRKTargetReadInstruction
-    lis	r3, -0x7fea
+    lis r3, gTRKExceptionStatus@ha
     lwz	r5, 8(r1)
-    addi	r4, r3, -0x478c
+    addi r4, r3, gTRKExceptionStatus@l
     mr	r3, r31
     lhz	r0, 8(r4)
     addi	r4, r1, 0xc
@@ -3804,11 +3806,11 @@ asm void TRKTargetAccessFP(void)
     b       _8008bfa0
 _8008bbb0:
     lis r3, lbl_80095B30@ha
-    lis	r5, -0x7fea
+    lis r5, gTRKExceptionStatus@ha
     addi r29, r3, lbl_80095B30@l
     lis	r4, 0x7c99
     lwz	r0, 0(r29)
-    addi	r31, r5, -0x478c
+    addi r31, r5, gTRKExceptionStatus@l
     lwz	r8, 4(r29)
     lis	r3, 0x4e80
     lwz	r7, 0x24(r29)
@@ -4053,9 +4055,9 @@ _8008bf60:
     li	r3, 0x702
     stw	r0, 0(r25)
 _8008bf78:
-    lis	r4, -0x7fea
+    lis r4, gTRKExceptionStatus@ha
     lwz	r6, 0x14(r1)
-    addi	r7, r4, -0x478c
+    addi r7, r4, gTRKExceptionStatus@l
     lwz	r5, 0x18(r1)
     lwz	r4, 0x1c(r1)
     lwz	r0, 0x20(r1)
@@ -4085,9 +4087,9 @@ asm void TRKTargetAccessExtended1(void)
     li	r3, 0x701
     b       _8008c10c
 _8008bfdc:
-    lis	r6, -0x7fea
+    lis r6, gTRKExceptionStatus@ha
     li	r0, 0
-    addi	r31, r6, -0x478c
+    addi r31, r6, gTRKExceptionStatus@l
     cmplw	r3, r4
     lwz	r6, 0xc(r31)
     lwz	r10, 0(r31)
@@ -4156,9 +4158,9 @@ _8008c0cc:
     li	r3, 0x702
     stw	r0, 0(r30)
 _8008c0e4:
-    lis	r4, -0x7fea
+    lis r4, gTRKExceptionStatus@ha
     lwz	r6, 8(r1)
-    addi	r7, r4, -0x478c
+    addi r7, r4, gTRKExceptionStatus@l
     lwz	r5, 0xc(r1)
     lwz	r4, 0x10(r1)
     lwz	r0, 0x14(r1)
@@ -4192,9 +4194,9 @@ asm void TRKTargetAccessExtended2(void)
     li	r3, 0x701
     b       _8008c5dc
 _8008c158:
-    lis	r3, -0x7fea
+    lis r3, gTRKExceptionStatus@ha
     li	r0, 0
-    addi	r27, r3, -0x478c
+    addi r27, r3, gTRKExceptionStatus@l
     lwz	r3, 0xc(r27)
     lwz	r6, 0(r27)
     lwz	r5, 4(r27)
@@ -4490,9 +4492,9 @@ _8008c59c:
     li	r3, 0x702
     stw	r0, 0(r30)
 _8008c5b4:
-    lis	r4, -0x7fea
+    lis r4, gTRKExceptionStatus@ha
     lwz	r6, 0x10(r1)
-    addi	r7, r4, -0x478c
+    addi r7, r4, gTRKExceptionStatus@l
     lwz	r5, 0x14(r1)
     lwz	r4, 0x18(r1)
     lwz	r0, 0x1c(r1)
@@ -4522,9 +4524,9 @@ asm void TRKTargetAccessDefault(void)
     li	r3, 0x701
     b       _8008c6cc
 _8008c618:
-    lis	r6, -0x7fea
+    lis r6, gTRKExceptionStatus@ha
     subf	r4, r3, r4
-    addi	r30, r6, -0x478c
+    addi r30, r6, gTRKExceptionStatus@l
     lis r6, gTRKCPUState@ha
     lwz	r9, 0xc(r30)
     li	r8, 0
@@ -4560,9 +4562,9 @@ _8008c68c:
     li	r3, 0x702
     stw	r0, 0(r31)
 _8008c6a4:
-    lis	r4, -0x7fea
+    lis r4, gTRKExceptionStatus@ha
     lwz	r6, 8(r1)
-    addi	r7, r4, -0x478c
+    addi r7, r4, gTRKExceptionStatus@l
     lwz	r5, 0xc(r1)
     lwz	r4, 0x10(r1)
     lwz	r0, 0x14(r1)
@@ -4609,11 +4611,11 @@ asm void TRKTargetAccessMemory(void)
     nofralloc
     stwu	r1, -0x40(r1)
     mflr	r0
-    lis	r6, -0x7fea
+    lis r6, gTRKExceptionStatus@ha
     stw	r0, 0x44(r1)
     li	r0, 0
     stmw	r25, 0x24(r1)
-    addi	r31, r6, -0x478c
+    addi r31, r6, gTRKExceptionStatus@l
     mr	r27, r4
     mr	r28, r5
     mr	r26, r3
@@ -4678,9 +4680,9 @@ _8008c824:
     li	r30, 0x702
     stw	r0, 0(r28)
 _8008c83c:
-    lis	r3, -0x7fea
+    lis r3, gTRKExceptionStatus@ha
     lwz	r6, 8(r1)
-    addi	r7, r3, -0x478c
+    addi r7, r3, gTRKExceptionStatus@l
     lwz	r5, 0xc(r1)
     lwz	r4, 0x10(r1)
     mr	r3, r30
