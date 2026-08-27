@@ -728,13 +728,11 @@ _80025e44:
     blr	
 }
 
-// provenance: original
 // provenance: original — direct retail empty-body reconstruction
 void fn_80025EE0(void)
 {
 }
 
-// provenance: original
 // provenance: original — derived directly from fn_80025EE4 retail store
 void fn_80025EE4(void* a)
 {
@@ -1830,17 +1828,12 @@ _80026d34:
     blr	
 }
 
-asm void axmix_device_ctrl_clear(void)
+// provenance: fzero-gx:src/game/axmix_80025504.c:1831 axmix_device_ctrl_clear
+void axmix_device_ctrl_clear(register void *voice)
 {
-    nofralloc
-    lwz	r4, 0x18(r3)
-    lis     r3, lbl_80176160@ha
-    addi	r0, r3, lbl_80176160@l
-    mulli	r3, r4, 0x60
-    add	r3, r0, r3
-    li	r0, 0
-    stw	r0, 0(r3)
-    blr	
+    unsigned int index;
+    index = *(unsigned int *)((unsigned char *)voice + 0x18);
+    *(unsigned int *)(lbl_80176160 + index * 0x60) = 0;
 }
 
 asm void axmix_set_voice_param_08(void)

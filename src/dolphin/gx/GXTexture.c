@@ -380,27 +380,18 @@ void GXInitTlutRegion(register volatile struct GXTlutRegion_s* region, register 
     SET_REG_FIELD(0x58A, region->loadTlut1, 8, 24, 0x65);
 }
 
-asm void __GXInitTexMapPreload(register void* p)
+// provenance: original (reconstructed from symbolised disassembly; GX FIFO preload of tex-map regs)
+void __GXInitTexMapPreload(register void* p)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    bl      __GXFlushTextureState
-    li	r6, 0x61
-    lis	r3, 0x6600
-    lis	r5, -0x33ff
-    stb	r6, -0x8000(r5)
-    addi	r4, r3, 0x1000
-    addi	r0, r3, 0x1100
-    stw	r4, -0x8000(r5)
-    stb	r6, -0x8000(r5)
-    stw	r0, -0x8000(r5)
-    bl      __GXFlushTextureState
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+    __GXFlushTextureState();
+    {
+        volatile u8* io = (volatile u8*)0xCC008000;
+        *io = 0x61;
+        *(volatile u32*)0xCC008000 = 0x66001000u;
+        *io = 0x61;
+        *(volatile u32*)0xCC008000 = 0x66001100u;
+    }
+    __GXFlushTextureState();
 }
 
 asm void GXSetTexRegionCallback(register void* p)
