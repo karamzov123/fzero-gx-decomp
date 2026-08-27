@@ -12,6 +12,8 @@ extern void mbrtowc(void);
 extern void MSL_device_link_fn(void);
 extern void fn_80085088(void);
 extern void MSLStrToLong(void);
+extern void __scanf(void);
+extern void __msl_parse_format_specifier(void);
 
 asm void __qsort(void)
 {

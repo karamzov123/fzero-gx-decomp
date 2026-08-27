@@ -10,7 +10,7 @@ typedef signed int s32;
 extern void memset(void);
 extern void fn_80003590(void);
 extern void TRK_memcpy(void);
-extern void fn_80005518(void);
+extern void gTRKInterruptVectorTableEnd(void);
 extern void OSReport(void);
 extern void strlen(void);
 extern void TRKConstructEvent(void);
@@ -26,6 +26,46 @@ extern void TRKPollUART(void);
 extern void TRKTargetContinue(void);
 extern void AMC_SetStub_Game(void);
 extern void MWTRACE(void);
+extern void TRKAcquireMutex_stub(void);
+extern void TRKReleaseMutex_stub(void);
+extern void TRKTargetStopped(void);
+extern void TRKTestForPacket(void);
+extern void usr_puts(void);
+extern void TRKDoPing(void);
+extern void TRKDoVersions(void);
+extern void TRKDoStop(void);
+extern void TRK_serialIO_init(void);
+extern void TRKDoReadRegisters(void);
+extern void TRKDoWriteRegisters(void);
+extern void TRKDoReadMemory(void);
+extern void TRKDoWriteMemory(void);
+extern void TRKDoUnsupported_Override(void);
+extern void TRKDoUnsupported_SupportMask(void);
+extern void TRKDoOverride(void);
+extern void TRKDoReset(void);
+extern void TRKDoDisconnect(void);
+extern void TRKDoSetOption(void);
+extern void TRK_SetInputPendingPtrStore(void);
+extern void TRK_IsInputPending(void);
+extern void TRKRequestSend(void);
+extern void TRKReleaseMutex_stub(void);
+extern void fn_8008AF50(void);
+extern void TRKTargetStop(void);
+extern void TRKTargetGetPC(void);
+extern void TRKTargetCheckStep(void);
+extern void TRKTargetDoStep(void);
+extern void TRKTargetAddExceptionInfo(void);
+extern void TRKTargetAddStopInfo(void);
+extern void TRKTargetAccessFP(void);
+extern void TRKTargetAccessExtended1(void);
+extern void TRKTargetAccessExtended2(void);
+extern void TRKTargetAccessDefault(void);
+extern void TRKTargetReadInstruction(void);
+extern void TRKTargetAccessMemory(void);
+extern void TRKValidMemory32(void);
+extern void TRKInterruptHandlerEnableInterrupts(void);
+extern void TRKPostInterruptEvent(void);
+extern void TRKExceptionHandler(void);
 
 asm void TRKMessageSend(void)
 {
@@ -2087,7 +2127,7 @@ asm void TRKDoReset(void)
     stw	r5, 8(r1)
     stb	r0, 0x10(r1)
     bl      TRKDoWrite
-    bl      fn_80005518
+    bl      gTRKInterruptVectorTableEnd
     lwz	r0, 0x54(r1)
     li	r3, 0
     mtlr	r0
@@ -3036,9 +3076,9 @@ _8008b1f4:
     lwz	r0, 0x88(r2)
     mtxer	r0
     lwz	r0, 0x94(r2)
-    mtspr	r0
+    mtdsisr	r0
     lwz	r0, 0x90(r2)
-    mtspr	r0
+    mtdar	r0
     lmw	r3, 0xc(r2)
     lwz	r0, 0(r2)
     lwz	r1, 4(r2)
@@ -3106,9 +3146,9 @@ asm void TRKSwapAndGo(void)
     stw	r0, 0x84(r3)
     mfxer	r0
     stw	r0, 0x88(r3)
-    mfspr	r0
+    mfdsisr	r0
     stw	r0, 0x94(r3)
-    mfspr	r0
+    mfdar	r0
     stw	r0, 0x90(r3)
     li	r1, -0x7ffe
     nor	r1, r1, r1
@@ -3163,9 +3203,9 @@ asm void TRKInterruptHandlerEnableInterrupts(void)
     lwz	r0, 0x88(r2)
     mtxer	r0
     lwz	r0, 0x94(r2)
-    mtspr	r0
+    mtdsisr	r0
     lwz	r0, 0x90(r2)
-    mtspr	r0
+    mtdar	r0
     lmw	r3, 0xc(r2)
     lwz	r0, 0(r2)
     lwz	r1, 4(r2)
