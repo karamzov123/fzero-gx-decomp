@@ -1354,33 +1354,26 @@ _80035670:
     blr	
 }
 
-asm void GXInitLightAttnCoefs(void)
+void GXInitLightAttnCoefs(register void* p, register float a, register float b, register float c)
 {
-    nofralloc
-    stfs	f1, 0x28(r3)
-    stfs	f2, 0x2c(r3)
-    stfs	f3, 0x30(r3)
-    blr	
+    // provenance: dolsdk2001:src/gx/GXLight.c:GXInitLightAttnCoefs (retail asm; 3 stfs to light obj at 0x28/0x2c/0x30)
+    *(float*)((char*)p + 0x28) = a;
+    *(float*)((char*)p + 0x2c) = b;
+    *(float*)((char*)p + 0x30) = c;
 }
 
-asm void GXInitSpecularDir(register void* p)
+void GXInitSpecularDir(register void* p, register float nx, register float ny, register float nz)
 {
-    nofralloc
-    fneg	f4, f1
-    fneg	f1, f2
-    fneg	f0, f3
-    stfs	f4, 0x34(r3)
-    stfs	f1, 0x38(r3)
-    stfs	f0, 0x3c(r3)
-    blr	
+    // provenance: dolsdk2001:src/gx/GXLight.c:GXInitSpecularDir (retail asm; 3 fneg + stfs to 0x34/0x38/0x3c)
+    *(float*)((char*)p + 0x34) = -nx;
+    *(float*)((char*)p + 0x38) = -ny;
+    *(float*)((char*)p + 0x3c) = -nz;
 }
 
-asm void __GXInitSpecularDirZ(void)
+void __GXInitSpecularDirZ(register void* dst, register void* src)
 {
-    nofralloc
-    lwz	r0, 0(r4)
-    stw	r0, 0xc(r3)
-    blr	
+    // provenance: dolsdk2001:src/gx/GXLight.c:__GXInitSpecularDirZ (retail asm; word copy src->dst+0xc)
+    *(u32*)((char*)dst + 0xc) = *(u32*)src;
 }
 
 asm void __GXSetChanColor(register void* p)

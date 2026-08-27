@@ -484,18 +484,13 @@ _80021824:
     blr	
 }
 
-asm void AXInitCommandList(void)
+// provenance: original AXInitCommandList
+void AXInitCommandList(void)
 {
-    nofralloc
-    lis     r3, lbl_8015FF00@ha
-    li	r4, 0
-    addi	r3, r3, lbl_8015FF00@l
-    stw	r4, lbl_801A6B08
-    li	r0, 1
-    stw	r4, lbl_801A6AF8
-    stw	r3, lbl_801A6AFC
-    stw	r0, lbl_801A6B04
-    blr	
+    *(u32*)lbl_801A6B08 = 0;
+    *(u32*)lbl_801A6AF8 = 0;
+    *(u32*)lbl_801A6AFC = (u32)lbl_8015FF00;
+    *(u32*)lbl_801A6B04 = 1;
 }
 
 void fn_80021910(void)
@@ -512,11 +507,10 @@ asm void fn_80021914(void)
     blr	
 }
 
-asm void fn_80021928(void)
+// provenance: original fn_80021928
+u32 fn_80021928(void)
 {
-    nofralloc
-    lwz	r3, lbl_801A6B08
-    blr	
+    return *(volatile u32*)lbl_801A6B08;
 }
 
 #pragma pop
