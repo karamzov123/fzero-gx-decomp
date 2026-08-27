@@ -45,6 +45,11 @@ extern s32 SIIsChanBusy(register s32 chan);
 extern u32 SIGetStatus(register s32 chan);
 extern void SISetCommand(register s32 chan, register u32 command);
 extern void SITransferCommands(void);
+/* SI hardware register block at 0xCC006400; location-anchored absolute
+   declaration so MWCC emits the literal lis 0xCC00/addi 0x6400 + indexed stwx
+   that retail SISetCommand/SITransferCommands use. ABI-proven by the mulli
+   r3,0xc stride and stwx into 0xCC006400 (SDK __SIRegs[64] @ 0xCC006400). */
+volatile u32 __SIRegs[64] : 0xCC006400;
 extern u32 SISetXY(register u32 x, register u32 y);
 extern void SIGetWirelessID(register s32 chan, register u32 unk);
 extern void SIGetWirelessIDBitfield(register s32 chan, register u32 unk);
@@ -1051,32 +1056,17 @@ L_8001252C:
 #pragma pop
 
 /* ---- SISetCommand ---- */
-#pragma push
-#pragma force_active on
-asm void SISetCommand(register s32 chan, register u32 command)
+// provenance: dolsdk2001:src/os/OSSerial.c:181 SISetCommand
+void SISetCommand(register s32 chan, register u32 command)
 {
-    nofralloc
-    mulli       r0, r3, 0xc
-    lis         r3, 0xCC00
-    addi        r3, r3, 0x6400
-    stwx        r4, r3, r0
-    blr
+    __SIRegs[chan * 3] = command;
 }
-#pragma pop
-
 /* ---- SITransferCommands ---- */
-#pragma push
-#pragma force_active on
-asm void SITransferCommands(void)
+// provenance: dolsdk2001:src/os/OSSerial.c:191 SITransferCommands
+void SITransferCommands(void)
 {
-    nofralloc
-    lis         r3, 0xCC00
-    lis         r0, 0x8000
-    stw         r0, 0x6438(r3)
-    blr
+    __SIRegs[14] = 0x80000000;
 }
-#pragma pop
-
 /* ---- SISetXY ---- */
 #pragma push
 #pragma force_active on
