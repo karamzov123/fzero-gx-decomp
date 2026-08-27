@@ -2776,11 +2776,11 @@ _8002ed8c:
     blr	
 }
 
-asm void __CARDIsOpened(void)
-{
-    nofralloc
-    li      r3, 0
-    blr	
+// provenance: original
+// provenance: original (__CARDIsOpened, GFZE01 CARDDir.c; from disassembly)
+// attempt 1 (natc3): retail body is `li r3,0; blr` -> returns 0.
+int __CARDIsOpened(int chn) {
+    return 0;
 }
 
 asm void CreateCallbackFat(void)

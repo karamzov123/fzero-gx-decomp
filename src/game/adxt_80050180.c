@@ -44,11 +44,11 @@ _800501d8:
     blr	
 }
 
-asm void fn_800501EC(void)
+// provenance: original
+// provenance: original fn_800501EC
+int fn_800501EC(char *p)
 {
-    nofralloc
-    lwz	r3, 0x10(r3)
-    blr	
+    return *(int *)(p + 0x10);
 }
 
 asm void svm_ringbuf_skip(void)
