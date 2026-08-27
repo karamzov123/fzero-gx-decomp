@@ -185,12 +185,10 @@ _80021b10:
     blr	
 }
 
-asm void fn_80021B20(void)
+void fn_80021B20(void)
 {
-    nofralloc
-    li	r0, 1
-    stw	r0, lbl_801A6B24
-    blr	
+    // provenance: original fn_80021B20
+    *(u32*)lbl_801A6B24 = 1;
 }
 
 asm void __AXOutDspResumeCallback(void)
