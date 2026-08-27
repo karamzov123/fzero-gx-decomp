@@ -14,6 +14,10 @@ verify sha1 gate AND rm build/GFZE01/report.json to avoid stale per-unit counts.
 """
 import re, sys, json, pathlib
 
+# item-5/6: never clobber modified tracked src/ (finding-252)
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from carve_guard import safe_write_carve
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SYM = {}
 for line in open(ROOT / 'config/GFZE01/symbols.txt'):
@@ -74,7 +78,7 @@ def fix_file(p):
                 break
         i += 1
     if n:
-        p.write_text('\n'.join(out))
+        safe_write_carve(p, "\n".join(out))  # finding-252 guard: refuses modified tracked src/
     return n
 
 

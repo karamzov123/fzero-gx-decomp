@@ -11,6 +11,10 @@ Usage: tools/convert_global_named.py <unit-name-from-TSV> ...
 """
 import os, re, sys, glob
 
+# item-5/6: never clobber modified tracked src/ (finding-252)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from carve_guard import safe_write_carve
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 TSV = "docs/UNIT-STATUS.tsv"
@@ -61,7 +65,7 @@ def conv_file(path, targets, addrs_of_interest):
         lines[i + 1] = f"{m2.group(1)} {name}@l"
         n += 1
         targets.discard(target)
-    open(path, "w").write("\n".join(lines))
+    safe_write_carve(path, "\n".join(lines))  # finding-252 guard: refuses modified tracked src/
     return n
 
 def main():

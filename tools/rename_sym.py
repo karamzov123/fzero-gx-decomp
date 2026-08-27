@@ -6,6 +6,10 @@ Refuses if old name not found or new name already exists.
 """
 import re, sys, subprocess, pathlib
 
+# item-5/6: never clobber modified tracked src/ (finding-252)
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from carve_guard import safe_write_carve
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SYM = ROOT / 'config/GFZE01/symbols.txt'
 SRC = ROOT / 'src'
@@ -29,7 +33,7 @@ def main():
         t = f.read_text()
         for old, new in prs:
             t = re.sub(rf'\b{re.escape(old)}\b', new, t)
-        f.write_text(t)
+        safe_write_carve(f, t)  # finding-252 guard: refuses modified tracked src/
     for old, new in pairs:
         symtxt = re.sub(rf'\b{re.escape(old)}\b', new, symtxt)
     SYM.write_text(symtxt)
