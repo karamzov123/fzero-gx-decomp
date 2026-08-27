@@ -195,28 +195,24 @@ _8000a360:
     blr
 }
 
-static asm void InquiryCallback(register int result, register void* block)
+// provenance: original/asm main/dolphin/os/OS InquiryCallback
+static void InquiryCallback(s32 result, void* block)
 {
-    nofralloc
-    lwz	r0, 0xc(r4)
-    cmpwi	r0, 0
-    beq     _8000a384
-    b       _8000a3a0
-_8000a384:
-    lis     r3, DriveInfo_8015BF00@ha
-    addi	r3, r3, DriveInfo_8015BF00@l
-    lhz	r0, 2(r3)
-    lis	r3, -0x8000
-    ori	r0, r0, 0x8000
-    sth	r0, 0x30e6(r3)
-    b       _8000a3ac
-_8000a3a0:
-    li	r0, 1
-    lis	r3, -0x8000
-    sth	r0, 0x30e6(r3)
-_8000a3ac:
-    blr
+    switch (*(u32*)((char*)block + 0xC))
+    {
+    case 0:
+        {
+            unsigned short dc = *(unsigned short*)(DriveInfo_8015BF00 + 2);
+            *(volatile unsigned short*)0x800030E6 = (unsigned short)(dc | 0x8000);
+        }
+        break;
+    default:
+        *(volatile unsigned short*)0x800030E6 = 1;
+        break;
+    }
 }
+
+
 
 asm void OSInit(void)
 {
