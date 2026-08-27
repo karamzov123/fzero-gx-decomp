@@ -4,6 +4,7 @@
 #pragma force_active on
 
 typedef unsigned int u32;
+typedef signed short s16;
 extern void DCFlushRange(register void* addr, register u32 nBytes);
 extern unsigned char lbl_80164D20[64];
 
@@ -336,46 +337,17 @@ void fn_8002244C(void)
 {
 }
 
-asm void fn_80022450(void)
-{
-    nofralloc
-    lwz	r4, lbl_801A6B38
-    lha	r0, 0x52(r3)
-    lwz	r5, lbl_801A6B44
-    add	r0, r4, r0
-    lwz	r4, lbl_801A6B50
-    stw	r0, lbl_801A6B38
-    lwz	r9, lbl_801A6B3C
-    lha	r0, 0x54(r3)
-    lwz	r8, lbl_801A6B48
-    add	r0, r5, r0
-    lwz	r7, lbl_801A6B54
-    stw	r0, lbl_801A6B44
-    lwz	r6, lbl_801A6B40
-    lha	r0, 0x56(r3)
-    lwz	r5, lbl_801A6B4C
-    add	r0, r4, r0
-    lwz	r4, lbl_801A6B58
-    stw	r0, lbl_801A6B50
-    lha	r0, 0x58(r3)
-    add	r0, r9, r0
-    stw	r0, lbl_801A6B3C
-    lha	r0, 0x5a(r3)
-    add	r0, r8, r0
-    stw	r0, lbl_801A6B48
-    lha	r0, 0x5c(r3)
-    add	r0, r7, r0
-    stw	r0, lbl_801A6B54
-    lha	r0, 0x5e(r3)
-    add	r0, r6, r0
-    stw	r0, lbl_801A6B40
-    lha	r0, 0x60(r3)
-    add	r0, r5, r0
-    stw	r0, lbl_801A6B4C
-    lha	r0, 0x62(r3)
-    add	r0, r4, r0
-    stw	r0, lbl_801A6B58
-    blr	
+// provenance: original fn_80022450
+void fn_80022450(register void* pb) {
+    *(u32*)lbl_801A6B38 += *(s16*)((char*)pb + 0x52);
+    *(u32*)lbl_801A6B44 += *(s16*)((char*)pb + 0x54);
+    *(u32*)lbl_801A6B50 += *(s16*)((char*)pb + 0x56);
+    *(u32*)lbl_801A6B3C += *(s16*)((char*)pb + 0x58);
+    *(u32*)lbl_801A6B48 += *(s16*)((char*)pb + 0x5a);
+    *(u32*)lbl_801A6B54 += *(s16*)((char*)pb + 0x5c);
+    *(u32*)lbl_801A6B40 += *(s16*)((char*)pb + 0x5e);
+    *(u32*)lbl_801A6B4C += *(s16*)((char*)pb + 0x60);
+    *(u32*)lbl_801A6B58 += *(s16*)((char*)pb + 0x62);
 }
 
 #pragma pop

@@ -830,85 +830,19 @@ _80024164:
     blr	
 }
 
-asm void fn_8002420C(void)
+// provenance: original fn_8002420C
+void fn_8002420C(void *base)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x20(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    li	r0, 0
-    mulli	r0, r0, 0x14
-    add	r31, r29, r0
-    li	r30, 0
-    b       _8002423c
-_8002423c:
-    b       _80024240
-_80024240:
-    b       _8002425c
-_80024244:
-    lwz	r3, 0xc(r31)
-    lwz	r12, lbl_801A64FC
-    mtlr	r12
-    blrl	
-    addi	r31, r31, 0x14
-    addi	r30, r30, 1
-_8002425c:
-    clrlwi	r0, r30, 0x18
-    cmplwi	r0, 9
-    blt     _80024244
-    li	r30, 0
-    mulli	r0, r30, 0x14
-    add	r31, r29, r0
-    b       _80024278
-_80024278:
-    b       _8002427c
-_8002427c:
-    b       _80024298
-_80024280:
-    lwz	r3, 0xc0(r31)
-    lwz	r12, lbl_801A64FC
-    mtlr	r12
-    blrl	
-    addi	r31, r31, 0x14
-    addi	r30, r30, 1
-_80024298:
-    clrlwi	r0, r30, 0x18
-    cmplwi	r0, 9
-    blt     _80024280
-    lwz	r0, 0x1a4(r29)
-    cmpwi	r0, 0
-    beq     _800242ec
-    li	r30, 0
-    slwi	r0, r30, 2
-    add	r31, r29, r0
-    b       _800242c0
-_800242c0:
-    b       _800242c4
-_800242c4:
-    b       _800242e0
-_800242c8:
-    lwz	r3, 0x1ac(r31)
-    lwz	r12, lbl_801A64FC
-    mtlr	r12
-    blrl	
-    addi	r31, r31, 4
-    addi	r30, r30, 1
-_800242e0:
-    clrlwi	r0, r30, 0x18
-    cmplwi	r0, 3
-    blt     _800242c8
-_800242ec:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    addi	r1, r1, 0x20
-    mtlr	r0
-    blr	
+    unsigned char *p = (unsigned char *)base;
+    unsigned char i;
+
+    for (i = 0; i < 9; i++)
+        ((void (*)(void *))(*(void **)lbl_801A64FC))(*(void **)(p + i * 0x14 + 0xc));
+    for (i = 0; i < 9; i++)
+        ((void (*)(void *))(*(void **)lbl_801A64FC))(*(void **)(p + i * 0x14 + 0xc0));
+    if (*(int *)(p + 0x1a4) != 0)
+        for (i = 0; i < 3; i++)
+            ((void (*)(void *))(*(void **)lbl_801A64FC))(*(void **)(p + 0x1ac + i * 4));
 }
 
 #pragma pop

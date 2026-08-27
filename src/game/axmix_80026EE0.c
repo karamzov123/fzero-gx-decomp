@@ -26,8 +26,8 @@ extern void axmix_cent_to_ratio_lerp(void);
 extern void axmix_param_ramp_step(void);
 extern void axmix_param_ramp_step_dup(void);
 extern void fn_80028A78(void);
-extern void fn_80028B2C(void);
-extern void fn_80028B34(void);
+extern void fn_80028B2C(float value);
+extern void fn_80028B34(float value);
 extern void axmix_mix_voice_state(void);
 extern void OSDisableInterrupts(void);
 extern void OSEnableInterrupts(void);
@@ -62,8 +62,8 @@ extern unsigned char lbl_801A6B90[8];
 extern unsigned char lbl_801A7008[8];
 extern unsigned char lbl_801A7030[8];
 extern unsigned char lbl_801A7018[8];
-extern unsigned char lbl_801A6B9C[4];
-extern unsigned char lbl_801A6B98[4];
+extern float lbl_801A6B9C;
+extern float lbl_801A6B98;
 extern unsigned char lbl_801A7050[4];
 extern unsigned char lbl_801A7048[4];
 extern unsigned char lbl_801A7040[8];
@@ -2206,18 +2206,16 @@ _80028afc:
     blr	
 }
 
-asm void fn_80028B2C(void)
+// provenance: original retail disassembly 0x80028B2C fn_80028B2C
+void fn_80028B2C(float value)
 {
-    nofralloc
-    stfs f1, lbl_801A6B98(r13)
-    blr	
+    lbl_801A6B98 = value;
 }
 
-asm void fn_80028B34(void)
+// provenance: original retail disassembly 0x80028B34 fn_80028B34
+void fn_80028B34(float value)
 {
-    nofralloc
-    stfs f1, lbl_801A6B9C(r13)
-    blr	
+    lbl_801A6B9C = value;
 }
 
 asm void axmix_mix_voice_state(void)
