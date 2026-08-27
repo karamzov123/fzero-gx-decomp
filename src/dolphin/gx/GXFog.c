@@ -1991,11 +1991,11 @@ asm int PerfmonCopyConfig(register u32 a)
     blr     
 }
 
-asm int fn_8003D690(register u32 a)
+// provenance: asm:0x8003D690 fn_8003D690 (dolphin/gx GXFog)
+int fn_8003D690(register u32 a)
 {
-    nofralloc
-    stw	r3, lbl_801A6C3C
-    blr     
+    *(volatile u32 *)lbl_801A6C3C = a;
+    return a;
 }
 
 asm int fn_8003D698(register u32 a)

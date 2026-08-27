@@ -305,20 +305,12 @@ Ldone:
     blr
 }
 
-asm static GXTlutRegion *__GXGetFifoPoolEntry(u32 idx)
+static GXTlutRegion *__GXGetFifoPoolEntry(u32 idx)
 {
-    nofralloc
-    cmplwi r3, 0x14
-    blt Lcalc
-    li r3, 0
-    b Ldone
-Lcalc:
-    slwi r3, r3, 4
-    lwz r0, gx /* gx@sda21 */
-    addi r3, r3, 0x2d0
-    add r3, r0, r3
-Ldone:
-    blr
+    // provenance: original __GXGetFifoPoolEntry
+    if (idx >= 0x14)
+        return NULL;
+    return &gx->TlutRegions[idx];
 }
 
 asm BOOL fn_8003086C(BOOL final)

@@ -399,11 +399,9 @@ int fn_8005A678(void)
     return 0;
 }
 
-asm void fn_8005A680(void)
-{
-    nofralloc
-    li	r3, 0
-    blr	
+// provenance: original
+int fn_8005A680(void) {
+    return 0;
 }
 
 asm void fn_8005A688(void)

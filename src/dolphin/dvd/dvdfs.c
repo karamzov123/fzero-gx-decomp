@@ -386,18 +386,12 @@ lbl_80017210:
 	blr
 }
 
-/* DVDCancelSync @0x80017228 | size: 0x24 */
-asm void DVDCancelSync(void) {
-nofralloc
-	mflr r0
-	stw r0, 0x4(r1)
-	stwu r1, -0x8(r1)
-	bl DVDCancel
-	li r3, 0x1
-	lwz r0, 0xc(r1)
-	addi r1, r1, 0x8
-	mtlr r0
-	blr
+/* provenance: original DVDCancelSync */
+BOOL DVDCancelSync(void)
+{
+    // provenance: original DVDCancelSync
+    DVDCancel();
+    return 1;
 }
 
 /* __DVDFSGetComponentPath @0x8001724C | size: 0x160 */

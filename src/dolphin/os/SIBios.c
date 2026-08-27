@@ -140,31 +140,14 @@ L_80011934:
 }
 #pragma pop
 
-/* ---- SIIsChanBusy ---- */
-#pragma push
-#pragma force_active on
-asm s32 SIIsChanBusy(register s32 chan)
+// provenance: mkdd:libs/dolphin/si/SIBios.c:79 SIIsChanBusy
+s32 SIIsChanBusy(register s32 chan)
 {
-    nofralloc
-    lis         r4, Packet@ha
-    slwi        r5, r3, 5
-    addi        r0, r4, Packet@l
-    add         r4, r0, r5
-    lwz         r0, 0x0(r4)
-    li          r5, 0x1
-    cmpwi       r0, -0x1
-    bne         L_80011970
-    lis         r4, Si@ha
-    lwz         r0, Si@l(r4)
-    cmpw        r0, r3
-    beq         L_80011970
-    li          r5, 0x0
-L_80011970:
-    mr          r3, r5
-    blr
+    s32 r = 1;
+    if ((s32)Packet[chan * 8] == -1 && (s32)Si[0] != chan)
+        r = 0;
+    return r;
 }
-#pragma pop
-
 /* ---- CompleteTransfer ---- */
 #pragma push
 #pragma force_active on
@@ -1986,24 +1969,16 @@ L_80013150:
 }
 #pragma pop
 
+// provenance: dolsdk2001:src/os/OSSerial.c:181 SISetCommand
 /* ---- SIProbe ---- */
 #pragma push
 #pragma force_active on
-asm u32 SIProbe(register s32 chan)
+// provenance: mkdd/libs/dolphin/si/SIBios.c SIDecodeType(SIGetType(chan)) SIProbe
+u32 SIProbe(register s32 chan)
 {
-    nofralloc
-    mflr        r0
-    stw         r0, 0x4(r1)
-    stwu        r1, -0x8(r1)
-    bl          SIGetType
-    bl          __SIGetTypeNormalize
-    lwz         r0, 0xc(r1)
-    addi        r1, r1, 0x8
-    mtlr        r0
-    blr
+    return __SIGetTypeNormalize(SIGetType(chan));
 }
 #pragma pop
-
 /* ---- SITypeNameLookupByRaw: device name lookup ---- */
 #pragma push
 #pragma force_active on
