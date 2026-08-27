@@ -25,25 +25,21 @@ asm void fn_800433A4(void)
     stw	r0, 0x14(r1)
     lwz	r12, lbl_8017A280@l(r4)
     mtctr	r12
-    bctrl	
+    bctrl
     lwz	r0, 0x14(r1)
     mtlr	r0
     addi	r1, r1, 0x10
-    blr	
+    blr
 }
 
-asm void fn_800433D0(void)
+// provenance: original fn_800433D0
+// Standard MWCC signed-division-by-constant codegen: mulhw magic 0x2AAAAAAB
+// (Hacker's Delight table, d=6, shift=0) plus srawi by 4 more == divide by
+// 6*2^4 = 96. Confirms via the extra shift, not an assumption.
+void fn_800433D0(void* self, int val)
 {
-    nofralloc
-    lis	r5, 0x2aab
-    stw	r4, 0xb4(r3)
-    addi	r0, r5, -0x5555
-    mulhw	r0, r0, r4
-    srawi	r0, r0, 4
-    srwi	r4, r0, 0x1f
-    add	r0, r0, r4
-    stw	r0, 0xb8(r3)
-    blr	
+    *(int*)((char*)self + 0xb4) = val;
+    *(int*)((char*)self + 0xb8) = val / 96;
 }
 
 asm void fn_800433F4(void)
