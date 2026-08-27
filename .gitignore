@@ -36,3 +36,7 @@ compile_commands.json
 .worktrees/
 natc_runs.sqlite
 .natc-submissions/
+
+# Runtime-generated helper (written into tools/ by emit_m2c_asm.py / natc_loop.py)
+tools/words.py
+tools/__pycache__/

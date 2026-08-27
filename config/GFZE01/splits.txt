@@ -54,7 +54,13 @@ coarse/data_80121EC0.c:
 	.data       start:0x80121EC0 end:0x8012AA60
 
 coarse/data_8012AA60.c:
-	.data       start:0x8012AA60 end:0x8015A860
+	.data       start:0x8012AA60 end:0x80142820
+
+coarse/data_80142820.c:
+	.data       start:0x80142820 end:0x80152860
+
+coarse/data_80152860.c:
+	.data       start:0x80152860 end:0x8015A860
 
 coarse/data_8015A860.c:
 	.data       start:0x8015A860 end:0x8015B919
@@ -65,593 +71,53 @@ coarse/rodata_8008FF40.c:
 coarse/dtors_8008FF20.c:
 	.dtors      start:0x8008FF20 end:0x8008FF24
 
-main.c:
-	.text       start:0x800055E0 end:0x80008DB4
+coarse/text_800055E0.c:
+	.text       start:0x800055E0 end:0x8000DD60
 
-dolphin/os/OSAllocHead.c:
-	.text       start:0x80008DB4 end:0x80009468
+coarse/text_8000DD60.c:
+	.text       start:0x8000DD60 end:0x80015F80
 
-dolphin/os/OSAllocCtx.c:
-	.text       start:0x80009468 end:0x8000961C
+coarse/text_80015F80.c:
+	.text       start:0x80015F80 end:0x8001E480
 
-dolphin/os/OSAlloc.c:
-	.text       start:0x8000961C end:0x80009FA4
+coarse/text_8001E480.c:
+	.text       start:0x8001E480 end:0x80026EE0
 
-dolphin/os/OSThreadTable.c:
-	.text       start:0x80009FA4 end:0x80009FBC
+coarse/text_80026EE0.c:
+	.text       start:0x80026EE0 end:0x8002F140
 
-dolphin/os/OSPPC.c:
-	.text       start:0x80009FBC end:0x8000A0FC
+coarse/text_8002F140.c:
+	.text       start:0x8002F140 end:0x800372E0
 
-dolphin/os/OSFPR.c:
-	.text       start:0x8000A0FC end:0x8000A224
+coarse/text_800372E0.c:
+	.text       start:0x800372E0 end:0x80041460
 
-dolphin/os/OS.c:
-	.text       start:0x8000A224 end:0x8000AA30
+coarse/text_80041460.c:
+	.text       start:0x80041460 end:0x8004A560
 
-dolphin/os/OSException.c:
-	.text       start:0x8000AA30 end:0x8000AB54
+coarse/text_8004A560.c:
+	.text       start:0x8004A560 end:0x80053EA0
 
-dolphin/os/OSPSInit.c:
-	.text       start:0x8000AB54 end:0x8000ABE8
+coarse/text_80053EA0.c:
+	.text       start:0x80053EA0 end:0x8005C120
 
-dolphin/os/OSAlarm.c:
-	.text       start:0x8000ABE8 end:0x8000B314
-
-dolphin/os/OSArena.c:
-	.text       start:0x8000B314 end:0x8000B334
-
-dolphin/os/OSAudioSystem.c:
-	.text       start:0x8000B334 end:0x8000B614
-
-dolphin/os/OSCache.c:
-	.text       start:0x8000B614 end:0x8000B738
-
-dolphin/os/OSCacheRest.c:
-	.text       start:0x8000B738 end:0x8000BBAC
-
-dolphin/os/OSContext.c:
-	.text       start:0x8000BBAC end:0x8000C41C
-
-dolphin/os/OSError.c:
-	.text       start:0x8000C41C end:0x8000CAC8
-
-dolphin/os/Yay0Decode.c:
-	.text       start:0x8000CAC8 end:0x8000D4F4
-
-dolphin/os/OSInterrupts.c:
-	.text       start:0x8000D4F4 end:0x8000D5E4
-
-dolphin/os/OSInterruptMask.c:
-	.text       start:0x8000D5E4 end:0x8000DD60
-
-dolphin/os/OSLink.c:
-	.text       start:0x8000DD60 end:0x8000E77C
-
-dolphin/os/OSMemory.c:
-	.text       start:0x8000E77C end:0x8000EA84
-
-dolphin/os/OSMutex.c:
-	.text       start:0x8000EA84 end:0x8000EAF4
-
-dolphin/os/OSReboot.c:
-	.text       start:0x8000EAF4 end:0x8000EE70
-
-dolphin/os/OSReset.c:
-	.text       start:0x8000EE70 end:0x8000F264
-
-dolphin/os/OSResetSW.c:
-	.text       start:0x8000F264 end:0x8000F610
-
-dolphin/os/OSSramWrite.c:
-	.text       start:0x8000F610 end:0x8000F788
-
-dolphin/os/OSSram.c:
-	.text       start:0x8000F788 end:0x8000FCD4
-
-dolphin/os/OSRtc.c:
-	.text       start:0x8000FCD4 end:0x800100BC
-
-dolphin/os/OSSync.c:
-	.text       start:0x800100BC end:0x80010144
-
-dolphin/os/OSThreadInit.c:
-	.text       start:0x80010144 end:0x8001029C
-
-dolphin/os/OSThread.c:
-	.text       start:0x8001029C end:0x8001036C
-
-dolphin/os/OSThreadScheduler.c:
-	.text       start:0x8001036C end:0x80011358
-
-dolphin/os/OSClearStack.c:
-	.text       start:0x80011358 end:0x8001140C
-
-dolphin/os/OSTime.c:
-	.text       start:0x8001140C end:0x80011490
-
-dolphin/os/OSTimeCal.c:
-	.text       start:0x80011490 end:0x80011888
-
-dolphin/os/init/__ppc_eabi_init.c:
-	.text       start:0x80011888 end:0x8001191C
-
-dolphin/os/SIBios.c:
-	.text       start:0x8001191C end:0x80013A88
-
-dolphin/os/EXIBios.c:
-	.text       start:0x80013A88 end:0x80015A38
-
-dolphin/os/DBInterface.c:
-	.text       start:0x80015A38 end:0x80015B24
-
-dolphin/os/PSMathFns.c:
-	.text       start:0x80015B24 end:0x80015F80
-
-dolphin/dvd/dvdlow.c:
-	.text       start:0x80015F80 end:0x80016DC0
-
-dolphin/dvd/dvdfs.c:
-	.text       start:0x80016DC0 end:0x8001776C
-
-dolphin/dvd/dvd.c:
-	.text       start:0x8001776C end:0x80019E64
-
-dolphin/dvd/dvdqueue.c:
-	.text       start:0x80019E64 end:0x8001A05C
-
-dolphin/dvd/dvderror.c:
-	.text       start:0x8001A05C end:0x8001A31C
-
-dolphin/dvd/fstload.c:
-	.text       start:0x8001A31C end:0x8001A78C
-
-dolphin/vi/vifuncs.c:
-	.text       start:0x8001A78C end:0x8001A8B4
-
-dolphin/vi/vi_8001A8B4.c:
-	.text       start:0x8001A8B4 end:0x8001AF64
-
-dolphin/vi/viwait.c:
-	.text       start:0x8001AF64 end:0x8001AFB8
-
-dolphin/vi/vi_8001AFB8.c:
-	.text       start:0x8001AFB8 end:0x8001BC54
-
-dolphin/vi/viretrace.c:
-	.text       start:0x8001BC54 end:0x8001BE6C
-
-dolphin/vi/viregs.c:
-	.text       start:0x8001BE6C end:0x8001C01C
-
-dolphin/pad/pad_8001C01C.c:
-	.text       start:0x8001C01C end:0x8001DF00
-
-dolphin/pad/padmisc.c:
-	.text       start:0x8001DF00 end:0x8001DFCC
-
-dolphin/ai/airegs.c:
-	.text       start:0x8001DFCC end:0x8001DFFC
-
-dolphin/ai/AISampleRate.c:
-	.text       start:0x8001DFFC end:0x8001E2AC
-
-dolphin/dsp/dspleaf.c:
-	.text       start:0x8001E2AC end:0x8001E314
-
-dolphin/ai/AI.c:
-	.text       start:0x8001E314 end:0x8001E7E4
-
-dolphin/ar/AR.c:
-	.text       start:0x8001E7E4 end:0x80020360
-
-dolphin/ar/ARQ.c:
-	.text       start:0x80020360 end:0x80020724
-
-dolphin/ax/AX.c:
-	.text       start:0x80020724 end:0x800209DC
-
-dolphin/ax/AXAlloc.c:
-	.text       start:0x800209DC end:0x80020D58
-
-dolphin/ax/AXAux.c:
-	.text       start:0x80020D58 end:0x80021200
-
-dolphin/ax/AXCL.c:
-	.text       start:0x80021200 end:0x80021930
-
-dolphin/ax/AXOut.c:
-	.text       start:0x80021930 end:0x8002201C
-
-dolphin/ax/AXSPB.c:
-	.text       start:0x8002201C end:0x800224E4
-
-dolphin/ax/AXVPB.c:
-	.text       start:0x800224E4 end:0x80023684
-
-game/axmix_80023684.c:
-	.text       start:0x80023684 end:0x80024308
-
-game/axmix_80024308.c:
-	.text       start:0x80024308 end:0x80025504
-
-game/axmix_80025504.c:
-	.text       start:0x80025504 end:0x80026EE0
-
-game/axmix_80026EE0.c:
-	.text       start:0x80026EE0 end:0x80028CC0
-
-dolphin/dsp/DSP.c:
-	.text       start:0x80028CC0 end:0x80029828
-
-dolphin/card/CARDBios.c:
-	.text       start:0x80029828 end:0x8002A698
-
-dolphin/card/CARDMount.c:
-	.text       start:0x8002A698 end:0x8002AF34
-
-dolphin/card/CARDBlock.c:
-	.text       start:0x8002AF34 end:0x8002C8D0
-
-dolphin/card/CARDDir.c:
-	.text       start:0x8002C8D0 end:0x8002EED8
-
-dolphin/card/CARDCreate.c:
-	.text       start:0x8002EED8 end:0x8002F140
-
-dolphin/card/CARDRead.c:
-	.text       start:0x8002F140 end:0x8002F5B8
-
-dolphin/card/CARDWrite.c:
-	.text       start:0x8002F5B8 end:0x8002F934
-
-dolphin/card/CARDDelete.c:
-	.text       start:0x8002F934 end:0x8002FC5C
-
-dolphin/card/CARDStat.c:
-	.text       start:0x8002FC5C end:0x8003013C
-
-dolphin/card/CARDRename.c:
-	.text       start:0x8003013C end:0x80030380
-
-dolphin/card/CARDReadWrite.c:
-	.text       start:0x80030380 end:0x800307CC
-
-dolphin/gx/GXInit.c:
-	.text       start:0x800307CC end:0x80031C84
-
-dolphin/gx/GXFifo.c:
-	.text       start:0x80031C84 end:0x80032370
-
-dolphin/gx/GXAttr.c:
-	.text       start:0x80032370 end:0x80033D8C
-
-dolphin/gx/GXMisc.c:
-	.text       start:0x80033D8C end:0x8003458C
-
-dolphin/gx/GXGeometry.c:
-	.text       start:0x8003458C end:0x80036070
-
-dolphin/gx/GXTexture.c:
-	.text       start:0x80036070 end:0x800372E0
-
-dolphin/gx/GXLight.c:
-	.text       start:0x800372E0 end:0x8003887C
-
-dolphin/gx/GXDraw.c:
-	.text       start:0x8003887C end:0x8003BB30
-
-dolphin/gx/GXFog.c:
-	.text       start:0x8003BB30 end:0x8003E344
-
-dolphin/game/perfmon.c:
-	.text       start:0x8003E344 end:0x8003EC44
-
-game/gauge.c:
-	.text       start:0x8003EC44 end:0x8003FF88
-
-game/fn_8003FF88.c:
-	.text       start:0x8003FF88 end:0x800410A4
-
-game/tail_800410A4.c:
-	.text       start:0x800410A4 end:0x80041460
-
-game/criadx_80041460.c:
-	.text       start:0x80041460 end:0x80041BF8
-
-game/criadx_80041BF8.c:
-	.text       start:0x80041BF8 end:0x800424B8
-
-game/criadx_800424B8.c:
-	.text       start:0x800424B8 end:0x800433A4
-
-game/criadx_800433A4.c:
-	.text       start:0x800433A4 end:0x800443AC
-
-game/criadx_800443AC.c:
-	.text       start:0x800443AC end:0x800452FC
-
-game/criadx_800452FC.c:
-	.text       start:0x800452FC end:0x800462F8
-
-game/criadx_800462F8.c:
-	.text       start:0x800462F8 end:0x80047464
-
-game/criadx_80047464.c:
-	.text       start:0x80047464 end:0x80048340
-
-game/criadx_80048340.c:
-	.text       start:0x80048340 end:0x80049728
-
-game/criadx_80049728.c:
-	.text       start:0x80049728 end:0x8004A560
-
-game/adxt_8004A560.c:
-	.text       start:0x8004A560 end:0x8004AC04
-
-game/adxt_8004AC04.c:
-	.text       start:0x8004AC04 end:0x8004B7F4
-
-game/adxt_8004B7F4.c:
-	.text       start:0x8004B7F4 end:0x8004C164
-
-game/adxt_8004C164.c:
-	.text       start:0x8004C164 end:0x8004CD70
-
-game/adxt_8004CD70.c:
-	.text       start:0x8004CD70 end:0x8004E098
-
-game/adxt_8004E098.c:
-	.text       start:0x8004E098 end:0x8004F00C
-
-game/adxt_8004F00C.c:
-	.text       start:0x8004F00C end:0x80050180
-
-game/adxt_80050180.c:
-	.text       start:0x80050180 end:0x80050698
-
-game/adxt_80050698.c:
-	.text       start:0x80050698 end:0x80050BD4
-
-game/adxt_80050BD4.c:
-	.text       start:0x80050BD4 end:0x80050F90
-
-game/adxt_80050F90.c:
-	.text       start:0x80050F90 end:0x80051448
-
-game/adxt_80051448.c:
-	.text       start:0x80051448 end:0x80051F38
-
-game/adxt_80051F38.c:
-	.text       start:0x80051F38 end:0x80052430
-
-game/adxt_80052430.c:
-	.text       start:0x80052430 end:0x80053A30
-
-game/adxt_80053A30.c:
-	.text       start:0x80053A30 end:0x80053EA0
-
-game/adxt_80053EA0.c:
-	.text       start:0x80053EA0 end:0x80055708
-
-game/adxt_80055708.c:
-	.text       start:0x80055708 end:0x800570DC
-
-game/adxt_800570DC.c:
-	.text       start:0x800570DC end:0x800589BC
-
-game/adxt_800589BC.c:
-	.text       start:0x800589BC end:0x8005A24C
-
-game/adxt_8005A24C.c:
-	.text       start:0x8005A24C end:0x8005BC20
-
-game/adxt_8005BC20.c:
-	.text       start:0x8005BC20 end:0x8005C120
-
-game/gamehead_8005C120.c:
+coarse/text_8005C120.c:
 	.text       start:0x8005C120 end:0x80069AE0
 
-dolphin/mtx/MTXHead.c:
-	.text       start:0x80069AE0 end:0x8006CFF8
+coarse/text_80069AE0.c:
+	.text       start:0x80069AE0 end:0x80071CC0
 
-dolphin/mtx/MTXFused.c:
-	.text       start:0x8006CFF8 end:0x8006E1B0
+coarse/text_80071CC0.c:
+	.text       start:0x80071CC0 end:0x8007A060
 
-coarse/text_8006E1B0.c:
-	.text       start:0x8006E1B0 end:0x8006E200
+coarse/text_8007A060.c:
+	.text       start:0x8007A060 end:0x80083D40
 
-dolphin/mtx/MTX.c:
-	.text       start:0x8006E200 end:0x8006E324
+coarse/text_80083D40.c:
+	.text       start:0x80083D40 end:0x8008CB20
 
-dolphin/mtx/PSMTX.c:
-	.text       start:0x8006E324 end:0x8006EB4C
+coarse/text_8008CB20.c:
+	.text       start:0x8008CB20 end:0x8008FEE4
 
-dolphin/mtx/fn_8006EB4C.c:
-	.text       start:0x8006EB4C end:0x8006EFB4
-
-dolphin/mtx/fn_8006EFB4.c:
-	.text       start:0x8006EFB4 end:0x8006F394
-
-dolphin/mtx/fn_8006F394.c:
-	.text       start:0x8006F394 end:0x8006F6A8
-
-dolphin/mtx/fn_8006F6A8.c:
-	.text       start:0x8006F6A8 end:0x8006F900
-
-dolphin/mtx/fn_8006F900.c:
-	.text       start:0x8006F900 end:0x8006FC1C
-
-dolphin/mtx/fn_8006FC1C.c:
-	.text       start:0x8006FC1C end:0x8006FEFC
-
-dolphin/mtx/fn_8006FEFC.c:
-	.text       start:0x8006FEFC end:0x8007001C
-
-dolphin/mtx/fn_8007001C.c:
-	.text       start:0x8007001C end:0x80070158
-
-dolphin/mtx/fn_80070158.c:
-	.text       start:0x80070158 end:0x80070538
-
-dolphin/mtx/fn_80070538.c:
-	.text       start:0x80070538 end:0x80070774
-
-dolphin/mtx/fn_80070774.c:
-	.text       start:0x80070774 end:0x80070A58
-
-dolphin/mtx/fn_80070A58.c:
-	.text       start:0x80070A58 end:0x80070CF8
-
-dolphin/mtx/fn_80070CF8.c:
-	.text       start:0x80070CF8 end:0x80070E1C
-
-dolphin/mtx/fn_80070E1C.c:
-	.text       start:0x80070E1C end:0x80071100
-
-dolphin/mtx/fn_80071100.c:
-	.text       start:0x80071100 end:0x800712E4
-
-dolphin/mtx/fn_800712E4.c:
-	.text       start:0x800712E4 end:0x800715A0
-
-dolphin/mtx/fn_800715A0.c:
-	.text       start:0x800715A0 end:0x80071794
-
-dolphin/mtx/fn_80071794.c:
-	.text       start:0x80071794 end:0x80071C04
-
-dolphin/mtx/fn_80071C04.c:
-	.text       start:0x80071C04 end:0x80071CC0
-
-game/fn_80071CC0.c:
-	.text       start:0x80071CC0 end:0x800724CC
-
-game/gxfifo_800724CC.c:
-	.text       start:0x800724CC end:0x8007264C
-
-game/lightctrl_8007264C.c:
-	.text       start:0x8007264C end:0x80072EDC
-
-game/model_80072EDC.c:
-	.text       start:0x80072EDC end:0x80074A60
-
-game/gxstate_80074A60.c:
-	.text       start:0x80074A60 end:0x80074D88
-
-game/model_80074D88.c:
-	.text       start:0x80074D88 end:0x80078538
-
-game/skinning_80078538.c:
-	.text       start:0x80078538 end:0x800786B0
-
-game/model_800786B0.c:
-	.text       start:0x800786B0 end:0x800794F0
-
-dolphin/msl/runtime.c:
-	.text       start:0x800794F0 end:0x800797C0
-
-dolphin/msl/savegpr.c:
-	.text       start:0x800797C0 end:0x800798F0
-
-dolphin/msl/longlong.c:
-	.text       start:0x800798F0 end:0x80079EF0
-
-dolphin/msl/alloc.c:
-	.text       start:0x80079EF0 end:0x8007A060
-
-dolphin/msl/stdio_8007A060.c:
-	.text       start:0x8007A060 end:0x8007FF18
-
-dolphin/msl/multibyte.c:
-	.text       start:0x8007FF18 end:0x80080288
-
-dolphin/msl/mem.c:
-	.text       start:0x80080288 end:0x8008067C
-
-dolphin/msl/stdio_tail_8008067C.c:
-	.text       start:0x8008067C end:0x800807F4
-
-dolphin/msl/printf.c:
-	.text       start:0x800807F4 end:0x8008279C
-
-dolphin/msl/tail_8008279C.c:
-	.text       start:0x8008279C end:0x80083D40
-
-dolphin/msl/string.c:
-	.text       start:0x80083D40 end:0x80083E84
-
-dolphin/msl/msl_80083E84.c:
-	.text       start:0x80083E84 end:0x80088600
-
-dolphin/msl/math_80088600.c:
-	.text       start:0x80088600 end:0x80088648
-
-dolphin/trk/nubevent.c:
-	.text       start:0x80088648 end:0x80088910
-
-dolphin/trk/nubinit.c:
-	.text       start:0x80088910 end:0x80088B00
-
-dolphin/metrotrk/trk_80088B00.c:
-	.text       start:0x80088B00 end:0x8008CB20
-
-dolphin/metrotrk/init.c:
-	.text       start:0x8008CB20 end:0x8008CFDC
-
-dolphin/metrotrk/main.c:
-	.text       start:0x8008CFDC end:0x8008DD88
-
-dolphin/metrotrk/ddh.c:
-	.text       start:0x8008DD88 end:0x8008E114
-
-dolphin/metrotrk/support.c:
-	.text       start:0x8008E114 end:0x8008E37C
-
-dolphin/metrotrk/gdev.c:
-	.text       start:0x8008E37C end:0x8008E6C8
-
-dolphin/metrotrk/mw_trace.c:
-	.text       start:0x8008E6C8 end:0x8008E718
-
-dolphin/metrotrk/custom.c:
-	.text       start:0x8008E718 end:0x8008EEAC
-
-dolphin/metrotrk/userregion.c:
-	.text       start:0x8008EEAC end:0x8008F44C
-
-dolphin/metrotrk/uart.c:
-	.text       start:0x8008F44C end:0x8008FC3C
-
-dolphin/metrotrk/targimpl.c:
-	.text       start:0x8008FC3C end:0x8008FEE4
-
-dolphin/os/init/start.c:
-	.init       start:0x80003100 end:0x800032B0
-
-dolphin/os/init/__init_registers.c:
-	.init       start:0x800032B0 end:0x80003340
-
-dolphin/os/init/__init_data.c:
-	.init       start:0x80003340 end:0x80003400
-
-dolphin/os/init/__init_hardware.c:
-	.init       start:0x80003400 end:0x80003424
-
-dolphin/os/init/__flush_cache.c:
-	.init       start:0x80003424 end:0x80003458
-
-dolphin/os/init/fill_mem.c:
-	.init       start:0x80003458 end:0x80003540
-
-dolphin/os/init/memcpy.c:
-	.init       start:0x80003540 end:0x80003590
-
-dolphin/os/init/trk_stubs.c:
-	.init       start:0x80003590 end:0x800035E4
-
-dolphin/metrotrk/init_exceptions.c:
-	.init       start:0x800035E4 end:0x80005518
-
-dolphin/os/init/trk_reset.c:
-	.init       start:0x80005518 end:0x80005544
+coarse/init_80003100.c:
+	.init       start:0x80003100 end:0x80005544
