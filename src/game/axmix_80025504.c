@@ -734,11 +734,10 @@ asm void fn_80025EE0(void)
     blr	
 }
 
-asm void fn_80025EE4(void)
+// provenance: original — derived directly from fn_80025EE4 retail store
+void fn_80025EE4(void* a)
 {
-    nofralloc
-    stw	r3, lbl_801A6B88
-    blr	
+    *(volatile void**)lbl_801A6B88 = a;
 }
 
 void* AXGetMixStateWord(void)
