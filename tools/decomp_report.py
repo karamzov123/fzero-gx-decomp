@@ -34,7 +34,8 @@ def number(value):
     return float(value or 0)
 
 
-def measures(functions, total_code, total_functions, total_units, total_data=0, fuzzy=False):
+def measures(functions, total_code, total_functions, total_units, total_data=0, fuzzy=False,
+             complete_units=0):
     """Return a complete objdiff ``Measures`` object for a function subset.
 
     decomp.dev accepts the full objdiff v2 Measures schema.  Categories are
@@ -74,23 +75,39 @@ def measures(functions, total_code, total_functions, total_units, total_data=0, 
         "complete_data": "0",
         "complete_data_percent": 100.0 if not total_data else 0.0,
         "total_units": total_units,
-        "complete_units": matched_functions,
-        "complete_units_percent": round(100.0 * matched_functions / total_units, 5) if total_units else 100.0,
+        # complete_units is a UNIT count. It used to be assigned
+        # matched_functions, which published complete_units=285 against
+        # total_units=215 -> 132.5581%, a figure no consumer can accept.
+        "complete_units": complete_units,
+        "complete_units_percent": round(100.0 * complete_units / total_units, 5) if total_units else 100.0,
     }
 
 
 def build_categories(report, root):
     natural = []
     expressed = []
+    per_unit = []
     for unit in report.get("units", []):
         source = unit.get("metadata", {}).get("source_path")
         names = asm_names(root / source) if source else set()
+        unit_fns = []
         for function in unit.get("functions", []):
             name = function.get("name", "")
             if not name or GAP_NAME.search(name) or name in names:
                 continue
             expressed.append(function)
             natural.append(function)
+            unit_fns.append(function)
+        if unit_fns:
+            per_unit.append(unit_fns)
+
+    def complete_unit_count(fuzzy=False):
+        """Units in which every eligible function is fully matched."""
+        done = 0
+        for fns in per_unit:
+            if all(number(f.get("fuzzy_match_percent")) >= 100.0 for f in fns):
+                done += 1
+        return done
     diagnostic = copy.deepcopy(report.get("measures", {}))
     totals = report.get("measures", {})
     total_code = int(totals.get("total_code", 0) or 0)
@@ -99,8 +116,10 @@ def build_categories(report, root):
     total_units = int(totals.get("total_units", 0) or 0)
     return [
         {"id": "diagnostic", "name": "Diagnostic objdiff", "measures": diagnostic},
-        {"id": "natural-c", "name": "Exact natural C", "measures": measures(natural, total_code, total_functions, total_units, total_data)},
-        {"id": "c-expressed", "name": "C-expressed (fuzzy supplemental)", "measures": measures(expressed, total_code, total_functions, total_units, total_data, fuzzy=True)},
+        {"id": "natural-c", "name": "Exact natural C", "measures": measures(natural, total_code, total_functions, total_units, total_data,
+                                                                  complete_units=complete_unit_count())},
+        {"id": "c-expressed", "name": "C-expressed (fuzzy supplemental)", "measures": measures(expressed, total_code, total_functions, total_units, total_data, fuzzy=True,
+                                                                       complete_units=complete_unit_count(fuzzy=True))},
     ]
 
 

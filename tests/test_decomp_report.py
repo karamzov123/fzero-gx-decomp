@@ -73,7 +73,19 @@ class DecompReportTest(unittest.TestCase):
             self.assertEqual(cats["natural-c"]["measures"]["complete_data"], "16")
             self.assertEqual(cats["natural-c"]["measures"]["complete_data_percent"], 1.6)
             self.assertEqual(cats["natural-c"]["measures"]["total_units"], 1)
-            self.assertEqual(cats["natural-c"]["measures"]["complete_units_percent"], 100.0)
+            # The fixture's single unit contains `partial` at 50 %, so the unit
+            # is NOT complete. This asserted 100.0 while complete_units was
+            # (wrongly) the matched-FUNCTION count; in production that published
+            # complete_units=285 against total_units=215 -> 132.5581 %.
+            self.assertEqual(cats["natural-c"]["measures"]["complete_units"], 0)
+            self.assertEqual(cats["natural-c"]["measures"]["complete_units_percent"], 0.0)
+            # Invariant that the old behaviour violated.
+            # `diagnostic` is a passthrough of upstream objdiff measures and
+            # need not carry these keys; the generated categories must.
+            for name in ("natural-c", "c-expressed"):
+                m = cats[name]["measures"]
+                self.assertLessEqual(m["complete_units"], m["total_units"])
+                self.assertLessEqual(m["complete_units_percent"], 100.0)
             self.assertEqual(cats["c-expressed"]["measures"]["matched_functions"], 1)
             self.assertEqual(cats["diagnostic"]["measures"], report["measures"])
             self.assertEqual(cats["diagnostic"]["measures"]["total_data"], "1000")
