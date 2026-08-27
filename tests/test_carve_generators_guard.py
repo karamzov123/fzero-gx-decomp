@@ -23,6 +23,12 @@ GENERATORS = {
     "gen_gamehead.py": "src/game/gamehead_8005C120.c",
     "gen_mtx_probe.py": "src/dolphin/mtx/MTX.c",
     "gen_carve_cb20.py": "src/dolphin/metrotrk/<fam>.c",  # path built via os.path.join
+    "sda21_fix.py": "src/dolphin/os/OSPanic.c",          # in-place rewrite of tracked src/
+    "sda21_symbolize.py": "src/dolphin/os/OSPanic.c",     # in-place rewrite of tracked src/
+    "convert_global_named.py": "src/dolphin/os/OSThread.c",  # glob src/**/<unit>.c in place
+    "gen_asm_from_disasm.py": "src/dolphin/os/OSThreadScheduler.c",  # hardcoded tracked src/
+    "fix_reloc_pairs.py": "src/dolphin/os/OSThread.c",   # src/**/*.c in place (--all)
+    "rename_sym.py": "src/dolphin/os/OSThread.c",        # every matching src/**/*.c in place
 }
 
 
