@@ -7,6 +7,36 @@ typedef signed int s32;
 
 // MetroTRK remainder 0x80088B00-0x8008CB20 (pm10-c region B)
 
+extern unsigned char gTRKCPUState[0x430];
+extern unsigned char gTRKInputPendingPtrStore[0x8];
+extern unsigned char gTRKMemMap[0x10];
+extern unsigned char gTRKMsgBufs[0x19B0];
+extern unsigned char gTRKOptionsBuffer[0x34];
+extern unsigned char gTRKRestoreFlags[0x9];
+extern unsigned char gTRKSaveState[0x94];
+extern unsigned char gTRKState[0xA4];
+extern unsigned char gTRKStepStatus[0x14];
+extern unsigned char jumptable_8015B7C0[0x6C];
+extern unsigned char jumptable_8015B830[0x1C];
+extern unsigned char jumptable_8015B84C[0x1C];
+extern unsigned char lbl_800956C0[0x190];
+extern unsigned char lbl_80095850[0x19];
+extern unsigned char lbl_8009586C[0x1D];
+extern unsigned char lbl_800958C4[0x2C];
+extern unsigned char lbl_800958F0[0x1F];
+extern unsigned char lbl_80095910[0x15C];
+extern unsigned char lbl_80095A74[0x2];
+extern unsigned char lbl_80095A78[0xA8];
+extern unsigned char lbl_80095B30[0x28];
+extern unsigned char lbl_80095B58[0x28];
+extern unsigned char lbl_80095B80[0x28];
+extern unsigned char lbl_80095BA8[0x10];
+extern unsigned char lbl_801A5098[0x18];
+extern unsigned char lbl_801A5624[0x14];
+extern unsigned char str_NoBufferAvailable[0x1D];
+extern unsigned char x_str[0x6];
+extern unsigned char gTRKBigEndian[4];
+extern unsigned char lbl_80095678[0x25];
 extern void memset(void);
 extern void fn_80003590(void);
 extern void TRK_memcpy(void);
@@ -76,10 +106,10 @@ asm void TRKMessageSend(void)
     lwz	r4, 8(r3)
     addi	r3, r3, 0x10
     bl      TRKDoWrite
-    lis	r4, -0x7ff7
+    lis	r4, lbl_80095678@ha
     mr	r5, r3
     li	r3, 1
-    addi	r4, r4, 0x5678
+    addi	r4, r4, lbl_80095678@l
     crxor	6, 6, 6
     bl      MWTRACE
     lwz	r0, 0x14(r1)
@@ -94,13 +124,13 @@ asm void TRKAppendBuffer_ui32(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r6, -0x7fe6
+    lis	r6, gTRKBigEndian@ha
     stw	r0, 0x34(r1)
     stmw	r24, 0x10(r1)
     mr	r28, r3
     mr	r29, r5
     mr	r31, r4
-    addi	r27, r6, 0x36e0
+    addi	r27, r6, gTRKBigEndian@l
     li	r30, 0
     li	r3, 0
     b       _80088c10
@@ -213,12 +243,12 @@ asm void TRKAppendBuffer1_ui64(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r5, -0x7fe6
+    lis	r5, gTRKBigEndian@ha
     stw	r0, 0x34(r1)
     stmw	r27, 0x1c(r1)
     mr	r27, r3
     mr	r30, r4
-    lwz	r0, 0x36e0(r5)
+    lwz	r0, gTRKBigEndian@l(r5)
     cmpwi	r0, 0
     bc      12, 2, _80088cfc
     mr	r31, r30
@@ -242,10 +272,10 @@ _80088d24:
     add	r4, r27, r4
     bl      TRK_memcpy
     lwz	r0, 0xc(r27)
-    lis	r3, -0x7fe6
+    lis	r3, gTRKBigEndian@ha
     add	r0, r0, r28
     stw	r0, 0xc(r27)
-    lwz	r0, 0x36e0(r3)
+    lwz	r0, gTRKBigEndian@l(r3)
     cmpwi	r0, 0
     bc      4, 2, _80088d9c
     cmpwi	r29, 0
@@ -280,13 +310,13 @@ asm void TRKReadBuffer_ui32(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r6, -0x7fe6
+    lis	r6, gTRKBigEndian@ha
     stw	r0, 0x34(r1)
     stmw	r25, 0x14(r1)
     mr	r27, r3
     mr	r28, r5
     mr	r30, r4
-    addi	r31, r6, 0x36e0
+    addi	r31, r6, gTRKBigEndian@l
     li	r29, 0
     li	r3, 0
     b       _80088e8c
@@ -392,13 +422,13 @@ asm void TRKReadBuffer1_ui64(void)
     nofralloc
     stwu	r1, -0x30(r1)
     mflr	r0
-    lis	r4, -0x7fe6
+    lis r4, gTRKBigEndian@ha
     stw	r0, 0x34(r1)
     stw	r31, 0x2c(r1)
     mr	r31, r3
     stw	r30, 0x28(r1)
     stw	r29, 0x24(r1)
-    lwz	r0, 0x36e0(r4)
+    lwz r0, gTRKBigEndian@l(r4)
     stw	r5, 8(r1)
     cmpwi	r0, 0
     stw	r6, 0xc(r1)
@@ -609,8 +639,8 @@ asm void TRKReleaseBuffer(void)
     cmpwi	r3, 3
     bc      4, 0, _80089204
     mulli	r4, r3, 0x890
-    lis	r3, -0x7fe6
-    addi	r0, r3, 0x36e8
+    lis r3, gTRKMsgBufs@ha
+    addi r0, r3, gTRKMsgBufs@l
     add	r31, r0, r4
     mr	r3, r31
     bl      TRKReleaseMutex_stub
@@ -635,8 +665,8 @@ asm void TRKGetBuffer(void)
     cmpwi	r3, 3
     bc      4, 0, _8008923c
     mulli	r4, r3, 0x890
-    lis	r3, -0x7fe6
-    addi	r0, r3, 0x36e8
+    lis r3, gTRKMsgBufs@ha
+    addi r0, r3, gTRKMsgBufs@l
     add	r0, r0, r4
 _8008923c:
     mr	r3, r0
@@ -664,8 +694,8 @@ _80089270:
     cmpwi	r29, 3
     bc      4, 0, _80089294
     mulli	r4, r29, 0x890
-    lis	r3, -0x7fe6
-    addi	r0, r3, 0x36e8
+    lis r3, gTRKMsgBufs@ha
+    addi r0, r3, gTRKMsgBufs@l
     add	r31, r0, r4
 _80089294:
     mr	r3, r31
@@ -691,8 +721,8 @@ _800892d8:
     bc      12, 0, _80089270
     cmpwi	r30, 0x300
     bc      4, 2, _800892f4
-    lis	r3, -0x7ff7
-    addi	r3, r3, 0x56a0
+    lis r3, str_NoBufferAvailable@ha
+    addi r3, r3, str_NoBufferAvailable@l
     bl      usr_puts
 _800892f4:
     mr	r3, r30
@@ -708,12 +738,12 @@ asm void TRKInitializeMessageBuffers(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r3, -0x7fe6
+    lis r3, gTRKMsgBufs@ha
     stw	r0, 0x24(r1)
     stw	r31, 0x1c(r1)
     li	r31, 0
     stw	r30, 0x18(r1)
-    addi	r30, r3, 0x36e8
+    addi r30, r3, gTRKMsgBufs@l
     stw	r29, 0x14(r1)
     li	r29, 0
 _80089334:
@@ -750,14 +780,14 @@ asm void TRKInitializeSerialHandler(void)
     nofralloc
     stwu	r1, -0x10(r1)
     mflr	r0
-    lis	r3, -0x7fe6
-    lis	r4, -0x7ff7
+    lis r3, lbl_801A5098@ha
+    lis r4, lbl_800956C0@ha
     stw	r0, 0x14(r1)
-    addi	r6, r3, 0x5098
+    addi r6, r3, lbl_801A5098@l
     li	r0, 0
     li	r3, -1
     stw	r31, 0xc(r1)
-    addi	r31, r4, 0x56c0
+    addi r31, r4, lbl_800956C0@l
     addi	r4, r31, 0
     li	r5, 0x40
     stw	r3, 0(r6)
@@ -810,9 +840,9 @@ asm void TRKProcessInput(void)
     mr	r31, r3
     addi	r3, r1, 8
     bl      TRKConstructEvent
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5098@ha
     li	r0, -1
-    addi	r4, r3, 0x5098
+    addi r4, r3, lbl_801A5098@l
     stw	r31, 0x10(r1)
     addi	r3, r1, 8
     stw	r0, 0(r4)
@@ -839,9 +869,9 @@ asm void TRKGetInput(void)
     addi	r3, r1, 8
     li	r4, 2
     bl      TRKConstructEvent
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5098@ha
     li	r0, -1
-    addi	r4, r3, 0x5098
+    addi r4, r3, lbl_801A5098@l
     stw	r31, 0x10(r1)
     addi	r3, r1, 8
     stw	r0, 0(r4)
@@ -859,10 +889,10 @@ asm void TRKTestForPacket(void)
     nofralloc
     stwu	r1, -0x8e0(r1)
     mflr	r0
-    lis	r3, -0x7ff7
+    lis r3, lbl_800956C0@ha
     stw	r0, 0x8e4(r1)
     stw	r31, 0x8dc(r1)
-    addi	r31, r3, 0x56c0
+    addi r31, r3, lbl_800956C0@l
     stw	r30, 0x8d8(r1)
     bl      TRKPollUART
     cmpwi	r3, 0
@@ -1003,18 +1033,18 @@ asm void TRKDispatchMessage(void)
     stw	r30, 8(r1)
     mr	r30, r3
     bl      TRKSetBufferPosition
-    lis	r3, -0x7ff7
+    lis r3, lbl_80095850@ha
     lbz	r5, 0x14(r30)
-    addi	r4, r3, 0x5850
+    addi r4, r3, lbl_80095850@l
     li	r3, 1
     crxor	6, 6, 6
     bl      MWTRACE
     lbz	r0, 0x14(r30)
     cmplwi	r0, 0x1a
     bc      12, 1, _80089800
-    lis	r3, -0x7fea
+    lis r3, jumptable_8015B7C0@ha
     slwi	r0, r0, 2
-    addi	r3, r3, -0x4840
+    addi r3, r3, jumptable_8015B7C0@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr
@@ -1074,9 +1104,9 @@ asm void TRKDispatchMessage(void)
     bl      TRKDoPing
     mr	r31, r3
 _80089800:
-    lis	r3, -0x7ff7
+    lis r3, lbl_8009586C@ha
     mr	r5, r31
-    addi	r4, r3, 0x586c
+    addi r4, r3, lbl_8009586C@l
     li	r3, 1
     crxor	6, 6, 6
     bl      MWTRACE
@@ -1101,10 +1131,10 @@ asm void TRKDoPing(void)
     nofralloc
     stwu	r1, -0x50(r1)
     mflr	r0
-    lis	r4, -0x7ff7
+    lis r4, gTRKOptionsBuffer@ha
     stw	r0, 0x54(r1)
     stw	r31, 0x4c(r1)
-    addi	r31, r4, 0x5890
+    addi r31, r4, gTRKOptionsBuffer@l
     stw	r30, 0x48(r1)
     lbz	r0, 0x18(r3)
     lbz	r30, 0x1c(r3)
@@ -1357,10 +1387,10 @@ asm void TRK_serialIO_init(void)
     nofralloc
     stwu	r1, -0x90(r1)
     mflr	r0
-    lis	r4, -0x7ff7
+    lis r4, lbl_800958C4@ha
     li	r3, 1
     stw	r0, 0x94(r1)
-    addi	r4, r4, 0x58c4
+    addi r4, r4, lbl_800958C4@l
     crxor	6, 6, 6
     bl      MWTRACE
     bl      TRKTargetStopped
@@ -1567,17 +1597,17 @@ _80089e58:
     li	r3, 0
     b       _80089ecc
 _80089e90:
-    lis	r4, -0x7ff7
+    lis r4, lbl_800958F0@ha
     li	r3, 1
-    addi	r4, r4, 0x58f0
+    addi r4, r4, lbl_800958F0@l
     crxor	6, 6, 6
     bl      MWTRACE
     mr	r3, r28
     bl      TRKMessageSend
     mr	r31, r3
-    lis	r4, -0x7ff7
+    lis r4, lbl_80095910@ha
     li	r3, 1
-    addi	r4, r4, 0x5910
+    addi r4, r4, lbl_80095910@l
     mr	r5, r31
     crxor	6, 6, 6
     bl      MWTRACE
@@ -1598,10 +1628,10 @@ asm void TRKDoWriteRegisters(void)
     nofralloc
     stwu	r1, -0xe0(r1)
     mflr	r0
-    lis	r5, -0x7ff7
+    lis r5, gTRKOptionsBuffer@ha
     stw	r0, 0xe4(r1)
     stw	r31, 0xdc(r1)
-    addi	r31, r5, 0x5890
+    addi r31, r5, gTRKOptionsBuffer@l
     stw	r30, 0xd8(r1)
     stw	r29, 0xd4(r1)
     mr	r29, r3
@@ -1805,8 +1835,8 @@ asm void TRKDoReadMemory(void)
     stw	r0, 0x8f4(r1)
     stmw	r27, 0x8dc(r1)
     mr	r27, r3
-    lis	r3, -0x7ff7
-    addi	r31, r3, 0x5890
+    lis r3, gTRKOptionsBuffer@ha
+    addi r31, r3, gTRKOptionsBuffer@l
     addi	r4, r31, 0x180
     li	r3, 1
     lwz	r28, 0x20(r27)
@@ -1878,9 +1908,9 @@ _8008a2e8:
     addi	r0, r30, -0x700
     cmplwi	r0, 6
     bc      12, 1, _8008a33c
-    lis	r3, -0x7fea
+    lis r3, jumptable_8015B830@ha
     slwi	r0, r0, 2
-    addi	r3, r3, -0x47d0
+    addi r3, r3, jumptable_8015B830@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr
@@ -1941,8 +1971,8 @@ asm void TRKDoWriteMemory(void)
     stw	r0, 0x8f4(r1)
     stmw	r27, 0x8dc(r1)
     mr	r27, r3
-    lis	r3, -0x7ff7
-    addi	r31, r3, 0x5890
+    lis r3, gTRKOptionsBuffer@ha
+    addi r31, r3, gTRKOptionsBuffer@l
     addi	r4, r31, 0x1b0
     li	r3, 1
     lwz	r28, 0x20(r27)
@@ -2012,9 +2042,9 @@ _8008a4d4:
     addi	r0, r30, -0x700
     cmplwi	r0, 6
     bc      12, 1, _8008a528
-    lis	r3, -0x7fea
+    lis r3, jumptable_8015B84C@ha
     slwi	r0, r0, 2
-    addi	r3, r3, -0x47b4
+    addi r3, r3, jumptable_8015B84C@l
     lwzx	r0, r3, r0
     mtctr	r0
     bctr
@@ -2140,10 +2170,10 @@ asm void TRKDoDisconnect(void)
     nofralloc
     stwu	r1, -0x60(r1)
     mflr	r0
-    lis	r3, -0x7fe6
+    lis r3, gTRKInputPendingPtrStore@ha
     li	r5, 0x40
     stw	r0, 0x64(r1)
-    addi	r4, r3, 0x50b0
+    addi r4, r3, gTRKInputPendingPtrStore@l
     li	r0, 0
     addi	r3, r1, 0x14
     stw	r0, 0(r4)
@@ -2175,10 +2205,10 @@ asm void TRKDoSetOption(void)
     nofralloc
     stwu	r1, -0x50(r1)
     mflr	r0
-    lis	r3, -0x7fe6
+    lis r3, gTRKInputPendingPtrStore@ha
     li	r5, 0x40
     stw	r0, 0x54(r1)
-    addi	r4, r3, 0x50b0
+    addi r4, r3, gTRKInputPendingPtrStore@l
     li	r0, 1
     addi	r3, r1, 8
     stw	r0, 0(r4)
@@ -2203,16 +2233,16 @@ asm void TRKDoSetOption(void)
 asm void TRK_SetInputPendingPtrStore(void)
 {
     nofralloc
-    lis	r4, -0x7fe6
-    stw	r3, 0x50b0(r4)
+    lis r4, gTRKInputPendingPtrStore@ha
+    stw r3, gTRKInputPendingPtrStore@l(r4)
     blr
 }
 
 asm void TRK_IsInputPending(void)
 {
     nofralloc
-    lis	r3, -0x7fe6
-    addi	r3, r3, 0x50b0
+    lis r3, gTRKInputPendingPtrStore@ha
+    addi r3, r3, gTRKInputPendingPtrStore@l
     lwz	r3, 0(r3)
     blr
 }
@@ -2222,14 +2252,14 @@ asm void usr_put(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r6, -0x7ff7
-    lis	r5, -0x7ff7
+    lis r6, x_str@ha
+    lis r5, lbl_80095A74@ha
     stw	r0, 0x24(r1)
     stmw	r27, 0xc(r1)
     mr	r27, r4
     mr	r31, r3
-    addi	r29, r6, 0x5a6c
-    addi	r30, r5, 0x5a74
+    addi r29, r6, x_str@l
+    addi r30, r5, lbl_80095A74@l
     li	r28, 0
     b       _8008a7dc
 _8008a794:
@@ -2255,9 +2285,9 @@ _8008a7d4:
 _8008a7dc:
     cmpw	r28, r27
     bc      12, 0, _8008a794
-    lis	r4, -0x7ff7
+    lis r4, lbl_80095A74@ha
     li	r3, 8
-    addi	r4, r4, 0x5a74
+    addi r4, r4, lbl_80095A74@l
     crxor	6, 6, 6
     bl      MWTRACE
     lmw	r27, 0xc(r1)
@@ -2498,11 +2528,11 @@ asm void TRKRequestSend(void)
     li	r0, -1
     stmw	r21, 0x14(r1)
     mr	r22, r4
-    lis	r4, -0x7ff7
+    lis r4, lbl_80095A78@ha
     mr	r21, r3
     mr	r23, r7
     addi	r27, r6, 1
-    addi	r31, r4, 0x5a78
+    addi r31, r4, lbl_80095A78@l
     li	r30, 0
     li	r24, 1
     stw	r0, 0(r22)
@@ -2986,8 +3016,8 @@ asm void TRKInterruptHandler(void)
     mfspr	r4, 0x113
     mfcr	r2
     mtspr	0x113, r2
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50bc
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
     lwz	r2, 0x8c(r2)
     ori	r2, r2, 0x8002
     xori	r2, r2, 0x8002
@@ -2999,17 +3029,17 @@ asm void TRKInterruptHandler(void)
     sth	r3, 0(r2)
     cmpwi	r3, 0x500
     bc      4, 2, _8008b1f4
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x5160
+    lis r2, gTRKCPUState@h
+    ori r2, r2, gTRKCPUState@l
     mflr	r3
     stw	r3, 0x42c(r2)
     bl      TRKUARTInterruptHandler
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x5160
+    lis r2, gTRKCPUState@h
+    ori r2, r2, gTRKCPUState@l
     lwz	r3, 0x42c(r2)
     mtlr	r3
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50bc
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
     lwz	r2, 0xa0(r2)
     lbz	r2, 0(r2)
     cmpwi	r2, 0
@@ -3019,14 +3049,14 @@ asm void TRKInterruptHandler(void)
     lbz	r2, 0xc(r2)
     cmpwi	r2, 1
     bc      12, 2, _8008b1d8
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50bc
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
     li	r3, 1
     stb	r3, 0x9c(r2)
     b       _8008b1f4
 _8008b1d8:
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x5590
+    lis r2, gTRKSaveState@h
+    ori r2, r2, gTRKSaveState@l
     lwz	r3, 0x88(r2)
     mtcrf	0xff, r3
     lwz	r3, 0xc(r2)
@@ -3041,8 +3071,8 @@ _8008b1f4:
     lbz	r2, 0xc(r2)
     cmpwi	r2, 0
     bc      4, 2, TRKExceptionHandler
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x5160
+    lis r2, gTRKCPUState@h
+    ori r2, r2, gTRKCPUState@l
     stw	r0, 0(r2)
     stw	r1, 4(r2)
     mfspr	r0, 0x111
@@ -3063,8 +3093,8 @@ _8008b1f4:
     ori	r2, r2, 0xb874
     li	r3, 1
     stb	r3, 0xc(r2)
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50bc
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
     lwz	r0, 0x8c(r2)
     sync	
     mtmsr	r0
@@ -3135,8 +3165,8 @@ _8008b338:
 asm void TRKSwapAndGo(void)
 {
     nofralloc
-    lis	r3, -0x7fe6
-    ori	r3, r3, 0x50bc
+    lis r3, gTRKState@h
+    ori r3, r3, gTRKState@l
     stmw	r0, 0(r3)
     mfmsr	r0
     stw	r0, 0x8c(r3)
@@ -3155,14 +3185,14 @@ asm void TRKSwapAndGo(void)
     mfmsr	r3
     and	r3, r3, r1
     mtmsr	r3
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50bc
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
     lwz	r2, 0xa0(r2)
     lbz	r2, 0(r2)
     cmpwi	r2, 0
     bc      12, 2, _8008b3d8
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50bc
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
     li	r3, 1
     stb	r3, 0x9c(r2)
     b       TRKInterruptHandlerEnableInterrupts
@@ -3172,8 +3202,8 @@ _8008b3d8:
     li	r3, 0
     stb	r3, 0xc(r2)
     bl      TRKRestoreExtended1Block
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x5160
+    lis r2, gTRKCPUState@h
+    ori r2, r2, gTRKCPUState@l
     lmw	r27, 0x80(r2)
     mtspr	0x1a, r27
     mtlr	r28
@@ -3190,8 +3220,8 @@ _8008b3d8:
 asm void TRKInterruptHandlerEnableInterrupts(void)
 {
     nofralloc
-    lis	r2, -0x7fe6
-    ori	r2, r2, 0x50bc
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
     lwz	r0, 0x8c(r2)
     sync	
     mtmsr	r0
@@ -3216,8 +3246,8 @@ asm void TRKInterruptHandlerEnableInterrupts(void)
 asm void TRKTargetSetInputPendingPtr(void)
 {
     nofralloc
-    lis	r4, -0x7fe6
-    addi	r4, r4, 0x50bc
+    lis r4, gTRKState@ha
+    addi r4, r4, gTRKState@l
     stw	r3, 0xa0(r4)
     blr
 }
@@ -3225,9 +3255,9 @@ asm void TRKTargetSetInputPendingPtr(void)
 asm void TRKTargetStop(void)
 {
     nofralloc
-    lis	r3, -0x7fe6
+    lis r3, gTRKState@ha
     li	r0, 1
-    addi	r4, r3, 0x50bc
+    addi r4, r3, gTRKState@l
     li	r3, 0
     stw	r0, 0x98(r4)
     blr
@@ -3236,8 +3266,8 @@ asm void TRKTargetStop(void)
 asm void TRKTargetSetStopped(void)
 {
     nofralloc
-    lis	r4, -0x7fe6
-    addi	r4, r4, 0x50bc
+    lis r4, gTRKState@ha
+    addi r4, r4, gTRKState@l
     stw	r3, 0x98(r4)
     blr
 }
@@ -3245,8 +3275,8 @@ asm void TRKTargetSetStopped(void)
 asm void TRKTargetStopped(void)
 {
     nofralloc
-    lis	r3, -0x7fe6
-    addi	r3, r3, 0x50bc
+    lis r3, gTRKState@ha
+    addi r3, r3, gTRKState@l
     lwz	r3, 0x98(r3)
     blr
 }
@@ -3256,10 +3286,10 @@ asm void TRKTargetSupportRequest(void)
     nofralloc
     stwu	r1, -0x40(r1)
     mflr	r0
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     stw	r0, 0x44(r1)
     stmw	r27, 0x2c(r1)
-    addi	r31, r3, 0x5160
+    addi r31, r3, gTRKCPUState@l
     lwz	r27, 0xc(r31)
     cmpwi	r27, 0xd1
     bc      12, 2, _8008b51c
@@ -3281,9 +3311,9 @@ asm void TRKTargetSupportRequest(void)
 _8008b51c:
     cmpwi	r27, 0xd2
     bc      4, 2, _8008b570
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     addi	r6, r1, 0xc
-    addi	r4, r3, 0x5160
+    addi r4, r3, gTRKCPUState@l
     lwz	r0, 0x14(r4)
     lwz	r3, 0x10(r4)
     lwz	r5, 0x18(r4)
@@ -3304,9 +3334,9 @@ _8008b564:
 _8008b570:
     cmpwi	r27, 0xd3
     bc      4, 2, _8008b5b8
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     addi	r4, r1, 0xc
-    addi	r3, r3, 0x5160
+    addi r3, r3, gTRKCPUState@l
     lwz	r3, 0x10(r3)
     bl      TRK_CloseFile
     lwz	r0, 0xc(r1)
@@ -3324,9 +3354,9 @@ _8008b5ac:
 _8008b5b8:
     cmpwi	r27, 0xd4
     bc      4, 2, _8008b624
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     addi	r4, r1, 8
-    addi	r29, r3, 0x5160
+    addi r29, r3, gTRKCPUState@l
     addi	r6, r1, 0xc
     lwz	r3, 0x14(r29)
     lwz	r0, 0x18(r29)
@@ -3351,9 +3381,9 @@ _8008b60c:
     stw	r0, 0(r3)
     b       _8008b690
 _8008b624:
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     subfic	r0, r27, 0xd1
-    addi	r29, r3, 0x5160
+    addi r29, r3, gTRKCPUState@l
     addi	r6, r1, 0xc
     lwz	r28, 0x14(r29)
     cntlzw	r0, r0
@@ -3380,9 +3410,9 @@ _8008b674:
     lwz	r4, 0(r28)
     bl      TRK_flush_cache
 _8008b690:
-    lis	r4, -0x7fe6
+    lis r4, gTRKCPUState@ha
     mr	r3, r30
-    addi	r5, r4, 0x5160
+    addi r5, r4, gTRKCPUState@l
     lwz	r4, 0x80(r5)
     addi	r0, r4, 4
     stw	r0, 0x80(r5)
@@ -3397,8 +3427,8 @@ _8008b6a8:
 asm void TRKTargetGetPC(void)
 {
     nofralloc
-    lis	r3, -0x7fe6
-    addi	r3, r3, 0x5160
+    lis r3, gTRKCPUState@ha
+    addi r3, r3, gTRKCPUState@l
     lwz	r3, 0x80(r3)
     blr
 }
@@ -3415,12 +3445,12 @@ asm void TRKTargetCheckStep(void)
     li	r3, 0x703
     b       _8008b770
 _8008b6ec:
-    lis	r6, -0x7fea
-    lis	r5, -0x7ff7
-    addi	r31, r6, -0x477c
+    lis r6, gTRKStepStatus@ha
+    lis r5, lbl_80095BA8@ha
+    addi r31, r6, gTRKStepStatus@l
     li	r6, 1
     stw	r3, 0xc(r31)
-    addi	r0, r5, 0x5ba8
+    addi r0, r5, lbl_80095BA8@l
     li	r3, 1
     stw	r4, 0x10(r31)
     mr	r4, r0
@@ -3428,9 +3458,9 @@ _8008b6ec:
     stw	r6, 0(r31)
     crxor	6, 6, 6
     bl      MWTRACE
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     lwz	r4, 4(r31)
-    addi	r3, r3, 0x5160
+    addi r3, r3, gTRKCPUState@l
     lwz	r0, 0x1f8(r3)
     cmpwi	r4, 0
     ori	r0, r0, 0x400
@@ -3439,15 +3469,15 @@ _8008b6ec:
     cmpwi	r4, 0x10
     bc      4, 2, _8008b75c
 _8008b748:
-    lis	r3, -0x7fea
-    addi	r4, r3, -0x477c
+    lis r3, gTRKStepStatus@ha
+    addi r4, r3, gTRKStepStatus@l
     lwz	r3, 8(r4)
     addi	r0, r3, -1
     stw	r0, 8(r4)
 _8008b75c:
-    lis	r3, -0x7fe6
+    lis r3, gTRKState@ha
     li	r0, 0
-    addi	r4, r3, 0x50bc
+    addi r4, r3, gTRKState@l
     li	r3, 0
     stw	r0, 0x98(r4)
 _8008b770:
@@ -3470,21 +3500,21 @@ asm void TRKTargetDoStep(void)
     li	r3, 0x703
     b       _8008b81c
 _8008b7a4:
-    lis	r5, -0x7fea
-    lis	r4, -0x7ff7
-    addi	r31, r5, -0x477c
+    lis r5, gTRKStepStatus@ha
+    lis r4, lbl_80095BA8@ha
+    addi r31, r5, gTRKStepStatus@l
     li	r0, 1
     li	r5, 0
     stw	r3, 8(r31)
-    addi	r4, r4, 0x5ba8
+    addi r4, r4, lbl_80095BA8@l
     li	r3, 1
     stw	r5, 4(r31)
     stw	r0, 0(r31)
     crxor	6, 6, 6
     bl      MWTRACE
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     lwz	r4, 4(r31)
-    addi	r3, r3, 0x5160
+    addi r3, r3, gTRKCPUState@l
     lwz	r0, 0x1f8(r3)
     cmpwi	r4, 0
     ori	r0, r0, 0x400
@@ -3497,9 +3527,9 @@ _8008b7fc:
     addi	r0, r3, -1
     stw	r0, 8(r31)
 _8008b808:
-    lis	r3, -0x7fe6
+    lis r3, gTRKState@ha
     li	r0, 0
-    addi	r4, r3, 0x50bc
+    addi r4, r3, gTRKState@l
     li	r3, 0
     stw	r0, 0x98(r4)
 _8008b81c:
@@ -3560,9 +3590,9 @@ asm void TRKTargetAddStopInfo(void)
     mr	r31, r3
     addi	r3, r1, 0xc
     bl      memset
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     li	r5, 0x40
-    addi	r3, r3, 0x5160
+    addi r3, r3, gTRKCPUState@l
     li	r0, 0x90
     lwz	r4, 0x80(r3)
     addi	r3, r1, 8
@@ -3570,9 +3600,9 @@ asm void TRKTargetAddStopInfo(void)
     stb	r0, 0x10(r1)
     stw	r4, 0x14(r1)
     bl      TRKTargetReadInstruction
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     lwz	r5, 8(r1)
-    addi	r4, r3, 0x5160
+    addi r4, r3, gTRKCPUState@l
     mr	r3, r31
     lwz	r0, 0x2f8(r4)
     addi	r4, r1, 0xc
@@ -3604,14 +3634,14 @@ asm void TRKTargetInterrupt(void)
     bc      4, 0, _8008b970
     b       _8008bab4
 _8008b970:
-    lis	r3, -0x7fea
-    addi	r4, r3, -0x477c
+    lis r3, gTRKStepStatus@ha
+    addi r4, r3, gTRKStepStatus@l
     lwz	r0, 0(r4)
     cmpwi	r0, 0
     bc      12, 2, _8008ba88
-    lis	r3, -0x7fe6
+    lis r3, gTRKCPUState@ha
     li	r5, 1
-    addi	r31, r3, 0x5160
+    addi r31, r3, gTRKCPUState@l
     lwz	r0, 0x1f8(r31)
     rlwinm	r0, r0, 0, 0x16, 0x14
     stw	r0, 0x1f8(r31)
@@ -3645,23 +3675,23 @@ _8008b9e0:
 _8008ba00:
     cmpwi	r5, 0
     bc      12, 2, _8008ba18
-    lis	r3, -0x7fea
+    lis r3, gTRKStepStatus@ha
     li	r0, 0
-    stw	r0, -0x477c(r3)
+    stw r0, gTRKStepStatus@l(r3)
     b       _8008ba88
 _8008ba18:
-    lis	r4, -0x7fea
+    lis r4, gTRKStepStatus@ha
     li	r0, 1
-    addi	r5, r4, -0x477c
-    lis	r3, -0x7ff7
+    addi r5, r4, gTRKStepStatus@l
+    lis r3, lbl_80095BA8@ha
     stw	r0, 0(r5)
-    addi	r4, r3, 0x5ba8
+    addi r4, r3, lbl_80095BA8@l
     li	r3, 1
     crxor	6, 6, 6
     bl      MWTRACE
-    lis	r3, -0x7fea
+    lis r3, gTRKStepStatus@ha
     lwz	r0, 0x1f8(r31)
-    addi	r3, r3, -0x477c
+    addi r3, r3, gTRKStepStatus@l
     lwz	r3, 4(r3)
     ori	r0, r0, 0x400
     stw	r0, 0x1f8(r31)
@@ -3670,24 +3700,24 @@ _8008ba18:
     cmpwi	r3, 0x10
     bc      4, 2, _8008ba78
 _8008ba64:
-    lis	r3, -0x7fea
-    addi	r4, r3, -0x477c
+    lis r3, gTRKStepStatus@ha
+    addi r4, r3, gTRKStepStatus@l
     lwz	r3, 8(r4)
     addi	r0, r3, -1
     stw	r0, 8(r4)
 _8008ba78:
-    lis	r3, -0x7fe6
+    lis r3, gTRKState@ha
     li	r0, 0
-    addi	r3, r3, 0x50bc
+    addi r3, r3, gTRKState@l
     stw	r0, 0x98(r3)
 _8008ba88:
-    lis	r3, -0x7fea
-    lwz	r0, -0x477c(r3)
+    lis r3, gTRKStepStatus@ha
+    lwz r0, gTRKStepStatus@l(r3)
     cmpwi	r0, 0
     bc      4, 2, _8008bab4
-    lis	r3, -0x7fe6
+    lis r3, gTRKState@ha
     li	r0, 1
-    addi	r4, r3, 0x50bc
+    addi r4, r3, gTRKState@l
     li	r3, 0x90
     stw	r0, 0x98(r4)
     bl      TRKDoNotifyStopped
@@ -3707,9 +3737,9 @@ asm void TRKPostInterruptEvent(void)
     nofralloc
     stwu	r1, -0x20(r1)
     mflr	r0
-    lis	r3, -0x7fe6
+    lis r3, gTRKState@ha
     stw	r0, 0x24(r1)
-    addi	r3, r3, 0x50bc
+    addi r3, r3, gTRKState@l
     lwz	r0, 0x9c(r3)
     cmpwi	r0, 0
     bc      12, 2, _8008bafc
@@ -3717,8 +3747,8 @@ asm void TRKPostInterruptEvent(void)
     stw	r0, 0x9c(r3)
     b       _8008bb6c
 _8008bafc:
-    lis	r3, -0x7fe6
-    addi	r3, r3, 0x5160
+    lis r3, gTRKCPUState@ha
+    addi r3, r3, gTRKCPUState@l
     lwz	r0, 0x2f8(r3)
     clrlwi	r0, r0, 0x10
     cmpwi	r0, 0xd00
@@ -3728,9 +3758,9 @@ _8008bafc:
     bc      12, 2, _8008bb24
     b       _8008bb58
 _8008bb24:
-    lis	r4, -0x7fe6
+    lis r4, gTRKCPUState@ha
     addi	r3, r1, 8
-    addi	r4, r4, 0x5160
+    addi r4, r4, gTRKCPUState@l
     lwz	r4, 0x80(r4)
     bl      TRKTargetReadInstruction
     lwz	r3, 8(r1)
@@ -3773,9 +3803,9 @@ asm void TRKTargetAccessFP(void)
     li	r3, 0x701
     b       _8008bfa0
 _8008bbb0:
-    lis	r3, -0x7ff7
+    lis r3, lbl_80095B30@ha
     lis	r5, -0x7fea
-    addi	r29, r3, 0x5b30
+    addi r29, r3, lbl_80095B30@l
     lis	r4, 0x7c99
     lwz	r0, 0(r29)
     addi	r31, r5, -0x478c
@@ -3818,15 +3848,15 @@ _8008bbb0:
     stw	r5, 0xc8(r1)
     stw	r0, 0xe8(r1)
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0xc4
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 8
     mtctr	r12
     bctrl
-    lis	r3, -0x7ff7
+    lis r3, lbl_80095B30@ha
     lwz	r5, 8(r1)
-    addi	r29, r3, 0x5b30
+    addi r29, r3, lbl_80095B30@l
     lis	r4, 0x7c99
     lwz	r8, 0(r29)
     lis	r3, 0x4e80
@@ -3860,15 +3890,15 @@ _8008bbb0:
     stw	r5, 0xa0(r1)
     stw	r0, 0xc0(r1)
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0x9c
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 8
     mtctr	r12
     bctrl
-    lis	r3, -0x7ff7
+    lis r3, lbl_80095B30@ha
     lis	r4, 0x7c91
-    addi	r29, r3, 0x5b30
+    addi r29, r3, lbl_80095B30@l
     lis	r3, 0x4e80
     lwz	r8, 0(r29)
     li	r30, 0
@@ -3901,9 +3931,9 @@ _8008bbb0:
     stw	r5, 0x78(r1)
     stw	r0, 0x98(r1)
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0x74
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 8
     mtctr	r12
     bctrl
@@ -3917,8 +3947,8 @@ _8008bbb0:
 _8008bde4:
     cmpwi	r26, 0
     bc      12, 2, _8008be94
-    lis	r3, -0x7ff7
-    lwzu	r12, 0x5b58(r3)
+    lis r3, lbl_80095B58@ha
+    lwzu r12, lbl_80095B58@l(r3)
     oris	r0, r30, 0xe003
     lwz	r11, 4(r3)
     lwz	r10, 8(r3)
@@ -3949,9 +3979,9 @@ _8008be4c:
     stw	r0, 0x70(r1)
     li	r4, 0x28
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0x4c
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 0xc
     mtctr	r12
     bctrl
@@ -3964,8 +3994,8 @@ _8008be94:
     mr	r3, r24
     addi	r4, r1, 0xc
     bl      TRKAppendBuffer1_ui64
-    lis	r3, -0x7ff7
-    lwzu	r12, 0x5b58(r3)
+    lis r3, lbl_80095B58@ha
+    lwzu r12, lbl_80095B58@l(r3)
     cmpwi	r26, 0
     oris	r0, r30, 0xe003
     lwz	r11, 4(r3)
@@ -3997,9 +4027,9 @@ _8008bf04:
     stw	r0, 0x48(r1)
     li	r4, 0x28
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0x24
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 0xc
     mtctr	r12
     bctrl
@@ -4071,13 +4101,13 @@ _8008bfdc:
     stw	r0, 0(r30)
     bc      12, 1, _8008c0cc
     subf	r4, r3, r4
-    lis	r8, -0x7fe6
+    lis r8, gTRKCPUState@ha
     addi	r0, r4, 1
     lwz	r4, 0(r30)
     slwi	r6, r0, 2
     cmpwi	r7, 0
     add	r4, r4, r6
-    addi	r7, r8, 0x5160
+    addi r7, r8, gTRKCPUState@l
     slwi	r3, r3, 2
     stw	r4, 0(r30)
     add	r4, r7, r3
@@ -4096,12 +4126,12 @@ _8008c05c:
     add	r6, r4, r6
     cmplw	r6, r3
     bc      12, 0, _8008c088
-    lis	r3, -0x7fea
+    lis r3, gTRKRestoreFlags@ha
     li	r6, 1
-    stb	r6, -0x4798(r3)
+    stb r6, gTRKRestoreFlags@l(r3)
 _8008c088:
-    lis	r3, -0x7fe6
-    addi	r3, r3, 0x5160
+    lis r3, gTRKCPUState@ha
+    addi r3, r3, gTRKCPUState@l
     addi	r6, r3, 0x278
     cmplw	r4, r6
     bc      12, 1, _8008c0c0
@@ -4110,9 +4140,9 @@ _8008c088:
     add	r3, r4, r3
     cmplw	r3, r6
     bc      12, 0, _8008c0c0
-    lis	r3, -0x7fea
+    lis r3, gTRKRestoreFlags@ha
     li	r6, 1
-    addi	r3, r3, -0x4798
+    addi r3, r3, gTRKRestoreFlags@l
     stb	r6, 1(r3)
 _8008c0c0:
     mr	r3, r5
@@ -4190,9 +4220,9 @@ _8008c158:
 _8008c1bc:
     cmpwi	r31, 0
     bc      12, 2, _8008c3a0
-    lis	r3, -0x7ff7
+    lis r3, lbl_80095B80@ha
     cmplwi	r22, 0x20
-    addi	r12, r3, 0x5b80
+    addi r12, r3, lbl_80095B80@l
     lwz	r11, 0(r12)
     lwz	r10, 4(r12)
     lwz	r9, 8(r12)
@@ -4226,9 +4256,9 @@ _8008c234:
     stw	r0, 0xbc(r1)
     li	r4, 0x28
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0x98
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 8
     mtctr	r12
     bctrl
@@ -4252,9 +4282,9 @@ _8008c294:
     lwz	r0, 0xc(r1)
     stw	r0, 8(r1)
 _8008c2ac:
-    lis	r3, -0x7ff7
+    lis r3, lbl_80095B30@ha
     cmpwi	r31, 0
-    addi	r12, r3, 0x5b30
+    addi r12, r3, lbl_80095B30@l
     lwz	r11, 0(r12)
     lwz	r10, 4(r12)
     lwz	r9, 8(r12)
@@ -4295,9 +4325,9 @@ _8008c338:
     li	r4, 0x28
     stw	r0, 0x6c(r1)
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0x48
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 8
     mtctr	r12
     bctrl
@@ -4320,9 +4350,9 @@ _8008c3a0:
     mr	r3, r29
     addi	r4, r1, 8
     bl      TRKAppendBuffer1_ui64
-    lis	r3, -0x7ff7
+    lis r3, lbl_80095B80@ha
     cmplwi	r22, 0x20
-    addi	r20, r3, 0x5b80
+    addi r20, r3, lbl_80095B80@l
     li	r3, 0
     lwz	r12, 0(r20)
     lwz	r11, 4(r20)
@@ -4357,9 +4387,9 @@ _8008c420:
     stw	r0, 0x94(r1)
     li	r4, 0x28
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0x70
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 8
     mtctr	r12
     bctrl
@@ -4383,9 +4413,9 @@ _8008c480:
     lwz	r0, 0xc(r1)
     stw	r0, 8(r1)
 _8008c498:
-    lis	r3, -0x7ff7
+    lis r3, lbl_80095B30@ha
     cmpwi	r31, 0
-    addi	r12, r3, 0x5b30
+    addi r12, r3, lbl_80095B30@l
     lwz	r11, 0(r12)
     lwz	r10, 4(r12)
     lwz	r9, 8(r12)
@@ -4426,9 +4456,9 @@ _8008c524:
     li	r4, 0x28
     stw	r0, 0x44(r1)
     bl      TRK_flush_cache
-    lis	r3, -0x7fe6
+    lis r3, lbl_801A5624@ha
     addi	r12, r1, 0x20
-    addi	r4, r3, 0x5624
+    addi r4, r3, lbl_801A5624@l
     addi	r3, r1, 8
     mtctr	r12
     bctrl
@@ -4495,7 +4525,7 @@ _8008c618:
     lis	r6, -0x7fea
     subf	r4, r3, r4
     addi	r30, r6, -0x478c
-    lis	r6, -0x7fe6
+    lis r6, gTRKCPUState@ha
     lwz	r9, 0xc(r30)
     li	r8, 0
     addi	r12, r4, 1
@@ -4506,7 +4536,7 @@ _8008c618:
     slwi	r0, r12, 2
     stb	r8, 0xd(r30)
     slwi	r4, r3, 2
-    addi	r3, r6, 0x5160
+    addi r3, r6, gTRKCPUState@l
     stw	r11, 8(r1)
     add	r4, r3, r4
     stw	r10, 0xc(r1)
@@ -4611,9 +4641,9 @@ asm void TRKTargetAccessMemory(void)
     b       _8008c824
 _8008c7b0:
     bl      __TRK_get_MSR
-    lis	r4, -0x7fe6
+    lis r4, gTRKCPUState@ha
     cmpwi	r29, 0
-    addi	r4, r4, 0x5160
+    addi r4, r4, gTRKCPUState@l
     mr	r8, r3
     lwz	r0, 0x1f8(r4)
     rlwinm	r0, r0, 0, 0x1b, 0x1b
@@ -4682,9 +4712,9 @@ asm void TRKValidMemory32(void)
     li	r3, 0x700
     b       _8008cb0c
 _8008c8ac:
-    lis	r4, -0x7ff7
+    lis r4, gTRKMemMap@ha
     li	r6, 0
-    addi	r31, r4, 0x5b20
+    addi r31, r4, gTRKMemMap@l
     lwz	r0, 4(r31)
     cmplw	r3, r0
     bc      12, 1, _8008cb08
@@ -4701,9 +4731,9 @@ _8008c8ac:
 _8008c8ec:
     cmpwi	r26, 1
     bc      4, 2, _8008c918
-    lis	r4, -0x7ff7
+    lis r4, gTRKMemMap@ha
     slwi	r0, r6, 4
-    addi	r4, r4, 0x5b20
+    addi r4, r4, gTRKMemMap@l
     add	r4, r4, r0
     lwz	r0, 0xc(r4)
     cmpwi	r0, 0
@@ -4712,9 +4742,9 @@ _8008c910:
     li	r5, 0x700
     b       _8008cb08
 _8008c918:
-    lis	r4, -0x7ff7
+    lis r4, gTRKMemMap@ha
     slwi	r29, r6, 4
-    addi	r4, r4, 0x5b20
+    addi r4, r4, gTRKMemMap@l
     li	r5, 0
     lwzx	r0, r4, r29
     cmplw	r3, r0
@@ -4744,9 +4774,9 @@ _8008c950:
 _8008c988:
     cmpwi	r26, 1
     bc      4, 2, _8008c9b4
-    lis	r4, -0x7ff7
+    lis r4, gTRKMemMap@ha
     slwi	r0, r5, 4
-    addi	r4, r4, 0x5b20
+    addi r4, r4, gTRKMemMap@l
     add	r4, r4, r0
     lwz	r0, 0xc(r4)
     cmpwi	r0, 0
@@ -4755,9 +4785,9 @@ _8008c9ac:
     li	r6, 0x700
     b       _8008ca10
 _8008c9b4:
-    lis	r4, -0x7ff7
+    lis r4, gTRKMemMap@ha
     slwi	r28, r5, 4
-    addi	r4, r4, 0x5b20
+    addi r4, r4, gTRKMemMap@l
     li	r6, 0
     lwzx	r0, r4, r28
     cmplw	r3, r0
@@ -4769,8 +4799,8 @@ _8008c9b4:
 _8008c9e0:
     cmpwi	r6, 0
     bc      4, 2, _8008ca10
-    lis	r3, -0x7ff7
-    addi	r0, r3, 0x5b20
+    lis r3, gTRKMemMap@ha
+    addi r0, r3, gTRKMemMap@l
     add	r3, r0, r28
     lwz	r3, 4(r3)
     cmplw	r30, r3
@@ -4784,8 +4814,8 @@ _8008ca10:
 _8008ca14:
     cmpwi	r5, 0
     bc      4, 2, _8008cb08
-    lis	r3, -0x7ff7
-    addi	r4, r3, 0x5b20
+    lis r3, gTRKMemMap@ha
+    addi r4, r3, gTRKMemMap@l
     addi	r28, r4, 4
     lwzx	r3, r28, r29
     cmplw	r27, r3
@@ -4815,9 +4845,9 @@ _8008ca50:
 _8008ca88:
     cmpwi	r26, 1
     bc      4, 2, _8008cab4
-    lis	r4, -0x7ff7
+    lis r4, gTRKMemMap@ha
     slwi	r0, r5, 4
-    addi	r4, r4, 0x5b20
+    addi r4, r4, gTRKMemMap@l
     add	r4, r4, r0
     lwz	r0, 0xc(r4)
     cmpwi	r0, 0
@@ -4826,9 +4856,9 @@ _8008caac:
     li	r6, 0x700
     b       _8008cb04
 _8008cab4:
-    lis	r4, -0x7ff7
+    lis r4, gTRKMemMap@ha
     slwi	r27, r5, 4
-    addi	r4, r4, 0x5b20
+    addi r4, r4, gTRKMemMap@l
     li	r6, 0
     lwzx	r0, r4, r27
     cmplw	r3, r0
