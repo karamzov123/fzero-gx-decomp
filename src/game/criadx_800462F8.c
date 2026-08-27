@@ -182,12 +182,11 @@ asm void fn_80046508(void)
     blr	
 }
 
-asm void fn_80046510(void)
+// provenance: original
+// provenance: original — direct retail byte-store reconstruction
+void fn_80046510(void* a)
 {
-    nofralloc
-    li	r0, 0
-    stb	r0, 1(r3)
-    blr	
+    *(unsigned char*)((char*)a + 1) = 0;
 }
 
 asm void fn_8004651C(void)

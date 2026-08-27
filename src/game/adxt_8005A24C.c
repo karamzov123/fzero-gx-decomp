@@ -392,11 +392,11 @@ asm void fn_8005A668(void)
     blr	
 }
 
-asm void fn_8005A678(void)
+// provenance: original
+// provenance: original — direct retail constant-return reconstruction
+int fn_8005A678(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
 asm void fn_8005A680(void)

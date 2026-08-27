@@ -728,12 +728,13 @@ _80025e44:
     blr	
 }
 
-asm void fn_80025EE0(void)
+// provenance: original
+// provenance: original — direct retail empty-body reconstruction
+void fn_80025EE0(void)
 {
-    nofralloc
-    blr	
 }
 
+// provenance: original
 // provenance: original — derived directly from fn_80025EE4 retail store
 void fn_80025EE4(void* a)
 {

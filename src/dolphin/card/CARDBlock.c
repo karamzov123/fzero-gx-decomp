@@ -8,7 +8,7 @@ extern void __CARDBlockReadCallback(void);
 extern void __CARDRead(void);
 extern void __CARDBlockWriteCallback(void);
 extern void __CARDWrite(void);
-extern void __CARDGetFatBlock(void);
+extern void *__CARDGetFatBlock(void *card);
 extern void __CARDBlockWriteCallback2(void);
 extern void __CARDBlockEraseCallback(void);
 extern void __CARDAllocBlock(void);
@@ -1244,11 +1244,9 @@ asm void __CARDGetControlBlockReady(void)
     blr	
 }
 
-asm void __CARDGetFatBlock(void)
-{
-    nofralloc
-    lwz	r3, 0x88(r3)
-    blr	
+// provenance: dolsdk2001:src/card/CARDBlock.c:9
+void *__CARDGetFatBlock(void *card) {
+    return *(void **)((unsigned char *)card + 0x88);
 }
 
 asm void __CARDBlockWriteCallback2(void)

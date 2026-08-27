@@ -282,11 +282,11 @@ asm void fn_800416E4(void)
     blr	
 }
 
-asm void fn_800416F0(void)
+// provenance: original
+// provenance: original — direct retail store reconstruction
+void fn_800416F0(void* a, void* b)
 {
-    nofralloc
-    stw	r4, 0x34(r3)
-    blr	
+    *(void**)((char*)a + 0x34) = b;
 }
 
 asm void fn_800416F8(void)
