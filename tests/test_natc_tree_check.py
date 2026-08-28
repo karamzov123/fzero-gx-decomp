@@ -10,6 +10,7 @@ redefining the head that natc_gate compares every later candidate against.
 from __future__ import annotations
 import importlib.util
 import sys
+import types
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -62,32 +63,81 @@ def test_reports_the_files_and_the_failure_signature(monkeypatch, capsys):
     assert "PROVISIONAL" in out
 
 
-def test_tool_is_report_only():
-    """It must never write to src/, build, or commit.
+def test_report_mode_never_writes(monkeypatch, capsys):
+    """Without --land the tool must not commit, build, or touch src/.
 
-    Checked on the parsed AST, not on the source text: the advice this tool
-    prints necessarily mentions `ninja` and committing, and a substring scan
-    would flag its own documentation.
+    Enforced by running main() with the writing helpers replaced by tripwires,
+    rather than by scanning the source text -- the advice it prints
+    necessarily mentions ninja and committing.
     """
-    import ast
-    tree = ast.parse(TOOL.read_text())
-    banned_attrs = {"write_text", "write_bytes", "mkdir", "unlink", "rename",
-                    "copy", "copy2", "rmtree", "check_call"}
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Call):
-            fn = node.func
-            name = getattr(fn, "attr", None) or getattr(fn, "id", None)
-            assert name not in banned_attrs, f"tree check must not call {name}()"
-            # the only writing it is allowed to do is opening the gate lock
-            # for a non-blocking probe, which needs 'a+' but writes nothing
-            if name == "open":
-                modes = [a.value for a in node.args[1:] if isinstance(a, ast.Constant)]
-                modes += [k.value.value for k in node.keywords
-                          if k.arg == "mode" and isinstance(k.value, ast.Constant)]
-                assert all(m in ("r", "a+") for m in modes), \
-                    f"tree check opened a file for writing: {modes}"
-    src = TOOL.read_text()
-    assert "subprocess.run" in src, "sanity: the tool does shell out"
-    for call in ("\"commit\"", "'commit'", "\"checkout\"", "'checkout'",
-                 "\"ninja\"", "'ninja'"):
-        assert call not in src, f"tree check must not invoke {call}"
+    m = _mod()
+    monkeypatch.setattr(m, "dirty_sources", lambda: ["src/a.c"])
+    monkeypatch.setattr(m, "gate_in_flight", lambda: False)
+    monkeypatch.setattr(m, "oldest_mtime", lambda _p: 900)
+
+    def tripwire(*_a, **_k):
+        raise AssertionError("report mode must not land anything")
+    monkeypatch.setattr(m, "land", tripwire)
+    monkeypatch.setattr(sys, "argv", ["natc_tree_check.py"])
+    assert m.main() == 1
+
+
+def test_land_refuses_a_file_that_converts_nothing(tmp_path, monkeypatch, capsys):
+    """A comment-only edit is not a conversion and must never be committed."""
+    m = _mod()
+    monkeypatch.setattr(m, "sh", lambda *c: "asm void Target(void) { nofralloc\n blr\n }\n")
+    src = Path(m.REPO) / "src"
+    monkeypatch.setattr(m.Path, "read_text",
+                        lambda self, **k: "asm void Target(void) { nofralloc\n blr\n }\n// note\n",
+                        raising=False)
+    monkeypatch.setattr(m.subprocess, "run",
+                        lambda *a, **k: types.SimpleNamespace(stdout=b"", returncode=0))
+    import shutil as _sh
+    monkeypatch.setattr(_sh, "copy2", lambda *a, **k: None)
+    rc = m.land(["src/x.c"], log=lambda *a: None)
+    assert rc == 3, "an edit that removes no asm body must be refused"
+
+
+def test_land_is_gated_on_all_four_criteria():
+    """The refusal points must all still be present and each must return 3."""
+    text = TOOL.read_text()
+    for criterion in ("removes no asm body", "not 100", "source_form_check",
+                      "REBUILD RED"):
+        assert criterion in text, f"missing guard: {criterion}"
+    # a red rebuild must restore the tree, never leave the DOL red
+    red = text[text.index("REBUILD RED"):]
+    assert "checkout" in red and "ninja" in red, \
+        "a red rebuild must restore destinations and rebuild green"
+
+
+def test_gate_detector_cannot_see_itself():
+    """A process-table scan that matches its own invoking shell pins
+    gate_in_flight() to True and makes --land a permanent no-op.
+
+    This is exactly what happened on 2026-08-28: the first implementation
+    substring-scanned `ps -eo args`, and the shell running the check had
+    'natc_gate.py' in its own command line. Run the probe from a process whose
+    argv deliberately names both tools.
+    """
+    import subprocess
+    probe = (
+        "import sys, importlib.util; sys.path.insert(0, %r);"
+        "s = importlib.util.spec_from_file_location('t', %r);"
+        "m = importlib.util.module_from_spec(s); s.loader.exec_module(m);"
+        "print(m.gate_running())"
+        % (str(REPO / "tools"), str(TOOL))
+    )
+    r = subprocess.run(
+        [sys.executable, "-c", probe,
+         "natc_gate.py", "natc_integrate.py"],   # argv bait
+        capture_output=True, text=True, cwd=REPO)
+    assert r.stdout.strip() == "False", (
+        f"the detector matched its own process: {r.stdout!r} {r.stderr[-300:]!r}")
+
+
+def test_gate_detector_requires_a_python_argv_token(tmp_path):
+    """Merely having the name in a command line is not a running gate."""
+    import subprocess
+    r = subprocess.run(["sleep", "0.1", "natc_gate.py"], capture_output=True)
+    m = _mod()
+    assert m.gate_running() is False

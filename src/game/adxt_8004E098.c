@@ -1126,10 +1126,9 @@ asm void fn_8004ED5C(void)
     blr	
 }
 
-asm void fn_8004ED80(void)
+// provenance: original fn_8004ED80 (no-op stub: retail body is a single blr)
+void fn_8004ED80(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void fn_8004ED84(void)

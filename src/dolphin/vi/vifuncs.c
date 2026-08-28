@@ -27,26 +27,16 @@ s32 fn_8001A78C(register s32 mode)
     return prev;
 }
 
-asm s32 fn_8001A7D0(register s32 ntsc)
+// provenance: original (recovered 100% C body from natc1's logged attempt,
+//   submissions/.rejected/natc1/vifuncs-swaps-1/vifuncs.c:28; identical IRQ-save
+//   envelope to fn_8001A78C, stores r3 to lbl_801A6938 and returns prior value)
+s32 fn_8001A7D0(register s32 ntsc)
 {
-    nofralloc
-    mflr    r0
-    stw     r0, 4(r1)
-    stwu    r1, -0x18(r1)
-    stw     r31, 0x14(r1)
-    stw     r30, 0x10(r1)
-    mr      r30, r3
-    lwz	r31, lbl_801A6938
-    bl      OSDisableInterrupts
-    stw	r30, lbl_801A6938
-    bl      OSRestoreInterrupts
-    mr      r3, r31
-    lwz     r0, 0x1c(r1)
-    lwz     r31, 0x14(r1)
-    lwz     r30, 0x10(r1)
-    addi    r1, r1, 0x18
-    mtlr    r0
-    blr
+    s32 prev = *(s32*)lbl_801A6938;
+    s32 level = OSDisableInterrupts();
+    *(s32*)lbl_801A6938 = ntsc;
+    OSRestoreInterrupts(level);
+    return prev;
 }
 
 asm void* fn_8001A814(register s32 mode)

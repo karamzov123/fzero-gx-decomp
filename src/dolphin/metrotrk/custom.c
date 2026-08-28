@@ -44,10 +44,9 @@ asm void TRKAcquireMutex_Interrupt(void)
     blr	
 }
 
-asm void fn_8008E76C(void)
+// provenance: original fn_8008E76C (no-op stub: retail body is a single blr)
+void fn_8008E76C(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void EXI2_SetupTransfer(void)
