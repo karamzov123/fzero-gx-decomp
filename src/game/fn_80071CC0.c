@@ -602,12 +602,10 @@ asm void fn_800723D8(void)
     blr
 }
 
-asm void fn_800723F8(void)
+void fn_800723F8(void)
 {
-    nofralloc
-    li      r0, 0
-    stw	r0, lbl_801A6D28
-    blr
+    // provenance: retail-disassembly:GFZE01:0x800723F8 fn_800723F8
+    *(s32*)lbl_801A6D28 = 0;
 }
 
 asm s32 fn_80072404(register s32 a, register s32 b)
