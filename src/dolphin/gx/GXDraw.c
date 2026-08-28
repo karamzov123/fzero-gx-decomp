@@ -49,7 +49,7 @@ extern unsigned char lbl_801783A0[1312];
 
 extern unsigned char lbl_801788C0[0x100];
 
-asm void fn_80039954(register void* p);
+asm void fn_80039954(register void* p, register void* q);
 asm int fn_8003A4E8(register u32 a);
 asm void fn_8003A680(void);
 asm int fn_8003A760(register u32 a);
@@ -59,6 +59,23 @@ asm int fn_8003B798(register u32 a, register int b);
 asm int fn_8003B8A8(register u32 a);
 asm int fn_8003B930(register u32 a);
 
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef union {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+} PPCWGPipe;
+#define GX_WRITE_U8(ub)   GXWGFifoV.u8 = (u8)(ub)
+#define GX_WRITE_U32(v)   GXWGFifoV.u32 = (u32)(v)
+typedef struct GXData {
+    u8 pad0[2];
+    u16 bpSent;          /* 0x02 */
+    u8 pad1[0x7A];
+    u32 matIdxA;         /* 0x80 */
+    u32 matIdxB;         /* 0x84 */
+} GXData;
 asm void GXBeginDisplayList(register void* p1, register void* p2)
 {
     nofralloc
@@ -1263,7 +1280,7 @@ _80039944:
     blr     
 }
 
-asm void fn_80039954(register void* p)
+asm void fn_80039954(register void* p, register void* q)
 {
     nofralloc
     lwz	r10, __cpReg
@@ -1394,20 +1411,12 @@ asm int fn_80039AFC(void)
     blr     
 }
 
-asm void fn_80039B0C(register void* p)
+// provenance: original (reconstructed from in-tree asm)
+u32 fn_80039B0C(void)
 {
-    nofralloc
-    mflr    r0
-    stw     r0, 4(r1)
-    stwu    r1, -0x10(r1)
-    addi    r3, r1, 0xc
-    addi    r4, r1, 8
-    bl      fn_80039954
-    lwz     r3, 8(r1)
-    lwz     r0, 0x14(r1)
-    addi    r1, r1, 0x10
-    mtlr    r0
-    blr     
+    u32 lo, hi;
+    fn_80039954(&lo, &hi);
+    return hi;
 }
 
 asm int fn_80039B38(register u32 a)
