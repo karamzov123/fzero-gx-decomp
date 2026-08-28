@@ -7,26 +7,23 @@ typedef unsigned int u32;
 #pragma push
 #pragma force_active on
 
-asm void AIStartDMA(void)
+// AI control-register (0xCC005000, AICR at +0x36) bit set/clear helpers.
+// Absolute-address register array forces MWCC to materialize the base via
+// lis 0xcc00 / addi 0x5000 (two-step), matching retail (a single D-form load
+// folds the address and diverges). Proven form.
+typedef unsigned short u16;
+volatile u16 __DSPRegs[] : 0xCC005000;
+
+// provenance: dolsdk2001:src/ai/ai.c:71
+void AIStartDMA(void)
 {
-    nofralloc
-    lis     r3, -0x3400
-    addi    r3, r3, 0x5000
-    lhz     r0, 0x36(r3)
-    ori     r0, r0, 0x8000
-    sth     r0, 0x36(r3)
-    blr
+    __DSPRegs[27] = (u16)(__DSPRegs[27] | 0x8000);
 }
 
-asm void AIStopDMA(void)
+// provenance: dolsdk2001:src/ai/ai.c:76
+void AIStopDMA(void)
 {
-    nofralloc
-    lis     r3, -0x3400
-    addi    r3, r3, 0x5000
-    lhz     r0, 0x36(r3)
-    rlwinm  r0, r0, 0, 0x11, 0xf
-    sth     r0, 0x36(r3)
-    blr
+    __DSPRegs[27] = (u16)(__DSPRegs[27] & ~0x8000);
 }
 
 #pragma pop
