@@ -163,7 +163,15 @@ int sibling(void) { return 99; }
             self.assertEqual(batch.resolve(), observed["batch_path"])
             self.assertTrue(observed["closed"])
 
-    def test_batch_rejects_symbol_without_its_own_provenance(self):
+    def test_sibling_reference_tag_is_never_transferred(self):
+        """A reference tag that names another function may not be reused here.
+
+        `// provenance: mkdd:libs/test.c:99 sibling` says where *sibling* came
+        from. Carrying it to `target` would manufacture a citation for code
+        that may have nothing to do with mkdd. 2026-08-28 the symbol is now
+        harvestable, but only under a ledger-backed tag that claims solely what
+        the attempts row proves — never the sibling's reference.
+        """
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             dest = root / "unit.c"
@@ -174,12 +182,36 @@ int sibling(void) { return 99; }
                 "int target(void) { return 1; }\n"
             )
             row = ("main/test", "target", 100.0, recovered,
-                   dest, "test", 0)
+                   dest, "worker7", 0)
 
             batches = harvest.build_packageable_batches(
                 [row], validator=lambda *_args: True)
 
-            self.assertEqual({}, batches)
+            self.assertEqual(1, len(batches))
+            _accepted, text = batches[dest]
+            tag = harvest.symbol_provenance(text, "target")
+            self.assertIsNotNone(tag, "harvested symbol must carry a tag")
+            self.assertIn("harvest:runs.sqlite", tag)
+            self.assertIn("target", tag)
+            self.assertIn("worker7", tag)
+            self.assertIn("original reference not recorded", tag)
+            self.assertNotIn("mkdd", tag)
+
+    def test_existing_symbol_provenance_is_left_alone(self):
+        """A candidate that already cites a reference for THIS symbol keeps
+        it verbatim; the ledger tag is a fallback, not a rewrite."""
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            recovered = root / "recovered.c"
+            recovered.write_text(
+                "// provenance: mkdd:libs/test.c:99 target\n"
+                "int target(void) { return 1; }\n"
+            )
+            text = recovered.read_text()
+            out = harvest.ensure_symbol_provenance(
+                text, "target", "main/test", "worker7", 0, recovered)
+            self.assertEqual(text, out)
+            self.assertNotIn("harvest:runs.sqlite", out)
 
     def test_max_per_batch_caps_accepted_symbols(self):
         with tempfile.TemporaryDirectory() as td:
