@@ -12,6 +12,13 @@ It builds `main.dol`:
 
 The SHA-1 is the checksum of the matching input recorded in [`config/GFZE01/build.sha1`](config/GFZE01/build.sha1).
 
+## Scope
+
+The current matching target is the executable `main.dol`. It is the Dolphin
+SDK, MSL, MetroTRK, and middleware portion of GFZE01; the game-specific code
+in the disc REL modules is outside this target. Progress metrics therefore
+refer to `main.dol`, not to the complete F-Zero GX game image.
+
 ## Current progress
 
 Progress is published through the GitHub Actions `GFZE01_report` artifact and tracked on [decomp.dev](https://decomp.dev/karamzov123/fzero-gx-decomp). The public report separates:
@@ -20,6 +27,7 @@ Progress is published through the GitHub Actions `GFZE01_report` artifact and tr
 - **C-expressed** — supplemental fuzzy progress for C-backed functions.
 - **Diagnostic objdiff** — whole-binary parity, including hand-written assembly; useful for build health, but not the decompilation headline.
 
+See the [NATC operations contract](docs/NATC-OPERATIONS.md) for canonical state paths, admission, context, probe, and eligibility rules.
 See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/splits.txt), and [split documentation](docs/splits.md) for the project inventory.
 
 ![F-Zero GX GFZE01 codebase map](assets/codebase-map.svg)
