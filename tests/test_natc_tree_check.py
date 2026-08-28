@@ -141,3 +141,23 @@ def test_gate_detector_requires_a_python_argv_token(tmp_path):
     r = subprocess.run(["sleep", "0.1", "natc_gate.py"], capture_output=True)
     m = _mod()
     assert m.gate_running() is False
+
+
+def test_land_flag_is_actually_wired_into_main(monkeypatch):
+    """--land must CALL land(). It shipped once with land() defined and never
+    invoked, because a string-replace anchored on stale text silently no-op'd
+    and the unit tests called land() directly, so nothing noticed.
+    """
+    m = _mod()
+    monkeypatch.setattr(m, "dirty_sources", lambda: ["src/a.c"])
+    monkeypatch.setattr(m, "gate_in_flight", lambda: False)
+    monkeypatch.setattr(m, "oldest_mtime", lambda _p: 600)
+    called = {}
+
+    def fake_land(dirty, log=print):
+        called["dirty"] = dirty
+        return 0
+    monkeypatch.setattr(m, "land", fake_land)
+    monkeypatch.setattr(sys, "argv", ["natc_tree_check.py", "--land", "--quiet"])
+    assert m.main() == 0
+    assert called.get("dirty") == ["src/a.c"], "--land did not reach land()"

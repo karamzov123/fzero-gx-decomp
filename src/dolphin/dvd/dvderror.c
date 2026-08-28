@@ -213,20 +213,16 @@ lbl_8001A2D4:
 	blr
 }
 
-/* fn_8001A2EC @0x8001A2EC | size: 0x30 */
-asm void fn_8001A2EC(void) {
-nofralloc
-	mflr r0
-	stw r0, 0x4(r1)
-	stwu r1, -0x8(r1)
-	lwz	r12, lbl_801A6908
-	cmplwi r12, 0x0
-	beq lbl_8001A30C
-	mtlr r12
-	blrl
-lbl_8001A30C:
-	lwz r0, 0xc(r1)
-	addi r1, r1, 0x8
-	mtlr r0
-	blr
+/* fn_8001A2EC @0x8001A2EC | size: 0x30
+ * Declaration-shape: head declares `extern unsigned char lbl_801A6908[4]`
+ *   (array); access the 4-byte fn-ptr via a correctly typed pointer (recipe).
+ * Shape: fn-ptr read directly into both predicate and call keeps it in r12 for
+ *   `mtlr r12; blrl` (matches retail; avoids spilling to r0). */
+typedef void (*fn_8001A2EC_cb)(void);
+
+// provenance: original (retail asm reconstruction; callback-forwarder shape shared with dolsdk2001:src/dvd/dvdfs.c __DVDReadDoneCallback) fn_8001A2EC
+void fn_8001A2EC(void) {
+    if (*(fn_8001A2EC_cb *)lbl_801A6908 != 0) {
+        (*(fn_8001A2EC_cb *)lbl_801A6908)();
+    }
 }
