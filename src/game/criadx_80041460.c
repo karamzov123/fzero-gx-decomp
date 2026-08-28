@@ -260,11 +260,10 @@ asm void criadx_set_field_44(void)
     blr	
 }
 
-asm void criadx_set_field_40(void)
+void criadx_set_field_40(void *arg0, unsigned int arg1)
 {
-    nofralloc
-    stw	r4, 0x40(r3)
-    blr	
+    // provenance: original disassembly reconstruction
+    *(unsigned int *)((char *)arg0 + 0x40) = arg1;
 }
 
 asm void criadx_set_field_3C(void)
