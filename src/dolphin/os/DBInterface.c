@@ -63,7 +63,7 @@ BOOL __DBIsExceptionMarked(u8 exception)
     return __DBInterface->exceptionMask & mask;
 }
 
-// provenance: dolsdk2001:src/db/db.c:66 — retail body is the MWCC empty-variadic spill prologue
+// provenance: dolsdk2001:src/db/db.c:66 - retail body is the MWCC empty-variadic spill prologue
 void DBPrintf(char* msg, ...)
 {
 }
