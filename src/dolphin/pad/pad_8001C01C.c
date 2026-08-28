@@ -1,4 +1,3 @@
-// dest: src/dolphin/pad/pad_8001C01C.c
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
@@ -72,7 +71,7 @@ asm void PADInit(void);
 asm void PADRead(void);
 asm void SISetCommandByChannel(void);
 asm void SISetCommandByArray(void);
-asm void PADSetSpec(void);
+void PADSetSpec(u32 spec);
 asm void SPEC0_MakeStatus(void);
 asm void SPEC1_MakeStatus(void);
 asm void SPEC2_MakeStatus(void);
@@ -1536,38 +1535,24 @@ _8001d464:
     blr
 }
 
-asm void PADSetSpec(void)
-{
-    nofralloc
-    li	r0, 0
-    cmpwi	r3, 1
-    stw	r0, __PADSpec
-    bc      12, 2, _8001d4c4
-    bc      4, 0, _8001d4a8
-    cmpwi	r3, 0
-    bc      4, 0, _8001d4b4
-    b       _8001d4e0
-_8001d4a8:
-    cmpwi	r3, 6
-    bc      4, 0, _8001d4e0
-    b       _8001d4d4
-_8001d4b4:
-    lis     r4, SPEC0_MakeStatus@ha
-    addi	r0, r4, SPEC0_MakeStatus@l
-    stw	r0, lbl_801A64C4
-    b       _8001d4e0
-_8001d4c4:
-    lis     r4, SPEC1_MakeStatus@ha
-    addi	r0, r4, SPEC1_MakeStatus@l
-    stw	r0, lbl_801A64C4
-    b       _8001d4e0
-_8001d4d4:
-    lis     r4, SPEC2_MakeStatus@ha
-    addi	r0, r4, SPEC2_MakeStatus@l
-    stw	r0, lbl_801A64C4
-_8001d4e0:
-    stw	r3, lbl_801A64C0
-    blr
+// provenance: dolsdk2001:src/pad/Pad.c:647 PADSetSpec
+void PADSetSpec(u32 spec) {
+    *(u32 *)__PADSpec = 0;
+    switch (spec) {
+    case 0:
+        *(u32 *)lbl_801A64C4 = (u32)SPEC0_MakeStatus;
+        break;
+    case 1:
+        *(u32 *)lbl_801A64C4 = (u32)SPEC1_MakeStatus;
+        break;
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        *(u32 *)lbl_801A64C4 = (u32)SPEC2_MakeStatus;
+        break;
+    }
+    *(u32 *)lbl_801A64C0 = spec;
 }
 
 asm void SPEC0_MakeStatus(void)
