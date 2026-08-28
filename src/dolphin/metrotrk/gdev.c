@@ -231,12 +231,12 @@ _8008e5f8:
     blr	
 }
 
-asm void gdev_cc_close(void)
+// provenance: original gdev_cc_close (retail body 'li r3,0; blr' = returns 0)
+int gdev_cc_close(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
+
 
 asm void gdev_cc_open(void)
 {
