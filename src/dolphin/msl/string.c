@@ -1,25 +1,18 @@
-// dest: src/dolphin/msl/string.c
 #pragma push
 #pragma force_active on
 
 // __msl_strcpy: byte-copy loop (strncpy-like inner copy)
-asm void __msl_strcpy(void* dst, const void* src)
+// provenance: natc5: register-swap - p (src) declared before q (dst) keeps src in incoming r4, dst in r5
+char* __msl_strcpy(char* dst, const char* src)
 {
-    nofralloc
-    addi    r4, r4, -1
-    addi    r5, r3, -1
-lbl_80083D48:
-    lbzu    r0, 1(r5)
-    cmplwi  r0, 0
-    bne     lbl_80083D48
-    addi    r5, r5, -1
-lbl_80083D58:
-    lbzu    r0, 1(r4)
-    cmplwi  r0, 0
-    stbu    r0, 1(r5)
-    bne     lbl_80083D58
-    blr
+    const unsigned char* p = (const unsigned char*)src - 1;
+    unsigned char* q = (unsigned char*)dst - 1;
+    do {} while (*++q);
+    q -= 1;
+    do {} while (*++q = *++p);
+    return dst;
 }
+
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/string.c:76
 char* strncpy(char* dst, const char* src, unsigned long n)
