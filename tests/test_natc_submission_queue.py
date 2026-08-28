@@ -22,6 +22,13 @@ class QueueTests(unittest.TestCase):
         (self.batch / "CARD.md").write_text("batch\n")
         (self.batch / "foo.c").write_text("int foo(void) { return 1; }\n")
         self.db = queue.open_db(self.root / "queue.sqlite3")
+        # 2026-08-28: terminal verdicts are integrator-only (see
+        # test_queue_verdict_ownership.py). These tests exercise the state
+        # machine and the claim/token guards, not the ownership rule, so they
+        # run as the integrator; the ownership rule has its own fixtures.
+        import os
+        os.environ["NATC_INTEGRATOR"] = "1"
+        self.addCleanup(os.environ.pop, "NATC_INTEGRATOR", None)
 
     def tearDown(self):
         self.db.close(); self.tmp.cleanup()
@@ -99,8 +106,12 @@ class QueueTests(unittest.TestCase):
         self.assertIsNone(queue.claim(self.db, "w1"))
         queue.register(self.db, "b1", "w1", self.batch)
         row = queue.claim(self.db, "w1")
-        row = queue.transition(self.db, "b1", "rejected", row["claim_token"], error="red gate")
-        self.assertEqual(row["error"], "red gate")
+        # A rejection must carry the gate's real output, not a summary: a
+        # sub-60-byte error is now refused as evidence-free.
+        why = ("GATE RED: dvdlow.c:__DVDInitWA changed body lacks provenance; "
+               "candidate ADDS asm bodies ['X'] — conversion only removes them")
+        row = queue.transition(self.db, "b1", "rejected", row["claim_token"], error=why)
+        self.assertEqual(row["error"], why)
         self.assertEqual(len(queue.list_batches(self.db, "rejected")), 1)
 
 
