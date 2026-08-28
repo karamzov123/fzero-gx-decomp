@@ -1,8 +1,11 @@
-/* Auto-generated exact-asm transcription (scaffolding).
- * Range covered by this unit: see per-function headers. */
-
+/* hard2 candidate: adapted from dolsdk2001 dvdqueue.c:13 */
 typedef int BOOL;
 typedef unsigned int u32;
+typedef struct DVDCommandBlock DVDCommandBlock;
+struct DVDCommandBlock {
+    DVDCommandBlock *next;
+    DVDCommandBlock *prev;
+};
 
 #pragma force_active on
 
@@ -10,23 +13,16 @@ extern unsigned char WaitingQueue[];
 extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
 
-/* __DVDClearWaitingQueue @0x80019E64 | size: 0x38 */
-asm void __DVDClearWaitingQueue(void) {
-nofralloc
-	lis r3, WaitingQueue@ha
-	addi r3, r3, WaitingQueue@l
-	stw r3, 0x0(r3)
-	addi r5, r3, 0x8
-	addi r4, r3, 0x10
-	stw r3, 0x4(r3)
-	addi r3, r3, 0x18
-	stw r5, 0x0(r5)
-	stw r5, 0x4(r5)
-	stw r4, 0x0(r4)
-	stw r4, 0x4(r4)
-	stw r3, 0x0(r3)
-	stw r3, 0x4(r3)
-	blr
+void __DVDClearWaitingQueue(void) {
+    // provenance: dolsdk2001:src/dvd/dvdqueue.c:13
+    unsigned int i;
+    DVDCommandBlock *q;
+
+    for (i = 0; i < 4; i++) {
+        q = (DVDCommandBlock *)(WaitingQueue + i * 8);
+        q->next = q;
+        q->prev = q;
+    }
 }
 
 /* __DVDPushWaitingQueue @0x80019E9C | size: 0x68 */
