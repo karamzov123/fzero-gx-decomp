@@ -56,6 +56,17 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(reclaimed["state"], "claimed")
         self.assertEqual(reclaimed["worker"], "w2")
 
+    def test_tokenless_inflight_claim_is_recoverable(self):
+        queue.register(self.db, "b1", "w1", self.batch)
+        self.db.execute("UPDATE batches SET state='gating', claim_token=NULL, claim_until=NULL WHERE batch_id='b1'")
+        self.db.commit()
+        self.assertEqual(queue.recover(self.db), 1)
+        row = queue.get(self.db, "b1")
+        self.assertEqual(row["state"], "recovery-required")
+        reclaimed = queue.claim(self.db, "w2", 60)
+        self.assertEqual(reclaimed["state"], "claimed")
+        self.assertEqual(reclaimed["worker"], "w2")
+
     def test_claim_is_single_consumer_across_connections(self):
         queue.register(self.db, "b1", "w1", self.batch)
         other = queue.open_db(self.root / "queue.sqlite3")
@@ -65,6 +76,24 @@ class QueueTests(unittest.TestCase):
             self.assertIsNone(queue.claim(other, "w2"))
         finally:
             other.close()
+
+    def test_sync_tree_reconciles_missing_batch_without_row_api_crash(self):
+        queue.register(self.db, "w1/missing", "w1", self.batch)
+        self.batch.rename(self.root / "w1" / "missing-archived")
+        rows = queue.sync_tree(self.db, self.root)
+        self.assertEqual(rows[0]["batch_id"], "w1/missing-archived")
+        row = queue.get(self.db, "w1/missing")
+        self.assertEqual(row["state"], "rejected")
+        self.assertIn("archived or removed", row["error"])
+
+    def test_sync_tree_discovers_nested_harvest_batches(self):
+        nested = self.root / "w1" / "harvest-1" / "unit"
+        nested.mkdir(parents=True)
+        (nested / "CARD.md").write_text("complete-unit: yes\n")
+        (nested / "unit.c").write_text("int target(void) { return 1; }\n")
+        rows = queue.sync_tree(self.db, self.root)
+        self.assertIn("w1/harvest-1-unit", {row["batch_id"] for row in rows})
+        self.assertEqual(queue.get(self.db, "w1/harvest-1-unit")["state"], "ready")
 
     def test_claim_empty_and_terminal_result_error(self):
         self.assertIsNone(queue.claim(self.db, "w1"))

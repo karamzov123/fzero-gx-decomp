@@ -128,6 +128,41 @@ int sibling(void) { return 99; }
             self.assertIn("int two(void) { return 2; }", validated[1])
             self.assertEqual(validated[-1], emitted)
 
+    def test_register_emitted_batch_uses_durable_queue(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            batch = root / "harvest-1" / "unit"
+            batch.mkdir(parents=True)
+            (batch / "CARD.md").write_text("complete-unit: yes\n")
+            (batch / "unit.c").write_text("int target(void) { return 1; }\n")
+            observed = {}
+
+            class FakeConnection:
+                def close(self):
+                    observed["closed"] = True
+
+            def fake_open_db(path):
+                observed["db"] = path
+                return FakeConnection()
+
+            def fake_register(conn, batch_id, worker, batch_path):
+                observed.update(batch_id=batch_id, worker=worker,
+                                batch_path=Path(batch_path))
+                return {"state": "ready"}
+
+            with mock.patch.object(harvest.submission_queue, "open_db",
+                                   side_effect=fake_open_db), \
+                 mock.patch.object(harvest.submission_queue, "register",
+                                   side_effect=fake_register):
+                row = harvest.register_emitted_batch(batch, root / "harvest-1",
+                                                     "integ")
+
+            self.assertEqual(row["state"], "ready")
+            self.assertEqual("integ/harvest-1-unit", observed["batch_id"])
+            self.assertEqual("integ", observed["worker"])
+            self.assertEqual(batch.resolve(), observed["batch_path"])
+            self.assertTrue(observed["closed"])
+
     def test_batch_rejects_symbol_without_its_own_provenance(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
