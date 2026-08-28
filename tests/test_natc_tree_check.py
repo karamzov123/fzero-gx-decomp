@@ -194,3 +194,37 @@ def test_report_mode_still_respects_the_advisory_check(monkeypatch):
     monkeypatch.setattr(m, "gate_in_flight", lambda: True)
     monkeypatch.setattr(sys, "argv", ["natc_tree_check.py", "--quiet"])
     assert m.main() == 2
+
+
+def test_untracked_file_is_not_treated_as_a_conversion(monkeypatch):
+    """A worker writing a candidate into src/ must not enter the land set.
+
+    2026-08-28: `tool` wrote a batch candidate to
+    src/dolphin/card/__iter_CARDDir.c. git reports it as `?? path`, and the
+    first dirty_sources() sliced ln[3:] on every porcelain line, so the stray
+    landed in the same list as real modifications -- where it both could never
+    be landed and masked every genuine abandoned conversion behind it.
+    """
+    m = _mod()
+    porcelain = " M src/dolphin/os/OSAlarm.c\n?? src/dolphin/card/stray.c\n"
+    monkeypatch.setattr(m, "sh", lambda *a: porcelain)
+    assert m.dirty_sources() == ["src/dolphin/os/OSAlarm.c"]
+    assert m.stray_sources() == ["src/dolphin/card/stray.c"]
+
+
+def test_stray_only_tree_is_not_reported_clean(monkeypatch):
+    """A stray keeps the tree dirty for metrics and the gate, but landing can
+    never clear it — so it must be neither 'clean' (0) nor 'land it' (1)."""
+    m = _mod()
+    monkeypatch.setattr(m, "dirty_sources", lambda: [])
+    monkeypatch.setattr(m, "stray_sources", lambda: ["src/x/stray.c"])
+    monkeypatch.setattr(sys, "argv", ["natc_tree_check.py", "--quiet"])
+    assert m.main() == 4
+
+
+def test_truly_clean_tree_is_still_zero(monkeypatch):
+    m = _mod()
+    monkeypatch.setattr(m, "dirty_sources", lambda: [])
+    monkeypatch.setattr(m, "stray_sources", lambda: [])
+    monkeypatch.setattr(sys, "argv", ["natc_tree_check.py", "--quiet"])
+    assert m.main() == 0
