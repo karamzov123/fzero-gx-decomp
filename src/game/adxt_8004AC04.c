@@ -39,12 +39,11 @@ _8004ac14:
     blr	
 }
 
-asm void fn_8004AC4C(void)
+// provenance: original fn_8004AC4C
+void fn_8004AC4C(void *arg0, int arg1, int arg2)
 {
-    nofralloc
-    stw	r4, 0x34(r3)
-    stw	r5, 0x38(r3)
-    blr	
+    *(int *)((unsigned char *)arg0 + 0x34) = arg1;
+    *(int *)((unsigned char *)arg0 + 0x38) = arg2;
 }
 
 asm void ADXT_StartVoice(void)
@@ -889,10 +888,10 @@ _8004b780:
     blr	
 }
 
-asm void fn_8004B79C(void)
+// provenance: harvest:runs.sqlite — fn_8004B79C recovered from adxt_8004AC04.c, compiled by hard2 at 2026-08-28T02:53 and scored 100 against main/game/adxt_8004AC04; original reference not recorded
+// provenance: repo-twin:__ARQCallbackHack (main/dolphin/ar/ARQ, J=1.000)
+void fn_8004B79C(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void fn_8004B7A0(void)

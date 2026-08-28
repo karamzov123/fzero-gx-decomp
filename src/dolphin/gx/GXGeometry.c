@@ -131,77 +131,40 @@ extern unsigned char lbl_801A70B4[4];
 extern unsigned char lbl_801A70A8[4];
 extern unsigned char lbl_801A709C[4];
 
-asm void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts)
+// provenance: original  GXBegin
+// exact natural-C (objdiff 100.0%, GC/1.2.5n). FIFO writes: stb (vtxFmt|prim)
+// then sth (nverts) to 0xCC008000 (lis r3,-0x33ff; -0x8000).
+void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x28(r1)
-    stw	r31, 0x24(r1)
-    addi	r31, r5, 0
-    stw	r30, 0x20(r1)
-    addi	r30, r4, 0
-    stw	r29, 0x1c(r1)
-    addi	r29, r3, 0
-    lwz	r6, gx
-    lwz	r0, 0x4f4(r6)
-    cmplwi	r0, 0
-    beq     _800346dc
-    clrlwi.	r0, r0, 0x1f
-    beq     _8003466c
-    bl      GXPreLoadEntireTexture
-_8003466c:
-    lwz	r3, gx
-    lwz	r0, 0x4f4(r3)
-    rlwinm.	r0, r0, 0, 0x1e, 0x1e
-    beq     _80034680
-    bl      __GXFlushGenMode
-_80034680:
-    lwz	r3, gx
-    lwz	r0, 0x4f4(r3)
-    rlwinm.	r0, r0, 0, 0x1d, 0x1d
-    beq     _80034694
-    bl      __GXSetGenMode
-_80034694:
-    lwz	r3, gx
-    lwz	r0, 0x4f4(r3)
-    rlwinm.	r0, r0, 0, 0x1c, 0x1c
-    beq     _800346a8
-    bl      __GXSetVCD
-_800346a8:
-    lwz	r3, gx
-    lwz	r0, 0x4f4(r3)
-    rlwinm.	r0, r0, 0, 0x1b, 0x1b
-    beq     _800346bc
-    bl      __GXSetVAT
-_800346bc:
-    lwz	r3, gx
-    lwz	r0, 0x4f4(r3)
-    rlwinm.	r0, r0, 0, 0x1b, 0x1c
-    beq     _800346d0
-    bl      __GXCalculateVatSizes
-_800346d0:
-    lwz	r3, gx
-    li	r0, 0
-    stw	r0, 0x4f4(r3)
-_800346dc:
-    lwz	r3, gx
-    lwz	r0, 0(r3)
-    cmplwi	r0, 0
-    bne     _800346f0
-    bl      __GXSendFlushPrim
-_800346f0:
-    or	r0, r30, r29
-    lis	r3, -0x33ff
-    stb	r0, -0x8000(r3)
-    sth	r31, -0x8000(r3)
-    lwz	r0, 0x2c(r1)
-    lwz	r31, 0x24(r1)
-    lwz	r30, 0x20(r1)
-    lwz	r29, 0x1c(r1)
-    addi	r1, r1, 0x28
-    mtlr	r0
-    blr	
+    u32 temp_r0;
+
+    temp_r0 = gx->dirtyState;
+    if (temp_r0 != 0) {
+        if (temp_r0 & 1) {
+            GXPreLoadEntireTexture();
+        }
+        if (gx->dirtyState & 2) {
+            __GXFlushGenMode();
+        }
+        if (gx->dirtyState & 4) {
+            __GXSetGenMode();
+        }
+        if (gx->dirtyState & 8) {
+            __GXSetVCD();
+        }
+        if (gx->dirtyState & 0x10) {
+            __GXSetVAT();
+        }
+        if (gx->dirtyState & 0x18) {
+            __GXCalculateVatSizes();
+        }
+        gx->dirtyState = 0U;
+    }
+    if (*(u32 *)&gx->inVertexList == 0U) {
+        __GXSendFlushPrim();
+    }
+    *(volatile u8 *)0xCC008000 = (u8)(vtxFmt | prim);
+    *(volatile u16 *)0xCC008000 = (u16)nverts;
 }
 
 asm void __GXSendFlushPrim(void)
@@ -2094,15 +2057,12 @@ _8003601c:
     blr	
 }
 
-asm void GXInitTexObjData(register void* p)
+// provenance: dolsdk2001:src/gx/GXTexture.c:308 GXInitTexObjData
+void GXInitTexObjData(void *obj, void *image_ptr)
 {
-    nofralloc
-    lwz	r5, 0xc(r3)
-    rlwinm	r0, r4, 0x1b, 7, 0x1f
-    rlwinm	r4, r5, 0, 0, 0xa
-    or	r0, r4, r0
-    stw	r0, 0xc(r3)
-    blr	
+    u32 *p = (u32 *)obj;
+    u32 cur = p[3];
+    p[3] = (cur & 0xFFE00000) | (((u32)image_ptr >> 5) & 0x01FFFFFF);
 }
 
 

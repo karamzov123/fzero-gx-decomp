@@ -21,63 +21,28 @@ extern s32 __CARDUpdateDir(s32 chan, void *callback);
 #pragma push
 #pragma force_active on
 
+// provenance: harvest:runs.sqlite — CARDFastOpen recovered from cardfastopen-retail-r1.c, compiled by hard2 at 2026-08-27T23:05 and scored 100 against main/dolphin/card/CARDReadWrite; original reference not recorded
 // 0x80030380 | size: 0xBC
-asm s32 CARDFastOpen(register s32 chan, register s32 fileNo, register void *fileInfo)
+// provenance: dolsdk2001:src/card/CARDOpen.c:69; retail-adapted ABI/control flow
+s32 CARDFastOpen(register s32 chan, register s32 fileNo, register void *fileInfo)
 {
-    nofralloc
-    mflr    r0
-    stw     r0, 0x4(r1)
-    stwu    r1, -0x28(r1)
-    stw     r31, 0x24(r1)
-    stw     r30, 0x20(r1)
-    mr.     r30, r4
-    stw     r29, 0x1c(r1)
-    addi    r29, r5, 0
-    blt     _800303AC
-    cmpwi   r30, 0x7f
-    blt     _800303B4
-_800303AC:
-    li      r3, -0x80
-    b       _80030420
-_800303B4:
-    addi    r4, r1, 0x14
-    bl      __CARDGetControlBlock
-    cmpwi   r3, 0x0
-    bge     _800303C8
-    b       _80030420
-_800303C8:
-    lwz     r3, 0x14(r1)
-    bl      __CARDGetDirBlock
-    slwi    r0, r30, 6
-    add     r30, r3, r0
-    lwz     r3, 0x14(r1)
-    mr      r4, r30
-    bl      __CARDAccess
-    addi    r31, r3, 0
-    cmpwi   r31, -0xa
-    bne     _800303FC
-    mr      r3, r30
-    bl      __CARDIsPublic
-    mr      r31, r3
-_800303FC:
-    cmpwi   r31, 0x0
-    blt     _80030414
-    addi    r3, r29, 0
-    addi    r4, r30, 0
-    li      r5, 0x40
-    bl      memcpy
-_80030414:
-    lwz     r3, 0x14(r1)
-    mr      r4, r31
-    bl      __CARDPutControlBlock
-_80030420:
-    lwz     r0, 0x2c(r1)
-    lwz     r31, 0x24(r1)
-    lwz     r30, 0x20(r1)
-    lwz     r29, 0x1c(r1)
-    addi    r1, r1, 0x28
-    mtlr    r0
-    blr
+    void *card;
+    unsigned char *dir;
+    unsigned char *ent;
+    s32 result;
+    if (fileNo < 0 || fileNo >= 0x7f)
+        return -0x80;
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0)
+        return result;
+    dir = (unsigned char *)__CARDGetDirBlock(card);
+    ent = dir + (fileNo << 6);
+    result = __CARDAccess(card, ent);
+    if (result == -0xA)
+        result = __CARDIsPublic(ent);
+    if (result >= 0)
+        memcpy(fileInfo, ent, 0x40);
+    return __CARDPutControlBlock(card, result);
 }
 
 // 0x8003043C | size: 0x254
