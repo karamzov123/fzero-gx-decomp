@@ -62,12 +62,12 @@ asm void ModelDVD_OpenFile(void)
     blr
 }
 
-asm u32 fn_80071CE0(register void* a)
+// provenance: original fn_80071CE0 (field accessor: lwz r3,0x34(r3); blr)
+u32 fn_80071CE0(void* a)
 {
-    nofralloc
-    lwz     r3, 0x34(r3)
-    blr
+    return *(u32*)((u32*)a + 0xD);
 }
+
 
 asm void ModelDVD_ReadAsync(void)
 {

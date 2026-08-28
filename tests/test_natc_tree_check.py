@@ -161,3 +161,36 @@ def test_land_flag_is_actually_wired_into_main(monkeypatch):
     monkeypatch.setattr(sys, "argv", ["natc_tree_check.py", "--land", "--quiet"])
     assert m.main() == 0
     assert called.get("dirty") == ["src/a.c"], "--land did not reach land()"
+
+
+def test_land_does_not_consult_the_advisory_gate_check(monkeypatch):
+    """--land must serialise on the LOCK, not on gate_in_flight().
+
+    The supervisor launches --land detached and then immediately launches
+    natc_integrate.py, so a detached run always sees a "gate" by the time it
+    checks. That made --land a permanent no-op which LOGGED as if it were
+    working: five consecutive "gate in flight" lines with no gate anywhere and
+    the lock free. gate_in_flight() is a reporting heuristic; land() takes the
+    real lock and re-reads the dirty set inside it.
+    """
+    m = _mod()
+    monkeypatch.setattr(m, "dirty_sources", lambda: ["src/a.c"])
+    monkeypatch.setattr(m, "gate_in_flight", lambda: True)   # the false positive
+    monkeypatch.setattr(m, "oldest_mtime", lambda _p: 600)
+    called = {}
+    def fake_land(d, log=print):
+        called["d"] = d
+        return 0
+    monkeypatch.setattr(m, "land", fake_land)
+    monkeypatch.setattr(sys, "argv", ["natc_tree_check.py", "--land", "--quiet"])
+    assert m.main() == 0
+    assert called.get("d") == ["src/a.c"], "--land was blocked by the advisory check"
+
+
+def test_report_mode_still_respects_the_advisory_check(monkeypatch):
+    """Without --land the heuristic must still suppress mid-gate noise."""
+    m = _mod()
+    monkeypatch.setattr(m, "dirty_sources", lambda: ["src/a.c"])
+    monkeypatch.setattr(m, "gate_in_flight", lambda: True)
+    monkeypatch.setattr(sys, "argv", ["natc_tree_check.py", "--quiet"])
+    assert m.main() == 2
