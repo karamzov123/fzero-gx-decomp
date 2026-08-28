@@ -1,3 +1,4 @@
+// dest: src/dolphin/pad/pad_8001C01C.c
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
@@ -10,8 +11,8 @@ extern unsigned char VITvMode_8012457C[28];
 extern void OSRegisterVersion(void);
 extern void OSSetCurrentContext(void);
 extern void OSClearContext(void);
-extern void OSDisableInterrupts(void);
-extern void OSRestoreInterrupts(void);
+extern s32 OSDisableInterrupts(void);
+extern void OSRestoreInterrupts(s32 level);
 extern void OSRegisterResetFunction(void);
 extern void OSSetWirelessID(void);
 extern void OSGetTime(void);
@@ -56,7 +57,7 @@ extern unsigned char lbl_801A6990[4];
 extern unsigned char lbl_801A6994[4];
 extern unsigned char lbl_801A6998[4];
 asm void VIGetTvFormat(void);
-asm void PADIsMotorEnabled(void);
+
 asm void ClampS8(void);
 asm void PadClampStatus(void);
 asm void UpdateOrigin(void);
@@ -113,24 +114,14 @@ _8001c068:
     blr
 }
 
-asm void PADIsMotorEnabled(void)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x10(r1)
-    stw	r31, 0xc(r1)
-    bl      OSDisableInterrupts
-    lis	r4, -0x3400
-    lhz	r0, 0x206e(r4)
-    clrlwi	r31, r0, 0x1e
-    bl      OSRestoreInterrupts
-    clrlwi	r3, r31, 0x1f
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    addi	r1, r1, 0x10
-    mtlr	r0
-    blr
+// provenance: dolsdk2001:src/pad/Pad.c (adapted; no exact body in SDK) PADIsMotorEnabled
+u32 PADIsMotorEnabled(void) {
+    s32 enabled;
+    u32 motor;
+    enabled = OSDisableInterrupts();
+    motor = *(volatile u16 *)0xCC00206E & 3u;
+    OSRestoreInterrupts(enabled);
+    return motor & 1u;
 }
 
 asm void ClampS8(void)
