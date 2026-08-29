@@ -70,6 +70,8 @@ extern void fn_8001375C(register s32 chan);
 extern int SIGetResponseSync(register s32 chan, register void* out);
 extern void SITypeNameLookup(register s32 interrupt, register OSContext* context);
 extern void* fn_80013994(register void* handler);
+
+typedef void (*SICallbackT)(s32, u32, OSContext*);
 extern void SISetInterruptMask(register s32 chan, register u32 unk, register s32 val);
 extern int __SITransfer(register s32 chan, register void* output,
                         register s32 outputBytes, register void* input,
@@ -1299,51 +1301,20 @@ L_8001285C:
 }
 #pragma pop
 
-/* ---- AlarmHandler ---- */
-#pragma push
-#pragma force_active on
-asm void SIAlarmHandler(register void* alarm, register OSContext* context)
+// provenance: original
+void SIAlarmHandler(register void* alarm, register OSContext* context)
 {
-    nofralloc
-    mflr        r0
-    lis         r4, lbl_8015CA90@ha
-    stw         r0, 0x4(r1)
-    addi        r0, r4, lbl_8015CA90@l
-    lis         r4, 0x6666
-    subf        r0, r0, r3
-    stwu        r1, -0x20(r1)
-    addi        r3, r4, 0x6667
-    mulhw       r0, r3, r0
-    stw         r31, 0x1c(r1)
-    srawi       r0, r0, 4
-    srwi        r3, r0, 31
-    add         r0, r0, r3
-    lis         r3, Packet@ha
-    slwi        r4, r0, 5
-    addi        r0, r3, Packet@l
-    add         r31, r0, r4
-    lwz         r3, 0x0(r31)
-    cmpwi       r3, -0x1
-    beq         L_800128F4
-    lwz         r4, 0x4(r31)
-    lwz         r5, 0x8(r31)
-    lwz         r6, 0xc(r31)
-    lwz         r7, 0x10(r31)
-    lwz         r8, 0x14(r31)
-    bl          __SITransfer
-    cmpwi       r3, 0x0
-    beq         L_800128F4
-    li          r0, -0x1
-    stw         r0, 0x0(r31)
-L_800128F4:
-    lwz         r0, 0x24(r1)
-    lwz         r31, 0x1c(r1)
-    addi        r1, r1, 0x20
-    mtlr        r0
-    blr
-}
-#pragma pop
+    s32 chan = (s32)((char*)alarm - (char*)lbl_8015CA90) / 0x28;
+    u32* p = &Packet[chan * 8];
 
+    if ((s32)p[0] != -1) {
+        s32 ret = __SITransfer((s32)p[0], (void*)p[1], (s32)p[2], (void*)p[3],
+                               (s32)p[4], (SICallbackT)p[5]);
+        if (ret != 0) {
+            p[0] = -1;
+        }
+    }
+}
 /* ---- SITransfer ---- */
 #pragma push
 #pragma force_active on
