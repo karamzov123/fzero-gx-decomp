@@ -57,6 +57,18 @@ This is an active matching project rather than a ready-to-run ROM build. Start w
 
 For individual difficult functions, [decomp.me](https://decomp.me) provides shareable matching scratches; it works on individual functions, not full binaries.
 
+### Tooling health check
+
+Use the declared `uv` test environment rather than the host Python environment:
+
+```sh
+uv run --extra test python tools/natc_health.py --quick  # tests + NATC self-tests
+uv run --extra test python tools/natc_health.py          # plus Ninja + DOL SHA-1
+```
+
+The command is fail-closed: it stops at the first failed stage and emits a JSON
+record containing that stage's stdout, stderr, and return code.
+
 ## Contributing
 
 Please keep changes focused and reproducible. Preserve the existing symbol/split conventions, do not commit copyrighted game assets or private environment files, and document adapted code with provenance as described in the policy. Discussion and review are welcome through the GameCube/Wii decompilation community.
