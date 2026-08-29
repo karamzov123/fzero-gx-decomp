@@ -11,7 +11,17 @@ typedef unsigned long long u64;
 #pragma force_active on
 
 extern void OSDisableInterrupts(void);
-extern unsigned char ResetFunctionQueue_801A67D0[8];
+struct OSResetFunctionInfo {
+    s32 (*func)(s32);
+    s32 priority;
+    struct OSResetFunctionInfo* next;
+    struct OSResetFunctionInfo* prev;
+};
+struct OSResetFunctionQueue {
+    struct OSResetFunctionInfo* head;
+    struct OSResetFunctionInfo* tail;
+};
+extern struct OSResetFunctionQueue ResetFunctionQueue_801A67D0;
 extern void ICFlashInvalidate(void);
 extern void __OSStopAudioSystem(void);
 extern s32 __PADDisableRecalibration(s32);
