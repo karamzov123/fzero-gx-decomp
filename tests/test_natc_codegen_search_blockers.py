@@ -19,7 +19,7 @@ def spec():
 
 
 def complete_eval(score=100.0):
-    return {"accepted": True, "score": score, "sections": {},
+    return {"schema_version": "natc.evaluation.v1", "accepted": True, "score": score, "sections": {},
             "relocations": [], "object_layout": {"target": 4, "candidate": 4},
             "missing_in_target": [], "missing_in_candidate": [],
             "exact_sibling_regressions": []}

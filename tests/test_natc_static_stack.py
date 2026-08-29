@@ -36,3 +36,11 @@ def test_shape_index_roundtrip(tmp_path):
 def test_ledger_deduplicates(tmp_path):
  l=Ledger(tmp_path/'x.sqlite'); kw=dict(unit='u',symbol='s',mutation_class='x',source_id='a',context_id='b')
  assert l.record('id',**kw) and not l.record('id',**kw); assert l.get('id')[0]=='id'; l.close()
+
+
+def test_reasoner_prompt_describes_deterministic_pipeline():
+    text = Path("docs/NATC-SOURCE-SHAPE-REASONER-PROMPT.md").read_text()
+    for token in ("natc_hypothesis.py", "natc_codegen_search.py", "natc_compile.py", "natc_feedback.py", "natc_hypothesis_ledger.py"):
+        assert token in text
+    assert "authoritative invocation" in text
+    assert "typed immutable ledger" in text

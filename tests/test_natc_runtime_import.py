@@ -46,7 +46,13 @@ def write_bundle(path: Path, records: list[dict], **manifest_overrides):
         "read_plan": [value["provenance"] for value in records],
     }
     manifest.update(manifest_overrides)
-    path.with_suffix(path.suffix + ".manifest.json").write_text(json.dumps(manifest))
+    manifest_path = path.with_suffix(path.suffix + ".manifest.json")
+    manifest_raw = json.dumps(manifest).encode()
+    manifest_path.write_bytes(manifest_raw)
+    marker = {"marker_version": "natc.trace.complete.v1",
+              "artifact_sha256": manifest["artifact_sha256"],
+              "manifest_sha256": hashlib.sha256(manifest_raw).hexdigest()}
+    Path(str(path) + ".complete.json").write_text(json.dumps(marker))
 
 
 class ImportTests(unittest.TestCase):
@@ -108,6 +114,31 @@ class ImportTests(unittest.TestCase):
                 import_trace(path, game_id="GFZE01", dol_sha1="a" * 40,
                              map_id="map-sha256:" + "b" * 64)
             write_bundle(path, [first], record_count=2)
+            with self.assertRaises(TraceImportError):
+                import_trace(path, game_id="GFZE01", dol_sha1="a" * 40,
+                             map_id="map-sha256:" + "b" * 64)
+
+    def test_import_requires_matching_completion_marker(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "trace.jsonl"
+            write_bundle(path, [record()])
+            Path(str(path) + ".complete.json").write_text(json.dumps({
+                "marker_version": "natc.trace.complete.v1",
+                "artifact_sha256": "0" * 64, "manifest_sha256": "0" * 64}))
+            with self.assertRaises(TraceImportError):
+                import_trace(path, game_id="GFZE01", dol_sha1="a" * 40,
+                             map_id="map-sha256:" + "b" * 64)
+
+    def test_import_enforces_independent_string_and_path_fact_limits(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "trace.jsonl"
+            value = record(run_id="r" * 257)
+            write_bundle(path, [value])
+            with self.assertRaises(TraceImportError):
+                import_trace(path, game_id="GFZE01", dol_sha1="a" * 40,
+                             map_id="map-sha256:" + "b" * 64)
+            value = record(path_facts=[str(i) for i in range(65)])
+            write_bundle(path, [value])
             with self.assertRaises(TraceImportError):
                 import_trace(path, game_id="GFZE01", dol_sha1="a" * 40,
                              map_id="map-sha256:" + "b" * 64)
