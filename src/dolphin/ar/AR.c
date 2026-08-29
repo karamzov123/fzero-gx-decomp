@@ -1,5 +1,6 @@
 typedef signed int s32;
 typedef unsigned int u32;
+typedef unsigned short u16;
 typedef unsigned long long u64;
 typedef int BOOL;
 typedef signed long long s64;
@@ -41,46 +42,23 @@ extern unsigned char lbl_801A69FC[4];
 #pragma force_active on
 void __ARHandler(s32 interrupt, OSContext* context);
 
-asm ARQCallback ARRegisterDMACallback(register ARQCallback callback)
+// provenance: dolsdk2001:src/ar/ar.c:21  (adapted; SDK revision differs; global __AR_Callback aliased to lbl_801A69E0 in this unit)
+ARQCallback ARRegisterDMACallback(ARQCallback callback)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x18(r1)
-    stw	r31, 0x14(r1)
-    stw	r30, 0x10(r1)
-    mr	r30, r3
-    lwz r31, lbl_801A69E0
-    bl      OSDisableInterrupts
-    stw r30, lbl_801A69E0
-    bl      OSRestoreInterrupts
-    mr	r3, r31
-    lwz	r0, 0x1c(r1)
-    lwz	r31, 0x14(r1)
-    lwz	r30, 0x10(r1)
-    addi	r1, r1, 0x18
-    mtlr	r0
-    blr	
+    ARQCallback old = *(ARQCallback*)lbl_801A69E0;
+    BOOL level = OSDisableInterrupts();
+    *(ARQCallback*)lbl_801A69E0 = callback;
+    OSRestoreInterrupts(level);
+    return old;
 }
 
-asm u32 AIGetDSPInterruptEnable(void)
+// provenance: retail-asm:src/dolphin/ar/AR.c:66  (no SDK reference body; reference_count=0; derived from retail disasm + 0xCC00500A register convention)
+u32 AIGetDSPInterruptEnable(void)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x10(r1)
-    stw	r31, 0xc(r1)
-    bl      OSDisableInterrupts
-    lis	r4, -0x3400
-    lhz	r0, 0x500a(r4)
-    rlwinm	r31, r0, 0, 0x16, 0x16
-    bl      OSRestoreInterrupts
-    mr	r3, r31
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    addi	r1, r1, 0x10
-    mtlr	r0
-    blr	
+    BOOL level = OSDisableInterrupts();
+    u32 enabled = (*(volatile u16*)0xCC00500A) & 0x200;
+    OSRestoreInterrupts(level);
+    return enabled;
 }
 
 asm void ARStartDMA(register u32 dir, register u32 memaddr, register u32 aramaddr, register u32 length)
@@ -148,36 +126,19 @@ asm void ARStartDMA(register u32 dir, register u32 memaddr, register u32 aramadd
     blr	
 }
 
-asm u32 ARAlloc(register u32 length)
+// provenance: dolsdk2001:src/ar/ar.c:60  (adapted; SDK revision differs; __AR_StackPointer/__AR_BlockLength/__AR_FreeBlocks aliased to lbl_801A69F0/801A69F8/801A69F4; asserts compiled out under -DNDEBUG; critical section wraps OSDisableInterrupts/OSRestoreInterrupts)
+u32 ARAlloc(register u32 length)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x18(r1)
-    stw	r31, 0x14(r1)
-    stw	r30, 0x10(r1)
-    mr	r30, r3
-    bl      OSDisableInterrupts
-    lwz r31, lbl_801A69F0
-    lwz r4, lbl_801A69F8
-    add	r0, r31, r30
-    stw r0, lbl_801A69F0
-    stw	r30, 0(r4)
-    lwz r5, lbl_801A69F8
-    lwz r4, lbl_801A69F4
-    addi	r5, r5, 4
-    addi	r0, r4, -1
-    stw r5, lbl_801A69F8
-    stw r0, lbl_801A69F4
-    bl      OSRestoreInterrupts
-    mr	r3, r31
-    lwz	r0, 0x1c(r1)
-    lwz	r31, 0x14(r1)
-    lwz	r30, 0x10(r1)
-    addi	r1, r1, 0x18
-    mtlr	r0
-    blr	
+    u32 old = OSDisableInterrupts();
+    u32 tmp = *(u32*)lbl_801A69F0;
+    *(u32*)lbl_801A69F0 = tmp + length;
+    *(u32*)(*(u32*)lbl_801A69F8) = length;
+    *(u32*)lbl_801A69F8 = *(u32*)lbl_801A69F8 + 4;
+    *(s32*)lbl_801A69F4 = *(s32*)lbl_801A69F4 - 1;
+    OSRestoreInterrupts(old);
+    return tmp;
 }
+
 
 asm u32 ARFree(register void* out)
 {
