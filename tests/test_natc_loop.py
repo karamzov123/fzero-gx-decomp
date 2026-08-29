@@ -1,8 +1,10 @@
 import importlib.util
+import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
 SPEC = importlib.util.spec_from_file_location(
     "natc_loop_under_test", ROOT / "tools/natc_loop.py")
 assert SPEC and SPEC.loader
@@ -84,9 +86,33 @@ class NatcLoopContextTests(unittest.TestCase):
         # the per-instruction reloc annotation line
         self.assertIn("R_PPC_EMB_SDA21 gx", ctx)
 
-    # --- regression: --context-only must NOT be gated by attempt budget ----
+    def test_attempt_budget_ignores_legacy_metadata_rows(self):
+        import sqlite3
+        import tempfile
+        from unittest.mock import patch
+
+        with tempfile.TemporaryDirectory() as td:
+            db = Path(td) / ".cache/natc/runs.sqlite"
+            db.parent.mkdir(parents=True)
+            con = sqlite3.connect(db)
+            con.execute(
+                "create table attempts(unit text, symbol text, kind text, "
+                "attempt integer, ts real, ctx_sha text)"
+            )
+            rows = [
+                ("u", "s", None, None, 0.0, None),
+                ("u", "s", "attempt", 1, 1.0, "ctx"),
+                ("u", "s", "verify", None, 2.0, "ctx"),
+            ]
+            con.executemany("insert into attempts values(?,?,?,?,?,?)", rows)
+            con.commit()
+            con.close()
+            with patch.object(loop.Path, "home", return_value=Path(td)), \
+                    patch.object(loop, "_budget_context", return_value="ctx"):
+                self.assertEqual(loop.attempts_used("u", "s"), 1)
+
     # Viewing context never spends an attempt; an already-landed function
-    # (attempts_used >= BUDGET) must still be viewable.
+    # must still be viewable even when its conversion budget is exhausted.
     def test_context_only_not_blocked_by_budget(self):
         import subprocess
         # OSInitAlloc is a landed function with many ok attempts; pick a unit

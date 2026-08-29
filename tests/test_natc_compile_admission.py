@@ -1,10 +1,12 @@
 import importlib.util
 import sqlite3
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
 SPEC = importlib.util.spec_from_file_location("natc_compile_admission", ROOT / "tools" / "natc_compile.py")
 assert SPEC and SPEC.loader
 natc_compile = importlib.util.module_from_spec(SPEC)
