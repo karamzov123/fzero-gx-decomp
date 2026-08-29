@@ -3,101 +3,34 @@
 
 typedef int BOOL;
 typedef unsigned int u32;
+typedef unsigned char u8;
 
 #pragma force_active on
 
 extern unsigned char lbl_80124110[];
 extern unsigned char lbl_801A6908[4];
-extern void ErrorCode2Num(void);
 extern void __OSLockSramEx(void);
 extern void __OSUnlockSramEx(void);
 extern void __msl_strncmp(void);
 
 /* ErrorCode2Num @0x8001A05C | size: 0x11C */
-asm void ErrorCode2Num(void) {
-nofralloc
-	li r0, 0x2
-	lis r4, lbl_80124110@ha
-	mtctr r0
-	addi r4, r4, lbl_80124110@l
-	li r5, 0x0
-lbl_8001A070:
-	lwz r0, 0x0(r4)
-	cmplw r3, r0
-	bne lbl_8001A084
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A084:
-	lwzu r0, 0x4(r4)
-	addi r5, r5, 0x1
-	cmplw r3, r0
-	bne lbl_8001A09C
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A09C:
-	lwzu r0, 0x4(r4)
-	addi r5, r5, 0x1
-	cmplw r3, r0
-	bne lbl_8001A0B4
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A0B4:
-	lwzu r0, 0x4(r4)
-	addi r5, r5, 0x1
-	cmplw r3, r0
-	bne lbl_8001A0CC
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A0CC:
-	lwzu r0, 0x4(r4)
-	addi r5, r5, 0x1
-	cmplw r3, r0
-	bne lbl_8001A0E4
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A0E4:
-	lwzu r0, 0x4(r4)
-	addi r5, r5, 0x1
-	cmplw r3, r0
-	bne lbl_8001A0FC
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A0FC:
-	lwzu r0, 0x4(r4)
-	addi r5, r5, 0x1
-	cmplw r3, r0
-	bne lbl_8001A114
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A114:
-	lwzu r0, 0x4(r4)
-	addi r5, r5, 0x1
-	cmplw r3, r0
-	bne lbl_8001A12C
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A12C:
-	lwzu r0, 0x4(r4)
-	addi r5, r5, 0x1
-	cmplw r3, r0
-	bne lbl_8001A144
-	clrlwi r3, r5, 24
-	blr
-lbl_8001A144:
-	addi r4, r4, 0x4
-	addi r5, r5, 0x1
-	bdnz lbl_8001A070
-	lis r4, 0x10
-	cmplw r3, r4
-	blt lbl_8001A170
-	addi r0, r4, 0x8
-	cmplw r3, r0
-	bgt lbl_8001A170
-	li r3, 0x11
-	blr
-lbl_8001A170:
-	li r3, 0x1d
-	blr
+/* ErrorCode2Num @0x8001A05C | size: 0x11C -- natural C */
+// provenance: mkdd:libs/dolphin/dvd/dvderror.c:25
+u8 ErrorCode2Num(u32 errorCode) {
+    u32 i;
+    u32 *ErrorTable = (u32 *)lbl_80124110;
+
+    for (i = 0; i < 18; i++) {
+        if (ErrorTable[i] == errorCode) {
+            return (u8)i;
+        }
+    }
+
+    if ((errorCode >= 0x00100000) && (errorCode <= 0x00100008)) {
+        return 17;
+    }
+
+    return 29;
 }
 
 /* __DVDStoreErrorCode @0x8001A178 | size: 0x7C */
