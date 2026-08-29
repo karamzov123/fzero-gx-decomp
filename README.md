@@ -47,6 +47,7 @@ The retail binary, proprietary compiler distribution, and other non-redistributa
 
 ## Agent Work Structure
 
+```text
                         ┌─────────────────────────────────────────────┐
                         │  PM SUPERVISOR v5 (systemd, ~/project supervisor)│
                         │  spawns/rotates workers, lease TTLs, alerts │
@@ -81,6 +82,7 @@ The retail binary, proprietary compiler distribution, and other non-redistributa
           ▼
    ~/projects/fzero-gx-decomp  (HEAD: 324 exact natural-C fns / 22,120 B,
                                 14.5% exact · matched_code 92.5% diagnostic)
+```
 
 
 ## Getting started
