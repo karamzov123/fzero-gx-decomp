@@ -167,47 +167,19 @@ void GXBegin(register s32 prim, register s32 vtxFmt, register u16 nverts)
     *(volatile u16 *)0xCC008000 = (u16)nverts;
 }
 
-asm void __GXSendFlushPrim(void)
+// provenance: dolsdk2001:src/gx/GXGeometry.c:49 __GXSendFlushPrim (bpSent set to 1 to match retail asm tail; vn/vLim cached so r3 keeps the gx sda21 base)
+void __GXSendFlushPrim(void)
 {
-    nofralloc
-    lwz	r3, gx
-    li	r0, 0x98
-    lis	r5, -0x33ff
-    lhz	r6, 4(r3)
-    li	r4, 0
-    lhz	r3, 6(r3)
-    mullw	r7, r6, r3
-    stb	r0, -0x8000(r5)
-    sth	r6, -0x8000(r5)
-    addi	r3, r7, 3
-    cmplwi	r7, 0
-    srwi	r3, r3, 2
-    ble     _80034794
-    rlwinm.	r0, r3, 0x1d, 3, 0x1f
-    mtctr	r0
-    beq     _80034788
-_8003475c:
-    stw	r4, -0x8000(r5)
-    stw	r4, -0x8000(r5)
-    stw	r4, -0x8000(r5)
-    stw	r4, -0x8000(r5)
-    stw	r4, -0x8000(r5)
-    stw	r4, -0x8000(r5)
-    stw	r4, -0x8000(r5)
-    stw	r4, -0x8000(r5)
-    bdnz    _8003475c
-    andi.	r3, r3, 7
-    beq     _80034794
-_80034788:
-    mtctr	r3
-_8003478c:
-    stw	r4, -0x8000(r5)
-    bdnz    _8003478c
-_80034794:
-    lwz	r3, gx
-    li	r0, 1
-    sth	r0, 2(r3)
-    blr	
+    u32 i;
+    u16 vn = gx->vNum;
+    u32 numD = (u32)vn * (u32)gx->vLim;
+
+    GXWGFifo->u8 = 0x98;
+    GXWGFifo->u16 = vn;
+    for (i = 0; i < numD; i += 4) {
+        GXWGFifo->u32 = 0;
+    }
+    gx->bpSent = 1;
 }
 
 asm void GXSetLineWidth(register s32 width, register s32 offset)
