@@ -15,7 +15,7 @@ extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL level);
 extern void __AI_SRC_INIT(void);
 extern s32 AIGetStreamPlayState_Leaf(void);
-asm u32 AIGetStreamPlayState(void);
+u32 AIGetStreamPlayState(void);
 asm u32 AIGetDSPSampleRate(void);
 extern void DSPReadMailHi(void);
 extern void DSPReadMailLo(void);
@@ -88,13 +88,12 @@ Lexit:
 }
 
 // 0x8001E0D4 | size: 0x10
-asm u32 AIGetStreamPlayState(void)
+// provenance: dolsdk2001:src/ai/ai.c:158 (also melee,melee-src-tmpcopy,mkdd,sms)
+//   reference body: return __AIRegs[0] & 1;  adapted to this unit's literal
+//   register form (0xCC006C00 == __AIRegs). clrlwi r0,31 = r0 & 0x1.
+u32 AIGetStreamPlayState(void)
 {
-    nofralloc
-    lis     r3, 0xcc00
-    lwz     r0, 0x6c00(r3)
-    clrlwi  r3, r0, 31
-    blr
+    return *(volatile u32 *)0xCC006C00 & 1;
 }
 
 // 0x8001E0E4 | size: 0xE0
