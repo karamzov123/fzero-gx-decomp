@@ -45,6 +45,44 @@ See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/s
 
 The retail binary, proprietary compiler distribution, and other non-redistributable inputs are intentionally not included. A local build requires legally obtained matching inputs and the appropriate GameCube toolchain.
 
+## Agent Work Structure
+
+                        ┌─────────────────────────────────────────────┐
+                        │  PM SUPERVISOR v5 (systemd, ~/project supervisor)│
+                        │  spawns/rotates workers, lease TTLs, alerts │
+                        └──────┬──────────────────────────────────────┘
+                               │ launches + monitors
+        ┌──────────┬───────┬───┴────┬─────────┬────────┬──────────┐
+        ▼          ▼       ▼        ▼         ▼        ▼          ▼
+     natc1..5    tool    hard     hard2     integ    fzero-online (down)
+  (conversion) (conv.)  (hard)   (hard)  (integrator)  (separate proj)
+        │          │       │        │         │
+        │  ① CLAIM: natc_rank.py --next  ── SQLite lease (TTL 4h, unit-level)
+        │  ② CONTEXT: [local cache]/ctx/*.ctx (527 slices)
+        │             + ref-bodies (145) + natc_refs symbol index
+        │             + provenance-tagged SDK sources in src/ (18 files)
+        │  ③ CONVERT: m2c → candidate .c + CARD.md provenance
+        │  ④ SELF-CHECK: natc_preflight.py (~10 ms text + 25 ms/fn rescore)
+        │             ← SHOULD gate registration; currently advisory (GAP)
+        ▼
+  [local cache]/submissions/<worker>/<batch>/
+        │  ⑤ REGISTER → submission-queue.sqlite3 (state=ready)
+        ▼
+   ┌──────────────────────────────────────────────┐
+   │ INTEGRATOR (integ) — serialised gate lock    │
+   │  natc_gate.py: cheap_checks → ninja (MWCC    │
+   │  GC/1.3.2 pin, wibo) → objdiff score 100     │
+   │  → DOL sha1 gate GREEN → commit to main      │
+   │  RED ⇒ whole batch rejected, tree restored   │
+   │  stale-object REPAIR (n objects)             │
+   └──────┬───────────────────────────────────────┘
+          │ ⑥ accepted → git commit → STATE.md metrics (natc_metrics.py)
+          │    rejected → .rejected/<worker>/ + evidence + reason in DB
+          ▼
+   ~/projects/fzero-gx-decomp  (HEAD: 324 exact natural-C fns / 22,120 B,
+                                14.5% exact · matched_code 92.5% diagnostic)
+
+
 ## Getting started
 
 This is an active matching project rather than a ready-to-run ROM build. Start with:
