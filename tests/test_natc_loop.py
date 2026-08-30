@@ -51,6 +51,19 @@ class NatcLoopContextTests(unittest.TestCase):
         ctx = loop.build_context(self.UNIT, self.SYM)
         self.assertIn("REFERENCE BODIES", ctx)
 
+    def test_context_contains_verified_runtime_facts_for_referenced_globals(self):
+        from unittest.mock import patch
+
+        runtime = ("--- VERIFIED RUNTIME FACTS (evidence only) ---\n"
+                   "CARD.__CARDBlock[2] address=0x80177960")
+        with patch.object(loop, "runtime_context_section", return_value=runtime) as select:
+            ctx = loop.build_context(self.UNIT, self.SYM)
+
+        self.assertIn(runtime, ctx)
+        symbols = select.call_args.args[1]
+        self.assertIn(self.SYM, symbols)
+        self.assertIn("gx", symbols)
+
     def test_context_contains_provenance_seed(self):
         ctx = loop.build_context(self.UNIT, self.SYM)
         self.assertIn("PROVENANCE SEED", ctx)
