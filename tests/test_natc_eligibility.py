@@ -9,7 +9,9 @@ by test, not by intention.
 """
 from __future__ import annotations
 import importlib.util
+import sqlite3
 import sys
+import tempfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -84,3 +86,23 @@ def test_scan_of_the_real_tree_stays_conservative():
         f"{s['ineligible']}/{s['asm_functions']} = {frac:.1%} ineligible; "
         f"outside the conservative band, re-check the instruction classes")
     assert set(s["by_class"]) <= {"paired-single", "supervisor", "cache/sync"}
+
+
+def test_apply_routes_only_ineligible_symbols_without_erasing_terminal_evidence():
+    m = _mod()
+    rows = [
+        {"file": "src/a.c", "unit": "main/a", "symbol": "ps", "blockers": ["paired-single"]},
+        {"file": "src/a.c", "unit": "main/a", "symbol": "plain", "blockers": []},
+    ]
+    with tempfile.TemporaryDirectory() as td:
+        db = Path(td) / "runs.sqlite"
+        assert m.apply_classifications(rows, db) == 1
+        con = sqlite3.connect(db)
+        assert con.execute("select status from symbol_states where symbol='ps'").fetchone()[0] == "inline_asm_required"
+        assert con.execute("select 1 from symbol_states where symbol='plain'").fetchone() is None
+        con.execute("update symbol_states set status='terminal',evidence='manual' where symbol='ps'")
+        con.commit(); con.close()
+        assert m.apply_classifications(rows, db) == 0
+        con = sqlite3.connect(db)
+        assert con.execute("select status,evidence from symbol_states where symbol='ps'").fetchone() == ("terminal", "manual")
+        con.close()

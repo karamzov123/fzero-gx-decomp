@@ -1,5 +1,6 @@
 import importlib.util
 import sqlite3
+import sys
 import tempfile
 import time
 import unittest
@@ -7,6 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
 SPEC = importlib.util.spec_from_file_location("natc_rank_under_test", ROOT / "tools/natc_rank.py")
 assert SPEC and SPEC.loader
 natc_rank = importlib.util.module_from_spec(SPEC)
@@ -78,6 +80,29 @@ class LeaseSweepTests(unittest.TestCase):
         with warnings.catch_warnings():
             warnings.simplefilter("error", ResourceWarning)
             natc_rank.units_with_pending_submission()
+
+    def test_terminal_batch_outcomes_do_not_retire_whole_units(self):
+        with tempfile.TemporaryDirectory() as td:
+            db = sqlite3.connect(Path(td) / "runs.sqlite")
+            db.execute("""create table units(
+                unit text primary key, status text, worker text, leased_at real,
+                lease_token text, disposition text, parked_at real)""")
+            db.executemany("insert into units values(?,?,?,?,?,?,?)", [
+                ("returned", "return", None, None, None, "return", time.time()),
+                ("rejected", "rejected", None, None, None, "rejected", time.time()),
+                ("queued", "submitted", None, None, None, "submitted", time.time()),
+                ("orphan", "submitted", None, None, None, "submitted", time.time()),
+                ("terminal", "terminal", None, None, None, "terminal", time.time()),
+            ])
+            db.commit()
+            self.assertEqual(natc_rank.reconcile_transient_units(db, {"queued"}), 3)
+            states = dict(db.execute("select unit,status from units"))
+            self.assertEqual(states["returned"], "pending")
+            self.assertEqual(states["rejected"], "pending")
+            self.assertEqual(states["orphan"], "pending")
+            self.assertEqual(states["queued"], "submitted")
+            self.assertEqual(states["terminal"], "terminal")
+            db.close()
 
 
 if __name__ == "__main__":
