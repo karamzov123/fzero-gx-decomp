@@ -273,12 +273,11 @@ asm void criadx_set_field_3C(void)
     blr	
 }
 
-asm void fn_800416E4(void)
+// provenance: original — direct retail store reconstruction (fields 0x48/0x4c)
+void fn_800416E4(void *arg0, unsigned int arg1, unsigned int arg2)
 {
-    nofralloc
-    stw	r4, 0x48(r3)
-    stw	r5, 0x4c(r3)
-    blr	
+    *(unsigned int *)((char *)arg0 + 0x48) = arg1;
+    *(unsigned int *)((char *)arg0 + 0x4c) = arg2;
 }
 
 // provenance: original
@@ -288,11 +287,10 @@ void fn_800416F0(void* a, void* b)
     *(void**)((char*)a + 0x34) = b;
 }
 
-asm void fn_800416F8(void)
+// provenance: original disassembly reconstruction — field load 0x2c
+unsigned int fn_800416F8(void *arg0)
 {
-    nofralloc
-    lwz	r3, 0x2c(r3)
-    blr	
+    return *(unsigned int *)((char *)arg0 + 0x2c);
 }
 
 asm void fn_80041700(void)
