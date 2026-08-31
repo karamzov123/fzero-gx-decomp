@@ -17,7 +17,7 @@ extern void axmix_ctrl_init_type5(void);
 extern void axmix_ctrl_init_type7(void);
 extern void axmix_ctrl_init_type8(void);
 extern void axmix_ctrl_init_type9(void);
-extern void axmix_ctrl_init_type10(void);
+extern void axmix_ctrl_init_type10(void *arg0);
 extern void axmix_ctrl_init_type11(void);
 extern void axmix_ctrl_init_type14(void);
 extern void axmix_update_voice_state(void);
@@ -1775,15 +1775,14 @@ asm void axmix_ctrl_init_type9(void)
     blr	
 }
 
-asm void axmix_ctrl_init_type10(void)
+void axmix_ctrl_init_type10(void *arg0)
 {
-    nofralloc
-    li	r0, 0xa
-    stw	r0, 4(r3)
-    li	r0, 0
-    stw	r0, 8(r3)
-    blr	
+    // variant 1: explicit offset stores
+    // provenance: original retail disassembly 0x8002853C axmix_ctrl_init_type10
+    *(int *)((char *)arg0 + 4) = 0xa;
+    *(int *)((char *)arg0 + 8) = 0;
 }
+
 
 asm void axmix_ctrl_init_type11(void)
 {
