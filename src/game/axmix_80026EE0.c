@@ -3,7 +3,7 @@
 
 extern void axmix_set_voice_volume(void);
 extern void axmix_set_voice_volume_clamped(void);
-extern void fn_80026FB8(void);
+extern void fn_80026FB8(void *arg0, int arg1);
 extern void fn_80026FE0(void);
 extern void fn_8002805C(void);
 extern void fn_80028090(void);
@@ -144,19 +144,13 @@ _80026f8c:
     blr	
 }
 
-asm void fn_80026FB8(void)
+// provenance: original retail disassembly 0x80026FB8 fn_80026FB8
+// dest: src/game/axmix_80026EE0.c
+void fn_80026FB8(void *arg0, int arg1)
 {
-    nofralloc
-    lwz	r5, 0x18(r3)
-    lis     r3, lbl_80176160@ha
-    addi	r0, r3, lbl_80176160@l
-    mulli	r3, r5, 0x60
-    add	r3, r0, r3
-    stw	r4, 0x1c(r3)
-    lwz	r0, 4(r3)
-    oris	r0, r0, 0x4000
-    stw	r0, 4(r3)
-    blr	
+    unsigned char *base = (unsigned char *)lbl_80176160 + (*(int *)((unsigned char *)arg0 + 0x18) * 0x60);
+    *(int *)(base + 0x1c) = arg1;
+    *(int *)(base + 0x4) |= 0x40000000;
 }
 
 asm void fn_80026FE0(void)
