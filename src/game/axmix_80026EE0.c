@@ -12,7 +12,7 @@ extern void axmix_ctrl_store_time_param(void);
 extern void axmix_device_ctrl_accumulate_mix(void);
 extern void axmix_device_ctrl_unlink(void);
 extern void axmix_sound_alloc_init(void);
-extern void axmix_ctrl_init_type2(void);
+extern void axmix_ctrl_init_type2(void *arg0);
 extern void axmix_ctrl_init_type5(void);
 extern void axmix_ctrl_init_type7(void);
 extern void axmix_ctrl_init_type8(void);
@@ -1713,17 +1713,15 @@ asm void axmix_sound_alloc_init(void)
     blr	
 }
 
-asm void axmix_ctrl_init_type2(void)
+void axmix_ctrl_init_type2(void *arg0)
 {
-    nofralloc
-    li	r0, 2
-    stw	r0, 4(r3)
-    li	r4, 0x40
-    li	r0, 0x7f
-    stb	r4, 8(r3)
-    stb	r0, 9(r3)
-    blr	
+    // provenance: original retail disassembly 0x800284CC axmix_ctrl_init_type2
+    // variant 1
+    *(int *)((char *)arg0 + 4) = 2;
+    *(char *)((char *)arg0 + 8) = 0x40;
+    *(char *)((char *)arg0 + 9) = 0x7f;
 }
+
 
 asm void axmix_ctrl_init_type5(void)
 {
