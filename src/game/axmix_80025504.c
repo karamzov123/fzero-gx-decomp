@@ -611,12 +611,11 @@ asm void fn_80025D28(void)
     blr	
 }
 
-asm void fn_80025D50(void)
+// provenance: original -- direct retail fn_80025D50 reconstruction (sda21 word store)
+void fn_80025D50(int arg0, int arg1)
 {
-    nofralloc
-    stw	r3, lbl_801A64F8
-    stw	r4, lbl_801A64FC
-    blr	
+    *(int*)&lbl_801A64F8 = arg0;
+    *(int*)&lbl_801A64FC = arg1;
 }
 
 asm void AXMixProcessVoiceFlags(void)
