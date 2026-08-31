@@ -1032,12 +1032,10 @@ _8004a50c:
     blr	
 }
 
-asm void fn_8004A530(void)
+// provenance: original fn_8004A530
+int fn_8004A530(char *p)
 {
-    nofralloc
-    lbz	r3, 2(r3)
-    extsb	r3, r3
-    blr	
+    return (signed char)p[2];
 }
 
 // provenance: original fn_8004A53C

@@ -7,6 +7,7 @@ preflight for already-known batch ids (the recovery/reconciliation path may
 legitimately re-register retired directories).
 """
 import sqlite3
+import subprocess
 
 import pytest
 
@@ -51,6 +52,19 @@ def test_opt_out_registers(monkeypatch, tmp_path, mem_db):
     monkeypatch.setenv("NATC_QUEUE_PREFLIGHT", "0")
     row = q.register(mem_db, "w/bad", "w", _mapped_batch(tmp_path))
     assert row["state"] == "ready"
+
+
+def test_preflight_timeout_is_not_admitted(monkeypatch, tmp_path, mem_db):
+    monkeypatch.setenv("NATC_QUEUE_PREFLIGHT", "1")
+    monkeypatch.setenv("NATC_QUEUE_PREFLIGHT_STRICT", "1")
+
+    def timeout(*args, **kwargs):
+        raise subprocess.TimeoutExpired(cmd=args[0], timeout=kwargs["timeout"])
+
+    monkeypatch.setattr(q.subprocess, "run", timeout)
+    with pytest.raises(ValueError, match="preflight unavailable"):
+        q.register(mem_db, "w/timeout", "w", _mapped_batch(tmp_path))
+    assert mem_db.execute("select count(*) from batches").fetchone()[0] == 0
 
 
 def test_known_id_skips_preflight(monkeypatch, tmp_path, mem_db):
