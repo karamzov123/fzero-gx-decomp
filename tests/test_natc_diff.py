@@ -33,6 +33,32 @@ def test_tu_summary_reports_siblings_and_layout():
     assert r['missing_in_target']==['b']
     assert r['exact_sibling_regressions']==[]
 
+def test_tu_ignores_nonload_debug_metadata_but_guards_runtime_layout():
+    exact = sym(['blr'], score=100)
+    exact['name'] = 'f'
+    diff = {
+        'left': {
+            'symbols': [exact, {'name': '[.debug]'}],
+            'sections': [
+                {'name': '.text', 'size': '4', 'kind': 'SECTION_CODE',
+                 'match_percent': 100.0},
+                {'name': '.debug', 'size': '100'}]},
+        'right': {
+            'symbols': [dict(exact), {'name': '[.line]'}],
+            'sections': [
+                {'name': '.text', 'size': '4', 'kind': 'SECTION_CODE'},
+                {'name': '.debug', 'size': '200'},
+                {'name': '.line', 'size': '50'}]}}
+    result = d.classify_tu(diff, target_symbol='f')
+    assert result['missing_in_target'] == []
+    assert result['missing_in_candidate'] == []
+    assert result['section_layout_changes'] == {}
+
+    diff['right']['sections'].append({'name': '.data', 'size': '8'})
+    changed = d.classify_tu(diff, target_symbol='f')
+    assert '.data' in changed['section_layout_changes']
+
+
 def test_real_objdiff_instruction_rows_are_not_silently_exact():
     target={'name':'f','match_percent':80,'size':8,
             'instruction_rows':[{'instruction':{'formatted':'li r3,1'}},
