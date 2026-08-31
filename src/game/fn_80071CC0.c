@@ -673,10 +673,9 @@ _800724b0:
     blr
 }
 
-asm void fn_800724C8(void)
+// provenance: retail-disassembly:GFZE01:0x800724C8 fn_800724C8
+void fn_800724C8(void)
 {
-    nofralloc
-    blr
 }
 
 #pragma pop
