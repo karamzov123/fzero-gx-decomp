@@ -1845,17 +1845,14 @@ void axmix_set_voice_param_08(void *arg0, unsigned int arg1)
 }
 
 
-asm void fn_80026DB8(void)
+// provenance: original
+unsigned int fn_80026DB8(void *arg0)
 {
-    nofralloc
-    lwz	r4, 0x18(r3)
-    lis     r3, lbl_80176160@ha
-    addi	r0, r3, lbl_80176160@l
-    mulli	r3, r4, 0x60
-    add	r3, r0, r3
-    lwz	r3, 8(r3)
-    blr	
+    unsigned int index = *(unsigned int *)((unsigned char *)arg0 + 0x18);
+    unsigned int *rec = (unsigned int *)(lbl_80176160 + index * 0x60);
+    return rec[2];
 }
+
 
 asm void axmix_voice_clear_flags_and_request_update(void)
 {
