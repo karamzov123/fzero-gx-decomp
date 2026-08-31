@@ -96,10 +96,9 @@ asm void ModelDVD_CancelSync(void)
     blr
 }
 
-asm void fn_80071D2C(void)
+// provenance: retail-disassembly:GFZE01:0x80071D2C fn_80071D2C
+void fn_80071D2C(void)
 {
-    nofralloc
-    blr
 }
 
 asm void fn_80071D30(void)
