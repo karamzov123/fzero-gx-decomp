@@ -1,7 +1,9 @@
 import importlib.util
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -51,9 +53,57 @@ class NatcLoopContextTests(unittest.TestCase):
         ctx = loop.build_context(self.UNIT, self.SYM)
         self.assertIn("REFERENCE BODIES", ctx)
 
-    def test_context_contains_verified_runtime_facts_for_referenced_globals(self):
-        from unittest.mock import patch
+    def test_reference_context_uses_at_most_two_real_bodies_and_excludes_asm(self):
+        unit = "main/test/unit"
+        with tempfile.TemporaryDirectory() as td:
+            refdir = Path(td) / ".cache/natc/ref-bodies" / unit.replace("/", "_")
+            refdir.mkdir(parents=True)
+            (refdir / "Target.c").write_text(
+                "// provenance: dolsdk2001:Target.c:10\n"
+                "int Target(int x) { return x + 1; }\n")
+            (refdir / "Helper.c").write_text(
+                "// provenance: melee:Helper.c:20\n"
+                "int Helper(int x) { return x - 1; }\n")
+            (refdir / "Asm.c").write_text(
+                "// provenance: melee:Asm.c:30\n"
+                "asm void Asm(void) { nop; }\n")
+            with patch.object(loop.Path, "home", return_value=Path(td)):
+                bodies = loop._reference_bodies(unit, "Target", max_chars=10000)
+            self.assertLessEqual(len(bodies), 2)
+            self.assertEqual(len(bodies), 2)
+            joined = "\n".join(bodies)
+            self.assertIn("Target", joined)
+            self.assertIn("Helper", joined)
+            self.assertNotIn("asm void", joined)
+            self.assertIn("provenance:", joined)
 
+    def test_reference_context_size_budget_is_fail_closed(self):
+        unit = "main/test/unit"
+        with tempfile.TemporaryDirectory() as td:
+            refdir = Path(td) / ".cache/natc/ref-bodies" / unit.replace("/", "_")
+            refdir.mkdir(parents=True)
+            (refdir / "Target.c").write_text(
+                "// provenance: dolsdk2001:Target.c:1\n"
+                "int Target(void) { return 1; }\n" + "x" * 200)
+            with patch.object(loop.Path, "home", return_value=Path(td)):
+                self.assertEqual(loop._reference_bodies(unit, "Target", max_chars=20), [])
+
+    def test_reference_dump_report_is_not_candidate_context(self):
+        with patch.object(loop, "_reference_bodies", return_value=[
+                "// provenance: dolsdk2001:X.c:1\nint GXSetMisc(void) { return 0; }\n"],), \
+             patch.object(loop, "symbolised_disasm", return_value=("FUNCTION GXSetMisc", [], "")), \
+             patch.object(loop, "sh", return_value=(0, "UNIT COVERAGE REPORT 99%", "")), \
+             patch.object(loop, "run_m2c_seed", return_value=(False, "(unavailable)")), \
+             patch.object(loop, "run_similar", return_value=(False, "unavailable")), \
+             patch.object(loop, "runtime_context_section", return_value="runtime"):
+            # find_xrefs is the first sh call; return a valid minimal payload.
+            with patch.object(loop, "sh", side_effect=[
+                    (0, '{"definition": {}, "callers": [], "callees": [], "globals_referenced": [], "reloc_histogram": {}, "header_fragment": "int gx;"}', ""),
+                    (0, "UNIT COVERAGE REPORT 99%", "")]):
+                ctx = loop.build_context("u", "GXSetMisc")
+            self.assertIn("int GXSetMisc", ctx)
+            self.assertNotIn("UNIT COVERAGE REPORT", ctx)
+    def test_context_contains_verified_runtime_facts_for_referenced_globals(self):
         runtime = ("--- VERIFIED RUNTIME FACTS (evidence only) ---\n"
                    "CARD.__CARDBlock[2] address=0x80177960")
         with patch.object(loop, "runtime_context_section", return_value=runtime) as select:

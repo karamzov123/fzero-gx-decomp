@@ -5,6 +5,7 @@ import tempfile
 import time
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -102,6 +103,72 @@ class LeaseSweepTests(unittest.TestCase):
             self.assertEqual(states["orphan"], "pending")
             self.assertEqual(states["queued"], "submitted")
             self.assertEqual(states["terminal"], "terminal")
+            db.close()
+
+
+class PlateauEligibilityTests(unittest.TestCase):
+    def test_exactly_90_plateaus_with_fresh_symbols_reopen_but_exhausted_stays(self):
+        with tempfile.TemporaryDirectory() as td:
+            db = sqlite3.connect(Path(td) / "runs.sqlite")
+            db.execute("create table units(unit text primary key, status text, disposition text, parked_at real)")
+            db.execute("create table symbol_states(unit text, symbol text, status text)")
+            db.execute("create table attempts(unit text, symbol text, kind text, attempt integer)")
+            db.executemany("insert into units values(?,?,?,?)",
+                           [(f"plateau-{i}", "plateau", "plateau", time.time())
+                            for i in range(90)] +
+                           [("exhausted", "plateau", "plateau", time.time())])
+            db.executemany("insert into attempts values(?,?,?,?)",
+                           [("exhausted", "done", "attempt", n) for n in range(12)])
+            db.commit()
+            with patch.object(natc_rank, "unit_has_fresh_budget_symbol",
+                              side_effect=lambda c, unit, symbols=None:
+                              unit != "exhausted"):
+                self.assertEqual(
+                    natc_rank.reopen_fresh_plateaus(db,
+                        symbols_for_unit=lambda unit: ["fresh"]), 90)
+            states = dict(db.execute("select unit,status from units"))
+            self.assertEqual(sum(st == "pending" for st in states.values()), 90)
+            self.assertEqual(states["exhausted"], "plateau")
+            db.close()
+
+    def test_symbol_budget_distinguishes_fresh_and_exhausted_without_live_db(self):
+        with tempfile.TemporaryDirectory() as td:
+            db = sqlite3.connect(Path(td) / "runs.sqlite")
+            db.execute("create table symbol_states(unit text, symbol text, status text)")
+            db.execute("create table attempts(unit text, symbol text, kind text, attempt integer)")
+            db.executemany("insert into attempts values(?,?,?,?)",
+                           [("u", "spent", "attempt", n) for n in range(12)])
+            db.commit()
+            self.assertTrue(natc_rank.unit_has_fresh_budget_symbol(
+                db, "u", symbols=["spent", "fresh"]))
+            self.assertFalse(natc_rank.unit_has_fresh_budget_symbol(
+                db, "u", symbols=["spent"]))
+            db.close()
+    def test_next_leases_a_reopened_plateau_in_same_invocation(self):
+        with tempfile.TemporaryDirectory() as td:
+            db = sqlite3.connect(Path(td) / "runs.sqlite")
+            db.execute("""create table units(
+                unit text primary key, status text, worker text, leased_at real,
+                lease_token text, tier text, asm_fns integer, bytes integer,
+                exact_c integer, min_fn_bytes integer, ref_c integer,
+                family text, disposition text, parked_at real)""")
+            db.execute("insert into units values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                       ("fresh", "plateau", None, None, None, "A", 1, 4,
+                        0, 4, 1, "dolphin/os", "plateau", time.time()))
+            db.commit()
+
+            def reopen(c):
+                c.execute("update units set status='pending' where unit='fresh'")
+                c.commit()
+                return 1
+
+            with patch.object(natc_rank, "reopen_fresh_plateaus", side_effect=reopen), \
+                 patch.object(natc_rank, "prepare_reference"):
+                self.assertEqual(natc_rank.next_unit(
+                    db, "natc1", "dolphin/os", allow_deferred=False), 0)
+            self.assertEqual(db.execute(
+                "select status,worker from units where unit='fresh'").fetchone(),
+                ("leased", "natc1"))
             db.close()
 
 
