@@ -1871,19 +1871,11 @@ asm void axmix_voice_clear_flags_and_request_update(void)
     blr	
 }
 
-asm void fn_80026E04(void)
+void fn_80026E04(void *arg0)
 {
-    nofralloc
-    lwz	r4, 0x18(r3)
-    lis     r3, lbl_80176160@ha
-    addi	r0, r3, lbl_80176160@l
-    mulli	r3, r4, 0x60
-    add	r3, r0, r3
-    lwz	r0, 4(r3)
-    oris	r0, r0, 0x4000
-    ori	r0, r0, 1
-    stw	r0, 4(r3)
-    blr	
+    unsigned int index = *(unsigned int *)((unsigned char *)arg0 + 0x18);
+    unsigned int *rec = (unsigned int *)(lbl_80176160 + (index * 0x60));
+    rec[1] = rec[1] | 0x40000001;
 }
 
 asm void fn_80026E2C(void)
