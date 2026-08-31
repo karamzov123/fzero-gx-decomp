@@ -1835,20 +1835,15 @@ void axmix_device_ctrl_clear(register void *voice)
     *(unsigned int *)(lbl_80176160 + index * 0x60) = 0;
 }
 
-asm void axmix_set_voice_param_08(void)
+// provenance: original
+void axmix_set_voice_param_08(void *arg0, unsigned int arg1)
 {
-    nofralloc
-    lwz	r5, 0x18(r3)
-    lis     r3, lbl_80176160@ha
-    addi	r0, r3, lbl_80176160@l
-    mulli	r3, r5, 0x60
-    add	r3, r0, r3
-    stw	r4, 8(r3)
-    lwz	r0, 4(r3)
-    oris	r0, r0, 0x1000
-    stw	r0, 4(r3)
-    blr	
+    unsigned int index = *(unsigned int *)((unsigned char *)arg0 + 0x18);
+    unsigned int *rec = (unsigned int *)(lbl_80176160 + index * 0x60);
+    rec[2] = arg1;
+    rec[1] = rec[1] | 0x10000000;
 }
+
 
 asm void fn_80026DB8(void)
 {
