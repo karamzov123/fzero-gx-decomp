@@ -4,7 +4,6 @@ typedef unsigned short u16;
 
 extern int DSPCheckMailToDSP(void);
 extern int DSPCheckMailFromDSP(void);
-extern void DSPReadMailFromDSP(void);
 extern void DSPSendMailToDSP(void);
 extern void DSPInit(void);
 
@@ -39,6 +38,11 @@ extern unsigned char lbl_801A6BB8[4];
 extern unsigned char lbl_801A6BBC[4];
 void __DSPHandler(void);
 
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef unsigned long u32;
+volatile u16 __DSPRegs[] : 0xCC005000;
 // provenance: original
 int DSPCheckMailToDSP(void) {
     return (*(volatile u16*)0xCC005000 >> 15) & 1;
@@ -49,15 +53,10 @@ int DSPCheckMailFromDSP(void) {
     return (*(volatile u16*)0xCC005004 >> 15) & 1;
 }
 
-asm void DSPReadMailFromDSP(void)
+// provenance: harvest:runs.sqlite — DSPReadMailFromDSP recovered from mail21.c, compiled by natc4 at 2026-08-25T23:30 and scored 100 against main/dolphin/dsp/DSP; original reference not recorded
+u32 DSPReadMailFromDSP(void)
 {
-    nofralloc
-    lis	r3, -0x3400
-    addi	r3, r3, 0x5000
-    lhz	r0, 4(r3)
-    lhz	r3, 6(r3)
-    rlwimi	r3, r0, 0x10, 0, 0xf
-    blr	
+    return (__DSPRegs[2] << 16) | __DSPRegs[3];
 }
 
 asm void DSPSendMailToDSP(void)

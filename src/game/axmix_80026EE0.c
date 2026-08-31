@@ -14,14 +14,9 @@ extern void axmix_device_ctrl_unlink(void);
 extern void axmix_sound_alloc_init(void);
 extern void axmix_ctrl_init_type2(void *arg0);
 extern void axmix_ctrl_init_type5(void *arg0);
-extern void axmix_ctrl_init_type7(void);
 extern void axmix_ctrl_init_type8(void *arg0);
-extern void axmix_ctrl_init_type9(void);
 extern void axmix_ctrl_init_type10(void *arg0);
-extern void axmix_ctrl_init_type11(void);
-extern void axmix_ctrl_init_type14(void);
 extern void axmix_update_voice_state(void);
-extern void axmix_link_push(void);
 extern void axmix_cent_to_ratio_lerp(void);
 extern void axmix_param_ramp_step(void);
 extern void axmix_param_ramp_step_dup(void);
@@ -76,6 +71,16 @@ extern unsigned char lbl_801A7004[4];
 extern unsigned char lbl_801A7000[4];
 extern unsigned char lbl_801A7054[4];
 
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef struct AxMixLinkOwner {
+    unsigned char pad[0x10];
+    void *head;
+} AxMixLinkOwner;
+typedef struct AxMixLinkNode {
+    void *next;
+} AxMixLinkNode;
 asm void axmix_set_voice_volume(void)
 {
     nofralloc
@@ -1732,26 +1737,24 @@ void axmix_ctrl_init_type5(void *arg0)
 }
 
 
-asm void axmix_ctrl_init_type7(void)
+void axmix_ctrl_init_type7(void *arg0)
 {
-    nofralloc
-    li	r0, 7
-    stw	r0, 4(r3)
-    li	r5, 0
-    lis     r4, lbl_801299D0@ha
-    stw	r5, 0x28(r3)
-    addi	r4, r4, lbl_801299D0@l
-    li	r0, 0x40
-    stw	r4, 8(r3)
-    stw	r0, 0xc(r3)
-    lfs f0, lbl_801A7020(r2)
-    stfs	f0, 0x10(r3)
-    stw	r5, 0x14(r3)
-    stfs	f0, 0x24(r3)
-    stfs	f0, 0x20(r3)
-    stfs	f0, 0x1c(r3)
-    stfs	f0, 0x18(r3)
-    blr	
+    // provenance: original retail disassembly 0x800284E8 axmix_ctrl_init_type7
+    // vint z; void *g; float f: retail statement order
+    int z; void *g; float f;
+    *(int *)((char *)arg0 + 4) = 7;
+    z = 0;
+    *(int *)((char *)arg0 + 0x28) = z;
+    g = (void *)&lbl_801299D0;
+    *(void **)((char *)arg0 + 8) = g;
+    *(int *)((char *)arg0 + 0xc) = 0x40;
+    f = *(float *)lbl_801A7020;
+    *(float *)((char *)arg0 + 0x10) = f;
+    *(int *)((char *)arg0 + 0x14) = z;
+    *(float *)((char *)arg0 + 0x24) = f;
+    *(float *)((char *)arg0 + 0x20) = f;
+    *(float *)((char *)arg0 + 0x1c) = f;
+    *(float *)((char *)arg0 + 0x18) = f;
 }
 
 void axmix_ctrl_init_type8(void *arg0)
@@ -1763,14 +1766,12 @@ void axmix_ctrl_init_type8(void *arg0)
 }
 
 
-asm void axmix_ctrl_init_type9(void)
+void axmix_ctrl_init_type9(void *arg0)
 {
-    nofralloc
-    li	r0, 9
-    stw	r0, 4(r3)
-    li	r0, 0
-    stw	r0, 8(r3)
-    blr	
+    // provenance: original retail disassembly 0x8002851C axmix_ctrl_init_type9
+    // variant 1
+    *(int *)((char *)arg0 + 4) = 9;
+    *(int *)((char *)arg0 + 8) = 0;
 }
 
 void axmix_ctrl_init_type10(void *arg0)
@@ -1782,38 +1783,34 @@ void axmix_ctrl_init_type10(void *arg0)
 }
 
 
-asm void axmix_ctrl_init_type11(void)
+void axmix_ctrl_init_type11(void *arg0)
 {
-    nofralloc
-    li	r0, 0xb
-    stw	r0, 4(r3)
-    li	r0, 0
-    stw	r0, 0x10(r3)
-    stw	r0, 0xc(r3)
-    stw	r0, 8(r3)
-    blr	
+    // provenance: original retail disassembly 0x80028564 axmix_ctrl_init_type11
+    // variant 1
+    *(int *)((char *)arg0 + 4) = 0xb;
+    *(int *)((char *)arg0 + 0x10) = 0;
+    *(int *)((char *)arg0 + 0xc) = 0;
+    *(int *)((char *)arg0 + 8) = 0;
 }
 
-asm void axmix_ctrl_init_type14(void)
+void axmix_ctrl_init_type14(void *arg0)
 {
-    nofralloc
-    li	r0, 0xe
-    stw	r0, 4(r3)
-    li	r5, 0
-    lis     r4, lbl_801299D0@ha
-    stw	r5, 0x28(r3)
-    addi	r4, r4, lbl_801299D0@l
-    li	r0, 0x40
-    stw	r4, 8(r3)
-    stw	r0, 0xc(r3)
-    lfs f0, lbl_801A7020(r2)
-    stfs	f0, 0x10(r3)
-    stw	r5, 0x14(r3)
-    stfs	f0, 0x24(r3)
-    stfs	f0, 0x20(r3)
-    stfs	f0, 0x1c(r3)
-    stfs	f0, 0x18(r3)
-    blr	
+    // provenance: original retail disassembly axmix_ctrl_init_type14
+    // vint z; void *g; float f: retail statement order
+    int z; void *g; float f;
+    *(int *)((char *)arg0 + 4) = 0xe;
+    z = 0;
+    *(int *)((char *)arg0 + 0x28) = z;
+    g = (void *)&lbl_801299D0;
+    *(void **)((char *)arg0 + 8) = g;
+    *(int *)((char *)arg0 + 0xc) = 0x40;
+    f = *(float *)lbl_801A7020;
+    *(float *)((char *)arg0 + 0x10) = f;
+    *(int *)((char *)arg0 + 0x14) = z;
+    *(float *)((char *)arg0 + 0x24) = f;
+    *(float *)((char *)arg0 + 0x20) = f;
+    *(float *)((char *)arg0 + 0x1c) = f;
+    *(float *)((char *)arg0 + 0x18) = f;
 }
 
 asm void axmix_update_voice_state(void)
@@ -2006,13 +2003,11 @@ _8002881c:
     blr	
 }
 
-asm void axmix_link_push(void)
+// provenance: harvest:runs.sqlite — axmix_link_push recovered from axmix_80026EE0.c, compiled by hard at 2026-08-28T01:00 and scored 100 against main/game/axmix_80026EE0; original reference not recorded
+void axmix_link_push(AxMixLinkOwner *owner, AxMixLinkNode *node)
 {
-    nofralloc
-    lwz	r0, 0x10(r3)
-    stw	r0, 0(r4)
-    stw	r4, 0x10(r3)
-    blr	
+    node->next = owner->head;
+    owner->head = node;
 }
 
 asm void axmix_cent_to_ratio_lerp(void)

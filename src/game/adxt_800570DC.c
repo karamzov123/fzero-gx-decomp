@@ -52,6 +52,13 @@ extern unsigned char lbl_8018F2AC[3076];
 void fn_80057D60(void);
 void fn_800586E4(void);
 
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef struct {
+    unsigned char pad0[0x24];
+    signed int field24;
+} ADXTState;
 asm void fn_800570DC(void)
 {
     nofralloc
@@ -1040,11 +1047,10 @@ asm void fn_80057D88(void)
     blr	
 }
 
-asm void fn_80057DA0(void)
+// provenance: harvest:runs.sqlite — fn_80057DA0 recovered from hard2-adxt-80057da0.c, compiled by hard2 at 2026-08-27T08:09 and scored 100 against main/game/adxt_800570DC; original reference not recorded
+signed int fn_80057DA0(ADXTState* self)
 {
-    nofralloc
-    lwz	r3, 0x24(r3)
-    blr	
+    return self->field24;
 }
 
 asm void fn_80057DA8(void)
