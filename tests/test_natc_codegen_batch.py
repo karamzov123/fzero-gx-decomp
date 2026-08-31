@@ -42,7 +42,52 @@ def test_batch_deduplicates_and_returns_exact_winner_without_repo_write(tmp_path
     assert result['winner']['candidate_id'] == result['results'][0]['candidate_id']
     assert len(seen) == 2
     assert all(Path(p).parent == scratch for p in seen)
+    assert all(Path(p).name.startswith('c') and Path(p).suffix == '.c'
+               and len(Path(p).name) <= 15 for p in seen)
+    assert len({Path(p).name for p in seen}) == 2
     assert not (Path(__file__).parents[1] / 'canonical-should-not-exist.c').exists()
+
+
+def test_summary_keeps_decision_and_omits_full_objdiff():
+    full = {'winner': {'candidate_id': 'winner'}, 'results': [{
+        'candidate_id': 'winner', 'source_id': 'src', 'path': 'a.c',
+        'scratch_path': '[temporary path]/a.c', 'accepted': True,
+        'acceptance_reason': 'accepted', 'context_id': 'ctx',
+        'compiler_id': 'mwcc', 'evaluation': {
+            'score': 100.0, 'classification': 'exact', 'tu_safe': True,
+            'objdiff': {'instruction_rows': ['very large']}}}]}
+    summary = s.summarize_batch(full)
+    assert summary['winner_candidate_id'] == 'winner'
+    assert summary['results'][0]['score'] == 100.0
+    assert 'evaluation' not in summary['results'][0]
+    assert 'instruction_rows' not in repr(summary)
+
+
+def test_inferred_identity_uses_authoritative_context_and_compiler():
+    context, compiler = s.inferred_identity(
+        'main/test/unit', 'f',
+        load_unit=lambda _: {'base_path': None,
+                             'scratch': {'compiler': 'mwcc_233_163n'}},
+        context_fn=lambda unit, symbol: f'ctx:{unit}:{symbol}')
+    assert context == 'ctx:main/test/unit:f'
+    assert compiler == 'mwcc_233_163n'
+
+    explicit = s.inferred_identity(
+        'main/test/unit', 'f', context_id='ctx-explicit',
+        compiler_id='GC/1.2.5n', load_unit=lambda _: {},
+        context_fn=lambda *_: 'wrong')
+    assert explicit == ('ctx-explicit', 'GC/1.2.5n')
+
+    try:
+        s.inferred_identity(
+            'main/test/unit', 'f', context_id='ctx', compiler_id='stale',
+            load_unit=lambda _: {'base_path': None,
+                                 'scratch': {'compiler': 'GC/1.2.5n'}},
+            context_fn=lambda *_: 'unused')
+    except ValueError as exc:
+        assert 'does not match authoritative' in str(exc)
+    else:
+        raise AssertionError('stale compiler identity was accepted')
 
 
 def test_authoritative_evaluator_compiles_and_classifies_full_tu(tmp_path):
