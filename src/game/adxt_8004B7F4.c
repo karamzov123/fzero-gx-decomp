@@ -210,11 +210,10 @@ _8004ba24:
     blr	
 }
 
-asm void fn_8004BA38(void)
+// provenance: original disassembly reconstruction fn_8004BA38
+void fn_8004BA38(void *arg0, int arg1)
 {
-    nofralloc
-    stw	r4, 0x88(r3)
-    blr	
+    *(int *)((char *)arg0 + 0x88) = arg1;
 }
 
 asm void ADXT_GetDecNumSmpl(void)
@@ -559,11 +558,10 @@ _8004be78:
     blr	
 }
 
-asm void fn_8004BE90(void)
+// provenance: original disassembly reconstruction fn_8004BE90
+void fn_8004BE90(void *arg0, char arg1)
 {
-    nofralloc
-    stb	r4, 0x6d(r3)
-    blr	
+    *(char *)((char *)arg0 + 0x6d) = arg1;
 }
 
 asm void fn_8004BE98(void)
