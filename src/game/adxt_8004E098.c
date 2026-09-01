@@ -152,11 +152,10 @@ _8004e17c:
     blr	
 }
 
-asm void fn_8004E190(void)
+int fn_8004E190(void *arg0)
 {
-    nofralloc
-    lwz	r3, 0x10(r3)
-    blr	
+    // provenance: original
+    return *(int*)((char*)arg0 + 0x10);
 }
 
 asm void fn_8004E198(void)
