@@ -102,6 +102,20 @@ class QueueTests(unittest.TestCase):
         self.assertIn("w1/harvest-1-unit", {row["batch_id"] for row in rows})
         self.assertEqual(queue.get(self.db, "w1/harvest-1-unit")["state"], "ready")
 
+    def test_existing_id_moved_to_duplicate_path_gets_its_own_generation(self):
+        original = self.root / "original"
+        duplicate = self.root / "duplicate"
+        original.mkdir()
+        duplicate.mkdir()
+        for path in (original, duplicate):
+            (path / "CARD.md").write_text("complete-unit: yes\n")
+            (path / "unit.c").write_text("int target(void) { return 1; }\n")
+        queue.register(self.db, "a", "w1", original)
+        queue.register(self.db, "b", "w1", duplicate)
+        moved = queue.register(self.db, "a", "w1", duplicate)
+        self.assertEqual(moved["batch_id"], "a#g" + queue._digest(duplicate)[:16])
+        self.assertEqual(queue.get(self.db, "b")["batch_path"], str(duplicate.resolve()))
+
     def test_claim_empty_and_terminal_result_error(self):
         self.assertIsNone(queue.claim(self.db, "w1"))
         queue.register(self.db, "b1", "w1", self.batch)
