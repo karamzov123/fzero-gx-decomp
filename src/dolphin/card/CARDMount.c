@@ -4,7 +4,6 @@
 #pragma force_active on
 
 extern void CARDInit(void);
-extern void __CARDGetFontEncode(void);
 extern void __CARDSetFontEncode(void);
 extern void __CARDSetDiskID(void);
 extern void __CARDGetDiskID(void);
@@ -41,7 +40,12 @@ extern unsigned char lbl_8012AA50[32];
 
 extern unsigned char lbl_801A6508[8];
 extern unsigned char lbl_801A6510[8];
-extern unsigned char lbl_801A6BC0[8];
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef int s32;
+typedef unsigned short u16;
+extern u16 lbl_801A6BC0;
 asm void CARDInit(void)
 {
     nofralloc
@@ -93,11 +97,9 @@ _8002a728:
     blr	
 }
 
-asm void __CARDGetFontEncode(void)
-{
-    nofralloc
-    lhz	r3, lbl_801A6BC0
-    blr	
+// provenance: harvest:runs.sqlite — __CARDGetFontEncode recovered from __CARDGetFontEncode_verify.c, compiled by natc3 at 2026-08-28T04:46 and scored 100 against main/dolphin/card/CARDMount; original reference not recorded
+s32 __CARDGetFontEncode(void) {
+    return lbl_801A6BC0;
 }
 
 asm void __CARDSetFontEncode(void)
