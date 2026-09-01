@@ -3,9 +3,6 @@
 
 extern unsigned char lbl_801A73F0[4];
 extern unsigned char lbl_801A73F4[4];
-extern unsigned char lbl_801A73FC[4];
-extern unsigned char lbl_801A6618[4];
-extern unsigned char lbl_801A661C[4];
 extern unsigned char lbl_801A7400[8];
 extern unsigned char lbl_801A7408[4];
 extern unsigned char lbl_801A740C[4];
@@ -20,6 +17,12 @@ extern asm void PSMTXMultVecSS(void);
 extern asm void mtx_gpstack_pop(void);
 extern asm void lbl_8006E1B0(void);
 
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+extern float lbl_801A73FC;
+extern float lbl_801A6618;
+extern float lbl_801A661C;
 asm void C_MTXLookAtInPlace(void)
 {
     nofralloc
@@ -76,16 +79,8 @@ asm void C_MTXLookAtInPlace(void)
     blr	
 }
 
-asm void PSMTXScaleConst(void)
-{
-    nofralloc
-    lfs	f0, lbl_801A73FC(r2)
-    fmuls	f1, f1, f0
-    fmuls	f0, f2, f0
-    stfs	f1, lbl_801A6618(r13)
-    stfs	f0, lbl_801A661C(r13)
-    blr	
-}
+// provenance: harvest:runs.sqlite — PSMTXScaleConst recovered from scale1.c, compiled by hard at 2026-08-25T22:35 and scored 100 against main/dolphin/mtx/fn_8006F6A8; original reference not recorded
+void PSMTXScaleConst(float x, float y) { lbl_801A6618 = x * lbl_801A73FC; lbl_801A661C = y * lbl_801A73FC; }
 
 asm void PSQUATSlerp_a(void)
 {

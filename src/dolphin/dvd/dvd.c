@@ -15,8 +15,6 @@ extern unsigned char DummyCommandBlock[];
 extern unsigned char FatalErrorFlag[4];
 extern unsigned char FirstTimeInBootrom[4];
 extern unsigned char IDShouldBe[4];
-extern unsigned char PauseFlag[4];
-extern unsigned char PausingFlag[4];
 extern unsigned char ResetRequired[4];
 extern unsigned char ResumeFromHere[4];
 extern unsigned char __DVDThreadQueue[4];
@@ -47,11 +45,9 @@ extern void DVDLowStopMotor(void);
 extern void DVDLowWaitCoverClose(void);
 extern void DVDReset(void);
 extern void OSCreateAlarm(void);
-extern void OSDisableInterrupts(void);
 extern void OSInitThreadQueue(void);
 extern void OSRegisterVersion(void);
 extern void OSReport(void);
-extern void OSRestoreInterrupts(void);
 extern void OSSetAlarm(void);
 extern void __DVDCheckWaitingQueue(void);
 extern void __DVDClearWaitingQueue(void);
@@ -113,6 +109,14 @@ extern void stateBusy(void);
 extern void stateReady(void);
 
 /* DVDInit @0x8001776C | size: 0xCC */
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef signed int s32;
+extern volatile s32 PauseFlag;
+extern volatile s32 PausingFlag;
+extern BOOL OSDisableInterrupts(void);
+extern void OSRestoreInterrupts(BOOL level);
 asm void DVDInit(void) {
 nofralloc
 	mflr r0
@@ -2620,29 +2624,16 @@ nofralloc
 }
 
 /* DVDPause @0x800198AC | size: 0x50 */
-asm void DVDPause(void) {
-nofralloc
-	mflr r0
-	stw r0, 0x4(r1)
-	stwu r1, -0x10(r1)
-	stw r31, 0xc(r1)
-	bl OSDisableInterrupts
-	li r4, 0x0
-	stw r4, PauseFlag
-	mr r31, r3
-	lwz r0, PausingFlag
-	cmpwi r0, 0x0
-	beq lbl_800198E0
-	stw r4, PausingFlag
-	bl stateReady
-lbl_800198E0:
-	mr r3, r31
-	bl OSRestoreInterrupts
-	lwz r0, 0x14(r1)
-	lwz r31, 0xc(r1)
-	addi r1, r1, 0x10
-	mtlr r0
-	blr
+// provenance: harvest:runs.sqlite — DVDPause recovered from small5.c, compiled by natc3 at 2026-08-26T06:09 and scored 100 against main/dolphin/dvd/dvd; original reference not recorded
+void DVDPause(void) {
+    BOOL level;
+    level = OSDisableInterrupts();
+    PauseFlag = 0;
+    if (PausingFlag) {
+        PausingFlag = 0;
+        stateReady();
+    }
+    OSRestoreInterrupts(level);
 }
 
 /* __DVDDequeueWaitingQueue @0x800198FC | size: 0x27C */

@@ -5,7 +5,6 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 typedef int s32;
-extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(register s32 enabled);
 extern void DCInvalidateRange(register void* addr, register unsigned long n);
 extern s32 EXILock(register s32 chn, register u32 dev, register void* callback);
@@ -14,89 +13,38 @@ extern s32 EXIUnlock(register s32 chn);
 extern s32 EXIImm(register s32 chn, register void* buf, register s32 len, register u32 type, register void* callback);
 extern s32 EXISync(register s32 chn);
 extern s32 EXIDma(register s32 chn, register void* buf, register s32 len, register u32 type, register void* callback);
-extern void EXIDeselect(register s32 chn);
 extern s32 __OSUnlockSramCore(register u32 doWrite, register u32 offset);
 extern unsigned char Scb[];
 
-asm int __OSReadROM(register void* buffer, register long length, register long offset)
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+extern s32 OSDisableInterrupts(void);
+extern s32 EXIDeselect(register s32 chn);
+// provenance: harvest:runs.sqlite — __OSReadROM recovered from cand1.c, compiled by natc1 at 2026-08-26T05:17 and scored 100 against main/dolphin/os/OSRtc; original reference not recorded
+// provenance: dolsdk2001:src/os/OSRtc.c:227
+int __OSReadROM(register void* buffer, register long length, register long offset)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x28(r1)
-    stw	r31, 0x24(r1)
-    addi	r31, r5, 0
-    stw	r30, 0x20(r1)
-    addi	r30, r4, 0
-    stw	r29, 0x1c(r1)
-    addi	r29, r3, 0
-    bl      DCInvalidateRange
-    li	r3, 0
-    li	r4, 1
-    li	r5, 0
-    bl      EXILock
-    cmpwi	r3, 0
-    bne     _8000fd1c
-    li	r3, 0
-    b       _8000fddc
-_8000fd1c:
-    li	r3, 0
-    li	r4, 1
-    li	r5, 3
-    bl      EXISelect
-    cmpwi	r3, 0
-    bne     _8000fd44
-    li	r3, 0
-    bl      EXIUnlock
-    li	r3, 0
-    b       _8000fddc
-_8000fd44:
-    slwi	r0, r31, 6
-    stw	r0, 0x14(r1)
-    addi	r4, r1, 0x14
-    li	r3, 0
-    li	r5, 4
-    li	r6, 1
-    li	r7, 0
-    bl      EXIImm
-    cntlzw	r0, r3
-    srwi	r31, r0, 5
-    li	r3, 0
-    bl      EXISync
-    cntlzw	r0, r3
-    srwi	r0, r0, 5
-    addi	r4, r29, 0
-    addi	r5, r30, 0
-    or	r31, r31, r0
-    li	r3, 0
-    li	r6, 0
-    li	r7, 0
-    bl      EXIDma
-    cntlzw	r0, r3
-    srwi	r0, r0, 5
-    or	r31, r31, r0
-    li	r3, 0
-    bl      EXISync
-    cntlzw	r0, r3
-    srwi	r0, r0, 5
-    or	r31, r31, r0
-    li	r3, 0
-    bl      EXIDeselect
-    cntlzw	r0, r3
-    srwi	r0, r0, 5
-    or	r31, r31, r0
-    li	r3, 0
-    bl      EXIUnlock
-    cntlzw	r0, r31
-    srwi	r3, r0, 5
-_8000fddc:
-    lwz	r0, 0x2c(r1)
-    lwz	r31, 0x24(r1)
-    lwz	r30, 0x20(r1)
-    lwz	r29, 0x1c(r1)
-    addi	r1, r1, 0x28
-    mtlr	r0
-    blr	
+    int err;
+    unsigned long cmd;
+
+    DCInvalidateRange(buffer, length);
+    if (!EXILock(0, 1, 0)) {
+        return 0;
+    }
+    if (!EXISelect(0, 1, 3)) {
+        EXIUnlock(0);
+        return 0;
+    }
+    cmd = offset << 6;
+    err = 0;
+    err |= !EXIImm(0, &cmd, 4, 1, 0);
+    err |= !EXISync(0);
+    err |= !EXIDma(0, buffer, length, 0, 0);
+    err |= !EXISync(0);
+    err |= !EXIDeselect(0);
+    EXIUnlock(0);
+    return !err;
 }
 
 asm u32 OSGetSoundMode(void)

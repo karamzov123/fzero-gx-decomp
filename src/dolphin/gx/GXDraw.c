@@ -4,7 +4,7 @@ typedef unsigned int u32;
 typedef signed int s32;
 
 extern void* memset(void*, int, unsigned long);
-extern unsigned char gx[4]; /* sda21 */
+/* sda21 */
 extern void* memcpy(void*, const void*, unsigned long);
 extern void OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(void);
@@ -16,7 +16,6 @@ extern void GXGetCPUFifo(void);
 extern void __GXSaveCPUFifoAux(void);
 extern void __GXSetDirtyState(void);
 extern void __GXSendFlushPrim(void);
-extern unsigned char __cpReg[4];
 extern unsigned char __piReg[4];
 extern unsigned char lbl_801A6C28[8];
 extern unsigned char lbl_801A7178[8];
@@ -76,6 +75,11 @@ typedef struct GXData {
     u32 matIdxA;         /* 0x80 */
     u32 matIdxB;         /* 0x84 */
 } GXData;
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+extern GXData *const gx;
+extern u32* __cpReg;
 asm void GXBeginDisplayList(register void* p1, register void* p2)
 {
     nofralloc
@@ -1402,13 +1406,10 @@ _80039af0:
     blr     
 }
 
-asm int fn_80039AFC(void)
+// provenance: original (reconstructed from in-tree asm)
+void fn_80039AFC(void)
 {
-    nofralloc
-    lwz	r3, __cpReg
-    li      r0, 4
-    sth     r0, 4(r3)
-    blr     
+    ((volatile unsigned short*)__cpReg)[2] = 4;
 }
 
 // provenance: original (reconstructed from in-tree asm)

@@ -25,12 +25,10 @@ extern void fn_80071D2C(void);
 extern unsigned char lbl_801A6620[1];
 extern unsigned char lbl_801A6D08[4];
 extern unsigned char lbl_801A6D0C[4];
-extern unsigned char lbl_801A6D10[4];
-extern unsigned char lbl_801A6D14[4];
-extern unsigned char lbl_801A6D18[4];
-extern unsigned char lbl_801A6D1C[4];
-extern unsigned char lbl_801A6D20[4];
-extern unsigned char lbl_801A6D24[4];
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef struct { unsigned long a,b,c,d,e,f; } Hooks; extern unsigned long lbl_801A6D24,lbl_801A6D20,lbl_801A6D1C,lbl_801A6D18,lbl_801A6D14,lbl_801A6D10;
 asm void OSAllocFromArena(void)
 {
     nofralloc
@@ -64,23 +62,8 @@ _80070d44:
     blr	
 }
 
-asm void fn_80070D60(void)
-{
-    nofralloc
-    lwz	r0, 0(r3)
-    stw	r0, lbl_801A6D24
-    lwz	r0, 4(r3)
-    stw	r0, lbl_801A6D20
-    lwz	r0, 8(r3)
-    stw	r0, lbl_801A6D1C
-    lwz	r0, 0xc(r3)
-    stw	r0, lbl_801A6D18
-    lwz	r0, 0x10(r3)
-    stw	r0, lbl_801A6D14
-    lwz	r0, 0x14(r3)
-    stw	r0, lbl_801A6D10
-    blr	
-}
+// provenance: harvest:runs.sqlite — fn_80070D60 recovered from d60-struct1.c, compiled by hard2 at 2026-08-25T22:24 and scored 100 against main/dolphin/mtx/fn_80070CF8; original reference not recorded
+void fn_80070D60(Hooks *h){lbl_801A6D24=h->a;lbl_801A6D20=h->b;lbl_801A6D1C=h->c;lbl_801A6D18=h->d;lbl_801A6D14=h->e;lbl_801A6D10=h->f;}
 
 asm void fn_80070D94(void)
 {
