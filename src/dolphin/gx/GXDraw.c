@@ -80,6 +80,10 @@ typedef struct GXData {
    candidate — the converted body below needs them. */
 extern GXData *const gx;
 extern u32* __cpReg;
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+volatile PPCWGPipe GXWGFifoV : 0xCC008000;
 asm void GXBeginDisplayList(register void* p1, register void* p2)
 {
     nofralloc
@@ -682,19 +686,13 @@ asm void GXSetScissorBoxOffset(register void* p)
     blr     
 }
 
-asm void fn_80039060(void)
+// provenance: original (reconstructed from in-tree asm)
+void fn_80039060(u32 a)
 {
-    nofralloc
-    li      r0, 0x10
-    lwz     r4, gx
-    lis     r6, -0x33ff
-    stb     r0, -0x8000(r6)
-    li      r5, 0x1005
-    li      r0, 1
-    stw     r5, -0x8000(r6)
-    stw     r3, -0x8000(r6)
-    sth     r0, 2(r4)
-    blr     
+    GX_WRITE_U8(0x10);
+    GX_WRITE_U32(0x1005u);
+    GX_WRITE_U32(a);
+    gx->bpSent = 1;
 }
 
 asm void __GXSetMatrixIndex(register void* p)

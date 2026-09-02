@@ -81,6 +81,13 @@ extern unsigned char lbl_8017E984[31916];
 extern void fn_80056584(void);
 extern void fn_8005A5A8(void);
 
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef struct {
+    unsigned char _pad[0xc];
+    int unkC;
+} ADXTStruct;
 asm void fn_8004E098(void)
 {
     nofralloc
@@ -239,11 +246,10 @@ _8004e268:
     blr	
 }
 
-asm void ADXT_GetCmdState(void)
+// provenance: harvest:runs.sqlite — ADXT_GetCmdState recovered from adxt_8004E098.c, compiled by natc5 at 2026-08-31T23:42 and scored 100 against main/game/adxt_8004E098; original reference not recorded
+int ADXT_GetCmdState(void *arg0)
 {
-    nofralloc
-    lwz	r3, 0xc(r3)
-    blr	
+    return ((ADXTStruct *)arg0)->unkC;
 }
 
 asm void fn_8004E278(void)
