@@ -28,7 +28,7 @@ extern void GXXFormSetupA(void);
 extern void GXXFormSetupB(void);
 extern void GXLoadTexObj(void);
 extern void __GXInitTexObj(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7, s32 a8, s32 a9);
-extern void __GXInitTexObjLOD(void);
+extern void __GXInitTexObjLOD(s32 idx, void* a1, s32 a2);
 extern void __GXInitTexCacheRegs(s32 idx, s32 a1, s32 a2);
 extern void fn_80036DA0(s32 a0, s32 a1, s32 a2);
 extern void fn_80036EB4(s32 stages);
@@ -44,8 +44,8 @@ extern void __GXWriteMatColorRegs(void);
 extern void __GXWriteChanCtrlBitfields(void);
 extern void GXSetScissor(u32 a0, u32 a1, u32 a2, u32 a3);
 extern void GXComputeDeltaRatio(void);
-extern void memcpy_fast(void);
-extern void strncmp(void);
+extern void memcpy_fast(void* dest, void* src, u32 n);
+extern s32 strncmp(void* a, void* b, u32 n);
 extern void fn_8006DD14(void);
 extern unsigned char lbl_8019F040[240];
 extern void* g_modelSysPtr;
@@ -60,7 +60,6 @@ asm void ModelSetCachedMaterial_570(void);
 asm void ModelSetCachedNumTexGens(void);
 asm void ModelCacheMaterialParams(void);
 asm void GXIntToFloatCopy(void);
-asm void fn_80073A58(void);
 asm void fn_80073D60(void);
 asm void fn_80073E8C(void);
 asm void ModelSetCachedScissorLT_AFC(void);
@@ -808,76 +807,29 @@ void fn_800739E0(s32 idx, s32 a1, s32 a2)
 }
 
 // provenance: original asm-relocation-fix fn_80073A58 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
-asm void fn_80073A58(void)
+// provenance: original asm-relocation-fix fn_80073A58 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
+// provenance: derived from findings/383-hard-model-80072edc-modelsysptr-struct.md (+0x894 offset map) and direct retail disassembly trace
+void fn_80073A58(s32 idx, void* a1, s32 a2)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    stw r31, 0x1c(r1)
-    stw r30, 0x18(r1)
-    mr r30, r5
-    stw r29, 0x14(r1)
-    mr r29, r4
-    stw r28, 0x10(r1)
-    or. r28, r3, r3
-    beq _80073B30
-    cmpwi r28, 3
-    bgt _80073AA4
-    addi r0, r28, -1
-    lwz r4, g_modelSysPtr
-    mulli r3, r0, 0x1c
-    addi r31, r3, 0x894
-    add r31, r4, r31
-    b _80073AE0
-_80073AA4:
-    cmpwi r28, 7
-    bgt _80073AC4
-    addi r0, r28, -5
-    lwz r4, g_modelSysPtr
-    mulli r3, r0, 0x1c
-    addi r31, r3, 0x894
-    add r31, r4, r31
-    b _80073AE0
-_80073AC4:
-    cmpwi r28, 0xb
-    bgt _80073AE0
-    addi r0, r28, -9
-    lwz r4, g_modelSysPtr
-    mulli r3, r0, 0x1c
-    addi r31, r3, 0x894
-    add r31, r4, r31
-_80073AE0:
-    lbz r3, 0x18(r31)
-    extsb r0, r30
-    extsb r3, r3
-    cmpw r3, r0
-    bne _80073B0C
-    mr r3, r31
-    mr r4, r29
-    li r5, 0x18
-    bl strncmp
-    cmpwi r3, 0
-    beq _80073B30
-_80073B0C:
-    mr r3, r28
-    mr r4, r29
-    mr r5, r30
-    bl __GXInitTexObjLOD
-    mr r3, r31
-    mr r4, r29
-    li r5, 0x18
-    bl memcpy_fast
-    stb r30, 0x18(r31)
-_80073B30:
-    lwz r0, 0x24(r1)
-    lwz r31, 0x1c(r1)
-    lwz r30, 0x18(r1)
-    lwz r29, 0x14(r1)
-    lwz r28, 0x10(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    u8* base;
+
+    if (idx == 0) {
+        return;
+    }
+
+    if (idx <= 3) {
+        base = (u8*)g_modelSysPtr + (idx - 1) * 0x1c + 0x894;
+    } else if (idx <= 7) {
+        base = (u8*)g_modelSysPtr + (idx - 5) * 0x1c + 0x894;
+    } else if (idx <= 11) {
+        base = (u8*)g_modelSysPtr + (idx - 9) * 0x1c + 0x894;
+    }
+
+    if ((signed char)base[0x18] != (signed char)a2 || strncmp(base, a1, 0x18) != 0) {
+        __GXInitTexObjLOD(idx, a1, a2);
+        memcpy_fast(base, a1, 0x18);
+        base[0x18] = a2;
+    }
 }
 
 // provenance: original asm-relocation-fix fn_80073B50 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
