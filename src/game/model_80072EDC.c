@@ -61,7 +61,6 @@ asm void ModelSetCachedNumTexGens(void);
 asm void ModelCacheMaterialParams(void);
 asm void GXIntToFloatCopy(void);
 asm void fn_80073A58(void);
-asm void fn_80073B50(void);
 asm void fn_80073D60(void);
 asm void fn_80073E8C(void);
 asm void ModelSetCachedScissorLT_AFC(void);
@@ -882,82 +881,18 @@ _80073B30:
 }
 
 // provenance: original asm-relocation-fix fn_80073B50 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
-asm void fn_80073B50(void)
+// provenance: original asm-relocation-fix fn_80073B50 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
+// provenance: repo-twin:ModelClearCacheSlot_B28 (main/game/model_80072EDC) fn_80073B50
+void fn_80073B50(s32 idx, s32 p1, s32 p2, s32 p3, s32 p4, s32 p5, s32 p6, s32 p7, u8 p8, s32 p9)
 {
-    nofralloc
-    stwu r1, -0x40(r1)
-    mflr r0
-    stw r0, 0x44(r1)
-    addi r11, r1, 0x40
-    bl _savegpr_22
-    slwi r11, r3, 5
-    lwz r0, g_modelSysPtr
-    addi r31, r11, 0x8e8
-    mr r22, r4
-    add r31, r0, r31
-    lbz r29, 0x4b(r1)
-    lwz r0, 0(r31)
-    mr r23, r5
-    lwz r30, 0x4c(r1)
-    mr r24, r6
-    cmpw r0, r22
-    mr r25, r7
-    mr r26, r8
-    mr r27, r9
-    mr r28, r10
-    bne _80073C08
-    lwz r0, 4(r31)
-    cmpw r0, r23
-    bne _80073C08
-    lwz r0, 8(r31)
-    cmpw r0, r24
-    bne _80073C08
-    lwz r0, 0xc(r31)
-    cmpw r0, r25
-    bne _80073C08
-    lwz r0, 0x10(r31)
-    cmpw r0, r26
-    bne _80073C08
-    lwz r0, 0x14(r31)
-    cmpw r0, r27
-    bne _80073C08
-    lbz r4, 0x18(r31)
-    clrlwi r0, r28, 0x18
-    cmplw r4, r0
-    bne _80073C08
-    lbz r0, 0x19(r31)
-    cmplw r0, r29
-    bne _80073C08
-    lwz r0, 0x1c(r31)
-    cmpw r0, r30
-    beq _80073C54
-_80073C08:
-    stw r29, 8(r1)
-    mr r4, r22
-    mr r5, r23
-    mr r6, r24
-    stw r30, 0xc(r1)
-    mr r7, r25
-    mr r8, r26
-    mr r9, r27
-    mr r10, r28
-    bl __GXInitTexObj
-    stw r22, 0(r31)
-    stw r23, 4(r31)
-    stw r24, 8(r31)
-    stw r25, 0xc(r31)
-    stw r26, 0x10(r31)
-    stw r27, 0x14(r31)
-    stb r28, 0x18(r31)
-    stb r29, 0x19(r31)
-    stw r30, 0x1c(r31)
-_80073C54:
-    addi r11, r1, 0x40
-    bl _restgpr_22
-    lwz r0, 0x44(r1)
-    mtlr r0
-    addi r1, r1, 0x40
-    blr
+    volatile s32* e = (volatile s32*)((u8*)g_modelSysPtr + (idx << 5) + 0x8e8);
+    volatile u8* eb = (volatile u8*)e;
+    if (e[0] != p1 || e[1] != p2 || e[2] != p3 || e[3] != p4 || e[4] != p5 || e[5] != p6 ||
+        eb[0x18] != (u8)p7 || eb[0x19] != p8 || e[7] != p9) {
+        __GXInitTexObj(idx, p1, p2, p3, p4, p5, p6, p7, p8, p9);
+        e[0] = p1; e[1] = p2; e[2] = p3; e[3] = p4; e[4] = p5; e[5] = p6;
+        eb[0x18] = (u8)p7; eb[0x19] = p8; e[7] = p9;
+    }
 }
 
 // provenance: original asm-relocation-fix ModelClearCacheSlot_B28 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
