@@ -30,7 +30,7 @@ extern void GXLoadTexObj(void);
 extern void __GXInitTexObj(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7, s32 a8, s32 a9);
 extern void __GXInitTexObjLOD(void);
 extern void __GXInitTexCacheRegs(void);
-extern void fn_80036DA0(void);
+extern void fn_80036DA0(s32 a0, s32 a1, s32 a2);
 extern void fn_80036EB4(s32 stages);
 extern void GXWriteCachedParamF0(void);
 extern void GXWriteCachedParam1F0(void);
@@ -60,7 +60,6 @@ asm void ModelSetCachedMaterial_570(void);
 asm void ModelSetCachedNumTexGens(void);
 asm void ModelCacheMaterialParams(void);
 asm void GXIntToFloatCopy(void);
-asm void fn_800738E0(void);
 asm void fn_800739E0(void);
 asm void fn_80073A58(void);
 asm void fn_80073B50(void);
@@ -771,77 +770,31 @@ void ModelSetCachedState_840(s32 v)
 }
 
 // provenance: original asm-relocation-fix fn_800738E0 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
-asm void fn_800738E0(void)
+// provenance: original asm-relocation-fix fn_800738E0 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
+// provenance: derived from findings/383-hard-model-80072edc-modelsysptr-struct.md (+0x844/+0x720 offset map) and direct retail disassembly trace
+void fn_800738E0(s32 a0, s32 a1, s32 a2)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    stw r31, 0x1c(r1)
-    stw r30, 0x18(r1)
-    stw r29, 0x14(r1)
-    mr r29, r5
-    mulli r5, r3, 0xc
-    stw r28, 0x10(r1)
-    cmpwi r29, 8
-    mr r28, r4
-    lwz r6, g_modelSysPtr
-    addi r31, r5, 0x844
-    add r31, r6, r31
-    blt _80073958
-    lwz r0, 0(r31)
-    cmpw r0, r3
-    bne _80073934
-    lwz r0, 4(r31)
-    cmpw r0, r29
-    beq _800739C0
-_80073934:
-    mr r4, r28
-    mr r5, r29
-    bl fn_80036DA0
-    stw r28, 0(r31)
-    li r0, 0
-    stw r29, 4(r31)
-    sth r0, 8(r31)
-    sth r0, 0xa(r31)
-    b _800739C0
-_80073958:
-    mulli r4, r29, 0x24
-    lwz r0, 0(r31)
-    cmpw r0, r3
-    addi r30, r4, 0x720
-    add r30, r6, r30
-    bne _8007399C
-    lwz r0, 4(r31)
-    cmpw r0, r29
-    bne _8007399C
-    lhz r4, 8(r31)
-    lhz r0, 0x20(r30)
-    cmplw r4, r0
-    bne _8007399C
-    lhz r4, 0xa(r31)
-    lhz r0, 0x22(r30)
-    cmplw r4, r0
-    beq _800739C0
-_8007399C:
-    mr r4, r28
-    mr r5, r29
-    bl fn_80036DA0
-    stw r28, 0(r31)
-    stw r29, 4(r31)
-    lhz r0, 0x20(r30)
-    sth r0, 8(r31)
-    lhz r0, 0x22(r30)
-    sth r0, 0xa(r31)
-_800739C0:
-    lwz r0, 0x24(r1)
-    lwz r31, 0x1c(r1)
-    lwz r30, 0x18(r1)
-    lwz r29, 0x14(r1)
-    lwz r28, 0x10(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    u8* p = (u8*)g_modelSysPtr + a0 * 0xc + 0x844;
+
+    if (a2 >= 8) {
+        if (!(*(s32*)(p + 0) == a0 && *(s32*)(p + 4) == a2)) {
+            fn_80036DA0(a0, a1, a2);
+            *(s32*)(p + 0) = a1;
+            *(s32*)(p + 4) = a2;
+            *(u16*)(p + 8) = 0;
+            *(u16*)(p + 0xa) = 0;
+        }
+    } else {
+        u8* q = (u8*)g_modelSysPtr + a2 * 0x24 + 0x720;
+        if (!(*(s32*)(p + 0) == a0 && *(s32*)(p + 4) == a2 &&
+              *(u16*)(p + 8) == *(u16*)(q + 0x20) && *(u16*)(p + 0xa) == *(u16*)(q + 0x22))) {
+            fn_80036DA0(a0, a1, a2);
+            *(s32*)(p + 0) = a1;
+            *(s32*)(p + 4) = a2;
+            *(u16*)(p + 8) = *(u16*)(q + 0x20);
+            *(u16*)(p + 0xa) = *(u16*)(q + 0x22);
+        }
+    }
 }
 
 // provenance: original asm-relocation-fix fn_800739E0 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
