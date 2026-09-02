@@ -20,7 +20,7 @@ extern void GXSetNumTexGens(void);
 extern void __GXSetScissor_LT(void);
 extern void __GXSetScissor_RB(void);
 extern void __GXSetScissorBoxOffset(void);
-extern void __GXInitTexObjHW(void);
+extern void __GXInitTexObjHW(u16 a0, u16 a1, s32 a2, u8 a3);
 extern void __GXSetBlendModePair(void);
 extern void __GXSetChanAmbColor(void);
 extern void __GXSetChanCtrl(void);
@@ -31,13 +31,13 @@ extern void __GXInitTexObj(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a
 extern void __GXInitTexObjLOD(void);
 extern void __GXInitTexCacheRegs(void);
 extern void fn_80036DA0(void);
-extern void fn_80036EB4(void);
+extern void fn_80036EB4(s32 stages);
 extern void GXWriteCachedParamF0(void);
 extern void GXWriteCachedParam1F0(void);
 extern void fn_80037128(void);
 extern void fn_80037190(void);
-extern void __GXSetChanMatColor(void);
-extern void __GXSetLightAttnEnable_A(void);
+extern void __GXSetChanMatColor(s32 chan, u8* color);
+extern void __GXSetLightAttnEnable_A(s32 chan, s32 val);
 extern void __GXSetLightAttnEnable_B(s32 chan, s32 val);
 extern void GXSetChanCtrl(void);
 extern void __GXWriteMatColorRegs(void);
@@ -56,13 +56,10 @@ extern double lbl_801A7478;
 extern s32 lbl_801A6D78;
 asm void fn_80072EDC(void);
 asm void ModelSetCachedMaterial_570(void);
-asm void GXCachedSetTevSwapTable(void);
 
 asm void ModelSetCachedNumTexGens(void);
-asm void ModelSetCachedTex_704(void);
 asm void ModelCacheMaterialParams(void);
 asm void GXIntToFloatCopy(void);
-asm void ModelSetCachedState_840(void);
 asm void fn_800738E0(void);
 asm void fn_800739E0(void);
 asm void fn_80073A58(void);
@@ -73,7 +70,6 @@ asm void fn_80074188(void);
 asm void ModelSetCachedScissorLT_AFC(void);
 asm void ModelSetCachedScissorRB_B08(void);
 asm void ModelSetCachedScissorOffset_B04(void);
-asm void ModelSetCachedTexObjHW_B10(void);
 asm void ModelMatchCachedSlot_B20(void);
 asm void ModelSetCachedPair5_B28(void);
 asm void GXSetNumTexGensCached(void);
@@ -574,32 +570,15 @@ _800735B0:
 }
 
 // provenance: original asm-relocation-fix GXCachedSetTevSwapTable (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
-asm void GXCachedSetTevSwapTable(void)
+// provenance: repo-twin:ModelSetCachedState_6B0 (main/game/model_80072EDC) GXCachedSetTevSwapTable
+void GXCachedSetTevSwapTable(s32 chan, s32 val)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    stw r0, 0x14(r1)
-    stw r31, 0xc(r1)
-    slwi r31, r3, 2
-    stw r30, 8(r1)
-    mr r30, r4
-    lwz r0, g_modelSysPtr
-    add r5, r0, r31
-    lwz r0, 0x670(r5)
-    cmpw r0, r30
-    beq _80073608
-    bl __GXSetLightAttnEnable_A
-    lwz r0, g_modelSysPtr
-    add r3, r0, r31
-    stw r30, 0x670(r3)
-_80073608:
-    lwz r0, 0x14(r1)
-    lwz r31, 0xc(r1)
-    lwz r30, 8(r1)
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    volatile s32* e = (volatile s32*)((u8*)g_modelSysPtr + 0x670) + chan;
+    if (*e != val) {
+        __GXSetLightAttnEnable_A(chan, val);
+        e = (volatile s32*)((u8*)g_modelSysPtr + 0x670) + chan;
+        *e = val;
+    }
 }
 
 // provenance: repo-twin:LightCtrl_SetCachedByte_EC (main/game/lightctrl_8007264C) ModelSetCachedState_6B0
@@ -654,23 +633,23 @@ asm void ModelSetCachedTex_704(void)
     lbz r0, 0(r4)
     lbz r4, 0x704(r5)
     cmplw r4, r0
-    bne _80073730
+    bne _80073854
     lbz r4, 0x705(r5)
     lbz r0, 1(r30)
     cmplw r4, r0
-    bne _80073730
+    bne _80073854
     lbz r4, 0x706(r5)
     lbz r0, 2(r30)
     cmplw r4, r0
-    bne _80073730
+    bne _80073854
     lbz r4, 0x707(r5)
     lbz r0, 3(r30)
     cmplw r4, r0
-    bne _80073730
+    bne _80073854
     lwz r0, 0x6f4(r5)
     cmpwi r0, 0
-    beq _80073760
-_80073730:
+    beq _80073884
+_80073854:
     lwz r0, 0(r30)
     addi r4, r1, 8
     stw r0, 8(r1)
@@ -683,7 +662,7 @@ _80073730:
     lwz r3, g_modelSysPtr
     add r3, r3, r31
     stw r0, 0x704(r3)
-_80073760:
+_80073884:
     lwz r0, 0x24(r1)
     lwz r31, 0x1c(r1)
     lwz r30, 0x18(r1)
@@ -780,28 +759,15 @@ _80073880:
 }
 
 // provenance: original asm-relocation-fix ModelSetCachedState_840 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
-asm void ModelSetCachedState_840(void)
+// provenance: repo-twin:ModelSetCachedState_6B0 (main/game/model_80072EDC) ModelSetCachedState_840
+void ModelSetCachedState_840(s32 v)
 {
-    nofralloc
-    stwu r1, -0x10(r1)
-    mflr r0
-    stw r0, 0x14(r1)
-    clrlwi r0, r3, 0x18
-    stw r31, 0xc(r1)
-    mr r31, r3
-    lwz r4, g_modelSysPtr
-    lbz r4, 0x840(r4)
-    cmplw r4, r0
-    beq _800738CC
-    bl fn_80036EB4
-    lwz r3, g_modelSysPtr
-    stb r31, 0x840(r3)
-_800738CC:
-    lwz r0, 0x14(r1)
-    lwz r31, 0xc(r1)
-    mtlr r0
-    addi r1, r1, 0x10
-    blr
+    volatile u8* p = (volatile u8*)g_modelSysPtr + 0x840;
+    if (*p != (u8)v) {
+        fn_80036EB4(v);
+        p = (volatile u8*)g_modelSysPtr + 0x840;
+        *p = (u8)v;
+    }
 }
 
 // provenance: original asm-relocation-fix fn_800738E0 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
@@ -1591,59 +1557,22 @@ _80074420:
 }
 
 // provenance: original asm-relocation-fix ModelSetCachedTexObjHW_B10 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
-asm void ModelSetCachedTexObjHW_B10(void)
+// provenance: repo-twin:LightCtrl_SetCachedColor_1C (main/game/lightctrl_8007264C) ModelSetCachedTexObjHW_B10
+void ModelSetCachedTexObjHW_B10(u16 a0, u16 a1, s32 a2, u8 a3)
 {
-    nofralloc
-    stwu r1, -0x20(r1)
-    mflr r0
-    stw r0, 0x24(r1)
-    clrlwi r0, r3, 0x10
-    stw r31, 0x1c(r1)
-    mr r31, r6
-    stw r30, 0x18(r1)
-    mr r30, r5
-    stw r29, 0x14(r1)
-    mr r29, r4
-    stw r28, 0x10(r1)
-    mr r28, r3
-    lwz r7, g_modelSysPtr
-    lhz r3, 0xb10(r7)
-    cmplw r3, r0
-    bne _800744A4
-    lhz r3, 0xb12(r7)
-    clrlwi r0, r29, 0x10
-    cmplw r3, r0
-    bne _800744A4
-    lwz r0, 0xb14(r7)
-    cmpw r0, r30
-    bne _800744A4
-    lbz r3, 0xb18(r7)
-    clrlwi r0, r31, 0x18
-    cmplw r3, r0
-    beq _800744D8
-_800744A4:
-    mr r3, r28
-    mr r4, r29
-    mr r5, r30
-    mr r6, r31
-    bl __GXInitTexObjHW
-    lwz r3, g_modelSysPtr
-    sth r28, 0xb10(r3)
-    lwz r3, g_modelSysPtr
-    sth r29, 0xb12(r3)
-    lwz r3, g_modelSysPtr
-    stw r30, 0xb14(r3)
-    lwz r3, g_modelSysPtr
-    stb r31, 0xb18(r3)
-_800744D8:
-    lwz r0, 0x24(r1)
-    lwz r31, 0x1c(r1)
-    lwz r30, 0x18(r1)
-    lwz r29, 0x14(r1)
-    lwz r28, 0x10(r1)
-    mtlr r0
-    addi r1, r1, 0x20
-    blr
+    volatile u8* base = (volatile u8*)g_modelSysPtr + 0xb10;
+    if (*(volatile u16*)base != a0 || *(volatile u16*)(base + 2) != a1 ||
+        *(volatile s32*)(base + 4) != a2 || base[8] != a3) {
+        __GXInitTexObjHW(a0, a1, a2, a3);
+        base = (volatile u8*)g_modelSysPtr + 0xb10;
+        *(u16*)base = a0;
+        base = (volatile u8*)g_modelSysPtr + 0xb10;
+        *(u16*)(base + 2) = a1;
+        base = (volatile u8*)g_modelSysPtr + 0xb10;
+        *(s32*)(base + 4) = a2;
+        base = (volatile u8*)g_modelSysPtr + 0xb10;
+        base[8] = a3;
+    }
 }
 
 // provenance: original asm-relocation-fix ModelMatchCachedSlot_B20 (bare-symbol sda21 form so MWCC re-emits R_PPC_EMB_SDA21; no instruction/semantic change)
