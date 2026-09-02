@@ -92,6 +92,19 @@ void __GXSendFlushPrim(void);
 #pragma push
 #pragma force_active on
 
+
+/* harvest: declarations carried over from the recovered
+   candidate — the converted body below needs them. */
+typedef float f32;
+typedef union {
+    u8  u8;
+    u16 u16;
+    u32 u32;
+    f32 f32;
+} PPCWGPipe;
+volatile PPCWGPipe GXWGFifoV : 0xCC008000;
+#define GX_WRITE_U8(b)  GXWGFifoV.u8 = (u8)(b)
+#define GX_WRITE_U32(r) GXWGFifoV.u32 = (u32)(r)
 void __GXSetDirtyState(void)
 {
     if (gx->dirtyState & 1)
@@ -1094,23 +1107,14 @@ _800353d8:
     blr	
 }
 
-asm void __GXFlushTextureCache(register int a)
+// provenance: original  (m2c seed; BP register flush, no gx-field store)
+void __GXFlushTextureCache(void)
 {
-    nofralloc
-    li	r6, 0x61
-    lwz	r3, gx
-    lis	r5, -0x33ff
-    lis	r4, 0x5500
-    stb	r6, -0x8000(r5)
-    addi	r0, r4, 0x3ff
-    stw	r0, -0x8000(r5)
-    lis	r4, 0x5600
-    addi	r4, r4, 0x3ff
-    stb	r6, -0x8000(r5)
-    li	r0, 0
-    stw	r4, -0x8000(r5)
-    sth	r0, 2(r3)
-    blr	
+    GX_WRITE_U8(0x61);
+    GX_WRITE_U32(0x550003FF);
+    GX_WRITE_U8(0x61);
+    GX_WRITE_U32(0x560003FF);
+    gx->bpSent = 0;
 }
 
 asm void GXInitLightSpot(register void* p1, register void* p2, register int id, register void* p4)
