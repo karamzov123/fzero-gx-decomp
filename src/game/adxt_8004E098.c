@@ -293,18 +293,12 @@ asm void fn_8004E2CC(void)
     blr	
 }
 
-asm void fn_8004E2DC(void)
-{
-    nofralloc
-    lha	r0, 0x28(r3)
-    sth	r0, 0(r4)
-    lha	r0, 0x2a(r3)
-    sth	r0, 0(r5)
-    lha	r0, 0x2c(r3)
-    sth	r0, 2(r4)
-    lha	r0, 0x2e(r3)
-    sth	r0, 2(r5)
-    blr	
+void fn_8004E2DC(void *a, void *b, void *c) {
+// provenance: original fn_8004E2DC
+    *(short *)b = *(short *)((char *)a + 0x28);
+    *(short *)c = *(short *)((char *)a + 0x2a);
+    *(short *)((char *)b + 2) = *(short *)((char *)a + 0x2c);
+    *(short *)((char *)c + 2) = *(short *)((char *)a + 0x2e);
 }
 
 asm void fn_8004E300(void)
