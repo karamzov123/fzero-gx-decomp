@@ -3,6 +3,13 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef signed int s32;
 
+
+typedef struct TRKBuffer {
+    u8 unk00[8];
+    u32 length;
+    u32 position;
+    u8 data[0x880];
+} TRKBuffer;
 #pragma force_active on
 
 // MetroTRK remainder 0x80088B00-0x8008CB20 (pm10-c region B)
@@ -41,7 +48,7 @@ extern unsigned char gTRKBigEndian[4];
 extern unsigned char lbl_80095678[0x25];
 extern void memset(void);
 extern void fn_80003590(void);
-extern void TRK_memcpy(void);
+extern void TRK_memcpy();
 extern void gTRKInterruptVectorTableEnd(void);
 extern void OSReport(void);
 extern void strlen(void);
@@ -492,98 +499,45 @@ _80088fe0:
     blr
 }
 
-asm void TRKAppendBuffer1_ui32(void)
+// provenance: original
+int TRKAppendBuffer1_ui32(TRKBuffer* buffer, const void* data, u32 count)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    li	r31, 0
-    stw	r30, 0x18(r1)
-    or.	r30, r5, r5
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    mr	r3, r4
-    bc      4, 2, _80089048
-    li	r3, 0
-    b       _80089084
-_80089048:
-    lwz	r4, 0xc(r29)
-    lwz	r0, 8(r29)
-    subf	r0, r4, r0
-    cmplw	r30, r0
-    bc      4, 1, _80089064
-    li	r31, 0x302
-    mr	r30, r0
-_80089064:
-    addi	r4, r4, 0x10
-    mr	r5, r30
-    add	r4, r29, r4
-    bl      TRK_memcpy
-    lwz	r0, 0xc(r29)
-    mr	r3, r31
-    add	r0, r0, r30
-    stw	r0, 0xc(r29)
-_80089084:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    int err = 0;
+    if (count == 0) return err;
+    {
+        u32 pos = buffer->position;
+        u32 end = buffer->length - pos;
+        if (count > end) {
+            err = 0x302;
+            count = end;
+        }
+        TRK_memcpy(data, buffer->data + pos, count);
+        buffer->position += count;
+    }
+    return err;
 }
 
-asm void TRKAppendBuffer1_ui16(void)
+// provenance: original
+int TRKAppendBuffer1_ui16(TRKBuffer* buffer, const void* data, u32 count)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    li	r31, 0
-    stw	r30, 0x18(r1)
-    or.	r30, r5, r5
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    bc      4, 2, _800890d0
-    li	r3, 0
-    b       _80089128
-_800890d0:
-    lwz	r3, 0xc(r29)
-    subfic	r0, r3, 0x880
-    cmplw	r0, r30
-    bc      4, 0, _800890e8
-    li	r31, 0x301
-    mr	r30, r0
-_800890e8:
-    cmplwi	r30, 1
-    bc      4, 2, _80089100
-    lbz	r0, 0(r4)
-    add	r3, r29, r3
-    stb	r0, 0x10(r3)
-    b       _80089110
-_80089100:
-    addi	r3, r3, 0x10
-    mr	r5, r30
-    add	r3, r29, r3
-    bl      TRK_memcpy
-_80089110:
-    lwz	r0, 0xc(r29)
-    mr	r3, r31
-    add	r0, r0, r30
-    stw	r0, 0xc(r29)
-    lwz	r0, 0xc(r29)
-    stw	r0, 8(r29)
-_80089128:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    int err = 0;
+    if (count == 0) return err;
+    {
+        u32 pos = buffer->position;
+        u32 avail = 0x880 - pos;
+        if (avail < count) {
+            err = 0x301;
+            count = avail;
+        }
+        if (count == 1) {
+            buffer->data[pos] = *(u8*)data;
+        } else {
+            TRK_memcpy(buffer->data + pos, data, count);
+        }
+        buffer->position += count;
+        buffer->length = buffer->position;
+    }
+    return err;
 }
 
 asm void TRKSetBufferPosition(void)
