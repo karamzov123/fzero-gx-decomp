@@ -26,7 +26,8 @@ extern void __div2u(void);
 extern void __sformatter(void);
 extern void TRKWriteFileChecked(void);
 extern void MSL_device_link_fn(void); // forward decl: label must be declared before first use
-extern void MSLStrToLong(void); // forward decl
+typedef struct { char *NextChar; int NullCharDetected; } __InStrCtrl;
+extern unsigned int MSLStrToLong(int base, unsigned int max, void (*reader)(void), __InStrCtrl *ctrl, int *count, int *negative, int *overflow);
 extern void __fpclassifyd(void); // forward decl
 extern void atan(void); // forward decl
 extern void fn_80087E80(void); // forward decl
@@ -1399,112 +1400,45 @@ _80084f08:
     blr
 }
 
-asm void atoi(void)
+// provenance: original
+int atoi(const char *str)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis     r4, __StringRead@ha
-    stw	r0, 0x24(r1)
-    li	r0, 0
-    addi	r5, r4, __StringRead@l
-    addi	r6, r1, 0x14
-    stw	r3, 0x14(r1)
-    lis	r3, -0x8000
-    addi	r4, r3, -1
-    addi	r7, r1, 8
-    stw	r0, 0x18(r1)
-    addi	r8, r1, 0xc
-    addi	r9, r1, 0x10
-    li	r3, 0xa
-    bl      MSLStrToLong
-    lwz	r0, 0x10(r1)
-    cmpwi	r0, 0
-    bc      4, 2, _80084f98
-    lwz	r5, 0xc(r1)
-    cmpwi	r5, 0
-    bc      4, 2, _80084f84
-    lis	r4, -0x8000
-    addi	r0, r4, -1
-    cmplw	r3, r0
-    bc      12, 1, _80084f98
-_80084f84:
-    cmpwi	r5, 0
-    bc      12, 2, _80084fc0
-    lis	r0, -0x8000
-    cmplw	r3, r0
-    bc      4, 1, _80084fc0
-_80084f98:
-    lwz	r5, 0xc(r1)
-    lis	r3, -0x8000
-    li	r0, 0x22
-    neg	r4, r5
-    addi	r3, r3, -1
-    or	r4, r4, r5
-    stw	r0, lbl_801A6DE0
-    srwi	r0, r4, 0x1f
-    add	r3, r0, r3
-    b       _80084fcc
-_80084fc0:
-    cmpwi	r5, 0
-    bc      12, 2, _80084fcc
-    neg	r3, r3
-_80084fcc:
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    unsigned int uvalue;
+    int overflow, negative, count;
+    __InStrCtrl isc;
+
+    isc.NextChar = (char *)str;
+    isc.NullCharDetected = 0;
+    uvalue = MSLStrToLong(10, 0x7FFFFFFFU, __StringRead, &isc, &count, &negative, &overflow);
+    if (overflow || (!negative && uvalue > 0x7FFFFFFFU) || (negative && uvalue > 0x80000000U)) {
+        int neg_copy = negative;
+        int result = neg_copy ? (-2147483647 - 1) : 2147483647;
+        int error = 0x22;
+        *(int *)lbl_801A6DE0 = error;
+        return result;
+    }
+    return negative ? -(int)uvalue : (int)uvalue;
 }
 
-asm void strtol(void)
+// provenance: original
+int strtol(const char *str, char **end, int base)
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    li	r7, 0
-    lis	r6, -0x8000
-    stw	r0, 0x34(r1)
-    addi	r8, r1, 0xc
-    addi	r9, r1, 8
-    stw	r31, 0x2c(r1)
-    mr	r31, r4
-    addi	r4, r6, -1
-    addi	r6, r1, 0x14
-    stw	r30, 0x28(r1)
-    mr	r30, r3
-    lis     r3, __StringRead@ha
-    addi	r0, r3, __StringRead@l
-    stw	r7, 0x18(r1)
-    mr	r3, r5
-    addi	r7, r1, 0x10
-    stw	r30, 0x14(r1)
-    mr	r5, r0
-    bl      MSLStrToLong
-    cmplwi	r31, 0
-    bc      12, 2, _80085044
-    lwz	r0, 0x10(r1)
-    add	r0, r30, r0
-    stw	r0, 0(r31)
-_80085044:
-    lwz	r0, 8(r1)
-    cmpwi	r0, 0
-    bc      12, 2, _80085060
-    li	r0, 0x22
-    li	r3, -1
-    stw	r0, lbl_801A6DE0
-    b       _80085070
-_80085060:
-    lwz	r0, 0xc(r1)
-    cmpwi	r0, 0
-    bc      12, 2, _80085070
-    neg	r3, r3
-_80085070:
-    lwz	r0, 0x34(r1)
-    lwz	r31, 0x2c(r1)
-    lwz	r30, 0x28(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr
+    unsigned int uvalue;
+    int svalue;
+    int count, negative, overflow;
+    __InStrCtrl isc;
+
+    isc.NextChar = (char *)str;
+    isc.NullCharDetected = 0;
+    uvalue = MSLStrToLong(base, 0x7FFFFFFFU, __StringRead, &isc, &count, &negative, &overflow);
+    if (end) *end = (char *)str + count;
+    if (overflow) {
+        svalue = -1;
+        *(int *)lbl_801A6DE0 = 0x22;
+    } else {
+        svalue = negative ? -(int)uvalue : (int)uvalue;
+    }
+    return svalue;
 }
 
 asm void fn_80085088(void)
@@ -1801,7 +1735,7 @@ _80085460:
     blr
 }
 
-asm void MSLStrToLong(void)
+asm unsigned int MSLStrToLong(int base, unsigned int max, void (*reader)(void), __InStrCtrl *ctrl, int *count, int *negative, int *overflow)
 {
     nofralloc
     stwu	r1, -0x40(r1)
