@@ -49,7 +49,7 @@ The retail binary, proprietary compiler distribution, and other non-redistributa
 
 ```text
                         ┌─────────────────────────────────────────────┐
-                        │  PM SUPERVISOR v5 (systemd, ~/project supervisor)│
+                        │  PM SUPERVISOR (systemd)                    │
                         │  spawns/rotates workers, lease TTLs, alerts │
                         └──────┬──────────────────────────────────────┘
                                │ launches + monitors

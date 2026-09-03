@@ -7,8 +7,8 @@ extern unsigned char lbl_8009095C[4];
 extern unsigned char lbl_80090948[8];
 extern unsigned char lbl_80090938[4];
 extern unsigned char lbl_80090968[8];
-extern unsigned char lbl_8017B028[4];
-extern unsigned char lbl_8017B020[4];
+__declspec(section ".data") extern unsigned int lbl_8017B028;
+__declspec(section ".data") extern unsigned int lbl_8017B020;
 extern void fn_800463E4(void);
 extern void memset(void);
 extern void svmLockServer_wrapper(void);
@@ -26,6 +26,7 @@ extern unsigned char lbl_80090958[4];
 extern unsigned char lbl_80090970[2];
 extern unsigned char lbl_8017B038[288];
 
+#pragma push
 asm void fn_800462F8(void)
 {
     nofralloc
@@ -91,7 +92,9 @@ _800463d0:
     addi	r1, r1, 0x30
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_800463E4(void)
 {
     nofralloc
@@ -174,6 +177,7 @@ _800464cc:
     stb	r0, 0(r6)
     blr	
 }
+#pragma pop
 
 // provenance: original fn_80046508
 void fn_80046508(void *p, unsigned int value)
@@ -188,6 +192,7 @@ void fn_80046510(void* a)
     *(unsigned char*)((char*)a + 1) = 0;
 }
 
+#pragma push
 asm void fn_8004651C(void)
 {
     nofralloc
@@ -308,7 +313,9 @@ _8004669c:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_800466D4(void)
 {
     nofralloc
@@ -331,7 +338,9 @@ _80046704:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void svmUnlockServer_wrapper(void)
 {
     nofralloc
@@ -344,7 +353,9 @@ asm void svmUnlockServer_wrapper(void)
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void svmLockServer_wrapper(void)
 {
     nofralloc
@@ -357,16 +368,15 @@ asm void svmLockServer_wrapper(void)
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
-asm void fn_80046758(void)
+// provenance: original
+void fn_80046758(void)
 {
-    nofralloc
-    lis	r3, lbl_8017B020@ha
-    li	r0, 0
-    stw	r0, lbl_8017B020@l(r3)
-    blr	
+    lbl_8017B020 = 0;
 }
 
+#pragma push
 asm void criax_cri_tag_padsize(void)
 {
     nofralloc
@@ -412,7 +422,9 @@ _800467e8:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80046804(void)
 {
     nofralloc
@@ -433,7 +445,9 @@ _80046828:
     sth	r0, 0(r5)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_8004683C(void)
 {
     nofralloc
@@ -540,7 +554,9 @@ _80046984:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_800469A4(void)
 {
     nofralloc
@@ -628,7 +644,9 @@ _80046ab4:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80046AC0(void)
 {
     nofralloc
@@ -695,7 +713,9 @@ _80046b88:
     li	r3, 0
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80046B90(void)
 {
     nofralloc
@@ -723,7 +743,9 @@ _80046bc8:
     stb	r0, 0(r6)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80046BE0(void)
 {
     nofralloc
@@ -749,7 +771,9 @@ _80046c18:
     sth	r0, 0(r5)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80046C28(void)
 {
     nofralloc
@@ -818,7 +842,9 @@ _80046d10:
     li	r3, 0
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80046D18(void)
 {
     nofralloc
@@ -859,7 +885,9 @@ _80046d84:
     sth	r0, 0(r5)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void CRI_SPSD_parser(void)
 {
     nofralloc
@@ -987,15 +1015,15 @@ _80046f18:
     addi	r1, r1, 0x30
     blr	
 }
+#pragma pop
 
-asm void fn_80046F7C(void)
+// provenance: original
+void fn_80046F7C(unsigned int val)
 {
-    nofralloc
-    lis	r4, lbl_8017B028@ha
-    stw	r3, lbl_8017B028@l(r4)
-    blr	
+    lbl_8017B028 = val;
 }
 
+#pragma push
 asm void fn_80046F88(void)
 {
     nofralloc
@@ -1333,5 +1361,6 @@ _8004743c:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
 #pragma pop

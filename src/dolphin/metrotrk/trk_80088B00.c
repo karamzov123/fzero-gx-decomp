@@ -78,8 +78,8 @@ extern void TRKDoReadRegisters(void);
 extern void TRKDoWriteRegisters(void);
 extern void TRKDoReadMemory(void);
 extern void TRKDoWriteMemory(void);
-extern void TRKDoUnsupported_Override(void);
-extern void TRKDoUnsupported_SupportMask(void);
+extern int TRKDoUnsupported_Override(void);
+extern int TRKDoUnsupported_SupportMask(void);
 extern void TRKDoOverride(void);
 extern void TRKDoReset(void);
 extern void TRKDoDisconnect(void);
@@ -2053,18 +2053,16 @@ _8008a598:
     blr
 }
 
-asm void TRKDoUnsupported_Override(void)
+// provenance: original
+int TRKDoUnsupported_Override(void)
 {
-    nofralloc
-    li	r3, 0
-    blr
+    return 0;
 }
 
-asm void TRKDoUnsupported_SupportMask(void)
+// provenance: original
+int TRKDoUnsupported_SupportMask(void)
 {
-    nofralloc
-    li	r3, 0
-    blr
+    return 0;
 }
 
 asm void TRKDoOverride(void)
