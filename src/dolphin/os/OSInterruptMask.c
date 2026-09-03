@@ -249,47 +249,27 @@ _8000d8a8:
     blr	
 }
 
-asm u32 __OSMaskInterrupts(register u32 global)
+// provenance: dolsdk2001:src/os/OSInterrupt.c:321
+u32 __OSMaskInterrupts(u32 global)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x20(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    mr	r31, r3
-    bl      OSDisableInterrupts
-    lis	r4, -0x8000
-    lwz	r29, 0xc4(r4)
-    mr	r30, r3
-    lwz	r5, 0xc8(r4)
-    or	r0, r29, r5
-    andc	r3, r31, r0
-    or	r31, r31, r29
-    stw	r31, 0xc4(r4)
-    or	r31, r31, r5
-    b       _8000d904
-    entry   _8000d904
-    b       _8000d908
-    entry   _8000d908
-    b       _8000d914
-_8000d90c:
-    mr	r4, r31
-    bl      SetInterruptMask
-_8000d914:
-    cmplwi	r3, 0
-    bne     _8000d90c
-    mr	r3, r30
-    bl      OSRestoreInterrupts
-    mr	r3, r29
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    addi	r1, r1, 0x20
-    mtlr	r0
-    blr	
+    BOOL enabled;
+    u32 prev;
+    u32 local;
+    u32 mask;
+    u32 tmp;
+
+    enabled = OSDisableInterrupts();
+    prev = *(u32 *)0x800000c4;
+    local = *(u32 *)0x800000c8;
+    tmp = prev | local;
+    mask = ~tmp & global;
+    global |= prev;
+    *(u32 *)0x800000c4 = global;
+    while (mask) {
+        mask = SetInterruptMask(mask, global | local);
+    }
+    OSRestoreInterrupts(enabled);
+    return prev;
 }
 
 asm u32 __OSUnmaskInterrupts(register u32 global)
