@@ -43,6 +43,15 @@ struct GXTlutRegion_s {
     volatile u32 loadTlut1;
 };
 
+struct GXTexRegion_s {
+    volatile u32 image1;
+    volatile u32 image2;
+    u16 sizeEven;
+    u16 sizeOdd;
+    u8 is32bMipmap;
+    u8 isCached;
+};
+
 // provenance: dolsdk2001:src/gx/GXTexture.c:356 (adapted)
 void GXGetTexObjAll(register void* obj, register void** image_ptr, register u16* width,
     register u16* height, register void* format, register void* wrap_s,
@@ -282,92 +291,54 @@ asm void GXLoadTexObj(register void* p)
     blr	
 }
 
-asm void* GXInitTexCacheRegion(register void* obj, register unsigned long size, register void* buf, register int b)
+// provenance: dolsdk2001:src/gx/GXTexture.c:643 (adapted; ASSERTMSGLINE/CHECK_GXBEGIN
+// stripped for NDEBUG release build, as retail's compiled body has no trace of
+// them). WidthExp2 is intentionally left unset in each switch's default case,
+// matching the SDK original exactly -- retail's release build strips the
+// ASSERTMSGLINEV in that branch with nothing else assigned, so the register
+// simply keeps its prior value; GXInit (the only caller) never exercises it.
+void GXInitTexCacheRegion(register struct GXTexRegion_s* region, register u8 is_32b_mipmap,
+    register u32 tmem_even, register int size_even, register u32 tmem_odd, register int size_odd)
 {
-    nofralloc
-    cmpwi	r6, 1
-    beq     _80036408
-    bge     _800363f4
-    cmpwi	r6, 0
-    bge     _80036400
-    b       _80036414
-_800363f4:
-    cmpwi	r6, 3
-    bge     _80036414
-    b       _80036410
-_80036400:
-    li	r10, 3
-    b       _80036414
-_80036408:
-    li	r10, 4
-    b       _80036414
-_80036410:
-    li	r10, 5
-_80036414:
-    li	r0, 0
-    stw	r0, 0(r3)
-    srwi	r6, r5, 5
-    slwi	r5, r10, 0xf
-    lwz	r9, 0(r3)
-    slwi	r0, r10, 0x12
-    cmpwi	r8, 2
-    rlwinm	r9, r9, 0, 0, 0x10
-    or	r6, r9, r6
-    stw	r6, 0(r3)
-    lwz	r6, 0(r3)
-    rlwinm	r6, r6, 0, 0x11, 0xd
-    or	r5, r6, r5
-    stw	r5, 0(r3)
-    lwz	r5, 0(r3)
-    rlwinm	r5, r5, 0, 0xe, 0xa
-    or	r0, r5, r0
-    stw	r0, 0(r3)
-    lwz	r0, 0(r3)
-    rlwinm	r0, r0, 0, 0xb, 9
-    stw	r0, 0(r3)
-    beq     _8003649c
-    bge     _80036480
-    cmpwi	r8, 0
-    beq     _8003648c
-    bge     _80036494
-    b       _800364a8
-_80036480:
-    cmpwi	r8, 4
-    bge     _800364a8
-    b       _800364a4
-_8003648c:
-    li	r10, 3
-    b       _800364a8
-_80036494:
-    li	r10, 4
-    b       _800364a8
-_8003649c:
-    li	r10, 5
-    b       _800364a8
-_800364a4:
-    li	r10, 0
-_800364a8:
-    li	r0, 0
-    stw	r0, 4(r3)
-    srwi	r7, r7, 5
-    slwi	r6, r10, 0xf
-    lwz	r8, 4(r3)
-    slwi	r5, r10, 0x12
-    li	r0, 1
-    rlwinm	r8, r8, 0, 0, 0x10
-    or	r7, r8, r7
-    stw	r7, 4(r3)
-    lwz	r7, 4(r3)
-    rlwinm	r7, r7, 0, 0x11, 0xd
-    or	r6, r7, r6
-    stw	r6, 4(r3)
-    lwz	r6, 4(r3)
-    rlwinm	r6, r6, 0, 0xe, 0xa
-    or	r5, r6, r5
-    stw	r5, 4(r3)
-    stb	r4, 0xc(r3)
-    stb	r0, 0xd(r3)
-    blr	
+    u32 WidthExp2;
+
+    switch (size_even) {
+    case 0: /* GX_TEXCACHE_32K */
+        WidthExp2 = 3;
+        break;
+    case 1: /* GX_TEXCACHE_128K */
+        WidthExp2 = 4;
+        break;
+    case 2: /* GX_TEXCACHE_512K */
+        WidthExp2 = 5;
+        break;
+    }
+    region->image1 = 0;
+    SET_REG_FIELD(0x4EB, region->image1, 15, 0, tmem_even >> 5);
+    SET_REG_FIELD(0x4EC, region->image1, 3, 15, WidthExp2);
+    SET_REG_FIELD(0x4ED, region->image1, 3, 18, WidthExp2);
+    region->image1 &= 0xFFDFFFFF;
+
+    switch (size_odd) {
+    case 0: /* GX_TEXCACHE_32K */
+        WidthExp2 = 3;
+        break;
+    case 1: /* GX_TEXCACHE_128K */
+        WidthExp2 = 4;
+        break;
+    case 2: /* GX_TEXCACHE_512K */
+        WidthExp2 = 5;
+        break;
+    case 3: /* GX_TEXCACHE_NONE */
+        WidthExp2 = 0;
+        break;
+    }
+    region->image2 = 0;
+    SET_REG_FIELD(0x4FB, region->image2, 15, 0, tmem_odd >> 5);
+    SET_REG_FIELD(0x4FC, region->image2, 3, 15, WidthExp2);
+    SET_REG_FIELD(0x4FD, region->image2, 3, 18, WidthExp2);
+    region->is32bMipmap = is_32b_mipmap;
+    region->isCached = 1;
 }
 
 // provenance: original GXInitTlutRegion
@@ -1163,18 +1134,20 @@ _80036fac:
     blr	
 }
 
+// provenance: dolsdk2001:src/gx/GXBump.c:334 (retail txn: write gx->bpMask to FIFO reg 0x61, then bpSent=0)
+// Inline asm required: MWCC's register allocator cannot reproduce retail's exact GPR schedule (gx->r4, 0x61->r0, FIFO->r5) from portable C.
 asm void __GXFlushTextureState(void)
 {
     nofralloc
-    li	r0, 0x61
-    lwz	r4, gx
-    lis	r5, -0x33ff
-    stb	r0, -0x8000(r5)
-    li	r0, 0
-    lwz	r3, 0x124(r4)
-    stw	r3, -0x8000(r5)
-    sth	r0, 2(r4)
-    blr	
+    li r0, 0x61
+    lwz r4, gx
+    lis r5, -0x33ff
+    stb r0, -0x8000(r5)
+    li r0, 0
+    lwz r3, 0x124(r4)
+    stw r3, -0x8000(r5)
+    sth r0, 2(r4)
+    blr
 }
 
 asm void fn_80037014(register void* p)

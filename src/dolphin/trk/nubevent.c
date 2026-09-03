@@ -4,7 +4,24 @@
 #pragma push
 #pragma force_active on
 
-extern int TRKGetNextEvent(void*);
+typedef struct {
+    int eventType;
+    int eventID;
+    int msgBufID;
+} TRKEvent;
+
+typedef struct EventQueue {
+    int mutex;
+    int fCount;
+    int fFirst;
+    TRKEvent fEventList[2];
+    unsigned int fEventID;
+} EventQueue;
+
+extern EventQueue lbl_801A36B8;
+#define gTRKEventQueue lbl_801A36B8
+
+int TRKGetNextEvent(TRKEvent*);
 extern void TRK_memcpy(void*, const void*, unsigned long);
 extern void TRKDestructEvent(void*);
 extern void* TRKGetBuffer(int);
@@ -15,23 +32,10 @@ extern void TRKGetInput(void);
 extern int TRKTargetStopped(void);
 extern void TRKTargetContinue(void);
 extern void TRKReleaseBuffer(void*);
-extern void TRKReleaseMutex_stub(unsigned long);
-extern void TRKAcquireMutex_stub(unsigned long);
+extern void TRKReleaseMutex_stub(void*);
+extern void TRKAcquireMutex_stub(void*);
 extern unsigned char gTRKInputPendingPtr[9];
-extern unsigned char lbl_801A36B8[40];
 
-typedef struct {
-    int eventType;
-    int eventID;
-    int msgBufID;
-} TRKEvent;
-
-// TRKNubMainLoop: exact natural-C (100.0%, GC/1.3).
-// Retail dispatch (from asm 1.2.5): eventType 0 = Null (break), 1 = Shutdown,
-// 2 = GetBuffer+DispatchMessage, 3/4 = TargetInterrupt, 5 =
-// TargetSupportRequest. Block order (case 2 before case 1) matches retail
-// basic-block placement; case 0 is kept so MWCC emits the retail comparison
-// skeleton (cmpwi 0x0; beq end before the >=1 test).
 // provenance: sms:src/TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mainloop.c:22
 void TRKNubMainLoop(void)
 {
@@ -86,120 +90,54 @@ void TRKConstructEvent(void* ev, int type) {
     *(int*)((char*)ev + 8) = -1;
 }
 
-asm int TRKPostEvent(void* msg)
+// provenance: melee:src/MetroTRK/nubevent.c
+int TRKPostEvent(TRKEvent* ev)
 {
-    nofralloc
-    stwu    r1, -0x20(r1)
-    mflr    r0
-    lis     r4, lbl_801A36B8@ha
-    stw     r0, 0x24(r1)
-    stw     r31, 0x1c(r1)
-    li      r31, 0
-    stw     r30, 0x18(r1)
-    stw     r29, 0x14(r1)
-    mr      r29, r3
-    addi    r3, r4, lbl_801A36B8@l
-    bl      TRKReleaseMutex_stub
-    lis     r3, lbl_801A36B8@ha
-    addi    r30, r3, lbl_801A36B8@l
-    lwz     r3, 4(r30)
-    cmpwi   r3, 2
-    bne     lbl_800887C4
-    li      r31, 0x100
-    b       lbl_80088830
-lbl_800887C4:
-    lwz     r0, 8(r30)
-    mr      r4, r29
-    li      r5, 0xC
-    add     r0, r0, r3
-    srwi    r3, r0, 0x1F
-    clrlwi  r0, r0, 0x1F
-    xor     r0, r0, r3
-    subf    r0, r3, r0
-    mulli   r29, r0, 0xC
-    add     r3, r30, r29
-    addi    r3, r3, 0xC
-    bl      TRK_memcpy
-    lis     r3, lbl_801A36B8@ha
-    addi    r4, r3, lbl_801A36B8@l
-    lwz     r0, 0x24(r4)
-    add     r3, r4, r29
-    stw     r0, 0x10(r3)
-    lwz     r3, 0x24(r4)
-    addi    r0, r3, 1
-    cmplwi  r0, 0x100
-    stw     r0, 0x24(r4)
-    bge     lbl_80088824
-    li      r0, 0x100
-    stw     r0, 0x24(r4)
-lbl_80088824:
-    lwz     r3, 4(r30)
-    addi    r0, r3, 1
-    stw     r0, 4(r30)
-lbl_80088830:
-    lis     r3, lbl_801A36B8@ha
-    addi    r3, r3, lbl_801A36B8@l
-    bl      TRKAcquireMutex_stub
-    lwz     r0, 0x24(r1)
-    mr      r3, r31
-    lwz     r31, 0x1c(r1)
-    lwz     r30, 0x18(r1)
-    lwz     r29, 0x14(r1)
-    mtlr    r0
-    addi    r1, r1, 0x20
-    blr
+    int ret = 0;
+    int evID;
+
+    TRKReleaseMutex_stub(&gTRKEventQueue);
+
+    if (gTRKEventQueue.fCount == 2) {
+        ret = 0x100;
+    } else {
+        evID = (gTRKEventQueue.fFirst + gTRKEventQueue.fCount) % 2;
+        TRK_memcpy(&gTRKEventQueue.fEventList[evID], ev, sizeof(TRKEvent));
+        gTRKEventQueue.fEventList[evID].eventID = gTRKEventQueue.fEventID;
+        gTRKEventQueue.fEventID++;
+
+        if (gTRKEventQueue.fEventID < 0x100) {
+            gTRKEventQueue.fEventID = 0x100;
+        }
+
+        gTRKEventQueue.fCount++;
+    }
+
+    TRKAcquireMutex_stub(&gTRKEventQueue);
+    return ret;
 }
 
-asm int TRKGetNextEvent(void* msg)
+// provenance: melee:src/MetroTRK/nubevent.c
+int TRKGetNextEvent(TRKEvent* ev)
 {
-    nofralloc
-    stwu    r1, -0x20(r1)
-    mflr    r0
-    lis     r4, lbl_801A36B8@ha
-    stw     r0, 0x24(r1)
-    stw     r31, 0x1c(r1)
-    stw     r30, 0x18(r1)
-    li      r30, 0
-    stw     r29, 0x14(r1)
-    mr      r29, r3
-    addi    r3, r4, lbl_801A36B8@l
-    bl      TRKReleaseMutex_stub
-    lis     r3, lbl_801A36B8@ha
-    addi    r31, r3, lbl_801A36B8@l
-    lwz     r0, 4(r31)
-    cmpwi   r0, 0
-    ble     lbl_800888E4
-    lwz     r0, 8(r31)
-    mr      r3, r29
-    li      r5, 0xC
-    mulli   r0, r0, 0xC
-    add     r4, r31, r0
-    addi    r4, r4, 0xC
-    bl      TRK_memcpy
-    lwz     r3, 8(r31)
-    lwz     r4, 4(r31)
-    addi    r0, r3, 1
-    addi    r3, r4, -1
-    stw     r0, 8(r31)
-    cmpwi   r0, 2
-    stw     r3, 4(r31)
-    bne     lbl_800888E0
-    li      r0, 0
-    stw     r0, 8(r31)
-lbl_800888E0:
-    li      r30, 1
-lbl_800888E4:
-    lis     r3, lbl_801A36B8@ha
-    addi    r3, r3, lbl_801A36B8@l
-    bl      TRKAcquireMutex_stub
-    lwz     r0, 0x24(r1)
-    mr      r3, r30
-    lwz     r31, 0x1c(r1)
-    lwz     r30, 0x18(r1)
-    lwz     r29, 0x14(r1)
-    mtlr    r0
-    addi    r1, r1, 0x20
-    blr
+    int ret = 0;
+
+    TRKReleaseMutex_stub(&gTRKEventQueue);
+
+    if (gTRKEventQueue.fCount > 0) {
+        TRK_memcpy(ev, &gTRKEventQueue.fEventList[gTRKEventQueue.fFirst], sizeof(TRKEvent));
+        gTRKEventQueue.fCount--;
+        gTRKEventQueue.fFirst++;
+
+        if (gTRKEventQueue.fFirst == 2) {
+            gTRKEventQueue.fFirst = 0;
+        }
+
+        ret = 1;
+    }
+
+    TRKAcquireMutex_stub(&gTRKEventQueue);
+    return ret;
 }
 
 #pragma pop

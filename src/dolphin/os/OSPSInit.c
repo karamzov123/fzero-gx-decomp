@@ -11,7 +11,7 @@ extern u32 PPCMfhid2(void);
 extern void PPCMthid2(register u32 v);
 extern void ICFlashInvalidate(void);
 extern void OSReport(register const char* msg, ...);
-extern unsigned char lbl_801A6424[4];
+extern const char lbl_801A6424[4];
 
 #pragma push
 #pragma force_active on
@@ -43,33 +43,16 @@ asm void __OSPSInit(void)
 }
 
 // provenance: original
+// provenance: original
+volatile u32 __DIRegs[64] : 0xCC006000;
 u32 __OSGetDIConfig(void)
 {
-    register u32 v;
-
-    asm
-    {
-    lis     v, -0x3400
-    addi    v, v, 0x6000
-    lwz     r0, 0x24(v)
-    clrlwi  v, r0, 24
-    }
-    return v;
+    return __DIRegs[9] & 0xFF;
 }
 
-asm void OSRegisterVersion(register char* version)
+// provenance: original
+void OSRegisterVersion(const char* version)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -8(r1)
-    mr	r4, r3
-    crxor	6, 6, 6
-    li r3, lbl_801A6424
-    bl      OSReport
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr
+    OSReport(lbl_801A6424, version);
 }
 #pragma pop

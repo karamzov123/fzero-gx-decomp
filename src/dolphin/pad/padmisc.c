@@ -24,43 +24,16 @@ s32 AIRegisterDMACallback(register s32 value) {
     return old;
 }
 
-asm void AIInitDMA(register s32 a, register s32 b)
+volatile u16 __DSPRegs[64] : 0xCC005000;
+
+// provenance: dolsdk2001:src/ai/ai.c
+void AIInitDMA(u32 start_addr, u32 length)
 {
-    nofralloc
-    mflr    r0
-    stw     r0, 4(r1)
-    stwu    r1, -0x18(r1)
-    stw     r31, 0x14(r1)
-    addi    r31, r4, 0
-    stw     r30, 0x10(r1)
-    addi    r30, r3, 0
-    bl      OSDisableInterrupts
-    lis     r4, -0x3400
-    lhz     r0, 0x5030(r4)
-    addi    r5, r4, 0x5000
-    addi    r6, r4, 0x5000
-    addi    r7, r4, 0x5000
-    rlwinm  r4, r0, 0, 0, 0x15
-    srwi    r0, r30, 0x10
-    or      r0, r4, r0
-    sth     r0, 0x30(r5)
-    clrlwi  r0, r30, 0x10
-    lhz     r4, 0x32(r6)
-    rlwinm  r4, r4, 0, 0x1b, 0xf
-    or      r0, r4, r0
-    sth     r0, 0x32(r6)
-    rlwinm  r0, r31, 0x1b, 0x10, 0x1f
-    lhz     r4, 0x36(r7)
-    rlwinm  r4, r4, 0, 0, 0x10
-    or      r0, r4, r0
-    sth     r0, 0x36(r7)
-    bl      OSRestoreInterrupts
-    lwz     r0, 0x1c(r1)
-    lwz     r31, 0x14(r1)
-    lwz     r30, 0x10(r1)
-    addi    r1, r1, 0x18
-    mtlr    r0
-    blr
+    s32 old = OSDisableInterrupts();
+    __DSPRegs[24] = (__DSPRegs[24] & ~0x3FF) | (start_addr >> 16);
+    __DSPRegs[25] = (__DSPRegs[25] & ~0xFFE0) | (start_addr & 0xFFFF);
+    __DSPRegs[27] = (__DSPRegs[27] & ~0x7FFF) | ((length >> 5) & 0xFFFF);
+    OSRestoreInterrupts(old);
 }
 
 #pragma pop
