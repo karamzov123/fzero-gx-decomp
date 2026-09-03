@@ -76,11 +76,10 @@ asm void fn_800570DC(void)
     blr	
 }
 
-asm void fn_8005710C(void)
+// provenance: original
+void fn_8005710C(void* p, int val)
 {
-    nofralloc
-    stw	r4, 0x28(r3)
-    blr	
+    *(int*)((char*)p + 0x28) = val;
 }
 
 asm void fn_80057114(void)
@@ -841,29 +840,24 @@ _80057b24:
     blr	
 }
 
-asm void fn_80057B34(void)
+// provenance: original
+void fn_80057B34(void* p)
 {
-    nofralloc
-    lwz	r4, 0x18(r3)
-    li	r0, 0
-    stw	r4, 0xc(r3)
-    stw	r0, 0x10(r3)
-    blr	
+    *(int*)((char*)p + 0xc) = *(int*)((char*)p + 0x18);
+    *(int*)((char*)p + 0x10) = 0;
 }
 
-asm void fn_80057B48(void)
+// provenance: original
+void fn_80057B48(void* p, int a, int b)
 {
-    nofralloc
-    stw	r4, 0x1c(r3)
-    stw	r5, 0x20(r3)
-    blr	
+    *(int*)((char*)p + 0x1c) = a;
+    *(int*)((char*)p + 0x20) = b;
 }
 
-asm void fn_80057B54(void)
+// provenance: original
+int fn_80057B54(void* p)
 {
-    nofralloc
-    lwz	r3, 8(r3)
-    blr	
+    return *(int*)((char*)p + 8);
 }
 
 asm void fn_80057B5C(void)
@@ -1036,15 +1030,14 @@ asm void fn_80057D60(void)
     blr	
 }
 
-asm void fn_80057D88(void)
+// provenance: original
+int fn_80057D88(void* p, int r4, int r5)
 {
-    nofralloc
-    slwi	r4, r4, 3
-    slwi	r0, r5, 2
-    add	r3, r3, r4
-    add	r3, r3, r0
-    lwz	r3, 0x28(r3)
-    blr	
+    r4 <<= 3;
+    r5 <<= 2;
+    p = (char*)p + r4;
+    p = (char*)p + r5;
+    return *(int*)((char*)p + 0x28);
 }
 
 // provenance: harvest:runs.sqlite — fn_80057DA0 recovered from hard2-adxt-80057da0.c, compiled by hard2 at 2026-08-27T08:09 and scored 100 against main/game/adxt_800570DC; original reference not recorded
@@ -1053,18 +1046,16 @@ signed int fn_80057DA0(ADXTState* self)
     return self->field24;
 }
 
-asm void fn_80057DA8(void)
+// provenance: original
+int fn_80057DA8(void* p)
 {
-    nofralloc
-    lwz	r3, 0x20(r3)
-    blr	
+    return *(int*)((char*)p + 0x20);
 }
 
-asm void fn_80057DB0(void)
+// provenance: original
+int fn_80057DB0(void* p)
 {
-    nofralloc
-    lwz	r3, 0x1c(r3)
-    blr	
+    return *(int*)((char*)p + 0x1c);
 }
 
 asm void fn_80057DB8(void)
@@ -1548,19 +1539,17 @@ asm void fn_800583DC(void)
     blr	
 }
 
-asm void fn_80058434(void)
+// provenance: original
+void fn_80058434(void* p, int a, int b)
 {
-    nofralloc
-    stw	r4, 0x38(r3)
-    stw	r5, 0x3c(r3)
-    blr	
+    *(int*)((char*)p + 0x38) = a;
+    *(int*)((char*)p + 0x3c) = b;
 }
 
-asm void fn_80058440(void)
+// provenance: original
+int fn_80058440(void* p)
 {
-    nofralloc
-    lwz	r3, 8(r3)
-    blr	
+    return *(int*)((char*)p + 8);
 }
 
 asm void fn_80058448(void)

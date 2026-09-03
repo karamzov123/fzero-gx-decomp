@@ -1,9 +1,14 @@
+
+struct AdxtPair {
+    int a;
+    int b;
+};
+__declspec(section ".data") extern struct AdxtPair lbl_8018FF68;
+__declspec(section ".data") extern struct AdxtPair lbl_8018FF70;
 #pragma push
 #pragma force_active on
 
 extern void SVM_ReportErrorString(void);
-extern unsigned char lbl_8018FF68[8];
-extern unsigned char lbl_8018FF70[8];
 extern unsigned char lbl_80092350[52];
 extern unsigned char lbl_800924F8[46];
 extern void svmErrPrintf(void);
@@ -31,6 +36,7 @@ extern unsigned char lbl_8018FF78[512];
 extern unsigned char lbl_80190178[4];
 extern unsigned char lbl_8019017C[2548];
 
+#pragma push
 asm void svm_ringbuf_read(void)
 {
     nofralloc
@@ -62,7 +68,9 @@ _80058a0c:
     stw	r0, 0(r6)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_ReportError(void)
 {
     nofralloc
@@ -75,7 +83,9 @@ asm void SVM_ReportError(void)
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_LockServer(void)
 {
     nofralloc
@@ -155,7 +165,9 @@ _80058b38:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_ServerExit(void)
 {
     nofralloc
@@ -203,7 +215,9 @@ _80058be8:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_ServerInit(void)
 {
     nofralloc
@@ -247,7 +261,9 @@ _80058c74:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80058C94(void)
 {
     nofralloc
@@ -290,7 +306,9 @@ _80058cec:
     addi	r1, r1, 0x30
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80058D24(void)
 {
     nofralloc
@@ -333,7 +351,9 @@ _80058d7c:
     addi	r1, r1, 0x30
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80058DB4(void)
 {
     nofralloc
@@ -376,7 +396,9 @@ _80058e0c:
     addi	r1, r1, 0x30
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80058E44(void)
 {
     nofralloc
@@ -419,25 +441,25 @@ _80058e9c:
     addi	r1, r1, 0x30
     blr	
 }
+#pragma pop
 
-asm void fn_80058ED4(void)
+// provenance: original
+void fn_80058ED4(int a, int b)
 {
-    nofralloc
-    lis     r5, lbl_8018FF68@ha
-    stwu	r3, lbl_8018FF68@l(r5)
-    stw	r4, 4(r5)
-    blr	
+    struct AdxtPair* p = &lbl_8018FF68;
+    p->a = a;
+    p->b = b;
 }
 
-asm void fn_80058EE4(void)
+// provenance: original
+void fn_80058EE4(int a, int b)
 {
-    nofralloc
-    lis     r5, lbl_8018FF70@ha
-    stwu	r3, lbl_8018FF70@l(r5)
-    stw	r4, 4(r5)
-    blr	
+    struct AdxtPair* p = &lbl_8018FF70;
+    p->a = a;
+    p->b = b;
 }
 
+#pragma push
 asm void fn_80058EF4(void)
 {
     nofralloc
@@ -507,7 +529,9 @@ _80058fc8:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80058FE4(void)
 {
     nofralloc
@@ -530,7 +554,9 @@ _80059018:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80059028(void)
 {
     nofralloc
@@ -605,7 +631,9 @@ _8005910c:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_8005912C(void)
 {
     nofralloc
@@ -729,7 +757,9 @@ _800592cc:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_DelCbSvr(void)
 {
     nofralloc
@@ -823,7 +853,9 @@ _8005940c:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_SetCbSvr_2(void)
 {
     nofralloc
@@ -934,7 +966,9 @@ _80059584:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_ReportErrorString(void)
 {
     nofralloc
@@ -962,7 +996,9 @@ _800595ec:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void svmErrPrintf(void)
 {
     nofralloc
@@ -1023,7 +1059,9 @@ _800596c0:
     addi	r1, r1, 0x80
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_800596D4(void)
 {
     nofralloc
@@ -1067,7 +1105,9 @@ _80059750:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80059764(void)
 {
     nofralloc
@@ -1111,7 +1151,9 @@ _800597e0:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_800597F4(void)
 {
     nofralloc
@@ -1155,7 +1197,9 @@ _80059870:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80059884(void)
 {
     nofralloc
@@ -1199,7 +1243,9 @@ _80059900:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80059914(void)
 {
     nofralloc
@@ -1232,7 +1278,9 @@ _80059968:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_8005997C(void)
 {
     nofralloc
@@ -1265,7 +1313,9 @@ _800599d0:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_800599E4(void)
 {
     nofralloc
@@ -1298,7 +1348,9 @@ _80059a38:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80059A4C(void)
 {
     nofralloc
@@ -1331,7 +1383,9 @@ _80059aa0:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void svmUnlockServer(void)
 {
     nofralloc
@@ -1375,7 +1429,9 @@ _80059b30:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void svmLockServer(void)
 {
     nofralloc
@@ -1408,7 +1464,9 @@ _80059b98:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80059BAC(void)
 {
     nofralloc
@@ -1440,7 +1498,9 @@ _80059bfc:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80059C0C(void)
 {
     nofralloc
@@ -1485,7 +1545,9 @@ _80059c94:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_GetStatusU32(void)
 {
     nofralloc
@@ -1517,7 +1579,9 @@ _80059cf4:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_GetStatusS8(void)
 {
     nofralloc
@@ -1550,7 +1614,9 @@ _80059d58:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_ClearStatus(void)
 {
     nofralloc
@@ -1585,7 +1651,9 @@ _80059dc4:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void SVM_SetCbSvr(void)
 {
     nofralloc
@@ -1767,7 +1835,9 @@ _8005a04c:
     addi	r1, r1, 0x30
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_8005A060(void)
 {
     nofralloc
@@ -1799,7 +1869,9 @@ _8005a0b0:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_8005A0C0(void)
 {
     nofralloc
@@ -1874,7 +1946,9 @@ _8005a198:
     addi	r1, r1, 0x20
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_8005A1B4(void)
 {
     nofralloc
@@ -1920,5 +1994,6 @@ _8005a238:
     addi	r1, r1, 0x10
     blr	
 }
+#pragma pop
 
 #pragma pop
