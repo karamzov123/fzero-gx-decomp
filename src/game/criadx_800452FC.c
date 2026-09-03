@@ -33,25 +33,23 @@ extern void fn_8004E4AC(void);
 extern void strncmp(void);
 extern void ADXT_GetCmdState(void);
 extern unsigned char SPSD_str[5];
-extern void fn_80045F58(void);
+extern void fn_80045F58();
 extern void fn_80045F74(void);
 extern unsigned char lbl_8017A288[20];
 extern unsigned char lbl_8017A29C[3460];
-extern void fn_80045F58(void);
+extern void fn_80045F58();
 extern void fn_80045F74(void);
 
-asm void fn_800452FC(void)
+// provenance: original
+int fn_800452FC(void* p)
 {
-    nofralloc
-    lwz	r3, 0x90(r3)
-    blr	
+    return *(int*)((char*)p + 0x90);
 }
 
-asm void fn_80045304(void)
+// provenance: original
+int fn_80045304(void* p)
 {
-    nofralloc
-    lwz	r3, 0x94(r3)
-    blr	
+    return *(int*)((char*)p + 0x94);
 }
 
 asm void fn_8004530C(void)
@@ -142,11 +140,10 @@ _800453d8:
     blr	
 }
 
-asm void fn_80045414(void)
+// provenance: original
+int fn_80045414(void* p)
 {
-    nofralloc
-    lwz	r3, 4(r3)
-    blr	
+    return *(int*)((char*)p + 4);
 }
 
 asm void fn_8004541C(void)
@@ -197,41 +194,35 @@ asm void fn_80045468(void)
     blr	
 }
 
-asm void fn_800454B4(void)
+// provenance: original
+int fn_800454B4(void* p, int r4)
 {
-    nofralloc
-    slwi	r0, r4, 1
-    add	r3, r3, r0
-    lha	r3, 0xd2(r3)
-    blr	
+    p = (char*)p + (r4 * 2);
+    return *(short*)((char*)p + 0xd2);
 }
 
-asm void fn_800454C4(void)
+// provenance: original
+int fn_800454C4(void* p)
 {
-    nofralloc
-    lha	r3, 0xd0(r3)
-    blr	
+    return *(short*)((char*)p + 0xd0);
 }
 
-asm void fn_800454CC(void)
+// provenance: original
+int fn_800454CC(void* p)
 {
-    nofralloc
-    lwz	r3, 0xbc(r3)
-    blr	
+    return *(int*)((char*)p + 0xbc);
 }
 
-asm void fn_800454D4(void)
+// provenance: original
+int fn_800454D4(void* p)
 {
-    nofralloc
-    lwz	r3, 0x34(r3)
-    blr	
+    return *(int*)((char*)p + 0x34);
 }
 
-asm void fn_800454DC(void)
+// provenance: original
+int fn_800454DC(void* p)
 {
-    nofralloc
-    lwz	r3, 0x30(r3)
-    blr	
+    return *(int*)((char*)p + 0x30);
 }
 
 asm void fn_800454E4(void)
@@ -246,32 +237,28 @@ _800454f4:
     blr	
 }
 
-asm void fn_800454FC(void)
+// provenance: original
+int fn_800454FC(void* p)
 {
-    nofralloc
-    lwz	r3, 0x28(r3)
-    blr	
+    return *(int*)((char*)p + 0x28);
 }
 
-asm void fn_80045504(void)
+// provenance: original
+int fn_80045504(void* p)
 {
-    nofralloc
-    lha	r3, 0x24(r3)
-    blr	
+    return *(short*)((char*)p + 0x24);
 }
 
-asm void criadx_get_stream_ptr(void)
+// provenance: original
+void* criadx_get_stream_ptr(void* p)
 {
-    nofralloc
-    lwz	r3, 0x18(r3)
-    blr	
+    return *(void**)((char*)p + 0x18);
 }
 
-asm void fn_80045514(void)
+// provenance: original
+int fn_80045514(void* p)
 {
-    nofralloc
-    lwz	r3, 0x10(r3)
-    blr	
+    return *(int*)((char*)p + 0x10);
 }
 
 asm void fn_8004551C(void)
@@ -310,41 +297,35 @@ _80045580:
     blr	
 }
 
-asm void criadx_get_field_0E(void)
+// provenance: original
+int criadx_get_field_0E(void* p)
 {
-    nofralloc
-    lbz	r3, 0xe(r3)
-    extsb	r3, r3
-    blr	
+    return *(signed char*)((char*)p + 0xe);
 }
 
-asm void criadx_get_field_14(void)
+// provenance: original
+int criadx_get_field_14(void* p)
 {
-    nofralloc
-    lwz	r3, 0x14(r3)
-    blr	
+    return *(int*)((char*)p + 0x14);
 }
 
-asm void criadx_get_status(void)
+// provenance: original
+int criadx_get_status(void* p)
 {
-    nofralloc
-    lha	r3, 0x98(r3)
-    blr	
+    return *(short*)((char*)p + 0x98);
 }
 
-asm void fn_800455A4(void)
+// provenance: original
+int fn_800455A4(void* p)
 {
-    nofralloc
-    lwz	r3, 0x3c(r3)
-    blr	
+    return *(int*)((char*)p + 0x3c);
 }
 
-asm void fn_800455AC(void)
+// provenance: original
+void fn_800455AC(void* p, int a, int b)
 {
-    nofralloc
-    stw	r4, 0x78(r3)
-    stw	r5, 0x7c(r3)
-    blr	
+    *(int*)((char*)p + 0x78) = a;
+    *(int*)((char*)p + 0x7c) = b;
 }
 
 asm void criadx_format_dispatch(void)
@@ -1010,16 +991,11 @@ _80045f44:
     addi	r1, r1, 0x20
     blr	
 }
-asm void fn_80045F58(void)
+// provenance: original
+void fn_80045F58(void* p, int unused, int r5)
 {
-    nofralloc
-    lwz	r0, 0x8c(r3)
-    add	r0, r0, r5
-    stw	r0, 0x8c(r3)
-    lwz	r0, 0x88(r3)
-    add	r0, r0, r5
-    stw	r0, 0x88(r3)
-    blr	
+    *(int*)((char*)p + 0x8c) += r5;
+    *(int*)((char*)p + 0x88) += r5;
 }
 
 asm void fn_80045F74(void)
