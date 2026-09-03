@@ -13,11 +13,9 @@ extern unsigned char lbl_8015D058[88];
 
 extern unsigned char lbl_801A6924[4];
 extern unsigned char lbl_801A6960[4];
-asm u32 fn_8001BE6C(void)
-{
-    nofralloc
-    lwz	r3, lbl_801A6924
-    blr
+// provenance: repo-twin:GXGetGPFifo (main/dolphin/gx/GXFifo, J=1.000) fn_8001BE6C
+unsigned int fn_8001BE6C(void) {
+    return *(volatile unsigned int *)lbl_801A6924;
 }
 
 asm s32 fn_8001BE74(register void* retraceCountPtr)

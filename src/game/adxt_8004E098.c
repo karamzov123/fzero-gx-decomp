@@ -301,18 +301,25 @@ void fn_8004E2DC(void *a, void *b, void *c) {
     *(short *)((char *)c + 2) = *(short *)((char *)a + 0x2e);
 }
 
-asm void fn_8004E300(void)
-{
-    nofralloc
-    lha	r0, 0(r4)
-    sth	r0, 0x28(r3)
-    lha	r0, 0(r5)
-    sth	r0, 0x2a(r3)
-    lha	r0, 2(r4)
-    sth	r0, 0x2c(r3)
-    lha	r0, 2(r5)
-    sth	r0, 0x2e(r3)
-    blr	
+
+typedef signed short s16;
+typedef struct {
+    char pad[0x28];
+    s16 unk28;
+    s16 unk2A;
+    s16 unk2C;
+    s16 unk2E;
+} StructR3;
+typedef struct {
+    s16 unk0;
+    s16 unk2;
+} StructR45;
+// provenance: original
+void fn_8004E300(StructR3* r3, StructR45* r4, StructR45* r5) {
+    r3->unk28 = r4->unk0;
+    r3->unk2A = r5->unk0;
+    r3->unk2C = r4->unk2;
+    r3->unk2E = r5->unk2;
 }
 
 asm void fn_8004E324(void)
