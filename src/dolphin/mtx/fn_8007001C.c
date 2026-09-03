@@ -86,12 +86,10 @@ _800700c0:
     blr	
 }
 
-asm void fn_800700F4(void)
+// provenance: original fn_800700F4
+void fn_800700F4(void)
 {
-    nofralloc
-    li	r0, 1
-    stb	r0, lbl_801A6CB4
-    blr	
+    *lbl_801A6CB4 = 1;
 }
 
 asm void fn_80070100(void)
