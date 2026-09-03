@@ -1,3 +1,4 @@
+typedef void (*ExitFunc)(void);
 // dest: src/dolphin/msl/stdio_8007A060.c
 typedef unsigned char u8;
 typedef unsigned short u16;
@@ -9,7 +10,7 @@ typedef signed int s32;
 extern unsigned char lbl_801A664C[4];
 extern unsigned char lbl_801A6658[8];
 
-extern void memset(void);
+extern void* memset();
 extern void memcpy(void);
 extern void _ExitProcess(void);
 extern void __destroy_global_chain(void);
@@ -28,8 +29,8 @@ extern void __fpclassifyd(void);
 extern void modf(void);
 extern void __msl_fp_helper(void);
 extern void TRK_OpenFile_Game(void);
-extern unsigned char _dtors[]; // .dtors section anchor (0x8008FF20); symbol ref required so linker sees exit() calls destructors
-extern unsigned char __atexit_funcs[256];
+extern ExitFunc _dtors[]; // .dtors section anchor (0x8008FF20); symbol ref required so linker sees exit() calls destructors
+extern ExitFunc __atexit_funcs[];
 extern unsigned char __files[320];
 extern void TRK_PositionFile_Game(void);
 extern void TRK_CloseFile_Game(void);
@@ -43,11 +44,11 @@ extern unsigned char lbl_8015B100[256];
 extern unsigned char lbl_8015B200[256];
 extern unsigned char lbl_801A3380[56];
 
-extern unsigned char __aborting[4];
-extern unsigned char __atexit_curr_func[4];
-extern unsigned char __console_exit[4];
-extern unsigned char __stdio_exit[4];
-extern unsigned char lbl_801A6DD8[8];
+extern int __aborting;
+extern int __atexit_curr_func;
+extern ExitFunc __console_exit;
+extern ExitFunc __stdio_exit;
+extern unsigned char lbl_801A6DD8;
 extern unsigned char lbl_801A6DE0[8];
 extern unsigned char lbl_801A74B0[8];
 extern unsigned char lbl_801A74C8[8];
@@ -56,11 +57,11 @@ extern unsigned char lbl_801A74C0[8];
 extern unsigned char lbl_801A74B8[8];
 extern unsigned char lbl_801A74D0[8];
 
-asm void exit(void);
-asm void fn_8007A150(void);
-asm void fn_8007A1C0(void);
-asm void fn_8007A23C(void);
-asm void fn_8007A294(void);
+void exit(int status);
+void fn_8007A150(void* p);
+void* fn_8007A1C0(void* p);
+void fn_8007A23C(void* pool, void* p);
+void* fn_8007A294(void* pool, void* p);
 asm void fn_8007A2E8(void);
 asm void fn_8007A440(void);
 asm void fn_8007A710(void);
@@ -101,149 +102,68 @@ asm void fseek(void);
 asm void fn_8007FC34(void);
 asm void fn_8007FE70(void);
 
-asm void exit(void)
+// provenance: original
+void exit(int status)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    lwz	r0, __aborting
-    cmpwi	r0, 0
-    bc      4, 2, _8007a0d4
-    li	r3, 0
-    bl      __begin_critical_region
-    li	r3, 0
-    bl      __end_critical_region
-    bl      __destroy_global_chain
-    lis	r3, _dtors@ha
-    addi	r0, r3, _dtors@l
-    mr	r31, r0
-    b       _8007a0ac
-_8007a0a0:
-    mtctr	r12
-    bctrl
-    addi	r31, r31, 4
-_8007a0ac:
-    lwz	r12, 0(r31)
-    cmplwi	r12, 0
-    bc      4, 2, _8007a0a0
-    lwz	r12, __stdio_exit
-    cmplwi	r12, 0
-    bc      12, 2, _8007a0d4
-    mtctr	r12
-    bctrl
-    li	r0, 0
-    stw	r0, __stdio_exit
-_8007a0d4:
-    li	r3, 0
-    bl      __begin_critical_region
-    lis     r3, __atexit_funcs@ha
-    addi	r31, r3, __atexit_funcs@l
-    b       _8007a104
-_8007a0e8:
-    lwz	r3, __atexit_curr_func
-    addi	r3, r3, -1
-    slwi	r0, r3, 2
-    stw	r3, __atexit_curr_func
-    lwzx	r12, r31, r0
-    mtctr	r12
-    bctrl
-_8007a104:
-    lwz	r0, __atexit_curr_func
-    cmpwi	r0, 0
-    bc      12, 1, _8007a0e8
-    li	r3, 0
-    bl      __end_critical_region
-    bl      __kill_critical_regions
-    lwz	r12, __console_exit
-    cmplwi	r12, 0
-    bc      12, 2, _8007a138
-    mtctr	r12
-    bctrl
-    li	r0, 0
-    stw	r0, __console_exit
-_8007a138:
-    bl      _ExitProcess
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    ExitFunc* dtor;
+
+    if (!__aborting) {
+        __begin_critical_region(0);
+        __end_critical_region(0);
+        __destroy_global_chain();
+
+        for (dtor = _dtors; *dtor != 0; dtor++) {
+            (*dtor)();
+        }
+
+        if (__stdio_exit != 0) {
+            __stdio_exit();
+            __stdio_exit = 0;
+        }
+    }
+
+    __begin_critical_region(0);
+    while (__atexit_curr_func > 0) {
+        __atexit_funcs[--__atexit_curr_func]();
+    }
+    __end_critical_region(0);
+    __kill_critical_regions();
+
+    if (__console_exit != 0) {
+        __console_exit();
+        __console_exit = 0;
+    }
+
+    _ExitProcess();
 }
 
-asm void fn_8007A150(void)
+// provenance: original
+void fn_8007A150(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    li	r3, 1
-    bl      __begin_critical_region
-    lbz	r0, lbl_801A6DD8
-    cmplwi	r0, 0
-    bc      4, 2, _8007a194
-    lis     r3, lbl_801A3380@ha
-    li	r4, 0
-    addi	r3, r3, lbl_801A3380@l
-    li	r5, 0x34
-    bl      memset
-    li	r0, 1
-    stb	r0, lbl_801A6DD8
-_8007a194:
-    lis     r3, lbl_801A3380@ha
-    mr	r4, r31
-    addi	r3, r3, lbl_801A3380@l
-    bl      fn_8007A23C
-    li	r3, 1
-    bl      __end_critical_region
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    __begin_critical_region(1);
+    if (!lbl_801A6DD8) {
+        memset(lbl_801A3380, 0, 0x34);
+        lbl_801A6DD8 = 1;
+    }
+    fn_8007A23C(lbl_801A3380, p);
+    __end_critical_region(1);
 }
 
-asm void fn_8007A1C0(void)
+// provenance: original
+void* fn_8007A1C0(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    li	r3, 1
-    bl      __begin_critical_region
-    lbz	r0, lbl_801A6DD8
-    cmplwi	r0, 0
-    bc      4, 2, _8007a204
-    lis     r3, lbl_801A3380@ha
-    li	r4, 0
-    addi	r3, r3, lbl_801A3380@l
-    li	r5, 0x34
-    bl      memset
-    li	r0, 1
-    stb	r0, lbl_801A6DD8
-_8007a204:
-    lis     r3, lbl_801A3380@ha
-    mr	r4, r31
-    addi	r3, r3, lbl_801A3380@l
-    bl      fn_8007A294
-    mr	r0, r3
-    li	r3, 1
-    mr	r31, r0
-    bl      __end_critical_region
-    lwz	r0, 0x14(r1)
-    mr	r3, r31
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    void* res;
+    __begin_critical_region(1);
+    if (!lbl_801A6DD8) {
+        memset(lbl_801A3380, 0, 0x34);
+        lbl_801A6DD8 = 1;
+    }
+    res = fn_8007A294(lbl_801A3380, p);
+    __end_critical_region(1);
+    return res;
 }
 
-asm void fn_8007A23C(void)
+asm void fn_8007A23C(void* pool, void* p)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -274,7 +194,7 @@ _8007a284:
     blr
 }
 
-asm void fn_8007A294(void)
+asm void* fn_8007A294(void* pool, void* p)
 {
     nofralloc
     stwu	r1, -0x10(r1)
