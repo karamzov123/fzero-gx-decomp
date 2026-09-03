@@ -1,3 +1,8 @@
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef signed short s16;
+typedef unsigned int u32;
+typedef signed int s32;
 #pragma push
 #pragma force_active on
 
@@ -424,28 +429,18 @@ _800467e8:
 }
 #pragma pop
 
-#pragma push
-asm void fn_80046804(void)
+// provenance: original
+int fn_80046804(const u8* data, int size, u16* out)
 {
-    nofralloc
-    cmpwi	r4, 0x10
-    bge     _80046814
-    li	r3, -1
-    blr	
-_80046814:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8001
-    beq     _80046828
-    li	r3, -2
-    blr	
-_80046828:
-    lha	r4, 2(r3)
-    li	r3, 0
-    addi	r0, r4, 4
-    sth	r0, 0(r5)
-    blr	
+    if (size < 0x10) {
+        return -1;
+    }
+    if (*(u16*)(data + 0) != 0x8001) {
+        return -2;
+    }
+    *out = *(s16*)(data + 2) + 4;
+    return 0;
 }
-#pragma pop
 
 #pragma push
 asm void fn_8004683C(void)
@@ -646,132 +641,82 @@ _80046ab4:
 }
 #pragma pop
 
-#pragma push
-asm void fn_80046AC0(void)
+// provenance: original
+int fn_80046AC0(const u8* data, int size, u16* out1, u16* out2)
 {
-    nofralloc
-    cmpwi	r4, 0x14
-    bge     _80046ad0
-    li	r0, -1
-    b       _80046b00
-_80046ad0:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8000
-    beq     _80046ae4
-    li	r0, -2
-    b       _80046b00
-_80046ae4:
-    lha	r0, 2(r3)
-    cmpwi	r0, 0x10
-    bge     _80046af8
-    li	r0, -1
-    b       _80046b00
-_80046af8:
-    lbz	r7, 0x12(r3)
-    li	r0, 0
-_80046b00:
-    cmpwi	r0, 0
-    beq     _80046b10
-    li	r3, -1
-    blr	
-_80046b10:
-    cmplwi	r7, 4
-    blt     _80046b74
-    cmpwi	r4, 0x20
-    bge     _80046b28
-    li	r3, -1
-    blr	
-_80046b28:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8000
-    beq     _80046b3c
-    li	r3, -2
-    blr	
-_80046b3c:
-    lha	r0, 2(r3)
-    cmpwi	r0, 0x1c
-    bge     _80046b50
-    li	r3, -1
-    blr	
-_80046b50:
-    lhz	r0, 0x18(r3)
-    sth	r0, 0(r5)
-    lhz	r0, 0x1a(r3)
-    sth	r0, 0(r6)
-    lhz	r0, 0x1c(r3)
-    sth	r0, 2(r5)
-    lhz	r0, 0x1e(r3)
-    sth	r0, 2(r6)
-    b       _80046b88
-_80046b74:
-    li	r0, 0
-    sth	r0, 2(r6)
-    sth	r0, 2(r5)
-    sth	r0, 0(r6)
-    sth	r0, 0(r5)
-_80046b88:
-    li	r3, 0
-    blr	
-}
-#pragma pop
+    int ret;
+    u8 val;
 
-#pragma push
-asm void fn_80046B90(void)
-{
-    nofralloc
-    cmpwi	r4, 0x14
-    bge     _80046ba0
-    li	r3, -1
-    blr	
-_80046ba0:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8000
-    beq     _80046bb4
-    li	r3, -2
-    blr	
-_80046bb4:
-    lha	r0, 2(r3)
-    cmpwi	r0, 0x10
-    bge     _80046bc8
-    li	r3, -1
-    blr	
-_80046bc8:
-    lbz	r0, 0x12(r3)
-    stb	r0, 0(r5)
-    lbz	r0, 0x13(r3)
-    li	r3, 0
-    stb	r0, 0(r6)
-    blr	
-}
-#pragma pop
+    if (size < 0x14) {
+        ret = -1;
+    } else if (*(u16*)(data + 0) != 0x8000) {
+        ret = -2;
+    } else if (*(s16*)(data + 2) < 0x10) {
+        ret = -1;
+    } else {
+        val = data[0x12];
+        ret = 0;
+    }
 
-#pragma push
-asm void fn_80046BE0(void)
-{
-    nofralloc
-    cmpwi	r4, 0x12
-    bge     _80046bf0
-    li	r3, -1
-    blr	
-_80046bf0:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8000
-    beq     _80046c04
-    li	r3, -2
-    blr	
-_80046c04:
-    lha	r0, 2(r3)
-    cmpwi	r0, 0xe
-    bge     _80046c18
-    li	r3, -1
-    blr	
-_80046c18:
-    lhz	r0, 0x10(r3)
-    li	r3, 0
-    sth	r0, 0(r5)
-    blr	
+    if (ret != 0) {
+        return -1;
+    }
+
+    if (val >= 4) {
+        if (size < 0x20) {
+            return -1;
+        }
+        if (*(u16*)(data + 0) != 0x8000) {
+            return -2;
+        }
+        if (*(s16*)(data + 2) < 0x1c) {
+            return -1;
+        }
+        out1[0] = *(u16*)(data + 0x18);
+        out2[0] = *(u16*)(data + 0x1a);
+        out1[1] = *(u16*)(data + 0x1c);
+        out2[1] = *(u16*)(data + 0x1e);
+    } else {
+        out2[1] = 0;
+        out1[1] = 0;
+        out2[0] = 0;
+        out1[0] = 0;
+    }
+    return 0;
 }
-#pragma pop
+
+// provenance: original
+int fn_80046B90(const u8* data, int size, u8* out1, u8* out2)
+{
+    if (size < 0x14) {
+        return -1;
+    }
+    if (*(u16*)(data + 0) != 0x8000) {
+        return -2;
+    }
+    if (*(s16*)(data + 2) < 0x10) {
+        return -1;
+    }
+    *out1 = data[0x12];
+    *out2 = data[0x13];
+    return 0;
+}
+
+// provenance: original
+int fn_80046BE0(const u8* data, int size, u16* out)
+{
+    if (size < 0x12) {
+        return -1;
+    }
+    if (*(u16*)(data + 0) != 0x8000) {
+        return -2;
+    }
+    if (*(s16*)(data + 2) < 0xe) {
+        return -1;
+    }
+    *out = *(u16*)(data + 0x10);
+    return 0;
+}
 
 #pragma push
 asm void fn_80046C28(void)
