@@ -361,11 +361,10 @@ _80054280:
     blr	
 }
 
-asm void fn_800542B4(void)
+// provenance: original fn_800542B4
+void fn_800542B4(void* obj, unsigned int val)
 {
-    nofralloc
-    stw	r4, 0xc(r3)
-    blr	
+    *(unsigned int*)((char*)obj + 0xc) = val;
 }
 
 asm void fn_800542BC(void)
