@@ -43,29 +43,21 @@ extern unsigned char lbl_8017D6F8[4];
 extern unsigned char lbl_8017D6FC[4];
 extern unsigned char lbl_8017D708[3680];
 
-asm void ADXT_GetVoiceByAxHandle(void)
+// provenance: original
+void ADXT_GetVoiceByAxHandle(AdxtVoice* p, int a)
 {
-    nofralloc
-    cmpwi	r4, 0
-    blt     _8004ac14
-    stw	r4, 0x2c(r3)
-    blr	
-_8004ac14:
-    lwz	r6, 0x10(r3)
-    slwi	r0, r6, 0x15
-    srwi	r5, r6, 0x1f
-    subf	r4, r5, r0
-    srawi	r0, r6, 0xb
-    rotlwi	r4, r4, 0xb
-    add	r5, r4, r5
-    addze	r0, r0
-    neg	r4, r5
-    andc	r4, r4, r5
-    srwi	r4, r4, 0x1f
-    add	r0, r0, r4
-    stw	r0, 0x2c(r3)
-    blr	
+    if (a >= 0) {
+        p->unk2C = a;
+        return;
+    }
+    {
+        int q;
+        q = p->unk10 % 2048 > 0;
+        q = (p->unk10 / 2048) + q;
+        p->unk2C = q;
+    }
 }
+
 
 // provenance: original fn_8004AC4C
 void fn_8004AC4C(void *arg0, int arg1, int arg2)
