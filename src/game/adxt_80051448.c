@@ -1,36 +1,82 @@
 #pragma push
 #pragma force_active on
 
-extern void adx_err_report(void);
+typedef struct AhxCtx {
+    void* unk0;
+    char pad4[0x340];
+    unsigned char unk344;
+    unsigned char unk345;
+    signed char unk346;
+    char pad347[1];
+    int unk348;
+    void* unk34C;
+    void* unk350;
+    char unk354[0x30];
+    char unk384[0x34];
+    char unk3B8[0x100];
+    char unk4B8[0x100];
+    char unk5B8[0x300];
+    char unk8B8[0x300];
+} AhxCtx;
+
+typedef struct AhxState {
+    char pad0[4];
+    int unk4;
+    char pad8[0x80];
+    int unk88;
+    char pad8C[4];
+    int unk90;
+    int unk94;
+    char pad98[0x18];
+    void* unkB0;
+    char padB4[4];
+    int unkB8;
+} AhxState;
+
+typedef struct AhxOwner {
+    char pad0[4];
+    AhxState* unk4;
+} AhxOwner;
+
+typedef struct AhxHandle {
+    char pad0[4];
+    AhxOwner* unk4;
+    char pad8[8];
+    void* unk10;
+    char pad14[4];
+    char unk18;
+} AhxHandle;
+
+extern void adx_err_report();
 extern void fn_800542B4(void);
-extern void ADXT_Stop(void);
+extern void ADXT_Stop();
 extern void fn_8004EBB4(void);
 extern void fn_8004EBD4(void);
 extern void svm_ringbuf_skip(void);
 extern void fn_800519B0(void);
-extern void fn_80053A38(void);
-extern void fn_80053A84(void);
+extern void fn_80053A38();
+extern void* fn_80053A84();
 extern void fn_80053BB4(void);
 extern void fn_80053BFC(void);
-extern void fn_80053EA0(void);
-extern void fn_80053EA8(void);
-extern void fn_80053EB0(void);
-extern void fn_800541EC(void);
-extern void fn_80054224(void);
-extern void fn_800542BC(void);
-extern void fn_800542C8(void);
-extern void fn_80054354(void);
+extern int fn_80053EA0();
+extern int fn_80053EA8();
+extern void fn_80053EB0();
+extern void fn_800541EC();
+extern void fn_80054224();
+extern int fn_800542BC();
+extern void fn_800542C8();
+extern void* fn_80054354();
 extern void fn_800545B0(void);
 extern void fn_80054608(void);
-extern void memset(void);
+extern void memset();
 extern unsigned char E1052501_ADXT_AttachAHX_str[24];
 extern unsigned char can_not_attach_AHX_str[20];
-extern unsigned char lbl_8017E58C[4];
-extern unsigned char lbl_8017A280[4];
-extern unsigned char lbl_8017A284[4];
-extern unsigned char lbl_80187110[4];
+extern void (*lbl_8017E58C[])();
+extern void (*lbl_8017A280[])();
+extern void (*lbl_8017A284[])();
+extern int lbl_80187110[];
 extern unsigned char lbl_80187130[512];
-extern unsigned char lbl_80187330[64];
+extern AhxCtx* lbl_80187330[16];
 
 asm void fn_80051448(void)
 {
@@ -125,309 +171,116 @@ _80051574:
     blr	
 }
 
-asm void fn_80051594(void)
+// provenance: original
+void fn_80051594(AhxCtx* p, void* arg)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    li	r5, 0x30
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    mr	r30, r4
-    li	r4, 0
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    lwz	r31, 0x350(r3)
-    addi	r3, r29, 0x354
-    bl      memset
-    addi	r3, r29, 0x384
-    li	r4, 0
-    li	r5, 0x34
-    bl      memset
-    addi	r3, r29, 0x3b8
-    li	r4, 0
-    li	r5, 0x100
-    bl      memset
-    addi	r3, r29, 0x4b8
-    li	r4, 0
-    li	r5, 0x100
-    bl      memset
-    addi	r3, r29, 0x5b8
-    li	r4, 0
-    li	r5, 0x300
-    bl      memset
-    lwz	r3, 0(r29)
-    li	r4, 0
-    li	r5, 0x300
-    bl      memset
-    addi	r3, r29, 0x8b8
-    li	r4, 0
-    li	r5, 0x300
-    bl      memset
-    li	r0, 0
-    stb	r0, 0x345(r29)
-    stw	r0, 0x348(r29)
-    lwz	r3, 0x350(r29)
-    cmplwi	r3, 0
-    beq     _80051658
-    stw	r0, 0x350(r29)
-    bl      fn_80053A38
-    mr	r3, r31
-    li	r4, 0x2014
-    bl      fn_80053A84
-    stw	r3, 0x350(r29)
-_80051658:
-    stw	r30, 0x34c(r29)
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    void* prev = p->unk350;
+
+    memset(p->unk354, 0, 0x30);
+    memset(p->unk384, 0, 0x34);
+    memset(p->unk3B8, 0, 0x100);
+    memset(p->unk4B8, 0, 0x100);
+    memset(p->unk5B8, 0, 0x300);
+    memset(p->unk0, 0, 0x300);
+    memset(p->unk8B8, 0, 0x300);
+    p->unk345 = 0;
+    p->unk348 = 0;
+
+    if (p->unk350 != 0) {
+        void* cur = p->unk350;
+        p->unk350 = 0;
+        fn_80053A38(cur);
+        p->unk350 = fn_80053A84(prev, 0x2014);
+    }
+    p->unk34C = arg;
 }
 
-asm void fn_80051678(void)
+// provenance: original
+void fn_80051678(AhxCtx* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    li	r4, 0
-    li	r5, 0x30
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    mr	r30, r3
-    lwz	r31, 0x350(r3)
-    addi	r3, r30, 0x354
-    bl      memset
-    addi	r3, r30, 0x384
-    li	r4, 0
-    li	r5, 0x34
-    bl      memset
-    addi	r3, r30, 0x3b8
-    li	r4, 0
-    li	r5, 0x100
-    bl      memset
-    addi	r3, r30, 0x4b8
-    li	r4, 0
-    li	r5, 0x100
-    bl      memset
-    addi	r3, r30, 0x5b8
-    li	r4, 0
-    li	r5, 0x300
-    bl      memset
-    lwz	r3, 0(r30)
-    li	r4, 0
-    li	r5, 0x300
-    bl      memset
-    addi	r3, r30, 0x8b8
-    li	r4, 0
-    li	r5, 0x300
-    bl      memset
-    li	r0, 0
-    stb	r0, 0x345(r30)
-    stw	r0, 0x348(r30)
-    lwz	r3, 0x350(r30)
-    cmplwi	r3, 0
-    beq     _80051734
-    stw	r0, 0x350(r30)
-    bl      fn_80053A38
-    mr	r3, r31
-    li	r4, 0x2014
-    bl      fn_80053A84
-    stw	r3, 0x350(r30)
-_80051734:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    void* prev = p->unk350;
+
+    memset(p->unk354, 0, 0x30);
+    memset(p->unk384, 0, 0x34);
+    memset(p->unk3B8, 0, 0x100);
+    memset(p->unk4B8, 0, 0x100);
+    memset(p->unk5B8, 0, 0x300);
+    memset(p->unk0, 0, 0x300);
+    memset(p->unk8B8, 0, 0x300);
+    p->unk345 = 0;
+    p->unk348 = 0;
+
+    if (p->unk350 != 0) {
+        void* cur = p->unk350;
+        p->unk350 = 0;
+        fn_80053A38(cur);
+        p->unk350 = fn_80053A84(prev, 0x2014);
+    }
 }
 
-asm void fn_8005174C(void)
+// provenance: original
+void fn_8005174C(AhxCtx* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    mr	r30, r3
-    lwz	r3, 0x350(r3)
-    lbz	r31, 0x346(r30)
-    cmplwi	r3, 0
-    extsb	r31, r31
-    beq     _80051784
-    li	r0, 0
-    stw	r0, 0x350(r30)
-    bl      fn_80053A38
-_80051784:
-    mr	r3, r30
-    li	r4, 0
-    li	r5, 0xbb8
-    bl      memset
-    lis     r3, lbl_80187330@ha
-    slwi	r0, r31, 2
-    addi	r3, r3, lbl_80187330@l
-    li	r4, 0
-    stwx	r4, r3, r0
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int slot = p->unk346;
+
+    if (p->unk350 != 0) {
+        void* cur = p->unk350;
+        p->unk350 = 0;
+        fn_80053A38(cur);
+    }
+    memset(p, 0, 0xBB8);
+    lbl_80187330[slot] = 0;
 }
 
-asm void fn_800517C0(void)
+// provenance: original
+AhxCtx* fn_800517C0(AhxCtx* buf, int size)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r5, lbl_80187330@ha
-    stw	r0, 0x14(r1)
-    li	r0, 2
-    addi	r5, r5, lbl_80187330@l
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    stw	r30, 8(r1)
-    li	r30, 0
-    mtctr	r0
-_800517ec:
-    lwz	r0, 0(r5)
-    cmplwi	r0, 0
-    beq     _80051874
-    lwzu	r0, 4(r5)
-    addi	r30, r30, 1
-    cmplwi	r0, 0
-    beq     _80051874
-    lwzu	r0, 4(r5)
-    addi	r30, r30, 1
-    cmplwi	r0, 0
-    beq     _80051874
-    lwzu	r0, 4(r5)
-    addi	r30, r30, 1
-    cmplwi	r0, 0
-    beq     _80051874
-    lwzu	r0, 4(r5)
-    addi	r30, r30, 1
-    cmplwi	r0, 0
-    beq     _80051874
-    lwzu	r0, 4(r5)
-    addi	r30, r30, 1
-    cmplwi	r0, 0
-    beq     _80051874
-    lwzu	r0, 4(r5)
-    addi	r30, r30, 1
-    cmplwi	r0, 0
-    beq     _80051874
-    lwzu	r0, 4(r5)
-    addi	r30, r30, 1
-    cmplwi	r0, 0
-    beq     _80051874
-    addi	r5, r5, 4
-    addi	r30, r30, 1
-    bdnz    _800517ec
-_80051874:
-    cmpwi	r30, 0x10
-    bne     _80051884
-    li	r3, 0
-    b       _800518f4
-_80051884:
-    mr	r3, r31
-    mr	r5, r4
-    li	r4, 0
-    bl      memset
-    lis     r3, lbl_80187330@ha
-    slwi	r0, r30, 2
-    addi	r3, r3, lbl_80187330@l
-    li	r4, 0x2014
-    stwx	r31, r3, r0
-    lwzx	r31, r3, r0
-    stb	r30, 0x346(r31)
-    addi	r3, r31, 0xbb8
-    bl      fn_80053A84
-    cmplwi	r3, 0
-    stw	r3, 0x350(r31)
-    bne     _800518cc
-    li	r3, 0
-    b       _800518f4
-_800518cc:
-    addi	r0, r31, 0x23
-    rlwinm	r0, r0, 0, 0, 0x1a
-    stw	r0, 0(r31)
-    lwz	r0, 0(r31)
-    clrlwi.	r0, r0, 0x1b
-    beq     _800518e8
-_800518e4:
-    b       _800518e4
-_800518e8:
-    li	r0, 1
-    mr	r3, r31
-    stb	r0, 0x344(r31)
-_800518f4:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AhxCtx* p;
+    int i;
+
+    for (i = 0; i < 16; i++) {
+        if (lbl_80187330[i] == 0) {
+            break;
+        }
+    }
+    if (i == 16) {
+        return 0;
+    }
+
+    memset(buf, 0, size);
+    lbl_80187330[i] = buf;
+    p = lbl_80187330[i];
+    p->unk346 = i;
+    if ((p->unk350 = fn_80053A84((char*)p + 0xBB8, 0x2014)) == 0) {
+        return 0;
+    }
+
+    p->unk0 = (void*)(((unsigned int)p + 0x23) & ~0x1F);
+    if (((unsigned int)p->unk0 & 0x1F) != 0) {
+        while (1) {
+        }
+    }
+    p->unk344 = 1;
+    return p;
 }
 
-asm void fn_8005190C(void)
+// provenance: original
+void fn_8005190C(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_80187110@ha
-    stw	r0, 0x14(r1)
-    addi	r4, r3, lbl_80187110@l
-    lwz	r3, 0(r4)
-    addic.	r0, r3, -1
-    stw	r0, 0(r4)
-    bne     _80051948
-    lis     r3, lbl_80187330@ha
-    li	r4, 0
-    addi	r3, r3, lbl_80187330@l
-    li	r5, 0x40
-    bl      memset
-    bl      fn_80053BB4
-_80051948:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (--lbl_80187110[0] == 0) {
+        memset(lbl_80187330, 0, 0x40);
+        fn_80053BB4();
+    }
 }
 
-asm void fn_80051958(void)
+// provenance: original
+void fn_80051958(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis	r3, lbl_80187110@ha
-    stw	r0, 0x14(r1)
-    lwz	r0, lbl_80187110@l(r3)
-    cmpwi	r0, 0
-    bne     _8005198c
-    bl      fn_80053BFC
-    lis     r3, lbl_80187330@ha
-    li	r4, 0
-    addi	r3, r3, lbl_80187330@l
-    li	r5, 0x40
-    bl      memset
-_8005198c:
-    lis     r3, lbl_80187110@ha
-    addi	r4, r3, lbl_80187110@l
-    lwz	r3, 0(r4)
-    addi	r0, r3, 1
-    stw	r0, 0(r4)
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (lbl_80187110[0] == 0) {
+        fn_80053BFC();
+        memset(lbl_80187330, 0, 0x40);
+    }
+    lbl_80187110[0]++;
 }
 
 asm void fn_800519B0(void)
@@ -650,192 +503,93 @@ _80051ca8:
     blr	
 }
 
-asm void ADXT_AHXExecCallback(void)
+// provenance: original
+void ADXT_AHXExecCallback(AhxState* s)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    bl      fn_8004EBD4
-    lwz	r30, 0xb0(r29)
-    mr	r3, r30
-    bl      fn_800542BC
-    cmpwi	r3, 0
-    bne     _80051d04
-    li	r0, 0
-    mr	r3, r30
-    stw	r0, 0x88(r29)
-    bl      fn_800541EC
-_80051d04:
-    lwz	r0, 4(r29)
-    cmpwi	r0, 1
-    bne     _80051d2c
-    li	r0, 0
-    mr	r3, r30
-    stw	r0, 0x88(r29)
-    bl      fn_80054224
-    li	r0, 2
-    stw	r0, 4(r29)
-    b       _80051da4
-_80051d2c:
-    cmpwi	r0, 2
-    bne     _80051da4
-    li	r31, 0
-    b       _80051d48
-_80051d3c:
-    mr	r3, r30
-    bl      fn_80053EB0
-    addi	r31, r31, 1
-_80051d48:
-    lwz	r0, 0xb8(r29)
-    cmpw	r31, r0
-    blt     _80051d3c
-    mr	r3, r30
-    bl      fn_80053EA0
-    lwz	r0, 0x88(r29)
-    subf	r0, r0, r3
-    mr	r3, r30
-    stw	r0, 0x90(r29)
-    lwz	r4, 0x88(r29)
-    lwz	r0, 0x90(r29)
-    add	r0, r4, r0
-    stw	r0, 0x88(r29)
-    bl      fn_80053EA8
-    stw	r3, 0x94(r29)
-    mr	r3, r30
-    bl      fn_800542BC
-    cmpwi	r3, 3
-    bne     _80051da4
-    mr	r3, r30
-    bl      fn_800541EC
-    li	r0, 0
-    stw	r0, 4(r29)
-_80051da4:
-    bl      fn_8004EBB4
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int i;
+    void* obj;
+
+    fn_8004EBD4();
+    obj = s->unkB0;
+    if (fn_800542BC(obj) == 0) {
+        s->unk88 = 0;
+        fn_800541EC(obj);
+    }
+
+    if (s->unk4 == 1) {
+        s->unk88 = 0;
+        fn_80054224(obj);
+        s->unk4 = 2;
+    } else if (s->unk4 == 2) {
+        for (i = 0; i < s->unkB8; i++) {
+            fn_80053EB0(obj);
+        }
+        s->unk90 = fn_80053EA0(obj) - s->unk88;
+        s->unk88 = s->unk88 + s->unk90;
+        s->unk94 = fn_80053EA8(obj);
+        if (fn_800542BC(obj) == 3) {
+            fn_800541EC(obj);
+            s->unk4 = 0;
+        }
+    }
+    fn_8004EBB4();
 }
 
-asm void ADXT_AHXStopCallback(void)
+// provenance: original
+void ADXT_AHXStopCallback(AhxHandle* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    mr	r30, r3
-    bl      ADXT_Stop
-    lwz	r3, 4(r30)
-    lwz	r31, 4(r3)
-    lwz	r30, 0xb0(r31)
-    cmplwi	r30, 0
-    beq     _80051e18
-    bl      fn_8004EBD4
-    mr	r3, r30
-    bl      fn_800541EC
-    mr	r3, r30
-    bl      fn_800542C8
-    li	r0, 0
-    stw	r0, 0xb0(r31)
-    bl      fn_8004EBB4
-    bl      fn_800545B0
-_80051e18:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AhxState* st;
+    void* obj;
+
+    ADXT_Stop(p);
+    st = p->unk4->unk4;
+    obj = st->unkB0;
+    if (obj != 0) {
+        fn_8004EBD4();
+        fn_800541EC(obj);
+        fn_800542C8(obj);
+        st->unkB0 = 0;
+        fn_8004EBB4();
+        fn_800545B0();
+    }
 }
 
-asm void fn_80051E30(void)
+// provenance: original
+void fn_80051E30(void* arg)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis	r4, lbl_8017E58C@ha
-    stw	r0, 0x14(r1)
-    lwz	r12, lbl_8017E58C@l(r4)
-    cmplwi	r12, 0
-    beq     _80051e54
-    mtctr	r12
-    bctrl	
-_80051e54:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (lbl_8017E58C[0] != 0) {
+        lbl_8017E58C[0](arg);
+    }
 }
 
-asm void ADXT_AttachAHX(void)
+// provenance: original
+void ADXT_AttachAHX(AhxHandle* p, int a, int b)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stmw	r27, 0xc(r1)
-    mr	r27, r3
-    mr	r28, r4
-    mr	r29, r5
-    bl      ADXT_Stop
-    lis	r3, lbl_8017E58C@ha
-    lwz	r12, lbl_8017E58C@l(r3)
-    cmplwi	r12, 0
-    beq     _80051ea0
-    mr	r3, r27
-    mtctr	r12
-    bctrl	
-_80051ea0:
-    bl      fn_80054608
-    lwz	r3, 4(r27)
-    lwz	r30, 0x10(r27)
-    lwz	r31, 4(r3)
-    bl      fn_8004EBD4
-    mr	r3, r30
-    mr	r6, r28
-    mr	r7, r29
-    addi	r5, r27, 0x18
-    li	r4, 1
-    bl      fn_80054354
-    cmplwi	r3, 0
-    bne     _80051eec
-    lis     r3, E1052501_ADXT_AttachAHX_str@ha
-    lis     r4, can_not_attach_AHX_str@ha
-    addi	r3, r3, E1052501_ADXT_AttachAHX_str@l
-    addi	r4, r4, can_not_attach_AHX_str@l
-    bl      adx_err_report
-    b       _80051f24
-_80051eec:
-    lis     r9, ADXT_AHXStopCallback@ha
-    lis     r7, ADXT_AHXExecCallback@ha
-    lis	r5, fn_800542B4@ha
-    stw	r3, 0xb0(r31)
-    lis	r8, lbl_8017E58C@ha
-    addi	r9, r9, ADXT_AHXStopCallback@l
-    lis	r6, lbl_8017A280@ha
-    addi	r7, r7, ADXT_AHXExecCallback@l
-    lis	r4, lbl_8017A284@ha
-    addi	r0, r5, fn_800542B4@l
-    stw	r9, lbl_8017E58C@l(r8)
-    stw	r7, lbl_8017A280@l(r6)
-    stw	r0, lbl_8017A284@l(r4)
-    bl      fn_8004EBB4
-_80051f24:
-    lmw	r27, 0xc(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    AhxState* st;
+    void* h;
+    void* obj;
+
+    ADXT_Stop(p);
+    if (lbl_8017E58C[0] != 0) {
+        lbl_8017E58C[0](p);
+    }
+    fn_80054608();
+
+    st = p->unk4->unk4;
+    h = p->unk10;
+    fn_8004EBD4();
+
+    obj = fn_80054354(h, 1, &p->unk18, a, b);
+    if (obj == 0) {
+        adx_err_report(E1052501_ADXT_AttachAHX_str, can_not_attach_AHX_str);
+        return;
+    }
+
+    st->unkB0 = obj;
+    lbl_8017E58C[0] = ADXT_AHXStopCallback;
+    lbl_8017A280[0] = ADXT_AHXExecCallback;
+    lbl_8017A284[0] = fn_800542B4;
+    fn_8004EBB4();
 }
 
 #pragma pop

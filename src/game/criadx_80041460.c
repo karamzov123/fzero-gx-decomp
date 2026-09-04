@@ -1,20 +1,27 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_800454CC(void);
-extern void fn_800454B4(void);
-extern void fn_800454C4(void);
-extern void fn_800454D4(void);
-extern void fn_800454DC(void);
-extern void fn_800454E4(void);
-extern void fn_800454FC(void);
-extern void fn_80045504(void);
-extern void criadx_get_stream_ptr(void);
-extern void fn_80045514(void);
-extern void fn_8004551C(void);
-extern void criadx_get_field_0E(void);
-extern void criadx_get_field_14(void);
-extern void criadx_get_status(void);
+typedef struct CriAdxObj {
+    char pad0[1];
+    signed char unk1;
+    char pad2[2];
+    void* unk4;
+} CriAdxObj;
+
+extern int fn_800454CC();
+extern int fn_800454B4();
+extern int fn_800454C4();
+extern int fn_800454D4();
+extern int fn_800454DC();
+extern int fn_800454E4();
+extern int fn_800454FC();
+extern int fn_80045504();
+extern int criadx_get_stream_ptr();
+extern int fn_80045514();
+extern int fn_8004551C();
+extern int criadx_get_field_0E();
+extern int criadx_get_field_14();
+extern int criadx_get_status();
 extern void fn_80045414(void);
 extern void fn_80041BF8(void);
 extern void fn_80044E7C(void);
@@ -25,232 +32,95 @@ extern void fn_8004530C(void);
 extern void ADXB_DecodeHeader(void);
 extern unsigned char lbl_801798C0[2496];
 
-asm void fn_80041460(void)
+// provenance: original
+int fn_80041460(CriAdxObj* p, int arg)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r4
-    stw	r30, 8(r1)
-    mr	r30, r3
-    lwz	r3, 4(r3)
-    bl      fn_800454CC
-    cmpwi	r3, 0
-    ble     _800414b4
-    lbz	r0, 1(r30)
-    extsb	r0, r0
-    cmpwi	r0, 2
-    beq     _800414a4
-    cmpwi	r0, 3
-    bne     _800414b4
-_800414a4:
-    lwz	r3, 4(r30)
-    mr	r4, r31
-    bl      fn_800454B4
-    b       _800414b8
-_800414b4:
-    li	r3, -0x80
-_800414b8:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (fn_800454CC(p->unk4) > 0) {
+        if (p->unk1 == 2 || p->unk1 == 3) {
+            return fn_800454B4(p->unk4, arg);
+        }
+    }
+    return -128;
 }
 
-asm void fn_800414D0(void)
+// provenance: original
+int fn_800414D0(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    lwz	r3, 4(r3)
-    bl      fn_800454CC
-    cmpwi	r3, 0
-    ble     _80041518
-    lbz	r0, 1(r31)
-    extsb	r0, r0
-    cmpwi	r0, 2
-    beq     _8004150c
-    cmpwi	r0, 3
-    bne     _80041518
-_8004150c:
-    lwz	r3, 4(r31)
-    bl      fn_800454C4
-    b       _8004151c
-_80041518:
-    li	r3, 0
-_8004151c:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (fn_800454CC(p->unk4) > 0) {
+        if (p->unk1 == 2 || p->unk1 == 3) {
+            return fn_800454C4(p->unk4);
+        }
+    }
+    return 0;
 }
 
-asm void fn_80041530(void)
+// provenance: original
+int fn_80041530(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      fn_800454D4
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return fn_800454D4(p->unk4);
 }
 
-asm void fn_80041554(void)
+// provenance: original
+int fn_80041554(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      fn_800454DC
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return fn_800454DC(p->unk4);
 }
 
-asm void fn_80041578(void)
+// provenance: original
+int fn_80041578(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80041594
-    li	r3, 0
-    b       _8004159c
-_80041594:
-    lwz	r3, 4(r3)
-    bl      fn_800454E4
-_8004159c:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        return 0;
+    }
+    return fn_800454E4(p->unk4);
 }
 
-asm void fn_800415AC(void)
+// provenance: original
+int fn_800415AC(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      fn_800454FC
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return fn_800454FC(p->unk4);
 }
 
-asm void fn_800415D0(void)
+// provenance: original
+int fn_800415D0(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      fn_80045504
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return fn_80045504(p->unk4);
 }
 
-asm void criadx_get_stream_ptr_wrapper(void)
+// provenance: original
+int criadx_get_stream_ptr_wrapper(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      criadx_get_stream_ptr
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return criadx_get_stream_ptr(p->unk4);
 }
 
-asm void fn_80041618(void)
+// provenance: original
+int fn_80041618(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      fn_80045514
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return fn_80045514(p->unk4);
 }
 
-asm void fn_8004163C(void)
+// provenance: original
+int fn_8004163C(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      fn_8004551C
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return fn_8004551C(p->unk4);
 }
 
-asm void criadx_set_field_48(void)
+// provenance: original
+int criadx_set_field_48(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      criadx_get_field_0E
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return criadx_get_field_0E(p->unk4);
 }
 
-asm void criadxGetValue(void)
+// provenance: original
+int criadxGetValue(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      criadx_get_field_14
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return criadx_get_field_14(p->unk4);
 }
 
-asm void fn_800416A8(void)
+// provenance: original
+int fn_800416A8(CriAdxObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 4(r3)
-    bl      criadx_get_status
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return criadx_get_status(p->unk4);
 }
 
 // provenance: original

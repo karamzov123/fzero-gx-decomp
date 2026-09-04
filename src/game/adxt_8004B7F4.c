@@ -1,23 +1,43 @@
 #pragma push
 #pragma force_active on
 
+typedef struct AdxtObj {
+    unsigned char unk0;
+    signed char unk1;
+    signed char unk2;
+    signed char unk3;
+    void* unk4;
+    char pad8[4];
+    void* unkC;
+    char pad10[0x28];
+    int unk38;
+    char pad3C[4];
+    short unk40;
+    short unk42[15];
+    short unk60;
+    char pad62[0xf];
+    signed char unk71;
+    signed char unk72;
+    char pad73[0x4d];
+} AdxtObj;
+
 extern void __cvt_fp2unsigned(void);
-extern void fn_80041460(void);
-extern void fn_800414D0(void);
-extern void criadx_get_stream_ptr_wrapper(void);
-extern void criadx_set_field_48(void);
-extern void criadxGetValue(void);
+extern int fn_80041460();
+extern int fn_800414D0();
+extern int criadx_get_stream_ptr_wrapper();
+extern int criadx_set_field_48();
+extern int criadxGetValue();
 extern void fn_80041700(void);
 extern void svmUnlockServer_wrapper(void);
 extern void svmLockServer_wrapper(void);
 extern void fn_80046C28(void);
-extern void criErr_CallErrCallback(void);
-extern void fn_80047548(void);
+extern void criErr_CallErrCallback();
+extern int fn_80047548();
 extern void fn_8004C164(void);
-extern void ADXT_ExecHndl(void);
+extern void ADXT_ExecHndl();
 extern void fn_8004ED84(void);
-extern void adxtSetHandleVolume(void);
-extern void fn_8004EDE4(void);
+extern void adxtSetHandleVolume();
+extern void fn_8004EDE4();
 extern void fn_8004EE44(void);
 extern void ADXTServerStateRequest_wrapper(void);
 extern void svm_ringbuf_read(void);
@@ -35,10 +55,10 @@ extern unsigned char E02080843_ADXT_GetErrCode_parameter_error_str[196];
 extern unsigned char E02080846_ADXT_Pause_parameter_error_str[38];
 extern unsigned char E02080847_ADXT_GetStatPause_parameter_error_str[45];
 extern unsigned char E8101208_ADXT_SetOutPan_parameter_error_str[132];
-extern unsigned char lbl_8017E56C[4];
+extern int lbl_8017E56C[];
 extern unsigned char lbl_80090A20[8];
 extern unsigned char lbl_80178CB8[4];
-extern unsigned char lbl_80178CBC[3076];
+extern AdxtObj lbl_80178CBC[];
 extern unsigned char lbl_8017E568[4];
 extern unsigned char lbl_8017E594[20];
 
@@ -145,23 +165,17 @@ _8004b954:
     blr	
 }
 
-asm void fn_8004B974(void)
+// provenance: original
+int fn_8004B974(unsigned short* p, int n, int* out)
 {
-    nofralloc
-    cmpwi	r4, 2
-    bge     _8004b984
-    li	r3, 0
-    blr	
-_8004b984:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8001
-    beq     _8004b998
-    li	r3, 0
-    blr	
-_8004b998:
-    stw	r4, 0(r5)
-    li	r3, 1
-    blr	
+    if (n < 2) {
+        return 0;
+    }
+    if (p[0] != 0x8001) {
+        return 0;
+    }
+    *out = n;
+    return 1;
 }
 
 asm void fn_8004B9A4(void)
@@ -316,17 +330,12 @@ _8004bb90:
     blr	
 }
 
-asm void fn_8004BBA4(void)
+
+
+// provenance: original
+int fn_8004BBA4(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_80047548
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return fn_80047548(p);
 }
 
 // provenance: original fn_8004BBC4 (no-op stub: retail body is a single blr)
@@ -340,27 +349,14 @@ void fn_8004BBC8(void)
 }
 
 
-asm void fn_8004BBCC(void)
+// provenance: original
+int fn_8004BBCC(AdxtObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004bbf4
-    lis     r3, E02080847_ADXT_GetStatPause_parameter_error_str@ha
-    addi	r3, r3, E02080847_ADXT_GetStatPause_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, 0
-    b       _8004bbfc
-_8004bbf4:
-    lbz	r3, 0x72(r3)
-    extsb	r3, r3
-_8004bbfc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080847_ADXT_GetStatPause_parameter_error_str);
+        return 0;
+    }
+    return p->unk72;
 }
 
 asm void fn_8004BC0C(void)
@@ -458,104 +454,54 @@ _8004bd40:
     blr	
 }
 
-asm void fn_8004BD5C(void)
+// provenance: original
+int fn_8004BD5C(AdxtObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004bd84
-    lis     r3, E02080831_ADXT_IsReadyPlayStart_parameter_error_str@ha
-    addi	r3, r3, E02080831_ADXT_IsReadyPlayStart_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, -1
-    b       _8004bd8c
-_8004bd84:
-    lbz	r3, 0x71(r3)
-    extsb	r3, r3
-_8004bd8c:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080831_ADXT_IsReadyPlayStart_parameter_error_str);
+        return -1;
+    }
+    return p->unk71;
 }
 
-asm void fn_8004BD9C(void)
+// provenance: original
+int fn_8004BD9C(AdxtObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004bdc4
-    lis     r3, E02080843_ADXT_GetErrCode_parameter_error_str@ha
-    addi	r3, r3, E02080843_ADXT_GetErrCode_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, -1
-    b       _8004bdc8
-_8004bdc4:
-    lha	r3, 0x60(r3)
-_8004bdc8:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080843_ADXT_GetErrCode_parameter_error_str);
+        return -1;
+    }
+    return p->unk60;
 }
 
-asm void fn_8004BDD8(void)
+// provenance: original
+void fn_8004BDD8(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    bl      svmLockServer_wrapper
-    lis	r3, lbl_8017E56C@ha
-    lwzu	r0, lbl_8017E56C@l(r3)
-    cmpwi	r0, 0
-    beq     _8004be08
-    bl      svmUnlockServer_wrapper
-    b       _8004be78
-_8004be08:
-    li	r0, 1
-    stw	r0, 0(r3)
-    bl      svmUnlockServer_wrapper
-    bl      svmLockServer_wrapper
-    bl      fn_80041700
-    lis	r4, lbl_8017E56C@ha
-    li	r0, 2
-    lis     r3, lbl_80178CBC@ha
-    stw	r0, lbl_8017E56C@l(r4)
-    addi	r31, r3, lbl_80178CBC@l
-    li	r30, 0
-_8004be34:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _8004be48
-    mr	r3, r31
-    bl      ADXT_ExecHndl
-_8004be48:
-    addi	r30, r30, 1
-    addi	r31, r31, 0xc0
-    cmpwi	r30, 0x10
-    blt     _8004be34
-    lis	r3, lbl_8017E56C@ha
-    li	r0, 3
-    stw	r0, lbl_8017E56C@l(r3)
-    bl      fn_8004EE44
-    lis	r3, lbl_8017E56C@ha
-    li	r0, 0
-    stw	r0, lbl_8017E56C@l(r3)
-    bl      svmUnlockServer_wrapper
-_8004be78:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int i;
+
+    svmLockServer_wrapper();
+    if (lbl_8017E56C[0] != 0) {
+        svmUnlockServer_wrapper();
+        return;
+    }
+    lbl_8017E56C[0] = 1;
+    svmUnlockServer_wrapper();
+
+    svmLockServer_wrapper();
+    fn_80041700();
+    lbl_8017E56C[0] = 2;
+
+    for (i = 0; i < 16; i++) {
+        int st = lbl_80178CBC[i].unk0;
+        if (st == 1) {
+            ADXT_ExecHndl(&lbl_80178CBC[i]);
+        }
+    }
+
+    lbl_8017E56C[0] = 3;
+    fn_8004EE44();
+    lbl_8017E56C[0] = 0;
+    svmUnlockServer_wrapper();
 }
 
 // provenance: original disassembly reconstruction fn_8004BE90
@@ -564,244 +510,107 @@ void fn_8004BE90(void *arg0, char arg1)
     *(char *)((char *)arg0 + 0x6d) = arg1;
 }
 
-asm void fn_8004BE98(void)
+// provenance: original
+void fn_8004BE98(AdxtObj* p, int freq)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004bebc
-    lis     r3, E02080840_ADXT_SetSvrFreq_parameter_error_str@ha
-    addi	r3, r3, E02080840_ADXT_SetSvrFreq_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    b       _8004bec0
-_8004bebc:
-    stw	r4, 0x38(r3)
-_8004bec0:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080840_ADXT_SetSvrFreq_parameter_error_str);
+        return;
+    }
+    p->unk38 = freq;
 }
 
-asm void fn_8004BED0(void)
+// provenance: original
+int fn_8004BED0(AdxtObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004bef8
-    lis     r3, E02080824_ADXT_GetOutVol_parameter_error_str@ha
-    addi	r3, r3, E02080824_ADXT_GetOutVol_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, 0
-    b       _8004befc
-_8004bef8:
-    lha	r3, 0x40(r3)
-_8004befc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080824_ADXT_GetOutVol_parameter_error_str);
+        return 0;
+    }
+    return p->unk40;
 }
 
-asm void ADXT_SetOutVol(void)
+// provenance: original
+void ADXT_SetOutVol(AdxtObj* p, short vol)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    bne     _8004bf34
-    lis     r3, E02080823_ADXT_SetOutVol_parameter_error_str@ha
-    addi	r3, r3, E02080823_ADXT_SetOutVol_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    b       _8004bf54
-_8004bf34:
-    sth	r4, 0x40(r31)
-    lwz	r3, 4(r31)
-    bl      fn_800414D0
-    lha	r0, 0x40(r31)
-    extsh	r4, r3
-    lwz	r3, 0xc(r31)
-    add	r4, r0, r4
-    bl      fn_8004EDE4
-_8004bf54:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080823_ADXT_SetOutVol_parameter_error_str);
+        return;
+    }
+    p->unk40 = vol;
+    fn_8004EDE4(p->unkC, p->unk40 + (short)fn_800414D0(p->unk4));
 }
 
-asm void ADXT_GetOutPan(void)
+// provenance: original
+int ADXT_GetOutPan(AdxtObj* p, int ch)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004bf90
-    lis     r3, E02080826_ADXT_GetOutPan_parameter_error_str@ha
-    addi	r3, r3, E02080826_ADXT_GetOutPan_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, 0
-    b       _8004bf9c
-_8004bf90:
-    slwi	r0, r4, 1
-    add	r3, r3, r0
-    lha	r3, 0x42(r3)
-_8004bf9c:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080826_ADXT_GetOutPan_parameter_error_str);
+        return 0;
+    }
+    return p->unk42[ch];
 }
 
-asm void ADXT_SetOutPan(void)
+// provenance: original
+void ADXT_SetOutPan(AdxtObj* p, int ch, int pan)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r5
-    stw	r30, 0x18(r1)
-    mr	r30, r4
-    stw	r29, 0x14(r1)
-    or.	r29, r3, r3
-    bne     _8004bfe4
-    lis     r3, E02080825_ADXT_SetOutPan_parameter_error_str@ha
-    addi	r3, r3, E02080825_ADXT_SetOutPan_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    b       _8004c040
-_8004bfe4:
-    lwz	r3, 4(r29)
-    bl      fn_80041460
-    extsh	r0, r3
-    cmpwi	r0, -0x80
-    bne     _8004bffc
-    li	r3, 0
-_8004bffc:
-    extsh	r3, r3
-    slwi	r0, r30, 1
-    add	r4, r31, r3
-    add	r3, r29, r0
-    sth	r4, 0x42(r3)
-    lbz	r0, 3(r29)
-    extsb	r0, r0
-    cmpw	r30, r0
-    bge     _8004c034
-    lwz	r3, 0xc(r29)
-    mr	r4, r30
-    mr	r5, r31
-    bl      adxtSetHandleVolume
-    b       _8004c040
-_8004c034:
-    lis     r3, E8101208_ADXT_SetOutPan_parameter_error_str@ha
-    addi	r3, r3, E8101208_ADXT_SetOutPan_parameter_error_str@l
-    bl      criErr_CallErrCallback
-_8004c040:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int v;
+
+    if (p == 0) {
+        criErr_CallErrCallback(E02080825_ADXT_SetOutPan_parameter_error_str);
+        return;
+    }
+
+    v = fn_80041460(p->unk4);
+    if ((short)v == -128) {
+        v = 0;
+    }
+    p->unk42[ch] = pan + (short)v;
+
+    if (ch < p->unk3) {
+        adxtSetHandleVolume(p->unkC, ch, pan);
+    } else {
+        criErr_CallErrCallback(E8101208_ADXT_SetOutPan_parameter_error_str);
+    }
 }
 
-asm void ADXT_GetNumChan(void)
+// provenance: original
+int ADXT_GetNumChan(AdxtObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004c084
-    lis     r3, E02080820_ADXT_GetNumChan_parameter_error_str@ha
-    addi	r3, r3, E02080820_ADXT_GetNumChan_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, -1
-    b       _8004c0a4
-_8004c084:
-    lbz	r0, 1(r3)
-    extsb	r0, r0
-    cmpwi	r0, 2
-    blt     _8004c0a0
-    lwz	r3, 4(r3)
-    bl      criadx_set_field_48
-    b       _8004c0a4
-_8004c0a0:
-    li	r3, 0
-_8004c0a4:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080820_ADXT_GetNumChan_parameter_error_str);
+        return -1;
+    }
+    if (p->unk1 >= 2) {
+        return criadx_set_field_48(p->unk4);
+    }
+    return 0;
 }
 
-asm void ADXT_GetSfreq(void)
+// provenance: original
+int ADXT_GetSfreq(AdxtObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004c0dc
-    lis     r3, E02080819_ADXT_GetSfreq_parameter_error_str@ha
-    addi	r3, r3, E02080819_ADXT_GetSfreq_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, -1
-    b       _8004c0fc
-_8004c0dc:
-    lbz	r0, 1(r3)
-    extsb	r0, r0
-    cmpwi	r0, 2
-    blt     _8004c0f8
-    lwz	r3, 4(r3)
-    bl      criadxGetValue
-    b       _8004c0fc
-_8004c0f8:
-    li	r3, 0
-_8004c0fc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080819_ADXT_GetSfreq_parameter_error_str);
+        return -1;
+    }
+    if (p->unk1 >= 2) {
+        return criadxGetValue(p->unk4);
+    }
+    return 0;
 }
 
-asm void ADXT_GetNumSmpl(void)
+// provenance: original
+int ADXT_GetNumSmpl(AdxtObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004c134
-    lis     r3, E02080817_ADXT_GetNumSmpl_parameter_error_str@ha
-    addi	r3, r3, E02080817_ADXT_GetNumSmpl_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, -1
-    b       _8004c154
-_8004c134:
-    lbz	r0, 1(r3)
-    extsb	r0, r0
-    cmpwi	r0, 2
-    blt     _8004c150
-    lwz	r3, 4(r3)
-    bl      criadx_get_stream_ptr_wrapper
-    b       _8004c154
-_8004c150:
-    li	r3, 0
-_8004c154:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        criErr_CallErrCallback(E02080817_ADXT_GetNumSmpl_parameter_error_str);
+        return -1;
+    }
+    if (p->unk1 >= 2) {
+        return criadx_get_stream_ptr_wrapper(p->unk4);
+    }
+    return 0;
 }
 
 #pragma pop

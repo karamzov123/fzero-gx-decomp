@@ -1,15 +1,42 @@
 #pragma push
 #pragma force_active on
 
+typedef struct AdxtVoice {
+    char pad0[1];
+    unsigned char unk1;
+    unsigned char unk2;
+    unsigned char unk3;
+    char pad4[4];
+    void* unk8;
+    void* unkC;
+    int unk10;
+    char pad14[0xc];
+    int unk20;
+    int unk24;
+    char pad28[4];
+    int unk2C;
+    int unk30;
+    char pad34[0xd];
+    unsigned char unk41;
+    char pad42[1];
+    unsigned char unk43;
+    unsigned char unk44;
+    char pad45[7];
+    int unk4C;
+    int unk50;
+    int unk54;
+    int unk58;
+} AdxtVoice;
+
 extern void svmUnlockServer_wrapper(void);
 extern void svmLockServer_wrapper(void);
-extern void fn_80046F7C(void);
+extern int fn_80046F7C();
 extern void ADXSTMF_StatExec(void);
 extern void cvFsStopTr(void);
 extern void SVM_LockServer(void);
 extern void svmUnlockServer(void);
 extern void svmLockServer(void);
-extern void memset(void);
+extern void memset();
 extern unsigned char lbl_8012B900[16];
 extern unsigned char lbl_8017D6F8[4];
 extern unsigned char lbl_8017D6FC[4];
@@ -133,118 +160,64 @@ _8004ad4c:
     blr	
 }
 
-asm void fn_8004AD84(void)
+// provenance: original
+void fn_8004AD84(AdxtVoice* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    bl      svmLockServer
-    lbz	r0, 1(r31)
-    cmpwi	r0, 2
-    bne     _8004add4
-    lbz	r0, 2(r31)
-    cmpwi	r0, 1
-    bne     _8004add4
-    li	r0, 1
-    stb	r0, 0x44(r31)
-    lbz	r0, 0x43(r31)
-    cmpwi	r0, 1
-    bne     _8004addc
-    li	r0, 0
-    stb	r0, 0x43(r31)
-    b       _8004addc
-_8004add4:
-    li	r0, 1
-    stb	r0, 1(r31)
-_8004addc:
-    bl      svmUnlockServer
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int state;
+    int mode;
+    int flag;
+
+    svmLockServer();
+    state = p->unk1;
+    if (state == 2 && (mode = p->unk2) == 1) {
+        p->unk44 = 1;
+        flag = p->unk43;
+        if (flag == 1) {
+            p->unk43 = 0;
+        }
+    } else {
+        p->unk1 = 1;
+    }
+    svmUnlockServer();
 }
 
-asm void fn_8004ADF4(void)
+// provenance: original
+int fn_8004ADF4(AdxtVoice* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    bl      svmLockServer_wrapper
-    li	r0, 0
-    stw	r0, 0x30(r31)
-    stb	r0, 3(r31)
-    lwz	r0, 0x10(r31)
-    cmpwi	r0, 0
-    bne     _8004ae30
-    li	r0, 3
-    stb	r0, 1(r31)
-    b       _8004ae38
-_8004ae30:
-    li	r0, 2
-    stb	r0, 1(r31)
-_8004ae38:
-    li	r5, 0
-    lis	r3, 0x10
-    stb	r5, 2(r31)
-    li	r4, 1
-    addi	r0, r3, -1
-    stw	r5, 0x20(r31)
-    stw	r5, 0x24(r31)
-    stb	r4, 0x43(r31)
-    stw	r0, 0x58(r31)
-    bl      svmUnlockServer_wrapper
-    lwz	r0, 0x14(r1)
-    li	r3, 1
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmLockServer_wrapper();
+    p->unk30 = 0;
+    p->unk3 = 0;
+    if (p->unk10 == 0) {
+        p->unk1 = 3;
+    } else {
+        p->unk1 = 2;
+    }
+    p->unk2 = 0;
+    p->unk20 = 0;
+    p->unk24 = 0;
+    p->unk43 = 1;
+    p->unk58 = 0xFFFFF;
+    svmUnlockServer_wrapper();
+    return 1;
 }
 
-asm void fn_8004AE78(void)
+// provenance: original
+int fn_8004AE78(AdxtVoice* p)
 {
-    nofralloc
-    lwz	r0, 8(r3)
-    cmplwi	r0, 0
-    beq     _8004ae8c
-    lwz	r3, 0x54(r3)
-    blr	
-_8004ae8c:
-    li	r3, 0
-    blr	
+    if (p->unk8 != 0) {
+        return p->unk54;
+    }
+    return 0;
 }
 
-asm void fn_8004AE94(void)
+// provenance: original
+int fn_8004AE94(AdxtVoice* p, int n)
 {
-    nofralloc
-    stw	r4, 0x54(r3)
-    lwz	r0, 0x54(r3)
-    lwz	r5, 0x10(r3)
-    slwi	r0, r0, 0xb
-    cmpw	r0, r5
-    ble     _8004aedc
-    slwi	r0, r5, 0x15
-    srwi	r4, r5, 0x1f
-    subf	r0, r4, r0
-    srawi	r5, r5, 0xb
-    rotlwi	r0, r0, 0xb
-    add	r4, r0, r4
-    addze	r5, r5
-    neg	r0, r4
-    andc	r0, r0, r4
-    srwi	r0, r0, 0x1f
-    add	r0, r5, r0
-    stw	r0, 0x54(r3)
-_8004aedc:
-    lwz	r3, 0x54(r3)
-    blr	
+    p->unk54 = n;
+    if (p->unk54 * 2048 > p->unk10) {
+        p->unk54 = p->unk10 / 2048 + (p->unk10 % 2048 > 0);
+    }
+    return p->unk54;
 }
 
 // provenance: original
@@ -444,32 +417,16 @@ _8004b160:
     blr	
 }
 
-asm void fn_8004B180(void)
+// provenance: original
+void fn_8004B180(AdxtVoice* p, int a, int b, void* c, int nblocks)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stmw	r27, 0xc(r1)
-    mr	r27, r3
-    mr	r28, r4
-    mr	r29, r5
-    mr	r30, r6
-    mr	r31, r7
-    bl      svmLockServer
-    stw	r30, 0xc(r27)
-    slwi	r3, r31, 0xb
-    li	r0, 1
-    stw	r3, 0x10(r27)
-    stw	r28, 0x4c(r27)
-    stw	r29, 0x50(r27)
-    stb	r0, 0x41(r27)
-    bl      svmUnlockServer
-    lmw	r27, 0xc(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    svmLockServer();
+    p->unkC = c;
+    p->unk10 = nblocks * 2048;
+    p->unk4C = a;
+    p->unk50 = b;
+    p->unk41 = 1;
+    svmUnlockServer();
 }
 
 asm void fn_8004B1DC(void)
@@ -892,35 +849,17 @@ void fn_8004B79C(void)
 {
 }
 
-asm void fn_8004B7A0(void)
+// provenance: original
+int fn_8004B7A0(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8017D708@ha
-    li	r4, 0
-    stw	r0, 0x14(r1)
-    addi	r3, r3, lbl_8017D708@l
-    li	r5, 0xe60
-    bl      memset
-    lwz	r0, 0x14(r1)
-    li	r3, 1
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    memset(lbl_8017D708, 0, 0xE60);
+    return 1;
 }
 
-asm void fn_8004B7D4(void)
+// provenance: original
+int fn_8004B7D4(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_80046F7C
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return fn_80046F7C(p);
 }
 
 #pragma pop
