@@ -26,6 +26,7 @@ extern void OSClearContext(OSContext* context);
 extern void OSSetCurrentContext(OSContext* context);
 
 asm void __ARChecksize(void);
+volatile u16 __DSPRegs[] : 0xCC005000;
 
 /* auto: reloc-parity declarations */
 extern unsigned char lbl_801A64D8[8];
@@ -38,8 +39,6 @@ extern unsigned char lbl_801A69F4[4];
 extern unsigned char lbl_801A69F8[4];
 extern unsigned char lbl_801A69FC[4];
 
-#pragma push
-#pragma force_active on
 void __ARHandler(s32 interrupt, OSContext* context);
 
 // provenance: dolsdk2001:src/ar/ar.c:21  (adapted; SDK revision differs; global __AR_Callback aliased to lbl_801A69E0 in this unit)
@@ -61,69 +60,20 @@ u32 AIGetDSPInterruptEnable(void)
     return enabled;
 }
 
-asm void ARStartDMA(register u32 dir, register u32 memaddr, register u32 aramaddr, register u32 length)
+// provenance: dolsdk2001:src/ar/ar.c:44
+void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x28(r1)
-    stw	r31, 0x24(r1)
-    addi	r31, r6, 0
-    stw	r30, 0x20(r1)
-    addi	r30, r5, 0
-    stw	r29, 0x1c(r1)
-    addi	r29, r3, 0
-    stw	r28, 0x18(r1)
-    addi	r28, r4, 0
-    bl      OSDisableInterrupts
-    lis	r6, -0x3400
-    lhz	r0, 0x5020(r6)
-    addi	r8, r6, 0x5000
-    addi	r9, r6, 0x5000
-    rlwinm	r4, r0, 0, 0, 0x15
-    srwi	r0, r28, 0x10
-    or	r0, r4, r0
-    sth	r0, 0x5020(r6)
-    clrlwi	r0, r28, 0x10
-    addi	r4, r6, 0x5000
-    lhz	r5, 0x5022(r6)
-    rlwinm	r5, r5, 0, 0x1b, 0xf
-    or	r0, r5, r0
-    sth	r0, 0x5022(r6)
-    addi	r5, r6, 0x5000
-    srwi	r0, r30, 0x10
-    lhz	r6, 0x5024(r6)
-    rlwinm	r6, r6, 0, 0, 0x15
-    or	r0, r6, r0
-    sth	r0, 0x24(r8)
-    clrlwi	r0, r30, 0x10
-    lhz	r6, 0x26(r9)
-    rlwinm	r6, r6, 0, 0x1b, 0xf
-    or	r0, r6, r0
-    sth	r0, 0x26(r9)
-    srwi	r6, r31, 0x10
-    clrlwi	r0, r31, 0x10
-    lhz	r7, 0x28(r4)
-    rlwinm	r7, r7, 0, 0x11, 0xf
-    rlwimi	r7, r29, 0xf, 0, 0x10
-    sth	r7, 0x28(r4)
-    lhz	r7, 0x28(r4)
-    rlwinm	r7, r7, 0, 0, 0x15
-    or	r6, r7, r6
-    sth	r6, 0x28(r4)
-    lhz	r4, 0x2a(r5)
-    rlwinm	r4, r4, 0, 0x1b, 0xf
-    or	r0, r4, r0
-    sth	r0, 0x2a(r5)
-    bl      OSRestoreInterrupts
-    lwz	r0, 0x2c(r1)
-    lwz	r31, 0x24(r1)
-    lwz	r30, 0x20(r1)
-    lwz	r29, 0x1c(r1)
-    lwz	r28, 0x18(r1)
-    addi	r1, r1, 0x28
-    mtlr	r0
-    blr	
+    int old;
+
+    old = OSDisableInterrupts();
+    __DSPRegs[16] = (__DSPRegs[16] & 0xFFFFFC00 | (mainmem_addr >> 0x10));
+    __DSPRegs[17] = (__DSPRegs[17] & 0xFFFF001F | ((u16) mainmem_addr));
+    __DSPRegs[18] = (__DSPRegs[18] & 0xFFFFFC00 | (aram_addr >> 0x10));
+    __DSPRegs[19] = (__DSPRegs[19] & 0xFFFF001F | ((u16) aram_addr));
+    __DSPRegs[20] = __DSPRegs[20] & ~0x8000 | ((type << 0xF) & ~0x7FFF);
+    __DSPRegs[20] = (__DSPRegs[20] & 0xFFFFFC00) | (length >> 0x10);
+    __DSPRegs[21] = (__DSPRegs[21] & 0xFFFF001F) | (length & 0x0000FFFF);
+    OSRestoreInterrupts(old);
 }
 
 // provenance: dolsdk2001:src/ar/ar.c:60  (adapted; SDK revision differs; __AR_StackPointer/__AR_BlockLength/__AR_FreeBlocks aliased to lbl_801A69F0/801A69F8/801A69F4; asserts compiled out under -DNDEBUG; critical section wraps OSDisableInterrupts/OSRestoreInterrupts)
@@ -140,41 +90,22 @@ u32 ARAlloc(register u32 length)
 }
 
 
-asm u32 ARFree(register void* out)
+// provenance: dolsdk2001:src/ar/ar.c:85
+u32 ARFree(u32* length)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x18(r1)
-    stw	r31, 0x14(r1)
-    mr	r31, r3
-    bl      OSDisableInterrupts
-    lwz r4, lbl_801A69F8
-    cmplwi	r31, 0
-    addi	r0, r4, -4
-    stw r0, lbl_801A69F8
-    beq     _8001e9f4
-    lwz r4, lbl_801A69F8
-    lwz	r0, 0(r4)
-    stw	r0, 0(r31)
-_8001e9f4:
-    lwz r5, lbl_801A69F8
-    lwz r4, lbl_801A69F4
-    lwz	r6, 0(r5)
-    addi	r0, r4, 1
-    lwz r5, lbl_801A69F0
-    stw r0, lbl_801A69F4
-    subf	r0, r6, r5
-    stw r0, lbl_801A69F0
-    bl      OSRestoreInterrupts
-    lwz r3, lbl_801A69F0
-    lwz	r0, 0x1c(r1)
-    lwz	r31, 0x14(r1)
-    addi	r1, r1, 0x18
-    mtlr	r0
-    blr	
+    int old = OSDisableInterrupts();
+    *(u32*)lbl_801A69F8 = *(u32*)lbl_801A69F8 - 4;
+    if (length) {
+        *length = *(u32*)(*(u32*)lbl_801A69F8);
+    }
+    *(u32*)lbl_801A69F0 -= *(u32*)(*(u32*)lbl_801A69F8);
+    *(s32*)lbl_801A69F4 += 1;
+    OSRestoreInterrupts(old);
+    return *(u32*)lbl_801A69F0;
 }
 
+#pragma push
+#pragma force_active on
 asm u32 ARInit(register u32* stack_index_addr, register u32 num_entries)
 {
     nofralloc
@@ -230,43 +161,29 @@ _8001ead8:
     mtlr	r0
     blr	
 }
+#pragma pop
 
-asm void __ARHandler(register s32 interrupt, register OSContext* context)
+
+// provenance: dolsdk2001:src/ar/ar.c:157
+void __ARHandler(s32 interrupt, OSContext* context)
 {
-    nofralloc
-    mflr	r0
-    lis	r3, -0x3400
-    stw	r0, 4(r1)
-    addi	r3, r3, 0x5000
-    li	r0, -0x89
-    stwu	r1, -0x2e0(r1)
-    stw	r31, 0x2dc(r1)
-    addi	r31, r4, 0
-    lhz	r5, 0xa(r3)
-    and	r0, r5, r0
-    ori	r0, r0, 0x20
-    sth	r0, 0xa(r3)
-    addi	r3, r1, 0x10
-    bl      OSClearContext
-    addi	r3, r1, 0x10
-    bl      OSSetCurrentContext
-    lwz r12, lbl_801A69E0
-    cmplwi	r12, 0
-    beq     _8001eb48
-    mtlr	r12
-    blrl	
-_8001eb48:
-    addi	r3, r1, 0x10
-    bl      OSClearContext
-    mr	r3, r31
-    bl      OSSetCurrentContext
-    lwz	r0, 0x2e4(r1)
-    lwz	r31, 0x2dc(r1)
-    addi	r1, r1, 0x2e0
-    mtlr	r0
-    blr	
+    OSContext exceptionContext;
+    u16 tmp;
+
+    tmp = __DSPRegs[5];
+    tmp = (tmp & ~0x88) | 0x20;
+    __DSPRegs[5] = tmp;
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(&exceptionContext);
+    if (*(ARQCallback*)lbl_801A69E0) {
+        (*(ARQCallback*)lbl_801A69E0)();
+    }
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(context);
 }
 
+#pragma push
+#pragma force_active on
 asm void __ARChecksize(void)
 {
     nofralloc
