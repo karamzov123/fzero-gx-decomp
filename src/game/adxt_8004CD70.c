@@ -12,7 +12,7 @@ extern void fn_80041460(void);
 extern void fn_800414D0(void);
 extern void fn_80041530(void);
 extern void fn_80041554(void);
-extern void fn_80041578(void);
+extern int fn_80041578();
 extern void fn_800415AC(void);
 extern void fn_800415D0(void);
 extern void criadx_get_stream_ptr_wrapper(void);
@@ -23,7 +23,7 @@ extern void criadxGetValue(void);
 extern void fn_800416A8(void);
 extern void criadx_set_field_44(void);
 extern void criadx_set_field_40(void);
-extern void criadx_set_field_3C(void);
+extern void criadx_set_field_3C();
 extern void fn_800416E4(void);
 extern void fn_800416F0(void);
 extern void fn_800416F8(void);
@@ -39,17 +39,17 @@ extern void fn_80046804(void);
 extern void fn_80046D18(void);
 extern void fn_80046F88(void);
 extern void adx_err_report(void);
-extern void criErr_CallErrCallback(void);
-extern void ADXT_GetVoiceByAxHandle(void);
+extern void criErr_CallErrCallback();
+extern void ADXT_GetVoiceByAxHandle();
 extern void fn_8004AC4C(void);
-extern void fn_8004AE94(void);
+extern void fn_8004AE94();
 extern void ADXTGetState(void);
 extern void fn_8004B4E0(void);
 extern void fn_8004BBC4(void);
 extern void fn_8004BBC8(void);
 extern void ADXT_GetNumChan(void);
 extern void ADXT_GetStat(void);
-extern void ADXT_Stop(void);
+extern void ADXT_Stop();
 extern void fn_8004C980(void);
 extern void fn_8004CAC8(void);
 extern void ADXT_StatDecInfo(void);
@@ -65,7 +65,7 @@ extern void fn_8004EE64(void);
 extern void fn_8004EE84(void);
 extern void ADXTServerStateRequest_wrapper(void);
 void fn_8004D8DC(void);
-void fn_8004DDE4(void);
+void fn_8004DDE4();
 void fn_8004DFF0(void);
 extern void ADXT_GetResourceManager(void);
 extern void fn_8004EF28(void);
@@ -74,7 +74,7 @@ extern void fn_8005710C(void);
 extern void fn_800571EC(void);
 extern void ADXT_ProcessStreamUpdate(void);
 extern void svm_ringbuf_read(void);
-extern void strcpy(void);
+extern void strcpy();
 extern void memset(void);
 extern unsigned char E02080804_ADXT_Create_parameter_error_str[39];
 extern unsigned char E02080807_ADXT_StartFname_parameter_error_str[43];
@@ -370,49 +370,45 @@ _8004d178:
     blr	
 }
 
-asm void ADXT_StartFname(void)
+
+typedef struct AdxtObj {
+    char pad0[1];
+    char unk1;
+    signed char unk2;
+    char pad3[1];
+    void* unk4;
+    void* unk8;
+    char padC[0x60];
+    signed char unk6C;
+    char pad6D[0x2b];
+    char unk98;
+    char pad99[0xf];
+    char unkA8;
+    char padA9[3];
+    char* unkAC;
+    char* unkB0;
+    int unkB4;
+    int unkB8;
+    int unkBC;
+} AdxtObj;
+
+// provenance: original
+void ADXT_StartFname(AdxtObj* obj, char* fname)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r4
-    stw	r30, 8(r1)
-    or.	r30, r3, r3
-    beq     _8004d1b4
-    cmplwi	r31, 0
-    bne     _8004d1c4
-_8004d1b4:
-    lis     r3, E02080807_ADXT_StartFname_parameter_error_str@ha
-    addi	r3, r3, E02080807_ADXT_StartFname_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    b       _8004d208
-_8004d1c4:
-    bl      ADXT_Stop
-    lwz	r3, 0xac(r30)
-    mr	r4, r31
-    bl      strcpy
-    lwz	r5, 0xac(r30)
-    lis	r3, 0x10
-    li	r4, 0
-    li	r0, 1
-    stw	r5, 0xb0(r30)
-    addi	r3, r3, -1
-    stw	r4, 0xb4(r30)
-    stw	r4, 0xb8(r30)
-    stw	r3, 0xbc(r30)
-    stb	r0, 1(r30)
-    stb	r0, 0xa8(r30)
-    stb	r4, 2(r30)
-    stb	r4, 0x98(r30)
-_8004d208:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (!obj || !fname) {
+        criErr_CallErrCallback(E02080807_ADXT_StartFname_parameter_error_str);
+        return;
+    }
+    ADXT_Stop(obj);
+    strcpy(obj->unkAC, fname);
+    obj->unkB0 = obj->unkAC;
+    obj->unkB4 = 0;
+    obj->unkB8 = 0;
+    obj->unkBC = 0xFFFFF;
+    obj->unk1 = 1;
+    obj->unkA8 = 1;
+    obj->unk2 = 0;
+    obj->unk98 = 0;
 }
 
 asm void ADXT_ExecHndl(void)
@@ -1244,47 +1240,24 @@ _8004ddc4:
     blr	
 }
 
-asm void fn_8004DDE4(void)
+
+// provenance: original
+void fn_8004DDE4(AdxtObj* obj)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    mr	r30, r3
-    lwz	r31, 8(r3)
-    lwz	r3, 4(r3)
-    cmplwi	r31, 0
-    beq     _8004de58
-    cmplwi	r3, 0
-    bne     _8004de18
-    b       _8004de58
-_8004de18:
-    bl      fn_80041578
-    lbz	r0, 0x6c(r30)
-    extsb.	r0, r0
-    bne     _8004de48
-    lwz	r3, 4(r30)
-    li	r4, -1
-    bl      criadx_set_field_3C
-    lis	r4, -0x8000
-    lwz	r3, 8(r30)
-    addi	r4, r4, -1
-    bl      ADXT_GetVoiceByAxHandle
-    b       _8004de58
-_8004de48:
-    srawi	r0, r3, 0xb
-    mr	r3, r31
-    addze	r4, r0
-    bl      fn_8004AE94
-_8004de58:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    void* h = obj->unk8;
+    void* s = obj->unk4;
+    int v;
+
+    if (h == 0 || s == 0) {
+        return;
+    }
+    v = fn_80041578(obj->unk4);
+    if (obj->unk6C == 0) {
+        criadx_set_field_3C(obj->unk4, -1);
+        ADXT_GetVoiceByAxHandle(obj->unk8, 0x7FFFFFFF);
+    } else {
+        fn_8004AE94(h, v / 2048);
+    }
 }
 
 asm void fn_8004DE70(void)
@@ -1391,6 +1364,7 @@ _8004dfdc:
     addi	r1, r1, 0x30
     blr	
 }
+
 
 asm void fn_8004DFF0(void)
 {
