@@ -1,10 +1,22 @@
 #pragma push
 #pragma force_active on
 
+typedef struct AdxtVoiceSlot {
+    char pad0[8];
+    void* voice[2];
+    char pad10[0xd8];
+} AdxtVoiceSlot;
+
+typedef struct AdxtNotifySlot {
+    int used;
+    char pad4[8];
+} AdxtNotifySlot;
+
+
 extern void AXFreeVoice(void);
 extern void ARFree(void);
-extern void axmix_device_ctrl_clear(void);
-extern void adxtSetNotifyCallback(void);
+extern void axmix_device_ctrl_clear();
+extern void adxtSetNotifyCallback();
 extern void fn_8005A614(void);
 extern void svm_exit_critical_wrapper(void);
 extern void svm_enter_critical_wrapper(void);
@@ -13,59 +25,30 @@ extern void mfCiOpen_resource_mgr(void);
 extern void ADXT_DestroyHandle();
 extern void fn_8005BFB4(void);
 extern void SndInitManager(void);
-extern void memset(void);
+extern void memset();
 extern unsigned char lbl_800927BC[4];
 extern unsigned char lbl_80092988[36];
 extern unsigned char lbl_800929AC[43];
 extern unsigned char lbl_80190C78[4];
-extern unsigned char lbl_80191D4C[3716];
+extern AdxtVoiceSlot lbl_80191D4C[16];
 extern unsigned char lbl_80192BD0[20];
-extern unsigned char lbl_80192BE4[388];
+extern AdxtNotifySlot lbl_80192BE4[32];
 
-asm void fn_8005BC20(void)
+// provenance: original
+void fn_8005BC20(void* h)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r4, lbl_80191D4C@ha
-    li	r7, 0
-    stw	r0, 0x14(r1)
-    addi	r6, r4, lbl_80191D4C@l
-    li	r0, 2
-    stw	r31, 0xc(r1)
-_8005bc40:
-    mr	r5, r6
-    li	r8, 0
-    mtctr	r0
-_8005bc4c:
-    lwz	r4, 8(r5)
-    cmplw	r3, r4
-    bne     _8005bc84
-    mulli	r3, r7, 0xe8
-    lis     r4, lbl_80191D4C@ha
-    slwi	r0, r8, 2
-    addi	r4, r4, lbl_80191D4C@l
-    add	r3, r4, r3
-    add	r31, r3, r0
-    lwzu	r3, 8(r31)
-    bl      axmix_device_ctrl_clear
-    li	r0, 0
-    stw	r0, 0(r31)
-    b     _8005bca0
-_8005bc84:
-    addi	r5, r5, 4
-    addi	r8, r8, 1
-    bdnz     _8005bc4c
-    addi	r7, r7, 1
-    addi	r6, r6, 0xe8
-    cmpwi	r7, 0x10
-    blt     _8005bc40
-_8005bca0:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int i;
+    int j;
+
+    for (i = 0; i < 16; i++) {
+        for (j = 0; j < 2; j++) {
+            if (h == lbl_80191D4C[i].voice[j]) {
+                axmix_device_ctrl_clear(lbl_80191D4C[i].voice[j]);
+                lbl_80191D4C[i].voice[j] = 0;
+                return;
+            }
+        }
+    }
 }
 
 asm void fn_8005BCB4(void)
@@ -220,79 +203,24 @@ void ADXT_DestroyHandle(void* p)
     }
 }
 
-asm void fn_8005BEAC(void)
+// provenance: original
+AdxtNotifySlot* fn_8005BEAC(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_80192BE4@ha
-    li	r4, 0
-    stw	r0, 0x14(r1)
-    li	r0, 4
-    addi	r3, r3, lbl_80192BE4@l
-    mtctr	r0
-_8005becc:
-    lwz	r0, 0(r3)
-    cmpwi	r0, 0
-    beq     _8005bf70
-    lwz	r0, 0xc(r3)
-    addi	r4, r4, 1
-    addi	r3, r3, 0xc
-    cmpwi	r0, 0
-    beq     _8005bf70
-    lwz	r0, 0xc(r3)
-    addi	r4, r4, 1
-    addi	r3, r3, 0xc
-    cmpwi	r0, 0
-    beq     _8005bf70
-    lwz	r0, 0xc(r3)
-    addi	r4, r4, 1
-    addi	r3, r3, 0xc
-    cmpwi	r0, 0
-    beq     _8005bf70
-    lwz	r0, 0xc(r3)
-    addi	r4, r4, 1
-    addi	r3, r3, 0xc
-    cmpwi	r0, 0
-    beq     _8005bf70
-    lwz	r0, 0xc(r3)
-    addi	r4, r4, 1
-    addi	r3, r3, 0xc
-    cmpwi	r0, 0
-    beq     _8005bf70
-    lwz	r0, 0xc(r3)
-    addi	r4, r4, 1
-    addi	r3, r3, 0xc
-    cmpwi	r0, 0
-    beq     _8005bf70
-    lwz	r0, 0xc(r3)
-    addi	r4, r4, 1
-    addi	r3, r3, 0xc
-    cmpwi	r0, 0
-    beq     _8005bf70
-    addi	r3, r3, 0xc
-    addi	r4, r4, 1
-    bdnz     _8005becc
-_8005bf70:
-    cmpwi	r4, 0x20
-    bne     _8005bf8c
-    lis     r3, lbl_80092988@ha
-    addi	r3, r3, lbl_80092988@l
-    bl      adxtSetNotifyCallback
-    li	r3, 0
-    b     _8005bfa4
-_8005bf8c:
-    mulli	r4, r4, 0xc
-    lis     r3, lbl_80192BE4@ha
-    li	r0, 1
-    addi	r3, r3, lbl_80192BE4@l
-    add	r3, r3, r4
-    stw	r0, 0(r3)
-_8005bfa4:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxtNotifySlot* s;
+    int i;
+
+    for (i = 0; i < 32; i++) {
+        if (lbl_80192BE4[i].used == 0) {
+            break;
+        }
+    }
+    if (i == 32) {
+        adxtSetNotifyCallback(lbl_80092988);
+        return 0;
+    }
+    s = &lbl_80192BE4[i];
+    s->used = 1;
+    return s;
 }
 
 asm void fn_8005BFB4(void)

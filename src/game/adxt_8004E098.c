@@ -6,24 +6,33 @@
 typedef struct AdxSrv {
     char pad0[8];
     volatile int unk8;
-    char pad0C[4];
+    int unkC;
     int unk10;
-    char pad14[4];
+    int unk14;
     int unk18;
-    char pad1C[0x954];
+    char pad1C[0xc];
+    char unk28[0x948];
     char unk970[0x318];
     int unkC88;
-    char padC8C[4];
+    int unkC8C;
     int unkC90;
     volatile int unkC94;
-    char padC98[0x10];
+    int unkC98;
+    volatile int unkC9C;
+    int unkCA0;
+    char padCA4[4];
     int unkCA8;
     volatile int unkCAC;
 } AdxSrv;
 
+typedef struct AdxCb {
+    void (*fn)();
+    void* arg;
+} AdxCb;
+
 extern void OSCancelThread();
 extern void OSCreateThread();
-extern void OSDisableInterrupts();
+extern int OSDisableInterrupts();
 extern void OSDisableScheduler();
 extern void OSEnableScheduler();
 extern void OSRestoreInterrupts();
@@ -31,7 +40,7 @@ extern void OSResumeThread();
 extern void OSSetThreadPriority();
 extern void OSSuspendThread();
 extern void* OSGetCurrentThread();
-extern void fn_80011358();
+extern int fn_80011358();
 extern void VIWaitForRetrace();
 extern void CRI_SPSD_parser();
 extern void criErr_CallErrCallback();
@@ -92,9 +101,9 @@ void fn_8004EA94();
 void fn_8004EB00();
 void fn_8004ECF4();
 extern unsigned char lbl_80091198[72];
-extern unsigned char lbl_8012B918[24];
-extern unsigned char lbl_8012B930[8];
-extern unsigned char lbl_80178CB8[4];
+extern int lbl_8012B918[6];
+extern AdxCb lbl_8012B930[];
+extern int lbl_80178CB8[];
 extern unsigned char lbl_8017E5BC[964];
 extern unsigned char lbl_8017E980[];
 extern unsigned char lbl_8017E984[31916];
@@ -683,55 +692,24 @@ void fn_8004E8A0(void)
     g->unkC90 = 1;
 }
 
-asm void fn_8004E8F8(void)
+// provenance: original
+void fn_8004E8F8(void)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis	r5, lbl_8017E980@ha
-    lis     r4, lbl_8012B930@ha
-    stw	r0, 0x24(r1)
-    lis     r3, lbl_80178CB8@ha
-    stw	r31, 0x1c(r1)
-    addi	r31, r3, lbl_80178CB8@l
-    stw	r30, 0x18(r1)
-    addi	r30, r4, lbl_8012B930@l
-    stw	r29, 0x14(r1)
-    addi	r29, r5, lbl_8017E980@l
-    b       _8004e978
-_8004e92c:
-    bl      VIWaitForRetrace
-    lwz	r4, 0x14(r29)
-    lwz	r3, 0(r31)
-    addi	r4, r4, 1
-    addi	r0, r3, 1
-    stw	r4, 0x14(r29)
-    stw	r0, 0(r31)
-    bl      fn_80058E44
-    lwz	r0, 0xca0(r29)
-    cmpwi	r0, 0
-    bne     _8004e978
-    addi	r3, r29, 0x28
-    bl      OSResumeThread
-    lwz	r12, 0(r30)
-    cmplwi	r12, 0
-    beq     _8004e978
-    lwz	r3, 4(r30)
-    mtctr	r12
-    bctrl	
-_8004e978:
-    lwz	r0, 0xc9c(r29)
-    cmpwi	r0, 1
-    beq     _8004e92c
-    li	r0, 1
-    stw	r0, 0xc98(r29)
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    AdxSrv* g = (AdxSrv*)lbl_8017E980;
+
+    while (g->unkC9C == 1) {
+        VIWaitForRetrace();
+        g->unk14++;
+        lbl_80178CB8[0]++;
+        fn_80058E44();
+        if (g->unkCA0 == 0) {
+            OSResumeThread(g->unk28);
+            if (lbl_8012B930[0].fn != 0) {
+                lbl_8012B930[0].fn(lbl_8012B930[0].arg);
+            }
+        }
+    }
+    g->unkC98 = 1;
 }
 
 // provenance: original
@@ -816,55 +794,28 @@ void fn_8004EA94(void)
     }
 }
 
-asm void fn_8004EB00(void)
+// provenance: original
+void fn_8004EB00(void)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis     r3, lbl_8017E980@ha
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    addi	r30, r3, lbl_8017E980@l
-    stw	r29, 0x14(r1)
-    stw	r28, 0x10(r1)
-    lwz	r0, 8(r30)
-    cmpwi	r0, 0
-    bne     _8004eb88
-    bl      OSDisableInterrupts
-    mr	r29, r3
-    bl      OSDisableScheduler
-    li	r0, 1
-    stw	r0, 0xc8c(r30)
-    bl      OSGetCurrentThread
-    mr	r28, r3
-    bl      fn_80011358
-    lis     r4, lbl_8012B918@ha
-    mr	r31, r3
-    addi	r4, r4, lbl_8012B918@l
-    mr	r3, r28
-    lwz	r4, 0(r4)
-    bl      OSSetThreadPriority
-    li	r0, 0
-    stw	r31, 0xc88(r30)
-    stw	r0, 0xc8c(r30)
-    bl      OSEnableScheduler
-    mr	r3, r29
-    bl      OSRestoreInterrupts
-    addi	r3, r30, 0x970
-    bl      OSResumeThread
-_8004eb88:
-    lwz	r3, 8(r30)
-    addi	r0, r3, 1
-    stw	r0, 8(r30)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    lwz	r28, 0x10(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    AdxSrv* g = (AdxSrv*)lbl_8017E980;
+    int intr;
+    void* self;
+    int pri;
+
+    if (g->unk8 == 0) {
+        intr = OSDisableInterrupts();
+        OSDisableScheduler();
+        g->unkC8C = 1;
+        self = OSGetCurrentThread();
+        pri = fn_80011358();
+        OSSetThreadPriority(self, lbl_8012B918[0]);
+        g->unkC88 = pri;
+        g->unkC8C = 0;
+        OSEnableScheduler();
+        OSRestoreInterrupts(intr);
+        OSResumeThread(g->unk970);
+    }
+    g->unk8++;
 }
 
 // provenance: original
