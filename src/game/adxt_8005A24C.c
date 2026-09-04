@@ -4,6 +4,17 @@
    spans more than one original translation unit. */
 #pragma dont_inline on
 
+typedef struct AdxtErr {
+    void (*cb)();
+    void* arg;
+    char msg[1];
+} AdxtErr;
+
+typedef struct AdxtVoiceRef {
+    char pad0[4];
+    int unk4;
+} AdxtVoiceRef;
+
 typedef struct AdxtNotify {
     void (*cb)();
     void* arg;
@@ -20,9 +31,18 @@ typedef struct AdxtSlot {
     char pad4[4];
     void* unk8[2];
     void* unk10[2];
-    char pad18[0x20];
+    char pad18[0x18];
+    struct AdxtStream* unk30[2];
     struct AdxtStream* unk38[2];
-    char pad40[0x44];
+    int unk40[4];
+    int unk50[4];
+    int unk60[2];
+    int unk68;
+    int unk6C;
+    int unk70[2];
+    int unk78;
+    int unk7C;
+    char pad80[4];
     int unk84;
     int unk88[2];
     char pad90[0x58];
@@ -31,7 +51,8 @@ typedef struct AdxtSlot {
 typedef struct AdxtVt {
     char pad0[0xc];
     void (*fnC)();
-    char pad10[0x14];
+    char pad10[0x10];
+    void (*fn20)();
     int (*fn24)();
 } AdxtVt;
 
@@ -74,12 +95,12 @@ extern void ADXT_GetNumHandles(void);
 extern void ADXT_DestroyHandle();
 extern void fn_8005BC20(void);
 extern void fn_8005BEAC(void);
-extern void sprintf(void);
+extern void sprintf(char*, ...);
 extern void strncpy();
 extern void strcpy(void);
-extern void strtol(void);
+extern int strtol();
 extern void memset();
-extern void strlen(void);
+extern unsigned int strlen();
 extern unsigned char E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str[61];
 extern unsigned char E01100309_illegal_file_name_format_s_mfci_get_adr_size_str[59];
 extern unsigned char lbl_80092790[44];
@@ -98,8 +119,8 @@ extern unsigned char lbl_80190C7C[4];
 extern unsigned char lbl_80190C88[4];
 extern unsigned char lbl_80190C8C[4288];
 extern AdxtSlot lbl_80191D4C[16];
-void fn_8005ACF0(void);
-void fn_8005ADBC(void);
+void fn_8005ACF0();
+void fn_8005ADBC();
 
 asm void fn_8005A24C(void)
 {
@@ -260,80 +281,38 @@ _8005a460:
     blr	
 }
 
-asm void fn_8005A47C(void)
+// provenance: original
+int fn_8005A47C(char* name)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis     r4, lbl_80190178@ha
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    addi	r31, r4, lbl_80190178@l
-    stw	r30, 0x18(r1)
-    mr	r30, r3
-    bl      strlen
-    cmplwi	r3, 0x11
-    beq     _8005a4e0
-    lis     r3, E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str@ha
-    mr	r5, r30
-    addi	r4, r3, E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str@l
-    addi	r3, r31, 8
-    crxor	6, 6, 6
-    bl      sprintf
-    lwz	r12, 0(r31)
-    cmplwi	r12, 0
-    beq     _8005a4e0
-    addi	r4, r31, 8
-    lwz	r3, 4(r31)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_8005a4e0:
-    lbz	r0, 8(r30)
-    cmpwi	r0, 0x2e
-    beq     _8005a524
-    lis     r3, E01100309_illegal_file_name_format_s_mfci_get_adr_size_str@ha
-    mr	r5, r30
-    addi	r4, r3, E01100309_illegal_file_name_format_s_mfci_get_adr_size_str@l
-    addi	r3, r31, 8
-    crxor	6, 6, 6
-    bl      sprintf
-    lwz	r12, 0(r31)
-    cmplwi	r12, 0
-    beq     _8005a524
-    addi	r4, r31, 8
-    lwz	r3, 4(r31)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_8005a524:
-    stw	r30, 8(r1)
-    mr	r3, r30
-    addi	r4, r1, 8
-    li	r5, 0x10
-    bl      strtol
-    lwz	r3, 8(r1)
-    lbz	r0, 0(r3)
-    extsb.	r0, r0
-    beq     _8005a550
-    addi	r0, r3, 1
-    stw	r0, 8(r1)
-_8005a550:
-    addic.	r0, r1, 0xc
-    beq     _8005a56c
-    lwz	r3, 8(r1)
-    addi	r4, r1, 8
-    li	r5, 0x10
-    bl      strtol
-    stw	r3, 0xc(r1)
-_8005a56c:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r3, 0xc(r1)
-    lwz	r30, 0x18(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    AdxtErr* e = (AdxtErr*)lbl_80190178;
+    int size;
+    signed char* end;
+    int c;
+
+    if (strlen(name) != 17) {
+        sprintf(e->msg, (char*)E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str, name);
+        if (e->cb != 0) {
+            e->cb(e->arg, e->msg, 0);
+        }
+    }
+
+    c = name[8];
+    if (c != '.') {
+        sprintf(e->msg, (char*)E01100309_illegal_file_name_format_s_mfci_get_adr_size_str, name);
+        if (e->cb != 0) {
+            e->cb(e->arg, e->msg, 0);
+        }
+    }
+
+    end = (signed char*)name;
+    strtol(name, &end, 16);
+    if (*end != 0) {
+        end = end + 1;
+    }
+    if (&size != 0) {
+        size = strtol(end, &end, 16);
+    }
+    return size;
 }
 
 // provenance: original
@@ -842,122 +821,37 @@ _8005acdc:
     blr	
 }
 
-asm void fn_8005ACF0(void)
+// provenance: original
+void fn_8005ACF0(AdxtVoiceRef* v)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    lwz	r0, 4(r3)
-    lis     r3, lbl_80191D4C@ha
-    addi	r3, r3, lbl_80191D4C@l
-    clrlwi	r4, r0, 1
-    clrlwi	r0, r0, 0x1f
-    srwi	r5, r4, 0x1f
-    add	r4, r5, r4
-    srawi	r4, r4, 1
-    xor	r0, r0, r5
-    mulli	r4, r4, 0xe8
-    subf	r29, r5, r0
-    add	r30, r3, r4
-    slwi	r3, r29, 2
-    add	r31, r30, r3
-    lwzu	r0, 0x70(r31)
-    cmpwi	r0, 1
-    bne     _8005ada0
-    add	r3, r30, r3
-    slwi	r4, r29, 3
-    lwz	r3, 0x38(r3)
-    addi	r5, r4, 0x50
-    add	r5, r30, r5
-    li	r4, 1
-    lwz	r6, 0(r3)
-    lwz	r12, 0x20(r6)
-    mtctr	r12
-    bctrl	
-    li	r0, 0
-    stw	r0, 0(r31)
-    lbz	r0, 3(r30)
-    extsb	r3, r0
-    addi	r0, r3, -1
-    cmpw	r29, r0
-    bne     _8005ada0
-    lwz	r3, 0x7c(r30)
-    lwz	r0, 0x78(r30)
-    add	r0, r3, r0
-    stw	r0, 0x7c(r30)
-_8005ada0:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int a = v->unk4 & 0x7FFFFFFF;
+    AdxtSlot* s = &lbl_80191D4C[a / 2];
+    int idx = a % 2;
+
+    if (s->unk70[idx] == 1) {
+        s->unk38[idx]->vt->fn20(s->unk38[idx], 1, &s->unk50[idx * 2]);
+        s->unk70[idx] = 0;
+        if (idx == s->unk3 - 1) {
+            s->unk7C = s->unk7C + s->unk78;
+        }
+    }
 }
 
-asm void fn_8005ADBC(void)
+// provenance: original
+void fn_8005ADBC(AdxtVoiceRef* v)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stmw	r27, 0xc(r1)
-    lwz	r0, 4(r3)
-    lis     r3, lbl_80191D4C@ha
-    addi	r3, r3, lbl_80191D4C@l
-    clrlwi	r4, r0, 1
-    clrlwi	r0, r0, 0x1f
-    srwi	r5, r4, 0x1f
-    add	r4, r5, r4
-    srawi	r4, r4, 1
-    xor	r0, r0, r5
-    mulli	r4, r4, 0xe8
-    subf	r30, r5, r0
-    add	r31, r3, r4
-    slwi	r29, r30, 2
-    add	r27, r31, r29
-    lwzu	r0, 0x60(r27)
-    cmpwi	r0, 1
-    bne     _8005ae84
-    add	r3, r31, r29
-    slwi	r0, r30, 3
-    lwz	r3, 0x30(r3)
-    add	r28, r31, r0
-    addi	r5, r28, 0x40
-    li	r4, 0
-    lwz	r6, 0(r3)
-    lwz	r12, 0x20(r6)
-    mtctr	r12
-    bctrl	
-    add	r3, r31, r29
-    addi	r5, r28, 0x50
-    lwz	r3, 0x38(r3)
-    li	r4, 1
-    lwz	r6, 0(r3)
-    lwz	r12, 0x20(r6)
-    mtctr	r12
-    bctrl	
-    li	r0, 0
-    stw	r0, 0(r27)
-    lbz	r0, 3(r31)
-    extsb	r3, r0
-    addi	r0, r3, -1
-    cmpw	r30, r0
-    bne     _8005ae84
-    lwz	r3, 0x6c(r31)
-    lwz	r0, 0x68(r31)
-    add	r0, r3, r0
-    stw	r0, 0x6c(r31)
-_8005ae84:
-    lmw	r27, 0xc(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int a = v->unk4 & 0x7FFFFFFF;
+    AdxtSlot* s = &lbl_80191D4C[a / 2];
+    int idx = a % 2;
+
+    if (s->unk60[idx] == 1) {
+        s->unk30[idx]->vt->fn20(s->unk30[idx], 0, &s->unk40[idx * 2]);
+        s->unk38[idx]->vt->fn20(s->unk38[idx], 1, &s->unk50[idx * 2]);
+        s->unk60[idx] = 0;
+        if (idx == s->unk3 - 1) {
+            s->unk6C = s->unk6C + s->unk68;
+        }
+    }
 }
 
 asm void fn_8005AE98(void)

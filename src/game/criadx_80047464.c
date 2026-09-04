@@ -1,17 +1,40 @@
 #pragma push
 #pragma force_active on
 
+struct AdxObj;
+
+typedef struct AdxSpan {
+    void* ptr;
+    int len;
+} AdxSpan;
+
+typedef struct AdxObjVt {
+    char pad0[0x18];
+    void (*fn18)();
+    void (*fn1C)();
+    void (*fn20)();
+} AdxObjVt;
+
+typedef struct AdxObj {
+    AdxObjVt* vt;
+} AdxObj;
+
 typedef struct AdxHandle {
     char pad0[1];
     signed char unk1;
     char pad2[1];
     signed char unk3;
-    char pad4[0x28];
+    AdxObj* unk4[9];
+    int unk28;
     int unk2C;
     int unk30;
     char pad34[8];
     int unk3C;
-    char pad40[0x40];
+    char pad40[0x18];
+    int unk58;
+    char pad5C[0xc];
+    int unk68;
+    char pad6C[0x14];
     void* unk80;
     void* unk84;
 } AdxHandle;
@@ -43,7 +66,7 @@ extern void ADXT_ProcessStreamUpdate(void);
 extern void fn_80057B9C(void);
 extern void fn_80047C94(void);
 extern void fn_80047ADC();
-extern void fn_80047B04(void);
+extern void fn_80047B04();
 extern void fn_80047864();
 extern void memcpy(void);
 extern void fn_80047AF8();
@@ -433,79 +456,35 @@ void fn_80047AF8(void *p)
     *(unsigned char *)((char *)p + 3) = 1;
 }
 
-asm void fn_80047B04(void)
+// provenance: original
+void fn_80047B04(AdxHandle* p)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    li	r30, 0
-    stw	r29, 0x14(r1)
-    stw	r28, 0x10(r1)
-    mr	r28, r3
-    mr	r31, r28
-    b       _80047bc0
-_80047b30:
-    lwz	r0, 0x68(r28)
-    rlwinm.	r29, r0, 1, 0, 0x1e
-    ble     _80047bb8
-    lwz	r3, 4(r31)
-    mr	r5, r29
-    addi	r6, r1, 8
-    li	r4, 0
-    lwz	r7, 0(r3)
-    lwz	r12, 0x18(r7)
-    mtctr	r12
-    bctrl	
-    lwz	r5, 0xc(r1)
-    cmpw	r5, r29
-    beq     _80047b90
-    slwi	r0, r30, 2
-    addi	r5, r1, 8
-    add	r3, r28, r0
-    li	r4, 0
-    lwz	r3, 4(r3)
-    lwz	r6, 0(r3)
-    lwz	r12, 0x1c(r6)
-    mtctr	r12
-    bctrl	
-_80047b8c:
-    b       _80047b8c
-_80047b90:
-    lwz	r3, 8(r1)
-    li	r4, 0
-    bl      memset
-    lwz	r3, 4(r31)
-    addi	r5, r1, 8
-    li	r4, 1
-    lwz	r6, 0(r3)
-    lwz	r12, 0x20(r6)
-    mtctr	r12
-    bctrl	
-_80047bb8:
-    addi	r31, r31, 4
-    addi	r30, r30, 1
-_80047bc0:
-    lwz	r0, 0x58(r28)
-    cmpw	r30, r0
-    blt     _80047b30
-    li	r3, 0
-    li	r0, 1
-    stw	r3, 0x28(r28)
-    stw	r3, 0x2c(r28)
-    stw	r3, 0x30(r28)
-    stb	r3, 3(r28)
-    stb	r0, 1(r28)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    lwz	r28, 0x10(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    AdxSpan sp;
+    AdxHandle* q;
+    int i;
+    int n;
+
+    q = p;
+    for (i = 0; i < p->unk58; i++) {
+        n = p->unk68 * 2;
+        if (n > 0) {
+            q->unk4[0]->vt->fn18(q->unk4[0], 0, n, &sp);
+            if (sp.len != n) {
+                p->unk4[i]->vt->fn1C(p->unk4[i], 0, &sp);
+                for (;;) {
+                }
+            }
+            memset(sp.ptr, 0, sp.len);
+            q->unk4[0]->vt->fn20(q->unk4[0], 1, &sp);
+        }
+        q = (AdxHandle*)((char*)q + 4);
+    }
+
+    p->unk28 = 0;
+    p->unk2C = 0;
+    p->unk30 = 0;
+    p->unk3 = 0;
+    p->unk1 = 1;
 }
 
 // provenance: original

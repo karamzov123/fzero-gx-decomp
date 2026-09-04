@@ -30,7 +30,7 @@ extern int criadxGetValue();
 extern void fn_80041700(void);
 extern void svmUnlockServer_wrapper(void);
 extern void svmLockServer_wrapper(void);
-extern void fn_80046C28(void);
+extern int fn_80046C28();
 extern void criErr_CallErrCallback();
 extern int fn_80047548();
 extern void fn_8004C164(void);
@@ -178,50 +178,29 @@ int fn_8004B974(unsigned short* p, int n, int* out)
     return 1;
 }
 
-asm void fn_8004B9A4(void)
+// provenance: original
+int fn_8004B9A4(unsigned short* hdr, int size, int* out)
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    cmpwi	r4, 2
-    stw	r0, 0x34(r1)
-    stw	r31, 0x2c(r1)
-    mr	r31, r5
-    bge     _8004b9c8
-    li	r3, 0
-    b       _8004ba24
-_8004b9c8:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8000
-    beq     _8004b9dc
-    li	r3, 0
-    b       _8004ba24
-_8004b9dc:
-    addi	r5, r1, 0x1c
-    addi	r0, r1, 0x18
-    stw	r5, 8(r1)
-    addi	r5, r1, 0x14
-    addi	r6, r1, 0x13
-    addi	r7, r1, 0x12
-    stw	r0, 0xc(r1)
-    addi	r8, r1, 0x11
-    addi	r9, r1, 0x10
-    addi	r10, r1, 0x20
-    bl      fn_80046C28
-    cmpwi	r3, 0
-    bge     _8004ba18
-    li	r3, 0
-    b       _8004ba24
-_8004ba18:
-    lha	r0, 0x14(r1)
-    li	r3, 1
-    stw	r0, 0(r31)
-_8004ba24:
-    lwz	r0, 0x34(r1)
-    lwz	r31, 0x2c(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr	
+    int v20;
+    int v1c;
+    int v18;
+    short v14;
+    char c13;
+    char c12;
+    char c11;
+    char c10;
+
+    if (size < 2) {
+        return 0;
+    }
+    if (hdr[0] != 0x8000) {
+        return 0;
+    }
+    if (fn_80046C28(hdr, size, &v14, &c13, &c12, &c11, &c10, &v20, &v1c, &v18) < 0) {
+        return 0;
+    }
+    *out = v14;
+    return 1;
 }
 
 // provenance: original disassembly reconstruction fn_8004BA38

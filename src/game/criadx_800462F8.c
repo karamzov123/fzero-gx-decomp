@@ -659,73 +659,31 @@ int fn_80046BE0(const u8* data, int size, u16* out)
 }
 
 #pragma push
-asm void fn_80046C28(void)
+// provenance: original
+int fn_80046C28(u8* h, int size, s16* nsmpl, signed char* fmt, signed char* nchan, signed char* bps,
+                signed char* flag, u32* rate, u32* total, s32* bpf)
 {
-    nofralloc
-    cmpwi	r4, 0x10
-    lwz	r11, 8(r1)
-    lwz	r4, 0xc(r1)
-    bge     _80046c40
-    li	r3, -1
-    blr	
-_80046c40:
-    lbz	r12, 0(r3)
-    lbz	r0, 1(r3)
-    rlwimi	r0, r12, 8, 0x10, 0x17
-    clrlwi	r0, r0, 0x10
-    cmplwi	r0, 0x8000
-    beq     _80046c60
-    li	r3, -2
-    blr	
-_80046c60:
-    lbz	r0, 2(r3)
-    lbz	r12, 3(r3)
-    rlwimi	r12, r0, 8, 0x10, 0x17
-    addi	r0, r12, 4
-    sth	r0, 0(r5)
-    lbz	r0, 4(r3)
-    stb	r0, 0(r6)
-    lbz	r0, 5(r3)
-    stb	r0, 0(r8)
-    lbz	r0, 6(r3)
-    stb	r0, 0(r7)
-    lbz	r0, 7(r3)
-    stb	r0, 0(r9)
-    lbz	r0, 9(r3)
-    lbz	r5, 8(r3)
-    slwi	r0, r0, 0x10
-    lbz	r6, 0xa(r3)
-    rlwimi	r0, r5, 0x18, 0, 7
-    lbz	r9, 0xb(r3)
-    rlwimi	r0, r6, 8, 0x10, 0x17
-    or	r0, r9, r0
-    stw	r0, 0(r10)
-    lbz	r0, 0xd(r3)
-    lbz	r5, 0xc(r3)
-    lbz	r6, 0xe(r3)
-    slwi	r0, r0, 0x10
-    rlwimi	r0, r5, 0x18, 0, 7
-    lbz	r3, 0xf(r3)
-    rlwimi	r0, r6, 8, 0x10, 0x17
-    or	r0, r3, r0
-    stw	r0, 0(r11)
-    lbz	r5, 0(r7)
-    extsb.	r0, r5
-    bne     _80046cf4
-    li	r0, 0
-    stw	r0, 0(r4)
-    b       _80046d10
-_80046cf4:
-    lbz	r3, 0(r8)
-    extsb	r0, r5
-    extsb	r3, r3
-    addi	r3, r3, -2
-    slwi	r3, r3, 3
-    divw	r0, r3, r0
-    stw	r0, 0(r4)
-_80046d10:
-    li	r3, 0
-    blr	
+    if (size < 0x10) {
+        return -1;
+    }
+    if ((u16)((h[0] << 8) | h[1]) != 0x8000) {
+        return -2;
+    }
+
+    *nsmpl = ((h[2] << 8) | h[3]) + 4;
+    *fmt = h[4];
+    *bps = h[5];
+    *nchan = h[6];
+    *flag = h[7];
+    *rate = (h[8] << 24) | (h[9] << 16) | (h[10] << 8) | h[11];
+    *total = (h[12] << 24) | (h[13] << 16) | (h[14] << 8) | h[15];
+
+    if (*nchan == 0) {
+        *bpf = 0;
+    } else {
+        *bpf = (*bps - 2) * 8 / *nchan;
+    }
+    return 0;
 }
 #pragma pop
 

@@ -33,15 +33,15 @@ extern void fn_8004E300();
 extern void fn_8004E2CC();
 extern void fn_8004E2DC();
 extern void fn_8004E2B0();
-extern void CRI_FORM_parser(void);
+extern int CRI_FORM_parser();
 extern int criadx_spsd_probe();
-extern void fn_800462F8(void);
-extern void criadx_wav_probe(void);
-extern void fn_80043050(void);
-extern void criadx_aiff_probe(void);
-extern void fn_80043B48(void);
-extern void CRI_WAVE_parser(void);
-extern void criadx_snd_probe(void);
+extern int fn_800462F8();
+extern int criadx_wav_probe();
+extern int fn_80043050();
+extern int criadx_aiff_probe();
+extern int fn_80043B48();
+extern int CRI_WAVE_parser();
+extern int criadx_snd_probe();
 extern void fn_80046C28(void);
 extern void adx_err_report(void);
 extern void fn_80046B90(void);
@@ -261,76 +261,28 @@ void fn_800455AC(void* p, int a, int b)
     *(int*)((char*)p + 0x7c) = b;
 }
 
-asm void criadx_format_dispatch(void)
+// provenance: original
+int criadx_format_dispatch(void* ctx, unsigned short* hdr, void* arg)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r5
-    stw	r30, 0x18(r1)
-    mr	r30, r4
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    lhz	r0, 0(r4)
-    cmplwi	r0, 0x8000
-    bne     _800455f0
-    bl      CRI_FORM_parser
-    b       _80045684
-_800455f0:
-    mr	r3, r30
-    bl      criadx_spsd_probe
-    cmpwi	r3, 0
-    beq     _80045614
-    mr	r3, r29
-    mr	r4, r30
-    mr	r5, r31
-    bl      fn_800462F8
-    b       _80045684
-_80045614:
-    mr	r3, r30
-    bl      criadx_wav_probe
-    cmpwi	r3, 0
-    beq     _80045638
-    mr	r3, r29
-    mr	r4, r30
-    mr	r5, r31
-    bl      fn_80043050
-    b       _80045684
-_80045638:
-    mr	r3, r30
-    bl      criadx_aiff_probe
-    cmpwi	r3, 0
-    beq     _8004565c
-    mr	r3, r29
-    mr	r4, r30
-    mr	r5, r31
-    bl      fn_80043B48
-    b       _80045684
-_8004565c:
-    mr	r3, r30
-    bl      CRI_WAVE_parser
-    cmpwi	r3, 0
-    beq     _80045680
-    mr	r3, r29
-    mr	r4, r30
-    mr	r5, r31
-    bl      criadx_snd_probe
-    b       _80045684
-_80045680:
-    li	r3, -1
-_80045684:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    if (hdr[0] == 0x8000) {
+        return CRI_FORM_parser(ctx, hdr, arg);
+    }
+    if (criadx_spsd_probe(hdr) != 0) {
+        return fn_800462F8(ctx, hdr, arg);
+    }
+    if (criadx_wav_probe(hdr) != 0) {
+        return fn_80043050(ctx, hdr, arg);
+    }
+    if (criadx_aiff_probe(hdr) != 0) {
+        return fn_80043B48(ctx, hdr, arg);
+    }
+    if (CRI_WAVE_parser(hdr) != 0) {
+        return criadx_snd_probe(ctx, hdr, arg);
+    }
+    return -1;
 }
 
-asm void CRI_FORM_parser(void)
+asm int CRI_FORM_parser()
 {
     nofralloc
     stwu	r1, -0x50(r1)
