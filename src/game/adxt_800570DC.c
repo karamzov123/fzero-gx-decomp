@@ -18,8 +18,30 @@ typedef struct SjBuf {
 
 typedef struct GcciSlot {
     unsigned char unk0;
-    char pad1[0x237];
+    signed char unk1;
+    unsigned char unk2;
+    char pad3[0x19];
+    int unk1C;
+    int unk20;
+    int unk24;
+    void* unk28;
+    int unk2C;
+    char pad30[4];
+    int unk34;
+    char pad38[0x200];
 } GcciSlot;
+
+typedef struct SjSlot {
+    void* unk0;
+    int unk4;
+    void* unk8;
+    int unkC;
+    int unk10;
+    int unk14;
+    int unk18;
+    void* unk1C;
+    void* unk20;
+} SjSlot;
 
 typedef struct GcciCrit {
     int a;
@@ -36,7 +58,7 @@ typedef struct SjRing {
     int unk18;
     char pad1C[4];
     int unk20;
-    char pad24[4];
+    int unk24;
     int unk28;
     int unk2C;
     int unk30;
@@ -49,7 +71,7 @@ extern int OSDisableInterrupts();
 extern void OSRestoreInterrupts();
 extern void fn_8004A550(void);
 extern void ADXT_GetVoiceByAxHandle(void);
-extern void ADXT_StartVoice(void);
+extern void ADXT_StartVoice();
 extern void fn_8004AD84(void);
 extern void fn_8004ADF4(void);
 extern void fn_8004AE78(void);
@@ -57,7 +79,7 @@ extern void fn_8004AE94(void);
 extern void ADXTGetState(void);
 extern void ADXT_StopVoice(void);
 extern void fn_8004B180(void);
-extern void gcciErrPrintf(void);
+extern void gcciErrPrintf(const char* fmt, ...);
 extern void gcci_set_critical_value();
 extern void gccicrit_leave();
 extern void gccicrit_enter();
@@ -88,7 +110,7 @@ extern GcciSlot lbl_80188A8C[16];
 extern volatile int lbl_8018AE10[];
 extern int lbl_8018AE14[];
 extern int lbl_8018AE18[];
-extern unsigned char lbl_8018AE1C[1156];
+extern SjSlot lbl_8018AE1C[32];
 extern int lbl_8018B2A0[];
 extern unsigned char lbl_8018B2A4[16388];
 extern unsigned char lbl_8018F2A8[];
@@ -115,69 +137,40 @@ void fn_8005710C(void* p, int val)
     *(int*)((char*)p + 0x28) = val;
 }
 
-asm void fn_80057114()
+// provenance: original
+void fn_80057114(GcciSlot* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    beq     _800571d8
-    bne     _80057144
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    b     _800571c0
-_80057144:
-    lbz	r0, 1(r31)
-    extsb.	r0, r0
-    beq     _800571c0
-    li	r0, 0
-    stb	r0, 1(r31)
-    lwz	r3, 0x28(r31)
-    cmplwi	r3, 0
-    beq     _8005717c
-    lbz	r0, 2(r31)
-    cmpwi	r0, 1
-    bne     _8005717c
-    bl      ADXT_StartVoice
-    li	r0, 0
-    stb	r0, 2(r31)
-_8005717c:
-    li	r3, 0
-    cmplwi	r31, 0
-    stw	r3, 0x2c(r31)
-    bne     _800571a0
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    b     _800571b8
-_800571a0:
-    lbz	r0, 1(r31)
-    extsb.	r0, r0
-    bne     _800571b8
-    stw	r3, 0x1c(r31)
-    stw	r3, 0x20(r31)
-    stw	r3, 0x24(r31)
-_800571b8:
-    li	r0, 0
-    stw	r0, 0x34(r31)
-_800571c0:
-    li	r0, 0
-    mr	r3, r31
-    stb	r0, 0(r31)
-    li	r4, 0
-    li	r5, 0x238
-    bl      memset
-_800571d8:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        return;
+    }
+
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+    } else if (p->unk1 != 0) {
+        int mode;
+
+        p->unk1 = 0;
+        if (p->unk28 != 0) {
+            mode = p->unk2;
+            if (mode == 1) {
+                ADXT_StartVoice(p->unk28);
+                p->unk2 = 0;
+            }
+        }
+
+        p->unk2C = 0;
+        if (p == 0) {
+            gcciErrPrintf((char*)E0003_lsc_null_str);
+        } else if (p->unk1 == 0) {
+            p->unk1C = 0;
+            p->unk20 = 0;
+            p->unk24 = 0;
+        }
+        p->unk34 = 0;
+    }
+
+    p->unk0 = 0;
+    memset(p, 0, 0x238);
 }
 
 asm void fn_800571EC(void)
@@ -702,86 +695,32 @@ void fn_80057B5C(void* p)
     }
 }
 
-asm void fn_80057B9C(void)
+// provenance: original
+SjSlot* fn_80057B9C(int a, int b)
 {
-    nofralloc
-    lis     r5, lbl_8018AE1C@ha
-    li	r0, 4
-    addi	r5, r5, lbl_8018AE1C@l
-    li	r6, 0
-    mtctr	r0
-_80057bb0:
-    lwz	r0, 4(r5)
-    cmpwi	r0, 0
-    beq     _80057c54
-    lwz	r0, 0x28(r5)
-    addi	r6, r6, 1
-    addi	r5, r5, 0x24
-    cmpwi	r0, 0
-    beq     _80057c54
-    lwz	r0, 0x28(r5)
-    addi	r6, r6, 1
-    addi	r5, r5, 0x24
-    cmpwi	r0, 0
-    beq     _80057c54
-    lwz	r0, 0x28(r5)
-    addi	r6, r6, 1
-    addi	r5, r5, 0x24
-    cmpwi	r0, 0
-    beq     _80057c54
-    lwz	r0, 0x28(r5)
-    addi	r6, r6, 1
-    addi	r5, r5, 0x24
-    cmpwi	r0, 0
-    beq     _80057c54
-    lwz	r0, 0x28(r5)
-    addi	r6, r6, 1
-    addi	r5, r5, 0x24
-    cmpwi	r0, 0
-    beq     _80057c54
-    lwz	r0, 0x28(r5)
-    addi	r6, r6, 1
-    addi	r5, r5, 0x24
-    cmpwi	r0, 0
-    beq     _80057c54
-    lwz	r0, 0x28(r5)
-    addi	r6, r6, 1
-    addi	r5, r5, 0x24
-    cmpwi	r0, 0
-    beq     _80057c54
-    addi	r5, r5, 0x24
-    addi	r6, r6, 1
-    bdnz     _80057bb0
-_80057c54:
-    cmpwi	r6, 0x20
-    bne     _80057c64
-    li	r3, 0
-    blr	
-_80057c64:
-    mulli	r7, r6, 0x24
-    lis     r6, lbl_8018AE1C@ha
-    lis     r5, lbl_801322D0@ha
-    addi	r0, r6, lbl_8018AE1C@l
-    add	r7, r0, r7
-    li	r0, 1
-    stw	r0, 4(r7)
-    addi	r0, r5, lbl_801322D0@l
-    lis     r6, lbl_800922E0@ha
-    lis     r5, fn_80057D60@ha
-    stw	r0, 0(r7)
-    addi	r6, r6, lbl_800922E0@l
-    addi	r5, r5, fn_80057D60@l
-    li	r0, 0
-    stw	r3, 0x14(r7)
-    mr	r3, r7
-    stw	r4, 0x18(r7)
-    stw	r6, 8(r7)
-    stw	r5, 0x1c(r7)
-    stw	r7, 0x20(r7)
-    lwz	r4, 0x18(r7)
-    stw	r4, 0xc(r7)
-    stw	r0, 0x10(r7)
-    blr	
+    SjSlot* s;
+    int i;
+
+    for (i = 0; i < 32; i++) {
+        if (lbl_8018AE1C[i].unk4 == 0) {
+            break;
+        }
+    }
+    if (i == 32) {
+        return 0;
+    }
+
+    s = &lbl_8018AE1C[i];
+    s->unk4 = 1;
+    s->unk0 = lbl_801322D0;
+    s->unk14 = a;
+    s->unk18 = b;
+    s->unk8 = lbl_800922E0;
+    s->unk1C = fn_80057D60;
+    s->unk20 = s;
+    s->unkC = s->unk18;
+    s->unk10 = 0;
+    return s;
 }
 
 // provenance: original
@@ -835,83 +774,33 @@ int fn_80057DB0(void* p)
     return *(int*)((char*)p + 0x1c);
 }
 
-asm void fn_80057DB8(void)
+// provenance: original
+int fn_80057DB8(SjRing* p, int mode, int want, int* got)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r6
-    stw	r30, 0x18(r1)
-    mr	r30, r5
-    stw	r29, 0x14(r1)
-    mr	r29, r4
-    stw	r28, 0x10(r1)
-    mr	r28, r3
-    bl      svmEnterCritical
-    cmpwi	r29, 0
-    bne     _80057e2c
-    lwz	r3, 0x14(r28)
-    lwz	r0, 0x20(r28)
-    lwz	r4, 0x24(r28)
-    subf	r0, r3, r0
-    lwz	r3, 0x10(r28)
-    add	r4, r4, r0
-    cmpw	r3, r4
-    bge     _80057e14
-    mr	r4, r3
-_80057e14:
-    cmpw	r4, r30
-    mr	r0, r30
-    bge     _80057e24
-    mr	r0, r4
-_80057e24:
-    mr	r29, r0
-    b     _80057e90
-_80057e2c:
-    cmpwi	r29, 1
-    bne     _80057e70
-    lwz	r3, 0x18(r28)
-    lwz	r0, 0x20(r28)
-    lwz	r4, 0x24(r28)
-    subf	r0, r3, r0
-    lwz	r3, 0xc(r28)
-    add	r4, r4, r0
-    cmpw	r3, r4
-    bge     _80057e58
-    mr	r4, r3
-_80057e58:
-    cmpw	r4, r30
-    mr	r0, r30
-    bge     _80057e68
-    mr	r0, r4
-_80057e68:
-    mr	r29, r0
-    b     _80057e90
-_80057e70:
-    lwz	r12, 0x38(r28)
-    li	r29, 0
-    cmplwi	r12, 0
-    beq     _80057e90
-    lwz	r3, 0x3c(r28)
-    li	r4, -3
-    mtctr	r12
-    bctrl	
-_80057e90:
-    stw	r29, 0(r31)
-    bl      svmExitCritical
-    subf	r0, r29, r30
-    lwz	r31, 0x1c(r1)
-    cntlzw	r0, r0
-    lwz	r30, 0x18(r1)
-    srwi	r3, r0, 5
-    lwz	r0, 0x24(r1)
-    lwz	r29, 0x14(r1)
-    lwz	r28, 0x10(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    svmEnterCritical();
+
+    if (mode == 0) {
+        int avail = p->unk24 + (p->unk20 - p->unk14);
+        if (p->unk10 < avail) {
+            avail = p->unk10;
+        }
+        mode = avail < want ? avail : want;
+    } else if (mode == 1) {
+        int avail = p->unk24 + (p->unk20 - p->unk18);
+        if (p->unkC < avail) {
+            avail = p->unkC;
+        }
+        mode = avail < want ? avail : want;
+    } else {
+        mode = 0;
+        if (p->unk38 != 0) {
+            p->unk38(p->unk3C, -3);
+        }
+    }
+
+    *got = mode;
+    svmExitCritical();
+    return !(want - mode);
 }
 
 asm void fn_80057EC4(void)
