@@ -4,14 +4,17 @@
 /* The server thread and the caller both poll these words, so every read is a
    real load. */
 typedef struct AdxSrv {
-    char pad0[8];
+    char pad0[4];
+    int unk4;
     volatile int unk8;
     int unkC;
     int unk10;
     int unk14;
     int unk18;
     char pad1C[0xc];
-    char unk28[0x948];
+    char unk28[0x318];
+    char unk340[0x318];
+    char unk658[0x318];
     char unk970[0x318];
     int unkC88;
     int unkC8C;
@@ -20,7 +23,7 @@ typedef struct AdxSrv {
     int unkC98;
     volatile int unkC9C;
     int unkCA0;
-    char padCA4[4];
+    int unkCA4;
     int unkCA8;
     volatile int unkCAC;
 } AdxSrv;
@@ -413,55 +416,28 @@ void fn_8004E4AC(void)
     memset(lbl_8017E5BC, 0, 0x3c0);
 }
 
-asm void fn_8004E4DC(void)
+// provenance: original
+void fn_8004E4DC(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8017E980@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r3, lbl_8017E980@l
-    lwz	r3, 4(r31)
-    addic.	r0, r3, -1
-    stw	r0, 4(r31)
-    bne     _8004e56c
-    li	r0, 0
-    addi	r3, r31, 0x28
-    stw	r0, 0xca4(r31)
-    li	r4, 1
-    bl      OSSetThreadPriority
-    b       _8004e524
-_8004e51c:
-    addi	r3, r31, 0x28
-    bl      OSResumeThread
-_8004e524:
-    lwz	r0, 0xca0(r31)
-    cmpwi	r0, 0
-    beq     _8004e51c
-    addi	r3, r31, 0x340
-    bl      OSCancelThread
-    addi	r3, r31, 0x658
-    bl      OSCancelThread
-    li	r0, 0
-    addi	r3, r31, 0x970
-    stw	r0, 0xcac(r31)
-    bl      OSResumeThread
-    b       _8004e55c
-_8004e554:
-    addi	r3, r31, 0x970
-    bl      OSResumeThread
-_8004e55c:
-    lwz	r0, 0xca8(r31)
-    cmpwi	r0, 0
-    beq     _8004e554
-    bl      SVM_ServerExit
-_8004e56c:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxSrv* g = (AdxSrv*)lbl_8017E980;
+
+    if (--g->unk4 == 0) {
+        g->unkCA4 = 0;
+        OSSetThreadPriority(g->unk28, 1);
+        while (g->unkCA0 == 0) {
+            OSResumeThread(g->unk28);
+        }
+
+        OSCancelThread(g->unk340);
+        OSCancelThread(g->unk658);
+
+        g->unkCAC = 0;
+        OSResumeThread(g->unk970);
+        while (g->unkCA8 == 0) {
+            OSResumeThread(g->unk970);
+        }
+        SVM_ServerExit();
+    }
 }
 
 // provenance: original

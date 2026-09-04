@@ -1,6 +1,20 @@
 #pragma push
 #pragma force_active on
 
+typedef struct GcciStream {
+    char pad0[1];
+    signed char unk1;
+    unsigned char unk2;
+    char pad3[0x19];
+    int unk1C;
+    int unk20;
+    int unk24;
+    void* unk28;
+    int unk2C;
+    char pad30[4];
+    int unk34;
+} GcciStream;
+
 typedef struct GcciEntry {
     int id;
     void* unk4;
@@ -1392,61 +1406,37 @@ void fn_80056C64(void)
     gccicrit_leave(&crit);
 }
 
-asm void fn_80056CD0(void)
+// provenance: original
+void fn_80056CD0(GcciStream* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    bne     _80056cfc
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    b     _80056d78
-_80056cfc:
-    lbz	r0, 1(r31)
-    extsb.	r0, r0
-    beq     _80056d78
-    li	r0, 0
-    stb	r0, 1(r31)
-    lwz	r3, 0x28(r31)
-    cmplwi	r3, 0
-    beq     _80056d34
-    lbz	r0, 2(r31)
-    cmpwi	r0, 1
-    bne     _80056d34
-    bl      ADXT_StartVoice
-    li	r0, 0
-    stb	r0, 2(r31)
-_80056d34:
-    li	r3, 0
-    cmplwi	r31, 0
-    stw	r3, 0x2c(r31)
-    bne     _80056d58
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    b     _80056d70
-_80056d58:
-    lbz	r0, 1(r31)
-    extsb.	r0, r0
-    bne     _80056d70
-    stw	r3, 0x1c(r31)
-    stw	r3, 0x20(r31)
-    stw	r3, 0x24(r31)
-_80056d70:
-    li	r0, 0
-    stw	r0, 0x34(r31)
-_80056d78:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int mode;
+
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return;
+    }
+    if (p->unk1 == 0) {
+        return;
+    }
+    p->unk1 = 0;
+
+    if (p->unk28 != 0) {
+        mode = p->unk2;
+        if (mode == 1) {
+            ADXT_StartVoice(p->unk28);
+            p->unk2 = 0;
+        }
+    }
+
+    p->unk2C = 0;
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+    } else if (p->unk1 == 0) {
+        p->unk1C = 0;
+        p->unk20 = 0;
+        p->unk24 = 0;
+    }
+    p->unk34 = 0;
 }
 
 asm void fn_80056D8C(void)

@@ -137,6 +137,8 @@ void fn_80047608(void)
     lbl_8017B158[0] = 0;
 }
 
+
+
 asm void fn_8004768C(void)
 {
     nofralloc
@@ -506,47 +508,34 @@ _80047bc0:
     blr	
 }
 
-asm void fn_80047C08(void)
+// provenance: original
+void fn_80047C08(AdxHandle* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    beq     _80047c80
-    bl      svmLockServer_wrapper
-    lwz	r3, 0x80(r31)
-    cmplwi	r3, 0
-    beq     _80047c48
-    beq     _80047c48
-    li	r0, 0
-    li	r4, 0
-    stb	r0, 0(r3)
-    li	r5, 0x90
-    bl      memset
-_80047c48:
-    lwz	r3, 0x84(r31)
-    cmplwi	r3, 0
-    beq     _80047c6c
-    beq     _80047c6c
-    li	r0, 0
-    li	r4, 0
-    stb	r0, 0(r3)
-    li	r5, 0x90
-    bl      memset
-_80047c6c:
-    mr	r3, r31
-    li	r4, 0
-    li	r5, 4
-    bl      memset
-    bl      svmUnlockServer_wrapper
-_80047c80:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    void* q;
+
+    if (p == 0) {
+        return;
+    }
+    svmLockServer_wrapper();
+
+    q = p->unk80;
+    if (q != 0) {
+        if (q != 0) {
+            *(char*)q = 0;
+            memset(q, 0, 0x90);
+        }
+    }
+
+    q = p->unk84;
+    if (q != 0) {
+        if (q != 0) {
+            *(char*)q = 0;
+            memset(q, 0, 0x90);
+        }
+    }
+
+    memset(p, 0, 4);
+    svmUnlockServer_wrapper();
 }
 
 asm void fn_80047C94(void)

@@ -8,6 +8,14 @@ __declspec(section ".data") extern struct AdxtPair lbl_8018FF70;
 #pragma push
 #pragma force_active on
 
+extern unsigned char lbl_8018FEB0[48];
+
+typedef struct SvmHandle {
+    unsigned char unk0;
+    unsigned char unk1;
+    char pad2[0x36];
+} SvmHandle;
+
 typedef struct SvmCb {
     void (*fn)();
     void* arg;
@@ -27,14 +35,14 @@ extern void SVM_ReportErrorString();
 extern unsigned char lbl_80092350[52];
 extern unsigned char lbl_800924F8[46];
 extern void svmErrPrintf(void);
-extern void svmUnlockServer(void);
-extern void svmLockServer(void);
+extern void svmUnlockServer();
+extern void svmLockServer();
 extern void sprintf(void);
 extern void fn_8008077C(void);
 extern void strncpy();
 extern void strtol(void);
 extern void memcpy(void);
-extern void memset(void);
+extern void memset();
 extern void strlen(void);
 extern unsigned char E0040301_handl_is_null_str_2[120];
 extern unsigned char E0040302_handl_is_null_str_2[24];
@@ -44,7 +52,6 @@ extern unsigned char E01100306_handl_is_null_str[25];
 extern unsigned char _SVM_DelCbSvr_illegal_id_str[32];
 extern unsigned char _SVM_SetCbSvr_too_many_server_function_str[52];
 extern unsigned char lbl_80092384[288];
-extern unsigned char lbl_8018FEB0[48];
 extern unsigned char lbl_8018FEE0[128];
 extern SvmCb lbl_8018FF60[];
 extern unsigned char lbl_8018FF78[512];
@@ -1781,50 +1788,32 @@ _8005a198:
 #pragma pop
 
 #pragma push
-asm void fn_8005A1B4(void)
+// provenance: original
+void fn_8005A1B4(SvmHandle* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    beq     _8005a238
-    bne     _8005a204
-    lis     r3, lbl_80190178@ha
-    lwz	r12, lbl_80190178@l(r3)
-    cmplwi	r12, 0
-    beq     _8005a214
-    lis     r4, lbl_8019017C@ha
-    lis     r3, E0092912_handl_is_null_str_2@ha
-    addi	r5, r4, lbl_8019017C@l
-    addi	r4, r3, E0092912_handl_is_null_str_2@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-    b     _8005a214
-_8005a204:
-    bl      svmLockServer
-    li	r0, 0
-    stb	r0, 1(r31)
-    bl      svmUnlockServer
-_8005a214:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _8005a238
-    li	r0, 0
-    mr	r3, r31
-    stb	r0, 0(r31)
-    li	r4, 0
-    li	r5, 0x38
-    bl      memset
-_8005a238:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int st;
+
+    if (p == 0) {
+        return;
+    }
+
+    if (p == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)lbl_80190178;
+        if (cb != 0) {
+            cb(*(int*)lbl_8019017C, (const char*)E0092912_handl_is_null_str_2, 0);
+        }
+    } else {
+        svmLockServer();
+        p->unk1 = 0;
+        svmUnlockServer();
+    }
+
+    st = p->unk0;
+    if (st == 1) {
+        p->unk0 = 0;
+        memset(p, 0, 0x38);
+    }
 }
 #pragma pop
 

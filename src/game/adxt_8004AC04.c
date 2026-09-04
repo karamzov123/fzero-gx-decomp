@@ -18,10 +18,11 @@ typedef struct AdxtVoice {
     int unk30;
     char pad34[0xd];
     unsigned char unk41;
-    char pad42[1];
+    unsigned char unk42;
     unsigned char unk43;
     unsigned char unk44;
-    char pad45[7];
+    unsigned char unk45;
+    char pad46[6];
     int unk4C;
     int unk50;
     int unk54;
@@ -372,49 +373,20 @@ _8004b0cc:
     blr	
 }
 
-asm void ADXT_StopVoice(void)
+// provenance: original
+void ADXT_StopVoice(AdxtVoice* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    bl      svmLockServer
-    lbz	r0, 1(r31)
-    cmpwi	r0, 2
-    bne     _8004b13c
-    lbz	r0, 2(r31)
-    cmpwi	r0, 1
-    bne     _8004b13c
-    li	r0, 1
-    stb	r0, 0x44(r31)
-    lbz	r0, 0x43(r31)
-    cmpwi	r0, 1
-    bne     _8004b144
-    li	r0, 0
-    stb	r0, 0x43(r31)
-    b       _8004b144
-_8004b13c:
-    li	r0, 1
-    stb	r0, 1(r31)
-_8004b144:
-    bl      svmUnlockServer
-    bl      svmLockServer
-    lbz	r0, 0x45(r31)
-    cmpwi	r0, 1
-    bne     _8004b160
-    li	r0, 1
-    stb	r0, 0x42(r31)
-_8004b160:
-    li	r0, 0
-    stb	r0, 0x41(r31)
-    bl      svmUnlockServer
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int st;
+
+    fn_8004AD84(p);
+
+    svmLockServer();
+    st = p->unk45;
+    if (st == 1) {
+        p->unk42 = 1;
+    }
+    p->unk41 = 0;
+    svmUnlockServer();
 }
 
 // provenance: original

@@ -1,5 +1,8 @@
 #pragma push
 #pragma force_active on
+/* Retail calls the critical-section wrappers out of line: this carved unit
+   spans more than one original translation unit. */
+#pragma dont_inline on
 
 typedef struct AdxtNotify {
     void (*cb)();
@@ -7,13 +10,28 @@ typedef struct AdxtNotify {
     char msg[0x100];
 } AdxtNotify;
 
+struct AdxtStream;
+
 typedef struct AdxtSlot {
     unsigned char unk0;
-    char pad1[0xe7];
+    char pad1[1];
+    signed char unk2;
+    signed char unk3;
+    char pad4[4];
+    void* unk8[2];
+    void* unk10[2];
+    char pad18[0x20];
+    struct AdxtStream* unk38[2];
+    char pad40[0x44];
+    int unk84;
+    int unk88[2];
+    char pad90[0x58];
 } AdxtSlot;
 
 typedef struct AdxtVt {
-    char pad0[0x24];
+    char pad0[0xc];
+    void (*fnC)();
+    char pad10[0x14];
     int (*fn24)();
 } AdxtVt;
 
@@ -30,16 +48,16 @@ typedef struct AdxtSrv {
 
 extern void ARQPostRequest(void);
 extern void AXAcquireVoice(void);
-extern void AXFreeVoice(void);
+extern void AXFreeVoice();
 extern void DCFlushRange(void);
 extern void AXSetVoiceState_cached(void);
 extern void AXSetVoiceType_cached(void);
 extern void AXVPBInitChannelState(void);
 extern void AXVPBSyncChannelA(void);
 extern void AXMixSetupVoiceEntry(void);
-extern void axmix_device_ctrl_clear(void);
-extern void axmix_set_voice_param_08(void);
-extern void axmix_set_voice_volume(void);
+extern void axmix_device_ctrl_clear();
+extern void axmix_set_voice_param_08();
+extern void axmix_set_voice_volume();
 extern void svmExitCritical();
 extern void svmEnterCritical();
 extern void ADXT_ProcessStreamUpdate(void);
@@ -49,25 +67,25 @@ extern void svm_exit_critical_wrapper();
 extern void svm_enter_critical_wrapper();
 extern void fn_8005A9B8();
 extern void fn_8005AE98(void);
-extern void ADXTServerStateRequest(void);
-extern void mfCiOpen_resource_mgr(void);
+extern void ADXTServerStateRequest();
+extern void mfCiOpen_resource_mgr();
 extern void ADXT_GetId(void);
 extern void ADXT_GetNumHandles(void);
-extern void ADXT_DestroyHandle(void);
+extern void ADXT_DestroyHandle();
 extern void fn_8005BC20(void);
 extern void fn_8005BEAC(void);
 extern void sprintf(void);
 extern void strncpy();
 extern void strcpy(void);
 extern void strtol(void);
-extern void memset(void);
+extern void memset();
 extern void strlen(void);
 extern unsigned char E01100308_length_of_s_is_not_17_bytes_mfci_get_adr_size_str[61];
 extern unsigned char E01100309_illegal_file_name_format_s_mfci_get_adr_size_str[59];
 extern unsigned char lbl_80092790[44];
 extern unsigned char lbl_800927D0[440];
 extern unsigned char lbl_801324F0[104];
-extern unsigned char adxt_volume_scale_table[124];
+extern int adxt_volume_scale_table[31];
 extern int lbl_80190178[];
 extern int lbl_80190B70[];
 extern unsigned char lbl_800924F8[46];
@@ -398,58 +416,30 @@ void fn_8005A688(void* p, int r4)
     }
 }
 
-asm void fn_8005A698(void)
+// provenance: original
+void fn_8005A698(AdxtSlot* p, int ch, int vol)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    or.	r29, r3, r3
-    beq     _8005a730
-    lbz	r0, 2(r29)
-    extsb	r0, r0
-    cmpw	r4, r0
-    bge     _8005a730
-    cmpwi	r5, 0xf
-    li	r0, 0xf
-    bge     _8005a6d8
-    mr	r0, r5
-_8005a6d8:
-    cmpwi	r0, -0xf
-    li	r31, -0xf
-    ble     _8005a6e8
-    mr	r31, r0
-_8005a6e8:
-    slwi	r30, r4, 2
-    add	r3, r29, r30
-    lwz	r0, 0x88(r3)
-    cmpw	r31, r0
-    beq     _8005a730
-    stw	r31, 0x88(r3)
-    bl      svm_enter_critical_wrapper
-    add	r3, r29, r30
-    lwz	r3, 8(r3)
-    cmplwi	r3, 0
-    beq     _8005a72c
-    lis     r4, adxt_volume_scale_table@ha
-    slwi	r0, r31, 2
-    addi	r4, r4, adxt_volume_scale_table@l
-    add	r4, r4, r0
-    lwz	r4, 0x3c(r4)
-    bl      axmix_set_voice_volume
-_8005a72c:
-    bl      svm_exit_critical_wrapper
-_8005a730:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int v;
+
+    if (p == 0) {
+        return;
+    }
+    if (ch >= p->unk2) {
+        return;
+    }
+
+    v = vol >= 15 ? 15 : vol;
+    v = v <= -15 ? -15 : v;
+    if (v == p->unk88[ch]) {
+        return;
+    }
+    p->unk88[ch] = v;
+
+    svm_enter_critical_wrapper();
+    if (p->unk8[ch] != 0) {
+        axmix_set_voice_volume(p->unk8[ch], adxt_volume_scale_table[v + 15]);
+    }
+    svm_exit_critical_wrapper();
 }
 
 asm void fn_8005A74C(void)
@@ -1103,7 +1093,7 @@ int fn_8005B068(AdxtSrv* p)
     return 0x1000 - ((unsigned int)s->vt->fn24(s, 0) >> 1);
 }
 
-asm void ADXTServerStateRequest(void)
+asm void ADXTServerStateRequest()
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -1226,7 +1216,7 @@ _8005b248:
     blr	
 }
 
-asm void mfCiOpen_resource_mgr(void)
+asm void mfCiOpen_resource_mgr()
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -1378,67 +1368,33 @@ _8005b450:
     blr	
 }
 
-asm void fn_8005B464(void)
+// provenance: original
+void fn_8005B464(AdxtSlot* p)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    or.	r29, r3, r3
-    beq     _8005b518
-    li	r4, 0
-    bl      ADXTServerStateRequest
-    mr	r3, r29
-    li	r4, 0
-    bl      mfCiOpen_resource_mgr
-    mr	r31, r29
-    li	r30, 0
-    b     _8005b4f8
-_8005b4a4:
-    lwz	r3, 0x38(r31)
-    cmplwi	r3, 0
-    beq     _8005b4c0
-    lwz	r4, 0(r3)
-    lwz	r12, 0xc(r4)
-    mtctr	r12
-    bctrl	
-_8005b4c0:
-    lwz	r3, 0x10(r31)
-    cmplwi	r3, 0
-    beq     _8005b4d0
-    bl      ADXT_DestroyHandle
-_8005b4d0:
-    bl      svm_enter_critical_wrapper
-    lwz	r3, 8(r31)
-    cmplwi	r3, 0
-    beq     _8005b4ec
-    bl      axmix_device_ctrl_clear
-    lwz	r3, 8(r31)
-    bl      AXFreeVoice
-_8005b4ec:
-    bl      svm_exit_critical_wrapper
-    addi	r31, r31, 4
-    addi	r30, r30, 1
-_8005b4f8:
-    lbz	r0, 2(r29)
-    extsb	r0, r0
-    cmpw	r30, r0
-    blt     _8005b4a4
-    mr	r3, r29
-    li	r4, 0
-    li	r5, 0xe8
-    bl      memset
-_8005b518:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int i;
+
+    if (p == 0) {
+        return;
+    }
+
+    ADXTServerStateRequest(p, 0);
+    mfCiOpen_resource_mgr(p, 0);
+
+    for (i = 0; i < p->unk2; i++) {
+        if (p->unk38[i] != 0) {
+            p->unk38[i]->vt->fnC(p->unk38[i]);
+        }
+        if (p->unk10[i] != 0) {
+            ADXT_DestroyHandle(p->unk10[i]);
+        }
+        svm_enter_critical_wrapper();
+        if (p->unk8[i] != 0) {
+            axmix_device_ctrl_clear(p->unk8[i]);
+            AXFreeVoice(p->unk8[i]);
+        }
+        svm_exit_critical_wrapper();
+    }
+    memset(p, 0, 0xE8);
 }
 
 asm void fn_8005B534(void)
@@ -1941,3 +1897,4 @@ _8005bc0c:
 }
 
 #pragma pop
+#pragma dont_inline reset
