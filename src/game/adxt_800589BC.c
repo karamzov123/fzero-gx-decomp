@@ -8,7 +8,7 @@ __declspec(section ".data") extern struct AdxtPair lbl_8018FF70;
 #pragma push
 #pragma force_active on
 
-extern void SVM_ReportErrorString(void);
+extern void SVM_ReportErrorString();
 extern unsigned char lbl_80092350[52];
 extern unsigned char lbl_800924F8[46];
 extern void svmErrPrintf(void);
@@ -33,7 +33,7 @@ extern unsigned char lbl_8018FEB0[48];
 extern unsigned char lbl_8018FEE0[128];
 extern unsigned char lbl_8018FF60[8];
 extern unsigned char lbl_8018FF78[512];
-extern unsigned char lbl_80190178[4];
+extern unsigned char lbl_80190178[];
 extern unsigned char lbl_8019017C[2548];
 
 // provenance: original
@@ -52,20 +52,11 @@ void svm_ringbuf_read(struct AdxtPair* r3, int r4, struct AdxtPair* r5, struct A
     }
 }
 
-#pragma push
-asm void SVM_ReportError(void)
+// provenance: original
+void SVM_ReportError(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      SVM_ReportErrorString
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    SVM_ReportErrorString(p);
 }
-#pragma pop
 
 #pragma push
 asm void SVM_LockServer(void)
@@ -513,30 +504,19 @@ _80058fc8:
 }
 #pragma pop
 
-#pragma push
-asm void fn_80058FE4(void)
+// provenance: original
+void fn_80058FE4(int idx)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r4, lbl_8018FF78@ha
-    stw	r0, 0x14(r1)
-    slwi	r0, r3, 3
-    addi	r3, r4, lbl_8018FF78@l
-    lwzx	r12, r3, r0
-    cmplwi	r12, 0
-    beq     _80059018
-    add	r3, r3, r0
-    lwz	r3, 4(r3)
-    mtctr	r12
-    bctrl	
-_80059018:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    typedef void (*Cb)(int);
+    struct Entry {
+        Cb cb;
+        int arg;
+    };
+    struct Entry* table = (struct Entry*)lbl_8018FF78;
+    if (table[idx].cb != 0) {
+        table[idx].cb(table[idx].arg);
+    }
 }
-#pragma pop
 
 #pragma push
 asm void fn_80059028(void)
@@ -1448,39 +1428,19 @@ _80059b98:
 }
 #pragma pop
 
-#pragma push
-asm void fn_80059BAC(void)
+// provenance: original
+int fn_80059BAC(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80059bf8
-    lis     r3, lbl_80190178@ha
-    lwz	r12, lbl_80190178@l(r3)
-    cmplwi	r12, 0
-    beq     _80059bf0
-    lis     r4, lbl_8019017C@ha
-    lis     r3, E0092912_handl_is_null_str_2@ha
-    addi	r5, r4, lbl_8019017C@l
-    addi	r4, r3, E0092912_handl_is_null_str_2@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80059bf0:
-    li	r3, 0
-    b     _80059bfc
-_80059bf8:
-    lwz	r3, 0x14(r3)
-_80059bfc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)lbl_80190178;
+        if (cb != 0) {
+            cb(*(int*)lbl_8019017C, (const char*)E0092912_handl_is_null_str_2, 0);
+        }
+        return 0;
+    }
+    return *(int*)((char*)handle + 0x14);
 }
-#pragma pop
 
 #pragma push
 asm void fn_80059C0C(void)
@@ -1529,111 +1489,49 @@ _80059c94:
 }
 #pragma pop
 
-#pragma push
-asm void SVM_GetStatusU32(void)
+// provenance: original
+unsigned int SVM_GetStatusU32(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80059cf0
-    lis     r3, lbl_80190178@ha
-    lwz	r12, lbl_80190178@l(r3)
-    cmplwi	r12, 0
-    beq     _80059ce8
-    lis     r4, lbl_8019017C@ha
-    lis     r3, E0040301_handl_is_null_str_2@ha
-    addi	r5, r4, lbl_8019017C@l
-    addi	r4, r3, E0040301_handl_is_null_str_2@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80059ce8:
-    li	r3, 0
-    b     _80059cf4
-_80059cf0:
-    lwz	r3, 4(r3)
-_80059cf4:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)lbl_80190178;
+        if (cb != 0) {
+            cb(*(int*)lbl_8019017C, (const char*)E0040301_handl_is_null_str_2, 0);
+        }
+        return 0;
+    }
+    return *(unsigned int*)((char*)handle + 4);
 }
-#pragma pop
 
-#pragma push
-asm void SVM_GetStatusS8(void)
+// provenance: original
+int SVM_GetStatusS8(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80059d50
-    lis     r3, lbl_80190178@ha
-    lwz	r12, lbl_80190178@l(r3)
-    cmplwi	r12, 0
-    beq     _80059d48
-    lis     r4, lbl_8019017C@ha
-    lis     r3, E0092912_handl_is_null_str_2@ha
-    addi	r5, r4, lbl_8019017C@l
-    addi	r4, r3, E0092912_handl_is_null_str_2@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80059d48:
-    li	r3, 0
-    b     _80059d58
-_80059d50:
-    lbz	r3, 1(r3)
-    extsb	r3, r3
-_80059d58:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)lbl_80190178;
+        if (cb != 0) {
+            cb(*(int*)lbl_8019017C, (const char*)E0092912_handl_is_null_str_2, 0);
+        }
+        return 0;
+    }
+    return *(signed char*)((char*)handle + 1);
 }
-#pragma pop
 
-#pragma push
-asm void SVM_ClearStatus(void)
+// provenance: original
+void SVM_ClearStatus(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    bne     _80059db4
-    lis     r3, lbl_80190178@ha
-    lwz	r12, lbl_80190178@l(r3)
-    cmplwi	r12, 0
-    beq     _80059dc4
-    lis     r4, lbl_8019017C@ha
-    lis     r3, E0092912_handl_is_null_str_2@ha
-    addi	r5, r4, lbl_8019017C@l
-    addi	r4, r3, E0092912_handl_is_null_str_2@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-    b     _80059dc4
-_80059db4:
-    bl      svmLockServer
-    li	r0, 0
-    stb	r0, 1(r31)
-    bl      svmUnlockServer
-_80059dc4:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)lbl_80190178;
+        if (cb != 0) {
+            cb(*(int*)lbl_8019017C, (const char*)E0092912_handl_is_null_str_2, 0);
+        }
+    } else {
+        svmLockServer();
+        *(char*)((char*)handle + 1) = 0;
+        svmUnlockServer();
+    }
 }
-#pragma pop
 
 #pragma push
 asm void SVM_SetCbSvr(void)
@@ -1819,39 +1717,19 @@ _8005a04c:
 }
 #pragma pop
 
-#pragma push
-asm void fn_8005A060(void)
+// provenance: original
+int fn_8005A060(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8005a0ac
-    lis     r3, lbl_80190178@ha
-    lwz	r12, lbl_80190178@l(r3)
-    cmplwi	r12, 0
-    beq     _8005a0a4
-    lis     r4, lbl_8019017C@ha
-    lis     r3, E01100306_handl_is_null_str@ha
-    addi	r5, r4, lbl_8019017C@l
-    addi	r4, r3, E01100306_handl_is_null_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_8005a0a4:
-    li	r3, 0
-    b     _8005a0b0
-_8005a0ac:
-    lwz	r3, 0x10(r3)
-_8005a0b0:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)lbl_80190178;
+        if (cb != 0) {
+            cb(*(int*)lbl_8019017C, (const char*)E01100306_handl_is_null_str, 0);
+        }
+        return 0;
+    }
+    return *(int*)((char*)handle + 0x10);
 }
-#pragma pop
 
 #pragma push
 asm void fn_8005A0C0(void)

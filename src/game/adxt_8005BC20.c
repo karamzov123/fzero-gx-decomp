@@ -10,7 +10,7 @@ extern void svm_exit_critical_wrapper(void);
 extern void svm_enter_critical_wrapper(void);
 extern void ADXTServerStateRequest(void);
 extern void mfCiOpen_resource_mgr(void);
-extern void ADXT_DestroyHandle(void);
+extern void ADXT_DestroyHandle();
 extern void fn_8005BFB4(void);
 extern void SndInitManager(void);
 extern void memset(void);
@@ -188,51 +188,36 @@ _8005be28:
     blr	
 }
 
-asm void fn_8005BE48(void)
+// provenance: original
+void fn_8005BE48(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A614
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A614();
 }
 
-asm void ADXT_GetId(void)
+// provenance: original
+int ADXT_GetId(void* p)
 {
-    nofralloc
-    cmplwi	r3, 0
-    bne     _8005be78
-    li	r3, 0
-    blr	
-_8005be78:
-    lwz	r3, 8(r3)
-    blr	
+    if (p == 0) {
+        return 0;
+    }
+    return *(int*)((char*)p + 8);
 }
 
-asm void ADXT_GetNumHandles(void)
+// provenance: original
+int ADXT_GetNumHandles(void* p)
 {
-    nofralloc
-    cmplwi	r3, 0
-    bne     _8005be90
-    li	r3, 0
-    blr	
-_8005be90:
-    lwz	r3, 4(r3)
-    blr	
+    if (p == 0) {
+        return 0;
+    }
+    return *(int*)((char*)p + 4);
 }
 
-asm void ADXT_DestroyHandle(void)
+// provenance: original
+void ADXT_DestroyHandle(void* p)
 {
-    nofralloc
-    cmplwi	r3, 0
-    beqlr	
-    li	r0, 0
-    stw	r0, 0(r3)
-    blr	
+    if (p != 0) {
+        *(int*)p = 0;
+    }
 }
 
 asm void fn_8005BEAC(void)

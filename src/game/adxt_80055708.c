@@ -1,40 +1,40 @@
 #pragma push
 #pragma force_active on
 
-extern void DCInvalidateRange(void);
-extern void DCStoreRange(void);
-extern void DVDGetDriveStatus(void);
-extern void OSGetTick(void);
-extern void DVDOpen(void);
-extern void DVDCancelSync(void);
-extern void DVDReadPrio(void);
-extern void DVDReadAsync(void);
-extern void DVDGetCommandBlockStatusHalfword(void);
-extern void DVDGetCommandBlockStatus(void);
-extern void DVDCancel(void);
-extern void ADXT_StartVoice(void);
-extern void gcciErrPrintf(void);
-extern void gccicrit_leave(void);
-extern void gccicrit_enter(void);
-extern void fn_80057494(void);
-extern void svmExitCritical(void);
-extern void svmEnterCritical(void);
-extern void fn_8008077C(void);
-extern void __msl_strcpy(void);
-extern void strcpy(void);
-extern void memset(void);
-extern void strlen(void);
+extern void DCInvalidateRange();
+extern void DCStoreRange();
+extern void DVDGetDriveStatus();
+extern void OSGetTick();
+extern void DVDOpen();
+extern void DVDCancelSync();
+extern void DVDReadPrio();
+extern void DVDReadAsync();
+extern void DVDGetCommandBlockStatusHalfword();
+extern void DVDGetCommandBlockStatus();
+extern void DVDCancel();
+extern void ADXT_StartVoice();
+extern void gcciErrPrintf(const char*, ...);
+extern void gccicrit_leave();
+extern void gccicrit_enter();
+extern void fn_80057494();
+extern void svmExitCritical();
+extern void svmEnterCritical();
+extern void fn_8008077C();
+extern void __msl_strcpy();
+extern void strcpy();
+extern void memset();
+extern void strlen();
 extern unsigned char E0040301_handl_is_null_str[448];
-extern unsigned char gcci_client_ctx[4];
-extern unsigned char gcci_nullcheck_callback[4];
-extern unsigned char gcci_dvd_cb_flag[8];
-extern unsigned char gcci_err_ctx[4];
+extern unsigned char gcci_client_ctx[];
+extern unsigned char gcci_nullcheck_callback[];
+extern unsigned char gcci_dvd_cb_flag[];
+extern unsigned char gcci_err_ctx[];
 extern unsigned char lbl_80188974[0x104];
 extern unsigned char lbl_801878B8[0xC];
 
 
 extern unsigned char E0092912_handl_is_null_str[24];
-extern void fn_800555C0(void);
+extern void fn_800555C0();
 extern unsigned char gcci_msg_base_str[43];
 extern unsigned char E0003_lsc_null_str[35];
 extern unsigned char E0010_min_param_str[33];
@@ -47,71 +47,34 @@ extern unsigned char lbl_801878CC[4004];
 extern unsigned char lbl_80188870[256];
 extern unsigned char lbl_80188A78[16];
 extern unsigned char lbl_80188A8C[9092];
-extern void fn_800555C0(void);
+extern void fn_800555C0();
 
-asm void gcci_client_get_field_10(void)
+// provenance: original
+int gcci_client_get_field_10(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80055754
-    lis	r3, gcci_client_ctx@ha
-    lwz	r12, gcci_client_ctx@l(r3)
-    cmplwi	r12, 0
-    beq     _8005574c
-    lis     r4, gcci_nullcheck_callback@ha
-    lis     r3, E0040301_handl_is_null_str@ha
-    addi	r5, r4, gcci_nullcheck_callback@l
-    addi	r4, r3, E0040301_handl_is_null_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_8005574c:
-    li	r3, 0
-    b     _80055758
-_80055754:
-    lwz	r3, 0x10(r3)
-_80055758:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)gcci_client_ctx;
+        if (cb != 0) {
+            cb(*(int*)gcci_nullcheck_callback, (const char*)E0040301_handl_is_null_str, 0);
+        }
+        return 0;
+    }
+    return *(int*)((char*)handle + 0x10);
 }
 
-asm void gcci_client_get_field_02(void)
+// provenance: original
+int gcci_client_get_field_02(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _800557b4
-    lis	r3, gcci_client_ctx@ha
-    lwz	r12, gcci_client_ctx@l(r3)
-    cmplwi	r12, 0
-    beq     _800557ac
-    lis     r4, gcci_nullcheck_callback@ha
-    lis     r3, E0092912_handl_is_null_str@ha
-    addi	r5, r4, gcci_nullcheck_callback@l
-    addi	r4, r3, E0092912_handl_is_null_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_800557ac:
-    li	r3, 0
-    b     _800557bc
-_800557b4:
-    lbz	r3, 2(r3)
-    extsb	r3, r3
-_800557bc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)gcci_client_ctx;
+        if (cb != 0) {
+            cb(*(int*)gcci_nullcheck_callback, (const char*)E0092912_handl_is_null_str, 0);
+        }
+        return 0;
+    }
+    return *(signed char*)((char*)handle + 2);
 }
 
 asm void gcci_add_device(void)
@@ -537,36 +500,18 @@ _80055d80:
     blr	
 }
 
-asm void gcci_client_get_field_1C(void)
+// provenance: original
+int gcci_client_get_field_1C(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80055de0
-    lis	r3, gcci_client_ctx@ha
-    lwz	r12, gcci_client_ctx@l(r3)
-    cmplwi	r12, 0
-    beq     _80055dd8
-    lis     r4, gcci_nullcheck_callback@ha
-    lis     r3, E0092912_handl_is_null_str@ha
-    addi	r5, r4, gcci_nullcheck_callback@l
-    addi	r4, r3, E0092912_handl_is_null_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80055dd8:
-    li	r3, 0
-    b     _80055de4
-_80055de0:
-    lwz	r3, 0x1c(r3)
-_80055de4:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)gcci_client_ctx;
+        if (cb != 0) {
+            cb(*(int*)gcci_nullcheck_callback, (const char*)E0092912_handl_is_null_str, 0);
+        }
+        return 0;
+    }
+    return *(int*)((char*)handle + 0x1c);
 }
 
 asm void fn_80055DF4(void)
@@ -1020,14 +965,11 @@ _800563e0:
     blr	
 }
 
-asm void gcci_set_callbacks(void)
+// provenance: original
+void gcci_set_callbacks(void* a, int b)
 {
-    nofralloc
-    lis	r6, gcci_client_ctx@ha
-    lis	r5, gcci_nullcheck_callback@ha
-    stw	r3, gcci_client_ctx@l(r6)
-    stw	r4, gcci_nullcheck_callback@l(r5)
-    blr	
+    *(void**)gcci_client_ctx = a;
+    *(int*)gcci_nullcheck_callback = b;
 }
 
 asm void fn_8005640C(void)
@@ -1168,15 +1110,13 @@ asm void fn_80056584(void)
     blr	
 }
 
-asm void fn_800565F0(void)
+// provenance: original
+void fn_800565F0(int a, int b, int c, int d)
 {
-    nofralloc
-    lis	r3, gcci_dvd_cb_flag@ha
-    stw	r6, gcci_dvd_cb_flag@l(r3)
-    blr	
+    *(int*)gcci_dvd_cb_flag = d;
 }
 
-asm void gcciErrPrintf(void)
+asm void gcciErrPrintf(const char* fmt, ...)
 {
     nofralloc
     stwu	r1, -0x80(r1)
@@ -1231,116 +1171,63 @@ _800566a4:
     blr	
 }
 
-asm void gcci_set_critical_value(void)
+// provenance: original
+void gcci_set_critical_value(void* a, int b)
 {
-    nofralloc
-    cmplwi	r3, 0
-    bne     _800566dc
-    lis	r4, gcci_err_ctx@ha
-    li	r0, 0
-    lis	r3, lbl_80188974@ha
-    stw	r0, gcci_err_ctx@l(r4)
-    stw	r0, lbl_80188974@l(r3)
-    blr	
-_800566dc:
-    lis	r6, gcci_err_ctx@ha
-    lis	r5, lbl_80188974@ha
-    stw	r3, gcci_err_ctx@l(r6)
-    stw	r4, lbl_80188974@l(r5)
-    blr	
+    if (a == 0) {
+        *(void**)gcci_err_ctx = 0;
+        *(int*)lbl_80188974 = 0;
+    } else {
+        *(void**)gcci_err_ctx = a;
+        *(int*)lbl_80188974 = b;
+    }
 }
 
-asm void gccicrit_leave(void)
+// provenance: original
+void gccicrit_leave(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmExitCritical
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmExitCritical();
 }
 
-asm void gccicrit_enter(void)
+// provenance: original
+void gccicrit_enter(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmEnterCritical
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmEnterCritical();
 }
 
-asm void fn_80056730(void)
+// provenance: original
+void fn_80056730(void* p, char val)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80056758
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    b     _8005675c
-_80056758:
-    stb	r4, 3(r3)
-_8005675c:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+    } else {
+        *(char*)((char*)p + 3) = val;
+    }
 }
 
-asm void fn_8005676C(void)
+// provenance: original
+void fn_8005676C(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_80188A78@ha
-    stw	r0, 0x14(r1)
-    addi	r4, r3, lbl_80188A78@l
-    lwz	r12, 0(r4)
-    cmplwi	r12, 0
-    beq     _8005679c
-    lwz	r3, 4(r4)
-    lwz	r4, 8(r4)
-    mtctr	r12
-    bctrl	
-_8005679c:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    typedef void (*Cb)(int, int);
+    struct CbEntry {
+        Cb cb;
+        int arg1;
+        int arg2;
+    };
+    struct CbEntry* e = (struct CbEntry*)lbl_80188A78;
+    if (e->cb != 0) {
+        e->cb(e->arg1, e->arg2);
+    }
 }
 
-asm void fn_800567AC(void)
+// provenance: original
+int fn_800567AC(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _800567d8
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, -1
-    b     _800567dc
-_800567d8:
-    lwz	r3, 0x14(r3)
-_800567dc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return -1;
+    }
+    return *(int*)((char*)p + 0x14);
 }
 
 asm void gcci_set_min_stream(void)
@@ -1644,51 +1531,24 @@ _80056bd0:
     blr	
 }
 
-asm void fn_80056BE0(void)
+// provenance: original
+int fn_80056BE0(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80056c0c
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, -1
-    b     _80056c10
-_80056c0c:
-    lwz	r3, 0x24(r3)
-_80056c10:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return -1;
+    }
+    return *(int*)((char*)p + 0x24);
 }
 
-asm void fn_80056C20(void)
+// provenance: original
+int fn_80056C20(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80056c4c
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, -1
-    b     _80056c54
-_80056c4c:
-    lbz	r3, 1(r3)
-    extsb	r3, r3
-_80056c54:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return -1;
+    }
+    return *(signed char*)((char*)p + 1);
 }
 
 asm void fn_80056C64(void)

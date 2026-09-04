@@ -1,76 +1,76 @@
 #pragma push
 #pragma force_active on
 
-extern void OSCancelThread(void);
-extern void OSCreateThread(void);
-extern void OSDisableInterrupts(void);
-extern void OSDisableScheduler(void);
-extern void OSEnableScheduler(void);
-extern void OSRestoreInterrupts(void);
-extern void OSResumeThread(void);
-extern void OSSetThreadPriority(void);
-extern void OSSuspendThread(void);
-extern void OSGetCurrentThread(void);
-extern void fn_80011358(void);
-extern void VIWaitForRetrace(void);
-extern void CRI_SPSD_parser(void);
-extern void criErr_CallErrCallback(void);
-extern void fn_8004ED3C(void);
-extern void fn_8004EFA8(void);
-extern void fn_8004F00C(void);
-extern void fn_8004F26C(void);
-extern void fn_8004F55C(void);
-extern void fn_8005466C(void);
-extern void cvFsSetDefDev(void);
-extern void fn_80055304(void);
-extern void fn_800565F0(void);
-extern void SVM_ServerExit(void);
-extern void SVM_ServerInit(void);
-extern void fn_80058C94(void);
-extern void fn_80058D24(void);
-extern void fn_80058DB4(void);
-extern void fn_80058E44(void);
-extern void fn_80058ED4(void);
-extern void fn_80058EE4(void);
-extern void fn_80058EF4(void);
-extern void fn_80059028(void);
-extern void SVM_ReportErrorString(void);
-extern void svmUnlockServer(void);
-extern void svmLockServer(void);
-extern void fn_8005A668(void);
-extern void fn_8005A678(void);
-extern void fn_8005A680(void);
-extern void fn_8005A688(void);
-extern void fn_8005A698(void);
-extern void fn_8005A74C(void);
-extern void fn_8005A7F8(void);
-extern void fn_8005A94C(void);
-extern void fn_8005A95C(void);
-extern void fn_8005B010(void);
-extern void fn_8005B068(void);
-extern void ADXTServerStateRequest(void);
-extern void mfCiOpen_resource_mgr(void);
-extern void fn_8005B464(void);
-extern void fn_8005B534(void);
-extern void fn_8005BCB4(void);
-extern void fn_8005BDD4(void);
-extern void fn_8005BE48(void);
-extern void memset(void);
+extern void OSCancelThread();
+extern void OSCreateThread();
+extern void OSDisableInterrupts();
+extern void OSDisableScheduler();
+extern void OSEnableScheduler();
+extern void OSRestoreInterrupts();
+extern void OSResumeThread();
+extern void OSSetThreadPriority();
+extern void OSSuspendThread();
+extern void OSGetCurrentThread();
+extern void fn_80011358();
+extern void VIWaitForRetrace();
+extern void CRI_SPSD_parser();
+extern void criErr_CallErrCallback();
+extern void fn_8004ED3C();
+extern void fn_8004EFA8();
+extern void fn_8004F00C();
+extern void fn_8004F26C();
+extern void fn_8004F55C();
+extern void fn_8005466C();
+extern void cvFsSetDefDev();
+extern void fn_80055304();
+extern void fn_800565F0();
+extern void SVM_ServerExit();
+extern void SVM_ServerInit();
+extern void fn_80058C94();
+extern void fn_80058D24();
+extern void fn_80058DB4();
+extern void fn_80058E44();
+extern void fn_80058ED4();
+extern void fn_80058EE4();
+extern void fn_80058EF4();
+extern void fn_80059028();
+extern void SVM_ReportErrorString();
+extern void svmUnlockServer();
+extern void svmLockServer();
+extern void fn_8005A668();
+extern void fn_8005A678();
+extern void fn_8005A680();
+extern void fn_8005A688();
+extern void fn_8005A698();
+extern void fn_8005A74C();
+extern void fn_8005A7F8();
+extern void fn_8005A94C();
+extern void fn_8005A95C();
+extern void fn_8005B010();
+extern void fn_8005B068();
+extern void ADXTServerStateRequest();
+extern void mfCiOpen_resource_mgr();
+extern void fn_8005B464();
+extern void fn_8005B534();
+extern void fn_8005BCB4();
+extern void fn_8005BDD4();
+extern void fn_8005BE48();
+extern void memset();
 extern unsigned char _Internal_Error_adxm_goto_mwidle_border_str[49];
-extern void fn_80056584(void);
-extern void fn_8005A5A8(void);
+extern void fn_80056584();
+extern void fn_8005A5A8();
 extern unsigned char lbl_8017E5B8[4];
 extern unsigned char lbl_8017B028[4];
-extern void fn_8004ECF4(void);
+extern void fn_8004ECF4();
 extern unsigned char lbl_8009115C[4];
-void fn_8004E7D4(void);
-void fn_8004E8A0(void);
-void fn_8004E8F8(void);
-void fn_8004E9A8(void);
-void fn_8004E9D8(void);
-void fn_8004EA94(void);
-void fn_8004EB00(void);
-void fn_8004ECF4(void);
+void fn_8004E7D4();
+void fn_8004E8A0();
+void fn_8004E8F8();
+void fn_8004E9A8();
+void fn_8004E9D8();
+void fn_8004EA94();
+void fn_8004EB00();
+void fn_8004ECF4();
 extern unsigned char lbl_80091198[72];
 extern unsigned char lbl_8012B918[24];
 extern unsigned char lbl_8012B930[8];
@@ -78,8 +78,8 @@ extern unsigned char lbl_80178CB8[4];
 extern unsigned char lbl_8017E5BC[964];
 extern unsigned char lbl_8017E980[4];
 extern unsigned char lbl_8017E984[31916];
-extern void fn_80056584(void);
-extern void fn_8005A5A8(void);
+extern void fn_80056584();
+extern void fn_8005A5A8();
 
 
 /* harvest: declarations carried over from the recovered
@@ -165,85 +165,56 @@ int fn_8004E190(void *arg0)
     return *(int*)((char*)arg0 + 0x10);
 }
 
-asm void fn_8004E198(void)
+// provenance: original
+void fn_8004E198(void* p)
 {
-    nofralloc
-    lwz	r0, 0xc(r3)
-    cmpwi	r0, 3
-    bnelr	
-    li	r0, 0
-    stw	r0, 0xc(r3)
-    blr	
+    if (*(int*)((char*)p + 0xc) == 3) {
+        *(int*)((char*)p + 0xc) = 0;
+    }
 }
 
-asm void fn_8004E1B0(void)
+// provenance: original
+void fn_8004E1B0(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    li	r4, 0
-    li	r5, 8
-    stw	r0, 0x14(r1)
-    li	r0, 0
-    stw	r0, 0xc(r3)
-    addi	r3, r3, 0x28
-    bl      memset
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    *(int*)((char*)p + 0xc) = 0;
+    memset((char*)p + 0x28, 0, 8);
 }
 
-asm void fn_8004E1E4(void)
+// provenance: original
+void fn_8004E1E4(void* p)
 {
-    nofralloc
-    lwz	r0, 0xc(r3)
-    cmpwi	r0, 0
-    bnelr	
-    li	r4, 0
-    li	r0, 1
-    stw	r4, 0x10(r3)
-    stw	r0, 0xc(r3)
-    blr	
+    if (*(int*)((char*)p + 0xc) == 0) {
+        *(int*)((char*)p + 0x10) = 0;
+        *(int*)((char*)p + 0xc) = 1;
+    }
 }
 
-asm void fn_8004E204(void)
+// provenance: original
+int fn_8004E204(void* p, int a, int b, int c, int d)
 {
-    nofralloc
-    lwz	r0, 0xc(r3)
-    cmpwi	r0, 0
-    bne     _8004e230
-    li	r0, 2
-    stw	r0, 0x14(r3)
-    stw	r4, 0x18(r3)
-    stw	r5, 0x1c(r3)
-    stw	r6, 0x20(r3)
-    stw	r7, 0x24(r3)
-    li	r3, 1
-    blr	
-_8004e230:
-    li	r3, 0
-    blr	
+    if (*(int*)((char*)p + 0xc) == 0) {
+        *(int*)((char*)p + 0x14) = 2;
+        *(int*)((char*)p + 0x18) = a;
+        *(int*)((char*)p + 0x1c) = b;
+        *(int*)((char*)p + 0x20) = c;
+        *(int*)((char*)p + 0x24) = d;
+        return 1;
+    }
+    return 0;
 }
 
-asm void fn_8004E238(void)
+// provenance: original
+int fn_8004E238(void* p, int a, int b, int c)
 {
-    nofralloc
-    lwz	r0, 0xc(r3)
-    cmpwi	r0, 0
-    bne     _8004e268
-    li	r7, 1
-    li	r0, 0
-    stw	r7, 0x14(r3)
-    stw	r4, 0x18(r3)
-    stw	r5, 0x1c(r3)
-    stw	r6, 0x20(r3)
-    stw	r0, 0x24(r3)
-    li	r3, 1
-    blr	
-_8004e268:
-    li	r3, 0
-    blr	
+    if (*(int*)((char*)p + 0xc) == 0) {
+        *(int*)((char*)p + 0x14) = 1;
+        *(int*)((char*)p + 0x18) = a;
+        *(int*)((char*)p + 0x1c) = b;
+        *(int*)((char*)p + 0x20) = c;
+        *(int*)((char*)p + 0x24) = 0;
+        return 1;
+    }
+    return 0;
 }
 
 // provenance: harvest:runs.sqlite — ADXT_GetCmdState recovered from adxt_8004E098.c, compiled by natc5 at 2026-08-31T23:42 and scored 100 against main/game/adxt_8004E098; original reference not recorded
@@ -252,24 +223,13 @@ int ADXT_GetCmdState(void *arg0)
     return ((ADXTStruct *)arg0)->unkC;
 }
 
-asm void fn_8004E278(void)
+// provenance: original
+void fn_8004E278(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    beq     _8004e2a0
-    li	r0, 0
-    li	r4, 0
-    stw	r0, 0(r3)
-    li	r5, 0x3c
-    bl      memset
-_8004e2a0:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p != 0) {
+        *(int*)p = 0;
+        memset(p, 0, 0x3c);
+    }
 }
 
 // provenance: original
@@ -429,21 +389,10 @@ _8004e494:
     blr	
 }
 
-asm void fn_8004E4AC(void)
+// provenance: original
+void fn_8004E4AC(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8017E5BC@ha
-    li	r4, 0
-    stw	r0, 0x14(r1)
-    addi	r3, r3, lbl_8017E5BC@l
-    li	r5, 0x3c0
-    bl      memset
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    memset(lbl_8017E5BC, 0, 0x3c0);
 }
 
 asm void fn_8004E4DC(void)
@@ -497,16 +446,10 @@ _8004e56c:
     blr	
 }
 
-asm void fn_8004E580(void)
+// provenance: original
+int fn_8004E580(void)
 {
-    nofralloc
-    lis     r3, lbl_8017E984@ha
-    addi	r3, r3, lbl_8017E984@l
-    lwz	r3, 0(r3)
-    neg	r0, r3
-    or	r0, r0, r3
-    srwi	r3, r0, 0x1f
-    blr	
+    return *(int*)lbl_8017E984 != 0;
 }
 
 asm void fn_8004E59C(void)
@@ -651,17 +594,10 @@ _8004e790:
     blr	
 }
 
-asm void fn_8004E7B4(void)
+// provenance: original
+void fn_8004E7B4(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_80058EF4
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_80058EF4();
 }
 
 asm void fn_8004E7D4(void)
@@ -965,56 +901,28 @@ _8004eb88:
     blr	
 }
 
-asm void fn_8004EBB4(void)
+// provenance: original
+void fn_8004EBB4(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmUnlockServer
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmUnlockServer();
 }
 
-asm void fn_8004EBD4(void)
+// provenance: original
+void fn_8004EBD4(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmLockServer
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmLockServer();
 }
 
-asm void fn_8004EBF4(void)
+// provenance: original
+void fn_8004EBF4(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_80058D24
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_80058D24();
 }
 
-asm void fn_8004EC14(void)
+// provenance: original
+void fn_8004EC14(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      VIWaitForRetrace
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    VIWaitForRetrace();
 }
 
 asm void fn_8004EC34(void)
@@ -1072,59 +980,29 @@ _8004ecdc:
     blr	
 }
 
-asm void fn_8004ECF4(void)
+// provenance: original
+void fn_8004ECF4(int unused, int b)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    mr	r3, r4
-    stw	r0, 0x14(r1)
-    bl      criErr_CallErrCallback
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    criErr_CallErrCallback(b);
 }
 
-asm void fn_8004ED18(void)
+// provenance: original
+void fn_8004ED18(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 0xc(r3)
-    bl      fn_8004ED3C
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8004ED3C(*(int*)((char*)p + 0xc));
 }
 
-asm void fn_8004ED3C(void)
+// provenance: original
+void fn_8004ED3C(int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A668
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A668(a);
 }
 
-asm void fn_8004ED5C(void)
+// provenance: original
+int fn_8004ED5C(int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A680
-    lwz	r0, 0x14(r1)
-    li	r3, 0
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A680(a);
+    return 0;
 }
 
 // provenance: original fn_8004ED80 (no-op stub: retail body is a single blr)
@@ -1132,221 +1010,102 @@ void fn_8004ED80(void)
 {
 }
 
-asm void fn_8004ED84(void)
+// provenance: original
+void fn_8004ED84(int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A678
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A678(a);
 }
 
-asm void fn_8004EDA4(void)
+// provenance: original
+void fn_8004EDA4(int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A688
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A688(a);
 }
 
-asm void adxtSetHandleVolume(void)
+// provenance: original
+void adxtSetHandleVolume(int a, int b)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A698
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A698(a, b);
 }
 
-asm void fn_8004EDE4(void)
+// provenance: original
+void fn_8004EDE4(int a, int b)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A74C
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A74C(a, b);
 }
 
-asm void fn_8004EE04(void)
+// provenance: original
+void fn_8004EE04(int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A7F8
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A7F8(a);
 }
 
-asm void fn_8004EE24(void)
+// provenance: original
+void fn_8004EE24(int a, int b)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A94C
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A94C(a, b);
 }
 
-asm void fn_8004EE44(void)
+// provenance: original
+void fn_8004EE44(int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005A95C
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005A95C(a);
 }
 
-asm void fn_8004EE64(void)
+// provenance: original
+void fn_8004EE64(int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005B010
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005B010(a);
 }
 
-asm void fn_8004EE84(void)
+// provenance: original
+void fn_8004EE84(int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005B068
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005B068(a);
 }
 
-asm void ADXTServerStateRequest_wrapper(void)
+// provenance: original
+void ADXTServerStateRequest_wrapper(void* p, int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      ADXTServerStateRequest
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    ADXTServerStateRequest(p, a);
 }
 
-asm void ADXT_GetResourceManager(void)
+// provenance: original
+void ADXT_GetResourceManager(void* p, int a)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      mfCiOpen_resource_mgr
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    mfCiOpen_resource_mgr(p, a);
 }
 
-asm void fn_8004EEE4(void)
+// provenance: original
+void fn_8004EEE4(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    li	r4, 0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    bl      ADXTServerStateRequest
-    mr	r3, r31
-    li	r4, 0
-    bl      mfCiOpen_resource_mgr
-    mr	r3, r31
-    bl      fn_8005B464
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    ADXTServerStateRequest(p, 0);
+    mfCiOpen_resource_mgr(p, 0);
+    fn_8005B464(p);
 }
 
-asm void fn_8004EF28(void)
+// provenance: original
+void fn_8004EF28(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005B534
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005B534(p);
 }
 
-asm void fn_8004EF48(void)
+// provenance: original
+void fn_8004EF48(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005BE48
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005BE48();
 }
 
-asm void fn_8004EF68(void)
+// provenance: original
+void fn_8004EF68(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005BCB4
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005BCB4();
 }
 
-asm void fn_8004EF88(void)
+// provenance: original
+void fn_8004EF88(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8005BDD4
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8005BDD4();
 }
 
 asm void fn_8004EFA8(void)
