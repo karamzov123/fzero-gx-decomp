@@ -699,61 +699,29 @@ void fn_8004E9A8(void)
     g->unkCA8 = 1;
 }
 
-asm void fn_8004E9D8(void)
+// provenance: original
+void fn_8004E9D8(void)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis     r3, lbl_8017E980@ha
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    addi	r30, r3, lbl_8017E980@l
-    stw	r29, 0x14(r1)
-    lwz	r0, 0xca0(r30)
-    cmpwi	r0, 1
-    beq     _8004ea78
-    lis	r3, lbl_8012B918@ha
-    li	r0, 1
-    lwz	r4, lbl_8012B918@l(r3)
-    addi	r3, r30, 0x28
-    stw	r0, 0xc(r30)
-    bl      OSSetThreadPriority
-    lis	r3, 0xbec
-    li	r29, 0
-    addi	r31, r3, -0x3e00
-    b       _8004ea44
-_8004ea2c:
-    addi	r3, r30, 0x28
-    bl      OSResumeThread
-    lwz	r0, 0xc(r30)
-    cmpwi	r0, 0
-    beq     _8004ea4c
-    addi	r29, r29, 1
-_8004ea44:
-    cmpw	r29, r31
-    blt     _8004ea2c
-_8004ea4c:
-    addis	r0, r29, -0xbeb
-    cmplwi	r0, 0xc200
-    bne     _8004ea64
-    lis     r3, _Internal_Error_adxm_goto_mwidle_border_str@ha
-    addi	r3, r3, _Internal_Error_adxm_goto_mwidle_border_str@l
-    bl      SVM_ReportErrorString
-_8004ea64:
-    lis     r4, lbl_8012B918@ha
-    addi	r3, r30, 0x28
-    addi	r4, r4, lbl_8012B918@l
-    lwz	r4, 0x14(r4)
-    bl      OSSetThreadPriority
-_8004ea78:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    AdxSrv* g = (AdxSrv*)lbl_8017E980;
+    int i;
+
+    if (g->unkCA0 == 1) {
+        return;
+    }
+
+    g->unkC = 1;
+    OSSetThreadPriority(g->unk28, lbl_8012B918[0]);
+
+    for (i = 0; i < 200000000; i++) {
+        OSResumeThread(g->unk28);
+        if (g->unkC == 0) {
+            break;
+        }
+    }
+    if (i == 200000000) {
+        SVM_ReportErrorString(_Internal_Error_adxm_goto_mwidle_border_str);
+    }
+    OSSetThreadPriority(g->unk28, lbl_8012B918[5]);
 }
 
 // provenance: original

@@ -1,6 +1,45 @@
 #pragma push
 #pragma force_active on
 
+typedef struct AdxHdr {
+    char pad0[2];
+    short unk2;
+    char pad4[8];
+    char unkC;
+    char unkD;
+    signed char unkE;
+    signed char unkF;
+    int unk10;
+    int unk14;
+    int unk18;
+    short unk1C;
+    char pad1E[2];
+    int unk20;
+    short unk24;
+    short unk26;
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    char pad38[4];
+    int unk3C;
+    int unk40;
+    int unk44;
+    char pad48[8];
+    int unk50;
+    int unk54;
+    int unk58;
+    int unk5C;
+    int unk60;
+    int unk64;
+    char pad68[0x20];
+    int unk88;
+    int unk8C;
+    char pad90[8];
+    short unk98;
+    short unk9A;
+} AdxHdr;
+
 typedef struct AdxStream {
     char pad0[0x9a];
     short unk9A;
@@ -14,7 +53,7 @@ extern void fn_80042980();
 extern void fn_80042D24();
 extern int strncmp();
 extern void ADXT_GetCmdState(void);
-extern void fn_8004313C(void);
+extern int fn_8004313C();
 extern unsigned char RIFF_str[];
 extern unsigned char WAVE_str[];
 extern unsigned char lbl_8012B6F4[4];
@@ -779,73 +818,38 @@ _80043038:
     blr	
 }
 
-asm void fn_80043050(void)
+// provenance: original
+int fn_80043050(AdxHdr* p, void* a, void* b)
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    stw	r0, 0x34(r1)
-    li	r0, 1
-    stw	r31, 0x2c(r1)
-    mr	r31, r3
-    addi	r6, r31, 0x10
-    sth	r0, 2(r3)
-    addi	r0, r31, 0x18
-    mr	r3, r4
-    mr	r4, r5
-    stw	r0, 8(r1)
-    addi	r0, r31, 0x9a
-    addi	r5, r1, 0x18
-    addi	r7, r31, 0xd
-    stw	r6, 0xc(r1)
-    addi	r6, r31, 0xc
-    addi	r8, r31, 0xf
-    addi	r9, r31, 0xe
-    stw	r0, 0x10(r1)
-    addi	r10, r31, 0x14
-    bl      fn_8004313C
-    cmpwi	r3, 0
-    bge     _800430b8
-    li	r3, 0
-    b       _80043128
-_800430b8:
-    li	r4, 0
-    li	r0, 1
-    sth	r4, 0x1c(r31)
-    sth	r4, 0x26(r31)
-    sth	r4, 0x24(r31)
-    stw	r4, 0x34(r31)
-    stw	r4, 0x30(r31)
-    stw	r4, 0x2c(r31)
-    stw	r4, 0x28(r31)
-    stw	r4, 0x20(r31)
-    lbz	r3, 0xe(r31)
-    extsb	r3, r3
-    stw	r3, 0x50(r31)
-    lbz	r3, 0xf(r31)
-    extsb	r3, r3
-    stw	r3, 0x54(r31)
-    lwz	r3, 0x10(r31)
-    stw	r3, 0x58(r31)
-    lwz	r3, 0x3c(r31)
-    stw	r3, 0x5c(r31)
-    lwz	r3, 0x40(r31)
-    stw	r3, 0x60(r31)
-    lwz	r3, 0x44(r31)
-    stw	r3, 0x64(r31)
-    stw	r4, 0x8c(r31)
-    stw	r4, 0x88(r31)
-    sth	r0, 0x98(r31)
-    lha	r3, 0x18(r1)
-_80043128:
-    lwz	r0, 0x34(r1)
-    lwz	r31, 0x2c(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr	
+    short nch;
+
+    p->unk2 = 1;
+    if (fn_8004313C(a, b, &nch, &p->unkC, &p->unkD, &p->unkF, &p->unkE, &p->unk14,
+                   &p->unk18, &p->unk10, &p->unk9A) < 0) {
+        return 0;
+    }
+
+    p->unk1C = 0;
+    p->unk26 = 0;
+    p->unk24 = 0;
+    p->unk34 = 0;
+    p->unk30 = 0;
+    p->unk2C = 0;
+    p->unk28 = 0;
+    p->unk20 = 0;
+    p->unk50 = p->unkE;
+    p->unk54 = p->unkF;
+    p->unk58 = p->unk10;
+    p->unk5C = p->unk3C;
+    p->unk60 = p->unk40;
+    p->unk64 = p->unk44;
+    p->unk8C = 0;
+    p->unk88 = 0;
+    p->unk98 = 1;
+    return nch;
 }
 
-asm void fn_8004313C(void)
+asm int fn_8004313C()
 {
     nofralloc
     stwu	r1, -0x40(r1)

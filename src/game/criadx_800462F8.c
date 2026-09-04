@@ -6,6 +6,45 @@ typedef signed int s32;
 #pragma push
 #pragma force_active on
 
+typedef struct AdxHdr {
+    char pad0[2];
+    short unk2;
+    char pad4[8];
+    char unkC;
+    char unkD;
+    signed char unkE;
+    signed char unkF;
+    int unk10;
+    int unk14;
+    int unk18;
+    short unk1C;
+    char pad1E[2];
+    int unk20;
+    short unk24;
+    short unk26;
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    char pad38[4];
+    int unk3C;
+    int unk40;
+    int unk44;
+    char pad48[8];
+    int unk50;
+    int unk54;
+    int unk58;
+    int unk5C;
+    int unk60;
+    int unk64;
+    char pad68[0x20];
+    int unk88;
+    int unk8C;
+    char pad90[8];
+    short unk98;
+    short unk9A;
+} AdxHdr;
+
 extern unsigned char lbl_80090960[4];
 extern unsigned char lbl_80090964[4];
 extern unsigned char lbl_8009095C[4];
@@ -14,7 +53,7 @@ extern unsigned char lbl_80090938[4];
 extern unsigned char lbl_80090968[8];
 __declspec(section ".data") extern unsigned int lbl_8017B028;
 __declspec(section ".data") extern unsigned int lbl_8017B020;
-extern void fn_800463E4(void);
+extern int fn_800463E4();
 extern void memset();
 extern void svmLockServer_wrapper(void);
 extern void svmUnlockServer_wrapper(void);
@@ -32,75 +71,40 @@ extern unsigned char lbl_80090970[2];
 extern unsigned char lbl_8017B038[288];
 
 #pragma push
-asm void fn_800462F8(void)
+// provenance: original
+int fn_800462F8(AdxHdr* p, void* a, void* b)
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    stw	r0, 0x34(r1)
-    li	r0, 1
-    stw	r31, 0x2c(r1)
-    mr	r31, r3
-    addi	r6, r31, 0x10
-    sth	r0, 2(r3)
-    addi	r0, r31, 0x18
-    mr	r3, r4
-    mr	r4, r5
-    stw	r0, 8(r1)
-    addi	r0, r31, 0x9a
-    addi	r5, r1, 0x18
-    addi	r7, r31, 0xd
-    stw	r6, 0xc(r1)
-    addi	r6, r31, 0xc
-    addi	r8, r31, 0xf
-    addi	r9, r31, 0xe
-    stw	r0, 0x10(r1)
-    addi	r10, r31, 0x14
-    bl      fn_800463E4
-    cmpwi	r3, 0
-    bge     _80046360
-    li	r3, 0
-    b       _800463d0
-_80046360:
-    li	r4, 0
-    li	r0, 2
-    sth	r4, 0x1c(r31)
-    sth	r4, 0x26(r31)
-    sth	r4, 0x24(r31)
-    stw	r4, 0x34(r31)
-    stw	r4, 0x30(r31)
-    stw	r4, 0x2c(r31)
-    stw	r4, 0x28(r31)
-    stw	r4, 0x20(r31)
-    lbz	r3, 0xe(r31)
-    extsb	r3, r3
-    stw	r3, 0x50(r31)
-    lbz	r3, 0xf(r31)
-    extsb	r3, r3
-    stw	r3, 0x54(r31)
-    lwz	r3, 0x10(r31)
-    stw	r3, 0x58(r31)
-    lwz	r3, 0x3c(r31)
-    stw	r3, 0x5c(r31)
-    lwz	r3, 0x40(r31)
-    stw	r3, 0x60(r31)
-    lwz	r3, 0x44(r31)
-    stw	r3, 0x64(r31)
-    stw	r4, 0x8c(r31)
-    stw	r4, 0x88(r31)
-    sth	r0, 0x98(r31)
-    lha	r3, 0x18(r1)
-_800463d0:
-    lwz	r0, 0x34(r1)
-    lwz	r31, 0x2c(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr	
+    short nch;
+
+    p->unk2 = 1;
+    if (fn_800463E4(a, b, &nch, &p->unkC, &p->unkD, &p->unkF, &p->unkE, &p->unk14,
+                   &p->unk18, &p->unk10, &p->unk9A) < 0) {
+        return 0;
+    }
+
+    p->unk1C = 0;
+    p->unk26 = 0;
+    p->unk24 = 0;
+    p->unk34 = 0;
+    p->unk30 = 0;
+    p->unk2C = 0;
+    p->unk28 = 0;
+    p->unk20 = 0;
+    p->unk50 = p->unkE;
+    p->unk54 = p->unkF;
+    p->unk58 = p->unk10;
+    p->unk5C = p->unk3C;
+    p->unk60 = p->unk40;
+    p->unk64 = p->unk44;
+    p->unk8C = 0;
+    p->unk88 = 0;
+    p->unk98 = 2;
+    return nch;
 }
 #pragma pop
 
 #pragma push
-asm void fn_800463E4(void)
+asm int fn_800463E4()
 {
     nofralloc
     lbz	r0, 7(r3)
