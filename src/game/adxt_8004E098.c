@@ -1,6 +1,26 @@
 #pragma push
 #pragma force_active on
 
+/* The server thread and the caller both poll these words, so every read is a
+   real load. */
+typedef struct AdxSrv {
+    char pad0[8];
+    volatile int unk8;
+    char pad0C[4];
+    int unk10;
+    char pad14[4];
+    int unk18;
+    char pad1C[0x954];
+    char unk970[0x318];
+    int unkC88;
+    char padC8C[4];
+    int unkC90;
+    volatile int unkC94;
+    char padC98[0x10];
+    int unkCA8;
+    volatile int unkCAC;
+} AdxSrv;
+
 extern void OSCancelThread();
 extern void OSCreateThread();
 extern void OSDisableInterrupts();
@@ -10,7 +30,7 @@ extern void OSRestoreInterrupts();
 extern void OSResumeThread();
 extern void OSSetThreadPriority();
 extern void OSSuspendThread();
-extern void OSGetCurrentThread();
+extern void* OSGetCurrentThread();
 extern void fn_80011358();
 extern void VIWaitForRetrace();
 extern void CRI_SPSD_parser();
@@ -76,7 +96,7 @@ extern unsigned char lbl_8012B918[24];
 extern unsigned char lbl_8012B930[8];
 extern unsigned char lbl_80178CB8[4];
 extern unsigned char lbl_8017E5BC[964];
-extern unsigned char lbl_8017E980[4];
+extern unsigned char lbl_8017E980[];
 extern unsigned char lbl_8017E984[31916];
 extern void fn_80056584();
 extern void fn_8005A5A8();
@@ -277,21 +297,10 @@ void fn_8004E300(StructR3* r3, StructR45* r4, StructR45* r5) {
     r3->unk2E = r5->unk2;
 }
 
-asm void fn_8004E324(void)
+// provenance: original
+void fn_8004E324(void* p, int a, void* src)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    mr	r6, r3
-    mr	r3, r5
-    stw	r0, 0x14(r1)
-    addi	r5, r6, 0x30
-    addi	r6, r6, 0x32
-    bl      CRI_SPSD_parser
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    CRI_SPSD_parser(src, a, (char*)p + 0x30, (char*)p + 0x32);
 }
 
 asm void fn_8004E354(void)
@@ -661,33 +670,17 @@ _8004e870:
     blr	
 }
 
-asm void fn_8004E8A0(void)
+// provenance: original
+void fn_8004E8A0(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8017E980@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r3, lbl_8017E980@l
-    b       _8004e8d0
-_8004e8bc:
-    bl      VIWaitForRetrace
-    lwz	r3, 0x18(r31)
-    addi	r0, r3, 1
-    stw	r0, 0x18(r31)
-    bl      fn_80058DB4
-_8004e8d0:
-    lwz	r0, 0xc94(r31)
-    cmpwi	r0, 1
-    beq     _8004e8bc
-    li	r0, 1
-    stw	r0, 0xc90(r31)
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxSrv* g = (AdxSrv*)lbl_8017E980;
+
+    while (g->unkC94 == 1) {
+        VIWaitForRetrace();
+        g->unk18++;
+        fn_80058DB4();
+    }
+    g->unkC90 = 1;
 }
 
 asm void fn_8004E8F8(void)
@@ -741,23 +734,15 @@ _8004e978:
     blr	
 }
 
-asm void fn_8004E9A8(void)
+// provenance: original
+void fn_8004E9A8(void)
 {
-    nofralloc
-    lis     r3, lbl_8017E980@ha
-    addi	r4, r3, lbl_8017E980@l
-    b       _8004e9c0
-_8004e9b4:
-    lwz	r3, 0x10(r4)
-    addi	r0, r3, 1
-    stw	r0, 0x10(r4)
-_8004e9c0:
-    lwz	r0, 0xcac(r4)
-    cmpwi	r0, 1
-    beq     _8004e9b4
-    li	r0, 1
-    stw	r0, 0xca8(r4)
-    blr	
+    AdxSrv* g = (AdxSrv*)lbl_8017E980;
+
+    while (g->unkCAC == 1) {
+        g->unk10++;
+    }
+    g->unkCA8 = 1;
 }
 
 asm void fn_8004E9D8(void)
@@ -817,37 +802,18 @@ _8004ea78:
     blr	
 }
 
-asm void fn_8004EA94(void)
+// provenance: original
+void fn_8004EA94(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8017E980@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r3, lbl_8017E980@l
-    stw	r30, 8(r1)
-    lwz	r3, 8(r31)
-    addi	r0, r3, -1
-    stw	r0, 8(r31)
-    lwz	r0, 8(r31)
-    cmpwi	r0, 0
-    bne     _8004eae8
-    bl      OSGetCurrentThread
-    mr	r0, r3
-    addi	r3, r31, 0x970
-    mr	r30, r0
-    bl      OSSuspendThread
-    lwz	r4, 0xc88(r31)
-    mr	r3, r30
-    bl      OSSetThreadPriority
-_8004eae8:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxSrv* g = (AdxSrv*)lbl_8017E980;
+    void* self;
+
+    g->unk8--;
+    if (g->unk8 == 0) {
+        self = OSGetCurrentThread();
+        OSSuspendThread(g->unk970);
+        OSSetThreadPriority(self, g->unkC88);
+    }
 }
 
 asm void fn_8004EB00(void)

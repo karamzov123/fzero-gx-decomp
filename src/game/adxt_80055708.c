@@ -1,6 +1,35 @@
 #pragma push
 #pragma force_active on
 
+typedef struct GcciEntry {
+    int id;
+    void* unk4;
+    char pad8[0x10];
+    int unk18;
+    void* stream;
+} GcciEntry;
+
+typedef struct GcciCtx {
+    char pad0[0x14];
+    int unk14;
+    int unk18;
+    char pad1C[4];
+    int unk20;
+    int unk24;
+    char pad28[0x10];
+    GcciEntry ent[16];
+} GcciCtx;
+
+typedef struct GcciSlot {
+    unsigned char unk0;
+    char pad1[0x237];
+} GcciSlot;
+
+typedef struct GcciCrit {
+    int a;
+    int b;
+} GcciCrit;
+
 extern void DCInvalidateRange();
 extern void DCStoreRange();
 extern void DVDGetDriveStatus();
@@ -46,7 +75,7 @@ extern unsigned char lbl_801878B8[12];
 extern unsigned char lbl_801878CC[4004];
 extern unsigned char lbl_80188870[256];
 extern unsigned char lbl_80188A78[16];
-extern unsigned char lbl_80188A8C[9092];
+extern GcciSlot lbl_80188A8C[16];
 extern void fn_800555C0();
 
 // provenance: original
@@ -1183,14 +1212,17 @@ void gcci_set_critical_value(void* a, int b)
     }
 }
 
+/* Retail calls these out of line: the carved unit spans more than one
+   original translation unit, so no caller here ever saw a body. */
+#pragma dont_inline on
 // provenance: original
-void gccicrit_leave(void)
+void gccicrit_leave()
 {
     svmExitCritical();
 }
 
 // provenance: original
-void gccicrit_enter(void)
+void gccicrit_enter()
 {
     svmEnterCritical();
 }
@@ -1230,305 +1262,98 @@ int fn_800567AC(void* p)
     return *(int*)((char*)p + 0x14);
 }
 
-asm void gcci_set_min_stream(void)
+// provenance: original
+void gcci_set_min_stream(GcciCtx* p, int n)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80056814
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    b     _80056840
-_80056814:
-    cmpwi	r4, 0
-    blt     _80056828
-    lwz	r0, 0x18(r3)
-    cmpw	r4, r0
-    ble     _8005683c
-_80056828:
-    lis     r3, E0010_min_param_str@ha
-    addi	r3, r3, E0010_min_param_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    b     _80056840
-_8005683c:
-    stw	r4, 0x14(r3)
-_80056840:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return;
+    }
+    if (n < 0 || n > p->unk18) {
+        gcciErrPrintf((char*)E0010_min_param_str);
+        return;
+    }
+    p->unk14 = n;
 }
 
-asm void gcci_find_stream_0(void)
+// provenance: original
+void* gcci_find_stream_0(GcciCtx* p, int id)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8005687c
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, 0
-    b     _80056940
-_8005687c:
-    li	r0, 2
-    mr	r5, r3
-    li	r6, 0
-    mtctr	r0
-_8005688c:
-    lwz	r0, 0x38(r5)
-    cmpw	r0, r4
-    beq     _80056914
-    lwz	r0, 0x58(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056914
-    lwz	r0, 0x78(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056914
-    lwz	r0, 0x98(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056914
-    lwz	r0, 0xb8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056914
-    lwz	r0, 0xd8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056914
-    lwz	r0, 0xf8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056914
-    lwz	r0, 0x118(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056914
-    addi	r5, r5, 0x100
-    addi	r6, r6, 1
-    bdnz     _8005688c
-_80056914:
-    cmpwi	r6, 0x10
-    bne     _80056934
-    lis     r3, E0012_stream_id_not_found_str@ha
-    addi	r3, r3, E0012_stream_id_not_found_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, 0
-    b     _80056940
-_80056934:
-    slwi	r0, r6, 5
-    add	r3, r3, r0
-    lwz	r3, 0x54(r3)
-_80056940:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int i;
+
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return 0;
+    }
+
+    for (i = 0; i < 16; i++) {
+        if (p->ent[i].id == id) {
+            break;
+        }
+    }
+    if (i == 16) {
+        gcciErrPrintf((char*)E0012_stream_id_not_found_str);
+        return 0;
+    }
+    return p->ent[i].stream;
 }
 
-asm void gcci_find_stream_1(void)
+// provenance: original
+int gcci_find_stream_1(GcciCtx* p, int id)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8005697c
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, -1
-    b     _80056a40
-_8005697c:
-    li	r0, 2
-    mr	r5, r3
-    li	r6, 0
-    mtctr	r0
-_8005698c:
-    lwz	r0, 0x38(r5)
-    cmpw	r0, r4
-    beq     _80056a14
-    lwz	r0, 0x58(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056a14
-    lwz	r0, 0x78(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056a14
-    lwz	r0, 0x98(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056a14
-    lwz	r0, 0xb8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056a14
-    lwz	r0, 0xd8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056a14
-    lwz	r0, 0xf8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056a14
-    lwz	r0, 0x118(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056a14
-    addi	r5, r5, 0x100
-    addi	r6, r6, 1
-    bdnz     _8005698c
-_80056a14:
-    cmpwi	r6, 0x10
-    bne     _80056a34
-    lis     r3, E0012_stream_id_not_found_str@ha
-    addi	r3, r3, E0012_stream_id_not_found_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, -1
-    b     _80056a40
-_80056a34:
-    slwi	r0, r6, 5
-    add	r3, r3, r0
-    lwz	r3, 0x50(r3)
-_80056a40:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int i;
+
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return -1;
+    }
+
+    for (i = 0; i < 16; i++) {
+        if (p->ent[i].id == id) {
+            break;
+        }
+    }
+    if (i == 16) {
+        gcciErrPrintf((char*)E0012_stream_id_not_found_str);
+        return -1;
+    }
+    return p->ent[i].unk18;
 }
 
-asm void gcci_find_stream_2(void)
+// provenance: original
+void* gcci_find_stream_2(GcciCtx* p, int id)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80056a7c
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, 0
-    b     _80056b40
-_80056a7c:
-    li	r0, 2
-    mr	r5, r3
-    li	r6, 0
-    mtctr	r0
-_80056a8c:
-    lwz	r0, 0x38(r5)
-    cmpw	r0, r4
-    beq     _80056b14
-    lwz	r0, 0x58(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056b14
-    lwz	r0, 0x78(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056b14
-    lwz	r0, 0x98(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056b14
-    lwz	r0, 0xb8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056b14
-    lwz	r0, 0xd8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056b14
-    lwz	r0, 0xf8(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056b14
-    lwz	r0, 0x118(r5)
-    addi	r6, r6, 1
-    cmpw	r0, r4
-    beq     _80056b14
-    addi	r5, r5, 0x100
-    addi	r6, r6, 1
-    bdnz     _80056a8c
-_80056b14:
-    cmpwi	r6, 0x10
-    bne     _80056b34
-    lis     r3, E0012_stream_id_not_found_str@ha
-    addi	r3, r3, E0012_stream_id_not_found_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, 0
-    b     _80056b40
-_80056b34:
-    slwi	r0, r6, 5
-    add	r3, r3, r0
-    lwz	r3, 0x3c(r3)
-_80056b40:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int i;
+
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return 0;
+    }
+
+    for (i = 0; i < 16; i++) {
+        if (p->ent[i].id == id) {
+            break;
+        }
+    }
+    if (i == 16) {
+        gcciErrPrintf((char*)E0012_stream_id_not_found_str);
+        return 0;
+    }
+    return p->ent[i].unk4;
 }
 
-asm void gcci_get_stream_by_index(void)
+// provenance: original
+int gcci_get_stream_by_index(GcciCtx* p, int i)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80056b7c
-    lis     r3, E0003_lsc_null_str@ha
-    addi	r3, r3, E0003_lsc_null_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, -1
-    b     _80056bd0
-_80056b7c:
-    cmpwi	r4, 0
-    blt     _80056b90
-    lwz	r0, 0x24(r3)
-    cmpw	r4, r0
-    blt     _80056ba8
-_80056b90:
-    lis     r3, E0009_no_param_str@ha
-    addi	r3, r3, E0009_no_param_str@l
-    crxor	6, 6, 6
-    bl      gcciErrPrintf
-    li	r3, -1
-    b     _80056bd0
-_80056ba8:
-    lwz	r0, 0x20(r3)
-    add	r4, r0, r4
-    slwi	r0, r4, 0x1c
-    srwi	r4, r4, 0x1f
-    subf	r0, r4, r0
-    rotlwi	r0, r0, 4
-    add	r0, r0, r4
-    slwi	r0, r0, 5
-    add	r3, r3, r0
-    lwz	r3, 0x38(r3)
-_80056bd0:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p == 0) {
+        gcciErrPrintf((char*)E0003_lsc_null_str);
+        return -1;
+    }
+    if (i < 0 || i >= p->unk24) {
+        gcciErrPrintf((char*)E0009_no_param_str);
+        return -1;
+    }
+    return p->ent[(p->unk20 + i) % 16].id;
 }
 
 // provenance: original
@@ -1551,38 +1376,20 @@ int fn_80056C20(void* p)
     return *(signed char*)((char*)p + 1);
 }
 
-asm void fn_80056C64(void)
+// provenance: original
+void fn_80056C64(void)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    addi	r3, r1, 8
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    bl      gccicrit_enter
-    lis     r3, lbl_80188A8C@ha
-    li	r30, 0
-    addi	r31, r3, lbl_80188A8C@l
-_80056c8c:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _80056ca0
-    mr	r3, r31
-    bl      fn_80057494
-_80056ca0:
-    addi	r30, r30, 1
-    addi	r31, r31, 0x238
-    cmpwi	r30, 0x10
-    blt     _80056c8c
-    addi	r3, r1, 8
-    bl      gccicrit_leave
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    GcciCrit crit;
+    int i;
+
+    gccicrit_enter(&crit);
+    for (i = 0; i < 16; i++) {
+        int st = lbl_80188A8C[i].unk0;
+        if (st == 1) {
+            fn_80057494(&lbl_80188A8C[i]);
+        }
+    }
+    gccicrit_leave(&crit);
 }
 
 asm void fn_80056CD0(void)
@@ -1883,3 +1690,4 @@ _800570c8:
 }
 
 #pragma pop
+#pragma dont_inline reset

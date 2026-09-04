@@ -8,6 +8,21 @@ __declspec(section ".data") extern struct AdxtPair lbl_8018FF70;
 #pragma push
 #pragma force_active on
 
+typedef struct SvmCb {
+    void (*fn)();
+    void* arg;
+} SvmCb;
+
+typedef struct SvmBuf {
+    char pad0[4];
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    int unk14;
+    int unk18;
+} SvmBuf;
+
 extern void SVM_ReportErrorString();
 extern unsigned char lbl_80092350[52];
 extern unsigned char lbl_800924F8[46];
@@ -16,7 +31,7 @@ extern void svmUnlockServer(void);
 extern void svmLockServer(void);
 extern void sprintf(void);
 extern void fn_8008077C(void);
-extern void strncpy(void);
+extern void strncpy();
 extern void strtol(void);
 extern void memcpy(void);
 extern void memset(void);
@@ -31,7 +46,7 @@ extern unsigned char _SVM_SetCbSvr_too_many_server_function_str[52];
 extern unsigned char lbl_80092384[288];
 extern unsigned char lbl_8018FEB0[48];
 extern unsigned char lbl_8018FEE0[128];
-extern unsigned char lbl_8018FF60[8];
+extern SvmCb lbl_8018FF60[];
 extern unsigned char lbl_8018FF78[512];
 extern unsigned char lbl_80190178[];
 extern unsigned char lbl_8019017C[2548];
@@ -931,32 +946,13 @@ _80059584:
 #pragma pop
 
 #pragma push
-asm void SVM_ReportErrorString(void)
+// provenance: original
+void SVM_ReportErrorString(char* s)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r5, lbl_8018FEE0@ha
-    mr	r4, r3
-    stw	r0, 0x14(r1)
-    addi	r3, r5, lbl_8018FEE0@l
-    li	r5, 0x7f
-    bl      strncpy
-    lis     r3, lbl_8018FF60@ha
-    addi	r5, r3, lbl_8018FF60@l
-    lwz	r12, 0(r5)
-    cmplwi	r12, 0
-    beq     _800595ec
-    lis     r3, lbl_8018FEE0@ha
-    addi	r4, r3, lbl_8018FEE0@l
-    lwz	r3, 4(r5)
-    mtctr	r12
-    bctrl	
-_800595ec:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    strncpy(lbl_8018FEE0, s, 0x7F);
+    if (lbl_8018FF60[0].fn != 0) {
+        lbl_8018FF60[0].fn(lbl_8018FF60[0].arg, lbl_8018FEE0);
+    }
 }
 #pragma pop
 
@@ -1443,49 +1439,25 @@ int fn_80059BAC(void* handle)
 }
 
 #pragma push
-asm void fn_80059C0C(void)
+// provenance: original
+void fn_80059C0C(SvmBuf* p, int size)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80059c54
-    lis     r3, lbl_80190178@ha
-    lwz	r12, lbl_80190178@l(r3)
-    cmplwi	r12, 0
-    beq     _80059c94
-    lis     r4, lbl_8019017C@ha
-    lis     r3, E0040302_handl_is_null_str_2@ha
-    addi	r5, r4, lbl_8019017C@l
-    addi	r4, r3, E0040302_handl_is_null_str_2@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-    b     _80059c94
-_80059c54:
-    lwz	r5, 0x10(r3)
-    lwz	r0, 4(r3)
-    stw	r4, 4(r3)
-    mullw	r7, r5, r0
-    lwz	r6, 4(r3)
-    lwz	r0, 8(r3)
-    add	r5, r6, r0
-    addi	r0, r5, -1
-    divw	r0, r0, r6
-    stw	r0, 0xc(r3)
-    lwz	r0, 4(r3)
-    divw	r0, r7, r0
-    stw	r0, 0x10(r3)
-    lwz	r0, 0x18(r3)
-    mullw	r0, r0, r4
-    stw	r0, 0x14(r3)
-_80059c94:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int total;
+
+    if (p == 0) {
+        typedef void (*ErrCb)(int, const char*, int);
+        ErrCb cb = *(ErrCb*)lbl_80190178;
+        if (cb != 0) {
+            cb(*(int*)lbl_8019017C, (const char*)E0040302_handl_is_null_str_2, 0);
+        }
+        return;
+    }
+
+    total = p->unk10 * p->unk4;
+    p->unk4 = size;
+    p->unkC = (p->unk4 - 1 + p->unk8) / p->unk4;
+    p->unk10 = total / p->unk4;
+    p->unk14 = p->unk18 * size;
 }
 #pragma pop
 

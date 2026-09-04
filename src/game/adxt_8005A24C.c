@@ -1,6 +1,33 @@
 #pragma push
 #pragma force_active on
 
+typedef struct AdxtNotify {
+    void (*cb)();
+    void* arg;
+    char msg[0x100];
+} AdxtNotify;
+
+typedef struct AdxtSlot {
+    unsigned char unk0;
+    char pad1[0xe7];
+} AdxtSlot;
+
+typedef struct AdxtVt {
+    char pad0[0x24];
+    int (*fn24)();
+} AdxtVt;
+
+typedef struct AdxtStream {
+    AdxtVt* vt;
+} AdxtStream;
+
+typedef struct AdxtSrv {
+    char pad0[3];
+    signed char unk3;
+    char pad4[0x30];
+    AdxtStream* unk34[1];
+} AdxtSrv;
+
 extern void ARQPostRequest(void);
 extern void AXAcquireVoice(void);
 extern void AXFreeVoice(void);
@@ -17,7 +44,7 @@ extern void svmExitCritical();
 extern void svmEnterCritical();
 extern void ADXT_ProcessStreamUpdate(void);
 extern void svm_ringbuf_read(void);
-extern void adxtSetNotifyCallback(void);
+extern void adxtSetNotifyCallback();
 extern void svm_exit_critical_wrapper();
 extern void svm_enter_critical_wrapper();
 extern void fn_8005A9B8();
@@ -30,7 +57,7 @@ extern void ADXT_DestroyHandle(void);
 extern void fn_8005BC20(void);
 extern void fn_8005BEAC(void);
 extern void sprintf(void);
-extern void strncpy(void);
+extern void strncpy();
 extern void strcpy(void);
 extern void strtol(void);
 extern void memset(void);
@@ -44,7 +71,7 @@ extern unsigned char adxt_volume_scale_table[124];
 extern int lbl_80190178[];
 extern int lbl_80190B70[];
 extern unsigned char lbl_800924F8[46];
-extern unsigned char lbl_80092528[144];
+extern volatile int lbl_80092528[36];
 extern unsigned char lbl_8019017C[2548];
 extern unsigned char lbl_80190B74[260];
 extern unsigned char lbl_80190C80[8];
@@ -52,7 +79,7 @@ extern unsigned char lbl_80132558[4];
 extern unsigned char lbl_80190C7C[4];
 extern unsigned char lbl_80190C88[4];
 extern unsigned char lbl_80190C8C[4288];
-extern unsigned char lbl_80191D4C[3716];
+extern AdxtSlot lbl_80191D4C[16];
 void fn_8005ACF0(void);
 void fn_8005ADBC(void);
 
@@ -306,42 +333,22 @@ asm void fn_8005A59C(void)
     blr	
 }
 
-asm void fn_8005A5A8(void)
+// provenance: original
+unsigned char* fn_8005A5A8(void)
 {
-    nofralloc
-    lis	r4, lbl_80092528@ha
-    lis     r3, lbl_801324F0@ha
-    lwz	r0, lbl_80092528@l(r4)
-    addi	r3, r3, lbl_801324F0@l
-    blr	
+    lbl_80092528[0];
+    return lbl_801324F0;
 }
 
-asm void adxtSetNotifyCallback(void)
+// provenance: original
+void adxtSetNotifyCallback(char* s)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r4, lbl_80190B70@ha
-    li	r5, 0xff
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r4, lbl_80190B70@l
-    mr	r4, r3
-    addi	r3, r31, 8
-    bl      strncpy
-    lwz	r12, 0(r31)
-    cmplwi	r12, 0
-    beq     _8005a600
-    addi	r4, r31, 8
-    lwz	r3, 4(r31)
-    mtctr	r12
-    bctrl	
-_8005a600:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxtNotify* n = (AdxtNotify*)lbl_80190B70;
+
+    strncpy(n->msg, s, 0xFF);
+    if (n->cb != 0) {
+        n->cb(n->arg, n->msg);
+    }
 }
 
 // provenance: original
@@ -603,34 +610,17 @@ void fn_8005A94C(void* p, char r4)
     }
 }
 
-asm void fn_8005A95C(void)
+// provenance: original
+void fn_8005A95C(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_80191D4C@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r3, lbl_80191D4C@l
-    stw	r30, 8(r1)
-    li	r30, 0
-_8005a97c:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _8005a990
-    mr	r3, r31
-    bl      fn_8005A9B8
-_8005a990:
-    addi	r30, r30, 1
-    addi	r31, r31, 0xe8
-    cmplwi	r30, 0x10
-    blt     _8005a97c
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    unsigned int i;
+
+    for (i = 0; i < 16; i++) {
+        int st = lbl_80191D4C[i].unk0;
+        if (st == 1) {
+            fn_8005A9B8(&lbl_80191D4C[i]);
+        }
+    }
 }
 
 asm void fn_8005A9B8(void)
@@ -1089,63 +1079,28 @@ _8005affc:
     blr	
 }
 
-asm void fn_8005B010(void)
+// provenance: original
+int fn_8005B010(AdxtSrv* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8005b02c
-    li	r3, -1
-    b     _8005b058
-_8005b02c:
-    lbz	r0, 3(r3)
-    li	r4, 0
-    extsb	r0, r0
-    slwi	r0, r0, 2
-    add	r3, r3, r0
-    lwz	r3, 0x34(r3)
-    lwz	r5, 0(r3)
-    lwz	r12, 0x24(r5)
-    mtctr	r12
-    bctrl	
-    srwi	r3, r3, 1
-_8005b058:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxtStream* s;
+
+    if (p == 0) {
+        return -1;
+    }
+    s = p->unk34[p->unk3];
+    return (unsigned int)s->vt->fn24(s, 0) >> 1;
 }
 
-asm void fn_8005B068(void)
+// provenance: original
+int fn_8005B068(AdxtSrv* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8005b084
-    li	r3, -1
-    b     _8005b0b4
-_8005b084:
-    lbz	r0, 3(r3)
-    li	r4, 0
-    extsb	r0, r0
-    slwi	r0, r0, 2
-    add	r3, r3, r0
-    lwz	r3, 0x34(r3)
-    lwz	r5, 0(r3)
-    lwz	r12, 0x24(r5)
-    mtctr	r12
-    bctrl	
-    srwi	r0, r3, 1
-    subfic	r3, r0, 0x1000
-_8005b0b4:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxtStream* s;
+
+    if (p == 0) {
+        return -1;
+    }
+    s = p->unk34[p->unk3];
+    return 0x1000 - ((unsigned int)s->vt->fn24(s, 0) >> 1);
 }
 
 asm void ADXTServerStateRequest(void)

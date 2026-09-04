@@ -1,25 +1,64 @@
 #pragma push
 #pragma force_active on
 
+typedef struct AhxVoiceVt {
+    char pad0[0x24];
+    int (*fn24)();
+} AhxVoiceVt;
+
+typedef struct AhxVoice {
+    AhxVoiceVt* vt;
+} AhxVoice;
+
+typedef struct AhxSlot {
+    void* unk0;
+    char pad4[1];
+    signed char unk5;
+    char pad6[1];
+    unsigned char unk7;
+    void* unk8;
+    AhxVoice* unkC;
+    char pad10[8];
+    int unk18;
+    int unk1C;
+    int unk20;
+    int unk24;
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    char pad3C[0x10];
+} AhxSlot;
+
+typedef struct AhxHook {
+    void (*fn)();
+} AhxHook;
+
+typedef struct AhxHookSlot {
+    AhxHook* hook;
+    char pad4[0xc];
+} AhxHookSlot;
+
 extern void ADXTReadBits(void);
 extern void fn_800501EC(void);
-extern void fn_800504BC(void);
-extern void fn_800504EC(void);
+extern void fn_800504BC();
+extern void* fn_800504EC();
 extern void fn_80050F64(void);
 extern void fn_80050F6C(void);
 extern void fn_80050F74(void);
 extern void ADXF_StreamTeardown(void);
 extern void fn_800510C4(void);
-extern void ADXT_GetStreamStatus(void);
-extern void fn_80051448(void);
-extern void fn_80051594(void);
-extern void fn_80051678(void);
-extern void fn_8005174C(void);
+extern void ADXT_GetStreamStatus();
+extern void fn_80051448();
+extern void fn_80051594();
+extern void fn_80051678();
+extern void fn_8005174C();
 extern void fn_800517C0(void);
 extern void fn_8005190C(void);
 extern void fn_80051958();
 extern void adxtNullCallback(void);
-extern void fn_80053F38(void);
+extern void fn_80053F38();
 extern void svm_ringbuf_read(void);
 extern void sprintf(void);
 extern void __msl_strncmp(void);
@@ -69,10 +108,10 @@ extern unsigned char lbl_80091390[2232];
 extern unsigned char gcci_client_ctx[];
 extern unsigned char lbl_801873D8[];
 extern unsigned char lbl_801873DC[16];
-extern unsigned char lbl_801873EC[68];
+extern int lbl_801873EC[17];
 extern unsigned char lbl_80187430[];
 extern unsigned char lbl_80187434[320];
-extern unsigned char lbl_80187574[836];
+extern AhxHookSlot lbl_80187574[32];
 extern unsigned char gcci_nullcheck_callback[];
 void fn_80055580(void);
 
@@ -88,45 +127,19 @@ int fn_80053EA8(void* p)
     return *(int*)((char*)p + 0x20);
 }
 
-asm void fn_80053EB0(void)
+// provenance: original
+void fn_80053EB0(AhxSlot* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    lbz	r0, 5(r3)
-    extsb	r0, r0
-    cmpwi	r0, 2
-    bne     _80053edc
-    bl      fn_80053F38
-    b     _80053f24
-_80053edc:
-    cmpwi	r0, 1
-    bne     _80053f24
-    lwz	r3, 0xc(r31)
-    li	r4, 1
-    lwz	r5, 0(r3)
-    lwz	r12, 0x24(r5)
-    mtctr	r12
-    bctrl	
-    cmpwi	r3, 0x24
-    blt     _80053f24
-    lwz	r3, 0(r31)
-    bl      fn_80051448
-    lwz	r3, 0(r31)
-    bl      ADXT_GetStreamStatus
-    li	r3, 1
-    li	r0, 2
-    stb	r3, 7(r31)
-    stb	r0, 5(r31)
-_80053f24:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p->unk5 == 2) {
+        fn_80053F38(p);
+    } else if (p->unk5 == 1) {
+        if (p->unkC->vt->fn24(p->unkC, 1) >= 0x24) {
+            fn_80051448(p->unk0);
+            ADXT_GetStreamStatus(p->unk0);
+            p->unk7 = 1;
+            p->unk5 = 2;
+        }
+    }
 }
 
 asm void fn_80053F38(void)
@@ -318,65 +331,35 @@ _800541d8:
     blr	
 }
 
-asm void fn_800541EC(void)
+// provenance: original
+void fn_800541EC(AhxSlot* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    lwz	r3, 0(r3)
-    bl      fn_80051678
-    li	r0, 0
-    stb	r0, 5(r31)
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_80051678(p->unk0);
+    p->unk5 = 0;
 }
 
-asm void fn_80054224(void)
+// provenance: original
+void fn_80054224(AhxSlot* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    li	r4, 0
-    stw	r0, 0x14(r1)
-    li	r0, -1
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    stw	r4, 0x18(r3)
-    lis	r3, -0x8000
-    addi	r3, r3, -1
-    stw	r4, 0x1c(r31)
-    stw	r4, 0x20(r31)
-    stw	r4, 0x24(r31)
-    stw	r3, 0x28(r31)
-    stw	r0, 0x2c(r31)
-    stw	r4, 0x30(r31)
-    stw	r4, 0x34(r31)
-    stb	r4, 7(r31)
-    lwz	r3, 8(r31)
-    cmplwi	r3, 0
-    beq     _80054280
-    stw	r4, 8(r31)
-    bl      fn_800504BC
-_80054280:
-    lwz	r3, 0xc(r31)
-    bl      fn_800504EC
-    stw	r3, 8(r31)
-    lwz	r3, 0(r31)
-    lwz	r4, 8(r31)
-    bl      fn_80051594
-    li	r0, 1
-    stb	r0, 5(r31)
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    p->unk18 = 0;
+    p->unk1C = 0;
+    p->unk20 = 0;
+    p->unk24 = 0;
+    p->unk28 = 0x7FFFFFFF;
+    p->unk2C = -1;
+    p->unk30 = 0;
+    p->unk34 = 0;
+    p->unk7 = 0;
+
+    if (p->unk8 != 0) {
+        void* old = p->unk8;
+        p->unk8 = 0;
+        fn_800504BC(old);
+    }
+
+    p->unk8 = fn_800504EC(p->unkC);
+    fn_80051594(p->unk0, p->unk8);
+    p->unk5 = 1;
 }
 
 // provenance: original fn_800542B4
@@ -391,47 +374,28 @@ int fn_800542BC(void* p)
     return *(signed char*)((char*)p + 5);
 }
 
-asm void fn_800542C8(void)
+// provenance: original
+void fn_800542C8(AhxSlot* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    or.	r30, r3, r3
-    beq     _8005433c
-    lwz	r3, 8(r30)
-    lwz	r31, 0x38(r30)
-    cmplwi	r3, 0
-    beq     _80054300
-    li	r0, 0
-    stw	r0, 8(r30)
-    bl      fn_800504BC
-_80054300:
-    lwz	r3, 0(r30)
-    cmplwi	r3, 0
-    beq     _80054318
-    li	r0, 0
-    stw	r0, 0(r30)
-    bl      fn_8005174C
-_80054318:
-    mr	r3, r30
-    li	r4, 0
-    li	r5, 0x4c
-    bl      memset
-    lis     r3, lbl_801873EC@ha
-    slwi	r0, r31, 2
-    addi	r3, r3, lbl_801873EC@l
-    li	r4, 0
-    stwx	r4, r3, r0
-_8005433c:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int slot;
+
+    if (p == 0) {
+        return;
+    }
+
+    slot = p->unk38;
+    if (p->unk8 != 0) {
+        void* old = p->unk8;
+        p->unk8 = 0;
+        fn_800504BC(old);
+    }
+    if (p->unk0 != 0) {
+        void* old = p->unk0;
+        p->unk0 = 0;
+        fn_8005174C(old);
+    }
+    memset(p, 0, 0x4C);
+    lbl_801873EC[slot] = 0;
 }
 
 asm void fn_80054354(void)
@@ -658,37 +622,17 @@ int cvFsGetStat(CvFsHandle* handle)
     return stat;
 }
 
-asm void fn_80054760(void)
+// provenance: original
+void fn_80054760(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_80187574@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r3, lbl_80187574@l
-    stw	r30, 8(r1)
-    li	r30, 0
-_80054780:
-    lwz	r3, 0(r31)
-    cmplwi	r3, 0
-    beq     _800547a0
-    lwz	r12, 0(r3)
-    cmplwi	r12, 0
-    beq     _800547a0
-    mtctr	r12
-    bctrl	
-_800547a0:
-    addi	r30, r30, 1
-    addi	r31, r31, 0x10
-    cmpwi	r30, 0x20
-    blt     _80054780
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int i;
+
+    for (i = 0; i < 0x20; i++) {
+        AhxHook* h = lbl_80187574[i].hook;
+        if (h != 0 && h->fn != 0) {
+            h->fn(h);
+        }
+    }
 }
 
 // provenance: original
