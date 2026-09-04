@@ -4,109 +4,63 @@
 extern void fn_8004FF68(void);
 extern void svm_ringbuf_skip(void);
 extern void getCupModeConst(void);
-extern void ADXF_Stop(void);
+extern void ADXF_Stop();
 extern void fn_80050BD4(void);
-extern void adxtNullCallback(void);
-extern void fn_80053DB4(void);
-extern unsigned char adxt_sample_rate_table[32];
-extern unsigned char lbl_80130B68[48];
-extern unsigned char lbl_80187118[24];
+extern void* adxtNullCallback(void);
+extern void fn_80053DB4();
+extern unsigned char adxt_sample_rate_table[];
+extern unsigned char lbl_80130B68[];
+extern void* lbl_80187118[];
 
-asm void ADXF_StreamTeardown(void)
+typedef struct {
+    void* unk0;
+    char pad[0x344];
+    int unk348;
+    void* unk34c;
+    void* unk350;
+    char pad354[0x30];
+    int unk384;
+    int unk388;
+    char pad38c[0x2c];
+    int unk3b8;
+    char pad3bc[0x1fc];
+    int unk5b8;
+} StreamObj;
+
+// provenance: original
+int ADXF_StreamTeardown(StreamObj* obj, char* arg4, char* arg5)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stmw	r26, 8(r1)
-    mr	r31, r3
-    mr	r27, r4
-    mr	r26, r5
-    lwz	r0, 0x348(r3)
-    lwz	r28, 0x388(r3)
-    cmpwi	r0, 0xc
-    bne     _80050fc4
-    li	r3, 0
-    b       _800510b0
-_80050fc4:
-    bl      adxtNullCallback
-    lis     r5, lbl_80187118@ha
-    addi	r4, r31, 0x384
-    addi	r6, r5, lbl_80187118@l
-    addi	r5, r31, 0x3b8
-    stw	r3, 0(r6)
-    addi	r6, r31, 0x5b8
-    lwz	r0, 0x348(r31)
-    lwz	r3, 0x34c(r31)
-    lwz	r8, 0(r31)
-    srawi	r7, r0, 2
-    bl      ADXF_Stop
-    bl      adxtNullCallback
-    lis     r4, lbl_80187118@ha
-    mr	r30, r27
-    addi	r4, r4, lbl_80187118@l
-    li	r27, 0
-    stw	r3, 0xc(r4)
-    li	r29, 0
-_80051010:
-    lwz	r0, 0(r31)
-    mr	r6, r30
-    lwz	r3, 0x350(r31)
-    li	r5, 0
-    add	r4, r0, r29
-    bl      fn_80053DB4
-    addi	r27, r27, 1
-    addi	r29, r29, 0x80
-    cmpwi	r27, 3
-    addi	r30, r30, 0x40
-    blt     _80051010
-    bl      adxtNullCallback
-    lis     r4, lbl_80187118@ha
-    cmpwi	r28, 2
-    addi	r4, r4, lbl_80187118@l
-    stw	r3, 0x10(r4)
-    blt     _80051090
-    li	r28, 0
-    mr	r29, r26
-    mr	r30, r28
-_80051060:
-    lwz	r0, 0(r31)
-    addi	r4, r30, 0x180
-    lwz	r3, 0x350(r31)
-    mr	r6, r29
-    add	r4, r0, r4
-    li	r5, 1
-    bl      fn_80053DB4
-    addi	r28, r28, 1
-    addi	r30, r30, 0x80
-    cmpwi	r28, 3
-    addi	r29, r29, 0x40
-    blt     _80051060
-_80051090:
-    bl      adxtNullCallback
-    lis     r4, lbl_80187118@ha
-    addi	r4, r4, lbl_80187118@l
-    stw	r3, 0x14(r4)
-    li	r3, 0x60
-    lwz	r4, 0x348(r31)
-    addi	r0, r4, 1
-    stw	r0, 0x348(r31)
-_800510b0:
-    lmw	r26, 8(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int r28 = obj->unk388;
+    int i;
+
+    if (obj->unk348 == 12) {
+        return 0;
+    }
+
+    lbl_80187118[0] = adxtNullCallback();
+    ADXF_Stop(obj->unk34c, &obj->unk384, &obj->unk3b8, &obj->unk5b8, obj->unk348 >> 2, obj->unk0);
+
+    lbl_80187118[3] = adxtNullCallback();
+    for (i = 0; i < 3; i++) {
+        fn_80053DB4(obj->unk350, (char*)obj->unk0 + i * 0x80, 0, arg4 + i * 0x40);
+    }
+
+    lbl_80187118[4] = adxtNullCallback();
+    if (r28 >= 2) {
+        for (i = 0; i < 3; i++) {
+            fn_80053DB4(obj->unk350, (char*)obj->unk0 + 0x180 + i * 0x80, 1, arg5 + i * 0x40);
+        }
+    }
+
+    lbl_80187118[5] = adxtNullCallback();
+    obj->unk348++;
+    return 0x60;
 }
 
-asm void fn_800510C4(void)
+// provenance: original
+int fn_800510C4(StreamObj* obj)
 {
-    nofralloc
-    lwz	r0, 0x348(r3)
-    subfic	r0, r0, 0xc
-    cntlzw	r0, r0
-    srwi	r3, r0, 5
-    blr	
+    return obj->unk348 == 12;
 }
 
 asm void ADXT_GetStreamStatus(void)

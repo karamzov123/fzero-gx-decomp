@@ -2,7 +2,7 @@
 #pragma force_active on
 
 extern void adx_err_report(void);
-extern void ADXSTMF_StatExec(void);
+extern void ADXSTMF_StatExec();
 extern void fn_8004A80C(void);
 extern void cvFsGetStat(void);
 extern void cvFsReqRd(void);
@@ -11,63 +11,41 @@ extern void cvFsTell(void);
 extern void cvFsClose(void);
 extern void fn_80054B6C(void);
 extern void svm_ringbuf_read(void);
-extern void SVM_LockServer(void);
+extern int SVM_LockServer(void*);
 extern void svmUnlockServer(void);
 extern void svmLockServer(void);
-extern unsigned char E02110501_adxstmf_stat_exec_can_t_open_str[41];
-extern unsigned char lbl_8017D6FC[4];
-extern unsigned char lbl_8017D704[4];
-extern unsigned char lbl_8017D708[3680];
+extern unsigned char E02110501_adxstmf_stat_exec_can_t_open_str[];
+extern unsigned char lbl_8017D6FC[];
+extern unsigned char lbl_8017D704[];
 
-extern unsigned char lbl_8017D700[4];
-asm void fn_8004A560(void)
+typedef struct {
+    signed char status;
+    char pad[0x5b];
+} StmItem;
+
+extern StmItem lbl_8017D708[];
+extern unsigned char lbl_8017D700[];
+
+// provenance: original
+int fn_8004A560(void* p, int* out1, int* out2)
 {
-    nofralloc
-    lwz	r0, 0x18(r3)
-    stw	r0, 0(r4)
-    lwz	r0, 0x14(r3)
-    li	r3, 1
-    stw	r0, 0(r5)
-    blr	
+    *out1 = *(int*)((char*)p + 0x18);
+    *out2 = *(int*)((char*)p + 0x14);
+    return 1;
 }
 
-asm void fn_8004A578(void)
+// provenance: original
+void fn_8004A578(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8017D6FC@ha
-    stw	r0, 0x14(r1)
-    addi	r3, r3, lbl_8017D6FC@l
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    bl      SVM_LockServer
-    cmpwi	r3, 0
-    beq     _8004a5dc
-    lis     r3, lbl_8017D708@ha
-    li	r30, 0
-    addi	r31, r3, lbl_8017D708@l
-_8004a5ac:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _8004a5c0
-    mr	r3, r31
-    bl      ADXSTMF_StatExec
-_8004a5c0:
-    addi	r30, r30, 1
-    addi	r31, r31, 0x5c
-    cmpwi	r30, 0x28
-    blt     _8004a5ac
-    lis	r3, lbl_8017D6FC@ha
-    li	r0, 0
-    stw	r0, lbl_8017D6FC@l(r3)
-_8004a5dc:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (SVM_LockServer(lbl_8017D6FC)) {
+        int i;
+        for (i = 0; i < 40; i++) {
+            if (lbl_8017D708[i].status == 1) {
+                ADXSTMF_StatExec(&lbl_8017D708[i]);
+            }
+        }
+        *(int*)lbl_8017D6FC = 0;
+    }
 }
 
 asm void ADXSTMF_StatExec(void)

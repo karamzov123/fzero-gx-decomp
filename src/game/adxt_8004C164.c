@@ -1,36 +1,36 @@
 #pragma push
 #pragma force_active on
 
-extern void __cvt_fp2unsigned(void);
-extern void criadx_get_stream_ptr_wrapper(void);
-extern void fn_8004163C(void);
-extern void criadxGetValue(void);
-extern void fn_800416F8(void);
-extern void fn_800420F4(void);
-extern void fn_8004212C(void);
-extern void fn_80042198(void);
-extern void fn_800421CC(void);
-extern void fn_80046510(void);
-extern void fn_8004651C(void);
-extern void fn_800466D4(void);
-extern void svmUnlockServer_wrapper(void);
-extern void svmLockServer_wrapper(void);
-extern void criErr_CallErrCallback(void);
-extern void fn_8004A550(void);
-extern void ADXT_GetVoiceByAxHandle(void);
-extern void fn_8004AC4C(void);
-extern void fn_8004AD84(void);
-extern void fn_8004ADF4(void);
-extern void fn_8004AE94(void);
-extern void ADXT_StopVoice(void);
-extern void fn_8004B180(void);
-extern void fn_8004B1DC(void);
-extern void fn_8004EE84(void);
-extern void ADXTServerStateRequest_wrapper(void);
-extern void ADXT_GetResourceManager(void);
-extern void fn_8004EEE4(void);
-extern void fn_80056CD0(void);
-extern void fn_80057114(void);
+extern void __cvt_fp2unsigned();
+extern void criadx_get_stream_ptr_wrapper();
+extern void fn_8004163C();
+extern void criadxGetValue();
+extern void fn_800416F8();
+extern void fn_800420F4();
+extern void fn_8004212C();
+extern void fn_80042198();
+extern void fn_800421CC();
+extern void fn_80046510();
+extern void fn_8004651C();
+extern void fn_800466D4();
+extern void svmUnlockServer_wrapper();
+extern void svmLockServer_wrapper();
+extern void criErr_CallErrCallback();
+extern void fn_8004A550();
+extern void ADXT_GetVoiceByAxHandle();
+extern void fn_8004AC4C();
+extern void fn_8004AD84();
+extern void fn_8004ADF4();
+extern void fn_8004AE94();
+extern void ADXT_StopVoice();
+extern void fn_8004B180();
+extern void fn_8004B1DC();
+extern void fn_8004EE84();
+extern void ADXTServerStateRequest_wrapper();
+extern void ADXT_GetResourceManager();
+extern void fn_8004EEE4();
+extern void fn_80056CD0();
+extern void fn_80057114();
 extern void memset(void);
 extern unsigned char E02080860_ADXT_SetKeyString_parameter_error_str[64];
 extern unsigned char E02080805_ADXT_Destroy_parameter_error_str[40];
@@ -391,101 +391,88 @@ _8004c644:
     blr	
 }
 
-asm void ADXT_GetStat(void)
+typedef struct Vtable14 {
+    char pad[0xc];
+    void (*fnC)(void*);
+    void (*fn10)(void*);
+    void (*fn14)(void*);
+} Vtable14;
+
+typedef struct Object14 {
+    Vtable14* vt;
+} Object14;
+
+typedef struct AdxtObj {
+    char pad[1];
+    char unk1;
+    signed char unk2;
+    char pad3[1];
+    void* unk4;
+    void* unk8;
+    void* unkC;
+    char pad10[4];
+    Object14* unk14;
+    char pad18[0x5c];
+    void* unk74;
+    char pad78[0x1c];
+    void* unk94;
+    char pad98[0x10];
+    char unkA8;
+} AdxtObj;
+
+// provenance: original
+int ADXT_GetStat(signed char* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8004c680
-    lis     r3, E02080814_ADXT_GetStat_parameter_error_str@ha
-    addi	r3, r3, E02080814_ADXT_GetStat_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    li	r3, -1
-    b       _8004c688
-_8004c680:
-    lbz	r3, 1(r3)
-    extsb	r3, r3
-_8004c688:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (!p) {
+        criErr_CallErrCallback(E02080814_ADXT_GetStat_parameter_error_str);
+        return -1;
+    }
+    return p[1];
 }
 
-asm void ADXT_Stop(void)
+// provenance: original
+void ADXT_Stop(AdxtObj* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    bne     _8004c6c0
-    lis     r3, E02080813_ADXT_Stop_parameter_error_str@ha
-    addi	r3, r3, E02080813_ADXT_Stop_parameter_error_str@l
-    bl      criErr_CallErrCallback
-    b       _8004c780
-_8004c6c0:
-    lwz	r3, 8(r31)
-    cmplwi	r3, 0
-    beq     _8004c6d0
-    bl      ADXT_StopVoice
-_8004c6d0:
-    bl      svmLockServer_wrapper
-    lbz	r0, 2(r31)
-    cmpwi	r0, 4
-    bne     _8004c704
-    lwz	r3, 0x94(r31)
-    bl      fn_80056CD0
-    lwz	r3, 0x14(r31)
-    cmplwi	r3, 0
-    beq     _8004c704
-    lwz	r4, 0(r3)
-    lwz	r12, 0x14(r4)
-    mtctr	r12
-    bctrl	
-_8004c704:
-    bl      svmLockServer_wrapper
-    lwz	r3, 0xc(r31)
-    li	r4, 0
-    bl      ADXT_GetResourceManager
-    lwz	r3, 0xc(r31)
-    li	r4, 0
-    bl      ADXTServerStateRequest_wrapper
-    lwz	r3, 4(r31)
-    bl      fn_800420F4
-    lbz	r0, 2(r31)
-    cmpwi	r0, 2
-    bne     _8004c758
-    lwz	r3, 0x14(r31)
-    cmplwi	r3, 0
-    beq     _8004c758
-    li	r0, 0
-    stw	r0, 0x14(r31)
-    lwz	r4, 0(r3)
-    lwz	r12, 0xc(r4)
-    mtctr	r12
-    bctrl	
-_8004c758:
-    lwz	r3, 0x74(r31)
-    cmplwi	r3, 0
-    beq     _8004c768
-    bl      fn_80046510
-_8004c768:
-    li	r0, 0
-    stw	r0, 0x14(r31)
-    stb	r0, 1(r31)
-    stb	r0, 0xa8(r31)
-    bl      svmUnlockServer_wrapper
-    bl      svmUnlockServer_wrapper
-_8004c780:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxtObj* obj = p;
+    if (!obj) {
+        criErr_CallErrCallback(E02080813_ADXT_Stop_parameter_error_str);
+        return;
+    }
+
+    if (obj->unk8) {
+        ADXT_StopVoice(obj->unk8);
+    }
+
+    svmLockServer_wrapper();
+    if (obj->unk2 == 4) {
+        fn_80056CD0(obj->unk94);
+        if (obj->unk14) {
+            obj->unk14->vt->fn14(obj->unk14);
+        }
+    }
+
+    svmLockServer_wrapper();
+    ADXT_GetResourceManager(obj->unkC, 0);
+    ADXTServerStateRequest_wrapper(obj->unkC, 0);
+    fn_800420F4(obj->unk4);
+
+    if (obj->unk2 == 2) {
+        Object14* o14 = obj->unk14;
+        if (o14) {
+            obj->unk14 = 0;
+            o14->vt->fnC(o14);
+        }
+    }
+
+    if (obj->unk74) {
+        fn_80046510(obj->unk74);
+    }
+
+    obj->unk14 = 0;
+    obj->unk1 = 0;
+    obj->unkA8 = 0;
+    svmUnlockServer_wrapper();
+    svmUnlockServer_wrapper();
 }
 
 asm void ADXT_StartSj(void)

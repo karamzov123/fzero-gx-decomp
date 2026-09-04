@@ -1,47 +1,39 @@
-extern unsigned char lbl_80186FA8[4];
+extern unsigned char lbl_80186FA8[];
 #pragma push
 #pragma force_active on
 
-extern void adxt_bitstream_refill(void);
+extern void adxt_bitstream_refill();
 extern void svm_ringbuf_read(void);
 extern void memset(void);
-extern unsigned char getCupModeConst_value_tbl[4];
-extern unsigned char lbl_8012D9BC[12292];
-extern unsigned char lbl_801309C0[136];
-extern unsigned char lbl_80186FAC[356];
+extern unsigned char getCupModeConst_value_tbl[];
+extern unsigned char lbl_8012D9BC[];
+extern unsigned int lbl_801309C0[];
+extern unsigned char lbl_80186FAC[];
 
-asm void ADXTReadBits(void)
+typedef struct Vtable {
+    char pad[0x24];
+    int (*fn)(void*, int);
+} Vtable;
+
+typedef struct AdxtBitstream {
+    char pad[4];
+    struct {
+        Vtable* vt;
+    }* unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    char pad14[0x10];
+    int unk24;
+} AdxtBitstream;
+
+// provenance: original
+int ADXTReadBits(AdxtBitstream* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    li	r4, 1
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    lwz	r3, 4(r3)
-    lwz	r5, 0(r3)
-    lwz	r12, 0x24(r5)
-    mtctr	r12
-    bctrl	
-    cmpwi	r3, 0
-    bne     _800501d4
-    lwz	r0, 0xc(r31)
-    cmpwi	r0, 0
-    bne     _800501d4
-    lwz	r0, 0x24(r31)
-    cmpwi	r0, 0
-    bne     _800501d4
-    li	r3, 1
-    b       _800501d8
-_800501d4:
-    li	r3, 0
-_800501d8:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p->unk4->vt->fn(p->unk4, 1) == 0 && p->unkC == 0 && p->unk24 == 0) {
+        return 1;
+    }
+    return 0;
 }
 
 // provenance: original
@@ -51,55 +43,27 @@ int fn_800501EC(char *p)
     return *(int *)(p + 0x10);
 }
 
-asm void svm_ringbuf_skip(void)
+// provenance: original
+int svm_ringbuf_skip(AdxtBitstream* p, int nbits)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis	r5, lbl_80186FA8@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    stw	r30, 8(r1)
-    mr	r30, r4
-    lwzu	r4, lbl_80186FA8@l(r5)
-    addi	r0, r4, 1
-    stw	r0, 0(r5)
-    lwz	r0, 0xc(r3)
-    cmpw	r0, r30
-    bge     _80050230
-    bl      adxt_bitstream_refill
-_80050230:
-    lwz	r5, 0xc(r31)
-    cmpw	r30, r5
-    ble     _80050258
-    lwz	r4, 0x10(r31)
-    li	r0, 0
-    li	r3, 0
-    add	r4, r4, r5
-    stw	r4, 0x10(r31)
-    stw	r0, 0xc(r31)
-    b       _80050288
-_80050258:
-    lis     r3, lbl_801309C0@ha
-    slwi	r0, r30, 2
-    addi	r4, r3, lbl_801309C0@l
-    lwz	r3, 8(r31)
-    lwzx	r0, r4, r0
-    subf	r4, r30, r5
-    sraw	r3, r3, r4
-    stw	r4, 0xc(r31)
-    and	r3, r3, r0
-    lwz	r0, 0x10(r31)
-    add	r0, r0, r30
-    stw	r0, 0x10(r31)
-_80050288:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    (*(int*)lbl_80186FA8)++;
+    if (p->unkC < nbits) {
+        adxt_bitstream_refill(p);
+    }
+    if (nbits > p->unkC) {
+        p->unk10 += p->unkC;
+        p->unkC = 0;
+        return 0;
+    } else {
+        unsigned int mask = lbl_801309C0[nbits];
+        int val = p->unk8;
+        int rem = p->unkC - nbits;
+        val >>= rem;
+        p->unkC = rem;
+        val &= mask;
+        p->unk10 += nbits;
+        return val;
+    }
 }
 
 asm void adxt_bitstream_refill(void)
