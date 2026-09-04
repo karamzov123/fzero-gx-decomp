@@ -17,7 +17,7 @@ extern void fn_80051678(void);
 extern void fn_8005174C(void);
 extern void fn_800517C0(void);
 extern void fn_8005190C(void);
-extern void fn_80051958(void);
+extern void fn_80051958();
 extern void adxtNullCallback(void);
 extern void fn_80053F38(void);
 extern void svm_ringbuf_read(void);
@@ -25,7 +25,7 @@ extern void sprintf(void);
 extern void __msl_strncmp(void);
 extern void strcpy(void);
 extern void memcpy(void);
-extern void memset(void);
+extern void* memset(void*, int, unsigned int);
 extern void strlen(void);
 extern unsigned char E0040302_handl_is_null_str[24];
 extern unsigned char E0040303_invalidate_size_str[26];
@@ -42,18 +42,38 @@ extern unsigned char cvFsSetDefDev_1_illegal_device_name_str[37];
 extern unsigned char cvFsSetDefDev_2_unknown_device_name_str[184];
 extern unsigned char cvFsStopTr_1_handle_error_str[27];
 extern unsigned char cvFsStopTr_2_vtbl_error_str[80];
+typedef struct CvFsVtbl {
+    void* unk00;
+    void* unk04;
+    void* unk08;
+    void* unk0c;
+    void* unk10;
+    int (*close)(void* obj);
+    int (*seek)(void* obj, int offset, int origin);
+    int (*tell)(void* obj);
+    int (*req_rd)(void* obj, void* dst, int bytes);
+    void (*unk24)(void* obj);
+    void (*stop_tr)(void* obj);
+    int (*get_stat)(void* obj);
+} CvFsVtbl;
+
+typedef struct CvFsHandle {
+    CvFsVtbl* vtbl;
+    void* obj;
+} CvFsHandle;
+
 extern unsigned char cvFsTell_1_handle_error_str[25];
 extern unsigned char cvFsTell_2_vtbl_error_str[23];
-extern unsigned char lbl_80091388[8];
+extern unsigned char lbl_80091388[];
 extern unsigned char lbl_80091390[2232];
-extern unsigned char gcci_client_ctx[4];
-extern unsigned char lbl_801873D8[4];
+extern unsigned char gcci_client_ctx[];
+extern unsigned char lbl_801873D8[];
 extern unsigned char lbl_801873DC[16];
 extern unsigned char lbl_801873EC[68];
-extern unsigned char lbl_80187430[4];
+extern unsigned char lbl_80187430[];
 extern unsigned char lbl_80187434[320];
 extern unsigned char lbl_80187574[836];
-extern unsigned char gcci_nullcheck_callback[4];
+extern unsigned char gcci_nullcheck_callback[];
 void fn_80055580(void);
 
 // provenance: original
@@ -580,140 +600,62 @@ _8005459c:
     blr	
 }
 
-asm void fn_800545B0(void)
+// provenance: original
+void fn_800545B0(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_801873D8@ha
-    stw	r0, 0x14(r1)
-    lwz	r0, lbl_801873D8@l(r3)
-    cmpwi	r0, 1
-    bne     _800545e4
-    lis     r3, lbl_801873EC@ha
-    li	r4, 0
-    addi	r3, r3, lbl_801873EC@l
-    li	r5, 0x40
-    bl      memset
-    bl      fn_8005190C
-_800545e4:
-    lis     r3, lbl_801873D8@ha
-    addi	r4, r3, lbl_801873D8@l
-    lwz	r3, 0(r4)
-    addi	r0, r3, -1
-    stw	r0, 0(r4)
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (*(int*)lbl_801873D8 == 1) {
+        memset(lbl_801873EC, 0, 0x40);
+        fn_8005190C();
+    }
+    (*(int*)lbl_801873D8)--;
 }
 
-asm void fn_80054608(void)
+// provenance: original
+void fn_80054608(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_801873D8@ha
-    lis     r4, lbl_80091388@ha
-    stw	r0, 0x14(r1)
-    lwz	r0, lbl_801873D8@l(r3)
-    addi	r3, r4, lbl_80091388@l
-    lwz	r3, 0(r3)
-    cmpwi	r0, 0
-    bne     _80054648
-    bl      fn_80051958
-    lis     r3, lbl_801873EC@ha
-    li	r4, 0
-    addi	r3, r3, lbl_801873EC@l
-    li	r5, 0x40
-    bl      memset
-_80054648:
-    lis     r3, lbl_801873D8@ha
-    addi	r4, r3, lbl_801873D8@l
-    lwz	r3, 0(r4)
-    addi	r0, r3, 1
-    stw	r0, 0(r4)
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int flag = *(int*)lbl_801873D8;
+    void* arg = *(void**)lbl_80091388;
+    if (flag == 0) {
+        fn_80051958(arg);
+        memset(lbl_801873EC, 0, 0x40);
+    }
+    (*(int*)lbl_801873D8)++;
 }
 
-asm void fn_8005466C(void)
+// provenance: original
+void fn_8005466C(void* p1, void* p2)
 {
-    nofralloc
-    cmplwi	r3, 0
-    bne     _8005468c
-    lis     r4, lbl_80187430@ha
-    li	r0, 0
-    lis     r3, lbl_80187434@ha
-    stw	r0, lbl_80187430@l(r4)
-    stw	r0, lbl_80187434@l(r3)
-    blr	
-_8005468c:
-    lis     r6, lbl_80187430@ha
-    lis     r5, lbl_80187434@ha
-    stw	r3, lbl_80187430@l(r6)
-    stw	r4, lbl_80187434@l(r5)
-    blr	
+    if (p1 == 0) {
+        *(void**)lbl_80187430 = 0;
+        *(void**)lbl_80187434 = 0;
+    } else {
+        *(void**)lbl_80187430 = p1;
+        *(void**)lbl_80187434 = p2;
+    }
 }
 
-asm void cvFsGetStat(void)
+// provenance: original
+int cvFsGetStat(CvFsHandle* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    li	r31, 3
-    bne     _800546f4
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _800546ec
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsGetStat_1_handle_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsGetStat_1_handle_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_800546ec:
-    li	r3, 3
-    b     _8005474c
-_800546f4:
-    lwz	r4, 0(r3)
-    lwz	r12, 0x2c(r4)
-    cmplwi	r12, 0
-    beq     _80054718
-    lwz	r3, 4(r3)
-    mtctr	r12
-    bctrl	
-    mr	r31, r3
-    b     _80054748
-_80054718:
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054748
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsGetStat_2_vtbl_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsGetStat_2_vtbl_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80054748:
-    mr	r3, r31
-_8005474c:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int stat = 3;
+
+    if (handle == 0) {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsGetStat_1_handle_error_str, 0);
+        }
+        return 3;
+    }
+
+    if (handle->vtbl->get_stat != 0) {
+        stat = handle->vtbl->get_stat(handle->obj);
+    } else {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsGetStat_2_vtbl_error_str, 0);
+        }
+    }
+    return stat;
 }
 
 asm void fn_80054760(void)
@@ -749,283 +691,117 @@ _800547a0:
     blr	
 }
 
-asm void cvFsStopTr(void)
+// provenance: original
+void cvFsStopTr(CvFsHandle* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80054810
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054860
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsStopTr_1_handle_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsStopTr_1_handle_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-    b     _80054860
-_80054810:
-    lwz	r4, 0(r3)
-    lwz	r12, 0x28(r4)
-    cmplwi	r12, 0
-    beq     _80054830
-    lwz	r3, 4(r3)
-    mtctr	r12
-    bctrl	
-    b     _80054860
-_80054830:
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054860
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsStopTr_2_vtbl_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsStopTr_2_vtbl_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80054860:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsStopTr_1_handle_error_str, 0);
+        }
+    } else if (handle->vtbl->stop_tr != 0) {
+        handle->vtbl->stop_tr(handle->obj);
+    } else {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsStopTr_2_vtbl_error_str, 0);
+        }
+    }
 }
 
-asm void cvFsReqRd(void)
+// provenance: original
+int cvFsReqRd(CvFsHandle* handle, void* dst, int bytes)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    bne     _800548c0
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _800548b8
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsReqRd_1_handle_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsReqRd_1_handle_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_800548b8:
-    li	r3, 0
-    b     _8005491c
-_800548c0:
-    lwz	r6, 0(r3)
-    lwz	r12, 0x20(r6)
-    cmplwi	r12, 0
-    beq     _800548e4
-    lwz	r3, 4(r3)
-    mtctr	r12
-    bctrl	
-    mr	r31, r3
-    b     _80054918
-_800548e4:
-    lis     r3, lbl_80187430@ha
-    li	r31, 0
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054918
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsReqRd_2_vtbl_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsReqRd_2_vtbl_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80054918:
-    mr	r3, r31
-_8005491c:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int ret;
+    if (handle == 0) {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsReqRd_1_handle_error_str, 0);
+        }
+        return 0;
+    }
+
+    if (handle->vtbl->req_rd != 0) {
+        ret = handle->vtbl->req_rd(handle->obj, dst, bytes);
+    } else {
+        void (*cb)(void*, const char*, int);
+        ret = 0;
+        cb = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsReqRd_2_vtbl_error_str, 0);
+        }
+    }
+    return ret;
 }
 
-asm void cvFsSeek(void)
+// provenance: original
+int cvFsSeek(CvFsHandle* handle, int offset, int origin)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    bne     _80054980
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054978
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsSeek_1_handle_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsSeek_1_handle_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80054978:
-    li	r3, 0
-    b     _800549dc
-_80054980:
-    lwz	r6, 0(r3)
-    lwz	r12, 0x18(r6)
-    cmplwi	r12, 0
-    beq     _800549a4
-    lwz	r3, 4(r3)
-    mtctr	r12
-    bctrl	
-    mr	r31, r3
-    b     _800549d8
-_800549a4:
-    lis     r3, lbl_80187430@ha
-    li	r31, 0
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _800549d8
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsSeek_2_vtbl_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsSeek_2_vtbl_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_800549d8:
-    mr	r3, r31
-_800549dc:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int ret;
+    if (handle == 0) {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsSeek_1_handle_error_str, 0);
+        }
+        return 0;
+    }
+
+    if (handle->vtbl->seek != 0) {
+        ret = handle->vtbl->seek(handle->obj, offset, origin);
+    } else {
+        void (*cb)(void*, const char*, int);
+        ret = 0;
+        cb = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsSeek_2_vtbl_error_str, 0);
+        }
+    }
+    return ret;
 }
 
-asm void cvFsTell(void)
+// provenance: original
+int cvFsTell(CvFsHandle* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    bne     _80054a40
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054a38
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsTell_1_handle_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsTell_1_handle_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80054a38:
-    li	r3, 0
-    b     _80054a9c
-_80054a40:
-    lwz	r4, 0(r3)
-    lwz	r12, 0x1c(r4)
-    cmplwi	r12, 0
-    beq     _80054a64
-    lwz	r3, 4(r3)
-    mtctr	r12
-    bctrl	
-    mr	r31, r3
-    b     _80054a98
-_80054a64:
-    lis     r3, lbl_80187430@ha
-    li	r31, 0
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054a98
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsTell_2_vtbl_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsTell_2_vtbl_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80054a98:
-    mr	r3, r31
-_80054a9c:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int ret;
+    if (handle == 0) {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsTell_1_handle_error_str, 0);
+        }
+        return 0;
+    }
+
+    if (handle->vtbl->tell != 0) {
+        ret = handle->vtbl->tell(handle->obj);
+    } else {
+        void (*cb)(void*, const char*, int);
+        ret = 0;
+        cb = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsTell_2_vtbl_error_str, 0);
+        }
+    }
+    return ret;
 }
 
-asm void cvFsClose(void)
+// provenance: original
+void cvFsClose(CvFsHandle* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    bne     _80054afc
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054b58
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsClose_1_handle_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsClose_1_handle_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-    b     _80054b58
-_80054afc:
-    lwz	r3, 0(r31)
-    lwz	r12, 0x14(r3)
-    cmplwi	r12, 0
-    beq     _80054b28
-    lwz	r3, 4(r31)
-    mtctr	r12
-    bctrl	
-    li	r0, 0
-    stw	r0, 4(r31)
-    stw	r0, 0(r31)
-    b     _80054b58
-_80054b28:
-    lis     r3, lbl_80187430@ha
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _80054b58
-    lis     r4, lbl_80187434@ha
-    lis     r3, cvFsClose_2_vtbl_error_str@ha
-    addi	r5, r4, lbl_80187434@l
-    addi	r4, r3, cvFsClose_2_vtbl_error_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80054b58:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsClose_1_handle_error_str, 0);
+        }
+    } else if (handle->vtbl->close != 0) {
+        handle->vtbl->close(handle->obj);
+        handle->obj = 0;
+        handle->vtbl = 0;
+    } else {
+        void (*cb)(void*, const char*, int) = *(void**)lbl_80187430;
+        if (cb != 0) {
+            cb(*(void**)lbl_80187434, (char*)cvFsClose_2_vtbl_error_str, 0);
+        }
+    }
 }
 
 asm void fn_80054B6C(void)
@@ -1762,26 +1538,13 @@ _8005556c:
     blr	
 }
 
-asm void fn_80055580(void)
+// provenance: original
+void fn_80055580(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_80187430@ha
-    stw	r0, 0x14(r1)
-    lwz	r12, lbl_80187430@l(r3)
-    cmplwi	r12, 0
-    beq     _800555b0
-    lis     r3, lbl_80187434@ha
-    addi	r3, r3, lbl_80187434@l
-    lwz	r3, 0(r3)
-    mtctr	r12
-    bctrl	
-_800555b0:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    void (*cb)(void*) = *(void**)lbl_80187430;
+    if (cb != 0) {
+        cb(*(void**)lbl_80187434);
+    }
 }
 
 // provenance: original
@@ -1789,36 +1552,17 @@ void fn_800555C0(void)
 {
 }
 
-asm void fn_800555C4(void)
+// provenance: original
+void* fn_800555C4(void* handle)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _80055610
-    lis     r3, gcci_client_ctx@ha
-    lwz	r12, gcci_client_ctx@l(r3)
-    cmplwi	r12, 0
-    beq     _80055608
-    lis     r4, gcci_nullcheck_callback@ha
-    lis     r3, E0092912_handl_is_null_str@ha
-    addi	r5, r4, gcci_nullcheck_callback@l
-    addi	r4, r3, E0092912_handl_is_null_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-_80055608:
-    li	r3, 0
-    b     _80055614
-_80055610:
-    lwz	r3, 0x20(r3)
-_80055614:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (handle == 0) {
+        void (*cb)(void*, const char*, int) = *(void**)gcci_client_ctx;
+        if (cb != 0) {
+            cb(*(void**)gcci_nullcheck_callback, (char*)E0092912_handl_is_null_str, 0);
+        }
+        return 0;
+    }
+    return *(void**)((char*)handle + 0x20);
 }
 
 asm void fn_80055624(void)

@@ -264,31 +264,25 @@ _80050f48:
     blr	
 }
 
-asm void fn_80050F64(void)
+// provenance: original
+int fn_80050F64(void)
 {
-    nofralloc
-    li	r3, 0x60
-    blr	
+    return 0x60;
 }
 
-asm void fn_80050F6C(void)
+// provenance: original
+int fn_80050F6C(void)
 {
-    nofralloc
-    li	r3, 0x10
-    blr	
+    return 0x10;
 }
 
-asm void fn_80050F74(void)
+// provenance: original
+void* fn_80050F74(void* p)
 {
-    nofralloc
-    lbz	r0, 0x345(r3)
-    extsb.	r0, r0
-    bne     _80050f88
-    li	r3, 0
-    blr	
-_80050f88:
-    lwz	r3, 0x388(r3)
-    blr	
+    if (*(signed char*)((char*)p + 0x345) == 0) {
+        return 0;
+    }
+    return *(void**)((char*)p + 0x388);
 }
 
 #pragma pop
