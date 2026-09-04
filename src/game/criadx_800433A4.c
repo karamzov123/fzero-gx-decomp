@@ -1,35 +1,32 @@
 #pragma push
 #pragma force_active on
 
-extern unsigned char lbl_8017A280[4];
-extern unsigned char lbl_8017A284[4];
+typedef struct AdxStream {
+    char pad0[0x9a];
+    short unk9A;
+    char pad9C[0x14];
+    void* unkB0;
+} AdxStream;
 
-extern void fn_80043460(void);
-extern void fn_80043798(void);
+extern void (*lbl_8017A280[])();
+extern void (*lbl_8017A284[])();
+
+extern void fn_80043460();
+extern void fn_80043798();
 extern void ADXT_GetCmdState(void);
 extern void fn_80043D34(void);
-extern void strncmp(void);
-extern void fn_80043FE8(void);
-extern void fn_800443AC(void);
-extern void fn_800446E4(void);
-extern unsigned char AIFF_str[5];
-extern unsigned char FORM_str[5];
+extern int strncmp();
+extern void fn_80043FE8();
+extern void fn_800443AC();
+extern void fn_800446E4();
+extern unsigned char AIFF_str[];
+extern unsigned char FORM_str[];
 extern unsigned char lbl_8012B6F8[512];
 
-asm void fn_800433A4(void)
+// provenance: original
+void fn_800433A4(AdxStream* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis	r4, lbl_8017A280@ha
-    stw	r0, 0x14(r1)
-    lwz	r12, lbl_8017A280@l(r4)
-    mtctr	r12
-    bctrl
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    lbl_8017A280[0](p);
 }
 
 // provenance: original fn_800433D0
@@ -42,47 +39,25 @@ void fn_800433D0(void* self, int val)
     *(int*)((char*)self + 0xb8) = val / 96;
 }
 
-asm void fn_800433F4(void)
+// provenance: original
+void fn_800433F4(AdxStream* p, void* arg)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lwz	r3, 0xb0(r3)
-    cmplwi	r3, 0
-    beq     _8004341c
-    lis	r5, lbl_8017A284@ha
-    lwz	r12, lbl_8017A284@l(r5)
-    mtctr	r12
-    bctrl	
-_8004341c:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p->unkB0 != 0) {
+        lbl_8017A284[0](p->unkB0, arg);
+    }
 }
 
-asm void fn_8004342C(void)
+// provenance: original
+void fn_8004342C(AdxStream* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lha	r0, 0x9a(r3)
-    cmpwi	r0, 1
-    bne     _8004344c
-    bl      fn_80043460
-    b       _80043450
-_8004344c:
-    bl      fn_80043798
-_80043450:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p->unk9A == 1) {
+        fn_80043460(p);
+    } else {
+        fn_80043798(p);
+    }
 }
 
-asm void fn_80043460(void)
+asm void fn_80043460()
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -305,7 +280,7 @@ _80043780:
     blr	
 }
 
-asm void fn_80043798(void)
+asm void fn_80043798()
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -668,37 +643,13 @@ _80043cb0:
     blr	
 }
 
-asm void criadx_aiff_probe(void)
+// provenance: original
+int criadx_aiff_probe(char* hdr)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r4, FORM_str@ha
-    li	r5, 4
-    stw	r0, 0x14(r1)
-    addi	r4, r4, FORM_str@l
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _80043d1c
-    lis     r4, AIFF_str@ha
-    addi	r3, r31, 8
-    addi	r4, r4, AIFF_str@l
-    li	r5, 4
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _80043d1c
-    li	r3, 1
-    b       _80043d20
-_80043d1c:
-    li	r3, 0
-_80043d20:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (strncmp(hdr, FORM_str, 4) == 0 && strncmp(hdr + 8, AIFF_str, 4) == 0) {
+        return 1;
+    }
+    return 0;
 }
 
 asm void fn_80043D34(void)
@@ -871,32 +822,21 @@ _80043f98:
     blr	
 }
 
-asm void fn_80043FA4(void)
+// provenance: original
+void fn_80043FA4(AdxStream* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lha	r0, 0x9a(r3)
-    cmpwi	r0, 2
-    bne     _80043fc4
-    bl      fn_80043FE8
-    b       _80043fd8
-_80043fc4:
-    cmpwi	r0, 1
-    bne     _80043fd4
-    bl      fn_800443AC
-    b       _80043fd8
-_80043fd4:
-    bl      fn_800446E4
-_80043fd8:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    short kind = p->unk9A;
+
+    if (kind == 2) {
+        fn_80043FE8(p);
+    } else if (kind == 1) {
+        fn_800443AC(p);
+    } else {
+        fn_800446E4(p);
+    }
 }
 
-asm void fn_80043FE8(void)
+asm void fn_80043FE8()
 {
     nofralloc
     stwu	r1, -0x10(r1)

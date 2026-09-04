@@ -1,9 +1,36 @@
 #pragma push
 #pragma force_active on
 
-extern void strncpy(void);
-extern void __msl_strncat(void);
-extern void svmErrPrintf(void);
+typedef struct AdxHandle {
+    char pad0[1];
+    signed char unk1;
+    char pad2[1];
+    signed char unk3;
+    char pad4[0x28];
+    int unk2C;
+    int unk30;
+    char pad34[8];
+    int unk3C;
+    char pad40[0x40];
+    void* unk80;
+    void* unk84;
+} AdxHandle;
+
+typedef struct AdxErr {
+    void (*cb)();
+    void* arg;
+    char pad8[0x20];
+    char msg[0x100];
+} AdxErr;
+
+typedef struct AdxSlot {
+    unsigned char unk0;
+    char pad1[0x2ef];
+} AdxSlot;
+
+extern void strncpy();
+extern void __msl_strncat();
+extern void svmErrPrintf(char* fmt, ...);
 extern void fn_80058EF4();
 extern void memset();
 extern void svmLockServer_wrapper(void);
@@ -20,91 +47,47 @@ extern void fn_80047B04(void);
 extern void fn_80047864();
 extern void memcpy(void);
 extern void fn_80047AF8();
-extern void fn_80047C08(void);
+extern void fn_80047C08();
 extern void fn_800482B8();
 extern void fn_800478C0();
 extern void fn_80048340(void);
 extern void CRI_SPSD_parser(void);
-extern void fn_80047A50(void);
-extern void fn_80049958(void);
-extern void fn_80049728(void);
+extern void fn_80047A50();
+extern int fn_80049958();
+extern int fn_80049728();
 extern void criax_cri_tag_padsize(void);
 extern int lbl_8017B034[];
-extern unsigned char lbl_8017B158[4];
+extern int lbl_8017B158[];
 extern int lbl_8017B030[];
 extern unsigned char lbl_8017B160[64];
 extern unsigned char lbl_8017B1A0[1024];
 extern int lbl_8017B5A0[];
 extern unsigned char lbl_8017B5A8[2512];
-extern unsigned char lbl_8017BF78[6016];
+extern AdxSlot lbl_8017BF78[8];
 
-asm void adx_err_report(void)
+// provenance: original
+void adx_err_report(char* s1, char* s2)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r5, lbl_8017B030@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r5, lbl_8017B030@l
-    li	r5, 0xff
-    stw	r30, 8(r1)
-    mr	r30, r4
-    mr	r4, r3
-    addi	r3, r31, 0x28
-    bl      strncpy
-    mr	r4, r30
-    addi	r3, r31, 0x28
-    li	r5, 0xff
-    bl      __msl_strncat
-    lwz	r12, 0(r31)
-    cmplwi	r12, 0
-    beq     _800474c0
-    addi	r4, r31, 0x28
-    lwz	r3, 4(r31)
-    mtctr	r12
-    bctrl	
-_800474c0:
-    addi	r3, r31, 0x28
-    crxor	6, 6, 6
-    bl      svmErrPrintf
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxErr* e = (AdxErr*)lbl_8017B030;
+
+    strncpy(e->msg, s1, 0xFF);
+    __msl_strncat(e->msg, s2, 0xFF);
+    if (e->cb != 0) {
+        e->cb(e->arg, e->msg);
+    }
+    svmErrPrintf(e->msg);
 }
 
-asm void criErr_CallErrCallback(void)
+// provenance: original
+void criErr_CallErrCallback(char* s)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r4, lbl_8017B030@ha
-    li	r5, 0xff
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r4, lbl_8017B030@l
-    mr	r4, r3
-    addi	r3, r31, 0x28
-    bl      strncpy
-    lwz	r12, 0(r31)
-    cmplwi	r12, 0
-    beq     _80047528
-    addi	r4, r31, 0x28
-    lwz	r3, 4(r31)
-    mtctr	r12
-    bctrl	
-_80047528:
-    addi	r3, r31, 0x28
-    crxor	6, 6, 6
-    bl      svmErrPrintf
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxErr* e = (AdxErr*)lbl_8017B030;
+
+    strncpy(e->msg, s, 0xFF);
+    if (e->cb != 0) {
+        e->cb(e->arg, e->msg);
+    }
+    svmErrPrintf(e->msg);
 }
 
 // provenance: original
@@ -133,44 +116,25 @@ void fn_800475C0(void)
     p[1] = 0;
 }
 
-asm void fn_80047608(void)
+// provenance: original
+void fn_80047608(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmLockServer_wrapper
-    lis	r3, lbl_8017B158@ha
-    lwzu	r0, lbl_8017B158@l(r3)
-    cmpwi	r0, 0
-    beq     _80047630
-    bl      svmUnlockServer_wrapper
-    b       _8004767c
-_80047630:
-    li	r0, 1
-    stw	r0, 0(r3)
-    bl      svmUnlockServer_wrapper
-    bl      fn_8004A578
-    lis	r3, lbl_8017B158@ha
-    li	r0, 2
-    stw	r0, lbl_8017B158@l(r3)
-    bl      fn_80054760
-    lis	r3, lbl_8017B158@ha
-    li	r0, 5
-    stw	r0, lbl_8017B158@l(r3)
-    bl      fn_8004A578
-    lis	r3, lbl_8017B158@ha
-    li	r0, 6
-    stw	r0, lbl_8017B158@l(r3)
-    bl      fn_8004FAA8
-    lis	r3, lbl_8017B158@ha
-    li	r0, 0
-    stw	r0, lbl_8017B158@l(r3)
-_8004767c:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmLockServer_wrapper();
+    if (lbl_8017B158[0] != 0) {
+        svmUnlockServer_wrapper();
+        return;
+    }
+    lbl_8017B158[0] = 1;
+    svmUnlockServer_wrapper();
+
+    fn_8004A578();
+    lbl_8017B158[0] = 2;
+    fn_80054760();
+    lbl_8017B158[0] = 5;
+    fn_8004A578();
+    lbl_8017B158[0] = 6;
+    fn_8004FAA8();
+    lbl_8017B158[0] = 0;
 }
 
 asm void fn_8004768C(void)
@@ -300,34 +264,17 @@ void fn_8004784C(void)
     lbl_8017B5A0[0]++;
 }
 
-asm void fn_80047864(void)
+// provenance: original
+void fn_80047864(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8017BF78@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r3, lbl_8017BF78@l
-    stw	r30, 8(r1)
-    li	r30, 0
-_80047884:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _80047898
-    mr	r3, r31
-    bl      fn_800478C0
-_80047898:
-    addi	r30, r30, 1
-    addi	r31, r31, 0x2f0
-    cmpwi	r30, 8
-    blt     _80047884
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int i;
+
+    for (i = 0; i < 8; i++) {
+        int st = lbl_8017BF78[i].unk0;
+        if (st == 1) {
+            fn_800478C0(&lbl_8017BF78[i]);
+        }
+    }
 }
 
 asm void fn_800478C0(void)
@@ -444,48 +391,28 @@ _80047a3c:
     blr	
 }
 
-asm void fn_80047A50(void)
+// provenance: original
+void fn_80047A50(AdxHandle* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    li	r31, 1
-    stw	r30, 8(r1)
-    mr	r30, r3
-_80047a6c:
-    lbz	r0, 3(r30)
-    extsb.	r0, r0
-    bne     _80047aac
-_80047a78:
-    mr	r3, r30
-    bl      fn_80049958
-    cmpwi	r3, 0
-    beq     _80047ac4
-    lwz	r0, 0x2c(r30)
-    add	r0, r0, r3
-    stw	r0, 0x2c(r30)
-    lwz	r3, 0x30(r30)
-    lwz	r0, 0x3c(r30)
-    cmpw	r3, r0
-    blt     _80047a78
-    stb	r31, 3(r30)
-    b       _80047a6c
-_80047aac:
-    mr	r3, r30
-    bl      fn_80049728
-    cmpwi	r3, 0
-    ble     _80047ac4
-    li	r0, 3
-    stb	r0, 1(r30)
-_80047ac4:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int n;
+
+    for (;;) {
+        if (p->unk3 != 0) {
+            break;
+        }
+        do {
+            n = fn_80049958(p);
+            if (n == 0) {
+                return;
+            }
+            p->unk2C += n;
+        } while (p->unk30 < p->unk3C);
+        p->unk3 = 1;
+    }
+
+    if (fn_80049728(p) > 0) {
+        p->unk1 = 3;
+    }
 }
 
 // provenance: original

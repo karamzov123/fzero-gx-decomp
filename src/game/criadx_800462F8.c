@@ -15,16 +15,16 @@ extern unsigned char lbl_80090968[8];
 __declspec(section ".data") extern unsigned int lbl_8017B028;
 __declspec(section ".data") extern unsigned int lbl_8017B020;
 extern void fn_800463E4(void);
-extern void memset(void);
+extern void memset();
 extern void svmLockServer_wrapper(void);
 extern void svmUnlockServer_wrapper(void);
 extern void svmUnlockServer(void);
 extern void svmLockServer(void);
-extern void strlen(void);
+extern u32 strlen();
 extern void memcpy(void);
 extern void fn_80087E80(void);
 extern void __msl_strncat(void);
-extern unsigned char c_CRI_str[7];
+extern unsigned char c_CRI_str[];
 extern unsigned char lbl_80090940[8];
 extern unsigned char lbl_80090950[8];
 extern unsigned char lbl_80090958[4];
@@ -321,57 +321,30 @@ _8004669c:
 #pragma pop
 
 #pragma push
-asm void fn_800466D4(void)
+// provenance: original
+void fn_800466D4(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    beq     _80046704
-    bl      svmLockServer_wrapper
-    mr	r3, r31
-    li	r4, 0
-    li	r5, 0x30
-    bl      memset
-    bl      svmUnlockServer_wrapper
-_80046704:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p != 0) {
+        svmLockServer_wrapper();
+        memset(p, 0, 0x30);
+        svmUnlockServer_wrapper();
+    }
 }
 #pragma pop
 
 #pragma push
-asm void svmUnlockServer_wrapper(void)
+// provenance: original
+void svmUnlockServer_wrapper(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmUnlockServer
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmUnlockServer();
 }
 #pragma pop
 
 #pragma push
-asm void svmLockServer_wrapper(void)
+// provenance: original
+void svmLockServer_wrapper(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmLockServer
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmLockServer();
 }
 #pragma pop
 
@@ -382,50 +355,13 @@ void fn_80046758(void)
 }
 
 #pragma push
-asm void criax_cri_tag_padsize(void)
+// provenance: original
+u32 criax_cri_tag_padsize(int flag, u32 hdr, u32 used, u32 align)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    cmpwi	r3, 0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r6
-    stw	r30, 0x18(r1)
-    mr	r30, r5
-    stw	r29, 0x14(r1)
-    mr	r29, r4
-    bne     _800467c0
-    lis     r3, c_CRI_str@ha
-    addi	r3, r3, c_CRI_str@l
-    bl      strlen
-    add	r0, r29, r3
-    add	r0, r0, r30
-    add	r3, r0, r31
-    addi	r0, r3, 0x1b
-    divwu	r0, r0, r31
-    mullw	r0, r31, r0
-    subf	r3, r30, r0
-    b       _800467e8
-_800467c0:
-    lis     r3, c_CRI_str@ha
-    addi	r3, r3, c_CRI_str@l
-    bl      strlen
-    add	r0, r29, r3
-    add	r0, r0, r30
-    add	r3, r0, r31
-    addi	r0, r3, 0x33
-    divwu	r0, r0, r31
-    mullw	r0, r31, r0
-    subf	r3, r30, r0
-_800467e8:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    if (flag == 0) {
+        return align * ((0x1B + hdr + strlen(c_CRI_str) + used + align) / align) - used;
+    }
+    return align * ((0x33 + hdr + strlen(c_CRI_str) + used + align) / align) - used;
 }
 #pragma pop
 
@@ -645,7 +581,7 @@ _80046ab4:
 int fn_80046AC0(const u8* data, int size, u16* out1, u16* out2)
 {
     int ret;
-    u8 val;
+    u32 val;
 
     if (size < 0x14) {
         ret = -1;
