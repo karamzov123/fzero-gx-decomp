@@ -13,14 +13,14 @@ extern void AXMixSetupVoiceEntry(void);
 extern void axmix_device_ctrl_clear(void);
 extern void axmix_set_voice_param_08(void);
 extern void axmix_set_voice_volume(void);
-extern void svmExitCritical(void);
-extern void svmEnterCritical(void);
+extern void svmExitCritical();
+extern void svmEnterCritical();
 extern void ADXT_ProcessStreamUpdate(void);
 extern void svm_ringbuf_read(void);
 extern void adxtSetNotifyCallback(void);
-extern void svm_exit_critical_wrapper(void);
-extern void svm_enter_critical_wrapper(void);
-extern void fn_8005A9B8(void);
+extern void svm_exit_critical_wrapper();
+extern void svm_enter_critical_wrapper();
+extern void fn_8005A9B8();
 extern void fn_8005AE98(void);
 extern void ADXTServerStateRequest(void);
 extern void mfCiOpen_resource_mgr(void);
@@ -41,8 +41,8 @@ extern unsigned char lbl_80092790[44];
 extern unsigned char lbl_800927D0[440];
 extern unsigned char lbl_801324F0[104];
 extern unsigned char adxt_volume_scale_table[124];
-extern unsigned char lbl_80190178[4];
-extern unsigned char lbl_80190B70[4];
+extern int lbl_80190178[];
+extern int lbl_80190B70[];
 extern unsigned char lbl_800924F8[46];
 extern unsigned char lbl_80092528[144];
 extern unsigned char lbl_8019017C[2548];
@@ -291,14 +291,11 @@ _8005a56c:
     blr	
 }
 
-asm void fn_8005A588(void)
+// provenance: original
+void fn_8005A588(int r3, int r4)
 {
-    nofralloc
-    lis	r6, lbl_80190178@ha
-    lis	r5, lbl_8019017C@ha
-    stw	r3, lbl_80190178@l(r6)
-    stw	r4, lbl_8019017C@l(r5)
-    blr	
+    *(int*)lbl_80190178 = r3;
+    *(int*)lbl_8019017C = r4;
 }
 
 asm void fn_8005A59C(void)
@@ -347,49 +344,31 @@ _8005a600:
     blr	
 }
 
-asm void fn_8005A614(void)
+// provenance: original
+void fn_8005A614(int r3, int r4)
 {
-    nofralloc
-    lis	r6, lbl_80190B70@ha
-    lis	r5, lbl_80190B74@ha
-    stw	r3, lbl_80190B70@l(r6)
-    stw	r4, lbl_80190B74@l(r5)
-    blr	
+    *(int*)lbl_80190B70 = r3;
+    *(int*)lbl_80190B74 = r4;
 }
 
-asm void svm_exit_critical_wrapper(void)
+// provenance: original
+void svm_exit_critical_wrapper(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmExitCritical
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmExitCritical();
 }
 
-asm void svm_enter_critical_wrapper(void)
+// provenance: original
+void svm_enter_critical_wrapper(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      svmEnterCritical
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmEnterCritical();
 }
 
-asm void fn_8005A668(void)
+// provenance: original
+void fn_8005A668(void* p, short r4)
 {
-    nofralloc
-    cmplwi	r3, 0
-    beqlr	
-    sth	r4, 0xa0(r3)
-    blr	
+    if (p != 0) {
+        *(short*)((char*)p + 0xa0) = r4;
+    }
 }
 
 // provenance: original
@@ -404,13 +383,12 @@ int fn_8005A680(void) {
     return 0;
 }
 
-asm void fn_8005A688(void)
+// provenance: original
+void fn_8005A688(void* p, int r4)
 {
-    nofralloc
-    cmplwi	r3, 0
-    beqlr	
-    stw	r4, 0x80(r3)
-    blr	
+    if (p != 0) {
+        *(int*)((char*)p + 0x80) = r4;
+    }
 }
 
 asm void fn_8005A698(void)
@@ -617,13 +595,12 @@ _8005a938:
     blr	
 }
 
-asm void fn_8005A94C(void)
+// provenance: original
+void fn_8005A94C(void* p, char r4)
 {
-    nofralloc
-    cmplwi	r3, 0
-    beqlr	
-    stb	r4, 3(r3)
-    blr	
+    if (p != 0) {
+        *(char*)((char*)p + 3) = r4;
+    }
 }
 
 asm void fn_8005A95C(void)
