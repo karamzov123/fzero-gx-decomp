@@ -1,15 +1,15 @@
 #pragma push
 #pragma force_active on
 
-extern void fn_8004E198(void);
+extern void fn_8004E198();
 extern unsigned char lbl_800900A0[2184];
-extern void fn_8004E1B0(void);
-extern void fn_8004E300(void);
-extern void fn_8004E2CC(void);
-extern void fn_8004E2DC(void);
-extern void fn_8004E2B0(void);
+extern void fn_8004E1B0();
+extern void fn_8004E300();
+extern void fn_8004E2CC();
+extern void fn_8004E2DC();
+extern void fn_8004E2B0();
 extern void CRI_FORM_parser(void);
-extern void criadx_spsd_probe(void);
+extern int criadx_spsd_probe();
 extern void fn_800462F8(void);
 extern void criadx_wav_probe(void);
 extern void fn_80043050(void);
@@ -27,18 +27,18 @@ extern void fn_8004E324(void);
 extern void fn_800469A4(void);
 extern void fn_8004683C(void);
 extern void fn_8004E278(void);
-extern void memset(void);
+extern void memset();
 extern void fn_8004E354(void);
-extern void fn_8004E4AC(void);
-extern void strncmp(void);
+extern void fn_8004E4AC();
+extern int strncmp();
 extern void ADXT_GetCmdState(void);
-extern unsigned char SPSD_str[5];
+extern const char SPSD_str[];
 extern void fn_80045F58();
-extern void fn_80045F74(void);
+extern int fn_80045F74();
 extern unsigned char lbl_8017A288[20];
 extern unsigned char lbl_8017A29C[3460];
 extern void fn_80045F58();
-extern void fn_80045F74(void);
+extern int fn_80045F74();
 
 // provenance: original
 int fn_800452FC(void* p)
@@ -52,58 +52,29 @@ int fn_80045304(void* p)
     return *(int*)((char*)p + 0x94);
 }
 
-asm void fn_8004530C(void)
+// provenance: original
+void fn_8004530C(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    lwz	r0, 4(r3)
-    cmpwi	r0, 3
-    bne     _80045340
-    lwz	r3, 8(r31)
-    bl      fn_8004E198
-    li	r0, 0
-    stw	r0, 0x8c(r31)
-    stw	r0, 4(r31)
-_80045340:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (*(int*)((char*)p + 4) == 3) {
+        fn_8004E198(*(void**)((char*)p + 8));
+        *(int*)((char*)p + 0x8c) = 0;
+        *(int*)((char*)p + 4) = 0;
+    }
 }
 
-asm void fn_80045354(void)
+// provenance: original
+void fn_80045354(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    lwz	r3, 8(r3)
-    bl      fn_8004E1B0
-    li	r0, 0
-    stw	r0, 4(r31)
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8004E1B0(*(void**)((char*)p + 8));
+    *(int*)((char*)p + 4) = 0;
 }
 
-asm void fn_8004538C(void)
+// provenance: original
+void fn_8004538C(void* p)
 {
-    nofralloc
-    lwz	r0, 4(r3)
-    cmpwi	r0, 0
-    bnelr	
-    li	r0, 1
-    stw	r0, 4(r3)
-    blr	
+    if (*(int*)((char*)p + 4) == 0) {
+        *(int*)((char*)p + 4) = 1;
+    }
 }
 
 asm void fn_800453A4(void)
@@ -146,52 +117,18 @@ int fn_80045414(void* p)
     return *(int*)((char*)p + 4);
 }
 
-asm void fn_8004541C(void)
+// provenance: original
+void fn_8004541C(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    addi	r4, r31, 0xa8
-    lwz	r3, 8(r3)
-    addi	r5, r31, 0xac
-    bl      fn_8004E300
-    lwz	r3, 8(r31)
-    lha	r4, 0xa2(r31)
-    lha	r5, 0xa4(r31)
-    lha	r6, 0xa6(r31)
-    bl      fn_8004E2CC
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8004E300(*(void**)((char*)p + 8), (char*)p + 0xa8, (char*)p + 0xac);
+    fn_8004E2CC(*(void**)((char*)p + 8), *(short*)((char*)p + 0xa2), *(short*)((char*)p + 0xa4), *(short*)((char*)p + 0xa6));
 }
 
-asm void fn_80045468(void)
+// provenance: original
+void fn_80045468(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    addi	r4, r31, 0xa8
-    lwz	r3, 8(r3)
-    addi	r5, r31, 0xac
-    bl      fn_8004E2DC
-    lwz	r3, 8(r31)
-    addi	r4, r31, 0xa2
-    addi	r5, r31, 0xa4
-    addi	r6, r31, 0xa6
-    bl      fn_8004E2B0
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8004E2DC(*(void**)((char*)p + 8), (char*)p + 0xa8, (char*)p + 0xac);
+    fn_8004E2B0(*(void**)((char*)p + 8), (char*)p + 0xa2, (char*)p + 0xa4, (char*)p + 0xa6);
 }
 
 // provenance: original
@@ -225,16 +162,11 @@ int fn_800454DC(void* p)
     return *(int*)((char*)p + 0x30);
 }
 
-asm void fn_800454E4(void)
+// provenance: original
+int fn_800454E4(void* p)
 {
-    nofralloc
-    cmplwi	r3, 0
-    bne     _800454f4
-    li	r3, 0
-    blr	
-_800454f4:
-    lwz	r3, 0x2c(r3)
-    blr	
+    if (p == 0) return 0;
+    return *(int*)((char*)p + 0x2c);
 }
 
 // provenance: original
@@ -998,62 +930,27 @@ void fn_80045F58(void* p, int unused, int r5)
     *(int*)((char*)p + 0x88) += r5;
 }
 
-asm void fn_80045F74(void)
+// provenance: original
+int fn_80045F74(int *p, int *r4, int *r5, int *r6)
 {
-    nofralloc
-    lwz	r0, 0x8c(r3)
-    stw	r0, 0(r4)
-    lwz	r4, 0x8c(r3)
-    lwz	r0, 0x40(r3)
-    subf	r0, r4, r0
-    stw	r0, 0(r5)
-    lwz	r4, 0x88(r3)
-    lwz	r0, 0x18(r3)
-    subf	r0, r4, r0
-    stw	r0, 0(r6)
-    lwz	r3, 0x3c(r3)
-    blr	
+    *r4 = p[35];
+    *r5 = p[16] - p[35];
+    *r6 = p[6] - p[34];
+    return p[15];
 }
 
-asm void fn_80045FA4(void)
+// provenance: original
+void fn_80045FA4(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      fn_8004E4AC
-    lis     r4, lbl_8017A288@ha
-    lis     r3, lbl_8017A29C@ha
-    addi	r7, r4, lbl_8017A288@l
-    li	r5, 0xd80
-    lwz	r6, 0(r7)
-    li	r4, 0
-    addi	r3, r3, lbl_8017A29C@l
-    addi	r0, r6, 1
-    stw	r0, 0(r7)
-    bl      memset
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_8004E4AC();
+    (*(int*)lbl_8017A288)++;
+    memset(lbl_8017A29C, 0, 0xd80);
 }
 
-asm void criadx_spsd_probe(void)
+// provenance: original
+int criadx_spsd_probe(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r4, SPSD_str@ha
-    li	r5, 4
-    stw	r0, 0x14(r1)
-    addi	r4, r4, SPSD_str@l
-    bl      strncmp
-    cntlzw	r0, r3
-    srwi	r3, r0, 5
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    return strncmp(p, SPSD_str, 4) == 0;
 }
 
 asm void fn_80046020(void)

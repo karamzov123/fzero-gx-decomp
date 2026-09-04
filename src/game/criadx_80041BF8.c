@@ -13,12 +13,12 @@ extern void criadx_format_dispatch(void);
 extern void adx_err_report(void);
 extern void memcpy(void);
 extern void svm_ringbuf_read(void);
-extern void fn_80045354(void);
-extern void fn_800433D0(void);
-extern void fn_800433F4(void);
-extern void fn_80045D3C(void);
+extern void fn_80045354();
+extern void fn_800433D0();
+extern void fn_800433F4();
+extern void fn_80045D3C();
 extern void svmLockServer_wrapper(void);
-extern void memset(void);
+extern void memset();
 extern void svmUnlockServer_wrapper(void);
 extern void fn_80057DA8(void);
 extern void fn_80057DA0(void);
@@ -386,44 +386,30 @@ _800420d4:
     blr	
 }
 
-asm void fn_800420F4(void)
+// provenance: original
+void fn_800420F4(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    lwz	r3, 4(r3)
-    bl      fn_80045354
-    li	r0, 0
-    stb	r0, 1(r31)
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    fn_80045354(*(void**)((char*)p + 4));
+    *(char*)((char*)p + 1) = 0;
 }
 
-asm void fn_8004212C(void)
+// provenance: original
+void fn_8004212C(void* p)
 {
-    nofralloc
-    li	r6, 0
-    lis	r4, -0x8000
-    stw	r6, 0x98(r3)
-    addi	r5, r4, -1
-    li	r4, -1
-    li	r0, 1
-    stw	r6, 0x2c(r3)
-    stw	r6, 0x30(r3)
-    stw	r6, 0x34(r3)
-    stw	r5, 0x38(r3)
-    stw	r4, 0x3c(r3)
-    stw	r6, 0x40(r3)
-    stw	r6, 0x44(r3)
-    stb	r6, 3(r3)
-    stb	r0, 1(r3)
-    blr	
+    int zero = 0;
+    int max = 0x7fffffff;
+    int neg = -1;
+    int one = 1;
+    *(int*)((char*)p + 0x98) = zero;
+    *(int*)((char*)p + 0x2c) = zero;
+    *(int*)((char*)p + 0x30) = zero;
+    *(int*)((char*)p + 0x34) = zero;
+    *(int*)((char*)p + 0x38) = max;
+    *(int*)((char*)p + 0x3c) = neg;
+    *(int*)((char*)p + 0x40) = zero;
+    *(int*)((char*)p + 0x44) = zero;
+    *(char*)((char*)p + 3) = zero;
+    *(char*)((char*)p + 1) = one;
 }
 
 // provenance: original
@@ -431,34 +417,18 @@ void fn_8004216C(void)
 {
 }
 
-asm void fn_80042170(void)
+// provenance: original
+void fn_80042170(void* p, int r4)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r4, 0x38(r3)
-    lwz	r3, 4(r3)
-    bl      fn_800433D0
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    *(int*)((char*)p + 0x38) = r4;
+    fn_800433D0(*(void**)((char*)p + 4));
 }
 
-asm void fn_80042198(void)
+// provenance: original
+void fn_80042198(void* p, int r4)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r4, 8(r3)
-    lwz	r3, 4(r3)
-    bl      fn_800433F4
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    *(int*)((char*)p + 8) = r4;
+    fn_800433F4(*(void**)((char*)p + 4));
 }
 
 // provenance: original
@@ -467,34 +437,19 @@ int fn_800421C0(void* p)
     return *(signed char*)((char*)p + 1);
 }
 
-asm void fn_800421CC(void)
+// provenance: original
+void fn_800421CC(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    beq     _80042214
-    lwz	r3, 4(r31)
-    cmplwi	r3, 0
-    beq     _800421fc
-    li	r0, 0
-    stw	r0, 4(r31)
-    bl      fn_80045D3C
-_800421fc:
-    bl      svmLockServer_wrapper
-    mr	r3, r31
-    li	r4, 0
-    li	r5, 0x9c
-    bl      memset
-    bl      svmUnlockServer_wrapper
-_80042214:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p != 0) {
+        void* inner = *(void**)((char*)p + 4);
+        if (inner != 0) {
+            *(void**)((char*)p + 4) = 0;
+            fn_80045D3C(inner);
+        }
+        svmLockServer_wrapper();
+        memset(p, 0, 0x9c);
+        svmUnlockServer_wrapper();
+    }
 }
 
 asm void fn_80042228(void)
