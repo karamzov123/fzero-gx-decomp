@@ -1,6 +1,16 @@
 #pragma push
 #pragma force_active on
 
+typedef struct GcciBuf {
+    char pad0[0x10];
+    int unk10;
+    int unk14;
+    int unk18;
+    int unk1C;
+    int unk20;
+    int unk24;
+} GcciBuf;
+
 typedef struct AhxVoiceVt {
     char pad0[0x24];
     int (*fn24)();
@@ -1509,69 +1519,33 @@ void* fn_800555C4(void* handle)
     return *(void**)((char*)handle + 0x20);
 }
 
-asm void fn_80055624(void)
+// provenance: original
+void fn_80055624(GcciBuf* p, int size)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    bne     _8005566c
-    lis     r3, gcci_client_ctx@ha
-    lwz	r12, gcci_client_ctx@l(r3)
-    cmplwi	r12, 0
-    beq     _800556f8
-    lis     r4, gcci_nullcheck_callback@ha
-    lis     r3, E0040302_handl_is_null_str@ha
-    addi	r5, r4, gcci_nullcheck_callback@l
-    addi	r4, r3, E0040302_handl_is_null_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-    b     _800556f8
-_8005566c:
-    lwz	r6, 0x10(r3)
-    slwi	r0, r6, 0x1b
-    srwi	r5, r6, 0x1f
-    subf	r0, r5, r0
-    rotlwi	r0, r0, 5
-    add.	r0, r0, r5
-    beq     _800556bc
-    lis     r3, gcci_client_ctx@ha
-    lwz	r12, gcci_client_ctx@l(r3)
-    cmplwi	r12, 0
-    beq     _800556f8
-    lis     r4, gcci_nullcheck_callback@ha
-    lis     r3, E0040303_invalidate_size_str@ha
-    addi	r5, r4, gcci_nullcheck_callback@l
-    addi	r4, r3, E0040303_invalidate_size_str@l
-    lwz	r3, 0(r5)
-    li	r5, 0
-    mtctr	r12
-    bctrl	
-    b     _800556f8
-_800556bc:
-    lwz	r0, 0x1c(r3)
-    stw	r4, 0x10(r3)
-    mullw	r7, r0, r6
-    lwz	r6, 0x10(r3)
-    lwz	r0, 0x14(r3)
-    add	r5, r6, r0
-    addi	r0, r5, -1
-    divw	r0, r0, r6
-    stw	r0, 0x18(r3)
-    lwz	r0, 0x10(r3)
-    divw	r0, r7, r0
-    stw	r0, 0x1c(r3)
-    lwz	r0, 0x24(r3)
-    mullw	r0, r0, r4
-    stw	r0, 0x20(r3)
-_800556f8:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    typedef void (*ErrCb)(int, const char*, int);
+    int total;
+
+    if (p == 0) {
+        ErrCb cb = *(ErrCb*)gcci_client_ctx;
+        if (cb != 0) {
+            cb(*(int*)gcci_nullcheck_callback, (const char*)E0040302_handl_is_null_str, 0);
+        }
+        return;
+    }
+
+    if (p->unk10 % 32 != 0) {
+        ErrCb cb = *(ErrCb*)gcci_client_ctx;
+        if (cb != 0) {
+            cb(*(int*)gcci_nullcheck_callback, (const char*)E0040303_invalidate_size_str, 0);
+        }
+        return;
+    }
+
+    total = p->unk1C * p->unk10;
+    p->unk10 = size;
+    p->unk18 = (p->unk10 - 1 + p->unk14) / p->unk10;
+    p->unk1C = total / p->unk10;
+    p->unk20 = p->unk24 * size;
 }
 
 #pragma pop

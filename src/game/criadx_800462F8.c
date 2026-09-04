@@ -730,45 +730,25 @@ _80046d10:
 #pragma pop
 
 #pragma push
-asm void fn_80046D18(void)
+// provenance: original
+int fn_80046D18(short* p, int n, short* out)
 {
-    nofralloc
-    addic.	r4, r4, -1
-    lis	r6, -0x8000
-    addi	r7, r6, -1
-    li	r6, 0
-    addi	r0, r4, 1
-    srwi	r0, r0, 1
-    mtctr	r0
-    ble     _80046d6c
-_80046d38:
-    lha	r0, 0(r3)
-    cmpwi	r0, -0x8000
-    bne     _80046d60
-    lis	r3, -0x8000
-    addi	r0, r3, -1
-    cmpw	r6, r0
-    bge     _80046d58
-    mr	r0, r6
-_80046d58:
-    mr	r7, r0
-    b       _80046d6c
-_80046d60:
-    addi	r6, r6, 2
-    addi	r3, r3, 2
-    bdnz    _80046d38
-_80046d6c:
-    addis	r0, r7, -0x7fff
-    cmplwi	r0, 0xffff
-    beq     _80046d84
-    sth	r7, 0(r5)
-    li	r3, 0
-    blr	
-_80046d84:
-    li	r0, 0
-    li	r3, -1
-    sth	r0, 0(r5)
-    blr	
+    int pos;
+    int found = 0x7FFFFFFF;
+
+    for (pos = 0; pos < n - 1; pos += 2, p++) {
+        if (*p == -32768) {
+            found = pos < found ? pos : found;
+            break;
+        }
+    }
+
+    if (found != 0x7FFFFFFF) {
+        *out = found;
+        return 0;
+    }
+    *out = 0;
+    return -1;
 }
 #pragma pop
 

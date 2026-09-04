@@ -1,10 +1,17 @@
 #pragma push
 #pragma force_active on
 
+typedef struct SjSpan {
+    int ptr;
+    int len;
+} SjSpan;
+
 typedef struct SjBuf {
     char pad0[0xc];
     int unkC;
-    char pad10[0xc];
+    int unk10;
+    int unk14;
+    char pad18[4];
     int (*unk1C)();
     void* unk20;
 } SjBuf;
@@ -627,71 +634,28 @@ void fn_8005795C(SjBuf* p, unsigned int mode, SjRing* r)
     svmExitCritical();
 }
 
-asm void fn_800579F0(void)
+// provenance: original
+void fn_800579F0(SjBuf* p, int mode, int want, SjSpan* out)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r6
-    stw	r30, 0x18(r1)
-    mr	r30, r5
-    stw	r29, 0x14(r1)
-    mr	r29, r4
-    stw	r28, 0x10(r1)
-    mr	r28, r3
-    bl      svmEnterCritical
-    cmpwi	r29, 0
-    bne     _80057a38
-    li	r0, 0
-    stw	r0, 4(r31)
-    stw	r0, 0(r31)
-    b     _80057ab4
-_80057a38:
-    cmpwi	r29, 1
-    bne     _80057a8c
-    lwz	r3, 0xc(r28)
-    mr	r0, r30
-    cmpw	r3, r30
-    bge     _80057a54
-    mr	r0, r3
-_80057a54:
-    stw	r0, 4(r31)
-    lwz	r3, 0x14(r28)
-    lwz	r0, 0x10(r28)
-    add	r0, r3, r0
-    stw	r0, 0(r31)
-    lwz	r3, 0x10(r28)
-    lwz	r0, 4(r31)
-    add	r0, r3, r0
-    stw	r0, 0x10(r28)
-    lwz	r3, 4(r31)
-    lwz	r0, 0xc(r28)
-    subf	r0, r3, r0
-    stw	r0, 0xc(r28)
-    b     _80057ab4
-_80057a8c:
-    li	r0, 0
-    stw	r0, 4(r31)
-    stw	r0, 0(r31)
-    lwz	r12, 0x1c(r28)
-    cmplwi	r12, 0
-    beq     _80057ab4
-    lwz	r3, 0x20(r28)
-    li	r4, -3
-    mtctr	r12
-    bctrl	
-_80057ab4:
-    bl      svmExitCritical
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    lwz	r28, 0x10(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    svmEnterCritical();
+
+    if (mode == 0) {
+        out->len = 0;
+        out->ptr = 0;
+    } else if (mode == 1) {
+        out->len = p->unkC < want ? p->unkC : want;
+        out->ptr = p->unk14 + p->unk10;
+        p->unk10 = p->unk10 + out->len;
+        p->unkC = p->unkC - out->len;
+    } else {
+        out->len = 0;
+        out->ptr = 0;
+        if (p->unk1C != 0) {
+            p->unk1C(p->unk20, -3);
+        }
+    }
+
+    svmExitCritical();
 }
 
 // provenance: original

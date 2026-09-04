@@ -11,7 +11,8 @@ typedef struct AdxSrv {
     int unk10;
     int unk14;
     int unk18;
-    char pad1C[0xc];
+    int unk1C;
+    char pad20[8];
     char unk28[0x318];
     char unk340[0x318];
     char unk658[0x318];
@@ -58,7 +59,7 @@ extern void fn_80055304();
 extern void fn_800565F0();
 extern void SVM_ServerExit();
 extern void SVM_ServerInit();
-extern void fn_80058C94();
+extern int fn_80058C94();
 extern void fn_80058D24();
 extern void fn_80058DB4();
 extern void fn_80058E44();
@@ -594,65 +595,28 @@ void fn_8004E7B4(void)
     fn_80058EF4();
 }
 
-asm void fn_8004E7D4(void)
+// provenance: original
+void fn_8004E7D4(void)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis	r5, lbl_8017E980@ha
-    lis     r4, lbl_8012B918@ha
-    stw	r0, 0x24(r1)
-    lis     r3, lbl_8012B930@ha
-    stw	r31, 0x1c(r1)
-    addi	r31, r3, lbl_8012B930@l
-    stw	r30, 0x18(r1)
-    addi	r30, r4, lbl_8012B918@l
-    stw	r29, 0x14(r1)
-    addi	r29, r5, lbl_8017E980@l
-    b       _8004e870
-_8004e808:
-    lwz	r3, 0x1c(r29)
-    addi	r0, r3, 1
-    stw	r0, 0x1c(r29)
-    bl      fn_80058C94
-    cmpwi	r3, 0
-    beq     _8004e82c
-    lwz	r0, 0xc(r29)
-    cmpwi	r0, 1
-    bne     _8004e870
-_8004e82c:
-    lwz	r0, 0xc(r29)
-    cmpwi	r0, 1
-    bne     _8004e84c
-    li	r0, 0
-    lwz	r4, 0x14(r30)
-    stw	r0, 0xc(r29)
-    addi	r3, r29, 0x28
-    bl      OSSetThreadPriority
-_8004e84c:
-    lis	r3, lbl_8012B930@ha
-    lwz	r12, lbl_8012B930@l(r3)
-    cmplwi	r12, 0
-    beq     _8004e868
-    lwz	r3, 4(r31)
-    mtctr	r12
-    bctrl	
-_8004e868:
-    addi	r3, r29, 0x28
-    bl      OSSuspendThread
-_8004e870:
-    lwz	r0, 0xca4(r29)
-    cmpwi	r0, 1
-    beq     _8004e808
-    li	r0, 1
-    stw	r0, 0xca0(r29)
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    AdxSrv* g = (AdxSrv*)lbl_8017E980;
+
+    while (g->unkCA4 == 1) {
+        g->unk1C++;
+        if (fn_80058C94() != 0) {
+            if (g->unkC != 1) {
+                continue;
+            }
+        }
+        if (g->unkC == 1) {
+            g->unkC = 0;
+            OSSetThreadPriority(g->unk28, lbl_8012B918[5]);
+        }
+        if (lbl_8012B930[0].fn != 0) {
+            lbl_8012B930[0].fn(lbl_8012B930[0].arg);
+        }
+        OSSuspendThread(g->unk28);
+    }
+    g->unkCA0 = 1;
 }
 
 // provenance: original
