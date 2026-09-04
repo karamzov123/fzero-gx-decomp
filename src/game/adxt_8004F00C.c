@@ -1,7 +1,25 @@
 #pragma push
 #pragma force_active on
 
-extern void DCInvalidateRange(void);
+typedef struct AdxfCtx {
+    int refcount;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    char unk14[0x20];
+    char unk34[0x100];
+    int unk134;
+    char unk138[0x400];
+    char unk538[0x440];
+} AdxfCtx;
+
+typedef struct AdxfSlot {
+    unsigned char unk0;
+    char pad1[0x43];
+} AdxfSlot;
+
+extern void DCInvalidateRange();
 extern void svmUnlockServer_wrapper(void);
 extern void svmLockServer_wrapper(void);
 extern void criErr_CallErrCallback(void);
@@ -11,24 +29,24 @@ extern void ADXTGetState(void);
 extern void fn_8004AEF0(void);
 extern void fn_8004B1DC(void);
 extern void fn_8004FC38(void);
-extern void ADXF_Stop_family(void);
+extern void ADXF_Stop_family();
 extern void adxt_bitstream_refill(void);
 extern void strncpy(void);
-extern void memset(void);
+extern void memset();
 extern unsigned char E9040822_adxf_is_NULL_ADXF_Stop_str[36];
 extern unsigned char E9040823_adxf_stm_is_NULL_ADXF_Stop_str[41];
 extern unsigned char E9040828_flid_is_range_outside_str[34];
 extern unsigned char E9040828_ptid_is_range_outside_str[34];
 extern unsigned char lbl_800911E0[64];
-extern unsigned char lbl_80091250[8];
+extern volatile int lbl_80091250[];
 extern unsigned char lbl_801309C0[136];
-extern unsigned char lbl_80186630[16];
+extern unsigned char lbl_80186630[];
 extern unsigned char lbl_80186764[4];
 extern unsigned char lbl_80186640[4];
 extern unsigned char lbl_80186644[32];
 extern unsigned char lbl_80186664[256];
 extern unsigned char lbl_80186768[1024];
-extern unsigned char lbl_80186B68[1088];
+extern AdxfSlot lbl_80186B68[16];
 extern unsigned char lbl_80186FA8[4];
 
 asm void fn_8004F00C(void)
@@ -524,49 +542,23 @@ _8004f6a4:
     blr	
 }
 
-asm void fn_8004F6B0(void)
+// provenance: original
+void fn_8004F6B0(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_80186630@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r3, lbl_80186630@l
-    lwz	r3, 0(r31)
-    addic.	r0, r3, -1
-    stw	r0, 0(r31)
-    bne     _8004f738
-    bl      fn_8004FC38
-    li	r0, 0
-    li	r3, -1
-    stw	r3, 4(r31)
-    addi	r3, r31, 0x14
-    li	r4, 0
-    li	r5, 0x20
-    stw	r0, 8(r31)
-    stw	r0, 0xc(r31)
-    stw	r0, 0x134(r31)
-    stw	r0, 0x10(r31)
-    bl      memset
-    addi	r3, r31, 0x34
-    li	r4, 0xff
-    li	r5, 0x100
-    bl      memset
-    addi	r3, r31, 0x138
-    li	r4, 0
-    li	r5, 0x400
-    bl      memset
-    addi	r3, r31, 0x538
-    li	r4, 0
-    li	r5, 0x440
-    bl      memset
-_8004f738:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxfCtx* g = (AdxfCtx*)lbl_80186630;
+
+    if (--g->refcount == 0) {
+        fn_8004FC38();
+        g->unk4 = -1;
+        g->unk8 = 0;
+        g->unkC = 0;
+        g->unk134 = 0;
+        g->unk10 = 0;
+        memset(g->unk14, 0, 0x20);
+        memset(g->unk34, 0xFF, 0x100);
+        memset(g->unk138, 0, 0x400);
+        memset(g->unk538, 0, 0x440);
+    }
 }
 
 asm void fn_8004F74C(void)
@@ -618,17 +610,10 @@ _8004f7d8:
     blr	
 }
 
-asm void fn_8004F7F8(void)
+// provenance: original
+void fn_8004F7F8(void* p, unsigned int size)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    bl      DCInvalidateRange
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    DCInvalidateRange(p, size);
 }
 
 asm void ADXF_SetPtdId_family(void)
@@ -930,37 +915,20 @@ _8004fc0c:
     blr	
 }
 
-asm void fn_8004FC38(void)
+// provenance: original
+void fn_8004FC38(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_80186B68@ha
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    addi	r31, r3, lbl_80186B68@l
-    stw	r30, 8(r1)
-    li	r30, 0
-_8004fc58:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _8004fc6c
-    mr	r3, r31
-    bl      ADXF_Stop_family
-_8004fc6c:
-    addi	r30, r30, 1
-    addi	r31, r31, 0x44
-    cmpwi	r30, 0x10
-    blt     _8004fc58
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    int i;
+
+    for (i = 0; i < 16; i++) {
+        int st = lbl_80186B68[i].unk0;
+        if (st == 1) {
+            ADXF_Stop_family(&lbl_80186B68[i]);
+        }
+    }
 }
 
-asm void ADXF_Stop_family(void)
+asm void ADXF_Stop_family()
 {
     nofralloc
     stwu	r1, -0x20(r1)

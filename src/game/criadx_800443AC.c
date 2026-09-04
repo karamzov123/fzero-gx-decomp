@@ -1,23 +1,28 @@
 #pragma push
 #pragma force_active on
 
+typedef struct AdxHdr {
+    char pad0[0x98];
+    short unk98;
+} AdxHdr;
+
 extern void ADXT_GetCmdState(void);
 extern void fn_80044C74(void);
-extern void strncmp(void);
-extern void fn_80044EF8(void);
-extern void fn_800433A4(void);
-extern void fn_80046020(void);
-extern void fn_8004342C(void);
-extern void fn_80043FA4(void);
-extern void fn_8004251C(void);
+extern int strncmp();
+extern void fn_80044EF8();
+extern void fn_800433A4();
+extern void fn_80046020();
+extern void fn_8004342C();
+extern void fn_80043FA4();
+extern void fn_8004251C();
 extern void fn_8004E204(void);
 extern void fn_8004E1E4(void);
 extern void fn_8004E238(void);
 extern void fn_8004E098(void);
 extern void fn_8004E190(void);
 extern void fn_8004E198(void);
-extern unsigned char lbl_80090098[4];
-extern unsigned char snd_str[5];
+extern unsigned char lbl_80090098[];
+extern unsigned char snd_str[];
 
 asm void fn_800443AC(void)
 {
@@ -600,38 +605,13 @@ _80044bf0:
     blr	
 }
 
-asm void CRI_WAVE_parser(void)
+// provenance: original
+int CRI_WAVE_parser(char* hdr)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r4, snd_str@ha
-    li	r5, 4
-    stw	r0, 0x14(r1)
-    addi	r4, r4, snd_str@l
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    bl      strncmp
-    cmpwi	r3, 0
-    beq     _80044c54
-    lis     r4, lbl_80090098@ha
-    mr	r3, r31
-    addi	r4, r4, lbl_80090098@l
-    li	r5, 4
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _80044c5c
-_80044c54:
-    li	r3, 1
-    b       _80044c60
-_80044c5c:
-    li	r3, 0
-_80044c60:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (strncmp(hdr, snd_str, 4) == 0 || strncmp(hdr, lbl_80090098, 4) == 0) {
+        return 1;
+    }
+    return 0;
 }
 
 asm void fn_80044C74(void)
@@ -782,49 +762,27 @@ _80044e70:
     blr	
 }
 
-asm void fn_80044E7C(void)
+// provenance: original
+void fn_80044E7C(AdxHdr* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    lha	r4, 0x98(r3)
-    extsh.	r0, r4
-    bne     _80044e9c
-    bl      fn_80044EF8
-    b       _80044ee8
-_80044e9c:
-    cmpwi	r4, 0xa
-    bne     _80044eac
-    bl      fn_800433A4
-    b       _80044ee8
-_80044eac:
-    cmpwi	r4, 2
-    bne     _80044ebc
-    bl      fn_80046020
-    b       _80044ee8
-_80044ebc:
-    cmpwi	r4, 3
-    bne     _80044ecc
-    bl      fn_8004342C
-    b       _80044ee8
-_80044ecc:
-    cmpwi	r4, 4
-    bne     _80044edc
-    bl      fn_80043FA4
-    b       _80044ee8
-_80044edc:
-    cmpwi	r4, 1
-    bne     _80044ee8
-    bl      fn_8004251C
-_80044ee8:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    short fmt = p->unk98;
+
+    if (fmt == 0) {
+        fn_80044EF8(p);
+    } else if (fmt == 10) {
+        fn_800433A4(p);
+    } else if (fmt == 2) {
+        fn_80046020(p);
+    } else if (fmt == 3) {
+        fn_8004342C(p);
+    } else if (fmt == 4) {
+        fn_80043FA4(p);
+    } else if (fmt == 1) {
+        fn_8004251C(p);
+    }
 }
 
-asm void fn_80044EF8(void)
+asm void fn_80044EF8()
 {
     nofralloc
     stwu	r1, -0x30(r1)

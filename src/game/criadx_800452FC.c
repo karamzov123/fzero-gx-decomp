@@ -1,6 +1,31 @@
 #pragma push
 #pragma force_active on
 
+typedef struct AdxHdr {
+    short unk0;
+    char pad2[0xb];
+    signed char unkD;
+    signed char unkE;
+    signed char unkF;
+    char pad10[0x38];
+    int unk48;
+    int unk4C;
+    char pad50[0x24];
+    int unk74;
+    char pad78[0x18];
+    int unk90;
+    int unk94;
+    short unk98;
+    short unk9A;
+} AdxHdr;
+
+typedef struct AdxSpsd {
+    short unk0;
+    char pad2[6];
+    void* unk8;
+    char padC[0xcc];
+} AdxSpsd;
+
 extern void fn_8004E198();
 extern unsigned char lbl_800900A0[2184];
 extern void fn_8004E1B0();
@@ -26,7 +51,7 @@ extern void fn_80046AC0(void);
 extern void fn_8004E324(void);
 extern void fn_800469A4(void);
 extern void fn_8004683C(void);
-extern void fn_8004E278(void);
+extern void fn_8004E278();
 extern void memset();
 extern void fn_8004E354(void);
 extern void fn_8004E4AC();
@@ -77,38 +102,22 @@ void fn_8004538C(void* p)
     }
 }
 
-asm void fn_800453A4(void)
+// provenance: original
+void fn_800453A4(AdxHdr* p, int a, int rate)
 {
-    nofralloc
-    lha	r0, 0x98(r3)
-    cmpwi	r0, 0
-    bne     _800453d8
-    stw	r4, 0x48(r3)
-    li	r0, 0
-    lbz	r4, 0xf(r3)
-    extsb	r4, r4
-    divw	r4, r5, r4
-    stw	r4, 0x4c(r3)
-    stw	r0, 0x74(r3)
-    stw	r0, 0x90(r3)
-    stw	r0, 0x94(r3)
-    blr	
-_800453d8:
-    stw	r4, 0x48(r3)
-    li	r0, 0
-    lbz	r6, 0xd(r3)
-    lbz	r4, 0xe(r3)
-    extsb	r6, r6
-    srawi	r6, r6, 3
-    extsb	r4, r4
-    addze	r6, r6
-    mullw	r4, r6, r4
-    divw	r4, r5, r4
-    stw	r4, 0x4c(r3)
-    stw	r0, 0x74(r3)
-    stw	r0, 0x90(r3)
-    stw	r0, 0x94(r3)
-    blr	
+    if (p->unk98 == 0) {
+        p->unk48 = a;
+        p->unk4C = rate / p->unkF;
+        p->unk74 = 0;
+        p->unk90 = 0;
+        p->unk94 = 0;
+    } else {
+        p->unk48 = a;
+        p->unk4C = rate / (p->unkD / 8 * p->unkE);
+        p->unk74 = 0;
+        p->unk90 = 0;
+        p->unk94 = 0;
+    }
 }
 
 // provenance: original
@@ -193,40 +202,32 @@ int fn_80045514(void* p)
     return *(int*)((char*)p + 0x10);
 }
 
-asm void fn_8004551C(void)
+// provenance: original
+int fn_8004551C(AdxHdr* p)
 {
-    nofralloc
-    lha	r4, 0x98(r3)
-    extsh.	r0, r4
-    bne     _80045530
-    li	r3, 0x10
-    blr	
-_80045530:
-    cmpwi	r4, 2
-    bne     _80045560
-    lha	r0, 0x9a(r3)
-    cmpwi	r0, 2
-    bne     _8004554c
-    li	r3, 4
-    blr	
-_8004554c:
-    cmpwi	r0, 1
-    li	r3, 0x10
-    bnelr	
-    li	r3, 8
-    blr	
-_80045560:
-    cmpwi	r4, 1
-    bne     _80045580
-    lha	r0, 0x9a(r3)
-    li	r3, 0x10
-    cmpwi	r0, 2
-    bnelr	
-    li	r3, 4
-    blr	
-_80045580:
-    li	r3, 0x10
-    blr	
+    short fmt = p->unk98;
+
+    if (fmt == 0) {
+        return 0x10;
+    }
+    if (fmt == 2) {
+        short bits = p->unk9A;
+        if (bits == 2) {
+            return 4;
+        }
+        if (bits == 1) {
+            return 8;
+        }
+        return 0x10;
+    }
+    if (fmt == 1) {
+        short bits = p->unk9A;
+        if (bits == 2) {
+            return 4;
+        }
+        return 0x10;
+    }
+    return 0x10;
 }
 
 // provenance: original
@@ -772,31 +773,16 @@ _80045d28:
     blr	
 }
 
-asm void fn_80045D3C(void)
+// provenance: original
+void fn_80045D3C(AdxSpsd* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    beq     _80045d7c
-    lwz	r3, 8(r31)
-    li	r0, 0
-    stw	r0, 8(r31)
-    bl      fn_8004E278
-    mr	r3, r31
-    li	r4, 0
-    li	r5, 0xd8
-    bl      memset
-    li	r0, 0
-    sth	r0, 0(r31)
-_80045d7c:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p != 0) {
+        void* old = p->unk8;
+        p->unk8 = 0;
+        fn_8004E278(old);
+        memset(p, 0, 0xD8);
+        p->unk0 = 0;
+    }
 }
 
 asm void fn_80045D90(void)

@@ -4,8 +4,8 @@ extern unsigned char lbl_80186FA8[];
 
 extern void adxt_bitstream_refill();
 extern void svm_ringbuf_read(void);
-extern void memset(void);
-extern unsigned char getCupModeConst_value_tbl[];
+extern void memset();
+extern int getCupModeConst_value_tbl[];
 extern unsigned char lbl_8012D9BC[];
 extern unsigned int lbl_801309C0[];
 extern unsigned char lbl_80186FAC[];
@@ -213,22 +213,12 @@ _800504a4:
     blr	
 }
 
-asm void fn_800504BC(void)
+// provenance: original
+void fn_800504BC(void* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r3, 0
-    stw	r0, 0x14(r1)
-    beq     _800504dc
-    li	r4, 0
-    li	r5, 0x2c
-    bl      memset
-_800504dc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (p != 0) {
+        memset(p, 0, 0x2C);
+    }
 }
 
 asm void fn_800504EC(void)
@@ -336,19 +326,11 @@ _80050654:
     blr	
 }
 
-asm void getCupModeConst(void)
+// provenance: original
+int getCupModeConst(int mode, unsigned char** out)
 {
-    nofralloc
-    mulli	r7, r3, 0x3000
-    lis     r6, lbl_8012D9BC@ha
-    lis     r5, getCupModeConst_value_tbl@ha
-    addi	r0, r6, lbl_8012D9BC@l
-    add	r6, r0, r7
-    slwi	r0, r3, 2
-    stw	r6, 0(r4)
-    addi	r3, r5, getCupModeConst_value_tbl@l
-    lwzx	r3, r3, r0
-    blr	
+    *out = &lbl_8012D9BC[mode * 0x3000];
+    return getCupModeConst_value_tbl[mode];
 }
 
 #pragma pop
