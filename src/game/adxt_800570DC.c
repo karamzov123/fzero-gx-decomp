@@ -1,8 +1,45 @@
 #pragma push
 #pragma force_active on
 
-extern void OSDisableInterrupts(void);
-extern void OSRestoreInterrupts(void);
+typedef struct SjBuf {
+    char pad0[0xc];
+    int unkC;
+    char pad10[0xc];
+    int (*unk1C)();
+    void* unk20;
+} SjBuf;
+
+typedef struct GcciSlot {
+    unsigned char unk0;
+    char pad1[0x237];
+} GcciSlot;
+
+typedef struct GcciCrit {
+    int a;
+    int b;
+} GcciCrit;
+
+typedef struct SjRing {
+    void* unkPtr;
+    int unk4;
+    char pad8[4];
+    int unkC;
+    int unk10;
+    int unk14;
+    int unk18;
+    char pad1C[4];
+    int unk20;
+    char pad24[4];
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int (*unk38)();
+    void* unk3C;
+} SjRing;
+
+extern int OSDisableInterrupts();
+extern void OSRestoreInterrupts();
 extern void fn_8004A550(void);
 extern void ADXT_GetVoiceByAxHandle(void);
 extern void ADXT_StartVoice(void);
@@ -14,12 +51,12 @@ extern void ADXTGetState(void);
 extern void ADXT_StopVoice(void);
 extern void fn_8004B180(void);
 extern void gcciErrPrintf(void);
-extern void gcci_set_critical_value(void);
-extern void gccicrit_leave(void);
-extern void gccicrit_enter(void);
+extern void gcci_set_critical_value();
+extern void gccicrit_leave();
+extern void gccicrit_enter();
 extern void fn_8005676C(void);
 extern void gcci_register_filename();
-extern void fn_80057114(void);
+extern void fn_80057114();
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
 extern void SVM_ReportError();
@@ -30,22 +67,22 @@ extern unsigned char SJMEM_Error_str[12];
 extern unsigned char SJRBF_Error_str[12];
 extern unsigned char E0003_lsc_null_str[35];
 extern unsigned char lbl_80092238[42];
-extern unsigned char lbl_800922C0[4];
+extern volatile int lbl_800922C0[];
 extern unsigned char lbl_80092264[41];
 extern unsigned char lbl_800922C8[21];
 extern unsigned char lbl_800922E0[16];
 extern unsigned char lbl_801322D0[48];
 extern unsigned char lbl_80132330[448];
-extern unsigned char lbl_80188A88[4];
+extern int lbl_80188A88[];
 extern unsigned char lbl_80132300[8];
 extern unsigned char lbl_80092330[4];
-extern unsigned char lbl_8009232C[4];
-extern unsigned char lbl_80188A8C[9092];
-extern unsigned char lbl_8018AE10[4];
-extern unsigned char lbl_8018AE14[4];
-extern unsigned char lbl_8018AE18[4];
+extern volatile int lbl_8009232C[];
+extern GcciSlot lbl_80188A8C[16];
+extern volatile int lbl_8018AE10[];
+extern int lbl_8018AE14[];
+extern int lbl_8018AE18[];
 extern unsigned char lbl_8018AE1C[1156];
-extern unsigned char lbl_8018B2A0[];
+extern int lbl_8018B2A0[];
 extern unsigned char lbl_8018B2A4[16388];
 extern unsigned char lbl_8018F2A8[];
 extern unsigned char lbl_8018F2AC[3076];
@@ -71,7 +108,7 @@ void fn_8005710C(void* p, int val)
     *(int*)((char*)p + 0x28) = val;
 }
 
-asm void fn_80057114(void)
+asm void fn_80057114()
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -248,89 +285,39 @@ _8005735c:
     blr	
 }
 
-asm void fn_80057378(void)
+// provenance: original
+void fn_80057378(void)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    addi	r3, r1, 8
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    bl      gccicrit_enter
-    lis     r3, lbl_80188A88@ha
-    addi	r4, r3, lbl_80188A88@l
-    lwz	r3, 0(r4)
-    addic.	r0, r3, -1
-    stw	r0, 0(r4)
-    bne     _800573fc
-    lis     r3, lbl_80188A8C@ha
-    li	r30, 0
-    addi	r31, r3, lbl_80188A8C@l
-_800573b8:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _800573cc
-    mr	r3, r31
-    bl      fn_80057114
-_800573cc:
-    addi	r30, r30, 1
-    addi	r31, r31, 0x238
-    cmpwi	r30, 0x10
-    blt     _800573b8
-    lis     r3, lbl_80188A8C@ha
-    li	r4, 0
-    addi	r3, r3, lbl_80188A8C@l
-    li	r5, 0x2380
-    bl      memset
-    li	r3, 0
-    li	r4, 0
-    bl      gcci_set_critical_value
-_800573fc:
-    addi	r3, r1, 8
-    bl      gccicrit_leave
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    GcciCrit crit;
+    int i;
+
+    gccicrit_enter(&crit);
+    if (--lbl_80188A88[0] == 0) {
+        for (i = 0; i < 16; i++) {
+            int st = lbl_80188A8C[i].unk0;
+            if (st == 1) {
+                fn_80057114(&lbl_80188A8C[i]);
+            }
+        }
+        memset(lbl_80188A8C, 0, 0x2380);
+        gcci_set_critical_value(0, 0);
+    }
+    gccicrit_leave(&crit);
 }
 
-asm void fn_8005741C(void)
+// provenance: original
+void fn_8005741C(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis	r4, lbl_800922C0@ha
-    stw	r0, 0x14(r1)
-    addi	r3, r1, 8
-    lwz	r0, lbl_800922C0@l(r4)
-    bl      gccicrit_enter
-    lis     r3, lbl_80188A88@ha
-    lwz	r0, lbl_80188A88@l(r3)
-    cmpwi	r0, 0
-    bne     _80057468
-    lis	r3, lbl_80188A8C@ha
-    li	r4, 0
-    addi	r3, r3, lbl_80188A8C@l
-    li	r5, 0x2380
-    bl      memset
-    li	r3, 0
-    li	r4, 0
-    bl      gcci_set_critical_value
-_80057468:
-    lis     r4, lbl_80188A88@ha
-    addi	r3, r1, 8
-    addi	r5, r4, lbl_80188A88@l
-    lwz	r4, 0(r5)
-    addi	r0, r4, 1
-    stw	r0, 0(r5)
-    bl      gccicrit_leave
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    GcciCrit crit;
+
+    lbl_800922C0[0];
+    gccicrit_enter(&crit);
+    if (lbl_80188A88[0] == 0) {
+        memset(lbl_80188A8C, 0, 0x2380);
+        gcci_set_critical_value(0, 0);
+    }
+    lbl_80188A88[0]++;
+    gccicrit_leave(&crit);
 }
 
 asm void fn_80057494(void)
@@ -493,109 +480,47 @@ _800576c8:
     blr	
 }
 
-asm void svmExitCritical(void)
+// The critical-section counter is shared with the interrupt handler, and
+// retail keeps both primitives out of line.
+#pragma dont_inline on
+// provenance: original
+void svmExitCritical(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8018AE10@ha
-    stw	r0, 0x14(r1)
-    addi	r4, r3, lbl_8018AE10@l
-    lwz	r3, 0(r4)
-    addi	r0, r3, -1
-    stw	r0, 0(r4)
-    lwz	r0, 0(r4)
-    cmpwi	r0, 0
-    bne     _80057718
-    lis     r3, lbl_8018AE14@ha
-    addi	r3, r3, lbl_8018AE14@l
-    lwz	r3, 0(r3)
-    bl      OSRestoreInterrupts
-_80057718:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    lbl_8018AE10[0]--;
+    if (lbl_8018AE10[0] == 0) {
+        OSRestoreInterrupts(lbl_8018AE14[0]);
+    }
 }
 
-asm void svmEnterCritical(void)
+// provenance: original
+void svmEnterCritical(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis	r3, lbl_8018AE10@ha
-    stw	r0, 0x14(r1)
-    lwz	r0, lbl_8018AE10@l(r3)
-    cmpwi	r0, 0
-    bne     _80057750
-    bl      OSDisableInterrupts
-    lis	r4, lbl_8018AE14@ha
-    stw	r3, lbl_8018AE14@l(r4)
-_80057750:
-    lis     r3, lbl_8018AE10@ha
-    addi	r4, r3, lbl_8018AE10@l
-    lwz	r3, 0(r4)
-    addi	r0, r3, 1
-    stw	r0, 0(r4)
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (lbl_8018AE10[0] == 0) {
+        lbl_8018AE14[0] = OSDisableInterrupts();
+    }
+    lbl_8018AE10[0]++;
 }
+#pragma dont_inline reset
 
-asm void fn_80057774(void)
+// provenance: original
+int fn_80057774(SjBuf* p, int mode, int want, int* got)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r4
-    stw	r30, 0x18(r1)
-    mr	r30, r6
-    stw	r29, 0x14(r1)
-    mr	r29, r5
-    stw	r28, 0x10(r1)
-    mr	r28, r3
-    bl      svmEnterCritical
-    cmpwi	r31, 0
-    bne     _800577b4
-    li	r31, 0
-    b     _800577f8
-_800577b4:
-    cmpwi	r31, 1
-    bne     _800577d8
-    lwz	r3, 0xc(r28)
-    mr	r0, r29
-    cmpw	r3, r29
-    bge     _800577d0
-    mr	r0, r3
-_800577d0:
-    mr	r31, r0
-    b     _800577f8
-_800577d8:
-    lwz	r12, 0x1c(r28)
-    li	r31, 0
-    cmplwi	r12, 0
-    beq     _800577f8
-    lwz	r3, 0x20(r28)
-    li	r4, -3
-    mtctr	r12
-    bctrl	
-_800577f8:
-    stw	r31, 0(r30)
-    bl      svmExitCritical
-    subf	r0, r31, r29
-    lwz	r31, 0x1c(r1)
-    cntlzw	r0, r0
-    lwz	r30, 0x18(r1)
-    srwi	r3, r0, 5
-    lwz	r0, 0x24(r1)
-    lwz	r29, 0x14(r1)
-    lwz	r28, 0x10(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int n;
+
+    svmEnterCritical();
+    if (mode == 0) {
+        n = 0;
+    } else if (mode == 1) {
+        n = p->unkC < want ? p->unkC : want;
+    } else {
+        n = 0;
+        if (p->unk1C != 0) {
+            p->unk1C(p->unk20, -3);
+        }
+    }
+    *got = n;
+    svmExitCritical();
+    return !(want - n);
 }
 
 asm void fn_8005782C(void)
@@ -685,49 +610,21 @@ _80057940:
     blr	
 }
 
-asm void fn_8005795C(void)
+// provenance: original
+void fn_8005795C(SjBuf* p, unsigned int mode, SjRing* r)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r5
-    stw	r30, 0x18(r1)
-    mr	r30, r4
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    lwz	r0, 4(r5)
-    cmpwi	r0, 0
-    ble     _800579d4
-    lwz	r0, 0(r31)
-    cmplwi	r0, 0
-    bne     _8005799c
-    b     _800579d4
-_8005799c:
-    bl      svmEnterCritical
-    cmplwi	r30, 1
-    ble     _800579d0
-    li	r0, 0
-    stw	r0, 4(r31)
-    stw	r0, 0(r31)
-    lwz	r12, 0x1c(r29)
-    cmplwi	r12, 0
-    beq     _800579d0
-    lwz	r3, 0x20(r29)
-    li	r4, -3
-    mtctr	r12
-    bctrl	
-_800579d0:
-    bl      svmExitCritical
-_800579d4:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    if (r->unk4 <= 0 || r->unkPtr == 0) {
+        return;
+    }
+    svmEnterCritical();
+    if (mode > 1) {
+        r->unk4 = 0;
+        r->unkPtr = 0;
+        if (p->unk1C != 0) {
+            p->unk1C(p->unk20, -3);
+        }
+    }
+    svmExitCritical();
 }
 
 asm void fn_800579F0(void)
@@ -797,36 +694,19 @@ _80057ab4:
     blr	
 }
 
-asm void fn_80057AD8(void)
+// provenance: original
+int fn_80057AD8(SjBuf* p, int n)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmpwi	r4, 1
-    stw	r0, 0x14(r1)
-    bne     _80057af4
-    lwz	r3, 0xc(r3)
-    b     _80057b24
-_80057af4:
-    cmpwi	r4, 0
-    bne     _80057b04
-    li	r3, 0
-    b     _80057b24
-_80057b04:
-    lwz	r12, 0x1c(r3)
-    cmplwi	r12, 0
-    beq     _80057b20
-    lwz	r3, 0x20(r3)
-    li	r4, -3
-    mtctr	r12
-    bctrl	
-_80057b20:
-    li	r3, 0
-_80057b24:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (n == 1) {
+        return p->unkC;
+    }
+    if (n == 0) {
+        return 0;
+    }
+    if (p->unk1C != 0) {
+        p->unk1C(p->unk20, -3);
+    }
+    return 0;
 }
 
 // provenance: original
@@ -940,55 +820,21 @@ _80057c64:
     blr	
 }
 
-asm void fn_80057CC4(void)
+// provenance: original
+void fn_80057CC4(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r3, lbl_8018AE18@ha
-    stw	r0, 0x14(r1)
-    addi	r4, r3, lbl_8018AE18@l
-    lwz	r3, 0(r4)
-    addic.	r0, r3, -1
-    stw	r0, 0(r4)
-    bne     _80057cfc
-    lis     r3, lbl_8018AE1C@ha
-    li	r4, 0
-    addi	r3, r3, lbl_8018AE1C@l
-    li	r5, 0x480
-    bl      memset
-_80057cfc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (--lbl_8018AE18[0] == 0) {
+        memset(lbl_8018AE1C, 0, 0x480);
+    }
 }
 
-asm void fn_80057D0C(void)
+// provenance: original
+void fn_80057D0C(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis	r3, lbl_8018AE18@ha
-    stw	r0, 0x14(r1)
-    lwz	r0, lbl_8018AE18@l(r3)
-    cmpwi	r0, 0
-    bne     _80057d3c
-    lis     r3, lbl_8018AE1C@ha
-    li	r4, 0
-    addi	r3, r3, lbl_8018AE1C@l
-    li	r5, 0x480
-    bl      memset
-_80057d3c:
-    lis     r3, lbl_8018AE18@ha
-    addi	r4, r3, lbl_8018AE18@l
-    lwz	r3, 0(r4)
-    addi	r0, r3, 1
-    stw	r0, 0(r4)
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (lbl_8018AE18[0] == 0) {
+        memset(lbl_8018AE1C, 0, 0x480);
+    }
+    lbl_8018AE18[0]++;
 }
 
 // provenance: original
@@ -1447,63 +1293,34 @@ _8005835c:
     blr	
 }
 
-asm void fn_80058380(void)
+// provenance: original
+int fn_80058380(SjRing* p, int n)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmpwi	r4, 1
-    stw	r0, 0x14(r1)
-    bne     _8005839c
-    lwz	r3, 0xc(r3)
-    b     _800583cc
-_8005839c:
-    cmpwi	r4, 0
-    bne     _800583ac
-    lwz	r3, 0x10(r3)
-    b     _800583cc
-_800583ac:
-    lwz	r12, 0x38(r3)
-    cmplwi	r12, 0
-    beq     _800583c8
-    lwz	r3, 0x3c(r3)
-    li	r4, -3
-    mtctr	r12
-    bctrl	
-_800583c8:
-    li	r3, 0
-_800583cc:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    if (n == 1) {
+        return p->unkC;
+    }
+    if (n == 0) {
+        return p->unk10;
+    }
+    if (p->unk38 != 0) {
+        p->unk38(p->unk3C, -3);
+    }
+    return 0;
 }
 
-asm void fn_800583DC(void)
+// provenance: original
+void fn_800583DC(SjRing* p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r3
-    bl      svmEnterCritical
-    li	r3, 0
-    stw	r3, 0xc(r31)
-    lwz	r0, 0x20(r31)
-    stw	r0, 0x10(r31)
-    stw	r3, 0x14(r31)
-    stw	r3, 0x18(r31)
-    stw	r3, 0x28(r31)
-    stw	r3, 0x2c(r31)
-    stw	r3, 0x30(r31)
-    stw	r3, 0x34(r31)
-    bl      svmExitCritical
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    svmEnterCritical();
+    p->unkC = 0;
+    p->unk10 = p->unk20;
+    p->unk14 = 0;
+    p->unk18 = 0;
+    p->unk28 = 0;
+    p->unk2C = 0;
+    p->unk30 = 0;
+    p->unk34 = 0;
+    svmExitCritical();
 }
 
 // provenance: original
@@ -1652,35 +1469,16 @@ void fn_80058630(void)
     svmExitCritical();
 }
 
-asm void fn_80058680(void)
+// provenance: original
+void fn_80058680(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis	r3, lbl_8009232C@ha
-    stw	r0, 0x14(r1)
-    lwz	r0, lbl_8009232C@l(r3)
-    bl      svmEnterCritical
-    lis     r3, lbl_8018B2A0@ha
-    lwz	r0, lbl_8018B2A0@l(r3)
-    cmpwi	r0, 0
-    bne     _800586bc
-    lis	r3, lbl_8018B2A4@ha
-    li	r4, 0
-    addi	r3, r3, lbl_8018B2A4@l
-    li	r5, 0x4000
-    bl      memset
-_800586bc:
-    lis     r3, lbl_8018B2A0@ha
-    addi	r4, r3, lbl_8018B2A0@l
-    lwz	r3, 0(r4)
-    addi	r0, r3, 1
-    stw	r0, 0(r4)
-    bl      svmExitCritical
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    lbl_8009232C[0];
+    svmEnterCritical();
+    if (lbl_8018B2A0[0] == 0) {
+        memset(lbl_8018B2A4, 0, 0x4000);
+    }
+    lbl_8018B2A0[0]++;
+    svmExitCritical();
 }
 
 // provenance: original
