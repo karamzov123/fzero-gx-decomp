@@ -21,8 +21,16 @@ typedef struct AdxObj {
     AdxObjVt* vt;
 } AdxObj;
 
+typedef struct AdxChan {
+    char pad0[4];
+    short unk4;
+    short unk6;
+    char pad8[0x80];
+    struct AdxChan* unk88;
+} AdxChan;
+
 typedef struct AdxHandle {
-    char pad0[1];
+    unsigned char unk0;
     signed char unk1;
     char pad2[1];
     signed char unk3;
@@ -34,11 +42,19 @@ typedef struct AdxHandle {
     int unk3C;
     char pad40[0x18];
     int unk58;
-    char pad5C[0xc];
+    int unk5C;
+    int unk60;
+    int unk64;
     int unk68;
     char pad6C[0x14];
-    void* unk80;
-    void* unk84;
+    AdxChan* unk80;
+    AdxChan* unk84;
+    short unk88[2];
+    short unk8C[2];
+    char pad90[0x238];
+    short unk2C8[2];
+    short unk2CC[2];
+    char pad2D0[0x20];
 } AdxHandle;
 
 typedef struct AdxErr {
@@ -48,10 +64,7 @@ typedef struct AdxErr {
     char msg[0x100];
 } AdxErr;
 
-typedef struct AdxSlot {
-    unsigned char unk0;
-    char pad1[0x2ef];
-} AdxSlot;
+typedef AdxHandle AdxSlot;
 
 extern void strncpy();
 extern void __msl_strncat();
@@ -75,8 +88,8 @@ extern void fn_80047AF8();
 extern void fn_80047C08();
 extern void fn_800482B8();
 extern void fn_800478C0();
-extern void fn_80048340(void);
-extern void CRI_SPSD_parser(void);
+extern int fn_80048340();
+extern void CRI_SPSD_parser();
 extern void fn_80047A50();
 extern int fn_80049958();
 extern int fn_80049728();
@@ -235,118 +248,59 @@ void fn_80047864(void)
     }
 }
 
-asm void fn_800478C0(void)
+static inline void set_chan(AdxChan* ch, short v1, short v2) {
+    ch->unk4 = v1;
+    ch->unk6 = v2;
+}
+
+// provenance: original
+void fn_800478C0(void* arg0)
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    stw	r0, 0x34(r1)
-    stmw	r27, 0x1c(r1)
-    mr	r31, r3
-    lbz	r0, 1(r3)
-    extsb	r0, r0
-    cmpwi	r0, 1
-    bne     _80047a30
-    lwz	r29, 0xc(r31)
-    mr	r28, r31
-    mr	r27, r31
-    li	r30, 0
-    b       _8004795c
-_800478f8:
-    lwz	r3, 4(r28)
-    addi	r6, r1, 0xc
-    li	r4, 1
-    li	r5, 2
-    lwz	r7, 0(r3)
-    lwz	r12, 0x18(r7)
-    mtctr	r12
-    bctrl	
-    lwz	r0, 0x10(r1)
-    cmpwi	r0, 0
-    beq     _80047968
-    lwz	r3, 0xc(r1)
-    addi	r5, r1, 0xc
-    li	r4, 1
-    lha	r0, 0(r3)
-    sth	r0, 0x2cc(r27)
-    sth	r0, 0x2c8(r27)
-    lwz	r3, 4(r28)
-    lwz	r6, 0(r3)
-    lwz	r12, 0x1c(r6)
-    mtctr	r12
-    bctrl	
-    addi	r28, r28, 4
-    addi	r27, r27, 2
-    addi	r30, r30, 1
-_8004795c:
-    lwz	r0, 0x58(r31)
-    cmpw	r30, r0
-    blt     _800478f8
-_80047968:
-    lwz	r0, 0x58(r31)
-    cmpw	r30, r0
-    blt     _80047a3c
-    mr	r3, r31
-    li	r4, 0
-    b       _80047998
-_80047980:
-    lha	r0, 0x2c8(r3)
-    addi	r4, r4, 1
-    sth	r0, 0x88(r3)
-    lha	r0, 0x2cc(r3)
-    sth	r0, 0x8c(r3)
-    addi	r3, r3, 2
-_80047998:
-    lwz	r0, 0x58(r31)
-    cmpw	r4, r0
-    blt     _80047980
-    mr	r3, r31
-    mr	r4, r29
-    bl      fn_80048340
-    cmpwi	r3, 0
-    beq     _80047a3c
-    lwz	r0, 0x2c(r31)
-    mr	r27, r31
-    li	r28, 0
-    add	r0, r0, r3
-    stw	r0, 0x2c(r31)
-    b       _80047a18
-_800479d0:
-    lwz	r0, 0x64(r31)
-    addi	r5, r1, 8
-    lwz	r29, 0x80(r27)
-    addi	r6, r1, 0xa
-    lwz	r4, 0x5c(r31)
-    extsh	r3, r0
-    bl      CRI_SPSD_parser
-    lha	r3, 0xa(r1)
-    addi	r27, r27, 4
-    lha	r0, 8(r1)
-    addi	r28, r28, 1
-    sth	r0, 4(r29)
-    sth	r3, 6(r29)
-    lha	r4, 0xa(r1)
-    lwz	r3, 0x88(r29)
-    lha	r0, 8(r1)
-    sth	r0, 4(r3)
-    sth	r4, 6(r3)
-_80047a18:
-    lwz	r0, 0x58(r31)
-    cmpw	r28, r0
-    blt     _800479d0
-    li	r0, 2
-    stb	r0, 1(r31)
-    b       _80047a3c
-_80047a30:
-    cmpwi	r0, 2
-    bne     _80047a3c
-    bl      fn_80047A50
-_80047a3c:
-    lmw	r27, 0x1c(r1)
-    lwz	r0, 0x34(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr	
+    AdxSpan sp;
+    short s8_2;
+    short s8_1;
+    AdxHandle* p = (AdxHandle*)arg0;
+    int i;
+    AdxObj* obj;
+    AdxHandle* q;
+    AdxHandle* r;
+    int j;
+    AdxHandle* s;
+    int k;
+    AdxChan* ch;
+
+    if (p->unk1 == 1) {
+        obj = p->unk4[2];
+        q = p;
+        r = p;
+        for (i = 0; i < p->unk58; i++) {
+            q->unk4[0]->vt->fn18(q->unk4[0], 1, 2, &sp);
+            if (sp.len == 0) break;
+            r->unk2C8[0] = r->unk2CC[0] = *(short*)sp.ptr;
+            q->unk4[0]->vt->fn1C(q->unk4[0], 1, &sp);
+            q = (AdxHandle*)((char*)q + 4);
+            r = (AdxHandle*)((char*)r + 2);
+        }
+        if (i < p->unk58) return;
+        for (j = 0; j < p->unk58; j++) {
+            p->unk88[j] = p->unk2C8[j];
+            p->unk8C[j] = p->unk2CC[j];
+        }
+        j = fn_80048340(p, obj);
+        if (j == 0) return;
+        p->unk2C += j;
+        s = p;
+        for (k = 0; k < p->unk58; k++) {
+            ch = s->unk80;
+            CRI_SPSD_parser((short)p->unk64, p->unk5C, &s8_1, &s8_2);
+            set_chan(ch, s8_1, s8_2);
+            set_chan(ch->unk88, s8_1, s8_2);
+            s = (AdxHandle*)((char*)s + 4);
+        }
+        p->unk1 = 2;
+    } else if (p->unk1 == 2) {
+        fn_80047A50(p);
+    }
 }
 
 // provenance: original

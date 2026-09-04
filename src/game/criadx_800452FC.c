@@ -23,7 +23,23 @@ typedef struct AdxSpsd {
     short unk0;
     char pad2[6];
     void* unk8;
-    char padC[0xcc];
+    char padC[0x2c];
+    int unk38;
+    int unk3C;
+    int unk40;
+    int unk44;
+    char pad48[0x30];
+    void* unk78;
+    void* unk7C;
+    void* unk80;
+    void* unk84;
+    char pad88[0x34];
+    int unkBC;
+    char unkC0[0x10];
+    short unkD0;
+    short unkD2;
+    short unkD4;
+    char padD6[2];
 } AdxSpsd;
 
 extern void fn_8004E198();
@@ -53,7 +69,7 @@ extern void fn_800469A4(void);
 extern void fn_8004683C(void);
 extern void fn_8004E278();
 extern void memset();
-extern void fn_8004E354(void);
+extern void* fn_8004E354(void);
 extern void fn_8004E4AC();
 extern int strncmp();
 extern void ADXT_GetCmdState(void);
@@ -61,9 +77,7 @@ extern const char SPSD_str[];
 extern void fn_80045F58();
 extern int fn_80045F74();
 extern unsigned char lbl_8017A288[20];
-extern unsigned char lbl_8017A29C[3460];
-extern void fn_80045F58();
-extern int fn_80045F74();
+extern AdxSpsd lbl_8017A29C[16];
 
 // provenance: original
 int fn_800452FC(void* p)
@@ -737,129 +751,42 @@ void fn_80045D3C(AdxSpsd* p)
     }
 }
 
-asm void fn_80045D90(void)
+// provenance: original
+AdxSpsd* fn_80045D90(int a0, int a1, int a2, int a3)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis     r7, lbl_8017A29C@ha
-    stw	r0, 0x24(r1)
-    li	r0, 2
-    addi	r7, r7, lbl_8017A29C@l
-    stmw	r27, 0xc(r1)
-    mr	r27, r3
-    mr	r28, r4
-    mr	r30, r5
-    mr	r31, r6
-    li	r3, 0
-    mtctr	r0
-_80045dc4:
-    lha	r0, 0(r7)
-    cmpwi	r0, 0
-    beq     _80045e68
-    lha	r0, 0xd8(r7)
-    addi	r3, r3, 1
-    addi	r7, r7, 0xd8
-    cmpwi	r0, 0
-    beq     _80045e68
-    lha	r0, 0xd8(r7)
-    addi	r3, r3, 1
-    addi	r7, r7, 0xd8
-    cmpwi	r0, 0
-    beq     _80045e68
-    lha	r0, 0xd8(r7)
-    addi	r3, r3, 1
-    addi	r7, r7, 0xd8
-    cmpwi	r0, 0
-    beq     _80045e68
-    lha	r0, 0xd8(r7)
-    addi	r3, r3, 1
-    addi	r7, r7, 0xd8
-    cmpwi	r0, 0
-    beq     _80045e68
-    lha	r0, 0xd8(r7)
-    addi	r3, r3, 1
-    addi	r7, r7, 0xd8
-    cmpwi	r0, 0
-    beq     _80045e68
-    lha	r0, 0xd8(r7)
-    addi	r3, r3, 1
-    addi	r7, r7, 0xd8
-    cmpwi	r0, 0
-    beq     _80045e68
-    lha	r0, 0xd8(r7)
-    addi	r3, r3, 1
-    addi	r7, r7, 0xd8
-    cmpwi	r0, 0
-    beq     _80045e68
-    addi	r7, r7, 0xd8
-    addi	r3, r3, 1
-    bdnz    _80045dc4
-_80045e68:
-    cmpwi	r3, 0x10
-    bne     _80045e78
-    li	r3, 0
-    b       _80045f44
-_80045e78:
-    mulli	r5, r3, 0xd8
-    lis     r3, lbl_8017A29C@ha
-    li	r4, 0
-    addi	r0, r3, lbl_8017A29C@l
-    add	r29, r0, r5
-    li	r5, 0xd8
-    mr	r3, r29
-    bl      memset
-    li	r0, 1
-    sth	r0, 0(r29)
-    bl      fn_8004E354
-    stw	r3, 8(r29)
-    lwz	r3, 8(r29)
-    cmplwi	r3, 0
-    bne     _80045ee8
-    cmplwi	r29, 0
-    beq     _80045ee0
-    li	r0, 0
-    stw	r0, 8(r29)
-    bl      fn_8004E278
-    mr	r3, r29
-    li	r4, 0
-    li	r5, 0xd8
-    bl      memset
-    li	r0, 0
-    sth	r0, 0(r29)
-_80045ee0:
-    li	r3, 0
-    b       _80045f44
-_80045ee8:
-    stw	r27, 0x38(r29)
-    lis     r4, fn_80045F74@ha
-    lis     r3, fn_80045F58@ha
-    li	r6, 0
-    stw	r28, 0x3c(r29)
-    addi	r8, r4, fn_80045F74@l
-    addi	r7, r3, fn_80045F58@l
-    li	r0, -0x80
-    stw	r30, 0x40(r29)
-    addi	r3, r29, 0xc0
-    li	r4, 0
-    li	r5, 0x10
-    stw	r31, 0x44(r29)
-    stw	r8, 0x78(r29)
-    stw	r29, 0x7c(r29)
-    stw	r7, 0x80(r29)
-    stw	r29, 0x84(r29)
-    stw	r6, 0xbc(r29)
-    sth	r6, 0xd0(r29)
-    sth	r0, 0xd2(r29)
-    sth	r0, 0xd4(r29)
-    bl      memset
-    mr	r3, r29
-_80045f44:
-    lmw	r27, 0xc(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int i;
+    AdxSpsd* p;
+
+    for (i = 0; i < 16; i++) {
+        if (lbl_8017A29C[i].unk0 == 0) {
+            break;
+        }
+    }
+    if (i == 16) {
+        return 0;
+    }
+    p = &lbl_8017A29C[i];
+    memset(p, 0, 0xD8);
+    p->unk0 = 1;
+    p->unk8 = fn_8004E354();
+    if (p->unk8 == 0) {
+        fn_80045D3C(p);
+        return 0;
+    }
+    p->unk38 = a0;
+    p->unk3C = a1;
+    p->unk40 = a2;
+    p->unk44 = a3;
+    p->unk78 = fn_80045F74;
+    p->unk7C = p;
+    p->unk80 = fn_80045F58;
+    p->unk84 = p;
+    p->unkBC = 0;
+    p->unkD0 = 0;
+    p->unkD2 = -0x80;
+    p->unkD4 = -0x80;
+    memset(p->unkC0, 0, 0x10);
+    return p;
 }
 // provenance: original
 void fn_80045F58(void* p, int unused, int r5)
