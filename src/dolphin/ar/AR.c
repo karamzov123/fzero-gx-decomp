@@ -29,7 +29,7 @@ asm void __ARChecksize(void);
 volatile u16 __DSPRegs[] : 0xCC005000;
 
 /* auto: reloc-parity declarations */
-extern unsigned char lbl_801A64D8[8];
+extern const char* lbl_801A64D8;
 extern unsigned char lbl_801A69E0[4];
 extern unsigned char lbl_801A69E4[4];
 extern unsigned char lbl_801A69E8[4];
@@ -106,62 +106,33 @@ u32 ARFree(u32* length)
 
 #pragma push
 #pragma force_active on
-asm u32 ARInit(register u32* stack_index_addr, register u32 num_entries)
+// provenance: dolsdk2001:src/ar/ar.c:104
+u32 ARInit(u32* stack_index_addr, u32 num_entries)
 {
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x20(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    addi	r30, r4, 0
-    stw	r29, 0x14(r1)
-    addi	r29, r3, 0
-    lwz r0, lbl_801A69FC
-    cmpwi	r0, 1
-    bne     _8001ea64
-    li	r3, 0x4000
-    b       _8001ead8
-_8001ea64:
-    lwz r3, lbl_801A64D8
-    bl      OSRegisterVersion
-    bl      OSDisableInterrupts
-    li	r0, 0
-    lis     r4, __ARHandler@ha
-    stw r0, lbl_801A69E0
-    addi	r31, r3, 0
-    addi        r4, r4, __ARHandler@l
-    li	r3, 6
-    bl      __OSSetInterruptHandler
-    lis	r3, 0x200
-    bl      __OSUnmaskInterrupts
-    li	r0, 0x4000
-    stw r30, lbl_801A69F4
-    lis	r3, -0x3400
-    stw r0, lbl_801A69F0
-    addi	r4, r3, 0x5000
-    stw r29, lbl_801A69F8
-    lhz	r0, 0x1a(r4)
-    lhz	r3, 0x501a(r3)
-    rlwinm	r0, r0, 0, 0, 0x17
-    rlwimi	r0, r3, 0, 0x18, 0x1f
-    sth	r0, 0x1a(r4)
-    bl      __ARChecksize
-    li	r0, 1
-    stw r0, lbl_801A69FC
-    mr	r3, r31
-    bl      OSRestoreInterrupts
-    lwz r3, lbl_801A69F0
-_8001ead8:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    addi	r1, r1, 0x20
-    mtlr	r0
-    blr	
+    BOOL old;
+    u16 refresh;
+
+    if (*(s32*)lbl_801A69FC == 1) {
+        return 0x4000;
+    }
+
+    OSRegisterVersion(lbl_801A64D8);
+
+    old = OSDisableInterrupts();
+    *(ARQCallback*)lbl_801A69E0 = NULL;
+    __OSSetInterruptHandler(6, __ARHandler);
+    __OSUnmaskInterrupts(0x02000000);
+    *(u32*)lbl_801A69F0 = 0x4000;
+    *(u32*)lbl_801A69F4 = num_entries;
+    *(u32*)lbl_801A69F8 = (u32)stack_index_addr;
+    refresh = __DSPRegs[13] & 0xFF;
+    __DSPRegs[13] = (__DSPRegs[13] & ~0xFF) | (refresh & 0xFF);
+    __ARChecksize();
+    *(u32*)lbl_801A69FC = 1;
+    OSRestoreInterrupts(old);
+    return *(u32*)lbl_801A69F0;
 }
-#pragma pop
+
 
 
 // provenance: dolsdk2001:src/ar/ar.c:157
@@ -181,6 +152,8 @@ void __ARHandler(s32 interrupt, OSContext* context)
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(context);
 }
+
+#pragma pop
 
 #pragma push
 #pragma force_active on

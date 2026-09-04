@@ -31,62 +31,68 @@ char* strncpy(char* dst, const char* src, unsigned long n)
     return dst;
 }
 
-// strcpy: word-optimized strcpy
-asm char* strcpy(char* dst, const char* src)
-{
-    nofralloc
-    clrlwi  r0, r3, 0x1e
-    clrlwi  r5, r4, 0x1e
-    cmplw   r0, r5
-    mr      r7, r3
-    bne     lbl_80083E44
-    cmplwi  r5, 0
-    beq     lbl_80083E08
-    lbz     r0, 0(r4)
-    cmplwi  r0, 0
-    stb     r0, 0(r7)
-    beqlr
-    subfic  r0, r5, 3
-    mtctr   r0
-    cmplwi  r0, 0
-    beq     lbl_80083E00
-lbl_80083DEC:
-    lbzu    r0, 1(r4)
-    cmplwi  r0, 0
-    stbu    r0, 1(r7)
-    beqlr
-    bdnz    lbl_80083DEC
-lbl_80083E00:
-    addi    r7, r7, 1
-    addi    r4, r4, 1
-lbl_80083E08:
-    lwz     r8, 0(r4)
-    lis     r5, 0x8081
-    addi    r6, r5, -0x7f80
-    addis   r5, r8, -0x101
-    addi    r0, r5, -0x101
-    and.    r0, r0, r6
-    bne     lbl_80083E44
-    addi    r7, r7, -4
-lbl_80083E28:
-    stwu    r8, 4(r7)
-    lwzu    r8, 4(r4)
-    addis   r5, r8, -0x101
-    addi    r0, r5, -0x101
-    and.    r0, r0, r6
-    beq     lbl_80083E28
-    addi    r7, r7, 4
-lbl_80083E44:
-    lbz     r0, 0(r4)
-    cmplwi  r0, 0
-    stb     r0, 0(r7)
-    beqlr
-lbl_80083E54:
-    lbzu    r0, 1(r4)
-    cmplwi  r0, 0
-    stbu    r0, 1(r7)
-    bne     lbl_80083E54
-    blr
+#define K1 0x80808080
+#define K2 0xFEFEFEFF
+
+// provenance: tp:libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c:18 (irreducible CFG in MSL word loop)
+char* strcpy(char* dst, const char* src) {
+    register unsigned char *destb, *fromb;
+    register unsigned long w, t, align;
+
+    fromb = (unsigned char*)src;
+    destb = (unsigned char*)dst;
+
+    if ((align = ((int)fromb & 3)) != ((int)destb & 3)) {
+        goto bytecopy;
+    }
+
+    if (align) {
+        if ((*destb = *fromb) == 0) {
+            return dst;
+        }
+
+        for (align = 3 - align; align; align--) {
+            if ((*(++destb) = *(++fromb)) == 0) {
+                return dst;
+            }
+        }
+        ++destb;
+        ++fromb;
+    }
+
+    w = *((int*)(fromb));
+
+    t = (w + K2) & K1;
+    if (t) {
+        goto bytecopy;
+    }
+    --((int*)(destb));
+
+    do {
+        *(++((int*)(destb))) = w;
+        w = *(++((int*)(fromb)));
+
+        t = (w + K2) & K1;
+        if (t) {
+            goto adjust;
+        }
+    } while (1);
+
+adjust:
+    ++((int*)(destb));
+
+bytecopy:
+    if ((*destb = *fromb) == 0) {
+        return dst;
+    }
+
+    do {
+        if ((*(++destb) = *(++fromb)) == 0) {
+            return dst;
+        }
+    } while (1);
+
+    return dst;
 }
 
 // provenance: sms:src/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/string.c:6

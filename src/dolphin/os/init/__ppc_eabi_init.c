@@ -5,17 +5,9 @@ __declspec(section ".ctors") extern void (*_ctors[])();
 
 #pragma push
 #pragma force_active on
-asm void __init_user(void)
-{
-    nofralloc
-    mflr    r0
-    stw     r0, 0x4(r1)
-    stwu    r1, -0x8(r1)
-    bl      __init_cpp
-    lwz     r0, 0xc(r1)
-    addi    r1, r1, 0x8
-    mtlr    r0
-    blr
+// provenance: tp:libs/dolphin/src/os/__ppc_eabi_init.c:46
+void __init_user(void) {
+    __init_cpp();
 }
 
 asm static void __init_cpp(void)
