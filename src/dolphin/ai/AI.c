@@ -1,15 +1,20 @@
 typedef signed int s32;
 typedef unsigned int u32;
+typedef unsigned short u16;
+typedef unsigned char u8;
 typedef unsigned long long u64;
 typedef signed long long s64;
+typedef int BOOL;
 
 #define NULL ((void*) 0)
+#define TRUE 1
+#define FALSE 0
 
 typedef struct OSContext {
     u64 fields[0x59];
 } OSContext;
 
-extern unsigned char lbl_801A69B4[4];
+extern BOOL lbl_801A69B4;
 extern unsigned char lbl_801A69B0[4];
 extern unsigned char lbl_801A64D0[8];
 extern unsigned char lbl_801A69BC[4];
@@ -22,12 +27,12 @@ extern unsigned char lbl_801A69C0[4];
 extern unsigned char lbl_801A69C8[4];
 extern unsigned char lbl_801A69D0[4];
 extern unsigned char lbl_801A69D8[4];
-extern unsigned char lbl_801A69A0[4];
-extern unsigned char lbl_801A69A4[4];
+extern void* lbl_801A69A0;
+extern void* lbl_801A69A4;
 extern void OSClearContext(OSContext* context);
 extern void OSSetCurrentContext(OSContext* context);
 extern s64 OSGetTime(void);
-extern unsigned char __CallbackStack[4];
+extern void* __CallbackStack;
 extern unsigned char __OldStack[4];
 
 asm void __AICallbackStackSwitch(register void* callback);
@@ -39,8 +44,11 @@ extern void AISetStreamSampleRate(register unsigned long rate);
 extern void AISetDSPSampleRate(register unsigned long rate);
 extern void __OSSetInterruptHandler(register int interrupt, register void* handler);
 extern void __OSUnmaskInterrupts(register unsigned long mask);
-asm void __AIDHandler(register s32 interrupt, register OSContext* context);
-asm void __AISHandler(register s32 interrupt, register OSContext* context);
+void __AIDHandler(s32 interrupt, OSContext* context);
+void __AISHandler(s32 interrupt, OSContext* context);
+
+volatile u32 __AIRegs[] : 0xCC006C00;
+volatile u16 __DSPRegs[] : 0xCC005000;
 
 #pragma push
 #pragma force_active on
@@ -145,96 +153,49 @@ _8001E468:
 
 #pragma pop
 
+// 0x8001E480 | size: 0x7C
+// provenance: dolsdk2001:src/ai/ai.c:303
+void __AISHandler(s32 interrupt, OSContext* context)
+{
+    OSContext exceptionContext;
+
+    __AIRegs[0] |= 8;
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(&exceptionContext);
+    if (lbl_801A69A0) {
+        ((void (*)(u32))lbl_801A69A0)(__AIRegs[2]);
+    }
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(context);
+}
+
+// 0x8001E4FC | size: 0xAC
+// provenance: dolsdk2001:src/ai/ai.c:317
+void __AIDHandler(s32 interrupt, OSContext* context)
+{
+    OSContext exceptionContext;
+    u16 tmp;
+
+    tmp = __DSPRegs[5];
+    tmp = (tmp & ~0xA0) | 8;
+    __DSPRegs[5] = tmp;
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(&exceptionContext);
+    if (lbl_801A69A4 && !lbl_801A69B4) {
+        lbl_801A69B4 = TRUE;
+        if (__CallbackStack) {
+            __AICallbackStackSwitch(lbl_801A69A4);
+        } else {
+            ((void (*)(void))lbl_801A69A4)();
+        }
+        lbl_801A69B4 = FALSE;
+    }
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(context);
+}
+
 #pragma push
 #pragma force_active on
-
-asm void __AISHandler(register s32 interrupt, register OSContext* context)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x2e0(r1)
-    stw	r31, 0x2dc(r1)
-    lis	r31, -0x3400
-    lwz	r0, 0x6c00(r31)
-    addi	r3, r1, 0x10
-    stw	r30, 0x2d8(r1)
-    ori	r0, r0, 8
-    stw	r0, 0x6c00(r31)
-    addi	r30, r4, 0
-    bl      OSClearContext
-    addi	r3, r1, 0x10
-    bl      OSSetCurrentContext
-    lwz	r12, lbl_801A69A0
-    cmplwi	r12, 0
-    beq     _8001e4d4
-    addi	r3, r31, 0x6c00
-    mtlr	r12
-    lwz	r3, 8(r3)
-    blrl	
-_8001e4d4:
-    addi	r3, r1, 0x10
-    bl      OSClearContext
-    mr	r3, r30
-    bl      OSSetCurrentContext
-    lwz	r0, 0x2e4(r1)
-    lwz	r31, 0x2dc(r1)
-    lwz	r30, 0x2d8(r1)
-    addi	r1, r1, 0x2e0
-    mtlr	r0
-    blr	
-}
-
-asm void __AIDHandler(register s32 interrupt, register OSContext* context)
-{
-    nofralloc
-    mflr	r0
-    lis	r3, -0x3400
-    stw	r0, 4(r1)
-    addi	r3, r3, 0x5000
-    li	r0, -0xa1
-    stwu	r1, -0x2e0(r1)
-    stw	r31, 0x2dc(r1)
-    addi	r31, r4, 0
-    lhz	r5, 0xa(r3)
-    and	r0, r5, r0
-    ori	r0, r0, 8
-    sth	r0, 0xa(r3)
-    addi	r3, r1, 0x10
-    bl      OSClearContext
-    addi	r3, r1, 0x10
-    bl      OSSetCurrentContext
-    lwz	r3, lbl_801A69A4
-    cmplwi	r3, 0
-    beq     _8001e584
-    lwz	r0, lbl_801A69B4
-    cmpwi	r0, 0
-    bne     _8001e584
-    lwz	r0, __CallbackStack
-    li	r4, 1
-    stw	r4, lbl_801A69B4
-    cmplwi	r0, 0
-    beq     _8001e570
-    bl      __AICallbackStackSwitch
-    b       _8001e57c
-_8001e570:
-    addi	r12, r3, 0
-    mtlr	r12
-    blrl	
-_8001e57c:
-    li	r0, 0
-    stw	r0, lbl_801A69B4
-_8001e584:
-    addi	r3, r1, 0x10
-    bl      OSClearContext
-    mr	r3, r31
-    bl      OSSetCurrentContext
-    lwz	r0, 0x2e4(r1)
-    lwz	r31, 0x2dc(r1)
-    addi	r1, r1, 0x2e0
-    mtlr	r0
-    blr	
-}
 
 asm void __AICallbackStackSwitch(register void* callback)
 {
@@ -402,5 +363,3 @@ _8001e7ac:
 }
 
 #pragma pop
-
-
