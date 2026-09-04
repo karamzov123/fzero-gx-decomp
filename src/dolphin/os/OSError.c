@@ -23,7 +23,22 @@ struct OSContext {
 
 extern void OSRestoreInterrupts(register BOOL level);
 extern void OSDisableInterrupts(void);
-extern int vprintf(const char* format, char* arg);
+
+typedef struct {
+    char gpr;
+    char fpr;
+    char reserved[2];
+    char* input_arg_area;
+    char* reg_save_area;
+} __va_list[1];
+typedef __va_list va_list;
+
+extern void __builtin_va_info(void*);
+
+#define va_start(ap, fmt) ((void) fmt, __builtin_va_info(&ap))
+#define va_end(ap) (void) 0
+
+extern int vprintf(const char* format, va_list arg);
 extern void OSDumpContext(OSContext* context);
 extern void PPCHalt(void);
 extern u32 PPCMfmsr(void);
@@ -51,42 +66,14 @@ extern unsigned char lbl_801A6430[4];
 extern unsigned char __OSLastInterrupt[2];
 
 
-asm void OSReport(const char* msg, ...)
+// 0x8000C41C | size: 0x3C
+// provenance: dolsdk2001:src/os/OSError.c:10
+void OSReport(const char* msg, ...)
 {
-    nofralloc
-    mflr    r0
-    stw     r0, 4(r1)
-    stwu    r1, -0x78(r1)
-    bne     cr1, OSReport_skipSpill
-    stfd    f1, 0x28(r1)
-    stfd    f2, 0x30(r1)
-    stfd    f3, 0x38(r1)
-    stfd    f4, 0x40(r1)
-    stfd    f5, 0x48(r1)
-    stfd    f6, 0x50(r1)
-    stfd    f7, 0x58(r1)
-    stfd    f8, 0x60(r1)
-OSReport_skipSpill:
-    stw     r3, 8(r1)
-    lis     r0, 0x100
-    stw     r4, 0xC(r1)
-    addi    r4, r1, 0x6C
-    stw     r5, 0x10(r1)
-    stw     r6, 0x14(r1)
-    stw     r7, 0x18(r1)
-    stw     r8, 0x1C(r1)
-    stw     r9, 0x20(r1)
-    stw     r10, 0x24(r1)
-    stw     r0, 0x6C(r1)
-    addi    r0, r1, 0x80
-    stw     r0, 0x70(r1)
-    addi    r0, r1, 0x8
-    stw     r0, 0x74(r1)
-    bl      vprintf
-    lwz     r0, 0x7C(r1)
-    addi    r1, r1, 0x78
-    mtlr    r0
-    blr
+    va_list marker;
+    va_start(marker, msg);
+    vprintf(msg, marker);
+    va_end(marker);
 }
 
 asm void OSPanic(const char* file, s32 line, const char* msg, ...)
