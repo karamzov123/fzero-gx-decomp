@@ -36,39 +36,21 @@ extern unsigned char lbl_8018FF78[512];
 extern unsigned char lbl_80190178[4];
 extern unsigned char lbl_8019017C[2548];
 
-#pragma push
-asm void svm_ringbuf_read(void)
+// provenance: original
+void svm_ringbuf_read(struct AdxtPair* r3, int r4, struct AdxtPair* r5, struct AdxtPair* r6)
 {
-    nofralloc
-    lwz	r7, 0(r3)
-    lwz	r0, 4(r3)
-    stw	r7, 0(r5)
-    stw	r0, 4(r5)
-    lwz	r0, 4(r5)
-    stw	r0, 4(r6)
-    lwz	r0, 4(r5)
-    cmpw	r0, r4
-    ble     _800589e4
-    stw	r4, 4(r5)
-_800589e4:
-    lwz	r3, 4(r5)
-    lwz	r0, 4(r6)
-    subf	r0, r3, r0
-    stw	r0, 4(r6)
-    lwz	r0, 4(r6)
-    cmpwi	r0, 0
-    bne     _80058a0c
-    li	r0, 0
-    stw	r0, 0(r6)
-    blr	
-_80058a0c:
-    lwz	r3, 0(r5)
-    lwz	r0, 4(r5)
-    add	r0, r3, r0
-    stw	r0, 0(r6)
-    blr	
+    *r5 = *r3;
+    r6->b = r5->b;
+    if (r5->b > r4) {
+        r5->b = r4;
+    }
+    r6->b -= r5->b;
+    if (r6->b == 0) {
+        r6->a = 0;
+    } else {
+        r6->a = r5->a + r5->b;
+    }
 }
-#pragma pop
 
 #pragma push
 asm void SVM_ReportError(void)

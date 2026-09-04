@@ -426,10 +426,9 @@ asm void fn_8004212C(void)
     blr	
 }
 
-asm void fn_8004216C(void)
+// provenance: original
+void fn_8004216C(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void fn_80042170(void)
@@ -462,12 +461,10 @@ asm void fn_80042198(void)
     blr	
 }
 
-asm void fn_800421C0(void)
+// provenance: original
+int fn_800421C0(void* p)
 {
-    nofralloc
-    lbz	r3, 1(r3)
-    extsb	r3, r3
-    blr	
+    return *(signed char*)((char*)p + 1);
 }
 
 asm void fn_800421CC(void)

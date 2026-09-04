@@ -56,18 +56,16 @@ extern unsigned char lbl_80187574[836];
 extern unsigned char gcci_nullcheck_callback[4];
 void fn_80055580(void);
 
-asm void fn_80053EA0(void)
+// provenance: original
+int fn_80053EA0(void* p)
 {
-    nofralloc
-    lwz	r3, 0x1c(r3)
-    blr	
+    return *(int*)((char*)p + 0x1c);
 }
 
-asm void fn_80053EA8(void)
+// provenance: original
+int fn_80053EA8(void* p)
 {
-    nofralloc
-    lwz	r3, 0x20(r3)
-    blr	
+    return *(int*)((char*)p + 0x20);
 }
 
 asm void fn_80053EB0(void)
@@ -367,12 +365,10 @@ void fn_800542B4(void* obj, unsigned int val)
     *(unsigned int*)((char*)obj + 0xc) = val;
 }
 
-asm void fn_800542BC(void)
+// provenance: original
+int fn_800542BC(void* p)
 {
-    nofralloc
-    lbz	r3, 5(r3)
-    extsb	r3, r3
-    blr	
+    return *(signed char*)((char*)p + 5);
 }
 
 asm void fn_800542C8(void)
@@ -1788,10 +1784,9 @@ _800555b0:
     blr	
 }
 
-asm void fn_800555C0(void)
+// provenance: original
+void fn_800555C0(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void fn_800555C4(void)

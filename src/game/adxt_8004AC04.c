@@ -247,12 +247,10 @@ _8004aedc:
     blr	
 }
 
-asm void ADXTGetState(void)
+// provenance: original
+int ADXTGetState(void* p)
 {
-    nofralloc
-    lbz	r3, 1(r3)
-    extsb	r3, r3
-    blr	
+    return *(signed char*)((char*)p + 1);
 }
 
 asm void fn_8004AEF0(void)

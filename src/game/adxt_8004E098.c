@@ -272,25 +272,20 @@ _8004e2a0:
     blr	
 }
 
-asm void fn_8004E2B0(void)
+// provenance: original
+void fn_8004E2B0(void* p, short* a, short* b, short* c)
 {
-    nofralloc
-    lha	r0, 0x34(r3)
-    sth	r0, 0(r4)
-    lha	r0, 0x36(r3)
-    sth	r0, 0(r5)
-    lha	r0, 0x38(r3)
-    sth	r0, 0(r6)
-    blr	
+    *a = *(short*)((char*)p + 0x34);
+    *b = *(short*)((char*)p + 0x36);
+    *c = *(short*)((char*)p + 0x38);
 }
 
-asm void fn_8004E2CC(void)
+// provenance: original
+void fn_8004E2CC(void* p, short a, short b, short c)
 {
-    nofralloc
-    sth	r4, 0x34(r3)
-    sth	r5, 0x36(r3)
-    sth	r6, 0x38(r3)
-    blr	
+    *(short*)((char*)p + 0x34) = a;
+    *(short*)((char*)p + 0x36) = b;
+    *(short*)((char*)p + 0x38) = c;
 }
 
 void fn_8004E2DC(void *a, void *b, void *c) {

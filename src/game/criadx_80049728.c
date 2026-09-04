@@ -1044,21 +1044,19 @@ int fn_8004A53C(char *p)
     return *(int *)(p + 0x10);
 }
 
-asm void fn_8004A544(void)
+// provenance: original
+int fn_8004A544(void* p, int val)
 {
-    nofralloc
-    stw	r4, 0x28(r3)
-    li	r3, 1
-    blr	
+    *(int*)((char*)p + 0x28) = val;
+    return 1;
 }
 
-asm void fn_8004A550(void)
+// provenance: original
+int fn_8004A550(void* p, int a, int b)
 {
-    nofralloc
-    stw	r4, 0x18(r3)
-    stw	r5, 0x14(r3)
-    li	r3, 1
-    blr	
+    *(int*)((char*)p + 0x18) = a;
+    *(int*)((char*)p + 0x14) = b;
+    return 1;
 }
 
 #pragma pop

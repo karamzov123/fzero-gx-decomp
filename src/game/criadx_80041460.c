@@ -253,11 +253,10 @@ asm void fn_800416A8(void)
     blr	
 }
 
-asm void criadx_set_field_44(void)
+// provenance: original
+void criadx_set_field_44(void* p, int val)
 {
-    nofralloc
-    stw	r4, 0x44(r3)
-    blr	
+    *(int*)((char*)p + 0x44) = val;
 }
 
 void criadx_set_field_40(void *arg0, unsigned int arg1)
@@ -266,11 +265,10 @@ void criadx_set_field_40(void *arg0, unsigned int arg1)
     *(unsigned int *)((char *)arg0 + 0x40) = arg1;
 }
 
-asm void criadx_set_field_3C(void)
+// provenance: original
+void criadx_set_field_3C(void* p, int val)
 {
-    nofralloc
-    stw	r4, 0x3c(r3)
-    blr	
+    *(int*)((char*)p + 0x3c) = val;
 }
 
 // provenance: original — direct retail store reconstruction (fields 0x48/0x4c)
