@@ -29,6 +29,24 @@ typedef struct AdxSrv {
     volatile int unkCAC;
 } AdxSrv;
 
+typedef struct AdxReq {
+    char pad0[0xc];
+    int unkC;
+    int unk10;
+    int unk14;
+    int unk18;
+    int unk1C;
+    int unk20;
+    int unk24;
+    int unk28;
+    int unk2C;
+    short unk30;
+    short unk32;
+    short unk34;
+    short unk36;
+    short unk38;
+} AdxReq;
+
 typedef struct AdxCb {
     void (*fn)();
     void* arg;
@@ -49,10 +67,10 @@ extern void VIWaitForRetrace();
 extern void CRI_SPSD_parser();
 extern void criErr_CallErrCallback();
 extern void fn_8004ED3C();
-extern void fn_8004EFA8();
+extern int fn_8004EFA8();
 extern void fn_8004F00C();
 extern void fn_8004F26C();
-extern void fn_8004F55C();
+extern int fn_8004F55C();
 extern void fn_8005466C();
 extern void cvFsSetDefDev();
 extern void fn_80055304();
@@ -92,7 +110,7 @@ extern void memset();
 extern unsigned char _Internal_Error_adxm_goto_mwidle_border_str[49];
 extern void fn_80056584();
 extern void fn_8005A5A8();
-extern unsigned char lbl_8017E5B8[4];
+extern int lbl_8017E5B8[];
 extern unsigned char lbl_8017B028[4];
 extern void fn_8004ECF4();
 extern unsigned char lbl_8009115C[4];
@@ -121,75 +139,28 @@ typedef struct {
     unsigned char _pad[0xc];
     int unkC;
 } ADXTStruct;
-asm void fn_8004E098(void)
+// provenance: original
+void fn_8004E098(AdxReq* p)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r3
-    lwz	r0, 0xc(r3)
-    cmpwi	r0, 1
-    bne     _8004e0c0
-    li	r0, 2
-    stw	r0, 0xc(r31)
-_8004e0c0:
-    lwz	r0, 0xc(r31)
-    cmpwi	r0, 2
-    bne     _8004e17c
-    lwz	r0, 0x14(r31)
-    cmpwi	r0, 1
-    bne     _8004e10c
-    lha	r0, 0x38(r31)
-    addi	r6, r31, 0x28
-    addi	r9, r31, 0x34
-    stw	r0, 8(r1)
-    lwz	r3, 0x18(r31)
-    lwz	r4, 0x1c(r31)
-    lwz	r5, 0x20(r31)
-    lha	r7, 0x30(r31)
-    lha	r8, 0x32(r31)
-    lha	r10, 0x36(r31)
-    bl      fn_8004F55C
-    stw	r3, 0x10(r31)
-    b       _8004e174
-_8004e10c:
-    addi	r0, r31, 0x34
-    addi	r6, r31, 0x28
-    stw	r0, 8(r1)
-    addi	r8, r31, 0x2c
-    lha	r0, 0x36(r31)
-    stw	r0, 0xc(r1)
-    lha	r0, 0x38(r31)
-    stw	r0, 0x10(r1)
-    lwz	r3, 0x18(r31)
-    lwz	r4, 0x1c(r31)
-    lwz	r5, 0x20(r31)
-    lwz	r7, 0x24(r31)
-    lha	r9, 0x30(r31)
-    lha	r10, 0x32(r31)
-    bl      fn_8004EFA8
-    stw	r3, 0x10(r31)
-    lwz	r0, 0x10(r31)
-    srwi	r3, r0, 0x1f
-    clrlwi	r0, r0, 0x1f
-    xor	r0, r0, r3
-    subf	r0, r3, r0
-    cmpwi	r0, 1
-    bne     _8004e174
-    lis	r3, lbl_8017E5B8@ha
-    li	r0, 1
-    stw	r0, lbl_8017E5B8@l(r3)
-_8004e174:
-    li	r0, 3
-    stw	r0, 0xc(r31)
-_8004e17c:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    if (p->unkC == 1) {
+        p->unkC = 2;
+    }
+
+    if (p->unkC == 2) {
+        if (p->unk14 == 1) {
+            p->unk10 = fn_8004F55C(p->unk18, p->unk1C, p->unk20, &p->unk28,
+                                   p->unk30, p->unk32, &p->unk34, p->unk36,
+                                   p->unk38);
+        } else {
+            p->unk10 = fn_8004EFA8(p->unk18, p->unk1C, p->unk20, &p->unk28,
+                                   p->unk24, &p->unk2C, p->unk30, p->unk32,
+                                   &p->unk34, p->unk36, p->unk38);
+            if (p->unk10 % 2 == 1) {
+                lbl_8017E5B8[0] = 1;
+            }
+        }
+        p->unkC = 3;
+    }
 }
 
 int fn_8004E190(void *arg0)
@@ -933,7 +904,7 @@ void fn_8004EF88(void)
     fn_8005BDD4();
 }
 
-asm void fn_8004EFA8(void)
+asm int fn_8004EFA8()
 {
     nofralloc
     stwu	r1, -0x20(r1)
