@@ -9,7 +9,9 @@ typedef struct AdxSpan {
 } AdxSpan;
 
 typedef struct AdxObjVt {
-    char pad0[0x18];
+    char pad0[0xc];
+    void (*fn0C)();
+    char pad10[8];
     void (*fn18)();
     void (*fn1C)();
     void (*fn20)();
@@ -62,13 +64,13 @@ extern void fn_8004A578(void);
 extern void fn_80054760(void);
 extern void fn_8004FAA8(void);
 extern void fn_800482FC();
-extern void ADXT_ProcessStreamUpdate(void);
-extern void fn_80057B9C(void);
-extern void fn_80047C94(void);
+extern void* ADXT_ProcessStreamUpdate();
+extern void* fn_80057B9C();
+extern void* fn_80047C94();
 extern void fn_80047ADC();
 extern void fn_80047B04();
 extern void fn_80047864();
-extern void memcpy(void);
+extern void* memcpy();
 extern void fn_80047AF8();
 extern void fn_80047C08();
 extern void fn_800482B8();
@@ -162,119 +164,50 @@ void fn_80047608(void)
 
 
 
-asm void fn_8004768C(void)
+// provenance: original
+void fn_8004768C(void* arg0, int arg1, int arg2, int arg3)
 {
-    nofralloc
-    stwu	r1, -0x40(r1)
-    mflr	r0
-    stw	r0, 0x44(r1)
-    stmw	r27, 0x2c(r1)
-    mr	r30, r3
-    mr	r29, r4
-    mr	r27, r5
-    mr	r28, r6
-    bl      fn_800482FC
-    lis     r3, lbl_8017B1A0@ha
-    li	r4, 0x400
-    addi	r3, r3, lbl_8017B1A0@l
-    li	r5, 0
-    bl      ADXT_ProcessStreamUpdate
-    lis     r4, lbl_8017B160@ha
-    mr	r31, r3
-    addi	r0, r4, lbl_8017B160@l
-    li	r4, 0x20
-    mr	r3, r0
-    bl      fn_80057B9C
-    lis     r4, lbl_8017B160@ha
-    stw	r3, 0x18(r1)
-    addi	r3, r4, lbl_8017B160@l
-    li	r4, 0x20
-    addi	r3, r3, 0x20
-    bl      fn_80057B9C
-    stw	r3, 0x1c(r1)
-    mr	r5, r31
-    addi	r4, r1, 0x18
-    li	r3, 2
-    lwz	r30, 0x14(r30)
-    bl      fn_80047C94
-    mr	r4, r29
-    mr	r29, r3
-    mr	r5, r27
-    mr	r6, r28
-    bl      fn_80047ADC
-    mr	r3, r29
-    bl      fn_80047B04
-    bl      fn_80047864
-    lwz	r5, 0(r31)
-    mr	r3, r31
-    addi	r6, r1, 0x10
-    li	r4, 1
-    lwz	r12, 0x18(r5)
-    li	r5, 0x400
-    mtctr	r12
-    bctrl	
-    lwz	r5, 0x14(r1)
-    cmpwi	r5, 0
-    bne     _8004775c
-_80047758:
-    b       _80047758
-_8004775c:
-    lwz	r4, 0(r30)
-    mr	r3, r30
-    addi	r6, r1, 8
-    lwz	r12, 0x18(r4)
-    li	r4, 0
-    mtctr	r12
-    bctrl	
-    lwz	r0, 0xc(r1)
-    lwz	r5, 0x14(r1)
-    cmpw	r0, r5
-    bge     _8004778c
-_80047788:
-    b       _80047788
-_8004778c:
-    lwz	r3, 8(r1)
-    lwz	r4, 0x10(r1)
-    bl      memcpy
-    lwz	r6, 0(r31)
-    mr	r3, r31
-    addi	r5, r1, 0x10
-    li	r4, 0
-    lwz	r12, 0x20(r6)
-    mtctr	r12
-    bctrl	
-    lwz	r6, 0(r30)
-    mr	r3, r30
-    addi	r5, r1, 8
-    li	r4, 1
-    lwz	r12, 0x20(r6)
-    mtctr	r12
-    bctrl	
-    mr	r3, r29
-    bl      fn_80047AF8
-    mr	r3, r29
-    bl      fn_80047C08
-    lwz	r4, 0(r31)
-    mr	r3, r31
-    lwz	r12, 0xc(r4)
-    mtctr	r12
-    bctrl	
-    lwz	r3, 0x1c(r1)
-    lwz	r4, 0(r3)
-    lwz	r12, 0xc(r4)
-    mtctr	r12
-    bctrl	
-    lwz	r3, 0x18(r1)
-    lwz	r4, 0(r3)
-    lwz	r12, 0xc(r4)
-    mtctr	r12
-    bctrl	
-    bl      fn_800482B8
-    lmw	r27, 0x2c(r1)
-    lwz	r0, 0x44(r1)
-    mtlr	r0
-    addi	r1, r1, 0x40
-    blr	
+    AdxObj* buf[2];
+    AdxSpan sp1;
+    AdxSpan sp2;
+    AdxObj* r31;
+    AdxObj* r30;
+    void* handle;
+
+    r30 = (AdxObj*)arg0;
+    fn_800482FC();
+    r31 = ADXT_ProcessStreamUpdate(lbl_8017B1A0, 0x400, 0);
+    buf[0] = fn_80057B9C(lbl_8017B160, 0x20);
+    buf[1] = fn_80057B9C(lbl_8017B160 + 0x20, 0x20);
+    r30 = *(AdxObj**)((char*)r30 + 0x14);
+    handle = fn_80047C94(2, buf, r31);
+    fn_80047ADC(handle, arg1, arg2, arg3);
+    fn_80047B04(handle);
+    fn_80047864();
+
+    r31->vt->fn18(r31, 1, 0x400, &sp1);
+    if (sp1.len == 0) {
+        for (;;) {
+        }
+    }
+
+    r30->vt->fn18(r30, 0, sp1.len, &sp2);
+    if (sp2.len < sp1.len) {
+        for (;;) {
+        }
+    }
+
+    memcpy(sp2.ptr, sp1.ptr, sp1.len);
+    r31->vt->fn20(r31, 0, &sp1);
+    r30->vt->fn20(r30, 1, &sp2);
+
+    fn_80047AF8(handle);
+    fn_80047C08(handle);
+
+    r31->vt->fn0C(r31);
+    buf[1]->vt->fn0C(buf[1]);
+    buf[0]->vt->fn0C(buf[0]);
+    fn_800482B8();
 }
 
 // provenance: original
@@ -517,7 +450,7 @@ void fn_80047C08(AdxHandle* p)
     svmUnlockServer_wrapper();
 }
 
-asm void fn_80047C94(void)
+asm void* fn_80047C94(void)
 {
     nofralloc
     stwu	r1, -0x20(r1)

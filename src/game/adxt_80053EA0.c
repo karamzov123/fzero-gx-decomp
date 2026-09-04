@@ -71,11 +71,11 @@ extern void adxtNullCallback(void);
 extern void fn_80053F38();
 extern void svm_ringbuf_read(void);
 extern void sprintf(void);
-extern void __msl_strncmp(void);
+extern int __msl_strncmp();
 extern void strcpy(void);
-extern void memcpy(void);
+extern void* memcpy();
 extern void* memset(void*, int, unsigned int);
-extern void strlen(void);
+extern int strlen();
 extern unsigned char E0040302_handl_is_null_str[24];
 extern unsigned char E0040303_invalidate_size_str[26];
 extern unsigned char E0092912_handl_is_null_str[24];
@@ -1221,96 +1221,58 @@ _800551bc:
     blr	
 }
 
-asm void cvFsSetDefDev(void)
+// provenance: original
+// irreducible CFG: search loop exits via goto to preserve volatile r0 flag without allocating non-volatile register
+void cvFsSetDefDev(char* dev)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis     r4, lbl_80187430@ha
-    stw	r0, 0x24(r1)
-    stmw	r27, 0xc(r1)
-    or.	r27, r3, r3
-    addi	r31, r4, lbl_80187430@l
-    bne     _80055218
-    lwz	r12, 0(r31)
-    cmplwi	r12, 0
-    beq     _800552f0
-    lis     r3, cvFsSetDefDev_1_illegal_device_name_str@ha
-    li	r5, 0
-    addi	r4, r3, cvFsSetDefDev_1_illegal_device_name_str@l
-    lwz	r3, 4(r31)
-    mtctr	r12
-    bctrl	
-    b     _800552f0
-_80055218:
-    bl      strlen
-    or.	r28, r3, r3
-    bne     _80055230
-    li	r0, 0
-    stb	r0, 0x138(r31)
-    b     _800552f0
-_80055230:
-    mr	r3, r27
-    bl      strlen
-    addi	r0, r3, 1
-    mr	r3, r27
-    mtctr	r0
-    cmplwi	r0, 0
-    ble     _80055274
-_8005524c:
-    lbz	r4, 0(r3)
-    extsb	r0, r4
-    cmpwi	r0, 0x61
-    blt     _8005526c
-    cmpwi	r0, 0x7a
-    bgt     _8005526c
-    addi	r0, r4, -0x20
-    stb	r0, 0(r3)
-_8005526c:
-    addi	r3, r3, 1
-    bdnz     _8005524c
-_80055274:
-    addi	r29, r31, 0x144
-    li	r30, 0
-_8005527c:
-    mr	r3, r27
-    mr	r5, r28
-    addi	r4, r29, 4
-    bl      __msl_strncmp
-    cmpwi	r3, 0
-    bne     _8005529c
-    li	r0, 1
-    b     _800552b0
-_8005529c:
-    addi	r30, r30, 1
-    addi	r29, r29, 0x10
-    cmpwi	r30, 0x20
-    blt     _8005527c
-    li	r0, 0
-_800552b0:
-    cmpwi	r0, 1
-    bne     _800552cc
-    mr	r4, r27
-    addi	r3, r31, 0x138
-    addi	r5, r28, 1
-    bl      memcpy
-    b     _800552f0
-_800552cc:
-    lwz	r12, 0(r31)
-    cmplwi	r12, 0
-    beq     _800552f0
-    lis     r3, cvFsSetDefDev_2_unknown_device_name_str@ha
-    li	r5, 0
-    addi	r4, r3, cvFsSetDefDev_2_unknown_device_name_str@l
-    lwz	r3, 4(r31)
-    mtctr	r12
-    bctrl	
-_800552f0:
-    lmw	r27, 0xc(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    unsigned char* state = lbl_80187430;
+    int i;
+    AhxHookSlot* slot;
+    int len;
+    int found;
+
+    if (dev == 0) {
+        void (*cb)(void*, const char*, int) = *(void**)state;
+        if (cb != 0) {
+            cb(*(void**)(state + 4), (char*)cvFsSetDefDev_1_illegal_device_name_str, 0);
+        }
+        return;
+    }
+
+    len = strlen(dev);
+    if (len == 0) {
+        state[0x138] = 0;
+        return;
+    }
+
+    {
+        unsigned int len = strlen(dev) + 1;
+        unsigned int idx;
+        for (idx = 0; idx < len; idx++) {
+            char c = dev[idx];
+            if ((signed char)c >= 'a' && (signed char)c <= 'z') {
+                dev[idx] = c - 0x20;
+            }
+        }
+    }
+
+    slot = (AhxHookSlot*)(state + 0x144);
+    for (i = 0; i < 32; i++, slot++) {
+        if (__msl_strncmp(dev, (char*)slot->pad4, len) == 0) {
+            found = 1;
+            goto check;
+        }
+    }
+    found = 0;
+check:
+    if (found == 1) {
+        memcpy(state + 0x138, dev, len + 1);
+    } else {
+        void (*cb)(void*, const char*, int) = *(void**)state;
+        if (cb != 0) {
+            cb(*(void**)(state + 4), (char*)cvFsSetDefDev_2_unknown_device_name_str, 0);
+        }
+    }
 }
 
 asm void fn_80055304(void)
