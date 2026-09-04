@@ -31,7 +31,9 @@ typedef struct AdxtSlot {
     char pad4[4];
     void* unk8[2];
     void* unk10[2];
-    char pad18[0x18];
+    char pad18[0xc];
+    int unk24;
+    char pad28[8];
     struct AdxtStream* unk30[2];
     struct AdxtStream* unk38[2];
     int unk40[4];
@@ -45,7 +47,11 @@ typedef struct AdxtSlot {
     char pad80[4];
     int unk84;
     int unk88[2];
-    char pad90[0x58];
+    char pad90[0x10];
+    short unkA0;
+    short unkA2;
+    int unkA4;
+    char padA8[0x40];
 } AdxtSlot;
 
 typedef struct AdxtVt {
@@ -71,10 +77,10 @@ extern void ARQPostRequest(void);
 extern void AXAcquireVoice(void);
 extern void AXFreeVoice();
 extern void DCFlushRange(void);
-extern void AXSetVoiceState_cached(void);
+extern void AXSetVoiceState_cached();
 extern void AXSetVoiceType_cached(void);
 extern void AXVPBInitChannelState(void);
-extern void AXVPBSyncChannelA(void);
+extern void AXVPBSyncChannelA();
 extern void AXMixSetupVoiceEntry(void);
 extern void axmix_device_ctrl_clear();
 extern void axmix_set_voice_param_08();
@@ -421,154 +427,73 @@ void fn_8005A698(AdxtSlot* p, int ch, int vol)
     svm_exit_critical_wrapper();
 }
 
-asm void fn_8005A74C(void)
+// provenance: original
+void fn_8005A74C(AdxtSlot* p, int r4)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    stw	r28, 0x10(r1)
-    or.	r28, r3, r3
-    beq     _8005a7d8
-    srawi	r0, r4, 0x1f
-    li	r30, -0x3e7
-    and	r0, r4, r0
-    cmpwi	r0, -0x3e7
-    ble     _8005a788
-    mr	r30, r0
-_8005a788:
-    lwz	r0, 0x84(r28)
-    cmpw	r30, r0
-    beq     _8005a7d8
-    stw	r30, 0x84(r28)
-    mr	r31, r28
-    li	r29, 0
-    b     _8005a7c8
-_8005a7a4:
-    bl      svm_enter_critical_wrapper
-    lwz	r3, 8(r31)
-    cmplwi	r3, 0
-    beq     _8005a7bc
-    mr	r4, r30
-    bl      axmix_set_voice_param_08
-_8005a7bc:
-    bl      svm_exit_critical_wrapper
-    addi	r31, r31, 4
-    addi	r29, r29, 1
-_8005a7c8:
-    lbz	r0, 2(r28)
-    extsb	r0, r0
-    cmpw	r29, r0
-    blt     _8005a7a4
-_8005a7d8:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    lwz	r28, 0x10(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    int temp;
+    int v;
+    int i;
+
+    if (p == 0) {
+        return;
+    }
+
+    temp = r4 < 0 ? r4 : 0;
+    v = -999;
+    if (temp > -999) {
+        v = temp;
+    }
+    if (v == p->unk84) {
+        return;
+    }
+    p->unk84 = v;
+    for (i = 0; i < p->unk2; i++) {
+        svm_enter_critical_wrapper();
+        if (p->unk8[i] != 0) {
+            axmix_set_voice_param_08(p->unk8[i], v);
+        }
+        svm_exit_critical_wrapper();
+    }
 }
 
-asm void fn_8005A7F8(void)
+// provenance: original
+void fn_8005A7F8(AdxtSlot* p, int rate)
 {
-    nofralloc
-    stwu	r1, -0x40(r1)
-    mflr	r0
-    stw	r0, 0x44(r1)
-    stmw	r25, 0x24(r1)
-    or.	r25, r3, r3
-    mr	r26, r4
-    beq     _8005a938
-    mulli	r5, r26, 0x464
-    lis	r4, 0x7482
-    lis	r3, 0x1062
-    stw	r26, 0x24(r25)
-    addi	r4, r4, 0x296b
-    addi	r0, r5, 0x464
-    mulhw	r5, r4, r0
-    addi	r4, r3, 0x4dd3
-    slwi	r0, r26, 8
-    mr	r31, r25
-    li	r27, 0
-    srawi	r5, r5, 9
-    mulhw	r3, r4, r26
-    srwi	r6, r5, 0x1f
-    add	r30, r5, r6
-    srawi	r3, r3, 0xb
-    mulhw	r0, r4, r0
-    srwi	r4, r3, 0x1f
-    add	r29, r3, r4
-    srawi	r0, r0, 3
-    srwi	r3, r0, 0x1f
-    add	r0, r0, r3
-    clrlwi	r28, r0, 0x10
-    b     _8005a928
-_8005a874:
-    bl      svm_enter_critical_wrapper
-    lwz	r0, 8(r31)
-    cmplwi	r0, 0
-    beq     _8005a91c
-    lha	r0, 0xa0(r25)
-    cmpwi	r0, 1
-    bne     _8005a8e4
-    cmpwi	r26, 0x7d00
-    bne     _8005a8bc
-    lha	r0, 0xa2(r25)
-    cmpwi	r0, 0
-    bne     _8005a8bc
-    cmplwi	r25, 0
-    beq     _8005a8bc
-    li	r3, 0
-    li	r0, 1
-    stw	r3, 0xa4(r25)
-    sth	r0, 0xa2(r25)
-_8005a8bc:
-    lis	r3, 0x1062
-    slwi	r0, r30, 8
-    addi	r3, r3, 0x4dd3
-    mulhwu	r0, r3, r0
-    mulhwu	r4, r3, r30
-    rlwinm	r0, r0, 0x1d, 0x10, 0x1f
-    sth	r0, 0xa(r1)
-    rlwinm	r3, r4, 0x15, 0x10, 0x1f
-    sth	r3, 8(r1)
-    b     _8005a8ec
-_8005a8e4:
-    sth	r29, 8(r1)
-    sth	r28, 0xa(r1)
-_8005a8ec:
-    li	r0, 0
-    sth	r0, 0xc(r1)
-    sth	r0, 0xe(r1)
-    sth	r0, 0x10(r1)
-    sth	r0, 0x12(r1)
-    sth	r0, 0x14(r1)
-    lwz	r3, 8(r31)
-    lwz	r4, 0xa4(r25)
-    bl      AXSetVoiceState_cached
-    lwz	r3, 8(r31)
-    addi	r4, r1, 8
-    bl      AXVPBSyncChannelA
-_8005a91c:
-    bl      svm_exit_critical_wrapper
-    addi	r31, r31, 4
-    addi	r27, r27, 1
-_8005a928:
-    lbz	r0, 2(r25)
-    extsb	r0, r0
-    cmpw	r27, r0
-    blt     _8005a874
-_8005a938:
-    lmw	r25, 0x24(r1)
-    lwz	r0, 0x44(r1)
-    mtlr	r0
-    addi	r1, r1, 0x40
-    blr	
+    short sync[7];
+    int i;
+    int adj_rate;
+
+    if (p == 0) {
+        return;
+    }
+
+    p->unk24 = rate;
+
+    for (i = 0; i < p->unk2; i++) {
+        svm_enter_critical_wrapper();
+        if (p->unk8[i] != 0) {
+            if (p->unkA0 == 1) {
+                if (rate == 32000 && p->unkA2 == 0 && p != 0) {
+                    p->unkA4 = 0;
+                    p->unkA2 = 1;
+                }
+                adj_rate = (rate * 1124 + 1124) / 1125;
+                sync[0] = (unsigned short)((unsigned int)adj_rate / 32000);
+                sync[1] = (unsigned short)((unsigned int)(adj_rate << 8) / 125);
+            } else {
+                sync[0] = rate / 32000;
+                sync[1] = (unsigned int)((rate << 8) / 125) & 0xffff;
+            }
+            sync[2] = 0;
+            sync[3] = 0;
+            sync[4] = 0;
+            sync[5] = 0;
+            sync[6] = 0;
+            AXSetVoiceState_cached(p->unk8[i], p->unkA4);
+            AXVPBSyncChannelA(p->unk8[i], sync);
+        }
+        svm_exit_critical_wrapper();
+    }
 }
 
 // provenance: original

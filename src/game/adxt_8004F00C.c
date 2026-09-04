@@ -14,9 +14,29 @@ typedef struct AdxfCtx {
     char unk538[0x440];
 } AdxfCtx;
 
+typedef struct AdxfCbVtbl {
+    char pad[0xC];
+    void (*stop)(void* obj);
+} AdxfCbVtbl;
+
+typedef struct AdxfCb {
+    AdxfCbVtbl* vtbl;
+} AdxfCb;
+
 typedef struct AdxfSlot {
-    unsigned char unk0;
-    char pad1[0x43];
+    signed char unk0;
+    signed char unk1;
+    signed char unk2;
+    signed char unk3;
+    void* unk4;
+    AdxfCb* unk8;
+    char padC[8];
+    int unk14;
+    char pad18[8];
+    int unk20;
+    void* unk24;
+    int unk28;
+    char pad2C[0x18];
 } AdxfSlot;
 
 extern void DCInvalidateRange();
@@ -24,8 +44,8 @@ extern void svmUnlockServer_wrapper(void);
 extern void svmLockServer_wrapper(void);
 extern void criErr_CallErrCallback(void);
 extern void ADXT_StartVoice(void);
-extern void fn_8004AE78(void);
-extern void ADXTGetState(void);
+extern int fn_8004AE78();
+extern int ADXTGetState();
 extern void fn_8004AEF0(void);
 extern void fn_8004B1DC(void);
 extern void fn_8004FC38(void);
@@ -41,7 +61,7 @@ extern unsigned char lbl_800911E0[64];
 extern volatile int lbl_80091250[];
 extern unsigned char lbl_801309C0[136];
 extern unsigned char lbl_80186630[];
-extern unsigned char lbl_80186764[4];
+extern int lbl_80186764[];
 extern unsigned char lbl_80186640[4];
 extern unsigned char lbl_80186644[32];
 extern unsigned char lbl_80186664[256];
@@ -611,6 +631,7 @@ _8004f7d8:
 }
 
 // provenance: original
+#pragma dont_inline on
 void fn_8004F7F8(void* p, unsigned int size)
 {
     DCInvalidateRange(p, size);
@@ -803,116 +824,56 @@ _8004fa94:
     blr	
 }
 
-asm void fn_8004FAA8(void)
+// provenance: original
+void fn_8004FAA8(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    stw	r30, 8(r1)
-    bl      svmLockServer_wrapper
-    lis     r3, lbl_80186B68@ha
-    li	r30, 0
-    addi	r31, r3, lbl_80186B68@l
-_8004facc:
-    lbz	r0, 0(r31)
-    cmpwi	r0, 1
-    bne     _8004fc0c
-    lbz	r0, 1(r31)
-    cmpwi	r0, 2
-    bne     _8004fb7c
-    lwz	r3, 4(r31)
-    bl      ADXTGetState
-    stb	r3, 1(r31)
-    lwz	r3, 4(r31)
-    bl      fn_8004AE78
-    lwz	r0, 0x14(r31)
-    subf	r0, r0, r3
-    stw	r0, 0x20(r31)
-    lbz	r0, 1(r31)
-    extsb	r0, r0
-    cmpwi	r0, 3
-    beq     _8004fb1c
-    cmpwi	r0, 4
-    bne     _8004fb7c
-_8004fb1c:
-    lwz	r3, 0x14(r31)
-    lwz	r0, 0x20(r31)
-    add	r0, r3, r0
-    stw	r0, 0x14(r31)
-    lwz	r0, 8(r31)
-    cmplwi	r0, 0
-    beq     _8004fb7c
-    lbz	r0, 2(r31)
-    extsb.	r0, r0
-    bne     _8004fb7c
-    lis	r3, lbl_80186764@ha
-    lwz	r0, lbl_80186764@l(r3)
-    cmpwi	r0, 1
-    bne     _8004fb60
-    lwz	r3, 0x24(r31)
-    lwz	r4, 0x28(r31)
-    bl      fn_8004F7F8
-_8004fb60:
-    lwz	r3, 8(r31)
-    li	r0, 0
-    stw	r0, 8(r31)
-    lwz	r4, 0(r3)
-    lwz	r12, 0xc(r4)
-    mtctr	r12
-    bctrl	
-_8004fb7c:
-    lbz	r0, 3(r31)
-    cmpwi	r0, 1
-    bne     _8004fc0c
-    lwz	r3, 4(r31)
-    bl      ADXTGetState
-    cmpwi	r3, 1
-    bne     _8004fc0c
-    lwz	r3, 4(r31)
-    bl      fn_8004AE78
-    lwz	r0, 0x14(r31)
-    subf	r0, r0, r3
-    stw	r0, 0x20(r31)
-    lwz	r0, 8(r31)
-    cmplwi	r0, 0
-    beq     _8004fbfc
-    lbz	r0, 2(r31)
-    extsb.	r0, r0
-    bne     _8004fbfc
-    lis	r3, lbl_80186764@ha
-    lwz	r0, lbl_80186764@l(r3)
-    cmpwi	r0, 1
-    bne     _8004fbe0
-    lwz	r3, 0x24(r31)
-    lwz	r4, 0x28(r31)
-    bl      fn_8004F7F8
-_8004fbe0:
-    lwz	r3, 8(r31)
-    li	r0, 0
-    stw	r0, 8(r31)
-    lwz	r4, 0(r3)
-    lwz	r12, 0xc(r4)
-    mtctr	r12
-    bctrl	
-_8004fbfc:
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 1(r31)
-    stb	r0, 3(r31)
-_8004fc0c:
-    addi	r30, r30, 1
-    addi	r31, r31, 0x44
-    cmpwi	r30, 0x10
-    blt     _8004facc
-    bl      svmUnlockServer_wrapper
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr	
+    AdxfSlot* slot;
+    int i;
+
+    svmLockServer_wrapper();
+
+    for (i = 0; i < 16; i++) {
+        slot = &lbl_80186B68[i];
+        if (slot->unk0 == 1) {
+            if (slot->unk1 == 2) {
+                slot->unk1 = ADXTGetState(slot->unk4);
+                slot->unk20 = fn_8004AE78(slot->unk4) - slot->unk14;
+                if (slot->unk1 == 3 || slot->unk1 == 4) {
+                    slot->unk14 += slot->unk20;
+                    if (slot->unk8 != 0 && slot->unk2 == 0) {
+                        if (lbl_80186764[0] == 1) {
+                            fn_8004F7F8(slot->unk24, slot->unk28);
+                        }
+                        {
+                            AdxfCb* cb = slot->unk8;
+                            slot->unk8 = 0;
+                            cb->vtbl->stop(cb);
+                        }
+                    }
+                }
+            }
+
+            if (slot->unk3 == 1) {
+                if (ADXTGetState(slot->unk4) == 1) {
+                    slot->unk20 = fn_8004AE78(slot->unk4) - slot->unk14;
+                    if (slot->unk8 != 0 && slot->unk2 == 0) {
+                        if (lbl_80186764[0] == 1) {
+                            fn_8004F7F8(slot->unk24, slot->unk28);
+                        }
+                        {
+                            AdxfCb* cb = slot->unk8;
+                            slot->unk8 = 0;
+                            cb->vtbl->stop(cb);
+                        }
+                    }
+                    slot->unk1 = 1;
+                    slot->unk3 = 0;
+                }
+            }
+        }
+    }
+
+    svmUnlockServer_wrapper();
 }
 
 // provenance: original
