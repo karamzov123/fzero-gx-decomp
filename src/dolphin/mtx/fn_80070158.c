@@ -254,61 +254,18 @@ _80070474:
     blr	
 }
 
-asm void fn_8007048C(void)
+// provenance: original
+int fn_8007048C(void)
 {
-    nofralloc
-    lis     r3, lbl_8019E140@ha
-    li	r0, 2
-    addi	r3, r3, lbl_8019E140@l
-    li	r5, 0
-    li	r4, 0
-    mtctr	r0
-_800704a4:
-    lbz	r0, 0(r3)
-    cmplwi	r0, 0
-    beq	_800704b4
-    addi	r5, r5, 1
-_800704b4:
-    lbzu	r0, 1(r3)
-    cmplwi	r0, 0
-    beq	_800704c4
-    addi	r5, r5, 1
-_800704c4:
-    lbzu	r0, 1(r3)
-    cmplwi	r0, 0
-    beq	_800704d4
-    addi	r5, r5, 1
-_800704d4:
-    lbzu	r0, 1(r3)
-    cmplwi	r0, 0
-    beq	_800704e4
-    addi	r5, r5, 1
-_800704e4:
-    lbzu	r0, 1(r3)
-    cmplwi	r0, 0
-    beq	_800704f4
-    addi	r5, r5, 1
-_800704f4:
-    lbzu	r0, 1(r3)
-    cmplwi	r0, 0
-    beq	_80070504
-    addi	r5, r5, 1
-_80070504:
-    lbzu	r0, 1(r3)
-    cmplwi	r0, 0
-    beq	_80070514
-    addi	r5, r5, 1
-_80070514:
-    lbzu	r0, 1(r3)
-    cmplwi	r0, 0
-    beq	_80070524
-    addi	r5, r5, 1
-_80070524:
-    addi	r3, r3, 1
-    addi	r4, r4, 7
-    bdnz	_800704a4
-    subfic	r3, r5, 0x10
-    blr	
+    int i;
+    int used = 0;
+
+    for (i = 0; i < 16; i++) {
+        if (lbl_8019E140[i] != 0) {
+            used++;
+        }
+    }
+    return 16 - used;
 }
 
 #pragma pop

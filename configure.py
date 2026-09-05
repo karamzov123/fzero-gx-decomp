@@ -343,7 +343,8 @@ config.libs = [
         Object(Matching, "dolphin/mtx/fn_8006FC1C.c"),
         Object(Matching, "dolphin/mtx/fn_8006FEFC.c"),
         Object(Matching, "dolphin/mtx/fn_8007001C.c"),
-        Object(Matching, "dolphin/mtx/fn_80070158.c"),
+        Object(Matching, "dolphin/mtx/fn_80070158.c",
+              mw_version="GC/1.3"),  # integrator discriminator re-pin 2026-09-05: winner GC/1.3, 1/3 exact vs 0/3 under 1.2.5n
         Object(Matching, "dolphin/mtx/fn_80070538.c"),
         Object(Matching, "dolphin/mtx/fn_80070774.c"),
         Object(Matching, "dolphin/mtx/fn_80070A58.c"),
