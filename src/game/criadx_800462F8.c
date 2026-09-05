@@ -201,128 +201,74 @@ void fn_80046510(void* a)
     *(unsigned char*)((char*)a + 1) = 0;
 }
 
-#pragma push
-asm void fn_8004651C(void)
+
+struct AdxObj;
+
+typedef struct AdxSpan {
+    void* ptr;
+    int len;
+} AdxSpan;
+
+typedef struct AdxObjVt {
+    char pad0[0x14];
+    void (*fn14)(struct AdxObj*);
+    void (*fn18)(struct AdxObj*, int, int, AdxSpan*);
+    void (*fn1C)(struct AdxObj*, int, AdxSpan*);
+    void (*fn20)();
+    int (*fn24)(struct AdxObj*, int);
+} AdxObjVt;
+
+typedef struct AdxObj {
+    AdxObjVt* vt;
+} AdxObj;
+
+typedef struct AdxHandle {
+    unsigned char unk0;
+    signed char unk1;
+    signed char unk2;
+    char pad3;
+    AdxObj* unk4[9];
+    int unk28;
+    int unk2C;
+} AdxHandle;
+
+// provenance: original
+void fn_8004651C(AdxHandle* p)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    li	r5, 0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r3
-    mr	r4, r31
-    li	r3, 0
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    stw	r28, 0x10(r1)
-    b       _80046558
-_8004654c:
-    stw	r3, 0x14(r4)
-    addi	r4, r4, 4
-    addi	r5, r5, 1
-_80046558:
-    lbz	r0, 2(r31)
-    extsb	r0, r0
-    cmpw	r5, r0
-    blt     _8004654c
-    li	r29, 0
-    mr	r30, r31
-    stw	r29, 0x2c(r31)
-    b       _800465fc
-_80046578:
-    lwz	r28, 4(r30)
-    lwz	r4, 0(r28)
-    mr	r3, r28
-    lwz	r12, 0x14(r4)
-    mtctr	r12
-    bctrl	
-    lwz	r5, 0(r28)
-    mr	r3, r28
-    li	r4, 0
-    lwz	r12, 0x24(r5)
-    mtctr	r12
-    bctrl	
-    lwz	r4, 0(r28)
-    mr	r5, r3
-    mr	r3, r28
-    addi	r6, r1, 8
-    lwz	r12, 0x18(r4)
-    li	r4, 0
-    mtctr	r12
-    bctrl	
-    lwz	r3, 8(r1)
-    li	r4, 0
-    lwz	r5, 0xc(r1)
-    bl      memset
-    lwz	r6, 0(r28)
-    mr	r3, r28
-    addi	r5, r1, 8
-    li	r4, 0
-    lwz	r12, 0x1c(r6)
-    mtctr	r12
-    bctrl	
-    addi	r30, r30, 4
-    addi	r29, r29, 1
-_800465fc:
-    lbz	r0, 2(r31)
-    extsb	r0, r0
-    cmpw	r29, r0
-    blt     _80046578
-    mr	r30, r31
-    li	r29, 0
-    b       _8004669c
-_80046618:
-    lwz	r28, 0xc(r30)
-    lwz	r4, 0(r28)
-    mr	r3, r28
-    lwz	r12, 0x14(r4)
-    mtctr	r12
-    bctrl	
-    lwz	r5, 0(r28)
-    mr	r3, r28
-    li	r4, 0
-    lwz	r12, 0x24(r5)
-    mtctr	r12
-    bctrl	
-    lwz	r4, 0(r28)
-    mr	r5, r3
-    mr	r3, r28
-    addi	r6, r1, 8
-    lwz	r12, 0x18(r4)
-    li	r4, 0
-    mtctr	r12
-    bctrl	
-    lwz	r3, 8(r1)
-    li	r4, 0
-    lwz	r5, 0xc(r1)
-    bl      memset
-    lwz	r6, 0(r28)
-    mr	r3, r28
-    addi	r5, r1, 8
-    li	r4, 0
-    lwz	r12, 0x1c(r6)
-    mtctr	r12
-    bctrl	
-    addi	r30, r30, 4
-    addi	r29, r29, 1
-_8004669c:
-    lbz	r0, 2(r31)
-    extsb	r0, r0
-    cmpw	r29, r0
-    blt     _80046618
-    li	r0, 2
-    stb	r0, 1(r31)
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    lwz	r28, 0x10(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    AdxSpan sp;
+    AdxHandle* q;
+    int i;
+    AdxObj* obj;
+
+    q = p;
+    for (i = 0; i < p->unk2; i++) {
+        q->unk4[4] = 0;
+        q = (AdxHandle*)((char*)q + 4);
+    }
+
+    p->unk2C = 0;
+    q = p;
+    for (i = 0; i < p->unk2; i++) {
+        obj = q->unk4[0];
+        obj->vt->fn14(obj);
+        obj->vt->fn18(obj, 0, obj->vt->fn24(obj, 0), &sp);
+        memset(sp.ptr, 0, sp.len);
+        obj->vt->fn1C(obj, 0, &sp);
+        q = (AdxHandle*)((char*)q + 4);
+    }
+
+    q = p;
+    for (i = 0; i < p->unk2; i++) {
+        obj = q->unk4[2];
+        obj->vt->fn14(obj);
+        obj->vt->fn18(obj, 0, obj->vt->fn24(obj, 0), &sp);
+        memset(sp.ptr, 0, sp.len);
+        obj->vt->fn1C(obj, 0, &sp);
+        q = (AdxHandle*)((char*)q + 4);
+    }
+
+    p->unk1 = 2;
 }
-#pragma pop
 
 #pragma push
 // provenance: original
