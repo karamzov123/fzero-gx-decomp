@@ -1239,6 +1239,7 @@ int fn_8007B028(void)
 }
 
 // provenance: original
+#pragma dont_inline on
 int fn_8007B0B4(void)
 {
     int result;
@@ -1256,6 +1257,7 @@ int fn_8007B0B4(void)
     }
     return result;
 }
+#pragma dont_inline reset
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/ansi_files.c:116
 void __close_all(void)
@@ -5552,6 +5554,7 @@ _8007eba8:
 }
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/buffer_io.c:27
+#pragma dont_inline on
 int __flush_buffer(void* file_ptr, unsigned int* length)
 {
     typedef struct FlushFile {
@@ -5593,6 +5596,7 @@ int __flush_buffer(void* file_ptr, unsigned int* length)
     file->buffer_position = file->position;
     return 0;
 }
+#pragma dont_inline reset
 
 // provenance: original
 int fn_8007EC80(void* file, unsigned int* outp, int flag)
@@ -6418,98 +6422,47 @@ _8007f8a8:
     blr
 }
 
-asm int fn_8007F8D4(void* file)
+// provenance: original
+int fn_8007F8D4(void* file_p)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    or.	r31, r3, r3
-    stw	r30, 8(r1)
-    bc      4, 2, _8007f8f8
-    bl      fn_8007B0B4
-    b       _8007f9f4
-_8007f8f8:
-    lbz	r0, 0xa(r31)
-    cmplwi	r0, 0
-    bc      4, 2, _8007f910
-    lhz	r0, 4(r31)
-    rlwinm.	r0, r0, 0x1a, 0x1d, 0x1f
-    bc      4, 2, _8007f918
-_8007f910:
-    li	r3, -1
-    b       _8007f9f4
-_8007f918:
-    lbz	r0, 4(r31)
-    rlwinm	r0, r0, 0x1d, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      4, 2, _8007f930
-    li	r3, 0
-    b       _8007f9f4
-_8007f930:
-    lbz	r3, 8(r31)
-    rlwinm	r0, r3, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 3
-    bc      12, 0, _8007f94c
-    li	r0, 2
-    rlwimi	r3, r0, 5, 0x18, 0x1a
-    stb	r3, 8(r31)
-_8007f94c:
-    lbz	r0, 8(r31)
-    rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 2
-    bc      4, 2, _8007f964
-    li	r0, 0
-    stw	r0, 0x28(r31)
-_8007f964:
-    lbz	r4, 8(r31)
-    rlwinm	r0, r4, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007f988
-    li	r0, 0
-    li	r3, 0
-    rlwimi	r4, r0, 5, 0x18, 0x1a
-    stb	r4, 8(r31)
-    b       _8007f9f4
-_8007f988:
-    lhz	r0, 4(r31)
-    rlwinm	r0, r0, 0x1a, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007f9a0
-    li	r30, 0
-    b       _8007f9ac
-_8007f9a0:
-    mr	r3, r31
-    bl      fn_8007FE70
-    mr	r30, r3
-_8007f9ac:
-    mr	r3, r31
-    li	r4, 0
-    bl      __flush_buffer
-    cmpwi	r3, 0
-    bc      12, 2, _8007f9d8
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r31)
-    li	r3, -1
-    stw	r0, 0x28(r31)
-    b       _8007f9f4
-_8007f9d8:
-    lbz	r0, 8(r31)
-    li	r4, 0
-    rlwimi	r0, r4, 5, 0x18, 0x1a
-    li	r3, 0
-    stb	r0, 8(r31)
-    stw	r30, 0x18(r31)
-    stw	r4, 0x28(r31)
-_8007f9f4:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    File* file = (File*)file_p;
+    long pos;
+    int r;
+
+    if (file == 0) {
+        return fn_8007B0B4();
+    }
+    if (file->byte0A != 0 || file->open.mode == 0) {
+        return -1;
+    }
+    if ((((unsigned int)(*(unsigned char*)((char*)file + 4)) >> 3) & 7) == 1) {
+        return 0;
+    }
+    if (file->buffer.kind >= 3) {
+        file->buffer.kind = 2;
+    }
+    if (file->buffer.kind == 2) {
+        file->buffer_length = 0;
+    }
+    if (file->buffer.kind != 1) {
+        file->buffer.kind = 0;
+        return 0;
+    }
+    if (file->open.mode != 1) {
+        pos = 0;
+    } else {
+        pos = fn_8007FE70(file);
+    }
+    r = __flush_buffer(file, 0);
+    if (r != 0) {
+        file->byte0A = 1;
+        file->buffer_length = 0;
+        return -1;
+    }
+    file->buffer.kind = 0;
+    file->position = pos;
+    file->buffer_length = 0;
+    return 0;
 }
 
 asm void fn_8007FA0C(void* file)
