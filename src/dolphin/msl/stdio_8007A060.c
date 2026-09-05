@@ -1,4 +1,10 @@
 typedef void (*ExitFunc)(void);
+
+typedef struct FileMode {
+    unsigned short pad0 : 7;
+    unsigned short mode : 3;
+    unsigned short pad1 : 6;
+} FileMode;
 // dest: src/dolphin/msl/stdio_8007A060.c
 typedef unsigned char u8;
 typedef unsigned short u16;
@@ -18,7 +24,7 @@ extern void __div2u(void);
 extern void __mod2u(void);
 extern void __cvt_dbl_usll(void);
 extern void fn_80079EF0(void);
-extern void fn_80079FA8(void);
+extern void* fn_80079FA8(unsigned int size);
 extern void __memrchr(void);
 extern void __stdio_atexit(void);
 extern void fn_8008068C(void);
@@ -67,12 +73,12 @@ asm void fn_8007A440(void);
 void fn_8007A710(void* pool, void* p);
 asm void fn_8007A9A4(void);
 asm void fn_8007AA7C(void);
-asm void fn_8007AB58(void);
+void* fn_8007AB58(void** headp, unsigned int size);
 asm void fn_8007AC0C(void);
-asm void fn_8007ADF0(void);
+void fn_8007ADF0(void* blk, unsigned int size);
 int fn_8007B028(void);
 int fn_8007B0B4(void);
-asm void __close_all(void);
+void __close_all(void);
 asm void __init_file(void);
 void* fn_8007B2A8(void);
 asm void __sformatter(void);
@@ -86,7 +92,7 @@ asm void fn_8007E914(void);
 asm void fn_8007E96C(void);
 asm void fn_8007EA58(void);
 extern int __flush_buffer(void*, unsigned int*);
-asm void fn_8007EC80(void);
+int fn_8007EC80(void* file, unsigned int* outp, int flag);
 void __end_critical_region(int region);
 void __begin_critical_region(int region);
 void __kill_critical_regions(void);
@@ -97,7 +103,7 @@ int fn_8007F48C(void* a, void* b, unsigned long n, void* file);
 asm void fn_8007F508(void);
 asm void fn_8007F684(void);
 int fn_8007F8D4(void* file);
-asm void fn_8007FA0C(void);
+void fn_8007FA0C(void* file);
 int fseek(void* file, long offset, int whence);
 int fn_8007FC34(void* file, long offset, int whence);
 long fn_8007FE70(void* file);
@@ -138,6 +144,7 @@ void exit(int status)
 }
 
 // provenance: original
+#pragma dont_inline on
 void fn_8007A150(void* p)
 {
     __begin_critical_region(1);
@@ -148,6 +155,7 @@ void fn_8007A150(void* p)
     fn_8007A23C(lbl_801A3380, p);
     __end_critical_region(1);
 }
+#pragma dont_inline reset
 
 // provenance: original
 #pragma dont_inline on
@@ -845,59 +853,35 @@ _8007ab3c:
     blr
 }
 
-asm void fn_8007AB58(void)
+// provenance: original
+void* fn_8007AB58(void** headp, unsigned int size)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    addi	r4, r4, 0x1f
-    stw	r0, 0x24(r1)
-    lis	r0, 1
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    rlwinm	r30, r4, 0, 0, 0x1c
-    cmplw	r30, r0
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    bc      4, 0, _8007ab8c
-    lis	r30, 1
-_8007ab8c:
-    mr	r3, r30
-    bl      fn_80079FA8
-    or.	r31, r3, r3
-    bc      4, 2, _8007aba4
-    li	r3, 0
-    b       _8007abf0
-_8007aba4:
-    mr	r4, r30
-    bl      fn_8007ADF0
-    lwz	r3, 0(r29)
-    cmplwi	r3, 0
-    bc      12, 2, _8007abe0
-    lwz	r0, 0(r3)
-    stw	r0, 0(r31)
-    lwz	r3, 0(r31)
-    stw	r31, 4(r3)
-    lwz	r0, 0(r29)
-    stw	r0, 4(r31)
-    lwz	r3, 0(r29)
-    stw	r31, 0(r3)
-    stw	r31, 0(r29)
-    b       _8007abec
-_8007abe0:
-    stw	r31, 0(r29)
-    stw	r31, 0(r31)
-    stw	r31, 4(r31)
-_8007abec:
-    mr	r3, r31
-_8007abf0:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    void** blk;
+    unsigned int n;
+
+    n = (size + 0x1F) & ~7;
+    if (n < 0x10000) {
+        n = 0x10000;
+    }
+
+    blk = (void**)fn_80079FA8(n);
+    if (blk == 0) {
+        return 0;
+    }
+    fn_8007ADF0(blk, n);
+
+    if (*headp != 0) {
+        blk[0] = ((void**)*headp)[0];
+        ((void**)blk[0])[1] = blk;
+        blk[1] = *headp;
+        ((void**)*headp)[0] = blk;
+        *headp = blk;
+    } else {
+        *headp = blk;
+        blk[0] = blk;
+        blk[1] = blk;
+    }
+    return blk;
 }
 
 asm void fn_8007AC0C(void)
@@ -1040,7 +1024,7 @@ _8007ade8:
     blr
 }
 
-asm void fn_8007ADF0(void)
+asm void fn_8007ADF0(void* blk, unsigned int size)
 {
     nofralloc
     ori	r0, r4, 3
@@ -1239,55 +1223,30 @@ int fn_8007B0B4(void)
     return result;
 }
 
-asm void __close_all(void)
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/ansi_files.c:116
+void __close_all(void)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r4, __files@ha
-    li	r3, 2
-    stw	r0, 0x14(r1)
-    addi	r0, r4, __files@l
-    stw	r31, 0xc(r1)
-    mr	r31, r0
-    bl      __begin_critical_region
-    b       _8007b1a8
-_8007b14c:
-    lhz	r0, 4(r31)
-    rlwinm.	r0, r0, 0x1a, 0x1d, 0x1f
-    bc      12, 2, _8007b160
-    mr	r3, r31
-    bl      fn_8007FA0C
-_8007b160:
-    mr	r3, r31
-    lwz	r31, 0x4c(r31)
-    lbz	r0, 0xc(r3)
-    cmplwi	r0, 0
-    bc      12, 2, _8007b17c
-    bl      fn_8007A150
-    b       _8007b1a8
-_8007b17c:
-    lhz	r0, 4(r3)
-    li	r4, 3
-    rlwimi	r0, r4, 6, 0x17, 0x19
-    cmplwi	r31, 0
-    sth	r0, 4(r3)
-    bc      12, 2, _8007b1a8
-    lbz	r0, 0xc(r31)
-    cmplwi	r0, 0
-    bc      12, 2, _8007b1a8
-    li	r0, 0
-    stw	r0, 0x4c(r3)
-_8007b1a8:
-    cmplwi	r31, 0
-    bc      4, 2, _8007b14c
-    li	r3, 2
-    bl      __end_critical_region
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    char* f;
+    char* cur;
+
+    f = (char*)__files;
+    __begin_critical_region(2);
+    while (f != 0) {
+        if (((*(unsigned short*)(f + 4) >> 6) & 7) != 0) {
+            fn_8007FA0C(f);
+        }
+        cur = f;
+        f = *(char**)(cur + 0x4C);
+        if (*(unsigned char*)(cur + 0xC) != 0) {
+            fn_8007A150(cur);
+        } else {
+            ((FileMode*)(cur + 4))->mode = 3;
+            if (f != 0 && *(unsigned char*)(f + 0xC) != 0) {
+                *(char**)(cur + 0x4C) = 0;
+            }
+        }
+    }
+    __end_critical_region(2);
 }
 
 asm void __init_file(void)
@@ -5609,66 +5568,35 @@ int __flush_buffer(void* file_ptr, unsigned int* length)
     return 0;
 }
 
-asm void fn_8007EC80(void)
+// provenance: original
+int fn_8007EC80(void* file, unsigned int* outp, int flag)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmpwi	r5, 1
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    mr	r31, r4
-    stw	r30, 8(r1)
-    mr	r30, r3
-    lwz	r0, 0x1c(r3)
-    stw	r0, 0x24(r3)
-    lwz	r0, 0x20(r3)
-    stw	r0, 0x28(r3)
-    lwz	r4, 0x18(r3)
-    lwz	r3, 0x2c(r3)
-    lwz	r0, 0x28(r30)
-    and	r3, r4, r3
-    subf	r0, r3, r0
-    stw	r0, 0x28(r30)
-    lwz	r0, 0x18(r30)
-    stw	r0, 0x34(r30)
-    bc      4, 2, _8007ecdc
-    lwz	r0, 0x20(r30)
-    stw	r0, 0x28(r30)
-_8007ecdc:
-    lwz	r12, 0x3c(r30)
-    addi	r5, r30, 0x28
-    lwz	r3, 0(r30)
-    lwz	r4, 0x1c(r30)
-    lwz	r6, 0x48(r30)
-    mtctr	r12
-    bctrl
-    cmpwi	r3, 2
-    bc      4, 2, _8007ed08
-    li	r0, 0
-    stw	r0, 0x28(r30)
-_8007ed08:
-    cmplwi	r31, 0
-    bc      12, 2, _8007ed18
-    lwz	r0, 0x28(r30)
-    stw	r0, 0(r31)
-_8007ed18:
-    cmpwi	r3, 0
-    bc      12, 2, _8007ed24
-    b       _8007ed38
-_8007ed24:
-    lwz	r4, 0x18(r30)
-    li	r3, 0
-    lwz	r0, 0x28(r30)
-    add	r0, r4, r0
-    stw	r0, 0x18(r30)
-_8007ed38:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    lwz	r30, 8(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    char* f = (char*)file;
+    int r;
+
+    *(int*)(f + 0x24) = *(int*)(f + 0x1C);
+    *(int*)(f + 0x28) = *(int*)(f + 0x20);
+    *(int*)(f + 0x28) -= *(int*)(f + 0x18) & *(int*)(f + 0x2C);
+    *(int*)(f + 0x34) = *(int*)(f + 0x18);
+    if (flag == 1) {
+        *(int*)(f + 0x28) = *(int*)(f + 0x20);
+    }
+
+    r = (*(int (**)(void*, void*, unsigned int*, void*))(f + 0x3C))(
+            *(void**)f, *(void**)(f + 0x1C),
+            (unsigned int*)(f + 0x28), *(void**)(f + 0x48));
+
+    if (r == 2) {
+        *(int*)(f + 0x28) = 0;
+    }
+    if (outp != 0) {
+        *outp = *(unsigned int*)(f + 0x28);
+    }
+    if (r != 0) {
+        return r;
+    }
+    *(int*)(f + 0x18) += *(int*)(f + 0x28);
+    return 0;
 }
 
 // provenance: original
@@ -6558,7 +6486,7 @@ _8007f9f4:
     blr
 }
 
-asm void fn_8007FA0C(void)
+asm void fn_8007FA0C(void* file)
 {
     nofralloc
     stwu	r1, -0x20(r1)
