@@ -1,10 +1,43 @@
 typedef void (*ExitFunc)(void);
 
 typedef struct FileMode {
-    unsigned short pad0 : 7;
-    unsigned short mode : 3;
+    unsigned short pad0 : 6;
+    unsigned short flag1 : 1;   /* bit 1 of the high byte = value bit 9 */
+    unsigned short mode : 3;    /* value bits 6..8 */
     unsigned short pad1 : 6;
 } FileMode;
+
+typedef struct FileBuffer {
+    unsigned char kind : 3;   /* bits 5..7: buffer kind */
+    unsigned char alloc : 1;  /* bit 4: buffer allocated */
+    unsigned char pad : 4;    /* bits 0..3 */
+} FileBuffer;
+
+typedef struct File {
+    unsigned int handle;                     /* +0x00 */
+    FileMode open;                           /* +0x04 */
+    unsigned short pad06;                    /* +0x06 */
+    FileBuffer buffer;                       /* +0x08 */
+    unsigned char byte09;                    /* +0x09 */
+    unsigned char byte0A;                    /* +0x0A */
+    unsigned char byte0B;                    /* +0x0B */
+    unsigned char dyn_alloc;                 /* +0x0C: !=0 when dynamically allocated */
+    unsigned char small_buf[0x0B];           /* +0x0D..+0x17 */
+    unsigned int position;                   /* +0x18 */
+    char* buffer_base;                       /* +0x1C */
+    unsigned int buffer_size;                /* +0x20 */
+    char* buffer_ptr;                        /* +0x24 */
+    unsigned int buffer_length;              /* +0x28 */
+    unsigned int buffer_mask;                /* +0x2C */
+    unsigned int pad30;                      /* +0x30 */
+    unsigned int buffer_position;            /* +0x34 */
+    int (*position_func)(struct File*, long, int);        /* +0x38 */
+    int (*read_func)(struct File*, char*, unsigned int*); /* +0x3C */
+    int (*write_func)(struct File*, char*, unsigned int*);/* +0x40 */
+    int (*close_func)(struct File*);         /* +0x44 */
+    unsigned int ref_con;                    /* +0x48 */
+    struct File* next;                       /* +0x4C */
+} File;
 // dest: src/dolphin/msl/stdio_8007A060.c
 typedef unsigned char u8;
 typedef unsigned short u16;
@@ -88,7 +121,8 @@ asm void fn_8007C910(void);
 asm void fn_8007CE0C(void);
 asm void MSLFormatDecimalRound(void);
 asm void fn_8007E69C(void);
-asm void fn_8007E914(void);
+typedef struct div_t { int quot; int rem; } div_t;
+div_t fn_8007E914(int numer, int denom);
 asm void fn_8007E96C(void);
 asm void fn_8007EA58(void);
 extern int __flush_buffer(void*, unsigned int*);
@@ -5319,33 +5353,25 @@ _8007e908:
     blr
 }
 
-asm void fn_8007E914(void)
+// provenance: original
+div_t fn_8007E914(int numer, int denom)
 {
-    nofralloc
-    or.	r7, r3, r3
-    stwu	r1, -0x10(r1)
-    li	r5, 1
-    li	r6, 1
-    bc      4, 0, _8007e930
-    neg	r7, r7
-    li	r5, -1
-_8007e930:
-    cmpwi	r4, 0
-    bc      4, 0, _8007e940
-    neg	r4, r4
-    li	r6, -1
-_8007e940:
-    divw	r3, r7, r4
-    mullw	r0, r5, r6
-    mullw	r3, r3, r0
-    mullw	r0, r3, r4
-    stw	r3, 8(r1)
-    mullw	r4, r6, r0
-    mullw	r0, r7, r5
-    subf	r4, r4, r0
-    stw	r4, 0xc(r1)
-    addi	r1, r1, 0x10
-    blr
+    div_t result;
+    int n_sign = 1;
+    int d_sign = 1;
+
+    if (numer < 0) {
+        numer = -numer;
+        n_sign = -1;
+    }
+    if (denom < 0) {
+        denom = -denom;
+        d_sign = -1;
+    }
+
+    result.quot = (numer / denom) * (n_sign * d_sign);
+    result.rem = (numer * n_sign) - (d_sign * (result.quot * denom));
+    return result;
 }
 
 asm void fn_8007E96C(void)
