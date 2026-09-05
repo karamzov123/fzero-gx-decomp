@@ -43,7 +43,7 @@ typedef struct File {
     int (*position_func)(unsigned int, long*, int, unsigned int); /* +0x38 */
     int (*read_func)(struct File*, char*, unsigned int*); /* +0x3C */
     int (*write_func)(struct File*, char*, unsigned int*);/* +0x40 */
-    int (*close_func)(struct File*);         /* +0x44 */
+    int (*close_func)(unsigned int);         /* +0x44 */
     unsigned int ref_con;                    /* +0x48 */
     struct File* next;                       /* +0x4C */
 } File;
@@ -132,7 +132,8 @@ asm void MSLFormatDecimalRound(void);
 asm void fn_8007E69C(void);
 typedef struct div_t { int quot; int rem; } div_t;
 div_t fn_8007E914(int numer, int denom);
-asm void fn_8007E96C(void);
+void* fn_8007E96C(const void* key, const void* base, unsigned int n,
+                  unsigned int size, int (*cmp)(const void*, const void*));
 asm void fn_8007EA58(void);
 extern int __flush_buffer(void*, unsigned int*);
 int fn_8007EC80(void* file, unsigned int* outp, int flag);
@@ -146,7 +147,7 @@ int fn_8007F48C(void* a, void* b, unsigned long n, void* file);
 asm void fn_8007F508(void);
 asm void fn_8007F684(void);
 int fn_8007F8D4(void* file);
-void fn_8007FA0C(void* file);
+int fn_8007FA0C(void* file);
 int fseek(void* file, long offset, int whence);
 int fn_8007FC34(File* file, long offset, int whence);
 long fn_8007FE70(void* file);
@@ -5307,77 +5308,48 @@ div_t fn_8007E914(int numer, int denom)
     return result;
 }
 
-asm void fn_8007E96C(void)
+// provenance: original
+void* fn_8007E96C(const void* key, const void* base, unsigned int n,
+                  unsigned int size, int (*cmp)(const void*, const void*))
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    stw	r0, 0x34(r1)
-    stmw	r24, 0x10(r1)
-    or.	r24, r3, r3
-    mr	r25, r4
-    mr	r29, r5
-    mr	r26, r6
-    mr	r27, r7
-    bc      12, 2, _8007e9b4
-    cmplwi	r25, 0
-    bc      12, 2, _8007e9b4
-    cmplwi	r29, 0
-    bc      12, 2, _8007e9b4
-    cmplwi	r26, 0
-    bc      12, 2, _8007e9b4
-    cmplwi	r27, 0
-    bc      4, 2, _8007e9bc
-_8007e9b4:
-    li	r3, 0
-    b       _8007ea44
-_8007e9bc:
-    mr	r12, r27
-    mr	r28, r25
-    mtctr	r12
-    bctrl
-    cmpwi	r3, 0
-    bc      4, 2, _8007e9dc
-    mr	r3, r28
-    b       _8007ea44
-_8007e9dc:
-    bc      4, 0, _8007e9e8
-    li	r3, 0
-    b       _8007ea44
-_8007e9e8:
-    addi	r29, r29, -1
-    li	r30, 1
-    b       _8007ea38
-_8007e9f4:
-    add	r0, r30, r29
-    mr	r12, r27
-    srwi	r28, r0, 1
-    mr	r3, r24
-    mullw	r0, r26, r28
-    add	r31, r25, r0
-    mr	r4, r31
-    mtctr	r12
-    bctrl
-    cmpwi	r3, 0
-    bc      4, 2, _8007ea28
-    mr	r3, r31
-    b       _8007ea44
-_8007ea28:
-    bc      4, 0, _8007ea34
-    addi	r29, r28, -1
-    b       _8007ea38
-_8007ea34:
-    addi	r30, r28, 1
-_8007ea38:
-    cmplw	r30, r29
-    bc      4, 1, _8007e9f4
-    li	r3, 0
-_8007ea44:
-    lmw	r24, 0x10(r1)
-    lwz	r0, 0x34(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr
+    const char* p;
+    unsigned int lo;
+    unsigned int hi;
+    unsigned int mid;
+    const char* q;
+    int c;
+
+    hi = n;
+    if (key == 0 || base == 0 || hi == 0 || size == 0 || cmp == 0) {
+        return 0;
+    }
+
+    q = (const char*)base;
+    c = cmp(key, q);
+    if (c == 0) {
+        return (void*)q;
+    }
+    if (c < 0) {
+        return 0;
+    }
+
+    hi = hi - 1;
+    lo = 1;
+    while (lo <= hi) {
+        mid = (lo + hi) / 2;
+        p = (const char*)base + size * mid;
+        c = cmp(key, p);
+        if (c == 0) {
+            return (void*)p;
+        }
+        if (c < 0) {
+            hi = mid - 1;
+        } else {
+            lo = mid + 1;
+        }
+    }
+
+    return 0;
 }
 
 asm void fn_8007EA58(void)
@@ -6354,7 +6326,10 @@ _8007f8a8:
 }
 
 // provenance: original
-int fn_8007F8D4(void* file_p)
+// __inline: retail inlines this whole body into fn_8007FA0C (fclose) and it is
+// over the default -inline auto budget. `#pragma force_active on` still emits
+// the standalone symbol, so both the inlined copy and fn_8007F8D4 itself match.
+__inline int fn_8007F8D4(void* file_p)
 {
     File* file = (File*)file_p;
     long pos;
@@ -6396,137 +6371,29 @@ int fn_8007F8D4(void* file_p)
     return 0;
 }
 
-asm void fn_8007FA0C(void* file)
+// provenance: original
+int fn_8007FA0C(void* file_p)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    or.	r31, r3, r3
-    stw	r30, 0x18(r1)
-    stw	r29, 0x14(r1)
-    bc      4, 2, _8007fa34
-    li	r3, -1
-    b       _8007fbac
-_8007fa34:
-    lhz	r0, 4(r31)
-    rlwinm.	r3, r0, 0x1a, 0x1d, 0x1f
-    bc      4, 2, _8007fa48
-    li	r3, 0
-    b       _8007fbac
-_8007fa48:
-    cmplwi	r31, 0
-    bc      4, 2, _8007fa5c
-    bl      fn_8007B0B4
-    mr	r29, r3
-    b       _8007fb4c
-_8007fa5c:
-    lbz	r0, 0xa(r31)
-    cmplwi	r0, 0
-    bc      4, 2, _8007fa70
-    cmplwi	r3, 0
-    bc      4, 2, _8007fa78
-_8007fa70:
-    li	r29, -1
-    b       _8007fb4c
-_8007fa78:
-    lbz	r0, 4(r31)
-    rlwinm	r0, r0, 0x1d, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      4, 2, _8007fa90
-    li	r29, 0
-    b       _8007fb4c
-_8007fa90:
-    lbz	r3, 8(r31)
-    rlwinm	r0, r3, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 3
-    bc      12, 0, _8007faac
-    li	r0, 2
-    rlwimi	r3, r0, 5, 0x18, 0x1a
-    stb	r3, 8(r31)
-_8007faac:
-    lbz	r0, 8(r31)
-    rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 2
-    bc      4, 2, _8007fac4
-    li	r0, 0
-    stw	r0, 0x28(r31)
-_8007fac4:
-    lbz	r3, 8(r31)
-    rlwinm	r0, r3, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007fae4
-    li	r29, 0
-    rlwimi	r3, r29, 5, 0x18, 0x1a
-    stb	r3, 8(r31)
-    b       _8007fb4c
-_8007fae4:
-    lhz	r0, 4(r31)
-    rlwinm	r0, r0, 0x1a, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007fafc
-    li	r30, 0
-    b       _8007fb08
-_8007fafc:
-    mr	r3, r31
-    bl      fn_8007FE70
-    mr	r30, r3
-_8007fb08:
-    mr	r3, r31
-    li	r4, 0
-    bl      __flush_buffer
-    cmpwi	r3, 0
-    bc      12, 2, _8007fb34
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r31)
-    li	r29, -1
-    stw	r0, 0x28(r31)
-    b       _8007fb4c
-_8007fb34:
-    li	r29, 0
-    lbz	r0, 8(r31)
-    rlwimi	r0, r29, 5, 0x18, 0x1a
-    stb	r0, 8(r31)
-    stw	r30, 0x18(r31)
-    stw	r29, 0x28(r31)
-_8007fb4c:
-    lwz	r12, 0x44(r31)
-    lwz	r3, 0(r31)
-    mtctr	r12
-    bctrl
-    lhz	r0, 4(r31)
-    li	r4, 0
-    rlwimi	r0, r4, 6, 0x17, 0x19
-    mr	r30, r3
-    sth	r0, 4(r31)
-    stw	r4, 0(r31)
-    lbz	r0, 8(r31)
-    rlwinm.	r0, r0, 0x1c, 0x1f, 0x1f
-    bc      12, 2, _8007fb88
-    lwz	r3, 0x1c(r31)
-    bl      fn_8007A150
-_8007fb88:
-    cmpwi	r29, 0
-    li	r3, 0
-    bc      4, 2, _8007fb9c
-    cmpwi	r30, 0
-    bc      12, 2, _8007fba0
-_8007fb9c:
-    li	r3, 1
-_8007fba0:
-    neg	r0, r3
-    or	r0, r0, r3
-    srawi	r3, r0, 0x1f
-_8007fbac:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    File* file = (File*)file_p;
+    int cr;
+    int r;
+
+    if (file == 0) {
+        return -1;
+    }
+    if (file->open.mode == 0) {
+        return 0;
+    }
+
+    r = fn_8007F8D4(file);
+    cr = (*file->close_func)(file->handle);
+    file->open.mode = 0;
+    file->handle = 0;
+    if (file->buffer.alloc != 0) {
+        fn_8007A150(file->buffer_base);
+    }
+
+    return (r != 0 || cr != 0) ? -1 : 0;
 }
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/file_io.c (fseek wrapper shape)
