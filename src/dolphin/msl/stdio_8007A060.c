@@ -13,6 +13,13 @@ typedef struct FileBuffer {
     unsigned char pad : 4;    /* bits 0..3 */
 } FileBuffer;
 
+typedef struct CharDef {
+    short unk0;                 /* +0x00 */
+    short unk2;                 /* +0x02 */
+    unsigned char len;          /* +0x04 */
+    unsigned char chars[1];     /* +0x05 */
+} CharDef;
+
 typedef struct File {
     unsigned int handle;                     /* +0x00 */
     FileMode open;                           /* +0x04 */
@@ -98,16 +105,16 @@ extern unsigned char lbl_801A74D0[8];
 
 void exit(int status);
 void fn_8007A150(void* p);
-void* fn_8007A1C0(void* p);
+void* fn_8007A1C0(unsigned int size);
 void fn_8007A23C(void* pool, void* p);
-void* fn_8007A294(void* pool, void* p);
+void* fn_8007A294(void* pool, unsigned int size);
 void fn_8007A2E8(void* pool, void* p);
-asm void fn_8007A440(void);
+asm void* fn_8007A440(void* pool, unsigned int size);
 void fn_8007A710(void* pool, void* p);
 asm void fn_8007A9A4(void);
-asm void fn_8007AA7C(void);
+void* fn_8007AA7C(void** headp, unsigned int size);
 void* fn_8007AB58(void** headp, unsigned int size);
-asm void fn_8007AC0C(void);
+asm void* fn_8007AC0C(void* blk, unsigned int size);
 void fn_8007ADF0(void* blk, unsigned int size);
 int fn_8007B028(void);
 int fn_8007B0B4(void);
@@ -118,7 +125,7 @@ asm void __sformatter(void);
 asm void fn_8007C3B8(void);
 asm void MSL_PrintfFloat(void);
 asm void fn_8007C910(void);
-asm void fn_8007CE0C(void);
+int fn_8007CE0C(const CharDef* a, const CharDef* b);
 asm void MSLFormatDecimalRound(void);
 asm void fn_8007E69C(void);
 typedef struct div_t { int quot; int rem; } div_t;
@@ -193,7 +200,7 @@ void fn_8007A150(void* p)
 
 // provenance: original
 #pragma dont_inline on
-void* fn_8007A1C0(void* p)
+void* fn_8007A1C0(unsigned int size)
 {
     void* res;
     __begin_critical_region(1);
@@ -201,7 +208,7 @@ void* fn_8007A1C0(void* p)
         memset(lbl_801A3380, 0, 0x34);
         lbl_801A6DD8 = 1;
     }
-    res = fn_8007A294(lbl_801A3380, p);
+    res = fn_8007A294(lbl_801A3380, size);
     __end_critical_region(1);
     return res;
 }
@@ -232,34 +239,19 @@ void fn_8007A23C(void* pool, void* p)
     }
 }
 
-asm void* fn_8007A294(void* pool, void* p)
+// provenance: original
+void* fn_8007A294(void* pool, unsigned int size)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmplwi	r4, 0
-    stw	r0, 0x14(r1)
-    bc      4, 2, _8007a2b0
-    li	r3, 0
-    b       _8007a2d8
-_8007a2b0:
-    li	r0, -0x31
-    cmplw	r4, r0
-    bc      4, 1, _8007a2c4
-    li	r3, 0
-    b       _8007a2d8
-_8007a2c4:
-    cmplwi	r4, 0x44
-    bc      12, 1, _8007a2d4
-    bl      fn_8007A440
-    b       _8007a2d8
-_8007a2d4:
-    bl      fn_8007AA7C
-_8007a2d8:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    if (size == 0) {
+        return 0;
+    }
+    if (size > 0xFFFFFFCF) {
+        return 0;
+    }
+    if (size <= 0x44) {
+        return fn_8007A440(pool, size);
+    }
+    return fn_8007AA7C(pool, size);
 }
 
 asm void fn_8007A2E8(void* pool, void* p)
@@ -362,7 +354,7 @@ _8007a430:
     blr
 }
 
-asm void fn_8007A440(void)
+asm void* fn_8007A440(void* pool, unsigned int size)
 {
     nofralloc
     stwu	r1, -0x30(r1)
@@ -819,72 +811,46 @@ _8007aa5c:
     blr
 }
 
-asm void fn_8007AA7C(void)
+// provenance: original
+// goto done: forward jump to the single exit, required to match retail's CFG
+// (both success paths join at one shared `+ 8` adjust; MWCC will not
+// tail-merge two identical `return (char*)p + 8;` statements). CFG-shape only.
+void* fn_8007AA7C(void** headp, unsigned int size)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    addi	r0, r4, 0xf
-    stw	r31, 0x1c(r1)
-    stw	r30, 0x18(r1)
-    rlwinm	r30, r0, 0, 0, 0x1c
-    cmplwi	r30, 0x50
-    stw	r29, 0x14(r1)
-    mr	r29, r3
-    bc      4, 0, _8007aaac
-    li	r30, 0x50
-_8007aaac:
-    lwz	r3, 0(r29)
-    cmplwi	r3, 0
-    bc      12, 2, _8007aabc
-    b       _8007aac8
-_8007aabc:
-    mr	r3, r29
-    mr	r4, r30
-    bl      fn_8007AB58
-_8007aac8:
-    cmplwi	r3, 0
-    mr	r31, r3
-    bc      4, 2, _8007aadc
-    li	r3, 0
-    b       _8007ab3c
-_8007aadc:
-    lwz	r0, 8(r31)
-    cmplw	r30, r0
-    bc      12, 1, _8007ab04
-    mr	r3, r31
-    mr	r4, r30
-    bl      fn_8007AC0C
-    cmplwi	r3, 0
-    bc      12, 2, _8007ab04
-    stw	r31, 0(r29)
-    b       _8007ab38
-_8007ab04:
-    lwz	r31, 4(r31)
-    lwz	r0, 0(r29)
-    cmplw	r31, r0
-    bc      4, 2, _8007aadc
-    mr	r3, r29
-    mr	r4, r30
-    bl      fn_8007AB58
-    cmplwi	r3, 0
-    bc      4, 2, _8007ab30
-    li	r3, 0
-    b       _8007ab3c
-_8007ab30:
-    mr	r4, r30
-    bl      fn_8007AC0C
-_8007ab38:
-    addi	r3, r3, 8
-_8007ab3c:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    void* blk;
+    unsigned int n;
+    void* p;
+
+    n = (size + 0xF) & ~7;
+    if (n < 0x50) {
+        n = 0x50;
+    }
+
+    p = *headp != 0 ? *headp : fn_8007AB58(headp, n);
+    blk = p;
+    if (p == 0) {
+        return 0;
+    }
+
+    do {
+        if (n <= ((unsigned int*)blk)[2]) {
+            p = fn_8007AC0C(blk, n);
+            if (p != 0) {
+                *headp = blk;
+                goto done;
+            }
+        }
+        blk = ((void**)blk)[1];
+    } while (blk != *headp);
+
+    blk = fn_8007AB58(headp, n);
+    if (blk == 0) {
+        return 0;
+    }
+    p = fn_8007AC0C(blk, n);
+
+done:
+    return (char*)p + 8;
 }
 
 // provenance: original
@@ -918,7 +884,7 @@ void* fn_8007AB58(void** headp, unsigned int size)
     return blk;
 }
 
-asm void fn_8007AC0C(void)
+asm void* fn_8007AC0C(void* blk, unsigned int size)
 {
     nofralloc
     lwz	r0, 0xc(r3)
@@ -1364,7 +1330,7 @@ void* fn_8007B2A8(void)
         f = *(char**)(f + 0x4C);
     }
 
-    nf = (char*)fn_8007A1C0((void*)0x50);
+    nf = (char*)fn_8007A1C0(0x50);
     if (nf != 0) {
         memset(nf, 0, 0x50);
         *(unsigned char*)(nf + 0xC) = 1;
@@ -3367,89 +3333,52 @@ _8007cdfc:
     blr
 }
 
-asm void fn_8007CE0C(void)
+// provenance: original
+int fn_8007CE0C(const CharDef* a, const CharDef* b)
 {
-    nofralloc
-    lbz	r5, 5(r3)
-    cmplwi	r5, 0
-    bc      4, 2, _8007ce28
-    lbz	r0, 5(r4)
-    cntlzw	r0, r0
-    srwi	r3, r0, 5
-    blr
-_8007ce28:
-    lbz	r0, 5(r4)
-    cmplwi	r0, 0
-    bc      4, 2, _8007ce40
-    cntlzw	r0, r5
-    srwi	r3, r0, 5
-    blr
-_8007ce40:
-    lha	r5, 2(r3)
-    lha	r0, 2(r4)
-    cmpw	r5, r0
-    bc      4, 2, _8007cf10
-    lbz	r7, 4(r3)
-    lbz	r6, 4(r4)
-    mr	r9, r7
-    cmpw	r7, r6
-    bc      4, 1, _8007ce68
-    mr	r9, r6
-_8007ce68:
-    li	r8, 0
-    mtctr	r9
-    cmpwi	r9, 0
-    bc      4, 1, _8007ce9c
-_8007ce78:
-    addi	r0, r8, 5
-    lbzx	r5, r3, r0
-    lbzx	r0, r4, r0
-    cmplw	r5, r0
-    bc      12, 2, _8007ce94
-    li	r3, 0
-    blr
-_8007ce94:
-    addi	r8, r8, 1
-    bc      16, 0, _8007ce78
-_8007ce9c:
-    cmpw	r9, r7
-    bc      4, 2, _8007ced8
-    subf	r0, r8, r6
-    mtctr	r0
-    cmpw	r8, r6
-    bc      4, 0, _8007cf08
-_8007ceb4:
-    addi	r0, r8, 5
-    lbzx	r0, r4, r0
-    cmplwi	r0, 0
-    bc      12, 2, _8007cecc
-    li	r3, 0
-    blr
-_8007cecc:
-    addi	r8, r8, 1
-    bc      16, 0, _8007ceb4
-    b       _8007cf08
-_8007ced8:
-    subf	r0, r8, r7
-    mtctr	r0
-    cmpw	r8, r7
-    bc      4, 0, _8007cf08
-_8007cee8:
-    addi	r0, r8, 5
-    lbzx	r0, r3, r0
-    cmplwi	r0, 0
-    bc      12, 2, _8007cf00
-    li	r3, 0
-    blr
-_8007cf00:
-    addi	r8, r8, 1
-    bc      16, 0, _8007cee8
-_8007cf08:
-    li	r3, 1
-    blr
-_8007cf10:
-    li	r3, 0
-    blr
+    int lb;
+    int la;
+    int i;
+    int n;
+
+    if (a->chars[0] == 0) {
+        return b->chars[0] == 0;
+    }
+    if (b->chars[0] == 0) {
+        return a->chars[0] == 0;
+    }
+    if (a->unk2 == b->unk2) {
+        la = a->len;
+        lb = b->len;
+        n = la;
+        if (la > lb) {
+            n = lb;
+        }
+
+        for (i = 0; i < n; i++) {
+            if (a->chars[i] != b->chars[i]) {
+                return 0;
+            }
+        }
+
+        if (n == la) {
+            for (; i < lb; i++) {
+                if (b->chars[i] != 0) {
+                    return 0;
+                }
+            }
+        } else {
+            for (; i < la; i++) {
+                if (a->chars[i] != 0) {
+                    return 0;
+                }
+            }
+        }
+
+        return 1;
+    }
+
+    return 0;
 }
 
 asm void MSLFormatDecimalRound(void)
