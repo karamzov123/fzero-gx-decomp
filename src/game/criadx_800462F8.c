@@ -437,95 +437,55 @@ _80046984:
 }
 #pragma pop
 
-#pragma push
-asm void fn_800469A4(void)
+// provenance: original
+int fn_800469A4(const u8* data, int size, int* unk20, short* unk24, short* unk26, int* unk28, int* unk2C, int* unk30, int* unk34)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    li	r11, 0
-    cmpwi	r4, 0x14
-    stw	r31, 0xc(r1)
-    lwz	r31, 0x18(r1)
-    sth	r11, 0(r6)
-    bge     _800469c8
-    li	r11, -1
-    b       _800469f4
-_800469c8:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8000
-    beq     _800469dc
-    li	r11, -2
-    b       _800469f4
-_800469dc:
-    lha	r0, 2(r3)
-    cmpwi	r0, 0x10
-    bge     _800469f0
-    li	r11, -1
-    b       _800469f4
-_800469f0:
-    lbz	r12, 0x12(r3)
-_800469f4:
-    cmpwi	r11, 0
-    beq     _80046a04
-    mr	r3, r11
-    b       _80046ab4
-_80046a04:
-    cmplwi	r12, 4
-    li	r11, 0x30
-    bne     _80046a14
-    li	r11, 0x3c
-_80046a14:
-    cmpw	r4, r11
-    bge     _80046a24
-    li	r3, -1
-    b       _80046ab4
-_80046a24:
-    lhz	r0, 0(r3)
-    cmplwi	r0, 0x8000
-    beq     _80046a38
-    li	r3, -2
-    b       _80046ab4
-_80046a38:
-    lha	r4, 2(r3)
-    addi	r0, r11, -4
-    cmpw	r4, r0
-    bge     _80046a50
-    li	r3, -1
-    b       _80046ab4
-_80046a50:
-    cmplwi	r12, 4
-    li	r4, 0x14
-    bne     _80046a60
-    li	r4, 0x20
-_80046a60:
-    lhax	r0, r3, r4
-    add	r4, r4, r3
-    stw	r0, 0(r5)
-    lha	r0, 2(r4)
-    sth	r0, 0(r6)
-    lha	r0, 0(r6)
-    cmpwi	r0, 1
-    beq     _80046a88
-    li	r3, -2
-    b       _80046ab4
-_80046a88:
-    lha	r0, 6(r4)
-    li	r3, 0
-    sth	r0, 0(r7)
-    lwz	r0, 8(r4)
-    stw	r0, 0(r8)
-    lwz	r0, 0xc(r4)
-    stw	r0, 0(r9)
-    lwz	r0, 0x10(r4)
-    stw	r0, 0(r10)
-    lwz	r0, 0x14(r4)
-    stw	r0, 0(r31)
-_80046ab4:
-    lwz	r31, 0xc(r1)
-    addi	r1, r1, 0x10
-    blr	
+    int ret;
+    u32 val;
+    int offset;
+
+    *unk24 = ret = 0;
+    if (size < 0x14) {
+        ret = -1;
+    } else if (*(u16*)(data + 0) != 0x8000) {
+        ret = -2;
+    } else if (*(s16*)(data + 2) < 0x10) {
+        ret = -1;
+    } else {
+        val = data[0x12];
+    }
+
+    if (ret != 0) {
+        return ret;
+    }
+
+    ret = (val == 4) ? 0x3c : 0x30;
+    if (size < ret) {
+        return -1;
+    }
+    if (*(u16*)(data + 0) != 0x8000) {
+        return -2;
+    }
+    if (*(s16*)(data + 2) < ret - 4) {
+        return -1;
+    }
+
+    offset = (val == 4) ? 0x20 : 0x14;
+    *unk20 = *(short*)(data + offset);
+    offset += (int)data;
+    data = (const u8*)offset;
+    *unk24 = *(short*)(data + 2);
+    if (*unk24 != 1) {
+        return -2;
+    }
+
+    *unk26 = *(short*)(data + 6);
+    *unk28 = *(int*)(data + 8);
+    *unk2C = *(int*)(data + 0xc);
+    *unk30 = *(int*)(data + 0x10);
+    *unk34 = *(int*)(data + 0x14);
+    return 0;
 }
-#pragma pop
 
 // provenance: original
 int fn_80046AC0(const u8* data, int size, u16* out1, u16* out2)
