@@ -195,6 +195,7 @@ void __GXSendFlushPrim(void)
     gx->bpSent = 1;
 }
 
+#pragma push
 asm void GXSetLineWidth(register s32 width, register s32 offset)
 {
     nofralloc
@@ -217,7 +218,9 @@ asm void GXSetLineWidth(register s32 width, register s32 offset)
     sth	r0, 2(r7)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void GXSetPointSize(register s32 size, register s32 offset)
 {
     nofralloc
@@ -240,7 +243,9 @@ asm void GXSetPointSize(register s32 size, register s32 offset)
     sth	r0, 2(r7)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetTexCoordGen_Cache(register s32 tc, register s32 a, register s32 b)
 {
     nofralloc
@@ -268,34 +273,26 @@ asm void __GXSetTexCoordGen_Cache(register s32 tc, register s32 a, register s32 
     sth	r0, 2(r6)
     blr	
 }
+#pragma pop
 
-asm void GXSetCullMode(register s32 mode)
+// provenance: dolsdk2001:src/gx/GXGeometry.c:108 (GXSetCullMode, adapted)
+void GXSetCullMode(register s32 mode)
 {
-    nofralloc
-    cmpwi	r3, 2
-    beq     _800348b0
-    bge     _800348b4
-    cmpwi	r3, 1
-    bge     _800348a8
-    b       _800348b4
-_800348a8:
-    li	r3, 2
-    b       _800348b4
-_800348b0:
-    li	r3, 1
-_800348b4:
-    lwz	r4, gx
-    slwi	r0, r3, 0xe
-    lwz	r3, 0x204(r4)
-    rlwinm	r3, r3, 0, 0x12, 0xf
-    or	r0, r3, r0
-    stw	r0, 0x204(r4)
-    lwz	r0, 0x4f4(r4)
-    ori	r0, r0, 4
-    stw	r0, 0x4f4(r4)
-    blr	
+    s32 hwMode = mode;
+
+    switch (mode) {
+    case 1: hwMode = 2; break;
+    case 2: hwMode = 1; break;
+    }
+    {
+        u32 m = gx->genMode;
+        m = (m & ~0x0000C000) | ((u32)hwMode << 14);
+        gx->genMode = m;
+    }
+    gx->dirtyState |= 4;
 }
 
+#pragma push
 asm void __GXSetZMode_Cache(register s32 arg)
 {
     nofralloc
@@ -315,7 +312,9 @@ asm void __GXSetZMode_Cache(register s32 arg)
     stw	r0, -0x8000(r3)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetGenMode(void)
 {
     nofralloc
@@ -329,8 +328,10 @@ asm void __GXSetGenMode(void)
     sth	r0, 2(r4)
     blr	
 }
+#pragma pop
 
 
+#pragma push
 asm void GXAdjustForOverscan(register void* src, register void* dst, register int a, register int b)
 {
     nofralloc
@@ -410,7 +411,9 @@ _80034a28:
     sth	r0, 0xc(r4)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetScissor_LT(register int xl, register int yt, register int xr, register int yb)
 {
     nofralloc
@@ -451,7 +454,9 @@ asm void __GXSetScissor_LT(register int xl, register int yt, register int xr, re
     stw	r0, 0x1e4(r9)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetScissor_RB(register int xl, register int yt, register int xr, register int yb)
 {
     nofralloc
@@ -492,7 +497,9 @@ asm void __GXSetScissor_RB(register int xl, register int yt, register int xr, re
     stw	r0, 0x1f4(r9)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetScissorBoxOffset(register int arg)
 {
     nofralloc
@@ -512,7 +519,9 @@ asm void __GXSetScissorBoxOffset(register int arg)
     stw	r0, 0(r5)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXInitTexObjHW(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
@@ -606,7 +615,9 @@ _80034c44:
     mtlr	r0
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetZMode(register int arg)
 {
     nofralloc
@@ -621,7 +632,9 @@ asm void __GXSetZMode(register int arg)
     stw	r0, 0(r4)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetBlendMode(register int a, register int b, register int c)
 {
     nofralloc
@@ -652,7 +665,9 @@ asm void __GXSetBlendMode(register int a, register int b, register int c)
     stw	r0, 0x1fc(r6)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void GXSetDispCopyYScale(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
@@ -711,7 +726,9 @@ _80034e54:
     mtlr	r0
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetBlendModePair(register int a, register int b, register int c)
 {
     nofralloc
@@ -742,7 +759,9 @@ asm void __GXSetBlendModePair(register int a, register int b, register int c)
     sth	r0, 2(r4)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void GXSetCopyClear(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
@@ -889,7 +908,9 @@ _800350c4:
     addi	r1, r1, 0x50
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetGenMode2(register int idx)
 {
     nofralloc
@@ -901,8 +922,10 @@ asm void __GXSetGenMode2(register int idx)
     stw	r0, 0(r4)
     blr	
 }
+#pragma pop
 
 
+#pragma push
 asm void __GXSetDispCopy(register int a, register int b)
 {
     nofralloc
@@ -999,7 +1022,9 @@ _8003525c:
     sth	r0, 2(r3)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetTexCopy(register void* p, register int id, register int v)
 {
     nofralloc
@@ -1106,6 +1131,7 @@ _800353d8:
     sth	r0, 2(r3)
     blr	
 }
+#pragma pop
 
 // provenance: original  (m2c seed; BP register flush, no gx-field store)
 void __GXFlushTextureCache(void)
@@ -1117,6 +1143,7 @@ void __GXFlushTextureCache(void)
     gx->bpSent = 0;
 }
 
+#pragma push
 asm void GXInitLightSpot(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
@@ -1225,8 +1252,10 @@ _8003558c:
     mtlr	r0
     blr	
 }
+#pragma pop
 
 
+#pragma push
 asm void GXInitLightDistAttn(register void* p1, register void* p2, register int a, register int b)
 {
     nofralloc
@@ -1292,6 +1321,7 @@ _80035670:
     stfs	f4, 0x24(r3)
     blr	
 }
+#pragma pop
 
 void GXInitLightAttnCoefs(register void* p, register float a, register float b, register float c)
 {
@@ -1315,6 +1345,7 @@ void __GXInitSpecularDirZ(register void* dst, register void* src)
     *(u32*)((char*)dst + 0xc) = *(u32*)src;
 }
 
+#pragma push
 asm void __GXSetChanColor(register void* p)
 {
     nofralloc
@@ -1350,7 +1381,9 @@ asm void __GXSetChanColor(register void* p)
     sth	r0, 2(r3)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void GXSetChanAmbColor(register void* p1, register int a, register int b)
 {
     nofralloc
@@ -1424,7 +1457,9 @@ _800357f4:
     stw	r7, 0xa8(r3)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void GXSetChanMatColor(register void* p1, register int a, register int b)
 {
     nofralloc
@@ -1498,7 +1533,9 @@ _800358e8:
     stw	r7, 0xb0(r3)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetChanAmbColor(register void* p)
 {
     nofralloc
@@ -1520,7 +1557,9 @@ asm void __GXSetChanAmbColor(register void* p)
     stw	r0, 0x4f4(r6)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXSetChanCtrl(register void* p1, register int a, register int b)
 {
     nofralloc
@@ -1579,7 +1618,9 @@ _80035a1c:
     sth	r0, 2(r3)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXGetTexBufferSize(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
@@ -1684,7 +1725,9 @@ _80035b78:
     addi	r1, r1, 0x28
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __GXGetTexTileSize(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
@@ -1746,7 +1789,9 @@ _80035c48:
     stw	r0, 0(r8)
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void GXInitTexObj(register void* p1, register int a, register int b)
 {
     nofralloc
@@ -1916,7 +1961,9 @@ _80035e6c:
     mtlr	r0
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80035EC4(register void* p1, register void* p2, register int id, register void* p4)
 {
     nofralloc
@@ -2032,6 +2079,7 @@ _8003601c:
     addi	r1, r1, 0x38
     blr	
 }
+#pragma pop
 
 // provenance: dolsdk2001:src/gx/GXTexture.c:308 GXInitTexObjData
 void GXInitTexObjData(void *obj, void *image_ptr)
