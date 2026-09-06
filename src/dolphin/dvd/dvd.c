@@ -2,6 +2,8 @@
 asm transcription (scaffolding).
  * Range covered by this unit: see per-function headers. */
 
+#define OSPhysicalToCached(paddr) ((void*)((unsigned int)(paddr) + 0x80000000))
+
 typedef int BOOL;
 typedef unsigned int u32;
 
@@ -2885,10 +2887,12 @@ nofralloc
 }
 
 /* DVDGetCurrentDiskID @0x80019C48 | size: 0x8 */
-asm void DVDGetCurrentDiskID(void) {
-nofralloc
-	lis r3, 0x8000
-	blr
+// provenance: dolsdk2001:src/dvd/dvd.c:1439
+// adapted: the SDK spells the cached-region base with the OSPhysicalToCached
+// MACRO, so retail materialises it inline rather than calling anything.
+void* DVDGetCurrentDiskID(void)
+{
+    return (void*)OSPhysicalToCached(0);
 }
 
 /* DVDCheckCancel @0x80019C50 | size: 0xF8 */
