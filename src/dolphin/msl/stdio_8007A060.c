@@ -49,7 +49,7 @@ typedef struct File {
     unsigned char byte0A;                    /* +0x0A */
     unsigned char byte0B;                    /* +0x0B */
     unsigned char dyn_alloc;                 /* +0x0C: !=0 when dynamically allocated */
-    unsigned char small_buf[0x0B];           /* +0x0D..+0x17 */
+    char small_buf[0x0B];                    /* +0x0D..+0x17 */
     unsigned int position;                   /* +0x18 */
     char* buffer_base;                       /* +0x1C */
     unsigned int buffer_size;                /* +0x20 */
@@ -87,14 +87,14 @@ extern void fn_80079EF0(void);
 extern void* fn_80079FA8(unsigned int size);
 extern void __memrchr(void);
 extern void __stdio_atexit(void);
-extern void fn_8008068C(void);
+extern void fn_8008068C(File* file);
 extern void fwide(void);
 extern void __fp_compare_greater_equal(void);
 extern void frexp(void);
 extern void __fpclassifyd(void);
 extern void modf(void);
 extern void __msl_fp_helper(void);
-extern void TRK_OpenFile_Game(void);
+extern int TRK_OpenFile_Game(const char* name, const FileMode* mode, File* file);
 extern ExitFunc _dtors[]; // .dtors section anchor (0x8008FF20); symbol ref required so linker sees exit() calls destructors
 extern ExitFunc __atexit_funcs[];
 extern unsigned char __files[320];
@@ -139,7 +139,7 @@ void fn_8007ADF0(void* blk, unsigned int size);
 int fn_8007B028(void);
 int fn_8007B0B4(void);
 void __close_all(void);
-asm void __init_file(void);
+void __init_file(File* file, const FileMode* mode, char* buf, unsigned int size);
 void* fn_8007B2A8(void);
 asm void __sformatter(void);
 asm void fn_8007C3B8(void);
@@ -152,7 +152,7 @@ typedef struct div_t { int quot; int rem; } div_t;
 div_t fn_8007E914(int numer, int denom);
 void* fn_8007E96C(const void* key, const void* base, unsigned int n,
                   unsigned int size, int (*cmp)(const void*, const void*));
-asm void fn_8007EA58(void);
+int fn_8007EA58(File* file, char* buf, int mode, unsigned int size);
 extern int __flush_buffer(void*, unsigned int*);
 int fn_8007EC80(void* file, unsigned int* outp, int flag);
 void __end_critical_region(int region);
@@ -162,8 +162,8 @@ unsigned long __fwrite(const void* buf, unsigned long size, unsigned long count,
 unsigned long fwrite(const void* buf, unsigned long size, unsigned long count, void* file);
 int fn_8007F13C(void* a, void* b, unsigned long n, void* file);
 int fn_8007F48C(void* a, void* b, unsigned long n, void* file);
-asm void fn_8007F508(void);
-asm void fn_8007F684(void);
+int fn_8007F508(const char* mode, FileMode* m);
+File* fn_8007F684(const char* name, const char* mode);
 int fn_8007F8D4(void* file);
 int fn_8007FA0C(void* file);
 int fseek(void* file, long offset, int whence);
@@ -1225,7 +1225,7 @@ void __close_all(void)
     __end_critical_region(2);
 }
 
-asm void __init_file(void)
+asm void __init_file(File* file, const FileMode* mode, char* buf, unsigned int size)
 {
     nofralloc
     stwu	r1, -0x10(r1)
@@ -1289,6 +1289,7 @@ _8007b28c:
 }
 
 // provenance: original
+#pragma dont_inline on
 void* fn_8007B2A8(void)
 {
     char* nf;
@@ -1313,6 +1314,7 @@ void* fn_8007B2A8(void)
     }
     return 0;
 }
+#pragma dont_inline reset
 
 asm void __sformatter(void)
 {
@@ -5323,108 +5325,57 @@ void* fn_8007E96C(const void* key, const void* base, unsigned int n,
     return 0;
 }
 
-asm void fn_8007EA58(void)
+// provenance: original
+int fn_8007EA58(File* file, char* buf, int mode, unsigned int size)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stmw	r27, 0xc(r1)
-    or.	r27, r5, r5
-    mr	r29, r3
-    mr	r30, r4
-    mr	r31, r6
-    lhz	r0, 4(r3)
-    rlwinm	r28, r0, 0x1a, 0x1d, 0x1f
-    bc      4, 2, _8007ea88
-    bl      fn_8007F8D4
-_8007ea88:
-    lbz	r0, 8(r29)
-    rlwinm.	r0, r0, 0x1b, 0x1d, 0x1f
-    bc      4, 2, _8007ea9c
-    cmpwi	r28, 0
-    bc      4, 2, _8007eaa4
-_8007ea9c:
-    li	r3, -1
-    b       _8007eba8
-_8007eaa4:
-    cmpwi	r27, 0
-    bc      12, 2, _8007eac4
-    cmpwi	r27, 1
-    bc      12, 2, _8007eac4
-    cmpwi	r27, 2
-    bc      12, 2, _8007eac4
-    li	r3, -1
-    b       _8007eba8
-_8007eac4:
-    lwz	r3, 0x1c(r29)
-    cmplwi	r3, 0
-    bc      12, 2, _8007eae0
-    lbz	r0, 8(r29)
-    rlwinm.	r0, r0, 0x1c, 0x1f, 0x1f
-    bc      12, 2, _8007eae0
-    bl      fn_8007A150
-_8007eae0:
-    li	r3, 2
-    bl      __begin_critical_region
-    lbz	r0, 4(r29)
-    rlwimi	r0, r27, 1, 0x1d, 0x1e
-    li	r5, 0
-    addi	r3, r29, 0xd
-    stb	r0, 4(r29)
-    li	r0, 1
-    cmpwi	r27, 0
-    lbz	r4, 8(r29)
-    rlwimi	r4, r5, 4, 0x1b, 0x1b
-    stb	r4, 8(r29)
-    stw	r3, 0x1c(r29)
-    stw	r3, 0x24(r29)
-    stw	r0, 0x20(r29)
-    stw	r5, 0x28(r29)
-    stw	r5, 0x2c(r29)
-    bc      12, 2, _8007eb30
-    cmplwi	r31, 1
-    bc      4, 0, _8007eb4c
-_8007eb30:
-    lwz	r4, 0x24(r29)
-    li	r0, 0
-    li	r3, 2
-    stb	r0, 0(r4)
-    bl      __end_critical_region
-    li	r3, 0
-    b       _8007eba8
-_8007eb4c:
-    cmplwi	r30, 0
-    bc      4, 2, _8007eb84
-    mr	r3, r31
-    bl      fn_8007A1C0
-    or.	r30, r3, r3
-    bc      4, 2, _8007eb74
-    li	r3, 2
-    bl      __end_critical_region
-    li	r3, -1
-    b       _8007eba8
-_8007eb74:
-    lbz	r0, 8(r29)
-    li	r3, 1
-    rlwimi	r0, r3, 4, 0x1b, 0x1b
-    stb	r0, 8(r29)
-_8007eb84:
-    stw	r30, 0x1c(r29)
-    li	r0, 0
-    li	r3, 2
-    lwz	r4, 0x1c(r29)
-    stw	r4, 0x24(r29)
-    stw	r31, 0x20(r29)
-    stw	r0, 0x2c(r29)
-    bl      __end_critical_region
-    li	r3, 0
-_8007eba8:
-    lmw	r27, 0xc(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    int kind;
+
+    kind = file->open.mode;
+    if (mode == 0) {
+        fn_8007F8D4(file);
+    }
+
+    if (file->buffer.kind != 0 || kind == 0) {
+        return -1;
+    }
+    if (mode != 0 && mode != 1 && mode != 2) {
+        return -1;
+    }
+
+    if (file->buffer_base != 0 && file->buffer.alloc != 0) {
+        fn_8007A150(file->buffer_base);
+    }
+
+    __begin_critical_region(2);
+
+    file->open.buffer_mode = mode;
+    file->buffer.alloc = 0;
+    file->buffer_ptr = file->buffer_base = file->small_buf;
+    file->buffer_size = 1;
+    file->buffer_length = 0;
+    file->buffer_mask = 0;
+
+    if (mode == 0 || size < 1) {
+        *file->buffer_ptr = 0;
+        __end_critical_region(2);
+        return 0;
+    }
+
+    if (buf == 0) {
+        buf = (char*)fn_8007A1C0(size);
+        if (buf == 0) {
+            __end_critical_region(2);
+            return -1;
+        }
+        file->buffer.alloc = 1;
+    }
+
+    file->buffer_base = buf;
+    file->buffer_ptr = file->buffer_base;
+    file->buffer_size = size;
+    file->buffer_mask = 0;
+    __end_critical_region(2);
+    return 0;
 }
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/buffer_io.c:27
@@ -6011,7 +5962,7 @@ int fn_8007F48C(void* a, void* b, unsigned long n, void* file)
     return r;
 }
 
-asm void fn_8007F508(void)
+asm int fn_8007F508(const char* mode, FileMode* m)
 {
     nofralloc
     lhz	r5, 0(r4)
@@ -6129,171 +6080,82 @@ _8007f670:
     blr
 }
 
-asm void fn_8007F684(void)
+// provenance: original
+File* fn_8007F684(const char* name, const char* mode)
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    stw	r0, 0x34(r1)
-    stw	r31, 0x2c(r1)
-    stw	r30, 0x28(r1)
-    mr	r30, r4
-    stw	r29, 0x24(r1)
-    mr	r29, r3
-    li	r3, 2
-    stw	r28, 0x20(r1)
-    bl      __begin_critical_region
-    bl      fn_8007B2A8
-    mr	r31, r3
-    bl      __stdio_atexit
-    cmplwi	r31, 0
-    bc      4, 2, _8007f6cc
-    li	r31, 0
-    b       _8007f8a8
-_8007f6cc:
-    bc      12, 2, _8007f800
-    lhz	r0, 4(r31)
-    rlwinm.	r3, r0, 0x1a, 0x1d, 0x1f
-    bc      12, 2, _8007f800
-    cmplwi	r31, 0
-    bc      4, 2, _8007f6ec
-    bl      fn_8007B0B4
-    b       _8007f7c8
-_8007f6ec:
-    lbz	r0, 0xa(r31)
-    cmplwi	r0, 0
-    bc      4, 2, _8007f7c8
-    cmplwi	r3, 0
-    bc      12, 2, _8007f7c8
-    lbz	r0, 4(r31)
-    rlwinm	r0, r0, 0x1d, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007f7c8
-    lbz	r3, 8(r31)
-    rlwinm	r0, r3, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 3
-    bc      12, 0, _8007f72c
-    li	r0, 2
-    rlwimi	r3, r0, 5, 0x18, 0x1a
-    stb	r3, 8(r31)
-_8007f72c:
-    lbz	r0, 8(r31)
-    rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 2
-    bc      4, 2, _8007f744
-    li	r0, 0
-    stw	r0, 0x28(r31)
-_8007f744:
-    lbz	r3, 8(r31)
-    rlwinm	r0, r3, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007f764
-    li	r0, 0
-    rlwimi	r3, r0, 5, 0x18, 0x1a
-    stb	r3, 8(r31)
-    b       _8007f7c8
-_8007f764:
-    lhz	r0, 4(r31)
-    rlwinm	r0, r0, 0x1a, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007f77c
-    li	r28, 0
-    b       _8007f788
-_8007f77c:
-    mr	r3, r31
-    bl      fn_8007FE70
-    mr	r28, r3
-_8007f788:
-    mr	r3, r31
-    li	r4, 0
-    bl      __flush_buffer
-    cmpwi	r3, 0
-    bc      12, 2, _8007f7b0
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r31)
-    stw	r0, 0x28(r31)
-    b       _8007f7c8
-_8007f7b0:
-    lbz	r0, 8(r31)
-    li	r3, 0
-    rlwimi	r0, r3, 5, 0x18, 0x1a
-    stb	r0, 8(r31)
-    stw	r28, 0x18(r31)
-    stw	r3, 0x28(r31)
-_8007f7c8:
-    lwz	r12, 0x44(r31)
-    lwz	r3, 0(r31)
-    mtctr	r12
-    bctrl
-    lhz	r0, 4(r31)
-    li	r3, 0
-    rlwimi	r0, r3, 6, 0x17, 0x19
-    sth	r0, 4(r31)
-    stw	r3, 0(r31)
-    lbz	r0, 8(r31)
-    rlwinm.	r0, r0, 0x1c, 0x1f, 0x1f
-    bc      12, 2, _8007f800
-    lwz	r3, 0x1c(r31)
-    bl      fn_8007A150
-_8007f800:
-    mr	r3, r31
-    bl      fn_8008068C
-    mr	r3, r30
-    addi	r4, r1, 8
-    bl      fn_8007F508
-    cmpwi	r3, 0
-    bc      4, 2, _8007f824
-    li	r31, 0
-    b       _8007f8a8
-_8007f824:
-    lwz	r0, 8(r1)
-    mr	r3, r31
-    addi	r4, r1, 0xc
-    li	r5, 0
-    stw	r0, 0xc(r1)
-    li	r6, 0x400
-    bl      __init_file
-    lwz	r0, 8(r1)
-    mr	r3, r29
-    mr	r5, r31
-    addi	r4, r1, 0x10
-    stw	r0, 0x10(r1)
-    bl      TRK_OpenFile_Game
-    cmpwi	r3, 0
-    bc      12, 2, _8007f88c
-    lhz	r0, 4(r31)
-    li	r3, 0
-    rlwimi	r0, r3, 6, 0x17, 0x19
-    sth	r0, 4(r31)
-    lbz	r0, 8(r31)
-    rlwinm.	r0, r0, 0x1c, 0x1f, 0x1f
-    bc      12, 2, _8007f884
-    lwz	r3, 0x1c(r31)
-    bl      fn_8007A150
-_8007f884:
-    li	r31, 0
-    b       _8007f8a8
-_8007f88c:
-    lbz	r0, 8(r1)
-    rlwinm.	r0, r0, 0x1d, 0x1d, 0x1d
-    bc      12, 2, _8007f8a8
-    mr	r3, r31
-    li	r4, 0
-    li	r5, 2
-    bl      fseek
-_8007f8a8:
-    li	r3, 2
-    bl      __end_critical_region
-    lwz	r0, 0x34(r1)
-    mr	r3, r31
-    lwz	r31, 0x2c(r1)
-    lwz	r30, 0x28(r1)
-    lwz	r29, 0x24(r1)
-    lwz	r28, 0x20(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr
+    FileMode m3;
+    FileMode m2;
+    FileMode m;
+    File* file;
+    long pos;
+
+    __begin_critical_region(2);
+    file = fn_8007B2A8();
+    __stdio_atexit();
+
+    if (file == 0) {
+        file = 0;
+    } else {
+        if (file != 0 && file->open.mode != 0) {
+            if (file == 0) {
+                fn_8007B0B4();
+            } else if (file->byte0A == 0 && file->open.mode != 0 &&
+                       file->open.io_mode != 1) {
+                if (file->buffer.kind >= 3) {
+                    file->buffer.kind = 2;
+                }
+                if (file->buffer.kind == 2) {
+                    file->buffer_length = 0;
+                }
+                if (file->buffer.kind != 1) {
+                    file->buffer.kind = 0;
+                } else {
+                    if (file->open.mode != 1) {
+                        pos = 0;
+                    } else {
+                        pos = fn_8007FE70(file);
+                    }
+                    if (__flush_buffer(file, 0) != 0) {
+                        file->byte0A = 1;
+                        file->buffer_length = 0;
+                    } else {
+                        file->buffer.kind = 0;
+                        file->position = pos;
+                        file->buffer_length = 0;
+                    }
+                }
+            }
+
+            (*file->close_func)(file->handle);
+            file->open.mode = 0;
+            file->handle = 0;
+            if (file->buffer.alloc != 0) {
+                fn_8007A150(file->buffer_base);
+            }
+        }
+
+        fn_8008068C(file);
+
+        if (fn_8007F508(mode, &m) == 0) {
+            file = 0;
+        } else {
+            m2 = m;
+            __init_file(file, &m2, 0, 0x400);
+            m3 = m;
+            if (TRK_OpenFile_Game(name, &m3, file) != 0) {
+                file->open.mode = 0;
+                if (file->buffer.alloc != 0) {
+                    fn_8007A150(file->buffer_base);
+                }
+                file = 0;
+            } else if ((m.io_mode & 4) != 0) {
+                fseek(file, 0, 2);
+            }
+        }
+    }
+
+    __end_critical_region(2);
+    return file;
 }
 
 // provenance: original
