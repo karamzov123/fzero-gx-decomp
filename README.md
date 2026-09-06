@@ -28,6 +28,7 @@ Progress is published through the GitHub Actions `GFZE01_report` artifact and tr
 - **Diagnostic objdiff** — whole-binary parity, including hand-written assembly; useful for build health, but not the decompilation headline.
 
 See the [NATC operations contract](docs/NATC-OPERATIONS.md) for canonical state paths, admission, context, probe, and eligibility rules.
+See the [NATC codegen rules](docs/NATC-CODEGEN-RULES.md) for the catalog of proven MWCC source-shape levers — consult it whenever a diff is structurally right but instruction-wrong.
 See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/splits.txt), and [split documentation](docs/splits.md) for the project inventory.
 
 ![F-Zero GX GFZE01 codebase map](assets/codebase-map.svg)
