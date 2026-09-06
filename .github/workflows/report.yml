@@ -44,7 +44,11 @@ jobs:
             --dtk "$private/build/tools/dtk" \
             --objdiff "$private/build/tools/objdiff-cli" \
             --sjiswrap "$private/build/tools/sjiswrap.exe" configure
-          ninja build/GFZE01/main.dol
+          # all_source, not just the DOL: an Object(NonMatching, ...) unit is
+          # never linked, so the DOL target does not build its object and the
+          # report would score it as unbuilt. all_source compiles every unit
+          # that has a source file, which is what objdiff diffs against.
+          ninja all_source build/GFZE01/main.dol
 
       - name: Verify retail DOL SHA-1
         shell: bash
