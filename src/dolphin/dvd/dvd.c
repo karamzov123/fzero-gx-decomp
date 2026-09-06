@@ -2617,12 +2617,12 @@ lbl_80019878:
 }
 
 /* DVDSetAutoInvalidation @0x8001989C | size: 0x10 */
-asm void DVDSetAutoInvalidation(void) {
-nofralloc
-	lwz r0, autoInvalidation
-	stw r3, autoInvalidation
-	mr r3, r0
-	blr
+/* DVDSetAutoInvalidation @0x8001989C | size: 0x10 */
+/* provenance: dolsdk2001:src/dvd/dvd.c:1222 */
+int DVDSetAutoInvalidation(int autoInval) {
+    int prev = *(volatile int *)autoInvalidation;
+    *(volatile int *)autoInvalidation = autoInval;
+    return prev;
 }
 
 /* DVDPause @0x800198AC | size: 0x50 */
