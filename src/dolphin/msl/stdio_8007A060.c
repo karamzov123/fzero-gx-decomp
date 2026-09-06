@@ -77,7 +77,7 @@ extern unsigned char lbl_801A664C[4];
 extern unsigned char lbl_801A6658[8];
 
 extern void* memset();
-extern void memcpy(void);
+extern void memcpy(void* dst, const void* src, unsigned long n);
 extern void _ExitProcess(void);
 extern void __destroy_global_chain(void);
 extern void __div2u(void);
@@ -85,10 +85,10 @@ extern void __mod2u(void);
 extern void __cvt_dbl_usll(void);
 extern void fn_80079EF0(void);
 extern void* fn_80079FA8(unsigned int size);
-extern void __memrchr(void);
+extern void* __memrchr(const void* s, int c, unsigned long n);
 extern void __stdio_atexit(void);
 extern void fn_8008068C(File* file);
-extern void fwide(void);
+extern int fwide(File* file, int mode);
 extern void __fp_compare_greater_equal(void);
 extern void frexp(void);
 extern void __fpclassifyd(void);
@@ -158,7 +158,7 @@ int fn_8007EC80(void* file, unsigned int* outp, int flag);
 void __end_critical_region(int region);
 void __begin_critical_region(int region);
 void __kill_critical_regions(void);
-unsigned long __fwrite(const void* buf, unsigned long size, unsigned long count, void* file);
+unsigned long __fwrite(const void* buf, unsigned long size, unsigned long count, File* file);
 unsigned long fwrite(const void* buf, unsigned long size, unsigned long count, void* file);
 int fn_8007F13C(void* a, void* b, unsigned long n, void* file);
 int fn_8007F48C(void* a, void* b, unsigned long n, void* file);
@@ -5456,12 +5456,14 @@ int fn_8007EC80(void* file, unsigned int* outp, int flag)
 
 // provenance: original
 // harvested 2026-08-26 from hard2's logged 100% attempt; spliced into the current head
+#pragma dont_inline on
 void __prep_buffer(void* p) {
     ((int*)p)[9]  = ((int*)p)[7];            /* +0x24 = +0x1c */
     ((int*)p)[10] = ((int*)p)[8];            /* +0x28 = +0x20 */
     ((int*)p)[10] = ((int*)p)[10] - (((int*)p)[6] & ((int*)p)[11]);
     ((int*)p)[13] = ((int*)p)[6];            /* +0x34 = +0x18 */
 }
+#pragma dont_inline reset
 
 #pragma dont_inline on
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/PPC_EABI/critical_regions.gamecube.c:10
@@ -5478,227 +5480,122 @@ void __kill_critical_regions(void) {}
 // harvested 2026-08-26 from hard2's logged 100% attempt; spliced into the current head
 int MSL_CharAttrLookup(int c) { if (c == -1) return -1; return lbl_8015B200[(unsigned char)c]; }
 
-asm unsigned long __fwrite(const void* buf, unsigned long size,
-                          unsigned long count, void* file)
+// provenance: original
+unsigned long __fwrite(const void* buf, unsigned long size, unsigned long count,
+                       File* file)
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    stw	r0, 0x34(r1)
-    stmw	r25, 0x14(r1)
-    mr	r25, r4
-    mr	r26, r6
-    mr	r27, r3
-    mr	r28, r5
-    li	r4, 0
-    mr	r3, r26
-    bl      fwide
-    cmpwi	r3, 0
-    bc      4, 2, _8007edf4
-    mr	r3, r26
-    li	r4, -1
-    bl      fwide
-_8007edf4:
-    mullw.	r29, r25, r28
-    bc      12, 2, _8007ee14
-    lbz	r0, 0xa(r26)
-    cmplwi	r0, 0
-    bc      4, 2, _8007ee14
-    lhz	r0, 4(r26)
-    rlwinm.	r0, r0, 0x1a, 0x1d, 0x1f
-    bc      4, 2, _8007ee1c
-_8007ee14:
-    li	r3, 0
-    b       _8007f0ac
-_8007ee1c:
-    cmplwi	r0, 2
-    bc      4, 2, _8007ee28
-    bl      __stdio_atexit
-_8007ee28:
-    lbz	r0, 5(r26)
-    li	r31, 1
-    li	r3, 0
-    rlwinm.	r0, r0, 0x1d, 0x1f, 0x1f
-    bc      12, 2, _8007ee4c
-    lbz	r0, 4(r26)
-    rlwinm	r0, r0, 0x1f, 0x1e, 0x1f
-    cmplwi	r0, 2
-    bc      4, 2, _8007ee50
-_8007ee4c:
-    li	r3, 1
-_8007ee50:
-    cmpwi	r3, 0
-    bc      4, 2, _8007ee6c
-    lbz	r0, 4(r26)
-    rlwinm	r0, r0, 0x1f, 0x1e, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007ee6c
-    li	r31, 0
-_8007ee6c:
-    lbz	r0, 8(r26)
-    rlwinm.	r0, r0, 0x1b, 0x1d, 0x1f
-    bc      4, 2, _8007eec8
-    lbz	r3, 4(r26)
-    rlwinm.	r0, r3, 0x1d, 0x1e, 0x1e
-    rlwinm	r3, r3, 0x1d, 0x1d, 0x1f
-    bc      12, 2, _8007eec8
-    rlwinm.	r0, r3, 0, 0x1d, 0x1d
-    bc      12, 2, _8007eeb0
-    mr	r3, r26
-    li	r4, 0
-    li	r5, 2
-    bl      fseek
-    cmpwi	r3, 0
-    bc      12, 2, _8007eeb0
-    li	r3, 0
-    b       _8007f0ac
-_8007eeb0:
-    lbz	r0, 8(r26)
-    li	r3, 1
-    rlwimi	r0, r3, 5, 0x18, 0x1a
-    mr	r3, r26
-    stb	r0, 8(r26)
-    bl      __prep_buffer
-_8007eec8:
-    lbz	r0, 8(r26)
-    rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 1
-    bc      12, 2, _8007eef0
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r26)
-    li	r3, 0
-    stw	r0, 0x28(r26)
-    b       _8007f0ac
-_8007eef0:
-    cmplwi	r29, 0
-    mr	r30, r27
-    li	r28, 0
-    bc      12, 2, _8007f01c
-    lwz	r4, 0x24(r26)
-    lwz	r3, 0x1c(r26)
-    cmplw	r4, r3
-    bc      4, 2, _8007ef18
-    cmpwi	r31, 0
-    bc      12, 2, _8007f01c
-_8007ef18:
-    lwz	r0, 0x20(r26)
-    subf	r3, r3, r4
-    subf	r0, r3, r0
-    stw	r0, 0x28(r26)
-_8007ef28:
-    lwz	r0, 0x28(r26)
-    li	r27, 0
-    cmplw	r0, r29
-    stw	r0, 8(r1)
-    bc      4, 1, _8007ef40
-    stw	r29, 8(r1)
-_8007ef40:
-    lbz	r0, 4(r26)
-    rlwinm	r0, r0, 0x1f, 0x1e, 0x1f
-    cmplwi	r0, 1
-    bc      4, 2, _8007ef7c
-    lwz	r5, 8(r1)
-    cmplwi	r5, 0
-    bc      12, 2, _8007ef7c
-    mr	r3, r30
-    li	r4, 0xa
-    bl      __memrchr
-    or.	r27, r3, r3
-    bc      12, 2, _8007ef7c
-    addi	r0, r27, 1
-    subf	r0, r30, r0
-    stw	r0, 8(r1)
-_8007ef7c:
-    lwz	r5, 8(r1)
-    cmplwi	r5, 0
-    bc      12, 2, _8007efc0
-    lwz	r3, 0x24(r26)
-    mr	r4, r30
-    bl      memcpy
-    lwz	r3, 8(r1)
-    lwz	r0, 0x24(r26)
-    add	r30, r30, r3
-    add	r28, r28, r3
-    add	r0, r0, r3
-    subf	r29, r3, r29
-    stw	r0, 0x24(r26)
-    lwz	r3, 8(r1)
-    lwz	r0, 0x28(r26)
-    subf	r0, r3, r0
-    stw	r0, 0x28(r26)
-_8007efc0:
-    lwz	r0, 0x28(r26)
-    cmplwi	r0, 0
-    bc      12, 2, _8007efe0
-    cmplwi	r27, 0
-    bc      4, 2, _8007efe0
-    lbz	r0, 4(r26)
-    rlwinm.	r0, r0, 0x1f, 0x1e, 0x1f
-    bc      4, 2, _8007f00c
-_8007efe0:
-    mr	r3, r26
-    li	r4, 0
-    bl      __flush_buffer
-    cmpwi	r3, 0
-    bc      12, 2, _8007f00c
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r26)
-    li	r29, 0
-    stw	r0, 0x28(r26)
-    b       _8007f01c
-_8007f00c:
-    cmplwi	r29, 0
-    bc      12, 2, _8007f01c
-    cmpwi	r31, 0
-    bc      4, 2, _8007ef28
-_8007f01c:
-    cmplwi	r29, 0
-    bc      12, 2, _8007f088
-    cmpwi	r31, 0
-    bc      4, 2, _8007f088
-    lwz	r27, 0x1c(r26)
-    add	r0, r30, r29
-    lwz	r31, 0x20(r26)
-    mr	r3, r26
-    addi	r4, r1, 8
-    stw	r30, 0x1c(r26)
-    stw	r29, 0x20(r26)
-    stw	r0, 0x24(r26)
-    bl      __flush_buffer
-    cmpwi	r3, 0
-    bc      12, 2, _8007f068
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r26)
-    stw	r0, 0x28(r26)
-_8007f068:
-    lwz	r0, 8(r1)
-    mr	r3, r26
-    stw	r27, 0x1c(r26)
-    add	r28, r28, r0
-    stw	r31, 0x20(r26)
-    bl      __prep_buffer
-    li	r0, 0
-    stw	r0, 0x28(r26)
-_8007f088:
-    lbz	r0, 4(r26)
-    rlwinm	r0, r0, 0x1f, 0x1e, 0x1f
-    cmplwi	r0, 2
-    bc      12, 2, _8007f0a0
-    li	r0, 0
-    stw	r0, 0x28(r26)
-_8007f0a0:
-    addi	r0, r25, -1
-    add	r0, r28, r0
-    divwu	r3, r0, r25
-_8007f0ac:
-    lmw	r25, 0x14(r1)
-    lwz	r0, 0x34(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr
+    int flag;
+    const char* cursor;
+    unsigned long n;
+    unsigned long written;
+    const char* nl;
+    char* savedbase;
+    unsigned long savedsize;
+    unsigned int chunk;
+    int t;
+    unsigned int io;
+
+    if (fwide(file, 0) == 0) {
+        fwide(file, -1);
+    }
+
+    n = size * count;
+    if (n == 0 || file->byte0A != 0 || file->open.mode == 0) {
+        return 0;
+    }
+
+    if (file->open.mode == 2) {
+        __stdio_atexit();
+    }
+
+    flag = 1;
+    t = 0;
+    if (file->open.binary == 0 || file->open.buffer_mode == 2) {
+        t = 1;
+    }
+    if (t == 0 && file->open.buffer_mode != 1) {
+        flag = 0;
+    }
+
+    if (file->buffer.kind == 0) {
+        io = file->open.io_mode;
+        if ((io & 2) != 0) {
+            if ((io & 4) != 0) {
+                if (fseek(file, 0, 2) != 0) {
+                    return 0;
+                }
+            }
+            file->buffer.kind = 1;
+            __prep_buffer(file);
+        }
+    }
+
+    if (file->buffer.kind != 1) {
+        file->byte0A = 1;
+        file->buffer_length = 0;
+        return 0;
+    }
+
+    cursor = (const char*)buf;
+    written = 0;
+
+    if (n != 0 && (file->buffer_ptr != file->buffer_base || flag != 0)) {
+        file->buffer_length =
+            file->buffer_size - (file->buffer_ptr - file->buffer_base);
+        do {
+            nl = 0;
+            chunk = file->buffer_length;
+            if (chunk > n) {
+                chunk = n;
+            }
+            if (file->open.buffer_mode == 1 && chunk != 0) {
+                nl = (const char*)__memrchr(cursor, 10, chunk);
+                if (nl != 0) {
+                    chunk = (nl + 1) - cursor;
+                }
+            }
+            if (chunk != 0) {
+                memcpy(file->buffer_ptr, cursor, chunk);
+                cursor += chunk;
+                written += chunk;
+                n -= chunk;
+                file->buffer_ptr += chunk;
+                file->buffer_length -= chunk;
+            }
+            if (file->buffer_length == 0 || nl != 0 ||
+                file->open.buffer_mode == 0) {
+                if (__flush_buffer(file, 0) != 0) {
+                    file->byte0A = 1;
+                    n = 0;
+                    file->buffer_length = 0;
+                    break;
+                }
+            }
+        } while (n != 0 && flag != 0);
+    }
+
+    if (n != 0 && flag == 0) {
+        savedbase = file->buffer_base;
+        savedsize = file->buffer_size;
+        file->buffer_base = (char*)cursor;
+        file->buffer_size = n;
+        file->buffer_ptr = (char*)(cursor + n);
+        if (__flush_buffer(file, &chunk) != 0) {
+            file->byte0A = 1;
+            file->buffer_length = 0;
+        }
+        written += chunk;
+        file->buffer_base = savedbase;
+        file->buffer_size = savedsize;
+        __prep_buffer(file);
+        file->buffer_length = 0;
+    }
+
+    if (file->open.buffer_mode != 2) {
+        file->buffer_length = 0;
+    }
+
+    return (written + size - 1) / size;
 }
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/direct_io.c:24
