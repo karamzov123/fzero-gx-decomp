@@ -1511,23 +1511,18 @@ _80083b54:
     blr
 }
 
-asm void strchr(void)
+// provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/string.c:211
+char* strchr(const char* str, int chr)
 {
-    nofralloc
-    addi	r3, r3, -1
-    clrlwi	r0, r4, 0x18
-    b       _80083b70
-_80083b68:
-    cmplw	r4, r0
-    beqlr	
-_80083b70:
-    lbzu	r4, 1(r3)
-    cmplwi	r4, 0
-    bc      4, 2, _80083b68
-    cmplwi	r0, 0
-    beqlr	
-    li	r3, 0
-    blr
+	const u8* p = (u8*)str - 1;
+	u32 c       = (chr & 0xFF);
+	u32 ch;
+
+	while (ch = *++p)
+		if (ch == c)
+			return ((char*)p);
+
+	return (c ? 0 : (char*)p);
 }
 
 asm void __msl_strncmp(void)
