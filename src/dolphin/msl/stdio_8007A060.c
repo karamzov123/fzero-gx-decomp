@@ -56,7 +56,7 @@ typedef struct File {
     char* buffer_ptr;                        /* +0x24 */
     unsigned int buffer_length;              /* +0x28 */
     unsigned int buffer_mask;                /* +0x2C */
-    unsigned int pad30;                      /* +0x30 */
+    unsigned int saved_length;               /* +0x30 */
     unsigned int buffer_position;            /* +0x34 */
     int (*position_func)(unsigned int, long*, int, unsigned int); /* +0x38 */
     int (*read_func)(struct File*, char*, unsigned int*); /* +0x3C */
@@ -160,8 +160,8 @@ void __begin_critical_region(int region);
 void __kill_critical_regions(void);
 unsigned long __fwrite(const void* buf, unsigned long size, unsigned long count, File* file);
 unsigned long fwrite(const void* buf, unsigned long size, unsigned long count, void* file);
-int fn_8007F13C(void* a, void* b, unsigned long n, void* file);
-int fn_8007F48C(void* a, void* b, unsigned long n, void* file);
+int fn_8007F13C(void* dst, unsigned long size, unsigned long count, File* file);
+int fn_8007F48C(void* dst, unsigned long size, unsigned long count, File* file);
 int fn_8007F508(const char* mode, FileMode* m);
 File* fn_8007F684(const char* name, const char* mode);
 int fn_8007F8D4(void* file);
@@ -1158,6 +1158,7 @@ _8007b008:
 }
 
 // provenance: original
+#pragma dont_inline on
 int fn_8007B028(void)
 {
     int result;
@@ -1177,6 +1178,7 @@ int fn_8007B028(void)
     }
     return result;
 }
+#pragma dont_inline reset
 
 // provenance: original
 #pragma dont_inline on
@@ -5489,7 +5491,7 @@ unsigned long __fwrite(const void* buf, unsigned long size, unsigned long count,
     unsigned long n;
     unsigned long written;
     const char* nl;
-    char* savedbase;
+    unsigned long savedbase;
     unsigned long savedsize;
     unsigned int chunk;
     int t;
@@ -5575,7 +5577,7 @@ unsigned long __fwrite(const void* buf, unsigned long size, unsigned long count,
     }
 
     if (n != 0 && flag == 0) {
-        savedbase = file->buffer_base;
+        savedbase = (unsigned long)file->buffer_base;
         savedsize = file->buffer_size;
         file->buffer_base = (char*)cursor;
         file->buffer_size = n;
@@ -5585,7 +5587,7 @@ unsigned long __fwrite(const void* buf, unsigned long size, unsigned long count,
             file->buffer_length = 0;
         }
         written += chunk;
-        file->buffer_base = savedbase;
+        file->buffer_base = (char*)savedbase;
         file->buffer_size = savedsize;
         __prep_buffer(file);
         file->buffer_length = 0;
@@ -5609,252 +5611,137 @@ unsigned long fwrite(const void* buf, unsigned long size, unsigned long count, v
     return n;
 }
 
-asm int fn_8007F13C(void* a, void* b, unsigned long n, void* file)
+// provenance: original
+int fn_8007F13C(void* dst, unsigned long size, unsigned long count, File* file)
 {
-    nofralloc
-    stwu	r1, -0x30(r1)
-    mflr	r0
-    stw	r0, 0x34(r1)
-    stmw	r25, 0x14(r1)
-    mr	r26, r4
-    mr	r27, r6
-    mr	r28, r3
-    mr	r25, r5
-    li	r4, 0
-    mr	r3, r27
-    bl      fwide
-    cmpwi	r3, 0
-    bc      4, 2, _8007f17c
-    mr	r3, r27
-    li	r4, -1
-    bl      fwide
-_8007f17c:
-    mullw.	r29, r26, r25
-    bc      12, 2, _8007f19c
-    lbz	r0, 0xa(r27)
-    cmplwi	r0, 0
-    bc      4, 2, _8007f19c
-    lhz	r0, 4(r27)
-    rlwinm.	r0, r0, 0x1a, 0x1d, 0x1f
-    bc      4, 2, _8007f1a4
-_8007f19c:
-    li	r3, 0
-    b       _8007f478
-_8007f1a4:
-    lbz	r0, 5(r27)
-    li	r31, 1
-    rlwinm.	r0, r0, 0x1d, 0x1f, 0x1f
-    bc      12, 2, _8007f1c8
-    lbz	r0, 4(r27)
-    rlwinm	r0, r0, 0x1f, 0x1e, 0x1f
-    cmplwi	r0, 2
-    bc      12, 2, _8007f1c8
-    li	r31, 0
-_8007f1c8:
-    lbz	r3, 8(r27)
-    rlwinm.	r0, r3, 0x1b, 0x1d, 0x1f
-    bc      4, 2, _8007f1f4
-    lbz	r0, 4(r27)
-    rlwinm.	r0, r0, 0x1d, 0x1f, 0x1f
-    bc      12, 2, _8007f1f4
-    li	r0, 2
-    rlwimi	r3, r0, 5, 0x18, 0x1a
-    stb	r3, 8(r27)
-    li	r0, 0
-    stw	r0, 0x28(r27)
-_8007f1f4:
-    lbz	r0, 8(r27)
-    rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 2
-    bc      4, 0, _8007f21c
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r27)
-    li	r3, 0
-    stw	r0, 0x28(r27)
-    b       _8007f478
-_8007f21c:
-    lbz	r0, 4(r27)
-    rlwinm.	r0, r0, 0x1f, 0x1f, 0x1f
-    bc      12, 2, _8007f24c
-    bl      fn_8007B028
-    cmpwi	r3, 0
-    bc      12, 2, _8007f24c
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r27)
-    li	r3, 0
-    stw	r0, 0x28(r27)
-    b       _8007f478
-_8007f24c:
-    cmplwi	r29, 0
-    mr	r30, r28
-    li	r28, 0
-    bc      12, 2, _8007f308
-    lbz	r0, 8(r27)
-    rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 3
-    bc      12, 0, _8007f308
-_8007f26c:
-    mr	r3, r27
-    li	r4, 0
-    bl      fwide
-    cmpwi	r3, 1
-    bc      4, 2, _8007f2a4
-    lbz	r0, 8(r27)
-    addi	r28, r28, 2
-    addi	r29, r29, -2
-    rlwinm	r3, r0, 0x1c, 0x1c, 0x1e
-    addi	r0, r3, 0xc
-    lhzx	r0, r27, r0
-    sth	r0, 0(r30)
-    addi	r30, r30, 2
-    b       _8007f2c4
-_8007f2a4:
-    lbz	r0, 8(r27)
-    addi	r28, r28, 1
-    addi	r29, r29, -1
-    rlwinm	r3, r0, 0x1b, 0x1d, 0x1f
-    addi	r0, r3, 0xc
-    lbzx	r0, r27, r0
-    stb	r0, 0(r30)
-    addi	r30, r30, 1
-_8007f2c4:
-    lbz	r4, 8(r27)
-    cmplwi	r29, 0
-    rlwinm	r3, r4, 0x1b, 0x1d, 0x1f
-    addi	r0, r3, -1
-    rlwimi	r4, r0, 5, 0x18, 0x1a
-    stb	r4, 8(r27)
-    bc      12, 2, _8007f2f0
-    lbz	r0, 8(r27)
-    rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 3
-    bc      4, 0, _8007f26c
-_8007f2f0:
-    lbz	r0, 8(r27)
-    rlwinm	r0, r0, 0x1b, 0x1d, 0x1f
-    cmplwi	r0, 2
-    bc      4, 2, _8007f308
-    lwz	r0, 0x30(r27)
-    stw	r0, 0x28(r27)
-_8007f308:
-    cmplwi	r29, 0
-    bc      12, 2, _8007f3e4
-    lwz	r0, 0x28(r27)
-    cmplwi	r0, 0
-    bc      4, 2, _8007f324
-    cmpwi	r31, 0
-    bc      12, 2, _8007f3e4
-_8007f324:
-    lwz	r0, 0x28(r27)
-    cmplwi	r0, 0
-    bc      4, 2, _8007f388
-    mr	r3, r27
-    li	r4, 0
-    li	r5, 0
-    bl      fn_8007EC80
-    cmpwi	r3, 0
-    bc      12, 2, _8007f388
-    cmpwi	r3, 1
-    bc      4, 2, _8007f364
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r27)
-    stw	r0, 0x28(r27)
-    b       _8007f380
-_8007f364:
-    lbz	r3, 8(r27)
-    li	r4, 0
-    rlwimi	r3, r4, 5, 0x18, 0x1a
-    li	r0, 1
-    stb	r3, 8(r27)
-    stb	r0, 9(r27)
-    stw	r4, 0x28(r27)
-_8007f380:
-    li	r29, 0
-    b       _8007f3e4
-_8007f388:
-    lwz	r0, 0x28(r27)
-    cmplw	r0, r29
-    stw	r0, 8(r1)
-    bc      4, 1, _8007f39c
-    stw	r29, 8(r1)
-_8007f39c:
-    lwz	r4, 0x24(r27)
-    mr	r3, r30
-    lwz	r5, 8(r1)
-    bl      memcpy
-    lwz	r3, 8(r1)
-    lwz	r0, 0x24(r27)
-    subf.	r29, r3, r29
-    add	r30, r30, r3
-    add	r0, r0, r3
-    add	r28, r28, r3
-    stw	r0, 0x24(r27)
-    lwz	r3, 8(r1)
-    lwz	r0, 0x28(r27)
-    subf	r0, r3, r0
-    stw	r0, 0x28(r27)
-    bc      12, 2, _8007f3e4
-    cmpwi	r31, 0
-    bc      4, 2, _8007f324
-_8007f3e4:
-    cmplwi	r29, 0
-    bc      12, 2, _8007f474
-    cmpwi	r31, 0
-    bc      4, 2, _8007f474
-    lwz	r31, 0x1c(r27)
-    mr	r3, r27
-    lwz	r25, 0x20(r27)
-    addi	r4, r1, 8
-    li	r5, 1
-    stw	r30, 0x1c(r27)
-    stw	r29, 0x20(r27)
-    bl      fn_8007EC80
-    cmpwi	r3, 0
-    bc      12, 2, _8007f454
-    cmpwi	r3, 1
-    bc      4, 2, _8007f438
-    li	r3, 1
-    li	r0, 0
-    stb	r3, 0xa(r27)
-    stw	r0, 0x28(r27)
-    b       _8007f454
-_8007f438:
-    lbz	r3, 8(r27)
-    li	r4, 0
-    rlwimi	r3, r4, 5, 0x18, 0x1a
-    li	r0, 1
-    stb	r3, 8(r27)
-    stb	r0, 9(r27)
-    stw	r4, 0x28(r27)
-_8007f454:
-    lwz	r0, 8(r1)
-    mr	r3, r27
-    stw	r31, 0x1c(r27)
-    add	r28, r28, r0
-    stw	r25, 0x20(r27)
-    bl      __prep_buffer
-    li	r0, 0
-    stw	r0, 0x28(r27)
-_8007f474:
-    divwu	r3, r28, r26
-_8007f478:
-    lmw	r25, 0x14(r1)
-    lwz	r0, 0x34(r1)
-    mtlr	r0
-    addi	r1, r1, 0x30
-    blr
+    int flag;
+    char* cursor;
+    unsigned long total;
+    unsigned long red;
+    unsigned long savedbase;
+    unsigned long savedsize;
+    unsigned int chunk;
+    int r;
+
+    if (fwide(file, 0) == 0) {
+        fwide(file, -1);
+    }
+
+    total = size * count;
+    if (total == 0 || file->byte0A != 0 || file->open.mode == 0) {
+        return 0;
+    }
+
+    flag = 1;
+    if (file->open.binary != 0 && file->open.buffer_mode != 2) {
+        flag = 0;
+    }
+
+    if (file->buffer.kind == 0 && (file->open.io_mode & 1) != 0) {
+        file->buffer.kind = 2;
+        file->buffer_length = 0;
+    }
+
+    if (file->buffer.kind < 2) {
+        file->byte0A = 1;
+        file->buffer_length = 0;
+        return 0;
+    }
+
+    if ((file->open.buffer_mode & 1) != 0 && fn_8007B028() != 0) {
+        file->byte0A = 1;
+        file->buffer_length = 0;
+        return 0;
+    }
+
+    cursor = (char*)dst;
+    red = 0;
+
+    if (total != 0 && file->buffer.kind >= 3) {
+        do {
+            if (fwide(file, 0) == 1) {
+                red += 2;
+                total -= 2;
+                *(unsigned short*)cursor =
+                    *(unsigned short*)((char*)file + file->buffer.kind * 2 + 0xC);
+                cursor += 2;
+            } else {
+                red += 1;
+                total -= 1;
+                *cursor = *((char*)file + file->buffer.kind + 0xC);
+                cursor += 1;
+            }
+            file->buffer.kind = file->buffer.kind - 1;
+        } while (total != 0 && file->buffer.kind >= 3);
+
+        if (file->buffer.kind == 2) {
+            file->buffer_length = file->saved_length;
+        }
+    }
+
+    if (total != 0 && (file->buffer_length != 0 || flag != 0)) {
+        do {
+            if (file->buffer_length == 0) {
+                r = fn_8007EC80(file, 0, 0);
+                if (r != 0) {
+                    if (r == 1) {
+                        file->byte0A = 1;
+                        file->buffer_length = 0;
+                    } else {
+                        file->buffer.kind = 0;
+                        file->byte09 = 1;
+                        file->buffer_length = 0;
+                    }
+                    total = 0;
+                    break;
+                }
+            }
+            chunk = file->buffer_length;
+            if (chunk > total) {
+                chunk = total;
+            }
+            memcpy(cursor, file->buffer_ptr, chunk);
+            total -= chunk;
+            cursor += chunk;
+            red += chunk;
+            file->buffer_ptr += chunk;
+            file->buffer_length -= chunk;
+        } while (total != 0 && flag != 0);
+    }
+
+    if (total != 0 && flag == 0) {
+        savedbase = (unsigned long)file->buffer_base;
+        savedsize = file->buffer_size;
+        file->buffer_base = cursor;
+        file->buffer_size = total;
+        r = fn_8007EC80(file, &chunk, 1);
+        if (r != 0) {
+            if (r == 1) {
+                file->byte0A = 1;
+                file->buffer_length = 0;
+            } else {
+                file->buffer.kind = 0;
+                file->byte09 = 1;
+                file->buffer_length = 0;
+            }
+        }
+        red += chunk;
+        file->buffer_base = (char*)savedbase;
+        file->buffer_size = savedsize;
+        __prep_buffer(file);
+        file->buffer_length = 0;
+    }
+
+    return red / size;
 }
 
 // provenance: original
-int fn_8007F48C(void* a, void* b, unsigned long n, void* file)
+int fn_8007F48C(void* dst, unsigned long size, unsigned long count, File* file)
 {
     int r;
 
     __begin_critical_region(2);
-    r = fn_8007F13C(a, b, n, file);
+    r = fn_8007F13C(dst, size, count, file);
     __end_critical_region(2);
     return r;
 }
