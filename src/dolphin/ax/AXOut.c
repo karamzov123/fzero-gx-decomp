@@ -34,15 +34,16 @@ extern unsigned char lbl_80160500[1920];
 extern unsigned char lbl_80160C80[16544];
 
 extern unsigned char lbl_801A64F0[8];
-extern unsigned char lbl_801A6B30[8];
+extern u32 lbl_801A6B30;
 extern unsigned char lbl_801A6B10[4];
 extern unsigned char lbl_801A6B14[4];
 extern unsigned char lbl_801A6B18[4];
 extern unsigned char lbl_801A6B1C[4];
 extern unsigned char lbl_801A6B20[4];
 extern unsigned char lbl_801A6B24[4];
-extern unsigned char lbl_801A6B28[4];
+extern u32 lbl_801A6B28;
 extern unsigned char lbl_801A6B2C[4];
+#pragma push
 asm void __AXOutFrameTask(void)
 {
     nofralloc
@@ -150,7 +151,9 @@ _80021aa0:
     mtlr	r0
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void __AXOutFirstFrameCallback(void)
 {
     nofralloc
@@ -184,6 +187,7 @@ _80021b10:
     mtlr	r0
     blr	
 }
+#pragma pop
 
 void fn_80021B20(void)
 {
@@ -191,6 +195,7 @@ void fn_80021B20(void)
     *(u32*)lbl_801A6B24 = 1;
 }
 
+#pragma push
 asm void __AXOutDspResumeCallback(void)
 {
     nofralloc
@@ -219,23 +224,16 @@ _80021b74:
     mtlr	r0
     blr	
 }
+#pragma pop
 
-asm void fn_80021B84(void)
+// provenance: original probe v_h3 (natc ledger attempt 13, 100%) — fn_80021B84 as natural C; Canceling flag store + OSWakeupThread(&threadQueue)
+void fn_80021B84(void)
 {
-    nofralloc
-    mflr	r0
-    li	r3, lbl_801A6B30
-    stw	r0, 4(r1)
-    li	r0, 1
-    stwu	r1, -8(r1)
-    stw	r0, lbl_801A6B28
-    bl      OSWakeupThread
-    lwz	r0, 0xc(r1)
-    addi	r1, r1, 8
-    mtlr	r0
-    blr	
+    lbl_801A6B28 = 1;
+    OSWakeupThread(&lbl_801A6B30);
 }
 
+#pragma push
 asm void AXInitOutput(void)
 {
     nofralloc
@@ -293,7 +291,9 @@ _80021c5c:
     mtlr	r0
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80021C7C(void)
 {
     nofralloc
@@ -508,7 +508,9 @@ _80021e10:
     mtlr	r0
     blr	
 }
+#pragma pop
 
+#pragma push
 asm void fn_80021FBC(void)
 {
     nofralloc
@@ -535,6 +537,7 @@ asm void fn_80021FBC(void)
     mtlr	r0
     blr	
 }
+#pragma pop
 
 void fn_80022014(register void* p)
 {
