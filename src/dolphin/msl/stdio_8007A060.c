@@ -16,6 +16,24 @@ typedef struct FileBuffer {
     unsigned char pad : 4;    /* bits 0..3 */
 } FileBuffer;
 
+typedef struct Blk {
+    struct Blk* unk0;           /* +0x00 */
+    struct Blk* unk4;           /* +0x04 */
+    void* unk8;                 /* +0x08 */
+    void* unkC;                 /* +0x0C: free-object chain head */
+    int unk10;                  /* +0x10: live-object count */
+} Blk;
+
+typedef struct Bin {
+    Blk* head;                  /* +0x00 */
+    Blk* tail;                  /* +0x04 */
+} Bin;
+
+typedef struct Pool {
+    unsigned int unk0;          /* +0x00 */
+    Bin bins[6];                /* +0x04 */
+} Pool;
+
 typedef struct CharDef {
     short unk0;                 /* +0x00 */
     short unk2;                 /* +0x02 */
@@ -85,7 +103,7 @@ extern void TRK_CloseFile_Game(void);
 extern void TRK_WriteFile_Game(void);
 extern void TRK_ReadFile_Game(void);
 extern unsigned char jumptable_8015AFD8[292];
-extern unsigned char lbl_80094EC0[24];
+extern const unsigned int lbl_80094EC0[6];
 extern unsigned char lbl_80094ED8[224];
 extern unsigned char lbl_8015AF98[64];
 extern unsigned char lbl_8015B100[256];
@@ -110,7 +128,7 @@ void fn_8007A150(void* p);
 void* fn_8007A1C0(unsigned int size);
 void fn_8007A23C(void* pool, void* p);
 void* fn_8007A294(void* pool, unsigned int size);
-void fn_8007A2E8(void* pool, void* p);
+void fn_8007A2E8(Pool* pool, void* p, unsigned int size);
 asm void* fn_8007A440(void* pool, unsigned int size);
 void fn_8007A710(void* pool, void* p);
 asm void fn_8007A9A4(void);
@@ -236,7 +254,7 @@ void fn_8007A23C(void* pool, void* p)
     }
 
     if (size <= 0x44) {
-        fn_8007A2E8(pool, p);
+        fn_8007A2E8(pool, p, size);
     } else {
         fn_8007A710(pool, p);
     }
@@ -257,104 +275,57 @@ void* fn_8007A294(void* pool, unsigned int size)
     return fn_8007AA7C(pool, size);
 }
 
-asm void fn_8007A2E8(void* pool, void* p)
+// provenance: original
+void fn_8007A2E8(Pool* pool, void* p, unsigned int size)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    lis     r6, lbl_80094EC0@ha
-    li	r7, 0
-    stw	r0, 0x14(r1)
-    addi	r6, r6, lbl_80094EC0@l
-    b       _8007a30c
-_8007a304:
-    addi	r6, r6, 4
-    addi	r7, r7, 1
-_8007a30c:
-    lwz	r0, 0(r6)
-    cmplw	r5, r0
-    bc      12, 1, _8007a304
-    addi	r8, r4, -4
-    slwi	r5, r7, 3
-    lwz	r4, -4(r4)
-    addi	r5, r5, 4
-    add	r5, r3, r5
-    lwz	r0, 0xc(r4)
-    cmplwi	r0, 0
-    bc      4, 2, _8007a3a8
-    lwz	r6, 4(r5)
-    cmplw	r6, r4
-    bc      12, 2, _8007a3a8
-    lwz	r0, 0(r5)
-    cmplw	r0, r4
-    bc      4, 2, _8007a368
-    lwz	r0, 0(r6)
-    stw	r0, 4(r5)
-    lwz	r6, 0(r5)
-    lwz	r0, 0(r6)
-    stw	r0, 0(r5)
-    b       _8007a3a8
-_8007a368:
-    lwz	r0, 4(r4)
-    lwz	r6, 0(r4)
-    stw	r0, 4(r6)
-    lwz	r0, 0(r4)
-    lwz	r6, 4(r4)
-    stw	r0, 0(r6)
-    lwz	r0, 4(r5)
-    stw	r0, 4(r4)
-    lwz	r6, 4(r4)
-    lwz	r0, 0(r6)
-    stw	r0, 0(r4)
-    lwz	r6, 0(r4)
-    stw	r4, 4(r6)
-    lwz	r6, 4(r4)
-    stw	r4, 0(r6)
-    stw	r4, 4(r5)
-_8007a3a8:
-    lwz	r0, 0xc(r4)
-    stw	r0, 4(r8)
-    stw	r8, 0xc(r4)
-    lwz	r6, 0x10(r4)
-    addic.	r0, r6, -1
-    stw	r0, 0x10(r4)
-    bc      4, 2, _8007a430
-    lwz	r0, 4(r5)
-    cmplw	r0, r4
-    bc      4, 2, _8007a3d8
-    lwz	r0, 4(r4)
-    stw	r0, 4(r5)
-_8007a3d8:
-    lwz	r0, 0(r5)
-    cmplw	r0, r4
-    bc      4, 2, _8007a3ec
-    lwz	r0, 0(r4)
-    stw	r0, 0(r5)
-_8007a3ec:
-    lwz	r0, 4(r4)
-    lwz	r6, 0(r4)
-    stw	r0, 4(r6)
-    lwz	r0, 0(r4)
-    lwz	r6, 4(r4)
-    stw	r0, 0(r6)
-    lwz	r0, 4(r5)
-    cmplw	r0, r4
-    bc      4, 2, _8007a418
-    li	r0, 0
-    stw	r0, 4(r5)
-_8007a418:
-    lwz	r0, 0(r5)
-    cmplw	r0, r4
-    bc      4, 2, _8007a42c
-    li	r0, 0
-    stw	r0, 0(r5)
-_8007a42c:
-    bl      fn_8007A710
-_8007a430:
-    lwz	r0, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    Bin* bin;
+    Blk* blk;
+    int i;
+    void** hdr;
+
+    i = 0;
+    while (size > lbl_80094EC0[i]) {
+        i++;
+    }
+
+    hdr = (void**)((char*)p - 4);
+    bin = &pool->bins[i];
+    blk = (Blk*)*hdr;
+
+    if (blk->unkC == 0 && bin->tail != blk) {
+        if (bin->head == blk) {
+            bin->tail = bin->tail->unk0;
+            bin->head = bin->head->unk0;
+        } else {
+            blk->unk0->unk4 = blk->unk4;
+            blk->unk4->unk0 = blk->unk0;
+            blk->unk4 = bin->tail;
+            blk->unk0 = blk->unk4->unk0;
+            blk->unk0->unk4 = blk;
+            blk->unk4->unk0 = blk;
+            bin->tail = blk;
+        }
+    }
+
+    hdr[1] = blk->unkC;
+    blk->unkC = hdr;
+    if (--blk->unk10 == 0) {
+        if (bin->tail == blk) {
+            bin->tail = blk->unk4;
+        }
+        if (bin->head == blk) {
+            bin->head = blk->unk0;
+        }
+        blk->unk0->unk4 = blk->unk4;
+        blk->unk4->unk0 = blk->unk0;
+        if (bin->tail == blk) {
+            bin->tail = 0;
+        }
+        if (bin->head == blk) {
+            bin->head = 0;
+        }
+        fn_8007A710(pool, blk);
+    }
 }
 
 asm void* fn_8007A440(void* pool, unsigned int size)
