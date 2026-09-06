@@ -61,6 +61,14 @@ jobs:
       - name: Add mission-aware public metric layer
         run: python3 tools/decomp_report.py --report build/GFZE01/report.raw.json --root . --out build/GFZE01/report.json
 
+      - name: Verify decomp.dev can parse the report
+        # objdiff-cli is the same parser decomp.dev ingests with. Without this
+        # step a malformed report uploads cleanly, the run goes green, and the
+        # site silently keeps serving the last report it could read -- which
+        # is exactly what an out-of-schema Measures field did for eleven days
+        # from 2026-08-26.
+        run: build/tools/objdiff-cli report changes build/GFZE01/report.json build/GFZE01/report.json > /dev/null
+
       - name: Upload decomp.dev report
         uses: actions/upload-artifact@v4
         with:

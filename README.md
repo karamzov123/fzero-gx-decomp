@@ -23,13 +23,13 @@ refer to `main.dol`, not to the complete F-Zero GX game image.
 
 Progress is published through the GitHub Actions `GFZE01_report` artifact and tracked on [decomp.dev](https://decomp.dev/karamzov123/fzero-gx-decomp). The public report separates:
 
-- **Exact natural C** — the project mission metric.
-- **C-expressed** — supplemental fuzzy progress for C-backed functions.
+- **Exact natural C** — the project mission metric: functions with a real C body that assembles to the retail bytes exactly. Hand-written `asm` bodies, gap and padding symbols do not count.
+- **C-expressed** — the same set weighted by partial match, for work in progress.
 - **Diagnostic objdiff** — whole-binary parity, including hand-written assembly; useful for build health, but not the decompilation headline.
+- **Game Code** / **SDK Code** — the mission metric split between F-Zero GX's own code and the Dolphin SDK it links against.
 
-See the [NATC operations contract](docs/NATC-OPERATIONS.md) for canonical state paths, admission, context, probe, and eligibility rules.
-See the [NATC codegen rules](docs/NATC-CODEGEN-RULES.md) for the catalog of proven MWCC source-shape levers — consult it whenever a diff is structurally right but instruction-wrong.
-See the [NATC tooling guide](docs/NATC-TOOLING.md) for the four tools that mechanise a conversion: where the work comes from, decoding a struct, classifying a diff, and searching the mechanical rewrites.
+A unit counts as complete only when it is fully converted: no `asm` body is left in its source and every function in it matches.
+
 See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/splits.txt), and [split documentation](docs/splits.md) for the project inventory.
 
 ![F-Zero GX GFZE01 codebase map](assets/codebase-map.svg)
@@ -41,50 +41,11 @@ See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/s
 - `src/` — reconstructed C and assembly sources
 - `config/GFZE01/` — build version, symbols, and split definitions
 - `tools/` — public build/report tooling
-- `tests/` — regression tests for public tooling
+- `tests/` — regression tests for the public tooling in `tools/`
 - `docs/` — setup, split, provenance, and resource documentation
 - `.github/workflows/report.yml` — trusted-main progress report workflow
 
 The retail binary, proprietary compiler distribution, and other non-redistributable inputs are intentionally not included. A local build requires legally obtained matching inputs and the appropriate GameCube toolchain.
-
-## Agent Work Structure
-
-```text
-                        ┌─────────────────────────────────────────────┐
-                        │  PM SUPERVISOR (systemd)                    │
-                        │  spawns/rotates workers, lease TTLs, alerts │
-                        └──────┬──────────────────────────────────────┘
-                               │ launches + monitors
-        ┌──────────┬───────┬───┴────┬─────────┬────────┬──────────┐
-        ▼          ▼       ▼        ▼         ▼        ▼          ▼
-     natc1..5    tool    hard     hard2     integ    fzero-online (down)
-  (conversion) (conv.)  (hard)   (hard)  (integrator)  (separate proj)
-        │          │       │        │         │
-        │  ① CLAIM: natc_rank.py --next  ── SQLite lease (TTL 4h, unit-level)
-        │  ② CONTEXT: [local cache]/ctx/*.ctx (527 slices)
-        │             + ref-bodies (145) + natc_refs symbol index
-        │             + provenance-tagged SDK sources in src/ (18 files)
-        │  ③ CONVERT: m2c → candidate .c + CARD.md provenance
-        │  ④ SELF-CHECK: natc_preflight.py (~10 ms text + 25 ms/fn rescore)
-        │             ← SHOULD gate registration; currently advisory (GAP)
-        ▼
-  [local cache]/submissions/<worker>/<batch>/
-        │  ⑤ REGISTER → submission-queue.sqlite3 (state=ready)
-        ▼
-   ┌──────────────────────────────────────────────┐
-   │ INTEGRATOR (integ) — serialised gate lock    │
-   │  natc_gate.py: cheap_checks → ninja (MWCC    │
-   │  GC/1.3.2 pin, wibo) → objdiff score 100     │
-   │  → DOL sha1 gate GREEN → commit to main      │
-   │  RED ⇒ whole batch rejected, tree restored   │
-   │  stale-object REPAIR (n objects)             │
-   └──────┬───────────────────────────────────────┘
-          │ ⑥ accepted → git commit → STATE.md metrics (natc_metrics.py)
-          │    rejected → .rejected/<worker>/ + evidence + reason in DB
-          ▼
-   ~/projects/fzero-gx-decomp  (HEAD: 324 exact natural-C fns / 22,120 B,
-                                14.5% exact · matched_code 92.5% diagnostic)
-```
 
 
 ## Getting started
@@ -99,17 +60,16 @@ This is an active matching project rather than a ready-to-run ROM build. Start w
 
 For individual difficult functions, [decomp.me](https://decomp.me) provides shareable matching scratches; it works on individual functions, not full binaries.
 
-### Tooling health check
-
-Use the declared `uv` test environment rather than the host Python environment:
+### Running the tests
 
 ```sh
-uv run --extra test python tools/natc_health.py --quick  # tests + NATC self-tests
-uv run --extra test python tools/natc_health.py          # plus Ninja + DOL SHA-1
+python -m unittest discover -s tests
 ```
 
-The command is fail-closed: it stops at the first failed stage and emits a JSON
-record containing that stage's stdout, stderr, and return code.
+This covers the public build and report tooling in `tools/`. It does not build
+or verify the DOL — that needs the legally obtained matching inputs and the
+toolchain described in [Getting Started](docs/getting_started.md).
+
 
 ## Contributing
 
