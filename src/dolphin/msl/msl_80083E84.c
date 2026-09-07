@@ -1,3 +1,5 @@
+#include "dolphin/msl/file.h"
+
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
@@ -2056,51 +2058,27 @@ _800858c4:
     blr
 }
 
-asm void fwide(void)
+// provenance: marioparty4:src/MSL_C.PPCEABI.bare.H/wchar_io.c:3
+// Only unoriented, byte-oriented, and wide-oriented streams are valid.
+int fwide(File* file, int mode)
 {
-    nofralloc
-    cmplwi	r3, 0
-    bc      12, 2, _800858f8
-    lhz	r0, 4(r3)
-    rlwinm.	r0, r0, 0x1a, 0x1d, 0x1f
-    bc      4, 2, _80085900
-_800858f8:
-    li	r3, 0
-    blr
-_80085900:
-    lbz	r5, 5(r3)
-    rlwinm	r0, r5, 0x1c, 0x1e, 0x1f
-    cmpwi	r0, 1
-    bc      12, 2, _80085964
-    bc      4, 0, _80085920
-    cmpwi	r0, 0
-    bc      4, 0, _8008592c
-    blr
-_80085920:
-    cmpwi	r0, 3
-    bgelr	
-    b       _8008595c
-_8008592c:
-    cmpwi	r4, 0
-    bc      4, 1, _80085944
-    li	r0, 2
-    rlwimi	r5, r0, 4, 0x1a, 0x1b
-    stb	r5, 5(r3)
-    b       _80085954
-_80085944:
-    bc      4, 0, _80085954
-    li	r0, 1
-    rlwimi	r5, r0, 4, 0x1a, 0x1b
-    stb	r5, 5(r3)
-_80085954:
-    mr	r3, r4
-    blr
-_8008595c:
-    li	r3, 1
-    blr
-_80085964:
-    li	r3, -1
-    blr
+    if (file == 0 || file->open.mode == 0) {
+        return 0;
+    }
+
+    switch (file->open.unk20) {
+    case FILE_UNORIENTED:
+        if (mode > 0) {
+            file->open.unk20 = FILE_WIDE_ORIENTED;
+        } else if (mode < 0) {
+            file->open.unk20 = FILE_CHAR_ORIENTED;
+        }
+        return mode;
+    case FILE_WIDE_ORIENTED:
+        return 1;
+    case FILE_CHAR_ORIENTED:
+        return -1;
+    }
 }
 
 asm void fn_8008596C(void)
