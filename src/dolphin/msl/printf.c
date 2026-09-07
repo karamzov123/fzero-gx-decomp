@@ -1,5 +1,3 @@
-#include "dolphin/msl/file.h"
-
 #pragma push
 #pragma force_active on
 
@@ -22,6 +20,7 @@ char* long2str(long num, char* buff, void* format);
 const char* parse_format(const char* fmt, void* arg, void* format);
 extern void __end_critical_region(int region);
 extern void __begin_critical_region(int region);
+extern int fwide(void* file, int mode);
 extern void* memcpy(void* dst, const void* src, unsigned long n);
 extern int fwrite(const void* buf, int size, unsigned long count, void* file);
 extern void* __va_arg(void* params, unsigned long size);
@@ -41,11 +40,10 @@ extern unsigned char lbl_8015B100[256];
 void* __FileWrite(void* file, const char* buf, unsigned long n);
 
 extern unsigned char lbl_801A74E8[8];
-// provenance: original (typed stream argument only)
 int vprintf(const char* fmt, void* arg) {
     int result;
 
-    if (fwide((File*)&__files[0x50], -1) >= 0) {
+    if (fwide(&__files[0x50], -1) >= 0) {
         return -1;
     }
 
