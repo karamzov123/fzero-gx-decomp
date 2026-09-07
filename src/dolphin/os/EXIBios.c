@@ -1102,7 +1102,7 @@ L_80015794:
 /* ---- InitializeUART ---- */
 #pragma push
 #pragma force_active on
-asm int InitializeUART(void)
+asm int InitializeUART(register unsigned long baud_rate)
 {
     nofralloc
     mflr        r0

@@ -19,14 +19,15 @@ extern unsigned char lbl_801A6668[8];
 extern unsigned char lbl_801A6670[8];
 extern unsigned char jumptable_8015B738[68];
 extern unsigned char jumptable_8015B77C[68];
-extern void OSGetConsoleType(void);
-extern void InitializeUART(void);
-extern void WriteUARTN(void);
+extern unsigned long OSGetConsoleType(void);
+extern int InitializeUART(unsigned long baud_rate);
+extern int WriteUARTN(void* buffer, long length);
 extern void _savefpr_25(void);
 extern void _restfpr_25(void);
 extern void __div2u(void);
 extern void __sformatter(void);
-extern void TRKWriteFileChecked(void);
+extern int TRKWriteFileChecked(unsigned int handle, char* buffer,
+                               unsigned int* count, unsigned int ref_con);
 extern void MSL_device_link_fn(void); // forward decl: label must be declared before first use
 typedef struct { char *NextChar; int NullCharDetected; } __InStrCtrl;
 extern unsigned int MSLStrToLong(int base, unsigned int max, void (*reader)(void), __InStrCtrl *ctrl, int *count, int *negative, int *overflow);
@@ -53,7 +54,7 @@ extern unsigned char lbl_8015B400[56];
 
 extern unsigned char NAN_str[4];
 extern unsigned char lbl_801A6DE0[8];
-extern unsigned char lbl_801A6DE8[4];
+extern int lbl_801A6DE8;
 extern unsigned char lbl_801A74F4[1];
 extern unsigned char lbl_801A78E0[8];
 extern unsigned char lbl_801A78D8[8];
@@ -1997,65 +1998,42 @@ _800857e0:
 // provenance: original
 int fn_8008580C(void) { return 0; }
 
-asm void fn_80085814(void)
+// provenance: marioparty4:src/MSL_C.PPCEABI.bare.H/uart_console_io.c:3
+static inline int init_uart_console(void)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r6
-    stw	r30, 0x18(r1)
-    mr	r30, r5
-    stw	r29, 0x14(r1)
-    mr	r29, r4
-    stw	r28, 0x10(r1)
-    mr	r28, r3
-    bl      OSGetConsoleType
-    rlwinm.	r0, r3, 0, 2, 2
-    bc      4, 2, _800858ac
-    lwz	r0, lbl_801A6DE8
-    li	r3, 0
-    cmpwi	r0, 0
-    bc      4, 2, _80085878
-    lis	r3, 1
-    addi	r3, r3, -0x1f00
-    bl      InitializeUART
-    cmpwi	r3, 0
-    bc      4, 2, _80085878
-    li	r0, 1
-    stw	r0, lbl_801A6DE8
-_80085878:
-    cmpwi	r3, 0
-    bc      12, 2, _80085888
-    li	r3, 1
-    b       _800858c4
-_80085888:
-    lwz	r4, 0(r30)
-    mr	r3, r29
-    bl      WriteUARTN
-    cmpwi	r3, 0
-    bc      12, 2, _800858ac
-    li	r0, 0
-    li	r3, 1
-    stw	r0, 0(r30)
-    b       _800858c4
-_800858ac:
-    mr	r3, r28
-    mr	r4, r29
-    mr	r5, r30
-    mr	r6, r31
-    bl      TRKWriteFileChecked
-    li	r3, 0
-_800858c4:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    lwz	r28, 0x10(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    int error = 0;
+
+    if (lbl_801A6DE8 == 0) {
+        error = InitializeUART(57600);
+        if (error == 0) {
+            lbl_801A6DE8 = 1;
+        }
+    }
+
+    return error;
+}
+
+// provenance: marioparty4:src/MSL_C.PPCEABI.bare.H/uart_console_io.c:16
+int fn_80085814(unsigned int handle, char* buffer, unsigned int* count,
+                unsigned int ref_con)
+{
+    int uart_status;
+
+    if ((OSGetConsoleType() & 0x20000000) == 0) {
+        if (init_uart_console() != 0) {
+            return 1;
+        }
+
+        uart_status = WriteUARTN(buffer, *count);
+        if (uart_status != 0) {
+            *count = 0;
+            return 1;
+        }
+    }
+
+    // Retail also calls TRK after a successful UART write and ignores its status.
+    TRKWriteFileChecked(handle, buffer, count, ref_con);
+    return 0;
 }
 
 // provenance: marioparty4:src/MSL_C.PPCEABI.bare.H/wchar_io.c:3

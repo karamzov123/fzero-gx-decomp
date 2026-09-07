@@ -1049,7 +1049,8 @@ _8008dbf4:
     blr	
 }
 
-asm void TRKWriteFileChecked(void)
+asm int TRKWriteFileChecked(register unsigned int handle, register char* buffer,
+                            register unsigned int* count, register unsigned int ref_con)
 {
     nofralloc
     stwu	r1, -0x20(r1)
