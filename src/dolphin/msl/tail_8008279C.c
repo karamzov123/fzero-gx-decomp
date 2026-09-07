@@ -17,7 +17,7 @@ extern void __msl_parse_format_specifier(void);
 extern unsigned char jumptable_8015B668[208];
 extern unsigned char lbl_80095010[32];
 extern unsigned char lbl_8015B100[256];
-extern u32 lbl_801A6638[2]; /* rand state in the first word; preserve the 8-byte symbol. */
+extern unsigned char lbl_801A6638[8];
 extern unsigned char lbl_801A6640[4];
 extern unsigned char lbl_801A6644[4];
 void __StringRead(void);
@@ -130,12 +130,17 @@ _800828f4:
     blr
 }
 
-// provenance: original
-// MSL rand: advance the 32-bit state and return a value in [0, 32767].
-int fn_80082908(void)
+asm void fn_80082908(void)
 {
-    lbl_801A6638[0] = 0x41C64E6D * lbl_801A6638[0] + 12345;
-    return (lbl_801A6638[0] >> 16) & 0x7FFF;
+    nofralloc
+    lis	r3, 0x41c6
+    lwz	r4, lbl_801A6638
+    addi	r0, r3, 0x4e6d
+    mullw	r3, r4, r0
+    addi	r0, r3, 0x3039
+    stw	r0, lbl_801A6638
+    rlwinm	r3, r0, 0x10, 0x11, 0x1f
+    blr
 }
 
 asm void sscanf(void)

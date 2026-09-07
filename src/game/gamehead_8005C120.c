@@ -77,7 +77,7 @@ extern void AvHeapReleaseById(void);
 extern void fn_8006A1F8(void);
 extern void __cvt_fp2unsigned(void);
 extern void sprintf(void);
-extern int fn_80082908(void);
+extern void fn_80082908(void);
 extern void fn_80087F54(void);
 extern void expf(void);
 extern void __msl_fp_helper(void);

@@ -415,7 +415,16 @@ config.libs = [
         Object(Matching, "dolphin/os/OSTimeCal.c"),
         Object(Matching, "dolphin/os/init/__ppc_eabi_init.c"),
         Object(Matching, "dolphin/os/SIBios.c"),
-        Object(Matching, "dolphin/os/EXIBios.c"),
+        # -opt noschedule: retail EXIBios keeps the LR reload BEFORE the `lmw`
+        # in every epilogue and materialises `&Ecb[chan]` index-first, which is
+        # what MWCC emits with the instruction scheduler off. With the default
+        # -O4,p schedule, EXIGetState/EXISetExiCallback/EXIImmEx each stall a
+        # couple of instructions short of exact for reasons no C spelling
+        # reaches (22 spellings tried on EXIGetState alone); with the flag they
+        # are byte-exact. The unit's remaining asm bodies are unaffected: every
+        # one of the 27 symbols still assembles identically to retail.
+        Object(Matching, "dolphin/os/EXIBios.c",
+               extra_cflags=["-opt noschedule"]),
         Object(Matching, "dolphin/os/DBInterface.c"),
         Object(Matching, "dolphin/os/PSMathFns.c"),
         # These live in .init (0x80003100-0x80005518), not .text -- the
