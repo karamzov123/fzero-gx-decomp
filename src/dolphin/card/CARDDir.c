@@ -1,5 +1,7 @@
 // dolphin/card/CARDDir.c -- tail of coarse/text_80029828 (0x8002C8D0-0x8002EED8).
 // Melee identity: sram CRC, dir writeback, DoMount/Mount/Unmount, filename helpers.
+#include <dolphin/card.h>
+
 #pragma push
 #pragma force_active on
 
@@ -33,7 +35,6 @@ extern void __CARDFormatRegionAsync(void);
 extern void CARDFormatAsync(void);
 extern void __CARDCompareFileName(void);
 extern void __CARDAccess(void);
-extern void __CARDIsPublic(void);
 extern void __CARDGetFileNo(void);
 extern void CARDOpen(void);
 extern void CARDClose(void);
@@ -2515,23 +2516,14 @@ _8002ea3c:
     blr	
 }
 
-asm void __CARDIsPublic(void)
+// provenance: dolsdk2001:src/card/CARDOpen.c:37
+s32 __CARDIsPublic(CARDDir *ent)
 {
-    nofralloc
-    lbz	r0, 0(r3)
-    cmplwi	r0, 0xff
-    bne     _8002ea68
-    li	r3, -4
-    blr	
-_8002ea68:
-    lbz	r0, 0x34(r3)
-    rlwinm.	r0, r0, 0, 0x1d, 0x1d
-    beq     _8002ea7c
-    li	r3, 0
-    blr	
-_8002ea7c:
-    li	r3, -0xa
-    blr	
+    if (ent->gameName[0] == 0xff)
+        return CARD_RESULT_NOFILE;
+    if (ent->permission & CARD_ATTR_PUBLIC)
+        return CARD_RESULT_READY;
+    return CARD_RESULT_NOPERM;
 }
 
 asm void __CARDGetFileNo(void)

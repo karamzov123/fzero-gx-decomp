@@ -19,6 +19,23 @@ MEASURE_FIELDS = {
 
 
 class DecompReportTest(unittest.TestCase):
+    def test_section_annotations_do_not_hide_assembly(self):
+        import importlib.util
+        sys.path.insert(0, str(ROOT / "tools"))
+        spec = importlib.util.spec_from_file_location("report_annotation_test", SCRIPT)
+        assert spec is not None and spec.loader is not None
+        report_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(report_module)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "test.c"
+            path.write_text('asm __declspec(section ".init") void whole(void) { blr }\n'
+                            '__declspec(section ".init") void wrapper(void) { asm { blr } }\n'
+                            '__declspec(section ".init") int pure(void) { return 1; }\n')
+            c_defs, asm, wrappers, hybrids = report_module.source_asm_forms(path)
+            self.assertIn("whole", asm)
+            self.assertIn("wrapper", wrappers)
+            self.assertEqual(c_defs - asm - wrappers - hybrids, {"pure"})
+
     def test_adds_mission_categories_without_changing_diagnostic_measures(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -185,6 +202,68 @@ class DecompReportTest(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             cats = {c["id"]: c for c in json.loads(out.read_text())["categories"]}
             self.assertEqual(cats["natural-c"]["measures"]["complete_units"], 0)
+
+    def test_inline_asm_wrappers_and_hybrids_are_not_natural_c(self):
+        """The public report must agree with natc_metrics' source-form policy.
+
+        A C signature does not make an asm-only body natural C.  A hybrid has
+        real C, but its bounded asm is an additive completion lane, not part
+        of either natural-C or fuzzy C-expressed progress.
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "src").mkdir()
+            (root / "src/forms.c").write_text(
+                "void pure(void) { return; }\n"
+                "void wrapper(void) { asm { blr } }\n"
+                "int hybrid(void) { int x = 1; asm { mr r3, r3 } return x; }\n"
+            )
+            report = {
+                "version": 2,
+                "measures": {
+                    "total_code": "20", "total_functions": 5,
+                    "total_data": "0", "total_units": 1, "complete_units": 0,
+                },
+                "units": [{
+                    "name": "main/forms", "measures": {}, "sections": [],
+                    "functions": [
+                        {"name": "pure", "size": "4", "fuzzy_match_percent": 100.0},
+                        {"name": "wrapper", "size": "4", "fuzzy_match_percent": 100.0},
+                        {"name": "hybrid", "size": "4", "fuzzy_match_percent": 100.0},
+                        # These target names are absent from the source (the
+                        # real tree has renamed/asm-only symbols like these).
+                        {"name": "renamed_target", "size": "4", "fuzzy_match_percent": 100.0},
+                        {"name": "pad_00_vector", "size": "4", "fuzzy_match_percent": 100.0},
+                    ],
+                    "metadata": {"source_path": "src/forms.c"},
+                }],
+                "categories": [],
+            }
+            src = root / "report.json"
+            src.write_text(json.dumps(report))
+            out = root / "out.json"
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT), "--report", str(src),
+                 "--root", str(root), "--out", str(out)],
+                text=True, capture_output=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            cats = {c["id"]: c for c in json.loads(out.read_text())["categories"]}
+            for category in ("natural-c", "c-expressed"):
+                measures = cats[category]["measures"]
+                self.assertEqual(measures["matched_functions"], 1)
+                self.assertEqual(measures["matched_code"], "4")
+                self.assertEqual(measures["complete_units"], 0)
+
+    def test_missing_source_fails_closed(self):
+        """A target-only name must never be promoted when source is absent."""
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("decomp_report", SCRIPT)
+        mod = importlib.util.module_from_spec(spec)
+        assert spec and spec.loader
+        spec.loader.exec_module(mod)
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(SystemExit):
+                mod.source_asm_forms(Path(tmp) / "missing.c")
 
     def test_keeps_objdiff_progress_categories_scoped_to_the_mission(self):
         """game/sdk must survive, measured the way the headline is measured.

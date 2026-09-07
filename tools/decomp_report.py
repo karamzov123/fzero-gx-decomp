@@ -15,19 +15,57 @@ import argparse
 import copy
 import json
 import re
+import sys
 from pathlib import Path
+
+try:
+    import natc_asmforms
+except ModuleNotFoundError as exc:  # pragma: no cover - packaging failure
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import natc_asmforms
+    except ModuleNotFoundError:
+        raise SystemExit(
+            "decomp_report requires tools/natc_asmforms.py; refusing to emit "
+            "a report with the old asm false positives") from exc
 
 ASM_DEF = re.compile(
     r"(?<!extern\s)\b(?:static\s+)?asm\s+(?:static\s+)?"
     r"[A-Za-z_][\w \t*]*?\b(\w+)\s*\(", re.MULTILINE,
 )
-GAP_NAME = re.compile(r"^gap_|_pad(?:$|_)", re.IGNORECASE)
+GAP_NAME = re.compile(r"^(?:gap_|pad_)|_pad(?:$|_)", re.IGNORECASE)
 
 
 def asm_names(path):
     if not path or not path.exists():
         return set()
     return {m.group(1) for m in ASM_DEF.finditer(path.read_text(errors="replace"))}
+
+
+def source_asm_forms(path):
+    """Return source C definitions and forms excluded from the C lanes.
+
+    A C signature does not make an asm-only body natural C. A hybrid with a
+    bounded inline-asm statement is an additive completion lane rather than
+    natural C. Keep this report on the same classifier as natc_metrics.
+    """
+    if not path or not path.exists():
+        raise SystemExit(
+            f"report unit source is missing: {path}; refusing to count "
+            "target-only names as natural C")
+    text = path.read_text(errors="replace")
+    clean = natc_asmforms._strip_comments(text)
+    # c_function_ranges intentionally stays a small source-shape parser. The
+    # report has one additional, harmless wrapper around C definitions:
+    # `__declspec(section ".init")`. Remove that annotation before asking the
+    # shared parser for positive C definitions; asm definitions remain excluded
+    # by `asm` below.
+    c_text = natc_asmforms.strip_declspec(clean)
+    asm = natc_asmforms.asm_defs(c_text)
+    c_defs = {name for name, _start, _end in
+              natc_asmforms.c_function_ranges(c_text)} - asm
+    wrappers, hybrids = natc_asmforms.classify_inline_asm(c_text)
+    return c_defs, asm, wrappers, hybrids
 
 
 def number(value):
@@ -102,11 +140,17 @@ def eligible_units(report, root):
     for unit in report.get("units", []):
         metadata = unit.get("metadata", {}) or {}
         source = metadata.get("source_path")
-        names = asm_names(root / source) if source else set()
+        if not source:
+            # Data/coarse units can legitimately have no source. They are not
+            # evidence of a C conversion and must not enter these categories.
+            continue
+        c_defs, names, wrappers, hybrids = source_asm_forms(root / source)
+        excluded = names | wrappers | hybrids
         functions = []
         for function in unit.get("functions", []):
             name = function.get("name", "")
-            if not name or GAP_NAME.search(name) or name in names:
+            if (not name or GAP_NAME.search(name) or name not in c_defs
+                    or name in excluded):
                 continue
             functions.append(function)
         if not functions:
@@ -120,7 +164,7 @@ def eligible_units(report, root):
             # counted as finished with twenty asm bodies still beside it. The
             # honest count on the same tree was 35. A unit with no source_path
             # has converted nothing and can never be complete.
-            "fully_c": bool(source) and not names,
+            "fully_c": bool(source) and not excluded,
             "categories": list(metadata.get("progress_categories") or []),
         })
     return units

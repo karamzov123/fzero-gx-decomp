@@ -481,10 +481,14 @@ config.libs = [
         Object(Matching, "dolphin/card/CARDBios.c"),
         Object(Matching, "dolphin/card/CARDMount.c"),
         Object(Matching, "dolphin/card/CARDBlock.c"),
-        Object(Matching, "dolphin/card/CARDDir.c"),
+        # Pilot: __CARDIsPublic is typed C but has a known MWCC bit-test
+        # lowering plateau; keep the retail object linked unchanged.
+        Object(NonMatching, "dolphin/card/CARDDir.c"),
         Object(Matching, "dolphin/card/CARDCreate.c"),
         Object(Matching, "dolphin/card/CARDRead.c"),
-        Object(Matching, "dolphin/card/CARDWrite.c"),
+        # Pilot: CARDWriteAsync is reference-backed typed C; asm callbacks
+        # remain in the source while this unit is scored in the WIP lane.
+        Object(NonMatching, "dolphin/card/CARDWrite.c"),
         Object(Matching, "dolphin/card/CARDDelete.c"),
         Object(Matching, "dolphin/card/CARDStat.c"),
         Object(Matching, "dolphin/card/CARDRename.c"),

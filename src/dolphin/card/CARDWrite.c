@@ -5,31 +5,13 @@
 // fileInfo@0xc0, ent->time@0x28, card->startBlock@0xbe.
 // Timestamps: OSGetTime()/(__OSBusClock/4) -> bl OSGetTime + bl __div2i.
 
-typedef int BOOL;
-typedef int s32;
-typedef unsigned long u32;
-typedef unsigned short u16;
+#include <dolphin/card_private.h>
 
-extern s32 __CARDGetControlBlock(register void* card, register void** pctrl);
-extern void __CARDPutControlBlock(register void* ctrl, register s32 err);
-extern s32 __CARDGetFatBlock(register void* ctrl);
-extern s32 __CARDGetDirBlock(void);
-extern s32 __CARDEraseSector(register s32 chn, register s32 addr, register void* callback);
-extern s32 __CARDWrite(register s32 chn, register s32 addr, register s32 len,
-                       register void* buf, register void* callback);
-extern s32 __CARDAccess(register void* ctrl, register void* ent);
-extern s32 __CARDSeek(register void* fileInfo, register s32 length, register s32 offset,
-                       register void** pcard);
-extern s32 __CARDUpdateDir(register s32 chn, register void* callback);
-extern s32 __CARDSync(register s32 chn);
 extern void DCStoreRange(register void* addr, register u32 n);
 extern unsigned long long OSGetTime(void);
 extern long long __div2i(long long a, long long b);
-extern void __CARDSyncCallback(void);
-extern void __CARDDefaultApiCallback(void);
 extern void CARDWrite_WriteCallback(register s32 chan, register s32 result);
 extern void CARDWrite_EraseCallback(register s32 chan, register s32 result);
-extern unsigned char __CARDBlock[544];
 
 #pragma push
 #pragma force_active on
@@ -189,87 +171,37 @@ _L_8002f7b8:
     blr
 }
 
-asm s32 CARDWriteAsync(register void* fileInfo, register void* buf, register s32 length,
-                       register s32 offset, register void* callback)
+// provenance: dolsdk2001:src/card/CARDWrite.c:82
+s32 CARDWriteAsync(CARDFileInfo *fileInfo, void *buf, s32 length,
+                   s32 offset, CARDCallback callback)
 {
-    nofralloc
-    mflr    r0
-    stw     r0, 4(r1)
-    stwu    r1, -0x38(r1)
-    stmw    r27, 0x24(r1)
-    addi    r28, r6, 0
-    addi    r27, r5, 0
-    addi    r31, r4, 0
-    addi    r30, r3, 0
-    addi    r29, r7, 0
-    addi    r4, r27, 0
-    addi    r5, r28, 0
-    addi    r6, r1, 0x1c
-    bl      __CARDSeek
-    cmpwi   r3, 0
-    bge     _L_8002f818
-    b       _L_8002f8d8
-_L_8002f818:
-    lwz     r3, 0x1c(r1)
-    lwz     r4, 0xc(r3)
-    addi    r4, r4, -1
-    and.    r0, r28, r4
-    bne     _L_8002f834
-    and.    r0, r27, r4
-    beq     _L_8002f840
-_L_8002f834:
-    li      r4, -0x80
-    bl      __CARDPutControlBlock
-    b       _L_8002f8d8
-_L_8002f840:
-    bl      __CARDGetDirBlock
-    lwz     r0, 4(r30)
-    slwi    r0, r0, 6
-    add     r4, r3, r0
-    lwz     r3, 0x1c(r1)
-    bl      __CARDAccess
-    or.     r4, r3, r3
-    bge     _L_8002f86c
-    lwz     r3, 0x1c(r1)
-    bl      __CARDPutControlBlock
-    b       _L_8002f8d8
-_L_8002f86c:
-    addi    r3, r31, 0
-    addi    r4, r27, 0
-    bl      DCStoreRange
-    cmplwi  r29, 0
-    beq     _L_8002f888
-    mr      r0, r29
-    b       _L_8002f890
-_L_8002f888:
-    lis     r3, __CARDDefaultApiCallback@ha
-    addi    r0, r3, __CARDDefaultApiCallback@l         /* __CARDDefaultApiCallback */
-_L_8002f890:
-    lwz     r4, 0x1c(r1)
-    lis     r3, CARDWrite_EraseCallback@ha
-    addi    r5, r3, CARDWrite_EraseCallback@l          /* EraseCallback */
-    stw     r0, 0xd0(r4)
-    lwz     r3, 0x1c(r1)
-    stw     r31, 0xb4(r3)
-    lwz     r3, 0x1c(r1)
-    lhz     r0, 0x10(r30)
-    lwz     r4, 0xc(r3)
-    lwz     r3, 0(r30)
-    mullw   r4, r4, r0
-    bl      __CARDEraseSector
-    or.     r30, r3, r3
-    bge     _L_8002f8d4
-    lwz     r3, 0x1c(r1)
-    mr      r4, r30
-    bl      __CARDPutControlBlock
-_L_8002f8d4:
-    mr      r3, r30
-_L_8002f8d8:
-    lmw     r27, 0x24(r1)
-    lwz     r0, 0x3c(r1)
-    addi    r1, r1, 0x38
-    mtlr    r0
-    blr
+    CARDControl *card;
+    s32 result;
+    CARDDir *dir;
+    CARDDir *ent;
+
+    result = __CARDSeek(fileInfo, length, offset, &card);
+    if (result < 0)
+        return result;
+    if ((offset & (card->sectorSize - 1)) != 0 ||
+        (length & (card->sectorSize - 1)) != 0)
+        return __CARDPutControlBlock(card, CARD_RESULT_FATAL_ERROR);
+
+    dir = __CARDGetDirBlock(card);
+    ent = &dir[fileInfo->fileNo];
+    result = __CARDAccess(card, ent);
+    if (result < 0)
+        return __CARDPutControlBlock(card, result);
+
+    DCStoreRange(buf, (u32)length);
+    card->apiCallback = callback ? callback : __CARDDefaultApiCallback;
+    card->buffer = buf;
+    result = __CARDEraseSector(fileInfo->chan,
+                                card->sectorSize * (u32)fileInfo->iBlock,
+                                (void *)CARDWrite_EraseCallback);
+    if (result < 0)
+        __CARDPutControlBlock(card, result);
+    return result;
 }
 
 asm s32 CARDWrite(register void* fileInfo, register void* buf, register s32 length,
