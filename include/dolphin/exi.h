@@ -73,9 +73,30 @@ typedef void (*EXICallback)(s32 chan, OSContext* context);
 /* An immediate transfer is at most one 32-bit word. */
 #define MAX_IMM 4
 
-/* Device IDs EXISync special-cases, from its `subis` comparisons. */
+/* The EXI UART's "initialised" sentinel, from InitializeUART's comparison. */
+#define EXI_MAGIC 0xA5FF005Au
+
+/*
+ * Device IDs. EXISync special-cases the first two through `subis`; the rest
+ * are the switch arms __OSEnableBarnacle compares against, read off its
+ * binary-search `lis`/`addi` pairs.
+ */
+#define EXI_MEMORY_CARD_59 0x00000004u
+#define EXI_MEMORY_CARD_123 0x00000008u
+#define EXI_MEMORY_CARD_251 0x00000010u
+#define EXI_MEMORY_CARD_507 0x00000020u
 #define EXI_USB_ADAPTER 0x01010000u
+#define EXI_NPDP_GDEV 0x01020000u
+#define EXI_MODEM 0x02020000u
+#define EXI_MARLIN 0x03010000u
 #define EXI_IS_VIEWER 0x05070000u
+
+/*
+ * The barnacle UART's transmit command word. WriteUARTN builds
+ * `(EXI_TX | 0x2000000) << 6` == 0xA0010000 and QueueLength builds
+ * `EXI_TX << 6` == 0x20010000, which pins it.
+ */
+#define EXI_TX 0x00800400u
 
 /*
  * Function prototypes deliberately stay in the unit source: the retail

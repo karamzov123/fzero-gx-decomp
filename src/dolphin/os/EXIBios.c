@@ -64,10 +64,15 @@ extern int EXIDetach(register s32 chan);
 extern u32 IDSerialPort1; /* .sdata, reached through @sda21 */
 extern const char* __EXIVersion; /* .sdata, @sda21 */
 extern BOOL __OSInIPL; /* .sdata, @sda21; retail compares it signed */
-extern unsigned char lbl_801A6840[4];
-extern unsigned char lbl_801A6844[4];
-extern unsigned char lbl_801A6848[4];
-extern unsigned char lbl_801A684C[4];
+/*
+ * EXI UART state (.sbss, all four reached through @sda21 as words). Named from
+ * mkdd's EXIUart.c, which is the revision retail matches; InitializeUART's
+ * `addis r0, r3, 0x5a01 / cmplwi r0, 0x5a` pins EXI_MAGIC to 0xA5FF005A.
+ */
+extern s32 Chan;
+extern u32 Dev;
+extern u32 Enabled;
+extern u32 BarnacleEnabled;
 // provenance: dolsdk2001:src/os/OSExi.c:63
 void SetExiInterruptMask(s32 chan, EXIControl* exi)
 {

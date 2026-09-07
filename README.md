@@ -73,7 +73,13 @@ toolchain described in [Getting Started](docs/getting_started.md).
 
 ## Contributing
 
-Please keep changes focused and reproducible. Preserve the existing symbol/split conventions, do not commit copyrighted game assets or private environment files, and document adapted code with provenance as described in the policy. Discussion and review are welcome through the GameCube/Wii decompilation community.
+Pull requests against `main` here are the way in, and they stick: this repository is the source of truth for the source tree, not a generated mirror. Merged work keeps its author's name on it.
+
+Please keep changes focused and reproducible. Preserve the existing symbol/split conventions, do not commit copyrighted game assets or private environment files, and document adapted code with provenance as described in the policy. A short note under `docs/contributions/<name>/CARD.md` recording your provenance and how you verified the match is welcome and will be published with the change.
+
+A branch named `sync/from-private` appears here from time to time. That is the maintainer's working tree proposing changes through the same PR route; it never writes to `main` directly.
+
+Discussion and review are welcome through the GameCube/Wii decompilation community.
 
 ## Resources and attributions
 
