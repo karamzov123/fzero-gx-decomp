@@ -860,3 +860,450 @@ int EXIGetID(s32 chan, u32 dev, u32* id)
 }
 #pragma pop
 
+/* ---- __EXIGetID ---- */
+#pragma push
+#pragma force_active on
+asm int __EXIGetID(register s32 chan, register u32 dev, register u32* id)
+{
+    nofralloc
+    mflr        r0
+    stw         r0, 0x4(r1)
+    stwu        r1, -0x28(r1)
+    stw         r31, 0x24(r1)
+    addi        r31, r5, 0x0
+    stw         r30, 0x20(r1)
+    addi        r30, r4, 0x0
+    stw         r29, 0x1c(r1)
+    addi        r29, r3, 0x0
+    cmpwi       r29, 0x2
+    stw         r28, 0x18(r1)
+    beq         L_800154B8
+    cmplwi      r30, 0x0
+    bne         L_800154B8
+    addi        r3, r29, 0x0
+    li          r4, 0x0
+    bl          EXIAttach
+    cmpwi       r3, 0x0
+    bne         L_800154B8
+    li          r3, 0x0
+    b           L_800155D0
+L_800154B8:
+    addi        r3, r29, 0x0
+    addi        r4, r30, 0x0
+    li          r5, 0x0
+    bl          EXILock
+    cntlzw      r0, r3
+    srwi        r0, r0, 5
+    mr.         r28, r0
+    bne         L_8001558C
+    addi        r3, r29, 0x0
+    addi        r4, r30, 0x0
+    li          r5, 0x0
+    bl          EXISelect
+    cntlzw      r0, r3
+    srwi        r0, r0, 5
+    mr.         r28, r0
+    bne         L_80015584
+    lis         r3, 0x2001
+    addi        r0, r3, 0x1300
+    stw         r0, 0x14(r1)
+    addi        r3, r29, 0x0
+    addi        r4, r1, 0x14
+    li          r5, 0x4
+    li          r6, 0x1
+    li          r7, 0x0
+    bl          EXIImm
+    cntlzw      r0, r3
+    addi        r3, r29, 0x0
+    srwi        r28, r0, 5
+    bl          EXISync
+    cntlzw      r0, r3
+    srwi        r0, r0, 5
+    addi        r3, r29, 0x0
+    addi        r4, r31, 0x0
+    or          r28, r28, r0
+    li          r5, 0x4
+    li          r6, 0x0
+    li          r7, 0x0
+    bl          EXIImm
+    cntlzw      r0, r3
+    srwi        r0, r0, 5
+    addi        r3, r29, 0x0
+    or          r28, r28, r0
+    bl          EXISync
+    cntlzw      r0, r3
+    srwi        r0, r0, 5
+    addi        r3, r29, 0x0
+    or          r28, r28, r0
+    bl          EXIDeselect
+    cntlzw      r0, r3
+    srwi        r0, r0, 5
+    or          r28, r28, r0
+L_80015584:
+    mr          r3, r29
+    bl          EXIUnlock
+L_8001558C:
+    cmpwi       r29, 0x2
+    beq         L_800155A4
+    cmplwi      r30, 0x0
+    bne         L_800155A4
+    mr          r3, r29
+    bl          EXIDetach
+L_800155A4:
+    cmpwi       r28, 0x0
+    beq         L_800155B4
+    li          r3, 0x0
+    b           L_800155D0
+L_800155B4:
+    lwz         r3, 0x0(r31)
+    addis       r0, r3, 0x1
+    cmplwi      r0, 0xffff
+    beq         L_800155CC
+    li          r3, 0x1
+    b           L_800155D0
+L_800155CC:
+    li          r3, 0x0
+L_800155D0:
+    lwz         r0, 0x2c(r1)
+    lwz         r31, 0x24(r1)
+    lwz         r30, 0x20(r1)
+    lwz         r29, 0x1c(r1)
+    lwz         r28, 0x18(r1)
+    addi        r1, r1, 0x28
+    mtlr        r0
+    blr
+}
+#pragma pop
+
+/* ---- __OSEnableBarnacle ---- */
+#pragma push
+#pragma force_active on
+asm void __OSEnableBarnacle(register s32 chan, register u32 dev)
+{
+    nofralloc
+    mflr        r0
+    stw         r0, 0x4(r1)
+    stwu        r1, -0x20(r1)
+    stw         r31, 0x1c(r1)
+    addi        r31, r4, 0x0
+    addi        r5, r1, 0x10
+    stw         r30, 0x18(r1)
+    addi        r30, r3, 0x0
+    bl          EXIGetID
+    cmpwi       r3, 0x0
+    beq         L_80015794
+    lwz         r4, 0x10(r1)
+    lis         r0, 0x102
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_800156C0
+    cmpwi       r4, 0x4
+    beq         L_80015794
+    bge         L_8001568C
+    lis         r3, 0x8000
+    addi        r0, r3, 0x10
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_80015670
+    addi        r0, r3, 0x8
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_80015764
+    addi        r0, r3, 0x4
+    cmpw        r4, r0
+    beq         L_80015794
+    b           L_80015764
+L_80015670:
+    cmpwi       r4, -0x1
+    beq         L_80015794
+    bge         L_80015764
+    addi        r0, r3, 0x20
+    cmpw        r4, r0
+    beq         L_80015794
+    b           L_80015764
+L_8001568C:
+    cmpwi       r4, 0x20
+    beq         L_80015794
+    bge         L_800156B0
+    cmpwi       r4, 0x10
+    beq         L_80015794
+    bge         L_80015764
+    cmpwi       r4, 0x8
+    beq         L_80015794
+    b           L_80015764
+L_800156B0:
+    lis         r0, 0x101
+    cmpw        r4, r0
+    beq         L_80015794
+    b           L_80015764
+L_800156C0:
+    lis         r3, 0x404
+    addi        r0, r3, 0x404
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_80015728
+    lis         r3, 0x402
+    addi        r0, r3, 0x100
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_80015708
+    lis         r0, 0x301
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_80015764
+    lis         r0, 0x202
+    cmpw        r4, r0
+    beq         L_80015794
+    b           L_80015764
+L_80015708:
+    addi        r0, r3, 0x300
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_80015764
+    addi        r0, r3, 0x200
+    cmpw        r4, r0
+    beq         L_80015794
+    b           L_80015764
+L_80015728:
+    lis         r0, 0x413
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_80015758
+    lis         r0, 0x412
+    cmpw        r4, r0
+    beq         L_80015794
+    bge         L_80015764
+    lis         r0, 0x406
+    cmpw        r4, r0
+    beq         L_80015794
+    b           L_80015764
+L_80015758:
+    lis         r0, 0x422
+    cmpw        r4, r0
+    beq         L_80015794
+L_80015764:
+    addi        r3, r30, 0x0
+    addi        r4, r31, 0x0
+    addi        r5, r1, 0x10
+    bl          __EXIGetID
+    cmpwi       r3, 0x0
+    beq         L_80015794
+    lis         r3, 0xa5ff
+    stw	r30, lbl_801A6840 /* lbl_801A6840@sda21 */
+    addi        r0, r3, 0x5a
+    stw	r31, lbl_801A6844 /* lbl_801A6844@sda21 */
+    stw	r0, lbl_801A684C /* lbl_801A684C@sda21 */
+    stw	r0, lbl_801A6848 /* lbl_801A6848@sda21 */
+L_80015794:
+    lwz         r0, 0x24(r1)
+    lwz         r31, 0x1c(r1)
+    lwz         r30, 0x18(r1)
+    addi        r1, r1, 0x20
+    mtlr        r0
+    blr
+}
+#pragma pop
+
+/* ---- InitializeUART ---- */
+#pragma push
+#pragma force_active on
+asm int InitializeUART(register unsigned long baud_rate)
+{
+    nofralloc
+    mflr        r0
+    stw         r0, 0x4(r1)
+    stwu        r1, -0x8(r1)
+    lwz	r3, lbl_801A684C /* lbl_801A684C@sda21 */
+    addis       r0, r3, 0x5a01
+    cmplwi      r0, 0x5a
+    bne         L_800157D0
+    li          r3, 0x0
+    b           L_8001580C
+L_800157D0:
+    bl          OSGetConsoleType
+    rlwinm.     r0, r3, 0, 3, 3
+    bne         L_800157EC
+    li          r0, 0x0
+    stw	r0, lbl_801A6848 /* lbl_801A6848@sda21 */
+    li          r3, 0x2
+    b           L_8001580C
+L_800157EC:
+    lis         r3, 0xa5ff
+    addi        r0, r3, 0x5a
+    li          r3, 0x0
+    stw	r0, lbl_801A6848 /* lbl_801A6848@sda21 */
+    li          r0, 0x1
+    stw	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    li          r3, 0x0
+    stw	r0, lbl_801A6844 /* lbl_801A6844@sda21 */
+L_8001580C:
+    lwz         r0, 0xc(r1)
+    addi        r1, r1, 0x8
+    mtlr        r0
+    blr
+}
+#pragma pop
+
+/* ---- WriteUARTN ---- */
+#pragma push
+#pragma force_active on
+asm int WriteUARTN(register void* buffer, register s32 len)
+{
+    nofralloc
+    mflr        r0
+    stw         r0, 0x4(r1)
+    stwu        r1, -0x38(r1)
+    stmw        r25, 0x1c(r1)
+    addi        r30, r3, 0x0
+    addi        r31, r4, 0x0
+    lwz	r5, lbl_801A6848 /* lbl_801A6848@sda21 */
+    addis       r0, r5, 0x5a01
+    cmplwi      r0, 0x5a
+    beq         L_8001584C
+    li          r3, 0x2
+    b           L_80015A24
+L_8001584C:
+    bl          OSDisableInterrupts
+    mr          r0, r3
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    lwz	r4, lbl_801A6844 /* lbl_801A6844@sda21 */
+    mr          r27, r0
+    li          r5, 0x0
+    bl          EXILock
+    cmpwi       r3, 0x0
+    bne         L_80015880
+    mr          r3, r27
+    bl          OSRestoreInterrupts
+    li          r3, 0x0
+    b           L_80015A24
+L_80015880:
+    addi        r4, r30, 0x0
+    li          r3, 0xd
+    b           L_800158A0
+L_8001588C:
+    lbz         r0, 0x0(r4)
+    cmpwi       r0, 0xa
+    bne         L_8001589C
+    stb         r3, 0x0(r4)
+L_8001589C:
+    addi        r4, r4, 0x1
+L_800158A0:
+    subf        r0, r30, r4
+    cmplw       r0, r31
+    blt         L_8001588C
+    lis         r0, 0xa001
+    stw         r0, 0x14(r1)
+    li          r25, 0x0
+    lis         r29, 0x2001
+    b           L_80015A08
+L_800158C0:
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    li          r5, 0x3
+    lwz	r4, lbl_801A6844 /* lbl_801A6844@sda21 */
+    bl          EXISelect
+    cmpwi       r3, 0x0
+    bne         L_800158E0
+    li          r0, -0x1
+    b           L_80015938
+L_800158E0:
+    stw         r29, 0x10(r1)
+    addi        r4, r1, 0x10
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    li          r5, 0x4
+    li          r6, 0x1
+    li          r7, 0x0
+    bl          EXIImm
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    bl          EXISync
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    addi        r4, r1, 0x10
+    li          r5, 0x1
+    li          r6, 0x0
+    li          r7, 0x0
+    bl          EXIImm
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    bl          EXISync
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    bl          EXIDeselect
+    lwz         r0, 0x10(r1)
+    srwi        r0, r0, 24
+    subfic      r0, r0, 0x10
+L_80015938:
+    cmpwi       r0, 0x0
+    mr          r26, r0
+    bge         L_8001594C
+    li          r25, 0x3
+    b           L_80015A10
+L_8001594C:
+    cmpwi       r0, 0xc
+    bge         L_8001595C
+    cmplw       r0, r31
+    blt         L_80015A08
+L_8001595C:
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    li          r5, 0x3
+    lwz	r4, lbl_801A6844 /* lbl_801A6844@sda21 */
+    bl          EXISelect
+    cmpwi       r3, 0x0
+    bne         L_8001597C
+    li          r25, 0x3
+    b           L_80015A10
+L_8001597C:
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    addi        r4, r1, 0x14
+    li          r5, 0x4
+    li          r6, 0x1
+    li          r7, 0x0
+    bl          EXIImm
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    bl          EXISync
+    b           L_800159F0
+L_800159A0:
+    cmpwi       r26, 0x4
+    bge         L_800159B0
+    cmplw       r26, r31
+    blt         L_80015A00
+L_800159B0:
+    cmplwi      r31, 0x4
+    bge         L_800159C0
+    mr          r28, r31
+    b           L_800159C4
+L_800159C0:
+    li          r28, 0x4
+L_800159C4:
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    mr          r5, r28
+    addi        r4, r30, 0x0
+    li          r6, 0x1
+    li          r7, 0x0
+    bl          EXIImm
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    add         r30, r30, r28
+    subf        r31, r28, r31
+    subf        r26, r28, r26
+    bl          EXISync
+L_800159F0:
+    cmpwi       r26, 0x0
+    beq         L_80015A00
+    cmplwi      r31, 0x0
+    bne         L_800159A0
+L_80015A00:
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    bl          EXIDeselect
+L_80015A08:
+    cmplwi      r31, 0x0
+    bne         L_800158C0
+L_80015A10:
+    lwz	r3, lbl_801A6840 /* lbl_801A6840@sda21 */
+    bl          EXIUnlock
+    mr          r3, r27
+    bl          OSRestoreInterrupts
+    mr          r3, r25
+L_80015A24:
+    lmw         r25, 0x1c(r1)
+    lwz         r0, 0x3c(r1)
+    addi        r1, r1, 0x38
+    mtlr        r0
+    blr
+}
+#pragma pop
