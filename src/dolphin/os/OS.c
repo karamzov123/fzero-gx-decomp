@@ -95,7 +95,7 @@ extern unsigned char __OSSavedRegionStart[4];
 extern unsigned char __OSStartTime[8];
 extern unsigned char __OSVersion[4];
 extern unsigned char __PADSpec[4];
-asm void OSGetConsoleType(void)
+asm unsigned long OSGetConsoleType(void)
 {
     nofralloc
     lwz r3, OSBootInfo_801A6748
