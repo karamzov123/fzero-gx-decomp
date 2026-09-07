@@ -59,13 +59,14 @@ asm void TRKNubMainLoop(register void* a, register void* b, register void* c, re
 asm void TRKNubWelcome(register void* a, register void* b, register void* c, register void* d);
 asm void TRKTerminateNub(register void* a, register void* b, register void* c, register void* d);
 asm void TRKInitializeNub(register void* a, register void* b, register void* c, register void* d);
-asm void TRK_IsInputPending(register void* a, register void* b, register void* c, register void* d);
+extern int TRK_IsInputPending(void);
 asm void TRK_flush_cache(register void* a, register void* b, register void* c, register void* d);
 asm void __TRK_get_MSR(register void* a, register void* b, register void* c, register void* d);
 asm void TRKInterruptHandler(register void* a, register void* b, register void* c, register void* d);
 asm void TRKSwapAndGo(register void* a, register void* b, register void* c, register void* d);
 asm void TRKTargetSetStopped(register void* a, register void* b, register void* c, register void* d);
-asm void fn_8008CB20(register void* a, register void* b, register void* c, register void* d);
+extern unsigned int fn_8008CB20(unsigned int command, unsigned int handle,
+                                 unsigned int* count, char* buffer);
 asm void fn_8008CB28(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008CB30(register void* a, register void* b, register void* c, register void* d);
 asm void fn_8008CB38(register void* a, register void* b, register void* c, register void* d);
@@ -688,7 +689,7 @@ asm void TRKTargetContinue(void)
     blr	
 }
 
-asm void AMC_IsStub_Game(void)
+asm unsigned char AMC_IsStub_Game(void)
 {
     nofralloc
     lis     r3, lbl_801A5650@ha
@@ -1049,123 +1050,61 @@ _8008dbf4:
     blr	
 }
 
-asm int TRKWriteFileChecked(register unsigned int handle, register char* buffer,
-                            register unsigned int* count, register unsigned int ref_con)
+// provenance: mariopartyrd/marioparty4:src/TRK_MINNOW_DOLPHIN/mslsupp.c:25 (reference-assisted; see CARD.md for pin and details)
+int TRKWriteFileChecked(unsigned int handle, char* buffer,
+                        unsigned int* count, unsigned int ref_con)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r5
-    stw	r30, 0x18(r1)
-    mr	r30, r4
-    bl      AMC_IsStub_Game
-    clrlwi.	r0, r3, 0x18
-    bne     _8008dc40
-    li	r3, 1
-    b       _8008dcb4
-_8008dc40:
-    bl      TRK_IsInputPending
-    cmpwi	r3, 0
-    bne     _8008dc54
-    li	r3, 1
-    b       _8008dcb4
-_8008dc54:
-    lwz	r0, 0(r31)
-    mr	r6, r30
-    addi	r5, r1, 8
-    li	r3, 0xd0
-    stw	r0, 8(r1)
-    li	r4, 1
-    bl      fn_8008CB20
-    clrlwi	r0, r3, 0x18
-    lwz	r3, 8(r1)
-    cmpwi	r0, 1
-    stw	r3, 0(r31)
-    beq     _8008dcb0
-    bge     _8008dc94
-    cmpwi	r0, 0
-    bge     _8008dca0
-    b       _8008dcb0
-_8008dc94:
-    cmpwi	r0, 3
-    bge     _8008dcb0
-    b       _8008dca8
-_8008dca0:
-    li	r3, 0
-    b       _8008dcb4
-_8008dca8:
-    li	r3, 2
-    b       _8008dcb4
-_8008dcb0:
-    li	r3, 1
-_8008dcb4:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    unsigned int count_temp;
+    unsigned int status;
+
+    if (AMC_IsStub_Game() == 0) {
+        return 1;
+    }
+    if (TRK_IsInputPending() == 0) {
+        return 1;
+    }
+
+    count_temp = *count;
+    status = fn_8008CB20(0xD0, 1, &count_temp, buffer);
+    *count = count_temp;
+
+    switch ((unsigned char)status) {
+        case 0:
+            return 0;
+        case 2:
+            return 2;
+        default:
+            return 1;
+    }
 }
 
-asm void TRKReadFileChecked(void)
+// provenance: mariopartyrd/marioparty4:src/TRK_MINNOW_DOLPHIN/mslsupp.c:13 (reference-assisted; see CARD.md for pin and details)
+int TRKReadFileChecked(unsigned int handle, char* buffer,
+                        unsigned int* count, unsigned int ref_con)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    mr	r31, r5
-    stw	r30, 0x18(r1)
-    mr	r30, r4
-    bl      AMC_IsStub_Game
-    clrlwi.	r0, r3, 0x18
-    bne     _8008dcfc
-    li	r3, 1
-    b       _8008dd70
-_8008dcfc:
-    bl      TRK_IsInputPending
-    cmpwi	r3, 0
-    bne     _8008dd10
-    li	r3, 1
-    b       _8008dd70
-_8008dd10:
-    lwz	r0, 0(r31)
-    mr	r6, r30
-    addi	r5, r1, 8
-    li	r3, 0xd1
-    stw	r0, 8(r1)
-    li	r4, 0
-    bl      fn_8008CB20
-    clrlwi	r0, r3, 0x18
-    lwz	r3, 8(r1)
-    cmpwi	r0, 1
-    stw	r3, 0(r31)
-    beq     _8008dd6c
-    bge     _8008dd50
-    cmpwi	r0, 0
-    bge     _8008dd5c
-    b       _8008dd6c
-_8008dd50:
-    cmpwi	r0, 3
-    bge     _8008dd6c
-    b       _8008dd64
-_8008dd5c:
-    li	r3, 0
-    b       _8008dd70
-_8008dd64:
-    li	r3, 2
-    b       _8008dd70
-_8008dd6c:
-    li	r3, 1
-_8008dd70:
-    lwz	r0, 0x24(r1)
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr	
+    unsigned int count_temp;
+    unsigned int status;
+
+    if (AMC_IsStub_Game() == 0) {
+        return 1;
+    }
+    if (TRK_IsInputPending() == 0) {
+        return 1;
+    }
+
+    count_temp = *count;
+    status = fn_8008CB20(0xD1, 0, &count_temp, buffer);
+    *count = count_temp;
+
+    switch ((unsigned char)status) {
+        case 0:
+            return 0;
+        case 2:
+            return 2;
+        default:
+            return 1;
+    }
 }
+
 
 #pragma pop

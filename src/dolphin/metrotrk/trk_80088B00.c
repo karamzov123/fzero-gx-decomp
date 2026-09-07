@@ -85,7 +85,7 @@ extern void TRKDoReset(void);
 extern void TRKDoDisconnect(void);
 extern void TRKDoSetOption(void);
 extern void TRK_SetInputPendingPtrStore(void);
-extern void TRK_IsInputPending(void);
+extern int TRK_IsInputPending(void);
 extern void TRKRequestSend(void);
 extern void TRKReleaseMutex_stub(void);
 extern void fn_8008AF50(void);
@@ -2192,7 +2192,7 @@ asm void TRK_SetInputPendingPtrStore(void)
     blr
 }
 
-asm void TRK_IsInputPending(void)
+asm int TRK_IsInputPending(void)
 {
     nofralloc
     lis r3, gTRKInputPendingPtrStore@ha
