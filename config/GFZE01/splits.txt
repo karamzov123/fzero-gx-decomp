@@ -180,7 +180,10 @@ dolphin/os/SIBios.c:
 	.text       start:0x8001191C end:0x80013A88
 
 dolphin/os/EXIBios.c:
-	.text       start:0x80013A88 end:0x80015A38
+	.text       start:0x80013A88 end:0x80015464
+
+dolphin/os/EXIUart.c:
+	.text       start:0x80015464 end:0x80015A38
 
 dolphin/os/DBInterface.c:
 	.text       start:0x80015A38 end:0x80015B24

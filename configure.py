@@ -425,6 +425,12 @@ config.libs = [
         # one of the 27 symbols still assembles identically to retail.
         Object(Matching, "dolphin/os/EXIBios.c",
                extra_cflags=["-opt noschedule"]),
+        # NO -opt noschedule here, deliberately. EXIUart is a separate SDK
+        # translation unit and every function in it matches under the default
+        # -O4,p schedule, while every function in EXIBios.c matches only with
+        # the scheduler off. Under one flag for both, one half always loses:
+        # measured 4/4 vs 1/23 with the scheduler on, and the mirror image off.
+        Object(Matching, "dolphin/os/EXIUart.c"),
         Object(Matching, "dolphin/os/DBInterface.c"),
         Object(Matching, "dolphin/os/PSMathFns.c"),
         # These live in .init (0x80003100-0x80005518), not .text -- the
