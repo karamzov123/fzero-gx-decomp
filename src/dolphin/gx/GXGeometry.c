@@ -617,23 +617,11 @@ _80034c44:
 }
 #pragma pop
 
-#pragma push
-asm void __GXSetZMode(register int arg)
-{
-    nofralloc
-    lwz	r4, gx
-    slwi	r0, r3, 0xc
-    lwz	r3, 0x1ec(r4)
-    rlwinm	r3, r3, 0, 0x14, 0x11
-    or	r0, r3, r0
-    stw	r0, 0x1ec(r4)
-    lwzu	r0, 0x1fc(r4)
-    rlwinm	r0, r0, 0, 0x14, 0x11
-    stw	r0, 0(r4)
-    blr	
+// provenance: harvest:runs.sqlite — __GXSetZMode recovered from GXGeometry_cand.c, compiled by natc2 at 2026-08-27T18:06 and scored 100 against main/dolphin/gx/GXGeometry; original reference not recorded
+void __GXSetZMode(register int arg) {
+    *(volatile u32*)((volatile u8*)gx + 0x1EC) = (*(volatile u32*)((volatile u8*)gx + 0x1EC) & 0xFFFFCFFFu) | ((u32)arg << 12);
+    *(volatile u32*)((volatile u8*)gx + 0x1FC) = (*(volatile u32*)((volatile u8*)gx + 0x1FC) & 0xFFFFCFFFu);
 }
-#pragma pop
-
 #pragma push
 asm void __GXSetBlendMode(register int a, register int b, register int c)
 {
