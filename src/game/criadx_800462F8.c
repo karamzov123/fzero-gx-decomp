@@ -62,7 +62,7 @@ extern void svmLockServer(void);
 extern u32 strlen();
 extern void memcpy(void);
 extern void fn_80087E80(void);
-extern void __msl_strncat(void);
+extern char* __msl_strncat(char*, const char*, unsigned int);
 extern unsigned char c_CRI_str[];
 extern unsigned char lbl_80090940[8];
 extern unsigned char lbl_80090950[8];
