@@ -14,7 +14,10 @@ extern int strncmp(register const char *a, register const char *b, register u32 
 extern s32 __CARDGetControlBlock(s32 chan, void **pcard);
 extern s32 __CARDPutControlBlock(void *card, s32 err);
 extern void *__CARDGetDirBlock(void *card);
-extern s32 __CARDAccess(void *card, void *ent);
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
+struct CARDControl;
+struct CARDDir;
+extern s32 __CARDAccess(struct CARDControl *card, struct CARDDir *ent);
 extern s32 __CARDIsPublic(void *ent);
 extern s32 __CARDUpdateDir(s32 chan, void *callback);
 
@@ -24,6 +27,7 @@ extern s32 __CARDUpdateDir(s32 chan, void *callback);
 // provenance: harvest:runs.sqlite — CARDFastOpen recovered from cardfastopen-retail-r1.c, compiled by hard2 at 2026-08-27T23:05 and scored 100 against main/dolphin/card/CARDReadWrite; original reference not recorded
 // 0x80030380 | size: 0xBC
 // provenance: dolsdk2001:src/card/CARDOpen.c:69; retail-adapted ABI/control flow
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 s32 CARDFastOpen(register s32 chan, register s32 fileNo, register void *fileInfo)
 {
     void *card;
@@ -37,7 +41,8 @@ s32 CARDFastOpen(register s32 chan, register s32 fileNo, register void *fileInfo
         return result;
     dir = (unsigned char *)__CARDGetDirBlock(card);
     ent = dir + (fileNo << 6);
-    result = __CARDAccess(card, ent);
+    // ent denotes the selected 0x40-byte canonical directory record.
+    result = __CARDAccess(card, (struct CARDDir*)ent);
     if (result == -0xA)
         result = __CARDIsPublic(ent);
     if (result >= 0)
