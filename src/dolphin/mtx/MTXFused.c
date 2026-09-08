@@ -1,6 +1,9 @@
 // Fused MTX float-math translation unit (analyzer-fused; do not split).
 #pragma force_active on
 
+typedef float f32;
+typedef signed short s16;
+
 extern unsigned char lbl_801327F8[];
 extern void _8006d04c(void);
 extern void _8006d054(void);
@@ -18,6 +21,7 @@ extern void _8006d800(void);
 extern void _8006e000(void);
 extern void _8006e0f0(void);
 extern void _8006e164(void);
+extern float fabsf(float);
 
 
 asm void fn_8006CFF8(void);
@@ -30,7 +34,7 @@ asm void MathSinCos(void);
 asm void atan2f(void);
 asm void atanf(void);
 asm void fn_8006D368(void);
-asm void fn_8006D3D0(void);
+s16 fn_8006D3D0(f32 x);
 asm void fn_8006D46C(void);
 asm void fn_8006D5A4(void);
 asm void PSVecNormalize3(void);
@@ -393,53 +397,21 @@ _8006d3c8:
     blr
 }
 
-asm void fn_8006D3D0(void)
+// provenance: retail GFZE01 0x8006D3D0, matched from neighboring math helpers
+s16 fn_8006D3D0(f32 x)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    stfd	f31, 0x10(r1)
-    psq_st	f31, 0x18(r1), 0, 0
-    fmr	f31, f1
-    lfd f0, -0x7a88(r2)
-    fabs	f1, f31
-    fcmpo	cr0, f1, f0
-    bc      4, 1, _8006d414
-    lfs f0, -0x7a80(r2)
-    fcmpo	cr0, f31, f0
-    bc      4, 1, _8006d40c
-    li	r3, 0x4000
-    b       _8006d454
-_8006d40c:
-    li	r3, -0x4000
-    b       _8006d454
-_8006d414:
-    fmuls	f0, f31, f31
-    lfs f1, -0x7a7c(r2)
-    fsubs	f1, f1, f0
-    bl      sqrtf
-    lfs f0, -0x7a78(r2)
-    fcmpo	cr0, f1, f0
-    bc      4, 1, _8006d43c
-    fdivs	f1, f31, f1
-    bl      atanf
-    b       _8006d454
-_8006d43c:
-    lfs f0, -0x7a80(r2)
-    fcmpo	cr0, f31, f0
-    bc      4, 1, _8006d450
-    li	r3, 0x4000
-    b       _8006d454
-_8006d450:
-    li	r3, -0x4000
-_8006d454:
-    psq_l	f31, 0x18(r1), 0, 0
-    lwz	r0, 0x24(r1)
-    lfd	f31, 0x10(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    f32 root;
+
+    if (fabsf(x) > 1.875f) {
+        return x > 0.0f ? 0x4000 : -0x4000;
+    }
+
+    root = ((f32 (*)(f32))sqrtf)(1.0f - x * x);
+    if (root > 0.00000011920929f) {
+        return ((f32 (*)(f32))atanf)(x / root);
+    }
+
+    return x > 0.0f ? 0x4000 : -0x4000;
 }
 
 asm void fn_8006D46C(void)
