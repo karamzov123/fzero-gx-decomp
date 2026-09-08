@@ -1480,30 +1480,23 @@ _80083b0c:
     blr
 }
 
-asm void __msl_strrchr(void)
+// provenance: original; GFZE01 retail 0x80083B14, last-byte search.
+char* __msl_strrchr(const char* str, int chr)
 {
-    nofralloc
-    addi	r5, r3, -1
-    clrlwi	r0, r4, 0x18
-    li	r3, 0
-    b       _80083b30
-_80083b24:
-    cmplw	r4, r0
-    bc      4, 2, _80083b30
-    mr	r3, r5
-_80083b30:
-    lbzu	r4, 1(r5)
-    cmplwi	r4, 0
-    bc      4, 2, _80083b24
-    cmplwi	r3, 0
-    bnelr	
-    cmplwi	r0, 0
-    bc      12, 2, _80083b54
-    li	r3, 0
-    blr
-_80083b54:
-    mr	r3, r5
-    blr
+    const unsigned char* p = (const unsigned char*)str - 1;
+    unsigned long c = (unsigned char)chr;
+    const unsigned char* last = 0;
+    unsigned long current;
+
+    while ((current = *++p) != 0) {
+        if (current == c) {
+            last = p;
+        }
+    }
+    if (last != 0) {
+        return (char*)last;
+    }
+    return c != 0 ? 0 : (char*)p;
 }
 
 // provenance: mkdd:libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/string.c:211
