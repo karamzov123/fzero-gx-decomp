@@ -1,10 +1,11 @@
 typedef unsigned short u16;
+typedef unsigned long u32;
 #pragma push
 #pragma force_active on
 
 extern int DSPCheckMailToDSP(void);
 extern int DSPCheckMailFromDSP(void);
-extern void DSPSendMailToDSP(void);
+extern void DSPSendMailToDSP(u32 mail);
 extern void DSPInit(void);
 
 extern void DSPAddTask(void);
@@ -41,7 +42,6 @@ void __DSPHandler(void);
 
 /* harvest: declarations carried over from the recovered
    candidate — the converted body below needs them. */
-typedef unsigned long u32;
 volatile u16 __DSPRegs[] : 0xCC005000;
 // provenance: original
 int DSPCheckMailToDSP(void) {
@@ -59,14 +59,11 @@ u32 DSPReadMailFromDSP(void)
     return (__DSPRegs[2] << 16) | __DSPRegs[3];
 }
 
-asm void DSPSendMailToDSP(void)
+// provenance: dolsdk2001:src/dsp/dsp.c:34
+void DSPSendMailToDSP(u32 mail)
 {
-    nofralloc
-    lis	r4, -0x3400
-    srwi	r0, r3, 0x10
-    sth	r0, 0x5000(r4)
-    sth	r3, 0x5002(r4)
-    blr	
+    __DSPRegs[0] = mail >> 16;
+    __DSPRegs[1] = mail;
 }
 
 asm void DSPInit(void)
