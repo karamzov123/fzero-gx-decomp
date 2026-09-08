@@ -1,6 +1,6 @@
 // dolphin/card/CARDDir.c -- tail of coarse/text_80029828 (0x8002C8D0-0x8002EED8).
 // Melee identity: sram CRC, dir writeback, DoMount/Mount/Unmount, filename helpers.
-#include <dolphin/card.h>
+#include <dolphin/card_private.h>
 
 #pragma push
 #pragma force_active on
@@ -21,9 +21,6 @@ extern void CARDMount(void);
 extern void DoUnmount(void);
 extern void CARDUnmount(void);
 extern void FormatCallback(void);
-extern unsigned char __CARDBlock[544];
-extern void __CARDSyncCallback(int chn);
-extern void __CARDDefaultApiCallback(void);
 extern void __CARDUnlockedHandler(int chn);
 extern void __CARDExiHandler(int chn, void* ctx);
 extern void __CARDExtHandler(int chn, void* ctx);
@@ -33,8 +30,6 @@ extern unsigned char lbl_80177B80[32];
 
 extern void __CARDFormatRegionAsync(void);
 extern void CARDFormatAsync(void);
-extern void __CARDCompareFileName(void);
-extern void __CARDAccess(void);
 extern void __CARDGetFileNo(void);
 extern void CARDOpen(void);
 extern void CARDClose(void);
@@ -63,19 +58,10 @@ extern void __OSUnlockSram(void);
 extern void __CARDReadNintendoID(void);
 extern void __CARDReadStatus(void);
 extern void __CARDClearStatus(void);
-extern void __CARDEraseSector(void);
 extern void __CARDGetFontEncode(void);
-extern void __CARDGetControlBlock(void);
-extern void __CARDPutControlBlock(void);
-extern void __CARDSync(void);
 extern void __CARDUnlock(void);
 extern void __CARDRead(void);
-extern void __CARDWrite(void);
-extern void __CARDGetFatBlock(void);
-extern void __CARDAllocBlock(void);
 extern void __CARDUpdateFatBlock(void);
-extern void __CARDGetDirBlock(void);
-extern void __CARDUpdateDir(void);
 extern void __CARDCheckSum(void);
 extern void __div2i(void);
 extern void strncmp(void);
@@ -2434,7 +2420,7 @@ asm void CARDFormatAsync(void)
     blr	
 }
 
-asm void __CARDCompareFileName(void)
+asm s32 __CARDCompareFileName(register CARDDir *ent, register const char *fileName)
 {
     nofralloc
     addi	r5, r3, 8
@@ -2469,7 +2455,7 @@ _8002e9b4:
     blr	
 }
 
-asm void __CARDAccess(void)
+asm s32 __CARDAccess(register CARDControl *card, register CARDDir *ent)
 {
     nofralloc
     mflr	r0
