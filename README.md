@@ -4,9 +4,10 @@
 
 This repository is a from-scratch, matching decompilation project for the NTSC-U GameCube release of F-Zero GX (`GFZE01`). The goal is source code that rebuilds the original code and data as closely as possible while keeping the source readable and provenance explicit.
 
-The executable target is the complete GFZE01 code set: the boot `main.dol`
-and the dynamically loaded game-code REL. The repository currently has only
-the DOL input and split configuration; the REL is not yet decompiled.
+The executable target is the complete GFZE01 code set: `sys/main.dol`,
+14 direct `bg/fze.*.rel` modules, and the encrypted/LZ-packed
+`bg/enemy_line/line__.bin`, which produces `bg/enemy_line/main.rel` (REL
+module ID 1). The extracted target therefore contains 16 executable images.
 
 | Version | Game ID | SHA-1 |
 | --- | --- | --- |
@@ -17,17 +18,16 @@ The SHA-1 is the checksum of the matching input recorded in [`config/GFZE01/buil
 ## Scope
 
 This project means the entire executable decompilation, not merely the boot
-image. GFZE01 has game-specific code in the dynamically loaded
-`fze.sample.rel` (called `fz.sample.rel` in some extracted trees) in addition
-to `sys/main.dol`. Both are required by the target manifest in
+image. GFZE01 has 14 direct game-code RELs plus the encrypted/LZ-packed
+`bg/enemy_line/line__.bin`, which contains the 2,221,812-byte `main.rel`.
+All 16 executable images are required by the target manifest in
 [`config/GFZE01/modules.yml`](config/GFZE01/modules.yml).
 
-Current reality: the matching DOL is configured; the REL is a hard blocker and
-is explicitly marked `awaiting-disc-extraction`. The local input used for the
-DOL contains no REL. Until that module is extracted, decrypted/unpacked,
-split, and added to the build/report lane, no project-wide completion claim is
-valid. Disc assets are inventoried for completeness but are not C
-decompilation targets and are never committed.
+Current reality: all 16 executable inputs are now extracted and configured. The
+DOL has existing natural-C coverage; the 15 REL images are present in the
+full-target report but currently have no natural-C source units. Disc assets are
+inventoried for completeness but are not C decompilation targets and are never
+committed.
 
 ## Current progress
 

@@ -1,31 +1,73 @@
 # GFZE01 executable target manifest
-#
-# This manifest is intentionally separate from dtk's DOL config.  A matching
-# F-Zero GX build must cover every executable image, not only the boot DOL.
-# The REL is encrypted/compressed on the disc and needs to be supplied from a
-# legally extracted game tree before its dtk config can be generated.
-
+# The DOL, packed line module, recovered main REL, and every dynamically
+# loaded REL are required for a full executable scan.
 game_id: GFZE01
 scope: full-executable-game
 modules:
   - id: main-dol
     path: sys/main.dol
-    format: dol
-    required: true
-    config: config/GFZE01/config.yml
-  - id: game-rel
-    path: files/fze.sample.rel
-    alternate_paths:
-      - files/fz.sample.rel
-    format: rel
-    required: true
-    status: awaiting-disc-extraction
-    notes: >-
-      Dynamically loaded game code. The retail file is encrypted and LZ
-      compressed; decrypt/unpack it before generating its REL split config.
-
-# Disc assets are part of the complete game inventory, but are not C source and
-# are not committed. The inventory tool records them without copying contents.
-assets:
-  inventory_required: true
-  tool: tools/game_inventory.py
+    kind: dol
+  - id: line-container
+    path: bg/enemy_line/line__.bin
+    kind: encrypted-lz-container
+    produces: bg/enemy_line/main.rel
+  - id: line-main
+    path: bg/enemy_line/main.rel
+    kind: rel
+    module_id: 1
+  - id: car-colchg
+    path: bg/fze.car_colchg.rel
+    kind: rel
+    module_id: 9
+  - id: customize
+    path: bg/fze.customize.rel
+    kind: rel
+    module_id: 3
+  - id: interview
+    path: bg/fze.interview.rel
+    kind: rel
+    module_id: 17
+  - id: movie
+    path: bg/fze.movie.rel
+    kind: rel
+    module_id: 5
+  - id: movie-module
+    path: bg/fze.movie_module.rel
+    kind: rel
+    module_id: 12
+  - id: option
+    path: bg/fze.option.rel
+    kind: rel
+    module_id: 4
+  - id: pilotpoint
+    path: bg/fze.pilotpoint.rel
+    kind: rel
+    module_id: 14
+  - id: profile
+    path: bg/fze.profile.rel
+    kind: rel
+    module_id: 16
+  - id: replay
+    path: bg/fze.replay.rel
+    kind: rel
+    module_id: 13
+  - id: sample
+    path: bg/fze.sample.rel
+    kind: rel
+    module_id: 18
+  - id: sel
+    path: bg/fze.sel.rel
+    kind: rel
+    module_id: 10
+  - id: story
+    path: bg/fze.story.rel
+    kind: rel
+    module_id: 7
+  - id: title
+    path: bg/fze.title.rel
+    kind: rel
+    module_id: 8
+  - id: winning
+    path: bg/fze.winning.rel
+    kind: rel
+    module_id: 15

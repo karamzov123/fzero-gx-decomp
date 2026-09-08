@@ -3,6 +3,37 @@
 object_base: orig/GFZE01
 object: sys/main.dol
 hash: 421c88106697d3275a3fc26fb7a01bf6d816b271
+modules:
+- object: bg/modules/customize.rel
+  hash: 9b2fc71d705edeaf8b286be6f8464549feaa7d3f
+- object: bg/modules/option.rel
+  hash: 1860a90cf7a4019a0ac698363357d20b5c41f71f
+- object: bg/modules/movie.rel
+  hash: 08a6cc86ee53b1957f506c9cc718f5cc364ed9bf
+- object: bg/modules/story.rel
+  hash: 104f6716b5cd553000700413cff00cc3fa591baa
+- object: bg/modules/title.rel
+  hash: 9274da1ae0da40824980d09a04bb11c40d1fc8e9
+- object: bg/modules/car_colchg.rel
+  hash: f85e2fbc41920dea9c5aa4521bd0f8ff24ef64f2
+- object: bg/modules/sel.rel
+  hash: d84a92c050ba24d53bcd734de026f8c91ba403bf
+- object: bg/modules/movie_module.rel
+  hash: a53cb77efd099d4ef69298fcc26803276761eb15
+- object: bg/modules/replay.rel
+  hash: bb27fa5ce6eec4982fdb83f95e8bd3f493b1a46d
+- object: bg/modules/pilotpoint.rel
+  hash: b40fd82167a132e4039b7a468a710ee01ed503a3
+- object: bg/modules/winning.rel
+  hash: 4a6a459cdf9352cad49848fef51e07af99721eaf
+- object: bg/modules/profile.rel
+  hash: 3477c1c3a491545aaeb38647746c6eef9bac3f1e
+- object: bg/modules/interview.rel
+  hash: 8d2e8374d08bfe66bc47d7535037465619abe236
+- object: bg/modules/sample.rel
+  hash: 7679d58798cbd0e47563a6a307410623979efc97
+- object: bg/modules/line_main.rel
+  hash: df989873851d161218ae283f71ed89ce0a979955
 symbols: config/GFZE01/symbols.txt
 splits: config/GFZE01/splits.txt
 # Melee-era CodeWarrior linker; adjust after first mwld run if DWARF comments mismatch.

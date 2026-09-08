@@ -14,13 +14,31 @@ import json
 from pathlib import Path
 from typing import Any
 
-# The NTSC-U/EUR build dynamically loads this game-code module.  It is commonly
-# stored as fze.sample.rel; accepting fz.sample.rel handles extracted/test trees.
+# The NTSC-U build dynamically loads these game-code modules from bg/.  Keep
+# this list explicit: a scan that notices only sample.rel would still omit most
+# of the game's executable code.
 REQUIRED = {
     "main.dol": {"kind": "dol", "names": {"main.dol"}},
-    "fze.sample.rel": {
-        "kind": "rel",
-        "names": {"fze.sample.rel", "fz.sample.rel"},
+    "line__.bin": {"kind": "encrypted-lz-container", "names": {"line__.bin"}},
+    "main.rel": {"kind": "rel", "names": {"main.rel"}},
+    **{
+        name: {"kind": "rel", "names": {name}}
+        for name in (
+            "fze.car_colchg.rel",
+            "fze.customize.rel",
+            "fze.interview.rel",
+            "fze.movie.rel",
+            "fze.movie_module.rel",
+            "fze.option.rel",
+            "fze.pilotpoint.rel",
+            "fze.profile.rel",
+            "fze.replay.rel",
+            "fze.sample.rel",
+            "fze.sel.rel",
+            "fze.story.rel",
+            "fze.title.rel",
+            "fze.winning.rel",
+        )
     },
 }
 

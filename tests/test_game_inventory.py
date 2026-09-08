@@ -16,7 +16,8 @@ class GameInventoryTests(unittest.TestCase):
             report = inventory_game(root)
 
             self.assertFalse(report["complete"])
-            self.assertEqual(report["missing_required"], ["fze.sample.rel"])
+            self.assertIn("fze.sample.rel", report["missing_required"])
+            self.assertEqual(len(report["missing_required"]), 16)
 
     def test_inventory_finds_rel_case_insensitively(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -24,7 +25,9 @@ class GameInventoryTests(unittest.TestCase):
             (root / "sys").mkdir()
             (root / "files").mkdir()
             (root / "sys" / "main.dol").write_bytes(b"dol")
-            (root / "files" / "FZE.SAMPLE.REL").write_bytes(b"rel")
+            for name in inventory_game.__globals__["REQUIRED"]:
+                if name != "main.dol":
+                    (root / "files" / name.upper()).write_bytes(b"rel")
 
             report = inventory_game(root)
 
