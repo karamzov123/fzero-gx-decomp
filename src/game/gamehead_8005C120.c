@@ -119,7 +119,7 @@ extern unsigned char lbl_80193B48[23336];
 extern unsigned char g_currentHeapHandle[4];
 extern unsigned char g_sndMgrPtr[8];
 extern unsigned char lbl_801A6C78[4];
-extern unsigned char lbl_801A6C7C[4];
+extern unsigned int lbl_801A6C7C;
 extern unsigned char lbl_801A7328[4];
 extern unsigned char lbl_801A7348[4];
 extern unsigned char lbl_801A7338[8];
@@ -211,7 +211,7 @@ asm void SndSetCallback1(void);
 asm void SndSetCallback0(void);
 asm void SndPostRequest(void);
 asm void fn_80065A7C(void);
-asm void SndClearChannelActiveFlag(void);
+void SndClearChannelActiveFlag(void);
 asm void SndChannelFreeCallback(void);
 asm void fn_80065B08(void);
 asm void SndFreeChannel(void);
@@ -11134,12 +11134,10 @@ asm void fn_80065A7C(void)
     blr
 }
 
-asm void SndClearChannelActiveFlag(void)
+// provenance: retail global-zero setter at 0x80065AC4
+void SndClearChannelActiveFlag(void)
 {
-    nofralloc
-    li	r0, 0
-    stw	r0, lbl_801A6C7C
-    blr
+    lbl_801A6C7C = 0;
 }
 
 asm void SndChannelFreeCallback(void)

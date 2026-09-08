@@ -30,9 +30,6 @@ extern unsigned char lbl_80177B80[32];
 
 extern void __CARDFormatRegionAsync(void);
 extern void CARDFormatAsync(void);
-extern void __CARDGetFileNo(void);
-extern void CARDOpen(void);
-extern void CARDClose(void);
 extern void CreateCallbackFat(void);
 extern void CARDCreateAsync(void);
 extern void DCInvalidateRange(void);
@@ -64,7 +61,8 @@ extern void __CARDRead(void);
 extern void __CARDUpdateFatBlock(void);
 extern void __CARDCheckSum(void *ptr, int length, unsigned short *checksum, unsigned short *checksumInv);
 extern void __div2i(void);
-extern void strncmp(void);
+// Receiving strncmp is the fixed-count byte comparator in msl/multibyte.c.
+extern int strncmp(const char *a, const char *b, unsigned long n);
 extern void strncpy(void);
 extern void strlen(void);
 extern void memcpy(void);
@@ -2420,88 +2418,51 @@ asm void CARDFormatAsync(void)
     blr	
 }
 
-asm s32 __CARDCompareFileName(register CARDDir *ent, register const char *fileName)
-{
-    nofralloc
-    addi	r5, r3, 8
-    li	r7, 0x20
-    b       _8002e998
-_8002e960:
-    lbz	r0, 0(r5)
-    addi	r5, r5, 1
-    lbz	r6, 0(r4)
-    addi	r4, r4, 1
-    extsb	r3, r0
-    extsb	r0, r6
-    cmpw	r3, r0
-    beq     _8002e988
-    li	r3, 0
-    blr	
-_8002e988:
-    extsb.	r0, r6
-    bne     _8002e998
-    li	r3, 1
-    blr	
-_8002e998:
-    addic.	r7, r7, -1
-    bge     _8002e960
-    lbz	r0, 0(r4)
-    extsb.	r0, r0
-    bne     _8002e9b4
-    li	r3, 1
-    blr	
-_8002e9b4:
-    li	r3, 0
-    blr	
-}
+// Scope peephole restoration to this C body after legacy asm.
+#pragma push
+#pragma peephole on
+// provenance: dolsdk2001@eb1234c45e6df75757c652c835507ca89674f9a8:src/card/CARDOpen.c:6
+s32 __CARDCompareFileName(CARDDir *ent, const char *fileName) {
+    char *entName = (char*)ent->fileName;
+    char c1;
+    char c2;
+    int n = CARD_FILENAME_MAX;
 
-asm s32 __CARDAccess(register CARDControl *card, register CARDDir *ent)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x18(r1)
-    stw	r31, 0x14(r1)
-    mr	r31, r4
-    stw	r30, 0x10(r1)
-    addi	r30, r3, 0
-    lbz	r0, 0(r4)
-    cmplwi	r0, 0xff
-    bne     _8002e9ec
-    li	r3, -4
-    b       _8002ea3c
-_8002e9ec:
-    lis     r3, lbl_80177B80@ha
-    lwz	r4, 0x10c(r30)
-    addi	r0, r3, lbl_80177B80@l
-    cmplw	r4, r0
-    beq     _8002ea30
-    addi	r3, r31, 0
-    li	r5, 4
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _8002ea38
-    lwz	r4, 0x10c(r30)
-    addi	r3, r31, 4
-    li	r5, 2
-    addi	r4, r4, 4
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _8002ea38
-_8002ea30:
-    li	r3, 0
-    b       _8002ea3c
-_8002ea38:
-    li	r3, -0xa
-_8002ea3c:
-    lwz	r0, 0x1c(r1)
-    lwz	r31, 0x14(r1)
-    lwz	r30, 0x10(r1)
-    addi	r1, r1, 0x18
-    mtlr	r0
-    blr	
-}
+    while (--n >= 0)
+    {
+        if ((c1 = *entName++) != (c2 = *fileName++))
+            return 0;
+        else if (c2 == '\0')
+            return 1;
+    }
 
+    if (*fileName == '\0')
+        return 1;
+    return 0;
+}
+#pragma pop
+
+// Scope peephole restoration to this C body after legacy asm.
+#pragma push
+#pragma peephole on
+// provenance: dolsdk2001@eb1234c45e6df75757c652c835507ca89674f9a8:src/card/CARDOpen.c:25
+s32 __CARDAccess(CARDControl *card, CARDDir *ent) {
+    if (ent->gameName[0] == 0xFF)
+        return CARD_RESULT_NOFILE;
+
+    if (card->diskID == lbl_80177B80
+     || (strncmp((const char *)ent->gameName, (const char *)card->diskID, sizeof(ent->gameName)) == 0
+      && strncmp((const char *)ent->company, (const char *)card->diskID + 4, sizeof(ent->company)) == 0))
+        return CARD_RESULT_READY;
+
+    return CARD_RESULT_NOPERM;
+}
+#pragma pop
+
+// Restore peephole state for the inherited C body; body unchanged.
+// provenance: original; codegen-state repair against 6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3
+#pragma push
+#pragma peephole on
 // provenance: dolsdk2001:src/card/CARDOpen.c:37
 s32 __CARDIsPublic(CARDDir *ent)
 {
@@ -2511,248 +2472,87 @@ s32 __CARDIsPublic(CARDDir *ent)
         return CARD_RESULT_READY;
     return CARD_RESULT_NOPERM;
 }
+#pragma pop
 
-asm void __CARDGetFileNo(void)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x30(r1)
-    stmw	r26, 0x18(r1)
-    mr	r27, r3
-    addi	r28, r4, 0
-    addi	r29, r5, 0
-    lwz	r0, 0(r3)
-    cmpwi	r0, 0
-    bne     _8002eab4
-    li	r3, -3
-    b       _8002ebc0
-_8002eab4:
-    mr	r3, r27
-    bl      __CARDGetDirBlock
-    lis     r4, lbl_80177B80@ha
-    addi	r31, r3, 0
-    addi	r26, r4, lbl_80177B80@l
-    li	r30, 0
-_8002eacc:
-    lbz	r0, 0(r31)
-    cmplwi	r0, 0xff
-    bne     _8002eae0
-    li	r0, -4
-    b       _8002eb28
-_8002eae0:
-    lwz	r4, 0x10c(r27)
-    cmplw	r4, r26
-    beq     _8002eb1c
-    addi	r3, r31, 0
-    li	r5, 4
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _8002eb24
-    lwz	r4, 0x10c(r27)
-    addi	r3, r31, 4
-    li	r5, 2
-    addi	r4, r4, 4
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _8002eb24
-_8002eb1c:
-    li	r0, 0
-    b       _8002eb28
-_8002eb24:
-    li	r0, -0xa
-_8002eb28:
-    cmpwi	r0, 0
-    blt     _8002ebac
-    addi	r7, r28, 0
-    addi	r6, r31, 8
-    li	r4, 0x20
-    b       _8002eb78
-_8002eb40:
-    lbz	r0, 0(r6)
-    addi	r6, r6, 1
-    lbz	r5, 0(r7)
-    addi	r7, r7, 1
-    extsb	r3, r0
-    extsb	r0, r5
-    cmpw	r3, r0
-    beq     _8002eb68
-    li	r0, 0
-    b       _8002eb98
-_8002eb68:
-    extsb.	r0, r5
-    bne     _8002eb78
-    li	r0, 1
-    b       _8002eb98
-_8002eb78:
-    addic.	r4, r4, -1
-    bge     _8002eb40
-    lbz	r0, 0(r7)
-    extsb.	r0, r0
-    bne     _8002eb94
-    li	r0, 1
-    b       _8002eb98
-_8002eb94:
-    li	r0, 0
-_8002eb98:
-    cmpwi	r0, 0
-    beq     _8002ebac
-    stw	r30, 0(r29)
-    li	r3, 0
-    b       _8002ebc0
-_8002ebac:
-    addi	r30, r30, 1
-    cmpwi	r30, 0x7f
-    addi	r31, r31, 0x40
-    blt     _8002eacc
-    li	r3, -4
-_8002ebc0:
-    lmw	r26, 0x18(r1)
-    lwz	r0, 0x34(r1)
-    addi	r1, r1, 0x30
-    mtlr	r0
-    blr	
-}
+// Scope peephole restoration to this C body after legacy asm.
+#pragma push
+#pragma peephole on
+// provenance: dolsdk2001@eb1234c45e6df75757c652c835507ca89674f9a8:src/card/CARDOpen.c:45
+s32 __CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo) {
+    CARDDir *dir;
+    s32 fileNo;
 
-asm void CARDOpen(void)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    li	r0, -1
-    stwu	r1, -0x40(r1)
-    stmw	r23, 0x1c(r1)
-    addi	r28, r4, 0
-    addi	r29, r5, 0
-    addi	r27, r3, 0
-    addi	r4, r1, 0x14
-    stw	r0, 0(r5)
-    bl      __CARDGetControlBlock
-    cmpwi	r3, 0
-    bge     _8002ec0c
-    b       _8002ed38
-_8002ec0c:
-    lwz	r31, 0x14(r1)
-    lwz	r0, 0(r31)
-    cmpwi	r0, 0
-    bne     _8002ec24
-    li	r23, -3
-    b       _8002ecd8
-_8002ec24:
-    mr	r3, r31
-    bl      __CARDGetDirBlock
-    lis     r4, lbl_80177B80@ha
-    addi	r23, r3, 0
-    addi	r26, r4, lbl_80177B80@l
-    li	r25, 0
-_8002ec3c:
-    lbz	r0, 0(r23)
-    addi	r24, r23, 0
-    cmplwi	r0, 0xff
-    bne     _8002ec54
-    li	r0, -4
-    b       _8002ec9c
-_8002ec54:
-    lwz	r4, 0x10c(r31)
-    cmplw	r4, r26
-    beq     _8002ec90
-    addi	r3, r24, 0
-    li	r5, 4
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _8002ec98
-    lwz	r4, 0x10c(r31)
-    addi	r3, r24, 4
-    li	r5, 2
-    addi	r4, r4, 4
-    bl      strncmp
-    cmpwi	r3, 0
-    bne     _8002ec98
-_8002ec90:
-    li	r0, 0
-    b       _8002ec9c
-_8002ec98:
-    li	r0, -0xa
-_8002ec9c:
-    cmpwi	r0, 0
-    blt     _8002ecc4
-    addi	r3, r23, 0
-    addi	r4, r28, 0
-    bl      __CARDCompareFileName
-    cmpwi	r3, 0
-    beq     _8002ecc4
-    addi	r30, r25, 0
-    li	r23, 0
-    b       _8002ecd8
-_8002ecc4:
-    addi	r25, r25, 1
-    cmpwi	r25, 0x7f
-    addi	r23, r23, 0x40
-    blt     _8002ec3c
-    li	r23, -4
-_8002ecd8:
-    cmpwi	r23, 0
-    blt     _8002ed2c
-    lwz	r3, 0x14(r1)
-    bl      __CARDGetDirBlock
-    slwi	r0, r30, 6
-    add	r5, r3, r0
-    lhz	r4, 0x36(r5)
-    cmplwi	r4, 5
-    blt     _8002ed0c
-    lwz	r3, 0x14(r1)
-    lhz	r0, 0x10(r3)
-    cmplw	r4, r0
-    blt     _8002ed14
-_8002ed0c:
-    li	r23, -6
-    b       _8002ed2c
-_8002ed14:
-    stw	r27, 0(r29)
-    li	r0, 0
-    stw	r30, 4(r29)
-    stw	r0, 8(r29)
-    lhz	r0, 0x36(r5)
-    sth	r0, 0x10(r29)
-_8002ed2c:
-    lwz	r3, 0x14(r1)
-    mr	r4, r23
-    bl      __CARDPutControlBlock
-_8002ed38:
-    lmw	r23, 0x1c(r1)
-    lwz	r0, 0x44(r1)
-    addi	r1, r1, 0x40
-    mtlr	r0
-    blr	
-}
+    if (!*(s32 *)card)
+        return (-3);
 
-asm void CARDClose(void)
-{
-    nofralloc
-    mflr	r0
-    stw	r0, 4(r1)
-    stwu	r1, -0x18(r1)
-    stw	r31, 0x14(r1)
-    mr	r31, r3
-    addi	r4, r1, 0xc
-    lwz	r3, 0(r3)
-    bl      __CARDGetControlBlock
-    cmpwi	r3, 0
-    bge     _8002ed78
-    b       _8002ed8c
-_8002ed78:
-    li	r0, -1
-    stw	r0, 0(r31)
-    li	r4, 0
-    lwz	r3, 0xc(r1)
-    bl      __CARDPutControlBlock
-_8002ed8c:
-    lwz	r0, 0x1c(r1)
-    lwz	r31, 0x14(r1)
-    addi	r1, r1, 0x18
-    mtlr	r0
-    blr	
+    dir = __CARDGetDirBlock(card);
+    for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++)
+    {
+        CARDDir *ent = &dir[fileNo];
+        if (__CARDAccess(card, ent) < 0)
+            continue;
+        if (__CARDCompareFileName(ent, fileName))
+        {
+            *pfileNo = fileNo;
+            return CARD_RESULT_READY;
+        }
+    }
+    return CARD_RESULT_NOFILE;
 }
+#pragma pop
+
+// Scope peephole restoration to this C body after legacy asm.
+#pragma push
+#pragma peephole on
+// provenance: dolsdk2001@eb1234c45e6df75757c652c835507ca89674f9a8:src/card/CARDOpen.c:106
+s32 CARDOpen(s32 chan, char *fileName, CARDFileInfo *fileInfo) {
+    CARDControl *card;
+    s32 result;
+    CARDDir *dir;
+    CARDDir *ent;
+    s32 fileNo;
+
+    fileInfo->chan = -1;
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0)
+        return result;
+
+    result = __CARDGetFileNo(card, fileName, &fileNo);
+    if (result >= 0)
+    {
+        dir = __CARDGetDirBlock(card);
+        ent = &dir[fileNo];
+        if (!(5 <= ent->startBlock && ent->startBlock < card->cBlock))
+            result = CARD_RESULT_BROKEN;
+        else
+        {
+            fileInfo->chan = chan;
+            fileInfo->fileNo = fileNo;
+            fileInfo->offset = 0;
+            fileInfo->iBlock = ent->startBlock;
+        }
+    }
+    return __CARDPutControlBlock(card, result);
+}
+#pragma pop
+
+// Scope peephole restoration to this C body after legacy asm.
+#pragma push
+#pragma peephole on
+// provenance: dolsdk2001@eb1234c45e6df75757c652c835507ca89674f9a8:src/card/CARDOpen.c:138
+s32 CARDClose(CARDFileInfo *fileInfo) {
+    CARDControl *card;
+    s32 result;
+
+
+    result = __CARDGetControlBlock(fileInfo->chan, &card);
+    if (result < 0)
+        return result;
+
+    fileInfo->chan = -1;
+    return __CARDPutControlBlock(card, CARD_RESULT_READY);
+}
+#pragma pop
 
 // provenance: original
 // provenance: original (__CARDIsOpened, GFZE01 CARDDir.c; from disassembly)

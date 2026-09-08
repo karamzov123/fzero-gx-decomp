@@ -253,11 +253,10 @@ _8008e628:
     blr	
 }
 
-asm void gdev_cc_shutdown(void)
+// provenance: dolsdk2001:src/metrotrk/gdev.c
+int gdev_cc_shutdown(void)
 {
-    nofralloc
-    li	r3, 0
-    blr	
+    return 0;
 }
 
 asm void gdev_cc_initialize(void)

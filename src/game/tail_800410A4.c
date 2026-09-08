@@ -367,11 +367,10 @@ asm int fn_80041434(register void* a)
     blr
 }
 
-asm void* fn_80041458(register void* a)
+// provenance: local source annotation; this + 0x58 accessor
+void* fn_80041458(register void* a)
 {
-    nofralloc
-    addi    r3, r3, 0x58
-    blr
+    return (unsigned char*)a + 0x58;
 }
 
 #pragma pop

@@ -3,18 +3,25 @@ typedef unsigned int u32;
 extern u32 PPCMfhid0(void);
 extern void PPCMthid0(u32 newHID0);
 
-asm u32 PPCMfmsr(void)
+// provenance: dolsdk2001:src/os/OSPPC.c; mfmsr is required for the MSR register
+u32 PPCMfmsr(void)
 {
-    nofralloc
-    mfmsr   r3
-    blr
+    register u32 msr;
+
+    asm
+    {
+    mfmsr   msr
+    }
+    return msr;
 }
 
-asm void PPCMtmsr(register u32 newMSR)
+// provenance: dolsdk2001:src/os/OSPPC.c; mtmsr is required for the MSR register
+void PPCMtmsr(register u32 newMSR)
 {
-    nofralloc
-    mtmsr   r3
-    blr
+    asm
+    {
+    mtmsr   newMSR
+    }
 }
 
 asm u32 PPCMfhid0(void)
@@ -38,11 +45,13 @@ asm u32 PPCMfl2cr(void)
     blr
 }
 
-asm void PPCMtl2cr(register u32 newL2cr)
+// provenance: dolsdk2001:src/os/OSPPC.c; mtspr 1017 is required for L2CR
+void PPCMtl2cr(register u32 newL2cr)
 {
-    nofralloc
-    mtspr   1017, r3
-    blr
+    asm
+    {
+    mtspr   1017, newL2cr
+    }
 }
 
 asm void PPCMtdec(register u32 newDec)

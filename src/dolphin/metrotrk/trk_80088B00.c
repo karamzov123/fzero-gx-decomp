@@ -55,7 +55,7 @@ extern void AMC_SetStub_Game(void);
 extern void MWTRACE(void);
 extern void TRKAcquireMutex_stub(DSMutex* mutex);
 extern void TRKReleaseMutex_stub(DSMutex* mutex);
-extern void TRKTargetStopped(void);
+extern int TRKTargetStopped(void);
 extern void TRKTestForPacket(void);
 extern void usr_puts(const char* s);
 extern void TRKDoPing(void);
@@ -3157,13 +3157,9 @@ asm void TRKTargetSetStopped(void)
     blr
 }
 
-asm void TRKTargetStopped(void)
+int TRKTargetStopped(void)
 {
-    nofralloc
-    lis r3, gTRKState@ha
-    addi r3, r3, gTRKState@l
-    lwz	r3, 0x98(r3)
-    blr
+    return *(int*)((unsigned char*)gTRKState + 0x98);
 }
 
 asm void TRKTargetSupportRequest(void)
