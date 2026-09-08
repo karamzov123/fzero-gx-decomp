@@ -194,7 +194,8 @@ void __OSEnableBarnacle(s32 chan, u32 dev)
 #pragma push
 #pragma force_active on
 // provenance: mkdd:libs/dolphin/exi/EXIUart.c:93
-u32 InitializeUART(void)
+// The console callback supplies a baud rate; retail ignores that argument.
+int InitializeUART(unsigned long baud_rate)
 {
     if (BarnacleEnabled == EXI_MAGIC) {
         return 0;
