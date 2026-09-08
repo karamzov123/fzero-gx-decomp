@@ -1,15 +1,4 @@
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef signed int s32;
-
-
-typedef struct TRKBuffer {
-    u8 unk00[8];
-    u32 length;
-    u32 position;
-    u8 data[0x880];
-} TRKBuffer;
+#include <dolphin/metrotrk.h>
 #pragma force_active on
 
 // MetroTRK remainder 0x80088B00-0x8008CB20 (pm10-c region B)
@@ -19,7 +8,7 @@ extern unsigned char TRK_saved_exceptionID[0x2];
 extern unsigned char gTRKCPUState[0x430];
 extern unsigned char gTRKInputPendingPtrStore[0x8];
 extern unsigned char gTRKMemMap[0x10];
-extern unsigned char gTRKMsgBufs[0x19B0];
+extern TRKMsgBufs gTRKMsgBufs;
 extern unsigned char gTRKOptionsBuffer[0x34];
 extern unsigned char gTRKRestoreFlags[0x9];
 extern unsigned char gTRKSaveState[0x94];
@@ -48,7 +37,6 @@ extern unsigned char gTRKBigEndian[4];
 extern unsigned char lbl_80095678[0x25];
 extern void memset(void);
 extern void fn_80003590(void);
-extern void TRK_memcpy();
 extern void gTRKInterruptVectorTableEnd(void);
 extern void OSReport(void);
 extern void strlen(void);
@@ -65,8 +53,8 @@ extern void TRKPollUART(void);
 extern void TRKTargetContinue(void);
 extern void AMC_SetStub_Game(void);
 extern void MWTRACE(void);
-extern void TRKAcquireMutex_stub(void);
-extern void TRKReleaseMutex_stub(void);
+extern void TRKAcquireMutex_stub(DSMutex* mutex);
+extern void TRKReleaseMutex_stub(DSMutex* mutex);
 extern void TRKTargetStopped(void);
 extern void TRKTestForPacket(void);
 extern void usr_puts(void);
@@ -87,7 +75,7 @@ extern void TRKDoSetOption(void);
 extern void TRK_SetInputPendingPtrStore(void);
 extern int TRK_IsInputPending(void);
 extern void TRKRequestSend(void);
-extern void TRKReleaseMutex_stub(void);
+extern void TRKReleaseMutex_stub(DSMutex* mutex);
 extern void fn_8008AF50(void);
 extern void TRKTargetStop(void);
 extern void TRKTargetGetPC(void);
@@ -500,63 +488,62 @@ _80088fe0:
 }
 
 // provenance: original
-int TRKAppendBuffer1_ui32(TRKBuffer* buffer, const void* data, u32 count)
+int TRKAppendBuffer1_ui32(MessageBuffer* buffer, void* data, u32 count)
 {
     int err = 0;
     if (count == 0) return err;
     {
-        u32 pos = buffer->position;
-        u32 end = buffer->length - pos;
+        u32 pos = buffer->fPosition;
+        u32 end = buffer->fLength - pos;
         if (count > end) {
             err = 0x302;
             count = end;
         }
-        TRK_memcpy(data, buffer->data + pos, count);
-        buffer->position += count;
+        TRK_memcpy(data, buffer->fData + pos, count);
+        buffer->fPosition += count;
     }
     return err;
 }
 
 // provenance: original
-int TRKAppendBuffer1_ui16(TRKBuffer* buffer, const void* data, u32 count)
+int TRKAppendBuffer1_ui16(MessageBuffer* buffer, void* data, u32 count)
 {
     int err = 0;
     if (count == 0) return err;
     {
-        u32 pos = buffer->position;
+        u32 pos = buffer->fPosition;
         u32 avail = 0x880 - pos;
         if (avail < count) {
             err = 0x301;
             count = avail;
         }
         if (count == 1) {
-            buffer->data[pos] = *(u8*)data;
+            buffer->fData[pos] = *(u8*)data;
         } else {
-            TRK_memcpy(buffer->data + pos, data, count);
+            TRK_memcpy(buffer->fData + pos, data, count);
         }
-        buffer->position += count;
-        buffer->length = buffer->position;
+        buffer->fPosition += count;
+        buffer->fLength = buffer->fPosition;
     }
     return err;
 }
 
-asm void TRKSetBufferPosition(void)
+// provenance: melee:src/MetroTRK/msgbuf.c:90
+DSError TRKSetBufferPosition(MessageBuffer* buf, u32 pos)
 {
-    nofralloc
-    cmplwi	r4, 0x880
-    li	r5, 0
-    bc      4, 1, _80089158
-    li	r5, 0x301
-    b       _8008916c
-_80089158:
-    stw	r4, 0xc(r3)
-    lwz	r0, 8(r3)
-    cmplw	r4, r0
-    bc      4, 1, _8008916c
-    stw	r4, 8(r3)
-_8008916c:
-    mr	r3, r5
-    blr
+    DSError error = kNoError;
+
+    if (pos > kMessageBufferSize) {
+        error = kMessageBufferOverflow;
+    } else {
+        buf->fPosition = pos;
+        // If the new position is past the current length, update the length
+        if (pos > buf->fLength) {
+            buf->fLength = pos;
+        }
+    }
+
+    return error;
 }
 
 asm void TRKMessageIntoReply(void)
@@ -581,52 +568,38 @@ _800891a4:
     blr
 }
 
-asm void TRKReleaseBuffer(void)
+// provenance: melee:src/MetroTRK/msgbuf.c:64
+// The two mutex stubs are named the wrong way round in this tree: retail
+// calls TRKReleaseMutex_stub FIRST and TRKAcquireMutex_stub last, which is
+// melee's Acquire ... Release around the same store. Written in retail's
+// order against the names the carve gave them, so this matches without
+// renaming a public symbol.
+void TRKReleaseBuffer(int index)
 {
-    nofralloc
-    stwu	r1, -0x10(r1)
-    mflr	r0
-    cmpwi	r3, -1
-    stw	r0, 0x14(r1)
-    stw	r31, 0xc(r1)
-    bc      12, 2, _80089204
-    cmpwi	r3, 0
-    bc      12, 0, _80089204
-    cmpwi	r3, 3
-    bc      4, 0, _80089204
-    mulli	r4, r3, 0x890
-    lis r3, gTRKMsgBufs@ha
-    addi r0, r3, gTRKMsgBufs@l
-    add	r31, r0, r4
-    mr	r3, r31
-    bl      TRKReleaseMutex_stub
-    li	r0, 0
-    mr	r3, r31
-    stw	r0, 4(r31)
-    bl      TRKAcquireMutex_stub
-_80089204:
-    lwz	r0, 0x14(r1)
-    lwz	r31, 0xc(r1)
-    mtlr	r0
-    addi	r1, r1, 0x10
-    blr
+    MessageBuffer* b;
+
+    if (index == -1) {
+        return;
+    }
+
+    if (index >= 0 && index < NUM_BUFFERS) {
+        b = &gTRKMsgBufs.buffers[index];
+        TRKReleaseMutex_stub(&b->fMutex);
+        b->fInUse = 0;
+        TRKAcquireMutex_stub(&b->fMutex);
+    }
 }
 
-asm void TRKGetBuffer(void)
+// provenance: melee:src/MetroTRK/msgbuf.c:53
+MessageBuffer* TRKGetBuffer(int index)
 {
-    nofralloc
-    cmpwi	r3, 0
-    li	r0, 0
-    bc      12, 0, _8008923c
-    cmpwi	r3, 3
-    bc      4, 0, _8008923c
-    mulli	r4, r3, 0x890
-    lis r3, gTRKMsgBufs@ha
-    addi r0, r3, gTRKMsgBufs@l
-    add	r0, r0, r4
-_8008923c:
-    mr	r3, r0
-    blr
+    MessageBuffer* buf = NULL;
+
+    if (index >= 0 && index < NUM_BUFFERS) {
+        buf = &gTRKMsgBufs.buffers[index];
+    }
+
+    return buf;
 }
 
 asm void TRKGetFreeBuffer(void)
@@ -724,11 +697,10 @@ _80089334:
     blr
 }
 
-asm void TRKAcquireMutex(void)
+// provenance: melee:src/MetroTRK/mutex_TRK.c:10
+DSError TRKAcquireMutex(void* p1)
 {
-    nofralloc
-    li	r3, 0
-    blr
+    return kNoError;
 }
 
 asm void TRKInitializeSerialHandler(void)
@@ -929,11 +901,9 @@ _80089620:
     blr
 }
 
-asm void usr_put_initialize(void)
-{
-    nofralloc
-    blr
-}
+// provenance: melee:src/MetroTRK/usr_put.c:5
+// retail is a bare blr -- the console-put hook has no target-side setup
+void usr_put_initialize(void) {}
 
 asm void usr_puts(void)
 {
@@ -2778,14 +2748,14 @@ _8008af2c:
     blr
 }
 
-asm void TRKAcquireMutex_stub(void)
+asm void TRKAcquireMutex_stub(register DSMutex* mutex)
 {
     nofralloc
     li	r3, 0
     blr
 }
 
-asm void TRKReleaseMutex_stub(void)
+asm void TRKReleaseMutex_stub(register DSMutex* mutex)
 {
     nofralloc
     li	r3, 0
