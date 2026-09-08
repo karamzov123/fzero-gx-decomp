@@ -1769,11 +1769,10 @@ void fn_80006AEC(register unsigned int value)
     lbl_801A66DC = value;
 }
 
-asm void fn_80006AF4(void)
+// provenance: retail byte accessor at 0x80006AF4
+unsigned char fn_80006AF4(void)
 {
-    nofralloc
-    lbz	r3, -0x7ce8(r13)
-    blr	
+    return lbl_801A66D8;
 }
 
 asm void fn_80006AFC(void)
