@@ -1055,36 +1055,21 @@ void SITransferCommands(void)
 /* ---- SISetXY ---- */
 #pragma push
 #pragma force_active on
-asm u32 SISetXY(register u32 x, register u32 y)
+// provenance: dolsdk2001:src/os/OSSerial.c:181; historical exact-match candidate 362c1f37
+u32 SISetXY(register u32 x, register u32 y)
 {
-    nofralloc
-    mflr        r0
-    stw         r0, 0x4(r1)
-    slwi        r0, y, 8
-    stwu        r1, -0x18(r1)
-    stw         r31, 0x14(r1)
-    slwi        r31, x, 16
-    or          r31, r31, r0
-    bl          OSDisableInterrupts
-    lis         r4, Si@ha
-    addi        r4, r4, Si@l
-    lwz         r0, 0x4(r4)
-    addi        r5, r4, 0x4
-    lis         r4, 0xCC00
-    rlwinm      r0, r0, 0, 24, 5
-    stw         r0, 0x0(r5)
-    lwz         r0, 0x0(r5)
-    or          r0, r0, r31
-    stw         r0, 0x0(r5)
-    lwz         r31, 0x0(r5)
-    stw         r31, 0x6430(r4)
-    bl          OSRestoreInterrupts
-    mr          r3, r31
-    lwz         r0, 0x1c(r1)
-    lwz         r31, 0x14(r1)
-    addi        r1, r1, 0x18
-    mtlr        r0
-    blr
+    u32 poll;
+    BOOL enabled;
+
+    poll = x << 16;
+    poll |= y << 8;
+    enabled = OSDisableInterrupts();
+    Si[1] &= ~(0x03ff0000 | 0x0000ff00);
+    Si[1] |= poll;
+    poll = Si[1];
+    __SIRegs[12] = poll;
+    OSRestoreInterrupts(enabled);
+    return poll;
 }
 #pragma pop
 
