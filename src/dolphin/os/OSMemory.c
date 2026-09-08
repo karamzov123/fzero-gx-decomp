@@ -34,30 +34,16 @@ void __OSModuleInit(void)
     }
 }
 
-// provenance: original
+// provenance: dolsdk2001:src/os/OSMemory.c
 u32 OSGetPhysicalMemSize(void)
 {
-    register u32 v;
-
-    asm
-    {
-    lis     v, -0x8000
-    lwz     v, 0x28(v)
-    }
-    return v;
+    return *(volatile u32*)0x80000028;
 }
 
-// provenance: original
+// provenance: dolsdk2001:src/os/OSMemory.c
 u32 OSGetConsoleSimulatedMemSize(void)
 {
-    register u32 v;
-
-    asm
-    {
-    lis     v, -0x8000
-    lwz     v, 0xf0(v)
-    }
-    return v;
+    return *(volatile u32*)0x800000F0;
 }
 
 // provenance: original

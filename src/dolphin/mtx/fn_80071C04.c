@@ -69,12 +69,10 @@ asm void __OSFreeToHeap(void)
     blr	
 }
 
-asm void OSGetDefaultHeap(void)
+// provenance: dolsdk2001:src/os/OSAlloc.c
+void* OSGetDefaultHeap(void)
 {
-    nofralloc
-    lis     r3, lbl_8019E210@ha
-    addi	r3, r3, lbl_8019E210@l
-    blr	
+    return (void*)lbl_8019E210;
 }
 
 #pragma pop

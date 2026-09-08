@@ -1,3 +1,5 @@
+typedef unsigned int u32;
+
 #pragma push
 #pragma force_active on
 
@@ -11,7 +13,7 @@ extern unsigned char lbl_801A6CB0[4];
 extern unsigned char lbl_801A6CC4[2];
 extern unsigned char lbl_801A6CCC[4];
 extern unsigned char lbl_801A6CD0[4];
-extern unsigned char lbl_801A6CD4[4];
+extern u32 lbl_801A6CD4;
 extern unsigned char lbl_801A6CE0[4];
 extern unsigned char lbl_801A6D30[8];
 asm void fn_8006FEFC(void)
@@ -76,11 +78,10 @@ _8006ffb0:
     blr	
 }
 
-asm void fn_8006FFBC(void)
+// provenance: retail SDA21 accessor at 0x8006FFBC
+u32 fn_8006FFBC(void)
 {
-    nofralloc
-    lwz	r3, lbl_801A6CD4
-    blr	
+    return lbl_801A6CD4;
 }
 
 asm void fn_8006FFC4(void)

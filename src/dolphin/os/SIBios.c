@@ -127,18 +127,13 @@ extern unsigned char lbl_801A6454[8];
 extern unsigned char lbl_801A6818[8];
 extern unsigned char lbl_801A6810[4];
 extern unsigned char lbl_801A6834[4];
-asm s32 SIChannelValid(void)
+// provenance: dolsdk2001:src/os/OSSerial.c; historical exact conversion 33c01239
+s32 SIChannelValid(void)
 {
-    nofralloc
-    lis         r3, Si@ha
-    lwz         r0, Si@l(r3)
-    cmpwi       r0, -0x1
-    beq         L_80011934
-    li          r3, 0x1
-    blr
-L_80011934:
-    li          r3, 0x0
-    blr
+    if ((s32)Si[0] != -1) {
+        return 1;
+    }
+    return 0;
 }
 #pragma pop
 
@@ -1002,41 +997,22 @@ L_800124BC:
 /* ---- SIGetStatus ---- */
 #pragma push
 #pragma force_active on
-asm u32 SIGetStatus(register s32 chan)
+// provenance: historical exact conversion 2127972c853fda5df55d386bea10124e2398d405
+u32 SIGetStatus(register s32 chan)
 {
-    nofralloc
-    mflr        r0
-    stw         r0, 0x4(r1)
-    stwu        r1, -0x18(r1)
-    stw         r31, 0x14(r1)
-    stw         r30, 0x10(r1)
-    mr          r30, r3
-    bl          OSDisableInterrupts
-    lis         r4, 0xCC00
-    subfic      r0, r30, 0x3
-    lwz         r31, 0x6438(r4)
-    slwi        r0, r0, 3
-    srw         r31, r31, r0
-    rlwinm.     r0, r31, 0, 28, 28
-    beq         L_8001252C
-    lis         r4, Type@ha
-    slwi        r5, r30, 2
-    addi        r0, r4, Type@l
-    add         r4, r0, r5
-    lwz         r0, 0x0(r4)
-    rlwinm.     r0, r0, 0, 24, 24
-    bne         L_8001252C
-    li          r0, 0x8
-    stw         r0, 0x0(r4)
-L_8001252C:
-    bl          OSRestoreInterrupts
-    mr          r3, r31
-    lwz         r0, 0x1c(r1)
-    lwz         r31, 0x14(r1)
-    lwz         r30, 0x10(r1)
-    addi        r1, r1, 0x18
-    mtlr        r0
-    blr
+    int level;
+    u32 status;
+
+    level = OSDisableInterrupts();
+    status = *(volatile u32*)0xCC006438;
+    status >>= (3 - chan) * 8;
+    if (status & 0x08) {
+        if ((Type[chan] & 0x80) == 0) {
+            Type[chan] = 0x8;
+        }
+    }
+    OSRestoreInterrupts(level);
+    return status;
 }
 #pragma pop
 
@@ -1055,36 +1031,21 @@ void SITransferCommands(void)
 /* ---- SISetXY ---- */
 #pragma push
 #pragma force_active on
-asm u32 SISetXY(register u32 x, register u32 y)
+// provenance: dolsdk2001:src/os/OSSerial.c:181; historical exact-match candidate 362c1f37
+u32 SISetXY(register u32 x, register u32 y)
 {
-    nofralloc
-    mflr        r0
-    stw         r0, 0x4(r1)
-    slwi        r0, y, 8
-    stwu        r1, -0x18(r1)
-    stw         r31, 0x14(r1)
-    slwi        r31, x, 16
-    or          r31, r31, r0
-    bl          OSDisableInterrupts
-    lis         r4, Si@ha
-    addi        r4, r4, Si@l
-    lwz         r0, 0x4(r4)
-    addi        r5, r4, 0x4
-    lis         r4, 0xCC00
-    rlwinm      r0, r0, 0, 24, 5
-    stw         r0, 0x0(r5)
-    lwz         r0, 0x0(r5)
-    or          r0, r0, r31
-    stw         r0, 0x0(r5)
-    lwz         r31, 0x0(r5)
-    stw         r31, 0x6430(r4)
-    bl          OSRestoreInterrupts
-    mr          r3, r31
-    lwz         r0, 0x1c(r1)
-    lwz         r31, 0x14(r1)
-    addi        r1, r1, 0x18
-    mtlr        r0
-    blr
+    u32 poll;
+    BOOL enabled;
+
+    poll = x << 16;
+    poll |= y << 8;
+    enabled = OSDisableInterrupts();
+    Si[1] &= ~(0x03ff0000 | 0x0000ff00);
+    Si[1] |= poll;
+    poll = Si[1];
+    __SIRegs[12] = poll;
+    OSRestoreInterrupts(enabled);
+    return poll;
 }
 #pragma pop
 

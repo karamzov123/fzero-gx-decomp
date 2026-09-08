@@ -297,10 +297,9 @@ _8008d250:
     b       TRKInterruptHandler
 }
 
-asm void TRKUARTInterruptHandler(void)
+// provenance: historical exact conversion 1628442483461f8d9059ebededa09663361a6652
+void TRKUARTInterruptHandler(void)
 {
-    nofralloc
-    blr	
 }
 
 asm void InitializeProgramEndTrap(void)
