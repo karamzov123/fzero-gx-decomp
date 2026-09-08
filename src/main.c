@@ -1,4 +1,5 @@
 extern void DCStoreRange(void);
+extern unsigned int lbl_801A66E0;
 extern void DVDGetDriveStatus(void);
 extern void DVDInit(void);
 extern void GXBegin(void);
@@ -45,7 +46,7 @@ extern void fn_800063AC(void);
 extern void dvdfs_user_fn(void);
 extern void fn_800068F4(void);
 extern void fn_80006904(void);
-extern void fn_80006914(void);
+extern void fn_80006914(register unsigned int value);
 extern void fn_8000691C(void);
 extern void fn_80006AEC(void);
 extern void fn_80006AF4(void);
@@ -1619,11 +1620,10 @@ asm void fn_80006904(void)
     blr	
 }
 
-asm void fn_80006914(void)
+// provenance: retail SDA21 setter at 0x80006914
+void fn_80006914(register unsigned int value)
 {
-    nofralloc
-    stw	r3, -0x7ce0(r13)
-    blr	
+    lbl_801A66E0 = value;
 }
 
 asm void fn_8000691C(void)
