@@ -20,11 +20,16 @@ retry:
     blr
 }
 
-asm u32 OSGetTick(void)
+// provenance: dolsdk2001:src/os/OSTime.c; mftb is required for the time-base register
+u32 OSGetTick(void)
 {
-    nofralloc
-    mftb    r3, 268
-    blr
+    register u32 tick;
+
+    asm
+    {
+    mftb    tick, 268
+    }
+    return tick;
 }
 
 // provenance: mkdd:libs/dolphin/os/OSTime.c:40
