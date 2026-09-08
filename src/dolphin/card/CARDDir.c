@@ -62,7 +62,7 @@ extern void __CARDGetFontEncode(void);
 extern void __CARDUnlock(void);
 extern void __CARDRead(void);
 extern void __CARDUpdateFatBlock(void);
-extern void __CARDCheckSum(void);
+extern void __CARDCheckSum(void *ptr, int length, unsigned short *checksum, unsigned short *checksumInv);
 extern void __div2i(void);
 extern void strncmp(void);
 extern void strncpy(void);

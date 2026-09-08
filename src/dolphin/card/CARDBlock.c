@@ -18,7 +18,7 @@ extern void __CARDGetDirBlock(void);
 extern void __CARDDirWriteCallback(void);
 extern void __CARDDirEraseCallback(void);
 extern void __CARDUpdateDir(void);
-extern void __CARDCheckSum(void);
+extern void __CARDCheckSum(void *ptr, int length, unsigned short *checksum, unsigned short *checksumInv);
 extern void DCFlushRange(void);
 extern void DCInvalidateRange(void);
 extern void DCStoreRange(void);
@@ -1734,122 +1734,28 @@ _8002c700:
     blr	
 }
 
-asm void __CARDCheckSum(void)
+// MWCC inline assembly disables peephole optimization for following C.
+#pragma peephole on
+// provenance: dolsdk2001:src/card/CARDCheck.c:11
+void __CARDCheckSum(void *ptr, int length, unsigned short *checksum, unsigned short *checksumInv)
 {
-    nofralloc
-    li	r0, 0
-    srawi	r4, r4, 1
-    sth	r0, 0(r6)
-    addze.	r4, r4
-    sth	r0, 0(r5)
-    ble     _8002c8a4
-    rlwinm.	r0, r4, 0x1d, 3, 0x1f
-    mtctr	r0
-    beq     _8002c874
-_8002c744:
-    lhz	r7, 0(r5)
-    lhz	r0, 0(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 0(r3)
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    lhz	r7, 0(r5)
-    lhz	r0, 2(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 2(r3)
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    lhz	r7, 0(r5)
-    lhz	r0, 4(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 4(r3)
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    lhz	r7, 0(r5)
-    lhz	r0, 6(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 6(r3)
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    lhz	r7, 0(r5)
-    lhz	r0, 8(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 8(r3)
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    lhz	r7, 0(r5)
-    lhz	r0, 0xa(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 0xa(r3)
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    lhz	r7, 0(r5)
-    lhz	r0, 0xc(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 0xc(r3)
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    lhz	r7, 0(r5)
-    lhz	r0, 0xe(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 0xe(r3)
-    addi	r3, r3, 0x10
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    bdnz    _8002c744
-    andi.	r4, r4, 7
-    beq     _8002c8a4
-_8002c874:
-    mtctr	r4
-_8002c878:
-    lhz	r7, 0(r5)
-    lhz	r0, 0(r3)
-    add	r0, r7, r0
-    sth	r0, 0(r5)
-    lhz	r0, 0(r3)
-    addi	r3, r3, 2
-    lhz	r7, 0(r6)
-    nor	r0, r0, r0
-    add	r0, r7, r0
-    sth	r0, 0(r6)
-    bdnz    _8002c878
-_8002c8a4:
-    lhz	r0, 0(r5)
-    cmplwi	r0, 0xffff
-    bne     _8002c8b8
-    li	r0, 0
-    sth	r0, 0(r5)
-_8002c8b8:
-    lhz	r0, 0(r6)
-    cmplwi	r0, 0xffff
-    bnelr	
-    li	r0, 0
-    sth	r0, 0(r6)
-    blr	
+    unsigned short *p;
+    int i;
+
+    // Signed byte length: negative lengths do not read the input.
+    length /= 2;
+    *checksumInv = 0;
+    *checksum = 0;
+    for (i = 0, p = ptr; i < length; i++, p++) {
+        *checksum += *p;
+        *checksumInv += ~*p;
+    }
+    if (*checksum == 0xffff) {
+        *checksum = 0;
+    }
+    if (*checksumInv == 0xffff) {
+        *checksumInv = 0;
+    }
 }
 
 #pragma pop
