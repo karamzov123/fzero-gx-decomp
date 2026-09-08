@@ -3,11 +3,16 @@ typedef unsigned int u32;
 extern u32 PPCMfhid0(void);
 extern void PPCMthid0(u32 newHID0);
 
-asm u32 PPCMfmsr(void)
+// provenance: dolsdk2001:src/os/OSPPC.c; mfmsr is required for the MSR register
+u32 PPCMfmsr(void)
 {
-    nofralloc
-    mfmsr   r3
-    blr
+    register u32 msr;
+
+    asm
+    {
+    mfmsr   msr
+    }
+    return msr;
 }
 
 asm void PPCMtmsr(register u32 newMSR)
