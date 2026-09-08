@@ -84,7 +84,7 @@ extern unsigned char lbl_801A6994[4];
 extern unsigned char lbl_801A6998[4];
 asm void VIGetTvFormat(void);
 
-asm void ClampS8(void);
+void ClampS8(s8* px, s8* py, s8 max, s8 xy, s8 min);
 asm void PadClampStatus(void);
 asm void UpdateOrigin(void);
 asm void PADEnable(void);
@@ -150,96 +150,62 @@ u32 PADIsMotorEnabled(void) {
     return motor & 1u;
 }
 
-asm void ClampS8(void)
-{
-    nofralloc
-    lbz	r0, 0(r3)
-    lbz	r12, 0(r4)
-    extsb.	r0, r0
-    extsb	r12, r12
-    mr	r11, r0
-    bc      12, 0, _8001c0e0
-    li	r0, 1
-    b       _8001c0e8
-_8001c0e0:
-    li	r0, -1
-    neg	r11, r11
-_8001c0e8:
-    cmpwi	r12, 0
-    bc      12, 0, _8001c0f8
-    li	r8, 1
-    b       _8001c100
-_8001c0f8:
-    li	r8, -1
-    neg	r12, r12
-_8001c100:
-    extsb	r7, r7
-    cmpw	r11, r7
-    bc      12, 1, _8001c114
-    li	r11, 0
-    b       _8001c118
-_8001c114:
-    subf	r11, r7, r11
-_8001c118:
-    cmpw	r12, r7
-    bc      12, 1, _8001c128
-    li	r12, 0
-    b       _8001c12c
-_8001c128:
-    subf	r12, r7, r12
-_8001c12c:
-    cmpwi	r11, 0
-    bc      4, 2, _8001c14c
-    cmpwi	r12, 0
-    bc      4, 2, _8001c14c
-    li	r0, 0
-    stb	r0, 0(r4)
-    stb	r0, 0(r3)
-    blr
-_8001c14c:
-    extsb	r6, r6
-    mullw	r9, r6, r12
-    mullw	r7, r6, r11
-    cmpw	r9, r7
-    bc      12, 1, _8001c1a0
-    extsb	r9, r5
-    subf	r5, r6, r9
-    mullw	r5, r12, r5
-    mullw	r9, r6, r9
-    add	r7, r7, r5
-    cmpw	r9, r7
-    bc      4, 0, _8001c1dc
-    mullw	r6, r11, r9
-    mullw	r5, r12, r9
-    divw	r6, r6, r7
-    divw	r5, r5, r7
-    extsb	r6, r6
-    extsb	r5, r5
-    addi	r11, r6, 0
-    addi	r12, r5, 0
-    b       _8001c1dc
-_8001c1a0:
-    extsb	r7, r5
-    subf	r5, r6, r7
-    mullw	r5, r11, r5
-    mullw	r10, r6, r7
-    add	r7, r9, r5
-    cmpw	r10, r7
-    bc      4, 0, _8001c1dc
-    mullw	r6, r11, r10
-    mullw	r5, r12, r10
-    divw	r6, r6, r7
-    divw	r5, r5, r7
-    extsb	r6, r6
-    extsb	r5, r5
-    addi	r11, r6, 0
-    addi	r12, r5, 0
-_8001c1dc:
-    mullw	r5, r0, r11
-    mullw	r0, r8, r12
-    stb	r5, 0(r3)
-    stb	r0, 0(r4)
-    blr
+// GC/1.2.5n leaves peephole optimization disabled after preceding asm.
+#pragma peephole on
+// provenance: prime:extern/sdk/dolphin/pad/PadClamp.c:71
+void ClampS8(s8* px, s8* py, s8 max, s8 xy, s8 min) {
+    int x = *px;
+    int y = *py;
+    int signX;
+    int signY;
+    int d;
+
+    if (0 <= x) {
+        signX = 1;
+    } else {
+        signX = -1;
+        x = -x;
+    }
+
+    if (0 <= y) {
+        signY = 1;
+    } else {
+        signY = -1;
+        y = -y;
+    }
+
+    if (x <= min) {
+        x = 0;
+    } else {
+        x -= min;
+    }
+    if (y <= min) {
+        y = 0;
+    } else {
+        y -= min;
+    }
+
+    if (x == 0 && y == 0) {
+        *px = *py = 0;
+        return;
+    }
+
+    if (xy * y <= xy * x) {
+        d = xy * x + (max - xy) * y;
+        if (xy * max < d) {
+            x = (s8)(xy * max * x / d);
+            y = (s8)(xy * max * y / d);
+        }
+    } else {
+        d = xy * y + (max - xy) * x;
+        if (xy * max < d) {
+            x = (s8)(xy * max * x / d);
+            y = (s8)(xy * max * y / d);
+        }
+    }
+
+    *px = (s8)(signX * x);
+    *py = (s8)(signY * y);
 }
 
 asm void PadClampStatus(void)
