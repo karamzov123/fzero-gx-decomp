@@ -997,41 +997,22 @@ L_800124BC:
 /* ---- SIGetStatus ---- */
 #pragma push
 #pragma force_active on
-asm u32 SIGetStatus(register s32 chan)
+// provenance: historical exact conversion 2127972c853fda5df55d386bea10124e2398d405
+u32 SIGetStatus(register s32 chan)
 {
-    nofralloc
-    mflr        r0
-    stw         r0, 0x4(r1)
-    stwu        r1, -0x18(r1)
-    stw         r31, 0x14(r1)
-    stw         r30, 0x10(r1)
-    mr          r30, r3
-    bl          OSDisableInterrupts
-    lis         r4, 0xCC00
-    subfic      r0, r30, 0x3
-    lwz         r31, 0x6438(r4)
-    slwi        r0, r0, 3
-    srw         r31, r31, r0
-    rlwinm.     r0, r31, 0, 28, 28
-    beq         L_8001252C
-    lis         r4, Type@ha
-    slwi        r5, r30, 2
-    addi        r0, r4, Type@l
-    add         r4, r0, r5
-    lwz         r0, 0x0(r4)
-    rlwinm.     r0, r0, 0, 24, 24
-    bne         L_8001252C
-    li          r0, 0x8
-    stw         r0, 0x0(r4)
-L_8001252C:
-    bl          OSRestoreInterrupts
-    mr          r3, r31
-    lwz         r0, 0x1c(r1)
-    lwz         r31, 0x14(r1)
-    lwz         r30, 0x10(r1)
-    addi        r1, r1, 0x18
-    mtlr        r0
-    blr
+    int level;
+    u32 status;
+
+    level = OSDisableInterrupts();
+    status = *(volatile u32*)0xCC006438;
+    status >>= (3 - chan) * 8;
+    if (status & 0x08) {
+        if ((Type[chan] & 0x80) == 0) {
+            Type[chan] = 0x8;
+        }
+    }
+    OSRestoreInterrupts(level);
+    return status;
 }
 #pragma pop
 
