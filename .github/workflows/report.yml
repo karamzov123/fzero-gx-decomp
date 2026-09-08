@@ -28,9 +28,11 @@ jobs:
           test -d "$HOME/orig"
           test -d "$private/build/compilers"
           mkdir -p build
-          for d in compilers binutils tools; do
+          for d in compilers binutils; do
             ln -s "$private/build/$d" "build/$d"
           done
+          # Ninja may download tools. Never write through to live worker tools.
+          cp -aL "$private/build/tools" build/tools
           ln -s "$HOME/orig" orig
 
       - name: Configure and build
@@ -43,7 +45,8 @@ jobs:
             --binutils "$private/build/binutils" \
             --dtk "$private/build/tools/dtk" \
             --objdiff "$private/build/tools/objdiff-cli" \
-            --sjiswrap "$private/build/tools/sjiswrap.exe" configure
+            --wrapper build/tools/wibo \
+            --sjiswrap build/tools/sjiswrap.exe configure
           # all_source, not just the DOL: an Object(NonMatching, ...) unit is
           # never linked, so the DOL target does not build its object and the
           # report would score it as unbuilt. all_source compiles every unit
