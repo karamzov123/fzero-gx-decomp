@@ -147,31 +147,17 @@ s32 CARDReadAsync(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset,
     return result;
 }
 
-// Signature-only repair: r3=fileInfo, r4=buf, r5=length, r6=offset; body unchanged.
-asm s32 CARDRead(register CARDFileInfo* fileInfo, register void* buf, register s32 length,
-                 register s32 offset)
-{
-    nofralloc
-    mflr    r0
-    lis     r7, __CARDSyncCallback@ha
-    stw     r0, 4(r1)
-    addi    r7, r7, __CARDSyncCallback@l
-    stwu    r1, -0x20(r1)
-    stw     r31, 0x1c(r1)
-    addi    r31, r3, 0
-    bl      CARDReadAsync
-    cmpwi   r3, 0
-    bge     _L_8002f59c
-    b       _L_8002f5a4
-_L_8002f59c:
-    lwz     r3, 0(r31)
-    bl      __CARDSync
-_L_8002f5a4:
-    lwz     r0, 0x24(r1)
-    lwz     r31, 0x1c(r1)
-    addi    r1, r1, 0x20
-    mtlr    r0
-    blr
+// provenance: retail 0x8002F570-0x8002F5B8
+// CARDRead is the synchronous wrapper around CARDReadAsync.  The callback
+// is installed before the read starts; successful submission then waits on
+// the channel, while submission errors are returned directly.
+s32 CARDRead(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset) {
+    s32 result = CARDReadAsync(fileInfo, buf, length, offset, __CARDSyncCallback);
+
+    if (result < 0) {
+        return result;
+    }
+    return __CARDSync(fileInfo->chan);
 }
 
 #pragma pop
