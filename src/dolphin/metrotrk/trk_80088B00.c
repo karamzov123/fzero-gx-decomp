@@ -31,7 +31,7 @@ extern unsigned char lbl_80095B80[0x28];
 extern unsigned char lbl_80095BA8[0x10];
 extern unsigned char lbl_801A5098[0x18];
 extern unsigned char lbl_801A5624[0x14];
-extern unsigned char str_NoBufferAvailable[0x1D];
+extern const char str_NoBufferAvailable[0x1D];
 extern unsigned char x_str[0x6];
 extern unsigned char gTRKBigEndian[4];
 extern unsigned char lbl_80095678[0x25];
@@ -57,7 +57,7 @@ extern void TRKAcquireMutex_stub(DSMutex* mutex);
 extern void TRKReleaseMutex_stub(DSMutex* mutex);
 extern void TRKTargetStopped(void);
 extern void TRKTestForPacket(void);
-extern void usr_puts(void);
+extern void usr_puts(const char* s);
 extern void TRKDoPing(void);
 extern void TRKDoVersions(void);
 extern void TRKDoStop(void);
@@ -76,7 +76,7 @@ extern void TRK_SetInputPendingPtrStore(void);
 extern int TRK_IsInputPending(void);
 extern void TRKRequestSend(void);
 extern void TRKReleaseMutex_stub(DSMutex* mutex);
-extern void fn_8008AF50(void);
+extern void fn_8008AF50(DSMutex* mutex);
 extern void TRKTargetStop(void);
 extern void TRKTargetGetPC(void);
 extern void TRKTargetCheckStep(void);
@@ -378,40 +378,39 @@ _80088e9c:
     blr
 }
 
-asm void TRKAppendBuffer(void)
+// provenance: melee:src/MetroTRK/msgbuf.c:108
+// Retail appends a BYTE AT A TIME and stops on the first error, so melee's
+// single-transfer body is here with length folded to 1: `bytesLeft < length`
+// becomes `pos >= kMessageBufferSize`, and the memcpy arm is gone because
+// length == 1 always takes the single-byte store. This revision also carries
+// the length forward as `fLength + 1` rather than melee's `fLength =
+// fPosition` -- retail reads 0x08 and writes 0x08, never copying 0x0C.
+DSError TRKAppendBuffer(MessageBuffer* buf, const u8* data, int count)
 {
-    nofralloc
-    li	r9, 0
-    li	r0, 0
-    b       _80088f00
-_80088ebc:
-    lwz	r7, 0xc(r3)
-    lbz	r8, 0(r4)
-    cmplwi	r7, 0x880
-    bc      12, 0, _80088ed4
-    li	r7, 0x301
-    b       _80088ef4
-_80088ed4:
-    addi	r6, r7, 1
-    addi	r0, r7, 0x10
-    stw	r6, 0xc(r3)
-    li	r7, 0
-    stbx	r8, r3, r0
-    lwz	r6, 8(r3)
-    addi	r0, r6, 1
-    stw	r0, 8(r3)
-_80088ef4:
-    mr	r0, r7
-    addi	r9, r9, 1
-    addi	r4, r4, 1
-_80088f00:
-    cmpwi	r0, 0
-    bc      4, 2, _80088f10
-    cmpw	r9, r5
-    bc      12, 0, _80088ebc
-_80088f10:
-    mr	r3, r0
-    blr
+    DSError error;
+    u32 pos;
+    u32 byte;
+    DSError result;
+    int i;
+
+    for (i = 0, error = kNoError; error == kNoError && i < count;
+         i++, data++) {
+        pos = buf->fPosition;
+        byte = *data;
+
+        if (pos >= kMessageBufferSize) {
+            result = kMessageBufferOverflow;
+        } else {
+            buf->fPosition = pos + 1;
+            result = kNoError;
+            buf->fData[pos] = byte;
+            buf->fLength = buf->fLength + 1;
+        }
+
+        error = result;
+    }
+
+    return error;
 }
 
 asm void TRKReadBuffer1_ui64(void)
@@ -602,99 +601,61 @@ MessageBuffer* TRKGetBuffer(int index)
     return buf;
 }
 
-asm void TRKGetFreeBuffer(void)
+// provenance: melee:src/MetroTRK/msgbuf.c:27
+// Adapted three ways. The mutex stubs are named the wrong way round in this
+// tree (see TRKReleaseBuffer). TRKResetBuffer is still an asm body here so
+// MWCC cannot inline it, and retail DID inline it -- as just the two stores,
+// because keepData is true and the fData memset is skipped -- so it is
+// open-coded. And this SDK revision reports the exhausted pool, which melee's
+// does not.
+DSError TRKGetFreeBuffer(int* bufferIndexPtr, MessageBuffer** destBufPtr)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    stw	r0, 0x24(r1)
-    li	r0, 0
-    stmw	r27, 0xc(r1)
-    mr	r28, r4
-    mr	r27, r3
-    li	r30, 0x300
-    li	r29, 0
-    stw	r0, 0(r4)
-    b       _800892d8
-_80089270:
-    cmpwi	r29, 0
-    li	r31, 0
-    bc      12, 0, _80089294
-    cmpwi	r29, 3
-    bc      4, 0, _80089294
-    mulli	r4, r29, 0x890
-    lis r3, gTRKMsgBufs@ha
-    addi r0, r3, gTRKMsgBufs@l
-    add	r31, r0, r4
-_80089294:
-    mr	r3, r31
-    bl      TRKReleaseMutex_stub
-    lwz	r0, 4(r31)
-    cmpwi	r0, 0
-    bc      4, 2, _800892cc
-    li	r3, 0
-    li	r0, 1
-    stw	r3, 8(r31)
-    li	r30, 0
-    stw	r3, 0xc(r31)
-    stw	r0, 4(r31)
-    stw	r31, 0(r28)
-    stw	r29, 0(r27)
-    li	r29, 3
-_800892cc:
-    mr	r3, r31
-    bl      TRKAcquireMutex_stub
-    addi	r29, r29, 1
-_800892d8:
-    cmpwi	r29, 3
-    bc      12, 0, _80089270
-    cmpwi	r30, 0x300
-    bc      4, 2, _800892f4
-    lis r3, str_NoBufferAvailable@ha
-    addi r3, r3, str_NoBufferAvailable@l
-    bl      usr_puts
-_800892f4:
-    mr	r3, r30
-    lmw	r27, 0xc(r1)
-    lwz	r0, 0x24(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    DSError error = kNoMessageBufferAvailable;
+    int i;
+    *destBufPtr = NULL;
+
+    for (i = 0; i < NUM_BUFFERS; i++) {
+        MessageBuffer* buf = TRKGetBuffer(i);
+
+        TRKReleaseMutex_stub(&buf->fMutex);
+
+        if (!buf->fInUse) {
+            buf->fLength = 0;
+            buf->fPosition = 0;
+            buf->fInUse = true;
+            *destBufPtr = buf;
+            *bufferIndexPtr = i;
+            error = kNoError;
+            i = NUM_BUFFERS;
+        }
+
+        TRKAcquireMutex_stub(&buf->fMutex);
+    }
+
+    if (error == kNoMessageBufferAvailable) {
+        usr_puts(str_NoBufferAvailable);
+    }
+
+    return error;
 }
 
-asm void TRKInitializeMessageBuffers(void)
+// provenance: melee:src/MetroTRK/msgbuf.c:13
+// fn_8008AF50 is melee's TRKInitializeMutex; the carve has not named it yet,
+// and renaming a public symbol belongs in its own change. The mutex stubs are
+// named the wrong way round here (see TRKReleaseBuffer), and TRKSetBufferUsed
+// is a reference-side inline, so the `false` store is open-coded.
+DSError TRKInitializeMessageBuffers(void)
 {
-    nofralloc
-    stwu	r1, -0x20(r1)
-    mflr	r0
-    lis r3, gTRKMsgBufs@ha
-    stw	r0, 0x24(r1)
-    stw	r31, 0x1c(r1)
-    li	r31, 0
-    stw	r30, 0x18(r1)
-    addi r30, r3, gTRKMsgBufs@l
-    stw	r29, 0x14(r1)
-    li	r29, 0
-_80089334:
-    mr	r3, r30
-    bl      fn_8008AF50
-    mr	r3, r30
-    bl      TRKReleaseMutex_stub
-    stw	r31, 4(r30)
-    mr	r3, r30
-    bl      TRKAcquireMutex_stub
-    addi	r29, r29, 1
-    addi	r30, r30, 0x890
-    cmpwi	r29, 3
-    bc      12, 0, _80089334
-    lwz	r0, 0x24(r1)
-    li	r3, 0
-    lwz	r31, 0x1c(r1)
-    lwz	r30, 0x18(r1)
-    lwz	r29, 0x14(r1)
-    mtlr	r0
-    addi	r1, r1, 0x20
-    blr
+    int i;
+
+    for (i = 0; i < NUM_BUFFERS; i++) {
+        fn_8008AF50(&gTRKMsgBufs.buffers[i].fMutex);
+        TRKReleaseMutex_stub(&gTRKMsgBufs.buffers[i].fMutex);
+        gTRKMsgBufs.buffers[i].fInUse = false;
+        TRKAcquireMutex_stub(&gTRKMsgBufs.buffers[i].fMutex);
+    }
+
+    return kNoError;
 }
 
 // provenance: melee:src/MetroTRK/mutex_TRK.c:10
@@ -905,7 +866,7 @@ _80089620:
 // retail is a bare blr -- the console-put hook has no target-side setup
 void usr_put_initialize(void) {}
 
-asm void usr_puts(void)
+asm void usr_puts(register const char* s)
 {
     nofralloc
     stwu	r1, -0x20(r1)
@@ -2762,7 +2723,7 @@ asm void TRKReleaseMutex_stub(register DSMutex* mutex)
     blr
 }
 
-asm void fn_8008AF50(void)
+asm void fn_8008AF50(register DSMutex* mutex)
 {
     nofralloc
     li	r3, 0

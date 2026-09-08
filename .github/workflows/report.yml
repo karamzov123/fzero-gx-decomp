@@ -3,6 +3,7 @@ name: GFZE01 progress report
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -10,8 +11,16 @@ permissions:
 
 jobs:
   report:
-    # Trusted main pushes only. The runner keeps the retail DOL and MWCC
-    # outside GitHub; only the objdiff report is uploaded.
+    # The runner is SELF-HOSTED: it keeps the retail DOL and MWCC outside
+    # GitHub, and a job on it executes on a personal machine. So a pull
+    # request only builds when its head branch lives in THIS repository.
+    # A fork PR creates the job and GitHub skips it before any runner sees
+    # it, which is the same amount of fork code executed here as before this
+    # trigger existed: none. Check a fork PR with a manual run from the
+    # Actions tab against its branch.
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: [self-hosted, linux, x64, fzero-report]
     timeout-minutes: 30
     steps:
