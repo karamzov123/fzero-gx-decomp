@@ -1,24 +1,4 @@
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef signed int s32;
-
-typedef union {
-    u8 u8;
-    u16 u16;
-    u32 u32;
-} __GXFifoInt;
-
-#define GXWGFifo ((volatile __GXFifoInt *)0xCC008000)
-
-#define GX_WRITE_RAS_REG(reg)       \
-    do {                            \
-        GXWGFifo->u8 = 0x61;        \
-        GXWGFifo->u32 = (u32)(reg); \
-    } while (0)
-
-#define SET_REG_FIELD(reg, size, pos, val) \
-    ((reg) = (((u32)(reg)) & ~((((1 << (size)) - 1)) << (pos))) | ((u32)(val) << (pos)))
+#include <dolphin/gx.h>
 
 typedef volatile struct GXData {
     u16 inVertexList;
@@ -27,7 +7,9 @@ typedef volatile struct GXData {
     u16 vLim;
     u8 pad[0x7C - 0x8];
     u32 lpSize;
-    u8 pad2[0xB8 - 0x80];
+    u8 pad2[0xA8 - 0x80];
+    /* 0xA8 */ u32 ambColor[2]; /* GXSetChanAmbColor: lwz r3, 0xa8/0xac(r3) */
+    /* 0xB0 */ u32 matColor[2]; /* GXSetChanMatColor: lwz r3, 0xb0/0xb4(r3) */
     u32 suTs0[8];
     u8 pad3[0x204 - 0xD8];
     u32 genMode;
