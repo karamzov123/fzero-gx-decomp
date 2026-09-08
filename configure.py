@@ -496,9 +496,9 @@ config.libs = [
         Object(Matching, "dolphin/card/CARDBios.c"),
         Object(Matching, "dolphin/card/CARDMount.c"),
         Object(Matching, "dolphin/card/CARDBlock.c"),
-        # Pilot: __CARDIsPublic is typed C but has a known MWCC bit-test
-        # lowering plateau; keep the retail object linked unchanged.
-        Object(NonMatching, "dolphin/card/CARDDir.c"),
+        # provenance: original; CARD file-access conversion restores retail
+        # peephole state for __CARDIsPublic without changing its C body.
+        Object(Matching, "dolphin/card/CARDDir.c"),
         Object(Matching, "dolphin/card/CARDCreate.c"),
         Object(Matching, "dolphin/card/CARDRead.c"),
         # Pilot: CARDWriteAsync is reference-backed typed C; asm callbacks

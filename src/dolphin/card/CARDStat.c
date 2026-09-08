@@ -9,44 +9,19 @@
 // Hypothesis: faithful adaptation reproduces all four functions including
 // the unrolled icon loop (compiler unrolls ctr=2 loop x2 + peels).
 
-typedef int s32;
-typedef int BOOL;
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned long u32;
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
+#include <dolphin/card.h>
 typedef long long s64;
 typedef unsigned long long u64;
 
-#define CARD_MAX_FILE 127
-#define CARD_FILENAME_MAX 32
 #define CARD_READ_SIZE 0x200
 #define CARD_SYSTEM_BLOCK_SIZE 0x4000
 #define CARD_COMMENT_SIZE 64
-#define CARD_RESULT_FATAL_ERROR (-128)
-#define CARD_RESULT_NOPERM (-10)
 
 #define __OSBusClock (*(u32*)0x800000F8)
 #define OSTicksToSeconds(t) ((u32)((s64)(t) / (long long)(__OSBusClock >> 2)))
 
-typedef void (*CARDCallback)(s32 chan, s32 result);
 
-typedef struct CARDDir {
-    /*0x00*/ u8 gameName[4];
-    /*0x04*/ u8 company[2];
-    /*0x06*/ u8 _pad0;
-    /*0x07*/ u8 bannerFormat;
-    /*0x08*/ u8 fileName[32];
-    /*0x28*/ u32 time;
-    /*0x2C*/ u32 iconAddr;
-    /*0x30*/ u16 iconFormat;
-    /*0x32*/ u16 iconSpeed;
-    /*0x34*/ u8 permission;
-    /*0x35*/ u8 copyTimes;
-    /*0x36*/ u16 startBlock;
-    /*0x38*/ u16 length;
-    /*0x3A*/ u8 _pad1[2];
-    /*0x3C*/ u32 commentAddr;
-} CARDDir; // sizeof == 0x40
 
 typedef struct CARDStat {
     /*0x00*/ char fileName[CARD_FILENAME_MAX];
@@ -66,16 +41,14 @@ typedef struct CARDStat {
     /*0x68*/ u32 offsetData;
 } CARDStat;
 
-typedef struct CARDControl {
-    u8 _unk[0xBC];
-    /*0xBC*/ u16 freeNo;
-    u8 _unk2[0x12]; // 0xC0..0xD4? sectorSize read at 0xC in CARDGetStatus -> card+0xC
-} CARDControl;
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
+struct CARDControl;
 
 extern s32 __CARDGetControlBlock(s32 chan, void** pcard);
 extern s32 __CARDPutControlBlock(void* card, s32 err);
 extern CARDDir* __CARDGetDirBlock(void* card);
-extern s32 __CARDAccess(void* card, CARDDir* ent);
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
+extern s32 __CARDAccess(struct CARDControl* card, CARDDir* ent);
 extern s32 __CARDIsPublic(CARDDir* ent);
 extern void* memcpy(void* dst, void* src, u32 n);
 extern s32 __CARDUpdateDir(s32 chan, CARDCallback callback);
@@ -87,7 +60,6 @@ extern void __CARDSyncCallback(s32 chan, s32 result);
 #define CARD_STAT_BANNER_NONE 0
 #define CARD_STAT_BANNER_C8 1
 #define CARD_STAT_BANNER_RGB5A3 2
-#define CARD_ICON_MAX 8
 
 #define CARDGetBannerFormat(ent) ((ent)->bannerFormat & 3)
 #define CARDGetIconFormat(ent, n) (((ent)->iconFormat >> (2 * (n))) & 3)
