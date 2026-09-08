@@ -1,7 +1,34 @@
+typedef signed char s8;
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 typedef signed int s32;
+
+// provenance: prime:extern/sdk/include/dolphin/pad.h:59
+// Complete status: err is caller-owned, followed by one byte of ABI padding.
+typedef struct PADStatus {
+    u16 button;
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    s8 substickY;
+    u8 triggerL;
+    u8 triggerR;
+    u8 analogA;
+    u8 analogB;
+    s8 err;
+} PADStatus;
+
+// The SDK response-word type is unsigned long; keep every callback compatible.
+typedef void (*PADMakeStatus)(s32 chan, PADStatus *status, unsigned long data[2]);
+
+#define PAD_TRIGGER_R 0x0020
+#define PAD_TRIGGER_L 0x0040
+#define PAD_BUTTON_A 0x0100
+#define PAD_BUTTON_B 0x0200
+#define PAD_BUTTON_X 0x0400
+#define PAD_BUTTON_Y 0x0800
+#define PAD_BUTTON_START 0x1000
 
 #pragma force_active on
 
@@ -44,7 +71,7 @@ extern unsigned char lbl_801A64B4[4];
 extern unsigned char lbl_801A64B8[4];
 extern unsigned char lbl_801A64BC[4];
 extern unsigned char lbl_801A64C0[4];
-extern unsigned char lbl_801A64C4[4];
+extern PADMakeStatus lbl_801A64C4;
 extern unsigned char lbl_801A6818[8];
 extern unsigned char lbl_801A6978[4];
 extern unsigned char lbl_801A697C[4];
@@ -72,9 +99,9 @@ asm void PADRead(void);
 asm void SISetCommandByChannel(void);
 asm void SISetCommandByArray(void);
 void PADSetSpec(u32 spec);
-asm void SPEC0_MakeStatus(void);
-asm void SPEC1_MakeStatus(void);
-asm void SPEC2_MakeStatus(void);
+void SPEC0_MakeStatus(s32 chan, PADStatus *status, unsigned long data[2]);
+void SPEC1_MakeStatus(s32 chan, PADStatus *status, unsigned long data[2]);
+asm void SPEC2_MakeStatus(s32 chan, PADStatus *status, unsigned long data[2]);
 asm void PADSetAnalogMode(void);
 asm void PADResetChannel(void);
 asm void SamplingHandler(void);
@@ -1540,240 +1567,88 @@ void PADSetSpec(u32 spec) {
     *(u32 *)__PADSpec = 0;
     switch (spec) {
     case 0:
-        *(u32 *)lbl_801A64C4 = (u32)SPEC0_MakeStatus;
+        lbl_801A64C4 = SPEC0_MakeStatus;
         break;
     case 1:
-        *(u32 *)lbl_801A64C4 = (u32)SPEC1_MakeStatus;
+        lbl_801A64C4 = SPEC1_MakeStatus;
         break;
     case 2:
     case 3:
     case 4:
     case 5:
-        *(u32 *)lbl_801A64C4 = (u32)SPEC2_MakeStatus;
+        lbl_801A64C4 = SPEC2_MakeStatus;
         break;
     }
     *(u32 *)lbl_801A64C0 = spec;
 }
 
-asm void SPEC0_MakeStatus(void)
-{
-    nofralloc
-    li	r3, 0
-    sth	r3, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x1c, 0x1c
-    bc      12, 2, _8001d500
-    li	r3, 0x100
-_8001d500:
-    lhz	r0, 0(r4)
-    or	r0, r0, r3
-    sth	r0, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x1a, 0x1a
-    bc      12, 2, _8001d520
-    li	r3, 0x200
-    b       _8001d524
-_8001d520:
-    li	r3, 0
-_8001d524:
-    lhz	r0, 0(r4)
-    or	r0, r0, r3
-    sth	r0, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x17, 0x17
-    bc      12, 2, _8001d544
-    li	r3, 0x400
-    b       _8001d548
-_8001d544:
-    li	r3, 0
-_8001d548:
-    lhz	r0, 0(r4)
-    or	r0, r0, r3
-    sth	r0, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x1f, 0x1f
-    bc      12, 2, _8001d568
-    li	r3, 0x800
-    b       _8001d56c
-_8001d568:
-    li	r3, 0
-_8001d56c:
-    lhz	r0, 0(r4)
-    or	r0, r0, r3
-    sth	r0, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x1b, 0x1b
-    bc      12, 2, _8001d58c
-    li	r6, 0x1000
-    b       _8001d590
-_8001d58c:
-    li	r6, 0
-_8001d590:
-    lhz	r3, 0(r4)
-    li	r0, 0
-    or	r3, r3, r6
-    sth	r3, 0(r4)
-    lwz	r3, 4(r5)
-    srwi	r3, r3, 0x10
-    extsb	r3, r3
-    stb	r3, 2(r4)
-    lwz	r3, 4(r5)
-    srwi	r3, r3, 0x18
-    extsb	r3, r3
-    stb	r3, 3(r4)
-    lwz	r3, 4(r5)
-    extsb	r3, r3
-    stb	r3, 4(r4)
-    lwz	r3, 4(r5)
-    srwi	r3, r3, 8
-    extsb	r3, r3
-    stb	r3, 5(r4)
-    lwz	r3, 0(r5)
-    rlwinm	r3, r3, 0x18, 0x18, 0x1f
-    stb	r3, 6(r4)
-    lwz	r3, 0(r5)
-    stb	r3, 7(r4)
-    stb	r0, 8(r4)
-    stb	r0, 9(r4)
-    lbz	r0, 6(r4)
-    cmplwi	r0, 0xaa
-    bc      12, 0, _8001d610
-    lhz	r0, 0(r4)
-    ori	r0, r0, 0x40
-    sth	r0, 0(r4)
-_8001d610:
-    lbz	r0, 7(r4)
-    cmplwi	r0, 0xaa
-    bc      12, 0, _8001d628
-    lhz	r0, 0(r4)
-    ori	r0, r0, 0x20
-    sth	r0, 0(r4)
-_8001d628:
-    lbz	r3, 2(r4)
-    addi	r0, r3, -0x80
-    stb	r0, 2(r4)
-    lbz	r3, 3(r4)
-    addi	r0, r3, -0x80
-    stb	r0, 3(r4)
-    lbz	r3, 4(r4)
-    addi	r0, r3, -0x80
-    stb	r0, 4(r4)
-    lbz	r3, 5(r4)
-    addi	r0, r3, -0x80
-    stb	r0, 5(r4)
-    blr
+// GC/1.2.5n leaves peephole optimization disabled after preceding asm.
+#pragma peephole on
+
+// provenance: prime:extern/sdk/dolphin/pad/pad.c:514
+void SPEC0_MakeStatus(s32 chan, PADStatus *status, unsigned long data[2]) {
+    status->button = 0;
+    status->button |= ((data[0] >> 16) & 0x0008) ? PAD_BUTTON_A : 0;
+    status->button |= ((data[0] >> 16) & 0x0020) ? PAD_BUTTON_B : 0;
+    status->button |= ((data[0] >> 16) & 0x0100) ? PAD_BUTTON_X : 0;
+    status->button |= ((data[0] >> 16) & 0x0001) ? PAD_BUTTON_Y : 0;
+    status->button |= ((data[0] >> 16) & 0x0010) ? PAD_BUTTON_START : 0;
+    status->stickX = (s8)(data[1] >> 16);
+    status->stickY = (s8)(data[1] >> 24);
+    status->substickX = (s8)(data[1]);
+    status->substickY = (s8)(data[1] >> 8);
+    status->triggerL = (u8)(data[0] >> 8);
+    status->triggerR = (u8)data[0];
+    status->analogA = 0;
+    status->analogB = 0;
+    if (170 <= status->triggerL) {
+        status->button |= PAD_TRIGGER_L;
+    }
+    if (170 <= status->triggerR) {
+        status->button |= PAD_TRIGGER_R;
+    }
+    status->stickX -= 128;
+    status->stickY -= 128;
+    status->substickX -= 128;
+    status->substickY -= 128;
 }
 
-asm void SPEC1_MakeStatus(void)
-{
-    nofralloc
-    li	r3, 0
-    sth	r3, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x18, 0x18
-    bc      12, 2, _8001d674
-    li	r3, 0x100
-_8001d674:
-    lhz	r0, 0(r4)
-    or	r0, r0, r3
-    sth	r0, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x17, 0x17
-    bc      12, 2, _8001d694
-    li	r3, 0x200
-    b       _8001d698
-_8001d694:
-    li	r3, 0
-_8001d698:
-    lhz	r0, 0(r4)
-    or	r0, r0, r3
-    sth	r0, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x1a, 0x1a
-    bc      12, 2, _8001d6b8
-    li	r3, 0x400
-    b       _8001d6bc
-_8001d6b8:
-    li	r3, 0
-_8001d6bc:
-    lhz	r0, 0(r4)
-    or	r0, r0, r3
-    sth	r0, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x1b, 0x1b
-    bc      12, 2, _8001d6dc
-    li	r3, 0x800
-    b       _8001d6e0
-_8001d6dc:
-    li	r3, 0
-_8001d6e0:
-    lhz	r0, 0(r4)
-    or	r0, r0, r3
-    sth	r0, 0(r4)
-    lwz	r0, 0(r5)
-    rlwinm.	r0, r0, 0x10, 0x16, 0x16
-    bc      12, 2, _8001d700
-    li	r6, 0x1000
-    b       _8001d704
-_8001d700:
-    li	r6, 0
-_8001d704:
-    lhz	r3, 0(r4)
-    li	r0, 0
-    or	r3, r3, r6
-    sth	r3, 0(r4)
-    lwz	r3, 4(r5)
-    srwi	r3, r3, 0x10
-    extsb	r3, r3
-    stb	r3, 2(r4)
-    lwz	r3, 4(r5)
-    srwi	r3, r3, 0x18
-    extsb	r3, r3
-    stb	r3, 3(r4)
-    lwz	r3, 4(r5)
-    extsb	r3, r3
-    stb	r3, 4(r4)
-    lwz	r3, 4(r5)
-    srwi	r3, r3, 8
-    extsb	r3, r3
-    stb	r3, 5(r4)
-    lwz	r3, 0(r5)
-    rlwinm	r3, r3, 0x18, 0x18, 0x1f
-    stb	r3, 6(r4)
-    lwz	r3, 0(r5)
-    stb	r3, 7(r4)
-    stb	r0, 8(r4)
-    stb	r0, 9(r4)
-    lbz	r0, 6(r4)
-    cmplwi	r0, 0xaa
-    bc      12, 0, _8001d784
-    lhz	r0, 0(r4)
-    ori	r0, r0, 0x40
-    sth	r0, 0(r4)
-_8001d784:
-    lbz	r0, 7(r4)
-    cmplwi	r0, 0xaa
-    bc      12, 0, _8001d79c
-    lhz	r0, 0(r4)
-    ori	r0, r0, 0x20
-    sth	r0, 0(r4)
-_8001d79c:
-    lbz	r3, 2(r4)
-    addi	r0, r3, -0x80
-    stb	r0, 2(r4)
-    lbz	r3, 3(r4)
-    addi	r0, r3, -0x80
-    stb	r0, 3(r4)
-    lbz	r3, 4(r4)
-    addi	r0, r3, -0x80
-    stb	r0, 4(r4)
-    lbz	r3, 5(r4)
-    addi	r0, r3, -0x80
-    stb	r0, 5(r4)
-    blr
+// provenance: prime:extern/sdk/dolphin/pad/pad.c:541
+void SPEC1_MakeStatus(s32 chan, PADStatus *status, unsigned long data[2]) {
+
+    status->button = 0;
+    status->button |= ((data[0] >> 16) & 0x0080) ? PAD_BUTTON_A : 0;
+    status->button |= ((data[0] >> 16) & 0x0100) ? PAD_BUTTON_B : 0;
+    status->button |= ((data[0] >> 16) & 0x0020) ? PAD_BUTTON_X : 0;
+    status->button |= ((data[0] >> 16) & 0x0010) ? PAD_BUTTON_Y : 0;
+    status->button |= ((data[0] >> 16) & 0x0200) ? PAD_BUTTON_START : 0;
+
+    status->stickX = (s8)(data[1] >> 16);
+    status->stickY = (s8)(data[1] >> 24);
+    status->substickX = (s8)(data[1]);
+    status->substickY = (s8)(data[1] >> 8);
+
+    status->triggerL = (u8)(data[0] >> 8);
+    status->triggerR = (u8)data[0];
+
+    status->analogA = 0;
+    status->analogB = 0;
+
+    if (170 <= status->triggerL) {
+        status->button |= PAD_TRIGGER_L;
+    }
+    if (170 <= status->triggerR) {
+        status->button |= PAD_TRIGGER_R;
+    }
+
+    status->stickX -= 128;
+    status->stickY -= 128;
+    status->substickX -= 128;
+    status->substickY -= 128;
 }
 
-asm void SPEC2_MakeStatus(void)
+// Retained assembly; only the signature changes to match the callback type.
+asm void SPEC2_MakeStatus(s32 chan, PADStatus *status, unsigned long data[2])
 {
     nofralloc
     lwz	r0, 0(r5)
