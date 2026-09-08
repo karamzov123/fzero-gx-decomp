@@ -11,7 +11,7 @@ extern unsigned char lbl_801A6D40[4];
 extern unsigned char lbl_801A6D58[4];
 extern unsigned char lbl_801A6D5C[4];
 extern unsigned char lbl_801A6D60[4];
-extern unsigned char lbl_801A6D64[4];
+extern unsigned int lbl_801A6D64;
 extern unsigned char lbl_801A6D74[4];
 extern unsigned char lbl_801A6D7C[4];
 extern unsigned char lbl_801A6D80[4];
@@ -256,13 +256,9 @@ asm s32 fn_80074D08(register s32 x)
     blr
 }
 
-asm void fn_80074D18(register s32 x)
+void fn_80074D18(register s32 x)
 {
-    nofralloc
-    cntlzw  r0, r3
-    srwi    r0, r0, 5
-    stw	r0, lbl_801A6D64
-    blr
+    lbl_801A6D64 = !x;
 }
 
 asm void GXProjectVec(register void* mtx)
