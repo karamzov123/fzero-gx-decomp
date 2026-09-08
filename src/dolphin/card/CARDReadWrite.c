@@ -14,7 +14,7 @@ extern int strncmp(register const char *a, register const char *b, register u32 
 extern s32 __CARDGetControlBlock(s32 chan, void **pcard);
 extern s32 __CARDPutControlBlock(void *card, s32 err);
 extern void *__CARDGetDirBlock(void *card);
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 struct CARDControl;
 struct CARDDir;
 extern s32 __CARDAccess(struct CARDControl *card, struct CARDDir *ent);
@@ -27,7 +27,7 @@ extern s32 __CARDUpdateDir(s32 chan, void *callback);
 // provenance: harvest:runs.sqlite — CARDFastOpen recovered from cardfastopen-retail-r1.c, compiled by hard2 at 2026-08-27T23:05 and scored 100 against main/dolphin/card/CARDReadWrite; original reference not recorded
 // 0x80030380 | size: 0xBC
 // provenance: dolsdk2001:src/card/CARDOpen.c:69; retail-adapted ABI/control flow
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 s32 CARDFastOpen(register s32 chan, register s32 fileNo, register void *fileInfo)
 {
     void *card;

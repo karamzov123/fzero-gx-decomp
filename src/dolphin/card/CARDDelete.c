@@ -3,7 +3,7 @@
 // (exact-name Melee SDK body), adapted to GFZE01 names/layout facts:
 //   __CARDBlock .sdata? -> ADDR16_HA/LO array; CARDControl.startBlock @0xBE,
 //   apiCallback @0xD0; CARDDir entry stride 0x40, startBlock @0x36.
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 #include <dolphin/card_private.h>
 
 #define CARD_RESULT_BUSY (-1)
@@ -11,7 +11,7 @@
 // dependency slice — externs only
 extern s32 __CARDFreeBlock(s32 chan, u16 nBlock, CARDCallback callback);
 extern s32 __CARDIsOpened(CARDControl* card, s32 fileNo);
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 extern s32 __CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo);
 extern void* memset(void* dst, int val, u32 n);
 

@@ -9,7 +9,7 @@
  * offsets: sectorSize=0x0C, buffer=0xB4, fileInfo=0xC0, apiCallback=0xD0,
  * diskID=0x10C.
  */
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 typedef struct CARDControl {
     /* 0x00 */ s32 attached;
     /* 0x04 */ u8 _padding0[8];

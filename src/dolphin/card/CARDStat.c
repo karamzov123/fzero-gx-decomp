@@ -9,7 +9,7 @@
 // Hypothesis: faithful adaptation reproduces all four functions including
 // the unrolled icon loop (compiler unrolls ctr=2 loop x2 + peels).
 
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 #include <dolphin/card.h>
 typedef long long s64;
 typedef unsigned long long u64;
@@ -41,13 +41,13 @@ typedef struct CARDStat {
     /*0x68*/ u32 offsetData;
 } CARDStat;
 
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 struct CARDControl;
 
 extern s32 __CARDGetControlBlock(s32 chan, void** pcard);
 extern s32 __CARDPutControlBlock(void* card, s32 err);
 extern CARDDir* __CARDGetDirBlock(void* card);
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 extern s32 __CARDAccess(struct CARDControl* card, CARDDir* ent);
 extern s32 __CARDIsPublic(CARDDir* ent);
 extern void* memcpy(void* dst, void* src, u32 n);

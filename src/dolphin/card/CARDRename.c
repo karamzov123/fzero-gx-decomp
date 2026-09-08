@@ -9,7 +9,7 @@
 //     0x800000F8 is loaded absolute (no reloc in retail).
 
 
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 #include <dolphin/card.h>
 typedef unsigned long long u64;
 typedef long long s64;
@@ -17,7 +17,7 @@ typedef long long s64;
 #define __OSBusClock (*(u32*)0x800000F8)
 #define OSTicksToSeconds(t) ((u32)((s64)(t) / (long long)(__OSBusClock >> 2)))
 
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 typedef CARDDir CARDEntry;
 struct CARDControl;
 
@@ -25,9 +25,9 @@ struct CARDControl;
 extern s32 __CARDGetControlBlock(register s32 card, register void** pctrl);
 extern s32 __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern CARDEntry* __CARDGetDirBlock(register void* ctrl);
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 extern s32 __CARDAccess(register struct CARDControl* ctrl, register CARDDir* ent);
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 extern s32 __CARDCompareFileName(register CARDDir* ent, register const char* fileName);
 extern s32 strncmp(register void* a, register void* b, register u32 n);
 extern u32 strlen(register char* s);
@@ -40,7 +40,7 @@ extern void __CARDSyncCallback(void);
 #pragma push
 #pragma force_active on
 
-// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+// provenance: original; type-compatibility repair for this repository; see docs/contributions/card-file-access/CARD.md
 s32 CARDRenameAsync(s32 chan, char* oldName, char* newName, void* callback)
 {
     s32 res2;
