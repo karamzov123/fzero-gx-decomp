@@ -1520,29 +1520,24 @@ char* strchr(const char* str, int chr)
 	return (c ? 0 : (char*)p);
 }
 
-asm void __msl_strncmp(void)
+// provenance: PrimeDecomp/prime:src/Runtime/string.c:172, adapted strncmp
+// (symbol name, const-preserving pointer casts, and explicit count type).
+// https://github.com/PrimeDecomp/prime/blob/efb5cb05977f685697df44253c5c7c77f1cec1b1/src/Runtime/string.c#L172-L188
+int __msl_strncmp(const char* str1, const char* str2, unsigned int n)
 {
-    nofralloc
-    addi	r3, r3, -1
-    addi	r4, r4, -1
-    addi	r6, r5, 1
-    b       _80083bbc
-_80083b9c:
-    lbzu	r0, 1(r3)
-    lbzu	r5, 1(r4)
-    cmplw	r0, r5
-    bc      12, 2, _80083bb4
-    subf	r3, r5, r0
-    blr
-_80083bb4:
-    cmplwi	r0, 0
-    bc      12, 2, _80083bc4
-_80083bbc:
-    addic.	r6, r6, -1
-    bc      4, 2, _80083b9c
-_80083bc4:
-    li	r3, 0
-    blr
+    const unsigned char* p1 = (const unsigned char*)str1 - 1;
+    const unsigned char* p2 = (const unsigned char*)str2 - 1;
+    unsigned long c1, c2;
+
+    n++;
+    while (--n) {
+        if ((c1 = *++p1) != (c2 = *++p2)) {
+            return c1 - c2;
+        } else if (!c1) {
+            break;
+        }
+    }
+    return 0;
 }
 
 asm void __msl_strcmp(void)
@@ -1637,32 +1632,27 @@ _80083ce4:
     blr
 }
 
-asm void __msl_strncat(void)
+// provenance: retail-disassembly reconstruction with the MSL predecrement
+// idiom reference PrimeDecomp/prime:src/Runtime/string.c:75 (strncpy),
+// not an imported Prime strncat body.
+// https://github.com/PrimeDecomp/prime/blob/efb5cb05977f685697df44253c5c7c77f1cec1b1/src/Runtime/string.c#L75-L90
+char* __msl_strncat(char* dst, const char* src, unsigned int n)
 {
-    nofralloc
-    addi	r4, r4, -1
-    addi	r6, r3, -1
-_80083cfc:
-    lbzu	r0, 1(r6)
-    cmplwi	r0, 0
-    bc      4, 2, _80083cfc
-    addi	r6, r6, -1
-    addi	r5, r5, 1
-    b       _80083d2c
-_80083d14:
-    lbzu	r0, 1(r4)
-    cmplwi	r0, 0
-    stbu	r0, 1(r6)
-    bc      4, 2, _80083d2c
-    addi	r6, r6, -1
-    b       _80083d34
-_80083d2c:
-    addic.	r5, r5, -1
-    bc      4, 2, _80083d14
-_80083d34:
-    li	r0, 0
-    stb	r0, 1(r6)
-    blr
+    unsigned char* p = (unsigned char*)src - 1;
+    unsigned char* q = (unsigned char*)dst - 1;
+
+    while (*++q)
+        ;
+    --q;
+    n++;
+    while (--n) {
+        if (!(*++q = *++p)) {
+            --q;
+            break;
+        }
+    }
+    *(q + 1) = 0;
+    return dst;
 }
 
 #pragma force_active off

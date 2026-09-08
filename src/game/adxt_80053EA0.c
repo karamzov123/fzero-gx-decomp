@@ -71,7 +71,7 @@ extern void adxtNullCallback(void);
 extern void fn_80053F38();
 extern void svm_ringbuf_read(void);
 extern void sprintf(void);
-extern int __msl_strncmp();
+extern int __msl_strncmp(const char*, const char*, unsigned int);
 extern void strcpy(void);
 extern void* memcpy();
 extern void* memset(void*, int, unsigned int);
@@ -1228,7 +1228,7 @@ void cvFsSetDefDev(char* dev)
     unsigned char* state = lbl_80187430;
     int i;
     AhxHookSlot* slot;
-    int len;
+    unsigned int len;
     int found;
 
     if (dev == 0) {

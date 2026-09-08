@@ -108,7 +108,7 @@ extern void fn_80057114();
 extern void svmExitCritical(void);
 extern void svmEnterCritical(void);
 extern void SVM_ReportError();
-extern void __msl_strncmp(void);
+extern int __msl_strncmp(const char*, const char*, unsigned int);
 extern void memcpy();
 extern void memset();
 extern unsigned char SJMEM_Error_str[12];

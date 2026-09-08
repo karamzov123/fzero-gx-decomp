@@ -11,7 +11,7 @@ extern unsigned char lbl_80124110[];
 extern unsigned char lbl_801A6908[4];
 extern void* __OSLockSramEx(void);
 extern void __OSUnlockSramEx(int);
-extern int __msl_strncmp(const char*, const char*, unsigned long);
+extern int __msl_strncmp(const char*, const char*, unsigned int);
 
 #pragma dont_inline on
 u8 ErrorCode2Num(u32 errorCode) {

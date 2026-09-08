@@ -184,7 +184,7 @@ extern void fn_800791E8(void);
 extern void ModelLoadLcDma(void);
 extern void memcpy_fast(void);
 extern void __cvt_fp2unsigned(void);
-extern void __msl_strncmp(void);
+extern int __msl_strncmp(const char*, const char*, unsigned int);
 extern void __msl_strcmp(void);
 extern void __msl_strcpy(void);
 extern void strncpy(void);
