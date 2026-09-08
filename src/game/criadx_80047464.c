@@ -67,7 +67,7 @@ typedef struct AdxErr {
 typedef AdxHandle AdxSlot;
 
 extern void strncpy();
-extern void __msl_strncat();
+extern char* __msl_strncat(char*, const char*, unsigned int);
 extern void svmErrPrintf(char* fmt, ...);
 extern void fn_80058EF4();
 extern void memset();
