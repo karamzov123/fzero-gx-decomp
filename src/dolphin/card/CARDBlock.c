@@ -15,7 +15,7 @@ extern void __CARDBlockEraseCallback(void);
 extern void __CARDAllocBlock(void);
 extern void __CARDFreeBlock(void);
 extern void __CARDUpdateFatBlock(void);
-extern void __CARDGetDirBlock(void);
+extern void* __CARDGetDirBlock(void* card);
 extern void __CARDDirWriteCallback(void);
 extern void __CARDDirEraseCallback(void);
 extern void __CARDUpdateDir(void);
@@ -1554,11 +1554,10 @@ asm void __CARDUpdateFatBlock(void)
     blr	
 }
 
-asm void __CARDGetDirBlock(void)
+// provenance: dolsdk2001:src/card/CARDOpen.c
+void* __CARDGetDirBlock(void* card)
 {
-    nofralloc
-    lwz	r3, 0x84(r3)
-    blr	
+    return *(void**)((unsigned char*)card + 0x84);
 }
 
 asm void __CARDDirWriteCallback(void)
