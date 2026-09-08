@@ -297,14 +297,11 @@ _8000ee10:
 }
 
 
-// provenance: original
+// provenance: dolsdk2001:src/os/OSReboot.c
 void OSSetSaveRegion(register void* start, register void* end)
 {
-    asm
-    {
-    stw     start, lbl_801A67C0
-    stw     end, lbl_801A67C4
-    }
+    *(void**)lbl_801A67C0 = start;
+    *(void**)lbl_801A67C4 = end;
 }
 
 // provenance: original
