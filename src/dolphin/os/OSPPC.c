@@ -38,11 +38,13 @@ asm u32 PPCMfl2cr(void)
     blr
 }
 
-asm void PPCMtl2cr(register u32 newL2cr)
+// provenance: dolsdk2001:src/os/OSPPC.c; mtspr 1017 is required for L2CR
+void PPCMtl2cr(register u32 newL2cr)
 {
-    nofralloc
-    mtspr   1017, r3
-    blr
+    asm
+    {
+    mtspr   1017, newL2cr
+    }
 }
 
 asm void PPCMtdec(register u32 newDec)
