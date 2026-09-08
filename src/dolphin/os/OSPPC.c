@@ -10,11 +10,13 @@ asm u32 PPCMfmsr(void)
     blr
 }
 
-asm void PPCMtmsr(register u32 newMSR)
+// provenance: dolsdk2001:src/os/OSPPC.c; mtmsr is required for the MSR register
+void PPCMtmsr(register u32 newMSR)
 {
-    nofralloc
-    mtmsr   r3
-    blr
+    asm
+    {
+    mtmsr   newMSR
+    }
 }
 
 asm u32 PPCMfhid0(void)
