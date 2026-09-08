@@ -127,18 +127,13 @@ extern unsigned char lbl_801A6454[8];
 extern unsigned char lbl_801A6818[8];
 extern unsigned char lbl_801A6810[4];
 extern unsigned char lbl_801A6834[4];
-asm s32 SIChannelValid(void)
+// provenance: dolsdk2001:src/os/OSSerial.c; historical exact conversion 33c01239
+s32 SIChannelValid(void)
 {
-    nofralloc
-    lis         r3, Si@ha
-    lwz         r0, Si@l(r3)
-    cmpwi       r0, -0x1
-    beq         L_80011934
-    li          r3, 0x1
-    blr
-L_80011934:
-    li          r3, 0x0
-    blr
+    if ((s32)Si[0] != -1) {
+        return 1;
+    }
+    return 0;
 }
 #pragma pop
 
