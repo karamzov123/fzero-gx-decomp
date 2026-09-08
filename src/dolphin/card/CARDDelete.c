@@ -3,58 +3,16 @@
 // (exact-name Melee SDK body), adapted to GFZE01 names/layout facts:
 //   __CARDBlock .sdata? -> ADDR16_HA/LO array; CARDControl.startBlock @0xBE,
 //   apiCallback @0xD0; CARDDir entry stride 0x40, startBlock @0x36.
-typedef int s32;
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned long u32;
+// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+#include <dolphin/card_private.h>
 
-#define CARD_MAX_FILE 127
-#define CARD_RESULT_FATAL_ERROR (-128)
 #define CARD_RESULT_BUSY (-1)
-
-typedef void (*CARDCallback)(s32 chan, s32 result);
-
-typedef struct CARDDir {
-    /*0x00*/ u8 gameName[4];
-    /*0x04*/ u8 company[2];
-    /*0x06*/ u8 _pad0;
-    /*0x07*/ u8 bannerFormat;
-    /*0x08*/ u8 fileName[32];
-    /*0x28*/ u32 time;
-    /*0x2C*/ u32 iconAddr;
-    /*0x30*/ u16 iconFormat;
-    /*0x32*/ u16 iconSpeed;
-    /*0x34*/ u8 permission;
-    /*0x35*/ u8 copyTimes;
-    /*0x36*/ u16 startBlock;
-    /*0x38*/ u16 length;
-    /*0x3A*/ u8 _pad1[2];
-    /*0x3C*/ u32 commentAddr;
-} CARDDir; // sizeof == 0x40
-
-typedef struct CARDControl {
-    u8 _unk[0xBC];     // attachment/mount state, unused here
-    /*0xBC*/ u16 freeNo;
-    /*0xBE*/ u16 startBlock;
-    u8 _unk2[0x10];    // 0xC0..0xD0
-    /*0xD0*/ CARDCallback apiCallback;
-    u8 _tail[0x110 - 0xD4]; // retail sizeof(CARDControl) == 0x110 (mulli stride)
-} CARDControl;
-
-extern CARDControl __CARDBlock[2];
 
 // dependency slice — externs only
 extern s32 __CARDFreeBlock(s32 chan, u16 nBlock, CARDCallback callback);
-extern s32 __CARDPutControlBlock(CARDControl* card, s32 result);
-extern s32 __CARDGetControlBlock(s32 chan, CARDControl** pcard);
-extern CARDDir* __CARDGetDirBlock(CARDControl* card);
-extern s32 __CARDAccess(CARDControl* card, CARDDir* ent);
 extern s32 __CARDIsOpened(CARDControl* card, s32 fileNo);
+// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
 extern s32 __CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo);
-extern s32 __CARDUpdateDir(s32 chan, CARDCallback callback);
-extern s32 __CARDSync(s32 chan);
-extern void __CARDDefaultApiCallback(void);  // function decl; &-reference forces ADDR16_HA/LO
-extern void __CARDSyncCallback(void);
 extern void* memset(void* dst, int val, u32 n);
 
 #pragma push

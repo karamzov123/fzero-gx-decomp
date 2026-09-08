@@ -9,30 +9,26 @@
 //     0x800000F8 is loaded absolute (no reloc in retail).
 
 
-typedef int s32;
-typedef unsigned char u8;
-typedef unsigned long u32;
+// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+#include <dolphin/card.h>
 typedef unsigned long long u64;
 typedef long long s64;
 
 #define __OSBusClock (*(u32*)0x800000F8)
 #define OSTicksToSeconds(t) ((u32)((s64)(t) / (long long)(__OSBusClock >> 2)))
 
-typedef struct CARDEntry {
-    u8 gameName[4];
-    u8 company[2];
-    u8 pad2[2];
-    char fileName[32];
-    u32 time;
-    u8 pad[18];
-} CARDEntry;
+// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+typedef CARDDir CARDEntry;
+struct CARDControl;
 
 
 extern s32 __CARDGetControlBlock(register s32 card, register void** pctrl);
 extern s32 __CARDPutControlBlock(register void* ctrl, register s32 err);
 extern CARDEntry* __CARDGetDirBlock(register void* ctrl);
-extern s32 __CARDAccess(register void* ctrl, register void* ent);
-extern s32 __CARDCompareFileName(register void* ent, register char* fileName);
+// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+extern s32 __CARDAccess(register struct CARDControl* ctrl, register CARDDir* ent);
+// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
+extern s32 __CARDCompareFileName(register CARDDir* ent, register const char* fileName);
 extern s32 strncmp(register void* a, register void* b, register u32 n);
 extern u32 strlen(register char* s);
 extern s32 strncpy(register char* dst, register char* src, register u32 n);
@@ -44,6 +40,7 @@ extern void __CARDSyncCallback(void);
 #pragma push
 #pragma force_active on
 
+// provenance: original; receiving ABI repair against fzero-gx-decomp@6b93eeb2921a6fe3f4c4c0d7fdd4a4b1dc73dfb3; see docs/contributions/card-file-access/CARD.md
 s32 CARDRenameAsync(s32 chan, char* oldName, char* newName, void* callback)
 {
     s32 res2;
@@ -87,7 +84,8 @@ s32 CARDRenameAsync(s32 chan, char* oldName, char* newName, void* callback)
     result = __CARDAccess(card, ent);
     if (result < 0)
         return __CARDPutControlBlock(card, result);
-    strncpy(ent->fileName, newName, 32);
+    // Canonical directory stores bytes; strncpy writes their character representation.
+    strncpy((char*)ent->fileName, newName, 32);
     ent->time = OSTicksToSeconds(OSGetTime());
     res2 = __CARDUpdateDir(chan, callback);
     if (res2 < 0)
