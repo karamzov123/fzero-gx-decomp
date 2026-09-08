@@ -1,11 +1,9 @@
 # Getting started with this F-Zero GX repository
 
-This checkout already has the GFZE01 DOL configuration and carved source units.
-Do **not** recreate it from the template or rename GAMEID directories. The
-full executable target is defined in `config/GFZE01/modules.yml`: NTSC-U
-`main.dol` plus the dynamically loaded `fze.sample.rel`. The repository does
-not yet contain the REL input or its split configuration, so the full-game
-lane is intentionally incomplete rather than silently DOL-only.
+This checkout targets the complete GFZE01 executable set. The manifest contains
+`sys/main.dol`, 14 direct `bg/fze.*.rel` modules, and the encrypted/LZ-packed
+`bg/enemy_line/line__.bin` that produces `bg/enemy_line/main.rel`. Do not
+silently reduce the target to the DOL.
 
 ## Build and verify
 
@@ -19,11 +17,10 @@ Before configuring a full build, inventory the tree:
 python3 tools/game_inventory.py orig/GFZE01 --output build/GFZE01/game-inventory.json
 ```
 
-This command exits non-zero until both `sys/main.dol` and
-`fze.sample.rel`/`fz.sample.rel` are present. The REL is encrypted/LZ-packed
-on the retail disc; it must be decrypted/unpacked from a legally obtained
-copy, then given its own REL split/config and build/report target. Do not
-create guessed symbols or placeholder bytes to bypass this gate.
+This command exits non-zero until all 16 executable images and the packed
+`line__.bin` container are present. The repository does not commit retail game
+files; use a legally obtained and extracted copy. `configure.py` then verifies
+all module hashes before generating the full multi-module build.
 
 From the repository root:
 

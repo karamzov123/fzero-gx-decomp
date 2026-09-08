@@ -1,5 +1,6 @@
 extern void DCStoreRange(void);
 extern unsigned int lbl_801A66DC;
+extern unsigned char lbl_801A66D8;
 extern void DVDGetDriveStatus(void);
 extern void DVDInit(void);
 extern void GXBegin(void);
@@ -49,7 +50,7 @@ extern void fn_80006904(void);
 extern void fn_80006914(void);
 extern void fn_8000691C(void);
 extern void fn_80006AEC(register unsigned int value);
-extern void fn_80006AF4(void);
+extern unsigned char fn_80006AF4(void);
 extern void fn_80006AFC(void);
 extern void fn_80006B30(void);
 extern void fn_80006B4C(void);
