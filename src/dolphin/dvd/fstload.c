@@ -1,19 +1,39 @@
+// dest: src/dolphin/dvd/fstload.c
 /* Auto-generated exact-
 asm transcription (scaffolding).
  * Range covered by this unit: see per-function headers. */
 
 typedef int BOOL;
 typedef unsigned int u32;
+typedef unsigned char u8;
+
+struct DVDCommandBlock;
+struct DVDDiskID {
+    char gameName[4];
+    char company[2];
+    u8 diskNumber;
+    u8 gameVersion;
+    u8 streaming;
+    u8 streamingBufSize;
+    u8 padding[22];
+};
+struct DVDDiskBB2 {
+    u8 pad0[4];       /* @0x00 */
+    u32 FSTPosition;  /* @0x04 */
+    u32 FSTLength;    /* @0x08 */
+    u32 pad1;         /* @0x0C */
+    void * FSTAddress; /* @0x10 */
+};
 
 #pragma force_active on
 
 extern unsigned char CurrTvMode[];
-extern unsigned char bb2[];
+extern struct DVDDiskBB2 * bb2;
 extern unsigned char bb2Buf[];
 extern unsigned char blockBuf[];
-extern unsigned char idTmp[];
+extern struct DVDDiskID * idTmp;
 extern unsigned char lbl_8015CF68[];
-extern unsigned char lbl_801A6910[];
+extern int lbl_801A6910;
 extern unsigned char lbl_801A6924[];
 extern unsigned char lbl_801A6928[];
 extern unsigned char lbl_801A692C[];
@@ -30,83 +50,48 @@ extern unsigned char str_801A6490[];
 extern unsigned char str_801A6494[];
 extern unsigned char str_801A6498[];
 extern void DVDGetDriveStatus(void);
-extern void DVDReadDiskID(void);
+extern void DVDReadDiskID(struct DVDCommandBlock * block, struct DVDDiskID * diskID,
+                           void (* callback)(long, struct DVDCommandBlock *));
 extern void DVDReset(void);
 extern void OSClearContext(void);
 extern void OSGetArenaHi(void);
 extern void OSReport(void);
 extern void OSSetArenaHi(void);
 extern void OSSetCurrentContext(void);
-extern void cb(void);
-extern void OSWakeupThread(void);
+extern void DVDReadAbsAsyncForBS(struct DVDCommandBlock * block, void * addr,
+                                  long length, long offset,
+                                  void (* callback)(long, struct DVDCommandBlock *));
 extern void SISetSamplingRateRestore(void);
-extern void DVDReadAbsAsyncForBS(void);
+extern void OSWakeupThread(void);
 extern void fn_8001BE74(void);
 extern void __shl2i(void);
 extern void __shr2u(void);
 extern void memcpy(void);
 
 /* cb @0x8001A31C | size: 0xD8 */
-asm void cb(void) {
-nofralloc
-	mflr r0
-	cmpwi r3, 0x0
-	stw r0, 0x4(r1)
-	stwu r1, -0x18(r1)
-	stw r31, 0x14(r1)
-	addi r31, r4, 0x0
-	ble lbl_8001A3B0
-	lwz r0, -0x7ab0(r13)
-	cmpwi r0, 0x1
-	beq lbl_8001A37C
-	bge lbl_8001A3E0
-	cmpwi r0, 0x0
-	bge lbl_8001A354
-	b lbl_8001A3E0
-lbl_8001A354:
-	li r0, 0x1
-	lwz r4, -0x7aac(r13)
-	lis r3, cb@ha
-	stw r0, -0x7ab0(r13)
-	addi r7, r3, cb@l
-	addi r3, r31, 0x0
-	li r5, 0x20
-	li r6, 0x420
-	bl DVDReadAbsAsyncForBS
-	b lbl_8001A3E0
-lbl_8001A37C:
-	li r0, 0x2
-	lwz r6, -0x7aac(r13)
-	stw r0, -0x7ab0(r13)
-	lis r3, cb@ha
-	addi r7, r3, cb@l
-	lwz r5, 0x8(r6)
-	mr r3, r31
-	lwz r4, 0x10(r6)
-	addi r0, r5, 0x1f
-	lwz r6, 0x4(r6)
-	clrrwi r5, r0, 5
-	bl DVDReadAbsAsyncForBS
-	b lbl_8001A3E0
-lbl_8001A3B0:
-	cmpwi r3, -0x1
-	beq lbl_8001A3E0
-	cmpwi r3, -0x4
-	bne lbl_8001A3E0
-	li r0, 0x0
-	stw r0, -0x7ab0(r13)
-	bl DVDReset
-	lis r3, cb@ha
-	lwz r4, -0x7aa8(r13)
-	addi r5, r3, cb@l
-	addi r3, r31, 0x0
-	bl DVDReadDiskID
-lbl_8001A3E0:
-	lwz r0, 0x1c(r1)
-	lwz r31, 0x14(r1)
-	addi r1, r1, 0x18
-	mtlr r0
-	blr
+static void cb(long result, struct DVDCommandBlock * block) {
+    if (result > 0) {
+        switch (lbl_801A6910) {
+        case 0:
+            lbl_801A6910 = 1;
+            DVDReadAbsAsyncForBS(block, bb2, 0x20, 0x420, cb);
+            return;
+        case 1:
+            lbl_801A6910 = 2;
+            DVDReadAbsAsyncForBS(block, bb2->FSTAddress,
+                                 (bb2->FSTLength + 0x1F) & 0xFFFFFFE0,
+                                 bb2->FSTPosition, cb);
+            return;
+        default:
+            break;
+        }
+    } else if (result == -1) {
+        return;
+    } else if (result == -4) {
+        lbl_801A6910 = 0;
+        DVDReset();
+        DVDReadDiskID(block, idTmp, cb);
+    }
 }
 
 /* __fstLoad @0x8001A3F4 | size: 0x168 */
