@@ -59,7 +59,7 @@ asm void ARCOpen(void);
 asm void ARCConvertPathToEntrynum(void);
 asm void ARCEntryGetPath(void);
 asm void ARCGetEntryPath(void);
-asm void ARCGetStartAddr(void);
+extern void* ARCGetStartAddr(void* handle);
 asm void ARCGetLength(void);
 asm void ARCChangeDir(void);
 asm void fn_8006AA20(void);
@@ -1198,14 +1198,13 @@ _8006a974:
     blr
 }
 
-asm void ARCGetStartAddr(void)
+// provenance: retail 0x8006A998-0x8006A9AC; ARCHandle base pointer at +0x00 and offset at +0x04
+void* ARCGetStartAddr(void* handle)
 {
-    nofralloc
-    lwz	r4, 0(r3)
-    lwz	r0, 4(r3)
-    lwz	r3, 0(r4)
-    add	r3, r3, r0
-    blr
+    unsigned char* fst = *(unsigned char**)handle;
+    unsigned int offset = *(unsigned int*)((unsigned char*)handle + 4);
+
+    return (void*)((unsigned int)*(unsigned int*)fst + offset);
 }
 
 asm void ARCGetLength(void)
