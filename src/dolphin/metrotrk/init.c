@@ -5,9 +5,12 @@
 asm void TRK_main(register void* a, register void* b, register void* c, register void* d);
 asm void InitMetroTRKCommTable(register void* a, register void* b, register void* c, register void* d);
 
-void fn_8008CB20(void)
+asm unsigned int fn_8008CB20(register unsigned int command, register unsigned int handle,
+                             register unsigned int* count, register char* buffer)
 {
-    asm { twi 31, r0, 0 };
+    nofralloc
+    twi 31, r0, 0
+    blr
 }
 
 void fn_8008CB28(void)

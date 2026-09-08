@@ -594,7 +594,7 @@ config.libs = [
     },
     DolphinLib("metrotrk", [
         Object(Matching, "dolphin/metrotrk/init.c"),
-        Object(Matching, "dolphin/metrotrk/main.c"),
+        Object(Matching, "dolphin/metrotrk/main.c", mw_version="GC/1.3"),
         Object(Matching, "dolphin/metrotrk/ddh.c"),
         Object(Matching, "dolphin/metrotrk/support.c"),
         Object(Matching, "dolphin/metrotrk/gdev.c"),
