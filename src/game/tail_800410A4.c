@@ -29,7 +29,7 @@ extern void fn_80047608(void);
 extern void fn_8004B79C(void);
 extern void fn_8004B7A0(void);
 extern void fn_8004BDD8(void);
-extern void fn_8004E580(void);
+extern int fn_8004E580(void);
 extern void fn_8004EF48(register void* p1, register u32 p2);
 extern void fn_8004EF68(void);
 extern void fn_8004EF88(void);
@@ -49,9 +49,9 @@ extern void SVM_ServerExit(void);
 extern void SVM_ServerInit(void);
 extern void fn_8005912C(register u32 p1, register u32 p2, register void* p3, register u32 p4);
 extern void SVM_DelCbSvr(register u32 p1, register void* p2);
-extern void SVM_SetCbSvr_2(register u32 p1, register void* p2, register u32 p3);
+extern int SVM_SetCbSvr_2(register u32 p1, register void* p2, register u32 p3);
 extern void memset(register void* dst, register int v, register unsigned long n);
-extern unsigned char lbl_80090010[8];
+extern unsigned char lbl_8012B6E8[8];
 extern unsigned char lbl_80178C18[144];
 extern unsigned char lbl_80178CA8[16];
 
@@ -166,91 +166,35 @@ _800411e0:
     blr
 }
 
-asm void fn_800411F4(void)
+void fn_800411F4(void)
 {
-    nofralloc
-    stwu    r1, -0x10(r1)
-    mflr    r0
-    lis     r3, lbl_80090010@ha
-    lis     r4, lbl_80178CA8@ha
-    stw     r0, 0x14(r1)
-    addi    r3, r3, lbl_80090010@l
-    lwz     r3, 0(r3)
-    stw     r31, 0xc(r1)
-    addi    r31, r4, lbl_80178CA8@l
-    lwz     r0, 0(r31)
-    cmpwi   r0, 0
-    bne     _80041310
-    bl      fn_80046758
-    bl      svmLockServer_wrapper
-    bl      fn_80058754
-    bl      fn_80058680
-    bl      fn_80057D0C
-    bl      fn_800475C0
-    bl      fn_8004B7A0
-    bl      fn_800424E8
-    bl      fn_8004F74C
-    bl      fn_8004EF88
-    bl      fn_8005741C
-    bl      SVM_ServerInit
-    lis     r3, fn_800413EC@ha
-    li      r4, 0
-    addi    r3, r3, fn_800413EC@l
-    bl      fn_8004EF48
-    lis     r3, fn_800413C8@ha
-    li      r4, 0
-    addi    r3, r3, fn_800413C8@l
-    bl      gcci_set_critical_value
-    addi    r3, r31, 0x14
-    li      r4, 0
-    li      r5, 0xc00
-    bl      memset
-    bl      fn_8004E580
-    cmpwi   r3, 1
-    bne     _800412ec
-    lis     r3, -0x7fed
-    lwz     r0, -0x4918(r3)
-    cmpwi   r0, 1
-    bne     _800412ec
-    lis     r4, fn_80041354@ha
-    li      r3, 2
-    addi    r5, r4, fn_80041354@l
-    li      r6, 0
-    li      r4, 1
-    bl      fn_8005912C
-    lis     r4, fn_80041330@ha
-    li      r3, 4
-    addi    r4, r4, fn_80041330@l
-    li      r5, 0
-    bl      SVM_SetCbSvr_2
-    lis     r4, fn_800413A4@ha
-    stw     r3, 0xc(r31)
-    addi    r4, r4, fn_800413A4@l
-    li      r3, 5
-    li      r5, 0
-    bl      SVM_SetCbSvr_2
-    stw     r3, 8(r31)
-    b       _80041304
-_800412ec:
-    lis     r4, fn_80041378@ha
-    li      r3, 5
-    addi    r4, r4, fn_80041378@l
-    li      r5, 0
-    bl      SVM_SetCbSvr_2
-    stw     r3, 8(r31)
-_80041304:
-    li      r0, 0
-    stw     r0, 0x10(r31)
-    bl      svmUnlockServer_wrapper
-_80041310:
-    lwz     r3, 0(r31)
-    addi    r0, r3, 1
-    stw     r0, 0(r31)
-    lwz     r31, 0xc(r1)
-    lwz     r0, 0x14(r1)
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
+    if (*(u32*)lbl_80178CA8 == 0) {
+        fn_80046758();
+        svmLockServer_wrapper();
+        fn_80058754();
+        fn_80058680();
+        fn_80057D0C();
+        fn_800475C0();
+        fn_8004B7A0();
+        fn_800424E8();
+        fn_8004F74C();
+        fn_8004EF88();
+        fn_8005741C();
+        SVM_ServerInit();
+        fn_8004EF48(fn_800413EC, 0);
+        gcci_set_critical_value(fn_800413C8, 0);
+        memset(lbl_80178CA8 + 0x14, 0, 0xc00);
+        if (fn_8004E580() == 1 && *(u32*)0x8012B6E8 == 1) {
+            fn_8005912C(2, 1, fn_80041354, 0);
+            *(u32*)(lbl_80178CA8 + 0xc) = (u32)SVM_SetCbSvr_2(4, fn_80041330, 0);
+            *(u32*)(lbl_80178CA8 + 8) = (u32)SVM_SetCbSvr_2(5, fn_800413A4, 0);
+        } else {
+            *(u32*)(lbl_80178CA8 + 8) = (u32)SVM_SetCbSvr_2(5, fn_80041378, 0);
+        }
+        *(u32*)(lbl_80178CA8 + 0x10) = 0;
+        svmUnlockServer_wrapper();
+    }
+    (*(u32*)lbl_80178CA8)++;
 }
 
 asm int fn_80041330(void)
