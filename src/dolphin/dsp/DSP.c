@@ -15,7 +15,7 @@ extern void __DSP_exec_task(void);
 extern void __DSP_boot_task(void);
 extern void __DSP_insert_task(void);
 extern void __DSP_remove_task(void);
-extern void __CARDDefaultApiCallback(void);
+extern void __CARDDefaultApiCallback(int chan, int result);
 extern void OSClearContext(void);
 extern int OSDisableInterrupts(void);
 extern void OSEnableInterrupts(void);
@@ -902,7 +902,9 @@ _80029800:
     blr	
 }
 
-void __CARDDefaultApiCallback(void)
+// provenance: dolsdk2001:src/card/CARDBios.c:22
+// Signature corroboration only; existing empty body unchanged (retail is a bare blr).
+void __CARDDefaultApiCallback(int chan, int result)
 {
 }
 
