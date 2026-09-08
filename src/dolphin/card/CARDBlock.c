@@ -8,7 +8,8 @@ extern void __CARDBlockReadCallback(void);
 extern void __CARDRead(void);
 extern void __CARDBlockWriteCallback(void);
 extern void __CARDWrite(void);
-extern void *__CARDGetFatBlock(void *card);
+struct CARDControl;
+extern unsigned short *__CARDGetFatBlock(struct CARDControl *card);
 extern void __CARDBlockWriteCallback2(void);
 extern void __CARDBlockEraseCallback(void);
 extern void __CARDAllocBlock(void);
@@ -1245,7 +1246,8 @@ asm void __CARDGetControlBlockReady(void)
 }
 
 // provenance: dolsdk2001:src/card/CARDBlock.c:9
-void *__CARDGetFatBlock(void *card) {
+// Signature-only repair to the shared CARD ABI; existing brace body retained.
+unsigned short *__CARDGetFatBlock(struct CARDControl *card) {
     return *(void **)((unsigned char *)card + 0x88);
 }
 
