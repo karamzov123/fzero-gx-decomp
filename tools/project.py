@@ -467,7 +467,14 @@ def generate_build_ninja(
     python_lib = Path(os.path.relpath(__file__))
     python_lib_dir = python_lib.parent
     n.comment("The arguments passed to configure.py, for rerunning it.")
-    n.variable("configure_args", sys.argv[1:])
+    configure_args = list(sys.argv[1:])
+    n.variable("configure_args", configure_args)
+    progress_args = list(configure_args)
+    if progress_args and progress_args[-1] == "configure":
+        progress_args[-1] = "progress"
+    else:
+        progress_args.append("progress")
+    n.variable("progress_args", progress_args)
     n.variable("python", f'"{sys.executable}"')
     n.newline()
 
@@ -1335,7 +1342,7 @@ def generate_build_ninja(
         n.comment("Calculate progress")
         n.rule(
             name="progress",
-            command=f"$python {configure_script} $configure_args progress",
+            command=f"$python {configure_script} $progress_args",
             description="PROGRESS",
         )
         n.build(
