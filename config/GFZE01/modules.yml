@@ -1,0 +1,31 @@
+# GFZE01 executable target manifest
+#
+# This manifest is intentionally separate from dtk's DOL config.  A matching
+# F-Zero GX build must cover every executable image, not only the boot DOL.
+# The REL is encrypted/compressed on the disc and needs to be supplied from a
+# legally extracted game tree before its dtk config can be generated.
+
+game_id: GFZE01
+scope: full-executable-game
+modules:
+  - id: main-dol
+    path: sys/main.dol
+    format: dol
+    required: true
+    config: config/GFZE01/config.yml
+  - id: game-rel
+    path: files/fze.sample.rel
+    alternate_paths:
+      - files/fz.sample.rel
+    format: rel
+    required: true
+    status: awaiting-disc-extraction
+    notes: >-
+      Dynamically loaded game code. The retail file is encrypted and LZ
+      compressed; decrypt/unpack it before generating its REL split config.
+
+# Disc assets are part of the complete game inventory, but are not C source and
+# are not committed. The inventory tool records them without copying contents.
+assets:
+  inventory_required: true
+  tool: tools/game_inventory.py

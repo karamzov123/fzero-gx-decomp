@@ -1,16 +1,29 @@
 # Getting started with this F-Zero GX repository
 
-This checkout already has the GFZE01 configuration and carved source units.
+This checkout already has the GFZE01 DOL configuration and carved source units.
 Do **not** recreate it from the template or rename GAMEID directories. The
-current build and progress denominator cover the NTSC-U **main.dol**, not a
-verified inventory of every executable module on the game disc.
+full executable target is defined in `config/GFZE01/modules.yml`: NTSC-U
+`main.dol` plus the dynamically loaded `fze.sample.rel`. The repository does
+not yet contain the REL input or its split configuration, so the full-game
+lane is intentionally incomplete rather than silently DOL-only.
 
 ## Build and verify
 
-Install Python, Ninja and `uv` (see [dependencies](dependencies.md)). Supply your
-own game file at `orig/GFZE01/sys/main.dol`; retail game files are not distributed
-with the repository. Its expected SHA-1 is
+Install Python, Ninja and `uv` (see [dependencies](dependencies.md)). Supply your own extracted game tree at `orig/GFZE01/`; retail game files are
+not distributed with the repository. The DOL expected SHA-1 is
 `421c88106697d3275a3fc26fb7a01bf6d816b271`.
+
+Before configuring a full build, inventory the tree:
+
+```sh
+python3 tools/game_inventory.py orig/GFZE01 --output build/GFZE01/game-inventory.json
+```
+
+This command exits non-zero until both `sys/main.dol` and
+`fze.sample.rel`/`fz.sample.rel` are present. The REL is encrypted/LZ-packed
+on the retail disc; it must be decrypted/unpacked from a legally obtained
+copy, then given its own REL split/config and build/report target. Do not
+create guessed symbols or placeholder bytes to bypass this gate.
 
 From the repository root:
 

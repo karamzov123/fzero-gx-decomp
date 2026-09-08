@@ -4,7 +4,9 @@
 
 This repository is a from-scratch, matching decompilation project for the NTSC-U GameCube release of F-Zero GX (`GFZE01`). The goal is source code that rebuilds the original code and data as closely as possible while keeping the source readable and provenance explicit.
 
-It builds `main.dol`:
+The executable target is the complete GFZE01 code set: the boot `main.dol`
+and the dynamically loaded game-code REL. The repository currently has only
+the DOL input and split configuration; the REL is not yet decompiled.
 
 | Version | Game ID | SHA-1 |
 | --- | --- | --- |
@@ -14,10 +16,18 @@ The SHA-1 is the checksum of the matching input recorded in [`config/GFZE01/buil
 
 ## Scope
 
-The current matching target is the executable `main.dol`. It is the Dolphin
-SDK, MSL, MetroTRK, and middleware portion of GFZE01; the game-specific code
-in the disc REL modules is outside this target. Progress metrics therefore
-refer to `main.dol`, not to the complete F-Zero GX game image.
+This project means the entire executable decompilation, not merely the boot
+image. GFZE01 has game-specific code in the dynamically loaded
+`fze.sample.rel` (called `fz.sample.rel` in some extracted trees) in addition
+to `sys/main.dol`. Both are required by the target manifest in
+[`config/GFZE01/modules.yml`](config/GFZE01/modules.yml).
+
+Current reality: the matching DOL is configured; the REL is a hard blocker and
+is explicitly marked `awaiting-disc-extraction`. The local input used for the
+DOL contains no REL. Until that module is extracted, decrypted/unpacked,
+split, and added to the build/report lane, no project-wide completion claim is
+valid. Disc assets are inventoried for completeness but are not C
+decompilation targets and are never committed.
 
 ## Current progress
 
@@ -30,7 +40,7 @@ Progress is published through the GitHub Actions `GFZE01_report` artifact and tr
 
 A unit counts as complete only when it is fully converted: no `asm` body is left in its source and every function in it matches.
 
-See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/splits.txt), and [split documentation](docs/splits.md) for the project inventory.
+See the [GFZE01 module manifest](config/GFZE01/modules.yml), [symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/splits.txt), and [split documentation](docs/splits.md) for the project inventory. Run `python3 tools/game_inventory.py <extracted-game-root>` before treating the executable inventory as complete.
 
 ![F-Zero GX GFZE01 codebase map](assets/codebase-map.svg)
 
@@ -39,7 +49,7 @@ See the [GFZE01 symbols](config/GFZE01/symbols.txt), [split map](config/GFZE01/s
 ## Project layout
 
 - `src/` — reconstructed C and assembly sources
-- `config/GFZE01/` — build version, symbols, and split definitions
+- `config/GFZE01/` — build version, module manifest, symbols, and split definitions
 - `tools/` — public build/report tooling
 - `tests/` — regression tests for the public tooling in `tools/`
 - `docs/` — setup, split, provenance, and resource documentation
