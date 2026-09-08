@@ -16,7 +16,7 @@ extern BOOL OSRestoreInterrupts(BOOL level);
 extern void __AI_SRC_INIT(void);
 extern s32 AIGetStreamPlayState_Leaf(void);
 u32 AIGetStreamPlayState(void);
-asm u32 AIGetDSPSampleRate(void);
+u32 AIGetDSPSampleRate(void);
 extern void DSPReadMailHi(void);
 extern void DSPReadMailLo(void);
 extern void DSPWriteMailHi(register s32 val);
@@ -159,15 +159,10 @@ Lexit:
     blr
 }
 
-// 0x8001E1C4 | size: 0x14
-asm u32 AIGetDSPSampleRate(void)
+// provenance: dolsdk2001:src/ai/ai.c:193
+u32 AIGetDSPSampleRate(void)
 {
-    nofralloc
-    lis     r3, 0xcc00
-    lwz     r0, 0x6c00(r3)
-    extrwi  r0, r0, 1, 25
-    xori    r3, r0, 0x1
-    blr
+    return (((*(volatile u32*)0xCC006C00 >> 6) & 1) ^ 1);
 }
 
 // 0x8001E1D8 | size: 0xD4
