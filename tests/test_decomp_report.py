@@ -324,6 +324,46 @@ class DecompReportTest(unittest.TestCase):
             for c in cats.values():
                 self.assertEqual(sorted(set(c["measures"]) - MEASURE_FIELDS), [])
 
+    def test_publishes_dol_and_rel_module_metrics(self):
+        """Module rows make the whole-game denominator auditable."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "src").mkdir()
+            (root / "src/dol.c").write_text("void dol_done(void) {}\n")
+            (root / "src/rel.c").write_text("void rel_done(void) {}\n")
+            report = {
+                "version": 2,
+                "measures": {"total_code": "12", "total_functions": 2,
+                             "total_data": "0", "total_units": 2},
+                "units": [
+                    {"name": "main/dol", "measures": {"total_code": "8",
+                     "total_functions": 1, "total_units": 1}, "sections": [],
+                     "functions": [{"name": "dol_done", "size": "8",
+                                    "fuzzy_match_percent": 100.0}],
+                     "metadata": {"source_path": "src/dol.c", "module_name": "main"}},
+                    {"name": "sample/rel", "measures": {"total_code": "4",
+                     "total_functions": 1, "total_units": 1}, "sections": [],
+                     "functions": [{"name": "rel_done", "size": "4",
+                                    "fuzzy_match_percent": 0.0}],
+                     "metadata": {"source_path": "src/rel.c", "module_name": "sample"}},
+                ],
+                "categories": [],
+            }
+            src = root / "report.json"
+            src.write_text(json.dumps(report))
+            out = root / "out.json"
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT), "--report", str(src),
+                 "--root", str(root), "--out", str(out)],
+                text=True, capture_output=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            cats = {c["id"]: c for c in json.loads(out.read_text())["categories"]}
+            self.assertEqual(cats["module-main"]["measures"]["total_code"], "8")
+            self.assertEqual(cats["module-main"]["measures"]["matched_code"], "8")
+            self.assertEqual(cats["module-sample"]["measures"]["total_code"], "4")
+            self.assertEqual(cats["module-sample"]["measures"]["matched_code"], "0")
+            self.assertEqual(json.loads(out.read_text())["measures"]["total_code"], "12")
+
     def test_refuses_to_write_a_report_decomp_dev_cannot_parse(self):
         """The guard must fail the build, not ship an unreadable report."""
         import importlib.util
