@@ -12442,11 +12442,7 @@ asm void fn_4_AD78(void)
     blr
 }
 
-asm void fn_4_ADAC(void)
-{
-    nofralloc
-    blr
-}
+void fn_4_ADAC(void) {}
 
 asm void fn_4_ADB0(void)
 {
@@ -12470,11 +12466,7 @@ asm void fn_4_ADB0(void)
     blr
 }
 
-asm void fn_4_ADF0(void)
-{
-    nofralloc
-    blr
-}
+void fn_4_ADF0(void) {}
 
 asm void fn_4_ADF4(void)
 {
