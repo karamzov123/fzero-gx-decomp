@@ -40,7 +40,7 @@ extern void mmu_user_fn(void);
 extern void fn_80005E0C(void);
 extern void fn_80005EDC(void);
 extern void fn_800060D8(void);
-extern void fn_80006334(void);
+extern unsigned int fn_80006334(const unsigned char* str);
 extern void fn_80006340(void);
 extern void dvd_read_sync_wait(void);
 extern void fn_800063AC(void);
@@ -1169,12 +1169,9 @@ _800062e0:
     blr	
 }
 
-asm void fn_80006334(void)
+unsigned int fn_80006334(const unsigned char* str)
 {
-    nofralloc
-    lbz	r0, 0(r3)
-    rlwinm	r3, r0, 0x19, 0x1f, 0x1f
-    blr	
+    return (str[0] >> 7) & 1;
 }
 
 asm void fn_80006340(void)
