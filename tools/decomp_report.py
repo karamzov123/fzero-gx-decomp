@@ -157,6 +157,7 @@ def eligible_units(report, root):
             continue
         units.append({
             "functions": functions,
+            "module_name": metadata.get("module_name"),
             # A unit counts toward complete_units only if it is FULLY
             # converted. Scoring "every ELIGIBLE function matched" instead put
             # 139 of 215 units in the complete column on a binary that was
@@ -194,6 +195,36 @@ def category_measures(units, totals, fuzzy=False):
     )
 
 
+def module_totals(report):
+    """Return objdiff denominators grouped by executable module.
+
+    The report's headline is only whole-game if it includes both the DOL and
+    every REL.  Objdiff records that ownership on unit metadata, so derive
+    module denominators from the units rather than maintaining a second list
+    of module names in this reporting layer.
+    """
+    grouped = {}
+    for unit in report.get("units", []):
+        module = (unit.get("metadata", {}) or {}).get("module_name")
+        if not module:
+            continue
+        totals = grouped.setdefault(module, {
+            "total_code": 0,
+            "total_data": 0,
+            "total_functions": 0,
+            "total_units": 0,
+        })
+        measures = unit.get("measures", {}) or {}
+        totals["total_code"] += int(measures.get("total_code", 0) or 0)
+        totals["total_functions"] += int(measures.get("total_functions", 0) or 0)
+        totals["total_units"] += int(measures.get("total_units", 0) or 0)
+        for section in unit.get("sections", []):
+            if section.get("name") in {".data", ".rodata", ".sdata", ".sdata2",
+                                        ".dtors", ".bss", ".sbss", ".sbss2"}:
+                totals["total_data"] += int(section.get("size", 0) or 0)
+    return grouped
+
+
 def build_categories(report, root):
     units = eligible_units(report, root)
     totals = report.get("measures", {})
@@ -221,6 +252,18 @@ def build_categories(report, root):
             "id": cid,
             "name": upstream.get("name", cid),
             "measures": category_measures(scoped, upstream.get("measures", {})),
+        })
+    # Publish one additive row per executable module.  In particular, this
+    # makes the DOL and every REL visible instead of allowing an aggregate
+    # "modules" row to conceal an omitted REL.  The headline remains the
+    # whole-report natural-C measure above it.
+    for module, totals in sorted(module_totals(report).items()):
+        scoped = [u for u in units
+                  if (u.get("module_name") == module)]
+        categories.append({
+            "id": f"module-{module}",
+            "name": f"Module {module}",
+            "measures": category_measures(scoped, totals),
         })
     return categories
 
