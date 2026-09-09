@@ -860,17 +860,9 @@ asm void _prolog(void)
     blr
 }
 
-asm void fn_13_AFC(void)
-{
-    nofralloc
-    blr
-}
+void fn_13_AFC(void) {}
 
-asm void fn_13_B00(void)
-{
-    nofralloc
-    blr
-}
+void fn_13_B00(void) {}
 
 asm void _epilog(void)
 {
@@ -916,11 +908,7 @@ asm void fn_13_B64(void)
     blr
 }
 
-asm void fn_13_B78(void)
-{
-    nofralloc
-    blr
-}
+void fn_13_B78(void) {}
 
 asm void fn_13_B7C(void)
 {
@@ -1231,9 +1219,5 @@ L_00000F94:
     blr
 }
 
-asm void fn_13_FA8(void)
-{
-    nofralloc
-    blr
-}
+void fn_13_FA8(void) {}
 
