@@ -54,8 +54,8 @@ def render(module: str, source: Path, functions: list[tuple[str, list[str]]]) ->
         symbol for _, body in functions for line in body
         for symbol in GLOBAL_RE.findall(line)
     )
-    symbols = function_symbols | data_symbols
-    symbols -= names
+    data_symbols -= function_symbols | names
+    symbols = function_symbols | data_symbols | names
     lines = [
         f"/* Generated from {source}; aggregate preserved in source order. */",
         f"/* Module: {module}. Do not edit; regenerate from the matching .s file. */",
@@ -64,7 +64,7 @@ def render(module: str, source: Path, functions: list[tuple[str, list[str]]]) ->
         "",
     ]
     for symbol in sorted(symbols):
-        kind = "void" if symbol in function_symbols else "unsigned char"
+        kind = "void" if symbol in function_symbols or symbol in names else "unsigned char"
         suffix = "[]" if kind != "void" else "(void)"
         lines.append(f"extern {kind} {symbol}{suffix};")
     lines.append("")
