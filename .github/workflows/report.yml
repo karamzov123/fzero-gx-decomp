@@ -66,10 +66,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          expected=$(awk '{print $1}' config/GFZE01/build.sha1)
+          expected=$(awk 'NR == 1 {print $1}' config/GFZE01/build.sha1)
           actual=$(sha1sum build/GFZE01/main.dol | awk '{print $1}')
           printf 'expected=%s\nactual=%s\n' "$expected" "$actual"
           test "$actual" = "$expected"
+
+      - name: Verify retail REL SHA-1 checksums
+        shell: bash
+        run: sha1sum -c config/GFZE01/build.sha1 | tee /tmp/gfze01-sha1.log
 
       - name: Generate objdiff report
         run: build/tools/objdiff-cli report generate -o build/GFZE01/report.raw.json
