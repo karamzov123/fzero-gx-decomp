@@ -14,6 +14,8 @@ from pathlib import Path
 FN_RE = re.compile(r"^\.fn\s+([^,\s]+)\s*,")
 COMMENTED_INSN_RE = re.compile(r"^\s*/\*[^*]*\*/\s*(.*)$")
 SYMBOL_RE = re.compile(r"\b(?:fn|lbl)_[A-Za-z0-9_]+\b")
+GLOBAL_RE = re.compile(r"\b([A-Za-z_][A-Za-z0-9_]*)@(?:ha|l)\b")
+CALL_RE = re.compile(r"^\s*bl(?:a)?\s+([A-Za-z_][A-Za-z0-9_]*)\b")
 
 
 def parse_functions(text: str) -> list[tuple[str, list[str]]]:
@@ -29,7 +31,7 @@ def parse_functions(text: str) -> list[tuple[str, list[str]]]:
             continue
         if current is None:
             continue
-        if raw.strip() == ".endfn":
+        if raw.strip().startswith(".endfn"):
             continue
         instruction = COMMENTED_INSN_RE.match(raw)
         current[1].append(instruction.group(1) if instruction else raw)
@@ -40,14 +42,29 @@ def parse_functions(text: str) -> list[tuple[str, list[str]]]:
 
 def render(module: str, source: Path, functions: list[tuple[str, list[str]]]) -> str:
     names = {name for name, _ in functions}
-    symbols = {symbol for _, body in functions for line in body for symbol in SYMBOL_RE.findall(line)}
+    function_symbols = {
+        match.group(1) for _, body in functions for line in body
+        if (match := CALL_RE.match(line)) and not re.fullmatch(r"r\d+", match.group(1))
+    }
+    data_symbols = {
+        symbol for _, body in functions for line in body
+        for symbol in SYMBOL_RE.findall(line)
+    }
+    data_symbols.update(
+        symbol for _, body in functions for line in body
+        for symbol in GLOBAL_RE.findall(line)
+    )
+    symbols = function_symbols | data_symbols
     symbols -= names
     lines = [
         f"/* Generated from {source}; aggregate preserved in source order. */",
         f"/* Module: {module}. Do not edit; regenerate from the matching .s file. */",
+        "#define qr0 0",
+        "#define cr1eq 6",
+        "",
     ]
     for symbol in sorted(symbols):
-        kind = "unsigned char" if symbol.startswith("lbl_") else "void"
+        kind = "void" if symbol in function_symbols else "unsigned char"
         suffix = "[]" if kind != "void" else "(void)"
         lines.append(f"extern {kind} {symbol}{suffix};")
     lines.append("")
@@ -59,6 +76,7 @@ def render(module: str, source: Path, functions: list[tuple[str, list[str]]]) ->
             stripped = line.strip()
             if not stripped or stripped.startswith("#"):
                 continue
+            stripped = stripped.replace(".L_", "L_")
             lines.append(f"    {stripped}")
         lines.append("}")
         lines.append("")
