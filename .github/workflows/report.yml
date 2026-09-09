@@ -60,16 +60,35 @@ jobs:
           # never linked, so the DOL target does not build its object and the
           # report would score it as unbuilt. all_source compiles every unit
           # that has a source file, which is what objdiff diffs against.
-          ninja all_source build/GFZE01/main.dol
+          ninja all_source build/GFZE01/main.dol \
+            build/GFZE01/car_colchg/car_colchg.rel \
+            build/GFZE01/customize/customize.rel \
+            build/GFZE01/interview/interview.rel \
+            build/GFZE01/line_main/line_main.rel \
+            build/GFZE01/movie_module/movie_module.rel \
+            build/GFZE01/movie/movie.rel \
+            build/GFZE01/option/option.rel \
+            build/GFZE01/pilotpoint/pilotpoint.rel \
+            build/GFZE01/profile/profile.rel \
+            build/GFZE01/replay/replay.rel \
+            build/GFZE01/sample/sample.rel \
+            build/GFZE01/sel/sel.rel \
+            build/GFZE01/story/story.rel \
+            build/GFZE01/title/title.rel \
+            build/GFZE01/winning/winning.rel
 
       - name: Verify retail DOL SHA-1
         shell: bash
         run: |
           set -euo pipefail
-          expected=$(awk '{print $1}' config/GFZE01/build.sha1)
+          expected=$(awk 'NR == 1 {print $1}' config/GFZE01/build.sha1)
           actual=$(sha1sum build/GFZE01/main.dol | awk '{print $1}')
           printf 'expected=%s\nactual=%s\n' "$expected" "$actual"
           test "$actual" = "$expected"
+
+      - name: Verify retail REL SHA-1 checksums
+        shell: bash
+        run: sha1sum -c config/GFZE01/build.sha1 | tee /tmp/gfze01-sha1.log
 
       - name: Generate objdiff report
         run: build/tools/objdiff-cli report generate -o build/GFZE01/report.raw.json
