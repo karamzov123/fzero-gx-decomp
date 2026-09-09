@@ -54,6 +54,7 @@ asm void fn_8006DF44(void);
 asm void fn_8006DFC4(void);
 asm void fn_8006DFFC(void);
 asm void fn_8006E0B0(void);
+asm void fn_8006E0B4(void);
 asm void fn_8006E0C8(void);
 asm void fn_8006E14C(void);
 
@@ -1355,6 +1356,11 @@ asm void fn_8006E0B0(void)
 {
     nofralloc
     b       _8006e0f0
+}
+
+asm void fn_8006E0B4(void)
+{
+    nofralloc
     lis	r4, -0x2000
     ps_merge00	f1, f1, f2
     lfs	f0, 0x19c(r4)
