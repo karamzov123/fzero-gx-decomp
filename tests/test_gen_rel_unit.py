@@ -14,6 +14,7 @@ ASM = '''\
 .endfn
 .fn fn_13_0, global
 /* 00000004 */\tlis r3, lbl_13_bss_0@ha
+/* 00000004 */\tlis r4, gLanguageIndexTable@ha
 .L_00000008:
 /* 00000008 */\tbl r12
 .endfn
@@ -31,7 +32,9 @@ class GenRelUnitTests(unittest.TestCase):
         self.assertLess(output.index("asm void fn_13_0"), output.index("asm void _epilog"))
         self.assertEqual(output.count("asm void "), 3)
         self.assertIn("extern unsigned char lbl_13_bss_0[];", output)
+        self.assertIn("extern unsigned char gLanguageIndexTable[];", output)
         self.assertIn("lis r3, lbl_13_bss_0@ha", output)
+        self.assertNotIn(".L_", output)
 
     def test_repeated_render_is_identical(self):
         functions = parse_functions(ASM)
