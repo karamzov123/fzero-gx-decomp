@@ -61,7 +61,7 @@ extern unsigned char lbl_13_bss_3C[];
 extern unsigned char lbl_13_bss_4[];
 extern unsigned char lbl_13_bss_40[];
 extern unsigned char lbl_13_bss_4C[];
-extern unsigned char lbl_13_bss_50[];
+extern int lbl_13_bss_50;
 extern unsigned char lbl_13_data_18[];
 extern unsigned char lbl_13_data_48[];
 extern unsigned char lbl_13_data_98[];
@@ -69,7 +69,7 @@ extern unsigned char lbl_13_rodata_0[];
 extern unsigned char lbl_13_rodata_10[];
 extern unsigned char lbl_13_rodata_C[];
 extern unsigned char lbl_1_bss_26B80[];
-extern unsigned char lbl_1_bss_26C60[];
+extern void (*lbl_1_bss_26C60)(void);
 extern unsigned char lbl_1_bss_6EAB4[];
 extern unsigned char lbl_1_bss_6EAD0[];
 extern unsigned char lbl_1_bss_7167C[];
@@ -898,15 +898,7 @@ asm void fn_13_B08(void)
     blr
 }
 
-asm void fn_13_B64(void)
-{
-    nofralloc
-    lis r4, fn_13_3FC@ha
-    lis r3, lbl_1_bss_26C60@ha
-    addi r0, r4, fn_13_3FC@l
-    stw r0, lbl_1_bss_26C60@l(r3)
-    blr
-}
+void fn_13_B64(void) { lbl_1_bss_26C60 = fn_13_3FC; }
 
 void fn_13_B78(void) {}
 
@@ -1160,14 +1152,7 @@ asm void fn_13_E8C(void)
     blr
 }
 
-asm void fn_13_EF0(void)
-{
-    nofralloc
-    lis r3, lbl_13_bss_50@ha
-    li r0, 0x3
-    stw r0, lbl_13_bss_50@l(r3)
-    blr
-}
+void fn_13_EF0(void) { lbl_13_bss_50 = 3; }
 
 asm void fn_13_F00(void)
 {
