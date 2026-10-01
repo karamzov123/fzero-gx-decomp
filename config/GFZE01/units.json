@@ -2108,6 +2108,17 @@
   },
   {
     "module": "interview",
+    "source": "rel/interview/interview/_prolog.c",
+    "symbols": [
+      "_prolog"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/interview/interview.c"
+  },
+  {
+    "module": "interview",
     "source": "rel/interview/interview/fn_17_23C.c",
     "symbols": [
       "fn_17_23C"
@@ -2381,6 +2392,28 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/interview/interview.c"
+  },
+  {
+    "module": "interview",
+    "source": "rel/interview/interview/fn_17_6B2C.c",
+    "symbols": [
+      "fn_17_6B2C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/interview/interview.c"
+  },
+  {
+    "module": "interview",
+    "source": "rel/interview/interview/fn_17_6C8.c",
+    "symbols": [
+      "fn_17_6C8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "interview",
