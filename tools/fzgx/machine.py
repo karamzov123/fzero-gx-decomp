@@ -552,6 +552,15 @@ def generate(p, module, name, draft=None, descending=False):
     (root / ('descending.raw.c' if descending else 'raw.c')).write_text(text)
     if code or 'Error while' in text:
         return None, text[-2000:] + errors.getvalue()[-1000:]
+    # A placeholder scalar is not proof of the extent of an escaped stack
+    # object. In sample:_prolog, &sp47 is aligned down and memset writes 50
+    # bytes; accepting it as a four-byte local would create an overflowing C
+    # candidate. Preserve raw.c for analysis, but require recovered storage.
+    unknown_stack = set(re.findall(r'\bM2C_UNK(?:8|16|32|64)?\s+(sp[0-9A-Fa-f]+)\s*;', text))
+    escaped_stack = set(re.findall(r'&\s*(sp[0-9A-Fa-f]+)\b', text))
+    unproven = sorted(unknown_stack & escaped_stack)
+    if unproven:
+        return None, 'unproven escaped stack object extent: ' + ', '.join(unproven)
     text = _expand(text, 'M2C_FIELD', lambda a: f'(*({a[1]})((u8 *)({a[0]}) + ({a[2]})))')
     text = re.sub(r'\bM2C_UNK(8|16|32|64)?\b', lambda m: 's' + (m[1] or '32'), text)
     text = re.sub(r'\bCLZ\(', '__cntlzw(', text)

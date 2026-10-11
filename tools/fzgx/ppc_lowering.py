@@ -10,11 +10,41 @@ def lowering(frame_saves=()):
 
     original = PpcArch.parse.__func__
     original_patterns = PpcArch.ir_patterns
+    from m2c.evaluate import handle_loadx, make_storex
+
+    def reverse_bytes(value, width):
+        # Logical shifts and byte masks preserve zero-extension for lhbrx.
+        # Use ordinary unsigned C operations, not no-op compatibility macros.
+        value = ir.as_u32(value)
+        result = ir.Literal(0, type=ir.Type.u32())
+        for offset in range(0, width, 8):
+            byte = ir.BinaryOp.uint(value, '>>', ir.Literal(offset))
+            byte = ir.BinaryOp.uint(byte, '&', ir.Literal(255))
+            byte = ir.BinaryOp.uint(byte, '<<', ir.Literal(width - 8 - offset))
+            result = ir.BinaryOp.uint(result, '|', byte)
+        return result
+
+    def store_reversed_word(operands):
+        store = make_storex(operands, type=ir.Type.u32())
+        return replace(store, source=reverse_bytes(store.source, 32))
+
     carry = ir.Register('carry')
     extended = {'adde', 'addme', 'addze', 'subfe', 'subfme', 'subfze'}
     arithmetic = extended | {'addc', 'addic', 'subfc', 'subfic'}
 
     def parse(cls, mnemonic, args, meta):
+        if mnemonic in ('stwbrx', 'lhbrx'):
+            # Reuse ordinary indexed memory dependency/width classification;
+            # the pinned backend's width parser does not recognize the br suffix.
+            ordinary = 'stwx' if mnemonic == 'stwbrx' else 'lhzx'
+            instruction = original(cls, ordinary, args, meta)
+            def evaluate_reversed(state, operands):
+                if mnemonic == 'stwbrx':
+                    state.store_memory(store_reversed_word(operands), operands.reg_ref(0))
+                else:
+                    value = handle_loadx(operands, type=ir.Type.u16())
+                    state.set_reg(operands.reg_ref(0), reverse_bytes(value, 16))
+            return replace(instruction, mnemonic=mnemonic, eval_fn=evaluate_reversed)
         if mnemonic == 'mfcr.bits' or mnemonic in ('cror', 'crand', 'crxor', 'crnor', 'crandc', 'crorc'):
             from m2c.instruction import Instruction
             def bit(index):
