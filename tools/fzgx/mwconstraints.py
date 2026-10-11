@@ -95,9 +95,14 @@ def target_mapping(target, ours):
         # Neither is guessed: the label is earned only by a map that satisfies every hard row.
         rename = _consistent_hard_map(hard)
         return {'status': 'needs-web-alignment', 'rows': incompatible, 'conflicts': conflicts,
-                'subkind': 'commutative-only' if rename else 'structural',
+                # A rename satisfying the compatible rows is not a complete
+                # operand-order witness when other rows change opcode/immediates
+                # or instruction position. Keep those source/selection defects
+                # out of the commutative-only allocator class.
+                'subkind': 'instruction-shape' if incompatible else
+                           'commutative-only' if rename else 'structural',
                 'hard_conflicts': {k: sorted(v) for k, v in hard.items() if len(v) != 1},
-                'consistent_rename': rename}
+                'consistent_rename': rename if not incompatible else None}
     mapping = {r: next(iter(v)) for r, v in domains.items()}
     pending = alternatives[:]
     swaps = []
