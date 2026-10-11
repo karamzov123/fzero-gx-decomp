@@ -1,5 +1,5 @@
 {
- "generated": 1791760223,
+ "generated": 1791760290,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -50209,7 +50209,7 @@
    "addr": 184376,
    "size": 1260,
    "status": "unmatched",
-   "attempts": 40,
+   "attempts": 41,
    "best_percent": 99.68,
    "claimed_by": null,
    "claimed_at": null,
@@ -621809,6 +621809,27 @@
    "notes": "The sole residual row is the target's temporary base materialization (addi r3,r31,0x30; lbz 0x5(r3)); current best folds this to lbz 0x35(r31), and C expression/volatile-pointer variants tried so far either fold identically or add instructions.",
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_1_2D038.1791760222.c",
    "stale_checks": 2,
+   "best_in_attempt": 99.68,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 23695,
+   "symbol": "fn_1_2D038",
+   "agent": "fleet-v2-gpt-1791760232824053251-codex-1",
+   "harness": "codex",
+   "model": "gpt-6-luna",
+   "started": 1791760233,
+   "ended": 1791760290,
+   "checks": 6,
+   "final_percent": 98.41,
+   "tokens_in": 209721,
+   "tokens_out": 2654,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "The best candidate is 99.7% with one residual addressing-form row (target materializes r3 = bss+0x30 before loading byte +5); the existing C optimizer folds that address, and structure/pointer rewrites plus the exhausted deterministic permutation search do not reproduce the target base materialization.",
+   "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_1_2D038.1791760290.c",
+   "stale_checks": 3,
    "best_in_attempt": 99.68,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
