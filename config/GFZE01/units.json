@@ -33192,10 +33192,17 @@
     "symbols": [
       "fn_1_15B70C"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/bg_win.c"
+    "tu": "rel/main_rel/bg_win.c",
+    "pool": {
+      "@46": "jumptable_1_data_4C954",
+      "@43": "lbl_1_data_4C930",
+      "@44": "lbl_1_data_4C930+0xC",
+      "@45": "lbl_1_data_4C930+0x18",
+      "...data.0": "lbl_1_data_4C930"
+    }
   },
   {
     "module": "main_rel",

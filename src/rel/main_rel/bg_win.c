@@ -17,6 +17,116 @@ extern u32 strlen(const char *str);
 extern s32 fn_8006FC1C(const char *a, const char *b);
 extern void fn_1_15E1E8(u8 *value);
 
+/* fzgx:begin fn_1_15B70C */
+typedef struct { u32 x; u32 y; u32 z; } fn_1_15B70C_Vec3;
+typedef struct {
+    u8 pad_0[0x04];
+    fn_1_15B70C_Vec3 grp[5];
+    u8 pad_40[0x0C];
+    u32 *ptr_4C;
+    u32 *ptr_50;
+    u32 *ptr_54;
+    u32 *ptr_58;
+    u8 cnt_5C;
+    u8 cnt_5D;
+    u8 cnt_5E;
+    u8 pad_5F;
+    u32 *ptr_60[5];
+    u32 *ptr_74[20];
+    u32 *ptr_C4[20];
+} fn_1_15B70C_Obj;
+typedef struct {
+    u8 pad_0[0x0C];
+    fn_1_15B70C_Vec3 vec;
+    u8 pad_18[0x24];
+    u32 unk_3C;
+} fn_1_15B70C_Entry;
+extern void OSPanic(const char *file, int line, const char *expr, ...);
+
+#pragma opt_strength_reduction off
+#pragma opt_propagation off
+#pragma opt_loop_invariants off
+s32 fn_1_15B70C(s32 kind, fn_1_15B70C_Entry *entry) {
+    fn_1_15B70C_Obj *obj;
+
+    obj = (fn_1_15B70C_Obj *)lbl_1_data_2A7E0.unk_3C;
+    switch (kind) {
+    case 0:
+        obj->grp[0] = entry->vec;
+        break;
+    case 1:
+        obj->grp[1] = entry->vec;
+        break;
+    case 2:
+        entry->unk_3C = 0;
+        obj->grp[2] = entry->vec;
+        obj->ptr_4C = (u32 *)entry;
+        if (obj->cnt_5D < 20) {
+            obj->ptr_74[obj->cnt_5D] = (u32 *)entry;
+        }
+        obj->cnt_5D++;
+        break;
+    case 3:
+        entry->unk_3C = 0;
+        obj->grp[3] = entry->vec;
+        obj->ptr_50 = (u32 *)entry;
+        if (obj->cnt_5D < 20) {
+            obj->ptr_74[obj->cnt_5D] = (u32 *)entry;
+        }
+        obj->cnt_5D++;
+        break;
+    case 4:
+        entry->unk_3C = 0;
+        obj->grp[4] = entry->vec;
+        obj->ptr_54 = (u32 *)entry;
+        if (obj->cnt_5D < 20) {
+            obj->ptr_74[obj->cnt_5D] = (u32 *)entry;
+        }
+        obj->cnt_5D++;
+        break;
+    case 5:
+        entry->unk_3C = 0;
+        obj->ptr_58 = (u32 *)entry;
+        if (obj->cnt_5D < 20) {
+            obj->ptr_74[obj->cnt_5D] = (u32 *)entry;
+        }
+        obj->cnt_5D++;
+        break;
+    case 6:
+        if (obj->cnt_5C < 5) {
+            obj->ptr_60[obj->cnt_5C] = (u32 *)entry;
+        }
+        obj->cnt_5C++;
+    case 7:
+        if (obj->cnt_5D < 20) {
+            obj->ptr_74[obj->cnt_5D] = (u32 *)entry;
+        }
+        obj->cnt_5D++;
+        break;
+    case 8:
+    case 9:
+    case 10:
+        if (obj->cnt_5E < 20) {
+            obj->ptr_C4[obj->cnt_5E] = (u32 *)entry;
+        }
+        obj->cnt_5E++;
+        break;
+    default:
+        break;
+    }
+    if (obj->cnt_5E >= 20) {
+        OSPanic("bg_win.c\000\000\000", 0x163, "win gr over");
+    }
+    if (obj->cnt_5D >= 20) {
+        OSPanic("bg_win.c\000\000\000", 0x164, "win bg over");
+    }
+    return 1;
+}
+#pragma opt_loop_invariants reset
+#pragma opt_propagation reset
+#pragma opt_strength_reduction reset
+/* fzgx:end fn_1_15B70C */
+
 /* fzgx:begin fn_1_15B970 */
 typedef struct {
     u8 pad_0[0x8];
