@@ -18438,8 +18438,8 @@
     "symbols": [
       "fn_8003D42C"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [
       "-O2"
     ]
