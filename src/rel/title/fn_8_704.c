@@ -17,8 +17,6 @@ struct fn_8_704_lbl_1_bss_8B3A0 {
 extern struct fn_8_704_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0;
 extern struct fn_8_704_lbl_1_bss_9C8 lbl_1_bss_9C8;
 extern struct fn_8_704_lbl_1_bss_9F8 lbl_1_bss_9F8;
-struct fn_8_704_lbl_8_bss_0 {
-    u8 lab_pad[8]; u8 unk_0; };
 
 #pragma opt_propagation off
 extern u8 lbl_8_bss_0;

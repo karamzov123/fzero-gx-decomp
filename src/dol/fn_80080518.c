@@ -29,7 +29,6 @@ void fn_80080518(void *dst, const void *src, size_t n) {
         do {
             i = ((u32 *)s)[-1];
             b = ((u32 *)s)[-2];
-            (void) b;  /* fzgx: keeps the web at its definition */
             ((u32 *)d)[-1] = i;
             i = ((u32 *)s)[-3];
             ((u32 *)d)[-2] = b;
