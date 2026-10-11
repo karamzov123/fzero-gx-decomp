@@ -67,6 +67,34 @@ compiler pins and prologue hashes are in the existing priority manifest, with
 portable evidence in `state/repairs/shared-tu-declarations-20261011.json.gz`.
 The ledger's higher-scoring standalone bodies were not overwritten.
 
+### Bounded Codex retry and the implicit-release latency trap
+
+`shared-tu-compatibility-codex-20261011` used exactly two `gpt-6-luna/high`
+sessions, with the standing fleet drained first, explicit source/compiler seeds,
+8 checks, 3 stale checks and 240-second model deadlines. The model turns were
+interrupted at their deadlines, but outstanding `patch_unit` calls had taken
+more than 200 seconds. The outer terminal call timed out at 420 seconds before
+summary/cleanup, leaving two orphan claims. Both claims were recovered through
+owner-matched CLI release after confirming no batch runner remained, and the
+standing fleet was restored. Ledger outcomes are two released attempts, not
+accepted matches. No completed batch summary exists; do not manufacture one.
+
+The retry did recover a better **compatible** `fn_1_9A958` body: 95.9434%, with
+the canonical burner prologue unchanged, versus the initial compatible 92.830185%.
+It is preserved in `state/repairs/burner-compatible-frontier-20261011.json.gz`
+and the priority seed manifest. The incompatible standalone 97.73585% remains
+separate. A fresh compiler replay proved the new compatible score and source hash.
+
+The bound stop path called `release` without `save_only`, invoking the potentially
+minutes-long full repair search inside a model's patch/check response while holding
+the single tool-worker slot. This is not ordinary compiler latency: recovered
+sources replayed in 0.36 and 0.05 seconds. Automatic budget/plateau stop now uses
+`save_only=True`; explicit search and preflight repair remain available. Its
+regression test failed before the change and passed afterward. A real non-stub
+98.1982% source reached a one-check budget stop, archived its source and cleared
+its claim in 0.12 seconds; the archived body independently replayed at 98.1982%.
+The full suite now has eleven passing tests.
+
 ## 4. Byte-weighted work and module closure
 
 The existing selector already reserves two thirds of a batch for `main_rel`

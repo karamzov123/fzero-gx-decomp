@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 
 PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT / 'tools'))
@@ -62,6 +62,21 @@ class SeedBatchTests(unittest.TestCase):
         self.assertEqual(cmd[cmd.index('--harness') + 1], 'codex')
         self.assertEqual(cmd[cmd.index('--effort') + 1], 'high')
         self.assertNotIn('--seeds', fleet.command('gpt', 'fixture', ['ordinary', 'task_only'], 2))
+
+
+class BoundBudgetReleaseTests(unittest.TestCase):
+    def test_automatic_budget_stop_does_not_launch_full_repair(self):
+        from fzgx import api
+        ledger = Mock()
+        ledger.get.return_value = {'status': 'claimed', 'claimed_by': 'fixture-agent'}
+        ledger.current_attempt.return_value = None
+        with patch.dict(os.environ, {'FZGX_AGENT_ID': 'fixture-agent'}), \
+                patch.object(api, 'Ledger', return_value=ledger), \
+                patch.object(api, '_key', return_value='fixture-symbol'), \
+                patch.object(api, 'release', return_value={'ok': True}) as release:
+            result = api._finish_check(object(), 'fixture-symbol', {'stop': 'plateau'})
+        self.assertTrue(result['terminal'])
+        self.assertTrue(release.call_args.kwargs.get('save_only', False))
 
 
 if __name__ == '__main__':

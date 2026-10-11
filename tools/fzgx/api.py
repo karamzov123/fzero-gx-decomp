@@ -406,8 +406,12 @@ def _finish_check(p: Project, symbol: str, result: dict, checked: Optional[oracl
                            harness=os.environ.get('FZGX_HARNESS'), model=os.environ.get('FZGX_MODEL'),
                            mw_version=checked.mw_version, extra_cflags=checked.extra_cflags)
     if not (automatic and automatic.get('ok')) and result.get('stop'):
+        # A budget stop must free the shared tool slot, not hide a minutes-long
+        # repair search inside patch/check. Explicit search and preflight repair
+        # remain available; archive the best pinned body without another sweep.
         automatic = release(p, symbol, reason=result['stop'], agent=agent,
-                            harness=os.environ.get('FZGX_HARNESS'), model=os.environ.get('FZGX_MODEL'))
+                            harness=os.environ.get('FZGX_HARNESS'), model=os.environ.get('FZGX_MODEL'),
+                            save_only=True)
     if automatic:
         result['automatic'] = automatic
         result['terminal'] = Ledger().current_attempt(_key(p, symbol)) is None
