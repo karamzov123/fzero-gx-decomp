@@ -357,7 +357,7 @@
   "mw": null,
   "flags": null
  },
- "priority-fn_80043798": {
+ "fn_80043798": {
   "id": "priority-fn_80043798",
   "symbol": "fn_80043798",
   "kind": "priority_task",
@@ -369,7 +369,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"extrwi r9, r10, 8, 16\" (UNSIGNED extract) where our body emits \"srawi r9, r10, 8\" (SIGNED). The C extracts the wrong field type; fn_800446E4 shares this exact residual, so one type fix likely lands both."
   }
  },
- "priority-fn_800446E4": {
+ "fn_800446E4": {
   "id": "priority-fn_800446E4",
   "symbol": "fn_800446E4",
   "kind": "priority_task",
@@ -381,7 +381,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"extrwi r9, r10, 8, 16\" (UNSIGNED) vs our \"srawi r9, r10, 8\" (SIGNED). Same root cause as fn_80043798: the field is typed/extracted as signed when retail treats it as unsigned."
   }
  },
- "priority-movie:_prolog": {
+ "movie:_prolog": {
   "id": "priority-movie:_prolog",
   "symbol": "movie:_prolog",
   "kind": "priority_task",
@@ -393,7 +393,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"sth r11, 0x0(r10)\" (16-BIT store) vs our \"stw r11, 0x0(r10)\" (32-BIT). The field is a u16 being stored as u32."
   }
  },
- "priority-fn_1_135D7C": {
+ "fn_1_135D7C": {
   "id": "priority-fn_1_135D7C",
   "symbol": "fn_1_135D7C",
   "kind": "priority_task",
@@ -405,7 +405,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"mr r4, r3\" (plain move) vs our \"extsb r4, r3\" (sign-extend byte). Retail does NOT sign-extend, so the source value is already 32-bit."
   }
  },
- "priority-fn_8008983C": {
+ "fn_8008983C": {
   "id": "priority-fn_8008983C",
   "symbol": "fn_8008983C",
   "kind": "priority_task",
@@ -417,7 +417,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"addi r3, r31, 0x0\" vs our \"mr r3, r31\" - the inverse of the usual tie-break: retail materialises an explicit +0 immediate. Try an explicit pointer/index expression."
   }
  },
- "priority-fn_17_7728": {
+ "fn_17_7728": {
   "id": "priority-fn_17_7728",
   "symbol": "fn_17_7728",
   "kind": "priority_task",
@@ -429,7 +429,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"lwz r6, 0x14(r7)\" vs ours \"lwz r6, 0x74(r4)\" - BOTH base register and offset differ, so the WRONG STRUCT is indexed. Run \"fzgx structmap\" before editing."
   }
  },
- "priority-fn_1_2D038": {
+ "fn_1_2D038": {
   "id": "priority-fn_1_2D038",
   "symbol": "fn_1_2D038",
   "kind": "priority_task",
@@ -441,7 +441,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"lbz r0, 0x5(r3)\" vs ours \"lbz r0, 0x35(r31)\" - wrong base AND wrong offset, so the wrong struct/pointer is indexed. Establish the layout first."
   }
  },
- "priority-fn_12_331A8": {
+ "fn_12_331A8": {
   "id": "priority-fn_12_331A8",
   "symbol": "fn_12_331A8",
   "kind": "priority_task",
@@ -453,7 +453,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"stw r3, 0x4(r7)\" vs ours \"stw r3, 0x0(r5)\" - wrong base AND wrong offset. Wrong struct or wrong member; use structmap."
   }
  },
- "priority-fn_80067DE4": {
+ "fn_80067DE4": {
   "id": "priority-fn_80067DE4",
   "symbol": "fn_80067DE4",
   "kind": "priority_task",
@@ -465,7 +465,7 @@
    "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"addi r3, r31, 0x0\" vs ours \"addi r3, r31, 0x4\" - off by exactly 4 on the same base. An array-vs-scalar or index-vs-pointer discrepancy."
   }
  },
- "priority-fn_12_72F4": {
+ "fn_12_72F4": {
   "id": "priority-fn_12_72F4",
   "symbol": "fn_12_72F4",
   "kind": "priority_task",
