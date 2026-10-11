@@ -1,5 +1,59 @@
 # The >=98% near-miss band is not homogeneous: classification and where to aim
 
+## Compiler-aware continuation (2026-10-11)
+
+The historical 228-body audit below used one universal `GC/1.3.2` pin. A fresh
+recheck of all 228 saved bodies tested `GC/1.3.2`, `GC/1.2.5n`, `GC/1.2.5`,
+`GC/1.3`, `GC/2.0`, and the oracle's default candidate selection. This is a
+bounded settings comparison, not proof of each retail translation unit's compiler.
+Sources were frozen before dispatch; no ledger claims or accepted source were
+changed by the audit. Structured `stuck.analyse(...).diffs` exclude proven accepted
+rows rather than parsing display markers.
+
+All original 26 one-row functions remain one-row with a tested pin. The new
+minimum-row distribution is **27 / 36 / 78 / 77 / 10** for 1 / 2 / 3–8 / 9–32 /
+33+ rows. There are **63** bodies within two rows, and **zero** exact oracle
+matches. `fn_12_4D14` is the additional one-row function: `GC/1.3.2` with
+`-use_lmw_stmw on` reduces five rows to one (`addi r28,r31,0` versus `mr r28,r31`).
+
+Ten bodies improve over the fresh plain-1.3.2 baseline:
+
+| function | plain 1.3.2 rows | selected rows | measured setting |
+| --- | ---: | ---: | --- |
+| fn_800288C4 | 48 | 2 | GC/1.2.5n |
+| fn_80038944 | 21 | 11 | GC/1.2.5n |
+| fn_8003A3D4 | 45 | 5 | GC/1.2.5n |
+| fn_80020FA4 | 98 | 11 | GC/1.2.5n |
+| fn_80022BF4 | 52 | 8 | GC/1.2.5n |
+| fn_8008EBF8 | 17 | 2 | GC/1.2.5n |
+| fn_12_D88 | 29 | 16 | GC/1.3.2, -use_lmw_stmw on |
+| fn_12_25748 | 11 | 6 | GC/1.3.2, -use_lmw_stmw on |
+| fn_12_22008 | 14 | 6 | GC/1.3.2, -use_lmw_stmw on |
+| fn_12_4D14 | 5 | 1 | GC/1.3.2, -use_lmw_stmw on |
+
+The selected portable sources and compiler pins are preserved in
+`state/repairs/compiler-aware-304-20261011.json.gz`; its summary records the
+settings sweep, complete denominator, structured row distribution and source
+hashes. The old printed-row histogram below is historical and should not be
+mixed with these structured row counts. A lower row count is diagnostic progress,
+not an accepted function or a verified delivery.
+
+### Pinned Hermes ultra retry
+
+`pinned-onerow-hermes-ultra-20261011` requested the same five surgical targets
+with explicit `GC/1.3.2` pins (and `-O4` for `fn_8008983C`), Hermes through Nous,
+`stepfun/step-5-preview:free`, ultra effort, four concurrent sessions, sixteen
+checks and the existing 240-second compiler-progress idle guard. Prompt receipts
+confirmed the supplied compiler pin. Four sessions ended `timeout+released`,
+zero matched, one was unstarted after the failed first wave. Three used only
+the host's initial check; `fn_8008983C` made one model-issued `patch_unit` check
+before becoming compiler-idle. All four retained their inherited best scores;
+no new best or accepted function was delivered. Batch exit was 1, and the verifier
+reported zero verified and zero rejected. This is fresh stall evidence for ultra,
+not evidence of compiler-pin loss and not permission to silently lower the effort.
+
+## Historical universally pinned audit
+
 Audit of every unmatched function at best_percent >= 98.0 whose body is present locally
 (228 functions, fleet-held symbols excluded), re-checked with
 `oracle.check(source=<saved body>, mw_version='GC/1.3.2')`.

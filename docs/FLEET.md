@@ -1,5 +1,21 @@
 # New fzgx autonomous fleet
 
+## Current owner override (2026-10-11): Hermes Step 5 Preview Free Ultra
+
+The four existing `oc1`..`oc4` lane identifiers now pin the `hermes` transport,
+`stepfun/step-5-preview:free` through Nous, and `ultra` reasoning. This replaces
+OpenCode/Space Bunny for those lanes only; other provider controls are preserved.
+The six bound MCP tools, no-native-tool guard, compiler-progress idle timeout,
+atomic claims, session limits and six-session fleet cap remain unchanged. Historical
+low-effort and OpenCode measurements below do not authorize fallback substitution.
+Ultra's earlier stall evidence remains a risk, not a reason to silently lower the
+explicit owner pin. Startup/activity is not a match; compiler receipts and all
+sixteen hash checks are required evidence.
+
+Finding 304 now has a 228-body compiler/settings recheck and portable source archive.
+Before retrying a near-miss, supply its measured source hash, compiler and flags via
+`--seeds`; the plain universal-1.3.2 histogram is historical, not final.
+
 ## Current owner direction: interactive five-provider bar, bounded six-session fleet (2026-10-07)
 
 The owner directed one grouped tile (not per-model icons) for the four matcher lanes, now running the **hermes** transport against `stepfun/step-5-preview:free` on the Nous portal at `low` reasoning; concurrency for the group is capped at 4 and the fleet total at 6, allocated as those ×4 + Codex ×2. The bar remains five provider tiles: Claude, GPT, Cline, AGY, and the grouped matcher tile. Its tooltip lists the four lane states and has left-click group toggle, right-click scale-up, scroll scale, and middle-click log controls. All four lanes are enabled; the control still refuses to bypass a provider cooldown. Automatic surge remains disabled.

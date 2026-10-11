@@ -152,8 +152,11 @@ for _n in SURGE:
     # symbols (more reasoning headroom = more room to spiral), while `high` measured
     # stable on the full 58KB matcher prompt (3/3 completed, output 59-7738, no
     # length cap). `high` is the ceiling that still emits output reliably.
-    POLICY[_n] = {'harness':'opencode','model':'opencode/space-bunny-free','effort':'high',
-                  'display':f'Space Bunny Free (OpenCode #{_n[-1]})','managed':False}
+    # Current owner override (2026-10-11): replace OpenCode with Hermes Step5
+    # ultra. Historical transport/effort measurements above are not this pin.
+    # Keep the six-tool guard and compiler-progress timeout; never fall back.
+    POLICY[_n] = {'harness':'hermes','model':'stepfun/step-5-preview:free','effort':'ultra',
+                  'display':f'Step 5 Preview Free Ultra (Hermes #{_n[-1]})','managed':False}
     META[_n] = (f'OpenCode #{_n[-1]}', chr(0xF0A9B))
 del _n
 CONTROL = CACHE / 'control-v3.json'

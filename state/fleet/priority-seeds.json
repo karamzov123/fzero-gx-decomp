@@ -80,60 +80,96 @@
    "queue_kind": "residual",
    "module": "main_rel",
    "instruction": "Continue from the pinned, freshly compiled saved C. Classify the residual before editing; propose one source-shape hypothesis, do not rerun unchanged flags/source or raise budgets.",
-   "baseline": {
-    "ok": true,
-    "symbol": "fn_1_12C110",
-    "unit": "",
-    "percent": 99.58904,
-    "matched": false,
-    "symbols": {
-     "fn_1_12C110": 99.58904
-    },
-    "data_sections": {},
-    "diff": [
-     "  0000  stwu r1, -0x50(r1)                 | stwu r1, -0x50(r1)",
-     "  0004  mflr r0                            | mflr r0",
-     "  0008  stw r0, 0x54(r1)                   | stw r0, 0x54(r1)",
-     "  000C  addi r11, r1, 0x50                 | addi r11, r1, 0x50",
-     "? 01E4  addi r4, r3, lbl_1_bss_8B3A0@l     | addi r3, r3, lbl_1_bss_8B3A0@l",
-     "? 01E8  extsh r3, r28                      | extsh r4, r28",
-     "? 01EC  addi r4, r4, 0x20                  | addi r5, r3, 0x20",
-     "? 01F0  clrlwi r5, r0, 16                  | clrlwi r3, r0, 16",
-     "? 01FC  lha r0, 0xe(r4)                    | lha r0, 0xe(r5)",
-     "? 0200  cmpw r0, r3                        | cmpw r0, r4",
-     "? 0208  cmplwi r5, 0x2                     | cmplwi r3, 0x2",
-     "? 0210  cmpwi r3, 0x2                      | cmpwi r4, 0x2",
-     "? 0220  addi r4, r4, 0x20                  | addi r5, r5, 0x20",
-     "? 0244  extsh r6, r28                      | extsh r7, r28",
-     "? 0248  li r7, 0x0                         | li r6, 0x0",
-     "? 0254  cmpw r0, r6                        | cmpw r0, r7",
-     "? 0288  cmpw r6, r0                        | cmpw r7, r0",
-     "? 029C  addi r7, r7, 0x1                   | addi r6, r6, 0x1",
-     "? 02A8  extsh r0, r7                       | extsh r0, r6"
-    ],
-    "error": "",
-    "missing_in_base": [],
-    "extra_in_base": [],
-    "matched_pool": false,
-    "pool": [],
-    "pool_map": {},
-    "uncarved": true,
-    "pool_rows": 0,
-    "percent_adjusted": 93.15,
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": "",
-    "instruction_rows": 219,
-    "differing_rows": 15,
-    "value_flow": [],
-    "operand_order": []
-   },
    "prior_note": "budget exhausted: 16 checks used",
-   "prior_attempt": 22683
+   "prior_attempt": 22683,
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "22ff56bd923575ced3aeb3d4476770075150b5863ae3cc8cb4fbbba99aea2614",
+    "diffs": [
+     [
+      121,
+      "addi r4, r3, lbl_1_bss_8B3A0@l",
+      "addi r3, r3, lbl_1_bss_8B3A0@l"
+     ],
+     [
+      122,
+      "extsh r3, r28",
+      "extsh r4, r28"
+     ],
+     [
+      123,
+      "addi r4, r4, 0x20",
+      "addi r5, r3, 0x20"
+     ],
+     [
+      124,
+      "clrlwi r5, r0, 16",
+      "clrlwi r3, r0, 16"
+     ],
+     [
+      127,
+      "lha r0, 0xe(r4)",
+      "lha r0, 0xe(r5)"
+     ],
+     [
+      128,
+      "cmpw r0, r3",
+      "cmpw r0, r4"
+     ],
+     [
+      130,
+      "cmplwi r5, 0x2",
+      "cmplwi r3, 0x2"
+     ],
+     [
+      132,
+      "cmpwi r3, 0x2",
+      "cmpwi r4, 0x2"
+     ],
+     [
+      136,
+      "addi r4, r4, 0x20",
+      "addi r5, r5, 0x20"
+     ],
+     [
+      145,
+      "extsh r6, r28",
+      "extsh r7, r28"
+     ],
+     [
+      146,
+      "li r7, 0x0",
+      "li r6, 0x0"
+     ],
+     [
+      149,
+      "cmpw r0, r6",
+      "cmpw r0, r7"
+     ],
+     [
+      162,
+      "cmpw r6, r0",
+      "cmpw r7, r0"
+     ],
+     [
+      167,
+      "addi r7, r7, 0x1",
+      "addi r6, r6, 0x1"
+     ],
+     [
+      170,
+      "extsh r0, r7",
+      "extsh r0, r6"
+     ]
+    ]
+   }
   },
   "source": "#include \"rel/main_rel/archive.h\"\nextern u32 lbl_1_bss_6D82C[3];\nextern int fn_1_8623C(void);\nextern u32 fn_1_12AC00(void *);\nextern void *fn_1_12F118(void);\nextern void fn_1_12A2B8(u32);\nextern void fn_1_12A2D0(s32);\nextern void fn_1_12AB38(void *);\nextern void fn_1_80058(s8, u8 *);\nextern void fn_1_80270(void *, void *);\nstruct Loc8 {\n u32 unk_0;\n u32 unk_4;\n u8 unk_8;\n u8 pad_9[15];\n};\n#pragma opt_loop_invariants off\n#pragma opt_common_subs off\n#pragma opt_propagation on\nstatic inline u8 *fn_1_12C110_address_4352(u8 *base, s32 offset) {\n return base + offset;\n}\nvoid fn_1_12C110(void *arg0, s32 arg1, s32 arg2) {\n u32 fzgx_value;\n s16 found;\n struct Loc8 loc_8;\n u8 *p_data;\n u32 v1;\n u32 v2;\n Obj_1_bss_8B3A0 * p_mgr_2;\n s16 a1;\n s16 i_2;\n s16 found_2_2;\n s16 i;\n void *t0;\n s16 found_2;\n    void * lab_t0;\n p_data = (u8 *)&lbl_1_data_40798;\n t0 = fn_1_12F118();\n a1 = (s16)arg1;\n v1 = 1u << a1;\n v2 = 1u << (s16)arg2;\n i = 0;\n while (i < 41) {\n  Obj_1_bss_8B3A0 *p_cur;\n  s16 j;\n  void *tmp;\n  s32 tmpv;\n  p_cur = (&lbl_1_bss_8B3A0);\n  found_2 = -1;\n  j = 0;\n  while (j < 4) {\n   if (p_cur->unk_E == i) {\n    found_2 = i;\n    break;\n   }\n   p_cur = (Obj_1_bss_8B3A0 *)((u8 *)p_cur + 0x20);\n   j++;\n  }\n  if (found_2 != -1) {\n   fn_1_80058((s8)found_2, (u8 *)&loc_8);\n   loc_8.unk_8 = 0;\n   loc_8.unk_8 = (u8)v1;\n   tmp = (u8 *)arg0 + found_2 * 1088;\n   fzgx_value = v2;\n   loc_8.unk_4 = fzgx_value;\n   tmpv = *(s32 *)((u8 *)tmp + 0x324);\n   if (tmpv != -1) {\n    fn_1_12A2D0(tmpv);\n    fn_1_12A2B8(1);\n   }\n   fn_1_12AB38(p_data + 764);\n   if (lbl_1_bss_6D82C[0] == 0) {\n    lbl_1_bss_6D82C[0] = fn_1_12AC00(p_data + 776);\n   }\n   fn_1_80270(&loc_8, tmp);\n   lab_t0 = p_data + 792;\n   fn_1_12AB38(lab_t0);\n   fn_1_12A2B8(0);\n  }\n  i++;\n }\n p_mgr_2 = &lbl_1_bss_8B3A0;\n if (!(p_mgr_2->unk_94 & 0x2000000)) {\n  Obj_1_bss_8B3A0 *p_cur;\n  s16 j;\n  i_2 = 0;\n  while (i_2 < 41) {\n   found_2_2 = -1;\n   if (p_mgr_2->unk_94 & 0x40000000) {\n    s32 car = p_mgr_2->unk_E;\n    if (car == i_2) {\n     found_2_2 = i_2;\n    }\n    if (car > 40) {\n     s32 idx;\n     idx = fn_1_8623C();\n     if (*(u32 *)((u8 *)t0 + idx * 0x81C0) & 0x80000000) {\n      idx = fn_1_8623C();\n      if (!(*(u32 *)((u8 *)t0 + idx * 0x81C0) & 0x40000000)) {\n       if ((s16)i_2 == *(u8 *)((u8 *)t0 + fn_1_8623C() * 0x81C0 + 0x10000 - 0x7E60)) {\n        found_2_2 = i_2;\n       }\n      }\n     }\n    }\n    p_cur = (Obj_1_bss_8B3A0 *)((u8 *)&lbl_1_bss_8B3A0 + 0x20);\n    j = 1;\n    while (j < 4) {\n     if (p_cur->unk_E == i_2 || (u16)(i_2 - 4) <= 2 || i_2 == 2) {\n      found_2_2 = i_2;\n      break;\n     }\n     p_cur = (Obj_1_bss_8B3A0 *)((u8 *)p_cur + 0x20);\n     j++;\n    }\n   } else {\n    s16 k;\n    s32 id2;\n    id2 = i_2;\n    k = 0;\n    while (k < 4) {\n     s32 car2 = ((Obj_1_bss_8B3A0 *)((u8 *)&lbl_1_bss_8B3A0 + k * 0x20))->unk_E;\n     if (car2 == id2) {\n      found_2_2 = i_2;\n      break;\n     }\n     if (car2 > 40) {\n      u32 w = *(u32 *)((u8 *)t0 + k * 0x81C0);\n      if ((w & 0x80000000) && !(w & 0x40000000)) {\n       if (id2 == *((u8 *)t0 + k * 0x81C0 + 0x81A0)) {\n        found_2_2 = i_2;\n        break;\n       }\n      }\n     }\n     k++;\n    }\n   }\n   if (found_2_2 != -1) {\n    u32 mask0, mask1, mask2;\n    fn_1_80058((s8)found_2_2, (u8 *)&loc_8);\n    loc_8.unk_8 = 0;\n    mask0 = 1u << a1;\n    loc_8.unk_8 = mask0;\n    mask1 = (mask0 & 0xFF) | (1u << (a1 + 1));\n    loc_8.unk_8 = mask1;\n    mask2 = (mask1 & 0xFF) | (1u << (a1 + 2));\n    loc_8.unk_8 = mask2;\n    loc_8.unk_8 = (mask2 & 0xFF) | (1u << (a1 + 3));\n    loc_8.unk_4 = 0;\n    fn_1_12AB38(p_data + 764);\n    fn_1_80270(&loc_8, (u8 *)arg0 + found_2_2 * 1088);\n    fn_1_12AB38(p_data + 792);\n   }\n   i_2++;\n  }\n }\n}\n#pragma opt_propagation reset\n#pragma opt_common_subs reset\n#pragma opt_loop_invariants reset\n",
   "sha256": "22ff56bd923575ced3aeb3d4476770075150b5863ae3cc8cb4fbbba99aea2614",
   "mw": "GC/1.3.2",
-  "flags": ""
+  "flags": null,
+  "percent": 99.58904
  },
  "fn_1_A1DCC": {
   "id": "priority-fn_1_A1DCC",
@@ -366,8 +402,23 @@
   "task": {
    "queue_kind": "residual",
    "module": "main",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"extrwi r9, r10, 8, 16\" (UNSIGNED extract) where our body emits \"srawi r9, r10, 8\" (SIGNED). The C extracts the wrong field type; fn_800446E4 shares this exact residual, so one type fix likely lands both."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"extrwi r9, r10, 8, 16\" (UNSIGNED extract) where our body emits \"srawi r9, r10, 8\" (SIGNED). The C extracts the wrong field type; fn_800446E4 shares this exact residual, so one type fix likely lands both.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "30ce9742de995dd1d922e1d48f8e3ee1437f694c22ab8a4c89f50354b021875c",
+    "diffs": [
+     [
+      115,
+      "extrwi r9, r10, 8, 16",
+      "srawi r9, r10, 8"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": null,
+  "percent": 99.745766
  },
  "fn_800446E4": {
   "id": "priority-fn_800446E4",
@@ -378,8 +429,23 @@
   "task": {
    "queue_kind": "residual",
    "module": "main",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"extrwi r9, r10, 8, 16\" (UNSIGNED) vs our \"srawi r9, r10, 8\" (SIGNED). Same root cause as fn_80043798: the field is typed/extracted as signed when retail treats it as unsigned."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"extrwi r9, r10, 8, 16\" (UNSIGNED) vs our \"srawi r9, r10, 8\" (SIGNED). Same root cause as fn_80043798: the field is typed/extracted as signed when retail treats it as unsigned.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "29f616ae9db7358b041bf8fcb88984b2f92b3bfce46bb46c82da2058b55f9f9c",
+    "diffs": [
+     [
+      115,
+      "extrwi r9, r10, 8, 16",
+      "srawi r9, r10, 8"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": null,
+  "percent": 99.745766
  },
  "movie:_prolog": {
   "id": "priority-movie:_prolog",
@@ -390,8 +456,23 @@
   "task": {
    "queue_kind": "residual",
    "module": "movie",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"sth r11, 0x0(r10)\" (16-BIT store) vs our \"stw r11, 0x0(r10)\" (32-BIT). The field is a u16 being stored as u32."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"sth r11, 0x0(r10)\" (16-BIT store) vs our \"stw r11, 0x0(r10)\" (32-BIT). The field is a u16 being stored as u32.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "81da6f7d1e73960f4560b48bd137939adc349f2687cc62ad35892c8f7edbe4e2",
+    "diffs": [
+     [
+      87,
+      "sth r11, 0x0(r10)",
+      "stw r11, 0x0(r10)"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": null,
+  "percent": 99.53125
  },
  "fn_1_135D7C": {
   "id": "priority-fn_1_135D7C",
@@ -402,20 +483,50 @@
   "task": {
    "queue_kind": "residual",
    "module": "main_rel",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"mr r4, r3\" (plain move) vs our \"extsb r4, r3\" (sign-extend byte). Retail does NOT sign-extend, so the source value is already 32-bit."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"mr r4, r3\" (plain move) vs our \"extsb r4, r3\" (sign-extend byte). Retail does NOT sign-extend, so the source value is already 32-bit.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "b8d57fb07adb6770b7afe1abbf1ce93083d1d7c7982e3caee8fc7c7fc9663305",
+    "diffs": [
+     [
+      185,
+      "mr r4, r3",
+      "extsb r4, r3"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": null,
+  "percent": 99.54724
  },
  "fn_8008983C": {
   "id": "priority-fn_8008983C",
   "symbol": "fn_8008983C",
   "kind": "priority_task",
-  "source": "#include \"types.h\"\n\nstruct Sig_fn_8008983C_TRKBuffer {\n    u32 mutex;\n    u32 isInUse;\n    u32 length;\n    u32 position;\n    u8 data[(0x800 + 0x80)];\n};\n\nstruct MsgTable {\n    char a[0x20];\n    char b[8];\n    char c[12];\n};\n\nextern s32 fn_8008963C(const char *);\nextern s32 fn_8008D398(u32, u32);\nextern struct MsgTable lbl_80095890;\nextern void * memset(void *, int, u32);\nextern void fn_8008D7C0(u32);\n\ns32 fn_8008983C(struct Sig_fn_8008983C_TRKBuffer * arg0) {\n    struct MsgTable *table;\n    u8 v0;\n    struct { u8 a[64]; } loc_8;\n\n    table = (struct MsgTable *)&lbl_80095890;\n    v0 = arg0->data[12];\n    if (arg0->data[8] == 1) {\n        fn_8008963C(table->a);\n        if (v0 != 0) {\n            fn_8008963C(table->b);\n        } else {\n            fn_8008963C(table->c);\n        }\n        fn_8008D7C0(v0);\n    }\n    memset((void *)&loc_8, 0, 64);\n    loc_8.a[4] = 128;\n    *(u32 *)((u8 *)&loc_8 + 0) = 64;\n    loc_8.a[8] = 0;\n    fn_8008D398((u32)&loc_8, 64);\n    return 0;\n}\n",
-  "sha256": "27a7315e68706bd2b38bc26d11cd6190d383207eb9742442c87e4fae70da2958",
+  "source": "#include \"types.h\"\n\nstruct Sig_fn_8008983C_TRKBuffer {\n    u32 mutex;\n    u32 isInUse;\n    u32 length;\n    u32 position;\n    u8 data[(0x800 + 0x80)];\n};\n\nstruct MsgTable {\n    char a[0x20];\n    char b[8];\n    char c[12];\n};\n\nextern s32 fn_8008963C(const char *);\nextern s32 fn_8008D398(void *, u32);\nextern struct MsgTable lbl_80095890;\nextern void * memset(void *, int, u32);\nextern void fn_8008D7C0(u32);\n\ns32 fn_8008983C(struct Sig_fn_8008983C_TRKBuffer * arg0) {\n    struct MsgTable *table;\n    u8 v0;\n    u8 loc_8[64];\n\n    table = (struct MsgTable *)&lbl_80095890;\n    v0 = arg0->data[12];\n    if (arg0->data[8] == 1) {\n        fn_8008963C(table->a);\n        if (v0 != 0) {\n            fn_8008963C(table->b);\n        } else {\n            fn_8008963C(table->c);\n        }\n        fn_8008D7C0(v0);\n    }\n    memset((void *)&loc_8, 0, 64);\n    loc_8[4] = 128;\n    *(u32 *)&loc_8[0] = 64;\n    loc_8[8] = 0;\n    fn_8008D398((void *)&loc_8, 64);\n    return 0;\n}\n",
+  "sha256": "c9e3d6e335324c5c979cee2684b90bb82e987b2968b9f62da9b7ecc30748f765",
   "task": {
    "queue_kind": "residual",
    "module": "main",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"addi r3, r31, 0x0\" vs our \"mr r3, r31\" - the inverse of the usual tie-break: retail materialises an explicit +0 immediate. Try an explicit pointer/index expression."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail emits \"addi r3, r31, 0x0\" vs our \"mr r3, r31\" - the inverse of the usual tie-break: retail materialises an explicit +0 immediate. Try an explicit pointer/index expression.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": "-O4",
+    "sha256": "c9e3d6e335324c5c979cee2684b90bb82e987b2968b9f62da9b7ecc30748f765",
+    "diffs": [
+     [
+      11,
+      "addi r3, r31, 0x0",
+      "mr r3, r31"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": "-O4",
+  "percent": 98.57143
  },
  "fn_17_7728": {
   "id": "priority-fn_17_7728",
@@ -426,8 +537,23 @@
   "task": {
    "queue_kind": "residual",
    "module": "interview",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"lwz r6, 0x14(r7)\" vs ours \"lwz r6, 0x74(r4)\" - BOTH base register and offset differ, so the WRONG STRUCT is indexed. Run \"fzgx structmap\" before editing."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"lwz r6, 0x14(r7)\" vs ours \"lwz r6, 0x74(r4)\" - BOTH base register and offset differ, so the WRONG STRUCT is indexed. Run \"fzgx structmap\" before editing.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "a1279cd1d7c12443b30d3ade3eda3faa5b0b6e672b3143496006e993e1cbd271",
+    "diffs": [
+     [
+      11,
+      "lwz r6, 0x14(r7)",
+      "lwz r6, 0x74(r4)"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": null,
+  "percent": 99.971565
  },
  "fn_1_2D038": {
   "id": "priority-fn_1_2D038",
@@ -438,8 +564,23 @@
   "task": {
    "queue_kind": "residual",
    "module": "main_rel",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"lbz r0, 0x5(r3)\" vs ours \"lbz r0, 0x35(r31)\" - wrong base AND wrong offset, so the wrong struct/pointer is indexed. Establish the layout first."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"lbz r0, 0x5(r3)\" vs ours \"lbz r0, 0x35(r31)\" - wrong base AND wrong offset, so the wrong struct/pointer is indexed. Establish the layout first.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "a9dbf57a2de4297789c3d769e81e8be1a845477710a0c08c628b6281d6fc930f",
+    "diffs": [
+     [
+      65,
+      "lbz r0, 0x5(r3)",
+      "lbz r0, 0x35(r31)"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": null,
+  "percent": 99.53651
  },
  "fn_12_331A8": {
   "id": "priority-fn_12_331A8",
@@ -450,8 +591,23 @@
   "task": {
    "queue_kind": "residual",
    "module": "movie_module",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"stw r3, 0x4(r7)\" vs ours \"stw r3, 0x0(r5)\" - wrong base AND wrong offset. Wrong struct or wrong member; use structmap."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"stw r3, 0x4(r7)\" vs ours \"stw r3, 0x0(r5)\" - wrong base AND wrong offset. Wrong struct or wrong member; use structmap.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "a2fd652a767c4ded21a4e9789db4e44b4438245af5a2dee7dfd862da11ca61f3",
+    "diffs": [
+     [
+      73,
+      "stw r3, 0x4(r7)",
+      "stw r3, 0x0(r5)"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": null,
+  "percent": 99.46753
  },
  "fn_80067DE4": {
   "id": "priority-fn_80067DE4",
@@ -462,8 +618,23 @@
   "task": {
    "queue_kind": "residual",
    "module": "main",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"addi r3, r31, 0x0\" vs ours \"addi r3, r31, 0x4\" - off by exactly 4 on the same base. An array-vs-scalar or index-vs-pointer discrepancy."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"addi r3, r31, 0x0\" vs ours \"addi r3, r31, 0x4\" - off by exactly 4 on the same base. An array-vs-scalar or index-vs-pointer discrepancy.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": null,
+    "sha256": "9541d3cf2697d3aa9fb7627f9332e8542ffc9822497afd64208bb064aa8f4c89",
+    "diffs": [
+     [
+      86,
+      "addi r3, r31, 0x0",
+      "addi r3, r31, 0x4"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": null,
+  "percent": 99.93814
  },
  "fn_12_72F4": {
   "id": "priority-fn_12_72F4",
@@ -474,7 +645,22 @@
   "task": {
    "queue_kind": "residual",
    "module": "movie_module",
-   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"mr r30, r25\" vs ours \"mr r30, r27\" - a pure register-selection tie-break, the genuine allocator class (finding 301). Spend ONE bounded attempt, then release rather than looping."
-  }
+   "instruction": "Classify the residual before editing; propose ONE source-shape hypothesis; do not rerun unchanged flags/source or raise budgets. retail \"mr r30, r25\" vs ours \"mr r30, r27\" - a pure register-selection tie-break, the genuine allocator class (finding 301). Spend ONE bounded attempt, then release rather than looping.",
+   "compiler_audit_304": {
+    "mw": "GC/1.3.2",
+    "flags": "-use_lmw_stmw on",
+    "sha256": "30c4b0e4c24c43b98ffe8d764936d51d6ec12e405f811665ebf0d9e5ca0c4d37",
+    "diffs": [
+     [
+      9,
+      "mr r30, r25",
+      "mr r30, r27"
+     ]
+    ]
+   }
+  },
+  "mw": "GC/1.3.2",
+  "flags": "-use_lmw_stmw on",
+  "percent": 99.88372
  }
 }
