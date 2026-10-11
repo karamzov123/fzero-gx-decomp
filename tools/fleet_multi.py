@@ -264,6 +264,22 @@ def seed_batch_symbols(symbols, records=None):
     return [s for s in symbols if seeded(s) == seeded(symbols[0])] if symbols else []
 
 
+def admitted_seed_tokens():
+    """One admission per proven source/pin/prologue, independent of HEAD churn."""
+    tokens = {}
+    for symbol, record in load(ROOT/'state/fleet/priority-seeds.json', {}).items():
+        task = record.get('task', {})
+        if task.get('queue_kind') != 'registered-measured-cohort':
+            continue
+        body = record.get('source')
+        if not isinstance(body, str) or hashlib.sha256(body.encode()).hexdigest() != record.get('sha256'):
+            continue
+        evidence = {k: record.get(k) for k in ('sha256', 'mw', 'flags')}
+        evidence['prologue'] = task.get('prologue_sha256')
+        tokens[symbol] = hashlib.sha256(json.dumps(evidence, sort_keys=True).encode()).hexdigest()
+    return tokens
+
+
 def command(family,batch,symbols,parallel):
     if seed_batch_symbols(symbols) != symbols:
         raise ValueError('Mixed pinned and ordinary symbols must be separated before dispatch')
@@ -577,11 +593,11 @@ _uncovered_cache = {'at': 0.0, 'symbols': frozenset()}
 
 # Same shapes tools/fzgx/splitgaps.py parses, so the fleet and the diagnostic tool cannot
 # disagree about what "covered" means.
-SYM_RE = re.compile(r'^(\w+) = \.text:(0x[0-9A-Fa-f]+);\s*//\s*type:function size:(0x[0-9A-Fa-f]+)')
+SYM_RE = re.compile(r'^(\w+) = \.(?:text|init):(0x[0-9A-Fa-f]+);\s*//\s*type:function size:(0x[0-9A-Fa-f]+)')
 RANGE_RE = re.compile(r'start:(0x[0-9A-Fa-f]+)\s+end:(0x[0-9A-Fa-f]+)')
 
 def uncovered_symbols():
-    """Unmatched functions with no `splits.txt` range covering their `.text`.
+    """Unmatched functions lacking registration or executable split coverage.
 
     A split range is a hard prerequisite for a body to land at all: without one,
     carving a unit duplicates the function in the module and the byte count stops
@@ -635,7 +651,7 @@ def uncovered_symbols():
                 if s.startswith('rel/') or s.startswith('dol/'):
                     cur_ok = True
                     continue
-                if cur_ok and '.text' in s:
+                if cur_ok and ('.text' in s or '.init' in s):
                     m = RANGE_RE.search(s)
                     if m:
                         ranges.append((int(m.group(1), 16), int(m.group(2), 16)))
@@ -704,7 +720,7 @@ def uncovered_symbols():
         _uncovered_cache['symbols'] = frozenset(
             r['symbol'] for r in unmatched_rows
             if resolve(r['symbol']) not in covered.get(module_of.get(r['symbol']), set())
-            and resolve(r['symbol']) not in units.get(module_of.get(r['symbol']), set()))
+            or resolve(r['symbol']) not in units.get(module_of.get(r['symbol']), set()))
         _uncovered_cache['at'] = now
     return _uncovered_cache['symbols']
 
@@ -818,13 +834,11 @@ def choose(rows, seen, context, count, reserved=(), retry=(), family=None, prote
     mine=local_attempts()
     virgin=virgin_symbols(rows,mine)
     linkfail=link_failed()
-    # Symbols with no split range cannot be linked from C (docs/findings/298), so a
-    # matching body for one is unlandable. They stay eligible -- `fzgx carve` closes the
-    # gap with no lease, no model and no fleet -- but they sort behind covered work in
-    # every pool, so the fleet converts what it has instead of re-deriving bodies that
-    # cannot land. 2941 attempts on uncovered symbols produced 0 matches against 410 on
-    # covered ones.
+    # Coverage is an admission prerequisite, not a ranking hint. If covered
+    # supply runs out, the caller's bounded carve path may register a measured
+    # cohort; never fill paid slots with currently unlandable fallback work.
     uncovered=uncovered_symbols()
+    rows=[r for r in rows if r['symbol'] not in uncovered]
     tried=families_that_tried() if FAMILY_LOCKOUT else {}
     tier=one_word_tier(family)
     # The one-word tier joins `retry`, the existing mechanism for "past the cap, but one more
@@ -835,6 +849,13 @@ def choose(rows, seen, context, count, reserved=(), retry=(), family=None, prote
     # filtering by `tried` emptied the tier for every family when measured, which is how this
     # was found.
     eligible_retry=set(retry)|tier
+    admissions = admitted_seed_tokens() if family == 'gpt' else {}
+    fresh_admissions = {s for s, token in admissions.items()
+                        if seen.get('admission:' + s) != token}
+    # An explicit measured cohort gets one retry for its new, proven inputs;
+    # a batch snapshot changing HEAD does not reopen the same admission.
+    rows=[r for r in rows if r['symbol'] not in admissions or r['symbol'] in fresh_admissions]
+    eligible_retry |= fresh_admissions
     base=[r for r in rows if r['status']=='unmatched' and (mine.get(r['symbol'],0)<ATTEMPT_CAP or r['symbol'] in eligible_retry)
           and r['symbol'] not in linkfail
           and size_allowed(r['size'], r.get('best',r.get('best_percent',0)))
@@ -882,7 +903,7 @@ def choose(rows, seen, context, count, reserved=(), retry=(), family=None, prote
     # symbols pass size_allowed, but the band excluded 5 of them outright and demoted the rest,
     # which is what left cline and gpt at 0/6. Everything here is still gated by base -- attempt
     # cap via eligible_retry, link failures, in-flight units and the current-context guard.
-    if tier or mid_band or closure:
+    if tier or mid_band or closure or fresh_admissions:
         # Both pools are lifted above the band for the same reason, and the mid band's case is
         # the sharper one: 126 of its 149 eligible functions are under 1 KB, and every family
         # band starts at 1 KB or higher (cline 1024, agy 512, oc1 2048, oc4 257, gpt 1024), so
@@ -891,7 +912,7 @@ def choose(rows, seen, context, count, reserved=(), retry=(), family=None, prote
         # same size shelf, which is a reason to share, not a reason to hide a pool with no
         # other route to a session. Everything is still gated by base: attempt cap, link
         # failures, in-flight units and the current-context guard.
-        lifted=[r for r in base if r['symbol'] in tier or r['symbol'] in mid_band or r['symbol'] in closure]
+        lifted=[r for r in base if r['symbol'] in tier or r['symbol'] in mid_band or r['symbol'] in closure or r['symbol'] in fresh_admissions]
         # Dedup by symbol, not by id(). `id()` identifies the dict object, and `lifted` and
         # `eligible` are built by two separate comprehensions over `base`, so the same row is a
         # different object in each and `id(r) not in seen_ids` is always true. That duplicated
@@ -960,7 +981,8 @@ def choose(rows, seen, context, count, reserved=(), retry=(), family=None, prote
         return out
     n_tier=min(ONE_WORD_RESERVE, int(count * TIER_SHARE))
     n_mid=int(count * MID_BAND_SHARE)
-    chosen=_pick(closure, int(count>=4))
+    chosen=_pick(fresh_admissions, count)
+    chosen+=_pick(closure, int(count>=4))
     chosen+=_pick(tier, n_tier)
     chosen+=_pick(mid_band, n_mid)
     # Oversize probe: a bounded slice of work past SIZE_GATE, which size_allowed otherwise blocks
@@ -1756,7 +1778,11 @@ def run():
                 if not symbols:
                     carve_capped(rows,near_miss,statuses,family)
                     statuses[family]=dict(status='idle',reason='No fresh eligible target below attempt cap; no blind retries.',active=0);retries[family]=time.time()+30;continue
-                for symbol in symbols:seen[symbol]=context
+                admission_tokens=admitted_seed_tokens()
+                for symbol in symbols:
+                    seen[symbol]=context
+                    if symbol in admission_tokens:
+                        seen['admission:'+symbol]=admission_tokens[symbol]
                 atomic(HISTORY,seen)
                 job=Job(family,symbols,cfg['parallel'],gate_passed);jobs[family]=job
                 statuses[family]=dict(status='starting',reason=f'Preparing {len(symbols)} distinct assigned functions with {effective(family)["display"]}.',batch=job.batch,active=0,runner_pid=job.proc.pid)

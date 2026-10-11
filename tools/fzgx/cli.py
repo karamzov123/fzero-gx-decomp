@@ -155,11 +155,16 @@ def cmd_levelrecheck(a, p):
     from . import levelrecheck
     r = levelrecheck.recheck(p, a.symbols or None, a.module,
                              log=(lambda m: None) if a.json else (lambda m: print(m, flush=True)))
+    if a.out:
+        out = Path(a.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        stage = out.with_name(out.name + '.tmp')
+        stage.write_text(json.dumps(r, indent=2) + '\n')
+        stage.replace(out)
     if a.json:
         _print(r, True)
     else:
         print(levelrecheck.summary(r))
-    return 0
     return 0 if r['ok'] else 2
 
 

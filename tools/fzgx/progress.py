@@ -103,13 +103,13 @@ def covered(module: str) -> Set[Tuple[int, int]]:
 
 
 def units() -> Dict[str, dict]:
-    """symbol -> its units.json record."""
+    """module-qualified symbol -> its units.json record; local entrypoints never collide."""
     if not _UNITS:
         path = CONFIG / "units.json"
         if path.exists():
             for u in json.loads(path.read_text()):
                 for sym in u.get("symbols") or ():
-                    _UNITS.setdefault(sym, u)
+                    _UNITS.setdefault(f"{u['module']}:{sym}", u)
     return _UNITS
 
 
@@ -153,7 +153,7 @@ def state(module: str, symbol: str) -> dict:
     if symbol not in syms:
         return {"module": module, "symbol": symbol, "known": False}
     addr, size = syms[symbol]
-    rec = units().get(symbol)
+    rec = units().get(f"{module}:{symbol}")
     return {
         "module": module,
         "symbol": symbol,
@@ -196,15 +196,20 @@ def measure(status: Optional[Dict[str, str]] = None) -> dict:
     """
     if status is None:
         status = _ledger_status()
+    from collections import Counter
+    modules = list(_modules())
+    multiplicity = Counter(s for m in modules for s in symbols(m))
     rec, rows = units(), []
-    for module in _modules():
+    for module in modules:
         for symbol, (addr, size) in symbols(module).items():
             if size == 0:
                 continue
-            r = rec.get(symbol)
-            credited = status.get(symbol) == "matched"
+            qualified = f"{module}:{symbol}"
+            key = qualified if multiplicity[symbol] > 1 else symbol
+            r = rec.get(qualified)
+            credited = status.get(qualified, status.get(key)) == "matched"
             rows.append({
-                "module": module, "symbol": symbol, "size": size,
+                "module": module, "symbol": key, "size": size,
                 "credited": credited,
                 "authored": bool(credited and r is not None and gen_built(r)),
                 "registered": r is not None,

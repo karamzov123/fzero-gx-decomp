@@ -59,3 +59,6 @@ rel/replay/_prolog/_prolog.c:
 
 rel/replay/_prolog/fn_13_0.c:
 	.text       start:0x00000000 end:0x000003FC align:4
+
+rel/replay/_prolog/fn_13_3FC.c:
+	.text       start:0x000003FC end:0x00000A40 align:4

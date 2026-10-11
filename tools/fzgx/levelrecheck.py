@@ -1,5 +1,10 @@
 """Re-probe the recorded per-function optimisation levels against *current* bodies.
 
+Current ranking uses an aligned, relocation-aware verdict in the unit's compiler
+and extra-flag context. Positional word agreement can invert flag comparisons
+when a prologue inserts a save-helper instruction. The historical positional
+measurements below describe the earlier implementation, not the current metric.
+
 `fzgx levelscan` (docs/LEVELSCAN.md) measured 269 functions whose saved body scores better
 under a level other than the module default, and recorded the winning level in
 `state/compiler_options.json`. `_compiler_options` already feeds that level to every check,
@@ -85,16 +90,28 @@ def recorded() -> Dict[str, str]:
 
 def _score(p, sym, words, body: str, flag: Optional[str]) -> Optional[float]:
     """Compile one body under one setting and score it, or None if it will not build."""
+    unit = p.unit_of(sym)
+    record = p.unit_record(unit) if unit else None
+    record = record or {}
+    # Compare against the unit's real build context, not an older module-only
+    # measurement that silently discards its non-level options.
+    extras = record.get('extra_cflags') or []
+    base_flags = ' '.join(extras) if isinstance(extras, list) else extras
+    flags = ' '.join(f for f in (base_flags, flag) if f) or None
     with tempfile.TemporaryDirectory() as td:
         src, obj = Path(td) / "b.c", Path(td) / "b.o"
         src.write_text(body)
-        cp = oracle.compile_source(p, sym.module, src, obj, None, flag)
+        cp = oracle.compile_source(p, sym.module, src, obj, record.get('mw_version'), flags)
         if cp.returncode:
             return None
-        ours = oracle.words(obj, sym.name)
-    if not ours:
+        result = oracle._diff(p, sym.module, sym.name, unit or '', 0,
+                             target=p.target_object_for(sym), base=obj)
+    # Positional words rank a single inserted save-helper instruction as a
+    # whole-function mismatch. Use the aligned, binding-aware word verdict;
+    # a raw fuzzy score is not a substitute when that verdict is unavailable.
+    if not result.ok or result.percent_adjusted is None:
         return None
-    return oracle.word_score(words, ours)[0]
+    return result.percent_adjusted
 
 
 def recheck(p, symbols: Optional[List[str]] = None, module: Optional[str] = None,

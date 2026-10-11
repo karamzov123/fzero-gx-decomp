@@ -1,5 +1,5 @@
 {
- "generated": 1791755380,
+ "generated": 1791759490,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -31590,7 +31590,7 @@
   {
    "symbol": "fn_80059884",
    "module": "main",
-   "unit": null,
+   "unit": "dol/fn_80059884.c",
    "addr": 2147850372,
    "size": 144,
    "status": "unmatched",
@@ -36860,7 +36860,7 @@
   {
    "symbol": "fn_800736C0",
    "module": "main",
-   "unit": null,
+   "unit": "dol/fn_800736C0.c",
    "addr": 2147956416,
    "size": 184,
    "status": "unmatched",
@@ -71455,7 +71455,7 @@
   {
    "symbol": "fn_1_A3BD8",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/sound/fn_1_A3BD8.c",
    "addr": 670680,
    "size": 160,
    "status": "unmatched",
@@ -116063,7 +116063,7 @@
   {
    "symbol": "fn_13_3FC",
    "module": "replay",
-   "unit": null,
+   "unit": "rel/replay/_prolog/fn_13_3FC.c",
    "addr": 1020,
    "size": 1604,
    "status": "unmatched",
@@ -116369,7 +116369,7 @@
   {
    "symbol": "sample:_prolog",
    "module": "sample",
-   "unit": null,
+   "unit": "rel/sample/_prolog.c",
    "addr": 0,
    "size": 1020,
    "status": "unmatched",

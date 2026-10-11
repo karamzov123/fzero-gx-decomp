@@ -1,6 +1,18 @@
 # New fzgx autonomous fleet
 
-## Current owner mix (2026-10-11): one Hermes, two Codex
+## Current owner recovery (2026-10-11): two Codex; Hermes parked
+
+`gpt` remains enabled at parallel=2 with `gpt-6-luna/high`. Hermes Step5 ultra
+(`oc1`) automatic retries are disabled pending a successful bounded admission;
+its model pin and provider cooldown are unchanged. Automatic surge stays off.
+
+Landability is now a hard gate: both a registered unit and executable split
+coverage are required. The four freshly measured cohort seeds get one admission
+per exact source/compiler/prologue token; HEAD-only snapshots cannot reopen it.
+New unit registration and compiler defaults are verified by the full sixteen-
+target gate. Finding 307 records the actual changes and remaining closure blocks.
+
+## Historical owner mix (2026-10-11): one Hermes, two Codex
 
 Operator control is now `oc1` enabled at parallel=1 and `gpt` enabled at
 parallel=2; every other lane is disabled. Hermes remains

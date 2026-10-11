@@ -12,3 +12,6 @@ rel/sample/sample_lz_decode.c:
 
 rel/sample/fn_18_444.c:
 	.text       start:0x00000444 end:0x00000730 align:4
+
+rel/sample/_prolog.c:
+	.text       start:0x00000000 end:0x000003FC align:4
