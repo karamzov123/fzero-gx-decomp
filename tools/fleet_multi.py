@@ -841,14 +841,11 @@ def choose(rows, seen, context, count, reserved=(), retry=(), family=None, prote
     rows=[r for r in rows if r['symbol'] not in uncovered]
     tried=families_that_tried() if FAMILY_LOCKOUT else {}
     tier=one_word_tier(family)
-    # The one-word tier joins `retry`, the existing mechanism for "past the cap, but one more
-    # attempt is worth it". It is deliberately NOT filtered by `tried`: family lockout exists to
-    # stop five families re-deriving the same wrong body, but a one-word function is not a wrong
-    # body -- it is one edit, and every family that runs it produces the same single answer. The
-    # atomic claim in api.claim still prevents two families working one symbol at once, and
-    # filtering by `tried` emptied the tier for every family when measured, which is how this
-    # was found.
-    eligible_retry=set(retry)|tier
+    # A near-miss score or an unsearched marker is ranking evidence, not a
+    # reason to bypass the model-attempt cap. Save-only budget releases do not
+    # run deep search, so `retry` otherwise reopens the same body every batch.
+    # Only the explicit source/pin/prologue admissions below may cross the cap.
+    eligible_retry=set()
     admissions = admitted_seed_tokens() if family == 'gpt' else {}
     fresh_admissions = {s for s, token in admissions.items()
                         if seen.get('admission:' + s) != token}

@@ -12,6 +12,7 @@ from typing import Any
 
 from fzgx import progress
 from fzgx.project import ROOT
+from fzgx.lint import allocator_scaffolding
 from fleet_multi import resource_snapshot
 
 
@@ -25,10 +26,13 @@ def snapshot(days=7):
         attempts = list(map(dict, db.execute(
             'SELECT agent,model,outcome,checks,started,ended,symbol FROM attempts '
             'WHERE started>=? AND ended IS NOT NULL', (time.time()-days*86400,))))
+        verified = dict(db.execute("SELECT symbol,size FROM functions WHERE status='matched' "
+                                   "AND link_state='verified' AND matched_commit IS NOT NULL"))
         claims = list(map(dict, db.execute(
             "SELECT symbol,module,claimed_by,claimed_at FROM functions WHERE status='claimed'")))
     measured = progress.measure(statuses)
     grouped: dict[tuple[str, str], dict[str, Any]] = collections.defaultdict(lambda: dict(attempts=0, terminal_matches=0, checks=0,
+                                                   zero_check_attempts=0, verified_symbols=set(),
                                                    worker_seconds=0.0, outcomes=collections.Counter()))
 
     for a in attempts:
@@ -39,12 +43,19 @@ def snapshot(days=7):
         r['attempts'] += 1
         r['terminal_matches'] += a['outcome'] in ('matched', 'matched-pool')
         r['checks'] += a['checks'] or 0
+        r['zero_check_attempts'] += not (a['checks'] or 0)
+        if a['outcome'] in ('matched', 'matched-pool') and a['symbol'] in verified:
+            r['verified_symbols'].add(a['symbol'])
         r['worker_seconds'] += max(0, a['ended']-a['started'])
         r['outcomes'][a['outcome']] += 1
     yields = []
     for (family, model), r in grouped.items():
         hours = r['worker_seconds']/3600.0
+        symbols = sorted(r['verified_symbols'])
+        r['verified_symbols'] = symbols
         yields.append(dict(family=family, model=model, **r, worker_hours=round(hours, 3),
+                           verified_unique_symbols=len(symbols),
+                           verified_bytes=sum(verified[s] for s in symbols),
                            terminal_matches_per_worker_hour=round(r['terminal_matches']/hours, 3) if hours else None))
     units = collections.defaultdict(lambda: dict(functions=0, bytes=0))
     for r in measured['functions']:
@@ -52,7 +63,14 @@ def snapshot(days=7):
             units[r['module']]['functions'] += 1
             units[r['module']]['bytes'] += r['size']
     total = measured['total']
+    hygiene = []
+    for path in sorted((ROOT/'src').rglob('*.c')):
+        hits = [i for i, line in enumerate(path.read_text(errors='replace').splitlines(), 1)
+                if allocator_scaffolding(line)]
+        if hits:
+            hygiene.append(dict(path=str(path.relative_to(ROOT)), lines=hits))
     return dict(timestamp=datetime.datetime.now(datetime.timezone.utc).isoformat(), days=days,
+                historical_allocator_scaffolding=hygiene,
                 authored_code_percent=measured['authored_code_percent'], total=total,
                 per_module=measured['per_module'], remaining_by_module=dict(units), claims=claims,
                 model_yield=sorted(yields,key=lambda x:x['attempts'],reverse=True),

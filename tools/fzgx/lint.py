@@ -33,6 +33,13 @@ def _rel(path: Path) -> str:
         return path.as_posix()
 
 
+def allocator_scaffolding(source: str) -> bool:
+    """Recognize observed diagnostic tricks, not arbitrary legitimate padding."""
+    return any(re.search(r'\blab_pad\s*\[', line.split('//', 1)[0]) or
+               'fzgx: keeps the web at its definition' in line
+               for line in source.splitlines())
+
+
 def lint_file(path: Path) -> List[Tuple[str, int, str]]:
     if _rel(path) in EXEMPT:
         return []

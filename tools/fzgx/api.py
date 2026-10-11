@@ -27,7 +27,7 @@ from . import oracle, tufile, verify
 from .carve import carve
 from .context import build_context
 from .ledger import Ledger
-from .lint import lint_paths
+from .lint import lint_paths, allocator_scaffolding
 from .project import ROOT, STATE_DIR, Project
 
 DEFAULT_TTL = int(os.environ.get('FZGX_CLAIM_TTL', 1800))
@@ -348,6 +348,8 @@ def write_unit(p: Project, symbol: str, agent: str, source: str) -> Dict[str, An
     unit = _unit_source(p, symbol)
     if "asm" in source and ("asm {" in source or "asm(" in source or "asm void" in source):
         return {"ok": False, "error": "inline asm is not allowed"}
+    if allocator_scaffolding(source):
+        return {"ok": False, "error": "allocator-only scaffolding is not admissible natural C"}
     att = l.current_attempt(key)
     stop = _budget_stop(att)
     if stop:
@@ -708,7 +710,10 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
     src = _work_source(p, key, unit_src or "")
     if not unit_src and src is None:
         return {"ok": False, "error": "nothing to submit: no work copy"}
-    findings = lint_paths([src or oracle.unit_source_path(p, unit_src)])
+    candidate_path = src or oracle.unit_source_path(p, unit_src or "")
+    if allocator_scaffolding(candidate_path.read_text()):
+        return {"ok": False, "error": "allocator-only scaffolding is not admissible natural C"}
+    findings = lint_paths([candidate_path])
     if findings:
         return {"ok": False, "error": "lint", "findings": findings}
     if unit_src and (mw_version or extra_cflags) and not _is_shadow(agent):
