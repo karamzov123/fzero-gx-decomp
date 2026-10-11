@@ -43,8 +43,10 @@ investigating on its own terms, not a recurrence.
 
 `extrwi` vs `srawi` is unsigned vs signed extraction: the C is producing the wrong
 field type, so two functions share one root cause. `sth` vs `stw` is a 16-bit vs 32-bit
-store, i.e. a `u16` field typed as `u32`. These are **type-reconstruction** defects, not
-allocator floors — a single correct type change plausibly closes several at once.
+store, i.e. a `u16` field typed as `u32`. `mr r4, r3` vs `extsb r4, r3` means retail does
+not sign-extend, so the source value is already 32-bit. These are **type-reconstruction**
+defects, not allocator floors — a single correct type change plausibly closes several at
+once.
 
 ### The offset class
 
@@ -54,7 +56,52 @@ allocator floors — a single correct type change plausibly closes several at on
     fn_80067DE4  retail addi r3, r31, 0x0   ours addi r3, r31, 0x4
 
 Wrong base register *and* wrong offset means the wrong struct is being indexed, not a
-within-struct offset typo. `fzgx structmap` is the right tool.
+within-struct offset typo. `fzgx structmap` is the right tool. `fn_80067DE4` differs only
+in the immediate on the same base, i.e. an array-vs-scalar or index-vs-pointer
+discrepancy.
+
+## Correction recorded after a seeded batch was actually run
+
+A batch of five of these was dispatched to the free model (space-bunny-free). It did not
+close any of them, and the reason is worth recording because it is a property of the
+class, not of the model:
+
+    fn_8008983C  98.6%   held; the single predicted row (addi r3,r31,0x0 vs mr r3,r31) is the
+                      only defect, confirmed exactly as classified
+    fn_1_135D7C  99.6%   held, but a prologue conflict blocked submission
+    movie:_prolog 99.5% held
+    fn_80043798  19.4%   REGRESSED from 99.7%
+    fn_800446E4  20.9%   REGRESSED from 99.7%
+
+Two consequences:
+
+1. **These one-row cases are not safe free-model targets.** A model asked to "improve the
+   match" on a 99.7% function will rewrite the whole body rather than make the one
+   surgical type change, and a wholesale rewrite destroys the near-miss. The ledger keeps
+   the best attempt so nothing was lost here, but the attempt budget is spent for nothing.
+   Aim one-row near-misses at a high-effort lane, or hand them the exact instruction pair
+   to fix.
+
+2. **Compiler selection dominates the apparent residual, and this is the real lesson.**
+   `fn_80043798` under `GC/1.3.2` has **1** differing row (99.75%). Under the tool's
+   default compiler resolution the same body has **128** differing rows (78.04%), and
+   `fn_8008983C` goes from 1 row (98.57%) to 24 (67.21%). The unit records
+   `mw_version: null`, so nothing in the manifest says which build retail used — the
+   99.7% figures exist only because the audit pinned `GC/1.3.2` explicitly. The residual
+   row is real under that pin, but a worker that lets the tool choose the compiler sees a
+   catastrophically wrong body and will rewrite it. That is very likely what happened to
+   `fn_80043798`/`fn_800446E4`.
+
+   So before aiming any near-miss at a model, pin the compiler that reproduces the
+   near-miss and hand it over, or the model will "fix" a body that was already correct.
+
+   Confirmed in the batch logs: the worker's own checks for `fn_8008983C` ran under
+   `GC/1.2.5` and `GC/2.0`, neither of which is the `GC/1.3.2` build the 99.6% figure
+   depends on. The model was optimising against a body that looked 24 rows wrong.
+
+3. `fn_8008983C` carries `extra_cflags: ['-O4']`, consistent with it compiling under
+   `GC/2.0 -O4`. Per-function compiler assignment matters when classifying: a residual
+   measured under the wrong build is not a residual.
 
 ### The genuine tie-break class (7)
 
