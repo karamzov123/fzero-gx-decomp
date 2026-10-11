@@ -1,5 +1,5 @@
 {
- "generated": 1791747315,
+ "generated": 1791747344,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -99050,7 +99050,7 @@
    "addr": 0,
    "size": 512,
    "status": "unmatched",
-   "attempts": 22,
+   "attempts": 23,
    "best_percent": 99.53125,
    "claimed_by": null,
    "claimed_at": null,
@@ -620172,6 +620172,27 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_1_5E4D8.1791747315.c",
    "stale_checks": 1,
    "best_in_attempt": 20.37,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 23617,
+   "symbol": "movie:_prolog",
+   "agent": "fleet-v2-gpt-1791747321489604113-codex-1",
+   "harness": "codex",
+   "model": "gpt-6-luna",
+   "started": 1791747321,
+   "ended": 1791747343,
+   "checks": 7,
+   "final_percent": 93.71094,
+   "tokens_in": 134897,
+   "tokens_out": 1790,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "plateau: 5 consecutive checks without improvement (best 99.5%)",
+   "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/movie:_prolog.1791747343.c",
+   "stale_checks": 5,
+   "best_in_attempt": 99.53125,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
