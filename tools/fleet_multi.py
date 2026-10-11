@@ -255,7 +255,18 @@ def budget_limits(family, parallel, count):
     return dict(input=unlimited,output=unlimited,batch_input=unlimited,batch_output=unlimited,
                 log_bytes=64*1024*1024*parallel,guard_each=False,usage_wait=unlimited)
 
-def command(family, batch, symbols, parallel):
+def seed_batch_symbols(symbols, records=None):
+    """Separate closed pinned batches before reservations/history are recorded."""
+    records = load(ROOT/'state/fleet/priority-seeds.json', {}) if records is None else records
+    def seeded(symbol):
+        row = records.get(symbol, {})
+        return bool(row.get('source') or (row.get('path') and Path(row['path']).is_file()))
+    return [s for s in symbols if seeded(s) == seeded(symbols[0])] if symbols else []
+
+
+def command(family,batch,symbols,parallel):
+    if seed_batch_symbols(symbols) != symbols:
+        raise ValueError('Mixed pinned and ordinary symbols must be separated before dispatch')
     p = effective(family)
     seeds=ROOT/'state/fleet/priority-seeds.json'
     # A seed manifest is a closed batch input: every assigned symbol must have
@@ -263,6 +274,7 @@ def command(family, batch, symbols, parallel):
     # "seeded batch has no candidate". Priority-only entries without source
     # bodies are task metadata, not compilable seeds.
     use_seeds = False
+    records = {}
     if seeds.exists():
         try:
             records=json.loads(seeds.read_text())
@@ -271,6 +283,9 @@ def command(family, batch, symbols, parallel):
                 and records[s].get('sha256') for s in symbols)
         except (OSError, ValueError):
             use_seeds = False
+    if not use_seeds and any(isinstance(records.get(s), dict) and
+                             (records[s].get('source') or records[s].get('path')) for s in symbols):
+        raise ValueError('Incomplete compiler seed record; refusing unpinned dispatch')
     return [str(ROOT / '.venv/bin/python'), str(ROOT / 'tools/orchestrate.py'),
         *(['--seeds',str(seeds)] if use_seeds else []),
         '--harness',p['harness'],'--model',p['model'],'--effort',p['effort'],
@@ -1737,6 +1752,7 @@ def run():
                 batch_size=max(cfg['parallel']*2, cfg['parallel']*BATCH_WAVES)
                 symbols=choose(rows,seen,context,batch_size,reserved,near_miss,family,
                                protected_modules=protected_modules)
+                symbols=seed_batch_symbols(symbols)
                 if not symbols:
                     carve_capped(rows,near_miss,statuses,family)
                     statuses[family]=dict(status='idle',reason='No fresh eligible target below attempt cap; no blind retries.',active=0);retries[family]=time.time()+30;continue

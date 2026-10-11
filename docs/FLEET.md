@@ -1,6 +1,21 @@
 # New fzgx autonomous fleet
 
-## Current owner override (2026-10-11): Hermes Step 5 Preview Free Ultra
+## Current owner mix (2026-10-11): one Hermes, two Codex
+
+Operator control is now `oc1` enabled at parallel=1 and `gpt` enabled at
+parallel=2; every other lane is disabled. Hermes remains
+`stepfun/step-5-preview:free` through Nous at ultra. Codex is `gpt-6-luna`
+at high, confirmed by actual app-server `thread/started` receipts. Automatic
+surge and silent fallback are off. Existing provider cooldowns remain intact;
+an enabled cooling Hermes lane is not an active model session.
+
+Seeded and ordinary symbols are separated before scheduling history and
+reservations are recorded. Deferred symbols remain eligible. Direct mixed
+commands are rejected instead of silently omitting the measured seed/compiler
+pin. The selector retains its existing bounded main_rel share and one-closure
+allocation, attempt/size caps and whole-unit reservations.
+
+## Historical owner override (2026-10-11): Hermes Step 5 Preview Free Ultra
 
 The four existing `oc1`..`oc4` lane identifiers now pin the `hermes` transport,
 `stepfun/step-5-preview:free` through Nous, and `ultra` reasoning. This replaces
