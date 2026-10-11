@@ -68,7 +68,7 @@ invented or silently ignored.
 
 ## Bounded probes and compiler evidence
 
-25 targeted probes were recorded: 24 compiled, one failed because replacing an
+26 targeted probes were recorded: 25 compiled, one failed because replacing an
 initialized declaration with an assignment put statements before remaining C89
 locals. Moving the assignment after all locals fixed that setup error; it did
 not improve the object. The failed setup is not counted as evidence against
@@ -79,9 +79,12 @@ member indexing/commutation, inline explicit base versus member address,
 proven string pointer types/index extent, and scoped tick/constant lifetimes.
 A byte-width `selected` local adds `clrlslwi` where retail uses `slwi`, so the
 selected frontier retains the promoted integer index after the byte load.
+Deriving the index pointer from the physically adjacent entry table
+(`owner->entries + 0x58`) also preserves the same addressing-form residual;
+that real shared-address dependency does not realize retail's load selection.
 The fresh compatible sources were also checked at GC/1.2.5n, GC/1.2.5, GC/1.3
 and GC/2.0. The 1.2.5 variants regress substantially; 1.3 and 2.0 reproduce the
-same narrowed residuals as GC/1.3.2. None of the 25 probes is exact.
+same narrowed residuals as GC/1.3.2. None of the 26 probes is exact.
 
 The final two sources were prepared through the existing fixup engine with
 zero search rounds, then captured with the pinned stock GC/1.3.2 compiler.
@@ -109,7 +112,7 @@ and the real archived `fn_1_B7CE4` operand-order case. The latter still obtains
 
 `state/repairs/compatible-residual-frontiers-20261011.json.gz` retains both final
 C sources, source/prologue/header/compiler hashes, settings, raw target and
-baseline words, all 25 probe bodies/results, stock allocator captures and
+baseline words, all 26 probe bodies/results, stock allocator captures and
 validation reports. It uses the existing graph archive format:
 
     .venv/bin/python tools/fzgx.py fixup --archive state/repairs/compatible-residual-frontiers-20261011.json.gz
