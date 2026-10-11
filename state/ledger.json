@@ -1,5 +1,5 @@
 {
- "generated": 1791730121,
+ "generated": 1791730161,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -6468,7 +6468,7 @@
    "addr": 30504,
    "size": 844,
    "status": "unmatched",
-   "attempts": 23,
+   "attempts": 24,
    "best_percent": 99.971565,
    "claimed_by": null,
    "claimed_at": null,
@@ -617757,6 +617757,27 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_3_23A1C.1791730121.c",
    "stale_checks": 0,
    "best_in_attempt": 52.44802,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 23502,
+   "symbol": "fn_17_7728",
+   "agent": "fleet-v2-gpt-1791730127788991001-codex-1",
+   "harness": "codex",
+   "model": "gpt-6-luna",
+   "started": 1791730128,
+   "ended": 1791730161,
+   "checks": 3,
+   "final_percent": 99.971565,
+   "tokens_in": 78580,
+   "tokens_out": 2029,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "The best reconstruction still differs only at the initial details-pointer load: MWCC folds the group base (+0x60) and member offset (+0x14) into lwz 0x74(r4), while retail materializes r7 = base+0x60 then loads lwz 0x14(r7); the previously searched declaration and pointer variants do not prevent that fold.",
+   "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_17_7728.1791730161.c",
+   "stale_checks": 2,
+   "best_in_attempt": 99.971565,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
