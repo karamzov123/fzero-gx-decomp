@@ -1,5 +1,5 @@
 {
- "generated": 1791697501,
+ "generated": 1791697880,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -6468,7 +6468,7 @@
    "addr": 30504,
    "size": 844,
    "status": "unmatched",
-   "attempts": 22,
+   "attempts": 23,
    "best_percent": 99.971565,
    "claimed_by": null,
    "claimed_at": null,
@@ -616949,6 +616949,27 @@
    "model": null,
    "started": 1791697447,
    "ended": 1791697500,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "harness crash (rc=1); saved best candidate automatically",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 23464,
+   "symbol": "fn_17_7728",
+   "agent": "fleet-v2-oc3-1791697855662604695-opencode-1",
+   "harness": "opencode",
+   "model": null,
+   "started": 1791697855,
+   "ended": 1791697880,
    "checks": 0,
    "final_percent": null,
    "tokens_in": 0,
