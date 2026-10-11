@@ -71,3 +71,20 @@ assembly, raw/draft C, context and diagnostic verdict with six checked hashes.
 It records candidate_admissible=false and zero delivered bytes. The standing
 matcher slots were left active while investigating this independent tooling
 path; no new models or higher attempt budgets were introduced.
+
+## Completed cohort readback: reject score-only allocator tricks
+
+The four admitted targets finished and released with no exact match. The car_test
+fn_1_7D6B8 attempt reported raw 99.957924%; independent GC/1.3.2 replay gives
+adjusted 99.3% and five aligned register rows, not a one-row match. Its shared
+prologue is unchanged and allocator replay is clean, but source inspection finds
+unused lab_pad storage and a void liveness expression added solely to influence
+allocation. This violates the natural-C source rule despite its numerical score.
+
+The draft is rejected, not a new accepted or admissible frontier. Its provisional
+priority update was retracted; the previous source and its consumed admission
+receipt remain intact, and no new claim was made on this rejected body. The other
+three cohort targets did not improve their best bodies. Evidence is explicitly
+candidate_admissible=false in
+state/repairs/car-test-cohort-rejected-frontier-20261011.json.gz. A source/pin/hash
+check and capture replay are necessary, but do not replace source-hygiene review.
