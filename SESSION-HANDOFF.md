@@ -190,26 +190,43 @@ All recorded in `docs/findings/315-fn_1_7D6B8-regalloc-and-scaffolding-admissibi
 
 ## Ledger
 
-matched=**5763** (was 5762 at session start), unmatched=1541, blocked=4.
+matched=**5764** (was 5762 at session start), unmatched=1539, blocked=4, 0 claims.
 
-### The one new match: fn_80009830 (commit `f525f374`)
+### Landing work produced inside a subagent worktree
 
-632 B, `src/dol/fn_80009830.c`, matches retail at 100.0%. It is a segregated
-free-list allocator: saves the five active pool globals to a scratch array, swaps
-in the pool selected by `lbl_801A6730`, walks a size-ordered list for the first
-node covering the request, coalesces the tail when slack < 0x40 or splits it
-(re-linking both directions), pushes the node onto a second list, and restores the
-saved pool on every exit path.
+A subagent's exact match lives in its own worktree ledger and never reaches main
+automatically. To land one:
 
-**It only became reachable because of the compiler pin.** Carved with
-`mw_version: null` it compiled at the `main` default GC/1.2.5n and scored 51.2%.
-Pinning GC/1.3.2 (`b501ae83`) took the same body to 99.2%; a delegated worker then
-closed the small residual. The matching body was produced inside a subagent
-worktree — to land work done in a worktree, copy the body out of
-`.worktrees/<agent>/.fzgx/attempts/<sym>.best.c`, `claim` in main, `write-unit`,
-confirm 100.0% MATCH, `submit`, then run the gate and commit.
+1. Extract the body from the worktree's `src/...` at the subagent's commit, or copy
+   `.worktrees/<agent>/.fzgx/attempts/<sym>.*.c`.
+2. **Re-verify in main** — `claim --max-attempts 50`, `write-unit`, and read the `check`
+   output for `100.0% MATCH` before believing anything. Subagent reports are not
+   evidence: one reported a match main measured at 99.8% / 3 rows, and another set
+   `"status": "matching"` in its worktree's `units.json` with no exact match at all.
+3. `submit`, then the full gate: `ninja build/GFZE01/ok`, `sha1sum -c
+   config/GFZE01/build.sha1` (16 files OK), `lint` (0 findings),
+   `.venv/bin/python -m unittest discover -s tests` (11 tests).
+4. Commit **only your files** — a background `pin_scan.py` or fleet worker writes
+   `units.json`, `src/rel/movie/*` and `src/dol/*` concurrently, so `git add` the
+   specific paths and never `git add -A`.
 
-**This is the template for the remaining 18 pinned units**: the pin moved several of
-them into the 99.x% range, and those are now genuinely close rather than stalled.
-`fn_80050BD4` (99.6%) was still being worked when this was written — check its
-ledger row before starting it.
+Note `git checkout config/GFZE01/units.json` (e.g. to undo a stray pin) also reverts
+your own `status: matching` line; the ledger DB keeps the match, so re-mark that one
+field afterwards. `fn_10_22760` needed exactly that.
+
+### Matches landed this session
+
+**`fn_80009830`** (632 B, `src/dol/fn_80009830.c`, commit `f525f374`) — a segregated
+free-list allocator: saves the five active pool globals to a scratch array, swaps in
+the pool selected by `lbl_801A6730`, walks a size-ordered list for the first node
+covering the request, coalesces the tail when slack < 0x40 or splits it (re-linking
+both directions), pushes the node onto a second list, and restores the saved pool on
+every exit path. It only became reachable because of the compiler pin: carved with
+`mw_version: null` it compiled at the `main` default GC/1.2.5n and scored 51.2%;
+pinning GC/1.3.2 (`b501ae83`) took the same body to 99.2%.
+
+**`fn_10_22760`** (`src/rel/sel/sel.c`, commit `5c3d4d59`) — the call to
+`fn_1_12EF24` was missing its second argument. Retail keeps `current` live in `r4` and
+all three residuals pointed at that value being in the wrong register
+(`lha r4,8(r1)|r3`, `extsh. r0,r4|r3`, `cmpwi r4,5|r3`); passing `current` closed all
+three at once. No compiler pin needed — `sel`'s default is already GC/1.3.2.
