@@ -29378,6 +29378,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_112F40.c",
+    "symbols": [
+      "fn_1_112F40"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_1154D0.c",
     "symbols": [
       "fn_1_1154D0"
