@@ -93,6 +93,31 @@ A single large session (`fn_10_1A458`) held 2.9G: 1.7G in `sources/`, 1.1G in `o
 
 Check `df -h /` and `df -i /` before starting any long run.
 
+### `~/.cache/fzgx-agents` is NOT covered by the GC — 7.5G, cleaned by hand
+
+The GC only touches `.fzgx/fixup`. A second 7.5G lived in
+`~/.cache/fzgx-agents`, invisible to it:
+
+    hermes-runtime        4.9G   per-run agent session dirs
+    clients               1.2G   2252 client dirs (2146 older than 3 days)
+    publish-checkouts     922M   git checkouts per published commit
+    hermes-uv-cache       317M
+    cline-sdk             267M
+
+Reclaimed 4.0G on 2026-10-12 by removing:
+
+- 6 stale `hermes-runtime/step5-*-20261008-hermes-1` session dirs (~3.1G).
+  **Do NOT delete `hermes-runtime/active` or any `tmp*` dir** — `tmpw82qe8bd` was
+  still referenced by a live process (`ps -eo cmd | grep hermes-runtime`). Check
+  that first, every time.
+- 2 `publish-checkouts/` dirs (~922M). Safe only because both commits
+  (`1f727de8`, `f548029e`) are already in main history — verify with
+  `git merge-base --is-ancestor <sha> HEAD` before deleting any of these.
+
+`clients/` (1.2G across 2252 dirs) was left alone: it is small and its ownership
+is not obvious. If space gets tight again, that is the next candidate, but sample
+it first.
+
 ## Functions closed out this session (do not redo)
 
 All recorded in `docs/findings/315-fn_1_7D6B8-regalloc-and-scaffolding-admissibility.md`.
