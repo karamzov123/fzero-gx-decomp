@@ -7521,9 +7521,6 @@ rel/main_rel/bg_cas/fn_1_FDEC8.c:
 rel/main_rel/archive/fn_1_12C110.c:
 	.text       start:0x0012C110 end:0x0012C47C align:4
 
-rel/main_rel/screen_effect/fn_1_76504.c:
-	.text       start:0x00076504 end:0x00076650 align:4
-
 rel/main_rel/car/fn_1_8E244.c:
 	.text       start:0x0008E244 end:0x0008E3A4 align:4
 
@@ -7667,3 +7664,6 @@ rel/main_rel/prog/fn_1_A7024.c:
 
 rel/main_rel/sound/fn_1_A3BD8.c:
 	.text       start:0x000A3BD8 end:0x000A3C78 align:4
+
+rel/main_rel/screen_effect/fn_1_76504.c:
+	.text       start:0x00076504 end:0x00076650 align:4

@@ -52258,10 +52258,10 @@
     "symbols": [
       "fn_1_76504"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/screen_effect.c"
+    "asm": true
   },
   {
     "module": "main_rel",
