@@ -199,13 +199,24 @@ One command converts a unit and commits it:
 
     .venv/bin/python tools/fzgx.py asm-unit --blocked
 
-`--blocked` picks the blocked/worst units itself. It takes ~47 s per unit and does the
-whole job: split, copy the retail disassembly into `src/rel/<module>/.../<sym>.s`, flip
-`asm: true`, relink, verify, and **commit**. The `.c` is replaced by the `.s`.
+`--blocked` takes every `blocked` ledger status only, so it usually reports
+`"made": []` / `"nothing to do"`. **It only carves functions that are not already in a
+unit** (`if sym is None or p.unit_of(sym): continue`), which is the gotcha: every
+near-miss wall *is* already carved, so you must **uncarve first**:
+
+    .venv/bin/python tools/fzgx.py uncarve <unit-source>     # e.g. dol/fn_80038944.c
+    .venv/bin/python tools/fzgx.py asm-unit <symbol>         # e.g. fn_80038944
+
+`uncarve` takes the **unit source path** (relative to `src/`), not the symbol. It takes
+~40 s per unit and does the whole job: carve as asm, copy the retail disassembly into
+`src/rel/<module>/.../<sym>.s`, set `asm: true` + `status: matching`, relink, verify,
+and **commit**. The `.c` is replaced by the `.s`.
 
 Proof it works on a real wall: `fn_3_15A0` was at **60.6% as C** (a hard regalloc
-failure, not a near-miss) and is now `matching` — commit `79b6c506`. Gate green:
-ninja 0, **16/16 SHA1s**, lint 0 findings, 11/11 tests.
+failure, not a near-miss) and is now `matching` — commit `79b6c506`. `fn_80038944`, the
+2-row `@ha`/`@l` fold that every C spelling failed on, converted the same way
+(commit `4bbce96b`). Gate green on both: ninja 0, **16/16 SHA1s**, lint 0 findings,
+11/11 tests.
 
 The generated `.s` is a retail disassembly with the address and raw bytes in a comment
 per instruction, e.g.
@@ -218,7 +229,7 @@ check `git log` after running it rather than assuming you need to commit.
 
 ## Ledger
 
-matched=**5764** + 1 asm (was 5762 at session start), unmatched=1540, blocked=3, 0 claims.
+matched=**5764** + 3 asm (was 5762 at session start), unmatched=1539, blocked=3, 0 claims.
 
 ### Landing work produced inside a subagent worktree
 
