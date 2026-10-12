@@ -18107,9 +18107,10 @@
     "symbols": [
       "fn_80038944"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
-    "extra_cflags": []
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main",

@@ -5931,9 +5931,6 @@ dol/fn_80067DE4.c:
 dol/fn_80078DA8.c:
 	.text       start:0x80078DA8 end:0x80078F0C align:4
 
-dol/fn_80038944.c:
-	.text       start:0x80038944 end:0x80038A18 align:4
-
 dol/fn_8006C7E8.c:
 	.text       start:0x8006C7E8 end:0x8006C92C align:4
 
@@ -5999,3 +5996,6 @@ dol/fn_8005DCEC.c:
 
 dol/fn_80060C54.c:
 	.text       start:0x80060C54 end:0x800622B0 align:4
+
+dol/fn_80038944.c:
+	.text       start:0x80038944 end:0x80038A18 align:4
