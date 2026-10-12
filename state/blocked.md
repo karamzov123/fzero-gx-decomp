@@ -15,6 +15,16 @@ continue structural/value-flow work from the typed archived source, not an old
 raw-score near-miss. Archive: state/repairs/15C6C0-storage-and-compile-path-20261011.json.gz.
 No exact C match or authored-byte credit is claimed.
 
+Continuation pass (same date): the unit record was registered but the shared-TU
+block had never been spliced into rel/main_rel/bg_win.c, so the generated unit
+source was still the `not matched yet` placeholder and every check reported
+`missing in our object`. The block is now spliced and the `-fp_contract off`
+compiler pin applied. Fresh evidence: 96.2% raw, 84.0% adjusted, 236 differing
+rows (regalloc 172, ins 31, frame 17, op 13, imm 3) — a marginal improvement
+over the 238-row baseline, so contraction is not the residual repair. The splice
+relinks with all sixteen executable hashes intact, lint reports zero findings,
+and the eleven tests pass.
+
 Triage stays local. Candidates and compiler settings are preserved in
 `state/repairs/large_near_frontier_20260914.json.gz`. The measured differences
 below do not imply that declaration order alone can repair a function.
