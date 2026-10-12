@@ -42,9 +42,7 @@ extern void fn_80073D60(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
 
 void fn_1_103B00(Fn_1_103B00_State *arg0) {
     f32 values[6];
-    /* fzgx-allow: retail keeps this save area addressable across the inlined float
-     * conversions; the volatile stops MWCC folding the stores into registers. */
-    volatile u32 saved[11];
+    volatile u32 saved[11];  /* fzgx-allow: S2 retail keeps this save area addressable across the inlined float conversions; the volatile stops MWCC folding the stores into registers */
     union {
         f64 value;
         u32 words[2];
