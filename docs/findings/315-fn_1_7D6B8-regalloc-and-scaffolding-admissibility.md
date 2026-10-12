@@ -163,3 +163,50 @@ parameter copies (`mr r30, r4` etc.), and removing it forced `addi rN, rM, 0x0`
 copies of all four arguments. Restored to the 56-row / 63.2% baseline.
 
 No match; no executable-byte change.
+
+---
+
+# fn_800288C4: a 2-row residual where the real lever is division *order*, not registers
+
+`fn_800288C4` (main, 252 B, 63 instructions) is the top *fresh* near-miss at
+99.841%. Its residual is two rows:
+
+    0080  subf r5, r7, r3   |   subf r0, r7, r3
+    0084  slwi r0, r5, 2    |   slwi r0, r0, 2
+
+Read naively that is a survivor-order swap: keep `arg0 - d*100` in its own
+register instead of folding it into the index. Holding it in a fresh local
+(`r = arg0 - d * 100`) **regresses to 86.6%**, and so does every declaration
+position tried — which is the tell that the register choice is not the free
+variable here.
+
+The free variable is the order the two magic-number divisions are emitted. Retail
+does `/1200` first, then `/100`:
+
+    0010  lis r5, 0x1b4f ; subi r0, r5, 0x7e4b   ; /1200 magic 0x1b4e81b5, shift 7
+    001C  mulhw r0, r0, r3 ; srawi r8, r0, 7     ; q
+    0028  mulli r0, r0, 0x4b0                    ; q * 1200
+    0030  lis r5, 0x51ec ; subi r5, r5, 0x7ae1   ; /100 magic 0x51eb851f, shift 5
+    003C  mulhw r0, r5, r0 ; srawi r6, r0, 5     ; m
+    0044  mulhw r0, r5, r3 ; srawi r0, r0, 5     ; d
+
+The stored body writes `d = arg0 / 100` before `q = arg0 / 1200`, so MWCC emits
+the `/100` magic first and the whole schedule shifts. Both magics are correct for
+their divisors (verified: `0x1b4e81b5` is the shift-7 magic for 1200 and
+`0x51eb851f` the shift-5 magic for 100), so this is purely evaluation order.
+
+Measured (each a full compile + diff):
+
+- baseline, `d` before `q`, remainder assigned back to `arg0` — **99.8%, 2 rows**
+- `r = arg0 - d*100` in a fresh local, order unchanged — **86.6%, 17 rows**
+- `/1200` first, `m = (arg0 - q*1200)/100`, `r` separate — **90.9%, 17 rows**
+  (best of the reorderings; closes the constant-order rows but retail's doubled
+  `srawi r8,r0,7` / `srawi r0,r0,7` then appears as a missing instruction)
+- `m = (arg0 % 1200) / 100` instead — **86.6%** (the `%` re-emits `/100` first)
+- v4 order plus a duplicated `/1200` in the index expression — **84.3%, 23 rows**
+
+The attempt stopped on the harness's own plateau guard (5 consecutive
+non-improving checks) at 99.8%. The productive next step is to reproduce retail's
+*paired* `srawi` on the v4 ordering — retail computes each quotient twice as
+independent expressions rather than reusing a local — without disturbing the
+`/1200`-first order that v4 established.

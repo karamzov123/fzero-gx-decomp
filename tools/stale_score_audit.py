@@ -105,7 +105,9 @@ def main() -> int:
     print(f"\nNO UNIT ENTRY ({len(nounit)}):")
     for sym, pct, att, size, status in nounit:
         print(f"  {pct:8.4f} {att:3d}a {size:6d}B  {sym:18s} status={status}")
-    print(f"\nfresh (unit predates best attempt): {len(fresh)}")
+    print(f"\nFRESH - unit predates the best attempt ({len(fresh)}); the productive set:")
+    for sym, pct, att, size, src in fresh:
+        print(f"  {pct:8.4f} {att:3d}a {size:6d}B  {sym:18s} {src}")
     return 0
 
 
