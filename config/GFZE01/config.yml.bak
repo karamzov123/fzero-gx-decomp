@@ -1,0 +1,100 @@
+# F-Zero GX (NTSC-U, GFZE01)
+# Reference: docs/dtk/config.example.yml (from dtk-template) for every option.
+object_base: orig/GFZE01
+object: sys/main.dol
+ldscript_template: config/GFZE01/ldscript.tpl
+hash: 421c88106697d3275a3fc26fb7a01bf6d816b271
+symbols: config/GFZE01/symbols.txt
+splits: config/GFZE01/splits.txt
+# 8 = CodeWarrior for GameCube 1.0+; revisit after M1 determines the exact compiler.
+mw_comment_version: 8
+quick_analysis: false
+detect_objects: true
+detect_strings: true
+write_asm: true
+
+# Function-boundary analysis stalls on a jump-table region here
+# ("Overlapping functions 1:0x8006D1C4-1:0x8006D21C"). See docs/batches/m0.md.
+skip_cfa_ranges:
+- start: .text:0x8006D000
+  end: .text:0x8006E200
+
+# Every REL shipped on the disc plus main.rel, which prepare_orig.py derives
+# from files/enemy_line/line__.bin (decrypt + LZ-decompress). Module ids are
+# globally unique (1..18), so every module links against every other.
+modules:
+- object: files/enemy_line/main.rel
+  hash: df989873851d161218ae283f71ed89ce0a979955
+  name: main_rel
+  symbols: config/GFZE01/main_rel/symbols.txt
+  splits: config/GFZE01/main_rel/splits.txt
+- object: files/fze.sample.rel
+  hash: 7679d58798cbd0e47563a6a307410623979efc97
+  name: sample
+  symbols: config/GFZE01/sample/symbols.txt
+  splits: config/GFZE01/sample/splits.txt
+- object: files/fze.movie_module.rel
+  hash: a53cb77efd099d4ef69298fcc26803276761eb15
+  name: movie_module
+  symbols: config/GFZE01/movie_module/symbols.txt
+  splits: config/GFZE01/movie_module/splits.txt
+- object: files/fze.customize.rel
+  hash: 9b2fc71d705edeaf8b286be6f8464549feaa7d3f
+  name: customize
+  symbols: config/GFZE01/customize/symbols.txt
+  splits: config/GFZE01/customize/splits.txt
+- object: files/fze.sel.rel
+  hash: d84a92c050ba24d53bcd734de026f8c91ba403bf
+  name: sel
+  symbols: config/GFZE01/sel/symbols.txt
+  splits: config/GFZE01/sel/splits.txt
+- object: files/fze.title.rel
+  hash: 9274da1ae0da40824980d09a04bb11c40d1fc8e9
+  name: title
+  symbols: config/GFZE01/title/symbols.txt
+  splits: config/GFZE01/title/splits.txt
+- object: files/fze.pilotpoint.rel
+  hash: b40fd82167a132e4039b7a468a710ee01ed503a3
+  name: pilotpoint
+  symbols: config/GFZE01/pilotpoint/symbols.txt
+  splits: config/GFZE01/pilotpoint/splits.txt
+- object: files/fze.option.rel
+  hash: 1860a90cf7a4019a0ac698363357d20b5c41f71f
+  name: option
+  symbols: config/GFZE01/option/symbols.txt
+  splits: config/GFZE01/option/splits.txt
+- object: files/fze.interview.rel
+  hash: 8d2e8374d08bfe66bc47d7535037465619abe236
+  name: interview
+  symbols: config/GFZE01/interview/symbols.txt
+  splits: config/GFZE01/interview/splits.txt
+- object: files/fze.profile.rel
+  hash: 3477c1c3a491545aaeb38647746c6eef9bac3f1e
+  name: profile
+  symbols: config/GFZE01/profile/symbols.txt
+  splits: config/GFZE01/profile/splits.txt
+- object: files/fze.story.rel
+  hash: 104f6716b5cd553000700413cff00cc3fa591baa
+  name: story
+  symbols: config/GFZE01/story/symbols.txt
+  splits: config/GFZE01/story/splits.txt
+- object: files/fze.winning.rel
+  hash: 4a6a459cdf9352cad49848fef51e07af99721eaf
+  name: winning
+  symbols: config/GFZE01/winning/symbols.txt
+  splits: config/GFZE01/winning/splits.txt
+- object: files/fze.movie.rel
+  hash: 08a6cc86ee53b1957f506c9cc718f5cc364ed9bf
+  name: movie
+  symbols: config/GFZE01/movie/symbols.txt
+  splits: config/GFZE01/movie/splits.txt
+- object: files/fze.car_colchg.rel
+  hash: f85e2fbc41920dea9c5aa4521bd0f8ff24ef64f2
+  name: car_colchg
+  symbols: config/GFZE01/car_colchg/symbols.txt
+  splits: config/GFZE01/car_colchg/splits.txt
+- object: files/fze.replay.rel
+  hash: bb27fa5ce6eec4982fdb83f95e8bd3f493b1a46d
+  name: replay
+  symbols: config/GFZE01/replay/symbols.txt
+  splits: config/GFZE01/replay/splits.txt

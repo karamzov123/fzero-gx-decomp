@@ -2024,3 +2024,27 @@ rel/movie_module/fn_12_2B358.c:
 
 rel/movie_module/fn_12_27224.c:
 	.text       start:0x00027224 end:0x00027478 align:4
+
+rel/movie_module/fn_12_323B0.c:
+	.text       start:0x000323B0 end:0x0003245C align:4
+
+rel/movie_module/fn_12_321E8.c:
+	.text       start:0x000321E8 end:0x00032280 align:4
+
+rel/movie_module/fn_12_32280.c:
+	.text       start:0x00032280 end:0x00032318 align:4
+
+rel/movie_module/fn_12_32318.c:
+	.text       start:0x00032318 end:0x000323B0 align:4
+
+rel/movie_module/fn_12_3267C.c:
+	.text       start:0x0003267C end:0x00032714 align:4
+
+rel/movie_module/fn_12_32834.c:
+	.text       start:0x00032834 end:0x000328CC align:4
+
+rel/movie_module/fn_12_31860.c:
+	.text       start:0x00031860 end:0x000319EC align:4
+
+rel/movie_module/fn_12_21C8.c:
+	.text       start:0x000021C8 end:0x00002F04 align:4

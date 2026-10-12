@@ -1,0 +1,17 @@
+{
+ "__char_strings__": [
+  "objput"
+ ],
+ "camera_state": {
+  "self": "CameraState"
+ },
+ "game_camera_entries": {
+  "target": "GameCameraEntry"
+ },
+ "lbl_1_bss_10D8": {
+  "self": "CameraParameters"
+ },
+ "live_camera": {
+  "target": "LiveCamera"
+ }
+}

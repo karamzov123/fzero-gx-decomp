@@ -656,3 +656,18 @@ rel/sel/sel/fn_10_C6A4.c:
 
 rel/sel/sel/fn_10_7130.c:
 	.text       start:0x00007130 end:0x00007320 align:4
+
+rel/sel/sel/fn_10_3B44.c:
+	.text       start:0x00003B44 end:0x00003C14 align:4
+
+rel/sel/sel/fn_10_1615C.c:
+	.text       start:0x0001615C end:0x000175F0 align:4
+
+rel/sel/sel/fn_10_1D314.c:
+	.text       start:0x0001D314 end:0x0001E398 align:4
+
+rel/sel/sel/fn_10_200D8.c:
+	.text       start:0x000200D8 end:0x000210F0 align:4
+
+rel/sel/sel/fn_10_13ECC.c:
+	.text       start:0x00013ECC end:0x00014C84 align:4

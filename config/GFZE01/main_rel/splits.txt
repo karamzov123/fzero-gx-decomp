@@ -7631,3 +7631,39 @@ rel/main_rel/sound/fn_1_A3BD8.c:
 
 rel/main_rel/bg_win/fn_1_15C6C0.c:
 	.text       start:0x0015C6C0 end:0x0015DD7C align:4
+
+rel/main_rel/memcard/fn_1_BC310.c:
+	.text       start:0x000BC310 end:0x000BE978 align:4
+
+rel/main_rel/memcard/fn_1_C4ABC.c:
+	.text       start:0x000C4ABC end:0x000C6ED4 align:4
+
+rel/main_rel/accessory/fn_1_10E3B4.c:
+	.text       start:0x0010E3B4 end:0x00110008 align:4
+
+rel/main_rel/accessory/fn_1_120804.c:
+	.text       start:0x00120804 end:0x00122348 align:4
+
+rel/main_rel/memcard/fn_1_BA144.c:
+	.text       start:0x000BA144 end:0x000BB974 align:4
+
+rel/main_rel/font/fn_1_53B14.c:
+	.text       start:0x00053B14 end:0x00053BD8 align:4
+
+rel/main_rel/stcoli/fn_1_2A214.c:
+	.text       start:0x0002A214 end:0x0002A2A4 align:4
+
+rel/main_rel/font/fn_1_53BD8.c:
+	.text       start:0x00053BD8 end:0x00053C9C align:4
+
+rel/main_rel/car/fn_1_8CA70.c:
+	.text       start:0x0008CA70 end:0x0008CAF4 align:4
+
+rel/main_rel/car/fn_1_8CAF4.c:
+	.text       start:0x0008CAF4 end:0x0008CB78 align:4
+
+rel/main_rel/replay/fn_1_F326C.c:
+	.text       start:0x000F326C end:0x000F3574 align:4
+
+rel/main_rel/game/fn_1_39420.c:
+	.text       start:0x00039420 end:0x000395CC align:4
