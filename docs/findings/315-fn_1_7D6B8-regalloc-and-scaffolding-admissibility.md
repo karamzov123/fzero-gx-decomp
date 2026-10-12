@@ -642,3 +642,39 @@ struct-wrapped locals' declarations left it unchanged; search covered 7,717
 candidates. `fn_1_4247C`'s 4 rows are the mirror image: retail stores through
 `r8` (`add r8,r0,r8`) where we use a fresh `r4`, and switching the store's base to
 the loop's pointer local instead scored 89.8% / 94 rows.
+
+## The compiler-pin vein is now exhausted — measured, not assumed
+
+The 20 pins came from hand-sweeping units that were compiled under the *wrong*
+version. `tools/pin_scan.py` automates exactly that sweep, so it was run over the
+whole ≥99% unmatched band. It found **nothing further**, and the reason is now
+measured for every module touched:
+
+| module | `version_candidates()` default | worst non-default measured |
+|---|---|---|
+| `main_rel` | GC/1.3.2 | GC/1.2.5n → 51.5-76.9% |
+| `winning` | GC/1.3.2 | GC/1.2.5n → 66.7% |
+| `title` | GC/1.3.2 | GC/1.2.5n → 71.7% |
+| `sel` | GC/1.3.2 | GC/1.2.5n → 82.0% |
+
+Every module's default is already **GC/1.3.2**. So `mw_version: null` is correct
+for every remaining unpinned unit, and `pin_scan.py` re-pinning `fn_1_16BA0`,
+`fn_15_5460` and `fn_8_FC5C` to `GC/1.3.2` was a no-op dressed as a fix — those
+units measured identically (`null` == `GC/1.3.2`) and all three pins were reverted.
+Its own log said `gain=+0.0` for every unit it examined.
+
+**Do not re-run this sweep expecting wins.** The vein is empty because the 20
+corrections already covered every unit that had been carved under a *non-default*
+compiler, and those were the only ones where `null` was wrong.
+
+One real hazard found: `pin_scan.py` writes `config/GFZE01/units.json`
+incrementally and holds a lease on whatever unit it is measuring. Killing it
+mid-scan leaves both a modified `units.json` **and** a stale lease that only
+`release --agent pin-scan` clears (`--agent hermes-manual` is refused with
+`claimed by pin-scan`). If it must be interrupted, restore
+`git checkout config/GFZE01/units.json` and clear the lease before claiming
+anything else.
+
+Also note `fn_800288C4` hit the 50-attempt cap, so it needs
+`claim --max-attempts 50` triage rather than the normal flow — its saved body is
+admissible and it sits at the module default, so the cap is the only blocker.
