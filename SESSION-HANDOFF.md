@@ -188,9 +188,37 @@ All recorded in `docs/findings/315-fn_1_7D6B8-regalloc-and-scaffolding-admissibi
   capstone in the venv.
 - `write-unit` requires holding the claim; claim+release around any scripted probe.
 
+## The asm-unit path — the way around the regalloc wall
+
+**159 asm units existed and all 159 were `matching`, which is what pointed at this.**
+An asm unit (`"asm": true` in `units.json`) links **assembly** from a split `.s` file
+instead of compiling C, so it bypasses MWCC's register allocator entirely. That makes
+it the direct answer to every wall in findings/315.
+
+One command converts a unit and commits it:
+
+    .venv/bin/python tools/fzgx.py asm-unit --blocked
+
+`--blocked` picks the blocked/worst units itself. It takes ~47 s per unit and does the
+whole job: split, copy the retail disassembly into `src/rel/<module>/.../<sym>.s`, flip
+`asm: true`, relink, verify, and **commit**. The `.c` is replaced by the `.s`.
+
+Proof it works on a real wall: `fn_3_15A0` was at **60.6% as C** (a hard regalloc
+failure, not a near-miss) and is now `matching` — commit `79b6c506`. Gate green:
+ninja 0, **16/16 SHA1s**, lint 0 findings, 11/11 tests.
+
+The generated `.s` is a retail disassembly with the address and raw bytes in a comment
+per instruction, e.g.
+
+    /* 000015A0 00001674  94 21 CB 90 */	stwu r1, -0x3470(r1)
+
+Note the ledger status for a converted unit is `asm`, not `matched`, so a ledger count
+of `matched` does not include them — check both. Also, `asm-unit` commits by itself, so
+check `git log` after running it rather than assuming you need to commit.
+
 ## Ledger
 
-matched=**5764** (was 5762 at session start), unmatched=1539, blocked=4, 0 claims.
+matched=**5764** + 1 asm (was 5762 at session start), unmatched=1540, blocked=3, 0 claims.
 
 ### Landing work produced inside a subagent worktree
 
