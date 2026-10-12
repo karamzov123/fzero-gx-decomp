@@ -1789,6 +1789,17 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/emblem/fn_3_149AC.c",
+    "symbols": [
+      "fn_3_149AC"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/emblem.c"
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/emblem/fn_3_15240.c",
     "symbols": [
       "fn_3_15240"
@@ -11998,6 +12009,16 @@
       "-use_lmw_stmw",
       "off"
     ]
+  },
+  {
+    "module": "main",
+    "source": "dol/__cvt_dbl_usll.c",
+    "symbols": [
+      "__cvt_dbl_usll"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": []
   },
   {
     "module": "main",
@@ -22818,6 +22839,16 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8005C7C0.c",
+    "symbols": [
+      "fn_8005C7C0"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8005DB68.c",
     "symbols": [
       "fn_8005DB68"
@@ -32017,6 +32048,17 @@
       "fn_1_103AD4"
     ],
     "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_common.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/bg_common/fn_1_103B00.c",
+    "symbols": [
+      "fn_1_103B00"
+    ],
+    "status": "nonmatching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/bg_common.c"
@@ -63948,6 +63990,16 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_3DCF0.c",
+    "symbols": [
+      "fn_12_3DCF0"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_3E394.c",
     "symbols": [
       "fn_12_3E394"
@@ -71411,6 +71463,17 @@
     "source": "rel/title/title/fn_8_55CC.c",
     "symbols": [
       "fn_8_55CC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/title/title.c"
+  },
+  {
+    "module": "title",
+    "source": "rel/title/title/fn_8_5608.c",
+    "symbols": [
+      "fn_8_5608"
     ],
     "status": "matching",
     "mw_version": null,
