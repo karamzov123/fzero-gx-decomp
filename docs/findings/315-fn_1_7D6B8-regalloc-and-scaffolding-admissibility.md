@@ -145,6 +145,13 @@ the attempt's `ended` column answer it in one command. A symbol whose unit was
 carved *after* its best attempt is carrying a stale score, and the real current
 ceiling may be far lower (here: 99.873% -> 63.2%, a 36-point drop).
 
+Swept all 124 unmatched >=99.0% symbols this way: **102 are stale** (unit 1-29
+days newer than the attempt that produced the score), 5 have no unit entry, and
+only **17 are genuinely fresh**. So the near-miss shelf is largely a measurement
+artifact of the carve rather than a wall of regalloc-blocked bodies.
+`tools/stale_score_audit.py` automates the check (read-only). When selecting a
+producing attempt for that comparison, match on `final_percent`, never
+`max(ended)` — a later attempt postdates the registration and hides staleness.
 Also worth noting: `search` refuses outright below 80% ("needs a body at 80% or
 better"), so a carved unit whose stored best predates the carve cannot even be
 searched until it is rebuilt from scratch.
