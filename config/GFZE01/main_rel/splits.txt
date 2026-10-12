@@ -7509,9 +7509,6 @@ rel/main_rel/sound/fn_1_A1DCC.c:
 rel/main_rel/spline/fn_1_F9244.c:
 	.text       start:0x000F9244 end:0x000F946C align:4
 
-rel/main_rel/bg_cas/fn_1_FDEC8.c:
-	.text       start:0x000FDEC8 end:0x000FDFF4 align:4
-
 rel/main_rel/archive/fn_1_12C110.c:
 	.text       start:0x0012C110 end:0x0012C47C align:4
 
@@ -7667,3 +7664,6 @@ rel/main_rel/game/fn_1_4068C.c:
 
 rel/main_rel/sel_static_disp/fn_1_149E2C.c:
 	.text       start:0x00149E2C end:0x00149F04 align:4
+
+rel/main_rel/bg_cas/fn_1_FDEC8.c:
+	.text       start:0x000FDEC8 end:0x000FDFF4 align:4

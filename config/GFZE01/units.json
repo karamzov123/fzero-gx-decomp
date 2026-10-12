@@ -31822,10 +31822,10 @@
     "symbols": [
       "fn_1_FDEC8"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/bg_cas.c"
+    "asm": true
   },
   {
     "module": "main_rel",
