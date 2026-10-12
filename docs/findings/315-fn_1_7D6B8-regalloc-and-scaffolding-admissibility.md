@@ -489,3 +489,40 @@ is **not exhausted**: release and `claim --max-attempts 50` to continue. The lev
 is declaration order of the locals that map to r22/r23 — the induction pointer must
 be declared before the value derived from it, which is the same
 declaration-order-feeds-allocation rule that closed the other residuals here.
+
+## fn_80050BD4 follow-up: the register assignment is pinned by the prologue
+
+Continued after the subagent's report. Its variants and mine agree, and the reason
+is now visible in the retail prologue:
+
+    80050BE4: mr r26, r5      ; arg2
+    80050BE8: mr r27, r6      ; arg3
+    80050BF4: mr r23, r26     ; first pass: r23 = p2  (induction, +4)
+    80050BF8: mr r22, r27     ; first pass: r22 = p3  (inner,    +0x80)
+    ...
+    80050D34: mr r22, r26     ; third pass: r22 = p2  <-- roles SWAPPED
+    80050D38: mr r23, r27     ; third pass: r23 = p3
+    80050D3C: mr r24, r21     ; third pass: r24 = p4
+
+So retail materialises the pointers **twice**, with the register roles exchanged
+between the first and third pass. Our single `p2`/`p3` pair cannot express that,
+and the first pass already lands on r21/r24 instead of r23/r22.
+
+Measured (all on the verified 14-row baseline):
+
+- third pass walking its own `q2`/`q3` — **98.6%, 18 rows** (worse)
+- `p3` declared before `p2` to flip the first pass — **99.5%, 17 rows** (worse)
+- `const` pointers with a cast at the store — **99.6%, same 14 rows**
+- `register p2`, byte-pointer `p2` (subagent) — 99.6%, unchanged
+- reusing `p2`/`p3` in the third pass (subagent) — **98.5%, 21 rows**
+- mutating parameters then restoring (subagent) — **98.5%, 19 rows**
+- deterministic search — **6,354 candidates**, no improvement
+
+The honest read: this needs the source to hold **two independent pointer pairs**,
+one per pass, in the declaration order that yields r23/r22 for the first and
+r22/r23 for the third. Every attempt to introduce the second pair so far costs
+more rows than it saves, because the extra locals perturb the prologue's saved
+register assignment (`stmw r19`) before the loops even start. That is a
+whole-function allocation problem, not a per-row one — it likely needs the loop
+bodies factored into `static inline` helpers so each pass gets its own clean
+register scope.
