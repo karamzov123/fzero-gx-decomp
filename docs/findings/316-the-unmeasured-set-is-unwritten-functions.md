@@ -112,3 +112,36 @@ Three C-spelling lessons, each of which blocked compilation until fixed:
 Body saved at `.fzgx/attempts/fn_8004CD70.v10.c`. Next step is the frame: either express
 the float conversion so it reuses fewer stack slots, or accept that the `fctiwz` sequence
 needs its own 0x18 of spill area and target the register assignment instead.
+
+## fn_80053770: carved and written from scratch, 56.0%
+
+Second function taken from empty to a working body. 352 B, 88 retail instructions,
+**no calls at all** — a pure float kernel — which makes it the cleanest possible target
+and the best template for the rest of the set.
+
+Recovered shape, all of it non-obvious from a first read:
+
+- **32 iterations**, not 16. `li r8, 0x20` then `subic. r8, r8, 1` / `bne` counts down,
+  and `r5 += 2` per iteration, so the output is `s16[32]`. Reading the store count alone
+  (one `sth` per iteration) under-reports it.
+- **The tile pointer advances by one f32 per iteration** (`addi r3, r3, 0x4`), so this is
+  a sliding window over one array, not 32 independent reads.
+- Tap offsets are `0x180, 0x200, 0x380, 0x400, 0x580, 0x600, 0x780, 0x800, 0x980, 0xa00,
+  0xb80, 0xc00, 0xd80, 0xe00, -0x80, 0x1000` — **two interleaved 0x200-strided planes**,
+  with the 16th tap folded as a *negative* offset from the next iteration's base.
+  A naive `i * 0x200` reading gets the first eight right and the rest wrong.
+- Clamp is `[lbl_80091338[1], lbl_80091338[2]]`, then
+  `(s16)(s32)(v - *(f64 *)&lbl_80091338[4])`.
+
+Two failed readings, both recorded so they are not repeated:
+
+- Reading it as a single 16-tap loop with output `s16[16]` — 55.7%.
+- Reading it as **two** separate 8-tap dot products writing `out[2i]` / `out[2i+1]` —
+  **35.9%**, a large regression. The interleaved *offsets* do not mean interleaved
+  *loops*; there is one loop of 32.
+
+Residual is 80 rows, 40 of them `lfs` ordering — retail hoists an `f31` save
+(`stfd` + `psq_st`) into a 0x30 frame because the `fctiwz` conversion needs spill area,
+while ours uses 0x20. Same frame/spill pattern as `fn_8004CD70`.
+
+Body saved at `.fzgx/attempts/fn_80053770.v4.c`.
