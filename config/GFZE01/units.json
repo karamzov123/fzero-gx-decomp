@@ -31207,10 +31207,10 @@
     "symbols": [
       "fn_1_152CB4"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/bg_aur.c"
+    "asm": true
   },
   {
     "module": "main_rel",

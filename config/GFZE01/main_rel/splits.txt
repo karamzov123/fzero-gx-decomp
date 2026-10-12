@@ -7500,9 +7500,6 @@ rel/main_rel/bg_win/fn_1_15EC40.c:
 rel/main_rel/background/fn_1_9DB04.c:
 	.text       start:0x0009DB04 end:0x0009DDA8 align:4
 
-rel/main_rel/bg_aur/fn_1_152CB4.c:
-	.text       start:0x00152CB4 end:0x00152FAC align:4
-
 rel/main_rel/archive/fn_1_12DAEC.c:
 	.text       start:0x0012DAEC end:0x0012E0B8 align:4
 
@@ -7667,3 +7664,6 @@ rel/main_rel/accessory/fn_1_10B5A8.c:
 
 rel/main_rel/motasglist/fn_1_4247C.c:
 	.text       start:0x0004247C end:0x000426AC align:4
+
+rel/main_rel/bg_aur/fn_1_152CB4.c:
+	.text       start:0x00152CB4 end:0x00152FAC align:4
