@@ -165,5 +165,26 @@ All recorded in `docs/findings/315-fn_1_7D6B8-regalloc-and-scaffolding-admissibi
 
 ## Ledger
 
-matched=5762, unmatched=1542, blocked=4. No new matches landed from manual work this
-session — the value so far is corrected measurements and 11 compiler pins.
+matched=**5763** (was 5762 at session start), unmatched=1541, blocked=4.
+
+### The one new match: fn_80009830 (commit `f525f374`)
+
+632 B, `src/dol/fn_80009830.c`, matches retail at 100.0%. It is a segregated
+free-list allocator: saves the five active pool globals to a scratch array, swaps
+in the pool selected by `lbl_801A6730`, walks a size-ordered list for the first
+node covering the request, coalesces the tail when slack < 0x40 or splits it
+(re-linking both directions), pushes the node onto a second list, and restores the
+saved pool on every exit path.
+
+**It only became reachable because of the compiler pin.** Carved with
+`mw_version: null` it compiled at the `main` default GC/1.2.5n and scored 51.2%.
+Pinning GC/1.3.2 (`b501ae83`) took the same body to 99.2%; a delegated worker then
+closed the small residual. The matching body was produced inside a subagent
+worktree — to land work done in a worktree, copy the body out of
+`.worktrees/<agent>/.fzgx/attempts/<sym>.best.c`, `claim` in main, `write-unit`,
+confirm 100.0% MATCH, `submit`, then run the gate and commit.
+
+**This is the template for the remaining 18 pinned units**: the pin moved several of
+them into the 99.x% range, and those are now genuinely close rather than stalled.
+`fn_80050BD4` (99.6%) was still being worked when this was written — check its
+ledger row before starting it.
