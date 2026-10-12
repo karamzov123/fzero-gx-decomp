@@ -264,3 +264,50 @@ Verified with the pin in place: ninja green, 16/16 SHA1s, lint 0 findings, 11/11
 tests. The remaining row resisted `search` (0 candidates beat 99.7%), the `sample`
 local, `(unsigned short)` truncation on the store, and `(u32)` casts (the last
 regressed to 94.3% by widening past the 16-bit store).
+
+---
+
+# fn_80043798: the last row is a retail codegen oddity, not a source difference
+
+Two separate things were going on with this function, and they must be kept apart.
+
+**1. The 99.75% -> 78.0% collapse was the compiler pin, now fixed.** The carve left
+`mw_version: null`, so `version_for()` (`tools/fzgx/oracle.py:1034`) used the `main`
+module default `GC/1.2.5n -O4,p`. Pinning `GC/1.3.2` restores 99.7%. Committed as
+`5c73f098`. Six stored bodies shared md5 `c8015fad` and had scored 99.745766%
+pre-carve, so the timestamp-based stale audit could not see it.
+
+**2. With the pin, the remaining single row is not reachable from C.** Retail's
+2-channel loop is unrolled eight times and every copy does the identical byte swap:
+
+    8004387C: lhz   r10, 0x0(r4)
+    80043884: srawi r9, r10, 8
+    80043888: rlwimi r9, r10, 8, 8, 23
+    8004388C: sth   r9, 0x0(r5)
+
+...except the eighth, which uses a different opcode for the same operation:
+
+    80043960: lhz   r10, 0x1c(r4)
+    80043964: extrwi r9, r10, 8, 16     <- srawi in all seven others
+    80043968: rlwimi r9, r10, 8, 23
+    8004396C: sth   r9, 0xe(r5)
+
+`extrwi r9, r10, 8, 16` extracts bits 16-23 of `r10`. `r10` was loaded with `lhz`,
+so it holds a zero-extended 16-bit value and bits 16-23 are **zero** — whereas
+`srawi r9, r10, 8` is `r10 >> 8`. After the shared `rlwimi` only bits 0-7 of `r9`
+survive, so the `extrwi` copy would drop the swapped high byte. In other words the
+odd copy is not merely differently encoded, it is semantically wrong relative to its
+seven siblings.
+
+No C source expresses "perform this identical shift on all iterations except the
+eighth." Confirmed empirically — the structural candidates all fail or regress:
+
+- explicitly masked halves `((s & 0xFF) << 8) | ((s >> 8) & 0xFF)` — **82.2%**, 57 rows
+- `sample` held in a local with `(unsigned short)` truncation — 99.7%, same 1 row
+- `(u32)` casts on both halves — **94.3%**, 36 rows (widens past the 16-bit store)
+- `search` — **0 candidates** above 99.7%
+
+**Lesson:** before chasing a one-row residual in an unrolled loop, check whether the
+surrounding copies agree. A single opcode deviating inside an otherwise uniform
+unrolled body is a retail compiler artifact; the row is unwinnable and further
+structural attempts are wasted budget.
