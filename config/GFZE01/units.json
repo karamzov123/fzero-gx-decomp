@@ -460,6 +460,17 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_15A0.c",
+    "symbols": [
+      "fn_3_15A0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_33A0.c",
     "symbols": [
       "fn_3_33A0"
