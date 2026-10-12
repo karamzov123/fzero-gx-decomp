@@ -74,3 +74,41 @@ Two general lessons from the iterations:
 
 Only 79 of 271 aligned rows differ, and all of them are prologue/scheduling shifts
 downstream of the unwritten tail.
+
+## fn_8004CD70: full body written, 56.3%
+
+Writing the **entire** 263-instruction function (not just the head) took it from 27.5%
+to **56.3%**, confirming the prediction that a partial body cannot align the frame.
+
+Everything is now represented: the six `fn_8004CAC8` cleanup paths, the per-channel
+`fn_80058498` loop, `fn_80042228` / `fn_8004EF28` / `fn_800571EC` / `fn_8005710C`, the
+`f64`→`f32` volume conversion via `lbl_80090A20` / `lbl_80091064`, the `-0x80` pan run,
+and the final field zeroing.
+
+Recovered call arguments, which the symbol table gets wrong in several places:
+
+    fn_80058498(u32, u32, u32) -> void *     # declared void; r3 is stored to field_10
+    fn_8004B4E0(int, int)       -> void *
+    fn_80042228(void *, s32, void **)
+    fn_8004EF28(void *, s32, void *)
+    fn_800571EC(void *)         -> void *
+    fn_8005710C(void *, int)
+
+Three C-spelling lessons, each of which blocked compilation until fixed:
+
+1. **Overlapping offsets need a union.** Retail writes a `-0x80` run over 0x42..0x52 and
+   *then* zeroes 0x46, 0x48, 0x4A, 0x4C, 0x50 — stores that land inside the same run. A
+   flat `s16 field_42[8]` makes `slot->field_46` a compile error
+   (`'field_46' is not a struct/union/class member`). Model it as
+   `union { s16 run[8]; struct { s16 field_42, field_44, field_46, ...; } f; }`.
+2. **`f64` conversions cost stack slots.** The volume computation
+   (`(f64)(s16)(scale ^ 0x8000)`, subtract, multiply, `fctiwz`) forces our frame to 0x48
+   where retail's is 0x30. This is the entire remaining gap: retail emits **one**
+   `stmw r27,-0x14(r1)` and keeps the slot pointer in `r31` for the whole function, while
+   we save r28–r31 individually and the slot lands in `r30`.
+3. **Reducing live locals in the channel loop did not help** (56.3% either way), so the
+   frame pressure is from the float path, not the loop.
+
+Body saved at `.fzgx/attempts/fn_8004CD70.v10.c`. Next step is the frame: either express
+the float conversion so it reuses fewer stack slots, or accept that the `fctiwz` sequence
+needs its own 0x18 of spill area and target the register assignment instead.
