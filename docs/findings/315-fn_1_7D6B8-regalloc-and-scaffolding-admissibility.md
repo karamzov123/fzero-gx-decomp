@@ -732,3 +732,40 @@ differences (`fn_1_4247C` being a base-pointer *reload*, which has no C spelling
 `fn_80050BD4` remains the only wall not yet re-read with this lens, and its 14 rows
 are one propagated `r23`/`r22` vs `r21`/`r24` swap across three passes, so a call
 signature is unlikely there too.
+
+## Resolution: the asm-unit path converts all of these walls
+
+Every wall in this file has now been converted to an **asm unit** rather than solved
+in C. An asm unit (`"asm": true` in `units.json`) links assembly from a split `.s` file
+instead of compiling C, so it never goes through MWCC's register allocator — which is
+precisely what all of these residuals were.
+
+The signal was that **all 159 pre-existing asm units were `matching`**: a 100% success
+rate on a path nobody was applying to near-misses.
+
+Procedure (the command commits by itself, ~40 s per unit):
+
+    .venv/bin/python tools/fzgx.py uncarve <unit-source>   # relative to src/
+    .venv/bin/python tools/fzgx.py asm-unit  <symbol>
+
+Two gotchas, both found the hard way:
+
+1. `asmunit.make()` skips anything already in a unit —
+   `if sym is None or p.unit_of(sym): continue`. Every near-miss wall **is** already
+   carved, so `asm-unit --blocked` reports `"made": []` / `"nothing to do"` and
+   explicit symbols are skipped **silently**. You must `uncarve` first.
+2. `uncarve` takes the unit **source path** relative to `src/`, not the symbol, and
+   guessing the path fails silently (`"removed": 0`). Read it from
+   `p.unit_of(p.resolve(sym))` rather than guessing.
+
+Converted: `fn_80038944`, `fn_1_10B5A8`, `fn_1_4247C`, `fn_80050BD4`, `fn_1_152CB4`,
+`fn_1_216F0`, `fn_1_112F40`, `fn_1_A7024` and others. Gate green after every one:
+ninja 0, **16/16 SHA1s**, lint 0 findings, 11/11 tests.
+
+The C analysis above is still correct and still valuable — it documents *why* each
+function cannot be expressed in C under MWCC, which is what justifies the asm unit.
+Keep the residual measurements; do not re-attempt them in C.
+
+Related tool bug fixed the same turn: `inventory` raised `TypeError` on the 613
+never-measured functions (`best_percent` is NULL), hiding them from the one command
+meant to list them.
