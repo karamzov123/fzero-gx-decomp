@@ -188,3 +188,48 @@ difference is register numbers — retail keeps the accumulator in `f0` across t
 Measured and rejected on the way: kernel advancing 0x40 per iteration (61.3%),
 `#pragma opt_strength_reduction off` (60.3%), local base pointer for the rodata table
 (62.4%, no change).
+
+## Lint rule: `fzgx-allow` must be on the same line as the `volatile`
+
+Any body that legitimately needs a `volatile` must carry a justification, and the
+check is positional: the `fzgx-allow: S2 <reason>` marker has to sit **on the same line**
+as the declaration. A comment block *above* it does not satisfy the rule and lint still
+reports `S2: volatile without a justification comment`, pointing at the declaration line.
+
+    volatile u32 saved[11];  /* fzgx-allow: S2 retail keeps this save area addressable ... */
+
+This cost two commits on `fn_1_103B00` — the first attempt used a preceding block comment
+and failed lint while the gate otherwise passed (ninja 0, 16/16 SHA1s, tests OK). Check
+`lint` separately rather than assuming a green SHA1 run means a clean gate.
+
+## Round summary: writing unwritten functions is the productive vein
+
+Six functions taken from empty carve stubs to real C bodies this session:
+
+| function | size | best | note |
+|---|---|---|---|
+| `fn_8_5608` | 520 B | **100.0% MATCH** | matched, committed |
+| `fn_3_149AC` | 528 B | 91.4% | state machine + signed-division rounding |
+| `fn_12_3D740` | 552 B | 93.3% | |
+| `fn_8004CD70` | 1052 B | 74.4% | slot allocator, needed the GC/1.3.2 pin |
+| `fn_80053770` | 352 B | 62.4% | pure float kernel, no calls |
+| `fn_8005C7C0` | 536 B | 29.1% | hardest: 134 ins, two live f32 across calls |
+| `fn_1_F965C` | 556 B | 6.8% | needs two 55-word blocks live at once |
+
+Two patterns explain most of the spread:
+
+1. **Sweep the compiler after the body exists.** Paid off 21 times across the session,
+   including `fn_8004CD70` (+17.6) and `fn_8005C7C0` (+10.7). It is invisible until the
+   function compiles meaningfully, which is why a stub-first approach misses it.
+   Equally important: **the default is usually already right.** `fn_12_3D740` and
+   `fn_1_103B00` both measured identically at `null` and `GC/1.3.2` while `GC/1.2.5n`
+   scored 38.0% and 26.8%. Record the negative result so nobody "fixes" a correct unit.
+2. **Float live ranges drive the frame.** `fn_8005C7C0` went 14% → 4.4% → 0.0% → 18.4%
+   → 29.1% as I learned that retail saves *both* `f30` and `f31` because one base value
+   stays live across two separate calls. Recomputing it instead of keeping it live
+   changed the whole prologue. When retail emits paired `stfd`+`psq_st`, keep those values
+   in named locals used on both sides of the call.
+
+Difficulty scales with instruction count more than with byte size: the 520 B / 130
+instruction function matched outright, while the 536 B / 134 instruction float function
+reached only 29%.
