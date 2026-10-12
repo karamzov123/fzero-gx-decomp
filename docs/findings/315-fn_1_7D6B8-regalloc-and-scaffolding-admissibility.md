@@ -463,3 +463,29 @@ puts it) while the local must not reserve a slot (which requires it not be an
 aggregate). Those two constraints pull in opposite directions under this compiler,
 which is why the two rows survive. The remaining lever is a `#pragma` that suppresses
 the local slot without changing where the address is materialised.
+
+---
+
+# fn_80050BD4: 14 rows, all one register-pair substitution
+
+Best **99.552635%** (99.6% displayed), 14 of 228 rows. Pinned GC/1.3.2
+`-use_lmw_stmw on` (49.3% -> 99.6%). The residual is a single systematic swap, not
+14 independent problems:
+
+    0020  mr r23, r26       | mr r21, r26
+    0038  mr r31, r23       | mr r31, r21
+    0078  addi r23, r23, 4  | addi r21, r21, 4
+    0094  add r22, r27, r31 | add r24, r27, r31
+    00B8  mr r12, r22       | mr r12, r24
+    0120  ...
+
+Retail keeps the induction pointer in **r23** and the derived value in **r22**;
+ours uses **r21** and **r24**. One substitution propagated through every use, which
+is why 14 rows move together — fixing the first allocation should collapse most of
+the rest.
+
+Stopped by the harness plateau guard (5 non-improving checks) at 99.6%, so this one
+is **not exhausted**: release and `claim --max-attempts 50` to continue. The lever
+is declaration order of the locals that map to r22/r23 — the induction pointer must
+be declared before the value derived from it, which is the same
+declaration-order-feeds-allocation rule that closed the other residuals here.
