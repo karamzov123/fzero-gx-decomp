@@ -145,3 +145,46 @@ Residual is 80 rows, 40 of them `lfs` ordering — retail hoists an `f31` save
 while ours uses 0x20. Same frame/spill pattern as `fn_8004CD70`.
 
 Body saved at `.fzgx/attempts/fn_80053770.v4.c`.
+
+## The int→double magic-constant idiom (general, applies widely)
+
+Retail converts a clamped `f32` to a scaled `s16` with the standard
+**magic-constant int→double trick**, and recognising it is worth several points and
+often the frame too:
+
+    out[n] = (s16)(s32)((f64)((s32)clamped >> 16) - 4503601774854144.0)
+
+MWCC emits exactly retail's shape when the C says that:
+
+    fctiwz f0, f0            ; clamp result -> int
+    stfd  f0, 0x8(r1)
+    lwz   r0, 0xc(r1)        ; the int
+    srawi r0, r0, 16         ; >> 16
+    xoris r0, r0, 0x8000     ; ^ 0x80000000
+    stw   r0, 0x14(r1)       ; low half of a slot pre-primed with 0x4330
+    lfd   f0, 0x10(r1)       ; reload as double
+    fsubs f0, f0, f1         ; f1 = 4503601774854144.0 = 0x4330000000000000
+    fctiwz f0, f0
+    stfd  f0, 0x18(r1)
+    lwz   r0, 0x1c(r1)
+    sth   r0, 0x0(r5)
+
+`4503601774854144.0` **is** `0x4330000000000000` as a bit pattern, which is why the
+`lis r6, 0x4330` / `stw r6, 0x10(r1)` priming appears. Writing `(f32)bias` and a plain
+subtract instead scored 56.0%; writing the real idiom scored **62.4%** *and* fixed the
+frame from 0x20 to retail's 0x30 (the `stfd`/`psq_st f31` pair), because the conversion
+genuinely needs the spill area.
+
+**Look for `lis r6, 0x4330` plus a `stw r6, <slot>(r1)` in any retail prologue** — that
+is this idiom, and it tells you the function does an int↔double conversion somewhere.
+
+### After the idiom, the residual is pure FPR renaming
+
+`fn_80053770` is now at 62.4% with **identical opcodes and identical offsets**; the only
+difference is register numbers — retail keeps the accumulator in `f0` across the whole
+16-tap unrolled chain, ours uses `f3`. That is the allocator wall from findings/315, and
+`search` is gated at 80% so it cannot be used to sweep it here.
+
+Measured and rejected on the way: kernel advancing 0x40 per iteration (61.3%),
+`#pragma opt_strength_reduction off` (60.3%), local base pointer for the rodata table
+(62.4%, no change).
