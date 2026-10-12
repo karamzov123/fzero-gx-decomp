@@ -1,5 +1,5 @@
 {
- "generated": 1791762855,
+ "generated": 1791765050,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -98706,17 +98706,17 @@
   {
    "symbol": "fn_1_15C6C0",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/bg_win/fn_1_15C6C0.c",
    "addr": 1427136,
    "size": 5820,
-   "status": "unmatched",
-   "attempts": 3,
+   "status": "blocked",
+   "attempts": 0,
    "best_percent": 95.07423,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
-   "blocked_reason": null,
+   "blocked_reason": "Structural reconstruction in progress: six-strip object and 248-byte pool proven; typed GC/1.3.2 frontier has 238 aligned residual rows, not a near-exact seed. Legacy source crosses DD58 object bounds; continue from the archived typed frontier, not repeated model retries.",
    "prev_status": null,
    "link_state": null
   },

@@ -7628,3 +7628,6 @@ rel/main_rel/stcoli/fn_1_2221C.c:
 
 rel/main_rel/sound/fn_1_A3BD8.c:
 	.text       start:0x000A3BD8 end:0x000A3C78 align:4
+
+rel/main_rel/bg_win/fn_1_15C6C0.c:
+	.text       start:0x0015C6C0 end:0x0015DD7C align:4

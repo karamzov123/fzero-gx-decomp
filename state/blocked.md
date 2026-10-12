@@ -1,5 +1,20 @@
 # Blocked large near matches
 
+## Current fn_1_15C6C0 structural triage
+
+The 2026-10-11 pass proves the six-rectangle storage inside
+lbl_1_rodata_DD98+0x24, replaces the cross-object DD58+0x64 copy with a typed
+native table, and verifies the full 248-byte literal pool. The shared-TU source
+compiles with the recorded GC/1.3.2 pin at 83.79% adjusted similarity and 238
+aligned differing rows, compared with the prior 83.15% / 248 rows. These row
+counts are not the historical word/shape counts in the table below.
+
+The function now has executable split coverage and a registered nonmatching unit
+rel/main_rel/bg_win/fn_1_15C6C0.c. It remains blocked from generic model dispatch:
+continue structural/value-flow work from the typed archived source, not an old
+raw-score near-miss. Archive: state/repairs/15C6C0-storage-and-compile-path-20261011.json.gz.
+No exact C match or authored-byte credit is claimed.
+
 Triage stays local. Candidates and compiler settings are preserved in
 `state/repairs/large_near_frontier_20260914.json.gz`. The measured differences
 below do not imply that declaration order alone can repair a function.
