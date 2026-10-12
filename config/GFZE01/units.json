@@ -29378,17 +29378,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/accessory/fn_1_112F40.c",
-    "symbols": [
-      "fn_1_112F40"
-    ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c"
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_1154D0.c",
     "symbols": [
       "fn_1_1154D0"
@@ -57490,10 +57479,10 @@
     "symbols": [
       "fn_1_216F0"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/stcoli.c"
+    "asm": true
   },
   {
     "module": "main_rel",
