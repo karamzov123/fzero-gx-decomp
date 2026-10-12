@@ -50201,10 +50201,10 @@
     "symbols": [
       "fn_1_A7024"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/prog.c"
+    "asm": true
   },
   {
     "module": "main_rel",
