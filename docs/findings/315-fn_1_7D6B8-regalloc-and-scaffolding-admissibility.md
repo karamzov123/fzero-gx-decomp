@@ -210,3 +210,57 @@ non-improving checks) at 99.8%. The productive next step is to reproduce retail'
 *paired* `srawi` on the v4 ordering — retail computes each quotient twice as
 independent expressions rather than reusing a local — without disturbing the
 `/1200`-first order that v4 established.
+
+---
+
+# A carve silently changes a unit's compiler — and that alone can cost 21 points
+
+`fn_80043798` (main, 944 B, 236 instructions) is the clearest case of a *stale
+score with a fresh timestamp*. Its best attempt ended 10-11 13:03; the unit was
+carved 10-09 23:49. Timestamps therefore said "fresh", the stale audit agreed, and
+yet the saved body scored **78.0%** instead of the ledger's **99.745766**.
+
+The bytes were not the problem. Six stored bodies carried md5 `c8015fad` (only
+trailing-whitespace variants among them) and that exact md5 had scored 99.745766%
+in five earlier attempts and 19.4% in two others. Recompiling the same file three
+times gave 78.0% every time, so it was deterministic — just wrong.
+
+Cause, in `tools/fzgx/oracle.py:1034` (`version_for`):
+
+    unit_src = project.unit_of(sym)
+    if unit_src:
+        u = project.unit_record(unit_src) or {}
+        return u.get("mw_version"), (" ".join(u.get("extra_cflags") or []) or None)
+
+For a **carved** unit the check compiles with the unit's own `mw_version` and
+`extra_cflags` and *nothing else*. This unit had `mw_version: null` and
+`extra_cflags: []`, so it fell back to the `main` module default — measured here as
+**`GC/1.2.5n` with `-O4,p`**. Before the carve the same body went through
+`version_candidates()`, which compiles under each candidate and keeps the best
+fitting one.
+
+Swept every candidate for the `main` module against the unchanged body:
+
+    GC/1.2.5n  (module default)   78.0%
+    GC/1.2.5n  -O2                25.0%
+    GC/1.2.5n  -O3                26.1%
+    GC/1.2.5n  -O4                28.7%
+    GC/1.2.5n  -O1                23.9%
+    GC/1.3.2                       99.7%   <- matches the historical score
+    GC/1.3.2  -use_lmw_stmw on     99.7%
+
+So the compiler, not the source, accounted for the whole 21-point gap. Pinning
+`"mw_version": "GC/1.3.2"` on the unit restores 99.7% and leaves a **single**
+residual row — `extrwi r9, r10, 8, 16` against our `srawi r9, r10, 8` — which is
+the unsigned-extract form of a 16-bit byte swap.
+
+**The general rule:** whenever a symbol's score collapses without its body
+changing, sweep `version_candidates()` before touching the C. A carve pins the
+compiler; if the pin is absent the module default applies and can be far worse
+than the pre-carve best-fit. The stale-score audit's timestamp test does not catch
+this, because the unit genuinely does predate the attempt.
+
+Verified with the pin in place: ninja green, 16/16 SHA1s, lint 0 findings, 11/11
+tests. The remaining row resisted `search` (0 candidates beat 99.7%), the `sample`
+local, `(unsigned short)` truncation on the store, and `(u32)` casts (the last
+regressed to 94.3% by widening past the 16-bit store).
