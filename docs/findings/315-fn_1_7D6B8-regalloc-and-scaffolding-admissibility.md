@@ -357,3 +357,70 @@ MWCC defers materialising its address, while `movie` is used immediately. Gettin
 `arg`'s address emitted before the induction base therefore needs the loop to take
 `arg` through a path that forces early materialisation — an inlined helper or a
 restructured loop — not a statement reordering. That is the concrete next step.
+
+---
+
+# fn_1_A7024 and fn_80038944: residuals measured by delegated workers (2026-10-12)
+
+Two functions worked in parallel by leaf subagents. Neither matched; both are
+characterized precisely enough to continue from.
+
+## fn_1_A7024 (main_rel, 296 B) — 3 FPR allocation rows
+
+Best **99.797295%**, unchanged. Residual:
+
+     21  fmr f28, f0    | fmr f1, f0
+     26  fmr f28, f0    | fmr f1, f0
+     27  frsp f28, f28  | frsp f28, f1
+
+The f32 first parameter's clamped value must stay coalesced with its `f28` live
+range through the double clamp and the in-place narrowing. A separate f64 local
+splits that range (97.9%); keeping it live across the call changes saved-FPR
+allocation (90.9%). Other probes: f32-symbol cast 80.9%, volatile cast 79.4%,
+f64 first parameter with direct clamp 92.8%. An `__asm__` alias did not compile.
+
+**Compiler sweep on the best body** — GC/1.2.5 45.5%, GC/1.2.5n 53.6%, GC/1.3 /
+1.3.2 / 2.0 all 99.8%. The unit's null pin already resolves to GC/1.3.2, so this
+is one of the units where the pin scan correctly finds nothing.
+
+There is also a **latent build hazard** worth fixing separately: the body's struct
+declaration of `lbl_1_rodata_49F8` conflicts with the TU prologue's
+`extern const f32` declaration of the same symbol. `write-unit` flags it as a
+prologue conflict. It does not currently change the score, but two declarations of
+one symbol in one TU is a real defect.
+
+`search` found no improvement and reused its cache (prior context records 5,060
+variants).
+
+## fn_80038944 (main, 212 B) — the whole residual is a frame size
+
+Best **99.79245%**. All **11** residual rows are the same single cause: our stack
+frame is 8 bytes larger than retail's.
+
+     3  stwu r1, -0x18(r1)   | stwu r1, -0x20(r1)
+     4  stw r31, 0x14(r1)    | stw r31, 0x1c(r1)
+     6  stw r30, 0x10(r1)    | stw r30, 0x18(r1)
+     7  stw r29, 0xc(r1)     | stw r29, 0x14(r1)
+     8  stw r28, 0x8(r1)     | stw r28, 0x10(r1)
+    45..50                   | the matching restores, and addi r1,r1,0x20 vs 0x18
+
+No instruction is wrong — every row is a displacement shifted by 8. So this
+function is closer to matching than its percentage suggests.
+
+Measured variants: plain / `const` / `register` scalar-pointer forms, and
+comma-expression, pointer-to-array and inline-pointer-helper forms all scored
+**97.0%** (they emit an extra address-materialisation `addi`/copy).
+Register-struct, union-wrapper and typed-`__GXSaveCPUFifoAux` forms all held
+**99.79245%** with the same frame rows. Const aggregate initialisation 72.2%,
+inline struct-return helper 75.1%, compound-literal pointer 85.6%.
+
+The trade-off is exact: the **one-pointer aggregate wrapper preserves retail's
+direct `addi r31, r4, lbl@l`** but reserves a local stack slot, and that slot is
+the 8 bytes. Scalar forms drop the slot but add an address instruction instead.
+Closing it needs a form that keeps the direct `r31` relocation *without* an
+aggregate local — e.g. taking the member address straight off the parameter in
+the call argument, or a `#pragma` that suppresses the local slot.
+
+Compiler sweep selected **GC/1.2.5n** (99.8%); GC/1.3.2 `-use_lmw_stmw on` scored
+84.9%. No pin change. Release's deterministic sweep ran 6,360 variants in 10.7s
+with no improvement.
