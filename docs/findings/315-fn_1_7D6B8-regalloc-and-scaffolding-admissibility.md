@@ -526,3 +526,52 @@ register assignment (`stmw r19`) before the loops even start. That is a
 whole-function allocation problem, not a per-row one — it likely needs the loop
 bodies factored into `static inline` helpers so each pass gets its own clean
 register scope.
+
+## fn_80038944 round 3: the constraint is confirmed by disassembly
+
+The 2-row residual is now characterised at the instruction level, which settles why
+statement reordering cannot fix it.
+
+Ours (v2, plain pointer, 97.0%, 2 rows):
+
+    80038944  mflr r0
+    80038948  lis r4, lbl_801783A0@ha
+    8003894C  stw r0, 0x4(r1)
+    80038950  addi r4, r4, lbl_801783A0@l     <- @l half goes to r4, BEFORE the frame
+    80038954  stwu r1, -0x18(r1)
+    80038958  stw r31, 0x14(r1)
+    8003895C  addi r31, r4, 0x0               <- then copied to r31
+
+Retail:
+
+    80038944  mflr r0
+    80038948  lis r4, lbl_801783A0@ha
+    8003894C  stw r0, 0x4(r1)
+    80038950  stwu r1, -0x18(r1)
+    80038954  stw r31, 0x14(r1)
+    80038958  addi r31, r4, lbl_801783A0@l    <- ONE folded addi, AFTER the saves
+
+So the `@l` half is emitted *before* the frame exists in our build and folded into
+`r31` after the saves in retail. Moving the assignment later should produce that —
+but it does not, and now the reason is measured:
+
+- assignment moved after the `dirty_state` branch (with a leading `(void)backup;`) —
+  **53.1%, 27 rows**. The reordering moves the `stmw`/`stw` saves relative to the
+  address computation and the whole prologue re-aligns, costing far more than the
+  2 rows it was meant to save.
+- address via a `static inline` helper — 97.0%, same 2 rows
+- `#pragma opt_strength_reduction off` — 97.0%, same 2 rows
+- `(u32)`/cast forms, address-via-first-member — same 2 rows (recorded earlier)
+
+Note a real trap found while doing this: a `(void)x;` statement placed **inside the
+declaration block** makes mwcceppc report `expression syntax error` at the *next*
+declaration's line, not at the statement itself. The error line number is misleading;
+the fix is to move the statement below all declarations.
+
+Conclusion: MWCC will not fold `@ha`/`@l` into one `addi` targeting a saved register
+while the pointer is also live as a separate local. Retail achieves it because the
+address is *only* ever in `r31`. Expressing "this pointer exists solely as r31" in C
+has no direct form; the remaining untried lever is making every use of the backup
+address go through a single expression that the compiler can keep in one register
+across the whole function — e.g. a macro or a `restrict`-qualified parameter to an
+inlined body. Otherwise this is a 2-row wall.
