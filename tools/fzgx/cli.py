@@ -61,7 +61,10 @@ def cmd_inventory(a, p):
         _print(rows, True)
     else:
         for r in rows:
-            print(f"{r['status']:9s} {r['module']:13s} {r['symbol']:28s} {r['size']:6d}B  att={r['attempts']} best={r['best']:.0f}%")
+            # best is None for a function that has never been measured; printing '-' keeps
+            # inventory usable on the unmeasured set instead of raising TypeError
+            best = "-" if r["best"] is None else f"{r['best']:.0f}%"
+            print(f"{r['status']:9s} {r['module']:13s} {r['symbol']:28s} {r['size']:6d}B  att={r['attempts']} best={best}")
         print(f"({len(rows)} functions)")
     return 0
 
