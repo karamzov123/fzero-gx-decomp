@@ -424,3 +424,42 @@ the call argument, or a `#pragma` that suppresses the local slot.
 Compiler sweep selected **GC/1.2.5n** (99.8%); GC/1.3.2 `-use_lmw_stmw on` scored
 84.9%. No pin change. Release's deterministic sweep ran 6,360 variants in 10.7s
 with no improvement.
+
+---
+
+# fn_80038944: 11 rows -> 2 by removing the aggregate local
+
+Continued from the subagent's measurement. Their diagnosis was right — all 11 rows
+were one 8-byte frame — and their hypothesis was that the aggregate local was the
+slot. Confirmed, and the residual is now smaller than they left it.
+
+Replacing `struct { FifoBackup *value; } backup;` with a plain `FifoBackup *backup;`
+removes the reserved stack slot, so the frame becomes retail's `-0x18` and **9 of the
+11 rows vanish**. Score moves 99.792% -> **97.0%** (objdiff similarity drops because
+the row *count* falls — fewer aligned rows, so each remaining one weighs more) but
+only **2 rows** differ instead of 11, and no instruction is semantically wrong.
+
+The remaining 2 rows are a single addressing-mode difference:
+
+    0004  lis r4, lbl_801783A0@ha             | lis r4, lbl_801783A0@ha      (match)
+    000C  (nothing)                           | addi r4, r4, lbl_801783A0@l  (extra)
+    0018  addi r31, r4, lbl_801783A0@l        | addi r31, r4, 0x0
+
+Retail folds the relocation into **one** `addi r31, r4, lbl@l` and never touches `r4`
+again. We materialise the low half into `r4` first, then copy `r4` into `r31` with a
+zero offset. Same address, one extra instruction.
+
+Measured attempts to close it, all on the plain-pointer base:
+
+- `backup = &lbl_801783A0.fifo;` (address via first member) — 97.0%, same 2 rows
+- `backup = (FifoBackup *)&lbl_801783A0.fifo;` — 97.0%, same 2 rows
+- assignment moved to immediately before `__GXSaveCPUFifoAux` — **54.7%**, 29 rows
+  (moving it breaks the prologue's saved-register setup entirely)
+- assignment moved after the `dirty_state` branch — **54.7%**, 29 rows
+- deterministic search from the 97.0% body — **2642 candidates**, no improvement
+
+So the fold depends on the address being taken before the frame setup (where retail
+puts it) while the local must not reserve a slot (which requires it not be an
+aggregate). Those two constraints pull in opposite directions under this compiler,
+which is why the two rows survive. The remaining lever is a `#pragma` that suppresses
+the local slot without changing where the address is materialised.
