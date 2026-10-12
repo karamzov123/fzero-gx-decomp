@@ -678,3 +678,31 @@ anything else.
 Also note `fn_800288C4` hit the 50-attempt cap, so it needs
 `claim --max-attempts 50` triage rather than the normal flow — its saved body is
 admissible and it sits at the module default, so the cap is the only blocker.
+
+## fn_1_4247C: retail reloads the base pointer where we reuse a cached one
+
+The 4-row residual is now characterised at the instruction level, and it is a
+**reload-vs-cache** difference rather than a register choice:
+
+    0004261C: lwz r6, 0x8(r28)      ; stwx r5, r4, r0   (earlier store)
+    00042634: lwz r0, 0x8(r28)      ; RELOAD object->entries
+    00042638: add r8, r0, r8        ; add the reloaded base
+    0004263C: stfs f31, 0x0(r8)     ; v->x = F50
+    00042640: stfs f31, 0x4(r8)     ; v->y = F50
+    00042644: stfs f31, 0x8(r8)     ; v->z = F50
+
+Retail throws away the cached `entries` pointer and reloads it from the struct
+immediately before the add. Our build keeps it live in a register, so the add
+uses `r4` instead of `r8` and all three stores follow it.
+
+Measured this round: base operand order swapped (`b8.value + entries`) — same 4
+rows; an explicit fresh load through `*(u8 **)&object->entries` — same 4 rows;
+using the loop's pointer local as the store base — **89.8% / 94 rows**;
+deterministic search **11,076 candidates**, no gain.
+
+The `fn_10_22760` lesson (a residual that looked like regalloc but was a missing
+call argument) was checked here too and does not apply: this is a plain struct
+member store, every call in the function passes its arguments correctly, and the
+residual is purely the reload. **Forcing a reload has no C spelling** — `volatile`
+on the field would change the loads everywhere else and break the rest of the
+function. Treat as a wall.
