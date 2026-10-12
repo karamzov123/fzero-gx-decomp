@@ -787,7 +787,7 @@ extern void fn_1_49728(int);
 extern void fn_1_495FC(void);
 extern void fn_1_495C8(int);
 extern void fn_1_15DD7C(u16);
-extern void fn_1_15C6C0(u16, int);
+extern void fn_1_15C6C0(s32, s32);
 extern void fn_1_49614(void);
 extern void fn_1_A4C9C(int, u8);
 
