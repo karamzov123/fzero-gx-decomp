@@ -7404,9 +7404,6 @@ rel/main_rel/stcoli/fn_1_16BA0.c:
 rel/main_rel/prog/fn_1_A7024.c:
 	.text       start:0x000A7024 end:0x000A714C align:4
 
-rel/main_rel/accessory/fn_1_10B5A8.c:
-	.text       start:0x0010B5A8 end:0x0010B7D8 align:4
-
 rel/main_rel/accessory/fn_1_112F40.c:
 	.text       start:0x00112F40 end:0x001132E4 align:4
 
@@ -7667,3 +7664,6 @@ rel/main_rel/replay/fn_1_F326C.c:
 
 rel/main_rel/game/fn_1_39420.c:
 	.text       start:0x00039420 end:0x000395CC align:4
+
+rel/main_rel/accessory/fn_1_10B5A8.c:
+	.text       start:0x0010B5A8 end:0x0010B7D8 align:4
