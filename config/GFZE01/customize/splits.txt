@@ -545,3 +545,6 @@ rel/customize/toolkit/fn_3_1AEE4.c:
 
 rel/customize/_prolog/fn_3_15A0.c:
 	.text       start:0x000015A0 end:0x000033A0 align:4
+
+rel/customize/emblem/fn_3_149AC.c:
+	.text       start:0x000149AC end:0x00014BBC align:4
