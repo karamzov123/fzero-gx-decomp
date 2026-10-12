@@ -22844,8 +22844,11 @@
       "fn_8005C7C0"
     ],
     "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -56670,6 +56673,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/spline/fn_1_F965C.c",
+    "symbols": [
+      "fn_1_F965C"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/spline.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/spline/fn_1_F9C6C.c",
     "symbols": [
       "fn_1_F9C6C"
@@ -63954,6 +63968,16 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_3D740.c",
+    "symbols": [
+      "fn_12_3D740"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_3DB8.c",
     "symbols": [
       "fn_12_3DB8"
@@ -71027,6 +71051,17 @@
       "fn_8_9B04"
     ],
     "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/title/operation.c"
+  },
+  {
+    "module": "title",
+    "source": "rel/title/operation/fn_8_B138.c",
+    "symbols": [
+      "fn_8_B138"
+    ],
+    "status": "nonmatching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/title/operation.c"
