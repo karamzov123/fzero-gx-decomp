@@ -67,3 +67,50 @@ stored score.
 A cleaned, admissible body scoring 100.0% is kept at
 `.fzgx/attempts/fn_1_7D6B8.*.c` for continuation. No match, no executable-byte
 change claimed.
+
+---
+
+# fn_80067DE4: a one-row residual that is genuinely unreachable, and a search that lies
+
+`fn_80067DE4` (main, 388 B, 97 instructions) sat at 99.938% with a **single**
+differing row:
+
+    0170  addi r3, r31, 0x0   |   addi r3, r30, 0x4
+
+That row is the argument to `fn_80025C70` in the second switch's case 3 — retail
+passes the object base at offset 0. The prior note claimed "no reachable C shape
+emits addi-with-zero under this compiler", but attributed the fold to **GC/1.3.2**
+while this unit is pinned **GC/1.2.5n**. Attempt 13 tested that claim directly
+and it holds, with the mechanism now measured:
+
+- Struct member at offset 0 (`void *p_000` first, pad grown to keep `p_060` at
+  0x60): the whole prologue re-colours to `r30` and the call becomes
+  `mr r3, r30` — 80.4%, 34 rows. MWCC folds a zero-offset member to a move and
+  stops using `r31` as the base.
+- First member as `u8 base[4]` passed by decay: same 80.4%.
+- First member as `u32 lead`: 82.5%, 33 rows, still `addi r3, r30, 0x4`.
+- Deterministic search from the admissible form: **7548 candidates**, no
+  improvement over 82.5%.
+
+So offset 0 is not expressible. The stored 99.938% body reached it only through
+`u8 lab_pad[4]` — the banned padding name — which is what steers the allocator
+into `r31` and yields `addi r3, r31, 0x0`. This is the same admissibility wall as
+`fn_1_7D6B8`, now with the causal mechanism identified rather than inferred.
+
+## A `search` can report "improved" while scoring far worse
+
+`tools/fzgx.py search fn_80067DE4` returned `"improved": true, "change":
+"sprintf:int->s8"` and installed the body as the work copy — but its own check
+line reads **81.3%**, against a stored best of **99.938%**. The flag describes
+"better than the work copy I was given", not "better than the function's best",
+and it overwrites the work copy with the lower-scoring body. Two consequences:
+
+- **Never accept a `search` result on its `improved` flag.** Read the `check`
+  line's percentage and compare it against the ledger's `best_percent` before
+  treating the installed body as progress. Here the flag was true and the body
+  was 18.6 points *worse* than what was already saved.
+- **A search can silently regress a good work copy.** Restore from
+  `.fzgx/attempts/<sym>.<ts>.c` (the release path saves the best body) and
+  re-measure after any `search` that claims improvement.
+
+No match; no executable-byte change.
