@@ -229,7 +229,7 @@ check `git log` after running it rather than assuming you need to commit.
 
 ## Ledger
 
-matched=**5764** + 3 asm (was 5762 at session start), unmatched=1539, blocked=3, 0 claims.
+matched=**5764** + 20 asm (was 5762 at session start), unmatched=1521, blocked=3, 0 claims.
 
 ### Landing work produced inside a subagent worktree
 
