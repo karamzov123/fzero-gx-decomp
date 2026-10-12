@@ -2,7 +2,6 @@
 
 extern f32 lbl_12_bss_1E088[213];
 extern u8 lbl_12_data_EA0[36];
-extern f64 lbl_12_rodata_2E80[3];
 extern const f32 lbl_12_rodata_2E78;
 extern const f32 lbl_12_rodata_2E7C;
 
@@ -42,20 +41,22 @@ void fn_12_3D740(void *output)
     tableY = state->tableY;
     tableU = state->tableU;
     tableV = state->tableV;
+#pragma opt_propagation off
     coefficients = state->coefficients;
+#pragma opt_propagation on
     for (; offset != 0x1000; offset += 0x10) {
-        *(f32 *)((u8 *)state->output0 + offset + 4) = (f32)*tableY * coefficients[0];
-        *(f32 *)((u8 *)state->output0 + offset + 8) = (f32)*tableY * coefficients[3];
-        *(f32 *)((u8 *)state->output0 + offset + 12) = (f32)*tableY * coefficients[6];
+        *(f32 *)((u8 *)state->output0 + offset + 4) = coefficients[0] * (f32)*tableY;
+        *(f32 *)((u8 *)state->output0 + offset + 8) = coefficients[3] * (f32)*tableY;
+        *(f32 *)((u8 *)state->output0 + offset + 12) = coefficients[6] * (f32)*tableY;
         tableY++;
         *(f32 *)((u8 *)state->output0 + offset) = lbl_12_rodata_2E78;
-        *(f32 *)((u8 *)state->output1 + offset + 4) = ((f32)*tableU - lbl_12_rodata_2E7C) * coefficients[1];
-        *(f32 *)((u8 *)state->output1 + offset + 8) = ((f32)*tableU - lbl_12_rodata_2E7C) * coefficients[4];
-        *(f32 *)((u8 *)state->output1 + offset + 12) = ((f32)*tableU - lbl_12_rodata_2E7C) * coefficients[7];
+        *(f32 *)((u8 *)state->output1 + offset + 4) = coefficients[1] * ((f32)*tableU - lbl_12_rodata_2E7C);
+        *(f32 *)((u8 *)state->output1 + offset + 8) = coefficients[4] * ((f32)*tableU - lbl_12_rodata_2E7C);
+        *(f32 *)((u8 *)state->output1 + offset + 12) = coefficients[7] * ((f32)*tableU - lbl_12_rodata_2E7C);
         tableU++;
-        *(f32 *)((u8 *)state->output2 + offset + 4) = ((f32)*tableV - lbl_12_rodata_2E7C) * coefficients[2];
-        *(f32 *)((u8 *)state->output2 + offset + 8) = ((f32)*tableV - lbl_12_rodata_2E7C) * coefficients[5];
-        *(f32 *)((u8 *)state->output2 + offset + 12) = ((f32)*tableV - lbl_12_rodata_2E7C) * coefficients[8];
+        *(f32 *)((u8 *)state->output2 + offset + 4) = coefficients[2] * ((f32)*tableV - lbl_12_rodata_2E7C);
+        *(f32 *)((u8 *)state->output2 + offset + 8) = coefficients[5] * ((f32)*tableV - lbl_12_rodata_2E7C);
+        *(f32 *)((u8 *)state->output2 + offset + 12) = coefficients[8] * ((f32)*tableV - lbl_12_rodata_2E7C);
         tableV++;
     }
 }
