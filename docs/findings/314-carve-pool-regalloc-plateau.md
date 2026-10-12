@@ -66,3 +66,24 @@ source permutations close it: the search reports "not reachable by declaration
 order... they need a structural change." Both bodies are saved in
 `.fzgx/attempts/`. A 99.88% score is not proof of correctness — always read the
 retail register trace before trusting a near-miss percentage.
+
+## fn_17_7728: the highest near-miss, same fold (2026-10-11)
+
+fn_17_7728 (interview, 211 B) is the closest function in the fleet at 99.97% —
+one instruction. Retail:
+
+    addi r4, r4, bss      ; r4 = state
+    lwz  r0, 0x58(r4)     ; flags = state->unk_58
+    addi r7, r4, 0x60     ; r7 = group = state+0x60   (kept live)
+    lwz  r6, 0x14(r7)     ; r6 = v0 = group->unk_14
+
+Ours folds the two-step into `lwz r6, 0x74(r4)` (= r4+0x60+0x14). Retail keeps
+`group` in its own register r7 because `group->unk_0` is read later in the
+switch; MWCC folds the base because the folded form reaches the same value.
+
+Tried: inlining the read helper, reordering `flags` before `group`/`v0`,
+separating the v0 declaration, a `(char*)group + 0x14` two-step read — the
+last two failed to compile (0.0%), the others kept the fold. The fix needs
+`group` materialized as a live register that survives to the switch, which no
+source permutation reliably produces. Same regalloc-fold wall as the rest of
+the near-99% shelf. Both bodies saved; a 99.97% is still not a match.
