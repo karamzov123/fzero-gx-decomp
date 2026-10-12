@@ -91,6 +91,31 @@ cache-referenced source (for seed harvesting) and only bundles sources absent fr
 ~233k objects, so the space is genuinely recoverable — it just needs enough sessions per run.
 A single large session (`fn_10_1A458`) held 2.9G: 1.7G in `sources/`, 1.1G in `objects/`.
 
+### Completed run, 2026-10-12 — verified lossless
+
+One full `--apply --max-sessions 2000` run over **all 1611 sessions** finished cleanly
+(`GC_EXIT=0`, `status: healthy`):
+
+    312 archived   |  1264 retained  |  35 recent
+    3,245,025 files reclaimed  =  19.9 GB
+    disk:  39.5 GB free  ->  59.9 GB free
+    inodes: 64.7% used   ->  57.2% used
+
+`fixup` went 175G -> 158G while `fixup-archives` holds only 2.2G across 314 bundles —
+about 9:1 compression, so the space is really gone rather than relocated.
+
+**Losslessness verified, not assumed.** Picked an archived session from the log and
+restored its bundle with `--restore <archive> --session <session> --dry-run`:
+`{"restored": 20000}` — 20,000 of 20,000 files readable and hash-consistent. To
+restore for real, drop `--dry-run`. Note `--restore` **requires** the matching
+`--session`; pairing an archive with the wrong session raises
+`restore session identity mismatch` (the guard works, so match them from the GC log's
+`archive` / `session` fields rather than guessing).
+
+The 1264 `retained` sessions are correct-by-design: their sources are all
+cache-referenced and kept hot for seed harvesting. Expect a large retained count; it
+is not a failure.
+
 Check `df -h /` and `df -i /` before starting any long run.
 
 ### `~/.cache/fzgx-agents` is NOT covered by the GC — 7.5G, cleaned by hand
