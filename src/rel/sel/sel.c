@@ -8907,6 +8907,54 @@ void fn_10_2228C(void) {
 }
 /* fzgx:end fn_10_2228C */
 
+/* fzgx:begin fn_10_22760 */
+extern u8 lbl_10_bss_55CE0;
+
+extern void fn_1_12EF80(u8 value, s16 *arg0, s16 *arg1);
+extern s16 fn_1_12EF24(s16 parsed, s16 current);
+extern s32 fn_1_F89E4(u8 value);
+
+#pragma opt_strength_reduction off
+s32 fn_10_22760(s32 arg0) {
+    s16 parsed;
+    s16 current;
+    s16 result;
+
+    parsed = 0;
+    current = 0;
+    result = -1;
+
+    fn_1_12EF80(lbl_10_bss_55CE0, &parsed, &current);
+
+    if (arg0 != 0) {
+        current += arg0;
+
+        while (current >= 0 && current <= 5) {
+            result = fn_1_12EF24(parsed, current);
+            if (parsed == 5 &&
+                ((current == 5 && fn_1_F89E4(0) == 0) ||
+                 (current != 5 && fn_1_F89E4((u8)(current + 1)) == 0))) {
+                result = -1;
+            }
+
+            if (result != -1) {
+                break;
+            }
+
+            current += arg0;
+        }
+
+        if (result != -1) {
+            if (lbl_10_bss_55CE0 != result) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+#pragma opt_strength_reduction reset
+/* fzgx:end fn_10_22760 */
+
 /* fzgx:begin fn_10_2287C */
 extern u8 lbl_10_bss_55CE0;
 extern u8 lbl_1_bss_718E0[];
