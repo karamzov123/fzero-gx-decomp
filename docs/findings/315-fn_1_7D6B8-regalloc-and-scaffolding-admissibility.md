@@ -114,3 +114,45 @@ and it overwrites the work copy with the lower-scoring body. Two consequences:
   re-measure after any `search` that claims improvement.
 
 No match; no executable-byte change.
+
+---
+
+# A ledger `best_percent` can predate the unit it is scored against
+
+`fn_80078360` (main, 472 B) showed `best_percent = 99.87288` with five separate
+attempts agreeing on it (10-02, 10-03 x2, 10-04). Writing the saved body back
+scored **63.2%** — and so did the other two independently stored bodies, all with
+an identical 56-row residual. Not a body difference; a scoring regression.
+
+Cause, from the repo's own history:
+
+- The unit `dol/fn_80078360.c` did **not exist** when those attempts ran. It was
+  carved by `33562471` on 10-09 23:22, seven days later, out of a shared TU.
+- `5ae9c6ee` (10-09 23:25) then pinned `-O2` onto it and recorded the effect:
+  `fn_80078360 -O2 2.542 -> 49.153`.
+- `state/compiler_options.json` still carries `-O2`, so the flag is correct and
+  unchanged. The 63.2% is the genuine ceiling **for this carve**.
+
+So the 99.873% was measured against a different compile path (the pre-carve
+shared TU, without the pinned level). The ledger value is not wrong history — it
+is simply not comparable to anything landable today.
+
+**Operational consequence, generalised:** `best_percent` is only meaningful
+together with the compile path that produced it. Before treating a near-miss as a
+live target, check that the unit's `source` path and `extra_cflags` existed at
+the attempt's timestamp — `git log -S'<source>' -- config/GFZE01/units.json` and
+the attempt's `ended` column answer it in one command. A symbol whose unit was
+carved *after* its best attempt is carrying a stale score, and the real current
+ceiling may be far lower (here: 99.873% -> 63.2%, a 36-point drop).
+
+Also worth noting: `search` refuses outright below 80% ("needs a body at 80% or
+better"), so a carved unit whose stored best predates the carve cannot even be
+searched until it is rebuilt from scratch.
+
+Attempts on this symbol, for the record: an indexed `base[i].field` rewrite of
+the loop (retail shows `mr r31, r24` + `r31 += 4`, a strength-reduced induction
+shadow) **regressed** to 99 rows / 144 — the shadow pointer was absorbing the
+parameter copies (`mr r30, r4` etc.), and removing it forced `addi rN, rM, 0x0`
+copies of all four arguments. Restored to the 56-row / 63.2% baseline.
+
+No match; no executable-byte change.
