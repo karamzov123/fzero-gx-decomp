@@ -50,3 +50,20 @@ worth using here once the symlinks exist.
 Note each worktree has its **own ledger**, so a worker's `100.0` claim is not evidence on
 its own — re-verify in main before landing. One worker's worktree ledger reported 100.0%
 while its source file was absent.
+
+## Second failure mode: `orig` gets replaced by a real directory
+
+A worker was blocked with `Failed: Reading directory orig/GFZE01` and `ninja` refusing
+to configure. Cause: the worktree's `orig` symlink had been **replaced by a real
+directory** containing `orig/GFZE01/{files,sys}` *and* a nested `orig/orig` — the
+signature of something running `cp -r orig .` instead of `cp -rL`, which copies the
+symlink target's contents into a new directory rather than following the link.
+
+The nested `orig/orig` is the giveaway. Fix is the same shape as the `.venv` repair:
+
+    rm -rf <worktree>/orig
+    ln -sfn /home/armandofm/projects/fzgx/orig <worktree>/orig
+
+**Check both symlinks before every dispatch** — `ls -la <worktree>/.venv <worktree>/orig`
+must show `-> /home/armandofm/projects/fzgx/...` for each. A plain `ls` is not enough: a
+real directory full of the right-looking files passes a naive check but breaks the build.
