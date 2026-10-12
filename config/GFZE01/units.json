@@ -13906,7 +13906,7 @@
       "fn_80009830"
     ],
     "status": "nonmatching",
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
   {
@@ -21208,8 +21208,10 @@
       "fn_80050BD4"
     ],
     "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw on"
+    ]
   },
   {
     "module": "main",
@@ -22507,8 +22509,10 @@
       "fn_80059DD8"
     ],
     "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw on"
+    ]
   },
   {
     "module": "main",
@@ -25218,7 +25222,7 @@
       "fn_80074D88"
     ],
     "status": "nonmatching",
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
   {
@@ -25503,7 +25507,7 @@
       "fn_80077BD4"
     ],
     "status": "nonmatching",
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
   {
@@ -60868,8 +60872,10 @@
       "fn_12_2DBD4"
     ],
     "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw on"
+    ]
   },
   {
     "module": "movie_module",
@@ -63628,8 +63634,10 @@
       "fn_12_3A64"
     ],
     "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw on"
+    ]
   },
   {
     "module": "movie_module",
