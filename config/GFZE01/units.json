@@ -53761,10 +53761,10 @@
     "symbols": [
       "fn_1_149E2C"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/sel_static_disp.c"
+    "asm": true
   },
   {
     "module": "main_rel",

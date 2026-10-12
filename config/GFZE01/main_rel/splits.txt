@@ -7497,9 +7497,6 @@ rel/main_rel/archive/fn_1_12DAEC.c:
 rel/main_rel/car_test/fn_1_7D6B8.c:
 	.text       start:0x0007D6B8 end:0x0007E1DC align:4
 
-rel/main_rel/sel_static_disp/fn_1_149E2C.c:
-	.text       start:0x00149E2C end:0x00149F04 align:4
-
 rel/main_rel/stcoli/fn_1_17098.c:
 	.text       start:0x00017098 end:0x00017920 align:4
 
@@ -7667,3 +7664,6 @@ rel/main_rel/screen_effect/fn_1_76504.c:
 
 rel/main_rel/game/fn_1_4068C.c:
 	.text       start:0x0004068C end:0x00040710 align:4
+
+rel/main_rel/sel_static_disp/fn_1_149E2C.c:
+	.text       start:0x00149E2C end:0x00149F04 align:4
