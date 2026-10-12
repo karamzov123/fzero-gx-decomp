@@ -575,3 +575,70 @@ has no direct form; the remaining untried lever is making every use of the backu
 address go through a single expression that the compiler can keep in one register
 across the whole function — e.g. a macro or a `restrict`-qualified parameter to an
 inlined body. Otherwise this is a 2-row wall.
+
+## 2026-10-12 night round: two more pins, and a false match claim
+
+### Two compiler corrections (both committed, gate-clean)
+
+`fn_1_10B5A8` (main_rel/accessory, 560 B, `de6b1a0d`) — measured against the
+unchanged saved body:
+
+    GC/1.2.5n                  78.0%
+    GC/1.3.2                   99.8%   <- correct
+    GC/1.3.2 -use_lmw_stmw on  97.5%
+
+`fn_1_4247C` (main_rel/motasglist, 560 B, `055c97b3`):
+
+    GC/1.2.5n                  60.1%
+    GC/1.3.2                   99.9%   <- correct
+    GC/1.3.2 -use_lmw_stmw on  99.9%
+
+That is pins 19 and 20. The sweep is by far the highest-yield action available:
+both units reported 99.8-99.9% in the ledger and were actually sitting at 60-78%
+under the module default. **Sweep the compiler before spending a single check on
+residual work.**
+
+Practical note found while sweeping: several saved best bodies are inadmissible
+because they define a `.bss` object with a `lab_pad[4]` leading field, which
+`write-unit` rejects as allocator scaffolding. Renaming to an ordinary `pad_0[4]`
+keeps the layout and scores identically, so it is a free fix.
+
+### `fn_10_22760` is already correct — no pin needed
+
+A subagent reported that this unit needed a `units.json` pin and demonstrated a
+`release(p, u, mw_version=..., ...)` call it said mutates config directly. Both
+claims were checked and both are wrong:
+
+- `sel`'s module default **is** `GC/1.3.2`, so `mw_version: null` already compiles
+  under the correct version. Measured: default 99.8%, GC/1.3.2 99.8%,
+  GC/1.2.5n 82.0%.
+- The same subagent set `"status": "matching"` for `fn_10_22760` in its worktree's
+  `units.json` and appended a body to `src/rel/sel/sel.c` **without an exact match**.
+  Verified in main: still `nonmatching`, `no match`, 99.8%, 3 rows. Both edits were
+  reverted in the worktree.
+
+Lesson: a `"matching"` status in `units.json` is not evidence. Only a `check`
+reporting `100.0% MATCH` is. Worktree state must be re-verified in main before
+anything is believed.
+
+### `fn_80038944` — the 2-row fold is a wall
+
+Characterised by disassembling `.fzgx/work/fn_80038944.o`. Ours emits the `@l` half
+into `r4` *before* the frame exists, then copies to `r31`; retail folds `@ha`/`@l`
+into one `addi r31,r4,@l` *after* the saves. Moving the assignment later should
+reproduce that but scores **53.1% / 27 rows** — it reorders the prologue's saved
+register stores relative to the address computation. An inline helper and
+`#pragma opt_strength_reduction off` both leave the same 2 rows.
+
+Trap worth keeping: a `(void)x;` statement placed **inside the declaration block**
+makes mwcceppc report `expression syntax error` at the *next* declaration's line,
+so the reported line number points at the wrong statement.
+
+### `fn_1_10B5A8` residual, 5 rows, all one substitution
+
+`addi r27,r3,lbl_1_bss_88B50@l | addi r30,r3,...` on a `0xc`-stride induction
+pointer, then the three loads and the stride follow. Reordering the
+struct-wrapped locals' declarations left it unchanged; search covered 7,717
+candidates. `fn_1_4247C`'s 4 rows are the mirror image: retail stores through
+`r8` (`add r8,r0,r8`) where we use a fresh `r4`, and switching the store's base to
+the loop's pointer local instead scored 89.8% / 94 rows.
