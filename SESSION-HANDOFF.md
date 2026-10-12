@@ -27,32 +27,39 @@ best-fitting candidate compiler. Scores collapse with no source change.
 
     .venv/bin/python tools/pin_scan.py --min-pct 99 --limit 30
 
-Already applied (commit `78b84514`), 11 units:
+Already applied — **18 units total** across commits `78b84514` (11) and `b501ae83` (7):
 
 | symbol | default | pinned | score |
 |---|---|---|---|
 | fn_8006C7E8 | GC/1.2.5n 46.8% | GC/1.3.2 | 99.6% |
+| fn_80050BD4 | GC/1.2.5n 49.3% | GC/1.3.2 +lmw | 99.6% |
+| fn_80009830 | GC/1.2.5n 51.2% | GC/1.3.2 | 99.2% |
+| fn_80078360 | GC/1.2.5n 63.2% | GC/1.3.2 | 76.4% |
+| fn_80059DD8 | GC/1.2.5n 68.3% | GC/1.3.2 +lmw | 99.3% |
 | fn_80041700 | GC/1.2.5n 72.2% | GC/1.3.2 +lmw | 99.7% |
+| fn_12_72F4 | GC/1.3.2 74.2% | GC/1.3.2 +lmw | 99.9% |
 | fn_800478C0 | GC/1.2.5n 73.2% | GC/1.3.2 +lmw | 99.7% |
 | fn_80078DA8 | GC/1.2.5n 74.0% | GC/1.3.2 | 99.8% |
-| fn_12_72F4 | GC/1.3.2 74.2% | GC/1.3.2 +lmw | 99.9% |
+| fn_80077BD4 | GC/1.2.5n 81.4% | GC/1.3.2 | 99.3% |
 | fn_800446E4 | GC/1.2.5n 78.0% | GC/1.3.2 | 99.7% |
+| fn_80074D88 | GC/1.2.5n 90.7% | GC/1.3.2 | 99.5% |
 | fn_12_2F970 | GC/1.3.2 78.7% | GC/1.3.2 +lmw | 98.0% |
-| fn_80078360 | GC/1.2.5n 63.2% | GC/1.3.2 | 76.4% |
 | fn_12_A5C | GC/1.3.2 92.1% | GC/1.3.2 +lmw | 99.8% |
+| fn_12_2DBD4 | GC/1.3.2 95.5% | GC/1.3.2 +lmw | 99.4% |
 | fn_12_36208 | GC/1.3.2 94.5% | GC/1.3.2 +lmw | 99.7% |
 | fn_12_29524 | GC/1.3.2 98.3% | GC/1.3.2 +lmw | 99.7% |
+| fn_12_3A64 | GC/1.3.2 98.0% | GC/1.3.2 +lmw | 99.5% |
 
 `fn_800288C4` correctly needs the **default** GC/1.2.5n (99.8%) — the scan rules
 units out too, it does not assume a pin is always the fix.
 
-A night scan over the remaining 95 unpinned >=99% units was launched
-(`/tmp/ps_night1.log`, `tools/pin_scan.py --min-pct 99 --limit 95`). Re-run it if the
-log is incomplete; results are additive to the table above.
+A full sweep of the unpinned >=99% units has been completed
+(`tools/pin_scan.py --min-pct 99 --limit 95`, 78 units scanned). To re-check
+anything, or to sweep a lower threshold: `--min-pct 95 --limit 200`.
 
 ## Disk / inode safeguard — IMPORTANT
 
-`.fzgx/fixup` grew to **175G** and filled the disk to 94% (38G free). The cleaner is
+`.fzgx/fixup` grew to **175G** and filled the disk to 94% (37G free). The cleaner is
 `tools/fzgx/fixup_gc.py` — lossless (cold tar bundles, verified, originals removed;
 reports/cache/captures never rewritten).
 
@@ -64,14 +71,27 @@ reports/cache/captures never rewritten).
         --status /home/armandofm/.cache/fzgx-agents/storage-night.json
 
 `fzgx-storage.service` / `fzgx-storage.timer` are systemd-user units meant to run this
-every 10 min. **Verify they are actually enabled and firing** — they were not, which is
-how 175G accumulated:
+every 10 min. **The timer IS firing correctly** (enabled, active, `OnUnitActiveSec=10min`,
+last run logged success) — but its `ExecStart` uses **`--max-sessions 2`**, so it reclaims
+2 sessions per 10 minutes against 1611 sessions on disk. That is why 175G accumulated: not a
+dead safeguard, a safeguard set far too low to ever catch up.
+
+Verify and consider raising the per-run session count:
 
     systemctl --user list-timers fzgx-storage.timer
-    systemctl --user status fzgx-storage.service
+    systemctl --user cat fzgx-storage.service      # look at --max-sessions
 
-If the timer is dead, that is the real fix; re-running the GC by hand only treats the
-symptom. Check `df -h /` before starting any long run.
+Measured while fixing this: a manual `--max-sessions 2000 --apply` run reclaimed space
+steadily (37G -> 39G free and climbing). Note it only writes its `--status` file at the
+very end, so watch `df -h /` rather than the status file to follow progress.
+
+Retention policy detail, so the numbers are not surprising: `plan()` keeps **every**
+cache-referenced source (for seed harvesting) and only bundles sources absent from
+`cache.json`. Across a 40-session sample that still left ~353k reclaimable sources and
+~233k objects, so the space is genuinely recoverable — it just needs enough sessions per run.
+A single large session (`fn_10_1A458`) held 2.9G: 1.7G in `sources/`, 1.1G in `objects/`.
+
+Check `df -h /` and `df -i /` before starting any long run.
 
 ## Functions closed out this session (do not redo)
 
