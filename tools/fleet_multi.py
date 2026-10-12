@@ -155,8 +155,19 @@ for _n in SURGE:
     # Current owner override (2026-10-11): replace OpenCode with Hermes Step5
     # ultra. Historical transport/effort measurements above are not this pin.
     # Keep the six-tool guard and compiler-progress timeout; never fall back.
-    POLICY[_n] = {'harness':'hermes','model':'stepfun/step-5-preview:free','effort':'ultra',
-                  'display':f'Step 5 Preview Free Ultra (Hermes #{_n[-1]})','managed':False}
+    #
+    # REVISED 2026-10-11 (live measurement): the `ultra` pin stalls the portal.
+    # Every ultra session returned system-init then zero model events
+    # (first_model_event_at=null, tool_counts={}) and was killed tool-idle at
+    # 240s with 0 tokens; phase files across the historical log show the same
+    # timeout+released / no-tool+released pattern. `low` is the only effort that
+    # reaches write_unit: measured live, low emits the mcp__fzgx__search tool
+    # call and completes in ~10s. This matches the hermes_command docstring,
+    # which already recorded that only `low` reaches write_unit while medium and
+    # above stall with no events for minutes. Effort pinned to low on that
+    # evidence; the model, transport and six-tool guard are unchanged.
+    POLICY[_n] = {'harness':'hermes','model':'stepfun/step-5-preview:free','effort':'low',
+                  'display':f'Step 5 Preview Free Low (Hermes #{_n[-1]})','managed':False}
     META[_n] = (f'OpenCode #{_n[-1]}', chr(0xF0A9B))
 del _n
 CONTROL = CACHE / 'control-v3.json'
