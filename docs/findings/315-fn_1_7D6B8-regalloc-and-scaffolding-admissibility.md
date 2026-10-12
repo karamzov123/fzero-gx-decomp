@@ -706,3 +706,29 @@ member store, every call in the function passes its arguments correctly, and the
 residual is purely the reload. **Forcing a reload has no C spelling** — `volatile`
 on the field would change the loads everywhere else and break the rest of the
 function. Treat as a wall.
+
+## The `fn_10_22760` lesson does not generalise — checked on two walls
+
+`fn_10_22760` matched because a call was missing its second argument, which made
+three rows look like a regalloc survivor-order swap. That suggested re-reading the
+other walls for the same cause. Both were checked against their full retail call
+sites and **both are negative**:
+
+**`fn_80038944`** — every call passes its arguments correctly:
+`fn_8003458C(void)`, `__GXSaveCPUFifoAux(r31 = backup)`, `GXSetCPUFifo(lbl_801A6C28)`,
+`memcpy(gx, backup + 0x24, 0x4f8)` (retail `addi r4,r31,0x24` matches `&backup->gx`),
+`OSRestoreInterrupts(enabled)`. `GXFifoObj.rw_dst` at offset 0x1C matches retail's
+`lwz r3,0x1c(r31)` load, so the struct layout is right too. The 2-row residual is
+purely the `@ha`/`@l` fold timing described above.
+
+**`fn_1_10B5A8`** — every `bl` site matches its declaration's arity:
+`fn_80077B14(void*)`, `lbl_8006DBAC(void*)`, `lbl_8006DAEC(void)`, `lbl_8006DBE4(void)`,
+`lbl_8006E1B0(void*,void*)`, `lbl_8006DC20(void)`, `fn_8006E250(void*,void*)`. The
+5-row residual is the `r27`/`r30` induction-pointer substitution described above.
+
+So the missing-argument pattern is worth checking once per wall, but it is **not**
+the common cause. Four of the five characterised walls are genuine allocator
+differences (`fn_1_4247C` being a base-pointer *reload*, which has no C spelling).
+`fn_80050BD4` remains the only wall not yet re-read with this lens, and its 14 rows
+are one propagated `r23`/`r22` vs `r21`/`r24` swap across three passes, so a call
+signature is unlikely there too.
