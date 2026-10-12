@@ -1,5 +1,5 @@
 {
- "generated": 1791766902,
+ "generated": 1791772317,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -32661,7 +32661,7 @@
   {
    "symbol": "fn_8005DCEC",
    "module": "main",
-   "unit": null,
+   "unit": "dol/fn_8005DCEC.c",
    "addr": 2147867884,
    "size": 7920,
    "status": "unmatched",
@@ -75552,11 +75552,11 @@
   {
    "symbol": "fn_1_BA144",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/memcard/fn_1_BA144.c",
    "addr": 762180,
    "size": 6192,
    "status": "unmatched",
-   "attempts": 2,
+   "attempts": 3,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
@@ -75603,7 +75603,7 @@
   {
    "symbol": "fn_1_BC310",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/memcard/fn_1_BC310.c",
    "addr": 770832,
    "size": 9832,
    "status": "unmatched",
@@ -76266,7 +76266,7 @@
   {
    "symbol": "fn_1_C4ABC",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/memcard/fn_1_C4ABC.c",
    "addr": 805564,
    "size": 9240,
    "status": "unmatched",
@@ -88591,7 +88591,7 @@
   {
    "symbol": "fn_1_10E3B4",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/accessory/fn_1_10E3B4.c",
    "addr": 1106868,
    "size": 7252,
    "status": "unmatched",
@@ -89237,11 +89237,11 @@
   {
    "symbol": "fn_1_120804",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/accessory/fn_1_120804.c",
    "addr": 1181700,
    "size": 6980,
    "status": "unmatched",
-   "attempts": 3,
+   "attempts": 4,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
@@ -98716,7 +98716,7 @@
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
-   "blocked_reason": "Structural reconstruction in progress: six-strip object and 248-byte pool proven; typed GC/1.3.2 frontier has 238 aligned residual rows, not a near-exact seed. Legacy source crosses DD58 object bounds; continue from the archived typed frontier, not repeated model retries.",
+   "blocked_reason": "Structural reconstruction in progress: typed strip pool and explicit clamp result with GC/1.3.2 -fp_contract off yield 85.71% adjusted / 210 residual rows. Continue frozen arithmetic/value-flow frontier; no generic near-miss retries.",
    "prev_status": null,
    "link_state": null
   },
@@ -622146,6 +622146,48 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_8004CD70.1791762854.c",
    "stale_checks": 2,
    "best_in_attempt": 69.1597,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 23711,
+   "symbol": "fn_1_BA144",
+   "agent": "fleet-v2-oc1-1791772056839077019-hermes-1",
+   "harness": "hermes",
+   "model": "stepfun/step-5-preview:free",
+   "started": 1791772057,
+   "ended": 1791772317,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "harness timeout (rc=130); saved best candidate automatically",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 23712,
+   "symbol": "fn_1_120804",
+   "agent": "fleet-v2-oc2-1791772056876827545-hermes-1",
+   "harness": "hermes",
+   "model": "stepfun/step-5-preview:free",
+   "started": 1791772057,
+   "ended": 1791772316,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "harness timeout (rc=130); saved best candidate automatically",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
