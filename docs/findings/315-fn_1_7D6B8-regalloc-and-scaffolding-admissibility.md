@@ -311,3 +311,49 @@ eighth." Confirmed empirically — the structural candidates all fail or regress
 surrounding copies agree. A single opcode deviating inside an otherwise uniform
 unrolled body is a retail compiler artifact; the row is unwinnable and further
 structural attempts are wasted budget.
+
+---
+
+# fn_12_72F4: part of the documented regalloc plateau was a wrong-compiler artifact
+
+`docs/findings/314` recorded `fn_12_72F4` as regalloc-blocked at 99.88%, with the
+body saved and the residual described as unfixable. That measurement was taken
+under the unit's module default. Pinning `GC/1.3.2 -use_lmw_stmw on` (which
+`tools/pin_scan.py` selected) moves the *same body* from **74.2% to 99.9%**.
+
+So a quarter of the near-99% shelf was not a register-allocation wall at all — it
+was units compiled with the wrong MWCC version after the carve.
+
+## The remaining row, characterised precisely
+
+One row, and it is a genuine emission-order problem rather than a naming one:
+
+    00007318  mr r30, r25    |    mr r30, r27
+
+Retail's prologue, in order:
+
+    7308  mr    r25, r3            ; movie
+    730C  addi  r26, r25, 0x78     ; output
+    7310  li    r28, 0x0           ; i
+    7314  addi  r27, r25, 0x44     ; arg        <- arg's address FIRST
+    7318  mr    r30, r25           ; induction base
+    731C  mr    r31, r26
+
+Our best body assigns the induction base from `arg` (`current = (u8 *)arg`), so it
+lands in `r27`. Changing it to `movie` produces the right register but the
+allocator then emits `mr r30, r25` **before** `addi r27, r25, 0x44` — the two
+instructions are exactly swapped, and the score drops to 95.3% (the shifted
+alignment costs a second row).
+
+Measured, all giving the same 95.3% / 2 rows:
+
+- `current = (u8 *)movie` — right register, wrong order
+- `arg` materialised early plus `(void)arg` — allocator ignores it
+- induction base assigned at the position retail uses — same order
+- dead `current` local removed — same order
+
+The cause is that `arg` is first *used* inside the loop (`arg->field_1c = ...`), so
+MWCC defers materialising its address, while `movie` is used immediately. Getting
+`arg`'s address emitted before the induction base therefore needs the loop to take
+`arg` through a path that forces early materialisation — an inlined helper or a
+restructured loop — not a statement reordering. That is the concrete next step.
