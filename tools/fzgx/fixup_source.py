@@ -286,6 +286,9 @@ def call_results_to_locals(body: str, name: str) -> List[Tuple[str, str]]:
     protos = {m.group(2): m.group(1).strip() for m in re.finditer(
         r'(?m)^\s*(?:extern\s+)?(' + TYPE + r')\s*\b([A-Za-z_]\w*)\s*\([^;{]*\)\s*;', body[:span[0]])}
     inner = body[top:span[2]]
+    # A function-like macro may be an lvalue or have a non-call result type.
+    # Hoisting W(p, o) out of W(p, o) += base loses the actual memory store.
+    macros = set(re.findall(r'(?m)^\s*#\s*define\s+([A-Za-z_]\w*)\(', body))
     k = 0
     per_callee: Dict[str, list] = {}
     for m in re.finditer(r"(?m)^([ \t]+)(?!return\b)([^\n;{}]*?)\b([A-Za-z_]\w*)\s*(\([^()]*\))([^\n;{]*)([;{])\n", inner):
@@ -293,6 +296,8 @@ def call_results_to_locals(body: str, name: str) -> List[Tuple[str, str]]:
         after = after + term
         if callee in ('if', 'while', 'for', 'switch', 'sizeof', 'return') or callee == name:
             continue
+        if callee in macros or re.match(r'\s*(?:\+\+|--|(?:[+\-*/%&|^]|<<|>>)?=(?!=))', after):
+            continue  # only rvalue function calls, never macro/assignment targets
         if not (before.strip() or after.strip()):
             continue  # a bare call statement or `x = f();` already carries its own register
         if re.fullmatch(r"\s*[A-Za-z_]\w*\s*=\s*", before) and not after.strip():
