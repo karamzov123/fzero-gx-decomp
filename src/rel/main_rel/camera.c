@@ -2829,7 +2829,7 @@ void camera_disable_flags(void) {
 
 /* fzgx:begin camera_are_flags_enabled */
 // Returns whether the camera state flag is set.
-u8 camera_are_flags_enabled(void) {
+BOOL camera_are_flags_enabled(void) {
     return camera_flag_1;
 }
 /* fzgx:end camera_are_flags_enabled */

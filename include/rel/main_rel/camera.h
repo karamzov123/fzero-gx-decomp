@@ -288,4 +288,7 @@ extern u8 jumptable_1_data_3584[0x2C];
 // jumptable_1_data_3558: .data size 0x2C, 1 refs from camera.c (own data block)
 extern u8 jumptable_1_data_3558[0x2C];
 
+/* The getter returns the zero-extended flag in the word-sized ABI. */
+BOOL camera_are_flags_enabled(void);
+
 #endif  // REL_MAIN_REL_CAMERA_H
