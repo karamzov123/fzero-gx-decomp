@@ -566,6 +566,434 @@ void fn_15_FCC(void) {
 }
 /* fzgx:end fn_15_FCC */
 
+/* fzgx:begin fn_15_11DC */
+#include "font.h"
+#include "rel/main_rel/camera.h"
+#include "rel/main_rel/sound.h"
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table2[21] = {0x00FF00FF, 0x808080FF, 0xFFFFFFFF, 0xC3ACEF3B, 0x43FC728F, 0x44241408, 0xC3AD35A2, 0x43FE58B4, 0x44243FBE, 0x00000000, 0x3F800000, 0x00000000, 0xC3ACEF3B, 0x43FC728F, 0x44241408, 0xC3AD35A2, 0x43FE58B4, 0x44243FBE, 0x00000000, 0x3F800000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 200.0f;
+    s = 1.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0xFFC800FF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 30.0f;
+    d = 0.01;
+    s = 2.0f;
+    s = 320.0f;
+    s = 240.0f;
+    s = 20.0f;
+    s = 10.0f;
+    s = 0.5f;
+    s = 3.0f;
+    s = 0.03999999910593033f;
+    d = 4503601774854144.0;
+}
+#pragma section code_type ".text"
+
+struct WinningCar {
+    u32 flags;
+    u8 unknown_4[0xD8];
+    f32 motion_dc;
+    u8 unknown_e0[0x120];
+    f32 motion_200;
+    u8 unknown_204[0x41C];
+};
+
+struct WinningState {
+    u8 unknown_0[0x10];
+    void *transition;
+    u32 flags;
+    s32 frame;
+    u8 unknown_1c[4];
+    u8 input_enabled;
+    u8 unknown_21[2];
+    u8 advancing;
+    u8 unknown_24[8];
+    void *result_source;
+    u8 unknown_30[4];
+    u8 show_first_result;
+    u8 show_second_result;
+    u8 result_visible;
+    u8 unknown_37;
+    s16 active_car_count;
+    s16 total_car_count;
+    u8 unknown_3c[2];
+    u8 result_blocked;
+    u8 unknown_3f;
+    u16 stage;
+    u8 unknown_42[2];
+    f32 first_result_alpha;
+    f32 second_result_alpha;
+    struct WinningCar *cars;
+    u32 effect_mode;
+    u32 effect_enabled;
+    u32 initialized;
+    u8 unknown_5c[4];
+    f32 result_scale;
+};
+
+/* The retail 0xA0-byte result snapshot includes its status byte at +8. */
+struct WinningResultSnapshot {
+    u32 unknown_0[2];
+    u8 status;
+    u8 unknown_9[0x97];
+};
+
+
+struct WinningTimeline {
+    u32 unknown_0;
+    s32 results_start;
+    s32 results_end;
+    s32 hide_result_at;
+    s32 exit_at;
+};
+
+struct WinningInputStatus {
+    u8 unknown_0[0xE0];
+    u8 held_frames;
+    u8 unknown_e1;
+    u8 skip;
+};
+
+extern struct WinningState lbl_15_bss_0;
+extern struct WinningTimeline lbl_15_data_90;
+extern struct WinningInputStatus lbl_1_bss_5138;
+extern FontDrawPacket lbl_1_rodata_26F8;
+
+typedef struct Sig_ADXT_Stop_ADXTHandle Sig_ADXT_Stop_ADXTHandle;
+extern u32 fn_8004BF0C(Sig_ADXT_Stop_ADXTHandle *, u32);
+extern s32 fn_800674FC(u32, s32, s16);
+extern u32 fn_15_4578(void);
+extern void fn_15_4060(void);
+extern void fn_15_30E8(void);
+extern void fn_15_398C(void);
+extern void fn_15_B90(void);
+extern void fn_15_DD8(void);
+extern u32 fn_15_5460(f32);
+extern u32 fn_15_5730(f32);
+extern void fn_1_4A00(s32, u8, void *);
+extern s8 fn_1_5370(s8, s32);
+extern u32 fn_1_467F4(void);
+extern void fn_1_15B544(void);
+extern void fn_1_15B5CC(void);
+extern void fn_1_15B588(void);
+extern void fn_1_15B654(void);
+extern u32 fn_1_A2A70(u32, u32);
+extern void fn_1_A2D84(u32);
+extern void camera_set_entry_field_0xa8(u8, s16);
+extern CameraState *camera_get_state_object(void);
+extern BOOL camera_are_flags_enabled(void);
+extern LiveCamera *live_camera_get(void);
+
+static inline f32 winning_clamp(f32 value, f32 low, f32 high) {
+    if (value < low) {
+        return low;
+    } else if (value > high) {
+        return high;
+    } else {
+        return value;
+    }
+}
+
+#pragma opt_propagation off
+void fn_15_11DC(void) {
+    struct WinningState *state;
+    struct WinningTimeline *timeline;
+    struct WinningCar *car;
+    s32 index;
+    s32 first_index;
+    struct WinningCar *first_car;
+    FontDrawPacket packet;
+    struct WinningResultSnapshot result;
+    CameraState *camera;
+    LiveCamera *live;
+    f32 fade;
+    f32 value;
+    f32 previous_scale;
+    f64 scale_step;
+    s32 frame;
+    u8 skip;
+
+    state = &lbl_15_bss_0;
+    if (state->flags & 0x78) {
+        camera_set_entry_field_0xa8(0, 2);
+    } else {
+        camera_set_entry_field_0xa8(0, 2);
+    }
+    if (state->flags & 0x78) {
+        fn_15_4578();
+    }
+    if (state->flags & 0x10000000) {
+        return;
+    }
+
+    if (state->flags & 4) {
+        for (first_car = state->cars, first_index = 0; (s16)first_index < state->total_car_count; ++first_index, ++first_car) {
+            first_car->flags |= 0x100000;
+            if (state->frame <= 350) {
+                first_car->motion_200 = (0.0f);
+                first_car->motion_dc = (0.0f);
+            }
+        }
+        if (state->frame == 1) {
+            for (car = state->cars, index = 0; (s16)index < state->active_car_count; ++index, ++car) {
+                car->flags |= 0x400;
+            }
+            state->input_enabled = 1;
+        }
+        if (state->frame == 350) {
+            for (car = state->cars, index = 0; (s16)index < state->total_car_count; ++index, ++car) {
+                car->flags &= ~0x8000U;
+            }
+            state->flags |= 0x40000000;
+        }
+        if (state->frame == 1029) {
+            fn_1_4A00(0, 12, state->transition);
+        }
+        if (state->frame == 1041) {
+            fn_15_4060();
+            fn_1_5370(4, 0);
+        }
+        if (state->frame == 1044) {
+            if ((s32)fn_1_467F4() == 0) {
+                fn_15_30E8();
+            }
+            fn_1_5370(4, 0);
+            fn_1_4A00(1, 15, state->transition);
+            fn_15_398C();
+            fn_1_15B544();
+            fn_1_15B5CC();
+            fn_1_15B588();
+            state->initialized = 1;
+        }
+        if (state->frame == 2280) {
+            fn_1_4A00(0, 120, state->transition);
+            lbl_1_bss_6EAB4.unk_0 |= 0xAC;
+            fn_1_A2A70(12, 120);
+        }
+        if (state->frame == 2400) {
+            fn_15_B90();
+        }
+        frame = state->frame;
+        if (frame == 1219) state->effect_enabled = 1;
+        if (frame == 1393) state->effect_mode = 1;
+        if (frame == 1586) state->effect_mode = 2;
+        if (frame == 1739) state->effect_enabled = 0;
+        if (frame == 2087) {
+            state->effect_enabled = 1;
+            state->effect_mode = 0;
+        }
+    } else if (state->flags & 2) {
+        for (car = state->cars, index = 0; (s16)index < state->total_car_count; ++index, ++car) {
+            car->flags |= 0x100000;
+            if (state->frame <= 350) {
+                car->motion_200 = (0.0f);
+                car->motion_dc = (0.0f);
+            }
+        }
+        if (state->frame == 1) {
+            for (car = state->cars, index = 0; (s16)index < state->active_car_count; ++index, ++car) {
+                car->flags |= 0x400;
+            }
+        }
+        if (state->frame == 350) {
+            for (car = state->cars, index = 0; (s16)index < state->total_car_count; ++index, ++car) {
+                car->flags &= ~0x8000U;
+            }
+            state->flags |= 0x40000000;
+        }
+        frame = state->frame;
+        if (frame == 523) state->input_enabled = 1;
+        if (frame == 3292) fn_1_4A00(0, 12, state->transition);
+        if (state->frame == 3304) {
+            fn_15_4060();
+            fn_1_5370(4, 0);
+        }
+        if (state->frame == 3307) {
+            if ((s32)fn_1_467F4() == 0) fn_15_30E8();
+            fn_1_5370(4, 0);
+            fn_1_4A00(1, 15, state->transition);
+            fn_15_398C();
+            fn_1_15B544();
+            fn_1_15B5CC();
+            fn_1_15B588();
+            state->initialized = 1;
+        }
+        if (state->frame == 4680) fn_1_15B654();
+        if (state->frame == lbl_15_data_90.results_start) fn_15_DD8();
+        frame = state->frame;
+        if (frame == 3662) state->effect_enabled = 1;
+        if (frame == 4011) state->effect_enabled = 0;
+    } else if (state->flags & 0x78) {
+        state->input_enabled = 1;
+        if (state->frame == 15) fn_1_4A00(1, 244, state->transition);
+        if (state->frame == 3292) fn_1_4A00(0, 12, state->transition);
+        if (state->frame == 3304 && !(state->flags & 0x40)) {
+            fn_15_4060();
+            fn_1_5370(4, 0);
+        }
+        if (state->frame == 3307) {
+            if (state->flags & 0x40) {
+                fn_15_B90();
+                return;
+            }
+            if ((s32)fn_1_467F4() == 0 && !(state->flags & 0x40)) fn_15_30E8();
+            fn_1_5370(4, 0);
+            fn_1_4A00(1, 15, state->transition);
+            fn_15_398C();
+            fn_1_15B544();
+            fn_1_15B5CC();
+            fn_1_15B588();
+            state->initialized = 1;
+        }
+        if (state->frame == 4680) fn_1_15B654();
+        timeline = &lbl_15_data_90;
+        {
+        s32 trigger_frame = timeline->results_start;
+        s32 current_frame = state->frame;
+        if (current_frame == trigger_frame) {
+            result = *(struct WinningResultSnapshot *)((u8 *)state->result_source + 0xF0);
+            if (result.status == 0 && state->result_blocked == 0 && !(state->flags & 0x20000000)) {
+                state->advancing = 1;
+                fn_15_DD8();
+            } else {
+                state->stage = 1;
+            }
+        }
+        }
+        if (state->stage >= 1) {
+            camera = camera_get_state_object();
+            /* Retail reads this phase counter as signed with lha. */
+            *(s16 *)&camera->unk_20 += 2;
+            if (camera_are_flags_enabled()) {
+                live = live_camera_get();
+                *(s16 *)((u8 *)live + 0x5C) += 2;
+            }
+            frame = state->frame;
+            value = (1.0f) - (f32)(timeline->results_start + 30 - frame) / (30.0f);
+            fade = winning_clamp(value, (0.0f), (1.0f));
+            if (frame >= lbl_15_data_90.results_end && (state->show_first_result || state->show_second_result)) {
+                value = (f32)(lbl_15_data_90.results_end + 30 - frame) / (30.0f);
+                fade = winning_clamp(value, (0.0f), (1.0f));
+            }
+            previous_scale = state->result_scale;
+            scale_step = (0.01) * (f64)((2.0f) - previous_scale);
+            state->result_scale = (f32)((f64)previous_scale + scale_step);
+            packet = lbl_1_rodata_26F8;
+            packet.x = (320.0f);
+            packet.y = (240.0f);
+            packet.z = (20.0f);
+            packet.image = 0x8C04;
+            packet.flags = 0xA;
+            packet.alpha = fade;
+            fn_1_4F734(&packet);
+
+            packet.image = 0x8C06;
+            packet.z = (10.0f);
+            if (state->frame > timeline->results_start + 20) {
+                packet.scale_x = (2.0f) * state->result_scale;
+                packet.scale_y = packet.scale_x;
+                if (packet.scale_y > (2.0f)) {
+                    value = (2.0f) - (packet.scale_x - (2.0f));
+                    packet.scale_y = winning_clamp(value, (0.0f), (2.0f));
+                }
+            } else {
+                packet.scale_x = (0.0f);
+                packet.scale_y = (0.0f);
+            }
+            packet.alpha = packet.scale_y / (2.0f);
+            fn_1_4F734(&packet);
+
+            packet.z = (30.0f);
+            packet.image = 0x8C06;
+            *(u32 *)packet.color = fzgx_pool_table4[0];
+            if (state->frame > timeline->results_start + 20) {
+                packet.scale_x = (3.0f) * state->result_scale;
+                packet.scale_y = packet.scale_x;
+                if (packet.scale_y > (3.0f)) {
+                    value = (3.0f) - (packet.scale_x - (3.0f));
+                    packet.scale_y = winning_clamp(value, (0.0f), (3.0f));
+                }
+            } else {
+                packet.scale_x = (0.0f);
+                packet.scale_y = (0.0f);
+            }
+            packet.alpha = packet.scale_y / (3.0f);
+            fn_1_4F734(&packet);
+            if (state->frame == timeline->results_start + 60) {
+                fn_8004BF0C((Sig_ADXT_Stop_ADXTHandle *)lbl_1_bss_6EAD0.unk_0->unk_4, 0);
+                fn_800674FC(3, (s32)0xA0100000U, 0x7F);
+                fn_1_A2D84(0xA91A0600);
+            }
+        } else {
+            state->result_scale = (0.0f);
+        }
+        timeline = &lbl_15_data_90;
+        if (state->frame == timeline->results_end + 40 && (state->show_first_result || state->show_second_result)) {
+            fn_1_A2D84(0xA91A0700);
+        }
+        if (state->frame >= timeline->results_end && state->show_first_result) {
+            skip = lbl_1_bss_5138.skip;
+            if (state->frame >= lbl_15_data_90.hide_result_at) {
+                state->result_visible = 0;
+            } else {
+                value = (1.0f) - (f32)(timeline->results_end + 30 - state->frame) / (30.0f);
+                state->first_result_alpha = winning_clamp(value, (0.0f), (1.0f));
+            }
+            if ((s32)skip != 0) {
+                value = state->first_result_alpha - (0.03999999910593033f);
+                state->first_result_alpha = winning_clamp(value, (0.0f), (1.0f));
+            }
+            fn_15_5460(state->first_result_alpha);
+        }
+        if (state->frame >= timeline->results_end && state->show_second_result && !state->show_first_result) {
+            skip = lbl_1_bss_5138.skip;
+            if (state->frame >= lbl_15_data_90.hide_result_at) {
+                state->result_visible = 0;
+            } else {
+                value = (1.0f) - (f32)(timeline->results_end + 30 - state->frame) / (30.0f);
+                state->second_result_alpha = winning_clamp(value, (0.0f), (1.0f));
+            }
+            if ((s32)skip != 0) {
+                value = state->second_result_alpha - (0.03999999910593033f);
+                state->second_result_alpha = winning_clamp(value, (0.0f), (1.0f));
+            }
+            fn_15_5730(state->second_result_alpha);
+        }
+        if (state->frame == lbl_15_data_90.exit_at) {
+            state->stage = 4;
+            state->advancing = 1;
+            fn_15_DD8();
+        }
+        frame = state->frame;
+        if (frame == 3517) state->effect_enabled = 1;
+        if (frame == 3866) state->effect_enabled = 0;
+    } else if (state->flags & 0x80) {
+        fn_1_15B544();
+        fn_1_15B5CC();
+        fn_1_15B588();
+        fn_15_398C();
+        state->initialized = 1;
+    }
+    if (state->frame < 18000) {
+        ++state->frame;
+    }
+}
+
+#pragma opt_propagation reset
+/* fzgx:end fn_15_11DC */
+
 /* fzgx:begin fn_15_1D7C */
 extern struct fn_15_1D7C_lbl_15_bss_0 lbl_15_bss_0;
 extern u32 fn_15_1F28(u32, u32);

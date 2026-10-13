@@ -263,3 +263,6 @@ rel/title/title/fn_8_2124.c:
 
 rel/title/title/fn_8_5608.c:
 	.text       start:0x00005608 end:0x00005810 align:4
+
+rel/title/operation/fn_8_B138.c:
+	.text       start:0x0000B138 end:0x0000B380 align:4
