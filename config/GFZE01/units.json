@@ -1425,6 +1425,18 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/emb_memcard/fn_3_E5D4.c",
+    "symbols": [
+      "fn_3_E5D4"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/emb_memcard.c",
+    "pool": true
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/emb_memcard/fn_3_F878.c",
     "symbols": [
       "fn_3_F878"
