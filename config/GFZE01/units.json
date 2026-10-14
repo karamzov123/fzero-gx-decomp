@@ -47237,6 +47237,33 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/load/fn_1_4706C.c",
+    "symbols": [
+      "fn_1_4706C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/load.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_384C0",
+      "fzgx_obj_lbl_1_bss_384C0": "lbl_1_bss_384C0",
+      "fzgx_obj_lbl_1_bss_384C4": "lbl_1_bss_384C4",
+      "fzgx_obj_lbl_1_bss_384C8": "lbl_1_bss_384C8",
+      "fzgx_obj_lbl_1_bss_384CC": "lbl_1_bss_384CC",
+      "fzgx_obj_lbl_1_bss_384D0": "lbl_1_bss_384D0",
+      "fzgx_obj_lbl_1_bss_384D8": "lbl_1_bss_384D8",
+      "lbl_1_bss_384D8__fzgx_offset_4000": "lbl_1_bss_384D8+0x4000",
+      "fzgx_obj_lbl_1_bss_3DCD8": "lbl_1_bss_3DCD8",
+      "fzgx_obj_lbl_1_bss_3DCDC": "lbl_1_bss_3DCDC",
+      "lbl_1_bss_3DCDC__fzgx_offset_4": "lbl_1_bss_3DCDC+0x4",
+      "fzgx_obj_lbl_1_bss_3DCE4": "lbl_1_bss_3DCE4",
+      "fzgx_obj_lbl_1_bss_3DD28": "lbl_1_bss_3DD28",
+      "lbl_1_bss_3DD28__fzgx_offset_C": "lbl_1_bss_3DD28+0xC"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/load/fn_1_47184.c",
     "symbols": [
       "fn_1_47184"

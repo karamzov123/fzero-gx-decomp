@@ -7694,3 +7694,6 @@ rel/main_rel/archive/fn_1_12ADC8.c:
 
 rel/main_rel/load/fn_1_46838.c:
 	.text       start:0x00046838 end:0x000469BC align:4
+
+rel/main_rel/load/fn_1_4706C.c:
+	.text       start:0x0004706C end:0x00047184 align:4

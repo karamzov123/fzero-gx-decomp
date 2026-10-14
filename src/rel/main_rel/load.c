@@ -1013,6 +1013,76 @@ u32 fn_1_46ED8(void) {
 }
 /* fzgx:end fn_1_46ED8 */
 
+/* fzgx:begin fn_1_4706C */
+typedef struct {
+    u32 flag;
+    s32 id;
+    u32 value;
+    u32 unk_0C;
+} fn_1_4706C_entry;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+s32 fzgx_obj_lbl_1_bss_384C0;
+s32 fzgx_obj_lbl_1_bss_384C4;
+u32 fzgx_obj_lbl_1_bss_384C8;
+u32 fzgx_obj_lbl_1_bss_384CC;
+u32 fzgx_obj_lbl_1_bss_384D0[2];
+u32 fzgx_obj_lbl_1_bss_384D8[4096];
+u32 lbl_1_bss_384D8__fzgx_offset_4000[1536];
+u32 fzgx_obj_lbl_1_bss_3DCD8;
+u32 fzgx_obj_lbl_1_bss_3DCDC;
+u32 lbl_1_bss_3DCDC__fzgx_offset_4;
+u32 fzgx_obj_lbl_1_bss_3DCE4[17];
+u32 fzgx_obj_lbl_1_bss_3DD28[3];
+u32 lbl_1_bss_3DD28__fzgx_offset_C[176];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_384C0;
+    s = fzgx_obj_lbl_1_bss_384C4;
+    s = fzgx_obj_lbl_1_bss_384C8;
+    s = fzgx_obj_lbl_1_bss_384CC;
+    s = (*((0) + (fzgx_obj_lbl_1_bss_384D0)));
+    s = fzgx_obj_lbl_1_bss_384D8[0];
+    s = lbl_1_bss_384D8__fzgx_offset_4000[0];
+    s = fzgx_obj_lbl_1_bss_3DCD8;
+    s = fzgx_obj_lbl_1_bss_3DCDC;
+    s = lbl_1_bss_3DCDC__fzgx_offset_4;
+    s = fzgx_obj_lbl_1_bss_3DCE4[0];
+    s = fzgx_obj_lbl_1_bss_3DD28[0];
+    s = lbl_1_bss_3DD28__fzgx_offset_C[0];
+}
+#pragma section code_type ".text"
+
+extern void fn_8000659C(void);
+
+#pragma opt_common_subs off
+void fn_1_4706C(void) {
+    struct { u32 value; } i;
+    fn_1_4706C_entry *entry;
+    s32 j;
+
+    fn_8000659C();
+    if (fzgx_obj_lbl_1_bss_384C0 != fzgx_obj_lbl_1_bss_384C4) {
+        entry = (fn_1_4706C_entry *)fzgx_obj_lbl_1_bss_384D8;
+        for (i.value = 0; i.value < 0x400; i.value++, entry++) {
+            if (entry->flag == 0x80000000) {
+                entry->flag = 0;
+                fzgx_obj_lbl_1_bss_3DCD8 = entry->value;
+            }
+        }
+        fzgx_obj_lbl_1_bss_384C4 = fzgx_obj_lbl_1_bss_384C0;
+    }
+    entry = (fn_1_4706C_entry *)fzgx_obj_lbl_1_bss_384D8;
+    for (j = 0; j < 0x400; j++, entry++) {
+        entry->flag = 0;
+    }
+    lbl_1_bss_3DCDC__fzgx_offset_4 = 0;
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_4706C */
+
 /* fzgx:begin fn_1_47184 */
 u32 fn_1_47184(void) {
     return lbl_1_bss_3DFF4.unk_0 - lbl_1_bss_3DCDC;
