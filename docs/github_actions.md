@@ -46,9 +46,16 @@ uploaded unchanged, if any matched/complete/total measure differs, and a body th
 score 100% is left out (it belongs in `fzgx submit`). The exact report is kept as the
 `GFZE01_exact` artifact, a name decomp.dev's `<version>_report` pattern ignores.
 
-Refresh the bodies from the local ledger's best attempts with
-`uv run tools/fuzzy_report.py export --version GFZE01`; stale bodies are harmless (a function
-carved since the export is skipped).
+The bodies refresh themselves: `fzgx-fuzzy-refresh.timer` (`tools/systemd/`) runs
+`tools/fuzzy_refresh.py` every 30 minutes in the dedicated worktree `../fzgx-fuzzy`, reset to
+`origin/main` first. When main or the ledger's best attempts changed since the last run, it
+builds, re-runs `uv run tools/fuzzy_report.py export --version GFZE01` against the main
+checkout's ledger, and lands a changed `fuzzy/GFZE01/` as a merged pull request from
+`auto/fuzzy-refresh` (owner's choice: no review step), so the next CI report carries it; local
+main is then fast-forwarded for the integrator. It waits while local main holds unpublished
+commits. Stale bodies are harmless in between (a function carved since the export is skipped).
+Worktree setup, once: `git worktree add --detach ../fzgx-fuzzy origin/main`, then symlink
+`orig/GFZE01`, `build/compilers` and `build/binutils` to the main checkout's.
 
 ## 4. What the report counts
 

@@ -1,0 +1,10 @@
+[Unit]
+Description=Keep fzgx fuzzy-match bodies in step with main and the ledger
+
+[Timer]
+OnBootSec=15min
+OnUnitInactiveSec=30min
+Unit=fzgx-fuzzy-refresh.service
+
+[Install]
+WantedBy=timers.target

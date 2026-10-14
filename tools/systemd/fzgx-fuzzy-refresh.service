@@ -1,0 +1,19 @@
+[Unit]
+Description=Re-export fzgx fuzzy-match bodies when main or the ledger changes
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/fzgx-fuzzy
+# A dedicated worktree owned by this job: always run the published script on the published tree.
+ExecStartPre=/usr/bin/git fetch -q origin main
+ExecStartPre=/usr/bin/git checkout -q --detach --force origin/main
+ExecStartPre=/usr/bin/git clean -fdq
+ExecStart=%h/projects/fzgx/.venv/bin/python tools/fuzzy_refresh.py
+Environment=PYTHONUNBUFFERED=1
+Environment=GIT_TERMINAL_PROMPT=0
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Nice=15
+CPUWeight=20
+IOWeight=20
+TimeoutStartSec=90min
