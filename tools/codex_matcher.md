@@ -46,3 +46,9 @@ searches per attempt. What it cannot reach needs a structural change in the C: a
 should or should not exist, an inlined helper, control flow, a string or data object referenced by its symbol.
 "Edits already tried" in the context lists changes earlier sessions compiled without gain; do not repeat them.
 A failed compile spends a check but is not counted as a non-improving check.
+Retail `addi rX, rBase, off` followed by loads/stores at small offsets off rX, where your build folds them into
+`stw .., off+k(rBase)`, means rBase is the TU's BSS/data section base and the object at `off` is a SEPARATE
+object: define the module's file-scope objects in the unit in retail address order (plain globals named
+`fzgx_obj_<retail symbol>`, interior pieces `<retail symbol>__fzgx_offset_<HEX>`), add a `.fzgxpool` primer
+that reads each one in address order, and address them by name. fn_8_B138 landed this way (98% -> 100%);
+place the BSS definitions and primer BEFORE the literal-pool primers to keep retail's base-register order.

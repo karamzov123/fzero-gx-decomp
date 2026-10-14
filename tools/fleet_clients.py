@@ -25,7 +25,7 @@ HERMES_ROOT = Path(os.environ.get('XDG_RUNTIME_DIR', f'/run/user/{os.getuid()}')
 # has no agent-prompt flag, so the matcher contract travels in the prompt itself
 # (hermes_command), the way the agy transport does it.
 HERMES_TOOLSET = 'fzgx'
-HERMES_MAX_TURNS = 40
+HERMES_MAX_TURNS = int(os.environ.get('FZGX_HERMES_MAX_TURNS', 40))
 # The one reasoning level this model survives on a full-size assignment: higher levels
 # stall the portal outright (see the POLICY note in fleet_multi.py).
 HERMES_DEFAULT_EFFORT = 'low'
@@ -224,7 +224,9 @@ def hermes_command(prompt, model, directory, env):
         'args': [str(ROOT / 'tools/fleet_mcp.py')],
         'tools': {'include': TOOLS, 'resources': False, 'prompts': False},
         'env': {key: '${' + key + '}' for key in ('FZGX_SYMBOL', 'FZGX_AGENT_ID',
-            'FZGX_HARNESS', 'FZGX_MODEL', 'FZGX_RESULT_FILE')}}}
+            'FZGX_HARNESS', 'FZGX_MODEL', 'FZGX_RESULT_FILE',
+            # Batch limits (orchestrate --max-checks/--max-stale) must reach the tool server.
+            'FZGX_MAX_CHECKS', 'FZGX_MAX_STALE', 'FZGX_MAX_ATTEMPTS')}}}
     signature = hashlib.sha256((config.read_bytes() if config.exists() else b'') +
                                json.dumps(bound_mcp, sort_keys=True).encode() + b'direct-v2').hexdigest()
     env['HERMES_HOME'] = str(session_home)
@@ -261,7 +263,7 @@ def hermes_command(prompt, model, directory, env):
         + (ROOT / 'tools/codex_matcher.md').read_text() + '\n')
     seed.write_text(instruction + prompt)
     return ['hermes', 'chat', '--oneshot', '--query-file', str(seed),
-            '--provider', 'nous', '--model', model,
+            '--provider', 'openai-codex' if model.startswith('gpt-') else 'nous', '--model', model,
             '--reasoning', env.get('FZGX_EFFORT', HERMES_DEFAULT_EFFORT),
             '--toolsets', HERMES_TOOLSET, '--max-turns', str(HERMES_MAX_TURNS),
             '--ignore-rules', '--source', 'tool', '--format', 'stream-json']
