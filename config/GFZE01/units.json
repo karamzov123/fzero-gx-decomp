@@ -70675,6 +70675,27 @@
   },
   {
     "module": "story",
+    "source": "rel/story/story_mode/fn_7_44DC.c",
+    "symbols": [
+      "fn_7_44DC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/story/story_mode.c",
+    "pool": {
+      "...rodata.0": "lbl_7_rodata_780",
+      "@13": "lbl_7_rodata_784",
+      "@18": "lbl_7_rodata_798",
+      "...bss.0": "lbl_7_bss_1960",
+      "fzgx_obj_lbl_7_bss_1960": "lbl_7_bss_1960",
+      "lbl_7_bss_1960__fzgx_offset_10": "lbl_7_bss_1960+0x10",
+      "lbl_7_bss_1960__fzgx_offset_18": "lbl_7_bss_1960+0x18",
+      "lbl_7_bss_1960__fzgx_offset_1C": "lbl_7_bss_1960+0x1C"
+    }
+  },
+  {
+    "module": "story",
     "source": "rel/story/story_mode/fn_7_4E28.c",
     "symbols": [
       "fn_7_4E28"

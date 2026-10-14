@@ -1467,6 +1467,86 @@ u32 fn_7_4094(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 /* fzgx:end fn_7_4094 */
 
+/* fzgx:begin fn_7_44DC */
+#include "font.h"
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_7_bss_1960[4];
+u32 lbl_7_bss_1960__fzgx_offset_10[2];
+u8 lbl_7_bss_1960__fzgx_offset_18[2];
+f32 lbl_7_bss_1960__fzgx_offset_1C[2];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = ((0)[fzgx_obj_lbl_7_bss_1960]);
+    s = lbl_7_bss_1960__fzgx_offset_10[0];
+    s = lbl_7_bss_1960__fzgx_offset_18[0];
+    s = lbl_7_bss_1960__fzgx_offset_1C[0];
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 1.0f;
+    s = 300.0f;
+    s = 640.0f;
+    s = 480.0f;
+    d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+
+extern u32 lbl_1_rodata_26F8;
+extern u16 fn_1_48690(u32);
+extern int fn_1_4F734(FontDrawPacket *);
+
+#pragma opt_propagation off
+#pragma peephole on
+#pragma opt_common_subs on
+void fn_7_44DC(void) {
+    u16 v1;
+    u8 i;
+
+    i = 0;
+    while (i < 2) {
+        v1 = (u16)(i);
+        if (lbl_7_bss_1960__fzgx_offset_18[v1] != 0) {
+{
+    FontDrawPacket loc_8;
+            loc_8 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+            loc_8.image = 18;
+            loc_8.x = 0.0f;
+            loc_8.y = 0.0f;
+            loc_8.z = 300.0f - (f32)i;
+            loc_8.flags = 5;
+{
+    s16 t0;
+            loc_8.scale_x = loc_8.scale_x * (640.0f / (f32)(fn_1_48690(18)));
+}
+{
+    u32 t1;
+    f32 r;
+            r = 480.0f / (f32)fn_1_48690(18);
+            loc_8.scale_y = loc_8.scale_y * r;
+            *(u32 *)((u8 *)&loc_8 + 0x38) = lbl_7_bss_1960__fzgx_offset_10[v1];
+            loc_8.alpha = lbl_7_bss_1960__fzgx_offset_1C[v1];
+}
+            fn_1_4F734(&loc_8);
+}
+        }
+        i++;
+    }
+}
+#pragma opt_common_subs reset
+
+#pragma peephole reset
+
+#pragma opt_propagation reset
+/* fzgx:end fn_7_44DC */
+
 /* fzgx:begin fn_7_4E28 */
 extern char lbl_7_data_13FFC[15];
 extern void OSReport(char *, ...);
