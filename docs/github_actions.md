@@ -35,7 +35,22 @@ Once the workflow is green on `main`, register the project at
 
 The README already embeds these URLs; they render once the first report is ingested.
 
-## 3. What the report counts
+## 3. Fuzzy match
+
+`report.json` scores only linked or carved code, so an unmatched function sits at 0% however
+close its best attempt came. `tools/fuzzy_report.py apply` (the "Fuzzy match" CI step) compiles
+the partial bodies kept in `fuzzy/GFZE01/`, merges them per retail auto object into a base
+object, and regenerates the report with those units pointed at it. Nothing is linked and no
+split changes, so only `fuzzy_match_percent` moves: the step fails, and the exact report is
+uploaded unchanged, if any matched/complete/total measure differs, and a body that objdiff would
+score 100% is left out (it belongs in `fzgx submit`). The exact report is kept as the
+`GFZE01_exact` artifact, a name decomp.dev's `<version>_report` pattern ignores.
+
+Refresh the bodies from the local ledger's best attempts with
+`uv run tools/fuzzy_report.py export --version GFZE01`; stale bodies are harmless (a function
+carved since the export is skipped).
+
+## 4. What the report counts
 
 `report.json` is objdiff's whole-project measurement: matched code bytes and functions
 per unit, split into the categories above. Units are the per-function and per-TU C

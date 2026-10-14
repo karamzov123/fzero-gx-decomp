@@ -1,0 +1,59 @@
+/* Non-matching: best partial attempt (67.27% in the project ledger). Scored for the
+ * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_win.h"
+
+extern void fn_1_15C0AC(void);
+extern void fn_1_15BEBC(u16, Obj_1_bss_8F8E0 *);
+extern u32 fn_1_15BE38(void);
+extern void fn_80008BEC(void *, int, u32);
+
+typedef struct {
+    u16 unk_0;
+    u8 pad_2[2];
+    u16 unk_4;
+    u8 pad_6[2];
+} NameEntry;
+
+typedef struct {
+    u8 pad_00[0x20];
+    NameEntry entry[16];
+    u16 index[16];
+    u16 hash[480];
+    u8 pad_480[4];
+    u16 unk_484;
+    u16 unk_486;
+} WinName;
+
+u16 fn_1_15BBC4(void) {
+    u16 *tbl;
+    WinName *w = (WinName *)&lbl_1_bss_8F8E0;
+    s32 i;
+    u16 idx;
+    u16 nidx;
+
+    if (w->unk_486 != 0) {
+        w->unk_486 = w->unk_486 - 1;
+        return w->unk_484;
+    }
+    fn_1_15C0AC();
+    for (i = 1; i < 0x10; i++) {
+        tbl = w->hash + (i - 1) * 0x20;
+        idx = w->index[i];
+        fn_1_15BEBC(i, (Obj_1_bss_8F8E0 *)&w->entry[i]);
+        if (tbl[idx] == 0) {
+            tbl[idx] = w->entry[i].unk_4;
+        } else if (tbl[idx] != w->entry[i].unk_4) {
+            nidx = (0u - (idx + 1)) & 0x1f;
+            w->index[i] = nidx;
+            tbl[nidx] = w->entry[i].unk_4;
+        }
+    }
+    w->unk_484 = fn_1_15BE38();
+    if (w->unk_484 != 0xffff) {
+        w->unk_486 = 0x78;
+        fn_80008BEC(w->hash, 0, 0x3c0);
+    }
+    return w->unk_484;
+}
