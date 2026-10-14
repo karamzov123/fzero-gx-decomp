@@ -314,6 +314,69 @@ void fn_3_1A068(void) {
 }
 /* fzgx:end fn_3_1A068 */
 
+/* fzgx:begin fn_3_1A0F4 noprologue */
+#include "types.h"
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[3];
+    u32 unk_4;
+    u32 unk_8;
+    u8 unk_C;
+    u8 unk_D;
+    u8 unk_E;
+    u8 unk_F;
+    u8 unk_10;
+    u8 pad_11[1];
+    s16 unk_12;
+    u8 unk_14;
+    u8 unk_15;
+    s16 unk_16;
+    s16 unk_18;
+    s16 unk_1A;
+} Obj_1A0F4;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+Obj_1A0F4 fzgx_obj_lbl_3_bss_A2438;
+u32 fzgx_obj_lbl_3_bss_A2454;
+u8 fzgx_obj_lbl_3_bss_A2458;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_3_bss_A2438.unk_0;
+    s = fzgx_obj_lbl_3_bss_A2454;
+    s = fzgx_obj_lbl_3_bss_A2458;
+}
+#pragma section code_type ".text"
+extern s32 lbl_3_bss_A179C;
+extern void fn_3_BE10(void);
+extern void fn_3_BEF0(void);
+extern void fn_3_1445C(void);
+extern void fn_3_BE88(void);
+extern void fn_80008BA8(u32, u32, u32);
+extern s32 fn_8008023C(u32, u32, u32);
+
+void fn_3_1A0F4(u8 *arg0) {
+    if (fzgx_obj_lbl_3_bss_A2458 != 0) {
+        fn_80008BA8(fzgx_obj_lbl_3_bss_A2454, *(u32 *)(arg0 + 0x20), 0x2000);
+        fn_3_BE10();
+        fzgx_obj_lbl_3_bss_A2458 = 0;
+    } else if (lbl_3_bss_A179C != 0) {
+        fn_3_BEF0();
+        fzgx_obj_lbl_3_bss_A2458 = 1;
+        fzgx_obj_lbl_3_bss_A2438.unk_4 = 0x40000000;
+        fzgx_obj_lbl_3_bss_A2438.unk_E = 0;
+        lbl_3_bss_A179C = 0;
+        if (fn_8008023C(fzgx_obj_lbl_3_bss_A2454, *(u32 *)(arg0 + 0x20), 0x2000) != 0) {
+            fn_3_1445C();
+        }
+    } else {
+        fn_3_BE88();
+    }
+}
+/* fzgx:end fn_3_1A0F4 */
+
 /* fzgx:begin fn_3_1A1B8 */
 void fn_3_1A1B8(void) {
     fn_3_156A8();

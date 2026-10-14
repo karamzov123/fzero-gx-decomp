@@ -2219,6 +2219,23 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/toolkit/fn_3_1A0F4.c",
+    "symbols": [
+      "fn_3_1A0F4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/toolkit.c",
+    "pool": {
+      "...bss.0": "lbl_3_bss_A2438",
+      "fzgx_obj_lbl_3_bss_A2438": "lbl_3_bss_A2438",
+      "fzgx_obj_lbl_3_bss_A2454": "lbl_3_bss_A2454",
+      "fzgx_obj_lbl_3_bss_A2458": "lbl_3_bss_A2458"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/toolkit/fn_3_1A1B8.c",
     "symbols": [
       "fn_3_1A1B8"
