@@ -40958,6 +40958,25 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_64FB8.c",
+    "symbols": [
+      "fn_1_64FB8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_2950",
+      "@16": "lbl_1_rodata_2988",
+      "@34": "lbl_1_rodata_29C0",
+      "@27": "lbl_1_rodata_29A4",
+      "@13": "lbl_1_rodata_2978",
+      "@29": "lbl_1_rodata_29AC"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/effect/fn_1_65268.c",
     "symbols": [
       "fn_1_65268"
