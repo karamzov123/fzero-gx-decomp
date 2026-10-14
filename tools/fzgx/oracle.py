@@ -558,12 +558,15 @@ def _bss_base_rows(project, module, obj, left, right, lrows, rrows, function_nam
         if not anchor or not 0 < anchor['shndx'] < len(elf.sections):
             continue
         section = elf.sections[anchor['shndx']]
-        if section['name'] not in ('.bss', '.sbss') or section['type'] != 8:
+        # .data bases bind the same way: the unit's copy is dropped at integration and
+        # every displacement off the base is still compared as code.
+        if not ((section['name'] in ('.bss', '.sbss') and section['type'] == 8) or
+                (section['name'] == '.data' and section['type'] == 1)):
             continue
         retail = project.symbols(module).get(lname)
         if retail is None:
             retail = next((s for s in project.symbols(module).values() if lname == f'{s.name}_{s.addr:08X}'), None)
-        if not retail or retail.section not in ('.bss', '.sbss'):
+        if not retail or retail.section not in ('.bss', '.sbss', '.data'):
             continue
         # A split object may retain the local spelling after its symbol is
         # promoted. Resolve both spellings to the same measured BSS object.
@@ -586,7 +589,7 @@ def _bss_base_rows(project, module, obj, left, right, lrows, rrows, function_nam
         # The unit's copy is dropped at integration and every displacement off the base is
         # compared as code, so a section base only needs its retail symbol at the same start;
         # dtk's symbol size is a heuristic (a retail TU's first object is often smaller).
-        if not rname.startswith('...bss') or not owned or owned['size'] > retail.size:
+        if not rname.startswith(('...bss', '...data')) or not owned or owned['size'] > retail.size:
             continue
         if anchor['shndx'] != section['index'] or owned['shndx'] != section['index'] or anchor['value'] != owned['value']:
             continue
