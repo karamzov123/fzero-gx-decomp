@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (88.19% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (95.56% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -14,17 +14,16 @@ typedef struct {
  u8 track; u8 pad2d[0xb]; u32 *handles; u8 pad3c[0x846];
  u8 busy; u8 pad883; s16 volume[2]; f32 fade[2];
 } SoundState;
-extern const f64 lbl_1_rodata_42F0;
-static inline void set_fade_impl(SoundState *s, s32 volume, const f32 *rate, u32 channel) {
- union { f64 d; u32 w[2]; } conversion;
- conversion.w[0] = 0x43300000;
- conversion.w[1] = (u32)volume ^ 0x80000000;
- s->rate[channel] = *rate;
- s->fade[channel] = (f32)(conversion.d - lbl_1_rodata_42F0);
+static inline void set_fade_impl(SoundState *s, f32 rate, s16 volume, u32 channel) {
+ s->rate[channel] = rate;
+ s->fade[channel] = (f32)volume;
 }
-#define set_fade(s,v,r,c) set_fade_impl(s,v,&(r),c)
+#define set_fade(s,v,r,c) do { f32 speed = (r); f32 converted = (f32)(v); (s)->rate[c] = speed; (s)->fade[c] = converted; } while (0)
+#pragma opt_propagation off
 static inline void set_volume(s16 *volumes, u32 channel, s16 volume) {
- volumes[channel] = volume;
+ struct { s16 *p; } dest;
+ dest.p = volumes;
+ dest.p[channel] = volume;
 }
 #pragma opt_propagation off
 static inline void setup(s32 h, u32 *handles, SoundState *s, u8 id) {
