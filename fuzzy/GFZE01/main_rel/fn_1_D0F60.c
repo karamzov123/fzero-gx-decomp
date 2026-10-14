@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (69.92% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (78.51% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -15,18 +15,24 @@ extern u32 fn_1_A9B70(s16, s32, s16, s32, void *);
 extern u32 fn_1_A9FFC(s16, s16, s16, s16, void *);
 extern u32 fn_8003432C(u16, u16, struct Sig_fn_8003432C_fn_8003432C_Arg2 *);
 extern void fn_1_AA538(void);
+#pragma opt_loop_invariants off
+#pragma opt_common_subs off
+#pragma opt_propagation off
 void fn_1_D0F60(void) {
  struct fn_1_D0F60_lbl_1_rodata_6078 *p_lbl_1_rodata_6078;
  s32 v0, v1, v2, v4, v5, v6, v7;
  s32 v8, v9, v10;
- u16 *v11;
+ u16 *v11, *px;
  s32 v12, v13, v15, v16, v17, v18, v19;
  s16 v20, v21;
  s32 v25;
  s32 valid;
- struct Sig_fn_8003432C_fn_8003432C_Arg2 loc_18;
- struct {u8 r,g,b,a;} loc_10, temp;
- u32 loc_C, loc_8;
+ struct { u32 c8, cC; struct {u8 r,g,b,a;} c10, c14; struct Sig_fn_8003432C_fn_8003432C_Arg2 c18; } frame;
+#define loc_10 frame.c10
+#define temp frame.c14
+#define loc_18 frame.c18
+#define loc_C frame.cC
+#define loc_8 frame.c8
  v0 = lbl_1_data_3D648.unk_10;
  p_lbl_1_rodata_6078 = &lbl_1_rodata_6078;
  v1 = lbl_1_data_3D648.unk_12;
@@ -36,17 +42,18 @@ void fn_1_D0F60(void) {
  v6 = lbl_1_data_3D648.unk_14;
  v7 = v1 / 2;
  fn_1_A9868();
- v8 = -v4;
- v9 = v8 * v6;
+ v12 = -v4;
+ v13 = v12 * v6;
  v10 = -v7;
- v11 = &lbl_1_data_3D648.unk_6;
- v12 = v8;
- v13 = v9;
+ px = (u16 *)&lbl_1_data_3D648.unk_4;
+ v11 = (u16 *)&lbl_1_data_3D648.unk_6;
  while (v12 <= v4) {
-  v15 = v2 + (v12 * v6 + 1);
+  v17 = v10 * v6;
+  v15 = v13 + 1;
   v16 = v10;
+  v15 = v2 + v15;
   while (v16 <= v7) {
-   v18 = lbl_1_data_3D648.unk_4 + v12;
+   v18 = *px + v12;
    if ((f32)v18 > 639.0f) valid = 0;
    else valid = v18 >= 0;
    if (valid) {
@@ -55,14 +62,16 @@ void fn_1_D0F60(void) {
     if (v19 > bound) valid = 0;
     else valid = v19 >= 0;
     if (valid) {
-     fn_8003432C((u16)(lbl_1_data_3D648.unk_4 + v12), (u16)v19, &loc_18);
+     fn_8003432C((u16)(*px + v12), (u16)v19, &loc_18);
+     v19 = v17 + 1;
+     v19 = v5 + v19;
      temp.a = loc_18.unk_0 >> 24;
      v20 = v6 - 1;
      temp.r = loc_18.unk_0 >> 16;
      temp.g = loc_18.unk_0 >> 8;
      temp.b = loc_18.unk_0;
      loc_10 = temp;
-     fn_1_A9FFC((s16)v15, (s16)(v5 + (v16 * v6 + 1)), v20, v20, &loc_10);
+     fn_1_A9FFC((s16)v15, (s16)v19, v20, v20, &loc_10);
      if (v12 == 0 && v16 == 0) {
       v21 = v6 + 2;
       loc_C = p_lbl_1_rodata_6078->unk_10;
@@ -78,7 +87,7 @@ void fn_1_D0F60(void) {
  }
  loc_8 = p_lbl_1_rodata_6078->unk_14;
  v25 = (s32)(480.0f * (f32)(v1 + 2) / (f32)(u32)fn_1_A5DB0());
- fn_1_A9B70((s16)(lbl_1_data_3D648.unk_4 - v4 - 1),
+ fn_1_A9B70((s16)(*px - v4 - 1),
  (s32)(480.0f * (f32)(*v11 - v7 - 1) / (f32)(u32)fn_1_A5DB0()),
  (s16)(v0 + 2), v25, &loc_8);
  fn_1_AA538();

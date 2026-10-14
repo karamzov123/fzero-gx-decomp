@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (61.84% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (63.63% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 struct fn_1_5233C_Copy88 { u32 a[22]; };
@@ -7,9 +7,10 @@ extern const f32 lbl_1_rodata_2764;
 typedef struct Color { u8 r,g,b,a; } Color;
 extern void fn_800371F8(s32, Color);
 extern void fn_8003462C(u32,u32,u32);
-extern volatile f32 __GXWGFifo; /* Hardware write-gather FIFO. */
+typedef union Fifo { f32 f; u32 u; } Fifo;
+extern volatile Fifo __WGPIPE; /* Hardware write-gather FIFO. */
+#define __GXWGFifo __WGPIPE.f
 static inline void pos(f32 x, f32 y) { __GXWGFifo=x; __GXWGFifo=y; }
-static inline void tex(f32 u, f32 v) { __GXWGFifo=u; __GXWGFifo=v; }
 struct Entry { Color color; f32 x,y; };
 struct Table { struct Entry e[9]; };
 static inline void vertex(f32 x,f32 y,f32 z,f32 u,f32 v) {
@@ -24,13 +25,12 @@ void fn_1_5233C(void *arg0, void *arg1) {
     f32 *p = arg1;
     if (!(*(u32 *)((u8 *)arg0+0x30) & 0x10000000)) {
         copy = *(struct fn_1_5233C_Copy88 *)arg0;
-        color = entry->color;
         dx = entry->x;
         dy = entry->y;
-        fn_800371F8(2,color);
+        fn_800371F8(2,entry->color);
         fn_8003462C(0x80,7,16);
         pos(p[0],p[1]-dy);
-        __GXWGFifo=z=-(lbl_1_rodata_2764 + *(volatile f32 *)((u8 *)&copy+0xc)); /* FIFO sequencing. */
+        __GXWGFifo=z=-(lbl_1_rodata_2764 + *(volatile f32 *)((u8 *)&copy+0xc));
         __GXWGFifo=u0=*(volatile f32 *)((u8 *)&copy+0x18);
         __GXWGFifo=v0=*(volatile f32 *)((u8 *)&copy+0x1c);
         pos(p[3],p[4]-dy); __GXWGFifo=z;
