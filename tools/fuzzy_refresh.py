@@ -94,9 +94,8 @@ def fast_forward_main() -> None:
     if holder is None:
         r = subprocess.run(["git", "fetch", "-q", "origin", "main:main"], cwd=ROOT, capture_output=True, text=True)
         log("local main fast-forwarded" if r.returncode == 0 else f"local main not fast-forwarded: {r.stderr.strip()}")
-    elif run("git", "status", "--porcelain", "--untracked-files=no", cwd=holder):
-        log(f"local main left behind: {holder} has uncommitted changes")
     else:
+        # git refuses, touching nothing, if an uncommitted edit there would be overwritten
         r = subprocess.run(["git", "merge", "-q", "--ff-only", "origin/main"], cwd=holder, capture_output=True, text=True)
         log("local main fast-forwarded" if r.returncode == 0 else f"local main not fast-forwarded: {r.stderr.strip()}")
 
