@@ -3008,10 +3008,37 @@
     "symbols": [
       "fn_17_7728"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
+    "tu": "rel/interview/interview.c",
+    "pool": {
+      "...bss.0": "lbl_17_bss_0",
+      "fzgx_obj_lbl_17_bss_0": "lbl_17_bss_0",
+      "fzgx_obj_lbl_17_bss_1": "lbl_17_bss_1",
+      "fzgx_obj_lbl_17_bss_2": "lbl_17_bss_2",
+      "fzgx_obj_lbl_17_bss_3": "lbl_17_bss_3",
+      "lbl_17_bss_3__fzgx_offset_1": "lbl_17_bss_3+0x1",
+      "lbl_17_bss_3__fzgx_offset_2": "lbl_17_bss_3+0x2",
+      "lbl_17_bss_3__fzgx_offset_3": "lbl_17_bss_3+0x3",
+      "lbl_17_bss_3__fzgx_offset_4": "lbl_17_bss_3+0x4",
+      "lbl_17_bss_3__fzgx_offset_5": "lbl_17_bss_3+0x5",
+      "lbl_17_bss_3__fzgx_offset_6": "lbl_17_bss_3+0x6",
+      "lbl_17_bss_3__fzgx_offset_7": "lbl_17_bss_3+0x7",
+      "lbl_17_bss_3__fzgx_offset_8": "lbl_17_bss_3+0x8",
+      "fzgx_obj_lbl_17_bss_C": "lbl_17_bss_C",
+      "fzgx_obj_lbl_17_bss_10": "lbl_17_bss_10",
+      "fzgx_obj_lbl_17_bss_14": "lbl_17_bss_14",
+      "fzgx_obj_lbl_17_bss_18": "lbl_17_bss_18",
+      "fzgx_obj_lbl_17_bss_20": "lbl_17_bss_20",
+      "fzgx_obj_lbl_17_bss_24": "lbl_17_bss_24",
+      "fzgx_obj_lbl_17_bss_34": "lbl_17_bss_34",
+      "fzgx_obj_lbl_17_bss_54": "lbl_17_bss_54",
+      "fzgx_obj_lbl_17_bss_58": "lbl_17_bss_58",
+      "lbl_17_bss_58__fzgx_offset_4": "lbl_17_bss_58+0x4",
+      "lbl_17_bss_58__fzgx_offset_6": "lbl_17_bss_58+0x6",
+      "fzgx_obj_lbl_17_bss_60": "lbl_17_bss_60"
+    }
   },
   {
     "module": "interview",

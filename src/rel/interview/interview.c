@@ -1847,6 +1847,131 @@ void fn_17_74C0(Interview *interview) {
 }
 /* fzgx:end fn_17_74C0 */
 
+/* fzgx:begin fn_17_7728 */
+#include "rel/interview/interview.h"
+
+struct fn_17_7728_Arg0 {
+ f32 unk_0; u8 pad_4[0x1C]; s16 unk_20; s16 unk_22; s16 unk_24; u8 pad_26[2];
+ u32 unk_28,unk_2C,unk_30,unk_34,unk_38,unk_3C;
+ s16 unk_40,unk_42,unk_44; u8 pad_46[2]; u32 unk_48,unk_4C,unk_50; f32 unk_54,unk_58;
+};
+struct Details {u8 pad[6]; s16 unk_6,unk_8; u8 pad_A[0x7A]; s16 unk_84; u8 pad_86[0x10]; s16 unk_96;};
+struct Group {u32 unk_0; u8 pad[0x10]; struct Details *unk_14;};
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u8 fzgx_obj_lbl_17_bss_0;
+u8 fzgx_obj_lbl_17_bss_1;
+u8 fzgx_obj_lbl_17_bss_2;
+u8 fzgx_obj_lbl_17_bss_3;
+u8 lbl_17_bss_3__fzgx_offset_1;
+u8 lbl_17_bss_3__fzgx_offset_2;
+u8 lbl_17_bss_3__fzgx_offset_3;
+u8 lbl_17_bss_3__fzgx_offset_4;
+u8 lbl_17_bss_3__fzgx_offset_5;
+u8 lbl_17_bss_3__fzgx_offset_6;
+u8 lbl_17_bss_3__fzgx_offset_7;
+u8 lbl_17_bss_3__fzgx_offset_8;
+u32 fzgx_obj_lbl_17_bss_C;
+u32 fzgx_obj_lbl_17_bss_10;
+u32 fzgx_obj_lbl_17_bss_14;
+u32 fzgx_obj_lbl_17_bss_18[2];
+u32 fzgx_obj_lbl_17_bss_20;
+u32 fzgx_obj_lbl_17_bss_24[4];
+u32 fzgx_obj_lbl_17_bss_34[8];
+u32 fzgx_obj_lbl_17_bss_54;
+u32 fzgx_obj_lbl_17_bss_58;
+u16 lbl_17_bss_58__fzgx_offset_4;
+u16 lbl_17_bss_58__fzgx_offset_6;
+struct Group fzgx_obj_lbl_17_bss_60;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_17_bss_0;
+    s = fzgx_obj_lbl_17_bss_1;
+    s = fzgx_obj_lbl_17_bss_2;
+    s = fzgx_obj_lbl_17_bss_3;
+    s = lbl_17_bss_3__fzgx_offset_1;
+    s = lbl_17_bss_3__fzgx_offset_2;
+    s = lbl_17_bss_3__fzgx_offset_3;
+    s = lbl_17_bss_3__fzgx_offset_4;
+    s = lbl_17_bss_3__fzgx_offset_5;
+    s = lbl_17_bss_3__fzgx_offset_6;
+    s = lbl_17_bss_3__fzgx_offset_7;
+    s = lbl_17_bss_3__fzgx_offset_8;
+    s = fzgx_obj_lbl_17_bss_C;
+    s = fzgx_obj_lbl_17_bss_10;
+    s = fzgx_obj_lbl_17_bss_14;
+    s = fzgx_obj_lbl_17_bss_18[0];
+    s = fzgx_obj_lbl_17_bss_20;
+    s = fzgx_obj_lbl_17_bss_24[0];
+    s = fzgx_obj_lbl_17_bss_34[0];
+    s = fzgx_obj_lbl_17_bss_54;
+    s = fzgx_obj_lbl_17_bss_58;
+    s = lbl_17_bss_58__fzgx_offset_4;
+    s = lbl_17_bss_58__fzgx_offset_6;
+    s = fzgx_obj_lbl_17_bss_60.unk_0;
+}
+#pragma section code_type ".text"
+struct Triple {u32 x,y,z;};
+struct Payload {u32 unk_8; struct Triple triple; u32 unk_18,unk_1C,unk_20; f32 unk_24; s16 unk_28; u16 pad;};
+struct Entry {s32 unk_0; u32 unk_4; struct Payload payload; u8 pad[0x28];};
+extern const f32 lbl_17_rodata_20;
+static inline struct Entry *get_entry(s32 mode,s32 kind,s32 index,u32 flags) {
+ struct Entry *v3;
+ if (flags && lbl_17_bss_58__fzgx_offset_4 < 5) v3=(void *)&lbl_17_data_63BD0;
+ else if (flags && lbl_17_bss_58__fzgx_offset_4 >= 9) v3=(void *)&lbl_17_data_63D20;
+ else v3=*(struct Entry **)(lbl_17_data_63190 + mode*64 + kind*4);
+ if (!v3) return 0;
+ if(v3->unk_0 == -1) {lbl_17_bss_3__fzgx_offset_1=1; v3=(void *)&lbl_17_data_0;}
+ else lbl_17_bss_3__fzgx_offset_1=0;
+ v3+=index;
+ if(!v3) return 0;
+ return v3;
+}
+#pragma opt_propagation off
+static inline struct Details * fn_17_7728_read_pointer(struct Group * owner) { return owner->unk_14; }
+static inline f32 fn_17_7728_read_pointer_(struct Payload * owner) { return owner->unk_24; }
+void fn_17_7728(struct fn_17_7728_Arg0 *arg0, u32 lab_unused0, u32 lab_unused1) {
+ struct Payload loc;
+ struct Triple triple;
+ struct Group *group=&fzgx_obj_lbl_17_bss_60;
+ struct Details *v0=fn_17_7728_read_pointer(group);
+ u32 flags=fzgx_obj_lbl_17_bss_58 & 1;
+ struct Entry *v3=get_entry(arg0->unk_44,arg0->unk_42,arg0->unk_40,flags);
+ struct Entry *v7=get_entry(arg0->unk_44,arg0->unk_42,arg0->unk_40+1,flags);
+    u32 lab_v;
+ loc=v3->payload;
+ triple=loc.triple;
+ *(struct Triple *)&arg0->unk_48=triple;
+ arg0->unk_54=lbl_17_rodata_20; arg0->unk_58=lbl_17_rodata_20;
+ if(v7->payload.unk_8==0 || v3->unk_0<0 || !v7) {
+ arg0->unk_22=v3->unk_0;
+ if(lbl_17_bss_3__fzgx_offset_1) {
+ switch(arg0->unk_40) {
+ case 1: {
+ s16 v20=v0->unk_8;
+ if(v20<0) arg0->unk_22=v0->unk_6-group->unk_0;
+ else arg0->unk_22=v20-group->unk_0;
+ if(arg0->unk_22<0) arg0->unk_22=v3->unk_0;
+ break;
+ }
+ case 3:
+ if(v0->unk_8<0) arg0->unk_22=v0->unk_84-group->unk_0;
+ else arg0->unk_22=v0->unk_96-group->unk_0;
+ if(arg0->unk_22<0) arg0->unk_22=v3->unk_0;
+ break;
+ }
+ }
+ } else arg0->unk_22=v7->payload.unk_8-v3->payload.unk_8;
+ arg0->unk_24=arg0->unk_22;
+ arg0->unk_28=triple.x; arg0->unk_2C=triple.y; arg0->unk_30=triple.z;
+ arg0->unk_34=loc.unk_18;arg0->unk_38=loc.unk_1C;arg0->unk_3C=loc.unk_20;
+    lab_v = loc.unk_28;
+ arg0->unk_20=lab_v;arg0->unk_0=fn_17_7728_read_pointer_(&loc);arg0->unk_20=lab_v;
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_17_7728 */
+
 /* fzgx:begin fn_17_802C */
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[5] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
