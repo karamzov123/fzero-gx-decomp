@@ -44577,6 +44577,18 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/game/fn_1_2FDBC.c",
+    "symbols": [
+      "fn_1_2FDBC"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/game.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/game/fn_1_32600.c",
     "symbols": [
       "fn_1_32600"
