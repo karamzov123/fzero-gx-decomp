@@ -1,5 +1,5 @@
 /* RESEARCH ONLY: fn_1_F75D8
- * Raw objdiff 95.3%; adjusted instruction score 88.2%; 37 remaining rows. Not an exact match.
+ * Raw objdiff 95.3%; adjusted instruction score 77.8%; 37 of 167 remaining aligned rows. Not an exact match.
  * Excluded from the canonical build. Do not mark matching or submit without a fresh object check and linked checksum gate.
  */
 #include "types.h"

@@ -25,7 +25,7 @@ A temporary translation-helper probe reduced the residual to eight rows (99.2% r
 
 ## fn_1_F75D8: GX lighting setup
 
-Archived third structural candidate: **95.3% raw**, **88.2% adjusted**, **37** remaining instruction rows. Corrected light layout, local light object/vector/color sizes, stop-at-first-null behavior, independent light numbering, signed getter/override enables, and paired-single vector scaling using the existing `psvec_scale` helper. Native/shared pool recovery removes the private constant-base mismatch.
+Archived third structural candidate: **95.3% raw**, **77.8% adjusted**, **37** remaining instruction rows out of 167 aligned. The adjusted score was corrected by recompiling this exact archived body in an isolated worker; the previous 88.2% label came from a different attempt-best result and did not describe this source. Corrected light layout, local light object/vector/color sizes, stop-at-first-null behavior, independent light numbering, signed getter/override enables, and paired-single vector scaling using the existing `psvec_scale` helper. Native/shared pool recovery removes the private constant-base mismatch.
 
 Remaining wall: the compiler folds the override index into saved group pointers, using `lwz` where retail preserves an index and uses `lwzx`. It saves one fewer GPR and reserves a smaller frame. Flat versus grouped override arrays, loop-invariant settings and propagation settings were measured; none closed the address/lifetime shape. Do not pad structs or inject unused locals to force the frame.
 
