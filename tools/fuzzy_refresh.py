@@ -108,14 +108,13 @@ def fork() -> str:
 
 
 def publish(version: str, summary: dict) -> None:
-    changed = git("status", "--porcelain", "--", f"fuzzy/{version}").splitlines()
-    paths = [line[3:] for line in changed]
+    git("add", "-A", "--", f"fuzzy/{version}")
+    paths = git("diff", "--cached", "--name-only").splitlines()
     stray = [p for p in paths if not (p.startswith(f"fuzzy/{version}/") and p.endswith((".c", ".json")))]
     if stray:
         raise SystemExit(f"refusing to publish unexpected paths: {stray[:10]}")
     before, after = summary.get("fuzzy_match_percent", [0, 0])
     title = f"fuzzy: refresh partial bodies from the ledger ({summary.get('exported')} bodies, fuzzy {after:.2f}%)"
-    git("add", "-A", "--", f"fuzzy/{version}")
     git("commit", "-q", "-m", title, "-m",
         "Automatic export by tools/fuzzy_refresh.py; scored for decomp.dev's fuzzy match only, never linked.")
     git("push", "-q", "--force", "origin", f"HEAD:refs/heads/{BRANCH}")
