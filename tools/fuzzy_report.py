@@ -9,7 +9,8 @@ Every exact measure (matched code, data, functions, complete units) is checked t
 and a body that objdiff would score 100% is dropped, because a match is only real once
 `fzgx submit` has linked it. The exact report is kept as report.exact.json.
 
-`export` refreshes fuzzy/<VERSION>/ from the local ledger's best attempts (needs .fzgx/).
+`export` refreshes fuzzy/<VERSION>/ from the local ledger's best attempts (needs .fzgx/, or
+--ledger). tools/fuzzy_refresh.py runs it whenever main or the ledger changes.
 
     python3 tools/fuzzy_report.py apply --version GFZE01 [--compilers DIR] [--binutils DIR]
     uv run tools/fuzzy_report.py export --version GFZE01
@@ -192,13 +193,13 @@ def apply(version: str, compilers: Path, binutils: Path, wibo: Path, objdiff: Pa
 
 
 def export(version: str, compilers: Path, binutils: Path, wibo: Path, objdiff: Path,
-           out_dir: Path) -> None:
+           out_dir: Path, ledger: Optional[Path] = None) -> None:
     """Write the best saved attempt of every unmatched, uncarved function to fuzzy/<VERSION>/."""
     sys.path.insert(0, str(ROOT / "tools"))
     from fzgx import oracle  # local-only: the ledger and its attempts never leave this machine
     from fzgx.project import Project
     p = Project(version)
-    db = sqlite3.connect(ROOT / ".fzgx" / "ledger.db")
+    db = sqlite3.connect(f"file:{ledger or ROOT / '.fzgx' / 'ledger.db'}?mode=ro", uri=True)
     rows = db.execute(
         "select f.symbol, a.best_body_path, a.best_in_attempt from functions f "
         "join attempts a on a.symbol = f.symbol where f.status != 'matched' "
@@ -259,13 +260,15 @@ def main() -> None:
     ap.add_argument("--objdiff", type=Path, default=ROOT / "build" / "tools" / "objdiff-cli")
     ap.add_argument("--out", type=Path, help="export: destination (default fuzzy/<VERSION>)")
     ap.add_argument("--root", type=Path, help="project checkout to read (default: this one)")
+    ap.add_argument("--ledger", type=Path, help="export: ledger.db to read (default .fzgx/ledger.db)")
     a = ap.parse_args()
     if a.root:
         ROOT = a.root.resolve()
         for name in ("compilers", "binutils", "wibo", "objdiff"):
             setattr(a, name, ROOT / getattr(a, name).relative_to(Path(__file__).resolve().parents[1]))
     if a.cmd == "export":
-        export(a.version, a.compilers, a.binutils, a.wibo, a.objdiff, a.out or ROOT / "fuzzy" / a.version)
+        export(a.version, a.compilers, a.binutils, a.wibo, a.objdiff, a.out or ROOT / "fuzzy" / a.version,
+               a.ledger)
     else:
         s = apply(a.version, a.compilers, a.binutils, a.wibo, a.objdiff)
         print(json.dumps({k: v for k, v in s.items() if k != "used_symbols"}, indent=1))
