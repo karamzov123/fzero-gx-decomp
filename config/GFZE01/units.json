@@ -1116,6 +1116,18 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/customize/fn_3_BE88.c",
+    "symbols": [
+      "fn_3_BE88"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/customize.c",
+    "pool": true
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/customize/fn_3_BEF0.c",
     "symbols": [
       "fn_3_BEF0"

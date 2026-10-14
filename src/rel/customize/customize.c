@@ -412,6 +412,53 @@ void fn_3_BE10(void) {
 }
 /* fzgx:end fn_3_BE10 */
 
+/* fzgx:begin fn_3_BE88 pool noprologue */
+#include "types.h"
+
+extern int fn_1_4C10(void);
+extern void fn_3_C128(void);
+extern void fn_3_C188(void);
+extern void fn_3_C234(void);
+extern void fn_3_C28C(void);
+extern void fn_3_C328(void);
+extern void fn_3_C3B4(void);
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+void (*fzgx_obj_lbl_3_data_1958[6])(void) = {
+    fn_3_C128, fn_3_C188, fn_3_C234, fn_3_C28C, fn_3_C328, fn_3_C3B4,
+};
+char fzgx_obj_lbl_3_data_1970[] = "EMB_MEMCARD_WAIT";
+char fzgx_obj_lbl_3_data_1984[] = "EMB_MEMCARD_ACTION_INIT";
+char fzgx_obj_lbl_3_data_199C[] = "EMB_MEMCARD_SAVE_PROC";
+char fzgx_obj_lbl_3_data_19B4[] = "EMB_MEMCARD_LOAD_PROC";
+char fzgx_obj_lbl_3_data_19CC[] = "EMB_MEMCARD_DEL_PROC";
+char fzgx_obj_lbl_3_data_19E4[] = "EMB_MEMCARD_FINISH";
+char *gap_04_000019F7_data__fzgx_offset_1[6] = {
+    fzgx_obj_lbl_3_data_1970,
+    fzgx_obj_lbl_3_data_1984,
+    fzgx_obj_lbl_3_data_199C,
+    fzgx_obj_lbl_3_data_19B4,
+    fzgx_obj_lbl_3_data_19CC,
+    fzgx_obj_lbl_3_data_19E4,
+};
+s32 fzgx_obj_lbl_3_data_1A10 = -1;
+s32 fzgx_obj_lbl_3_data_1A14 = -1;
+s32 fzgx_obj_lbl_3_data_1A18 = -1;
+
+void fn_3_BE88(void) {
+    s32 v0;
+
+    if (fn_1_4C10() == 0) {
+        v0 = fzgx_obj_lbl_3_data_1A18;
+        if (v0 >= 0) {
+            fzgx_obj_lbl_3_data_1A14 = v0;
+            fzgx_obj_lbl_3_data_1A18 = -1;
+        }
+        fzgx_obj_lbl_3_data_1958[fzgx_obj_lbl_3_data_1A14]();
+    }
+}
+/* fzgx:end fn_3_BE88 */
+
 /* fzgx:begin fn_3_BEF0 */
 extern u32 lbl_3_bss_7ED58[18];
 extern void fn_1_BC29C(u32 *);
