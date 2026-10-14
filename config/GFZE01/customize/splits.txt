@@ -554,3 +554,6 @@ rel/customize/emb_memcard/fn_3_E5D4.c:
 
 rel/customize/toolkit/fn_3_1A0F4.c:
 	.text       start:0x0001A0F4 end:0x0001A1B8 align:4
+
+rel/customize/_prolog/fn_3_381C.c:
+	.text       start:0x0000381C end:0x000039F0 align:4
