@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (62.31% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (62.36% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/car.h"
@@ -26,7 +26,7 @@ typedef struct {
 } Manager;
 typedef struct { u8 pad[0x468]; f32 value; } Fn14F04Result;
 void fn_1_85934(f32 arg) {
- s16 order[32];
+ s16 order[48];
  Manager *manager;
  s32 i;
  u8 *car;
