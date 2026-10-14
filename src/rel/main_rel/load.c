@@ -558,6 +558,108 @@ u32 fn_1_467F4(void) {
 }
 /* fzgx:end fn_1_467F4 */
 
+/* fzgx:begin fn_1_46838 noprologue */
+#include "types.h"
+#include "dolphin/dvd.h"
+
+typedef struct {
+    u32 flag;
+    s32 id;
+    u32 value;
+    u32 unk_0C;
+} fn_1_46838_entry;
+
+typedef struct {
+    u32 unk_0;
+    u32 busy;
+    DVDCommandBlock block;
+} fn_1_46838_queue;
+
+typedef struct {
+    u32 unk_00[6];
+    fn_1_46838_entry entries[0x400];
+    s32 states[0x200][3];
+    u32 mirror;
+    u32 unk_581C[0x16];
+    fn_1_46838_queue queue;
+} fn_1_46838_ctx;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_384C0;
+u32 fzgx_obj_lbl_1_bss_384C4;
+u32 fzgx_obj_lbl_1_bss_384C8;
+u32 fzgx_obj_lbl_1_bss_384CC;
+u32 fzgx_obj_lbl_1_bss_384D0[2];
+u32 fzgx_obj_lbl_1_bss_384D8[4096];
+u32 lbl_1_bss_384D8__fzgx_offset_4000[1536];
+u32 fzgx_obj_lbl_1_bss_3DCD8;
+u32 fzgx_obj_lbl_1_bss_3DCDC[2];
+u32 fzgx_obj_lbl_1_bss_3DCE4[17];
+u32 fzgx_obj_lbl_1_bss_3DD28[3];
+fn_1_46838_queue lbl_1_bss_3DD28__fzgx_offset_C;
+u32 lbl_1_bss_3DD28__fzgx_offset_44[162];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_384C0;
+    s = fzgx_obj_lbl_1_bss_384C4;
+    s = fzgx_obj_lbl_1_bss_384C8;
+    s = fzgx_obj_lbl_1_bss_384CC;
+    s = fzgx_obj_lbl_1_bss_384D0[0];
+    s = fzgx_obj_lbl_1_bss_384D8[0];
+    s = lbl_1_bss_384D8__fzgx_offset_4000[0];
+    s = fzgx_obj_lbl_1_bss_3DCD8;
+    s = fzgx_obj_lbl_1_bss_3DCDC[0];
+    s = fzgx_obj_lbl_1_bss_3DCE4[0];
+    s = fzgx_obj_lbl_1_bss_3DD28[0];
+    s = lbl_1_bss_3DD28__fzgx_offset_C.busy;
+    s = lbl_1_bss_3DD28__fzgx_offset_44[0];
+}
+#pragma section code_type ".text"
+
+#pragma opt_propagation off
+s32 fn_1_46838(u32 arg0) {
+    u32 *fzgx_value;
+    s32 *state = (s32 *)lbl_1_bss_384D8__fzgx_offset_4000;
+    u32 i;
+    fn_1_46838_entry *entry;
+    s32 v;
+
+    state += arg0 * 3;
+    v = state[0];
+    switch (v) {
+    case 1:
+    case 2:
+    case 0xB:
+    case 0xD:
+        state[0] = 0xE;
+        state[1] = -1;
+        break;
+    case 7:
+    case 8:
+    case 9:
+    case 0xA:
+        entry = (fn_1_46838_entry *)fzgx_obj_lbl_1_bss_384D8;
+        if (lbl_1_bss_3DD28__fzgx_offset_C.busy == 0) {
+            DVDCancelAsync(&lbl_1_bss_3DD28__fzgx_offset_C.block, NULL);
+        }
+        for (i = 0; i < 0x400; i++, entry++) {
+            if (entry->flag != 0 && entry->id == state[1]) {
+                fzgx_value = &(entry->flag);
+                *fzgx_value = 0;
+                fzgx_obj_lbl_1_bss_3DCD8 = entry->value;
+            }
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_46838 */
+
 /* fzgx:begin fn_1_469BC noprologue */
 #include "types.h"
 
