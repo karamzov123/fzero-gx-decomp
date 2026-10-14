@@ -30277,6 +30277,25 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/archive/fn_1_12ADC8.c",
+    "symbols": [
+      "fn_1_12ADC8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/archive.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_897A0",
+      "fzgx_obj_lbl_1_bss_897A0": "lbl_1_bss_897A0",
+      "fzgx_obj_lbl_1_bss_897A4": "lbl_1_bss_897A4",
+      "fzgx_obj_lbl_1_bss_897A8": "lbl_1_bss_897A8",
+      "fzgx_obj_lbl_1_bss_897AC": "lbl_1_bss_897AC",
+      "lbl_1_bss_897AC__fzgx_offset_1B00": "lbl_1_bss_897AC+0x1B00"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/archive/fn_1_12AF50.c",
     "symbols": [
       "fn_1_12AF50"
