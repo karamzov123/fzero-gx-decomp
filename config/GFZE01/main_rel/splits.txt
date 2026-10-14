@@ -7685,3 +7685,6 @@ rel/main_rel/effect/fn_1_64FB8.c:
 
 rel/main_rel/game/fn_1_2FDBC.c:
 	.text       start:0x0002FDBC end:0x00030054 align:4
+
+rel/main_rel/game/fn_1_385A4.c:
+	.text       start:0x000385A4 end:0x0003867C align:4
