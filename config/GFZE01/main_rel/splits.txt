@@ -7668,5 +7668,17 @@ rel/main_rel/sel_static_disp/fn_1_149E2C.c:
 rel/main_rel/bg_cas/fn_1_FDEC8.c:
 	.text       start:0x000FDEC8 end:0x000FDFF4 align:4
 
+rel/main_rel/bg_common/fn_1_103B00.c:
+	.text       start:0x00103B00 end:0x00103D28 align:4
+
+rel/main_rel/spline/fn_1_F965C.c:
+	.text       start:0x000F965C end:0x000F9888 align:4
+
+rel/main_rel/camera/fn_1_BD54.c:
+	.text       start:0x0000BD54 end:0x0000BFA0 align:4
+
+rel/main_rel/bg_cas/fn_1_FFA0C.c:
+	.text       start:0x000FFA0C end:0x000FFC60 align:4
+
 rel/main_rel/effect/fn_1_64FB8.c:
 	.text       start:0x00064FB8 end:0x00065268 align:4
