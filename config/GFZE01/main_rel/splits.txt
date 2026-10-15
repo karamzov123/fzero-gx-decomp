@@ -7730,3 +7730,6 @@ rel/main_rel/game/fn_1_38BBC.c:
 
 rel/main_rel/sound/fn_1_A0978.c:
 	.text       start:0x000A0978 end:0x000A0AA4 align:4
+
+rel/main_rel/sound/fn_1_A11EC.c:
+	.text       start:0x000A11EC end:0x000A1340 align:4
