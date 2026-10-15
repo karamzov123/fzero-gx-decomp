@@ -120,6 +120,96 @@ void fn_17_394(void) {
 }
 /* fzgx:end fn_17_394 */
 
+/* fzgx:begin fn_17_3F0 */
+#include "rel/interview/interview.h"
+
+extern u32 lbl_17_bss_10;
+extern const f32 lbl_17_rodata_18;
+extern u32 lbl_801A66B4;
+extern char *fn_80083DB0(char *, const char *);
+extern int sprintf(char *, const char *, ...);
+extern char lbl_1_bss_198[];
+extern const char *lbl_1_data_370[];
+extern s16 lbl_1_bss_968;
+typedef struct {
+    u8 unk_0, unk_1, unk_2, unk_3;
+    s16 unk_4, unk_6, unk_8, unk_A;
+    f32 unk_C, unk_10;
+    u8 unk_14, pad_15, unk_16;
+    s8 unk_17;
+    s16 unk_18;
+    u16 pad_1A;
+    u32 unk_1C;
+} InterviewCfg;
+extern InterviewCfg lbl_1_bss_58;
+typedef struct { u8 pad_0[5]; u8 unk_5; } InterviewInfo;
+#pragma opt_dead_assignments off
+void fn_17_3F0(void) {
+    const u8 *base;
+    InterviewInfo *info;
+    InterviewCfg *cfg;
+    u32 n;
+    u32 t;
+    s32 neg;
+    u32 mode;
+    const char * lab_t1;
+    base = (const u8 *)&lbl_17_data_0 + 0x60000;
+    info = (InterviewInfo *)lbl_17_bss_10;
+    fn_80083DB0(lbl_1_bss_198, (const char *)(base + 0x3e5c));
+    fn_80083DB0(lbl_1_bss_198 + 0x40, (const char *)(base + 0x3e64));
+    n = info->unk_5;
+    if (n == 30) { t = 0; } else { t = n + 1; if (n > 30) t = n; }
+    sprintf(lbl_1_bss_198 + 0x80, (const char *)(base + 0x3e70), t);
+    lab_t1 = (const char *)(base + 0x3e80);
+    fn_80083DB0(lbl_1_bss_198 + 0xc0, lab_t1);
+    n = info->unk_5;
+    if (n == 30) { t = 0; } else { t = n + 1; if (n > 30) t = n; }
+    sprintf(lbl_1_bss_198 + 0x100, (const char *)(base + 0x3e90), lbl_1_data_370[t]);
+    fn_80083DB0(lbl_1_bss_198 + 0x140, (const char *)(base + 0x3e64));
+    fn_80083DB0(lbl_1_bss_198 + 0x180, (const char *)(base + 0x3ea0));
+    fn_80083DB0(lbl_1_bss_198 + 0x1c0, (const char *)(base + 0x3e64));
+    fn_80083DB0(lbl_1_bss_198 + 0x200, (const char *)(base + 0x3eac));
+    fn_80083DB0(lbl_1_bss_198 + 0x240, (const char *)(base + 0x3e64));
+    fn_80083DB0(lbl_1_bss_198 + 0x280, (const char *)(base + 0x3eb8));
+    fn_80083DB0(lbl_1_bss_198 + 0x2c0, (const char *)(base + 0x3e64));
+    fn_80083DB0(lbl_1_bss_198 + 0x300, (const char *)(base + 0x3ec4));
+    fn_80083DB0(lbl_1_bss_198 + 0x340, (const char *)(base + 0x3e64));
+    fn_80083DB0(lbl_1_bss_198 + 0x380, (const char *)(base + 0x3ed0));
+    fn_80083DB0(lbl_1_bss_198 + 0x3c0, (const char *)(base + 0x3e64));
+    fn_80083DB0(lbl_1_bss_198 + 0x400, (const char *)(base + 0x3edc));
+    fn_80083DB0(lbl_1_bss_198 + 0x440, (const char *)(base + 0x3ee8));
+    fn_80083DB0(lbl_1_bss_198 + 0x480, (const char *)(base + 0x3ef4));
+    fn_80083DB0(lbl_1_bss_198 + 0x4c0, (const char *)(base + 0x3f04));
+    fn_80083DB0(lbl_1_bss_198 + 0x500, (const char *)(base + 0x3f10));
+    mode = lbl_801A66B4;
+    neg = -1;
+    cfg = &lbl_1_bss_58;
+    cfg->unk_0 = mode;
+    cfg->unk_1 = 1;
+    cfg->unk_2 = 0;
+    cfg->unk_3 = 0;
+    cfg->unk_4 = 0x280;
+    cfg->unk_6 = 0x150;
+    cfg->unk_8 = 0;
+    cfg->unk_14 = 7;
+    cfg->unk_A = 0;
+    cfg->unk_C = lbl_17_rodata_18;
+    cfg->unk_10 = lbl_17_rodata_18;
+    cfg->unk_16 = 0;
+    cfg->unk_17 = neg;
+    cfg->unk_18 = neg;
+    cfg->unk_1C = 0;
+    cfg->unk_4 = 0x140;
+    cfg->unk_6 = 0xf0;
+    cfg->unk_8 = 0x88;
+    cfg->unk_14 = 4;
+    cfg->unk_2 = 0;
+    cfg->unk_3 = 1;
+    lbl_1_bss_968 = 8;
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_17_3F0 */
+
 /* fzgx:begin fn_17_9F8 */
 struct fn_17_9F8_state {
     u8 pad_00[0x14];
