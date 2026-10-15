@@ -7709,3 +7709,9 @@ rel/main_rel/stcoli/fn_1_2DF98.c:
 
 rel/main_rel/game/fn_1_3EA90.c:
 	.text       start:0x0003EA90 end:0x0003EB78 align:4
+
+rel/main_rel/game/fn_1_3DB9C.c:
+	.text       start:0x0003DB9C end:0x0003DDAC align:4
+
+rel/main_rel/game/fn_1_3AEC4.c:
+	.text       start:0x0003AEC4 end:0x0003B11C align:4

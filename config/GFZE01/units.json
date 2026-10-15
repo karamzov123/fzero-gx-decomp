@@ -44888,9 +44888,33 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/game/fn_1_3AEC4.c",
+    "symbols": [
+      "fn_1_3AEC4"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/game.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/game/fn_1_3CDB0.c",
     "symbols": [
       "fn_1_3CDB0"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/game.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/game/fn_1_3DB9C.c",
+    "symbols": [
+      "fn_1_3DB9C"
     ],
     "status": "nonmatching",
     "mw_version": null,
