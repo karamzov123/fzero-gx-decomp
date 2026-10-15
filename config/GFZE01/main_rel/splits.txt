@@ -7703,3 +7703,6 @@ rel/main_rel/game/fn_1_3CDB0.c:
 
 rel/main_rel/game/fn_1_391F0.c:
 	.text       start:0x000391F0 end:0x00039420 align:4
+
+rel/main_rel/stcoli/fn_1_2DF98.c:
+	.text       start:0x0002DF98 end:0x0002E1B8 align:4

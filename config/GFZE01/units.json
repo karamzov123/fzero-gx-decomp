@@ -58357,6 +58357,18 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_2DF98.c",
+    "symbols": [
+      "fn_1_2DF98"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/stcoli.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/stcoli/fn_1_2E1B8.c",
     "symbols": [
       "fn_1_2E1B8"
