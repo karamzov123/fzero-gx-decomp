@@ -7733,3 +7733,6 @@ rel/main_rel/sound/fn_1_A0978.c:
 
 rel/main_rel/sound/fn_1_A11EC.c:
 	.text       start:0x000A11EC end:0x000A1340 align:4
+
+rel/main_rel/memcard/fn_1_B8E84.c:
+	.text       start:0x000B8E84 end:0x000B8EDC align:4

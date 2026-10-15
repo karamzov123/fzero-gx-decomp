@@ -7398,6 +7398,77 @@ u32 fn_1_B8170(s32 card) {
 }
 /* fzgx:end fn_1_B8170 */
 
+/* fzgx:begin fn_1_B8E84 pool */
+typedef struct CardEntry {
+    u8 pad_00[0x3C];
+    u32 unk_3C;
+    u32 unk_40;
+    u8 pad_44[0x5C];
+} CardEntry;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_716C0[2];
+CardEntry fzgx_obj_lbl_1_bss_716C8[2];
+u32 fzgx_obj_lbl_1_bss_71808;
+u32 fzgx_obj_lbl_1_bss_7180C;
+u8 fzgx_obj_lbl_1_bss_71810[161];
+u8 fzgx_obj_lbl_1_bss_718B1;
+u32 fzgx_obj_lbl_1_bss_718B4;
+u8 fzgx_obj_lbl_1_bss_718B8;
+u8 fzgx_obj_lbl_1_bss_718B9;
+u8 fzgx_obj_lbl_1_bss_718B9__b1;
+u8 fzgx_obj_lbl_1_bss_718B9__b2;
+u8 fzgx_obj_lbl_1_bss_718B9__b3;
+u8 fzgx_obj_lbl_1_bss_718B9__b4;
+u8 fzgx_obj_lbl_1_bss_718B9__b5;
+u8 fzgx_obj_lbl_1_bss_718B9__b6;
+u32 fzgx_obj_lbl_1_bss_718C0[8];
+u32 fzgx_obj_lbl_1_bss_718E0[5754];
+u8 fzgx_obj_lbl_1_bss_772C8[66];
+u8 fzgx_obj_lbl_1_bss_7730A;
+u32 fzgx_obj_lbl_1_bss_7730C;
+u8 fzgx_obj_lbl_1_bss_77310[41];
+u8 lbl_1_bss_77310__fzgx_offset_29;
+u16 lbl_1_bss_77310__fzgx_offset_2A;
+u32 lbl_1_bss_77310__fzgx_offset_2C[17];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_716C0[0];
+    s = fzgx_obj_lbl_1_bss_716C8[0].unk_3C;
+    s = fzgx_obj_lbl_1_bss_71808;
+    s = fzgx_obj_lbl_1_bss_7180C;
+    s = fzgx_obj_lbl_1_bss_71810[0];
+    s = fzgx_obj_lbl_1_bss_718B1;
+    s = fzgx_obj_lbl_1_bss_718B4;
+    s = fzgx_obj_lbl_1_bss_718B8;
+    s = fzgx_obj_lbl_1_bss_718B9;
+    s = fzgx_obj_lbl_1_bss_718B9__b1;
+    s = fzgx_obj_lbl_1_bss_718B9__b2;
+    s = fzgx_obj_lbl_1_bss_718B9__b3;
+    s = fzgx_obj_lbl_1_bss_718B9__b4;
+    s = fzgx_obj_lbl_1_bss_718B9__b5;
+    s = fzgx_obj_lbl_1_bss_718B9__b6;
+    s = fzgx_obj_lbl_1_bss_718C0[0];
+    s = fzgx_obj_lbl_1_bss_718E0[0];
+    s = fzgx_obj_lbl_1_bss_772C8[0];
+    s = fzgx_obj_lbl_1_bss_7730A;
+    s = fzgx_obj_lbl_1_bss_7730C;
+    s = fzgx_obj_lbl_1_bss_77310[0];
+    s = lbl_1_bss_77310__fzgx_offset_29;
+    s = lbl_1_bss_77310__fzgx_offset_2A;
+    s = lbl_1_bss_77310__fzgx_offset_2C[0];
+}
+#pragma section code_type ".text"
+
+void fn_1_B8E84(s32 card, u8 *out_flags, u32 *out_a, u32 *out_b) {
+    *out_flags = (1 << card) & lbl_1_bss_77310__fzgx_offset_2C[lbl_1_bss_77310__fzgx_offset_29];
+    *out_a = fzgx_obj_lbl_1_bss_716C8[lbl_1_bss_77310__fzgx_offset_29].unk_3C;
+    *out_b = fzgx_obj_lbl_1_bss_716C8[lbl_1_bss_77310__fzgx_offset_29].unk_40;
+}
+/* fzgx:end fn_1_B8E84 */
+
 /* fzgx:begin fn_1_B9BE0 */
 void fn_1_B9BE0(void) {
     fn_1_B9C38(0);
