@@ -408,6 +408,246 @@ void fn_17_2D24(void) {
 }
 /* fzgx:end fn_17_2D24 */
 
+/* fzgx:begin fn_17_2D5C pool */
+typedef struct InterviewRig {
+    u8 pad_0[8];
+    s16 unk_8;
+    u8 pad_A[2];
+    s16 unk_C;
+    u8 pad_E[2];
+    u32 unk_10;
+    u32 unk_14;
+    u8 pad_18[0x5C];
+} InterviewRig;
+
+struct VecWords {
+    u32 x, y, z;
+};
+
+extern u8 lbl_17_data_0[];
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u8 fzgx_obj_lbl_17_bss_0;
+u8 fzgx_obj_lbl_17_bss_1;
+u8 fzgx_obj_lbl_17_bss_2;
+u8 fzgx_obj_lbl_17_bss_3;
+u8 fzgx_obj_lbl_17_bss_3__b1;
+u8 fzgx_obj_lbl_17_bss_3__b2;
+u8 fzgx_obj_lbl_17_bss_3__b3;
+u8 fzgx_obj_lbl_17_bss_3__b4;
+u8 fzgx_obj_lbl_17_bss_3__b5;
+u8 fzgx_obj_lbl_17_bss_3__b6;
+u8 fzgx_obj_lbl_17_bss_3__b7;
+u8 fzgx_obj_lbl_17_bss_3__b8;
+u32 fzgx_obj_lbl_17_bss_C;
+u8 *fzgx_obj_lbl_17_bss_10;
+u32 fzgx_obj_lbl_17_bss_14;
+u32 fzgx_obj_lbl_17_bss_18;
+u32 lbl_17_bss_18__fzgx_offset_4;
+u32 fzgx_obj_lbl_17_bss_20;
+u32 fzgx_obj_lbl_17_bss_24[4];
+u32 fzgx_obj_lbl_17_bss_34[8];
+u32 fzgx_obj_lbl_17_bss_54;
+u32 fzgx_obj_lbl_17_bss_58;
+u16 lbl_17_bss_58__fzgx_offset_4;
+u16 lbl_17_bss_58__fzgx_offset_6;
+InterviewRig fzgx_obj_lbl_17_bss_60;
+s16 lbl_17_bss_60__fzgx_offset_74;
+s16 fzgx_obj_lbl_17_bss_D6;
+void *fzgx_obj_lbl_17_bss_D8[2];
+u32 lbl_17_bss_D8__fzgx_offset_8[6];
+u8 lbl_17_bss_D8__fzgx_offset_20;
+u8 lbl_17_bss_D8__fzgx_offset_21;
+u8 fzgx_obj_lbl_17_bss_FA;
+u8 lbl_17_bss_FA__fzgx_offset_1;
+s16 lbl_17_bss_FA__fzgx_offset_2;
+s16 lbl_17_bss_FA__fzgx_offset_4;
+u8 lbl_17_bss_FA__fzgx_offset_6;
+u8 lbl_17_bss_FA__fzgx_offset_7;
+u8 lbl_17_bss_FA__fzgx_offset_8;
+u8 lbl_17_bss_FA__fzgx_offset_9;
+u32 lbl_17_bss_FA__fzgx_offset_A[10];
+u32 lbl_17_bss_FA__fzgx_offset_32;
+u32 lbl_17_bss_FA__fzgx_offset_36;
+u32 lbl_17_bss_FA__fzgx_offset_3A;
+u32 lbl_17_bss_FA__fzgx_offset_3E;
+u32 lbl_17_bss_FA__fzgx_offset_42;
+u32 lbl_17_bss_FA__fzgx_offset_46;
+u32 lbl_17_bss_FA__fzgx_offset_4A;
+u32 lbl_17_bss_FA__fzgx_offset_4E;
+u32 fzgx_obj_lbl_17_bss_14C;
+u32 fzgx_obj_lbl_17_bss_150;
+struct VecWords lbl_17_bss_150__fzgx_offset_4;
+struct VecWords fzgx_obj_lbl_17_bss_160;
+s16 lbl_17_bss_160__fzgx_offset_C;
+s16 lbl_17_bss_160__fzgx_offset_E;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_17_bss_0;
+    s = fzgx_obj_lbl_17_bss_1;
+    s = fzgx_obj_lbl_17_bss_2;
+    s = fzgx_obj_lbl_17_bss_3;
+    s = fzgx_obj_lbl_17_bss_3__b1;
+    s = fzgx_obj_lbl_17_bss_3__b2;
+    s = fzgx_obj_lbl_17_bss_3__b3;
+    s = fzgx_obj_lbl_17_bss_3__b4;
+    s = fzgx_obj_lbl_17_bss_3__b5;
+    s = fzgx_obj_lbl_17_bss_3__b6;
+    s = fzgx_obj_lbl_17_bss_3__b7;
+    s = fzgx_obj_lbl_17_bss_3__b8;
+    s = fzgx_obj_lbl_17_bss_C;
+    s = *(u32 *)&fzgx_obj_lbl_17_bss_10;
+    s = fzgx_obj_lbl_17_bss_14;
+    s = fzgx_obj_lbl_17_bss_18;
+    s = lbl_17_bss_18__fzgx_offset_4;
+    s = fzgx_obj_lbl_17_bss_20;
+    s = fzgx_obj_lbl_17_bss_24[0];
+    s = fzgx_obj_lbl_17_bss_34[0];
+    s = fzgx_obj_lbl_17_bss_54;
+    s = fzgx_obj_lbl_17_bss_58;
+    s = lbl_17_bss_58__fzgx_offset_4;
+    s = lbl_17_bss_58__fzgx_offset_6;
+    s = *(u32 *)&fzgx_obj_lbl_17_bss_60;
+    s = lbl_17_bss_60__fzgx_offset_74;
+    s = fzgx_obj_lbl_17_bss_D6;
+    s = *(u32 *)&fzgx_obj_lbl_17_bss_D8;
+    s = lbl_17_bss_D8__fzgx_offset_8[0];
+    s = lbl_17_bss_D8__fzgx_offset_20;
+    s = lbl_17_bss_D8__fzgx_offset_21;
+    s = fzgx_obj_lbl_17_bss_FA;
+    s = lbl_17_bss_FA__fzgx_offset_1;
+    s = lbl_17_bss_FA__fzgx_offset_2;
+    s = lbl_17_bss_FA__fzgx_offset_4;
+    s = lbl_17_bss_FA__fzgx_offset_6;
+    s = lbl_17_bss_FA__fzgx_offset_7;
+    s = lbl_17_bss_FA__fzgx_offset_8;
+    s = lbl_17_bss_FA__fzgx_offset_9;
+    s = lbl_17_bss_FA__fzgx_offset_A[0];
+    s = lbl_17_bss_FA__fzgx_offset_32;
+    s = lbl_17_bss_FA__fzgx_offset_36;
+    s = lbl_17_bss_FA__fzgx_offset_3A;
+    s = lbl_17_bss_FA__fzgx_offset_3E;
+    s = lbl_17_bss_FA__fzgx_offset_42;
+    s = lbl_17_bss_FA__fzgx_offset_46;
+    s = lbl_17_bss_FA__fzgx_offset_4A;
+    s = lbl_17_bss_FA__fzgx_offset_4E;
+    s = fzgx_obj_lbl_17_bss_14C;
+    s = fzgx_obj_lbl_17_bss_150;
+    s = lbl_17_bss_150__fzgx_offset_4.x;
+    s = fzgx_obj_lbl_17_bss_160.x;
+    s = lbl_17_bss_160__fzgx_offset_C;
+    s = lbl_17_bss_160__fzgx_offset_E;
+}
+#pragma section code_type ".text"
+
+extern struct VecWords lbl_17_rodata_D4;
+extern f32 lbl_17_rodata_E0[54];
+extern u32 lbl_801A6410[1];
+extern u32 lbl_1_bss_6EAB4;
+extern u8 *lbl_1_bss_6EAD0[1];
+extern u32 fn_1_A0680(void);
+extern void fn_1_41048(void);
+extern u32 fn_17_3C5C(void);
+extern u32 fn_17_424C(void);
+extern u32 fn_1_7BA08(u32,u32,u32);
+extern s32 fn_1_45D0(u32,void *,void *,u32);
+extern void fn_1_435C(u32);
+extern s32 fn_1_3F8C(void *,void *,u32,u32);
+extern u32 fn_1_7BA48(u32);
+extern void fn_1_7BAF8(void);
+extern u32 fn_17_3090(void);
+extern void fn_17_71DC(void);
+extern u32 fn_17_3160(void);
+extern void fn_17_72BC(void);
+extern void fn_17_38C4(void);
+extern void fn_17_334C(void);
+extern void fn_17_48D0(void);
+extern u32 fn_17_49DC(void);
+extern void lbl_8006D758(void);
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern u32 mathutil_mtxA_rotate_x(u32);
+extern void lbl_8006E1B0(void *,void *);
+extern void fn_80074CF4(f32,f32,f32);
+extern void camera_set_state_flag(u8);
+extern u32 fn_17_7F94(void);
+extern u32 fn_8004CD70(u32,void *,u32);
+extern u32 fn_80051E64(u32,void *,u32);
+extern u32 fn_1_A1588(u32,u32);
+extern u32 fn_8004BF0C(u32,u32);
+extern void fn_1_154E4C(void);
+extern void fn_1_C2454(void);
+extern void *memset(void *,int,u32);
+extern void fn_17_71C0(void *);
+extern u32 fn_17_72C0(u32);
+
+
+void fn_17_2D5C(u32 arg0, u32 arg1) {
+    u8 *owner;
+    u8 *data = lbl_17_data_0 + 0x60000;
+
+    lbl_17_bss_FA__fzgx_offset_32 = 0;
+    lbl_17_bss_FA__fzgx_offset_36 = 0;
+    lbl_17_bss_FA__fzgx_offset_3A = 0;
+    lbl_17_bss_FA__fzgx_offset_3E = 0;
+    lbl_17_bss_FA__fzgx_offset_42 = 0;
+    lbl_17_bss_FA__fzgx_offset_46 = 0;
+    lbl_17_bss_FA__fzgx_offset_4E = 0;
+    lbl_17_bss_FA__fzgx_offset_4A = 0;
+    owner = fzgx_obj_lbl_17_bss_10;
+    fn_1_A0680();
+    fn_1_41048();
+    fzgx_obj_lbl_17_bss_14C = arg0;
+    fzgx_obj_lbl_17_bss_150 = arg1;
+    fn_17_3C5C();
+    fn_17_424C();
+    fzgx_obj_lbl_17_bss_C = fn_1_45D0(*lbl_801A6410, (void *)fn_1_7BA08(0x20, 0x20, 0x40), data + 0x3E50, 0x758);
+    fn_1_435C(arg0);
+    fn_1_3F8C(data + 0x4004, (void *)fn_17_3090, 0, 5);
+    fn_1_435C(arg1);
+    fn_1_7BA48(fzgx_obj_lbl_17_bss_C);
+    fn_1_3F8C(data + 0x4014, (void *)fn_1_7BAF8, fzgx_obj_lbl_17_bss_C, 3);
+    fn_1_3F8C(data + 0x4020, (void *)fn_17_71DC, 0, 5);
+    fn_1_3F8C(data + 0x4030, (void *)fn_17_3160, 0, 0xB);
+    fn_1_3F8C(data + 0x4040, (void *)fn_17_72BC, 0, 0xC);
+    fn_1_3F8C(data + 0x4050, (void *)fn_17_38C4, 0, 0x1C);
+    fn_17_334C();
+    fn_17_48D0();
+    fn_17_49DC();
+    lbl_17_bss_150__fzgx_offset_4 = fzgx_obj_lbl_17_bss_160 = lbl_17_rodata_D4;
+    lbl_17_bss_160__fzgx_offset_C = -0x2000;
+    lbl_17_bss_160__fzgx_offset_E = 0x2000;
+    lbl_8006D758();
+    mathutil_mtxA_rotate_y(lbl_17_bss_160__fzgx_offset_E);
+    mathutil_mtxA_rotate_x(lbl_17_bss_160__fzgx_offset_C);
+    lbl_8006E1B0(&lbl_17_bss_150__fzgx_offset_4, &fzgx_obj_lbl_17_bss_160);
+    fn_80074CF4(lbl_17_rodata_E0[0], lbl_17_rodata_E0[0], lbl_17_rodata_E0[0]);
+    camera_set_state_flag(1);
+    fn_17_7F94();
+    lbl_17_bss_60__fzgx_offset_74 = -0x4B;
+    fzgx_obj_lbl_17_bss_D6 = -0x14;
+    if (*(u32 *)*lbl_1_bss_6EAD0 == 0) {
+        *(u32 *)*lbl_1_bss_6EAD0 = fn_8004CD70(2, *lbl_1_bss_6EAD0 + 0x10, 0x4A248);
+    }
+    if (*(u32 *)(*lbl_1_bss_6EAD0 + 4) == 0) {
+        *(u32 *)(*lbl_1_bss_6EAD0 + 4) = fn_8004CD70(2, *lbl_1_bss_6EAD0 + 0x4A258, 0x4A248);
+    }
+    fn_80051E64(*(u32 *)(*lbl_1_bss_6EAD0 + 4), *lbl_1_bss_6EAD0 + 0x944A0, 0x3000);
+    lbl_1_bss_6EAB4 &= 0xFFFFFFD3;
+    fn_1_A1588(*(u32 *)*lbl_1_bss_6EAD0, 0x12);
+    fn_8004BF0C(*(u32 *)*lbl_1_bss_6EAD0, lbl_17_bss_60__fzgx_offset_74);
+    fn_8004BF0C(*(u32 *)(*lbl_1_bss_6EAD0 + 4), fzgx_obj_lbl_17_bss_D6);
+    memset(&fzgx_obj_lbl_17_bss_60, 0, 0x74);
+    fn_17_71C0(&fzgx_obj_lbl_17_bss_60);
+    fzgx_obj_lbl_17_bss_60.unk_8 = owner[5];
+    fzgx_obj_lbl_17_bss_60.unk_C = 0;
+    fzgx_obj_lbl_17_bss_60.unk_14 = fzgx_obj_lbl_17_bss_60.unk_10 = fn_17_72C0(fzgx_obj_lbl_17_bss_60.unk_8);
+    fn_1_154E4C();
+    fn_1_C2454();
+}
+/* fzgx:end fn_17_2D5C */
+
 /* fzgx:begin fn_17_3090 pool */
 extern void fn_17_50F0(void);
 extern void fn_17_3E08(void);
