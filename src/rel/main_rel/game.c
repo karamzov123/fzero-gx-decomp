@@ -3122,6 +3122,73 @@ void fn_1_3F4FC(void) {
 }
 /* fzgx:end fn_1_3F4FC */
 
+/* fzgx:begin fn_1_3F5F8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/game.h"
+
+extern s32 fn_1_465D0(s32, s32);
+extern s32 fn_1_12D254(s32, s32);
+extern void *fn_1_7F518(s16, void *, s32);
+extern u32 fn_1_7F58C(s16, void *, u8, s32);
+extern void fn_80006E10(void *);
+extern u32 lbl_1_rodata_E88[11];
+
+#pragma opt_propagation off
+#pragma peephole on
+static inline s32 *fn_1_3F5F8_array_read(s32 *array) { return array; }
+void fn_1_3F5F8(void) {
+    Obj_1_bss_3C30 *mgr = &lbl_1_bss_3C30;
+    s16 n;
+    struct { s32 value; } t;
+    s8 eq;
+    s8 i;
+    s16 j;
+    s32 val;
+    s16 mode;
+    s32 c;
+    s32 tbl[5];
+    u32 buf1[16];
+    s32 buf2[17];
+    s32 lab_t0;
+    s32 k;
+
+    t.value = 4;
+    eq = (mgr->unk_8 == 1);
+    if (eq) {
+        t.value = 0;
+    }
+    n = (s16)t.value;
+    tbl[0] = lbl_1_rodata_E88[0];
+    tbl[1] = lbl_1_rodata_E88[1];
+    tbl[2] = lbl_1_rodata_E88[2];
+    tbl[3] = lbl_1_rodata_E88[3];
+    tbl[4] = lbl_1_rodata_E88[4];
+    val = fn_1_3F5F8_array_read(tbl)[mgr->unk_8];
+    mode = *(s16 *)&lbl_1_bss_960;
+    if (mode == 10 || mode == 12) {
+        return;
+    }
+    {
+        for (i = 0, k = 0; i < mgr->unk_8; k++, i++) {
+            c = ((s8 *)&lbl_1_bss_2625C)[k];
+            if (c <= 40) {
+                fn_1_465D0(fn_1_12D254(c, val), 1);
+                fn_80006E10(lbl_1_data_6414);
+                fn_80006E10(fn_1_7F518(c, buf2, 0));
+                for (j = n; j <= n + 3; j++) {
+                    lab_t0 = fn_1_7F58C(c, buf1, (u8)j, 0);
+                    fn_1_465D0(lab_t0, 1);
+                }
+                fn_80006E10(&lbl_1_data_6600);
+            }
+        }
+    }
+}
+#pragma peephole reset
+#pragma opt_propagation reset
+/* fzgx:end fn_1_3F5F8 */
+
 /* fzgx:begin fn_1_3F75C noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
