@@ -7721,3 +7721,6 @@ rel/main_rel/game/fn_1_3A044.c:
 
 rel/main_rel/sound/fn_1_A0214.c:
 	.text       start:0x000A0214 end:0x000A02F0 align:4
+
+rel/main_rel/car/fn_1_8B8A4.c:
+	.text       start:0x0008B8A4 end:0x0008B9B8 align:4
