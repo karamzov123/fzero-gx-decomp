@@ -97,7 +97,19 @@ def fast_forward_main() -> None:
     else:
         # git refuses, touching nothing, if an uncommitted edit there would be overwritten
         r = subprocess.run(["git", "merge", "-q", "--ff-only", "origin/main"], cwd=holder, capture_output=True, text=True)
-        log("local main fast-forwarded" if r.returncode == 0 else f"local main not fast-forwarded: {r.stderr.strip()}")
+        if r.returncode == 0:
+            log("local main fast-forwarded")
+            return
+        # A commit landed on local main while the PR merged: main and the fork diverged and the
+        # integrator blocks. The PR only touched fuzzy/, so a merge commit cannot conflict.
+        incoming = git("diff", "--name-only", "main...origin/main").splitlines()
+        if incoming and all(p.startswith("fuzzy/") for p in incoming):
+            m = subprocess.run(["git", "merge", "-q", "--no-edit", "origin/main"], cwd=holder,
+                               capture_output=True, text=True)
+            log("local main merged the fuzzy refresh" if m.returncode == 0
+                else f"local main not merged: {m.stderr.strip()}")
+        else:
+            log(f"local main not fast-forwarded: {r.stderr.strip()}")
 
 
 def fork() -> str:
@@ -127,6 +139,10 @@ def publish(version: str, summary: dict) -> None:
                 "Exact measures are unchanged (checked by `fuzzy_report.py`); only the fuzzy match moves.")
         url = run("gh", "pr", "create", "--repo", repo, "--base", "main", "--head", BRANCH, "--title", title, "--body", body)
         number = url.rstrip("/").rsplit("/", 1)[-1]
+    # the export takes ~40 s; re-check that local main did not gain unpublished commits meanwhile
+    if subprocess.run(["git", "merge-base", "--is-ancestor", "main", "origin/main"], cwd=ROOT).returncode:
+        log(f"local main moved during the export; PR #{number} left open for the next run")
+        return
     run("gh", "pr", "merge", number, "--repo", repo, "--merge")
     git("push", "-q", "origin", "--delete", BRANCH, check=False)
     log(f"merged PR #{number}: {title}")
