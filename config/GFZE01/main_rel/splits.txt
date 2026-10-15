@@ -7736,3 +7736,6 @@ rel/main_rel/sound/fn_1_A11EC.c:
 
 rel/main_rel/memcard/fn_1_B8E84.c:
 	.text       start:0x000B8E84 end:0x000B8EDC align:4
+
+rel/main_rel/game/fn_1_3EB78.c:
+	.text       start:0x0003EB78 end:0x0003EC88 align:4
