@@ -44854,6 +44854,18 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/game/fn_1_38BBC.c",
+    "symbols": [
+      "fn_1_38BBC"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/game.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/game/fn_1_3908C.c",
     "symbols": [
       "fn_1_3908C"
