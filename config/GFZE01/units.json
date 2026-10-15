@@ -55650,6 +55650,18 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sound/fn_1_A0978.c",
+    "symbols": [
+      "fn_1_A0978"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sound.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sound/fn_1_A0AA4.c",
     "symbols": [
       "fn_1_A0AA4"

@@ -514,6 +514,174 @@ void fn_1_A04C4(void) {
 }
 /* fzgx:end fn_1_A04C4 */
 
+/* fzgx:begin fn_1_A0978 pool */
+typedef struct SoundEntry {
+    u32 unk_0;
+    u8 pad_4[0x2C];
+    u32 unk_30;
+    u32 unk_34;
+} SoundEntry;
+
+typedef struct SoundSlot {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 pad_3[0x11];
+} SoundSlot;
+
+typedef struct SoundPair {
+    s8 a;
+    s8 b;
+} SoundPair;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_6EA98;
+u32 fzgx_obj_lbl_1_bss_6EA9C;
+u32 lbl_1_bss_6EA9C__fzgx_offset_4;
+u8 fzgx_obj_lbl_1_bss_6EAA4;
+u8 lbl_1_bss_6EAA4__fzgx_offset_1;
+u8 fzgx_obj_lbl_1_bss_6EAA6;
+u32 fzgx_obj_lbl_1_bss_6EAA8[2];
+u8 fzgx_obj_lbl_1_bss_6EAB0;
+u32 fzgx_obj_lbl_1_bss_6EAB4[4];
+u8 lbl_1_bss_6EAB4__fzgx_offset_10;
+u8 lbl_1_bss_6EAB4__fzgx_offset_11;
+u8 fzgx_obj_lbl_1_bss_6EAC6;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b1;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b2;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b3;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b4;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b5;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b6;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b7;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b8;
+u8 fzgx_obj_lbl_1_bss_6EAC6__b9;
+u32 fzgx_obj_lbl_1_bss_6EAD0[2];
+SoundEntry lbl_1_bss_6EAD0__fzgx_offset_8[32];
+u8 fzgx_obj_lbl_1_bss_6F1D8;
+u32 fzgx_obj_lbl_1_bss_6F1DC;
+u8 fzgx_obj_lbl_1_bss_6F1E0;
+u8 fzgx_obj_lbl_1_bss_6F1E1;
+SoundSlot fzgx_obj_lbl_1_bss_6F1E4[4];
+u8 lbl_1_bss_6F1E4__fzgx_offset_50[4];
+u8 lbl_1_bss_6F1E4__fzgx_offset_54;
+u8 fzgx_obj_lbl_1_bss_6F239;
+u32 fzgx_obj_lbl_1_bss_6F23C;
+u8 lbl_1_bss_6F23C__fzgx_offset_4;
+u8 lbl_1_bss_6F23C__fzgx_offset_5;
+u8 lbl_1_bss_6F23C__fzgx_offset_6;
+u8 fzgx_obj_lbl_1_bss_6F243;
+u8 fzgx_obj_lbl_1_bss_6F244;
+u8 lbl_1_bss_6F244__fzgx_offset_1;
+u8 lbl_1_bss_6F244__fzgx_offset_1__b1;
+u8 lbl_1_bss_6F244__fzgx_offset_1__b2;
+u8 lbl_1_bss_6F244__fzgx_offset_4[4];
+SoundPair lbl_1_bss_6F244__fzgx_offset_8[30];
+SoundPair lbl_1_bss_6F244__fzgx_offset_44[30];
+s8 fzgx_obj_lbl_1_bss_6F2C4;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_6EA98;
+    s = fzgx_obj_lbl_1_bss_6EA9C;
+    s = lbl_1_bss_6EA9C__fzgx_offset_4;
+    s = fzgx_obj_lbl_1_bss_6EAA4;
+    s = lbl_1_bss_6EAA4__fzgx_offset_1;
+    s = fzgx_obj_lbl_1_bss_6EAA6;
+    s = fzgx_obj_lbl_1_bss_6EAA8[0];
+    s = fzgx_obj_lbl_1_bss_6EAB0;
+    s = fzgx_obj_lbl_1_bss_6EAB4[0];
+    s = lbl_1_bss_6EAB4__fzgx_offset_10;
+    s = lbl_1_bss_6EAB4__fzgx_offset_11;
+    s = fzgx_obj_lbl_1_bss_6EAC6;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b1;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b2;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b3;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b4;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b5;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b6;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b7;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b8;
+    s = fzgx_obj_lbl_1_bss_6EAC6__b9;
+    s = fzgx_obj_lbl_1_bss_6EAD0[0];
+    s = lbl_1_bss_6EAD0__fzgx_offset_8[0].unk_0;
+    s = fzgx_obj_lbl_1_bss_6F1D8;
+    s = fzgx_obj_lbl_1_bss_6F1DC;
+    s = fzgx_obj_lbl_1_bss_6F1E0;
+    s = fzgx_obj_lbl_1_bss_6F1E1;
+    s = fzgx_obj_lbl_1_bss_6F1E4[0].unk_0;
+    s = lbl_1_bss_6F1E4__fzgx_offset_50[0];
+    s = lbl_1_bss_6F1E4__fzgx_offset_54;
+    s = fzgx_obj_lbl_1_bss_6F239;
+    s = fzgx_obj_lbl_1_bss_6F23C;
+    s = lbl_1_bss_6F23C__fzgx_offset_4;
+    s = lbl_1_bss_6F23C__fzgx_offset_5;
+    s = lbl_1_bss_6F23C__fzgx_offset_6;
+    s = fzgx_obj_lbl_1_bss_6F243;
+    s = fzgx_obj_lbl_1_bss_6F244;
+    s = lbl_1_bss_6F244__fzgx_offset_1;
+    s = lbl_1_bss_6F244__fzgx_offset_1__b1;
+    s = lbl_1_bss_6F244__fzgx_offset_1__b2;
+    s = lbl_1_bss_6F244__fzgx_offset_4[0];
+    s = lbl_1_bss_6F244__fzgx_offset_8[0].a;
+    s = lbl_1_bss_6F244__fzgx_offset_44[0].a;
+    s = fzgx_obj_lbl_1_bss_6F2C4;
+}
+#pragma section code_type ".text"
+
+extern s32 fn_1_3F864(void);
+extern void fn_1_A3A1C(void);
+extern void fn_1_A31E4(void);
+extern u32 fn_1_864E8(u8);
+extern void fn_1_A54FC(void);
+extern void fn_1_A5590(void);
+extern void fn_1_A24CC(void);
+
+void fn_1_A0978(void) {
+    SoundSlot *slot;
+    s32 i;
+    s32 id;
+    u32 flags;
+
+    if (fn_1_3F864() == 0 || lbl_1_bss_6EAA4__fzgx_offset_1 != 0) {
+        return;
+    }
+    fn_1_A3A1C();
+    fn_1_A31E4();
+    slot = fzgx_obj_lbl_1_bss_6F1E4;
+    for (i = 0; i < fzgx_obj_lbl_1_bss_6F2C4; slot++, i++) {
+        id = slot->unk_1;
+        flags = fn_1_864E8(id);
+        if (!(flags & 0x800000)) {
+            s8 *count;
+            SoundPair *pair;
+            pair = &lbl_1_bss_6F244__fzgx_offset_8[id];
+            count = &pair->b;
+            (*count)++;
+            if (*count > 10) {
+                pair->a = 0;
+                *count = 10;
+            }
+        }
+        if (!(flags & 0x2000000)) {
+            s8 *count;
+            SoundPair *pair;
+            pair = &lbl_1_bss_6F244__fzgx_offset_44[id];
+            count = &pair->b;
+            (*count)++;
+            if (*count > 30) {
+                pair->a = 0;
+                *count = 30;
+            }
+        }
+    }
+    fn_1_A54FC();
+    fn_1_A5590();
+    fn_1_A24CC();
+}
+/* fzgx:end fn_1_A0978 */
+
 /* fzgx:begin fn_1_A0C68 */
 enum {
     ADDR_A6000000 = 0xA6000000,
