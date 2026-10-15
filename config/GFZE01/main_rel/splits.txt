@@ -7700,3 +7700,6 @@ rel/main_rel/load/fn_1_4706C.c:
 
 rel/main_rel/game/fn_1_3CDB0.c:
 	.text       start:0x0003CDB0 end:0x0003CE94 align:4
+
+rel/main_rel/game/fn_1_391F0.c:
+	.text       start:0x000391F0 end:0x00039420 align:4
