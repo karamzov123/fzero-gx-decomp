@@ -830,7 +830,8 @@ def _set_unit_opts(p: Project, unit_src: str, mw_version: Optional[str], extra_c
             if mw_version:
                 u["mw_version"] = mw_version
             if extra_cflags:
-                u["extra_cflags"] = extra_cflags.split()
+                # the oracle reports a version's flags as a list; callers pass a string
+                u["extra_cflags"] = extra_cflags.split() if isinstance(extra_cflags, str) else list(extra_cflags)
     p.save_units(units)
 
 
