@@ -7718,3 +7718,6 @@ rel/main_rel/game/fn_1_3AEC4.c:
 
 rel/main_rel/game/fn_1_3A044.c:
 	.text       start:0x0003A044 end:0x0003A2C4 align:4
+
+rel/main_rel/sound/fn_1_A0214.c:
+	.text       start:0x000A0214 end:0x000A02F0 align:4
