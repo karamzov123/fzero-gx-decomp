@@ -7742,3 +7742,6 @@ rel/main_rel/game/fn_1_3EB78.c:
 
 rel/main_rel/game/fn_1_34924.c:
 	.text       start:0x00034924 end:0x00034AC0 align:4
+
+rel/main_rel/sound/fn_1_A0D20.c:
+	.text       start:0x000A0D20 end:0x000A0D7C align:4
