@@ -63015,9 +63015,17 @@
     "symbols": [
       "fn_12_349CC"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-str",
+      "readonly"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_12_rodata_12E0",
+      "@5": "lbl_12_rodata_12E0",
+      "@6": "lbl_12_rodata_130C"
+    }
   },
   {
     "module": "movie_module",
