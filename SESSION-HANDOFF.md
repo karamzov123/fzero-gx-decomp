@@ -62,11 +62,26 @@ the file*). Instead compile the candidate offline with the unit's own compiler/f
 shape, no claim, no work-copy writes. That method is how 343's table was produced.
 Claim+release is only needed for probes that touch `.fzgx/work/`.
 
+**fn_1_4270C solved and landed** (commit `ce2e3eb4`, attempt 31, one check spent).
+Full record: `docs/findings/346-fn-1-4270C-shared-loop-counter-mr-init.md`. The
+99.5851% one-word residual (`mr r30, r29` vs folded `li r30, 0` at w205) is a
+selector consequence of *loop-counter variable sharing*: with multiply-addressed
+loops (`base + i * K`, `base[i]`), MWCC strength-reduces a running bytes-offset
+shadow whose init materialises as `mr rOffset, rCounter` when the counter variable
+is **shared with an earlier loop**, and as `li rOffset, 0` when it is fresh.
+Same-TU matched siblings `fn_1_41F58` (loop 2) and `fn_1_42E74` (loops 2/3) show
+both forms side by side. Fix applied: the second outer loop reuses the first
+loop's counter `v6` with `v33 = v32 + v6 * 396` and no explicit offset local —
+then 241/241 words, 100%. Copy spells, union/pointer puns, inline helpers,
+function-wide `opt_propagation off` (179 words break), `opt_lifetimes off`, and
+mid-function pragmas (inert — pragma state is captured per function) were all
+measured dead.
+
 **Next candidates** (same one-word tier): `state/one_word_tier.json` — `fn_1_53E40`
-landed (finding 344), `fn_1_135D7C` measured to its fixed point (finding 345). Next:
-`fn_1_4270C` (99.5851%, 241 words; known residual: final-loop init `v30 = v29`, both
-proven zero, folds to `li r30, 0` vs retail `mr r30, r29`). Start from
-`.fzgx/attempts/fn_1_4270C.1791782425.c`; probe shapes offline before claiming.
+landed (finding 344), `fn_1_135D7C` measured to its fixed point (finding 345),
+`fn_1_4270C` landed (finding 346). Next: `fn_17_7728` (99.5261%, 211 words), then
+`movie:_prolog` (99.2188%), `fn_1_1384C` (99.1597%, an init-copy scan hit — apply
+the shared-counter law from finding 346 first). Probe shapes offline before claiming.
 
 Not touched this session: the in-flight main-tree leftovers listed in the previous
 handoff, the `fzgx-storage.service --max-sessions 2` question (still the user's call).

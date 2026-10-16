@@ -1,5 +1,5 @@
 {
- "generated": 1792129861,
+ "generated": 1792130851,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -53268,16 +53268,16 @@
    "unit": "rel/main_rel/motasglist/fn_1_4270C.c",
    "addr": 272140,
    "size": 964,
-   "status": "unmatched",
-   "attempts": 30,
-   "best_percent": 99.59,
+   "status": "matched",
+   "attempts": 31,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "ce2e3eb4",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_42AD0",
@@ -646314,6 +646314,27 @@
    "cost_usd": 0.0,
    "outcome": "matched",
    "notes": "full match via reconstructed retail .rodata pool [lbl_1_rodata_26F8,+0x170) byte-equal; 2^52 magic now at +0x60; pool_map retargets @9/fzgx_pool_table1/...rodata.0",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24862,
+   "symbol": "fn_1_4270C",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792130723,
+   "ended": 1792130763,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "",
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 100.0,
