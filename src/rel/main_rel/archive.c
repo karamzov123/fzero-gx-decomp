@@ -78,10 +78,7 @@ void fn_1_12A32C(void *arg0) {
 }
 /* fzgx:end fn_1_12A32C */
 
-/* fzgx:begin fn_1_12A4B0 pool noprologue */
-#include "types.h"
-#include "rel/main_rel/archive.h"
-
+/* fzgx:begin fn_1_12A4B0 */
 extern void *lbl_801A6410;
 
 typedef struct ArchiveEntry {
@@ -90,25 +87,17 @@ typedef struct ArchiveEntry {
 } ArchiveEntry;
 
 
-extern s32 fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
-extern void *fn_1_45D0(void *arg0, u32 arg1, void *arg2, u32 arg3);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
-extern s32 fn_1_45850(void *arg0);
-extern void *fn_1_45B2C(void *arg0);
-extern void fn_1_12FD4(void *arg0, u32 arg1);
-extern void DCFlushRange(void *arg0, u32 arg1);
-extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
 
 #pragma opt_propagation on
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 s32 fzgx_obj_lbl_1_bss_897A0;
-u32 lbl_1_bss_897A4;
+u32 fzgx_obj_lbl_1_bss_897A4;
 u32 lbl_1_bss_897A8;
 u8 fzgx_obj_lbl_1_bss_897AC[1];
-u8 lbl_1_bss_897AC_fill_897AD;
-u16 lbl_1_bss_897AC_fill_897AE;
-u32 lbl_1_bss_897AC_fill_897B0[1732];
-u32 lbl_1_bss_897AC_1B14[0x20];
+u8 lbl_1_bss_897AC__fzgx_offset_1;
+u16 lbl_1_bss_897AC__fzgx_offset_2;
+u32 lbl_1_bss_897AC__fzgx_offset_4[1732];
+u32 lbl_1_bss_897AC__fzgx_offset_1B14[8];
 u32 fzgx_obj_lbl_1_bss_8B2E0[48];
 u32 fzgx_obj_lbl_1_bss_8B3A0[83];
 
@@ -116,13 +105,13 @@ u32 fzgx_obj_lbl_1_bss_8B3A0[83];
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_897A0;
-    s = *(u8 *)&lbl_1_bss_897A4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_897A4;
     s = *(u8 *)&lbl_1_bss_897A8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_897AC;
-    s = *(u8 *)&lbl_1_bss_897AC_fill_897AD;
-    s = *(u8 *)&lbl_1_bss_897AC_fill_897AE;
-    s = *(u8 *)&lbl_1_bss_897AC_fill_897B0;
-    s = *(u8 *)&lbl_1_bss_897AC_1B14;
+    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_1B14;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8B2E0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8B3A0;
 }
@@ -130,6 +119,15 @@ static void fzgx_bss_layout(void) {
 
 #pragma opt_common_subs off
 u32 fn_1_12A4B0(void *arg0, s32 arg1, s32 arg2) {
+    extern s32 fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
+    extern void *fn_1_45D0(void *arg0, u32 arg1, void *arg2, u32 arg3);
+    extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+    extern s32 fn_1_45850(void *arg0);
+    extern void *fn_1_45B2C(void *arg0);
+    extern void fn_1_12FD4(void *arg0, u32 arg1);
+    extern void DCFlushRange(void *arg0, u32 arg1);
+    extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
+
     s32 tmp2;
     u8 *strings;
     ArchiveEntry * e_2;
@@ -146,11 +144,11 @@ u32 fn_1_12A4B0(void *arg0, s32 arg1, s32 arg2) {
     if (arg1 != 0) {
         u32 aligned;
 
-        if (fn_1_458A0(arg0, (void *)lbl_1_bss_897AC_1B14, 0x20, 0) < 0) {
+        if (fn_1_458A0(arg0, (void *)lbl_1_bss_897AC__fzgx_offset_1B14, 0x20, 0) < 0) {
             OSPanic(strings + 8, 0xB9, strings + 0xA8);
         }
         /* The archive header stores two little-endian 32-bit words. */
-        hp = (void *)&lbl_1_bss_897AC_1B14[0];
+        hp = (void *)&lbl_1_bss_897AC__fzgx_offset_1B14[0];
         (void)__lwbrx((void *)hp, 0);
         size = __lwbrx((void *)hp, 4);
         aligned = (size + 0x1F) & ~0x1F;

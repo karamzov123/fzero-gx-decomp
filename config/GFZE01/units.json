@@ -30201,11 +30201,23 @@
     "symbols": [
       "fn_1_12A4B0"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/archive.c",
-    "pool": true
+    "pool": {
+      "...bss.0": "lbl_1_bss_897A0",
+      "fzgx_obj_lbl_1_bss_897A0": "lbl_1_bss_897A0",
+      "fzgx_obj_lbl_1_bss_897A4": "lbl_1_bss_897A4",
+      "lbl_1_bss_897A8": "lbl_1_bss_897A8",
+      "fzgx_obj_lbl_1_bss_897AC": "lbl_1_bss_897AC",
+      "lbl_1_bss_897AC__fzgx_offset_1": "lbl_1_bss_897AC+0x1",
+      "lbl_1_bss_897AC__fzgx_offset_2": "lbl_1_bss_897AC+0x2",
+      "lbl_1_bss_897AC__fzgx_offset_4": "lbl_1_bss_897AC+0x4",
+      "lbl_1_bss_897AC__fzgx_offset_1B14": "lbl_1_bss_897AC+0x1B14",
+      "fzgx_obj_lbl_1_bss_8B2E0": "lbl_1_bss_8B2E0",
+      "fzgx_obj_lbl_1_bss_8B3A0": "lbl_1_bss_8B3A0"
+    }
   },
   {
     "module": "main_rel",
