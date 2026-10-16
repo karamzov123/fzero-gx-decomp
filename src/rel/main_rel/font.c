@@ -3743,6 +3743,117 @@ void fn_1_535A0(Fn1_535A0_Color color, f32 x, f32 y, f32 z, f32 width, f32 heigh
 }
 /* fzgx:end fn_1_535A0 */
 
+/* fzgx:begin fn_1_53E40 noprologue */
+#include "types.h"
+
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_495C8(u8);
+extern void fn_1_4A0D8(const char *);
+extern f32 fn_1_4B068(const char *);
+extern f32 fn_1_4B090(const char *);
+extern void fn_1_50190(void *, f32, f32, f32, f32, f32, f32);
+
+/* 0x58-byte settings record copied from the constant table. */
+typedef struct {
+	u32 field_0;
+	f32 field_4;
+	f32 field_8;
+	f32 field_c;
+	u8 pad_10[0x1c];
+	f32 field_2c;
+	u32 field_30;
+	u8 pad_34[4];
+	u32 field_38;
+	u8 pad_3c[0x1c];
+} Record;
+
+/* retail .rodata block [lbl_1_rodata_26F8, +0x170): the function reads the 0x58-byte
+   record through the pool base, the share of the TU pool after it is baked below. */
+static const u32 fzgx_pool_table1[22] = {
+	0x00000000, 0x00000000, 0x00000000, 0x3DCCCCCD, 0x3F800000, 0x3F800000,
+	0x00000000, 0x00000000, 0x3F800000, 0x3F800000, 0x00000000, 0x3F800000,
+	0x00000005, 0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000,
+	0x00000000, 0x00000000, 0x00000000, 0x00000000,
+};  /* fzgx-allow: A1 retail pool bytes */
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table2[2] = {
+	0x00000000, 0x3F800000,
+};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+	volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+	d = 4503599627370496.0;
+}
+static const u32 fzgx_pool_table3[58] = {
+	0x425C0000, 0x3DCCCCCD, 0x47AFC800, 0x43F00000, 0x44200000, 0x00000000,
+	0x43300000, 0x80000000, 0x3FE00000, 0x00000000, 0x3F400000, 0x00000000,
+	0x3F63B4F6, 0x9FE2918E, 0x43A00000, 0x43700000, 0x437F0000, 0x3F000000,
+	0x40000000, 0x40800000, 0x00000000, 0x40000000, 0x40000000, 0x00000000,
+	0x3F800000, 0x3F800000, 0x9B000000, 0x40000000, 0x40000000, 0x9B000000,
+	0x3F800000, 0x3F800000, 0x0000FF00, 0x40000000, 0x40000000, 0x0000FF00,
+	0x3F800000, 0x3F800000, 0xFFF20000, 0x3F800000, 0x3F800000, 0xFF800000,
+	0x3F800000, 0x3F800000, 0x00008000, 0x40000000, 0x40000000, 0x00000000,
+	0x00000000, 0x00000000, 0x00000000, 0x3E000000, 0xFFFFFF00, 0x00000000,
+	0x47800000, 0x42A00000, 0x42700000, 0x00000000,
+};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+	volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+	d = 255.0;
+}
+static const u32 fzgx_pool_table4[1] = {
+	0x41000000,
+};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+	volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+	s = 13.0f;
+	s = 26.0f;
+}
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+	volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+	s = 0.009999999776482582f;
+	d = 0.0005;
+}
+#pragma section code_type ".text"
+
+void fn_1_53E40(u8 *color, const char *name, f32 x, f32 y, f32 z, f32 w, f32 h)
+{
+	f32 total;
+	f32 delta;
+
+	if (z < 0.01f) {
+		z = 0.01f;
+	}
+	fn_1_496FC(x, y);
+	fn_1_4954C((f32)(z - 0.0005));
+	fn_1_4955C(h, h);
+	fn_1_495C8(9);
+	fn_1_4A0D8(name);
+	total = w * h + fn_1_4B068(name);
+	delta = w * h + fn_1_4B090(name);
+
+	{
+		Record rec = *(const Record *)fzgx_pool_table1;
+
+		rec.field_0 = 2;
+		rec.field_4 = x;
+		rec.field_8 = y;
+		rec.field_c = z;
+		if (color != 0) {
+			rec.field_2c = (f32)((f64)(u32)color[3] / 255.0);
+			rec.field_38 = *(u32 *)color;
+		}
+		rec.field_30 = 10;
+
+		fn_1_50190(&rec, total, delta, 13.0f, 13.0f, 26.0f, 26.0f);
+	}
+}
+/* fzgx:end fn_1_53E40 */
+
 /* fzgx:begin fn_1_5415C */
 void fn_1_5415C(void *arg, s32 value) {
     fn_1_541A8(arg, value);
