@@ -1702,6 +1702,15 @@ void fn_1_FA154(u32 byte_index, u32 bit_index) {
 }
 /* fzgx:end fn_1_FA154 */
 
+/* fzgx:begin fn_1_FA180 */
+u32 fn_1_FA180(u8 arg0, u8 arg1) {
+    u8 *ptr = (u8 *)lbl_1_bss_84420;
+    u32 bit = 1 << arg1;
+    u32 val = (ptr + arg0)[3];
+    return val & bit;
+}
+/* fzgx:end fn_1_FA180 */
+
 /* fzgx:begin fn_1_FA1A8 noprologue */
 #include "types.h"
 

@@ -7757,3 +7757,6 @@ rel/main_rel/archive/fn_1_12F358.c:
 
 rel/main_rel/phys/fn_1_EB0B0.c:
 	.text       start:0x000EB0B0 end:0x000EB0D8 align:4
+
+rel/main_rel/spline/fn_1_FA180.c:
+	.text       start:0x000FA180 end:0x000FA1A8 align:4
