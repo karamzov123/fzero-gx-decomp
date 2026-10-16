@@ -27528,6 +27528,16 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8008ED70.c",
+    "symbols": [
+      "fn_8008ED70"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8008EDB0.c",
     "symbols": [
       "fn_8008EDB0"
