@@ -6011,3 +6011,6 @@ dol/__cvt_dbl_usll.c:
 
 dol/fn_8008EBF8.c:
 	.text       start:0x8008EBF8 end:0x8008EC78 align:4
+
+dol/fn_80089EEC.c:
+	.text       start:0x80089EEC end:0x8008A1CC align:4
