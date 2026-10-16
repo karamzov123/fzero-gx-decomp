@@ -66721,11 +66721,15 @@
     "symbols": [
       "fn_14_3AE8"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/pilotpoint/pilotpoint.c",
-    "pool": true
+    "pool": {
+      "...rodata.0": "lbl_14_rodata_0",
+      "@81": "lbl_14_rodata_110",
+      "@16": "lbl_14_rodata_30"
+    }
   },
   {
     "module": "pilotpoint",
