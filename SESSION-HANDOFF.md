@@ -35,6 +35,23 @@ dead on this function too (finding 299 holds). Archived best body:
 pointer variable materialized across the function without spilling, the full private-BSS
 TU rewrite, or `uncarve` + `asm-unit`.
 
+**fn_1_135D7C measured to its fixed point (attempt 40+, not blocked).** Full record:
+`docs/findings/345-fn-1-135D7C-materialise-allocation-fixed-point.md`. Its named
+one-word residual (`mr r4, r3` vs `extsb r4, r3`, w185 of 254) is coupled to the
+pool-address lowering: narrow returns materialise with the *retail-correct* scratch
+allocation but keep the bad extension; every wide return folds `@l` onto the `lfs`
+(one word at w183); the only shape with both instructions right (the FEAC call
+inlined into the argument list, wide return) permutes the {pool temp, format base}
+pair between r5/r6 (4 words). ~160 measured shapes — expression texts, prototypes,
+casts, decl orders, comma forms, inlined helpers mirroring `fn_1_13DDB8`'s
+`operand()`, pragma cells, and the private-pool recipe — moved nothing. Cross-corpus
+reloc scan: only 6 materialised float symbol reads in all of `main_rel` vs 1405
+folded, and matched `fn_1_13DDB8` / `fn_1_FDC00` each fold *and* materialise the
+same symbol/expression inside one function — the choice is downstream selector
+context, not a source idiom. `fn_1_14FEAC` returns its 4th argument (32-bit), so the
+s8 best body is stale-typed (refines 304). Left `unmatched`/claimable per project
+convention (`blocked` is for unsupported credit; `fn_1_2D038` precedent).
+
 **Free candidate probe (big time-saver, use it first).** Do NOT spend ledger checks to
 test source shapes: `write_unit` AND `check` each consume one, and the plateau guard
 trips at 5 non-improving checks (a tripped attempt refuses `write_unit` *before writing
@@ -46,9 +63,10 @@ shape, no claim, no work-copy writes. That method is how 343's table was produce
 Claim+release is only needed for probes that touch `.fzgx/work/`.
 
 **Next candidates** (same one-word tier): `state/one_word_tier.json` — `fn_1_53E40`
-is now landed (finding 344); next in the ordering are `fn_1_135D7C` (callee-saved
-store-pair register, likely regalloc-wall) and `fn_1_4270C`. Probe one
-shape list offline per function before claiming.
+landed (finding 344), `fn_1_135D7C` measured to its fixed point (finding 345). Next:
+`fn_1_4270C` (99.5851%, 241 words; known residual: final-loop init `v30 = v29`, both
+proven zero, folds to `li r30, 0` vs retail `mr r30, r29`). Start from
+`.fzgx/attempts/fn_1_4270C.1791782425.c`; probe shapes offline before claiming.
 
 Not touched this session: the in-flight main-tree leftovers listed in the previous
 handoff, the `fzgx-storage.service --max-sessions 2` question (still the user's call).
