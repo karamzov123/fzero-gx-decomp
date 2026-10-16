@@ -50573,6 +50573,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/phys/fn_1_EB0B0.c",
+    "symbols": [
+      "fn_1_EB0B0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/phys.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/phys/fn_1_EB200.c",
     "symbols": [
       "fn_1_EB200"
