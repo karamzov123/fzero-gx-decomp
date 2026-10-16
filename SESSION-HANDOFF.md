@@ -1,7 +1,42 @@
 # F-Zero GX decomp session — state and handoff
 
-Last updated: 2026-10-12 ~01:45 EDT. Repo: `/home/armandofm/projects/fzgx` (branch `main`,
+Last updated: 2026-10-16. Repo: `/home/armandofm/projects/fzgx` (branch `main`,
 fork `karamzov123/fzgx`). **Read this first in any new session.**
+(The 2026-10-12 sections below are still valid; the newest session state is in the
+`2026-10-16 session state` section just below.)
+
+## 2026-10-16 session state (opencode/deepseek)
+
+**fn_1_2D038 attempted (attempt 46), released at its 99.68% plateau — do not re-derive.**
+Full record: `docs/findings/343-fn-1-2D038-fold-schedule-coupling.md`. One-word residual
+(`lbz r0, 0x5(r3)` vs folded `0x35(r31)` at word 65). 20+ source shapes measured: every
+in-expression form folds; the only shape that yields the register-form load is *statement
+separation* (assignment in a different basic block from the load), which then costs 2 words
+because the `addi` fills the `lbz` delay slot before `cmplwi`. The fn_17_7728 BSS-object +
+pool-map recipe was applied to this symbol (u01–u03) and changed nothing. Pragmas confirmed
+dead on this function too (finding 299 holds). Archived best body:
+`.fzgx/attempts/fn_1_2D038.1792125978.c` (99.68). Remaining levers if ever revisited: a
+pointer variable materialized across the function without spilling, the full private-BSS
+TU rewrite, or `uncarve` + `asm-unit`.
+
+**Free candidate probe (big time-saver, use it first).** Do NOT spend ledger checks to
+test source shapes: `write_unit` AND `check` each consume one, and the plateau guard
+trips at 5 non-improving checks (a tripped attempt refuses `write_unit` *before writing
+the file*). Instead compile the candidate offline with the unit's own compiler/flags via
+`oracle.compile_source(project, module, src, /tmp/…/x.o, mw, extra)` (mw/extra from
+`project.unit_record(unit)`), then `oracle.words(project.target_object_for(sym))` vs
+`oracle.words(obj)` and `oracle.word_score` — exact positional word diff, ~10 s per
+shape, no claim, no work-copy writes. That method is how 343's table was produced.
+Claim+release is only needed for probes that touch `.fzgx/work/`.
+
+**Next candidates** (same one-word tier): `state/one_word_tier.json` — after fn_1_2D038
+the ordering is `fn_1_135D7C` (callee-saved store-pair register, likely regalloc-wall),
+`fn_1_4270C`, `fn_1_53E40` (structmap already refuted the field-offset reading in 286 —
+look for *which pointer retail keeps in r31 where we keep a different one*). Probe one
+shape list offline per function before claiming.
+
+Not touched this session: the in-flight main-tree leftovers listed in the previous
+handoff, the `fzgx-storage.service --max-sessions 2` question (still the user's call).
 
 ## How to run things
 
@@ -186,7 +221,9 @@ All recorded in `docs/findings/315-fn_1_7D6B8-regalloc-and-scaffolding-admissibi
 - The authoritative compiled object for a check is `.fzgx/work/<sym>.o`
   (the `build/.../*.s` and `.fzgx/lift/ctx/obj/...` copies go stale). Disassemble with
   capstone in the venv.
-- `write-unit` requires holding the claim; claim+release around any scripted probe.
+- `write-unit` requires holding the claim; claim+release around any probe that writes the
+  work copy. Offline probes (`oracle.compile_source` + `oracle.words`, see the 2026-10-16
+  section and finding 343) need no claim and no ledger checks — prefer them.
 
 ## The asm-unit path — the way around the regalloc wall
 
