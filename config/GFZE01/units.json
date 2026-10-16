@@ -70001,6 +70001,17 @@
   },
   {
     "module": "sel",
+    "source": "rel/sel/sel/fn_10_924C.c",
+    "symbols": [
+      "fn_10_924C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/sel/sel.c"
+  },
+  {
+    "module": "sel",
     "source": "rel/sel/sel/fn_10_948C.c",
     "symbols": [
       "fn_10_948C"
