@@ -88,3 +88,19 @@ Actionable for other one-word tier candidates whose residual is an init copy
 (`fn_1_1384C` scan hit shares this shape class): check the same-TU matched
 siblings first; prefer reusing the existing counter over a fresh per-loop
 counter.
+
+## Addendum (same session): the law's boundary and the fn_1_1384C outcome
+
+The "fresh counter ⇒ `li`" half of the law is measured for the strength-reduced
+shadow of a **constant-stride multiply**. It is not universal: `fn_1_152CB4`
+(asm, bg_aur) keeps a *first-loop* init copy — w17 `li r30, 0; mr r26, r30`
+with a variable-stride accumulator (`add r26, r26, r8`) — so retail's selector
+can keep first-loop copies too; the fresh/shared split is one lever among the
+downstream materialise-vs-fold decisions, not a rule about all copies.
+
+`fn_1_1384C` cannot use this law at all (the k-loop is nested inside the
+tab/j/i loops, so there is no shareable earlier counter) and its explicit
+`boff = k` init resisted ~50 further measured shapes (sweeps 25–31: spellings,
+pragma cells, CFG joins, declaration orders, all 20 compilers, all `-O` flag
+variants). It is now recorded as a selector/allocator fixed point in
+finding 347; do not re-run that family there.

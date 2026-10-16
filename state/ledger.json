@@ -1,5 +1,5 @@
 {
- "generated": 1792130851,
+ "generated": 1792137769,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -77425,16 +77425,16 @@
    "unit": "rel/main_rel/enemy_ctrl/fn_1_D123C.c",
    "addr": 856636,
    "size": 1348,
-   "status": "unmatched",
-   "attempts": 16,
-   "best_percent": 99.64391,
+   "status": "matched",
+   "attempts": 17,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "63413b8d",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_D1780",
@@ -646337,6 +646337,27 @@
    "notes": "",
    "best_body_path": null,
    "stale_checks": 0,
+   "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24863,
+   "symbol": "fn_1_D123C",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792137199,
+   "ended": 1792137637,
+   "checks": 2,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "if/else value-merge at both dispatch sites; sid is s32; aligned decls with TU prologue",
+   "best_body_path": null,
+   "stale_checks": 1,
    "best_in_attempt": 100.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0

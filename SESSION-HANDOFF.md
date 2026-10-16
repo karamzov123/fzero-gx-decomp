@@ -7,6 +7,19 @@ fork `karamzov123/fzgx`). **Read this first in any new session.**
 
 ## 2026-10-16 session state (opencode/deepseek)
 
+**fn_1_D123C solved and landed** (commit `63413b8d`, attempt 17, two checks spent).
+Full record: `docs/findings/348-fn-1-D123C-value-merge-diamond-s32-sid.md`. The two
+`lwzx / cmplwi; beq 8; b` dispatch sites are the value-merge diamond
+(`if (EXPR != 0) v = EXPR; else v = call;`); the residual that survived every
+construct spelling was `sid`'s register — `s8 sid;`→r25, `s32 sid;`→r27 with the
+rest of the function byte-identical (a `switch` keeps sid=r27 but emits `cmpwi`,
+2 diffs). First `write-unit` hit a PROLOGUE CONFLICT (`lbl_801A6410` as `u32` vs
+the prologue's `void *`); the final body aligns every file-scope declaration with
+the prologue and preserves the codegen-critical `s16` return of
+`fn_1_12C930` via a call-site `(s16)` cast. Verify fast path, 16 files OK,
+lint 0 findings, 11 tests OK. Offline pre-validation recipe (standalone compile +
+`_prologue_conflict` replication) is in the finding — use it before spending checks.
+
 **fn_1_53E40 solved and landed** (commit `bdd5b9d9`, attempt 48, one check spent).
 Full record: `docs/findings/344-fn-1-53E40-rodata-pool-whole-region.md`. The
 47-attempt plateau was a single byte displacement: our 2^52 conversion magic at
@@ -79,7 +92,8 @@ measured dead.
 
 **Next candidates** (same one-word tier): `state/one_word_tier.json` — `fn_1_53E40`
 landed (finding 344), `fn_1_135D7C` measured to its fixed point (finding 345),
-`fn_1_4270C` landed (finding 346). Next: `fn_17_7728` (99.5261%, 211 words), then
+`fn_1_4270C` landed (finding 346), `fn_1_D123C` landed (finding 348). Next:
+`fn_17_7728` (99.5261%, 211 words), then
 `movie:_prolog` (99.2188%), `fn_1_1384C` (99.1597%, an init-copy scan hit — apply
 the shared-counter law from finding 346 first). Probe shapes offline before claiming.
 
