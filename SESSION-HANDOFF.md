@@ -7,6 +7,22 @@ fork `karamzov123/fzgx`). **Read this first in any new session.**
 
 ## 2026-10-16 session state (opencode/deepseek)
 
+**fn_1_53E40 solved and landed** (commit `bdd5b9d9`, attempt 48, one check spent).
+Full record: `docs/findings/344-fn-1-53E40-rodata-pool-whole-region.md`. The
+47-attempt plateau was a single byte displacement: our 2^52 conversion magic at
+private-pool `+0x58` vs retail `+0x60` — retail has 8 filler bytes
+(`0x58..0x5F`) between the 0x58-byte record table and the magic that no
+function-local reading explains. Closed by reconstructing the whole retail
+region `[lbl_1_rodata_26F8, +0x170)` byte-equal: one `static const u32` table
+per object, interleaved with `.fzgxpool` primer sinks in first-use order.
+Landed via `claim --max-attempts 50` (a plain claim is refused at
+`attempts >= 3`), `write-unit` → 100.0% `MATCH` (`matched: true` + `pool_map`),
+`submit` (block spliced **`noprologue`** — its `fn_1_50190(void *, …)`
+prototype disagrees with the TU prologue's 6-float one used by `fn_1_50164`),
+`verify` fast path, 16 files OK. Post-link object: `.text` byte-equal to
+retail, `.rodata` empty, relocations identical to retail's two
+`lbl_1_rodata_26F8` entries.
+
 **fn_1_2D038 attempted (attempt 46), released at its 99.68% plateau — do not re-derive.**
 Full record: `docs/findings/343-fn-1-2D038-fold-schedule-coupling.md`. One-word residual
 (`lbz r0, 0x5(r3)` vs folded `0x35(r31)` at word 65). 20+ source shapes measured: every
@@ -29,10 +45,9 @@ the file*). Instead compile the candidate offline with the unit's own compiler/f
 shape, no claim, no work-copy writes. That method is how 343's table was produced.
 Claim+release is only needed for probes that touch `.fzgx/work/`.
 
-**Next candidates** (same one-word tier): `state/one_word_tier.json` — after fn_1_2D038
-the ordering is `fn_1_135D7C` (callee-saved store-pair register, likely regalloc-wall),
-`fn_1_4270C`, `fn_1_53E40` (structmap already refuted the field-offset reading in 286 —
-look for *which pointer retail keeps in r31 where we keep a different one*). Probe one
+**Next candidates** (same one-word tier): `state/one_word_tier.json` — `fn_1_53E40`
+is now landed (finding 344); next in the ordering are `fn_1_135D7C` (callee-saved
+store-pair register, likely regalloc-wall) and `fn_1_4270C`. Probe one
 shape list offline per function before claiming.
 
 Not touched this session: the in-flight main-tree leftovers listed in the previous
@@ -217,7 +232,13 @@ All recorded in `docs/findings/315-fn_1_7D6B8-regalloc-and-scaffolding-admissibi
   detects it: 102 of 124 unmatched >=99% symbols are stale (unit carved after the best
   attempt). Only 17 are genuinely fresh.
 - The harness **plateau guard** stops an attempt after 5 non-improving checks. To continue
-  on the same symbol: `release` then `claim --max-attempts 50`.
+  on the same symbol: `release` then `claim --max-attempts 50`. At `attempts >= 3` even a
+  fresh claim is refused (`attempt cap … needs triage`); when a verified 100% body already
+  exists, claim once with `--max-attempts 50` and land it (finding 344, attempt 48).
+- A solved **pool** unit whose private prototype disagrees with the TU prologue lands as
+  `/* fzgx:begin <sym> noprologue */` automatically (`_install` retries the splice without
+  the prologue); that is the designed coexistence, not a defect — `fn_1_53E40`'s
+  `fn_1_50190(void *, …)` vs `fn_1_50164`'s 6-float view (finding 344).
 - The authoritative compiled object for a check is `.fzgx/work/<sym>.o`
   (the `build/.../*.s` and `.fzgx/lift/ctx/obj/...` copies go stale). Disassemble with
   capstone in the venv.
@@ -266,7 +287,7 @@ check `git log` after running it rather than assuming you need to commit.
 
 ## Ledger
 
-matched=**5764** + 20 asm (was 5762 at session start), unmatched=1521, blocked=3, 0 claims.
+matched=**5803** + 20 asm, unmatched=1482, blocked=3, 0 claims.
 
 ### Landing work produced inside a subagent worktree
 

@@ -1,5 +1,5 @@
 {
- "generated": 1792126013,
+ "generated": 1792127216,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -57331,16 +57331,16 @@
    "unit": "rel/main_rel/font/fn_1_53E40.c",
    "addr": 343616,
    "size": 420,
-   "status": "unmatched",
-   "attempts": 47,
-   "best_percent": 99.60953,
+   "status": "matched",
+   "attempts": 48,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "bdd5b9d9",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_53FE4",
@@ -646296,6 +646296,27 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_1_2D038.1792125978.c",
    "stale_checks": 5,
    "best_in_attempt": 99.68,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24861,
+   "symbol": "fn_1_53E40",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792126829,
+   "ended": 1792127019,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "full match via reconstructed retail .rodata pool [lbl_1_rodata_26F8,+0x170) byte-equal; 2^52 magic now at +0x60; pool_map retargets @9/fzgx_pool_table1/...rodata.0",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
