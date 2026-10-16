@@ -71678,6 +71678,18 @@
   },
   {
     "module": "title",
+    "source": "rel/title/operation/fn_8_B840.c",
+    "symbols": [
+      "fn_8_B840"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/title/operation.c",
+    "pool": true
+  },
+  {
+    "module": "title",
     "source": "rel/title/operation/fn_8_BAEC.c",
     "symbols": [
       "fn_8_BAEC"
