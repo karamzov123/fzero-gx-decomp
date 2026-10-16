@@ -1185,7 +1185,7 @@ void fn_8_B138(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_8_B138 */
 
-/* fzgx:begin fn_8_B840 pool */
+/* fzgx:begin fn_8_B840 */
 #include "rel/title/operation.h"
 
 #pragma section code_type ".fzgxpool"
@@ -1308,46 +1308,17 @@ extern void fn_1_53B14(void *, f32, f32, f32, f32, f32);
 extern void fn_1_5233C(void);
 
 typedef struct { u8 r, g, b, a; } TitleColor;
-static const TitleColor titleColor = { 255, 255, 255, 255 };
-
-typedef struct lbl_8_bss_3D0_t {
-    u32 unk_0;
-    u8 pad_4[0x16c];
-} lbl_8_bss_3D0_t;
-
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-lbl_8_bss_3D0_t fzgx_obj_lbl_8_bss_3D0;
-u8 lbl_8_bss_540;
-u8 lbl_8_bss_3D0_gap_541;
-u16 lbl_8_bss_3D0_gap_541_fill_542;
-u32 lbl_8_bss_544[3];
-u32 fzgx_obj_lbl_8_bss_550;
-u8 fzgx_obj_lbl_8_bss_554;
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_3D0;
-    s = *(u8 *)&lbl_8_bss_540;
-    s = *(u8 *)&lbl_8_bss_3D0_gap_541;
-    s = *(u8 *)&lbl_8_bss_3D0_gap_541_fill_542;
-    s = *(u8 *)&lbl_8_bss_544;
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_550;
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_554;
-}
-#pragma section code_type ".text"
 
 void fn_8_B840(void) {
     f32 t;
-    TitleColor color;
     f32 opacity;
     s32 frame = (s32)lbl_8_bss_3CC;
     s32 x;
     if ((f64)frame < 15.0) {
         t = 1.0 - (f32)frame / 15.0;
         x = 320.0f + (f32)(640.0f * t);
-    } else if ((f64)frame > (f64)(s32)fzgx_obj_lbl_8_bss_3D0.unk_0 - 15.0) {
-        t = 1.0 - (f32)((s32)fzgx_obj_lbl_8_bss_3D0.unk_0 - frame) / 15.0;
+    } else if ((f64)frame > (f64)(s32)lbl_8_bss_3D0.unk_0 - 15.0) {
+        t = 1.0 - (f32)((s32)lbl_8_bss_3D0.unk_0 - frame) / 15.0;
         x = 320.0f - (f32)(640.0f * t);
     } else {
         t = 0.0f;
@@ -1367,9 +1338,11 @@ void fn_8_B840(void) {
     fn_1_49748(5.0f);
     fn_1_4AE0C(((const char **)lbl_8_data_9E04)[lbl_801A66B4]);
     fn_1_49738(0);
-    color = titleColor;
-    color.a = (u8)(255.0f * opacity);
-    fn_1_53B14(&color, (f32)x, 345.0f, 541.0f, 100.0f, 0.11f);
+    {
+        TitleColor color = {255, 255, 255, 255};
+        color.a = (u8)(255.0f * opacity);
+        fn_1_53B14(&color, (f32)x, 345.0f, 541.0f, 100.0f, 0.11f);
+    }
     fn_1_49410();
     if ((s32)lbl_801A66B4 == 5) {
         fn_1_4955C(0.48f, 0.48f);
