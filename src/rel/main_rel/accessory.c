@@ -253,6 +253,142 @@ void fn_1_108A90(fn_1_108A90_Self *self, s32 idx, f32 radius, f32 cx, f32 cy, f3
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_108A90 */
 
+/* fzgx:begin fn_1_108EEC */
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    f32 w;
+    f32 x;
+    f32 y;
+    f32 z;
+} Quat;
+
+typedef struct {
+    f32 pad_0[12];
+} Mtx;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[0xF];
+    Vec3 unk_10;
+    u8 pad_1C[0x28];
+} fn_1_108EEC_Node;
+
+typedef struct {
+    u8 pad_0[0x8];
+    u8 *unk_8;
+} fn_1_108EEC_L1;
+
+typedef struct {
+    u8 pad_0[0x150];
+    fn_1_108EEC_L1 *unk_150;
+} fn_1_108EEC_L0;
+
+typedef struct {
+    u8 pad_0[0xC];
+    fn_1_108EEC_L0 *unk_c;
+    u8 pad_10[8];
+    u32 unk_18;
+    u8 pad_1C[8];
+    fn_1_108EEC_Node *unk_24;
+} fn_1_108EEC_Arg;
+
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1B0(void *, void *);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_8006E250(void *, void *);
+extern void lbl_8006D668(void *);
+extern void fn_8006E978(void *, Vec3 *, Vec3 *);
+extern void mathutil_mtxA_from_quat(void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DFC4(void *);
+
+#pragma opt_propagation off
+#pragma opt_common_subs off
+void fn_1_108EEC(fn_1_108EEC_Arg *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5, s32 arg6) {
+    f32 fzgx_live;
+    u8 *p;
+    u32 i;
+    fn_1_108EEC_Node *n;
+    fn_1_108EEC_Arg *self = arg0;
+    u32 j;
+    fn_1_108EEC_Node *m;
+    u8 *e;
+    f32 rad2;
+    f32 len2;
+    struct { f32 value; } scale;
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    Vec3 v;
+    Vec3 c;
+    Vec3 b;
+    Quat q;
+    Mtx mtx;
+
+    rad2 = arg1 * arg1;
+    e = (u8 *)self->unk_c->unk_150->unk_8 + arg5 * 0x18c;
+    v.x = arg2;
+    v.y = arg3;
+    v.z = arg4;
+    lbl_8006DBAC(e + 0x88);
+    lbl_8006E1B0(&v, &v);
+    p = (u8 *)self->unk_c->unk_150->unk_8 + arg6 * 0x18c;
+    n = self->unk_24;
+    i = 0;
+    while (i < self->unk_18) {
+        if (!(n->unk_0 & 1)) {
+            b = n->unk_10;
+            dx = n->unk_10.x - v.x;
+            c.x = dx;
+            len2 = (f32)(dx * dx);
+            dy = n->unk_10.y - v.y;
+            c.y = dy;
+            len2 = len2 + dy * dy;
+            dz = n->unk_10.z - v.z;
+            c.z = dz;
+            len2 = len2 + dz * dz;
+            if (len2 < rad2) {
+                scale.value = arg1 / lbl_8006D0B4(len2);
+                fzgx_live = c.x;
+                c.x = (f32)(fzgx_live * scale.value) + v.x;
+                c.y = (f32)(c.y * scale.value) + v.y;
+                c.z = (f32)(c.z * scale.value) + v.z;
+                lbl_8006DBAC(p + 0x88);
+                fn_8006E250(&c, &c);
+                fn_8006E250(&b, &b);
+                lbl_8006D668(&c);
+                lbl_8006D668(&b);
+                fn_8006E978(&q, &b, &c);
+                mathutil_mtxA_from_quat(&q);
+                lbl_8006DB74(&mtx);
+                m = self->unk_24;
+                j = 0;
+                while (j < self->unk_18) {
+                    c = m->unk_10;
+                    lbl_8006DBAC(p + 0x88);
+                    fn_8006E250(&c, &c);
+                    lbl_8006DBAC(p + 0x88);
+                    lbl_8006DFC4(&mtx);
+                    lbl_8006E1B0(&c, &m->unk_10);
+                    j++;
+                    m++;
+                }
+            }
+        }
+        i++;
+        n++;
+    }
+}
+#pragma opt_common_subs reset
+
+#pragma opt_propagation reset
+/* fzgx:end fn_1_108EEC */
+
 /* fzgx:begin fn_1_109114 */
 #include "rel/main_rel/accessory.h"
 
