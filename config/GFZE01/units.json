@@ -27661,6 +27661,16 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8008F8B0.c",
+    "symbols": [
+      "fn_8008F8B0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8008F8F0.c",
     "symbols": [
       "fn_8008F8F0"
