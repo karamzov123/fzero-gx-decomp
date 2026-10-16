@@ -30803,6 +30803,28 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/archive/fn_1_12F358.c",
+    "symbols": [
+      "fn_1_12F358"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/archive.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_8B2E0",
+      "fzgx_obj_lbl_1_bss_8B2E0": "lbl_1_bss_8B2E0",
+      "fzgx_obj_lbl_1_bss_8B3A0": "lbl_1_bss_8B3A0",
+      "fzgx_obj_lbl_1_bss_8B4EC": "lbl_1_bss_8B4EC",
+      "fzgx_obj_lbl_1_bss_8B56C": "lbl_1_bss_8B56C",
+      "fzgx_obj_lbl_1_bss_8B5CC": "lbl_1_bss_8B5CC",
+      "fzgx_obj_lbl_1_bss_8B5EC": "lbl_1_bss_8B5EC",
+      "fzgx_obj_lbl_1_bss_8B5F0": "lbl_1_bss_8B5F0",
+      "fzgx_obj_lbl_1_bss_8B5F1": "lbl_1_bss_8B5F1"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/archive/fn_1_130B8C.c",
     "symbols": [
       "fn_1_130B8C"
