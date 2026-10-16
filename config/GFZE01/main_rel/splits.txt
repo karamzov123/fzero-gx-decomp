@@ -7748,3 +7748,6 @@ rel/main_rel/sound/fn_1_A0D20.c:
 
 rel/main_rel/bg_aur/fn_1_152510.c:
 	.text       start:0x00152510 end:0x00152840 align:4
+
+rel/main_rel/archive/fn_1_12A4B0.c:
+	.text       start:0x0012A4B0 end:0x0012A6D8 align:4
