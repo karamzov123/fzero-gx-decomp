@@ -49240,10 +49240,16 @@
     "symbols": [
       "fn_1_BF198"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/memcard.c"
+    "tu": "rel/main_rel/memcard.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_4AE0",
+      "@11": "lbl_1_rodata_4CB0",
+      "@9": "lbl_1_rodata_4CA8",
+      "@13": "lbl_1_rodata_4CC0"
+    }
   },
   {
     "module": "main_rel",
