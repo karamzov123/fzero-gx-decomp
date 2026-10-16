@@ -432,6 +432,22 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_10A4.c",
+    "symbols": [
+      "fn_3_10A4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_0",
+      "@10": "lbl_3_rodata_0+0x14",
+      "@115": "lbl_3_data_15D4"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_131C.c",
     "symbols": [
       "fn_3_131C"
