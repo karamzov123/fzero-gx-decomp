@@ -3,7 +3,7 @@
 #include "rel/main_rel/bg_common.h"
 
 extern f32 lbl_1_rodata_78E8[19];
-extern void fn_1_103B00(void);
+extern void fn_1_103B00();
 extern f32 lbl_1_rodata_7934[11];
 extern void fn_1_9E5B8(void *);
 extern void *fn_1_54448(s32 arg0);
