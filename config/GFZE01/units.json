@@ -49589,10 +49589,13 @@
     "symbols": [
       "fn_1_4270C"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/motasglist.c"
+    "tu": "rel/main_rel/motasglist.c",
+    "pool": {
+      "@74": "lbl_1_rodata_F58"
+    }
   },
   {
     "module": "main_rel",
