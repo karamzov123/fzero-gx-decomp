@@ -1,4 +1,4 @@
 #include "types.h"
 
-// fn_80078DA8: main .text:0x80078DA8 size 0x164
+// __cvt_dbl_usll: main .text:0x80079E24 size 0xCC
 // Carved by fzgx. Replace this file's body with the matching C.

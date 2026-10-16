@@ -1,4 +1,4 @@
 #include "types.h"
 
-// fn_80038944: main .text:0x80038944 size 0xD4
+// fn_80060C54: main .text:0x80060C54 size 0x165C
 // Carved by fzgx. Replace this file's body with the matching C.

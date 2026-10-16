@@ -1,5 +1,3 @@
-/* Non-matching: best partial attempt (38.53% in the project ledger). Scored for the
- * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
 typedef struct {
