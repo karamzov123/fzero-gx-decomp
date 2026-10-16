@@ -7120,6 +7120,69 @@ u8 fn_1_B7CD4(void) {
 }
 /* fzgx:end fn_1_B7CD4 */
 
+/* fzgx:begin fn_1_B7CE4 */
+#include "dolphin/os/OSTime.h"
+
+extern int sprintf(char *, const char *, ...);
+extern OSTime OSGetTime(void);
+extern void OSTicksToCalendarTime(OSTime, OSCalendarTime *);
+extern u32 lbl_801A66B4;
+extern u32 lbl_1_rodata_4AE0;
+
+typedef struct {
+    u8 pad_0[0xc];
+    u32 hour;
+    u32 min;
+    s32 msec;
+    u8 pad_18[0x10];
+} CalTime_1_B7CE4;
+
+#pragma opt_common_subs on
+#pragma opt_loop_invariants off
+static inline u8 fn_1_B7CE4_array_read(u8 *array, s32 index) { return array[index]; }
+
+typedef struct {
+    u8 pad_0[0x750];
+    u32 lang[6];
+} QStruct;
+void fn_1_B7CE4(s32 arg0, char *arg1) {
+    u8 *base = (u8 *)&lbl_1_data_35AC8;
+    u8 *tbl;
+    u8 *p;
+    QStruct *q;
+    u32 off;
+    s32 sec;
+
+    if (arg0 != 1) {
+        tbl = (u8 *)&lbl_1_rodata_4AE0 + arg0 * 0x4c;
+        p = ((0x7384) + (base));
+        if ((s32)lbl_801A66B4 == 5) {
+            p = base + 0x7380;
+        }
+        off = *(u32 *)&lbl_801A66B4 * 4;
+        q = (QStruct *)(base + 0x5c84);
+        sprintf(arg1, (const char *)(base + 0x7388),
+                *(u32 *)((u8 *)q + fn_1_B7CE4_array_read(tbl, 0x3f) * 0x18 + off), p,
+                q->lang[*(u32 *)&lbl_801A66B4]);
+    } else {
+        OSCalendarTime ct;
+        u8 buf[0x20];
+
+        strncpy(arg1, (void *)((u8 *)&lbl_1_bss_716C8 +
+                ((s8)lbl_1_bss_7730A * 0xa0) + 0x54), 0x20);
+        OSTicksToCalendarTime(OSGetTime(), &ct);
+        sec = ((CalTime_1_B7CE4 *)&ct)->msec % 100;
+        sprintf((char *)buf, (const char *)(base + 0x7390),
+                sec, ((CalTime_1_B7CE4 *)&ct)->min + 1,
+                ((CalTime_1_B7CE4 *)&ct)->hour);
+        strncpy(arg1, (char *)buf, 8);
+    }
+}
+#pragma opt_loop_invariants reset
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_B7CE4 */
+
 /* fzgx:begin fn_1_B7E14 */
 #include "rel/main_rel/memcard.h"
 #include "rel/main_rel/globals.h"

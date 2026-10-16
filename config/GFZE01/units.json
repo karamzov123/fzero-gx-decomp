@@ -48997,7 +48997,7 @@
     "symbols": [
       "fn_1_B7CE4"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/memcard.c"
