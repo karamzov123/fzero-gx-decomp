@@ -61057,6 +61057,23 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_2A6FC.c",
+    "symbols": [
+      "fn_12_2A6FC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "...bss.0": "lbl_12_bss_96A0",
+      "lbl_12_bss_96A0": "lbl_12_bss_96A0",
+      "lbl_12_bss_96A0__fzgx_offset_4": "lbl_12_bss_96A0+0x4",
+      "lbl_12_bss_96A0__fzgx_offset_44": "lbl_12_bss_96A0+0x44",
+      "lbl_12_bss_96A0__fzgx_offset_4C": "lbl_12_bss_96A0+0x4C"
+    }
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_2A85C.c",
     "symbols": [
       "fn_12_2A85C"
