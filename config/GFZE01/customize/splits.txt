@@ -566,3 +566,6 @@ rel/customize/customize/fn_3_BE88.c:
 
 rel/customize/_prolog/fn_3_10A4.c:
 	.text       start:0x000010A4 end:0x000012D4 align:4
+
+rel/customize/_prolog/fn_3_0.c:
+	.text       start:0x00000000 end:0x0000042C align:4

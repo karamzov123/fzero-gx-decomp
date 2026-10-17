@@ -432,6 +432,17 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_0.c",
+    "symbols": [
+      "fn_3_0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c"
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_10A4.c",
     "symbols": [
       "fn_3_10A4"
