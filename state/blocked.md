@@ -586,3 +586,16 @@ phasing under a narrow store; inline asm is a tooling ban; PAL shares the
 identical `movie_module` REL and the unit's `fze.movie.rel` is US-only, so no
 region-crossing comparison exists. Best archived C:
 `.fzgx/attempts/movie:_prolog.1791747343.c` (99.22%, one word).
+
+## bg_aur assertion-owner / primer-section triage (2026-10-17)
+
+| Function | Attempts | Genuine residual | Blocker / next evidence |
+| --- | ---: | --- | --- |
+| `fn_1_15176C` | 4 | 25 differing rows / 228 aligned | Correct 64-byte assertion record at `lbl_1_data_463C8`, fields at 0/12/32; native base/zero-offset address and scheduling witness still needed. Do not repeat field/declaration permutations. |
+
+Preferred C and the oracle regression reproduction are preserved in
+`state/repairs/manual-aur-assert-and-primer-section-guard-20261017.json`.
+The apparent one-row result from placing the requested function in `.fzgxpool`
+was invalid ignored-section scoring, not a near-match. The oracle now rejects
+that layout explicitly; the identical 226-word candidate in `.text` reports
+27 real differing rows. See finding 375. No new authored credit is claimed.

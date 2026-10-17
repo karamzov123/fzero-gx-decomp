@@ -1,5 +1,5 @@
 {
- "generated": 1792248027,
+ "generated": 1792248846,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -95870,14 +95870,14 @@
    "unit": null,
    "addr": 1382252,
    "size": 900,
-   "status": "unmatched",
-   "attempts": 3,
+   "status": "blocked",
+   "attempts": 4,
    "best_percent": 98.844444,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
-   "blocked_reason": null,
+   "blocked_reason": "Triage after evidence-led attempt4; finding375. Correct64-byte assertion owner at463C8, no inventedprefix; preferred portable native-record C has25real rows. .fzgxpool one-row result was INVALID ignored-section scoring; oracle now explicitly rejects target in primer section. No exactmatch; require new native zero-offset base/scheduling witness.",
    "prev_status": null,
    "link_state": null
   },
@@ -648228,6 +648228,27 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_80008204.1792247846.c",
    "stale_checks": 1,
    "best_in_attempt": 97.75676,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24953,
+   "symbol": "fn_1_15176C",
+   "agent": "hermes-manual",
+   "harness": "hermes",
+   "model": "gpt-6.1-sol",
+   "started": 1792248206,
+   "ended": 1792248658,
+   "checks": 6,
+   "final_percent": 95.64445,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "Evidence-led attempt4: decoded real64-byte assertion record at data463C8 (no relocs; file offset0,entry limit12,callback limit32). Removed fabricated prefix; direct char base and native record extern both25 rows/228aligned. Private record with target body accidentally in .fzgxpool produced oracle false1diff despite code identical to226-word .text candidate (27real rows); diagnosed with independent compile_source+ELF words equality. Added narrow _diff reject for requested symbol in primer section; red real fixture okTrue/1diff -> green explicit error; text control27diff and three existing exact controls unchanged. No exactmatch this attempt. Keep clean manual native record, not malformed primer body; remaining genuinezero-offsetADDI vsMR,base homes,prologue/float-load scheduling require new evidence.",
+   "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_1_15176C.1792248658.c",
+   "stale_checks": 2,
+   "best_in_attempt": 95.8,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
