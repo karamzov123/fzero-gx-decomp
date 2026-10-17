@@ -63757,6 +63757,45 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_35B08.c",
+    "symbols": [
+      "fn_12_35B08"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_12_rodata_15D0",
+      "lbl_12_rodata_15D0": "lbl_12_rodata_15D0",
+      "lbl_12_rodata_1778": "lbl_12_rodata_1778",
+      "lbl_12_rodata_1780": "lbl_12_rodata_1780",
+      "lbl_12_rodata_17C0": "lbl_12_rodata_17C0",
+      "lbl_12_rodata_17C8": "lbl_12_rodata_17C8",
+      "lbl_12_rodata_17D0": "lbl_12_rodata_17D0",
+      "lbl_12_rodata_18CC": "lbl_12_rodata_18CC",
+      "lbl_12_rodata_1900": "lbl_12_rodata_1900",
+      "lbl_12_rodata_1934": "lbl_12_rodata_1934",
+      "lbl_12_rodata_1A30": "lbl_12_rodata_1A30",
+      "lbl_12_rodata_1A60": "lbl_12_rodata_1A60",
+      "lbl_12_rodata_1A90": "lbl_12_rodata_1A90",
+      "lbl_12_rodata_1AC0": "lbl_12_rodata_1AC0",
+      "lbl_12_rodata_1BC0": "lbl_12_rodata_1BC0",
+      "lbl_12_rodata_1BF4": "lbl_12_rodata_1BF4",
+      "lbl_12_rodata_1C28": "lbl_12_rodata_1C28",
+      "lbl_12_rodata_1C5C": "lbl_12_rodata_1C5C",
+      "lbl_12_rodata_1C8C": "lbl_12_rodata_1C8C",
+      "lbl_12_rodata_1CC0": "lbl_12_rodata_1CC0",
+      "lbl_12_rodata_1CC0__fzgx_offset_34": "lbl_12_rodata_1CC0+0x34",
+      "lbl_12_rodata_1CC0__fzgx_offset_54": "lbl_12_rodata_1CC0+0x54",
+      "lbl_12_rodata_1CC0__fzgx_offset_78": "lbl_12_rodata_1CC0+0x78",
+      "lbl_12_rodata_1CC0__fzgx_offset_A0": "lbl_12_rodata_1CC0+0xA0"
+    }
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_35D74.c",
     "symbols": [
       "fn_12_35D74"
