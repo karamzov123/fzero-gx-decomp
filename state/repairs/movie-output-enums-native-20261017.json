@@ -1,0 +1,524 @@
+{
+  "schema": 1,
+  "landing": {
+    "symbol": "fn_12_35B08",
+    "module": "movie_module",
+    "size": 620,
+    "status": "matched",
+    "link_state": "verified",
+    "matched_commit": "05e93d52",
+    "unit": {
+      "module": "movie_module",
+      "source": "rel/movie_module/fn_12_35B08.c",
+      "symbols": [
+        "fn_12_35B08"
+      ],
+      "status": "matching",
+      "mw_version": "GC/1.3.2",
+      "extra_cflags": [
+        "-use_lmw_stmw",
+        "on"
+      ],
+      "pool": {
+        "...rodata.0": "lbl_12_rodata_15D0",
+        "lbl_12_rodata_15D0": "lbl_12_rodata_15D0",
+        "lbl_12_rodata_1778": "lbl_12_rodata_1778",
+        "lbl_12_rodata_1780": "lbl_12_rodata_1780",
+        "lbl_12_rodata_17C0": "lbl_12_rodata_17C0",
+        "lbl_12_rodata_17C8": "lbl_12_rodata_17C8",
+        "lbl_12_rodata_17D0": "lbl_12_rodata_17D0",
+        "lbl_12_rodata_18CC": "lbl_12_rodata_18CC",
+        "lbl_12_rodata_1900": "lbl_12_rodata_1900",
+        "lbl_12_rodata_1934": "lbl_12_rodata_1934",
+        "lbl_12_rodata_1A30": "lbl_12_rodata_1A30",
+        "lbl_12_rodata_1A60": "lbl_12_rodata_1A60",
+        "lbl_12_rodata_1A90": "lbl_12_rodata_1A90",
+        "lbl_12_rodata_1AC0": "lbl_12_rodata_1AC0",
+        "lbl_12_rodata_1BC0": "lbl_12_rodata_1BC0",
+        "lbl_12_rodata_1BF4": "lbl_12_rodata_1BF4",
+        "lbl_12_rodata_1C28": "lbl_12_rodata_1C28",
+        "lbl_12_rodata_1C5C": "lbl_12_rodata_1C5C",
+        "lbl_12_rodata_1C8C": "lbl_12_rodata_1C8C",
+        "lbl_12_rodata_1CC0": "lbl_12_rodata_1CC0",
+        "lbl_12_rodata_1CC0__fzgx_offset_34": "lbl_12_rodata_1CC0+0x34",
+        "lbl_12_rodata_1CC0__fzgx_offset_54": "lbl_12_rodata_1CC0+0x54",
+        "lbl_12_rodata_1CC0__fzgx_offset_78": "lbl_12_rodata_1CC0+0x78",
+        "lbl_12_rodata_1CC0__fzgx_offset_A0": "lbl_12_rodata_1CC0+0xA0"
+      }
+    },
+    "source": "#include \"types.h\"\n\nstatic const char lbl_12_rodata_15D0[424] = \"E211054: MWSFD_CnvFrmLowHalfARGB8888: handle is invalid.\\000\\000\\000\\000E211055: MWSFD_CnvFrmLow\"\n    \"HalfARGB8888: getfrm is failed.\\000E211052: MWSFD_CnvFrmLowHalfARGB8888: handle is invalid.\\000\"\n    \"\\000\\000\\000E211053: MWSFD_CnvFrmLowHalfARGB8888: getfrm is failed.\\000E202285: MWSFD_MakeTblZ32\"\n    \": handle is invalid.\\000\\000\\000E202286: MWSFD_MakeTblZ32: getfrm is failed.\\000\\000\\000\\000E202\"\n    \"283: MWSFD_MakeTblZ16: handle is invalid.\\000\\000\\000E202284: MWSFD_MakeTblZ16: getfrm is failed\"\n    \".\\000\\000\\000\\000\";\nstatic const char lbl_12_rodata_1778[8] = \"SFXINFS\\000\";\nstatic const char lbl_12_rodata_1780[64] = \"SFXINFE\\000W2121001 : mwPlyAttachAddInfBuf(): bufsize is short.\\000\\000\\000\\000\";\nstatic const char lbl_12_rodata_17C0[8] = \"CRITAGS\\000\";\nstatic const char lbl_12_rodata_17C8[8] = \"CRITAGE\\000\";\nstatic const char lbl_12_rodata_17D0[252] = \"E201211 mwPlyCreate: can't create AddInfSJ\\000\\000E2011921: mwPlyFxGetOutZoffset: handle is inva\"\n    \"lid.\\000\\000E2011920: mwPlyFxSetOutZoffset: handle is invalid.\\000\\000E2011919: mwPlyFxGetOutZsc\"\n    \"ale: handle is invalid.\\000\\000\\000E2011918: mwPlyFxSetOutZscale: handle is invalid.\\000\\000\\000\";\nstatic const char lbl_12_rodata_18CC[51] = \"E2011917: mwPlyFxGetOutBufSize: handle is invalid.\\000\";\nstatic const char lbl_12_rodata_1900[51] = \"E2011916: mwPlyFxSetOutBufSize: handle is invalid.\\000\";\nstatic const char lbl_12_rodata_1934[252] = \"E2011915: mwPlyFxGetCompoMode: handle is invalid.\\000\\000\\000E201214: mwPlyFxSetCompoMode: handl\"\n    \"e is invalid.\\000\\000\\000\\000E204011: mwPlyFxSetCompoMode: COMPO_Z needs setting in MWPLY Creati\"\n    \"on.\\000\\000E204012: mwPlyFxSetCompoMode: COMPO_AUTO needs setting in MWPLY Creation.\\000\\000\\000\";\nstatic const char lbl_12_rodata_1A30[47] = \"E2011913: mwPlyFxCnvFrmZ32: handle is invalid.\\000\";\nstatic const char lbl_12_rodata_1A60[46] = \"E2011914: mwPlyFxCnvFrmZ32: getfrm is failed.\\000\";\nstatic const char lbl_12_rodata_1A90[47] = \"E2011911: mwPlyFxCnvFrmZ16: handle is invalid.\\000\";\nstatic const char lbl_12_rodata_1AC0[256] = \"E2011912: mwPlyFxCnvFrmZ16: getfrm is failed.\\000\\000\\000E301284: mwPlyFxCnvFrmRGB888: handle is\"\n    \" invalid.\\000\\000\\000\\000E301285: mwPlyFxCnvFrmRGB888: getfrm is failed.\\000E212176: mwPlyFxCnvF\"\n    \"rmMbARGB8888: handle is invalid.\\000\\000\\000\\000E212177: mwPlyFxCnvFrmMbARGB8888: getfrm is fail\"\n    \"ed.\\000\";\nstatic const char lbl_12_rodata_1BC0[49] = \"E201199: mwPlyFxCnvFrmYUV422: handle is invalid.\\000\";\nstatic const char lbl_12_rodata_1BF4[49] = \"E2011910: mwPlyFxCnvFrmYUV422: getfrm is failed.\\000\";\nstatic const char lbl_12_rodata_1C28[49] = \"E201197: mwPlyFxCnvFrmYUV422: handle is invalid.\\000\";\nstatic const char lbl_12_rodata_1C5C[48] = \"E201198: mwPlyFxCnvFrmYUV422: getfrm is failed.\\000\";\nstatic const char lbl_12_rodata_1C8C[51] = \"E201195: mwPlyFxCnvFrmARGB8888: handle is invalid.\\000\";\nstatic const char lbl_12_rodata_1CC0[52] = \"E201196: mwPlyFxCnvFrmARGB8888: getfrm is failed.\\000\\000\\000\";\nstatic const char lbl_12_rodata_1CC0__fzgx_offset_34[32] = \"E301274 : chromapos is invalid.\\000\";\nstatic const char lbl_12_rodata_1CC0__fzgx_offset_54[36] = \"E301273 : chroma_format is invalid.\\000\";\nstatic const char lbl_12_rodata_1CC0__fzgx_offset_78[40] = \"E301272 : picture_structure is invalid.\\000\";\nstatic const char lbl_12_rodata_1CC0__fzgx_offset_A0[40] = \"E201184 : MwsfdBufFmt value is invalid.\\000\";\n#pragma section code_type \".fzgxpool\"\nstatic void movie_format_literal_layout(void) {\n    const void * volatile object; /* fzgx-allow: S2 byte-proven readonly object first-access order */\n    object = lbl_12_rodata_15D0;\n    object = lbl_12_rodata_1778;\n    object = lbl_12_rodata_1780;\n    object = lbl_12_rodata_17C0;\n    object = lbl_12_rodata_17C8;\n    object = lbl_12_rodata_17D0;\n    object = lbl_12_rodata_18CC;\n    object = lbl_12_rodata_1900;\n    object = lbl_12_rodata_1934;\n    object = lbl_12_rodata_1A30;\n    object = lbl_12_rodata_1A60;\n    object = lbl_12_rodata_1A90;\n    object = lbl_12_rodata_1AC0;\n    object = lbl_12_rodata_1BC0;\n    object = lbl_12_rodata_1BF4;\n    object = lbl_12_rodata_1C28;\n    object = lbl_12_rodata_1C5C;\n    object = lbl_12_rodata_1C8C;\n    object = lbl_12_rodata_1CC0;\n    object = lbl_12_rodata_1CC0__fzgx_offset_34;\n    object = lbl_12_rodata_1CC0__fzgx_offset_54;\n    object = lbl_12_rodata_1CC0__fzgx_offset_78;\n    object = lbl_12_rodata_1CC0__fzgx_offset_A0;\n}\n#pragma section code_type \".text\"\n\nextern void MWSFSVM_Error(const char *, ...);\ntypedef struct Sig_fn_12_339B4_MovieOutput {\n    u32 field_00;\n    u32 field_04;\n    u32 field_08;\n    u32 field_0C;\n    u32 field_10;\n    u32 field_14;\n} Sig_fn_12_339B4_MovieOutput;\nextern void fn_12_339B4(u32, u32, u32, Sig_fn_12_339B4_MovieOutput *);\nstruct Sig_fn_12_7E8_fn_12_7E8_Arg0 {\n    u8 pad_0[0x10];\n    u32 unk_10;\n    u32 unk_14;\n    u32 unk_18;\n};\nstruct Sig_fn_12_7E8_fn_12_7E8_Arg1 { u32 unk_0; };\nstruct Sig_fn_12_7E8_fn_12_7E8_Arg2 { u32 unk_0; };\nextern u32 fn_12_7E8(struct Sig_fn_12_7E8_fn_12_7E8_Arg0 *, struct Sig_fn_12_7E8_fn_12_7E8_Arg1 *, struct Sig_fn_12_7E8_fn_12_7E8_Arg2 *);\n\n#pragma opt_propagation off\nstatic inline s32 movie_buffer_format(s32 value) {\n    s32 result;\n    switch (value) {\n    case 1: result = 1; break;\n    case 2: result = 2; break;\n    case 3: result = 3; break;\n    default:\n        MWSFSVM_Error(lbl_12_rodata_1CC0__fzgx_offset_A0);\n        result = 3;\n        break;\n    }\n    return result;\n}\n\nstatic inline s32 movie_picture_structure(s32 value) {\n    s32 result = 3;\n    switch (value) {\n    case 1: result = 1; break;\n    case 2: result = 2; break;\n    case 3: result = 3; break;\n    default: MWSFSVM_Error(lbl_12_rodata_1CC0__fzgx_offset_78); break;\n    }\n    return result;\n}\n\nstatic inline s32 movie_chroma_format(s32 value) {\n    s32 result = 1;\n    switch (value) {\n    case 1: result = 1; break;\n    case 2: result = 2; break;\n    case 3: result = 3; break;\n    default: MWSFSVM_Error(lbl_12_rodata_1CC0__fzgx_offset_54); break;\n    }\n    return result;\n}\n\nstatic inline s32 movie_chroma_position(s32 value) {\n    s32 result = 1;\n    switch (value) {\n    case 0: result = 0; break;\n    case 1: result = 1; break;\n    default: MWSFSVM_Error(lbl_12_rodata_1CC0__fzgx_offset_34); break;\n    }\n    return result;\n}\n\nvoid fn_12_35B08(u32 input0, u32 arg1, u32 input2) {\n    u32 arg2 = input2;\n    u32 arg0 = input0;\n    u32 v0;\n    u32 width;\n    u32 height;\n    s32 mode;\n    Sig_fn_12_339B4_MovieOutput planes;\n    struct Sig_fn_12_7E8_fn_12_7E8_Arg2 b;\n    struct Sig_fn_12_7E8_fn_12_7E8_Arg1 a;\n    v0 = movie_buffer_format(*(s32 *)((u8 *)arg1 + 4));\n    *(u32 *)arg2 = v0;\n    width = *(u32 *)((u8 *)arg1 + 8);\n    height = *(u32 *)((u8 *)arg1 + 12);\n    *(u32 *)((u8 *)arg2 + 0x44) = width;\n    *(u32 *)((u8 *)arg2 + 0x48) = height;\n    if (*(s32 *)((u8 *)arg1 + 4) != 3) {\n    *(u32 *)((u8 *)arg2 + 4) = *(u32 *)arg1;\n    *(u32 *)((u8 *)arg2 + 8) = width;\n    *(u32 *)((u8 *)arg2 + 12) = height;\n    } else {\n    fn_12_339B4(*(u32 *)arg1, width, height, &planes);\n    width = planes.field_0C;\n    *(u32 *)((u8 *)arg2 + 4) = planes.field_00;\n    *(u32 *)((u8 *)arg2 + 8) = width;\n    *(u32 *)((u8 *)arg2 + 12) = height;\n    v0 = planes.field_04;\n    width = planes.field_10;\n    *(u32 *)((u8 *)arg2 + 0x14) = v0;\n    *(u32 *)((u8 *)arg2 + 0x18) = width;\n    *(u32 *)((u8 *)arg2 + 0x1c) = height;\n    width = planes.field_14;\n    *(u32 *)((u8 *)arg2 + 0x24) = planes.field_08;\n    *(u32 *)((u8 *)arg2 + 0x28) = width;\n    *(u32 *)((u8 *)arg2 + 0x2c) = height;\n    }\n    *(u32 *)((u8 *)arg2 + 0x4c) = *(u32 *)((u8 *)arg1 + 0x30);\n    fn_12_7E8(*(struct Sig_fn_12_7E8_fn_12_7E8_Arg0 **)((u8 *)arg0 + 0xa8), &a, &b);\n    *(u32 *)((u8 *)arg2 + 0x50) = a.unk_0;\n    *(u32 *)((u8 *)arg2 + 0x54) = b.unk_0;\n    *(u32 *)((u8 *)arg2 + 0x58) = 0;\n    *(u32 *)((u8 *)arg2 + 0x5c) = 0;\n    mode = movie_picture_structure(*(s32 *)((u8 *)arg0 + 0x88));\n    *(u32 *)((u8 *)arg2 + 0x60) = mode;\n    mode = movie_chroma_format(*(s32 *)((u8 *)arg0 + 0x8c));\n    *(u32 *)((u8 *)arg2 + 0x64) = mode;\n    *(u32 *)((u8 *)arg2 + 0x68) = *(u32 *)((u8 *)arg0 + 0x90);\n    *(u32 *)((u8 *)arg2 + 0x6c) = *(u32 *)((u8 *)arg0 + 0x94);\n    *(u32 *)((u8 *)arg2 + 0x70) = *(u32 *)((u8 *)arg0 + 0x98);\n    mode = movie_chroma_position(*(s32 *)((u8 *)arg0 + 0x9c));\n    *(u32 *)((u8 *)arg2 + 0x74) = mode;\n    mode = movie_chroma_position(*(s32 *)((u8 *)arg0 + 0xa0));\n    *(u32 *)((u8 *)arg2 + 0x78) = mode;\n}\n\n#pragma opt_propagation reset\n",
+    "source_sha256": "2021ad6cc5027745f8260b420d8788cccc7b9bf386eaa18c563dc13fcb2081a4",
+    "instruction_words": 155,
+    "oracle": {
+      "ok": true,
+      "symbol": "fn_12_35B08",
+      "unit": "movie_module/rel/movie_module/fn_12_35B08",
+      "percent": 100.0,
+      "matched": true,
+      "symbols": {
+        "fn_12_35B08": 100.0
+      },
+      "data_sections": {},
+      "diff": [],
+      "error": "",
+      "missing_in_base": [],
+      "extra_in_base": [],
+      "matched_pool": false,
+      "pool": [
+        "lbl_12_rodata_15D0=initializer[1976]",
+        "lbl_12_rodata_15D0=literal pool[1976]",
+        "lbl_12_rodata_15D0=verified pool object[424]",
+        "lbl_12_rodata_1778=verified pool object[8]",
+        "lbl_12_rodata_1780=verified pool object[64]",
+        "lbl_12_rodata_17C0=verified pool object[8]",
+        "lbl_12_rodata_17C8=verified pool object[8]",
+        "lbl_12_rodata_17D0=verified pool object[252]",
+        "lbl_12_rodata_18CC=verified pool object[51]",
+        "lbl_12_rodata_1900=verified pool object[51]",
+        "lbl_12_rodata_1934=verified pool object[252]",
+        "lbl_12_rodata_1A30=verified pool object[47]",
+        "lbl_12_rodata_1A60=verified pool object[46]",
+        "lbl_12_rodata_1A90=verified pool object[47]",
+        "lbl_12_rodata_1AC0=verified pool object[256]",
+        "lbl_12_rodata_1BC0=verified pool object[49]",
+        "lbl_12_rodata_1BF4=verified pool object[49]",
+        "lbl_12_rodata_1C28=verified pool object[49]",
+        "lbl_12_rodata_1C5C=verified pool object[48]",
+        "lbl_12_rodata_1C8C=verified pool object[51]",
+        "lbl_12_rodata_1CC0=verified pool object[52]",
+        "lbl_12_rodata_1CC0+0x34=verified pool object[32]",
+        "lbl_12_rodata_1CC0+0x54=verified pool object[36]",
+        "lbl_12_rodata_1CC0+0x78=verified pool object[40]",
+        "lbl_12_rodata_1CC0+0xA0=verified pool object[40]"
+      ],
+      "pool_map": {
+        "...rodata.0": "lbl_12_rodata_15D0",
+        "lbl_12_rodata_15D0": "lbl_12_rodata_15D0",
+        "lbl_12_rodata_1778": "lbl_12_rodata_1778",
+        "lbl_12_rodata_1780": "lbl_12_rodata_1780",
+        "lbl_12_rodata_17C0": "lbl_12_rodata_17C0",
+        "lbl_12_rodata_17C8": "lbl_12_rodata_17C8",
+        "lbl_12_rodata_17D0": "lbl_12_rodata_17D0",
+        "lbl_12_rodata_18CC": "lbl_12_rodata_18CC",
+        "lbl_12_rodata_1900": "lbl_12_rodata_1900",
+        "lbl_12_rodata_1934": "lbl_12_rodata_1934",
+        "lbl_12_rodata_1A30": "lbl_12_rodata_1A30",
+        "lbl_12_rodata_1A60": "lbl_12_rodata_1A60",
+        "lbl_12_rodata_1A90": "lbl_12_rodata_1A90",
+        "lbl_12_rodata_1AC0": "lbl_12_rodata_1AC0",
+        "lbl_12_rodata_1BC0": "lbl_12_rodata_1BC0",
+        "lbl_12_rodata_1BF4": "lbl_12_rodata_1BF4",
+        "lbl_12_rodata_1C28": "lbl_12_rodata_1C28",
+        "lbl_12_rodata_1C5C": "lbl_12_rodata_1C5C",
+        "lbl_12_rodata_1C8C": "lbl_12_rodata_1C8C",
+        "lbl_12_rodata_1CC0": "lbl_12_rodata_1CC0",
+        "lbl_12_rodata_1CC0__fzgx_offset_34": "lbl_12_rodata_1CC0+0x34",
+        "lbl_12_rodata_1CC0__fzgx_offset_54": "lbl_12_rodata_1CC0+0x54",
+        "lbl_12_rodata_1CC0__fzgx_offset_78": "lbl_12_rodata_1CC0+0x78",
+        "lbl_12_rodata_1CC0__fzgx_offset_A0": "lbl_12_rodata_1CC0+0xA0"
+      },
+      "uncarved": false,
+      "pool_rows": 0,
+      "percent_adjusted": 100.0,
+      "mw_version": null,
+      "extra_cflags": null,
+      "instruction_rows": 0,
+      "differing_rows": 0,
+      "value_flow": [],
+      "operand_order": []
+    }
+  },
+  "readonly_region": {
+    "section": ".rodata",
+    "start": "0x15D0",
+    "end_exclusive": "0x1D88",
+    "size": 1976,
+    "sha256": "e1677fd0ceb18c640e6648e35072ba644e1de60b649479d46b20a5cf21e05189",
+    "original_objects_and_alignment_gaps": [
+      {
+        "symbol": "lbl_12_rodata_15D0",
+        "offset": "0x15d0",
+        "size": 424,
+        "sha256": "0a41820afd3a325c0e1f490fbfa88e8619981291e487d479b31fdbc7767548d8"
+      },
+      {
+        "symbol": "lbl_12_rodata_1778",
+        "offset": "0x1778",
+        "size": 8,
+        "sha256": "5a0702abd58c1fbcfae246374c2d0b77e3a38dc8d308015207d270947affaa26"
+      },
+      {
+        "symbol": "lbl_12_rodata_1780",
+        "offset": "0x1780",
+        "size": 64,
+        "sha256": "57d30f45ac815c4d102a244274351332fc6cb0d278212a0adeaf073166c4f96f"
+      },
+      {
+        "symbol": "lbl_12_rodata_17C0",
+        "offset": "0x17c0",
+        "size": 8,
+        "sha256": "63f575f89027c87316220a95eb07459bc354c4ac2ac35c6c4ddef11bdcbdb473"
+      },
+      {
+        "symbol": "lbl_12_rodata_17C8",
+        "offset": "0x17c8",
+        "size": 8,
+        "sha256": "6991eecc55c5497e23a17786771e01b38c06f8ae66e1d597970d5d992a9b9ea7"
+      },
+      {
+        "symbol": "lbl_12_rodata_17D0",
+        "offset": "0x17d0",
+        "size": 252,
+        "sha256": "0bbfb6c1af1dbff8e4797327ec266df3f44c02b5aa29ea9d377341ea79b05cb1"
+      },
+      {
+        "symbol": "lbl_12_rodata_18CC",
+        "offset": "0x18cc",
+        "size": 51,
+        "sha256": "f23681c2cb0e0cac982e55e728d22947708f069da5671e2ca71818db80515867"
+      },
+      {
+        "symbol": "gap_03_000018FF_rodata",
+        "offset": "0x18ff",
+        "size": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      {
+        "symbol": "lbl_12_rodata_1900",
+        "offset": "0x1900",
+        "size": 51,
+        "sha256": "9b9d9e35b45d81a4686b61d9b9b18eaa6b7758c9dd065eb017990cc088dc24cf"
+      },
+      {
+        "symbol": "gap_03_00001933_rodata",
+        "offset": "0x1933",
+        "size": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      {
+        "symbol": "lbl_12_rodata_1934",
+        "offset": "0x1934",
+        "size": 252,
+        "sha256": "d8429f583cdb98ff1a6b301deab9ad1cba4567d61e6538cf76f5a723d8d1b55d"
+      },
+      {
+        "symbol": "lbl_12_rodata_1A30",
+        "offset": "0x1a30",
+        "size": 47,
+        "sha256": "af3befb35494be85c0e3e74f9521d8061c39a61708db4bf6162337e575779b40"
+      },
+      {
+        "symbol": "gap_03_00001A5F_rodata",
+        "offset": "0x1a5f",
+        "size": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      {
+        "symbol": "lbl_12_rodata_1A60",
+        "offset": "0x1a60",
+        "size": 46,
+        "sha256": "51cbc0e9f9f643cbdd7702c22727fd76bcb0c2ce0625a41939133b654ecf299e"
+      },
+      {
+        "symbol": "gap_03_00001A8E_rodata",
+        "offset": "0x1a8e",
+        "size": 2,
+        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+      },
+      {
+        "symbol": "lbl_12_rodata_1A90",
+        "offset": "0x1a90",
+        "size": 47,
+        "sha256": "3fd0a86da30d2608064db5d5e68db7e151dcb32e55c407621d8fc4eaea66c262"
+      },
+      {
+        "symbol": "gap_03_00001ABF_rodata",
+        "offset": "0x1abf",
+        "size": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      {
+        "symbol": "lbl_12_rodata_1AC0",
+        "offset": "0x1ac0",
+        "size": 256,
+        "sha256": "2da173b4df6e5844b3081118bc61dbff6d687e7faaad76434717010ac436071b"
+      },
+      {
+        "symbol": "lbl_12_rodata_1BC0",
+        "offset": "0x1bc0",
+        "size": 49,
+        "sha256": "ac22bda70c4cc2c5f8749bd54e60979ade1017f7485febd78aab257412d2562d"
+      },
+      {
+        "symbol": "gap_03_00001BF1_rodata",
+        "offset": "0x1bf1",
+        "size": 3,
+        "sha256": "709e80c88487a2411e1ee4dfb9f22a861492d20c4765150c0c794abd70f8147c"
+      },
+      {
+        "symbol": "lbl_12_rodata_1BF4",
+        "offset": "0x1bf4",
+        "size": 49,
+        "sha256": "6ac228cc8453b68bd434b2ebc38fe424911936e7fbfdf54d0647838d657e8a7d"
+      },
+      {
+        "symbol": "gap_03_00001C25_rodata",
+        "offset": "0x1c25",
+        "size": 3,
+        "sha256": "709e80c88487a2411e1ee4dfb9f22a861492d20c4765150c0c794abd70f8147c"
+      },
+      {
+        "symbol": "lbl_12_rodata_1C28",
+        "offset": "0x1c28",
+        "size": 49,
+        "sha256": "de0ca986d3a206ea8db8ae57fc70aca096c13ba376352c0fe52487c343668df4"
+      },
+      {
+        "symbol": "gap_03_00001C59_rodata",
+        "offset": "0x1c59",
+        "size": 3,
+        "sha256": "709e80c88487a2411e1ee4dfb9f22a861492d20c4765150c0c794abd70f8147c"
+      },
+      {
+        "symbol": "lbl_12_rodata_1C5C",
+        "offset": "0x1c5c",
+        "size": 48,
+        "sha256": "4336a4b565b9fa32e27782cca7173defb8ef1960c37c89ca28271a0271ca89e2"
+      },
+      {
+        "symbol": "lbl_12_rodata_1C8C",
+        "offset": "0x1c8c",
+        "size": 51,
+        "sha256": "f9b07a338abd41cf5483c30dbbb2b50b9e3e38db1e015c750f1cdbf5bfe015bc"
+      },
+      {
+        "symbol": "gap_03_00001CBF_rodata",
+        "offset": "0x1cbf",
+        "size": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      {
+        "symbol": "lbl_12_rodata_1CC0",
+        "offset": "0x1cc0",
+        "size": 200,
+        "sha256": "f92c7d246d5800d7778d732167a5479f96ea919d9535c738aec07feedb58632f"
+      }
+    ],
+    "emitted_verified_objects": 23
+  },
+  "nonmatching_frontiers": [
+    {
+      "status": {
+        "symbol": "fn_12_36208",
+        "status": "unmatched",
+        "link_state": null,
+        "matched_commit": null
+      },
+      "source": "#include \"types.h\"\n\nextern void MWSFSVM_Error(const char *, ...);\n\ntypedef void *(*FnAlloc)(void *, s32);\ntypedef void (*FnFree)(void *, void *);\n\ntypedef struct AllocCtx {\n    u8 pad_0[0x28];\n    FnAlloc alloc;\n    FnFree free_fn;\n    void *data;\n} AllocCtx;\n\ntypedef struct MovieState {\n    u8 pad_20[0x20];\n    s32 state;\n} MovieState;\n\ntypedef struct MovieModule {\n    u8 pad_0[0x14];\n    u32 field_14;\n    u32 field_18;\n    u8 pad_1c[0x90];\n    void *field_ac;\n    u32 field_b0;\n    u8 pad_b4[0x38];\n    void *field_ec;\n    u32 field_f0;\n    u8 pad_f4[0x64];\n    u32 field_158;\n    u32 field_15c;\n    u8 *field_160;\n    u32 field_164;\n    s32 count;\n    void *arr[32];\n} MovieModule;\n\nextern const u8 lbl_12_rodata_A18[56];\nextern const u8 lbl_12_rodata_A80[56];\nextern const u8 lbl_12_rodata_B58[56];\nextern const u8 lbl_12_rodata_B90[56];\nextern const u8 lbl_12_rodata_BD8[56];\nextern const u8 lbl_12_rodata_E90[56];\nextern const u8 lbl_12_rodata_EC8[56];\nstatic const void *const lbl_12_rodata_1D88[9] = { lbl_12_rodata_B58, lbl_12_rodata_B90, lbl_12_rodata_BD8, lbl_12_rodata_A18, 0, 0, lbl_12_rodata_EC8, lbl_12_rodata_A80, lbl_12_rodata_E90 };\nstatic const void *const lbl_12_rodata_1DAC[9] = { lbl_12_rodata_B58, 0, lbl_12_rodata_BD8, 0, 0, 0, lbl_12_rodata_EC8, 0, 0 };\nstatic const void *const lbl_12_rodata_1DD0[9] = { lbl_12_rodata_B58, lbl_12_rodata_B90, lbl_12_rodata_BD8, 0, 0, 0, lbl_12_rodata_EC8, 0, lbl_12_rodata_E90 };\nstatic const char lbl_12_rodata_1DF4[33] = \"E2053001 MWSFD_Malloc: cnt over.\\000\";\nstatic const char lbl_12_rodata_1E18[40] = \"E204161: mwPlyGetHdrInf(): NULL pointer\\000\";\nstatic const char lbl_12_rodata_1E40[41] = \"E204162: mwPlyGetHdrInf(): bufsize error\\000\";\nstatic const char lbl_12_rodata_1E6C[32] = \"E20010703E MWSFCRE_DestroySfd: \\000\";\nstatic const char lbl_12_rodata_1E8C[24] = \"E2053005: forgot free.\\000\\000\";\nstatic const char lbl_12_rodata_1E8C__fzgx_offset_18[36] = \"E2053003: not enough work: sfx_wk\\000\\000\\000\";\nstatic const char lbl_12_rodata_1E8C__fzgx_offset_3C[40] = \"E2053004: not enough work: ainfsj_buf\\000\\000\\000\";\n#pragma section code_type \".fzgxpool\"\nstatic void movie_literal_layout(void) {\n    const void * volatile item; /* fzgx-allow: S2 real readonly descriptor and string object order */\n    item = lbl_12_rodata_1D88;\n    item = lbl_12_rodata_1DAC;\n    item = lbl_12_rodata_1DD0;\n    item = lbl_12_rodata_1DF4;\n    item = lbl_12_rodata_1E18;\n    item = lbl_12_rodata_1E40;\n    item = lbl_12_rodata_1E6C;\n    item = lbl_12_rodata_1E8C;\n    item = lbl_12_rodata_1E8C__fzgx_offset_18;\n    item = lbl_12_rodata_1E8C__fzgx_offset_3C;\n}\n#pragma section code_type \".text\"\n\nextern s32 fn_12_35DB4(u32, u32);\nextern AllocCtx *fn_12_38DBC(void);\nextern s32 fn_12_35548(MovieState *);\n/* Keep allocation tracking and reverse destruction as their native operations. */\nstatic inline void *movie_alloc(MovieModule *movie, s32 bytes) {\n    void *result;\n    AllocCtx *context;\n    if (movie->count >= 32) {\n        MWSFSVM_Error(lbl_12_rodata_1DF4);\n        return 0;\n    }\n    if (bytes < 0) return 0;\n    if (movie->field_158 != 0) {\n        if (movie->field_164 + bytes > movie->field_15c) {\n            result = 0;\n        } else {\n            result = movie->field_160;\n            movie->field_160 = (u8 *)result + bytes;\n            movie->field_164 += bytes;\n        }\n    } else {\n        context = fn_12_38DBC();\n        result = context->alloc(context->data, bytes);\n    }\n    if (result != 0) {\n        movie->arr[movie->count] = result;\n        movie->count++;\n    }\n    return result;\n}\n\nstatic inline void movie_free_all(MovieModule *movie) {\n    s32 i;\n    void *pointer;\n    AllocCtx *context;\n    for (i = 0; i < 32; i++) {\n        pointer = movie->arr[31 - i];\n        if (pointer != 0) {\n            if (movie->field_158 == 0) {\n                context = fn_12_38DBC();\n                context->free_fn(context->data, pointer);\n            }\n            movie->count--;\n            movie->arr[31 - i] = 0;\n        }\n    }\n}\n\ns32 fn_12_36208(MovieModule *movie) {\n    MovieState *state = (MovieState *)((u8 *)movie + 0xC);\n    s32 bytes;\n    void *pointer;\n    bytes = fn_12_35DB4(movie->field_14, movie->field_18);\n    pointer = movie_alloc(movie, bytes);\n    if (pointer == 0) {\n        MWSFSVM_Error(lbl_12_rodata_1E8C__fzgx_offset_18);\n        movie_free_all(movie);\n        return -1;\n    }\n    movie->field_ac = pointer;\n    movie->field_b0 = bytes;\n    if (fn_12_35548(state) == 1) {\n        pointer = movie_alloc(movie, 0x20000);\n        if (pointer == 0) {\n            MWSFSVM_Error(lbl_12_rodata_1E8C__fzgx_offset_3C);\n            movie_free_all(movie);\n            return -1;\n        }\n        movie->field_ec = pointer;\n        movie->field_f0 = 0x20000;\n    } else {\n        movie->field_ec = 0;\n        movie->field_f0 = 0;\n    }\n    return 0;\n}\n",
+      "source_sha256": "b2c62d3d791e4b5da7bf497024a87f06e3bba838543e06863c989e597ecca26a",
+      "receipt": {
+        "ok": true,
+        "symbol": "fn_12_36208",
+        "unit": "movie_module/rel/movie_module/fn_12_36208",
+        "percent": 97.59887,
+        "matched": false,
+        "symbols": {
+          "fn_12_36208": 97.59887
+        },
+        "data_sections": {},
+        "diff": [
+          "  0000  stwu r1, -0x20(r1)                 | stwu r1, -0x20(r1)",
+          "  0004  mflr r0                            | mflr r0",
+          "p 0008  lis r4, lbl_12_rodata_1D88@ha      | lis r4, ...rodata.0@ha",
+          "  000C  stw r0, 0x24(r1)                   | stw r0, 0x24(r1)",
+          "? 0014  mr r31, r3                         | mr r28, r3",
+          "? 0018  addi r30, r4, lbl_12_rodata_1D88@l | addi r31, r4, ...rodata.0@l",
+          "? 001C  addi r29, r31, 0xc                 | addi r30, r28, 0xc",
+          "? 0024  lwz r4, 0x18(r31)                  | lwz r4, 0x18(r28)",
+          "? 002C  lwz r0, 0x168(r31)                 | lwz r0, 0x168(r28)",
+          "? 0030  mr r28, r3                         | mr r29, r3",
+          "? 003C  addi r3, r30, 0x6c                 | addi r3, r31, 0x6c",
+          "? 0050  cmpwi r28, 0x0                     | cmpwi r29, 0x0",
+          "? 0060  lwz r0, 0x158(r31)                 | lwz r0, 0x158(r28)",
+          "? 006C  lwz r3, 0x164(r31)                 | lwz r3, 0x164(r28)",
+          "? 0070  lwz r0, 0x15c(r31)                 | lwz r0, 0x15c(r28)",
+          "? 0074  add r3, r3, r28                    | add r3, r3, r29",
+          "? 0088  lwz r3, 0x160(r31)                 | lwz r3, 0x160(r28)",
+          "? 008C  add r0, r3, r28                    | add r0, r3, r29",
+          "? 0090  stw r0, 0x160(r31)                 | stw r0, 0x160(r28)",
+          "? 0094  lwz r0, 0x164(r31)                 | lwz r0, 0x164(r28)",
+          "? 0098  add r0, r0, r28                    | add r0, r0, r29",
+          "? 009C  stw r0, 0x164(r31)                 | stw r0, 0x164(r28)",
+          "? 00AC  mr r4, r28                         | mr r4, r29",
+          "? 00C4  lwz r0, 0x168(r31)                 | lwz r0, 0x168(r28)",
+          "? 00CC  add r4, r31, r0                    | add r4, r28, r0",
+          "? 00D4  lwz r4, 0x168(r31)                 | lwz r4, 0x168(r28)",
+          "? 00DC  stw r0, 0x168(r31)                 | stw r0, 0x168(r28)",
+          "? 00E8  addi r3, r30, 0x11c                | addi r3, r31, 0x11c",
+          "? 00F4  li r30, 0x0                        | li r31, 0x0",
+          "? 00F8  mr r28, r30                        | mr r29, r31",
+          "? 00FC  subfic r0, r30, 0x1f               | subfic r0, r31, 0x1f",
+          "? 0108  lwzx r29, r31, r27                 | lwzx r30, r28, r27",
+          "? 010C  cmplwi r29, 0x0                    | cmplwi r30, 0x0",
+          "? 0114  lwz r0, 0x158(r31)                 | lwz r0, 0x158(r28)",
+          "? 0128  mr r4, r29                         | mr r4, r30",
+          "? 0138  lwz r3, 0x168(r31)                 | lwz r3, 0x168(r28)",
+          "? 0140  stw r0, 0x168(r31)                 | stw r0, 0x168(r28)",
+          "? 0144  stwx r28, r31, r27                 | stwx r29, r28, r27",
+          "? 0148  addi r30, r30, 0x1                 | addi r31, r31, 0x1",
+          "? 014C  cmpwi r30, 0x20                    | cmpwi r31, 0x20",
+          "? 015C  stw r3, 0xac(r31)                  | stw r3, 0xac(r28)",
+          "? 0160  mr r3, r29                         | mr r3, r30",
+          "? 0164  stw r28, 0xb0(r31)                 | stw r29, 0xb0(r28)",
+          "? 0174  lwz r0, 0x168(r31)                 | lwz r0, 0x168(r28)",
+          "? 0180  addi r3, r30, 0x6c                 | addi r3, r31, 0x6c",
+          "? 0194  lwz r0, 0x158(r31)                 | lwz r0, 0x158(r28)",
+          "? 01A0  lwz r3, 0x164(r31)                 | lwz r3, 0x164(r28)",
+          "? 01A4  lwz r0, 0x15c(r31)                 | lwz r0, 0x15c(r28)",
+          "? 01BC  lwz r3, 0x160(r31)                 | lwz r3, 0x160(r28)",
+          "? 01C4  stw r0, 0x160(r31)                 | stw r0, 0x160(r28)",
+          "? 01C8  lwz r4, 0x164(r31)                 | lwz r4, 0x164(r28)",
+          "? 01D0  stw r0, 0x164(r31)                 | stw r0, 0x164(r28)",
+          "? 01F8  lwz r0, 0x168(r31)                 | lwz r0, 0x168(r28)",
+          "? 0200  add r4, r31, r0                    | add r4, r28, r0",
+          "? 0208  lwz r4, 0x168(r31)                 | lwz r4, 0x168(r28)",
+          "? 0210  stw r0, 0x168(r31)                 | stw r0, 0x168(r28)",
+          "? 021C  addi r3, r30, 0x140                | addi r3, r31, 0x140",
+          "? 0228  li r30, 0x0                        | li r31, 0x0",
+          "? 022C  mr r28, r30                        | mr r29, r31",
+          "? 0230  subfic r0, r30, 0x1f               | subfic r0, r31, 0x1f",
+          "? 023C  lwzx r29, r31, r27                 | lwzx r30, r28, r27",
+          "? 0240  cmplwi r29, 0x0                    | cmplwi r30, 0x0",
+          "? 0248  lwz r0, 0x158(r31)                 | lwz r0, 0x158(r28)",
+          "? 025C  mr r4, r29                         | mr r4, r30",
+          "? 026C  lwz r3, 0x168(r31)                 | lwz r3, 0x168(r28)",
+          "? 0274  stw r0, 0x168(r31)                 | stw r0, 0x168(r28)",
+          "? 0278  stwx r28, r31, r27                 | stwx r29, r28, r27",
+          "? 027C  addi r30, r30, 0x1                 | addi r31, r31, 0x1",
+          "? 0280  cmpwi r30, 0x20                    | cmpwi r31, 0x20",
+          "? 0290  stw r3, 0xec(r31)                  | stw r3, 0xec(r28)",
+          "? 0298  stw r0, 0xf0(r31)                  | stw r0, 0xf0(r28)",
+          "? 02A4  stw r0, 0xec(r31)                  | stw r0, 0xec(r28)",
+          "? 02A8  stw r0, 0xf0(r31)                  | stw r0, 0xf0(r28)"
+        ],
+        "error": "",
+        "missing_in_base": [],
+        "extra_in_base": [],
+        "matched_pool": false,
+        "pool": [
+          "lbl_12_rodata_1D88=literal pool[360]",
+          "lbl_12_rodata_1D88=verified pool object[36]",
+          "lbl_12_rodata_1DAC=verified pool object[36]",
+          "lbl_12_rodata_1DD0=verified pool object[36]",
+          "lbl_12_rodata_1DF4=verified pool object[33]",
+          "lbl_12_rodata_1E18=verified pool object[40]",
+          "lbl_12_rodata_1E40=verified pool object[41]",
+          "lbl_12_rodata_1E6C=verified pool object[32]",
+          "lbl_12_rodata_1E8C=verified pool object[24]",
+          "lbl_12_rodata_1E8C+0x18=verified pool object[36]",
+          "lbl_12_rodata_1E8C+0x3C=verified pool object[40]"
+        ],
+        "pool_map": {},
+        "uncarved": false,
+        "pool_rows": 1,
+        "percent_adjusted": 61.02,
+        "mw_version": "GC/1.3.2",
+        "extra_cflags": "-use_lmw_stmw on",
+        "instruction_rows": 177,
+        "differing_rows": 69,
+        "value_flow": [],
+        "operand_order": []
+      },
+      "credit": "none; not submitted"
+    },
+    {
+      "status": {
+        "symbol": "fn_12_31860",
+        "status": "unmatched",
+        "link_state": null,
+        "matched_commit": null
+      },
+      "source": "#include \"types.h\"\n\ntypedef struct MovieContext {\n    int state;\n    void *movie;\n    u8 _pad[4];\n    int kind;\n} MovieContext;\n\n#pragma peephole on\n#pragma opt_loop_invariants on\n#pragma opt_lifetimes off\nstatic inline int movie_kind_supported(int kind) {\n    int supported = 0;\n    if (kind == 0x6b || kind >= 0x6e) supported = 1;\n    return supported;\n}\nstatic inline u8 *fn_12_31860_find(MovieContext *self, u8 id) {\n    u8 *movie = (u8 *)self->movie;\n    int ok;\n    u8 *entry;\n    int i;\n    u32 search_id;\n    u8 *p;\n    switch (self->state) {\n    case -1: case 0: case 1: ok = 0; break;\n    default: ok = 1; break;\n    }\n    if (ok == 0) {\n        ok = 0;\n    } else {\n        if (!movie_kind_supported(self->kind)) ok = 0;\n        else ok = 1;\n    }\n    if (ok == 0) {\n        entry = 0;\n    } else {\n        i = 0;\n        entry = 0;\n        search_id = (u8)id;\n        for (; i < 26; i++) {\n            p = movie + 0x180;\n            if ((u32)p[0x18] == search_id) {\n                entry = p;\n                break;\n            }\n            movie += 0x40;\n        }\n    }\n    return entry;\n}\nint fn_12_31860(MovieContext *self, u32 id, u32 *first, u32 *second) {\n    u8 *entry = fn_12_31860_find(self, id);\n    u32 category;\n    u32 high_nibble;\n    if (entry == 0) return 0;\n    {\n    u8 value = id;\n    if (value >= 0xc0 && value <= 0xdf) category = 0xc0;\n    else if (value >= 0xe0 && value <= 0xef) category = 0xe0;\n    else if (value == 0xbd || value == 0xbf) category = 0xbd;\n    else category = 0;\n    if (category != 0xe0) return 0;\n    *first = entry[0x1c];\n    high_nibble = entry[0x1d];\n    high_nibble = (high_nibble >> 4) & 0xF;\n    *first = high_nibble | (*first << 4);\n    *first &= 0xfff;\n    *second = entry[0x1d];\n    *second = (*second << 8) | entry[0x1e];\n    *second &= 0xfff;\n    return 1;\n    }\n}\n#pragma opt_lifetimes reset\n#pragma opt_loop_invariants reset\n#pragma peephole reset\n",
+      "source_sha256": "a3fe6f3331662cfaa1fb74692b3af585a7d6af06169ea13f6881b3aefe17d2c3",
+      "receipt": {
+        "ok": true,
+        "path": "src/rel/movie_module/fn_12_31860.c",
+        "bytes": 1918,
+        "lint": [],
+        "check": "fn_12_31860: 98.7%  unit=movie_module/rel/movie_module/fn_12_31860  no match\n19 of 99 aligned instruction rows still differ after accepted relocation equivalences; the displayed % is objdiff's similarity score.\nDiffering rows by kind: regalloc 19.\ndiff (target | ours):\nCached diff: lines 0..22 of 22.\nColumns: aligned row*4, T: target object address, C: candidate object address; target | ours.\n  0000 T:-------- C:--------  lwz r0, 0x0(r3)                    | lwz r0, 0x0(r3)\n? 0004 T:00000004 C:00000004  lwz r9, 0x4(r3)                    | lwz r10, 0x4(r3)\n  0008 T:00000008 C:00000008  cmpwi r0, 0x2                      | cmpwi r0, 0x2\n  000C T:0000000C C:0000000C  bge 0x24                           | bge 0x24\n? 0070 T:00000070 C:00000070  li r7, 0x0                         | li r9, 0x0\n? 0078 T:00000078 C:00000078  li r7, 0x0                         | li r8, 0x0\n? 0080 T:00000080 C:00000080  mr r8, r7                          | mr r9, r8\n? 0084 T:00000084 C:00000084  clrlwi r10, r4, 24                 | clrlwi r3, r4, 24\n? 008C T:0000008C C:0000008C  addi r3, r9, 0x180                 | addi r7, r10, 0x180\n? 0090 T:00000090 C:00000090  lbz r0, 0x198(r9)                  | lbz r0, 0x198(r10)\n? 0094 T:00000094 C:00000094  cmplw r0, r10                      | cmplw r0, r3\n? 009C T:0000009C C:0000009C  mr r7, r3                          | mr r9, r7\n? 00A4 T:000000A4 C:000000A4  addi r3, r9, 0x1c0                 | addi r7, r10, 0x1c0\n? 00A8 T:000000A8 C:000000A8  lbz r0, 0x1d8(r9)                  | lbz r0, 0x1d8(r10)\n? 00AC T:000000AC C:000000AC  cmplw r0, r10                      | cmplw r0, r3\n? 00B4 T:000000B4 C:000000B4  mr r7, r3                          | mr r9, r7\n? 00BC T:000000BC C:000000BC  addi r9, r9, 0x80                  | addi r10, r10, 0x80\n? 00C8 T:000000C8 C:000000C8  cmplwi r7, 0x0                     | cmplwi r9, 0x0\n? 0138 T:00000138 C:00000138  lbz r0, 0x1c(r7)                   | lbz r0, 0x1c(r9)\n? 0144 T:00000144 C:00000144  lbz r0, 0x1d(r7)                   | lbz r0, 0x1d(r9)\n? 0164 T:00000164 C:00000164  lbz r0, 0x1d(r7)                   | lbz r0, 0x1d(r9)\n? 0170 T:00000170 C:00000170  lbz r0, 0x1e(r7)                   | lbz r0, 0x1e(r9)\ncheck 10: best this attempt 98.7%"
+      },
+      "credit": "none; not submitted"
+    },
+    {
+      "status": {
+        "symbol": "fn_12_2CDD0",
+        "status": "unmatched",
+        "link_state": null,
+        "matched_commit": null
+      },
+      "source": "#include \"types.h\"\n\ntypedef struct MovieSubEntry {\n    u32 field_0;\n    u32 field_4;\n    u32 field_8;\n} MovieSubEntry;\n\ntypedef struct MovieChannel {\n    u8 pad_0000[0x1158];\n    u32 field_1158;\n    u32 field_115c;\n    u8 pad_1160[0x18];\n    MovieSubEntry *field_1178;\n    s32 field_117c;\n    s32 field_1180;\n    u32 field_1184;\n    s32 field_1188;\n} MovieChannel;\n\ns32 fn_12_2CDD0(MovieChannel *arg0, s32 arg1, u32 arg2, MovieSubEntry *arg3) {\n    MovieChannel *ch;\n    s32 idx;\n    s32 offset;\n    MovieSubEntry *ent;\n    u32 total;\n    u32 time;\n    s32 count;\n    MovieSubEntry *table;\n    s32 head;\n    s32 maxc;\n    u32 loop_start;\n    u32 loop_len;\n    u32 entry_len;\n    s32 nxt;\n\n    arg3->field_0 = 0xFFFFFFFF;\n    ch = (MovieChannel *)((u8 *)arg0 + arg1 * 0x74);\n    table = ch->field_1178;\n    loop_start = ch->field_1158;\n    loop_len = ch->field_115c;\n    if (table == 0) {\n        return 0;\n    }\n    total = loop_start + loop_len;\n    time = arg2;\n    if (time >= total) {\n        time -= loop_len;\n    }\n    count = ch->field_1180;\n    if (count == 0) {\n        goto end;\n    }\n    head = ch->field_1188;\n    maxc = ch->field_117c;\n    idx = head;\n    offset = 0;\n    while (count > 0) {\n        ent = &table[idx];\n        entry_len = ent->field_8;\n        if (ent->field_4 + entry_len <= total) {\n            if (ent->field_4 > time) {\n                goto next;\n            }\n            if (time >= ent->field_4 + entry_len) {\n                goto next;\n            }\n            goto found;\n        }\n        if (ent->field_4 > time) {\n            goto second;\n        }\n        if (time < total) {\n            goto found;\n        }\n    second:\n        if (loop_start > time) {\n            goto next;\n        }\n        if (time >= ent->field_4 + entry_len - loop_len) {\n            goto next;\n        }\n        goto found;\n    next:\n        nxt = idx + 1;\n        idx = nxt - maxc;\n        if (nxt < maxc) {\n            idx = nxt;\n        }\n        offset = offset + 1;\n        count--;\n    }\n    offset = -1;\nfound:\n    if (offset == -1) {\n        goto end;\n    }\n    nxt = head + offset;\n    idx = nxt - maxc;\n    if (nxt < maxc) {\n        idx = nxt;\n    }\n    ch->field_1180 -= offset;\n    ch->field_1188 = idx;\n    ent = &ch->field_1178[idx];\n    *arg3 = *ent;\nend:\n    return 0;\n}\n",
+      "source_sha256": "0155d7157ce4263dce3704c1ae9ad2484bcb2fdb22830109a022d7e98a79c778",
+      "receipt": {
+        "ok": true,
+        "path": "(work copy)",
+        "bytes": 2307,
+        "lint": [
+          {
+            "rule": "S1",
+            "line": 52,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 63,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 66,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 68,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 71,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 74,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 78,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 81,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 83,
+            "msg": "goto without a justification comment"
+          },
+          {
+            "rule": "S1",
+            "line": 96,
+            "msg": "goto without a justification comment"
+          }
+        ],
+        "check": "fn_12_2CDD0: 98.7%  unit=  no match\ncompiler: GC/1.3.2\n2 of 84 aligned instruction rows still differ after accepted relocation equivalences; the displayed % is objdiff's similarity score.\nDiffering rows by kind: op 1, ins 1.\ndiff (target | ours):\nCached diff: lines 0..6 of 6.\nColumns: aligned row*4, T: target object address, C: candidate object address; target | ours.\n  0000 T:00000044 C:--------  stwu r1, -0x20(r1)                 | stwu r1, -0x20(r1)\n  0004 T:00000048 C:00000004  mulli r0, r4, 0x74                 | mulli r0, r4, 0x74\n  0008 T:0000004C C:00000008  li r4, -0x1                        | li r4, -0x1\n  000C T:00000050 C:0000000C  stw r31, 0x1c(r1)                  | stw r31, 0x1c(r1)\n! 00C0 T:00000104 C:000000C0  bge 0x10c                          | blt 0xe4\n< 00C4 T:00000108 C:--------  b 0x12c                            | \ncheck 1: best this attempt 98.7%"
+      },
+      "credit": "none; not submitted"
+    }
+  ],
+  "gate": "COMMAND ['ninja', 'build/GFZE01/ok']\n[1/5] MWCC+POOL build/GFZE01/src/rel/movie_module/fn_12_35B08.o\n[2/5] LINK build/GFZE01/movie_module/movie_module.preplf\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.data' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.data' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.data' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.bss' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.fzgxpool' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.data' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.fzgxpool' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.fzgxpool' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n[3/5] LINK build/GFZE01/movie_module/movie_module.plf\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.data' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.data' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.data' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.bss' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.fzgxpool' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.data' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.fzgxpool' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.fzgxpool' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n### mwldeppc.exe Linker Warning:\n#   Section '.rodata' is unknown. Section ignored.\n[4/5] REL\n INFO Loading 16 modules\n INFO Symbol resolution completed in 0.005s (resolved 36797 symbols)\n INFO RELs written in 0.009s\n INFO Total time: 0.021s\n[5/5] CHECK config/GFZE01/build.sha1\n16 files OK\nEXIT 0\nCOMMAND ['build/tools/dtk', 'shasum', '-q', '-c', 'config/GFZE01/build.sha1']\n16 files OK\nEXIT 0\nCOMMAND ['.venv/bin/python', 'tools/fzgx.py', 'lint']\n0 finding(s)\nEXIT 0\n",
+  "workflow": "Inline manual execution only; no subagents. Native submit and verify followed by approved fork publisher."
+}
