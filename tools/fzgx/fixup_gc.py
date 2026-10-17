@@ -1,10 +1,15 @@
 """Lossless cold retention for closed fixup sessions; no age-only deletion.
 
-All report evidence, scored C, current frontier objects and diagnostics stay hot.
-Other generated C/objects are moved into byte-verified cold bundles before their
-original files are removed. Reports/cache/captures are never rewritten. Stable
-external flock leases exclude active Engine writers and collectors. Incomplete
-or malformed metadata is a hard skip. --dry-run is the default; --apply is explicit.
+Hot per closed session: the report's per-symbol best rows (scored C), every
+matched/link-rejected candidate's object chunk (link evidence), and the files
+other session metadata references (diagnostics, compile logs of hot chunks).
+Historical scored candidates — the bulk of every search session — move into
+byte-verified cold bundles before their original files are removed; --restore
+brings one member or a whole session back (their content-addressed identities
+regenerate from body text when an Engine run replays them). Reports/cache/captures
+are never rewritten. Stable external flock leases exclude active Engine writers
+and collectors. Incomplete or malformed metadata is a hard skip. --dry-run is
+the default; --apply is explicit.
 """
 from __future__ import annotations
 import argparse
@@ -80,18 +85,35 @@ def plan(session,max_files,min_age):
     if not isinstance(data,dict) or not isinstance(data.get('records'),list) or not isinstance(cache,dict):
         raise ValueError('unsupported report/cache format')
     kept_sources=set();hot_chunks=set()
-    # Preserve EVERY scored source (not just the current report) for seed harvesting.
+    # 2026-10-16 policy change: historical scored candidates are cold candidates —
+    # the hot scored C is the report's per-symbol best rows plus matched/link-rejected
+    # records. Nothing reads an old session source: cache rows carry scores, not
+    # bodies, and fixup.py record() rewrites the content-addressed .c of any identical
+    # body it regenerates, so cold storage loses no engine-reachable material
+    # (--restore returns any member byte-verified). Matched/link-rejected rows keep
+    # their complete object chunks (link provenance).
     for ident,row in cache.items():
         if not re.fullmatch('[0-9a-f]{64}',ident) or not isinstance(row,dict):
             raise ValueError('malformed cache identity')
-        kept_sources.add(ident[:24])
         if row.get('matched') or row.get('link_rejected'):
             obj=Path(row.get('object',''))
             if obj.is_absolute() and obj.is_relative_to(session/'objects'):hot_chunks.add(obj.parent)
+    best=data.get('best')
+    if not isinstance(best,dict):raise ValueError('unsupported report format: best')
+    for row in best.values():
+        if not isinstance(row,dict):continue
+        src=row.get('source')
+        if isinstance(src,str) and Path(src).suffix=='.c':
+            src_path=Path(src)
+            if not src_path.is_absolute():raise ValueError('relative hot source path')
+            if src_path.is_relative_to(session/'sources'):kept_sources.add(src_path.stem)
     # Preserve all metadata-referenced sources and complete current object chunks,
     # including ancestors, compile.log, .sym.o and same-chunk siblings.
+    # report.json is excluded: its records span the whole run history (the heavy
+    # set); its hot needs are exactly the best rows kept above.
     for meta in session.glob('*.json'):
         if meta.is_symlink():raise ValueError('symlink metadata')
+        if meta.name=='report.json':continue
         obj=json.loads(meta.read_text())
         for value in _references(obj):
             try:p=Path(value)
