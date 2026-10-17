@@ -32,7 +32,11 @@ def uncarve(p: Project, sources: List[str], split: bool = True) -> Dict[str, obj
                 tufile.remove(p, u)  # a block, if one exists
                 tufile.gen_path(p, u["source"]).unlink(missing_ok=True)
             else:
-                (ROOT / "src" / u["source"]).unlink(missing_ok=True)
+                src_path = ROOT / "src" / u["source"]
+                src_path.unlink(missing_ok=True)
+                if u.get("asm"):
+                    # an asm unit records the C name but links from the split assembly next to it
+                    src_path.with_suffix(".s").unlink(missing_ok=True)
         for module, srcs in by_module.items():
             spath = p.module_config_dir(module) / "splits.txt"
             spath.write_text(collapse._splits_without(spath.read_text(), srcs))
@@ -40,7 +44,12 @@ def uncarve(p: Project, sources: List[str], split: bool = True) -> Dict[str, obj
     l = Ledger()
     for u in gone:
         for s in u.get("symbols", []):
-            l.db.execute("UPDATE functions SET unit=NULL, link_state=NULL WHERE symbol=? AND status<>'matched'", (p.key(p.resolve(s)) if p.resolve(s) else s,))
+            # units.json stores bare names; ambiguous ones (_prolog/_epilog) must key as module:name
+            sym = p.resolve(s)
+            if sym is None and ":" not in s:
+                sym = p.symbols(u["module"]).get(s)
+            l.db.execute("UPDATE functions SET unit=NULL, link_state=NULL WHERE symbol=? AND status<>'matched'",
+                         (p.key(sym) if sym else s,))
     l.db.commit()
     if split and gone:
         from .api import _reconfigure_and_split

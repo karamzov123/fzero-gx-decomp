@@ -567,3 +567,22 @@ The archived `link_state` and score fields are historical, not current acceptanc
 only status `matched` plus real source and link proof may regain credit. Do not use
 unblock as a way to reset attempts. This changes unsupported credit accounting,
 not the authored-C numerator or the sixteen-target hash obligations.
+
+## movie:_prolog narrow-store wall (2026-10-16)
+
+The 2026-10-16 pass landed a one-instruction residual (`sth` vs `stw`) as an asm
+unit and then reverted it: finding 301's own guidance is not to convert
+one-word-residual near matches to asm, the matcher tooling bans inline asm, and
+the project goal is matching C. The unit is back in the retail auto object; the
+sixteen hashes, lint and tests are green; the ledger row is `blocked` at 23
+recorded attempts.
+
+The closure set is fully measured (finding 359): every narrow lvalue spelling
+repairs the store opcode but re-phases the 7 lis / 7 addi materialization window
+to 88.28%; value-into-local splits (any width, including the u32 control) damage
+allocation to 57.03%; source reorder destroys the pair order (46.9% at
+both widths); the compiler sweep GC/1.3/2.0/2.5/2.7 never reproduces retail
+phasing under a narrow store; inline asm is a tooling ban; PAL shares the
+identical `movie_module` REL and the unit's `fze.movie.rel` is US-only, so no
+region-crossing comparison exists. Best archived C:
+`.fzgx/attempts/movie:_prolog.1791747343.c` (99.22%, one word).

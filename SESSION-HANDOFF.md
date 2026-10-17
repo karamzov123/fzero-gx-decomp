@@ -7,6 +7,24 @@ fork `karamzov123/fzgx`). **Read this first in any new session.**
 
 ## 2026-10-16 session state (opencode/deepseek)
 
+**movie:_prolog measured to a complete closure set; its asm landing was REVERTED; triage-blocked (23 attempts).**
+Full record: `docs/findings/359-movie-prolog-asm-reverted-closure-set-blocked.md` (supersedes
+finding 358's escape; the owner's steer — *"does it need to be asm? the goal is c functions"* —
+plus finding 301's own "do not convert these to asm units" decided it). The one-word residual
+(retail `sth r11, 0(r10)` vs our `stw` at word 87 of the 99.21875% u32 body) has no authored-C
+reproduction: every narrow lvalue spelling re-phases the 7 lis / 7 addi window to 88.28%;
+value-into-local splits are width-independent 57.03% (u32 control included); source reorder is
+46.9% (both widths); the GC/1.3/2.0/2.5/2.7 sweep never reproduces retail phasing under a narrow
+store; inline asm is a matcher-tooling ban; region-crossing is unavailable (PAL shares the
+byte-identical `fze.movie_module.rel` hash, and the unit's `fze.movie.rel` is US-only; the
+sibling `movie_module:_prolog` is an unrelated fp-table initializer). Undo: `fzgx uncarve
+rel/movie/_prolog/_prolog.c` (entry/split/`.s` removed, movie relinked inside uncarve → 16 files
+OK / lint 0 / tests 11 OK), `fzgx block movie:_prolog --reason…`, `state/blocked.md` row, best C
+still in `.fzgx/attempts/movie:_prolog.1791747343.c`, asm `.s` recoverable from `7fa25826`.
+Two real tooling bugs fixed in `tools/fzgx/uncarve.py`: an `asm: true` unit's sibling `.s` is
+now removed beside the recorded `.c`, and units' ambiguous bare symbols (`_prolog`) now ledger-key
+as `module:name` — the old `p.resolve(s)` fallback silently cleared no ledger row.
+
 **fn_1_D123C solved and landed** (commit `63413b8d`, attempt 17, two checks spent).
 Full record: `docs/findings/348-fn-1-D123C-value-merge-diamond-s32-sid.md`. The two
 `lwzx / cmplwi; beq 8; b` dispatch sites are the value-merge diamond
@@ -90,12 +108,13 @@ function-wide `opt_propagation off` (179 words break), `opt_lifetimes off`, and
 mid-function pragmas (inert — pragma state is captured per function) were all
 measured dead.
 
-**Next candidates** (same one-word tier): `state/one_word_tier.json` — `fn_1_53E40`
-landed (finding 344), `fn_1_135D7C` measured to its fixed point (finding 345),
-`fn_1_4270C` landed (finding 346), `fn_1_D123C` landed (finding 348). Next:
-`fn_17_7728` (99.5261%, 211 words), then
-`movie:_prolog` (99.2188%), `fn_1_1384C` (99.1597%, an init-copy scan hit — apply
-the shared-counter law from finding 346 first). Probe shapes offline before claiming.
+**Next candidates** (same one-word tier): `state/one_word_tier.json` is **stale** —
+regenerate with `fzgx shapecensus --words` before trusting it. Landed/fixed there:
+`fn_1_53E40` (344), `fn_1_135D7C` fixed point (345), `fn_1_4270C` (346), `fn_1_D123C`
+(348), `fn_1_1384C` fixed point (347), `fn_1_2D038` fixed point (343), `fn_17_7728`
+(landed, commit `4ad73314` into `rel/interview/interview.c`, no dedicated finding),
+`movie:_prolog` (blocked, finding 359). Next: `fn_1_156C08` (99.01%, no dedicated
+session since its refresh). Probe shapes offline before claiming.
 
 Not touched this session: the in-flight main-tree leftovers listed in the previous
 handoff, the `fzgx-storage.service --max-sessions 2` question (still the user's call).
