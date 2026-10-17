@@ -69431,10 +69431,16 @@
     "symbols": [
       "fn_10_1B2F4"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/sel/sel.c"
+    "tu": "rel/sel/sel.c",
+    "pool": {
+      "...rodata.0": "lbl_10_rodata_158",
+      "@27": "lbl_10_rodata_1E8",
+      "@9": "lbl_10_rodata_158+0x44",
+      "@10": "lbl_10_rodata_158+0x48"
+    }
   },
   {
     "module": "sel",
