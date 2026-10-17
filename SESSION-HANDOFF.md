@@ -7,6 +7,26 @@ fork `karamzov123/fzgx`). **Read this first in any new session.**
 
 ## 2026-10-17 session state (opencode/deepseek)
 
+Three landings. The newest closes a pool-blocked plateau by offline
+byte-equality over the pool *reach window*:
+
+- **fn_10_1B2F4** (sel, 217 words, commit `7256d6b0`, finding 373). Residual was
+  only the pool-base rows (`lbl_10_rodata_158` vs `...rodata.0`) plus 9 pool
+  rows; `_pool_rows` accepts them only when our `.rodata[0..(reach+3)&~3)` is
+  byte-equal to retail's region, and reach comes from the max positive
+  displacement through the pool base (`lfs f2, 0xf70(r31)` → 0xf74), not just
+  the literals the rows show. Two defects: `d = 0.55f;`/`d = 0.49f;` decimal
+  primes rounded through f32 (drop the `f` suffix → exact doubles), and the
+  fixup session's own "best" had inlined `fzgx_pool_prime66` away, dropping its
+  `0.64f` literal and shifting 17 words (never mark `.fzgxpool` primers
+  `inline`; fixup's `word_errors 0` says nothing about pool bytes). Removing
+  `(void) p;  /* fzgx: keeps the web at its definition */` satisfied the
+  allocator-scaffolding gate with a byte-identical object. attempt 5
+  (`claim --max-attempts 50`), write-unit `100.0% MATCH`, submit recorded
+  `pool_map` `{...rodata.0→lbl_10_rodata_158, @9→+0x44, @10→+0x48,
+  @27→lbl_10_rodata_1E8}`, verify fast path; gate green (ninja 0, 16 files OK,
+  lint 0, 11/11 tests).
+
 Two one-word landings, both closed by *construct-class* changes after the whole
 source-shaping family failed; in both cases a matched same-module sibling
 witness found the shape (scan matched siblings for the retail instruction pair
@@ -27,7 +47,7 @@ before spending more permutations):
   `cmpwi`, and the one-case switch reproduces the layout but can never produce
   `cmplwi`. Witness: sibling `fn_1_A0978` (same `lbz; cmplwi; beq +; b far`).
 
-Ledger after both: matched=**5831** + 20 asm, unmatched=1449, blocked=8,
+Ledger after all three: matched=**5832** + 20 asm, unmatched=1448, blocked=8,
 0 claims. Gate green: ninja 0, 16 files OK, lint 0 findings, 11/11 tests.
 (10-17 morning also added Hermes's finding 370 parked-pass records; commit
 `891eeb0c`.)
