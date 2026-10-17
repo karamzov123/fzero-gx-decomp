@@ -43,10 +43,12 @@ versions) fail to flip it on all four units:
 | fn_800288C4 | 2    | arg0-rem subf + slwi      | r0,pitch r0 | r5 fresh, r0 |
 | fn_1_16BA0  | 4    | arg0[1]/unk_10 loads      | f1,f3       | f3,f1       |
 | fn_15_5460  | 8    | tbl_50/p_idx ptrs (2x)    | r5,r4       | r4,r5       |
+| fn_12_A5C   | 5    | quarter dividend + srawi  | r4 src2, r4 pitch | r3 src1, r5 fresh |
 
 Direction is inconsistent (ours=later-lower on 16BA0/15_5460, ours=earlier-pitch on
-A3D4/288C4), so no single C-level transform closes the family. All four are parked at
-~99.8-99.9% with the residual fully diagnosed. Any closure likely needs allocator-level
+A3D4/288C4, compound on A5C: src2-pitch + fresh-turns-pitch), so no single C-level
+transform closes the family. All five are parked at ~99.77-99.9% with the residual
+fully diagnosed. Any closure likely needs allocator-level
 evidence beyond source shape (e.g. the mwconstraints engine growing a web-pair
 generator with a validated flip evidence).
 
