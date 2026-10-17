@@ -58723,10 +58723,10 @@
     "symbols": [
       "_prolog"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/movie/_prolog.c"
+    "asm": true
   },
   {
     "module": "movie",
