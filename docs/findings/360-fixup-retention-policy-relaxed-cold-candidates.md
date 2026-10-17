@@ -55,7 +55,17 @@ cold, byte-verified, and restorable.
 
 The standing timer (every 10 min, `--max-sessions 2 --max-files 20000`) now
 drains the backlog incrementally; a one-off wider pass (`--max-sessions 24
---max-files 100000`) was run manually on 2026-10-16 to accelerate it.
+--max-files 100000`) was run manually on 2026-10-16/17 to accelerate it.
+
+## Measured outcome of the first wide pass
+
+23 sessions archived (+1 busy — the tenant timer was compacting concurrently and
+its lease deferred that session, as designed), 2,400,000 files deleted, 18.33GB
+of block bytes reclaimed; disk free went 18.9GB → 35.4GB mid-pass (33GB free
+after archives settled). Per-session candidates are drained at the pass's file
+cap (100,000), so large sessions continue shedding on later passes; the timer's
+own passes drain the remaining backlog. Archive store grew 3.1 → 4.6GB (581
+bundles) — the 18GB went into ~1.5GB of compressed verified bundles.
 
 ## Notes for future cycles
 
