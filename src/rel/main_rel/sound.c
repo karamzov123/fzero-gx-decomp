@@ -1083,6 +1083,33 @@ void fn_1_A1360(void) {
 }
 /* fzgx:end fn_1_A1360 */
 
+/* fzgx:begin fn_1_A1CE8 */
+extern u8 lbl_1_bss_6F243;
+extern u16 lbl_1_rodata_4328[42];
+
+void fn_1_A1CE8(u32 arg0) {
+    s16 v;
+    if (lbl_1_bss_6EAD0.unk_0 == NULL || (u8)arg0 >= 0x2D || lbl_1_bss_6F243 != 0) {
+        return;
+    }
+    if (fn_8004C658(lbl_1_bss_6EAD0.unk_0->unk_0) == 3) {
+        if ((u8)arg0 < 0x29) {
+            v = lbl_1_rodata_4328[(u8)arg0];
+        } else if ((u8)arg0 == 0x29) {
+            v = 0x100;
+        } else if ((u8)arg0 == 0x2A) {
+            v = 0;
+        } else if ((u8)arg0 == 0x2B) {
+            v = 0x200;
+        } else if ((u8)arg0 == 0x2C) {
+            v = 0x300;
+        }
+        fn_80067898(0xA8000000 | (s16)v);
+        lbl_1_bss_6F243 = 1;
+    }
+}
+/* fzgx:end fn_1_A1CE8 */
+
 /* fzgx:begin fn_1_A2A70 pool noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
