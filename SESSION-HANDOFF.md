@@ -7,9 +7,25 @@ fork `karamzov123/fzgx`). **Read this first in any new session.**
 
 ## 2026-10-17 session state (opencode/deepseek)
 
-Three landings. The newest closes a pool-blocked plateau by offline
-byte-equality over the pool *reach window*:
+Four landings. The newest closes the `fn_12_2F970` one-word plateau by fixing
+local-struct promotion typing; the one before it closed a pool-blocked plateau
+by offline byte-equality over the pool *reach window*:
 
+- **fn_12_2F970** (movie_module, 30 words, commit `e1788001`, finding 376).
+  Retail w7 is `mr r30,r31` (counter copy of the just-zeroed register); plain
+  locals fold (finding 371) and `opt_loop_invariants off` fixes the allocation,
+  but the whole u1–u6 `{u32 z; s32 i;}` family never promoted: `s32` is `signed
+  long`, and MWCC 1.3.2 pins a two-member local struct to the stack when its
+  **second** member is `s32`. Promotable pairs need second member `int`
+  (`{u32,int}`, `{int,int}`, `{uint,int}` all exact); `{u32,u32}` promotes but
+  flips the loop compare to `cmplwi` (29/30); writing the counter init before
+  the pre store demotes the struct (33 words, `stmw r24`). 280-variant
+  single-TU sweep: 18 exact, all with `s.zero = 0; p->pre = s.zero; s.index =
+  s.zero;` and the four `fzgx_live[k] = s.zero` stores; 30/30. Carved corpus
+  re-scan: 31 `li rD,0; mr rA,rD` pairs in 3,959 objects (10 landed witnesses);
+  landed `fn_1_4270C` keeps its accumulator zero in a one-member struct and
+  emits the same pair. attempt 22, write-unit `100.0% MATCH`, verify fast path
+  10.8 s.
 - **fn_10_1B2F4** (sel, 217 words, commit `7256d6b0`, finding 373). Residual was
   only the pool-base rows (`lbl_10_rodata_158` vs `...rodata.0`) plus 9 pool
   rows; `_pool_rows` accepts them only when our `.rodata[0..(reach+3)&~3)` is
@@ -27,8 +43,8 @@ byte-equality over the pool *reach window*:
   @27→lbl_10_rodata_1E8}`, verify fast path; gate green (ninja 0, 16 files OK,
   lint 0, 11/11 tests).
 
-Two one-word landings, both closed by *construct-class* changes after the whole
-source-shaping family failed; in both cases a matched same-module sibling
+Two more one-word landings, both closed by *construct-class* changes after the
+whole source-shaping family failed; in both cases a matched same-module sibling
 witness found the shape (scan matched siblings for the retail instruction pair
 before spending more permutations):
 
@@ -47,8 +63,9 @@ before spending more permutations):
   `cmpwi`, and the one-case switch reproduces the layout but can never produce
   `cmplwi`. Witness: sibling `fn_1_A0978` (same `lbz; cmplwi; beq +; b far`).
 
-Ledger after all three: matched=**5832** + 20 asm, unmatched=1448, blocked=8,
-0 claims. Gate green: ninja 0, 16 files OK, lint 0 findings, 11/11 tests.
+Ledger after all four: matched=**5833** + 20 asm, unmatched=1445, blocked=9,
+0 open claims of ours (Hermes held `fn_12_3763C` at snapshot time). Gate green:
+ninja 0, 16 files OK, lint 0 findings, 11/11 tests.
 (10-17 morning also added Hermes's finding 370 parked-pass records; commit
 `891eeb0c`.)
 
