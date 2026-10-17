@@ -1,0 +1,4 @@
+(lldb) command script import "/home/armandofm/projects/fzgx/tools/fzgx/mwgraph_lldb.py"
+(lldb) script mwgraph_lldb.run(lldb.debugger, '/home/armandofm/projects/fzgx/state/fixups/a3d4cap/config.json')
+{"symbol": "fn_8003A3D4", "compiler_sha256": "ccf4b465cec73b5aae9c5c5543dcf8cda8a62aba246f89e2e0b200d742f2e55c", "source_sha256": "625f0754b5a0dcb78f3759f1ae13dfb446bec7256f03dfca4d0cb679d03352de", "headers_sha256": "ad0f67b6f314fa803b0262b7917010fa3cc704525d45f37ad0914de144d2a5ef"}
+(lldb) quit
