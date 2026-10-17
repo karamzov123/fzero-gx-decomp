@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "status": "two-exact-linked-native-C-functions",
+  "functions": [
+    {
+      "symbol": "fn_12_39A68",
+      "module": "movie_module",
+      "size": 572,
+      "status": "matched",
+      "link_state": "verified",
+      "matched_commit": "86dd13a5",
+      "unit": {
+        "module": "movie_module",
+        "source": "rel/movie_module/fn_12_39A68.c",
+        "symbols": [
+          "fn_12_39A68"
+        ],
+        "status": "matching",
+        "mw_version": "GC/1.3.2",
+        "extra_cflags": [
+          "-O4,p"
+        ],
+        "pool": {
+          "...rodata.0": "lbl_12_rodata_2718",
+          "lbl_12_rodata_2718": "lbl_12_rodata_2718",
+          "lbl_12_rodata_2718__fzgx_offset_D4": "lbl_12_rodata_2718+0xD4",
+          "lbl_12_rodata_2718__fzgx_offset_100": "lbl_12_rodata_2718+0x100",
+          "lbl_12_rodata_2848": "lbl_12_rodata_2848",
+          "lbl_12_rodata_287C": "lbl_12_rodata_287C"
+        }
+      },
+      "source": "#include \"types.h\"\n\ntypedef struct Fn12_39A68_Object {\n    u8 _pad0[4];\n    s32 unk4;\n    u8 _pad8[0x38];\n    u32 unk40;\n} Fn12_39A68_Object;\n\ntypedef struct Fn12_39A68_Result {\n    u8 _pad0[4];\n    s32 f04;\n    u8 _pad8[8];\n    s32 f10;\n    u8 _pad14[8];\n    s32 f1c;\n    u8 _pad20[0x20];\n} Fn12_39A68_Result;\n\ntypedef struct Fn12_39A68_Out {\n    s32 unk0;\n    s32 unk4;\n    s32 unk8;\n    s32 unkC;\n    s32 unk10;\n} Fn12_39A68_Out;\n\nstatic const char lbl_12_rodata_2718[212] = { 69, 49, 49, 50, 50, 54, 52, 48, 58, 32, 109, 119, 80, 108, 121, 71, 101, 116, 83, 102, 100, 72, 110, 58, 32, 104, 97, 110, 100, 108, 101, 32, 105, 115, 32, 105, 110, 118, 97, 108, 105, 100, 46, 0, 69, 50, 48, 57, 51, 48, 48, 49, 32, 109, 119, 80, 108, 121, 65, 116, 116, 97, 99, 104, 77, 50, 118, 58, 32, 119, 111, 114, 107, 115, 105, 122, 101, 32, 105, 115, 32, 105, 110, 118, 97, 108, 105, 100, 46, 0, 0, 0, 69, 50, 49, 49, 48, 53, 49, 58, 32, 109, 119, 80, 108, 121, 83, 101, 116, 70, 108, 111, 97, 116, 83, 112, 101, 101, 100, 58, 32, 104, 97, 110, 100, 108, 101, 32, 105, 115, 32, 105, 110, 118, 97, 108, 105, 100, 46, 0, 0, 0, 0, 0, 63, -32, 0, 0, 0, 0, 0, 0, 68, 122, 0, 0, 0, 0, 0, 0, 67, 48, 0, 0, -128, 0, 0, 0, 69, 51, 48, 50, 50, 53, 49, 58, 32, 109, 119, 80, 108, 121, 83, 101, 116, 83, 112, 101, 101, 100, 58, 32, 104, 97, 110, 100, 108, 101, 32, 105, 115, 32, 105, 110, 118, 97, 108, 105, 100, 46, 0, 0 };\nstatic const char lbl_12_rodata_2718__fzgx_offset_D4[44] = { 69, 50, 48, 50, 49, 57, 49, 58, 32, 109, 119, 80, 108, 121, 71, 101, 116, 80, 108, 121, 73, 110, 102, 58, 32, 104, 97, 110, 100, 108, 101, 32, 105, 115, 32, 105, 110, 118, 97, 108, 105, 100, 46, 0 };\nstatic const char lbl_12_rodata_2718__fzgx_offset_100[48] = { 69, 50, 48, 50, 50, 51, 50, 58, 32, 109, 119, 80, 108, 121, 71, 101, 116, 78, 117, 109, 68, 114, 111, 112, 70, 114, 109, 58, 32, 104, 97, 110, 100, 108, 101, 32, 105, 115, 32, 105, 110, 118, 97, 108, 105, 100, 46, 0 };\nstatic const char lbl_12_rodata_2848[49] = { 69, 49, 49, 50, 50, 54, 49, 57, 58, 32, 109, 119, 80, 108, 121, 71, 101, 116, 78, 117, 109, 83, 107, 105, 112, 68, 101, 99, 58, 32, 104, 97, 110, 100, 108, 101, 32, 105, 115, 32, 105, 110, 118, 97, 108, 105, 100, 46, 0 };\nstatic const char lbl_12_rodata_287C[52] = { 69, 49, 49, 50, 50, 54, 50, 51, 58, 32, 109, 119, 80, 108, 121, 71, 101, 116, 78, 117, 109, 83, 107, 105, 112, 69, 109, 112, 116, 121, 66, 58, 32, 104, 97, 110, 100, 108, 101, 32, 105, 115, 32, 105, 110, 118, 97, 108, 105, 100, 46, 0 };\nextern void MWSFSVM_Error(const char *format, ...);\nextern void fn_12_2D58C(void *data, Fn12_39A68_Result *result);\nextern u32 fn_12_33874(Fn12_39A68_Object *object);\n\nstatic inline s32 ply_is_valid(Fn12_39A68_Object *object) {\n    if (object == 0) return 0;\n    return object->unk4;\n}\n\nstatic inline void *ply_get_stream(Fn12_39A68_Object *object) {\n    if (!ply_is_valid(object)) {\n        MWSFSVM_Error(lbl_12_rodata_2718);\n        return 0;\n    }\n    return (void *)object->unk40;\n}\n\nstatic inline s32 ply_get_skip_dec(Fn12_39A68_Object *object) {\n    Fn12_39A68_Result result;\n    if (!ply_is_valid(object)) {\n        MWSFSVM_Error(lbl_12_rodata_2848);\n        return 0;\n    }\n    fn_12_2D58C(ply_get_stream(object), &result);\n    return result.f04 - result.f10;\n}\n\nstatic inline s32 ply_get_drop_count(Fn12_39A68_Object *object) {\n    s32 skipped;\n    if (!ply_is_valid(object)) {\n        MWSFSVM_Error(lbl_12_rodata_2718__fzgx_offset_100);\n        return 0;\n    }\n    skipped = ply_get_skip_dec(object);\n    return skipped + fn_12_33874(object);\n}\n\nstatic inline s32 ply_get_empty_b(Fn12_39A68_Object *object) {\n    Fn12_39A68_Result result;\n    if (!ply_is_valid(object)) {\n        MWSFSVM_Error(lbl_12_rodata_287C);\n        return 0;\n    }\n    fn_12_2D58C((void *)object->unk40, &result);\n    return result.f10;\n}\n\nvoid fn_12_39A68(Fn12_39A68_Object *object, Fn12_39A68_Out *out) {\n    Fn12_39A68_Result result;\n    if (!ply_is_valid(object)) {\n        MWSFSVM_Error(lbl_12_rodata_2718__fzgx_offset_D4);\n        return;\n    }\n    fn_12_2D58C(ply_get_stream(object), &result);\n    out->unk0 = ply_get_drop_count(object);\n    out->unk4 = ply_get_skip_dec(object);\n    out->unk8 = fn_12_33874(object);\n    out->unkC = ply_get_empty_b(object);\n    out->unk10 = result.f1c;\n}\n",
+      "source_sha256": "7e10f91ef51fcdf26333b7f3c173806d6dac02cd484289316bb08814dac56ed7",
+      "instruction_words": 143,
+      "oracle": {
+        "ok": true,
+        "symbol": "fn_12_39A68",
+        "unit": "movie_module/rel/movie_module/fn_12_39A68",
+        "percent": 100.0,
+        "matched": true,
+        "symbols": {
+          "fn_12_39A68": 100.0
+        },
+        "data_sections": {},
+        "diff": [],
+        "error": "",
+        "missing_in_base": [],
+        "extra_in_base": [],
+        "matched_pool": false,
+        "pool": [
+          "lbl_12_rodata_2718=initializer[408]",
+          "lbl_12_rodata_2718=literal pool[408]",
+          "lbl_12_rodata_2718=verified pool object[212]",
+          "lbl_12_rodata_2718+0xD4=verified pool object[44]",
+          "lbl_12_rodata_2718+0x100=verified pool object[48]",
+          "lbl_12_rodata_2848=verified pool object[49]",
+          "lbl_12_rodata_287C=verified pool object[52]",
+          "lbl_12_rodata_2718=literal pool[408]"
+        ],
+        "pool_map": {
+          "...rodata.0": "lbl_12_rodata_2718",
+          "lbl_12_rodata_2718": "lbl_12_rodata_2718",
+          "lbl_12_rodata_2718__fzgx_offset_D4": "lbl_12_rodata_2718+0xD4",
+          "lbl_12_rodata_2718__fzgx_offset_100": "lbl_12_rodata_2718+0x100",
+          "lbl_12_rodata_2848": "lbl_12_rodata_2848",
+          "lbl_12_rodata_287C": "lbl_12_rodata_287C"
+        },
+        "uncarved": false,
+        "pool_rows": 0,
+        "percent_adjusted": 100.0,
+        "mw_version": "GC/1.3.2",
+        "extra_cflags": "-O4,p",
+        "instruction_rows": 0,
+        "differing_rows": 0,
+        "value_flow": [],
+        "operand_order": []
+      }
+    },
+    {
+      "symbol": "fn_12_2A6FC",
+      "module": "movie_module",
+      "size": 352,
+      "status": "matched",
+      "link_state": "verified",
+      "matched_commit": "15b6ef10",
+      "unit": {
+        "module": "movie_module",
+        "source": "rel/movie_module/fn_12_2A6FC.c",
+        "symbols": [
+          "fn_12_2A6FC"
+        ],
+        "status": "matching",
+        "mw_version": "GC/1.3.2",
+        "extra_cflags": [],
+        "pool": {
+          "...bss.0": "lbl_12_bss_96A0",
+          "lbl_12_bss_96A0": "lbl_12_bss_96A0",
+          "lbl_12_bss_96A0__fzgx_offset_4": "lbl_12_bss_96A0+0x4",
+          "lbl_12_bss_96A0__fzgx_offset_44": "lbl_12_bss_96A0+0x44",
+          "lbl_12_bss_96A0__fzgx_offset_4C": "lbl_12_bss_96A0+0x4C"
+        }
+      },
+      "source": "#include \"types.h\"\n\ntypedef struct MovieParams {\n    u32 field0;\n    u32 field1;\n    u32 field2;\n    u32 field3;\n    u32 field4;\n    u32 field5;\n    u32 field6;\n    s32 field7;\n    u32 field8;\n} MovieParams;\n\ntypedef struct MovieSize {\n    u32 width;\n    u32 height;\n} MovieSize;\n\n\n/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */\nu32 lbl_12_bss_96A0;\nu32 lbl_12_bss_96A0__fzgx_offset_4[16];\nMovieSize lbl_12_bss_96A0__fzgx_offset_44;\nMovieParams lbl_12_bss_96A0__fzgx_offset_4C;\n\n#pragma section code_type \".fzgxpool\"\nstatic void fzgx_bss_layout(void) {\n    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */\n    s = *(u8 *)&lbl_12_bss_96A0;\n    s = *(u8 *)&lbl_12_bss_96A0__fzgx_offset_4;\n    s = *(u8 *)&lbl_12_bss_96A0__fzgx_offset_44;\n    s = *(u8 *)&lbl_12_bss_96A0__fzgx_offset_4C;\n}\n#pragma section code_type \".text\"\n\nvoid fn_12_2A6FC(MovieParams *arg0, MovieSize *arg1, u32 *arg2) {\n    MovieParams *params = &lbl_12_bss_96A0__fzgx_offset_4C;\n    MovieSize *size = &lbl_12_bss_96A0__fzgx_offset_44;\n    u32 *dst = lbl_12_bss_96A0__fzgx_offset_4;\n    u32 *src = arg2;\n    s32 i;\n\n    lbl_12_bss_96A0__fzgx_offset_4C = *arg0;\n    params->field4 = 0;\n    params->field8 = 0;\n    lbl_12_bss_96A0__fzgx_offset_44.width = (arg1->width + 31) & ~31;\n    size->height = (arg1->height + 31) & ~31;\n\n    for (i = 0; i < 16; i++) {\n        if (i < arg0->field7) {\n            dst[0] = (src[0] + 31) & ~31;\n        } else {\n            dst[0] = 0;\n        }\n        src++;\n        dst++;\n    }\n}\n",
+      "source_sha256": "f01271d40455d1b207e8d5cbc581cce3f3bbf7d56b0ba62e2757b4c42adbe172",
+      "instruction_words": 88,
+      "oracle": {
+        "ok": true,
+        "symbol": "fn_12_2A6FC",
+        "unit": "",
+        "percent": 100.0,
+        "matched": true,
+        "symbols": {
+          "fn_12_2A6FC": 100.0
+        },
+        "data_sections": {},
+        "diff": [],
+        "error": "",
+        "missing_in_base": [],
+        "extra_in_base": [],
+        "matched_pool": false,
+        "pool": [
+          "lbl_12_bss_96A0=owned BSS base",
+          "lbl_12_bss_96A0=owned BSS base",
+          "lbl_12_bss_96A0=verified BSS object[4]",
+          "lbl_12_bss_96A0+0x4=verified BSS object[64]",
+          "lbl_12_bss_96A0+0x44=verified BSS object[8]",
+          "lbl_12_bss_96A0+0x4C=verified BSS object[36]"
+        ],
+        "pool_map": {
+          "...bss.0": "lbl_12_bss_96A0",
+          "lbl_12_bss_96A0": "lbl_12_bss_96A0",
+          "lbl_12_bss_96A0__fzgx_offset_4": "lbl_12_bss_96A0+0x4",
+          "lbl_12_bss_96A0__fzgx_offset_44": "lbl_12_bss_96A0+0x44",
+          "lbl_12_bss_96A0__fzgx_offset_4C": "lbl_12_bss_96A0+0x4C"
+        },
+        "uncarved": true,
+        "pool_rows": 0,
+        "percent_adjusted": 100.0,
+        "mw_version": "GC/1.3.2",
+        "extra_cflags": null,
+        "instruction_rows": 0,
+        "differing_rows": 0,
+        "value_flow": [],
+        "operand_order": []
+      }
+    }
+  ],
+  "total_code_bytes": 924,
+  "retail_rodata_region": {
+    "module": "movie_module",
+    "section": ".rodata",
+    "start": "0x2718",
+    "end_exclusive": "0x28B0",
+    "size": 408,
+    "sha256": "e2e68a1c84b7a3319cb3b72c0b337d78461e0491a4786fbaa9f22bb9f544d203"
+  },
+  "retail_BSS_owner": {
+    "module": "movie_module",
+    "section": ".bss",
+    "symbol": "lbl_12_bss_96A0",
+    "address": "0x96A0",
+    "size": 112,
+    "subobjects": [
+      {
+        "offset": 0,
+        "size": 4
+      },
+      {
+        "offset": 4,
+        "size": 64
+      },
+      {
+        "offset": 68,
+        "size": 8
+      },
+      {
+        "offset": 76,
+        "size": 36
+      }
+    ]
+  },
+  "gate": "COMMAND ['ninja', 'build/GFZE01/ok']\nninja: no work to do.\nEXIT 0\nCOMMAND ['build/tools/dtk', 'shasum', '-q', '-c', 'config/GFZE01/build.sha1']\n16 files OK\nEXIT 0\nCOMMAND ['.venv/bin/python', 'tools/fzgx.py', 'lint']\n0 finding(s)\nEXIT 0\n",
+  "workflow": "Inline manual work only. No subagent candidate used. Normal project submit and verify; publication through approved fleet_integrator only."
+}
