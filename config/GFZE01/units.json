@@ -64422,6 +64422,23 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_3A69C.c",
+    "symbols": [
+      "fn_12_3A69C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "...rodata.0": "lbl_12_rodata_2718",
+      "lbl_12_rodata_2718": "lbl_12_rodata_2718",
+      "lbl_12_rodata_2718__fzgx_offset_D4": "lbl_12_rodata_2718+0xD4",
+      "lbl_12_rodata_2718__fzgx_offset_100": "lbl_12_rodata_2718+0x100",
+      "lbl_12_rodata_2848": "lbl_12_rodata_2848"
+    }
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_3A784.c",
     "symbols": [
       "fn_12_3A784"
