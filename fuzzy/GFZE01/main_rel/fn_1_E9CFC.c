@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (95.95% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (96.87% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -72,6 +72,7 @@ void fn_1_E9CFC(void) {
     struct { u32 value; } j;
     u32 k;
     u32 v;
+    u8 *record;
 
     data = lbl_1_data_3E358;
     bss = (u8 *)&lbl_1_bss_7B180;
@@ -94,8 +95,8 @@ void fn_1_E9CFC(void) {
         sh = (s16 *)(bss + 0x17d0);
         wd = (u32 *)(bss + 0x17dc);
         by = (u8 *)(bss + 0x17f0);
-        for (k = 5; k != 0; k--) {
-            sh[k] = 0;
+        for (k = 0; k < 5; k++) {
+            sh[k] = -1;
             wd[k] = 0;
             by[k * 3] = 0;
             by[k * 3 + 1] = 0;
@@ -197,8 +198,10 @@ void fn_1_E9CFC(void) {
         PW(0x1748) = 0;
         PW(0x173c) = 0;
         PW(0x1740) = 0;
+        record = bss + 0x2c;
         for (j.value = 0; j.value < 0x7f; j.value++) {
-            fn_80008BEC((((((bss)) + ((0x28 * j.value))) + ((0x2c)))), 0, 0x28);
+            fn_80008BEC(record, 0, 0x28);
+            record += 0x28;
         }
         PW(0x17cc) = 1;
         PW(0xc) = 0;
