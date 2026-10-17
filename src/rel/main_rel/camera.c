@@ -1056,6 +1056,83 @@ s32 fn_1_7000(void) {
 }
 /* fzgx:end fn_1_7000 */
 
+/* fzgx:begin fn_1_707C */
+typedef struct {
+    u8 pad_0[2];
+    s16 unk_2;
+    u8 pad_4[0x1F8];
+} fn_1_707C_Entry;
+
+typedef struct {
+    u8 pad_0[0x6];
+    s16 unk_6;
+} fn_1_707C_Flag;
+
+#pragma peephole on
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+Obj_1_bss_F68_Target *fzgx_obj_lbl_1_bss_F68;
+u8 *fzgx_obj_game_camera_entries;
+u8 *fzgx_obj_live_camera;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_F68;
+    s = *(u8 *)&fzgx_obj_game_camera_entries;
+    s = *(u8 *)&fzgx_obj_live_camera;
+}
+#pragma section code_type ".text"
+
+static inline fn_1_707C_Flag * fn_1_707C_read_pointer(void) { return (fn_1_707C_Flag *)(void *)fzgx_obj_live_camera; }
+#pragma opt_dead_assignments off
+s32 fn_1_707C(u8 arg0) {
+    u32 i;
+    s32 value;
+    fn_1_707C_Entry *cur;
+    u32 count;
+    u32 id;
+    fn_1_707C_Entry *entries;
+    fn_1_707C_Flag *flags;
+    Obj_1_bss_F68_Target *obj;
+    fn_1_707C_Entry * fzgx_live;
+
+    if ((obj = (Obj_1_bss_F68_Target *)(void *)fzgx_obj_lbl_1_bss_F68) == 0) {
+        return 0;
+    }
+
+    fzgx_live = (fn_1_707C_Entry *)(void *)fzgx_obj_game_camera_entries;
+    entries = fzgx_live;
+    i = 0;
+    id = arg0;
+    count = obj->unk_49;
+    flags = fn_1_707C_read_pointer();
+    cur = entries;
+
+    {
+    u32 fzgx_loop_i_1063;
+for (fzgx_loop_i_1063 = 0; fzgx_loop_i_1063 < count; fzgx_loop_i_1063++) {
+        if ((fzgx_loop_i_1063 == 0 && ((s8)obj->unk_48 == 9 || (s8)obj->unk_48 == 10)) ||
+            (fzgx_loop_i_1063 == 3 && (s8)obj->unk_48 == 6)) {
+            value = flags->unk_6;
+        } else if (fzgx_loop_i_1063 == 1 && (s8)obj->unk_48 == 10) {
+            value = entries->unk_2;
+        } else {
+            value = cur->unk_2;
+        }
+        if ((u32)value == id) {
+            return 1;
+        }
+        cur = (fn_1_707C_Entry *)((u8 *)cur + 0x1FC);
+    }
+    i = fzgx_loop_i_1063;
+}
+    return 0;
+}
+#pragma opt_dead_assignments reset
+
+#pragma peephole reset
+/* fzgx:end fn_1_707C */
+
 /* fzgx:begin camera_set_entry_field_0xa8 */
 void camera_set_entry_field_0xa8(u8 index, s16 value) {
     // Store the selected camera entry's parameter.

@@ -35247,6 +35247,23 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/camera/fn_1_707C.c",
+    "symbols": [
+      "fn_1_707C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/camera.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_F68",
+      "fzgx_obj_lbl_1_bss_F68": "lbl_1_bss_F68",
+      "fzgx_obj_game_camera_entries": "game_camera_entries",
+      "fzgx_obj_live_camera": "live_camera"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/camera/fn_1_715C.c",
     "symbols": [
       "fn_1_715C"
