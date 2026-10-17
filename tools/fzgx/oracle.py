@@ -341,6 +341,19 @@ def check(project: Project, symbol: str, max_diff_lines: int = 80, source: Optio
 
 def _diff(project: Project, module: str, symbol: str, unit: str, max_diff_lines: int,
           target: Optional[Path] = None, base: Optional[Path] = None) -> CheckResult:
+    candidate = base if base is not None else _base_object(project, unit)
+    if candidate is not None and candidate.exists():
+        try:
+            elf = poolfix.Elf(candidate.read_bytes())
+            own = next((s for s in elf.symbols() if s['name'] == symbol), None)
+            if (own and 0 < own['shndx'] < len(elf.sections) and
+                    elf.sections[own['shndx']]['name'] == '.fzgxpool'):
+                # Primer filtering must never hide the function being matched.
+                return CheckResult(False, symbol, unit, error=(
+                    f"target function {module}:{symbol} is in the .fzgxpool primer section; "
+                    "restore its code section before checking"))
+        except (OSError, ValueError) as exc:
+            return CheckResult(False, symbol, unit, error=f"cannot inspect candidate object: {exc}")
     if target is not None:
         expected = project.find_symbol(symbol, module)
         target_words = words(target, symbol)
