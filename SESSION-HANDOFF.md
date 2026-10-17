@@ -7,10 +7,25 @@ fork `karamzov123/fzgx`). **Read this first in any new session.**
 
 ## 2026-10-17 session state (opencode/deepseek)
 
-Four landings. The newest closes the `fn_12_2F970` one-word plateau by fixing
-local-struct promotion typing; the one before it closed a pool-blocked plateau
-by offline byte-equality over the pool *reach window*:
+Five landings. The newest is a pool-window/displacement close in the `font` TU;
+before it, the `fn_12_2F970` one-word plateau fell to local-struct promotion
+typing, and earlier ones to byte-equality over the pool *reach window*:
 
+- **fn_1_53B14** (main_rel/font, 49 words, commit `e4abc50a`, finding 377).
+  The 99.22449% body (`params = { 0 }`) compiled 46/49 words: MWCC materialises
+  a large zero aggregate as a copy from a compiler-generated **zero template**,
+  so the three residual rows were displacement immediates off the live pool base
+  (`0x60/0x150/0x158` vs `0x68/0x58/0x60`) — not repairable by the pool
+  machinery. Fix: rebuild retail's `[lbl_1_rodata_26F8, +0x15C)` window
+  byte-equal in the block (finding 344's table + `{0,1.0f}@0x58` + 2^52 primer
+  @0x60 + 58-word filler + 255.0 primer @0x150 + **8.0f primer** @0x158 — a
+  literal, unlike finding 344's native table4, because this body reads it),
+  then copy from `fzgx_pool_table1`. `pool_map {...rodata.0→lbl_1_rodata_26F8,
+  @9→lbl_1_rodata_2758, fzgx_pool_table1→lbl_1_rodata_26F8}`; post-retarget
+  `.text` byte-equal to retail, relocations identical, `.rodata` empty. Zero
+  ledger checks before the claim: one offline `oracle.check(source=…)` predicted
+  100.0% + pool_map; write-unit `100.0% MATCH` (1 check), verify fast path
+  11.9 s. Same PROLOGUE CONFLICT / `noprologue` coexistence as finding 344.
 - **fn_12_2F970** (movie_module, 30 words, commit `e1788001`, finding 376).
   Retail w7 is `mr r30,r31` (counter copy of the just-zeroed register); plain
   locals fold (finding 371) and `opt_loop_invariants off` fixes the allocation,
@@ -63,9 +78,10 @@ before spending more permutations):
   `cmpwi`, and the one-case switch reproduces the layout but can never produce
   `cmplwi`. Witness: sibling `fn_1_A0978` (same `lbz; cmplwi; beq +; b far`).
 
-Ledger after all four: matched=**5833** + 20 asm, unmatched=1445, blocked=9,
-0 open claims of ours (Hermes held `fn_12_3763C` at snapshot time). Gate green:
-ninja 0, 16 files OK, lint 0 findings, 11/11 tests.
+Ledger after all five: matched=**5834** + 20 asm, unmatched=1444, blocked=9,
+0 open claims of ours (Hermes released `fn_12_3763C` unmatched and held
+`fn_8_EFA4` at snapshot time). Gate green: ninja 0, 16 files OK, lint 0
+findings, 11/11 tests.
 (10-17 morning also added Hermes's finding 370 parked-pass records; commit
 `891eeb0c`.)
 
