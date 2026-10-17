@@ -1,7 +1,8 @@
-/* Non-matching: best partial attempt (87.90% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.77% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
+/* Packed RGBA is returned as a word and compared by its four channels. */
 typedef union {
     s32 w;
     u8 b[4];
@@ -20,7 +21,7 @@ void fn_3_1B130(void *arg0, s16 arg1, s16 arg2, u32 *arg3) {
     u8 t1;
     u8 t2;
     u8 t3;
-    s16 xs[4134];
+    s16 xs[4096];
     s16 ys[4096];
     fn_3_149AC_color cur;
     fn_3_149AC_color seed;
@@ -84,7 +85,7 @@ for (fzgx_loop_idx_2667 = lo; fzgx_loop_idx_2667 < hi; fzgx_loop_idx_2667++) {
                 if (tmp_fn_3_1B130_array_read == t0 && cur.b[1] == t1 && cur.b[2] == t2 && cur.b[3] == t3) {
                     xs[n] = fzgx_loop_idx_2667;
                     ys[n] = (*((ys) + (i))) - 1;
-                    n = (u16)(n + 1);
+                    n = (n + 1) % 4096;
                 }
             }
     idx = fzgx_loop_idx_2667;
@@ -100,16 +101,17 @@ for (fzgx_loop_idx_3218 = lo; fzgx_loop_idx_3218 < hi; fzgx_loop_idx_3218++) {
                 if (tmp_fn_3_1B130_array_read == t0 && cur.b[1] == t1 && cur.b[2] == t2 && cur.b[3] == t3) {
                     xs[n] = fzgx_loop_idx_3218;
                     ys[n] = (*((ys) + (i))) + 1;
-                    n = (u16)(n + 1);
+                    n = (n + 1) % 4096;
                 }
             }
     idx = fzgx_loop_idx_3218;
 }
-            i = (s16)(i + 1);
+            i = (i + 1) % 4096;
         }
     }
 }
 #pragma opt_lifetimes reset
 
 #pragma opt_strength_reduction reset
+
 

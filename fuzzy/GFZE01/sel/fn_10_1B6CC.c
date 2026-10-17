@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (96.62% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.04% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "font.h"
@@ -6,10 +6,10 @@
 typedef struct Packet1D314 {
     u32 unk_0;
     u32 unk_4;
-    u32 unk_8;
+    u8 unk_8;
     u32 unk_C;
     u32 unk_10;
-    u32 unk_14;
+    u16 unk_14;
     u32 unk_18;
     u8 pad_1C[4];
     u16 unk_20;
@@ -109,7 +109,7 @@ extern SelState lbl_1_bss_8B3A0;
 extern u32 lbl_1_data_418D4[];
 extern u32 lbl_801A66A0;
 extern s32 lbl_801A66B4;
-extern s16 lbl_801A66C0;
+extern s16 lbl_801A66C0[1];
 extern u32 fn_10_1D314(void *);
 extern u32 fn_10_21978(void);
 extern s32 fn_10_21C20(s16, s16);
@@ -133,16 +133,16 @@ static inline f32 fn_10_1B6CC_read_pointer(struct fn_10_1B6CC_lbl_10_rodata_158 
 static inline f32 fn_10_1B6CC_read_pointer_(struct fn_10_1B6CC_lbl_10_rodata_158 * owner) { return owner->unk_F84; }
 #pragma opt_dead_assignments off
 static inline f32 fn_10_1B6CC_read_pointer__(struct fn_10_1B6CC_lbl_10_rodata_158 * owner) { return owner->unk_4C; }
+static inline const char * *fn_10_1B6CC_array_read(const char * *array) { return array; }
+#pragma opt_loop_invariants off
 void fn_10_1B6CC(void) {
-    u8 fzgx_value;
-    s32 tmp_call14;
+    const char **labels;
     u8 *p_lbl_10_data_D00;
     struct fn_10_1B6CC_lbl_10_rodata_158 *p_lbl_10_rodata_158;
     f32 v2;
     f32 v8;
     FontDrawPacket loc_5C;
     Packet1D314 loc_8;
-    FontDrawPacket * lab_t0;
     s32 acc;
     s32 v43;
     s32 i;
@@ -171,11 +171,12 @@ void fn_10_1B6CC(void) {
     fn_1_4955C(p_lbl_10_rodata_158->unk_494, p_lbl_10_rodata_158->unk_494);
     fn_1_49590(p_lbl_10_rodata_158->unk_48);
     fn_1_495B0(0x80000000);
-    fn_1_4AE0C((const char *)(p_lbl_10_data_D00 + 0x5134), *(u32 *)(((p_lbl_10_data_D00) + ((((0x55DC)) + (((lbl_801A66B4 << 2))))))));
+    labels = (const char **)(p_lbl_10_data_D00 + 0x55dc);
+    fn_1_4AE0C((const char *)(p_lbl_10_data_D00 + 0x5134), fn_10_1B6CC_array_read(labels)[lbl_801A66B4]);
     fn_10_21978();
 
-    if (lbl_801A66C0 < 30) {
-        v2 = (f32)lbl_801A66C0 / p_lbl_10_rodata_158->unk_654;
+    if ((*((lbl_801A66C0) + (0))) < 30) {
+        v2 = (f32)lbl_801A66C0[0] / p_lbl_10_rodata_158->unk_654;
         v2 = v2 * v2;
         v2 = v2 * v2;
     } else {
@@ -195,9 +196,7 @@ void fn_10_1B6CC(void) {
         loc_5C.u1 = fn_10_1B6CC_read_pointer_(p_lbl_10_rodata_158);
         loc_5C.scale_x = fn_10_1B6CC_read_pointer_(p_lbl_10_rodata_158);
         loc_5C.x = fn_10_1B6CC_read_pointer(p_lbl_10_rodata_158) + v8;
-        lab_t0 = &loc_5C;
-        tmp_call14 = fn_1_4F734(lab_t0);
-        tmp_call14;
+        fn_1_4F734(&loc_5C);
 
         loc_5C.flags = 9;
         loc_5C.u0 = p_lbl_10_rodata_158->unk_F88;
@@ -311,8 +310,7 @@ void fn_10_1B6CC(void) {
         p->unk_2A = v43;
         p->unk_3F = v44 * 3;
         p->unk_2C = 0;
-        fzgx_value = (v44 & 0x3F) << 2;
-        p->unk_40 = fzgx_value;
+        p->unk_40 = (v44 & 0x3F) << 2;
         p->unk_2E = -v43;
         p->unk_41 = v44 * 5;
         sprintf(p->text, (const char *)(p_lbl_10_data_D00 + 0x43));
@@ -321,6 +319,8 @@ void fn_10_1B6CC(void) {
         acc += 11234;
     } while (i < 2);
 }
+#pragma opt_loop_invariants reset
+
 #pragma opt_dead_assignments reset
 
 #pragma opt_common_subs reset
