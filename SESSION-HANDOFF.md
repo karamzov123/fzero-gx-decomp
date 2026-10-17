@@ -78,12 +78,27 @@ before spending more permutations):
   `cmpwi`, and the one-case switch reproduces the layout but can never produce
   `cmplwi`. Witness: sibling `fn_1_A0978` (same `lbz; cmplwi; beq +; b far`).
 
+Parked, not landed: **fn_1_2A214** (main_rel/stcoli, 36 words) at its 99.1667%
+5-row allocator fixed point — finding 378. All 24 decl perms under
+`opt_propagation off` reach exactly 4 colorings, none the retail one
+(f2,f1,f0); no-pragma shapes are all the flat 7-row body; GC/1.2.5–2.5
+identical. Matched siblings `fn_1_879B0` / `fn_1_156D9C` do emit retail's
+descending f2,f1,f0 homes and the exact missing `fmuls f1,f2,f1`, so the wall
+is this RTL's selection, not a source spelling. Future lever: capture /
+constraint-pipeline support (finding 361 class). Left claimable (`unmatched`).
+
 Ledger after all five: matched=**5834** + 20 asm, unmatched=1444, blocked=9,
 0 open claims of ours (Hermes released `fn_12_3763C` unmatched and held
 `fn_8_EFA4` at snapshot time). Gate green: ninja 0, 16 files OK, lint 0
 findings, 11/11 tests.
 (10-17 morning also added Hermes's finding 370 parked-pass records; commit
 `891eeb0c`.)
+
+**Next lead** (designated after 378): `fn_1_156C08` (99.01%, 12 attempts) —
+finding 361's entry points: corpus scan for other `fn_8006B55C` callers, or
+give mwconstraints the retail row-12 `lis`/`addi` magic-pair support and
+re-run the capture projection. Fallback fresh candidate: `fn_1_118D90`
+(main_rel, 1344 B, 99.72).
 
 ## 2026-10-16 session state (opencode/deepseek)
 
