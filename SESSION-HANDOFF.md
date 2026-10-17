@@ -1,9 +1,36 @@
 # F-Zero GX decomp session — state and handoff
 
-Last updated: 2026-10-16. Repo: `/home/armandofm/projects/fzgx` (branch `main`,
+Last updated: 2026-10-17. Repo: `/home/armandofm/projects/fzgx` (branch `main`,
 fork `karamzov123/fzgx`). **Read this first in any new session.**
 (The 2026-10-12 sections below are still valid; the newest session state is in the
-`2026-10-16 session state` section just below.)
+`2026-10-17 session state` section just below.)
+
+## 2026-10-17 session state (opencode/deepseek)
+
+Two one-word landings, both closed by *construct-class* changes after the whole
+source-shaping family failed; in both cases a matched same-module sibling
+witness found the shape (scan matched siblings for the retail instruction pair
+before spending more permutations):
+
+- **fn_12_2F7AC** (movie_module, 244 B, commit `dd9ef50e`, finding 371). Retail
+  w5 `mr r31,r6` (init `index = result` after `result = 0`) cannot be kept by
+  plain locals: `opt_propagation off`/`opt_common_subs off` are *inert*, and
+  chained/multi-decl/goto/temp-copy spellings all re-materialize `li r31,0`
+  (frontend, not optimizer). Holding result+index in a local `loop_state`
+  **struct** (`s.result = 0; s.index = s.result;`) keeps the copy: 61/61.
+  Witness: sibling `mwSfdDestroy` materializes a hoisted constant 0 as
+  `mr r30,r28` from the just-zeroed counter.
+- **fn_1_A1CE8** (main_rel/sound, commit `a5ac7b0a`, finding 372). Retail w15
+  `cmplwi r0,0` with `beq body; b exit` is the last term of a **short-circuit
+  OR** guard (`if (ptr == NULL || (u8)arg0 >= 0x2D || flag != 0) return;`);
+  every switch/cast variant (u32/u8/bare, `case 0u`, bitfield pun) stays
+  `cmpwi`, and the one-case switch reproduces the layout but can never produce
+  `cmplwi`. Witness: sibling `fn_1_A0978` (same `lbz; cmplwi; beq +; b far`).
+
+Ledger after both: matched=**5831** + 20 asm, unmatched=1449, blocked=8,
+0 claims. Gate green: ninja 0, 16 files OK, lint 0 findings, 11/11 tests.
+(10-17 morning also added Hermes's finding 370 parked-pass records; commit
+`891eeb0c`.)
 
 ## 2026-10-16 session state (opencode/deepseek)
 
