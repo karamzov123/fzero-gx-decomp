@@ -328,6 +328,10 @@ def cmd_shapecensus(a, p):
         argv += ["--module", a.module]
     if a.json:
         argv.append("--json")
+    if getattr(a, "words", False):
+        argv.append("--words")
+    if getattr(a, "top", None) is not None:
+        argv += ["--top", str(a.top)]
     return shapecensus.main(argv)
 
 
@@ -675,6 +679,9 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--limit", type=int, default=60)
     s.add_argument("--module")
     s.add_argument("--json", action="store_true")
+    s.add_argument("--words", action="store_true",
+                   help="rank by differing word count instead of diff rows")
+    s.add_argument("--top", type=int, default=20, help="how many to show in --words mode")
     s = sub.add_parser("snapshot", help="write state/ledger.json"); s.set_defaults(fn=cmd_snapshot)
     s = sub.add_parser("restore", help="load state/ledger.json into the local ledger"); s.set_defaults(fn=cmd_restore)
     s = sub.add_parser("lint", help="shiftability/style lint"); s.set_defaults(fn=cmd_lint); s.add_argument("paths", nargs="*")

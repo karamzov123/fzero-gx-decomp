@@ -2,241 +2,38 @@
  "threshold_words": 2,
  "functions": [
   {
-   "symbol": "fn_1_2D038",
-   "differing": 1,
-   "words": 315,
-   "percent": 99.6825,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
    "symbol": "fn_1_135D7C",
    "differing": 1,
    "words": 254,
-   "percent": 99.6063,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_4270C",
-   "differing": 1,
-   "words": 241,
-   "percent": 99.5851,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_17_7728",
-   "differing": 1,
-   "words": 211,
-   "percent": 99.5261,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "movie:_prolog",
-   "differing": 1,
-   "words": 128,
-   "percent": 99.2188,
+   "percent": 99.61,
    "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
   },
   {
    "symbol": "fn_1_1384C",
    "differing": 1,
    "words": 119,
-   "percent": 99.1597,
+   "percent": 99.4958,
    "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
   },
   {
-   "symbol": "fn_1_53E40",
+   "symbol": "fn_1_2D038",
    "differing": 1,
-   "words": 105,
-   "percent": 99.0476,
+   "words": 315,
+   "percent": 99.68,
    "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
   },
   {
-   "symbol": "fn_1_156C08",
+   "symbol": "fn_1_707C",
    "differing": 1,
-   "words": 101,
-   "percent": 99.0099,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_12_331A8",
-   "differing": 1,
-   "words": 77,
-   "percent": 98.7013,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_12_21C00",
-   "differing": 1,
-   "words": 76,
-   "percent": 98.6842,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_B7CE4",
-   "differing": 1,
-   "words": 76,
-   "percent": 98.6842,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_12_2F7AC",
-   "differing": 1,
-   "words": 61,
-   "percent": 98.3607,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_A1CE8",
-   "differing": 1,
-   "words": 57,
-   "percent": 98.2456,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_12_2F730",
-   "differing": 1,
-   "words": 31,
-   "percent": 96.7742,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_D123C",
-   "differing": 2,
-   "words": 337,
-   "percent": 99.4065,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_3F8EC",
-   "differing": 2,
-   "words": 194,
-   "percent": 98.9691,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_1358BC",
-   "differing": 2,
-   "words": 177,
-   "percent": 98.8701,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_45E98",
-   "differing": 2,
-   "words": 171,
-   "percent": 98.8304,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_62E9C",
-   "differing": 2,
-   "words": 164,
-   "percent": 98.7805,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_15B70C",
-   "differing": 2,
-   "words": 153,
-   "percent": 98.6928,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_A1364",
-   "differing": 2,
-   "words": 137,
-   "percent": 98.5401,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_135B80",
-   "differing": 2,
-   "words": 127,
-   "percent": 98.4252,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_61EF4",
-   "differing": 2,
-   "words": 116,
-   "percent": 98.2759,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_A0AA4",
-   "differing": 2,
-   "words": 113,
-   "percent": 98.2301,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_A02F0",
-   "differing": 2,
-   "words": 111,
-   "percent": 98.1982,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_727C",
-   "differing": 2,
-   "words": 72,
-   "percent": 97.2222,
+   "words": 48,
+   "percent": 99.875,
    "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
   },
   {
    "symbol": "fn_800288C4",
    "differing": 2,
    "words": 63,
-   "percent": 96.8254,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_9A958",
-   "differing": 2,
-   "words": 53,
-   "percent": 96.2264,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_4B6D4",
-   "differing": 2,
-   "words": 45,
-   "percent": 95.5556,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_4B788",
-   "differing": 2,
-   "words": 45,
-   "percent": 95.5556,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_14BD94",
-   "differing": 2,
-   "words": 39,
-   "percent": 94.8718,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_4068C",
-   "differing": 2,
-   "words": 33,
-   "percent": 93.9394,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_8008F838",
-   "differing": 2,
-   "words": 30,
-   "percent": 93.3333,
-   "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
-  },
-  {
-   "symbol": "fn_1_892CC",
-   "differing": 2,
-   "words": 7,
-   "percent": 71.4286,
+   "percent": 99.84127,
    "note": "Regenerated one-word tier: compiler-backed word comparison of the best saved body against the retail object."
   }
  ]

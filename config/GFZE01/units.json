@@ -58719,17 +58719,6 @@
   },
   {
     "module": "movie",
-    "source": "rel/movie/_prolog/_prolog.c",
-    "symbols": [
-      "_prolog"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "movie",
     "source": "rel/movie/_prolog/fn_5_13B0.c",
     "symbols": [
       "fn_5_13B0"
