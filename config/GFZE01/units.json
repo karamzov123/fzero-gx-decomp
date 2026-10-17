@@ -44057,10 +44057,15 @@
     "symbols": [
       "fn_1_53B14"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_26F8",
+      "@9": "lbl_1_rodata_2758",
+      "fzgx_pool_table1": "lbl_1_rodata_26F8"
+    }
   },
   {
     "module": "main_rel",
