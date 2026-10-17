@@ -121,7 +121,14 @@ the 60-body scan cutoff). Landed since: `fn_17_7728` (commit `4ad73314`).
 `movie:_prolog` is blocked (finding 359). Probe shapes offline before claiming.
 
 Not touched this session: the in-flight main-tree leftovers listed in the previous
-handoff, the `fzgx-storage.service --max-sessions 2` question (still the user's call).
+handoff. The disk question was resolved this session: the fixup retention policy
+was **relaxed** (historical scored candidates are cold, byte-verified, restorable;
+hot set = report best rows + link evidence) — `docs/findings/360`, committed
+`53ea1d55`. The `fzgx-storage.service` timer now drains ~1627 closed fixup
+sessions' 174GB incrementally (every 10 min pass acts on 2 sessions; the one-off
+wider pass of 2026-10-16 ran 24 sessions × up to 100k files). Disk was 18GB free
+before; expect steady accrual. Do not restore the old "every scored source hot"
+rule without re-reading finding 360's consumer audit.
 
 ## How to run things
 
