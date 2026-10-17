@@ -734,6 +734,197 @@ void fn_1_10C7B4(fn_1_10C7B4_AccessoryObject *self) {
 }
 /* fzgx:end fn_1_10C7B4 */
 
+/* fzgx:begin fn_1_10D2F0 noprologue */
+#include "types.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} V3f;
+
+typedef struct {
+    u32 a;
+    u32 b;
+    u32 c;
+} W3;
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 pad_2[0xE];
+    V3f v;
+    W3 w1;
+    W3 w2;
+    u8 pad_34[0xC];
+    f32 unk_40;
+} Elem;
+
+typedef struct {
+    u32 a;
+    u32 b;
+    f32 d;
+} Link;
+
+typedef struct {
+    u8 pad_0[0x18];
+    u32 unk_18;
+    u32 unk_1C;
+    u32 pad_20;
+    Elem *unk_24;
+    Link *unk_28;
+} Ctx;
+
+typedef struct {
+    u8 pad_0[0x64];
+    f32 m1;
+    f32 zero;
+    u8 pad_6C[0xFC];
+    f64 d015;
+    f32 m05;
+    u8 pad_174[4];
+    f64 d045;
+} Pool;
+
+extern const Pool lbl_1_rodata_7AB8;
+extern u32 lbl_801A6410;
+extern u32 fn_1_10846C(Ctx *);
+extern void fn_1_128884(Elem *, Elem *, int);
+extern u8 lbl_1_data_40530[];
+extern u32 fn_1_4630(u32, u32, void *, s32);
+extern f32 fn_1_1289BC(const Elem *, const Elem *);
+
+void fn_1_10D2F0(Ctx *arg0) {
+    const Pool *pool = &lbl_1_rodata_7AB8;
+    u32 i, j, k, pairs, q;
+    Elem *p, *e, *a, *b, *c, *last;
+
+    if (arg0 != 0) {
+    fn_1_10846C(arg0);
+
+    {
+    Elem *initial_p;
+    for (i = 0, initial_p = arg0->unk_24; i < arg0->unk_18; i++, initial_p++) {
+        if (initial_p->unk_0 & 1) {
+            initial_p->unk_0 = 0;
+            if (initial_p->v.x > pool->d015) {
+                initial_p->unk_40 = pool->m05;
+                initial_p->unk_1 = 1;
+            } else {
+                initial_p->unk_40 = pool->m1;
+                initial_p->unk_1 = 2;
+            }
+        } else {
+            initial_p->unk_40 = pool->zero;
+            initial_p->unk_0 = 1;
+            if (initial_p->v.x > pool->d045) {
+                initial_p->unk_1 = 0;
+            } else {
+                initial_p->unk_1 = 3;
+            }
+        }
+    }
+
+    }
+
+    {
+    Elem *first_e;
+    for (i = 0, p = arg0->unk_24; i < arg0->unk_18; i++, p++) {
+        for (j = i + 1, first_e = &arg0->unk_24[i] + 1; j < arg0->unk_18; j++, first_e++) {
+            if (p->unk_1 > first_e->unk_1) {
+                fn_1_128884(p, first_e, 0x44);
+            }
+        }
+    }
+
+    }
+
+    for (i = 0, p = arg0->unk_24; i < arg0->unk_18; i++, p++) {
+        for (j = i + 1, e = &arg0->unk_24[i] + 1; j < arg0->unk_18; j++, e++) {
+            if (p->unk_1 == e->unk_1 && p->v.z < e->v.z) {
+                fn_1_128884(p, e, 0x44);
+            }
+        }
+    }
+
+    for (i = 0, p = arg0->unk_24; i < arg0->unk_18; i++, p++) {
+        for (j = i + 1, e = &arg0->unk_24[i] + 1; j < arg0->unk_18; j++, e++) {
+            if (p->unk_1 == e->unk_1) {
+                if (p->v.z > pool->zero && e->v.z > pool->zero) {
+                        if (p->v.y > e->v.y) {
+                            fn_1_128884(p, e, 0x44);
+                        }
+                } else {
+                    /* Reload once for both negative-side tests, as retail does. */
+                    f32 negative_zero = *(const volatile f32 *)&pool->zero;
+                    if (p->v.z < negative_zero && e->v.z < negative_zero) {
+                        if (p->v.y < e->v.y) {
+                            fn_1_128884(p, e, 0x44);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    b = arg0->unk_24;
+    a = b;
+    for (k = 0; k < arg0->unk_18; k++) {
+        if (a->unk_1 == 1) {
+            break;
+        }
+        a++;
+    }
+    for (k = 0; k < arg0->unk_18; k++) {
+        if (b->unk_1 == 3) {
+            break;
+        }
+        b++;
+    }
+    a->unk_40 = b->unk_40;
+    a->unk_0 = b->unk_0;
+    a->w2 = b->w2;
+    a->v = b->v;
+    a->w1 = b->w1;
+
+    c = arg0->unk_24;
+    for (k = 0; k < arg0->unk_18; k++) {
+        if (c->unk_1 == 2) {
+            break;
+        }
+        c = c + 1;
+    }
+    last = &arg0->unk_24[arg0->unk_18 - 1];
+    c--;
+    c->unk_40 = last->unk_40;
+    c->unk_0 = last->unk_0;
+    c->w2 = last->w2;
+    c->v = last->v;
+    c->w1 = last->w1;
+
+    q = arg0->unk_18 >> 2;
+    arg0->unk_1C = q * 3 + (q - 1) * 4;
+    arg0->unk_28 = (Link *)fn_1_4630(lbl_801A6410, arg0->unk_1C * 12, lbl_1_data_40530, 0xDF0);
+
+    pairs = 0;
+    for (i = 0, p = arg0->unk_24; i < arg0->unk_18 - 1; i++, p++) {
+        if (p->unk_1 == (*((p) + (1))).unk_1) {
+            (*((arg0->unk_28) + (pairs))).a = (u32)p;
+            (*((arg0->unk_28) + (pairs))).b = (u32)(p + 1);
+            (*((arg0->unk_28) + (pairs))).d = fn_1_1289BC(p, p + 1);
+            pairs++;
+        }
+    }
+    for (i = 0, p = arg0->unk_24; i < arg0->unk_18 - q; i++, p++) {
+        (*((arg0->unk_28) + (pairs))).a = (u32)p;
+        (*((arg0->unk_28) + (pairs))).b = (u32)(p + q);
+        (*((arg0->unk_28) + (pairs))).d = fn_1_1289BC(p, p + q);
+        pairs++;
+    }
+    }
+}
+/* fzgx:end fn_1_10D2F0 */
+
 /* fzgx:begin fn_1_1154D0 */
 typedef struct {
     u8 active;

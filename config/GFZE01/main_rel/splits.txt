@@ -7763,3 +7763,6 @@ rel/main_rel/spline/fn_1_FA180.c:
 
 rel/main_rel/camera/fn_1_707C.c:
 	.text       start:0x0000707C end:0x0000713C align:4
+
+rel/main_rel/accessory/fn_1_10D2F0.c:
+	.text       start:0x0010D2F0 end:0x0010D7D4 align:4
