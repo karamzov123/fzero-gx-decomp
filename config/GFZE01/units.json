@@ -25766,7 +25766,7 @@
     "symbols": [
       "fn_80078360"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
