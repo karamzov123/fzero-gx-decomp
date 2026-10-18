@@ -1,5 +1,5 @@
 {
- "generated": 1792298822,
+ "generated": 1792299938,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -50209,7 +50209,7 @@
    "addr": 184376,
    "size": 1260,
    "status": "unmatched",
-   "attempts": 46,
+   "attempts": 47,
    "best_percent": 99.68,
    "claimed_by": null,
    "claimed_at": null,
@@ -649086,6 +649086,27 @@
    "cost_usd": 0.0,
    "outcome": "matched",
    "notes": "",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24994,
+   "symbol": "fn_1_2D038",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792299474,
+   "ended": 1792299917,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "attempt 47: fixup engine rerun on the archived frontier with the new decl-end-move and mask-spelling families (2601 variants, rounds=3 beam=6): best equals baseline 99.68, nothing moves the single row. Prior evidence (cline 4402 variants; imm-fix 3 shapes) already covers direct field access, casts to hdr/void*/u8*, dedicated local, inlined pointer helper, union-through-local-pointer, volatile, opt pragmas off. Residual is the ISEL base+offset choice: retail keeps the materialized base (r3 = r31+0x30) for both the load and the fn_1_F22D4 call, MWCC folds base+0x30+5. Documented in state/blocked.md (pure=imm one-word tier). Next evidence: allocator/ISEL capture of this row or a matched twin. 28 pool-retarget rows wait behind the row.",
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 0.0,
