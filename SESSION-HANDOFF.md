@@ -451,6 +451,12 @@ All recorded in `docs/findings/315-fn_1_7D6B8-regalloc-and-scaffolding-admissibi
   variable, where loop strength reduction reuses the existing induction and copies the
   zeroed index register. `fn_1_1384C` inits the pair once; ~40 spellings (identity/casts/
   pointer/chained/statement/decl-init/block/all pragmas) fold to `li` or `slwi`. Finding 383.
+- **fn_17_6C30** (304B, 99.47% adjusted / 92.11 raw) — 6-row register-coloring fixed
+  point: the `lbl_17_bss_D8.object` address chain and the `base+0x2c34` kinds-pointer chain
+  get r3/r4 swapped (retail D8→r4, kinds→r3; ours the reverse) with identical emission
+  order. Byte-identical output under ~30 spelling/order/scope variants, a 6061-candidate
+  engine run (prior attempt: 14011), a 12-pragma sweep, and all GC/1.3-2.7 compiler
+  versions. Same class as fn_1_2A214: allocator fixed point, not a source shape. Finding 384.
 - **fn_800446E4** — claimed, not yet worked.
 
 ## Traps worth remembering

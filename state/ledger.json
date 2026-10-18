@@ -1,5 +1,5 @@
 {
- "generated": 1792301228,
+ "generated": 1792301735,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -6281,7 +6281,7 @@
    "addr": 27696,
    "size": 304,
    "status": "unmatched",
-   "attempts": 12,
+   "attempts": 13,
    "best_percent": 99.47369,
    "claimed_by": null,
    "claimed_at": null,
@@ -649128,6 +649128,27 @@
    "cost_usd": 0.0,
    "outcome": "released",
    "notes": "attempt 33: single residual row (retail 'mr r27, r30' vs ours 'li r27, 0' at the k/boff for-init). ~40 measured probes: variable/literal/identity-arithmetic/conversion/pointer/chained/statement-split spellings, inner-block and top-level declaration initializers, C99 for-init decls (do not compile), all eight optimizer pragmas plus opt_common_subexpressions/opt_unroll_loops, opaque float-literal zero inits. All fold to 'li' (or 'slwi' for k*8) with bad=[22]. Twin scan of retail objects: the li+mr idiom occurs in 113 objects; matched twins fn_1_5370 (sunk decl inits), fn_1_41F58/fn_1_1024F8/fn_1_10D2F0 (offset induction re-init on the SECOND static init of the index) show the mr is an induction-reuse pass artifact, not reachable by a first-init spelling. Details: docs/findings/383. Next evidence: a matched twin with the copy form on a first static init, or an RTL/allocator capture of this row.",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24996,
+   "symbol": "fn_17_6C30",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792301255,
+   "ended": 1792301713,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "attempt 13: register-coloring fixed point. The 6-row residual (rows 22-28) is one allocator decision: the lbl_17_bss_D8.object address chain and the base+0x2c34 kinds-pointer chain get r3/r4 swapped (retail: D8 chain r4, kinds r3; ours the reverse). Every reachable shape emits byte-identical code: ~30 hand variants (statement/initializer order permutations, named-local vs block-local kinds/kind/v/obj, top-declaration positions swept over all six slots, commuted subscript value[kinds], explicit pointer-add spellings, C89-valid assignment forms), direct engine sweep (6061 candidates, rounds 3 beam 8), the prior attempt's engine log (10381 candidates on the same body), a 12-pragma sweep (each optimizer knob off; all-off catastrophic), and all eight GC/1.3-2.7 compiler versions (identical; 1.0-1.2.5 and 3.x are a different codegen era). register-flow analysis classes rows 22-26 as pure register-equivalence; row 28 is the lhax consuming the renamed base. Same class as fn_1_2A214 finding 378 (allocator fixed point, not a source shape). Next evidence: an RTL/allocator capture, or a matched twin where a first-materialized address web takes the HIGHER scratch reg against a later second web.",
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 0.0,
