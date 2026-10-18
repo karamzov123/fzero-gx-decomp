@@ -7,7 +7,17 @@ fork `karamzov123/fzgx`). **Read this first in any new session.**
 
 ## 2026-10-17 session state (opencode/deepseek)
 
-Five landings. The newest is a pool-window/displacement close in the `font` TU;
+Six landings. The newest closes the last designated lead of the day (finding 379):
+`fn_1_156C08`'s 99.01% / 12-attempt plateau fell to a **one-edge interference
+web** — MWCC's stock simplify defers every web whose degree stays >= K=29 GPRs,
+so holding `&arg0->handle` in a `u32 *ph` inside the call branch (28 -> 29
+neighbors, no emitted instruction) defers the arg0 web and restores retail's
+r31/r30 with the correct s32 compare. attempt 13, 2 checks, commit `9b299290`,
+gate green. Tooling: `d69576ef` decodes `fcmpo` in `mwconstraints` (capstone
+5.0.7 gap that finding 361 misread as an integer row-12 pair, blocking the whole
+capture projection). Full record: finding 379.
+
+Earlier in the day (still valid below): the newest is a pool-window/displacement close in the `font` TU;
 before it, the `fn_12_2F970` one-word plateau fell to local-struct promotion
 typing, and earlier ones to byte-equality over the pool *reach window*:
 
@@ -87,18 +97,20 @@ descending f2,f1,f0 homes and the exact missing `fmuls f1,f2,f1`, so the wall
 is this RTL's selection, not a source spelling. Future lever: capture /
 constraint-pipeline support (finding 361 class). Left claimable (`unmatched`).
 
-Ledger after all five: matched=**5834** + 20 asm, unmatched=1444, blocked=9,
+Ledger after all six: matched=**5839** + 20 asm, unmatched=1440, blocked=9,
 0 open claims of ours (Hermes released `fn_12_3763C` unmatched and held
 `fn_8_EFA4` at snapshot time). Gate green: ninja 0, 16 files OK, lint 0
 findings, 11/11 tests.
 (10-17 morning also added Hermes's finding 370 parked-pass records; commit
 `891eeb0c`.)
 
-**Next lead** (designated after 378): `fn_1_156C08` (99.01%, 12 attempts) —
-finding 361's entry points: corpus scan for other `fn_8006B55C` callers, or
-give mwconstraints the retail row-12 `lis`/`addi` magic-pair support and
-re-run the capture projection. Fallback fresh candidate: `fn_1_118D90`
-(main_rel, 1344 B, 99.72).
+**Next lead:** the designated lead list is exhausted — `fn_1_156C08` landed
+(finding 379). Fallback fresh candidate: `fn_1_118D90` (main_rel, 1344 B,
+99.72). The degree-29 sweep rule (finding 379) is reusable: when a near-match
+differs only by a callee-saved register role swap, count the losing web's
+neighbors — one extra live-across-the-call web (a source-held pointer that
+emits no instruction) is the lever, and a stock-allocator capture shows the
+degree before and after.
 
 ## 2026-10-16 session state (opencode/deepseek)
 

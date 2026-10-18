@@ -5,6 +5,16 @@ offline compiler probes + a fixup pass + a capture projection all failed to clos
 the last word, so the next session starts from the measured recipe rather than
 re-deriving it.
 
+> **Corrections (2026-10-17 evening, finding 379 — the function LANDED).**
+> (a) The capture projection did not fail on a retail row-12 integer `lis`/`addi`
+> pair: word 12 is `0xFC020040` `fcmpo cr0, f2, f0`, undecodable in the pinned
+> capstone 5.0.7; fixed in `d69576ef`. (b) Callers of `fn_8006B55C` do exist in
+> `src/`: nine matched ones live in `src/rel/main_rel/ranking.c` and all use the
+> wide return. (c) The s32 flip was closed by a one-edge web (`u32 *ph;
+> ph = &arg0->handle;` inside the then-branch): degree 28 -> 29 on the arg0 web
+> defers it past MWCC's K=29 simplify sweep and restores retail's r31/r30.
+> Closed at 100.0%, 101/101, commit `9b299290`. Do not repeat the shingle sweep.
+
 ## The residual (exactly, 101 words, differing word index [73] on the archived s16 body)
 
     w73  cmpwi r3, 0            | extsh. r0, r3     <- ours sign-extends the call

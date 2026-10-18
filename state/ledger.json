@@ -1,5 +1,5 @@
 {
- "generated": 1792277537,
+ "generated": 1792289408,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -97587,16 +97587,16 @@
    "unit": "rel/main_rel/ranking/fn_1_156C08.c",
    "addr": 1403912,
    "size": 404,
-   "status": "unmatched",
-   "attempts": 12,
-   "best_percent": 99.01,
+   "status": "matched",
+   "attempts": 13,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "9b299290",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_156D9C",
@@ -648669,6 +648669,27 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_12_3D740.1792277535.c",
    "stale_checks": 1,
    "best_in_attempt": 93.68841,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24974,
+   "symbol": "fn_1_156C08",
+   "agent": "opencode-manual-156c08",
+   "harness": null,
+   "model": null,
+   "started": 1792288966,
+   "ended": 1792289035,
+   "checks": 2,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "oracle match accepted automatically",
+   "best_body_path": null,
+   "stale_checks": 1,
+   "best_in_attempt": 100.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
