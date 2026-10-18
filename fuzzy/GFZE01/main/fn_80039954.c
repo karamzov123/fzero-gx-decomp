@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (69.91% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (82.61% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -20,40 +20,56 @@ struct fn_80039954___cpReg_T {
 
 struct fn_80039954_gx_T {
     u8 pad_0[0x4E4];
-    s16 unk_4E4;
+    s32 unk_4E4;
     u32 unk_4E8;
 };
 
 extern struct fn_80039954___cpReg_T *__cpReg;
 extern struct fn_80039954_gx_T *gx;
 
-static u16 CpWaitRead(volatile u16 *lop, volatile u16 *hip) {
-    u32 hi = *hip;
-    u32 lo;
-    u32 prev;
-    do {
-        prev = hi;
-        lo = *lop;
-        hi = *hip;
-    } while (hi != prev);
-    return (hi << 16) | lo;
-}
-
-#pragma opt_dead_assignments off
-#pragma opt_lifetimes off
-#pragma opt_loop_invariants off
 void fn_80039954(struct fn_80039954_Arg0 *arg0, u32 *arg1) {
-    u32 v0;
+    struct fn_80039954___cpReg_T *cp = __cpReg;
+    u32 v3;
+    u32 v2;
     u32 v1;
-    u16 v2;
-    u16 v3;
-    s32 tmp_call3;
+    u32 v0;
+    struct { unsigned int hi; unsigned int prev; } fzgx_copy_state;
+    u32 lo;
 
-    v0 = CpWaitRead(&__cpReg->unk_40, &__cpReg->unk_42);
-    v1 = CpWaitRead(&__cpReg->unk_44, &__cpReg->unk_46);
-    tmp_call3 = CpWaitRead(&__cpReg->unk_48, &__cpReg->unk_4A);
-    v2 = tmp_call3;
-    v3 = CpWaitRead(&__cpReg->unk_4C, &__cpReg->unk_4E);
+    fzgx_copy_state.hi = cp->unk_42;
+    fzgx_copy_state.prev = fzgx_copy_state.hi;
+    do {
+        lo = cp->unk_40;
+        fzgx_copy_state.hi = cp->unk_42;
+    } while (fzgx_copy_state.hi != fzgx_copy_state.prev);
+    fzgx_copy_state.prev = fzgx_copy_state.hi;
+    v0 = (fzgx_copy_state.hi << 16) | lo;
+
+    fzgx_copy_state.hi = cp->unk_46;
+    fzgx_copy_state.prev = fzgx_copy_state.hi;
+    do {
+        lo = cp->unk_44;
+        fzgx_copy_state.hi = cp->unk_46;
+    } while (fzgx_copy_state.hi != fzgx_copy_state.prev);
+    fzgx_copy_state.prev = fzgx_copy_state.hi;
+    v1 = (fzgx_copy_state.hi << 16) | lo;
+
+    fzgx_copy_state.hi = cp->unk_4A;
+    fzgx_copy_state.prev = fzgx_copy_state.hi;
+    do {
+        lo = cp->unk_48;
+        fzgx_copy_state.hi = cp->unk_4A;
+    } while (fzgx_copy_state.hi != fzgx_copy_state.prev);
+    fzgx_copy_state.prev = fzgx_copy_state.hi;
+    v2 = (fzgx_copy_state.hi << 16) | lo;
+
+    fzgx_copy_state.hi = cp->unk_4E;
+    fzgx_copy_state.prev = fzgx_copy_state.hi;
+    do {
+        lo = cp->unk_4C;
+        fzgx_copy_state.hi = cp->unk_4E;
+    } while (fzgx_copy_state.hi != fzgx_copy_state.prev);
+    v3 = (fzgx_copy_state.hi << 16) | lo;
 
     switch (gx->unk_4E4) {
     case 10:
@@ -107,11 +123,6 @@ void fn_80039954(struct fn_80039954_Arg0 *arg0, u32 *arg1) {
     case 0:
         arg1[0] = v3 * 4;
         break;
-    case 1:
-    case 2:
-    case 3:
-        break;
-        arg1[0] = v3;
     case 4:
         arg1[0] = v2 + v3 * 2;
         break;
@@ -124,6 +135,9 @@ void fn_80039954(struct fn_80039954_Arg0 *arg0, u32 *arg1) {
     case 7:
         arg1[0] = v2 * 7 + v3 * 8;
         break;
+    case 1:
+    case 2:
+    case 3:
     case 8:
     case 9:
     case 10:
@@ -150,9 +164,3 @@ void fn_80039954(struct fn_80039954_Arg0 *arg0, u32 *arg1) {
         break;
     }
 }
-#pragma opt_loop_invariants reset
-
-#pragma opt_lifetimes reset
-
-#pragma opt_dead_assignments reset
-

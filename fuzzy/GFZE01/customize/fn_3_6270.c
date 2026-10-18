@@ -1,18 +1,10 @@
-/* Non-matching: best partial attempt (91.85% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (93.64% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
-#include "rel/customize/globals.h"
 
-struct fn_3_6270_state {
-    u8 pad_0[8];
-    u32 unk_8;
-    u8 pad_C[0xE4];
-    u32 unk_F0;
-    u8 pad_F4[0x2C];
-    u32 unk_120;
-};
 struct fn_3_6270_lbl_1_bss_6EAB4 {
-    u8 lab_pad[4]; u32 unk_0; };
+    u32 unk_0;
+};
 extern struct fn_3_6270_lbl_1_bss_6EAB4 lbl_1_bss_6EAB4;
 extern int fn_1_4C10(void);
 extern u16 lbl_1_bss_96A;
@@ -26,7 +18,6 @@ extern void fn_3_679C(void);
 
 #pragma opt_propagation off
 #pragma opt_common_subs off
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_3_bss_0[2];
 u32 lbl_3_bss_8;
 u32 lbl_3_bss_C[3];
@@ -44,7 +35,7 @@ u32 lbl_3_bss_140_fill_20004[528];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    volatile u8 s;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_0;
     s = *(u8 *)&lbl_3_bss_8;
     s = *(u8 *)&lbl_3_bss_C;
@@ -63,22 +54,23 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_3_6270(void) {
-    s32 v8;
-    s32 v10_2;
+    u8 *v0;
+    struct { int v10_2; int v8; } fzgx_copy_state;
+    s32 v5;
+    u16 *v6;
+    s16 v4;
     u32 v1;
     int v2;
     u32 v3;
-    u16 v4;
-    s32 v5;
-    u16 *v6;
-    u8 *v0;
-    s32 v10;
     s16 v12;
+    u16 *v6_2;
     u32 lab_t0;
     u32 lab_t0_;
-    u16 * v6_2;
-    
-    v0 = (u8 *)&lbl_3_bss_140_1FEC0;
+    struct fn_3_6270_lbl_1_bss_6EAB4 *p6;
+    u32 v13;
+    u32 v14;
+
+    v0 = (u8 *)&fzgx_obj_lbl_3_bss_0 + 0x20000;
     fn_3_679C();
     if ((s32)lbl_3_bss_120 == -1) fn_1_4C10();
     v1 = *(u32 *)((u8 *)&fzgx_obj_lbl_3_bss_F0 + 36);
@@ -94,37 +86,37 @@ void fn_3_6270(void) {
             lbl_3_bss_120 = -1;
             lbl_1_bss_96A = v3;
         } else {
-            v10 = 0;
-            v4 = *(s16 *)((u8 *)(u32)((u8 *)&fzgx_obj_lbl_3_bss_F0) + 6);
-            v8 = v10;
+            fzgx_copy_state.v10_2 = 0;
+            v4 = *(s16 *)((u8 *)&fzgx_obj_lbl_3_bss_F0 + 6);
+            fzgx_copy_state.v8 = fzgx_copy_state.v10_2;
             v5 = v4 * 20;
             v6 = (u16 *)((u8 *)&lbl_1_bss_9F8 + v5);
             v6 += 8;
             if (((*v6 >> 3) & 1) != 0 || ((*(u16 *)((u8 *)&lbl_1_bss_9F8 + v5 + 18) >> 3) & 1) != 0) {
-                v8 = -1;
+                fzgx_copy_state.v8 = -1;
                 lab_t0 = 0xA9010000;
                 lab_t0_ = lab_t0;
                 fn_1_A2D84(lab_t0_);
                 lbl_801A66A8 = 0;
             }
             if (((*v6 >> 2) & 1) != 0 || ((*(u16 *)((u8 *)&lbl_1_bss_9F8 + v5 + 18) >> 2) & 1) != 0) {
-                v8++;
+                fzgx_copy_state.v8++;
                 fn_1_A2D84(0xA9010000);
                 lbl_801A66A8 = 0;
             }
-            v2 = *(s16 *)(v0 + 2116) + (s16)v8;
+            v2 = *(s16 *)(v0 + 2116) + (s16)fzgx_copy_state.v8;
             *(u16 *)(v0 + 2116) = v2 > 2 ? 0 : v2 < 0 ? 2 : v2;
             v6_2 = (u16 *)((u8 *)&lbl_1_bss_9F8 + v5);
             v6_2 += 4;
             if (((*v6_2 >> 9) & 1) != 0) {
-                v10_2 = -1;
+                fzgx_copy_state.v10_2 = -1;
                 fn_1_A2D84(0xA9010200);
             }
             if (((*v6_2 >> 8) & 1) != 0) {
-                v10_2 = 1;
+                fzgx_copy_state.v10_2 = 1;
                 fn_1_A2D84(0xA9010100);
             }
-            if ((s16)v10_2 == -1) {
+            if ((s16)fzgx_copy_state.v10_2 == -1) {
                 if ((s32)lbl_3_bss_8 != 0) {
                     lbl_3_bss_120 = 93;
                     fn_1_1280(1);
@@ -133,13 +125,14 @@ void fn_3_6270(void) {
                     fzgx_obj_lbl_3_bss_F0 = v5;
                 } else {
                     fn_1_4A00(0, 15, (void *)*(u32 *)(v0 + 2128));
-                    v2 = (*(u32 volatile *)&(lbl_1_bss_6EAB4.unk_0)) /* Retail reloads this field. */;
-                    *(u32 *)(v0 + 17320) = 0;
-                    v2 |= 36;
-                    lbl_1_bss_6EAB4.unk_0 = v2;
+                    p6 = &lbl_1_bss_6EAB4;
+                    v14 = 0;
+                    v13 = *(u32 volatile *)&p6->unk_0;
+                    *(u32 *)(v0 + 17320) = v14;
+                    p6->unk_0 = v13 | 36;
                     lbl_3_bss_120 = 92;
                 }
-            } else if ((s16)v10_2 != 0) {
+            } else if ((s16)fzgx_copy_state.v10_2 != 0) {
                 v12 = *(s16 *)(v0 + 2116);
                 switch (v12) {
                 case 0:
@@ -162,4 +155,3 @@ void fn_3_6270(void) {
     }
 }
 #pragma opt_common_subs reset
-
