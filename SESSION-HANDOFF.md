@@ -105,12 +105,20 @@ findings, 11/11 tests.
 `891eeb0c`.)
 
 **Next lead:** the designated lead list is exhausted — `fn_1_156C08` landed
-(finding 379). Fallback fresh candidate: `fn_1_118D90` (main_rel, 1344 B,
-99.72). The degree-29 sweep rule (finding 379) is reusable: when a near-match
-differs only by a callee-saved register role swap, count the losing web's
-neighbors — one extra live-across-the-call web (a source-held pointer that
-emits no instruction) is the lever, and a stock-allocator capture shows the
-degree before and after.
+(finding 379). Fallback `fn_1_118D90` (main_rel, 1344 B) was explored on 10-17
+and parked at a **5-word plateau** (finding 380): archived
+`.fzgx/attempts/fn_1_118D90.1792292741.c` at objdiff 99.872025 (words
+`[6,7,304,307,309]`), better than every earlier saved body (99.72/99.54/99.43).
+The residual needs the old body geometry for the latch pair *and* the M1
+geometry for the trio colors at once — all ~60 reachable source shapes couple
+them, and the entry `lis r4` needs the raw parameter web live across the lis
+temp (every copy spelling coalesces to the entry homing copy). Pick the next
+candidate from the largest unmatched units with a saved near-match corpus (or
+return to `fn_1_2A214` once capture/constraint support exists). The degree-29
+sweep rule (finding 379) is reusable: when a near-match differs only by a
+callee-saved register role swap, count the losing web's neighbors — one extra
+live-across-the-call web (a source-held pointer that emits no instruction) is
+the lever, and a stock-allocator capture shows the degree before and after.
 
 ## 2026-10-16 session state (opencode/deepseek)
 
