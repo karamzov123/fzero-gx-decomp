@@ -574,6 +574,27 @@ shape). Dropping the local entirely — direct `__rlwnm(lbl_10_bss_55664, ...)` 
 129/129. No pragmas, no compiler pin, no pool retarget; verify fast path 10.4 s.
 Full record: finding 385.
 
+**`fn_1_8CA70` + `fn_1_8CAF4`** (`src/rel/main_rel/car.c`, commits `aed53248` /
+`4325e49f`) — the 99.09 residual was a pure register-color swap (retail keeps the
+rodata base in `r8` and the span in `r7`; ours had them exchanged). The colors
+are set by the *shape* of the index expression, not by declaration order: the
+statement form (`index = span; index += (total - half); index -= 1;`) keeps
+retail's `subf -> add -> addi` order but ranks the `span` local above the
+unnamed address temp, so the colors stay swapped; with the index computed in one
+expression the front-end numbering flips. MWCC canonicalizes `A + (B - 1)` to
+`(B + A) - 1` with the `-1`-carrying child **first**, so
+`index = (total - half) + (span - 1);` reproduces retail exactly
+(`subf r0, r3, r0` / `add r3, r7, r0` / `addi r0, r3, -1`) — 33/33. The unit
+must also not redeclare `lbl_1_rodata_3508` (the car.c prologue declares it
+`extern f32 lbl_1_rodata_3508[];`); cast that declaration to the local struct
+view. `fn_1_8CAF4` is word-identical with one reloc difference
+(`lbl_1_bss_6DA80` vs `lbl_1_bss_6E160`); `fzgx reuse` misses it because the
+naive clone keeps the wrong base symbol. Full record: finding 387.
+Generalizable: when a `fixed-graph-hypothesis` capture says `object_percent` is
+100 and the residual is a two-web color swap, and one of the webs is an unnamed
+front-end temp, try re-spelling the *expression* that produces it — reassociation
+moves both the operand order and the temp ranking.
+
 Next queue after this session (triage of the insertion-signature cohort, 2026-10-18):
 `fn_10_7130` (sel, 496 B, 99.15) and `fn_1_48A0C` (main_rel, 540 B, 99.21) are the
 same base+offset-split family as the parked `fn_1_2D038` (retail `addi r3, r31,
@@ -593,10 +614,7 @@ templates (`fn_17_6848`/`fn_17_69EC`) keep no callee-saved base, so they do not
 transfer.
 
 Next candidates, ranked with the 2026-10-11 capture corpus (recapture needed:
-the header fingerprint rotated to `ad0f67b6`): `fn_1_8CA70` / `fn_1_8CAF4`
-(main_rel, 99.09 each, 11 attempts) are `fixed-graph-hypothesis` with
-`selection-witness` graphs in both register banks — the only pair in the queue
-where the capture-driven fixup families fire. `sel:_epilog` (sel, 9 attempts,
+the header fingerprint rotated to `ad0f67b6`): `sel:_epilog` (sel, 9 attempts,
 99.64) is the highest-scoring residual but its capture status is
 `needs-web-alignment`; `fn_3_1AEE4` (99.45, 14 attempts) is not in the corpus and
 would need a fresh capture. Skip `fn_1_1188CC` (pool retarget + `beq/bne` opcode
