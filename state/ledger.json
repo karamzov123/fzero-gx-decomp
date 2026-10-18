@@ -1,5 +1,5 @@
 {
- "generated": 1792299938,
+ "generated": 1792301228,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -48101,7 +48101,7 @@
    "addr": 79948,
    "size": 476,
    "status": "unmatched",
-   "attempts": 32,
+   "attempts": 33,
    "best_percent": 99.4958,
    "claimed_by": null,
    "claimed_at": null,
@@ -649107,6 +649107,27 @@
    "cost_usd": 0.0,
    "outcome": "released",
    "notes": "attempt 47: fixup engine rerun on the archived frontier with the new decl-end-move and mask-spelling families (2601 variants, rounds=3 beam=6): best equals baseline 99.68, nothing moves the single row. Prior evidence (cline 4402 variants; imm-fix 3 shapes) already covers direct field access, casts to hdr/void*/u8*, dedicated local, inlined pointer helper, union-through-local-pointer, volatile, opt pragmas off. Residual is the ISEL base+offset choice: retail keeps the materialized base (r3 = r31+0x30) for both the load and the fn_1_F22D4 call, MWCC folds base+0x30+5. Documented in state/blocked.md (pure=imm one-word tier). Next evidence: allocator/ISEL capture of this row or a matched twin. 28 pool-retarget rows wait behind the row.",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24995,
+   "symbol": "fn_1_1384C",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792299993,
+   "ended": 1792301212,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "attempt 33: single residual row (retail 'mr r27, r30' vs ours 'li r27, 0' at the k/boff for-init). ~40 measured probes: variable/literal/identity-arithmetic/conversion/pointer/chained/statement-split spellings, inner-block and top-level declaration initializers, C99 for-init decls (do not compile), all eight optimizer pragmas plus opt_common_subexpressions/opt_unroll_loops, opaque float-literal zero inits. All fold to 'li' (or 'slwi' for k*8) with bad=[22]. Twin scan of retail objects: the li+mr idiom occurs in 113 objects; matched twins fn_1_5370 (sunk decl inits), fn_1_41F58/fn_1_1024F8/fn_1_10D2F0 (offset induction re-init on the SECOND static init of the index) show the mr is an induction-reuse pass artifact, not reachable by a first-init spelling. Details: docs/findings/383. Next evidence: a matched twin with the copy form on a first static init, or an RTL/allocator capture of this row.",
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 0.0,

@@ -444,6 +444,13 @@ All recorded in `docs/findings/315-fn_1_7D6B8-regalloc-and-scaffolding-admissibi
 - **fn_80078DA8** (356B, 99.8% after pin) — 2 rows: `li r27,0x0`/`mr r28,r27` run in the
   opposite direction to ours. Struct field order swap: same 2 rows. Two plain locals:
   regressed to 95.1% (the struct is doing real allocation work). Search 4771 candidates.
+- **fn_1_1384C** (476B, 99.5%) — single row: retail `mr r27,r30` vs ours `li r27,0` at the
+  k/boff for-init. The `mr` is an **offset-induction re-init artifact**: a retail-object
+  twin scan (`li rX,0`+`mr rY,rX`) plus matched twins `fn_1_5370`, `fn_1_41F58`,
+  `fn_1_1024F8`, `fn_1_10D2F0` show it only on a *second* static init of the same index
+  variable, where loop strength reduction reuses the existing induction and copies the
+  zeroed index register. `fn_1_1384C` inits the pair once; ~40 spellings (identity/casts/
+  pointer/chained/statement/decl-init/block/all pragmas) fold to `li` or `slwi`. Finding 383.
 - **fn_800446E4** — claimed, not yet worked.
 
 ## Traps worth remembering
