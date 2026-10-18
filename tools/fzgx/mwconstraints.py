@@ -15,6 +15,29 @@ COMMUTE = {'add', 'add.', 'and', 'and.', 'or', 'or.', 'xor', 'xor.',
            'mullw', 'mullw.', 'fadd', 'fadds', 'fmul', 'fmuls'}
 
 
+class _Insn:
+    """Minimal capstone-compatible row for instructions capstone cannot decode."""
+    __slots__ = ('mnemonic', 'op_str')
+
+    def __init__(self, mnemonic, op_str):
+        self.mnemonic, self.op_str = mnemonic, op_str
+
+
+def _recover_undecoded(word):
+    """Decode row shapes capstone 5.0.7 is missing, with register operands.
+
+    fcmpo (opcode 63, extended opcode 32) is not in the pinned capstone, yet MWCC
+    emits it for every ordered FP compare, so a single fcmpo row silently blocked
+    the whole projection pipeline as `unsupported-instruction` (fn_1_156C08,
+    finding 361, misread there as a `lis`/`addi` magic pair). fcmpu (extended
+    opcode 0) decodes; `none` means genuinely unknown.
+    """
+    if word >> 26 == 63 and (word >> 1) & 0x3FF == 32:
+        return _Insn('fcmpo.' if word & 1 else 'fcmpo',
+                     'cr%d, f%d, f%d' % ((word >> 23) & 7, (word >> 16) & 31, (word >> 11) & 31))
+    return None
+
+
 def _consistent_hard_map(hard):
     """Injective name map satisfying every *hard* (non-commutative) binding, or None.
 
@@ -42,7 +65,11 @@ def target_mapping(target, ours):
     md = Cs(CS_ARCH_PPC, CS_MODE_32 | CS_MODE_BIG_ENDIAN)
     md.skipdata = True
     def decode(words):
-        return list(md.disasm(b''.join(w.to_bytes(4, 'big') for w in words), 0))
+        rows = list(md.disasm(b''.join(w.to_bytes(4, 'big') for w in words), 0))
+        if len(rows) == len(words):
+            rows = [row if row.mnemonic != '.byte' else (_recover_undecoded(w) or row)
+                    for row, w in zip(rows, words)]
+        return rows
     if not target or not ours or len(target) != len(ours):
         return {'status': 'instruction-shape'}
     t, o = decode(target), decode(ours)
