@@ -573,3 +573,15 @@ shape). Dropping the local entirely — direct `__rlwnm(lbl_10_bss_55664, ...)` 
 `(s32)lbl_10_bss_55664` uses with the front end's CSE temp — is byte-exact
 129/129. No pragmas, no compiler pin, no pool retarget; verify fast path 10.4 s.
 Full record: finding 385.
+
+Next queue after this session (triage of the insertion-signature cohort, 2026-10-18):
+`fn_10_7130` (sel, 496 B, 99.15) and `fn_1_48A0C` (main_rel, 540 B, 99.21) are the
+same base+offset-split family as the parked `fn_1_2D038` (retail `addi r3, r31,
+0x1b14; lwz r3, 0x10(r3)` vs our folded `lwz r3, 0x1b24(r31)`) — the pointer has
+to stay live and no reachable expression forces it; gated on web alignment
+(state/blocked.md), do not re-grind. `fn_17_3E08` (interview, 868 B, 99.06) is
+the live one: retail re-materializes `lbl_17_bss_D8` (lis+addi+`lwz r27,
+0xc(r3)`) where our body reuses `r31` — a CSE/rematerialization split with 12
+unresolved rows, worth a dedicated body review. Skip `fn_1_1188CC` (pool
+retarget + `beq/bne` opcode swap + 26 regalloc rows) and every `movie_module` /
+`src/dol` entry (Hermes).
