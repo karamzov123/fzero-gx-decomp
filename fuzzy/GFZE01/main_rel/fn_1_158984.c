@@ -1,165 +1,195 @@
-/* Non-matching: best partial attempt (66.81% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.91% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "psvec.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/ranking.h"
 
-extern void fn_1_9AD54(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern s16 camera_get_mode(void);
-extern void *fn_1_8627C(void);
-extern void fn_1_681C(int, u32 *);
-extern void fn_1_9A7A8(u32 *);
-extern f32 lbl_8006D188(int);
-extern u32 lbl_801A66A0;
-extern u32 lbl_801A66CC;
-extern u32 lbl_1_rodata_D958[];
-
-typedef struct {
-    u32 unk_0;
-    u32 unk_4;
-    f32 unk_8;
-    f32 unk_C;
-    f32 unk_10;
-    f32 unk_14;
-    f32 unk_18;
-    f32 unk_1C;
+struct RankingMotionVector { f32 x, y, z; };
+struct RankingMotionObject {
+    u32 flags;
+    u8 pad_4[8];
+    struct RankingMotionVector position;
+    s16 angle_x, angle_y, angle_z;
+};
+struct RankingMotionRecord {
+    s32 active;
+    s32 cooldown;
+    struct RankingMotionVector velocity;
+    struct RankingMotionVector spin;
     u8 pad_20[0x18];
-    void *unk_38;
-} Entry;
+    struct RankingMotionObject *object;
+};
+struct RankingMotionManager {
+    s32 count;
+    s32 mode;
+    s32 next;
+    u32 grid[20][20][40];
+    struct RankingMotionRecord records[400];
+};
+struct RankingMotionCamera { u8 pad_0[0x118]; u32 mode; };
+struct RankingMotionScratch { u8 pad_0[0xD4]; struct RankingMotionVector vector; };
+struct RankingMotionColor { u8 r, g, b, a; };
+extern struct RankingMotionScratch *lbl_801A66CC;
+extern u32 lbl_801A66A0;
+extern void fn_1_9AD54(void);
+extern s32 fn_1_58C4(void);
+extern void fn_1_5948(s32);
+extern void fn_1_627C(s32);
+extern s16 camera_get_mode(void);
+extern struct RankingMotionCamera *fn_1_8627C(s32 mode);
+extern f32 lbl_8006D188(s32);
+extern void fn_1_681C(s32, void *);
+extern void fn_1_9A7A8(void *);
 
-typedef struct {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-} ManagerHead;
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 10.0f;
+    s = 100.0f;
+    s = 20.0f;
+    s = 1000.0f;
+    s = 2000.0f;
+    s = 0.0f;
+    d = 4503601774854144.0;
+}
+static const u32 fzgx_pool_table2[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+static const struct RankingMotionColor ranking_motion_color = {100, 100, 100, 0};
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 65536.0f;
+    s = 300.0f;
+    s = 600.0f;
+    s = 900.0f;
+    s = 256.0f;
+    s = 768.0f;
+    s = 1280.0f;
+    d = 0.01;
+    s = 800.0f;
+    s = 500.0f;
+    s = 40000.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
 
-typedef struct {
-    u8 pad_0[0x118];
-    u32 unk_118;
-} CameraObj;
+
+#pragma fp_contract off
+static inline s32 damp_ranking_angle(s16 angle) {
+    f64 change = 0.01 * -(s32)angle;
+    return (s32)(angle + change);
+}
+#pragma fp_contract reset
+
+/* Evaluate the lower boundary only after passing the upper boundary. */
+#define RANKING_AXIS_CONTAINS(value, upper, center, half) \
+    ((value) > (upper) ? 0 : ((value) < (center) - (half) ? 0 : 1))
+
+static inline void exchange_ranking_overlaps(struct RankingMotionManager *manager,
+        struct RankingMotionRecord *record, s32 index) {
+    s32 j;
+    struct RankingMotionRecord *other;
+    s32 overlap;
+            other = manager->records;
+            overlap = 0;
+            for (j = 0; j < manager->count; j++, other++) {
+                if (index != j && record->cooldown == 0) {
+                    struct RankingMotionObject *other_object = other->object;
+                    struct RankingMotionObject *object = record->object;
+                    f32 dx = object->position.x - other_object->position.x;
+                    f32 dy = object->position.y - other_object->position.y;
+                    f32 dz = object->position.z - other_object->position.z;
+                    dx *= dx;
+                    dx += dy * dy;
+                    dx += dz * dz;
+                    if (dx <= 40000.0f) {
+                        overlap = 1;
+                        lbl_801A66CC->vector = record->velocity;
+                        record->velocity = other->velocity;
+                        other->velocity = lbl_801A66CC->vector;
+                    }
+                }
+            }
+            if (overlap) {
+                record->active = 0;
+                manager->records[manager->next].active = 1;
+                manager->records[manager->next].cooldown = 60;
+                manager->next++;
+            }
+}
+
 
 void fn_1_158984(void) {
-    Obj_1_data_2A7E0_At3C *manager;
-    Entry *entries;
-    Entry *entry;
-    int count;
-    int i;
-    int j;
-    int overlap;
-    int inside;
-    u32 *obj;
-    u32 *otherObj;
-    Entry *other;
-    f32 x, y, z;
-    f32 dx, dy, dz;
-    f32 half;
+    struct RankingMotionManager *manager;
+    struct RankingMotionRecord *record;
+    struct RankingMotionCamera *camera;
+    s32 count;
+    s32 i;
+    s32 camera_mode;
+    struct RankingMotionColor color;
 
-    manager = lbl_1_data_2A7E0.unk_3C;
+    manager = (struct RankingMotionManager *)lbl_1_data_2A7E0.unk_3C;
     fn_1_9AD54();
     count = fn_1_58C4();
     for (i = 0; i < count; i++) {
         fn_1_5948(i);
-        if (camera_get_mode() >= 0 && (obj = fn_1_8627C()) != 0) {
-            manager->unk_4 = ((CameraObj *)obj)->unk_118 + 1;
+        if ((camera_mode = camera_get_mode()) >= 0 && (camera = fn_1_8627C(camera_mode)) != 0) {
+            manager->mode = camera->mode + 1;
             break;
         }
         fn_1_627C(i);
     }
 
-    entries = (Entry *)((u8 *)manager + 0x10000 - 0x5F4);
-    for (i = 0; i < (int)*(u32 *)manager; i++) {
-        entry = &entries[i];
-        if ((int)*(u32 *)((u8 *)manager + 4) == 2) {
-            u32 seed = lbl_801A66A0;
-            entry->unk_14 = lbl_8006D188((int)(65536.0f * (seed % 300) / 300.0f));
-            seed = lbl_801A66A0;
-            entry->unk_18 = lbl_8006D188((int)(65536.0f * (seed % 600) / 600.0f));
-            seed = lbl_801A66A0;
-            entry->unk_1C = lbl_8006D188((int)(65536.0f * (seed % 900) / 900.0f));
-            obj = (u32 *)entry->unk_38;
-            *(s16 *)((u8 *)obj + 0x18) += (s32)(256.0f * entry->unk_14);
-            *(s16 *)((u8 *)obj + 0x1A) += (s32)(768.0f * entry->unk_18);
-            *(s16 *)((u8 *)obj + 0x1C) += (s32)(1280.0f * entry->unk_1C);
+    record = manager->records;
+    for (i = 0; i < manager->count; i++, record++) {
+        if (manager->mode == 2) {
+            record->spin.x = lbl_8006D188((s32)(65536.0f * (lbl_801A66A0 % 300) / 300.0f));
+            record->spin.y = lbl_8006D188((s32)(65536.0f * (lbl_801A66A0 % 600) / 600.0f));
+            record->spin.z = lbl_8006D188((s32)(65536.0f * (lbl_801A66A0 % 900) / 900.0f));
+            record->object->angle_x += (s32)(256.0f * record->spin.x);
+            record->object->angle_y += (s32)(768.0f * record->spin.y);
+            record->object->angle_z += (s32)(1280.0f * record->spin.z);
         } else {
-            obj = (u32 *)entry->unk_38;
-            *(s16 *)((u8 *)obj + 0x18) = (s16)(*(s16 *)((u8 *)obj + 0x18) +
-                (s32)(0.01 * (-(s16)*(s16 *)((u8 *)obj + 0x18))));
-            *(s16 *)((u8 *)obj + 0x1A) = (s16)(*(s16 *)((u8 *)obj + 0x1A) +
-                (s32)(0.01 * (-(s16)*(s16 *)((u8 *)obj + 0x1A))));
-            *(s16 *)((u8 *)obj + 0x1C) = (s16)(*(s16 *)((u8 *)obj + 0x1C) +
-                (s32)(0.01 * (-(s16)*(s16 *)((u8 *)obj + 0x1C))));
+            record->object->angle_x = damp_ranking_angle(record->object->angle_x);
+            record->object->angle_y = damp_ranking_angle(record->object->angle_y);
+            record->object->angle_z = damp_ranking_angle(record->object->angle_z);
         }
-        obj = (u32 *)entry->unk_38;
-        obj[0] &= 0xFEFFFFFF;
-        if (entry->unk_0 != 0 &&
-            ((int)*(u32 *)((u8 *)manager + 4) == 1 ||
-             (int)*(u32 *)((u8 *)manager + 4) >= 3)) {
-            if (entry->unk_4 != 0) entry->unk_4--;
-            psvec_add((u8 *)entry->unk_38 + 0xC, (u8 *)entry + 8,
-                      (u8 *)entry->unk_38 + 0xC);
-            fn_1_681C(0, (u32 *)(lbl_801A66CC + 0xD4));
+        record->object->flags &= 0xFEFFFFFF;
+        if (record->active != 0 && (manager->mode == 1 || manager->mode >= 3)) {
+            if (record->cooldown != 0) record->cooldown--;
+            psvec_add(&record->object->position, &record->velocity, &record->object->position);
+            fn_1_681C(0, &lbl_801A66CC->vector);
 
-            obj = (u32 *)entry->unk_38;
-            x = *(f32 *)((u8 *)obj + 0xC);
-            y = *(f32 *)((u8 *)obj + 0x10);
-            z = *(f32 *)((u8 *)obj + 0x14);
-            half = 800.0f;
-            inside = x <= *(f32 *)(lbl_801A66CC + 0xD4) + half &&
-                     x >= *(f32 *)(lbl_801A66CC + 0xD4) - half &&
-                     y <= *(f32 *)(lbl_801A66CC + 0xD8) + 500.0f &&
-                     y >= *(f32 *)(lbl_801A66CC + 0xD8) - 500.0f &&
-                     z <= *(f32 *)(lbl_801A66CC + 0xD4) + half &&
-                     z >= *(f32 *)(lbl_801A66CC + 0xDC) - half;
-            if (!inside) {
-                if (x > *(f32 *)(lbl_801A66CC + 0xD4) + half)
-                    *(f32 *)((u8 *)obj + 0xC) = *(f32 *)(lbl_801A66CC + 0xD4) - half;
-                else if (x < *(f32 *)(lbl_801A66CC + 0xD4) - half)
-                    *(f32 *)((u8 *)obj + 0xC) = *(f32 *)(lbl_801A66CC + 0xD4) + half;
-                if (y > *(f32 *)(lbl_801A66CC + 0xD8) + 500.0f)
-                    *(f32 *)((u8 *)obj + 0x10) = *(f32 *)(lbl_801A66CC + 0xD8) - 500.0f;
-                else if (y < *(f32 *)(lbl_801A66CC + 0xD8) - 500.0f)
-                    *(f32 *)((u8 *)obj + 0x10) = *(f32 *)(lbl_801A66CC + 0xD8) + 500.0f;
-                if (z > *(f32 *)(lbl_801A66CC + 0xDC) + half)
-                    *(f32 *)((u8 *)obj + 0x14) = *(f32 *)(lbl_801A66CC + 0xDC) - half;
-                else if (z < *(f32 *)(lbl_801A66CC + 0xDC) - half)
-                    *(f32 *)((u8 *)obj + 0x14) = *(f32 *)(lbl_801A66CC + 0xDC) + half;
+            /* Retail deliberately uses the X upper boundary for the Z containment test. */
+            if (!(RANKING_AXIS_CONTAINS(record->object->position.x,
+                        lbl_801A66CC->vector.x + 800.0f, lbl_801A66CC->vector.x, 800.0f) &&
+                  RANKING_AXIS_CONTAINS(record->object->position.y,
+                        lbl_801A66CC->vector.y + 500.0f, lbl_801A66CC->vector.y, 500.0f) &&
+                  RANKING_AXIS_CONTAINS(record->object->position.z,
+                        lbl_801A66CC->vector.x + 800.0f, lbl_801A66CC->vector.z, 800.0f))) {
+                if (record->object->position.x > lbl_801A66CC->vector.x + 800.0f)
+                    record->object->position.x = lbl_801A66CC->vector.x - 800.0f;
+                else if (record->object->position.x < lbl_801A66CC->vector.x - 800.0f)
+                    record->object->position.x = lbl_801A66CC->vector.x + 800.0f;
+                if (record->object->position.y > lbl_801A66CC->vector.y + 500.0f)
+                    record->object->position.y = lbl_801A66CC->vector.y - 500.0f;
+                else if (record->object->position.y < lbl_801A66CC->vector.y - 500.0f)
+                    record->object->position.y = lbl_801A66CC->vector.y + 500.0f;
+                if (record->object->position.z > lbl_801A66CC->vector.z + 800.0f)
+                    record->object->position.z = lbl_801A66CC->vector.z - 800.0f;
+                else if (record->object->position.z < lbl_801A66CC->vector.z - 800.0f)
+                    record->object->position.z = lbl_801A66CC->vector.z + 800.0f;
             }
-        }
 
-        overlap = 0;
-        for (j = 0; j < (int)*(u32 *)manager; j++) {
-            if (i != j && entry->unk_4 == 0) {
-                other = &entries[j];
-                obj = (u32 *)entry->unk_38;
-                otherObj = (u32 *)other->unk_38;
-                dx = *(f32 *)((u8 *)obj + 0xC) - *(f32 *)((u8 *)otherObj + 0xC);
-                dy = *(f32 *)((u8 *)obj + 0x10) - *(f32 *)((u8 *)otherObj + 0x10);
-                dz = *(f32 *)((u8 *)obj + 0x14) - *(f32 *)((u8 *)otherObj + 0x14);
-                if (dx * dx + dy * dy + dz * dz < 40000.0f) {
-                    overlap = 1;
-                    *(u32 *)(lbl_801A66CC + 0xD4) = entry->unk_8;
-                    *(u32 *)(lbl_801A66CC + 0xD8) = entry->unk_C;
-                    *(u32 *)(lbl_801A66CC + 0xDC) = entry->unk_10;
-                    entry->unk_8 = other->unk_8;
-                    entry->unk_C = other->unk_C;
-                    entry->unk_10 = other->unk_10;
-                    other->unk_8 = *(u32 *)(lbl_801A66CC + 0xD4);
-                    other->unk_C = *(u32 *)(lbl_801A66CC + 0xD8);
-                    other->unk_10 = *(u32 *)(lbl_801A66CC + 0xDC);
-                }
-            }
+            exchange_ranking_overlaps(manager, record, i);
         }
-        if (overlap) {
-            entry->unk_0 = 0;
-            entries[manager->unk_8].unk_0 = 1;
-            entries[manager->unk_8].unk_4 = 0x3C;
-            manager->unk_8++;
-        }
-        if (manager->unk_8 >= *(u32 *)manager) manager->unk_8 = 0;
+        if (manager->next >= manager->count) manager->next = 0;
     }
-    fn_1_9A7A8((u32 *)((u8 *)&lbl_1_rodata_D958 + 0x38));
+    color = ranking_motion_color;
+    fn_1_9A7A8(&color);
 }
