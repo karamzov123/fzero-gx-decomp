@@ -1,5 +1,5 @@
 {
- "generated": 1792296579,
+ "generated": 1792298822,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -122237,16 +122237,16 @@
    "unit": "rel/title/title/fn_8_5C54.c",
    "addr": 23636,
    "size": 896,
-   "status": "unmatched",
-   "attempts": 6,
-   "best_percent": 99.50893,
+   "status": "matched",
+   "attempts": 8,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "351b536c",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_8_5FD4",
@@ -649047,6 +649047,48 @@
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24992,
+   "symbol": "fn_8_5C54",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792297275,
+   "ended": 1792298545,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "oracle match accepted automatically",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24993,
+   "symbol": "fn_8_5C54",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792298551,
+   "ended": 1792298551,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }

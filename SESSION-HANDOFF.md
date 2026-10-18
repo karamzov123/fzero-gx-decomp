@@ -7,7 +7,21 @@ fork `karamzov123/fzgx`). **Read this first in any new session.**
 
 ## 2026-10-17 session state (opencode/deepseek)
 
-Seven landings (the seventh crossed midnight into 10-18). The newest is
+Eight landings (the last two crossed midnight into 10-18). The newest is
+**fn_8_5C54** (title, 896 B, commit `351b536c`, finding 382): the 6-attempt /
+16k-permutation plateau at 99.50893 (17 register rows — oc1 had already named
+it "a pure allocator rank transposition of two webs") fell to the two
+claim-order levers the repair engine cannot reach: declare the loop counter
+`n` in the **last** declaration slot (that slot alone out-ranks the other
+named locals → `n` claims r30; first/middle slots are measured no-ops), and
+spell the byte truncation `n & 0xFF` instead of `(u8)n` — in the slot index
+**and** the second loop bound. Same `clrlwi` bytes, different node: the AND
+web claims a late saved color (`clr1 → r21`, bound value `r18`), the cast web
+an early one. 224/224 words, 0 differing rows, no pool retarget; one counted
+check (the `write-unit` auto check — the 47-variant offline screen cost
+none), verify fast path 10.7 s, `16 files OK`. Full record: finding 382.
+
+The one before it is
 **fn_8_EFA4** (title/name_entry, 2624 B, commit `fd68a52a`, finding 381): the
 3-attempt plateau fell to the **true source shape** — the frontier bodies
 carried a cross-module header's `extern s8 lbl_801A66A0` for a `.sbss` size-0x4
