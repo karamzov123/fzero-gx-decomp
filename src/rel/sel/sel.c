@@ -43,6 +43,11 @@ void _epilog(u32 lab_unused0) {
     base = lbl_10_bss_0;
     mgr = base + 0x50000;
     state = lbl_1_bss_8B3A0;
+    /* The `& (v | ~v)` identity is exact for u32 (v | ~v == 0xFFFFFFFF). The front
+       end keeps the reads as operands, so the value takes this statement's anonymous
+       compiler temporary; MWCC then folds the identity to `v` and the temporary
+       survives coalescing, which colors it r4 between the two @ha pairs the way
+       retail does (named-local spellings can only color after them). Finding 388. */
     f = *(u32 *)(state + 0x94) & (*(u32 *)(state + 0x94) | ~*(u32 *)(state + 0x94));
 
     *(u32 *)(state + 0x94) = f & 0xFFFFFFEF;

@@ -2,8 +2,41 @@
 
 Last updated: 2026-10-18. Repo: `/home/armandofm/projects/fzgx` (branch `main`,
 fork `karamzov123/fzgx`). **Read this first in any new session.**
-(The 2026-10-12 sections below are still valid; the newest session state is in the
-`2026-10-17 session state` section just below.)
+(The 2026-10-12 sections below are still valid; the newest session state is the
+`2026-10-18 session state` section just below, then `2026-10-17`.)
+
+## 2026-10-18 session state (opencode/deepseek)
+
+**`sel:_epilog` landed** (sel, 556 B, 139 words, commit `406595bf`, finding 388).
+The 10-attempt `99.64029` plateau was an artifact of masked flag constants; the
+semantically true body sat at 97.84 and the register-work statement order
+(`base; mgr; state; f`) at 95.68, with the whole residual a `f` / `B@ha`
+register swap (`A@ha` r3, `f` r4, `B@ha` r5 in retail). Every spelling that
+assigns the load to a named local writes that local's vreg, and a named local
+always colors *after* every statement temp - so `f` could never claim `r4`
+before `B@ha`. The fix is a **front-end-invisible, optimizer-visible identity**:
+`f = *(u32 *)(state + 0x94) & (*(u32 *)(state + 0x94) | ~*(u32 *)(state + 0x94));`
+- the three reads stay expression *operands*, so the value takes this
+statement's anonymous temporary; MWCC's optimizer folds `v | ~v` to `-1` and
+`v & -1` to `v`, leaving a copy that coalesces into the temporary (the same
+survivor direction as the `lis`/`addi` materialisations). Its number is the
+statement pair, which colors `A@ha` r3 / `f` r4 / `B@ha` r5 exactly; 139/139
+words, 0 differing rows, verify fast path 10.6 s, `16 files OK`. The identity is
+exact for u32 (`v | ~v == 0xFFFFFFFF`), not a mask hack - the object still has a
+single `lwz`. Full record: finding 388 (includes the measured flat cohort:
+identity operators, nested assignment in the store, carriers, block-copies,
+self-stores, empty-if CSE, GC/1.3-2.7 sweep).
+
+**Next lead:** `fn_3_1AEE4` (99.45206, 14 attempts) is not in the capture corpus
+and needs a fresh capture; within `sel`, the next near-matches are `fn_10_3B44`
+(99.038) and `fn_10_25610` (98.956); `fn_10_7130` stays parked
+(base+offset-split family, `state/blocked.md`). Reuse the finding-388 lever
+whenever a capture says `needs-web-alignment` because a *value* needs an
+anonymous temp web and carriers/declaration orders cannot reach it (they only
+move values down the local stratum).
+
+Ledger after the landing: matched=**5847** + 20 asm, unmatched=1432, blocked=9,
+0 open claims.
 
 ## 2026-10-17 session state (opencode/deepseek)
 
