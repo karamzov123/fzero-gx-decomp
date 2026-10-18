@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.91% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.77% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "psvec.h"
@@ -92,18 +92,19 @@ static inline s32 damp_ranking_angle(s16 angle) {
 
 static inline void exchange_ranking_overlaps(struct RankingMotionManager *manager,
         struct RankingMotionRecord *record, s32 index) {
-    s32 j;
-    struct RankingMotionRecord *other;
     s32 overlap;
+    struct RankingMotionRecord *other;
+    s32 j;
             other = manager->records;
             overlap = 0;
             for (j = 0; j < manager->count; j++, other++) {
                 if (index != j && record->cooldown == 0) {
                     struct RankingMotionObject *other_object = other->object;
                     struct RankingMotionObject *object = record->object;
-                    f32 dx = object->position.x - other_object->position.x;
+                    f32 dx = object->position.x;
                     f32 dy = object->position.y - other_object->position.y;
                     f32 dz = object->position.z - other_object->position.z;
+                    dx -= other_object->position.x;
                     dx *= dx;
                     dx += dy * dy;
                     dx += dz * dz;
