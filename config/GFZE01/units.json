@@ -70533,7 +70533,7 @@
     "symbols": [
       "fn_10_C6A4"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/sel/sel.c"
