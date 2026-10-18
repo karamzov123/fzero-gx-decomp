@@ -51413,10 +51413,22 @@
     "symbols": [
       "fn_1_156C08"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/ranking.c"
+    "tu": "rel/main_rel/ranking.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_D8C8",
+      "@6": "lbl_1_rodata_D8C8+0x4",
+      "@7": "lbl_1_rodata_D8C8+0x8",
+      "@8": "lbl_1_rodata_D8C8+0xC",
+      "@5": "lbl_1_rodata_D8C8",
+      "@9": "lbl_1_rodata_D8C8+0x10",
+      "@10": "lbl_1_rodata_D8C8+0x14",
+      "@11": "lbl_1_rodata_D8C8+0x18",
+      "@12": "lbl_1_rodata_D8C8+0x1C",
+      "@13": "lbl_1_rodata_D8C8+0x20"
+    }
   },
   {
     "module": "main_rel",

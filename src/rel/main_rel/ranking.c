@@ -901,6 +901,79 @@ void fn_1_156B18(fn_1_156B18_State *state) {
 }
 /* fzgx:end fn_1_156B18 */
 
+/* fzgx:begin fn_1_156C08 */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f; s = -1.899999976158142f; s = 25.0f; s = -25.0f;
+    s = 30.0f; s = 1.5f; s = 170.0f; s = 0.5f; s = 248.0f; s = 10.0f;
+}
+#pragma section code_type ".text"
+typedef struct Sig_fn_8006B55C_Fn8006B55CFlags { u8 flag7:1; u8 flag6:1; u8 rest:6; } Sig_fn_8006B55C_Fn8006B55CFlags;
+typedef struct Sig_fn_8006B55C_Fn8006B55CData {
+    u8 flags_pad[4]; Sig_fn_8006B55C_Fn8006B55CFlags flags; u8 _pad0[3];
+    u16 value; u8 _pad1[0x44]; u8 payload[1];
+} Sig_fn_8006B55C_Fn8006B55CData;
+extern f64 __fabs(f64);
+extern s32 fn_8006B55C(Sig_fn_8006B55C_Fn8006B55CData *, u32 *, u8 *);
+extern s32 fn_8006B628(u32, u8 *);
+extern s32 fn_8006B6F8(u32);
+extern f32 lbl_1_rodata_D8C8[18];
+typedef struct {
+    u32 flags; Sig_fn_8006B55C_Fn8006B55CData *data; u32 pad8; u32 handle;
+    u8 pad10[0x28]; f32 value; f32 delta;
+} Sig_fn_1_156C08_Entry;
+#pragma opt_propagation off
+#pragma opt_dead_assignments off
+static inline f32 fn_1_156C08_read_pointer(Sig_fn_1_156C08_Entry *owner) { return owner->delta; }
+void fn_1_156C08(Sig_fn_1_156C08_Entry *arg0) {
+    f32 v1; f32 v3; s32 v13; s32 v13_2; f32 v7; s32 negative; u32 *ph;
+    f32 *pool = lbl_1_rodata_D8C8;
+    Sig_fn_8006B55C_Fn8006B55CData *data;
+    u32 handle;
+    struct { u8 a[36]; } loc_8;
+    v1 = -1.899999976158142f;
+    (void)v1; (void)v1;
+    v1 = (f32)(v1 * fn_1_156C08_read_pointer(arg0));
+    if (v1 > 25.0f) v1 = 25.0f;
+    else if (v1 < -25.0f) v1 = -25.0f;
+    v1 += arg0->value;
+    negative = v1 < 0.0f;
+    v7 = (f32)__fabs(v1);
+    if (v7 > 30.0f) {
+        v7 = (f32)(1.5f * (v7 - 30.0f)) + 30.0f;
+        if (v7 > 170.0f) {
+            v7 = (f32)(0.5f * (v7 - 170.0f)) + 170.0f;
+            if (v7 > 248.0f) v7 = 248.0f;
+        }
+    }
+    if (negative) v7 = -v7;
+    v13 = 0;
+    loc_8.a[0] = v13;
+    *(u32 *)((u8 *)&loc_8 + 4) = -1;
+    *(u32 *)((u8 *)&loc_8 + 8) = v13;
+    *(u16 *)((u8 *)&loc_8 + 12) = (s32)v7;
+    *(u16 *)((u8 *)&loc_8 + 14) = 90;
+    *(u32 *)((u8 *)&loc_8 + 16) = v13;
+    *(u32 *)((u8 *)&loc_8 + 20) = v13;
+    loc_8.a[24] = v13;
+    loc_8.a[25] = 190;
+    handle = arg0->handle; data = arg0->data;
+    if (handle == (u32)-1) {
+        ph = &arg0->handle;
+        if (fn_8006B55C(data, ph, (u8 *)&loc_8) < 0) {
+        } else { v13 = 1; }
+    } else {
+        if (fn_8006B628(handle, (u8 *)&loc_8) < 0) {
+        } else { v13 = 1; }
+    }
+    if (v13 != 0 && (arg0->flags & 2) == 0) {
+        if (fn_8006B6F8(arg0->handle) >= 0) arg0->flags |= 2;
+    }
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_156C08 */
+
 /* fzgx:begin fn_1_156D9C noprologue */
 #include "dolphin/types.h"
 #include "rel/main_rel/ranking.h"
