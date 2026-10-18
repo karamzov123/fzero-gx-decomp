@@ -4,8 +4,9 @@
 
 - `fn_1_15906C`: commit `cca2e024`, 245/245 instructions, 980 bytes.
 - `fn_1_1586AC`: commit `cd7ae639`, 181/181 instructions, 724 bytes.
-- Both passed normal `write-unit` lint, `submit`, and `verify`; no forced match, alternate object, or link-gate bypass.
-- After both commits, `build/tools/dtk shasum -q -c config/GFZE01/build.sha1` returned `16 files OK` with exit 0. Repository lint returned zero findings.
+- `fn_1_15BCDC`: commit `8a89290e`, 87/87 instructions, 348 bytes.
+- All three passed normal `write-unit` lint, `submit`, and `verify`; no forced match, alternate object, or link-gate bypass.
+- Total newly matched native code: 2,052 bytes. After all three commits, `build/tools/dtk shasum -q -c config/GFZE01/build.sha1` returned `16 files OK` with exit 0. Repository lint returned zero findings.
 
 ### fn_1_15906C: meaningful initializer boundaries
 
@@ -32,11 +33,17 @@ The older source indexed `record[index]` through its 400-record initialization l
 
 No unroll pragma is needed. Explicit unroll-on variants were identical. Do not rewrite the subsequent raw grid address expressions merely for stylistic uniformity: the typed-grid variant changes the nested-loop lowering and regresses 81 raw words. Retail clears 20 words of each 40-word row; preserve that behavior.
 
+### fn_1_15BCDC: decode the command before reading the history ring
+
+The 16-bit buttons field is `(u16)(command >> 4)`, bits 4..19, not the old `>>16`. Remove the old cloned scan-loop selector/button locals and update the actual selector and held-button variables. Read the controller's history-end table before deriving its row. Decode a local `buttons` value before the ring read and early-continue command-type check; the value is needed after optional held-button skipping. These changes recover every one of the 87 words.
+
+Keep the explicit narrow update `held_buttons = (u16)((u16)held_buttons | (u16)(event >> 4))`. A cleanup to compound `|=` removes a retail `clrlwi` and changes five other rows. That cleanup was rejected and never integrated. The generic array-read helper is unnecessary; direct ring indexing still matches. Preserve signed `%32`, not an unsigned bit mask.
+
 ## Portable unmatched frontiers
 
 Archive: `state/repairs/hermes-native-ranking-frontier-20261018.json.gz`.
 
-This is the existing `fzgx-source-repairs-v1` format, with complete C, hashes, compiler version, separate raw-word and aligned-row measurements, and exact oracle results. It contains six records: the two landed bodies and the four unmatched bodies below. Replay actually returned `{"reproduced": 6}`:
+This is the existing `fzgx-source-repairs-v1` format, with complete C, hashes, compiler version, separate raw-word and aligned-row measurements, and exact oracle results. It contains eight records: the three landed bodies and the five unmatched bodies below. Replay actually returned `{"reproduced": 8}`:
 
     .venv/bin/python tools/fzgx.py fixup --archive state/repairs/hermes-native-ranking-frontier-20261018.json.gz
 
@@ -48,6 +55,7 @@ These are work-copy frontiers, NOT matches or enabled units:
 | `fn_1_C0B0C` | 5/190 rows | Raw comparison is 4/189 words; objdiff aligns the reordered initialization as five rows. Do not conflate the metrics. |
 | `fn_1_158984` | 9/430 rows | Full native motion/collision reconstruction, versus 306 real residual rows in the old source. |
 | `fn_1_15AC10` | 47/504 rows | Complete native-u64 reconstruction, 502 retail versus 503 candidate instructions. Raw comparison has 77 differing words because alignment shifts. |
+| `fn_1_15BBC4` | 31/74 rows | Correct controller-history update semantics; 70 retail versus 68 candidate instructions. |
 
 ### fn_1_1188CC
 
@@ -78,6 +86,12 @@ Native u64 recovers the bit-code and decimal-display algorithm without any of th
 Split bit extraction from addition of the random remainder so `__shr2u` occurs before `__mod2u`. Bits 13, 20, 32, and 33 are excluded. Signed random15 results are promoted to u64 as retail does. All twenty decimal quotient/remainder stores and the four hyphens match, least-significant digit first. The tail scrambles characters 5 through 23, skipping hyphens.
 
 The residual is saved-pair allocation in the bit loop and tail, two RNG operand homes, and tail pointer/counter lowering. Whole bit or digit phase helpers regress. The candidate retains the actual algorithm and correct frame but is not submitted. Parent-assigned closure work is restricted to this function.
+
+### fn_1_15BBC4
+
+Recover the actual 15-by-32 history table and use the correct signed `(index + 1) % 32`, not the previous erroneous negative unsigned mask. Cache a controller's current buttons across the separate index store so the compiler does not reread a potentially aliasing u16. Explicitly narrow the returned result before the `0xffff` comparison. Cached entry/index array bases and the native two-dimensional history view reduce the measured draft to 31 aligned rows, but do not close it.
+
+Remaining differences include the saved-pointer home mapping, combined versus separate array-base offsets, induction placement, and cooldown-path load scheduling. Body-top pointer advances emit an unwanted `lhzu`; do not repeat that form. The body is archived and explicitly unmatched.
 
 ## Coordination and publication
 
