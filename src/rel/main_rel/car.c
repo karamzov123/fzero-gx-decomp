@@ -711,7 +711,6 @@ void fn_1_7FA04(u32 arg0) {
 /* fzgx:end fn_1_7FA04 */
 
 /* fzgx:begin fn_1_7FD7C */
-
 typedef struct {
     s16 unk_00;
     s16 unk_02;
@@ -1602,8 +1601,6 @@ s16 fn_1_847A8(s16 value, s16 divisor) {
 /* fzgx:end fn_1_847A8 */
 
 /* fzgx:begin fn_1_85688 pool */
-
-
 typedef struct {
     u8 pad_0[0x324];
     s32 unk_324;
@@ -1803,7 +1800,6 @@ void fn_1_85F70(void) {
 /* fzgx:end fn_1_85F70 */
 
 /* fzgx:begin fn_1_85F90 */
-
 typedef struct {
     u8 pad_0[0x118];
     u32 unk_118;
@@ -5222,6 +5218,49 @@ u32 fn_1_8CA5C(void) {
 }
 /* fzgx:end fn_1_8CA5C */
 
+/* fzgx:begin fn_1_8CA70 */
+extern u8 lbl_1_bss_6E160[1740];
+extern f32 lbl_1_rodata_3508[];
+struct rodata_3508 {
+f32 f[4];
+u8 pad_10[0x654];
+f64 unk_668;
+u8 pad_670[0x178];
+f64 unk_7E8;
+};
+f32 fn_1_8CA70(u32 a, s32 b) {
+    f32 value;
+    u32 total;
+    u32 half;
+    u32 span;
+    u32 index;
+    int swapped = 0;
+    struct { struct rodata_3508 *value; } constants;
+    constants.value = (struct rodata_3508 *)lbl_1_rodata_3508;
+    if (a == b) {
+        return constants.value->f[4];
+    }
+    if (a > b) {
+        u32 temp = a;
+        a = b;
+        b = temp;
+        swapped = 1;
+    }
+    total = a * 30;
+    half = (a * (a + 1)) >> 1;
+    span = b - a;
+    index = (total - half) + (span - 1);
+    value = *((f32 *)(lbl_1_bss_6E160 + (index * 4)));
+    if (!(swapped)) {
+        return value;
+    }
+    if (constants.value->unk_668 == value) {
+        return value;
+    }
+    return (f32)(value * constants.value->unk_7E8);
+}
+/* fzgx:end fn_1_8CA70 */
+
 /* fzgx:begin fn_1_8CB78 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -6397,9 +6436,6 @@ void fn_1_8E480(void) {
 /* fzgx:end fn_1_8E480 */
 
 /* fzgx:begin fn_1_8E728 */
-
-
-
 struct Unk_1_8E728 {
     u8 pad_0[0x98];
     u8 field_98;
@@ -6504,7 +6540,6 @@ void fn_1_8F5A4(Fn1_8F5A4_Object *obj) {
 /* fzgx:end fn_1_8F5A4 */
 
 /* fzgx:begin fn_1_8FE74 */
-
 typedef struct Fn8FE74Sub {
     u8 pad[0x4C];
     f32 unk_4C;
