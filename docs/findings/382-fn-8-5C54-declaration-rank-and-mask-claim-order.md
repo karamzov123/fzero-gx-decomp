@@ -105,3 +105,25 @@ permutations — they are:
    web claims an **early** one. Measure both spellings wherever a masked or
    truncated value is allocated to a long web — including the *loop bound*,
    which allocates its own web.
+
+## Tooling
+
+Both levers are now stock generators in `tools/fzgx/fixup_source.py`, so the
+repair engine reaches this class without manual editing:
+
+- `perturbations` (declaration order): for bodies with more than five locals it
+  now also probes **each single local moved to the end** and **to the front** of
+  the declaration list, instead of only reverse and adjacent swaps.
+- new `mask_spellings` family, registered in `rewrites`: `(u8)X` / `(u16)X` /
+  `(unsigned char)X` / `(unsigned short)X` become `(X & 0xFF)` / `(X & 0xFFFF)`
+  (signed casts excluded — `(s8)X` sign-extends and a plain mask cannot express
+  that).
+
+Validation on the real function: `all_rewrites(base)` now emits the `n`-last
+candidate (re-measured 40-row cascade, identical to the manual probe) and the
+mask sites; `n`-last **plus the mask family's composed edits** is 224/224 words
+MWCC-exact against the retail object — the engine's own composition reaches the
+match from the frontier body. Pipeline smoke test
+`fzgx fixup fn_8_FC5C --rounds 2 --max-candidates 120` (temporary output)
+evaluated 842 variants through the new families with no error; `fzgx lint`
+0 findings; `configure.py && ninja` clean; `fzgx verify` "nothing pending".

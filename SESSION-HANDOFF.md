@@ -20,6 +20,10 @@ web claims a late saved color (`clr1 → r21`, bound value `r18`), the cast web
 an early one. 224/224 words, 0 differing rows, no pool retarget; one counted
 check (the `write-unit` auto check — the 47-variant offline screen cost
 none), verify fast path 10.7 s, `16 files OK`. Full record: finding 382.
+Same session tooling: both levers are now stock generators in
+`fixup_source.py` (declaration-order end-moves + the `mask_spellings`
+family), validated by re-running the engine's own composition on this
+frontier body (224/224 from base).
 
 The one before it is
 **fn_8_EFA4** (title/name_entry, 2624 B, commit `fd68a52a`, finding 381): the

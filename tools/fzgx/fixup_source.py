@@ -543,6 +543,25 @@ def signedness_flips(body: str, name: str) -> List[Tuple[str, str]]:
     return out
 
 
+_CAST_MASK = {'u8': '0xFF', 'u16': '0xFFFF', 'unsigned char': '0xFF', 'unsigned short': '0xFFFF'}
+
+
+def mask_spellings(body: str, name: str) -> List[Tuple[str, str]]:
+    """`(u8)X` -> `(X & 0xFF)` (and the u16 variant): the same `clrlwi` bytes, a different
+    node. The AND result is numbered late in the vreg order, so a truncated value that
+    lands in a saved colour claims a *later* slot than the conversion-result web does — the
+    difference between claim 4 (r28) and claim 11 (r21) for the slot-index web of
+    fn_8_5C54, in both the index assignment and the loop bound (finding 382). Signed casts
+    are excluded: `(s8)X` sign-extends, which a plain mask cannot express."""
+    out: List[Tuple[str, str]] = []
+    for m in re.finditer(r'\((u8|u16|unsigned char|unsigned short)\)\s*'
+                         r'([A-Za-z_]\w*(?:(?:->|\.)[A-Za-z_]\w*)*(?:\[[^\]]*\])*|\([^()]*\))', body):
+        typ, operand = m.group(1), m.group(2)
+        inner = operand[1:-1] if operand.startswith('(') else operand
+        out.append((f"({typ}) -> mask", body[:m.start()] + f"({inner} & {_CAST_MASK[typ]})" + body[m.end():]))
+    return out
+
+
 def float_precision(body: str, name: str) -> List[Tuple[str, str]]:
     """Single against double arithmetic: an unsuffixed literal in a float expression promotes
     to double (`fsub` where retail has `fsubs`), and an `f64` local keeps a double temp where
@@ -625,8 +644,8 @@ def rewrites(body: str, name: str) -> List[Tuple[str, str]]:
     out: List[Tuple[str, str]] = []
     for fn in (scope_moves, split_inits, hoists, through_local, return_values,
                call_results_to_locals, wrap_constant_pointers, decse_repeated_expressions,
-               scalar_carriers, dead_uses, variable_splits, signedness_flips, float_precision,
-               embedded_call_assignments, condition_embedded_assignments):
+               scalar_carriers, dead_uses, variable_splits, signedness_flips, mask_spellings,
+               float_precision, embedded_call_assignments, condition_embedded_assignments):
         try:
             out += fn(body, name)
         except Exception:
@@ -801,12 +820,22 @@ def perturbations(body: str, name: str) -> List[Tuple[str, str, str]]:
     if not span:
         return out
     locs = _locals(body, span)
-    # 1. declaration order: every permutation of up to 5 locals, else reverse and adjacent swaps
+    # 1. declaration order: every permutation of up to 5 locals, else reverse, adjacent swaps,
+    #    and each single local moved to either end of the list (finding 382: only the LAST
+    #    slot promoted fn_8_5C54's counter `n` above the other named locals and returned its
+    #    r30 claim, while the first and middle slots measured as no-ops - the rank is not a
+    #    straight function of slot order, so both ends get probed explicitly)
     if len(locs) >= 2:
         lines = [body[s:e] for s, e, *_ in locs]
         blk_s, blk_e = locs[0][0], locs[-1][1]
-        perms = list(itertools.permutations(range(len(lines)))) if len(lines) <= 5 else \
-            [tuple(reversed(range(len(lines))))] + [tuple(list(range(i)) + [i + 1, i] + list(range(i + 2, len(lines)))) for i in range(len(lines) - 1)]
+        n = len(lines)
+        if n <= 5:
+            perms = list(itertools.permutations(range(n)))
+        else:
+            perms = [tuple(reversed(range(n)))]
+            perms += [tuple(list(range(i)) + [i + 1, i] + list(range(i + 2, n))) for i in range(n - 1)]
+            perms += [tuple(list(range(i)) + list(range(i + 1, n)) + [i]) for i in range(n)]
+            perms += [tuple([i] + list(range(i)) + list(range(i + 1, n))) for i in range(n)]
         for perm in perms:
             if list(perm) == list(range(len(lines))):
                 continue
