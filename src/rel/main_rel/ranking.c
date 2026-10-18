@@ -1853,6 +1853,47 @@ void fn_1_1586A8(void) {
 }
 /* fzgx:end fn_1_1586A8 */
 
+/* fzgx:begin fn_1_1586AC */
+struct RankingResetVector { u32 a[3]; };
+struct RankingResetRecord {
+    u32 unk_0;
+    u32 unk_4;
+    struct RankingResetVector unk_8;
+    struct RankingResetVector unk_14;
+    u8 pad_20[0x1C];
+};
+extern u32 lbl_1_rodata_D978[3];
+extern u32 lbl_1_rodata_D984[39];
+extern void fn_1_9A508(void);
+
+void fn_1_1586AC(void) {
+    Obj_1_data_2A7E0_At3C *manager;
+    s32 record_index;
+    struct RankingResetRecord *record;
+    s32 x;
+    s32 y;
+    s32 z;
+    manager = lbl_1_data_2A7E0.unk_3C;
+    manager->unk_0 = 0;
+    /* The 400-record effect pool follows the 20-by-20-by-40 occupancy grid. */
+    record = (struct RankingResetRecord *)((u8 *)manager + 0xFA0C);
+    for (record_index = 0; record_index < 400; record_index++, record++) {
+        record->unk_0 = 0;
+        record->unk_8 = *(struct RankingResetVector *)lbl_1_rodata_D978;
+        record->unk_14 = *(struct RankingResetVector *)lbl_1_rodata_D984;
+    }
+    /* Only the first 20 words of each 40-word grid row are reset by retail. */
+    for (x = 0; x < 20; x++) {
+        for (y = 0; y < 20; y++) {
+            for (z = 0; z < 20; z++) {
+                *(u32 *)((u8 *)manager + x * 3200 + y * 160 + z * 4 + 12) = 0;
+            }
+        }
+    }
+    fn_1_9A508();
+}
+/* fzgx:end fn_1_1586AC */
+
 /* fzgx:begin fn_1_158980 */
 // fn_1_158980: empty in retail (single blr).
 void fn_1_158980(void) {
