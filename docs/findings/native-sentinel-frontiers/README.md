@@ -37,6 +37,9 @@ object match, and all sixteen link/hash checks.
 | fn_12_2E1A0 | 99.3%, GC/1.3.2 | 3/30 rows: correction shift destination, minute product destination, reversed inputs to their sum |
 | fn_12_29524 | 97.3%, GC/1.3.2 | 34/226 rows, native pointer/helper web allocation; correct instruction count |
 | fn_12_247BC | 97.5%, GC/1.3.2 | 21/70 rows, safe unsigned tag assembly with signed compares; a prior native scalar arrangement reached 97.8% |
+| fn_8006B224 | 87.67857%, GC/1.3.2 with -O3; previous ledger best 75.35714% | 7/29 rows: base/offset GPR homes, initialization ordering, compare versus offset increment |
+| mathutil_mtxA_from_quat | 89.7619%, both usual compilers | Exact 42-instruction opcode/memory/operand-order sequence; 40 FPR-allocation rows differ; reject the larger historical score with uninitialized inputs |
+| fn_80070100 | 90.0% raw, GC/1.3.2 | 3/23 aligned rows: extra root temporary/copy and zero-offset argument form; correct real owner replaces the historical carrier |
 
 ### Semantic repairs worth retaining
 
@@ -136,6 +139,40 @@ were synthesized.
 - Both sentinel states passed with ASan/UBSan; the bad value calls the reporting
   function exactly once with null context and error `0xFF000201`.
 
+`test_shutdown_streams.c`:
+
+- Four active-flag states (zero, one, minus one, and two), followed by repeat calls.
+- Exact four `0x1248`-spaced entry pointers, alternating release/channel callbacks,
+  channel IDs 0 through 3, command `0x400`, ignored release errors, final flag clear,
+  and repeat-call idempotence passed under ASan/UBSan.
+
+`test_quaternion.c`:
+
+- Correct initialized scalar reconstruction; the old archive's `xy_2`, `yz_2`,
+  and `a_2` were read before being initialized. Its one-field `wz` carrier and
+  component-read wrapper are not retained.
+- Four exact basis rotations plus 1,024 deterministic normalized random
+  quaternions: the executable reports 1,028 cases. Every output element agrees
+  with an independent double-precision formula within `1e-5`, translations are
+  zero, and the unused locked-cache region/constant remain untouched.
+- Hardware LC_BASE is rebound only in this host fixture. GCC uses
+  `-ffp-contract=off`; this is numerical semantic evidence, not proof of bitwise
+  Gekko FMA rounding, hardware behavior, or register allocation.
+
+`test_vertex_formats.c`:
+
+- A stdlib ELF32 reader inspected the real linked table at `lbl_8015A860`.
+  Its 432 bytes consist of two 12-record lists and one 3-record list, with
+  16-byte records and an attribute-255 terminator at the end of each list.
+  Offsets are `0`, `0xC0`, and `0x180`. The third list contains attributes
+  9, 13, and 255. This is not a fictitious three-by-192-byte object.
+- The native owner and each subobject offset are compile-time assertions.
+  The fixture validates `GXClearVtxDesc`, cache-reset, and format 0/1/7 callbacks
+  in retail order with the exact subobject pointers, under ASan/UBSan.
+- Native owner with propagation off scores 90.0% under GC/1.3.2 versus 51.545456%
+  under GC/1.2.5n. Removing that directive rematerializes roots and scores 42.2%;
+  the preferred 841-byte source is retained. No repeated 1,476-variant search.
+
 Reproduction from repository root (binaries belong in active scratch):
 
 ```sh
@@ -159,6 +196,13 @@ for MODE in GOOD BAD; do
     -fno-omit-frame-pointer -I include "$FIX/test_sentinel.c" \
     -o "$SCRATCH/fzgx-sentinel-$MODE"
   "$SCRATCH/fzgx-sentinel-$MODE"
+done
+
+for TEST in shutdown_streams quaternion vertex_formats; do
+  gcc -std=c11 -O1 -g -Wall -Wextra -Wno-unknown-pragmas \
+    -ffp-contract=off -fsanitize=address,undefined -fno-omit-frame-pointer \
+    -I include "$FIX/test_$TEST.c" -lm -o "$SCRATCH/fzgx-$TEST"
+  "$SCRATCH/fzgx-$TEST"
 done
 ```
 
