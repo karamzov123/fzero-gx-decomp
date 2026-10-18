@@ -278,3 +278,6 @@ rel/title/operation/fn_8_B840.c:
 
 rel/title/operation/fn_8_ABBC.c:
 	.text       start:0x0000ABBC end:0x0000ADF4 align:4
+
+rel/title/name_entry/fn_8_EFA4.c:
+	.text       start:0x0000EFA4 end:0x0000F9E4 align:4

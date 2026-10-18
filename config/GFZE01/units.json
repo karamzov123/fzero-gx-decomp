@@ -12509,6 +12509,27 @@
   },
   {
     "module": "main",
+    "source": "dol/__pformatter.c",
+    "symbols": [
+      "__pformatter"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "2",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": {
+      "@180": "@wstringBase0",
+      "@181": "@stringBase0_80094FC0"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/__prep_buffer.c",
     "symbols": [
       "__prep_buffer"
@@ -71714,6 +71735,22 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/title/name_entry.c"
+  },
+  {
+    "module": "title",
+    "source": "rel/title/name_entry/fn_8_EFA4.c",
+    "symbols": [
+      "fn_8_EFA4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/title/name_entry.c",
+    "pool": {
+      "...rodata.0": "lbl_8_rodata_408",
+      "@37": "lbl_8_rodata_AF8",
+      "@38": "lbl_8_rodata_B00"
+    }
   },
   {
     "module": "title",

@@ -6020,3 +6020,6 @@ dol/fn_8008F8B0.c:
 
 dol/fn_8008ED70.c:
 	.text       start:0x8008ED70 end:0x8008EDB0 align:4
+
+dol/__pformatter.c:
+	.text       start:0x80080A38 end:0x800811AC align:4
