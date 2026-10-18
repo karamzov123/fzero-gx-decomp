@@ -296,6 +296,75 @@ void fn_1_15BB34(void *value) {
 }
 /* fzgx:end fn_1_15BB34 */
 
+/* fzgx:begin fn_1_15BCDC noprologue */
+#include "types.h"
+
+extern u16 lbl_1_bss_8F980[16];
+extern u16 lbl_1_bss_8F9A0[480];
+
+#pragma opt_common_subs on
+#pragma opt_dead_assignments on
+#pragma opt_strength_reduction off
+#pragma opt_lifetimes off
+s32 fn_1_15BCDC(u32 *commands) {
+    s32 command_index;
+    s32 history_index;
+    s32 command_count;
+    u16 *history;
+    u16 held_buttons;
+    u16 controller;
+    s32 history_end;
+    u32 *scan;
+
+    controller = 0;
+    scan = commands;
+    held_buttons = 0;
+    command_count = 0;
+    while (*scan != 0xFFFFFFFF) {
+        u32 event = *scan;
+        if (controller == 0) {
+            controller = (u16)(event & 0xf);
+        }
+        if ((event >> 24) == 2) {
+            held_buttons = (u16)((u16)held_buttons | (u16)(event >> 4));
+        }
+        scan++;
+        command_count++;
+    }
+    if (command_count == 0) {
+        return 0;
+    }
+    /* Each controller owns a 32-entry ring; preserve signed remainder semantics. */
+    history_end = lbl_1_bss_8F980[controller];
+    history = &lbl_1_bss_8F9A0[(controller - 1) * 32];
+    history_end += 0x20;
+    history_index = 0;
+    for (command_index = 0; command_index < command_count; command_index++) {
+        u32 command = commands[(u16)(command_count - command_index - 1)];
+        /* Buttons occupy bits 4..19, below the command-type byte. */
+        u16 buttons = (u16)(command >> 4);
+        u16 recorded = history[(u16)((history_end - history_index) % 32)];
+        if ((command >> 24) == 2) {
+            continue;
+        }
+        if (held_buttons != 0 && recorded == held_buttons) {
+            history_index++;
+            recorded = history[(u16)((history_end - history_index) % 32)];
+        }
+        if (recorded != (buttons | held_buttons)) {
+            return 0;
+        }
+        history_index++;
+    }
+    return 1;
+}
+#pragma opt_lifetimes reset
+
+#pragma opt_strength_reduction reset
+#pragma opt_dead_assignments reset
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_15BCDC */
+
 /* fzgx:begin fn_1_15BE38 */
 typedef struct {
     u32 count;
