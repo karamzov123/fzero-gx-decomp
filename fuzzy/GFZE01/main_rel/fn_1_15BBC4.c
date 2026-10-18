@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (67.27% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (82.37% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -20,7 +20,7 @@ typedef struct {
     u8 pad_00[0x20];
     NameEntry entry[16];
     u16 index[16];
-    u16 hash[480];
+    u16 hash[15][32];
     u8 pad_480[4];
     u16 unk_484;
     u16 unk_486;
@@ -31,29 +31,41 @@ u16 fn_1_15BBC4(void) {
     WinName *w = (WinName *)&lbl_1_bss_8F8E0;
     s32 i;
     u16 idx;
-    u16 nidx;
+    s32 nidx;
+    NameEntry *entry;
+    u16 *index;
+    u16 result;
 
     if (w->unk_486 != 0) {
-        w->unk_486 = w->unk_486 - 1;
-        return w->unk_484;
+        u16 timer = w->unk_486 - 1;
+        result = w->unk_484;
+        w->unk_486 = timer;
+        return result;
     }
     fn_1_15C0AC();
+    entry = w->entry;
+    index = w->index;
     for (i = 1; i < 0x10; i++) {
-        tbl = w->hash + (i - 1) * 0x20;
-        idx = w->index[i];
-        fn_1_15BEBC(i, (Obj_1_bss_8F8E0 *)&w->entry[i]);
+        tbl = w->hash[i - 1];
+        idx = index[i];
+        fn_1_15BEBC(i, (Obj_1_bss_8F8E0 *)&entry[i]);
         if (tbl[idx] == 0) {
-            tbl[idx] = w->entry[i].unk_4;
-        } else if (tbl[idx] != w->entry[i].unk_4) {
-            nidx = (0u - (idx + 1)) & 0x1f;
-            w->index[i] = nidx;
-            tbl[nidx] = w->entry[i].unk_4;
+            tbl[idx] = entry[i].unk_4;
+        } else {
+            u16 buttons = entry[i].unk_4;
+            if (buttons != tbl[idx]) {
+                nidx = (idx + 1) % 32;
+                index[i] = nidx;
+                tbl[(u16)nidx] = buttons;
+            }
         }
     }
-    w->unk_484 = fn_1_15BE38();
-    if (w->unk_484 != 0xffff) {
+    result = fn_1_15BE38();
+    w->unk_484 = result;
+    if (result != 0xffff) {
         w->unk_486 = 0x78;
         fn_80008BEC(w->hash, 0, 0x3c0);
     }
     return w->unk_484;
 }
+
