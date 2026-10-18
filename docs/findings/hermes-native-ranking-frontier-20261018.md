@@ -5,8 +5,9 @@
 - `fn_1_15906C`: commit `cca2e024`, 245/245 instructions, 980 bytes.
 - `fn_1_1586AC`: commit `cd7ae639`, 181/181 instructions, 724 bytes.
 - `fn_1_15BCDC`: commit `8a89290e`, 87/87 instructions, 348 bytes.
-- All three passed normal `write-unit` lint, `submit`, and `verify`; no forced match, alternate object, or link-gate bypass.
-- Total newly matched native code: 2,052 bytes. After all three commits, `build/tools/dtk shasum -q -c config/GFZE01/build.sha1` returned `16 files OK` with exit 0. Repository lint returned zero findings.
+- `InitMetroTRKCommTable`: commit `1a10b098`, 155/155 instructions, 620 bytes.
+- All four passed normal `write-unit` lint, `submit`, and `verify`; no forced match, alternate object, or link-gate bypass.
+- Total newly matched native code: 2,672 bytes. After all four commits, `build/tools/dtk shasum -q -c config/GFZE01/build.sha1` returned `16 files OK` with exit 0. Repository lint returned zero findings.
 
 ### fn_1_15906C: meaningful initializer boundaries
 
@@ -39,11 +40,15 @@ The 16-bit buttons field is `(u16)(command >> 4)`, bits 4..19, not the old `>>16
 
 Keep the explicit narrow update `held_buttons = (u16)((u16)held_buttons | (u16)(event >> 4))`. A cleanup to compound `|=` removes a retail `clrlwi` and changes five other rows. That cleanup was rejected and never integrated. The generic array-read helper is unnecessary; direct ring indexing still matches. Preserve signed `%32`, not an unsigned bit mask.
 
+### InitMetroTRKCommTable: restore the actual success return
+
+The saved source returned the address of `TRK_Use_BBA` after installing UDP/BBA callbacks. Retail instead returns integer zero directly from that branch, bypassing the common stub-status return used by the other transports. Replacing the bogus address assignment with the real early `return 0` reproduces every one of the 155 instructions, including the callback-address schedule and three saved-register roles. No declaration, optimizer, or instruction-padding workaround is needed. The callback table fields were named by their actual operations, and the standard link gate accepted the result.
+
 ## Portable unmatched frontiers
 
 Archive: `state/repairs/hermes-native-ranking-frontier-20261018.json.gz`.
 
-This is the existing `fzgx-source-repairs-v1` format, with complete C, hashes, compiler version, separate raw-word and aligned-row measurements, and exact oracle results. It contains eight records: the three landed bodies and the five unmatched bodies below. Replay actually returned `{"reproduced": 8}`:
+This is the existing `fzgx-source-repairs-v1` format, with complete C, hashes, compiler version, separate raw-word and aligned-row measurements, and exact oracle results. It contains eleven records: the four landed bodies, the six unmatched frontiers below, and the explicitly admission-blocked `fn_1_203E4` matrix reconstruction. Replay actually returned `{"reproduced": 11}`. Replay proves source reproduction, not admission or a match:
 
     .venv/bin/python tools/fzgx.py fixup --archive state/repairs/hermes-native-ranking-frontier-20261018.json.gz
 
@@ -53,9 +58,10 @@ These are work-copy frontiers, NOT matches or enabled units:
 |---|---:|---|
 | `fn_1_1188CC` | 19/305 rows | Previously 31/306. Correct pool literals and Y update order; positive null guard removes an extra branch. |
 | `fn_1_C0B0C` | 5/190 rows | Raw comparison is 4/189 words; objdiff aligns the reordered initialization as five rows. Do not conflate the metrics. |
-| `fn_1_158984` | 9/430 rows | Full native motion/collision reconstruction, versus 306 real residual rows in the old source. |
+| `fn_1_158984` | 1/430 rows | Stock allocator capture guided a verified 9-to-1 reduction; still unmatched. |
 | `fn_1_15AC10` | 47/504 rows | Complete native-u64 reconstruction, 502 retail versus 503 candidate instructions. Raw comparison has 77 differing words because alignment shifts. |
 | `fn_1_15BBC4` | 31/74 rows | Correct controller-history update semantics; 70 retail versus 68 candidate instructions. |
+| `fn_1_86E08` | 27/155 rows | Complete 1,824-byte readonly initializer now includes all 260 pointer bindings; still unmatched. |
 
 ### fn_1_1188CC
 
@@ -77,7 +83,11 @@ The mode returned by `camera_get_mode()` is passed to `fn_1_8627C(mode)`; declar
 
 Keep the damping product in a double temporary before adding to the original angle: a single expression contracts into the wrong `fmadd`. The lazy axis-range macro preserves the real per-axis boolean ladder and the retail quirk where the Z containment upper bound uses the X center. Stage squared length in X (`dx *= dx; dx += dy*dy; dx += dz*dz`) to recover the two fused single-precision additions.
 
-Residual: seven collision flag/index home or zero-CSE rows and two delta-X input FPR rows. BOOL/u8/u32 flags are identical. Whole-function lifetime disabling regresses. Real Vec3 delta construction or a separate distance accumulator adds five FPR rows. Parent-assigned depth-1 closure work may produce a later frontier; this archive records the verified starting point.
+The initial nine-row frontier was reduced to one with stock compiler evidence. Two captured source versions are preserved in `state/repairs/hermes-ranking-allocator-20261018.json.gz`; both had `same_code=true`, `same_object=true`, and zero replay/simplify errors. Portable replay validates four allocation passes over those two versions. This is allocator replay parity, NOT a retail match.
+
+PCode showed an unnamed delta-X input temporary allocated to f1 while the named accumulator was f3. `dx = object->position.x; dx -= other_object->position.x;` coalesces the actual value lifetime and eliminates two rows. A fixed-graph selection-order witness predicted collision locals 52/53/54 could occupy r6/r7/r8; one source projection of those cloned local slots eliminated six more rows. This was a single witnessed projection, not another declaration-permutation campaign.
+
+Only offset `0x538` remains: retail `li r6,0` versus candidate `mr r6,r8`. Helper-local CSE policy changes are identical. Whole-function `-opt nocse`, `-opt noprop`, and `-opt nopeep` regress to 67, 45, and 17 rows. BOOL/u8/u32 flags are identical; a separate vector delta or distance accumulator regresses. Do not repeat those families. The automatic target projector reports unsupported paired-single instruction row 223; that is a tooling projection limitation, not evidence of a fix.
 
 ### fn_1_15AC10
 
@@ -85,7 +95,7 @@ Native u64 recovers the bit-code and decimal-display algorithm without any of th
 
 Split bit extraction from addition of the random remainder so `__shr2u` occurs before `__mod2u`. Bits 13, 20, 32, and 33 are excluded. Signed random15 results are promoted to u64 as retail does. All twenty decimal quotient/remainder stores and the four hyphens match, least-significant digit first. The tail scrambles characters 5 through 23, skipping hyphens.
 
-The residual is saved-pair allocation in the bit loop and tail, two RNG operand homes, and tail pointer/counter lowering. Whole bit or digit phase helpers regress. The candidate retains the actual algorithm and correct frame but is not submitted. Parent-assigned closure work is restricted to this function.
+The residual is saved-pair allocation in the bit loop and tail, two RNG operand homes, and tail pointer/counter lowering. Whole bit or digit phase helpers regress. The candidate retains the actual algorithm and correct frame but is not submitted. No delegated improvement was admitted for this function.
 
 ### fn_1_15BBC4
 
@@ -93,8 +103,25 @@ Recover the actual 15-by-32 history table and use the correct signed `(index + 1
 
 Remaining differences include the saved-pointer home mapping, combined versus separate array-base offsets, induction placement, and cooldown-path load scheduling. Body-top pointer advances emit an unwanted `lhzu`; do not repeat that form. The body is archived and explicitly unmatched.
 
+### fn_1_86E08: bytes alone hid 260 pointer relocations
+
+The older readonly prefix exactly matched 1,824 raw bytes but omitted 260 `R_PPC_ADDR32` bindings to 96 real data symbols. The zero words were REL relocation placeholders, not padding. Reconstruct the native initializers from `dataimport.pool_objects` and `payload`; the revised ELF now passes `_relocated_pool_matches` for the full 1,824 bytes and all pointer targets/addends.
+
+Remove the fake one-member manager box, identity array helper, and zero-only `lab_*` carriers. Real entry lookup and cooldown-field helpers retain the 155-word shape. The remaining register differences are the manager/pool cached-base pair and the timer store's temporary homes. Removing the held manager loses the frame; delaying it adds address materialization; direct timer indexing folds the field displacement into the access. None is a match, and no new global data ownership was enabled.
+
+### Other bounded diagnostics, not accepted changes
+
+- `fn_1_15C4EC`: all body instructions match, but ten prologue-save scheduling rows remain. GC/1.3 and 1.3.2r are identical; 1.2.5n and schedule-off regress. No compiler override was persisted.
+- `fn_1_15E27C`: native BSS subobject and aggregate-view probes do not reproduce the shared-base form. The apparent aggregate-view improvement crosses the currently declared owner boundary, so it was explicitly rejected rather than promoted by similarity. No header/global/split ownership was changed.
+- `fn_1_15E44C`: widening the byte-derived local removes a spurious `extsh`; staging the final selected-entry pointer preserves its field displacement. The larger manager view still needs ownership recovery; no acceptance was attempted.
+- `fn_1_203E4`: the preserved standalone body corrects swapped X/Z translation stores and replaces three guessed calls with the proven `mathutil_mtxA_rotate_z__fzgx_offset_C` entry. It uses canonical `LC_BASE` and passes lint, but still has 27 differing rows and canonical-prototype admission conflicts. Its archive record is explicitly blocked; replay does not enable it.
+
+## Fresh verification
+
+After the fourth admission, `ninja -j2` exited zero and regenerated the real report over 7,119 units. The installed unittest suite ran 15 tests and passed; no tests were added. The independent DTK manifest check again returned `16 files OK`, and repository lint reported zero findings. The source archive replay reproduced all eleven records, while the separate graph archive replay reproduced four allocation passes over two captured source versions with zero errors.
+
 ## Coordination and publication
 
-OpenCode's customize claim `fn_3_1AEE4` was not touched. All parent edits were inline, claim-scoped work; no fleet, profile, transport, or model configuration was changed. Two depth-1 agents were subsequently assigned independent closure attempts for `fn_1_158984` and `fn_1_15AC10`, work copies only, with parent integration required.
+OpenCode's customize claim `fn_3_1AEE4` was not touched. All parent edits were inline, claim-scoped work; no fleet, profile, transport, or model configuration was changed. Two depth-1 agents were assigned independent closure attempts for `fn_1_158984` and `fn_1_15AC10`, work copies only. Both stalled in provider API retries and were interrupted after approximately 50 minutes; neither delivered a verified improvement. The parent continued inline, independently verified live claims and artifacts, and made the capture-guided improvement above. No further agents were launched.
 
 No manual push or upstream PR was issued; the configured repository publisher owns publication. The match commits were produced by the supported link-verification gate.
