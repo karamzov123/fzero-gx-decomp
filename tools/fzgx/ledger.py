@@ -165,12 +165,18 @@ class Ledger:
                                       + (f" (by {row['claimed_by']})" if row["claimed_by"] else ""))
             if not shadow and row["attempts"] >= max_attempts:
                 raise PermissionError(f"{symbol}: attempt cap {max_attempts} reached; needs triage")
+            # Expiry clears the function claim but can leave old attempt rows open.
+            # Seal them before symbol-wide check/finish updates reach the new worker.
+            now = int(time.time())
+            self.db.execute(
+                "UPDATE attempts SET ended=?, outcome=COALESCE(outcome, 'expired') "
+                "WHERE symbol=? AND ended IS NULL", (now, symbol))
             self.db.execute(
                 "UPDATE functions SET status='claimed', claimed_by=?, claimed_at=?, claim_ttl=?, prev_status=? WHERE symbol=?",
-                (agent, int(time.time()), ttl, row["status"] if shadow else None, symbol))
+                (agent, now, ttl, row["status"] if shadow else None, symbol))
             self.db.execute(
                 "INSERT INTO attempts(symbol, agent, started) VALUES(?,?,?)",
-                (symbol, agent, int(time.time())))
+                (symbol, agent, now))
         return self.get(symbol)
 
     def current_attempt(self, symbol: str) -> Optional[sqlite3.Row]:
