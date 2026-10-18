@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (57.49% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (57.59% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -57,11 +57,10 @@ void fn_1_395CC(u32 arg0, u32 arg1) {
     u32 v1;
     u32 v2;
     u32 t5;
-    u32 ret;
+    struct { unsigned int ret; unsigned int flags; } fzgx_copy_state;
     u32 i;
     u32 j;
     u32 n;
-    u32 flags;
     u32 ordinal;
     u8 *table;
     u8 *manager;
@@ -105,11 +104,11 @@ void fn_1_395CC(u32 arg0, u32 arg1) {
         *(u32 *)(manager + 0x1f9c) = 0;
         v1 = *(u32 *)((u8 *)p_lbl_1_bss_3C00 + 0xDC);
         if (v1 != 0) {
-            ret = ((u32 (*)(void))v1)();
-            flags = ret;
-            if ((flags & 4) != 0)
+            fzgx_copy_state.ret = ((u32 (*)(void))v1)();
+            fzgx_copy_state.flags = fzgx_copy_state.ret;
+            if ((fzgx_copy_state.flags & 4) != 0)
                 *(u32 *)(manager + 0x1f9c) = 1;
-            if ((flags & 2) != 0 && *(s32 *)(manager + 0x1fa0) == 0) {
+            if ((fzgx_copy_state.flags & 2) != 0 && *(s32 *)(manager + 0x1fa0) == 0) {
                 entry = (u8 *)p_lbl_1_bss_3C00 + 0x30;
                 *(u16 *)((u8 *)p_lbl_1_bss_3C00 + 0x17f4) = entry[7];
                 n = entry[8];
@@ -132,11 +131,11 @@ void fn_1_395CC(u32 arg0, u32 arg1) {
                             *((u8 *)p_lbl_1_bss_3C00 + 0x17f0 + v2) = ordinal++;
                         }
                         dst = (u8 *)p_lbl_1_bss_3C00 + 0x165c;
-                        flags = *(u32 *)((u8 *)p_lbl_1_bss_3C00 + 0x30) | 0x00400000;
+                        fzgx_copy_state.flags = *(u32 *)((u8 *)p_lbl_1_bss_3C00 + 0x30) | 0x00400000;
                         dst[0x191] |= 2;
                         dst[0x192] = (u8)n;
                         dst[0x190] = entry[7];
-                        *(u32 *)((u8 *)p_lbl_1_bss_3C00 + 0x30) = flags;
+                        *(u32 *)((u8 *)p_lbl_1_bss_3C00 + 0x30) = fzgx_copy_state.flags;
                         *(u16 *)((u8 *)p_lbl_1_bss_3C00 + 0x17f4) = 14;
                         break;
                     }
@@ -149,7 +148,7 @@ void fn_1_395CC(u32 arg0, u32 arg1) {
                 fn_1_469BC();
                 fn_1_8DBA4(0);
             }
-            if ((flags & 1) == 0)
+            if ((fzgx_copy_state.flags & 1) == 0)
                 *(s32 *)((u8 *)p_lbl_1_bss_3C00 + 0xC) = 1;
         } else {
             *(s32 *)((u8 *)p_lbl_1_bss_3C00 + 0xC) = 1;
