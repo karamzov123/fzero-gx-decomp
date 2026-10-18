@@ -1,5 +1,5 @@
 {
- "generated": 1792301735,
+ "generated": 1792302448,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -118055,16 +118055,16 @@
    "unit": "rel/sel/sel/fn_10_C6A4.c",
    "addr": 50852,
    "size": 516,
-   "status": "unmatched",
-   "attempts": 9,
-   "best_percent": 99.22481,
+   "status": "matched",
+   "attempts": 10,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "d3d89f4f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_10_C8A8",
@@ -649152,6 +649152,27 @@
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24997,
+   "symbol": "fn_10_C6A4",
+   "agent": "deepseek-opencode",
+   "harness": null,
+   "model": null,
+   "started": 1792301841,
+   "ended": 1792302394,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }

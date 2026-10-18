@@ -565,3 +565,11 @@ pinning GC/1.3.2 (`b501ae83`) took the same body to 99.2%.
 all three residuals pointed at that value being in the wrong register
 (`lha r4,8(r1)|r3`, `extsh. r0,r4|r3`, `cmpwi r4,5|r3`); passing `current` closed all
 three at once. No compiler pin needed — `sel`'s default is already GC/1.3.2.
+
+**`fn_10_C6A4`** (`src/rel/sel/sel.c`, 516 B, commit `d3d89f4f`) — the 99.2% stuck
+body cached the flag word in a declared local: `s8` emitted one extra `extsb`,
+`s32` let the peephole merge `addi`+`lwz` into `lwzu r4, @l(r3)` (wrong register
+shape). Dropping the local entirely — direct `__rlwnm(lbl_10_bss_55664, ...)` /
+`(s32)lbl_10_bss_55664` uses with the front end's CSE temp — is byte-exact
+129/129. No pragmas, no compiler pin, no pool retarget; verify fast path 10.4 s.
+Full record: finding 385.
