@@ -7072,6 +7072,16 @@
   },
   {
     "module": "main",
+    "source": "dol/InitMetroTRKCommTable.c",
+    "symbols": [
+      "InitMetroTRKCommTable"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/InitMetroTRK_BBA.c",
     "symbols": [
       "InitMetroTRK_BBA"

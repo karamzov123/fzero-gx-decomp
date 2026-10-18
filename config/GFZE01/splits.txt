@@ -6023,3 +6023,6 @@ dol/fn_8008ED70.c:
 
 dol/__pformatter.c:
 	.text       start:0x80080A38 end:0x800811AC align:4
+
+dol/InitMetroTRKCommTable.c:
+	.text       start:0x8008D4D8 end:0x8008D744 align:4
