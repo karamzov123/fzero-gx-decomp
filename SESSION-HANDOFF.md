@@ -1,13 +1,27 @@
 # F-Zero GX decomp session — state and handoff
 
-Last updated: 2026-10-17. Repo: `/home/armandofm/projects/fzgx` (branch `main`,
+Last updated: 2026-10-18. Repo: `/home/armandofm/projects/fzgx` (branch `main`,
 fork `karamzov123/fzgx`). **Read this first in any new session.**
 (The 2026-10-12 sections below are still valid; the newest session state is in the
 `2026-10-17 session state` section just below.)
 
 ## 2026-10-17 session state (opencode/deepseek)
 
-Six landings. The newest closes the last designated lead of the day (finding 379):
+Seven landings (the seventh crossed midnight into 10-18). The newest is
+**fn_8_EFA4** (title/name_entry, 2624 B, commit `fd68a52a`, finding 381): the
+3-attempt plateau fell to the **true source shape** — the frontier bodies
+carried a cross-module header's `extern s8 lbl_801A66A0` for a `.sbss` size-0x4
+symbol, so no `u32`-word-load body could reach retail's schedule. With
+`extern u32 lbl_801A66A0;`, the callee prototype `extern f32
+lbl_8006D188(s16);`, and the uncast argument `(s16)((lbl_801A66A0 << 8) &
+0xFF00)` (witness: option twin `fn_4_C768`) the body is word-identical
+(656/656, 0 differing rows). One counted check, submit on the
+compile-and-retarget path (`pool_map {...rodata.0→lbl_8_rodata_408,
+@37→lbl_8_rodata_AF8, @38→lbl_8_rodata_B00}`), verify fast path 3.69 s,
+`16 files OK`; the same drain also link-verified Hermes's `__pformatter`.
+Full record: finding 381.
+
+The sixth closes the last designated lead of the day (finding 379):
 `fn_1_156C08`'s 99.01% / 12-attempt plateau fell to a **one-edge interference
 web** — MWCC's stock simplify defers every web whose degree stays >= K=29 GPRs,
 so holding `&arg0->handle` in a `u32 *ph` inside the call branch (28 -> 29
@@ -97,14 +111,15 @@ descending f2,f1,f0 homes and the exact missing `fmuls f1,f2,f1`, so the wall
 is this RTL's selection, not a source spelling. Future lever: capture /
 constraint-pipeline support (finding 361 class). Left claimable (`unmatched`).
 
-Ledger after all six: matched=**5839** + 20 asm, unmatched=1440, blocked=9,
-0 open claims of ours (Hermes released `fn_12_3763C` unmatched and held
-`fn_8_EFA4` at snapshot time). Gate green: ninja 0, 16 files OK, lint 0
-findings, 11/11 tests.
+Ledger after all seven: matched=**5842** + 20 asm, unmatched=1437, blocked=9,
+0 open claims, 0 pending links. Gate green: verify `16 files OK` at `fd68a52a`,
+lint 0 findings. (Hermes released `fn_12_3763C` unmatched; `fn_8_EFA4` and
+`__pformatter` closed and link-verified in the same drain.)
 (10-17 morning also added Hermes's finding 370 parked-pass records; commit
 `891eeb0c`.)
 
-**Next lead:** the designated lead list is exhausted — `fn_1_156C08` landed
+**Next lead:** the designated lead list is exhausted — `fn_8_EFA4` landed
+(finding 381), `fn_1_156C08` landed
 (finding 379). Fallback `fn_1_118D90` (main_rel, 1344 B) was explored on 10-17
 and parked at a **5-word plateau** (finding 380): archived
 `.fzgx/attempts/fn_1_118D90.1792292741.c` at objdiff 99.872025 (words

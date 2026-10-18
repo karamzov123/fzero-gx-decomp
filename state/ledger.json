@@ -1,5 +1,5 @@
 {
- "generated": 1792294066,
+ "generated": 1792296579,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -39869,19 +39869,19 @@
   {
    "symbol": "__pformatter",
    "module": "main",
-   "unit": null,
+   "unit": "dol/__pformatter.c",
    "addr": 2148010552,
    "size": 1908,
-   "status": "unmatched",
-   "attempts": 0,
+   "status": "matched",
+   "attempts": 1,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "fd68a52a",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "float2str",
@@ -123322,19 +123322,19 @@
   {
    "symbol": "fn_8_EFA4",
    "module": "title",
-   "unit": null,
+   "unit": "rel/title/name_entry/fn_8_EFA4.c",
    "addr": 61348,
    "size": 2624,
-   "status": "unmatched",
-   "attempts": 3,
-   "best_percent": 99.85,
+   "status": "matched",
+   "attempts": 4,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "fd68a52a",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_8_F9E4",
@@ -649005,6 +649005,48 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_80070100.1792293947.c",
    "stale_checks": 1,
    "best_in_attempt": 90.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24990,
+   "symbol": "__pformatter",
+   "agent": "hermes-native-msl",
+   "harness": "hermes",
+   "model": "gpt-6.1-sol",
+   "started": 1792294476,
+   "ended": 1792294918,
+   "checks": 4,
+   "final_percent": 99.98952,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "MSL: recover 1908-byte formatter with real 37-byte shared printf pool",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 99.98952,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 24991,
+   "symbol": "fn_8_EFA4",
+   "agent": "deepseek-opencode",
+   "harness": "opencode",
+   "model": "deepseek-v4.1-flash-free",
+   "started": 1792295788,
+   "ended": 1792296072,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "native word load via true source shape: u32 lbl_801A66A0 extern, s16 prototype, uncast s16 mask arg; 0 differing rows",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
