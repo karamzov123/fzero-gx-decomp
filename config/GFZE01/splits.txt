@@ -6038,3 +6038,27 @@ dol/fn_8008FAB4.c:
 
 dol/fn_8008FB90.c:
 	.text       start:0x8008FB90 end:0x8008FC3C align:4
+
+dol/fn_80033EB0.c:
+	.text       start:0x80033EB0 end:0x8003401C align:4
+
+dol/fn_80042D24.c:
+	.text       start:0x80042D24 end:0x80043050 align:4
+
+dol/fn_80043D34.c:
+	.text       start:0x80043D34 end:0x80043FA4 align:4
+
+dol/fn_80049728.c:
+	.text       start:0x80049728 end:0x80049958 align:4
+
+dol/fn_80049958.c:
+	.text       start:0x80049958 end:0x80049BF4 align:4
+
+dol/fn_80049E34.c:
+	.text       start:0x80049E34 end:0x8004A068 align:4
+
+dol/fn_8005640C.c:
+	.text       start:0x8005640C end:0x80056584 align:4
+
+dol/fn_8005B0C4.c:
+	.text       start:0x8005B0C4 end:0x8005B264 align:4

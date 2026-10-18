@@ -1,42 +1,101 @@
+
 #include "types.h"
 
-typedef struct {
-    u32 pad_00[6];
-    u8 *out;    /* 0x18 */
-    u8 *row_a;  /* 0x20 */
-    u8 *row_b;  /* 0x24 */
-    u8 *row_c;  /* 0x28 */
-} Fn12_1EF80_Obj;
+typedef struct MPVMCContext MPVMCContext;
 
-/* fn_12_1EF80: byte-wise 3x3 neighbourhood sums over three source rows,
- * packed four bytes per 32-bit word with rlwinm/rlwimi, 16 columns at a time. */
-void fn_12_1EF80(Fn12_1EF80_Obj *obj) {
-    u8 *ra = obj->row_a;
-    u8 *rb = obj->row_b;
-    u8 *rc = obj->row_c;
-    u32 *out = (u32 *)obj->out;
-    s32 n;
+typedef void (*MPVMCFunction)(MPVMCContext *context);
 
-    for (n = 0x10; n != 0; n--) {
-        u32 w0;
-        u32 w1;
+struct MPVMCContext {
+    MPVMCFunction functions08[4];
+    u8 field_10[8];
+    u8 *destination;
+    u32 field_1c;
+    s32 reference_stride;
+    const u8 *reference0;
+    const u8 *reference1;
+    u8 field_2c[8];
+    MPVMCFunction functions16[4];
+};
 
-        w0 = ((u32)ra[0] + (u32)ra[1] + (u32)ra[2] + 2) & 0xFF;
-        w0 |= ((u32)ra[3] + (u32)ra[4] + (u32)ra[5] + 2) << 8;
-        w0 |= ((u32)ra[6] + (u32)ra[7] + (u32)ra[8] + 2) << 16;
-        w0 |= ((u32)ra[9] + (u32)ra[10] + (u32)ra[11] + 2) << 24;
+void fn_12_1EF80(MPVMCContext *context);
 
-        w1 = ((u32)ra[12] + (u32)ra[13] + (u32)ra[14] + 2) & 0xFF;
-        w1 |= ((u32)rb[0] + (u32)rb[1] + (u32)rb[2] + 2) << 8;
-        w1 |= ((u32)rb[3] + (u32)rb[4] + (u32)rb[5] + 2) << 16;
-        w1 |= ((u32)rb[6] + (u32)rb[7] + (u32)rb[8] + 2) << 24;
-
-        out[0] = w0;
-        out[1] = w1;
-
-        out += 2;
-        ra += 0x10;
-        rb += 0x10;
-        rc += 0x10;
+void fn_12_1EF80(MPVMCContext *context) {
+    s32 a0, b0, a1, b1, a2, b2;
+    u32 p0, p1, p2, p3, p4, p5, p6, p7;
+    s32 row;
+    s32 stride;
+    const u8 *reference0;
+    const u8 *reference1;
+    u32 *destination;
+    stride = context->reference_stride;
+    reference0 = context->reference0;
+    reference1 = context->reference1;
+    destination = (u32 *)context->destination;
+    for (row = 0; row < 16; row++) {
+        __dcbt((void *)reference1, stride);
+        a0 = reference0[0];
+        b0 = reference1[0];
+        a1 = reference0[1];
+        b1 = reference1[1];
+        a2 = reference0[2];
+        b2 = reference1[2];
+        p0 = (u32)a0 + a1 + b0 + b1 + 2;
+        p1 = (u32)a1 + a2 + b1 + b2 + 2;
+        a0 = reference0[3];
+        b0 = reference1[3];
+        p2 = (u32)a2 + a0 + b2 + b0 + 2;
+        a1 = reference0[4];
+        b1 = reference1[4];
+        p3 = (u32)a0 + a1 + b0 + b1 + 2;
+        a2 = reference0[5];
+        b2 = reference1[5];
+        p4 = (u32)a1 + a2 + b1 + b2 + 2;
+        a0 = reference0[6];
+        b0 = reference1[6];
+        p5 = (u32)a2 + a0 + b2 + b0 + 2;
+        a1 = reference0[7];
+        b1 = reference1[7];
+        p6 = (u32)a0 + a1 + b0 + b1 + 2;
+        a2 = reference0[8];
+        b2 = reference1[8];
+        p7 = (u32)a1 + a2 + b1 + b2 + 2;
+        a0 = reference0[9];
+        b0 = reference1[9];
+        destination[0] = ((p0 << 22) & 0xFF000000) | ((p1 << 14) & 0x00FF0000) |
+                         ((p2 << 6) & 0x0000FF00) | ((p3 >> 2) & 0x000000FF);
+        destination[1] = ((p4 << 22) & 0xFF000000) | ((p5 << 14) & 0x00FF0000) |
+                         ((p6 << 6) & 0x0000FF00) | ((p7 >> 2) & 0x000000FF);
+        p0 = (u32)a2 + a0 + b2 + b0 + 2;
+        a1 = reference0[10];
+        b1 = reference1[10];
+        p1 = (u32)a0 + a1 + b0 + b1 + 2;
+        a2 = reference0[11];
+        b2 = reference1[11];
+        p2 = (u32)a1 + a2 + b1 + b2 + 2;
+        a0 = reference0[12];
+        b0 = reference1[12];
+        p3 = (u32)a2 + a0 + b2 + b0 + 2;
+        a1 = reference0[13];
+        b1 = reference1[13];
+        p4 = (u32)a0 + a1 + b0 + b1 + 2;
+        a2 = reference0[14];
+        b2 = reference1[14];
+        p5 = (u32)a1 + a2 + b1 + b2 + 2;
+        a0 = reference0[15];
+        b0 = reference1[15];
+        p6 = (u32)a2 + a0 + b2 + b0 + 2;
+        a1 = reference0[16];
+        b1 = reference1[16];
+        p7 = (u32)a0 + a1 + b0 + b1 + 2;
+        destination[16] = ((p0 << 22) & 0xFF000000) | ((p1 << 14) & 0x00FF0000) |
+                          ((p2 << 6) & 0x0000FF00) | ((p3 >> 2) & 0x000000FF);
+        destination[17] = ((p4 << 22) & 0xFF000000) | ((p5 << 14) & 0x00FF0000) |
+                          ((p6 << 6) & 0x0000FF00) | ((p7 >> 2) & 0x000000FF);
+        reference0 += stride;
+        reference1 += stride;
+        destination += 2;
+        if (row == 7) {
+            destination += 16;
+        }
     }
 }
