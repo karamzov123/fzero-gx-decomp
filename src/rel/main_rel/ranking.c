@@ -1884,6 +1884,182 @@ int fn_1_159064(void) {
 }
 /* fzgx:end fn_1_159064 */
 
+/* fzgx:begin fn_1_15906C */
+struct RankingEffectObject {
+    u8 pad_0[0xC];
+    f32 x;
+    f32 y;
+    f32 z;
+    u8 pad_18[0x24];
+    u32 unk_3C;
+};
+struct RankingVector { f32 a[3]; };
+struct RankingEffectRecord {
+    s32 flag;
+    s32 time;
+    f32 x;
+    f32 y;
+    f32 z;
+    u8 pad_14[12];
+    struct RankingVector copy;
+    s32 ix;
+    s32 iy;
+    s32 iz;
+    struct RankingEffectObject *obj;
+};
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 10.0f;
+    s = 100.0f;
+    s = 20.0f;
+    s = 1000.0f;
+    s = 2000.0f;
+    s = 0.0f;
+    d = 4503601774854144.0;
+}
+static const u32 fzgx_pool_table2[7] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x64646400};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 65536.0f;
+    s = 300.0f;
+    s = 600.0f;
+    s = 900.0f;
+    s = 256.0f;
+    s = 768.0f;
+    s = 1280.0f;
+    d = 0.01;
+    s = 800.0f;
+    s = 500.0f;
+    s = 40000.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+/* Native initializer templates precede the random-magnitude literals in retail. */
+static inline void clear_record_copy(struct RankingEffectRecord *record) {
+    struct RankingVector initial = {{0,0,0}};
+    record->copy = initial;
+}
+static inline void set_direction_x(struct RankingEffectRecord *record, f32 magnitude) {
+    struct RankingVector vec = {{0,0,0}};
+    vec.a[0] = magnitude;
+    *(struct RankingVector *)&record->x = vec;
+}
+static inline void set_direction_y(struct RankingEffectRecord *record, f32 magnitude) {
+    struct RankingVector vec = {{0,0,0}};
+    vec.a[1] = magnitude;
+    *(struct RankingVector *)&record->x = vec;
+}
+static inline void set_direction_z(struct RankingEffectRecord *record, f32 magnitude) {
+    struct RankingVector vec = {{0,0,0}};
+    vec.a[2] = magnitude;
+    *(struct RankingVector *)&record->x = vec;
+}
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 10.0;
+    d = 0.8;
+    d = 0.2;
+    s = 32767.0f;
+    s = -1.0f;
+}
+#pragma section code_type ".text"
+
+
+
+struct RankingRandomState { u32 unk_0; };
+extern struct RankingRandomState lbl_801A63C0;
+extern u32 lbl_1_rodata_D958[8];
+
+static inline s32 random15(void) {
+    u32 next_seed;
+    next_seed = lbl_801A63C0.unk_0 * 0x676A4B6B + 0x33CB;
+    lbl_801A63C0.unk_0 = next_seed;
+    return (lbl_801A63C0.unk_0 >> 16) & 0x7FFF;
+}
+#pragma opt_strength_reduction off
+s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
+    f32 *z_component;
+    s32 *grid_x;
+    Obj_1_data_2A7E0_At3C *effects;
+    struct RankingEffectRecord *record;
+    f32 magnitude;
+    s32 axis;
+    struct RankingEffectObject *obj;
+    effects = lbl_1_data_2A7E0.unk_3C;
+    switch ((s32)arg0) {
+    case 0:
+        if (arg1 == 0) break;
+        arg1->unk_3C = 0;
+        record = (struct RankingEffectRecord *)((u8 *)effects + effects->unk_0 * 60 + 0xFA0C);
+        record->obj = arg1;
+        clear_record_copy(record);
+        if ((s32)effects->unk_0 < 50) {
+            record->flag = 1;
+            record->time = 60;
+        } else record->flag = 0;
+        #pragma fp_contract off
+        magnitude = (f32)(10.0 * (0.8 + (f64)((f32)random15() / 32767.0f) * 0.2));
+        axis = random15() % 3;
+        switch (axis) {
+        case 0: {
+            set_direction_x(record, magnitude);
+            break;
+        }
+        case 1: {
+            set_direction_y(record, magnitude);
+            break;
+        }
+        case 2: {
+            set_direction_z(record, magnitude);
+            break;
+        }
+        }
+        if (random15() % 2) {
+            record->x *= -1.0f;
+            record->y *= -1.0f;
+            record->z *= -1.0f;
+        }
+        obj = record->obj;
+        grid_x = &(record->ix);
+        *grid_x = (s32)(10.0f + obj->x / 100.0f) < 0 ? 0 : (s32)(10.0f + obj->x / 100.0f) > 19 ? 19 : (s32)(10.0f + obj->x / 100.0f);
+        record->iy = (s32)(10.0f + obj->y / 100.0f) < 0 ? 0 : (s32)(10.0f + obj->y / 100.0f) > 19 ? 19 : (s32)(10.0f + obj->y / 100.0f);
+        record->iz = (s32)(20.0f + obj->z / 100.0f) < 0 ? 0 : (s32)(20.0f + obj->z / 100.0f) > 39 ? 39 : (s32)(20.0f + obj->z / 100.0f);
+        {
+            s32 ix = record->ix;
+            s32 iy = record->iy;
+            s32 iz = record->iz;
+            obj = record->obj;
+            obj->x = (f32)(100.0f * (f32)ix) - 1000.0f;
+            obj->y = (f32)(100.0f * (f32)iy) - 1000.0f;
+            z_component = &(obj->z);
+            *z_component = (f32)(100.0f * (f32)iz) - 2000.0f;
+        }
+        /* The grid begins after the three-word effect-manager header. */
+        {
+            struct RankingGridRow { u32 cell[20][40]; };
+            ((struct RankingGridRow *)((u8 *)effects + 12))[record->ix]
+                .cell[record->iy][record->iz] = 1;
+        }
+        effects->unk_0++;
+        effects->unk_8 = 50;
+        break;
+    default:
+        break;
+    }
+    return 1;
+}
+#pragma opt_strength_reduction reset
+#pragma fp_contract reset
+/* fzgx:end fn_1_15906C */
+
 /* fzgx:begin fn_1_159440 */
 typedef struct {
     u8 pad_0[0x30];

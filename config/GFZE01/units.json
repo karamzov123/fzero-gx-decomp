@@ -51685,10 +51685,19 @@
     "symbols": [
       "fn_1_15906C"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/ranking.c"
+    "tu": "rel/main_rel/ranking.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_D958",
+      "@11": "lbl_1_rodata_D958+0x18",
+      "@6": "lbl_1_rodata_D958+0x4",
+      "@5": "lbl_1_rodata_D958",
+      "@7": "lbl_1_rodata_D958+0x8",
+      "@8": "lbl_1_rodata_D958+0xC",
+      "@9": "lbl_1_rodata_D958+0x10"
+    }
   },
   {
     "module": "main_rel",
