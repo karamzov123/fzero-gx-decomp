@@ -10,6 +10,8 @@ matches (pool matches included) and saves improved bodies as attempts.
 from __future__ import annotations
 
 import collections
+import hashlib
+import shlex
 import json
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -100,6 +102,7 @@ def generate(p: Project, s: str, sym, path: Path, body: str, check, outdir: Path
     add('heldcall', lambda: fixup_source.call_results_to_locals(body, sym.name))
     add('through', lambda: fixup_source.through_local(body, sym.name))
     add('splits', lambda: fixup_source.variable_splits(body, sym.name))
+    add('membercopy', lambda: fixup_source.member_copy_states(body, sym.name))
     add('carriers', lambda: fixup_source.scalar_carriers(body, sym.name))
     add('constptr', lambda: fixup_source.wrap_constant_pointers(body, sym.name))
     add('decse', lambda: fixup_source.decse_repeated_expressions(body, sym.name))
@@ -125,21 +128,36 @@ def generate(p: Project, s: str, sym, path: Path, body: str, check, outdir: Path
 
 
 def climb(p: Project, selection: Dict[str, str], outdir: Path, rounds: int = 4,
-          families: Optional[List[str]] = None) -> Dict[str, dict]:
+          families: Optional[List[str]] = None, options: Optional[Dict[str, tuple]] = None) -> Dict[str, dict]:
     """Hill-climb every selected body: the best candidate by word score replaces the body when
     objdiff confirms the gain. Returns {symbol: {base, percent, file, matched, history}}."""
     outdir.mkdir(parents=True, exist_ok=True)
     cur = {s: Path(f) for s, f in selection.items()}
-    checks = oracle.check_many(p, list(cur.items()))
+    options = dict(options or {})
+    def check_items(items):
+        groups = collections.defaultdict(list)
+        for s, path in items:
+            groups[options.get(s, (None, None))].append((s, path))
+        results = {}
+        for (mw, flags), group in groups.items():
+            results.update(oracle.check_many(p, group, mw_version=mw, extra_cflags=flags))
+        return results
+    checks = check_items(list(cur.items()))
     state: Dict[str, dict] = {}
+    errors = {}
     for s, f in cur.items():
         r = checks.get(s)
         if r and r.ok:
-            state[s] = dict(base=r.percent, percent=r.percent, file=str(f), matched=r.matched, history=[], check=r)
-    print('functions', len(state))
+            options[s] = (r.mw_version, r.extra_cflags)
+            state[s] = dict(base=r.percent, percent=r.percent, file=str(f), matched=r.matched,
+                            mw=r.mw_version, flags=r.extra_cflags, history=[], check=r)
+        else:
+            errors[s] = r.error if r else 'oracle returned no baseline verdict'
+    (outdir / 'errors.json').write_text(json.dumps(errors, indent=2) + '\n')
+    print('functions', len(state), 'baseline failures', len(errors))
     for rnd in range(rounds):
         active = [s for s, x in state.items() if not x['matched']]
-        gen: Dict[str, list] = collections.defaultdict(list)
+        gen: Dict[tuple, list] = collections.defaultdict(list)
         nc = 0
         for s in active:
             sym = p.resolve(s)
@@ -149,15 +167,16 @@ def climb(p: Project, selection: Dict[str, str], outdir: Path, rounds: int = 4,
                 f = outdir / f'r{rnd}' / f'{s}__{k}.c'
                 f.parent.mkdir(exist_ok=True)
                 f.write_text(text)
-                gen[sym.module].append((s, f, label))
+                gen[(sym.module, *options[s])].append((s, f, label))
                 nc += 1
         print(f'round {rnd}: {len(active)} functions, {nc} candidates')
         if not nc:
             break
         best: Dict[str, tuple] = {}
         targets: Dict[str, Optional[List[int]]] = {}
-        for module, lst in gen.items():
-            objs = oracle.compile_many(p, module, [f for _, f, _ in lst], outdir / f'r{rnd}' / 'obj' / module)
+        for group_index, ((module, mw, flags), lst) in enumerate(gen.items()):
+            objs = oracle.compile_many(p, module, [f for _, f, _ in lst],
+                                      outdir / f'r{rnd}' / 'obj' / str(group_index), mw, flags)
             for s, f, label in lst:
                 o = objs.get(f)
                 if not o:
@@ -174,12 +193,13 @@ def climb(p: Project, selection: Dict[str, str], outdir: Path, rounds: int = 4,
                 if s not in best or (aligned, pos) > (best[s][0], best[s][1]):
                     best[s] = (aligned, pos, f, label)
         # the current body's word score, per module in one compile
-        basew: Dict[str, float] = {}
-        by_module: Dict[str, list] = collections.defaultdict(list)
+        basew: Dict[str, tuple] = {}
+        by_module: Dict[tuple, list] = collections.defaultdict(list)
         for s in active:
-            by_module[p.resolve(s).module].append(s)
-        for module, syms in by_module.items():
-            objs = oracle.compile_many(p, module, [Path(state[s]['file']) for s in syms], outdir / f'r{rnd}' / 'base' / module)
+            by_module[(p.resolve(s).module, *options[s])].append(s)
+        for group_index, ((module, mw, flags), syms) in enumerate(by_module.items()):
+            objs = oracle.compile_many(p, module, [Path(state[s]['file']) for s in syms],
+                                      outdir / f'r{rnd}' / 'base' / str(group_index), mw, flags)
             for s in syms:
                 sym = p.resolve(s)
                 o = objs.get(Path(state[s]['file']))
@@ -187,7 +207,7 @@ def climb(p: Project, selection: Dict[str, str], outdir: Path, rounds: int = 4,
                 tw = targets.get(s) or oracle.words(p.target_object_for(sym), sym.name)
                 basew[s] = fixup_source.fitness(tw, ow) if ow and tw else (-1.0, -1.0)
         winners = [(s, b[2]) for s, b in best.items() if (b[0], b[1]) > basew.get(s, (-1.0, -1.0))]
-        res = oracle.check_many(p, winners)
+        res = check_items(winners)
         gained = 0
         for s, f in winners:
             r = res.get(s)
@@ -214,7 +234,7 @@ def climb(p: Project, selection: Dict[str, str], outdir: Path, rounds: int = 4,
 
 def land(p: Project, rep: Dict[str, dict], label: str) -> Dict[str, list]:
     """Submit exact matches (pool matches included); save improved bodies as attempts."""
-    agent = 'claude-' + label
+    agent = 'sweep-' + label
     submitted, saved, failed = [], [], []
     for s, r in rep.items():
         pct = r.get('percent')
@@ -223,25 +243,30 @@ def land(p: Project, rep: Dict[str, dict], label: str) -> Dict[str, list]:
         if not r.get('matched') and pct <= r['base'] + 0.05:
             continue
         body = Path(r['file']).read_text()
-        c = api.claim(p, s, agent, max_attempts=999, no_carve=True)
+        c = api.claim(p, s, agent, max_attempts=50, no_carve=True)
         if not c.get('ok'):
             failed.append((s, 'claim', c.get('error')))
             continue
         work = p.work_path(s)
         work.parent.mkdir(parents=True, exist_ok=True)
         work.write_text(body)
+        attempt = Ledger().current_attempt(api._key(p, s))
+        if attempt:
+            work.with_suffix('.compiler.json').write_text(json.dumps(dict(
+                attempt_id=attempt['id'], mw=r.get('mw'), flags=r.get('flags'))) + '\n')
         # the sweep already holds this body's objdiff verdict: record it instead of a second
         # check (5 s each); `submit` re-verifies matches itself
         Ledger().bump_checks(api._key(p, s), pct)
         if r.get('matched'):
-            sub = api.submit(p, s, agent=agent, message=f'{s}: {label}', harness='deterministic')
+            sub = api.submit(p, s, agent=agent, message=f'{s}: {label}', harness='deterministic',
+                             mw_version=r.get('mw'), extra_cflags=r.get('flags'))
             if sub.get('ok'):
                 submitted.append(s)
             else:
                 failed.append((s, 'submit', str(sub)[:200]))
-                api.release(p, s, 'submit failed', agent=agent)
+                api.release(p, s, 'submit failed', agent=agent, save_only=True)
         else:
-            rel = api.release(p, s, f'{label}: {r["base"]:.2f} -> {pct:.2f}', agent=agent)
+            rel = api.release(p, s, f'{label}: {r["base"]:.2f} -> {pct:.2f}', agent=agent, save_only=True)
             if rel.get('ok'):
                 saved.append(s)
             else:
@@ -252,12 +277,90 @@ def land(p: Project, rep: Dict[str, dict], label: str) -> Dict[str, list]:
     return dict(submitted=submitted, saved=saved, failed=failed)
 
 
+def recover_membercopy(p: Project, outdir: Path, min_percent: float, max_percent: float,
+                       symbols: Optional[List[str]] = None) -> Path:
+    """Freeze the best *eligible* historical body, not just the ledger's best body.
+
+    A lower-scoring seed may retain the source idiom a new family knows how to
+    repair. Preserve its actual compiler context and keep the selection auditable.
+    """
+    from seeds.recovered import SavedCandidates
+    recovered = SavedCandidates(min_percent - 1e-9, set(symbols) if symbols else None)
+    recovered.collect()
+    directory = outdir / 'seeds'
+    directory.mkdir(parents=True, exist_ok=True)
+    records = {}
+    counts = collections.Counter()
+    for symbol, candidates in sorted(recovered.candidates.items()):
+        sym = p.resolve(symbol)
+        if not sym:
+            continue
+        seen = set()
+        for candidate in sorted(candidates, key=lambda r: float(r['percent']), reverse=True):
+            flags = candidate.get('flags')
+            normalized_flags = shlex.join(flags) if isinstance(flags, list) else flags
+            key = (candidate['sha256'], candidate.get('mw'), normalized_flags)
+            if key in seen or not min_percent <= candidate['percent'] <= max_percent:
+                continue
+            seen.add(key)
+            counts['bodies_inspected'] += 1
+            variants = fixup_source.member_copy_states(candidate['body'], sym.name)
+            if not variants:
+                continue
+            source = directory / (symbol.replace(':', '__') + '.c')
+            source.write_text(candidate['body'])
+            records[symbol] = {k: v for k, v in candidate.items() if k != 'body'}
+            if isinstance(flags, list):
+                records[symbol]['original_flags'] = flags
+            records[symbol]['flags'] = normalized_flags
+            records[symbol].update(path=str(source.resolve()),
+                                  sha256=hashlib.sha256(candidate['body'].encode()).hexdigest(),
+                                  variants=len(variants))
+            counts['selected_variants'] += len(variants)
+            break
+    path = outdir / 'seeds.json'
+    path.write_text(json.dumps(records, indent=2) + '\n')
+    coverage = dict(counts, unmatched=len(recovered.rows), eligible_functions=len(records))
+    (outdir / 'coverage.json').write_text(json.dumps(coverage, indent=2) + '\n')
+    print('recovered member-copy seeds', coverage)
+    return path
+
+
 def run(p: Project, min_percent: float, max_percent: float, outdir: Optional[Path], rounds: int,
-        families: Optional[List[str]], do_land: bool, symbols: Optional[List[str]] = None) -> Dict[str, dict]:
-    bodies = stuck.best_bodies(p, min_percent)
-    sel = {s: r[0] for s, r in bodies.items() if r[1] <= max_percent and (not symbols or s in symbols)}
+        families: Optional[List[str]], do_land: bool, symbols: Optional[List[str]] = None,
+        seeds: Optional[Path] = None, recover: bool = False) -> Dict[str, dict]:
     outdir = outdir or (STATE_DIR / 'work' / f'sweep-{int(min_percent)}')
-    rep = climb(p, sel, outdir, rounds, families)
+    if recover:
+        if seeds is not None:
+            raise ValueError('--recover-membercopy and --seeds are mutually exclusive')
+        seeds = recover_membercopy(p, outdir, min_percent, max_percent, symbols)
+        families = families or ['membercopy']
+    options = {}
+    if seeds is not None:
+        # Same frozen manifest contract as `stuck --seeds`: historical eligibility
+        # is distinct from today's score. Never discard its compilation context.
+        from .project import ROOT
+        sel = {}
+        ledger = Ledger()
+        for s, record in json.loads(seeds.read_text()).items():
+            sym, row = p.resolve(s), ledger.get(s)
+            if not sym or not row or row['status'] != 'unmatched' or (symbols and s not in symbols):
+                continue
+            if not min_percent <= record['percent'] <= max_percent:
+                continue
+            path = Path(record['path'])
+            if not path.is_absolute():
+                path = ROOT / path
+            if hashlib.sha256(path.read_bytes()).hexdigest() != record['sha256']:
+                raise ValueError(f'{s}: frozen sweep seed changed')
+            sel[s] = str(path)
+            options[s] = (record.get('mw'), record.get('flags'))
+    else:
+        bodies = stuck.best_bodies(p, min_percent)
+        sel = {s: r[0] for s, r in bodies.items() if r[1] <= max_percent and (not symbols or s in symbols)}
+    outdir = outdir or (STATE_DIR / 'work' / f'sweep-{int(min_percent)}')
+    rep = climb(p, sel, outdir, rounds, families, options)
     if do_land:
-        land(p, rep, 'sweep')
+        outcome = land(p, rep, 'sweep')
+        (outdir / 'integration.json').write_text(json.dumps(outcome, indent=2) + '\n')
     return rep
