@@ -579,9 +579,25 @@ Next queue after this session (triage of the insertion-signature cohort, 2026-10
 same base+offset-split family as the parked `fn_1_2D038` (retail `addi r3, r31,
 0x1b14; lwz r3, 0x10(r3)` vs our folded `lwz r3, 0x1b24(r31)`) — the pointer has
 to stay live and no reachable expression forces it; gated on web alignment
-(state/blocked.md), do not re-grind. `fn_17_3E08` (interview, 868 B, 99.06) is
-the live one: retail re-materializes `lbl_17_bss_D8` (lis+addi+`lwz r27,
-0xc(r3)`) where our body reuses `r31` — a CSE/rematerialization split with 12
-unresolved rows, worth a dedicated body review. Skip `fn_1_1188CC` (pool
-retarget + `beq/bne` opcode swap + 26 regalloc rows) and every `movie_module` /
-`src/dol` entry (Hermes).
+(state/blocked.md), do not re-grind.
+
+`fn_17_3E08` (interview, 868 B, 99.06) was the live one and is now parked with
+that same wall class: retail re-materializes `lbl_17_bss_D8` (lis+addi+`lwz r27,
+0xc(r3)`) where every reachable body reuses the kept `r31` copy — 2
+instructions, 215 vs 217 words, and the only relocation difference is that HA/LO
+pair. ~800 hand variants, 576 declaration orders, four whole-function pragmas
+and a 2,983-candidate fixup run were flat or divergent; the 2026-10-11 fleet
+capture classifies it `instruction-shape`, for which the capture-driven families
+generate no candidates. Full record: finding 386. Do not re-grind — the sibling
+templates (`fn_17_6848`/`fn_17_69EC`) keep no callee-saved base, so they do not
+transfer.
+
+Next candidates, ranked with the 2026-10-11 capture corpus (recapture needed:
+the header fingerprint rotated to `ad0f67b6`): `fn_1_8CA70` / `fn_1_8CAF4`
+(main_rel, 99.09 each, 11 attempts) are `fixed-graph-hypothesis` with
+`selection-witness` graphs in both register banks — the only pair in the queue
+where the capture-driven fixup families fire. `sel:_epilog` (sel, 9 attempts,
+99.64) is the highest-scoring residual but its capture status is
+`needs-web-alignment`; `fn_3_1AEE4` (99.45, 14 attempts) is not in the corpus and
+would need a fresh capture. Skip `fn_1_1188CC` (pool retarget + `beq/bne` opcode
+swap + 26 regalloc rows) and every `movie_module` / `src/dol` entry (Hermes).

@@ -599,3 +599,15 @@ The apparent one-row result from placing the requested function in `.fzgxpool`
 was invalid ignored-section scoring, not a near-match. The oracle now rejects
 that layout explicitly; the identical 226-word candidate in `.text` reports
 27 real differing rows. See finding 375. No new authored credit is claimed.
+
+## interview base-materialization triage (2026-10-18)
+
+| Function | Attempts | Best % | Residual | Blocker / next evidence |
+| --- | ---: | ---: | --- | --- |
+| `fn_17_3E08` | 6 | 99.0553 | 2 instructions (retail 217 words, ours 215) | Retail re-materializes `lbl_17_bss_D8` (`lis`+`addi`+`lwz r27, 0xc(r3)`) for the third case-2 node where every reachable body reuses the kept `r31` copy; the only relocation difference is that HA/LO pair. ~800 spelling/shape variants, 576 declaration orders, whole-function pragmas and a 2,983-candidate fixup run were flat or divergent, and the 2026-10-11 fleet capture classifies the residual `instruction-shape`, for which the capture-driven families generate no candidates (a recapture is required regardless: the header fingerprint rotated to `ad0f67b6`). |
+
+Finding 386. Parked `unmatched`/claimable; the cap is reached (6 attempts
+against 3), so any retry needs `--max-attempts`. Do not re-run source-shape
+permutations. Same base-materialization class as `fn_10_7130` / `fn_1_48A0C` /
+`fn_1_2D038`; the sibling fresh-materialization templates
+(`fn_17_6848` / `fn_17_69EC`) keep no callee-saved base and do not transfer.
