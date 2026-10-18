@@ -4943,7 +4943,7 @@
  {
   "symbol": "fn_12_2E1A0",
   "module": "movie_module",
-  "percent": 98.83,
+  "percent": 99.33,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
@@ -43781,8 +43781,8 @@
  {
   "symbol": "fn_8006BC50",
   "module": "main",
-  "percent": 0.0,
-  "mw": "GC/1.3.2",
+  "percent": 94.92,
+  "mw": "GC/1.2.5n",
   "flags": [
    "-nodefaults",
    "-proc",
