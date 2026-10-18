@@ -48,7 +48,7 @@ The saved source returned the address of `TRK_Use_BBA` after installing UDP/BBA 
 
 Archive: `state/repairs/hermes-native-ranking-frontier-20261018.json.gz`.
 
-This is the existing `fzgx-source-repairs-v1` format, with complete C, hashes, compiler version, separate raw-word and aligned-row measurements, and exact oracle results. It contains eleven records: the four landed bodies, the six unmatched frontiers below, and the explicitly admission-blocked `fn_1_203E4` matrix reconstruction. Replay actually returned `{"reproduced": 11}`. Replay proves source reproduction, not admission or a match:
+This is the existing `fzgx-source-repairs-v1` format, with complete C, hashes, compiler version, separate raw-word and aligned-row measurements, and exact oracle results. It contains twelve records: the four landed bodies, the seven unmatched frontiers below, and the explicitly admission-blocked `fn_1_203E4` matrix reconstruction. Replay actually returned `{"reproduced": 12}`. Replay proves source reproduction, not admission or a match:
 
     .venv/bin/python tools/fzgx.py fixup --archive state/repairs/hermes-native-ranking-frontier-20261018.json.gz
 
@@ -62,6 +62,7 @@ These are work-copy frontiers, NOT matches or enabled units:
 | `fn_1_15AC10` | 47/504 rows | Complete native-u64 reconstruction, 502 retail versus 503 candidate instructions. Raw comparison has 77 differing words because alignment shifts. |
 | `fn_1_15BBC4` | 31/74 rows | Correct controller-history update semantics; 70 retail versus 68 candidate instructions. |
 | `fn_1_86E08` | 27/155 rows | Complete 1,824-byte readonly initializer now includes all 260 pointer bindings; still unmatched. |
+| `OSResetSystem` | 5/162 rows | Complete native reset body with the old SDK compiler/peephole profile; only frame offsets remain. |
 
 ### fn_1_1188CC
 
@@ -109,6 +110,14 @@ The older readonly prefix exactly matched 1,824 raw bytes but omitted 260 `R_PPC
 
 Remove the fake one-member manager box, identity array helper, and zero-only `lab_*` carriers. Real entry lookup and cooldown-field helpers retain the 155-word shape. The remaining register differences are the manager/pool cached-base pair and the timer store's temporary homes. Removing the held manager loses the frame; delaying it adds address materialization; direct timer indexing folds the field displacement into the access. None is a match, and no new global data ownership was enabled.
 
+### OSResetSystem: recover the actual SDK profile without dummy storage
+
+A complete native routine replaces the old mechanical draft with 18 unhandled instructions. It performs the real callback short-circuit polling, SRAM force-menu update/sync, locked-cache shutdown, hot reset, restart/shutdown thread cancellation, low-memory clearing, and pad recalibration restore. Structures and control flow were checked against the pinned SMS and MK-Deception SDK references recorded in `docs/RESOURCES.md`, then adapted to the actual retail flow. The VI reset uses the existing symbolic MMIO block, and the low-memory window uses linker-generated SDK address constants.
+
+The verified working profile is `GC/1.2.5n`, with peephole optimization disabled; this does not uniquely establish the historical minor compiler version. Under the ordinary profile, the compiler folds the SDK's branch trampolines, changes `mr` to zero-add copies, and merges `or` with its compare. A source `#pragma peephole off` preserves the exact 162-instruction control/dataflow. Explicit BOOL return branches, rather than `return !error`, retain the real polling return ladder. Anonymous low-memory constants recover the shared cached base instead of introducing a new named pointer home.
+
+Only five stack-frame rows remain: retail allocates `0x40`, the candidate `0x30`, shifting the save/restore offsets by 16 bytes. The referenced SMS source contains an unused `trash[16]`; it was NOT copied. No padding, dummy work, inline assembly, or forced register storage was added. The candidate object defines only `OSResetSystem`, not extraneous private helper bodies. Debug symbols do not fix the gap; deferred-inline mode interacts with the pragma reset and regresses. This is an unmatched compiler/frame frontier, not an enabled SDK function.
+
 ### Other bounded diagnostics, not accepted changes
 
 - `fn_1_15C4EC`: all body instructions match, but ten prologue-save scheduling rows remain. GC/1.3 and 1.3.2r are identical; 1.2.5n and schedule-off regress. No compiler override was persisted.
@@ -118,7 +127,7 @@ Remove the fake one-member manager box, identity array helper, and zero-only `la
 
 ## Fresh verification
 
-After the fourth admission, `ninja -j2` exited zero and regenerated the real report over 7,119 units. The installed unittest suite ran 15 tests and passed; no tests were added. The independent DTK manifest check again returned `16 files OK`, and repository lint reported zero findings. The source archive replay reproduced all eleven records, while the separate graph archive replay reproduced four allocation passes over two captured source versions with zero errors.
+After the fourth admission, `ninja -j2` exited zero and regenerated the real report over 7,119 units. The installed unittest suite ran 15 tests and passed; no tests were added. The independent DTK manifest check again returned `16 files OK`, and repository lint reported zero findings. The source archive replay reproduced all twelve records, while the separate graph archive replay reproduced four allocation passes over two captured source versions with zero errors.
 
 ## Coordination and publication
 

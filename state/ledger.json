@@ -1,5 +1,5 @@
 {
- "generated": 1792362518,
+ "generated": 1792363898,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -10769,7 +10769,7 @@
    "addr": 2147545004,
    "size": 648,
    "status": "unmatched",
-   "attempts": 1,
+   "attempts": 2,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
@@ -649824,6 +649824,27 @@
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 25029,
+   "symbol": "OSResetSystem",
+   "agent": "hermes-sol-manual",
+   "harness": "hermes",
+   "model": "gpt-6.1-sol",
+   "started": 1792362543,
+   "ended": 1792363737,
+   "checks": 4,
+   "final_percent": 99.58642,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "Reconstructed complete SDK reset callbacks, SRAM force-menu sync, hot reset, restart/shutdown thread cancellation, low-memory clearing. Public SMS/MK-Deception SDK structures cross-checked, no dummy trash/padding arrays imported. Correct profile GC1.2.5n with peepholeoff yields exact162-instruction body except5 frame rows: retailframe0x40 vsnative0x30(save/restore deltas16bytes). Explicit BOOL return branches and anonymous cached-lowmem constants recover target control/dataflow. SDK VI symbolicMMIO accepted. All helpers staticinline, objectcontains OSResetSystem only. Source pragma peepholeoff preserves profile; -symon nochange, deferredinline resets policy/regresses30rows, nofunctions56rows. No padding hacks or asm added; unmatched/no submit. Source/compiler/ref revisions archived.",
+   "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/OSResetSystem.1792363737.c",
+   "stale_checks": 1,
+   "best_in_attempt": 99.58642,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }

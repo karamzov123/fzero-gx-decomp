@@ -32,6 +32,15 @@ and [`si.json`](../state/sdkimports/si.json). The complete
 `CARDOpen.c` uses TWW. `OSAudioSystem.c` is consolidated from MKDD. All build includes belong to this repository under
 `include/dolphin/`; upstream checkouts are only inputs to the import tool.
 
+The unmatched `OSResetSystem` source evidence in
+[`state/repairs/hermes-native-ranking-frontier-20261018.json.gz`](../state/repairs/hermes-native-ranking-frontier-20261018.json.gz)
+was reconstructed from retail and cross-checked against
+[SMS `OSReset.c` at b2350a1](https://github.com/doldecomp/sms/blob/b2350a119b0e113e6cebc389fda9af00328ee85e/libs/dolphin/src/os/OSReset.c)
+and [MK Deception `OSReset.c` at 33b1e00](https://github.com/ShulkMaster/mk-deception/blob/33b1e0082c7630ee4f20b828559966872ae670e1/src/dolphin/os/OSReset.c).
+The private reset/callback/thread helpers were adapted to the actual F-Zero routine;
+no upstream dummy stack padding or assembly `Reset` body was imported. This evidence
+is explicitly unmatched and does not replace an enabled unit.
+
 ### Sofdec source adaptation
 
 The Sofdec C and shared types are adapted from the CC0
