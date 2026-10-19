@@ -3042,6 +3042,161 @@
     "unit_size": 2780,
     "unit_start": 107448
   },
+  "main_rel:lbl_1_data_1C500": {
+    "address": 115968,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_data_1C500",
+        "path": "include/rel/main_rel/font.h"
+      },
+      {
+        "declaration": "Config lbl_1_data_1C500",
+        "path": "src/rel/main_rel/font.c"
+      }
+    ],
+    "definition": "u32 lbl_1_data_1C500",
+    "method": "typed-data",
+    "module": "main_rel",
+    "references": [
+      "fn_1_4F734",
+      "fn_1_4FC50"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 120,
+    "sha256": "72034de8a594b12de51205feba7ade26899d8425e81eac7f8c296bf974a51c60",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_data_1C500.c",
+    "symbol": "lbl_1_data_1C500",
+    "unit_align": 8,
+    "unit_size": 120,
+    "unit_start": 115968
+  },
+  "main_rel:lbl_1_data_1C504": {
+    "address": 115972,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1C504_Target *lbl_1_data_1C504",
+        "path": "include/rel/main_rel/font.h"
+      }
+    ],
+    "definition": "Obj_1_data_1C504_Target *lbl_1_data_1C504",
+    "method": "declared-relocation",
+    "module": "main_rel",
+    "references": [
+      "fn_1_4E0A4",
+      "fn_1_4FC50",
+      "fn_1_4FD64",
+      "fn_1_51914"
+    ],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 0,
+        "symbol": "lbl_1_bss_4E6D0"
+      }
+    ],
+    "section": ".data",
+    "section_size": 120,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_data_1C500.c",
+    "symbol": "lbl_1_data_1C504",
+    "unit_align": 8,
+    "unit_size": 120,
+    "unit_start": 115968
+  },
+  "main_rel:lbl_1_data_1C508": {
+    "address": 115976,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1C508 lbl_1_data_1C508",
+        "path": "include/rel/main_rel/font.h"
+      }
+    ],
+    "definition": "Obj_1_data_1C508 lbl_1_data_1C508",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_5428C",
+      "fn_1_542B8"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 120,
+    "sha256": "f1c47d67acd80be60f65cec90f5a8b3872c121169756cbea04f2b787835c5431",
+    "size": 112,
+    "source": "rel/main_rel/data/lbl_1_data_1C500.c",
+    "symbol": "lbl_1_data_1C508",
+    "unit_align": 8,
+    "unit_size": 120,
+    "unit_start": 115968
+  },
+  "main_rel:lbl_1_data_1CC68": {
+    "address": 117864,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1CC74_Target lbl_1_data_1CC68",
+        "path": "include/rel/main_rel/avline.h"
+      }
+    ],
+    "definition": "Obj_1_data_1CC74_Target lbl_1_data_1CC68",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 16,
+    "sha256": "fa7bef25f8456446f4a0396325ecf87903e5abe8d5fd3b72aac5a49f351888dc",
+    "size": 12,
+    "source": "rel/main_rel/data/lbl_1_data_1CC68.c",
+    "symbol": "lbl_1_data_1CC68",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 117864
+  },
+  "main_rel:lbl_1_data_1CC74": {
+    "address": 117876,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1CC74_Target *lbl_1_data_1CC74",
+        "path": "include/rel/main_rel/avline.h"
+      }
+    ],
+    "definition": "Obj_1_data_1CC74_Target *lbl_1_data_1CC74",
+    "method": "declared-relocation",
+    "module": "main_rel",
+    "references": [
+      "fn_1_60880",
+      "fn_1_61370",
+      "fn_1_62C84"
+    ],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 0,
+        "symbol": "lbl_1_data_1CC68"
+      }
+    ],
+    "section": ".data",
+    "section_size": 16,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_data_1CC68.c",
+    "symbol": "lbl_1_data_1CC74",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 117864
+  },
   "main_rel:lbl_1_data_1D6C0": {
     "address": 120512,
     "align": 8,
@@ -3153,6 +3308,119 @@
     "unit_align": 8,
     "unit_size": 1288,
     "unit_start": 122800
+  },
+  "main_rel:lbl_1_data_27920": {
+    "address": 162080,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_data_27920",
+        "path": "include/rel/main_rel/car.h"
+      },
+      {
+        "declaration": "struct fn_1_900C4_lbl_1_data_27920 lbl_1_data_27920",
+        "path": "src/rel/main_rel/car.c"
+      }
+    ],
+    "definition": "u32 lbl_1_data_27920",
+    "method": "declared-relocation",
+    "module": "main_rel",
+    "references": [
+      "fn_1_900C4"
+    ],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 0,
+        "symbol": "lbl_1_bss_6E990"
+      }
+    ],
+    "section": ".data",
+    "section_size": 268,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_data_27920.c",
+    "symbol": "lbl_1_data_27920",
+    "unit_align": 8,
+    "unit_size": 268,
+    "unit_start": 162080
+  },
+  "main_rel:lbl_1_data_27924": {
+    "address": 162084,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_27924 lbl_1_data_27924",
+        "path": "include/rel/main_rel/car.h"
+      },
+      {
+        "declaration": "u32 lbl_1_data_27924",
+        "path": "src/rel/main_rel/car.c"
+      }
+    ],
+    "definition": "Obj_1_data_27924 lbl_1_data_27924",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_900C4"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 268,
+    "sha256": "b9bf61483bb0bae86a3cc185f6d19ff8c6e09527435a395c3b0f0c4681bf9fdb",
+    "size": 264,
+    "source": "rel/main_rel/data/lbl_1_data_27920.c",
+    "symbol": "lbl_1_data_27924",
+    "unit_align": 8,
+    "unit_size": 268,
+    "unit_start": 162080
+  },
+  "main_rel:lbl_1_data_341B8": {
+    "address": 213432,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_341B8_Target *lbl_1_data_341B8",
+        "path": "include/rel/main_rel/prog.h"
+      },
+      {
+        "declaration": "Obj_1_data_341B8_Target *lbl_1_data_341B8",
+        "path": "include/rel/main_rel/relocation.h"
+      }
+    ],
+    "definition": "Obj_1_data_341B8_Target *lbl_1_data_341B8",
+    "method": "declared-relocation",
+    "module": "main_rel",
+    "references": [
+      "fn_1_A5F44",
+      "fn_1_A6F2C",
+      "fn_1_A6F6C",
+      "fn_1_A6FA0",
+      "fn_1_A5DEC",
+      "fn_1_A5EFC",
+      "fn_1_A6480",
+      "fn_1_A66FC"
+    ],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 0,
+        "symbol": "lbl_1_bss_6F5F8"
+      }
+    ],
+    "section": ".data",
+    "section_size": 4,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_data_341B8.c",
+    "symbol": "lbl_1_data_341B8",
+    "unit_align": 8,
+    "unit_size": 4,
+    "unit_start": 213432
   },
   "main_rel:lbl_1_data_3D928": {
     "address": 252200,

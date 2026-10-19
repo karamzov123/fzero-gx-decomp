@@ -354,8 +354,26 @@ def generate(p, sym, recipe=None):
                 values.append(number(data[offset:offset+width], f'u{width*8}'))
                 offset += width
         extras += sorted(externs)
-        decl = 'struct {\n' + '\n'.join(fields) + f'\n}} {sym.name}'
-        init, method = '{\n    ' + ',\n    '.join(values) + '\n}', 'relocated-table'
+        known = None
+        if sym.size == 4 and len(relocs) == 1 and relocs[0]['offset'] == 0:
+            for d in decls:
+                if not d['path'].startswith('include/'):
+                    continue
+                match = re.fullmatch(r'((?:(?:const|volatile)\s+)*(?:(?:struct\s+)?\w+\s*\*+|[us]32))\s*' +
+                                     re.escape(sym.name), d['declaration'])
+                if match:
+                    known = (d, match[1])
+                    break
+        if known:
+            # A scalar symbolic address is not a one-field anonymous record.
+            # Preserve the recovered pointee/address type and its public header.
+            d, typ = known
+            includes.append(d['path'][8:])
+            decl, init = d['declaration'], f'({typ})({values[0]})'
+            method = 'declared-relocation'
+        else:
+            decl = 'struct {\n' + '\n'.join(fields) + f'\n}} {sym.name}'
+            init, method = '{\n    ' + ',\n    '.join(values) + '\n}', 'relocated-table'
     else:
         kind = {'float': 'f32', 'double': 'f64', 'string': 'char',
                 '4byte': 'u32', '2byte': 'u16', 'byte': 'u8'}.get(sym.attrs.get('data'))
@@ -450,7 +468,7 @@ def generate(p, sym, recipe=None):
               + prefix + storage + decl + f' __attribute__((aligned({align})))'
               + (' = ' + init if init is not None else '') + ';\n'
               + ('#pragma explicit_zero_data reset\n' if init is not None else ''))
-    record = dict(module=sym.module, symbol=sym.name, section=sym.section,
+    record: dict = dict(module=sym.module, symbol=sym.name, section=sym.section,
                   address=sym.addr, size=sym.size, align=align, method=method,
                   declarations=decls, references=reference_index(p, sym.module).get(sym.name, []),
                   sha256=hashlib.sha256(data).hexdigest(), relocations=relocs)

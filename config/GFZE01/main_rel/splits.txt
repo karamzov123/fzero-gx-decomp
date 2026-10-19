@@ -7832,3 +7832,15 @@ rel/main_rel/data/lbl_1_data_40BD8.c:
 
 rel/main_rel/data/lbl_1_data_416B8.c:
 	.data       start:0x000416B8 end:0x000418A4 align:8
+
+rel/main_rel/data/lbl_1_data_1C500.c:
+	.data       start:0x0001C500 end:0x0001C578 align:8
+
+rel/main_rel/data/lbl_1_data_27920.c:
+	.data       start:0x00027920 end:0x00027A2C align:8
+
+rel/main_rel/data/lbl_1_data_341B8.c:
+	.data       start:0x000341B8 end:0x000341BC align:8
+
+rel/main_rel/data/lbl_1_data_1CC68.c:
+	.data       start:0x0001CC68 end:0x0001CC78 align:8

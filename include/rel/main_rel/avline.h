@@ -25,6 +25,8 @@ typedef struct {
     f32 unk_4;  // 3 loads, 0 stores
     f32 unk_8;  // 3 loads, 0 stores
 } Obj_1_data_1CC74_Target;
+// The initializer relocation of lbl_1_data_1CC74 binds this three-float vector.
+extern Obj_1_data_1CC74_Target lbl_1_data_1CC68;
 extern Obj_1_data_1CC74_Target *lbl_1_data_1CC74;
 
 // lbl_1_data_1C68C: .data size 0x9, 2 refs from avline.c (own data block)

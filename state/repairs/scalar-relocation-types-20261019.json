@@ -1,0 +1,147 @@
+{
+  "format": "fzgx-data-cohort-v1",
+  "topic": "Preserve scalar relocation declarations and prove their target objects",
+  "base_commit": "2511391f6dcbf27ae98b64d15b7f36c78db5d69f",
+  "baseline": {
+    "imported": false,
+    "objects": 0,
+    "bytes": 0,
+    "skipped": [
+      {
+        "symbol": "lbl_1_data_1C504",
+        "reason": "### mwcceppc.exe Compiler:\n#      In: include\\rel\\main_rel\\font.h\n#    From: .fzgx\\dataimport\\main_rel__lbl_1_data_1C504.c\n# ------------------------------------------------------\n#     106: extern Obj_1_data_1C504_Target *lbl_1_data_1C504;\n#   Error:                                                 ^\n#   identifier 'lbl_1_data_1C504' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'struct  *'\n#   Too many errors printed, aborting program\n\nUser break, cancelled...\n"
+      },
+      {
+        "symbol": "lbl_1_data_1C508",
+        "reason": "### mwcceppc.exe Compiler:\n#      In: include\\rel\\main_rel\\font.h\n#    From: .fzgx\\dataimport\\main_rel__lbl_1_data_1C504.c\n# ------------------------------------------------------\n#     106: extern Obj_1_data_1C504_Target *lbl_1_data_1C504;\n#   Error:                                                 ^\n#   identifier 'lbl_1_data_1C504' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'struct  *'\n#   Too many errors printed, aborting program\n\nUser break, cancelled...\n"
+      },
+      {
+        "symbol": "lbl_1_data_27920",
+        "reason": "### mwcceppc.exe Compiler:\n#      In: include\\rel\\main_rel\\car.h\n#    From: .fzgx\\dataimport\\main_rel__lbl_1_data_27920.c\n# ------------------------------------------------------\n#     127: extern u32 lbl_1_data_27920;\n#   Error:                            ^\n#   identifier 'lbl_1_data_27920' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'unsigned long'\n#   Too many errors printed, aborting program\n\nUser break, cancelled...\n"
+      },
+      {
+        "symbol": "lbl_1_data_27924",
+        "reason": "### mwcceppc.exe Compiler:\n#      In: include\\rel\\main_rel\\car.h\n#    From: .fzgx\\dataimport\\main_rel__lbl_1_data_27920.c\n# ------------------------------------------------------\n#     127: extern u32 lbl_1_data_27920;\n#   Error:                            ^\n#   identifier 'lbl_1_data_27920' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'unsigned long'\n#   Too many errors printed, aborting program\n\nUser break, cancelled...\n"
+      }
+    ]
+  },
+  "accepted_objects": 8,
+  "accepted_initialized_bytes": 408,
+  "records": [
+    {
+      "symbol": "main_rel:lbl_1_data_1C500",
+      "definition": "u32 lbl_1_data_1C500",
+      "method": "typed-data",
+      "bytes": 4,
+      "relocations": []
+    },
+    {
+      "symbol": "main_rel:lbl_1_data_1C504",
+      "definition": "Obj_1_data_1C504_Target *lbl_1_data_1C504",
+      "method": "declared-relocation",
+      "bytes": 4,
+      "relocations": [
+        {
+          "addend": 0,
+          "kind": 1,
+          "module": "main_rel",
+          "offset": 0,
+          "symbol": "lbl_1_bss_4E6D0"
+        }
+      ]
+    },
+    {
+      "symbol": "main_rel:lbl_1_data_1C508",
+      "definition": "Obj_1_data_1C508 lbl_1_data_1C508",
+      "method": "declared-record",
+      "bytes": 112,
+      "relocations": []
+    },
+    {
+      "symbol": "main_rel:lbl_1_data_1CC68",
+      "definition": "Obj_1_data_1CC74_Target lbl_1_data_1CC68",
+      "method": "declared-record",
+      "bytes": 12,
+      "relocations": []
+    },
+    {
+      "symbol": "main_rel:lbl_1_data_1CC74",
+      "definition": "Obj_1_data_1CC74_Target *lbl_1_data_1CC74",
+      "method": "declared-relocation",
+      "bytes": 4,
+      "relocations": [
+        {
+          "addend": 0,
+          "kind": 1,
+          "module": "main_rel",
+          "offset": 0,
+          "symbol": "lbl_1_data_1CC68"
+        }
+      ]
+    },
+    {
+      "symbol": "main_rel:lbl_1_data_27920",
+      "definition": "u32 lbl_1_data_27920",
+      "method": "declared-relocation",
+      "bytes": 4,
+      "relocations": [
+        {
+          "addend": 0,
+          "kind": 1,
+          "module": "main_rel",
+          "offset": 0,
+          "symbol": "lbl_1_bss_6E990"
+        }
+      ]
+    },
+    {
+      "symbol": "main_rel:lbl_1_data_27924",
+      "definition": "Obj_1_data_27924 lbl_1_data_27924",
+      "method": "declared-record",
+      "bytes": 264,
+      "relocations": []
+    },
+    {
+      "symbol": "main_rel:lbl_1_data_341B8",
+      "definition": "Obj_1_data_341B8_Target *lbl_1_data_341B8",
+      "method": "declared-relocation",
+      "bytes": 4,
+      "relocations": [
+        {
+          "addend": 0,
+          "kind": 1,
+          "module": "main_rel",
+          "offset": 0,
+          "symbol": "lbl_1_bss_6F5F8"
+        }
+      ]
+    }
+  ],
+  "type_proof": {
+    "pointer": "main_rel:lbl_1_data_1CC74",
+    "target": "main_rel:lbl_1_data_1CC68",
+    "target_type": "Obj_1_data_1CC74_Target",
+    "target_size": 12,
+    "target_values": [
+      0.0,
+      -1.0,
+      0.0
+    ],
+    "evidence": "Retail ADDR32 initializer points at the exact 12-byte target; fn_1_62C84 loads its three f32 components through the existing recovered pointer type."
+  },
+  "regeneration": {
+    "imported": false,
+    "objects": 470,
+    "bytes": 2289097,
+    "skipped": []
+  },
+  "verification": {
+    "real_MWCC": "passed",
+    "layout_initialized_bytes_relocation_bindings": "passed",
+    "configure_ninja": "passed",
+    "retail_hashes_passed": 16,
+    "lint_findings": 0,
+    "new_function_matches": 0
+  },
+  "scope": "Only four-byte scalar ADDR32 objects with one relocation at offset zero and an existing public object-pointer or u32/s32 declaration take the new path. Larger records and arrays retain their prior handling."
+}
