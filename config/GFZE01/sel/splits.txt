@@ -677,3 +677,6 @@ rel/sel/sel/fn_10_924C.c:
 
 rel/sel/name_entry/fn_10_24BD0.c:
 	.text       start:0x00024BD0 end:0x00025610 align:4
+
+rel/sel/sel/fn_10_25888.c:
+	.text       start:0x00025888 end:0x00025BC8 align:4
