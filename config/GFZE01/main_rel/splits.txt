@@ -7775,3 +7775,6 @@ rel/main_rel/bg_win/fn_1_15BCDC.c:
 
 rel/main_rel/sel_static_disp/fn_1_150654.c:
 	.text       start:0x00150654 end:0x001507C4 align:4
+
+rel/main_rel/effect_car/fn_1_6E140.c:
+	.text       start:0x0006E140 end:0x0006E320 align:4
