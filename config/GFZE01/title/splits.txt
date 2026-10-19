@@ -284,3 +284,6 @@ rel/title/name_entry/fn_8_EFA4.c:
 
 rel/title/title/fn_8_7734.c:
 	.text       start:0x00007734 end:0x000079C0 align:4
+
+rel/title/title/fn_8_81AC.c:
+	.text       start:0x000081AC end:0x00008440 align:4
