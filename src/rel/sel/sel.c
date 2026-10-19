@@ -1092,6 +1092,62 @@ void fn_10_3B44(void) {
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_10_3B44 */
 
+/* fzgx:begin fn_10_3C14 */
+typedef struct {
+    u8 pad[4];
+    u32 flags;
+} SelSlot;
+
+typedef struct {
+    u8 pad[0x94];
+    u32 flags;
+} GlobalState;
+
+extern GlobalState lbl_1_bss_8B3A0;
+extern void fn_1_152970(s16 *, s16 *, s32, s32, SelSlot *, s16, s16);
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_10_bss_0[5];
+u32 fzgx_obj_lbl_10_bss_14;
+s16 fzgx_obj_lbl_10_bss_18;
+s16 fzgx_obj_lbl_10_bss_1A;
+u32 fzgx_obj_lbl_10_bss_1C[233];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_10_bss_0[0];
+    s = fzgx_obj_lbl_10_bss_14;
+    s = fzgx_obj_lbl_10_bss_18;
+    s = fzgx_obj_lbl_10_bss_1A;
+    s = fzgx_obj_lbl_10_bss_1C[0];
+}
+#pragma section code_type ".text"
+
+void fn_10_3C14(void) {
+    u8 *flags;
+    s16 slot_y;
+    s16 slot_x;
+
+    if (lbl_1_bss_8B3A0.flags & 0x20000000) {
+        return;
+    }
+    fn_1_152970(&slot_y, &slot_x, 0x36, 0, (SelSlot *)fzgx_obj_lbl_10_bss_1C, fzgx_obj_lbl_10_bss_1A,
+                fzgx_obj_lbl_10_bss_18);
+    flags = (u8 *)&((SelSlot *)fzgx_obj_lbl_10_bss_1C)->flags;
+    *(u32 *)(flags + slot_y * 0x98 + slot_x * 8) |= 0x10000000;
+    fn_1_152970(&slot_y, &slot_x, 0x37, 0, (SelSlot *)fzgx_obj_lbl_10_bss_1C, fzgx_obj_lbl_10_bss_1A,
+                fzgx_obj_lbl_10_bss_18);
+    *(u32 *)(flags + slot_y * 0x98 + slot_x * 8) |= 0x10000000;
+    fn_1_152970(&slot_y, &slot_x, 0x38, 0, (SelSlot *)fzgx_obj_lbl_10_bss_1C, fzgx_obj_lbl_10_bss_1A,
+                fzgx_obj_lbl_10_bss_18);
+    *(u32 *)(flags + slot_y * 0x98 + slot_x * 8) |= 0x10000000;
+    fn_1_152970(&slot_y, &slot_x, 0x39, 0, (SelSlot *)fzgx_obj_lbl_10_bss_1C, fzgx_obj_lbl_10_bss_1A,
+                fzgx_obj_lbl_10_bss_18);
+    *(u32 *)(flags + slot_y * 0x98 + slot_x * 8) |= 0x10000000;
+}
+/* fzgx:end fn_10_3C14 */
+
 /* fzgx:begin fn_10_3D64 */
 extern int lbl_1_bss_7180C;
 extern int fn_1_B7E98(int);
