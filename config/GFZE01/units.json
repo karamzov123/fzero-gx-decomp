@@ -73329,6 +73329,17 @@
   },
   {
     "module": "sel",
+    "source": "rel/sel/sel/fn_10_CB20.c",
+    "symbols": [
+      "fn_10_CB20"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/sel/sel.c"
+  },
+  {
+    "module": "sel",
     "source": "rel/sel/sel/fn_10_CD90.c",
     "symbols": [
       "fn_10_CD90"
