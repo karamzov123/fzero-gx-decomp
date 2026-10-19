@@ -7772,3 +7772,6 @@ rel/main_rel/ranking/fn_1_1586AC.c:
 
 rel/main_rel/bg_win/fn_1_15BCDC.c:
 	.text       start:0x0015BCDC end:0x0015BE38 align:4
+
+rel/main_rel/sel_static_disp/fn_1_150654.c:
+	.text       start:0x00150654 end:0x001507C4 align:4
