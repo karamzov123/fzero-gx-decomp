@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (98.96% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.26% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -92,12 +92,10 @@ void fn_1_FE014(void *arg0, void *arg1) {
     if (sel == 0) {
         return;
     }
-    if (gp->unk_C == 0) {
+    if (gp->unk_C == 0 || (qt = gp->unk_8) == 0) {
         return;
     }
-    qt = gp->unk_8;
-    if (qt == 0) {
-    } else {
+    {
         id0 = sel[0].id;
         q0 = qt[0].v;
         if (((q0) == (id0)) && sel[1].id == qt[1].v && sel[2].id == qt[2].v && gp->unk_4 == 0) {
@@ -271,4 +269,6 @@ void fn_1_FE014(void *arg0, void *arg1) {
     }
 }
 #pragma opt_propagation reset
+
+
 
