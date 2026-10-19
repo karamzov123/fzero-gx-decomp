@@ -6140,3 +6140,18 @@ dol/fn_800557CC.c:
 
 dol/fn_8005596C.c:
 	.text       start:0x8005596C end:0x80055D94 align:4
+
+dol/fn_8005A24C.c:
+	.text       start:0x8005A24C end:0x8005A47C align:4
+
+dol/fn_80057494.c:
+	.text       start:0x80057494 end:0x800576DC align:4
+
+dol/fn_80056E9C.c:
+	.text       start:0x80056E9C end:0x800570DC align:4
+
+dol/fn_80054B6C.c:
+	.text       start:0x80054B6C end:0x800551D0 align:4
+
+dol/fn_80055304.c:
+	.text       start:0x80055304 end:0x80055580 align:4
