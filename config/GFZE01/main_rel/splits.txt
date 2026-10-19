@@ -7856,3 +7856,6 @@ rel/main_rel/sel_static_disp/fn_1_1420E0.c:
 
 rel/main_rel/live_camera/fn_1_1289C.c:
 	.text       start:0x0001289C end:0x00012B88 align:4
+
+rel/main_rel/bg_aur/fn_1_152208.c:
+	.text       start:0x00152208 end:0x00152510 align:4
