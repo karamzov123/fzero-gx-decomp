@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (98.97% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.60% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -17,13 +17,18 @@ static inline s32 ranking_code_random15(void) {
 #define RANKING_CODE_DIGIT(offset, divisor) \
     ((u8 *)&lbl_1_bss_8F878)[0x18 + (offset)] = '0' + (code / (divisor)) % 10ULL
 
+static inline u64 scramble_decimal_character(u8 *digit, u64 value) {
+    *digit += value % 10ULL;
+    if (*digit > '9') *digit -= 10;
+    return value / 10ULL;
+}
+
 u64 fn_1_15AC10(void) {
     u64 code;
     u64 high;
     u64 mix;
+    u64 index;
     u64 random;
-    u64 bit_index;
-    u64 digit_index;
     u64 scramble;
     s32 a, b, c;
     Obj_1_bss_8F878 *state;
@@ -35,12 +40,12 @@ u64 fn_1_15AC10(void) {
           ((code & 0x100000ULL) >> 17);
     lbl_801A63C0 = (u8)mix ^ 0xCAE87FB5;
     random = ranking_code_random15();
-    for (bit_index = 0; bit_index < 64; bit_index++) {
-        if (bit_index != 13 && bit_index != 20 && bit_index - 32 > 1) {
-            u64 bit = (code >> bit_index) & 1ULL;
-            bit += (random % (bit_index + 11)) & 1ULL;
-            code &= ~(1ULL << bit_index);
-            if (bit & 1ULL) code |= 1ULL << bit_index;
+    for (index = 0; index < 64; index++) {
+        if (index != 13 && index != 20 && index - 32 > 1) {
+            u64 bit = (code >> index) & 1ULL;
+            bit += (random % (index + 11)) & 1ULL;
+            code &= ~(1ULL << index);
+            if (bit & 1ULL) code |= 1ULL << index;
         }
     }
 
@@ -73,15 +78,13 @@ u64 fn_1_15AC10(void) {
     a = ranking_code_random15();
     b = ranking_code_random15();
     c = ranking_code_random15();
-    scramble = (u64)a * b * c;
+    scramble = (u64)b * a * c;
     state = &lbl_1_bss_8F878;
-    for (digit_index = 5; digit_index < 24; digit_index++) {
-        u8 *digit = (u8 *)state + digit_index;
-        digit += 0x18;
-        if (*digit != '-') {
-            *digit += scramble % 10ULL;
-            if (*digit > '9') *digit -= 10;
-            scramble /= 10ULL;
+    for (index = 5; index < 24; index++) {
+        u8 *entry = (u8 *)state + index;
+        u8 *digit = entry + 0x18;
+        if (entry[0x18] != '-') {
+            scramble = scramble_decimal_character(digit, scramble);
         }
     }
     lbl_1_bss_8F878.unk_30 = 0;
