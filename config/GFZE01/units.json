@@ -68110,6 +68110,25 @@
   },
   {
     "module": "option",
+    "source": "rel/option/_prolog/fn_4_C768.c",
+    "symbols": [
+      "fn_4_C768"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-opt",
+      "speed,level=3,peephole,schedule"
+    ],
+    "tu": "rel/option/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_4_rodata_410",
+      "@37": "lbl_4_rodata_B00",
+      "@38": "lbl_4_rodata_B08"
+    }
+  },
+  {
+    "module": "option",
     "source": "rel/option/_prolog/fn_4_D10.c",
     "symbols": [
       "fn_4_D10"
