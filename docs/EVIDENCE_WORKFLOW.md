@@ -2,6 +2,13 @@
 
 Portable agent prompt: [`AGENT_PROMPT.md`](AGENT_PROMPT.md).
 
+Execution-first correction: these are optional tools, not a required per-edit
+workflow. Contexts no longer auto-load a decision packet, and agents need not
+write a formal hypothesis or four-field log before experimenting. Failed ideas
+and released functions do not end unbound sessions. Manual claims now initialize
+usable saved C/profile rather than a placeholder. See
+[`THROUGHPUT.md`](THROUGHPUT.md) for measured costs and fixes.
+
 This extends the existing fzgx context/search/sourcealign/verifier flows. It is
 not a new matching runner, scheduler, provider selector or permission to bypass
 claims. Queues and observations are advisory. Native-C rules, existing budgets,
@@ -60,8 +67,9 @@ If no current locator is available, supply a pattern rather than guessing one.
 
 ## 3. Structured handoffs and restricted agents
 
-Every new context includes the decision contract and bounded prior observations.
-The existing `read_evidence` tool now accepts `decision` and `witnesses` sections:
+Contexts keep code, retail assembly and compiler information central. Decision
+packets and prior observations are fetched only when useful, not on every claim.
+The existing `read_evidence` tool accepts `decision` and `witnesses` sections:
 
 ```sh
 .venv/bin/python tools/fzgx.py read-evidence fn_1_F38C0 --section decision
@@ -69,10 +77,11 @@ The existing `read_evidence` tool now accepts `decision` and `witnesses` section
 
 Restricted matchers do not need shell access or another provider-specific tool.
 Old adapters that cannot expose these sections can still use supplied context
-and the existing release reason. Matcher and readability prompts now require a
-falsifiable hypothesis, predicted instruction change and real observation.
+and the existing release reason. Matcher and readability prompts prioritize real
+compiler work and substantive exploration, not a mandatory hypothesis ceremony.
 
-Use separate lines in `release(reason)`:
+If a structured handoff will help another attempt, optionally use separate lines
+in `release(reason)`:
 
 ```text
 HYPOTHESIS: source explanation tested
@@ -152,7 +161,11 @@ and separates raw checks/attempts from verified functions/bytes. Missing cost is
 not zero cost; summed wall time can overlap. Different target assignments prevent
 these groups from being a fair causal model leaderboard.
 
-## Validation of this implementation
+## Original implementation validation (archived)
+
+These results describe the initial evidence-tool implementation, not an
+end-to-end agent-yield benchmark. Current throughput validation is documented in
+`THROUGHPUT.md`; automatic decision-context injection was subsequently removed.
 
 Real repository/MWCC probes, with no added repository unit-test suite:
 

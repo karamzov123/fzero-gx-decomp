@@ -39,7 +39,8 @@ def _decl_for(sym: Symbol, project: Optional[Project] = None, called: bool = Fal
     if sym.kind == "function" or called:
         if project is not None:
             from .signatures import recovered
-            index = index or recovered(project)
+            if index is None:
+                index = recovered(project)
             sig = index.get(sym.module, sym.name, source)
             if sig:
                 note = ['// Register-flow estimate; confirm against the call sites.'] if 'register-flow' in sig.origin else []
@@ -230,24 +231,9 @@ def build_context(project: Project, ledger: Optional[Ledger], symbol: str,
         parts.append('- section: retail placed this function in `.init`; write `__declspec(section ".init")` before the '
                      "return type (the object oracle pairs nothing across sections, and the link needs it there)")
     parts.append(f"- compiler: `{mw}` `{flags}`" + (f" extra overrides: `{extra}`" if extra else ''))
-    parts.append('\n## Evidence-led decision contract\n'
-        'Identify the earliest meaningful divergence, classify it, and state one falsifiable hypothesis '
-        'with a predicted instruction change before editing. Retrieve same-module/compiler witnesses before '
-        'speculative permutations. An unchanged zero-yield search is not a new experiment. '
-        'Use read_evidence(section="decision") for the current packet and section="witnesses" for native-C witnesses. '
-        'On release, include HYPOTHESIS:, PREDICTION:, OBSERVATION:, and UNLOCK: lines; '
-        'report shared type/ABI blockers instead of editing shared files.')
-    try:
-        from . import work_evidence
-        decision = work_evidence.packet(project, project.key(sym))
-        brief = dict(experiment_key=decision['experiment_key'],
-                     source_sha256=decision['source']['sha256'],
-                     residual=decision['residual']['first'], mode=decision['residual']['mode'],
-                     prior_hypotheses=[dict(hypothesis=h['hypothesis'][:180], observation=h['observation'][:240],
-                                            unlock=h.get('unlock', '')[:180]) for h in decision['prior_hypotheses'][-2:]])
-        parts.append('Current evidence (no new compile): ' + json.dumps(brief, sort_keys=True))
-    except (OSError, ValueError, KeyError) as error:
-        parts.append('Decision packet unavailable: ' + str(error)[:240] + '; use the normal source/check tools.')
+    parts.append('\nA failed experiment is not the end of the task. Try other explanations; '
+        'release only for a real blocker or a better target. Evidence tools and structured notes are optional; '
+        'spend calls on useful edits and compiler results, not routine bookkeeping.')
 
     parts.append("\n## Target assembly (retail)\n```asm")
     parts.extend(fn.asm)
@@ -297,6 +283,9 @@ def build_context(project: Project, ledger: Optional[Ledger], symbol: str,
                 shown_from_header.append(name)
                 continue
             source = f'{project.module_src_prefix(module)}/{tu_stem}.c' if tu_stem else None
+            if signature_index is None and (s.kind == 'function' or name in direct_calls):
+                from .signatures import recovered
+                signature_index = recovered(project)
             parts.append(_decl_for(s, project, name in direct_calls, source, signature_index))
         parts.append("```")
         if imported:

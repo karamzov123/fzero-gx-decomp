@@ -2,7 +2,8 @@
 
 ## Evidence-led agent workflow
 
-Use the existing `fzgx evidence` diagnostic surface before adding more attempts:
+The existing `fzgx evidence` diagnostic surface is optional help for blocked work,
+not a mandatory preflight before more experiments:
 [`EVIDENCE_WORKFLOW.md`](EVIDENCE_WORKFLOW.md). It provides identity-pinned
 hypothesis handoffs, native instruction witnesses, shared blocker cohorts,
 dependency-aware recheck proposals, licensed donor compile reuse and conservative

@@ -217,7 +217,8 @@ def claim(p: Project, symbol: str, agent: str, ttl: int = DEFAULT_TTL,
     l = Ledger()
     if os.environ.get("FZGX_AGENT_ID", agent) != agent or os.environ.get("FZGX_SYMBOL", symbol) != symbol:
         return {"ok": False, "error": "use the function and agent identity assigned to this worker"}
-    if p.resolve(symbol) is None:
+    sym = p.resolve(symbol)
+    if sym is None:
         return {"ok": False, "error": f"unknown or ambiguous symbol {symbol!r} (use module:name for _prolog/_epilog)"}
     key = _key(p, symbol)
     worker = re.sub(r"(-(codex|claude)-\d+)-.*$", r"\1", agent)
@@ -230,10 +231,20 @@ def claim(p: Project, symbol: str, agent: str, ttl: int = DEFAULT_TTL,
     if prior:
         return {"ok": False, "error": "this worker already finished; it cannot reclaim the function",
                 "outcome": prior["outcome"], "checks": prior["checks"], "percent": prior["best_in_attempt"]}
-    seed = _seed_record(key)
+    seed: Dict[str, Any] = _seed_record(key)
     seed_body = None
     if os.environ.get('FZGX_SEEDS') and not seed:
         return {'ok': False, 'error': 'seeded batch has no candidate for this function'}
+    existing = l.get(key)
+    if not seed and existing and existing['status'] == 'unmatched' and not _is_shadow(agent):
+        # Unbound manual claims must not start at a placeholder when saved C exists.
+        # Resolve it before ownership changes or _discard_work removes old copies.
+        from .work_evidence import source_record
+        from .fixup_source import _function_body_span
+        saved = source_record(p, key)
+        if saved['path'] and saved['body'] and _function_body_span(saved['body'], sym.name):
+            seed = dict(kind='saved_source', path=saved['path'], source=saved['body'],
+                        sha256=saved['sha256'], mw=saved['mw'], flags=saved['flags'])
     if seed:
         if isinstance(seed.get('source'), str):
             seed_body = seed['source']
@@ -267,6 +278,10 @@ def claim(p: Project, symbol: str, agent: str, ttl: int = DEFAULT_TTL,
         best.write_text(seed_body)
         best.with_suffix('.json').write_text(json.dumps(dict(
             sha256=seed['sha256'], mw=seed.get('mw'), flags=seed.get('flags'))) + '\n')
+        attempt = l.current_attempt(key)
+        if attempt:
+            work.with_suffix('.compiler.json').write_text(json.dumps(dict(
+                attempt_id=attempt['id'], mw=seed.get('mw'), flags=seed.get('flags'), path=str(work))) + '\n')
     elif _is_revise(agent) and unit:
         work.write_text(_canonical_text(p, unit) or STUB.format(symbol=name, note="nothing to revise"))
     else:

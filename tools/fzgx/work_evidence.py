@@ -161,8 +161,8 @@ def packet(p: Project, symbol: str, check=False, include_witnesses=False):
         attempts=row['attempts'] if row else None,
         prior_hypotheses=same[-8:], current_context_hypotheses=len(same), historical_hypotheses=len(history),
         next_action=('Repair compiler errors before matching.' if result and not result.get('ok') else
-                     'Read the earliest real divergence; state a new hypothesis and predicted instruction change. '
-                     'Retrieve same-module/profile witnesses. Reuse prior results for an unchanged experiment.'),
+                     'Inspect the real residual and try another plausible source explanation. '
+                     'Use witnesses or prior notes when useful; one failed idea does not exhaust the function.'),
         guardrails='Read-only diagnosis. No claim, budget override, submit, block/unblock or match credit.')
     if include_witnesses:
         output['witnesses'] = exemplars.witnesses(p, key)
@@ -258,7 +258,7 @@ def record_hypothesis(p, symbol, hypothesis, prediction, observation, outcome='t
                       and r['hypothesis'] == hypothesis and r['prediction'] == prediction), None)
         if prior:
             return dict(recorded=False, reused=True, record=prior,
-                        note='Identical experiment already recorded; cite new source/type/compiler evidence before retrying.')
+                        note='Exact hypothesis/input already recorded; try a different approach rather than repeating it.')
         records.append(record)
         _write(path, records)
     return dict(recorded=True, reused=False, record=record,
@@ -287,7 +287,8 @@ def eligibility(p, symbol):
         comparison_basis='recorded context' if evidence['historical_hypotheses'] else 'no recorded comparison baseline',
         status=row['status'] if row else None,
         unlock=[h['unlock'] for h in previous if h.get('unlock')],
-        note='Advisory only. No claim, unblock, cap reset, provider request or search is performed.')
+        note='Advisory about repeating recorded input, not a ban on untested approaches. '
+             'No claim, unblock, cap reset, provider request or search is performed.')
 
 
 def capture_inputs(p):

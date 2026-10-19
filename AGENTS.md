@@ -125,17 +125,15 @@ inspect existing pragmas that may override a newly inserted setting.
 Temporary reuse requires liveness through loop back edges; a variable's last
 textual occurrence, especially a `for` increment, does not prove it is dead.
 
-## Evidence-led work
+## Productive execution
 
-The existing CLI exposes `fzgx evidence` for decision packets, native instruction
-witnesses, shared-callee/object/TU cohorts, changed-input recheck queues, donor
-provenance and conservative verified yield. See `docs/EVIDENCE_WORKFLOW.md` and
-`docs/AGENT_PROMPT.md`. New contexts include the decision contract automatically;
-restricted matchers use existing `read_evidence` sections `decision`/`witnesses`.
-Before another edit, state a falsifiable hypothesis and predicted instruction
-change; inspect the actual result and do not repeat exhausted unchanged input.
-Use HYPOTHESIS:, PREDICTION:, OBSERVATION:, and UNLOCK: lines in release reasons.
-These observations and queues grant no match credit, claim/cap override, shared-
-file ownership or permission to launch agents. Only the existing verifier grants
-linked acceptance. External input changes are detected with `evidence refresh`;
-the verifier also refreshes proposals after actual acceptance/rejection changes.
+Manual contributors may investigate multiple functions/cohorts, improve tools and
+make coherent shared changes with serialized ownership and affected-function
+verification. The one-function restriction applies to runner-bound workers, not
+to an unbound user-directed session. A failed idea or released function is not a
+session stop: try other approaches or continue to a better target. Use supported
+process-local budgets when useful; do not change fleet/provider configuration.
+The `fzgx evidence` tools and structured notes are optional aids, not a required
+ritual before each edit. Prefer compiler-backed experiments and concise handoffs.
+Keep claims, natural-C requirements and the full hash gate intact. See
+`docs/AGENT_PROMPT.md` for the short execution-first prompt.
