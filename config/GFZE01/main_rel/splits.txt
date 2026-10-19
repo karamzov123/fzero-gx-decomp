@@ -7790,3 +7790,21 @@ rel/main_rel/_prolog/fn_1_426C.c:
 
 rel/main_rel/bg_cas/fn_1_FE644.c:
 	.text       start:0x000FE644 end:0x000FE780 align:4
+
+rel/main_rel/data/lbl_1_bss_384D8.c:
+	.bss        start:0x000384D8 end:0x0003DCD8 align:8
+
+rel/main_rel/data/lbl_1_bss_4C688.c:
+	.bss        start:0x0004C688 end:0x0004E688 align:8
+
+rel/main_rel/data/lbl_1_bss_718E0.c:
+	.bss        start:0x000718E0 end:0x000772C8 align:32
+
+rel/main_rel/data/lbl_1_bss_77380.c:
+	.bss        start:0x00077380 end:0x0007A380 align:32
+
+rel/main_rel/data/lbl_1_bss_7F0C0.c:
+	.bss        start:0x0007F0C0 end:0x00084420 align:32
+
+rel/main_rel/data/lbl_1_data_1A3B8.c:
+	.data       start:0x0001A3B8 end:0x0001AE94 align:8

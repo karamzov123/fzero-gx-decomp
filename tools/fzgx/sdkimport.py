@@ -707,7 +707,14 @@ def shared_storage(p: Project, rec: dict, pieces: list, text: str, mapping: dict
         # Place the aggregate after its type dependencies and before function bodies.
         # Strings and typed objects can share one anchor. Give it one compatible
         # declaration and cast each view instead of declaring conflicting structs.
-        decl = 'struct ' + tag + ' {\n' + '\n'.join(fields) + '\n};\nextern unsigned char ' + mapping[anchor] + '[];\n\n'
+        # A retail anchor can have the same name as a donor object (Packet in
+        # SIBios). Keep it distinct until the simultaneous symbol substitution,
+        # or the anchor declaration itself becomes an aggregate field access.
+        base = local + '_base'
+        while base in used or base in mapping:
+            base += '_'
+        mapping[base] = mapping[anchor]
+        decl = 'struct ' + tag + ' {\n' + '\n'.join(fields) + '\n};\nextern unsigned char ' + base + '[];\n\n'
         index = next((i for i in range(len(text)) if text.startswith('static inline ', i)), -1)
         if index < 0:
             signature = next(x.signature for x in pieces if x.kind == 'function' and rec['sdk_symbol'] in x.names)
@@ -715,7 +722,7 @@ def shared_storage(p: Project, rec: dict, pieces: list, text: str, mapping: dict
         text = text[:index] + decl + text[index:]
         for piece in declarations(text):
             if piece.kind == 'function' and set(IDENT.findall(masked(piece.text))) & replacements.keys():
-                body = piece.text.replace('{', '{\nstruct ' + tag + '* ' + local + ' = (struct ' + tag + '*)' + mapping[anchor] + ';\n', 1)
+                body = piece.text.replace('{', '{\nstruct ' + tag + '* ' + local + ' = (struct ' + tag + '*)' + base + ';\n', 1)
                 text = text.replace(piece.text, body)
         mapping.update(replacements)
     return text
@@ -940,10 +947,16 @@ def storage_variants(text: str) -> list:
             for fn in declarations(text):
                 if fn.kind != 'function' or expr not in fn.text:
                     continue
-                body = fn.text.replace('{', f'{{\n{typ}* {field}Field;\n', 1)
-                first = body.index(expr)
-                line = body.rfind('\n', 0, first) + 1
-                body = body[:line] + f'{field}Field = {address};\n' + body[line:].replace(expr, f'(*{field}Field)')
+                # clang-format can wrap the first access into a continuation
+                # line. Initialize after the base declaration, not at the start
+                # of that line, which may be inside a return or condition.
+                base_decl = re.search(r'\bstruct\s+\w+\s*\*\s*' + re.escape(local) +
+                                      r'\s*=[^;]+;', masked(fn.text))
+                if not base_decl:
+                    continue
+                index = base_decl.end()
+                body = (fn.text[:index] + f'\n{typ}* {field}Field = {address};\n' +
+                        fn.text[index:].replace(expr, f'(*{field}Field)'))
                 modified = modified.replace(fn.text, body)
             variants.append((field + ('-bytes' if byte_address else ''), modified))
     # Array fields in the original SDK are independent objects sharing a section base.

@@ -1,4 +1,91 @@
 {
+  "customize:lbl_3_bss_140": {
+    "address": 320,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_140 lbl_3_bss_140",
+        "path": "include/rel/customize/globals.h"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_140[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_140[132868]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_140[132868]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_140[132868]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "struct Meta lbl_3_bss_140[4]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_140[132868]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_140",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "Obj_140 lbl_3_bss_140[4]",
+        "path": "src/rel/customize/_prolog.c"
+      }
+    ],
+    "definition": "Obj_3_bss_140 lbl_3_bss_140",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "_epilog",
+      "fn_3_4380",
+      "fn_3_4538",
+      "fn_3_48E0",
+      "fn_3_5070",
+      "fn_3_5500",
+      "fn_3_5D84",
+      "fn_3_7E5C",
+      "fn_3_83CC",
+      "fn_3_8A90",
+      "fn_3_990C",
+      "fn_3_9CA8",
+      "fn_3_A12C",
+      "fn_3_BA74",
+      "fn_3_1F958",
+      "fn_3_1FF7C",
+      "fn_3_20B3C",
+      "fn_3_29C94",
+      "fn_3_0",
+      "fn_3_15A0",
+      "fn_3_381C",
+      "fn_3_39F0",
+      "fn_3_4C58",
+      "fn_3_5A50",
+      "fn_3_5B9C",
+      "fn_3_837C",
+      "fn_3_9800",
+      "fn_3_AF8",
+      "fn_3_B30",
+      "fn_3_B68"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 132868,
+    "sha256": "1f2616e812a8fe64308c06c4bb731365c7985aea67a816a19d5707f36e17b45d",
+    "size": 132868,
+    "source": "rel/customize/data/lbl_3_bss_140.c",
+    "symbol": "lbl_3_bss_140",
+    "unit_align": 32,
+    "unit_size": 132868,
+    "unit_start": 320
+  },
   "customize:lbl_3_bss_2C7C0": {
     "address": 182208,
     "align": 32,
@@ -179,6 +266,206 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 664664
+  },
+  "customize:lbl_3_data_1EA8": {
+    "address": 7848,
+    "align": 8,
+    "declarations": [],
+    "definition": "char lbl_3_data_1EA8[8]",
+    "method": "string-pool",
+    "module": "customize",
+    "references": [],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3876,
+    "sha256": "645be621b9a2670aadeca1c925699c4adf577a001f9c72973d60f93db4c561c7",
+    "size": 8,
+    "source": "rel/customize/data/lbl_3_data_1EA8.c",
+    "symbol": "lbl_3_data_1EA8",
+    "unit_align": 8,
+    "unit_size": 3876,
+    "unit_start": 7848
+  },
+  "customize:lbl_3_data_1EB0": {
+    "address": 7856,
+    "align": 8,
+    "declarations": [],
+    "definition": "char lbl_3_data_1EB0[4]",
+    "method": "string",
+    "module": "customize",
+    "references": [],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3876,
+    "sha256": "6fee33318cb19fb9796cf1d8e24c8b381b566de1330c1cfb714d722d2b23a423",
+    "size": 4,
+    "source": "rel/customize/data/lbl_3_data_1EA8.c",
+    "symbol": "lbl_3_data_1EB0",
+    "unit_align": 8,
+    "unit_size": 3876,
+    "unit_start": 7848
+  },
+  "customize:lbl_3_data_1EB4": {
+    "address": 7860,
+    "align": 4,
+    "declarations": [],
+    "definition": "Data_lbl_3_data_1EB4 lbl_3_data_1EB4",
+    "header": {
+      "path": "rel/customize/data/lbl_3_data_1EB4.h",
+      "text": "#ifndef DATA_LBL_3_DATA_1EB4_H\n#define DATA_LBL_3_DATA_1EB4_H\n\n#include \"types.h\"\n\ntypedef struct {\n    u32 at_0;\n    u32 at_4;\n    u8 *at_8;\n    u8 *at_C;\n    u8 *at_10;\n    u8 *at_14;\n    u8 *at_18;\n    u8 *at_1C;\n    u8 *at_20;\n    u8 *at_24;\n    u8 *at_28;\n    u8 *at_2C;\n    u8 *at_30;\n    u8 *at_34;\n} Data_lbl_3_data_1EB4;\nextern Data_lbl_3_data_1EB4 lbl_3_data_1EB4;\n\n#endif\n"
+    },
+    "method": "relocated-table",
+    "module": "customize",
+    "references": [],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 8,
+        "symbol": "lbl_3_data_1EA4"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 12,
+        "symbol": "lbl_3_data_1A6C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 16,
+        "symbol": "lbl_3_data_1A6C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 20,
+        "symbol": "lbl_3_data_1A6C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 24,
+        "symbol": "lbl_3_data_1A6C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 28,
+        "symbol": "lbl_3_data_1EA8"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 32,
+        "symbol": "lbl_3_data_1EB0"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 36,
+        "symbol": "lbl_3_data_1A6C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 40,
+        "symbol": "lbl_3_data_1A6C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 44,
+        "symbol": "lbl_3_data_1A6C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 48,
+        "symbol": "lbl_3_data_1A6C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "customize",
+        "offset": 52,
+        "symbol": "lbl_3_data_1EB4"
+      }
+    ],
+    "section": ".data",
+    "section_size": 3876,
+    "sha256": "45ff0196968f2d1ec96e763ed32513624217f7db8ae7b6b5dd7d9a9ada28fc55",
+    "size": 56,
+    "source": "rel/customize/data/lbl_3_data_1EA8.c",
+    "symbol": "lbl_3_data_1EB4",
+    "unit_align": 8,
+    "unit_size": 3876,
+    "unit_start": 7848
+  },
+  "customize:lbl_3_data_1EEC": {
+    "address": 7916,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_3_data_1EEC lbl_3_data_1EEC",
+        "path": "include/rel/customize/emb_memcard.h"
+      }
+    ],
+    "definition": "Obj_3_data_1EEC lbl_3_data_1EEC",
+    "method": "declared-record",
+    "module": "customize",
+    "references": [
+      "fn_3_12E4C",
+      "fn_3_12FD4"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3876,
+    "sha256": "ed44e30909effdf019a5a507e2dad1e2efccc451513a39c8348dc155f66efcb3",
+    "size": 1408,
+    "source": "rel/customize/data/lbl_3_data_1EA8.c",
+    "symbol": "lbl_3_data_1EEC",
+    "unit_align": 8,
+    "unit_size": 3876,
+    "unit_start": 7848
+  },
+  "customize:lbl_3_data_246C": {
+    "address": 9324,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_3_data_246C lbl_3_data_246C",
+        "path": "include/rel/customize/emb_memcard.h"
+      }
+    ],
+    "definition": "Obj_3_data_246C lbl_3_data_246C",
+    "method": "declared-record",
+    "module": "customize",
+    "references": [
+      "fn_3_12E4C",
+      "fn_3_12FD4"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3876,
+    "sha256": "74fe0bb3f35ef20f5452f4e635b3affbeecc3e23cd593e169bc21c59f99ca18f",
+    "size": 2400,
+    "source": "rel/customize/data/lbl_3_data_1EA8.c",
+    "symbol": "lbl_3_data_246C",
+    "unit_align": 8,
+    "unit_size": 3876,
+    "unit_start": 7848
   },
   "interview:lbl_17_bss_150": {
     "address": 336,
@@ -653,6 +940,35 @@
     "unit_size": 192,
     "unit_start": 2148908608
   },
+  "main:lbl_80164D60": {
+    "address": 2148945248,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_80164D60[]",
+        "path": "src/dol/fn_80022E5C.c"
+      }
+    ],
+    "definition": "u8 lbl_80164D60[70656]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "fn_800224EC",
+      "fn_80022EA4",
+      "fn_80022BF4",
+      "fn_80022E5C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 70656,
+    "sha256": "20b8f8ea34d860e8156eca66c4d31fc63dd5a2a78e5a1e9b556ca240fb8ff999",
+    "size": 70656,
+    "source": "dol/data/lbl_80164D60.c",
+    "symbol": "lbl_80164D60",
+    "unit_align": 8,
+    "unit_size": 70656,
+    "unit_start": 2148945248
+  },
   "main:lbl_80187118": {
     "address": 2149085464,
     "align": 8,
@@ -976,6 +1292,39 @@
     "unit_size": 568,
     "unit_start": 229912
   },
+  "main_rel:lbl_1_bss_384D8": {
+    "address": 230616,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_384D8 lbl_1_bss_384D8",
+        "path": "include/rel/main_rel/load.h"
+      }
+    ],
+    "definition": "Obj_1_bss_384D8 lbl_1_bss_384D8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_45730",
+      "fn_1_45CD8",
+      "fn_1_45D78",
+      "fn_1_466B0",
+      "fn_1_46C70",
+      "fn_1_46DC4",
+      "fn_1_471A0",
+      "fn_1_47268"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 22528,
+    "sha256": "3b7b2d6a621d51bcbcab08970d2873f967e179b5a017b61401883cb3af458349",
+    "size": 22528,
+    "source": "rel/main_rel/data/lbl_1_bss_384D8.c",
+    "symbol": "lbl_1_bss_384D8",
+    "unit_align": 8,
+    "unit_size": 22528,
+    "unit_start": 230616
+  },
   "main_rel:lbl_1_bss_3BC0": {
     "address": 15296,
     "align": 32,
@@ -1122,6 +1471,52 @@
     "unit_align": 32,
     "unit_size": 208,
     "unit_start": 309856
+  },
+  "main_rel:lbl_1_bss_4C688": {
+    "address": 312968,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_4C688 lbl_1_bss_4C688",
+        "path": "include/rel/main_rel/globals.h"
+      }
+    ],
+    "definition": "Obj_1_bss_4C688 lbl_1_bss_4C688",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_4DE04",
+      "fn_1_4DCD0",
+      "fn_1_4DCE0",
+      "fn_1_4DCF0",
+      "fn_1_4DD00",
+      "fn_1_4DD10",
+      "fn_1_4DD20",
+      "fn_1_4DD30",
+      "fn_1_4DD40",
+      "fn_1_4DD50",
+      "fn_1_4DD60",
+      "fn_1_4DD70",
+      "fn_1_4DD80",
+      "fn_1_4DD90",
+      "fn_1_4DDA0",
+      "fn_1_4DDB0",
+      "fn_1_4DDC0",
+      "fn_1_4DE44",
+      "fn_1_4DEC0",
+      "fn_1_4DF60",
+      "fn_1_4E060"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8192,
+    "sha256": "9f1dcbc35c350d6027f98be0f5c8b43b42ca52b7604459c0c42be3aa88913d47",
+    "size": 8192,
+    "source": "rel/main_rel/data/lbl_1_bss_4C688.c",
+    "symbol": "lbl_1_bss_4C688",
+    "unit_align": 8,
+    "unit_size": 8192,
+    "unit_start": 312968
   },
   "main_rel:lbl_1_bss_4E6B0": {
     "address": 321200,
@@ -1431,6 +1826,83 @@
     "unit_size": 24,
     "unit_start": 464472
   },
+  "main_rel:lbl_1_bss_718E0": {
+    "address": 465120,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_718E0 lbl_1_bss_718E0",
+        "path": "include/rel/main_rel/memcard.h"
+      },
+      {
+        "declaration": "Obj_1_bss_718E0 lbl_1_bss_718E0",
+        "path": "include/rel/main_rel/spline.h"
+      },
+      {
+        "declaration": "struct fn_4_869C_lbl_1_bss_718E0 lbl_1_bss_718E0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_4834_lbl_1_bss_718E0 lbl_1_bss_718E0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_869C_lbl_1_bss_718E0 lbl_1_bss_718E0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_8720_lbl_1_bss_718E0 lbl_1_bss_718E0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_718E0",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_718E0",
+        "path": "src/rel/sel/record.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_718E0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_718E0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_718E0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_718E0",
+        "path": "src/rel/title/title.c"
+      }
+    ],
+    "definition": "Obj_1_bss_718E0 lbl_1_bss_718E0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_32A40",
+      "fn_1_C3378",
+      "fn_1_14C35C",
+      "fn_1_15AC10",
+      "fn_1_C34F0",
+      "fn_1_F7904",
+      "fn_1_F7954",
+      "fn_1_F79C8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 23016,
+    "sha256": "d9f5b7a6e55175e37306e7ee711da69ef9b5adc975951056065f65e9c35c6217",
+    "size": 23016,
+    "source": "rel/main_rel/data/lbl_1_bss_718E0.c",
+    "symbol": "lbl_1_bss_718E0",
+    "unit_align": 32,
+    "unit_size": 23016,
+    "unit_start": 465120
+  },
   "main_rel:lbl_1_bss_77310": {
     "address": 488208,
     "align": 16,
@@ -1456,6 +1928,47 @@
     "unit_align": 16,
     "unit_size": 112,
     "unit_start": 488208
+  },
+  "main_rel:lbl_1_bss_77380": {
+    "address": 488320,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_77380 lbl_1_bss_77380",
+        "path": "include/rel/main_rel/ghost.h"
+      },
+      {
+        "declaration": "Obj_1_bss_77380 lbl_1_bss_77380",
+        "path": "include/rel/main_rel/memcard.h"
+      },
+      {
+        "declaration": "Slot_30 lbl_1_bss_77380[127]",
+        "path": "src/rel/main_rel/ghost.c"
+      }
+    ],
+    "definition": "Obj_1_bss_77380 lbl_1_bss_77380",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_BB974",
+      "fn_1_C0B0C",
+      "fn_1_EB330",
+      "fn_1_EB4BC",
+      "fn_1_B9C38",
+      "fn_1_B9CCC",
+      "fn_1_C0510",
+      "fn_1_C1ACC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 12288,
+    "sha256": "f3cc103136423a57975750907ebc1d367e2985ac6338976d4d5a439f50323f4a",
+    "size": 12288,
+    "source": "rel/main_rel/data/lbl_1_bss_77380.c",
+    "symbol": "lbl_1_bss_77380",
+    "unit_align": 32,
+    "unit_size": 12288,
+    "unit_start": 488320
   },
   "main_rel:lbl_1_bss_7AB90": {
     "address": 502672,
@@ -1746,6 +2259,133 @@
     "unit_align": 8,
     "unit_size": 632,
     "unit_start": 519512
+  },
+  "main_rel:lbl_1_bss_7F0C0": {
+    "address": 520384,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_7F0C0 lbl_1_bss_7F0C0",
+        "path": "include/rel/main_rel/globals.h"
+      },
+      {
+        "declaration": "struct fn_1_F8AFC_lbl_1_bss_7F0C0 lbl_1_bss_7F0C0",
+        "path": "src/rel/main_rel/spline.c"
+      },
+      {
+        "declaration": "struct fn_1_F8C50_lbl_1_bss_7F0C0 lbl_1_bss_7F0C0",
+        "path": "src/rel/main_rel/spline.c"
+      },
+      {
+        "declaration": "struct fn_1_F9CA0_lbl_1_bss_7F0C0 lbl_1_bss_7F0C0",
+        "path": "src/rel/main_rel/spline.c"
+      },
+      {
+        "declaration": "struct fn_1_F9E80_lbl_1_bss_7F0C0 lbl_1_bss_7F0C0",
+        "path": "src/rel/main_rel/spline.c"
+      },
+      {
+        "declaration": "struct fn_1_F9EB0_lbl_1_bss_7F0C0 lbl_1_bss_7F0C0",
+        "path": "src/rel/main_rel/spline.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_7F0C0[]",
+        "path": "src/rel/main_rel/spline.c"
+      },
+      {
+        "declaration": "SplineGlobalState lbl_1_bss_7F0C0",
+        "path": "src/rel/main_rel/spline.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_7F0C0[]",
+        "path": "src/rel/sel/record.c"
+      },
+      {
+        "declaration": "struct _prolog_bss_7F0C0 lbl_1_bss_7F0C0",
+        "path": "src/rel/story/story_mode.c"
+      }
+    ],
+    "definition": "Obj_1_bss_7F0C0 lbl_1_bss_7F0C0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_30054",
+      "fn_1_F946C",
+      "fn_1_F9888",
+      "fn_1_F9A80",
+      "fn_1_1556B4",
+      "fn_1_F2008",
+      "fn_1_F210C",
+      "fn_1_F21B8",
+      "fn_1_F220C",
+      "fn_1_F2280",
+      "ghost_set_record_flag1",
+      "ghost_set_record_flag2",
+      "ghost_test_record_flag0",
+      "fn_1_1555B0",
+      "fn_1_156218",
+      "fn_1_F7904",
+      "fn_1_F7954",
+      "fn_1_F79C8",
+      "fn_1_F7BE4",
+      "fn_1_F7C48",
+      "fn_1_F7CAC",
+      "fn_1_F7EDC",
+      "fn_1_F7F48",
+      "fn_1_F8030",
+      "fn_1_F809C",
+      "fn_1_F8158",
+      "fn_1_F8214",
+      "fn_1_F8334",
+      "fn_1_F83F0",
+      "fn_1_F8580",
+      "fn_1_F89E4",
+      "fn_1_F8A04",
+      "fn_1_F8A38",
+      "fn_1_F8A58",
+      "fn_1_F8A7C",
+      "fn_1_F8AD4",
+      "fn_1_F8AFC",
+      "fn_1_F8B50",
+      "fn_1_F8B64",
+      "fn_1_F8C00",
+      "fn_1_F8C28",
+      "fn_1_F8C50",
+      "fn_1_F8C74",
+      "fn_1_F8CA0",
+      "fn_1_F8CCC",
+      "fn_1_F8CF0",
+      "fn_1_F8D10",
+      "fn_1_F8D38",
+      "fn_1_F9028",
+      "fn_1_F9244",
+      "fn_1_F965C",
+      "fn_1_F9CA0",
+      "fn_1_F9CD0",
+      "fn_1_F9D04",
+      "fn_1_F9D44",
+      "fn_1_F9D68",
+      "fn_1_F9D90",
+      "fn_1_F9DC4",
+      "fn_1_F9DE8",
+      "fn_1_F9E10",
+      "fn_1_F9E38",
+      "fn_1_F9E80",
+      "fn_1_F9EB0",
+      "fn_1_F9EE4",
+      "fn_1_F9F2C",
+      "fn_1_FA0BC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 21344,
+    "sha256": "067911ab0d5c5009e46d0766e376fec5997f703d6d2c08051097cdfa1d8d6e86",
+    "size": 21344,
+    "source": "rel/main_rel/data/lbl_1_bss_7F0C0.c",
+    "symbol": "lbl_1_bss_7F0C0",
+    "unit_align": 32,
+    "unit_size": 21344,
+    "unit_start": 520384
   },
   "main_rel:lbl_1_bss_850E0": {
     "address": 544992,
@@ -2128,6 +2768,61 @@
     "unit_align": 32,
     "unit_size": 8,
     "unit_start": 3936
+  },
+  "main_rel:lbl_1_data_1A3B8": {
+    "address": 107448,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1A3B8 lbl_1_data_1A3B8",
+        "path": "include/rel/main_rel/bitmap.h"
+      },
+      {
+        "declaration": "Obj_1_data_1A3B8 lbl_1_data_1A3B8",
+        "path": "include/rel/main_rel/font.h"
+      }
+    ],
+    "definition": "Obj_1_data_1A3B8 lbl_1_data_1A3B8",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_487EC",
+      "fn_1_48D80",
+      "fn_1_4C16C",
+      "fn_1_4D784",
+      "fn_1_48A0C",
+      "fn_1_4B8DC",
+      "fn_1_4BA24"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 2780,
+    "sha256": "b025fc9495ccbf6138b0e2aae239a5f1749b88bb22f5c35f30b482e3367de23c",
+    "size": 2776,
+    "source": "rel/main_rel/data/lbl_1_data_1A3B8.c",
+    "symbol": "lbl_1_data_1A3B8",
+    "unit_align": 8,
+    "unit_size": 2780,
+    "unit_start": 107448
+  },
+  "main_rel:lbl_1_data_1AE90": {
+    "address": 110224,
+    "align": 8,
+    "declarations": [],
+    "definition": "u8 lbl_1_data_1AE90[4]",
+    "method": "zero-data",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 2780,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_data_1A3B8.c",
+    "symbol": "lbl_1_data_1AE90",
+    "unit_align": 8,
+    "unit_size": 2780,
+    "unit_start": 107448
   },
   "movie_module:lbl_12_bss_63B0": {
     "address": 25520,
@@ -2585,7 +3280,12 @@
   "profile:lbl_16_data_82BF8": {
     "address": 535544,
     "align": 8,
-    "declarations": [],
+    "declarations": [
+      {
+        "declaration": "u32 lbl_16_data_82BF8",
+        "path": "src/rel/profile/_epilog.c"
+      }
+    ],
     "definition": "char lbl_16_data_82BF8[36]",
     "method": "string-pool",
     "module": "profile",
@@ -10024,6 +10724,38 @@
     "align": 4,
     "declarations": [
       {
+        "declaration": "const f32 lbl_10_rodata_158[70]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "f32 lbl_10_rodata_158[19]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "const f32 lbl_10_rodata_158[19]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "f32 lbl_10_rodata_158[19]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelFloatPool lbl_10_rodata_158",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelFloatPool lbl_10_rodata_158",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelFloatPool lbl_10_rodata_158",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelFloatPool lbl_10_rodata_158",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
         "declaration": "struct fn_10_13D64_lbl_10_rodata_158 lbl_10_rodata_158",
         "path": "src/rel/sel/sel.c"
       },
@@ -10032,7 +10764,15 @@
         "path": "src/rel/sel/sel.c"
       },
       {
+        "declaration": "f32 lbl_10_rodata_158[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
         "declaration": "struct fn_10_1BCD0_lbl_10_rodata_158 lbl_10_rodata_158",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_1E398_lbl_10_rodata_158 lbl_10_rodata_158",
         "path": "src/rel/sel/sel.c"
       },
       {
@@ -10041,6 +10781,10 @@
       },
       {
         "declaration": "f32 lbl_10_rodata_158[19]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "f32 lbl_10_rodata_158[]",
         "path": "src/rel/sel/sel.c"
       },
       {
@@ -10056,19 +10800,9 @@
       "fn_10_D5D4",
       "fn_10_DAF8",
       "fn_10_E034",
-      "fn_10_E294",
-      "fn_10_E45C",
       "fn_10_E600",
-      "fn_10_F050",
-      "fn_10_F57C",
       "fn_10_FBEC",
-      "fn_10_FF54",
       "fn_10_10168",
-      "fn_10_107D4",
-      "fn_10_10C24",
-      "fn_10_10CA8",
-      "fn_10_10D2C",
-      "fn_10_10DB0",
       "fn_10_10E34",
       "fn_10_111E8",
       "fn_10_117D0",
@@ -10077,11 +10811,9 @@
       "fn_10_12E34",
       "fn_10_13128",
       "fn_10_13B24",
-      "fn_10_13ECC",
       "fn_10_14C84",
       "fn_10_14FDC",
       "fn_10_15B20",
-      "fn_10_1615C",
       "fn_10_175F0",
       "fn_10_17814",
       "fn_10_17E44",
@@ -10089,7 +10821,6 @@
       "fn_10_18DD0",
       "fn_10_19040",
       "fn_10_19308",
-      "fn_10_1973C",
       "fn_10_19924",
       "fn_10_19C90",
       "fn_10_19F70",
@@ -10097,30 +10828,43 @@
       "fn_10_1A760",
       "fn_10_1A8B0",
       "fn_10_1AD5C",
-      "fn_10_1B2F4",
       "fn_10_1B6CC",
       "fn_10_1BFC4",
+      "fn_10_1E9CC",
+      "fn_10_1EF04",
+      "fn_10_1F688",
+      "fn_10_210F0",
+      "fn_10_21978",
+      "fn_10_21E30",
+      "fn_10_22330",
+      "fn_10_22998",
+      "fn_10_107D4",
+      "fn_10_10C24",
+      "fn_10_10CA8",
+      "fn_10_10D2C",
+      "fn_10_10DB0",
+      "fn_10_13D64",
+      "fn_10_13E18",
+      "fn_10_13ECC",
+      "fn_10_1615C",
+      "fn_10_1973C",
+      "fn_10_1B2F4",
+      "fn_10_1BCD0",
       "fn_10_1C2D8",
       "fn_10_1D314",
       "fn_10_1E398",
       "fn_10_1E41C",
-      "fn_10_1E9CC",
-      "fn_10_1EF04",
-      "fn_10_1F3B8",
-      "fn_10_1F688",
-      "fn_10_200D8",
-      "fn_10_210F0",
-      "fn_10_21978",
-      "fn_10_21C44",
-      "fn_10_21E30",
-      "fn_10_22330",
-      "fn_10_22998",
-      "fn_10_13D64",
-      "fn_10_13E18",
-      "fn_10_1BCD0",
       "fn_10_1E67C",
+      "fn_10_1F3B8",
       "fn_10_1FEF4",
-      "fn_10_21DA8"
+      "fn_10_200D8",
+      "fn_10_21C44",
+      "fn_10_21DA8",
+      "fn_10_E294",
+      "fn_10_E45C",
+      "fn_10_F050",
+      "fn_10_F57C",
+      "fn_10_FF54"
     ],
     "relocations": [],
     "section": ".rodata",

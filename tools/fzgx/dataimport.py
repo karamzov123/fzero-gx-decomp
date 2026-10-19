@@ -244,6 +244,33 @@ def string_grid(data, spec):
     return 'struct {\n' + '\n'.join(fields) + '\n}', '{\n' + ',\n'.join(values) + '\n}'
 
 
+def declared_record_initializer(sym, declaration, data):
+    """Keep a recovered header record instead of replacing it with scalar bytes."""
+    from .sdkimport import integer_expression, masked
+    from .signatures import record_layouts, record_tag
+    match = re.fullmatch(r'((?:const\s+)?(?:struct\s+)?\w+)\s+' + re.escape(sym.name) +
+                         r'\s*((?:\[[^\]]+\])*)', declaration['declaration'])
+    if not match:
+        return None
+    typ = record_tag(re.sub(r'\bconst\s+', '', match[1]))
+    # Layout parsing is deliberately conservative. MWCC compilation below still
+    # proves the emitted definition's layout and bytes against the retail object.
+    code = masked((ROOT / declaration['path']).read_text())
+    layouts, sizes = record_layouts(code, len(code))
+    if typ not in layouts:
+        return None
+    dims = [integer_expression(dim) for dim in re.findall(r'\[([^\]]+)\]', match[2])]
+    width = sizes[typ][0]
+    if any(dim <= 0 for dim in dims) or width * math.prod(dims) != sym.size:
+        raise ValueError('recovered header record extent disagrees with retail size')
+    values = [record_initializer(data[i:i+width], layouts[typ], layouts, sizes)
+              for i in range(0, len(data), width)]
+    for length in reversed(dims):
+        values = ['{\n' + ',\n'.join(values[i:i+length]) + '\n}'
+                  for i in range(0, len(values), length)]
+    return declaration['declaration'], values[0], declaration['path'][8:]
+
+
 def generate(p, sym, recipe=None):
     if sym.kind != 'object' or sym.section not in SECTIONS or not sym.size or not sym.name.isidentifier():
         raise ValueError('not a supported named data object')
@@ -262,6 +289,13 @@ def generate(p, sym, recipe=None):
     includes = ['types.h']
     extras, method, header = [], '', None
     decl, init = None, None
+    recovered = None
+    if not recipe and not relocs and sym.section not in BSS:
+        for declaration in decls:
+            if declaration['path'].startswith('include/'):
+                recovered = declared_record_initializer(sym, declaration, data)
+                if recovered:
+                    break
     if recipe:
         if relocs:
             raise ValueError('string grid must be relocation-free data')
@@ -283,6 +317,10 @@ def generate(p, sym, recipe=None):
         else:
             decl, method = f'u8 {sym.name}[{sym.size}]', 'opaque-bss'
             extras.append('/* Storage extent is known; element/field types are not recovered. */')
+    elif recovered:
+        decl, init, include = recovered
+        includes.append(include)
+        method = 'declared-record'
     elif relocs:
         by_offset = {r['offset']: r for r in relocs}
         fields, values, externs = [], [], set()
@@ -328,11 +366,28 @@ def generate(p, sym, recipe=None):
         elif zero_data:
             kind = 'u8'
         known = None
+        from .sdkimport import integer_expression
         for d in decls:
             match = re.fullmatch(r'(?:const\s+)?(' + '|'.join(BASIC) + r')\s+' + re.escape(sym.name) + r'\s*(\[[^\]]*\])?', d['declaration'])
-            if match and (kind not in ('f32', 'f64', 'char') or match[1] == kind):
+            if not match or (kind in ('f32', 'f64', 'char') and match[1] != kind):
+                continue
+            width = BASIC[match[1]][0]
+            bound = match[2][1:-1].strip() if match[2] else None
+            try:
+                count = 1
+                if match[2]:
+                    count = integer_expression(bound) if bound else sym.size // width
+            except (ValueError, SyntaxError):
+                continue
+            # Inferred externs may cover only a prefix or an oversized view,
+            # neither of which defines this retail object's measured extent.
+            if count * width == sym.size:
                 known = (d, match)
                 break
+        if not known and kind is None and is_text_pool(data):
+            # A prefix-only extern must not hide a measured, terminated string
+            # pool when regenerating its already accepted complete definition.
+            kind, text_pool = 'char', True
         if known:
             d, match = known
             kind, decl = match[1], d['declaration']
