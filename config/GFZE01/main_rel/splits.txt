@@ -7808,3 +7808,27 @@ rel/main_rel/data/lbl_1_bss_7F0C0.c:
 
 rel/main_rel/data/lbl_1_data_1A3B8.c:
 	.data       start:0x0001A3B8 end:0x0001AE94 align:8
+
+rel/main_rel/data/lbl_1_data_67F0.c:
+	.data       start:0x000067F0 end:0x00006CA0 align:8
+
+rel/main_rel/data/lbl_1_data_1D6C0.c:
+	.data       start:0x0001D6C0 end:0x0001D8A4 align:8
+
+rel/main_rel/data/lbl_1_data_1D9B8.c:
+	.data       start:0x0001D9B8 end:0x0001DAC0 align:8
+
+rel/main_rel/data/lbl_1_data_1DFB0.c:
+	.data       start:0x0001DFB0 end:0x0001E4B8 align:8
+
+rel/main_rel/data/lbl_1_data_3D928.c:
+	.data       start:0x0003D928 end:0x0003DA2C align:8
+
+rel/main_rel/data/lbl_1_data_3F428.c:
+	.data       start:0x0003F428 end:0x0003F510 align:8
+
+rel/main_rel/data/lbl_1_data_40BD8.c:
+	.data       start:0x00040BD8 end:0x00040CC8 align:8
+
+rel/main_rel/data/lbl_1_data_416B8.c:
+	.data       start:0x000416B8 end:0x000418A4 align:8

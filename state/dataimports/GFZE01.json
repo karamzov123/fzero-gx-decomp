@@ -267,6 +267,77 @@
     "unit_size": 8,
     "unit_start": 664664
   },
+  "customize:lbl_3_data_0": {
+    "address": 0,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_3_data_0 lbl_3_data_0",
+        "path": "include/rel/customize/globals.h"
+      },
+      {
+        "declaration": "struct fn_3_368C_lbl_3_data_0 lbl_3_data_0",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_3_3E58_lbl_3_data_0 lbl_3_data_0",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "struct Data lbl_3_data_0",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_3_61B8_lbl_3_data_0 lbl_3_data_0",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_3_data_0[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_3_data_0[0x20704]",
+        "path": "src/rel/customize/_prolog.c"
+      }
+    ],
+    "definition": "Obj_3_data_0 lbl_3_data_0",
+    "method": "declared-record",
+    "module": "customize",
+    "references": [
+      "_prolog",
+      "_epilog",
+      "fn_3_CB4",
+      "fn_3_E64",
+      "fn_3_3AE8",
+      "fn_3_4380",
+      "fn_3_5500",
+      "fn_3_5D84",
+      "fn_3_680C",
+      "fn_3_7038",
+      "fn_3_7E5C",
+      "fn_3_8A90",
+      "fn_3_990C",
+      "fn_3_A12C",
+      "fn_3_AE74",
+      "fn_3_15A0",
+      "fn_3_368C",
+      "fn_3_3E58",
+      "fn_3_5F28",
+      "fn_3_61B8",
+      "fn_3_7CF8",
+      "fn_3_9800"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 168,
+    "sha256": "cfa685ed862a52750a9b4274772ac5eaf6e37cb30ea04011fee8cf675d6a1870",
+    "size": 168,
+    "source": "rel/customize/data/lbl_3_data_0.c",
+    "symbol": "lbl_3_data_0",
+    "unit_align": 8,
+    "unit_size": 168,
+    "unit_start": 0
+  },
   "customize:lbl_3_data_1EA8": {
     "address": 7848,
     "align": 8,
@@ -467,6 +538,33 @@
     "unit_size": 3876,
     "unit_start": 7848
   },
+  "customize:lbl_3_data_3618": {
+    "address": 13848,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_3_data_3618 lbl_3_data_3618",
+        "path": "include/rel/customize/editor.h"
+      }
+    ],
+    "definition": "Obj_3_data_3618 lbl_3_data_3618",
+    "method": "declared-record",
+    "module": "customize",
+    "references": [
+      "fn_3_18614",
+      "fn_3_18960"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 288,
+    "sha256": "8d8e5e6b1808cb0187e652d384adeb8e96411d69f2944279663c8853e283700b",
+    "size": 288,
+    "source": "rel/customize/data/lbl_3_data_3618.c",
+    "symbol": "lbl_3_data_3618",
+    "unit_align": 8,
+    "unit_size": 288,
+    "unit_start": 13848
+  },
   "interview:lbl_17_bss_150": {
     "address": 336,
     "align": 8,
@@ -570,6 +668,126 @@
     "unit_align": 8,
     "unit_size": 444,
     "unit_start": 408
+  },
+  "interview:lbl_17_data_0": {
+    "address": 0,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_17_data_0 lbl_17_data_0",
+        "path": "include/rel/interview/globals.h"
+      },
+      {
+        "declaration": "u8 lbl_17_data_0[]",
+        "path": "src/rel/interview/interview.c"
+      },
+      {
+        "declaration": "u8 lbl_17_data_0[420]",
+        "path": "src/rel/interview/interview.c"
+      },
+      {
+        "declaration": "u8 lbl_17_data_0[420]",
+        "path": "src/rel/interview/interview.c"
+      }
+    ],
+    "definition": "Obj_17_data_0 lbl_17_data_0",
+    "method": "declared-record",
+    "module": "interview",
+    "references": [
+      "fn_17_DB4",
+      "fn_17_1798",
+      "fn_17_1DA4",
+      "fn_17_2414",
+      "fn_17_2938",
+      "fn_17_3A28",
+      "fn_17_424C",
+      "fn_17_49DC",
+      "fn_17_50F0",
+      "fn_17_58E0",
+      "fn_17_5C24",
+      "fn_17_6D60",
+      "fn_17_7A74",
+      "fn_17_8870",
+      "fn_17_8B44",
+      "fn_17_8F84",
+      "fn_17_2D5C",
+      "fn_17_3F0",
+      "fn_17_48D0",
+      "fn_17_66C0",
+      "fn_17_6B2C",
+      "fn_17_6C30",
+      "fn_17_72C0",
+      "fn_17_750C",
+      "fn_17_7728"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 420,
+    "sha256": "4feff03ccbc77d1148feb5d42665329982b9242ae04059821ae6756a9a5441d2",
+    "size": 420,
+    "source": "rel/interview/data/lbl_17_data_0.c",
+    "symbol": "lbl_17_data_0",
+    "unit_align": 8,
+    "unit_size": 420,
+    "unit_start": 0
+  },
+  "interview:lbl_17_data_63BD0": {
+    "address": 408528,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_17_data_63BD0 lbl_17_data_63BD0",
+        "path": "include/rel/interview/interview.h"
+      }
+    ],
+    "definition": "Obj_17_data_63BD0 lbl_17_data_63BD0",
+    "method": "declared-record",
+    "module": "interview",
+    "references": [
+      "fn_17_6C8",
+      "fn_17_7A74",
+      "fn_17_750C",
+      "fn_17_7728"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 588,
+    "sha256": "b40bbc404f01892301bb291a03f9de2f5a4bb65fed183d658495fa0658b53178",
+    "size": 336,
+    "source": "rel/interview/data/lbl_17_data_63BD0.c",
+    "symbol": "lbl_17_data_63BD0",
+    "unit_align": 8,
+    "unit_size": 588,
+    "unit_start": 408528
+  },
+  "interview:lbl_17_data_63D20": {
+    "address": 408864,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_17_data_63D20 lbl_17_data_63D20",
+        "path": "include/rel/interview/interview.h"
+      }
+    ],
+    "definition": "Obj_17_data_63D20 lbl_17_data_63D20",
+    "method": "declared-record",
+    "module": "interview",
+    "references": [
+      "fn_17_6C8",
+      "fn_17_7A74",
+      "fn_17_750C",
+      "fn_17_7728"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 588,
+    "sha256": "611b6e3941f6bd58600d60c9b9eadae54226106f6e8a4abffae02d00269c4fa1",
+    "size": 252,
+    "source": "rel/interview/data/lbl_17_data_63BD0.c",
+    "symbol": "lbl_17_data_63D20",
+    "unit_align": 8,
+    "unit_size": 588,
+    "unit_start": 408528
   },
   "main:__DVDLowAlarmForWA": {
     "address": 2148912560,
@@ -2823,6 +3041,250 @@
     "unit_align": 8,
     "unit_size": 2780,
     "unit_start": 107448
+  },
+  "main_rel:lbl_1_data_1D6C0": {
+    "address": 120512,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1D6C0 lbl_1_data_1D6C0",
+        "path": "include/rel/main_rel/effect.h"
+      }
+    ],
+    "definition": "Obj_1_data_1D6C0 lbl_1_data_1D6C0",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_5B7F8"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 484,
+    "sha256": "8e92f26270d88d3227fd89474b7baa95643a3cdfd08beeb38375978c7083d227",
+    "size": 112,
+    "source": "rel/main_rel/data/lbl_1_data_1D6C0.c",
+    "symbol": "lbl_1_data_1D6C0",
+    "unit_align": 8,
+    "unit_size": 484,
+    "unit_start": 120512
+  },
+  "main_rel:lbl_1_data_1D730": {
+    "address": 120624,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1D730 lbl_1_data_1D730",
+        "path": "include/rel/main_rel/effect.h"
+      }
+    ],
+    "definition": "Obj_1_data_1D730 lbl_1_data_1D730",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_5C058"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 484,
+    "sha256": "33f7b020566483947a20d1ccffd2cd2d775bd816479da57ed75a9a1e01718ecd",
+    "size": 372,
+    "source": "rel/main_rel/data/lbl_1_data_1D6C0.c",
+    "symbol": "lbl_1_data_1D730",
+    "unit_align": 8,
+    "unit_size": 484,
+    "unit_start": 120512
+  },
+  "main_rel:lbl_1_data_1D9B8": {
+    "address": 121272,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1D9B8 lbl_1_data_1D9B8",
+        "path": "include/rel/main_rel/screen_effect.h"
+      },
+      {
+        "declaration": "Obj_1_data_1D9B8 lbl_1_data_1D9B8",
+        "path": "src/rel/main_rel/screen_effect.c"
+      }
+    ],
+    "definition": "Obj_1_data_1D9B8 lbl_1_data_1D9B8",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_72980",
+      "fn_1_76448",
+      "fn_1_76964",
+      "fn_1_76A94",
+      "fn_1_76C60"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 264,
+    "sha256": "cdc8eda6c51d1ef5cd629316ceffb0035f0ae9207d8b82569eaa9c8a6fb50959",
+    "size": 264,
+    "source": "rel/main_rel/data/lbl_1_data_1D9B8.c",
+    "symbol": "lbl_1_data_1D9B8",
+    "unit_align": 8,
+    "unit_size": 264,
+    "unit_start": 121272
+  },
+  "main_rel:lbl_1_data_1DFB0": {
+    "address": 122800,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_1DFB0 lbl_1_data_1DFB0",
+        "path": "include/rel/main_rel/screen_effect.h"
+      }
+    ],
+    "definition": "Obj_1_data_1DFB0 lbl_1_data_1DFB0",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_7926C"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 1288,
+    "sha256": "6c9681225c6d9d65bc34f7d292a079c0513973662877b727cc62bf8443d758d4",
+    "size": 1288,
+    "source": "rel/main_rel/data/lbl_1_data_1DFB0.c",
+    "symbol": "lbl_1_data_1DFB0",
+    "unit_align": 8,
+    "unit_size": 1288,
+    "unit_start": 122800
+  },
+  "main_rel:lbl_1_data_3D928": {
+    "address": 252200,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_3D928 lbl_1_data_3D928",
+        "path": "include/rel/main_rel/enemy_ctrl.h"
+      }
+    ],
+    "definition": "Obj_1_data_3D928 lbl_1_data_3D928",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D2F50",
+      "fn_1_D2F84"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 260,
+    "sha256": "3c22e26f8face55b3c22738f784f60762cc35197ec53faaf90aaaf33b72a8aab",
+    "size": 260,
+    "source": "rel/main_rel/data/lbl_1_data_3D928.c",
+    "symbol": "lbl_1_data_3D928",
+    "unit_align": 8,
+    "unit_size": 260,
+    "unit_start": 252200
+  },
+  "main_rel:lbl_1_data_3F428": {
+    "address": 259112,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_3F428 lbl_1_data_3F428",
+        "path": "include/rel/main_rel/bg_common.h"
+      }
+    ],
+    "definition": "Obj_1_data_3F428 lbl_1_data_3F428",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_106EB0"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 232,
+    "sha256": "34835348c1bc605c8b0b1d426aad27b71d6f823f4453cd926f0e17156c9244f7",
+    "size": 232,
+    "source": "rel/main_rel/data/lbl_1_data_3F428.c",
+    "symbol": "lbl_1_data_3F428",
+    "unit_align": 8,
+    "unit_size": 232,
+    "unit_start": 259112
+  },
+  "main_rel:lbl_1_data_40BD8": {
+    "address": 265176,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_40BD8 lbl_1_data_40BD8",
+        "path": "include/rel/main_rel/archive.h"
+      }
+    ],
+    "definition": "Obj_1_data_40BD8 lbl_1_data_40BD8",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12F4A8"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 240,
+    "sha256": "fce868327aae0a20aacfc48d5a5820d02fcc08530d3031a78de1d0e6d7a18f7c",
+    "size": 240,
+    "source": "rel/main_rel/data/lbl_1_data_40BD8.c",
+    "symbol": "lbl_1_data_40BD8",
+    "unit_align": 8,
+    "unit_size": 240,
+    "unit_start": 265176
+  },
+  "main_rel:lbl_1_data_416B8": {
+    "address": 267960,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_416B8 lbl_1_data_416B8",
+        "path": "include/rel/main_rel/custom_memcard.h"
+      }
+    ],
+    "definition": "Obj_1_data_416B8 lbl_1_data_416B8",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_137364"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 492,
+    "sha256": "1509a8188eaa5be4fa9670b2bab0a1ad9a88a9bbeb962fadc7d48783ca7e6daf",
+    "size": 492,
+    "source": "rel/main_rel/data/lbl_1_data_416B8.c",
+    "symbol": "lbl_1_data_416B8",
+    "unit_align": 8,
+    "unit_size": 492,
+    "unit_start": 267960
+  },
+  "main_rel:lbl_1_data_67F0": {
+    "address": 26608,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_67F0 lbl_1_data_67F0",
+        "path": "include/rel/main_rel/load.h"
+      }
+    ],
+    "definition": "Obj_1_data_67F0 lbl_1_data_67F0",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_479F0",
+      "fn_1_47A60"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 1200,
+    "sha256": "fbcbae81ac851ec49df0e90a893ea490d0662f45c59863ad5539200cb87a2e96",
+    "size": 1200,
+    "source": "rel/main_rel/data/lbl_1_data_67F0.c",
+    "symbol": "lbl_1_data_67F0",
+    "unit_align": 8,
+    "unit_size": 1200,
+    "unit_start": 26608
   },
   "movie_module:lbl_12_bss_63B0": {
     "address": 25520,

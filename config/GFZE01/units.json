@@ -1317,6 +1317,17 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/data/lbl_3_data_0.c",
+    "symbols": [
+      "lbl_3_data_0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/data/lbl_3_data_1EA8.c",
     "symbols": [
       "lbl_3_data_1EA8",
@@ -1324,6 +1335,17 @@
       "lbl_3_data_1EB4",
       "lbl_3_data_1EEC",
       "lbl_3_data_246C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_data_3618.c",
+    "symbols": [
+      "lbl_3_data_3618"
     ],
     "status": "matching",
     "data": true,
@@ -2602,6 +2624,29 @@
     "symbols": [
       "lbl_17_bss_198",
       "lbl_17_bss_314"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "interview",
+    "source": "rel/interview/data/lbl_17_data_0.c",
+    "symbols": [
+      "lbl_17_data_0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "interview",
+    "source": "rel/interview/data/lbl_17_data_63BD0.c",
+    "symbols": [
+      "lbl_17_data_63BD0",
+      "lbl_17_data_63D20"
     ],
     "status": "matching",
     "data": true,
@@ -40917,6 +40962,95 @@
     "symbols": [
       "lbl_1_data_1A3B8",
       "lbl_1_data_1AE90"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_1D6C0.c",
+    "symbols": [
+      "lbl_1_data_1D6C0",
+      "lbl_1_data_1D730"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_1D9B8.c",
+    "symbols": [
+      "lbl_1_data_1D9B8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_1DFB0.c",
+    "symbols": [
+      "lbl_1_data_1DFB0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_3D928.c",
+    "symbols": [
+      "lbl_1_data_3D928"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_3F428.c",
+    "symbols": [
+      "lbl_1_data_3F428"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_40BD8.c",
+    "symbols": [
+      "lbl_1_data_40BD8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_416B8.c",
+    "symbols": [
+      "lbl_1_data_416B8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_67F0.c",
+    "symbols": [
+      "lbl_1_data_67F0"
     ],
     "status": "matching",
     "data": true,
