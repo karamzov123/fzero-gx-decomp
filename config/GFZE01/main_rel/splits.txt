@@ -7781,3 +7781,6 @@ rel/main_rel/effect_car/fn_1_6E140.c:
 
 rel/main_rel/sel_static_disp/fn_1_14F608.c:
 	.text       start:0x0014F608 end:0x0014F6F8 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14F6F8.c:
+	.text       start:0x0014F6F8 end:0x0014FC80 align:4
