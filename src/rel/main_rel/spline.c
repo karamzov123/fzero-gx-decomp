@@ -64,6 +64,54 @@ extern u16 lbl_1_data_414[36];
 extern void fn_8001D3E4(int index, int value);
 extern u32 lbl_801A66A0;
 
+/* fzgx:begin fn_1_F4F08 */
+#include "rel/main_rel/replay.h"
+
+extern u32 lbl_801A6410[];
+extern u8 lbl_1_data_3E8E0[];
+extern const f32 lbl_1_rodata_6D6C;
+extern const f32 lbl_1_rodata_6D70;
+extern u32 fn_1_4630(u32, u32, u8 *, u32);
+extern void fn_1_46B4(u32, u32, u8 *, u32);
+
+void fn_1_F4F08(u32 count, f32 *x, f32 *z, f32 *y) {
+    s32 tmp_cse1;
+    f32 *diff;
+    f32 *slope;
+    s32 i;
+tmp_cse1 = count * 4;
+
+    diff = (f32 *)fn_1_4630(lbl_801A6410[0], tmp_cse1, lbl_1_data_3E8E0, 0x37);
+    slope = (f32 *)fn_1_4630(lbl_801A6410[0], tmp_cse1, lbl_1_data_3E8E0, 0x38);
+
+    y[count - 1] = lbl_1_rodata_6D70;
+    y[0] = lbl_1_rodata_6D70;
+
+    for (i = 0; i < count - 1; i++) {
+        diff[i] = x[(i + 1)] - x[i];
+        slope[(i + 1)] = (z[(i + 1)] - z[i]) / diff[i];
+    }
+
+    y[1] = (slope[2] - slope[1]) - (f32)(diff[0] * y[0]);
+    slope[1] = lbl_1_rodata_6D6C * (x[2] - x[0]);
+
+    for (i = 1; i < count - 2; i++) {
+        f32 q = diff[i] / slope[i];
+        y[(i + 1)] = (slope[i + 2] - slope[(i + 1)]) - (f32)(q * y[i]);
+        slope[(i + 1)] = (f32)(lbl_1_rodata_6D6C * (x[i + 2] - x[i])) - (f32)(q * diff[i]);
+    }
+
+    y[count - 2] -= (f32)(diff[count - 2] * y[count - 1]);
+
+    for (i = count - 2; i > 0; i--) {
+        y[i] = (y[i] - (f32)(diff[i] * y[(i + 1)])) / slope[i];
+    }
+
+    fn_1_46B4(lbl_801A6410[0], (u32)diff, lbl_1_data_3E8E0, 0x4c);
+    fn_1_46B4(lbl_801A6410[0], (u32)slope, lbl_1_data_3E8E0, 0x4d);
+}
+/* fzgx:end fn_1_F4F08 */
+
 /* fzgx:begin fn_1_F5458 */
 extern const f32 lbl_1_rodata_6D74;
 extern const f32 lbl_1_rodata_6D6C;
