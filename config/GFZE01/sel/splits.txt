@@ -713,3 +713,6 @@ rel/sel/sel/fn_10_8B0C.c:
 
 rel/sel/sel/fn_10_3C14.c:
 	.text       start:0x00003C14 end:0x00003D64 align:4
+
+rel/sel/sel/fn_10_C328.c:
+	.text       start:0x0000C328 end:0x0000C49C align:4
