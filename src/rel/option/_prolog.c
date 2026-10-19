@@ -2273,3 +2273,128 @@ fn_1_133DBC((void *)1);
 }
 }
 /* fzgx:end fn_4_C768 */
+
+/* fzgx:begin fn_4_D420 */
+extern u32 lbl_4_rodata_C2C;
+extern u32 lbl_4_rodata_C30;
+extern s32 lbl_801A66B4;
+extern struct fn_4_D420_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_435C(u32);
+extern s32 fn_1_45D0(u32, u32, u8 *, u32);
+extern s32 fn_1_3F8C(u8 *, u32, u32, u32);
+extern void fn_1_A2D84(u32);
+extern s32 fn_1_14CEB8(u32);
+extern void fn_80083DB0(u8 *, u32);
+extern void fn_4_ADF4(void);
+struct fn_4_D420_lbl_801A6410 {
+    u32 unk_0;
+};
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u16 unk_4;
+    u16 unk_6;
+    u16 unk_8;
+    u16 unk_A;
+    u8 unk_C;
+    u8 pad_D[0x3];
+    u32 unk_10;
+} Entry_4_D420;
+typedef struct { u32 v; } Word;
+
+#pragma opt_loop_invariants off
+#pragma opt_lifetimes off
+s32 fn_4_D420(void) {
+    s32 bit;
+    u8 *src;
+    s32 i;
+    Obj_4_bss_5680_Target *maskstate;
+    struct { u8 value; } k;
+    struct { s32 value; } n;
+    s32 res;
+    u8 *src2;
+    u8 *data;
+    Entry_4_D420 *t;
+    Word c;
+    Word c2;
+
+    res = 0;
+    data = lbl_4_data_2F78;
+    if ((lbl_4_bss_5680->unk_0 >> 30) & 1) {
+        c = *(Word *)&lbl_4_rodata_C30;
+        fn_1_435C(lbl_4_bss_5680->unk_8);
+        n.value = 0;
+        i = 0;
+        while (src = (u8 *)lbl_4_bss_5680 + 0x28 + i, src[0] != 0) {
+            t = (Entry_4_D420 *)fn_1_45D0(lbl_801A6410.unk_0, 0x12, ((0xA0) + (data)), 0xD4);
+            t->unk_8 = (u8)n.value * 0x38 + 0x7E;
+            t->unk_A = 0x17A;
+            t->unk_0 = 2;
+            t->unk_1 = 0;
+            t->unk_4 = t->unk_8;
+            t->unk_6 = t->unk_A;
+            t->unk_2 = src[0];
+            t->unk_3 = src[1];
+            *(u32 *)((u8 *)t + 0xD) = c.v;
+            t->unk_C = n.value;
+            fn_1_3F8C(data + 0xC8, (u32)&fn_4_ADF4, (u32)t, 0xB);
+            i += 2;
+            n.value += 1;
+        }
+        c2.v = lbl_4_bss_5680->unk_0;
+        /* Retail reloads the target pointer after reading its flags. */
+        (*(Obj_4_bss_5680_Target * volatile *)&lbl_4_bss_5680)->unk_0 = c2.v & ~0x40000000;
+    }
+    if (lbl_4_bss_5680->unk_0 >> 31) {
+        return 1;
+    }
+    if (((lbl_4_bss_5680->unk_0 >> 29) & 1) || ((lbl_4_bss_5680->unk_0 >> 28) & 1)) {
+        fn_1_A2D84(0xA9010100);
+        lbl_4_bss_5680->unk_0 &= ~0x20000000;
+        lbl_4_bss_5680->unk_0 &= ~0x10000000;
+        lbl_4_bss_5680->unk_0 |= 0x80000000;
+        if (fn_1_14CEB8((u32)lbl_4_bss_5680 + 0x28) != 0) {
+            bit = 0;
+            lbl_4_bss_5680->unk_0 |= 0x40000000;
+            while (((u8 *)lbl_4_bss_5680)[0x28 + bit * 2] != 0) {
+                lbl_4_bss_5680->unk_20 |= 0x80000000 >> bit;
+                bit++;
+            }
+        }
+        if (((u8 *)lbl_4_bss_5680)[0x28] == 0) {
+            if (lbl_801A66B4 == 5) {
+                fn_80083DB0((u8 *)lbl_4_bss_5680 + 0x28, (u32)(data + 0x114));
+            } else {
+                fn_80083DB0((u8 *)lbl_4_bss_5680 + 0x28, (u32)(data + 0x120));
+            }
+            c2 = *(Word *)&lbl_4_rodata_C2C;
+            fn_1_435C(lbl_4_bss_5680->unk_8);
+            n.value = 0;
+            while (src2 = (u8 *)lbl_4_bss_5680 + 0x28 + n.value * 2, src2[0] != 0) {
+                k.value = n.value;
+                t = (Entry_4_D420 *)fn_1_45D0(lbl_801A6410.unk_0, 0x12, ((0xA0) + (data)), 0xD4);
+                t->unk_8 = k.value * 0x38 + 0x7E;
+                t->unk_A = 0x17A;
+                t->unk_0 = 2;
+                t->unk_1 = 0;
+                t->unk_4 = t->unk_8;
+                t->unk_6 = t->unk_A;
+                t->unk_2 = src2[0];
+                t->unk_3 = src2[1];
+                *(u32 *)((u8 *)t + 0xD) = c2.v;
+                t->unk_C = k.value;
+                fn_1_3F8C(data + 0xC8, (u32)&fn_4_ADF4, (u32)t, 0xB);
+                n.value += 1;
+            }
+            lbl_4_bss_5680->unk_E = n.value;
+        }
+        res = 1;
+    }
+    return res;
+}
+#pragma opt_lifetimes reset
+
+#pragma opt_loop_invariants reset
+/* fzgx:end fn_4_D420 */
