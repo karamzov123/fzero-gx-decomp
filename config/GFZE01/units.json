@@ -60408,9 +60408,12 @@
     "symbols": [
       "fn_12_21C00"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
-    "extra_cflags": []
+    "extra_cflags": [
+      "-opt",
+      "speed,level=2,peephole,schedule"
+    ]
   },
   {
     "module": "movie_module",
