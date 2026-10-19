@@ -3,6 +3,10 @@ file from what actually unblocked functions; keep each item one or two lines.
 
 ## Laws to apply first (probe-verified, 2026-09-15)
 
+- **Compound assignments affect induction lifetimes.** `a[n - 2] -= rhs` closed
+  `fn_1_F4F08`'s 39/340 register differences under GC/1.3.2. Contract only pure
+  repeated lvalues at the RHS root: `x = x - a + b` is not `x -= a + b`.
+
 - **Paired-single vectors**: `psq_l f, off(rN), 0, qr0` / `psq_st` / `ps_sub` / `ps_add` /
   `ps_muls0` / `ps_madds0` / `ps_merge00` in retail are inline-assembly helpers. Write
   `#include "psvec.h"` and call `psvec_sub(a, b, out)`, `psvec_add(a, b, out)`,
@@ -358,6 +362,12 @@ without row alignment (`retail - ours` net rows):
   helper from the section above, and the compound `||` guard with the shared
   `return` tail. The pairs survive because branch folding does not run across the
   materialised join label in either case.
+- `fn_1_1420E0` is another measured closure (62/62 instructions):
+  `if (flag >= 1) { if (bits & mask) { ... } }` folds the second guard into
+  `beq tail`. The equivalent early return
+  `if (flag < 1 || !(bits & mask)) return;` retains retail's `bne body; b tail`.
+  Keep the original value/mask calculations and compiler profile; this repair
+  needs neither a helper nor a code-generation carrier.
 - `#pragma opt_propagation off` was required for the landed `fn_1_426C` body: with
   propagation on, MWCC copies the loaded global into a fresh temporary
   (`lwz r5, ...; mr r31, r5`) instead of keeping the global load's web.
@@ -382,3 +392,33 @@ without row alignment (`retail - ours` net rows):
 - A zero-valued `static const u32 arr[1] = {0};` read as `arr[0]` still emits the
   pool load (`lwz r0, 0x4(r31)`), it does not fold to `li` — verified word-for-word
   on the landed `fn_1_FE644` body.
+
+## Byte swaps, add association and template ports (2026-10-19, 22 landed)
+
+- **u32 byte swap without `stwbrx`.** GC/1.3.2 turns any byte swap it recognises (all
+  permutations, masked or not, through inlines, locals or casts) into `stwbrx` when the
+  result is stored. Retail's `rlwinm 8,8,15; rlwimi 24,0,7; rlwimi 24,16,23; rlwimi 8,24,31`
+  + `stw` chain is a swap whose low half is narrowed first:
+  `u32 low = (u16)value; return (low << 24) | ((low << 8) & 0xFF0000) | ((value >> 8) & 0xFF00) | (value >> 24);`
+  Closed the six movie header getters (`fn_12_321E8` ...) and `fn_12_31CA4`.
+- **Add association is a tree shape.** MWCC reassociates flat sums; the retail add order
+  survives only as parentheses. Compile every binary tree of the terms in one file and
+  word-compare (30,240 trees for six terms compile in seconds): the drop-frame timecode
+  converters are `(h * K1 + m * K2 + m / 10 * 2 + s * fps + (frames + extra)) * 1000`.
+- **Dual induction variables are lifter output.** `src = base + 0x28 + i; ... i += 2; n += 1`
+  is retail's strength-reduced shadow of `base + 0x28 + n * 2`; writing the scaled index
+  reproduced the `mr`-initialised offset and its register (`fn_4_D420`).
+- **Square in place before the next constant.** `inv = 1 - t; inv *= inv;` then
+  `scale = 1 + (f32)(2 * t)` gave retail's float register reuse in `fn_14_D600`; the
+  order of the 0.07f store relative to `scale` decided the remaining two rows.
+- **A mask local fixes bit-clear scheduling.** `u32 mask = 0x80000000 >> n; word &= ~mask;`
+  put the address before the shift amount like retail (`fn_1_F9888`).
+- **Templates:** option/title/sel share menu code (`fn_4_D420` = `fn_8_FC5C` =
+  `fn_10_25888`), and spline/pilotpoint have getter/setter families. An opcode-sequence
+  clone scan (unmatched vs matched, then unmatched vs unmatched) found 9 of today's
+  matches; porting the matched sibling and renaming symbols beat repairing the saved body.
+- **Unsolved here, measured:** GC/1.3.2 -O4 folds a held member pointer (`p = &s->m` kept
+  in a saved register, `fn_12_2E7C8`, `fn_12_2E8C8`) in every form tried (inline, casts,
+  arrays, all opt pragmas); only -O2 or GC <= 1.2.5n keep it, and those change the rest
+  of the function. `fzgx search` can "match" by inventing a return value (`fn_1_4DE04`
+  returned its loop pointer); reject that and check what search changed before `verify`.

@@ -1,0 +1,109 @@
+{
+  "format": "fzgx-data-cohort-v1",
+  "base_commit": "9a781bf9ab22802f6623676b8630fb67bceeb7d3",
+  "selection": "Previously unowned initialized objects of at least 100 bytes with an existing recovered header record type and no relocations; source generation through the existing data-import engine.",
+  "requested_records": 27,
+  "accepted_objects": 14,
+  "accepted_initialized_bytes": 5924,
+  "symbols": [
+    "customize:lbl_3_data_0",
+    "customize:lbl_3_data_3618",
+    "interview:lbl_17_data_0",
+    "interview:lbl_17_data_63BD0",
+    "interview:lbl_17_data_63D20",
+    "main_rel:lbl_1_data_1D6C0",
+    "main_rel:lbl_1_data_1D730",
+    "main_rel:lbl_1_data_1D9B8",
+    "main_rel:lbl_1_data_1DFB0",
+    "main_rel:lbl_1_data_3D928",
+    "main_rel:lbl_1_data_3F428",
+    "main_rel:lbl_1_data_40BD8",
+    "main_rel:lbl_1_data_416B8",
+    "main_rel:lbl_1_data_67F0"
+  ],
+  "preflight": {
+    "imported": false,
+    "objects": 14,
+    "bytes": 5924,
+    "skipped": [
+      {
+        "symbol": "lbl_1_data_36EC",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_3A2C",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_4484",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_47B4",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_4AA0",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_1C504",
+        "reason": "### mwcceppc.exe Compiler:\n#      In: include\\rel\\main_rel\\font.h\n#    From: .fzgx\\dataimport\\main_rel__lbl_1_data_1C504.c\n# ------------------------------------------------------\n#     106: extern Obj_1_data_1C504_Target *lbl_1_data_1C504;\n#   Error:                                                 ^\n#   identifier 'lbl_1_data_1C504' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'struct  *'\n#   Too many errors printed, aborting program\n\nUser break, cancelled...\n"
+      },
+      {
+        "symbol": "lbl_1_data_1C508",
+        "reason": "### mwcceppc.exe Compiler:\n#      In: include\\rel\\main_rel\\font.h\n#    From: .fzgx\\dataimport\\main_rel__lbl_1_data_1C504.c\n# ------------------------------------------------------\n#     106: extern Obj_1_data_1C504_Target *lbl_1_data_1C504;\n#   Error:                                                 ^\n#   identifier 'lbl_1_data_1C504' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'struct  *'\n#   Too many errors printed, aborting program\n\nUser break, cancelled...\n"
+      },
+      {
+        "symbol": "lbl_1_data_20664",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_27920",
+        "reason": "### mwcceppc.exe Compiler:\n#      In: include\\rel\\main_rel\\car.h\n#    From: .fzgx\\dataimport\\main_rel__lbl_1_data_27920.c\n# ------------------------------------------------------\n#     127: extern u32 lbl_1_data_27920;\n#   Error:                            ^\n#   identifier 'lbl_1_data_27920' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'unsigned long'\n#   Too many errors printed, aborting program\n\nUser break, cancelled...\n"
+      },
+      {
+        "symbol": "lbl_1_data_27924",
+        "reason": "### mwcceppc.exe Compiler:\n#      In: include\\rel\\main_rel\\car.h\n#    From: .fzgx\\dataimport\\main_rel__lbl_1_data_27920.c\n# ------------------------------------------------------\n#     127: extern u32 lbl_1_data_27920;\n#   Error:                            ^\n#   identifier 'lbl_1_data_27920' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'unsigned long'\n#   Too many errors printed, aborting program\n\nUser break, cancelled...\n"
+      },
+      {
+        "symbol": "lbl_1_data_2B0D4",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_2CCBC",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_2D93C",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_343C4",
+        "reason": "group must begin at the compiler section alignment"
+      },
+      {
+        "symbol": "lbl_1_data_345D4",
+        "reason": "group must begin at the compiler section alignment"
+      }
+    ]
+  },
+  "regeneration": {
+    "imported": false,
+    "objects": 462,
+    "bytes": 2288689,
+    "skipped": []
+  },
+  "verification": {
+    "compiler": "real MWCC through data-import",
+    "retail_object_layout_bytes_relocations": "passed for every accepted object",
+    "configure_ninja": "passed",
+    "retail_hashes": {
+      "passed": 16,
+      "total": 16
+    },
+    "lint_findings": 0,
+    "new_function_matches": 0
+  },
+  "stopping_condition": "One cohort pass. Do not repeat failed boundaries: remaining records need measured predecessor ownership or a recovered typed relocation layout. Do not lower alignment or replace header records with generated conflicting types."
+}

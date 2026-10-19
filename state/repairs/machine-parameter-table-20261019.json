@@ -1,0 +1,316 @@
+{
+  "format": "fzgx-data-cohort-v1",
+  "topic": "Typed built-in machine parameter records and exact nested pointer initializers",
+  "base_commit": "f18b3ca893e6f75a7952cd32b7a6c6bcf2f7c8dd",
+  "accepted_objects": 42,
+  "accepted_initialized_bytes": 8798,
+  "table": {
+    "symbol": "main_rel:lbl_1_data_28060",
+    "bytes": 8288,
+    "sha256_unrelocated_bytes": "342f4192644fc6ba391ec6b8385c3759f3296a03c8b1b4439a58e2efcc1348a0",
+    "records": 41,
+    "record_bytes": 180,
+    "record_type": "MachineParameterRecord",
+    "preserved_known_field": {
+      "offset": 4,
+      "type": "f32",
+      "name": "unk_4"
+    },
+    "other_record_bytes": "Retained as fields_8[0xAC]; no unproven semantic types assigned.",
+    "tail_offset": 7380,
+    "tail_bytes": 908,
+    "tail_all_zero": true,
+    "relocations": [
+      {
+        "offset": 0,
+        "symbol": "lbl_1_data_27E20",
+        "name": "Red Gazelle",
+        "addend": 0
+      },
+      {
+        "offset": 180,
+        "symbol": "lbl_1_data_27E2C",
+        "name": "White Cat",
+        "addend": 0
+      },
+      {
+        "offset": 360,
+        "symbol": "lbl_1_data_27E38",
+        "name": "Golden Fox",
+        "addend": 0
+      },
+      {
+        "offset": 540,
+        "symbol": "lbl_1_data_27E44",
+        "name": "Iron Tiger",
+        "addend": 0
+      },
+      {
+        "offset": 720,
+        "symbol": "lbl_1_data_27E50",
+        "name": "Fire Stingray",
+        "addend": 0
+      },
+      {
+        "offset": 900,
+        "symbol": "lbl_1_data_27E60",
+        "name": "Wild Goose",
+        "addend": 0
+      },
+      {
+        "offset": 1080,
+        "symbol": "lbl_1_data_27E6C",
+        "name": "Blue Falcon",
+        "addend": 0
+      },
+      {
+        "offset": 1260,
+        "symbol": "lbl_1_data_27E78",
+        "name": "Deep Claw",
+        "addend": 0
+      },
+      {
+        "offset": 1440,
+        "symbol": "lbl_1_data_27E84",
+        "name": "Great Star",
+        "addend": 0
+      },
+      {
+        "offset": 1620,
+        "symbol": "lbl_1_data_27E90",
+        "name": "Little Wyvern",
+        "addend": 0
+      },
+      {
+        "offset": 1800,
+        "symbol": "lbl_1_data_27EA0",
+        "name": "Mad Wolf",
+        "addend": 0
+      },
+      {
+        "offset": 1980,
+        "symbol": "lbl_1_data_27EAC",
+        "name": "Super Piranha",
+        "addend": 0
+      },
+      {
+        "offset": 2160,
+        "symbol": "lbl_1_data_27EBC",
+        "name": "Death Anchor",
+        "addend": 0
+      },
+      {
+        "offset": 2340,
+        "symbol": "lbl_1_data_27ECC",
+        "name": "Astro Robin",
+        "addend": 0
+      },
+      {
+        "offset": 2520,
+        "symbol": "lbl_1_data_27ED8",
+        "name": "Big Fang",
+        "addend": 0
+      },
+      {
+        "offset": 2700,
+        "symbol": "lbl_1_data_27EE4",
+        "name": "Sonic Phantom",
+        "addend": 0
+      },
+      {
+        "offset": 2880,
+        "symbol": "lbl_1_data_27EF4",
+        "name": "Green Panther",
+        "addend": 0
+      },
+      {
+        "offset": 3060,
+        "symbol": "lbl_1_data_27F04",
+        "name": "Hyper Speeder",
+        "addend": 0
+      },
+      {
+        "offset": 3240,
+        "symbol": "lbl_1_data_27F14",
+        "name": "Space Angler",
+        "addend": 0
+      },
+      {
+        "offset": 3420,
+        "symbol": "lbl_1_data_27F24",
+        "name": "King Meteor",
+        "addend": 0
+      },
+      {
+        "offset": 3600,
+        "symbol": "lbl_1_data_27F30",
+        "name": "Queen Meteor",
+        "addend": 0
+      },
+      {
+        "offset": 3780,
+        "symbol": "lbl_1_data_27F40",
+        "name": "Twin Noritta",
+        "addend": 0
+      },
+      {
+        "offset": 3960,
+        "symbol": "lbl_1_data_27F50",
+        "name": "Night Thunder",
+        "addend": 0
+      },
+      {
+        "offset": 4140,
+        "symbol": "lbl_1_data_27F60",
+        "name": "Wild Boar",
+        "addend": 0
+      },
+      {
+        "offset": 4320,
+        "symbol": "lbl_1_data_27F6C",
+        "name": "Blood Hawk",
+        "addend": 0
+      },
+      {
+        "offset": 4500,
+        "symbol": "lbl_1_data_27F78",
+        "name": "Wonder Wasp",
+        "addend": 0
+      },
+      {
+        "offset": 4680,
+        "symbol": "lbl_1_data_27F84",
+        "name": "Mighty Typhoon",
+        "addend": 0
+      },
+      {
+        "offset": 4860,
+        "symbol": "lbl_1_data_27F94",
+        "name": "Mighty Hurricane",
+        "addend": 0
+      },
+      {
+        "offset": 5040,
+        "symbol": "lbl_1_data_27FA8",
+        "name": "Crazy Bear",
+        "addend": 0
+      },
+      {
+        "offset": 5220,
+        "symbol": "lbl_1_data_27FB4",
+        "name": "Black Bull",
+        "addend": 0
+      },
+      {
+        "offset": 5400,
+        "symbol": "lbl_1_data_27FC0",
+        "name": "Dark Schneider",
+        "addend": 0
+      },
+      {
+        "offset": 5580,
+        "symbol": "lbl_1_data_27FD0",
+        "name": "Fat Shark",
+        "addend": 0
+      },
+      {
+        "offset": 5760,
+        "symbol": "lbl_1_data_27FDC",
+        "name": "Cosmic Dolphin",
+        "addend": 0
+      },
+      {
+        "offset": 5940,
+        "symbol": "lbl_1_data_27FEC",
+        "name": "Pink Spider",
+        "addend": 0
+      },
+      {
+        "offset": 6120,
+        "symbol": "lbl_1_data_27FF8",
+        "name": "Magic Seagull",
+        "addend": 0
+      },
+      {
+        "offset": 6300,
+        "symbol": "lbl_1_data_28008",
+        "name": "Silver Rat",
+        "addend": 0
+      },
+      {
+        "offset": 6480,
+        "symbol": "lbl_1_data_28014",
+        "name": "Spark Moon",
+        "addend": 0
+      },
+      {
+        "offset": 6660,
+        "symbol": "lbl_1_data_28020",
+        "name": "Bunny Flash",
+        "addend": 0
+      },
+      {
+        "offset": 6840,
+        "symbol": "lbl_1_data_2802C",
+        "name": "Groovy Taxi",
+        "addend": 0
+      },
+      {
+        "offset": 7020,
+        "symbol": "lbl_1_data_28038",
+        "name": "Rolling Turtle",
+        "addend": 0
+      },
+      {
+        "offset": 7200,
+        "symbol": "lbl_1_data_28048",
+        "name": "Rainbow Phoenix",
+        "addend": 0
+      }
+    ]
+  },
+  "consumer_proof": {
+    "symbol": "fn_1_13EE60",
+    "retail_bound": 41,
+    "retail_copy_bytes": 180,
+    "source_change": "Use &lbl_1_data_28060.entries[index] and sizeof(MachineParameterRecord) rather than byte arithmetic.",
+    "real_build_after_source_change": "16 files OK and all 16 independent retail hashes passed."
+  },
+  "negative_layout_check": {
+    "imported": false,
+    "objects": 0,
+    "bytes": 0,
+    "skipped": [
+      {
+        "symbol": "main_rel:lbl_1_data_28060",
+        "reason": "relocation does not land on a recovered pointer field"
+      }
+    ]
+  },
+  "positive_layout_check": {
+    "imported": false,
+    "objects": 1,
+    "bytes": 8288,
+    "skipped": []
+  },
+  "regeneration": {
+    "imported": false,
+    "objects": 512,
+    "bytes": 2297895,
+    "skipped": []
+  },
+  "verification": {
+    "real_MWCC_record_layout_initialized_bytes_relocations": "passed",
+    "configure_ninja": "passed",
+    "retail_hashes_passed": 16,
+    "lint_findings": 0,
+    "new_function_matches": 0
+  },
+  "reproduce": [
+    "uv run tools/fzgx.py data-import --regenerate main_rel:lbl_1_data_28060 main_rel:lbl_1_data_27E20",
+    "uv run tools/fzgx.py data-import --regenerate",
+    "python3 configure.py && ninja",
+    "build/tools/dtk shasum -c config/GFZE01/build.sha1",
+    "uv run tools/fzgx.py lint"
+  ]
+}

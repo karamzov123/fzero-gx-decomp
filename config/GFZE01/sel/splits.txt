@@ -677,3 +677,42 @@ rel/sel/sel/fn_10_924C.c:
 
 rel/sel/name_entry/fn_10_24BD0.c:
 	.text       start:0x00024BD0 end:0x00025610 align:4
+
+rel/sel/sel/fn_10_25888.c:
+	.text       start:0x00025888 end:0x00025BC8 align:4
+
+rel/sel/sel/fn_10_CB20.c:
+	.text       start:0x0000CB20 end:0x0000CD90 align:4
+
+rel/sel/sel/fn_10_7FC0.c:
+	.text       start:0x00007FC0 end:0x0000804C align:4
+
+rel/sel/sel/fn_10_CA94.c:
+	.text       start:0x0000CA94 end:0x0000CB20 align:4
+
+rel/sel/sel/fn_10_7320.c:
+	.text       start:0x00007320 end:0x000073AC align:4
+
+rel/sel/sel/fn_10_4568.c:
+	.text       start:0x00004568 end:0x00004600 align:4
+
+rel/sel/sel/fn_10_8600.c:
+	.text       start:0x00008600 end:0x00008780 align:4
+
+rel/sel/sel/fn_10_12D8.c:
+	.text       start:0x000012D8 end:0x00001544 align:4
+
+rel/sel/sel/fn_10_4790.c:
+	.text       start:0x00004790 end:0x00004838 align:4
+
+rel/sel/sel/fn_10_8314.c:
+	.text       start:0x00008314 end:0x000083C0 align:4
+
+rel/sel/sel/fn_10_8B0C.c:
+	.text       start:0x00008B0C end:0x00008BB8 align:4
+
+rel/sel/sel/fn_10_3C14.c:
+	.text       start:0x00003C14 end:0x00003D64 align:4
+
+rel/sel/sel/fn_10_C328.c:
+	.text       start:0x0000C328 end:0x0000C49C align:4

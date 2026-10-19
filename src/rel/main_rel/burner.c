@@ -1326,14 +1326,12 @@ void fn_1_13EE60(s16 arg0, s16 arg1, void *arg2) {
                         entry->unk_81b4, arg2);
         } else {
             fn_80008BA8(arg2,
-                        (const u8 *)&lbl_1_data_28060 +
-                            entry->unk_81a0 * 0xb4,
-                        0xb4);
+                        &lbl_1_data_28060.entries[entry->unk_81a0],
+                        sizeof(MachineParameterRecord));
         }
     } else {
-        fn_80008BA8(arg2,
-                    (const u8 *)&lbl_1_data_28060 + arg0 * 0xb4,
-                    0xb4);
+        fn_80008BA8(arg2, &lbl_1_data_28060.entries[arg0],
+                    sizeof(MachineParameterRecord));
     }
 }
 /* fzgx:end fn_1_13EE60 */

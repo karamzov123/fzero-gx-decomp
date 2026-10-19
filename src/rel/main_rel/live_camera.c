@@ -1679,6 +1679,89 @@ u32 fn_1_12860(u32 arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_12860 */
 
+/* fzgx:begin fn_1_1289C */
+typedef struct LiveCameraLzssArgs {
+    u8 *src;
+    u8 *dst;
+    void (*callback)(u32 size);
+} LiveCameraLzssArgs;
+
+u32 *fn_1_1289C(u32 *raw_args) {
+    u8 c;
+    s32 k;
+    u32 size;
+    s32 r;
+    void (*callback)(u32 size);
+    u8 *p;
+    u8 *dst;
+    u8 *out;
+    s32 j;
+    u8 text_buf[4096 + 18 - 1];
+    s32 i;
+    u32 flags;
+    u32 end;
+    u8 *src;
+    LiveCameraLzssArgs *args = (LiveCameraLzssArgs *)raw_args;
+
+    src = args->src;
+    callback = args->callback;
+    out = args->dst;
+    end = __lwbrx(src, 0) + 8;
+    size = __lwbrx(src, 4);
+    if (end == 0 || size == 0) {
+        return NULL;
+    }
+    p = src + 8;
+    dst = out;
+    for (i = 0; i < 4096 - 18; i++) {
+        text_buf[i] = 0;
+    }
+    r = 4096 - 18;
+    flags = 0;
+    for (;;) {
+        if (((flags >>= 1) & 0x100) == 0) {
+            if (p - src >= end) {
+                break;
+            }
+            flags = *p++ | 0xFF00;
+        }
+        if (flags & 1) {
+            if (p - src >= end) {
+                break;
+            }
+            c = *p++;
+            *dst++ = c;
+            text_buf[r++] = c;
+            r &= 4096 - 1;
+        } else {
+            if (p - src >= end) {
+                break;
+            }
+            i = p[0];
+            if (p + 1 - src >= end) {
+                break;
+            }
+            j = p[1];
+            p += 2;
+            i |= (j & 0xF0) << 4;
+            j = (j & 0x0F) + 2;
+            for (k = 0; k <= j; k++) {
+                c = text_buf[(i + k) & (4096 - 1)];
+                *dst++ = c;
+                text_buf[r++] = c;
+                r &= 4096 - 1;
+            }
+        }
+    }
+    if (callback != NULL) {
+        callback(size);
+    }
+    /* Retail returns this stack-slot address; fn_1_12860 immediately reads it.
+     * Preserve the original lifetime bug rather than inventing static storage. */
+    return &size;
+}
+/* fzgx:end fn_1_1289C */
+
 /* fzgx:begin fn_1_12F78 */
 u32 fn_1_12F78(void *arg0, u32 arg1) {
     fn_80083DB0(&lbl_1_bss_3B30, arg0);

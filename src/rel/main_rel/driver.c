@@ -1039,6 +1039,29 @@ void fn_1_A9464(u16 arg0, u16 arg1) {
 }
 /* fzgx:end fn_1_A9464 */
 
+/* fzgx:begin fn_1_A96BC */
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_6F648[4];
+u32 lbl_1_bss_6F648__fzgx_offset_10[1024];
+u32 fzgx_obj_lbl_1_bss_70658[1024];
+u32 fzgx_obj_lbl_1_bss_71658[6];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_6F648[0];
+    s = lbl_1_bss_6F648__fzgx_offset_10[0];
+    s = fzgx_obj_lbl_1_bss_70658[0];
+    s = fzgx_obj_lbl_1_bss_71658[0];
+}
+#pragma section code_type ".text"
+
+void fn_1_A96BC(void) {
+    fzgx_obj_lbl_1_bss_71658[0] = 0;
+    fzgx_obj_lbl_1_bss_6F648[3] = (u32)lbl_1_bss_6F648__fzgx_offset_10;
+}
+/* fzgx:end fn_1_A96BC */
+
 /* fzgx:begin fn_1_A96DC */
 void fn_1_A96DC(void) {
     lbl_1_data_3599C.unk_0 = 1;

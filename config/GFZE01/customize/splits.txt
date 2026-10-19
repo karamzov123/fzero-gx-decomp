@@ -569,3 +569,15 @@ rel/customize/_prolog/fn_3_10A4.c:
 
 rel/customize/_prolog/fn_3_0.c:
 	.text       start:0x00000000 end:0x0000042C align:4
+
+rel/customize/data/lbl_3_bss_140.c:
+	.bss        start:0x00000140 end:0x00020844 align:32
+
+rel/customize/data/lbl_3_data_1EA8.c:
+	.data       start:0x00001EA8 end:0x00002DCC align:8
+
+rel/customize/data/lbl_3_data_0.c:
+	.data       start:0x00000000 end:0x000000A8 align:8
+
+rel/customize/data/lbl_3_data_3618.c:
+	.data       start:0x00003618 end:0x00003738 align:8

@@ -170,3 +170,6 @@ rel/story/story_mode/fn_7_4FD0.c:
 
 rel/story/story_mode/fn_7_44DC.c:
 	.text       start:0x000044DC end:0x00004648 align:4
+
+rel/story/story_mode/fn_7_232C.c:
+	.text       start:0x0000232C end:0x0000235C align:4

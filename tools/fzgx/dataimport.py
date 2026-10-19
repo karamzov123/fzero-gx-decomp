@@ -186,25 +186,36 @@ def number(raw, kind):
     return str(value) + ('LL' if len(raw) == 8 else '')
 
 
-def record_initializer(data, fields, layouts, sizes):
-    """Decode recovered record fields without inventing values for padding/pointers."""
+def record_initializer(data, fields, layouts, sizes, relocations=None, base=0, used=None):
+    """Decode fields; symbolic relocations must land on complete pointer fields."""
     from .signatures import record_tag
+    relocations = {} if relocations is None else relocations
+    used = set() if used is None else used
     covered = bytearray(len(data)); values = []
-    for name, typ, offset, width, dims in fields:
-        typ = re.sub(r'\b(?:const|volatile)\b', '', typ).strip()
+    for name, source_type, offset, width, dims in fields:
+        typ = re.sub(r'\b(?:const|volatile)\b', '', source_type).strip()
         count = math.prod(dims) if dims else 1
         end = offset + width * count
         if count <= 0 or end > len(data) or any(covered[offset:end]):
             raise ValueError('overlapping, flexible, or out-of-bounds record field')
         covered[offset:end] = b'\1' * (end - offset)
-        def element(raw):
-            if typ in BASIC and BASIC[typ][0] == width:
-                return number(raw, typ)
+        def element(raw, at):
+            if '*' in typ and width == 4:
+                if at in relocations:
+                    used.add(at)
+                    return f'({source_type})({relocations[at]})'
+                if not any(raw):
+                    return '0'
+                raise ValueError('nonzero pointer field needs a symbolic relocation')
             tag = record_tag(typ)
             if '*' not in typ and tag in layouts and sizes[tag][0] == width:
-                return record_initializer(raw, layouts[tag], layouts, sizes)
+                return record_initializer(raw, layouts[tag], layouts, sizes, relocations, at, used)
+            if any(at <= address < at + width for address in relocations):
+                raise ValueError('relocation does not land on a recovered pointer field')
+            if typ in BASIC and BASIC[typ][0] == width:
+                return number(raw, typ)
             raise ValueError('record field needs a recovered scalar or record type')
-        items = [element(data[i:i+width]) for i in range(offset, end, width)]
+        items = [element(data[i:i+width], base+i) for i in range(offset, end, width)]
         for length in reversed(dims):
             items = ['{' + ', '.join(items[i:i+length]) + '}' for i in range(0, len(items), length)]
         values.append(items[0])
@@ -244,6 +255,37 @@ def string_grid(data, spec):
     return 'struct {\n' + '\n'.join(fields) + '\n}', '{\n' + ',\n'.join(values) + '\n}'
 
 
+def declared_record_initializer(sym, declaration, data, relocations=None):
+    """Keep a recovered header record instead of replacing it with scalar bytes."""
+    from .sdkimport import integer_expression, masked
+    from .signatures import record_layouts, record_tag
+    match = re.fullmatch(r'((?:const\s+)?(?:struct\s+)?\w+)\s+' + re.escape(sym.name) +
+                         r'\s*((?:\[[^\]]+\])*)', declaration['declaration'])
+    if not match:
+        return None
+    typ = record_tag(re.sub(r'\bconst\s+', '', match[1]))
+    # Layout parsing is deliberately conservative. MWCC compilation below still
+    # proves the emitted definition's layout and bytes against the retail object.
+    code = masked((ROOT / declaration['path']).read_text())
+    layouts, sizes = record_layouts(code, len(code))
+    if typ not in layouts:
+        return None
+    dims = [integer_expression(dim) for dim in re.findall(r'\[([^\]]+)\]', match[2])]
+    width = sizes[typ][0]
+    if any(dim <= 0 for dim in dims) or width * math.prod(dims) != sym.size:
+        raise ValueError('recovered header record extent disagrees with retail size')
+    used = set()
+    values = [record_initializer(data[i:i+width], layouts[typ], layouts, sizes,
+                                 relocations, i, used)
+              for i in range(0, len(data), width)]
+    if used != set(relocations or {}):
+        raise ValueError('relocation is hidden in implicit record padding')
+    for length in reversed(dims):
+        values = ['{\n' + ',\n'.join(values[i:i+length]) + '\n}'
+                  for i in range(0, len(values), length)]
+    return declaration['declaration'], values[0], declaration['path'][8:]
+
+
 def generate(p, sym, recipe=None):
     if sym.kind != 'object' or sym.section not in SECTIONS or not sym.size or not sym.name.isidentifier():
         raise ValueError('not a supported named data object')
@@ -262,6 +304,13 @@ def generate(p, sym, recipe=None):
     includes = ['types.h']
     extras, method, header = [], '', None
     decl, init = None, None
+    recovered = None
+    if not recipe and not relocs and sym.section not in BSS:
+        for declaration in decls:
+            if declaration['path'].startswith('include/'):
+                recovered = declared_record_initializer(sym, declaration, data)
+                if recovered:
+                    break
     if recipe:
         if relocs:
             raise ValueError('string grid must be relocation-free data')
@@ -283,9 +332,14 @@ def generate(p, sym, recipe=None):
         else:
             decl, method = f'u8 {sym.name}[{sym.size}]', 'opaque-bss'
             extras.append('/* Storage extent is known; element/field types are not recovered. */')
+    elif recovered:
+        decl, init, include = recovered
+        includes.append(include)
+        method = 'declared-record'
     elif relocs:
         by_offset = {r['offset']: r for r in relocs}
         fields, values, externs = [], [], set()
+        relocation_values = {}
         offset = 0
         while offset < sym.size:
             r = by_offset.get(offset)
@@ -309,6 +363,7 @@ def generate(p, sym, recipe=None):
                                 '4byte': 'u32', '2byte': 'u16'}.get(target.attrs.get('data'), 'u8')
                         externs.add(f'extern {kind} {target.name}[];')
                     values.append(f'(u8 *)&{target.name}' + (f' + {r["addend"]}' if r['addend'] else ''))
+                relocation_values[offset] = values[-1]
                 offset += 4
             else:
                 width = 4 if offset % 4 == 0 and offset + 4 <= sym.size else 1
@@ -316,8 +371,36 @@ def generate(p, sym, recipe=None):
                 values.append(number(data[offset:offset+width], f'u{width*8}'))
                 offset += width
         extras += sorted(externs)
-        decl = 'struct {\n' + '\n'.join(fields) + f'\n}} {sym.name}'
-        init, method = '{\n    ' + ',\n    '.join(values) + '\n}', 'relocated-table'
+        recovered = None
+        for d in decls:
+            if d['path'].startswith('include/'):
+                recovered = declared_record_initializer(sym, d, data, relocation_values)
+                if recovered:
+                    break
+        known = None
+        if sym.size == 4 and len(relocs) == 1 and relocs[0]['offset'] == 0:
+            for d in decls:
+                if not d['path'].startswith('include/'):
+                    continue
+                match = re.fullmatch(r'((?:(?:const|volatile)\s+)*(?:(?:struct\s+)?\w+\s*\*+|[us]32))\s*' +
+                                     re.escape(sym.name), d['declaration'])
+                if match:
+                    known = (d, match[1])
+                    break
+        if recovered:
+            decl, init, include = recovered
+            includes.append(include)
+            method = 'declared-relocated-record'
+        elif known:
+            # A scalar symbolic address is not a one-field anonymous record.
+            # Preserve the recovered pointee/address type and its public header.
+            d, typ = known
+            includes.append(d['path'][8:])
+            decl, init = d['declaration'], f'({typ})({values[0]})'
+            method = 'declared-relocation'
+        else:
+            decl = 'struct {\n' + '\n'.join(fields) + f'\n}} {sym.name}'
+            init, method = '{\n    ' + ',\n    '.join(values) + '\n}', 'relocated-table'
     else:
         kind = {'float': 'f32', 'double': 'f64', 'string': 'char',
                 '4byte': 'u32', '2byte': 'u16', 'byte': 'u8'}.get(sym.attrs.get('data'))
@@ -328,11 +411,28 @@ def generate(p, sym, recipe=None):
         elif zero_data:
             kind = 'u8'
         known = None
+        from .sdkimport import integer_expression
         for d in decls:
             match = re.fullmatch(r'(?:const\s+)?(' + '|'.join(BASIC) + r')\s+' + re.escape(sym.name) + r'\s*(\[[^\]]*\])?', d['declaration'])
-            if match and (kind not in ('f32', 'f64', 'char') or match[1] == kind):
+            if not match or (kind in ('f32', 'f64', 'char') and match[1] != kind):
+                continue
+            width = BASIC[match[1]][0]
+            bound = match[2][1:-1].strip() if match[2] else None
+            try:
+                count = 1
+                if match[2]:
+                    count = integer_expression(bound) if bound else sym.size // width
+            except (ValueError, SyntaxError):
+                continue
+            # Inferred externs may cover only a prefix or an oversized view,
+            # neither of which defines this retail object's measured extent.
+            if count * width == sym.size:
                 known = (d, match)
                 break
+        if not known and kind is None and is_text_pool(data):
+            # A prefix-only extern must not hide a measured, terminated string
+            # pool when regenerating its already accepted complete definition.
+            kind, text_pool = 'char', True
         if known:
             d, match = known
             kind, decl = match[1], d['declaration']
@@ -395,7 +495,7 @@ def generate(p, sym, recipe=None):
               + prefix + storage + decl + f' __attribute__((aligned({align})))'
               + (' = ' + init if init is not None else '') + ';\n'
               + ('#pragma explicit_zero_data reset\n' if init is not None else ''))
-    record = dict(module=sym.module, symbol=sym.name, section=sym.section,
+    record: dict = dict(module=sym.module, symbol=sym.name, section=sym.section,
                   address=sym.addr, size=sym.size, align=align, method=method,
                   declarations=decls, references=reference_index(p, sym.module).get(sym.name, []),
                   sha256=hashlib.sha256(data).hexdigest(), relocations=relocs)

@@ -1,0 +1,87 @@
+{
+  "format": "fzgx-investigation-v1",
+  "topic": "SDK aggregate anchors and exact-extent typed data regeneration",
+  "new_data": {
+    "objects": 14,
+    "bytes": 297548,
+    "sections": {
+      ".bss": 290892,
+      ".data": 6656
+    },
+    "symbols": [
+      "customize:lbl_3_bss_140",
+      "customize:lbl_3_data_1EA8",
+      "customize:lbl_3_data_1EB0",
+      "customize:lbl_3_data_1EB4",
+      "customize:lbl_3_data_1EEC",
+      "customize:lbl_3_data_246C",
+      "main:lbl_80164D60",
+      "main_rel:lbl_1_bss_384D8",
+      "main_rel:lbl_1_bss_4C688",
+      "main_rel:lbl_1_bss_718E0",
+      "main_rel:lbl_1_bss_77380",
+      "main_rel:lbl_1_bss_7F0C0",
+      "main_rel:lbl_1_data_1A3B8",
+      "main_rel:lbl_1_data_1AE90"
+    ]
+  },
+  "sdk_validation": {
+    "symbol": "SIInterruptHandler",
+    "before": {
+      "variants": 60,
+      "compile_errors": 54,
+      "accepted_functions": 0
+    },
+    "anchor_alias_only": {
+      "variants": 60,
+      "compile_errors": 16,
+      "accepted_functions": 0
+    },
+    "both_fixes": {
+      "variants": 60,
+      "compile_errors": 0,
+      "accepted_functions": 0
+    },
+    "donors": {
+      "mkdd": "2a9eb75fefd75c649c0488742db931571cbd7812",
+      "tww": "11d6aa597a6b6218a38eff2726c841a31f851a57"
+    }
+  },
+  "data_regeneration": {
+    "imported": false,
+    "objects": 448,
+    "bytes": 2282765,
+    "skipped": []
+  },
+  "repaired_existing_groups": [
+    "profile:lbl_16_data_82BF8",
+    "profile:lbl_16_data_82C1C",
+    "sel:lbl_10_rodata_158",
+    "sel:lbl_10_rodata_1A4",
+    "sel:lbl_10_rodata_1E0"
+  ],
+  "partial": {
+    "symbol": "SIInterruptHandler",
+    "accepted": false,
+    "body": "#include <dolphin/si/SIPriv.h>\n#include <dolphin/os.h>\n#include <dolphin/os/OSAlarm.h>\n#include <dolphin/os/OSContext.h>\n#include <dolphin/os/OSInterrupt.h>\n#include <dolphin/si.h>\n#include <dolphin/types.h>\n#include \"sdk_addresses.h\"\n\nu32 VIGetCurrentLine();\n\nu32 __OSBusClock : FZGX_ADDR___OSBusClock;\n\nvoid OSCancelAlarm(OSAlarm *alarm);\n\nBOOL SIIsChanBusy(s32 chan);\n\nvu32 __SIRegs[64] : FZGX_ADDR___SIRegs;\n\nBOOL __SITransfer(s32 chan, void *output, u32 outputBytes, void *input, u32 inputBytes,\n                  SICallback callback);\n\nvoid GetTypeCallback(s32 chan, u32 error, OSContext *context);\n\nstatic SIPacket Packet[4];\n\nstatic OSAlarm Alarm[4];\n\nstatic unsigned char sdk_gap____bss_0_120[128];\n\nstatic __OSInterruptHandler RDSTHandler[4];\n\nstatic unsigned char sdk_gap____bss_0_1b0[48];\n\nstatic vu32 InputBufferVcount[4];\n\n#pragma section code_type \".fzgxpool\"\nstatic void sdk_layout____bss_0(void) {\n    volatile unsigned char sink; // fzgx-allow: S2 SDK asynchronous state\n    sink = *(unsigned char *)&Packet;\n    sink = *(unsigned char *)&Alarm;\n    sink = *(unsigned char *)&sdk_gap____bss_0_120;\n    sink = *(unsigned char *)&RDSTHandler;\n    sink = *(unsigned char *)&sdk_gap____bss_0_1b0;\n    sink = *(unsigned char *)&InputBufferVcount;\n}\n#pragma section code_type \".text\"\n\nstatic unsigned char lbl_80123B50[68] = {\n    60, 60, 32,  68,  111, 108, 112, 104, 105, 110, 32, 83, 68,  75,  32,  45,  32,\n    83, 73, 9,   114, 101, 108, 101, 97,  115, 101, 32, 98, 117, 105, 108, 100, 58,\n    32, 83, 101, 112, 32,  32,  53,  32,  50,  48,  48, 50, 32,  48,  53,  58,  51,\n    51, 58, 48,  56,  32,  40,  48,  120, 50,  51,  48, 49, 41,  32,  62,  62,  0};\n\nstatic SIControl Si = {\n    -1, 0, 0, ((void *)0), ((void *)0),\n};\n\nstatic u32 Type[4] = {\n    0x0008,\n    0x0008,\n    0x0008,\n    0x0008,\n};\n\nstatic inline BOOL SIIsChanBusy(s32 chan) { return (Packet[chan].chan != -1 || Si.chan == chan); }\n\nu32 CompleteTransfer();\n\nstatic inline void SITransferNext(s32 chan) {\n    int i;\n    SIPacket *packet;\n    for (i = 0; i < 4; ++i) {\n        ++chan;\n        chan %= 4;\n        packet = &Packet[chan];\n        if (packet->chan != -1 && packet->fire <= __OSGetSystemTime()) {\n            if (__SITransfer(packet->chan, packet->output, packet->outputBytes, packet->input,\n                             packet->inputBytes, packet->callback)) {\n                OSCancelAlarm(&Alarm[chan]);\n                packet->chan = -1;\n            }\n            break;\n        }\n    }\n}\n\nvoid SIInterruptHandler(__OSInterrupt interrupt, OSContext *context) {\n    u32 reg;\n    reg = __SIRegs[13];\n    if ((reg & 0xc0000000) == 0xc0000000) {\n        s32 chan;\n        u32 sr;\n        SICallback callback;\n        chan = Si.chan;\n        sr = CompleteTransfer();\n        callback = Si.callback;\n        Si.callback = 0;\n        SITransferNext(chan);\n        if (callback) {\n            callback(chan, sr, context);\n        }\n        sr = __SIRegs[14];\n        sr &= 0xf000000 >> (8 * chan);\n        __SIRegs[14] = sr;\n        if (Type[chan] == 0x0080 && !SIIsChanBusy(chan)) {\n            extern u32 lbl_801A6810;\n            SITransfer(chan, &lbl_801A6810, 1, &Type[chan], 3, GetTypeCallback,\n                       (((65) * (((u32)__OSBusClock / 4) / 125000)) / 8));\n        }\n    }\n    if ((reg & 0x18000000) == 0x18000000) {\n        int i;\n        u32 vcount;\n        u32 x;\n        vcount = VIGetCurrentLine() + 1;\n        x = (Si.poll & 0x03ff0000) >> 16;\n        for (i = 0; i < 4; ++i) {\n            if (SIGetResponseRaw(i)) {\n                InputBufferVcount[i] = vcount;\n            }\n        }\n        for (i = 0; i < 4; ++i) {\n            if (!(Si.poll & (0x80000000 >> (31 - 7 + i)))) {\n                continue;\n            }\n            if (InputBufferVcount[i] == 0 || InputBufferVcount[i] + (x / 2) < vcount) {\n                return;\n            }\n        }\n        for (i = 0; i < 4; ++i) {\n            InputBufferVcount[i] = 0;\n        }\n        for (i = 0; i < 4; ++i) {\n            if (RDSTHandler[i]) {\n                RDSTHandler[i](interrupt, context);\n            }\n        }\n    }\n}\n",
+    "sha256": "2ea2d061044488683b7218596b6d3051c97a3e103fe21be1ef1862aeaa03e1ad",
+    "compiler": "GC/1.2.5n",
+    "flags": "-use_lmw_stmw on -fp fmadd -fp_contract off -char signed -common off",
+    "percent": 98.803825,
+    "differing_instruction_rows": 19,
+    "instruction_rows": 209,
+    "residual": "The two section-base register webs are swapped (r28/r29). Helper expansion, explicit packet base and section declaration order did not close it."
+  },
+  "reproduce": [
+    "uv run tools/fzgx.py sdkimport --library si --no-submit",
+    "uv run tools/fzgx.py data-import --regenerate",
+    "python3 configure.py && ninja",
+    "build/tools/dtk shasum -c config/GFZE01/build.sha1",
+    "uv run tools/fzgx.py lint"
+  ],
+  "limitations": [
+    "No new function matches are claimed. BSS ownership is not new initialized-data recovery.",
+    "The opaque main-module BSS array retains an explicitly unknown element type.",
+    "Relocated tables overlapping existing recovered header records were not integrated."
+  ]
+}

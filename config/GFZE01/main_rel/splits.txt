@@ -7790,3 +7790,81 @@ rel/main_rel/_prolog/fn_1_426C.c:
 
 rel/main_rel/bg_cas/fn_1_FE644.c:
 	.text       start:0x000FE644 end:0x000FE780 align:4
+
+rel/main_rel/data/lbl_1_bss_384D8.c:
+	.bss        start:0x000384D8 end:0x0003DCD8 align:8
+
+rel/main_rel/data/lbl_1_bss_4C688.c:
+	.bss        start:0x0004C688 end:0x0004E688 align:8
+
+rel/main_rel/data/lbl_1_bss_718E0.c:
+	.bss        start:0x000718E0 end:0x000772C8 align:32
+
+rel/main_rel/data/lbl_1_bss_77380.c:
+	.bss        start:0x00077380 end:0x0007A380 align:32
+
+rel/main_rel/data/lbl_1_bss_7F0C0.c:
+	.bss        start:0x0007F0C0 end:0x00084420 align:32
+
+rel/main_rel/data/lbl_1_data_1A3B8.c:
+	.data       start:0x0001A3B8 end:0x0001AE94 align:8
+
+rel/main_rel/data/lbl_1_data_67F0.c:
+	.data       start:0x000067F0 end:0x00006CA0 align:8
+
+rel/main_rel/data/lbl_1_data_1D6C0.c:
+	.data       start:0x0001D6C0 end:0x0001D8A4 align:8
+
+rel/main_rel/data/lbl_1_data_1D9B8.c:
+	.data       start:0x0001D9B8 end:0x0001DAC0 align:8
+
+rel/main_rel/data/lbl_1_data_1DFB0.c:
+	.data       start:0x0001DFB0 end:0x0001E4B8 align:8
+
+rel/main_rel/data/lbl_1_data_3D928.c:
+	.data       start:0x0003D928 end:0x0003DA2C align:8
+
+rel/main_rel/data/lbl_1_data_3F428.c:
+	.data       start:0x0003F428 end:0x0003F510 align:8
+
+rel/main_rel/data/lbl_1_data_40BD8.c:
+	.data       start:0x00040BD8 end:0x00040CC8 align:8
+
+rel/main_rel/data/lbl_1_data_416B8.c:
+	.data       start:0x000416B8 end:0x000418A4 align:8
+
+rel/main_rel/data/lbl_1_data_1C500.c:
+	.data       start:0x0001C500 end:0x0001C578 align:8
+
+rel/main_rel/data/lbl_1_data_27920.c:
+	.data       start:0x00027920 end:0x00027A2C align:8
+
+rel/main_rel/data/lbl_1_data_341B8.c:
+	.data       start:0x000341B8 end:0x000341BC align:8
+
+rel/main_rel/data/lbl_1_data_1CC68.c:
+	.data       start:0x0001CC68 end:0x0001CC78 align:8
+
+rel/main_rel/data/lbl_1_data_28060.c:
+	.data       start:0x00028060 end:0x0002A0C0 align:8
+
+rel/main_rel/data/lbl_1_data_27E20.c:
+	.data       start:0x00027E20 end:0x00028058 align:8
+
+rel/main_rel/sel_static_disp/fn_1_1420E0.c:
+	.text       start:0x001420E0 end:0x001421D8 align:4
+
+rel/main_rel/live_camera/fn_1_1289C.c:
+	.text       start:0x0001289C end:0x00012B88 align:4
+
+rel/main_rel/bg_aur/fn_1_152208.c:
+	.text       start:0x00152208 end:0x00152510 align:4
+
+rel/main_rel/spline/fn_1_F946C.c:
+	.text       start:0x000F946C end:0x000F965C align:4
+
+rel/main_rel/spline/fn_1_F9888.c:
+	.text       start:0x000F9888 end:0x000F9A80 align:4
+
+rel/main_rel/driver/fn_1_A96BC.c:
+	.text       start:0x000A96BC end:0x000A96DC align:4

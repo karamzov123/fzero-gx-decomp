@@ -64,6 +64,54 @@ extern u16 lbl_1_data_414[36];
 extern void fn_8001D3E4(int index, int value);
 extern u32 lbl_801A66A0;
 
+/* fzgx:begin fn_1_F4F08 */
+#include "rel/main_rel/replay.h"
+
+extern u32 lbl_801A6410[];
+extern u8 lbl_1_data_3E8E0[];
+extern const f32 lbl_1_rodata_6D6C;
+extern const f32 lbl_1_rodata_6D70;
+extern u32 fn_1_4630(u32, u32, u8 *, u32);
+extern void fn_1_46B4(u32, u32, u8 *, u32);
+
+void fn_1_F4F08(u32 count, f32 *x, f32 *z, f32 *y) {
+    s32 tmp_cse1;
+    f32 *diff;
+    f32 *slope;
+    s32 i;
+tmp_cse1 = count * 4;
+
+    diff = (f32 *)fn_1_4630(lbl_801A6410[0], tmp_cse1, lbl_1_data_3E8E0, 0x37);
+    slope = (f32 *)fn_1_4630(lbl_801A6410[0], tmp_cse1, lbl_1_data_3E8E0, 0x38);
+
+    y[count - 1] = lbl_1_rodata_6D70;
+    y[0] = lbl_1_rodata_6D70;
+
+    for (i = 0; i < count - 1; i++) {
+        diff[i] = x[(i + 1)] - x[i];
+        slope[(i + 1)] = (z[(i + 1)] - z[i]) / diff[i];
+    }
+
+    y[1] = (slope[2] - slope[1]) - (f32)(diff[0] * y[0]);
+    slope[1] = lbl_1_rodata_6D6C * (x[2] - x[0]);
+
+    for (i = 1; i < count - 2; i++) {
+        f32 q = diff[i] / slope[i];
+        y[(i + 1)] = (slope[i + 2] - slope[(i + 1)]) - (f32)(q * y[i]);
+        slope[(i + 1)] = (f32)(lbl_1_rodata_6D6C * (x[i + 2] - x[i])) - (f32)(q * diff[i]);
+    }
+
+    y[count - 2] -= (f32)(diff[count - 2] * y[count - 1]);
+
+    for (i = count - 2; i > 0; i--) {
+        y[i] = (y[i] - (f32)(diff[i] * y[(i + 1)])) / slope[i];
+    }
+
+    fn_1_46B4(lbl_801A6410[0], (u32)diff, lbl_1_data_3E8E0, 0x4c);
+    fn_1_46B4(lbl_801A6410[0], (u32)slope, lbl_1_data_3E8E0, 0x4d);
+}
+/* fzgx:end fn_1_F4F08 */
+
 /* fzgx:begin fn_1_F5458 */
 extern const f32 lbl_1_rodata_6D74;
 extern const f32 lbl_1_rodata_6D6C;
@@ -1373,6 +1421,340 @@ s32 fn_1_F9028(s16 arg0) {
     return ret;
 }
 /* fzgx:end fn_1_F9028 */
+
+/* fzgx:begin fn_1_F9244 */
+extern s32 fn_1_F9D44(u8 index);
+extern s32 ghost_test_record_flag0(s16 value);
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+} Element;
+
+typedef struct {
+    Element elements[44];
+} Table;
+
+extern Table lbl_1_rodata_6E38;
+extern void fn_80008BA8(void *dst, const void *src, u32 size);
+
+static inline void get_element(Element *dst, s16 index) {
+    Table table;
+    table = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &table.elements[index], 10);
+}
+
+static inline s16 find_element_by_unk2(s16 unk_2, s16 nth) {
+    Element elem;
+    s16 i;
+    s16 count;
+
+    i = 0;
+    count = 0;
+    for (; i < 44; i++) {
+        get_element(&elem, i);
+        if (elem.unk_2 == unk_2) {
+            if (count == nth) {
+                return i;
+            }
+            count++;
+        }
+    }
+    return -1;
+}
+
+static inline s16 get_element_index_in_unk2_group(s16 index) {
+    Element elem;
+    s16 i;
+
+    get_element(&elem, index);
+    for (i = 0; ; i++) {
+        if (find_element_by_unk2(elem.unk_2, i) == index) {
+            return i;
+        }
+    }
+}
+
+s32 fn_1_F9244(s16 arg0) {
+    s32 ret = 0;
+    Element elem;
+    s16 group_idx;
+
+    get_element(&elem, arg0);
+    group_idx = get_element_index_in_unk2_group(arg0);
+
+    switch (elem.unk_2) {
+    case 0:
+        ret = fn_1_F9D44(group_idx) ? 1 : 0;
+        break;
+    case 1:
+        ret = __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4673], ((u8)group_idx + 1) & 0x1F, 31, 31) != 0;
+        break;
+    case 2:
+        ret = ghost_test_record_flag0(elem.unk_8) ? 1 : 0;
+        break;
+    case 3:
+        ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4676], (32 - group_idx * 2) & 0x1F, 31, 31) != 0;
+        break;
+    }
+
+    return ret;
+}
+/* fzgx:end fn_1_F9244 */
+
+/* fzgx:begin fn_1_F946C */
+extern void fn_1_F9CD0(s32 arg0, u8 arg1);
+extern void ghost_set_record_flag2(s16 value);
+
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+} Element;
+
+typedef struct {
+    Element elements[44];
+} Table;
+
+extern Table lbl_1_rodata_6E38;
+extern void fn_80008BA8(void *dst, const void *src, u32 size);
+
+static inline void get_element(Element *dst, s16 index) {
+    Table table;
+    table = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &table.elements[index], 10);
+}
+
+static inline s16 find_element_by_unk2(s16 unk_2, s16 nth) {
+    Element elem;
+    s16 i;
+    s16 count;
+
+    i = 0;
+    count = 0;
+    for (; i < 44; i++) {
+        get_element(&elem, i);
+        if (elem.unk_2 == unk_2) {
+            if (count == nth) {
+                return i;
+            }
+            count++;
+        }
+    }
+    return -1;
+}
+
+static inline s16 get_element_index_in_unk2_group(s16 index) {
+    Element elem;
+    s16 i;
+
+    get_element(&elem, index);
+    for (i = 0; ; i++) {
+        if (find_element_by_unk2(elem.unk_2, i) == index) {
+            return i;
+        }
+    }
+}
+
+void fn_1_F946C(s16 arg0) {
+    Element elem;
+    s16 group_idx;
+
+    get_element(&elem, arg0);
+    group_idx = get_element_index_in_unk2_group(arg0);
+
+    switch (elem.unk_2) {
+    case 0:
+        fn_1_F9CD0(0, group_idx);
+        break;
+    case 1:
+        ((u32 *)&lbl_1_bss_7F0C0)[4672] |= 0x80000000 >> (u8)group_idx;
+        break;
+    case 2:
+        ghost_set_record_flag2(elem.unk_8);
+        break;
+    case 3:
+        ((u32 *)&lbl_1_bss_7F0C0)[4677] |= 0x80000000 >> (31 - group_idx);
+        break;
+    }
+}
+/* fzgx:end fn_1_F946C */
+
+/* fzgx:begin fn_1_F965C */
+extern s32 fn_1_F9DC4(u8 index);
+extern s32 fn_1_F210C(s16 value);
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+} Element;
+
+typedef struct {
+    Element elements[44];
+} Table;
+
+extern Table lbl_1_rodata_6E38;
+extern void fn_80008BA8(void *dst, const void *src, u32 size);
+
+static inline void get_element(Element *dst, s16 index) {
+    Table table;
+    table = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &table.elements[index], 10);
+}
+
+static inline s16 find_element_by_unk2(s16 unk_2, s16 nth) {
+    Element elem;
+    s16 i;
+    s16 count;
+
+    i = 0;
+    count = 0;
+    for (; i < 44; i++) {
+        get_element(&elem, i);
+        if (elem.unk_2 == unk_2) {
+            if (count == nth) {
+                return i;
+            }
+            count++;
+        }
+    }
+    return -1;
+}
+
+static inline s16 get_element_index_in_unk2_group(s16 index) {
+    Element elem;
+    s16 i;
+
+    get_element(&elem, index);
+    for (i = 0; ; i++) {
+        if (find_element_by_unk2(elem.unk_2, i) == index) {
+            return i;
+        }
+    }
+}
+
+s32 fn_1_F965C(s16 arg0) {
+    s32 ret = 0;
+    Element elem;
+    s16 group_idx;
+
+    get_element(&elem, arg0);
+    group_idx = get_element_index_in_unk2_group(arg0);
+
+    switch (elem.unk_2) {
+    case 0:
+        ret = fn_1_F9DC4(group_idx) ? 1 : 0;
+        break;
+    case 1:
+        ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4672], ((u8)group_idx + 0x11) & 0x1F, 31, 31) != 0;
+        break;
+    case 2:
+        ret = !fn_1_F210C(elem.unk_8);
+        break;
+    case 3:
+        ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4676], (32 - (group_idx * 2 + 1)) & 0x1F, 31, 31) != 0;
+        break;
+    }
+
+    return ret;
+}
+/* fzgx:end fn_1_F965C */
+
+/* fzgx:begin fn_1_F9888 */
+extern void fn_1_F9E10(u8 index);
+extern void ghost_set_record_flag1(s16 value);
+
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+} Element;
+
+typedef struct {
+    Element elements[44];
+} Table;
+
+extern Table lbl_1_rodata_6E38;
+extern void fn_80008BA8(void *dst, const void *src, u32 size);
+
+static inline void get_element(Element *dst, s16 index) {
+    Table table;
+    table = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &table.elements[index], 10);
+}
+
+static inline s16 find_element_by_unk2(s16 unk_2, s16 nth) {
+    Element elem;
+    s16 i;
+    s16 count;
+
+    i = 0;
+    count = 0;
+    for (; i < 44; i++) {
+        get_element(&elem, i);
+        if (elem.unk_2 == unk_2) {
+            if (count == nth) {
+                return i;
+            }
+            count++;
+        }
+    }
+    return -1;
+}
+
+static inline s16 get_element_index_in_unk2_group(s16 index) {
+    Element elem;
+    s16 i;
+
+    get_element(&elem, index);
+    for (i = 0; ; i++) {
+        if (find_element_by_unk2(elem.unk_2, i) == index) {
+            return i;
+        }
+    }
+}
+
+void fn_1_F9888(s16 arg0) {
+    Element elem;
+    s16 group_idx;
+
+    get_element(&elem, arg0);
+    group_idx = get_element_index_in_unk2_group(arg0);
+
+    switch (elem.unk_2) {
+    case 0:
+        fn_1_F9E10(group_idx);
+        break;
+    case 1:
+        {
+            u32 mask = 0x80000000 >> ((u8)group_idx + 16);
+            ((u32 *)&lbl_1_bss_7F0C0)[4672] &= ~mask;
+        }
+        break;
+    case 2:
+        ghost_set_record_flag1(elem.unk_8);
+        break;
+    case 3:
+        {
+            u32 mask = 0x80000000 >> (31 - (group_idx * 2 + 1));
+            ((u32 *)&lbl_1_bss_7F0C0)[4676] &= ~mask;
+        }
+        break;
+    }
+}
+/* fzgx:end fn_1_F9888 */
 
 /* fzgx:begin fn_1_F9C6C */
 void fn_1_F9C6C(void) {
