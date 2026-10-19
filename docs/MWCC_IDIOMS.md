@@ -3,6 +3,10 @@ file from what actually unblocked functions; keep each item one or two lines.
 
 ## Laws to apply first (probe-verified, 2026-09-15)
 
+- **Compound assignments affect induction lifetimes.** `a[n - 2] -= rhs` closed
+  `fn_1_F4F08`'s 39/340 register differences under GC/1.3.2. Contract only pure
+  repeated lvalues at the RHS root: `x = x - a + b` is not `x -= a + b`.
+
 - **Paired-single vectors**: `psq_l f, off(rN), 0, qr0` / `psq_st` / `ps_sub` / `ps_add` /
   `ps_muls0` / `ps_madds0` / `ps_merge00` in retail are inline-assembly helpers. Write
   `#include "psvec.h"` and call `psvec_sub(a, b, out)`, `psvec_add(a, b, out)`,

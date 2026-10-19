@@ -214,6 +214,57 @@ def hoists(body: str, name: str) -> List[Tuple[str, str]]:
     return out
 
 
+def compound_assignments(body: str, name: str) -> List[Tuple[str, str]]:
+    """Contract repeated pure lvalues without regrouping the RHS expression.
+
+    MWCC's compound-assignment lowering can give an induction variable a different
+    lifetime even when the emitted operations are otherwise identical.
+    """
+    from .sdkimport import masked
+    code = masked(body)
+    span = _function_body_span(code, name)
+    if not span or re.search(r'\bvolatile\b', code):
+        return []
+    directives = '\n'.join(re.findall(r'(?m)^[ \t]*#[^\n]*', code.replace('\\\n', '')))
+    if '##' in directives:
+        return []
+    macros = set(re.findall(r'(?m)^[ \t]*#\s*define\s+(\w+)', directives))
+    operations = []
+    commutations(code, name, operations)
+    roots = {(op['start'], op['end']): op for op in operations}
+    identifier = r'[A-Za-z_]\w*'
+    lvalue = identifier + r'(?:\s*(?:->|\.)\s*' + identifier + r'|\s*\[[^\[\]\n]+\])*'
+    changes = []
+    for m in re.finditer(r'(?m)^[ \t]+([^;{}\n]+?)\s*=\s*([^;{}\n]+);', code[span[1]:span[2]]):
+        lhs, rhs = m[1].strip(), m[2].strip()
+        if not re.fullmatch(lvalue, lhs) or re.search(r'\+\+|--|[=,?:]|\b\w+\s*\(', lhs):
+            continue
+        if macros.intersection(re.findall(identifier, lhs)):
+            continue
+        start, end = span[1] + m.start(1), span[1] + m.end()
+        if re.search(r'/[/*]', body[start:end]):
+            continue
+        rs = span[1] + m.start(2) + len(m[2]) - len(m[2].lstrip())
+        re_ = rs + len(rhs)
+        root = roots.get((rs, re_))
+        if not root or root['op'] not in ('+', '-', '*', '/', '%', '<<', '>>', '&', '|', '^'):
+            continue
+        a, b = root['left']
+        if TOKEN.findall(code[a:b]) != TOKEN.findall(lhs):
+            continue
+        a, b = root['right']
+        replacement = body[start:start + len(lhs)] + ' ' + root['op'] + '= ' + body[a:b] + ';'
+        changes.append((start, end, replacement, root['op']))
+    out = [('compound ' + op + ' at ' + str(start), body[:start] + text + body[end:])
+           for start, end, text, op in changes]
+    if len(changes) > 1:
+        text = body
+        for start, end, replacement, _ in reversed(changes):
+            text = text[:start] + replacement + text[end:]
+        out.append(('compound all repeated lvalues', text))
+    return out
+
+
 def through_local(body: str, name: str) -> List[Tuple[str, str]]:
     """`x = A op B;` where A is a load -> `x = A; x = x op B;` (the loaded value is the local's
     own register), and `if (p->f OP k)` -> `t = p->f; if (t OP k)` with a fresh local."""
@@ -765,7 +816,7 @@ def condition_embedded_assignments(body: str, name: str) -> List[Tuple[str, str]
 def rewrites(body: str, name: str) -> List[Tuple[str, str]]:
     """Every single second-stage rewrite of a body."""
     out: List[Tuple[str, str]] = []
-    for fn in (scope_moves, split_inits, hoists, through_local, return_values,
+    for fn in (scope_moves, split_inits, hoists, compound_assignments, through_local, return_values,
                call_results_to_locals, wrap_constant_pointers, decse_repeated_expressions,
                member_copy_states, scalar_carriers, unwrap_scalar_carriers, dead_uses, variable_splits, signedness_flips, mask_spellings,
                float_precision, embedded_call_assignments, condition_embedded_assignments):

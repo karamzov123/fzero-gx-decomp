@@ -103,6 +103,7 @@ def generate(p: Project, s: str, sym, path: Path, body: str, check, outdir: Path
     add('through', lambda: fixup_source.through_local(body, sym.name))
     add('splits', lambda: fixup_source.variable_splits(body, sym.name))
     add('membercopy', lambda: fixup_source.member_copy_states(body, sym.name))
+    add('compound', lambda: fixup_source.compound_assignments(body, sym.name))
     add('carriers', lambda: fixup_source.scalar_carriers(body, sym.name))
     add('unwrap', lambda: fixup_source.unwrap_scalar_carriers(body, sym.name))
     add('constptr', lambda: fixup_source.wrap_constant_pointers(body, sym.name))
