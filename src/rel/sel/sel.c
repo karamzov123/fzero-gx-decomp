@@ -103,6 +103,149 @@ void _epilog(u32 lab_unused0) {
 }
 /* fzgx:end _epilog */
 
+/* fzgx:begin fn_10_12D8 */
+#include "rel/sel/sel.h"
+
+struct State {
+    s16 current;
+    s16 previous;
+    u8 pad4[0x90];
+    u32 flags;
+    u8 pad98[0xC];
+    u8 *entries;
+    u8 padA8[0x81];
+    u8 active;
+};
+extern struct State lbl_1_bss_8B3A0;
+extern s16 lbl_1_bss_962;
+extern s16 lbl_1_bss_964;
+extern u8 *lbl_1_bss_6EAD0;
+extern void fn_1_435C(u32);
+extern s32 fn_1_3F8C(void *, void (*)(void), u32, u32);
+extern void fn_1_4A00(u32, u32, u32);
+extern u32 fn_8004CD70(u32, void *, u32);
+extern void fn_1_A176C(u32, u32);
+extern void fn_1_12F1E8(s32);
+extern void fn_10_E294(void);
+
+#pragma opt_strength_reduction off
+
+#pragma opt_dead_assignments off
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_10_bss_0[5];
+u32 fzgx_obj_lbl_10_bss_14;
+u16 fzgx_obj_lbl_10_bss_18;
+u16 fzgx_obj_lbl_10_bss_1A;
+u32 fzgx_obj_lbl_10_bss_1C[233];
+u32 fzgx_obj_lbl_10_bss_3C0[74736];
+u32 fzgx_obj_lbl_10_bss_49380;
+u32 fzgx_obj_lbl_10_bss_49384;
+u32 fzgx_obj_lbl_10_bss_49388;
+s16 fzgx_obj_lbl_10_bss_4938C;
+u8 fzgx_obj_lbl_10_bss_4938E;
+u8 fzgx_obj_lbl_10_bss_4938F;
+u32 fzgx_obj_lbl_10_bss_49390[4];
+u32 fzgx_obj_lbl_10_bss_493A0[5832];
+u32 fzgx_obj_lbl_10_bss_4EEC0[2592];
+u32 fzgx_obj_lbl_10_bss_51740;
+u32 fzgx_obj_lbl_10_bss_51744;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_10_bss_0[0];
+    s = fzgx_obj_lbl_10_bss_14;
+    s = fzgx_obj_lbl_10_bss_18;
+    s = fzgx_obj_lbl_10_bss_1A;
+    s = fzgx_obj_lbl_10_bss_1C[0];
+    s = fzgx_obj_lbl_10_bss_3C0[0];
+    s = fzgx_obj_lbl_10_bss_49380;
+    s = fzgx_obj_lbl_10_bss_49384;
+    s = fzgx_obj_lbl_10_bss_49388;
+    s = fzgx_obj_lbl_10_bss_4938C;
+    s = fzgx_obj_lbl_10_bss_4938E;
+    s = fzgx_obj_lbl_10_bss_4938F;
+    s = fzgx_obj_lbl_10_bss_49390[0];
+    s = fzgx_obj_lbl_10_bss_493A0[0];
+    s = fzgx_obj_lbl_10_bss_4EEC0[0];
+    s = fzgx_obj_lbl_10_bss_51740;
+    s = fzgx_obj_lbl_10_bss_51744;
+}
+#pragma section code_type ".text"
+
+void fn_10_12D8(void) {
+    u8 * fzgx_live;
+
+    struct State *state;
+    u32 high;
+    u32 flags;
+    u8 *entries;
+    s32 offset;
+    s16 result;
+    s16 value;
+    s16 finalValue;
+    s32 handle;
+    u8 *audio;
+    u32 finalAddress;
+    fn_1_435C(fzgx_obj_lbl_10_bss_49388);
+    fzgx_obj_lbl_10_bss_51740 = fn_1_3F8C(lbl_10_data_61C, fn_10_E294, 0, 8);
+    fn_1_4A00(1, (u8)fzgx_obj_lbl_10_bss_4938C, fzgx_obj_lbl_10_bss_49388);
+    audio = lbl_1_bss_6EAD0;
+    fzgx_obj_lbl_10_bss_51744 = 0;
+    if (audio != 0) {
+        if (*(u32 *)audio == 0) {
+            *(u32 *)lbl_1_bss_6EAD0 = fn_8004CD70(2, audio + 0x10, 0x25124);
+        }
+        if (*(u32 *)(lbl_1_bss_6EAD0 + 4) == 0) {
+            *(u32 *)(lbl_1_bss_6EAD0 + 4) = fn_8004CD70(2, lbl_1_bss_6EAD0 + 0x4A258, 0x25124);
+        }
+        fn_1_A176C(*(u32 *)lbl_1_bss_6EAD0, 45);
+    }
+    state = (struct State *)&lbl_1_bss_8B3A0;
+    flags = state->flags;
+    state->flags = flags & 0xFFBFFFFF;
+    if (0x40000000 & flags) {
+        entries = state->entries;
+        high = (lbl_1_bss_962 - 14) * 148;
+        offset = high;
+        value = *(s16 *)(entries + offset);
+        result = lbl_1_bss_962;
+        if (value < 9) {
+            result = 9;
+        } else {
+            result = 10;
+            if (value <= 10) result = value;
+        }
+        *(s16 *)(entries + offset) = result;
+    } else {
+        entries = state->entries;
+        offset = (lbl_1_bss_962 - 14) * 148;
+        if ((s16)*(s16 *)(entries + offset) < 0 || *(s16 *)(entries + offset) > 8) {
+            *(s16 *)(entries + offset) = 1;
+            switch (lbl_1_bss_964) {
+            case 12: *(s16 *)(entries + offset) = 7; break;
+            case 15: *(s16 *)(entries + offset) = 8; break;
+            case 3: *(s16 *)(entries + offset) = 6; break;
+            case 5: *(s16 *)(entries + offset) = 5; break;
+            case 9: *(s16 *)(entries + offset) = 4; break;
+            }
+        }
+    }
+    fzgx_obj_lbl_10_bss_14 = -1;
+    lbl_1_bss_8B3A0.current = -1;
+    lbl_1_bss_8B3A0.active = 1;
+    fn_1_12F1E8(360);
+    finalValue = lbl_1_bss_8B3A0.previous;
+    state->flags &= 0xFFFFFFFB;
+    if (finalValue != -1) {
+        fzgx_live = lbl_1_bss_8B3A0.entries;
+        finalAddress = (u32)fzgx_live + lbl_1_bss_962 * 148;
+        *(s16 *)((u8 *)finalAddress - 0x818) = finalValue;
+    }
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_10_12D8 */
+
 /* fzgx:begin fn_10_1F28 */
 extern s32 lbl_10_bss_51740;
 extern s32 lbl_10_bss_49388;
