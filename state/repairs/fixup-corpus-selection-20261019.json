@@ -1,0 +1,40 @@
+{
+  "format": "fzgx-investigation-v1",
+  "topic": "Frozen fixup corpus selection and branch-pair continuation",
+  "regression": {
+    "symbol": "fn_1_FE014",
+    "frozen_source_sha256": "752990d9ec57c871736cc2c12826e16450b14723d0d42c1daada2801700ae05a",
+    "incorrect_live_source_sha256": "1dc9f039409c0f3b00369e623c1f07ae0c32c3c39533bf79158a8c19c54c6c70",
+    "corrected_source_sha256": "752990d9ec57c871736cc2c12826e16450b14723d0d42c1daada2801700ae05a",
+    "compiler": "GC/1.3.2",
+    "flags": ""
+  },
+  "real_function_checks": {
+    "symbol_and_corpus_preserves_frozen_source_and_profile": true,
+    "valid_absent_symbol_filters_to_zero_records": true,
+    "explicit_body_overrides_corpus": true,
+    "qualified_symbol_selects_same_module_function": true,
+    "legacy_inputs_json_preserves_source_and_profile": true,
+    "modified_frozen_source_is_rejected_before_evaluation": true,
+    "ambiguous_bare_entrypoint_is_rejected_before_evaluation": true
+  },
+  "corpus_refresh": {
+    "functions": 151,
+    "compiler_failures": 0,
+    "purpose": "Triage only; selected sources rechecked under their saved profile before edits."
+  },
+  "verified_land": {
+    "symbol": "fn_1_1420E0",
+    "instruction_words": 62,
+    "bytes": 248,
+    "commit": "dcc4a146",
+    "repair": "Replace nested positive guards with a compound short-circuit early-return guard."
+  },
+  "portable_partial_archive": "state/repairs/branch-pair-natural-frontiers-20261019.json.gz",
+  "partial_archive_replayed_records": 5,
+  "limitations": [
+    "No partial frontier is an accepted function match.",
+    "Bounded stock-allocator repair searches did not close FE014; carrier-generated diagnostics were not integrated.",
+    "Historical inverted predicates and reducible-goto seeds were not submitted."
+  ]
+}

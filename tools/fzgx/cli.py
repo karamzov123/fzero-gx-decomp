@@ -769,7 +769,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("symbol")
     s = sub.add_parser('fixup', help='all deterministic repairs: saved corpus, one body, graph capture and verified integration'); s.set_defaults(fn=cmd_fixup)
     s.add_argument('symbol', nargs='?'); s.add_argument('--body', type=Path)
-    s.add_argument('--corpus', type=Path); s.add_argument('--output', type=Path)
+    s.add_argument('--corpus', type=Path, help='frozen corpus; symbol filters entries, explicit --body overrides'); s.add_argument('--output', type=Path)
     s.add_argument('--captures', type=Path, help='validated PCode/allocator evidence for selected seeds')
     s.add_argument('--capture', action='store_true', help='capture stock allocator evidence for --corpus into --output')
     s.add_argument('--replay', action='store_true', help='validate existing --capture output')

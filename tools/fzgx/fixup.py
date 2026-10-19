@@ -1122,7 +1122,7 @@ def load_records(engine,args):
         if clone_members is None and (args.module and sym.module!=args.module or args.max_size is not None and sym.size>args.max_size):
             return
         rows.append(engine.record(symbol,body,mw,flags,**metadata))
-    if args.symbol and (clone_members is None or args.body):
+    if args.symbol and (args.body or not args.corpus) and (clone_members is None or args.body):
         from . import api
         body=Path(args.body).read_text() if args.body else api._attempt_text(p,args.symbol)
         if body is None:
@@ -1131,12 +1131,17 @@ def load_records(engine,args):
         mw,flags=oracle.version_for(p,sym,Path(args.body) if args.body else p.work_path(args.symbol))
         add(args.symbol,body,mw,flags,label='saved-body')
     elif args.corpus:
+        selected = p.resolve(args.symbol) if args.symbol else None
+        if args.symbol and selected is None:
+            raise ValueError('unknown or ambiguous function: '+args.symbol)
         prepared=args.corpus/'prepared.json'
         if prepared.exists():
             inputs=json.loads(prepared.read_text())['records']
         else:
             inputs=[dict(r,symbol=s) for s,r in json.loads((args.corpus/'inputs.json').read_text()).items()]
         for r in inputs:
+            if selected is not None and p.resolve(r['symbol']) != selected:
+                continue
             if clone_members is not None and r['symbol'] not in clone_members:
                 continue
             body=Path(r['source']).read_text()

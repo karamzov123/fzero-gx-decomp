@@ -358,6 +358,12 @@ without row alignment (`retail - ours` net rows):
   helper from the section above, and the compound `||` guard with the shared
   `return` tail. The pairs survive because branch folding does not run across the
   materialised join label in either case.
+- `fn_1_1420E0` is another measured closure (62/62 instructions):
+  `if (flag >= 1) { if (bits & mask) { ... } }` folds the second guard into
+  `beq tail`. The equivalent early return
+  `if (flag < 1 || !(bits & mask)) return;` retains retail's `bne body; b tail`.
+  Keep the original value/mask calculations and compiler profile; this repair
+  needs neither a helper nor a code-generation carrier.
 - `#pragma opt_propagation off` was required for the landed `fn_1_426C` body: with
   propagation on, MWCC copies the loaded global into a fresh temporary
   (`lwz r5, ...; mr r31, r5`) instead of keeping the global load's web.
