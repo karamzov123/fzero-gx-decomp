@@ -13,3 +13,9 @@ step); declare callees with the real parameter types when the header makes them 
 line on what the function does; no hardcoded addresses; no inline asm. Write the improved source first.
 The harness accepts a fully matching rewrite automatically and ends the session; it preserves the
 original if a limit is reached. Use release(reason) only for an early technical diagnosis.
+Try several useful readability improvements while preserving the original exact body and
+compiler profile. A rejected rewrite is one failed approach, not a reason to quit immediately.
+Use cached diffs or native examples only when helpful; routine evidence forms are optional.
+Do not repeat identical rejected input or edit shared headers from this restricted worker.
+On a real blocker or tool stop, give a concise handoff. Readability proposals are not new
+verified-function credit.

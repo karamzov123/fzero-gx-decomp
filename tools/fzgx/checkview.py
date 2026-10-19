@@ -11,13 +11,16 @@ PAGE_LINES = 80
 
 
 def _identity(project, key):
-    from .api import _canonical_text, _compiler_options
+    from .api import _canonical_text, _compiler_options, _search_context_key
+    from types import SimpleNamespace
     work = project.work_path(key)
     unit = project.unit_of(project.resolve(key))
     body = work.read_text() if work.exists() else _canonical_text(project, unit) if unit else ''
     attempt = Ledger().current_attempt(key)
     options = _compiler_options(project, key)
     return dict(sha256=hashlib.sha256(body.encode()).hexdigest(),
+                compilation_context=_search_context_key(project, key, body, SimpleNamespace(
+                    mw_version=options.get('mw'), extra_cflags=options.get('flags'))),
                 attempt=attempt['id'] if attempt else None,
                 compiler={name: options.get(name) for name in ('mw', 'flags')})
 
@@ -71,15 +74,23 @@ def _page(payload, section, cursor):
 
 
 def read(project, key, section='diff', cursor=0):
+    if section in ('decision', 'witnesses'):
+        if cursor != 0:
+            return dict(ok=False, error='decision/witnesses are bounded summaries; cursor must be zero')
+        if section == 'witnesses':
+            from . import exemplars
+            return exemplars.witnesses(project, key)
+        from . import work_evidence
+        return work_evidence.packet(project, key)
     if section not in ('diff', 'data') or cursor < 0:
-        return dict(ok=False, error='section must be diff or data; cursor must be nonnegative')
+        return dict(ok=False, error='section must be diff, data, decision or witnesses; cursor must be nonnegative')
     path = _path(project, key)
     if not path.exists():
         return dict(ok=False, error='No cached check. Write or check the current source first.')
     payload = json.loads(path.read_text())
     payload['identity']['compiler'] = {name: payload['identity']['compiler'].get(name) for name in ('mw', 'flags')}
-    if payload['identity'] != _identity(project, key):
-        return dict(ok=False, error='Cached check belongs to different source, compiler or attempt. Check the current source first.')
+    if not payload['identity'].get('compilation_context') or payload['identity'] != _identity(project, key):
+        return dict(ok=False, error='Cached check belongs to different source, headers, compiler, target, tools or attempt. Check the current source first.')
     if not payload['result']['ok']:
         return payload['result']
     if cursor > len(payload[section]):

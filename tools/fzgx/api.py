@@ -217,7 +217,8 @@ def claim(p: Project, symbol: str, agent: str, ttl: int = DEFAULT_TTL,
     l = Ledger()
     if os.environ.get("FZGX_AGENT_ID", agent) != agent or os.environ.get("FZGX_SYMBOL", symbol) != symbol:
         return {"ok": False, "error": "use the function and agent identity assigned to this worker"}
-    if p.resolve(symbol) is None:
+    sym = p.resolve(symbol)
+    if sym is None:
         return {"ok": False, "error": f"unknown or ambiguous symbol {symbol!r} (use module:name for _prolog/_epilog)"}
     key = _key(p, symbol)
     worker = re.sub(r"(-(codex|claude)-\d+)-.*$", r"\1", agent)
@@ -230,10 +231,20 @@ def claim(p: Project, symbol: str, agent: str, ttl: int = DEFAULT_TTL,
     if prior:
         return {"ok": False, "error": "this worker already finished; it cannot reclaim the function",
                 "outcome": prior["outcome"], "checks": prior["checks"], "percent": prior["best_in_attempt"]}
-    seed = _seed_record(key)
+    seed: Dict[str, Any] = _seed_record(key)
     seed_body = None
     if os.environ.get('FZGX_SEEDS') and not seed:
         return {'ok': False, 'error': 'seeded batch has no candidate for this function'}
+    existing = l.get(key)
+    if not seed and existing and existing['status'] == 'unmatched' and not _is_shadow(agent):
+        # Unbound manual claims must not start at a placeholder when saved C exists.
+        # Resolve it before ownership changes or _discard_work removes old copies.
+        from .work_evidence import source_record
+        from .fixup_source import _function_body_span
+        saved = source_record(p, key)
+        if saved['path'] and saved['body'] and _function_body_span(saved['body'], sym.name):
+            seed = dict(kind='saved_source', path=saved['path'], source=saved['body'],
+                        sha256=saved['sha256'], mw=saved['mw'], flags=saved['flags'])
     if seed:
         if isinstance(seed.get('source'), str):
             seed_body = seed['source']
@@ -267,6 +278,10 @@ def claim(p: Project, symbol: str, agent: str, ttl: int = DEFAULT_TTL,
         best.write_text(seed_body)
         best.with_suffix('.json').write_text(json.dumps(dict(
             sha256=seed['sha256'], mw=seed.get('mw'), flags=seed.get('flags'))) + '\n')
+        attempt = l.current_attempt(key)
+        if attempt:
+            work.with_suffix('.compiler.json').write_text(json.dumps(dict(
+                attempt_id=attempt['id'], mw=seed.get('mw'), flags=seed.get('flags'), path=str(work))) + '\n')
     elif _is_revise(agent) and unit:
         work.write_text(_canonical_text(p, unit) or STUB.format(symbol=name, note="nothing to revise"))
     else:
@@ -483,9 +498,9 @@ def check(p: Project, symbol: str, max_diff_lines: int = 80, versions: Optional[
         return _finish_check(p, symbol, response, best[1] if best else None)
     res = oracle.check(p, symbol, max_diff_lines, source=src,
                        mw_version=options.get('mw'), extra_cflags=options.get('flags'))
+    stats = _record_check(p, key, src, res)
     checkview.save(p, key, res)
     out = res.to_json()
-    stats = _record_check(p, key, src, res)
     if src is not None:
         conflict = _prologue_conflict(p, key, unit) if res.ok and unit else None
         if conflict:
@@ -846,6 +861,12 @@ def release(p: Project, symbol: str, reason: str, harness: Optional[str] = None,
         return {"ok": False, "error": "not claimed"}
     if agent and row["claimed_by"] != agent:
         return {"ok": False, "error": f"claimed by {row['claimed_by']}, not {agent}"}
+    handoff = None
+    try:
+        from . import work_evidence
+        handoff = work_evidence.record_handoff(p, key, reason)
+    except (OSError, ValueError, KeyError) as error:
+        handoff = dict(recorded=False, error=str(error))
     shadow = _is_shadow(row["claimed_by"])
     body_path = None
     work = p.work_path(key)
@@ -906,6 +927,8 @@ def release(p: Project, symbol: str, reason: str, harness: Optional[str] = None,
     l.finish(key, "released", "unmatched", notes=reason, body_path=body_path, model=model,
              harness=harness, tokens_in=tokens_in, tokens_out=tokens_out, cost_usd=cost_usd, shadow=shadow)
     out = {"ok": True, "symbol": symbol, "saved": body_path}
+    if handoff is not None:
+        out['hypothesis_handoff'] = handoff
     if shadow:
         out["shadow"] = True
     else:
@@ -997,17 +1020,34 @@ def _search_context_key(p: Project, symbol: str, body: str, base):
         context_paths += list(p.config_dir.rglob('*.txt'))
         context_paths += list((ROOT / 'tools/fzgx').glob('*.py'))
         context_paths += [ROOT / 'configure.py', target]
+        fallback_mw, fallback_flags = oracle.version_for(p, sym)
+        base_mw = getattr(base, 'mw_version', None) or fallback_mw or mw
+        base_flags = getattr(base, 'extra_cflags', None)
+        if base_flags is None:
+            base_flags = fallback_flags
+        normalized_flags = list(base_flags) if isinstance(base_flags, (list, tuple)) else shlex.split(base_flags or '')
         return search_evidence.key_for(
             symbol=p.key(sym), source_sha=hashlib.sha256(body.encode()).hexdigest(),
             header_closure_sha=digest(headers), compiler_identity=digest(compiler_paths),
             flags={'module': shlex.split(flags), 'mw': mw, 'candidates': versions,
-                   'base_mw': getattr(base, 'mw_version', None),
-                   'base_flags': getattr(base, 'extra_cflags', None)},
+                   'base_mw': base_mw, 'base_flags': normalized_flags},
             context_sha=digest(context_paths),
             hypothesis_signature={'engine': _engine_id(), 'rounds': 12, 'beam': 6,
                                   'max_candidates': 600})
     except (OSError, ValueError, TypeError, KeyError):
         return None
+
+
+def _cached_search(p: Project, symbol: str, body: str, base) -> Optional[dict]:
+    """Return prior zero-yield evidence without consuming an attempt search slot."""
+    import math
+    from . import search_evidence
+    key = _search_context_key(p, symbol, body, base)
+    if key and search_evidence.eligible(search_evidence.read_record(STATE_DIR / 'search-evidence', key), key, math.ceil(SEARCH_S)):
+        score = max(base.percent, base.percent_adjusted or 0)
+        return dict(searched=True, quarantined=True, context_key=key, matched=False, base=score, best=score,
+                    variants=0, tried=0, secs=0, reason='identical zero-yield search evidence')
+    return None
 
 
 def _search_body(p: Project, symbol: str, body: str, base) -> dict:
@@ -1019,11 +1059,9 @@ def _search_body(p: Project, symbol: str, body: str, base) -> dict:
     from . import fixup, search_evidence
     key = _search_context_key(p, symbol, body, base)
     cache = STATE_DIR / 'search-evidence'
-    import math
-    if key and search_evidence.eligible(search_evidence.read_record(cache, key), key, math.ceil(SEARCH_S)):
-        score = max(base.percent, base.percent_adjusted or 0)
-        return dict(searched=True, quarantined=True, context_key=key, matched=False, base=score, best=score,
-                    variants=0, tried=0, secs=0, reason='identical zero-yield search evidence')
+    cached = _cached_search(p, symbol, body, base)
+    if cached:
+        return cached
     with contextlib.ExitStack() as stack:
         handles = [stack.enter_context((STATE_DIR / f'search-{i}.lock').open('w')) for i in range(max(1, SEARCH_SLOTS))]
         deadline = time.monotonic() + 4 * SEARCH_S
@@ -1127,8 +1165,6 @@ def search(p: Project, symbol: str, agent: str) -> Dict[str, Any]:
     except (OSError, ValueError):
         pass
     count = used.get('count', 0) if att and used.get('attempt') == att['id'] else 0
-    if count >= MAX_SEARCHES:
-        return dict(ok=False, error=f'search already used {MAX_SEARCHES} times in this attempt; continue with patch_unit')
     options = _compiler_options(p, key)
     base = oracle.check(p, symbol, 0, source=work, mw_version=options.get('mw'), extra_cflags=options.get('flags'))
     if not base.ok:
@@ -1136,6 +1172,14 @@ def search(p: Project, symbol: str, agent: str) -> Dict[str, Any]:
     if max(base.percent, base.percent_adjusted or 0) < SEARCH_MIN_PERCENT:
         return dict(ok=False, error=f'search needs a body at {SEARCH_MIN_PERCENT:.0f}% or better; '
                                     f'this one is at {base.percent:.1f}%. Fix structure first (missing or extra instructions, opcodes).')
+    cached = _cached_search(p, symbol, work.read_text(), base)
+    if cached:
+        return dict(ok=True, improved=False, cached=True, context_key=cached['context_key'],
+                    candidates=0, seconds=0, searches_left=max(0, MAX_SEARCHES - count),
+                    note='Identical zero-yield experiment reused; no search slot consumed. '
+                         'A new source/type/compiler hypothesis is required before retrying.')
+    if count >= MAX_SEARCHES:
+        return dict(ok=False, error=f'search already used {MAX_SEARCHES} times in this attempt; continue with patch_unit')
     counter.write_text(json.dumps(dict(attempt=att['id'] if att else None, count=count + 1)) + '\n')
     before = max(base.percent, base.percent_adjusted or 0)
     fx = _search_body(p, symbol, work.read_text(), base)

@@ -294,7 +294,17 @@ def verify(p: Project, message: Optional[str] = None) -> Dict[str, object]:
             for k in good:
                 l.db.execute("UPDATE functions SET link_state='verified', matched_commit=? WHERE symbol=?", (commit, k))
             journal.unlink(missing_ok=True)
+    evidence_queue = None
+    if good or bad or dependencies:
+        try:
+            from . import work_evidence
+            update = work_evidence.refresh(p)
+            evidence_queue = {key: update[key] for key in ('initialized', 'changed_files', 'newly_affected', 'pending')}
+        except (OSError, ValueError, KeyError) as error:
+            # Advisory triage must never manufacture or revoke hash acceptance.
+            evidence_queue = dict(error=str(error))
     return {"ok": True, "verified": good, "rejected": bad, "commit": commit,
+            "evidence_queue": evidence_queue,
             "fast_path": fast_path, "secs": round(time.time() - t0, 3)}
 
 

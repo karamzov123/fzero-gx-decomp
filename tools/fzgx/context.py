@@ -39,7 +39,8 @@ def _decl_for(sym: Symbol, project: Optional[Project] = None, called: bool = Fal
     if sym.kind == "function" or called:
         if project is not None:
             from .signatures import recovered
-            index = index or recovered(project)
+            if index is None:
+                index = recovered(project)
             sig = index.get(sym.module, sym.name, source)
             if sig:
                 note = ['// Register-flow estimate; confirm against the call sites.'] if 'register-flow' in sig.origin else []
@@ -230,6 +231,9 @@ def build_context(project: Project, ledger: Optional[Ledger], symbol: str,
         parts.append('- section: retail placed this function in `.init`; write `__declspec(section ".init")` before the '
                      "return type (the object oracle pairs nothing across sections, and the link needs it there)")
     parts.append(f"- compiler: `{mw}` `{flags}`" + (f" extra overrides: `{extra}`" if extra else ''))
+    parts.append('\nA failed experiment is not the end of the task. Try other explanations; '
+        'release only for a real blocker or a better target. Evidence tools and structured notes are optional; '
+        'spend calls on useful edits and compiler results, not routine bookkeeping.')
 
     parts.append("\n## Target assembly (retail)\n```asm")
     parts.extend(fn.asm)
@@ -279,6 +283,9 @@ def build_context(project: Project, ledger: Optional[Ledger], symbol: str,
                 shown_from_header.append(name)
                 continue
             source = f'{project.module_src_prefix(module)}/{tu_stem}.c' if tu_stem else None
+            if signature_index is None and (s.kind == 'function' or name in direct_calls):
+                from .signatures import recovered
+                signature_index = recovered(project)
             parts.append(_decl_for(s, project, name in direct_calls, source, signature_index))
         parts.append("```")
         if imported:

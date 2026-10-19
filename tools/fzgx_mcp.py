@@ -36,8 +36,10 @@ mcp = FastMCP("fzgx", instructions=(
     "F-Zero GX matching oracle. The runner supplies the assignment, C and initial diff. "
     "Edit and check; matches and attempt limits end the session automatically."
     if os.environ.get('FZGX_RESULT_FILE') else
-    "F-Zero GX matching-decompilation oracle. One function per agent: "
-    "claim -> context -> write_unit -> check -> submit | release."))
+    "F-Zero GX matching-decompilation oracle. Claim ownership before editing; "
+    "use saved C, compiler feedback and submit/release. Unbound contributors may "
+    "work through multiple functions sequentially: a failed idea or release is not "
+    "a session stop. Keep ownership and hash verification; evidence tools are optional."))
 
 
 def _cli(*args: str, as_json: bool = True, timeout: int = 900) -> str | dict | list:

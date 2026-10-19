@@ -239,7 +239,7 @@ class Elf:
         # the section symbol) can still reach this section.
         indices = {s['index'] for s in self.symbols() if s['shndx'] == ro['index']}
         if any((struct.unpack_from('>I', self.data, off + 4)[0] >> 8) in indices
-               for rs in self.sections if rs['type'] == SHT_RELA
+               for rs in self.sections if rs['type'] == SHT_RELA and rs['info'] != ro['index']
                for off in range(rs['offset'], rs['offset'] + rs['size'], 12)):
             return False
         for s in others:
@@ -250,6 +250,10 @@ class Elf:
         ro["addralign"] = 1
         ro["flags"] = 0
         self._write_shdr(ro)
+        for rs in self.sections:
+            if rs["type"] == SHT_RELA and rs["info"] == ro["index"]:
+                rs["size"] = 0
+                self._write_shdr(rs)
         return True
 
 

@@ -6202,6 +6202,84 @@ void fn_1_150650(void) {
 }
 /* fzgx:end fn_1_150650 */
 
+/* fzgx:begin fn_1_150654 noprologue */
+#include "types.h"
+#include "rel/main_rel/sel_static_disp.h"
+
+typedef struct {
+    s32 unk_0;
+    s32 unk_4;
+    s32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    f64 unk_18;
+} PoolCF40;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Vec3;
+
+typedef struct {
+    u8 pad[0x24];
+} Entry24;
+
+extern PoolCF40 lbl_1_rodata_CF40;
+extern u32 lbl_801A63C0;
+extern s16 fn_1_3F0C8(Obj_1_data_2A7E0 *);
+extern void fn_1_1507C4(Entry24 *, Vec3 *);
+
+#pragma opt_propagation off
+static inline s32 *fn_1_150654_array_read(s32 *array) { return array; }
+void fn_1_150654(void) {
+    s32 *counters;
+    s32 i;
+    Entry24 *entries;
+    s32 *base;
+    s32 x;
+
+    base = (s32 *)lbl_1_data_2A7E0.unk_3C;
+    if (fn_1_3F0C8(&lbl_1_data_2A7E0) == 40) {
+        return;
+    }
+
+    counters = base;
+
+    entries = (Entry24 *)lbl_1_bss_3BE0->unk_A8;
+    i = 0;
+    while (i < (s32)lbl_1_bss_3BE0->unk_A4) {
+        u32 n = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+
+{
+    u32 *seed = &lbl_801A63C0;
+        *seed = n;
+}
+        x = (n >> 16) & 0x7FFF;
+        if (x % 70 == 0) {
+            u32 m = n * 0x676A4B6B + 0x33CB;
+
+            lbl_801A63C0 = m;
+            x = (m >> 16) & 0x7FFF;
+            counters[1] = (s16)(20.0f + (f32)(10.0f * ((f32)x / 32767.0f)));
+        }
+        if (fn_1_150654_array_read(counters)[1] != 0) {
+            counters[1] = fn_1_150654_array_read(counters)[1] - 1;
+            {
+                Vec3 v = {0x00000000u, 0xBF800000u, 0x00000000u};
+
+                fn_1_1507C4(entries, &v);
+            }
+        }
+        counters = counters + 1;
+        i = i + 1;
+        entries = (Entry24 *)((u8 *)entries + 0x24);
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_150654 */
+
 /* fzgx:begin fn_1_150C8C */
 // Marks each static display entry active before updating it.
 void fn_1_150C8C(fn_1_150C8C_Object *obj) {

@@ -1,5 +1,16 @@
 # Fleet acceleration
 
+## Evidence-led agent workflow
+
+The existing `fzgx evidence` diagnostic surface is optional help for blocked work,
+not a mandatory preflight before more experiments:
+[`EVIDENCE_WORKFLOW.md`](EVIDENCE_WORKFLOW.md). It provides identity-pinned
+hypothesis handoffs, native instruction witnesses, shared blocker cohorts,
+dependency-aware recheck proposals, licensed donor compile reuse and conservative
+verified-yield reporting. Portable prompt: [`AGENT_PROMPT.md`](AGENT_PROMPT.md).
+No diagnostic queue or observation grants a claim, budget override or worker
+launch permission.
+
 ## Historical member-copy sweep and donor replay
 
 The native member-copy family and compiler-context-safe sweep are documented in

@@ -116,6 +116,42 @@ def cmd_sweep(a, p):
               a.families.split(',') if a.families else None, a.land, a.symbols or None, a.seeds, a.recover_membercopy)
 
 
+def cmd_evidence(a, p):
+    from . import work_evidence as w, exemplars
+    from .ledger import Ledger
+    if not 1 <= a.limit <= 200 or (a.module and a.module not in p.modules):
+        raise ValueError('limit must be 1..200; module must be a configured module')
+    if a.action in ('packet', 'witnesses', 'eligibility', 'record', 'acknowledge') and not a.symbol:
+        raise ValueError('this evidence action requires a symbol')
+    if a.action == 'packet':
+        result = w.packet(p, a.symbol, check=a.check, include_witnesses=a.witnesses)
+    elif a.action == 'witnesses':
+        result = exemplars.witnesses(p, a.symbol, a.pattern, a.limit, a.max_gap)
+    elif a.action == 'clusters':
+        result = w.clusters(p, a.module, a.limit)
+    elif a.action == 'refresh':
+        result = w.refresh(p, a.limit)
+    elif a.action == 'queue':
+        result = dict(queue=w.queue(p, a.limit))
+    elif a.action == 'acknowledge':
+        result = w.acknowledge(p, a.symbol)
+    elif a.action == 'eligibility':
+        result = w.eligibility(p, a.symbol)
+    elif a.action == 'yield':
+        result = w.yield_report(p, a.module)
+    elif a.action == 'donors':
+        result = w.donor_report(p)
+    else:
+        if a.agent:
+            row = Ledger().get(api._key(p, a.symbol))
+            if not row or row['status'] != 'claimed' or row['claimed_by'] != a.agent:
+                _print(dict(ok=False, error='hypothesis notes require your own live claim'), a.json)
+                return 2
+        result = w.record_hypothesis(p, a.symbol, a.hypothesis, a.prediction, a.observation, a.outcome, a.unlock)
+    _print(result, a.json)
+    return 0
+
+
 def cmd_tutruth(a, p):
     from . import finish, tutruth
     r = tutruth.resolve(p, a.tu, finish.Verifier(p), apply=not a.dry_run)
@@ -143,6 +179,9 @@ def cmd_check(a, p):
 
 def cmd_read_evidence(a, p):
     r = api.read_evidence(p, a.symbol, a.section, a.cursor)
+    if a.section in ('decision', 'witnesses'):
+        _print(r, a.json)
+        return 0 if r.get('ok', True) else 2
     _print(r if a.json else api.format_check(r), a.json)
     return 0 if r['ok'] else 2
 
@@ -616,7 +655,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("symbol"); s.add_argument("--budget-tokens", type=int, default=6000)
     s = sub.add_parser("read-unit", help="print a carved unit's source"); s.set_defaults(fn=cmd_read_unit); s.add_argument("symbol")
     s = sub.add_parser('read-evidence', help='read a cached diff or decoded retail data without compiling'); s.set_defaults(fn=cmd_read_evidence)
-    s.add_argument('symbol'); s.add_argument('--section', choices=('diff', 'data'), default='diff')
+    s.add_argument('symbol'); s.add_argument('--section', choices=('diff', 'data', 'decision', 'witnesses'), default='diff')
     s.add_argument('--cursor', type=int, default=0)
     s = sub.add_parser('levelscan', help='probe every function with a local body for a better -O level (reports only)'); s.set_defaults(fn=cmd_levelscan)
     s = sub.add_parser("levelrecheck",
@@ -755,6 +794,22 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--land", action="store_true")
     s.add_argument("--seeds", type=Path, help="frozen source hashes and compiler settings, as for stuck --seeds")
     s.add_argument("--recover-membercopy", action="store_true", help="select eligible historical bodies, freeze their contexts, then sweep the membercopy family")
+    s = sub.add_parser('evidence', help='read-only decision packets, instruction witnesses, structural cohorts, changed-input queues and verified yield; record stores observations only')
+    s.set_defaults(fn=cmd_evidence)
+    s.add_argument('action', choices=('packet', 'witnesses', 'clusters', 'refresh', 'queue', 'acknowledge', 'eligibility', 'record', 'yield', 'donors'))
+    s.add_argument('symbol', nargs='?')
+    s.add_argument('--module')
+    s.add_argument('--limit', type=int, default=10)
+    s.add_argument('--check', action='store_true', help='compile the actual selected source, without a claim or match credit')
+    s.add_argument('--witnesses', action='store_true')
+    s.add_argument('--pattern', help='1..4 semicolon-separated PPC instructions, with register reuse preserved')
+    s.add_argument('--max-gap', type=int, default=4)
+    s.add_argument('--agent')
+    s.add_argument('--hypothesis')
+    s.add_argument('--prediction')
+    s.add_argument('--observation')
+    s.add_argument('--outcome', choices=('tested', 'blocked', 'improved'), default='tested')
+    s.add_argument('--unlock', default='')
     s = sub.add_parser("tutruth", help="one truth per symbol for a TU file: candidate search with verified call-site adaptations; blocks that cannot follow stay self-contained"); s.set_defaults(fn=cmd_tutruth)
     s.add_argument("tu", help="e.g. rel/main_rel/font.c"); s.add_argument("--dry-run", action="store_true")
     s = sub.add_parser("uncarve", help="drop units that have no matched code (rejected, or every stub with --stubs); re-splits"); s.set_defaults(fn=cmd_uncarve)

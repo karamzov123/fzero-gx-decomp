@@ -677,10 +677,18 @@ class Project:
         return f"{module}/{source.rsplit('.', 1)[0]}"
 
     def objdiff_units(self) -> Dict[str, dict]:
+        """Read-only object metadata, parsed once per actual file version."""
         path = ROOT / "objdiff.json"
         if not path.exists():
             return {}
-        return {u["name"]: u for u in load_json_retry(path)["units"]}
+        stat = path.stat()
+        stamp = (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns)
+        cached = self.__dict__.get('_objdiff_units_cache')
+        if cached is None or cached[0] != stamp:
+            units = {u["name"]: u for u in load_json_retry(path)["units"]}
+            cached = (stamp, units)
+            self.__dict__['_objdiff_units_cache'] = cached
+        return cached[1]
 
     # ------------------------------------------------------------------ strings
     def string_at(self, module: str, name: str, max_len: int = 200) -> Optional[str]:

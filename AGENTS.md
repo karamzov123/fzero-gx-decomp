@@ -124,3 +124,16 @@ Before a manual compiler probe, assert that the intended source edit occurred an
 inspect existing pragmas that may override a newly inserted setting.
 Temporary reuse requires liveness through loop back edges; a variable's last
 textual occurrence, especially a `for` increment, does not prove it is dead.
+
+## Productive execution
+
+Manual contributors may investigate multiple functions/cohorts, improve tools and
+make coherent shared changes with serialized ownership and affected-function
+verification. The one-function restriction applies to runner-bound workers, not
+to an unbound user-directed session. A failed idea or released function is not a
+session stop: try other approaches or continue to a better target. Use supported
+process-local budgets when useful; do not change fleet/provider configuration.
+The `fzgx evidence` tools and structured notes are optional aids, not a required
+ritual before each edit. Prefer compiler-backed experiments and concise handoffs.
+Keep claims, natural-C requirements and the full hash gate intact. See
+`docs/AGENT_PROMPT.md` for the short execution-first prompt.
