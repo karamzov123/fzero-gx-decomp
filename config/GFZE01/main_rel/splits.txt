@@ -7853,3 +7853,6 @@ rel/main_rel/data/lbl_1_data_27E20.c:
 
 rel/main_rel/sel_static_disp/fn_1_1420E0.c:
 	.text       start:0x001420E0 end:0x001421D8 align:4
+
+rel/main_rel/live_camera/fn_1_1289C.c:
+	.text       start:0x0001289C end:0x00012B88 align:4
