@@ -1456,6 +1456,77 @@ void fn_10_472C(void) {
 }
 /* fzgx:end fn_10_472C */
 
+/* fzgx:begin fn_10_4790 */
+#include "rel/sel/sel.h"
+
+extern void fn_10_2228C(void);
+extern void fn_10_25E1C(void);
+extern u8 lbl_10_data_54C[8];
+extern void fn_1_435C(u32);
+extern s32 fn_1_3F8C(void *, void (*)(void), u32, u32);
+extern void fn_1_4A00(s32, u8, u32);
+extern u32 fn_1_15BB34(void *);
+extern u8 lbl_1_bss_8B3A0[];
+
+typedef struct {
+    u8 pad_0[0x14];
+    s32 unk_14;
+} SelBase;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_10_bss_0[5];
+u32 fzgx_obj_lbl_10_bss_14;
+u16 fzgx_obj_lbl_10_bss_18;
+u16 fzgx_obj_lbl_10_bss_1A;
+u32 fzgx_obj_lbl_10_bss_1C[233];
+u32 fzgx_obj_lbl_10_bss_3C0[74736];
+u32 fzgx_obj_lbl_10_bss_49380;
+u32 fzgx_obj_lbl_10_bss_49384;
+u32 fzgx_obj_lbl_10_bss_49388;
+s16 fzgx_obj_lbl_10_bss_4938C;
+u8 fzgx_obj_lbl_10_bss_4938E;
+u8 fzgx_obj_lbl_10_bss_4938F;
+u32 fzgx_obj_lbl_10_bss_49390[4];
+u32 fzgx_obj_lbl_10_bss_493A0[5832];
+u32 fzgx_obj_lbl_10_bss_4EEC0[2592];
+u32 fzgx_obj_lbl_10_bss_51740;
+u32 fzgx_obj_lbl_10_bss_51744;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_10_bss_0[0];
+    s = fzgx_obj_lbl_10_bss_14;
+    s = fzgx_obj_lbl_10_bss_18;
+    s = fzgx_obj_lbl_10_bss_1A;
+    s = fzgx_obj_lbl_10_bss_1C[0];
+    s = fzgx_obj_lbl_10_bss_3C0[0];
+    s = fzgx_obj_lbl_10_bss_49380;
+    s = fzgx_obj_lbl_10_bss_49384;
+    s = fzgx_obj_lbl_10_bss_49388;
+    s = fzgx_obj_lbl_10_bss_4938C;
+    s = fzgx_obj_lbl_10_bss_4938E;
+    s = fzgx_obj_lbl_10_bss_4938F;
+    s = fzgx_obj_lbl_10_bss_49390[0];
+    s = fzgx_obj_lbl_10_bss_493A0[0];
+    s = fzgx_obj_lbl_10_bss_4EEC0[0];
+    s = fzgx_obj_lbl_10_bss_51740;
+    s = fzgx_obj_lbl_10_bss_51744;
+}
+#pragma section code_type ".text"
+
+void fn_10_4790(void) {
+    fn_1_435C(fzgx_obj_lbl_10_bss_49388);
+    fzgx_obj_lbl_10_bss_51740 = fn_1_3F8C(lbl_10_data_694, fn_10_2228C, 0, 8);
+    fn_1_4A00(1, (u8)fzgx_obj_lbl_10_bss_4938C, fzgx_obj_lbl_10_bss_49388);
+    fzgx_obj_lbl_10_bss_51744 = 0;
+    fzgx_obj_lbl_10_bss_14 = -1;
+    fn_10_25E1C();
+    fn_1_15BB34(lbl_10_data_54C);
+    (*(u8 **)(lbl_1_bss_8B3A0 + 0xA4))[0x22] = 0;
+}
+/* fzgx:end fn_10_4790 */
+
 /* fzgx:begin fn_10_4838 */
 typedef struct {
     u32 unk_0;
@@ -2224,6 +2295,90 @@ void fn_10_82BC(void) {
 }
 /* fzgx:end fn_10_82BC */
 
+/* fzgx:begin fn_10_8314 */
+#include "rel/sel/sel.h"
+
+typedef struct SelWork {
+    u8 pad_0[0x14];
+    s32 unk_14;
+} SelWork;
+
+typedef struct SelState {
+    u8 pad_0[0x9E];
+    u8 unk_9E;
+    u8 pad_9F[0x129 - 0x9F];
+    u8 unk_129;
+} SelState;
+
+extern SelState lbl_1_bss_8B3A0;
+extern void fn_10_1B664(void);
+extern void fn_1_435C(u32 value);
+extern s32 fn_1_3F8C(void *, void (*)(void), u32, u32);
+extern void fn_1_12F1E8(s32 value);
+extern void fn_1_4A00(s32 value, u32 arg1, u32 arg2);
+extern u32 fn_10_25610(u32 arg0, u32 arg1, u32 arg2);
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_10_bss_0[5];
+u32 fzgx_obj_lbl_10_bss_14;
+u16 fzgx_obj_lbl_10_bss_18;
+u16 fzgx_obj_lbl_10_bss_1A;
+u32 fzgx_obj_lbl_10_bss_1C[233];
+u32 fzgx_obj_lbl_10_bss_3C0[74736];
+u32 fzgx_obj_lbl_10_bss_49380;
+u32 fzgx_obj_lbl_10_bss_49384;
+u32 fzgx_obj_lbl_10_bss_49388;
+s16 fzgx_obj_lbl_10_bss_4938C;
+u8 fzgx_obj_lbl_10_bss_4938E;
+u8 fzgx_obj_lbl_10_bss_4938F;
+u32 fzgx_obj_lbl_10_bss_49390[4];
+u32 fzgx_obj_lbl_10_bss_493A0[5832];
+u32 fzgx_obj_lbl_10_bss_4EEC0[2592];
+u32 fzgx_obj_lbl_10_bss_51740;
+u32 fzgx_obj_lbl_10_bss_51744;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_10_bss_0[0];
+    s = fzgx_obj_lbl_10_bss_14;
+    s = fzgx_obj_lbl_10_bss_18;
+    s = fzgx_obj_lbl_10_bss_1A;
+    s = fzgx_obj_lbl_10_bss_1C[0];
+    s = fzgx_obj_lbl_10_bss_3C0[0];
+    s = fzgx_obj_lbl_10_bss_49380;
+    s = fzgx_obj_lbl_10_bss_49384;
+    s = fzgx_obj_lbl_10_bss_49388;
+    s = fzgx_obj_lbl_10_bss_4938C;
+    s = fzgx_obj_lbl_10_bss_4938E;
+    s = fzgx_obj_lbl_10_bss_4938F;
+    s = fzgx_obj_lbl_10_bss_49390[0];
+    s = fzgx_obj_lbl_10_bss_493A0[0];
+    s = fzgx_obj_lbl_10_bss_4EEC0[0];
+    s = fzgx_obj_lbl_10_bss_51740;
+    s = fzgx_obj_lbl_10_bss_51744;
+}
+#pragma section code_type ".text"
+
+void fn_10_8314(void) {
+    SelState *state;
+    u32 arg0;
+    u32 arg1;
+
+    fn_1_435C(fzgx_obj_lbl_10_bss_49388);
+    fzgx_obj_lbl_10_bss_51740 = fn_1_3F8C(lbl_10_data_758, fn_10_1B664, 0, 8);
+    fn_1_12F1E8(3600);
+    fn_1_4A00(1, (u8)fzgx_obj_lbl_10_bss_4938C, fzgx_obj_lbl_10_bss_49388);
+    state = &lbl_1_bss_8B3A0;
+    fzgx_obj_lbl_10_bss_51744 = 0;
+    arg0 = fzgx_obj_lbl_10_bss_49384;
+    fzgx_obj_lbl_10_bss_14 = -1;
+    arg1 = fzgx_obj_lbl_10_bss_49388;
+    state->unk_129 = 1;
+    fn_10_25610(arg0, arg1, state->unk_9E);
+}
+/* fzgx:end fn_10_8314 */
+
 /* fzgx:begin fn_10_83C0 */
 typedef struct SelState {
     u8 pad_0[0x94];
@@ -2864,6 +3019,72 @@ void fn_10_8AAC(void) {
     }
 }
 /* fzgx:end fn_10_8AAC */
+
+/* fzgx:begin fn_10_8B0C */
+#include "rel/sel/sel.h"
+
+extern void fn_1_435C(u32);
+extern s32 fn_1_3F8C(void *, u32 (*)(void), u32, u32);
+extern u32 fn_10_1B2F4(void);
+extern void fn_1_4A00(s32, u8, u32);
+extern void fn_1_12F1E8(s32);
+extern void fn_1_A2D84(u32);
+typedef struct { u8 pad[0x94]; u32 flags; } SelGlobal;
+extern SelGlobal lbl_1_bss_8B3A0;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_10_bss_0[5];
+u32 fzgx_obj_lbl_10_bss_14;
+u16 fzgx_obj_lbl_10_bss_18;
+u16 fzgx_obj_lbl_10_bss_1A;
+u32 fzgx_obj_lbl_10_bss_1C[233];
+u32 fzgx_obj_lbl_10_bss_3C0[74736];
+u32 fzgx_obj_lbl_10_bss_49380;
+u32 fzgx_obj_lbl_10_bss_49384;
+u32 fzgx_obj_lbl_10_bss_49388;
+s16 fzgx_obj_lbl_10_bss_4938C;
+u8 fzgx_obj_lbl_10_bss_4938E;
+u8 fzgx_obj_lbl_10_bss_4938F;
+u32 fzgx_obj_lbl_10_bss_49390[4];
+u32 fzgx_obj_lbl_10_bss_493A0[5832];
+u32 fzgx_obj_lbl_10_bss_4EEC0[2592];
+u32 fzgx_obj_lbl_10_bss_51740;
+u32 fzgx_obj_lbl_10_bss_51744;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_10_bss_0[0];
+    s = fzgx_obj_lbl_10_bss_14;
+    s = fzgx_obj_lbl_10_bss_18;
+    s = fzgx_obj_lbl_10_bss_1A;
+    s = fzgx_obj_lbl_10_bss_1C[0];
+    s = fzgx_obj_lbl_10_bss_3C0[0];
+    s = fzgx_obj_lbl_10_bss_49380;
+    s = fzgx_obj_lbl_10_bss_49384;
+    s = fzgx_obj_lbl_10_bss_49388;
+    s = fzgx_obj_lbl_10_bss_4938C;
+    s = fzgx_obj_lbl_10_bss_4938E;
+    s = fzgx_obj_lbl_10_bss_4938F;
+    s = fzgx_obj_lbl_10_bss_49390[0];
+    s = fzgx_obj_lbl_10_bss_493A0[0];
+    s = fzgx_obj_lbl_10_bss_4EEC0[0];
+    s = fzgx_obj_lbl_10_bss_51740;
+    s = fzgx_obj_lbl_10_bss_51744;
+}
+#pragma section code_type ".text"
+
+void fn_10_8B0C(void) {
+    fn_1_435C(fzgx_obj_lbl_10_bss_49388);
+    fzgx_obj_lbl_10_bss_51740 = fn_1_3F8C(lbl_10_data_7A0, fn_10_1B2F4, 0, 8);
+    fn_1_4A00(1, (u8)fzgx_obj_lbl_10_bss_4938C, fzgx_obj_lbl_10_bss_49388);
+    fzgx_obj_lbl_10_bss_51744 = 0;
+    fzgx_obj_lbl_10_bss_14 = -1;
+    fn_1_12F1E8(0x1e0);
+    lbl_1_bss_8B3A0.flags |= 0x800;
+    fn_1_A2D84(0xa9121500);
+}
+/* fzgx:end fn_10_8B0C */
 
 /* fzgx:begin fn_10_8BB8 */
 struct S14 {
