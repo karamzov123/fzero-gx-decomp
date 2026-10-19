@@ -73066,6 +73066,18 @@
   },
   {
     "module": "sel",
+    "source": "rel/sel/sel/fn_10_8600.c",
+    "symbols": [
+      "fn_10_8600"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/sel/sel.c",
+    "pool": true
+  },
+  {
+    "module": "sel",
     "source": "rel/sel/sel/fn_10_8780.c",
     "symbols": [
       "fn_10_8780"
