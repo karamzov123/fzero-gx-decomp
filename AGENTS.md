@@ -124,3 +124,18 @@ Before a manual compiler probe, assert that the intended source edit occurred an
 inspect existing pragmas that may override a newly inserted setting.
 Temporary reuse requires liveness through loop back edges; a variable's last
 textual occurrence, especially a `for` increment, does not prove it is dead.
+
+## Evidence-led work
+
+The existing CLI exposes `fzgx evidence` for decision packets, native instruction
+witnesses, shared-callee/object/TU cohorts, changed-input recheck queues, donor
+provenance and conservative verified yield. See `docs/EVIDENCE_WORKFLOW.md` and
+`docs/AGENT_PROMPT.md`. New contexts include the decision contract automatically;
+restricted matchers use existing `read_evidence` sections `decision`/`witnesses`.
+Before another edit, state a falsifiable hypothesis and predicted instruction
+change; inspect the actual result and do not repeat exhausted unchanged input.
+Use HYPOTHESIS:, PREDICTION:, OBSERVATION:, and UNLOCK: lines in release reasons.
+These observations and queues grant no match credit, claim/cap override, shared-
+file ownership or permission to launch agents. Only the existing verifier grants
+linked acceptance. External input changes are detected with `evidence refresh`;
+the verifier also refreshes proposals after actual acceptance/rejection changes.
