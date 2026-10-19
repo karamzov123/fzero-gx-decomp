@@ -312,3 +312,30 @@ without row alignment (`retail - ours` net rows):
   DAG, not closable by flags (`-O3` disables scheduling entirely).
 - No other retail-only opcode family above 40 functions exists; the rest of the
   residuals are register allocation, frame layout and control-flow shape.
+
+## Inlined-helper returns and the `cond; b target` branch pair (2026-10-19, fn_1_14F608)
+
+- Retail's `cmp; bne +8; b <tail>` (a conditional branch whose taken path is a
+  one-instruction unconditional jump to a shared tail) is the codegen of an
+  **inlined helper's `return`**, not of a `goto`/`break` in the caller: the
+  helper's `return expr` lowers to a jump to the caller's join block and the
+  condition is emitted branch-over-branch because branch folding does not run
+  across the inline boundary. ~113 sites across all modules carry the pair;
+  matched exemplars: `fn_1_14F608` (landed 100% this way), `fn_12_2396C`'s
+  inlined `find_start` (`if (fn_12_67A4(p) == 0x10000) return p;`) and
+  `fn_8006A768`'s one-level self-recursion inline.
+- Consequence: when a near-match differs **only** on such a pair (ours
+  `beq <tail>` where retail has `bne +8; b <tail>`, all other words identical
+  modulo the shift), stop searching loop spellings — `for`/`while`/`do`,
+  `!=`+`continue`, empty then-arm, `-opt` levels and pragmas all fold to `beq`
+  (measured: the branch shape is invariant for every spelling tried on
+  `fn_1_14F608`). Move the search loop into a `static inline` helper and let its
+  `return` feed the caller's tail.
+- Keep the helper's result **inside the call expression**
+  (`return base + find_ordinal(table, (s16)arg0) * 0xb4;`). Binding it to a
+  local first (`index = find_ordinal(...); return base + index * 0xb4;`) keeps
+  the branch pair but swaps the value/index registers and adds an `extsh`
+  (measured 86.67% vs 100% on the same body).
+- The helper must be `static inline` **in the unit**; a plain extern call in a
+  separately compiled unit cannot be inlined by the oracle, so the body must
+  carry the definition for `write-unit`/`check` to reproduce the inline.
