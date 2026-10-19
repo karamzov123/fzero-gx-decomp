@@ -68,11 +68,18 @@ extern Obj_1_bss_84 lbl_1_bss_84;
 // lbl_1_data_2B144: .data size 0x18, 2 refs from burner.c (own data block)
 extern u8 lbl_1_data_2B144[0x18];
 
+// fn_1_13EE60 copies 0xB4-byte records for the 41 built-in machine indices.
+// Each name field is independently bound by a retail ADDR32 relocation.
+typedef struct {
+    const char *name;
+    f32 unk_4;  // 2 loads, 0 stores
+    u8 fields_8[0xAC];  // Remaining field types are not yet recovered.
+} MachineParameterRecord;
+
 // lbl_1_data_28060: .data size 0x2060, 2 refs from burner.c (own data block)
 typedef struct {
-    u8 pad_0[0x4];
-    f32 unk_4;  // 2 loads, 0 stores
-    u8 pad_8[0x2058];
+    MachineParameterRecord entries[41];
+    u8 tail_1CD4[0x38C];  // Measured zero-filled storage, not compiler padding.
 } Obj_1_data_28060;
 extern Obj_1_data_28060 lbl_1_data_28060;
 

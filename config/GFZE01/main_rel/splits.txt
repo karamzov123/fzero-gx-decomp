@@ -7844,3 +7844,9 @@ rel/main_rel/data/lbl_1_data_341B8.c:
 
 rel/main_rel/data/lbl_1_data_1CC68.c:
 	.data       start:0x0001CC68 end:0x0001CC78 align:8
+
+rel/main_rel/data/lbl_1_data_28060.c:
+	.data       start:0x00028060 end:0x0002A0C0 align:8
+
+rel/main_rel/data/lbl_1_data_27E20.c:
+	.data       start:0x00027E20 end:0x00028058 align:8
