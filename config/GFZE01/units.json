@@ -74853,7 +74853,7 @@
     "symbols": [
       "fn_8_FC5C"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/title/operation.c"
