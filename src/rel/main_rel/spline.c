@@ -1505,6 +1505,87 @@ s32 fn_1_F9244(s16 arg0) {
 }
 /* fzgx:end fn_1_F9244 */
 
+/* fzgx:begin fn_1_F946C */
+extern void fn_1_F9CD0(s32 arg0, u8 arg1);
+extern void ghost_set_record_flag2(s16 value);
+
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+} Element;
+
+typedef struct {
+    Element elements[44];
+} Table;
+
+extern Table lbl_1_rodata_6E38;
+extern void fn_80008BA8(void *dst, const void *src, u32 size);
+
+static inline void get_element(Element *dst, s16 index) {
+    Table table;
+    table = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &table.elements[index], 10);
+}
+
+static inline s16 find_element_by_unk2(s16 unk_2, s16 nth) {
+    Element elem;
+    s16 i;
+    s16 count;
+
+    i = 0;
+    count = 0;
+    for (; i < 44; i++) {
+        get_element(&elem, i);
+        if (elem.unk_2 == unk_2) {
+            if (count == nth) {
+                return i;
+            }
+            count++;
+        }
+    }
+    return -1;
+}
+
+static inline s16 get_element_index_in_unk2_group(s16 index) {
+    Element elem;
+    s16 i;
+
+    get_element(&elem, index);
+    for (i = 0; ; i++) {
+        if (find_element_by_unk2(elem.unk_2, i) == index) {
+            return i;
+        }
+    }
+}
+
+void fn_1_F946C(s16 arg0) {
+    Element elem;
+    s16 group_idx;
+
+    get_element(&elem, arg0);
+    group_idx = get_element_index_in_unk2_group(arg0);
+
+    switch (elem.unk_2) {
+    case 0:
+        fn_1_F9CD0(0, group_idx);
+        break;
+    case 1:
+        ((u32 *)&lbl_1_bss_7F0C0)[4672] |= 0x80000000 >> (u8)group_idx;
+        break;
+    case 2:
+        ghost_set_record_flag2(elem.unk_8);
+        break;
+    case 3:
+        ((u32 *)&lbl_1_bss_7F0C0)[4677] |= 0x80000000 >> (31 - group_idx);
+        break;
+    }
+}
+/* fzgx:end fn_1_F946C */
+
 /* fzgx:begin fn_1_F965C */
 extern s32 fn_1_F9DC4(u8 index);
 extern s32 fn_1_F210C(s16 value);
@@ -1587,6 +1668,93 @@ s32 fn_1_F965C(s16 arg0) {
     return ret;
 }
 /* fzgx:end fn_1_F965C */
+
+/* fzgx:begin fn_1_F9888 */
+extern void fn_1_F9E10(u8 index);
+extern void ghost_set_record_flag1(s16 value);
+
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+} Element;
+
+typedef struct {
+    Element elements[44];
+} Table;
+
+extern Table lbl_1_rodata_6E38;
+extern void fn_80008BA8(void *dst, const void *src, u32 size);
+
+static inline void get_element(Element *dst, s16 index) {
+    Table table;
+    table = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &table.elements[index], 10);
+}
+
+static inline s16 find_element_by_unk2(s16 unk_2, s16 nth) {
+    Element elem;
+    s16 i;
+    s16 count;
+
+    i = 0;
+    count = 0;
+    for (; i < 44; i++) {
+        get_element(&elem, i);
+        if (elem.unk_2 == unk_2) {
+            if (count == nth) {
+                return i;
+            }
+            count++;
+        }
+    }
+    return -1;
+}
+
+static inline s16 get_element_index_in_unk2_group(s16 index) {
+    Element elem;
+    s16 i;
+
+    get_element(&elem, index);
+    for (i = 0; ; i++) {
+        if (find_element_by_unk2(elem.unk_2, i) == index) {
+            return i;
+        }
+    }
+}
+
+void fn_1_F9888(s16 arg0) {
+    Element elem;
+    s16 group_idx;
+
+    get_element(&elem, arg0);
+    group_idx = get_element_index_in_unk2_group(arg0);
+
+    switch (elem.unk_2) {
+    case 0:
+        fn_1_F9E10(group_idx);
+        break;
+    case 1:
+        {
+            u32 mask = 0x80000000 >> ((u8)group_idx + 16);
+            ((u32 *)&lbl_1_bss_7F0C0)[4672] &= ~mask;
+        }
+        break;
+    case 2:
+        ghost_set_record_flag1(elem.unk_8);
+        break;
+    case 3:
+        {
+            u32 mask = 0x80000000 >> (31 - (group_idx * 2 + 1));
+            ((u32 *)&lbl_1_bss_7F0C0)[4676] &= ~mask;
+        }
+        break;
+    }
+}
+/* fzgx:end fn_1_F9888 */
 
 /* fzgx:begin fn_1_F9C6C */
 void fn_1_F9C6C(void) {

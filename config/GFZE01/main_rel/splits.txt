@@ -7859,3 +7859,9 @@ rel/main_rel/live_camera/fn_1_1289C.c:
 
 rel/main_rel/bg_aur/fn_1_152208.c:
 	.text       start:0x00152208 end:0x00152510 align:4
+
+rel/main_rel/spline/fn_1_F946C.c:
+	.text       start:0x000F946C end:0x000F965C align:4
+
+rel/main_rel/spline/fn_1_F9888.c:
+	.text       start:0x000F9888 end:0x000F9A80 align:4

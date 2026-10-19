@@ -59416,12 +59416,34 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/spline/fn_1_F946C.c",
+    "symbols": [
+      "fn_1_F946C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/spline.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/spline/fn_1_F965C.c",
     "symbols": [
       "fn_1_F965C"
     ],
     "status": "matching",
     "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/spline.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/spline/fn_1_F9888.c",
+    "symbols": [
+      "fn_1_F9888"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/spline.c"
   },
