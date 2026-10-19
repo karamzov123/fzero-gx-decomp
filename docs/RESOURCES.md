@@ -56,6 +56,17 @@ under `src/rel/movie_module/` and `include/sofdec/`.
 - gc-forever and gamemasterplc code threads — memory addresses and their meanings for GFZE01.
 - [The Cutting Room Floor: F-Zero GX](https://tcrf.net/F-Zero_GX) — leftover debug material.
 
+## Member-copy acceleration and refreshed library imports
+
+The 40-function / 25,692-byte verified native-C harvest and its tooling are
+recorded in [`findings/hermes-membercopy-acceleration-20261018.md`](findings/hermes-membercopy-acceleration-20261018.md).
+The 39 new SDK/CRI/Sofdec imports use the CC0 MK Deception sources at
+`33b1e0082c7630ee4f20b828559966872ae670e1`; per-function source hashes, compiler
+settings, bindings and license provenance are in `state/sdkimports/sourcealign.json`.
+The paired member-copy source rule derives from local findings 371 and 376.
+Historical import provenance remains pinned and was not refreshed from the donor
+checkout as part of this batch.
+
 ## Community
 
 - [GC/Wii Decompilation Discord](https://discord.gg/hKx3FJJgrV), `#dtk`.

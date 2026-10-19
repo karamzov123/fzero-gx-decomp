@@ -1,4 +1,25 @@
-# Fleet acceleration evidence and operating policy
+# Fleet acceleration
+
+## Historical member-copy sweep and donor replay
+
+The native member-copy family and compiler-context-safe sweep are documented in
+[`findings/hermes-membercopy-acceleration-20261018.md`](findings/hermes-membercopy-acceleration-20261018.md).
+Run the existing engine, not a separate repair runner:
+
+```sh
+.venv/bin/python tools/fzgx.py sweep --recover-membercopy --min-percent 0 \
+  --rounds 2 --output .fzgx/work/membercopy-run
+```
+
+This freezes eligible historical sources, compiler versions and flags; `--seeds`
+replays the selection. Review `coverage.json`, `errors.json`, and `report.json`.
+`--land` submits exact candidates or saves improvements without starting another
+full repair; `fzgx verify` is still required for hash-accepted progress. The first
+pass plus refreshed licensed SDK imports gained 40 natural-C functions / 25,692
+bytes. The new repair family alone did not produce an exact match: its strongest
+lead required correcting the callback record's obsolete padding.
+
+## Earlier fleet measurements
 
 This is a measured trial, not a claim that a model or larger fleet is superior.
 

@@ -461,6 +461,70 @@ def scalar_carriers(body: str, name: str) -> List[Tuple[str, str]]:
     return out
 
 
+def member_copy_states(body: str, name: str) -> List[Tuple[str, str]]:
+    """Group copied 32-bit locals into real aggregate state (findings 371/376).
+
+    MWCC promotes member copies differently from scalar constant rematerialization.
+    Keep every statement and use in place; never invent a copy or move a store.
+    Signed long/int have the same target representation, but `int` members avoid
+    the measured signed-long second-member promotion failure. Exclude escaped,
+    shadowed and qualified locals: those substitutions need a type/alias proof.
+    """
+    from .sdkimport import masked
+    anchor = _decl_anchor(body, name)
+    if not anchor:
+        return []
+    span, locs, top, indent = anchor
+    code = masked(body)
+    inner = code[top:span[2]]
+    types = {'s32': 'int', 'long': 'int', 'signed long': 'int',
+             'int': 'int', 'signed int': 'int',
+             'u32': 'unsigned int', 'unsigned long': 'unsigned int',
+             'unsigned': 'unsigned int', 'unsigned int': 'unsigned int'}
+    eligible = {}
+    for start, end, typ, nm, dims in locs:
+        if dims or typ.strip() not in types or _init_of(body[start:end]):
+            continue
+        # Address/sizeof/typeof use or a nested declaration can observe the
+        # changed C type/object identity. Preprocessor uses are not parsed here.
+        if re.search(r'&\s*\b' + re.escape(nm) + r'\b|\b(?:sizeof|typeof)\s*\(?\s*' + re.escape(nm) + r'\b', code[span[1]:span[2]]):
+            continue
+        if re.search(r'\b(?!(?:return|goto|case)\b)' + TYPE + r'\s+' + re.escape(nm) + r'\s*(?:[;=,\[])', inner):
+            continue
+        if re.search(r'(?m)^\s*#.*\b' + re.escape(nm) + r'\b', code):
+            continue
+        eligible[nm] = (start, end, types[typ.strip()])
+    pairs = []
+    for match in re.finditer(r'(?m)^\s*(\w+)\s*=\s*(\w+)\s*;', inner):
+        dest, src = match.groups()
+        if dest != src and dest in eligible and src in eligible and (src, dest) not in pairs:
+            pairs.append((src, dest))
+    out = []
+    for src, dest in pairs:
+        state = 'fzgx_copy_state'
+        while re.search(r'\b' + state + r'\b', code):
+            state += '_'
+        members = (src, dest)
+        edits = [(eligible[nm][0], eligible[nm][1], '') for nm in members]
+        first = min(eligible[nm][0] for nm in members)
+        definition = indent + 'struct { ' + ' '.join(
+            eligible[nm][2] + ' ' + nm + ';' for nm in members) + ' } ' + state + ';\n'
+        for i, (start, end, text) in enumerate(edits):
+            if start == first:
+                edits[i] = (start, end, definition)
+        for match in re.finditer(r'\b(?:' + '|'.join(map(re.escape, members)) + r')\b', inner):
+            start, end = top + match.start(), top + match.end()
+            prefix = code[top:start].rstrip()
+            if prefix.endswith(('.', '->')):
+                continue
+            edits.append((start, end, state + '.' + match[0]))
+        text = body
+        for start, end, replacement in sorted(edits, reverse=True):
+            text = text[:start] + replacement + text[end:]
+        out.append((f'member-copy state {src}->{dest}', text))
+    return out
+
+
 def dead_uses(body: str, name: str) -> List[Tuple[str, str]]:
     """`(void) x;` after a definition: a statement-level use that keeps the value's web
     where the definition put it (no code is emitted)."""
@@ -644,7 +708,7 @@ def rewrites(body: str, name: str) -> List[Tuple[str, str]]:
     out: List[Tuple[str, str]] = []
     for fn in (scope_moves, split_inits, hoists, through_local, return_values,
                call_results_to_locals, wrap_constant_pointers, decse_repeated_expressions,
-               scalar_carriers, dead_uses, variable_splits, signedness_flips, mask_spellings,
+               member_copy_states, scalar_carriers, dead_uses, variable_splits, signedness_flips, mask_spellings,
                float_precision, embedded_call_assignments, condition_embedded_assignments):
         try:
             out += fn(body, name)

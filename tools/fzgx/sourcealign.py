@@ -851,14 +851,14 @@ def submit_saved(p: Project, symbols=()) -> dict:
             manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
         else:
             failed.append(dict(symbol=symbol, error=submitted))
-    for result in manifest.values():
-        result['license'] = source_license(result['sdk'])
+    # Historical provenance is pinned to its imported source revision/license.
+    # Do not rewrite it from a newer (or absent) checkout, and do not let an
+    # unrelated legacy donor fail a batch after its new imports were submitted.
+    for symbol in accepted:
+        result = manifest[symbol]
         root = ROOT / 'build/tools' / result['sdk']
         result['repository'] = subprocess.run(['git', '-C', str(root), 'remote', 'get-url', 'origin'],
                                                text=True, capture_output=True, check=True).stdout.strip()
-        license_path = ROOT / 'state/sdkimports/licenses' / (result['sdk'] + '.txt')
-        license_path.parent.mkdir(parents=True, exist_ok=True)
-        license_path.write_bytes((root / result['license']['path']).read_bytes())
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
     return dict(accepted=accepted, failed=failed)
 

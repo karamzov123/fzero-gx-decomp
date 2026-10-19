@@ -113,7 +113,7 @@ def cmd_stuck(a, p):
 def cmd_sweep(a, p):
     from . import sweep
     sweep.run(p, a.min_percent, a.max_percent, a.output, a.rounds,
-              a.families.split(',') if a.families else None, a.land, a.symbols or None)
+              a.families.split(',') if a.families else None, a.land, a.symbols or None, a.seeds, a.recover_membercopy)
 
 
 def cmd_tutruth(a, p):
@@ -753,6 +753,8 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("symbols", nargs="*"); s.add_argument("--min-percent", type=float, default=90.0); s.add_argument("--max-percent", type=float, default=100.0)
     s.add_argument("--rounds", type=int, default=4); s.add_argument("--output", type=Path); s.add_argument("--families", help="comma-separated family names (default: all)")
     s.add_argument("--land", action="store_true")
+    s.add_argument("--seeds", type=Path, help="frozen source hashes and compiler settings, as for stuck --seeds")
+    s.add_argument("--recover-membercopy", action="store_true", help="select eligible historical bodies, freeze their contexts, then sweep the membercopy family")
     s = sub.add_parser("tutruth", help="one truth per symbol for a TU file: candidate search with verified call-site adaptations; blocks that cannot follow stay self-contained"); s.set_defaults(fn=cmd_tutruth)
     s.add_argument("tu", help="e.g. rel/main_rel/font.c"); s.add_argument("--dry-run", action="store_true")
     s = sub.add_parser("uncarve", help="drop units that have no matched code (rejected, or every stub with --stubs); re-splits"); s.set_defaults(fn=cmd_uncarve)
