@@ -6004,6 +6004,50 @@ void fn_1_14F46C(DisplayState *state) {
 }
 /* fzgx:end fn_1_14F46C */
 
+/* fzgx:begin fn_1_14F608 noprologue */
+#include "types.h"
+
+extern s16 fn_1_14F01C(void *arg);
+extern s16 fn_1_14F090(void *table, s16 index);
+extern void *fn_1_14F344(void *self);
+
+// Index of the first table entry matching value, or -1 when absent.
+static inline s16 find_ordinal(void *table, s16 value) {
+    s16 index;
+
+    for (index = 0; index < fn_1_14F01C(table); index++) {
+        if (fn_1_14F090(table, index) == value) {
+            return index;
+        }
+    }
+    return -1;
+}
+
+u8 *fn_1_14F608(void *arg0) {
+    u8 *base;
+    void *table;
+
+    table = fn_1_14F344(arg0);
+
+    switch ((s16)table) {
+    case 0:
+        base = (u8 *)0x23801F04; /* fzgx-allow: A2 table base literal matches retail */
+        break;
+    case 1:
+        base = (u8 *)0x23803098; /* fzgx-allow: A2 table base literal matches retail */
+        break;
+    case 2:
+        base = (u8 *)0x2380422C; /* fzgx-allow: A2 table base literal matches retail */
+        break;
+    default:
+        base = (u8 *)0x23801F04; /* fzgx-allow: A2 table base literal matches retail */
+        break;
+    }
+
+    return base + find_ordinal(table, (s16)arg0) * 0xb4;
+}
+/* fzgx:end fn_1_14F608 */
+
 /* fzgx:begin fn_1_14FC80 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
