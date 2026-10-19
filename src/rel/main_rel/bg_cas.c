@@ -1219,6 +1219,76 @@ void fn_1_FE640(void) {
 }
 /* fzgx:end fn_1_FE640 */
 
+/* fzgx:begin fn_1_FE644 pool */
+extern void fn_1_9AD54(void);
+extern void fn_1_FFE7C(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_FED34(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_9A7A8(void *);
+
+static const f32 fzgx_zero[1] = {0.0f};
+static const u32 fzgx_color[1] = {0};
+static const f32 fzgx_one[1] = {1.0f};
+
+typedef struct {
+    u8 pad_0[0x1B1E4];
+    s16 unk_1B1E4;
+} Obj_1_data_2A7E0_At3C_Ext;
+
+typedef union {
+    u32 unk_0;
+    struct {
+        u8 unk_0;
+        u8 unk_1;
+        u8 unk_2;
+    } unk_4;
+} Obj_1_FE644_Pack;
+
+typedef struct {
+    Obj_1_FE644_Pack unk_0;
+    u32 unk_4;
+} Obj_1_FE644_Out;
+
+#pragma opt_propagation off
+void fn_1_FE644(void) {
+    Obj_1_data_2A7E0_At3C_Ext *ext;
+    u32 *fzgx_value;
+    Obj_1_data_2A7E0_At3C *obj;
+    Obj_1_FE644_Out out;
+    struct { f32 value; } f;
+    f32 t;
+
+    obj = lbl_1_data_2A7E0.unk_3C;
+    ext = (Obj_1_data_2A7E0_At3C_Ext *)obj;
+    fn_1_9AD54();
+    if ((s32)obj->unk_10 != 0) {
+        fn_1_FFE7C(obj);
+    }
+    fn_1_FED34(obj);
+    f.value = fzgx_zero[0];
+    if (ext->unk_1B1E4 < 0x1E78) {
+        ext->unk_1B1E4++;
+    }
+    if (ext->unk_1B1E4 > 0x4B0) {
+        t = (f32)(s16)(ext->unk_1B1E4 - 0x4B0) / 6600.0f;
+        if (t < fzgx_zero[0]) {
+            f.value = fzgx_zero[0];
+        } else if (t > fzgx_one[0]) {
+            f.value = fzgx_one[0];
+        } else {
+            f.value = t;
+        }
+    }
+    out.unk_0.unk_0 = fzgx_color[0];
+    out.unk_0.unk_4.unk_0 = (u8)(s32)(110.0f * f.value);
+    out.unk_0.unk_4.unk_1 = (u8)(s32)(60.0f * f.value);
+    out.unk_0.unk_4.unk_2 = (u8)(s32)(15.0f * f.value);
+    fzgx_value = &(out.unk_4);
+    *fzgx_value = out.unk_0.unk_0;
+    fn_1_9A7A8(&out.unk_4);
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_FE644 */
+
 /* fzgx:begin fn_1_FE780 */
 // fn_1_FE780: Empty return
 void fn_1_FE780(void) {
