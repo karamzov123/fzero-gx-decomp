@@ -6113,3 +6113,30 @@ dol/fn_800597F4.c:
 
 dol/fn_80059AB4.c:
 	.text       start:0x80059AB4 end:0x80059B44 align:4
+
+dol/fn_8005BDD4.c:
+	.text       start:0x8005BDD4 end:0x8005BE48 align:4
+
+dol/fn_8005B264.c:
+	.text       start:0x8005B264 end:0x8005B464 align:4
+
+dol/fn_8005B534.c:
+	.text       start:0x8005B534 end:0x8005BC20 align:4
+
+dol/fn_8005782C.c:
+	.text       start:0x8005782C end:0x8005795C align:4
+
+dol/fn_80056584.c:
+	.text       start:0x80056584 end:0x800565F0 align:4
+
+dol/fn_80056084.c:
+	.text       start:0x80056084 end:0x80056294 align:4
+
+dol/fn_80055EC0.c:
+	.text       start:0x80055EC0 end:0x80056084 align:4
+
+dol/fn_800557CC.c:
+	.text       start:0x800557CC end:0x8005596C align:4
+
+dol/fn_8005596C.c:
+	.text       start:0x8005596C end:0x80055D94 align:4
