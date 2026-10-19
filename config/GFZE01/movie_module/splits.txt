@@ -2171,3 +2171,12 @@ rel/movie_module/fn_12_6B28.c:
 
 rel/movie_module/fn_12_31CA4.c:
 	.text       start:0x00031CA4 end:0x00031DFC align:4
+
+rel/movie_module/fn_12_2E0B0.c:
+	.text       start:0x0002E0B0 end:0x0002E128 align:4
+
+rel/movie_module/fn_12_2E128.c:
+	.text       start:0x0002E128 end:0x0002E1A0 align:4
+
+rel/movie_module/fn_12_2E1A0.c:
+	.text       start:0x0002E1A0 end:0x0002E218 align:4
