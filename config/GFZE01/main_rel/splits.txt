@@ -7865,3 +7865,6 @@ rel/main_rel/spline/fn_1_F946C.c:
 
 rel/main_rel/spline/fn_1_F9888.c:
 	.text       start:0x000F9888 end:0x000F9A80 align:4
+
+rel/main_rel/driver/fn_1_A96BC.c:
+	.text       start:0x000A96BC end:0x000A96DC align:4

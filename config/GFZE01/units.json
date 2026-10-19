@@ -41537,6 +41537,24 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/driver/fn_1_A96BC.c",
+    "symbols": [
+      "fn_1_A96BC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/driver.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_6F648",
+      "fzgx_obj_lbl_1_bss_6F648": "lbl_1_bss_6F648",
+      "lbl_1_bss_6F648__fzgx_offset_10": "lbl_1_bss_6F648+0x10",
+      "fzgx_obj_lbl_1_bss_70658": "lbl_1_bss_70658",
+      "fzgx_obj_lbl_1_bss_71658": "lbl_1_bss_71658"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/driver/fn_1_A96DC.c",
     "symbols": [
       "fn_1_A96DC"
