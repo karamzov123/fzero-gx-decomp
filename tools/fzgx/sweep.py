@@ -104,6 +104,7 @@ def generate(p: Project, s: str, sym, path: Path, body: str, check, outdir: Path
     add('splits', lambda: fixup_source.variable_splits(body, sym.name))
     add('membercopy', lambda: fixup_source.member_copy_states(body, sym.name))
     add('carriers', lambda: fixup_source.scalar_carriers(body, sym.name))
+    add('unwrap', lambda: fixup_source.unwrap_scalar_carriers(body, sym.name))
     add('constptr', lambda: fixup_source.wrap_constant_pointers(body, sym.name))
     add('decse', lambda: fixup_source.decse_repeated_expressions(body, sym.name))
     add('decl', lambda: decl_moves(body, sym.name))

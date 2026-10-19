@@ -98,6 +98,25 @@ credit. Shell contributors can explicitly use `evidence record SYMBOL` with
 `--hypothesis`, `--prediction`, `--observation`, and `--unlock`; `--agent ID`
 enforces that agent's live ownership.
 
+### Removing scalar carriers from older seeds
+
+The shared source-repair engine also offers `unwrap` candidates: ordinary scalar
+or pointer locals in place of anonymous `struct { T value; } name` wrappers. It
+emits individual removals and a combined candidate, not another search runner:
+
+```sh
+.venv/bin/python tools/fzgx.py sweep SYMBOL --families unwrap --seeds MANIFEST.json
+```
+
+Use the frozen manifest's compiler profile. This is a source-quality direction,
+not a promise of a higher similarity score: removing a wrapper may improve
+register allocation while introducing a compiler copy elsewhere. The generator
+preserves comments and strings and conservatively skips volatile fields, real
+multi-field records, macro-dependent locals, annotations it cannot preserve, and
+any whole-record uses.
+Normal compiler, data/relocation, ownership and hash gates still apply. Do not
+land residual scalar carriers or dead work merely because their score is higher.
+
 ## 4. Shared blockers and changed-evidence queues
 
 ```sh

@@ -461,6 +461,65 @@ def scalar_carriers(body: str, name: str) -> List[Tuple[str, str]]:
     return out
 
 
+def unwrap_scalar_carriers(body: str, name: str) -> List[Tuple[str, str]]:
+    """Offer ordinary locals for anonymous one-member scalar wrappers in old seeds.
+
+    Do not reinterpret real records or whole-object uses. Candidate compilation and
+    byte verification remain the caller's responsibility, just as for other rewrites.
+    """
+    from .sdkimport import masked
+    code = masked(body)
+    span = _function_body_span(code, name)
+    if not span:
+        return []
+    directives = '\n'.join(re.findall(r'(?m)^[ \t]*#[^\n]*', code.replace('\\\n', '')))
+    if '##' in directives:
+        return []
+    changes = []
+    for start, end, _, variable, _ in _locals(body, span):
+        # Macro expansion can refer to a local outside its textual function span.
+        if re.search(r'\b' + re.escape(variable) + r'\b', directives):
+            continue
+        line_end = end if body[end - 1:end] == '\n' else body.find('\n', end)
+        if re.search(r'/[/*]', body[start:line_end if line_end >= 0 else len(body)]):
+            continue
+        declaration = re.fullmatch(
+            r'([ \t]*)struct\s*\{\s*(' + TYPE + r')(?:\s+|(?<=\*))value\s*;\s*\}'
+            r'\s*' + re.escape(variable) + r'\s*;[ \t]*\n?', code[start:end])
+        if not declaration:
+            continue
+        typ = declaration[2].strip()
+        if 'volatile' in typ or not (typ in SCALAR_TYPES or '*' in typ):
+            continue
+        replacements = [(start, end, declaration[1] + typ + ' ' + variable + ';\n')]
+        valid = True
+        for use in re.finditer(r'\b' + re.escape(variable) + r'\b', code[span[1]:span[2]]):
+            pos = span[1] + use.start()
+            if start <= pos < end:
+                continue
+            prefix = code[span[1]:pos].rstrip()
+            if prefix.endswith(('.', '->')):
+                continue
+            member = re.match(r'\s*\.\s*value\b', code[pos + len(variable):])
+            if not member or re.search(r'/[/*]', body[pos + len(variable):pos + len(variable) + member.end()]):
+                valid = False
+                break
+            replacements.append((pos + len(variable), pos + len(variable) + member.end(), ''))
+        if valid:
+            changes.append((variable, replacements))
+
+    def apply(edits):
+        text = body
+        for start, end, replacement in sorted(edits, reverse=True):
+            text = text[:start] + replacement + text[end:]
+        return text
+
+    out = [('unwrap scalar carrier ' + var, apply(edits)) for var, edits in changes]
+    if len(changes) > 1:
+        out.append(('unwrap all scalar carriers', apply([edit for _, edits in changes for edit in edits])))
+    return out
+
+
 def member_copy_states(body: str, name: str) -> List[Tuple[str, str]]:
     """Group copied 32-bit locals into real aggregate state (findings 371/376).
 
@@ -708,7 +767,7 @@ def rewrites(body: str, name: str) -> List[Tuple[str, str]]:
     out: List[Tuple[str, str]] = []
     for fn in (scope_moves, split_inits, hoists, through_local, return_values,
                call_results_to_locals, wrap_constant_pointers, decse_repeated_expressions,
-               member_copy_states, scalar_carriers, dead_uses, variable_splits, signedness_flips, mask_spellings,
+               member_copy_states, scalar_carriers, unwrap_scalar_carriers, dead_uses, variable_splits, signedness_flips, mask_spellings,
                float_precision, embedded_call_assignments, condition_embedded_assignments):
         try:
             out += fn(body, name)
