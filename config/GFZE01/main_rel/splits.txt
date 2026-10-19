@@ -7850,3 +7850,6 @@ rel/main_rel/data/lbl_1_data_28060.c:
 
 rel/main_rel/data/lbl_1_data_27E20.c:
 	.data       start:0x00027E20 end:0x00028058 align:8
+
+rel/main_rel/sel_static_disp/fn_1_1420E0.c:
+	.text       start:0x001420E0 end:0x001421D8 align:4
