@@ -7778,3 +7778,15 @@ rel/main_rel/sel_static_disp/fn_1_150654.c:
 
 rel/main_rel/effect_car/fn_1_6E140.c:
 	.text       start:0x0006E140 end:0x0006E320 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14F608.c:
+	.text       start:0x0014F608 end:0x0014F6F8 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14F6F8.c:
+	.text       start:0x0014F6F8 end:0x0014FC80 align:4
+
+rel/main_rel/_prolog/fn_1_426C.c:
+	.text       start:0x0000426C end:0x00004310 align:4
+
+rel/main_rel/bg_cas/fn_1_FE644.c:
+	.text       start:0x000FE644 end:0x000FE780 align:4
