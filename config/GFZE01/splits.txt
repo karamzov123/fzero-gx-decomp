@@ -6155,3 +6155,48 @@ dol/fn_80054B6C.c:
 
 dol/fn_80055304.c:
 	.text       start:0x80055304 end:0x80055580 align:4
+
+dol/fn_80052430.c:
+	.text       start:0x80052430 end:0x80052590 align:4
+
+dol/fn_80052590.c:
+	.text       start:0x80052590 end:0x800526F0 align:4
+
+dol/fn_800526F0.c:
+	.text       start:0x800526F0 end:0x80052850 align:4
+
+dol/fn_80052850.c:
+	.text       start:0x80052850 end:0x800529B0 align:4
+
+dol/fn_800529B0.c:
+	.text       start:0x800529B0 end:0x80052B10 align:4
+
+dol/fn_80052B10.c:
+	.text       start:0x80052B10 end:0x80052C70 align:4
+
+dol/fn_80052C70.c:
+	.text       start:0x80052C70 end:0x80052DD0 align:4
+
+dol/fn_80052DD0.c:
+	.text       start:0x80052DD0 end:0x80052F30 align:4
+
+dol/fn_80052F30.c:
+	.text       start:0x80052F30 end:0x80053090 align:4
+
+dol/fn_80053090.c:
+	.text       start:0x80053090 end:0x800531F0 align:4
+
+dol/fn_800531F0.c:
+	.text       start:0x800531F0 end:0x80053350 align:4
+
+dol/fn_80053350.c:
+	.text       start:0x80053350 end:0x800534B0 align:4
+
+dol/fn_800534B0.c:
+	.text       start:0x800534B0 end:0x80053610 align:4
+
+dol/fn_80053610.c:
+	.text       start:0x80053610 end:0x80053770 align:4
+
+dol/fn_800538D0.c:
+	.text       start:0x800538D0 end:0x80053A30 align:4

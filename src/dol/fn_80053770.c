@@ -1,13 +1,10 @@
 #include "types.h"
 
-extern f32 lbl_80091338[6];
-
 void fn_80053770(f32 *tile, f32 *kernel, s16 *out) {
-    f32 hi = lbl_80091338[1];
     s32 n = 32;
 
     do {
-        f32 acc = lbl_80091338[0];
+        f32 acc = 0.0f;
         f32 v;
 
         acc += kernel[0] * tile[0x0 / 4];
@@ -30,10 +27,10 @@ void fn_80053770(f32 *tile, f32 *kernel, s16 *out) {
         kernel += 16;
         tile++;
 
-        if (acc > hi) {
-            v = hi;
-        } else if (acc < lbl_80091338[2]) {
-            v = lbl_80091338[2];
+        if (acc > 2147483648.0f) {
+            v = 2147483648.0f;
+        } else if (acc < -2147483648.0f) {
+            v = -2147483648.0f;
         } else {
             v = acc;
         }

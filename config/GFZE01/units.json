@@ -21719,13 +21719,355 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80052430.c",
+    "symbols": [
+      "fn_80052430"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80052590.c",
+    "symbols": [
+      "fn_80052590"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_800526F0.c",
+    "symbols": [
+      "fn_800526F0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80052850.c",
+    "symbols": [
+      "fn_80052850"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_800529B0.c",
+    "symbols": [
+      "fn_800529B0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80052B10.c",
+    "symbols": [
+      "fn_80052B10"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80052C70.c",
+    "symbols": [
+      "fn_80052C70"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80052DD0.c",
+    "symbols": [
+      "fn_80052DD0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80052F30.c",
+    "symbols": [
+      "fn_80052F30"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80053090.c",
+    "symbols": [
+      "fn_80053090"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_800531F0.c",
+    "symbols": [
+      "fn_800531F0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80053350.c",
+    "symbols": [
+      "fn_80053350"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_800534B0.c",
+    "symbols": [
+      "fn_800534B0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80053610.c",
+    "symbols": [
+      "fn_80053610"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80053770.c",
     "symbols": [
       "fn_80053770"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_800538D0.c",
+    "symbols": [
+      "fn_800538D0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_80091338",
+      "@22": "lbl_80091338+0x10",
+      "@18": "lbl_80091338+0x4",
+      "@17": "lbl_80091338",
+      "@19": "lbl_80091338+0x8"
+    }
   },
   {
     "module": "main",
