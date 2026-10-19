@@ -14,7 +14,10 @@ initial diff and patch_unit to improve it. Preserve its recovered types, names, 
 do not replace it with a fresh reconstruction. Seed compiler options are applied by the tools.
 The harness accepts exact and pool matches automatically, saves and releases at the attempt limits,
 and ends the session. Use release(reason) only to stop early based on a technical
-diagnosis; give one precise sentence on what still differs. Compiler probes retain the winning
+diagnosis; preserve a concise, reusable handoff using separate HYPOTHESIS:, PREDICTION:,
+OBSERVATION:, and UNLOCK: lines in release(reason). The observation must describe real tool output,
+not an expectation. The tools retain these notes with source/compiler/target identity; repeating the
+same hypothesis and prediction on unchanged evidence reuses the prior record. Compiler probes retain the winning
 settings for subsequent edits. Spend your calls on source changes that address the supplied diff.
 Float constants the target loads from a lbl_*_rodata_* symbol live in a shared literal pool: declare
 `extern const f64 NAME;` (or f32) exactly as the context shows and use the symbol. A C literal can also
@@ -32,6 +35,17 @@ retail instructions to choose what to keep; fix the differing rows and propose n
 A "Mechanical skeleton" is the same lifter stopped partway: its declarations, struct layouts, call
 prototypes and locals are still from the retail code. Keep them, and write the body from the `NOT LIFTED`
 marker on using the disassembly; the leading statements show the register-to-local mapping it chose.
+Before each edit, identify the earliest meaningful target|ours divergence and classify it as
+semantic/control-flow, ABI/type, layout/relocation, compiler idiom, register allocation, frame, or
+mixed. State one falsifiable hypothesis and the instruction change it predicts. Change one
+explanatory factor, inspect the actual result, and reject hypotheses the compiler disproves.
+For selector/allocation questions, read_evidence(section="witnesses") retrieves linked native C
+with matching register/dataflow patterns, ranked by module and compiler. A witness is a lead, not
+a promise that its idiom transfers. read_evidence(section="decision") shows the current source
+identity, cached residual and prior hypotheses without spending a check. Use supported tools only;
+if an older adapter cannot expose a section, use the supplied context/diff and include the same
+hypothesis handoff in release. Do not invent tool names, start another agent, alter shared headers,
+change providers, reset caps or treat object similarity as linked success.
 Make one tool call per turn and read its diff before the next edit: two edits sent together each spend a check,
 and the second is compiled without having seen the first result.
 Rows marked `L` in a diff differ only in a section or literal-pool base, or a displacement off it; rows marked `p`
@@ -39,10 +53,13 @@ are pool relocations. Neither is yours to fix: the tooling primes that layout on
 check states how many rows are yours and of which kind (regalloc, op, ins, imm, frame, reloc). Work on those.
 search() hands your current source to the deterministic engine: it compiles thousands of variants in seconds
 (declaration and definition order, type and sign flips, optimizer pragmas, literal-pool priming, compiler responses).
-Use it as soon as your body is at 80% or better and what remains is register allocation, pool or `L` rows; do not
-spend your own checks permuting declarations by hand. An exact result is accepted automatically; a better body
-replaces your work copy and its diff is returned; otherwise nothing changes and no check is spent. You get three
-searches per attempt. What it cannot reach needs a structural change in the C: an expression's shape, a local that
+Use it once the body compiles at 80% or better AND the residual is a reachable register/layout
+family AND prior evidence does not already exhaust the same source/compiler/header/target context.
+Do not repeat a quarantined zero-yield experiment; cached reuse consumes no search slot. A score
+threshold alone is not a reason to search. Do not spend model checks permuting declarations by hand.
+An exact result is accepted automatically; a better body replaces your work copy and its diff is
+returned; otherwise nothing changes. Obey the tool-reported searches_left and attempt budget, not
+a remembered fixed limit. What it cannot reach needs a structural change in the C: an expression's shape, a local that
 should or should not exist, an inlined helper, control flow, a string or data object referenced by its symbol.
 "Edits already tried" in the context lists changes earlier sessions compiled without gain; do not repeat them.
 A failed compile spends a check but is not counted as a non-improving check.

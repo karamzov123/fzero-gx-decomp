@@ -186,6 +186,7 @@ def extra_calls(text: str, names: set) -> tuple:
 def catalog(p: Project, minimum: int) -> list:
     rows = []
     seen = set()
+    donor_stamps, stale, contexts, dependency_hashes = {}, [], {}, {}
     for obj in sorted((p.build_dir / 'sdkmatch').rglob('*.o')):
         relative = obj.relative_to(p.build_dir / 'sdkmatch')
         sdk = relative.parts[0]
@@ -239,11 +240,47 @@ def catalog(p: Project, minimum: int) -> list:
                 source_license(entry['sdk'])
             except ValueError:
                 continue
-            for name, words in instructions(Path(entry['object']), minimum).items():
+            obj = Path(entry['object'])
+            if not obj.is_file():
+                stale.append(dict(object=str(obj), reason='missing object'))
+                continue
+            if entry.get('provenance'):
+                from . import search_evidence
+                compile_key = entry.get('compile_key')
+                if compile_key not in contexts:
+                    evidence = search_evidence.read_record(STATE_DIR / 'sourcealign/compile-evidence', compile_key) if compile_key else None
+                    identity = evidence.get('identity', {}) if evidence else {}
+                    valid = bool(identity.get('dependencies')) and identity.get('version') == p.version
+                    for name, expected in identity.get('dependencies', {}).items():
+                        if name not in dependency_hashes:
+                            path = ROOT / name
+                            dependency_hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+                        valid = valid and dependency_hashes[name] == expected
+                    expected_flags = {m: oracle.module_flags(p, m) for m in ('main', 'movie_module')}
+                    valid = valid and json.dumps(identity.get('module_flags'), sort_keys=True) == json.dumps(expected_flags, sort_keys=True)
+                    contexts[compile_key] = valid
+                if not contexts[compile_key]:
+                    stale.append(dict(object=str(obj), reason='compiler/header/tool/profile context changed'))
+                    continue
+                sdk = entry['sdk']
+                if sdk not in donor_stamps:
+                    donor_stamps[sdk] = donor_inputs(ROOT / 'build/tools' / sdk)
+                if entry['provenance'] != donor_stamps[sdk] or (
+                        hashlib.sha256(obj.read_bytes()).hexdigest() != entry.get('object_sha256')):
+                    stale.append(dict(object=str(obj), reason='donor source/license/revision or object changed'))
+                    continue
+            for name, words in instructions(obj, minimum).items():
                 identity = (name, words)
-                if identity not in seen:
+                if identity not in seen or entry.get('provenance'):
                     seen.add(identity)
-                    rows.append(entry | dict(sdk_symbol=name, words=words))
+                    rows.append(entry | dict(sdk_symbol=name, words=words,
+                        provenance_status='fingerprinted' if entry.get('provenance') else 'legacy-unfingerprinted'))
+    rows = list({(r['sdk_symbol'], tuple(r['words'])): r for r in rows}.values())
+    from . import work_evidence
+    work_evidence._write(STATE_DIR / 'sourcealign/catalog-health.json', dict(
+        functions=len(rows), stale_objects=stale,
+        legacy_functions=sum(r.get('provenance_status') != 'fingerprinted' for r in rows),
+        note='Legacy donors are explicitly unverified as compiled snapshots; target object/link verification is still mandatory.'))
     return rows
 
 
@@ -255,6 +292,32 @@ def source_flags(sdk: str, source: str) -> str:
     return shlex.join(flags)
 
 
+def donor_inputs(root: Path) -> dict:
+    """Fingerprint the source corpus, not just the donor checkout's HEAD."""
+    license_info = source_license(root.name)
+    paths = sorted({*root.rglob('*.h'), *root.rglob('*.c'), root / license_info['path']})
+    digest = hashlib.sha256()
+    for path in paths:
+        if path.is_file():
+            digest.update(str(path.relative_to(root)).encode() + b'\0')
+            digest.update(hashlib.sha256(path.read_bytes()).digest())
+    revision = subprocess.run(['git', '-C', str(root), 'rev-parse', 'HEAD'],
+                              capture_output=True, text=True, check=True).stdout.strip()
+    return dict(revision=revision, corpus_sha256=digest.hexdigest(), files=len(paths), license=license_info)
+
+
+def _store_library_records(records, sdk, sources, mode):
+    manifest = STATE_DIR / 'sourcealign/libraries.json'
+    previous = json.loads(manifest.read_text()) if manifest.exists() else []
+    # Failed recompilation must not leave an older successful object eligible.
+    selected = set(sources)
+    previous = [r for r in previous if not (r['sdk'] == sdk and r['source'] in selected
+                                           and r.get('mode', 'files') == mode)]
+    from .work_evidence import _write
+    _write(manifest, previous + records)
+
+
+@oracle.build_lock('sourcealign-library.lock')
 def compile_library(p: Project, sdk: str, roots: list, functions=False) -> dict:
     source_license(sdk)
     root = ROOT / 'build/tools' / sdk
@@ -263,6 +326,27 @@ def compile_library(p: Project, sdk: str, roots: list, functions=False) -> dict:
     if not sources:
         raise ValueError('no SDK C sources in the requested roots')
     directory = STATE_DIR / 'sourcealign/libraries' / sdk
+    provenance = donor_inputs(root)
+    # Include actual headers/tools/compiler binaries, not mtimes or just HEAD.
+    dependency_paths = sorted({*ROOT.joinpath('include').rglob('*.h'),
+                               *ROOT.joinpath('build/compilers').rglob('mwcceppc.exe'),
+                               *ROOT.joinpath('tools/fzgx').glob('*.py'),
+                               ROOT / 'build/tools/wibo'})
+    dependencies = {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+                    for path in dependency_paths if path.is_file()}
+    selected = [str(source.relative_to(root)) for source in sources]
+    mode = 'functions' if functions else 'files'
+    identity = dict(provenance=provenance, sources=selected, mode=mode, version=p.version,
+                    dependencies=dependencies, module_flags={m: oracle.module_flags(p, m) for m in ('main', 'movie_module')})
+    cache_key = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
+    from . import search_evidence
+    cache_dir = STATE_DIR / 'sourcealign/compile-evidence'
+    cached = search_evidence.read_record(cache_dir, cache_key)
+    if cached and all(Path(r['object']).is_file() and
+                      hashlib.sha256(Path(r['object']).read_bytes()).hexdigest() == r['object_sha256']
+                      for r in cached['records']):
+        _store_library_records(cached['records'], sdk, selected, mode)
+        return cached['report'] | dict(reused=True, compile_key=cache_key)
     records, failures = [], []
     # the DOL's AX/MIX/DVD-era library functions carry the MWCC 1.1 prologue order
     for mw in ('GC/1.2.5n', 'GC/1.3.2', 'GC/1.1'):
@@ -315,18 +399,19 @@ def compile_library(p: Project, sdk: str, roots: list, functions=False) -> dict:
                                                        include_dirs=None if functions else sdkimport.include_directories(root)))
                 for source, obj in objects.items():
                     records.append(dict(sdk=sdk, source=str(origins[source].relative_to(root)), object=str(obj), mw=mw, flags=flags,
-                                        mode='functions' if functions else 'files'))
+                                        mode=mode, provenance=provenance, compile_key=cache_key,
+                                        source_sha256=hashlib.sha256(origins[source].read_bytes()).hexdigest(),
+                                        object_sha256=hashlib.sha256(obj.read_bytes()).hexdigest()))
                 failures.append(dict(profile=tag, failed=[str(s) for s in prepared if s not in objects]))
                 print(tag, len(objects), '/', len(prepared), 'compiled', flush=True)
                 if not objects:
                     compiler_failed = True
                     break
-    manifest = STATE_DIR / 'sourcealign/libraries.json'
-    previous = json.loads(manifest.read_text()) if manifest.exists() else []
-    keys = {(r['sdk'], r['source'], r['mw'], r['flags'], r.get('mode', 'files')) for r in records}
-    previous = [r for r in previous if (r['sdk'], r['source'], r['mw'], r['flags'], r.get('mode', 'files')) not in keys]
-    manifest.write_text(json.dumps(previous + records, indent=2) + '\n')
-    return dict(sources=len(sources), objects=len(records), profiles=failures)
+    _store_library_records(records, sdk, selected, mode)
+    report = dict(sources=len(sources), objects=len(records), profiles=failures)
+    search_evidence.write_record(cache_dir, cache_key, dict(key=cache_key, identity=identity,
+                                                          records=records, report=report))
+    return report | dict(reused=False, compile_key=cache_key)
 
 
 def discover(p: Project, minimum: int = 256, roots=(), rel_only=False) -> dict:

@@ -230,6 +230,24 @@ def build_context(project: Project, ledger: Optional[Ledger], symbol: str,
         parts.append('- section: retail placed this function in `.init`; write `__declspec(section ".init")` before the '
                      "return type (the object oracle pairs nothing across sections, and the link needs it there)")
     parts.append(f"- compiler: `{mw}` `{flags}`" + (f" extra overrides: `{extra}`" if extra else ''))
+    parts.append('\n## Evidence-led decision contract\n'
+        'Identify the earliest meaningful divergence, classify it, and state one falsifiable hypothesis '
+        'with a predicted instruction change before editing. Retrieve same-module/compiler witnesses before '
+        'speculative permutations. An unchanged zero-yield search is not a new experiment. '
+        'Use read_evidence(section="decision") for the current packet and section="witnesses" for native-C witnesses. '
+        'On release, include HYPOTHESIS:, PREDICTION:, OBSERVATION:, and UNLOCK: lines; '
+        'report shared type/ABI blockers instead of editing shared files.')
+    try:
+        from . import work_evidence
+        decision = work_evidence.packet(project, project.key(sym))
+        brief = dict(experiment_key=decision['experiment_key'],
+                     source_sha256=decision['source']['sha256'],
+                     residual=decision['residual']['first'], mode=decision['residual']['mode'],
+                     prior_hypotheses=[dict(hypothesis=h['hypothesis'][:180], observation=h['observation'][:240],
+                                            unlock=h.get('unlock', '')[:180]) for h in decision['prior_hypotheses'][-2:]])
+        parts.append('Current evidence (no new compile): ' + json.dumps(brief, sort_keys=True))
+    except (OSError, ValueError, KeyError) as error:
+        parts.append('Decision packet unavailable: ' + str(error)[:240] + '; use the normal source/check tools.')
 
     parts.append("\n## Target assembly (retail)\n```asm")
     parts.extend(fn.asm)
