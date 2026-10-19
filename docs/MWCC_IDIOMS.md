@@ -339,3 +339,46 @@ without row alignment (`retail - ours` net rows):
 - The helper must be `static inline` **in the unit**; a plain extern call in a
   separately compiled unit cannot be inlined by the oracle, so the body must
   carry the definition for `write-unit`/`check` to reproduce the inline.
+
+## Compound `||` guards produce the same pair without a helper (2026-10-19, fn_1_426C)
+
+- The `cond; b tail` pair is **not helper-specific**. A compound `||` guard whose
+  second operand returns lowers the same way: with
+  `if (arg0 < 32 || node->field_0 == 0) { return; }`, operand A's true path branches
+  straight to the tail (`blt 0x88`), and operand B's true path — the shared return
+  label — is materialised as an explicit jump with the condition branching over it
+  (`bne 0x44; b 0x88`).
+- Measured on `fn_1_426C`: two separate guards
+  (`if (arg0 < 32) return; if (node->field_0 == 0) return;`) give 97.3% with the
+  folded `beq 0x84`; merging them into one compound condition reproduces retail
+  word-for-word (41/41). Matched reference in the same shape: `CARDCheck`
+  (`if (result < 0 || &xferBytes == 0) { return result; }` → `blt 0x40` then
+  `bne 0x38; b 0x40`).
+- So for a pair-only near-miss, try both spellings before moving on: the inlined
+  helper from the section above, and the compound `||` guard with the shared
+  `return` tail. The pairs survive because branch folding does not run across the
+  materialised join label in either case.
+- `#pragma opt_propagation off` was required for the landed `fn_1_426C` body: with
+  propagation on, MWCC copies the loaded global into a fresh temporary
+  (`lwz r5, ...; mr r31, r5`) instead of keeping the global load's web.
+
+## Pool `L` rows: the whole pool region must be byte-identical (2026-10-19, fn_1_FE644)
+
+- A body whose instruction rows all match can still report `no match` when the two
+  base rows (`lis rB, <pool>@ha; addi rB, rB, <pool>@l`) are `L` rows: ours reaches
+  the private pool through the anonymous section symbol (`...rodata.0`), retail
+  through the named pool object (`lbl_1_rodata_76A8`).
+- `_pool_rows` accepts the base rows as pool rows only when the bytes from our pool
+  start to the last pooled literal equal retail's bytes at the named object for the
+  **whole region**. One wrong initializer word keeps every literal read an accepted
+  `p` row but fails the base proof, so `real_rows > 0` and the unit is no
+  `MATCH (pool)`. The guessed constant value is codegen-neutral, so objdiff stays
+  green while the pool byte is wrong.
+- Read retail's actual bytes (`project.symbols(module)[name]`, `_raw_section`,
+  `_section_base`) before choosing the constant, not after. `fn_1_FE644`'s
+  `lwz r0, 0x4(r31)` reads zero, not the fleet's guessed `0x000000FF`; with the byte
+  fixed the whole 0x28-byte pool maps to `lbl_1_rodata_76A8`
+  (`lbl_1_rodata_76A8=initializer[40]`) and the unit lands as a pool match.
+- A zero-valued `static const u32 arr[1] = {0};` read as `arr[0]` still emits the
+  pool load (`lwz r0, 0x4(r31)`), it does not fold to `li` — verified word-for-word
+  on the landed `fn_1_FE644` body.
