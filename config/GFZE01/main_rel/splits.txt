@@ -7784,3 +7784,6 @@ rel/main_rel/sel_static_disp/fn_1_14F608.c:
 
 rel/main_rel/sel_static_disp/fn_1_14F6F8.c:
 	.text       start:0x0014F6F8 end:0x0014FC80 align:4
+
+rel/main_rel/_prolog/fn_1_426C.c:
+	.text       start:0x0000426C end:0x00004310 align:4
