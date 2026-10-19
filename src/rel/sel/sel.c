@@ -878,6 +878,77 @@ void fn_10_3A98(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_10_3A98 */
 
+/* fzgx:begin fn_10_3B44 */
+typedef struct {
+    u8 pad[4];
+    u32 flags;
+} SelSlot;
+
+typedef struct {
+    u8 pad[0x18];
+    s16 index_x;
+    s16 index_y;
+    SelSlot slots[][19];
+} SelState;
+
+typedef struct {
+    u32 unk_0;
+    u8 unk_4;
+    u8 unk_5;
+    u8 pad[0x81C0 - 6];
+} SelEnt;
+
+typedef struct {
+    s16 key;
+    u16 pad;
+    u32 mask;
+} SelFnEntry;
+
+extern u32 lbl_10_bss_3C0[74736];
+extern s32 fn_1_152970(s16 *, s16 *, s16, u32, SelFnEntry *, s16, s16);
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_10_bss_0[5];
+u32 fzgx_obj_lbl_10_bss_14;
+s16 fzgx_obj_lbl_10_bss_18;
+s16 fzgx_obj_lbl_10_bss_1A;
+u32 fzgx_obj_lbl_10_bss_1C[233];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_10_bss_0[0];
+    s = fzgx_obj_lbl_10_bss_14;
+    s = fzgx_obj_lbl_10_bss_18;
+    s = fzgx_obj_lbl_10_bss_1A;
+    s = fzgx_obj_lbl_10_bss_1C[0];
+}
+#pragma section code_type ".text"
+
+#pragma opt_loop_invariants off
+void fn_10_3B44(void) {
+    s16 i;
+    s16 row;
+    s16 col;
+    SelEnt *e;
+
+    for (i = 0x29; i <= 0x30; i++) {
+        s16 idx;
+
+        fn_1_152970(&row, &col, i, 0, (SelFnEntry *)fzgx_obj_lbl_10_bss_1C,
+                    fzgx_obj_lbl_10_bss_1A, fzgx_obj_lbl_10_bss_18);
+        idx = i - 0x29;
+        ((SelSlot (*)[19])fzgx_obj_lbl_10_bss_1C)[row][col].flags |= 0x20000000;
+        e = (SelEnt *)((u8 *)lbl_10_bss_3C0 + idx * 0x81C0);
+        if (e->unk_0 & 0x80000000) {
+            e->unk_5 = i;
+            ((SelSlot (*)[19])fzgx_obj_lbl_10_bss_1C)[row][col].flags &= ~0x40000000;
+        }
+    }
+}
+#pragma opt_loop_invariants reset
+/* fzgx:end fn_10_3B44 */
+
 /* fzgx:begin fn_10_3D64 */
 extern int lbl_1_bss_7180C;
 extern int fn_1_B7E98(int);
