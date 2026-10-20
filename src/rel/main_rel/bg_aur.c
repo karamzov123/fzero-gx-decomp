@@ -457,6 +457,86 @@ s32 fn_1_152970(s16 *out_group, s16 *out_entry, s16 key, u32 mask,
 }
 /* fzgx:end fn_1_152970 */
 
+/* fzgx:begin fn_1_152A28 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_aur.h"
+
+extern u8 lbl_1_rodata_D048[1200];
+extern int fn_1_8D690(s8 value);
+extern int fn_1_8D72C(s16 value);
+
+#define CELL_HIDDEN 0x80000000
+#define CELL_LOCKED 0x40000000
+
+typedef struct Cell {
+    s16 id;
+    u8 pad[2];
+    u32 flags;
+} Cell;
+
+static inline s32 get_cell(s16 grp, s16 ent, Cell *table, s16 cols, u32 mode) {
+    if (mode != 0) {
+        if (table[grp * cols + ent].flags & (CELL_HIDDEN | CELL_LOCKED))
+            return -1;
+    } else {
+        if (table[grp * cols + ent].flags & CELL_LOCKED)
+            return -1;
+    }
+    if (table[grp * cols + ent].id == -1)
+        return -1;
+    return table[grp * cols + ent].id;
+}
+
+static inline void fn_1_152A28_find(s16 id, Cell *table, s16 rows, s16 cols, u32 mask, s16 *grp, s16 *ent) {
+    s16 i;
+    s16 j;
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            if ((table[i * cols + j].flags & mask) == 0 && id == table[i * cols + j].id) {
+                *grp = i;
+                *ent = j;
+                return;
+            }
+        }
+    }
+}
+
+s32 fn_1_152A28(s16 id, s16 y, s16 x, Cell *table, s16 nrows, s16 ncols) {
+    s16 cols = ncols;
+    u32 mode;
+    s32 res;
+    s16 rows = nrows;
+    s16 ent;
+    s16 grp;
+    s16 total = (s16)(rows * cols);
+    mode = lbl_1_bss_8B3A0.unk_94 & 0x20000;
+
+    if (mode != 0) {
+        if (id != -1) {
+            fn_1_152A28_find(id, table, rows, cols, (CELL_HIDDEN | CELL_LOCKED), &grp, &ent);
+        }
+    } else {
+        if (id != -1) {
+            fn_1_152A28_find(id, table, rows, cols, CELL_LOCKED, &grp, &ent);
+        }
+    }
+    if (x != 0) {
+        do {
+            ent = (s16)((ent + x + total) % cols);
+            res = get_cell(grp, ent, table, cols, mode);
+        } while ((s16)res < 0);
+    }
+    if (y != 0) {
+        do {
+            grp = (s16)((grp + y + total) % rows);
+            res = get_cell(grp, ent, table, cols, mode);
+        } while ((s16)res < 0);
+    }
+    return res;
+}
+/* fzgx:end fn_1_152A28 */
+
 /* fzgx:begin fn_1_153988 */
 // fn_1_153988: empty in retail (single blr).
 void fn_1_153988(void) {

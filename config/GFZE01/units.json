@@ -33310,6 +33310,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/bg_aur/fn_1_152A28.c",
+    "symbols": [
+      "fn_1_152A28"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_aur.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/bg_aur/fn_1_152CB4.c",
     "symbols": [
       "fn_1_152CB4"

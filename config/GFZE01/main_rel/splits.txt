@@ -7883,3 +7883,6 @@ rel/main_rel/sel_static_disp/fn_1_14DD68.c:
 
 rel/main_rel/sel_static_disp/fn_1_14DDF4.c:
 	.text       start:0x0014DDF4 end:0x0014DE80 align:4
+
+rel/main_rel/bg_aur/fn_1_152A28.c:
+	.text       start:0x00152A28 end:0x00152CB4 align:4
