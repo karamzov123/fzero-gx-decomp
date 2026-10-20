@@ -1,25 +1,11 @@
-/* Non-matching: best partial attempt (97.67% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.11% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
+#include "sofdec/sj.h"
 
 typedef struct MovieData MovieData;
-typedef struct MovieObject MovieObject;
-
-typedef struct MovieOut {
-    u32 field_00;
-    u32 field_04;
-} MovieOut;
-
-typedef struct MovieVTable {
-    u8 pad_0000[0x18];
-    void (*method_0018)(MovieObject *, s32, s32, u32 *);
-    void (*method_001c)(MovieObject *, s32, MovieOut *);
-    void (*method_0020)(MovieObject *, s32, u32 *);
-} MovieVTable;
-
-struct MovieObject {
-    MovieVTable *vtable;
-};
+typedef SJ MovieObject;
+typedef SJCK MovieOut;
 
 struct MovieData {
     u8 pad_0000[0x1a8];
@@ -43,13 +29,12 @@ struct MovieData {
     s8 field_0c40[0x40];
     s8 field_0c80[0x40];
     u8 pad_0cc0[0x608];
-    u32 field_12c8;
-    s32 field_12cc;
+    SJCK chunk;
     s32 field_12d0;
     u8 pad_12d4[0x30];
     s32 field_1304;
     u8 pad_1308[0x3c];
-    u8 field_1344[0x648];
+    u8 field_1344[0xCA8];
 };
 
 extern s8 lbl_12_bss_4E00[64];
@@ -58,7 +43,7 @@ extern s32 lbl_12_rodata_7A4[];
 extern s32 lbl_12_rodata_7AC[];
 extern void fn_12_33364(u32 *, u32 *, u32);
 extern void fn_12_33428(u32 *, u32, u32);
-extern u32 fn_800589BC(u32 *, u32, u32 *, MovieOut *);
+extern void fn_800589BC(const SJCK *, s32, SJCK *, SJCK *);
 
 #define GET_BITS(dst, w) \
     if (bits >= (32 - (w))) { \
@@ -95,13 +80,12 @@ s32 fn_12_BBC0(MovieData *arg0, MovieObject *arg1) {
     u32 next;
     s32 bits;
     u32 cur;
+    u32 initial;
     u32 *p;
     u32 v;
     u32 b0;
     u32 b1;
     s32 i;
-    s32 j;
-    s32 k;
     u8 *end;
     s32 idx;
     u8 *q;
@@ -109,25 +93,41 @@ s32 fn_12_BBC0(MovieData *arg0, MovieObject *arg1) {
     s32 row;
     s32 w;
     s32 cnt;
+    u8 *cursor;
     MovieOut out;
 
     arg0->field_1304 = 1;
-    arg1->vtable->method_0018(arg1, 1, 0x7FFFFFFF, &arg0->field_12c8);
+    arg1->interface->get_chunk(arg1, 1, 0x7FFFFFFF, &arg0->chunk);
 
-    p = (u32 *)(arg0->field_12c8 & ~3);
-    cur = p[1];
-    bits = (arg0->field_12c8 - (u32)p) * 8;
+    p = (u32 *)((u32)arg0->chunk.data & ~3);
+    initial = p[1];
+    bits = ((u32)arg0->chunk.data - (u32)p) * 8;
     p += 2;
     if (bits >= 32) {
-        cur = *p++;
+        initial = *p++;
         bits -= 32;
     }
     if (bits) {
-        cur <<= bits;
+        initial <<= bits;
     }
     next = *p++;
 
-    GET_BITS(arg0->field_01d0, 12)
+    if (bits >= 20) {
+        bits -= 20;
+        if (bits) {
+            cur = initial | (next >> (12 - bits));
+            arg0->field_01d0 = cur >> 20;
+            cur = next << bits;
+        } else {
+            arg0->field_01d0 = initial >> 20;
+            cur = next;
+        }
+        next = *p++;
+    } else {
+        arg0->field_01d0 = initial >> 20;
+        cur = initial << 12;
+        bits += 12;
+    }
     GET_BITS(arg0->field_01d4, 12)
     GET_BITS(arg0->field_0274, 4)
     GET_BITS(v, 4)
@@ -148,13 +148,9 @@ s32 fn_12_BBC0(MovieData *arg0, MovieObject *arg1) {
     GET_BIT(arg0->field_0280)
     GET_BIT(b0)
     if (b0) {
-        for (i = 0; i < 32; i++) {
-            k = i;
-            for (j = 0; j < 2; j++) {
-                GET_BITS(v, 8)
-                arg0->field_0c40[lbl_12_bss_4E00[k]] = v;
-                k++;
-            }
+        for (i = 0; i < 64; i++) {
+            GET_BITS(v, 8)
+            arg0->field_0c40[lbl_12_bss_4E00[i]] = v;
         }
     } else {
         fn_12_33364((u32 *)arg0->field_0c40, (u32 *)lbl_12_bss_4DC0, 0x10);
@@ -162,11 +158,9 @@ s32 fn_12_BBC0(MovieData *arg0, MovieObject *arg1) {
 
     GET_BIT(b1)
     if (b1) {
-        for (i = 0; i < 32; i++) {
-            for (j = 0; j < 2; j++) {
-                GET_BITS(v, 8)
-                arg0->field_0c80[lbl_12_bss_4E00[i + j]] = v;
-            }
+        for (i = 0; i < 64; i++) {
+            GET_BITS(v, 8)
+            arg0->field_0c80[lbl_12_bss_4E00[i]] = v;
         }
     } else {
         fn_12_33428((u32 *)arg0->field_0c80, 0x10101010, 0x10);
@@ -199,8 +193,11 @@ s32 fn_12_BBC0(MovieData *arg0, MovieObject *arg1) {
 
     arg0->field_12d0 = bits & 7;
     cnt = (bits - arg0->field_12d0 + 7) >> 3;
-    fn_800589BC(&arg0->field_12c8, arg0->field_12c8 - (((u32)p + cnt) - 8), &arg0->field_12c8, &out);
-    arg1->vtable->method_0020(arg1, 0, &arg0->field_12c8);
-    arg1->vtable->method_001c(arg1, 1, &out);
+    cursor=(u8 *)p;
+    cursor += cnt;
+    cursor -= 8;
+    fn_800589BC(&arg0->chunk,cursor-arg0->chunk.data,&arg0->chunk,&out);
+    arg1->interface->put_chunk(arg1, 0, &arg0->chunk);
+    arg1->interface->unget_chunk(arg1, 1, &out);
     return 0;
 }
