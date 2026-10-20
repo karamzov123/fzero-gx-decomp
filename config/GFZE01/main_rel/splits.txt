@@ -7868,3 +7868,6 @@ rel/main_rel/spline/fn_1_F9888.c:
 
 rel/main_rel/driver/fn_1_A96BC.c:
 	.text       start:0x000A96BC end:0x000A96DC align:4
+
+rel/main_rel/stcoli/fn_1_2E3B4.c:
+	.text       start:0x0002E3B4 end:0x0002E928 align:4

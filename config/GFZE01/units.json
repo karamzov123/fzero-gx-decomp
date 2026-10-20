@@ -60919,6 +60919,21 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_2E3B4.c",
+    "symbols": [
+      "fn_1_2E3B4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/stcoli.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_BD8",
+      "@11": "lbl_1_rodata_BE4"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/stcoli/fn_1_3FCD4.c",
     "symbols": [
       "fn_1_3FCD4"
