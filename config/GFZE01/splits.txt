@@ -6206,3 +6206,6 @@ dol/data/lbl_80164D60.c:
 
 dol/fn_80078F0C.c:
 	.text       start:0x80078F0C end:0x800791A4 align:4
+
+dol/fn_8007B1CC.c:
+	.text       start:0x8007B1CC end:0x8007B2A8 align:4

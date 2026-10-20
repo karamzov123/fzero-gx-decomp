@@ -27745,6 +27745,16 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8007B1CC.c",
+    "symbols": [
+      "fn_8007B1CC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/2.5",
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8007B2A8.c",
     "symbols": [
       "fn_8007B2A8"
