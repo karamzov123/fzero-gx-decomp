@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (95.29% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.65% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -16,7 +16,7 @@ struct Acc {
     s16 v;
 };
 
-extern u32 lbl_800911E0[16];
+extern const s32 lbl_800911E0[16];
 
 #pragma opt_loop_invariants on
 #pragma opt_lifetimes off
@@ -34,7 +34,6 @@ s32 fn_8004F55C(s8 *arg0, s32 arg1, struct Out *arg2, struct Coef *arg3,
     o = arg2;
     x = arg3->a;
     y = arg3->b;
-    (void) y;  /* fzgx: keeps the web at its definition */
 
     for (i = 0; i < arg1; i++) {
         v = *(s16 *)arg0;
@@ -80,3 +79,4 @@ s32 fn_8004F55C(s8 *arg0, s32 arg1, struct Out *arg2, struct Coef *arg3,
 #pragma opt_lifetimes reset
 
 #pragma opt_loop_invariants reset
+
