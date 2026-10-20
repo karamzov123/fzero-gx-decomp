@@ -111,6 +111,7 @@ def generate(p: Project, s: str, sym, path: Path, body: str, check, outdir: Path
     add('decl', lambda: decl_moves(body, sym.name))
     add('pragmas', lambda: fixup_evidence.optimizer_pragmas(body, sym.name))
     add('layout', lambda: fixup_layout.tu_section_layout(p, s, body, check))
+    add('dataviews', lambda: fixup_layout.initialized_data_views(p, s, body))
     if not families or 'attr' in families:
         try:
             rl = row_lines(p, sym, path, check, outdir)

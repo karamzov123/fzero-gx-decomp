@@ -786,7 +786,8 @@ def initialized_data_views(p, symbol, text):
             if error:
                 continue
             used = sorted(set(used) | {n for n, m in all_fields.items() if m[0] in byte_offsets})
-        if not used or any(n not in decls or decls[n][0] not in ('u32', 's32', 'f32', 'char', 'u8', 'char *', 'void *')
+        if not used or any(n not in decls or decls[n][0] not in ('u32', 's32', 'f32', 'char', 'u8', 'char *', 'void *',
+                                                                 'const char *', 'const void *', 'const u8 *')
                            or len(decls[n][1]) > 1 for n in used):
             continue
         statement = model[0]
@@ -810,7 +811,9 @@ def initialized_data_views(p, symbol, text):
             continue
         fields = sorted((measured[n][0], measured[n][0] + measured[n][1], n) for n in used)
         extent = fields[-1][1]
-        if any(lo % 4 or hi % 4 for lo, hi, _ in fields):
+        # A trailing string may end unaligned where the retail section itself ends.
+        if any(lo % 4 or (hi % 4 and not (i == len(fields) - 1 and decls[n][0] in ('char', 'u8')))
+               for i, (lo, hi, n) in enumerate(fields)):
             continue
         if any(a[1] > b[0] for a, b in zip(fields, fields[1:])):
             continue
@@ -892,6 +895,29 @@ def initialized_data_views(p, symbol, text):
         block = '\n'.join(sorted(declarations)) + '\n' + '\n'.join(definitions) + '\n'
         at = re.search(r'\n[^\n;{}]*\b' + re.escape(sym.name) + r'\s*\([^;{}]*\)\s*\{', rest).start()
         yield 'native initialized data objects ' + base, rest[:at] + '\n' + block + rest[at:]
+        # MWCC numbers a TU's section bases in the order earlier functions first used them: a
+        # retail TU that addressed .data off its base before its literal pool gives the data base
+        # the higher callee-saved register (winning fn_15_5730, title fn_8_A3A4). A primer that
+        # addresses three or more of the objects through the base, ahead of any pool primer,
+        # reproduces that order; the .fzgxpool section is dropped at integration.
+        sinks = [prefix + '_' + n for _, _, n in fields]
+        if len(sinks) < 3:
+            sinks += [d.split('[', 1)[0].split()[-1] for d in definitions if '_gap_' in d.split('=', 1)[0]]
+        if len(sinks) >= 3:
+            primer = ('#pragma section code_type ".fzgxpool"\n'
+                      '__declspec(section ".fzgxpool") static void fzgx_data_base_prime(void) {\n'
+                      '    const void *volatile s;  /* fzgx-allow: S2 data base primer sink: the retail TU addressed .data '
+                      'off its section base before its literal pool; the section is dropped at integration */\n'
+                      + ''.join('    s = %s;\n' % (n.split('.')[0]) for n in sinks) +
+                      '}\n#pragma section code_type ".text"\n')
+            head = rest[:at]
+            lead = head.find('#pragma section code_type ".fzgxpool"')
+            includes = list(re.finditer(r'^#include[^\n]*\n', head, re.M))
+            top = includes[-1].end() if includes else 0
+            if lead >= 0:
+                top = min(top, lead) if top <= lead else lead
+            yield ('native initialized data objects ' + base + ', data base first',
+                   rest[:top] + block + primer + rest[top:at] + rest[at:])
 
 
 def string_run(p, symbol, text, cast=''):

@@ -3529,7 +3529,12 @@ def shared_pool_primer(p, symbol, body, check):
     primer section and the private pool at integration; the link places nothing extra."""
     import struct as _struct, math as _math
     sym = p.resolve(symbol)
-    if sym is None or 'fzgx_pool_prime' in body or '__declspec(section' in body or not getattr(check, '_rows', None):
+    # A data-base primer (fixup_layout.initialized_data_views) may already lead the unit: the
+    # literal-pool primer then follows it, keeping retail's data-then-pool base order.
+    data_primer = re.search(r'#pragma section code_type "\.fzgxpool"\n__declspec\(section "\.fzgxpool"\) static void '
+                            r'fzgx_data_base_prime\(void\) \{.*?\n\}\n#pragma section code_type "\.text"\n', body, re.S)
+    rest_of_body = body.replace(data_primer[0], '') if data_primer else body
+    if sym is None or 'fzgx_pool_prime' in body or '__declspec(section' in rest_of_body or not getattr(check, '_rows', None):
         return []
     lrows, rrows = check._rows
     lfmt = [((r.get('instruction') or {}).get('formatted') or '') for r in lrows]
@@ -3573,6 +3578,9 @@ def shared_pool_primer(p, symbol, body, check):
         else:
             sec = p._raw_section(sym.module, pool.section); base = p._section_base(sym.module, pool.section)
             raw = sec[pool.addr - base:pool.addr - base + end] if sec is not None else None
+        # The 8-byte rounding may pass the end of a pool that closes the section.
+        if raw and max(o + w for o, (k, w) in own.items()) <= len(raw) < end:
+            end = len(raw) & ~3
         if not raw or len(raw) < end:
             continue
         def cls(off):
@@ -3751,6 +3759,10 @@ def shared_pool_primer(p, symbol, body, check):
             if primitives:
                 at = max(declaration.end() for declaration in primitives)
                 primer = '\n' + primer
+        leading = re.search(r'#pragma section code_type "\.fzgxpool"\n__declspec\(section "\.fzgxpool"\) static void '
+                            r'fzgx_data_base_prime\(void\) \{.*?\n\}\n#pragma section code_type "\.text"\n', body, re.S)
+        if leading and leading.end() <= m.start():
+            at = leading.end()
         text = body[:at] + primer + body[at:]
         out.append((f'prime shared-pool layout ({pool.name}, {end:#x} bytes)', text))
     return out
