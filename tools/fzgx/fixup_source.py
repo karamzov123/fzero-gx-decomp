@@ -850,7 +850,7 @@ def rewrites(body: str, name: str) -> List[Tuple[str, str]]:
     for fn in (scope_moves, split_inits, hoists, compound_assignments, through_local, return_values,
                call_results_to_locals, wrap_constant_pointers, decse_repeated_expressions,
                member_copy_states, scalar_carriers, unwrap_scalar_carriers, dead_uses, variable_splits, signedness_flips, store_view_signedness, mask_spellings,
-               float_precision, embedded_call_assignments, condition_embedded_assignments):
+               float_precision, embedded_call_assignments, condition_embedded_assignments, loop_helpers):
         try:
             out += fn(body, name)
         except Exception:
@@ -927,6 +927,176 @@ def scope_moves(body: str, name: str) -> List[Tuple[str, str]]:
         text = body[:s] + body[e:]
         a, b = line_start - (e - s), line_end - (e - s)
         out.append((f"scope {nm}", text[:a] + "{\n" + decl + text[a:b] + "}\n" + text[b:]))
+    return out
+
+
+_ASSIGNS = r'(?:\+\+|--)\s*{0}\b|\b{0}\s*(?:\+\+|--|(?:[-+*/%&|^]|<<|>>)?=(?!=))|&\s*{0}\b'
+
+
+def _parameters(body: str, span) -> List[Tuple[str, str]]:
+    """(type, name) of each named parameter of the function at `span`."""
+    sig = body[span[0]:span[1]]
+    inner = sig[sig.find('(') + 1:sig.rfind(')')]
+    out = []
+    for part in inner.split(','):
+        m = re.fullmatch(r'\s*(' + TYPE + r')\s*([A-Za-z_]\w*)\s*', part)
+        if m:
+            out.append((m[1].strip(), m[2]))
+    return out
+
+
+def _loop_regions(code: str, start: int, end: int):
+    """(start, end) of every for/while/do statement in code[start:end]."""
+    for m in re.finditer(r'(?m)^[ \t]*(for|while|do)\b', code[start:end]):
+        s = start + m.start()
+        i = start + m.end()
+        if m[1] != 'do':
+            if code[i:i + 1].strip() == '':
+                i = len(code[:i]) + (len(code[i:]) - len(code[i:].lstrip()))
+            if code[i:i + 1] != '(':
+                continue
+            depth = 0
+            while i < end:
+                depth += {'(': 1, ')': -1}.get(code[i], 0)
+                i += 1
+                if depth == 0:
+                    break
+        j = i + len(code[i:end]) - len(code[i:end].lstrip())
+        if code[j:j + 1] == '{':
+            depth = 0
+            while j < end:
+                depth += {'{': 1, '}': -1}.get(code[j], 0)
+                j += 1
+                if depth == 0:
+                    break
+        else:
+            j = code.find(';', j, end) + 1
+            if j <= 0:
+                continue
+        if m[1] == 'do':
+            w = re.match(r'\s*while\s*\([^;]*\)\s*;', code[j:end])
+            if not w:
+                continue
+            j += w.end()
+        nl = code.find('\n', j - 1, end)
+        yield s, (nl + 1 if nl >= 0 else j)
+
+
+def loop_helpers(body: str, name: str) -> List[Tuple[str, str]]:
+    """A loop moved into a `static inline` helper, with any directly preceding
+    initializers of loop-only locals. MWCC numbers an inlined helper's locals as one
+    coalescing group, which is what makes retail initialise a second loop value by
+    copying the first (`li r31, 0; mr r30, r31`) where a function-level loop gives
+    `li; li` under every spelling, type and pragma (fn_80077BD4, fn_1_1384C,
+    fn_80078F0C, fn_1_14DD68, fn_3_6E14 and fn_1_152A28 closed this way). Values the
+    loop only reads become parameters; locals used nowhere else move inside, in each
+    declaration order."""
+    from .sdkimport import masked
+    code = masked(body)
+    span = _function_body_span(code, name)
+    if not span:
+        return []
+    locs = _locals(body, span)
+    if not locs:
+        return []
+    decl_end = locs[-1][1]
+    params = _parameters(body, span)
+    vars_ = {nm: (typ, dims) for _, _, typ, nm, dims in locs}
+    # block-scope declarations type the values a loop reads from its enclosing block
+    block_vars = {}
+    for line in body[decl_end:span[2]].splitlines():
+        dm = DECL_RE.match(line)
+        if dm and dm.group(2) not in vars_ and dm.group(1).split()[0] not in ('return', 'goto'):
+            block_vars.setdefault(dm.group(2), (dm.group(1).strip(), dm.group(3)))
+    # anonymous record locals cannot be named in a helper's parameter list
+    opaque = {nm for nm, v in vars_.items() if '{' in v[0]}
+    vars_ = {nm: v for nm, v in vars_.items() if nm not in opaque}
+    ptypes = {nm: typ for typ, nm in params}
+    line_start = body.rfind('\n', 0, span[0]) + 1
+    out: List[Tuple[str, str]] = []
+    for k, (ls, le) in enumerate(_loop_regions(code, decl_end, span[2])):
+        starts = [ls]
+        # up to four directly preceding simple assignments join the region
+        prev = ls
+        for _ in range(4):
+            pm = re.search(r'(?m)^[ \t]*[A-Za-z_][\w.]*\s*=(?!=)[^;{}]*;[ \t]*\n(?:[ \t]*\n)*\Z', code[decl_end:prev])
+            if not pm:
+                break
+            prev = decl_end + pm.start()
+            starts.append(prev)
+        for rs in starts:
+            region = code[rs:le]
+            if re.search(r'\b(?:return|goto)\b', region) or re.search(r'(?m)^\s*\w+\s*:(?!:)', region):
+                continue
+            if any(re.search(rf'\b{re.escape(nm)}\b', region) for nm in opaque):
+                continue
+            outside = code[decl_end:rs] + code[le:span[2]]
+            used = [nm for nm in dict.fromkeys(list(vars_) + list(ptypes)) if re.search(rf'\b{re.escape(nm)}\b', region)]
+            inner_locals, args, results, copies, ok = [], [], [], [], True
+            def defined_first(nm, text):
+                first = re.search(rf'\b{re.escape(nm)}\b', text)
+                return first is not None and re.match(rf'{re.escape(nm)}\s*=(?!=)', text[first.start():])
+            for nm in used:
+                if nm in vars_ and not re.search(rf'\b{re.escape(nm)}\b', outside):
+                    inner_locals.append(nm)
+                    continue
+                after = code[le:span[2]]
+                if nm in vars_ and not vars_[nm][1] and defined_first(nm, region) and \
+                        (not re.search(rf'\b{re.escape(nm)}\b', after) or defined_first(nm, after)):
+                    # a counter every later loop re-initialises: the helper gets its own
+                    copies.append(nm)
+                    continue
+                if re.search(_ASSIGNS.format(re.escape(nm)), region):
+                    # one scalar local the loop computes for later code is the result
+                    if nm in vars_ and not vars_[nm][1] and not re.search(rf'&\s*{re.escape(nm)}\b', region):
+                        results.append(nm)
+                        continue
+                    ok = False
+                    break
+                if nm in vars_:
+                    typ, dims = vars_[nm]
+                    args.append((typ + ' *' if dims else typ, nm))
+                else:
+                    args.append((ptypes[nm], nm))
+            for nm, (typ, dims) in block_vars.items():
+                # declared in an enclosing block (not inside the region): a read-only argument
+                if not ok or not re.search(rf'\b{re.escape(nm)}\b', region) or \
+                        re.search(rf'^\s*{re.escape(typ)}\s*\*?\s*{re.escape(nm)}\b', region, re.M):
+                    continue
+                if re.search(_ASSIGNS.format(re.escape(nm)), region):
+                    ok = False
+                    break
+                args.append((typ + ' *' if dims else typ, nm))
+            if not ok or not (inner_locals or copies) or len(results) > 1:
+                continue
+            if results:
+                # the result's incoming value must not flow into the helper
+                first = re.search(rf'\b{re.escape(results[0])}\b', region)
+                if not re.match(rf'{re.escape(results[0])}\s*=(?!=)', region[first.start():]):
+                    continue
+            rtype = vars_[results[0]][0] if results else 'void'
+            helper = f'{name}_loop{k}'
+            ptext = ', '.join(f'{typ} {nm}' if not typ.endswith('*') else f'{typ}{nm}' for typ, nm in args) or 'void'
+            decls = {nm: next(body[s:e] for s, e, _, n2, _ in locs if n2 == nm) for nm in inner_locals}
+            if results:
+                decls[results[0]] = next(body[s:e] for s, e, _, n2, _ in locs if n2 == results[0])
+            for nm in copies:
+                decls[nm] = next(body[s:e] for s, e, _, n2, _ in locs if n2 == nm)
+            members = inner_locals + copies + results
+            orders = list(itertools.permutations(members)) if len(members) <= 3 else \
+                [tuple(members[i:] + members[:i]) for i in range(len(members))]
+            indent = re.match(r'[ \t]*', body[rs:])[0]
+            for order in orders:
+                fn = (f'static inline {rtype} {helper}({ptext}) {{\n' +
+                      ''.join(decls[nm] if decls[nm].endswith('\n') else decls[nm] + '\n' for nm in order) +
+                      body[rs:le] + (f'    return {results[0]};\n' if results else '') + '}\n\n')
+                target = f'{results[0]} = ' if results else ''
+                call = f'{indent}{target}{helper}({", ".join(nm for _, nm in args)});\n'
+                text = body[:rs] + call + body[le:]
+                for s, e, _, nm, _ in sorted((l for l in locs if l[3] in inner_locals), reverse=True):
+                    text = text[:s] + text[e:]
+                text = text[:line_start] + fn + text[line_start:]
+                out.append((f'loop {k} helper{"+init" if rs != ls else ""} {"/".join(order)}', text))
     return out
 
 
