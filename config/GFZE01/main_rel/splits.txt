@@ -7871,3 +7871,6 @@ rel/main_rel/driver/fn_1_A96BC.c:
 
 rel/main_rel/stcoli/fn_1_2E3B4.c:
 	.text       start:0x0002E3B4 end:0x0002E928 align:4
+
+rel/main_rel/sel_static_disp/fn_1_142BDC.c:
+	.text       start:0x00142BDC end:0x0014328C align:4
