@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (70.76% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (71.08% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 struct Sig_fn_3_12FD4_fn_3_12FD4_Arg3 {

@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (93.92% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.96% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -41,7 +41,7 @@ extern s16 lbl_1_bss_960;
 extern s32 lbl_801A66B4;
 extern u8 lbl_8_data_A1E8[0xA0];
 extern u32 lbl_8_bss_550;
-extern RData lbl_8_rodata_408;
+extern const RData lbl_8_rodata_408;
 extern s32 fn_1_45D0(u32, u32, u32, u32);
 extern u32 fn_800793D4(u32, s32, u32);
 extern void fn_1_435C(u32);
@@ -61,7 +61,7 @@ extern u32 fn_8_DD64;
 
 void fn_8_F9E4(u32 arg0, u32 arg1, u8 arg2) {
     Obj **slot = (Obj **)&lbl_8_bss_550;
-    RData *rd = &lbl_8_rodata_408;
+    const RData *rd = &lbl_8_rodata_408;
     u8 *data = lbl_8_data_A1E8;
     Node *n;
     u32 i;
@@ -83,7 +83,7 @@ void fn_8_F9E4(u32 arg0, u32 arg1, u8 arg2) {
     fn_1_435C(arg1);
     (*slot)->unk_1c = fn_1_3F8C((u32)(data + 0x140), (u32)&fn_8_EFA4, 0, 0xa);
     if (lbl_801A66B4 == 5) {
-        (*slot)->unk_3c = (u32)lbl_8_data_A1E8;
+        (*slot)->unk_3c = (u32)data;
         (*slot)->unk_3b = 4;
     } else {
         (*slot)->unk_3c = (u32)(data + 0x50);
@@ -94,34 +94,22 @@ void fn_8_F9E4(u32 arg0, u32 arg1, u8 arg2) {
         fn_800793D4((u32)n, 0, 0xc);
         n->unk_0 = (u8)i;
         switch ((u8)i) {
-        case 0: {
-            u16 id = 0xb2;
-            f32 v = rd->unk_700;
-            n->unk_4 = id;
-            n->unk_8.f = v;
+        case 0:
+            n->unk_4 = 0xb2;
+            n->unk_8.f = rd->unk_700;
             break;
-        }
-        case 1: {
-            u16 id = 0x114;
-            f32 v = rd->unk_704;
-            n->unk_4 = id;
-            n->unk_8.f = v;
+        case 1:
+            n->unk_4 = 0x114;
+            n->unk_8.f = rd->unk_704;
             break;
-        }
-        case 2: {
-            u16 id = 0x139;
-            f32 v = rd->unk_708;
-            n->unk_4 = id;
-            n->unk_8.f = v;
+        case 2:
+            n->unk_4 = 0x139;
+            n->unk_8.f = rd->unk_708;
             break;
-        }
-        case 3: {
-            u16 id = 0x54;
-            f32 v = rd->unk_704;
-            n->unk_4 = id;
-            n->unk_8.f = v;
+        case 3:
+            n->unk_4 = 0x54;
+            n->unk_8.f = rd->unk_704;
             break;
-        }
         }
         fn_1_3F8C((u32)(data + 0x158), (u32)&fn_8_DD64, (u32)n, 0xb);
     }
