@@ -40,8 +40,40 @@ object match, and all sixteen link/hash checks.
 | fn_8006B224 | 87.67857%, GC/1.3.2 with -O3; previous ledger best 75.35714% | 7/29 rows: base/offset GPR homes, initialization ordering, compare versus offset increment |
 | mathutil_mtxA_from_quat | 89.7619%, both usual compilers | Exact 42-instruction opcode/memory/operand-order sequence; 40 FPR-allocation rows differ; reject the larger historical score with uninitialized inputs |
 | fn_80070100 | 90.0% raw, GC/1.3.2 | 3/23 aligned rows: extra root temporary/copy and zero-offset argument form; correct real owner replaces the historical carrier |
+| fn_3_AC4C | 94.64286% raw, GC/1.3.2, no extra flags | 6/43 rows: prologue base registers/address scheduling; signed 16-bit selection index, not the archive's signed-byte truncation |
+| fn_800463E4 | 97.178085% raw, GC/1.3.2, no extra flags | 3/74 aligned rows: ordering of stack argument-pointer loads relative to the shift; unsigned header byte, no spurious `extsb` |
+| fn_8004EFA8 | 82.96% raw, GC/1.3.2, no extra flags | 6/27 aligned rows: early stack-short loads and neighboring global/stack load order; caller-backed integer return and decoder parameter types |
+| fn_8004F55C | 97.64706% raw, GC/1.3.2, `-use_lmw_stmw on` | 2/86 aligned rows: one early incoming-stack `lha`; read-only signed nibble table fixes sample-store ordering, versus the archive's 95.3% four-row residual |
 
 ### Semantic repairs worth retaining
+
+- The four type-correction frontiers above were separately compiled with the real
+  GC/1.3.2 compiler and diffed from scratch objects, without submitting or modifying
+  production units. `native-type-frontiers.json` records exact source hashes,
+  profiles, raw similarities and differing-row counts. They are deliberately not
+  represented as native-code gains.
+- `fn_3_AC4C` reads a signed 16-bit index with retail `lha`; the archive's `s8`
+  temporary adds a behavior-changing `extsb`. The automated type-flip search can
+  recreate that narrowing for a higher partial score. Reject that apparent gain.
+- `fn_800463E4` reads header byte 7 as unsigned before shifting it by four. The
+  archived signed byte produces an extra `extsb` and changes results for bytes
+  128 through 255. Removing the old optimizer pragmas preserves the corrected
+  three-row residual. Whole installed-version and 750/604 scheduling-profile
+  probes did not close it; no artificial dependency was added.
+- `lbl_800911E0` is a 0x40-byte `.rodata` object in the main symbol map. Giving
+  `fn_8004F55C` its real read-only signed nibble table removes the sample-store
+  ordering discrepancy without a barrier, reducing four differing rows to two.
+  The dead `(void)y` marker and old loop/lifetime pragmas are gone. Moving the
+  sample store explicitly instead enlarged the frame and changed many register
+  homes; changing to array-form parameters, an inline random-state helper and
+  the installed compiler versions did not close the remaining early stack load.
+- `ADXPD_ExecHndl` assigns the result of `fn_8004EFA8` and declares its input,
+  output, delay and random-state pointers plus signed-short coefficients. The
+  native wrapper now returns the selected decoder's status with that ABI. Keep
+  the flag array's external extent unspecified: bounding it to two words makes
+  MWCC select SDA addressing, unlike retail. Wider trailing parameters, a switch
+  rewrite, scheduler-off and lower optimization profiles did not close the native
+  prologue schedule. The plain typed C remains the continuation input.
 
 - The saved fn_8006B470 work copy (NOT the tracked canonical stub) exchanged the
   input-entry and output-record strides. Restore entry stride `0x1248` and output

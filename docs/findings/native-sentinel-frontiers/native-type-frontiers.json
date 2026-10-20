@@ -1,0 +1,54 @@
+[
+  {
+    "symbol": "fn_3_AC4C",
+    "path": "docs/findings/native-sentinel-frontiers/fn_3_AC4C.native.c",
+    "sha256": "d4347fd49ae02bf5dc08deb931458cabbfd9c37aa0ca5586e130d1a96960ddce",
+    "mw": "GC/1.3.2",
+    "flags": "",
+    "compiled": true,
+    "matched": false,
+    "percent": 94.64286,
+    "percent_adjusted": 86.05,
+    "instruction_rows": 43,
+    "differing_rows": 6
+  },
+  {
+    "symbol": "fn_800463E4",
+    "path": "docs/findings/native-sentinel-frontiers/fn_800463E4.native.c",
+    "sha256": "6292c4c7488d0cd0c94d83dbfbab4b5e7b21b74475ea6839ef7c34a810941028",
+    "mw": "GC/1.3.2",
+    "flags": "",
+    "compiled": true,
+    "matched": false,
+    "percent": 97.178085,
+    "percent_adjusted": 97.178085,
+    "instruction_rows": 74,
+    "differing_rows": 3
+  },
+  {
+    "symbol": "fn_8004EFA8",
+    "path": "docs/findings/native-sentinel-frontiers/fn_8004EFA8.native.c",
+    "sha256": "fb1c98427bace49d209e3c787f6dfe8eccfdac6a687d406734f1b75415ed760d",
+    "mw": "GC/1.3.2",
+    "flags": "",
+    "compiled": true,
+    "matched": false,
+    "percent": 82.96,
+    "percent_adjusted": 77.78,
+    "instruction_rows": 27,
+    "differing_rows": 6
+  },
+  {
+    "symbol": "fn_8004F55C",
+    "path": "docs/findings/native-sentinel-frontiers/fn_8004F55C.native.c",
+    "sha256": "2aa2ffd8941301a1a8b7eee03da09b5f71e25e554e8206dcb89a84a0b913e120",
+    "mw": "GC/1.3.2",
+    "flags": "-use_lmw_stmw on",
+    "compiled": true,
+    "matched": false,
+    "percent": 97.64706,
+    "percent_adjusted": 97.67,
+    "instruction_rows": 86,
+    "differing_rows": 2
+  }
+]
