@@ -4,7 +4,7 @@
 #include <dolphin/os/OSTime.h>
 #include <dolphin/si.h>
 
-extern u32 Type_80123BA8[4];
+extern u32 Type[4];
 
 extern u32 lbl_801A6818;
 
@@ -55,24 +55,24 @@ void GetTypeCallback(s32 chan, u32 error, OSContext *context) {
     u32 chanBit;
     BOOL fix;
     u32 id;
-    Type_80123BA8[chan] &= ~0x0080;
-    Type_80123BA8[chan] |= error;
+    Type[chan] &= ~0x0080;
+    Type[chan] |= error;
     TypeTime[chan] = __OSGetSystemTime();
-    type = Type_80123BA8[chan];
+    type = Type[chan];
     chanBit = 0x80000000 >> chan;
     fix = (BOOL)(lbl_801A6818 & chanBit);
     lbl_801A6818 &= ~chanBit;
     if ((error & (0x0001 | 0x0002 | 0x0008 | 0x0004)) || (type & 0x18000000u) != 0x08000000u ||
         !(type & 0x80000000) || (type & 0x04000000)) {
         OSSetWirelessID(chan, 0);
-        CallTypeAndStatusCallback(chan, Type_80123BA8[chan]);
+        CallTypeAndStatusCallback(chan, Type[chan]);
         return;
     }
     id = (u32)(OSGetWirelessID(chan) << 8);
     if (fix && (id & 0x00100000)) {
         lbl_8015CBB0__fzgx_offset_50[chan] = 0x4Eu << 24 | (id & (0x000f0000 | 0x00c0ff00)) | 0x00100000;
-        Type_80123BA8[chan] = 0x0080;
-        SITransfer(chan, &lbl_8015CBB0__fzgx_offset_50[chan], 3, &Type_80123BA8[chan], 3, GetTypeCallback, 0);
+        Type[chan] = 0x0080;
+        SITransfer(chan, &lbl_8015CBB0__fzgx_offset_50[chan], 3, &Type[chan], 3, GetTypeCallback, 0);
         return;
     }
     if (type & 0x00100000) {
@@ -83,8 +83,8 @@ void GetTypeCallback(s32 chan, u32 error, OSContext *context) {
                 OSSetWirelessID(chan, (u16)((id >> 8) & 0xffff));
             }
             lbl_8015CBB0__fzgx_offset_50[chan] = 0x4E << 24 | id;
-            Type_80123BA8[chan] = 0x0080;
-            SITransfer(chan, &lbl_8015CBB0__fzgx_offset_50[chan], 3, &Type_80123BA8[chan], 3, GetTypeCallback, 0);
+            Type[chan] = 0x0080;
+            SITransfer(chan, &lbl_8015CBB0__fzgx_offset_50[chan], 3, &Type[chan], 3, GetTypeCallback, 0);
             return;
         }
     } else if (type & 0x40000000) {
@@ -92,11 +92,11 @@ void GetTypeCallback(s32 chan, u32 error, OSContext *context) {
         id |= 0x00100000;
         OSSetWirelessID(chan, (u16)((id >> 8) & 0xffff));
         lbl_8015CBB0__fzgx_offset_50[chan] = 0x4E << 24 | id;
-        Type_80123BA8[chan] = 0x0080;
-        SITransfer(chan, &lbl_8015CBB0__fzgx_offset_50[chan], 3, &Type_80123BA8[chan], 3, GetTypeCallback, 0);
+        Type[chan] = 0x0080;
+        SITransfer(chan, &lbl_8015CBB0__fzgx_offset_50[chan], 3, &Type[chan], 3, GetTypeCallback, 0);
         return;
     } else {
         OSSetWirelessID(chan, 0);
     }
-    CallTypeAndStatusCallback(chan, Type_80123BA8[chan]);
+    CallTypeAndStatusCallback(chan, Type[chan]);
 }

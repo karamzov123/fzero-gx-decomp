@@ -8,9 +8,9 @@
 
 u32 __OSBusClock : FZGX_ADDR___OSBusClock;
 
-extern SIControl Si_80123B94;
+extern SIControl Si;
 
-extern u32 Type_80123BA8[4];
+extern u32 Type[4];
 
 OSTime TypeTime_8015CB30[4] __attribute__((aligned(8)));
 
@@ -25,26 +25,26 @@ u32 SIGetType(s32 chan) {
     u32 type;
     OSTime diff;
     enabled = OSDisableInterrupts();
-    type = Type_80123BA8[chan];
+    type = Type[chan];
     diff = __OSGetSystemTime() - TypeTime_8015CB30[chan];
-    if (Si_80123B94.poll & (0x80 >> chan)) {
+    if (Si.poll & (0x80 >> chan)) {
         if (type != 0x0008) {
             TypeTime_8015CB30[chan] = __OSGetSystemTime();
             OSRestoreInterrupts(enabled);
             return type;
         } else {
-            type = Type_80123BA8[chan] = 0x0080;
+            type = Type[chan] = 0x0080;
         }
     } else if (diff <= ((50) * (((u32)__OSBusClock / 4) / 1000)) && type != 0x0008) {
         OSRestoreInterrupts(enabled);
         return type;
     } else if (diff <= ((75) * (((u32)__OSBusClock / 4) / 1000))) {
-        Type_80123BA8[chan] = 0x0080;
+        Type[chan] = 0x0080;
     } else {
-        type = Type_80123BA8[chan] = 0x0080;
+        type = Type[chan] = 0x0080;
     }
     TypeTime_8015CB30[chan] = __OSGetSystemTime();
-    SITransfer(chan, &cmdTypeAndStatus, 1, &Type_80123BA8[chan], 3, GetTypeCallback,
+    SITransfer(chan, &cmdTypeAndStatus, 1, &Type[chan], 3, GetTypeCallback,
                (((65) * (((u32)__OSBusClock / 4) / 125000)) / 8));
     OSRestoreInterrupts(enabled);
     return type;

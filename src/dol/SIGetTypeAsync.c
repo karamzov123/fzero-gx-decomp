@@ -5,7 +5,7 @@
 
 u32 SIGetType(s32 chan);
 
-extern u32 Type_80123BA8[4];
+extern u32 Type[4];
 
 extern SITypeAndStatusCallback lbl_8015CB70[4][4];
 
@@ -14,7 +14,7 @@ u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback) {
     u32 type;
     enabled = OSDisableInterrupts();
     type = SIGetType(chan);
-    if (Type_80123BA8[chan] & 0x0080) {
+    if (Type[chan] & 0x0080) {
         int i;
         for (i = 0; i < 4; ++i) {
             if (lbl_8015CB70[chan][i] == callback) {

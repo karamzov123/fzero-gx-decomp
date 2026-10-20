@@ -9039,6 +9039,17 @@
   },
   {
     "module": "main",
+    "source": "dol/SIInterruptHandler.c",
+    "symbols": [
+      "SIInterruptHandler"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "pool": true
+  },
+  {
+    "module": "main",
     "source": "dol/SIIsChanBusy.c",
     "symbols": [
       "SIIsChanBusy"

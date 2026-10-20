@@ -22,7 +22,7 @@ u32 SIGetStatus(s32 chan);
 
 vu32 __SIRegs[64] : FZGX_ADDR___SIRegs;
 
-extern u32 Type_80123BA8[4];
+extern u32 Type[4];
 
 extern struct SIBiosBss Packet;
 
@@ -35,8 +35,8 @@ static inline u32 SIGetStatus(s32 chan) {
     chanShift = 8 * (4 - 1 - chan);
     sr >>= chanShift;
     if (sr & 0x0008) {
-        if (!(Type_80123BA8[chan] & 0x0080)) {
-            Type_80123BA8[chan] = 0x0008;
+        if (!(Type[chan] & 0x0080)) {
+            Type[chan] = 0x0008;
         }
     }
     OSRestoreInterrupts(enabled);

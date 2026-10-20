@@ -32,9 +32,9 @@ vu32 __SIRegs[64] : FZGX_ADDR___SIRegs;
 
 extern const char *__SIVersion;
 
-extern SIControl Si_80123B94;
+extern SIControl Si;
 
-void SIInterruptHandler_80011C74(__OSInterrupt interrupt, OSContext *context);
+void SIInterruptHandler(__OSInterrupt interrupt, OSContext *context);
 
 extern struct SDK_SIBios____bss_0 Packet;
 
@@ -46,12 +46,12 @@ void SIInit(void) {
     (sdk_storage____bss_0->sdk_Packet)[0].chan = (sdk_storage____bss_0->sdk_Packet)[1].chan =
         (sdk_storage____bss_0->sdk_Packet)[2].chan = (sdk_storage____bss_0->sdk_Packet)[3].chan =
             -1;
-    Si_80123B94.poll = 0;
+    Si.poll = 0;
     SISetSamplingRate(0);
     while (__SIRegs[13] & 1)
         ;
     __SIRegs[13] = 0x80000000;
-    __OSSetInterruptHandler(20, SIInterruptHandler_80011C74);
+    __OSSetInterruptHandler(20, SIInterruptHandler);
     __OSUnmaskInterrupts((0x80000000u >> (20)));
     SIGetType(0);
     SIGetType(1);

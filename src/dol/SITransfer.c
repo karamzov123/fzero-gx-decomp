@@ -22,7 +22,7 @@ struct SIBiosBss {
 
 void OSSetAlarm(OSAlarm *alarm, OSTime tick, OSAlarmHandler handler);
 
-extern SIControl Si_80123B94;
+extern SIControl Si;
 
 BOOL __SITransfer(s32 chan, void *output, u32 outputBytes, void *input, u32 inputBytes,
                   SICallback callback);
@@ -43,7 +43,7 @@ BOOL SITransfer(s32 chan, void *output, u32 outputBytes, void *input, u32 inputB
     OSTime now;
     OSTime fire;
     enabled = OSDisableInterrupts();
-    if (packet->chan != -1 || Si_80123B94.chan == chan) {
+    if (packet->chan != -1 || Si.chan == chan) {
         OSRestoreInterrupts(enabled);
         return 0;
     }

@@ -6,19 +6,19 @@
 
 vu32 __SIRegs[64] : FZGX_ADDR___SIRegs;
 
-extern SIControl Si_80123B94;
+extern SIControl Si;
 
 u32 SIDisablePolling(u32 poll) {
     BOOL enabled;
     if (poll == 0) {
-        return Si_80123B94.poll;
+        return Si.poll;
     }
     enabled = OSDisableInterrupts();
     poll >>= (31 - 7);
     poll &= 0xf0;
-    poll = Si_80123B94.poll & ~poll;
+    poll = Si.poll & ~poll;
     __SIRegs[12] = poll;
-    Si_80123B94.poll = poll;
+    Si.poll = poll;
     OSRestoreInterrupts(enabled);
     return poll;
 }
