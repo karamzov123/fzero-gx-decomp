@@ -3285,19 +3285,31 @@ def candidates(p: Project, symbol: str, body: str, base: oracle.CheckResult):
                 for alt in alts[:4]:
                     candidates.append((f"{n}: {mine[n]} -> {alt}", body.replace(mine[n], alt, 1)))
     candidates += literals[3:]
-    # float vs double: fsubs/fsub, frsp rows come from f32/f64 declarations and literal suffixes
+    # float vs double: fsubs/fsub, frsp rows come from f32/f64 declarations and literal suffixes.
+    # Pool primers hold measured retail bytes: a suffix or type flip there changes the pool
+    # (a double primed as `0.49f` loses its low bits), so these rewrites skip them.
     if any((t.split()[0] if t else "") in FLOAT_PAIRS or (o.split()[0] if o else "") in FLOAT_PAIRS or "frsp" in (t + o) for t, o in diffs):
+        from .sdkimport import masked
+        primer_ranges = _layout_primer_ranges(body, masked(body))
+        def outside(pattern):
+            return [m for m in re.finditer(pattern, body) if not any(a <= m.start() < b for a, b in primer_ranges)]
+        def substitute(matches, repl):
+            text = body
+            for m in reversed(matches):
+                text = text[:m.start()] + m.expand(repl) + text[m.end():]
+            return text
         for a, b in (("f64", "f32"), ("f32", "f64"), ("double", "float"), ("float", "double")):
-            if re.search(rf"\b{a}\b", body):
-                candidates.append((f"all {a}->{b}", re.sub(rf"\b{a}\b", b, body)))
-                for m in list(re.finditer(rf"\b{a}\b", body))[:12]:
+            sites = outside(rf"\b{a}\b")
+            if sites:
+                candidates.append((f"all {a}->{b}", substitute(sites, b)))
+                for m in sites[:12]:
                     candidates.append((f"{a}->{b} at {m.start()}", body[:m.start()] + b + body[m.end():]))
-        lits = list(re.finditer(r"(?<![\w.])(\d+\.\d*(?:[eE][-+]?\d+)?)(?![\w.])", body))
+        lits = outside(r"(?<![\w.])(\d+\.\d*(?:[eE][-+]?\d+)?)(?![\w.f])")
         if lits:
-            candidates.append(("float literals get f", re.sub(r"(?<![\w.])(\d+\.\d*(?:[eE][-+]?\d+)?)(?![\w.])", r"\1f", body)))
-        litf = list(re.finditer(r"(?<![\w.])(\d+\.\d*(?:[eE][-+]?\d+)?)f\b", body))
+            candidates.append(("float literals get f", substitute(lits, r"\1f")))
+        litf = outside(r"(?<![\w.])(\d+\.\d*(?:[eE][-+]?\d+)?)f\b")
         if litf:
-            candidates.append(("float literals lose f", re.sub(r"(?<![\w.])(\d+\.\d*(?:[eE][-+]?\d+)?)f\b", r"\1", body)))
+            candidates.append(("float literals lose f", substitute(litf, r"\1")))
     # unused leading parameters: retail keeps r3..r5 alive (they were parameters) and uses r6 for a
     # temporary where we used r3; adding parameters the body ignores reproduces that
     if span:
