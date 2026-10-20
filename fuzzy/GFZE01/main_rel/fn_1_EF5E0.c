@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (78.92% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (82.43% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "rel/main_rel/ghost.h"
 
