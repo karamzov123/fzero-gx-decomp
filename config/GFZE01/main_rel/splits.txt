@@ -7877,3 +7877,9 @@ rel/main_rel/sel_static_disp/fn_1_142BDC.c:
 
 rel/main_rel/car/fn_1_7F658.c:
 	.text       start:0x0007F658 end:0x0007F934 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14DD68.c:
+	.text       start:0x0014DD68 end:0x0014DDF4 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14DDF4.c:
+	.text       start:0x0014DDF4 end:0x0014DE80 align:4

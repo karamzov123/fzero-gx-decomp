@@ -5559,6 +5559,64 @@ void fn_1_14DC68(fn_1_14DC68_StaticDispEntry *arg0, s16 arg1) {
 }
 /* fzgx:end fn_1_14DC68 */
 
+/* fzgx:begin fn_1_14DD68 noprologue */
+#include "dolphin/types.h"
+
+extern s16 fn_1_14F344(s16);
+
+static inline u8 *fn_1_14DD68_find(u8 *base) {
+    u8 *p;
+    u8 *result;
+    s16 i;
+
+    result = 0;
+    i = 0;
+    p = base;
+
+    for (; (u32)i < 3; i++) {
+        if ((s16)fn_1_14F344(*(s16 *)p) == 0) {
+            result = base + i * 0x360 + 0x23c;
+            break;
+        }
+        p += 0x360;
+    }
+    return result;
+}
+
+void *fn_1_14DD68(void *arg0) {
+    return fn_1_14DD68_find(arg0);
+}
+/* fzgx:end fn_1_14DD68 */
+
+/* fzgx:begin fn_1_14DDF4 noprologue */
+#include "dolphin/types.h"
+
+extern s16 fn_1_14F344(s16);
+
+static inline u8 *fn_1_14DDF4_find(u8 *base) {
+    u8 *p;
+    u8 *result;
+    s16 i;
+
+    result = 0;
+    i = 0;
+    p = base;
+
+    for (; (u32)i < 3; i++) {
+        if ((s16)fn_1_14F344(*(s16 *)p) == 0) {
+            result = base + i * 0x360 + 0x228;
+            break;
+        }
+        p += 0x360;
+    }
+    return result;
+}
+
+void *fn_1_14DDF4(void *arg0) {
+    return fn_1_14DDF4_find(arg0);
+}
+/* fzgx:end fn_1_14DDF4 */
+
 /* fzgx:begin fn_1_14DE80 */
 void fn_1_14DE80(void *arg0, void *arg1, void *arg2, void *arg3) {
     fn_1_14DEC8(arg0, arg1, arg2, arg3, 0);

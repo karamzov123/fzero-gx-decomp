@@ -27525,6 +27525,16 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80078F0C.c",
+    "symbols": [
+      "fn_80078F0C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/fn_800791A4.c",
     "symbols": [
       "fn_800791A4"
@@ -57109,6 +57119,28 @@
     "pool": {
       "@30": "lbl_1_data_45204"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_14DD68.c",
+    "symbols": [
+      "fn_1_14DD68"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sel_static_disp.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_14DDF4.c",
+    "symbols": [
+      "fn_1_14DDF4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
     "module": "main_rel",
