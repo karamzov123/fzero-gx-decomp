@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (95.04% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.58% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #pragma section code_type ".fzgxpool"
@@ -97,9 +97,7 @@ s32 fn_16_20F4(void) {
     p.value += 4;
     if ((*p.value >> 4) & 1) {
         fn_1_A2D84(0xA9010000);
-        c = lbl_1_bss_8B614.unk_2C;
-        (void) c;
-        lbl_1_bss_8B614.unk_2C = ((u32)(1 - c) | (c - 1)) >> 31;
+        lbl_1_bss_8B614.unk_2C = lbl_1_bss_8B614.unk_2C != 1;
     }
     q = (u16 *)((u32)lbl_1_bss_9F8 + offset + 18);
     }
