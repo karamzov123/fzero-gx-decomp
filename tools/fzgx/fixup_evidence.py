@@ -3777,4 +3777,38 @@ def shared_pool_primer(p, symbol, body, check):
             at = leading.end()
         text = body[:at] + primer + body[at:]
         out.append((f'prime shared-pool layout ({pool.name}, {end:#x} bytes)', text))
+        # A run of pool words this function reads as integers and copies out is often its own
+        # initialized local (`Vec pos = {0.0f, -20.0f, 0.0f};`): MWCC emits that aggregate when
+        # it compiles the function, after everything already primed. Priming only up to the run
+        # leaves its retail offset free (fn_10_12C14: the aggregate at +0x444).
+        runs = sorted(o for o in own_words if o + 4 in own_words and o - 4 not in own_words)
+        if runs and runs[0] > 0:
+            cut = _primer_entry_at(primer, runs[0])
+            if cut is not None:
+                truncated = primer[:cut] + '#pragma section code_type ".text"\n'
+                out.append((f'prime shared-pool layout ({pool.name}) up to the initializer at {runs[0]:#x}',
+                            body[:at] + truncated + body[at:]))
     return out
+
+
+def _primer_entry_at(primer: str, offset: int) -> Optional[int]:
+    """Position in a generated pool primer of the top-level entry laid out at `offset`
+    (a table definition or a literal function), or None when no entry starts there."""
+    off = 0
+    for m in re.finditer(r'^\s*(s|d) = [^;]+;|^static const u32 fzgx_pool_table\d+\[(\d+)\]|'
+                         r'^__declspec\(section "\.fzgxpool"\) static void fzgx_pool_prime\d+', primer, re.M):
+        if m.group(0).startswith('__declspec'):
+            nxt = re.search(r'^\s*(s|d) = ', primer[m.end():], re.M)
+            if off == offset and nxt and nxt.group(1) == 's':
+                return m.start()
+            continue
+        if m.group(2):
+            if off == offset:
+                return m.start()
+            off += int(m.group(2)) * 4
+        elif m.group(1) == 's':
+            off += 4
+        else:
+            off += 4 if off % 8 else 0
+            off += 8
+    return None
