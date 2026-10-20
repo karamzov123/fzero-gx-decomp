@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.87% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.44% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #pragma section code_type ".fzgxpool"
@@ -12,12 +12,12 @@ static const u32 fzgx_pool_table2[1] = {0x00D0D000};  /* fzgx-allow: A1 retail p
 __declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 78.0f;
-    d = 0.125f;
+    d = 78.0;
+    d = 0.125;
     s = 2.9375f;
     s = 0.0f;
-    d = 0.3f;
-    d = 1.0f;
+    d = 0.3;
+    d = 1.0;
 }
 static const u32 fzgx_pool_table4[1] = {0x00D0D000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
@@ -44,27 +44,27 @@ static const u32 fzgx_pool_table10[1] = {0x00000000};  /* fzgx-allow: A1 retail 
 __declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 96.0f;
-    d = 48.0f;
+    d = 96.0;
+    d = 48.0;
     s = 0.25f;
 }
 static const u32 fzgx_pool_table12[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 4503599627370496.0f;
+    d = 4503599627370496.0;
     s = 0.004999999888241291f;
     s = 216.0f;
-    d = 90.0f;
-    d = 320.0f;
-    d = 0.5f;
+    d = 90.0;
+    d = 320.0;
+    d = 0.5;
     s = 264.0f;
 }
 static const u32 fzgx_pool_table14[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep14(void) { const u32 *volatile cp; cp = fzgx_pool_table14; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime15(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = -0.5f;
+    d = -0.5;
     s = 0.014999999664723873f;
     s = 72.0f;
     s = 0.02500000037252903f;
@@ -79,7 +79,7 @@ static const u32 fzgx_pool_table16[11] = {0x08080000, 0x78780000, 0x06060000, 0x
 __declspec(section ".fzgxpool") static void fzgx_pool_keep16(void) { const u32 *volatile cp; cp = fzgx_pool_table16; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime17(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 4503601774854144.0f;
+    d = 4503601774854144.0;
     s = 1.3333333730697632f;
     s = 160.0f;
     s = 210.0f;
