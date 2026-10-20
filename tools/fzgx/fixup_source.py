@@ -717,6 +717,37 @@ def signedness_flips(body: str, name: str) -> List[Tuple[str, str]]:
     return out
 
 
+def store_view_signedness(body: str, name: str) -> List[Tuple[str, str]]:
+    """A narrow store's view type flipped: `*(u16 *)(p + 14) = x << 5;` folds the
+    truncation into the shift (`clrlslwi`/`rlwinm ..,16,26`) and splits the value from
+    its other uses, while an `s16` destination keeps one plain `slwi` for the store and
+    the multiply (fn_12_27224). Tries each store site, then every site of one type."""
+    out: List[Tuple[str, str]] = []
+    sites: Dict[str, List[int]] = {}
+    for m in re.finditer(r'\*\((u16|s16|u8|s8) \*\)\(', body):
+        depth, i = 0, m.end() - 1
+        while i < len(body):
+            if body[i] == '(':
+                depth += 1
+            elif body[i] == ')':
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        if re.match(r'\s*=(?!=)', body[i + 1:i + 4]):
+            sites.setdefault(m.group(1), []).append(m.start(1))
+    for typ, starts in sites.items():
+        flip = SIGN_FLIP[typ]
+        for pos in starts[:12]:
+            out.append((f"store view at {pos}: {typ} -> {flip}", body[:pos] + flip + body[pos + len(typ):]))
+        if len(starts) > 1:
+            text = body
+            for pos in reversed(starts):
+                text = text[:pos] + flip + text[pos + len(typ):]
+            out.append((f"every {typ} store view -> {flip}", text))
+    return out
+
+
 _CAST_MASK = {'u8': '0xFF', 'u16': '0xFFFF', 'unsigned char': '0xFF', 'unsigned short': '0xFFFF'}
 
 
@@ -818,7 +849,7 @@ def rewrites(body: str, name: str) -> List[Tuple[str, str]]:
     out: List[Tuple[str, str]] = []
     for fn in (scope_moves, split_inits, hoists, compound_assignments, through_local, return_values,
                call_results_to_locals, wrap_constant_pointers, decse_repeated_expressions,
-               member_copy_states, scalar_carriers, unwrap_scalar_carriers, dead_uses, variable_splits, signedness_flips, mask_spellings,
+               member_copy_states, scalar_carriers, unwrap_scalar_carriers, dead_uses, variable_splits, signedness_flips, store_view_signedness, mask_spellings,
                float_precision, embedded_call_assignments, condition_embedded_assignments):
         try:
             out += fn(body, name)

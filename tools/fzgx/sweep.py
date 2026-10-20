@@ -98,6 +98,7 @@ def generate(p: Project, s: str, sym, path: Path, body: str, check, outdir: Path
     add('callargs', lambda: fixup_evidence.call_arguments(p, s, body, check))
     add('frame', lambda: fixup_evidence.frame_padding(p, s, body, check))
     add('signed', lambda: fixup_source.signedness_flips(body, sym.name))
+    add('signed', lambda: fixup_source.store_view_signedness(body, sym.name))
     add('floatprec', lambda: fixup_source.float_precision(body, sym.name))
     add('heldcall', lambda: fixup_source.call_results_to_locals(body, sym.name))
     add('through', lambda: fixup_source.through_local(body, sym.name))
