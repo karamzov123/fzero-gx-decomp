@@ -257,6 +257,15 @@ Each line is a family that turned a 60–99% body into a match; the count is how
   grouped imports must reverse definitions and still prove every object offset,
   section extent and alignment. First-use order in a function primer is a
   different case; put such primers explicitly in `.fzgxpool`.
+- MWCC numbers native section bases by earlier functions' first accesses,
+  independently of the object ordering within each section. An SDK BSS primer
+  alone can therefore produce the right offsets but swap every `.data`/`.bss`
+  base register. In `SIInterruptHandler` (GC/1.2.5n), priming the three existing
+  initialized objects before the BSS primer closed all 15 instruction-word
+  differences. Keep both primers in discarded `.fzgxpool`, preserve the data
+  definitions and their section order, and require the existing byte/relocation
+  proofs and all 16 hashes. The `initialized_base_order` fixup family and
+  `state/repairs/sdk-native-section-base-order.json.gz` reproduce this repair.
 - Preprocessed C may contain spaces around `->`. Normalize the member-access
   token before the layout parser checks whether a base pointer escapes.
 

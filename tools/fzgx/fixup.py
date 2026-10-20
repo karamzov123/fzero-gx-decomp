@@ -509,6 +509,7 @@ class Engine:
         captured_operators = []
         check = self.check(row)
         if check.ok:
+            yield from layout.initialized_base_order(self.project, row['symbol'], body, row.get('object'), check)
             yield from evidence.range_switches(body, name, check)
             yield from layout.native_string_views(self.project, row['symbol'], body)
             yield from evidence.swapped_call_arguments(self.project, row['symbol'], body, check)

@@ -36,6 +36,60 @@ class Gap:
         self.name, self.addr, self.end, self.size, self.section, self.kind = name, addr, end, end - addr, section, 'object'
 
 
+def initialized_base_order(p, symbol, body, obj, check):
+    """Prime an SDK native .data base before its existing BSS layout primer.
+
+    Object definitions and their order are unchanged. MWCC numbers section
+    bases by earlier functions' first accesses, independently of the BSS object
+    ordering that sdk_layout already establishes. The oracle still has to prove
+    the initialized bytes, BSS layout and every rewritten relocation.
+    """
+    from .sdkimport import declarations
+
+    if not obj or not check.ok or 'fzgx_initialized_base_prime' in body:
+        return []
+    primer = re.search(r'#pragma\s+section\s+code_type\s+"\.fzgxpool"\s*'
+                       r'static\s+void\s+sdk_layout_\w*bss\w*\s*\(', body)
+    if not primer:
+        return []
+    elf = poolfix.Elf(Path(obj).read_bytes())
+    own = {s['name']: s for s in elf.symbols()}
+    selected = []
+    for piece in declarations(body):
+        if piece.kind != 'object' or len(piece.names) != 1:
+            continue
+        name = next(iter(piece.names))
+        native = own.get(name)
+        if (not native or native['shndx'] >= len(elf.sections)
+                or elf.sections[native['shndx']]['name'] != '.data'
+                or not re.match(r'static\s+', piece.text) or '=' not in piece.text):
+            continue
+        start = body.find(piece.text)
+        if start < 0 or body.find(piece.text, start + 1) >= 0:
+            return []
+        selected.append((start, start + len(piece.text), name, piece.text))
+    # Three objects make the compiler use the native section base rather than
+    # separate direct symbol addresses. Never invent another object to do so.
+    if len(selected) < 3:
+        return []
+    selected.sort()
+    at = primer.start()
+    if any(start < at < end for start, end, _, _ in selected):
+        return []
+    block = '\n'.join(text for _, _, _, text in selected) + '\n'
+    block += ('#pragma section code_type ".fzgxpool"\n'
+              'static void fzgx_initialized_base_prime(void) {\n'
+              '    const void *volatile sink; /* fzgx-allow: S2 discarded section-base layout primer */\n')
+    block += ''.join(f'    sink = &{name};\n' for _, _, name, _ in selected)
+    block += '}\n#pragma section code_type ".text"\n'
+    edits = [(start, end, '') for start, end, _, _ in selected]
+    edits.append((at, at, block))
+    text = body
+    for start, end, replacement in sorted(edits, reverse=True):
+        text = text[:start] + replacement + text[end:]
+    return [('native initialized section base before BSS', text)]
+
+
 def bss_member_bindings(p, symbol, body, obj, check):
     """Name generated layout pieces using their measured retail subobjects."""
     if not obj or not check.ok:
