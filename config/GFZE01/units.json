@@ -39670,10 +39670,13 @@
     "symbols": [
       "fn_1_8E244"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/car.c"
+    "tu": "rel/main_rel/car.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_3508"
+    }
   },
   {
     "module": "main_rel",
