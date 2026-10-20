@@ -18,8 +18,7 @@ import tarfile
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-FORK = 'https://github.com/karamzov123/fzgx.git'
-BACKUP_FORK = 'https://github.com/karamzov123/fzero-gx-decomp.git'
+FORK = 'https://github.com/karamzov123/fzero-gx-decomp.git'
 STATE = Path.home()/'.cache/fzgx-agents/integrator-v1.json'
 
 @contextmanager
@@ -193,11 +192,6 @@ class Publisher:
         observed=self.remote_head()
         if observed!=head:
             return self.record('error','Push readback does not equal the verified target',head=head,remote_head=observed)
-        if BACKUP_FORK:
-            try:
-                self.git('push', '--porcelain', BACKUP_FORK, f'{head}:refs/heads/main', check=False)
-            except Exception:
-                pass
         return self.record('published','Fast-forward push verified by exact remote readback',published=head,remote_head=observed)
 
 def main():
