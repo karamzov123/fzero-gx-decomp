@@ -190,6 +190,111 @@ void fn_13_0(void) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_13_0 */
 
+/* fzgx:begin fn_13_3FC */
+#include "rel/main_rel/globals.h"
+#include "rel/replay/replay_mode.h"
+
+extern u32 lbl_13_bss_4;
+extern u32 fn_1_F453C(u32 stream, u32 *pos, u32 bits);
+extern void fn_1_3EF14(void *header);
+extern void fn_1_F4794(u16 count);
+extern void fn_80008BA8(void *dst, void *src, u32 size);
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} ReplayVec;
+
+typedef struct {
+    u32 a : 15;
+    u32 c : 3;
+    u32 d : 5;
+    u32 e : 5;
+    u32 pad0 : 4;
+    u32 b : 15;
+    u32 f : 5;
+    u32 g : 5;
+    u32 h : 5;
+    u32 pad1 : 2;
+    ReplayVec pos[4];
+    ReplayVec rot[4];
+    ReplayVec v68;
+    ReplayVec v74;
+} ReplayEntry;
+
+typedef struct {
+    u8 pad0[0xA0];
+    u16 count;
+    u16 padA2;
+    u8 rec[(0xFEF0 - 0xA4) / 7][7];
+    u16 numEntries;
+    u8 padF2[0x5A];
+    ReplayEntry entries[1];
+} ReplayData;
+
+static inline u32 replay_read(u32 bits) {
+    u32 *pos = &lbl_13_bss_4;
+    return fn_1_F453C(lbl_13_bss_0, pos, bits);
+}
+
+static inline f32 replay_read_f32(void) {
+    u32 raw;
+    f32 value;
+    raw = replay_read(32);
+    fn_80008BA8(&value, &raw, 4);
+    return value;
+}
+
+#define REPLAY ((ReplayData *)lbl_1_bss_7EFD8.unk_40)
+
+void fn_13_3FC(void) {
+    u8 header[0x14B8];
+    s32 i;
+    s32 j;
+
+    fn_1_3EF14(header);
+    REPLAY->numEntries = replay_read(8);
+    lbl_1_bss_7EFD8.unk_18 = header[8];
+    for (i = 0; i < REPLAY->numEntries; i++) {
+        REPLAY->entries[i].a = replay_read(14);
+        REPLAY->entries[i].b = replay_read(14);
+        REPLAY->entries[i].c = replay_read(4);
+        REPLAY->entries[i].d = replay_read(5);
+        REPLAY->entries[i].e = replay_read(5);
+        REPLAY->entries[i].f = replay_read(5);
+        REPLAY->entries[i].g = replay_read(5);
+        REPLAY->entries[i].h = replay_read(5);
+        for (j = 0; j < lbl_1_bss_7EFD8.unk_18; j++) {
+            REPLAY->entries[i].pos[j].x = replay_read_f32();
+            REPLAY->entries[i].pos[j].y = replay_read_f32();
+            REPLAY->entries[i].pos[j].z = replay_read_f32();
+            REPLAY->entries[i].rot[j].x = replay_read_f32();
+            REPLAY->entries[i].rot[j].y = replay_read_f32();
+            REPLAY->entries[i].rot[j].z = replay_read_f32();
+        }
+        REPLAY->entries[i].v68.x = replay_read_f32();
+        REPLAY->entries[i].v68.y = replay_read_f32();
+        REPLAY->entries[i].v68.z = replay_read_f32();
+        REPLAY->entries[i].v74.x = replay_read_f32();
+        REPLAY->entries[i].v74.y = replay_read_f32();
+        REPLAY->entries[i].v74.z = replay_read_f32();
+    }
+    REPLAY->count = replay_read(14);
+    for (i = 0; i <= REPLAY->count; i++) {
+        REPLAY->rec[i][0] = replay_read(8);
+        REPLAY->rec[i][3] = replay_read(8);
+        REPLAY->rec[i][4] = replay_read(7);
+        REPLAY->rec[i][5] = replay_read(7);
+        REPLAY->rec[i][6] = replay_read(8);
+        REPLAY->rec[i][1] = replay_read(8);
+        REPLAY->rec[i][2] = replay_read(8);
+    }
+    fn_1_F4794(REPLAY->count);
+    REPLAY->count = 0;
+}
+/* fzgx:end fn_13_3FC */
+
 /* fzgx:begin fn_13_A40 */
 // fn_13_A40: returns a constant.
 int fn_13_A40(void) {
