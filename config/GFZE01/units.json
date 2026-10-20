@@ -70810,9 +70810,12 @@
     "symbols": [
       "_prolog"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
-    "extra_cflags": []
+    "extra_cflags": [],
+    "pool": {
+      "@33": "lbl_18_section4_0"
+    }
   },
   {
     "module": "sample",
