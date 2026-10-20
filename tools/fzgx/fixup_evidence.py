@@ -785,7 +785,50 @@ def rotate_bit_tests(body, name, check):
             text = text[:a]+value+text[b:]
         if text != body:
             out.append((f'retail rotated low bit ({len(group)} sites)',text))
+    out += constant_rotate_bit_tests(body, name, check)
     return list(dict.fromkeys(out))
+
+
+def constant_rotate_bit_tests(body, name, check):
+    """`li rK, N; rlwnm. rD, rS, rK, 31, 31` is `__rlwnm(x, N, 31, 31)` with a constant N:
+    a plain `(x & mask)` folds to `rlwinm.` instead. The tested bit is mask 1 << (32 - N);
+    lifted bodies often carry the neighbouring bit (fn_3_137AC, fn_1_7F658, fn_3_1A648), so
+    single-bit masks one position either side are rewritten too."""
+    from .sdkimport import masked
+    rows = [stuck._fmt(row) for row in check._rows[0]]
+    amounts, consts = set(), {}
+    for text in rows:
+        m = re.fullmatch(r'li (r\d+), (0x[0-9a-f]+|\d+)', text)
+        if m:
+            consts[m.group(1)] = int(m.group(2), 0)
+        m = re.fullmatch(r'rlwnm\.? r\d+, r\d+, (r\d+), 31, 31', text)
+        if m and m.group(1) in consts and 0 < consts[m.group(1)] < 32:
+            amounts.add(consts[m.group(1)])
+    if not amounts:
+        return []
+    code = masked(body)
+    span = _function_span(code, name)
+    if not span:
+        return []
+    sites = {}
+    for site in re.finditer(r'\(\s*((?:\(\s*s32\s*\)\s*)?\w+(?:(?:->|\.)\w+|\[[^\[\]]*\])*)\s*&\s*(0x[0-9A-Fa-f]+|\d+)[uU]?\s*\)',
+                            code[span[0]:span[1]]):
+        mask = int(site.group(2), 0)
+        if mask & (mask - 1) or not mask:
+            continue
+        bit = mask.bit_length() - 1
+        for n in amounts:
+            if abs(bit - (32 - n)) <= 1:
+                value = re.sub(r'^\(\s*s32\s*\)\s*', '', site.group(1))
+                sites.setdefault(n, []).append((span[0] + site.start(), span[0] + site.end(), f'__rlwnm({value}, {n}, 31, 31)'))
+    out = []
+    for n, edits in sites.items():
+        for group in ([edits] + ([[e] for e in edits] if len(edits) > 1 else [])):
+            text = body
+            for a, b, value in sorted(group, reverse=True):
+                text = text[:a] + value + text[b:]
+            out.append((f'retail constant rotate bit test by {n} ({len(group)} sites)', text))
+    return out
 
 
 def range_switches(body, name, check):

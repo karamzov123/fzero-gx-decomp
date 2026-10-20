@@ -95,6 +95,7 @@ def generate(p: Project, s: str, sym, path: Path, body: str, check, outdir: Path
     add('callres', lambda: fixup_evidence.call_result_types(p, s, body, check))
     add('lifetimes', lambda: fixup_evidence.scalar_lifetimes(p, s, body, check))
     add('storevals', lambda: fixup_evidence.store_values(body, sym.name, check))
+    add('rotate', lambda: fixup_evidence.rotate_bit_tests(body, sym.name, check))
     add('callargs', lambda: fixup_evidence.call_arguments(p, s, body, check))
     add('frame', lambda: fixup_evidence.frame_padding(p, s, body, check))
     add('signed', lambda: fixup_source.signedness_flips(body, sym.name))
