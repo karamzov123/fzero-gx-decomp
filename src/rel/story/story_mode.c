@@ -1516,6 +1516,110 @@ u32 fn_7_4094(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 /* fzgx:end fn_7_4094 */
 
+/* fzgx:begin fn_7_41FC */
+#include "rel/story/story_mode.h"
+
+typedef struct StoryTrigger {
+    u16 type;
+    u8 pad_2[0x16];
+} StoryTrigger;
+
+extern const f32 lbl_7_rodata_784;
+extern f32 lbl_7_rodata_788[4];
+extern s32 fn_7_4648(u32 *, StoryTrigger *);
+extern u32 fn_7_4FD0(u32 *, StoryTrigger *);
+extern void OSReport(const char *, ...);
+
+static inline f32 clamp_value(f32 x) {
+    if (x < lbl_7_rodata_784) return lbl_7_rodata_784;
+    if (x > lbl_7_rodata_788[0]) return lbl_7_rodata_788[0];
+    return x;
+}
+
+#pragma opt_propagation off
+void fn_7_41FC(u32 *flags) {
+    Obj_7_bss_1960 *g = &lbl_7_bss_1960;
+    StoryTrigger *t;
+    s32 *timer;
+    u32 i;
+    u32 n;
+    s32 ok;
+
+    t = (StoryTrigger *)g->unk_30;
+    timer = (s32 *)(flags + 0x80);
+    for (i = 0; i < 8; i++, timer++) {
+        if (!__rlwnm(g->unk_C, (i + 1) & 31, 31, 31) && *timer >= 0) {
+            (*timer)--;
+        }
+    }
+
+    n = 0;
+    while (t->type != 5) {
+        ok = 1;
+        while (t->type <= 3) {
+            if (n >= 0x1000) {
+                OSReport("Too Many Scenario Trigger\n\n");
+                return;
+            }
+            if (__rlwnm(flags[n >> 5], ((n & 31) + 1) & 31, 31, 31)) {
+                ok = 0;
+                break;
+            }
+            if (t->type == 2 || t->type == 3) {
+                if (fn_7_4648(flags, t)) {
+                    ok = 0;
+                    break;
+                }
+            } else if (!fn_7_4648(flags, t)) {
+                ok = 0;
+                break;
+            }
+            t++;
+            n++;
+        }
+        if (ok) {
+            StoryTrigger *p = t - 1;
+            u32 j = n - 1;
+            while (p->type <= 3 && j != -1) {
+                if (p->type == 0 || p->type == 2) {
+                    flags[j >> 5] |= 0x80000000U >> (j & 31);
+                }
+                p--;
+                j--;
+            }
+            while (t->type == 4) {
+                fn_7_4FD0(flags, t);
+                t++;
+            }
+        } else {
+            while (t->type <= 3) {
+                t++;
+                n++;
+            }
+            while (t->type == 4) {
+                t++;
+            }
+        }
+    }
+
+    {
+        u8 *active = &g->unk_18;
+        f32 *pos;
+        f32 *vel;
+        u8 k;
+        for (k = 0; k < 2; k++) {
+            if (active[k]) {
+                pos = &g->unk_1C;
+                vel = &g->unk_24;
+                pos[k] = pos[k] + vel[k];
+                pos[k] = clamp_value(pos[k]);
+            }
+        }
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_7_41FC */
+
 /* fzgx:begin fn_7_44DC */
 #include "font.h"
 
