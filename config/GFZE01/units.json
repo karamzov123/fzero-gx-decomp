@@ -72408,6 +72408,23 @@
   },
   {
     "module": "sel",
+    "source": "rel/sel/sel/fn_10_12C14.c",
+    "symbols": [
+      "fn_10_12C14"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/sel/sel.c",
+    "pool": {
+      "...rodata.0": "lbl_10_rodata_158",
+      "@126": "lbl_10_rodata_3AC",
+      "@11": "lbl_10_rodata_1A4",
+      "@9": "lbl_10_rodata_158+0x44"
+    }
+  },
+  {
+    "module": "sel",
     "source": "rel/sel/sel/fn_10_12D8.c",
     "symbols": [
       "fn_10_12D8"
