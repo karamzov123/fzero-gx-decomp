@@ -16,7 +16,7 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-REPO = "karamzov123/fzero-gx-decomp"
+REPO = "karamzov123/fzgx"
 
 def get_all_agents():
     agents = {}
