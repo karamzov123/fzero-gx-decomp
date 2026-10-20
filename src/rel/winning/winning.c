@@ -2862,6 +2862,117 @@ void fn_15_4060(void) {
 }
 /* fzgx:end fn_15_4060 */
 
+/* fzgx:begin fn_15_4124 */
+typedef struct {
+    u8 pad_0[0x38];
+    s16 unk_38;
+    u8 pad_3A[0x2E];
+    s32 unk_68;
+    s32 unk_6C;
+    s32 unk_70;
+    u8 pad_74[0x24];
+    s16 unk_98;
+} fn_15_4124_St;
+
+typedef struct {
+    u8 pad_0[0x1C];
+    f32 unk_1C;
+} fn_15_4124_Sub;
+
+typedef struct {
+    u16 unk_0;
+    u8 pad_2[0xE];
+    u16 unk_10;
+} fn_15_4124_Ctrl;
+
+typedef struct {
+    void **unk_0;
+} fn_15_4124_Holder;
+
+extern fn_15_4124_St lbl_15_bss_0;
+extern fn_15_4124_Ctrl lbl_1_bss_D58;
+extern fn_15_4124_Holder lbl_1_bss_6EAD0;
+extern fn_15_4124_Sub *camera_get_state_object(void);
+extern void fn_1_A1588(void *, u32);
+
+void fn_15_4124(void) {
+    fn_15_4124_St *st = &lbl_15_bss_0;
+    fn_15_4124_Sub *cam;
+    s32 dir;
+    s32 sel;
+    s32 m;
+    s32 n;
+    s32 last;
+
+    cam = camera_get_state_object();
+
+    if ((lbl_1_bss_D58.unk_10 >> 3) & 1) {
+        dir = -1;
+    } else if ((lbl_1_bss_D58.unk_10 >> 2) & 1) {
+        dir = 1;
+    } else {
+        dir = 0;
+    }
+
+    n = st->unk_38;
+    m = n + 3;
+    sel = (st->unk_6C + dir + m) % m;
+    st->unk_6C = sel;
+    if (sel < 0) {
+        sel = 0;
+    } else {
+        last = n - 1;
+        if (sel > last) {
+            sel = last;
+        }
+    }
+    st->unk_68 = sel;
+
+    if (((lbl_1_bss_D58.unk_0 >> 11) & 1) == 0) {
+        if (lbl_1_bss_D58.unk_10 & 1) {
+            dir = -1;
+        } else if ((lbl_1_bss_D58.unk_10 >> 1) & 1) {
+            dir = 1;
+        } else {
+            dir = 0;
+        }
+    } else {
+        dir = 0;
+    }
+
+    if (dir != 0) {
+        switch (st->unk_6C - st->unk_38) {
+        case 0:
+            st->unk_70 = (st->unk_70 + dir + 4) % 4;
+            break;
+        case 1:
+            cam->unk_1C += dir;
+            if (cam->unk_1C > 55.0f) {
+                cam->unk_1C = 55.0f;
+            }
+            if (cam->unk_1C < 30.0f) {
+                cam->unk_1C = 30.0f;
+            }
+            break;
+        case 2:
+            st->unk_98 += dir;
+            switch (st->unk_98 % 3) {
+            case 0:
+                fn_1_A1588(lbl_1_bss_6EAD0.unk_0[0], 0x11);
+                break;
+            case 1:
+                fn_1_A1588(lbl_1_bss_6EAD0.unk_0[0], 0x35);
+                break;
+            default:
+                fn_1_A1588(lbl_1_bss_6EAD0.unk_0[0], 0x42);
+                break;
+            }
+            break;
+        }
+    }
+}
+/* fzgx:end fn_15_4124 */
+
 /* fzgx:begin fn_15_435C */
 #include "rel/main_rel/camera.h"
 
