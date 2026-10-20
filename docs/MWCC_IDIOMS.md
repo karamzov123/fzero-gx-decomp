@@ -317,6 +317,25 @@ without row alignment (`retail - ours` net rows):
 - No other retail-only opcode family above 40 functions exists; the rest of the
   residuals are register allocation, frame layout and control-flow shape.
 
+## Packed-time swaps and signed remainder (2026-10-19)
+
+- `fn_1_2E3B4`'s packed-time difference keeps the smaller timestamp in its
+  first parameter: `if (first > second) { larger = first; first = second; }
+  else { larger = second; }`. Separate minimum/maximum locals change its
+  copy webs. The previous high-scoring seed left the larger value uninitialized
+  on one branch; reproducing missing instructions from that seed was not a match.
+- The same function's automatic six-element penalty table is
+  `{1000, -300, -400, -500, -500, -500}`. Priming those bytes separately and
+  priming the trailing floats moved the real initializer past its retail pool
+  position. Removing those redundant primer entries let the initializer and
+  following literals establish their own measured order; all 349 words matched.
+- In `fn_1_142BDC`, initialize the original x-coordinate before either display
+  branch. Expressing the ordinal column as `(s32)index % 2`, rather than a
+  manually expanded sign/xor/subtract sequence, reproduces the temporary ordering
+  around the adjacent integer-to-double conversions. Direct x/y/z field
+  assignments plus the signed remainder closed the final eight register-only
+  differences; all 428 words matched under GC/1.3.2.
+
 ## Inlined-helper returns and the `cond; b target` branch pair (2026-10-19, fn_1_14F608)
 
 - Retail's `cmp; bne +8; b <tail>` (a conditional branch whose taken path is a

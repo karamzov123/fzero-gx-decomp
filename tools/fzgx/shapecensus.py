@@ -15,7 +15,8 @@ split in one command rather than a wrong answer in one.
 
     python3 tools/fzgx/shapecensus.py --min-percent 99 --limit 60 [--json]
 
-Read-only: compiles each saved best body at the module default and reads objdiff's rows.
+Read-only: compiles each saved best body with its saved compiler profile and reads
+objdiff's rows.
 Two traps this had to be written around, both of which look like real results:
 
   * `oracle.check(..., 0, ...)` returns **zero** diff rows, not unlimited ones. Passing
@@ -37,8 +38,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from fzgx import api, oracle  # noqa: E402
+from fzgx import oracle  # noqa: E402
 from fzgx.project import STATE_DIR, Project  # noqa: E402
+from fzgx.work_evidence import source_record  # noqa: E402
 
 # A divergence row is "<flag> <addr>  <mnemonic> <operands>  |  <mnemonic> <operands>",
 # where the flag is one of < > ? p ~ !. A row with NO flag character is a row objdiff
@@ -61,7 +63,7 @@ def _side(text: str) -> tuple:
     return (parts[0], " ".join(parts[1:])) if parts else ("", "")
 
 
-def word_diff(p, symbol, body: str):
+def word_diff(p, symbol, body: str, *, mw=None, flags=None):
     """Differing *words* between retail and our compiled object -- the honest defect count.
 
     objdiff's diff is row-aligned, so one divergence late in a function makes every following
@@ -79,11 +81,16 @@ def word_diff(p, symbol, body: str):
         src = Path(td) / "b.c"
         obj = Path(td) / "b.o"
         src.write_text(body)
-        if oracle.compile_source(p, sym.module, src, obj, None, None).returncode:
+        # Pin the effective default too: check() otherwise probes several compiler
+        # profiles, which can make the word count and row count describe different code.
+        mw = mw or oracle.module_flags(p, sym.module)[1]
+        if oracle.compile_source(p, sym.module, src, obj, mw, flags).returncode:
             return None
         ours = oracle.words(obj, sym.name)
         # The same compile, read through objdiff, for the class the word count cannot see.
-        check = oracle.check(p, symbol, 400, source=src, mw_version=None, extra_cflags=None)
+        check = oracle.check(p, symbol, 0, source=src, mw_version=mw, extra_cflags=flags)
+        if not check.ok:
+            return None
     if not theirs or not ours or len(theirs) != len(ours):
         return None
     rows = []
@@ -99,8 +106,10 @@ def word_diff(p, symbol, body: str):
     # the shared-pool case (`lis r4, lbl_10_rodata_158@ha` against `...rodata.0@ha`).
     # fn_10_1B2F4, fn_1_15EC40 and fn_1_9DB04 all read as "0 words differing" that way and
     # are not done, so the row count is reported alongside and the two are read together.
-    flagged = sum(1 for line in (check.diff or [])
-                  if "|" in line and line.strip()[:1] in "<>?p~!")
+    left, right = check._rows
+    flagged = sum((a.get('diff_kind') or 'DIFF_NONE') != 'DIFF_NONE' or
+                  (b.get('diff_kind') or 'DIFF_NONE') != 'DIFF_NONE'
+                  for a, b in zip(left, right)) + abs(len(left) - len(right))
     return {"words": len(theirs), "differing": len(rows), "rows": rows,
             "flagged_rows": flagged,
             "note": "'differing' counts instruction words only; a relocation-only defect leaves "
@@ -165,22 +174,21 @@ def main(argv=None) -> int:
     a = ap.parse_args(argv)
     p = Project()
     db = sqlite3.connect(str(STATE_DIR / "ledger.db"))
-    q = ("SELECT symbol,module FROM functions WHERE status='unmatched' AND best_percent>=? "
-         "ORDER BY best_percent DESC")
+    q = "SELECT symbol,module FROM functions WHERE status='unmatched' AND best_percent>=?"
     args = [a.min_percent]
     if a.module:
         q += " AND module=?"
         args.append(a.module)
-    rows = db.execute(q + " LIMIT ?", (*args, a.limit)).fetchall()
+    rows = db.execute(q + " ORDER BY best_percent DESC LIMIT ?", (*args, a.limit)).fetchall()
 
     if a.words:
         scored = []
         for symbol, _module in rows:
-            body = api._attempt_text(p, symbol)
-            if not body:
-                continue
             try:
-                wd = word_diff(p, symbol, body)
+                source = source_record(p, symbol)
+                if not source['body']:
+                    continue
+                wd = word_diff(p, symbol, source['body'], mw=source['mw'], flags=source['flags'])
             except Exception:
                 wd = None
             if wd:
@@ -190,8 +198,9 @@ def main(argv=None) -> int:
                                wd.get("flagged_rows", 0)))
         scored.sort(key=lambda t: (t[0], t[2]))
         if a.json:
-            print(json.dumps([{"symbol": s, "differing": d, "words": w, "rows": r}
-                              for d, w, s, r, _f in scored], indent=1))
+            print(json.dumps([{"symbol": s, "differing": d, "words": w, "rows": r,
+                               "flagged_rows": f}
+                              for d, w, s, r, f in scored], indent=1))
             return 0
         print("ranked by differing words (%d functions)\n" % len(scored))
         print("%-20s %5s %6s %7s  first divergences" % ("symbol", "diff", "rows", "words"))
@@ -209,18 +218,17 @@ def main(argv=None) -> int:
     seen = rows_ok = 0
     per_function = []
     for symbol, _module in rows:
-        body = api._attempt_text(p, symbol)
-        if not body:
-            continue
-        with tempfile.TemporaryDirectory() as td:
-            src = Path(td) / "b.c"
-            src.write_text(body)
-            try:
-                res = oracle.check(p, symbol, 400, source=src,
-                                    mw_version=None, extra_cflags=None)
-            except Exception as error:                    # one bad body must not end the census
-                tally["compile/resolve failed: %s" % type(error).__name__] += 1
+        try:
+            source = source_record(p, symbol)
+            if not source['path']:
                 continue
+            sym = p.resolve(symbol)
+            res = oracle.check(p, symbol, sym.size // 2 + 4, source=Path(source['path']),
+                               mw_version=source['mw'] or oracle.module_flags(p, sym.module)[1],
+                               extra_cflags=source['flags'])
+        except Exception as error:                    # one bad body must not end the census
+            tally["compile/resolve failed: %s" % type(error).__name__] += 1
+            continue
         if not res.ok:
             continue
         rows_ok += 1

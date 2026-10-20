@@ -1,0 +1,333 @@
+{
+  "format": "fzgx-investigation-v1",
+  "topic": "Semantic source repairs and compiler-profile census",
+  "verified_lands": [
+    {
+      "symbol": "fn_1_2E3B4",
+      "bytes": 1396,
+      "words": 349,
+      "commit": "5e1601ee",
+      "source_sha256": "f01f4d124ee2a4c5ff6f0805753afa935da83f08267475da94611d0495502038",
+      "compiler": "GC/1.3.2",
+      "repair": "Initialize the larger timestamp on both branches; retain the smaller timestamp in the first parameter; restore measured signed penalties and remove redundant initializer primers."
+    },
+    {
+      "symbol": "fn_1_142BDC",
+      "bytes": 1712,
+      "words": 428,
+      "commit": "5e911b34",
+      "source_sha256": "a1c541f5812dc302914ce805da09b0d1be3c62e0319608562ed2d894914de740",
+      "compiler": "GC/1.3.2",
+      "repair": "Initialize x on both paths; use direct field assignments and signed remainder instead of hand-expanded arithmetic."
+    }
+  ],
+  "tool_changes": [
+    "Use saved source and compiler profile for both census modes.",
+    "Pin effective compiler for word and row measurements, avoiding automatic profile probes describing different code.",
+    "Retain full raw relocation-row counts in word-ranking JSON.",
+    "Apply module predicate before ORDER BY; --module previously failed with SQLite syntax error."
+  ],
+  "compiler_validation": [
+    {
+      "symbol": "fn_12_36208",
+      "sha256": "9760ab08804bfa2062f601a41248e256785e629971c2226567171b912f1e7745",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "retail_words": 177,
+      "compiles": [
+        {
+          "label": "module-default",
+          "ok": true,
+          "words": 179,
+          "score": 2.2346368715083798
+        },
+        {
+          "label": "saved-profile",
+          "ok": true,
+          "words": 177,
+          "score": 99.43502824858757
+        }
+      ],
+      "census": {
+        "words": 177,
+        "differing": 1,
+        "rows": [
+          {
+            "index": 62,
+            "retail": "7FDCF378",
+            "ours": "3B800000",
+            "opcode": 31,
+            "retail_regs": [
+              "r30",
+              "r28"
+            ],
+            "our_regs": [
+              "r28",
+              "r0"
+            ],
+            "retail_disp": 62328,
+            "our_disp": 0
+          }
+        ],
+        "flagged_rows": 1,
+        "note": "'differing' counts instruction words only; a relocation-only defect leaves it at 0, so read flagged_rows too before calling a function finished"
+      }
+    },
+    {
+      "symbol": "fn_12_364CC",
+      "sha256": "8e2b8019c377e82611e8606acfc8e94d91d6d15e6a1ae61d9604aea8457a02a9",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "retail_words": 1052,
+      "compiles": [
+        {
+          "label": "module-default",
+          "ok": true,
+          "words": 1055,
+          "score": 1.042654028436019
+        },
+        {
+          "label": "saved-profile",
+          "ok": true,
+          "words": 1053,
+          "score": 29.05982905982906
+        }
+      ],
+      "census": null
+    },
+    {
+      "symbol": "fn_12_32280",
+      "sha256": "514aa58a3334aaa7989c00ac423abcb9494699f811afefb0384c586f1f92e286",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "retail_words": 38,
+      "compiles": [
+        {
+          "label": "module-default",
+          "ok": true,
+          "words": 38,
+          "score": 100.0
+        },
+        {
+          "label": "saved-profile",
+          "ok": true,
+          "words": 38,
+          "score": 100.0
+        }
+      ],
+      "census": {
+        "words": 38,
+        "differing": 0,
+        "rows": [],
+        "flagged_rows": 0,
+        "note": "'differing' counts instruction words only; a relocation-only defect leaves it at 0, so read flagged_rows too before calling a function finished"
+      }
+    }
+  ],
+  "cli_word_validation": [
+    {
+      "symbol": "fn_12_36208",
+      "differing": 1,
+      "words": 177,
+      "rows": [
+        {
+          "index": 62,
+          "retail": "7FDCF378",
+          "ours": "3B800000",
+          "opcode": 31,
+          "retail_regs": [
+            "r30",
+            "r28"
+          ],
+          "our_regs": [
+            "r28",
+            "r0"
+          ],
+          "retail_disp": 62328,
+          "our_disp": 0
+        }
+      ],
+      "flagged_rows": 1
+    },
+    {
+      "symbol": "fn_12_A5C",
+      "differing": 5,
+      "words": 129,
+      "rows": [
+        {
+          "index": 19,
+          "retail": "7C632214",
+          "ours": "7C832214",
+          "opcode": 31,
+          "retail_regs": [
+            "r3",
+            "r3"
+          ],
+          "our_regs": [
+            "r4",
+            "r3"
+          ],
+          "retail_disp": 8724,
+          "our_disp": 8724
+        },
+        {
+          "index": 20,
+          "retail": "809D0014",
+          "ours": "807D0014",
+          "opcode": 32,
+          "retail_regs": [
+            "r4",
+            "r29"
+          ],
+          "our_regs": [
+            "r3",
+            "r29"
+          ],
+          "retail_disp": 20,
+          "our_disp": 20
+        },
+        {
+          "index": 21,
+          "retail": "7C650E70",
+          "ours": "7C840E70",
+          "opcode": 31,
+          "retail_regs": [
+            "r3",
+            "r5"
+          ],
+          "our_regs": [
+            "r4",
+            "r4"
+          ],
+          "retail_disp": 3696,
+          "our_disp": 3696
+        },
+        {
+          "index": 22,
+          "retail": "7C642A14",
+          "ours": "7C641A14",
+          "opcode": 31,
+          "retail_regs": [
+            "r3",
+            "r4"
+          ],
+          "our_regs": [
+            "r3",
+            "r4"
+          ],
+          "retail_disp": 10772,
+          "our_disp": 6676
+        },
+        {
+          "index": 25,
+          "retail": "7C632A14",
+          "ours": "7C632214",
+          "opcode": 31,
+          "retail_regs": [
+            "r3",
+            "r3"
+          ],
+          "our_regs": [
+            "r3",
+            "r3"
+          ],
+          "retail_disp": 10772,
+          "our_disp": 8724
+        }
+      ],
+      "flagged_rows": 5
+    }
+  ],
+  "cli_row_validation": {
+    "examined": 3,
+    "with_diff": 3,
+    "rows": 9,
+    "classes": {
+      "same mnemonic, register differs: add -> r3,r3,r4->r4,r3,r4": 1,
+      "same mnemonic, register differs: lwz -> r4,r29->r3,r29": 1,
+      "same mnemonic, register differs: srawi -> r5,r3->r4,r4": 1,
+      "same mnemonic, register differs: add -> r3,r4,r5->r3,r4,r3": 1,
+      "same mnemonic, register differs: add -> r3,r3,r5->r3,r3,r4": 1,
+      "relocation-only (p flag, no codegen difference)": 1,
+      "different mnemonic: mr -> li": 1,
+      "same mnemonic, register differs: fmul -> f4,f3,f4->f4,f4,f3": 1,
+      "insert/delete (one side empty)": 1
+    },
+    "functions": [
+      {
+        "symbol": "fn_12_A5C",
+        "percent": 99.767,
+        "rows": 5,
+        "classes": {
+          "same mnemonic, register differs: add -> r3,r3,r4->r4,r3,r4": 1,
+          "same mnemonic, register differs: lwz -> r4,r29->r3,r29": 1,
+          "same mnemonic, register differs: srawi -> r5,r3->r4,r4": 1,
+          "same mnemonic, register differs: add -> r3,r4,r5->r3,r4,r3": 1
+        }
+      },
+      {
+        "symbol": "fn_12_36208",
+        "percent": 99.661,
+        "rows": 2,
+        "classes": {
+          "relocation-only (p flag, no codegen difference)": 1,
+          "different mnemonic: mr -> li": 1
+        }
+      },
+      {
+        "symbol": "fn_12_3A64",
+        "percent": 99.484,
+        "rows": 2,
+        "classes": {
+          "same mnemonic, register differs: fmul -> f4,f3,f4->f4,f4,f3": 1,
+          "insert/delete (one side empty)": 1
+        }
+      }
+    ]
+  },
+  "partial_archive": "state/repairs/census-natural-frontiers-20261019.json.gz",
+  "partial_note": "Movie allocator and Z-table natural-C variants remain unmatched. The one-word allocator seed contains allocation carriers; the Z-table seed contains allocation carriers, manual double conversion and an invented return. These seeds were not accepted.",
+  "ztable_reference": {
+    "sdk": "mk-deception",
+    "revision": "33b1e0082c7630ee4f20b828559966872ae670e1",
+    "source": "src/libmwsfdg/crimw/dev/sofdec/src/sfx/sfx_zmv.c",
+    "license": "CC0-1.0",
+    "use": "Reference for native double conversion and void result; partials only."
+  },
+  "partial_replay": [
+    {
+      "symbol": "fn_12_36208",
+      "sha256": "515ded1570bcf2ee54e7b9ef3ac7ac90306d1f1430ed85ec0ce6facb1c18273b",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "raw_percent": 97.655365,
+      "matched": false
+    },
+    {
+      "symbol": "fn_12_3A64",
+      "sha256": "dd0b40f6a81eff6bd353582b0f15ecf892700fde59c54a1106490c764632ea92",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "raw_percent": 95.39436,
+      "matched": false
+    },
+    {
+      "symbol": "fn_12_3A64",
+      "sha256": "6d99d83d8af6596b8d9ec025e50ad7e6926b2de25a366b11025414203d7dbb8b",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "raw_percent": 94.66197,
+      "matched": false
+    }
+  ],
+  "verification": {
+    "configure_ninja": "passed",
+    "independent_hashes": "16 files OK",
+    "lint_findings": 0,
+    "python_compile": "passed",
+    "snapshot": "state/ledger.json",
+    "diff_whitespace": "passed",
+    "own_claims_remaining": 0,
+    "remaining_functions": 1294
+  }
+}
