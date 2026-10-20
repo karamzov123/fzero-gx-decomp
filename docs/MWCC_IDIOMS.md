@@ -336,6 +336,23 @@ without row alignment (`retail - ours` net rows):
   assignments plus the signed remainder closed the final eight register-only
   differences; all 428 words matched under GC/1.3.2.
 
+## Preserve measured pool primers during expression repairs (2026-10-19)
+
+- `fn_1_1188CC` exposed a repair-order defect: float binding replaced literal
+  assignments inside `.fzgxpool` primers with external field reads. Those reads
+  no longer emit the constants that establish the measured pool order. The
+  variant that retained a local pool pointer also used that pointer from the
+  separate primer functions, where it was out of scope.
+- Float repairs now preserve section-pragma regions and explicitly attributed
+  primer functions, including constant tables inside the pragma regions. The
+  real-function reproducer previously rewrote three of its 42 primer functions;
+  the repaired candidates preserve all 42. The pointer-based candidate now
+  compiles, but still has 44 differing rows and is not an accepted match.
+- Read retail comparison idioms as operations before repairing allocation.
+  In `fn_1_9C724`, `xor; cntlzw; slw; srwi` implements unsigned `value > 1`.
+  Writing that comparison removes a manual C shift whose count becomes 32 at
+  equality. This repaired two rows, but the function remains unmatched.
+
 ## Inlined-helper returns and the `cond; b target` branch pair (2026-10-19, fn_1_14F608)
 
 - Retail's `cmp; bne +8; b <tail>` (a conditional branch whose taken path is a

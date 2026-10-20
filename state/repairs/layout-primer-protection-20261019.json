@@ -1,0 +1,96 @@
+{
+  "format": "fzgx-investigation-v1",
+  "topic": "Protect measured layout primers during float repairs",
+  "verified_code_gains": 0,
+  "source_archive": "state/repairs/primer-and-natural-frontiers-20261019.json.gz",
+  "reproducer": {
+    "symbol": "fn_1_1188CC",
+    "mw": "GC/1.3.2",
+    "flags": "",
+    "source_sha256": "8e576f9ca817334386a22b043cb039671c2769575a408a666f28ea11f91d1f1e",
+    "before_tool_sha256": "26599530dac9d42664abef02e0245b81812fa7c023378081ce7460f05597d0d4",
+    "primer_functions": 42,
+    "attribute_primer_functions_covered": 42,
+    "results": [
+      {
+        "version": "before",
+        "candidate": "retain recovered shared-pool bases",
+        "compiled": false,
+        "changed_primers": [
+          "fzgx_pool_prime42",
+          "fzgx_pool_prime10",
+          "fzgx_pool_prime16"
+        ],
+        "raw_percent": null,
+        "differing_rows": null
+      },
+      {
+        "version": "before",
+        "candidate": "bind recovered shared-pool fields",
+        "compiled": true,
+        "changed_primers": [
+          "fzgx_pool_prime42",
+          "fzgx_pool_prime10",
+          "fzgx_pool_prime16"
+        ],
+        "raw_percent": 93.21967,
+        "differing_rows": 160
+      },
+      {
+        "version": "after",
+        "candidate": "retain recovered shared-pool bases",
+        "compiled": true,
+        "changed_primers": [],
+        "raw_percent": 99.196724,
+        "differing_rows": 44
+      },
+      {
+        "version": "after",
+        "candidate": "bind recovered shared-pool fields",
+        "compiled": true,
+        "changed_primers": [],
+        "raw_percent": 93.21967,
+        "differing_rows": 160
+      }
+    ]
+  },
+  "partial_findings": [
+    {
+      "symbol": "fn_1_9C724",
+      "finding": "Replace the undefined C shift-by-clz expansion with unsigned comparison; reconstruct natural break-guard control flow and narrow-return helper.",
+      "remaining": "Ten rows: vector constant/store order plus a missing mask copy."
+    },
+    {
+      "symbol": "fn_1_1188CC",
+      "finding": "Restore four pool constants from retail bytes; remove one-field index carrier and dead index-copy assignments.",
+      "remaining": "Forty-four rows, predominantly allocation differences between item passes."
+    },
+    {
+      "symbol": "fn_1_FCA10",
+      "finding": "Restore the stack-color argument proven by retail and existing callers; use a real vector copy, hardware macros, and ordinary bounds reads.",
+      "remaining": "Fifteen float scheduling/register rows."
+    },
+    {
+      "symbol": "fn_1_EEB44",
+      "finding": "Recover the real 3x4 matrix local, its three translation inputs, eight-byte packed-position offset and sixteen-byte frame stride.",
+      "remaining": "Forty-eight rows; shared state typing/scheduling still requires work."
+    }
+  ],
+  "rejected_seeds": [
+    "fn_80025EF4 contains explicit frame padding and underspecified attenuation-table bounds.",
+    "fn_1_253A4 and fn_1_12EF80 contain allocation carriers; the latter also invents a return value.",
+    "fn_1_866B4 still depends on an unproven volatile table view."
+  ],
+  "note": "Other concurrent contributors committed their own matches during this investigation; none are counted here.",
+  "verification": {
+    "archive_replayed_records": 5,
+    "archive_source_hashes_profiles_scores_reproduced": true,
+    "configure_ninja": "passed",
+    "independent_target_hashes": "16 files OK",
+    "lint_findings": 0,
+    "python_compile": "passed",
+    "snapshot": "state/ledger.json",
+    "diff_whitespace": "passed",
+    "own_claims_remaining": 0
+  }
+}

@@ -281,6 +281,30 @@ def optimizer_pragmas(body: str, name: str) -> List[Tuple[str, str]]:
     return out
 
 
+def _layout_primer_ranges(body: str, code: str) -> List[Tuple[int, int]]:
+    """Layout primers encode measured bytes, not repairable function expressions."""
+    ranges, start = [], None
+    for directive in re.finditer(r'(?m)^[ \t]*#pragma[ \t]+section[ \t]+code_type[ \t]+"([^"]+)"[^\n]*', body):
+        if not code[directive.start():directive.end()].lstrip().startswith('#pragma'):
+            continue
+        if directive[1] == '.fzgxpool':
+            if start is None:
+                start = directive.start()
+        elif start is not None:
+            ranges.append((start, directive.start()))
+            start = None
+    if start is not None:
+        ranges.append((start, len(body)))
+    # Explicit section attributes also occur without a surrounding section pragma.
+    for declaration in re.finditer(r'__declspec\s*\(\s*section\s+"\.fzgxpool"\s*\)\s+[^;{}]*?\b(\w+)\s*\([^;{}]*\)\s*\{', body):
+        if not code[declaration.start():].startswith('__declspec'):
+            continue
+        span = _function_span(code, declaration[1])
+        if span:
+            ranges.append((declaration.start(), span[1]))
+    return ranges
+
+
 def float_literals(p: Project, symbol: str, body: str, base: oracle.CheckResult) -> List[Tuple[str, str]]:
     """Recover incorrect floating literals from the retail relocation's bytes.
 
@@ -359,6 +383,7 @@ def float_literals(p: Project, symbol: str, body: str, base: oracle.CheckResult)
                   if len(expected) == 1)
     from .sdkimport import masked
     code = masked(body)
+    primers = _layout_primer_ranges(body, code)
     out, all_edits, bound_edits = [], {}, {}
     from .fixup_source import declared_types, record_layouts, record_tag
     _, variables = declared_types(code, span[0])
@@ -396,6 +421,8 @@ def float_literals(p: Project, symbol: str, body: str, base: oracle.CheckResult)
         out.append(('bind recovered shared-pool existing fields',text))
     ambiguous = set()
     for declaration in re.finditer(r'\bconst\s+(f32|f64|float|double)\s+(\w+)\s*=\s*(-?\d+\.\d*(?:[eE][+-]?\d+)?[fF]?)\s*;', code[:span[0]]):
+        if any(a <= declaration.start() < b for a, b in primers):
+            continue
         width = 4 if declaration[1] in ('f32', 'float') else 8
         target, private = targets.get(declaration[2]), own.get(declaration[2])
         if not target or not private or private['size'] != width:
@@ -416,6 +443,8 @@ def float_literals(p: Project, symbol: str, body: str, base: oracle.CheckResult)
         replacement = repr(value) + ('f' if width == 4 else '')
         edits = []
         for token in re.finditer(r'(?<![\w.])-?\d+\.\d*(?:[eE][+-]?\d+)?[fF]?(?![\w.])', code):
+            if any(a <= token.start() < b for a, b in primers):
+                continue
             if (width == 4) != token[0].lower().endswith('f'):
                 continue
             try:
@@ -453,6 +482,8 @@ def float_literals(p: Project, symbol: str, body: str, base: oracle.CheckResult)
     removals = []
     widths = {'u8': 1, 's8': 1, 'u16': 2, 's16': 2, 'u32': 4, 's32': 4, 'f32': 4, 'f64': 8}
     for declaration in re.finditer(r'\bstatic\s+const\s+(u8|s8|u16|s16|u32|s32|f32|f64)\s+(\w+)\s*\[([^\]]*)\]\s*=\s*\{[^{}]*\}\s*;', code):
+        if any(a <= declaration.start() < b for a, b in primers):
+            continue
         ty, name = declaration[1], declaration[2]
         obj = own.get(name)
         if not obj or not obj['size']:
