@@ -192,7 +192,9 @@ def _render_diff(left_rows: List[dict], right_rows: List[dict], max_lines: int,
 def check(project: Project, symbol: str, max_diff_lines: int = 80, source: Optional[Path] = None,
           mw_version: Optional[str] = None, extra_cflags: Optional[str] = None) -> CheckResult:
     """Compile the unit (or `source`, an agent's work copy) into the unit's object and diff it.
-    For an uncarved function, `mw_version`/`extra_cflags` are the unit options being proposed."""
+    For an uncarved function, `mw_version`/`extra_cflags` are the unit options being proposed.
+    For a carved work copy, None inherits unit flags; '' or [] clears the unit override
+    while retaining the module's base flags."""
     # Unit manifests store argv lists; saved-body callers can carry that form.
     # Normalize once so result metadata and later submission also receive strings.
     if isinstance(extra_cflags, list):
@@ -280,7 +282,8 @@ def check(project: Project, symbol: str, max_diff_lines: int = 80, source: Optio
             scratch_obj.parent.mkdir(parents=True, exist_ok=True)
             ucfg = project.unit_record(unit_src) or {}
             chosen = (mw_version or ucfg.get("mw_version"),
-                      extra_cflags or (" ".join(ucfg.get("extra_cflags") or []) or None))
+                      extra_cflags if extra_cflags is not None else
+                      (" ".join(ucfg.get("extra_cflags") or []) or None))
             cp = compile_source(project, sym.module, source, scratch_obj, *chosen)
             if cp.returncode != 0 or not scratch_obj.exists():
                 err = "\n".join(l for l in (cp.stdout + cp.stderr).splitlines() if "Usage Warning" not in l)
@@ -1201,6 +1204,8 @@ def check_many(project: Project, items: List[Tuple[str, Path]], max_diff_lines: 
     """`check` for many (symbol, source) pairs at once: the uncarved ones are compiled in
     parallel batches (one mwcc process per chunk instead of one per function), then diffed
     one by one; carved ones go through `check`. Returns {symbol: result}."""
+    if isinstance(extra_cflags, list):
+        extra_cflags = shlex.join(extra_cflags)
     results: Dict[str, CheckResult] = {}
     # groups by module and unit options (a unit may carry its own compiler version / flags);
     # carved units are diffed against their own retail object, with their own text when no
@@ -1218,7 +1223,8 @@ def check_many(project: Project, items: List[Tuple[str, Path]], max_diff_lines: 
             continue
         ucfg = (project.unit_record(unit_src) or {}) if unit_src else {}
         key = (sym.module, mw_version or ucfg.get("mw_version"),
-               extra_cflags or " ".join(ucfg.get("extra_cflags") or []) or None)
+               extra_cflags if extra_cflags is not None else
+               (" ".join(ucfg.get("extra_cflags") or []) or None))
         unit = project.objdiff_unit_name(sym.module, unit_src) if unit_src else ""
         groups.setdefault(key, []).append((symbol, sym, source if source is not None else unit_source_path(project, unit_src), unit))
     for (module, mw, extra), group in groups.items():
