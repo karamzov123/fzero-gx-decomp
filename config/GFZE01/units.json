@@ -75260,6 +75260,24 @@
   },
   {
     "module": "title",
+    "source": "rel/title/operation/fn_8_BD08.c",
+    "symbols": [
+      "fn_8_BD08"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/title/operation.c",
+    "pool": {
+      "...rodata.0": "lbl_8_rodata_160",
+      "@6": "lbl_8_rodata_160+0x8",
+      "@22": "lbl_8_rodata_194",
+      "@23": "lbl_8_rodata_198",
+      "@13": "lbl_8_rodata_188"
+    }
+  },
+  {
+    "module": "title",
     "source": "rel/title/operation/fn_8_C7B0.c",
     "symbols": [
       "fn_8_C7B0"

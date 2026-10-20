@@ -287,3 +287,6 @@ rel/title/title/fn_8_7734.c:
 
 rel/title/title/fn_8_81AC.c:
 	.text       start:0x000081AC end:0x00008440 align:4
+
+rel/title/operation/fn_8_BD08.c:
+	.text       start:0x0000BD08 end:0x0000C038 align:4
