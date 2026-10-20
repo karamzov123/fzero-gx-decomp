@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (99.00% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.07% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #pragma section code_type ".fzgxpool"
@@ -61,7 +61,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
 static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f64 s; volatile f32 d;  /* fzgx-allow: S2 pool primer sinks */
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     d = 150.0;
     d = 10.0;
     d = 3.0;
@@ -81,7 +81,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
 static const u32 fzgx_pool_table8[3] = {0x00000000, 0x3DCCCCCD, 0xC019999A};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
-    volatile f32 s; volatile f32 d;  /* fzgx-allow: S2 pool primer sinks */
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     s = 19.0f;
     d = 24.0;
 }
@@ -135,6 +135,9 @@ extern void fn_1_862D4(int, Sig_fn_1_862D4_Triple *);
 extern void fn_1_8636C(int, void *);
 extern void fn_8006FA24(f32, Sig_fn_8006FA24_Vec *, Sig_fn_8006FA24_Vec *, Sig_fn_8006FA24_Vec *);
 
+static inline f32 fn_1_5C83C_read_pointer(EffectWork * owner) { return owner->unk_48; }
+static inline f32 fn_1_5C83C_read_pointer_(EffectWork * owner) { return owner->unk_50; }
+#pragma opt_strength_reduction off
 void fn_1_5C83C(EffectWork *self) {
     Sig_fn_1_862D4_Triple loc_8;
     f32 loc_14[12];
@@ -147,13 +150,13 @@ void fn_1_5C83C(EffectWork *self) {
     self->unk_48 *= t;
     self->unk_4c *= t;
     self->unk_50 *= t;
-    self->unk_3c += self->unk_48;
+    self->unk_3c += fn_1_5C83C_read_pointer(self);
     self->unk_40 += self->unk_4c;
-    self->unk_44 += self->unk_50;
+    self->unk_44 += fn_1_5C83C_read_pointer_(self);
     if (self->unk_b2 != 0) {
-        self->unk_94 += (f32)(0.2f * self->unk_48);
+        self->unk_94 += (f32)(0.2f * fn_1_5C83C_read_pointer(self));
         self->unk_98 += (f32)(0.2f * self->unk_4c);
-        self->unk_9c += (f32)(0.2f * self->unk_50);
+        self->unk_9c += (f32)(0.2f * fn_1_5C83C_read_pointer_(self));
     }
     fn_8006FA24(0.05f, &self->unk_b8, (Sig_fn_8006FA24_Vec *)loc_14, &self->unk_b8);
     self->unk_88 += (f32)(0.05f * (self->unk_8c - self->unk_88));
@@ -165,3 +168,5 @@ void fn_1_5C83C(EffectWork *self) {
         self->unk_24 *= t;
     }
 }
+#pragma opt_strength_reduction reset
+

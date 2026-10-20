@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (87.10% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (90.50% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "rel/main_rel/font.h"
 #pragma section code_type ".fzgxpool"
@@ -64,7 +64,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
 static const u32 fzgx_pool_table19[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep19(void) { const u32 *volatile cp; cp = fzgx_pool_table19; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime20(void) {
-    volatile f32 s; volatile f32 d;  /* fzgx-allow: S2 pool primer sinks */
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     d = 4503599627370496.0;
 }
 static const u32 fzgx_pool_table21[2] = {0xFFFFFFFF, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
@@ -120,12 +120,12 @@ static inline f32 fn_1_4D10C_operand(f32 left, f32 right) { return ((right) + (l
 #pragma opt_propagation off
 void fn_1_4D10C(void *arg0, f32 arg1, f32 arg2, u32 lab_unused0)
 {
-    f32 lab_t5;
-    f32 lab_t3;
-    s32 a;
     s16 b;
-    f32 c;
     f64 d;
+    f32 c;
+    f32 lab_t3;
+    f32 lab_t5;
+    s32 a;
 
 {
     Obj_1_bss_4BA30 *g = &lbl_1_bss_4BA30;
@@ -148,7 +148,7 @@ void fn_1_4D10C(void *arg0, f32 arg1, f32 arg2, u32 lab_unused0)
 }
     d = (f32)(s32)((((lbl_1_bss_4BA30.unk_C + lbl_1_bss_4BA30.unk_10)) / 2.0f));
     lab_t5 = arg1;
-    lab_t3 = fn_1_4D10C_operand(arg2, (f32)((((((a)) ^ (((a >> 31)))))) - (a >> 31)));
+    lab_t3 = fn_1_4D10C_operand(arg2, (f32)(((((((((a >> 31)))) ^ (((a))))))) - (a >> 31)));
     fn_1_53B14(arg0, c, d, lab_t3, fn_1_4D10C_operand(arg2, (f32)(((b >> 31) ^ b) - (b >> 31))), lab_t5);
 }
 #pragma opt_propagation reset

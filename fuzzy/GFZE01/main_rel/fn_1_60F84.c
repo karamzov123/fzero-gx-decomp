@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (98.31% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.39% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "dolphin/types.h"
 #pragma section code_type ".fzgxpool"
@@ -81,7 +81,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
 static const u32 fzgx_pool_table8[3] = {0x00000000, 0x3DCCCCCD, 0xC019999A};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
-    volatile f32 s; volatile f32 d;  /* fzgx-allow: S2 pool primer sinks */
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     s = 19.0f;
     d = 24.0;
     s = 0.7071067690849304f;
@@ -125,6 +125,7 @@ struct cart_obj {
 };
 
 #pragma opt_strength_reduction off
+#pragma opt_common_subs off
 void fn_1_60F84(struct cart_obj *obj)
 {
 	f32 scale;
@@ -137,9 +138,9 @@ void fn_1_60F84(struct cart_obj *obj)
 	obj->vel[1] *= damp;
 	obj->vel[2] *= damp;
 
-	obj->pos[0] += obj->vel[0];
-	obj->pos[1] += obj->vel[1];
-	obj->pos[2] += obj->vel[2];
+	obj->pos[0] += (*((obj->vel) + (0)));
+	obj->pos[1] += (*((obj->vel) + (1)));
+	obj->pos[2] += (*((obj->vel) + (2)));
 
 	diff = 0.1 * (obj->f2c - obj->f28);
 	obj->f28 = obj->f28 + diff;
@@ -153,5 +154,7 @@ void fn_1_60F84(struct cart_obj *obj)
 		obj->f24 *= scale;
 	}
 }
+#pragma opt_common_subs reset
+
 #pragma opt_strength_reduction reset
 

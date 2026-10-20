@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (93.51% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (93.98% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #pragma section code_type ".fzgxpool"
@@ -81,7 +81,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
 static const u32 fzgx_pool_table8[3] = {0x00000000, 0x3DCCCCCD, 0xC019999A};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
-    volatile f32 s; volatile f32 d;  /* fzgx-allow: S2 pool primer sinks */
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     s = 19.0f;
     d = 24.0;
     s = 0.7071067690849304f;
@@ -138,7 +138,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime15(void) {
 static const u32 fzgx_pool_table16[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep16(void) { const u32 *volatile cp; cp = fzgx_pool_table16; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime17(void) {
-    volatile f64 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     s = -3.0f;
 }
 static const u32 fzgx_pool_table18[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
@@ -240,13 +240,13 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime37(void) {
 #pragma section code_type ".text"
 
 typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
+    u32 x;
+    u32 z;
+    u32 y;
 } Sig_fn_1_862D4_Triple;
 
 struct fn_1_65E8C_pool {
-    u8 pad_0[16];
+    u8 pad_0[0x20];
     f64 c20;
     u8 pad_28[0x10];
     f64 c38;
@@ -292,13 +292,16 @@ extern void fn_1_862D4(s32, Sig_fn_1_862D4_Triple *);
 extern void fn_1_8636C(s32, void *);
 extern f32 lbl_8006D188(u32);
 extern void * lbl_8006DC6C(void *);
-extern void lbl_8006E1B0(struct fn_1_65E8C_vec *, void *);
+extern void lbl_8006E1B0(struct fn_1_65E8C_vec);
 extern void lbl_8006DB74(void *);
 extern struct fn_1_65E8C_pool lbl_1_rodata_2950;
 extern u32 lbl_801A66A0;
 
 #pragma opt_propagation off
+#pragma peephole off
 static inline f64 fn_1_65E8C_operand(f64 left, f64 right) { left *= right; return left; }
+#pragma peephole reset
+
 #pragma opt_propagation reset
 
 #pragma opt_dead_assignments off
@@ -308,18 +311,14 @@ static inline f64 fn_1_65E8C_operand__(f64 left, f64 right) { left *= right; ret
 #pragma opt_lifetimes off
 #pragma opt_loop_invariants off
 void fn_1_65E8C(struct fn_1_65E8C_arg *arg0) {
-    f32 fzgx_live;
     Sig_fn_1_862D4_Triple v20;
     struct { u32 a[13]; } v2c;
-    struct fn_1_65E8C_vec v14;
-    struct fn_1_65E8C_vec v8;
     s32 flag;
     s32 c;
     f32 t2;
     f32 t3;
-    f32 vy;
-    f32 vz;
-    struct fn_1_65E8C_vec * lab_t0;
+    struct fn_1_65E8C_vec v8;
+    void * lab_t1;
 
     flag = 0;
     if (*(u16 *)(arg0->f38 + 0x214) != 0) {
@@ -337,22 +336,16 @@ void fn_1_65E8C(struct fn_1_65E8C_arg *arg0) {
         t2 = lbl_8006D188((u32)(s32)((182.044449f) * (f32)lbl_801A66A0));
         t3 = (f32)((0.29999999999999999) * t2);
         lbl_8006DC6C(&v2c);
+        *(f32 *)(0xE0000000 + 0x0C) = *(f32 *)&v20.x;
+        *(f64 *)(0xE0000000 + 0x1C) = *(f64 *)&v20.y;
+        *(f64 *)(0xE0000000 + 0x2C) = *(f32 *)&v20.z;
 {
-    f32 vx;
-        vx = v20.x;
-        vy = v20.y;
-        (void) vy;  /* fzgx: keeps the web at its definition */
-        fzgx_live = v20.z;
-        vz = fzgx_live;
-        *(f32 *)(0xE0000000 + 0x0C) = vx;
+    struct fn_1_65E8C_pool *pool = &lbl_1_rodata_2950;
+        v8 = *(struct fn_1_65E8C_vec *)((u8 *)pool + 0x3ac);
 }
-        *(f32 *)(0xE0000000 + 0x1C) = vy;
-        *(f32 *)(0xE0000000 + 0x2C) = vz;
-        *(struct fn_1_65E8C_vec *)&v8 = *(struct fn_1_65E8C_vec *)((u8 *)&lbl_1_rodata_2950 + 0x3ac);
-        *(f32 *)&v8.b = 5.0 + t3;
-        v14 = v8;
-        lab_t0 = &v14;
-        lbl_8006E1B0(lab_t0, (void *)((u8 *)arg0 + 0x3c));
+        *(f32 *)&v8.b = 5.0f + t3;
+        lab_t1 = (void *)((u8 *)arg0 + 0x3c);
+        lbl_8006E1B0(v8);
     } else {
         arg0->f5a = (s16)(fn_1_65E8C_operand(((f64)(s32)arg0->f5a), ((0.97999999999999998))));
         arg0->f5c = (s16)(fn_1_65E8C_operand_(((f64)(s32)arg0->f5c), ((0.97999999999999998))));
@@ -371,3 +364,4 @@ void fn_1_65E8C(struct fn_1_65E8C_arg *arg0) {
 #pragma opt_propagation reset
 
 #pragma opt_dead_assignments reset
+
