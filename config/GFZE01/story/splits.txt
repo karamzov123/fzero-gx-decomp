@@ -176,3 +176,6 @@ rel/story/story_mode/fn_7_232C.c:
 
 rel/story/story_mode/fn_7_41FC.c:
 	.text       start:0x000041FC end:0x000044DC align:4
+
+rel/story/story_mode/fn_7_15BC.c:
+	.text       start:0x000015BC end:0x000016FC align:4

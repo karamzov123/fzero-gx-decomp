@@ -810,6 +810,55 @@ void fn_7_15B8(void) {
 }
 /* fzgx:end fn_7_15B8 */
 
+/* fzgx:begin fn_7_15BC */
+#include "rel/story/story_mode.h"
+
+typedef struct StoryTime {
+    u8 min;
+    u8 sec;
+    u16 ms;
+} StoryTime;
+
+typedef struct StoryRecords {
+    u8 pad_0[0x6c];
+    StoryTime times[8][12];
+} StoryRecords;
+
+typedef struct StoryClock {
+    u8 pad_0[0x1e0];
+    u8 min;
+    u8 sec;
+    u16 ms;
+} StoryClock;
+
+extern s32 fn_1_8623C(void);
+extern StoryClock *fn_1_3F0D8(u8, u8 *, f32 *);
+extern StoryRecords lbl_1_bss_7F0C0;
+extern u8 lbl_1_bss_9C[];
+
+void fn_7_15BC(void) {
+    f32 scale;
+    u8 name[12];
+    StoryClock *clock;
+    s32 course;
+
+    clock = fn_1_3F0D8(fn_1_8623C(), name, &scale);
+    course = (s8)lbl_7_bss_10->unk_0;
+#define REC lbl_1_bss_7F0C0.times[(s8)lbl_7_bss_10->unk_1][course]
+    if (REC.min || REC.sec || REC.ms) {
+        if (clock->sec * 1000 + clock->min * 60000 + clock->ms >=
+            REC.sec * 1000 + REC.min * 60000 + REC.ms) {
+            return;
+        }
+    }
+    REC.min = clock->min;
+    REC.sec = clock->sec;
+    REC.ms = clock->ms;
+#undef REC
+    lbl_1_bss_9C[3] = 1;
+}
+/* fzgx:end fn_7_15BC */
+
 /* fzgx:begin fn_7_16FC */
 extern u16 lbl_1_bss_96A;
 
