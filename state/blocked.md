@@ -47,6 +47,15 @@ below do not imply that declaration order alone can repair a function.
 | `fn_12_23F5C` | 87 | 5 |
 | `fn_1_7FD7C` | 3 | 0 |
 
+The 2026-10-20 `fn_16_4E90` refresh has 147 differing instruction words and
+30 shape edits (not the historical 139/35 above). The retained partial uses
+`FontDrawPacket` fields and a scalar selection value instead of a codegen-only
+one-field carrier. Optimizer resets and rectangle/flag ordering did not close
+it; the bounded two-round deterministic repair only recovered the old word
+score. It remains blocked and unauthored. Continue from
+`state/repairs/profile-font-packet-frontier.json.gz`; see its companion `.md`
+for measured alternatives. No executable bytes were accepted from this pass.
+
 The 2026-09-15 shared-state pass linked `fn_8001B42C` from C.
 `fn_3_1D338` now has a retail zero palette and corrected multiplication
 association; the 109-word/8-shape alternative is also preserved in
