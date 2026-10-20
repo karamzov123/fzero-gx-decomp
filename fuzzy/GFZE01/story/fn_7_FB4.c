@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (95.45% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.97% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -19,7 +19,7 @@ extern u32 fn_1_A0680(void);
 extern void fn_1_A1588(void *, u32);
 
 extern void **lbl_1_bss_6EAD0;
-extern u32 lbl_1_bss_8B5F0;
+extern u8 lbl_1_bss_8B5F0;
 extern u8 lbl_1_bss_8B5F1;
 
 struct fn_7_FB4_state {
@@ -48,59 +48,48 @@ struct fn_7_FB4_arg {
     u8 pad_9[0x17];
 };
 
-#pragma opt_propagation off
-s16 fn_7_FB4(void) {
+void fn_7_FB4(void) {
     u8 *base;
     struct fn_7_FB4_state *state;
     struct fn_7_FB4_arg arg;
-    u32 index;
     s32 offset;
-    s32 lab_t0;
+    s32 index;
+    u32 *tbl;
+    s32 res;
 
     base = lbl_7_data_0 + 0x10000;
     state = (struct fn_7_FB4_state *)&lbl_7_bss_0;
     state->unk_4 = 0;
     state->unk_28 = 0;
-    state->unk_2c = 0xa;
+    state->unk_2c = 10;
     state->unk_3c = 0;
     state->unk_40 = 0;
     state->unk_30 = 0;
     fn_7_4050();
-    lab_t0 = 0xba;
-    fn_1_47F74(lab_t0);
-    lab_t0 = 0x9a;
-    fn_1_47F74(lab_t0);
-    lab_t0 = 0x9b;
-    fn_1_47F74(lab_t0);
+    fn_1_47F74(0xba);
+    fn_1_47F74(0x9a);
+    fn_1_47F74(0x9b);
     offset = state->unk_14[1] - 0x24;
-    if (offset < 0) {
-        index = 0;
-    } else {
-        index = 9;
-        if (offset <= 9) {
-            index = offset;
-        }
-    }
-    lab_t0 = *(u32 *)((((0x3A14) + (index * 4)) + (base)));
-    fn_1_47F74(lab_t0);
-    fn_1_465D0((s32)(base + 0x3E14), 1);
+    index = offset < 0 ? 0 : (offset > 9 ? 9 : offset);
+    fn_1_47F74(*(u32 *)(index * 4 + (base + 0x3A14)));
+    res = (s32)(base + 0x3E14);
+    fn_1_465D0(res, 1);
     fn_1_411A4(1);
     fn_1_12F28C((void *)state->unk_1c, state->unk_44, 7, state->unk_14 + 1);
     fn_1_4A00(1, 0x1e, (void *)state->unk_1c);
     arg.unk_2 = *(s16 *)(state->unk_10 + 4);
     arg.unk_4 = 2;
     arg.unk_8 = 0x10;
-    fn_1_47E54(0x30, 2, *(s16 *)(state->unk_10 + 4));
+    fn_1_47E54(0x30, arg.unk_4, arg.unk_2);
     fn_80006E10((u32)(base + 0x3E30));
-    fn_1_465D0((s32)(base + 0x3E38), 1);
+    res = (s32)(base + 0x3E38);
+    fn_1_465D0(res, 1);
     fn_1_7FD7C(&arg);
     fn_80006E10((u32)(base + 0x3E48));
-    fn_1_465D0((s32)fn_1_12D254(arg.unk_2, arg.unk_4), 1);
+    res = (s32)fn_1_12D254(arg.unk_2, arg.unk_4);
+    fn_1_465D0(res, 1);
     fn_1_A0680();
     fn_1_A1588(*(void **)lbl_1_bss_6EAD0, 0x2e);
     lbl_1_bss_8B5F0 = 0;
-    return (u32)base;
     lbl_1_bss_8B5F1 = 0;
 }
-#pragma opt_propagation reset
-
