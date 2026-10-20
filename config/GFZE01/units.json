@@ -75111,6 +75111,31 @@
   },
   {
     "module": "title",
+    "source": "rel/title/operation/fn_8_A3A4.c",
+    "symbols": [
+      "fn_8_A3A4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/title/operation.c",
+    "pool": {
+      "...rodata.0": "lbl_8_rodata_160",
+      "@17": "lbl_8_rodata_188",
+      "@9": "lbl_8_rodata_160",
+      "@12": "lbl_8_rodata_160+0x10",
+      "@11": "lbl_8_rodata_160+0xC",
+      "@10": "lbl_8_rodata_160+0x8",
+      "@26": "lbl_8_rodata_194",
+      "@27": "lbl_8_rodata_198",
+      "@16": "lbl_8_rodata_160+0x24",
+      "@15": "lbl_8_rodata_160+0x20",
+      "@13": "lbl_8_rodata_160+0x18",
+      "...data.0": "lbl_8_data_7E50"
+    }
+  },
+  {
+    "module": "title",
     "source": "rel/title/operation/fn_8_A954.c",
     "symbols": [
       "fn_8_A954"
