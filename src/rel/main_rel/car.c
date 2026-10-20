@@ -641,6 +641,175 @@ void *fn_1_7F49C(s16 arg0, s16 arg1, void *arg2) {
 }
 /* fzgx:end fn_1_7F49C */
 
+/* fzgx:begin fn_1_7F658 noprologue */
+#include "types.h"
+
+struct fn_1_7F658_lbl_801A6410 {
+    u32 unk_0;
+};
+extern struct fn_1_7F658_lbl_801A6410 lbl_801A6410;
+extern u8 lbl_1_data_1FFF0[0xC];
+
+typedef struct {
+    s32 a : 25;
+    s32 b : 1;
+    s32 c : 6;
+} Sig_fn_1_7F658_FlagBits;
+
+typedef struct {
+    u8 pad_340[0x340];
+    void *field_340;
+} Sig_fn_1_7F658_Item;
+
+typedef struct {
+    u8 pad_380[0x380];
+    u32 unk_380;
+} Sig_fn_1_7F658_Sub;
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    void *unk_8;
+} Sig_fn_1_7F658_E34;
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    void *unk_8;
+    u8 pad_C[0x320];
+    u32 unk_32C;
+    u32 unk_330;
+    Sig_fn_1_7F658_E34 unk_334[5];
+    u8 pad_370[0xC];
+    u32 unk_37C[4];
+    u8 pad_38C[4];
+    u32 unk_390;
+    u32 unk_394;
+    u8 pad_398[8];
+    Sig_fn_1_7F658_Item *unk_3A0;
+    u32 unk_3A4;
+    u8 pad_3A8[0x18];
+    u32 unk_3C0[8];
+    u32 unk_3E0[8];
+    u32 unk_400[5];
+    u32 unk_414[5];
+} Sig_fn_1_7F658_Car;
+
+extern void fn_1_46B4(u32, u32, const char *, int);
+extern void fn_1_14DBCC(Sig_fn_1_7F658_Item *);
+extern void fn_1_150464(u32);
+extern void fn_1_810E4(u32);
+extern void fn_1_A7728(Sig_fn_1_7F658_Car *);
+extern void fn_800711A8(u32);
+extern void fn_80071718(u32);
+
+static inline s8 fn_1_7F658_busy(Sig_fn_1_7F658_Car *car) {
+    s32 i;
+
+    if (car == 0) {
+        return 0;
+    }
+    if ((car->unk_390 & 0x4000000) != 0 && car->unk_3A0->field_340 != 0) {
+        return 1;
+    }
+    for (i = 0; i < 4; i++) {
+        if (car->unk_37C[i] != 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void fn_1_7F658(Sig_fn_1_7F658_Car *arg0) {
+    struct fn_1_7F658_lbl_801A6410 *p_lbl_801A6410;
+    u32 v0;
+    s8 flag;
+    s16 v1;
+    struct { s16 value; } v8;
+
+    if (arg0 != 0) {
+        flag = fn_1_7F658_busy(arg0);
+        if (flag) {
+            p_lbl_801A6410 = &lbl_801A6410;
+            v1 = 0;
+            while (v1 < 8) {
+                v0 = arg0->unk_3C0[v1];
+                if (v0 != 0) {
+                    fn_1_46B4(p_lbl_801A6410->unk_0, v0, (const char *)lbl_1_data_1FFF0, 0x27D);
+                    arg0->unk_3C0[v1] = 0;
+                    arg0->unk_3E0[v1] = 0;
+                }
+                v1++;
+            }
+            p_lbl_801A6410 = &lbl_801A6410;
+            v1 = 0;
+            while (v1 < 5) {
+                v0 = arg0->unk_400[v1];
+                if (v0 != 0) {
+                    fn_1_46B4(p_lbl_801A6410->unk_0, v0, (const char *)lbl_1_data_1FFF0, 0x284);
+                    arg0->unk_400[v1] = 0;
+                    arg0->unk_414[v1] = 0;
+                }
+                v1++;
+            }
+            arg0->unk_32C = 0;
+            {
+                struct { s16 value; } w;
+                w.value = 0;
+                while (w.value < 4) {
+                    v0 = arg0->unk_37C[w.value];
+                    if (v0 != 0) {
+                        fn_80071718(v0);
+                        arg0->unk_37C[w.value] = 0;
+                    }
+                    w.value++;
+                }
+                v8.value = w.value;
+            }
+            v8.value = 0;
+            while (v8.value < 5) {
+                v0 = arg0->unk_334[v8.value].unk_4;
+                if (v0 != 0) {
+                    fn_800711A8(v0);
+                    arg0->unk_334[v8.value].unk_4 = 0;
+                }
+                v0 = arg0->unk_334[v8.value].unk_0;
+                if (v0 != 0) {
+                    fn_1_46B4(lbl_801A6410.unk_0, v0, (const char *)lbl_1_data_1FFF0, 0x290);
+                    arg0->unk_334[v8.value].unk_0 = 0;
+                }
+                v8.value++;
+            }
+            v0 = arg0->unk_330;
+            if (v0 != 0) {
+                fn_1_46B4(lbl_801A6410.unk_0, v0, (const char *)lbl_1_data_1FFF0, 0x292);
+                arg0->unk_330 = 0;
+            }
+            if ((void *)((u8 *)arg0 + 0x394) != 0) {
+                fn_1_A7728(arg0);
+            }
+            if ((arg0->unk_390 & 0x4000000) != 0) {
+                if (arg0->unk_3A0 != 0) {
+                    fn_1_14DBCC(arg0->unk_3A0);
+                }
+            }
+            if (arg0 != 0 && arg0 != 0) {
+                if (arg0->unk_3A4 != 0) {
+                    if (__rlwnm(arg0->unk_390, 6, 31, 31)) {
+                        fn_1_150464(arg0->unk_3A4);
+                    } else {
+                        fn_1_810E4(arg0->unk_3A4);
+                    }
+                    fn_1_46B4(lbl_801A6410.unk_0, arg0->unk_3A4, (const char *)lbl_1_data_1FFF0, 0x1F7);
+                    arg0->unk_3A4 = 0;
+                }
+            }
+            arg0->unk_390 &= ~0x400000;
+        }
+    }
+}
+/* fzgx:end fn_1_7F658 */
+
 /* fzgx:begin fn_1_7F934 */
 // Forwards the caller's context to the common car initialization routine.
 void fn_1_7F934(void *arg0) {

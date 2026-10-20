@@ -2425,6 +2425,17 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/toolkit/fn_3_1A648.c",
+    "symbols": [
+      "fn_3_1A648"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/toolkit.c"
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/toolkit/fn_3_1AB34.c",
     "symbols": [
       "fn_3_1AB34"
@@ -37354,6 +37365,17 @@
     "source": "rel/main_rel/car/fn_1_7F49C.c",
     "symbols": [
       "fn_1_7F49C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/car.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/car/fn_1_7F658.c",
+    "symbols": [
+      "fn_1_7F658"
     ],
     "status": "matching",
     "mw_version": null,

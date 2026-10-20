@@ -587,3 +587,6 @@ rel/customize/_prolog/fn_3_4380.c:
 
 rel/customize/emblem/fn_3_137AC.c:
 	.text       start:0x000137AC end:0x000139F0 align:4
+
+rel/customize/toolkit/fn_3_1A648.c:
+	.text       start:0x0001A648 end:0x0001AB34 align:4

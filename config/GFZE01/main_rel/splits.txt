@@ -7874,3 +7874,6 @@ rel/main_rel/stcoli/fn_1_2E3B4.c:
 
 rel/main_rel/sel_static_disp/fn_1_142BDC.c:
 	.text       start:0x00142BDC end:0x0014328C align:4
+
+rel/main_rel/car/fn_1_7F658.c:
+	.text       start:0x0007F658 end:0x0007F934 align:4
