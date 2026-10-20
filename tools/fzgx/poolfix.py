@@ -242,8 +242,11 @@ class Elf:
                for rs in self.sections if rs['type'] == SHT_RELA and rs['info'] != ro['index']
                for off in range(rs['offset'], rs['offset'] + rs['size'], 12)):
             return False
-        for s in others:
-            self.data[s['off'] + 4:s['off'] + 16] = struct.pack('>IIBBH', 0, 0, 0, 0, SHN_UNDEF)
+        # Unreferenced labels go too: an anonymous section base (`...bss.0`) left
+        # defined in the emptied section makes mwld fail without a message.
+        for s in self.symbols():
+            if s['shndx'] == ro['index'] and (s['info'] & 0xF) in (STT_NOTYPE, STT_OBJECT):
+                self.data[s['off'] + 4:s['off'] + 16] = struct.pack('>IIBBH', 0, 0, 0, 0, SHN_UNDEF)
         # an empty but allocatable section still makes the linker align before placing it;
         # strip ALLOC so it is not placed at all
         ro["size"] = 0
