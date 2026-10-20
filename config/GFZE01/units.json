@@ -599,6 +599,18 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_4380.c",
+    "symbols": [
+      "fn_3_4380"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c",
+    "pool": true
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_4A84.c",
     "symbols": [
       "fn_3_4A84"
@@ -1728,6 +1740,17 @@
     "source": "rel/customize/emblem/fn_3_1349C.c",
     "symbols": [
       "fn_3_1349C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/emblem.c"
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/emblem/fn_3_137AC.c",
+    "symbols": [
+      "fn_3_137AC"
     ],
     "status": "matching",
     "mw_version": null,

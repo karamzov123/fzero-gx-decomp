@@ -581,3 +581,9 @@ rel/customize/data/lbl_3_data_0.c:
 
 rel/customize/data/lbl_3_data_3618.c:
 	.data       start:0x00003618 end:0x00003738 align:8
+
+rel/customize/_prolog/fn_3_4380.c:
+	.text       start:0x00004380 end:0x00004538 align:4
+
+rel/customize/emblem/fn_3_137AC.c:
+	.text       start:0x000137AC end:0x000139F0 align:4
