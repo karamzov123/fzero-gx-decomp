@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.17% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.99% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -87,7 +87,7 @@ s32 fn_14_4460(void) {
     count = 0;
     ro = &lbl_14_rodata_0;
 
-    for (i = 0; (u32)i < 8; i++) {
+    for (i = count; (u32)i < 8; i++) {
         flags = ((u32 *)&lbl_14_bss_110[i * 2])[3];
         if (flags & 0x10) {
             if ((flags & 0x40) || (i == sel)) {

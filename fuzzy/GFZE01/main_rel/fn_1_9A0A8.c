@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (93.42% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (95.75% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #pragma section code_type ".fzgxpool"
@@ -14,21 +14,21 @@ static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail p
 __declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 1.0f;
-    d = 0.8f;
-    d = 0.1f;
+    d = 1.0;
+    d = 0.8;
+    d = 0.1;
     s = 0.003921568859368563f;
 }
 static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 0.0f;
+    d = 0.0;
     s = 0.15000000596046448f;
     s = 0.10000000149011612f;
     s = 0.10999999940395355f;
     s = 0.11999999731779099f;
-    d = 4503601774854144.0f;
+    d = 4503601774854144.0;
     s = 0.5f;
     s = 1.7000000476837158f;
     s = 1.0f;
@@ -65,12 +65,22 @@ static const u32 fzgx_pool_table6[1] = {0x00000000};  /* fzgx-allow: A1 retail p
 __declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 0.05f;
-    d = 4503599627370496.0f;
+    d = 0.05;
+    d = 4503599627370496.0;
     s = 15.0f;
     s = 35.0f;
 }
 #pragma section code_type ".text"
+
+extern const struct fn_1_9A0A8_lbl_1_rodata_4100_pool {
+    u8 pad_0[0x4];
+    f32 unk_4;
+    u8 pad_8[0x58];
+    f32 unk_60;
+    u8 pad_64[0x84];
+    f32 unk_E8;
+    f32 unk_EC;
+} lbl_1_rodata_4100;
 
 extern s32 fn_1_6EC0(u8);
 extern u32 fn_1_5910(void);
@@ -78,11 +88,15 @@ extern void fn_1_681C(u8, u8 *);
 
 static inline f32 fn_1_9A0A8_array_read(f32 *array, s32 index) { return array[index]; }
 #pragma peephole off
+#pragma opt_common_subs off
+#pragma opt_dead_assignments off
 f32 fn_1_9A0A8(void *object, u32 lab_unused0, u32 lab_unused1) {
+    f32 dy;
+    struct fn_1_9A0A8_lbl_1_rodata_4100_pool *pool_lbl_1_rodata_4100 = (struct fn_1_9A0A8_lbl_1_rodata_4100_pool *)&lbl_1_rodata_4100;
     u8 *p;
     f32 result;
     f32 dx;
-    f32 dy;
+    f32 t_2;
     f32 dz;
     f32 len;
     struct { f32 value; } d;
@@ -90,7 +104,7 @@ f32 fn_1_9A0A8(void *object, u32 lab_unused0, u32 lab_unused1) {
     f32 vec[3];
 
     p = (u8 *)object;
-    result = 1.0f;
+    result = (1.0f);
     if (fn_1_6EC0(*(u8 *)(p + 0x475)) == 0) {
     } else if ((u32)(s8)*(u8 *)(p + 0x475) != fn_1_5910()) {
     } else {
@@ -101,25 +115,29 @@ f32 fn_1_9A0A8(void *object, u32 lab_unused0, u32 lab_unused1) {
         dz = fn_1_9A0A8_array_read(vec, 2);
         dz = dz - *(f32 *)(((0x84) + (p)));
         len = (f32)(dx * dx) + dy * dy + dz * dz;
-        d.value = len - 15.0f;
-        d.value = (d.value > 0.0f) ? d.value : 0.0f;
-        t = d.value / 35.0f;
-        if (t < 0.0f) {
-            result = 0.0f;
+        d.value = len - (15.0f);
+        d.value = (d.value > (0.0f)) ? d.value : (0.0f);
+        t = d.value / (35.0f);
+        if (t < (0.0f)) {
+            result = (0.0f);
         } else {
-            d.value = len - 15.0f;
-            d.value = (d.value > 0.0f) ? d.value : 0.0f;
-            t = d.value / 35.0f;
-            if (t > 1.0f) {
-                result = 1.0f;
+            d.value = len - (15.0f);
+            d.value = (d.value > (0.0f)) ? d.value : (0.0f);
+            t_2 = d.value / (35.0f);
+            if (t_2 > (1.0f)) {
+                result = (1.0f);
             } else {
-                d.value = len - 15.0f;
-                d.value = (d.value > 0.0f) ? d.value : 0.0f;
-                result = d.value / 35.0f;
+                d.value = len - (15.0f);
+                d.value = (d.value > (0.0f)) ? d.value : (0.0f);
+                result = d.value / (35.0f);
             }
         }
     }
     return result;
 }
+#pragma opt_dead_assignments reset
+
+#pragma opt_common_subs reset
+
 #pragma peephole reset
 

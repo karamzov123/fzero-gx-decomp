@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (83.94% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (94.42% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/sel/sel.h"
@@ -353,102 +353,123 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime42(void) {
     s = -4.5f;
 }
 #pragma section code_type ".text"
-
-typedef struct { s16 unk_0; u8 pad[0x1E]; } Entry;
-typedef struct { u8 pad[0xE]; Entry entry[1]; u8 pad2[0x70]; u8 unk_9E; u8 pad9F[5]; u32 unk_A4; } Global;
-typedef struct { u32 a[22]; } Copy88;
 typedef struct {
+    f32 unk_00;
+    f32 unk_04;
+    f32 unk_08;
+    f32 unk_0C;
+    f32 unk_10;
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+    f32 unk_20;
+    f32 unk_24;
+    u16 unk_28;
+    u16 unk_2A;
+    u16 unk_2C;
+    u16 unk_2E;
+    u16 unk_30;
+    u16 unk_32;
+    u32 unk_34;
+    u8 unk_38;
+    u8 unk_39;
+    s8 unk_3A;
+    u8 unk_3B;
+    u32 unk_3C;
+    u8 unk_40;
+    u8 unk_41[3];
+    f32 unk_44;
+    f32 unk_48;
+    f32 unk_4C;
+    f32 unk_50;
+    u16 unk_54;
+    u16 unk_56;
+    u32 unk_58;
+    u8 unk_5C[4];
+} Sig_fn_1_8CED0_Fn1_8CED0State;
+struct fn_10_18DD0_lbl_1_bss_8B3A0_E_E32 { s16 unk_0; u8 pad_2[0x1E]; };
+struct fn_10_18DD0_Copy88 { u32 a[22]; };
+struct fn_10_18DD0_lbl_10_rodata_158 {
  u8 pad_0[0x4C]; f32 unk_4C; u8 pad_50[0x2C]; f32 unk_7C;
  u8 pad_80[8]; f64 unk_88; u8 pad_90[0xB8]; f32 unk_148;
  u8 pad_14C[0x108]; f32 unk_254; u8 pad_258[0x44]; f32 unk_29C;
  u8 pad_2A0[0x68]; f32 unk_308; u8 pad_30C[0x4F8]; f32 unk_804,unk_808;
-} FloatData;
-typedef struct {
- f32 unk_00,unk_04,unk_08,unk_0C,unk_10,unk_14,unk_18,unk_1C;
- f32 unk_20,unk_24; u16 unk_28,unk_2A,unk_2C,unk_2E,unk_30,unk_32;
- u32 unk_34; u8 unk_38,unk_39,unk_3A,unk_3B; u32 unk_3C;
- u8 unk_40,unk_41[3]; f32 unk_44,unk_48,unk_4C,unk_50;
- u16 unk_54,unk_56; u32 unk_58; u8 unk_5C[4];
-} State;
-extern s16 lbl_1_bss_962;
-extern Global lbl_1_bss_8B3A0;
-extern u8 lbl_1_bss_8CA28;
-extern Copy88 lbl_1_rodata_26F8;
-extern FloatData lbl_10_rodata_158;
-extern s16 lbl_10_data_454;
-extern u32 lbl_10_bss_49380;
-extern u8 lbl_10_bss_493A0[];
-extern Obj_10_bss_517EC lbl_10_bss_517EC;
-extern Obj_10_bss_1C lbl_10_bss_1C;
-extern s32 fn_1_A5DC4(void);
-extern u16 fn_1_A5D9C(void);
-extern u16 fn_1_A5D88(void);
+};
+struct fn_10_18DD0_lbl_1_bss_8B3A0 {
+ u8 pad_0[0xE]; struct fn_10_18DD0_lbl_1_bss_8B3A0_E_E32 unk_E[1];
+ u8 pad_2E[0x70]; u8 unk_9E; u8 pad_9F[5]; u32 unk_A4;
+};
 extern s16 fn_10_0(s16 *,s16 *,int,int);
+extern s16 lbl_1_bss_962;
+extern s32 fn_1_A5DC4(void);
+extern const f32 lbl_10_rodata_158[19];
+extern struct fn_10_18DD0_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0;
+extern u16 fn_1_A5D88(void);
+extern u16 fn_1_A5D9C(void);
+extern struct fn_10_18DD0_Copy88 lbl_1_rodata_26F8;
+extern u8 lbl_1_bss_8CA28;
 extern void fn_10_19290(void);
 extern void fn_1_131C08(void);
-extern void fn_1_8CED0(State *,u16,u16);
+extern void fn_1_8CED0(Sig_fn_1_8CED0_Fn1_8CED0State *,u16,u16);
 extern u32 fn_1_8D3F8(void *,void *,void (*)(void),void *);
 
-static inline u32 * fn_10_18DD0_read_pointer(Copy88 * owner) { return owner->a; }
+static inline u32 * fn_10_18DD0_read_pointer(struct fn_10_18DD0_Copy88 * owner) { return owner->a; }
+#pragma opt_loop_invariants on
+static inline struct fn_10_18DD0_lbl_1_bss_8B3A0_E_E32 *fn_10_18DD0_array_read(struct fn_10_18DD0_lbl_1_bss_8B3A0_E_E32 *array) { return array; }
 u32 fn_10_18DD0(void) {
- FloatData *ro;
- struct { f64 value; } zero;
- u32 g;
- u32 ptr;
- s16 slot;
- struct { u32 value; } arg;
- u16 x;
- Copy88 loc_74;
+ struct fn_10_18DD0_lbl_10_rodata_158 *p_lbl_10_rodata_158;
+ f64 v0;
+ u32 v1;
+ s16 v6;
+ u16 v10;
+ struct fn_10_18DD0_Copy88 loc_74;
  struct { f32 a[20]; u32 flags[6]; } loc_C;
- s16 a;
- s16 b;
- s32 choice;
-    u16 lab_t1;
-
- ro = &lbl_10_rodata_158;
- zero.value = 0.0f;
- g = lbl_10_bss_49380;
- arg.value = lbl_1_bss_8B3A0.unk_9E;
- slot = lbl_1_bss_962;
- loc_C.a[14] = zero.value;
- loc_C.a[15] = zero.value;
- loc_C.a[16] = -15.0f;
- loc_C.a[17] = zero.value;
- loc_C.a[18] = zero.value;
- loc_C.a[19] = zero.value;
- *(u32 *)((u8 *)&loc_C + 12) = g;
+ s16 loc_A;
+ s16 loc_8;
+ s32 t0;
+ u32 v2;
+ p_lbl_10_rodata_158 = (struct fn_10_18DD0_lbl_10_rodata_158 *)&lbl_10_rodata_158;
+ v0 = (0.0f);
+ v1 = lbl_10_bss_49380;
+ v2 = (u8)(lbl_1_bss_8B3A0.unk_9E);
+ loc_C.a[14] = v0;
+ loc_C.a[15] = v0;
+ loc_C.a[16] = (-15.0f);
+ loc_C.a[17] = v0;
+ loc_C.a[18] = v0;
+ loc_C.a[19] = v0;
+ *(u32 *)((u8 *)&loc_C + 12) = v1;
  *(u32 *)((u8 *)&loc_C + 16) = (u32)&lbl_10_bss_493A0;
- *(u16 *)((u8 *)&loc_C + 20) = lbl_10_data_454;
- *(u32 *)((u8 *)&loc_C + 28) =
-   lbl_1_bss_8B3A0.unk_A4 + (s16)(slot - 14) * 148 + 36;
- *(s16 *)&loc_C = arg.value;
- if (lbl_1_bss_8B3A0.entry[(s16)arg.value].unk_0 < 41 ||
-     lbl_1_bss_8B3A0.entry[(s16)arg.value].unk_0 > 48 || slot != 20) {
-     loc_74 = lbl_1_rodata_26F8;
-     choice = (s8)fn_1_A5DC4() ? 88 : 72;
-     *(f32 *)((u8 *)&loc_74 + 8) = 366.0f;
-     *(f32 *)((u8 *)&loc_74 + 4) = (f32)choice;
-     if (lbl_1_bss_8B3A0.entry[*(s16 *)&loc_C].unk_0 == 32)
-         *(f32 *)((u8 *)&loc_74 + 8) += 19.0f;
-     if (lbl_1_bss_8B3A0.entry[*(s16 *)&loc_C].unk_0 == 39)
-         *(f32 *)((u8 *)&loc_74 + 8) += 10.0f;
-     *(f32 *)((u8 *)&loc_74 + 12) = 60.0f;
-     loc_74.a[13] = 0x4000000A;
-     fn_10_18DD0_read_pointer(&loc_74)[21] = (u32)fn_10_19290;
-     if (lbl_1_bss_8CA28) {
-         *(f32 *)((u8 *)&loc_74 + 16) *= 2.0f;
-         *(f32 *)((u8 *)&loc_74 + 20) *= 2.0f;
-     }
-     g = (fn_1_A5D9C() >> 1) & 0x7fff;
-     x = (fn_1_A5D88() >> 1) & 0x7fff;
-     lab_t1 = x;
-     fn_1_8CED0((State *)&lbl_10_bss_517EC, lab_t1, g);
-     lbl_10_bss_517EC.unk_44 = 55.0f;
-     ptr = lbl_1_bss_8B3A0.entry[*(s16 *)&loc_C].unk_0;
-     fn_10_0(&a,&b,ptr,0);
-     loc_C.flags[*(s16 *)&loc_C] =
-         *(u32 *)((u8 *)&lbl_10_bss_1C + (s16)b * 152 + (s16)a * 8 + 4) >> 31;
-     return fn_1_8D3F8(&lbl_10_bss_517EC,&loc_74,fn_1_131C08,&loc_C);
+ *(u16 *)((u8 *)&loc_C + 20) = (lbl_10_data_454);
+ *(u32 *)((u8 *)&loc_C + 28) = lbl_1_bss_8B3A0.unk_A4 + (s16)(lbl_1_bss_962 - 14) * 148 + 36;
+ *(s16 *)((u8 *)&loc_C) = v2;
+ if (fn_10_18DD0_array_read(lbl_1_bss_8B3A0.unk_E)[(s16)v2].unk_0 < 41 || fn_10_18DD0_array_read(lbl_1_bss_8B3A0.unk_E)[(s16)v2].unk_0 > 48 || lbl_1_bss_962 != 20) {
+ loc_74 = lbl_1_rodata_26F8;
+ t0 = (s8)fn_1_A5DC4() ? 72 : 88;
+ v6 = fn_10_18DD0_array_read(lbl_1_bss_8B3A0.unk_E)[*(s16 *)&loc_C].unk_0;
+ *(f32 *)((u8 *)&loc_74 + 8) = (366.0f);
+ *(f32 *)(((4) + ((u8 *)&loc_74))) = (f32)t0;
+ if (v6 == 32) *(f32 *)((u8 *)&loc_74 + 8) += (19.0f);
+ if (v6 == 39) *(f32 *)((u8 *)&loc_74 + 8) += (10.0f);
+ *(f32 *)((u8 *)&loc_74 + 12) = (60.0f);
+ fn_10_18DD0_read_pointer(&loc_74)[12] = 0x400000A;
+ fn_10_18DD0_read_pointer(&loc_74)[20] = (u32)fn_10_19290;
+ if (lbl_1_bss_8CA28) {
+ *(f32 *)((u8 *)&loc_74 + 16) *= (2.0f);
+ *(f32 *)((u8 *)&loc_74 + 20) *= (2.0f);
  }
- return (u32)arg.value;
+{
+ struct { u16 value; } v9;
+ v9.value = (fn_1_A5D9C() >> 1) & 0x7fff;
+ v10 = (fn_1_A5D88() >> 1) & 0x7fff;
+ fn_1_8CED0((Sig_fn_1_8CED0_Fn1_8CED0State *)&lbl_10_bss_517EC,v10,v9.value);
 }
+ lbl_10_bss_517EC.unk_44 = (55.0f);
+ fn_10_0(&loc_A,&loc_8,fn_10_18DD0_array_read(lbl_1_bss_8B3A0.unk_E)[*(s16 *)&loc_C].unk_0,0);
+ loc_C.flags[*(s16 *)&loc_C] = *(u32 *)((u8 *)&lbl_10_bss_1C + loc_8 * 152 + loc_A * 8 + 4) >> 31;
+ return fn_1_8D3F8(&lbl_10_bss_517EC,&loc_74,fn_1_131C08,&loc_C);
+ }
+    return (u32)v2;
+}
+#pragma opt_loop_invariants reset
+

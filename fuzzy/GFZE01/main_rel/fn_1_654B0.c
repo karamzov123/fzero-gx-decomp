@@ -1,10 +1,10 @@
-/* Non-matching: best partial attempt (87.01% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (96.96% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "dolphin/types.h"
 #include "rel/main_rel/effect.h"
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f32 d;  /* fzgx-allow: S2 pool primer sinks */
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     s = 60.0f;
     s = 0.10000000149011612f;
     s = 32767.0f;
@@ -270,6 +270,8 @@ typedef struct {
 #pragma opt_dead_assignments off
 static inline f32 fn_1_654B0_operand(f32 right, f32 left) { return left * right; }
 #pragma opt_strength_reduction off
+static inline f32 fn_1_654B0_operand_(f32 left, f32 right) { return ((right) * (left)); }
+static inline f32 fn_1_654B0_operand__(f32 left, f32 right) { left *= right; return left; }
 void fn_1_654B0(effect_anim_s *p)
 {
     f32 fzgx_live;
@@ -306,7 +308,7 @@ void fn_1_654B0(effect_anim_s *p)
 	state = (state >> 1) & 0x7FFF;
 
 	gain = state / 32767.0f;
-	gain = (0.200000003f) * gain;
+	gain = fn_1_654B0_operand_(((0.200000003f)), (gain));
 	gain = (0.800000012f) + gain;
 
 	p->unk_1c = (0.5f) * ((1.0f) + gain) * (255.0f) / (255.0f);
@@ -318,7 +320,7 @@ void fn_1_654B0(effect_anim_s *p)
 		gain = (1.0f) + gain;
 		gain = (1.0f) - gain;
 		fzgx_live = p->unk_1c;
-		p->unk_1c = fzgx_live * gain;
+		p->unk_1c = fn_1_654B0_operand__((fzgx_live), (gain));
 		p->unk_20 = p->unk_20 * gain;
 		p->unk_24 = p->unk_24 * gain;
 	}

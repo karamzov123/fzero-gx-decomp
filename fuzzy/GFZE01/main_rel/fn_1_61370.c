@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.83% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.11% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/avline.h"
@@ -173,15 +173,17 @@ extern void lbl_8006E1C0(void *, void *);
 extern u32 mathutil_mtxA_rotate_x(u32);
 extern u32 mathutil_mtxA_rotate_z(u32);
 
+#pragma opt_common_subs off
 void fn_1_61370(void *arg0) {
     f64 v0;
-    f32 v1;
+    struct { f32 value; } v1;
     f32 v2;
     f32 v3;
     f32 v4;
     f32 v5;
+    f32 dot;
     f32 v7;
-    f32 v8;
+    struct { f32 value; } v8;
     s32 v9;
     s32 v10;
     s32 v11;
@@ -192,8 +194,8 @@ void fn_1_61370(void *arg0) {
     v0 = 0.003;
     *(f32 *)((u8 *)arg0 + 72) = (f32)((f64)*(f32 *)((u8 *)arg0 + 72) + (f64)(v0 * gravity->unk_0));
     *(f32 *)((u8 *)arg0 + 76) = (f32)((f64)*(f32 *)((u8 *)arg0 + 76) + (f64)(v0 * gravity->unk_4));
-    v1 = *(f32 *)((u8 *)arg0 + 80);
-    *(f32 *)((u8 *)arg0 + 80) = (f32)((f64)v1 + (f64)(v0 * gravity->unk_8));
+    v1.value = *(f32 *)((u8 *)arg0 + 80);
+    *(f32 *)((u8 *)arg0 + 80) = (f32)((f64)v1.value + (f64)(v0 * gravity->unk_8));
     lbl_8006D8D8(*(s16 *)((u8 *)arg0 + 86));
     mathutil_mtxA_rotate_x(*(s16 *)((u8 *)arg0 + 84));
     mathutil_mtxA_rotate_z(*(s16 *)((u8 *)arg0 + 88));
@@ -202,11 +204,12 @@ void fn_1_61370(void *arg0) {
     loc_8.a[1] = 1.0f;
     loc_8.a[2] = v2;
     lbl_8006E1C0(&loc_8, &loc_8);
-    v5 = (f32)(loc_8.a[0] * *(f32 *)((u8 *)arg0 + 72)) + loc_8.a[1] * *(f32 *)((u8 *)arg0 + 76) + loc_8.a[2] * *(f32 *)((u8 *)arg0 + 80);
-    v5 = -0.9f * v5;
-    v3 = *(f32 *)((u8 *)arg0 + 72);
+    dot = loc_8.a[0] * *(f32 *)((u8 *)arg0 + 72);
+    dot += loc_8.a[1] * *(f32 *)((u8 *)arg0 + 76);
+    dot += loc_8.a[2] * *(f32 *)((u8 *)arg0 + 80);
+    v5 = -0.9f * dot;
     v4 = 0.95f;
-    *(f32 *)((u8 *)arg0 + 72) = v3 + (f32)(loc_8.a[0] * v5);
+    *(f32 *)((u8 *)arg0 + 72) = *(f32 *)((u8 *)arg0 + 72) + (f32)(loc_8.a[0] * v5);
     *(f32 *)((u8 *)arg0 + 76) = *(f32 *)((u8 *)arg0 + 76) + (f32)(loc_8.a[1] * v5);
     *(f32 *)((u8 *)arg0 + 80) = *(f32 *)((u8 *)arg0 + 80) + (f32)(loc_8.a[2] * v5);
     *(f32 *)((u8 *)arg0 + 72) *= v4;
@@ -218,8 +221,8 @@ void fn_1_61370(void *arg0) {
     v7 = (512.0f) / *(f32 *)((u8 *)arg0 + 40);
     *(u16 *)((u8 *)arg0 + 90) = *(s16 *)((u8 *)arg0 + 90) + (s32)(v7 * (*(f32 *)((u8 *)arg0 + 72) + *(f32 *)((u8 *)arg0 + 76)));
     *(u16 *)((u8 *)arg0 + 92) = *(s16 *)((u8 *)arg0 + 92) + (s32)(v7 * (*(f32 *)((u8 *)arg0 + 76) + *(f32 *)((u8 *)arg0 + 80)));
-    v8 = *(f32 *)((u8 *)arg0 + 80);
-    *(u16 *)((u8 *)arg0 + 94) = *(s16 *)((u8 *)arg0 + 94) + (s32)(v7 * (v8 + *(f32 *)((u8 *)arg0 + 72)));
+    v8.value = *(f32 *)((u8 *)arg0 + 80);
+    *(u16 *)((u8 *)arg0 + 94) = *(s16 *)((u8 *)arg0 + 94) + (s32)(v7 * (v8.value + *(f32 *)((u8 *)arg0 + 72)));
     v9 = *(s16 *)((u8 *)arg0 + 90);
     *(u16 *)((u8 *)arg0 + 90) = v9 - (v9 >> 5);
     v10 = *(s16 *)((u8 *)arg0 + 92);
@@ -242,3 +245,5 @@ void fn_1_61370(void *arg0) {
         *(u16 *)((u8 *)arg0 + 172) = v13 + 1;
     }
 }
+#pragma opt_common_subs reset
+
