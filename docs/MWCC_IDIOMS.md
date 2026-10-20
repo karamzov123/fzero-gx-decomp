@@ -458,3 +458,27 @@ without row alignment (`retail - ours` net rows):
   arrays, all opt pragmas); only -O2 or GC <= 1.2.5n keep it, and those change the rest
   of the function. `fzgx search` can "match" by inventing a return value (`fn_1_4DE04`
   returned its loop pointer); reject that and check what search changed before `verify`.
+
+## Movie bit-reader fields and consumed chunks (2026-10-19)
+
+- `fn_12_9D08` and `fn_12_8BD8` decode the same packed run/level table. The
+  secondary table index is `code >> 6`. Its `lhax` offset is the retail
+  `rlwinm ...,27,5,30`; using the low five bits or adding another pointer
+  indirection changes the decoder's meaning.
+- Keep the packed run-code byte separate from the decoded run:
+  `u8 run_code = (entry >> 2) & 0xFF; run = run_code >> 2;`.
+  GC/1.3.2 emits the retail eight-bit extraction followed by `srawi ...,2`.
+  A single reused signed local chooses a different intermediate register.
+- Stuffing (`0x22`) and escape (`0x23`) codes retry inside the decode loop,
+  after the original block index is saved. Retrying the outer delimiter check,
+  or saving the block index again after an escape, changes behavior.
+- `SJCK.len` is signed. The split size is the consumed prefix,
+  `position - chunk.data`; the refill test uses `chunk.len - consumed`.
+  Reversed subtraction can look like register allocation in an object diff.
+  Trace both `subf` inputs before changing declarations or compiler settings.
+- The continuation variant consumes exactly one bit after each block and exits
+  when it is zero. Both variants preserve the residual bit offset with `& 7`.
+  Shared `SJ`/`SJCK` declarations and ordinary field accesses match without
+  volatile qualifiers or identity read wrappers. Both functions passed the
+  complete retail hash gate; sequence/slice-header frontiers remain partials in
+  `state/repairs/movie-bitreader-frontiers-20261019.json.gz`.

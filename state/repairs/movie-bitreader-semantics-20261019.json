@@ -1,0 +1,176 @@
+{
+  "format": "fzgx-investigation-v1",
+  "topic": "Movie bit-reader source semantics and verified decoder siblings",
+  "accepted": [
+    {
+      "symbol": "fn_12_9D08",
+      "source": "src/rel/movie_module/fn_12_9D08.c",
+      "bytes": 976,
+      "words": 244,
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "object_rows_differing": 0,
+      "commit": "a1add265",
+      "source_sha256": "9b3fdb1fec7c23adfb2b8523f7d9b918645741c33748e58da3855762b3c0031b"
+    },
+    {
+      "symbol": "fn_12_8BD8",
+      "source": "src/rel/movie_module/fn_12_8BD8.c",
+      "bytes": 936,
+      "words": 234,
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "object_rows_differing": 0,
+      "commit": "a1bb8f3e",
+      "source_sha256": "ed08c3f40b377ef9bcfba5739bc9e200cf5b4bf4c71ddbe74f91da9af6131d79"
+    }
+  ],
+  "repairs": [
+    "Index the secondary run/level table with code >> 6, without an extra pointer indirection.",
+    "Extract an unsigned packed run-code byte from bits 2..9, then shift the promoted byte right by two.",
+    "Retain the block index before the stuffing/escape retry loop; retries bypass the outer start-delimiter check.",
+    "Use the input SJCK signed length and compute consumed bytes as current byte position minus chunk start.",
+    "Keep the low three residual bits with & 7. The continuation variant reads exactly one post-block continuation bit.",
+    "Remove unjustified volatile accesses and identity read/call wrappers; use SJ/SJCK from the existing shared header."
+  ],
+  "witnesses": {
+    "fn_12_9D08": [
+      "00009DF4: rlwinm r4, r9, 27, 5, 30",
+      "00009E2C: extrwi r4, r9, 8, 22",
+      "00009E30: srawi r10, r4, 2",
+      "00009F80: subf r4, r6, r4",
+      "0000A074: subf r4, r9, r0"
+    ],
+    "fn_12_8BD8": [
+      "00008E00: cmplwi r3, 0x1",
+      "00008E04: bne .L_00008EEC",
+      "00008E08: clrlwi r31, r7, 29"
+    ]
+  },
+  "partials_archive": "state/repairs/movie-bitreader-frontiers-20261019.json.gz",
+  "partial_frontiers": [
+    {
+      "symbol": "fn_8_A3A4",
+      "sha256": "4f6aad540e3c4c5876cc3b8696f14e49c617dc7aa88b55287fda75ff3b1f1466",
+      "label": "typed six-language description table and four point strings",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "raw_percent": 99.27198,
+      "differing_rows": 4
+    },
+    {
+      "symbol": "fn_12_BBC0",
+      "sha256": "588e035c7518d5f11506d6fb4477e77a9dd1ec8259d1f5fdd36727659e9f68d9",
+      "label": "natural sequence-header repair; ten aligned rows remain",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "raw_percent": 98.66995,
+      "differing_rows": 10
+    },
+    {
+      "symbol": "fn_12_BBC0",
+      "sha256": "4000fbc1dd8bbe50dab7b440c3f5fa3c698fe0541649bed4b1d11542b6b89c8c",
+      "label": "sequence-header pointer frontier",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "raw_percent": 99.113304,
+      "differing_rows": 12
+    },
+    {
+      "symbol": "fn_12_ABDC",
+      "sha256": "4121f3a7afcd06a0fbba79f608098958223419c099d79beda5daf30ee605fc9d",
+      "label": "native slice context and direct arithmetic",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "raw_percent": 96.95652,
+      "differing_rows": 8
+    },
+    {
+      "symbol": "fn_12_ABDC",
+      "sha256": "b3fa07d914b81efe28304f9b9ddd2ea76cca61eed2fa763ae3ff1b2d3ef01479",
+      "label": "native slice context and consumed-byte helper",
+      "mw": "GC/1.3.2",
+      "flags": "-use_lmw_stmw on",
+      "raw_percent": 99.565216,
+      "differing_rows": 12
+    }
+  ],
+  "title_layout_proof": {
+    "module": "title",
+    "section": ".data",
+    "table_address": 38956,
+    "table_extent": 24,
+    "owner": "lbl_8_data_97DC",
+    "owner_extent": 104,
+    "relocations": [
+      {
+        "offset": 80,
+        "kind": 1,
+        "module": "title",
+        "symbol": "lbl_8_data_9790",
+        "addend": 0
+      },
+      {
+        "offset": 84,
+        "kind": 1,
+        "module": "title",
+        "symbol": "lbl_8_data_81AC",
+        "addend": 0
+      },
+      {
+        "offset": 88,
+        "kind": 1,
+        "module": "title",
+        "symbol": "lbl_8_data_81AC",
+        "addend": 0
+      },
+      {
+        "offset": 92,
+        "kind": 1,
+        "module": "title",
+        "symbol": "lbl_8_data_81AC",
+        "addend": 0
+      },
+      {
+        "offset": 96,
+        "kind": 1,
+        "module": "title",
+        "symbol": "lbl_8_data_81AC",
+        "addend": 0
+      },
+      {
+        "offset": 100,
+        "kind": 1,
+        "module": "title",
+        "symbol": "lbl_8_data_97DC",
+        "addend": 0
+      }
+    ],
+    "point_strings": {
+      "0xa034": "3130303050545300",
+      "0xa03c": "3230303050545300",
+      "0xa044": "3430303050545300",
+      "0xa04c": "3830303050545300"
+    }
+  },
+  "scope": "No new tooling changes in this investigation. Existing concurrent tooling edits were preserved.",
+  "stopping_condition": "One local movie-parser cohort: two decoders close after proven semantic repairs. Sequence and slice headers retain first-window, zero-initialization or pointer-expression allocation differences after scalar, helper, cursor and compiler-profile probes; preserve both word/row frontiers rather than repeat the same probes.",
+  "verification": {
+    "real_mwcc": "GC/1.3.2",
+    "configure_ninja": "passed",
+    "retail_hashes": {
+      "passed": 16,
+      "total": 16
+    },
+    "lint_findings": 0,
+    "partial_replays": 5,
+    "partial_replay_identity_and_scores": "exact source hashes, compiler profiles, raw percentages and differing-row counts"
+  },
+  "reproduce": [
+    "uv run tools/fzgx.py fixup --archive state/repairs/movie-bitreader-frontiers-20261019.json.gz",
+    "python3 configure.py && ninja",
+    "build/tools/dtk shasum -q -c config/GFZE01/build.sha1",
+    "uv run tools/fzgx.py lint"
+  ],
+  "concurrent_work": "The title lookup is retained as the historical four-row frontier measured here. A separate contributor subsequently reconstructed native initialized data for fn_8_A3A4; its ledger state is matched/pool rather than link-verified. That work and concurrent tool changes are not credited to this investigation."
+}
