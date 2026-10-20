@@ -2186,3 +2186,6 @@ rel/movie_module/fn_12_9D08.c:
 
 rel/movie_module/fn_12_8BD8.c:
 	.text       start:0x00008BD8 end:0x00008F80 align:4
+
+rel/movie_module/fn_12_6ECC.c:
+	.text       start:0x00006ECC end:0x00006FEC align:4
