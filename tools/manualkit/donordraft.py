@@ -29,6 +29,25 @@ def main():
     if '--all' not in sys.argv:
         candidates = candidates[:2]
     p = Project()
+    solved = sourcealign.layout
+
+    def layout(p, rec, text, directory):
+        # Keep the unsolved draft when the padding solver gives up: the code is usually
+        # right and only the struct offsets need a hand fix.
+        try:
+            return solved(p, rec, text, directory)
+        except ValueError as error:
+            print(f'  (layout unsolved: {error}; keeping the donor layout)')
+            from fzgx import oracle
+            directory.mkdir(parents=True, exist_ok=True)
+            source = directory / 'baseline.c'
+            source.write_text(text)
+            obj = oracle.compile_many(p, p.resolve(rec['symbol']).module, [source], directory / 'obj',
+                                      rec['mw'], rec.get('flags') or None).get(source)
+            if obj is None:
+                raise
+            return text, obj, 0.0, []
+    sourcealign.layout = layout
     donors = defaultdict(lambda: defaultdict(list))
     for donor in sourcealign.catalog(p, 16):
         donors[donor['sdk']][donor['sdk_symbol']].append(donor['words'])

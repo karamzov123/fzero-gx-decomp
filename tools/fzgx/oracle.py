@@ -645,7 +645,22 @@ def _relocated_pool_matches(project, module, elf, section, address, extent):
     except (ValueError, KeyError):
         return False
     if not all(covered):
-        return False
+        # Alignment padding between retail objects belongs to no dtk symbol. Compare it
+        # against the raw retail section bytes instead of rejecting the whole pool; a
+        # relocation there still fails the binding comparison below.
+        if module == 'main':
+            raw = next((data[address - base:address - base + extent]
+                        for base, data in project._rel_layout(module).values()
+                        if base <= address and address + extent <= base + len(data)), None)
+        else:
+            data = project._raw_section(module, section['name'])
+            start = address - project._section_base(module, section['name'])
+            raw = data[start:start + extent] if data is not None and start >= 0 else None
+        if raw is None or len(raw) != extent:
+            return False
+        for i in range(extent):
+            if not covered[i]:
+                expected[i] = raw[i]
     found = []
     symbols = elf.symbols()
     for rsec in elf.sections:
