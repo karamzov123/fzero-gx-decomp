@@ -184,6 +184,82 @@
     "unit_size": 1200,
     "unit_start": 516672
   },
+  "customize:lbl_3_bss_7EE40": {
+    "address": 519744,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_7EE40 lbl_3_bss_7EE40",
+        "path": "include/rel/customize/emb_memcard.h"
+      },
+      {
+        "declaration": "Obj_3_bss_7EE40 lbl_3_bss_7EE40",
+        "path": "include/rel/customize/emb_paste_editor.h"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_7EE40[33216]",
+        "path": "src/rel/customize/emb_memcard.c"
+      }
+    ],
+    "definition": "Obj_3_bss_7EE40 lbl_3_bss_7EE40",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_C400",
+      "fn_3_CE94",
+      "fn_3_E6F8",
+      "fn_3_F044",
+      "fn_3_FD30",
+      "fn_3_10260",
+      "fn_3_106FC",
+      "fn_3_10CB8",
+      "fn_3_113AC",
+      "fn_3_11FF0",
+      "fn_3_E5D4",
+      "fn_3_104C4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 33216,
+    "sha256": "3b078a57c87a6bf267ef6635202bb23367b6354ef9824fb6e973bcaf417b12cc",
+    "size": 33216,
+    "source": "rel/customize/data/lbl_3_bss_7EE40.c",
+    "symbol": "lbl_3_bss_7EE40",
+    "unit_align": 32,
+    "unit_size": 33216,
+    "unit_start": 519744
+  },
+  "customize:lbl_3_bss_87040": {
+    "address": 553024,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_87040 lbl_3_bss_87040",
+        "path": "include/rel/customize/emb_paste_editor.h"
+      }
+    ],
+    "definition": "Obj_3_bss_87040 lbl_3_bss_87040",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_F044",
+      "fn_3_10260",
+      "fn_3_106FC",
+      "fn_3_10CB8",
+      "fn_3_113AC",
+      "fn_3_104C4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 33216,
+    "sha256": "3b078a57c87a6bf267ef6635202bb23367b6354ef9824fb6e973bcaf417b12cc",
+    "size": 33216,
+    "source": "rel/customize/data/lbl_3_bss_87040.c",
+    "symbol": "lbl_3_bss_87040",
+    "unit_align": 32,
+    "unit_size": 33216,
+    "unit_start": 553024
+  },
   "customize:lbl_3_bss_A1778": {
     "address": 661368,
     "align": 8,
@@ -2750,6 +2826,73 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 545416
+  },
+  "main_rel:lbl_1_bss_86ED0": {
+    "address": 552656,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_86ED0 lbl_1_bss_86ED0",
+        "path": "include/rel/main_rel/accessory.h"
+      },
+      {
+        "declaration": "Obj_1_bss_86ED0 lbl_1_bss_86ED0",
+        "path": "include/rel/main_rel/bg_common.h"
+      }
+    ],
+    "definition": "Obj_1_bss_86ED0 lbl_1_bss_86ED0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_107C74",
+      "fn_1_107F74",
+      "fn_1_108870",
+      "fn_1_1088B8",
+      "fn_1_107900"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 7280,
+    "sha256": "a4b83989fd7e21aadf16ebf64277f02cf7b8a71740f82b5e2fac0ca984096993",
+    "size": 7280,
+    "source": "rel/main_rel/data/lbl_1_bss_86ED0.c",
+    "symbol": "lbl_1_bss_86ED0",
+    "unit_align": 16,
+    "unit_size": 7280,
+    "unit_start": 552656
+  },
+  "main_rel:lbl_1_bss_88B50": {
+    "address": 559952,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_88B50 lbl_1_bss_88B50",
+        "path": "include/rel/main_rel/accessory.h"
+      }
+    ],
+    "definition": "Obj_1_bss_88B50 lbl_1_bss_88B50",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_10976C",
+      "fn_1_10AD18",
+      "fn_1_10BE3C",
+      "fn_1_10A6A0",
+      "fn_1_10B5A8",
+      "fn_1_10C7B4",
+      "fn_1_120804",
+      "fn_1_12277C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 3072,
+    "sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293",
+    "size": 3072,
+    "source": "rel/main_rel/data/lbl_1_bss_88B50.c",
+    "symbol": "lbl_1_bss_88B50",
+    "unit_align": 16,
+    "unit_size": 3072,
+    "unit_start": 559952
   },
   "main_rel:lbl_1_bss_89780": {
     "address": 563072,

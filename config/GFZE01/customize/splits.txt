@@ -593,3 +593,9 @@ rel/customize/toolkit/fn_3_1A648.c:
 
 rel/customize/_prolog/fn_3_6E14.c:
 	.text       start:0x00006E14 end:0x00006F90 align:4
+
+rel/customize/data/lbl_3_bss_7EE40.c:
+	.bss        start:0x0007EE40 end:0x00087000 align:32
+
+rel/customize/data/lbl_3_bss_87040.c:
+	.bss        start:0x00087040 end:0x0008F200 align:32

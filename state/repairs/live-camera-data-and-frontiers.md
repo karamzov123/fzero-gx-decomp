@@ -27,6 +27,26 @@ regeneration inputs are in state/dataimports/GFZE01.json. The preset table
 was initially imported separately, then preserved intact when its adjacent
 objects were grouped into the aligned lbl_1_data_4568 unit.
 
+## Verified BSS storage (separate from initialized data)
+
+Four existing recovered aggregate definitions were also transferred to C,
+without changing their header layouts:
+
+| Object | Module | BSS bytes |
+| --- | --- | ---: |
+| lbl_3_bss_7EE40 | customize | 33,216 |
+| lbl_3_bss_87040 | customize | 33,216 |
+| lbl_1_bss_86ED0 | main_rel | 7,280 |
+| lbl_1_bss_88B50 | main_rel | 3,072 |
+
+Total: 76,784 bytes of zero-initialized storage, not initialized-file payload
+and not executable-code progress. MWCC emitted all four symbols in ELF .bss
+(SHT_NOBITS/type 8), at their exact retail sizes. The importer proved member
+layouts and object bindings before transferring the splits and passing all
+16 executable hashes. No new filler objects or padding were introduced.
+The generated source's section attribute is not sufficient to identify its
+actual storage section; inspect the emitted symbol and ELF section.
+
 ## Unmatched frontiers (no executable-byte credit)
 
 ### fn_1_5C83C

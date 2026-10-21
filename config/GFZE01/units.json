@@ -77033,5 +77033,49 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/winning/winning.c"
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_7EE40.c",
+    "symbols": [
+      "lbl_3_bss_7EE40"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_87040.c",
+    "symbols": [
+      "lbl_3_bss_87040"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_bss_86ED0.c",
+    "symbols": [
+      "lbl_1_bss_86ED0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_bss_88B50.c",
+    "symbols": [
+      "lbl_1_bss_88B50"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
   }
 ]
