@@ -38,6 +38,24 @@ so the two trial routines (`fzgx cloud-1 trial`, `fzgx cloud-2 trial`) are disab
 was proven up to the toolchain unpack (orig copy, private release over REST, sha256);
 installing `zstd` was the remaining fix and is in `bootstrap.sh`, still unexercised.
 
+## Harvest outcome and leftovers (deltawave784/fzgx@13b0aeca)
+
+437 functions landed and link-verified (`state/forkimports/deltawave784.json`). The
+"preprocessed" candidate pastes the fork's expanded headers into the body, so lint
+refuses it (hardware `volatile`s, float bit patterns, Shift-JIS data). Most of those were
+recovered by inlining **only the fork headers missing here** and keeping includes that
+resolve in this tree. A few more needed the SDK `include/dolphin/os/OSFastCast.h`
+(imported), a fork struct under a `_dw` name for one view, or `(T)&sym` where the fork
+declares an array and this tree declares a struct.
+
+Left for a later session (bodies under `.fzgx/harvest/`; screening scripts are not committed):
+- near-misses after fixes: fn_1_30054 (98.5%), fn_1_14B1FC (98.5%), fn_1_F6A8 (91.9%),
+  fn_1_10846C (84.5%), fn_3_E64, fn_3_130C8, fn_4_A82C, fn_8_5840 (about 98.5% each);
+- still not compiling against this tree's declarations: fn_80068BFC, fn_1_11E98,
+  fn_1_ECF88, fn_3_106FC, fn_1_113C58, fn_8005D5A4;
+- object match but link mismatch: fn_8006B224, fn_8006B92C, fn_8006BC1C (DOL,
+  `#pragma optimize_for_size`), fn_8007F508, fn_1_9AABC, fn_1_A5594, fn_1_10BA00.
+
 ## Cloud session setup
 
 A cloud session needs both repositories attached: this one and the private
