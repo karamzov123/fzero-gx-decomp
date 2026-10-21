@@ -133,6 +133,94 @@ void fn_1_A5EFC(void) {
 }
 /* fzgx:end fn_1_A5EFC */
 
+/* fzgx:begin fn_1_A5F44 */
+extern u8 *lbl_801A6CF4;
+extern u32 lbl_1_bss_6F5F4;
+extern u8 lbl_801A66B0[];
+extern s32 OSGetResetCode(void);
+extern u32 OSGetProgressiveMode(void);
+extern void OSSetProgressiveMode(s32);
+extern void fn_1_A6870(u32 *);
+extern void fn_1_A5F44(void);
+extern s32 fn_1_A6480(void);
+
+
+extern u32 lbl_1_rodata_48C8[68];
+extern u32 lbl_801A66B4;
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16);
+extern void fn_1_49514(u32 *);
+extern void fn_1_4954C(f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_495C8(u8);
+extern void fn_1_4965C(u8);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4A0D8(const char *);
+extern void fn_1_4AF10(const char *);
+
+struct Table { u32 a[6]; };
+
+void fn_1_A5F44(void) {
+    u32 *p_lbl_1_rodata_48C8 = (u32 *)&lbl_1_rodata_48C8;
+    struct Table loc_E4 = ((struct Table *)p_lbl_1_rodata_48C8)[0];
+    struct Table loc_CC = ((struct Table *)p_lbl_1_rodata_48C8)[1];
+    struct Table loc_B4 = ((struct Table *)p_lbl_1_rodata_48C8)[2];
+    struct Table loc_9C = ((struct Table *)p_lbl_1_rodata_48C8)[3];
+    struct Table loc_84 = ((struct Table *)p_lbl_1_rodata_48C8)[4];
+    struct Table loc_6C = ((struct Table *)p_lbl_1_rodata_48C8)[5];
+    struct Table loc_54 = ((struct Table *)p_lbl_1_rodata_48C8)[6];
+    struct Table loc_3C = ((struct Table *)p_lbl_1_rodata_48C8)[7];
+    struct Table loc_24 = ((struct Table *)p_lbl_1_rodata_48C8)[8];
+    struct Table loc_C = ((struct Table *)p_lbl_1_rodata_48C8)[9];
+    u32 loc_8;
+    fn_1_49410();
+    fn_1_494DC(42);
+    fn_1_495B0(0x80000000);
+    fn_1_4965C(0);
+    loc_8 = p_lbl_1_rodata_48C8[60];
+    fn_1_49514(&loc_8);
+    fn_1_4954C(((f32 *)p_lbl_1_rodata_48C8)[61]);
+    fn_1_495C8(9);
+    switch ((s8)lbl_1_data_341B8->unk_4) {
+    case 0:
+    case 5:
+        fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[62], ((f32 *)p_lbl_1_rodata_48C8)[63]);
+        fn_1_4AF10((const char *)loc_E4.a[lbl_801A66B4]);
+        fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[62], ((f32 *)p_lbl_1_rodata_48C8)[64]);
+        fn_1_4AF10((const char *)loc_CC.a[lbl_801A66B4]);
+        fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[65], ((f32 *)p_lbl_1_rodata_48C8)[66]);
+        fn_1_4AF10((const char *)loc_B4.a[lbl_801A66B4]);
+        if ((s32)lbl_1_data_341B8->unk_5 == 1 && (s32)lbl_1_data_341B8->unk_4 != 5) {
+            fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[65], ((f32 *)p_lbl_1_rodata_48C8)[66]);
+            fn_1_4A0D8((const char *)loc_84.a[lbl_801A66B4]);
+        }
+        fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[67], ((f32 *)p_lbl_1_rodata_48C8)[66]);
+        fn_1_4AF10((const char *)loc_9C.a[lbl_801A66B4]);
+        if ((s32)lbl_1_data_341B8->unk_5 != 1 && (s32)lbl_1_data_341B8->unk_4 != 5) {
+            fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[67], ((f32 *)p_lbl_1_rodata_48C8)[66]);
+            fn_1_4A0D8((const char *)loc_6C.a[lbl_801A66B4]);
+        }
+        break;
+    case 4:
+        fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[62], ((f32 *)p_lbl_1_rodata_48C8)[63]);
+        fn_1_4AF10((const char *)loc_54.a[lbl_801A66B4]);
+        fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[62], ((f32 *)p_lbl_1_rodata_48C8)[64]);
+        if ((s32)lbl_1_data_341B8->unk_5 == 1) {
+            fn_1_4AF10((const char *)loc_3C.a[lbl_801A66B4]);
+        } else {
+            fn_1_4AF10((const char *)loc_24.a[lbl_801A66B4]);
+        }
+        if ((s32)lbl_801A66B4 != 5) {
+            fn_1_496FC(((f32 *)p_lbl_1_rodata_48C8)[62], ((f32 *)p_lbl_1_rodata_48C8)[66]);
+            fn_1_4AF10((const char *)loc_C.a[lbl_801A66B4]);
+        }
+        break;
+    case 1:
+        return;
+    }
+}
+/* fzgx:end fn_1_A5F44 */
+
 /* fzgx:begin fn_1_A6480 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"

@@ -1719,6 +1719,290 @@ void fn_1_11ABC(LiveCamera *camera) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_11ABC */
 
+/* fzgx:begin fn_1_1212C noprologue */
+#include "types.h"
+#include "rel/main_rel/live_camera.h"
+#include "dolphin/hw_regs.h"
+
+/* Primes the TU's shared literal pool (lbl_1_rodata_4E0) up to this function's own literals. */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = 300.0f;
+    s = 320.0f;
+    s = 234.0f;
+    s = 230.0f;
+    s = 0.0f;
+    s = 0.5f;
+    s = 2.0f;
+    s = 0.009999999776482582f;
+    s = 0.019999999552965164f;
+}
+static const u32 fzgx_pool_table2[4] = {0x0032FFFF, 0x000000FF, 0x000000FF, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.2;
+    s = 0.6000000238418579f;
+    s = 62.0f;
+    s = 16.0f;
+    s = 0.20000000298023224f;
+    s = 3.0f;
+    s = 940.0f;
+    s = 650.0f;
+    s = 36.0f;
+    d = 4503601774854144.0;
+    d = 4503599627370496.0;
+    s = 9350.0f;
+    s = 1800.0f;
+    d = 210.0;
+    s = 32.0f;
+    s = 484.0f;
+    s = 424.0f;
+    s = 588.0f;
+    s = 443.0f;
+    s = 480.0f;
+    s = 430.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.75;
+    d = 0.8;
+    d = 1.0;
+}
+static const u32 fzgx_pool_table6[7] = {0x38D1B717, 0x43480000, 0x00000000, 0x00000000, 0x00000000, 0x40E00000, 0x46FFFE00};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.0;
+    d = 0.5;
+}
+static const u32 fzgx_pool_table8[16] = {0x3FEC0000, 0x00000000, 0xBE000000, 0x41F00000, 0x3F947AE1, 0x47AE147B, 0x40504000, 0x00000000, 0x3FA99999, 0x9999999A, 0x40240000, 0x00000000, 0x40100000, 0x00000000, 0x40800000, 0x3D4CCCCD};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 55.0f;
+}
+static const u32 fzgx_pool_table10[15] = {0x00000000, 0x40310000, 0x00000000, 0xBFF00000, 0x00000000, 0x3ECCCCCD, 0x00000000, 0x3FD99999, 0x9999999A, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3FC00000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 5000.0f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x, y, z;
+} Lc1212CVec;
+
+typedef struct {
+    u8 state;            /* 0x00 */
+    u8 pad_1[3];
+    s16 unk_4;           /* 0x04 */
+    s16 unk_6;           /* 0x06 */
+    u8 pad_8[0xA];
+    s16 unk_12;          /* 0x12 */
+    s16 unk_14;          /* 0x14 */
+    u8 pad_16[2];
+    u32 unk_18;          /* 0x18 */
+    Lc1212CVec pos;      /* 0x1C */
+    u8 pad_28[0x24];
+    Lc1212CVec unk_4C;   /* 0x4C */
+    f32 fov;             /* 0x58 */
+    s16 unk_5C;          /* 0x5C */
+    u8 pad_5E[0x12];
+    Lc1212CVec target;   /* 0x70 */
+    u8 mtx[0x30];        /* 0x7C */
+} Lc1212C;
+
+extern s32 fn_1_40BB4(void);
+extern void fn_1_862D4(int, Lc1212CVec *);
+extern void fn_1_8636C(int, void *);
+extern void fn_1_862A8(int, void *);
+extern u32 fn_1_20A5C(void *, void *);
+extern void fn_1_15578(void *, Lc1212CVec *, void *, void *, u32, void *, u32, u32, u32, u32);
+extern void fn_8006FA24(void *, void *, void *, f32);
+extern void lbl_8006DC6C(void *);
+extern void lbl_8006E1B0(Lc1212CVec *, Lc1212CVec *);
+extern void fn_8006ED0C(Lc1212CVec *, Lc1212CVec *, s16 *);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void lbl_8006D7DC(Lc1212CVec *);
+extern s32 lbl_8006D24C(f32, f32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+
+/* Translation column of the current matrix in the locked cache. */
+static inline void Lc1212C_SetCurMtxTrans(const volatile Lc1212CVec *v) {
+    f32 x = v->x;
+    f32 y = v->y;
+    f32 z = v->z;
+    *(f32 *)(0xE0000000 + 0x0C) = x;
+    *(f32 *)(0xE0000000 + 0x1C) = y;
+    *(f32 *)(0xE0000000 + 0x2C) = z;
+}
+
+/* Squared distance between two points. */
+static inline f32 Lc1212C_Dist2(Lc1212CVec *a, Lc1212CVec *b) {
+    f32 x = a->x;
+    f32 y = a->y;
+    f32 z = a->z;
+    x -= b->x;
+    y -= b->y;
+    z -= b->z;
+    {
+        f32 d = x * x;
+        d += y * y;
+        d += z * z;
+        return d;
+    }
+}
+
+/* Move dst a frame-scaled step toward src. */
+static inline void Lc1212C_Follow(Lc1212CVec *dst, Lc1212CVec *src, f32 rate) {
+    dst->x = dst->x + (f32)(rate * (0.01f * (src->x - dst->x)));
+    dst->y = dst->y + (f32)(rate * (0.01f * (src->y - dst->y)));
+    dst->z = dst->z + (f32)(rate * (0.01f * (src->z - dst->z)));
+}
+
+/* The point to track, falling back to the camera's own look-at point. */
+static inline Lc1212CVec Lc1212C_Pick(Lc1212C *cam, Lc1212CVec *p) {
+    Lc1212CVec v;
+
+    if (p == NULL) {
+        v = cam->unk_4C;
+    } else {
+        v = *p;
+    }
+    return v;
+}
+
+void fn_1_1212C(Lc1212C *cam) {
+    u8 mtx[0x30];
+    Lc1212CVec eye;
+    Lc1212CVec pt;
+    Lc1212CVec at;
+    Lc1212CVec up;
+    Lc1212CVec a;
+    Lc1212CVec b;
+    Lc1212CVec pos;
+    Lc1212CVec out;
+    s16 rot[4];
+    u32 handle;
+    u32 info;
+    Lc1212CVec *src;
+    f32 dx, dy, dz;
+    f32 dist;
+    f32 t;
+    f64 d;
+    f64 h;
+    f32 c;
+    f32 rate;
+
+    fn_1_862D4(cam->unk_6, &eye);
+    fn_1_862D4(lbl_1_bss_17F8, &pt);
+    fn_1_8636C(lbl_1_bss_17F8, mtx);
+    dist = Lc1212C_Dist2(&eye, &pt);
+    fn_8006FA24(cam->mtx, mtx, cam->mtx, 0.2f);
+
+    switch (cam->state) {
+    case 3:
+        if (cam->state == 3 && fn_1_40BB4() == 0) {
+            if ((lbl_1_bss_9F8.unk_A >> 1) & 1) {
+                cam->unk_14++;
+            }
+            if (lbl_1_bss_9F8.unk_A & 1) {
+                cam->unk_14--;
+            }
+            if (cam->unk_14 > 1) {
+                cam->unk_14 = 0;
+            }
+            if (cam->unk_14 < 0) {
+                cam->unk_14 = 1;
+            }
+        }
+        if (dist > 5000.0f) {
+            cam->unk_12 = 0;
+            cam->unk_18 = 1;
+        }
+        break;
+    case 0:
+    case 1:
+    case 2:
+    case 5:
+        if (dist > 20000.0f) {
+            cam->unk_12 = 2;
+            cam->unk_18 = 1;
+        }
+        break;
+    case 4:
+    case 6:
+        break;
+    }
+
+    switch (cam->unk_4) {
+    case 0:
+        Lc1212C_SetCurMtxTrans(&pt);
+        lbl_8006DC6C(mtx);
+        {
+            Lc1212CVec v = {0.0f, 2.5f, 5.0f};
+            up = v;
+        }
+        lbl_8006E1B0(&up, &cam->pos);
+        cam->fov = 45.0f;
+        break;
+    case 1:
+    case 3:
+    case 4:
+        Lc1212C_SetCurMtxTrans(&pt);
+        lbl_8006DC6C(mtx);
+        fn_8006ED0C(&pt, &eye, rot);
+        mathutil_mtxA_rotate_y(rot[1]);
+        mathutil_mtxA_rotate_x(rot[0]);
+        t = (dist / 1000.0 < 0.0) ? 0.0 : ((dist / 1000.0 > 1.0) ? 1.0 : dist / 1000.0);
+        {
+            Lc1212CVec v = {0.0f, 0.0f, -3.0f};
+            a = v;
+        }
+        a.y = 2.5 + t;
+        up = a;
+        if (cam->unk_4 == 3) {
+            Lc1212CVec v = {0.0f, 0.0f, 0.0f};
+            b = v;
+            h = t / 2.0;
+            b.y = h - 0.3;
+            b.z = 2.0 + t;
+            up = b;
+        }
+        if (cam->unk_4 == 4) {
+            Lc1212CVec v = {0.0f, -0.3f, 1.0f};
+            up = v;
+        }
+        lbl_8006E1B0(&up, &cam->pos);
+        cam->fov = 55.0f;
+        break;
+    default:
+        lbl_8006D7DC(&pt);
+        cam->pos = pt;
+        cam->fov = 55.0f;
+        break;
+    }
+
+    cam->unk_4C = eye;
+    fn_1_862A8(lbl_1_bss_17F8, &at);
+    Lc1212C_Follow(&cam->target, &at, lbl_1_data_4484.unk_0);
+    cam->unk_5C = -lbl_8006D24C(cam->target.x, cam->target.y);
+    lbl_8006DAEC();
+    handle = fn_1_20A5C(&cam->pos, &info);
+    pos = Lc1212C_Pick(cam, &pt);
+    fn_1_15578(&cam->pos, &pos, &info, &out, 0x40005, &handle, 1, 0, 0, 0);
+    lbl_8006DB30();
+}
+/* fzgx:end fn_1_1212C */
+
 /* fzgx:begin fn_1_12620 */
 extern void OSPanic(u8 *file, int line, u8 *message, ...);
 extern u32 fn_80008E30(u32);

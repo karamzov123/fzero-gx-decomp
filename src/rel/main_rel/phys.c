@@ -203,6 +203,365 @@ void fn_1_E1C10(void) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_E1C10 */
 
+/* fzgx:begin fn_1_E252C noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "rel/main_rel/phys.h"
+
+#pragma force_active on
+static const u32 fzgx_pool_table_0[10] = {0xbf800000, 0x3f7ffffe, 0x3f800001, 0xbf800001, 0xbf7ffffe, 0x0, 0x3e800000, 0x0, 0x0, 0x40a00000};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_0(s32 value) {
+    volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
+    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f = 1.0000000000000000f;
+}
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_2C[1] = {0xff00ff};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_1(s32 value) {
+    volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
+    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f = 0.10000000149011612f;
+    f = 0.50000000000000000f;
+    f = 10.000000000000000f;
+    f = 182.04444885253906f;
+    d = 4503599627370496.0;
+    f = -0.0027222223579883575f;
+}
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_4C[9] = {0x0, 0x3f800000, 0x0, 0x0, 0x3f800000, 0x0, 0x3f800000, 0x0, 0x0};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_2(s32 value) {
+    volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
+    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f = 0.000095873801910784096f;
+    f = 1.5000000000000000f;
+    f = -1.1920928955078125e-7f;
+    f = 1.1920928955078125e-7f;
+    f = value;
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_3(s32 value) {
+    volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
+    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f = 60.000000000000000f;
+    f = 1000000.0000000000f;
+    f = 250000.00000000000f;
+    f = 20.000000000000000f;
+}
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_98[6] = {0x0, 0x3f800000, 0x0, 0x0, 0x3f800000, 0x0};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_4(s32 value) {
+    volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
+    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f = -0.0099999997764825821f;
+    f = 0.0099999997764825821f;
+    f = -1.0099999904632568f;
+    f = 0.000099999997473787516f;
+}
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_C0[3] = {0x0, 0x3f800000, 0x0};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_5(s32 value) {
+    volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
+    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f = 0.99000000953674316f;
+    f = 2.0000000000000000f;
+    f = -0.0f;
+    d = 216.00000000000000;
+    d = 3.1415927410125732;
+    d = 4.0000000000000000;
+    d = 60.000000000000000;
+    f = 1.0099999904632568f;
+    f = 0.050000000745058060f;
+    f = 1.0010000467300415f;
+    f = 0.89999997615814209f;
+    f = 3.0000000000000000f;
+}
+#pragma section code_type ".text"
+#pragma force_active off
+typedef struct {
+    u8 pad_0[0xA];
+    s16 kind;
+    u8 pad_C[0x2];
+    s16 index;
+    s16 slots[4];
+    u8 pad_18[0x120];
+    u64 flags;
+} Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj;
+typedef struct Sig_fn_1_E86FC_StringValueEntry {
+    u32 value;
+    const u8* string;
+} Sig_fn_1_E86FC_StringValueEntry;
+typedef struct Sig_fn_1_E86FC_StringValueTable {
+    s32 count;
+    u32 unused;
+    Sig_fn_1_E86FC_StringValueEntry* entries;
+} Sig_fn_1_E86FC_StringValueTable;
+
+struct fn_1_E252C_lbl_1_rodata_6780 {
+    u8 pad_0[0x28];
+    f32 unk_28;
+    u8 pad_2C[0x4];
+    f32 unk_30;
+    f32 unk_34;
+    f32 unk_38;
+    u8 pad_3C[0x44];
+    f64 unk_80;
+    u8 pad_88[0x48];
+    f32 unk_D0;
+    u8 pad_D4[0x30];
+    f32 unk_104;
+    u8 pad_108[0x4];
+    u32 unk_10C;
+    u32 unk_110;
+    u32 unk_114;
+    u32 unk_118;
+    u32 unk_11C;
+    u32 unk_120;
+    f32 unk_124;
+    f32 unk_128;
+    f32 unk_12C;
+    f32 unk_130;
+    f32 unk_134;
+    f32 unk_138;
+    f32 unk_13C;
+};
+struct fn_1_E252C_lbl_1_bss_384B4 {
+    u32 unk_0;
+};
+struct fn_1_E252C_lbl_801A63C0 {
+    u32 unk_0;
+};
+
+extern Sig_fn_1_E86FC_StringValueTable * fn_1_7B064(void);
+extern struct fn_1_E252C_lbl_1_bss_384B4 lbl_1_bss_384B4;
+extern const struct fn_1_E252C_lbl_1_rodata_6780 lbl_1_rodata_6780;
+extern struct fn_1_E252C_lbl_801A63C0 lbl_801A63C0;
+extern u32 fn_1_E86FC(Sig_fn_1_E86FC_StringValueTable *, const char *);
+extern void fn_1_E1E9C(Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj *);
+
+void fn_1_E252C(u32 arg0, u32 arg1, Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj * arg2) {
+    const struct fn_1_E252C_lbl_1_rodata_6780 *p_lbl_1_rodata_6780;
+    s16 v0;
+    u32 v1;
+    u32 v2;
+    u32 v3;
+    f32 unk_1;
+    f32 v5;
+    f32 v6;
+    f32 v7;
+    f32 v8;
+    f32 v9;
+    f32 v10;
+    f32 v11;
+    u32 v12;
+    u32 v13;
+    f32 v14;
+    struct { f32 value; } v15;
+    f32 v16;
+    f32 v17;
+    u32 v18;
+    u32 v19;
+    u32 v20;
+    f32 v21;
+    f32 v22;
+    f32 v23;
+    f32 v24;
+    f32 v25;
+    u32 v26;
+    u32 v27;
+    u32 v28;
+    f32 v29;
+    f32 v30;
+    f32 v31;
+    f32 v32;
+    f32 v33;
+    f64 v34;
+    f32 v35;
+    u32 v36;
+    f32 v37;
+    u32 v38;
+    f32 v39;
+    s32 v40;
+    f32 v41;
+    f32 v42;
+    f32 v43;
+    f32 v44;
+    f32 v45;
+    u32 v46;
+    u32 v47;
+    f32 v48;
+    struct { f32 value; } v49;
+    f32 v50;
+    f32 v51;
+    u32 v52;
+    struct { u32 a[6]; } loc_8 = {{0x3FE00000, 0x40F00000, 0x3F800000, 0x3F800000, 0x3F800000, 0x40A00000}};
+    /* frame */
+    Sig_fn_1_E86FC_StringValueTable * t0;
+    u32 t1;
+    u32 t2;
+    Sig_fn_1_E86FC_StringValueTable * t3;
+    u32 t4;
+    u32 t5;
+    /* 2 instruction(s) not lifted: see the ??? markers */
+    p_lbl_1_rodata_6780 = (struct fn_1_E252C_lbl_1_rodata_6780 *)&lbl_1_rodata_6780;
+    v0 = (s16)arg0;
+    unk_1 = ((f32 *)loc_8.a)[arg2->kind];
+    *(f32 *)((u8 *)arg2 + 132) = unk_1;
+    *(u32 *)((u8 *)arg2 + 320) = (1 << ((Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj *)(arg2))->kind);
+    switch (v0) {
+    case 0: {
+    *(u16 *)((u8 *)arg2 + 12) = 0;
+    *(f32 *)((u8 *)arg2 + 416) = *(f32 *)((u8 *)arg2 + 132);
+    *(f32 *)((u8 *)arg2 + 420) = 2.0f * *(f32 *)((u8 *)arg2 + 132);
+    *(f32 *)((u8 *)arg2 + 24) = 0.5f;
+    *(f32 *)((u8 *)arg2 + 28) = 1.0f;
+    *(f32 *)((u8 *)arg2 + 32) = 0.9f;
+    *(f32 *)((u8 *)arg2 + 36) = 0.8f;
+    *(f32 *)((u8 *)arg2 + 40) = 0.0016666667f;
+    *(u32 *)((u8 *)arg2 + 0) = 0;
+    arg2->flags |= 0x10000;
+    arg2->flags |= 0x80000;
+    arg2->flags |= 64;
+    arg2->flags |= 0x20000000000ULL;
+    arg2->flags |= 0x10000000000ULL;
+    *(u32 *)((u8 *)arg2 + 188) = 600;
+    *(u32 *)((u8 *)arg2 + 192) = -1;
+    break; }
+    case 1: {
+    *(u16 *)((u8 *)arg2 + 12) = 0;
+    *(f32 *)((u8 *)arg2 + 24) = 0.3f;
+    *(f32 *)((u8 *)arg2 + 28) = 1.0f;
+    *(f32 *)((u8 *)arg2 + 32) = 0.5f;
+    *(f32 *)((u8 *)arg2 + 36) = 0.5f;
+    *(f32 *)((u8 *)arg2 + 40) = 0.016666668f;
+    *(u32 *)((u8 *)arg2 + 0) = 0;
+    arg2->flags |= 1024;
+    arg2->flags |= 8;
+    arg2->flags |= 64;
+    arg2->flags |= 32;
+    arg2->flags |= 16777216;
+    arg2->flags |= 33554432;
+    arg2->flags |= 256;
+    break; }
+    case 2: {
+    v21 = 0.1f;
+    *(u16 *)((u8 *)arg2 + 12) = 0;
+    v22 = 10000000.0f;
+    *(f32 *)((u8 *)arg2 + 24) = v21;
+    v23 = 0.9f;
+    *(f32 *)((u8 *)arg2 + 28) = v22;
+    v24 = 0.8f;
+    *(f32 *)((u8 *)arg2 + 32) = v23;
+    v25 = 0.0016666667f;
+    *(f32 *)((u8 *)arg2 + 36) = v24;
+    *(f32 *)((u8 *)arg2 + 40) = v25;
+    t0 = (Sig_fn_1_E86FC_StringValueTable *)(fn_1_7B064());
+    t1 = fn_1_E86FC((Sig_fn_1_E86FC_StringValueTable *)t0, (const char *)&lbl_1_data_3DE3C);
+    *(u32 *)((u8 *)arg2 + 0) = t1;
+    if (t1 == 0) {
+    t2 = fn_1_E86FC((Sig_fn_1_E86FC_StringValueTable *)lbl_1_bss_384B4.unk_0, (const char *)&lbl_1_data_3DE3C);
+    *(u32 *)((u8 *)arg2 + 0) = t2;
+    if (t2 == 0) {
+    *(u32 *)((u8 *)arg2 + 0) = 0;
+    }
+    }
+    psvec_scale(((u8 *)arg2 + 244), 1.0f, ((u8 *)arg2 + 244));
+    arg2->flags |= 0x10000;
+    arg2->flags |= 512;
+    arg2->flags |= 0x40000;
+    arg2->flags |= 8;
+    arg2->flags |= 64;
+    arg2->flags |= 32;
+    arg2->flags |= 8192;
+    arg2->flags |= 16ULL << 32;
+    arg2->flags |= 64ULL << 32;
+    arg2->flags |= 128ULL << 32;
+    arg2->flags |= 2048ULL << 32;
+    arg2->flags |= 32ULL << 32;
+    break; }
+    case 3: {
+    v29 = 0.1f;
+    *(u16 *)((u8 *)arg2 + 12) = 0;
+    v30 = 5000000.0f;
+    *(f32 *)((u8 *)arg2 + 24) = v29;
+    v31 = 0.9f;
+    *(f32 *)((u8 *)arg2 + 28) = v30;
+    v32 = 0.8f;
+    *(f32 *)((u8 *)arg2 + 32) = v31;
+    v33 = 0.0016666667f;
+    *(f32 *)((u8 *)arg2 + 36) = v32;
+    *(f32 *)((u8 *)arg2 + 40) = v33;
+    t3 = (Sig_fn_1_E86FC_StringValueTable *)(fn_1_7B064());
+    t4 = fn_1_E86FC((Sig_fn_1_E86FC_StringValueTable *)t3, (const char *)&lbl_1_data_3DE3C);
+    *(u32 *)((u8 *)arg2 + 0) = t4;
+    if (t4 == 0) {
+    t5 = fn_1_E86FC((Sig_fn_1_E86FC_StringValueTable *)lbl_1_bss_384B4.unk_0, (const char *)&lbl_1_data_3DE3C);
+    *(u32 *)((u8 *)arg2 + 0) = t5;
+    if (t5 == 0) {
+    *(u32 *)((u8 *)arg2 + 0) = 0;
+    }
+    }
+    psvec_scale(((u8 *)arg2 + 244), 1.0f, ((u8 *)arg2 + 244));
+    arg2->flags |= 65536;
+    arg2->flags |= 512;
+    arg2->flags |= 262144;
+    arg2->flags |= 8;
+    arg2->flags |= 64;
+    arg2->flags |= 32;
+    arg2->flags |= 8192;
+    arg2->flags |= 16ULL << 32;
+    arg2->flags |= 2048ULL << 32;
+    break; }
+    case 4: {
+    *(u16 *)((u8 *)arg2 + 12) = 0;
+
+    v36 = lbl_801A63C0.unk_0 * 0x676A4B6B + 13259;
+    v38 = (v36 >> 16) & 0x7FFF;
+    lbl_801A63C0.unk_0 = v36;
+    v40 = (s32)v38 % 6;
+    v42 = v40;
+    *(f32 *)((u8 *)arg2 + 24) = 0.5f + v42 / 10.0f;
+    *(f32 *)((u8 *)arg2 + 28) = 100.0f;
+    *(f32 *)((u8 *)arg2 + 32) = 0.9f;
+    *(f32 *)((u8 *)arg2 + 36) = 0.8f;
+    *(f32 *)((u8 *)arg2 + 40) = 0.0016666667f;
+    *(u32 *)((u8 *)arg2 + 0) = 0;
+    arg2->flags |= 524288;
+    arg2->flags |= 64;
+    arg2->flags |= 32;
+    arg2->flags |= 33554432;
+    arg2->flags |= 67108864;
+    arg2->flags |= 2ULL << 32;
+    break; }
+    case 5: {
+    v48 = 0.3f;
+    *(u16 *)((u8 *)arg2 + 12) = 0;
+    v49.value = 1.0f;
+    *(f32 *)((u8 *)arg2 + 24) = v48;
+    v50 = 0.5f;
+    *(f32 *)((u8 *)arg2 + 28) = v49.value;
+    v51 = 0.016666668f;
+    *(f32 *)((u8 *)arg2 + 32) = v50;
+    *(f32 *)((u8 *)arg2 + 36) = v50;
+    *(f32 *)((u8 *)arg2 + 40) = v51;
+    *(u32 *)((u8 *)arg2 + 0) = 0;
+    arg2->flags |= 1024;
+    arg2->flags |= 8;
+    arg2->flags |= 64;
+    arg2->flags |= 32;
+    arg2->flags |= 33554432;
+    arg2->flags |= 256;
+    }
+    }
+    fn_1_E1E9C((Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj *)arg2);
+}
+/* fzgx:end fn_1_E252C */
+
 /* fzgx:begin fn_1_E2AE8 noprologue */
 #include "types.h"
 #include "psvec.h"

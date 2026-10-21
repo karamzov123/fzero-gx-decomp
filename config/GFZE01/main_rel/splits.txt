@@ -8204,3 +8204,51 @@ rel/main_rel/bg_cas/fn_1_FE7D8.c:
 
 rel/main_rel/archive/fn_1_12B664.c:
 	.text       start:0x0012B664 end:0x0012BB18 align:4
+
+rel/main_rel/replay/fn_1_F2820.c:
+	.text       start:0x000F2820 end:0x000F2CD8 align:4
+
+rel/main_rel/stcoli/fn_1_24A4C.c:
+	.text       start:0x00024A4C end:0x00024F10 align:4
+
+rel/main_rel/motasglist/fn_1_43E08.c:
+	.text       start:0x00043E08 end:0x000442D8 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_CD7BC.c:
+	.text       start:0x000CD7BC end:0x000CDC8C align:4
+
+rel/main_rel/live_camera/fn_1_1212C.c:
+	.text       start:0x0001212C end:0x00012620 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14328C.c:
+	.text       start:0x0014328C end:0x00143780 align:4
+
+rel/main_rel/sel_static_disp/fn_1_147508.c:
+	.text       start:0x00147508 end:0x00147A04 align:4
+
+rel/main_rel/font/fn_1_4B1D4.c:
+	.text       start:0x0004B1D4 end:0x0004B6D4 align:4
+
+rel/main_rel/driver/fn_1_AAF1C.c:
+	.text       start:0x000AAF1C end:0x000AB434 align:4
+
+rel/main_rel/relocation/fn_1_A5F44.c:
+	.text       start:0x000A5F44 end:0x000A6480 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_CB6D8.c:
+	.text       start:0x000CB6D8 end:0x000CBC24 align:4
+
+rel/main_rel/ghost/fn_1_EEB44.c:
+	.text       start:0x000EEB44 end:0x000EF0A0 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_D07E0.c:
+	.text       start:0x000D07E0 end:0x000D0D68 align:4
+
+rel/main_rel/car/fn_1_95950.c:
+	.text       start:0x00095950 end:0x00095EF0 align:4
+
+rel/main_rel/bg_cas/fn_1_FE014.c:
+	.text       start:0x000FE014 end:0x000FE5C4 align:4
+
+rel/main_rel/phys/fn_1_E252C.c:
+	.text       start:0x000E252C end:0x000E2AE8 align:4

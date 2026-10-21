@@ -6332,3 +6332,15 @@ dol/fn_8003BE1C.c:
 
 dol/fn_80068EB4.c:
 	.text       start:0x80068EB4 end:0x800692A4 align:4
+
+dol/fn_8008C124.c:
+	.text       start:0x8008C124 end:0x8008C5F0 align:4
+
+dol/fn_80023684.c:
+	.text       start:0x80023684 end:0x80023B70 align:4
+
+dol/fn_8003C1A4.c:
+	.text       start:0x8003C1A4 end:0x8003C6D0 align:4
+
+dol/fn_8003E344.c:
+	.text       start:0x8003E344 end:0x8003E8CC align:4

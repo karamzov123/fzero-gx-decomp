@@ -6425,6 +6425,528 @@ void fn_1_142BDC(u32 arg0, u32 arg1, u32 arg2) {
 }
 /* fzgx:end fn_1_142BDC */
 
+/* fzgx:begin fn_1_14328C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+#include "types.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern Word8 lbl_1_rodata_86D8;
+extern const f64 lbl_1_rodata_8600;
+extern const f32 lbl_1_rodata_86F8;
+extern const f32 lbl_1_rodata_86FC;
+extern f32 lbl_1_rodata_26F8[22];
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_1_rodata_8700[16];
+extern const f32 lbl_1_rodata_8740;
+extern u16 lbl_1_rodata_8754[10];
+extern const f32 lbl_1_rodata_8768;
+extern const f32 lbl_1_rodata_876C;
+extern const f32 lbl_1_rodata_8770;
+extern const f32 lbl_1_rodata_8774;
+extern const f32 lbl_1_rodata_8778;
+extern u16 fn_1_486C4(u32 value);
+extern const f32 lbl_1_rodata_8658;
+extern const f32 lbl_1_rodata_861C;
+extern const f32 lbl_1_rodata_8890;
+extern const f32 lbl_1_rodata_8894;
+extern const f32 lbl_1_rodata_8898;
+extern const f32 lbl_1_rodata_889C;
+extern const f32 lbl_1_rodata_8674;
+extern const f32 lbl_1_rodata_85F0;
+extern const f32 lbl_1_rodata_88A0;
+extern const f32 lbl_1_rodata_88A4;
+extern const f32 lbl_1_rodata_88A8;
+extern const f32 lbl_1_rodata_88AC;
+extern const f32 lbl_1_rodata_88B0;
+extern const f32 lbl_1_rodata_86C8;
+extern const f32 lbl_1_rodata_88B4;
+extern const f32 lbl_1_rodata_8844;
+extern const f32 lbl_1_rodata_884C;
+extern const f32 lbl_1_rodata_88B8;
+extern const u32 lbl_1_rodata_8860[6];
+extern const u32 lbl_1_rodata_8878[6];
+extern s32 fn_1_A5DC4(void);
+extern u16 fn_1_48690(u32 unused);
+extern void fn_1_52070(u32 value);
+extern void fn_1_135D7C(void* arg0, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, f32 arg7, f32 arg8, f32 arg9);
+extern void fn_1_49410(void);
+extern void fn_1_495FC(void);
+extern void fn_1_495B0(u32 value);
+extern void fn_1_4965C(u8 value);
+extern void fn_1_495C8(void* arg0);
+extern void fn_1_496FC(f32 value1, f32 value2);
+extern void fn_1_4954C(f32 value);
+extern void fn_1_4955C(f32 value1, f32 value2);
+extern void fn_1_49738(void* arg0);
+extern void fn_1_495A0(f32 value);
+extern void fn_1_49590(f32 value);
+extern u32 fn_1_13F72C(s16 arg0, u32 arg1, f32 farg0);
+extern const f32 lbl_1_rodata_85FC;
+extern const f32 lbl_1_rodata_8A30;
+extern u32 lbl_801A66B4;
+extern f32 lbl_1_rodata_85E8;
+extern const f32 lbl_1_rodata_8638;
+extern const f32 lbl_1_rodata_863C;
+extern const f32 lbl_1_rodata_87DC;
+extern f32 lbl_1_rodata_8A28;
+extern f32 lbl_1_rodata_8A38;
+extern f32 lbl_1_rodata_8A3C;
+extern f32 lbl_1_rodata_8A40;
+extern f32 lbl_1_rodata_8A44;
+extern s32 lbl_1_rodata_8A34;
+extern void fn_1_137288(int index, void* value0, void* value1, void* value2, s16 selector);
+extern void fn_1_49748(f32 value);
+extern void fn_1_49514(u32 *value);
+extern void fn_1_51564(u16 first, u16 second, u16 third, u16 fourth, u16 fifth, u16 sixth);
+extern void fn_1_5158C(FontDrawPacket *, u32, s16, s16);
+extern void fn_1_5233C(void* arg0, void* arg1);
+extern u32 fn_1_12F118(void);
+extern u8* fn_1_36AD0();
+extern void fn_1_1373B0(s16 arg0, u8* arg1, u8* arg2, u8* arg3, s16 arg4);
+extern void fn_1_137364();
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern const f32 lbl_1_rodata_8840;
+extern const f64 lbl_1_rodata_8608;
+extern const f32 lbl_1_rodata_85F4;
+extern int fn_1_D6698(void);
+extern void fn_1_D66F8(u8 arg0, u8 *arg1, s8 *arg2);
+extern void fn_1_139440(f32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s16 arg5, s16 arg6);
+extern s32 lbl_1_bss_8E3D0[];
+extern const f32 lbl_1_rodata_8B9C;
+extern const f32 lbl_1_rodata_8BA0;
+extern const f32 lbl_1_rodata_8BA4;
+extern const f32 lbl_1_rodata_8BA8;
+extern const f32 lbl_1_rodata_8664;
+extern const f32 lbl_1_rodata_8BAC;
+extern const f32 lbl_1_rodata_8BB0;
+extern const f32 lbl_1_rodata_8BB4;
+extern const f32 lbl_1_rodata_87D0;
+extern int fn_1_D6740();
+extern int fn_1_D66B0(void);
+extern void fn_1_8CED0(void* arg0, int arg1, int arg2);
+extern void fn_1_131C08(void);
+extern void fn_1_8D3F8(void* arg0, void* arg1, void* arg2, void* arg3);
+extern u8 lbl_1_rodata_8558[84];
+extern const f32 lbl_1_rodata_8C10;
+extern void fn_1_4CF3C(const char *format, f32 x, ...);
+extern s16 fn_1_12C930(void* arg0);
+extern u8 lbl_1_data_21078[180];
+extern f32 fn_1_4B068(const char*);
+extern const f32 lbl_1_rodata_8C44;
+extern const f32 lbl_1_rodata_8C48;
+extern const f32 lbl_1_rodata_8C70;
+extern const f32 lbl_1_rodata_8C74;
+extern PtrTab lbl_1_rodata_8C4C;
+extern s32 fn_1_13B548(s32, s32, s32, u8);
+extern const f32 lbl_1_rodata_87AC;
+extern const f32 lbl_1_rodata_882C;
+extern const f32 lbl_1_rodata_8830;
+extern const f32 lbl_1_rodata_8834;
+extern const f32 lbl_1_rodata_8A4C;
+extern const f32 lbl_1_rodata_8B58;
+extern const f32 lbl_1_rodata_8B84;
+extern const f32 lbl_1_rodata_8BEC;
+extern const f32 lbl_1_rodata_8D78;
+extern const f32 lbl_1_rodata_8D7C;
+extern u16 lbl_1_rodata_8CB0[200];
+extern u8 lbl_1_bss_9C;
+extern void fn_1_133E04(void* arg0, s32 arg1);
+extern u32 fn_1_134AD4(void);
+extern u32 fn_1_13ABA8(u32);
+extern void fn_1_140EE8(u8 arg0, int arg1, int arg2);
+extern u16 fn_1_A5DB0(void);
+extern u16 fn_1_A5D88(void);
+extern u32 __cvt_fp2unsigned(f32);
+extern u32 fn_1_7B558(u32, u32, u32, u32, u32, u32, f32);
+extern void fn_1_138144(void* arg0, int arg1);
+extern u32 fn_1_13C5EC(u8);
+extern u32 fn_1_13F7F8(s16 arg0, s16 arg1);
+extern int sprintf(char *s, const char *format, ...);
+extern const f32 lbl_1_rodata_8A54;
+extern const f32 lbl_1_rodata_8B30;
+extern const f32 lbl_1_rodata_8DBC;
+extern const f32 lbl_1_rodata_8DCC;
+extern const f32 lbl_1_rodata_87B4;
+extern const u32 lbl_1_rodata_8DC0;
+extern const f32 lbl_1_rodata_8818;
+extern const u32 lbl_1_rodata_8DC4;
+extern const f32 lbl_1_rodata_8DD0;
+extern const u32 lbl_1_rodata_8DC8;
+extern const f32 lbl_1_rodata_8DDC;
+extern const f32 lbl_1_rodata_8DE0;
+extern const f32 lbl_1_rodata_8DE4;
+extern const f32 lbl_1_rodata_8DD4;
+extern const f32 lbl_1_rodata_8B34;
+extern const f32 lbl_1_rodata_8DD8;
+extern const f32 lbl_1_rodata_8A58;
+extern int fn_1_B7E98(int index);
+extern void fn_1_13EE60();
+extern u32 fn_1_13EF64(u32, u32, u32, void *, u32, void *, u32, f32);
+extern u32 lbl_1_rodata_8E8C;
+extern u8 lbl_1_rodata_8EB4[];
+extern char *fn_80083DB0(char *dst, const char *src);
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern u32 lbl_1_rodata_91C0[11];
+extern const f32 lbl_1_rodata_91EC;
+extern const f32 lbl_1_rodata_91F0;
+extern void fn_1_141338(u32 arg0, u32 arg1, u32 arg2, u32 arg3, f32 arg4);
+extern u32 fn_1_141360(u32, u32, u32, u32, f32, f32);
+extern void fn_1_494DC(s16 index);
+extern const f32 lbl_1_rodata_9208;
+extern void fn_1_4966C(f32 value1, f32 value2);
+extern const f32 lbl_1_rodata_920C;
+extern const f32 lbl_1_rodata_85EC;
+extern const f32 lbl_1_rodata_9210;
+extern u32 lbl_1_rodata_9214[3];
+extern u16 lbl_1_rodata_9220[6];
+extern const f32 lbl_1_rodata_8E9C;
+extern const f64 lbl_1_rodata_93E8;
+extern f32 lbl_1_rodata_93F0[15];
+extern f32 lbl_1_rodata_92C0[22];
+extern f32 lbl_1_rodata_970C[71];
+extern const f32 lbl_1_rodata_946C;
+extern void fn_1_149C2C();
+extern struct fn_1_149C64_lbl_1_bss_8E43C lbl_1_bss_8E43C;
+extern struct fn_1_149C64_lbl_1_bss_8E440 lbl_1_bss_8E440;
+extern void fn_1_149CA4(u32, u32, u32, u32);
+extern void fn_1_520A0(void);
+extern f64 lbl_1_rodata_9480[80];
+extern f32 lbl_1_rodata_942C[16];
+extern f32 fn_1_521B8(s32 value);
+extern f32 fn_1_520F8(s32 value);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_1_520CC(void);
+extern const f32 lbl_1_rodata_99A4;
+extern u8 fn_1_5910(void);
+extern u8 fn_1_149FB4(s32 index);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A52B0(s32 index);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 fn_1_1556B4(u32, u32);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern const f32 lbl_1_rodata_9C30;
+extern void fn_1_55FF0();
+extern s16 fn_1_14F344(s16);
+extern void lbl_8006E0A4(void *);
+extern void fn_80072558(void);
+extern void fn_1_151C3C(u16 value1, u16 value2);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55210(void *);
+extern void fn_1_151C78(void);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern const f64 lbl_1_rodata_B8D0;
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *fn_800839D8(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_1375C0(int arg0, void* arg1, void* arg2, void* arg3, void* arg4);
+extern const f32 lbl_1_rodata_8BB8;
+extern const f32 lbl_1_rodata_8BBC;
+extern void fn_1_131B90(void);
+extern void fn_1_13A9B8();
+extern void fn_1_5621C(f32 value0, f32 value1, f32 value2, f32 value3);
+extern void fn_1_13E080(void* arg0, void* arg1, void* arg2, int arg3);
+extern void fn_1_144F40(u32 arg0, u32 arg1);
+extern u8 fn_1_155F8C(void);
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, u32 arg3);
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+extern s32 fn_1_45D0();
+extern void fn_1_FC414(void *arg0, void *arg1);
+extern u32 fn_80008BEC(u32 arg0, int arg1, int arg2);
+extern void fn_1_7F3AC(void* object);
+
+
+struct fn_1_14328C_Copy88 { u32 a[22]; };
+struct fn_1_14328C_lbl_1_bss_26B04 {
+    u8 unk_0[1];
+};
+
+extern u8 lbl_1_bss_26B04[20];
+extern f32 lbl_1_rodata_26F8[22];
+extern const f32 lbl_1_rodata_9474;
+extern const f32 lbl_1_rodata_9478;
+extern u16 fn_1_48690(u32);
+extern int fn_1_4F734(FontDrawPacket *);
+
+void fn_1_14328C(u32 arg0, u32 arg1, u32 arg2) {
+    s32 v0;
+    s32 v5;
+    s32 j;
+    s32 i;
+    s32 v6;
+    struct fn_1_14328C_Copy88 packet;
+    v0 = lbl_1_bss_26B04[arg2];
+    v6 = v0 % 10;
+    v5 = v0 / 10;
+    packet = *(struct fn_1_14328C_Copy88 *)lbl_1_rodata_26F8;
+    *(f32 *)&packet.a[2] = (f32)(s32)arg1;
+    if (v6 >= 6) {
+        for (i = 6; i <= v6; i++) {
+            packet = *(struct fn_1_14328C_Copy88 *)lbl_1_rodata_26F8;
+            packet.a[0] = 0x9713;
+            *(f32 *)&packet.a[1] = (f32)(s32)arg0 - (f32)((f32)((i - 1) % 5) * lbl_1_rodata_9474);
+            *(f32 *)&packet.a[2] = (f32)(s32)arg1;
+            packet.a[12] = 15;
+            *(f32 *)&packet.a[4] *= lbl_1_rodata_9474 / (f32)fn_1_48690(packet.a[0]);
+            *(f32 *)&packet.a[5] *= lbl_1_rodata_9474 / (f32)fn_1_48690(packet.a[0]);
+            fn_1_4F734((FontDrawPacket *)&packet);
+        }
+        arg1 = (s32)((f32)(s32)arg1 - lbl_1_rodata_9478);
+    }
+    if (v6 >= 1) {
+        for (j = 1; j <= v6; j++) {
+            packet = *(struct fn_1_14328C_Copy88 *)lbl_1_rodata_26F8;
+            packet.a[0] = 0x9713;
+            *(f32 *)&packet.a[1] = (f32)(s32)arg0 - (f32)((f32)((j - 1) % 5) * lbl_1_rodata_9474);
+            *(f32 *)&packet.a[2] = (f32)(s32)arg1;
+            packet.a[12] = 15;
+            *(f32 *)&packet.a[4] *= lbl_1_rodata_9474 / (f32)fn_1_48690(packet.a[0]);
+            *(f32 *)&packet.a[5] *= lbl_1_rodata_9474 / (f32)fn_1_48690(packet.a[0]);
+            fn_1_4F734((FontDrawPacket *)&packet);
+        }
+        arg1 = (s32)((f32)(s32)arg1 - lbl_1_rodata_9478);
+    }
+    if (v5 >= 1) {
+        for (i = 0; i < v5; i++) {
+            packet = *(struct fn_1_14328C_Copy88 *)lbl_1_rodata_26F8;
+            packet.a[0] = 0x9712;
+            *(f32 *)&packet.a[1] = (f32)((s32)arg0 - i * 12);
+            *(f32 *)&packet.a[2] = (f32)(s32)arg1;
+            packet.a[12] = 15;
+            *(f32 *)&packet.a[4] *= lbl_1_rodata_9474 / (f32)fn_1_48690(packet.a[0]);
+            *(f32 *)&packet.a[5] *= lbl_1_rodata_9474 / (f32)fn_1_48690(packet.a[0]);
+            fn_1_4F734((FontDrawPacket *)&packet);
+        }
+    }
+}
+/* fzgx:end fn_1_14328C */
+
 /* fzgx:begin fn_1_143E7C noprologue */
 #include "types.h"
 
@@ -6858,6 +7380,299 @@ void fn_1_146B5C(u32 unused, u8 *arg1) {
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_146B5C */
+
+/* fzgx:begin fn_1_147508 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/sel_static_disp.h"
+
+/* Raw retail literal-pool bits. Volatile stores keep the shared-pool literals emitted. */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table_0[71] = {
+    0x00000000, 0x00000000, 0x00000000, 0x3DCCCCCD,
+    0x3F800000, 0x3F800000, 0x00000000, 0x00000000,
+    0x3F800000, 0x3F800000, 0x00000000, 0x3F800000,
+    0x04000000, 0x00000000, 0xFFFFFFFF, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0 /* unused relocation addend */, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x3DCCCCCD, 0x3F800000, 0x3F800000,
+    0x00000000, 0x00000000, 0x3F800000, 0x3F800000,
+    0x00000000, 0x3F800000, 0x04000000, 0x00000000,
+    0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0 /* unused relocation addend */, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x3DCCCCCD,
+    0x3F800000, 0x3F800000, 0x00000000, 0x00000000,
+    0x3F800000, 0x3F800000, 0x00000000, 0x3F800000,
+    0x04000000, 0x00000000, 0xFFFFFFFF, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0 /* unused relocation addend */, 0x00000000, 0x00000000, 0x3F755555,
+    0x41B80000, 0x40000000, 0x3F2AAAAB,
+};
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_11C(volatile f32 *out) { *out = 0.5f; }
+
+static const u32 fzgx_pool_table_120[2] = {
+    0x3F155555, 0x00000000,
+};
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_128(volatile f64 *out) { *out = 4503601774854144.0; }
+
+static const u32 fzgx_pool_table_130[24] = {
+    0x44150000, 0x44040000, 0x0000001A, 0x00000023,
+    0x0000009C, 0x000000A5, 0x00000018, 0x00000021,
+    0x00000085, 0x0000008E, 0x000000F2, 0x000000FB,
+    3233857536U, 3229614080U, 0x42200000, 0x43F00000,
+    0x44200000, 0x47AFC800, 0x3E99999A, 0x3F333333,
+    0xBF800000, 0x43500000, 0xC47A0000, 0xC2480000,
+};
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_190(volatile f32 *out) { *out = 1.0f; }
+
+static const u32 fzgx_pool_table_194[11] = {
+    0x41200000, 0x430C0000, 0x43600000, 0x437E0000,
+    0x43800000, 3233808384U, 0x40A00000, 0x40800000,
+    0x41400000, 0x41700000, 0x00000000,
+};
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_1C0(volatile f64 *out) { *out = 4503599627370496.0; }
+
+static const u32 fzgx_pool_table_1C8[26] = {
+    0x4E4F204E, 0x414D4500, 0x4E4F2044, 0x41544100,
+    0x42C80000, 0x43AF0000, 0x42300000, 0x41000000,
+    0xFFFFFFFF, 0x00F0E6FF, 0x007873FF, 0xA0FF00FF,
+    0x0000001A, 0x00000023, 0x0000013C, 0x00000145,
+    0x00000018, 0x00000021, 0x00000065, 0x0000006E,
+    0x000000B2, 0x000000BB, 0x41F00000, 0x3F400000,
+    0x42580000, 0x43AB8000,
+};
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_230(volatile f32 *out) { *out = 65536.0f; }
+
+static const u32 fzgx_pool_table_234[117] = {
+    0x42F00000, 0x3EB33333, 0xFFFFFFFF, 0x00F0E6FF,
+    0x007873FF, 0xFFFF00FF, 0xFFFF00FF, 2155937791U,
+    0x0000001A, 0x00000023, 0x0000013C, 0x00000145,
+    0x00000018, 0x00000021, 0x00000065, 0x0000006E,
+    0x000000B2, 0x000000BB, 0x19FF1900, 0x19FF1900,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x406FE000,
+    0x00000000, 0x41A00000, 0x0000001A, 0x00000023,
+    0x0000013C, 0x00000145, 0xFFFFFF00, 0x19FF1900,
+    0x0000001A, 0x00000023, 0x0000013C, 0x00000145,
+    0x19FF1900, 0x00FFFFFF, 0x00FFFFFF, 0xFFFFFF00,
+    0x3F4CCCCD, 3221225472U, 0x0000001A, 0x00000023,
+    0x0000013C, 0x00000145, 0x00000018, 0x00000021,
+    0x0000001A, 0x00000023, 0x0000013C, 0x00000145,
+    0x00000018, 0x00000021, 0xFFFF00FF, 0x19FF1900,
+    0x00000000, 0x0000001A, 0x00000023, 0x0000013C,
+    0x00000145, 0x19FF1900, 0 /* unused relocation addend */, 0 /* unused relocation addend */,
+    0 /* unused relocation addend */, 0 /* unused relocation addend */, 0 /* unused relocation addend */, 0 /* unused relocation addend */,
+    0 /* unused relocation addend */, 0 /* unused relocation addend */, 0x42880000, 0x42AC0000,
+    0x3EC00000, 0x42A00000, 0x41600000, 0x41A80000,
+    0x3F8CCCCD, 0x43C78000, 0x440F8000, 0x3F59999A,
+    0x43FF0000, 0x19FF1900, 0x19FF1900, 0xF4962800,
+    0xF4962800, 0xFFFF0000, 0x00000000, 0xFFFFFF00,
+    0xF4962800, 0xF4962800, 0xFFFF0000, 0x00000000,
+    0xFFFFFF00, 0xF4962800, 0xFFFF00FF, 0x00000000,
+    0x19FF1900, 0x19FF1900, 0xF4962800, 0xF4962800,
+    2155937536U, 0x00000000, 0xFFFFFF00, 0xF4962800,
+    0xF4962800, 2155937536U, 0x00000000, 0xFFFFFF00,
+    0x43B10000, 0x42A80000, 0x41B00000, 0x3F266666,
+    0x43400000,
+};
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_408(volatile f32 *out) { *out = 48.0f; }
+
+static const u32 fzgx_pool_table_40C[16] = {
+    0x42380000, 0x425C0000, 0xFADC82FF, 0x00000000,
+    0x441FC000, 0x43EF8000, 0x43A00000, 0x428C0000,
+    0x42E00000, 0x43F60000, 0x42040000, 0x41980000,
+    0x41C00000, 0x42480000, 0x41E80000, 0x42900000,
+};
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_44C(volatile f32 *out) { *out = 47.0f; }
+
+static const u32 fzgx_pool_table_450[14] = {
+    0x00009736, 0x00009737, 0x00009738, 0x00009739,
+    0x0000973A, 0x0000973B, 0x0000973C, 0x0000973D,
+    0x42340000, 0x42280000, 0x42180000, 0x00000000,
+    3233857536U, 0x42240000,
+};
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_488(volatile f32 *out) { *out = 255.0f; }
+
+/* Volatile sink preserves the shared literal pool. */
+void fzgx_pool_primer_48C(volatile f32 *out) { *out = 60.0f; }
+#pragma section code_type ".text"
+
+typedef struct fn_1_147508_Color {
+    u8 r, g, b, a;
+} fn_1_147508_Color;
+
+typedef struct fn_1_147508_Entry {
+    u8 pad_0[0x20];
+    s32 unk_20;
+    s32 unk_24;
+    u8 pad_28[0xD];
+    u8 unk_35;
+    u8 pad_36;
+    u8 unk_37;
+    u8 unk_38;
+    u8 unk_39;
+    u8 pad_3A[0x12];
+    s32 unk_4C;
+    u8 pad_50[0x14];
+    s32 unk_64;
+    u8 pad_68[0xC];
+    s32 unk_74;
+    u8 pad_78[0x5C];
+    FontDrawPacket packet;
+} fn_1_147508_Entry;
+
+
+extern f32 lbl_8006D188(s32);
+extern s16 fn_1_12C930(s16);
+extern s32 fn_8006FC1C(const char *, const char *);
+extern s32 lbl_801A66A4;
+extern char *fn_1_14FEAC(u8, u8, u8, char *, void *);
+extern s32 fn_1_155F7C(void);
+extern s32 fn_1_155F8C(void);
+
+extern char *fn_1_7F49C(u8, void *, char *);
+extern void fn_1_149C2C(void);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16);
+extern void fn_1_49514(fn_1_147508_Color);
+extern void fn_1_4954C(f32);
+extern void fn_1_49590(f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_4962C(void);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_49738(void (*)(void));
+
+#pragma opt_propagation off
+static inline BOOL fn_1_147508_le(u32 a, u32 b) {
+    return ((b | ~a) - ((b - a) >> 1)) >> 31;
+}
+
+static inline BOOL fn_1_147508_inRange(s32 m, s32 lo, s32 hi) {
+    return m == lo || m == hi;
+}
+
+static inline BOOL fn_1_147508_isModeA(s32 m) {
+    return fn_1_147508_inRange(m, 8, 9) || m == 10;
+}
+
+static inline BOOL fn_1_147508_isModeB2(s32 m) {
+    return fn_1_147508_inRange(m, 4, 5) || m == 9;
+}
+
+static inline BOOL fn_1_147508_isModeB1(s32 m) {
+    return fn_1_147508_isModeB2(m) || m == 10;
+}
+
+static inline BOOL fn_1_147508_isModeB(s32 m) {
+    return fn_1_147508_isModeB1(m) || m == 6;
+}
+
+static inline BOOL fn_1_147508_isValidChar(u32 c) {
+    BOOL valid = c <= 74;
+    return valid;
+}
+
+static inline BOOL fn_1_147508_validName(u8 a, u8 b, u8 c) {
+    return fn_1_147508_isValidChar(a) && fn_1_147508_isValidChar(b) && fn_1_147508_isValidChar(c);
+}
+
+#define IS_MODE_A(m) fn_1_147508_isModeA(m)
+#define IS_MODE_B(m) fn_1_147508_isModeB(m)
+#define IS_VALID_CHAR(c) fn_1_147508_isValidChar(c)
+
+#pragma opt_propagation off
+static inline void fn_1_147508_setPacket(FontDrawPacket *p, u32 image, f32 x, f32 y) {
+    p->image = image;
+    p->x = x;
+    p->y = y;
+    p->z = 48.0f;
+}
+
+void fn_1_147508(s32 mode, fn_1_147508_Entry *entry) {
+    u32 x;
+    u32 y;
+    s32 show;
+    f32 px, py;
+    s32 iy, ix;
+    u32 image;
+    FontDrawPacket packet;
+    fn_1_147508_Color color;
+    char buf[0x100];
+
+    x = entry->unk_74 + 160;
+    y = entry->unk_64 + 37;
+    if (IS_MODE_A(mode) || IS_MODE_B(mode)) {
+        s32 packetIY, packetIX;
+        u32 packetImage;
+        packet = entry->packet;
+        packetImage = 0x9724;
+        packetIX = entry->unk_74 + 126;
+        packetIY = entry->unk_64 + 32;
+        fn_1_147508_setPacket(&packet, packetImage, packetIX, packetIY);
+        fn_1_4F734(&packet);
+    }
+    if (!IS_MODE_B(mode)) {
+        return;
+    }
+    fn_1_49410();
+    fn_1_494DC(22);
+    fn_1_495B0(0x80000000);
+    fn_1_49738(fn_1_149C2C);
+    fn_1_4954C(47.0f);
+    fn_1_4962C();
+    fn_1_49590(0.5f);
+    fn_1_496FC(x, y);
+    if (mode == 10 || mode == 6) {
+        show = entry->unk_20 == 0;
+    } else if (IS_MODE_B(mode)) {
+        show = 0;
+        if (fn_1_155F7C() != 0 && entry->unk_20 == fn_1_155F8C()) {
+            show = 1;
+        }
+    } else {
+        show = lbl_1_bss_3C30.unk_8 > entry->unk_4C;
+    }
+    if (show) {
+        color.a = 255;
+        color.b = 255;
+        color.r = 255;
+        px = 1.0f - lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A4 % 60) / 60.0f));
+        {
+            f32 half = 0.5f;
+            py = px * half;
+        }
+        color.g = 255.0f * py;
+        fn_1_49514(color);
+    }
+    if (lbl_1_bss_8E52C != 0) {
+        if (fn_8006FC1C(((char **)&lbl_1_data_212A8)[fn_1_12C930((s16)entry->unk_24)], (char *)lbl_1_data_425C8)) {
+            fn_1_4A0D8((char *)lbl_1_data_425D8);
+        } else {
+            fn_1_4A0D8(((char **)&lbl_1_data_212A8)[fn_1_12C930((s16)entry->unk_24)]);
+        }
+    } else if (entry->unk_35 < 41) {
+        fn_1_4A0D8(fn_1_7F49C(entry->unk_35, 0, buf));
+    } else if (IS_VALID_CHAR(entry->unk_37) && IS_VALID_CHAR(entry->unk_38) && IS_VALID_CHAR(entry->unk_39)) {
+        fn_1_4A0D8(fn_1_14FEAC(entry->unk_37, entry->unk_38, entry->unk_39, buf, 0));
+    }
+}
+/* fzgx:end fn_1_147508 */
 
 /* fzgx:begin fn_1_148444 noprologue */
 #include "types.h"

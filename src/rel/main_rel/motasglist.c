@@ -1456,6 +1456,151 @@ void fn_1_433A4(Fn1433A4Object *dst, Fn1433A4Object *src) {
 }
 /* fzgx:end fn_1_433A4 */
 
+/* fzgx:begin fn_1_43E08 noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+extern const struct fn_1_43E08_lbl_1_rodata_F50_pool {
+    f32 unk_0;
+} lbl_1_rodata_F50;
+
+extern const struct fn_1_43E08_lbl_1_rodata_F68_pool {
+    f32 unk_0;
+} lbl_1_rodata_F68;
+
+typedef struct Vec { f32 x, y, z; } Vec;
+typedef struct Entry {
+    u8 pad0[4];
+    u16 flags;
+    u16 parent;
+    Vec pos;
+    u8 pad14[0x14];
+    u8 rot28[0x30];
+    u8 rot58[0x30];
+    u8 mtx[0x30];
+    Vec scale;
+    Vec offsetC4;
+} Entry;
+typedef struct Obj {
+    u16 count;
+    u16 flags;
+    u8 pad4[4];
+    u8 *entries;
+} Obj;
+
+extern void lbl_8006D758(void);
+extern void lbl_8006D7B0(void);
+extern void lbl_8006DBAC(void *mtx);
+extern void lbl_8006DB74(void *mtx);
+extern void lbl_8006E1B0(void *src, void *dst);
+extern void lbl_8006DFC4(void *quat);
+extern void lbl_8006D5A4(void *a, void *b, void *out, f32 t);
+extern void fn_8006E250(void *src, void *dst);
+extern int fn_1_442D8(void *out, Entry *entry, u32 channel, u32 arg3, f32 frame);
+extern void fn_1_44A74(Obj *object, Entry *entry);
+extern void mathutil_mtxA_rotate_z(s32 angle);
+extern void mathutil_mtxA_rotate_y(s32 angle);
+extern void mathutil_mtxA_rotate_x(s32 angle);
+
+#define LC_MTX ((f32 *)LC_BASE)
+
+#pragma opt_propagation off
+void fn_1_43E08(Obj *object, Entry *entry, u16 frameA, u16 frameB, f32 value) {
+    f32 *fzgx_value;
+    Vec scale;
+    Vec rot;
+    Vec unit;
+    Vec pos;
+    Vec start;
+    u16 parent;
+
+    parent = entry->parent;
+    if (parent == 0xFFFF) {
+        lbl_8006D758();
+        scale.x = lbl_1_rodata_F50.unk_0;
+        scale.y = lbl_1_rodata_F50.unk_0;
+        scale.z = lbl_1_rodata_F50.unk_0;
+    } else if (entry->flags & 4) {
+        lbl_8006D7B0();
+        scale.x = lbl_1_rodata_F50.unk_0;
+        scale.y = lbl_1_rodata_F50.unk_0;
+        scale.z = lbl_1_rodata_F50.unk_0;
+    } else {
+        Entry *parentEntry = (Entry *)(object->entries + parent * 0x18C);
+        lbl_8006DBAC(parentEntry->mtx);
+        scale = parentEntry->scale;
+    }
+
+    if (entry->flags & 1) {
+        lbl_8006E1B0(&entry->pos, &pos);
+        start = pos;
+        fn_1_442D8(&start, entry, 12, 0, frameA);
+        fn_1_442D8(&pos, entry, 12, 0, frameB);
+        lbl_8006D5A4(&start, &pos, &pos, value);
+    } else {
+        pos = entry->pos;
+        start = pos;
+        fn_1_442D8(&start, entry, 12, 0, frameA);
+        fn_1_442D8(&pos, entry, 12, 0, frameB);
+        lbl_8006D5A4(&start, &pos, &pos, value);
+        lbl_8006E1B0(&pos, &pos);
+    }
+
+    {
+        f32 z, y, x;
+        /* volatile read keeps x's load ahead of y and z, as retail schedules it */
+        x = *(volatile f32 *)&pos.x;
+        y = pos.y;
+        z = pos.z;
+        LC_MTX[3] = x;
+        LC_MTX[7] = y;
+        LC_MTX[11] = z;
+    }
+    psvec_set(&entry->offsetC4, LC_MTX[11], LC_MTX[7], LC_MTX[3]);
+
+    lbl_8006DFC4(entry->rot28);
+    if (fn_1_442D8(&rot, entry, 6, 0, frameB)) {
+        fn_1_442D8(&start, entry, 6, 0, frameA);
+        lbl_8006D5A4(&start, &rot, &rot, value);
+        if (object->flags & 2) {
+            rot.x = -rot.x;
+            rot.y = -rot.y;
+        }
+        mathutil_mtxA_rotate_z((s32)(lbl_1_rodata_F68.unk_0 * rot.z));
+        mathutil_mtxA_rotate_y((s32)(lbl_1_rodata_F68.unk_0 * rot.y));
+        mathutil_mtxA_rotate_x((s32)(lbl_1_rodata_F68.unk_0 * rot.x));
+    } else {
+        lbl_8006DFC4(entry->rot58);
+    }
+
+    fzgx_value = &(unit.x);
+    *fzgx_value = lbl_1_rodata_F50.unk_0;
+    unit.y = lbl_1_rodata_F50.unk_0;
+    unit.z = lbl_1_rodata_F50.unk_0;
+    entry->scale.x = lbl_1_rodata_F50.unk_0;
+    entry->scale.y = lbl_1_rodata_F50.unk_0;
+    entry->scale.z = lbl_1_rodata_F50.unk_0;
+    fn_1_442D8(&unit, entry, 0, 0, frameA);
+    fn_1_442D8(&entry->scale, entry, 0, 0, frameB);
+    lbl_8006D5A4(&unit, &entry->scale, &entry->scale, value);
+    entry->scale.x *= scale.x;
+    entry->scale.y *= scale.y;
+    entry->scale.z *= scale.z;
+
+    if (entry->flags & 1) {
+        fn_1_44A74(object, entry);
+    } else {
+        lbl_8006DB74(entry->mtx);
+        if (entry->parent != 0xFFFF) {
+            lbl_8006DBAC(((Entry *)(object->entries + entry->parent * 0x18C))->mtx);
+            fn_8006E250(&entry->offsetC4, &entry->offsetC4);
+        }
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_43E08 */
+
 /* fzgx:begin fn_1_449A8 noprologue */
 #include "types.h"
 #include "psvec.h"

@@ -4408,6 +4408,280 @@ int fn_1_248C0(Fn_1_248C0 *self, int arg) {
 }
 /* fzgx:end fn_1_248C0 */
 
+/* fzgx:begin fn_1_24A4C noprologue */
+#include "types.h"
+#include "psvec.h"
+
+typedef struct {
+    f32 x, y, z;
+} fn_1_24A4C_Vec;
+
+typedef struct {
+    u8 pad00[8];
+    f32 f08;
+    f32 f0C;
+    f32 f10;
+    fn_1_24A4C_Vec prev;
+    fn_1_24A4C_Vec cur;
+    u8 pad2C[0x44 - 0x2c];
+    f32 f44;
+    f32 f48;
+    u8 pad4C[0x5c - 0x4c];
+} fn_1_24A4C_Wheel;
+
+typedef struct {
+    u8 pad00[0xc];
+    fn_1_24A4C_Vec prev;
+    fn_1_24A4C_Vec cur;
+    u8 pad24[0x30 - 0x24];
+} fn_1_24A4C_Spring;
+
+typedef struct {
+    u32 flags;
+    s16 id;
+    u8 pad06[2];
+    f32 mass;
+    u8 pad0c[0x7c - 0xc];
+    fn_1_24A4C_Vec pos;
+    fn_1_24A4C_Vec prevPos;
+    fn_1_24A4C_Vec vel;
+    u8 padA0[0xd8 - 0xa0];
+    f32 maxSpeed;
+    u8 padDC[0xec - 0xdc];
+    u8 mtx[0x17c - 0xec];
+    f32 speed;
+    u8 pad180[0x214 - 0x180];
+    u16 timer214;
+    u8 pad216[2];
+    u32 flags218;
+    u8 pad21C[0x244 - 0x21c];
+    fn_1_24A4C_Wheel wheel[4];
+    fn_1_24A4C_Spring spring[4];
+    u8 pad474;
+    s8 s475;
+    u8 pad476[0x4b4 - 0x476];
+    fn_1_24A4C_Vec v4b4;
+    u8 u4c0;
+    u8 pad4c1[0x4e0 - 0x4c1];
+    u16 timer4e0;
+    u8 pad4e2[0x58c - 0x4e2];
+    u32 flags58c;
+} fn_1_24A4C_Car;
+
+typedef struct {
+    u8 pad[0x390];
+    u32 flags390;
+} fn_1_24A4C_Other;
+
+typedef struct {
+    u8 pad[0x24];
+    f32 *p24;
+} fn_1_24A4C_Course;
+
+struct fn_1_24A4C_lbl_1_rodata_840 {
+    u8 pad_0[0xC];
+    f32 unk_C;
+    u8 pad_10[0x10];
+    f64 unk_20;
+    u8 pad_28[0x28];
+    f64 unk_50;
+    u8 pad_58[0x98];
+    f32 unk_F0;
+    u8 pad_F4[0x28];
+    f32 unk_11C;
+    u8 pad_120[0x28];
+    f32 unk_148;
+    f32 unk_14C;
+    f64 unk_150;
+    f32 unk_158;
+    f32 unk_15C;
+    f32 unk_160;
+    f32 unk_164;
+    f32 unk_168;
+    f32 unk_16C;
+    f32 unk_170;
+    f32 unk_174;
+};
+
+extern struct fn_1_24A4C_lbl_1_rodata_840 lbl_1_rodata_840;
+extern fn_1_24A4C_Course *lbl_1_bss_3BE0[];
+extern s32 lbl_801A66C8[];
+
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1D8(void *, f32, f32, f32);
+extern void lbl_8006E1B0(void *, void *);
+extern int fn_1_248C0(fn_1_24A4C_Car *, int);
+extern int fn_1_24F10(fn_1_24A4C_Car *, f32);
+extern void fn_1_25004(fn_1_24A4C_Car *);
+extern void fn_1_29A0C(fn_1_24A4C_Car *);
+extern void fn_1_2B684(fn_1_24A4C_Car *);
+extern void fn_1_2BA48(fn_1_24A4C_Car *);
+extern fn_1_24A4C_Other *fn_1_868C0(s8);
+extern void fn_1_A2D84(u32);
+
+/* the matrix in the locked cache */
+#define LC_MTX ((f32 (*)[4])0xE0000000)
+
+/* parameters declared z, y, x: retail holds x in f2, y in f1, z in f0 */
+static inline void fn_1_24A4C_set_translate(f32 z, f32 y, f32 x) {
+    LC_MTX[0][3] = x;
+    LC_MTX[1][3] = y;
+    LC_MTX[2][3] = z;
+}
+
+static inline f32 fn_1_24A4C_speed(f64 scale, f32 magnitude, f32 mass) { return scale * (magnitude / mass); }
+static inline f64 fn_1_24A4C_timer(f64 bias, f64 value, f64 add) { return add + (value - bias); }
+static inline f64 fn_1_24A4C_read_pointer(struct fn_1_24A4C_lbl_1_rodata_840 * owner) { return owner->unk_20; }
+#pragma opt_dead_assignments off
+#pragma opt_common_subs off
+void fn_1_24A4C(fn_1_24A4C_Car *car) {
+    f32 fzgx_live;
+    struct fn_1_24A4C_lbl_1_rodata_840 *k = &lbl_1_rodata_840;
+    s32 i;
+    s32 contact;
+    s32 below;
+    f32 speed;
+    f32 y;
+    f32 zero;
+    f32 vx, vy, vz;
+    f32 sq;
+    u32 flags;
+    fn_1_24A4C_Other *other;
+    union {
+        f64 d;
+        u32 w[2];
+    } cvt;
+
+    if (!(car->flags58c & 8)) {
+        return;
+    }
+    lbl_8006DBAC(car->mtx);
+    fn_1_24A4C_set_translate(car->pos.z, car->pos.y, car->pos.x);
+    if (car->timer4e0 != 0) {
+        fn_1_2BA48(car);
+    }
+    if ((car->flags218 >> 25) & 1) {
+        fn_1_24F10(car, k->unk_158);
+        contact = 1;
+        if ((car->flags58c & 0x200) && (car->flags & 0x80)) {
+            fn_1_25004(car);
+        }
+    }
+    lbl_8006DBAC(car->mtx);
+    fn_1_24A4C_set_translate(car->pos.z, car->pos.y, car->pos.x);
+    for (i = 0; i < 4; i++) {
+        fn_1_24A4C_Wheel *w = &car->wheel[i];
+        fn_1_24A4C_Spring *s = &car->spring[i];
+        w->prev = w->cur;
+        lbl_8006E1D8(&w->cur, w->f08, w->f0C + w->f44 - w->f48, w->f10);
+        s->prev = s->cur;
+        lbl_8006E1B0(s, &s->cur);
+    }
+    if (!(car->flags58c & 0x10)) {
+        y = car->pos.y;
+        if (y < k->unk_15C || lbl_1_bss_3BE0[0]->p24[0] - k->unk_160 > y) {
+            fn_1_25004(car);
+        }
+    }
+    if (car->pos.y < k->unk_164) {
+        car->pos.y = k->unk_164;
+        zero = k->unk_C;
+        car->vel.x = zero;
+        car->vel.y = zero;
+        car->vel.z = zero;
+    }
+    fn_1_29A0C(car);
+    if (car->flags & 0x8000) {
+        car->speed = k->unk_C;
+    } else {
+        vx = car->vel.x;
+        vy = car->vel.y;
+        vz = car->vel.z;
+        sq = vx * vx;
+        sq += vy * vy;
+        sq += vz * vz;
+        sq = lbl_8006D0B4(sq);
+        car->speed = fn_1_24A4C_speed(k->unk_50, sq, car->mass);
+        fzgx_live = car->speed;
+        speed = fzgx_live;
+        if (speed > car->maxSpeed) {
+            below = speed < k->unk_148 + car->maxSpeed;
+            below |= speed < k->unk_14C;
+            below &= !(car->flags & 0x3800000);
+            if (below) {
+                car->maxSpeed = speed;
+            }
+        }
+    }
+    if (fn_1_248C0(car, 1) != 0) {
+        if (car->timer214 == 0) {
+            car->timer214 = 180;
+            if ((car->flags & 0x80) && ((car->flags & 0x2800000) || contact != 0)) {
+                /* (f64)timer214, spelled out because the 2^52 bias is the pooled k->unk_20 */
+                cvt.w[1] = car->timer214;
+                cvt.w[0] = 0x43300000;
+                {
+                    f64 converted = cvt.d - fn_1_24A4C_read_pointer(k);
+                    car->timer214 = converted + k->unk_150;
+                }
+            }
+            if (car->flags & 0x40000000) {
+                car->timer214 = 180;
+            }
+        }
+    } else {
+        flags = car->flags;
+        if (!(flags & 0x08000201)) {
+            if ((flags & 0x80) && car->timer4e0 == 0) {
+                fn_1_2B684(car);
+            }
+        } else if ((flags & 0x280) == 0x280) {
+            fzgx_live = car->speed;
+            speed = fzgx_live;
+            if (speed < k->unk_168) {
+                zero = k->unk_C;
+                car->vel.x = zero;
+                car->vel.y = zero;
+                car->vel.z = zero;
+                car->pos = car->prevPos;
+                car->flags = car->flags | 0x08000000;
+                other = fn_1_868C0(car->id);
+                if (!(car->flags58c & 0x80)) {
+                    car->flags58c = car->flags58c | 0x100;
+                    other->flags390 = other->flags390 | 0x200000;
+                }
+                car->flags58c = car->flags58c | 0x80;
+                if (lbl_801A66C8[0] + car->id == 0) {
+                    fn_1_A2D84(0xA9092E00);
+                    if (car->s475 != -1 && !(car->flags & 0x04000200)) {
+                        fn_1_A2D84(0xA9091200);
+                    }
+                }
+            } else if (speed < k->unk_16C) {
+                psvec_scale(&car->vel, k->unk_11C, &car->vel);
+            } else if (speed < k->unk_170) {
+                psvec_scale(&car->vel, k->unk_174, &car->vel);
+            }
+        }
+    }
+    if (car->u4c0 == 0 && !(car->flags & 0x880)) {
+        vx = car->v4b4.x;
+        vy = car->v4b4.y;
+        vz = car->v4b4.z;
+        sq = vx * vx;
+        sq += vy * vy;
+        sq += vz * vz;
+        if (lbl_8006D0B4(sq) < k->unk_F0) {
+            car->u4c0 = 60;
+        }
+    }
+}
+#pragma opt_common_subs reset
+
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_24A4C */
+
 /* fzgx:begin fn_1_24F10 */
 typedef struct Fn_1_24F10 {
     int flags;

@@ -2249,3 +2249,9 @@ rel/movie_module/fn_12_5FA0.c:
 
 rel/movie_module/fn_12_B598.c:
 	.text       start:0x0000B598 end:0x0000B9E8 align:4
+
+rel/movie_module/fn_12_7940.c:
+	.text       start:0x00007940 end:0x00007E58 align:4
+
+rel/movie_module/fn_12_112D4.c:
+	.text       start:0x000112D4 end:0x00011860 align:4

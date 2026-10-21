@@ -1118,6 +1118,207 @@ s32 fn_1_4B1A0(s32 value) {
 }
 /* fzgx:end fn_1_4B1A0 */
 
+/* fzgx:begin fn_1_4B1D4 noprologue */
+#include "types.h"
+#include "rel/main_rel/font.h"
+
+typedef struct FontEntry_4B1D4 {
+    s32 unk_0;
+    u8 pad_4[0x30];
+    f32 unk_34;
+} FontEntry_4B1D4;
+
+extern s32 lbl_1_bss_4BA28[2];
+
+f32 fn_1_4B1D4(s32 mode, u8 *str) {
+    struct {
+        Obj_1_bss_4B9CC *value;
+    } p;
+    s32 i;
+    Obj_1_bss_4B9CC *state;
+    FontEntry_4B1D4 *font;
+    f32 width;
+    f32 maxWidth;
+    s32 adv;
+    s32 count;
+    s32 maxCount;
+    s32 doWidth;
+    s32 doCount;
+    s32 doLines;
+    s32 doMax;
+    s32 newline;
+    u8 *s;
+    s32 lines;
+    u8 *cp;
+    u32 c;
+    u16 ch;
+    s32 n;
+
+    s = str;
+    p.value = &lbl_1_bss_4B9CC;
+    maxWidth = 0.0f;
+    width = -p.value->unk_3C;
+    adv = 0;
+    count = 0;
+    maxCount = 0;
+    lines = 1;
+    doWidth = 0;
+    doCount = 0;
+    doLines = 0;
+    doMax = 0;
+    newline = 0;
+
+    if (s == NULL && lbl_1_bss_4BA28[0] == 0) {
+        lbl_1_bss_4BA28[0] = 1;
+        return maxWidth;
+    }
+
+    switch (mode) {
+    case 0:
+        doWidth = 1;
+        break;
+    case 1:
+        doWidth = 1;
+        doMax = 1;
+        break;
+    case 2:
+        doLines = 1;
+        break;
+    case 3:
+        doCount = 1;
+        break;
+    case 4:
+        doCount = 1;
+        doMax = 1;
+        break;
+    }
+
+    i = 0;
+    font = (FontEntry_4B1D4 *)((u8 *)&lbl_1_data_1AEA8 + lbl_1_bss_4B9CC.unk_C * 0x38);
+    /* `goto next` is the loop's continue: it skips the width accumulation */
+    while ((ch = *(cp = s + i)) != 0) {
+        state = &lbl_1_bss_4B9CC;
+        c = ch;
+        if ((state->unk_2C & 0x20000000) && (u16)c >= 'a' && (u16)c <= 'z') {
+            c = ch - 0x20;
+        }
+        if (newline) {
+            newline = 0;
+            lines++;
+        }
+        if (doWidth) {
+            adv = fn_1_49F08(c, state, font) & 0xFFFF;
+        }
+        if ((u16)c < 0x80) {
+            if (font->unk_0 == -1) {
+                c = fn_1_499BC(cp);
+                if ((u16)c >= 0x80) {
+                    i += 6;
+                } else {
+                    if ((u16)c == '/' && (s8)(n = fn_1_49B70(cp, 0)) != 0) {
+                        i += (s8)n;
+                        /* Skip glyph accumulation for this control sequence. */
+                        goto next;
+                    }
+                    c = fn_1_49794(c);
+                }
+                if ((s32)lbl_1_bss_3E058 != 0 && (u16)c == '[') {
+                    while (s[i] != ']') {
+                        i++;
+                    }
+                    /* Skip glyph accumulation for this control sequence. */
+                    goto next;
+                }
+                if ((u16)c == '\n') {
+                    if (doLines) {
+                        newline = 1;
+                    } else {
+                        if (!doMax) {
+                            break;
+                        }
+                        if (doWidth) {
+                            maxWidth = (maxWidth > width) ? maxWidth : width;
+                            width = -p.value->unk_3C;
+                        } else if (doCount) {
+                            maxCount = (maxCount > count) ? maxCount : count;
+                            count = 0;
+                        }
+                        /* Skip glyph accumulation for this control sequence. */
+                        goto next;
+                    }
+                }
+                if (doWidth) {
+                    adv = fn_1_49F08(c, state, font) & 0xFFFF;
+                }
+            } else {
+                if ((u16)c == '/' && (s8)(n = fn_1_49B70(cp, 0)) != 0) {
+                    i += (s8)n;
+                    /* Skip glyph accumulation for this control sequence. */
+                    goto next;
+                }
+                if ((s32)lbl_1_bss_3E058 != 0 && (u16)c == '[') {
+                    while (s[i] != ']') {
+                        i++;
+                    }
+                    /* Skip glyph accumulation for this control sequence. */
+                    goto next;
+                }
+                if ((u16)c == '\n') {
+                    if (doLines || !doMax) {
+                        break;
+                    }
+                    if (doWidth) {
+                        maxWidth = (maxWidth > width) ? maxWidth : width;
+                        width = -p.value->unk_3C;
+                    } else if (doCount) {
+                        maxCount = (maxCount > count) ? maxCount : count;
+                        count = 0;
+                    }
+                    /* Skip glyph accumulation for this control sequence. */
+                    goto next;
+                }
+            }
+        } else {
+            i++;
+            c = (u16)(((u16)c << 8) | s[i]);
+            if (doWidth) {
+                adv = fn_1_49F08(c, state, font) & 0xFFFF;
+            }
+        }
+        if (doWidth) {
+            width += p.value->unk_3C + (f32)(state->unk_1C * ((f32)adv * font->unk_34));
+        } else if (doCount) {
+            count++;
+        }
+    next:
+        i++;
+    }
+
+    if (doMax) {
+        if (doWidth) {
+            maxWidth = (maxWidth > width) ? maxWidth : width;
+        } else if (doCount) {
+            maxCount = (maxCount > count) ? maxCount : count;
+        }
+    }
+
+    switch (mode) {
+    case 0:
+        return width;
+    case 1:
+        return maxWidth;
+    case 2:
+        return (f32)lines;
+    case 3:
+        return (f32)count;
+    case 4:
+        return (f32)maxCount;
+    default:
+        return -1.0f;
+    }
+}
+/* fzgx:end fn_1_4B1D4 */
+
 /* fzgx:begin fn_1_4B83C */
 void fn_1_4B83C(void *arg0, void *arg1, u32 arg2, const char *arg3) {
     u32 length;

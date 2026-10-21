@@ -93,6 +93,191 @@ void fn_1_F2780(void) {
 }
 /* fzgx:end fn_1_F2780 */
 
+/* fzgx:begin fn_1_F2820 */
+extern u32 OSGetTick(void);
+
+/* One recorded input run: a pad sample plus how many frames it repeats. */
+typedef struct ReplayEntry {
+    u8 buttons;
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    u8 triggerL;
+    u8 triggerR;
+    u8 count;
+} ReplayEntry;
+
+typedef struct ReplayInput {
+    u8 buttons;
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    u8 triggerL;
+    u8 triggerR;
+} ReplayInput;
+
+typedef struct ReplayBuffer {
+    u8 pad_0[0xA0];
+    u16 index;
+    u16 end;
+    ReplayEntry entries[1];
+} ReplayBuffer;
+
+typedef struct ReplayControl {
+    u8 pad_0[0x8];
+    u32 missed;
+    u8 pad_C[0x4];
+    u32 capacity;
+    u8 pad_14[0x5];
+    u8 playing;
+    u8 recordAll;
+    u8 pad_1B;
+    u8 repeat[4];
+    u8 pad_20[0x8];
+    s32 active[4];
+    u8 pad_38[0x8];
+    ReplayBuffer *buffer;
+} ReplayControl;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u16 fzgx_obj_lbl_1_bss_7EFD0;
+u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
+u8 fzgx_obj_lbl_1_bss_7EFD4;
+u8 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
+u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
+ReplayControl fzgx_obj_lbl_1_bss_7EFD8;
+u16 fzgx_obj_lbl_1_bss_7F01C;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD4;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7F01C;
+}
+#pragma section code_type ".text"
+
+extern u32 fn_1_864E8(int);
+extern u8 fn_1_86624(void);
+extern u8 fn_1_86678(int);
+extern u8 fn_1_F2D30(ReplayEntry *, ReplayEntry **, u8);
+extern void fn_1_F2CD8(ReplayEntry *, ReplayEntry **, u8);
+
+#define g_flags fzgx_obj_lbl_1_bss_7EFD4
+#define g_ctrl fzgx_obj_lbl_1_bss_7EFD8
+#define g_end fzgx_obj_lbl_1_bss_7F01C
+
+void fn_1_F2820(ReplayInput *inputs, u8 *out, u8 *mask) {
+    ReplayEntry *entry;
+    s32 n;
+    u16 flags;
+    u8 i;
+    u32 port;
+    u8 buttons;
+    u8 missed;
+    ReplayEntry *base;
+
+    entry = NULL;
+    flags = g_flags;
+    base = g_ctrl.buffer->entries;
+
+    if (((flags >> 0) & 1) && !((flags >> 3) & 1) && !((flags >> 4) & 1)) {
+        if ((flags >> 1) & 1) {
+            missed = 0;
+            for (i = 0; i < 4; i++) {
+                if (i >= (s8)fn_1_86624()) {
+                    break;
+                }
+                port = fn_1_86678(i);
+                if (port == 0xFF) {
+                    continue;
+                }
+                fn_1_F2CD8(&base[g_ctrl.buffer->index], &entry, i);
+                if (g_ctrl.playing) {
+                    if (entry->count == 0) {
+                        if (&base[g_ctrl.buffer->index] == entry) {
+                            g_ctrl.buffer->index--;
+                        }
+                        fn_1_F2CD8(entry - 1, &entry, i);
+                    } else {
+                        entry->count--;
+                    }
+                } else {
+                    missed = 1;
+                }
+                buttons = (i & 3) | 4 | (inputs[port].buttons & 0xF8);
+                if (!g_ctrl.recordAll && entry->buttons == buttons && entry->stickX == inputs[port].stickX &&
+                    entry->stickY == inputs[port].stickY && entry->substickX == inputs[port].substickX &&
+                    entry->triggerL == inputs[port].triggerL && entry->triggerR == inputs[port].triggerR &&
+                    entry->count < 0xFF) {
+                    entry->count++;
+                } else {
+                    fn_1_F2D30(entry, &entry, i);
+                    if (entry - base >= g_ctrl.capacity) {
+                        g_flags |= 0x10;
+                    } else {
+                        entry->count = 0;
+                        entry->buttons = buttons;
+                        entry->stickX = inputs[port].stickX;
+                        entry->stickY = inputs[port].stickY;
+                        entry->substickX = inputs[port].substickX;
+                        entry->triggerL = inputs[port].triggerL;
+                        entry->triggerR = inputs[port].triggerR;
+                        g_ctrl.buffer->index = entry - base;
+                    }
+                }
+            }
+            if (missed) {
+                g_ctrl.missed++;
+            }
+            g_end = g_ctrl.buffer->end = g_ctrl.buffer->index;
+        } else if ((flags >> 2) & 1) {
+            for (i = 0; i < 4; i++) {
+                if (g_ctrl.active[i] == 0 || (fn_1_864E8(i) & 0x04000000)) {
+                    continue;
+                }
+                fn_1_F2CD8(&base[g_ctrl.buffer->index], &entry, i);
+                if (g_ctrl.playing) {
+                    if (g_ctrl.repeat[i] == 0) {
+                        if (&base[g_ctrl.buffer->index] == entry) {
+                            g_ctrl.buffer->index--;
+                        }
+                        fn_1_F2CD8(entry - 1, &entry, i);
+                        g_ctrl.repeat[i] = entry->count;
+                    } else {
+                        g_ctrl.repeat[i]--;
+                    }
+                }
+                inputs[i].buttons = entry->buttons & 0xF8;
+                inputs[i].stickX = entry->stickX;
+                inputs[i].stickY = entry->stickY;
+                inputs[i].substickX = entry->substickX;
+                inputs[i].triggerL = entry->triggerL;
+                inputs[i].triggerR = entry->triggerR;
+                if (g_ctrl.repeat[i] >= entry->count) {
+                    fn_1_F2D30(&base[g_ctrl.buffer->index], &entry, i);
+                    n = entry - base;
+                    if (n <= g_end) {
+                        g_ctrl.buffer->index = n;
+                        g_ctrl.repeat[i] = 0;
+                    }
+                } else {
+                    g_ctrl.repeat[i]++;
+                }
+                out[i] = inputs[i].buttons & ~mask[i];
+            }
+            if (g_ctrl.buffer->index > g_end) {
+                g_flags |= 0x10;
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_F2820 */
+
 /* fzgx:begin fn_1_F2CD8 */
 void fn_1_F2CD8(u8 *value, u8 **cursor, u32 index) {
     s32 target;

@@ -1516,6 +1516,245 @@ void fn_1_AAF18(void) {
 }
 /* fzgx:end fn_1_AAF18 */
 
+/* fzgx:begin fn_1_AAF1C noprologue */
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+extern s16 lbl_1_bss_960;
+
+
+extern u32 lbl_1_data_35AC8;
+
+
+extern void OSReport(const char *, ...);
+extern void OSPanic(const char *, int, const char *, ...);
+typedef struct {
+u8 pad_0[0x3F];
+u8 unk_3F;
+} AAF1C_Info;
+typedef struct {
+u8 pad_0[0x2];
+s16 unk_2;
+s32 unk_4;
+u32 unk_8;
+u8 pad_C[0x80];
+AAF1C_Info *unk_8C;
+} AAF1C_State;
+typedef struct {
+u8 pad_0[0x2];
+u8 unk_2;
+u8 pad_3[0x5];
+s16 unk_8;
+s16 unk_A;
+u8 pad_C[0x18];
+AAF1C_State *unk_24;
+u8 pad_28[0x2];
+u8 unk_2A;
+} AAF1C_Obj;
+void fn_1_AAF1C(AAF1C_Obj *obj)
+{
+char *str = (char *)&lbl_1_data_35AC8;
+switch (obj->unk_24 ->unk_4) {
+case -2:
+obj->unk_8 = 1;
+break;
+case -3:
+obj->unk_8 = 0;
+break;
+case -6:
+case -5:
+obj->unk_8 = 0x20;
+break;
+case -0xd:
+obj->unk_8 = 0x21;
+break;
+case -8:
+switch (obj->unk_24 ->unk_8C->unk_3F) {
+case 0x50:
+default:
+obj->unk_8 = 0x2b;
+break;
+case 0x4F:
+case 0x51:
+case 0x52:
+case 0x53:
+case 0x54:
+obj->unk_8 = 0x2a;
+break;
+}
+break;
+case -9:
+switch (obj->unk_24 ->unk_8C->unk_3F) {
+case 0x50:
+default:
+obj->unk_8 = 0x2d;
+break;
+case 0x4F:
+case 0x51:
+case 0x52:
+case 0x53:
+case 0x54:
+obj->unk_8 = 0x2c;
+break;
+}
+break;
+case -4:
+obj->unk_8 = 0x38;
+break;
+case -0x7b:
+obj->unk_8 = 0x37;
+break;
+case -0x7c:
+obj->unk_8 = 0x36;
+break;
+case -0x7d:
+obj->unk_8 = 0x2f;
+break;
+case -0x7e:
+obj->unk_8 = 0x29;
+break;
+case -0x7f:
+obj->unk_8 = 0x1f;
+break;
+case -0x77:
+if (lbl_1_bss_960 == 3) {
+obj->unk_8 = 0x4d;
+} else {
+obj->unk_8 = 0x4c;
+}
+break;
+case -0x80:
+obj->unk_8 = 2;
+break;
+case -0x7a:
+obj->unk_8 = 3;
+break;
+default:
+OSReport(str + 0x6d94, obj->unk_24 ->unk_4);
+OSPanic(str + 0x6cf0, 0x5a3, str + 0x6da0);
+break;
+}
+switch (obj->unk_2) {
+case 2:
+switch (obj->unk_24->unk_8 & 0xc03) {
+case 0x802:
+obj->unk_A = 0xf;
+break;
+case 3:
+obj->unk_A = 0xe;
+break;
+case 1:
+obj->unk_A = 4;
+break;
+case 2:
+obj->unk_A = 0xe;
+break;
+case 0x400:
+obj->unk_A = 0x15;
+break;
+default:
+obj->unk_A = 4;
+break;
+}
+break;
+case 0:
+case 1:
+switch (obj->unk_24->unk_8 & 0x403) {
+case 3:
+obj->unk_A = 0xe;
+break;
+case 1:
+obj->unk_A = 5;
+break;
+case 2:
+obj->unk_A = 0xe;
+break;
+case 0x400:
+obj->unk_A = 0x16;
+break;
+default:
+obj->unk_A = 5;
+break;
+}
+break;
+case 3:
+case 4:
+switch (obj->unk_24->unk_8 & 0x403) {
+case 0x800:
+obj->unk_A = 0xf;
+break;
+case 3:
+obj->unk_A = 0xe;
+break;
+case 1:
+obj->unk_A = 6;
+break;
+case 2:
+obj->unk_A = 0xe;
+break;
+case 0x400:
+obj->unk_A = 0x17;
+break;
+default:
+obj->unk_A = 6;
+break;
+}
+break;
+case 5:
+switch (obj->unk_24->unk_8 & 0x403) {
+case 3:
+obj->unk_A = 0xe;
+break;
+case 1:
+obj->unk_A = 7;
+break;
+case 2:
+obj->unk_A = 0xe;
+break;
+case 0x400:
+obj->unk_A = 0x18;
+break;
+default:
+obj->unk_A = 7;
+break;
+}
+break;
+case 6:
+switch (obj->unk_24->unk_8 & 0x403) {
+case 3:
+obj->unk_A = 0xe;
+break;
+case 1:
+obj->unk_A = 8;
+break;
+case 2:
+obj->unk_A = 0xe;
+break;
+case 0x400:
+obj->unk_A = 0x19;
+break;
+default:
+obj->unk_A = 8;
+break;
+}
+break;
+default:
+OSPanic(str + 0x6cf0, 0x627, str + 0x6db8);
+break;
+}
+obj->unk_2A |= 4;
+obj->unk_24->unk_8 &= ~4;
+obj->unk_24->unk_2 = 0;
+}
+/* fzgx:end fn_1_AAF1C */
+
 /* fzgx:begin fn_1_AB434 */
 // fn_1_AB434: empty in retail (single blr).
 void fn_1_AB434(void) {
