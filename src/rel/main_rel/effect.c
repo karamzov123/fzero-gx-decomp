@@ -1522,6 +1522,325 @@ void fn_1_5ABCC(Fn1_5ABCCOutput *out) {
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_1_5ABCC */
 
+/* fzgx:begin fn_1_5AC48 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/effect.h"
+
+typedef struct fn_1_58D38_EffectEntry {
+    s8 unk_00;
+    u8 pad_01[7];
+    u32 unk_08;
+    s16 unk_0C;
+    u8 pad_0E[0x0C];
+    u16 unk_1A;
+    u8 pad_1C[0xCC];
+} fn_1_58D38_EffectEntry;
+
+struct fn_1_5BF70_lbl_1_rodata_2950 {
+    u8 pad_0[0x8];
+    f32 unk_8;
+    u8 pad_C[0x14];
+    f64 unk_20;
+    u8 pad_28[0xC8];
+    f64 unk_F0;
+    f64 unk_F8;
+    u8 pad_100[0x30];
+    f64 unk_130;
+};
+
+typedef struct {
+    u8 unk00[0x18];
+    s16 value18;
+    u8 unk1A[2];
+    f32 value1C;
+    f32 value20;
+    f32 value24;
+    f32 value28;
+    u8 unk2C[8];
+    void *field34;
+    u8 unk38[0x1c];
+    s16 value54;
+    s16 value56;
+} fn_1_5FEBC_EffectData;
+
+typedef struct {
+    u8 unk00[8];
+    fn_1_5FEBC_EffectData *data;
+} fn_1_5FEBC_EffectObject;
+
+typedef struct {
+    u8 pad_0[0x10];
+    u32 unk_10;
+    u8 pad_14[0x20];
+    u32 unk_34;
+    void *unk_38;
+    u8 pad_3c[0x18];
+    s16 unk_54;
+    u8 pad_56[0x4];
+    u16 unk_5a;
+    u8 pad_5c[0x58];
+    f32 unk_b4;
+} fn_1_61D08_EffectObject;
+
+typedef struct {
+    u8 pad_00[0x8];
+    void *unk_08;
+} fn_1_652F4_Effect;
+
+typedef struct {
+    u8 pad20[0x20];
+    void *unk_20;
+} Fn1_61E60Node;
+
+typedef struct {
+    u8 pad38[0x38];
+    Fn1_61E60Node *unk_38;
+} Fn1_61E60Object;
+extern void fn_1_62360(fn_1_58D38_EffectEntry *arg0);
+extern u32 fn_1_3FC58(void);
+extern void *memcpy(void *, const void *, u32);
+extern void fn_1_862D4(s16 value, void *result);
+extern f32 lbl_8006D0B4(f32 value);
+extern s32 fn_1_54E34(void *arg0, f32 arg1);
+extern void lbl_8006D7B0(void);
+extern void lbl_8006D9D8(void *);
+extern void mathutil_mtxA_rotate_z(int);
+extern const f32 lbl_1_rodata_2950;
+extern void fn_1_8636C();
+extern void fn_1_867CC(s16 value, void *out);
+extern void mathutil_mtxA_rotate_y(s16 value);
+extern void mathutil_mtxA_rotate_x(s16 value);
+extern void lbl_8006DB74(void *);
+extern int fn_1_9F914(const void *src0, const void *src1);
+extern const f32 lbl_1_rodata_2AA0[21];
+extern f32 lbl_1_rodata_29AC[5];
+extern void *memset(void *, int, u32);
+extern void *lbl_801A6D00;
+extern void fn_1_55FC4(f32 value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_1_5557C(void *object);
+extern void fn_1_555D0(void *object);
+extern void lbl_8006E1B0(void *src, void *dst);
+extern void lbl_8006E14C(f32);
+extern void *lbl_801A6410;
+extern s32 fn_1_45D0();
+extern u32 GXGetTexBufferSize(u16, u16, u32, u32, u8);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_4730(u32 value, u32 count, u32 size, const char *file, int line);
+extern void lbl_8006DCA4();
+extern void lbl_8006D7DC(void *obj);
+extern void *fn_1_868C0(s8 index);
+extern void *fn_1_86254(int index);
+extern void lbl_8006D95C(s32);
+extern void lbl_8006DFC4(void *);
+extern void fn_1_3BDC(u32 arg0);
+extern u32 fn_1_3C18(s32 arg0);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern void fn_80008BA8(void *, void *, int);
+extern void fn_1_680F8(void);
+extern void fn_1_68284(void);
+extern void fn_1_68B68(void);
+extern void fn_1_68248(void);
+extern void fn_1_69BBC(void);
+extern void fn_1_69BCC(void);
+extern f32 lbl_1_rodata_2978[4];
+extern f32 lbl_1_rodata_2AF4[14];
+extern void fn_1_5EB98(void);
+extern void fn_1_5FEBC(fn_1_5FEBC_EffectObject *object);
+extern f32 lbl_1_rodata_2A5C[5];
+extern int fn_1_61D08();
+extern void fn_1_61EF4(void);
+extern void fn_1_620C4(void);
+extern f32 lbl_1_rodata_2B2C[145];
+extern void fn_1_638E8(void);
+extern const f32 lbl_1_rodata_2A70[12];
+extern void fn_1_64388(void);
+extern void fn_1_652F4(fn_1_652F4_Effect *effect);
+extern void fn_1_65748(void);
+extern void *fn_1_5448C(void *);
+extern int fn_1_61E60();
+extern void fn_1_5489C(void **arg0, void **arg1);
+extern void *fn_1_548AC(u32 size);
+extern u32 fn_1_3FC8C(void);
+extern const f32 lbl_1_rodata_29A4;
+extern f64 lbl_1_rodata_2988;
+extern u32 fn_1_620C8(void *);
+extern f32 fn_1_8652C(int index);
+extern void fn_1_557C4(void *value);
+extern void fn_1_56000(u8 value0, u8 value1, u8 value2);
+extern void fn_1_5621C(f32 value0, f32 value1, f32 value2, f32 value3);
+extern const f32 lbl_1_rodata_29C0;
+extern const f32 lbl_1_rodata_29F0;
+extern u32 fn_1_58C4(void);
+extern const f64 lbl_1_rodata_2954;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 60.0f;
+    s = 0.10000000149011612f;
+    s = 32767.0f;
+    s = 0.05000000074505806f;
+    d = 0.07;
+    s = 20000.0f;
+    s = 0.0f;
+    d = 4503599627370496.0;
+    s = 1.0f;
+    s = -0.029999999329447746f;
+    d = 15.0;
+    d = 4503601774854144.0;
+    d = 1.5;
+    d = 0.5;
+}
+static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+    s = 8.0f;
+    s = 255.0f;
+    s = 15.0f;
+    s = 0.20000000298023224f;
+    s = 0.07999999821186066f;
+    s = 0.25f;
+    s = 0.9800000190734863f;
+    s = 0.9900000095367432f;
+    s = 40.0f;
+    s = 20.0f;
+    s = 1.5f;
+    s = 0.44999998807907104f;
+    s = -2.0f;
+    s = 0.0833333358168602f;
+    s = 0.15000000596046448f;
+    s = 0.125f;
+    s = -0.4000000059604645f;
+    s = -0.30000001192092896f;
+    s = 2.0f;
+    s = 250.0f;
+    d = 0.6;
+    d = 0.4;
+    s = 0.30000001192092896f;
+    s = -0.004000000189989805f;
+    s = 0.01666666753590107f;
+}
+#pragma section code_type ".text"
+
+
+typedef struct {
+    f32 x, y, z;
+} fn_1_5AC48_Vec;
+
+typedef struct {
+    s8 unk_0;
+    u8 pad_1;
+    s16 unk_2;
+    s16 unk_4;
+    u8 pad_6[6];
+    s16 unk_C;
+    u8 pad_E[2];
+    s32 unk_10;
+    u8 pad_14[4];
+    s16 unk_18;
+    u16 unk_1A;
+    fn_1_5AC48_Vec unk_1C;
+    f32 unk_28;
+    f32 unk_2C;
+    u8 pad_30[4];
+    u32 unk_34;
+    u8 pad_38[4];
+    fn_1_5AC48_Vec pos;
+    fn_1_5AC48_Vec vel;
+    u8 pad_54[0xE8 - 0x54];
+} fn_1_5AC48_Effect;
+
+typedef struct {
+    u8 pad_0[0x70];
+    u32 unk_70;
+} fn_1_5AC48_Inner;
+
+typedef struct {
+    u8 pad_0[0x8];
+    fn_1_5AC48_Inner *unk_8;
+} fn_1_5AC48_Owner;
+
+static inline s16 fn_1_5AC48_spawn(void *source) {
+    s32 i;
+
+    if ((s32)fn_1_3FC58() != 0) {
+        return -1;
+    }
+
+    {
+        fn_1_5AC48_Effect *scan;
+        scan = *(fn_1_5AC48_Effect **)&lbl_1_bss_6C848;
+        i = 0;
+        for (; i < 0xbe; i++, scan++) {
+            if (!scan->unk_0) {
+                scan->unk_0 = 1;
+                /* Skip the exhaustion path when a free slot is found. */
+                goto slot_found;
+            }
+        }
+        i = -1;
+    }
+slot_found:
+    if (i < 0) {
+        return -1;
+    }
+    {
+        fn_1_5AC48_Effect *entry;
+        entry = *(fn_1_5AC48_Effect **)&lbl_1_bss_6C848 + i;
+        memcpy(entry, source, 0xe8);
+        entry->unk_0 = 1;
+        entry->unk_2 = i;
+        ((void (**)(void *))lbl_1_data_1D1D8)[entry->unk_C](entry);
+        entry->unk_4 = lbl_1_bss_6C850.unk_0;
+        lbl_1_bss_6C850.unk_0++;
+        if (lbl_1_bss_6C850.unk_0 < 0) {
+            lbl_1_bss_6C850.unk_0 = 0;
+        }
+        return entry->unk_4;
+    }
+}
+
+/* Linear congruential random value in [0, 1]. */
+static inline f32 fn_1_5AC48_rand(void) {
+    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
+    return (f32)((lbl_1_data_1D628 >> 16) & 0x7fff) / 32767.0f;
+}
+
+void fn_1_5AC48(fn_1_5AC48_Effect *effect) {
+    fn_1_5AC48_Effect spawn;
+
+    effect->vel.y += -0.004f;
+    effect->vel.x *= 0.98f;
+    effect->vel.y *= 0.98f;
+    effect->vel.z *= 0.98f;
+    effect->pos.x += effect->vel.x;
+    effect->pos.y += effect->vel.y;
+    effect->pos.z += effect->vel.z;
+
+    memset(&spawn, 0, 0xe8);
+    spawn.unk_18 = effect->unk_18;
+    spawn.unk_C = 8;
+    spawn.unk_1A = 0xffff;
+    spawn.unk_34 = ((fn_1_5AC48_Owner *)lbl_1_bss_38458)->unk_8->unk_70;
+    spawn.pos = effect->pos;
+    spawn.vel.x = 0.5f * effect->vel.x;
+    spawn.vel.y = 0.5f * effect->vel.y;
+    spawn.vel.z = 0.5f * effect->vel.z;
+    spawn.unk_28 = 0.25f * effect->unk_28;
+    spawn.unk_2C = effect->unk_2C * (0.016666668f * fn_1_5AC48_rand());
+    spawn.unk_1C = effect->unk_1C;
+    fn_1_5AC48_spawn(&spawn);
+
+    if ((f32)effect->unk_10 < 15.0f) {
+        effect->unk_28 *= 1.0f - 1.0f / (f32)(effect->unk_10 + 1);
+    }
+}
+/* fzgx:end fn_1_5AC48 */
+
 /* fzgx:begin fn_1_5AF28 noprologue */
 #include "dolphin/types.h"
 #include "psvec.h"

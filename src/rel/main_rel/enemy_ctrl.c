@@ -450,6 +450,163 @@ void fn_1_C72D4(void) {
 }
 /* fzgx:end fn_1_C72D4 */
 
+/* fzgx:begin fn_1_C742C noprologue */
+typedef signed char s8;
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct FontDrawPacket FontDrawPacket;
+typedef struct FontVertex {
+f32 x, y, z;
+} FontVertex;
+struct FontDrawPacket {
+u32 image;
+f32 x, y, z;
+f32 scale_x, scale_y;
+f32 u0, v0, u1, v1;
+s16 rotation_z, rotation_y;
+f32 alpha;
+u32 flags;
+f32 depth;
+u8 color[4], color_add[4];
+u32 format;
+u16 width, height;
+void* pixels;
+FontDrawPacket* secondary;
+void (*vertex_callback)(FontDrawPacket* packet, FontVertex* vertices);
+u32 unk_54;
+};
+void fn_1_4A0D8(const char* text);
+void fn_1_4AE0C(const char* format, ...);
+int fn_1_4F734(FontDrawPacket* packet);
+void fn_1_4EDAC(FontDrawPacket* packet, f32 width, f32 height);
+void fn_1_51678(FontDrawPacket* packet, u32 image, s16 x, s16 y, s16 width, s16 height);
+void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height,
+s16 texture_width, s16 texture_height);
+
+
+extern s32 fn_1_5910();
+
+
+extern f32 fn_1_519FC(f32 value);
+
+
+extern void fn_1_C742C(void);
+extern s16 camera_get_mode(void);
+extern void fn_1_52070(u32 value);
+
+
+extern void fn_1_52088(void);
+
+
+extern void fn_1_CD51C(void *object);
+
+
+typedef void (*fn_1_C742C_DrawFunc)(s32, s32, s32);
+typedef struct fn_1_C742C_Vec {
+f32 x;
+f32 y;
+f32 z;
+} fn_1_C742C_Vec;
+typedef struct fn_1_C742C_Funcs { fn_1_C742C_DrawFunc f[6]; } fn_1_C742C_Funcs;
+typedef struct fn_1_C742C_Offsets { fn_1_C742C_Vec v[3][4]; } fn_1_C742C_Offsets;
+typedef struct fn_1_C742C_Positions { fn_1_C742C_Vec v[3][6]; } fn_1_C742C_Positions;
+typedef struct fn_1_C742C_Values { s32 v[6]; } fn_1_C742C_Values;
+extern const fn_1_C742C_Funcs lbl_1_rodata_5A68;
+extern const fn_1_C742C_Offsets lbl_1_rodata_5A80;
+extern const fn_1_C742C_Positions lbl_1_rodata_5B10;
+extern const fn_1_C742C_Values lbl_1_rodata_5BE8;
+extern s16 camera_get_mode(void);
+extern s32 fn_1_5910(void);
+extern u8 fn_1_5348(void);
+extern void fn_1_CFA4C(u32, u32);
+extern s32 camera_get_state(void);
+extern f32 fn_1_519FC(f32);
+extern void fn_1_52070(u32);
+extern void fn_1_52088(void);
+extern void fn_1_CD51C(void *);
+extern void fn_1_C7AA0(void);
+extern void fn_1_C7874(void);
+void fn_1_C742C(void) {
+fn_1_C742C_Funcs funcs = lbl_1_rodata_5A68;
+fn_1_C742C_Offsets offsets = lbl_1_rodata_5A80;
+fn_1_C742C_Positions positions = lbl_1_rodata_5B10;
+fn_1_C742C_Values values = lbl_1_rodata_5BE8;
+s32 idx;
+fn_1_C742C_Vec *pos;
+s32 *val;
+fn_1_C742C_DrawFunc *fn;
+fn_1_C742C_Vec *off;
+s32 row;
+s32 i;
+f32 x;
+f32 y;
+s32 mode;
+mode = camera_get_mode();
+idx = fn_1_5910();
+if (mode == -1 || mode < 0) {
+fn_1_C742C_Vec *v = &offsets.v[2][idx];
+if (fn_1_5348() == 3) {
+fn_1_CFA4C((s32)v->x, (s32)v->y);
+}
+return;
+}
+switch ((s8)camera_get_state()) {
+case 1:
+row = 0;
+break;
+case 2:
+row = 1;
+break;
+case 6:
+case 7:
+case 8:
+row = 2;
+break;
+default:
+return;
+}
+pos = positions.v[row];
+val = values.v;
+fn = funcs.f;
+off = &offsets.v[row][idx];
+for (i = 0; i < 6; i++) {
+x = pos->x + off->x;
+y = pos->y + off->y;
+fn_1_52070((s32)fn_1_519FC((f32)*val));
+(*fn)(mode, (s32)x, (s32)y);
+fn_1_52088();
+pos++;
+val++;
+fn++;
+}
+fn_1_CD51C((void *)mode);
+switch ((s8)camera_get_state()) {
+case 1:
+fn_1_C7AA0();
+break;
+case 2:
+fn_1_C7874();
+break;
+case 6:
+case 7:
+case 8:
+fn_1_C7AA0();
+fn_1_C7874();
+break;
+}
+}
+/* fzgx:end fn_1_C742C */
+
 /* fzgx:begin fn_1_C771C noprologue */
 #include "types.h"
 

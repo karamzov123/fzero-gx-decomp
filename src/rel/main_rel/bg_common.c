@@ -375,6 +375,152 @@ void fn_1_104710(void) {
 }
 /* fzgx:end fn_1_104710 */
 
+/* fzgx:begin fn_1_104730 */
+extern f32 lbl_1_rodata_78E8[19];
+extern void fn_1_103B00();
+extern f32 lbl_1_rodata_7934[11];
+extern void fn_1_9E5B8(void *);
+extern void *fn_1_54448(s32 arg0);
+extern void fn_1_103FCC(void);
+extern void fn_1_10688C(void);
+extern void fn_1_106B68(void);
+extern s32 fn_1_5910(void);
+extern f32 lbl_1_rodata_7960[43];
+extern f32 lbl_1_rodata_7A40[2];
+extern s32 fn_1_58C4(void);
+extern void lbl_8006DCA4(void);
+extern void fn_1_57714(s32 arg0);
+extern void fn_1_57720(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_1_57CD0(s32 arg0, void *arg1);
+extern u8 lbl_1_bss_86EC4;
+extern void fn_80008BEC(void *arg0, int arg1, int arg2);
+extern void fn_1_1088B8(void *arg);
+extern void lbl_8006DBAC(void *arg);
+extern void lbl_8006E1B0(void *arg0, void *arg1);
+extern void fn_1_107F74(void *arg0, int arg1);
+extern u32 lbl_801A6410;
+extern u32 lbl_1_data_3F284[2];
+extern s32 OSIsThreadTerminated(void *arg0);
+extern void OSCancelThread(void *arg0);
+extern void fn_1_46B4(s32 arg0, s32 arg1, u8 *arg2, s32 arg3);
+extern void fn_1_469BC(void);
+extern void fn_1_466B0(s32 arg0, s32 arg1);
+extern u32 lbl_1_bss_85288[2];
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_104730_Vec;
+
+typedef struct {
+    fn_1_104730_Vec dir;
+    fn_1_104730_Vec up;
+} fn_1_104730_Basis;
+
+typedef struct {
+    u8 pad_0[0xC];
+    fn_1_104730_Vec near_;
+    fn_1_104730_Vec mid;
+    fn_1_104730_Vec far_;
+    fn_1_104730_Basis basis;
+    u8 unk_48[0x40];
+} fn_1_104730_Entry;
+
+typedef struct {
+    u8 pad_0[0x18];
+    f32 zero;
+    u8 pad_1C[0x9C];
+    fn_1_104730_Vec default_pos;
+    fn_1_104730_Basis default_basis;
+    f32 near_dir;
+    f32 mid_up;
+    f32 mid_dir;
+    f32 near_up;
+    f32 far_dir;
+    f32 far_up;
+} fn_1_104730_Consts;
+
+extern fn_1_104730_Consts lbl_1_rodata_78D0;
+extern fn_1_104730_Entry lbl_1_bss_85298[];
+extern s32 lbl_1_bss_85294;
+extern f32 (*lbl_801A6D00)[4];
+
+extern void fn_1_5948(int);
+extern void fn_1_627C(int);
+extern s16 camera_get_mode(void);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DAEC(void);
+extern void fn_1_862D4(s32, fn_1_104730_Vec *);
+extern void fn_1_8636C(s32, void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DB30(void);
+
+#pragma opt_propagation off
+void fn_1_104730(int index, int use_matrix) {
+    fn_1_104730_Consts *c = &lbl_1_rodata_78D0;
+    int id;
+    fn_1_104730_Entry *entry;
+    s32 mode;
+    fn_1_104730_Vec pos;
+    f32 a;
+    f32 b;
+
+    id = index;
+    fn_1_5948(index);
+    mode = camera_get_mode();
+    entry = &lbl_1_bss_85298[index];
+    if (mode == -1) {
+        pos = c->default_pos;
+        entry->basis = c->default_basis;
+        lbl_8006D784(entry->unk_48);
+    } else {
+        lbl_8006DAEC();
+        fn_1_862D4(mode, &pos);
+        if (use_matrix != 0) {
+            f32 zero;
+            fn_1_8636C(mode, lbl_801A6D00);
+            zero = c->zero;
+            *(f32 *)(0xE0000000 + 0x0C) = zero;
+            *(f32 *)(0xE0000000 + 0x1C) = zero;
+            *(f32 *)(0xE0000000 + 0x2C) = zero;
+            entry->basis.dir.x = -lbl_801A6D00[0][2];
+            entry->basis.dir.y = -lbl_801A6D00[1][2];
+            entry->basis.dir.z = -lbl_801A6D00[2][2];
+            entry->basis.up.x = lbl_801A6D00[0][1];
+            entry->basis.up.y = lbl_801A6D00[1][1];
+            entry->basis.up.z = lbl_801A6D00[2][1];
+            lbl_8006DB74(entry->unk_48);
+        }
+        lbl_8006DB30();
+    }
+
+    switch (lbl_1_bss_85294 % 2) {
+    case 0:
+        a = c->near_dir;
+        b = c->mid_up;
+        break;
+    case 1:
+    default:
+        a = c->mid_dir;
+        b = c->near_up;
+        break;
+    }
+
+    entry->near_.x = pos.x + (f32)(entry->basis.dir.x * a) + (f32)(entry->basis.up.x * b);
+    entry->near_.y = pos.y + (f32)(entry->basis.dir.y * a) + (f32)(entry->basis.up.y * b);
+    entry->near_.z = pos.z + (f32)(entry->basis.dir.z * a) + (f32)(entry->basis.up.z * b);
+    entry->mid.x = pos.x + (f32)(c->mid_dir * entry->basis.dir.x) + (f32)(c->mid_up * entry->basis.up.x);
+    entry->mid.y = pos.y + (f32)(c->mid_dir * entry->basis.dir.y) + (f32)(c->mid_up * entry->basis.up.y);
+    entry->mid.z = pos.z + (f32)(c->mid_dir * entry->basis.dir.z) + (f32)(c->mid_up * entry->basis.up.z);
+    entry->far_.x = pos.x + (f32)(entry->basis.dir.x * c->far_dir) + (f32)(entry->basis.up.x * c->far_up);
+    entry->far_.y = pos.y + (f32)(entry->basis.dir.y * c->far_dir) + (f32)(entry->basis.up.y * c->far_up);
+    entry->far_.z = pos.z + (f32)(entry->basis.dir.z * c->far_dir) + (f32)(entry->basis.up.z * c->far_up);
+    fn_1_627C(id);
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_104730 */
+
 /* fzgx:begin fn_1_105724 */
 // fn_1_105724: simple wrapper function calling fn_1_106B68
 void fn_1_105724(void) {

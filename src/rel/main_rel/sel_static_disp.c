@@ -1422,6 +1422,77 @@ void fn_1_135894(void* arg0, void* arg1, void* arg2, void* arg3, void* arg4, voi
 }
 /* fzgx:end fn_1_135894 */
 
+/* fzgx:begin fn_1_1358BC noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/sel_static_disp.h"
+
+typedef struct fn_1_1358BC_Table { u32 image[41]; } fn_1_1358BC_Table;
+
+extern fn_1_1358BC_Table lbl_1_rodata_88BC;
+extern FontDrawPacket lbl_1_rodata_26F8;
+extern const f32 lbl_1_rodata_8960;
+extern void fn_1_49410(void);
+extern void fn_1_495C8(int);
+extern void fn_1_494DC(int);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_4962C(void);
+extern char* fn_1_14FEAC(void*, void*, void*, void*, int);
+extern void fn_1_4CF3C(f32, void*, ...);
+
+void fn_1_1358BC(s16 arg0, s16 arg1, int arg2, s16 arg3, int unused, void* arg5,
+                 void* arg6, void* arg7, f32 arg8, f32 arg9, f32 arg10) {
+    u32 buf[8];
+    FontDrawPacket packet;
+    fn_1_1358BC_Table table;
+    u32 index;
+
+    table = lbl_1_rodata_88BC;
+
+    if (arg3 >= 41 || arg3 < 0) {
+        fn_1_49410();
+        switch (arg2) {
+        case 5: fn_1_495C8(0); break;
+        case 9: fn_1_495C8(8); break;
+        case 13: fn_1_495C8(0x10); break;
+        case 6: fn_1_495C8(1); break;
+        case 10: fn_1_495C8(9); break;
+        case 14: fn_1_495C8(0x11); break;
+        case 7: fn_1_495C8(2); break;
+        case 11: fn_1_495C8(0xa); break;
+        case 15: fn_1_495C8(0x12); break;
+        }
+        fn_1_494DC(0x23);
+        fn_1_496FC((f32)arg0, (f32)arg1);
+        fn_1_4954C(arg10);
+        fn_1_4955C(arg8, arg9);
+        fn_1_4962C();
+        {
+            const f32* scale = &lbl_1_rodata_8960;
+            fn_1_4CF3C(*scale * arg8, &lbl_1_data_41A30,
+                       fn_1_14FEAC(arg5, arg6, arg7, buf, 0));
+        }
+    } else {
+        packet = lbl_1_rodata_26F8;
+        if (arg3 < 0) {
+            index = 0;
+        } else {
+            index = ((u32)arg3 > 40) ? 40 : arg3;
+        }
+        packet.image = table.image[index];
+        packet.x = (f32)arg0;
+        packet.y = (f32)arg1;
+        packet.z = arg10;
+        packet.scale_x = packet.scale_x * arg8;
+        packet.scale_y = packet.scale_y * arg9;
+        packet.flags = arg2;
+        fn_1_4F734(&packet);
+    }
+}
+/* fzgx:end fn_1_1358BC */
+
 /* fzgx:begin fn_1_135B80 noprologue */
 #include "types.h"
 #include "rel/main_rel/sel_static_disp.h"
@@ -5052,6 +5123,109 @@ void fn_1_146B5C(u32 unused, u8 *arg1) {
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_146B5C */
+
+/* fzgx:begin fn_1_148444 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/sel_static_disp.h"
+
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16);
+extern void fn_1_149C2C(void);
+extern void fn_1_49738(void *);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_495C8(s32);
+extern f32 fn_1_4B068(char *);
+extern u8 lbl_1_rodata_9318[208];
+extern int sprintf(char *, const char *, ...);
+
+typedef struct {
+    u8 pad_0[0x56];
+    u8 unk_56[6];
+    s32 unk_5C;
+    u8 pad_60[0x4];
+    s32 unk_64;
+    s32 unk_68;
+    u8 pad_6C[0x8];
+    s32 unk_74;
+} fn_1_148444_Obj;
+
+static inline BOOL fn_1_148444_isA(s32 mode) {
+    BOOL r = FALSE;
+    if (mode == 8 || mode == 2 || mode == 3) {
+        r = TRUE;
+    }
+    return r;
+}
+
+static inline BOOL fn_1_148444_isB(s32 mode) {
+    BOOL r = TRUE;
+    if (!((u32)mode <= 1)) {
+        r = FALSE;
+    }
+    return r;
+}
+
+static inline BOOL fn_1_148444_isC(s32 mode) {
+    BOOL r = FALSE;
+    if (mode == 1 || mode == 3) {
+        r = TRUE;
+    }
+    return r;
+}
+
+void fn_1_148444(s32 mode, fn_1_148444_Obj *obj) {
+    s32 x;
+    s32 y;
+    s32 value;
+    s32 width;
+    FontDrawPacket packet;
+    char buf[0x100];
+
+    if (!fn_1_148444_isA(mode) && !fn_1_148444_isB(mode)) {
+        return;
+    }
+    if (!fn_1_148444_isC(mode)) {
+        return;
+    }
+    if (obj->unk_5C == 0xFF) {
+        return;
+    }
+    x = obj->unk_68 + obj->unk_74;
+    y = obj->unk_64 + 14;
+    x += 0x1A7;
+    if (mode == 3) {
+        x -= 10;
+    }
+    fn_1_49410();
+    fn_1_494DC(0x1B);
+    fn_1_49738(fn_1_149C2C);
+    fn_1_496FC((f32)x, (f32)y);
+    fn_1_4954C(47.0f);
+    fn_1_495C8(2);
+    if (fn_1_148444_isB(mode)) {
+        value = obj->unk_56[lbl_1_bss_3C30.unk_A7];
+    } else {
+        value = obj->unk_56[0];
+    }
+    if (fn_1_148444_isA(mode)) {
+        sprintf(buf, (const char *)&lbl_1_data_42808, value < 0 ? 0 : (value > 99 ? 99 : value));
+    } else {
+        sprintf(buf, (const char *)lbl_1_data_42810, value < 0 ? 0 : (value > 999 ? 999 : value));
+    }
+    fn_1_4A0D8(buf);
+    width = fn_1_4B068(buf);
+    packet = *(FontDrawPacket *)lbl_1_rodata_9318;
+    packet.image = 0x9905;
+    fn_1_51678(&packet, 0x9905, 100, 0, 10, 16);
+    packet.x = (f32)(x - width);
+    packet.y = (f32)y;
+    packet.z = 47.0f;
+    packet.flags |= 7;
+    fn_1_4F734(&packet);
+}
+/* fzgx:end fn_1_148444 */
 
 /* fzgx:begin fn_1_1498B8 noprologue */
 #include "types.h"

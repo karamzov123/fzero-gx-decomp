@@ -1,4 +1,112 @@
 #include "types.h"
 
-// fn_80074D88: main .text:0x80074D88 size 0x2F8
-// Carved by fzgx. Replace this file's body with the matching C.
+struct fn_80074D88_lbl_8019F008 {
+    u8 pad_0[0x4];
+    f32 unk_4;
+    u8 pad_8[0x4];
+    f32 unk_C;
+};
+extern f32 lbl_801A6D4C;
+extern const f32 lbl_801A7480;
+extern const f32 lbl_801A7488;
+extern const f32 lbl_801A748C;
+extern struct fn_80074D88_lbl_8019F008 lbl_8019F008[];
+extern void GXLoadTexMtxImm(void *, u32, u32);
+extern void fn_800736C0(u32, void *);
+extern void lbl_8006DAEC(u32, u32);
+extern u32 lbl_8019F040[];
+extern u32 lbl_8019F158[];
+extern f32 *lbl_801A6D00;
+extern u32 lbl_801A6D50;
+extern u32 lbl_801A6D54;
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_800735C8(s32, s32);
+extern void fn_80073778(void *, s32);
+extern void fn_800738E0(s32, s32, s32);
+extern void fn_80073A58(int, void *, s8);
+extern void fn_80073B50(u32, s32, s32, s32, s32, s32, s32, u8, u8, s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void lbl_8006D758(void);
+extern void lbl_8006DB30(void);
+
+#pragma opt_propagation off
+void fn_80074D88(u32 arg0, u32 arg1) {
+    u32 v0;
+    f32 *matrix;
+    f32 v2;
+    f32 v1;
+    f32 half;
+    f32 scale;
+    struct { f32 a[6]; } loc_14;
+    u32 loc_10;
+    v0 = arg0;
+    if (lbl_801A6D54 != 0) {
+    lbl_8006DAEC(v0, arg1);
+    GXLoadTexMtxImm(lbl_801A6D00, 30, 0);
+    v1 = lbl_801A7488;
+    lbl_801A6D00[8] = lbl_801A7480;
+    lbl_801A6D00[9] = lbl_801A7480;
+    lbl_801A6D00[10] = lbl_801A7480;
+    matrix = (f32 *)(0xE0000000 + 0x00);
+    matrix[3] = lbl_801A7480;
+    matrix[7] = lbl_801A7480;
+    matrix[11] = v1;
+    GXLoadTexMtxImm(lbl_801A6D00, 45, 0);
+    lbl_8006D758();
+    v1 = lbl_801A748C;
+    lbl_801A6D00[0] = (f32)(v1 * (-lbl_8019F008[0].unk_4));
+    lbl_801A6D00[5] = (f32)(v1 * lbl_8019F008[0].unk_C);
+    lbl_801A6D00[2] = v1;
+    lbl_801A6D00[6] = v1;
+    GXLoadTexMtxImm(lbl_801A6D00, 76, 0);
+    lbl_8006D758();
+    lbl_801A6D00[0] = lbl_801A748C;
+    lbl_801A6D00[5] = lbl_801A748C;
+    lbl_801A6D00[2] = lbl_801A748C;
+    lbl_801A6D00[6] = lbl_801A748C;
+    GXLoadTexMtxImm(lbl_801A6D00, 73, 0);
+    lbl_8006DB30();
+    fn_80073778(lbl_8019F158, *(u32 *)((u8 *)arg1 + 12));
+    fn_800738E0(*(u32 *)((u8 *)arg1 + 16), *(u32 *)((u8 *)arg1 + 4), *(u32 *)((u8 *)arg1 + 12));
+    fn_800745A4(*(u32 *)((u8 *)arg1 + 4), 0, 1, 45, 0, 73);
+    scale = lbl_801A6D4C;
+    v1 = lbl_801A7480;
+    loc_14.a[0] = v1;
+    loc_14.a[1] = v1;
+    v2 = (f32)(*(f32 *)((u8 *)arg0 + 60) * scale);
+    loc_14.a[3] = v1;
+    loc_14.a[5] = v1;
+    half = lbl_801A748C;
+    v1 = (-v2);
+    v1 = (f32)(half * v1);
+    loc_14.a[4] = (f32)(half * v2);
+    loc_14.a[2] = v1;
+    fn_80073A58(1, &loc_14, 1);
+    fn_80073B50(*(u32 *)((u8 *)arg1 + 0), *(u32 *)((u8 *)arg1 + 16), 0, 7, 1, 0, 0, 0, 0, 0);
+    (*(u32 *)((u8 *)arg1 + 16))++;
+    (*(u32 *)((u8 *)arg1 + 4))++;
+    (*(u32 *)((u8 *)arg1 + 12))++;
+    fn_80073778(lbl_8019F040, *(u32 *)((u8 *)arg1 + 12));
+    fn_800745A4(*(u32 *)((u8 *)arg1 + 4), 0, 0, 30, 0, 76);
+    loc_10 = lbl_801A6D50;
+    fn_800736C0(1, &loc_10);
+    fn_800735C8(*(u32 *)((u8 *)arg1 + 0), 13);
+    fn_80072AB0(*(u32 *)((u8 *)arg1 + 0), 0, 0);
+    fn_800734A8(*(u32 *)((u8 *)arg1 + 0), *(u32 *)((u8 *)arg1 + 4), *(u32 *)((u8 *)arg1 + 12), 4);
+    fn_80072C24(*(u32 *)((u8 *)arg1 + 0), 0, 8, 14, 15);
+    fn_80072D64(*(u32 *)((u8 *)arg1 + 0), 0, 0, 0, 1, 0);
+    fn_80072CC4(*(u32 *)((u8 *)arg1 + 0), 0, 6, 6, 7);
+    fn_80072E20(*(u32 *)((u8 *)arg1 + 0), 0, 0, 0, 1, 0);
+    v0 = *(u32 *)((u8 *)arg1 + 0);
+    *(u32 *)((u8 *)arg1 + 0) = (v0 + 1);
+    v0 = *(u32 *)((u8 *)arg1 + 4);
+    *(u32 *)((u8 *)arg1 + 4) = (v0 + 1);
+    v0 = *(u32 *)((u8 *)arg1 + 12);
+    *(u32 *)((u8 *)arg1 + 12) = (v0 + 1);
+    }
+}

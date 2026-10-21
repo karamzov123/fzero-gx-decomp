@@ -358,6 +358,108 @@ void fn_1_D1F88(void) {
 }
 /* fzgx:end fn_1_D1F88 */
 
+/* fzgx:begin fn_1_D2110 */
+extern u32 lbl_801A6410;
+extern u32 lbl_1_bss_7ACEC;
+extern u32 fn_1_45D0(u32, u32, void*, u32);
+extern u32 fn_80008F88(void*, u32);
+extern void fn_80009064(u32);
+extern void fn_1_46B4(u32, u32, u8*, int);
+extern void fn_1_D2F50(void);
+extern void fn_80071718(u32);
+extern void fn_800711A8(u32);
+extern void fn_1_D2F84(void);
+extern s16 fn_1_3F0C8(void *obj);
+extern u32 fn_1_864E8(u32 value);
+extern void OSPanic(char*, ...);
+extern u32 fn_1_86810(u32);
+extern void qsort(void*, u32, u32, void*);
+extern s32 fn_1_D2E18(u8*, u8*);
+extern u32 lbl_1_bss_7AD00;
+extern u32 lbl_1_bss_7AD04;
+extern u32 lbl_1_bss_7AD08[7];
+extern u32 lbl_1_bss_7AD24[9];
+extern u32 lbl_801A6CE0;
+extern u32 lbl_801A6CFC;
+extern void* fn_1_48E8(u32, u32);
+extern void OSLink(void*, void*);
+extern void OSReport(char*, ...);
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} FaceVec;
+
+typedef struct {
+    u8 pad_0[0x20];
+    FaceVec prev;  /* 0x20 */
+    FaceVec pos;   /* 0x2C */
+    u32 timer;     /* 0x38 */
+    u32 state;     /* 0x3C */
+} FaceObj;
+
+extern u32 fn_1_584AC(void);
+
+#pragma section code_type ".fzgxpool"
+/* layout primer: fn_1_D1848's initializer precedes this function's in the TU pool */
+static void fzgx_pool_layout(FaceVec *out) {
+    FaceVec v = { 0.0f, 0.0f, 1.8f };
+    *out = v;
+}
+#pragma section code_type ".text"
+
+#pragma fp_contract off
+#pragma opt_common_subs off
+void fn_1_D2110(FaceObj *o) {
+    f32 fzgx_live;
+    FaceVec d = { 0.0f, 0.0f, 0.0f };
+    f32 tz;
+    f32 tx;
+    f32 ty;
+    f32 s;
+    u32 lab_v;
+
+    lab_v = o->state;
+    if (lab_v != 0) {
+        if (lab_v > 35 && lab_v < 40) {
+            d.y = 0.08f;
+        }
+        if (lab_v > 25 && lab_v < 30) {
+            d.y = 0.08f;
+        }
+        if (lab_v < 20) {
+            d.y = 0.08f;
+        }
+    }
+    o->pos.x += d.x;
+    o->pos.y -= d.y;
+    o->pos.z -= d.z;
+    if (o->state != 0) {
+        o->pos.x = o->pos.x + 0.1 * -o->pos.x;
+        o->pos.y = o->pos.y + 0.1 * -o->pos.y;
+        fzgx_live = o->pos.z;
+        o->pos.z = fzgx_live + 0.1 * (1.8f - fzgx_live);
+    } else if (o->timer != 0) {
+        s = (f32)o->timer / 10.0f;
+        tx = 0.5 * (s * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5));
+        ty = s * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5);
+        tz = 1.8f + s * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5);
+        o->pos.x = o->pos.x + 0.2 * (tx - o->pos.x);
+        o->pos.y = o->pos.y + 0.2 * (ty - o->pos.y);
+        fzgx_live = o->pos.z;
+        o->pos.z = fzgx_live + 0.2 * (tz - fzgx_live);
+    } else {
+        o->pos.x = o->pos.x + 0.1 * -o->pos.x;
+        o->pos.y = o->pos.y + 0.1 * -o->pos.y;
+        fzgx_live = o->pos.z;
+        o->pos.z = fzgx_live + 0.1 * (1.8f - fzgx_live);
+    }
+    o->prev = o->pos;
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_D2110 */
+
 /* fzgx:begin fn_1_D2D24 */
 Obj_1_bss_7ACD8_Target *fn_1_D2D24(s32 index) {
     return &lbl_1_bss_7ACD8[index];

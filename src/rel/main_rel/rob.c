@@ -265,6 +265,171 @@ void fn_1_96AE8(void *base, void *arg1) {
 }
 /* fzgx:end fn_1_96AE8 */
 
+/* fzgx:begin fn_1_96C40 */
+#include "dolphin/hw_regs.h"
+
+extern void fn_1_12ABB4(void *arg0);
+extern void fn_1_96230(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_41850(void *arg0);
+extern u32 lbl_1_bss_6E98C;
+extern u16 fn_1_96B14(void *base, void *arg1, s32 index);
+extern s32 fn_80083BCC(void *arg0, void *arg1);
+extern void ADXT_Stop(u32 arg0);
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32, u32, u8 *, u32);
+extern void fn_80008BEC(void *, u32, u32);
+
+extern const char *lbl_1_data_20D1C[];
+extern void sprintf(char *buffer, u8 *format, ...);
+extern s32 fn_1_12A32C(char *buffer);
+extern s16 fn_1_98104(void);
+
+
+typedef struct {
+    u8 r, g, b, a;
+} RobColor;
+
+extern u32 lbl_801A6D00;
+extern u32 GXLoadPosMtxImm(u32, u32);
+extern u32 lbl_8006DCA4(void);
+extern void fn_8003462C(u32, u32, u32);
+extern void fn_8007245C(u32);
+extern void fn_800724C8(void);
+extern void fn_800725DC(RobColor *);
+extern void fn_80072614(RobColor *);
+extern void fn_80072864(u32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_80072EDC(s32, s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80073678(u32);
+extern void fn_80073C6C(s32);
+extern void fn_80074660(u32);
+extern void fn_80074788(u32);
+extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
+
+/* Pool primer: reproduces the TU literal pool (lbl_1_rodata_3E48 .. +0x1D0) ahead of
+   this function's own initializers and literals; .fzgxpool is dropped at integration. */
+extern void fzgx_sink(const void *p);
+extern void fzgx_sinkf(f32 f);
+extern s32 fzgx_int;
+
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_pool_primer(void) {
+    /* lbl_1_rodata_3E48 / 3E70: string pointer tables (relocated words, zero in the file) */
+    u32 names[0x49] = {0};
+
+    fzgx_sink(names);
+    fzgx_sinkf(0.0f);
+    fzgx_sinkf(1.0f);
+    fzgx_sinkf(100.0f);
+    fzgx_sinkf(180.0f);
+    fzgx_sinkf(32767.0f);
+    fzgx_sinkf((f32)fzgx_int);
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer2(void) {
+    u32 words[36] = {
+        0xFFFFFFFF, 0xBF800000, 0xFFFFFFFF, 0x425C0000, 0x41F00000, 0x447A0000,
+        0x404040FF, 0x00000000, 0x00000000, 0x00000000,
+        0x3B963DC5, 0xBD6DD053, 0xBD953A3F, 0x3B963DC5, 0xBD6DD053, 0x3CF0307F,
+        0xBB963DC5, 0xBD6DD053, 0xBD953A3F, 0xBB963DC5, 0xBD6DD053, 0x3CF0307F,
+        0x43360B61, 0x3E4F5C29, 0x3D851EB8, 0x3DAE147B, 0x3FA99999, 0x9999999A,
+        0x3D4CCCCD, 0x3BA3D70A, 0xBC8F5C29, 0x477FFF00, 0x43300000, 0x00000000,
+        0x42480000, 0xBF800000,
+    };
+
+    fzgx_sink(words);
+}
+
+/* GX write-gather FIFO: every store is a hardware write, hence volatile. */
+#define GX_FIFO_F32 (*(volatile f32 *)GX_FIFO_BASE)
+
+#pragma defer_codegen on
+static void fn_1_96C40_grid(s32 cx, s32 cz);
+
+void fn_1_96C40(void *arg0) {
+    RobColor colA = {0x40, 0x40, 0x60, 0x80};
+    RobColor colB = {0x00, 0x00, 0x00, 0x00};
+    s32 cx;
+    s32 cz;
+    RobColor c0;
+    RobColor c1;
+
+    lbl_8006DCA4();
+    GXLoadPosMtxImm(lbl_801A6D00, 0);
+    cx = (s32)*(f32 *)((u8 *)arg0 + 0xA8);
+    cz = (s32)*(f32 *)((u8 *)arg0 + 0xB0);
+    fn_800724C8();
+    fn_8007245C(0x2200);
+    fn_80074788(1);
+    c0 = colA;
+    fn_800725DC(&c0);
+    c1 = colB;
+    fn_80072614(&c1);
+    fn_800747D0(4, 0, 0, 0, 0, 0, 2);
+    fn_80074660(0);
+    fn_80073678(1);
+    fn_80073C6C(0);
+    fn_80072AB0(0, 0, 0);
+    fn_800734A8(0, 255, 255, 4);
+    fn_80072EDC(0, 4);
+    fn_80072864(0);
+    fn_1_96C40_grid(cx, cz);
+}
+
+/* Draws a 21x21 checkerboard of unit quads around (cx, cz), one colour per pass. */
+static inline void fn_1_96C40_grid(s32 cx, s32 cz) {
+    s32 j;
+    s32 i;
+    s32 pass;
+    f32 z1;
+    f32 z0;
+    f32 x1;
+    f32 x0;
+
+    for (pass = 0; pass < 2; pass++) {
+        for (i = -10; i <= 10; i++) {
+            x0 = (f32)(cx + i) - 0.5f;
+            x1 = 0.5f + (f32)(cx + i);
+            for (j = -10; j <= 10; j++) {
+                if ((u32)pass == ((i + j) & 1)) {
+                    continue;
+                }
+                z0 = (f32)(cz + j) - 0.5f;
+                z1 = 0.5f + (f32)(cz + j);
+                fn_8003462C(0x80, 7, 4);
+                GX_FIFO_F32 = x0;
+                GX_FIFO_F32 = 0.0f;
+                GX_FIFO_F32 = z0;
+                GX_FIFO_F32 = 0.0f;
+                GX_FIFO_F32 = 0.0f;
+                GX_FIFO_F32 = x1;
+                GX_FIFO_F32 = 0.0f;
+                GX_FIFO_F32 = z0;
+                GX_FIFO_F32 = 1.0f;
+                GX_FIFO_F32 = 0.0f;
+                GX_FIFO_F32 = x1;
+                GX_FIFO_F32 = 0.0f;
+                GX_FIFO_F32 = z1;
+                GX_FIFO_F32 = 1.0f;
+                GX_FIFO_F32 = 1.0f;
+                GX_FIFO_F32 = x0;
+                GX_FIFO_F32 = 0.0f;
+                GX_FIFO_F32 = z1;
+                GX_FIFO_F32 = 0.0f;
+                GX_FIFO_F32 = 1.0f;
+            }
+        }
+        {
+            RobColor colC = {0x00, 0x20, 0x40, 0x80};
+
+            fn_800725DC(&colC);
+        }
+    }
+}
+#pragma defer_codegen reset
+/* fzgx:end fn_1_96C40 */
+
 /* fzgx:begin fn_1_97174 */
 typedef struct Fn197174Owner Fn197174Owner;
 typedef struct Fn197174Root Fn197174Root;

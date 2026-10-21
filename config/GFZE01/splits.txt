@@ -6302,3 +6302,15 @@ dol/fn_8007E69C.c:
 
 dol/OSResetSystem.c:
 	.text       start:0x8000EFAC end:0x8000F234 align:4
+
+dol/fn_8004B4E0.c:
+	.text       start:0x8004B4E0 end:0x8004B79C align:4
+
+dol/fn_80065528.c:
+	.text       start:0x80065528 end:0x800657F4 align:4
+
+dol/fn_80009CD4.c:
+	.text       start:0x80009CD4 end:0x80009FA4 align:4
+
+dol/fn_80008204.c:
+	.text       start:0x80008204 end:0x800084E8 align:4
