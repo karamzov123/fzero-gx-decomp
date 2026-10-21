@@ -16046,9 +16046,12 @@
     "symbols": [
       "fn_80020FA4"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "pool": {
+      "lbl_801A6AD4__fzgx_offset_4": "lbl_801A6AD4+0x4"
+    }
   },
   {
     "module": "main",
