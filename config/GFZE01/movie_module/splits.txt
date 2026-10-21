@@ -2288,3 +2288,6 @@ rel/movie_module/fn_12_27C58.c:
 
 rel/movie_module/fn_12_24C48.c:
 	.text       start:0x00024C48 end:0x00024D68 align:4
+
+rel/movie_module/fn_12_22008.c:
+	.text       start:0x00022008 end:0x00022254 align:4
