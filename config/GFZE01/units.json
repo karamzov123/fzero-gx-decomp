@@ -12986,6 +12986,17 @@
   },
   {
     "module": "main",
+    "source": "dol/__div2i.c",
+    "symbols": [
+      "__div2i"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
     "source": "dol/__div2u.c",
     "symbols": [
       "__div2u"
@@ -13309,6 +13320,17 @@
     "source": "dol/__mod2i.c",
     "symbols": [
       "__mod2i"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/__mod2u.c",
+    "symbols": [
+      "__mod2u"
     ],
     "status": "matching",
     "mw_version": null,

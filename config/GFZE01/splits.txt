@@ -6404,3 +6404,9 @@ dol/__cvt_dbl_usll.c:
 
 dol/fn_80086008.c:
 	.text       start:0x80086008 end:0x800868BC align:4
+
+dol/__div2i.c:
+	.text       start:0x800799DC end:0x80079B14 align:4
+
+dol/__mod2u.c:
+	.text       start:0x80079B14 end:0x80079BF8 align:4
