@@ -1847,6 +1847,133 @@ void fn_1_A358C(s32 arg0) {
 }
 /* fzgx:end fn_1_A358C */
 
+/* fzgx:begin fn_1_A3654 pool noprologue */
+#include "types.h"
+
+typedef struct SoundCarEntry {
+    u8 unk_0;
+    u8 unk_1;
+    u8 active;
+    u8 pad_3[0x11];
+} SoundCarEntry;
+
+typedef struct SoundCar {
+    u8 pad_0[0x4B0];
+    s16 unk_4B0;
+} SoundCar;
+
+extern f32 fn_1_8652C(void *);
+extern u32 fn_1_864E8(void *);
+extern u32 fn_1_864FC(void *);
+extern SoundCar *fn_1_86254(void *);
+extern s32 fn_80067898(u32);
+extern u32 lbl_801A66C8[];
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u8 fzgx_obj_lbl_1_bss_6EA98[4];
+u8 lbl_1_bss_6EA9C_pad[0x73C];
+u8 fzgx_obj_lbl_1_bss_6F1D8;
+u8 lbl_1_bss_6F1D9_fill;
+u16 lbl_1_bss_6F1DA_fill;
+u32 fzgx_obj_lbl_1_bss_6F1DC;
+u8 fzgx_obj_lbl_1_bss_6F1E0;
+u8 fzgx_obj_lbl_1_bss_6F1E1;
+u16 lbl_1_bss_6F1E2_fill;
+SoundCarEntry lbl_1_bss_6F1E4[11];
+u32 lbl_1_bss_6F1E4_fill[2];
+u32 lbl_1_bss_6F2C8[4];
+u8 fzgx_obj_lbl_1_bss_6F2D8[0x3E];
+u16 lbl_1_bss_6F316_fill;
+u32 lbl_1_bss_6F318_fill[5];
+s16 lbl_1_bss_6F32C[4];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
+    s = *(u8 *)&lbl_1_bss_6EA9C_pad;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1D8;
+    s = *(u8 *)&lbl_1_bss_6F1D9_fill;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1DC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E1;
+    s = *(u8 *)&lbl_1_bss_6F1E2_fill;
+    s = *(u8 *)&lbl_1_bss_6F1E4;
+    s = *(u8 *)&lbl_1_bss_6F1E4_fill;
+    s = *(u8 *)&lbl_1_bss_6F2C8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F2D8;
+    s = *(u8 *)&lbl_1_bss_6F316_fill;
+    s = *(u8 *)&lbl_1_bss_6F318_fill;
+    s = *(u8 *)&lbl_1_bss_6F32C;
+}
+#pragma section code_type ".text"
+
+#define PLAY_SE(id)                                                                 \
+    if (fzgx_obj_lbl_1_bss_6F1D8 == 0 && fzgx_obj_lbl_1_bss_6F1DC <= 45) {          \
+        fn_80067898(id);                                                            \
+    }
+
+#define ABS(v) __abs(v)
+
+#pragma opt_propagation off
+void fn_1_A3654(void *player, u32 id) {
+    f32 speed;
+    u32 flags;
+    u32 flags2;
+    SoundCar *obj;
+    void *car = player;
+
+    speed = fn_1_8652C(car);
+    flags = fn_1_864E8(car);
+    flags2 = fn_1_864FC(car);
+
+    if (lbl_1_bss_6F1E4[id].active != 0) {
+        if ((flags & 0x8) && !(lbl_1_bss_6F2C8[id] & 0x8)) {
+            PLAY_SE(0xA9090E00);
+        } else if ((flags & 0x20000) && !(lbl_1_bss_6F2C8[id] & 0x20000)) {
+            PLAY_SE(0xA9091D00);
+        } else if ((flags & 0x80) && !(lbl_1_bss_6F2C8[id] & 0x80) && !(flags & 0x200)) {
+            PLAY_SE(0xA9091100);
+        }
+
+        if (flags & 0x100000) {
+            PLAY_SE(0xA9091300);
+        } else if (flags & 0x80000) {
+            PLAY_SE(0xA9091400);
+        }
+
+        if (flags & 0x200) {
+            return;
+        }
+
+        if ((flags & 0x10000) && !(lbl_1_bss_6F2C8[id] & 0x10000)) {
+            PLAY_SE(0xA9091C00);
+            PLAY_SE(0xA9091600);
+        }
+
+        obj = fn_1_86254(car);
+        if (ABS((s32)obj->unk_4B0) >= 100 && lbl_1_bss_6F32C[id] == 0 && speed > 100.0f) {
+            PLAY_SE(0xA9091B00);
+            lbl_1_bss_6F32C[id] = obj->unk_4B0;
+        } else if (ABS((s32)obj->unk_4B0) < 100 && lbl_1_bss_6F32C[id] != 0) {
+            PLAY_SE(0xA9091C00);
+            lbl_1_bss_6F32C[id] = 0;
+        }
+    }
+
+    if ((flags & 0x80) && !(lbl_1_bss_6F2C8[id] & 0x80)) {
+        PLAY_SE(0xA9091C00);
+        PLAY_SE(0xA9091600);
+        lbl_1_bss_6F32C[id] = 0;
+    }
+
+    if ((flags2 & 0x10) && ((lbl_801A66C8[0] + 1) & 7) == 0) {
+        PLAY_SE(0xA9092E00);
+        PLAY_SE(0xA9091200);
+    }
+}
+/* fzgx:end fn_1_A3654 */
+
 /* fzgx:begin fn_1_A3C78 noprologue */
 #include "types.h"
 #include "rel/main_rel/sound.h"

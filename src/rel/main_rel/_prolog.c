@@ -632,6 +632,375 @@ void fn_1_1300(void) {
 }
 /* fzgx:end fn_1_1300 */
 
+/* fzgx:begin fn_1_1304 pool noprologue */
+#include "types.h"
+
+extern const struct fn_1_1304_lbl_1_rodata_9C_pool {
+    f32 unk_0;
+} lbl_1_rodata_9C;
+
+typedef struct Sig_fn_8001CF80_PADStatus {
+    u16 button;
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    s8 substickY;
+    u8 triggerLeft;
+    u8 triggerRight;
+    u8 analogA;
+    u8 analogB;
+    s8 err;
+} Sig_fn_8001CF80_PADStatus;
+
+typedef struct PadSrc {
+    u16 button;
+    u8 flags;
+    u8 b3;
+    u8 b4;
+    u8 b5;
+    u8 b6;
+    u8 b7;
+    u8 b8;
+    s8 err;
+} PadSrc;
+
+
+/* TU .data, in retail order (addressed off one section base) */
+char lbl_1_data_2A40[] = "OVERTAKE";
+char lbl_1_data_2A4C[] = "JUMP";
+char lbl_1_data_2A54[] = "ENEMYHIT";
+char lbl_1_data_2A60[] = "WALLHIT";
+char lbl_1_data_2A68[] = "SIDEBYSIDE";
+char lbl_1_data_2A74[] = "START";
+char lbl_1_data_2A7C[] = "GOAL";
+char lbl_1_data_2A84[0x3C] = "LAP";
+u8 lbl_1_data_2AC0[0x80] = {
+    0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
+    0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
+    0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
+    0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
+    0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
+    0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
+    0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
+    0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
+};
+u8 lbl_1_data_2B40[0x10] = { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8 };
+u8 lbl_1_data_2B50[8] = { 0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78 };
+u8 lbl_1_data_2B58[8] = { 6, 6, 6, 6, 6, 6, 6, 6 };
+u8 lbl_1_data_2B60[4] = { 1, 1, 1, 1 };
+u8 lbl_1_data_2B64 = 1;
+u32 lbl_1_data_2B68[4] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
+u8 lbl_1_data_2B78[4] = { 1, 1, 1, 1 };
+
+/* TU .bss: reset/recalibrate masks, SI types, held buttons */
+u32 lbl_1_bss_978;
+u32 lbl_1_bss_97C;
+u32 lbl_1_bss_980[4];
+u16 lbl_1_bss_990[4];
+
+extern void fn_1_15665C(u32, s32);
+extern void fn_1_156730(s32);
+extern void fn_1_D332C(Sig_fn_8001CF80_PADStatus *);
+extern void fn_80008BA8(void *, void *, u32);
+extern u32 fn_8001CF80(Sig_fn_8001CF80_PADStatus *);
+extern u32 SIProbe(s32);
+extern s32 fn_8006B294(s32, u32 *);
+extern void fn_8006B470(void *);
+extern void fn_80008BEC(void *, int, u32);
+extern BOOL fn_8001CC64(u32);
+extern int fn_8001CB64(u32);
+
+#define resetBits lbl_1_bss_978
+#define recalBits lbl_1_bss_97C
+#define siType lbl_1_bss_980
+#define heldButtons lbl_1_bss_990
+#define padReady lbl_1_data_2B64
+#define gbaIds lbl_1_data_2B68
+#define gbaStates lbl_1_data_2B78
+
+/* layout primer: touches the .bss objects in retail order */
+
+#pragma opt_loop_invariants off
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_base_order_data(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: the TU references .data before its other sections */
+    s = *(u8 *)&lbl_1_data_2A40;
+    s = *(u8 *)&lbl_1_data_2A4C;
+    s = *(u8 *)&lbl_1_data_2A54;
+    s = *(u8 *)&lbl_1_data_2A60;
+    s = *(u8 *)&lbl_1_data_2A68;
+    s = *(u8 *)&lbl_1_data_2A74;
+    s = *(u8 *)&lbl_1_data_2A7C;
+    s = *(u8 *)&lbl_1_data_2A84;
+    s = *(u8 *)&lbl_1_data_2AC0;
+    s = *(u8 *)&lbl_1_data_2B40;
+    s = *(u8 *)&lbl_1_data_2B50;
+    s = *(u8 *)&lbl_1_data_2B58;
+    s = *(u8 *)&lbl_1_data_2B60;
+    s = *(u8 *)&lbl_1_data_2B64;
+    s = *(u8 *)&lbl_1_data_2B68;
+    s = *(u8 *)&lbl_1_data_2B78;
+}
+#pragma section code_type ".text"
+
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_primer(void) {
+    lbl_1_bss_978 = 0;
+    lbl_1_bss_97C = 0;
+    lbl_1_bss_980[0] = 0;
+    lbl_1_bss_990[0] = 0;
+}
+
+void fn_1_1304(Sig_fn_8001CF80_PADStatus *pads) {
+    s32 i;
+    u32 r;
+    u32 chan;
+    u32 bits;
+    u32 t;
+    Sig_fn_8001CF80_PADStatus old[4];
+    PadSrc src[4];
+    u32 lab_t2;
+
+    fn_80008BA8(old, pads, sizeof(old));
+    fn_8001CF80(pads);
+
+    for (i = 0; i < 4; i++) {
+        siType[i] = SIProbe(i);
+        switch (siType[i]) {
+        case 0x08000000:
+            if (gbaIds[i] == -1) {
+                fn_8006B294(i, &gbaIds[i]);
+                fn_1_15665C(gbaIds[i], i);
+                gbaStates[i] = 0;
+            }
+            break;
+        case 0x09000000:
+        case 0x88000000:
+        case 0x8B100000:
+            if (gbaStates[i] != 1) {
+                gbaStates[i] = 1;
+            }
+            break;
+        case 0x80:
+        case 0x8:
+        default:
+            if (gbaStates[i] != 0) {
+                if (gbaIds[i] != -1) {
+                    fn_1_156730(i);
+                    gbaIds[i] = -1;
+                }
+                gbaStates[i] = 0;
+            }
+            break;
+        }
+    }
+
+    if (gbaIds[0] != -1 || gbaIds[1] != -1 || gbaIds[2] != -1 || gbaIds[3] != -1) {
+        fn_8006B470(src);
+        for (i = 0; i < 4; i++) {
+            if (src[i].err != -1) {
+                if (src[i].flags & 8) {
+                    gbaStates[i] = 3;
+                } else {
+                    gbaStates[i] = 2;
+                }
+                pads[i].button = src[i].button;
+                pads[i].stickX = src[i].b3;
+                pads[i].stickY = 0;
+                pads[i].substickX = 0;
+                pads[i].substickY = 0;
+                pads[i].triggerLeft = src[i].b7;
+                pads[i].triggerRight = src[i].b8;
+                if (src[i].flags & 8) {
+                    pads[i].analogA = lbl_1_rodata_9C.unk_0 * src[i].b4;
+                    pads[i].analogB = lbl_1_rodata_9C.unk_0 * src[i].b5;
+                } else {
+                    pads[i].analogA = 0;
+                    pads[i].analogB = 0;
+                }
+                pads[i].err = 0;
+            }
+        }
+    }
+
+    for (i = 0; i < 4; i++) {
+        if (pads[i].err == -3) {
+            if (old[i].err) {
+                fn_80008BEC(&pads[i], 0, 12);
+            } else {
+                lab_t2 = 12;
+                fn_80008BA8(&pads[i], &old[i], lab_t2);
+            }
+        }
+    }
+
+    padReady = 1;
+    for (i = 0; i < 4; i++) {
+        pads[i].button |= heldButtons[i];
+        heldButtons[i] = 0;
+    }
+    for (i = 0; i < 4; i++) {
+        if (pads[i].err == -1) {
+            resetBits |= 0x80000000 >> i;
+        }
+    }
+
+    if (recalBits != 0) {
+        bits = recalBits;
+        while (bits != 0) {
+            chan = __cntlzw(bits);
+            if (pads[chan].err) {
+                recalBits &= ~(0x80000000 >> chan);
+            }
+            bits &= ~(0x80000000 >> chan);
+        }
+        if (recalBits != 0) {
+            r = fn_8001CC64(recalBits);
+            t = (s32)(-r | r) >> 31;
+            r = resetBits | recalBits;
+            recalBits = 0;
+            resetBits = r & ~t;
+        }
+    }
+
+    if (resetBits != 0) {
+        if (fn_8001CB64(resetBits)) {
+            recalBits = resetBits;
+        }
+        resetBits = 0;
+    }
+
+    fn_1_D332C(pads);
+}
+#pragma opt_loop_invariants reset
+/* fzgx:end fn_1_1304 */
+
+/* fzgx:begin fn_1_17C8 pool noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "types.h"
+
+extern struct ArenaData lbl_1_data_8;
+extern u32 OSGetArenaLo(void);
+extern u32 OSGetArenaHi(void);
+extern void OSSetArenaLo(u32 arena_lo);
+extern u16 lbl_1_bss_990[28];
+extern u8 lbl_1_bss_D78;
+extern u8 lbl_1_bss_DA6;
+extern u32 lbl_1_bss_DB0[2];
+extern u32 lbl_1_bss_DA8;
+extern void fn_1_43A4(void);
+extern u32 lbl_1_data_2C70;
+extern void fn_80008E84(u32 value);
+extern u32 lbl_1_bss_DAC;
+extern struct fn_1_634_lbl_1_bss_54 lbl_1_bss_54;
+extern u32 fn_8006FFC4(u32);
+extern u32 fn_1_48780(void);
+extern u32 lbl_801A66B4;
+extern u32 lbl_801A66BC;
+extern struct fn_1_904_lbl_1_bss_4 lbl_1_bss_4;
+extern struct fn_1_914_lbl_1_bss_0 lbl_1_bss_0;
+extern u16 lbl_1_bss_96A;
+extern u32 fn_1_37E98(void);
+extern u32 lbl_1_bss_96C;
+extern u32 camera_set_state_flag(u32);
+extern u32 fn_1_D31E0(u32);
+extern struct fn_1_12B4_lbl_1_bss_962 lbl_1_bss_962;
+extern u32 lbl_1_data_2A20;
+extern u32 lbl_1_data_7C0;
+extern u32 fn_1_15659C(u32);
+extern u32 fn_80008BEC(void *, u32, u32);
+extern u8 lbl_1_bss_978[];
+extern u32 lbl_1_data_2B78;
+extern u32 OSGetTick(u32);
+extern u32 lbl_1_bss_D7C;
+extern u8 lbl_1_bss_DA4;
+extern char lbl_1_data_2C9C[20];
+extern char lbl_1_data_2CB0[31];
+extern void OSPanic(const char *message, int line, const char *file, ...);
+extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
+extern u32 fn_1_156754(u32);
+extern u32 fn_1_A5864(void);
+extern u32 fn_1_F7578(void);
+extern struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5;
+extern u32 fn_80008EC8(u32, u32, u32);
+extern u32 fn_800793D4(u32, u32, u32);
+extern struct fn_1_48B0_lbl_801A6CF8 lbl_801A6CF8;
+extern u32 lbl_801A6CFC;
+extern struct fn_1_44B4_lbl_1_bss_DB8 lbl_1_bss_DB8;
+extern struct fn_1_4438_lbl_1_bss_DC4 lbl_1_bss_DC4;
+extern u8 lbl_1_bss_8E6B0[308];
+extern void fn_1_14FCE4(void *data, s32 value);
+extern struct fn_1_798_slot lbl_1_bss_8E7E4[];
+extern u8 lbl_1_bss_AA0[336];
+extern u8 lbl_1_rodata_108[88];
+extern u32 fn_80008BA8(void *, void *, u32);
+extern void fn_1_3BDC(u32 arg0);
+extern u32 fn_1_3C18(s32);
+
+
+typedef struct {
+    s8 x;
+    s8 y;
+} StickPoint;
+
+/* Ideal octagonal gate of the control stick. */
+static const StickPoint lbl_1_rodata_70[8] = {
+    { 108, 0 }, { 108, 108 }, { 0, 108 }, { -108, 108 },
+    { -108, 0 }, { -108, -108 }, { 0, -108 }, { 108, -108 },
+};
+const u8 fzgx_rodata_80[0x28] = {
+    0x00, 0x10, 0x00, 0x04, 0x00, 0x20, 0x80, 0x00,
+    0x00, 0x20, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x08, 0x00, 0x3e, 0xc8, 0xc8, 0xc9,
+    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+void fn_1_17C8(s8 *outX, s8 *outY, StickPoint *gate, u8 *dz) {
+    s32 i;
+    for (i = 0; i < 8; i++) {
+        f32 inv;
+        f32 s;
+        f32 t;
+        s32 j = (i == 7) ? 0 : i + 1;
+        f32 x0 = gate[i].x;
+        f32 y0 = gate[i].y;
+        f32 x1 = gate[j].x;
+        f32 y1 = gate[j].y;
+        f32 det = (f32)(x0 * y1) - (f32)(x1 * y0);
+        s32 n;
+        s32 neg;
+        s32 q;
+        s32 c;
+        s32 sign;
+        if (__fabs(det) < 1.1920928955078125e-07) {
+            continue;
+        }
+        inv = 1.0f / det;
+        s = inv * ((f32)(y1 * *outX) - (f32)(x1 * *outY));
+        t = inv * ((f32)(-y0 * *outX) + (f32)(x0 * *outY));
+        if (s < 0.0f || t < 0.0f) {
+            continue;
+        }
+        n = (f32)(s * lbl_1_rodata_70[i].x) + (f32)(t * lbl_1_rodata_70[j].x);
+        neg = (u32)n >> 31;
+        q = ((__abs(n) - dz[0]) * 100) / (100 - dz[0]);
+        c = q < 0 ? 0 : (q > 100 ? 100 : q);
+        sign = neg ? -1 : 1;
+        *outX = sign * c;
+        n = (f32)(s * lbl_1_rodata_70[i].y) + (f32)(t * lbl_1_rodata_70[j].y);
+        neg = (u32)n >> 31;
+        q = ((__abs(n) - dz[1]) * 100) / (100 - dz[1]);
+        c = q < 0 ? 0 : (q > 100 ? 100 : q);
+        sign = neg ? -1 : 1;
+        *outY = sign * c;
+        return;
+    }
+}
+/* fzgx:end fn_1_17C8 */
+
 /* fzgx:begin fn_1_1ACC */
 #define CLAMP(x, l, h) (((x) < (l)) ? (l) : (((x) > (h)) ? (h) : (x)))
 
@@ -838,6 +1207,233 @@ u32 fn_1_1DF0(u16 *state, s8 *values, u32 flags) {
     return result;
 }
 /* fzgx:end fn_1_1DF0 */
+
+/* fzgx:begin fn_1_2F04 pool noprologue */
+typedef signed char s8;
+
+typedef signed long s32;
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+extern u8 lbl_1_data_2B78[];
+extern void fn_80008BEC(void *, int, u32);
+typedef struct {
+u8 pad0[10];
+s8 state;
+u8 padB;
+} Fn1_2F04_Slot;
+typedef struct {
+u16 enable0;
+u16 enable1;
+u16 pad4;
+u16 pad6;
+u16 held0;
+u16 held1;
+u16 padC;
+u16 padE;
+u16 out0;
+u16 out1;
+} Fn1_2F04_Bits;
+/* bit n of a mask word, as a rotate-and-mask */
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 lbl_1_bss_978[2];
+u32 lbl_1_bss_980[4];
+u32 lbl_1_bss_990[14];
+u8 lbl_1_bss_9C8;
+u8 lbl_1_bss_9C8_fill_9C9;
+u16 lbl_1_bss_9C8_fill_9CA;
+u32 lbl_1_bss_9C8_fill_9CC[11];
+u8 fzgx_obj_lbl_1_bss_9F8;
+u8 lbl_1_bss_9F8_fill_9F9;
+u16 lbl_1_bss_9F8_fill_9FA;
+u32 lbl_1_bss_9F8_fill_9FC[19];
+u8 fzgx_obj_lbl_1_bss_A48;
+u8 lbl_1_bss_A48_fill_A49;
+u16 lbl_1_bss_A48_fill_A4A;
+u32 lbl_1_bss_A48_fill_A4C[15];
+u32 fzgx_obj_lbl_1_bss_A88[6];
+u32 fzgx_obj_lbl_1_bss_AA0[84];
+u32 lbl_1_bss_BF0[32];
+u32 fzgx_obj_lbl_1_bss_C70[20];
+u32 lbl_1_bss_CC0;
+u8 lbl_1_bss_CC0_4;
+u8 lbl_1_bss_CC0_fill_CC5;
+u16 lbl_1_bss_CC0_fill_CC6;
+u32 lbl_1_bss_CC0_fill_CC8[12];
+u8 lbl_1_bss_CC0_38;
+u8 lbl_1_bss_CC0_fill_CF9;
+u16 lbl_1_bss_CC0_fill_CFA;
+u32 lbl_1_bss_CC0_fill_CFC[11];
+u8 lbl_1_bss_CC0_68;
+u8 lbl_1_bss_CC0_fill_D29;
+u16 lbl_1_bss_CC0_fill_D2A;
+u32 lbl_1_bss_CC0_fill_D2C[11];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&lbl_1_bss_978;
+    s = *(u8 *)&lbl_1_bss_980;
+    s = *(u8 *)&lbl_1_bss_990;
+    s = *(u8 *)&lbl_1_bss_9C8;
+    s = *(u8 *)&lbl_1_bss_9C8_fill_9C9;
+    s = *(u8 *)&lbl_1_bss_9C8_fill_9CA;
+    s = *(u8 *)&lbl_1_bss_9C8_fill_9CC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_9F8;
+    s = *(u8 *)&lbl_1_bss_9F8_fill_9F9;
+    s = *(u8 *)&lbl_1_bss_9F8_fill_9FA;
+    s = *(u8 *)&lbl_1_bss_9F8_fill_9FC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_A48;
+    s = *(u8 *)&lbl_1_bss_A48_fill_A49;
+    s = *(u8 *)&lbl_1_bss_A48_fill_A4A;
+    s = *(u8 *)&lbl_1_bss_A48_fill_A4C;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_A88;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_AA0;
+    s = *(u8 *)&lbl_1_bss_BF0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_C70;
+    s = *(u8 *)&lbl_1_bss_CC0;
+    s = *(u8 *)&lbl_1_bss_CC0_4;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_CC5;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_CC6;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_CC8;
+    s = *(u8 *)&lbl_1_bss_CC0_38;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_CF9;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_CFA;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_CFC;
+    s = *(u8 *)&lbl_1_bss_CC0_68;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_D29;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_D2A;
+    s = *(u8 *)&lbl_1_bss_CC0_fill_D2C;
+}
+#pragma section code_type ".text"
+
+void fn_1_2F04(void) {
+/* one-member carriers: each address is a single CSE'd materialisation */
+struct { Fn1_2F04_Slot *value; } slot;
+struct { u8 *value; } timer0;
+struct { u8 *value; } timer1;
+struct { u8 *value; } level_p;
+struct { u8 *value; } mode;
+Fn1_2F04_Bits *bits;
+s8 *axes;
+u32 i;
+u8 *t;
+s32 j;
+u32 sh;
+s32 held;
+u8 *t2;
+u8 *lv;
+u32 mask;
+s32 k;
+s32 held2;
+struct { u8 value; } cur;
+s32 sh2;
+u8 old;
+u8 level;
+bits = (Fn1_2F04_Bits *)((u8 *)&fzgx_obj_lbl_1_bss_9F8);
+axes = (s8 *)((u8 *)&fzgx_obj_lbl_1_bss_A48);
+slot.value = (Fn1_2F04_Slot *)((u8 *)&lbl_1_bss_9C8);
+timer0.value = (u8 *)&lbl_1_bss_CC0_4;
+timer1.value = (u8 *)&lbl_1_bss_CC0_38;
+level_p.value = (u8 *)&lbl_1_bss_CC0_68;
+mode.value = lbl_1_data_2B78;
+for (i = 0; i < 4; i++) {
+if (slot.value->state == -1) {
+fn_80008BEC(bits, 0, 20);
+} else {
+t = timer0.value;
+for (j = 0; j < 13; t++, j++) {
+sh = 31 - j;
+if (sh == 24) {
+continue;
+}
+if (__rlwnm((bits->held0), (32 - (j)) & 31, 31, 31) ) {
+*t = 0;
+held = 1;
+} else {
+held = 0;
+if (*t != 0) {
+(*t)--;
+}
+}
+if (*t != 0 || !__rlwnm((bits->enable0), (32 - (j)) & 31, 31, 31) ) {
+bits->out0 &= ~(0x80000000 >> sh);
+} else {
+if (held) {
+*t = 20;
+} else {
+*t = 4;
+}
+bits->out0 |= 0x80000000 >> sh;
+}
+}
+t2 = timer1.value;
+lv = level_p.value;
+for (k = 0; k < 12; t2++, lv++, k++) {
+if (__rlwnm((bits->held1), (32 - (k)) & 31, 31, 31) ) {
+*t2 = 0;
+held2 = 1;
+} else {
+held2 = 0;
+if (*t2 != 0) {
+(*t2)--;
+}
+}
+sh2 = 31 - k;
+mask = 0x80000000 >> sh2;
+bits->out1 &= ~mask;
+cur.value = *t2;
+if (cur.value == 0 && __rlwnm((bits->enable1), (32 - (k)) & 31, 31, 31) ) {
+old = *lv;
+switch (sh2) {
+case 31:
+case 30:
+level = __abs(axes[0]);
+break;
+case 29:
+case 28:
+level = __abs(axes[1]);
+break;
+case 27:
+case 26:
+level = __abs(axes[2]);
+break;
+case 25:
+case 24:
+level = __abs(axes[3]);
+break;
+default:
+level = 72;
+break;
+}
+*lv = level;
+if (held2) {
+*t2 = 20;
+} else if (level >= 30 && level >= old) {
+if (*mode.value == 1) {
+*t2 = (level * -4 + 340) / 13;
+} else {
+*t2 = (level * -17 + 1350) / 42;
+}
+} else {
+continue;
+}
+bits->out1 |= mask;
+}
+}
+}
+slot.value++;
+timer0.value += 13;
+timer1.value += 12;
+level_p.value += 12;
+mode.value++;
+bits++;
+axes += 16;
+}
+}
+/* fzgx:end fn_1_2F04 */
 
 /* fzgx:begin fn_1_3238 */
 void fn_1_3238(void) {

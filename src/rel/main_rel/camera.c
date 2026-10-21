@@ -3087,6 +3087,124 @@ void camera_snapshot(void) {
 }
 /* fzgx:end camera_snapshot */
 
+/* fzgx:begin fn_1_C3B8 pool noprologue */
+#include "types.h"
+
+typedef struct {
+    f32 x, y, z;
+} CamVec;
+
+typedef struct {
+    u32 unk_0;
+    CamVec pos;
+    CamVec at;
+    f32 unk_1C;
+    s16 unk_20;
+} CamKey;
+
+typedef struct {
+    s32 counter;
+    s32 state;
+    s32 total;
+    f32 rate;
+    u8 pad_10[0x30];
+} CamCtl;
+
+typedef struct {
+    f32 unk_0;
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+} CamSway;
+
+extern void lbl_8006D5A4(CamVec *a, CamVec *b, CamVec *out, f32 t);
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_1010;
+u8 lbl_1_bss_1014;
+u8 lbl_1_bss_1010_gap_1015;
+u16 lbl_1_bss_1010_gap_1015_fill_1016;
+CamKey fzgx_obj_camera_state;
+u32 lbl_1_bss_103C;
+u32 lbl_1_bss_1040;
+u32 lbl_1_bss_1044;
+u8 fzgx_obj_camera_flag_0;
+u8 fzgx_obj_camera_flag_1;
+u16 lbl_1_bss_1010_gap_104A;
+CamCtl lbl_1_bss_104C;
+u32 lbl_1_bss_108C[13];
+CamSway lbl_1_bss_10C0;
+CamKey fzgx_obj_lbl_1_bss_10D8[2];
+u32 lbl_1_bss_10D8_fill_1120[10];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
+    s = *(u8 *)&lbl_1_bss_1014;
+    s = *(u8 *)&lbl_1_bss_1010_gap_1015;
+    s = *(u8 *)&lbl_1_bss_1010_gap_1015_fill_1016;
+    s = *(u8 *)&fzgx_obj_camera_state;
+    s = *(u8 *)&lbl_1_bss_103C;
+    s = *(u8 *)&lbl_1_bss_1040;
+    s = *(u8 *)&lbl_1_bss_1044;
+    s = *(u8 *)&fzgx_obj_camera_flag_0;
+    s = *(u8 *)&fzgx_obj_camera_flag_1;
+    s = *(u8 *)&lbl_1_bss_1010_gap_104A;
+    s = *(u8 *)&lbl_1_bss_104C;
+    s = *(u8 *)&lbl_1_bss_108C;
+    s = *(u8 *)&lbl_1_bss_10C0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_10D8;
+    s = *(u8 *)&lbl_1_bss_10D8_fill_1120;
+}
+#pragma section code_type ".text"
+
+void fn_1_C3B8(void) {
+    CamKey from = fzgx_obj_lbl_1_bss_10D8[0];
+    CamKey to = fzgx_obj_lbl_1_bss_10D8[1];
+    f32 t;
+
+    switch (lbl_1_bss_104C.state) {
+    case 0:
+        t = (f32)lbl_1_bss_104C.counter / (f32)lbl_1_bss_104C.total;
+        lbl_8006D5A4(&from.pos, &to.pos, &fzgx_obj_camera_state.pos, t);
+        lbl_8006D5A4(&from.at, &to.at, &fzgx_obj_camera_state.at, t);
+        fzgx_obj_camera_state.unk_1C = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
+        fzgx_obj_camera_state.unk_20 = from.unk_20 + (s16)(t * (to.unk_20 - from.unk_20));
+        if (lbl_1_bss_104C.counter >= lbl_1_bss_104C.total) {
+            lbl_1_bss_1010_gap_1015 = 0;
+        }
+        break;
+    case 3:
+        lbl_1_bss_10C0.unk_8 -= 1.0f;
+        if (lbl_1_bss_10C0.unk_8 < lbl_1_bss_10C0.unk_C / 2.0f) {
+            lbl_1_bss_10C0.unk_10 -= lbl_1_bss_10C0.unk_14;
+        } else {
+            lbl_1_bss_10C0.unk_10 += lbl_1_bss_10C0.unk_14;
+        }
+        t = lbl_1_bss_10C0.unk_0 + lbl_1_bss_10C0.unk_10;
+        lbl_1_bss_10C0.unk_0 = t;
+        lbl_8006D5A4(&from.pos, &to.pos, &fzgx_obj_camera_state.pos, t);
+        lbl_8006D5A4(&from.at, &to.at, &fzgx_obj_camera_state.at, t);
+        fzgx_obj_camera_state.unk_1C = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
+        fzgx_obj_camera_state.unk_20 = from.unk_20 + (s16)(t * (to.unk_20 - from.unk_20));
+        if (lbl_1_bss_104C.counter >= lbl_1_bss_104C.total) {
+            lbl_1_bss_1010_gap_1015 = 0;
+        }
+        break;
+    case 2:
+        lbl_8006D5A4(&fzgx_obj_camera_state.pos, &to.pos, &fzgx_obj_camera_state.pos, lbl_1_bss_104C.rate);
+        lbl_8006D5A4(&fzgx_obj_camera_state.at, &to.at, &fzgx_obj_camera_state.at, lbl_1_bss_104C.rate);
+        fzgx_obj_camera_state.unk_1C += (f32)(lbl_1_bss_104C.rate * (to.unk_1C - fzgx_obj_camera_state.unk_1C));
+        fzgx_obj_camera_state.unk_20 += (s32)(lbl_1_bss_104C.rate * (to.unk_20 - fzgx_obj_camera_state.unk_20));
+        break;
+    }
+    lbl_1_bss_104C.counter++;
+}
+/* fzgx:end fn_1_C3B8 */
+
 /* fzgx:begin camera_get_state_object */
 // Returns the camera state object's base address.
 CameraState* camera_get_state_object(void) {

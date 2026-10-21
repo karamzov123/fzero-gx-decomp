@@ -647,3 +647,30 @@ rel/customize/_prolog/fn_3_48E0.c:
 
 rel/customize/customize/fn_3_BA74.c:
 	.text       start:0x0000BA74 end:0x0000BC60 align:4
+
+rel/customize/emblem/fn_3_13508.c:
+	.text       start:0x00013508 end:0x000137AC align:4
+
+rel/customize/emb_paste_editor/fn_3_12B14.c:
+	.text       start:0x00012B14 end:0x00012E4C align:4
+
+rel/customize/_prolog/fn_3_3AE8.c:
+	.text       start:0x00003AE8 end:0x00003E58 align:4
+
+rel/customize/customize/fn_3_B270.c:
+	.text       start:0x0000B270 end:0x0000B5FC align:4
+
+rel/customize/_prolog/fn_3_990C.c:
+	.text       start:0x0000990C end:0x00009CA8 align:4
+
+rel/customize/emb_paste_editor/fn_3_113AC.c:
+	.text       start:0x000113AC end:0x0001180C align:4
+
+rel/customize/toolkit/fn_3_1F958.c:
+	.text       start:0x0001F958 end:0x0001FF7C align:4
+
+rel/customize/_prolog/fn_3_83CC.c:
+	.text       start:0x000083CC end:0x00008A90 align:4
+
+rel/customize/toolkit/fn_3_24BC0.c:
+	.text       start:0x00024BC0 end:0x000255DC align:4

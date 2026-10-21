@@ -822,6 +822,213 @@ void fn_1_2FDBC(struct fn_1_2FDBC_arg *arg0) {
 }
 /* fzgx:end fn_1_2FDBC */
 
+/* fzgx:begin fn_1_31C3C pool noprologue */
+#include "types.h"
+
+typedef struct Record {
+    u32 time;      /* 0x00 */
+    u32 lap;       /* 0x04 */
+    u8 pad_8[0x10];
+    u16 speed;     /* 0x18 */
+    u8 c1A;
+    u8 c1B;
+    u8 c1C;
+    u8 c1D;
+    u8 c1E;
+    u8 c1F;
+} Record;
+
+typedef struct RecordTable {
+    Record ranking[10];  /* 0x000 */
+    Record bestLap;      /* 0x140 */
+    u16 maxSpeed;        /* 0x160 */
+    u8 s162;
+    u8 pad_163;
+    u8 s164;
+    u8 s165;
+    u8 s166;
+    u8 s167;
+    u8 s168;
+} RecordTable;
+
+typedef struct RaceResult {
+    u8 pad_0[0x18];
+    u16 speed[6];   /* 0x18 */
+    u32 time[5];    /* 0x24 */
+    u32 lap[5];     /* 0x38 */
+    u8 pad_4C[0x30];
+    u8 c7C;
+    u8 c7D;
+    u8 c7E;
+    u8 pad_7F;
+    u8 c80;
+    u8 c81;
+    u8 c82;
+} RaceResult;
+
+typedef struct GameState {
+    u8 pad_0[6];
+    u8 course;          /* 0x06 */
+    u8 pad_7[0xCD];
+    RaceResult result;  /* 0xD4 */
+    u8 pad_158[0x1444 - 0x158];
+    Record last;        /* 0x1444 */
+    u8 pad_1464[0x1508 - 0x1464];
+} GameState;
+
+typedef struct Obj5138 {
+    u16 mode;
+    u8 pad_2[0xE1];
+    u8 course;   /* 0xE3 */
+} Obj5138;
+
+typedef struct Obj801A66CC {
+    u8 pad_0[0x8B4];
+    u8 b8B4;
+    u8 b8B5;
+    u16 h8B6;
+} Obj801A66CC;
+
+typedef struct Obj8B3A0 {
+    u8 pad_0[0x90];
+    s16 unk_90;
+} Obj8B3A0;
+
+/* the TU's .bss, addressed off one section base */
+static u32 lbl_1_bss_3C00;
+static u32 fzgx_bss_gap00[0xB];
+static GameState lbl_1_bss_3C30;
+static Obj5138 lbl_1_bss_5138;
+static u32 fzgx_bss_gap0[(0x220D0 - 0x161C) / 4];
+static RecordTable *lbl_1_bss_25CD0;
+static u32 fzgx_bss_gap1[(0x22F08 - 0x220D4) / 4];
+static u32 lbl_1_bss_26B08;
+static u32 lbl_1_bss_26B0C;
+static u32 lbl_1_bss_26B10;
+
+extern Obj801A66CC *lbl_801A66CC;
+extern Obj8B3A0 lbl_1_bss_8B3A0;
+extern void fn_1_1554D0(void);
+extern s32 fn_1_1555B0(s32);
+extern void fn_1_155F9C(u32);
+extern void fn_1_155FA8(u32);
+extern s32 fn_1_F1B84(void);
+extern s32 fn_1_F2280(s32);
+extern void fn_1_F220C(s32);
+extern u32 fn_1_F2338(s32, u32);
+extern u32 ghost_test_record_flag0(s32);
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_order(void) {
+    volatile u32 s;  /* fzgx-allow: S2 layout primer sink */
+    s = lbl_1_bss_3C00;
+    s = fzgx_bss_gap00[0];
+    s = lbl_1_bss_3C30.course;
+    s = lbl_1_bss_5138.mode;
+    s = fzgx_bss_gap0[0];
+    s = (u32)lbl_1_bss_25CD0;
+    s = fzgx_bss_gap1[0];
+    s = lbl_1_bss_26B08;
+    s = lbl_1_bss_26B0C;
+    s = lbl_1_bss_26B10;
+}
+#pragma section code_type ".text"
+
+void fn_1_31C3C(u32 player) {
+    RaceResult *res = &lbl_1_bss_3C30.result;
+    u32 time = res->time[player];
+    u32 lap = res->lap[player];
+    u32 i;
+
+    for (i = 0; i < 10; i++) {
+        if (time < lbl_1_bss_25CD0->ranking[i].time) {
+            break;
+        }
+    }
+    lbl_1_bss_26B08 = i;
+
+    for (i = 9; i > lbl_1_bss_26B08; i--) {
+        lbl_1_bss_25CD0->ranking[i] = lbl_1_bss_25CD0->ranking[i - 1];
+    }
+
+    if (lbl_1_bss_26B08 < 10) {
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].time = time;
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].lap = lap;
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].speed = res->speed[player];
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].c1A = res->c82;
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].c1B = res->c80;
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].c1C = res->c81;
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].c1D = res->c7C;
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].c1E = res->c7D;
+        lbl_1_bss_25CD0->ranking[lbl_1_bss_26B08].c1F = res->c7E;
+    }
+
+    if (lap < lbl_1_bss_25CD0->bestLap.time) {
+        lbl_1_bss_26B0C = 1;
+        lbl_1_bss_25CD0->bestLap.time = lap;
+        lbl_1_bss_25CD0->bestLap.lap = lap;
+        lbl_1_bss_25CD0->bestLap.speed = res->speed[player];
+        lbl_1_bss_25CD0->bestLap.c1A = res->c82;
+        lbl_1_bss_25CD0->bestLap.c1B = res->c80;
+        lbl_1_bss_25CD0->bestLap.c1C = res->c81;
+        lbl_1_bss_25CD0->bestLap.c1D = res->c7C;
+        lbl_1_bss_25CD0->bestLap.c1E = res->c7D;
+        lbl_1_bss_25CD0->bestLap.c1F = res->c7E;
+    } else {
+        lbl_1_bss_26B0C = 0;
+    }
+
+    if (lbl_1_bss_25CD0->maxSpeed < res->speed[player]) {
+        lbl_1_bss_26B10 = 1;
+        lbl_1_bss_25CD0->maxSpeed = res->speed[player];
+        lbl_1_bss_25CD0->s162 = res->c82;
+        lbl_1_bss_25CD0->s164 = res->c80;
+        lbl_1_bss_25CD0->s165 = res->c81;
+        lbl_1_bss_25CD0->s166 = res->c7C;
+        lbl_1_bss_25CD0->s167 = res->c7D;
+        lbl_1_bss_25CD0->s168 = res->c7E;
+    } else {
+        lbl_1_bss_26B10 = 0;
+    }
+
+    lbl_1_bss_3C30.last.lap = lap;
+    lbl_1_bss_3C30.last.speed = res->speed[player];
+    lbl_1_bss_3C30.last.c1A = res->c82;
+    lbl_1_bss_3C30.last.c1B = res->c80;
+    lbl_1_bss_3C30.last.c1C = res->c81;
+    lbl_1_bss_3C30.last.c1D = res->c7C;
+    lbl_1_bss_3C30.last.c1E = res->c7D;
+    lbl_1_bss_3C30.last.c1F = res->c7E;
+    lbl_1_bss_3C30.last.time = ((lbl_801A66CC->b8B4 << 20) & 0xFF00000) | (lbl_801A66CC->b8B5 << 12) | lbl_801A66CC->h8B6;
+
+    fn_1_1554D0();
+    fn_1_1555B0(lbl_1_bss_8B3A0.unk_90);
+    if (lbl_1_bss_26B08 < 10) {
+        fn_1_155F9C(1);
+        fn_1_155FA8(lbl_1_bss_26B08);
+    } else {
+        fn_1_155F9C(0);
+        fn_1_155FA8(-1);
+    }
+
+    switch (fn_1_F1B84()) {
+    case 1:
+        if (fn_1_F2280(lbl_1_bss_3C30.course) == 0) {
+            lbl_1_bss_5138.mode = 25;
+            fn_1_F220C(lbl_1_bss_3C30.course);
+        }
+        break;
+    }
+
+    if (fn_1_F2338(lbl_1_bss_3C30.course, time) & 0xFF) {
+        if ((s32)ghost_test_record_flag0(lbl_1_bss_3C30.course) == 0) {
+            lbl_1_bss_5138.course = lbl_1_bss_3C30.course;
+            lbl_1_bss_5138.mode = 10;
+        }
+    }
+}
+/* fzgx:end fn_1_31C3C */
+
 /* fzgx:begin fn_1_32600 pool noprologue */
 #include "types.h"
 #include "rel/main_rel/game.h"

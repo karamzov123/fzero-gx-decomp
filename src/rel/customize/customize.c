@@ -97,6 +97,172 @@ void fn_3_ACF4(void) {
 }
 /* fzgx:end fn_3_ACF4 */
 
+/* fzgx:begin fn_3_B270 pool noprologue */
+#include "types.h"
+
+typedef struct Sig_fn_1_152CB4_Fn152CB4Cell {
+    s16 id;
+    u8 pad[2];
+    u32 flags;
+} Sig_fn_1_152CB4_Fn152CB4Cell;
+
+typedef struct {
+    u8 pad_0[0x8];
+    u16 hold;    /* 0x08 */
+    u8 pad_A[0x6];
+    volatile u16 trig;    /* 0x10 */  /* fzgx-allow: S2 retail rereads the trigger word at every test */
+    u16 rept;    /* 0x12 */
+} fn_3_B270_Pad;
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+} fn_3_B270_Obj0;
+
+typedef struct {
+    u8 pad_0[0xC4];
+    s16 scroll;  /* 0xC4 */
+    u8 pad_C6[0xA];
+} fn_3_B270_List;
+
+typedef struct {
+    u8 pad_0[0x6];
+    s16 port;    /* 0x06 */
+} fn_3_B270_Input;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+fn_3_B270_Obj0 fzgx_obj_lbl_3_bss_0;
+s32 fzgx_obj_lbl_3_bss_8;
+s32 fzgx_obj_lbl_3_bss_C;
+u32 fzgx_obj_lbl_3_bss_10[4];
+fn_3_B270_List fzgx_obj_lbl_3_bss_20;
+fn_3_B270_Input fzgx_obj_lbl_3_bss_F0;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_0;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_8;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_C;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_10;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_20;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    u8 pad_0[0x48F8];
+    u32 unk_48F8;
+} fn_3_B270_lbl_1_bss_7F0C0;
+
+extern s16 lbl_3_data_C4;
+extern fn_3_B270_Pad lbl_1_bss_9F8[];
+extern fn_3_B270_lbl_1_bss_7F0C0 lbl_1_bss_7F0C0;
+extern Sig_fn_1_152CB4_Fn152CB4Cell lbl_3_bss_2C584[][7];
+
+extern u32 fn_1_8D5F0(s16);
+extern s32 fn_1_F7EDC(s16);
+extern s16 fn_1_152CB4(s16, s16, s16, Sig_fn_1_152CB4_Fn152CB4Cell *, s16, s16);
+extern void fn_1_A2D84(u32);
+extern s32 fn_1_152970(s16 *, s16 *, s16, u32, Sig_fn_1_152CB4_Fn152CB4Cell *, s16, s16);
+extern s16 fn_1_8D640(s16);
+extern s32 fn_1_F7BE4(s16);
+extern void fn_1_F7CAC(s16);
+extern void fn_3_BD00(s16, s16, s16, u32);
+
+s32 fn_3_B270(void) {
+    s16 port;
+    s16 dx;
+    s16 dy;
+    s16 prev;
+    s32 found;
+    s16 i;
+    s16 row;
+    s16 col;
+    s16 sel;
+    s16 lo;
+    s16 hi;
+    u32 money;
+    s16 id;
+    s16 cost;
+    s16 row2;
+    s16 col2;
+    u16 *trig;
+
+    port = fzgx_obj_lbl_3_bss_F0.port;
+    prev = lbl_3_data_C4;
+    dx = 0;
+    dy = 0;
+    found = 0;
+    for (i = 0; i < 41; i++) {
+        if ((fn_1_8D5F0(i) & 0x10000000) && fn_1_F7EDC(i)) {
+            found = 1;
+            break;
+        }
+    }
+
+    if (((lbl_1_bss_9F8[port].trig >> 3) & 1) || ((lbl_1_bss_9F8[port].rept >> 3) & 1)) {
+        dx = -1;
+    }
+    if (((lbl_1_bss_9F8[port].trig >> 2) & 1) || ((lbl_1_bss_9F8[port].rept >> 2) & 1)) {
+        dx++;
+    }
+    if ((lbl_1_bss_9F8[port].trig & 1) || (lbl_1_bss_9F8[port].rept & 1)) {
+        dy = -1;
+    }
+    if (((lbl_1_bss_9F8[port].trig >> 1) & 1) || ((lbl_1_bss_9F8[port].rept >> 1) & 1)) {
+        dy++;
+    }
+
+    if (dy != 0 || dx != 0) {
+        lbl_3_data_C4 = fn_1_152CB4(lbl_3_data_C4, dx, dy, &lbl_3_bss_2C584[0][0], 7, 7);
+        if (!found) {
+            if (lbl_3_data_C4 == 24 && dx > 0 && prev == lbl_3_data_C4) {
+                lbl_3_data_C4 = 30;
+            }
+        } else {
+            if (((u16)(lbl_3_data_C4 - 34) <= 3 || lbl_3_data_C4 == 38) && dx > 0 && prev == lbl_3_data_C4) {
+                lbl_3_data_C4 = 40;
+            }
+        }
+    }
+
+    if (prev != lbl_3_data_C4) {
+        fn_1_A2D84(0xA9010000);
+    }
+    fn_1_152970(&row, &col, lbl_3_data_C4, 0, &lbl_3_bss_2C584[0][0], 7, 7);
+    lo = -fzgx_obj_lbl_3_bss_20.scroll;
+    hi = lo + 2;
+    if (row < lo || row > hi) {
+        fn_3_BD00(dx, 0, dx * 10, 0x800000);
+        fzgx_obj_lbl_3_bss_20.scroll -= dx;
+    }
+
+    if ((lbl_1_bss_9F8[port].hold >> 8) & 1) {
+        id = lbl_3_data_C4;
+        cost = fn_1_8D640(id);
+        if (fn_1_F7EDC(id) != 0 && fn_1_F7BE4(id) == 0 &&
+            (money = lbl_1_bss_7F0C0.unk_48F8) >= cost) {
+            lbl_1_bss_7F0C0.unk_48F8 = money - cost;
+            fn_1_F7CAC(id);
+            fzgx_obj_lbl_3_bss_8 = 1;
+            fn_1_152970(&row2, &col2, id, 0, &lbl_3_bss_2C584[0][0], 7, 7);
+            lbl_3_bss_2C584[row2][col2].flags |= 0x8000000;
+            fn_1_A2D84(0xA9010100);
+            fzgx_obj_lbl_3_bss_C = 1;
+        } else {
+            fn_1_A2D84(0xA9011400);
+        }
+    }
+
+    if ((lbl_1_bss_9F8[port].hold >> 9) & 1) {
+        fn_1_A2D84(0xA9010200);
+        return -1;
+    }
+    return 0;
+}
+/* fzgx:end fn_3_B270 */
+
 /* fzgx:begin fn_3_B5FC */
 void fn_3_B5FC(void) {
     u32 flags;

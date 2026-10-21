@@ -8339,3 +8339,75 @@ rel/main_rel/car/fn_1_80CC4.c:
 
 rel/main_rel/car/fn_1_86E08.c:
 	.text       start:0x00086E08 end:0x00087074 align:4
+
+rel/main_rel/driver/fn_1_A8FA0.c:
+	.text       start:0x000A8FA0 end:0x000A9250 align:4
+
+rel/main_rel/stcoli/fn_1_2D888.c:
+	.text       start:0x0002D888 end:0x0002DB50 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14B62C.c:
+	.text       start:0x0014B62C end:0x0014B8F8 align:4
+
+rel/main_rel/memcard/fn_1_B9904.c:
+	.text       start:0x000B9904 end:0x000B9BE0 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14AED4.c:
+	.text       start:0x0014AED4 end:0x0014B1B8 align:4
+
+rel/main_rel/_prolog/fn_1_17C8.c:
+	.text       start:0x000017C8 end:0x00001ACC align:4
+
+rel/main_rel/driver/fn_1_AAB98.c:
+	.text       start:0x000AAB98 end:0x000AAEB0 align:4
+
+rel/main_rel/_prolog/fn_1_2F04.c:
+	.text       start:0x00002F04 end:0x00003238 align:4
+
+rel/main_rel/screen_effect/fn_1_79948.c:
+	.text       start:0x00079948 end:0x00079C88 align:4
+
+rel/main_rel/ghost/fn_1_F23E8.c:
+	.text       start:0x000F23E8 end:0x000F2740 align:4
+
+rel/main_rel/sel_static_disp/fn_1_1461C8.c:
+	.text       start:0x001461C8 end:0x00146550 align:4
+
+rel/main_rel/stcoli/fn_1_38CF4.c:
+	.text       start:0x00038CF4 end:0x0003908C align:4
+
+rel/main_rel/camera/fn_1_C3B8.c:
+	.text       start:0x0000C3B8 end:0x0000C770 align:4
+
+rel/main_rel/sound/fn_1_A3654.c:
+	.text       start:0x000A3654 end:0x000A3A1C align:4
+
+rel/main_rel/effect_car/fn_1_6DD68.c:
+	.text       start:0x0006DD68 end:0x0006E140 align:4
+
+rel/main_rel/rob/fn_1_96230.c:
+	.text       start:0x00096230 end:0x00096630 align:4
+
+rel/main_rel/memcard/fn_1_C1394.c:
+	.text       start:0x000C1394 end:0x000C17CC align:4
+
+rel/main_rel/car/fn_1_83858.c:
+	.text       start:0x00083858 end:0x00083CB0 align:4
+
+rel/main_rel/game/fn_1_31C3C.c:
+	.text       start:0x00031C3C end:0x000320A4 align:4
+
+rel/main_rel/screen_effect/fn_1_7B558.c:
+	.text       start:0x0007B558 end:0x0007BA08 align:4
+
+rel/main_rel/driver/fn_1_AA6D8.c:
+	.text       start:0x000AA6D8 end:0x000AAB98 align:4
+
+rel/main_rel/_prolog/fn_1_1304.c:
+	.text       start:0x00001304 end:0x000017C8 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14A9D0.c:
+	.text       start:0x0014A9D0 end:0x0014AE94 align:4
+
+rel/main_rel/ghost/fn_1_EC910.c:
+	.text       start:0x000EC910 end:0x000ECDFC align:4

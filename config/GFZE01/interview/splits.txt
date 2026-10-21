@@ -185,3 +185,18 @@ rel/interview/interview/fn_17_849C.c:
 
 rel/interview/interview/fn_17_58E0.c:
 	.text       start:0x000058E0 end:0x00005C24 align:4
+
+rel/interview/interview/fn_17_456C.c:
+	.text       start:0x0000456C end:0x00004858 align:4
+
+rel/interview/interview/fn_17_6C8.c:
+	.text       start:0x000006C8 end:0x000009F8 align:4
+
+rel/interview/interview/fn_17_5C24.c:
+	.text       start:0x00005C24 end:0x00005FA8 align:4
+
+rel/interview/interview/fn_17_3410.c:
+	.text       start:0x00003410 end:0x000038C4 align:4
+
+rel/interview/interview/fn_17_613C.c:
+	.text       start:0x0000613C end:0x000065F4 align:4

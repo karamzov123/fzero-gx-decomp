@@ -326,3 +326,18 @@ rel/title/operation/fn_8_CC4C.c:
 
 rel/title/operation/fn_8_D630.c:
 	.text       start:0x0000D630 end:0x0000DD64 align:4
+
+rel/title/operation/fn_8_7C4C.c:
+	.text       start:0x00007C4C end:0x00007EFC align:4
+
+rel/title/operation/fn_8_71A8.c:
+	.text       start:0x000071A8 end:0x00007484 align:4
+
+rel/title/operation/fn_8_9FB4.c:
+	.text       start:0x00009FB4 end:0x0000A3A4 align:4
+
+rel/title/title/fn_8_EC4.c:
+	.text       start:0x00000EC4 end:0x00001304 align:4
+
+rel/title/operation/fn_8_9B44.c:
+	.text       start:0x00009B44 end:0x00009FB4 align:4

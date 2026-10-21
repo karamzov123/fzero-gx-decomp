@@ -8157,6 +8157,154 @@ void fn_1_B8E84(s32 card, u8 *out_flags, u32 *out_a, u32 *out_b) {
 }
 /* fzgx:end fn_1_B8E84 */
 
+/* fzgx:begin fn_1_B9904 pool noprologue */
+#include "types.h"
+
+typedef struct {
+    u8 type;
+    u8 pad_1[3];
+    u32 unk_4;
+    u32 flags;
+    u8 pad_C[4];
+    s32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u8 pad_20[0x6C];
+    void *unk_8C;
+    u8 pad_90[4];
+    void *unk_94;
+    u8 pad_98[0x44];
+    void *unk_DC;
+} MemcardWork;
+
+typedef struct {
+    u8 chan;
+    u8 pad_1;
+    u8 state;
+    u8 unk_3;
+    u8 unk_4;
+    u8 unk_5;
+    u8 unk_6;
+    u8 unk_7;
+    s16 unk_8;
+    s16 unk_A;
+    void *unk_C;
+    u8 pad_10[0x14];
+    MemcardWork *work;
+    u8 pad_28[2];
+    u8 unk_2A;
+    u8 pad_2B[5];
+    u32 unk_30;
+    f32 unk_34;
+    f32 unk_38;
+    s32 unk_3C;
+    u32 unk_40;
+    u8 pad_44[0x5C];
+} MemcardSlot;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u8 fzgx_obj_lbl_1_bss_716C0;
+u8 lbl_1_bss_716C0_fill_716C1;
+u16 lbl_1_bss_716C0_fill_716C2;
+u32 lbl_1_bss_716C0_fill_716C4;
+MemcardSlot fzgx_obj_lbl_1_bss_716C8[2];
+u32 lbl_1_bss_716C0_gap_71808[0x16B0];
+u8 fzgx_obj_lbl_1_bss_772C8;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_716C0;
+    s = *(u8 *)&lbl_1_bss_716C0_fill_716C1;
+    s = *(u8 *)&lbl_1_bss_716C0_fill_716C2;
+    s = *(u8 *)&lbl_1_bss_716C0_fill_716C4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_716C8;
+    s = *(u8 *)&lbl_1_bss_716C0_gap_71808;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_772C8;
+}
+#pragma section code_type ".text"
+
+extern u32 lbl_801A6410;
+extern char lbl_1_data_3C7B8[];
+extern u8 lbl_1_rodata_4AE0[];
+
+extern void *fn_1_4630(u32 heap, u32 size, const char *file, int line);
+extern void fn_1_46B4(u32 heap, void *ptr, const char *file, int line);
+extern void fn_1_AAF1C(MemcardSlot *slot);
+extern void fn_1_B6B28(void);
+extern s32 CARDUnmount(s32 chan);
+
+#define SLOT fzgx_obj_lbl_1_bss_716C8[idx]
+
+void fn_1_B9904(s32 idx, u8 state, s32 type, u32 arg3) {
+    MemcardWork *work;
+
+    SLOT.work = fn_1_4630(lbl_801A6410, 0xF0, lbl_1_data_3C7B8, 0x2744);
+    SLOT.state = state;
+    SLOT.work->unk_4 = arg3;
+    SLOT.work->type = type;
+    SLOT.work->unk_8C = lbl_1_rodata_4AE0 + type * 0x4C;
+    SLOT.work->unk_94 = fn_1_4630(lbl_801A6410, 0xF0, lbl_1_data_3C7B8, 0x2749);
+    SLOT.work->flags = 4;
+    fn_1_AAF1C(&SLOT);
+    SLOT.unk_A = -1;
+    fn_1_B6B28();
+
+    if (SLOT.unk_C != 0) {
+        while (CARDUnmount(SLOT.chan) == -1) {
+        }
+        fn_1_46B4(lbl_801A6410, SLOT.unk_C, lbl_1_data_3C7B8, 0x3C8);
+        SLOT.unk_7 = 0;
+        SLOT.unk_C = 0;
+        work = SLOT.work;
+        work->unk_1C = 0;
+        work->unk_18 = 0;
+    }
+    if (SLOT.work->flags & 0x80) {
+        SLOT.unk_3C = SLOT.work->unk_10 / 8192;
+        SLOT.unk_40 = SLOT.work->unk_14;
+    }
+    if (!(SLOT.work->flags & 0x20)) {
+        fn_1_46B4(lbl_801A6410, SLOT.work->unk_94, lbl_1_data_3C7B8, 0x3D4);
+    }
+    if (SLOT.state == 4) {
+        if (fzgx_obj_lbl_1_bss_716C0 != 0) {
+            void *tmp;
+            MemcardWork *w = SLOT.work;
+            tmp = w->unk_94;
+            w->unk_94 = w->unk_DC;
+            w->unk_DC = tmp;
+            fzgx_obj_lbl_1_bss_716C0 = 0;
+        }
+        if (SLOT.work->unk_DC != 0) {
+            fn_1_46B4(lbl_801A6410, SLOT.work->unk_DC, lbl_1_data_3C7B8, 0x3DE);
+            SLOT.work->unk_DC = 0;
+        }
+    }
+    fn_1_46B4(lbl_801A6410, SLOT.work, lbl_1_data_3C7B8, 0x3EC);
+    SLOT.work = 0;
+    SLOT.state = 0xFF;
+    SLOT.unk_3 = 0xFF;
+    SLOT.unk_4 = 0xFF;
+    SLOT.unk_5 = 0xFF;
+    SLOT.unk_6 = 0xFF;
+    SLOT.unk_7 = 0;
+    SLOT.unk_8 = -1;
+    SLOT.unk_A = -1;
+    SLOT.unk_30 = 0;
+    SLOT.unk_34 = 0.0f;
+    SLOT.unk_38 = 0.0f;
+    fzgx_obj_lbl_1_bss_772C8 = 0;
+    SLOT.unk_2A &= ~4;
+
+    if (SLOT.work != 0) {
+        fn_1_46B4(lbl_801A6410, SLOT.work, lbl_1_data_3C7B8, 0x2750);
+        SLOT.work = 0;
+    }
+}
+/* fzgx:end fn_1_B9904 */
+
 /* fzgx:begin fn_1_B9BE0 */
 void fn_1_B9BE0(void) {
     fn_1_B9C38(0);
@@ -11122,6 +11270,191 @@ void fn_1_C132C(Fn1C132CObject *object, u8 *data) {
     fn_1_AA6D8(5, (u8)object->unk16, local);
 }
 /* fzgx:end fn_1_C132C */
+
+/* fzgx:begin fn_1_C1394 pool noprologue */
+#include "types.h"
+
+typedef struct McEntry {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 pad_3[0x21];
+    u32 unk_24;
+    u32 unk_28;
+    u32 unk_2C;
+} McEntry;
+
+typedef struct McName {
+    u32 unk_0;
+    u32 unk_4;
+} McName;
+
+typedef struct McState {
+    u8 pad_0[5];
+    u8 unk_5;
+    u8 pad_6[0xE];
+    s8 unk_14;
+    u8 pad_15;
+    s16 unk_16;
+    s16 unk_18;
+    s16 unk_1A;
+    s16 unk_1C;
+    u8 unk_1E;
+    u8 unk_1F;
+    u8 pad_20[2];
+    u8 unk_22;
+    u8 pad_23[0x19];
+    u8 unk_3C;
+    u8 unk_3D;
+} McState;
+
+/* memcard.c .bss, in retail order: every object is addressed off the section base */
+u8 lbl_1_bss_716C0[0x8];
+u8 fzgx_obj_716C8[0x1EC];
+s32 lbl_1_bss_718B4;
+u8 lbl_1_bss_718B8;
+u8 fzgx_obj_718B9;
+u16 fzgx_obj_718BA;
+u8 fzgx_obj_718BC[0x5CC0 - 0x1FC];
+McEntry lbl_1_bss_77380[2][128];
+void *lbl_1_bss_7A380;
+u8 fzgx_obj_7A384[0x18];
+McName lbl_1_bss_7A39C[2][127];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&lbl_1_bss_716C0;
+    s = *(u8 *)&fzgx_obj_716C8;
+    s = *(u8 *)&lbl_1_bss_718B4;
+    s = *(u8 *)&lbl_1_bss_718B8;
+    s = *(u8 *)&fzgx_obj_718B9;
+    s = *(u8 *)&fzgx_obj_718BA;
+    s = *(u8 *)&fzgx_obj_718BC;
+    s = *(u8 *)&lbl_1_bss_77380;
+    s = *(u8 *)&lbl_1_bss_7A380;
+    s = *(u8 *)&fzgx_obj_7A384;
+    s = *(u8 *)&lbl_1_bss_7A39C;
+}
+#pragma section code_type ".text"
+
+extern void *lbl_801A6410;
+extern char lbl_1_data_3C7B8[];
+extern char lbl_1_data_3D108[];
+extern void OSReport(const char *, ...);
+extern void fn_1_46B4(void *, void *, const char *, int);
+extern void fn_1_C17CC(McState *, McEntry *, McEntry *);
+extern void fn_1_C17D0(McState *, McEntry *, McEntry *);
+extern void fn_1_C1ACC(McState *, McEntry *, McEntry *);
+extern void fn_1_BB974(McState *);
+
+/* sort the used entries of one card by their unk_28 key (bubble sort), names alongside */
+static inline void SortEntries(McEntry *entries, McName *names) {
+    McEntry tmp;
+    McName tmpName;
+    s32 j;
+    s32 i;
+    s32 count;
+
+    count = 0;
+    for (i = 0; i < 127; i++) {
+        if (entries[i].unk_24 != 0) {
+            count++;
+        }
+    }
+    for (i = 0; i < count - 1; i++) {
+        for (j = i + 1; j < count; j++) {
+            if (entries[i].unk_28 > entries[j].unk_28) {
+                tmp = entries[i];
+                entries[i] = entries[j];
+                entries[j] = tmp;
+                tmpName = names[i];
+                names[i] = names[j];
+                names[j] = tmpName;
+            }
+        }
+    }
+}
+
+void fn_1_C1394(McState *state) {
+    McEntry *src;
+    McEntry *dst;
+    struct { u32 value; } slot;
+    struct { u32 value; } card;
+
+    if (state->unk_16 != -1 && state->unk_18 != -1) {
+        src = &lbl_1_bss_77380[state->unk_16][state->unk_18];
+    } else {
+        src = NULL;
+    }
+    if (state->unk_1A != -1 && state->unk_1C != -1) {
+        dst = &lbl_1_bss_77380[state->unk_1A][state->unk_1C];
+    } else {
+        dst = NULL;
+    }
+    state->unk_16 = state->unk_1A;
+    state->unk_18 = 0;
+    state->unk_1A = -1;
+    state->unk_1C = -1;
+    state->unk_22 = 3;
+
+    if (lbl_1_bss_7A380 != NULL) {
+        fn_1_46B4(lbl_801A6410, lbl_1_bss_7A380, lbl_1_data_3C7B8, 0x3291);
+        lbl_1_bss_7A380 = NULL;
+    }
+
+    if ((s32)lbl_1_bss_718B8 == 0) {
+        OSReport(lbl_1_data_3D108, lbl_1_bss_718B4);
+        if (lbl_1_bss_718B4 == -123) {
+            card.value = state->unk_16;
+            for (slot.value = 0; (s32)slot.value < 127; slot.value++) {
+                if (lbl_1_bss_77380[card.value][slot.value].unk_2C != 0) {
+                    fn_1_46B4(lbl_801A6410, (void *)lbl_1_bss_77380[card.value][slot.value].unk_2C, lbl_1_data_3C7B8, 0x2776);
+                }
+                lbl_1_bss_77380[card.value][slot.value].unk_1 = 0;
+                lbl_1_bss_77380[card.value][slot.value].unk_2 = 0;
+                lbl_1_bss_77380[card.value][slot.value].unk_24 = 0;
+                lbl_1_bss_77380[card.value][slot.value].unk_28 = 0;
+                lbl_1_bss_77380[card.value][slot.value].unk_2C = 0;
+            }
+            state->unk_5 &= ~(1 << state->unk_16);
+            if (state->unk_16 == 0) {
+                state->unk_1E = 0;
+            }
+            if (state->unk_16 == 1) {
+                state->unk_1F = 0;
+            }
+        }
+        return;
+    }
+
+    switch (state->unk_14) {
+    case 1:
+        fn_1_C17CC(state, src, dst);
+        break;
+    case 2:
+        break;
+    case 4:
+        fn_1_C17D0(state, src, dst);
+        break;
+    case 8:
+        fn_1_C1ACC(state, src, dst);
+        break;
+    }
+
+    card.value = 0;
+    state->unk_3C = 0;
+    state->unk_3D = 0;
+    if ((s32)state->unk_3C != 1) {
+        fn_1_BB974(state);
+        return;
+    }
+
+    for (; (s32)card.value < 2; card.value++) {
+        SortEntries(lbl_1_bss_77380[card.value], lbl_1_bss_7A39C[card.value]);
+    }
+}
+/* fzgx:end fn_1_C1394 */
 
 /* fzgx:begin fn_1_C17CC */
 // fn_1_C17CC: empty in retail (single blr).

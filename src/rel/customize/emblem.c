@@ -132,6 +132,140 @@ void fn_3_1349C(void) {
 }
 /* fzgx:end fn_3_1349C */
 
+/* fzgx:begin fn_3_13508 pool noprologue */
+#include "types.h"
+
+/* lbl_1_bss_9F8: table of 0x14-byte entries with a u16 flag word at +8 */
+struct fn_3_13508_Entry { u16 unk_0; u8 pad_2[0x12]; };
+struct fn_3_13508_Table {
+    union {
+        struct { u8 pad_8[0x8]; struct fn_3_13508_Entry unk_8[1]; };
+        struct { u8 pad_0[0x8]; u16 flags; u8 pad_A[0xA]; } e[1];
+    };
+};
+extern struct fn_3_13508_Table lbl_1_bss_9F8;
+
+typedef struct lbl_3_bss_A17A0_t {
+    u32 flags;
+    u8 pad_4[0x10];
+    s16 unk_14;
+    u8 pad_16[0x12];
+    u8 unk_28;
+    u8 pad_29[0x3];
+} lbl_3_bss_A17A0_t;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 lbl_3_bss_A1768;
+u32 lbl_3_bss_A176C;
+u32 lbl_3_bss_A1770;
+u32 lbl_3_bss_A1774;
+u8 lbl_3_bss_A1778[8];
+u32 lbl_3_bss_A1780;
+u8 lbl_3_bss_A1784[0x14];
+u32 lbl_3_bss_A1798;
+u32 lbl_3_bss_A179C;
+lbl_3_bss_A17A0_t lbl_3_bss_A17A0;
+s16 lbl_3_bss_A17CC;
+u8 lbl_3_bss_A17D0[2];
+s16 lbl_3_bss_A17D2;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&lbl_3_bss_A1768;
+    s = *(u8 *)&lbl_3_bss_A176C;
+    s = *(u8 *)&lbl_3_bss_A1770;
+    s = *(u8 *)&lbl_3_bss_A1774;
+    s = *(u8 *)&lbl_3_bss_A1778;
+    s = *(u8 *)&lbl_3_bss_A1780;
+    s = *(u8 *)&lbl_3_bss_A1784;
+    s = *(u8 *)&lbl_3_bss_A1798;
+    s = *(u8 *)&lbl_3_bss_A179C;
+    s = *(u8 *)&lbl_3_bss_A17A0;
+    s = *(u8 *)&lbl_3_bss_A17CC;
+    s = *(u8 *)&lbl_3_bss_A17D0;
+    s = *(u8 *)&lbl_3_bss_A17D2;
+}
+#pragma section code_type ".text"
+
+extern s32 fn_1_1318B8(void);
+extern u8 fn_3_19C94(void);
+extern u32 fn_3_19CE0(void);
+extern void fn_3_19D50(void);
+extern void fn_3_18614(void);
+extern void fn_3_170E0(void);
+extern void fn_3_156D0(void);
+extern void fn_1_4A00(s32, u8, u32);
+extern void fn_1_A2D84(u32);
+
+void fn_3_13508(void) {
+    u32 flags;
+    s32 v;
+    u32 saved;
+
+    if (fn_1_1318B8() != 0) return;
+    if (lbl_3_bss_A17D0[0] != 0) return;
+    if (lbl_3_bss_A17D0[1] != 0) return;
+
+    if (lbl_3_bss_A17A0.flags & 0x40000000) {
+        fn_1_4A00(1, 15, lbl_3_bss_A1780);
+        lbl_3_bss_A17A0.flags &= ~0x40000000;
+        lbl_3_bss_A17D2 = 15;
+        lbl_3_bss_A17A0.flags |= 0x20000000;
+        return;
+    }
+
+    if (fn_3_19C94() != 16 && fn_3_19C94() != 15 && fn_3_19C94() != 11) {
+        flags = lbl_3_bss_A17A0.flags;
+        if (!__rlwnm(flags, 7, 31, 31)) {
+            if ((lbl_1_bss_9F8.unk_8[lbl_3_bss_A17A0.unk_28].unk_0 >> 11) & 1) {
+                if (flags & 0x80000000) {
+                    lbl_3_bss_A17A0.flags = flags & 0x7FFFFFFF;
+                } else {
+                    lbl_3_bss_A17A0.flags = flags | 0x80000000;
+                }
+            }
+            if ((lbl_1_bss_9F8.unk_8[lbl_3_bss_A17A0.unk_28].unk_0 >> 4) & 1) {
+                fn_1_A2D84(0xA9150600);
+                fn_3_19D50();
+            }
+        }
+    }
+
+    flags = lbl_3_bss_A17A0.flags;
+    if (__rlwnm(flags, 7, 31, 31)) {
+        if ((lbl_1_bss_9F8.e[lbl_3_bss_A17A0.unk_28].flags >> 9) & 1) {
+            lbl_3_bss_A17A0.flags = flags & ~0x02000000;
+        }
+        return;
+    }
+
+    if (((lbl_1_bss_9F8.e[lbl_3_bss_A17A0.unk_28].flags >> 12) & 1) &&
+        fn_3_19C94() != 16 && fn_3_19C94() != 15 &&
+        fn_3_19C94() != 17 && fn_3_19C94() != 12) {
+        lbl_3_bss_A17A0.flags |= 0x02000000;
+        return;
+    }
+
+    v = lbl_3_bss_A17A0.unk_14 + 1;
+    lbl_3_bss_A17A0.unk_14 = (v < 0) ? 0 : (v > 120 ? 120 : v);
+    if (lbl_3_bss_A17A0.flags & 0x60000000) return;
+
+    saved = fn_3_19CE0();
+    fn_3_18614();
+    if (fn_3_19C94() == 16 || fn_3_19C94() == 15 || fn_3_19C94() == 12 ||
+        fn_3_19C94() == 17 || fn_3_19C94() == 11) {
+        return;
+    }
+    if ((u8)saved != 0 && (u8)fn_3_19CE0() == 0) {
+        fn_3_170E0();
+    } else {
+        fn_3_156D0();
+        fn_3_170E0();
+    }
+}
+/* fzgx:end fn_3_13508 */
+
 /* fzgx:begin fn_3_137AC noprologue */
 #include "types.h"
 #include "font.h"
