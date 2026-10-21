@@ -2273,3 +2273,6 @@ rel/movie_module/fn_12_6FEC.c:
 
 rel/movie_module/fn_12_26D68.c:
 	.text       start:0x00026D68 end:0x000270AC align:4
+
+rel/movie_module/fn_12_335B8.c:
+	.text       start:0x000335B8 end:0x00033604 align:4

@@ -6389,3 +6389,15 @@ dol/fn_80068BFC.c:
 
 dol/fn_8005D5A4.c:
 	.text       start:0x8005D5A4 end:0x8005DB68 align:4
+
+dol/fn_80079D74.c:
+	.text       start:0x80079D74 end:0x80079E24 align:4
+
+dol/__div2u.c:
+	.text       start:0x800798F0 end:0x800799DC align:4
+
+dol/__mod2i.c:
+	.text       start:0x80079BF8 end:0x80079D04 align:4
+
+dol/__init_registers.c:
+	.init       start:0x800032B0 end:0x80003340 align:4

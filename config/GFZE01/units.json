@@ -12985,6 +12985,17 @@
   },
   {
     "module": "main",
+    "source": "dol/__div2u.c",
+    "symbols": [
+      "__div2u"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
     "source": "dol/__end_critical_region.c",
     "symbols": [
       "__end_critical_region"
@@ -13198,6 +13209,17 @@
   },
   {
     "module": "main",
+    "source": "dol/__init_registers.c",
+    "symbols": [
+      "__init_registers"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
     "source": "dol/__init_user.c",
     "symbols": [
       "__init_user"
@@ -13280,6 +13302,17 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/__mod2i.c",
+    "symbols": [
+      "__mod2i"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main",
@@ -28946,6 +28979,17 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80079D74.c",
+    "symbols": [
+      "fn_80079D74"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main",
@@ -70901,6 +70945,17 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_335B8.c",
+    "symbols": [
+      "fn_12_335B8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "movie_module",
