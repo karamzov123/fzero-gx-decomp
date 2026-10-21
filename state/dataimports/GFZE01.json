@@ -4626,6 +4626,33 @@
     "unit_size": 492,
     "unit_start": 267960
   },
+  "main_rel:lbl_1_data_4AA0": {
+    "address": 19104,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "LiveCameraPreset lbl_1_data_4AA0[55]",
+        "path": "include/rel/main_rel/live_camera.h"
+      }
+    ],
+    "definition": "LiveCameraPreset lbl_1_data_4AA0[55]",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_11C08",
+      "fn_1_11ABC"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 1760,
+    "sha256": "d582020822865e839459aaa87286869ccbae29f88303c3416251c7309f7b31c3",
+    "size": 1760,
+    "source": "rel/main_rel/data/lbl_1_data_4AA0.c",
+    "symbol": "lbl_1_data_4AA0",
+    "unit_align": 8,
+    "unit_size": 1760,
+    "unit_start": 19104
+  },
   "main_rel:lbl_1_data_67F0": {
     "address": 26608,
     "align": 8,

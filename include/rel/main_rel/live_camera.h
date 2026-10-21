@@ -137,6 +137,21 @@ extern u8 lbl_1_bss_1800[0x10];
 // lbl_1_data_4440: .data size 0x44, 2 refs from live_camera.c (own data block)
 extern u8 lbl_1_data_4440[0x44];
 
+/* fn_1_11ABC indexes this table in 0x20-byte steps and copies the
+ * first three words as a position vector. Retain the recovered word/float
+ * field types; the final four bytes of each entry are still uninterpreted. */
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    f32 unk_18;
+    u8 unk_1C[4];
+} LiveCameraPreset;
+
+/* Preserve the original whole-object view for saved reconstructions. */
 // lbl_1_data_4AA0: .data size 0x6E0, 2 refs from live_camera.c (own data block)
 typedef struct {
     u32 unk_0;  // 1 loads, 0 stores
@@ -148,7 +163,7 @@ typedef struct {
     f32 unk_18;  // 1 loads, 0 stores
     u8 pad_1C[0x6C4];
 } Obj_1_data_4AA0;
-extern Obj_1_data_4AA0 lbl_1_data_4AA0;
+extern LiveCameraPreset lbl_1_data_4AA0[55];
 
 // lbl_1_bss_17F8: .bss size 0x8, 2 refs from live_camera.c
 extern u32 lbl_1_bss_17F8;
