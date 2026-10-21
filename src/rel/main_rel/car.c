@@ -2313,6 +2313,69 @@ s8 fn_1_86690(s8 index) {
 }
 /* fzgx:end fn_1_86690 */
 
+/* fzgx:begin fn_1_866B4 noprologue */
+#include "types.h"
+
+struct fn_1_866B4_entry {
+    u8 pad_0[4];
+    s16 unk_4;
+    u8 pad_6[0x46E];
+    s8 unk_474;
+};
+struct fn_1_866B4_car {
+    u8 pad_0[0x32C];
+    struct fn_1_866B4_entry *unk_32C;
+    u8 pad_330[0x110];
+};
+struct fn_1_866B4_state {
+    u8 pad_0[0x1C];
+    struct fn_1_866B4_car *unk_1C;
+    u8 pad_20[0xA];
+    s8 unk_2A;
+    u8 pad_2B[0x1D];
+    u8 unk_48[1];
+};
+extern struct fn_1_866B4_state lbl_1_bss_6D820;
+
+#pragma opt_loop_invariants on
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+s32 fn_1_866B4(u32 arg0) {
+    s16 v6;
+    struct fn_1_866B4_state *state;
+    struct fn_1_866B4_car *v0;
+    s16 v1;
+    s8 v4;
+    s16 v2;
+
+    state = &lbl_1_bss_6D820;
+    v2 = 0;
+    v0 = state->unk_1C;
+    v1 = state->unk_2A;
+    while (v2 < v1) {
+        if ((s8)arg0 == ((v2)[v0]).unk_32C->unk_474) {
+            v4 = (s8)((v2)[v0]).unk_32C->unk_4;
+            return v4;
+        }
+        v2++;
+    }
+    {
+    s8 id;
+    id = (s8)arg0;
+    state = (struct fn_1_866B4_state *)((u8 *)state + 0x48);
+    v2 = 0;
+    while (v2 < v1) {
+        if (((u8 *)state)[id] == ((v2)[v0]).unk_32C->unk_4) {
+            return (s8)((v2)[v0]).unk_32C->unk_4;
+        }
+        v2++;
+    }
+    }
+    return -1;
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_866B4 */
+
 /* fzgx:begin fn_1_8677C */
 u32 fn_1_8677C(u32 arg0) {
     u32 v0;
