@@ -63749,6 +63749,16 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_298AC.c",
+    "symbols": [
+      "fn_12_298AC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_29FF8.c",
     "symbols": [
       "fn_12_29FF8"
