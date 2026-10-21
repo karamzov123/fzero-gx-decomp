@@ -8144,3 +8144,24 @@ rel/main_rel/bg_common/fn_1_10576C.c:
 
 rel/main_rel/font/fn_1_5233C.c:
 	.text       start:0x0005233C end:0x00052690 align:4
+
+rel/main_rel/stcoli/fn_1_22B10.c:
+	.text       start:0x00022B10 end:0x00022E8C align:4
+
+rel/main_rel/memcard/fn_1_BE978.c:
+	.text       start:0x000BE978 end:0x000BED04 align:4
+
+rel/main_rel/bg_for/fn_1_DD4DC.c:
+	.text       start:0x000DD4DC end:0x000DD890 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_CB028.c:
+	.text       start:0x000CB028 end:0x000CB404 align:4
+
+rel/main_rel/screen_effect/fn_1_7926C.c:
+	.text       start:0x0007926C end:0x00079654 align:4
+
+rel/main_rel/ptclput/fn_1_A0D7C.c:
+	.text       start:0x000A0D7C end:0x000A116C align:4
+
+rel/main_rel/sel_static_disp/fn_1_138E44.c:
+	.text       start:0x00138E44 end:0x0013923C align:4

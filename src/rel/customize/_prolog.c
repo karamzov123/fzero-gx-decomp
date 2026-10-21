@@ -1592,6 +1592,117 @@ void fn_3_4380(u32 arg0, u32 lab_unused0, u32 lab_unused1) {
 }
 /* fzgx:end fn_3_4380 */
 
+/* fzgx:begin fn_3_4538 */
+#include "rel/customize/globals.h"
+
+extern s16 lbl_3_data_C4;
+extern u32 fn_1_152CB4(s16, s32, s32, void *, s16, s16);
+extern u32 fn_1_8D5F0(s32);
+extern s32 fn_1_F7BE4(s32);
+typedef struct {
+    u8 pad_0[8];
+    u16 unk_8;
+    u8 pad_A[6];
+    volatile u16 unk_10; /* Volatile: retail rereads controller flags for each direction. */
+    volatile u16 unk_12; /* Volatile: retail rereads alternate controller flags for each direction. */
+} Controller;
+extern Controller lbl_1_bss_9F8[];
+extern u32 lbl_3_bss_2C584[98];
+extern void fn_1_A2D84(u32);
+extern s32 fn_1_152970(s16 *, s16 *, s16, u32, void *, s16, s16);
+extern void fn_3_7A08(s16 *, s16 *, int);
+extern void fn_3_BD00(u32, u32, u32, u32);
+extern s16 lbl_3_bss_20[104];
+extern u32 lbl_3_bss_243C0[8304];
+extern s32 fn_3_837C(s16);
+
+struct SaveRecord {
+    u8 pad_0[5];
+    u8 unk_5;
+    u8 pad_6[0x819A];
+    u8 machine;
+    u8 pad_81A1[0x1F];
+};
+#pragma opt_common_subs on
+
+s32 fn_3_4538(void) {
+    Obj_3_bss_F0 *p_lbl_3_bss_F0;
+    s32 v1;
+    s32 result;
+    s32 v7;
+    s32 v9;
+    s16 v2;
+    s16 v0;
+    s32 v4;
+    s32 v3;
+    s16 lo, hi, x, y;
+    p_lbl_3_bss_F0 = (Obj_3_bss_F0 *)&lbl_3_bss_F0;
+    v0 = lbl_3_data_C4;
+    v1 = p_lbl_3_bss_F0->unk_6;
+    v2 = p_lbl_3_bss_F0->unk_8;
+    result = 0;
+    v7 = 0;
+    v9 = 0;
+    v4 = 0;
+    for (v3 = 0; (s16)v3 < 41; v3++) {
+        if ((fn_1_8D5F0(v3) & 0x10000000) && fn_1_F7BE4(v3)) {
+            v4 = 1;
+            break;
+        }
+    }
+    if (((lbl_1_bss_9F8[v1].unk_10 >> 3) & 1) || ((lbl_1_bss_9F8[v1].unk_12 >> 3) & 1)) v7 = -1;
+    if (((lbl_1_bss_9F8[v1].unk_10 >> 2) & 1) || ((lbl_1_bss_9F8[v1].unk_12 >> 2) & 1)) v7++;
+    if ((lbl_1_bss_9F8[v1].unk_10 & 1) || (lbl_1_bss_9F8[v1].unk_12 & 1)) v9 = -1;
+    if (((lbl_1_bss_9F8[v1].unk_10 >> 1) & 1) || ((lbl_1_bss_9F8[v1].unk_12 >> 1) & 1)) v9++;
+    if ((s16)v9 != 0 || (s16)v7 != 0) {
+        s32 selected = fn_1_152CB4(lbl_3_data_C4, v7, v9, lbl_3_bss_2C584, 7, 7);
+        *(u16 *)&lbl_3_data_C4 = selected;
+        if (!v4) {
+            selected = (s16)selected;
+            if (((u16)(selected - 24) <= 2 || selected == 27) && (s16)v7 > 0 && v0 == selected)
+                lbl_3_data_C4 = 30;
+        } else {
+            if ((s16)selected == 34 && (s16)v7 > 0 && v0 == (s16)selected)
+                lbl_3_data_C4 = 40;
+        }
+    }
+    if (v0 != lbl_3_data_C4) fn_1_A2D84(0xA9010000);
+    fn_1_152970(&x, &y, lbl_3_data_C4, 0, lbl_3_bss_2C584, 7, 7);
+    fn_3_7A08(&lo, &hi, 3);
+    if (x < lo || x > hi) {
+        fn_3_BD00(v7, 0, (s16)(v7 * 10), 0x800000);
+        lbl_3_bss_20[98] -= v7;
+    }
+    if (fn_1_F7BE4(lbl_3_data_C4)) {
+        s16 selection = lbl_3_data_C4;
+        s32 offset = v2 * 0x81C0;
+        *(u8 *)((u32)&lbl_3_bss_140 + 0x81A0 + offset) = selection;
+        ((Obj_3_bss_140 *)((u8 *)&lbl_3_bss_140 + offset))->unk_5 = selection;
+    } else {
+        u8 selection = ((struct SaveRecord *)lbl_3_bss_243C0)->machine;
+        s32 offset = v2 * 0x81C0;
+        *(u8 *)((u32)&lbl_3_bss_140 + 0x81A0 + offset) = selection;
+        ((Obj_3_bss_140 *)((u8 *)&lbl_3_bss_140 + offset))->unk_5 = selection;
+    }
+    if (fn_1_F7BE4(lbl_3_data_C4) && fn_3_837C(p_lbl_3_bss_F0->unk_8) == 1) {
+        u16 *buttons = &lbl_1_bss_9F8[v1].unk_8;
+        /* First controller read is independent of the subsequent tests. */
+        if (((*(volatile u16 *)buttons >> 12) & 1) || ((*buttons >> 11) & 1)) {
+            result = 12;
+            fn_1_A2D84(0xA9010100);
+        } else if ((*buttons >> 8) & 1) {
+            result = 11;
+            fn_1_A2D84(0xA9010100);
+        }
+    }
+    if ((lbl_1_bss_9F8[v1].unk_8 >> 9) & 1) {
+        result = -1;
+        fn_1_A2D84(0xA9010200);
+    }
+    return result;
+}
+/* fzgx:end fn_3_4538 */
+
 /* fzgx:begin fn_3_4A84 */
 extern void fn_3_60C8(void);
 extern void fn_1_48140(int);

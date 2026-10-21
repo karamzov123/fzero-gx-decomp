@@ -1209,6 +1209,162 @@ void fn_1_CAEBC(s32 arg0, s32 arg1, s32 arg2) {
 }
 /* fzgx:end fn_1_CAEBC */
 
+/* fzgx:begin fn_1_CB028 noprologue */
+#include "types.h"
+#include "rel/main_rel/enemy_ctrl.h"
+
+typedef struct {
+    u8 r, g, b, a;
+} CB028Color;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 scaleX;
+    f32 scaleY;
+    f32 alpha;
+    u32 image;
+    s32 index;
+    CB028Color color;
+    CB028Color color2;
+} CB028Sprite;
+
+typedef struct {
+    u8 pad_0[3];
+    u8 unk_3;
+    u8 pad_4[4];
+    u8 count;
+    u8 pad_9[7];
+    u32 images[8];
+} CB028List;
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u8 unk_8;
+    u8 unk_9;
+    u8 unk_A;
+    u8 unk_B;
+} CB028Entry;
+
+extern s32 fn_1_5910(void);
+extern void *fn_1_15F618(s32);
+extern void fn_1_CB6D8(void *);
+extern const CB028Color lbl_1_rodata_5DF0;
+extern const CB028Color lbl_1_rodata_5DF4;
+extern const CB028Color lbl_1_rodata_5DF8;
+extern const CB028Color lbl_1_rodata_5DFC;
+extern const CB028Color lbl_1_rodata_5E00;
+extern const CB028Color lbl_1_rodata_5E04;
+extern const f32 lbl_1_rodata_5CFC;
+extern const f32 lbl_1_rodata_5D04;
+extern const f32 lbl_1_rodata_5E08;
+extern const f32 lbl_1_rodata_5E0C;
+extern const f32 lbl_1_rodata_5DD4;
+extern const f32 lbl_1_rodata_5E10;
+extern const f32 lbl_1_rodata_5CD8;
+
+void fn_1_CB028(s32 x, s32 y) {
+    CB028Color color;
+    CB028Sprite sprite;
+    CB028List *list;
+    CB028Entry *entry;
+    s32 i;
+    s32 skip;
+    u32 image;
+    f32 step;
+    f32 alpha;
+    f32 scale;
+    f32 shrink;
+    f32 fade;
+    s32 n;
+    s32 last;
+    s32 k;
+
+    scale = lbl_1_rodata_5CFC;
+    color = lbl_1_rodata_5DF0;
+    if ((((u32 *)&lbl_1_data_3D544)[fn_1_5910()] >> 24) & 1) {
+        list = fn_1_15F618(fn_1_5910());
+        entry = &((CB028Entry *)&lbl_1_bss_7ACA0)[fn_1_5910()];
+        alpha = lbl_1_rodata_5CFC - (f32)list->unk_3 / 15.0f;
+        n = list->count;
+        if (n < 1) {
+            return;
+        }
+        if (n > 4) {
+            skip = n - 4;
+            if (entry->unk_8 != 0) {
+                alpha = lbl_1_rodata_5CFC;
+                skip--;
+                scale = (f32)entry->unk_8 / 15.0f;
+            }
+            n = 4;
+        } else {
+            skip = 0;
+        }
+        sprite.x = (f32)x;
+        sprite.y = (f32)y;
+        sprite.scaleX = lbl_1_rodata_5E08;
+        sprite.scaleY = lbl_1_rodata_5E0C;
+        sprite.alpha = 1.0f;
+        sprite.index = -1;
+        sprite.color = lbl_1_rodata_5DF4;
+        sprite.color2 = lbl_1_rodata_5DF8;
+        if (entry->unk_8 != 0) {
+            entry->unk_8--;
+        }
+        last = n + skip;
+        image = list->images[--last % 8];
+        if (image == entry->unk_4) {
+            if (entry->unk_9 != last) {
+                entry->unk_A = entry->unk_9;
+                entry->unk_B = 60;
+                entry->unk_9 = last;
+            }
+            color = lbl_1_rodata_5DFC;
+        }
+        step = lbl_1_rodata_5DD4 * scale;
+        shrink = lbl_1_rodata_5E0C;
+        sprite.index = skip;
+        for (i = 0; i < n - 1; i++) {
+            k = i + skip;
+            sprite.image = list->images[k % 8];
+            if (i == 0) {
+                sprite.scaleY = scale;
+            } else {
+                sprite.scaleY = lbl_1_rodata_5CFC;
+            }
+            sprite.scaleY *= shrink;
+            if (entry->unk_9 == k) {
+                sprite.color2 = lbl_1_rodata_5E00;
+            } else if (entry->unk_A == k && entry->unk_B != 0) {
+                fade = lbl_1_rodata_5CFC - (f32)entry->unk_B / lbl_1_rodata_5E10;
+                fade *= lbl_1_rodata_5CD8;
+                sprite.color2.b = fade;
+                sprite.color2.r = 255;
+                sprite.color2.g = 255;
+            } else {
+                sprite.color2 = lbl_1_rodata_5E04;
+            }
+            fn_1_CB6D8(&sprite);
+            if (i == 0) {
+                sprite.y += step;
+            } else {
+                sprite.y += lbl_1_rodata_5DD4;
+            }
+            sprite.index++;
+        }
+        if (entry->unk_B != 0) {
+            entry->unk_B--;
+        }
+        sprite.image = image;
+        sprite.color2 = color;
+        sprite.alpha = alpha;
+        fn_1_CB6D8(&sprite);
+    }
+}
+/* fzgx:end fn_1_CB028 */
+
 /* fzgx:begin fn_1_CB404 */
 // Set the state flag for the selected enemy-control entry.
 void fn_1_CB404(u8 value) {

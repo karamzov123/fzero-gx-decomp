@@ -611,3 +611,15 @@ rel/customize/editor/fn_3_1683C.c:
 
 rel/customize/editor/fn_3_18614.c:
 	.text       start:0x00018614 end:0x00018960 align:4
+
+rel/customize/toolkit/fn_3_1BF08.c:
+	.text       start:0x0001BF08 end:0x0001C278 align:4
+
+rel/customize/_prolog/fn_3_4538.c:
+	.text       start:0x00004538 end:0x000048E0 align:4
+
+rel/customize/emb_paste_editor/fn_3_139F0.c:
+	.text       start:0x000139F0 end:0x00013D98 align:4
+
+rel/customize/toolkit/fn_3_1EC2C.c:
+	.text       start:0x0001EC2C end:0x0001EFE4 align:4

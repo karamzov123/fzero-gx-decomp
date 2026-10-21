@@ -6323,3 +6323,12 @@ dol/double2hex.c:
 
 dol/fn_8007698C.c:
 	.text       start:0x8007698C end:0x80076CD4 align:4
+
+dol/fn_80039E48.c:
+	.text       start:0x80039E48 end:0x8003A1CC align:4
+
+dol/fn_8003BE1C.c:
+	.text       start:0x8003BE1C end:0x8003C1A4 align:4
+
+dol/fn_80068EB4.c:
+	.text       start:0x80068EB4 end:0x800692A4 align:4

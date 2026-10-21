@@ -109,3 +109,126 @@ s32 fn_1_9F9A4(u32 arg0) {
     return 1;
 }
 /* fzgx:end fn_1_9F9A4 */
+
+/* fzgx:begin fn_1_A0D7C noprologue */
+#include "types.h"
+#include "dolphin/dvd.h"
+#include "rel/main_rel/ptclput.h"
+
+typedef struct Sig_DVDOpen_DVDFileInfo Sig_DVDOpen_DVDFileInfo;
+typedef void (*Sig_DVDOpen_DVDCallback)(s32 result, Sig_DVDOpen_DVDFileInfo *fileInfo);
+struct Sig_DVDOpen_DVDFileInfo {
+    DVDCommandBlock cb;
+    u32 startAddr;
+    u32 length;
+    Sig_DVDOpen_DVDCallback callback;
+};
+typedef struct Sig_fn_800174D0_Fn800174D0Object {
+    u8 pad30[0x30];
+    u32 field30;
+    u32 field34;
+    void *field38;
+} Sig_fn_800174D0_Fn800174D0Object;
+struct fn_1_A0D7C_lbl_801A6410 { u32 unk_0; };
+extern BOOL DVDOpen(const char *, Sig_DVDOpen_DVDFileInfo *);
+extern s16 lbl_1_bss_962;
+extern s32 DVDClose(DVDCommandBlock *);
+extern s32 fn_800658B4(s32, u32);
+extern struct fn_1_A0D7C_lbl_801A6410 lbl_801A6410;
+extern u32 fn_80006354(Sig_fn_800174D0_Fn800174D0Object *, void *, u32, u32);
+extern u32 fn_80066C14(void *, u32);
+extern char lbl_1_data_33F1C[8];
+extern void *fn_1_45D0(u32, u32, const char *, int);
+extern void fn_1_46B4(u32, void *, const char *, int);
+void fn_1_A0D7C(void) {
+    Sig_DVDOpen_DVDFileInfo loc_134;
+    Sig_DVDOpen_DVDFileInfo loc_F8;
+    Sig_DVDOpen_DVDFileInfo loc_BC;
+    Sig_DVDOpen_DVDFileInfo loc_80;
+    Sig_DVDOpen_DVDFileInfo loc_44;
+    Sig_DVDOpen_DVDFileInfo loc_8;
+    void *buffer_134;
+    u32 length_134;
+    u32 length_F8;
+    void *buffer_F8;
+    u32 length_BC;
+    void *buffer_BC;
+    u32 length_80;
+    void *buffer_80;
+    u32 length_44;
+    void *buffer_44;
+    u32 length_8;
+    void *buffer_8;
+    switch (*(s16 *)&lbl_1_bss_960) {
+    case 7:
+        DVDOpen((const char *)lbl_1_data_33F0C.unk_0, &loc_134);
+        length_134 = loc_134.length;
+        buffer_134 = fn_1_45D0(lbl_801A6410.unk_0, length_134 = (length_134 + 31) & ~31, lbl_1_data_33F1C, 766);
+        if (buffer_134) {
+            fn_80006354((Sig_fn_800174D0_Fn800174D0Object *)&loc_134, buffer_134, length_134, 0);
+            DVDClose((DVDCommandBlock *)&loc_134);
+            fn_80066C14(buffer_134, 0);
+            fn_1_46B4(lbl_801A6410.unk_0, buffer_134, lbl_1_data_33F1C, 791);
+        }
+        fn_800658B4(0xA4000000, 0);
+        break;
+    case 10:
+        DVDOpen((const char *)lbl_1_data_33F0C.unk_0, &loc_F8);
+        length_F8 = loc_F8.length;
+        buffer_F8 = fn_1_45D0(lbl_801A6410.unk_0, length_F8 = (length_F8 + 31) & ~31, lbl_1_data_33F1C, 766);
+        if (buffer_F8) {
+            fn_80006354((Sig_fn_800174D0_Fn800174D0Object *)&loc_F8, buffer_F8, length_F8, 0);
+            DVDClose((DVDCommandBlock *)&loc_F8);
+            fn_80066C14(buffer_F8, 0);
+            fn_1_46B4(lbl_801A6410.unk_0, buffer_F8, lbl_1_data_33F1C, 791);
+        }
+        fn_800658B4(0xA4000000, 0);
+        break;
+    case 2: case 8: case 9: case 12:
+        DVDOpen((const char *)lbl_1_data_33F0C.unk_4, &loc_BC);
+        length_BC = loc_BC.length;
+        buffer_BC = fn_1_45D0(lbl_801A6410.unk_0, length_BC = (length_BC + 31) & ~31, lbl_1_data_33F1C, 766);
+        if (buffer_BC) {
+            fn_80006354((Sig_fn_800174D0_Fn800174D0Object *)&loc_BC, buffer_BC, length_BC, 0);
+            DVDClose((DVDCommandBlock *)&loc_BC);
+            fn_80066C14(buffer_BC, 1);
+            fn_1_46B4(lbl_801A6410.unk_0, buffer_BC, lbl_1_data_33F1C, 791);
+        }
+        break;
+    case 1: case 5: case 13:
+        DVDOpen((const char *)lbl_1_data_33F0C.unk_8, &loc_80);
+        length_80 = loc_80.length;
+        buffer_80 = fn_1_45D0(lbl_801A6410.unk_0, length_80 = (length_80 + 31) & ~31, lbl_1_data_33F1C, 766);
+        if (buffer_80) {
+            fn_80006354((Sig_fn_800174D0_Fn800174D0Object *)&loc_80, buffer_80, length_80, 0);
+            DVDClose((DVDCommandBlock *)&loc_80);
+            fn_80066C14(buffer_80, 2);
+            fn_1_46B4(lbl_801A6410.unk_0, buffer_80, lbl_1_data_33F1C, 791);
+        }
+        break;
+    case 4:
+        if ((s16)lbl_1_bss_962 == 61) break;
+        DVDOpen((const char *)lbl_1_data_33F0C.unk_C, &loc_44);
+        length_44 = loc_44.length;
+        buffer_44 = fn_1_45D0(lbl_801A6410.unk_0, length_44 = (length_44 + 31) & ~31, lbl_1_data_33F1C, 766);
+        if (buffer_44) {
+            fn_80006354((Sig_fn_800174D0_Fn800174D0Object *)&loc_44, buffer_44, length_44, 0);
+            DVDClose((DVDCommandBlock *)&loc_44);
+            fn_80066C14(buffer_44, 3);
+            fn_1_46B4(lbl_801A6410.unk_0, buffer_44, lbl_1_data_33F1C, 791);
+        }
+        break;
+    case 14: case 16:
+        DVDOpen((const char *)lbl_1_data_33F0C.unk_C, &loc_8);
+        length_8 = loc_8.length;
+        buffer_8 = fn_1_45D0(lbl_801A6410.unk_0, length_8 = (length_8 + 31) & ~31, lbl_1_data_33F1C, 766);
+        if (buffer_8) {
+            fn_80006354((Sig_fn_800174D0_Fn800174D0Object *)&loc_8, buffer_8, length_8, 0);
+            DVDClose((DVDCommandBlock *)&loc_8);
+            fn_80066C14(buffer_8, 3);
+            fn_1_46B4(lbl_801A6410.unk_0, buffer_8, lbl_1_data_33F1C, 791);
+        }
+        break;
+    }
+}
+/* fzgx:end fn_1_A0D7C */

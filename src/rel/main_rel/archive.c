@@ -1717,6 +1717,219 @@ void fn_1_12D354(void *arg0, void *arg1, void *arg2) {
 }
 /* fzgx:end fn_1_12D354 */
 
+/* fzgx:begin fn_1_12E0B8 noprologue */
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef struct {
+u8 pad_0[0x19];
+u8 unk_19;
+} Obj_1_bss_8B3A0_AtA4;
+typedef struct {
+s16 unk_0;
+u8 pad_2[0x2];
+s16 unk_4;
+u8 pad_6[0x2];
+s16 unk_8;
+u8 pad_A[0x4];
+s16 unk_E;
+u8 pad_10[0x4];
+u8 unk_14;
+u8 pad_15[0x19];
+s16 unk_2E;
+u8 pad_30[0x5C];
+s16 unk_8C;
+u8 pad_8E[0x2];
+s16 unk_90;
+s16 unk_92;
+u32 unk_94;
+u8 pad_98[0x6];
+u8 unk_9E;
+u8 unk_9F;
+u8 pad_A0[0x4];
+Obj_1_bss_8B3A0_AtA4 *unk_A4;
+u8 pad_A8[0x8];
+s16 unk_B0;
+s16 unk_B2;
+u8 pad_B4[0xC];
+s16 unk_C0;
+s16 unk_C2;
+u8 pad_C4[0xC];
+s16 unk_D0;
+s16 unk_D2;
+u8 pad_D4[0xC];
+u32 unk_E0;
+u32 unk_E4;
+u32 unk_E8;
+u32 unk_EC;
+u32 unk_F0;
+u32 unk_F4;
+u32 unk_F8;
+u32 unk_FC;
+u32 unk_100;
+u32 unk_104;
+u32 unk_108;
+u32 unk_10C;
+u32 unk_110;
+u32 unk_114;
+u32 unk_118;
+u32 unk_11C;
+u32 unk_120;
+u32 unk_124;
+u8 unk_128;
+u8 unk_129;
+u8 pad_12A[0x2];
+s16 unk_12C;
+s16 unk_12E;
+s16 unk_130;
+s16 unk_132;
+s16 unk_134;
+s16 unk_136;
+s16 unk_138;
+s16 unk_13A;
+s16 unk_13C;
+u8 pad_13E[0x2];
+u32 unk_140;
+u8 pad_144[0x2];
+s16 unk_146;
+s16 unk_148;
+u8 pad_14A[0x2];
+} Obj_1_bss_8B3A0;
+extern Obj_1_bss_8B3A0 lbl_1_bss_8B3A0;
+
+
+extern u8 lbl_1_data_40BA0[0x10];
+
+
+typedef struct Sig_fn_1_41488_Fn41488Data {
+u32 count;
+char *strings;
+} Sig_fn_1_41488_Fn41488Data;
+
+
+typedef struct {
+u8 pad_0[0x24];
+Sig_fn_1_41488_Fn41488Data *strings;
+} Fn12E0B8_Names;
+typedef struct {
+u8 pad_0[0x18];
+u32 flags;
+u8 pad_1C[0x148 - 0x1C];
+u8 event[0x8];
+Fn12E0B8_Names *names;
+u8 pad_154[0x4E0 - 0x154];
+} Fn12E0B8_Car;
+typedef struct {
+u8 pad_0[0x5];
+u8 id;
+u8 pad_6[0x81A0 - 0x6];
+u8 kind;
+u8 pad_81A1[0x81C0 - 0x81A1];
+} Fn12E0B8_Entry;
+
+
+extern int fn_1_41488(Sig_fn_1_41488_Fn41488Data *, const char *);
+extern void fn_1_933D8(Fn12E0B8_Car *, void *, u16);
+
+
+extern void * fn_1_12F118(void);
+extern u8* fn_1_36AD0(void);
+extern u32 fn_1_95120(void *arg);
+
+
+static inline s16 fn_1_12E0B8_kind(s16 id) {
+Fn12E0B8_Entry *entries;
+s16 j;
+if (id < 0x29) {
+return id;
+}
+entries = (Fn12E0B8_Entry *)fn_1_12F118();
+if (entries == ((void *)0) ) {
+return 6;
+}
+if (entries != (Fn12E0B8_Entry *)fn_1_36AD0()) {
+for (j = 0; j < 9; j++) {
+if (id == entries[j].id) {
+return entries[j].kind;
+}
+}
+} else {
+if (id >= 0x32 && id <= 0x35) {
+return entries[id - 0x32].kind;
+}
+if (id >= 0x36 && id <= 0x39) {
+return entries[id - 0x36].kind;
+}
+for (j = 0; j < 4; j++) {
+if (id == entries[j].id) {
+return entries[j].kind;
+}
+}
+}
+return 6;
+}
+static inline s16 fn_1_12E0B8_count(s16 id) {
+switch (fn_1_12E0B8_kind(id)) {
+case 0x15:
+return 1;
+case 0x21:
+return 2;
+default:
+return 0;
+}
+}
+static inline u32 fn_1_12E0B8_pick(s16 slot, Fn12E0B8_Car *car, const char **names, u32 index, Obj_1_bss_8B3A0 *mgr) {
+u8 table8[8] = { 0, 0, 0, 1, 0, 0, 0, 2 };
+u8 table3[3] = { 1, 0, 2 };
+u32 cnt;
+if ((u8)index == 1) {
+index = fn_1_41488(car->names->strings, names[0]);
+} else {
+do {
+if (mgr->unk_94 & 0x40000000) {
+index = fn_1_41488(car->names->strings, names[table3[((u32 *)lbl_1_data_40BA0)[slot] % 3]]);
+cnt = ((u32 *)lbl_1_data_40BA0)[slot] + 1;
+((u32 *)lbl_1_data_40BA0)[slot] = (cnt > 3) ? 0 : cnt;
+} else {
+index = fn_1_41488(car->names->strings, names[table8[((u32 *)lbl_1_data_40BA0)[slot] % 8]]);
+cnt = ((u32 *)lbl_1_data_40BA0)[slot] + 1;
+((u32 *)lbl_1_data_40BA0)[slot] = (cnt > 8) ? 0 : cnt;
+}
+} while (index == 0xFFFFFFFF);
+}
+return index;
+}
+void fn_1_12E0B8(s16 slot, s16 id, Fn12E0B8_Car *car, Fn12E0B8_Car *others, s32 check, const char **names, u32 index) {
+Obj_1_bss_8B3A0 *mgr;
+s16 i;
+if (id == -1 || car == ((void *)0) ) {
+return;
+}
+mgr = &lbl_1_bss_8B3A0;
+if (mgr->unk_94 & 0x80000000) {
+return;
+}
+if (check == 1) {
+if ((s32)fn_1_95120(car->event) == 0) {
+return;
+}
+}
+index = fn_1_12E0B8_pick(slot, car, names, index, mgr);
+fn_1_933D8(car, car->event, index);
+car->flags &= 0x7FFFFFFF;
+for (i = 0; i < fn_1_12E0B8_count(id); i++) {
+fn_1_933D8(&others[i], others[i].event, index);
+others[i].flags &= 0x7FFFFFFF;
+}
+}
+/* fzgx:end fn_1_12E0B8 */
+
 /* fzgx:begin fn_1_12E424 */
 // Reports whether the archive state is active, otherwise querying the supplied entry.
 u8 fn_1_12E424(void *arg0, u8 *arg1) {

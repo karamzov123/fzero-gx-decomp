@@ -205,6 +205,194 @@ void fn_1_DCF54(fn_1_DCF54_Vec3 *a, fn_1_DCF54_Vec3 *b, fn_1_DCF54_Vec3 *c) {
 }
 /* fzgx:end fn_1_DCF54 */
 
+/* fzgx:begin fn_1_DD4DC noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_for.h"
+#include "types.h"
+#include "rel/main_rel/bg_for.h"
+
+extern void OSPanic(const char *, int, const char *, ...);
+extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DD14(void *, void *);
+extern void fn_1_A7024(f32, f32, f32, f32);
+extern void fn_8006F1F0(void *, void *, void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DCDC(void);
+extern void lbl_8006DB30(void);
+extern void fn_1_E1408(void *, void *);
+
+
+#pragma fp_contract on
+
+extern f32 lbl_1_rodata_6780[10];
+extern void fn_1_E57F4(void *, f32);
+extern void fn_1_556B8(void *);
+extern f32 fn_1_56298(f32, f32, f32, f32);
+extern void fn_1_DCFA4(void *);
+extern void fn_1_55FF0(f32);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DFE8(void *);
+extern void fn_8006EE70(const void *, s16 *);
+extern void mathutil_mtxA_rotate_z(u32);
+extern void mathutil_mtxA_rotate_y(u32);
+extern void mathutil_mtxA_rotate_x(u32);
+extern void lbl_8006E15C(f32, f32, f32);
+extern void fn_80072558(void);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E14C(f32);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006DB74(void *);
+
+typedef struct { f32 x, y, z; } DDVec;
+typedef struct { f32 m[3][4]; } DDMtx;
+typedef struct {
+    u8 pad0[8];
+    s16 unk8;
+    u8 padA[0x22];
+    DDVec v2C;
+    u8 pad38[0xC];
+    DDVec v44;
+    f32 f50;
+    u8 pad54[0x18];
+    DDVec v6C;
+    u8 pad78[0x10];
+    DDVec v88;
+    u8 pad94[0x30];
+    DDMtx mC4;
+    u8 padF4[0x1C];
+    DDMtx m110;
+} DDObj;
+typedef struct {
+    u8 pad0[0x20];
+    void *p20;
+    u8 pad24[4];
+    void *p28;
+    u8 pad2C[0xC];
+    void *p38;
+} DDModels;
+
+#pragma fp_contract on
+#pragma opt_propagation off
+void fn_1_DD4DC(DDObj *obj) {
+    f32 *pool = lbl_1_rodata_6780;
+    DDMtx matrix;
+    s16 angle1[3];
+    s16 angle2[3];
+    s16 angle3[3];
+    f32 magnitude;
+    f32 scaled;
+    f32 limit;
+    fn_1_E57F4(obj, pool[8]);
+    if (obj->unk8 > 100) return;
+    lbl_8006D784(&matrix);
+    lbl_8006DBAC(&obj->mC4);
+    {
+        f32 z, y, x;
+        x = *(f32 *)(0xE000000C);
+        y = *(f32 *)(0xE000001C);
+        z = *(f32 *)(0xE000002C);
+        matrix.m[0][3] = x;
+        matrix.m[1][3] = y;
+        matrix.m[2][3] = z;
+    }
+    lbl_8006DFE8(&matrix);
+    magnitude = obj->f50;
+    if (!(__fabs(magnitude) < *(f64 *)((u8 *)pool + 0x18))) {
+        fn_8006EE70(&obj->v44, angle1);
+        mathutil_mtxA_rotate_z(angle1[2]);
+        mathutil_mtxA_rotate_y(angle1[1]);
+        mathutil_mtxA_rotate_x(angle1[0]);
+        scaled = pool[9] * magnitude;
+        limit = scaled < pool[8] ? pool[8] : scaled > pool[9] ? pool[9] : scaled;
+        lbl_8006E15C(pool[10], pool[10], limit);
+        fn_80072558();
+        fn_1_556B8(((DDModels *)lbl_1_bss_38454->unk_8)->p38);
+    }
+    fn_1_56298(pool[10], pool[10], pool[8], pool[10]);
+    lbl_8006DFE8(&matrix);
+    {
+        f32 sum;
+        f32 y;
+        f32 x;
+        x = obj->v2C.x;
+        y = obj->v2C.y;
+        sum = x * x;
+        sum = __fmadds(y, y, sum);
+        sum = __fmadds(obj->v2C.z, obj->v2C.z, sum);
+        magnitude = lbl_8006D0B4(sum);
+    }
+    if (!(__fabs(magnitude) < *(f64 *)((u8 *)pool + 0x18))) {
+        fn_8006EE70(&obj->v2C, angle2);
+        mathutil_mtxA_rotate_z(angle2[2]);
+        mathutil_mtxA_rotate_y(angle2[1]);
+        mathutil_mtxA_rotate_x(angle2[0]);
+        scaled = pool[9] * magnitude;
+        limit = scaled < pool[8] ? pool[8] : scaled > pool[9] ? pool[9] : scaled;
+        lbl_8006E15C(pool[10], pool[10], limit);
+        fn_80072558();
+        fn_1_556B8(((DDModels *)lbl_1_bss_38454->unk_8)->p38);
+    }
+    fn_1_56298(pool[8], pool[8], pool[8], pool[8]);
+    fn_1_DCFA4(obj);
+    lbl_8006D784(&matrix);
+    lbl_8006DBAC(&obj->mC4);
+    {
+        f32 z, y, x;
+        x = *(f32 *)(0xE000000C);
+        y = *(f32 *)(0xE000001C);
+        z = *(f32 *)(0xE000002C);
+        matrix.m[0][3] = x;
+        matrix.m[1][3] = y;
+        matrix.m[2][3] = z;
+    }
+    lbl_8006DFE8(&matrix);
+    fn_1_56298(pool[8], pool[10], pool[8], pool[8]);
+    {
+        f32 sum;
+        f32 y;
+        f32 x;
+        x = obj->v6C.x;
+        y = obj->v6C.y;
+        sum = x * x;
+        sum = __fmadds(y, y, sum);
+        sum = __fmadds(obj->v6C.z, obj->v6C.z, sum);
+        magnitude = lbl_8006D0B4(sum);
+    }
+    if (!(__fabs(magnitude) < *(f64 *)((u8 *)pool + 0x18))) {
+        fn_8006EE70(&obj->v6C, angle3);
+        mathutil_mtxA_rotate_z(angle3[2]);
+        mathutil_mtxA_rotate_y(angle3[1]);
+        mathutil_mtxA_rotate_x(angle3[0]);
+        scaled = pool[9] * magnitude;
+        limit = scaled < pool[8] ? pool[8] : scaled > pool[9] ? pool[9] : scaled;
+        lbl_8006E15C(pool[10], pool[10], limit);
+        fn_80072558();
+        fn_1_556B8(((DDModels *)lbl_1_bss_38454->unk_8)->p38);
+    }
+    fn_1_56298(pool[8], pool[8], pool[8], pool[8]);
+    lbl_8006DFE8(&obj->mC4);
+    lbl_8006E0A4(&obj->v88);
+    lbl_8006E14C(pool[12]);
+    fn_80072558();
+    fn_1_55FF0(pool[13]);
+    fn_1_56298(pool[10], pool[8], pool[8], pool[8]);
+    fn_1_556B8(((DDModels *)lbl_1_bss_38454->unk_8)->p20);
+    fn_1_56298(pool[8], pool[8], pool[8], pool[8]);
+    lbl_8006D784(&matrix);
+    lbl_8006D7DC(&obj->m110);
+    lbl_8006DB74(&matrix);
+    lbl_8006DFE8(&matrix);
+    mathutil_mtxA_rotate_x(0xC000);
+    lbl_8006E14C(pool[14]);
+    fn_80072558();
+    fn_1_556B8(((DDModels *)lbl_1_bss_38454->unk_8)->p28);
+}
+/* fzgx:end fn_1_DD4DC */
+
 /* fzgx:begin fn_1_DE9C4 noprologue */
 #include "types.h"
 #include "rel/main_rel/bg_for.h"

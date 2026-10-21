@@ -396,3 +396,208 @@ void fn_3_130A8(void) {
     state->value1c = 0;
 }
 /* fzgx:end fn_3_130A8 */
+
+/* fzgx:begin fn_3_139F0 */
+extern u8 lbl_3_bss_8F200[];
+extern void fn_1_FC414(void *, int);
+extern u8 lbl_3_bss_A1778[12];
+extern s16 lbl_1_bss_96A;
+extern void fn_1_4A00(int, int, u32);
+extern void fn_1_FDFF4(void);
+extern void fn_1_435C(u32);
+extern void fn_1_426C(s16);
+extern void fn_80008BA8(struct Sig_fn_8004E278_fn_8004E278_Arg0 *, u32, u32);
+extern void fn_80008BEC(struct Sig_fn_8004E278_fn_8004E278_Arg0 *, int, u32);
+
+typedef signed short s16;
+typedef signed long s32;
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+typedef float f32;
+
+typedef struct FontDrawPacket FontDrawPacket;
+typedef struct FontVertex {
+f32 x, y, z;
+} FontVertex;
+struct FontDrawPacket {
+u32 image;
+f32 x, y, z;
+f32 scale_x, scale_y;
+f32 u0, v0, u1, v1;
+s16 rotation_z, rotation_y;
+f32 alpha;
+u32 flags;
+f32 depth;
+u8 color[4], color_add[4];
+u32 format;
+u16 width, height;
+void* pixels;
+FontDrawPacket* secondary;
+void (*vertex_callback)(FontDrawPacket* packet, FontVertex* vertices);
+u32 unk_54;
+};
+extern u8 lbl_3_data_3360__fzgx_offset_0[];
+extern u8 lbl_3_data_336C__fzgx_offset_0[];
+extern u8 lbl_3_data_3370__fzgx_offset_0[];
+extern u8 lbl_3_data_3380__fzgx_offset_0[];
+extern u8 lbl_3_data_3388__fzgx_offset_0[];
+extern u8 lbl_3_data_3398__fzgx_offset_0[];
+extern u8 lbl_3_data_33A8__fzgx_offset_0[];
+extern u8 lbl_3_data_33BC__fzgx_offset_0[];
+extern u8 lbl_3_data_33CC__fzgx_offset_0[];
+extern u8 lbl_3_data_33DC__fzgx_offset_0[];
+extern u8 lbl_3_data_33E4__fzgx_offset_0[];
+extern u8 lbl_3_data_33F0__fzgx_offset_0[];
+extern u8 lbl_3_data_33F8__fzgx_offset_0[];
+extern u8 lbl_3_data_3400__fzgx_offset_0[];
+extern u8 lbl_3_data_3408__fzgx_offset_0[];
+extern u8 lbl_3_data_3410__fzgx_offset_0[];
+extern u8 lbl_3_data_3420__fzgx_offset_0[];
+extern u8 lbl_3_data_342C__fzgx_offset_0[];
+extern u8 lbl_3_data_3444__fzgx_offset_0[];
+static u32 fzgx_pool_data_lbl_3_data_3360[63] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x4D6F7665, 0x20437572, 0x736F7200, 0x0, 0x834A815B, 0x835C838B, 0x82CC88DA, 0x93AE0000,
+    0x48656C70, 0x0, 0x90E096BE, 0x95B682CC, 0x955C8EA6, 0x0, 0x4368616E, 0x67652050,
+    0x656E2053, 0x697A6500, 0x83798393, 0x83548343, 0x835982CC, 0x95CF8D58, 0x0, 0x44697370,
+    0x6C617920, 0x47726964, 0x0, 0x834F838A, 0x83628368, 0x82CC955C, 0x8EA60000, 0x53797269,
+    0x6E676500, 0x8358837C, 0x83438367, 0x0, 0x53656C65, 0x63740000, 0x8C8892E8, 0x0,
+    0x4261636B, 0x0, 0x82E082C7, 0x82E90000, 0x4368616E, 0x67652043, 0x6F6C6F72, 0x0,
+    0x904682CC, 0x95CF8D58, 0x0, 0x5B454D42, 0x4C454D20, 0x45444954, 0x4F525D20, 0x48454C50,
+    0x0, 0x5B454D42, 0x4C454D20, 0x45444954, 0x4F525D20, 0x4D414E55, 0x414C0000
+};
+static u32 fzgx_pool_data_lbl_3_data_3360_FC[70] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    (u32)lbl_3_data_3360__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_3370__fzgx_offset_0, (u32)lbl_3_data_3380__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0,
+    (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_3388__fzgx_offset_0, (u32)lbl_3_data_3360__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0,
+    (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_3370__fzgx_offset_0, (u32)lbl_3_data_3398__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_33A8__fzgx_offset_0,
+    (u32)lbl_3_data_33BC__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_33CC__fzgx_offset_0, (u32)lbl_3_data_33DC__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0,
+    (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_33E4__fzgx_offset_0, (u32)lbl_3_data_33F0__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0,
+    (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_33F8__fzgx_offset_0, (u32)lbl_3_data_3400__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_3408__fzgx_offset_0,
+    (u32)lbl_3_data_3410__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_3420__fzgx_offset_0, (u32)lbl_3_data_342C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0,
+    (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_336C__fzgx_offset_0, (u32)lbl_3_data_3444__fzgx_offset_0, 0x656D626C, 0x656D5F6D, 0x616B6572, 0x5F63616C,
+    0x63000000, 0x656D626C, 0x656D5F6D, 0x616B6572, 0x5F646973, 0x70000000
+};
+static u32 fzgx_pool_data_lbl_3_data_3574[13] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x656D626C, 0x656D2E63, 0x0, 0x2E2F656D, 0x626C656D, 0x2F73616D, 0x706C652E, 0x62696E00,
+    0x2E2F656D, 0x626C656D, 0x2F636861, 0x72612E62, 0x696E0000
+};
+static u32 fzgx_pool_data_lbl_3_data_3360_248[1] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x25730A00
+};
+static u32 fzgx_pool_data_lbl_3_data_3360_24C[1] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x25730000
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_data_layout_lbl_3_data_3360(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: keeps the retail .data objects in retail order */
+    s = *(u8 *)fzgx_pool_data_lbl_3_data_3360;
+    s = *(u8 *)fzgx_pool_data_lbl_3_data_3360_FC;
+    s = *(u8 *)fzgx_pool_data_lbl_3_data_3574;
+    s = *(u8 *)fzgx_pool_data_lbl_3_data_3360_248;
+    s = *(u8 *)fzgx_pool_data_lbl_3_data_3360_24C;
+}
+#pragma section code_type ".text"
+
+void fn_1_4A0D8(const char* text);
+void fn_1_4AE0C(const char* format, ...);
+int fn_1_4F734(FontDrawPacket* packet);
+void fn_1_4EDAC(FontDrawPacket* packet, f32 width, f32 height);
+void fn_1_51678(FontDrawPacket* packet, u32 image, s16 x, s16 y, s16 width, s16 height);
+void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height,
+s16 texture_width, s16 texture_height);
+
+/* lbl_3_data_3360: .data size 0xC, 2 refs from emb_paste_editor.c (own data block) */
+
+extern FontDrawPacket lbl_1_rodata_26F8;
+extern s32 lbl_801A66B4;
+extern void fn_1_5233C(void);
+extern u32 fn_1_50A90(void *, u32, u32, u32, u32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_49410(void);
+extern void fn_1_495C8(u8);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_49738(void (*)(void));
+extern void fn_1_49748(f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_49590(f32);
+extern void fn_1_494DC(s16);
+/* literals of the TU's pool that precede this function's first use */
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_pool_primer(f32 *out) {
+out[0] = 0.0f;
+out[1] = 165.0f;
+out[2] = 38.0f;
+out[3] = 50.0f;
+}
+/* string table: [row][language] */
+typedef const char *EmbTextRow[6];
+void fn_3_139F0(void) {
+FontDrawPacket pkt;
+
+u8 i;
+struct { EmbTextRow *value; } tbl;
+
+pkt = lbl_1_rodata_26F8;
+pkt.image = 0xc;
+pkt.x = 320.0f;
+pkt.y = 240.0f;
+pkt.z = 10.0f;
+pkt.flags = 10;
+fn_1_50A90(&pkt, 7, 7, 0x250, 0x136);
+fn_1_496FC(320.0f, 90.0f);
+fn_1_49410();
+fn_1_495C8(1);
+fn_1_4955C(0.8f, 0.8f);
+pkt = lbl_1_rodata_26F8;
+pkt.image = 0x8602;
+pkt.x = 148.0f;
+pkt.y = 148.0f;
+pkt.z = 9.0f;
+pkt.flags = 5;
+fn_1_4F734(&pkt);
+for (i = 0; i < 3; i++) {
+fn_1_49410();
+fn_1_495C8(0);
+fn_1_49738(fn_1_5233C);
+fn_1_49748(5.0f);
+fn_1_4955C(0.6666667f, 0.6666667f);
+fn_1_4954C(7.0f);
+fn_1_495B0(0x80000000);
+if (lbl_801A66B4 != 5) {
+fn_1_49590(0.5f);
+fn_1_4955C(0.6f, 0.6f);
+fn_1_496FC(49.0f, 0x91 + i * 99 + i * 3);
+} else {
+fn_1_496FC(49.0f, i * 100 + 0x93);
+}
+fn_1_4AE0C(((const char *)(((u8 *)fzgx_pool_data_lbl_3_data_3360_248))) , ((EmbTextRow *)fzgx_pool_data_lbl_3_data_3360_FC)[i][lbl_801A66B4] );
+}
+for (i = 3; i < 9; i++) {
+fn_1_49410();
+fn_1_495C8(0);
+fn_1_49738(fn_1_5233C);
+fn_1_49748(8.0f);
+fn_1_4955C(0.6666667f, 0.6666667f);
+fn_1_495B0(0x80000000);
+fn_1_4954C(7.0f);
+if (lbl_801A66B4 != 5) {
+fn_1_49590(0.5f);
+fn_1_4955C(0.6f, 0.6f);
+fn_1_496FC(458.0f, 0x91 + (i - 3) * 40 + (i - 3));
+} else {
+fn_1_496FC(458.0f, 0x8f + (i - 3) * 40 + (i - 3));
+}
+fn_1_4AE0C(((const char *)(((u8 *)fzgx_pool_data_lbl_3_data_3360_248))) , ((EmbTextRow *)fzgx_pool_data_lbl_3_data_3360_FC)[i][lbl_801A66B4]);
+}
+fn_1_49410();
+fn_1_494DC(5);
+fn_1_495C8(1);
+fn_1_4954C(7.0f);
+fn_1_496FC(320.0f, 110.0f);
+tbl.value = (EmbTextRow *)fzgx_pool_data_lbl_3_data_3360_FC;
+fn_1_4AE0C(((const char *)(((u8 *)fzgx_pool_data_lbl_3_data_3360_24C))) , tbl.value[9][lbl_801A66B4]);
+}
+/* fzgx:end fn_3_139F0 */
