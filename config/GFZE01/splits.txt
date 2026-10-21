@@ -6230,3 +6230,6 @@ dol/fn_8004E59C.c:
 
 dol/fn_80025EF4.c:
 	.text       start:0x80025EF4 end:0x80026D70 align:4
+
+dol/fn_8008AD00.c:
+	.text       start:0x8008AD00 end:0x8008AF40 align:4
