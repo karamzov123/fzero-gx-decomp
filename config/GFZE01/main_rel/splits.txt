@@ -8564,3 +8564,6 @@ rel/main_rel/burner/fn_1_9AABC.c:
 
 rel/main_rel/sound/fn_1_A5594.c:
 	.text       start:0x000A5594 end:0x000A5848 align:4
+
+rel/main_rel/accessory/fn_1_10BA00.c:
+	.text       start:0x0010BA00 end:0x0010BE3C align:4
