@@ -6371,3 +6371,15 @@ dol/fn_80067974.c:
 
 dol/fn_8006C92C.c:
 	.text       start:0x8006C92C end:0x8006CCC8 align:4
+
+dol/fn_8006BC1C.c:
+	.text       start:0x8006BC1C end:0x8006BC50 align:4
+
+dol/fn_8006B224.c:
+	.text       start:0x8006B224 end:0x8006B294 align:4
+
+dol/fn_8006B92C.c:
+	.text       start:0x8006B92C end:0x8006B99C align:4
+
+dol/fn_8007F508.c:
+	.text       start:0x8007F508 end:0x8007F684 align:4

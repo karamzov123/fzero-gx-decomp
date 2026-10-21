@@ -3608,6 +3608,174 @@ void fn_1_A5590(void) {
 }
 /* fzgx:end fn_1_A5590 */
 
+/* fzgx:begin fn_1_A5594 noprologue */
+#include "types.h"
+#include "dolphin/os/OSFastCast.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+#include "rel/main_rel/sound.h"
+
+/* begin game/main_rel/car_test_types.h (deltawave784/fzgx@13b0aeca (CC0)) */
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+// Types (and the externs that name them) of car_test.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+typedef struct {
+    u8 pad_0[0x14c];
+    Fn183D28Vec3 pos;
+    u8 pad_158[0x200 - 0x158];
+    f32 unk_200;
+} Fn183D28Body;
+
+typedef struct {
+    u8 pad_0[0x8];
+    Fn183D28Vec3 dir;
+    f32 radius;
+} Fn183D28Target;
+
+typedef struct {
+    s16 limit;
+    s16 pad_2;
+    Fn183D28Target **target;
+    u8 pad_8[4];
+} Fn183D28Entry;
+
+typedef struct {
+    u8 pad_0[0x8];
+    Fn183D28Target **target;
+} Fn183D28Slot;
+
+typedef struct {
+    u8 pad_0[0x344];
+    Fn183D28Slot *slots[1];
+} Fn183D28Alt;
+
+typedef struct {
+    u8 pad_0[0x320];
+    s16 index;
+    u8 pad_322[0xa];
+    Fn183D28Body *body;
+    Fn183D28Entry entries[6];
+    u8 pad_378[0x18];
+    u32 flags;
+    u8 pad_394[0xc];
+    Fn183D28Alt *alt;
+} Fn183D28Car;
+
+typedef struct {
+    u32 flags;
+    u8 pad_4[0x5];
+    u8 count;
+    u8 pad_A[0x14AE];
+    f64 pad_14B8;
+} CarTestInfo;
+
+typedef struct {
+    u8 pad_0[0x3ba];
+    s16 state;
+    u8 pad_3BC[0x84];
+} CarTestCar;
+
+extern s8 fn_1_84408(CarTestCar *);
+extern void fn_1_8E084(CarTestCar *, u32 *, s32);
+extern s8 fn_1_84124(Fn183D28Car *, s8, s8, u8 *);
+extern void lbl_8006DFE8(Fn183D28Vec3 *);
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+extern s8 fn_1_84644(Fn183D28Body *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+
+extern s32 fn_1_5910(void);
+extern void fn_1_681C(u32, u32 *);
+extern u32 lbl_8006DCA4(void);
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+extern void fn_8006EF10(void *, s16 *, s16 *);
+extern u32 OSGetSoundMode(void);
+extern s32 fn_80067344(u32, u32, u32, u32);
+extern s32 fn_80067898(u32);
+
+extern const f32 lbl_1_rodata_48C4; /* 250000.0f */
+extern const f32 lbl_1_rodata_4470; /* 1.0f */
+extern const f32 lbl_1_rodata_4474; /* 0.0f */
+extern const f32 lbl_1_rodata_4564; /* 127.0f */
+extern const f32 lbl_1_rodata_4578; /* 0.0039f */
+
+static inline f32 clamp_value(f32 x, f32 hi, f32 lo)
+{
+    return x < lo ? lo : (x > hi ? hi : x);
+}
+
+void fn_1_A5594(u32 arg0, Fn183D28Vec3 *pos)
+{
+    Fn183D28Vec3 rel;
+    f32 listener[3];
+    s16 dist;
+    s16 angle;
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 scaled;
+    struct { f32 value; } distance;
+    f32 t;
+    u8 vol;
+    s8 raw;
+    s8 pan;
+
+    fn_1_681C((u8)fn_1_5910(), (u32 *)listener);
+    dx = listener[0];
+    dx = dx - pos->x;
+    dy = listener[1] - pos->y;
+    dz = listener[2] - pos->z;
+    distance.value = dx * dx;
+    distance.value = dy * dy + distance.value;
+    distance.value = dz * dz + distance.value;
+    if (distance.value > lbl_1_rodata_48C4) {
+        return;
+    }
+    lbl_8006DCA4();
+    lbl_8006E1B0(pos, &rel);
+    fn_8006EF10(&rel, &dist, &angle);
+    {
+        struct { f32 value; } hi;
+        hi.value = lbl_1_rodata_4470;
+        t = hi.value - distance.value / lbl_1_rodata_48C4;
+        t = clamp_value(t, hi.value, lbl_1_rodata_4474);
+    }
+    /* retail: OSFastCast __OSf32tou8 (psq_st ..., 1, qr2; lbz) */
+    scaled = lbl_1_rodata_4564 * t;
+    vol = __OSf32tou8(scaled);
+    if (__abs(angle) < 0x4000) {
+        raw = lbl_1_rodata_4578 * -angle;
+    } else if (angle > 0) {
+        raw = lbl_1_rodata_4578 * -(0x8000 - angle);
+    } else {
+        raw = lbl_1_rodata_4578 * -(-0x8000 - angle);
+    }
+    pan = raw < -64 ? -64 : (raw > 63 ? 63 : raw);
+    if (OSGetSoundMode() == 0) {
+        pan = 0;
+    }
+    fn_80067344(1, 16, 0xB0270000, vol);
+    fn_80067344(1, 16, 0xB02A0000, pan);
+    if (lbl_1_bss_6F1D8 == 0 && lbl_1_bss_6F1DC <= 45) {
+        fn_80067898(arg0);
+    }
+    fn_80067344(1, 16, 0xB02A0000, 0);
+}
+/* fzgx:end fn_1_A5594 */
+
 /* fzgx:begin fn_1_A5848 */
 u8 fn_1_A5848(void) {
     return lbl_1_bss_6F1E0;

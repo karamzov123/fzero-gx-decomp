@@ -8558,3 +8558,9 @@ rel/main_rel/accessory/fn_1_111510.c:
 
 rel/main_rel/accessory/fn_1_1145C8.c:
 	.text       start:0x001145C8 end:0x0011492C align:4
+
+rel/main_rel/burner/fn_1_9AABC.c:
+	.text       start:0x0009AABC end:0x0009AD20 align:4
+
+rel/main_rel/sound/fn_1_A5594.c:
+	.text       start:0x000A5594 end:0x000A5848 align:4
