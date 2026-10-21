@@ -3109,6 +3109,138 @@ void fn_1_A3C78(s32 arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_A3C78 */
 
+/* fzgx:begin fn_1_A3D5C noprologue */
+#include "types.h"
+#include "dolphin/os/OSFastCast.h"
+
+typedef struct {
+    f32 x, y, z;
+} SndVec;
+
+extern s16 camera_get_mode(void);
+extern void fn_1_862D4(void *, SndVec *);
+extern s32 fn_1_5910(void);
+extern void fn_1_681C(u32, SndVec *);
+extern f32 fn_1_8652C(void *);
+extern s32 fn_1_58C4(void);
+extern u32 lbl_8006DCA4(void);
+extern void lbl_8006E1B0(SndVec *, SndVec *);
+extern void fn_8006EF10(void *, s16 *, s16 *);
+extern f32 lbl_8006D188(s32);
+extern u32 OSGetSoundMode(void);
+
+#pragma pool_data off
+
+#define ABS(x) __abs(x)
+#define SQ(x) ((x) * (x))
+static inline f32 CLAMP(f32 x, f32 lo, f32 hi) {
+    if (x < lo) {
+        return lo;
+    }
+    if (x > hi) {
+        return hi;
+    }
+    return x;
+}
+
+u8 fn_1_A3D5C(void *obj, s8 *pan, s8 *span, u8 *vol) {
+    s32 other;
+    f32 distSq;
+    f32 fade;
+    f32 level;
+    f32 balance;
+    f32 t;
+    u8 ret;
+    SndVec local;
+    SndVec pos;
+    SndVec cam;
+    s16 pitch;
+    s16 yaw;
+
+    other = camera_get_mode();
+    fn_1_862D4(obj, &pos);
+    fn_1_681C((u8)fn_1_5910(), &cam);
+    {
+        f32 dz, dy, dx;
+        /* load-then-subtract keeps each load in its difference's register (retail: fsubs f3, f3, f0) */
+        dx = cam.x;
+        dx -= pos.x;
+        dy = cam.y;
+        dy -= pos.y;
+        dz = cam.z;
+        dz -= pos.z;
+        distSq = dx * dx;
+        distSq += dy * dy;
+        distSq += dz * dz;
+    }
+    if (distSq > 90000.0f) {
+        *pan = 0;
+        *span = 0;
+        *vol = 0;
+        return 0;
+    }
+
+    lbl_8006DCA4();
+    lbl_8006E1B0(&pos, &local);
+    fn_8006EF10(&local, &pitch, &yaw);
+
+    balance = fn_1_8652C(obj);
+    if (other != -1) {
+        t = 0.001f * (balance - fn_1_8652C((void *)other));
+        t = (t < -1.0f) ? -1.0f : ((t > 1.0f) ? 1.0f : t);
+        if (t < 0.0f) {
+            balance = 1.0f - lbl_8006D188((s16)(0.5f * (32768.0f * -t)));
+        } else {
+            balance = 1.0f + lbl_8006D188((s16)(0.5f * (32768.0f * t)));
+        }
+    } else {
+        balance = 1.0f;
+    }
+
+    level = 0.5f * (32768.0f * (distSq / 90000.0f));
+    level = lbl_8006D188((s16)(__OSf32tou16(level) + 0x4000));
+    level = CLAMP(127.0f * (balance * (level * level)), 0.0f, 127.0f);
+    fade = 127.0f * CLAMP(1.0f - distSq / 5625.0f, 0.0f, 1.0f);
+
+    switch (fn_1_58C4()) {
+    case 1:
+        break;
+    case 2:
+        level *= 0.9f;
+        fade *= 0.9f;
+        break;
+    case 3:
+        level *= 0.85f;
+        fade *= 0.85f;
+        break;
+    case 4:
+        level *= 0.8f;
+        fade *= 0.8f;
+        break;
+    }
+
+    ret = __OSf32tou8(level);
+    *vol = __OSf32tou8(fade);
+
+    if (ABS(yaw) < 0x4000) {
+        *pan = (s8)(0.0039f * (f32)(-yaw));
+    } else if (yaw > 0) {
+        *pan = (s8)(0.0039f * (f32)(-(0x8000 - yaw)));
+    } else {
+        *pan = (s8)(0.0039f * (f32)(-(-0x8000 - yaw)));
+    }
+    *span = (s8)(0.0039 * (ABS(yaw) - 0x4000));
+
+    *pan = (*pan < -64) ? -64 : ((*pan > 63) ? 63 : *pan);
+    *span = (*span < -64) ? -64 : ((*span > 63) ? 63 : *span);
+
+    if (OSGetSoundMode() == 0) {
+        *pan = 0;
+    }
+    return ret;
+}
+/* fzgx:end fn_1_A3D5C */
+
 /* fzgx:begin fn_1_A4BC8 noprologue */
 #include "types.h"
 

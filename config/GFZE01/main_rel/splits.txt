@@ -7410,9 +7410,6 @@ rel/main_rel/sound/fn_1_A24CC.c:
 rel/main_rel/game/fn_1_3F5F8.c:
 	.text       start:0x0003F5F8 end:0x0003F75C align:4
 
-rel/main_rel/sound/fn_1_A5594.c:
-	.text       start:0x000A5594 end:0x000A5848 align:4
-
 rel/main_rel/sel_static_disp/fn_1_135D7C.c:
 	.text       start:0x00135D7C end:0x00136174 align:4
 
@@ -8531,3 +8528,21 @@ rel/main_rel/load/fn_1_46144.c:
 
 rel/main_rel/screen_effect/fn_1_789E8.c:
 	.text       start:0x000789E8 end:0x00078EBC align:4
+
+rel/main_rel/phys/fn_1_EB0D8.c:
+	.text       start:0x000EB0D8 end:0x000EB200 align:4
+
+rel/main_rel/shadowmap/fn_1_57A70.c:
+	.text       start:0x00057A70 end:0x00057BBC align:4
+
+rel/main_rel/effect/fn_1_5F9B8.c:
+	.text       start:0x0005F9B8 end:0x0005FE24 align:4
+
+rel/main_rel/sound/fn_1_A3D5C.c:
+	.text       start:0x000A3D5C end:0x000A4268 align:4
+
+rel/main_rel/cloth/fn_1_1050D0.c:
+	.text       start:0x001050D0 end:0x00105724 align:4
+
+rel/main_rel/effect/fn_1_5DFA4.c:
+	.text       start:0x0005DFA4 end:0x0005E3C4 align:4

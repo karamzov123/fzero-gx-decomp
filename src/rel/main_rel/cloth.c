@@ -287,6 +287,248 @@ void fn_1_1030A4(Cloth *self) {
 }
 /* fzgx:end fn_1_1030A4 */
 
+/* fzgx:begin fn_1_1050D0 noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "dolphin/hw_regs.h"
+#include "rel/main_rel/cloth.h"
+
+/* begin dolphin/gx.h (deltawave784/fzgx, CC0) */
+#ifndef DOLPHIN_GX_H
+#define DOLPHIN_GX_H
+
+
+/* The GX write-gather pipe: one memory-mapped port at GX_FIFO_BASE (dolphin/hw_regs.h), written through
+   the member whose width the command needs. Declared as an MWCC absolute object: every store is
+   emitted in order, addressed by literal (`lis rX, 0xCC01; stb rY, -0x8000(rX)`) with no
+   relocation, and the named object cannot alias the `gx` context, which keeps retail's schedule.
+   Proven by GXSetViewportJitter (fn_80038DE8) and GXSetFog (fn_800377F8). */
+typedef union PPCWGPipe {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+    s8 s8;
+    s16 s16;
+    s32 s32;
+    f32 f32;
+    f64 f64;
+} PPCWGPipe;
+typedef PPCWGPipe WGPipe;
+
+volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
+
+#define GX_WRITE_U8(v) (GXWGFifo.u8 = (u8)(v))
+#define GX_WRITE_U16(v) (GXWGFifo.u16 = (u16)(v))
+#define GX_WRITE_U32(v) (GXWGFifo.u32 = (u32)(v))
+#define GX_WRITE_F32(v) (GXWGFifo.f32 = (f32)(v))
+
+/* BP (raster) register write: command byte 0x61 followed by the register word. */
+#define GX_WRITE_RAS_REG(value)  \
+    do {                         \
+        GXWGFifo.u8 = 0x61;      \
+        GXWGFifo.u32 = (value);  \
+    } while (0)
+
+/* XF register write: command byte 0x10, then (count - 1) << 16 | address, then the data words. */
+#define GX_WRITE_XF_REG_HDR(addr, count) \
+    do {                                  \
+        GXWGFifo.u8 = 0x10;               \
+        GXWGFifo.u32 = (((count) - 1) << 16) | (addr); \
+    } while (0)
+
+#endif
+
+/* end dolphin/gx.h */
+
+typedef struct { f32 x, y, z; } Vec;
+
+struct fn_1_1050D0_lbl_1_rodata_78D0 {
+    u8 pad_0[0x4];
+    f32 unk_4;
+    u8 pad_8[0x8];
+    f32 unk_10;
+    u8 pad_14[0x4];
+    f32 unk_18;
+    u8 pad_1C[0x8];
+    f32 unk_24;
+    u8 pad_28[0xE4];
+    f32 unk_10C;
+};
+extern struct fn_1_1050D0_lbl_1_rodata_78D0 lbl_1_rodata_78D0;
+extern s32 fn_1_58C4(void);
+extern s32 fn_1_5910(void);
+extern u16 lbl_1_bss_85298[272];
+extern u32 lbl_801A66A0;
+extern void *lbl_801A6D00;
+extern u32 camera_get_status(void);
+extern u32 fn_1_7BEAC(u32);
+extern u32 fn_1_F2F34(void);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E0A4(void *);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void fn_1_556B8(void *);
+extern void fn_1_56000(u8, u8, u8);
+extern void fn_1_560F0(s32, void *);
+extern void fn_8003462C(u32, u32, u32);
+extern void fn_8007245C(u32);
+extern void fn_800724C8(void);
+extern void fn_80072558(void);
+extern void fn_80072864(u32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_80072EDC(s32, s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80073678(u32);
+extern void fn_80074918(u8, s32, u8);
+extern void fn_80077BBC(s32);
+extern void lbl_8006D758(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void lbl_8006E15C(f32, f32, f32);
+#define __WGPIPE GXWGFifo.f32
+
+void fn_1_1050D0(void) {
+    struct fn_1_1050D0_lbl_1_rodata_78D0 *p_lbl_1_rodata_78D0 = &lbl_1_rodata_78D0;
+    Vec *p_lbl_1_data_3F2EC;
+    Obj_1_data_3F28C *p_lbl_1_data_3F28C;
+    Obj_1_bss_38460 *p_lbl_1_bss_38460;
+    u8 *state;
+    s32 v3;
+    s32 v19;
+    s32 i;
+    Vec loc[4];
+    Obj_1_data_3F2EC *v4, *v5, *v6, *v9;
+
+    state = (u8 *)lbl_1_bss_85298 + fn_1_5910() * 136;
+    v3 = 0;
+    if (state[127] == 0 && (s16)camera_get_status() == 1) {
+    switch ((s32)fn_1_F2F34()) {
+    case 0:
+    if ((u32)fn_1_58C4() == 4) v3 = 1;
+    fn_1_7BEAC(0);
+    lbl_8006DCA4();
+    lbl_8006E0A4(state);
+    mathutil_mtxA_rotate_y(*(s16 *)(state + 128));
+    lbl_8006DFC4(state + 72);
+    fn_80072558();
+    fn_800724C8();
+    fn_8007245C(512);
+    fn_80073678(1);
+    fn_800734A8(0, 255, 255, 255);
+    fn_80072EDC(0, 4);
+    fn_800728A8(1, 0, 1, 0);
+    fn_80074918(1, 7, 1);
+    fn_80072864(1);
+    for (i = 0; i < 6; i++) {
+        p_lbl_1_data_3F28C = (Obj_1_data_3F28C *)((u8 *)&lbl_1_data_3F28C + i * 16);
+        p_lbl_1_data_3F2EC = (Vec *)&lbl_1_data_3F2EC.unk_0;
+        loc[0] = p_lbl_1_data_3F2EC[p_lbl_1_data_3F28C->unk_0];
+        loc[1] = p_lbl_1_data_3F2EC[p_lbl_1_data_3F28C->unk_1];
+        loc[2] = p_lbl_1_data_3F2EC[p_lbl_1_data_3F28C->unk_2];
+        loc[3] = p_lbl_1_data_3F2EC[p_lbl_1_data_3F28C->unk_3];
+        fn_8003462C(128, 0, 4);
+        __WGPIPE = loc[0].x;
+        __WGPIPE = loc[0].y;
+        __WGPIPE = loc[0].z;
+        __WGPIPE = loc[1].x;
+        __WGPIPE = loc[1].y;
+        __WGPIPE = loc[1].z;
+        __WGPIPE = loc[2].x;
+        __WGPIPE = loc[2].y;
+        __WGPIPE = loc[2].z;
+        __WGPIPE = loc[3].x;
+        __WGPIPE = loc[3].y;
+        __WGPIPE = loc[3].z;
+    }
+    fn_80072864(0);
+    fn_1_56000(1, 1, 1);
+    p_lbl_1_bss_38460 = &lbl_1_bss_38460;
+    v19 = 0;
+    goto loop_test; /* Test the pass limit before the first iteration. */
+    do {
+        lbl_8006DCA4();
+        lbl_8006E0A4(state);
+        mathutil_mtxA_rotate_y(*(s16 *)(state + 128));
+        lbl_8006DFC4(state + 72);
+        if (v19 == 1) {
+            lbl_8006E15C(p_lbl_1_rodata_78D0->unk_24, p_lbl_1_rodata_78D0->unk_10, p_lbl_1_rodata_78D0->unk_10);
+            fn_80077BBC(1);
+        }
+        lbl_8006DAEC();
+        if (v19 != 2) {
+            if (v3 == 0 || v19 != 0) {
+                lbl_8006DBE4();
+                mathutil_mtxA_rotate_x((s16)(((lbl_801A66A0 % 300) << 16) / 300));
+                if (v3) lbl_8006E0B4(p_lbl_1_rodata_78D0->unk_10C, p_lbl_1_rodata_78D0->unk_18, p_lbl_1_rodata_78D0->unk_18);
+                fn_80072558();
+                fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 8));
+            }
+            lbl_8006DBE4();
+            mathutil_mtxA_rotate_x((s16)(-((lbl_801A66A0 % 300) << 16) / 300));
+            if (v3) lbl_8006E0B4(p_lbl_1_rodata_78D0->unk_10C, p_lbl_1_rodata_78D0->unk_18, p_lbl_1_rodata_78D0->unk_18);
+            fn_80072558();
+            fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 16));
+            lbl_8006DBE4();
+            mathutil_mtxA_rotate_x((s16)(-((lbl_801A66A0 % 100) << 16) / 100));
+            if (v3) lbl_8006E0B4(p_lbl_1_rodata_78D0->unk_10C, p_lbl_1_rodata_78D0->unk_18, p_lbl_1_rodata_78D0->unk_18);
+            fn_80072558();
+            fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 24));
+            lbl_8006DBE4();
+            mathutil_mtxA_rotate_x((s16)(((lbl_801A66A0 % 60) << 16) / 60));
+            if (v3) lbl_8006E0B4(p_lbl_1_rodata_78D0->unk_10C, p_lbl_1_rodata_78D0->unk_18, p_lbl_1_rodata_78D0->unk_18);
+            fn_80072558();
+            fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 32));
+            lbl_8006DBE4();
+            if (v3) lbl_8006E0B4(p_lbl_1_rodata_78D0->unk_10C, p_lbl_1_rodata_78D0->unk_18, p_lbl_1_rodata_78D0->unk_18);
+            fn_80072558();
+            fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 40));
+        }
+        if (v19 == 0) {
+            lbl_8006D758();
+            fn_1_560F0(0, lbl_801A6D00);
+            lbl_8006DBE4();
+            mathutil_mtxA_rotate_x((s32)(p_lbl_1_rodata_78D0->unk_4 * *(f32 *)(state + 120)));
+            if (v3) lbl_8006E0B4(p_lbl_1_rodata_78D0->unk_10C, p_lbl_1_rodata_78D0->unk_18, p_lbl_1_rodata_78D0->unk_18);
+            fn_80072558();
+            fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 48));
+        } else if (v19 == 2) {
+            lbl_8006D758();
+            fn_1_560F0(0, lbl_801A6D00);
+            lbl_8006DBE4();
+            mathutil_mtxA_rotate_x((s32)(p_lbl_1_rodata_78D0->unk_4 * *(f32 *)(state + 120)));
+            fn_80072558();
+            fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 144));
+            lbl_8006DBE4();
+            mathutil_mtxA_rotate_x((s32)(p_lbl_1_rodata_78D0->unk_4 * *(f32 *)(state + 120)));
+            fn_80072558();
+            fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 56));
+        } else if (v19 == 1) {
+            lbl_8006D7F4(p_lbl_1_rodata_78D0->unk_10, p_lbl_1_rodata_78D0->unk_18, p_lbl_1_rodata_78D0->unk_18);
+            lbl_8006E15C(p_lbl_1_rodata_78D0->unk_24, p_lbl_1_rodata_78D0->unk_10, p_lbl_1_rodata_78D0->unk_10);
+            fn_1_560F0(0, lbl_801A6D00);
+            lbl_8006DBE4();
+            mathutil_mtxA_rotate_x((s32)(p_lbl_1_rodata_78D0->unk_4 * *(f32 *)(state + 120)));
+            if (v3) lbl_8006E0B4(p_lbl_1_rodata_78D0->unk_10C, p_lbl_1_rodata_78D0->unk_18, p_lbl_1_rodata_78D0->unk_18);
+            fn_80072558();
+            fn_1_556B8((void *)*(u32 *)(p_lbl_1_bss_38460->unk_8->unk_8 + 48));
+        }
+        lbl_8006DB30();
+        if (v19 == 1) fn_80077BBC(0);
+        v19++;
+loop_test:
+        i = 2;
+        if (v3 != 0) i = 1;
+    } while (v19 <= i);
+    fn_1_56000(1, 3, 1);
+    }
+    }
+}
+/* fzgx:end fn_1_1050D0 */
+
 /* fzgx:begin fn_1_106CAC */
 extern s32 fn_1_151AF0(void *arg0, int arg1, void *arg2, void *arg3, void *arg4, void *arg5);
 

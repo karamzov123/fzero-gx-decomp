@@ -19173,6 +19173,17 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_800384FC.c",
+    "symbols": [
+      "fn_800384FC"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "pool": true
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80038878.c",
     "symbols": [
       "fn_80038878"
@@ -42608,6 +42619,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/cloth/fn_1_1050D0.c",
+    "symbols": [
+      "fn_1_1050D0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/cloth.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/cloth/fn_1_106CAC.c",
     "symbols": [
       "fn_1_106CAC"
@@ -45070,6 +45092,18 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_5DFA4.c",
+    "symbols": [
+      "fn_1_5DFA4"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/effect/fn_1_5E3C4.c",
     "symbols": [
       "fn_1_5E3C4"
@@ -45134,6 +45168,25 @@
       "@31": "lbl_1_rodata_29A4",
       "@20": "lbl_1_rodata_2978",
       "@33": "lbl_1_rodata_29AC"
+    }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_5F9B8.c",
+    "symbols": [
+      "fn_1_5F9B8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_2950",
+      "@140": "lbl_1_rodata_2AA0",
+      "@71": "lbl_1_rodata_29AC",
+      "@48": "lbl_1_rodata_2954",
+      "@62": "lbl_1_rodata_2978",
+      "@69": "lbl_1_rodata_29A4"
     }
   },
   {
@@ -56260,6 +56313,20 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/phys/fn_1_EB0D8.c",
+    "symbols": [
+      "fn_1_EB0D8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/phys.c",
+    "pool": {
+      "@24": "lbl_1_rodata_6B68"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/phys/fn_1_EB200.c",
     "symbols": [
       "fn_1_EB200"
@@ -62034,6 +62101,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/shadowmap/fn_1_57A70.c",
+    "symbols": [
+      "fn_1_57A70"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/shadowmap.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/shadowmap/fn_1_57BBC.c",
     "symbols": [
       "fn_1_57BBC"
@@ -62620,6 +62698,34 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sound/fn_1_A3D5C.c",
+    "symbols": [
+      "fn_1_A3D5C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sound.c",
+    "pool": {
+      "@104": "lbl_1_rodata_4550",
+      "@105": "lbl_1_rodata_4558",
+      "@106": "lbl_1_rodata_4554",
+      "@107": "lbl_1_rodata_4470",
+      "@108": "lbl_1_rodata_4474",
+      "@110": "lbl_1_rodata_4560",
+      "@109": "lbl_1_rodata_455C",
+      "@111": "lbl_1_rodata_4564",
+      "@112": "lbl_1_rodata_4568",
+      "@113": "lbl_1_rodata_456C",
+      "@114": "lbl_1_rodata_4570",
+      "@115": "lbl_1_rodata_4574",
+      "@119": "lbl_1_rodata_42F0",
+      "@116": "lbl_1_rodata_4578",
+      "@117": "lbl_1_rodata_4580"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sound/fn_1_A4BC8.c",
     "symbols": [
       "fn_1_A4BC8"
@@ -62770,19 +62876,6 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/sound.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/sound/fn_1_A5594.c",
-    "symbols": [
-      "fn_1_A5594"
-    ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-O4"
-    ],
     "tu": "rel/main_rel/sound.c"
   },
   {
@@ -74140,6 +74233,23 @@
       "...rodata.0": "lbl_4_rodata_0",
       "@30": "lbl_4_rodata_0+0x48",
       "@7": "lbl_4_rodata_0+0x8"
+    }
+  },
+  {
+    "module": "option",
+    "source": "rel/option/_prolog/fn_4_2394.c",
+    "symbols": [
+      "fn_4_2394"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/option/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_4_rodata_0",
+      "@40": "lbl_4_rodata_0+0x48",
+      "@7": "lbl_4_rodata_0+0x8",
+      "...data.0": "lbl_4_data_0"
     }
   },
   {

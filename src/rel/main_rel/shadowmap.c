@@ -580,6 +580,99 @@ void fn_1_579A0(ColorVertex *first, ColorVertex *second) {
 }
 /* fzgx:end fn_1_579A0 */
 
+/* fzgx:begin fn_1_57A70 noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "dolphin/hw_regs.h"
+
+/* begin dolphin/gx.h (deltawave784/fzgx, CC0) */
+#ifndef DOLPHIN_GX_H
+#define DOLPHIN_GX_H
+
+
+/* The GX write-gather pipe: one memory-mapped port at GX_FIFO_BASE (dolphin/hw_regs.h), written through
+   the member whose width the command needs. Declared as an MWCC absolute object: every store is
+   emitted in order, addressed by literal (`lis rX, 0xCC01; stb rY, -0x8000(rX)`) with no
+   relocation, and the named object cannot alias the `gx` context, which keeps retail's schedule.
+   Proven by GXSetViewportJitter (fn_80038DE8) and GXSetFog (fn_800377F8). */
+typedef union PPCWGPipe {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+    s8 s8;
+    s16 s16;
+    s32 s32;
+    f32 f32;
+    f64 f64;
+} PPCWGPipe;
+typedef PPCWGPipe WGPipe;
+
+volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
+
+#define GX_WRITE_U8(v) (GXWGFifo.u8 = (u8)(v))
+#define GX_WRITE_U16(v) (GXWGFifo.u16 = (u16)(v))
+#define GX_WRITE_U32(v) (GXWGFifo.u32 = (u32)(v))
+#define GX_WRITE_F32(v) (GXWGFifo.f32 = (f32)(v))
+
+/* BP (raster) register write: command byte 0x61 followed by the register word. */
+#define GX_WRITE_RAS_REG(value)  \
+    do {                         \
+        GXWGFifo.u8 = 0x61;      \
+        GXWGFifo.u32 = (value);  \
+    } while (0)
+
+/* XF register write: command byte 0x10, then (count - 1) << 16 | address, then the data words. */
+#define GX_WRITE_XF_REG_HDR(addr, count) \
+    do {                                  \
+        GXWGFifo.u8 = 0x10;               \
+        GXWGFifo.u32 = (((count) - 1) << 16) | (addr); \
+    } while (0)
+
+#endif
+
+/* end dolphin/gx.h */
+
+extern u32 lbl_801A6D00;
+extern void GXLoadPosMtxImm(u32, u32);
+extern void fn_1_57DC0(u32);
+extern void fn_8003462C(u32, u32, u32);
+
+typedef struct { f32 x, y, z; s8 a, b, c, d; } V16;
+
+static inline void pos3(f32 x, f32 y, f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+static inline void col4(u8 a, u8 b, u8 c, u8 d) {
+    GXWGFifo.u8 = a;
+    GXWGFifo.u8 = b;
+    GXWGFifo.u8 = c;
+    GXWGFifo.u8 = d;
+}
+
+static inline f32 fn_1_57A70_read_pointer(V16 * owner) { return owner->x; }
+#pragma opt_loop_invariants off
+void fn_1_57A70(u32 n, V16 *v) {
+    s32 i;
+    u16 count;
+    V16 *p;
+    if ((u16)n >= 2) {
+        fn_1_57DC0(n);
+        GXLoadPosMtxImm(lbl_801A6D00, 0);
+        fn_8003462C(0xB0, 0, n);
+        p = v;
+        count = n;
+        for (i = 0; i < count; i++) {
+            pos3(fn_1_57A70_read_pointer(p), p->y, p->z);
+            col4(p->a, p->b, p->c, p->d);
+            p++;
+        }
+    }
+}
+#pragma opt_loop_invariants reset
+/* fzgx:end fn_1_57A70 */
+
 /* fzgx:begin fn_1_57BBC */
 typedef struct {
     u32 unk_0;
