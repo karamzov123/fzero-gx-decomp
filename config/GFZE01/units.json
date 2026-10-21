@@ -51483,10 +51483,15 @@
     "symbols": [
       "fn_1_3F8EC"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/game.c"
+    "tu": "rel/main_rel/game.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_BD8",
+      "@27": "lbl_1_rodata_BDC",
+      "@73": "lbl_1_rodata_D10"
+    }
   },
   {
     "module": "main_rel",
