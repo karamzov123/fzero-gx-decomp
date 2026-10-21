@@ -7887,5 +7887,11 @@ rel/main_rel/sel_static_disp/fn_1_14DDF4.c:
 rel/main_rel/bg_aur/fn_1_152A28.c:
 	.text       start:0x00152A28 end:0x00152CB4 align:4
 
-rel/main_rel/data/lbl_1_data_4AA0.c:
-	.data       start:0x00004AA0 end:0x00005180 align:8
+rel/main_rel/data/lbl_1_data_43B8.c:
+	.data       start:0x000043B8 end:0x000043C4 align:8
+
+rel/main_rel/data/lbl_1_data_4440.c:
+	.data       start:0x00004440 end:0x00004508 align:8
+
+rel/main_rel/data/lbl_1_data_4568.c:
+	.data       start:0x00004568 end:0x00005180 align:8

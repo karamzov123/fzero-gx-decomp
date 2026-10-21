@@ -41425,8 +41425,11 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_4AA0.c",
+    "source": "rel/main_rel/data/lbl_1_data_4568.c",
     "symbols": [
+      "lbl_1_data_4568",
+      "lbl_1_data_4754",
+      "lbl_1_data_47B4",
       "lbl_1_data_4AA0"
     ],
     "status": "matching",

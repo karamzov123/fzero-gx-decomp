@@ -135,7 +135,7 @@ extern u8 lbl_1_bss_115C;
 extern u8 lbl_1_bss_1800[0x10];
 
 // lbl_1_data_4440: .data size 0x44, 2 refs from live_camera.c (own data block)
-extern u8 lbl_1_data_4440[0x44];
+#include "rel/main_rel/data/lbl_1_data_4440.h"
 
 /* fn_1_11ABC indexes this table in 0x20-byte steps and copies the
  * first three words as a position vector. Retain the recovered word/float

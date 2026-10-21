@@ -946,8 +946,8 @@ typedef void (*Fn1EE04Handler)(Fn1EE04Context *, void *);
 
 // Dispatch the active live-camera handler, then advance camera processing.
 void fn_1_EE04(Fn1EE04Context *context) {
-    ((Fn1EE04Handler *)lbl_1_data_4440)[context->state](
-        context, lbl_1_data_4440);
+    ((Fn1EE04Handler *)&lbl_1_data_4440)[context->state](
+        context, &lbl_1_data_4440);
     fn_1_6DD0(0);
 }
 /* fzgx:end fn_1_EE04 */

@@ -4626,6 +4626,363 @@
     "unit_size": 492,
     "unit_start": 267960
   },
+  "main_rel:lbl_1_data_43B8": {
+    "address": 17336,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_data_43B8[0xC]",
+        "path": "include/rel/main_rel/live_camera.h"
+      },
+      {
+        "declaration": "struct fn_1_E174_lbl_1_data_43B8 lbl_1_data_43B8",
+        "path": "src/rel/main_rel/live_camera.c"
+      },
+      {
+        "declaration": "struct fn_1_EBE4_lbl_1_data_43B8 lbl_1_data_43B8",
+        "path": "src/rel/main_rel/live_camera.c"
+      },
+      {
+        "declaration": "struct fn_1_FA84_lbl_1_data_43B8 lbl_1_data_43B8",
+        "path": "src/rel/main_rel/live_camera.c"
+      }
+    ],
+    "definition": "u8 lbl_1_data_43B8[0xC]",
+    "method": "typed-data",
+    "module": "main_rel",
+    "references": [
+      "fn_1_DF74",
+      "fn_1_E688",
+      "fn_1_EE44",
+      "fn_1_F3D0",
+      "fn_1_F6A8",
+      "fn_1_107B8",
+      "fn_1_10AF0",
+      "fn_1_12620",
+      "fn_1_E174",
+      "fn_1_EBE4",
+      "fn_1_FA84"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 12,
+    "sha256": "d8e457e8fce4550bee2cecad6e8516284499d8cb4c1274c94c0ed0f42fa2dc03",
+    "size": 12,
+    "source": "rel/main_rel/data/lbl_1_data_43B8.c",
+    "symbol": "lbl_1_data_43B8",
+    "unit_align": 8,
+    "unit_size": 12,
+    "unit_start": 17336
+  },
+  "main_rel:lbl_1_data_4440": {
+    "address": 17472,
+    "align": 8,
+    "declarations": [],
+    "definition": "Data_lbl_1_data_4440 lbl_1_data_4440",
+    "header": {
+      "path": "rel/main_rel/data/lbl_1_data_4440.h",
+      "text": "#ifndef DATA_LBL_1_DATA_4440_H\n#define DATA_LBL_1_DATA_4440_H\n\n#include \"types.h\"\n\ntypedef struct {\n    void (*at_0)(void);\n    void (*at_4)(void);\n    void (*at_8)(void);\n    void (*at_C)(void);\n    void (*at_10)(void);\n    void (*at_14)(void);\n    void (*at_18)(void);\n    void (*at_1C)(void);\n    void (*at_20)(void);\n    void (*at_24)(void);\n    void (*at_28)(void);\n    void (*at_2C)(void);\n    void (*at_30)(void);\n    void (*at_34)(void);\n    u32 at_38;\n    u32 at_3C;\n    u32 at_40;\n} Data_lbl_1_data_4440;\nextern Data_lbl_1_data_4440 lbl_1_data_4440;\n\n#endif\n"
+    },
+    "method": "relocated-table",
+    "module": "main_rel",
+    "references": [
+      "fn_1_11E98",
+      "fn_1_EE04"
+    ],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 0,
+        "symbol": "fn_1_1138C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 4,
+        "symbol": "fn_1_11748"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 8,
+        "symbol": "fn_1_11ABC"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 12,
+        "symbol": "fn_1_11E98"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 16,
+        "symbol": "fn_1_107B8"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 20,
+        "symbol": "fn_1_10268"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 24,
+        "symbol": "fn_1_DA34"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 28,
+        "symbol": "fn_1_11544"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 32,
+        "symbol": "fn_1_1189C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 36,
+        "symbol": "fn_1_11C08"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 40,
+        "symbol": "fn_1_1212C"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 44,
+        "symbol": "fn_1_10AF0"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 48,
+        "symbol": "fn_1_103B0"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 52,
+        "symbol": "fn_1_DA34"
+      }
+    ],
+    "section": ".data",
+    "section_size": 200,
+    "sha256": "fdd42c021c1c63e82c9d9f1d3e8da77104fe18496275b297d62de60cc4ea08d8",
+    "size": 68,
+    "source": "rel/main_rel/data/lbl_1_data_4440.c",
+    "symbol": "lbl_1_data_4440",
+    "unit_align": 8,
+    "unit_size": 200,
+    "unit_start": 17472
+  },
+  "main_rel:lbl_1_data_4484": {
+    "address": 17540,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_4484 lbl_1_data_4484",
+        "path": "include/rel/main_rel/live_camera.h"
+      }
+    ],
+    "definition": "Obj_1_data_4484 lbl_1_data_4484",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1138C",
+      "fn_1_11C08",
+      "fn_1_1212C",
+      "fn_1_11544"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 200,
+    "sha256": "0b4c41b3be29a090381fef0f25c0bfe26674fd61f311842a7130c50f8f28a24a",
+    "size": 112,
+    "source": "rel/main_rel/data/lbl_1_data_4440.c",
+    "symbol": "lbl_1_data_4484",
+    "unit_align": 8,
+    "unit_size": 200,
+    "unit_start": 17472
+  },
+  "main_rel:lbl_1_data_44F4": {
+    "address": 17652,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_44F4 lbl_1_data_44F4",
+        "path": "include/rel/main_rel/live_camera.h"
+      }
+    ],
+    "definition": "Obj_1_data_44F4 lbl_1_data_44F4",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_10138",
+      "fn_1_101D0",
+      "fn_1_103B0"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 200,
+    "sha256": "be32b85da8e691e4f4a466263b75116eb7b62046b5aa8397807066d7f68b400b",
+    "size": 20,
+    "source": "rel/main_rel/data/lbl_1_data_4440.c",
+    "symbol": "lbl_1_data_44F4",
+    "unit_align": 8,
+    "unit_size": 200,
+    "unit_start": 17472
+  },
+  "main_rel:lbl_1_data_4568": {
+    "address": 17768,
+    "align": 8,
+    "declarations": [],
+    "definition": "Data_lbl_1_data_4568 lbl_1_data_4568",
+    "header": {
+      "path": "rel/main_rel/data/lbl_1_data_4568.h",
+      "text": "#ifndef DATA_LBL_1_DATA_4568_H\n#define DATA_LBL_1_DATA_4568_H\n\n#include \"types.h\"\n\ntypedef struct {\n    u32 at_0;\n    u32 at_4;\n    u32 at_8;\n    u8 *at_C;\n    u8 *at_10;\n    u8 *at_14;\n    u8 *at_18;\n    u8 *at_1C;\n    u8 *at_20;\n    u8 *at_24;\n    u32 at_28;\n    u32 at_2C;\n    u32 at_30;\n    u32 at_34;\n    u32 at_38;\n    u32 at_3C;\n    u32 at_40;\n    u32 at_44;\n    u32 at_48;\n    u32 at_4C;\n    u32 at_50;\n    u32 at_54;\n    u32 at_58;\n    u32 at_5C;\n    u32 at_60;\n    u32 at_64;\n    u32 at_68;\n    u32 at_6C;\n    u32 at_70;\n    u32 at_74;\n    u32 at_78;\n    u32 at_7C;\n    u32 at_80;\n    u32 at_84;\n    u32 at_88;\n    u32 at_8C;\n    u32 at_90;\n    u32 at_94;\n    u32 at_98;\n    u32 at_9C;\n    u32 at_A0;\n    u32 at_A4;\n    u32 at_A8;\n    u32 at_AC;\n    u32 at_B0;\n    u32 at_B4;\n    u32 at_B8;\n    u32 at_BC;\n    u32 at_C0;\n    u32 at_C4;\n    u32 at_C8;\n    u32 at_CC;\n    u32 at_D0;\n    u32 at_D4;\n    u32 at_D8;\n    u32 at_DC;\n    u32 at_E0;\n    u32 at_E4;\n    u32 at_E8;\n    u32 at_EC;\n    u32 at_F0;\n    u32 at_F4;\n    u32 at_F8;\n    u32 at_FC;\n    u32 at_100;\n    u32 at_104;\n    u32 at_108;\n    u32 at_10C;\n    u32 at_110;\n    u32 at_114;\n    u32 at_118;\n    u32 at_11C;\n    u32 at_120;\n    u32 at_124;\n    u32 at_128;\n    u32 at_12C;\n    u32 at_130;\n    u32 at_134;\n    u32 at_138;\n    u32 at_13C;\n    u32 at_140;\n    u32 at_144;\n    u32 at_148;\n    u32 at_14C;\n    u32 at_150;\n    u32 at_154;\n    u32 at_158;\n    u32 at_15C;\n    u32 at_160;\n    u32 at_164;\n    u32 at_168;\n    u32 at_16C;\n    u32 at_170;\n    u32 at_174;\n    u32 at_178;\n    u32 at_17C;\n    u32 at_180;\n    u32 at_184;\n    u32 at_188;\n    u32 at_18C;\n    u32 at_190;\n    u32 at_194;\n    u32 at_198;\n    u32 at_19C;\n    u32 at_1A0;\n    u32 at_1A4;\n    u32 at_1A8;\n    u32 at_1AC;\n    u32 at_1B0;\n    u32 at_1B4;\n    u32 at_1B8;\n    u32 at_1BC;\n    u32 at_1C0;\n    u32 at_1C4;\n    u32 at_1C8;\n    u32 at_1CC;\n    u32 at_1D0;\n    u32 at_1D4;\n    u32 at_1D8;\n    u32 at_1DC;\n    u32 at_1E0;\n    u32 at_1E4;\n    u32 at_1E8;\n} Data_lbl_1_data_4568;\nextern Data_lbl_1_data_4568 lbl_1_data_4568;\n\n#endif\n"
+    },
+    "method": "relocated-table",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 12,
+        "symbol": "lbl_1_data_4508"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 16,
+        "symbol": "lbl_1_data_4514"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 20,
+        "symbol": "lbl_1_data_4524"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 24,
+        "symbol": "lbl_1_data_4530"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 28,
+        "symbol": "lbl_1_data_4540"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 32,
+        "symbol": "lbl_1_data_4554"
+      },
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main_rel",
+        "offset": 36,
+        "symbol": "lbl_1_data_4568"
+      }
+    ],
+    "section": ".data",
+    "section_size": 3096,
+    "sha256": "954d9cd2110cd2c10dabf62f8b60c64532f3949edfd4c4108eea56fbb22f61cb",
+    "size": 492,
+    "source": "rel/main_rel/data/lbl_1_data_4568.c",
+    "symbol": "lbl_1_data_4568",
+    "unit_align": 8,
+    "unit_size": 3096,
+    "unit_start": 17768
+  },
+  "main_rel:lbl_1_data_4754": {
+    "address": 18260,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_4754 lbl_1_data_4754",
+        "path": "include/rel/main_rel/live_camera.h"
+      }
+    ],
+    "definition": "Obj_1_data_4754 lbl_1_data_4754",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1138C",
+      "fn_1_11544"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3096,
+    "sha256": "0a0474d3a6ca5cb8893b0eadcd3da861815c68a2cde656d5326fee4fdad9c4df",
+    "size": 96,
+    "source": "rel/main_rel/data/lbl_1_data_4568.c",
+    "symbol": "lbl_1_data_4754",
+    "unit_align": 8,
+    "unit_size": 3096,
+    "unit_start": 17768
+  },
+  "main_rel:lbl_1_data_47B4": {
+    "address": 18356,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_data_47B4 lbl_1_data_47B4",
+        "path": "include/rel/main_rel/live_camera.h"
+      }
+    ],
+    "definition": "Obj_1_data_47B4 lbl_1_data_47B4",
+    "method": "declared-record",
+    "module": "main_rel",
+    "references": [
+      "fn_1_11748",
+      "fn_1_1189C"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3096,
+    "sha256": "84f4855574f9c73533ea41b5fc4c0737d6db96fc6776097339aaab7a875d86c6",
+    "size": 748,
+    "source": "rel/main_rel/data/lbl_1_data_4568.c",
+    "symbol": "lbl_1_data_47B4",
+    "unit_align": 8,
+    "unit_size": 3096,
+    "unit_start": 17768
+  },
   "main_rel:lbl_1_data_4AA0": {
     "address": 19104,
     "align": 8,
@@ -4644,14 +5001,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1760,
+    "section_size": 3096,
     "sha256": "d582020822865e839459aaa87286869ccbae29f88303c3416251c7309f7b31c3",
     "size": 1760,
-    "source": "rel/main_rel/data/lbl_1_data_4AA0.c",
+    "source": "rel/main_rel/data/lbl_1_data_4568.c",
     "symbol": "lbl_1_data_4AA0",
     "unit_align": 8,
-    "unit_size": 1760,
-    "unit_start": 19104
+    "unit_size": 3096,
+    "unit_start": 17768
   },
   "main_rel:lbl_1_data_67F0": {
     "address": 26608,
