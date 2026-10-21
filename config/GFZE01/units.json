@@ -34221,6 +34221,20 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/archive/fn_1_12EF80.c",
+    "symbols": [
+      "fn_1_12EF80"
+    ],
+    "status": "matching",
+    "mw_version": "GC/2.5",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/archive.c",
+    "pool": {
+      "@4": "lbl_1_rodata_82B4"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/archive/fn_1_12F028.c",
     "symbols": [
       "fn_1_12F028"

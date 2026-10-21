@@ -8612,3 +8612,6 @@ rel/main_rel/sound/fn_1_A3A1C.c:
 
 rel/main_rel/background/fn_1_9D994.c:
 	.text       start:0x0009D994 end:0x0009D9E4 align:4
+
+rel/main_rel/archive/fn_1_12EF80.c:
+	.text       start:0x0012EF80 end:0x0012F028 align:4
