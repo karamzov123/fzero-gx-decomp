@@ -973,6 +973,103 @@ default: {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_6D2C */
 
+/* fzgx:begin fn_1_6DD0 */
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
+
+extern void lbl_8006DD14(u32, void *);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u32 *lbl_801A6D00;
+extern void *lbl_801A66CC;
+
+typedef struct {
+    u32 unk_0;
+    u8 unk_4;
+} F6DD0Entry;
+
+typedef struct {
+    u32 unk_0;
+    u8 pad[8];
+    u32 unk_C;
+} F6DD0Other;
+
+typedef struct {
+    Obj_1_bss_F68_Target *state;
+    u8 *entries;
+    F6DD0Other *other;
+} F6DD0Bss;
+
+/* volatile: retail preserves the flag-byte read and write even with a zero mask. */
+static inline void F6DD0SetFlag(volatile F6DD0Entry *e, u8 flag) {
+    e->unk_4 = e->unk_4 | flag;
+}
+
+void fn_1_6DD0(u8 index) {
+    F6DD0Bss *bss = (F6DD0Bss *)&lbl_1_bss_F68;
+    s8 mode;
+
+    lbl_8006DD14((u32)((u8 *)lbl_801A6D00 + 0x30), lbl_801A66CC);
+    if (bss->state == 0) {
+        OSPanic((u8 *)lbl_1_data_3318, 0x564, (u8 *)&lbl_1_data_35B0);
+    }
+    if ((bss->state->unk_0 & ((u32)1 << 31)) != 0) {
+        *(u32 *)camera_get_state_object() |= ((u32)1 << 31);
+    }
+    mode = (s8)bss->state->unk_48;
+    switch (mode) {
+    case 9:
+    case 10:
+        bss->other->unk_C |= ((u32)1 << 31);
+        break;
+    default: {
+        /* volatile: retail preserves this byte read/modify/write for a zero mask. */
+        F6DD0SetFlag((volatile F6DD0Entry *)(bss->entries + index * 0x1FC), 0);
+        break;
+    }
+    }
+}
+/* fzgx:end fn_1_6DD0 */
+
 /* fzgx:begin fn_1_6EC0 */
 u32 fn_1_6EC0(u8 index) {
     Obj_1_bss_F68_Target *state = lbl_1_bss_F68;

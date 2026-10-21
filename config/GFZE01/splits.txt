@@ -6233,3 +6233,21 @@ dol/fn_800081C8.c:
 
 dol/fn_8006F394.c:
 	.text       start:0x8006F394 end:0x8006F3E4 align:4
+
+dol/fn_800744F8.c:
+	.text       start:0x800744F8 end:0x800745A4 align:4
+
+dol/fn_800749B0.c:
+	.text       start:0x800749B0 end:0x80074A60 align:4
+
+dol/fn_8006C570.c:
+	.text       start:0x8006C570 end:0x8006C634 align:4
+
+dol/fn_8003887C.c:
+	.text       start:0x8003887C end:0x80038944 align:4
+
+dol/fn_8003A680.c:
+	.text       start:0x8003A680 end:0x8003A760 align:4
+
+dol/fn_8006F4E0.c:
+	.text       start:0x8006F4E0 end:0x8006F5C4 align:4
