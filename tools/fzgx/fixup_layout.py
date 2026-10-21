@@ -211,6 +211,9 @@ def probe_layout(p, module, prefix, tname, names, decls, tag):
     src = prefix + "\n" + "\n".join(lines) + "\n"
     d = STATE_DIR / 'fixup' / 'probe'
     d.mkdir(parents=True, exist_ok=True)
+    # REL entrypoint keys include "module:name"; MWCC runs under Windows
+    # semantics, where a colon in the source basename is not a valid filename.
+    tag = tag.replace(':', '__')
     f = d / f"{tag}_{hashlib.sha1(src.encode()).hexdigest()[:10]}.c"
     f.write_text(src)
     obj = f.with_suffix('.o')

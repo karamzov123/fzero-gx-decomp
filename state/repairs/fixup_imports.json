@@ -10993,6 +10993,7 @@
     "headers_sha256": "ad8d87f89ffdbc48b4eed82117ca68bc7df20930194490f8fa081141d0677717",
     "oracle_sha256": "a07ffcea0a75ff8b33e8b1a58b6f616c8c390cf774c325caeec533336a536657",
     "recipe": [],
-    "link": "pending"
+    "link": "verified",
+    "commit": "09e41e53"
   }
 }
