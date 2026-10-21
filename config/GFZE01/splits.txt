@@ -5883,9 +5883,6 @@ dol/fn_8006A768.c:
 dol/fn_8003D42C.c:
 	.text       start:0x8003D42C end:0x8003D4C0 align:4
 
-dol/fn_8007F508.c:
-	.text       start:0x8007F508 end:0x8007F684 align:4
-
 dol/fn_8008983C.c:
 	.text       start:0x8008983C end:0x800898E4 align:4
 
@@ -6263,3 +6260,24 @@ dol/fn_8006060C.c:
 
 dol/fn_8006B048.c:
 	.text       start:0x8006B048 end:0x8006B188 align:4
+
+dol/fn_80064E84.c:
+	.text       start:0x80064E84 end:0x80064FDC align:4
+
+dol/fn_800794F0.c:
+	.text       start:0x800794F0 end:0x80079654 align:4
+
+dol/fn_8005C120.c:
+	.text       start:0x8005C120 end:0x8005C298 align:4
+
+dol/fn_80070158.c:
+	.text       start:0x80070158 end:0x800702E4 align:4
+
+dol/fn_80065390.c:
+	.text       start:0x80065390 end:0x80065528 align:4
+
+dol/fn_80039954.c:
+	.text       start:0x80039954 end:0x80039AFC align:4
+
+dol/fn_8000700C.c:
+	.text       start:0x8000700C end:0x800071B8 align:4

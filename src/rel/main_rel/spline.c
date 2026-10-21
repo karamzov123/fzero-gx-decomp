@@ -543,6 +543,155 @@ void fn_1_F7338(int arg0, void *arg1, void *arg2) {
 }
 /* fzgx:end fn_1_F7338 */
 
+/* fzgx:begin fn_1_F73A8 */
+extern void mathutil_quat_mult(f32 *, f32 *, f32 *);
+extern void fn_1_F56F8(f32 *out, f32 *in);
+extern const f32 lbl_1_rodata_6D78;
+extern void fn_1_F57A8(f32 *out, f32 *in);
+extern const f32 lbl_1_rodata_6D70;
+extern f64 fn_80088538(f32);
+extern f64 fn_800883E8(f32);
+extern f32 lbl_8006D0B4(f32);
+extern f64 fn_80087E80(f32);
+extern void fn_8006E8DC(void *);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
+extern void fn_1_F5B88(Obj_1_data_2A7E0_At3C *arg0);
+extern void fn_1_9AD88(void);
+extern void fn_1_F65A0(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_F7578(void);
+extern void fn_8001D32C(u32 *);
+extern void fn_80008BEC(void *dst, s32 value, u32 size);
+extern void fn_1_F75D8(void *, int, int, int);
+extern void fn_1_F8918(u8 *, u8 *);
+extern s32 fn_8008023C(u8 *, Obj_1_bss_7F0C0 *, u32);
+extern void fn_1_F85A0(Obj_1_bss_7F0C0 *, u8 *);
+extern u16 lbl_1_data_414[36];
+extern int fn_1_8D5F0(s16 value);
+extern void fn_1_F7CAC(s16);
+extern s32 fn_1_F7BE4(s16);
+extern void fn_1_F7F48(s16 value);
+extern int fn_1_14D6D8(s16 value);
+extern void fn_1_F83F0(s16 value);
+extern void fn_1_F8214(s16 value);
+extern void fn_1_F8A04(void);
+extern void fn_1_F8A90(void);
+extern void fn_1_F8A7C(void);
+extern void fn_1_F8AFC(u32 value);
+extern void fn_1_F8B64(void);
+extern void fn_1_F8BA8(void);
+extern void fn_1_F8B7C(void);
+extern void fn_1_F8BD4(void);
+extern void fn_1_F8C28(s32 value);
+extern void fn_1_F8CCC(s32 value);
+extern void fn_1_F8CA0(s32 value);
+extern struct Table lbl_1_rodata_6FF0;
+extern void fn_80083DB0(void *arg0, u32 arg1);
+extern void fn_1_F9D04(u8 index);
+extern void fn_1_F9D90(void);
+extern void fn_1_F9E38(void);
+extern void fn_1_F9EE4(s32 value);
+extern u8 fn_1_FA69C(s32 index);
+extern void fn_1_3EF14(void *);
+extern s32 fn_1_58C4(void);
+extern void fn_1_FA89C(Obj_1_data_2A7E0_At3C *obj);
+extern void fn_1_76BF8(void);
+extern void fn_1_72648(void);
+extern void fn_1_FB0B4(Obj_1_bss_84428 *data);
+extern void fn_1_FB180(int *value);
+extern void fn_1_9AD54(void);
+extern void fn_1_FB18C(void);
+
+extern void fn_1_F8918(u8 *, u8 *);
+extern u16 lbl_1_data_414[36];
+extern void fn_8001D3E4(int index, int value);
+extern u32 lbl_801A66A0;
+
+
+void fn_1_F73A8(s32 idx, s32 kind, s32 val) {
+    Obj_1_bss_7F02C *p;
+    if ((lbl_1_bss_7F028 & 1) == 0) return;
+    if (kind == 0) return;
+    if (idx < 0 || idx >= 4) return;
+    {
+        if (val > 180) return;
+        if ((lbl_1_data_3E8F0 & (1 << idx)) == 0) return;
+        if (kind == 6 || kind == 5) val = 0;
+        p = (Obj_1_bss_7F02C *)((u8 *)&lbl_1_bss_7F02C + (idx << 2));
+        switch (p->unk_0) {
+        case 6:
+            if (kind == 5) p->unk_0 = kind;
+            break;
+        case 1:
+            switch (kind) {
+            case 5:
+            case 6:
+                p->unk_0 = kind;
+                break;
+            case 1:
+                if (p->unk_2 < val) {
+                    p->unk_0 = kind;
+                    p->unk_2 = val;
+                }
+                break;
+            }
+            break;
+        case 2:
+            switch (kind) {
+            case 5:
+            case 6:
+                p->unk_0 = kind;
+                break;
+            case 2:
+            case 3:
+            case 4:
+                if (p->unk_2 < val) break;
+            case 1:
+                p->unk_0 = kind;
+                p->unk_2 = val;
+                break;
+            }
+            break;
+        case 3:
+            switch (kind) {
+            case 5:
+            case 6:
+                p->unk_0 = kind;
+                break;
+            case 3:
+            case 4:
+                if (p->unk_2 < val) break;
+            case 1:
+            case 2:
+                p->unk_0 = kind;
+                p->unk_2 = val;
+                break;
+            }
+            break;
+        case 4:
+            switch (kind) {
+            case 5:
+            case 6:
+                p->unk_0 = kind;
+                break;
+            case 4:
+                if (p->unk_2 < val) break;
+            case 1:
+            case 2:
+            case 3:
+                p->unk_0 = kind;
+                p->unk_2 = val;
+                break;
+            }
+            break;
+        case 0:
+            p->unk_0 = kind;
+            p->unk_2 = val;
+            break;
+        }
+    }
+}
+/* fzgx:end fn_1_F73A8 */
+
 /* fzgx:begin fn_1_F755C */
 void fn_1_F755C(u8 value) {
     lbl_1_data_3E8F0 = value;

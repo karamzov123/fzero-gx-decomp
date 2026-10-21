@@ -555,6 +555,65 @@ void fn_1_DAF90(void) {
 }
 /* fzgx:end fn_1_DAF90 */
 
+/* fzgx:begin fn_1_DAF94 noprologue */
+#include "types.h"
+
+extern u32 fn_1_58C4(void);
+extern const f32 lbl_1_rodata_6638;
+extern const f32 lbl_1_rodata_6640;
+
+typedef struct V3 { f32 x, y, z; } V3;
+typedef struct Elem { V3 pos; f32 w; } Elem;
+typedef struct Src { u8 pad[0xc]; V3 pos; } Src;
+typedef struct Entry {
+    Src *src;
+    V3 cur;
+    s32 zero;
+    f32 one;
+    s16 a;
+    f32 b;
+    Elem first[128];
+    Elem second[128];
+} Entry;
+typedef struct Obj {
+    u8 pad[0x10];
+    s32 count;
+    Entry entries[1];
+} Obj;
+
+void fn_1_DAF94(Obj *obj) {
+    Entry *e = obj->entries;
+    if (fn_1_58C4() < 2) {
+        f32 one;
+        f32 zero;
+        Src *s;
+        s32 n;
+        zero = lbl_1_rodata_6638;
+        one = lbl_1_rodata_6640;
+        n = obj->count;
+        for (; n > 0; n--) {
+            s32 i;
+            Elem *p;
+            s = e->src;
+            obj->entries[0].a = 0;
+            obj->entries[0].b = zero;
+            for (i = 128, p = obj->entries[0].first; i != 0; i--, p++) {
+                p->pos = s->pos;
+                p->w = zero;
+            }
+            for (i = 128, p = obj->entries[0].second; i != 0; i--, p++) {
+                p->pos = s->pos;
+                p->w = zero;
+            }
+            e->cur = s->pos;
+            e->zero = 0;
+            e->one = one;
+            e++;
+        }
+    }
+}
+/* fzgx:end fn_1_DAF94 */
+
 /* fzgx:begin fn_1_DB138 */
 typedef struct {
     u8 unk_00[0x10];

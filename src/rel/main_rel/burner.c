@@ -1732,6 +1732,96 @@ s32 fn_1_9CE1C(const char *arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_9CE1C */
 
+/* fzgx:begin fn_1_9D0EC noprologue */
+#include "types.h"
+
+typedef struct NameHolder {
+    u8 pad[4];
+    char *name;
+} NameHolder;
+
+typedef struct NameLink {
+    u8 pad[8];
+    NameHolder *holder;
+} NameLink;
+
+typedef struct NameEntry {
+    u8 pad[8];
+    NameLink *link;
+    u8 pad2[0x34];
+} NameEntry;
+
+typedef struct NameRule {
+    s32 type;
+    char *str;
+} NameRule;
+
+extern size_t strlen(const char *);
+extern s32 fn_8006FC5C(const char *, const char *, size_t);
+extern s32 fn_8006FC1C(const char *, const char *);
+
+static inline NameLink * fn_1_9D0EC_read_pointer(NameEntry * owner) { return owner->link; }
+#pragma opt_propagation on
+void fn_1_9D0EC(NameEntry *arg0, s32 arg1, NameRule *arg2, s32 (*arg3)(s32, NameEntry *)) {
+    s32 len;
+    s32 (*cb)(s32, NameEntry *) = arg3;
+    NameRule *rules = arg2;
+    s32 count = arg1;
+    s32 i;
+    s32 result;
+    NameRule *r;
+    char *name;
+
+    result = 1;
+    while (count > 0) {
+        name = fn_1_9D0EC_read_pointer(arg0)->holder->name;
+        len = strlen(name);
+        r = rules;
+        i = 0;
+        while (r->str != NULL) {
+            s32 ok;
+            switch (r->type) {
+            case 0:
+                ok = fn_8006FC5C(name, r->str, strlen(r->str));
+                break;
+            case 1:
+                ok = fn_8006FC1C(name, r->str);
+                break;
+            case 2: {
+                s32 l = strlen(r->str);
+                if (l > len) {
+                    ok = 0;
+                } else {
+                    ok = fn_8006FC5C(name + (len - l), r->str, l);
+                }
+                break;
+            }
+            default:
+                ok = 0;
+                break;
+            }
+            if (ok) {
+                result = cb(i, arg0);
+                if (!result) {
+                    break;
+                }
+            }
+            if (!result) {
+                break;
+            }
+            i++;
+            r++;
+        }
+        if (!result) {
+            break;
+        }
+        count--;
+        arg0++;
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_9D0EC */
+
 /* fzgx:begin fn_1_9D230 */
 u32 fn_1_9D230(void) {
     return (fn_1_9D260() & 0xC) != 0;

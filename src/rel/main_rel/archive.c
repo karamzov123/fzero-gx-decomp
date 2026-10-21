@@ -78,6 +78,56 @@ void fn_1_12A32C(void *arg0) {
 }
 /* fzgx:end fn_1_12A32C */
 
+/* fzgx:begin fn_1_12A350 noprologue */
+#include "rel/main_rel/archive.h"
+
+extern int fn_1_45730(void *, void *);
+extern void *fn_1_12A4B0(void *, u32, u32);
+extern s32 fn_8006A3DC(void *, void *);
+extern void OSPanic(const char *, int, const char *, ...);
+extern size_t strlen(const char *);
+extern s32 strncmp(const char *, const char *, size_t);
+
+#pragma opt_dead_assignments off
+u32 fn_1_12A350(char *name, u32 arg1)
+{
+    int i;
+    char *d = (char *)&lbl_1_data_40600;
+    u8 *base = (u8 *)&lbl_1_bss_897AC;
+    u8 buf[0x60];
+
+    for (i = 0; i < 64; i++) {
+        if (*(s32 *)(base + i * 0x6c) == 0) {
+            lbl_1_bss_897A0 = i;
+            goto found; /* skip panic when a free slot exists */
+        }
+    }
+    OSPanic(d + 8, 0x7f, d + 0x38);
+found:
+    if (fn_1_45730(name, buf) == 1) {
+        int len = strlen(name);
+        u32 flag;
+        if (len >= 3 && strncmp(&name[len - 3], d + 0x58, 3) == 0) {
+            flag = 1;
+        } else {
+            flag = 0;
+        }
+        if (fn_8006A3DC(fn_1_12A4B0(buf, flag, arg1), (u8 *)&lbl_1_bss_897AC + lbl_1_bss_897A0 * 0x6c + 0x4c) == 0) {
+            OSPanic(d + 8, 0x94, d + 0x5c);
+        }
+    } else {
+        OSPanic(d + 8, 0x97, d + 0x84);
+    }
+    {
+        u32 *s = &lbl_1_bss_897A0;
+        u32 slot = *s;
+        *(u32 *)((u8 *)&lbl_1_bss_897AC + slot * 0x6c) = 1;
+        return slot;
+    }
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_12A350 */
+
 /* fzgx:begin fn_1_12A4B0 */
 extern void *lbl_801A6410;
 

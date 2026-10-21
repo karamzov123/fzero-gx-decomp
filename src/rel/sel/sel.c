@@ -3898,6 +3898,218 @@ void fn_10_A25C(SelObjA25C *obj) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_10_A25C */
 
+/* fzgx:begin fn_10_A634 */
+typedef signed char s8;
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct {
+u8 pad_0[0x19];
+u8 unk_19;
+} Obj_1_bss_8B3A0_AtA4;
+typedef struct {
+s16 unk_0;
+u8 pad_2[0x2];
+s16 unk_4;
+u8 pad_6[0x2];
+s16 unk_8;
+u8 pad_A[0x4];
+s16 unk_E;
+u8 pad_10[0x4];
+u8 unk_14;
+u8 pad_15[0x19];
+s16 unk_2E;
+u8 pad_30[0x5C];
+s16 unk_8C;
+u8 pad_8E[0x2];
+s16 unk_90;
+s16 unk_92;
+u32 unk_94;
+u8 pad_98[0x6];
+u8 unk_9E;
+u8 unk_9F;
+u8 pad_A0[0x4];
+Obj_1_bss_8B3A0_AtA4 *unk_A4;
+u8 pad_A8[0x8];
+s16 unk_B0;
+s16 unk_B2;
+u8 pad_B4[0xC];
+s16 unk_C0;
+s16 unk_C2;
+u8 pad_C4[0xC];
+s16 unk_D0;
+s16 unk_D2;
+u8 pad_D4[0xC];
+u32 unk_E0;
+u32 unk_E4;
+u32 unk_E8;
+u32 unk_EC;
+u32 unk_F0;
+u32 unk_F4;
+u32 unk_F8;
+u32 unk_FC;
+u32 unk_100;
+u32 unk_104;
+u32 unk_108;
+u32 unk_10C;
+u32 unk_110;
+u32 unk_114;
+u32 unk_118;
+u32 unk_11C;
+u32 unk_120;
+u32 unk_124;
+u8 unk_128;
+u8 unk_129;
+u8 pad_12A[0x2];
+s16 unk_12C;
+s16 unk_12E;
+s16 unk_130;
+s16 unk_132;
+s16 unk_134;
+s16 unk_136;
+s16 unk_138;
+s16 unk_13A;
+s16 unk_13C;
+u8 pad_13E[0x2];
+u32 unk_140;
+u8 pad_144[0x2];
+s16 unk_146;
+s16 unk_148;
+u8 pad_14A[0x2];
+} Obj_1_bss_8B3A0;
+extern Obj_1_bss_8B3A0 lbl_1_bss_8B3A0;
+
+
+typedef struct {
+u16 unk_0;
+u16 unk_2;
+u8 pad_4[0x4];
+u16 unk_8;
+u16 unk_A;
+u8 pad_C[0x4];
+u16 unk_10;
+u16 unk_12;
+u8 pad_14[0x3C];
+} Obj_1_bss_9F8;
+extern Obj_1_bss_9F8 lbl_1_bss_9F8;
+
+
+typedef struct FontDrawPacket FontDrawPacket;
+typedef struct FontVertex {
+f32 x, y, z;
+} FontVertex;
+struct FontDrawPacket {
+u32 image;
+f32 x, y, z;
+f32 scale_x, scale_y;
+f32 u0, v0, u1, v1;
+s16 rotation_z, rotation_y;
+f32 alpha;
+u32 flags;
+f32 depth;
+u8 color[4], color_add[4];
+u32 format;
+u16 width, height;
+void* pixels;
+FontDrawPacket* secondary;
+void (*vertex_callback)(FontDrawPacket* packet, FontVertex* vertices);
+u32 unk_54;
+};
+void fn_1_4A0D8(const char* text);
+void fn_1_4AE0C(const char* format, ...);
+int fn_1_4F734(FontDrawPacket* packet);
+void fn_1_4EDAC(FontDrawPacket* packet, f32 width, f32 height);
+void fn_1_51678(FontDrawPacket* packet, u32 image, s16 x, s16 y, s16 width, s16 height);
+void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height,
+s16 texture_width, s16 texture_height);
+
+
+struct E9C8 { u8 pad[10]; s8 id; u8 pad2; };
+
+
+extern u8 lbl_1_bss_9C8[];
+
+
+extern void fn_1_A2D84(u32 arg0);
+
+
+extern u32 fn_1_F9FEC(void);
+extern u32 lbl_801A66A8;
+extern void fn_1_12F128(s16 index);
+
+
+struct fn_10_A634_lbl_1_bss_8B3A0 {
+u8 pad_0[0x98];
+u32 unk_98;
+};
+struct fn_10_A634_E9F8 { u8 pad[0x10]; u16 a; u16 b; };
+
+#pragma opt_common_subs off
+
+void fn_10_A634(void *arg0) {
+struct { s32 value; } v0;
+s16 v2;
+s16 v1;
+u16 v7;
+u16 v6;
+s32 out;
+s32 v8;
+s32 v9;
+v0.value = fn_1_F9FEC() != 0;
+v2 = 0;
+for (v1 = 0; v1 < 4; v1++) {
+if ((((struct E9C8 *)&lbl_1_bss_9C8))[v1].id != -1 &&
+__rlwnm((*((struct fn_10_A634_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)).unk_98, (v1 + 1) & 31, 31, 31)) {
+if ((((((struct fn_10_A634_E9F8 *)&lbl_1_bss_9F8))[v1].a >> 3) & 1) || (((((struct fn_10_A634_E9F8 *)&lbl_1_bss_9F8))[v1].b >> 3) & 1)) {
+v2--;
+}
+if ((((((struct fn_10_A634_E9F8 *)&lbl_1_bss_9F8))[v1].a >> 2) & 1) || (((((struct fn_10_A634_E9F8 *)&lbl_1_bss_9F8))[v1].b >> 2) & 1)) {
+v2++;
+}
+v6 = (((struct fn_10_A634_E9F8 *)&lbl_1_bss_9F8))[v1].a;
+if (((v6 >> 2) & 1) || (((v7 = (((struct fn_10_A634_E9F8 *)&lbl_1_bss_9F8))[v1].b) >> 2) & 1)) {
+fn_1_12F128(v1);
+} else if (((v6 >> 3) & 1) || ((v7 >> 3) & 1)) {
+fn_1_12F128(v1);
+}
+}
+}
+if (v0.value) {
+v8 = *(s16 *)((u8 *)arg0 + 8) + v2;
+if (v8 > 3) out = 0;
+else {
+out = 3;
+if (v8 >= 0) out = v8;
+}
+*(s16 *)((u8 *)arg0 + 8) = out;
+} else {
+v9 = *(s16 *)((u8 *)arg0 + 8) + v2;
+if (v9 > 2) out = 0;
+else {
+out = 2;
+if (v9 >= 0) out = v9;
+}
+*(s16 *)((u8 *)arg0 + 8) = out;
+}
+*(s16 *)((u8 *)arg0 + 10) = *(s16 *)((u8 *)arg0 + 8);
+if (v2 != 0) {
+fn_1_A2D84(0xA9010000);
+lbl_801A66A8 = 0;
+}
+}
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_10_A634 */
+
 /* fzgx:begin fn_10_A7DC */
 extern int fn_1_FA070(void);
 extern int fn_1_FA0BC(int);

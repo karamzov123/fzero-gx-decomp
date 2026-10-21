@@ -71,6 +71,148 @@ void fn_3_156A8(void) {
 }
 /* fzgx:end fn_3_156A8 */
 
+/* fzgx:begin fn_3_1683C noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/editor.h"
+#include "font.h"
+
+typedef struct { u32 c; } Col4;
+
+struct fn_3_156D0_Obj {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    s16 unk_C;
+    s16 unk_E;
+    s16 unk_10;
+    s16 unk_12;
+    u8 pad_14[8];
+    u8 unk_1C;
+    u8 pad_1D[3];
+    void *unk_20;
+};
+
+typedef struct {
+    u32 type;
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 a;
+    f32 b;
+    u8 pad18[0x18];
+    u32 mode;
+    u8 pad34[8];
+    u32 color;
+    u8 pad40[0x18];
+} Packet16E14;
+
+struct fn_3_1552C_Obj {
+    u8 pad[0x10];
+    u16 width;
+    u16 height;
+};
+
+typedef struct {
+    u8 pad_0[0x8];
+    u16 unk_8;
+    u8 pad_A[0x6];
+    u16 unk_10;
+    u16 unk_12;
+} PadInput;
+
+struct Obj {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    s16 unk_C;
+    s16 unk_E;
+    s16 unk_10;
+    s16 unk_12;
+    u8 pad_14[8];
+    u8 unk_1C;
+    u8 pad_1D[3];
+    void *unk_20;
+};
+extern u8 *fn_3_14074(void);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u8 fn_3_19C94(void);
+extern void fn_3_169B8(void);
+extern u32 fn_3_17820(void);
+extern void fn_3_1445C(void);
+extern s32 fn_3_14600(void);
+extern void fn_3_19F7C();
+extern void fn_3_17830(void);
+extern void fn_3_177AC(void *);
+extern void fn_3_16FD0(u32 arg0);
+extern void fn_3_19CA4(void);
+extern void fn_3_19CCC(void);
+extern void DCInvalidateRange(void *, u32);
+extern void DCStoreRange(void *, u32);
+extern void fn_1_A2D84(u32 arg0);
+extern PadInput lbl_1_bss_9F8[];
+extern u8 lbl_3_bss_A2408[8];
+extern s32 fn_1_45D0();
+extern u32 lbl_801A6410;
+extern void fn_3_19CB8(void);
+extern void fn_3_15620(void);
+extern void fn_3_1560C(void);
+extern const Col4 lbl_3_rodata_5B8;
+extern const Col4 lbl_3_rodata_5BC;
+extern s32 fn_1_A5DC4(void);
+extern void fn_1_A9868();
+extern u32 fn_1_A9FFC(s16, s16, s16, s16, void *);
+extern void fn_1_AA538(void);
+extern void fn_1_4E0F4(void);
+extern const Packet16E14 lbl_1_rodata_26F8;
+extern u8 lbl_3_rodata_538[];
+extern Col4 lbl_3_rodata_5EC;
+extern u32 fn_3_14794(u32, s16, s16, void *);
+extern void fn_3_17100(void);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern const f32 lbl_3_rodata_5FC[3];
+
+struct Arg0 {
+    u8 pad_0[4];
+    f32 unk_4;
+    f32 unk_8;
+};
+
+
+void fn_3_1683C(struct Arg0 *arg0, s16 off, s16 size) {
+    s16 x;
+    s16 y;
+    u8 i;
+    u8 j;
+    Col4 colA;
+    Col4 colB;
+    Obj_3_bss_A23EC *p = &lbl_3_bss_A23EC;
+    x = arg0->unk_4;
+    y = arg0->unk_8;
+    off = 0;
+    size = p->unk_11 << 3;
+    colA = lbl_3_rodata_5B8;
+    colB = lbl_3_rodata_5BC;
+    if ((s8)fn_1_A5DC4()) {
+        off = 4 / p->unk_11;
+    }
+    fn_1_A9868();
+    for (i = 0; i < 256 / size; i++) {
+        for (j = off; j < 256 / size - off; j++) {
+            if (((i % 2) ^ (j % 2)) != 0) {
+                Col4 t = colA;
+                fn_1_A9FFC(x + size * j, y + size * i, size, size, &t);
+            } else {
+                Col4 t = colB;
+                fn_1_A9FFC(x + size * j, y + size * i, size, size, &t);
+            }
+        }
+    }
+    fn_1_AA538();
+    fn_1_4E0F4();
+}
+/* fzgx:end fn_3_1683C */
+
 /* fzgx:begin fn_3_16E14 */
 #include "font.h"
 

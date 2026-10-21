@@ -134,3 +134,6 @@ rel/profile/fn_16_E20.c:
 
 rel/profile/fn_16_20F4.c:
 	.text       start:0x000020F4 end:0x00002328 align:4
+
+rel/profile/fn_16_18CC.c:
+	.text       start:0x000018CC end:0x00001A24 align:4

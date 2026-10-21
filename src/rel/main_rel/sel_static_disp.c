@@ -5485,6 +5485,71 @@ void fn_1_14D8DC(u8 *arg0, u8 *arg1, s16 arg2) {
 }
 /* fzgx:end fn_1_14D8DC */
 
+/* fzgx:begin fn_1_14D994 noprologue */
+#include "rel/main_rel/sel_static_disp.h"
+
+extern void *fn_1_D3884(u32);
+typedef struct {
+    s16 a;
+    s16 b;
+    s16 c;
+    u8 pad[2];
+    u32 v;
+    u32 pad2;
+} Ent_14D994;
+
+static inline void init_14D994(Ent_14D994 *e, u32 v, s32 i)
+{
+    e->v = v;
+    e->a = i;
+    e->b = i + 25;
+    e->c = i + 50;
+}
+
+void fn_1_14D994(u8 *arg0, u32 arg1, int flag)
+{
+    Ent_14D994 ents[25];
+    Ent_14D994 *p = ents;
+    u8 *d = lbl_1_data_43E78;
+    struct { s16 value; } j;
+    s16 k;
+    u8 *q_else;
+    struct { u8 *ptr; } q;
+    struct { Ent_14D994 *ptr; } e;
+    s16 i;
+    e.ptr = p;
+    for (i = 0; i < 25; i++) {
+        init_14D994(e.ptr, arg1, i);
+        e.ptr++;
+    }
+    if (flag) {
+        if (lbl_1_bss_6D82C.unk_0 == 0) {
+            fn_1_12AB38(d + 0x136c);
+            *(void **)&lbl_1_bss_6D82C = fn_1_D3884((u32)(d + 0x1378));
+            fn_1_12AB38(d + 0x1388);
+        }
+        fn_1_12AB38(d + 0x138c);
+        j.value = 0;
+        q.ptr = arg0;
+        for (; j.value < 25; j.value++) {
+            fn_1_14D728((void *)p, (void *)q.ptr);
+            q.ptr += 0xa20;
+            p++;
+        }
+        fn_1_12AB38(d + 0x1388);
+    } else {
+        fn_1_12AB38(d + 0x138c);
+        q_else = arg0;
+        for (k = 0; k < 25; k++) {
+            fn_1_14D728((void *)p, (void *)q_else);
+            q_else += 0xa20;
+            p++;
+        }
+        fn_1_12AB38(d + 0x1388);
+    }
+}
+/* fzgx:end fn_1_14D994 */
+
 /* fzgx:begin fn_1_14DB48 */
 typedef struct {
     u16 values[3];
@@ -5663,6 +5728,132 @@ void fn_1_14DEA4(void *arg0, void *arg1, void *arg2, void *arg3) {
     fn_1_14DEC8(arg0, arg1, arg2, arg3, 1);
 }
 /* fzgx:end fn_1_14DEA4 */
+
+/* fzgx:begin fn_1_14DEC8 noprologue */
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct FontDrawPacket FontDrawPacket;
+typedef struct FontVertex {
+f32 x, y, z;
+} FontVertex;
+struct FontDrawPacket {
+u32 image;
+f32 x, y, z;
+f32 scale_x, scale_y;
+f32 u0, v0, u1, v1;
+s16 rotation_z, rotation_y;
+f32 alpha;
+u32 flags;
+f32 depth;
+u8 color[4], color_add[4];
+u32 format;
+u16 width, height;
+void* pixels;
+FontDrawPacket* secondary;
+void (*vertex_callback)(FontDrawPacket* packet, FontVertex* vertices);
+u32 unk_54;
+};
+void fn_1_4A0D8(const char* text);
+void fn_1_4AE0C(const char* format, ...);
+int fn_1_4F734(FontDrawPacket* packet);
+void fn_1_4EDAC(FontDrawPacket* packet, f32 width, f32 height);
+void fn_1_51678(FontDrawPacket* packet, u32 image, s16 x, s16 y, s16 width, s16 height);
+void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height,
+s16 texture_width, s16 texture_height);
+
+
+typedef struct {
+void *value;
+} Val;
+typedef struct {
+u8 pad8[8];
+Val *value;
+} Ref;
+typedef struct {
+u8 pad344[0x344];
+Ref *ref;
+} Obj;
+extern const f32 lbl_1_rodata_9C30;
+extern void fn_1_55FF0(f32);
+extern s16 fn_1_14F344(s16);
+extern void fn_80072558(void);
+extern void fn_1_151C3C(int, s16);
+extern void fn_1_556B8(void *);
+extern void fn_1_55210(void *);
+extern void fn_1_151C78(void);
+static inline void *find(void *base, int off) {
+s16 *entry = (s16 *)base;
+void *r = 0;
+s16 i;
+for (i = 0; (u32)(s32)i < 3; i++) {
+if (fn_1_14F344(*entry) == 0) {
+r = (u8 *)base + (s16)i * 0x360 + off;
+break;
+}
+entry = (s16 *)((u8 *)entry + 0x360);
+}
+return r;
+}
+static inline void *find2(void *base, int off) {
+void *r = 0;
+s16 i;
+s16 *entry;
+i = 0;
+entry = (s16 *)base;
+for (; (u32)(s32)i < 3; i++) {
+if (fn_1_14F344(*entry) == 0) {
+r = (u8 *)base + (s16)i * 0x360 + off;
+break;
+}
+entry = (s16 *)((u8 *)entry + 0x360);
+}
+return r;
+}
+void fn_1_14DEC8(void *arg0, void **arg1, void **arg2, s16 arg3, int arg4, f32 arg5) {
+s16 *entry;
+Obj *obj;
+s16 i;
+int same;
+void *value;
+same = lbl_1_rodata_9C30 == arg5;
+if (!same) {
+fn_1_55FF0(arg5);
+}
+i = 0;
+entry = (s16 *)arg0;
+obj = (Obj *)((u8 *)arg0 + ((s32)arg3 << 2));
+for (; (u32)(s32)i < 3; i++) {
+if (fn_1_14F344(*entry) == 0) {
+value = obj->ref->value->value;
+if (value != 0) {
+fn_80072558();
+fn_1_151C3C(0, *(s16 *)((u8 *)arg0 + (s16)i * 0x360));
+if (same || arg4 != 0) {
+fn_1_556B8(value);
+} else {
+fn_1_55210(value);
+}
+fn_1_151C78();
+*arg1 = find(arg0, 0x23c);
+*arg2 = find2(arg0, 0x228);
+break;
+}
+}
+entry = (s16 *)((u8 *)entry + 0x360);
+obj = (Obj *)((u8 *)obj + 0x360);
+}
+}
+/* fzgx:end fn_1_14DEC8 */
 
 /* fzgx:begin fn_1_14E054 */
 void fn_1_14E054(void *arg0, void *arg1, void *arg2) {

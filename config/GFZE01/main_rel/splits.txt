@@ -7952,3 +7952,60 @@ rel/main_rel/stcoli/fn_1_1FB80.c:
 
 rel/main_rel/font/fn_1_492F0.c:
 	.text       start:0x000492F0 end:0x00049410 align:4
+
+rel/main_rel/stcoli/fn_1_2B524.c:
+	.text       start:0x0002B524 end:0x0002B684 align:4
+
+rel/main_rel/archive/fn_1_12A350.c:
+	.text       start:0x0012A350 end:0x0012A4B0 align:4
+
+rel/main_rel/car/fn_1_80F80.c:
+	.text       start:0x00080F80 end:0x000810E4 align:4
+
+rel/main_rel/stcoli/fn_1_29800.c:
+	.text       start:0x00029800 end:0x00029968 align:4
+
+rel/main_rel/font/fn_1_4D10C.c:
+	.text       start:0x0004D10C end:0x0004D274 align:4
+
+rel/main_rel/bg_cas/fn_1_1014B4.c:
+	.text       start:0x001014B4 end:0x0010161C align:4
+
+rel/main_rel/font/fn_1_53FE4.c:
+	.text       start:0x00053FE4 end:0x0005415C align:4
+
+rel/main_rel/car_test/fn_1_870BC.c:
+	.text       start:0x000870BC end:0x00087238 align:4
+
+rel/main_rel/stcoli/fn_1_214C4.c:
+	.text       start:0x000214C4 end:0x00021644 align:4
+
+rel/main_rel/effect/fn_1_65B5C.c:
+	.text       start:0x00065B5C end:0x00065CDC align:4
+
+rel/main_rel/effect/fn_1_645D4.c:
+	.text       start:0x000645D4 end:0x00064760 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14DEC8.c:
+	.text       start:0x0014DEC8 end:0x0014E054 align:4
+
+rel/main_rel/accessory/fn_1_1286F4.c:
+	.text       start:0x001286F4 end:0x00128884 align:4
+
+rel/main_rel/effect/fn_1_6313C.c:
+	.text       start:0x0006313C end:0x000632D4 align:4
+
+rel/main_rel/font/fn_1_53830.c:
+	.text       start:0x00053830 end:0x000539CC align:4
+
+rel/main_rel/font/fn_1_53C9C.c:
+	.text       start:0x00053C9C end:0x00053E40 align:4
+
+rel/main_rel/bg_san/fn_1_DAF94.c:
+	.text       start:0x000DAF94 end:0x000DB138 align:4
+
+rel/main_rel/spline/fn_1_F73A8.c:
+	.text       start:0x000F73A8 end:0x000F755C align:4
+
+rel/main_rel/sel_static_disp/fn_1_14D994.c:
+	.text       start:0x0014D994 end:0x0014DB48 align:4
