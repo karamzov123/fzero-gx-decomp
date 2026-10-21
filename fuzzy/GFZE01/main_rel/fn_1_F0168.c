@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.32% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.84% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/ghost.h"
@@ -50,6 +50,7 @@ void fn_1_F0168(void) {
     F0168_Item *items = (F0168_Item *)((u8 *)bss + 0x1838);
     u32 i;
     u32 n;
+    u32 count;
     s32 *p17DC = (s32 *)((u8 *)bss + 0x17DC);
     s16 *p17D0 = (s16 *)((u8 *)bss + 0x17D0);
     u32 *p1614 = (u32 *)((u8 *)bss + 0x1614);
@@ -69,7 +70,7 @@ void fn_1_F0168(void) {
     void **heap = &lbl_801A6410;
 
     n = 0;
-    for (i = 0; i < bss->unk174E; i++) {
+    for (i = 0; i < (count = bss->unk174E); i++) {
         if (p17DC[i] == 0) {
             fn_1_80058(p17D0[i], &items[n]);
             items[n].unk0 = i;
@@ -90,9 +91,9 @@ void fn_1_F0168(void) {
             n++;
         } else {
             u8 a, b, c;
-            if (bss->unk174E <= 1) {
+            if (count <= 1) {
                 desc.unk8 = 1;
-            } else if (bss->unk174E <= 3) {
+            } else if (count <= 3) {
                 desc.unk8 = 2;
             } else {
                 desc.unk8 = 4;

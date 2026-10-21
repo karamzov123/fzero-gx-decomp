@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.97% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.22% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -11,7 +11,7 @@ extern s32 fn_1_465D0(s32, s32);
 extern void fn_1_411A4(u32);
 extern void fn_1_12F28C(void *, void *, u32, void *);
 extern void fn_1_4A00(s32, u8, void *);
-extern void fn_1_47E54(s32, s32, s32);
+extern void fn_1_47E54(s32);
 extern void fn_80006E10(u32);
 extern u32 fn_1_7FD7C(void *);
 extern u8 *fn_1_12D254(s32, s32);
@@ -80,7 +80,7 @@ void fn_7_FB4(void) {
     arg.unk_2 = *(s16 *)(state->unk_10 + 4);
     arg.unk_4 = 2;
     arg.unk_8 = 0x10;
-    fn_1_47E54(0x30, arg.unk_4, arg.unk_2);
+    fn_1_47E54(0x30);
     fn_80006E10((u32)(base + 0x3E30));
     res = (s32)(base + 0x3E38);
     fn_1_465D0(res, 1);

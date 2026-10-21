@@ -1,7 +1,8 @@
-/* Non-matching: best partial attempt (96.69% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.26% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "dolphin/types.h"
 #include "psvec.h"
+#include "dolphin/hw_regs.h"
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -180,7 +181,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime21(void) {
     s = 600.0f;
 }
 #pragma section code_type ".text"
-
 typedef struct {
     f32 x;
     f32 y;
@@ -204,8 +204,8 @@ typedef struct {
 } Group;
 
 typedef struct {
-    Agg * volatile a;   /* opaque: the compiler must reload the pair at each use */
-    Agg * volatile b;
+    Agg * a;
+    Agg * b;
     Agg list_a;
     Agg list_b;
 } Ctx;
@@ -256,23 +256,22 @@ extern s32 fn_1_8C704(s16);
 extern Mgr *fn_1_14F04(void);
 extern void lbl_8006E1D8(Vec3 *, f32, f32, f32);
 
-static inline Agg * fn_1_27E34_read_pointer(Group * owner) { return owner->b; }
 #pragma opt_dead_assignments off
 #pragma opt_propagation off
-static inline Group * fn_1_27E34_read_pointer_(Object * owner) { return owner->g_488; }
 #pragma opt_propagation reset
 
-#pragma opt_lifetimes off
+#pragma opt_lifetimes on
+#pragma opt_strength_reduction off
 s32 fn_1_27E34(Object *arg0)
 {
-    u32 *fzgx_value__;
-    u16 fzgx_value_;
     f32 fzgx_value;
+    Agg * fzgx_live;
     Ctx ctx;
     Vec3 tmp;
     Vec3 out;
     Vec3 cur;
     f32 dist;
+    Agg * fzgx_live_2;
     Mgr *mgr;
     u32 mode;
     Object *obj = arg0;
@@ -290,21 +289,23 @@ s32 fn_1_27E34(Object *arg0)
     obj->v_4fc = 0;
     mgr = fn_1_14F04();
     lbl_8006E1D8(&tmp, 0.0f, -2000.0f, 0.0f);
-    psvec_set(&cur, *(f32 *)(0xE0000000 + 0x2C), *(f32 *)(0xE0000000 + 0x1C), *(f32 *)(0xE0000000 + 0x0C));
+    psvec_set(&cur, *(f32 *)(LC_BASE + 0x2C), *(f32 *)(LC_BASE + 0x1C), *(f32 *)(LC_BASE + 0x0C));
     obj->v_1d4 = tmp;
 
     if (fn_1_7B054() == 0x24 || fn_1_7B054() == 0x25) {
-        Group *g = fn_1_27E34_read_pointer_(obj);
+        Group *g = obj->g_488;
         Group *h;
         Group *j;
         Group *k;
         ctx.a = &ctx.list_a;
         ctx.b = &ctx.list_b;
         ctx.list_b.flag = 1;
-        fzgx_value_ = fn_1_27E34_read_pointer(g)->f_1c;
-        ctx.list_b.f_1c = fzgx_value_;
-        ctx.b->m_3c = fn_1_27E34_read_pointer(g)->m_3c;
-        ctx.b->f_4c = fn_1_27E34_read_pointer(g)->f_4c;
+        fzgx_live = (*(Agg * volatile *)&(g->b)) /* Retail reloads this field. */;
+        ctx.list_b.f_1c = fzgx_live->f_1c;
+        fzgx_live = (*(Agg * volatile *)&(g->b)) /* Retail reloads this field. */;
+        ctx.b->m_3c = fzgx_live->m_3c;
+        fzgx_live_2 = (*(Agg * volatile *)&(g->b)) /* Retail reloads this field. */;
+        ctx.b->f_4c = fzgx_live_2->f_4c;
         ctx.a->flag = 0;
         ctx.a->m_3c = g->a->m_3c;
         h = obj->g_48c;
@@ -327,8 +328,7 @@ s32 fn_1_27E34(Object *arg0)
                 dist = 1.1920928955078125e-07f;
             }
         }
-        fzgx_value__ = &(obj->v_4fc);
-        *fzgx_value__ = mgr->f_24;
+        obj->v_4fc = mgr->f_24;
     } else {
         dist = 0.0f;
     }
@@ -355,6 +355,8 @@ s32 fn_1_27E34(Object *arg0)
     }
     return ret;
 }
+#pragma opt_strength_reduction reset
+
 #pragma opt_lifetimes reset
 
 #pragma opt_dead_assignments reset
