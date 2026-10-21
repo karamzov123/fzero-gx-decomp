@@ -55,6 +55,16 @@ Each was measured, not assumed. The evidence is in `docs/findings/`.
   `fzgx shapecensus --words` is the honest count: `fn_1_2D038` shows 26 rows for **1 word**, and
   seven functions in the band are exactly one word from matching, five of them with a single
   named operand to change (286).
+- **Hand attempts on the smallest word-count near-misses (2026-10-21), all failed; start from these
+  facts, not from scratch.** fn_1_892CC (12-byte copy in r5/r6, never r0): no spelling (struct copy,
+  temp struct, locals, inline helper, memcpy), `optimization_level` 0-3, `opt_lifetimes`,
+  `scheduling off` or compiler version (1.1-2.7) reproduces it. fn_12_11204/fn_12_7870: retail keeps
+  `addi r7, r4, 0x1344; add r7, r3, r7` unfolded; every natural spelling and every compiler folds
+  0x1344 into the load displacement. fn_1_A02F0/A0AA4/A1364: `li r27, 1` scheduled before the
+  `stw` of OSGetTick's result; no statement order or comma/temp form moves it. fn_1_E9BA8: the
+  `addi r3, r31, 0x98; lwzx` call and the r3/r0 store pair are ghost.c's TU `.data` layout (the
+  handler table and both indices are separate objects off one base): a section-layout case, not a
+  spelling. fn_1_52968 (fork body, 99.6%): only shared-pool base rows; `fzgx search` finds nothing.
 - **An attempt-cap refusal is triage, not an obstacle.** `colchg_menu_disp` sits at 94.74% and
   `claim` refuses it; the fix is a hypothesis about register liveness (284), not another run.
 - **A family band that has drained is silent.** `FAMILY_BANDS` is a *supply* statement, and an
