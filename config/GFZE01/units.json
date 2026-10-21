@@ -70986,6 +70986,16 @@
   },
   {
     "module": "profile",
+    "source": "rel/profile/fn_16_20F4.c",
+    "symbols": [
+      "fn_16_20F4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": []
+  },
+  {
+    "module": "profile",
     "source": "rel/profile/fn_16_2328.c",
     "symbols": [
       "fn_16_2328"
