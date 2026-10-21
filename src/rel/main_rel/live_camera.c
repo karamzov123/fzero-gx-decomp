@@ -1383,6 +1383,437 @@ void fn_1_10268(Camera_1_10268 *arg) {
 }
 /* fzgx:end fn_1_10268 */
 
+/* fzgx:begin fn_1_103B0 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/live_camera.h"
+#include "psvec.h"
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/live_camera.h"
+#include "psvec.h"
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "types.h"
+
+/* begin game/main_rel/live_camera_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+#define GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+
+// Types (and the externs that name them) of live_camera.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+struct fn_1_E174_lbl_1_rodata_4E0 {
+    f32 unk_0;
+    u8 pad_4[0x10];
+    f32 unk_14;
+    u8 pad_18[0x4];
+    f32 unk_1C;
+    f32 unk_20;
+    f32 unk_24;
+};
+
+/* begin game/main_rel/adxt_stop_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_ADXT_STOP_TYPES_H
+#define GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+// The ADXT handle layout recovered from ADXT_Stop's accesses (signature types), shared by game.c and
+// live_camera.c, which carried identical copies. Hand-owned (librarian).
+
+
+typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
+typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
+typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
+
+typedef struct Sig_ADXT_Stop_SJCK {
+    unsigned char *data;
+    int len;
+} Sig_ADXT_Stop_SJCK;
+
+typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
+typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+
+struct Sig_ADXT_Stop_SJInterface {
+    void *reserved[3];
+    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+};
+
+struct Sig_ADXT_Stop_SJ {
+    const Sig_ADXT_Stop_SJInterface *interface;
+};
+
+typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
+typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
+
+typedef struct Sig_ADXT_Stop_ADXTHandle {
+    s8 used;
+    s8 status;
+    s8 stream_type;
+    s8 maximum_channels;
+    Sig_ADXT_Stop_AdxSjdHandle *decoder;
+    Sig_ADXT_Stop_ADXStream *stream;
+    Sig_ADXT_Stop_AXRNAHandle *rna;
+    Sig_ADXT_Stop_SJ *stream_sj;
+    Sig_ADXT_Stop_SJ *input_sj;
+    Sig_ADXT_Stop_SJ *output_sj[2];
+    u8 *input_buffer;
+    s32 input_buffer_size;
+    s32 input_extra_size;
+    u8 *output_buffer;
+    s32 output_buffer_size;
+    s32 output_buffer_distance;
+    s32 server_frequency;
+    s16 stream_buffer_sectors;
+    s16 minimum_buffer_sectors;
+    s16 output_volume;
+    s16 output_pan[2];
+    s16 field_46;
+    s32 maximum_decode_samples;
+    s32 loop_count;
+    s32 link_data_length;
+    s32 field_54;
+    s32 field_58;
+    s32 field_5C;
+    s16 error_code;
+    u8 reserved_62[2];
+    s32 field_64;
+    s16 field_68;
+    s16 field_6A;
+    s8 stream_loop_enabled;
+    s8 auto_receiver;
+    u8 reserved_6E[2];
+    s8 suppress_playback;
+    s8 decoder_ready;
+    s8 paused;
+    u8 reserved_73;
+    Sig_ADXT_Stop_ADX_AMP *amplifier;
+    Sig_ADXT_Stop_SJ *amplifier_input[2];
+    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    s32 time_offset;
+    s32 eos_sector;
+    s32 loop_sample_count;
+    Sig_ADXT_Stop_LSCObject *linked_stream_controller;
+    s8 link_enabled;
+    u8 reserved_99[3];
+    u32 playback_time;
+    s32 playback_start_vsync;
+    s32 linked_decoded_samples;
+    s8 pending_stream_start;
+    u8 reserved_A9[3];
+    u8 *work_end;
+    const char *pending_filename;
+    void *pending_directory;
+    s32 pending_file_offset;
+    s32 pending_file_sectors;
+} Sig_ADXT_Stop_ADXTHandle;
+
+#endif  // GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+/* end game/main_rel/adxt_stop_types.h */
+
+/* begin game/vec3.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct {
+    u32 flags;
+    s32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+} Sig_fn_1_45730_LoadEntry;
+
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x48];
+    Sig_fn_1_45730_LoadEntry entry;
+} Sig_fn_1_45730_LoadResult;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    u16 unk_8;
+    u8 pad_A[0x2];
+    u32 unk_C;
+    u16 unk_10;
+    s16 unk_12;
+    s16 unk_14;
+    u8 pad_16[0x2];
+    u32 unk_18;
+    u8 pad_1C[0x48];
+    u16 unk_64;
+} Sig_fn_1_101D0_Fn_1_101D0_State;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_11544_LiveCamVec;
+
+typedef struct {
+    f32 m[3][4];
+} LiveCamMtx;
+
+extern u32 fn_1_A1588(Sig_ADXT_Stop_ADXTHandle *, u32);
+extern int fn_1_45730(char *, Sig_fn_1_45730_LoadResult *);
+extern u32 fn_1_45B2C(Sig_fn_1_45730_LoadResult *);
+extern void fn_1_458A0(Sig_fn_1_45730_LoadResult *, void *, u32, u32);
+extern void fn_1_45850(Sig_fn_1_45730_LoadResult *);
+extern u32 fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *);
+extern void fn_1_862D4(s16, Vec3 *);
+extern void fn_1_15578(void *, fn_1_11544_LiveCamVec *, void *, void *, u32, void *, u32, u32, u32, u32);
+extern void fn_8006E2B0(void *, Vec3 *);
+
+#endif  // GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+
+/* end game/main_rel/live_camera_types.h */
+
+extern s16 fn_1_7B054(void);
+extern void fn_1_10138();
+extern void fn_1_8840(void);
+extern u32 fn_1_A1CE8(u32);
+extern s32 fn_1_F2F34(void);
+extern u8 fn_1_3F1F8(void);
+extern u32 fn_1_4630();
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern u32 lbl_801A6410;
+extern const f64 lbl_1_rodata_580;
+extern const f64 lbl_1_rodata_588;
+extern u32 lbl_1_bss_F5C;
+extern s32 camera_get_state(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_864E8(int index);
+extern u8 fn_1_86624(void);
+extern void camera_set_result(s16 value);
+extern void camera_set_selected_value(u8 value);
+extern void fn_1_5370(s32, s16);
+extern s32 fn_80008E30(u32);
+extern s32 fn_1_40BB4(void);
+extern void *lbl_8006D5A4(void *, void *, void *, f32);
+extern void fn_1_8636C(int index, void *arg);
+extern void fn_1_862A8(s16, void *);
+extern void lbl_8006DC6C(void *);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern u32 fn_1_20A5C(void *, void *);
+extern int fn_1_4C10(void);
+extern u32 fn_1_F45A4(void);
+extern u32 fn_1_F4594(void);
+extern void *fn_1_86254(int index);
+extern void fn_1_6DD0(void *);
+extern void fn_1_8A0C(s16 index);
+extern u32 fn_1_56B8(void);
+extern f32 lbl_1_rodata_4E0[];
+extern f32 lbl_1_bss_1160[403];
+extern u32 fn_1_A1964(u32);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u8 lbl_1_bss_17B4[12];
+extern char *fn_80083DB0(char *dst, const char *src);
+extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
+extern u8 lbl_1_bss_1810[8984];
+extern void fn_8000659C(void);
+extern u32 OSIsThreadTerminated(u8 *);
+extern u32 *fn_1_1289C(u32 *);
+extern f32 lbl_1_rodata_4F4[19];
+extern const f64 lbl_1_rodata_548[2];
+extern s32 lbl_8006D24C(f32, f32);
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = 300.0f;
+    s = 320.0f;
+    s = 234.0f;
+    s = 230.0f;
+    s = 0.0f;
+    s = 0.5f;
+    s = 2.0f;
+    s = 0.009999999776482582f;
+    s = 0.019999999552965164f;
+}
+static const u32 fzgx_pool_table2[4] = {0x0032FFFF, 0x000000FF, 0x000000FF, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.2;
+    s = 0.6000000238418579f;
+    s = 62.0f;
+    s = 16.0f;
+    s = 0.20000000298023224f;
+    s = 3.0f;
+    s = 940.0f;
+    s = 650.0f;
+    s = 36.0f;
+    d = 4503601774854144.0;
+    d = 4503599627370496.0;
+    s = 9350.0f;
+    s = 1800.0f;
+    d = 210.0;
+    s = 32.0f;
+    s = 484.0f;
+    s = 424.0f;
+    s = 588.0f;
+    s = 443.0f;
+    s = 480.0f;
+    s = 430.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.75;
+    s = 1.8249999284744263f;
+}
+static const u32 fzgx_pool_table6[1] = {0x9999999A};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.0;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x, y, z;
+} fn_1_103B0_LiveCamVec;
+
+/* one keyframe endpoint: position/target pair plus fov and roll */
+typedef struct {
+    u32 unk_0;
+    fn_1_103B0_LiveCamVec pos;
+    fn_1_103B0_LiveCamVec target;
+    f32 fov;
+    s16 roll;
+    s16 pad_22;
+} LiveCamFrame;
+
+/* lbl_1_bss_17C4.unk_0 element, 0x54 bytes */
+typedef struct {
+    u32 duration;
+    f32 rate;
+    LiveCamFrame from;
+    LiveCamFrame to;
+    s16 mode;
+    s16 pad_52;
+} LiveCamKey;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[0x3];
+    s16 unk_4;
+    u8 pad_6[0xE];
+    s16 unk_14;
+    u8 pad_16[0x6];
+    fn_1_103B0_LiveCamVec pos;
+    u8 pad_28[0x24];
+    fn_1_103B0_LiveCamVec target;
+    f32 fov;
+    s16 roll;
+    u8 pad_5E[0x6];
+    u16 unk_64;
+} LiveCamState;
+
+
+void fn_1_103B0(LiveCamState *cam) {
+    LiveCamKey *key;
+    s32 count;
+    s32 last;
+    u32 raw;
+    LiveCamFrame from;
+    LiveCamFrame to;
+    f32 t;
+
+    raw = lbl_1_data_44F4.unk_0;
+    key = &((LiveCamKey *)lbl_1_bss_17C4.unk_0)[cam->unk_4];
+    if (cam->unk_0 == 3) {
+        count = (s16)raw;
+        if (fn_1_40BB4() == 0) {
+            if ((lbl_1_bss_9F8.unk_A >> 1) & 1) {
+                cam->unk_14++;
+            }
+            if (lbl_1_bss_9F8.unk_A & 1) {
+                cam->unk_14--;
+            }
+            last = count - 1;
+            if (cam->unk_14 > last) {
+                cam->unk_14 = 0;
+            }
+            if (cam->unk_14 < 0) {
+                cam->unk_14 = last;
+            }
+        }
+    }
+    if (cam->unk_64 != 0) {
+        from = key->from;
+        to = key->to;
+        switch (key->mode) {
+        case 0:
+            t = 1.0 - (f32)cam->unk_64 / (f32)fn_80008E30(key->duration);
+            lbl_8006D5A4(&from.pos, &to.pos, &cam->pos, t);
+            lbl_8006D5A4(&from.target, &to.target, &cam->target, t);
+            cam->fov = from.fov + (f32)(t * (to.fov - from.fov));
+            cam->roll = from.roll + (s16)(s32)(t * (f32)(to.roll - from.roll));
+            break;
+        case 3:
+            lbl_1_bss_17D0.unk_8 -= 1.0f;
+            if (lbl_1_bss_17D0.unk_8 < lbl_1_bss_17D0.unk_C / 2.0f) {
+                lbl_1_bss_17D0.unk_10 -= lbl_1_bss_17D0.unk_14;
+            } else {
+                lbl_1_bss_17D0.unk_10 += lbl_1_bss_17D0.unk_14;
+            }
+            t = (lbl_1_bss_17D0.unk_0 += lbl_1_bss_17D0.unk_10);
+            lbl_8006D5A4(&from.pos, &to.pos, &cam->pos, t);
+            lbl_8006D5A4(&from.target, &to.target, &cam->target, t);
+            cam->fov = from.fov + (f32)(t * (to.fov - from.fov));
+            cam->roll = from.roll + (s16)(s32)(t * (f32)(to.roll - from.roll));
+            break;
+        case 2:
+            lbl_8006D5A4(&cam->pos, &to.pos, &cam->pos, key->rate);
+            lbl_8006D5A4(&cam->target, &to.target, &cam->target, key->rate);
+            cam->fov = cam->fov + (f32)(key->rate * (to.fov - cam->fov));
+            cam->roll = cam->roll + (s32)(key->rate * (f32)(to.roll - cam->roll));
+            break;
+        }
+    }
+}
+/* fzgx:end fn_1_103B0 */
+
 /* fzgx:begin fn_1_11544 */
 #pragma fp_contract off
 
@@ -2175,6 +2606,320 @@ u32 *fn_1_1289C(u32 *raw_args) {
     return &size;
 }
 /* fzgx:end fn_1_1289C */
+
+/* fzgx:begin fn_1_12B88 noprologue */
+#include "types.h"
+#include "rel/main_rel/live_camera.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/live_camera.h"
+#include "psvec.h"
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "types.h"
+
+/* begin game/main_rel/live_camera_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+#define GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+
+// Types (and the externs that name them) of live_camera.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+struct fn_1_E174_lbl_1_rodata_4E0 {
+    f32 unk_0;
+    u8 pad_4[0x10];
+    f32 unk_14;
+    u8 pad_18[0x4];
+    f32 unk_1C;
+    f32 unk_20;
+    f32 unk_24;
+};
+
+/* begin game/main_rel/adxt_stop_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_ADXT_STOP_TYPES_H
+#define GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+// The ADXT handle layout recovered from ADXT_Stop's accesses (signature types), shared by game.c and
+// live_camera.c, which carried identical copies. Hand-owned (librarian).
+
+
+typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
+typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
+typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
+
+typedef struct Sig_ADXT_Stop_SJCK {
+    unsigned char *data;
+    int len;
+} Sig_ADXT_Stop_SJCK;
+
+typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
+typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+
+struct Sig_ADXT_Stop_SJInterface {
+    void *reserved[3];
+    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+};
+
+struct Sig_ADXT_Stop_SJ {
+    const Sig_ADXT_Stop_SJInterface *interface;
+};
+
+typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
+typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
+
+typedef struct Sig_ADXT_Stop_ADXTHandle {
+    s8 used;
+    s8 status;
+    s8 stream_type;
+    s8 maximum_channels;
+    Sig_ADXT_Stop_AdxSjdHandle *decoder;
+    Sig_ADXT_Stop_ADXStream *stream;
+    Sig_ADXT_Stop_AXRNAHandle *rna;
+    Sig_ADXT_Stop_SJ *stream_sj;
+    Sig_ADXT_Stop_SJ *input_sj;
+    Sig_ADXT_Stop_SJ *output_sj[2];
+    u8 *input_buffer;
+    s32 input_buffer_size;
+    s32 input_extra_size;
+    u8 *output_buffer;
+    s32 output_buffer_size;
+    s32 output_buffer_distance;
+    s32 server_frequency;
+    s16 stream_buffer_sectors;
+    s16 minimum_buffer_sectors;
+    s16 output_volume;
+    s16 output_pan[2];
+    s16 field_46;
+    s32 maximum_decode_samples;
+    s32 loop_count;
+    s32 link_data_length;
+    s32 field_54;
+    s32 field_58;
+    s32 field_5C;
+    s16 error_code;
+    u8 reserved_62[2];
+    s32 field_64;
+    s16 field_68;
+    s16 field_6A;
+    s8 stream_loop_enabled;
+    s8 auto_receiver;
+    u8 reserved_6E[2];
+    s8 suppress_playback;
+    s8 decoder_ready;
+    s8 paused;
+    u8 reserved_73;
+    Sig_ADXT_Stop_ADX_AMP *amplifier;
+    Sig_ADXT_Stop_SJ *amplifier_input[2];
+    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    s32 time_offset;
+    s32 eos_sector;
+    s32 loop_sample_count;
+    Sig_ADXT_Stop_LSCObject *linked_stream_controller;
+    s8 link_enabled;
+    u8 reserved_99[3];
+    u32 playback_time;
+    s32 playback_start_vsync;
+    s32 linked_decoded_samples;
+    s8 pending_stream_start;
+    u8 reserved_A9[3];
+    u8 *work_end;
+    const char *pending_filename;
+    void *pending_directory;
+    s32 pending_file_offset;
+    s32 pending_file_sectors;
+} Sig_ADXT_Stop_ADXTHandle;
+
+#endif  // GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+/* end game/main_rel/adxt_stop_types.h */
+
+/* begin game/vec3.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct {
+    u32 flags;
+    s32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+} Sig_fn_1_45730_LoadEntry;
+
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x48];
+    Sig_fn_1_45730_LoadEntry entry;
+} Sig_fn_1_45730_LoadResult;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    u16 unk_8;
+    u8 pad_A[0x2];
+    u32 unk_C;
+    u16 unk_10;
+    s16 unk_12;
+    s16 unk_14;
+    u8 pad_16[0x2];
+    u32 unk_18;
+    u8 pad_1C[0x48];
+    u16 unk_64;
+} Sig_fn_1_101D0_Fn_1_101D0_State;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_11544_LiveCamVec;
+
+typedef struct {
+    f32 m[3][4];
+} LiveCamMtx;
+
+extern u32 fn_1_A1588(Sig_ADXT_Stop_ADXTHandle *, u32);
+extern int fn_1_45730(char *, Sig_fn_1_45730_LoadResult *);
+extern u32 fn_1_45B2C(Sig_fn_1_45730_LoadResult *);
+extern void fn_1_458A0(Sig_fn_1_45730_LoadResult *, void *, u32, u32);
+extern void fn_1_45850(Sig_fn_1_45730_LoadResult *);
+extern u32 fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *);
+extern void fn_1_862D4(s16, Vec3 *);
+extern void fn_1_15578(void *, fn_1_11544_LiveCamVec *, void *, void *, u32, void *, u32, u32, u32, u32);
+extern void fn_8006E2B0(void *, Vec3 *);
+
+#endif  // GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+
+/* end game/main_rel/live_camera_types.h */
+
+extern u8 fn_1_1350C(Sig_fn_1_45730_LoadResult *, u8 *);
+
+static inline void lz_clear(u8 *buf, int n) {
+    int i;
+
+    for (i = 0; i < n; i++) {
+        buf[i] = 0;
+    }
+}
+
+// Loads an LZSS-compressed file (Okumura layout: N = 4096 ring window, F = 18,
+// start position N - F): an 8-byte header (compressed size, decompressed size)
+// followed by flag-byte coded literals and 12/4-bit back references.
+// Returns the decompressed size, or 0 on failure.
+u32 fn_1_12B88(char *path, u8 *out, u8 *ctx) {
+    Sig_fn_1_45730_LoadResult file;
+    u32 hdr[2];
+    u8 window[0x1000 + 18 - 1];
+    u32 offset;
+    u32 r;
+    u32 pos;
+    u8 *dst;
+    u32 flags;
+    u32 end;
+    u32 size;
+    int len;
+    int k;
+    s32 i;
+    int n = 0x1000 - 18;
+    u8 c;
+
+    lbl_1_bss_3B28 = 0;
+    lbl_1_bss_3B2C = 0;
+    if (fn_1_45730(path, &file) == 0) {
+        return 0;
+    }
+    // Header words are stored big-endian in the stream and read back little-endian.
+    hdr[0] = fn_1_1350C(&file, ctx) << 24;
+    hdr[0] |= (u32)fn_1_1350C(&file, ctx) << 16;
+    hdr[0] |= (u32)fn_1_1350C(&file, ctx) << 8;
+    hdr[0] |= (u32)fn_1_1350C(&file, ctx);
+    hdr[1] = fn_1_1350C(&file, ctx) << 24;
+    hdr[1] |= (u32)fn_1_1350C(&file, ctx) << 16;
+    hdr[1] |= (u32)fn_1_1350C(&file, ctx) << 8;
+    hdr[1] |= (u32)fn_1_1350C(&file, ctx);
+    end = __lwbrx(hdr, 0) + 8;
+    size = __lwbrx(hdr, 4);
+    if (end == 0 || size == 0) {
+        return 0;
+    }
+    dst = out;
+    pos = 8;
+    for (i = 0; i < n; i++) {
+        window[i] = 0;
+    }
+    r = n;
+    flags = 0;
+    for (;;) {
+        flags >>= 1;
+        if (!(flags & 0x100)) {
+            if (pos >= end) {
+                break;
+            }
+            flags = fn_1_1350C(&file, ctx) | 0xFF00;
+            pos++;
+        }
+        if (flags & 1) {
+            if (pos >= end) {
+                break;
+            }
+            c = fn_1_1350C(&file, ctx);
+            *dst++ = c;
+            pos++;
+            window[r++] = c;
+            r &= 0xFFF;
+        } else {
+            if (pos >= end) {
+                break;
+            }
+            offset = fn_1_1350C(&file, ctx);
+            if (pos + 1 >= end) {
+                break;
+            }
+            c = fn_1_1350C(&file, ctx);
+            offset |= (c & 0xF0) << 4;
+            len = (c & 0x0F) + 2;
+            pos += 2;
+            for (k = 0; k <= len; k++) {
+                c = window[(offset + k) & 0xFFF];
+                *dst++ = c;
+                window[r++] = c;
+                r &= 0xFFF;
+            }
+        }
+    }
+    fn_1_45850(&file);
+    return size;
+}
+/* fzgx:end fn_1_12B88 */
 
 /* fzgx:begin fn_1_12F78 */
 u32 fn_1_12F78(void *arg0, u32 arg1) {

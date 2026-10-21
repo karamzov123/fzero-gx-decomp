@@ -925,6 +925,177 @@ void fn_1_1540B0(u32 value) {
 }
 /* fzgx:end fn_1_1540B0 */
 
+/* fzgx:begin fn_1_154164 noprologue */
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_aur.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_aur.h"
+#include "psvec.h"
+
+/* begin game/main_rel/bg_aur_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_BG_AUR_TYPES_H
+#define GAME_MAIN_REL_BG_AUR_TYPES_H
+
+// Types (and the externs that name them) of bg_aur.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+struct fn_1_151C9C_lbl_1_rodata_D4F8 {
+    f32 unk_0;
+};
+
+struct fn_1_151C9C_lbl_1_rodata_D500 {
+    f64 unk_0;
+};
+
+typedef struct {
+    s32 count;
+    u8 pad_004[0x100];
+    s32 counter[64];
+    f32 timer[64];
+    f32 progress[64];
+    f32 cooldown[64];
+} Fn153B24Data;
+
+extern struct fn_1_151C9C_lbl_1_rodata_D4F8 lbl_1_rodata_D4F8;
+extern struct fn_1_151C9C_lbl_1_rodata_D500 lbl_1_rodata_D500;
+
+#endif  // GAME_MAIN_REL_BG_AUR_TYPES_H
+
+/* end game/main_rel/bg_aur_types.h */
+
+typedef struct V { f32 x,y,z; } V;
+
+typedef struct BgAurVec {
+    f32 x, y, z;
+} BgAurVec;
+extern f32 lbl_1_rodata_D508[29];
+extern f32 *lbl_801A6D00;
+extern s32 fn_1_58C4(void);
+extern void fn_1_5948(int);
+extern s16 camera_get_mode(void);
+extern void fn_1_862D4(int, V *);
+extern void fn_1_8636C(int index, void *arg);
+extern void fn_1_869B0(int index, u32 *out);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB74(void *);
+extern void fn_8006F1F0(void *, void *, void *);
+extern void lbl_8006DD7C(void);
+extern void lbl_8006DB30(void);
+extern f32 lbl_8006D0B4(f32);
+extern u32 fn_1_9BBE4(void *, u32, u32, void *);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E13C(void *);
+extern void lbl_8006E0C8(void *);
+extern void lbl_8006E0A4(void *);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_x(s16);
+extern int fn_1_8D690(int arg0);
+extern int fn_1_8D72C(s16 index);
+extern u32 fn_1_151BE8(s16 arg0, s16 arg1);
+extern void fn_80008BA8(void *, void *, u32);
+extern void lbl_8006DFE8(void *);
+extern void fn_80072558(void);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *);
+extern s32 fn_1_5910(void);
+extern void fn_1_154164(u8 *value, const BgAurVec *offset, void *rotation, s32 all);
+extern u32 lbl_1_rodata_D57C[7];
+extern int fn_8003BE1C(void *arg0, void *arg1);
+extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
+extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
+extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
+extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
+extern u16 lbl_1_bss_8ED8C;
+extern u16 lbl_1_bss_8ED8E;
+extern void fn_1_151C9C(void *arg0, s32 arg_sp0);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_1_153AF8(u32 *entries);
+extern void fn_1_153D48(void *background);
+extern void fn_1_9A508(void);
+extern void fn_1_627C(int);
+extern u32 fn_1_9D260(void);
+extern void fn_1_9AD54(void);
+extern void fn_1_153D74(void *arg);
+extern void fn_1_153B24();
+extern void fn_1_153C60(u8 *base);
+extern void fn_1_1540B0(u32 value);
+extern void fn_1_9AD88(void);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u8 lbl_1_rodata_D048[1200];
+
+typedef struct BgAurPart {
+    u32 flags;
+    u32 unk_4;
+    u32 unk_8;
+    f32 pos[3];
+    s16 rot_x;
+    s16 rot_y;
+    s16 rot_z;
+    s16 unk_1e;
+    f32 scale[3];
+    u8 pad_2c[0x40 - 0x2c];
+} BgAurPart;
+
+typedef struct BgAurParts {
+    s32 count;
+    u32 unk_4;
+    BgAurPart *parts[17];
+    s32 hidden[17];
+} BgAurParts;
+
+
+
+void fn_1_154164(u8 *value, const BgAurVec *offset, void *rotation, s32 all) {
+    f32 *pos;
+    BgAurPart *part;
+    s32 i;
+    BgAurParts *list;
+    f32 mtx[12];
+    BgAurPart parts[17];
+
+    list = (BgAurParts *)(value + 0x1108);
+    if (list->parts[0] == NULL) {
+        return;
+    }
+
+    parts[0] = *list->parts[0];
+    parts[0].flags &= 0x7FFFFFFF;
+    psvec_add(parts[0].pos, offset, parts[0].pos);
+    lbl_8006D7DC(parts[0].pos);
+    lbl_8006DFC4(rotation);
+    lbl_8006E13C(parts[0].scale);
+    lbl_8006DB74(mtx);
+    fn_1_9BBE4(&parts[0], 0, 0, mtx);
+
+    for (i = 0; i < list->count; i++) {
+        if (all == 0 && list->hidden[i] != 0) {
+            continue;
+        }
+        part = &parts[i + 1];
+        pos = part->pos;
+        parts[i + 1] = *list->parts[i + 1];
+        parts[i + 1].flags &= 0x7FFFFFFF;
+        psvec_add(pos, offset, pos);
+        lbl_8006D7DC(parts[0].pos);
+        lbl_8006DFC4(rotation);
+        lbl_8006E0C8(parts[0].pos);
+        lbl_8006E0A4(pos);
+        mathutil_mtxA_rotate_z(parts[i + 1].rot_z);
+        mathutil_mtxA_rotate_y(parts[i + 1].rot_y);
+        mathutil_mtxA_rotate_x(parts[i + 1].rot_x);
+        lbl_8006E13C(part->scale);
+        lbl_8006DB74(mtx);
+        fn_1_9BBE4(part, 0, 0, mtx);
+    }
+}
+/* fzgx:end fn_1_154164 */
+
 /* fzgx:begin fn_1_1543E8 */
 u32 fn_1_1543E8(s32 value, u32 *source) {
     Obj_1_data_2A7E0_At3C *obj = lbl_1_data_2A7E0.unk_3C;

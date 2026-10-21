@@ -674,3 +674,21 @@ rel/customize/_prolog/fn_3_83CC.c:
 
 rel/customize/toolkit/fn_3_24BC0.c:
 	.text       start:0x00024BC0 end:0x000255DC align:4
+
+rel/customize/toolkit/fn_3_23524.c:
+	.text       start:0x00023524 end:0x00023724 align:4
+
+rel/customize/toolkit/fn_3_20374.c:
+	.text       start:0x00020374 end:0x00020748 align:4
+
+rel/customize/toolkit/fn_3_1FF7C.c:
+	.text       start:0x0001FF7C end:0x00020374 align:4
+
+rel/customize/toolkit/fn_3_1BA20.c:
+	.text       start:0x0001BA20 end:0x0001BF08 align:4
+
+rel/customize/toolkit/fn_3_1EFE4.c:
+	.text       start:0x0001EFE4 end:0x0001F81C align:4
+
+rel/customize/toolkit/fn_3_2C290.c:
+	.text       start:0x0002C290 end:0x0002C73C align:4

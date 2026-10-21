@@ -858,6 +858,341 @@ void fn_1_D8388(void *obj) {
 }
 /* fzgx:end fn_1_D8388 */
 
+/* fzgx:begin fn_1_D83E4 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_lig.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_lig.h"
+
+/* begin game/main_rel/bg_lig_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_BG_LIG_TYPES_H
+#define GAME_MAIN_REL_BG_LIG_TYPES_H
+
+// Types (and the externs that name them) of bg_lig.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    u8 pad_000[0x6c0];
+    f32 threshold;
+} fn_1_D8784_LigObject;
+
+typedef struct {
+    u8 pad_00[0x68];
+    u32 field_68;
+    u8 pad_6c[0x40];
+} fn_1_D8CA8_LigEntry;
+
+typedef struct {
+    u8 pad_00[0x6d4];
+    s32 count;
+    fn_1_D8CA8_LigEntry entries[1];
+} fn_1_D8CA8_LigObject;
+
+typedef struct {
+    u8 pad0[0x24];
+    f32 value;
+    u8 pad28[0x4];
+    s16 count;
+    u8 pad2e[0x2];
+} fn_1_D7B7C_LigEntry;
+
+typedef struct {
+    u8 pad0[0x4];
+    void (*callback)(void);
+    fn_1_D7B7C_LigEntry *entry;
+} LigEvent;
+
+typedef struct {
+    u8 data[0xac];
+} fn_1_D8D08_LigEntry;
+
+typedef struct {
+    u8 pad[0x6d4];
+    s32 count;
+    fn_1_D8D08_LigEntry entries[1];
+} LigContainer;
+
+typedef struct {
+    u8 unk_0[0xac];
+} fn_1_D8EEC_LigEntry;
+
+typedef struct {
+    u8 unk_0[0x6d4];
+    s32 unk_6d4;
+    fn_1_D8EEC_LigEntry unk_6d8[1];
+} fn_1_D8EEC_LigObject;
+
+struct fn_1_D66F8_lbl_801A66A0 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad_000[0x2c];
+    f32 x;
+    f32 y;
+    f32 z;
+    u8 pad_038[0x74];
+} fn_1_D8D58_LigEntry;
+
+typedef struct {
+    f32 pos[3];
+    f32 vel[3];
+    f32 scale[3];
+    f32 value;
+    s16 phase;
+    s16 step;
+    s16 count;
+    u8 pad2e[0x2];
+} fn_1_D7A10_LigEntry;
+
+typedef struct {
+    u8 pad_000[0x6d4];
+    s32 count;
+    fn_1_D8D58_LigEntry entries[1];
+} LigObject;
+
+extern void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj);
+extern void fn_1_D7B7C(fn_1_D7B7C_LigEntry *base);
+extern void fn_1_D8D08(LigContainer *container);
+extern void fn_1_D8784(fn_1_D8784_LigObject *obj);
+extern void fn_1_D8EEC(fn_1_D8EEC_LigObject *obj, void *arg);
+extern void *fn_1_5448C(fn_1_D7B7C_LigEntry *entry);
+extern void fn_1_103090(fn_1_D8CA8_LigEntry *entry);
+extern void fn_1_1030A4(fn_1_D8D08_LigEntry *entry);
+extern struct fn_1_D66F8_lbl_801A66A0 lbl_801A66A0;
+extern void fn_1_1030D4(fn_1_D8D58_LigEntry *entry, void *arg);
+extern void fn_1_103264(fn_1_D8EEC_LigEntry *entry, void *arg);
+extern void fn_1_D7A10(fn_1_D7A10_LigEntry *base);
+extern void fn_1_D8D58(LigObject *obj, void *arg);
+
+#endif  // GAME_MAIN_REL_BG_LIG_TYPES_H
+
+/* end game/main_rel/bg_lig_types.h */
+
+#pragma section code_type ".fzgxpool"
+static const unsigned long fzgx_pool_table1[4] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const unsigned long *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 100.0f;
+    s = 3.0f;
+}
+static const unsigned long fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const unsigned long *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.7;
+    d = 0.3;
+    s = 32767.0f;
+    s = 235.0f;
+    s = 80.0f;
+    s = 30.0f;
+    d = 512.0;
+    d = 0.5;
+    d = 300.0;
+    d = 17.0;
+    s = 3276.800048828125f;
+}
+static const unsigned long fzgx_pool_table5[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const unsigned long *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    d = 0.98;
+    s = 0.07999999821186066f;
+}
+static const unsigned long fzgx_pool_table7[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const unsigned long *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.99;
+    d = 0.02;
+    s = 400.0f;
+    s = 0.7071067690849304f;
+    s = 1.0f;
+}
+static const unsigned long fzgx_pool_table9[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep9(void) { const unsigned long *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 2.0;
+    d = 4503599627370496.0;
+}
+static const unsigned long fzgx_pool_table11[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xBF800000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep11(void) { const unsigned long *volatile cp; cp = fzgx_pool_table11; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime12(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.5f;
+    s = 0.5f;
+    s = 10.0f;
+    s = 5.0f;
+    s = 0.6000000238418579f;
+    s = 170.0f;
+    s = 120.0f;
+    s = 32.0f;
+    s = 90.0f;
+    s = 0.4000000059604645f;
+    s = 768.0f;
+}
+static const unsigned long fzgx_pool_table13[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep13(void) { const unsigned long *volatile cp; cp = fzgx_pool_table13; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.05;
+    s = 2.5f;
+    s = 0.10000000149011612f;
+    s = 50.0f;
+    s = 20.0f;
+    s = 70.0f;
+    s = 33.0f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} LigVec;
+
+typedef struct {
+    u8 pad_000[0x3f0];
+    fn_1_D7A10_LigEntry entries[14];
+    LigVec target;
+    u8 pad_69c[0xc];
+    f32 unk_6a8;
+    f32 unk_6ac;
+    f32 unk_6b0;
+    f32 unk_6b4;
+    u8 pad_6b8[0x4];
+    s16 unk_6bc;
+    u8 pad_6be[0x2];
+    f32 unk_6c0;
+} LigLightObj;
+
+extern void fn_1_681C(u8, LigVec *);
+extern void fn_1_6898(u8, LigVec *);
+extern void fn_1_6914(u8, LigVec *);
+extern s16 camera_get_mode(void);
+extern s32 fn_1_58C4();
+extern f32 fn_1_8652C(s32);
+extern u32 fn_1_1FB80(LigVec *, s32);
+extern s32 fn_1_66B8(void *, f32);
+extern void fn_1_D7EF4(void *, u32);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006D668(LigVec *);
+
+// Distance between an entry's position and a probe point.
+static inline f32 lig_dist(fn_1_D7A10_LigEntry *e, LigVec *v) {
+    f32 dx = e->pos[0];
+    f32 dy = e->pos[1];
+    f32 dz = e->pos[2];
+    dx -= v->x;
+    dy -= v->y;
+    dz -= v->z;
+    dx *= dx;
+    dx += dy * dy;
+    dx += dz * dz;
+    return lbl_8006D0B4(dx);
+}
+
+// out = base + dir * len
+static inline void lig_offset(LigVec *out, LigVec *base, LigVec *dir, f32 len) {
+    out->x = base->x + (f32)(dir->x * len);
+    out->y = base->y + (f32)(dir->y * len);
+    out->z = base->z + (f32)(dir->z * len);
+}
+
+// Updates the lighting entries and the light target for the current camera.
+#pragma opt_propagation off
+void fn_1_D83E4(LigLightObj *obj, u32 index) {
+    LigVec cam;
+    LigVec eye;
+    LigVec from;
+    LigVec to;
+    LigVec dir;
+    LigVec probe;
+    u32 count;
+    u32 j;
+    LigLightObj *e;
+    s32 i;
+    s32 mode;
+    u32 flags;
+    f32 best;
+    f32 drift_z;
+    f32 drift_x;
+    f32 scale;
+
+    fn_1_681C(index, &cam);
+    fn_1_6898(index, &eye);
+    mode = camera_get_mode();
+    if (mode < 0) {
+        return;
+    }
+    if ((u32)fn_1_58C4() >= 2) {
+        return;
+    }
+    scale = fn_1_8652C(mode);
+    flags = fn_1_1FB80(&cam, 3);
+    if (flags & 1) {
+        obj->unk_6c0 = obj->unk_6c0 + (f64)(0.05 * (1.0f - obj->unk_6c0));
+    } else if (flags & 2) {
+        obj->unk_6c0 = obj->unk_6c0 + (f64)(0.05 * (0.5f - obj->unk_6c0));
+    } else {
+        obj->unk_6c0 = obj->unk_6c0 + (f64)(0.05 * -obj->unk_6c0);
+    }
+
+    drift_x = 2.5f;
+    e = obj;
+    drift_z = 0.1f;
+    for (i = 0; i < 14; i++) {
+        e->entries[0].pos[0] += drift_x;
+        e->entries[0].pos[2] += drift_z;
+        e->entries[0].phase += e->entries[0].step;
+        count = fn_1_58C4();
+        fn_1_681C(0, &probe);
+        best = lig_dist(e->entries, &probe);
+        for (j = 1; j < count; j++) {
+            fn_1_681C(j, &probe);
+            if (best < lig_dist(e->entries, &probe)) {
+                best = best;
+            } else {
+                best = lig_dist(e->entries, &probe);
+            }
+        }
+        if (fn_1_66B8(e->entries, e->entries[0].value) == 0) {
+            e->entries[0].count++;
+        } else if (best > 50.0f + scale / 10.0f) {
+            e->entries[0].count++;
+        } else if (e->entries[0].count > 0) {
+            e->entries[0].count--;
+        }
+        if (e->entries[0].count > 15) {
+            fn_1_D7EF4(e->entries, index);
+        }
+        e = (LigLightObj *)((u8 *)e + sizeof(fn_1_D7A10_LigEntry));
+    }
+
+    if (obj->unk_6bc > 0) {
+        obj->unk_6bc--;
+    }
+    fn_1_681C(index, &from);
+    fn_1_6914(index, &to);
+    dir.x = to.x - from.x;
+    dir.y = to.y - from.y;
+    dir.z = to.z - from.z;
+    lbl_8006D668(&dir);
+    lig_offset(&obj->target, &from, &dir, 20.0f);
+    obj->unk_6b4 = 70.0f;
+    obj->unk_6a8 = 170.0f;
+    obj->unk_6ac = 120.0f;
+    obj->unk_6b0 = 33.0f;
+}
+/* fzgx:end fn_1_D83E4 */
+
 /* fzgx:begin fn_1_D8784 */
 typedef void (*LigCallback)(void);
 

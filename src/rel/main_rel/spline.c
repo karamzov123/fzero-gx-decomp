@@ -720,6 +720,154 @@ void fn_1_F7578(void) {
 }
 /* fzgx:end fn_1_F7578 */
 
+/* fzgx:begin fn_1_F75D8 pool noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/light.h"
+#include "psvec.h"
+
+/* begin game/main_rel/light_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_LIGHT_TYPES_H
+#define GAME_MAIN_REL_LIGHT_TYPES_H
+
+// Types (and the externs that name them) of light.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+} Triple_80074D28;
+
+extern void fn_80074D28(Triple_80074D28 *);
+
+#endif  // GAME_MAIN_REL_LIGHT_TYPES_H
+
+/* end game/main_rel/light_types.h */
+
+typedef struct {
+    u8 r, g, b, a;
+} LightColor_F75D8;
+
+typedef struct {
+    f32 x, y, z;
+} LightVec_F75D8;
+
+typedef struct {
+    u32 dummy[16];
+} LightObj_F75D8;
+
+typedef struct {
+    LightVec_F75D8 pos;       /* 0x00 */
+    LightVec_F75D8 dir;       /* 0x0C */
+    LightColor_F75D8 ambient; /* 0x18 */
+    LightColor_F75D8 color;   /* 0x1C */
+    s8 distFn;                /* 0x20 */
+    u8 pad_21[3];
+    f32 refDist;              /* 0x24 */
+    f32 refBright;            /* 0x28 */
+    s8 spotFn;                /* 0x2C */
+    u8 pad_2D[3];
+    f32 cutoff;               /* 0x30 */
+} LightDesc_F75D8;
+
+/* Per-player light overrides: a TU-local block of five 4-entry tables at lbl_1_bss_7F050. */
+static s32 fzgx_obj_lbl_1_bss_7F050[4];
+static LightColor_F75D8 sAmbient_F75D8[4];
+static s32 sColorSet_F75D8[4];
+static LightColor_F75D8 sColor_F75D8[4];
+static s32 sUnused_F75D8[4];
+
+extern s32 fn_1_5910(void);
+extern void fn_1_7BB80(LightObj_F75D8 *, s32);
+extern void fn_1_7BCCC(Triple_80074D28 *);
+extern void fn_1_7BD6C(s32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006D758(void);
+extern void lbl_8006DCA4(void);
+extern f32 lbl_8006D668(LightVec_F75D8 *);
+extern void lbl_8006D5F0(LightVec_F75D8 *, LightVec_F75D8 *, f32);
+extern void lbl_8006E1B0(void *, LightVec_F75D8 *);
+extern void lbl_8006E1C0(LightVec_F75D8 *, LightVec_F75D8 *);
+extern void fn_800356AC(LightObj_F75D8 *, LightColor_F75D8 *);
+extern void fn_80035680(LightObj_F75D8 *, f32, f32, f32);
+extern void fn_80035690(LightObj_F75D8 *, f32, f32, f32);
+extern void fn_80035420(LightObj_F75D8 *, f32, s32);
+extern void GXInitLightDistAttn(LightObj_F75D8 *, f32, f32, s32);
+extern void fn_80074CF4(f32, f32, f32);
+extern void lbl_8006DB30(void);
+
+void fn_1_F75D8(LightDesc_F75D8 **lights, s32 useOverride, s32 mode) {
+    s32 i;
+    LightDesc_F75D8 **p;
+    LightDesc_F75D8 *light;
+    s32 idx;
+    s32 lightId = 1;
+    LightColor_F75D8 ambient;
+    LightVec_F75D8 pos;
+    LightVec_F75D8 dir;
+    LightObj_F75D8 obj;
+
+    lbl_8006DAEC();
+    if (useOverride) {
+        idx = fn_1_5910();
+    } else {
+        idx = 0;
+    }
+    if (mode) {
+        lbl_8006D758();
+    } else {
+        lbl_8006DCA4();
+    }
+
+    p = lights;
+    for (i = 0; i < 32; i++) {
+        light = *p;
+        if (light == NULL) {
+            break;
+        }
+        if (i == 0) {
+            if (useOverride && fzgx_obj_lbl_1_bss_7F050[idx] != 0) {
+                ambient = sAmbient_F75D8[idx];
+            } else {
+                ambient = light->ambient;
+            }
+        }
+        dir = light->dir;
+        lbl_8006D668(&dir);
+        if (light->distFn == 0 && light->spotFn == 0) {
+            lbl_8006D5F0(&dir, &pos, -100000.0f);
+            lbl_8006E1B0(&pos, &pos);
+        } else {
+            lbl_8006E1B0(light, &pos);
+        }
+        lbl_8006E1C0(&dir, &dir);
+        if (useOverride && sColorSet_F75D8[idx] != 0) {
+            LightColor_F75D8 color = sColor_F75D8[idx];
+            fn_800356AC(&obj, &color);
+        } else {
+            LightColor_F75D8 color = light->color;
+            fn_800356AC(&obj, &color);
+        }
+        fn_80035680(&obj, pos.x, pos.y, pos.z);
+        fn_80035690(&obj, dir.x, dir.y, dir.z);
+        fn_80035420(&obj, light->cutoff, light->spotFn);
+        GXInitLightDistAttn(&obj, light->refDist, light->refBright, light->distFn);
+        fn_1_7BB80(&obj, lightId++);
+        if (i == 0) {
+            psvec_scale(&dir, -1.0f, &dir);
+            fn_1_7BCCC((Triple_80074D28 *)&dir);
+        }
+        p++;
+    }
+
+    fn_1_7BD6C(1);
+    fn_80074CF4(ambient.r / 255.0f, ambient.g / 255.0f, ambient.b / 255.0f);
+    lbl_8006DB30();
+}
+/* fzgx:end fn_1_F75D8 */
+
 /* fzgx:begin fn_1_F7870 */
 void fn_1_F7870(u32 value) {
     u32 values[2];

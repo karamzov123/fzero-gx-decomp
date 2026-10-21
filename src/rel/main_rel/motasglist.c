@@ -1456,6 +1456,445 @@ void fn_1_433A4(Fn1433A4Object *dst, Fn1433A4Object *src) {
 }
 /* fzgx:end fn_1_433A4 */
 
+/* fzgx:begin fn_1_433E0 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/motasglist.h"
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/motasglist.h"
+#include "dolphin/hw_regs.h"
+#include "types.h"
+
+/* begin game/main_rel/motasglist_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_MOTASGLIST_TYPES_H
+#define GAME_MAIN_REL_MOTASGLIST_TYPES_H
+
+// Types (and the externs that name them) of motasglist.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct fn_1_41BDC_MotasglistData {
+    u8 pad_00[0x26];
+    u8 count;
+    u8 pad_27;
+    void *entries;
+    u8 pad_2c[0x08];
+    void *fallback;
+    u8 pad_38[0x14];
+    u8 fallback_base;
+} fn_1_41BDC_MotasglistData;
+
+/* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_SHARED_TYPES_H
+#define GAME_MAIN_REL_SHARED_TYPES_H
+
+// Types that two or more main_rel TU type headers defined identically; one definition here so
+// the TU headers can be included together. Hand-owned (librarian).
+
+
+typedef struct Sig_fn_1_41488_Fn41488Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41488_Fn41488Data;
+
+typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
+    f32 f0;
+    f32 f1;
+    f32 f2;
+    f32 f3;
+    f32 f4;
+    f32 f5;
+    f32 f6;
+    f32 f7;
+    f32 f8;
+    f32 f9;
+    f32 f10;
+    f32 f11;
+    f32 f12;
+    f32 f13;
+    f32 f14;
+    f32 f15;
+} Sig_fn_80015EE8_Fn80015EE8Out;
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+    u8 pad_8[0x18];
+    u32 unk_20;
+};
+
+struct Sig_fn_80077B64_fn_80077B64_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+};
+
+struct FzgxCopy_88 { u32 words[22]; };
+
+#endif  // GAME_MAIN_REL_SHARED_TYPES_H
+
+/* end game/main_rel/shared_types.h */
+
+typedef struct Sig_fn_1_41328_RelocData {
+    u32 count;
+    u32 values[1];
+} Sig_fn_1_41328_RelocData;
+
+typedef struct Fn142AD0Pair {
+    u32 a;
+    u32 b;
+} Fn142AD0Pair;
+
+typedef struct Fn142AD0Entry {
+    u8 pad0[0x88];
+    u8 value88[0x0C];
+    f32 x;
+    u8 pad98[0x0C];
+    f32 y;
+    u8 padA8[0x0C];
+    f32 z;
+    Fn142AD0Pair sourceB8;
+    u32 sourceC0;
+    Fn142AD0Pair sourceC4;
+    u32 sourceCC;
+    u8 padD0[4];
+    u16 keys[6][2][3];
+    u32 keysF[3][2][3];
+    u8 quat[0x10];
+    Fn142AD0Pair value174;
+    u32 value17C;
+    Fn142AD0Pair value180;
+    u32 value188;
+} Fn142AD0Entry;
+
+typedef struct Fn142AD0Key {
+    u16 value0;
+    u16 value1;
+    u16 value2;
+    u16 value3;
+    f32 value4;
+    f32 value5;
+    f32 value6;
+} Fn142AD0Key;
+
+typedef struct Fn142AD0Object {
+    u16 count;
+    u16 flags;
+    u8 pad4[4];
+    Fn142AD0Entry *entries;
+    u8 padC[0x20];
+    f32 value2C;
+    f32 value30;
+    f32 value34;
+    f32 value38;
+    u8 pad3C[4];
+    Fn142AD0Key cur;
+    u8 pad54[4];
+    Fn142AD0Key prev;
+} Fn142AD0Object;
+
+typedef struct Fn1433A4Object {
+    u16 value0;
+    u16 value1;
+    u16 value2;
+    u16 value3;
+    f32 value4;
+    f32 value5;
+    f32 value6;
+} Fn1433A4Object;
+
+typedef struct Fn142E74Pair {
+    u32 a;
+    u32 b;
+} Fn142E74Pair;
+
+typedef struct Fn142E74Entry {
+    u8 pad0[0xB8];
+    Fn142E74Pair sourceB8;
+    u32 sourceC0;
+    Fn142E74Pair sourceC4;
+    u32 sourceCC;
+    u8 padD0[0xA4];
+    Fn142E74Pair value174;
+    u32 value17C;
+    Fn142E74Pair value180;
+    u32 value188;
+} Fn142E74Entry;
+
+typedef struct Fn142E74Object {
+    u16 count;
+    u16 flags;
+    u8 pad4[4];
+    Fn142E74Entry *entries;
+    u8 padC[0x0C];
+    f32 value0;
+    f32 value1;
+    f32 value2;
+    u8 pad24[0x1C];
+    u16 flags40;
+} Fn142E74Object;
+
+typedef struct Fn1433E0Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn1433E0Vec;
+
+typedef struct Fn1433E0Quat {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+} Fn1433E0Quat;
+
+typedef struct Fn1433E0Entry {
+    u8 pad0[4];
+    u16 flags;
+    u16 parent;
+    u8 pad8[0xC];
+    f32 value14;
+    Fn1433E0Vec offset18;
+    f32 value24;
+    u8 pad28[0x60];
+    u8 mtx[0x30];
+    Fn1433E0Vec scale;
+    Fn1433E0Vec offsetC4;
+    u8 padD0[0x94];
+    Fn1433E0Quat quat;
+    Fn1433E0Vec value174;
+    Fn1433E0Vec value180;
+} Fn1433E0Entry;
+
+typedef struct Fn1433E0Object {
+    u16 count;
+    u16 flags;
+    u8 pad4[4];
+    Fn1433E0Entry *entries;
+    Fn1433E0Vec scale;
+    Fn1433E0Vec offset;
+    u8 pad24[4];
+    f32 frame;
+    f32 duration;
+    Fn1433E0Vec prev;
+} Fn1433E0Object;
+
+typedef struct Fn14300CObject {
+    u8 pad0[2];
+    u16 flags;
+    f32 value;
+    u8 pad1[0x38];
+} Fn14300CObject;
+
+typedef struct Fn143058Object {
+    u16 count;
+    u16 flags;
+    u8 pad4[4];
+    u8 *entries;
+    u8 padC[0xC];
+    f32 value0;
+    f32 value1;
+    f32 value2;
+} Fn143058Object;
+
+struct fn_1_41850_lbl_801A6410 {
+    u32 unk_0;
+};
+
+extern int fn_1_41488(Sig_fn_1_41488_Fn41488Data *, const char *);
+extern void fn_1_4270C(Fn142AD0Object *object, void *arg1, u32 arg2);
+extern void fn_1_433A4(Fn1433A4Object *dst, Fn1433A4Object *src);
+extern void fn_1_438AC(Fn142E74Object *object, Fn142E74Entry *entry, s32 arg2);
+extern void fn_1_433E0(Fn1433E0Object *object);
+extern void fn_1_4300C(Fn14300CObject *object);
+extern void fn_1_43E08(Fn143058Object *object, u8 *entry, void *arg2, void *arg3, f32 value);
+extern struct fn_1_41850_lbl_801A6410 lbl_801A6410;
+extern void fn_8006E8DC(Fn1433E0Quat *);
+extern void fn_8006EB4C(Fn1433E0Quat *, Fn1433E0Quat *, Fn1433E0Quat *, f32);
+
+#endif  // GAME_MAIN_REL_MOTASGLIST_TYPES_H
+
+/* end game/main_rel/motasglist_types.h */
+
+extern void * fn_1_41BDC();
+extern void fn_1_41328(void *arg0);
+extern void lbl_8006DBAC(void *value);
+extern void fn_8006E5FC(f32 *arg0);
+extern void fn_1_43264(void *arg0, f32 arg1);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006D668(void *vector);
+extern void fn_1_449A8(void *vector);
+extern void lbl_8006DB74(void *value);
+extern u32 lbl_1_bss_384CC;
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern const f64 lbl_1_rodata_F40;
+extern const f32 lbl_1_rodata_F34;
+extern const f32 lbl_1_rodata_F30;
+extern const f64 lbl_1_rodata_F48;
+extern const f32 lbl_1_rodata_F38;
+extern const f32 lbl_1_rodata_F50;
+extern const f32 lbl_1_rodata_F54;
+extern const f32 lbl_1_rodata_F68;
+extern const f32 lbl_1_rodata_F6C;
+extern f32 lbl_8006D188(s32);
+extern void lbl_8006D758(void);
+extern void lbl_8006DD7C(void);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E1B0(void *, void *);
+extern void mathutil_mtxA_from_quat(void *);
+extern void lbl_8006E15C(f32, f32, f32);
+
+// Matrix A lives at the start of the locked-cache window.
+#define MTXA ((f32 *)(LC_BASE + 0x0))
+
+static inline void mtxA_clear_translation(void) {
+    f32 *m = MTXA;
+    m[3] = lbl_1_rodata_F54;
+    m[7] = lbl_1_rodata_F54;
+    m[11] = lbl_1_rodata_F54;
+}
+
+#pragma opt_propagation off
+void fn_1_433E0(Fn1433E0Object *object) {
+    f32 *mtxA;
+    Fn1433E0Entry *entry;
+    Fn1433E0Entry *entries;
+    s32 i;
+    Fn1433E0Entry *parent;
+    f32 t;
+    Fn1433E0Vec tmp;
+    u8 mtx[0x30];
+    Fn1433E0Vec vec;
+    Fn1433E0Quat q1;
+    Fn1433E0Quat q0;
+    f32 base;
+    f32 z;
+    f32 y;
+    f32 x;
+
+    if (object->frame < object->duration) {
+        t = object->frame / object->duration;
+        if (object->flags & 0xC00) {
+            t = lbl_8006D188((s32)(lbl_1_rodata_F68 * (lbl_1_rodata_F6C * t)));
+            if (object->flags & 0x800) {
+                t = t * t;
+            }
+        }
+        object->frame = object->frame + lbl_1_rodata_F50;
+    } else {
+        t = lbl_1_rodata_F50;
+        object->frame = lbl_1_rodata_F54;
+        object->duration = lbl_1_rodata_F54;
+        object->flags &= ~1;
+    }
+
+    entries = object->entries;
+    entry = entries;
+    for (i = 0; i < object->count; i++) {
+        parent = NULL;
+        if (i == 0) {
+            vec.x = object->offset.x * object->scale.x;
+            vec.y = object->offset.y * object->scale.y;
+            vec.z = object->offset.z * object->scale.z;
+            if (!(object->flags & 0x20)) {
+                base = object->prev.x;
+                vec.x = base + (f32)(t * (vec.x - base));
+            }
+            if (!(object->flags & 0x40)) {
+                base = object->prev.y;
+                vec.y = base + (f32)(t * (vec.y - base));
+            }
+            if (!(object->flags & 0x80)) {
+                base = object->prev.z;
+                vec.z = base + (f32)(t * (vec.z - base));
+            }
+        } else {
+            if (entry->parent == 0xFFFF) {
+                lbl_8006D758();
+            } else {
+                parent = (Fn1433E0Entry *)((u8 *)entries + entry->parent * 0x18c);
+                lbl_8006DBAC(parent->mtx);
+            }
+            if (entry->flags & 0x11) {
+                base = entry->value14 * object->scale.x;
+                vec.y = lbl_1_rodata_F54;
+                vec.x = base;
+                vec.z = lbl_1_rodata_F54;
+                if (object->flags & 8) {
+                    vec.x = base * entry->value24;
+                }
+            } else {
+                if (object->flags & 8) {
+                    tmp = entry->offset18;
+                } else {
+                    tmp = entry->offsetC4;
+                }
+                vec = tmp;
+                if (t < lbl_1_rodata_F50 && (entry->flags & 0x40)) {
+                    base = entry->value180.x * (entry->value174.x / entry->scale.x);
+                    vec.x = base + (f32)(t * (vec.x - base));
+                    base = entry->value180.y * (entry->value174.y / entry->scale.y);
+                    vec.y = base + (f32)(t * (vec.y - base));
+                    base = entry->value180.z * (entry->value174.z / entry->scale.z);
+                    vec.z = base + (f32)(t * (vec.z - base));
+                }
+            }
+            lbl_8006E1B0(&vec, &vec);
+        }
+
+        entry->scale.x = entry->scale.x * object->scale.x;
+        entry->scale.y = entry->scale.y * object->scale.y;
+        entry->scale.z = entry->scale.z * object->scale.z;
+
+        if (t < lbl_1_rodata_F50) {
+            if ((object->flags & 0x200) && parent != NULL && entry->parent != 0) {
+                mathutil_mtxA_from_quat(&entry->quat);
+                lbl_8006DB74(mtx);
+                mathutil_mtxA_from_quat(&parent->quat);
+                lbl_8006DD7C();
+                lbl_8006DFC4(mtx);
+                fn_8006E5FC( (f32 *)(void *)(&q0));
+                lbl_8006DBAC(parent->mtx);
+                mtxA_clear_translation();
+                lbl_8006DD7C();
+                lbl_8006DFC4(entry->mtx);
+                mtxA_clear_translation();
+                fn_8006E5FC( (f32 *)(void *)(&q1));
+                fn_8006E8DC(&q1);
+                fn_8006E8DC(&q0);
+                fn_8006EB4C(&q1, &q0, &q1, t);
+                fn_8006E8DC(&q1);
+                mathutil_mtxA_from_quat(&q1);
+                lbl_8006DB74(mtx);
+                lbl_8006DBAC(parent->mtx);
+                mtxA_clear_translation();
+                lbl_8006DFC4(mtx);
+            } else {
+                lbl_8006DBAC(entry->mtx);
+                fn_8006E5FC( (f32 *)(void *)(&q1));
+                fn_8006EB4C(&q1, &entry->quat, &q1, t);
+                mathutil_mtxA_from_quat(&q1);
+            }
+        } else {
+            lbl_8006DBAC(entry->mtx);
+        }
+
+        x = vec.x;
+        y = vec.y;
+        z = vec.z;
+        mtxA = MTXA;
+        mtxA[3] = x;
+        mtxA[7] = y;
+        mtxA[11] = z;
+        lbl_8006E15C(entry->scale.x, entry->scale.y, entry->scale.z);
+        lbl_8006DB74(entry->mtx);
+        entry++;
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_433E0 */
+
 /* fzgx:begin fn_1_43E08 noprologue */
 #include "types.h"
 #include "dolphin/hw_regs.h"

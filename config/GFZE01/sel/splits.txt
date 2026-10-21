@@ -776,3 +776,36 @@ rel/sel/sel/fn_10_2406C.c:
 
 rel/sel/name_entry/fn_10_261E4.c:
 	.text       start:0x000261E4 end:0x00026424 align:4
+
+rel/sel/sel/fn_10_18A50.c:
+	.text       start:0x00018A50 end:0x00018C54 align:4
+
+rel/sel/sel/fn_10_1BFC4.c:
+	.text       start:0x0001BFC4 end:0x0001C2D8 align:4
+
+rel/sel/sel/fn_10_19924.c:
+	.text       start:0x00019924 end:0x00019C90 align:4
+
+rel/sel/sel/fn_10_19308.c:
+	.text       start:0x00019308 end:0x0001973C align:4
+
+rel/sel/sel/fn_10_19F70.c:
+	.text       start:0x00019F70 end:0x0001A458 align:4
+
+rel/sel/sel/fn_10_10168.c:
+	.text       start:0x00010168 end:0x000107D4 align:4
+
+rel/sel/sel/fn_10_578C.c:
+	.text       start:0x0000578C end:0x00005E94 align:4
+
+rel/sel/sel/fn_10_2325C.c:
+	.text       start:0x0002325C end:0x00023990 align:4
+
+rel/sel/sel/fn_10_9788.c:
+	.text       start:0x00009788 end:0x0000A0E8 align:4
+
+rel/sel/sel/fn_10_E600.c:
+	.text       start:0x0000E600 end:0x0000F050 align:4
+
+rel/sel/sel/fn_10_D5D4.c:
+	.text       start:0x0000D5D4 end:0x0000DAF8 align:4

@@ -1031,6 +1031,740 @@ void fn_1_A8528(void *arg0, void *arg1) {
 }
 /* fzgx:end fn_1_A8528 */
 
+/* fzgx:begin fn_1_A861C noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+#include "types.h"
+
+/* begin game/main_rel/driver_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_DRIVER_TYPES_H
+#define GAME_MAIN_REL_DRIVER_TYPES_H
+
+// Types (and the externs that name them) of driver.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    u8 pad_0[0x8];
+    u32 unk_8;
+} DriverAsset;
+
+struct fn_1_A7F84_lbl_1_rodata_4A28 {
+    f32 unk_0;
+};
+
+typedef struct FnA8528Config {
+    u8 pad_0c[0x0c];
+    f32 unk_0c;
+    u8 pad_10[0x0c];
+    f32 unk_1c;
+    u8 pad_20[0x0c];
+    f32 unk_2c;
+} FnA8528Config;
+
+struct fn_1_A7F84_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+struct fn_1_A9868_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+typedef struct FnA861CCamera {
+    u8 pad_0[0xdc];
+    f32 yaw;      /* 0xdc */
+    f32 roll;     /* 0xe0 */
+    f32 pitch;    /* 0xe4 */
+    u8 unk_e8;
+    u8 unk_e9;
+    u8 pad_ea[0x15c - 0xea];
+    u8 unk_15c[4];
+} FnA861CCamera;
+
+typedef struct {
+    signed char gpr;
+    signed char fpr;
+    unsigned short reserved;
+    char *input_arg_area;
+    char *reg_save_area;
+} Sig_parse_format_MkVaListState;
+
+typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
+
+typedef struct {
+    u8 kind;
+    u8 callback;
+    u8 flags;
+    u8 pad3;
+    s16 x;
+    s16 y;
+    s16 z;
+    s16 padA;
+    void *data;
+} Fn1A9250Entry;
+
+struct fn_1_A9868_lbl_1_rodata_4AA0 {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    f32 unk_24;
+    f32 unk_28;
+    f32 unk_2C;
+    f32 unk_30;
+};
+
+/* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_SHARED_TYPES_H
+#define GAME_MAIN_REL_SHARED_TYPES_H
+
+// Types that two or more main_rel TU type headers defined identically; one definition here so
+// the TU headers can be included together. Hand-owned (librarian).
+
+
+typedef struct Sig_fn_1_41488_Fn41488Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41488_Fn41488Data;
+
+typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
+    f32 f0;
+    f32 f1;
+    f32 f2;
+    f32 f3;
+    f32 f4;
+    f32 f5;
+    f32 f6;
+    f32 f7;
+    f32 f8;
+    f32 f9;
+    f32 f10;
+    f32 f11;
+    f32 f12;
+    f32 f13;
+    f32 f14;
+    f32 f15;
+} Sig_fn_80015EE8_Fn80015EE8Out;
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+    u8 pad_8[0x18];
+    u32 unk_20;
+};
+
+struct Sig_fn_80077B64_fn_80077B64_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+};
+
+struct FzgxCopy_88 { u32 words[22]; };
+
+#endif  // GAME_MAIN_REL_SHARED_TYPES_H
+
+/* end game/main_rel/shared_types.h */
+
+struct Sig_fn_800737E4_fn_800737E4_Arg0 {
+    f32 unk_0;
+    u8 pad_4[0x4];
+    f32 unk_8;
+    f32 unk_C;
+    u8 pad_10[0x4];
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+    u8 pad_20[0x8];
+    f32 unk_28;
+    f32 unk_2C;
+};
+
+typedef struct FnA861CVehicle {
+    u8 pad_0[8];
+    f32 unk_8;
+    u8 pad_c[0xa4 - 0xc];
+    f32 unk_a4;
+    u8 pad_a8[0xb0 - 0xa8];
+    f32 unk_b0;
+    u8 pad_b4[0xb8 - 0xb4];
+    f32 unk_b8;
+    u8 pad_bc[0xc0 - 0xbc];
+    f32 unk_c0;
+} FnA861CVehicle;
+
+typedef struct FnA8834Camera {
+    u8 pad_0[0x90];
+    u8 unk_90[0x48];
+    f32 unk_d8;
+    f32 unk_dc;
+    u8 pad_e0[4];
+    f32 unk_e4;
+    u8 pad_e8[0x18c - 0xe8];
+    u8 unk_18c[4];
+} FnA8834Camera;
+
+typedef struct FnA8834Vehicle {
+    u8 pad_0[8];
+    f32 unk_8;
+    u8 pad_c[0xa4 - 0xc];
+    f32 unk_a4;
+    u8 pad_a8[0xb0 - 0xa8];
+    f32 unk_b0;
+    u8 pad_b4[0xc0 - 0xb4];
+    f32 unk_c0;
+    u8 pad_c4[0x1fc - 0xc4];
+    f32 unk_1fc;
+} FnA8834Vehicle;
+
+extern struct fn_1_A7F84_lbl_1_rodata_4A28 lbl_1_rodata_4A28;
+extern FnA8528Config *lbl_801A6D00;
+extern Fn1A9250Entry lbl_1_bss_70658[];
+extern struct fn_1_A9868_lbl_1_rodata_4AA0 lbl_1_rodata_4AA0;
+extern f32 fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *, s32, f32);
+extern void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh);
+extern void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh);
+
+#endif  // GAME_MAIN_REL_DRIVER_TYPES_H
+
+/* end game/main_rel/driver_types.h */
+
+extern void fn_80006E10(u32 arg0);
+extern s32 fn_1_12C930(s8);
+extern s16 fn_1_12CCB0(s16 arg0, s16 arg1);
+extern int sprintf(char *s, const char *format, ...);
+extern void fn_1_D3884();
+extern u32 fn_80077D40(void);
+extern u32 fn_80071470(u32, u32);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_80071718(void *value);
+extern void fn_1_A8270(void *, void *);
+extern void *lbl_801A6410;
+extern u32 fn_1_4630();
+extern void fn_1_A8528(void *, void *);
+extern u32 lbl_8006D91C(u32);
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern void mathutil_mtxA_rotate_x(u32);
+extern u32 lbl_8006D998(u32);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006DB74(void *);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DFC4(void *pos);
+extern void lbl_8006DB30(void);
+extern void fn_1_A9420(u8 value);
+extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_1_A948C(int);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16 index);
+extern void fn_1_520A0(void);
+extern void fn_1_52088(void);
+extern u32 lbl_1_bss_71658[6];
+extern const f64 lbl_1_rodata_4A98;
+extern void fn_1_49714(f32 value1, f32 value2, f32 value3);
+extern void fn_1_49680(f32 value1, f32 value2);
+extern void fn_1_A93C4(u32 arg0);
+extern void fn_1_4A0D8(void *);
+extern void fn_1_520CC(void);
+extern void fn_1_49514(u32 *value);
+extern void (*lbl_1_bss_7168C)(void);
+extern u32 GXLoadPosMtxImm(u32, u32);
+extern u32 fn_800720B0(u32);
+extern void fn_80072EDC(s32 arg0, s32 arg1);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern void fn_80038CFC(u32 value);
+extern void fn_8006F1F0(void *, void *, void *);
+extern void fn_8007245C(u32 value);
+extern void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80073678(u32 arg0);
+extern void fn_80073898(u32 arg0);
+extern void fn_80073C6C(s32 index);
+extern void fn_80074660(u32 arg0);
+extern void fn_800746A8();
+extern void fn_80074718(u8 value, s32 arg);
+extern void fn_80074788(u32 arg0);
+extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern void OSReport(const char *format, ...);
+extern void fn_800711A8(void *value);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void lbl_8006E0A4(void *arg0);
+extern void fn_8006F6A8(void *arg0);
+extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
+extern void fn_1_3920(void);
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern u32 fn_8001A78C(u32 arg0);
+extern u32 fn_8001A7D0(u32 arg0);
+extern void fn_1_A943C(u32 arg0, u32 arg1);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern void fn_1_A942C(u8 value);
+extern void fn_1_A96BC(void);
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A5C98(void *);
+extern u8 lbl_1_bss_716C8[320];
+extern void (*lbl_1_bss_71680)(void);
+extern u32 fn_1_451C(void);
+extern void fn_1_A5AA0(void *buffer, void *destination);
+extern u32 lbl_1_bss_71670;
+extern void (*lbl_1_bss_71684)(void);
+extern void (*lbl_1_bss_71688)(void);
+extern u32 fn_1_A7024(f32, f32, f32, f32);
+extern f32 lbl_1_rodata_4AC4[4];
+extern void fn_8003462C(u32, u32, u32);
+
+/* The TU's shared literal pool (lbl_1_rodata_4A28 .. +0x40) in retail order, so the
+ * function's own literals dedupe onto retail's displacements. */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_a861c(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = 0.0f;
+    s = -0.1f;
+    s = 0.1f;
+    s = 5.0f;
+    s = 0.5f;
+    s = 50.0f;
+    s = 10.0f;
+    s = 57.2957763671875f;
+    s = -10.0f;
+    s = 0.2f;
+    s = -30.0f;
+    s = 1.8518518209457397f;
+    s = -1.8518518209457397f;
+    s = 4.166666507720947f;
+    s = 25.0f;
+    s = 30.0f;
+    s = 182.04444885253906f;
+}
+#pragma section code_type ".text"
+
+void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh)
+{
+    lbl_8006DBAC( (void *)(FnA861CCamera *)(cam));
+    if (veh == NULL) {
+        cam->pitch = 0.0f;
+        cam->yaw = 0.0f;
+        cam->roll = 0.0f;
+    } else {
+        f32 rad = -veh->unk_a4 / veh->unk_b0;
+        f32 turn = 0.5f * (veh->unk_b8 / veh->unk_8);
+        f32 yaw = (f32)(50.0f * turn) + (f32)(10.0f * (57.2957763671875f * rad));
+        f32 roll = -10.0f * (turn + 57.2957763671875f * rad);
+        f32 lift;
+        f32 limit;
+        s32 locked;
+
+        lift = veh->unk_c0 / veh->unk_8;
+
+        cam->pitch += (f32)(0.2f * (f32)((f32)(-30.0f * ((lift < -1.8518518209457397f ? -(1.8518518209457397f + lift) : 0.0f) / 4.166666507720947f)) - cam->pitch));
+
+        locked = 0;
+        if (cam->unk_e9 != 0) {
+            u8 state = cam->unk_e8;
+            if (state == 0x21 || state == 0x2a || state == 0x2b) {
+                locked = 1;
+            }
+        }
+        limit = locked ? 0.0f : 25.0f;
+        if (yaw > limit) {
+            yaw = limit;
+        } else if (yaw < -limit) {
+            yaw = -limit;
+        }
+        cam->yaw += (f32)(0.2f * (yaw - cam->yaw));
+
+        if (roll > 30.0f) {
+            roll = 30.0f;
+        } else if (roll < -30.0f) {
+            roll = -30.0f;
+        }
+        cam->roll += (f32)(0.2f * (roll - cam->roll));
+    }
+    mathutil_mtxA_rotate_z((s32)(182.04444885253906f * cam->pitch));
+    mathutil_mtxA_rotate_y((s32)(182.04444885253906f * cam->yaw));
+    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * cam->roll));
+    lbl_8006DB74(cam->unk_15c);
+}
+/* fzgx:end fn_1_A861C */
+
+/* fzgx:begin fn_1_A8834 noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+#include "types.h"
+
+/* begin game/main_rel/driver_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_DRIVER_TYPES_H
+#define GAME_MAIN_REL_DRIVER_TYPES_H
+
+// Types (and the externs that name them) of driver.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    u8 pad_0[0x8];
+    u32 unk_8;
+} DriverAsset;
+
+struct fn_1_A7F84_lbl_1_rodata_4A28 {
+    f32 unk_0;
+};
+
+typedef struct FnA8528Config {
+    u8 pad_0c[0x0c];
+    f32 unk_0c;
+    u8 pad_10[0x0c];
+    f32 unk_1c;
+    u8 pad_20[0x0c];
+    f32 unk_2c;
+} FnA8528Config;
+
+struct fn_1_A7F84_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+struct fn_1_A9868_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+typedef struct FnA861CCamera {
+    u8 pad_0[0xdc];
+    f32 yaw;      /* 0xdc */
+    f32 roll;     /* 0xe0 */
+    f32 pitch;    /* 0xe4 */
+    u8 unk_e8;
+    u8 unk_e9;
+    u8 pad_ea[0x15c - 0xea];
+    u8 unk_15c[4];
+} FnA861CCamera;
+
+typedef struct {
+    signed char gpr;
+    signed char fpr;
+    unsigned short reserved;
+    char *input_arg_area;
+    char *reg_save_area;
+} Sig_parse_format_MkVaListState;
+
+typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
+
+typedef struct {
+    u8 kind;
+    u8 callback;
+    u8 flags;
+    u8 pad3;
+    s16 x;
+    s16 y;
+    s16 z;
+    s16 padA;
+    void *data;
+} Fn1A9250Entry;
+
+struct fn_1_A9868_lbl_1_rodata_4AA0 {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    f32 unk_24;
+    f32 unk_28;
+    f32 unk_2C;
+    f32 unk_30;
+};
+
+/* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_SHARED_TYPES_H
+#define GAME_MAIN_REL_SHARED_TYPES_H
+
+// Types that two or more main_rel TU type headers defined identically; one definition here so
+// the TU headers can be included together. Hand-owned (librarian).
+
+
+typedef struct Sig_fn_1_41488_Fn41488Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41488_Fn41488Data;
+
+typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
+    f32 f0;
+    f32 f1;
+    f32 f2;
+    f32 f3;
+    f32 f4;
+    f32 f5;
+    f32 f6;
+    f32 f7;
+    f32 f8;
+    f32 f9;
+    f32 f10;
+    f32 f11;
+    f32 f12;
+    f32 f13;
+    f32 f14;
+    f32 f15;
+} Sig_fn_80015EE8_Fn80015EE8Out;
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+    u8 pad_8[0x18];
+    u32 unk_20;
+};
+
+struct Sig_fn_80077B64_fn_80077B64_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+};
+
+struct FzgxCopy_88 { u32 words[22]; };
+
+#endif  // GAME_MAIN_REL_SHARED_TYPES_H
+
+/* end game/main_rel/shared_types.h */
+
+struct Sig_fn_800737E4_fn_800737E4_Arg0 {
+    f32 unk_0;
+    u8 pad_4[0x4];
+    f32 unk_8;
+    f32 unk_C;
+    u8 pad_10[0x4];
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+    u8 pad_20[0x8];
+    f32 unk_28;
+    f32 unk_2C;
+};
+
+typedef struct FnA861CVehicle {
+    u8 pad_0[8];
+    f32 unk_8;
+    u8 pad_c[0xa4 - 0xc];
+    f32 unk_a4;
+    u8 pad_a8[0xb0 - 0xa8];
+    f32 unk_b0;
+    u8 pad_b4[0xb8 - 0xb4];
+    f32 unk_b8;
+    u8 pad_bc[0xc0 - 0xbc];
+    f32 unk_c0;
+} FnA861CVehicle;
+
+typedef struct FnA8834Camera {
+    u8 pad_0[0x90];
+    u8 unk_90[0x48];
+    f32 unk_d8;
+    f32 unk_dc;
+    u8 pad_e0[4];
+    f32 unk_e4;
+    u8 pad_e8[0x18c - 0xe8];
+    u8 unk_18c[4];
+} FnA8834Camera;
+
+typedef struct FnA8834Vehicle {
+    u8 pad_0[8];
+    f32 unk_8;
+    u8 pad_c[0xa4 - 0xc];
+    f32 unk_a4;
+    u8 pad_a8[0xb0 - 0xa8];
+    f32 unk_b0;
+    u8 pad_b4[0xc0 - 0xb4];
+    f32 unk_c0;
+    u8 pad_c4[0x1fc - 0xc4];
+    f32 unk_1fc;
+} FnA8834Vehicle;
+
+extern struct fn_1_A7F84_lbl_1_rodata_4A28 lbl_1_rodata_4A28;
+extern FnA8528Config *lbl_801A6D00;
+extern Fn1A9250Entry lbl_1_bss_70658[];
+extern struct fn_1_A9868_lbl_1_rodata_4AA0 lbl_1_rodata_4AA0;
+extern f32 fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *, s32, f32);
+extern void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh);
+extern void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh);
+
+#endif  // GAME_MAIN_REL_DRIVER_TYPES_H
+
+/* end game/main_rel/driver_types.h */
+
+extern void fn_80006E10(u32 arg0);
+extern s32 fn_1_12C930(s8);
+extern s16 fn_1_12CCB0(s16 arg0, s16 arg1);
+extern int sprintf(char *s, const char *format, ...);
+extern void fn_1_D3884();
+extern u32 fn_80077D40(void);
+extern u32 fn_80071470(u32, u32);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_80071718(void *value);
+extern void fn_1_A8270(void *, void *);
+extern void *lbl_801A6410;
+extern u32 fn_1_4630();
+extern void fn_1_A8528(void *, void *);
+extern u32 lbl_8006D91C(u32);
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern void mathutil_mtxA_rotate_x(u32);
+extern u32 lbl_8006D998(u32);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006DB74(void *);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DFC4(void *pos);
+extern void lbl_8006DB30(void);
+extern void fn_1_A9420(u8 value);
+extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_1_A948C(int);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16 index);
+extern void fn_1_520A0(void);
+extern void fn_1_52088(void);
+extern u32 lbl_1_bss_71658[6];
+extern const f64 lbl_1_rodata_4A98;
+extern void fn_1_49714(f32 value1, f32 value2, f32 value3);
+extern void fn_1_49680(f32 value1, f32 value2);
+extern void fn_1_A93C4(u32 arg0);
+extern void fn_1_4A0D8(void *);
+extern void fn_1_520CC(void);
+extern void fn_1_49514(u32 *value);
+extern void (*lbl_1_bss_7168C)(void);
+extern u32 GXLoadPosMtxImm(u32, u32);
+extern u32 fn_800720B0(u32);
+extern void fn_80072EDC(s32 arg0, s32 arg1);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern void fn_80038CFC(u32 value);
+extern void fn_8006F1F0(void *, void *, void *);
+extern void fn_8007245C(u32 value);
+extern void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80073678(u32 arg0);
+extern void fn_80073898(u32 arg0);
+extern void fn_80073C6C(s32 index);
+extern void fn_80074660(u32 arg0);
+extern void fn_800746A8();
+extern void fn_80074718(u8 value, s32 arg);
+extern void fn_80074788(u32 arg0);
+extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern void OSReport(const char *format, ...);
+extern void fn_800711A8(void *value);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void lbl_8006E0A4(void *arg0);
+extern void fn_8006F6A8(void *arg0);
+extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
+extern void fn_1_3920(void);
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern u32 fn_8001A78C(u32 arg0);
+extern u32 fn_8001A7D0(u32 arg0);
+extern void fn_1_A943C(u32 arg0, u32 arg1);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern void fn_1_A942C(u8 value);
+extern void fn_1_A96BC(void);
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A5C98(void *);
+extern u8 lbl_1_bss_716C8[320];
+extern void (*lbl_1_bss_71680)(void);
+extern u32 fn_1_451C(void);
+extern void fn_1_A5AA0(void *buffer, void *destination);
+extern u32 lbl_1_bss_71670;
+extern void (*lbl_1_bss_71684)(void);
+extern void (*lbl_1_bss_71688)(void);
+extern u32 fn_1_A7024(f32, f32, f32, f32);
+extern f32 lbl_1_rodata_4AC4[4];
+extern void fn_8003462C(u32, u32, u32);
+
+/* The TU's shared literal pool (lbl_1_rodata_4A28 .. +0x58) in retail order, so the
+ * function's own literals dedupe onto retail's displacements. */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = 0.0f;
+    s = -0.1f;
+    s = 0.1f;
+    s = 5.0f;
+    s = 0.5f;
+    s = 50.0f;
+    s = 10.0f;
+    s = 57.2957763671875f;
+    s = -10.0f;
+    s = 0.2f;
+    s = -30.0f;
+    s = 1.8518518f;
+    s = -1.8518518f;
+    s = 4.166666507720947f;
+    s = 25.0f;
+    s = 30.0f;
+    s = 182.04444885253906f;
+    s = 0.46296295523643494f;
+    s = 1.0f;
+    s = 15.0f;
+    s = 45.0f;
+    s = -45.0f;
+    s = 0.75f;
+}
+#pragma section code_type ".text"
+
+void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh) {
+    lbl_8006DAEC();
+    if (veh == NULL) {
+        cam->unk_d8 = 0.0f;
+    } else {
+        f32 lateral;
+        f32 speed;
+        f32 yaw;
+        f32 roll;
+
+        lateral = -veh->unk_a4 / veh->unk_b0;
+        speed = -veh->unk_c0 / veh->unk_8;
+        speed = speed - 0.46296295523643494f;
+        if (speed < 0.0f) {
+            speed = 0.0f;
+        }
+        speed = speed / 4.166666507720947f;
+        if (speed > 1.0f) {
+            speed = 1.0f;
+        }
+        yaw = 15.0f * (57.2957763671875f * lateral);
+        speed = speed * (-30.0f * veh->unk_1fc);
+        roll = yaw + speed;
+        if (roll > 45.0f) {
+            roll = 45.0f;
+        } else if (roll < -45.0f) {
+            roll = -45.0f;
+        }
+        cam->unk_d8 = cam->unk_d8 + (f32)(0.1f * (roll - cam->unk_d8));
+    }
+    lbl_8006DFC4(cam->unk_90);
+    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * (0.75f * cam->unk_dc)));
+    mathutil_mtxA_rotate_y((s32)(182.04444885253906f * cam->unk_e4));
+    mathutil_mtxA_rotate_z((s32)(182.04444885253906f * cam->unk_d8));
+    lbl_8006DB74(cam->unk_18c);
+    lbl_8006DB30();
+}
+/* fzgx:end fn_1_A8834 */
+
 /* fzgx:begin fn_1_A8D4C */
 void fn_1_A8D4C(void) {
     lbl_1_bss_6F640 += 1;
@@ -1558,6 +2292,335 @@ void fn_1_A9868(u32 arg0, u32 arg1, u32 arg2, f32 arg3) {
     p_lbl_1_bss_71690->unk_0 = 1;
 }
 /* fzgx:end fn_1_A9868 */
+
+/* fzgx:begin fn_1_AA350 noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+#include "types.h"
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "rel/main_rel/driver.h"
+
+/* begin game/main_rel/driver_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_DRIVER_TYPES_H
+#define GAME_MAIN_REL_DRIVER_TYPES_H
+
+// Types (and the externs that name them) of driver.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    u8 pad_0[0x8];
+    u32 unk_8;
+} DriverAsset;
+
+struct fn_1_A7F84_lbl_1_rodata_4A28 {
+    f32 unk_0;
+};
+
+typedef struct FnA8528Config {
+    u8 pad_0c[0x0c];
+    f32 unk_0c;
+    u8 pad_10[0x0c];
+    f32 unk_1c;
+    u8 pad_20[0x0c];
+    f32 unk_2c;
+} FnA8528Config;
+
+struct fn_1_A7F84_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+struct fn_1_A9868_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+typedef struct FnA861CCamera {
+    u8 pad_0[0xdc];
+    f32 yaw;      /* 0xdc */
+    f32 roll;     /* 0xe0 */
+    f32 pitch;    /* 0xe4 */
+    u8 unk_e8;
+    u8 unk_e9;
+    u8 pad_ea[0x15c - 0xea];
+    u8 unk_15c[4];
+} FnA861CCamera;
+
+typedef struct {
+    signed char gpr;
+    signed char fpr;
+    unsigned short reserved;
+    char *input_arg_area;
+    char *reg_save_area;
+} Sig_parse_format_MkVaListState;
+
+typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
+
+typedef struct {
+    u8 kind;
+    u8 callback;
+    u8 flags;
+    u8 pad3;
+    s16 x;
+    s16 y;
+    s16 z;
+    s16 padA;
+    void *data;
+} Fn1A9250Entry;
+
+struct fn_1_A9868_lbl_1_rodata_4AA0 {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    f32 unk_24;
+    f32 unk_28;
+    f32 unk_2C;
+    f32 unk_30;
+};
+
+/* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_SHARED_TYPES_H
+#define GAME_MAIN_REL_SHARED_TYPES_H
+
+// Types that two or more main_rel TU type headers defined identically; one definition here so
+// the TU headers can be included together. Hand-owned (librarian).
+
+
+typedef struct Sig_fn_1_41488_Fn41488Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41488_Fn41488Data;
+
+typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
+    f32 f0;
+    f32 f1;
+    f32 f2;
+    f32 f3;
+    f32 f4;
+    f32 f5;
+    f32 f6;
+    f32 f7;
+    f32 f8;
+    f32 f9;
+    f32 f10;
+    f32 f11;
+    f32 f12;
+    f32 f13;
+    f32 f14;
+    f32 f15;
+} Sig_fn_80015EE8_Fn80015EE8Out;
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+    u8 pad_8[0x18];
+    u32 unk_20;
+};
+
+struct Sig_fn_80077B64_fn_80077B64_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+};
+
+struct FzgxCopy_88 { u32 words[22]; };
+
+#endif  // GAME_MAIN_REL_SHARED_TYPES_H
+
+/* end game/main_rel/shared_types.h */
+
+struct Sig_fn_800737E4_fn_800737E4_Arg0 {
+    f32 unk_0;
+    u8 pad_4[0x4];
+    f32 unk_8;
+    f32 unk_C;
+    u8 pad_10[0x4];
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+    u8 pad_20[0x8];
+    f32 unk_28;
+    f32 unk_2C;
+};
+
+typedef struct FnA861CVehicle {
+    u8 pad_0[8];
+    f32 unk_8;
+    u8 pad_c[0xa4 - 0xc];
+    f32 unk_a4;
+    u8 pad_a8[0xb0 - 0xa8];
+    f32 unk_b0;
+    u8 pad_b4[0xb8 - 0xb4];
+    f32 unk_b8;
+    u8 pad_bc[0xc0 - 0xbc];
+    f32 unk_c0;
+} FnA861CVehicle;
+
+typedef struct FnA8834Camera {
+    u8 pad_0[0x90];
+    u8 unk_90[0x48];
+    f32 unk_d8;
+    f32 unk_dc;
+    u8 pad_e0[4];
+    f32 unk_e4;
+    u8 pad_e8[0x18c - 0xe8];
+    u8 unk_18c[4];
+} FnA8834Camera;
+
+typedef struct FnA8834Vehicle {
+    u8 pad_0[8];
+    f32 unk_8;
+    u8 pad_c[0xa4 - 0xc];
+    f32 unk_a4;
+    u8 pad_a8[0xb0 - 0xa8];
+    f32 unk_b0;
+    u8 pad_b4[0xc0 - 0xb4];
+    f32 unk_c0;
+    u8 pad_c4[0x1fc - 0xc4];
+    f32 unk_1fc;
+} FnA8834Vehicle;
+
+extern struct fn_1_A7F84_lbl_1_rodata_4A28 lbl_1_rodata_4A28;
+extern FnA8528Config *lbl_801A6D00;
+extern Fn1A9250Entry lbl_1_bss_70658[];
+extern struct fn_1_A9868_lbl_1_rodata_4AA0 lbl_1_rodata_4AA0;
+extern f32 fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *, s32, f32);
+extern void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh);
+extern void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh);
+
+#endif  // GAME_MAIN_REL_DRIVER_TYPES_H
+
+/* end game/main_rel/driver_types.h */
+
+extern void fn_80006E10(u32 arg0);
+extern s32 fn_1_12C930(s8);
+extern s16 fn_1_12CCB0(s16 arg0, s16 arg1);
+extern int sprintf(char *s, const char *format, ...);
+extern void fn_1_D3884();
+extern u32 fn_80077D40(void);
+extern u32 fn_80071470(u32, u32);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_80071718(void *value);
+extern void fn_1_A8270(void *, void *);
+extern void *lbl_801A6410;
+extern u32 fn_1_4630();
+extern void fn_1_A8528(void *, void *);
+extern u32 lbl_8006D91C(u32);
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern void mathutil_mtxA_rotate_x(u32);
+extern u32 lbl_8006D998(u32);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006DB74(void *);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DFC4(void *pos);
+extern void lbl_8006DB30(void);
+extern void fn_1_A9420(u8 value);
+extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_1_A948C(int);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16 index);
+extern void fn_1_520A0(void);
+extern void fn_1_52088(void);
+extern u32 lbl_1_bss_71658[6];
+extern const f64 lbl_1_rodata_4A98;
+extern void fn_1_49714(f32 value1, f32 value2, f32 value3);
+extern void fn_1_49680(f32 value1, f32 value2);
+extern void fn_1_A93C4(u32 arg0);
+extern void fn_1_4A0D8(void *);
+extern void fn_1_520CC(void);
+extern void fn_1_49514(u32 *value);
+extern void (*lbl_1_bss_7168C)(void);
+extern u32 GXLoadPosMtxImm(u32, u32);
+extern u32 fn_800720B0(u32);
+extern void fn_80072EDC(s32 arg0, s32 arg1);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern void fn_80038CFC(u32 value);
+extern void fn_8006F1F0(void *, void *, void *);
+extern void fn_8007245C(u32 value);
+extern void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80073678(u32 arg0);
+extern void fn_80073898(u32 arg0);
+extern void fn_80073C6C(s32 index);
+extern void fn_80074660(u32 arg0);
+extern void fn_800746A8();
+extern void fn_80074718(u8 value, s32 arg);
+extern void fn_80074788(u32 arg0);
+extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern void OSReport(const char *format, ...);
+extern void fn_800711A8(void *value);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void lbl_8006E0A4(void *arg0);
+extern void fn_8006F6A8(void *arg0);
+extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
+extern void fn_1_3920(void);
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern u32 fn_8001A78C(u32 arg0);
+extern u32 fn_8001A7D0(u32 arg0);
+extern void fn_1_A943C(u32 arg0, u32 arg1);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern void fn_1_A942C(u8 value);
+extern void fn_1_A96BC(void);
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A5C98(void *);
+extern u8 lbl_1_bss_716C8[320];
+extern void (*lbl_1_bss_71680)(void);
+extern u32 fn_1_451C(void);
+extern void fn_1_A5AA0(void *buffer, void *destination);
+extern u32 lbl_1_bss_71670;
+extern void (*lbl_1_bss_71684)(void);
+extern void (*lbl_1_bss_71688)(void);
+extern u32 fn_1_A7024(f32, f32, f32, f32);
+extern f32 lbl_1_rodata_4AC4[4];
+extern void fn_8003462C(u32, u32, u32);
+
+
+#define WG_F32 (*(volatile f32 *)(GX_FIFO_BASE + 0x0)) /* Hardware access must remain ordered. */
+#define WG_U8 (*(volatile u8 *)(GX_FIFO_BASE + 0x0)) /* Hardware access must remain ordered. */
+
+static inline void pos3(f32 x, f32 y) {
+    WG_F32 = x;
+    WG_F32 = y;
+    WG_F32 = lbl_1_rodata_4AC4[0];
+}
+
+static inline void col4(u8 r, u8 g, u8 b, u8 a) {
+    WG_U8 = r;
+    WG_U8 = g;
+    WG_U8 = b;
+    WG_U8 = a;
+}
+
+static inline u16 fn_1_AA350_array_read(s32 index, u8 *array) { return array[index]; }
+void fn_1_AA350(s16 *a, s16 *b, u8 *c, u32 n) {
+    u32 i;
+    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+        fn_8003462C(0x98, 0, (u16)n);
+        for (i = 0; i < n; i++) {
+            pos3((f32)*a++, (f32)*b++);
+            col4(fn_1_AA350_array_read(0, c), fn_1_AA350_array_read(1, c), fn_1_AA350_array_read(2, c), fn_1_AA350_array_read(3, c));
+            c += 4;
+        }
+    }
+}
+/* fzgx:end fn_1_AA350 */
 
 /* fzgx:begin fn_1_AA538 */
 // Initialize the shared rendering state and submit the associated configuration.

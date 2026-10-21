@@ -468,6 +468,263 @@ s32 fn_1_45E84(s32 value) {
 }
 /* fzgx:end fn_1_45E84 */
 
+/* fzgx:begin fn_1_46144 pool noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/load.h"
+#include "types.h"
+
+extern int fn_1_45E98(void *arg0, void **result);
+extern s32 fn_8000700C();
+extern int fn_80006C2C(int status, void *arg0);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern u32 fn_1_46EC8(void);
+extern u32 fn_1_46ED8(void);
+extern u32 lbl_1_bss_3DCE4[17];
+extern void *fn_80006DFC(void *arg);
+extern void fn_1_D3214(void);
+extern void fn_1_3BDC(u32 arg0);
+extern void fn_8000659C(void);
+extern u32 lbl_1_bss_384C4;
+extern u32 fn_1_46A8C(u32 value);
+extern u32 lbl_1_bss_3DCD8;
+extern u32 lbl_1_bss_3DD28[179];
+extern void fn_1_47EE4(s32 index);
+extern void fn_1_485C8(u32 arg0);
+extern void fn_1_48140(int index);
+extern void fn_1_4DDC0(void);
+extern void fn_1_4F724(void);
+extern u8 lbl_1_bss_3E024[52];
+extern char lbl_1_data_1A3AC[5];
+extern u32 fn_80006CE4(u32);
+extern void *fn_80006DE8(void *);
+extern u32 lbl_801A6410;
+extern u32 fn_1_4630();
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern char *strcat(char *dest, const char *src);
+extern void fn_1_48004(s32 index, s32 image);
+
+/* begin dolphin/ar.h (deltawave784/fzgx, CC0) */
+#ifndef DOLPHIN_AR_H
+#define DOLPHIN_AR_H
+
+/* ARAM DMA request queue (ARQ), Dolphin SDK names. */
+
+/* begin layout_check.h (deltawave784/fzgx, CC0) */
+#ifndef LAYOUT_CHECK_H
+#define LAYOUT_CHECK_H
+
+/* Compile-time layout checks for owned types. They declare array typedefs
+ * only, so they emit no code or data under MWCC: a wrong size or offset is
+ * a negative array bound and fails the compile. */
+#define LAYOUT_CHECK_JOIN2(a, b) a##b
+#define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
+#define CHECK_SIZE(T, size) \
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+#define CHECK_OFFSET(T, field, offset) \
+    typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
+        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+
+#endif
+
+/* end layout_check.h */
+
+typedef void (*ARQCallback)(u32 pointerToARQRequest);
+
+typedef struct ARQRequest {
+    struct ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    ARQCallback callback;
+} ARQRequest;
+
+CHECK_OFFSET(ARQRequest, dest, 0x14);
+CHECK_SIZE(ARQRequest, 0x20);
+
+#endif
+
+/* end dolphin/ar.h */
+
+extern void fn_1_D3214(void);
+extern void fn_1_45890(u32 request);
+extern void DCInvalidateRange(void *addr, u32 size);
+
+typedef struct Fn464BCEntry {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+} Fn464BCEntry;
+
+typedef struct Fn464BCObject {
+    u8 unk_00[4];
+    Fn464BCEntry *unk_04;
+    u8 unk_08[8];
+    u8 *unk_10;
+} Fn464BCObject;
+
+typedef struct {
+    void *header;
+    void *data;
+    void *table;
+    u32 count;
+    void *end;
+    u32 unk_14;
+    u32 unk_18;
+} Fn8006A3DCResult;
+
+extern void fn_1_464BC(void *object, u32 index, void *arg2, u32 arg3);
+extern s32 fn_8006A3DC(void *header, Fn8006A3DCResult *result);
+extern void OSReport(const char *, ...);
+extern s32 fn_8000700C(const char *);
+
+typedef struct {
+    u32 flags;
+    u32 unk_4;
+    u32 addr;
+    u32 size;
+} LoadSlot;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[3];
+    u32 offset;
+    u32 size;
+} ArcEntry;
+
+typedef struct {
+    u32 unk_0;
+    u32 offset;
+    u32 size;
+} ArcHeader;
+
+typedef struct {
+    u8 pad_0[8];
+    u32 aram;
+    u32 end;
+} LoadArchive;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_384C0;
+u8 lbl_1_bss_384C0_gap_384C4[12];
+s32 fzgx_obj_lbl_1_bss_384D0;                /* +0x10 busy */
+u32 fzgx_obj_lbl_1_bss_384D0_4;
+LoadSlot fzgx_obj_lbl_1_bss_384D8[0x400];    /* +0x18 slot table */
+u8 fzgx_obj_lbl_1_bss_384D8_fill_4000[0x5820 - 0x4018];
+s32 fzgx_obj_lbl_1_bss_3DCE0;                /* +0x5820 next free slot */
+s32 fzgx_obj_lbl_1_bss_3DCE4[16];            /* +0x5824 pending requests */
+u32 fzgx_obj_lbl_1_bss_3DD24[2];
+u8 *fzgx_obj_lbl_1_bss_3DD2C;                /* +0x586c work buffer */
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
+    s = *(u8 *)&lbl_1_bss_384C0_gap_384C4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0_4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8_fill_4000;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCE0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCE4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DD24;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DD2C;
+}
+#pragma section code_type ".text"
+
+static inline int fn_1_46144_busy(void) {
+    s8 i;
+    s32 *pending;
+    if (fzgx_obj_lbl_1_bss_384D0 != 0) {
+        return 1;
+    }
+    pending = fzgx_obj_lbl_1_bss_3DCE4;
+    for (i = 0; i < 16; i++) {
+        if (pending[i] != 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int fn_1_46144(LoadArchive *archive, s32 locked, s32 named) {
+    ARQRequest request;
+    u8 name[0x40];
+    Fn8006A3DCResult result;
+    u32 offset;
+    ArcHeader *header;
+    u32 aram;
+    u32 size;
+    s32 count;
+    ArcEntry *entry;
+    s32 i;
+    LoadSlot *slot;
+    s32 k;
+    s32 next;
+    u32 slotAddr;
+    u32 slotSize;
+
+    aram = archive->aram;
+    while (fn_1_46144_busy()) {
+        fn_1_D3214();
+    }
+    fzgx_obj_lbl_1_bss_384D0 = 1;
+    DCInvalidateRange(fzgx_obj_lbl_1_bss_3DD2C, 0x20);
+    ARQPostRequest(&request, 0, 1, 1, aram, (u32)fzgx_obj_lbl_1_bss_3DD2C, 0x20, (ARQCallback)fn_1_45890);
+    while (fn_1_46144_busy()) {
+        fn_1_D3214();
+    }
+    header = (ArcHeader *)fzgx_obj_lbl_1_bss_3DD2C;
+    size = (header->size + 0x1f) & ~0x1f;
+    offset = header->offset;
+    archive->end = size + offset;
+    fzgx_obj_lbl_1_bss_384D0 = 1;
+    DCInvalidateRange(fzgx_obj_lbl_1_bss_3DD2C + offset, size);
+    ARQPostRequest(&request, 0, 1, 1, aram + offset, (u32)(fzgx_obj_lbl_1_bss_3DD2C + offset), size, (ARQCallback)fn_1_45890);
+    while (fn_1_46144_busy()) {
+        fn_1_D3214();
+    }
+    if (fn_8006A3DC(header, &result) == 0) {
+        OSReport((const char *)lbl_1_data_67D0);
+        return 0;
+    }
+    entry = (ArcEntry *)(fzgx_obj_lbl_1_bss_3DD2C + offset);
+    count = entry->size;
+    for (i = 0; i < count; i++, entry++) {
+        if (entry->unk_0 == 0) {
+            slotAddr = entry->offset;
+            slotSize = entry->size;
+            slot = &fzgx_obj_lbl_1_bss_384D8[fzgx_obj_lbl_1_bss_3DCE0];
+            slot->flags = (locked ? 0x10000000 : 0) | 0x40000000;
+            slot->addr = aram + slotAddr;
+            slot->size = (slotSize + 0x1f) & ~0x1f;
+            if (named) {
+                fn_1_464BC(&result, i, name, 0x40);
+                slot->unk_4 = fn_8000700C((const char *)name);
+            } else {
+                slot->flags |= 0x08000000;
+                slot->unk_4 = i;
+            }
+            next = fzgx_obj_lbl_1_bss_3DCE0;
+            for (k = 0; k < 0x400; k++) {
+                next++;
+                if (fzgx_obj_lbl_1_bss_384D8[next].flags == 0) {
+                    break;
+                }
+                if (next >= 0x400) {
+                    next = 0;
+                }
+            }
+            fzgx_obj_lbl_1_bss_3DCE0 = next;
+        }
+    }
+    return 1;
+}
+/* fzgx:end fn_1_46144 */
+
 /* fzgx:begin fn_1_464BC */
 typedef struct Fn464BCEntry {
     u32 unk_00;

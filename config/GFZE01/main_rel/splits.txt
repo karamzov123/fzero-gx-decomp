@@ -8411,3 +8411,123 @@ rel/main_rel/sel_static_disp/fn_1_14A9D0.c:
 
 rel/main_rel/ghost/fn_1_EC910.c:
 	.text       start:0x000EC910 end:0x000ECDFC align:4
+
+rel/main_rel/car/fn_1_7F58C.c:
+	.text       start:0x0007F58C end:0x0007F658 align:4
+
+rel/main_rel/burner/fn_1_9A864.c:
+	.text       start:0x0009A864 end:0x0009A958 align:4
+
+rel/main_rel/screen_effect/fn_1_76DC0.c:
+	.text       start:0x00076DC0 end:0x00076EB8 align:4
+
+rel/main_rel/car/fn_1_8E084.c:
+	.text       start:0x0008E084 end:0x0008E188 align:4
+
+rel/main_rel/driver/fn_1_AA350.c:
+	.text       start:0x000AA350 end:0x000AA538 align:4
+
+rel/main_rel/background/fn_1_9DDA8.c:
+	.text       start:0x0009DDA8 end:0x0009DFB8 align:4
+
+rel/main_rel/driver/fn_1_A861C.c:
+	.text       start:0x000A861C end:0x000A8834 align:4
+
+rel/main_rel/car/fn_1_84408.c:
+	.text       start:0x00084408 end:0x00084644 align:4
+
+rel/main_rel/stcoli/fn_1_2BD30.c:
+	.text       start:0x0002BD30 end:0x0002BF8C align:4
+
+rel/main_rel/effect_car/fn_1_723E0.c:
+	.text       start:0x000723E0 end:0x00072648 align:4
+
+rel/main_rel/bg_aur/fn_1_154164.c:
+	.text       start:0x00154164 end:0x001543E8 align:4
+
+rel/main_rel/bg_cas/fn_1_FF420.c:
+	.text       start:0x000FF420 end:0x000FF6B8 align:4
+
+rel/main_rel/effect/fn_1_635BC.c:
+	.text       start:0x000635BC end:0x00063858 align:4
+
+rel/main_rel/effect_car/fn_1_714A8.c:
+	.text       start:0x000714A8 end:0x00071768 align:4
+
+rel/main_rel/accessory/fn_1_10C4E4.c:
+	.text       start:0x0010C4E4 end:0x0010C7B4 align:4
+
+rel/main_rel/stcoli/fn_1_236CC.c:
+	.text       start:0x000236CC end:0x000239C4 align:4
+
+rel/main_rel/bg_cas/fn_1_FD844.c:
+	.text       start:0x000FD844 end:0x000FDB40 align:4
+
+rel/main_rel/stcoli/fn_1_21F18.c:
+	.text       start:0x00021F18 end:0x0002221C align:4
+
+rel/main_rel/stcoli/fn_1_294D0.c:
+	.text       start:0x000294D0 end:0x00029800 align:4
+
+rel/main_rel/bg_cas/fn_1_FF6B8.c:
+	.text       start:0x000FF6B8 end:0x000FFA0C align:4
+
+rel/main_rel/effect/fn_1_5F654.c:
+	.text       start:0x0005F654 end:0x0005F9B8 align:4
+
+rel/main_rel/bg_lig/fn_1_D83E4.c:
+	.text       start:0x000D83E4 end:0x000D8784 align:4
+
+rel/main_rel/live_camera/fn_1_12B88.c:
+	.text       start:0x00012B88 end:0x00012F78 align:4
+
+rel/main_rel/stcoli/fn_1_25480.c:
+	.text       start:0x00025480 end:0x00025870 align:4
+
+rel/main_rel/sound/fn_1_A266C.c:
+	.text       start:0x000A266C end:0x000A2A70 align:4
+
+rel/main_rel/background/fn_1_9E608.c:
+	.text       start:0x0009E608 end:0x0009EA94 align:4
+
+rel/main_rel/memcard/fn_1_BED04.c:
+	.text       start:0x000BED04 end:0x000BF198 align:4
+
+rel/main_rel/motasglist/fn_1_433E0.c:
+	.text       start:0x000433E0 end:0x000438AC align:4
+
+rel/main_rel/stcoli/fn_1_278B8.c:
+	.text       start:0x000278B8 end:0x00027DE4 align:4
+
+rel/main_rel/bg_for/fn_1_DCFA4.c:
+	.text       start:0x000DCFA4 end:0x000DD4DC align:4
+
+rel/main_rel/bg_cas/fn_1_FCA10.c:
+	.text       start:0x000FCA10 end:0x000FCF50 align:4
+
+rel/main_rel/stcoli/fn_1_289B4.c:
+	.text       start:0x000289B4 end:0x00028F08 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14267C.c:
+	.text       start:0x0014267C end:0x00142BDC align:4
+
+rel/main_rel/bg_for/fn_1_DD890.c:
+	.text       start:0x000DD890 end:0x000DDF80 align:4
+
+rel/main_rel/stcoli/fn_1_2BF8C.c:
+	.text       start:0x0002BF8C end:0x0002C688 align:4
+
+rel/main_rel/spline/fn_1_F75D8.c:
+	.text       start:0x000F75D8 end:0x000F7870 align:4
+
+rel/main_rel/game/fn_1_403D4.c:
+	.text       start:0x000403D4 end:0x0004068C align:4
+
+rel/main_rel/sound/fn_1_A2210.c:
+	.text       start:0x000A2210 end:0x000A24CC align:4
+
+rel/main_rel/load/fn_1_46144.c:
+	.text       start:0x00046144 end:0x000464BC align:4
+
+rel/main_rel/screen_effect/fn_1_789E8.c:
+	.text       start:0x000789E8 end:0x00078EBC align:4
