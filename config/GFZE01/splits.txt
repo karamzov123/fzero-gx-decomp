@@ -6401,3 +6401,6 @@ dol/__init_registers.c:
 
 dol/__cvt_dbl_usll.c:
 	.text       start:0x80079E24 end:0x80079EF0 align:4
+
+dol/fn_80086008.c:
+	.text       start:0x80086008 end:0x800868BC align:4
