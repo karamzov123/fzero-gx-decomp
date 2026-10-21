@@ -63,6 +63,19 @@ Each was measured, not assumed. The evidence is in `docs/findings/`.
   oc1 spent 57% of six hours' attempts on a band measured at 0 matches (283). Re-run the
   virgin-by-band table before changing or trusting a band.
 
+## Other forks and cloud sessions are a source of matches (2026-10-21)
+
+`fzgx harvest REF [--land]` tries every function matched on another ref (a fork branch,
+or a cloud session's `claude/*` branch) that is unmatched here, under that ref's compiler
+options and with its names rebound by address; only oracle matches are submitted, and
+`fzgx verify` still gates the link. The first run against `deltawave784/fzgx`
+(`windows-and-types`) found 465 such functions, and 459 passed the oracle. **Fetch the
+active forks before starting new matching work** (`gh api repos/rayanht/fzgx/forks`). Cloud
+sessions: `tools/cloud/bootstrap.sh`, docs/CLOUD.md. Measured 2026-10-21, nothing left
+there: exact and opcode-identical clones (2 recipients), siblings with ≥70% opcode
+similarity (31 functions), SMB1 decomp as an engine donor (4 functions; it is also
+unlicensed).
+
 ## Setup (once)
 
 ```sh

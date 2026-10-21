@@ -407,6 +407,12 @@ def cmd_reuse(a, p):
     return 0
 
 
+def cmd_harvest(a, p):
+    from . import harvest
+    _print(harvest.run(p, a.ref, a.label, a.land, a.workers, a.limit, a.symbol or None), a.json)
+    return 0
+
+
 def cmd_lift(a, p):
     from . import lift
     _print(lift.apply(p, tu=a.tu, callees=a.callee, symbols=a.symbol, submit=not a.no_submit, engine=a.engine, resume=a.resume,
@@ -827,6 +833,13 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("reuse", help="reuse verified C for identical retail instruction shapes"); s.set_defaults(fn=cmd_reuse)
     s.add_argument("--module"); s.add_argument("--max-size", type=int, default=255)
     s.add_argument("--no-submit", action="store_true")
+    s = sub.add_parser("harvest", help="land C matched on another ref (fork or cloud branch); see docs/CLOUD.md")
+    s.set_defaults(fn=cmd_harvest)
+    s.add_argument("ref", help="git ref, e.g. fork-deltawave784/windows-and-types or origin/claude/...")
+    s.add_argument("--label", help="provenance label (default REF@sha)")
+    s.add_argument("--land", action="store_true", help="submit oracle matches (default: screen only)")
+    s.add_argument("--workers", type=int, default=12); s.add_argument("--limit", type=int)
+    s.add_argument("--symbol", action="append", help="restrict to these symbols (repeatable)")
     s = sub.add_parser('lift', help='lift unmatched functions in a TU or callers of a shared interface'); s.set_defaults(fn=cmd_lift)
     scope = s.add_mutually_exclusive_group(required=True)
     scope.add_argument('--tu', help='TU path relative to src/, e.g. rel/main_rel/accessory.c')
