@@ -718,6 +718,141 @@ void fn_1_10A43C(AccessoryObject *self) {
 }
 /* fzgx:end fn_1_10A43C */
 
+/* fzgx:begin fn_1_10A6A0 */
+extern void *fn_80077B14(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DC20(void);
+extern void fn_8006E250(void *, void *);
+
+typedef union fn_1_10A6A0_Vec {
+    u32 w[3];
+    struct {
+        f32 x;
+        f32 y;
+        f32 z;
+    };
+} fn_1_10A6A0_Vec;
+
+typedef struct fn_1_10A6A0_Part {
+    s8 unk_0;
+    u8 pad_1;
+    u8 unk_2;
+    u8 pad_3;
+    u16 unk_4[6];
+    fn_1_10A6A0_Vec unk_10;
+    fn_1_10A6A0_Vec unk_1C;
+    fn_1_10A6A0_Vec unk_28;
+    fn_1_10A6A0_Vec unk_34;
+    u32 unk_40;
+} fn_1_10A6A0_Part;
+
+typedef struct fn_1_10A6A0_Model {
+    u8 pad_0[0x8];
+    u8 *unk_8;
+} fn_1_10A6A0_Model;
+
+typedef struct fn_1_10A6A0_Data {
+    u8 pad_0[0x150];
+    fn_1_10A6A0_Model *unk_150;
+} fn_1_10A6A0_Data;
+
+typedef struct fn_1_10A6A0_Object {
+    u8 unk_0;
+    u8 pad_1[7];
+    u32 unk_8;
+    fn_1_10A6A0_Data *unk_C;
+    void *unk_10;
+    u32 pad_14;
+    u32 unk_18;
+    u8 pad_1C[8];
+    fn_1_10A6A0_Part *unk_24;
+} fn_1_10A6A0_Object;
+
+static inline void fn_1_10A6A0_reset_parts(fn_1_10A6A0_Object *self)
+{
+    s32 i;
+    fn_1_10A6A0_Part *p;
+
+    p = self->unk_24;
+    for (i = 0; i < self->unk_18; i++, p++) {
+        lbl_8006DBE4();
+        lbl_8006E1B0(&p->unk_28, &p->unk_10);
+    }
+}
+
+static inline void fn_1_10A6A0_attach_parts(fn_1_10A6A0_Object *self, u8 *tbl)
+{
+    s32 i;
+    s32 j;
+    fn_1_10A6A0_Part *p;
+
+    p = self->unk_24;
+    for (i = 0; i < self->unk_18; i++, p++) {
+        for (j = 0; j < (s32)p->unk_2; j++) {
+            fn_8006E250(&p->unk_10, tbl + p->unk_4[j] * 64);
+        }
+    }
+}
+
+void fn_1_10A6A0(fn_1_10A6A0_Object *self)
+{
+    s32 i;
+    s32 n;
+    fn_1_10A6A0_Part *part;
+    u8 *pool;
+    u8 *tbl;
+    s32 j;
+    fn_1_10A6A0_Part *delta;
+
+    if (self == 0) {
+        return;
+    }
+    if (self->unk_10 == 0) {
+        return;
+    }
+    fn_80077B14(self->unk_10);
+
+    if (self->unk_0 & 2) {
+        self->unk_0 &= ~2;
+        lbl_8006DBAC(self->unk_C->unk_150->unk_8 +
+                    ((u32 *)&lbl_1_data_3FFBC)[self->unk_8] * 0x18c + 0x88);
+        lbl_8006DAEC();
+        fn_1_10A6A0_reset_parts(self);
+        lbl_8006DC20();
+    }
+
+    pool = self->unk_C->unk_150->unk_8 +
+           ((u32 *)&lbl_1_data_3FFBC)[self->unk_8] * 0x18c;
+    n = 0;
+    part = self->unk_24;
+    for (i = 0; i < self->unk_18; i++, part++) {
+        if (part->unk_0 & 1) {
+            lbl_8006DBAC(pool + 0x88);
+            lbl_8006E1B0(&part->unk_28, &part->unk_10);
+        }
+        else {
+            part->unk_10 = ((fn_1_10A6A0_Vec *)&lbl_1_bss_88B50)[n];
+            n++;
+        }
+    }
+
+    delta = self->unk_24;
+    for (j = 0; j < self->unk_18; j++, delta++) {
+        delta->unk_34.x = delta->unk_10.x - delta->unk_1C.x;
+        delta->unk_34.y = delta->unk_10.y - delta->unk_1C.y;
+        delta->unk_34.z = delta->unk_10.z - delta->unk_1C.z;
+    }
+
+    tbl = (u8 *)fn_80077B14(self->unk_10);
+    lbl_8006DBAC(self->unk_C->unk_150->unk_8 +
+                ((u32 *)&lbl_1_data_3FFBC)[self->unk_8] * 0x18c + 0x88);
+    fn_1_10A6A0_attach_parts(self, tbl);
+}
+/* fzgx:end fn_1_10A6A0 */
+
 /* fzgx:begin fn_1_10B344 */
 extern f32 lbl_1_rodata_7B1C;
 extern f32 lbl_1_rodata_7B20;
