@@ -746,6 +746,561 @@ void fn_1_ECF68(void) {
 }
 /* fzgx:end fn_1_ECF68 */
 
+/* fzgx:begin fn_1_ECF88 noprologue */
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "dolphin/types.h"
+#include "types.h"
+#include "types.h"
+
+#ifndef REL_MAIN_REL_GHOST_H
+#define REL_MAIN_REL_GHOST_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_bss_7B180: .bss size 0x8, referenced by 29 functions, shape {'object': 873}
+// the ghost .bss run from 0x7B180 as one view: retail addresses the TU's objects off this base (dtk sizes it 8; the objects at 7B188..7ED5C are separate symbols). Offsets from base-relative loads/stores in retail; mixed-width offsets are byte arrays.
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    u32 unk_24;
+    u8 pad_28[0x4];
+    u8 arr_2C[0x1];
+    u8 unk_2D;
+    u8 unk_2E;
+    u8 unk_2F;
+    u8 arr_30[0x1];
+    u8 unk_31;
+    u8 unk_32;
+    u8 unk_33;
+    u8 arr_34[0x1];
+    u8 unk_35;
+    u8 unk_36;
+    u8 pad_37[0x1];
+    u32 unk_38;
+    u32 unk_3C;
+    u32 unk_40;
+    u8 arr_44[0x4];
+    u32 unk_48;
+    u32 unk_4C;
+    u8 arr_50[0x1];
+    u8 unk_51;
+    u16 unk_52;
+    u8 arr_54[0x13B0];
+    u32 unk_1404;
+    u8 arr_1408[0x1F8];
+    u32 unk_1600;
+    u8 arr_1604[0x10];
+    u32 unk_1614;
+    u8 arr_1618[0x10];
+    u32 unk_1628;
+    u8 arr_162C[0x10];
+    u32 unk_163C;
+    u8 arr_1640[0x10];
+    u32 unk_1650;
+    u8 arr_1654[0x10];
+    u32 unk_1664;
+    u8 arr_1668[0x10];
+    u32 unk_1678;
+    u8 arr_167C[0x10];
+    u32 unk_168C;
+    u8 arr_1690[0x10];
+    u32 unk_16A0;
+    u8 arr_16A4[0x10];
+    u32 unk_16B4;
+    u8 arr_16B8[0x10];
+    u32 unk_16C8;
+    u8 unk_16CC;
+    u8 pad_16CD[0x3];
+    u32 unk_16D0;
+    u32 unk_16D4;
+    u32 unk_16D8;
+    u32 unk_16DC;
+    u8 unk_16E0;
+    u8 pad_16E1[0x3];
+    u32 unk_16E4;
+    u32 unk_16E8;
+    u32 unk_16EC;
+    u32 unk_16F0;
+    u32 unk_16F4;
+    u32 unk_16F8;
+    u32 unk_16FC;
+    u32 unk_1700;
+    u32 unk_1704;
+    u32 unk_1708;
+    u32 unk_170C;
+    u32 unk_1710;
+    u32 unk_1714;
+    u32 unk_1718;
+    u32 unk_171C;
+    u32 unk_1720;
+    u32 unk_1724;
+    u32 unk_1728;
+    u32 unk_172C;
+    u32 unk_1730;
+    u32 unk_1734;
+    u32 unk_1738;
+    u32 unk_173C;
+    u32 unk_1740;
+    u32 unk_1744;
+    u32 unk_1748;
+    u8 unk_174C;
+    u8 unk_174D;
+    u8 unk_174E;
+    u8 pad_174F[0x1];
+    u32 unk_1750;
+    u8 unk_1754;
+    u8 pad_1755[0x3];
+    f32 unk_1758;
+    f32 unk_175C;
+    f32 unk_1760;
+    u8 pad_1764[0x30];
+    u32 unk_1794;
+    u8 arr_1798[0x10];
+    u32 unk_17A8;
+    u8 arr_17AC[0x10];
+    u32 unk_17BC;
+    u32 unk_17C0;
+    u32 unk_17C4;
+    u32 unk_17C8;
+    u32 unk_17CC;
+    u16 unk_17D0;
+    u16 unk_17D2;
+    u16 unk_17D4;
+    u16 unk_17D6;
+    u16 unk_17D8;
+    u8 pad_17DA[0x2];
+    u32 unk_17DC;
+    u32 unk_17E0;
+    u32 unk_17E4;
+    u32 unk_17E8;
+    u32 unk_17EC;
+    u8 unk_17F0;
+    u8 unk_17F1;
+    u8 unk_17F2;
+    u8 unk_17F3;
+    u8 unk_17F4;
+    u8 unk_17F5;
+    u8 unk_17F6;
+    u8 unk_17F7;
+    u8 unk_17F8;
+    u8 unk_17F9;
+    u8 unk_17FA;
+    u8 unk_17FB;
+    u8 unk_17FC;
+    u8 unk_17FD;
+    u8 unk_17FE;
+    u8 pad_17FF[0x1];
+    u16 unk_1800;
+    u8 arr_1802[0xA];
+    u8 arr_180C[0x14];
+    u32 unk_1820;
+    u32 unk_1824;
+    u8 arr_1828[0x10];
+    u16 unk_1838;
+    s16 unk_183A;
+    u32 unk_183C;
+    u8 pad_1840[0x18];
+    u8 arr_1858[0x80];
+    u8 arr_18D8[0x30];
+    u8 arr_1908[0xC0];
+    u8 arr_19C8[0x620];
+    u32 unk_1FE8;
+    u16 unk_1FEC;
+    u8 pad_1FEE[0x76];
+    u32 unk_2064;
+    u32 unk_2068;
+    u32 unk_206C;
+    u8 pad_2070[0x64];
+    u8 arr_20D4[0x60];
+    u8 arr_2134[0xB4];
+    f32 unk_21E8;
+    u8 pad_21EC[0x20];
+    f32 unk_220C;
+    u8 pad_2210[0x24D];
+    u8 unk_245D;
+    u8 pad_245E[0x141A];
+    u32 unk_3878;
+    u32 unk_387C;
+    u8 unk_3880;
+    u8 pad_3881[0x3];
+    u32 unk_3884;
+    u32 unk_3888;
+    u8 unk_388C;
+    u8 pad_388D[0x3];
+    u32 unk_3890;
+    u32 unk_3894;
+    u32 unk_3898;
+    f32 unk_389C;
+    f32 unk_38A0;
+    u8 unk_38A4;
+    u8 unk_38A5;
+    u8 unk_38A6;
+    u8 pad_38A7[0x1];
+    u32 unk_38A8;
+    u32 unk_38AC;
+    u32 unk_38B0;
+    u32 unk_38B4;
+    u32 unk_38B8;
+    f32 unk_38BC;
+    u32 unk_38C0;
+    u8 arr_38C4[0x30];
+    u8 arr_38F4[0xC0];
+    u32 unk_39B4;
+    u32 unk_39B8;
+    u32 unk_39BC;
+    u8 arr_39C0[0x30];
+    u32 unk_39F0;
+    u8 arr_39F4[0x10];
+    u8 arr_3A04[0x30];
+    u8 arr_3A34[0xC0];
+    u8 arr_3AF4[0xC];
+    u8 arr_3B00[0x30];
+    u32 unk_3B30;
+    u8 arr_3B34[0x8];
+    u32 unk_3B3C;
+    u32 unk_3B40;
+    u32 unk_3B44;
+    u8 pad_3B48[0x2];
+    u16 unk_3B4A;
+    u8 pad_3B4C[0x30];
+    u32 unk_3B7C;
+    u8 arr_3B80[0x58];
+    u32 unk_3BD8;
+} Obj_1_bss_7B180;
+extern Obj_1_bss_7B180 lbl_1_bss_7B180;
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_3E52C: .data size 0x4, 5 refs from ghost.c
+extern u32 lbl_1_data_3E52C;
+
+#endif  // REL_MAIN_REL_GHOST_H
+
+/* end rel/main_rel/ghost.h */
+/* begin game/main_rel/ghost_types.h (deltawave784/fzgx@13b0aeca (CC0)) */
+#ifndef GAME_MAIN_REL_GHOST_TYPES_H
+#define GAME_MAIN_REL_GHOST_TYPES_H
+
+// Types (and the externs that name them) of ghost.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+/* rel/main_rel/globals.h: inlined above */
+/* rel/main_rel/ghost.h: inlined above */
+/* begin dolphin/ar.h (deltawave784/fzgx@13b0aeca (CC0)) */
+#ifndef DOLPHIN_AR_H
+#define DOLPHIN_AR_H
+
+/* ARAM DMA request queue (ARQ), Dolphin SDK names. */
+
+/* begin layout_check.h (deltawave784/fzgx@13b0aeca (CC0)) */
+#ifndef LAYOUT_CHECK_H
+#define LAYOUT_CHECK_H
+
+/* Compile-time layout checks for owned types. They declare array typedefs
+ * only, so they emit no code or data under MWCC: a wrong size or offset is
+ * a negative array bound and fails the compile. */
+#define LAYOUT_CHECK_JOIN2(a, b) a##b
+#define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
+#define CHECK_SIZE(T, size) \
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+#define CHECK_OFFSET(T, field, offset) \
+    typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
+        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+
+#endif
+
+/* end layout_check.h */
+
+typedef void (*ARQCallback)(u32 pointerToARQRequest);
+
+typedef struct ARQRequest {
+    struct ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    ARQCallback callback;
+} ARQRequest;
+
+CHECK_OFFSET(ARQRequest, dest, 0x14);
+CHECK_SIZE(ARQRequest, 0x20);
+
+#endif
+
+/* end dolphin/ar.h */
+
+/* begin game/vec3.h (deltawave784/fzgx@13b0aeca (CC0)) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct {
+    u32 field_0;
+    s16 field_4;
+    s16 field_6;
+    u8 _pad8[0x74];
+    Vec3 field_7c;
+    u8 _pad88[0x64];
+    u8 _pad_ec[0x60];
+    u8 field_14c[0xb4];
+    f32 field_200;
+    u8 _pad204[0x20];
+    f32 field_224;
+    u8 _pad228[0x24d];
+    u8 field_475;
+} FnObject;
+
+extern void fn_1_F143C(FnObject *obj, s32 index, const f32 *a, const f32 *b, void *arg5);
+
+#endif  // GAME_MAIN_REL_GHOST_TYPES_H
+
+/* end game/main_rel/ghost_types.h */
+/* game/vec3.h: inlined above */
+
+#pragma fp_contract on
+
+extern const f32 lbl_1_rodata_6C94;
+extern const f32 lbl_1_rodata_6BD0;
+extern const f64 lbl_1_rodata_6C98;
+extern const f64 lbl_1_rodata_6CA0;
+/* Volatile: retail reloads the shared lap threshold in the second branch. */
+extern const volatile f64 lbl_1_rodata_6CA8;
+extern const f64 lbl_1_rodata_6CB0;
+extern const f32 lbl_1_rodata_6CB8;
+extern f32 lbl_8006D0B4(f32);
+extern f32 __fmadds(f32, f32, f32);
+extern s32 fn_1_3F164(void);
+extern s32 fn_1_F17B4(const void *);
+extern u32 fn_1_F1588(void);
+extern void *fn_1_86254(int);
+extern void fn_1_8645C(int, void *);
+extern void fn_1_F0B5C(u32, void *);
+extern void fn_1_F0D10(u32, u32);
+extern void fn_1_F0E00(u32, void *);
+extern void fn_1_F143C(FnObject *, s32, const f32 *, const f32 *, void *);
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_8006F5C4(s16 *, s16 *, s16 *);
+extern void ghost_pack_bits(u32 *, const u32 *, const u32 *, const u32 *);
+extern void lbl_8006DBAC(Vec3 *);
+
+#pragma fp_contract on
+void fn_1_ECF88(void) {
+    Obj_1_bss_7B180 *p_lbl_1_bss_7B180;
+    u32 v0;
+    u32 v1;
+    void *v3;
+    u32 v8;
+    f32 v9;
+    f32 v14;
+    void *v37;
+    void *v36;
+    u32 *v35;
+    u32 *v34;
+    u32 *v33;
+    u16 *v32;
+    void *v31;
+    void *v30;
+    void *v29;
+    u32 v28;
+    void *v19;
+    u32 v38;
+    u16 v39;
+    u8 v42;
+    s32 v46;
+    u32 v44;
+    f32 loc_1C[3][4];
+    u32 loc_18;
+    u32 loc_14;
+    u32 loc_10;
+    s16 loc_C;
+    s16 loc_A;
+    s16 loc_8;
+
+    p_lbl_1_bss_7B180 = &lbl_1_bss_7B180;
+    v0 = p_lbl_1_bss_7B180->unk_1820;
+    v1 = ((v0 / 40 + p_lbl_1_bss_7B180->unk_38B4) << 4) + 40;
+    if (v0 >= 28800 || v1 > 16000) {
+        p_lbl_1_bss_7B180->unk_10 = 1;
+    } else {
+        p_lbl_1_bss_7B180->unk_38BC = lbl_1_rodata_6BD0 - (f32)v1 / lbl_1_rodata_6C94;
+        v3 = fn_1_86254(0);
+        {
+            /* These flag reads are separate snapshots in the retail code. */
+            u32 mask = -((*(volatile u32 *)v3 >> 2) & 1);
+            p_lbl_1_bss_7B180->unk_38C0 = (p_lbl_1_bss_7B180->unk_38C0 + 1) & mask;
+        }
+        /* Volatile: this flag read is a separate snapshot after the counter update. */
+        if ((*(volatile u32 *)v3 & 8) != 0) {
+            p_lbl_1_bss_7B180->unk_38B8++;
+        } else if (p_lbl_1_bss_7B180->unk_38B8 != 0) {
+            p_lbl_1_bss_7B180->unk_38B8 = 0;
+        }
+        if ((s32)fn_1_F1588() != 0) {
+            *(u8 *)p_lbl_1_bss_7B180->unk_38B0 = 1;
+        } else {
+            v1 = *(u32 *)v3;
+            if ((v1 & 4) != 0 && (s32)p_lbl_1_bss_7B180->unk_38C0 < 3) {
+                for (v8 = p_lbl_1_bss_7B180->unk_0 - 14; v8 < p_lbl_1_bss_7B180->unk_0 - 10; v8++) {
+                    if ((s32)v8 > 0) {
+                        *(u8 *)(p_lbl_1_bss_7B180->unk_16E8 + v8) = 1;
+                    }
+                }
+                p_lbl_1_bss_7B180->unk_14 = 1;
+                *(u8 *)p_lbl_1_bss_7B180->unk_38B0 = 1;
+            } else {
+                if ((v1 & 0x800000) != 0 || (v1 & 0x10) != 0) {
+                    f32 y = *(f32 *)((u8 *)v3 + 152);
+                    v9 = *(f32 *)((u8 *)v3 + 148) * *(f32 *)((u8 *)v3 + 148);
+                    v9 = __fmadds(y, y, v9);
+                    v9 = __fmadds(*(f32 *)((u8 *)v3 + 156), *(f32 *)((u8 *)v3 + 156), v9);
+                    v9 = lbl_8006D0B4(v9);
+                    {
+                    f64 speed = v9 / *(f32 *)((u8 *)v3 + 8);
+                    if (lbl_1_rodata_6C98 * speed > lbl_1_rodata_6CA0) {
+                        p_lbl_1_bss_7B180->unk_14 = 1;
+                        *(u8 *)p_lbl_1_bss_7B180->unk_38B0 = 1;
+                        /* Goto: this successful speed test skips the remaining flag tests. */
+                        goto packed_flag;
+                    }
+                    }
+                }
+                if (*(u16 *)((u8 *)v3 + 532) == 60) {
+                    p_lbl_1_bss_7B180->unk_14 = 1;
+                    *(u8 *)p_lbl_1_bss_7B180->unk_38B0 = 1;
+                } else if ((s32)p_lbl_1_bss_7B180->unk_14 != 0) {
+                    p_lbl_1_bss_7B180->unk_14 = 0;
+                    *(u8 *)p_lbl_1_bss_7B180->unk_38B0 = 1;
+                } else {
+                    *(u8 *)p_lbl_1_bss_7B180->unk_38B0 = 0;
+                }
+            }
+        }
+packed_flag:
+        if (*(u8 *)p_lbl_1_bss_7B180->unk_38B0 != 0) {
+            p_lbl_1_bss_7B180->unk_38B4++;
+        }
+        fn_1_8645C(0, loc_1C);
+        lbl_8006DBAC((Vec3 *)loc_1C);
+        fn_8006F5C4(&loc_8, &loc_A, &loc_C);
+        *(u8 *)(p_lbl_1_bss_7B180->unk_38AC + 2) = loc_C >> 8;
+        *(u16 *)(p_lbl_1_bss_7B180->unk_38AC + 4) = loc_A;
+        *(u8 *)(p_lbl_1_bss_7B180->unk_38AC + 3) = loc_8 >> 8;
+        *(u8 *)p_lbl_1_bss_7B180->unk_38AC = p_lbl_1_bss_7B180->unk_0 - p_lbl_1_bss_7B180->unk_4;
+        loc_18 = fn_1_F17B4(&loc_1C[0][3]);
+        loc_14 = fn_1_F17B4(&loc_1C[1][3]);
+        loc_10 = fn_1_F17B4(&loc_1C[2][3]);
+        ghost_pack_bits((u32 *)(p_lbl_1_bss_7B180->unk_38AC + 8), &loc_18, &loc_14, &loc_10);
+
+        v14 = *(f32 *)(p_lbl_1_bss_7B180->unk_3898 + 256) / *(f32 *)(p_lbl_1_bss_7B180->unk_3898 + 252);
+        p_lbl_1_bss_7B180->unk_38A0 = v14;
+        if (lbl_1_rodata_6CA8 < v14 && p_lbl_1_bss_7B180->unk_389C < lbl_1_rodata_6CB0) {
+            p_lbl_1_bss_7B180->unk_38A4--;
+        } else if (lbl_1_rodata_6CA8 < p_lbl_1_bss_7B180->unk_389C && v14 < lbl_1_rodata_6CB0) {
+            p_lbl_1_bss_7B180->unk_38A4++;
+        }
+        p_lbl_1_bss_7B180->unk_389C = v14;
+        *(u8 *)(p_lbl_1_bss_7B180->unk_38AC + 1) = p_lbl_1_bss_7B180->unk_38A4;
+        *(u16 *)(p_lbl_1_bss_7B180->unk_38AC + 6) = (s32)(lbl_1_rodata_6CB8 * p_lbl_1_bss_7B180->unk_38A0);
+        p_lbl_1_bss_7B180->unk_38AC += 16;
+        p_lbl_1_bss_7B180->unk_38B0++;
+        p_lbl_1_bss_7B180->unk_1820++;
+        p_lbl_1_bss_7B180->unk_4 = p_lbl_1_bss_7B180->unk_0;
+        p_lbl_1_bss_7B180->unk_0++;
+
+        if ((s32)lbl_1_data_3E52C == 2) {
+            v19 = &p_lbl_1_bss_7B180->unk_39F0;
+            v37 = p_lbl_1_bss_7B180->arr_38C4;
+            v36 = &p_lbl_1_bss_7B180->unk_39B4;
+            v35 = v19;
+            v34 = &p_lbl_1_bss_7B180->unk_1600;
+            v33 = &p_lbl_1_bss_7B180->unk_1824;
+            v32 = &p_lbl_1_bss_7B180->unk_1800;
+            v31 = p_lbl_1_bss_7B180->arr_3A04;
+            v30 = p_lbl_1_bss_7B180->arr_3AF4;
+            v29 = p_lbl_1_bss_7B180->arr_19C8;
+            for (v28 = 0; (u32)v28 < p_lbl_1_bss_7B180->unk_174E; v28++) {
+                fn_1_F0D10(v28, (u32)v37);
+                fn_1_F0B5C(v28, v36);
+                fn_1_F0E00(v28, v35);
+                if (fn_1_3F164() == 0) {
+                    v39 = *v32;
+                    if ((f32)v39 < ((f32 *)*v34)[*v33 - 1]) {
+                        *v32 = v39 + 1;
+                    }
+                }
+                fn_1_F0D10(v28, (u32)v31);
+                fn_1_F0B5C(v28, v30);
+                if ((s32)p_lbl_1_bss_7B180->unk_17C8 != 0) {
+                    fn_1_F143C((FnObject *)v29, v28, (const f32 *)v30, (const f32 *)v36, v31);
+                } else {
+                    fn_80008BEC(v29, 0, 1568);
+                }
+                v37 = (u8 *)v37 + 48;
+                v36 = (u8 *)v36 + 12;
+                v35++;
+                v34++;
+                v33++;
+                v32++;
+                v31 = (u8 *)v31 + 48;
+                v30 = (u8 *)v30 + 12;
+                v29 = (u8 *)v29 + 1568;
+            }
+            if ((*(u32 *)v3 & 0x40000) != 0) {
+                /* Keep the current-lap snapshot for the following comparisons. */
+                s32 currentLap;
+                /* Volatile: retain this lap snapshot for both comparisons below. */
+                if ((s8)p_lbl_1_bss_7B180->unk_38A5 != (currentLap = *(volatile s8 *)&p_lbl_1_bss_7B180->unk_38A4)) {
+                    v42 = p_lbl_1_bss_7B180->unk_38A6;
+                    if (currentLap > (s8)v42 && (s8)v42 < 3) {
+                        p_lbl_1_bss_7B180->unk_38A6 = v42 + 1;
+                        p_lbl_1_bss_7B180->unk_38A8 = 120;
+                        v46 = 0xF0000001;
+                        p_lbl_1_bss_7B180->unk_3B30 = v46;
+                        for (v44 = 0; v44 < p_lbl_1_bss_7B180->unk_174E; v44++) {
+                            if (v46 < *(s32 *)v19) {
+                                v46 = *(s32 *)v19;
+                            }
+                            v19 = (u8 *)v19 + 4;
+                        }
+                        p_lbl_1_bss_7B180->unk_3B30 = v46;
+                        if ((s32)p_lbl_1_bss_7B180->unk_16D4 != 0) {
+                            p_lbl_1_bss_7B180->unk_3B30 = v46 + p_lbl_1_bss_7B180->unk_16D4;
+                        }
+                    }
+                }
+            }
+            p_lbl_1_bss_7B180->unk_38A5 = p_lbl_1_bss_7B180->unk_38A4;
+        }
+    }
+}
+/* fzgx:end fn_1_ECF88 */
+
 /* fzgx:begin fn_1_EE3F4 */
 extern void fn_1_F143C(void *, s32, void *, void *, void *);
 

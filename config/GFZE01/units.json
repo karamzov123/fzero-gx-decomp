@@ -1805,6 +1805,22 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/emb_paste_editor/fn_3_106FC.c",
+    "symbols": [
+      "fn_3_106FC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/emb_paste_editor.c",
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_288",
+      "@18": "lbl_3_rodata_288+0x34",
+      "@50": "lbl_3_rodata_288+0xA8"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/emb_paste_editor/fn_3_10B68.c",
     "symbols": [
       "fn_3_10B68"
@@ -25698,6 +25714,16 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8005D5A4.c",
+    "symbols": [
+      "fn_8005D5A4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8005DB68.c",
     "symbols": [
       "fn_8005DB68"
@@ -26120,6 +26146,16 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80068BFC.c",
+    "symbols": [
+      "fn_80068BFC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": []
   },
   {
     "module": "main",
@@ -32606,6 +32642,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_10846C.c",
+    "symbols": [
+      "fn_1_10846C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/accessory.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_108870.c",
     "symbols": [
       "fn_1_108870"
@@ -32846,6 +32893,22 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_113C58.c",
+    "symbols": [
+      "fn_1_113C58"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/accessory.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_7AB8",
+      "@43": "lbl_1_rodata_7B58",
+      "@33": "lbl_1_rodata_7B20"
+    }
   },
   {
     "module": "main_rel",
@@ -33842,6 +33905,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/archive/fn_1_12BB18.c",
+    "symbols": [
+      "fn_1_12BB18"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/archive.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/archive/fn_1_12BF7C.c",
     "symbols": [
       "fn_1_12BF7C"
@@ -34026,6 +34100,18 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/archive.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/archive/fn_1_12D404.c",
+    "symbols": [
+      "fn_1_12D404"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/archive.c",
+    "pool": true
   },
   {
     "module": "main_rel",
@@ -38049,6 +38135,18 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/burner.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/burner/fn_1_30054.c",
+    "symbols": [
+      "fn_1_30054"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/burner.c",
+    "pool": true
   },
   {
     "module": "main_rel",
@@ -51804,6 +51902,20 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/ghost/fn_1_ECF88.c",
+    "symbols": [
+      "fn_1_ECF88"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/ghost.c",
+    "pool": {
+      "@92": "lbl_1_rodata_6B68"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/ghost/fn_1_EE3F4.c",
     "symbols": [
       "fn_1_EE3F4"
@@ -52587,6 +52699,20 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/live_camera/fn_1_11E98.c",
+    "symbols": [
+      "fn_1_11E98"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/live_camera.c",
+    "pool": {
+      "@49": "lbl_1_rodata_648"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/live_camera/fn_1_1212C.c",
     "symbols": [
       "fn_1_1212C"
@@ -52761,6 +52887,17 @@
     "source": "rel/main_rel/live_camera/fn_1_EE44.c",
     "symbols": [
       "fn_1_EE44"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/live_camera.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/live_camera/fn_1_F6A8.c",
+    "symbols": [
+      "fn_1_F6A8"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -61070,6 +61207,18 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/sel_static_disp.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_14B1FC.c",
+    "symbols": [
+      "fn_1_14B1FC"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sel_static_disp.c",
+    "pool": true
   },
   {
     "module": "main_rel",

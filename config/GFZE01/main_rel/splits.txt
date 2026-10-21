@@ -8567,3 +8567,30 @@ rel/main_rel/sound/fn_1_A5594.c:
 
 rel/main_rel/accessory/fn_1_10BA00.c:
 	.text       start:0x0010BA00 end:0x0010BE3C align:4
+
+rel/main_rel/live_camera/fn_1_11E98.c:
+	.text       start:0x00011E98 end:0x0001212C align:4
+
+rel/main_rel/live_camera/fn_1_F6A8.c:
+	.text       start:0x0000F6A8 end:0x0000FA84 align:4
+
+rel/main_rel/accessory/fn_1_10846C.c:
+	.text       start:0x0010846C end:0x00108870 align:4
+
+rel/main_rel/archive/fn_1_12BB18.c:
+	.text       start:0x0012BB18 end:0x0012BF7C align:4
+
+rel/main_rel/ghost/fn_1_ECF88.c:
+	.text       start:0x000ECF88 end:0x000ED540 align:4
+
+rel/main_rel/accessory/fn_1_113C58.c:
+	.text       start:0x00113C58 end:0x001145C8 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14B1FC.c:
+	.text       start:0x0014B1FC end:0x0014B4FC align:4
+
+rel/main_rel/burner/fn_1_30054.c:
+	.text       start:0x00030054 end:0x000304A8 align:4
+
+rel/main_rel/archive/fn_1_12D404.c:
+	.text       start:0x0012D404 end:0x0012DAEC align:4
