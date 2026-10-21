@@ -12958,9 +12958,10 @@
     "symbols": [
       "__cvt_dbl_usll"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
-    "extra_cflags": []
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main",

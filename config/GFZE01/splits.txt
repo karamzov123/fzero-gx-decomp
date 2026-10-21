@@ -5994,9 +5994,6 @@ dol/fn_80053770.c:
 dol/fn_8005C7C0.c:
 	.text       start:0x8005C7C0 end:0x8005C9D8 align:4
 
-dol/__cvt_dbl_usll.c:
-	.text       start:0x80079E24 end:0x80079EF0 align:4
-
 dol/fn_8008EBF8.c:
 	.text       start:0x8008EBF8 end:0x8008EC78 align:4
 
@@ -6401,3 +6398,6 @@ dol/__mod2i.c:
 
 dol/__init_registers.c:
 	.init       start:0x800032B0 end:0x80003340 align:4
+
+dol/__cvt_dbl_usll.c:
+	.text       start:0x80079E24 end:0x80079EF0 align:4
