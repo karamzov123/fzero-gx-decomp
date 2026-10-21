@@ -1,62 +1,69 @@
 #include "types.h"
 
-extern f32 lbl_12_bss_1E088[213];
-extern u8 lbl_12_data_EA0[36];
-extern const f32 lbl_12_rodata_2E78;
-extern const f32 lbl_12_rodata_2E7C;
+/* CFT_MakeArgb8888ColAdjTbl, from the CC0 MK Deception decomp (cftfx.c) */
 
-extern void fn_12_3E688(u8 *tableY, u8 *tableU, u8 *tableV, void *output);
-extern void fn_12_3E500(u8 *data, f32 *coefficients);
+typedef float CFTMtx3D[3][3];
+typedef unsigned char CFTConvTable[256];
 
-typedef struct MovieState {
-    u8 pad0[0x24];
-    f32 coefficients[9];
-    void *output2;
-    void *output1;
-    void *output0;
-    u8 tableV[0x100];
-    u8 tableU[0x100];
-    u8 tableY[0x100];
-} MovieState;
+extern void fn_12_3E688(CFTConvTable luma, CFTConvTable chroma_u, CFTConvTable chroma_v);
+extern void fn_12_3E500(CFTMtx3D matrix, CFTMtx3D inverse);
+extern CFTMtx3D lbl_12_data_EA0;
 
-void fn_12_3D740(void *output)
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+CFTMtx3D lbl_12_bss_1E088;
+CFTMtx3D lbl_12_bss_1E088__fzgx_offset_24;
+float *lbl_12_bss_1E088__fzgx_offset_48;
+float *lbl_12_bss_1E088__fzgx_offset_4C;
+float *lbl_12_bss_1E088__fzgx_offset_50;
+CFTConvTable lbl_12_bss_1E088__fzgx_offset_54;
+CFTConvTable lbl_12_bss_1E088__fzgx_offset_154;
+CFTConvTable lbl_12_bss_1E088__fzgx_offset_254;
+
+#define cft_rgb_yuv_coeff lbl_12_data_EA0
+#define cft_basic_ccir601 lbl_12_bss_1E088
+#define cft_yuv_rgb_coeff lbl_12_bss_1E088__fzgx_offset_24
+#define cft_ptr_cr_rgb lbl_12_bss_1E088__fzgx_offset_48
+#define cft_ptr_cb_rgb lbl_12_bss_1E088__fzgx_offset_4C
+#define cft_ptr_y__rgb lbl_12_bss_1E088__fzgx_offset_50
+#define cft_conv_v_itbl lbl_12_bss_1E088__fzgx_offset_54
+#define cft_conv_u_itbl lbl_12_bss_1E088__fzgx_offset_154
+#define cft_conv_y_itbl lbl_12_bss_1E088__fzgx_offset_254
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s; /* fzgx-allow: S2 BSS primer ordering */
+    s = *(u8 *)&lbl_12_bss_1E088;
+    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_24;
+    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_48;
+    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_4C;
+    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_50;
+    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_54;
+    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_154;
+    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_254;
+}
+#pragma section code_type ".text"
+
+void fn_12_3D740(void* buffer)
 {
-    MovieState *state;
-    u8 *bytes;
-    u8 *tableY;
-    u32 offset;
-    u8 *tableU;
-    u8 *tableV;
-    f32 *coefficients;
+    s32 index;
 
-    state = (MovieState *)lbl_12_bss_1E088;
-    bytes = (u8 *)output;
-    state->output0 = bytes;
-    state->output1 = bytes + 0x1000;
-    state->output2 = bytes + 0x2000;
-    fn_12_3E688(state->tableY, state->tableU, state->tableV, bytes + 0x1000);
-    fn_12_3E500(lbl_12_data_EA0, state->coefficients);
-
-    offset = 0;
-    tableY = state->tableY;
-    tableU = state->tableU;
-    tableV = state->tableV;
-#pragma opt_propagation off
-    coefficients = state->coefficients;
-#pragma opt_propagation on
-    for (; offset != 0x1000; offset += 0x10) {
-        *(f32 *)((u8 *)state->output0 + offset + 4) = coefficients[0] * (f32)*tableY;
-        *(f32 *)((u8 *)state->output0 + offset + 8) = coefficients[3] * (f32)*tableY;
-        *(f32 *)((u8 *)state->output0 + offset + 12) = coefficients[6] * (f32)*tableY;
-        tableY++;
-        *(f32 *)((u8 *)state->output0 + offset) = lbl_12_rodata_2E78;
-        *(f32 *)((u8 *)state->output1 + offset + 4) = coefficients[1] * ((f32)*tableU - lbl_12_rodata_2E7C);
-        *(f32 *)((u8 *)state->output1 + offset + 8) = coefficients[4] * ((f32)*tableU - lbl_12_rodata_2E7C);
-        *(f32 *)((u8 *)state->output1 + offset + 12) = coefficients[7] * ((f32)*tableU - lbl_12_rodata_2E7C);
-        tableU++;
-        *(f32 *)((u8 *)state->output2 + offset + 4) = coefficients[2] * ((f32)*tableV - lbl_12_rodata_2E7C);
-        *(f32 *)((u8 *)state->output2 + offset + 8) = coefficients[5] * ((f32)*tableV - lbl_12_rodata_2E7C);
-        *(f32 *)((u8 *)state->output2 + offset + 12) = coefficients[8] * ((f32)*tableV - lbl_12_rodata_2E7C);
-        tableV++;
+    cft_ptr_y__rgb = (float*)buffer;
+    cft_ptr_cb_rgb = (float*)((u8*)buffer + 0x1000);
+    cft_ptr_cr_rgb = (float*)((u8*)buffer + 0x2000);
+    fn_12_3E688(cft_conv_y_itbl, cft_conv_u_itbl,
+                               cft_conv_v_itbl);
+    fn_12_3E500(cft_rgb_yuv_coeff, cft_yuv_rgb_coeff);
+    for (index = 0; index < 256; index++) {
+        cft_ptr_y__rgb[(index << 2) + 1] = cft_yuv_rgb_coeff[0][0] * (float)cft_conv_y_itbl[index];
+        cft_ptr_y__rgb[(index << 2) + 2] = cft_yuv_rgb_coeff[1][0] * (float)cft_conv_y_itbl[index];
+        cft_ptr_y__rgb[(index << 2) + 3] = cft_yuv_rgb_coeff[2][0] * (float)cft_conv_y_itbl[index];
+        cft_ptr_y__rgb[(index << 2) + 0] = 255.0f;
+        cft_ptr_cb_rgb[(index << 2) + 1] = cft_yuv_rgb_coeff[0][1] * ((float)cft_conv_u_itbl[index] - 128.0f);
+        cft_ptr_cb_rgb[(index << 2) + 2] = cft_yuv_rgb_coeff[1][1] * ((float)cft_conv_u_itbl[index] - 128.0f);
+        cft_ptr_cb_rgb[(index << 2) + 3] = cft_yuv_rgb_coeff[2][1] * ((float)cft_conv_u_itbl[index] - 128.0f);
+        cft_ptr_cr_rgb[(index << 2) + 1] = cft_yuv_rgb_coeff[0][2] * ((float)cft_conv_v_itbl[index] - 128.0f);
+        cft_ptr_cr_rgb[(index << 2) + 2] = cft_yuv_rgb_coeff[1][2] * ((float)cft_conv_v_itbl[index] - 128.0f);
+        cft_ptr_cr_rgb[(index << 2) + 3] = cft_yuv_rgb_coeff[2][2] * ((float)cft_conv_v_itbl[index] - 128.0f);
     }
 }
+

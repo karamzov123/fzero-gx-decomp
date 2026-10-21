@@ -67740,9 +67740,51 @@
     "symbols": [
       "fn_12_3D740"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
-    "extra_cflags": []
+    "extra_cflags": [],
+    "pool": {
+      "@30": "lbl_12_rodata_2E80",
+      "@27": "lbl_12_rodata_2E78",
+      "@28": "lbl_12_rodata_2E7C",
+      "...bss.0": "lbl_12_bss_1E088",
+      "lbl_12_bss_1E088": "lbl_12_bss_1E088",
+      "lbl_12_bss_1E088__fzgx_offset_24": "lbl_12_bss_1E088+0x24",
+      "lbl_12_bss_1E088__fzgx_offset_48": "lbl_12_bss_1E088+0x48",
+      "lbl_12_bss_1E088__fzgx_offset_4C": "lbl_12_bss_1E088+0x4C",
+      "lbl_12_bss_1E088__fzgx_offset_50": "lbl_12_bss_1E088+0x50",
+      "lbl_12_bss_1E088__fzgx_offset_54": "lbl_12_bss_1E088+0x54",
+      "lbl_12_bss_1E088__fzgx_offset_154": "lbl_12_bss_1E088+0x154",
+      "lbl_12_bss_1E088__fzgx_offset_254": "lbl_12_bss_1E088+0x254"
+    }
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_3D968.c",
+    "symbols": [
+      "fn_12_3D968"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_12_rodata_2E78",
+      "@9": "lbl_12_rodata_2E78",
+      "@10": "lbl_12_rodata_2E7C",
+      "@12": "lbl_12_rodata_2E80",
+      "...bss.0": "lbl_12_bss_1E088",
+      "lbl_12_bss_1E088": "lbl_12_bss_1E088",
+      "lbl_12_bss_1E088__fzgx_offset_24": "lbl_12_bss_1E088+0x24",
+      "lbl_12_bss_1E088__fzgx_offset_48": "lbl_12_bss_1E088+0x48",
+      "lbl_12_bss_1E088__fzgx_offset_4C": "lbl_12_bss_1E088+0x4C",
+      "lbl_12_bss_1E088__fzgx_offset_50": "lbl_12_bss_1E088+0x50",
+      "lbl_12_bss_1E088__fzgx_offset_54": "lbl_12_bss_1E088+0x54",
+      "lbl_12_bss_1E088__fzgx_offset_154": "lbl_12_bss_1E088+0x154",
+      "lbl_12_bss_1E088__fzgx_offset_254": "lbl_12_bss_1E088+0x254"
+    }
   },
   {
     "module": "movie_module",
