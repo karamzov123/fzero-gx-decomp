@@ -29,6 +29,15 @@ Lint still applies, and `verify` still bisects and rejects link mismatches. Thre
 functions compiled with `#pragma optimize_for_size on` matched as objects but failed
 the DOL hash, so they stay unmatched.
 
+## Status (2026-10-21): cloud workers parked
+
+Anthropic's documentation says cloud sessions count toward the plan's usage limits and
+share rate limits with all other Claude Code usage. The trial logs show `rate_limit_event`s
+against the account. The owner wants cloud sessions only if they are outside those limits,
+so the two trial routines (`fzgx cloud-1 trial`, `fzgx cloud-2 trial`) are disabled. Setup
+was proven up to the toolchain unpack (orig copy, private release over REST, sha256);
+installing `zstd` was the remaining fix and is in `bootstrap.sh`, still unexercised.
+
 ## Cloud session setup
 
 A cloud session needs both repositories attached: this one and the private
