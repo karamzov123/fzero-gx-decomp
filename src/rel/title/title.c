@@ -1374,7 +1374,7 @@ void fn_8_2124(u32 arg0, u8 *arg1, f32 arg2) {
         fn_1_4D494();
         loc_24 = fzgx_pool_table12[0];
         fn_1_49514(&loc_24);
-        fn_1_4AE0C((const char *)lbl_8_data_7C14, ((u32 *)(lbl_8_data_62D0.pad_4 + 0x3A4))[lbl_801A66B4]);
+        fn_1_4AE0C((const char *)lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
         loc_20 = loc_2C.a[1];
         fn_1_4D4C8(&loc_20, arg2, lbl_8_rodata_C__fzgx_offset_108);
     } else {
@@ -1382,7 +1382,7 @@ void fn_8_2124(u32 arg0, u8 *arg1, f32 arg2) {
         fn_1_49514(&loc_1C);
         loc_18 = fzgx_pool_table14[0];
         fn_1_49528(&loc_18);
-        fn_1_4AE0C((const char *)lbl_8_data_7C14, ((u32 *)(lbl_8_data_62D0.pad_4 + 0x3A4))[lbl_801A66B4]);
+        fn_1_4AE0C((const char *)lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
     }
     fn_1_496FC(lbl_8_rodata_C__fzgx_offset_10C, (f32)(s32)arg0);
     fn_1_495C8(8);
@@ -1391,12 +1391,12 @@ void fn_8_2124(u32 arg0, u8 *arg1, f32 arg2) {
         fn_1_49514(&loc_14);
         loc_10 = fzgx_pool_table16[0];
         fn_1_49528(&loc_10);
-        fn_1_4AE0C((const char *)lbl_8_data_7C14, ((u32 *)(lbl_8_data_62D0.pad_4 + 0x3BC))[lbl_801A66B4]);
+        fn_1_4AE0C((const char *)lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
     } else {
         fn_1_4D494();
         loc_C = fzgx_pool_table17[0];
         fn_1_49514(&loc_C);
-        fn_1_4AE0C((const char *)lbl_8_data_7C14, ((u32 *)(lbl_8_data_62D0.pad_4 + 0x3BC))[lbl_801A66B4]);
+        fn_1_4AE0C((const char *)lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
         loc_8 = loc_2C.a[1];
         fn_1_4D4C8(&loc_8, arg2, lbl_8_rodata_C__fzgx_offset_108);
     }
@@ -1404,6 +1404,7 @@ void fn_8_2124(u32 arg0, u8 *arg1, f32 arg2) {
 /* fzgx:end fn_8_2124 */
 
 /* fzgx:begin fn_8_23AC */
+#include "rel/title/title.h"
 struct fn_8_23AC_lbl_8_rodata_0 {
     f32 unk_0;
     u8 pad_4[0x4];
@@ -1427,19 +1428,11 @@ struct fn_8_23AC_lbl_8_rodata_0 {
     u32 unk_134;
     u32 unk_138;
 };
-struct fn_8_23AC_lbl_8_data_62D0 {
-    u8 pad_0[0x3A8];
-    u32 unk_3A8[1];
-    u8 pad_3AC[0x14];
-    u32 unk_3C0[1];
-};
 
-extern struct fn_8_23AC_lbl_8_data_62D0 lbl_8_data_62D0;
 extern struct fn_8_23AC_lbl_8_rodata_0 lbl_8_rodata_0;
 extern u32 fn_1_4D4C8(void *, f32, f32);
 extern u32 fn_800081C8(void *, void *, f32);
 extern u32 lbl_801A66B4;
-extern u32 lbl_8_data_7C14;
 extern void fn_1_49410(void);
 extern void fn_1_49514(u32 *);
 extern void fn_1_49528(u32 *);
@@ -1494,7 +1487,7 @@ void fn_8_23AC(void * arg0, f32 arg1) {
     fn_1_4D494();
     loc_24 = p_lbl_8_rodata_0->unk_124;
     fn_1_49514((u32 *)&loc_24);
-    fn_1_4AE0C((const char *)(u32)&lbl_8_data_7C14, lbl_8_data_62D0.unk_3A8[lbl_801A66B4]);
+    fn_1_4AE0C((const char *)(u32)&lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
     loc_20 = loc_2C.a[1];
     fn_1_4D4C8((void *)&loc_20, arg1, p_lbl_8_rodata_0->unk_114);
     } else {
@@ -1502,7 +1495,7 @@ void fn_8_23AC(void * arg0, f32 arg1) {
     fn_1_49514((u32 *)&loc_1C);
     loc_18 = p_lbl_8_rodata_0->unk_12C;
     fn_1_49528((u32 *)&loc_18);
-    fn_1_4AE0C((const char *)(u32)&lbl_8_data_7C14, lbl_8_data_62D0.unk_3A8[lbl_801A66B4]);
+    fn_1_4AE0C((const char *)(u32)&lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
     }
     fn_1_496FC(p_lbl_8_rodata_0->unk_118, p_lbl_8_rodata_0->unk_0);
     fn_1_495C8(8);
@@ -1514,14 +1507,14 @@ void fn_8_23AC(void * arg0, f32 arg1) {
     loc_10 = p_lbl_8_rodata_0->unk_134;
     fn_1_49528((u32 *)v2);
     v2 = (u32)&lbl_8_data_7C14;
-    fn_1_4AE0C((const char *)(u32)v2, lbl_8_data_62D0.unk_3C0[lbl_801A66B4]);
+    fn_1_4AE0C((const char *)(u32)v2, lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
     } else {
     fn_1_4D494();
     v2 = (u32)&loc_C;
     loc_C = p_lbl_8_rodata_0->unk_138;
     fn_1_49514((u32 *)v2);
     v2 = (u32)&lbl_8_data_7C14;
-    fn_1_4AE0C((const char *)(u32)v2, lbl_8_data_62D0.unk_3C0[lbl_801A66B4]);
+    fn_1_4AE0C((const char *)(u32)v2, lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
     v3 = arg1;
     v2 = (u32)&loc_8;
     loc_8 = loc_2C.a[1];

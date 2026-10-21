@@ -51,10 +51,16 @@ extern u32 lbl_8_bss_2AC;
 // lbl_8_bss_23D: .bss size 0x1, 2 refs from title.c
 extern u8 lbl_8_bss_23D;
 
-// lbl_8_data_62D0: .data size 0xA98, 2 refs from title.c (own data block)
+// Each row contains English, German, French, Spanish, Italian and Japanese
+// pointers. Retail has 678 ADDR32 relocations; YES/NO consumers select rows 39/40.
+#define TITLE_TEXT_LANGUAGE_COUNT 6
+#define TITLE_TEXT_COUNT 113
+#define TITLE_TEXT_YES 39
+#define TITLE_TEXT_NO 40
+
+// lbl_8_data_62D0: .data size 0xA98, all pointer fields proven by retail relocations.
 typedef struct {
-    u32 unk_0;  // 8 loads, 0 stores
-    u8 pad_4[0xA94];
+    const char *text[113][6];
 } Obj_8_data_62D0;
 extern Obj_8_data_62D0 lbl_8_data_62D0;
 

@@ -270,7 +270,6 @@ def check(project: Project, symbol: str, max_diff_lines: int = 80, source: Optio
             pass
         return res
     unit = project.objdiff_unit_name(sym.module, unit_src)
-    base_obj = _base_object(project, unit)
 
     if source is not None:
         # a body that is not the unit's own text (a candidate, an agent's work copy) never goes
@@ -311,34 +310,35 @@ def check(project: Project, symbol: str, max_diff_lines: int = 80, source: Optio
                     scratch_obj.write_bytes(backup)
             return res
 
-    # the unit's own text: direct mwcc compile into this unit's own object, no ninja, no build lock
-    cp = compile_unit(project, unit, unit_src, None)
-    if cp.returncode != 0 or not base_obj.exists():
+    # Canonical-source checks are read-only too. In particular, incomplete pool
+    # retargeting must not replace Ninja's link object with raw compiler output.
+    probe_obj = STATE_DIR / "work" / (project.key(sym).replace(":", "__") + ".o")
+    probe_obj.parent.mkdir(parents=True, exist_ok=True)
+    cp = compile_unit(project, unit, unit_src, None, output=probe_obj)
+    if cp.returncode != 0 or not probe_obj.exists():
         err = "\n".join(l for l in (cp.stdout + cp.stderr).splitlines() if "Usage Warning" not in l)
         return CheckResult(False, symbol, unit, error=err.strip()[-4000:])
 
-    res = _diff(project, sym.module, symbol, unit, max_diff_lines)
+    res = _diff(project, sym.module, symbol, unit, max_diff_lines, base=probe_obj)
     if res.ok and res.matched_pool:
         # retarget the private literals to the pooled symbols and diff again
         mapping = {private: pooled for private, pooled, _ in res._pool_pairs}
-        r = poolfix.apply(base_obj, mapping)
+        r = poolfix.apply(probe_obj, mapping)
         if not r["skipped"] and r["rodata_emptied"]:
-            res2 = _diff(project, sym.module, symbol, unit, max_diff_lines)
+            res2 = _diff(project, sym.module, symbol, unit, max_diff_lines, base=probe_obj)
             if res2.ok and res2.matched:
                 res2.pool_map = mapping
                 res2.pool = res.pool
                 return res2
-    elif res.ok and res.matched and _has_primer(base_obj):
-        # This is the object that actually enters the module link, so the primer must go
-        # now: with no private literals to retarget, `apply()` never runs and mwld would
-        # reject the primer's private BSS copies as multiply-defined. See
-        # docs/findings/279.
-        backup = base_obj.read_bytes()
-        if poolfix.drop_primer(base_obj):
-            res2 = _diff(project, sym.module, symbol, unit, max_diff_lines)
+    elif res.ok and res.matched and _has_primer(probe_obj):
+        # A primer-only object needs no literal retargeting. Drop its discarded
+        # section in the probe, retaining it if the re-diff disagrees.
+        backup = probe_obj.read_bytes()
+        if poolfix.drop_primer(probe_obj):
+            res2 = _diff(project, sym.module, symbol, unit, max_diff_lines, base=probe_obj)
             if res2.ok and res2.matched:
                 return res2
-            base_obj.write_bytes(backup)
+            probe_obj.write_bytes(backup)
     return res
 
 
