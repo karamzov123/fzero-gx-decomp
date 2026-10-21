@@ -172,6 +172,35 @@ class Source:
                 self._our_headers_in(path.read_text(errors='replace'), seen, depth + 1)
         return seen
 
+    def differing_headers(self, text: str) -> frozenset:
+        """Headers the ref's unit reaches whose ref text differs from ours, directly or through
+        a header they include. Inlining exactly these reproduces the ref's declarations while
+        identical headers (SDK, psvec.h, hw_regs.h) stay includes and keep their lint exemption."""
+        reach: Dict[str, List[str]] = {}
+
+        def walk(src: str, depth: int = 0):
+            for name in INC_RE.findall(src):
+                path = self.tree / 'include' / name
+                if name in reach or not path.exists() or depth > 12:
+                    continue
+                body = path.read_text(errors='replace')
+                reach[name] = INC_RE.findall(body)
+                walk(body, depth + 1)
+        walk(text)
+        def code(path: Path) -> str:  # comments and layout never change a declaration
+            text = re.sub(r'/\*.*?\*/|//[^\n]*', ' ', path.read_text(errors='replace'), flags=re.S)
+            return ' '.join(text.split())
+        differs = {n for n in reach if (o := self._ours(n)) is None
+                   or code(o) != code(self.tree / 'include' / n)}
+        changed = True
+        while changed:
+            changed = False
+            for n, incs in reach.items():
+                if n not in differs and any(i in differs for i in incs):
+                    differs.add(n)
+                    changed = True
+        return frozenset(n for n in differs if self._ours(n) is not None)
+
     def clashing_headers(self, body: str, error: str, force: frozenset, pinned: frozenset = frozenset()) -> set:
         """Our headers (reached from the body) that the ref also has and that declare an
         identifier the compiler error names: the ref's version is what its C was written against.
@@ -200,6 +229,36 @@ class Source:
             if len(hits) == 1:
                 return hits.pop()
         return None
+
+    @staticmethod
+    def trim(text: str) -> str:
+        """Drop the inlined declarations the function never reaches (reuse.declaration_closure).
+        Preprocessor lines become `#pragma` placeholders first, which the closure keeps verbatim:
+        macros, include guards and includes survive. A trimmed body is only kept if it still
+        matches, so a declaration used only inside a macro cannot be lost silently."""
+        keep: List[str] = []
+
+        def hide(m):
+            keep.append(m[0])
+            return f'#pragma FZGX_KEEP_{len(keep) - 1}'
+        masked = re.sub(r'(?m)^[ \t]*#(?![ \t]*pragma\b)(?:[^\n]*\\\n)*[^\n]*', hide, text)
+        # identifiers reached only through macros the code uses: seed them as one kept function
+        macros = {m[1]: set(re.findall(r'[A-Za-z_]\w*', m[2])) for line in keep
+                  if (m := re.match(r'\s*#\s*define\s+(\w+)(?:\([^)]*\))?(.*)', line, re.S))}
+        used = set(re.findall(r'[A-Za-z_]\w*', masked)) & set(macros)
+        while (more := set().union(*(macros[u] for u in used)) & set(macros) - used):
+            used |= more
+        seed = sorted(set().union(*(macros[u] for u in used)) - set(macros)) if used else []
+        if seed:
+            masked += '\nvoid FZGX_MACRO_USES(void) { ' + ' '.join(seed) + ' }\n'
+        out = reuse.declaration_closure(masked)
+        out = re.sub(r'\nvoid FZGX_MACRO_USES\(void\) \{[^}]*\}\n?', '\n', out)
+        out = re.sub(r'#pragma FZGX_KEEP_(\d+)', lambda m: keep[int(m[1])], out)
+        # an include guard or #if left with nothing inside is noise
+        for _ in range(3):
+            out = re.sub(r'(?m)^[ \t]*#[ \t]*if(?:n?def)?\b[^\n]*\n(?:[ \t]*#[ \t]*define[ \t]+\w+[ \t]*\n)?\s*^[ \t]*#[ \t]*endif[^\n]*\n?', '', out)
+            out = re.sub(r'/\* begin (\S+) \([^)]*\) \*/\s*/\* end \1 \*/\n?', '', out)
+        return re.sub(r'\n(?:[ \t]*\n){2,}', '\n\n', out)
 
     @staticmethod
     def _after_includes(text: str, chunk: str) -> str:
@@ -243,6 +302,11 @@ class Source:
         return None
 
     def _try(self, sym: str, kind: str, body: str, mw: str, flags: List[str], prologue: Optional[str] = None):
+        if prologue is not None:
+            # tufile.splice hoists every include line to the top of the block: check that form,
+            # or an include kept after inlined ref headers compiles differently in the link
+            inc, rest = tufile.split_includes(body)
+            body = ('\n'.join(inc) + '\n\n' + rest) if inc else rest
         f = self.workdir / 'bodies' / f'{sym}.{kind}.c'
         f.parent.mkdir(parents=True, exist_ok=True)
         f.write_text(body)
@@ -252,7 +316,7 @@ class Source:
             lint.append(['scaffolding', 0, 'allocator-only scaffolding'])
         rec = dict(kind=kind, percent=r.percent, matched=r.matched, pool=r.matched_pool, body=str(f),
                    mw=r.mw_version or mw, flags=r.extra_cflags if r.extra_cflags is not None else shlex.join(flags),
-                   error=(r.error or '')[-300:], lint=lint)
+                   error=(r.error or '')[-300:], lint=lint, lines=body.count('\n'))
         if prologue is not None and (r.matched or r.matched_pool):
             rec['gen'] = self._gen_check(sym, kind, body, prologue, rec)
         return r, rec
@@ -274,7 +338,8 @@ class Source:
     @staticmethod
     def _rank(rec: dict) -> tuple:
         clean = not rec['lint'] and rec.get('gen') != 'mismatch'
-        return (clean and rec['matched'], clean and rec['pool'], rec['matched'] or rec['pool'], rec['percent'])
+        return (clean and rec['matched'], clean and rec['pool'], rec['matched'] or rec['pool'], rec['percent'],
+                -rec.get('lines', 0))
 
     def screen(self, sym: str) -> dict:
         s = self.p.resolve(sym)
@@ -321,26 +386,37 @@ class Source:
             if attempt(kind, body)[1]:
                 break
         pinned = frozenset(self._our_headers_in(prologue)) if has_tu else frozenset()
-        if not done():
-            force, text, fixes = frozenset(), None, []
+
+        def chain(base: str, start: frozenset, swaps: bool):
+            force, text, fixes = start, None, []
             for _ in range(self.ROUNDS):
                 body = text if text is not None else self.rebind(self.expand(ftext, force), module)
-                kind = 'selective' + ('+swap' if force else '') + ('+fix' if fixes else '')
+                kind = base + ('+swap' if force != start else '') + ('+fix' if fixes else '')
                 r, _ok = attempt(kind, body)
                 if r is None:
-                    break
-                tried[-1].update(swapped=sorted(force), fixes=list(fixes))
+                    return
+                tried[-1].update(swapped=sorted(force - start), fixes=list(fixes))
                 if r.ok:
-                    break
-                culprits = self.clashing_headers(body, r.error or '', force, pinned) if text is None else set()
+                    if (r.matched or r.matched_pool) and '/* begin ' in body:
+                        attempt(kind + '+trim', self.trim(body))
+                    return
+                culprits = (self.clashing_headers(body, r.error or '', force, pinned)
+                            if swaps and text is None else set())
                 if culprits:
                     force = force | frozenset(culprits)
                     continue
                 step = self.fix(body, r.error or '')
                 if step is None:
-                    break
+                    return
                 text = step[0]
                 fixes.append(step[1])
+
+        if not done():
+            chain('selective', frozenset(), True)
+        if not done():
+            differing = self.differing_headers(ftext)
+            if differing:
+                chain('fork-headers', differing, False)
         if not done():
             try:
                 attempt('preprocessed', self.rebind(self.preprocess(ftext, module, mw, flags, sym), module))
