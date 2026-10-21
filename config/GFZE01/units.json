@@ -20205,6 +20205,24 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80046F88.c",
+    "symbols": [
+      "fn_80046F88"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "@66": "lbl_80090970"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80047464.c",
     "symbols": [
       "fn_80047464"
