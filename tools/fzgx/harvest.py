@@ -61,10 +61,23 @@ def export(ref: str) -> Path:
     return tree
 
 
+def fixup_imports(sha: str) -> Dict[str, dict]:
+    """The ref's `state/repairs/fixup_imports.json`: deterministic-repair outputs with their
+    compiler settings. A ref can hold an exact body there for a function its ledger no longer
+    counts as matched (4 such on deltawave784/fzgx@13b0aeca)."""
+    try:
+        return json.loads(_git('show', f'{sha}:state/repairs/fixup_imports.json'))
+    except (subprocess.CalledProcessError, ValueError):
+        return {}
+
+
 def gain(tree: Path) -> List[str]:
     theirs = json.loads((tree / 'state/ledger.json').read_text())['functions']
     ours = dict(Ledger().db.execute('SELECT symbol, status FROM functions'))
-    return sorted(r['symbol'] for r in theirs if r['status'] == 'matched' and ours.get(r['symbol']) == 'unmatched')
+    sha = (tree / '.complete').read_text().strip()
+    found = {r['symbol'] for r in theirs if r['status'] == 'matched' and ours.get(r['symbol']) == 'unmatched'}
+    found |= {k for k, v in fixup_imports(sha).items() if v.get('generated_source') and ours.get(k) == 'unmatched'}
+    return sorted(found)
 
 
 class Source:
@@ -72,6 +85,7 @@ class Source:
 
     def __init__(self, p: Project, tree: Path, workdir: Path, origin: str = 'fork'):
         self.p, self.tree, self.workdir, self.origin = p, tree, workdir, origin
+        self.fixups = fixup_imports((tree / '.complete').read_text().strip())
         self.our_include = [ROOT / 'include', ROOT / 'build/GFZE01/include']
         self._headers: Optional[List[str]] = None
         self.units = {s: u for u in json.loads((tree / 'config/GFZE01/units.json').read_text())
@@ -350,7 +364,8 @@ class Source:
         mw = u.get('mw_version') or oracle.module_flags(self.p, module)[1]
         flags = list(u.get('extra_cflags') or [])
         ftf, ftext = self.unit_text(sym)
-        if ftext is None:
+        fixup = (self.fixups.get(sym) or {}) if (self.fixups.get(sym) or {}).get('generated_source') else None
+        if ftext is None and fixup is None:
             return dict(symbol=sym, module=module, size=s.size, status='no-source')
         tried: List[dict] = []
         best: Optional[dict] = None
@@ -358,10 +373,10 @@ class Source:
         has_tu = bool(ours_tu and tufile.tu_path(self.p, ours_tu).exists())
         prologue = tufile.load(self.p, ours_tu).prologue if has_tu else None
 
-        def attempt(kind: str, body: str):
+        def attempt(kind: str, body: str, cc: Optional[str] = None, cflags: Optional[List[str]] = None):
             nonlocal best
             try:
-                r, rec = self._try(sym, kind, body, mw, flags, prologue)
+                r, rec = self._try(sym, kind, body, cc or mw, flags if cflags is None else cflags, prologue)
             except Exception as error:  # a broken candidate never stops the harvest
                 tried.append(dict(kind=kind, error=str(error)[-300:]))
                 return None, False
@@ -373,8 +388,14 @@ class Source:
         def done():
             return best is not None and bool(self._rank(best)[0])
 
-        firsts = [('raw', lambda: self.rebind(ftext, module))]
-        if ftf is not None and has_tu:
+        if fixup is not None:
+            attempt('fixup-import', self.rebind(fixup['generated_source'], module),
+                    fixup.get('compiler'), shlex.split(fixup.get('flags') or ''))
+        if ftext is None or done():
+            firsts = []
+        else:
+            firsts = [('raw', lambda: self.rebind(ftext, module))]
+        if firsts and ftf is not None and has_tu:
             firsts.append(('ours-prologue', lambda: prologue + '\n'
                            + self.rebind(ftf.get(sym).body, module)))
         for kind, make in firsts:
@@ -411,13 +432,13 @@ class Source:
                 text = step[0]
                 fixes.append(step[1])
 
-        if not done():
+        if ftext is not None and not done():
             chain('selective', frozenset(), True)
-        if not done():
+        if ftext is not None and not done():
             differing = self.differing_headers(ftext)
             if differing:
                 chain('fork-headers', differing, False)
-        if not done():
+        if ftext is not None and not done():
             try:
                 attempt('preprocessed', self.rebind(self.preprocess(ftext, module, mw, flags, sym), module))
             except Exception as error:
