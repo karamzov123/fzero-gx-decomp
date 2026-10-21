@@ -713,6 +713,154 @@ Fn42044Key *fn_1_42044(Fn42044Data *data, s32 track) {
 }
 /* fzgx:end fn_1_42044 */
 
+/* fzgx:begin fn_1_42254 */
+typedef struct Fn42254Key {
+    u16 unk_0;
+    u16 frame;
+    u8 pad4[8];
+    u16 left;
+    u16 right;
+} Fn42254Key;
+
+typedef struct Fn42254Track {
+    u8 unk_0;
+    u8 count;
+    u16 start;
+} Fn42254Track;
+
+typedef struct Fn42254Node {
+    u8 pad0[0x28];
+    Fn42254Track *tracks;
+    u8 pad2C[4];
+    struct Fn42254Node *next;
+} Fn42254Node;
+
+typedef struct Fn42254Entry {
+    u32 unk_0;
+    Fn42254Node *nodes;
+    u8 pad8[2];
+    u16 count;
+} Fn42254Entry;
+
+typedef struct Fn42254Timer {
+    u8 pad0[0x4C];
+    f32 time;
+} Fn42254Timer;
+
+typedef struct Fn42254Data {
+    u8 pad0[0x2];
+    u16 flags;
+    u8 pad4[0x4];
+    Fn42254Timer *timer;
+    u8 padC[0x6];
+    u16 index;
+    u8 pad14[0xC];
+    Fn42254Key *keys;
+    u8 pad24[0x2];
+    u8 entryCount;
+    u8 pad27[0x1];
+    Fn42254Entry *entries;
+    u8 pad2C[0x8];
+    Fn42254Entry *extEntries;
+    u8 pad38[0x4];
+    Fn42254Key *extKeys;
+    u8 pad40[0xC];
+    u8 extBase;
+} Fn42254Data;
+
+static inline Fn42254Node *fn_1_42254_node(Fn42254Entry *entry, u16 flags) {
+    Fn42254Node *node;
+    s32 i;
+
+    if (flags & 1) {
+        node = (Fn42254Node *)((u8 *)entry->nodes + entry->count * 0x34);
+    } else {
+        node = entry->nodes;
+        for (i = 0; i < entry->count; i++) {
+            node = node->next;
+        }
+    }
+    return node;
+}
+
+Fn42254Key *fn_1_42254(Fn42254Data *data, s32 track) {
+    u16 index = data->index;
+    u8 count = data->entryCount;
+    Fn42254Entry *entry;
+    u16 flags;
+    Fn42254Node *node;
+    Fn42254Track *t;
+    u8 n;
+    Fn42254Key *keys;
+    s32 frame;
+
+    if (index < count) {
+        entry = &data->entries[index];
+    } else if (data->extEntries != NULL) {
+        entry = &data->extEntries[index - data->extBase];
+    }
+
+    flags = data->flags;
+    node = fn_1_42254_node(entry, flags);
+
+    t = &node->tracks[track];
+    frame = (s32)data->timer->time;
+    if (data->index >= data->entryCount) {
+        keys = data->extKeys;
+    } else {
+        keys = data->keys;
+    }
+
+    n = t->count;
+    if (n != 0 || keys != NULL) {
+        if (data->flags & 4) {
+            Fn42254Key *k;
+            Fn42254Key *base;
+            s32 j;
+
+            base = &keys[t->start];
+            k = base;
+            for (j = 0; j < n; j++) {
+                if ((u16)frame < k->frame) {
+                    break;
+                }
+                k++;
+            }
+            if (j == 0) {
+                j = n;
+            }
+            return &base[j - 1];
+        } else {
+            u16 start = t->start;
+            u16 cur;
+            Fn42254Key *k;
+            u16 best = 0xFFFF;
+
+            cur = start;
+
+            do {
+                k = &keys[cur];
+                if ((u16)frame < k->frame) {
+                    best = cur;
+                    cur = k->left;
+                } else {
+                    cur = k->right;
+                }
+            } while (cur != 0xFFFF);
+
+            if (best == 0xFFFF) {
+                best = start;
+                while (keys[best].left != 0xFFFF) {
+                    best = keys[best].left;
+                }
+            }
+            return &keys[best];
+        }
+    }
+    return NULL;
+}
+/* fzgx:end fn_1_42254 */
+
 /* fzgx:begin fn_1_42458 */
 typedef struct Fn142458Data {
     u16 value0;
