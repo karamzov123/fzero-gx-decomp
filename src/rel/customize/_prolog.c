@@ -458,6 +458,57 @@ void fn_3_10A4(u8 *arg0) {
 }
 /* fzgx:end fn_3_10A4 */
 
+/* fzgx:begin fn_3_12D4 noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+
+extern void fn_1_53BD8(void *, f32, f32, f32, f32, f32);
+
+typedef struct Color {
+    u8 r, g, b, a;
+} Color;
+
+extern void fzgx_pool_f32(f32);
+extern void fzgx_pool_f64(f64);
+extern void fzgx_pool_addr(void *);
+
+#pragma section code_type ".fzgxpool"
+
+void fzgx_pool_primer0(void)
+{
+    fzgx_pool_f32(0.0f);
+    fzgx_pool_f32(320.0f);
+    fzgx_pool_f32(240.0f);
+    fzgx_pool_f32(0.001f);
+    fzgx_pool_f32(0.01f);
+    fzgx_pool_f32(0.5f);
+    fzgx_pool_f32(480.0f);
+    fzgx_pool_f32(2.0f);
+    fzgx_pool_f64(4503599627370496.0);
+}
+
+void fzgx_pool_primer1(void)
+{
+    f32 values[6] = {0.0f, 10.0f, 10.0f, 0.0f, 0.0f, 0.0f};
+    fzgx_pool_addr(values);
+    fzgx_pool_f32(0.25f);
+}
+
+void fzgx_pool_primer2(void)
+{
+    Color color = {0, 0, 0, 0};
+    fzgx_pool_addr(&color);
+}
+
+#pragma section code_type ".text"
+
+void fn_3_12D4(void)
+{
+    Color color = { 255, 255, 255, 255 };
+    fn_1_53BD8(&color, 320.0f, 240.0f, 500.0f, 300.0f, 0.1f);
+}
+/* fzgx:end fn_3_12D4 */
+
 /* fzgx:begin fn_3_131C */
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */

@@ -5895,15 +5895,6 @@ dol/fn_80078360.c:
 dol/fn_8004EC34.c:
 	.text       start:0x8004EC34 end:0x8004ECF4 align:4
 
-dol/fn_8006B224.c:
-	.text       start:0x8006B224 end:0x8006B294 align:4
-
-dol/fn_8006BC1C.c:
-	.text       start:0x8006BC1C end:0x8006BC50 align:4
-
-dol/fn_8006B92C.c:
-	.text       start:0x8006B92C end:0x8006B99C align:4
-
 dol/fn_80059914.c:
 	.text       start:0x80059914 end:0x8005997C align:4
 
@@ -6233,3 +6224,12 @@ dol/fn_80025EF4.c:
 
 dol/fn_8008AD00.c:
 	.text       start:0x8008AD00 end:0x8008AF40 align:4
+
+dol/fn_8006BC50.c:
+	.text       start:0x8006BC50 end:0x8006BC84 align:4
+
+dol/fn_800081C8.c:
+	.text       start:0x800081C8 end:0x80008204 align:4
+
+dol/fn_8006F394.c:
+	.text       start:0x8006F394 end:0x8006F3E4 align:4

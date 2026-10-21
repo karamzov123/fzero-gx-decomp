@@ -459,6 +459,22 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_12D4.c",
+    "symbols": [
+      "fn_3_12D4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_0",
+      "@6": "lbl_3_rodata_0+0x4",
+      "@7": "lbl_3_rodata_0+0x8"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_131C.c",
     "symbols": [
       "fn_3_131C"
@@ -14036,6 +14052,16 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_800081C8.c",
+    "symbols": [
+      "fn_800081C8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/2.5",
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/fn_800084E8.c",
     "symbols": [
       "fn_800084E8"
@@ -25336,18 +25362,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8006B224.c",
-    "symbols": [
-      "fn_8006B224"
-    ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-O3"
-    ]
-  },
-  {
-    "module": "main",
     "source": "dol/fn_8006B294.c",
     "symbols": [
       "fn_8006B294"
@@ -25431,18 +25445,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8006B92C.c",
-    "symbols": [
-      "fn_8006B92C"
-    ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-O3"
-    ]
-  },
-  {
-    "module": "main",
     "source": "dol/fn_8006BA74.c",
     "symbols": [
       "fn_8006BA74"
@@ -25496,15 +25498,13 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8006BC1C.c",
+    "source": "dol/fn_8006BC50.c",
     "symbols": [
-      "fn_8006BC1C"
+      "fn_8006BC50"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-O3"
-    ]
+    "status": "matching",
+    "mw_version": "GC/1.3",
+    "extra_cflags": []
   },
   {
     "module": "main",
@@ -25860,6 +25860,16 @@
     "source": "dol/fn_8006F1F0.c",
     "symbols": [
       "fn_8006F1F0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_8006F394.c",
+    "symbols": [
+      "fn_8006F394"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -35536,6 +35546,21 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/bg_tow.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/bg_tow/fn_1_154798.c",
+    "symbols": [
+      "fn_1_154798"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_tow.c",
+    "pool": {
+      "...data.0": "lbl_1_data_49A18",
+      "fzgx_pool_native_lbl_1_data_49A18_funcs": "lbl_1_data_49A18"
+    }
   },
   {
     "module": "main_rel",
@@ -47589,6 +47614,17 @@
     ],
     "status": "matching",
     "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/game.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/game/fn_1_3E62C.c",
+    "symbols": [
+      "fn_1_3E62C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
     "extra_cflags": [],
     "tu": "rel/main_rel/game.c"
   },
