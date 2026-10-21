@@ -30,8 +30,25 @@ def source_license(sdk: str) -> dict:
         path = root / name
         if path.is_file():
             body = path.read_bytes()
+            # A standard grant below a restrictive preamble does not license the
+            # reconstructed source. For example, RE4's CC0 covers tooling only.
+            normalized = b' '.join(body.split())
+            excluded = re.search(
+                rb'(?:does not|do not|doesn\'t|not) cover[^.]*'
+                rb'(?:reconstruct|source|src/|include/)', normalized, re.I)
+            if excluded:
+                raise ValueError(f'{sdk}: license excludes reconstructed source; excluded from reuse')
+            spdx = None
             if b'CC0 1.0 Universal' in body and b'Statement of Purpose' in body:
-                return dict(spdx='CC0-1.0', path=name, sha256=hashlib.sha256(body).hexdigest())
+                spdx = 'CC0-1.0'
+            elif all(phrase in normalized for phrase in (
+                    b'MIT License',
+                    b'Permission is hereby granted, free of charge, to any person obtaining a copy',
+                    b'The above copyright notice and this permission notice shall be included',
+                    b'THE SOFTWARE IS PROVIDED "AS IS"')):
+                spdx = 'MIT'
+            if spdx:
+                return dict(spdx=spdx, path=name, sha256=hashlib.sha256(body).hexdigest())
     raise ValueError(f'{sdk}: no supported source license; excluded from reuse')
 
 
