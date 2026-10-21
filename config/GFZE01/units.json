@@ -63053,6 +63053,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sound/fn_1_A3A1C.c",
+    "symbols": [
+      "fn_1_A3A1C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sound.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sound/fn_1_A3BD8.c",
     "symbols": [
       "fn_1_A3BD8"

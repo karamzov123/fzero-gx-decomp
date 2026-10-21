@@ -3072,6 +3072,97 @@ void fn_1_A3654(void *player, u32 id) {
 }
 /* fzgx:end fn_1_A3654 */
 
+/* fzgx:begin fn_1_A3A1C noprologue */
+#include "types.h"
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+} CounterEntry;
+
+typedef struct {
+    u8 unk_0[0x740];
+    u8 unk_740;
+    u8 unk_741[3];
+    u32 unk_744;
+    u8 unk_748[4];
+    u8 unk_74C[0xE0];
+    s8 unk_82C;
+    u8 pad_82D[0xA3];
+    CounterEntry unk_8D0[0x100]; /* per-sound {busy count, idle count} */
+} SoundState;
+
+extern SoundState lbl_1_bss_6EA98;
+extern u32 fn_1_864E8(s32 arg0);
+extern f32 fn_1_8652C(s32 arg0);
+extern const f32 lbl_1_rodata_454C;
+extern void fn_80067344(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80067898(u32 arg0);
+#pragma opt_propagation off /* as the other sound.c blocks */
+void fn_1_A3A1C(void) {
+    SoundState *st = (SoundState *)&lbl_1_bss_6EA98;
+    u8 *row;
+    s8 i;
+    s32 id;
+    u8 *pair;
+    u8 *slot;
+    u32 flags;
+    s32 off;
+    u8 volume;
+    s32 level;
+
+    row = &st->unk_74C[0];
+    i = 0;
+    while (i < *(s8 *)((u8 *)st + 0x82C)) {
+        id = row[1];
+        flags = fn_1_864E8(id);
+        if ((flags & 0x10) && fn_1_8652C(id) > lbl_1_rodata_454C) {
+            volume = row[2];
+            if (volume != 0) {
+                off = id * 2;
+                slot = (u8 *)&st->unk_8D0[0];
+                if ((s8)slot[off] == 0) {
+                    if (flags & 0x200) {
+                        fn_80067344(1, 0x10, 0xB0270000, volume);
+                        if (st->unk_740 == 0 && st->unk_744 <= 0x2D) {
+                            fn_80067898(0xA9090700);
+                        }
+                    } else {
+                        level = volume + 50;
+                        level = level < 1 ? 1 : level > 127 ? 127 : level;
+                        fn_80067344(1, 0x10, 0xB0270000, (u8)level);
+                        if (st->unk_740 == 0 && st->unk_744 <= 0x2D) {
+                            fn_80067898(0xA9090800);
+                        }
+                    }
+                }
+            }
+            off = id * 2;
+            slot = (u8 *)&st->unk_8D0[0];
+            slot += off;
+            slot[0]++;
+            slot[1] = 0;
+            if ((s8)slot[0] > 6) {
+                slot[0] = 0;
+            }
+        } else {
+            off = id * 2;
+            pair = (u8 *)&st->unk_8D0[0];
+            pair += off;
+            slot = pair + 1;
+            slot[0]++;
+            if ((s8)slot[0] > 60) {
+                pair[0] = 0;
+                slot[0] = 60;
+            }
+        }
+        row += 0x14;
+        i++;
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_A3A1C */
+
 /* fzgx:begin fn_1_A3C78 noprologue */
 #include "types.h"
 #include "rel/main_rel/sound.h"

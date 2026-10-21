@@ -8606,3 +8606,6 @@ rel/main_rel/motasglist/fn_1_42254.c:
 
 rel/main_rel/spline/fn_1_FA4D4.c:
 	.text       start:0x000FA4D4 end:0x000FA5A8 align:4
+
+rel/main_rel/sound/fn_1_A3A1C.c:
+	.text       start:0x000A3A1C end:0x000A3BD8 align:4
