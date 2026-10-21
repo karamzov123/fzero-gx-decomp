@@ -838,7 +838,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("ref", help="git ref, e.g. fork-deltawave784/windows-and-types or origin/claude/...")
     s.add_argument("--label", help="provenance label (default REF@sha)")
     s.add_argument("--land", action="store_true", help="submit oracle matches (default: screen only)")
-    s.add_argument("--workers", type=int, default=12); s.add_argument("--limit", type=int)
+    s.add_argument("--workers", type=int, default=4); s.add_argument("--limit", type=int)
     s.add_argument("--symbol", action="append", help="restrict to these symbols (repeatable)")
     s = sub.add_parser('lift', help='lift unmatched functions in a TU or callers of a shared interface'); s.set_defaults(fn=cmd_lift)
     scope = s.add_mutually_exclusive_group(required=True)

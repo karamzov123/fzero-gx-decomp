@@ -18,16 +18,37 @@ each one under the ref's recorded compiler and flags (`units.json`):
 
 1. `raw`: the ref's unit text as-is, resolving includes against this tree;
 2. `ours-prologue`: the ref's block under this TU's own prologue;
-3. `preprocessed`: the ref's unit expanded by MWCC `-EP` inside the ref's own tree,
-   pragmas preserved, trimmed by `reuse.declaration_closure`.
+3. `selective`: the ref's unit with **only the ref's headers missing here** inlined; includes
+   that resolve here stay, so hardware and SDK declarations come from our own headers. Up to
+   ten repair rounds follow, driven by the compiler error: `+swap` inlines the ref's version
+   of one of our headers that declares an identifier named in the error (never a header our
+   TU prologue includes: the generated unit includes ours first and the copies clash there);
+   `+fix` injects a ref-only type definition, drops the ref's `extern` that redeclares a
+   symbol we declare differently, rewrites `sym` as `(T)&sym` where the ref declares an array
+   and we declare a struct, or gives one local the ref's struct as `<Type>_dw` when our struct
+   lacks a member;
+4. `preprocessed`: the ref's unit expanded by MWCC `-EP` inside the ref's own tree, pragmas
+   preserved, trimmed by `reuse.declaration_closure`. Usually refused by lint (hardware
+   `volatile`s, float bit patterns, inlined asm helpers), so it is tried last.
 
 Every candidate gets the ref's symbol names rebound to this tree's names by (module,
-section, address). Only full-oracle matches and pool matches go on to
-`claim` → `write_unit` → `submit`. Provenance is recorded in
-`state/forkimports/<source>.json`: ref, candidate kind, compiler and body hash.
-Lint still applies, and `verify` still bisects and rejects link mismatches. Three DOL
-functions compiled with `#pragma optimize_for_size on` matched as objects but failed
-the DOL hash, so they stay unmatched.
+section, address). A candidate is accepted only if it is a full-oracle or pool match, lint
+clean, free of allocator scaffolding, and (for a TU block) does not compile to different code
+under our TU prologue (`gen`: a compile error there is fine, `_install` keeps the block
+`noprologue`). Accepted bodies go through `claim` → `write_unit` → `submit` (retrying while
+`fzgx verify` holds submit.lock). Provenance is recorded in `state/forkimports/<owner>.json`
+(ref, candidate kind, compiler, body hash) and lists only functions the ledger still counts as
+matched: the next `--land` drops what `verify` rejected. Screening results accumulate by symbol
+in `.fzgx/harvest/<sha>-work/results.json`; statuses `lint` and `gen-mismatch` name matches
+that were refused.
+
+    uv run tools/fzgx.py harvest fork-deltawave784/windows-and-types \
+        --label 'deltawave784/fzgx@13b0aeca (CC0)' [--symbol S ...] [--land]
+    uv run tools/fzgx.py verify --message '...'
+
+Forks checked on 2026-10-21 (by name and by module+address): only deltawave784's
+`windows-and-types` holds matches we lack; its `codex` and `main` branches, pabloski2300,
+nkhoit, nhawke, zeranemesis and the four forks of karamzov123/fzero-gx-decomp hold none.
 
 ## Status (2026-10-21): cloud workers parked
 
@@ -40,21 +61,20 @@ installing `zstd` was the remaining fix and is in `bootstrap.sh`, still unexerci
 
 ## Harvest outcome and leftovers (deltawave784/fzgx@13b0aeca)
 
-437 functions landed and link-verified (`state/forkimports/deltawave784.json`). The
-"preprocessed" candidate pastes the fork's expanded headers into the body, so lint
-refuses it (hardware `volatile`s, float bit patterns, Shift-JIS data). Most of those were
-recovered by inlining **only the fork headers missing here** and keeping includes that
-resolve in this tree. A few more needed the SDK `include/dolphin/os/OSFastCast.h`
-(imported), a fork struct under a `_dw` name for one view, or `(T)&sym` where the fork
-declares an array and this tree declares a struct.
+445 functions landed and link-verified (`state/forkimports/deltawave784.json`), the last 8
+through the selective/fix candidates above. The three DOL `#pragma optimize_for_size`
+functions and the other former "object match, link mismatch" cases all linked once landed
+alone; fn_1_10BA00's earlier failure was a `+swap` of `rel/main_rel/globals.h`, which the TU
+prologue also includes (now pinned).
 
-Left for a later session (bodies under `.fzgx/harvest/`; screening scripts are not committed):
-- near-misses after fixes: fn_1_30054 (98.5%), fn_1_14B1FC (98.5%), fn_1_F6A8 (91.9%),
-  fn_1_10846C (84.5%), fn_3_E64, fn_3_130C8, fn_4_A82C, fn_8_5840 (about 98.5% each);
-- still not compiling against this tree's declarations: fn_80068BFC, fn_1_11E98,
-  fn_1_ECF88, fn_3_106FC, fn_1_113C58, fn_8005D5A4;
-- object match but link mismatch: fn_8006B224, fn_8006B92C, fn_8006BC1C (DOL,
-  `#pragma optimize_for_size`), fn_8007F508, fn_1_9AABC, fn_1_A5594, fn_1_10BA00.
+Left (20, bodies under `.fzgx/harvest/13b0aecab6ac-work/`):
+- matches refused by lint (15): the fork's C needs its own inline-asm vector helpers (A3:
+  fn_1_10846C, fn_1_113C58, fn_1_F6A8, fn_1_12D404), hardware `volatile`s or addresses
+  (S2/A1: fn_1_11E98, fn_1_12BB18, fn_1_12FD4, fn_1_14B1FC, fn_1_30054, fn_1_ECF88, fn_3_106FC,
+  fn_80068BFC), an unjustified `goto` (fn_8005D5A4), or allocator scaffolding (fn_1_65E8C,
+  fn_3_169B8). Never silence these with `fzgx-allow`;
+- near-misses (5): fn_3_E64, fn_3_130C8, fn_4_A82C, fn_8_5840 (about 98.5%), fn_3_6270
+  (does not compile here).
 
 ## Cloud session setup
 
