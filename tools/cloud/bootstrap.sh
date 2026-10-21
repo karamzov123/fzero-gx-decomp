@@ -30,6 +30,7 @@ if [ ! -x build/tools/dtk ] || [ ! -d build/compilers/GC ]; then
     gh api -H 'Accept: application/octet-stream' \
         "repos/karamzov123/fzgx-build/releases/assets/$asset" > "$tmp/fzgx-toolchain.tar.zst"
     echo "$TOOLCHAIN_SHA  $tmp/fzgx-toolchain.tar.zst" | sha256sum -c -
+    command -v zstd >/dev/null || apt-get install -y -qq zstd || sudo apt-get install -y -qq zstd
     mkdir -p build
     tar -C build --zstd -xf "$tmp/fzgx-toolchain.tar.zst"
     rm -f "$tmp/fzgx-toolchain.tar.zst"
