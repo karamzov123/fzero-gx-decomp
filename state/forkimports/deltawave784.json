@@ -3061,6 +3061,15 @@
   "source": "deltawave784/fzgx@13b0aeca (CC0)",
   "status": "matched"
  },
+ "fn_3_130C8": {
+  "flags": "",
+  "kind": "split-head",
+  "landed": 1792592068,
+  "mw": "GC/1.3.2",
+  "sha256": "4f09fd8509183e4f45f3a5d217657e174c9831ab736f72bac3f4429c2eeb380c",
+  "source": "deltawave784/fzgx@13b0aeca (CC0)",
+  "status": "pool"
+ },
  "fn_3_13508": {
   "flags": "",
   "kind": "raw",
@@ -3322,6 +3331,15 @@
   "source": "deltawave784/fzgx@13b0aeca (CC0)",
   "status": "pool"
  },
+ "fn_3_E64": {
+  "flags": "",
+  "kind": "split-head",
+  "landed": 1792592056,
+  "mw": "GC/1.3.2",
+  "sha256": "3f0e14691f668e3d7a210a61aad7a1f1d2228072eaa38dd9b3bdd4f3403591b4",
+  "source": "deltawave784/fzgx@13b0aeca (CC0)",
+  "status": "pool"
+ },
  "fn_4_1444": {
   "flags": "",
   "kind": "ours-prologue",
@@ -3355,6 +3373,15 @@
   "landed": 1792571349,
   "mw": "GC/1.3.2",
   "sha256": "14cb015fd29d72413b1ebe04c7268d37a44a5e3a09ac8b7740765c6bb7b31279",
+  "source": "deltawave784/fzgx@13b0aeca (CC0)",
+  "status": "pool"
+ },
+ "fn_4_A82C": {
+  "flags": "",
+  "kind": "split-head",
+  "landed": 1792592083,
+  "mw": "GC/1.3.2",
+  "sha256": "e61672e37edb438d89acd3055e0caf7c7995c3f82d78e4e1da2e2125a183c3eb",
   "source": "deltawave784/fzgx@13b0aeca (CC0)",
   "status": "pool"
  },
@@ -3996,6 +4023,15 @@
   "sha256": "ad59667b6e48cee5f42724806b0eae5ce503e6a420c29c7407a60bd7eaa9c5a6",
   "source": "deltawave784/fzgx@13b0aeca (CC0)",
   "status": "matched"
+ },
+ "fn_8_5840": {
+  "flags": "",
+  "kind": "split-head",
+  "landed": 1792592082,
+  "mw": "GC/1.3.2",
+  "sha256": "bf226533357797db97565121061534ee4dbb0b6237a486963f6719ee2d72bf6c",
+  "source": "deltawave784/fzgx@13b0aeca (CC0)",
+  "status": "pool"
  },
  "fn_8_5B44": {
   "flags": "",
