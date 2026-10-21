@@ -72140,12 +72140,32 @@
     "symbols": [
       "fn_12_364CC"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [
       "-use_lmw_stmw",
       "on"
-    ]
+    ],
+    "pool": {
+      "...rodata.0": "lbl_12_rodata_1D88",
+      "lbl_12_rodata_1D88": "lbl_12_rodata_1D88",
+      "lbl_12_rodata_1DAC": "lbl_12_rodata_1DAC",
+      "lbl_12_rodata_1DD0": "lbl_12_rodata_1DD0",
+      "lbl_12_rodata_1DF4": "lbl_12_rodata_1DF4",
+      "lbl_12_rodata_1E18": "lbl_12_rodata_1E18",
+      "lbl_12_rodata_1E40": "lbl_12_rodata_1E40",
+      "lbl_12_rodata_1E6C": "lbl_12_rodata_1E6C",
+      "lbl_12_rodata_1E8C": "lbl_12_rodata_1E8C",
+      "lbl_12_rodata_1E8C__fzgx_offset_18": "lbl_12_rodata_1E8C+0x18",
+      "lbl_12_rodata_1E8C__fzgx_offset_3C": "lbl_12_rodata_1E8C+0x3C",
+      "lbl_12_rodata_1E8C__fzgx_offset_64": "lbl_12_rodata_1E8C+0x64",
+      "lbl_12_rodata_1E8C__fzgx_offset_88": "lbl_12_rodata_1E8C+0x88",
+      "lbl_12_rodata_1E8C__fzgx_offset_B4": "lbl_12_rodata_1E8C+0xB4",
+      "lbl_12_rodata_1E8C__fzgx_offset_E0": "lbl_12_rodata_1E8C+0xE0",
+      "lbl_12_rodata_1E8C__fzgx_offset_11C": "lbl_12_rodata_1E8C+0x11C",
+      "lbl_12_rodata_1E8C__fzgx_offset_140": "lbl_12_rodata_1E8C+0x140",
+      "lbl_12_rodata_1E8C__fzgx_offset_178": "lbl_12_rodata_1E8C+0x178"
+    }
   },
   {
     "module": "movie_module",
