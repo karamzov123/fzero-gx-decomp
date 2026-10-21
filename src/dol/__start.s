@@ -7,7 +7,7 @@
 
 # .init:0x0 | 0x80003154 | size: 0x15C
 .fn __start, weak
-/* 80003154 00000154  48 00 01 5D */	bl __init_registers_800032B0
+/* 80003154 00000154  48 00 01 5D */	bl __init_registers
 /* 80003158 00000158  48 00 02 A9 */	bl __init_hardware
 /* 8000315C 0000015C  38 00 FF FF */	li r0, -0x1
 /* 80003160 00000160  94 21 FF F8 */	stwu r1, -0x8(r1)
