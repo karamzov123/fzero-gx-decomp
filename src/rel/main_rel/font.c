@@ -2475,6 +2475,21 @@ void fn_1_4DDC0(void) {
 }
 /* fzgx:end fn_1_4DDC0 */
 
+/* fzgx:begin fn_1_4DE04 noprologue */
+#include "types.h"
+#include "rel/main_rel/font.h"
+
+u32 fn_1_4DE04(void) {
+    Obj_1_bss_4C688 *p = &lbl_1_bss_4C688;
+    s32 i;
+
+    for (i = 0; i < 64; i++, p = (Obj_1_bss_4C688 *)((u8 *)p + 0x80)) {
+        p->unk_0 = 0;
+    }
+    return (u32)p;
+}
+/* fzgx:end fn_1_4DE04 */
+
 /* fzgx:begin fn_1_4DE44 */
 // Dispatch callbacks for each active font entry.
 void fn_1_4DE44(void) {

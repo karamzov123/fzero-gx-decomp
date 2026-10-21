@@ -48997,6 +48997,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/font/fn_1_4DE04.c",
+    "symbols": [
+      "fn_1_4DE04"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/font.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/font/fn_1_4DE44.c",
     "symbols": [
       "fn_1_4DE44"
