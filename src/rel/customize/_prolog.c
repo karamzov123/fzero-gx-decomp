@@ -3134,3 +3134,187 @@ void fn_3_9800(void) {
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_3_9800 */
+
+/* fzgx:begin fn_3_9CA8 */
+#include "rel/customize/globals.h"
+
+typedef struct {
+    u8 pad_0[8];
+    u16 unk_8;
+    u8 pad_A[6];
+    volatile u16 unk_10; /* retail rereads the controller flags for each test */
+    volatile u16 unk_12;
+} Controller;
+
+typedef struct {
+    u32 data[2];
+} SelSlot;
+
+typedef struct {
+    u32 unk_0;
+    SelSlot slot[2];
+    u8 pad_14[0x4];
+    s16 cur;
+    u8 pad_1A[0xC6 - 0x1A];
+    s16 sel[3];
+    s16 level;
+    u8 pad_CE[0x2];
+} SelState;
+
+typedef struct {
+    f32 unk_0;
+    u8 pad_4[0x1C];
+} Entry_BF0;
+
+/* Objects of this TU's .bss, defined here so they share one section base. */
+Obj_3_bss_0 lbl_3_bss_0;
+u32 lbl_3_bss_8;
+s32 lbl_3_bss_C[3];
+s16 lbl_3_bss_18[4];
+SelState lbl_3_bss_20;
+Obj_3_bss_F0 lbl_3_bss_F0;
+
+extern const f64 lbl_3_rodata_268;
+extern Controller lbl_1_bss_9F8[];
+extern Entry_BF0 lbl_1_bss_BF0[];
+extern u32 lbl_801A66A8;
+extern s16 lbl_3_bss_7EC08;
+extern u32 lbl_3_bss_243C0[8304];
+
+extern void fn_1_A2D84(u32);
+extern u32 fn_1_151E20(u32, s16);
+extern void fn_1_151E74(u32 *, s16, int);
+extern void fn_80008BA8(u32, u32, u32);
+extern s32 fn_8008023C(u32, u32, u32);
+
+/* Layout primer: touches the .bss objects in retail order (dropped at integration). */
+#pragma section RX ".fzgxpool" ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_primer_fn_3_9CA8(void) {
+    fn_1_A2D84(lbl_3_bss_0.unk_0);
+    fn_1_A2D84(lbl_3_bss_8);
+    fn_1_A2D84(lbl_3_bss_C[0]);
+    fn_1_A2D84(lbl_3_bss_18[0]);
+    fn_1_A2D84(lbl_3_bss_20.unk_0);
+    fn_1_A2D84(lbl_3_bss_F0.unk_24);
+}
+
+/* Nonzero when the edited save entry differs from the stored one. */
+static inline s32 save_changed(u8 *save) {
+    return fn_8008023C((u32)lbl_3_bss_243C0, (u32)save, 0x81C0) != 0;
+}
+
+#define WRAP(v, lo, hi) ((v) > (hi) ? (lo) : ((v) < (lo) ? (hi) : (v)))
+
+static inline s32 wrap(s32 v, s32 lo, s32 hi) {
+    return WRAP(v, lo, hi);
+}
+#define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
+
+s32 fn_3_9CA8(void) {
+    u8 *save;
+    s16 value_2;
+    s16 index;
+    s16 value;
+    s32 result;
+    s16 slot;
+    s16 lr;
+    s32 ud;
+    s16 fine;
+    s16 i;
+    s32 count;
+    s32 sum;
+    u32 *entry;
+    s16 got;
+
+    result = 0;
+    lr = 0;
+    ud = 0;
+    fine = 0;
+    slot = lbl_3_bss_F0.unk_8;
+    index = lbl_3_bss_F0.unk_6;
+    count = lbl_3_bss_18[0] + 1;
+    lbl_3_bss_18[0] = (count >= 10) ? 10 : count;
+
+    if ((lbl_1_bss_9F8[index].unk_12 >> 8) & 1) {
+        lr = -1;
+    }
+    if ((lbl_1_bss_9F8[index].unk_12 >> 9) & 1) {
+        lr++;
+    }
+    if (((lbl_1_bss_9F8[index].unk_10 >> 3) & 1) || ((lbl_1_bss_9F8[index].unk_12 >> 3) & 1)) {
+        ud--;
+        fn_1_A2D84(0xA9010000);
+        lbl_801A66A8 = 0;
+    }
+    if (((lbl_1_bss_9F8[index].unk_10 >> 2) & 1) || ((lbl_1_bss_9F8[index].unk_12 >> 2) & 1)) {
+        ud++;
+        fn_1_A2D84(0xA9010000);
+        lbl_801A66A8 = 0;
+    }
+    value = lbl_3_rodata_268 * lbl_1_bss_BF0[index].unk_0;
+    if (lbl_1_bss_9F8[index].unk_10 & 1) {
+        fine = -1;
+    }
+    if ((lbl_1_bss_9F8[index].unk_10 >> 1) & 1) {
+        fine++;
+    }
+    value += fine;
+
+    if (lr != 0) {
+        lbl_801A66A8 = 0;
+        fn_1_A2D84(0xA9010000);
+        count = lbl_3_bss_20.cur + lr;
+        lbl_3_bss_20.cur = WRAP(count, 0, 2);
+    }
+
+    do {
+        lbl_3_bss_20.sel[lbl_3_bss_20.cur] = wrap(lbl_3_bss_20.sel[lbl_3_bss_20.cur], 0, 0);
+    } while (fn_1_151E20(lbl_3_bss_20.slot[lbl_3_bss_20.cur].data[lbl_3_bss_20.sel[lbl_3_bss_20.cur]], 3) == 0xFF);
+
+    count = lbl_3_bss_20.level + (s16)ud;
+    lbl_3_bss_20.level = WRAP(count, 0, 2);
+    entry = &lbl_3_bss_20.slot[lbl_3_bss_20.cur].data[lbl_3_bss_20.sel[lbl_3_bss_20.cur]];
+    got = fn_1_151E20(*entry, lbl_3_bss_20.level);
+    sum = got + (s16)value;
+    value_2 = (s16)CLAMP(sum, 0, 0xFF);
+    fn_1_151E74(entry, lbl_3_bss_20.level, value_2);
+
+    if (lbl_3_bss_7EC08 > value_2) {
+        for (i = 0; i < lbl_3_bss_7EC08 - value_2; i++) {
+            if ((value_2 - i) % 10 == 0) {
+                fn_1_A2D84(0xA9010300);
+            }
+        }
+    } else if (lbl_3_bss_7EC08 < value_2) {
+        for (i = 0; i < value_2 - lbl_3_bss_7EC08; i++) {
+            if ((value_2 - i) % 10 == 0) {
+                fn_1_A2D84(0xA9010300);
+            }
+        }
+    }
+    lbl_3_bss_7EC08 = value_2;
+
+    save = (u8 *)&lbl_3_bss_140 + slot * 0x81C0;
+    fn_80008BA8((u32)(save + 0x81A4), (u32)&lbl_3_bss_20, 0x18);
+
+    if ((lbl_1_bss_9F8[index].unk_8 >> 9) & 1) {
+        result = 13;
+        fn_1_A2D84(0xA9010200);
+    }
+    if ((lbl_1_bss_9F8[index].unk_8 >> 11) & 1) {
+        result = 12;
+        if (save_changed(save) == 1) {
+            fn_1_A2D84(0xA9010100);
+        }
+    }
+    if (((lbl_1_bss_9F8[index].unk_8 >> 12) & 1) || ((lbl_1_bss_9F8[index].unk_8 >> 8) & 1)) {
+        result = 11;
+        if (save_changed(save) == 1) {
+            fn_1_A2D84(0xA9010100);
+        } else {
+            fn_1_A2D84(0xA9010200);
+        }
+    }
+    return result;
+}
+/* fzgx:end fn_3_9CA8 */

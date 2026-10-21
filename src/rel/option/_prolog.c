@@ -487,6 +487,273 @@ void fn_4_EA0(void) {
 }
 /* fzgx:end fn_4_EA0 */
 
+/* fzgx:begin fn_4_1444 */
+#include "dolphin/hw_regs.h"
+
+extern struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8;
+extern u32 lbl_1_data_2AC0;
+extern u32 lbl_1_data_2B40;
+extern u32 lbl_1_data_2B50;
+extern u32 lbl_1_data_2B58;
+extern u32 lbl_4_data_14D0;
+extern void fn_4_3128(void);
+extern u32 fn_80008BA8(u32, u32, u32);
+extern u32 fn_1_F7308(void);
+extern u32 lbl_1_bss_AA0;
+extern u32 lbl_1_data_2B60;
+extern u32 lbl_4_data_2AE8;
+extern u32 memcpy(u32, u32, u32);
+extern void fn_4_63D4(void);
+extern int fn_1_4C10(void);
+extern u16 lbl_1_bss_96A;
+extern u32 fn_4_0(u32, u32, u32, u32, u32);
+extern u32 lbl_1_bss_9F8;
+extern u8 lbl_4_data_2C58[84];
+extern void fn_1_1280(u32);
+extern void fn_1_A2D84(u32);
+extern u32 fn_4_ABB0(void);
+extern u32 fn_1_1380F0(u32);
+extern u32 fn_1_13ABA8(u32);
+extern u32 lbl_4_data_1A4;
+extern s32 lbl_801A66B4;
+extern u8 lbl_4_bss_5618;
+extern u32 fn_1_B7E98(u32);
+extern u32 fn_1_B800C(u32);
+extern u32 fn_1_B80F0(u32);
+extern u32 fn_1_B8170(u32);
+extern u32 lbl_4_data_2DB4;
+extern void fn_4_9AD0(void);
+extern u8 *fn_4_A82C(u8 *);
+extern void fn_80083DB0(u8 *, u32);
+extern u32 fn_1_B9C0C(void);
+extern s8 fn_1_BA144(u32 *);
+extern u32 lbl_4_bss_5678;
+extern u32 fn_1_B7C00(void);
+extern u32 fn_1_BC310(void *);
+extern u32 fn_1_C0510(u32);
+extern u32 fn_1_C1394(void *);
+extern s16 lbl_1_bss_962;
+extern struct fn_4_9B0_lbl_4_data_1260 lbl_4_data_1260;
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern u32 fn_1_3CC4(u32);
+extern u32 fn_1_407C(u32);
+extern u32 fn_1_426C(u32);
+extern void fn_4_AB90(void);
+extern struct _prolog_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
+extern struct fn_4_869C_lbl_1_bss_718E0 lbl_1_bss_718E0;
+extern s32 lbl_1_bss_970;
+extern u8 lbl_4_bss_2;
+extern u16 lbl_1_bss_968;
+
+
+typedef struct {
+    u8 r, g, b, a;
+} fn_4_1444_Color;
+
+extern void fn_1_49410(void);
+extern void fn_1_495C8(u8);
+extern void fn_1_49738(u32);
+extern void fn_1_49748(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_49590(f32);
+extern f32 fn_1_4B068(const char *);
+extern f32 fn_1_4B090(const char *);
+extern void fn_800371F8(s32, fn_4_1444_Color);
+extern void fn_8003462C(u32, u32, u32);
+extern void fn_800746A8(u8, s32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4A0D8(const char *);
+extern void fn_1_5233C();
+extern s32 lbl_801A66B4;
+
+/* Shared literal pool primer: reproduces the TU's retail .rodata layout.
+   MWCC emits a function's aggregate initializers, then its literals, then its
+   int-to-float constants, so the primer is split at those points. The outputs
+   are volatile so that every literal is materialized. */ /* fzgx-allow: S2 pool primer note */
+typedef struct {
+    u8 b[44];
+} fzgx_pool_bytes44;
+
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_pool_primer0(volatile f32 *f) {  /* fzgx-allow: S2 pool primer sink */
+    *f = 167.0f;
+    *f = 38.0f;
+    *f = 0.5f;
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer1(volatile f64 *d, fn_4_1444_Color *c) {  /* fzgx-allow: S2 pool primer sink */
+    fn_4_1444_Color c0 = {0x00, 0xD0, 0xD0, 0x00};
+    *c = c0;
+    *d = 78.0;
+    *d = 0.125;
+    *d = 28.0;
+    *d = 0.3;
+    *d = 1.0;
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer2(volatile f32 *f, fn_4_1444_Color *c) {  /* fzgx-allow: S2 pool primer sink */
+    fn_4_1444_Color c1 = {0x00, 0xD0, 0xD0, 0x00};
+    *c = c1;
+    *f = 0.6f;
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer3(volatile f32 *f, volatile f64 *d, fn_4_1444_Color *c, u32 u) {  /* fzgx-allow: S2 pool primer sink */
+    fn_4_1444_Color c2 = {0xFF, 0x00, 0x00, 0x00};
+    *c = c2;
+    *f = 3.5f;
+    *f = 5.0f;
+    *f = 0.0f;
+    *f = 320.0f;
+    *f = 0.15f;
+    *f = 240.0f;
+    *d = 96.0;
+    *d = 48.0;
+    *f = 0.25f;
+    *f = (f32)u;
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer4(volatile f32 *f, volatile f64 *d) {  /* fzgx-allow: S2 pool primer sink */
+    *f = 0.005f;
+    *f = 216.0f;
+    *d = 90.0;
+    *d = 320.0;
+    *d = 0.5;
+    *f = 264.0f;
+    *d = -0.5;
+    *f = 0.015f;
+    *f = 72.0f;
+    *f = 0.025f;
+    *f = 0.05f;
+    *f = 48.0f;
+    *f = 0.8f;
+    *f = 110.0f;
+    *f = 1.0f;
+    *f = 120.0f;
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer5(volatile f32 *f, fzgx_pool_bytes44 *t, s32 s) {  /* fzgx-allow: S2 pool primer sink */
+    fzgx_pool_bytes44 t0 = {{
+        0x08, 0x08, 0x00, 0x00, 0x78, 0x78, 0x00, 0x00, 0x06, 0x06, 0x00, 0x00,
+        0x25, 0x00, 0x00, 0x00, 0x1A, 0x1A, 0x00, 0x00, 0x00, 0x25, 0x00, 0x00,
+        0xE6, 0x1A, 0x00, 0x00, 0xDB, 0x00, 0x00, 0x00, 0xE6, 0xE6, 0x00, 0x00,
+        0x00, 0xDB, 0x00, 0x00, 0x1A, 0xE6, 0x00, 0x00,
+    }};
+    *t = t0;
+    *f = (f32)s;
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer6(volatile f32 *f) {  /* fzgx-allow: S2 pool primer sink */
+    *f = 1.3333334f;
+    *f = 160.0f;
+    *f = 210.0f;
+    *f = 480.0f;
+    *f = -0.01f;
+    *f = 1.1f;
+    *f = 1.4f;
+    *f = 20.0f;
+    *f = 10.0f;
+    *f = 0.01f;
+    *f = 140.0f;
+    *f = 0.001f;
+}
+
+/* GX write-gather FIFO: every store is a hardware write */
+#define GX_FIFO_F32 (*(volatile f32 *)GX_FIFO_BASE)
+#define POS3(px, py, pz) \
+    GX_FIFO_F32 = (px);  \
+    GX_FIFO_F32 = (py);  \
+    GX_FIFO_F32 = (pz)
+
+// Draw a framed text box (filled quad plus outline) with an inner frame.
+void fn_4_1444(u16 depth, s32 left, fn_4_1444_Color border, fn_4_1444_Color fill, const char *text) {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 zz;
+    f32 x1;
+    f32 halfW;
+    f32 x0;
+    f32 height;
+    f32 frameW;
+    f32 frameH;
+
+    if (left) {
+        x = 160.0f;
+        y = 210.0f;
+    } else {
+        x = 480.0f;
+        y = 210.0f;
+    }
+    z = -0.01f * (f32)depth;
+
+    fn_1_49410();
+    fn_1_495C8(1);
+    fn_1_49738((u32)fn_1_5233C);
+    fn_1_49748(5.0f);
+    fn_1_4955C(0.8f, 0.8f);
+    if (lbl_801A66B4 != 5) {
+        fn_1_495B0(0x80000000);
+        fn_1_49590(0.5f);
+    }
+    halfW = 0.5f * (20.0f + fn_1_4B068(text));
+    height = 10.0f + fn_1_4B090(text);
+    frameW = 140.0f;
+    frameH = 110.0f;
+
+    fn_800371F8(1, fill);
+    fn_8003462C(0x80, 7, 4);
+    x0 = x - halfW;
+    /* height becomes the top edge, halfW the right edge */
+    height = (y - frameH) - height;
+    zz = 0.01f + z;
+    x1 = x + halfW;
+    POS3(x0, height, zz);
+    POS3(x1, height, zz);
+    POS3(x1, y - frameH, zz);
+    POS3(x0, y - frameH, zz);
+    fn_800746A8(10, 0);
+
+    fn_800371F8(1, border);
+    fn_8003462C(0xA8, 7, 2);
+    POS3(x0, height, zz);
+    POS3(x1, height, zz);
+    fn_8003462C(0xA8, 7, 2);
+    POS3(x1, height, zz);
+    POS3(x1, y - frameH, zz);
+    fn_8003462C(0xA8, 7, 2);
+    POS3(x1, y - frameH, zz);
+    POS3(x0, y - frameH, zz);
+    fn_8003462C(0xA8, 7, 2);
+    POS3(x0, y - frameH, zz);
+    POS3(x0, height, zz);
+    fn_1_496FC(x, 5.0f + height);
+    fn_1_4A0D8(text);
+
+    fn_800371F8(1, fill);
+    fn_8003462C(0x80, 7, 4);
+    POS3(x - frameW, y - frameH, z - 0.001f);
+    POS3(x + frameW, y - frameH, z - 0.001f);
+    POS3(x + frameW, y + frameH, z - 0.001f);
+    POS3(x - frameW, y + frameH, z - 0.001f);
+
+    fn_800371F8(1, border);
+    fn_8003462C(0xA8, 7, 2);
+    POS3(x - frameW, y - frameH, z);
+    POS3(x + frameW, y - frameH, z);
+    fn_8003462C(0xA8, 7, 2);
+    POS3(x + frameW, y - frameH, z);
+    POS3(x + frameW, y + frameH, z);
+    fn_8003462C(0xA8, 7, 2);
+    POS3(x + frameW, y + frameH, z);
+    POS3(x - frameW, y + frameH, z);
+    fn_8003462C(0xA8, 7, 2);
+    POS3(x - frameW, y + frameH, z);
+    POS3(x - frameW, y - frameH, z);
+}
+/* fzgx:end fn_4_1444 */
+
 /* fzgx:begin fn_4_2700 */
 #include "dolphin/hw_regs.h"
 

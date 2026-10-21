@@ -15812,6 +15812,317 @@ void fn_10_21DA8(void) {
 }
 /* fzgx:end fn_10_21DA8 */
 
+/* fzgx:begin fn_10_21E30 */
+typedef signed char s8;
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct {
+u8 pad_0[0x19];
+u8 unk_19;
+} Obj_1_bss_8B3A0_AtA4;
+typedef struct {
+s16 unk_0;
+u8 pad_2[0x2];
+s16 unk_4;
+u8 pad_6[0x2];
+s16 unk_8;
+u8 pad_A[0x4];
+s16 unk_E;
+u8 pad_10[0x4];
+u8 unk_14;
+u8 pad_15[0x19];
+s16 unk_2E;
+u8 pad_30[0x5C];
+s16 unk_8C;
+u8 pad_8E[0x2];
+s16 unk_90;
+s16 unk_92;
+u32 unk_94;
+u8 pad_98[0x6];
+u8 unk_9E;
+u8 unk_9F;
+u8 pad_A0[0x4];
+Obj_1_bss_8B3A0_AtA4 *unk_A4;
+u8 pad_A8[0x8];
+s16 unk_B0;
+s16 unk_B2;
+u8 pad_B4[0xC];
+s16 unk_C0;
+s16 unk_C2;
+u8 pad_C4[0xC];
+s16 unk_D0;
+s16 unk_D2;
+u8 pad_D4[0xC];
+u32 unk_E0;
+u32 unk_E4;
+u32 unk_E8;
+u32 unk_EC;
+u32 unk_F0;
+u32 unk_F4;
+u32 unk_F8;
+u32 unk_FC;
+u32 unk_100;
+u32 unk_104;
+u32 unk_108;
+u32 unk_10C;
+u32 unk_110;
+u32 unk_114;
+u32 unk_118;
+u32 unk_11C;
+u32 unk_120;
+u32 unk_124;
+u8 unk_128;
+u8 unk_129;
+u8 pad_12A[0x2];
+s16 unk_12C;
+s16 unk_12E;
+s16 unk_130;
+s16 unk_132;
+s16 unk_134;
+s16 unk_136;
+s16 unk_138;
+s16 unk_13A;
+s16 unk_13C;
+u8 pad_13E[0x2];
+u32 unk_140;
+u8 pad_144[0x2];
+s16 unk_146;
+s16 unk_148;
+u8 pad_14A[0x2];
+} Obj_1_bss_8B3A0;
+extern Obj_1_bss_8B3A0 lbl_1_bss_8B3A0;
+
+
+extern u32 lbl_10_data_D00;
+
+
+typedef struct FontDrawPacket FontDrawPacket;
+typedef struct FontVertex {
+f32 x, y, z;
+} FontVertex;
+struct FontDrawPacket {
+u32 image;
+f32 x, y, z;
+f32 scale_x, scale_y;
+f32 u0, v0, u1, v1;
+s16 rotation_z, rotation_y;
+f32 alpha;
+u32 flags;
+f32 depth;
+u8 color[4], color_add[4];
+u32 format;
+u16 width, height;
+void* pixels;
+FontDrawPacket* secondary;
+void (*vertex_callback)(FontDrawPacket* packet, FontVertex* vertices);
+u32 unk_54;
+};
+void fn_1_4A0D8(const char* text);
+void fn_1_4AE0C(const char* format, ...);
+int fn_1_4F734(FontDrawPacket* packet);
+void fn_1_4EDAC(FontDrawPacket* packet, f32 width, f32 height);
+void fn_1_51678(FontDrawPacket* packet, u32 image, s16 x, s16 y, s16 width, s16 height);
+void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height,
+s16 texture_width, s16 texture_height);
+
+
+extern void fn_1_12EF80(u32, void *, void *);
+
+
+extern u32 lbl_801A66C0;
+
+
+extern FontDrawPacket lbl_1_rodata_26F8;
+
+
+extern f32 lbl_10_rodata_158[];
+extern s32 lbl_801A66B4;
+
+
+extern int sprintf(char *s, const char *format, ...);
+extern void fn_1_496FC();
+extern void fn_1_4955C();
+
+
+extern void fn_1_49410();
+extern void fn_1_495B0(u32 value);
+extern void fn_1_495C8(u8 value);
+
+
+extern void fn_1_50164();
+
+
+extern void fn_1_4966C(f32 value1, f32 value2);
+
+
+extern s32 fn_1_A5DC4(void);
+
+
+extern void fn_1_49590();
+
+
+extern f32 lbl_10_bss_55B3C[];
+extern void fn_1_52088(void);
+extern void fn_1_520A0(void);
+extern void fn_1_520CC(void);
+extern void fn_1_494DC(s16 index);
+extern void fn_1_5233C(void *arg0, void *arg1);
+extern void fn_1_49738(void *);
+extern void fn_1_49748(f32 value);
+extern void fn_1_4962C(void);
+extern void fn_1_495A0(f32 value);
+extern void fn_1_141338(u32 arg0, u32 arg1, u32 arg2, u32 arg3, f32 arg4);
+
+
+struct fn_10_21E30_lbl_10_rodata_158 {
+u8 pad_0[0x58]; f32 unk_58;
+u8 pad_5C[0x1FC]; f32 unk_258;
+u8 pad_25C[0xD00]; f32 unk_F5C;
+u8 pad_F60[0x258]; f32 unk_11B8;
+u8 pad_11BC[0x18C];
+u32 unk_1348; u32 unk_134C; u32 unk_1350; u32 unk_1354; u32 unk_1358;
+u16 unk_135C; u8 pad_135E[2];
+u32 unk_1360; u32 unk_1364; u32 unk_1368; u32 unk_136C;
+u8 pad_1370[0x2C]; f32 unk_139C;
+};
+
+
+struct fn_10_21E30_lbl_1_bss_8B3A0 {
+u8 pad_0[8]; s16 unk_8; u8 pad_A[0x86]; s16 unk_90;
+};
+
+
+
+#pragma opt_propagation off
+
+void fn_10_21E30(void) {
+struct { u8 *value; } data_base;
+f32 *constants;
+u32 v0;
+u32 v1;
+u32 v2;
+u32 v3;
+u32 v4;
+f32 v5;
+f32 v6;
+s16 v7;
+s32 v8;
+u32 v9;
+f32 v10;
+f32 v11;
+u32 v12;
+struct { u32 a[64]; } loc_B8;
+FontDrawPacket loc_60;
+struct Copy44 { u32 a[11]; } loc_34;
+struct Copy22 { s16 a[11]; } loc_1C;
+struct Copy16 { u32 a[4]; } loc_C;
+s16 loc_A;
+u16 loc_8;
+s32 t1;
+s32 t5;
+data_base.value = (u8 *)((u8 (*)[])&lbl_10_data_D00);
+constants = lbl_10_rodata_158;
+v3 = (*((u32 *)&lbl_801A66B4)) == 5 ? 0 : (*((u32 *)&lbl_801A66B4));
+loc_1C = *(struct Copy22 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + 0x1348);
+loc_C = *(struct Copy16 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + 0x1360);
+if (lbl_801A66C0 <= 1) {
+lbl_10_bss_55B3C[0] = ((struct fn_10_21E30_lbl_10_rodata_158 *)constants) ->unk_F5C;
+}
+v5 = ((struct fn_10_21E30_lbl_10_rodata_158 *)constants) ->unk_139C;
+v6 = lbl_10_bss_55B3C[0];
+v7 = (*((struct fn_10_21E30_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)).unk_90;
+lbl_10_bss_55B3C[0] = (f32)(v6 + (f32)(v5 * (-v6)));
+fn_1_12EF80(v7, &loc_A, &loc_8);
+v8 = (*((struct fn_10_21E30_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)).unk_8;
+loc_A = loc_A < 0 ? 0 : (u32)loc_A > 10 ? 10 : loc_A;
+if (v8 < 0) {
+v9 = 0;
+} else {
+v9 = 7;
+if ((u32)v8 <= 7) v9 = v8;
+}
+t1 = fn_1_A5DC4();
+if ((s8)t1 != 0) {
+fn_1_520A0();
+fn_1_52088();
+}
+loc_60 = *(FontDrawPacket *)((u32 *)&lbl_1_rodata_26F8);
+loc_60.image = (0x10000 - 29951);
+loc_60.x = ((struct fn_10_21E30_lbl_10_rodata_158 *)constants) ->unk_58;
+loc_60.y = ((struct fn_10_21E30_lbl_10_rodata_158 *)constants) ->unk_258;
+loc_60.z = ((struct fn_10_21E30_lbl_10_rodata_158 *)constants) ->unk_11B8;
+loc_60.flags = 10;
+fn_1_4F734(&loc_60);
+t5 = fn_1_A5DC4();
+if ((s8)t5 != 0) fn_1_520CC();
+v12 = (v3 << 2);
+{
+struct { u8 *value; } table;
+u32 offset = loc_1C.a[loc_A] * 24;
+offset += v12;
+table.value = data_base.value + 0x1fdc;
+sprintf((char *)&loc_B8, (char *)data_base.value + 0x5b68,
+*(char **)(table.value + offset));
+}
+fn_1_49410();
+fn_1_494DC(8);
+fn_1_49738(fn_1_5233C);
+fn_1_49748((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x4c))) );
+fn_1_495B0(0x80000000);
+fn_1_49590((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x48))) );
+fn_1_4966C((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x254))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x4c))) );
+fn_1_4955C((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x13a0))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x13a0))) );
+fn_1_496FC((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x58))) + lbl_10_bss_55B3C[0],(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x13a4))) );
+fn_1_4962C();
+fn_1_495C8(9);
+fn_1_495A0((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x44))) - lbl_10_bss_55B3C[0] / (*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0xf5c))) );
+fn_1_4A0D8((char *)&loc_B8);
+loc_34 = *(struct Copy44 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + 0x1370);
+loc_60 = *(FontDrawPacket *)((u32 *)&lbl_1_rodata_26F8);
+loc_60.image = loc_34.a[loc_A];
+loc_60.x = (*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x58))) ;
+loc_60.y = (*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x258))) ;
+loc_60.z = (*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x28c))) ;
+loc_60.flags = 10;
+fn_1_4F734(&loc_60);
+loc_60.image = 0xa109;
+loc_60.z = (*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x7c))) ;
+fn_1_50164((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0xb78))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x54c))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x65c))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x3c0))) ,&loc_60);
+fn_1_141338((u8)loc_A,320,240,45,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x44))) );
+{
+struct { u8 *value; } table;
+u32 offset = ((s16 *)&loc_C)[v9] * 24;
+offset += v12;
+table.value = data_base.value + 0x1fdc;
+sprintf((char *)&loc_B8, (char *)data_base.value + 0x5b70,
+*(char **)(table.value + offset));
+}
+fn_1_49410();
+fn_1_494DC(8);
+fn_1_49738(fn_1_5233C);
+fn_1_49748((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x4c))) );
+fn_1_495B0(0x80000000);
+fn_1_49590((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x48))) );
+fn_1_4966C((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x254))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x4c))) );
+fn_1_4955C((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x11c4))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x11c4))) );
+fn_1_496FC((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x58))) - lbl_10_bss_55B3C[0],(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x278))) );
+fn_1_4962C();
+fn_1_495C8(9);
+fn_1_495A0((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x44))) - lbl_10_bss_55B3C[0] / (*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0xf5c))) );
+fn_1_4A0D8((char *)&loc_B8);
+}
+/* fzgx:end fn_10_21E30 */
+
 /* fzgx:begin fn_10_2228C */
 extern u8 lbl_10_bss_55CE0;
 

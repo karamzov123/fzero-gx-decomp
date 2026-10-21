@@ -2246,3 +2246,6 @@ rel/movie_module/fn_12_2B6B0.c:
 
 rel/movie_module/fn_12_5FA0.c:
 	.text       start:0x00005FA0 end:0x000062F8 align:4
+
+rel/movie_module/fn_12_B598.c:
+	.text       start:0x0000B598 end:0x0000B9E8 align:4

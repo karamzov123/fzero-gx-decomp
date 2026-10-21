@@ -873,6 +873,167 @@ void fn_7_170C(void) {
 }
 /* fzgx:end fn_7_170C */
 
+/* fzgx:begin fn_7_1710 */
+typedef struct {
+    s8 a;
+    s8 b;
+} StoryPos;
+
+struct fn_7_1710_bss_0 {
+    u8 pad_0[0x10];
+    StoryPos *pos;
+    u8 pad_14[0x4];
+    void *unk_18;
+    void *unk_1C;
+};
+
+struct fn_7_1710_bss_5138 {
+    u16 unk_0;
+    u8 count2;
+    u8 count3;
+    u8 list[4];
+    u16 arr[4];
+    u16 unk_10;
+    u16 unk_12;
+    u8 pad_14[0xD1];
+    u8 unk_E5;
+};
+
+struct fn_7_1710_bss_9C {
+    u8 pad_0[3];
+    u8 unk_3;
+};
+
+extern struct fn_7_1710_bss_0 lbl_7_bss_0;
+extern struct fn_7_1710_bss_5138 lbl_1_bss_5138;
+extern struct fn_7_1710_bss_9C lbl_1_bss_9C;
+extern u16 lbl_1_bss_96A;
+
+extern void fn_1_4CC0(void);
+extern void fn_8006CE1C(f32);
+extern u32 fn_1_F9CA0(u32, u32);
+extern void fn_1_F9CD0(u8, u8);
+extern u32 fn_1_F9E80(u32, u32);
+extern u32 fn_1_F9EB0(u32, u32);
+extern s32 fn_1_F7EDC(s16);
+extern int fn_1_F8334(s16);
+extern void fn_1_3FDA8(void *, void *);
+
+/* Layout primer: the story TU's .rodata ahead of this function (0x528 bytes of tables,
+ * then the 0.0f / 1.0f literals), so the initializers below land at retail's offsets. */
+#define FZGX_Z8 0, 0, 0, 0, 0, 0, 0, 0
+#define FZGX_Z32 FZGX_Z8, FZGX_Z8, FZGX_Z8, FZGX_Z8
+static const u32 fzgx_pool_table_0[330] = {
+    FZGX_Z32, 0, 0x01250000,
+    FZGX_Z32, 0x02260000,
+    FZGX_Z32, 0x03270000,
+    FZGX_Z32, 0x04280000,
+    FZGX_Z32, 0x05290000,
+    FZGX_Z32, 0x062A0000,
+    FZGX_Z32, 0x072B0000,
+    FZGX_Z32, 0x082C0000,
+    FZGX_Z32, 0x092D0000,
+    FZGX_Z32,
+};
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer(void) {
+    fn_1_4CC0();
+    fn_1_3FDA8((void *)fzgx_pool_table_0, (void *)fzgx_pool_table_0);
+    fn_8006CE1C(0.0f);
+    fn_8006CE1C(1.0f);
+}
+#pragma section code_type ".text"
+
+void fn_7_1710(void) {
+    struct fn_7_1710_bss_0 *g = (struct fn_7_1710_bss_0 *)&lbl_7_bss_0;
+    s16 tblA[9][3] = {
+        { 15, 25, 35 }, { 15, 25, 35 }, { 15, 25, 35 },
+        { 20, 25, 35 }, { 20, 25, 35 }, { 25, 30, 40 },
+        { 25, 30, 40 }, { 30, 35, 45 }, { 30, 35, 45 },
+    };
+    s16 tblB[9][3] = {
+        { 31, 16, 71 }, { 29, 10, 72 }, { 30, 3, 66 },
+        { 35, 2, 59 }, { 42, 7, 55 }, { 33, 21, 63 },
+        { 27, 5, 51 }, { 40, 15, 68 }, { 43, 4, 56 },
+    };
+    s16 tblC[9] = { 40, 36, 39, 31, 32, 35, 33, 37, 38 };
+
+    struct fn_7_1710_bss_5138 *st;
+    s16 i;
+    s32 ok;
+    int done;
+    StoryPos *pos;
+
+    fn_1_4CC0();
+    fn_8006CE1C(0.0f);
+    pos = g->pos;
+    if (pos->a == 0) {
+        if ((s32)fn_1_F9CA0(0, 1) == 0) {
+            lbl_1_bss_9C.unk_3 = 1;
+        }
+        fn_1_F9CD0(0, 1);
+        lbl_1_bss_96A = 0x92;
+        return;
+    }
+    done = fn_1_F9E80((u8)pos->b, (u8)pos->a) == 0;
+    lbl_1_bss_5138.unk_10 = 320;
+    lbl_1_bss_5138.unk_12 = 200;
+    st = &lbl_1_bss_5138;
+    if (!done) {
+        return;
+    }
+    st->count3 = 0;
+    st->count2 = 0;
+    st->unk_0 += tblA[g->pos->a - 1][g->pos->b];
+    fn_1_F9EB0((u8)g->pos->b, (u8)g->pos->a);
+    if (g->pos->b < 2) {
+        fn_1_F9CD0(g->pos->b + 1, g->pos->a);
+    }
+    switch (g->pos->b) {
+    case 0:
+        if (g->pos->a < 9) {
+            lbl_1_bss_5138.unk_E5 = g->pos->a + 1;
+        } else if (g->pos->a == 9 && fn_1_F7EDC(30) == 0) {
+            lbl_1_bss_5138.list[st->count3] = 30;
+            st->count3++;
+        }
+        break;
+    case 1:
+        for (i = 0; i < 3; i++) {
+            if (fn_1_F8334(tblB[g->pos->a - 1][i]) == 0) {
+                lbl_1_bss_5138.arr[st->count2] = tblB[g->pos->a - 1][i];
+                st->count2++;
+            }
+        }
+        if (st->count2 == 0) {
+            lbl_1_bss_5138.unk_0 += 10;
+        }
+        ok = 1;
+        for (i = 1; i < 10; i++) {
+            if ((s32)fn_1_F9E80(1, (u8)i) == 0) {
+                ok = 0;
+            }
+        }
+        if ((u8)ok) {
+            lbl_1_bss_5138.list[st->count3] = 34;
+            st->count3++;
+        }
+        break;
+    case 2:
+        if (fn_1_F7EDC(tblC[g->pos->a - 1]) == 0) {
+            lbl_1_bss_5138.list[st->count3] = tblC[g->pos->a - 1];
+            st->count3++;
+        } else {
+            lbl_1_bss_5138.unk_0 += 20;
+        }
+        break;
+    }
+    fn_1_3FDA8(g->unk_18, g->unk_1C);
+    lbl_1_bss_9C.unk_3 = 1;
+}
+/* fzgx:end fn_7_1710 */
+
 /* fzgx:begin fn_7_1BA8 */
 struct StoryState_1BA8 {
     u8 pad_00[0xe0];

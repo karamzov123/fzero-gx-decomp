@@ -2406,6 +2406,211 @@ s16 fn_1_847A8(s16 value, s16 divisor) {
 }
 /* fzgx:end fn_1_847A8 */
 
+/* fzgx:begin fn_1_850C4 noprologue */
+typedef signed char s8;
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct Vec3 {
+f32 x;
+f32 y;
+f32 z;
+} Vec3;
+
+
+typedef struct CarInfo850C4 {
+u8 pad0[0x115];
+u8 rank;
+u8 pad116[0x2];
+s32 lap;
+} CarInfo850C4;
+typedef struct Car850C4 {
+u32 flags;
+s16 id;
+u8 pad6[0x76];
+Vec3 pos;
+u8 pad88[0x64];
+Vec3 vecEC;
+u8 padF8[0x8c];
+f32 f184;
+u8 pad188[0x314];
+CarInfo850C4 *info;
+u8 pad4A0[0xec];
+u32 flags58C;
+u8 pad590[0x90];
+} Car850C4;
+typedef struct Racer850C4 {
+u32 flags;
+u8 lap;
+u8 pad5[0x1400];
+u8 slotMask;
+u8 pad1406[0x2];
+Vec3 slots[5];
+} Racer850C4;
+typedef struct Owner850C4 {
+u8 pad1C0[0x390];
+u32 flags;
+} Owner850C4;
+typedef struct State850C4 {
+u8 pad0[0x18];
+Car850C4 *cars;
+u8 pad1C[0xe];
+s8 count;
+u8 pad2B[0x125];
+void (*carHook)(Car850C4 *);
+void (*racerHook)(Racer850C4 *);
+s32 f158;
+s32 f15C;
+} State850C4;
+extern u8 lbl_1_bss_6D820;
+extern s32 fn_1_239C4(Car850C4 *, Car850C4 *);
+extern Owner850C4 *fn_1_868C0(s8);
+extern void fn_1_25004(Car850C4 *);
+extern void fn_1_68B6C(s8, s8);
+extern void fn_1_266A8(Car850C4 *);
+extern void fn_1_24A4C(Car850C4 *);
+extern void fn_1_8A1B4(Car850C4 *, void *, Racer850C4 *);
+extern void fn_1_250F8(Car850C4 *);
+extern void fn_1_8B9B8(Racer850C4 *);
+extern u32 fn_1_3F854(void);
+extern void lbl_8006DBAC(Vec3 *);
+static inline void setTranslation(Vec3 *v, f32 *matrix) {
+struct { f32 *value; } base;
+f32 x = v->x;
+f32 y = v->y;
+f32 z = v->z;
+base.value = matrix;
+base.value[3] = x;
+base.value[7] = y;
+base.value[11] = z;
+}
+static inline Car850C4 * fn_1_850C4_read_pointer(State850C4 * owner) { return owner->cars; }
+
+#pragma opt_dead_assignments off
+
+void fn_1_850C4(Racer850C4 *racer) {
+State850C4 *state;
+f32 *matrix;
+u32 i;
+u32 j;
+u8 forced;
+s32 wasSet;
+u32 flags;
+u32 bit;
+Owner850C4 *a;
+Owner850C4 *b;
+Car850C4 *car;
+s32 slot;
+u8 best;
+u8 rank;
+f32 z;
+f32 y;
+f32 x;
+state = (State850C4 *)&lbl_1_bss_6D820;
+forced = 0;
+flags = racer->flags;
+bit = flags & 0x200000;
+wasSet = (flags >> 21) & 1;
+if (racer != ((void *)0) ) {
+if (flags & 0x20) {
+racer = ((void *)0) ;
+} else if (!(flags & 0x4000) || bit) {
+forced = 1;
+racer->flags |= 0x200000;
+}
+}
+for (i = 0; i < state->count; i++) {
+for (j = i + 1; j < state->count; j++) {
+if (fn_1_239C4(&state->cars[i], &state->cars[j]) != 0) {
+a = fn_1_868C0((s8)fn_1_850C4_read_pointer(state)[i].id);
+b = fn_1_868C0((s8)fn_1_850C4_read_pointer(state)[j].id);
+if (a->flags & 0x200000) {
+fn_1_25004(&state->cars[i]);
+}
+if (b->flags & 0x200000) {
+fn_1_25004(&state->cars[j]);
+}
+fn_1_68B6C((s8)i, (s8)j);
+}
+}
+}
+for (car = fn_1_850C4_read_pointer(state), j = 0, matrix = (f32 *)(0xE0000000 + 0x00); j < state->count; j++, car++) {
+if (car->flags58C & 8) {
+lbl_8006DBAC(&car->vecEC);
+setTranslation(&car->pos, matrix);
+fn_1_266A8(car);
+}
+}
+for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+fn_1_24A4C(car);
+}
+for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+fn_1_8A1B4(car, ((void *)0) , racer);
+}
+if (!forced && state->f158 == 0) {
+for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+CarInfo850C4 *info = car->info;
+if (!(car->flags & 0x08010000) && racer != ((void *)0) ) {
+s32 ok = info->lap >= racer->lap;
+ok &= state->f158 == 0 && !(racer->flags & 0x40);
+if (ok) {
+fn_1_250F8(car);
+}
+}
+}
+} else {
+for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+car->f184 = 100.0f;
+}
+}
+if (racer != ((void *)0) ) {
+state->racerHook(racer);
+state->racerHook = fn_1_8B9B8;
+racer->slotMask = 0;
+best = state->count;
+for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+slot = -1;
+if (!(car->flags & 0x20000000)) {
+if (i < fn_1_3F854()) {
+slot = i;
+} else {
+rank = car->info->rank;
+if (rank < best) {
+slot = 4;
+best = rank;
+}
+}
+if (slot != -1) {
+racer->slotMask |= 1 << slot;
+racer->slots[slot] = car->pos;
+}
+}
+}
+}
+if (state->carHook != ((void *)0) ) {
+for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+state->carHook(car);
+}
+}
+state->f158 = state->f15C != 0;
+if (racer != ((void *)0) && wasSet == 0) {
+racer->flags &= ~0x200000;
+}
+}
+
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_850C4 */
+
 /* fzgx:begin fn_1_85688 pool */
 typedef struct {
     u8 pad_0[0x324];

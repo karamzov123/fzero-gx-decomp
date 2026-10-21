@@ -559,6 +559,157 @@ void fn_1_FBEA8(void) {
 }
 /* fzgx:end fn_1_FBEA8 */
 
+/* fzgx:begin fn_1_FBFE4 noprologue */
+#include "types.h"
+
+extern const f32 lbl_1_rodata_7598; // 0.0f
+extern u32 lbl_1_bss_85088[14];
+
+extern void GXLoadTexMtxImm(void *, u32, u32);
+extern void fn_80072EDC(s32, s32);
+extern void fn_800734A8(s32, s32, s32, s32);
+extern void fn_80073778(void *, s32);
+extern void fn_800738E0(s32, s32, s32);
+extern void fn_800739E0(s32, s32, s32);
+extern void fn_80073A58(s32, void *, s32);
+extern void fn_80073C6C(s32);
+extern void fn_80073D60(s32, s32, s32, s32, s32);
+extern void fn_800745A4(s32, s32, s32, s32, u32, u32);
+
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+typedef struct {
+    s32 active;      // 0x0
+    u8 pad_4[0x24];
+    f32 mtx[3][4];   // 0x28
+    s32 tex;         // 0x58
+    s8 off[4];       // 0x5c
+} CasLayer;
+
+typedef struct {
+    s32 active;      // 0x0
+    u8 id;           // 0x4
+    u8 pad_5[3];
+    s32 flags[3];    // 0x8
+    CasLayer lower[3]; // 0x14
+    CasLayer upper[3]; // 0x134
+    u8 pal[4];       // 0x254
+    f32 sx[3];       // 0x258
+    f32 sy[3];       // 0x264
+} CasEntry;
+
+typedef struct {
+    volatile s32 count;  // 0x0: snapshot count must be read before configuring layers
+    s32 x;      // 0x4
+    s32 tex;    // 0x8
+    s32 y;      // 0xc
+    s32 z;      // 0x10
+    s32 unk_14;
+    s32 unk_18;
+    s32 w;      // 0x1c
+    s32 unk_20;
+    s32 unk_24;
+    s32 unk_28;
+} CasAlloc;
+
+typedef struct {
+    u8 pad_0[0x15];
+    u8 id;
+} CasOwner;
+
+typedef struct {
+    u32 unk_0;
+    CasOwner *owner; // 0x4
+    u32 unk_8;
+    CasAlloc alloc;  // 0xc
+} CasState;
+
+extern CasEntry lbl_1_bss_84454[5];
+
+void fn_1_FBFE4(CasState *state) {
+    CasAlloc base;
+    CasAlloc cur;
+    f32 mtx[6];
+    u8 i;
+    CasOwner *owner;
+    s32 j;
+    struct { s32 value; } count;
+    CasEntry *entry;
+    s32 k;
+    CasLayer *layer;
+    s32 x, tex, y, z, w;
+    s32 x2, tex2, y2;
+
+    cur = state->alloc;
+    base = state->alloc;
+    owner = state->owner;
+    for (i = 0; i < 5; i++) {
+        entry = &lbl_1_bss_84454[i];
+        if (entry->active == 0) {
+            continue;
+        }
+        if (owner->id != entry->id) {
+            continue;
+        }
+        count.value = base.count;
+        for (j = 0; j < 3; j++) {
+            k = count.value - j - 1;
+            if (k < 0) {
+                continue;
+            }
+            if (entry->flags[j] != 0) {
+                fn_80073C6C(k);
+                fn_80072EDC(k, 4);
+                fn_800734A8(k, 0xff, 0xff, 0xff);
+            }
+            layer = &entry->upper[j];
+            if (layer->active != 0) {
+                x = base.x + layer->off[0];
+                y = base.y + layer->off[1];
+                z = base.z + layer->off[2];
+                w = base.w + layer->off[3];
+                tex = layer->tex;
+                cur.x = MAX(cur.x, x + 1);
+                cur.tex = MAX(cur.tex, tex + 3);
+                cur.y = MAX(cur.y, y + 1);
+                cur.z = MAX(cur.z, z + 1);
+                cur.w = MAX(cur.w, w + 1);
+                mtx[0] = entry->sx[j];
+                mtx[1] = lbl_1_rodata_7598;
+                mtx[2] = lbl_1_rodata_7598;
+                mtx[3] = lbl_1_rodata_7598;
+                mtx[4] = entry->sy[j];
+                mtx[5] = lbl_1_rodata_7598;
+                GXLoadTexMtxImm(layer->mtx, tex, 1);
+                fn_800745A4(x, 1, 4, tex, 0, 0x7d);
+                fn_80073778((void *)lbl_1_bss_85088[entry->pal[j]], y);
+                fn_800738E0(z, x, y);
+                fn_80073D60(k, z, 0, 0, w);
+                fn_800739E0(z, 0, 0);
+                fn_80073A58(w, mtx, 0);
+            } else {
+                fn_80073C6C(k);
+            }
+            layer = &entry->lower[j];
+            if (layer->active != 0) {
+                x2 = base.x + layer->off[0];
+                y2 = base.y + layer->off[1];
+                tex2 = layer->tex;
+                cur.x = MAX(cur.x, x2 + 1);
+                cur.tex = MAX(cur.tex, tex2 + 3);
+                cur.y = MAX(cur.y, y2 + 1);
+                fn_80073778((void *)lbl_1_bss_85088[entry->pal[j]], y2);
+                GXLoadTexMtxImm(layer->mtx, tex2, 1);
+                fn_800745A4(x2, 1, 4, tex2, 0, 0x7d);
+                fn_800734A8(k, x2, y2, 4);
+            }
+        }
+        state->alloc = cur;
+        break;
+    }
+}
+/* fzgx:end fn_1_FBFE4 */
+
 /* fzgx:begin fn_1_FC40C */
 // fn_1_FC40C: empty in retail (single blr).
 void fn_1_FC40C(void) {
@@ -1418,6 +1569,157 @@ void fn_1_FE784(void) {
 void fn_1_FE7D4(void) {
 }
 /* fzgx:end fn_1_FE7D4 */
+
+/* fzgx:begin fn_1_FE7D8 */
+extern void fn_80008BEC(void *arg0, int arg1, int arg2);
+extern void fn_1_FCA10(void);
+extern int fn_1_FCF50(void);
+extern void *fn_1_563B8(void *);
+extern f32 lbl_1_rodata_761C[13];
+extern void fn_1_7EB8C(void *, f32);
+extern void fn_1_7F20C(void *, s32, f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DBAC(void *);
+extern void fn_1_FD3A8(void);
+extern void *memset(void *, int, u32);
+extern void fn_1_FE7D8(u8 *, s32);
+extern void fn_1_FF420(u8 *);
+extern void fn_80074788(int);
+extern void fn_80072864(int);
+extern void fn_800745A4(int, int, int, int, int, int);
+extern void fn_800734A8(int, int, int, int);
+extern void fn_80072AB0(int, int, int);
+extern void fn_800735C8(int, int);
+extern void fn_80073620(int, int);
+extern void fn_80073C6C(int);
+extern void fn_80072C24(int, int, int, int, int);
+extern void fn_80072D64(int, int, int, int, int, int);
+extern void fn_80072CC4(int, int, int, int, int);
+extern void fn_80072E20(int, int, int, int, int, int);
+extern void fn_80073678(int);
+extern void fn_80074660(int);
+extern void fn_80074918(int, int, int);
+extern void fn_800720B0(int);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
+extern void fn_1_9AD54(void);
+extern void fn_1_9AD88(void);
+extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
+extern const f64 lbl_1_rodata_760C;
+extern void OSPanic(const char *, int, const char *, ...);
+extern void lbl_8006D758(void);
+extern void lbl_8006E13C(void *);
+extern void lbl_8006E0A4(void *);
+extern void fn_80008BA8(void *, void *, u32);
+extern u8 lbl_1_bss_851E0[36];
+extern void fn_1_7F230(void *, s32, f32);
+extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
+extern void fn_1_FEC7C(void *object);
+extern const f32 lbl_1_rodata_76A8;
+
+typedef struct {
+    f32 x, y, z;
+} FE7D8_Vec;
+
+/* one 0x24-byte spawn point of the background table */
+typedef struct {
+    FE7D8_Vec from;  /* 0x00 */
+    s16 unk_C;
+    s16 unk_E;
+    u8 pad_10[4];
+    FE7D8_Vec to;    /* 0x14 */
+    u8 pad_20[4];
+} FE7D8_Spawn;
+
+typedef struct {
+    s32 active;      /* 0x00 */
+    s32 life;        /* 0x04 */
+    FE7D8_Vec pos;   /* 0x08 */
+    FE7D8_Vec prev;  /* 0x14 */
+    FE7D8_Vec vel;   /* 0x20 */
+    u16 rot_x;       /* 0x2C */
+    u16 rot_y;       /* 0x2E */
+    s16 spin_x;      /* 0x30 */
+    s16 spin_y;      /* 0x32 */
+    f32 unk_34;
+    f32 size;        /* 0x38 */
+} FE7D8_Particle;
+
+extern u32 fn_1_584AC(void);
+extern void lbl_8006D5F0(FE7D8_Vec *src, FE7D8_Vec *dst, f32 scale);
+extern void lbl_8006D8D8(s16 angle);
+extern void lbl_8006E1C0(FE7D8_Vec *src, FE7D8_Vec *dst);
+
+/* uniform random value in [0, 1] */
+#define RANDF() ((f32)(u16)fn_1_584AC() / 32767.0f)
+
+/* Literal pool of the retail TU (lbl_1_rodata_76A8): MWCC pools literals in
+ * first-use order across the TU, so the earlier functions' literals come first. */
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_layout(void) {
+    volatile f32 s; /* fzgx-allow: S2 pool primer sink: fixes the TU literal order */
+    s = 0.0f;
+}
+
+static const u32 fzgx_pool_table_4[1] = {0x00000000};
+
+static void fzgx_pool_layout_1(void) {
+    volatile f32 s; /* fzgx-allow: S2 pool primer sink: fixes the TU literal order */
+    volatile s32 i; /* fzgx-allow: S2 pool primer sink: fixes the TU literal order */
+    volatile u32 w; /* fzgx-allow: S2 pool primer sink: fixes the TU literal order */
+    w = fzgx_pool_table_4[0];
+    s = 1.0f;
+    s = 6600.0f;
+    s = 110.0f;
+    s = 60.0f;
+    s = 15.0f;
+    s = (f32)i;
+}
+#pragma section code_type ".text"
+
+#pragma fp_contract off
+void fn_1_FE7D8(u8 *arg0, s32 arg1) {
+    FE7D8_Particle *p = (FE7D8_Particle *)arg0;
+    FE7D8_Spawn *e;
+    FE7D8_Vec d;
+
+    e = (FE7D8_Spawn *)lbl_1_bss_3BE0->unk_A8;
+    e += (u16)fn_1_584AC() % (s32)lbl_1_bss_3BE0->unk_A4;
+    p->active = arg1;
+    if (arg1 != 0) {
+        p->life = 100.0f + 300.0f * RANDF();
+        p->pos = e->from;
+        p->prev = p->pos;
+        d.x = e->to.x - e->from.x;
+        d.y = e->to.y - e->from.y;
+        d.z = e->to.z - e->from.z;
+        lbl_8006D5F0(&d, &p->vel, (f32)(e->unk_E >> 7) * (15.0f + 4.0f * RANDF()) / 10.0f);
+        p->size = 2.0f + 2.0f * RANDF();
+        p->size *= (f32)(e->unk_C >> 7) / 10.0f;
+    } else {
+        p->life = 200.0f + 400.0f * RANDF();
+        {
+            FE7D8_Vec dir = {0.0f, 0.0f, -1.0f};
+
+            d = dir;
+        }
+        lbl_8006D8D8(fn_1_584AC());
+        lbl_8006E1C0(&d, &d);
+        lbl_8006D5F0(&d, &p->pos, 2500.0f + 1000.0f * RANDF());
+        p->pos.y = 1400.0f + 300.0f * RANDF();
+        p->vel.x = RANDF() - 0.5 - 5.0;
+        p->vel.y = -(4.0f + 7.0f * RANDF());
+        p->vel.z = RANDF() - 0.5;
+        p->size = 2.0f + 2.5f * RANDF();
+    }
+    p->rot_x = fn_1_584AC();
+    p->rot_y = fn_1_584AC();
+    p->spin_x = (s32)(768.0f * RANDF()) + 256;
+    p->spin_y = (s32)(768.0f * RANDF()) + 256;
+    p->unk_34 = 0.0f;
+}
+#pragma fp_contract reset
+/* fzgx:end fn_1_FE7D8 */
 
 /* fzgx:begin fn_1_FEC7C */
 #include "rel/main_rel/bg_cas.h"

@@ -2004,6 +2004,139 @@ void fn_1_4D4C8(Color4_4D4C8 *color, f32 z, f32 ofs) {
 }
 /* fzgx:end fn_1_4D4C8 */
 
+/* fzgx:begin fn_1_4D784 noprologue */
+#include "types.h"
+#include "runtime/va_list.h"
+
+extern u8 lbl_1_data_1A3B8[];
+extern u8 lbl_8015B100[];
+extern f32 fn_1_4B1D4(s32 mode, u8 *text);
+extern s32 fn_8008077C(u8 *dst, const char *fmt, __va_list args);
+extern s32 strncmp(const u8 *, const u8 *, u32);
+extern u8 *fn_80083DB0(u8 *, const u8 *);
+extern u32 strlen(const u8 *);
+
+/* both characters are alphanumeric or one of - " ' ( ) */
+static inline s32 fn_1_4D784_isJoined(u8 a, u8 b) {
+    if (((lbl_8015B100[a] & 0xd0) || a == '-' || a == '"' || a == '\'' || a == '(' || a == ')') &&
+        ((lbl_8015B100[b] & 0xd0) || b == '-' || b == '"' || b == '\'' || b == '(' || b == ')')) {
+        return 1;
+    }
+    return 0;
+}
+
+static inline s32 fn_1_4D784_isAlnumPair(s32 a, s32 b) {
+    if ((lbl_8015B100[a] & 0xd0) && (lbl_8015B100[b] & 0xd0)) {
+        return 1;
+    }
+    return 0;
+}
+
+u8 *fn_1_4D784(s32 wordWrap, s32 hyphenate, s32 kinsoku, s32 width, u8 *out, const char *fmt, ...) {
+    __va_list args;
+    u8 line[0x200];
+    u8 text[0x400];
+    s16 i;
+    u8 *q;
+    s16 start;
+    u8 *p;
+    s16 len;
+    s32 hyphen;
+    s32 flag;
+    u8 c;
+    s16 count;
+    u8 *strs = lbl_1_data_1A3B8;
+
+    __builtin_va_info(&args);
+    fn_8008077C(text, fmt, args);
+    q = line;
+    i = 0;
+    while ((c = *(p = text + i)) != 0) {
+        start = i;
+        hyphen = 0;
+        flag = 0;
+        if (c < 0x80) {
+            if (kinsoku == 1) {
+                if (strncmp(p, strs + 0x1eb4, 1) == 0 || strncmp(p, strs + 0x1eac, 1) == 0) {
+                    *q++ = text[i++];
+                    flag = 1;
+                }
+            }
+            len = 1;
+            *q++ = text[i];
+            if (hyphenate == 1 && i > 0) {
+                if (fn_1_4D784_isAlnumPair(text[i - 1], text[i])) {
+                    hyphen = 1;
+                }
+            }
+        } else {
+            if (kinsoku == 1) {
+                if (strncmp(p, strs + 0x1d08, 2) == 0 || strncmp(p, strs + 0x1d04, 2) == 0 ||
+                    strncmp(p, strs + 0x212c, 2) == 0) {
+                    q[0] = text[i++];
+                    flag = 1;
+                    q[1] = text[i++];
+                    q += 2;
+                }
+            }
+            q[0] = text[i++];
+            len = 2;
+            q[1] = text[i];
+            q += 2;
+        }
+        *q = 0;
+        if (fn_1_4B1D4(1, line) > (f32)(s16)width) {
+            q -= len;
+            count = 0;
+            if (wordWrap != 0) {
+                while (fn_1_4D784_isJoined(q[-1], q[0])) {
+                    q--;
+                    count++;
+                }
+            }
+            if (hyphen == 1) {
+                *q++ = '-';
+            }
+            q[0] = '\n';
+            q[1] = 0;
+            fn_80083DB0(out, line);
+            out += strlen(line);
+            line[0] = 0;
+            q = line;
+            if (text[start] < 0x80) {
+                while (count-- != 0) {
+                    *q++ = text[start - count - 1];
+                }
+                if (flag == 1) {
+                    start++;
+                }
+                c = text[start];
+                if (!(lbl_8015B100[c] & 6)) {
+                    *q++ = c;
+                    start++;
+                }
+            } else {
+                if (flag == 1) {
+                    start += 2;
+                }
+                q[0] = text[start++];
+                q[1] = text[start++];
+                q += 2;
+            }
+            if (text[start] == 0) {
+                *q = 0;
+                break;
+            }
+        }
+        i++;
+    }
+    fn_80083DB0(out, line);
+    out += strlen(line);
+    out[1] = 0;
+    return out;
+}
+/* fzgx:end fn_1_4D784 */
+
 /* fzgx:begin fn_1_4DC20 */
 typedef struct {
     u32 words[23];

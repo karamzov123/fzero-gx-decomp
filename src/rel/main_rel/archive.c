@@ -1062,6 +1062,206 @@ void fn_1_12B5B4(s16 arg0, s16 arg1)
 }
 /* fzgx:end fn_1_12B5B4 */
 
+/* fzgx:begin fn_1_12B664 noprologue */
+#include "rel/main_rel/archive.h"
+
+extern void fn_1_A2D84(u32);
+extern int fn_1_8623C(void);
+extern u8 *fn_1_36AD0(void);
+extern u32 fn_1_151BE8(s16, s16);
+
+typedef struct {
+    u8 pad_0[0xE];
+    s16 unk_E;
+    u8 pad_10[0x4];
+    u8 unk_14;
+    u8 pad_15[0xB];
+} Entry_12B664;
+
+/* view of lbl_1_bss_8B3A0's layout: four 0x20-byte player entries first */
+typedef struct {
+    Entry_12B664 ents[4];
+    u8 pad_80[0x14];
+    u32 unk_94;
+} Menu_12B664;
+
+typedef struct {
+    s16 unk_0;
+    u8 pad_2[0x1A];
+} Slot_12B664;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[3];
+    u32 unk_4[1];
+} Pair_12B664;
+
+typedef struct {
+    u8 pad_0[0x81A4];
+    Pair_12B664 pairs[3];
+    u8 pad_81BC[0x4];
+} Big_12B664;
+
+/* 0x14-byte pad state records at lbl_1_bss_9F8 */
+typedef struct {
+    u8 pad_0[0xA];
+    volatile u16 unk_A;  /* volatile: each button test re-reads the word */
+    u8 pad_C[0x6];
+    volatile u16 unk_12; /* volatile: each button test re-reads the word */
+} Pad_12B664;
+
+#define PAD(i) (*(Obj_1_bss_9F8 *)((u8 *)&lbl_1_bss_9F8.unk_0 + (u32)(s32)(i) * 0x14))
+#define WRAP(v) ((v) > 3 ? 0 : ((v) < 0 ? 3 : (v)))
+
+typedef struct lbl_1_bss_8B3A0_t {
+    u8 pad_0[0x94];
+    u32 unk_94;
+    u8 pad_98[0xb4];
+} lbl_1_bss_8B3A0_t;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+lbl_1_bss_8B3A0_t fzgx_obj_lbl_1_bss_8B3A0;
+u32 lbl_1_bss_8B4EC[32];
+u32 fzgx_obj_lbl_1_bss_8B56C[24];
+u32 lbl_1_bss_8B5CC[8];
+u32 fzgx_obj_lbl_1_bss_8B5EC;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8B3A0;
+    s = *(u8 *)&lbl_1_bss_8B4EC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8B56C;
+    s = *(u8 *)&lbl_1_bss_8B5CC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8B5EC;
+}
+#pragma section code_type ".text"
+
+void fn_1_12B664(s16 idx, Menu_12B664 *obj, Slot_12B664 *slots)
+{
+    u32 mask;
+    s16 sel;
+    s16 old;
+    s16 i;
+    s16 j;
+    s16 k;
+    s32 t;
+    s32 n;
+    Big_12B664 *big;
+    u32 *src;
+    u8 c;
+    struct { s16 value; } m;
+    volatile u16 *buttons; /* volatile: each button test re-reads the word */
+
+    if (obj->unk_94 & 0x02000000) {
+        return;
+    }
+    mask = 0;
+    
+    if (fzgx_obj_lbl_1_bss_8B3A0.unk_94 & 0x40000000) {
+        for (i = 0; (t = i) <= 3; i++) {
+            n = obj->ents[idx].unk_14;
+            if (n & (1 << t)) {
+                sel = i;
+            }
+        }
+        buttons = (volatile u16 *)&lbl_1_bss_9F8.unk_0; /* volatile: each button test re-reads the word */
+        buttons += (u32)(s32)idx * 10;
+        if ((*(buttons += 5) >> 4) & 1) {
+            t = sel + 1;
+            sel = WRAP(t);
+            fn_1_A2D84(0xA9010000);
+        } else if ((*buttons >> 5) & 1) {
+            t = sel - 1;
+            sel = WRAP(t);
+            fn_1_A2D84(0xA9010000);
+        }
+    } else {
+        for (i = 0; (t = i) <= 3; i++) {
+            n = obj->ents[idx].unk_14;
+            if (n & (1 << t)) {
+                sel = i;
+            }
+        }
+        old = sel;
+        buttons = (volatile u16 *)&lbl_1_bss_9F8.unk_0; /* volatile: each button test re-reads the word */
+        buttons += (u32)(s32)idx * 10;
+        if ((*(buttons += 9) >> 8) & 1) {
+            t = sel + 1;
+            sel = WRAP(t);
+        }
+        if ((*buttons >> 9) & 1) {
+            t = sel - 1;
+            sel = WRAP(t);
+        }
+        if (sel != old) {
+            fn_1_A2D84(0xA9010000);
+        }
+    }
+
+    if (fzgx_obj_lbl_1_bss_8B3A0.unk_94 & 0x00800000) {
+        for (j = 0; (t = j) <= 3; j++) {
+            for (k = 0; k < 4; k++) {
+                if (k != idx) {
+                    if (slots[k].unk_0 == 2 || slots[k].unk_0 == 1) {
+                        if (obj->ents[k].unk_E == obj->ents[idx].unk_E) {
+                            n = obj->ents[k].unk_14;
+                            if (n == (1 << t)) {
+                                mask |= (1 << t);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (mask & (1 << sel)) {
+            for (i = 0; (t = i) <= 3; i++) {
+                if (!(mask & (1 << t))) {
+                    sel = i;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (obj->ents[idx].unk_E == 0x31) {
+        n = (s16)(fn_1_8623C());
+        big = (Big_12B664 *)fn_1_36AD0();
+        c = sel % 4;
+        {
+            struct { s16 value; } outer;
+            for (outer.value = 0; outer.value < 3; outer.value++) {
+                for (m.value = 0; m.value < 1; m.value++) {
+                    big[n].pairs[outer.value].unk_4[m.value] = fn_1_151BE8(big[n].pairs[outer.value].unk_0, c + m.value);
+                }
+            }
+        }
+    } else if (obj->ents[idx].unk_E > 0x28) {
+        if (obj->unk_94 & 0x40000000) {
+            n = (s16)(fn_1_8623C());
+            big = (Big_12B664 *)fn_1_36AD0();
+            big += n;
+            src = ((u32 (*)[4][3])&lbl_1_bss_8B2E0)[n][(s16)(sel % 4)];
+            for (k = 0; k < 3; k++) {
+                for (m.value = 0; m.value < 1; m.value++) {
+                    big->pairs[k].unk_4[m.value] = src[k];
+                }
+            }
+        } else {
+            big = (Big_12B664 *)fn_1_36AD0();
+            big += idx;
+            src = ((u32 (*)[4][3])&lbl_1_bss_8B2E0)[idx][(s16)(sel % 4)];
+            for (k = 0; k < 3; k++) {
+                for (m.value = 0; m.value < 1; m.value++) {
+                    big->pairs[k].unk_4[m.value] = src[k];
+                }
+            }
+        }
+    }
+    obj->ents[idx].unk_14 = 1 << sel;
+}
+/* fzgx:end fn_1_12B664 */
+
 /* fzgx:begin fn_1_12BF7C */
 #include "types.h"
 

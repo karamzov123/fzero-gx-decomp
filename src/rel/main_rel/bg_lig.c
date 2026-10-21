@@ -916,6 +916,280 @@ void fn_1_D8784(fn_1_D8784_LigObject *obj) {
 }
 /* fzgx:end fn_1_D8784 */
 
+/* fzgx:begin fn_1_D8878 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[4] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 100.0f;
+    s = 3.0f;
+}
+static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.7;
+    d = 0.3;
+    s = 32767.0f;
+    s = 235.0f;
+    s = 80.0f;
+    s = 30.0f;
+    d = 512.0;
+    d = 0.5;
+    d = 300.0;
+    d = 17.0;
+    s = 3276.800048828125f;
+}
+static const u32 fzgx_pool_table5[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    d = 0.98;
+    s = 0.07999999821186066f;
+}
+static const u32 fzgx_pool_table7[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.99;
+    d = 0.02;
+    s = 400.0f;
+    s = 0.7071067690849304f;
+    s = 1.0f;
+}
+static const u32 fzgx_pool_table9[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep9(void) { const u32 *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 2.0;
+    d = 4503599627370496.0;
+}
+static const u32 fzgx_pool_table11[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xBF800000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep11(void) { const u32 *volatile cp; cp = fzgx_pool_table11; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime12(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.5f;
+    s = 0.5f;
+    s = 10.0f;
+    s = 5.0f;
+    s = 0.6000000238418579f;
+    s = 170.0f;
+    s = 120.0f;
+    s = 32.0f;
+    s = 90.0f;
+    s = 0.4000000059604645f;
+    s = 768.0f;
+}
+static const u32 fzgx_pool_table13[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep13(void) { const u32 *volatile cp; cp = fzgx_pool_table13; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.05;
+    s = 2.5f;
+    s = 0.10000000149011612f;
+    s = 50.0f;
+    s = 20.0f;
+    s = 70.0f;
+    s = 33.0f;
+    s = 15.0f;
+    s = 0.6499999761581421f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} LigVec;
+
+typedef f32 LigMtx[3][4];
+
+typedef struct {
+    LigVec pos;      /* 0x00 */
+    u8 pad_C[0xC];
+    f32 r;           /* 0x18 */
+    f32 g;           /* 0x1C */
+    f32 b;           /* 0x20 */
+    f32 size;        /* 0x24 */
+    s16 angle;       /* 0x28 */
+    u8 pad_2A[0x2];
+    s16 fade;        /* 0x2C */
+} LigSource;
+
+typedef struct {
+    u8 pad_0[0x8];
+    LigSource *source;
+} LigObject;
+
+typedef struct {
+    f32 width;       /* 0x00 */
+    f32 height;      /* 0x04 */
+    LigMtx mtx;      /* 0x08 */
+    u32 flags;       /* 0x38 */
+    u8 color[4];     /* 0x3C */
+} LigPacket;
+
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1B0(LigVec *, LigVec *);
+extern void lbl_8006D7DC(LigVec *);
+extern void mathutil_mtxA_rotate_z(s16);
+extern int fn_1_58C4(void);
+extern void fn_1_681C(u8, LigVec *);
+extern void lbl_8006DB74(LigMtx);
+extern void lbl_8006D758(void);
+extern void fn_1_9EDE8(LigPacket *);
+extern void *memset(void *, int, u32);
+extern void fn_80074788(s32);
+extern void fn_80072864(s32);
+extern void fn_80073778(void *, s32);
+extern void fn_800745A4(s32, s32, s32, s32, s32, s32);
+extern void fn_800734A8(s32, s32, s32, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_800735C8(s32, s32);
+extern void fn_80073620(s32, s32);
+extern void fn_80073C6C(s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, s32, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072E20(s32, s32, s32, s32, s32, s32);
+extern void fn_80073678(s32);
+extern void fn_80074660(s32);
+extern void fn_80074918(s32, s32, s32);
+extern void fn_800720B0(s32);
+extern void fn_800728A8(s32, s32, s32, s32);
+
+#define LIG_MIN(a, b) ((a) < (b) ? (a) : (b))
+#define LIG_CLAMP01(x) ((x) < 0.0f ? 0.0f : ((x) > 1.0f ? 1.0f : (x)))
+
+/* squared distance between two points, accumulated into len
+ * (the first distance accumulates straight into the caller's variable) */
+#define LIG_LEN2(len, a, b)      \
+    do {                         \
+        f32 x;                   \
+        f32 z;                   \
+        f32 y;                   \
+        x = (a)->x;              \
+        y = (a)->y;              \
+        z = (a)->z;              \
+        x -= (b)->x;             \
+        y -= (b)->y;             \
+        z -= (b)->z;             \
+        (len) = x * x;           \
+        (len) += y * y;          \
+        (len) += z * z;          \
+    } while (0)
+
+/* distance between two points */
+static inline f32 lig_dist(LigVec *a, LigVec *b) {
+    f32 x = a->x;
+    f32 y = a->y;
+    f32 z = a->z;
+    f32 len;
+
+    x -= b->x;
+    y -= b->y;
+    z -= b->z;
+    len = x * x;
+    len += y * y;
+    len += z * z;
+    return lbl_8006D0B4(len);
+}
+
+/* src arrives as the owning object; its light source entry sits at +8 */
+void fn_1_D8878(LigSource *src) {
+    LigPacket packet;
+    LigVec tmp;
+    LigVec cam;
+    void *scene;
+    int count;
+    u32 i;
+    void *view;
+    Obj_1_data_2A7E0_At3C *env;
+    f32 dist;
+    f32 size;
+    f32 bright;
+    f32 scale;
+    f32 strength;
+    s16 fade;
+
+    env = lbl_1_data_2A7E0.unk_3C;
+    scene = *(void **)((u8 *)lbl_1_bss_38458->unk_8 + 0x170);
+    src = ((LigObject *)src)->source;
+
+    lbl_8006DCA4();
+    lbl_8006E1B0(&src->pos, &tmp);
+    lbl_8006D7DC(&tmp);
+    mathutil_mtxA_rotate_z(src->angle);
+
+    count = fn_1_58C4();
+    fn_1_681C(0, &cam);
+    LIG_LEN2(dist, &src->pos, &cam);
+    dist = lbl_8006D0B4(dist);
+    for (i = 1; i < count; i++) {
+        fn_1_681C(i, &cam);
+        dist = LIG_MIN(dist, lig_dist(&src->pos, &cam));
+    }
+
+    if (dist < 20.0f) {
+        dist = dist / 20.0f;
+    } else {
+        dist = 1.0f;
+    }
+
+    fade = src->fade;
+    if (fade > 0) {
+        dist *= 1.0f - (f32)fade / 15.0f;
+    }
+
+    memset(&packet, 0, sizeof(packet));
+    lbl_8006DB74(packet.mtx);
+
+    size = src->size;
+    scale = LIG_CLAMP01(dist);
+    bright = env->unk_6C0;
+    packet.width = 0.70710677f * size;
+    packet.color[0] = (u8)(bright * ((f32)(u8)src->r * scale));
+    packet.color[1] = (u8)(bright * ((f32)(u8)src->g * scale));
+    packet.color[2] = (u8)(bright * ((f32)(u8)src->b * scale));
+    packet.color[3] = 0xFF;
+
+    if (scale * bright < 0.1f) {
+        return;
+    }
+
+    packet.flags |= 2;
+    packet.height = 2.0 * packet.width;
+    view = *(void **)((u8 *)scene + 0x24);
+    fn_80074788(0);
+    fn_80072864(1);
+    fn_80073778(view, 0);
+    fn_800745A4(0, 1, 4, 0x3C, 0, 0x7D);
+    fn_800734A8(0, 0, 0, 0xFF);
+    fn_80072AB0(0, 0, 0);
+    fn_800735C8(0, 0xC);
+    fn_80073620(0, 0x1C);
+    fn_80073C6C(0);
+    fn_80072C24(0, 0xF, 0xE, 8, 0xF);
+    fn_80072D64(0, 0, 0, 0, 1, 0);
+    fn_80072CC4(0, 7, 6, 4, 7);
+    fn_80072E20(0, 0, 0, 0, 1, 0);
+    fn_80073678(1);
+    fn_80074660(1);
+    fn_80074918(1, 7, 0);
+    fn_800720B0(0);
+    fn_800728A8(1, 3, 1, 7);
+    lbl_8006D758();
+    fn_1_9EDE8(&packet);
+}
+/* fzgx:end fn_1_D8878 */
+
 /* fzgx:begin fn_1_D8CA8 */
 typedef struct {
     u8 pad_00[0x68];

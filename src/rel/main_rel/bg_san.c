@@ -832,6 +832,243 @@ void fn_1_DB198(BgSanObject *object, void *arg1) {
 }
 /* fzgx:end fn_1_DB198 */
 
+/* fzgx:begin fn_1_DB53C noprologue */
+#include "types.h"
+
+typedef struct DB53CVec {
+    f32 x;
+    f32 y;
+    f32 z;
+} DB53CVec;
+
+typedef struct DB53CObj {
+    u8 pad_0[0x4];
+    u32 mask;
+    u8 pad_8[0x4];
+    DB53CVec pos;
+} DB53CObj;
+
+typedef struct DB53CItem {
+    DB53CObj *obj;
+    u8 pad_4[0x10];
+    f32 alpha;
+    u8 pad_18[0x808];
+    DB53CVec pos;
+    u8 pad_82C[0x7F4];
+} DB53CItem;
+
+typedef struct DB53CGroup {
+    u8 pad_0[0x10];
+    s32 count;
+    DB53CItem items[1];
+} DB53CGroup;
+
+typedef struct DB53CEntry {
+    u8 pad_0[0x8];
+    u8 *data;
+} DB53CEntry;
+
+typedef struct DB53CTable {
+    u8 pad_0[0xC];
+    DB53CEntry *entries;
+} DB53CTable;
+
+typedef struct DB53CGlobal3BE0 {
+    DB53CTable *table;
+} DB53CGlobal3BE0;
+
+typedef struct DB53CTexHolder {
+    u8 pad_0[0x24];
+    void *tex;
+} DB53CTexHolder;
+
+typedef struct DB53CScene {
+    u8 pad_0[0x1C0];
+    DB53CTexHolder *holder;
+} DB53CScene;
+
+typedef struct DB53CRoot {
+    u8 pad_0[0x8];
+    DB53CScene *scene;
+} DB53CRoot;
+
+typedef struct DB53CData2A7E0 {
+    u8 pad_0[0x3C];
+    DB53CGroup *group;
+} DB53CData2A7E0;
+
+extern DB53CRoot *lbl_1_bss_38458;
+extern DB53CData2A7E0 lbl_1_data_2A7E0;
+extern DB53CGlobal3BE0 lbl_1_bss_3BE0;
+extern DB53CVec lbl_1_bss_7ADB8[];
+extern s32 lbl_1_data_3DC70;
+extern u32 lbl_801A6D00;
+
+extern u32 fn_1_58C4(void);
+extern s32 fn_1_5910(void);
+extern s32 fn_1_6F84(void);
+extern f32 fn_1_DC084(DB53CVec *);
+extern s32 fn_1_54E34(DB53CVec *, f32);
+extern s16 fn_1_3F0C8(void);
+extern s16 camera_get_mode(void);
+extern s32 camera_get_flags(void);
+extern u32 camera_forward_status(void);
+extern void fn_1_862D4(s32, DB53CVec *);
+extern u32 fn_1_864E8(s32);
+extern u32 fn_1_1FC98(DB53CVec *, s32);
+extern u8 *fn_1_8627C(s32);
+extern void fn_1_DB9B0(DB53CItem *, void *);
+extern void lbl_8006DCA4(void);
+extern void u_gxutil_upload_some_mtx(u32, u32);
+extern void fn_80072864(s32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_80073778(void *, s32);
+extern u32 fn_80036104(void *);
+extern u16 GXGetTexObjHeight(void *);
+extern u16 GXGetTexObjWidth(void *);
+extern void *fn_800360D8(void *);
+extern void GXInitTexObj(void *, void *, u16, u16, u32, u32, u32, u8);
+extern void fn_8007245C(u32);
+extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
+extern void fn_80073C6C(s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80072EDC(s32, s32);
+extern void fn_80073678(u32);
+extern void fn_80074660(u32);
+extern void fn_80074788(u32);
+extern void fn_80073898(u32);
+
+/* Pool primer: reproduces the TU's shared literal pool layout (lbl_1_rodata_6638). */
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_pool_primer_0(f32 *out) {
+    out[0] = 0.0f;
+    out[1] = 30.0f;
+    out[2] = 1.0f;
+    out[3] = 0.5f;
+}
+
+static const u32 fzgx_pool_table_10[6] = { 0, 0, 0, 0, 0, 0 };
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer_1(f32 *out, const u32 **table) {
+    *table = fzgx_pool_table_10;
+    out[0] = 25.0f;
+    out[1] = 0.1f;
+    out[2] = 0.02f;
+    out[3] = 2000.0f;
+    out[4] = 2500.0f;
+    out[5] = 500.0f;
+    out[6] = 650.0f;
+}
+
+void fn_1_DB53C(void *arg0, f32 arg1) {
+    DB53CVec mid;
+    DB53CVec b;
+    DB53CVec a;
+    DB53CVec pos;
+    DB53CItem *item;
+    s32 count;
+    void *ctx;
+    s32 mode;
+    u32 flags;
+    void *tex;
+    DB53CGroup *group;
+    f32 dist;
+
+    if (fn_1_58C4() >= 2) {
+        return;
+    }
+
+    ctx = *(void **)((u8 *)arg0 + 8);
+    group = lbl_1_data_2A7E0.group;
+    item = group->items;
+    tex = lbl_1_bss_38458->scene->holder->tex;
+
+    lbl_8006DCA4();
+    u_gxutil_upload_some_mtx(lbl_801A6D00, 0);
+    fn_80072864(0);
+    fn_800728A8(1, 4, 1, 0);
+    fn_80073778(tex, 0);
+    GXInitTexObj(tex, fn_800360D8(tex), GXGetTexObjWidth(tex), GXGetTexObjHeight(tex),
+                 fn_80036104(tex), 0, 1, 0);
+    fn_8007245C(0x2A00);
+    fn_800747D0(4, 0, 1, 1, 0, 2, 2);
+    fn_80073C6C(0);
+    fn_800745A4(0, 1, 4, 60, 0, 125);
+    fn_800734A8(0, 0, 0, 4);
+    fn_80072EDC(0, 0);
+    fn_80073678(1);
+    fn_80074660(1);
+    fn_80074788(1);
+    fn_80073898(0);
+
+    for (count = group->count; count > 0; count--, item++) {
+        b = item->obj->pos;
+        a = item->pos;
+        mid.x = 0.5f * (a.x + b.x);
+        mid.y = 0.5f * (a.y + b.y);
+        mid.z = 0.5f * (a.z + b.z);
+
+        dist = fn_1_DC084(&mid);
+        if (dist > 2000.0f) {
+            if (dist > 2500.0f) {
+                item->alpha = 0.0f;
+                continue;
+            }
+            item->alpha = 1.0f - (dist - 2000.0f) / 500.0f;
+        } else {
+            item->alpha = 1.0f;
+        }
+
+        lbl_8006DCA4();
+        if (fn_1_54E34(&mid, 650.0f) == 0 && fn_1_3F0C8() != 39) {
+            continue;
+        }
+
+        flags = 0;
+        mode = camera_get_mode();
+        if (camera_get_flags() != 0 && lbl_1_data_3DC70 >= 0) {
+            mode = lbl_1_data_3DC70;
+        }
+        lbl_1_data_3DC70 = mode;
+
+        if (mode >= 0) {
+            u8 *cam;
+
+            fn_1_862D4(mode, &pos);
+            if (fn_1_864E8(mode) & 0x800) {
+                pos = lbl_1_bss_7ADB8[fn_1_5910()];
+            } else if (fn_1_6F84() != 0) {
+                if (camera_forward_status() & 0x80000000) {
+                    lbl_1_bss_7ADB8[fn_1_5910()] = pos;
+                } else {
+                    pos = lbl_1_bss_7ADB8[fn_1_5910()];
+                }
+            } else {
+                lbl_1_bss_7ADB8[fn_1_5910()] = pos;
+            }
+            flags = fn_1_1FC98(&pos, -1);
+            cam = fn_1_8627C(mode);
+            if (cam != NULL) {
+                s32 idx = *(s32 *)(cam + 0xB8);
+                if (idx >= 0) {
+                    u8 *data = lbl_1_bss_3BE0.table->entries[idx].data;
+                    if (data != NULL) {
+                        flags |= *(u32 *)(data + 0x38);
+                    }
+                }
+            }
+        }
+
+        if (flags & item->obj->mask) {
+            fn_1_DB9B0(item, ctx);
+        } else if (fn_1_3F0C8() == 39) {
+            fn_1_DB9B0(item, ctx);
+        }
+    }
+}
+/* fzgx:end fn_1_DB53C */
+
 /* fzgx:begin fn_1_DC084 */
 typedef struct Vec3 {
     f32 x;
