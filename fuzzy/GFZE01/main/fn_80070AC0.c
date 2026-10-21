@@ -1,11 +1,11 @@
-/* Non-matching: best partial attempt (95.09% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.18% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
 struct fn_80070AC0_lbl_801A6D00_T {
     u8 pad_0[0x90];
     u32 unk_90;
-    u32 unk_94;
+    s32 unk_94;
 };
 
 extern struct fn_80070AC0_lbl_801A6D00_T *lbl_801A6D00;
@@ -25,53 +25,68 @@ extern void OSPanic(const char *, int, const char *, ...);
 extern void lbl_8006D758(void);
 extern void lbl_8006DCDC(void);
 
-void fn_80070AC0(u32 arg0, s32 arg1) {
-    
-    u32 v7;
-    s32 i;
-    struct { u32 value; } j;
-    struct { u32 value; } n;
-    u32 v1;
-    s32 k;
+static inline u32 fn_80070AC0_scan(s32 i, u32 blocks)
+{
+    u32 n;
+    s32 j;
 
-    
-    if (arg0 == 0) {
-        OSPanic(((char *)fzgx_pool_strings_lbl_8015AA78_0), 514, ((char *)fzgx_pool_strings_lbl_8015AA78_CC));
+    n = blocks - 1;
+    j = i + 1;
+    while (n != 0 && j < 16) {
+        if (lbl_8019E140[j] != 0) {
+            break;
+        }
+        n--;
+        j++;
     }
-    lbl_8006D758();
-    lbl_8006DCDC();
-    if (arg1 != 0 && (lbl_801A6CE0 & 2) == 0) {
-        arg1 = 0;
-    }
-    if (arg1 != 0) {
-        v1 = (arg0 * 48 + 1023) >> 10;
-        v7 = 16;
-        for (i = 0; i < 16; i++) {
-            if ((*((i) + (lbl_8019E140))) == 0) {
-                n.value = v1 - 1;
-                j.value = i + 1;
-                while (n.value != 0 && j.value < 16) {
-                    if (lbl_8019E140[j.value] != 0) {
-                        break;
-                    }
-                    n.value--;
-                    j.value++;
-                }
-                if (n.value == 0) {
-                    v7 = lbl_801A6CF0 + (i << 10);
-                    for (k = 0; k < v1; k++) {
-                        lbl_8019E140[i + k] = v1 - k;
+    return n;
+}
+
+static inline u32 fn_80070AC0_loop0(u32 count) {
+    u32 k;
+    u32 addr;
+    s32 i;
+    u32 blocks;
+        blocks = (count * 48 + 1023) >> 10;
+        addr = 0;
+        {
+    s32 fzgx_loop_i_1461;
+for (fzgx_loop_i_1461 = 0; fzgx_loop_i_1461 < 16; fzgx_loop_i_1461++) {
+            if (lbl_8019E140[fzgx_loop_i_1461] == 0) {
+                if (fn_80070AC0_scan(fzgx_loop_i_1461, blocks) == 0) {
+                    addr = lbl_801A6CF0 + (fzgx_loop_i_1461 << 10);
+                    for (k = 0; k < blocks; k++) {
+                        lbl_8019E140[fzgx_loop_i_1461 + k] = blocks - k;
                     }
                     break;
                 }
             }
         }
-        if (0 == v7) {
-            OSPanic(((char *)fzgx_pool_strings_lbl_8015AA78_0), 158, ((char *)fzgx_pool_strings_lbl_8015AA78_C));
-        }
-        lbl_801A6D00->unk_90 = v7;
-    } else {
-        lbl_801A6D00->unk_90 = fn_80070CF8(arg0 * 48);
+    i = fzgx_loop_i_1461;
+}
+    return addr;
+}
+
+void fn_80070AC0(u32 count, s32 locked)
+{
+    u32 addr;
+
+    if (count == 0) {
+        OSPanic(fzgx_pool_strings_lbl_8015AA78_0, 514, fzgx_pool_strings_lbl_8015AA78_CC);
     }
-    lbl_801A6D00->unk_94 = lbl_801A6D00->unk_90 + arg0 * 48;
+    lbl_8006D758();
+    lbl_8006DCDC();
+    if (locked != 0 && (lbl_801A6CE0 & 2) == 0) {
+        locked = 0;
+    }
+    if (locked != 0) {
+        addr = fn_80070AC0_loop0(count);
+        if (addr == 0) {
+            OSPanic(fzgx_pool_strings_lbl_8015AA78_0, 158, fzgx_pool_strings_lbl_8015AA78_C);
+        }
+        lbl_801A6D00->unk_90 = addr;
+    } else {
+        lbl_801A6D00->unk_90 = fn_80070CF8(count * 48);
+    }
+    lbl_801A6D00->unk_94 = lbl_801A6D00->unk_90 + count * 48;
 }

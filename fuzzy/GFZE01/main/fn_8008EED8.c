@@ -1,6 +1,7 @@
-/* Non-matching: best partial attempt (96.18% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.01% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
+#include "dolphin/hw_regs.h"
 
 extern u32 lbl_801A6680;
 extern s32 lbl_801A6E1C;
@@ -10,20 +11,20 @@ extern int printf(const char *, ...);
 extern u32 fn_8008E770(u32, u32, u32, u32);
 extern u32 fn_8008E9B4(u32);
 
-#define PI_REG (*(u32 *)0xCC003000)
+/* PI interrupt cause register, read at its folded literal address as retail does */
+#define PI_INTSR (*(vu32 *)FZGX_ADDR___PIRegs)
 
-#pragma opt_common_subs off
 u32 fn_8008EED8(void) {
     u32 loc_18;
     u32 loc_14;
     u32 loc_8[3];
     s32 status;
-    if ((PI_REG & 0x1000) == 0 && *(u8 *)lbl_801A6680 == 0) {
+    if ((PI_INTSR & 0x1000) == 0 && *(u8 *)lbl_801A6680 == 0) {
         loc_18 = 0;
     } else {
         if (lbl_801A6E1C == 0) {
             status = 0;
-            while (((0) == (status))) {
+            while (status == 0) {
                 status = fn_8008EBF8(5);
             }
             if (status == 0) {
@@ -37,11 +38,10 @@ u32 fn_8008EED8(void) {
         }
         fn_8008E9B4(fn_8008E770((u32)&loc_18, 4, 0, 0));
         if (*(u8 *)lbl_801A6680 == 0) {
-            u16 pi = PI_REG;
+            u16 pi = PI_INTSR;
             *(u8 *)lbl_801A6680 = 1;
-            PI_REG = pi & 0x1000;
+            PI_INTSR = pi & 0x1000;
         }
     }
     return loc_18;
 }
-#pragma opt_common_subs reset
