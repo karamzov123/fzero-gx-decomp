@@ -64015,6 +64015,22 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_2C9C4.c",
+    "symbols": [
+      "fn_12_2C9C4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": {
+      "@88": "jumptable_12_data_CF0"
+    }
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_2CC24.c",
     "symbols": [
       "fn_12_2CC24"
