@@ -602,3 +602,6 @@ rel/customize/data/lbl_3_bss_87040.c:
 
 rel/customize/_prolog/fn_3_12D4.c:
 	.text       start:0x000012D4 end:0x0000131C align:4
+
+rel/customize/toolkit/fn_3_1B008.c:
+	.text       start:0x0001B008 end:0x0001B130 align:4

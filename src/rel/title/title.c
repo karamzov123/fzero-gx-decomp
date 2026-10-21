@@ -4058,6 +4058,72 @@ void fn_8_5810(void) {
 }
 /* fzgx:end fn_8_5810 */
 
+/* fzgx:begin fn_8_5B44 */
+#include "rel/title/title.h"
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u16 unk_4;
+    u16 unk_6;
+    u16 unk_8;
+    u16 unk_A;
+    f32 unk_C;
+    f32 unk_10;
+    u8 unk_14;
+    s8 unk_15;
+    u8 unk_16;
+    s8 unk_17;
+    s16 unk_18;
+    u8 pad_1A[2];
+    u32 unk_1C;
+} TitleDisplayState;
+
+extern TitleDisplayState lbl_1_bss_58;
+extern char lbl_1_bss_198[];
+extern u16 lbl_1_bss_968;
+extern u32 lbl_801A66B4;
+extern const f32 lbl_8_rodata_8;  // = 1.0f (retail literal pool)
+extern char *fn_80083DB0(char *, const char *);
+
+void fn_8_5B44(void) {
+    struct { const char *value; } data;  // TU .data base held across the copies
+    f32 one;
+
+    data.value = (const char *)&lbl_8_data_0;
+    lbl_1_bss_58.unk_0 = lbl_801A66B4;
+    one = lbl_8_rodata_8;
+    lbl_1_bss_58.unk_1 = 1;
+    lbl_1_bss_58.unk_2 = 0;
+    lbl_1_bss_58.unk_3 = 0;
+    lbl_1_bss_58.unk_4 = 0x280;
+    lbl_1_bss_58.unk_6 = 0x150;
+    lbl_1_bss_58.unk_8 = 0;
+    lbl_1_bss_58.unk_A = 0;
+    lbl_1_bss_58.unk_C = one;
+    lbl_1_bss_58.unk_10 = one;
+    lbl_1_bss_58.unk_14 = 7;
+    lbl_1_bss_58.unk_16 = 0;
+    lbl_1_bss_58.unk_17 = -1;
+    lbl_1_bss_58.unk_18 = -1;
+    lbl_1_bss_58.unk_1C = 0;
+
+    if (lbl_1_bss_58.unk_15 == 2) {
+        fn_80083DB0(lbl_1_bss_198, data.value + 0x7e2c);
+    } else {
+        fn_80083DB0(lbl_1_bss_198, data.value + 0x7e3c);
+    }
+    fn_80083DB0(lbl_1_bss_198 + 0x40, data.value + 0x7e4c);
+
+    lbl_1_bss_58.unk_14 = 4;
+    lbl_1_bss_58.unk_16 = 1;
+    lbl_1_bss_58.unk_17 = 0;
+    lbl_1_bss_968 = 8;
+}
+/* fzgx:end fn_8_5B44 */
+
 /* fzgx:begin fn_8_5C4C */
 // fn_8_5C4C: empty in retail (single blr).
 void fn_8_5C4C(void) {

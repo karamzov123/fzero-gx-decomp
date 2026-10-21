@@ -6251,3 +6251,15 @@ dol/fn_8003A680.c:
 
 dol/fn_8006F4E0.c:
 	.text       start:0x8006F4E0 end:0x8006F5C4 align:4
+
+dol/fn_8005FBDC.c:
+	.text       start:0x8005FBDC end:0x8005FCD8 align:4
+
+dol/fn_8006AE90.c:
+	.text       start:0x8006AE90 end:0x8006AF94 align:4
+
+dol/fn_8006060C.c:
+	.text       start:0x8006060C end:0x80060724 align:4
+
+dol/fn_8006B048.c:
+	.text       start:0x8006B048 end:0x8006B188 align:4

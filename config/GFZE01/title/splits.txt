@@ -299,3 +299,6 @@ rel/title/data/lbl_8_data_62D0.c:
 
 rel/title/operation/fn_8_F9E4.c:
 	.text       start:0x0000F9E4 end:0x0000FC5C align:4
+
+rel/title/title/fn_8_5B44.c:
+	.text       start:0x00005B44 end:0x00005C4C align:4

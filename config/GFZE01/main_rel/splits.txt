@@ -7934,3 +7934,21 @@ rel/main_rel/effect/fn_1_60F84.c:
 
 rel/main_rel/camera/fn_1_6DD0.c:
 	.text       start:0x00006DD0 end:0x00006EC0 align:4
+
+rel/main_rel/camera/fn_1_AEB8.c:
+	.text       start:0x0000AEB8 end:0x0000AFC8 align:4
+
+rel/main_rel/effect_car/fn_1_6D6A8.c:
+	.text       start:0x0006D6A8 end:0x0006D7BC align:4
+
+rel/main_rel/sel_static_disp/fn_1_145B58.c:
+	.text       start:0x00145B58 end:0x00145C6C align:4
+
+rel/main_rel/alloc/fn_1_627C.c:
+	.text       start:0x0000627C end:0x00006394 align:4
+
+rel/main_rel/stcoli/fn_1_1FB80.c:
+	.text       start:0x0001FB80 end:0x0001FC98 align:4
+
+rel/main_rel/font/fn_1_492F0.c:
+	.text       start:0x000492F0 end:0x00049410 align:4

@@ -2370,6 +2370,111 @@ void camera_update_transition(camera_update_transition_Camera *camera) {
 }
 /* fzgx:end camera_update_transition */
 
+/* fzgx:begin fn_1_AEB8 noprologue */
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+extern s16 lbl_1_bss_960;
+
+
+extern s16 camera_transition_count;
+
+
+extern u8 lbl_1_data_3BD0[0x498];
+typedef struct {
+u32 unk_0;
+f32 unk_4;
+u32 unk_8;
+u32 unk_C;
+u32 unk_10;
+u32 unk_14;
+u32 unk_18;
+u32 unk_1C;
+u32 unk_20;
+u32 unk_24;
+u32 unk_28;
+u32 unk_2C;
+u32 unk_30;
+u32 unk_34;
+u32 unk_38;
+u32 unk_3C;
+u32 unk_40;
+u32 unk_44;
+u32 unk_48;
+u32 unk_4C;
+s16 unk_50;
+u8 pad_52[0x152];
+} Obj_1_data_3A2C;
+extern Obj_1_data_3A2C lbl_1_data_3A2C;
+
+
+typedef struct { f32 x, y, z; } Vec;
+typedef struct {
+u8 pad_0[0x8];
+f32 unk_8;
+u8 pad_C[0x6C];
+s16 unk_78;
+u8 pad_7A[0x12];
+Vec unk_8C;
+Vec unk_98;
+s16 unk_A4;
+u8 pad_A6[0x13E];
+Vec unk_1E4;
+f32 unk_1F0;
+f32 unk_1F4;
+u8 pad_1F8[2];
+s16 unk_1FA;
+} Camera;
+typedef struct {
+u32 unk_0;
+Vec position;
+Vec target;
+f32 value;
+s16 count;
+s16 pad;
+} TransitionConfig;
+typedef struct {
+s32 mode;
+f32 unk_4;
+TransitionConfig config;
+u8 pad_2C[0x28];
+} TransitionPreset;
+void fn_1_AEB8(Camera *camera) {
+TransitionPreset *preset;
+TransitionConfig config;
+Vec position;
+s32 index = camera->unk_A4;
+if (lbl_1_bss_960 == 14) {
+camera_transition_count = 14;
+preset = &((TransitionPreset *)lbl_1_data_3BD0)[index];
+} else {
+camera_transition_count = 5;
+preset = &((TransitionPreset *)&lbl_1_data_3A2C)[index];
+}
+config = preset->config;
+position = config.position;
+camera->unk_1E4 = position;
+camera->unk_1F0 = 0.0f;
+camera->unk_1F4 = 0.0f;
+camera->unk_78 = preset->mode;
+camera->unk_8C = config.position;
+camera->unk_98 = config.target;
+camera->unk_1FA = config.count;
+camera->unk_8 = config.value;
+camera->unk_1FA = config.count;
+}
+/* fzgx:end fn_1_AEB8 */
+
 /* fzgx:begin camera_get_target_orientation */
 typedef struct Transform {
     u8 pad_08[0x8];

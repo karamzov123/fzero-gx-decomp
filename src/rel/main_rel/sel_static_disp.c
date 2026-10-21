@@ -4231,6 +4231,41 @@ void fn_1_144EE8(void) {
 }
 /* fzgx:end fn_1_144EE8 */
 
+/* fzgx:begin fn_1_145B58 noprologue */
+#include "types.h"
+#include "rel/main_rel/sel_static_disp.h"
+
+extern u32 fn_1_155F7C(void);
+extern u32 fn_1_155F8C(void);
+
+static inline s32 fn_1_145B58_test(s32 arg0, s32 range, s32 one) {
+    s32 d, c, b, a;
+    b = one; c = one; d = one; a = one;
+    if (range == 0) a = 0;
+    if (a == 0 && arg0 != 9) d = 0;
+    if (d == 0 && arg0 != 10) c = 0;
+    if (c == 0 && arg0 != 6) b = 0;
+    return b;
+}
+
+u32 fn_1_145B58(s32 arg0, s32 *arg1) {
+    u32 r;
+    if (arg0 == 10 || arg0 == 6) {
+        return arg1[8] == 0;
+    }
+    if (fn_1_145B58_test(arg0, (u32)(arg0 - 4) <= 1, 1) != 0) {
+        r = 0;
+        if ((s32)fn_1_155F7C() != 0) {
+            if (arg1[8] == (s32)fn_1_155F8C()) {
+                r = 1;
+            }
+        }
+        return r;
+    }
+    return (s32)lbl_1_bss_3C30.unk_8 > arg1[19];
+}
+/* fzgx:end fn_1_145B58 */
+
 /* fzgx:begin fn_1_146B5C */
 #pragma opt_propagation off
 void fn_1_146B5C(u32 unused, u8 *arg1) {

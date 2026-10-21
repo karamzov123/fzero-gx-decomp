@@ -1461,6 +1461,78 @@ void fn_1_1902C(StcoliNode *root, StcoliVec *vec, void *arg3, f32 value) {
 }
 /* fzgx:end fn_1_1902C */
 
+/* fzgx:begin fn_1_1FB80 noprologue */
+#include "types.h"
+#include "rel/main_rel/stcoli.h"
+
+extern const struct fn_1_1FB80_lbl_1_rodata_708_pool {
+    f32 unk_0;
+} lbl_1_rodata_708;
+
+typedef struct { f32 x; f32 y; f32 z; } Vec_fn_1_1FB80;
+
+/* 0x24-byte trigger volume entry */
+typedef struct {
+    u8 pad_0[0xC];
+    s16 rot_x;
+    s16 rot_y;
+    s16 rot_z;
+    u8 pad_12[2];
+    f32 size_x;
+    f32 size_y;
+    f32 size_z;
+    u32 flags;
+} ColiVolume_fn_1_1FB80;
+
+
+extern f64 __fabs(f64);
+extern u32 mathutil_mtxA_rotate_x(u32);
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern u32 mathutil_mtxA_rotate_z(u32);
+extern void fn_8006E250(void *, Vec_fn_1_1FB80 *);
+extern void lbl_8006D7DC(void *);
+
+#pragma opt_loop_invariants off
+#pragma opt_propagation off
+u32 fn_1_1FB80(void *pos, u32 mask) {
+    struct { u32 value; } result;
+    struct { s32 value; } i;
+    struct { s32 value; } count;
+    struct { ColiVolume_fn_1_1FB80 *value; } vol;
+    Vec_fn_1_1FB80 local;
+
+    result.value = 0;
+    i.value = 0;
+    vol.value = 0;
+    count.value = (s32)lbl_1_bss_3BE0->unk_9C;
+    vol.value = (ColiVolume_fn_1_1FB80 *)lbl_1_bss_3BE0->unk_A0;
+    for (; i.value < count.value; i.value++, vol.value++) {
+        if (vol.value->flags & mask) {
+            lbl_8006D7DC(vol.value);
+            if (vol.value->rot_z) {
+                mathutil_mtxA_rotate_z(vol.value->rot_z);
+            }
+            if (vol.value->rot_y) {
+                mathutil_mtxA_rotate_y(vol.value->rot_y);
+            }
+            if (vol.value->rot_x) {
+                mathutil_mtxA_rotate_x(vol.value->rot_x);
+            }
+            fn_8006E250(pos, &local);
+            if (__fabs(local.x) <= lbl_1_rodata_708.unk_0 * vol.value->size_x
+             && __fabs(local.y) <= lbl_1_rodata_708.unk_0 * vol.value->size_y
+             && __fabs(local.z) <= lbl_1_rodata_708.unk_0 * vol.value->size_z) {
+                result.value |= vol.value->flags;
+            }
+        }
+    }
+    return result.value;
+}
+#pragma opt_propagation reset
+
+#pragma opt_loop_invariants reset
+/* fzgx:end fn_1_1FB80 */
+
 /* fzgx:begin fn_1_20258 */
 typedef struct Fn_1_20258 {
     unsigned char pad00[0x30];

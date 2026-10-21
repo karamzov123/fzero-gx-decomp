@@ -523,6 +523,61 @@ u8 fn_1_5910(void) {
 }
 /* fzgx:end fn_1_5910 */
 
+/* fzgx:begin fn_1_627C */
+extern char lbl_1_data_2C9C[20];
+extern void OSPanic(const char *message, int line, const char *file, ...);
+extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_426C(s16 value);
+extern f32 lbl_1_rodata_160;
+extern f32 lbl_1_rodata_164[2];
+extern u32 lbl_1_bss_F5C;
+extern u32 lbl_1_bss_F60[2];
+extern s32 fn_8008023C(Obj_1_bss_7AC20 *, u32 *, u32);
+extern u32 lbl_801A6410;
+extern Obj_1_bss_F68_Target *fn_1_45D0(u32, u32, u8 *, u32);
+extern void fn_800793D4(Obj_1_bss_F68_Target *, u32, u32);
+extern u16 fn_1_3F8C(u8 *, void (*)(void), u32, u32);
+extern void fn_1_6394(void);
+extern void fn_1_63D4(void);
+extern void fn_1_DF74(void);
+extern u8 lbl_1_bss_F76;
+extern void fn_1_DA6C(LiveCamera *);
+extern void fn_1_DE14(LiveCamera *);
+extern void fn_1_E174(void);
+extern void fn_1_F3D0(LiveCamera *);
+s32 fn_1_3FC28(void);
+void fn_1_3EF14(u32 *);
+extern f32 lbl_1_rodata_16C;
+extern void fn_8006CE1C(f32);
+
+extern u16 fn_1_A5D88(void);
+extern u16 fn_1_A5DB0(void);
+extern const f64 lbl_1_rodata_1E0;
+extern const f32 lbl_1_rodata_188;
+extern const f32 lbl_1_rodata_194;
+extern u32 fn_80038EEC(f32, f32, f32, f32, f32, f32);
+extern u32 fn_80074188(u32, u32, u32, u32);
+
+#pragma opt_propagation off
+#pragma opt_common_subs off
+void fn_1_627C(void) {
+    f32 width;
+    f32 height;
+    s8 signedMode;
+    Obj_1_bss_F68_Target *obj = lbl_1_bss_F68;
+    u8 mode = obj->unk_48;
+    signedMode = (s8)mode;
+    if (signedMode == 11 || (obj->unk_0 & 0x80000000) || (s8)mode == 0 || signedMode == 9) {
+        return;
+    }
+    width = fn_1_A5D88();
+    height = fn_1_A5DB0();
+    fn_80038EEC(lbl_1_rodata_188, lbl_1_rodata_188, width, height, lbl_1_rodata_188, lbl_1_rodata_194);
+    fn_80074188(0, 0, (u32)width, (u32)height);
+}
+/* fzgx:end fn_1_627C */
+
 /* fzgx:begin fn_1_6394 */
 void fn_1_6394(void) {
     fn_1_DA6C(live_camera);

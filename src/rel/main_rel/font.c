@@ -282,6 +282,57 @@ void fn_1_48C28(int index) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_48C28 */
 
+/* fzgx:begin fn_1_492F0 noprologue */
+#include "dolphin/types.h"
+
+const f32 lbl_1_rodata_FD0[60] = {
+    0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,
+    0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,
+    -1.0f,-1.0f,1.0f,-1.0f,-1.0f,1.0f,1.0f,1.0f,
+    2.6f,0.0f,2.6f,0.0f,0.0f,0.0f,0.0f,0.0f,
+    1.6f,-1.0f,3.6f,-1.0f,-1.0f,1.0f,1.0f,1.0f,
+    -1.4f,3.7f,1.3f,0.0f,1.6f,0.5f,-0.9f,-0.8f,
+    0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,
+    0.0f,0.0f,0.0f,0.0f
+};
+const f32 lbl_1_rodata_10C0[2] = {0.0f, 0.0f};
+typedef struct ShapeParams {
+    u32 flags;
+    u8 pad[12];
+    f32 width;
+    f32 height;
+} ShapeParams;
+
+#pragma push
+#pragma section code_type ".fzgxpool"
+void fzgx_fn_1_492F0_pool_primer(f64 *p, f32 *q)
+{
+    p[0] = 0.5;
+    q[0] = 0.75f;
+    q[1] = 1.0f;
+}
+#pragma pop
+
+#pragma fp_contract off
+void fn_1_492F0(ShapeParams *arg, f32 out[4][3])
+{
+    f32 width = 1.0f + arg->width;
+    f32 height = 1.0f + arg->height;
+    s32 index = (s8)(arg->flags >> 24);
+    if (index) {
+        const f32 *row = &lbl_1_rodata_FD0[index * 8];
+        out[0][0] += 0.5 * row[0] * width;
+        out[0][1] += 0.5 * row[1] * height;
+        out[1][0] += 0.5 * row[2] * width;
+        out[1][1] += 0.5 * row[3] * height;
+        out[2][0] += 0.5 * row[4] * width;
+        out[2][1] += 0.5 * row[5] * height;
+        out[3][0] += 0.5 * row[6] * width;
+        out[3][1] += 0.5 * row[7] * height;
+    }
+}
+/* fzgx:end fn_1_492F0 */
+
 /* fzgx:begin fn_1_49410 */
 struct fn_1_49410_lbl_1_rodata_FD0 {
     u8 pad_0[0xF0];
