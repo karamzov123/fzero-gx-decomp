@@ -2297,3 +2297,6 @@ rel/movie_module/fn_12_22254.c:
 
 rel/movie_module/fn_12_22954.c:
 	.text       start:0x00022954 end:0x00022FB4 align:4
+
+rel/movie_module/fn_12_27478.c:
+	.text       start:0x00027478 end:0x00027884 align:4
