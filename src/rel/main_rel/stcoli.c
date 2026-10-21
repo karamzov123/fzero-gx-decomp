@@ -1461,6 +1461,110 @@ void fn_1_1902C(StcoliNode *root, StcoliVec *vec, void *arg3, f32 value) {
 }
 /* fzgx:end fn_1_1902C */
 
+/* fzgx:begin fn_1_1B010 noprologue */
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct Vec3f {
+f32 x, y, z;
+} Vec3f;
+
+
+extern f32 lbl_1_data_4;
+
+
+typedef struct {
+u32 off[9];
+} OffsetTable;
+typedef struct {
+u8 pad_0[0x8];
+f32 zero;
+u8 pad_C[0x4];
+f32 minY;
+f32 maxY;
+u8 pad_18[0x8];
+f32 scale;
+f32 bias;
+u8 pad_28[0x24];
+OffsetTable shapes;
+OffsetTable counts;
+} StcoliPool6C8;
+typedef struct {
+u32 flags;
+u8 *cfg;
+} StcoliEntity;
+typedef struct {
+u8 pad_0[0x1D4];
+u32 flags;
+} StcoliGlobal;
+extern f32 lbl_1_rodata_6C8[2];
+extern StcoliGlobal *lbl_801A66CC;
+extern void fn_1_18214(StcoliEntity *, f32 *, void *);
+extern void fn_8006E250(void *, Vec3f *);
+void fn_1_1B010(u32 arg0, void *pos, u32 mode, StcoliEntity *entity, f32 *out, u32 arg5, void *work, f32 value) {
+StcoliPool6C8 *pool;
+OffsetTable shapes;
+OffsetTable counts;
+Vec3f local;
+u8 *cfg;
+s32 i;
+u8 *shape;
+f32 minV;
+f32 maxV;
+f32 t;
+f32 width;
+u32 n;
+s32 empty;
+pool = (StcoliPool6C8 *)&lbl_1_rodata_6C8;
+shapes = pool->shapes;
+counts = pool->counts;
+if ((mode & 0x200000) != 0) {
+empty = 1;
+minV = lbl_1_data_4;
+maxV = pool->zero;
+cfg = entity->cfg;
+for (i = 0; i < 9; i++) {
+shape = *(u8 **)(cfg + shapes.off[i]);
+if (shape != ((void *)0) ) {
+t = *(f32 *)(shape + 4);
+n = *(u32 *)(cfg + counts.off[i]);
+if (minV > t) {
+minV = t;
+}
+t = *(f32 *)(shape + n * 20 - 16);
+if (maxV < t) {
+maxV = t;
+}
+empty = 0;
+}
+}
+if (empty || (minV < value && value < maxV)) {
+fn_1_18214(entity, out, work);
+t = *out;
+if (t < pool->zero) {
+t = -t;
+}
+width = pool->bias + (f32)(pool->scale * t);
+fn_8006E250(pos, &local);
+if (pool->minY < local.y && local.y < pool->maxY) {
+if (-width < local.x && local.x < width) {
+lbl_801A66CC->flags |= entity->flags & 0x1E0000;
+}
+}
+}
+}
+}
+/* fzgx:end fn_1_1B010 */
+
 /* fzgx:begin fn_1_1FB80 noprologue */
 #include "types.h"
 #include "rel/main_rel/stcoli.h"
@@ -2375,6 +2479,146 @@ void fn_1_21CFC(void *entity, fn_1_21CFC_Vec *scale, f32 t) {
     lbl_8006DB30();
 }
 /* fzgx:end fn_1_21CFC */
+
+/* fzgx:begin fn_1_2277C noprologue */
+#include "dolphin/types.h"
+
+#pragma fp_contract on
+
+typedef struct StcoliVec {
+    f32 x, y, z;
+} StcoliVec;
+
+typedef struct StcoliWheel {
+    s32 state;          /* 0x00 */
+    f32 f04;            /* 0x04 */
+    StcoliVec pos;      /* 0x08 */
+    StcoliVec vel;      /* 0x14 */
+    u8 pad20[0x24];
+    f32 f44;            /* 0x44 */
+    f32 f48;            /* 0x48 */
+    u8 pad4C[0x10];
+} StcoliWheel; /* 0x5c */
+
+typedef struct StcoliPoint {
+    StcoliVec pos;      /* 0x00 */
+    u8 pad0C[0x18];
+    StcoliVec vel;      /* 0x24 */
+} StcoliPoint; /* 0x30 */
+
+typedef struct StcoliObj {
+    u32 flags;              /* 0x000 */
+    s16 s04;                /* 0x004 */
+    s16 s06;                /* 0x006 */
+    f32 size;               /* 0x008 */
+    u8 pad00C[0x30];
+    char name[32];          /* 0x03C */
+    u8 pad05C[0x50];
+    f32 fAC;                /* 0x0AC */
+    f32 fB0;                /* 0x0B0 */
+    f32 fB4;                /* 0x0B4 */
+    u8 pad0B8[0x170];
+    f32 f228;               /* 0x228 */
+    u8 pad22C[0x18];
+    StcoliWheel wheels[4];  /* 0x244 */
+    StcoliPoint points[4];  /* 0x3B4 */
+    s8 s474;                /* 0x474 */
+    s8 s475;                /* 0x475 */
+    u8 pad476[0x10E];
+    f32 maxLen;             /* 0x584 */
+    f32 maxX;               /* 0x588 */
+    u8 pad58C[4];
+    u8 b590;                /* 0x590 */
+    u8 pad591[0x49];
+    s16 s5DA;               /* 0x5DA */
+} StcoliObj;
+
+typedef struct StcoliDesc {
+    char *name;             /* 0x00 */
+    u8 pad04[0x50];
+    StcoliVec wheelPos[4];  /* 0x54 */
+    StcoliVec pointPos[4];  /* 0x84 */
+} StcoliDesc;
+
+extern char *strncpy(char *, const char *, unsigned long);
+extern void fn_1_22E8C(void *, void *);
+extern void fn_1_22F90(void *, int);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006D758(void);
+extern void lbl_8006DB30(void);
+
+static inline f32 stcoli_mag(StcoliVec *v)
+{
+    f32 *c = &v->x;
+    f32 sq;
+
+    /* distinct operand spellings: MWCC never fuses a literal square a*a */
+    sq = v->x * v->x;
+    sq += c[1] * v->y;
+    sq += c[2] * v->z;
+    return lbl_8006D0B4(sq);
+}
+
+void fn_1_2277C(StcoliObj *obj, StcoliDesc *desc)
+{
+    s32 i;
+    f32 len;
+    f32 ax;
+    StcoliPoint *pt;
+
+    obj->flags = 0;
+    obj->s04 = 0;
+    obj->s06 = 0;
+    strncpy(obj->name, desc->name, 31);
+    obj->name[31] = 0;
+    fn_1_22E8C(obj, desc);
+
+    obj->fAC = 52.0f * obj->size / 16.0f;
+    obj->fB0 = 45.0f * obj->size / 16.0f;
+    obj->fB4 = 52.0f * obj->size / 16.0f;
+
+    obj->f228 = 0.0f;
+    for (i = 0; i < 4; i++) {
+        obj->wheels[i].f44 = 0.0f;
+        obj->wheels[i].pos = desc->wheelPos[i];
+        obj->wheels[i].vel.x = 0.0f;
+        obj->wheels[i].vel.y = 0.0f;
+        obj->wheels[i].vel.z = 0.0f;
+        obj->wheels[i].state = 0;
+        obj->wheels[i].f04 = 0.0f;
+        obj->wheels[i].f48 = 1.7f;
+    }
+
+    obj->maxLen = 0.0f;
+    obj->maxX = 1.0f;
+    for (i = 0; i < 4; i++) {
+        pt = &obj->points[i];
+        pt->pos = desc->pointPos[i];
+        pt->vel.x = 0.0f;
+        pt->vel.y = 0.0f;
+        pt->vel.z = 0.0f;
+        len = stcoli_mag(&pt->pos);
+        if (obj->maxLen < len) {
+            obj->maxLen = len;
+        }
+        ax = __fabs(pt->pos.x);
+        if (obj->maxX < ax) {
+            obj->maxX = ax;
+        }
+    }
+
+    obj->maxLen += 0.1f;
+    obj->s474 = -1;
+    obj->s475 = -1;
+    obj->b590 = 0;
+    obj->s5DA = 100;
+    lbl_8006DAEC();
+    lbl_8006D758();
+    fn_1_22F90(obj, 1);
+    lbl_8006DB30();
+}
+/* fzgx:end fn_1_2277C */
 
 /* fzgx:begin fn_1_229EC */
 #pragma section code_type ".fzgxpool"
@@ -7278,6 +7522,126 @@ void fn_1_2E3B4(Arg0 *arg0, Arg1 *arg1) {
 
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_2E3B4 */
+
+/* fzgx:begin fn_1_2E928 noprologue */
+#include "types.h"
+
+typedef struct {
+    u8 pad_0[0x4];
+    u16 unk_4;
+    u8 pad_6[0x3];
+    u8 unk_9[5];
+    u8 unk_E[5];
+    u8 unk_13[5];
+    s16 unk_18[6];
+    u32 unk_24[5];
+    u32 unk_38[5];
+    u16 unk_4C[22];
+    u32 unk_78;
+    u8 pad_7C[0x24];
+} StEntry;
+
+typedef struct {
+    u8 pad_0[0x5];
+    u8 unk_5;
+    u8 pad_6[0x3];
+    u8 unk_9;
+    u8 pad_A[0x4];
+    u8 unk_E[0x99];
+    u8 unk_A7;
+    u8 pad_A8[0x2C];
+    StEntry entries[1];
+} StState;
+
+typedef struct {
+    u8 pad_0[0x1D4];
+    u8 unk_1D4;
+    u8 unk_1D5;
+    u16 unk_1D6;
+    u8 pad_1D8[0x8];
+    u8 unk_1E0;
+    u8 unk_1E1;
+    u16 unk_1E2;
+} StInfo;
+
+typedef struct {
+    u32 unk_0;
+    s16 unk_4;
+    u8 pad_6[0xD2];
+    f32 unk_D8;
+    u8 pad_DC[0x134];
+    u16 unk_210;
+    u8 pad_212[0x270];
+    u8 unk_482;
+    u8 pad_483[0x19];
+    StInfo *unk_49C;
+} StRacer;
+
+extern StState lbl_1_bss_3C30;
+extern const f32 lbl_1_rodata_D48[9];
+extern const u8 lbl_1_rodata_DB38[32];
+extern void fn_1_2E3B4(StEntry *entry, StRacer *racer);
+
+void fn_1_2E928(StRacer *racer) {
+    StState *st = &lbl_1_bss_3C30;
+    StInfo *info = racer->unk_49C;
+    StEntry *e = &st->entries[racer->unk_4];
+    s32 i;
+    s32 mult;
+
+    u8 k = st->unk_A7;
+
+    if (e->unk_E[k] != 0xFE && e->unk_E[k] != 0xFF) {
+        return;
+    }
+    e->unk_24[k] = (info->unk_1E0 << 20) | (info->unk_1E1 << 12) | info->unk_1E2;
+    e->unk_38[st->unk_A7] = (info->unk_1D4 << 20) | (info->unk_1D5 << 12) | info->unk_1D6;
+    if (racer->unk_D8 > lbl_1_rodata_D48[0]) {
+        e->unk_18[st->unk_A7] = 9999;
+    } else {
+        e->unk_18[st->unk_A7] = racer->unk_D8;
+    }
+    if (racer->unk_482 > 30) {
+        e->unk_13[st->unk_A7] = 30;
+    } else {
+        e->unk_13[st->unk_A7] = racer->unk_482;
+    }
+    if (!(racer->unk_0 & 0x10000)) {
+        e->unk_E[st->unk_A7] = 0xFE;
+        if (lbl_1_bss_3C30.unk_5 != 0) {
+            e->unk_9[st->unk_A7] = 0;
+            e->unk_4C[st->unk_A7] = 0;
+        }
+    } else {
+        s16 id = racer->unk_4;
+
+        for (i = 0; i < lbl_1_bss_3C30.unk_9; i++) {
+            if (id == lbl_1_bss_3C30.unk_E[i]) {
+                break;
+            }
+        }
+        e->unk_E[st->unk_A7] = i;
+        e->unk_4C[st->unk_A7] = 0;
+        if (lbl_1_bss_3C30.unk_5 != 0) {
+            if (i < 30) {
+                e->unk_9[st->unk_A7] = lbl_1_rodata_DB38[i];
+            } else {
+                e->unk_9[st->unk_A7] = 0;
+            }
+        }
+        e->unk_4 += e->unk_9[st->unk_A7];
+        mult = 4 - e->unk_E[st->unk_A7];
+        if (mult < 1) {
+            mult = 1;
+        } else if (mult == 4) {
+            mult++;
+        }
+        e->unk_4C[st->unk_A7] = mult * (racer->unk_210 + e->unk_9[st->unk_A7] * 2);
+        e->unk_78 += e->unk_4C[st->unk_A7];
+    }
+    fn_1_2E3B4(e, racer);
+}
+/* fzgx:end fn_1_2E928 */
 
 /* fzgx:begin fn_1_3FCD4 */
 void fn_1_3FCD4(u32 mask) {

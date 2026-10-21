@@ -731,3 +731,12 @@ rel/sel/sel/fn_10_A634.c:
 
 rel/sel/sel/fn_10_A480.c:
 	.text       start:0x0000A480 end:0x0000A634 align:4
+
+rel/sel/sel/fn_10_E034.c:
+	.text       start:0x0000E034 end:0x0000E294 align:4
+
+rel/sel/sel/fn_10_18DD0.c:
+	.text       start:0x00018DD0 end:0x00019040 align:4
+
+rel/sel/sel/fn_10_AB98.c:
+	.text       start:0x0000AB98 end:0x0000AE14 align:4

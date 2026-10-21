@@ -5194,6 +5194,160 @@ void fn_1_618B8(struct obj_state *p)
 #pragma peephole reset
 /* fzgx:end fn_1_618B8 */
 
+/* fzgx:begin fn_1_619E4 noprologue */
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct Vec3 {
+f32 x;
+f32 y;
+f32 z;
+} Vec3;
+
+
+struct fn_1_619E4_pool {
+u8 pad_0[0x28];
+f32 one;
+u8 pad_2C[0x24];
+f32 zero;
+f32 half;
+u8 pad_58[0x4];
+f32 c255;
+u8 pad_60[0x40];
+f32 two;
+u8 pad_A4[0x214];
+f32 widthScale;
+};
+typedef struct fn_1_619E4_Obj {
+u8 pad_0[0x1C];
+f32 red;
+f32 green;
+f32 blue;
+f32 radius;
+u8 pad_2C[0x8];
+void *model;
+u8 pad_38[0x4];
+Vec3 end;
+u8 pad_48[0x18];
+Vec3 start;
+} fn_1_619E4_Obj;
+typedef struct fn_1_619E4_DrawParam {
+f32 scale;
+f32 unk4;
+f32 mtx[3][4];
+f32 unk38;
+u8 r, g, b, a;
+} fn_1_619E4_DrawParam;
+extern struct fn_1_619E4_pool lbl_1_rodata_2950;
+extern void *lbl_801A66CC;
+extern s32 fn_1_54E34(void *, f32);
+extern int fn_1_9F914(const void *, const void *);
+extern void *memset(void *, int, u32);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1B0(Vec3 *, Vec3 *);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E0A4(Vec3 *);
+extern void lbl_8006D7B0(void);
+extern void lbl_8006D668(Vec3 *);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_8006EDBC(Vec3 *, Vec3 *, s16 *, s16 *);
+extern void lbl_8006D7DC(Vec3 *);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void lbl_8006E15C(f32, f32, f32);
+extern void fn_8006E294(Vec3 *);
+extern s32 lbl_8006D24C(f32, f32);
+extern void lbl_8006DB74(void *);
+
+#pragma opt_common_subs off
+
+void fn_1_619E4(fn_1_619E4_Obj *obj) {
+struct fn_1_619E4_pool *pool;
+void *model;
+f32 size;
+f32 radius;
+f32 len;
+f32 s;
+f32 dx, dz, dy;
+f32 ox, oy;
+fn_1_619E4_DrawParam param;
+Vec3 end;
+Vec3 start;
+Vec3 mid;
+Vec3 dir;
+s16 rotX;
+s16 rotY;
+model = obj->model;
+pool = &lbl_1_rodata_2950;
+memset(&param, 0, sizeof(param));
+radius = obj->radius;
+lbl_8006DBAC(lbl_801A66CC);
+lbl_8006E1B0(&obj->start, &start);
+lbl_8006DCA4();
+if (fn_1_54E34(&obj->end, obj->radius)) {
+lbl_8006E1B0(&obj->end, &end);
+if (end.z < pool->zero && start.z < pool->zero) {
+dx = end.x - start.x;
+dy = end.y - start.y;
+size = obj->radius;
+dir.x = dx;
+dir.y = dy;
+if (pool->zero == dx && pool->zero == dy) {
+lbl_8006E0A4(&obj->end);
+lbl_8006D7B0();
+} else {
+dir.z = pool->zero;
+lbl_8006D668(&dir);
+s = radius * pool->widthScale;
+ox = dir.x * s;
+oy = dir.y * s;
+end.x = end.x + ox;
+end.y = end.y + oy;
+start.x = start.x - ox;
+start.y = start.y - oy;
+mid.x = pool->half * (end.x + start.x);
+mid.y = pool->half * (end.y + start.y);
+mid.z = pool->half * (end.z + start.z);
+dx = end.x - start.x;
+oy = end.y - start.y;
+ox = end.z - start.z;
+len = dx * dx;
+len = oy * oy + len;
+len = ox * ox + len;
+len = lbl_8006D0B4(len);
+fn_8006EDBC(&end, &start, &rotX, &rotY);
+lbl_8006D7DC(&mid);
+mathutil_mtxA_rotate_y(rotY);
+mathutil_mtxA_rotate_x(rotX);
+lbl_8006E15C(pool->one, pool->one, len / radius);
+mathutil_mtxA_rotate_x(0x4000);
+fn_8006E294(&dir);
+mathutil_mtxA_rotate_y(lbl_8006D24C(dir.x, dir.z));
+}
+lbl_8006DB74(param.mtx);
+param.scale = pool->two * size;
+param.r = pool->c255 * obj->red;
+param.g = pool->c255 * obj->green;
+param.b = pool->c255 * obj->blue;
+param.a = 0xFF;
+fn_1_9F914(&param, model);
+}
+}
+}
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_619E4 */
+
 /* fzgx:begin fn_1_61C84 */
 // fn_1_61C84: empty in retail (single blr).
 void fn_1_61C84(void) {
@@ -6104,6 +6258,311 @@ void fn_1_62AF8(struct fn_1_62AF8_obj *obj) {
     obj->unk_58 = (random >> 16) & 0x7FFF;
 }
 /* fzgx:end fn_1_62AF8 */
+
+/* fzgx:begin fn_1_62E9C noprologue */
+#include "types.h"
+
+/* Volatile sinks retain the native literals in retail pool order. */
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_000(void) {
+    /* Volatile keeps these primer stores and their literals. */
+    volatile f32 f;
+    /* Volatile retains double literals in the shared retail pool. */
+    volatile f64 d;
+    f = 60.0f;
+    f = 0.10000000149011612f;
+    f = 32767.0f;
+    f = 0.05000000074505806f;
+    d = 0.07;
+    f = 20000.0f;
+    d = 4503599627370496.0;
+    f = 1.0f;
+    f = -0.029999999329447746f;
+    d = 15.0;
+    d = 4503601774854144.0;
+    d = 1.5;
+    d = 0.5;
+    f = 0.0f;
+    f = 0.5f;
+    f = 8.0f;
+    f = 255.0f;
+    f = 15.0f;
+    f = 0.20000000298023224f;
+    f = 0.07999999821186066f;
+    f = 0.25f;
+    f = 0.9800000190734863f;
+    f = 0.9900000095367432f;
+    f = 40.0f;
+    f = 20.0f;
+    f = 1.5f;
+    f = 0.44999998807907104f;
+    f = -2.0f;
+    f = 0.0833333358168602f;
+    f = 0.15000000596046448f;
+    f = 0.125f;
+    f = -0.4000000059604645f;
+    f = -0.30000001192092896f;
+    f = 2.0f;
+    f = 250.0f;
+    d = 0.6;
+    d = 0.4;
+    f = 0.30000001192092896f;
+    f = -0.004000000189989805f;
+    f = 0.01666666753590107f;
+    f = 65536.0f;
+    f = 4096.0f;
+    f = 0.9599999785423279f;
+    f = 0.4000000059604645f;
+    f = 0.05050000175833702f;
+    f = 0.050999999046325684f;
+    f = 0.949999988079071f;
+    f = 0.8999999761581421f;
+    d = 150.0;
+    d = 10.0;
+    d = 3.0;
+}
+#pragma section code_type ".text"
+
+/* Retail floating-point table; values are not addresses. */
+const f32 fzgx_pool_table_100[4] = {
+    0.0f, 0.10000000149011612f, -2.4000000953674316f, 5.0f
+};
+
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_110(void) {
+    /* Volatile keeps these primer stores and their literals. */
+    volatile f32 f;
+    /* Volatile retains double literals in the shared retail pool. */
+    volatile f64 d;
+    d = 1.2;
+    d = 0.1;
+    f = 10.0f;
+    f = 18.0f;
+    d = 0.7;
+    d = 50.0;
+}
+#pragma section code_type ".text"
+
+/* Retail floating-point table; values are not addresses. */
+const f32 fzgx_pool_table_138[4] = {
+    0.0f, 0.10000000149011612f, -2.4000000953674316f, 19.0f
+};
+
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_148(void) {
+    /* Volatile keeps these primer stores and their literals. */
+    volatile f32 f;
+    /* Volatile retains double literals in the shared retail pool. */
+    volatile f64 d;
+    d = 24.0;
+    f = 0.7071067690849304f;
+}
+#pragma section code_type ".text"
+
+const u32 fzgx_pool_table_154[3] = {
+    0x00000000, 0x00000000, 0x00000000
+};
+
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_160(void) {
+    /* Volatile keeps these primer stores and their literals. */
+    volatile f32 f;
+    /* Volatile retains double literals in the shared retail pool. */
+    volatile f64 d;
+    d = 255.0;
+    d = 0.9;
+    f = 0.004000000189989805f;
+    f = 0.0010000000474974513f;
+    f = 0.009999999776482582f;
+    f = -1.1920928955078125e-7f;
+    f = 240.0f;
+    f = 100.0f;
+    f = 300.0f;
+    f = 200.0f;
+    f = 10000.0f;
+    f = 5000.0f;
+    f = 204.0f;
+    f = 85.0f;
+    f = -0.05000000074505806f;
+    f = 4.0f;
+    f = -0.05999999865889549f;
+    f = -0.5f;
+    f = -1.0f;
+    d = 0.2;
+    f = 512.0f;
+    f = 0.029999999329447746f;
+    f = 51.0f;
+    f = 88.0f;
+    d = -3.0;
+    f = 4.5f;
+    f = 6.0f;
+}
+#pragma section code_type ".text"
+
+/* Retail floating-point table; values are not addresses. */
+const f32 fzgx_pool_table_1e0[26] = {
+    1.100000023841858f, 0.0f, 0.8999999761581421f, -1.100000023841858f, 0.0f, 0.8999999761581421f, 0.0f, 0.0f, -0.699999988079071f, 0.0f, 0.0f, 0.0f, 1.2000000476837158f, 50.0f, 0.02500000037252903f, 0.800000011920929f, 0.0625f, 2.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -3.0f, 0.0f
+};
+
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_248(void) {
+    /* Volatile keeps these primer stores and their literals. */
+    volatile f32 f;
+    /* Volatile retains double literals in the shared retail pool. */
+    volatile f64 d;
+    d = 0.01;
+    f = 1.8600000143051147f;
+    d = 210.0;
+    d = 0.02;
+    d = 0.003;
+    d = -0.699999988079071;
+    d = -0.029999999329447746;
+    d = 0.141;
+    d = 0.699999988079071;
+    d = 1.0;
+    d = 0.3;
+    d = 0.800000011920929;
+    d = 12.0;
+    f = -0.8999999761581421f;
+    f = 0.07000000029802322f;
+    f = 0.6000000238418579f;
+    f = 30.0f;
+    f = 1.059999942779541f;
+    f = 28.0f;
+    d = 5.0;
+}
+#pragma section code_type ".text"
+
+
+typedef struct EffVec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} EffVec3;
+
+typedef struct EffRot3 {
+    s16 x;
+    s16 y;
+    s16 z;
+} EffRot3;
+
+struct Eff62E9C {
+    u8 pad_0[0x10];
+    s32 unk_10;
+    u8 pad_14[0x8];
+    f32 r;
+    f32 g;
+    f32 b;
+    f32 size;
+    u8 pad_2C[0x8];
+    void *unk_34;
+    u8 pad_38[0x4];
+    EffVec3 pos;
+    u8 pad_48[0xC];
+    EffRot3 rot;
+};
+
+struct EffPacket62E9C {
+    f32 unk_0;
+    f32 unk_4;
+    f32 mtx[12];
+    u8 pad_38[0x4];
+    u8 color[4];
+};
+
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DCA4(void);
+extern u32 fn_1_58C4(void);
+extern void fn_1_681C(u8, EffVec3 *);
+extern int fn_1_9F914(void *, void *);
+extern void lbl_8006D7DC(EffVec3 *);
+extern void lbl_8006E1B0(EffVec3 *, EffVec3 *);
+extern void lbl_8006DB74(f32 *);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void *memset(void *, int, u32);
+
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+
+static inline f32 eff_dist_to(struct Eff62E9C *e, EffVec3 *p) {
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 sq;
+    dx = e->pos.x;
+    dx -= p->x;
+    sq = dx * dx;
+    dy = e->pos.y;
+    dy -= p->y;
+    sq += dy * dy;
+    dz = e->pos.z;
+    dz -= p->z;
+    sq += dz * dz;
+    return lbl_8006D0B4(sq);
+}
+
+#pragma opt_propagation off
+static inline void eff_finish_packet(struct EffPacket62E9C *pkt, f32 size, f32 a) {
+    pkt->unk_4 = size;
+    pkt->color[3] = (u8)(s32)a;
+}
+#pragma opt_propagation on
+
+void fn_1_62E9C(struct Eff62E9C *e) {
+    struct EffPacket62E9C pkt;
+    EffVec3 tpos;
+    EffVec3 cam;
+    f32 alpha;
+    f32 dist;
+    u32 count;
+    u32 i;
+
+    alpha = 1.0f;
+    lbl_8006DCA4();
+    lbl_8006E1B0(&e->pos, &tpos);
+    lbl_8006D7DC(&tpos);
+    mathutil_mtxA_rotate_y(e->rot.y);
+    mathutil_mtxA_rotate_x(e->rot.x);
+    mathutil_mtxA_rotate_z(e->rot.z);
+
+    count = fn_1_58C4();
+    fn_1_681C(0, &cam);
+    dist = eff_dist_to(e, &cam);
+    for (i = 1; i < count; i++) {
+        fn_1_681C(i, &cam);
+        /* the macro evaluates the distance twice, as retail does */
+        if (dist < eff_dist_to(e, &cam)) {
+            dist = dist;
+        } else {
+            dist = eff_dist_to(e, &cam);
+        }
+    }
+
+    if (dist <= 5.0) {
+        return;
+    }
+    if (dist < 20.0f) {
+        dist = dist / 20.0f;
+    } else {
+        dist = 1.0f;
+    }
+    memset(&pkt, 0, sizeof(pkt));
+    lbl_8006DB74(pkt.mtx);
+    pkt.unk_0 = 0.70710677f * e->size;
+    if (e->unk_10 < 12) {
+        alpha *= 0.083333336f * (f32)e->unk_10;
+    }
+    pkt.color[0] = (u8)(s32)(dist * (255.0f * e->r * alpha));
+    pkt.color[1] = (u8)(s32)(dist * (255.0f * e->g * alpha));
+    pkt.color[2] = (u8)(s32)(dist * (255.0f * e->b * alpha));
+    /* Publish the alpha and second size component in packet order. */
+    *(volatile u8 *)&pkt.color[3] = (u8)(s32)(255.0f * dist);
+    /* Volatile preserves this size store after the alpha-byte store. */
+    *(volatile f32 *)&pkt.unk_4 = pkt.unk_0;
+    fn_1_9F914(&pkt, e->unk_34);
+}
+/* fzgx:end fn_1_62E9C */
 
 /* fzgx:begin fn_1_6312C */
 // fn_1_6312C: empty in retail (single blr).

@@ -7413,9 +7413,6 @@ rel/main_rel/game/fn_1_3F5F8.c:
 rel/main_rel/sound/fn_1_A5594.c:
 	.text       start:0x000A5594 end:0x000A5848 align:4
 
-rel/main_rel/burner/fn_1_9AABC.c:
-	.text       start:0x0009AABC end:0x0009AD20 align:4
-
 rel/main_rel/sel_static_disp/fn_1_135D7C.c:
 	.text       start:0x00135D7C end:0x00136174 align:4
 
@@ -8030,3 +8027,33 @@ rel/main_rel/sel_static_disp/fn_1_133748.c:
 
 rel/main_rel/mdlload/fn_1_D4FFC.c:
 	.text       start:0x000D4FFC end:0x000D523C align:4
+
+rel/main_rel/car/fn_1_956EC.c:
+	.text       start:0x000956EC end:0x00095950 align:4
+
+rel/main_rel/stcoli/fn_1_2277C.c:
+	.text       start:0x0002277C end:0x000229EC align:4
+
+rel/main_rel/spline/fn_1_FA1D8.c:
+	.text       start:0x000FA1D8 end:0x000FA450 align:4
+
+rel/main_rel/replay/fn_1_F3574.c:
+	.text       start:0x000F3574 end:0x000F37F4 align:4
+
+rel/main_rel/car/fn_1_8E4A4.c:
+	.text       start:0x0008E4A4 end:0x0008E728 align:4
+
+rel/main_rel/accessory/fn_1_10C9B0.c:
+	.text       start:0x0010C9B0 end:0x0010CC38 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_CAB38.c:
+	.text       start:0x000CAB38 end:0x000CADC4 align:4
+
+rel/main_rel/stcoli/fn_1_2E928.c:
+	.text       start:0x0002E928 end:0x0002EBB8 align:4
+
+rel/main_rel/stcoli/fn_1_1B010.c:
+	.text       start:0x0001B010 end:0x0001B2A4 align:4
+
+rel/main_rel/effect/fn_1_619E4.c:
+	.text       start:0x000619E4 end:0x00061C84 align:4

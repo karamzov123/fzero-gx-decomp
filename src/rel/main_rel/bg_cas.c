@@ -2082,3 +2082,189 @@ void fn_1_1014B4(u32 arg0, u32 arg1) {
     }
 }
 /* fzgx:end fn_1_1014B4 */
+
+/* fzgx:begin fn_1_10161C noprologue */
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct {
+u8 pad_0[0x8];
+u32 unk_8;
+} Obj_1_bss_85250_At10;
+typedef struct {
+u8 unk_0;
+u8 unk_1;
+u8 unk_2;
+u8 pad_3[0x1];
+u16 unk_4;
+u8 pad_6[0x2];
+u32 unk_8;
+u8 pad_C[0x4];
+u32 unk_10;
+f32 unk_14;
+f32 unk_18;
+u32 unk_1C;
+u32 unk_20;
+u32 unk_24;
+u32 unk_28;
+u32 unk_2C;
+u32 unk_30;
+f32 unk_34;
+f32 unk_38;
+f32 unk_3C;
+f32 unk_40;
+u8 pad_44[0x1];
+u8 unk_45;
+u8 pad_46[0x12];
+f32 unk_58;
+} Obj_1_bss_85250_At18;
+typedef struct {
+u32 unk_0;
+u32 unk_4;
+f32 unk_8;
+} Obj_1_bss_85250_At20;
+typedef struct {
+u32 unk_0;
+u32 unk_4;
+u32 unk_8;
+u32 unk_C;
+Obj_1_bss_85250_At10 *unk_10;
+u32 unk_14;
+Obj_1_bss_85250_At18 *unk_18;
+u32 unk_1C;
+Obj_1_bss_85250_At20 *unk_20;
+u32 unk_24;
+u32 unk_28;
+u32 unk_2C;
+} Obj_1_bss_85250;
+extern Obj_1_bss_85250 lbl_1_bss_85250;
+
+
+typedef struct {
+u16 unk_0;
+u16 unk_2;
+u8 pad_4[0x4];
+u16 unk_8;
+u16 unk_A;
+u8 pad_C[0x4];
+u16 unk_10;
+u16 unk_12;
+u8 pad_14[0x4];
+} Obj_1_bss_D58;
+extern Obj_1_bss_D58 lbl_1_bss_D58;
+
+
+typedef struct {
+f32 x, y, z;
+} CasVec;
+typedef struct {
+CasVec v;
+u8 pad_C[0x34];
+} CasMtx;
+typedef struct {
+u32 unk_0;
+u32 unk_4;
+} CasObj;
+
+
+extern CasVec lbl_1_rodata_77F8;
+extern CasVec lbl_1_rodata_7804;
+extern CasMtx *fn_80077B14(CasObj *);
+extern void fn_1_1024F8(void);
+extern void fn_1_102750(void);
+extern void fn_1_102C08(void);
+
+
+typedef struct {
+u8 pad_0[0x8];
+CasObj **unk_8;
+} CasTable;
+typedef struct {
+u8 unk_0;
+u8 unk_1;
+u8 unk_2;
+u8 pad_3;
+u16 unk_4[6];
+CasVec unk_10;
+u8 pad_1C[0xC];
+CasVec unk_28;
+CasVec unk_34;
+u8 pad_40[0x4];
+} fn_1_10161C_CasEntry;
+typedef struct {
+u32 unk_0;
+u32 unk_4;
+u32 unk_8;
+u32 unk_C;
+CasTable *unk_10;
+s32 unk_14;
+fn_1_10161C_CasEntry *unk_18;
+u32 unk_1C;
+} CasState;
+typedef struct {
+u8 pad_0[0x8];
+u16 unk_8;
+} CasInput;
+void fn_1_10161C(void) {
+CasState *st = &(*((CasState *)&lbl_1_bss_85250));
+CasObj *obj;
+CasMtx *mtx;
+obj = st->unk_10->unk_8[st->unk_4 * 2];
+if (obj == ((void *)0) ) {
+return;
+}
+mtx = fn_80077B14(obj);
+if (((*((CasInput *)&lbl_1_bss_D58)).unk_8 >> 4) & 1) {
+st->unk_0 ^= 1;
+}
+if (((*((CasInput *)&lbl_1_bss_D58)).unk_8 >> 3) & 1) {
+st->unk_14 = ((u32)st->unk_14 + 4) % 3;
+if (obj->unk_4 & 0x10) {
+u32 i;
+u32 j;
+for (i = 0; i < st->unk_1C; i++) {
+st->unk_18[i].unk_10 = st->unk_18[i].unk_28;
+for (j = 0; j < st->unk_18[i].unk_2; j++) {
+mtx[st->unk_18[i].unk_4[j]].v = st->unk_18[i].unk_10;
+}
+st->unk_18[i].unk_34 = lbl_1_rodata_77F8;
+}
+}
+} else if (((*((CasInput *)&lbl_1_bss_D58)).unk_8 >> 2) & 1) {
+st->unk_14 = ((u32)st->unk_14 + 2) % 3;
+if (obj->unk_4 & 0x10) {
+u32 i;
+u32 j;
+for (i = 0; i < st->unk_1C; i++) {
+st->unk_18[i].unk_10 = st->unk_18[i].unk_28;
+for (j = 0; j < st->unk_18[i].unk_2; j++) {
+mtx[st->unk_18[i].unk_4[j]].v = st->unk_18[i].unk_10;
+}
+st->unk_18[i].unk_34 = lbl_1_rodata_7804;
+}
+}
+}
+if (obj->unk_4 & 0x10) {
+switch (st->unk_14) {
+case 0:
+default:
+fn_1_1024F8();
+break;
+case 1:
+fn_1_102750();
+break;
+case 2:
+fn_1_102C08();
+break;
+}
+}
+}
+/* fzgx:end fn_1_10161C */

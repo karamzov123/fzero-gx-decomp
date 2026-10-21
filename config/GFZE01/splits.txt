@@ -6296,3 +6296,9 @@ dol/fn_8008E770.c:
 
 dol/fn_80007F70.c:
 	.text       start:0x80007F70 end:0x800081C8 align:4
+
+dol/fn_8007E69C.c:
+	.text       start:0x8007E69C end:0x8007E914 align:4
+
+dol/OSResetSystem.c:
+	.text       start:0x8000EFAC end:0x8000F234 align:4

@@ -895,6 +895,65 @@ void fn_1_CA8FC(void) {
 }
 /* fzgx:end fn_1_CA8FC */
 
+/* fzgx:begin fn_1_CAB38 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/enemy_ctrl.h"
+
+extern u8 fn_1_86A10(u32);
+extern s32 fn_1_5910(void);
+extern f32 fn_1_15E1D0(u32);
+extern void fn_1_51E60(FontDrawPacket *);
+extern const FontDrawPacket lbl_1_rodata_26F8;
+extern const f32 lbl_1_rodata_5D90; /* 0.0f */
+extern const f32 lbl_1_rodata_5DCC; /* 4.0f */
+extern const f32 lbl_1_rodata_5DD0; /* 150.0f */
+extern const f32 lbl_1_rodata_5DD4; /* 22.0f */
+extern const f32 lbl_1_rodata_5DD8; /* 23.0f */
+
+#define CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+
+void fn_1_CAB38(u32 arg0, u32 arg1, s32 y) {
+    s32 count;
+    s32 ypos;
+    s32 i;
+    s32 x;
+    FontDrawPacket pkt;
+
+    count = fn_1_86A10(arg0);
+    if (((((u32 *)&lbl_1_data_3D544)[fn_1_5910()] >> 21) & 1) == 0) {
+        return;
+    }
+    if ((((u32 *)&lbl_1_data_3D544)[fn_1_5910()] >> 24) & 1) {
+        ypos = (s32)((f32)y + (lbl_1_rodata_5DD0 +
+                               (f32)(lbl_1_rodata_5DD4 *
+                                     CLAMP(fn_1_15E1D0(fn_1_5910()), lbl_1_rodata_5D90, lbl_1_rodata_5DCC))));
+    } else {
+        ypos = y + 0x6c;
+    }
+    pkt = lbl_1_rodata_26F8;
+    pkt.y = (f32)ypos;
+    if (count > 30) {
+        count = 30;
+    }
+    if (count / 10 > 0) {
+        pkt.image = 0x940D;
+        for (i = 0; i < count / 10; i++) {
+            pkt.x = (f32)(616 - i * 18);
+            pkt.flags = 7;
+            fn_1_51E60(&pkt);
+        }
+        pkt.y += lbl_1_rodata_5DD8;
+    }
+    pkt.image = 0x940E;
+    for (i = 0; i < count % 10; i++) {
+        pkt.x = (f32)(616 - i * 17);
+        pkt.flags = 7;
+        fn_1_51E60(&pkt);
+    }
+}
+/* fzgx:end fn_1_CAB38 */
+
 /* fzgx:begin fn_1_CADC4 noprologue */
 #include "types.h"
 

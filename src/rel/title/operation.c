@@ -328,6 +328,115 @@ void fn_8_6C50(void) {
 }
 /* fzgx:end fn_8_6C50 */
 
+/* fzgx:begin fn_8_89B8 */
+#include "rel/title/operation.h"
+
+extern s32 lbl_801A66B4;
+extern void fn_8_CC4C(u32, u32);
+extern void fn_1_49410(void);
+extern void fn_1_495B0(u32);
+extern void fn_1_49590(f32);
+extern void fn_1_495C8(u8);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_495A0(f32);
+extern void fn_1_4D0A0(void);
+extern void fn_1_5233C(void);
+extern void fn_1_49738(void (*)(void));
+extern void fn_1_49748(f32);
+extern void fn_1_4AE0C(const char *, ...);
+typedef struct { u8 r, g, b, a; } Color;
+extern void fn_1_4D0D4(Color *, f32);
+typedef struct {
+    u8 pad[0xBA8];
+    const char *a[24];
+    const char *b[25];
+    const char *c[1];
+} TextData;
+
+/* Literal-pool primer: reproduces the TU's shared literal pool layout. */
+extern void primer_d(f64);
+extern void primer_f(f32);
+extern void primer_c(Color);
+#pragma push
+#pragma force_active on
+#pragma section code_type ".fzgxpool"
+void shared_pool_primer(void) {
+    primer_d(15.0); primer_f(320.0f); primer_f(640.0f); primer_d(1.0);
+    primer_f(150.0f); primer_f(0.1f); primer_f(20.0f); primer_f(0.8333333f);
+    primer_d(4503601774854144.0);
+}
+void shared_pool_primer2(void) {
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    primer_f(0.0f);
+    primer_f(1.0f); primer_f(0.5f); primer_f(0.09f); primer_f(5.0f); primer_f(255.0f);
+}
+void shared_pool_primer3(void) {
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    primer_f(0.3f);
+}
+void shared_pool_primer4(void) {
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+    { Color c = {255, 255, 255, 0}; primer_c(c); }
+}
+#pragma pop
+
+#pragma push
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+void fn_8_89B8(void) {
+    s32 x;
+    f32 t;
+    f32 alpha;
+    TextData *data = (TextData *)&lbl_8_data_7E50;
+    Color color;
+
+    if ((s32)lbl_8_bss_3CC < 15.0) {
+        t = 1.0 - (f32)(s32)lbl_8_bss_3CC / 15.0;
+        x = 320.0f + (f32)(640.0f * t);
+    } else if ((s32)lbl_8_bss_3CC > (s32)lbl_8_bss_3D0.unk_0 - 15.0) {
+        t = 1.0 - (f32)((s32)lbl_8_bss_3D0.unk_0 - (s32)lbl_8_bss_3CC) / 15.0;
+        x = 320.0f - (f32)(640.0f * t);
+    } else {
+        t = 0.0f;
+        x = 320;
+    }
+    alpha = (1.0f - t) * (1.0f - t);
+    fn_1_49410();
+    fn_1_495B0(0x80000000);
+    fn_1_49590(0.5f);
+    fn_1_495C8(9);
+    fn_1_496FC(x, 150.0f);
+    fn_1_4954C(0.09f);
+    if (lbl_801A66B4 == 5) fn_1_4955C(1.0f, 1.0f);
+    else fn_1_4955C(0.8333333f, 0.8333333f);
+    fn_1_495A0(alpha);
+    fn_1_4D0A0();
+    fn_1_49738(fn_1_5233C);
+    fn_1_49748(5.0f);
+    { const char *text = (const char *)data->a; text = ((const char **)text)[lbl_801A66B4]; fn_1_4AE0C(text); }
+    fn_1_49738(0);
+    { const char *text = (const char *)data->b; text = ((const char **)text)[lbl_801A66B4]; fn_1_4AE0C(text); }
+    { const char *text = (const char *)data->c; text = ((const char **)text)[lbl_801A66B4]; fn_1_4AE0C(text); }
+    {
+        Color white = {255, 255, 255, 0};
+        white.a = (s32)(255.0f * alpha);
+        color = white;
+        fn_1_4D0D4(&color, 20.0f);
+    }
+    fn_8_CC4C(0x1b7, 0xb1);
+}
+#pragma pop
+/* fzgx:end fn_8_89B8 */
+
 /* fzgx:begin fn_8_8C44 */
 // fn_8_8C44: empty in retail (single blr).
 void fn_8_8C44(void) {

@@ -438,6 +438,131 @@ void fn_1_F2F84(void) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_F2F84 */
 
+/* fzgx:begin fn_1_F3574 */
+typedef signed char s8;
+
+
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct {
+u32 x;
+u32 y;
+u32 z;
+} ReplayTriple_F3574;
+typedef struct {
+u32 start0 : 15;
+u32 kind : 3;
+u32 index : 5;
+u32 value : 5;
+u32 pad0 : 4;
+u32 start : 15;
+u32 count : 5;
+u32 result : 5;
+u32 stage : 5;
+u32 pad1 : 2;
+ReplayTriple_F3574 begin[4];
+ReplayTriple_F3574 end[4];
+ReplayTriple_F3574 begin1;
+ReplayTriple_F3574 end1;
+} ReplayEvent_F3574;
+typedef struct {
+u8 pad0[0xFEF0];
+u16 eventCount;
+u8 pad1[0x1E];
+u16 slots[30];
+ReplayEvent_F3574 events[1];
+} ReplayBuffer_F3574;
+typedef struct {
+u32 unk_0;
+u32 frame;
+u8 pad0[0x10];
+u8 playerCount;
+u8 pad1[0x27];
+ReplayBuffer_F3574 *buffer;
+} ReplayState_F3574;
+
+
+extern void fn_1_F3574(ReplayState_F3574 *state, u8 index, u8 value, u8 kind, u8 result);
+
+
+extern void fn_1_862D4(s32 value, f32 *out);
+extern u8 fn_1_8682C(int index);
+
+
+void fn_1_F3574(ReplayState_F3574 *state, u8 index, u8 value, u8 kind, u8 result) {
+ReplayEvent_F3574 *event;
+s32 i;
+s8 hit;
+u16 slot;
+if (state->buffer->eventCount >= 4) {
+return;
+}
+if (state->frame > 0x7fff) {
+return;
+}
+slot = state->buffer->slots[index];
+if (slot != 0xffff) {
+event = &state->buffer->events[slot];
+if (state->frame - event->start < 60 && event->kind == kind) {
+hit = 0;
+switch (event->kind) {
+case 0:
+if ((s32)event->value == value) {
+hit = 1;
+} else {
+event->value = value;
+hit = 1;
+event->result = result;
+}
+break;
+case 7:
+break;
+default:
+hit = 1;
+break;
+}
+if (hit) {
+event->start = state->frame;
+fn_1_862D4(event->stage, (f32 *)(ReplayTriple_F3574 *)(&event->end1));
+for (i = 0; i < state->playerCount; i++) {
+fn_1_862D4(i, (f32 *)(ReplayTriple_F3574 *)(&event->end[i]));
+}
+return;
+}
+}
+}
+event = &state->buffer->events[state->buffer->eventCount];
+state->buffer->slots[index] = state->buffer->eventCount;
+state->buffer->eventCount++;
+event->start0 = event->start = state->frame;
+event->index = index;
+event->value = value;
+event->kind = kind;
+if (kind == 0) {
+event->count = result - 1;
+} else {
+event->count = result;
+}
+event->result = result;
+event->stage = fn_1_8682C(0);
+fn_1_862D4(event->stage, (f32 *)(ReplayTriple_F3574 *)(&event->begin1));
+event->end1 = event->begin1;
+for (i = 0; i < state->playerCount; i++) {
+fn_1_862D4(i, (f32 *)(ReplayTriple_F3574 *)(&event->begin[i]));
+event->end[i] = event->begin[i];
+}
+}
+/* fzgx:end fn_1_F3574 */
+
 /* fzgx:begin fn_1_F37F4 */
 #include "types.h"
 
