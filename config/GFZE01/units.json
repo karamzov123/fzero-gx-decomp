@@ -16764,6 +16764,20 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80025EF4.c",
+    "symbols": [
+      "fn_80025EF4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "pool": {
+      "...data.0": "lbl_80128990",
+      "lbl_80128990": "lbl_80128990"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80026D70.c",
     "symbols": [
       "fn_80026D70"
@@ -75227,6 +75241,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/title/_prolog.c"
+  },
+  {
+    "module": "title",
+    "source": "rel/title/data/lbl_8_data_62D0.c",
+    "symbols": [
+      "lbl_8_data_62D0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
   },
   {
     "module": "title",
