@@ -1346,6 +1346,266 @@ void fn_3_130A8(void) {
 }
 /* fzgx:end fn_3_130A8 */
 
+/* fzgx:begin fn_3_130C8 pool noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/emb_paste_editor.h"
+
+struct InputEntry { u16 unk_0; u8 pad_2[0x12]; };
+
+struct InputState {
+ union {
+  struct { u8 pad8[8]; struct InputEntry unk_8[1]; };
+  struct { u8 pad10[0x10]; struct InputEntry unk_10[1]; };
+  struct { u8 pad12[0x12]; struct InputEntry unk_12[1]; };
+ };
+};
+
+struct fn_3_10B68_lbl_1_bss_9F8_8_E20 {
+    u16 unk_0;
+    u8 pad_2[0x12];
+};
+
+struct fn_3_10B68_lbl_1_bss_9F8_12_E20 {
+    u16 unk_0;
+    u8 pad_2[0x12];
+};
+
+struct fn_3_10B68_lbl_1_bss_9F8 {
+    union {
+        struct { u8 pad_view_unk_8[0x8]; struct fn_3_10B68_lbl_1_bss_9F8_8_E20 unk_8[1]; };
+        struct { u8 pad_view_unk_12[0x12]; struct fn_3_10B68_lbl_1_bss_9F8_12_E20 unk_12[1]; };
+    };
+};
+
+struct Sig_fn_8004E278_fn_8004E278_Arg0 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Vec3u;
+
+typedef struct {
+    u16 unk_0;
+    u8 pad_2[0x6];
+    u16 unk_8;
+    u8 pad_A[0x6];
+    u16 unk_10;
+    u16 unk_12;
+} PadInput;
+
+typedef struct {
+    u8 pad_0[0x4];
+    u32 unk_4;
+    u8 pad_8[0x2058];
+} fn_3_113AC_PasteEntry;
+
+typedef struct {
+    u8 pad_0[0x7];
+    u8 unk_7;
+    u8 pad_8[0x18];
+    fn_3_113AC_PasteEntry unk_20[4];
+    u8 pad_81A0[0x20];
+} PasteSlot;
+extern struct fn_3_10B68_lbl_1_bss_9F8 lbl_1_bss_9F8;
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 lbl_801A66B4;
+extern s32 fn_1_1310E0(void);
+extern u32 fn_1_B7F08(void);
+extern u32 fn_3_12D4(void);
+extern void fn_1_130EE8(u32 arg0, u32 arg1);
+extern void fn_1_130F98(void);
+extern void fn_1_131004(void);
+extern void fn_1_131050(u32 value, u32 state);
+extern void fn_3_11974(void);
+extern void fn_3_131C(s32 y, void *source);
+extern void fn_3_14C4();
+extern void fn_80008BA8(void *, void *, u32);
+extern u8 lbl_3_data_1A44__fzgx_offset_0[];
+extern u8 lbl_3_data_1A6C__fzgx_offset_0[];
+extern u8 lbl_3_data_1A70__fzgx_offset_0[];
+extern u8 lbl_3_data_1ACC__fzgx_offset_0[];
+extern u8 lbl_3_data_1B24__fzgx_offset_0[];
+extern u8 lbl_3_data_1BB4__fzgx_offset_0[];
+extern u8 lbl_3_data_1C04__fzgx_offset_0[];
+extern const Vec3u lbl_3_rodata_4C8;
+extern const Vec3u lbl_3_rodata_4D4;
+extern u32 lbl_801A6410[];
+extern void fn_1_FC414(void *arg0, void *arg1);
+extern u32 camera_update_state(void *);
+extern void fn_1_14DC68(void *, s16);
+extern void fn_1_7F3AC(void *);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_80F1C(s32 arg0, void *arg1);
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_426C(u32 idx);
+extern void fn_1_FDFF4(void);
+extern void fzgx_touch(void *);
+extern void fn_3_13508(void);
+extern void fn_3_137AC(void);
+extern void fn_3_14778(u16 width, u16 height, u8 format, u32 data);
+extern void fn_3_1857C(void);
+extern void fn_3_1552C(void);
+extern void fn_3_17098(void);
+extern void fn_3_14080(void);
+extern u32 fn_3_13D98();
+extern u32 fn_3_13EA4(void *arg, u32 *output);
+extern void fn_8006CE1C(f32 arg0);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_47F74(s32 index);
+extern void fn_1_A176C(u32, u32);
+extern s32 fn_1_45D0();
+extern int fn_1_B7E98(int index);
+extern u8 fn_1_B8338(int);
+extern void fn_1_1317C4(void);
+extern u32 *lbl_1_bss_6EAD0[];
+extern u32 fn_3_11A38(void);
+extern u8 lbl_3_bss_8F200[];
+extern u8 lbl_3_bss_A1778[12];
+extern s16 lbl_1_bss_96A;
+extern void fn_1_4A00(s32 fadeIn, u8 steps, u32 arg);
+
+typedef struct {
+    u32 unk0;
+    u32 unk4;
+    u16 unk8;
+    u16 unkA;
+    s16 unkC;
+    s16 unkE;
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    s16 unk16;
+    s16 unk18;
+    s16 unk1A;
+    u8 pad1C[4];
+    u32 unk20;
+    u8 pad24[4];
+    u8 unk28;
+    u8 pad29[3];
+} EditSub;
+
+typedef struct {
+    u32 unk0;
+    u32 unk4;
+} EditPair;
+
+typedef struct {
+    u8 pad[0x1ec];
+    char unk1ec[0x14];
+    char unk200[0x14];
+    char unk214[0xc];
+    char unk220[0x14];
+    char unk234[1];
+} EditStrings;
+
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_3_bss_A1768;
+u32 *lbl_3_bss_A1768_4;
+u8 lbl_3_bss_A1768_8[8];
+u8 lbl_3_bss_A1768_10;
+u32 lbl_3_bss_A1768_14;
+u32 lbl_3_bss_A1768_18;
+u32 *lbl_3_bss_A1768_1c;
+u32 lbl_3_bss_A1768_20;
+EditPair lbl_3_bss_A1768_24;
+u32 lbl_3_bss_A1768_2c;
+u32 lbl_3_bss_A1768_30;
+u32 lbl_3_bss_A1768_34;
+EditSub lbl_3_bss_A1768_38;
+s16 lbl_3_bss_A1768_64;
+u8 lbl_3_bss_A1768_68[2];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_A1768;
+    s = *(u8 *)&lbl_3_bss_A1768_4;
+    s = *(u8 *)&lbl_3_bss_A1768_8;
+    s = *(u8 *)&lbl_3_bss_A1768_10;
+    s = *(u8 *)&lbl_3_bss_A1768_14;
+    s = *(u8 *)&lbl_3_bss_A1768_18;
+    s = *(u8 *)&lbl_3_bss_A1768_1c;
+    s = *(u8 *)&lbl_3_bss_A1768_20;
+    s = *(u8 *)&lbl_3_bss_A1768_24;
+    s = *(u8 *)&lbl_3_bss_A1768_2c;
+    s = *(u8 *)&lbl_3_bss_A1768_30;
+    s = *(u8 *)&lbl_3_bss_A1768_34;
+    s = *(u8 *)&lbl_3_bss_A1768_38;
+    s = *(u8 *)&lbl_3_bss_A1768_64;
+    s = *(u8 *)&lbl_3_bss_A1768_68;
+}
+#pragma section code_type ".text"
+
+u32 fzgx_obj_lbl_3_data_3360[3] = { 0x4d6f7665, 0x20437572, 0x736f7200 };
+u32 lbl_3_data_3360_rest[0x7b - 3] = {
+    0x00000000, 0x834a815b, 0x835c838b,
+    0x82cc88da, 0x93ae0000, 0x48656c70, 0x00000000, 0x90e096be, 0x95b682cc,
+    0x955c8ea6, 0x00000000, 0x4368616e,
+};
+char lbl_3_data_3360_unk1ec[0x14] = {0};
+char lbl_3_data_3360_unk200[0x14] = {0};
+char lbl_3_data_3360_unk214[0xc] = {0};
+char lbl_3_data_3360_unk220[0x14] = {0};
+char lbl_3_data_3360_unk234[0x4] = {0};
+
+#define STR(f) (lbl_3_data_3360_##f)
+
+void fn_3_130C8(void) {
+    s32 n;
+    u8 i;
+
+    fn_8006CE1C(0.0f);
+    fn_1_435C(lbl_3_bss_A1768_14);
+    lbl_3_bss_A1768_20 = (u32)fn_1_3F8C( (u32)(void *)(STR(unk1ec)), (u32)(void *)(fn_3_13508), 0, 5);
+    fn_1_435C(lbl_3_bss_A1768_18);
+    lbl_3_bss_A1768_24.unk4 = (u32)fn_1_3F8C( (u32)(void *)(STR(unk200)), (u32)(void *)(fn_3_137AC), 0, 5);
+    lbl_3_bss_A1768_10 = 0;
+    lbl_3_bss_A1768_30 = 0;
+    lbl_3_bss_A1768_34 = 0;
+    fn_3_14778(0x40, 0x40, 0x10, 5);
+    fn_3_1857C();
+    fn_3_1552C();
+    fn_3_17098();
+    fn_3_14080();
+    lbl_3_bss_A1768_1c = &lbl_3_bss_A1768_38.unk20;
+    fn_1_47F74(0x86);
+    fn_1_A176C(*lbl_1_bss_6EAD0[0], 8);
+    lbl_3_bss_A1768_38.unk20 = (u32)fn_1_45D0((*((void * *)&lbl_801A6410)), 0x2000, STR(unk214), 0x94);
+    fn_80008BEC((void *)lbl_3_bss_A1768_38.unk20, 0, 0x2000);
+    lbl_3_bss_A1768_38.unkC = 0;
+    lbl_3_bss_A1768_38.unkE = 0;
+    lbl_3_bss_A1768_38.unk10 = 0x20;
+    lbl_3_bss_A1768_38.unk12 = 0x20;
+    lbl_3_bss_A1768_38.unk4 = 0;
+    lbl_3_bss_A1768_38.unk0 = 0;
+    lbl_3_bss_A1768_38.unk18 = 0;
+    lbl_3_bss_A1768_38.unk16 = 0;
+    lbl_3_bss_A1768_38.unk1A = 0;
+    lbl_3_bss_A1768_38.unk14 = 0;
+    lbl_3_bss_A1768_38.unk28 = 0;
+    lbl_3_bss_A1768_64 = 0;
+    lbl_3_bss_A1768_4 = (void *)fn_1_45D0((*((void * *)&lbl_801A6410)), 0x3b8, STR(unk214), 0xa6);
+    n = (s16)fn_3_13D98(STR(unk220), lbl_3_bss_A1768_4);
+    lbl_3_bss_A1768_64 = n + fn_3_13EA4(STR(unk234), lbl_3_bss_A1768_4 + n);
+    for (i = lbl_3_bss_A1768_64; i < 0xee; i++) {
+        lbl_3_bss_A1768_4[i] = 0;
+    }
+    lbl_3_bss_A1768_68[0] = fn_1_B7E98(0) ? fn_1_B8338(0) : 0;
+    if (fn_1_B7E98(1)) {
+        lbl_3_bss_A1768_68[1] = fn_1_B8338(1);
+    } else {
+        lbl_3_bss_A1768_68[1] = 0;
+    }
+    fn_1_1317C4();
+}
+/* fzgx:end fn_3_130C8 */
+
 /* fzgx:begin fn_3_139F0 */
 extern u8 lbl_3_bss_8F200[];
 extern void fn_1_FC414(void *, int);

@@ -1178,6 +1178,18 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_E64.c",
+    "symbols": [
+      "fn_3_E64"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c",
+    "pool": true
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/customize/fn_3_ACF4.c",
     "symbols": [
       "fn_3_ACF4"
@@ -1974,6 +1986,18 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/customize/emb_paste_editor.c"
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/emb_paste_editor/fn_3_130C8.c",
+    "symbols": [
+      "fn_3_130C8"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/emb_paste_editor.c",
+    "pool": true
   },
   {
     "module": "customize",
@@ -74975,6 +74999,18 @@
   },
   {
     "module": "option",
+    "source": "rel/option/_prolog/fn_4_A82C.c",
+    "symbols": [
+      "fn_4_A82C"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/option/_prolog.c",
+    "pool": true
+  },
+  {
+    "module": "option",
     "source": "rel/option/_prolog/fn_4_AB30.c",
     "symbols": [
       "fn_4_AB30"
@@ -82539,6 +82575,18 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/title/title.c"
+  },
+  {
+    "module": "title",
+    "source": "rel/title/title/fn_8_5840.c",
+    "symbols": [
+      "fn_8_5840"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/title/title.c",
+    "pool": true
   },
   {
     "module": "title",

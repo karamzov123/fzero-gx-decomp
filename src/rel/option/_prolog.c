@@ -3377,6 +3377,107 @@ void fn_4_A78C(u32 arg0) {
 }
 /* fzgx:end fn_4_A78C */
 
+/* fzgx:begin fn_4_A82C pool */
+extern struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8;
+extern u32 lbl_1_data_2AC0;
+extern u32 lbl_1_data_2B40;
+extern u32 lbl_1_data_2B50;
+extern u32 lbl_1_data_2B58;
+extern u32 lbl_4_data_14D0;
+extern void fn_4_3128(void);
+extern u32 fn_80008BA8(u32, u32, u32);
+extern u32 fn_1_F7308(void);
+extern u32 lbl_1_bss_AA0;
+extern u32 lbl_1_data_2B60;
+extern u32 lbl_4_data_2AE8;
+extern u32 memcpy(u32, u32, u32);
+extern void fn_4_63D4(void);
+extern int fn_1_4C10(void);
+extern u16 lbl_1_bss_96A;
+extern u32 fn_4_0(u32, u32, u32, u32, u32);
+extern u32 lbl_1_bss_9F8;
+extern u8 lbl_4_data_2C58[84];
+extern void fn_1_1280(u32);
+extern void fn_1_A2D84(u32);
+extern u32 fn_4_ABB0(void);
+extern u32 fn_1_1380F0(u32);
+extern u32 fn_1_13ABA8(u32);
+extern u32 lbl_4_data_1A4;
+extern s32 lbl_801A66B4;
+extern u8 lbl_4_bss_5618;
+extern u32 fn_1_B7E98(u32);
+extern u32 fn_1_B800C(u32);
+extern u32 fn_1_B80F0(u32);
+extern u32 fn_1_B8170(u32);
+extern u32 lbl_4_data_2DB4;
+extern void fn_4_9AD0(void);
+extern u8 *fn_4_A82C(u8 *);
+extern void fn_80083DB0(u8 *, u32);
+extern u32 fn_1_B9C0C(void);
+extern s8 fn_1_BA144(u32 *);
+extern u32 lbl_4_bss_5678;
+extern u32 fn_1_B7C00(void);
+extern u32 fn_1_BC310(void *);
+extern u32 fn_1_C0510(u32);
+extern u32 fn_1_C1394(void *);
+extern s16 lbl_1_bss_962;
+extern struct fn_4_9B0_lbl_4_data_1260 lbl_4_data_1260;
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern u32 fn_1_3CC4(u32);
+extern u32 fn_1_407C(u32);
+extern u32 fn_1_426C(u32);
+extern void fn_4_AB90(void);
+extern struct _prolog_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
+extern struct fn_4_869C_lbl_1_bss_718E0 lbl_1_bss_718E0;
+extern s32 lbl_1_bss_970;
+extern u8 lbl_4_bss_2;
+extern u16 lbl_1_bss_968;
+
+/* Stand-in for the TU's data that precedes the kana tables (retail begins
+ * with the string "Cont..."), so the tables land at their retail offsets. */
+static u8 fzgx_obj_lbl_4_data_0[0xC] = { 'C', 'o', 'n', 't' };
+static u8 fzgx_pad[0x2dcc - 0xC] = { 1 };
+static u8 wideA[56] = { 1 };
+static u8 wideB[56] = { 1 };
+static u8 wideC[64] = { 1 };
+static u8 wideD[24] = { 1 };
+static u8 narrowA[28] = { 1 };
+static u8 narrowB[28] = { 1 };
+static u8 narrowC[36] = { 1 };
+static u8 narrowD[12] = { 1 };
+
+/* Maps a two-byte (SJIS) character to its one-byte equivalent. */
+u8 *fn_4_A82C(u8 *s) {
+    s32 i;
+
+    for (i = 0; i < 54; i += 2) {
+        if (s[0] == wideA[i] && s[1] == wideA[i + 1]) {
+            return &narrowA[i / 2];
+        }
+    }
+    for (i = 0; i < 54; i += 2) {
+        if (s[0] == wideB[i] && s[1] == wideB[i + 1]) {
+            return &narrowB[i / 2];
+        }
+    }
+    for (i = 0; i < 64; i += 2) {
+        if (s[0] == wideC[i] && s[1] == wideC[i + 1]) {
+            return &narrowC[i / 2];
+        }
+    }
+    for (i = 0; i < 22; i += 2) {
+        if (s[0] == wideD[i] && s[1] == wideD[i + 1]) {
+            return &narrowD[i / 2];
+        }
+    }
+    return 0;
+}
+
+#pragma section ".fzgxpool"
+__declspec(section ".fzgxpool") u8 *fzgx_primer(void) { return fzgx_pad; }
+/* fzgx:end fn_4_A82C */
+
 /* fzgx:begin fn_4_AB30 */
 // Initialize the option state and reset its associated data value.
 void fn_4_AB30(void) {

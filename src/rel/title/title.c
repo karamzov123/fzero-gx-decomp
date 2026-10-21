@@ -4352,6 +4352,43 @@ void fn_8_5810(void) {
 }
 /* fzgx:end fn_8_5810 */
 
+/* fzgx:begin fn_8_5840 pool */
+/*
+ * title.c's .data section up to the code tables: the function addresses the
+ * tables off the TU's section base (lbl_8_data_0), so they are defined here in
+ * retail layout. The leading block stands in for the TU's earlier data.
+ */
+static char fzgx_obj_lbl_8_data_0[4] = "NON";
+static char fzgx_title_data_rest[0x7cfc - 4] = "TU data";
+static u8 fzgx_codes0[27][2] = { 0 };
+static u8 fzgx_codes1[27][2] = { 0 };
+static u8 fzgx_codes2[32][2] = { 0 };
+static u8 fzgx_codes3[11][2] = { 0 };
+static u8 fzgx_res0[27] = { 0 };
+static u8 fzgx_res1[27] = { 0 };
+static u8 fzgx_res2[36] = { 0 };
+static u8 fzgx_res3[11] = { 0 };
+
+/* Find the two-byte code KEY in CODES; return its entry in RES. */
+#define FIND_CODE(key, codes, res)                                         \
+    for (i = 0; i < sizeof(codes); i += 2) {                               \
+        if ((key)[0] == ((u8 *)(codes))[i] && (key)[1] == ((u8 *)(codes))[i + 1]) { \
+            return &(res)[i / 2];                                          \
+        }                                                                  \
+    }
+
+/* Map a two-byte code to its entry in one of four lookup tables (code pairs -> result bytes). */
+u8 *fn_8_5840(u8 *key) {
+    s32 i;
+
+    FIND_CODE(key, fzgx_codes0, fzgx_res0)
+    FIND_CODE(key, fzgx_codes1, fzgx_res1)
+    FIND_CODE(key, fzgx_codes2, fzgx_res2)
+    FIND_CODE(key, fzgx_codes3, fzgx_res3)
+    return 0;
+}
+/* fzgx:end fn_8_5840 */
+
 /* fzgx:begin fn_8_5B44 */
 #include "rel/title/title.h"
 

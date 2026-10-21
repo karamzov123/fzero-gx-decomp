@@ -695,3 +695,9 @@ rel/customize/toolkit/fn_3_2C290.c:
 
 rel/customize/emb_paste_editor/fn_3_106FC.c:
 	.text       start:0x000106FC end:0x00010B68 align:4
+
+rel/customize/_prolog/fn_3_E64.c:
+	.text       start:0x00000E64 end:0x000010A4 align:4
+
+rel/customize/emb_paste_editor/fn_3_130C8.c:
+	.text       start:0x000130C8 end:0x0001338C align:4
