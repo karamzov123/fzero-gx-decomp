@@ -1619,6 +1619,140 @@ void fn_4_AB90(void) {
 }
 /* fzgx:end fn_4_AB90 */
 
+/* fzgx:begin fn_4_ABB0 noprologue */
+#include "types.h"
+
+typedef void (*OptionHandler)(void);
+
+/* retail addresses the whole bss cluster 0x5628..0x5678 off one base */
+typedef struct {
+    u32 count;      /* 0x00 */
+    u32 pending;    /* 0x04 */
+    u8 pad_8[0x48];
+    u32 result;     /* 0x50 */
+} OptionState;
+
+/* retail addresses the handler table, current and next slots off one base */
+typedef struct {
+    OptionHandler handlers[6];  /* 0x00 */
+    s32 current;                /* 0x18 */
+    s32 next;                   /* 0x1C */
+} OptionTable;
+
+extern OptionTable lbl_4_data_2F00;
+extern OptionState lbl_4_bss_5628;
+
+extern u8 fn_4_ACF0__fzgx_offset_0[];
+extern u8 fn_4_AD44__fzgx_offset_0[];
+extern u8 fn_4_AD78__fzgx_offset_0[];
+extern u8 fn_4_ADAC__fzgx_offset_0[];
+extern u8 fn_4_ADB0__fzgx_offset_0[];
+extern u8 fn_4_ADF0__fzgx_offset_0[];
+static OptionHandler fzgx_pool_native_lbl_4_data_2F00_handlers[6] = {(OptionHandler)(u32)fn_4_ACF0__fzgx_offset_0, (OptionHandler)(u32)fn_4_AD78__fzgx_offset_0, (OptionHandler)(u32)fn_4_ADB0__fzgx_offset_0, (OptionHandler)(u32)fn_4_AD44__fzgx_offset_0, (OptionHandler)(u32)fn_4_ADAC__fzgx_offset_0, (OptionHandler)(u32)fn_4_ADF0__fzgx_offset_0}; /* fzgx-allow: A1 measured pool bytes and bindings */
+static s32 fzgx_pool_native_lbl_4_data_2F00_current = 0xFFFFFFFF; /* fzgx-allow: A1 measured pool bytes and bindings */
+static s32 fzgx_pool_native_lbl_4_data_2F00_next = 0xFFFFFFFF; /* fzgx-allow: A1 measured pool bytes and bindings */
+
+u32 fn_4_ABB0(void) {
+    
+    OptionState *st = &lbl_4_bss_5628;
+
+    st->result = 0;
+    if (fzgx_pool_native_lbl_4_data_2F00_next >= 0 && st->count == 0) {
+        fzgx_pool_native_lbl_4_data_2F00_current = fzgx_pool_native_lbl_4_data_2F00_next;
+        fzgx_pool_native_lbl_4_data_2F00_next = -1;
+        st->count = st->pending;
+        st->pending = 0;
+    }
+    if (fzgx_pool_native_lbl_4_data_2F00_current >= 0) {
+        if (st->count != 0) {
+            st->count--;
+        }
+        fzgx_pool_native_lbl_4_data_2F00_handlers[fzgx_pool_native_lbl_4_data_2F00_current]();
+    }
+    return st->result;
+}
+/* fzgx:end fn_4_ABB0 */
+
+/* fzgx:begin fn_4_AC58 */
+extern struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8;
+extern u32 lbl_1_data_2AC0;
+extern u32 lbl_1_data_2B40;
+extern u32 lbl_1_data_2B50;
+extern u32 lbl_1_data_2B58;
+extern u32 lbl_4_data_14D0;
+extern void fn_4_3128(void);
+extern u32 fn_80008BA8(u32, u32, u32);
+extern u32 fn_1_F7308(void);
+extern u32 lbl_1_bss_AA0;
+extern u32 lbl_1_data_2B60;
+extern u32 lbl_4_data_2AE8;
+extern u32 memcpy(u32, u32, u32);
+extern void fn_4_63D4(void);
+extern int fn_1_4C10(void);
+extern u16 lbl_1_bss_96A;
+extern u32 fn_4_0(u32, u32, u32, u32, u32);
+extern u32 lbl_1_bss_9F8;
+extern u8 lbl_4_data_2C58[84];
+extern void fn_1_1280(u32);
+extern void fn_1_A2D84(u32);
+extern u32 fn_4_ABB0(void);
+extern u32 fn_1_1380F0(u32);
+extern u32 fn_1_13ABA8(u32);
+extern u32 lbl_4_data_1A4;
+extern s32 lbl_801A66B4;
+extern u8 lbl_4_bss_5618;
+extern u32 fn_1_B7E98(u32);
+extern u32 fn_1_B800C(u32);
+extern u32 fn_1_B80F0(u32);
+extern u32 fn_1_B8170(u32);
+extern u32 lbl_4_data_2DB4;
+extern void fn_4_9AD0(void);
+extern u8 *fn_4_A82C(u8 *);
+extern void fn_80083DB0(u8 *, u32);
+extern u32 fn_1_B9C0C(void);
+extern s8 fn_1_BA144(u32 *);
+extern u32 lbl_4_bss_5678;
+extern u32 fn_1_B7C00(void);
+extern u32 fn_1_BC310(void *);
+extern u32 fn_1_C0510(u32);
+extern u32 fn_1_C1394(void *);
+extern s16 lbl_1_bss_962;
+extern struct fn_4_9B0_lbl_4_data_1260 lbl_4_data_1260;
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern u32 fn_1_3CC4(u32);
+extern u32 fn_1_407C(u32);
+extern u32 fn_1_426C(u32);
+extern void fn_4_AB90(void);
+extern struct _prolog_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
+extern struct fn_4_869C_lbl_1_bss_718E0 lbl_1_bss_718E0;
+extern s32 lbl_1_bss_970;
+extern u8 lbl_4_bss_2;
+extern u16 lbl_1_bss_968;
+
+extern s32 lbl_801A66B4;
+extern u32 fn_1_1380F0(u32);
+extern u32 fn_1_B7C00(void);
+extern u32 fn_1_13ABA8(u32);
+
+#pragma opt_propagation off
+void fn_4_AC58(void) {
+    Obj_4_data_2F00 *p = &lbl_4_data_2F00;
+    u32 *table = (u32 *)&p->pad_0[0x60];
+    fn_1_1380F0(table[lbl_801A66B4]);
+    if ((u8)fn_1_B7C00() || (s32)lbl_4_bss_5630.unk_22 == 2) {
+        fn_1_13ABA8(0);
+    } else {
+        fn_1_13ABA8(0x28000000);
+    }
+    if ((s32)p->unk_18 >= 0) {
+        u32 offset = p->unk_18 * 4;
+        void (**callbacks)(void) = (void (**)(void))&p->pad_0[0xC];
+        (*(void (**)(void))((u8 *)callbacks + offset))();
+    }
+}
+/* fzgx:end fn_4_AC58 */
+
 /* fzgx:begin fn_4_ACF0 */
 void fn_4_ACF0(void) {
     u32 v0;

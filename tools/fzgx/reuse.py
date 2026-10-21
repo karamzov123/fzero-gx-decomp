@@ -109,6 +109,43 @@ def declaration_closure(body):
     return re.sub(r'\n(?:[ \t]*\n){2,}', '\n\n', body)
 
 
+def preprocessed_text(data: bytes) -> str:
+    """Keep raw multibyte literal bytes from MWCC -EP in ASCII C source.
+
+    A Shift-JIS trail byte can be an ASCII backslash. Escape the complete
+    multibyte pair before interpreting C escapes; decoding/re-encoding the
+    compiler's output as UTF-8 would either fail or change the retail bytes.
+    """
+    out = bytearray()
+    quote = None
+    i = 0
+    while i < len(data):
+        byte = data[i]
+        if quote is None:
+            if byte in (34, 39):
+                quote = byte
+            elif byte >= 128:
+                raise ValueError('MWCC emitted non-ASCII outside a literal')
+            out.append(byte)
+        elif byte == quote:
+            out.append(byte)
+            quote = None
+        elif byte == 92:
+            out.extend(data[i:i + 2])
+            i += 1
+        elif byte >= 128:
+            out.extend(f'\\{byte:03o}'.encode('ascii'))
+            if (0x81 <= byte <= 0x9F or 0xE0 <= byte <= 0xFC) and i + 1 < len(data):
+                trail = data[i + 1]
+                if 0x40 <= trail <= 0x7E or 0x80 <= trail <= 0xFC:
+                    out.extend(f'\\{trail:03o}'.encode('ascii'))
+                    i += 1
+        else:
+            out.append(byte)
+        i += 1
+    return out.decode('ascii')
+
+
 class Declarations:
     """Expand owned headers without losing compiler pragmas or lint justifications."""
     def __init__(self, engine):
@@ -170,10 +207,12 @@ class Declarations:
         wrapper = self.root / (row['id'][:24] + '.c')
         wrapper.write_text(self.protect(body))
         cmd = [str(ROOT/'build/tools/wibo'), str(ROOT/'build/compilers'/row['mw']/'mwcceppc.exe'), *args, '-EP', str(wrapper)]
-        result = subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True, timeout=60)
+        result = subprocess.run(cmd, cwd=ROOT, capture_output=True, timeout=60)
         if result.returncode:
-            raise ValueError(result.stdout[-2000:] + result.stderr[-2000:])
-        body = re.sub(r'FZGX_PRESERVE_[0-9a-f]{64}', lambda m: self.markers[m[0]], result.stdout)
+            diagnostic = (result.stdout + result.stderr).decode('utf-8', errors='backslashreplace')
+            raise ValueError(diagnostic[-4000:])
+        body = preprocessed_text(result.stdout)
+        body = re.sub(r'FZGX_PRESERVE_[0-9a-f]{64}', lambda m: self.markers[m[0]], body)
         body = declaration_closure(body)
         self.expanded[row['id']] = body
         return body

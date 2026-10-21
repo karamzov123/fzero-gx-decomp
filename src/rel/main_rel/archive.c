@@ -206,6 +206,52 @@ s32 fn_1_12A6D8(void *arg0) {
 }
 /* fzgx:end fn_1_12A6D8 */
 
+/* fzgx:begin fn_1_12A734 noprologue */
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+extern char lbl_1_data_40608[0xA];
+
+
+extern char lbl_1_data_40720[0x30];
+
+
+extern void OSPanic(char *arg0, s32 arg1, ...);
+
+
+extern void *lbl_801A6410;
+
+
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+
+
+extern void *lbl_801A6410;
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void OSPanic(char *arg0, s32 arg1, ...);
+typedef struct fzgx_elem_lbl_1_bss_897AC {
+s32 state;
+u8 pad_4[0x64];
+u32 handle;
+} fzgx_elem_lbl_1_bss_897AC;
+
+
+fzgx_elem_lbl_1_bss_897AC fzgx_obj_lbl_1_bss_897AC[0x40];
+void fn_1_12A734(s32 idx) {
+if (fzgx_obj_lbl_1_bss_897AC[idx].state == 1) {
+fn_1_46B4(*(u32 *)&lbl_801A6410, fzgx_obj_lbl_1_bss_897AC[idx].handle, (const char *)lbl_1_data_40608, 0x145);
+fzgx_obj_lbl_1_bss_897AC[idx].state = 0;
+} else {
+OSPanic((char *)lbl_1_data_40608, 0x149, (char *)lbl_1_data_40720);
+}
+}
+/* fzgx:end fn_1_12A734 */
+
 /* fzgx:begin fn_1_12A7C4 pool noprologue */
 #include "types.h"
 #include "rel/main_rel/archive.h"
@@ -839,6 +885,132 @@ void fn_1_12B3F8(void *arg0, void *arg1, void *arg2, u32 arg3, u32 arg4, s32 *ar
     }
 }
 /* fzgx:end fn_1_12B3F8 */
+
+/* fzgx:begin fn_1_12B4EC */
+typedef signed short s16;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+struct Ent {
+u8 b;
+u8 pad[3];
+u32 v[1];
+};
+struct Blk {
+u8 pad[0x81A4];
+struct Ent e[3];
+u8 pad2[4];
+};
+
+
+extern u8* fn_1_36AD0(void);
+
+
+extern u32 fn_1_151BE8(s16 arg0, s16 arg1);
+void fn_1_12B4EC(s16 arg0, s16 arg1) {
+struct Blk *p;
+s16 i;
+s16 j;
+u8 k;
+p = (struct Blk *)fn_1_36AD0() + arg0;
+k = arg1 % 4;
+for (i = 0; i < 3; i++) {
+for (j = 0; j < 1; j++) {
+p->e[i].v[j] = fn_1_151BE8(p->e[i].b, k + j);
+}
+}
+}
+/* fzgx:end fn_1_12B4EC */
+
+/* fzgx:begin fn_1_12B5B4 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/archive.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/archive.h"
+
+extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
+extern void fn_1_12A350(void *arg0, s32 arg1);
+extern s32 fn_8006A480(void *arg0, void *arg1, void *arg2);
+extern s32 fn_8006A998(void *arg0);
+extern void fn_8006A9AC(void *arg0);
+extern void fn_1_12AC28(void *arg0, s32 arg1, s32 arg2);
+extern void fn_1_12ADC8(void *arg0, void *arg1, s32 arg2, s32 arg3);
+extern void fn_1_12BB18(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
+extern void fn_1_8D168(void *arg);
+extern void fn_1_14DB48(void *arg0, void *arg1, u32 arg2);
+extern void fn_1_14DBCC(void *arg);
+extern u32 fn_1_95120(void *arg);
+extern const struct Table lbl_1_rodata_8230;
+extern u32 lbl_801A66A0;
+extern void fn_1_7B2E8(u8 value);
+extern void fn_1_13C1A0(void);
+extern void *fn_1_3F8C(void *table, void (*callback)(void), void *arg1, void *arg2);
+extern void fn_1_426C(s32 value);
+extern void fn_1_7B4C0(void);
+extern void fn_1_C2454(void);
+extern s32 fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+
+extern s32 lbl_1_bss_897A4;
+extern void *lbl_801A6410;
+extern void fn_1_46B4(void *arg0, void *arg1, unsigned char *arg2, s32 arg3);
+extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
+
+extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
+extern s32 lbl_1_bss_8CA44[10];
+
+extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
+extern void fn_1_435C();
+extern s32 fn_1_45730(void *arg0, void *arg1);
+extern s32 fn_1_45B2C(void *arg0);
+extern void *fn_1_45D0(u32 arg0, u32 arg1, void *arg2, u32 arg3);
+extern void fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
+extern void fn_1_45850(void *arg0);
+extern void fn_8006A9B4(void *arg0, void *arg1);
+extern void fn_80006E10(void *arg0);
+extern u32 fn_1_12DAEC(u32, u32, u32, void *, u32, u32, u32);
+extern u32 fn_1_12C524(u32);
+extern void fn_1_12C000(void *arg, s16 count);
+extern void fn_1_8CED0(void *arg, u16 a, u16 b);
+extern void fn_1_8D0A4(void *arg);
+extern s16 fn_1_12C930(s16 arg);
+extern u8 lbl_1_data_20D1C[180];
+extern u8 lbl_1_bss_8B4EC[128];
+extern void fn_80083DB0(void *arg0, char *arg1);
+extern void strcat(void *arg0, void *arg1);
+extern s32 fn_1_F89E4(u8 value);
+
+
+extern u8* fn_1_36AD0(void);
+
+typedef struct {
+    u32 unk_0;
+    u32 pad_4;
+} Fn_1_12B5B4Entry;
+
+typedef struct {
+    u8 pad_0[0x81A8];
+    Fn_1_12B5B4Entry unk_81A8[3];
+} Fn_1_12B5B4Data;
+
+#pragma opt_unroll_loops off
+void fn_1_12B5B4(s16 arg0, s16 arg1)
+{
+    Fn_1_12B5B4Data* data = (Fn_1_12B5B4Data*)fn_1_36AD0() + arg0;
+    s16 i = 0;
+    while ((s16)i < 3) {
+        data->unk_81A8[i].unk_0 =
+            ((u32 (*)[4][3])&lbl_1_bss_8B2E0.unk_0)[arg0][(s16)(arg1 % 4)][i];
+        i++;
+    }
+}
+/* fzgx:end fn_1_12B5B4 */
 
 /* fzgx:begin fn_1_12BF7C */
 #include "types.h"

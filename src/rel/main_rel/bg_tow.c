@@ -64,6 +64,73 @@ void fn_1_154708(u32 arg0) {
 }
 /* fzgx:end fn_1_154708 */
 
+/* fzgx:begin fn_1_154798 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_tow.h"
+
+extern u32 lbl_801A63C0;
+extern void lbl_8006D7DC(void *);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void lbl_8006DB74(void *);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_B9BE0();
+extern void fn_1_154798(void);
+extern u8 fn_1_1548A8__fzgx_offset_0[];
+extern u8 fn_1_154930__fzgx_offset_0[];
+extern u8 fn_1_1549B8__fzgx_offset_0[];
+extern u8 fn_1_154A08__fzgx_offset_0[];
+extern u8 fn_1_154BE4__fzgx_offset_0[];
+extern u8 lbl_1_data_49A2C__fzgx_offset_0[];
+extern u8 lbl_1_data_49A40__fzgx_offset_0[];
+extern u8 lbl_1_data_49A54__fzgx_offset_0[];
+extern u8 lbl_1_data_49A6C__fzgx_offset_0[];
+extern u8 lbl_1_data_49A80__fzgx_offset_0[];
+extern void fn_1_B9DE8(Obj_1_bss_8EDA4 *arg0);
+extern void fn_1_48418(int index);
+extern void fn_1_159440(int index, int flag);
+extern u8 lbl_1_bss_8EDA0;
+extern s32 fn_1_BA144(Obj_1_bss_8EDA4 *arg0);
+extern void fn_1_1596DC(int index);
+extern void fn_1_484CC(s32 index);
+extern void fn_1_BC310(Obj_1_bss_8EDA4 *arg0);
+extern void fn_1_C0510(u32 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_426C(u32 idx);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern u32 fn_1_B9C0C(void);
+extern u32 lbl_801A6410;
+
+struct fn_1_154798_data {
+    void (*funcs[0x25])(void);
+    s32 unk_94;
+    s32 unk_98;
+    s32 unk_9C;
+};
+
+
+static union {u32 words[37]; void (*view[0x25])(void);} fzgx_pool_native_lbl_1_data_49A18_funcs = {{(u32)fn_1_1548A8__fzgx_offset_0, (u32)fn_1_154930__fzgx_offset_0, (u32)fn_1_1549B8__fzgx_offset_0, (u32)fn_1_154A08__fzgx_offset_0, (u32)fn_1_154BE4__fzgx_offset_0, 0x5245505F, 0x4D454D43, 0x4152445F, 0x494E4954, 0x00000000, 0x5245505F, 0x4D454D43, 0x4152445F, 0x57414954, 0x00000000, 0x5245505F, 0x4D454D43, 0x4152445F, 0x41435449, 0x4F4E5F49, 0x4E495400, 0x5245505F, 0x4D454D43, 0x4152445F, 0x41435449, 0x4F4E0000, 0x5245505F, 0x4D454D43, 0x4152445F, 0x46494E49, 0x53480000, (u32)lbl_1_data_49A2C__fzgx_offset_0, (u32)lbl_1_data_49A40__fzgx_offset_0, (u32)lbl_1_data_49A54__fzgx_offset_0, (u32)lbl_1_data_49A6C__fzgx_offset_0, (u32)lbl_1_data_49A80__fzgx_offset_0, 0xFFFFFFFF}}; /* fzgx-allow: A1 measured pool bytes and bindings */
+static s32 fzgx_pool_native_lbl_1_data_49A18_unk_94 = 0xFFFFFFFF; /* fzgx-allow: A1 measured pool bytes and bindings */
+static s32 fzgx_pool_native_lbl_1_data_49A18_unk_98 = 0xFFFFFFFF; /* fzgx-allow: A1 measured pool bytes and bindings */
+static s32 fzgx_pool_native_lbl_1_data_49A18_unk_9C = 0xFFFFFFFF; /* fzgx-allow: A1 measured pool bytes and bindings */
+
+void fn_1_154798(void) {
+    
+
+    if (fzgx_pool_native_lbl_1_data_49A18_unk_9C >= 0) {
+        fzgx_pool_native_lbl_1_data_49A18_unk_94 = fzgx_pool_native_lbl_1_data_49A18_unk_98;
+        fzgx_pool_native_lbl_1_data_49A18_unk_98 = fzgx_pool_native_lbl_1_data_49A18_unk_9C;
+        fzgx_pool_native_lbl_1_data_49A18_unk_9C = -1;
+    }
+    if (fzgx_pool_native_lbl_1_data_49A18_unk_98 >= 0) {
+        fzgx_pool_native_lbl_1_data_49A18_funcs.view[fzgx_pool_native_lbl_1_data_49A18_unk_98]();
+    }
+}
+/* fzgx:end fn_1_154798 */
+
 /* fzgx:begin fn_1_1547FC */
 #include "types.h"
 

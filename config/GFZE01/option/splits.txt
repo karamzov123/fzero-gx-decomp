@@ -155,3 +155,9 @@ rel/option/_prolog/fn_4_6720.c:
 
 rel/option/_prolog/fn_4_C768.c:
 	.text       start:0x0000C768 end:0x0000D1A8 align:4
+
+rel/option/_prolog/fn_4_AC58.c:
+	.text       start:0x0000AC58 end:0x0000ACF0 align:4
+
+rel/option/_prolog/fn_4_ABB0.c:
+	.text       start:0x0000ABB0 end:0x0000AC58 align:4
