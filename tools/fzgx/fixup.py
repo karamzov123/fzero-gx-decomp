@@ -1114,9 +1114,16 @@ def load_records(engine,args):
         clone_members = {r['symbol'] for group in groups for r in group}
         engine.emit(dict(stage='clone-inventory', families=len(groups), functions=sum(r['status']=='unmatched' for g in groups for r in g),
                          bytes=sum(r['size'] for g in groups for r in g if r['status']=='unmatched')))
+    read_only_body = bool(args.symbol and args.body and not getattr(args, 'apply', False))
     def add(symbol,body,mw=None,flags=None,**metadata):
         sym=p.resolve(symbol);state=ledger.get(symbol)
-        if not sym or not state or state['status'] not in (('unmatched','matched') if clone_members is not None else ('unmatched',)):
+        allowed = ('unmatched','matched') if clone_members is not None else ('unmatched',)
+        # An explicit read-only source probe must not silently disappear merely
+        # because the function is claimed or blocked. Applying repairs retains
+        # the original ownership filter; corpus scans still skip active claims.
+        if read_only_body:
+            allowed += ('claimed','blocked')
+        if not sym or not state or state['status'] not in allowed:
             return
         if clone_members is not None and symbol not in clone_members:
             return

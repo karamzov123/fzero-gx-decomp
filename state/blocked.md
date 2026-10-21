@@ -1,5 +1,18 @@
 # Blocked large near matches
 
+## Live-camera data pass: retained unmatched frontiers
+
+| Symbol | Refreshed residual | Continuation constraint |
+| --- | --- | --- |
+| `fn_1_5C83C` | 6 words, 0 shape edits | Successive reciprocal frontier; fresh captured repair did not close. |
+| `fn_12_BBC0` | 12 words / 3 shape edits; alternate 9 / 5 | Window scheduling, coordinate zero-copy and consumed-span allocation remain coupled. |
+| `fn_1_11C08` | 52 words, 0 shape edits in clean source | Use s16 preset and correctly associated Z interpolation, not the historical higher-score erroneous body. |
+
+All three are unmatched and blocked. Compiler settings, alternatives and
+portable replay archives are documented in
+`state/repairs/live-camera-data-and-frontiers.md`. The separately verified
+live-camera data imports are not executable-code gains.
+
 ## Current fn_1_15C6C0 structural triage
 
 The 2026-10-11 pass proves the six-rectangle storage inside
