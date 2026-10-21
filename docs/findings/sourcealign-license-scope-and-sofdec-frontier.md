@@ -44,7 +44,7 @@ Real replay result: `{"reproduced": 2}`. Both records remain nonmatching:
 | Function | Retail size | Raw objdiff | Differing words | Shape errors |
 | --- | ---: | ---: | ---: | ---: |
 | fn_12_28CC4 | 2144 | 96.591415% | 154 | 11 |
-| fn_1_CFB28 | 760 | 99.73684% | 2 | 0 |
+| fn_1_CFB28 | 380 | 99.73684% | 2 | 0 |
 
 The word counts are authoritative for prioritization; the large Sofdec raw
 percentage is not evidence of a two-percent-sized repair.
