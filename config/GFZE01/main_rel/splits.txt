@@ -8546,3 +8546,15 @@ rel/main_rel/cloth/fn_1_1050D0.c:
 
 rel/main_rel/effect/fn_1_5DFA4.c:
 	.text       start:0x0005DFA4 end:0x0005E3C4 align:4
+
+rel/main_rel/live_camera/fn_1_EE44.c:
+	.text       start:0x0000EE44 end:0x0000F3D0 align:4
+
+rel/main_rel/accessory/fn_1_110008.c:
+	.text       start:0x00110008 end:0x00110478 align:4
+
+rel/main_rel/accessory/fn_1_111510.c:
+	.text       start:0x00111510 end:0x00111980 align:4
+
+rel/main_rel/accessory/fn_1_1145C8.c:
+	.text       start:0x001145C8 end:0x0011492C align:4

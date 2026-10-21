@@ -952,6 +952,432 @@ void fn_1_EE04(Fn1EE04Context *context) {
 }
 /* fzgx:end fn_1_EE04 */
 
+/* fzgx:begin fn_1_EE44 noprologue */
+#include "types.h"
+#include "rel/main_rel/live_camera.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/live_camera.h"
+#include "psvec.h"
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "types.h"
+
+/* begin game/main_rel/live_camera_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+#define GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+
+// Types (and the externs that name them) of live_camera.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+struct fn_1_E174_lbl_1_rodata_4E0 {
+    f32 unk_0;
+    u8 pad_4[0x10];
+    f32 unk_14;
+    u8 pad_18[0x4];
+    f32 unk_1C;
+    f32 unk_20;
+    f32 unk_24;
+};
+
+/* begin game/main_rel/adxt_stop_types.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_MAIN_REL_ADXT_STOP_TYPES_H
+#define GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+// The ADXT handle layout recovered from ADXT_Stop's accesses (signature types), shared by game.c and
+// live_camera.c, which carried identical copies. Hand-owned (librarian).
+
+
+typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
+typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
+typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
+
+typedef struct Sig_ADXT_Stop_SJCK {
+    unsigned char *data;
+    int len;
+} Sig_ADXT_Stop_SJCK;
+
+typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
+typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+
+struct Sig_ADXT_Stop_SJInterface {
+    void *reserved[3];
+    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+};
+
+struct Sig_ADXT_Stop_SJ {
+    const Sig_ADXT_Stop_SJInterface *interface;
+};
+
+typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
+typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
+
+typedef struct Sig_ADXT_Stop_ADXTHandle {
+    s8 used;
+    s8 status;
+    s8 stream_type;
+    s8 maximum_channels;
+    Sig_ADXT_Stop_AdxSjdHandle *decoder;
+    Sig_ADXT_Stop_ADXStream *stream;
+    Sig_ADXT_Stop_AXRNAHandle *rna;
+    Sig_ADXT_Stop_SJ *stream_sj;
+    Sig_ADXT_Stop_SJ *input_sj;
+    Sig_ADXT_Stop_SJ *output_sj[2];
+    u8 *input_buffer;
+    s32 input_buffer_size;
+    s32 input_extra_size;
+    u8 *output_buffer;
+    s32 output_buffer_size;
+    s32 output_buffer_distance;
+    s32 server_frequency;
+    s16 stream_buffer_sectors;
+    s16 minimum_buffer_sectors;
+    s16 output_volume;
+    s16 output_pan[2];
+    s16 field_46;
+    s32 maximum_decode_samples;
+    s32 loop_count;
+    s32 link_data_length;
+    s32 field_54;
+    s32 field_58;
+    s32 field_5C;
+    s16 error_code;
+    u8 reserved_62[2];
+    s32 field_64;
+    s16 field_68;
+    s16 field_6A;
+    s8 stream_loop_enabled;
+    s8 auto_receiver;
+    u8 reserved_6E[2];
+    s8 suppress_playback;
+    s8 decoder_ready;
+    s8 paused;
+    u8 reserved_73;
+    Sig_ADXT_Stop_ADX_AMP *amplifier;
+    Sig_ADXT_Stop_SJ *amplifier_input[2];
+    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    s32 time_offset;
+    s32 eos_sector;
+    s32 loop_sample_count;
+    Sig_ADXT_Stop_LSCObject *linked_stream_controller;
+    s8 link_enabled;
+    u8 reserved_99[3];
+    u32 playback_time;
+    s32 playback_start_vsync;
+    s32 linked_decoded_samples;
+    s8 pending_stream_start;
+    u8 reserved_A9[3];
+    u8 *work_end;
+    const char *pending_filename;
+    void *pending_directory;
+    s32 pending_file_offset;
+    s32 pending_file_sectors;
+} Sig_ADXT_Stop_ADXTHandle;
+
+#endif  // GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+/* end game/main_rel/adxt_stop_types.h */
+
+/* begin game/vec3.h (deltawave784/fzgx, CC0) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+/* Obj_1_data_43B8: from deltawave784/fzgx (CC0) */
+typedef struct {
+    u8 pad_0[0x13C];
+    u32 unk_13C;
+    u32 unk_140;
+    u32 unk_144;
+    s16 unk_148;
+    s16 unk_14A;
+    s16 unk_14C;
+} Obj_1_data_43B8;
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct {
+    u32 flags;
+    s32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+} Sig_fn_1_45730_LoadEntry;
+
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x48];
+    Sig_fn_1_45730_LoadEntry entry;
+} Sig_fn_1_45730_LoadResult;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    u16 unk_8;
+    u8 pad_A[0x2];
+    u32 unk_C;
+    u16 unk_10;
+    s16 unk_12;
+    s16 unk_14;
+    u8 pad_16[0x2];
+    u32 unk_18;
+    u8 pad_1C[0x48];
+    u16 unk_64;
+} Sig_fn_1_101D0_Fn_1_101D0_State;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_11544_LiveCamVec;
+
+typedef struct {
+    f32 m[3][4];
+} LiveCamMtx;
+
+extern u32 fn_1_A1588(Sig_ADXT_Stop_ADXTHandle *, u32);
+extern int fn_1_45730(char *, Sig_fn_1_45730_LoadResult *);
+extern u32 fn_1_45B2C(Sig_fn_1_45730_LoadResult *);
+extern void fn_1_458A0(Sig_fn_1_45730_LoadResult *, void *, u32, u32);
+extern void fn_1_45850(Sig_fn_1_45730_LoadResult *);
+extern u32 fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *);
+extern void fn_1_862D4(s16, Vec3 *);
+extern void fn_1_15578(void *, fn_1_11544_LiveCamVec *, void *, void *, u32, void *, u32, u32, u32, u32);
+extern void fn_8006E2B0(void *, Vec3 *);
+
+#endif  // GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
+
+/* end game/main_rel/live_camera_types.h */
+
+struct fn_1_EE44_Arg0 {
+    u8 unk_0;
+    u8 pad_1;
+    s16 unk_2, unk_4, unk_6, unk_8;
+    u8 pad_A[2];
+    u32 unk_C;
+    u8 pad_10[2];
+    s16 unk_12, unk_14;
+    u8 pad_16[6];
+    u32 unk_1C, unk_20, unk_24;
+    u32 unk_28, unk_2C, unk_30;
+    u8 pad_34[0x18];
+    f32 unk_4C[3];
+    f32 unk_58;
+    s16 unk_5C;
+    u8 pad_5E[2];
+    f32 unk_60;
+    u16 unk_64;
+    u8 pad_66[4];
+    u16 unk_6A;
+    u8 pad_6C[4];
+    f32 unk_70[3];
+    u8 pad_7C[0x80];
+    u8 unk_FC[0x30];
+    u8 unk_12C[0x30];
+    u8 unk_15C[4];
+};
+struct fn_1_EE44_Object {
+    u8 pad_0[0x7C];
+    u32 unk_7C;
+    u8 pad_80[0x80];
+    f32 unk_100;
+};
+extern u8 fn_1_A5848(void);
+extern s32 fn_1_40BB4(void);
+extern f32 lbl_1_rodata_4E0[];
+extern u8 lbl_1_bss_17C0;
+extern void fn_1_101D0(Sig_fn_1_101D0_Fn_1_101D0_State *);
+extern void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State *);
+extern void fn_1_A5858(u8);
+extern s32 camera_get_state(void);
+extern void *fn_1_8627C(s32);
+extern s16 fn_1_7B054(void);
+extern u32 fn_1_584AC(void);
+extern void fn_1_6DD0(void *);
+extern void fn_1_FB50(void *);
+extern void lbl_8006DD14(void *, void *);
+extern void fn_8006F1F0(void *, void *, void *);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DB74(void *);
+extern void fn_8006F4E0(s16 *);
+extern void fn_1_549F4(void *, void *, f32, f32, f32, f32);
+extern void fn_1_54DCC(u8 *);
+typedef void (*Fn1EE44Handler)(struct fn_1_EE44_Arg0 *, void *);
+
+static inline void update_mode(struct fn_1_EE44_Arg0 *arg0, u8 *pool) {
+    struct fn_1_EE44_Object *obj;
+    if (arg0->unk_6 != 255 && arg0->unk_6 >= 0 &&
+        arg0->unk_2 != 5 && arg0->unk_2 != -1) {
+        obj = fn_1_8627C(arg0->unk_6);
+        if (obj != 0) {
+            if (obj->unk_7C & 0x01000000) {
+                if ((obj->unk_7C & 1) && fn_1_7B054() != 35)
+                    return;
+                if ((u16)fn_1_584AC() % 2)
+                    arg0->unk_12 = 1;
+                else
+                    arg0->unk_12 = 3;
+                arg0->unk_C &= 0xFFDFFFFF;
+            }
+            if (fn_1_7B054() != 11)
+                return;
+            if (*(f32 *)(pool + 0x70) < obj->unk_100)
+                return;
+            if (obj->unk_100 < *(f32 *)(pool + 0x74))
+                return;
+            {
+                if ((u16)fn_1_584AC() % 2)
+                    arg0->unk_12 = 1;
+                else
+                    arg0->unk_12 = 3;
+                arg0->unk_C &= 0xFFDFFFFF;
+            }
+        }
+    }
+}
+
+#pragma opt_propagation off
+void fn_1_EE44(struct fn_1_EE44_Arg0 *arg0, f32 arg1) {
+    Obj_1_data_43B8 *p_lbl_1_data_43B8;
+    u8 *p_lbl_1_rodata_4E0;
+    u32 v0;
+    u16 v1;
+    u8 v2;
+    u16 v3;
+    f64 value;
+    s16 rotation;
+    union { f64 d; struct { u32 hi, lo; } w; } conversion;
+    p_lbl_1_data_43B8 = (Obj_1_data_43B8 *)&lbl_1_data_43B8;
+    p_lbl_1_rodata_4E0 = (u8 *)&lbl_1_rodata_4E0;
+    arg0->unk_C &= 0x7FFFFFFF;
+    {
+        typedef struct { u32 x, y, z; } Copy3;
+        *(Copy3 *)&arg0->unk_28 = *(Copy3 *)&arg0->unk_1C;
+    }
+    v1 = arg0->unk_64;
+    if (v1 != 0)
+        arg0->unk_64 = v1 - *(s16 *)((u8 *)p_lbl_1_data_43B8 + 0xCC);
+    v2 = arg0->unk_0;
+    switch (v2) {
+    case 3:
+        if (fn_1_40BB4() == 0) {
+            if ((lbl_1_bss_9F8.unk_A >> 2) & 1) {
+                arg0->unk_12++;
+                arg0->unk_14 = 0;
+            }
+            if ((lbl_1_bss_9F8.unk_A >> 3) & 1) {
+                arg0->unk_12--;
+                arg0->unk_14 = 0;
+            }
+            if (arg0->unk_12 >= 4)
+                arg0->unk_12 = 0;
+            if (arg0->unk_12 < 0)
+                arg0->unk_12 = 3;
+        }
+        break;
+    case 6:
+        fn_1_101D0((Sig_fn_1_101D0_Fn_1_101D0_State *)arg0);
+        break;
+    case 0:
+    case 1:
+    case 2:
+    case 5:
+        if (v2 == 0) {
+            v3 = arg0->unk_6A;
+            arg0->unk_6A = v3 + 1;
+            arg0->unk_C &= 0xFFDFFFFF;
+            if (fn_1_A5848()) {
+                if (lbl_1_bss_17C0)
+                    lbl_1_bss_17C0--;
+                else {
+                    fn_1_FCB0((Sig_fn_1_101D0_Fn_1_101D0_State *)arg0);
+                    fn_1_A5858(0);
+                    arg0->unk_6A = 0;
+                }
+            }
+            if (arg0->unk_6A > 240) {
+                arg0->unk_6A = 0;
+                fn_1_FCB0((Sig_fn_1_101D0_Fn_1_101D0_State *)arg0);
+                fn_1_A5858(0);
+            }
+        } else {
+            if (arg0->unk_64 != 0) {
+                f64 bias = *(f64 *)(p_lbl_1_rodata_4E0 + 0x68);
+                conversion.w.lo = arg0->unk_64;
+                conversion.w.hi = 0x43300000;
+                {
+                    value = conversion.d;
+                    if (!(value - bias >
+                        *(f64 *)(p_lbl_1_rodata_4E0 + 0x78)))
+                        goto mode_done; /* Join the common per-frame update. */
+                }
+            }
+            if (!(arg0->unk_C & 0x00200000))
+                fn_1_FCB0((Sig_fn_1_101D0_Fn_1_101D0_State *)arg0);
+        }
+        break;
+    }
+mode_done:
+    if ((s8)camera_get_state() == 6 && arg0->unk_12 == 2)
+        arg0->unk_12 = (arg0->unk_12 + 1) % 3;
+    if (arg0->unk_2 != arg0->unk_12) {
+        update_mode(arg0, p_lbl_1_rodata_4E0);
+        arg0->unk_2 = arg0->unk_12;
+        ((Fn1EE44Handler *)((u8 *)p_lbl_1_data_43B8 + 0x88))[arg0->unk_2](arg0, (u8 *)p_lbl_1_data_43B8 + 0x88);
+        fn_1_6DD0(0);
+    }
+    if (arg0->unk_4 != arg0->unk_14) {
+        update_mode(arg0, p_lbl_1_rodata_4E0);
+        arg0->unk_4 = arg0->unk_14;
+        ((Fn1EE44Handler *)((u8 *)p_lbl_1_data_43B8 + 0x88))[arg0->unk_2](arg0, (u8 *)p_lbl_1_data_43B8 + 0x88);
+        fn_1_6DD0(0);
+    }
+    if (arg0->unk_2 == 5 || arg0->unk_2 == -1)
+        arg0->unk_6 = -1;
+    else
+        arg0->unk_6 = arg0->unk_8;
+    ((Fn1EE44Handler *)((u8 *)p_lbl_1_data_43B8 + 0xA4))[arg0->unk_2](arg0, (u8 *)p_lbl_1_data_43B8 + 0xA4);
+    fn_1_FB50(arg0);
+    lbl_8006DD14(arg0->unk_12C, arg0->unk_FC);
+    if (arg0->unk_2 == 1 || arg0->unk_2 == 2)
+        fn_8006F1F0(&arg0->unk_1C, arg0->unk_70, arg0->unk_4C);
+    else
+        fn_8006F038(&arg0->unk_1C, arg0->unk_4C, arg0->unk_5C);
+    lbl_8006DB74(arg0->unk_12C);
+    fn_8006F4E0(&rotation);
+    fn_1_549F4(&arg0->unk_1C, &rotation, arg0->unk_58, arg0->unk_60,
+        *(f32 *)(p_lbl_1_rodata_4E0 + 0x14), *(f32 *)(p_lbl_1_rodata_4E0 + 0x14));
+    fn_1_54DCC(arg0->unk_15C);
+}
+/* fzgx:end fn_1_EE44 */
+
 /* fzgx:begin fn_1_FA84 noprologue */
 #include "types.h"
 
