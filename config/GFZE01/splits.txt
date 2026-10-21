@@ -6413,3 +6413,6 @@ dol/__mod2u.c:
 
 dol/float2str.c:
 	.text       start:0x800811AC end:0x800818C8 align:4
+
+dol/fn_80046D94.c:
+	.text       start:0x80046D94 end:0x80046F7C align:4
