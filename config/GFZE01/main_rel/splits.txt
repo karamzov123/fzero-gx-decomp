@@ -8603,3 +8603,6 @@ rel/main_rel/font/fn_1_4DE04.c:
 
 rel/main_rel/motasglist/fn_1_42254.c:
 	.text       start:0x00042254 end:0x00042458 align:4
+
+rel/main_rel/spline/fn_1_FA4D4.c:
+	.text       start:0x000FA4D4 end:0x000FA5A8 align:4

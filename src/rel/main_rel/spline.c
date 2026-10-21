@@ -2687,6 +2687,24 @@ u8 fn_1_FA4C0(void) {
 }
 /* fzgx:end fn_1_FA4C0 */
 
+/* fzgx:begin fn_1_FA4D4 */
+/* View of the object lbl_1_bss_84420 points to (the header types the pointer as u32). */
+struct SplineWork {
+    u8 pad_0[0xa];
+    s16 unk_a[41];
+};
+
+void fn_1_FA4D4(void) {
+    s16 i;
+    struct SplineWork *work;
+
+    for (i = 0; i < 41; i++) {
+        work = (struct SplineWork *)lbl_1_bss_84420;
+        work->unk_a[i] = 0;
+    }
+}
+/* fzgx:end fn_1_FA4D4 */
+
 /* fzgx:begin fn_1_FA5A8 */
 extern u32 lbl_1_bss_84420;
 
