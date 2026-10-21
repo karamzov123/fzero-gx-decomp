@@ -8009,3 +8009,24 @@ rel/main_rel/spline/fn_1_F73A8.c:
 
 rel/main_rel/sel_static_disp/fn_1_14D994.c:
 	.text       start:0x0014D994 end:0x0014DB48 align:4
+
+rel/main_rel/effect/fn_1_584D4.c:
+	.text       start:0x000584D4 end:0x00058694 align:4
+
+rel/main_rel/bg_cas/fn_1_FBA88.c:
+	.text       start:0x000FBA88 end:0x000FBC5C align:4
+
+rel/main_rel/replay/fn_1_F38C0.c:
+	.text       start:0x000F38C0 end:0x000F3AB0 align:4
+
+rel/main_rel/sel_static_disp/fn_1_13A654.c:
+	.text       start:0x0013A654 end:0x0013A848 align:4
+
+rel/main_rel/bg_common/fn_1_107C74.c:
+	.text       start:0x00107C74 end:0x00107E90 align:4
+
+rel/main_rel/sel_static_disp/fn_1_133748.c:
+	.text       start:0x00133748 end:0x00133968 align:4
+
+rel/main_rel/mdlload/fn_1_D4FFC.c:
+	.text       start:0x000D4FFC end:0x000D523C align:4

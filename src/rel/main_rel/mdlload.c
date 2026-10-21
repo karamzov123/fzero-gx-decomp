@@ -929,6 +929,101 @@ void fn_1_D47F0(void *base, u32 index) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_D47F0 */
 
+/* fzgx:begin fn_1_D4FFC noprologue */
+#include "types.h"
+
+typedef struct {
+    f32 x, y, z;
+} Vec3_D4FFC;
+
+struct MdlLoadState_D4FFC {
+    u8 pad_0[0x2620];
+    f32 rand0;
+    f32 rand1;
+    s16 thresh[4];
+    s16 sel[4];
+};
+
+extern f32 lbl_1_rodata_6168[112];
+extern s16 camera_get_mode(void);
+extern s32 fn_1_6EC0(u8 value);
+extern u32 fn_1_864E8(int index);
+extern void fn_1_862A8(int mode, Vec3_D4FFC *out);
+extern f32 lbl_8006D6FC(Vec3_D4FFC *a, Vec3_D4FFC *b);
+extern u32 lbl_801A66A0;
+extern u32 lbl_801A63C0;
+
+extern void DCFlushRange(void *address, u32 length);
+
+/* Primes the TU literal pool so this function's constants land at retail's offsets. */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 30.0f;
+    s = 0.6499999761581421f;
+    s = 0.75f;
+    s = 1.0f;
+    s = 0.0f;
+    s = 182.04444885253906f;
+    d = 0.5;
+    d = 2.0;
+    d = 4503599627370496.0;
+    s = 0.5f;
+    s = 0.02500000037252903f;
+    s = 0.9900000095367432f;
+    s = 1.649999976158142f;
+    s = 3000.0f;
+    s = 100.0f;
+}
+
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    s32 table[64] = {
+        0, 0, 14, 14, 0, 0, 14, 14, 12, 12, 9, 9, 12, 12, 9, 9,
+        0, 0, -180, -180, 0, 0, -180, -180, -30, -30, 0, 0, -30, -30, 0, 0,
+        0, 0, 20, -20, 0, 0, 20, -20, 10, -10, -10, 10, 10, -10, -10, 10,
+        0, 0, 20, 20, 0, 0, -20, -20, 10, 10, -10, -10, -10, -10, 10, 10,
+    };
+    DCFlushRange(table, sizeof(table));
+}
+#pragma section code_type ".text"
+
+static inline s32 rand15_D4FFC(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+void fn_1_D4FFC(u8 *base, u32 index) {
+    struct MdlLoadState_D4FFC *s = (struct MdlLoadState_D4FFC *)(base + 0xC140);
+    Vec3_D4FFC pos;
+    Vec3_D4FFC ref = {0.0f, 1.0f, 0.0f};
+    s16 mode;
+    f32 dist;
+    s32 i;
+
+    mode = camera_get_mode();
+    if (mode != -1 && fn_1_6EC0(index) && (fn_1_864E8(mode) & 0x20)) {
+        s->sel[index] = -1;
+        return;
+    }
+    if (mode != -1) {
+        fn_1_862A8(camera_get_mode(), &pos);
+        dist = lbl_8006D6FC(&pos, &ref);
+        s->sel[index] = -1;
+        for (i = 0; i < 4; i++) {
+            if (dist > 0.9f * s->thresh[i] / s->thresh[3]) {
+                s->sel[index] = i;
+            }
+        }
+        if ((lbl_801A66A0 & 7) == 0) {
+            s->rand0 = rand15_D4FFC() / 32767.0f;
+            s->rand1 = rand15_D4FFC() / 32767.0f;
+        }
+    } else {
+        s->sel[index] = -1;
+    }
+}
+/* fzgx:end fn_1_D4FFC */
+
 /* fzgx:begin fn_1_D5958 */
 // fn_1_D5958: iterate through 4 structures, calling fn_1_D550C on each.
 void fn_1_D5958(void *arg) {

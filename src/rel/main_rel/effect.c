@@ -150,6 +150,65 @@ extern const f32 lbl_1_rodata_29F0;
 extern u32 fn_1_58C4(void);
 extern const f64 lbl_1_rodata_2954;
 
+/* fzgx:begin fn_1_584D4 noprologue */
+#include "types.h"
+
+typedef struct AvlineEntry {
+    s8 unk_00;
+    u8 _pad01;
+    s16 unk_02;
+    s16 unk_04;
+    u8 _pad06[0xe2];
+} AvlineEntry;
+
+typedef struct AvlineState {
+    AvlineEntry *unk_00;
+    AvlineEntry *unk_04;
+    s16 unk_08;
+    u8 _pad0a[2];
+    s32 unk_0c;
+    s32 unk_10;
+} AvlineState;
+
+extern u32 lbl_801A6410[];
+extern u8 lbl_1_bss_6C848[];
+extern u8 lbl_1_data_1D62C[148];
+extern AvlineEntry *fn_1_4630(u32, u32, u8 *, u32);
+extern void fn_1_9F7DC(void);
+extern void fn_1_58114(void);
+
+static inline AvlineEntry * fn_1_584D4_read_pointer(AvlineState * owner) { return owner->unk_00; }
+void fn_1_584D4(void) {
+    AvlineState *state = (AvlineState *)&lbl_1_bss_6C848;
+    s32 id;
+    s32 count;
+    AvlineEntry *entry;
+
+    state->unk_00 = fn_1_4630(lbl_801A6410[0], sizeof(AvlineEntry) * 0xbe, lbl_1_data_1D62C, 0xc1);
+    state->unk_04 = fn_1_4630(lbl_801A6410[0], sizeof(AvlineEntry) * 0xc8, lbl_1_data_1D62C, 0xc2);
+    entry = fn_1_584D4_read_pointer(state);
+    state->unk_08 = 0;
+    id = 0;
+    for (count = 0xbe; count > 0; count--) {
+        entry->unk_02 = id++;
+        entry->unk_04 = -1;
+        entry++;
+    }
+    entry = state->unk_04;
+    id = 0;
+    for (count = 0xc8; count > 0; count--) {
+        entry->unk_02 = id++;
+        entry->unk_04 = -1;
+        entry++;
+    }
+
+    fn_1_9F7DC();
+    fn_1_58114();
+    state->unk_0c = 0;
+    state->unk_10 = 0;
+}
+/* fzgx:end fn_1_584D4 */
+
 /* fzgx:begin fn_1_58994 noprologue */
 #include "types.h"
 #include "rel/main_rel/effect.h"

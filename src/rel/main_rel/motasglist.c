@@ -549,6 +549,170 @@ void fn_1_41F58(Fn41F58Data *data, int type, Fn41F58Callback callback, void *arg
 }
 /* fzgx:end fn_1_41F58 */
 
+/* fzgx:begin fn_1_42044 */
+extern void fn_1_41328(void *arg0);
+extern void fn_1_43264(void *arg0, f32 arg1);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006D668(void *vector);
+extern void lbl_8006DBAC(void *value);
+extern void fn_1_449A8(void *vector);
+extern void lbl_8006DB74(void *value);
+extern u32 lbl_1_bss_384CC;
+extern struct fn_1_41850_lbl_801A6410 lbl_801A6410;
+extern void fn_1_46B4(u32, void *, const char *, int);
+extern const f64 lbl_1_rodata_F40;
+extern const f32 lbl_1_rodata_F34;
+extern const f32 lbl_1_rodata_F30;
+extern const f64 lbl_1_rodata_F48;
+extern const f32 lbl_1_rodata_F38;
+extern void fn_8006E5FC(void *);
+extern const f32 lbl_1_rodata_F50;
+extern const f32 lbl_1_rodata_F54;
+
+typedef struct Fn42044Key {
+    u16 unk_0;
+    u16 frame;
+    u8 pad4[8];
+    u16 left;
+    u16 right;
+} Fn42044Key;
+
+typedef struct Fn42044Track {
+    u8 unk_0;
+    u8 count;
+    u16 start;
+} Fn42044Track;
+
+typedef struct Fn42044Node {
+    u8 pad0[0x28];
+    Fn42044Track *tracks;
+    u8 pad2C[4];
+    struct Fn42044Node *next;
+} Fn42044Node;
+
+typedef struct Fn42044Entry {
+    u32 unk_0;
+    Fn42044Node *nodes;
+    u8 pad8[2];
+    u16 count;
+} Fn42044Entry;
+
+typedef struct Fn42044Timer {
+    u8 pad0[0x4C];
+    f32 time;
+} Fn42044Timer;
+
+typedef struct Fn42044Data {
+    u8 pad0[0x2];
+    u16 flags;
+    u8 pad4[0x4];
+    Fn42044Timer *timer;
+    u8 padC[0x6];
+    u16 index;
+    u8 pad14[0xC];
+    Fn42044Key *keys;
+    u8 pad24[0x2];
+    u8 entryCount;
+    u8 pad27[0x1];
+    Fn42044Entry *entries;
+    u8 pad2C[0x8];
+    Fn42044Entry *extEntries;
+    u8 pad38[0x4];
+    Fn42044Key *extKeys;
+    u8 pad40[0xC];
+    u8 extBase;
+} Fn42044Data;
+
+Fn42044Key *fn_1_42044(Fn42044Data *data, s32 track) {
+    u16 index = data->index;
+    u8 count = data->entryCount;
+    Fn42044Entry *entry;
+    u16 flags;
+    struct { s32 value; } i;
+    Fn42044Node *node;
+    Fn42044Track *t;
+    u8 n;
+    Fn42044Key *keys;
+    s32 frame;
+
+    if (index < count) {
+        entry = &data->entries[index];
+    } else if (data->extEntries != NULL) {
+        entry = &data->extEntries[index - data->extBase];
+    }
+
+    flags = data->flags;
+    if (flags & 1) {
+        node = (Fn42044Node *)((u8 *)entry->nodes + entry->count * 0x34);
+    } else {
+        node = entry->nodes;
+        for (i.value = 0; i.value < entry->count; i.value++) {
+            node = node->next;
+        }
+    }
+
+    t = &node->tracks[track];
+    frame = (s32)data->timer->time;
+    if (data->index >= data->entryCount) {
+        keys = data->extKeys;
+    } else {
+        keys = data->keys;
+    }
+
+    n = t->count;
+    if (n != 0 || keys != NULL) {
+        if (data->flags & 4) {
+            Fn42044Key *k;
+            Fn42044Key *base;
+            s32 j;
+
+            if (n == 0) {
+                return NULL;
+            }
+            base = &keys[t->start];
+            k = base;
+            for (j = 0; j < n; j++) {
+                if ((u16)frame < k->frame) {
+                    break;
+                }
+                k++;
+            }
+            if (j == n) {
+                j = 0;
+            }
+            return &base[j];
+        } else {
+            u16 start = t->start;
+            u16 cur;
+            Fn42044Key *k;
+            u16 best = 0xFFFF;
+
+            cur = start;
+
+            do {
+                k = &keys[cur];
+                if ((u16)frame < k->frame) {
+                    best = cur;
+                    cur = k->left;
+                } else {
+                    cur = k->right;
+                }
+            } while (cur != 0xFFFF);
+
+            if (best == 0xFFFF) {
+                best = start;
+                while (keys[best].left != 0xFFFF) {
+                    best = keys[best].left;
+                }
+            }
+            return &keys[best];
+        }
+    }
+    return NULL;
+}
+/* fzgx:end fn_1_42044 */
+
 /* fzgx:begin fn_1_42458 */
 typedef struct Fn142458Data {
     u16 value0;

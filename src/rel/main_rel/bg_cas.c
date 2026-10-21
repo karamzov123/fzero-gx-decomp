@@ -289,6 +289,111 @@ void fn_1_FB9DC(int index) {
 }
 /* fzgx:end fn_1_FB9DC */
 
+/* fzgx:begin fn_1_FBA88 */
+extern void fn_80008BEC(void *arg0, int arg1, int arg2);
+extern void fn_1_FCA10(void);
+extern int fn_1_FCF50(void);
+extern void *fn_1_563B8(void *);
+extern f32 lbl_1_rodata_761C[13];
+extern void fn_1_7EB8C(void *, f32);
+extern void fn_1_7F20C(void *, s32, f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DBAC(void *);
+extern void fn_1_FD3A8(void);
+extern void *memset(void *, int, u32);
+extern void fn_1_FE7D8(u8 *, s32);
+extern void fn_1_FF420(u8 *);
+extern void fn_80074788(int);
+extern void fn_80072864(int);
+extern void fn_800745A4(int, int, int, int, int, int);
+extern void fn_800734A8(int, int, int, int);
+extern void fn_80072AB0(int, int, int);
+extern void fn_800735C8(int, int);
+extern void fn_80073620(int, int);
+extern void fn_80073C6C(int);
+extern void fn_80072C24(int, int, int, int, int);
+extern void fn_80072D64(int, int, int, int, int, int);
+extern void fn_80072CC4(int, int, int, int, int);
+extern void fn_80072E20(int, int, int, int, int, int);
+extern void fn_80073678(int);
+extern void fn_80074660(int);
+extern void fn_80074918(int, int, int);
+extern void fn_800720B0(int);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
+extern void fn_1_9AD54(void);
+extern void fn_1_9AD88(void);
+extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
+extern const f64 lbl_1_rodata_760C;
+extern void OSPanic(const char *, int, const char *, ...);
+extern void lbl_8006D758(void);
+extern void lbl_8006E13C(void *);
+extern void lbl_8006E0A4(void *);
+extern void fn_80008BA8(void *, void *, u32);
+extern u8 lbl_1_bss_851E0[36];
+extern void fn_1_7F230(void *, s32, f32);
+extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
+extern void fn_1_FEC7C(void *object);
+extern const f32 lbl_1_rodata_76A8;
+
+typedef struct {
+    s32 flag;
+    u8 pad_4[0x54];
+    u32 val;
+    u8 b0, b1, b2, b3;
+} Slot_FBA88;
+
+typedef struct {
+    u8 pad_0[0x14];
+    Slot_FBA88 s[6];
+    u8 pad[0x270 - 0x14 - 6 * 0x60];
+} Obj_FBA88;
+
+extern u32 lbl_1_rodata_759C[25];
+
+void fn_1_FBA88(int index) {
+    u32 tbl[6];
+    u32 *p = tbl;
+    Obj_FBA88 *o = (Obj_FBA88 *)&lbl_1_bss_84454 + (index & 0xff);
+    int i;
+    u32 *q;
+    s8 n = 0;
+    s8 c0 = 0, c1 = 0, c2 = 0, c3 = 0;
+
+    tbl[0] = lbl_1_rodata_759C[0];
+    tbl[1] = lbl_1_rodata_759C[1];
+    tbl[2] = lbl_1_rodata_759C[2];
+    tbl[3] = lbl_1_rodata_759C[3];
+    tbl[4] = lbl_1_rodata_759C[4];
+    tbl[5] = lbl_1_rodata_759C[5];
+
+    for (i = 0; i < 3; i++) {
+        Slot_FBA88 *slot = (Slot_FBA88 *)((u8 *)o + i * 0x60 + 0x134);
+        if (slot->flag != 0) {
+            slot->val = *p++;
+            n++;
+            slot->b0 = c0++;
+            slot->b1 = c1++;
+            slot->b2 = c2++;
+            slot->b3 = c3++;
+        }
+    }
+    q = tbl + n;
+    {
+    int fzgx_loop_i_1025;
+for (fzgx_loop_i_1025 = 0; fzgx_loop_i_1025 < 3; fzgx_loop_i_1025++) {
+        Slot_FBA88 *slot = &o->s[fzgx_loop_i_1025];
+        if (slot->flag != 0) {
+            slot->val = *q++;
+            slot->b0 = c0++;
+            slot->b1 = -1 - fzgx_loop_i_1025;
+        }
+    }
+    i = fzgx_loop_i_1025;
+}
+}
+/* fzgx:end fn_1_FBA88 */
+
 /* fzgx:begin fn_1_FBC5C noprologue */
 #include "types.h"
 

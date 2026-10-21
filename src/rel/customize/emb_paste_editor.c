@@ -14,6 +14,69 @@ extern void fn_1_426C(s16);
 extern void fn_80008BA8(struct Sig_fn_8004E278_fn_8004E278_Arg0 *, u32, u32);
 extern void fn_80008BEC(struct Sig_fn_8004E278_fn_8004E278_Arg0 *, int, u32);
 
+/* fzgx:begin fn_3_104C4 noprologue */
+#include "types.h"
+#include "rel/customize/emb_paste_editor.h"
+
+struct InputEntry { u16 unk_0; u8 pad_2[0x12]; };
+struct InputState {
+ union {
+  struct { u8 pad8[8]; struct InputEntry unk_8[1]; };
+  struct { u8 pad10[0x10]; struct InputEntry unk_10[1]; };
+  struct { u8 pad12[0x12]; struct InputEntry unk_12[1]; };
+ };
+};
+extern struct InputState lbl_1_bss_9F8;
+extern void fn_1_A2D84(u32);
+extern void fn_80008BEC(void *, int, u32);
+#pragma opt_pointer_analysis on
+static inline struct InputEntry *array_read(struct InputEntry *array) { return array; }
+static inline void finish(Obj_3_bss_7EDD8 *q, u32 state) {
+ q->unk_10 = q->unk_C;
+ q->unk_C = state;
+ lbl_3_bss_7EDD8.unk_18 = 0;
+}
+void fn_3_104C4(void) {
+ Obj_3_bss_7EDD8 *p;
+ u16 v;
+ u32 index;
+ u32 slot;
+ u32 previous;
+ u32 state;
+ p = (Obj_3_bss_7EDD8 *)&lbl_3_bss_7EDD8;
+ if ((array_read(lbl_1_bss_9F8.unk_12)[index = p->unk_14].unk_0 & 1) ||
+     (lbl_1_bss_9F8.unk_10[index].unk_0 & 1)) {
+  if ((s32)lbl_3_bss_7EDD8.unk_18 == 0) fn_1_A2D84(0xA9010000);
+  lbl_3_bss_7EDD8.unk_18 = 1;
+ }
+ if (((array_read(lbl_1_bss_9F8.unk_12)[index = p->unk_14].unk_0 >> 1) & 1) ||
+     ((lbl_1_bss_9F8.unk_10[index].unk_0 >> 1) & 1)) {
+  if ((s32)lbl_3_bss_7EDD8.unk_18 == 1) fn_1_A2D84(0xA9010000);
+  lbl_3_bss_7EDD8.unk_18 = 0;
+ }
+ v = lbl_1_bss_9F8.unk_8[*(volatile u8 *)&p->unk_14].unk_0; /* Retail reloads the input selector. */
+ if (((v >> 9) & 1) || (((v >> 8) & 1) && (s32)lbl_3_bss_7EDD8.unk_18 == 0)) {
+  if ((lbl_1_bss_9F8.unk_8[*(volatile u8 *)&p->unk_14].unk_0 >> 8) & 1) /* Retail reloads the input selector. */
+   fn_1_A2D84(0xA9010100);
+  else fn_1_A2D84(0xA9010200);
+  lbl_3_bss_7EDD8.unk_18 = 0;
+  lbl_3_bss_7EDD8.unk_C = 0x40000000;
+ }
+ if (((lbl_1_bss_9F8.unk_8[*(volatile u8 *)&p->unk_14].unk_0 >> 8) & 1) && (s32)lbl_3_bss_7EDD8.unk_18 != 0) { /* Retail reloads the input selector. */
+  fn_1_A2D84(0xA9010100);
+  slot = (u32)&lbl_3_bss_7EE40;
+  index = lbl_3_bss_7EDD8.unk_15;
+  slot += index * 0x2060;
+  if (((Obj_3_bss_7EE40 *)slot)->unk_24 & 0x80000000)
+   *((u32 *)&lbl_3_bss_7EDD8.unk_2C + index) = 1;
+  fn_80008BEC((u8 *)&lbl_3_bss_7EE40 + lbl_3_bss_7EDD8.unk_15 * 0x2060 + 0x20, 0, 0x2060);
+  fn_80008BEC((u8 *)&lbl_3_bss_87040 + lbl_3_bss_7EDD8.unk_15 * 0x2060 + 0x20, 0, 0x2060);
+  finish(&lbl_3_bss_7EDD8, 0x40000000);
+ }
+}
+#pragma opt_pointer_analysis reset
+/* fzgx:end fn_3_104C4 */
+
 /* fzgx:begin fn_3_10B68 noprologue */
 #include "types.h"
 

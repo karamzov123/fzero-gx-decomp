@@ -1248,6 +1248,92 @@ void *fn_1_E54A8(s16 type, s16 index) {
 }
 /* fzgx:end fn_1_E54A8 */
 
+/* fzgx:begin fn_1_E5568 */
+extern void lbl_8006DCA4(void *base, void *arg);
+extern void fn_1_A71AC(void);
+extern void fn_8006F828(void *base, f32 *out);
+extern void fn_1_E4A38(void *base, s32 x, s32 y, void *arg);
+extern void fn_80008BEC(void *dst, void *value, u32 size);
+extern void fn_80008BA8(void *dst, void *value, u32 size);
+extern f32 lbl_1_rodata_67A8;
+extern u32 lbl_1_rodata_6A8C[3];
+extern u32 fn_80083970(const u8* left, const char* right);
+extern u32 strlen(const char* string);
+extern void fn_1_8CED0(void* object, s32 value0, s32 value1);
+extern void fn_1_8D0A4(void* object);
+extern void fn_800734A8(u32, u32, u32, u32);
+extern void fn_80072EDC(u32, s32);
+extern void fn_800745A4(u32, s32, s32, u32, s32, s32);
+extern void fn_80073778(void *, u32);
+extern void fn_80015C1C(void *, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern void lbl_8006DFFC(void *, void *, void *);
+extern void GXLoadTexMtxImm(void *, u32, s32);
+extern f32 lbl_1_rodata_6780[236];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_E8938(void);
+extern void fn_1_8D1C8(void *object, void (*callback)(void), int arg);
+extern u32 fn_1_3F8C0(void);
+extern u32 fn_80008E84(u32 value);
+extern u32 lbl_1_bss_7C94C[67];
+extern void fn_1_EE530(void);
+extern u8 lbl_1_bss_7ECB4[72];
+extern void fn_1_BC29C(u8 *);
+extern void fn_1_B9C0C(void);
+extern void fn_1_1596DC(s32);
+extern void fn_1_484CC(s32);
+
+extern void fn_80008BEC(void *dst, void *value, u32 size);
+extern void fn_80008BA8(void *dst, void *value, u32 size);
+
+extern f32 lbl_1_rodata_67A8;
+extern u32 lbl_1_rodata_6A8C[3];
+extern void fn_80008BA8(void *dst, void *value, u32 size);
+extern void fn_1_12EF80(s16 arg, s16 *out_group, s16 *out_entry);
+extern void fn_1_9C724(void);
+extern void fn_1_DD890(void *);
+extern void fn_1_9CC40(void);
+
+typedef struct { u8 pad[0x138]; u64 flags; u8 tail[0x68]; } E5568Entry;
+static inline s16 E5568Count(s16 id, Obj_1_bss_7AE88 *p) {
+ switch(id) {
+ case 0: return p->unk_4;
+ case 1: return p->unk_C;
+ case 2: return p->unk_14;
+ case 3: return p->unk_1C;
+ case 4: return p->unk_24;
+ case 5: return p->unk_2C;
+ default: return -1;
+ }
+}
+static inline E5568Entry *E5568Base(s16 id, Obj_1_bss_7AE88 *p) {
+ switch(id) {
+ case 0: return (E5568Entry *)p->unk_0;
+ case 1: return (E5568Entry *)p->unk_8;
+ case 2: return (E5568Entry *)p->unk_10;
+ case 3: return (E5568Entry *)p->unk_18;
+ case 4: return (E5568Entry *)p->unk_20;
+ case 5: return (E5568Entry *)p->unk_28;
+ default: return 0;
+ }
+}
+static inline s16 E5568FlagCount(s16 id, Obj_1_bss_7AE88 *p, u64 mask, u64 zero) {
+ s32 i;
+ s16 count = 0;
+ s16 n = E5568Count(id, p);
+ E5568Entry *base = E5568Base(id, p);
+ for(i = 0; (s16)i < n; i++, base++) {
+  if((base->flags & mask) != zero) count++;
+ }
+ return count;
+}
+s16 fn_1_E5568(s16 id) {
+ Obj_1_bss_7AE88 *p = &lbl_1_bss_7AE88;
+ s16 total = E5568Count(id, p);
+ s16 count = E5568FlagCount(id, p, 0x800000000ULL, 0);
+ return count == -1 ? count : (s16)(total - count);
+}
+/* fzgx:end fn_1_E5568 */
+
 /* fzgx:begin fn_1_E5724 */
 s16 fn_1_E5724(void *base) {
     return *(s16 *)((char *)base + 0x8);

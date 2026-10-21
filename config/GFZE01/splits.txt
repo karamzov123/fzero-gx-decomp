@@ -6281,3 +6281,18 @@ dol/fn_80039954.c:
 
 dol/fn_8000700C.c:
 	.text       start:0x8000700C end:0x800071B8 align:4
+
+dol/fn_8005C298.c:
+	.text       start:0x8005C298 end:0x8005C478 align:4
+
+dol/fn_8003A91C.c:
+	.text       start:0x8003A91C end:0x8003AB08 align:4
+
+dol/fn_8005C5C8.c:
+	.text       start:0x8005C5C8 end:0x8005C7C0 align:4
+
+dol/fn_8008E770.c:
+	.text       start:0x8008E770 end:0x8008E9B4 align:4
+
+dol/fn_80007F70.c:
+	.text       start:0x80007F70 end:0x800081C8 align:4

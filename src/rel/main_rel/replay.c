@@ -468,6 +468,62 @@ void fn_1_F37F4(void) {
 }
 /* fzgx:end fn_1_F37F4 */
 
+/* fzgx:begin fn_1_F38C0 */
+extern u32 OSGetTick(void);
+
+extern s8 fn_1_86624(void);
+extern void *fn_1_86254(int);
+extern void fn_80008BEC(u8 *, int, u32);
+
+static inline void fn_1_F38C0_finish(Obj_1_bss_7EFD8 *state, u8 z0, u8 z1) {
+    s32 i;
+    u8 *bytes;
+    u8 *flags;
+    flags = (u8 *)&lbl_1_bss_7EFD8;
+    bytes = flags;
+    for (i = 0; i < 4; i++) {
+        if (*(s32 *)(flags + 0x28) != 0) {
+            s8 v = state->unk_40->unk_A0;
+            *(s8 *)((u8 *)fn_1_86254(i) + 0x474) = v;
+            state->unk_40->unk_A0++;
+        }
+        bytes[0x1c] = z0;
+        bytes[0x20] = z1;
+        flags += 4;
+        bytes++;
+    }
+    state->unk_40->unk_A0--;
+    lbl_1_bss_7EFD8.unk_1A = 0;
+    lbl_1_bss_7EFD8.unk_1B = 0;
+}
+
+void fn_1_F38C0(void) {
+    struct { Obj_1_bss_7EFD8 *value; } w;
+    #define p (w.value)
+    struct { u8 *value; } first;
+    #define start (first.value)
+    u8 *end;
+    u8 *q;
+    struct { s32 value; } count;
+    #define n (count.value)
+
+    p = (Obj_1_bss_7EFD8 *)&lbl_1_bss_7EFD8;
+    start = (u8 *)p->unk_40 + 0xa4;
+    p->unk_10 = 9300;
+    p->unk_14 = 0x10000 - 9736;
+    fn_80008BEC((u8 *)p + 0x28, 0, 16);
+    n = (s8)fn_1_86624();
+    if ((s8)fn_1_86624() > 4) {
+        n = 4;
+    }
+    end = start + n * 7;
+    for (q = start; q < end; q += 7) {
+        *(u32 *)((u8 *)&lbl_1_bss_7EFD8 + 0x28 + ((*q & 3) << 2)) = 1;
+    }
+    fn_1_F38C0_finish(p, 0, 0);
+}
+/* fzgx:end fn_1_F38C0 */
+
 /* fzgx:begin fn_1_F3AB0 */
 extern s32 fn_1_F45CC(u16 value, void *out);
 extern void fn_1_862D4(s32 value, f32 *out);

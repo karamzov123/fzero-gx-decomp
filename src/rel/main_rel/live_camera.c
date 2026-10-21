@@ -1503,6 +1503,136 @@ void fn_1_11544(LiveCam *cam) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_11544 */
 
+/* fzgx:begin fn_1_1189C noprologue */
+#include "types.h"
+
+typedef struct {
+    f32 x, y, z;
+} LcVec;
+
+typedef struct {
+    f32 m[3][4];
+} LcMtx;
+
+typedef struct {
+    u8 mode;
+    u8 pad_1[3];
+    s16 unk_4;
+    s16 unk_6;
+    u8 pad_8[0xC];
+    s16 unk_14;
+    u8 pad_16[6];
+    LcVec unk_1C;
+    u8 pad_28[0x24];
+    LcVec unk_4C;
+    u8 pad_58[4];
+    s16 unk_5C;
+    u8 pad_5E[0x12];
+    f32 unk_70;
+    f32 unk_74;
+    u8 pad_78[4];
+    LcMtx unk_7C;
+} LcState;
+
+typedef struct {
+    LcVec a;
+    LcVec b;
+    s16 unk_18;
+    u8 pad_1A[2];
+    s32 unk_1C;
+} LcEntry;
+
+typedef struct {
+    u8 pad_0[0xA];
+    u16 unk_A;
+} LcInput;
+
+typedef struct {
+    f32 unk_0;
+    u8 pad_4[0x10];
+    f32 unk_14;
+    u8 pad_18[0x34];
+    f32 unk_4C;
+} LcPool;
+
+extern LcPool lbl_1_rodata_4E0;
+extern LcInput lbl_1_bss_9F8;
+extern LcEntry lbl_1_data_47B4[];
+
+extern s32 fn_1_40BB4(void);
+extern void fn_1_862D4(int, LcVec *);
+extern void fn_1_8645C(int, void *);
+extern void fn_1_8636C(int, void *);
+extern u32 fn_1_20A5C(void *, void *);
+extern void fn_1_15578(void *, LcVec *, void *, void *, u32, void *, u32, u32, u32, u32);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DB74(LcMtx *);
+extern void fn_8006FA24(LcMtx *, void *, LcMtx *, f32);
+extern void lbl_8006DC6C(LcMtx *);
+extern void lbl_8006E1B0(LcVec *, LcVec *);
+extern void lbl_8006E1F0(f32 *, f32, f32, f32);
+extern s32 lbl_8006D24C(f32, f32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+
+static inline f32 fn_1_1189C_read_pointer(LcVec * owner) { return owner->z; }
+#pragma opt_propagation off
+void fn_1_1189C(LcState *state) {
+    LcPool *pool;
+    LcMtx mtx;
+    LcVec pos;
+    LcVec target;
+    u32 buf18[3];
+    u32 id;
+    u32 buf10;
+    f32 v;
+    f32 y, z, x;
+
+    pool = &lbl_1_rodata_4E0;
+    if (state->mode == 3 && fn_1_40BB4() == 0) {
+        if ((lbl_1_bss_9F8.unk_A >> 1) & 1) {
+            state->unk_14++;
+        }
+        if (lbl_1_bss_9F8.unk_A & 1) {
+            state->unk_14--;
+        }
+        if (state->unk_14 > 19) {
+            state->unk_14 = 0;
+        }
+        if (state->unk_14 < 0) {
+            state->unk_14 = 19;
+        }
+    }
+    fn_1_862D4(state->unk_6, &pos);
+    if (lbl_1_data_47B4[state->unk_4].unk_1C != 0) {
+        fn_1_8645C(state->unk_6, &mtx);
+        lbl_8006DBAC(&mtx);
+        lbl_8006DB74(&state->unk_7C);
+    } else {
+        fn_1_8636C(state->unk_6, &mtx);
+        fn_8006FA24(&state->unk_7C, &mtx, &state->unk_7C, pool->unk_4C);
+        lbl_8006DC6C(&state->unk_7C);
+        x = pos.x;
+        y = pos.y;
+        z = fn_1_1189C_read_pointer(&pos);
+        *(f32 *)(0xE0000000 + 0x0C) = x;
+        *(f32 *)(0xE0000000 + 0x1C) = y;
+        *(f32 *)(0xE0000000 + 0x2C) = z;
+    }
+    lbl_8006E1B0(&lbl_1_data_47B4[state->unk_4].a, &state->unk_1C);
+    lbl_8006E1B0(&lbl_1_data_47B4[state->unk_4].b, &state->unk_4C);
+    v = pool->unk_14;
+    lbl_8006E1F0(&state->unk_70, v, pool->unk_0, v);
+    state->unk_5C = lbl_1_data_47B4[state->unk_4].unk_18 - lbl_8006D24C(state->unk_70, state->unk_74);
+    lbl_8006DAEC();
+    id = fn_1_20A5C(&state->unk_1C, &buf10);
+    target = state->unk_4C;
+    fn_1_15578(&state->unk_1C, &target, &buf10, buf18, 0x40005, &id, 1, 0, 0, 0);
+    lbl_8006DB30();
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_1189C */
+
 /* fzgx:begin fn_1_11ABC */
 #include "dolphin/hw_regs.h"
 #include "types.h"

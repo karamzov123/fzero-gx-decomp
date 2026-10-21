@@ -179,3 +179,6 @@ rel/interview/data/lbl_17_data_0.c:
 
 rel/interview/data/lbl_17_data_63BD0.c:
 	.data       start:0x00063BD0 end:0x00063E1C align:8
+
+rel/interview/interview/fn_17_849C.c:
+	.text       start:0x0000849C end:0x000086C4 align:4
