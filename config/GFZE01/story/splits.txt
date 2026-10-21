@@ -179,3 +179,6 @@ rel/story/story_mode/fn_7_41FC.c:
 
 rel/story/story_mode/fn_7_15BC.c:
 	.text       start:0x000015BC end:0x000016FC align:4
+
+rel/story/story_mode/fn_7_1DBC.c:
+	.text       start:0x00001DBC end:0x000020DC align:4

@@ -425,6 +425,435 @@ u8 * fn_1_14F04(void) {
 }
 /* fzgx:end fn_1_14F04 */
 
+/* fzgx:begin fn_1_14F18 noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/stcoli.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+#include "types.h"
+#include "psvec.h"
+
+typedef struct Node {
+    u32 unk_0;
+    u8 pad_4[0x8];
+    s32 count;
+    struct Node *children;
+    u8 pad_14[0x50 - 0x14];
+} Node;
+
+typedef struct StcoliNode StcoliNode;
+
+struct StcoliNode {
+    u32 flags;
+    u8 pad[8];
+    s32 count;
+    StcoliNode *items;
+    u8 rest[0x3c];
+};
+
+typedef struct StcoliVec {
+    u32 x;
+    u32 y;
+    u32 z;
+} StcoliVec;
+
+typedef struct {
+    unsigned char pad0[0x0c];
+    int count;
+    void *entries;
+} Fn118F28Object;
+
+typedef struct Fn_1_20258Constants {
+    unsigned char pad08[8];
+    f32 value08;
+    f32 value0c;
+    unsigned char pad10[0xb0];
+    f64 valuec0;
+    f32 valuec8;
+    unsigned char padcc[4];
+    f64 valued0;
+} Fn_1_20258Constants;
+
+typedef struct {
+    u32 f00, f04, f08, f0c, f10, f14, f18, f1c, f20, f24;
+    u32 f28, f2c, f30, f34, f38, f3c, f40, f44;
+} Cfg;
+
+typedef struct {
+    u8 pad_0[0x4];
+    Cfg *cfg;
+    u8 pad_8[0xc];
+    f32 fx;
+    f32 fy;
+    f32 fz;
+    f32 rxv;
+    f32 ryv;
+    f32 rzv;
+    f32 sxv;
+    f32 syv;
+    f32 szv;
+} Entity;
+
+typedef struct {
+    u32 count;
+    u32 entries[1];
+} Stack;
+
+struct fn_1_2B478_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    f32 m[10];
+    f64 d;
+} Mtx;
+
+struct Pool {
+    u8 pad_0[0xc];
+    f32 one;
+    u8 pad_10[0xc];
+    f32 two;
+    u8 pad_20[0x14];
+    f32 half;
+};
+
+struct fn_1_207DC_pool {
+    u8 pad_0[8];
+    f32 zero;
+    f32 one;
+    u8 pad_10[0xB0];
+    f64 eps;
+    f32 pi;
+    u8 pad_CC[4];
+    f64 two;
+};
+
+struct fn_1_21950_lbl_1_rodata_6C8 {
+    u8 pad_0[0x8];
+    f32 unk_8;
+    u8 pad_C[0x14];
+    f32 unk_20;
+    u8 pad_24[0x10];
+    f32 unk_34;
+};
+
+typedef struct {
+    u8 pad_0[0x30];
+    Vec3 pos;
+    f32 ax;
+    f32 ay;
+    Vec3 v0;
+    Vec3 e;
+    Vec3 m;
+    f32 d0;
+    f32 d1;
+    Vec3 o;
+    u32 f7c;
+    u8 pad_80[0x7c];
+    u32 fffc;
+} Rec;
+
+typedef struct {
+    u32 f00;
+    u32 f04;
+    u32 f08;
+    u32 f0c;
+    u32 f10;
+    u32 f14;
+    u32 f18;
+    u32 f1c;
+    u32 f20;
+    u32 f24;
+    u32 f28;
+    u32 f2c;
+    u32 f30;
+    u32 f34;
+    u32 f38;
+    u32 f3c;
+    u32 f40;
+    u32 f44;
+} fn_1_18784_Cfg;
+
+typedef struct {
+    u32 f00;
+    fn_1_18784_Cfg *cfg;
+    u32 f08;
+    u32 f0c;
+    u32 f10;
+    u32 f14;
+    f32 f18;
+} Src;
+
+typedef struct {
+    u32 f00;
+    fn_1_18784_Cfg *cfg;
+    u32 f08;
+    s32 f0c;
+    Src *f10;
+    u32 f14;
+    f32 f18;
+    f32 f1c;
+    f32 f20;
+    f32 f24;
+    f32 f28;
+    f32 f2c;
+} Motion;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_21CFC_Vec;
+
+struct fn_1_2D524_Copy200 { char *a[10][5]; };
+
+struct fn_1_2D524_Copy8 { char *a[2]; };
+
+struct fn_1_2D524_lbl_1_rodata_BD8 {
+    u8 pad_0[0x24];
+    f32 unk_24;
+    u8 pad_28[0x30];
+    struct fn_1_2D524_Copy200 unk_58;
+    struct fn_1_2D524_Copy8 unk_120;
+    f32 unk_128;
+    f32 unk_12C;
+    f32 unk_130;
+};
+extern void fn_1_9E14C();
+extern void fn_1_9E170(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern const f32 lbl_1_rodata_6D0;
+extern f32 lbl_1_rodata_6F8;
+extern u32 mathutil_mtxA_rotate_x(u32);
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern u32 mathutil_mtxA_rotate_z(u32);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern Fn_1_20258Constants lbl_1_rodata_6C8;
+extern u8 *lbl_801A66CC;
+extern struct fn_1_2B478_lbl_801A6D00 lbl_801A6D00;
+extern f64 __fabs(f64);
+extern void lbl_8006DB74(void *);
+extern void fn_1_18214();
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006DBE4();
+extern void fn_1_1902C(StcoliNode *root, StcoliVec *vec, void *arg3, f32 value);
+extern void fn_1_18784();
+extern void fn_1_18F28(Fn118F28Object *obj, int *args, int arg2, float value);
+extern u32 fn_1_203E4(void *, u32, void *, f32, f32, f32);
+extern void OSReport(const char *format, ...);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_8006DCA4(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void fn_8003462C(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_80072558(void);
+extern f32 lbl_1_rodata_6B0[6];
+extern void fn_1_17D5C(Node *node, u32 *acc);
+extern int fn_1_210A8(void *, f32 *, int, int, int);
+extern int fn_1_16BA0(void *, void *, void *, int *, int);
+extern f32 fn_1_16E68(void *, void *, int);
+extern unsigned char lbl_1_rodata_840[];
+extern void fn_1_22F90(void *self, int value);
+extern void lbl_8006E1F0(void *, f32, f32, f32);
+extern void fn_1_8A190(void *arg0, void *arg1);
+extern int fn_1_15578();
+extern void *memset(void *, int, unsigned int);
+extern int fn_1_4C10(void);
+extern u32 fn_1_4060(void);
+extern void fn_1_EB080(int mode);
+extern void fn_1_9D77C(u32, u32);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern u32 lbl_801A6410;
+extern int fn_1_180F4(int first, int second, int count, int ascending);
+extern void fn_1_21950(u32 arg0, f32 arg1, f32 arg2);
+extern f32 lbl_1_rodata_6D4;
+extern char lbl_1_bss_9C;
+extern void fn_1_A2D84(u32 arg0);
+extern u32 fn_1_8C66C(u32 index);
+extern int fn_1_163BC(void *arg0, void *arg1, int mask, int value);
+extern void lbl_8006E1D8(void *arg0, f32 arg1, f32 arg2, f32 arg3);
+extern double lbl_1_rodata_910;
+extern const f32 lbl_1_rodata_84C;
+extern const f32 lbl_1_rodata_854;
+extern s16 fn_1_7B054();
+extern void *fn_1_868C0(s8 index);
+extern void fn_1_F7338(int arg0, void *arg1, void *arg2);
+extern const f32 lbl_1_rodata_85C;
+extern void fn_8006E978(f32 *arg0, Vec3 *arg1, Vec3 *arg2);
+extern void mathutil_mtxA_from_quat(void *);
+extern void lbl_8006DFC4(void *);
+extern f64 lbl_1_rodata_860[22];
+extern f32 lbl_1_rodata_B74[25];
+extern f32 lbl_8006D6FC(void *, void *);
+extern s16 lbl_1_bss_3C2A[3];
+extern f32 lbl_8006D188(s16 angle);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_8006E7E4(void *, void *, s32);
+extern u32 fn_1_8627C(s32 index);
+extern u8 * fn_1_14F04(void);
+extern u32 fn_1_2B684(u32);
+extern u32 lbl_801A66C8[2];
+extern f32 lbl_1_rodata_92C[10];
+extern void lbl_8006DBAC(void *arg0);
+extern void fn_8006E250(void *arg0, void *arg1);
+extern void lbl_8006D668(void *arg0);
+extern char *fn_1_14EA74(s16 arg0, char *arg1, s16 arg2);
+extern char *fn_1_15BA78(char *name);
+extern f32 fn_1_4B068(char *);
+extern f32 fn_1_4B090(s32 value);
+extern int sprintf(char *s, const char *format, ...);
+extern s16 fn_1_12EF24(s16 row, s16 column);
+extern struct fn_1_2D524_lbl_1_rodata_BD8 lbl_1_rodata_BD8;
+extern u32 lbl_801A66B4;
+extern u32 fn_1_4AEC0(u32 value);
+extern void fn_1_F83F0(s16 arg0);
+extern u32 fn_1_F8D10(void);
+extern char *lbl_1_data_2BD54[][6];
+extern void *fn_1_7F49C(s16 arg0, s16 arg1, void *arg2);
+extern void fn_1_49410(void);
+extern void fn_1_4955C(f32 value1, f32 value2);
+extern void fn_1_49590(f32 value);
+extern void fn_1_495B0(u32 value);
+extern void fn_1_495C8(u8 value);
+extern void fn_1_A2DC4(u32 arg0);
+extern void fn_1_F2008(s32 arg);
+extern void fn_1_F7F48(s16 value);
+extern void fn_1_F8A58(u32 value);
+extern void fn_1_F8C00(s32 value);
+extern void fn_1_F8D38(u32 value);
+extern void fn_1_F9D68(u32 arg);
+extern void fn_1_F9DE8(u32 param);
+extern u8 lbl_1_bss_6F316;
+extern u32 fn_1_A1588(void *, u32);
+extern void ADXT_Stop(void *);
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_40E08(u32 arg0);
+extern u32 lbl_1_rodata_D18;
+extern u32 lbl_1_rodata_D1C[11];
+extern void fn_1_49F0(u32 *value);
+extern void fn_1_4A00(s32 enabled, u8 mode, void *value);
+extern u32 lbl_1_bss_25B9C;
+extern u32 fn_1_304A8(void);
+extern void fn_1_3F2A0(void);
+
+
+typedef struct {
+    f32 x, y, z;
+} fn_1_14F18_Vec;
+
+/* Plane d, normal, then `count` vertices followed by `count` edge normals. */
+typedef struct {
+    f32 d;
+    fn_1_14F18_Vec n;
+    fn_1_14F18_Vec verts[1];
+} fn_1_14F18_Poly;
+
+extern f32 fn_1_1FFA0(void *, void *, void *, void *, void *, void *);
+extern u8 *lbl_801A66CC;
+
+static inline s32 FZGX_NONFINITE(f32 f) {
+    return (*(u32 *)&f & 0x7F800000) == 0x7F800000;
+}
+
+#pragma opt_propagation off
+static inline f32 fn_1_14F18_dot(fn_1_14F18_Vec *a, fn_1_14F18_Vec *b) {
+    f32 r;
+    f32 y;
+    f32 z;
+    r = a->x * b->x;
+    y = a->y;
+    z = a->z;
+    r = y * b->y + r;
+    r = z * b->z + r;
+    return r;
+}
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+s32 fn_1_14F18(fn_1_14F18_Vec *pos, void *arg1, fn_1_14F18_Vec *dir, f32 *outT,
+               fn_1_14F18_Poly *poly, s32 count, u32 flags, f32 radius) {
+    fn_1_14F18_Vec *edges[5];
+    fn_1_14F18_Vec hit;
+    fn_1_14F18_Vec out0;
+    fn_1_14F18_Vec out1;
+    fn_1_14F18_Vec **e;
+    s32 i;
+    fn_1_14F18_Vec *v;
+    fn_1_14F18_Vec **initE;
+    fn_1_14F18_Vec *n;
+    fn_1_14F18_Vec *d;
+    f32 tIn;
+    f32 tOut;
+    f32 denom;
+    f32 dist;
+    f32 planeDot;
+    s32 j;
+    fn_1_14F18_Vec *verts;
+
+    denom = poly->n.x * dir->x;
+    denom = poly->n.y * dir->y + denom;
+    denom = poly->n.z * dir->z + denom;
+    if (denom > 0.0f && !(flags & 0x400000)) {
+        return 0;
+    }
+    planeDot = poly->n.x * pos->x;
+    planeDot = poly->n.y * pos->y + planeDot;
+    planeDot = poly->n.z * pos->z + planeDot;
+    dist = planeDot + poly->d;
+    tIn = dist / denom;
+    if (1.0f < tIn || FZGX_NONFINITE(tIn)) {
+        return 0;
+    }
+    tOut = (dist - radius) / denom;
+    if (tOut < 0.0f || FZGX_NONFINITE(tOut)) {
+        return 0;
+    }
+    if (tIn < 0.0f) {
+        tIn = 0.0f;
+    }
+    psvec_scale_add(pos, dir, -tIn, &hit);
+
+    v = poly->verts;
+    initE = &edges[1];
+    for (j = count; j > 1; j--) {
+        *initE++ = v++;
+    }
+
+    verts = poly->verts;
+    e = edges;
+    e[count] = verts;
+    n = verts + count;
+    v = verts;
+    for (i = 0; i < count;) {
+        psvec_sub(&hit, v, lbl_801A66CC + 0xD4);
+        d = (fn_1_14F18_Vec *)(lbl_801A66CC + 0xD4);
+        if (fn_1_14F18_dot(d, n) < 0.0f) {
+            if (fn_1_1FFA0(pos, arg1, v, e[1], &out0, &out1) > radius * radius) {
+                return 0;
+            }
+        }
+        e++;
+        i++;
+        v++;
+        n++;
+    }
+
+    if (tOut > 1.0f) {
+        tOut = 1.0f;
+    }
+    psvec_scale_add(pos, dir, -tOut, pos);
+    *outT = 1.0f - tOut;
+    return 1;
+}
+/* fzgx:end fn_1_14F18 */
+
 /* fzgx:begin fn_1_17B5C */
 typedef struct {
     u8 pad_0[0x40];

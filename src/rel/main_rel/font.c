@@ -3818,6 +3818,300 @@ void fn_1_52250(struct fn_1_52250_Arg0 *arg0, struct fn_1_52250_Arg1 *arg1) {
 }
 /* fzgx:end fn_1_52250 */
 
+/* fzgx:begin fn_1_5233C noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/font.h"
+#include "runtime/va_list.h"
+#include "font.h"
+#include "sdk_addresses.h"
+#include "types.h"
+
+typedef struct FontParams {
+    u8 unk_00[0x30];
+    u32 unk_30;
+    f32 unk_34;
+    u8 unk_38[0x58 - 0x38];
+} FontParams;
+
+typedef struct fn_1_4EB74_FontObject {
+    u32 unk_0;
+    u8 pad_4[0x2c];
+    u32 unk_30;
+} fn_1_4EB74_FontObject;
+
+typedef struct fn_1_54668_node {
+    struct fn_1_54668_node *next;
+    void *data;
+} fn_1_54668_node;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct fn_1_547F8_node {
+    struct fn_1_547F8_node *next;
+    void (*callback)(struct fn_1_547F8_node *);
+} fn_1_547F8_node;
+
+typedef struct fn_1_563E4_FontState {
+    u8 pad_00[8];
+    f32 scale;
+    u8 pad_0C[6];
+    u8 enabled;
+    u8 color;
+    u32 value;
+    f32 x;
+    f32 y;
+    u8 pad_20[4];
+    u32 state;
+} fn_1_563E4_FontState;
+
+typedef struct State {
+    FontDrawPacket *current;
+    s32 warned;
+    u8 unk_8[0x2028];
+    s32 override_enabled, override_value;
+    u32 texture[8];
+} State;
+
+typedef struct Config {
+    u32 capacity;
+    FontDrawPacket *packets;
+    u8 unk_8[0x44];
+    char warning[1];
+} Config;
+
+typedef struct ImageInfo {
+    u8 unk_0[8];
+    u16 width, height;
+    u32 unk_C;
+} ImageInfo;
+
+typedef struct Images {
+    u32 unk_0;
+    ImageInfo *info;
+    u32 unk_8;
+    u32 (*textures)[8];
+} Images;
+
+typedef struct Resource {
+    s32 loaded;
+    u8 unk_4[0x1c];
+    Images *images;
+    u32 unk_24;
+} Resource;
+
+struct fn_1_530C8_lbl_1_rodata_282C {
+    f32 unk_0;
+};
+
+struct FzgxCopy_88 { u32 words[22]; };
+extern void *lbl_801A6D00;
+extern void fn_1_A71CC(void);
+extern void fn_800724C8(void);
+extern void lbl_8006D758(void);
+extern void fn_80072558(void);
+extern void fn_1_A722C(void);
+extern void fn_8007245C(u32 value);
+extern void fn_80074788(u32 arg0);
+extern void fn_80074660(u32 arg0);
+extern void fn_80073678(u32 arg0);
+extern void fn_80073898(u32 arg0);
+extern void fn_80073C6C(s32 index);
+extern void fn_800720B0(int);
+extern void fn_80072864(u32 arg0);
+extern void fn_800745A4(u32 arg0, s32 arg1, s32 arg2, u32 arg3, u32 arg4, u32 arg5);
+extern void fn_80072D64(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5);
+extern void fn_80072E20(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_800728A8(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80072AB0(s32 arg0, s32 arg1, s32 arg2);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80072C24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void fn_80072CC4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern f32 fn_1_519AC(u32);
+extern void DCFlushRange(void *, u32);
+extern void GXInitTexObj(void *, void *, u16, u16, u32, u32, u32, u8);
+extern void GXInitTexObjLOD(void *, u32, u32, f32, f32, f32, u8, u8, u32);
+extern void fn_80073778(void *obj, s32 index);
+extern int fn_1_159588(int arg);
+extern void OSReport(const char *format, ...);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u32 fn_1_54298(void);
+extern u32 fn_1_542A8(void);
+extern f32 fn_1_542B8(void);
+extern f32 fn_1_4B1D4(s32 mode, s32 value);
+extern const f64 lbl_1_rodata_10F8;
+extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_FD0[];
+extern u8 *lbl_801A66CC;
+extern const f32 lbl_1_rodata_2870;
+extern const f64 lbl_1_rodata_2878;
+extern void lbl_8006E1B0();
+extern f32 lbl_8006D0B4(f32 value);
+extern void **fn_1_54448(s32 arg0);
+extern void * fn_1_548AC(u32 amount);
+extern void fn_1_55C48(void);
+extern u16 fn_1_7BE94(void);
+extern void fn_1_5489C(void **arg0, void **arg1);
+extern void fn_1_56530(void);
+extern void lbl_8006DB74(void *value);
+extern void lbl_8006DD14(void *value, void *object);
+extern void fn_1_4E500(void);
+extern void fn_1_48D80(void *value);
+extern void fn_1_4E6F4(void);
+extern s32 fn_1_4E724(FontParams *arg);
+extern s32 fn_1_4B16C(s32 value);
+extern const f32 lbl_1_rodata_2750;
+extern s32 fn_1_4EC74(FontParams *);
+extern s32 fn_1_4EB74(fn_1_4EB74_FontObject *self);
+extern f64 lbl_1_rodata_2778[2];
+extern u16 fn_1_48690(u32 unused);
+extern u16 fn_1_486C4(u32 value);
+extern void fn_80038F10(f32* out);
+extern u16 fn_1_A5D88(void);
+extern u16 fn_1_A5DB0(void);
+extern const f32 lbl_1_rodata_2770;
+extern const f32 lbl_1_rodata_276C;
+extern const f32 lbl_1_rodata_2754;
+extern void lbl_8006D7F4(f32 arg0, f32 arg1, f32 arg2);
+extern void lbl_8006E15C(f32 arg0, f32 arg1, f32 arg2);
+extern void mathutil_mtxA_rotate_z(s16 arg0);
+extern void lbl_8006DD7C(void);
+extern u32 GXLoadTexMtxImm(u32, u32, u32);
+extern f32 lbl_8006D188(s16);
+extern struct fn_1_530C8_lbl_1_rodata_282C lbl_1_rodata_282C;
+extern u32 fn_1_54320(void);
+extern void fn_1_54668(fn_1_54668_node *node, s32 count, u32 reverse);
+extern void fn_1_547F8(fn_1_547F8_node *node);
+extern u32 fn_1_5448C();
+extern void fn_1_563E4(fn_1_563E4_FontState *font);
+extern void fn_80074B40(u8 *arg0);
+extern void fn_80077B04(f32 value);
+extern void fn_80071ED4(u8 value, f32 x, f32 y);
+extern void fn_80072014(u32 *value);
+extern void fn_80074C74(u8 *arg0);
+extern void fn_80077BBC(s32 arg0);
+extern void fn_80037D40(u8 a, u8 b);
+extern u32 fn_80074A7C();
+extern u32 fn_80077BAC();
+extern const f32 lbl_1_rodata_10D4;
+extern void fn_1_4955C(f32 value1, f32 value2);
+extern f32 lbl_1_rodata_10C0[5];
+extern size_t strlen(const char *str);
+extern int sprintf(char *s, const char *format, ...);
+extern f32 lbl_1_rodata_26B8[16];
+extern void fn_1_4D10C(void *data, f32 scale, f32 value);
+extern void fn_1_4D2AC(void *data, f32 scale, f32 value);
+extern s32 fn_1_3F164(void);
+extern f32 lbl_1_rodata_26F8[22];
+extern f32 fn_1_A6FE8(void);
+extern void fn_80015E18(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void fn_800737E4(void *, s32);
+extern void fn_1_50190(f32 a, f32 b, f32 c, f32 d, f32 e, f32 f);
+extern void fn_1_52BF8(void *arg0, u32 arg1, s16 arg2);
+extern void *fn_1_541A8(void *arg, s32 column);
+extern u32 lbl_801A66B4;
+extern void fn_1_9FA18(void);
+extern void fn_1_58248(void);
+extern void fn_1_54848(void);
+extern void fn_800794F0(u8 *data, void *value, s32 size);
+extern s32 fn_1_54F5C(void *arg0, f32 arg1, f32 arg2);
+extern void fn_1_55210(void *value);
+extern const f32 lbl_1_rodata_28A8;
+extern void fn_1_557C4(void *value);
+extern void fn_1_556B8(void *value);
+extern void fn_80077E7C(void *value);
+extern void fn_80077F8C(void *value);
+extern void fn_80074CF4();
+extern void fn_800749B0(s32 arg0, void *arg1);
+extern const f32 lbl_1_rodata_28AC;
+extern u8 lbl_1_bss_6C7DC[100];
+extern u8 *fn_1_565E8(void);
+extern void fn_1_45730(void);
+extern void fn_1_45B2C(void);
+extern void fn_1_458A0(void);
+extern void fn_1_45850(void);
+extern void fn_1_565F4(void);
+extern void fn_80070D60(void *);
+extern s32 fn_1_A5DC4();
+extern f32 lbl_1_rodata_2788[6];
+extern f32 fn_1_519FC(f32 value);
+extern f32 fn_1_51AC0(f32 value);
+extern f32 fn_1_51B84(f32 value);
+extern f32 fn_1_51BFC(f32 value);
+extern const f64 lbl_1_rodata_2758;
+extern void lbl_8006D784(void *arg);
+extern void fn_1_55D6C(void);
+
+
+struct fn_1_5233C_Copy88 { u32 a[22]; };
+struct ShadowEntry { u32 color; f32 x, y; };
+struct ShadowTable { struct ShadowEntry e[9]; };
+struct Color { u8 r,g,b,a; };
+extern u32 lbl_1_rodata_27B0;
+extern f32 lbl_1_rodata_2764[2];
+extern u32 fn_800371F8(u32, void *);
+extern void fn_8003462C(u32, u32, u32);
+#define FIFO (*(volatile f32 *)FZGX_ADDR___GXFifo) /* GX write-gather FIFO */
+static inline void pos(f32 x, f32 y, f32 z) { FIFO=x; FIFO=y; FIFO=z; }
+static inline f32 xy(f32 x, f32 y, f32 bias) { FIFO=x; FIFO=y; return bias; }
+#define VERT(X,Y,U,V) pos((X),(Y),z); FIFO=(U); FIFO=(V)
+void fn_1_5233C(void *arg0, void *arg1) {
+    struct ShadowTable table;
+    struct fn_1_5233C_Copy88 copy;
+    struct Color color;
+    u32 c0;
+    struct Color c1;
+    struct ShadowEntry *entry;
+    f32 dx,dy,z,v0,u1,u0,v1;
+    f32 bias;
+    f32 *p = (f32 *)arg1;
+    table = *(struct ShadowTable *)&lbl_1_rodata_27B0;
+    entry = &table.e[(u32)*(f32 *)((u8 *)arg0+0x54)];
+    if (!(*(u32 *)((u8 *)arg0+0x30) & 0x10000000)) {
+        copy = *(struct fn_1_5233C_Copy88 *)arg0;
+        c0 = entry->color;
+        dx = entry->x;
+        dy = entry->y;
+        fn_800371F8(2, &c0);
+        fn_8003462C(0x80,7,16);
+        xy(p[0],p[1]-dy,0.0f);
+        z = -(0.1f+*(f32 *)((u8 *)&copy+0xc)); FIFO=z;
+        u0=*(f32 *)((u8 *)&copy+0x18); FIFO=u0;
+        v0=*(f32 *)((u8 *)&copy+0x1c); FIFO=v0;
+        pos(p[3],p[4]-dy,z);
+        u1=*(f32 *)((u8 *)&copy+0x20); FIFO=u1; FIFO=v0;
+        pos(p[9],p[10]-dy,z); FIFO=u1;
+        v1=*(f32 *)((u8 *)&copy+0x24); FIFO=v1;
+        VERT(p[6],p[7]-dy,u0,v1);
+        VERT(p[0],p[1]+dy,u0,v0);
+        VERT(p[3],p[4]+dy,u1,v0);
+        VERT(p[9],p[10]+dy,u1,v1);
+        VERT(p[6],p[7]+dy,u0,v1);
+        color.a=0;
+        VERT(p[0]-dx,p[1],u0,v0);
+        VERT(p[3]-dx,p[4],u1,v0);
+        VERT(p[9]-dx,p[10],u1,v1);
+        VERT(p[6]-dx,p[7],u0,v1);
+        VERT(p[0]+dx,p[1],u0,v0);
+        VERT(p[3]+dx,p[4],u1,v0);
+        VERT(p[9]+dx,p[10],u1,v1);
+        VERT(p[6]+dx,p[7],u0,v1);
+        color.r=*((u8 *)&copy+0x38);
+        color.g=*((u8 *)&copy+0x39);
+        color.b=*((u8 *)&copy+0x3a);
+        c1=color;
+        fn_800371F8(2,&c1);
+    }
+}
+/* fzgx:end fn_1_5233C */
+
 /* fzgx:begin fn_1_527B4 */
 typedef struct {
     u32 unk_0;

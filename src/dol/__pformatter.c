@@ -59,7 +59,7 @@ char *long2str(long num, char *buff, print_format format);
 
 char *longlong2str(long long num, char *pBuf, print_format fmt);
 
-char *double2hex_800819F4(long double num, char *buff, print_format format);
+char *double2hex(long double num, char *buff, print_format format);
 
 char *float2str(long double num, char *buff, print_format format);
 
@@ -175,7 +175,7 @@ int __pformatter(void *(*WriteProc)(void *, const char *, size_t), void *WritePr
             } else {
                 long_double_num = (*((double *)__va_arg((arg), _var_arg_typeof(double))));
             }
-            if (!(buff_ptr = double2hex_800819F4(long_double_num, buff + 512, format))) {
+            if (!(buff_ptr = double2hex(long_double_num, buff + 512, format))) {
                 goto conversion_error; // Preserve the verified SDK control flow.
             }
             num_chars = buff + 512 - 1 - buff_ptr;

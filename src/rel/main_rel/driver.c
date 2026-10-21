@@ -537,6 +537,224 @@ void fn_1_A7B30(s32 index, FnA7B30Vector *out) {
 }
 /* fzgx:end fn_1_A7B30 */
 
+/* fzgx:begin fn_1_A7B5C noprologue */
+typedef signed char s8;
+
+
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct Vec3 {
+f32 x;
+f32 y;
+f32 z;
+} Vec3;
+
+
+typedef struct {
+u8 unk_0;
+u8 unk_1;
+u8 unk_2;
+u8 unk_3;
+u8 unk_4;
+u8 unk_5;
+u8 unk_6;
+u8 unk_7;
+u8 unk_8;
+u8 unk_9;
+u8 pad_A[0x2];
+} Obj_1_data_34348;
+extern Obj_1_data_34348 lbl_1_data_34348;
+
+
+typedef struct {
+u32 unk_0;
+u32 unk_4;
+u32 unk_8;
+u8 pad_C[0x204];
+} Obj_1_data_343C4;
+extern Obj_1_data_343C4 lbl_1_data_343C4;
+typedef struct {
+u8 pad_0[0x48];
+f32 unk_48;
+f32 unk_4C;
+f32 unk_50;
+f32 unk_54;
+f32 unk_58;
+u8 pad_5C[0xF74];
+} Obj_1_data_345D4;
+extern Obj_1_data_345D4 lbl_1_data_345D4;
+
+
+typedef struct A7B5C_Mtx {
+u8 pad[0x30];
+} A7B5C_Mtx;
+typedef struct A7B5C_Obj {
+A7B5C_Mtx mtx[4];
+f32 unk_c0;
+f32 unk_c4;
+f32 unk_c8;
+f32 unk_cc;
+f32 unk_d0;
+f32 unk_d4;
+f32 unk_d8;
+f32 unk_dc;
+f32 unk_e0;
+f32 unk_e4;
+s8 unk_e8;
+u8 unk_e9;
+u8 pad_ea[0x10c - 0xea];
+f32 unk_10c;
+f32 unk_110;
+Vec3 unk_114;
+f32 unk_120;
+f32 unk_124;
+f32 unk_128;
+A7B5C_Mtx parts[10];
+} A7B5C_Obj;
+typedef struct A7B5C_Src {
+u8 pad[8];
+u8 *data;
+} A7B5C_Src;
+
+
+extern void fn_1_A7F84(void *, s32);
+extern void lbl_8006DD14(void *, void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DD7C(void);
+extern f32 lbl_8006DAEC(void);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006DB30(void);
+
+#pragma opt_propagation off
+
+static inline void A7B5C_init(A7B5C_Obj *obj, s8 kind, s8 type, f32 unused) {
+f32 negative;
+f32 positive;
+f32 zero;
+zero = unused;
+obj->unk_e0 = zero;
+obj->unk_dc = zero;
+obj->unk_e4 = zero;
+obj->unk_d8 = zero;
+obj->unk_120 = zero;
+obj->unk_124 = zero;
+obj->unk_128 = zero;
+obj->unk_e8 = type;
+obj->unk_e9 = (kind >= 0x29);
+if (obj->unk_e9 != 0) {
+if (type == 0x21) {
+negative = -0.1f;
+obj->unk_120 = zero;
+obj->unk_124 = zero;
+obj->unk_128 = negative;
+} else if (type == 0x2a) {
+positive = 0.1f;
+obj->unk_120 = positive;
+obj->unk_124 = zero;
+obj->unk_128 = positive;
+} else if (type == 0x2b) {
+negative = -0.1f;
+positive = 0.1f;
+obj->unk_120 = negative;
+obj->unk_124 = zero;
+obj->unk_128 = positive;
+} else if (type == 0x15) {
+positive = 0.1f;
+obj->unk_120 = zero;
+obj->unk_124 = zero;
+obj->unk_128 = positive;
+} else if (type == 0x29) {
+negative = -0.1f;
+obj->unk_120 = zero;
+obj->unk_124 = zero;
+obj->unk_128 = negative;
+}
+}
+}
+static inline void A7B5C_copy_parts(A7B5C_Mtx *parts, A7B5C_Src *src) {
+s32 i;
+for (i = 0; i < 10; i++) {
+lbl_8006DD14(src->data + (s8)(&lbl_1_data_34348.unk_0)[i] * 0x18c + 0x88, &parts[i]);
+}
+}
+static inline void A7B5C_default_parts(A7B5C_Mtx *parts, s32 off) {
+s32 i;
+for (i = 0; i < 10; i++) {
+fn_1_A7F84((u8 *)&lbl_1_data_345D4 + off, i);
+lbl_8006DB74(&parts[i]);
+}
+}
+void fn_1_A7B5C(A7B5C_Obj *obj, A7B5C_Src *src, s8 kind, s8 type, Vec3 *pos) {
+A7B5C_Mtx *parts;
+Obj_1_data_345D4 *entry;
+s32 off;
+s32 i;
+A7B5C_init(obj, kind, type, 0.0f);
+if (pos != ((void *)0) ) {
+obj->unk_114 = *pos;
+} else {
+obj->unk_114 = ((Vec3 *)&lbl_1_data_343C4)[type];
+}
+if (src != ((void *)0) ) {
+parts = obj->parts;
+for (i = 0; i < 10; i++, parts++) {
+lbl_8006DD14(src->data + (s8)(&lbl_1_data_34348.unk_0)[i] * 0x18c + 0x88, parts);
+}
+obj->unk_c0 = *(f32 *)(src->data + 0xe80);
+obj->unk_c4 = *(f32 *)(src->data + 0xe90);
+obj->unk_c8 = *(f32 *)(src->data + 0xea0);
+obj->unk_cc = *(f32 *)(src->data + 0x163c);
+obj->unk_d0 = *(f32 *)(src->data + 0x164c);
+obj->unk_d4 = *(f32 *)(src->data + 0x165c);
+obj->unk_10c = *(f32 *)(src->data + 0xc74);
+obj->unk_110 = *(f32 *)(src->data + 0xe00);
+} else {
+A7B5C_Mtx *defaultParts;
+s32 j;
+defaultParts = obj->parts;
+for (j = 0; j < 10; j++, defaultParts++) {
+fn_1_A7F84((void *)((u32)&lbl_1_data_345D4 + type * 0x5c), j);
+lbl_8006DB74(defaultParts);
+}
+entry = (Obj_1_data_345D4 *)((u8 *)&lbl_1_data_345D4 + type * 0x5c);
+obj->unk_c0 = entry->unk_48;
+obj->unk_c4 = entry->unk_4C;
+obj->unk_c8 = entry->unk_50;
+obj->unk_cc = -entry->unk_48;
+obj->unk_d0 = entry->unk_4C;
+obj->unk_d4 = entry->unk_50;
+obj->unk_10c = entry->unk_54;
+obj->unk_110 = entry->unk_58;
+}
+lbl_8006DBAC((u8 *)obj + 0x15c);
+lbl_8006DB74(&obj->mtx[0]);
+lbl_8006DD7C();
+lbl_8006DAEC();
+lbl_8006DFC4((u8 *)obj + 0x1bc);
+lbl_8006DB74(&obj->mtx[1]);
+lbl_8006DB30();
+lbl_8006DAEC();
+lbl_8006DFC4((u8 *)obj + 0x21c);
+lbl_8006DB74(&obj->mtx[2]);
+lbl_8006DB30();
+lbl_8006DAEC();
+lbl_8006DFC4((u8 *)obj + 0x18c);
+lbl_8006DB74(&obj->mtx[3]);
+lbl_8006DB30();
+}
+/* fzgx:end fn_1_A7B5C */
+
 /* fzgx:begin fn_1_A7F84 noprologue */
 #include "types.h"
 

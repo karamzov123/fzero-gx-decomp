@@ -1044,3 +1044,148 @@ u32 *fn_1_8CA00(void) {
     return &lbl_1_data_1FFDC;
 }
 /* fzgx:end fn_1_8CA00 */
+
+/* fzgx:begin fn_1_8DD54 noprologue */
+typedef signed char s8;
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+typedef double f64;
+
+
+extern u8 lbl_1_bss_6D820;
+
+
+typedef struct {
+f32 unk_0;
+u8 pad_4[0xC];
+} Obj_1_data_1FFE0;
+extern Obj_1_data_1FFE0 lbl_1_data_1FFE0;
+
+
+typedef struct {
+u32 flags;
+u8 pad_4[0x5];
+u8 count;
+u8 pad_A[0x14AE];
+f64 pad_14B8;
+} CarTestInfo;
+typedef struct {
+u8 pad_0[0x3ba];
+s16 state;
+u8 pad_3BC[0x84];
+} CarTestCar;
+extern s8 fn_1_84408(CarTestCar *);
+extern void fn_1_8E084(CarTestCar *, u32 *, s32);
+
+
+extern void fn_1_3EF14(void *arg1);
+extern s32 fn_1_58C4(void);
+extern s16 fn_1_7B054(void);
+extern s16 fn_1_3F0C8(void);
+extern s32 fn_1_3FC18(void);
+
+
+typedef struct {
+u8 pad_0[0x18];
+u32 unk_18;
+CarTestCar *cars;
+u8 pad_20[0xA];
+u8 car_count;
+u8 pad_2B[0x9];
+u8 unk_34;
+u8 pad_35[0x12B];
+u8 flags[0xEAC];
+u16 costs[0x20][5];
+} CarTestManager;
+static inline CarTestCar *get_car(CarTestManager *mgr, s32 index) {
+if ((s8)index < (s8)mgr->car_count && mgr->cars != ((void *)0) ) {
+return &mgr->cars[(s8)index];
+}
+return ((void *)0) ;
+}
+void fn_1_8DD54(void) {
+struct { CarTestManager *value; u16 (*costs)[5]; u8 *flags; } m;
+s32 i;
+u32 limit;
+CarTestCar *car;
+s16 state;
+CarTestInfo info;
+u32 total;
+m.value = (CarTestManager *)&lbl_1_bss_6D820;
+fn_1_3EF14( (void *)(CarTestInfo *)(&info));
+total = 0;
+switch (fn_1_58C4()) {
+case 1:
+state = fn_1_7B054();
+if (state == 40) {
+limit = 2100;
+} else if (state == 25) {
+limit = 1300;
+} else {
+limit = 1600;
+}
+break;
+case 2:
+limit = 1600;
+break;
+case 3:
+limit = 600;
+break;
+case 4:
+default:
+limit = 600;
+break;
+}
+if ((info.flags & 0x4000) && (fn_1_3F0C8() == 40 || fn_1_3FC18() > 0)) {
+(*((f32 *)&lbl_1_data_1FFE0)) = 8.0f;
+} else {
+(*((f32 *)&lbl_1_data_1FFE0)) = 5.0f;
+}
+m.costs = m.value->costs;
+for (i = 0; i < info.count; i++) {
+car = get_car(m.value, i);
+car->state = (s8)fn_1_84408(car);
+state = car->state;
+if (state != 5 && *(u8 *)(m.value->unk_18 + i * 0x620 + 0x50d) >= 0xf0) {
+car->state = 3;
+total += 50;
+} else if (state != 5) {
+total += m.costs[i][state];
+}
+}
+if (total > limit || m.value->unk_34) {
+m.flags = m.value->flags;
+for (i = 0; i < info.count; m.flags++, i++) {
+car = get_car(m.value, i);
+if (*m.flags) {
+total -= m.costs[i][car->state];
+car->state = 5;
+}
+}
+if (total > limit) {
+for (i = 0; i < info.count; i++) {
+car = get_car(m.value, i);
+if (car->state > 0 && car->state < 3) {
+fn_1_8E084(car, &total, i);
+}
+}
+if (total > limit) {
+for (i = 0; i < info.count; i++) {
+car = get_car(m.value, i);
+if (car->state == 0) {
+fn_1_8E084(car, &total, i);
+}
+}
+}
+}
+}
+}
+/* fzgx:end fn_1_8DD54 */

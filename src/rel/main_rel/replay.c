@@ -438,6 +438,204 @@ void fn_1_F2F84(void) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_F2F84 */
 
+/* fzgx:begin fn_1_F326C */
+typedef signed char s8;
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+extern u8 lbl_1_bss_7EFD4;
+
+
+typedef struct {
+u32 x;
+u32 y;
+u32 z;
+} ReplayTriple_F3574;
+typedef struct {
+u32 start0 : 15;
+u32 kind : 3;
+u32 index : 5;
+u32 value : 5;
+u32 pad0 : 4;
+u32 start : 15;
+u32 count : 5;
+u32 result : 5;
+u32 stage : 5;
+u32 pad1 : 2;
+ReplayTriple_F3574 begin[4];
+ReplayTriple_F3574 end[4];
+ReplayTriple_F3574 begin1;
+ReplayTriple_F3574 end1;
+} ReplayEvent_F3574;
+typedef struct {
+u8 pad0[0xFEF0];
+u16 eventCount;
+u8 pad1[0x1E];
+u16 slots[30];
+ReplayEvent_F3574 events[1];
+} ReplayBuffer_F3574;
+typedef struct {
+u32 unk_0;
+u32 frame;
+u8 pad0[0x10];
+u8 playerCount;
+u8 pad1[0x27];
+ReplayBuffer_F3574 *buffer;
+} ReplayState_F3574;
+
+
+extern void fn_1_F3574(ReplayState_F3574 *state, u8 index, u8 value, u8 kind, u8 result);
+
+
+typedef struct {
+f32 x;
+f32 y;
+f32 z;
+} ReplayPos_F326C;
+typedef struct {
+u16 count;
+u8 last[4];
+} ReplayTrack_F326C;
+typedef struct {
+u8 pad0[0x24];
+u8 done[4];
+} ReplayStateView_F326C;
+typedef struct {
+u8 b7 : 1;
+u8 b6 : 1;
+u8 b5 : 1;
+u8 b4 : 1;
+u8 paused : 1;
+u8 stopped : 1;
+u8 b1 : 1;
+u8 active : 1;
+} ReplayFlags_F326C;
+extern u8 fn_1_86624(void);
+extern u8 fn_1_86810(int);
+extern u32 fn_1_864E8(int);
+extern u8 fn_1_86678(int);
+extern s16 fn_1_3F0C8(void);
+extern void fn_1_862D4(int, ReplayPos_F326C *);
+extern f32 fn_1_8CAF4(u32, s32);
+static inline int replay_is_recording(void) {
+if (!(*(ReplayFlags_F326C *)&lbl_1_bss_7EFD4) .active) {
+return 0;
+}
+if ((*(ReplayFlags_F326C *)&lbl_1_bss_7EFD4) .stopped) {
+return 0;
+}
+return 1;
+}
+static inline int replay_is_paused(void) {
+return (*(ReplayFlags_F326C *)&lbl_1_bss_7EFD4) .paused;
+}
+static inline void replay_update_last(ReplayState_F3574 *state, ReplayTrack_F326C *track, s8 count, s32 i, u8 value) {
+s32 j;
+u32 offset = (u32)i + 2;
+if (value != ((u8 *)track)[offset]) {
+for (j = 0; j < count; j++) {
+if (((u8 *)track)[offset] == fn_1_86810(j)) {
+break;
+}
+}
+if (j != count && j != i) {
+fn_1_F3574(state, i, j, 0, value);
+}
+((u8 *)track)[offset] = value;
+}
+}
+
+#pragma opt_strength_reduction off
+
+void fn_1_F326C(ReplayState_F3574 *state) {
+ReplayTrack_F326C *track;
+s8 count;
+u32 k;
+s32 j;
+s32 i;
+u32 buttons;
+u8 value;
+u8 valid;
+u8 idle;
+u8 active;
+s8 slot;
+ReplayPos_F326C pos;
+ReplayPos_F326C other;
+f32 dz;
+f32 dy;
+f32 dx;
+track = (ReplayTrack_F326C *)&state->buffer->eventCount;
+if (!replay_is_recording() || replay_is_paused()) {
+return;
+}
+state->frame++;
+if (track->count >= 4) {
+return;
+}
+count = (s8)fn_1_86624();
+for (i = 0; i < count; i++) {
+value = fn_1_86810(i);
+if (((ReplayStateView_F326C *)state)->done[i] != 0) {
+continue;
+}
+buttons = fn_1_864E8(i);
+idle = value == 0;
+slot = fn_1_86678(i);
+valid = slot != -1;
+active = idle | valid;
+if (idle && fn_1_3F0C8() == 0x29 && track->count == 0) {
+fn_1_F3574(state, i, i, 5, value);
+continue;
+}
+if (!active) {
+continue;
+}
+if (buttons & 0x10000) {
+((ReplayStateView_F326C *)state)->done[i] = 1;
+fn_1_F3574(state, i, i, 6, value);
+} else if (buttons & 0x40000) {
+fn_1_F3574(state, i, i, 7, value);
+} else if (valid) {
+if (buttons & 0x2000000) {
+fn_1_862D4(i, &pos);
+k = i;
+for (j = i + 1; j < count; j++) {
+fn_1_862D4(j, &other);
+dx = other.x;
+dx = dx - pos.x;
+dy = other.y;
+dy = dy - pos.y;
+dz = other.z;
+dz = dz - pos.z;
+dx = dx * dx;
+dx = dy * dy + dx;
+dx = dz * dz + dx;
+if (dx < 25.0f) {
+if (fn_1_8CAF4(k, j) < 5.0f) {
+fn_1_F3574(state, i, j, 2, value);
+break;
+}
+}
+}
+} else if (buttons & 0x800000) {
+fn_1_F3574(state, i, i, 3, value);
+} else {
+replay_update_last(state, track, count, i, value);
+}
+}
+}
+}
+/* fzgx:end fn_1_F326C */
+
 /* fzgx:begin fn_1_F3574 */
 typedef signed char s8;
 

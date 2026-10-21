@@ -740,3 +740,6 @@ rel/sel/sel/fn_10_18DD0.c:
 
 rel/sel/sel/fn_10_AB98.c:
 	.text       start:0x0000AB98 end:0x0000AE14 align:4
+
+rel/sel/sel/fn_10_FBEC.c:
+	.text       start:0x0000FBEC end:0x0000FF08 align:4

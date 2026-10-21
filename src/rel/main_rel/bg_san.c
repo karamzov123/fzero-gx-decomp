@@ -102,6 +102,149 @@ s32 fn_1_D8FC4(s32 arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_D8FC4 */
 
+/* fzgx:begin fn_1_DA3A0 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_san.h"
+#include "types.h"
+#include "psvec.h"
+#include "rel/main_rel/bg_lig.h"
+
+extern void fn_1_DC6FC(void *context);
+extern void fn_1_DC5E8(Obj_1_data_2A7E0_At3C *, s32);
+extern void fn_1_9AD54(void);
+extern void fn_1_FBEA8(void);
+extern void fn_1_103F58(void *arg);
+extern void fn_1_9AD88(void);
+extern void fn_1_9A508(void);
+extern void fn_1_DAF94(Obj_1_data_2A7E0_At3C *);
+extern s32 fn_1_5910(void);
+extern void *fn_1_9D260(Obj_1_data_2A7E0 *arg0);
+extern s16 fn_1_7B054(void);
+extern s16 fn_1_3F0C8(void);
+extern const f32 lbl_1_rodata_663C;
+extern void fn_1_1067A8(void *arg0, f32 arg1, f32 arg2);
+extern void fn_1_103D28(void *arg0, int arg1, f32 arg2);
+extern f32 lbl_1_rodata_66D0[30];
+extern void fn_1_72648(Obj_1_data_2A7E0 *);
+extern void fn_1_103090(void *);
+extern void fn_1_1030A4(void *);
+extern void *fn_1_54448(s32);
+extern void *fn_1_548AC(s32);
+extern void fn_1_DC764(void);
+extern void fn_1_5489C(void *, void *);
+extern const f64 lbl_1_rodata_6748;
+extern void fn_1_D6C10(void *, f32);
+extern f32 lbl_1_rodata_6644[35];
+extern void lbl_8006DCA4(void *data);
+extern void fn_1_DB53C(void);
+extern void fn_1_103264(void *, void *);
+extern void OSPanic(const char *, int, const char *, ...);
+extern struct fn_1_DA6A8_lbl_801A6410 lbl_801A6410;
+extern void * fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void fn_1_46B4(u32, u32, const char *, int);
+extern f32 lbl_1_rodata_6628;
+extern void fn_1_FB87C(u32 *, u32);
+extern u32 fn_1_FBFE4();
+extern void fn_1_FB96C(int);
+extern u32 fn_1_105AB8(u32, u32);
+
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+ u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
+};
+extern f32 lbl_8006D668(u32 *);
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+struct VecLocal { f32 a[3]; };
+struct VertexLocal { u8 pad[12]; struct VecLocal normal; u8 rest[40]; };
+static inline void cross(const struct VecLocal *a, const struct VecLocal *b, struct VecLocal *out) {
+ f32 ax, ay, az, bx, bz, by;
+ f32 x, y, z;
+ ay = a->a[1];
+ bz = b->a[2];
+ az = a->a[2];
+ bx = b->a[0];
+ by = b->a[1];
+ ax = a->a[0];
+ x = ay * bz;
+ y = az * bx;
+ z = ax * by;
+ x = x - az * by;
+ y = y - ax * bz;
+ z = z - ay * bx;
+ out->a[0] = x;
+ out->a[1] = y;
+ out->a[2] = z;
+}
+void fn_1_DA3A0(void *arg0, f32 arg1, f32 arg2) {
+ u32 v0;
+ s32 v1;
+ u32 v2;
+ u8 *v3;
+ f32 v4;
+ f32 v5;
+ f32 v7;
+ u8 *v16;
+ u32 v17;
+ s32 v18;
+ s32 v19;
+ struct VecLocal loc_20;
+ struct VecLocal loc_14;
+ struct VecLocal loc_8;
+ if (arg0 != 0) {
+  v0 = *(u32 *)((u8 *)arg0 + 4);
+  if (v0 != 0) {
+   v1 = fn_80077B14((struct Sig_fn_80077B14_fn_80077B14_Arg0 *)v0);
+   v2 = 0;
+   v3 = (u8 *)(*(u32 *)((u8 *)arg0 + 20) + 2108);
+   while (v2 < (*(u32 *)((u8 *)arg0 + 12) - 31)) {
+    if (v2 > (*(u32 *)((u8 *)arg0 + 12) - 12)) {
+     if (v2 + 1 == 11) {
+      psvec_sub(v3 + -52, v3 + 16, &loc_20);
+      psvec_sub(v3 + -732, v3 + 16, &loc_14);
+      lbl_8006D668((u32 *)&loc_20);
+      lbl_8006D668((u32 *)&loc_14);
+      cross(&loc_20, &loc_14, &loc_8);
+     } else {
+      psvec_sub(v3 + -732, v3 + 16, &loc_20);
+      psvec_sub(v3 + 84, v3 + 16, &loc_14);
+      lbl_8006D668((u32 *)&loc_20);
+      lbl_8006D668((u32 *)&loc_14);
+      cross(&loc_20, &loc_14, &loc_8);
+     }
+    } else {
+     if (v2 + 1 == 11) {
+      psvec_sub(v3 + 764, v3 + 16, &loc_20);
+      psvec_sub(v3 + -52, v3 + 16, &loc_14);
+      lbl_8006D668((u32 *)&loc_20);
+      lbl_8006D668((u32 *)&loc_14);
+      cross(&loc_20, &loc_14, &loc_8);
+     } else {
+      psvec_sub(v3 + 84, v3 + 16, &loc_20);
+      psvec_sub(v3 + 764, v3 + 16, &loc_14);
+      lbl_8006D668((u32 *)&loc_20);
+      lbl_8006D668((u32 *)&loc_14);
+      cross(&loc_20, &loc_14, &loc_8);
+     }
+    }
+    v16 = v3;
+    v17 = 0;
+    while (v17 < *(u8 *)(v3 + 2)) {
+     v18 = *(u16 *)(v16 + 4);
+     v16 += 2;
+     v17++;
+     v19 = v1 + ((v18 << 6) + 12);
+     ((struct VertexLocal *)v1)[v18].normal = loc_8;
+    }
+    v2++;
+    v3 += 68;
+   }
+  }
+ }
+}
+/* fzgx:end fn_1_DA3A0 */
+
 /* fzgx:begin fn_1_DA6A8 */
 #include "types.h"
 

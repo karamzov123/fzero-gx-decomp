@@ -2237,3 +2237,9 @@ rel/movie_module/fn_12_23700.c:
 
 rel/movie_module/fn_12_3BEF0.c:
 	.text       start:0x0003BEF0 end:0x0003C17C align:4
+
+rel/movie_module/fn_12_252A0.c:
+	.text       start:0x000252A0 end:0x0002559C align:4
+
+rel/movie_module/fn_12_2B6B0.c:
+	.text       start:0x0002B6B0 end:0x0002B9F8 align:4

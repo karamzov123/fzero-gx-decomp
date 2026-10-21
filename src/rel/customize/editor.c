@@ -406,3 +406,231 @@ void fn_3_17830(void) {
     (*(CustomizeState *)&lbl_3_bss_A2410).flags |= 0x20000000u;
 }
 /* fzgx:end fn_3_17830 */
+
+/* fzgx:begin fn_3_18614 noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/editor.h"
+#include "font.h"
+
+typedef struct { u32 c; } Col4;
+
+struct fn_3_156D0_Obj {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    s16 unk_C;
+    s16 unk_E;
+    s16 unk_10;
+    s16 unk_12;
+    u8 pad_14[8];
+    u8 unk_1C;
+    u8 pad_1D[3];
+    void *unk_20;
+};
+
+typedef struct {
+    u32 type;
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 a;
+    f32 b;
+    u8 pad18[0x18];
+    u32 mode;
+    u8 pad34[8];
+    u32 color;
+    u8 pad40[0x18];
+} Packet16E14;
+
+struct fn_3_1552C_Obj {
+    u8 pad[0x10];
+    u16 width;
+    u16 height;
+};
+
+typedef struct {
+    u8 pad_0[0x8];
+    u16 unk_8;
+    u8 pad_A[0x6];
+    u16 unk_10;
+    u16 unk_12;
+} PadInput;
+
+struct Obj {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    s16 unk_C;
+    s16 unk_E;
+    s16 unk_10;
+    s16 unk_12;
+    u8 pad_14[8];
+    u8 unk_1C;
+    u8 pad_1D[3];
+    void *unk_20;
+};
+extern u8 *fn_3_14074(void);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u8 fn_3_19C94(void);
+extern void fn_3_169B8(void);
+extern u32 fn_3_17820(void);
+extern void fn_3_1445C(void);
+extern s32 fn_3_14600(void);
+extern void fn_3_19F7C();
+extern void fn_3_17830(void);
+extern void fn_3_177AC(void *);
+extern void fn_3_16FD0(u32 arg0);
+extern void fn_3_19CA4(void);
+extern void fn_3_19CCC(void);
+extern void DCInvalidateRange(void *, u32);
+extern void DCStoreRange(void *, u32);
+extern void fn_1_A2D84(u32 arg0);
+extern PadInput lbl_1_bss_9F8[];
+extern u8 lbl_3_bss_A2408[8];
+extern s32 fn_1_45D0();
+extern u32 lbl_801A6410;
+extern void fn_3_19CB8(void);
+extern void fn_3_15620(void);
+extern void fn_3_1560C(void);
+extern const Col4 lbl_3_rodata_5B8;
+extern const Col4 lbl_3_rodata_5BC;
+extern s32 fn_1_A5DC4(void);
+extern void fn_1_A9868();
+extern u32 fn_1_A9FFC(s16, s16, s16, s16, void *);
+extern void fn_1_AA538(void);
+extern void fn_1_4E0F4(void);
+extern const Packet16E14 lbl_1_rodata_26F8;
+extern u8 lbl_3_rodata_538[];
+extern Col4 lbl_3_rodata_5EC;
+extern u32 fn_3_14794(u32, s16, s16, void *);
+extern void fn_3_17100(void);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern const f32 lbl_3_rodata_5FC[3];
+
+typedef struct {
+    u32 flags;
+    u8 pad_4[0x18];
+    u8 unk_1C;
+} EditorObj;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[0x3];
+    u32 unk_4;
+    u32 unk_8;
+    u8 unk_C;
+    u8 unk_D;
+    u8 unk_E;
+    u8 unk_F;
+    u8 unk_10;
+} EditorState;
+
+
+typedef struct {
+    u16 unk_0;
+    u8 pad_2[0xE];
+} MenuEntry;
+
+typedef void (*EditorHandler)(EditorObj *);
+
+
+/* pressed / repeat button words of the current pad slot (0x14-byte rows) */
+#define PAD_PRESS() ((&lbl_1_bss_9F8[0].unk_10)[(*((EditorState *)&lbl_3_bss_A2438)).unk_0 * 10])
+#define PAD_REPEAT() (lbl_1_bss_9F8[(*((EditorState *)&lbl_3_bss_A2438)).unk_0].unk_12)
+#define BIT(word, n) (((word) >> (n)) & 1)
+
+/* entry is within [lo, hi] (unsigned byte range test) */
+#define ENTRY_IN(e, lo, hi) ((u8)((e) - (lo)) <= (hi) - (lo))
+
+#pragma opt_propagation off
+
+void fn_3_18614(void) {
+    EditorObj *obj;
+    EditorState *st;
+    s32 mode;
+    u8 entry;
+    u16 buttons;
+    u16 *trig;
+
+    obj = (EditorObj *)fn_3_14074();
+    mode = fn_3_19C94();
+    obj->unk_1C = mode;
+    if ((*((EditorState *)&lbl_3_bss_A2438)).unk_4 & 0x20000000) {
+        return;
+    }
+    switch (mode) {
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+        (((EditorHandler *)&lbl_3_data_3738))[mode](obj);
+        return;
+    default:
+        break;
+    }
+
+    trig = &lbl_1_bss_9F8[0].unk_8;
+    buttons = trig[(*((EditorState *)&lbl_3_bss_A2438)).unk_0 * 10];
+    if (BIT(buttons, 8)) {
+        fn_1_A2D84(0xA9150400);
+        entry = (((MenuEntry *)&lbl_3_data_3618))[(*((EditorState *)&lbl_3_bss_A2438)).unk_F].unk_0;
+        (*((EditorState *)&lbl_3_bss_A2438)).unk_E = entry;
+        if (entry == 6) {
+            (((EditorHandler *)&lbl_3_data_3738))[(*((EditorState *)&lbl_3_bss_A2438)).unk_F](obj);
+            return;
+        }
+        if (ENTRY_IN(entry, 11, 12) || ENTRY_IN(entry, 14, 17) || entry == 13) {
+            return;
+        }
+        if (entry == 0 || entry == 1) {
+            fn_3_19CB8();
+            fn_3_15620();
+        } else {
+            fn_3_19CB8();
+            fn_3_1560C();
+        }
+    } else if (BIT(buttons, 9)) {
+        fn_1_A2D84(0xA9150500);
+        fn_3_19CCC();
+        (*((EditorState *)&lbl_3_bss_A2438)).unk_8 |= 0x40000000;
+        obj->flags |= 0x10000000;
+        (*((EditorState *)&lbl_3_bss_A2438)).unk_10 = 0;
+        (*((EditorState *)&lbl_3_bss_A2438)).unk_E = 0x11;
+        return;
+    }
+
+    if ((PAD_PRESS() & 1) || (PAD_REPEAT() & 1)) {
+        if ((*((EditorState *)&lbl_3_bss_A2438)).unk_F % 3 != 0) {
+            (*((EditorState *)&lbl_3_bss_A2438)).unk_F--;
+            fn_1_A2D84(0xA9150600);
+        }
+    }
+    if (BIT(PAD_PRESS(), 1) || BIT(PAD_REPEAT(), 1)) {
+        st = &(*((EditorState *)&lbl_3_bss_A2438));
+        if (st->unk_F % 3 < 2) {
+            fn_1_A2D84(0xA9150600);
+            st->unk_F++;
+        }
+    }
+    if (BIT(PAD_PRESS(), 3) || BIT(PAD_REPEAT(), 3)) {
+        st = &(*((EditorState *)&lbl_3_bss_A2438));
+        if (st->unk_F - 3 >= 0) {
+            fn_1_A2D84(0xA9150600);
+            st->unk_F -= 3;
+        }
+    }
+    if (BIT(PAD_PRESS(), 2) || BIT(PAD_REPEAT(), 2)) {
+        st = &(*((EditorState *)&lbl_3_bss_A2438));
+        if (st->unk_F + 3 < 18) {
+            fn_1_A2D84(0xA9150600);
+            st->unk_F += 3;
+        }
+    }
+}
+
+#pragma opt_propagation reset
+/* fzgx:end fn_3_18614 */

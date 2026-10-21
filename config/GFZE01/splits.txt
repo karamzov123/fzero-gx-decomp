@@ -6314,3 +6314,12 @@ dol/fn_80009CD4.c:
 
 dol/fn_80008204.c:
 	.text       start:0x80008204 end:0x800084E8 align:4
+
+dol/fn_8006BE0C.c:
+	.text       start:0x8006BE0C end:0x8006C134 align:4
+
+dol/double2hex.c:
+	.text       start:0x800819F4 end:0x80081D2C align:4
+
+dol/fn_8007698C.c:
+	.text       start:0x8007698C end:0x80076CD4 align:4

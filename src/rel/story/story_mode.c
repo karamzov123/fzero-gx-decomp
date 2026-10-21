@@ -1005,6 +1005,111 @@ void fn_7_1DB8(void) {
 }
 /* fzgx:end fn_7_1DB8 */
 
+/* fzgx:begin fn_7_1DBC */
+struct fn_7_1DBC_lbl_1_bss_58 {
+    s8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u16 unk_4;
+    u16 unk_6;
+    u16 unk_8;
+    u16 unk_A;
+    f32 unk_C;
+    f32 unk_10;
+    u8 unk_14;
+    u8 pad_15[0x1];
+    u8 unk_16;
+    s8 unk_17;
+    s16 unk_18;
+    u8 pad_1A[0x2];
+    u32 unk_1C;
+};
+struct fn_7_1DBC_lbl_7_bss_10_T {
+    s8 unk_0;
+    s8 unk_1;
+    u8 pad_2[0x6];
+    u32 unk_8;
+};
+
+extern f32 lbl_7_rodata_52C;
+extern f32 lbl_7_rodata_5B4;
+extern struct fn_7_1DBC_lbl_1_bss_58 lbl_1_bss_58;
+extern struct fn_7_1DBC_lbl_7_bss_10_T *lbl_7_bss_10;
+extern u16 lbl_1_bss_968;
+extern u8 lbl_1_bss_198[];
+extern s8 lbl_1_bss_9C[];
+extern u8 lbl_7_data_0[];
+extern u32 lbl_801A66B4;
+extern u32 fn_80083DB0(void *, const void *);
+
+void fn_7_1DBC(void) {
+    struct { const u8 *value; } strs;  // retail addresses the TU's strings off one base (+0x10000)
+    s8 v3;
+    f32 half;
+    f32 one;
+
+    strs.value = lbl_7_data_0 + 0x10000;
+    fn_80083DB0(lbl_1_bss_198 + 0x000, strs.value + 0x3e4c);
+    fn_80083DB0(lbl_1_bss_198 + 0x040, strs.value + 0x3e54);
+    fn_80083DB0(lbl_1_bss_198 + 0x080, strs.value + 0x395c);
+    fn_80083DB0(lbl_1_bss_198 + 0x0c0, strs.value + 0x3e5c);
+    fn_80083DB0(lbl_1_bss_198 + 0x100, strs.value + 0x3e64);
+    fn_80083DB0(lbl_1_bss_198 + 0x140, strs.value + 0x3e6c);
+    fn_80083DB0(lbl_1_bss_198 + 0x180, strs.value + 0x3e78);
+    fn_80083DB0(lbl_1_bss_198 + 0x1c0, strs.value + 0x2fa0);
+    fn_80083DB0(lbl_1_bss_198 + 0x200, strs.value + 0x3e80);
+    fn_80083DB0(lbl_1_bss_198 + 0x240, strs.value + 0x3144);
+    fn_80083DB0(lbl_1_bss_198 + 0x280, strs.value + 0x3e78);
+    fn_80083DB0(lbl_1_bss_198 + 0x2c0, strs.value + 0x3240);
+    fn_80083DB0(lbl_1_bss_198 + 0x300, strs.value + 0x3e88);
+    fn_80083DB0(lbl_1_bss_198 + 0x340, strs.value + 0x3324);
+    fn_80083DB0(lbl_1_bss_198 + 0x380, strs.value + 0x3e90);
+    fn_80083DB0(lbl_1_bss_198 + 0x3c0, strs.value + 0x342c);
+    fn_80083DB0(lbl_1_bss_198 + 0x400, strs.value + 0x3e98);
+    fn_80083DB0(lbl_1_bss_198 + 0x440, strs.value + 0x35bc);
+    fn_80083DB0(lbl_1_bss_198 + 0x480, strs.value + 0x3ea0);
+    fn_80083DB0(lbl_1_bss_198 + 0x4c0, strs.value + 0x376c);
+    fn_80083DB0(lbl_1_bss_198 + 0x500, strs.value + 0x3ea8);
+    fn_80083DB0(lbl_1_bss_198 + 0x540, strs.value + 0x3844);
+    fn_80083DB0(lbl_1_bss_198 + 0x580, strs.value + 0x3eb0);
+    fn_80083DB0(lbl_1_bss_198 + 0x5c0, strs.value + 0x3ec0);
+    fn_80083DB0(lbl_1_bss_198 + 0x600, strs.value + 0x3e10);
+
+    v3 = lbl_1_bss_9C[3];
+    one = lbl_7_rodata_52C;
+    lbl_1_bss_58.unk_0 = lbl_801A66B4;
+    lbl_1_bss_58.unk_1 = 1;
+    lbl_1_bss_58.unk_2 = 0;
+    lbl_1_bss_58.unk_3 = 0;
+    lbl_1_bss_58.unk_4 = 640;
+    lbl_1_bss_58.unk_6 = 336;
+    lbl_1_bss_58.unk_8 = 0;
+    lbl_1_bss_58.unk_A = 0;
+    lbl_1_bss_58.unk_C = one;
+    lbl_1_bss_58.unk_10 = one;
+    lbl_1_bss_58.unk_14 = 7;
+    lbl_1_bss_58.unk_16 = 0;
+    lbl_1_bss_58.unk_17 = -1;
+    lbl_1_bss_58.unk_18 = -1;
+    lbl_1_bss_58.unk_1C = 0;
+    lbl_1_bss_58.unk_C = 0.5f;
+    lbl_1_bss_58.unk_10 = 0.5f;
+    lbl_1_bss_58.unk_8 = 136;
+    lbl_1_bss_58.unk_A = 0;
+    lbl_1_bss_58.unk_0 = -1;
+    lbl_1_bss_58.unk_1 = 0;
+    lbl_1_bss_58.unk_3 = 2;
+    lbl_1_bss_58.unk_18 = 0;
+    lbl_1_bss_58.unk_14 = 4;
+    if (v3 != 1 || lbl_7_bss_10->unk_1 > 0) {
+        lbl_1_bss_58.unk_14 |= 1;
+    }
+    lbl_1_bss_968 = 8;
+    lbl_7_bss_10->unk_8 = 135;
+}
+/* fzgx:end fn_7_1DBC */
+
 /* fzgx:begin fn_7_20DC */
 // fn_7_20DC: empty in retail (single blr).
 void fn_7_20DC(void) {
