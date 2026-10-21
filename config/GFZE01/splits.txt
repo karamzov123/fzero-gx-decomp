@@ -6218,3 +6218,6 @@ dol/SIInterruptHandler.c:
 
 dol/fn_80047C94.c:
 	.text       start:0x80047C94 end:0x800482B8 align:4
+
+dol/fn_8004A068.c:
+	.text       start:0x8004A068 end:0x8004A530 align:4
