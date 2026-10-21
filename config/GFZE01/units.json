@@ -52820,6 +52820,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/live_camera/fn_1_12FD4.c",
+    "symbols": [
+      "fn_1_12FD4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/live_camera.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/live_camera/fn_1_13018.c",
     "symbols": [
       "fn_1_13018"

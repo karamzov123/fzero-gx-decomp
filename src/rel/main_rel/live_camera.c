@@ -3741,6 +3741,30 @@ u32 fn_1_12F78(void *arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_12F78 */
 
+/* fzgx:begin fn_1_12FD4 */
+/* lbl_1_bss_3B30 as this function writes it: a byte flag ahead of the request fields. */
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[0x7F];
+    u32 unk_80;
+    u32 unk_84;
+    u8 pad_88[0x4];
+} LiveCameraRequest;
+
+extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
+
+u32 fn_1_12FD4(u32 arg0, u32 arg1, u32 arg2) {
+    u32 *t0;
+    /* Publish the cleared header before updating the request fields. */
+    volatile LiveCameraRequest *obj = (volatile LiveCameraRequest *)&lbl_1_bss_3B30;
+    obj->unk_0 = 0;
+    obj->unk_80 = arg1;
+    obj->unk_84 = 0;
+    t0 = fn_1_1304C(&lbl_1_bss_3B30, arg0);
+    return *t0;
+}
+/* fzgx:end fn_1_12FD4 */
+
 /* fzgx:begin fn_1_13018 */
 u32 fn_1_13018(void) {
     fn_8000659C();

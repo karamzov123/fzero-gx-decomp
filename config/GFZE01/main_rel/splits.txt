@@ -8594,3 +8594,6 @@ rel/main_rel/burner/fn_1_30054.c:
 
 rel/main_rel/archive/fn_1_12D404.c:
 	.text       start:0x0012D404 end:0x0012DAEC align:4
+
+rel/main_rel/live_camera/fn_1_12FD4.c:
+	.text       start:0x00012FD4 end:0x00013018 align:4
