@@ -1962,6 +1962,146 @@ void fn_1_1368A0(s32 arg0, s16 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2, 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_1368A0 */
 
+/* fzgx:begin fn_1_136CC4 noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "font.h"
+
+extern int fn_1_4F734(FontDrawPacket *);
+extern const f64 lbl_1_rodata_8600;
+extern const f32 lbl_1_rodata_87DC;
+extern const f32 lbl_1_rodata_8A4C;
+extern f32 lbl_1_rodata_26F8[22];
+struct ColorWord { u32 value; };
+extern struct ColorWord lbl_1_rodata_8A48;
+extern void fn_1_137288(s16, u8 *, u8 *, u8 *, s16);
+extern void fn_1_51564(u16, u16, u16, u16, u16, u16);
+extern void fn_1_5158C(FontDrawPacket *, u32, s16, s16);
+
+void fn_1_136CC4(u32 arg0, u32 arg1, u32 arg2, s16 arg3) {
+    f32 v0;
+    f32 v1;
+    f64 v2;
+    f32 v3;
+    f32 v4;
+    f32 v5;
+    u32 v6;
+    f32 v7;
+    f32 v8;
+    f64 v9;
+    f32 v10;
+    f32 v11;
+    f32 v12;
+    u32 v13;
+    f32 v14;
+    f32 v15;
+    f64 v16;
+    f32 v17;
+    f32 v18;
+    f32 v19;
+    u32 v20;
+    s32 v21;
+    s32 v22;
+    f32 v23;
+    f64 v24;
+    u32 v25;
+    f32 v26;
+    f32 v27;
+    f32 v28;
+    f32 v29;
+    s32 v30;
+    s32 v31;
+    f32 v32;
+    f64 v33;
+    u32 v34;
+    f32 v35;
+    f32 v36;
+    f32 v37;
+    f32 v38;
+    s32 v39;
+    s32 v40;
+    f32 v41;
+    f64 v42;
+    u32 v43;
+    f32 v44;
+    f32 v45;
+    f32 v46;
+    f32 v47;
+    FontDrawPacket loc_10;
+    struct ColorWord color;
+    u8 loc_A;
+    u8 loc_9;
+    u8 loc_8;
+    color = lbl_1_rodata_8A48;
+    fn_1_137288((s16)arg2, &loc_A, &loc_9, &loc_8, arg3);
+    fn_1_51564(0, 0, 64, 20, 1, 3);
+    loc_10 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    loc_10.image = 0x9A20;
+    loc_10.x = (f32)(s32)(arg0 + 2);
+    loc_10.y = (f32)(s32)arg1;
+    loc_10.z = 6.0f;
+    loc_10.scale_x *= 0.8f;
+    loc_10.scale_y *= 0.8f;
+    loc_10.flags = 9;
+    fn_1_5158C(&loc_10, 0x9A20, 0, 0);
+    fn_1_4F734(&loc_10);
+    loc_10 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    loc_10.image = 0x9A20;
+    loc_10.x = (f32)(s32)(arg0 + 91);
+    loc_10.y = (f32)(s32)arg1;
+    loc_10.z = 6.0f;
+    loc_10.scale_x *= 0.8f;
+    loc_10.scale_y *= 0.8f;
+    loc_10.flags = 9;
+    fn_1_5158C(&loc_10, 0x9A20, 0, 1);
+    fn_1_4F734(&loc_10);
+    loc_10 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    loc_10.image = 0x9A20;
+    loc_10.x = (f32)(s32)(arg0 + 179);
+    loc_10.y = (f32)(s32)arg1;
+    loc_10.z = 6.0f;
+    loc_10.scale_x *= 0.8f;
+    loc_10.scale_y *= 0.8f;
+    loc_10.flags = 9;
+    fn_1_5158C(&loc_10, 0x9A20, 0, 2);
+    fn_1_4F734(&loc_10);
+    fn_1_51564(0, 0, 16, 16, 3, 2);
+    loc_10 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    loc_10.image = 0x9A21;
+    loc_10.x = (f32)(s32)(arg0 + 74);
+    loc_10.y = (f32)(s32)arg1;
+    loc_10.z = 6.0f;
+    loc_10.scale_x *= 0.8f;
+    loc_10.scale_y *= 0.8f;
+    loc_10.flags = 10;
+    *(u32 *)((u8 *)&loc_10 + 56) = color.value;
+    fn_1_5158C(&loc_10, 0x9A21, (s16)((s32)loc_A % 3), (s16)((s32)loc_A / 3));
+    fn_1_4F734(&loc_10);
+    loc_10 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    loc_10.image = 0x9A21;
+    loc_10.x = (f32)(s32)(arg0 + 162);
+    loc_10.y = (f32)(s32)arg1;
+    loc_10.z = 6.0f;
+    loc_10.scale_x *= 0.8f;
+    loc_10.scale_y *= 0.8f;
+    loc_10.flags = 10;
+    *(u32 *)((u8 *)&loc_10 + 56) = color.value;
+    fn_1_5158C(&loc_10, 0x9A21, (s16)((s32)loc_9 % 3), (s16)((s32)loc_9 / 3));
+    fn_1_4F734(&loc_10);
+    loc_10 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    loc_10.image = 0x9A21;
+    loc_10.x = (f32)(s32)(arg0 + 250);
+    loc_10.y = (f32)(s32)arg1;
+    loc_10.z = 6.0f;
+    loc_10.scale_x *= 0.8f;
+    loc_10.scale_y *= 0.8f;
+    loc_10.flags = 10;
+    *(u32 *)((u8 *)&loc_10 + 56) = color.value;
+    fn_1_5158C(&loc_10, 0x9A21, (s16)((s32)loc_8 % 3), (s16)((s32)loc_8 / 3));
+    fn_1_4F734(&loc_10);
+}
+/* fzgx:end fn_1_136CC4 */
+
 /* fzgx:begin fn_1_137288 noprologue */
 #include "types.h"
 
@@ -11517,6 +11657,216 @@ void fn_1_150F74(void *self) {
     }
 }
 /* fzgx:end fn_1_150F74 */
+
+/* fzgx:begin fn_1_151054 noprologue */
+#include "types.h"
+#include "rel/main_rel/sel_static_disp.h"
+
+extern const f32 lbl_1_rodata_CF40[12];
+extern s32 fn_1_58C4(void);
+extern void fn_1_5948(s32 index);
+extern s16 camera_get_mode(void);
+extern void fn_1_627C(s32 index);
+
+typedef struct CameraState151054 {
+    u8 pad_0[0x118];
+    s32 unk_118;
+} CameraState151054;
+extern CameraState151054 *fn_1_8627C(s32 mode);
+
+typedef struct Rotation151054 {
+    u32 unk_0;
+    f32 unk_4;
+} Rotation151054;
+
+typedef struct Display151054 {
+    u32 unk_0;
+    u8 pad_4[0xC];
+    f32 unk_10;
+    u8 pad_14[0x20];
+    Rotation151054 **unk_34;
+} Display151054;
+
+typedef struct Entry151054 {
+    f32 unk_1824;
+    f32 unk_1828;
+    f32 unk_182C;
+    f32 unk_1830;
+    f32 unk_1834;
+    f32 unk_1838;
+    f32 unk_183C;
+    f32 unk_1840;
+    f32 unk_1844;
+    f32 unk_1848;
+    f32 unk_184C;
+    f32 unk_1850;
+    f32 unk_1854;
+    Display151054 *unk_1858;
+    u8 unk_185C;
+    u8 unk_185D;
+    u8 unk_185E;
+    u8 unk_185F;
+} Entry151054;
+
+typedef struct State151054 {
+    u8 pad_0[0x1824];
+    Entry151054 entries[64];
+    s32 unk_2724;
+    s32 unk_2728;
+    s32 unk_272C;
+    f32 unk_2730;
+    f32 unk_2734;
+    f32 unk_2738;
+    f32 unk_273C;
+    f32 unk_2740;
+    f32 unk_2744;
+} State151054;
+
+#define clamp151054(value, min, max) ((value) < (min) ? (min) : (value) > (max) ? (max) : (value))
+
+void fn_1_151054(State151054 *arg0) {
+    s32 i;
+    s32 count;
+    const f32 *pool = lbl_1_rodata_CF40;
+    CameraState151054 *camera;
+
+    if (arg0->unk_2728 == 0 && arg0->unk_272C == -1) {
+        count = fn_1_58C4();
+        if (count == 1) {
+            for (i = 0; i < count; i++) {
+                fn_1_5948(i);
+                {
+                    s32 mode = camera_get_mode();
+                    if (mode >= 0) {
+                        camera = fn_1_8627C(mode);
+                        if (camera != 0 && camera->unk_118 + 1 == 3) {
+                            arg0->unk_272C = 0;
+                            break;
+                        }
+                    }
+                }
+                fn_1_627C(i);
+            }
+        }
+    }
+    if (arg0->unk_2728 == 0 && arg0->unk_272C != -1) {
+        arg0->unk_272C++;
+        if (arg0->unk_272C > 1000) {
+            arg0->unk_2728 = 1;
+            arg0->unk_272C = -1;
+        }
+    }
+    if (arg0->unk_2728 != 0) {
+        arg0->unk_2740 = clamp151054(pool[0x54/4] + arg0->unk_2740, pool[0x5C/4], pool[0xF4/4]);
+    }
+    if (arg0->unk_2728 != 0) {
+        for (i = 0; i < arg0->unk_2724; i++) {
+            Entry151054 *entry = &arg0->entries[i];
+            Display151054 *display = entry->unk_1858;
+            if (entry->unk_185C || entry->unk_185D) {
+                f32 duration;
+                f32 elapsed;
+                elapsed = arg0->unk_2740;
+                duration = arg0->unk_2744;
+                if (elapsed < duration) {
+                    entry->unk_1828 = pool[0xF8/4] * elapsed / duration;
+                } else {
+                    f32 speed = (pool[0xF8/4] * elapsed / duration) +
+                        (pool[0x90/4] * (elapsed - duration) / duration);
+                    f32 limit = pool[0x5C/4];
+                    if (entry->unk_185C) {
+                        limit = pool[0xFC/4] * (arg0->unk_2734 - entry->unk_1824);
+                    } else if (entry->unk_185D) {
+                        limit = pool[0xFC/4] * (arg0->unk_273C - entry->unk_1824);
+                    }
+                    entry->unk_1828 = speed > limit ? speed : limit;
+                }
+                if (entry->unk_1828 > pool[0x5C/4] || entry->unk_182C != pool[0x5C/4]) {
+                    /* Keep the reset's independent pool read; do not reuse the comparison load. */
+                    entry->unk_1828 = *(volatile const f32 *)&pool[0x5C/4];
+                }
+                if (entry->unk_185C) {
+                    entry->unk_1824 = clamp151054(entry->unk_1828 + entry->unk_1824, arg0->unk_2734, arg0->unk_2730);
+                    if (entry->unk_1824 == arg0->unk_2734) {
+                        entry->unk_182C = pool[0x54/4];
+                    }
+                } else if (entry->unk_185D) {
+                    entry->unk_1824 = clamp151054(entry->unk_1828 + entry->unk_1824, arg0->unk_273C, arg0->unk_2738);
+                    if (entry->unk_1824 == arg0->unk_273C) {
+                        entry->unk_182C = pool[0x54/4];
+                    }
+                }
+            }
+            if (entry->unk_185D || entry->unk_185E) {
+                if (entry->unk_185D) {
+                    s32 axis;
+                    struct { f32 value; } zero;
+                    zero.value = pool[0x5C/4];
+                    for (axis = 0; axis < 3; axis++) {
+                        f32 elapsed = arg0->unk_2740;
+                        f32 duration = arg0->unk_2744;
+                        if (elapsed < duration) {
+                            f32 initial = (&entry->unk_184C)[axis];
+                            elapsed = initial * elapsed;
+                            elapsed /= duration;
+                            elapsed = initial - elapsed;
+                            (&entry->unk_1840)[axis] = elapsed;
+                        } else {
+                            (&entry->unk_1840)[axis] = zero.value;
+                        }
+                    }
+                }
+                if (entry->unk_185E) {
+                    s32 axis;
+                    f32 zero;
+                    f32 factor = pool[0x100/4];
+                    zero = pool[0x5C/4];
+                    for (axis = 0; axis < 3; axis++) {
+                        f32 duration = arg0->unk_2744;
+                        if (factor * arg0->unk_2740 < duration) {
+                            (&entry->unk_1840)[axis] = (&entry->unk_184C)[axis];
+                        } else {
+                            f32 initial = (&entry->unk_184C)[axis];
+                            f32 value = initial - initial * (factor * arg0->unk_2740 - duration) / duration;
+                            if (zero > value) value = zero;
+                            (&entry->unk_1840)[axis] = value;
+                        }
+                    }
+                }
+                {
+                    f32 scale = pool[0x30/4];
+                    entry->unk_1834 += entry->unk_1840;
+                    entry->unk_1838 += entry->unk_1844;
+                    entry->unk_183C += entry->unk_1848;
+                    if (display->unk_34 != 0 && display->unk_34[0] != 0) {
+                        display->unk_34[0]->unk_4 = scale * entry->unk_1834 / lbl_1_data_2A7E0.unk_1C;
+                    }
+                    if (display->unk_34 != 0 && display->unk_34[1] != 0) {
+                        display->unk_34[1]->unk_4 = scale * entry->unk_1838 / lbl_1_data_2A7E0.unk_1C;
+                    }
+                    if (display->unk_34 != 0 && display->unk_34[2] != 0) {
+                        display->unk_34[2]->unk_4 = scale * entry->unk_183C / lbl_1_data_2A7E0.unk_1C;
+                    }
+                }
+            }
+            if (entry->unk_185C) {
+                display->unk_0 &= 0x7FFFFFFF;
+            }
+            if (entry->unk_185F) {
+                display->unk_0 |= 0x80000000;
+            }
+        }
+    }
+    for (i = 0; i < arg0->unk_2724; i++) {}
+    for (i = 0; i < arg0->unk_2724; i++) {
+        Entry151054 *entry = &arg0->entries[i];
+        Display151054 *display = entry->unk_1858;
+        if (entry->unk_185C || entry->unk_185D) {
+            display->unk_10 = entry->unk_1830 + entry->unk_1824;
+        }
+    }
+}
+/* fzgx:end fn_1_151054 */
 
 /* fzgx:begin fn_1_151668 */
 void fn_1_151668(fn_1_151668_StaticDisp *self) {

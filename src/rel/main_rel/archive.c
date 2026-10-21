@@ -1917,6 +1917,190 @@ void fn_1_12D354(void *arg0, void *arg1, void *arg2) {
 }
 /* fzgx:end fn_1_12D354 */
 
+/* fzgx:begin fn_1_12DAEC noprologue */
+#include "types.h"
+#include "rel/main_rel/archive.h"
+
+extern void OSPanic(const char *, int, const char *, ...);
+extern void * fn_1_435C(void *);
+extern void fn_1_426C(u32);
+extern void fn_1_8F494(void *);
+extern void * fn_1_12F118(void);
+extern u8 * fn_1_36AD0(void);
+
+/* 0x20-byte slots overlaying lbl_1_bss_8B3A0 */
+typedef struct {
+    u8 pad_0[0xE];
+    s16 id;
+    u8 pad_10[0x10];
+} Slot;
+
+/* 12 key/handle pairs at lbl_1_bss_8B56C */
+typedef struct {
+    void *key;
+    s32 handle;
+} HandleEntry;
+
+typedef struct {
+    u8 pad_0[5];
+    u8 id;
+    u8 pad_6[0x81A0 - 6];
+    u8 kind;
+    u8 pad_81A1[0x81C0 - 0x81A1];
+} Ent;
+
+typedef struct {
+    u8 data[0x4E0];
+} Object;
+
+#define HANDLES ((HandleEntry *)&lbl_1_bss_8B56C)
+
+/* strings: file name at +0x358, assert messages at +0x3B8 / +0x3E0 */
+static inline s32 findHandle(u8 *strings, void *key) {
+    int i;
+
+    if (key == NULL) {
+        OSPanic((const char *)(strings + 0x358), 0x39D, (const char *)(strings + 0x3B8));
+    }
+    for (i = 0; i < 12; i++) {
+        if (HANDLES[i].key == key) {
+            return HANDLES[i].handle;
+        }
+    }
+    return -1;
+}
+
+static inline void clearHandle(u8 *strings, void *key) {
+    int i;
+
+    if (key == NULL) {
+        OSPanic((const char *)(strings + 0x358), 0x3B2, (const char *)(strings + 0x3E0));
+    }
+    for (i = 0; i < 12; i++) {
+        if (HANDLES[i].key == key) {
+            HANDLES[i].key = NULL;
+            HANDLES[i].handle = -1;
+            return;
+        }
+    }
+}
+
+static inline void releaseObject(u8 *strings, Object *obj, s32 tracked) {
+    if (tracked) {
+        if (findHandle(strings, obj) != -1) {
+            fn_1_8F494(obj);
+            clearHandle(strings, obj);
+        }
+    } else {
+        fn_1_8F494(obj);
+    }
+}
+
+static inline void releaseHandle(void *owner, s32 *handle) {
+    if (*handle != -1) {
+        fn_1_435C(owner);
+        fn_1_426C(*handle);
+        *handle = -1;
+    }
+}
+
+static inline s16 getKind(s16 id) {
+    Ent *ents;
+    s16 i;
+
+    if (id < 0x29) {
+        return id;
+    }
+    ents = fn_1_12F118();
+    if (ents == NULL) {
+        return 6;
+    }
+    if ((u8 *)ents != fn_1_36AD0()) {
+        for (i = 0; i < 9; i++) {
+            if (id == ents[i].id) {
+                return ents[i].kind;
+            }
+        }
+    } else if (id >= 0x32 && id <= 0x35) {
+        return ents[id - 0x32].kind;
+    } else if (id >= 0x36 && id <= 0x39) {
+        return ents[id - 0x36].kind;
+    } else {
+        for (i = 0; i < 4; i++) {
+            if (id == ents[i].id) {
+                return ents[i].kind;
+            }
+        }
+    }
+    return 6;
+}
+
+static inline s16 getCount(s16 id) {
+    switch (getKind(id)) {
+    case 21:
+        return 1;
+    case 33:
+        return 2;
+    default:
+        return 0;
+    }
+}
+
+#pragma opt_lifetimes off
+#pragma opt_loop_invariants off
+void fn_1_12DAEC(Object *objs, Object *subObjs, u32 arg2, void *owner, s32 *handles, s32 *subHandles, s32 tracked) {
+    struct { Slot *value; } slot;
+    s32 *handle;
+    Object *obj0;
+    s32 *subHandle;
+    Object *subObj;
+    s16 i;
+    u8 *strings;
+    struct { Object *value; } obj;
+    s16 n_2;
+    struct { s16 value; } j;
+    s16 id;
+    s16 n;
+    s32 *h;
+
+    strings = lbl_1_data_40798;
+    slot.value = (Slot *)&lbl_1_bss_8B3A0;
+    handle = handles;
+    obj0 = objs;
+    subHandle = subHandles;
+    subObj = subObjs;
+    for (i = 0; i < 4; i++) {
+        id = slot.value->id;
+        if (id != -1) {
+            releaseHandle(owner, handle);
+            releaseObject(strings, obj0, tracked);
+
+            n = getCount(id);
+            h = subHandle;
+            for (j.value = 0; j.value < n; j.value++) {
+                releaseHandle(owner, h);
+                h++;
+            }
+
+            n_2 = getCount(id);
+            obj.value = subObj;
+            for (j.value = 0; j.value < n_2; j.value++) {
+                releaseObject(strings, obj.value, tracked);
+                obj.value++;
+            }
+        }
+        slot.value++;
+        handle++;
+        obj0++;
+        subHandle += 2;
+        subObj += 2;
+    }
+}
+#pragma opt_loop_invariants reset
+
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_12DAEC */
+
 /* fzgx:begin fn_1_12E0B8 noprologue */
 typedef signed short s16;
 typedef signed long s32;

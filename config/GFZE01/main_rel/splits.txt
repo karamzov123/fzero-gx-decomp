@@ -8252,3 +8252,42 @@ rel/main_rel/bg_cas/fn_1_FE014.c:
 
 rel/main_rel/phys/fn_1_E252C.c:
 	.text       start:0x000E252C end:0x000E2AE8 align:4
+
+rel/main_rel/sel_static_disp/fn_1_136CC4.c:
+	.text       start:0x00136CC4 end:0x00137288 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_C7CBC.c:
+	.text       start:0x000C7CBC end:0x000C8294 align:4
+
+rel/main_rel/accessory/fn_1_115560.c:
+	.text       start:0x00115560 end:0x00115B58 align:4
+
+rel/main_rel/sel_static_disp/fn_1_151054.c:
+	.text       start:0x00151054 end:0x00151668 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_CBC24.c:
+	.text       start:0x000CBC24 end:0x000CC27C align:4
+
+rel/main_rel/ranking/fn_1_157950.c:
+	.text       start:0x00157950 end:0x00157FC8 align:4
+
+rel/main_rel/phys/fn_1_E1E9C.c:
+	.text       start:0x000E1E9C end:0x000E252C align:4
+
+rel/main_rel/ranking/fn_1_158984.c:
+	.text       start:0x00158984 end:0x0015903C align:4
+
+rel/main_rel/accessory/fn_1_128038.c:
+	.text       start:0x00128038 end:0x001286F4 align:4
+
+rel/main_rel/ranking/fn_1_157FC8.c:
+	.text       start:0x00157FC8 end:0x001586A8 align:4
+
+rel/main_rel/effect_car/fn_1_702A0.c:
+	.text       start:0x000702A0 end:0x0007099C align:4
+
+rel/main_rel/font/fn_1_50190.c:
+	.text       start:0x00050190 end:0x000508C4 align:4
+
+rel/main_rel/bg_common/fn_1_103FCC.c:
+	.text       start:0x00103FCC end:0x00104710 align:4

@@ -1134,6 +1134,171 @@ void fn_1_1154D0(Fn1154D0Object *obj) {
 }
 /* fzgx:end fn_1_1154D0 */
 
+/* fzgx:begin fn_1_115560 noprologue */
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+
+typedef float f32;
+typedef double f64;
+
+
+extern u8 lbl_1_data_3FFBC[0x574];
+
+
+
+#pragma pool_data on
+
+const u32 fzgx_pool_table_000[20] = {
+0,0,0,0,0,0,0x3E800000,0,0x3C23D70A,0,0,0,
+0x3E7AD7F2,0x9ABCAF48,0,0,0,0x3F000000,0x3E800000,0
+};
+
+#pragma section code_type ".fzgxpool"
+
+f64 fzgx_pool_primer_050(void) { return 4503599627370496.0; }
+
+#pragma section code_type ".text"
+
+const u32 fzgx_pool_table_058[76] = {
+0x3F564CE9, 0xF49F49F4, 0x3B326750, 0xBF800000, 0x00000000, 3221225472u , 0x40000000, 0x34000000, 0xBF800001, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xBAB26750, 0xBB326750, 0x38D1B717, 0x3F800000, 0x39D1B717, 0x3CCCCCCD, 0x3B8A71DE, 0x3FB33333, 0x28F5C28F, 0x3FD33333, 0x33333333, 0xBC9BA5E3, 0x3D6978D5, 0x3A7BEB9E, 0x00000000, 0x3FA4FDF3, 0xB1EB851F, 0xBFF00000, 0x00000000, 0x3F400000, 0xBE800000, 0xBF800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3E0D4FDF, 0x3B83126F, 0x3DED9168, 0x3D851EB8, 0x3D8523F6, 0x00000000, 0x40200000, 0x00000000, 0x3B800000, 0x00000000, 0x3FA99999, 0x9999999A, 0x3F664CEA, 0x00000000, 0x3F947AE1, 0x47AE147B, 0x3F1A36E2, 0xEB1C432D, 0x00000000, 0x00000000, 0x00000000, 0x3D48B439, 0x3B23D70B, 0x3D4CCCCD, 0xBE000000, 0x00000000, 0x3F8EB851, 0xEB851EB8, 0xBF000000, 0x00000000, 0x3FA70A3D, 0x70A3D70A, 0x396BEDFA, 0x00000000
+};
+
+#pragma section code_type ".fzgxpool"
+
+f64 fzgx_pool_primer_188(void) { return 0.2; }
+
+#pragma section code_type ".text"
+
+
+#pragma section code_type ".fzgxpool"
+
+f64 fzgx_pool_primer_190(void) { return 0.8; }
+
+#pragma section code_type ".text"
+
+
+#pragma section code_type ".fzgxpool"
+
+f64 fzgx_pool_primer_198(void) { return 0.5; }
+
+#pragma section code_type ".text"
+
+const u32 fzgx_pool_table_1A0[113] = {
+0x3CF5C28F, 0x3A83126F, 0x3DEB851F, 0x3CA52EFA, 0x3E116873, 0x3C8C9539, 0x3E0624DD, 0x3DA3D70A, 0x3CB851EC, 0x3E19999A, 0x3E4CCCCD, 0x3D23D70B, 0x3CDD2F1B, 0x3C8637BE, 0x3E03126F, 0x3E10624E, 0x3C8A71DE, 0x3E051EB8, 0x3D50E560, 0x3C68038B, 0x3DF3B646, 0x3E3B645A, 0x3C58ADAC, 0x3E989375, 0x3F4CCCCD, 0x41100000, 0x3A9D4952, 0x46FFFE00, 0x3B9D4952, 0x3A1D4952, 0xC7000000, 0x47800000, 0x421C0000, 0x3B03126F, 0x41E80000, 0xBA83126F, 0x3F0CCCCD, 0x3ECCCCCD, 0x3DCCCCCD, 0x00000000, 0x43300000, 0x80000000, 0x3727C5AC, 0x3B378034, 0x3B16BB99, 0x3CB37005, 0x3E178D50, 0x3CECBFB2, 0x3E2E147B, 0x3C23D70B, 0x3FF00000, 0x00000000, 0x47000000, 0x41400000, 0x3DF5C28F, 0x3D8F5C29, 0xBD178D50, 0x3DB851EC, 0x3D9DB22D, 0x3DE56042, 0x3E3851EC, 0xBC54FDF4, 0x3D8D4FDF, 0xBB03126F, 0x3CAC0831, 0xBCAC0831, 0x3D75C28F, 0x3D99999A, 0x3DAE147B, 0x3DBC6A7F, 0x3D71A9FC, 0x3D6147AE, 0x3D978D50, 0x3DEF9DB2, 0xBD449BA6, 0x3D449BA6, 0x3D03126F, 0x3D872B02, 0xBCA3D70A, 0x3DCAC083, 0x3E083127, 0xBD4CCCCD, 0x3D916873, 0x3DC28F5C, 0xBC1374BC, 0x3BC49BA6, 0x3D3851EC, 0x3D343958, 0x3D9374BC, 0x3DC6A7F0, 0xBC75C28F, 0x3DE978D5, 0x3E9F3B64, 0x3D1FBE77, 0xBE624DD3, 0x3F09BA5E, 0x3DA5E354, 0xBEF0A3D7, 0x3DAC0831, 0x3DD70A3D, 0x3CFDF3B6, 0x3DD91687, 0xBCFDF3B6, 0x00000000, 0x3FE851EB, 0x851EB852, 0x3D408312, 0x3DDD2F1B, 0x3DB020C5, 0x3D8B4396, 0x3B449BA6, 0x3B656042, 0x3B86594B
+};
+typedef struct { f32 x,y,z; } LocalVec;
+typedef struct Particle {
+u8 flags; u8 pad1; u8 count; u8 pad3; u16 links[6];
+LocalVec pos, old, rest, vel; u32 tail;
+} Particle;
+typedef struct {u8 pad[8]; u8 *bones;} BoneSet;
+typedef struct {u8 pad[0x150]; BoneSet *set;} Model;
+typedef struct {u8 pad[8]; u32 index; Model *model; void *mesh; u32 pad14; u32 count; u8 pad1c[8]; Particle *particles;} Rope;
+struct fn_1_115560_lbl_1_rodata_7AB8 {
+u8 pad_0[0x50]; f64 unk_50; u8 pad_58[0x130]; f64 unk_188,unk_190,unk_198;
+u8 pad_1A0[0x1C4]; LocalVec unk_364; f64 unk_370,unk_378;
+};
+extern const struct fn_1_115560_lbl_1_rodata_7AB8 lbl_1_rodata_7AB8;
+extern void *fn_80077B14(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1B0(void *,void *);
+extern f32 lbl_8006D668(void *);
+extern void fn_8006E978(void *,void *,void *);
+extern void mathutil_mtxA_from_quat(void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006D758(void);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E0B4(f32,f32,f32);
+extern void fn_1_1286F4(void *);
+extern void fn_8006E250(void *,void *);
+static inline void integrate(Particle *p, const struct fn_1_115560_lbl_1_rodata_7AB8 *pool) {
+p->old=p->pos;
+p->pos.x+=p->vel.x;
+p->pos.y+=p->vel.y;
+p->pos.z+=p->vel.z;
+p->pos.y-=0.0004083333412806193;
+p->vel.y-=0.0008166666825612386;
+}
+static inline void divide(LocalVec *v,u32 n) { v->x/=n; v->y/=n; v->z/=n; }
+void fn_1_115560(Rope *arg0) {
+const struct fn_1_115560_lbl_1_rodata_7AB8 *pool=&lbl_1_rodata_7AB8;
+u8 *vertices;
+Particle *anchor;
+u32 i,j,n;
+Particle *p;
+u8 *bone;
+f32 matrix[12];
+LocalVec random;
+f64 accel, gravity, spring, damping, noise;
+f32 cx,cy,cz,ox,oy,oz,ax,ay,az;
+if (arg0 && arg0->mesh) {
+vertices=fn_80077B14(arg0->mesh);
+for(i=0,p=arg0->particles;i<arg0->count;i++,p++) {
+if (!(p->flags&1)) {
+integrate(p,pool);
+}}
+bone=((arg0)->model->set->bones + ((u32 *)lbl_1_data_3FFBC)[(arg0)->index]*396 + 136) -136;
+for(i=0,p=arg0->particles;i<arg0->count;i++,p++) {
+if(p->flags&1) {
+lbl_8006DBAC(bone+136);
+lbl_8006E1B0(&p->rest,&p->pos);
+anchor=p;
+}}
+{
+LocalVec current;
+LocalVec original={0.0f,0.0f,0.0f};
+f32 quat[4];
+LocalVec tmp;
+current=original;
+n=0;
+lbl_8006DBAC(((arg0)->model->set->bones + ((u32 *)lbl_1_data_3FFBC)[(arg0)->index]*396 + 136) );
+for(i=0,p=arg0->particles;i<arg0->count;i++,p++) {
+if(!(p->flags&1)) {
+current.x+=p->pos.x; current.y+=p->pos.y; current.z+=p->pos.z;
+n++;
+lbl_8006E1B0(&p->rest,&tmp);
+original.x+=tmp.x; original.y+=tmp.y; original.z+=tmp.z;
+}}
+divide(&current,n);
+current.x-=anchor->pos.x; current.y-=anchor->pos.y; current.z-=anchor->pos.z;
+divide(&original,n);
+original.x-=anchor->pos.x; original.y-=anchor->pos.y; original.z-=anchor->pos.z;
+lbl_8006D668(&current);
+lbl_8006D668(&original);
+fn_8006E978(quat,&original,&current);
+mathutil_mtxA_from_quat(quat);
+lbl_8006DB74(matrix);
+lbl_8006DBAC(((arg0)->model->set->bones + ((u32 *)lbl_1_data_3FFBC)[(arg0)->index]*396 + 136) );
+for(i=0,p=arg0->particles;i<arg0->count;i++,p++)
+if(!(p->flags&1)) lbl_8006E1B0(&p->rest,&p->pos);
+lbl_8006D758();
+lbl_8006E0A4(&anchor->pos);
+lbl_8006DFC4(matrix);
+lbl_8006E0B4(-anchor->pos.x,-anchor->pos.y,-anchor->pos.z);
+for(i=0,p=arg0->particles;i<arg0->count;i++,p++)
+if(!(p->flags&1)) lbl_8006E1B0(&p->pos,&p->pos);
+damping=0.8; spring=0.2; noise=0.5;
+for(i=0,p=arg0->particles;i<arg0->count;i++,p++) {
+fn_1_1286F4(&random);
+p->vel.x*=damping; p->vel.y*=damping; p->vel.z*=damping;
+p->vel.x+=(f64)(spring*(p->pos.x-p->old.x));
+p->vel.y+=(f64)(spring*(p->pos.y-p->old.y));
+p->vel.z+=(f64)(spring*(p->pos.z-p->old.z));
+p->vel.x+=(f64)(noise*random.x);
+p->vel.y+=(f64)(noise*random.y);
+p->vel.z+=(f64)(noise*random.z);
+}
+lbl_8006DBAC(((arg0)->model->set->bones + ((u32 *)lbl_1_data_3FFBC)[(arg0)->index]*396 + 136) );
+for(i=0,p=arg0->particles;i<arg0->count;i++,p++)
+for(j=0;j<p->count;j++) fn_8006E250(&p->pos,vertices+(p->links[j]<<6));
+}
+}
+}
+/* fzgx:end fn_1_115560 */
+
 /* fzgx:begin fn_1_115B58 */
 typedef struct {
     u8 active;
@@ -1341,6 +1506,249 @@ void fn_1_127FB8(Fn127FB8Object *obj) {
     }
 }
 /* fzgx:end fn_1_127FB8 */
+
+/* fzgx:begin fn_1_128038 */
+extern void *fn_80077B14(void *);
+extern void lbl_8006DBAC(void *);
+extern void fn_8006E250(void *, void *);
+extern void fn_1_10846C(void);
+extern f32 lbl_1_rodata_7B1C;
+extern f32 lbl_1_rodata_7B20;
+extern s32 fn_1_14D670(void);
+extern u32 lbl_801A66A0;
+extern s32 fn_1_86678(s32 arg);
+extern u32 lbl_1_bss_897AC[1741];
+extern u32 lbl_1_bss_897A4;
+extern u32 lbl_1_bss_897A8;
+extern void * lbl_801A6410;
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DC20(void);
+extern const f64 lbl_1_rodata_7BF8;
+extern void fn_80008BA8(void *dst, void *src, int size);
+extern void *fn_1_45D0(void *manager, int type, void *data, int code);
+extern void fn_1_105744(void);
+extern void fn_1_106DB4(void);
+extern void fn_1_9D0EC(u32, u32, void*, void*);
+extern void fn_1_103AA8(void);
+extern u32 lbl_1_bss_85288[2];
+extern void fn_1_103AD4(void);
+extern void fn_1_105768(void);
+extern void fn_1_9E5B8(void *);
+extern f32 lbl_1_rodata_7B58[40];
+extern u8 lbl_1_rodata_8058[16];
+extern int mathutil_mtxA_rotate_z__fzgx_offset_C();
+extern struct fn_1_129D9C_system *lbl_801A6D00;
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1C0(void *, void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006D7B0(void);
+extern void lbl_8006D668(void *);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void lbl_8006E14C(f32);
+extern void lbl_8006DB74(void *);
+extern void fn_80072558(void);
+extern void fn_80083DB0(void *, void *);
+extern void *fn_1_55210(void *);
+extern void *fn_1_548AC(u32);
+extern void *fn_1_5448C(void *);
+extern void fn_1_5489C(void *, void *);
+extern void fn_1_12A0E0(void);
+
+
+#pragma pool_data on
+
+typedef struct {
+    u8 pad_0[0x88];
+    s32 unk_88;
+    u8 pad_8C[0xBC];
+    u8 unk_148[8];
+    struct {
+        u8 pad_0[8];
+        u8 *unk_8;
+    } *unk_150;
+} fn_1_128038_AccessoryData;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[7];
+    u32 unk_8;
+    fn_1_128038_AccessoryData *unk_C;
+    void *unk_10;
+    u8 pad_14[4];
+    u32 unk_18;
+    u8 pad_1C[8];
+    u8 *unk_24;
+} fn_1_128038_AccessoryObject;
+
+extern void *fn_80077B14(void *);
+extern const char *fn_1_950E8(void *);
+extern int fn_80083BCC(const char *, const char *);
+extern void fn_1_108EEC(void *, u32, u32, f32, f32, f32, f32);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DC20(void);
+extern void lbl_8006D758(void);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DFC4(void *);
+extern void fn_8006E250(void *, void *);
+extern f32 lbl_1_rodata_7AB8[];
+
+#pragma opt_propagation off
+static inline u32 *fn_1_128038_model_indices(u8 *base) {
+    u32 *indices = (u32 *)(base + 0xaac);
+    return indices;
+}
+
+void fn_1_128038(fn_1_128038_AccessoryObject *self) {
+    f32 *k = lbl_1_rodata_7AB8;
+    u8 *data = lbl_1_data_3F510;
+    /* model index table and the type-name strings live in this TU's .data block */
+#define table fn_1_128038_model_indices(data)
+    u8 mtx[0x30];
+
+    if (self != 0 && self->unk_10 != 0) {
+        u8 *model;
+        s32 type;
+
+        fn_80077B14(self->unk_10);
+        if (self->unk_0 & 2) {
+            u8 *item;
+            u32 i;
+            fn_1_128038_AccessoryData *owner;
+
+            self->unk_0 &= ~2;
+            owner = self->unk_C;
+            lbl_8006DBAC(owner->unk_150->unk_8 + table[self->unk_8] * 0x18c + 0x88);
+            lbl_8006DAEC();
+            item = self->unk_24;
+            i = 0;
+            while (i < self->unk_18) {
+                lbl_8006DBE4();
+                lbl_8006E1B0(item + 0x28, item + 0x10);
+                i++;
+                item += 0x44;
+            }
+            lbl_8006DC20();
+        }
+
+        model = self->unk_C->unk_150->unk_8 + table[self->unk_8] * 0x18c;
+        type = self->unk_C->unk_88;
+        if (type == 0x18) {
+            if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a0)) == 0) {
+                lbl_8006D758();
+                mathutil_mtxA_rotate_z(0x4000);
+                lbl_8006DB74(mtx);
+            } else {
+                lbl_8006D758();
+                lbl_8006DB74(mtx);
+            }
+        } else if (type == 6) {
+            if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1048)) == 0 &&
+                *(s16 *)&lbl_1_bss_960 != 14) {
+                lbl_8006D758();
+                mathutil_mtxA_rotate_z(0x4000);
+                lbl_8006DB74(mtx);
+            } else if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a8)) == 0) {
+                lbl_8006D758();
+                mathutil_mtxA_rotate_z(0x2000);
+                lbl_8006DB74(mtx);
+            } else {
+                lbl_8006D758();
+                lbl_8006DB74(mtx);
+            }
+        } else if (type == 1) {
+            lbl_8006D758();
+            lbl_8006DB74(mtx);
+        }
+
+        {
+            u8 *item;
+            u32 i;
+
+            item = self->unk_24;
+            i = 0;
+            while (i < self->unk_18) {
+                lbl_8006DBAC(model + 0x88);
+                lbl_8006DFC4(mtx);
+                lbl_8006E1B0(item + 0x28, item + 0x10);
+                i++;
+                item += 0x44;
+            }
+        }
+
+        type = self->unk_C->unk_88;
+        if (type == 0x18) {
+            fn_1_108EEC(self, 1, 12, k[0x4d0 / 4], k[0x304 / 4], k[0x560 / 4], k[0x564 / 4]);
+            if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a0)) != 0 &&
+                fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1040)) != 0) {
+                fn_1_108EEC(self, 12, 12, k[0x2a8 / 4], k[0xa8 / 4], k[0x224 / 4], k[0x488 / 4]);
+                fn_1_108EEC(self, 12, 12, k[0x2bc / 4], k[0x568 / 4], k[0x1a4 / 4], k[0x56c / 4]);
+                fn_1_108EEC(self, 12, 12, k[0x15c / 4], k[0x570 / 4], k[0x574 / 4], k[0x294 / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x578 / 4], k[0x68 / 4], k[0x1a4 / 4], k[0x414 / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x578 / 4], k[0x2cc / 4], k[0x358 / 4], k[0x57c / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x564 / 4], k[0x580 / 4], k[0x358 / 4], k[0x57c / 4]);
+            }
+        } else if (type == 6) {
+            fn_1_108EEC(self, 1, 12, k[0x4d0 / 4], k[0x304 / 4], k[0x560 / 4], k[0x564 / 4]);
+            if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1048)) != 0) {
+                fn_1_108EEC(self, 12, 12, k[0x2a8 / 4], k[0xa8 / 4], k[0x224 / 4], k[0x488 / 4]);
+                fn_1_108EEC(self, 12, 12, k[0x2bc / 4], k[0x568 / 4], k[0x1a4 / 4], k[0x56c / 4]);
+                fn_1_108EEC(self, 12, 12, k[0x15c / 4], k[0x570 / 4], k[0x574 / 4], k[0x294 / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x578 / 4], k[0x68 / 4], k[0x1a4 / 4], k[0x414 / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x578 / 4], k[0x2cc / 4], k[0x358 / 4], k[0x57c / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x564 / 4], k[0x580 / 4], k[0x358 / 4], k[0x57c / 4]);
+            }
+        } else if (type == 1) {
+            if (table[self->unk_8] == 11) {
+                fn_1_108EEC(self, 1, 12, k[0x41c / 4], k[0x304 / 4], k[0x560 / 4], k[0x564 / 4]);
+                fn_1_108EEC(self, 12, 12, k[0x584 / 4], k[0xa8 / 4], k[0x224 / 4], k[0x488 / 4]);
+                fn_1_108EEC(self, 12, 12, k[0x588 / 4], k[0x568 / 4], k[0x1a4 / 4], k[0x56c / 4]);
+                fn_1_108EEC(self, 12, 12, k[0x1a0 / 4], k[0x570 / 4], k[0x574 / 4], k[0x294 / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x2a0 / 4], k[0x68 / 4], k[0x1a4 / 4], k[0x414 / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x2a0 / 4], k[0x2cc / 4], k[0x358 / 4], k[0x57c / 4]);
+                fn_1_108EEC(self, 13, 12, k[0x58c / 4], k[0x580 / 4], k[0x358 / 4], k[0x57c / 4]);
+            } else {
+                fn_1_108EEC(self, 1, 7, k[0x41c / 4], k[0x304 / 4], k[0x560 / 4], k[0x564 / 4]);
+                fn_1_108EEC(self, 7, 7, k[0x584 / 4], k[0xa8 / 4], k[0x224 / 4], k[0x488 / 4]);
+                fn_1_108EEC(self, 7, 7, k[0x588 / 4], k[0x568 / 4], k[0x1a4 / 4], k[0x56c / 4]);
+                fn_1_108EEC(self, 7, 7, k[0x1a0 / 4], k[0x570 / 4], k[0x574 / 4], k[0x294 / 4]);
+                fn_1_108EEC(self, 13, 7, k[0x2a0 / 4], k[0x68 / 4], k[0x1a4 / 4], k[0x414 / 4]);
+                fn_1_108EEC(self, 13, 7, k[0x2a0 / 4], k[0x2cc / 4], k[0x358 / 4], k[0x57c / 4]);
+                fn_1_108EEC(self, 13, 7, k[0x58c / 4], k[0x580 / 4], k[0x358 / 4], k[0x57c / 4]);
+            }
+        }
+
+        {
+            u8 *base;
+            u8 *p;
+            u8 *entry;
+            int m;
+            u32 n;
+            fn_1_128038_AccessoryData *owner;
+
+            base = (u8 *)fn_80077B14(self->unk_10);
+            owner = self->unk_C;
+            lbl_8006DBAC(owner->unk_150->unk_8 + table[self->unk_8] * 0x18c + 0x88);
+            entry = self->unk_24;
+            n = 0;
+            while (n < self->unk_18) {
+                p = entry;
+                for (m = 0; m < entry[2]; m++) {
+                    fn_8006E250(entry + 0x10, base + *(u16 *)(p + 4) * 0x40);
+                    p += 2;
+                }
+                n++;
+                entry += 0x44;
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_128038 */
 
 /* fzgx:begin fn_1_1286F4 */
 extern void *fn_80077B14(void *);

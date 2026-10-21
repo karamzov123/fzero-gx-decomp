@@ -203,6 +203,424 @@ void fn_1_E1C10(void) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_E1C10 */
 
+/* fzgx:begin fn_1_E1E9C noprologue */
+typedef signed short s16;
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+typedef unsigned long long u64;
+typedef float f32;
+
+
+typedef unsigned long size_t;
+
+
+typedef struct {
+u32 unk_0;
+u32 unk_4;
+u32 unk_8;
+u32 unk_C;
+u32 unk_10;
+u32 unk_14;
+u32 unk_18;
+u32 unk_1C;
+u32 unk_20;
+u32 unk_24;
+u32 unk_28;
+u32 unk_2C;
+u32 unk_30;
+u32 unk_34;
+u8 unk_38;
+u8 unk_39;
+u8 unk_3A;
+u8 unk_3B;
+u32 unk_3C;
+u32 unk_40;
+u32 unk_44;
+u32 unk_48;
+u32 unk_4C;
+u32 unk_50;
+u32 unk_54;
+u16 unk_58;
+u16 unk_5A;
+u8 unk_5C;
+u8 unk_5D;
+u8 unk_5E;
+u8 pad_5F[0x1];
+u32 unk_60;
+u8 pad_64[0x10];
+u32 unk_74;
+u8 pad_78[0xC];
+u32 unk_84;
+u32 unk_88;
+u8 pad_8C[0x4];
+u32 unk_90;
+u8 pad_94[0x18];
+u32 unk_AC;
+u32 unk_B0;
+u32 unk_B4;
+u32 unk_B8;
+u32 unk_BC;
+u32 unk_C0;
+u32 unk_C4;
+u32 unk_C8;
+u32 unk_CC;
+u32 unk_D0;
+u32 unk_D4;
+u32 unk_D8;
+u32 unk_DC;
+u32 unk_E0;
+u32 unk_E4;
+u32 unk_E8;
+u32 unk_EC;
+u32 unk_F0;
+u32 unk_F4;
+u32 unk_F8;
+u8 pad_FC[0x8];
+u32 unk_104;
+u8 pad_108[0xC];
+u32 unk_114;
+u32 unk_118;
+u32 unk_11C;
+u32 unk_120;
+u32 unk_124;
+u8 pad_128[0x24];
+u32 unk_14C;
+u32 unk_150;
+u32 unk_154;
+u32 unk_158;
+u32 unk_15C;
+u32 unk_160;
+u32 unk_164;
+u32 unk_168;
+u32 unk_16C;
+u32 unk_170;
+u32 unk_174;
+u32 unk_178;
+u32 unk_17C;
+u32 unk_180;
+u32 unk_184;
+u32 unk_188;
+u32 unk_18C;
+u32 unk_190;
+u32 unk_194;
+u32 unk_198;
+u8 pad_19C[0x50];
+u32 unk_1EC;
+u32 unk_1F0;
+u32 unk_1F4;
+u32 unk_1F8;
+u32 unk_1FC;
+u32 unk_200;
+u32 unk_204;
+u32 unk_208;
+u32 unk_20C;
+u32 unk_210;
+u32 unk_214;
+u32 unk_218;
+u32 unk_21C;
+u32 unk_220;
+u32 unk_224;
+u32 unk_228;
+u32 unk_22C;
+u32 unk_230;
+u32 unk_234;
+u32 unk_238;
+u8 pad_23C[0xC8];
+f32 unk_304;
+u8 pad_308[0xFC];
+f32 unk_404;
+u8 pad_408[0x1C];
+u32 unk_424;
+u32 unk_428;
+u32 unk_42C;
+f32 unk_430;
+u8 pad_434[0x28C];
+f32 unk_6C0;
+u8 pad_6C4[0x8];
+u32 unk_6CC;
+u32 unk_6D0;
+u32 unk_6D4;
+u32 unk_6D8;
+u8 pad_6DC[0x4];
+u32 unk_6E0;
+u8 pad_6E4[0x2BC];
+u32 unk_9A0;
+u32 unk_9A4;
+u32 unk_9A8;
+u32 unk_9AC;
+u32 unk_9B0;
+u32 unk_9B4;
+u32 unk_9B8;
+u32 unk_9BC;
+u8 pad_9C0[0x130];
+f32 unk_AF0;
+u8 pad_AF4[0xE0];
+u32 unk_BD4;
+u32 unk_BD8;
+u8 pad_BDC[0x528];
+u32 unk_1104;
+u32 unk_1108;
+u8 pad_110C[0x4];
+u32 unk_1110;
+u8 pad_1114[0x470];
+u32 unk_1584;
+u32 unk_1588;
+u8 pad_158C[0x320];
+u32 unk_18AC;
+u8 pad_18B0[0x3A8];
+u32 unk_1C58;
+u32 unk_1C5C;
+u8 pad_1C60[0x5FC];
+u32 unk_225C;
+u32 unk_2260;
+u8 pad_2264[0x4C0];
+u32 unk_2724;
+} Obj_1_data_2A7E0_At3C;
+typedef struct {
+s16 unk_0;
+u8 unk_2;
+u8 pad_3[0x11];
+u32 unk_14;
+u8 pad_18[0x4];
+f32 unk_1C;
+u8 pad_20[0xC];
+u32 unk_2C;
+u8 pad_30[0x4];
+u32 unk_34;
+u32 unk_38;
+Obj_1_data_2A7E0_At3C *unk_3C;
+u8 pad_40[0x8];
+u32 unk_48;
+u32 unk_4C;
+u32 unk_50;
+u32 unk_54;
+u32 unk_58;
+u32 unk_5C;
+u32 unk_60;
+u32 unk_64;
+u32 unk_68;
+u32 unk_6C;
+u8 unk_70;
+u8 pad_71[0x3];
+u32 unk_74;
+u32 unk_78;
+u32 unk_7C;
+u32 unk_80;
+u8 pad_84[0x4];
+u32 unk_88;
+u32 unk_8C;
+u8 pad_90[0xC];
+f32 unk_9C;
+u16 unk_A0;
+u8 pad_A2[0x56];
+} Obj_1_data_2A7E0;
+extern Obj_1_data_2A7E0 lbl_1_data_2A7E0;
+
+
+typedef struct {
+u32 unk_0;
+f32 unk_4;
+u32 unk_8;
+u32 unk_C;
+u8 pad_10[0x4];
+u32 unk_14;
+u32 unk_18;
+u32 unk_1C;
+u8 pad_20[0x4];
+u32 unk_24;
+u8 pad_28[0x4];
+u32 unk_2C;
+u8 pad_30[0xC];
+u32 unk_3C;
+u8 pad_40[0x4];
+u32 unk_44;
+u32 unk_48;
+u32 unk_4C;
+u32 unk_50;
+u32 unk_54;
+u8 pad_58[0x4];
+u32 unk_5C;
+u32 unk_60;
+u32 unk_64;
+u32 unk_68;
+u32 unk_6C;
+u32 unk_70;
+u32 unk_74;
+u32 unk_78;
+u8 pad_7C[0x1];
+u8 unk_7D;
+u8 pad_7E[0x2];
+u32 unk_80;
+u32 unk_84;
+u32 unk_88;
+u32 unk_8C;
+u32 unk_90;
+u32 unk_94;
+u32 unk_98;
+u32 unk_9C;
+u32 unk_A0;
+u32 unk_A4;
+u32 unk_A8;
+u32 unk_AC;
+u32 unk_B0;
+u32 unk_B4;
+u32 unk_B8;
+u32 unk_BC;
+f32 unk_C0;
+f32 unk_C4;
+f32 unk_C8;
+f32 unk_CC;
+u32 unk_D0;
+u32 unk_D4;
+} Obj_1_bss_3BE0_Target;
+extern Obj_1_bss_3BE0_Target *lbl_1_bss_3BE0;
+
+
+extern u32 lbl_1_data_3DC98;
+
+
+extern s16 fn_1_7B054(void);
+extern u8 lbl_1_data_2B0D4[112];
+extern u32 lbl_1_bss_85288[2];
+extern char *fn_80083DB0(char *dst, const char *src);
+extern size_t strlen(const char *str);
+extern s32 fn_8006FC5C(void *, void *, size_t);
+
+
+typedef struct {
+u32 flags;
+void *name;
+} PhysEntryInfo;
+typedef struct {
+u32 flags;
+u8 pad_4[0x4];
+PhysEntryInfo *info;
+} fn_1_E1E9C_PhysEntry;
+typedef struct {
+u8 pad_0[0xA];
+s16 kind;
+u8 pad_C[0x2];
+s16 index;
+s16 slots[4];
+u8 pad_18[0x120];
+u64 flags;
+} fn_1_E1E9C_PhysObj;
+void fn_1_E1E9C(fn_1_E1E9C_PhysObj *obj) {
+char buf[0x20];
+struct { const char *value; } strtab;
+s16 result;
+Obj_1_data_2A7E0_At3C *state;
+s32 i;
+fn_1_E1E9C_PhysEntry *entry;
+s16 j;
+state = lbl_1_data_2A7E0.unk_3C;
+strtab.value = (const char *)&lbl_1_data_3DC98;
+if ((obj->flags & 0x2000000ULL) != 0) {
+switch (lbl_1_data_2B0D4[fn_1_7B054()]) {
+case 1:
+switch (obj->kind) {
+case 1:
+result = (s16)state->unk_0;
+break;
+default:
+result = -1;
+break;
+}
+break;
+case 13:
+switch (obj->kind) {
+case 4:
+result = (s16)state->unk_0;
+break;
+default:
+result = -1;
+break;
+}
+break;
+case 6:
+switch (obj->kind) {
+case 5:
+result = (s16)*(u32 *)((u8 *)state + 0xFD64);
+break;
+default:
+result = -1;
+break;
+}
+break;
+default:
+result = -1;
+break;
+}
+if (result == -1) {
+switch (obj->kind) {
+case 1:
+result = (s16)lbl_1_bss_85288[0];
+break;
+case 5:
+result = (s16)lbl_1_bss_85288[1];
+break;
+default:
+result = -1;
+break;
+}
+}
+if (result == -1) {
+obj->slots[0] = -1;
+obj->slots[1] = -1;
+obj->slots[2] = -1;
+obj->slots[3] = -1;
+switch (obj->kind) {
+case 5:
+fn_80083DB0(buf, strtab.value + 0x124);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
+fn_80083DB0(buf, strtab.value + 0x134);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[0] = i; break; } } ;
+fn_80083DB0(buf, strtab.value + 0x14C);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[1] = i; break; } } ;
+fn_80083DB0(buf, strtab.value + 0x164);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[2] = i; break; } } ;
+break;
+case 1:
+fn_80083DB0(buf, strtab.value + 0x17C);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
+fn_80083DB0(buf, strtab.value + 0x180);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[0] = i; break; } } ;
+fn_80083DB0(buf, strtab.value + 0x18C);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[1] = i; break; } } ;
+fn_80083DB0(buf, strtab.value + 0x198);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[2] = i; break; } } ;
+break;
+case 4:
+fn_80083DB0(buf, strtab.value + 0x20);
+for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
+break;
+}
+}
+if (result == -1) {
+obj->flags &= ~0x2000000ULL;
+} else {
+obj->index = result;
+entry = (fn_1_E1E9C_PhysEntry *)(lbl_1_bss_3BE0->unk_54 + (obj->index << 6));
+switch (obj->kind) {
+case 4:
+entry->info->flags |= 0x20;
+break;
+}
+entry->flags |= 0x80000000;
+for (j = 0; j < 4; j++) {
+if (obj->slots[j] != -1) {
+*(u32 *)(lbl_1_bss_3BE0->unk_54 + (obj->slots[j] << 6)) |= 0x80000000;
+}
+}
+}
+}
+}
+/* fzgx:end fn_1_E1E9C */
+
 /* fzgx:begin fn_1_E252C noprologue */
 #include "types.h"
 #include "psvec.h"

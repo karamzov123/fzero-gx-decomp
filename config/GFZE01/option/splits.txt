@@ -170,3 +170,9 @@ rel/option/_prolog/fn_4_D1A8.c:
 
 rel/option/_prolog/fn_4_1444.c:
 	.text       start:0x00001444 end:0x000018B8 align:4
+
+rel/option/_prolog/fn_4_B528.c:
+	.text       start:0x0000B528 end:0x0000BC04 align:4
+
+rel/option/_prolog/fn_4_ADF4.c:
+	.text       start:0x0000ADF4 end:0x0000B528 align:4
