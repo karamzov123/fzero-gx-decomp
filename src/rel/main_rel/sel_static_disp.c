@@ -13525,6 +13525,74 @@ done:
 }
 /* fzgx:end fn_1_14FEAC */
 
+/* fzgx:begin fn_1_1502BC */
+extern int sprintf(char *s, const char *format, ...);
+extern size_t strlen(const char *str);
+extern u8 lbl_8015B200[];
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+
+struct Entry {
+	void *a;
+	void *b;
+};
+
+struct Group {
+	struct Entry e[6];
+};
+
+struct Names {
+	u8 *p[75];
+};
+
+extern struct Names lbl_1_rodata_CE10;
+
+static inline void fn_1_1502BC_load(struct Group *g, s16 v, s16 mask, char *data)
+{
+	s16 j;
+	s16 k;
+	struct Names names;
+	char buf[64];
+
+	names = lbl_1_rodata_CE10;
+
+	for (j = 0; j < strlen((const char *)names.p[v]); j++) {
+		u8 c = names.p[v][j];
+
+		names.p[v][j] = (c == -1) ? -1 : lbl_8015B200[c];
+	}
+
+	for (k = 0; k < 3; k++) {
+		if ((mask & (1 << k)) != 0 && g->e[k].a == 0) {
+			if (k != 0) {
+				sprintf(buf, data + 0x24e8, names.p[v], k + 1);
+			} else {
+				sprintf(buf, data + 0x24fc, names.p[v]);
+			}
+			g->e[k].b = 0;
+			g->e[k].a = fn_1_12ADA0(buf, g->e[k].b);
+			fn_1_8019C(g->e[k].a);
+		}
+	}
+}
+
+struct Group *fn_1_1502BC(struct Group *arg0, s16 *arg1, s16 arg2)
+{
+	char *data = (char *)lbl_1_data_43E78;
+	s16 i;
+
+	fn_1_12AB38(data + 5004);
+
+	for (i = 0; i < 3; i++) {
+		fn_1_1502BC_load(&arg0[i], arg1[i], arg2, data);
+	}
+
+	fn_1_12AB38(data + 5000);
+	return arg0;
+}
+/* fzgx:end fn_1_1502BC */
+
 /* fzgx:begin fn_1_150464 */
 void fn_1_150464(u32 arg0) {
     u32 v2;
