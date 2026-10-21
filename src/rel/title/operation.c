@@ -5251,6 +5251,463 @@ p->unk_1--;
 #pragma opt_common_subs reset
 /* fzgx:end fn_8_D630 */
 
+/* fzgx:begin fn_8_DD64 */
+typedef signed char s8;
+typedef signed short s16;
+typedef signed long s32;
+
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+typedef float f32;
+typedef double f64;
+
+typedef unsigned long size_t;
+typedef struct FontDrawPacket FontDrawPacket;
+typedef struct FontVertex {
+f32 x, y, z;
+} FontVertex;
+struct FontDrawPacket {
+u32 image;
+f32 x, y, z;
+f32 scale_x, scale_y;
+f32 u0, v0, u1, v1;
+s16 rotation_z, rotation_y;
+f32 alpha;
+u32 flags;
+f32 depth;
+u8 color[4], color_add[4];
+u32 format;
+u16 width, height;
+void* pixels;
+FontDrawPacket* secondary;
+void (*vertex_callback)(FontDrawPacket* packet, FontVertex* vertices);
+u32 unk_54;
+};
+void fn_1_4A0D8(const char* text);
+void fn_1_4AE0C(const char* format, ...);
+int fn_1_4F734(FontDrawPacket* packet);
+void fn_1_4EDAC(FontDrawPacket* packet, f32 width, f32 height);
+void fn_1_51678(FontDrawPacket* packet, u32 image, s16 x, s16 y, s16 width, s16 height);
+void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height,
+s16 texture_width, s16 texture_height);
+
+/* lbl_4_bss_5680: .bss size 0x4, referenced by 8 functions, shape {'object': 112, 'pointer': 28} */
+typedef struct {
+u32 unk_0; /* 11 loads, 6 stores */
+u32 unk_4; /* 1 loads, 1 stores */
+u32 unk_8; /* 4 loads, 1 stores */
+u8 unk_C; /* 8 loads, 1 stores */
+u8 unk_D; /* 5 loads, 4 stores */
+u8 unk_E; /* 10 loads, 3 stores */
+u8 unk_F; /* 3 loads, 12 stores */
+u8 unk_10; /* 1 loads, 0 stores */
+u8 unk_11; /* 2 loads, 1 stores */
+u16 unk_12; /* 3 loads, 3 stores */
+u8 unk_14; /* 2 loads, 2 stores */
+u8 unk_15; /* 2 loads, 2 stores */
+u8 unk_16; /* 2 loads, 2 stores */
+u8 unk_17; /* 2 loads, 2 stores */
+u32 unk_18; /* 1 loads, 1 stores */
+u32 unk_1C; /* 1 loads, 1 stores */
+u32 unk_20; /* 3 loads, 2 stores */
+u8 pad_24[0x4];
+u8 unk_28; /* 1 loads, 0 stores */
+u8 pad_29[0xD];
+u8 unk_36; /* 2 loads, 1 stores */
+u8 unk_37; /* 0 loads, 1 stores */
+u8 pad_38[0x2];
+u8 unk_3A; /* 2 loads, 2 stores */
+u8 unk_3B; /* 5 loads, 2 stores */
+u32 unk_3C; /* 4 loads, 2 stores */
+} Obj_4_bss_5680_Target;
+extern Obj_4_bss_5680_Target *lbl_8_bss_550;
+
+/* lbl_4_data_2F78: .data size 0xA0, referenced by 5 functions, shape {} */
+extern u8 lbl_8_data_A1E8[0xA0];
+
+/* lbl_4_bss_5684: .bss size 0x1, referenced by 3 functions, shape {'object': 3} */
+extern u8 lbl_8_bss_554;
+
+void fn_1_4A0D8(const char* text);
+void fn_1_4AE0C(const char* format, ...);
+int fn_1_4F734(FontDrawPacket* packet);
+void fn_1_4EDAC(FontDrawPacket* packet, f32 width, f32 height);
+void fn_1_51678(FontDrawPacket* packet, u32 image, s16 x, s16 y, s16 width, s16 height);
+void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height,
+s16 texture_width, s16 texture_height);
+struct fn_8_DD64_lbl_801A63D0 {
+u32 unk_0;
+};
+struct fn_8_DD64_lbl_8_rodata_408 {
+u8 pad_0[0x6F0];
+f64 unk_6F0;
+f64 unk_6F8;
+f32 unk_700;
+f32 unk_704;
+f32 unk_708;
+u32 unk_70C;
+u32 unk_710;
+u32 unk_714;
+u32 unk_718;
+u32 unk_71C;
+u32 unk_720;
+f32 unk_724;
+f32 unk_728;
+u8 pad_72C[0x4];
+f64 unk_730;
+f64 unk_738;
+f32 unk_740;
+u8 pad_744[0x4];
+f64 unk_748;
+f32 unk_750;
+f32 unk_754;
+};
+extern char * fn_80083CF4(char *, const char *, size_t);
+extern char * strcat(char *, const char *);
+extern char * strncpy(char *, const char *, size_t);
+extern int fn_1_4F734(FontDrawPacket *);
+extern int sprintf(char *, const char *, ...);
+extern size_t strlen(const char *);
+extern struct fn_8_DD64_lbl_801A63D0 lbl_801A63D0;
+extern struct fn_8_DD64_lbl_8_rodata_408 lbl_8_rodata_408;
+extern u32 fn_1_4060(void);
+extern u32 fn_1_49410(void);
+typedef struct Sig_fn_800081C8_Color Sig_fn_800081C8_Color;
+extern u32 fn_800081C8(Sig_fn_800081C8_Color, Sig_fn_800081C8_Color, f32);
+extern u32 fn_800793D4(u8 *, u32, void *);
+extern u32 fn_80083DB0(u32, u32);
+extern u32 lbl_801A6410;
+extern u8 * fn_80083970(u8 *, const u8 *);
+extern u8 lbl_1_rodata_26F8[];
+extern u8 lbl_8_bss_554;
+extern u8 lbl_8_data_A1E8[];
+extern void fn_1_46B4(u32, u32, const char *, int);
+extern void fn_1_494DC(s16);
+extern void fn_1_49514(Sig_fn_800081C8_Color);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_495C8(u8);
+extern void fn_1_4966C(f32, f32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4A0D8(const char *);
+struct Sig_fn_800081C8_Color { u8 r, g, b, a; };
+#pragma fp_contract off
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+#pragma opt_loop_invariants off
+extern int __abs(int);
+#pragma force_active on
+static const u32 fzgx_pool_table_0[] = {2305855636u,0u,2187362913u,2187493987u,2187625061u,2187756135u,2187887209u,2188018283u,2188149357u,2188280431u,2188411505u,2188542579u,2188673653u,2188804727u,2188935801u,2189525634u,2189656708u,2189787782u,2189918856u,2190049930u,2190181004u,2190312078u,2190443152u,2190574226u,2190705300u,2190836374u,2190967448u,2191098522u,2186248784u,2186379858u,2186510932u,2186642006u,2186773080u,2179432936u,0u,2189525634u,2189656708u,2189787782u,2189918856u,2190049930u,2190181004u,2190312078u,2190443152u,2190574226u,2190705300u,2190836374u,2190967448u,2191098522u,2187362913u,2187493987u,2187625061u,2187756135u,2187887209u,2188018283u,2188149357u,2188280431u,2188411505u,2188542579u,2188673653u,2188804727u,2188935801u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,0u,2337049990u,0u,2168553794u,2169274701u,2168815939u,2168750406u,2168947016u,2169078139u,2172420446u,2172748163u,2172944719u,2169602400u,2170716533u,2172027241u,2171240815u,2171634029u,2171502991u,2173731219u,2173993365u,2174124439u,2179432936u,0u,2194703079u,2192212680u,0u,2191557282u,2191819430u,2192081577u,2192278189u,2192540337u,2192802485u,2193064633u,2193326781u,2193588930u,2193916614u,2194178761u,2194309835u,2194440909u,2194703059u,2195096281u,2195489501u,2195620575u,2195751650u,2196013798u,2196210408u,2196341482u,2196472557u,2196669167u,2196800241u,2192212652u,2192474800u,2192736948u,2192999096u,2193261244u,2193523392u,2193851077u,2194113230u,2194768596u,2195161818u,2194637522u,2195030744u,2195423903u,2191622819u,2191884967u,2193720033u,2195948261u,2196537831u,2179465216u,2191491745u,2191753893u,2192016042u,2192343726u,2192605874u,2192868022u,2193130170u,2193392318u,2193654465u,2193982151u,2168488256u,2168488256u,2168488654u,2194768596u,2195161818u,2168488256u,2168488256u,2168488673u,2195948261u,2168488256u,2168488256u,2168488684u,2168488256u,2168488256u,2192147115u,2192409263u,2192671411u,2192933559u,2193195707u,2193457855u,2193785540u,2194047695u,2194834133u,2195227355u,2194506448u,2194899670u,2195292832u,2191688356u,2191950504u,2193785570u,2196013798u,2196603200u,2168455168u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488643u,2168488256u,2168488256u,2168488256u,2168488655u,2194834133u,2195227355u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2193719616u,2168488653u,2194703059u,2195096281u,2194571985u,2194965207u,2195358016u,2168488256u,2168488256u,2193850688u,2168488256u,2168488256u,2168455168u,2202698590u,2202698601u,0u,2202108739u,2202370887u,2202633034u,2202829646u,2203091794u,2203353942u,2203616090u,2203878238u,2204140387u,2204468071u,2204730218u,2204861292u,2204992366u,2205254516u,2195096442u,2206040958u,2206237569u,2206368644u,2206630792u,2206827402u,2206958476u,2207089551u,2207286161u,2207417235u,2207548235u,2202895183u,2203157331u,2203419479u,2203681627u,2203943775u,2204205924u,2204533608u,2205123442u,2205516503u,2205909872u,2205385590u,2195227516u,2202043202u,2202305350u,2202567573u,2207679330u,2206434181u,2206696334u,2179432936u,0u,2202043202u,2202305350u,2202567499u,2202895183u,2203157331u,2203419479u,2203681627u,2203943775u,2204205922u,2204533608u,2168488256u,2168488256u,2168488815u,2205320053u,2195161979u,2168488256u,2168488256u,2168488835u,2206565255u,2168488256u,2168488256u,2168488846u,2168488256u,2168488256u,2202370890u,2202829646u,2203091794u,2203353942u,2203616090u,2203878238u,2204140387u,2204468071u,2205188979u,2205582040u,2205975406u,2205254516u,2195096442u,2202108739u,2202370887u,2202633034u,2203091811u,2206499718u,2206761871u,2168488256u,0u,2168488256u,2207547712u,2168488853u,2168488256u,2207678784u,2168488256u,2168488256u,2168488256u,2168488804u,2168488256u,2168488256u,2168488256u,2168488816u,2205385590u,2195227516u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2168488256u,2202305429u,2168488256u,2207678784u,2168488256u,2168488256u,2168488256u,2168488802u,2168488256u,2205057905u,2205450966u,2205844335u,2205320053u,2195161979u,2168488256u,2207547712u,2168488779u,2203157348u,2168488256u,2168488256u,2168488256u,0u,1130459241u,1952541728u,1281717364u,1701999360u,2187362913u,2187493987u,2187625061u,2187756135u,2187887209u,2188018283u,2188149357u,2188280431u,2188411505u,2188542579u,2188673653u,2188804727u,2188935801u,2179432936u,0u,1399677292u,1814056037u,1953785202u,1929379840u,2189525634u,2189656708u,2189787782u,2189918856u,2190049930u,2190181004u,2190312078u,2190443152u,2190574226u,2190705300u,2190836374u,2190967448u,2191098522u,2179432936u,0u,1399416686u,1929379840u,2168684868u,2169012553u,2172354940u,2170454367u,2172748163u,2172944710u,2168947020u,2169340239u,2169602402u,2171175274u,2171437422u,2171568496u,2173731219u,2173993365u,2174124439u,2179432936u,0u,1316318562u,1701999360u,2186248784u,2186379858u,2186510932u,2186642006u,2186773080u,2179432936u,0u,1070260551u,2920577761u,1073392298u,2863311531u,1071644672u,0u,1111490560u,1048576000u,1072693248u,0u,1040522936u,0u,1073217536u,0u,1073741824u,0u,1070945621u,1031798784u};
+#pragma force_active reset
+#pragma push
+#pragma section code_type ".fzgxpool"
+static f64 fzgx_signed_double(s32 value) { return (f64)value; }
+static f64 fzgx_unsigned_double(u32 value) { return (f64)value; }
+static f32 fzgx_glyph_size(s32 index) {
+switch(index) {
+case 0:return 32.0f;
+case 1:return 24.0f;
+default:return 18.0f;
+}
+}
+#pragma force_active reset
+#pragma pop
+void fn_8_DD64(u32 arg0) {
+u8 *p_lbl_8_data_A1E8;
+struct fn_8_DD64_lbl_8_rodata_408 *p_lbl_8_rodata_408;
+u8 *p_lbl_1_rodata_26F8;
+u32 v0;
+s32 v1;
+s32 v2;
+s32 state_value;
+s32 cursor_next;
+s32 v3;
+u32 v4;
+f32 v5;
+f64 v6;
+f32 v7;
+struct OptionNameEntry { u16 cursor, length; char *chars; u8 pad[12]; } *v8;
+u32 v9;
+s32 v10;
+u32 v12;
+u32 v13;
+u32 v14;
+s32 v15;
+f32 v16;
+u16 v17;
+f64 v18;
+u32 v19;
+u8 * v20;
+u32 v21;
+u32 v22;
+f64 v23;
+f32 v24;
+f64 v25;
+f32 v26;
+f32 v27;
+struct { u32 a[22]; } loc_18;
+Sig_fn_800081C8_Color loc_14;
+Sig_fn_800081C8_Color loc_10;
+Sig_fn_800081C8_Color loc_C;
+u32 loc_8;
+u32 lab_t0;
+u32 lab_t1;
+p_lbl_8_data_A1E8 = lbl_8_data_A1E8;
+p_lbl_8_rodata_408 = &lbl_8_rodata_408;
+fn_800793D4((u8 *)lbl_801A63D0.unk_0, 0, (void *)1024);
+v0 = lbl_801A63D0.unk_0;
+if (lbl_8_bss_554 != 0) {
+{ s32 __reg_value_v2 = arg0; v2 = __reg_value_v2; }
+v1 = (u32)&lbl_801A6410;
+v3 = (u32)((u8 *)(u32)p_lbl_8_data_A1E8 + 160);
+v1 = *(u32 *)((u8 *)v1 + 0);
+v4 = 465;
+fn_1_46B4(v1, v2, (const char *)v3, v4);
+v1 = fn_1_4060();
+} else {
+v1 = fn_1_49410();
+v1 = 42;
+fn_1_494DC(v1);
+v1 = 9;
+fn_1_495C8(v1);
+fn_1_4966C(12.0f, 0.0f);
+v1 = lbl_8_bss_550->unk_3C;
+v8 = (struct OptionNameEntry *)v1 + *(u8 *)arg0;
+v19 = v8->cursor;
+v3 = (v19 - 10);
+v1 = (v19 + 11);
+if (v3 >= 0 && (s32)(v19 + 11) <= (s32)v8->length) {
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v1 = v0;
+v9 = (v3 << 1);
+v3 = 42;
+{ s32 __reg_value_v2 = (v2 + v9); v2 = __reg_value_v2; }
+v1 = (u32)strncpy((char *)v1, (const char *)v2, v3);
+} else if (v19 < 10) {
+v10 = v19 - 10;
+v10 = v8->length + v10;
+if (v10 < 0) {
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v1 = v0;
+{ s32 __reg_value_v2 = (v2 + (v19 << 1)); v2 = __reg_value_v2; }
+lab_t0 = v1;
+lab_t1 = v2;
+v1 = fn_80083DB0(lab_t0, lab_t1);
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v1 = v0;
+v1 = (u32)strcat((char *)v1, (const char *)v2);
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v1 = v0;
+v3 = ((v10 + 10) << 1);
+v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+} else {
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v1 = v0;
+{ s32 __reg_value_v2 = (v2 + (v10 << 1)); v2 = __reg_value_v2; }
+lab_t0 = v1;
+lab_t1 = v2;
+v1 = fn_80083DB0(lab_t0, lab_t1);
+v1 = v8->cursor;
+v10 = (v1 + 11);
+if ((s32)v10 > (s32)v8->length) {
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v1 = v0;
+v1 = (u32)strcat((char *)v1, (const char *)v2);
+v1 = v0;
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v3 = ((v10 - v8->length) << 1);
+v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+} else {
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v1 = v0;
+v3 = (v10 << 1);
+v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+}
+}
+} else {
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v1 = v0;
+{ s32 __reg_value_v2 = (v2 + (v3 << 1)); v2 = __reg_value_v2; }
+lab_t0 = v1;
+lab_t1 = v2;
+v1 = fn_80083DB0(lab_t0, lab_t1);
+{ s32 __reg_value_v2 = v8->cursor; v2 = __reg_value_v2; }
+v1 = v0;
+v3 = v8->length;
+v12 = (v2 + 11);
+{ s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
+v3 = ((v12 - v3) << 1);
+v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+}
+{ s32 __reg_value_v2 = *(u8 *)((u8 *)arg0 + 0); v2 = __reg_value_v2; }
+v1 = (u32)lbl_8_bss_550;
+if ((u32)v2 == *(u8 *)((u8 *)v1 + 13)) {
+u32 b14;
+{ s32 __reg_value_v2 = (v0 + 6); v2 = __reg_value_v2; }
+v1 = (u32)&lbl_801A63D0;
+v3 = 14;
+v1 = *(u32 *)((u8 *)v1 + 0);
+v10 = (v1 + 44);
+b14 = (v1 + 88);
+v1 = v10;
+v1 = (u32)strncpy((char *)v1, (const char *)v2, v3);
+v1 = b14;
+{ s32 __reg_value_v2 = (v0 + 22); v2 = __reg_value_v2; }
+v3 = 14;
+v1 = (u32)strncpy((char *)v1, (const char *)v2, v3);
+v1 = v0;
+v3 = v10;
+v4 = b14;
+{ s32 __reg_value_v2 = (u32)((u8 *)(u32)p_lbl_8_data_A1E8 + 184); v2 = __reg_value_v2; }
+v1 = sprintf((char *)v1, (const char *)(u32)v2, v3, v4);
+}
+v1 = (u32)lbl_8_bss_550;
+v1 = *(u8 *)((u8 *)v1 + 13);
+v1 = (*(u8 *)((u8 *)arg0 + 0) - v1);
+if (v1 < 0) {
+v1 += 4;
+}
+switch (v1) {
+case 0:
+v15 = 178;
+v16 = fzgx_glyph_size(0);
+{ Sig_fn_800081C8_Color color0 = {255, 255, 255, 0}; loc_14 = color0; }
+break;
+case 1:
+v15 = 276;
+v16 = fzgx_glyph_size(1);
+{ Sig_fn_800081C8_Color color1 = {0, 255, 255, 0}; loc_14 = color1; }
+break;
+case 2:
+v15 = 313;
+v16 = fzgx_glyph_size(2);
+{ Sig_fn_800081C8_Color color2 = {0, 255, 255, 0}; loc_14 = color2; }
+break;
+case 3:
+v15 = 84;
+v16 = fzgx_glyph_size(1);
+{ Sig_fn_800081C8_Color color3 = {0, 255, 255, 0}; loc_14 = color3; }
+}
+state_value = *(u16 *)((u8 *)arg0 + 4);
+v3 = v15 - state_value;
+v6 = 0.2 * fzgx_signed_double(v3);
+if ((s32)v6 != 0) {
+*(u16 *)((u8 *)arg0 + 4) = (s32)((f64)(u32)state_value + v6);
+} else {
+if (v3 < 0) {
+v1 = -1;
+} else {
+v1 = v3 > 0;
+}
+*(u16 *)((u8 *)arg0 + 4) += v1;
+}
+v7 = *(f32 *)((u8 *)arg0 + 8);
+v6 = 0.2;
+*(f32 *)((u8 *)arg0 + 8) = v7 + v6 * (v16 - v7);
+v1 = *(u8 *)((u8 *)arg0 + 2);
+v13 = v8->cursor;
+state_value = v1 + 1;
+if (state_value == (s32)v13 || --v1 > (s32)v13) {
+*(u8 *)((u8 *)arg0 + 1) = 36;
+} else if (v1 == (s32)v13 || state_value < (s32)v13) {
+*(s8 *)((u8 *)arg0 + 1) = -36;
+}
+v2 = (s8)*(u8 *)((u8 *)arg0 + 1);
+v3 = -v2;
+v6 = 0.2 * fzgx_signed_double(v3);
+if ((s32)v6 != 0) {
+*(u8 *)((u8 *)arg0 + 1) = (s32)((f64)v2 + v6);
+} else {
+if (v3 < 0) {
+v1 = -1;
+} else {
+v1 = v3 > 0;
+}
+*(u8 *)((u8 *)arg0 + 1) += v1;
+}
+v1 = v0;
+v2 = (u32)(p_lbl_8_data_A1E8 + 196);
+*(u8 *)((u8 *)arg0 + 2) = v8->cursor;
+v1 = (u32)fn_80083970((u8 *)v1, (const u8 *)v2);
+p_lbl_1_rodata_26F8 = lbl_1_rodata_26F8;
+v15 = 0x10000 - 28914;
+v20 = (u8 *)v1;
+v24 = 10.1f;
+v25 = 24.0;
+while (v20 != 0) {
+v1 = strlen((const char *)v0);
+state_value = v20 - (u8 *)v0;
+v3 = v1 - 1;
+v1 = (u32)state_value >> 31;
+v1 = v1 + state_value;
+state_value = (u32)v3 >> 2;
+v1 >>= 1;
+v3 = (u32)&loc_14;
+v2 = v1 - state_value;
+state_value = (u32)p_lbl_1_rodata_26F8 - 4;
+for (v21 = 11; v21 != 0; v21--) {
+v1 = *(u32 *)((u8 *)state_value + 4);
+v22 = *(u32 *)((u8 *)state_value + 8);
+state_value += 8;
+*(u32 *)((u8 *)v3 + 4) = v1;
+*(u32 *)((u8 *)v3 + 8) = v22;
+v3 += 8;
+}
+loc_18.a[0] = v15;
+v3 = *(u8 *)((u8 *)arg0 + 1);
+v1 = (s8)v3;
+v26 = (f32)(s32)v2 * *(f32 *)((u8 *)arg0 + 8);
+v5 = (f32)(v1 + 320);
+*(f32 *)((u8 *)&loc_18 + 4) = v5 + v26;
+if (__abs((s32)v2) > 0) {
+v3 = 1;
+if ((s32)v2 < 0) v3 = -1;
+state_value = (s32)v2 >> 31;
+v1 = state_value ^ (s32)v2;
+v1 -= state_value;
+v6 = 12.0;
+v7 = *(f32 *)((u8 *)&loc_18 + 4);
+*(f32 *)((u8 *)&loc_18 + 4) = v7 + v6 * (v3 * v1);
+}
+*(f32 *)((u8 *)&loc_18 + 8) = (f32)(u32)*(u16 *)((u8 *)arg0 + 4);
+*(f32 *)((u8 *)&loc_18 + 12) = v24;
+loc_18.a[12] = 10;
+v5 = 1.0f;
+v27 = *(f32 *)((u8 *)arg0 + 8) / v25;
+*(f32 *)((u8 *)&loc_18 + 20) = v27;
+*(f32 *)((u8 *)&loc_18 + 16) = v27;
+{
+Sig_fn_800081C8_Color black = {0, 0, 0, 255};
+Sig_fn_800081C8_Color white = {255, 255, 255, 255};
+loc_10 = black;
+loc_C = white;
+v1 = fn_800081C8(loc_10, loc_C, v5);
+}
+loc_18.a[14] = v1;
+fn_1_4F734((FontDrawPacket *)&loc_18);
+v20 = fn_80083970(v20 + 2, p_lbl_8_data_A1E8 + 196);
+}
+v2 = (s8)*(u8 *)((u8 *)arg0 + 1);
+v2 += 320;
+v5 = (f32)v2;
+v6 = (f32)(u32)*(u16 *)((u8 *)arg0 + 4);
+fn_1_496FC(v5, v6);
+v18 = *(f32 *)((u8 *)arg0 + 8) / 24.0;
+fn_1_4955C(v18, v18);
+{
+fn_1_49514(loc_14);
+}
+fn_1_4954C(10.0f);
+fn_1_4A0D8((const char *)v0);
+}
+}
+#pragma opt_loop_invariants reset
+#pragma opt_lifetimes reset
+#pragma opt_common_subs reset
+/* fzgx:end fn_8_DD64 */
+
 /* fzgx:begin fn_8_F9E4 */
 typedef struct {
     u32 unk_0;

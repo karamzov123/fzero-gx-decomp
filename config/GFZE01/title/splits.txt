@@ -344,3 +344,6 @@ rel/title/operation/fn_8_9B44.c:
 
 rel/title/title/fn_8_5840.c:
 	.text       start:0x00005840 end:0x00005B44 align:4
+
+rel/title/operation/fn_8_DD64.c:
+	.text       start:0x0000DD64 end:0x0000E440 align:4

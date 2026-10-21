@@ -3417,6 +3417,18 @@
   },
   {
     "module": "interview",
+    "source": "rel/interview/interview/fn_17_3A28.c",
+    "symbols": [
+      "fn_17_3A28"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/interview/interview.c",
+    "pool": true
+  },
+  {
+    "module": "interview",
     "source": "rel/interview/interview/fn_17_3C5C.c",
     "symbols": [
       "fn_17_3C5C"
@@ -79060,6 +79072,22 @@
   },
   {
     "module": "sel",
+    "source": "rel/sel/sel/fn_10_23990.c",
+    "symbols": [
+      "fn_10_23990"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/sel/sel.c",
+    "pool": {
+      "...rodata.0": "lbl_10_rodata_1548",
+      "@6": "lbl_10_rodata_1C38",
+      "@12": "lbl_10_rodata_1C40"
+    }
+  },
+  {
+    "module": "sel",
     "source": "rel/sel/sel/fn_10_2406C.c",
     "symbols": [
       "fn_10_2406C"
@@ -79072,6 +79100,18 @@
       "@194": "lbl_10_rodata_1C38",
       "@196": "lbl_10_rodata_1C40"
     }
+  },
+  {
+    "module": "sel",
+    "source": "rel/sel/sel/fn_10_25610.c",
+    "symbols": [
+      "fn_10_25610"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/sel/sel.c",
+    "pool": true
   },
   {
     "module": "sel",
@@ -82181,6 +82221,22 @@
       "...rodata.0": "lbl_8_rodata_408",
       "@30": "lbl_8_rodata_AF8",
       "@31": "lbl_8_rodata_B00"
+    }
+  },
+  {
+    "module": "title",
+    "source": "rel/title/operation/fn_8_DD64.c",
+    "symbols": [
+      "fn_8_DD64"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/title/operation.c",
+    "pool": {
+      "...rodata.0": "lbl_8_rodata_408",
+      "@6": "lbl_8_rodata_AF8",
+      "@12": "lbl_8_rodata_B00"
     }
   },
   {

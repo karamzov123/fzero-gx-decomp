@@ -809,3 +809,9 @@ rel/sel/sel/fn_10_E600.c:
 
 rel/sel/sel/fn_10_D5D4.c:
 	.text       start:0x0000D5D4 end:0x0000DAF8 align:4
+
+rel/sel/sel/fn_10_23990.c:
+	.text       start:0x00023990 end:0x0002406C align:4
+
+rel/sel/sel/fn_10_25610.c:
+	.text       start:0x00025610 end:0x00025888 align:4
