@@ -7901,3 +7901,6 @@ rel/main_rel/data/lbl_1_bss_86ED0.c:
 
 rel/main_rel/data/lbl_1_bss_88B50.c:
 	.bss        start:0x00088B50 end:0x00089750 align:16
+
+rel/main_rel/effect_car/fn_1_6D488.c:
+	.text       start:0x0006D488 end:0x0006D6A8 align:4
