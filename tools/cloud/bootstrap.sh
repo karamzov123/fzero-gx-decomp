@@ -24,7 +24,11 @@ cp -rn "$build_repo/orig/GFZE01/." orig/GFZE01/
 
 if [ ! -x build/tools/dtk ] || [ ! -d build/compilers/GC ]; then
     tmp=$(mktemp -d)
-    gh release download "$TOOLCHAIN_TAG" -R karamzov123/fzgx-build -p fzgx-toolchain.tar.zst -D "$tmp"
+    # REST only: the session's GitHub proxy rejects GraphQL, which `gh release download` uses.
+    asset=$(gh api "repos/karamzov123/fzgx-build/releases/tags/$TOOLCHAIN_TAG" \
+        --jq '.assets[] | select(.name == "fzgx-toolchain.tar.zst") | .id')
+    gh api -H 'Accept: application/octet-stream' \
+        "repos/karamzov123/fzgx-build/releases/assets/$asset" > "$tmp/fzgx-toolchain.tar.zst"
     echo "$TOOLCHAIN_SHA  $tmp/fzgx-toolchain.tar.zst" | sha256sum -c -
     mkdir -p build
     tar -C build --zstd -xf "$tmp/fzgx-toolchain.tar.zst"
