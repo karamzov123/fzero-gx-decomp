@@ -56831,6 +56831,20 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/phys/fn_1_E9BA8.c",
+    "symbols": [
+      "fn_1_E9BA8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/phys.c",
+    "pool": {
+      "...data.0": "lbl_1_data_3E358"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/phys/fn_1_E9C68.c",
     "symbols": [
       "fn_1_E9C68"
