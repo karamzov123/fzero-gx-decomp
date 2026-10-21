@@ -181,6 +181,36 @@ s32 fn_1_9D93C(s32 arg0, u32 *arg1) {
 }
 /* fzgx:end fn_1_9D93C */
 
+/* fzgx:begin fn_1_9D994 pool */
+extern s32 fn_1_9D93C(s32, u32 *);
+typedef u32 (*Sig_fn_1_9CF78_FilterCallback)(u32, void *);
+extern void fn_1_9CF78(void *, Sig_fn_1_9CF78_FilterCallback);
+
+/* Retail TU .data objects in retail order: MWCC addresses them off one section base
+   (lbl_1_data_2A0C0), so the unit defines them; its copy is dropped at integration. */
+u32 fzgx_obj_lbl_1_data_2A0C0[4] = {1};
+u8 fzgx_gap_2A0D0[0x2A7E0 - 0x2A0D0] = {1};
+Obj_1_data_2A7E0 fzgx_obj_lbl_1_data_2A7E0 = {0};
+u8 fzgx_gap_2A8D8[0x2CC70 - 0x2A8D8] = {1};
+u8 fzgx_obj_lbl_1_data_2CC70[0x8] = {1};
+u8 fzgx_obj_lbl_1_data_2CC78[0x18] = {1};
+u8 fzgx_gap_2CC90[0xC] = {1};
+u8 fzgx_obj_lbl_1_data_2CC9C[0x8] = {1};
+u8 fzgx_obj_lbl_1_data_2CCA4[0x18] = {1};
+
+void fn_1_9D994(s32 arg0) {
+    void *table;
+
+    fzgx_obj_lbl_1_data_2A7E0.unk_80 = 0;
+    fzgx_obj_lbl_1_data_2A7E0.unk_7C = 0;
+    table = fzgx_obj_lbl_1_data_2CC78;
+    if (arg0 == 0x2b) {
+        table = fzgx_obj_lbl_1_data_2CCA4;
+    }
+    fn_1_9CF78(table, (Sig_fn_1_9CF78_FilterCallback)fn_1_9D93C);
+}
+/* fzgx:end fn_1_9D994 */
+
 /* fzgx:begin fn_1_9D9E4 */
 typedef struct {
     u8 pad[0x468];
