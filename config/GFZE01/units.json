@@ -14116,6 +14116,20 @@
   },
   {
     "module": "main",
+    "source": "dol/float2str.c",
+    "symbols": [
+      "float2str"
+    ],
+    "status": "matching",
+    "mw_version": "GC/2.6",
+    "extra_cflags": [],
+    "pool": {
+      "@182": "lbl_801A74E8",
+      "@stringBase0": "@stringBase0_80094FC0"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/floor.c",
     "symbols": [
       "floor"

@@ -6410,3 +6410,6 @@ dol/__div2i.c:
 
 dol/__mod2u.c:
 	.text       start:0x80079B14 end:0x80079BF8 align:4
+
+dol/float2str.c:
+	.text       start:0x800811AC end:0x800818C8 align:4
