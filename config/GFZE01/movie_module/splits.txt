@@ -2258,3 +2258,12 @@ rel/movie_module/fn_12_112D4.c:
 
 rel/movie_module/fn_12_5810.c:
 	.text       start:0x00005810 end:0x00005FA0 align:4
+
+rel/movie_module/fn_12_3B65C.c:
+	.text       start:0x0003B65C end:0x0003BEF0 align:4
+
+rel/movie_module/fn_12_2FE60.c:
+	.text       start:0x0002FE60 end:0x00030930 align:4
+
+rel/movie_module/fn_12_341C.c:
+	.text       start:0x0000341C end:0x000034A8 align:4

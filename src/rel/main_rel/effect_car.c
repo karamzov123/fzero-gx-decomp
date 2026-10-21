@@ -110,6 +110,275 @@ void fn_1_69BBC(EffectCar *car) {
 }
 /* fzgx:end fn_1_69BBC */
 
+/* fzgx:begin fn_1_6A7A4 noprologue */
+#include "types.h"
+
+struct fn_1_6A7A4_lbl_801A66A0 {
+    u32 unk_0;
+};
+
+extern s32 fn_1_58C4(void);
+extern struct fn_1_6A7A4_lbl_801A66A0 lbl_801A66A0;
+extern u8 lbl_1_rodata_2D70[];
+extern void *fn_1_868C0(s8);
+extern void lbl_8006DD14(u32, void *);
+extern void *memset(void *, int, u32);
+extern u32 fn_1_864E8(int);
+extern u16 fn_1_584AC(void);
+extern s32 fn_1_66B8(u32, f32);
+extern f32 lbl_8006D668(void *);
+extern void lbl_8006DC6C(void *);
+extern void fn_8006E250(void *, void *);
+extern s32 fn_1_6EC0(u8);
+extern s16 camera_get_entry_field_0xa4(u32);
+extern void lbl_8006E1B0(void *, void *);
+extern f32 lbl_8006D0B4(f32);
+extern s16 fn_1_58F50(const void *);
+
+/* Volatile writes preserve the shared literal-pool order used by the effect-car functions. */
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_A7_0(f32 *f, f64 *d) {
+    f[0] = 0.0f;
+    f[1] = -1.0f;
+    f[2] = 25.0f;
+    f[3] = 15.0f;
+    f[4] = 8.0f;
+    f[5] = 150.0f;
+    f[6] = 10.0f;
+    f[7] = 0.5f;
+    f[8] = 0.125f;
+    f[9] = 32767.0f;
+    f[10] = 30.0f;
+    f[11] = 20.0f;
+    f[12] = 1200.0f;
+    f[13] = 0.15f;
+    d[0] = 4503601774854144.0;
+    d[1] = 4503599627370496.0;
+    f[14] = 255.0f;
+    f[15] = 102.0f;
+    d[2] = 0.8;
+    f[16] = 1.6f;
+    f[17] = 3.0f;
+    f[18] = 0.01f;
+    f[19] = 0.6f;
+    d[3] = 0.3;
+    f[20] = 0.7f;
+    f[21] = 0.2f;
+    f[22] = 0.4f;
+    f[23] = 0.1f;
+    f[24] = 1.5f;
+    d[4] = 2.0;
+    f[25] = 0.8f;
+    f[26] = 1.0f;
+    f[27] = 85.0f;
+    f[28] = 0.25f;
+}
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_A0[3] = { 0, 0, 0 };
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_A7_1(f32 *f, f64 *d) {
+    f[0] = 100.0f;
+    f[1] = 3.5f;
+    f[2] = 23.0f;
+    f[3] = 60.0f;
+    f[4] = 4.0f;
+    f[5] = 0.00000011920928955078125f;
+    f[6] = 136.0f;
+    f[7] = 0.03f;
+    d[0] = 0.5;
+    f[8] = 0.3f;
+    f[9] = 128.0f;
+    f[10] = 224.0f;
+    f[11] = 500.0f;
+}
+#pragma section code_type ".text"
+
+typedef struct VecA7 {
+    f32 x, y, z;
+} VecA7;
+static inline f32 dot_A7(const VecA7 *a, const VecA7 *b) {
+    return (f32)(a->x * b->x) + a->y * b->y + a->z * b->z;
+}
+static inline void reject_A7(VecA7 *v, const VecA7 *n) {
+    f32 dot = -dot_A7(v, n);
+    v->x += (f32)(dot * n->x);
+    v->y += (f32)(dot * n->y);
+    v->z += (f32)(dot * n->z);
+}
+
+typedef struct EffectA7 {
+    u8 pad0[0xc];
+    s16 kind;
+    u8 padE[0xa];
+    s16 id;
+    u16 flags;
+    VecA7 color;
+    u8 pad28[0x14];
+    VecA7 offset;
+    VecA7 tangent;
+    u8 pad54[0x1c];
+    VecA7 direction;
+    u8 pad7c[0xc];
+    f32 field88;
+    u8 pad8c[8];
+    VecA7 position;
+    VecA7 velocity;
+    s16 lifetime;
+    u8 padAe[0x3a];
+} EffectA7;
+#define F(o) ((o)==0 ? 0.0f : (o)==0x10 ? 8.0f : (o)==0x1c ? 0.5f : (o)==0x24 ? 32767.0f : (o)==0x48 ? 255.0f : (o)==0x70 ? 0.7f : (o)==0x74 ? 0.2f : (o)==0x78 ? 0.4f : (o)==0x80 ? 1.5f : (o)==0x90 ? 0.8f : (o)==0x94 ? 1.0f : (o)==0xd8 ? 0.3f : (o)==0xdc ? 128.0f : (o)==0xe0 ? 224.0f : 500.0f)
+#define D(o) (2.0)
+#define CARF(o) (*(f32 *)((u8 *)arg0 + (o)))
+
+void fn_1_6A7A4(u32 arg0, void *arg1, f32 arg2) {
+    u8 *p_lbl_1_rodata_2D70;
+    u32 v0;
+    s32 v1;
+    u8 *v2;
+    s32 v5;
+    f32 v4;
+    s32 v3;
+    u32 v6;
+    struct { u32 a[12]; } loc_8;
+    EffectA7 effect;
+    s32 t2;
+    VecA7 *normal = (VecA7 *)arg1;
+    f32 z, factor, clamp, speed;
+    f32 dot;
+    f32 tz, ty, tx;
+    p_lbl_1_rodata_2D70 = (u8 *)&lbl_1_rodata_2D70;
+    lbl_8006DD14((arg0 + 184), (void *)&loc_8);
+    v0 = *(u32 *)((u8 *)arg0 + 56);
+    fn_1_868C0((s8)*(s16 *)((u8 *)arg0 + 24));
+    t2 = fn_1_58C4();
+    v1 = t2;
+    switch (t2) {
+    case 1:
+        if ((s8)*(u8 *)((u8 *)v0 + 1141) == -1) {
+            if (lbl_801A66A0.unk_0 % 3 != 0) return;
+        } else {
+            if (lbl_801A66A0.unk_0 % 3 == 0) return;
+        }
+        break;
+    case 2:
+        if (lbl_801A66A0.unk_0 & 1) return;
+        break;
+    case 3:
+    case 4:
+        v3 = 0;
+        for (v5 = 0; (v6 = v5) <= (u32)fn_1_58C4(); v5++) {
+            if (fn_1_864E8(v6) & 0x20) v3++;
+        }
+        switch (v3) {
+        case 4:
+            if (lbl_801A66A0.unk_0 % 15 != 0) return;
+            break;
+        case 3:
+            if (lbl_801A66A0.unk_0 % 10 != 0) return;
+            break;
+        case 2:
+            if (lbl_801A66A0.unk_0 % 5 != 0) return;
+            break;
+        default:
+            if (lbl_801A66A0.unk_0 % 5 != 0) return;
+            break;
+        }
+        break;
+    default:
+        if ((s8)*(u8 *)((u8 *)v0 + 1141) == -1) {
+            if (lbl_801A66A0.unk_0 % 3 != 0) return;
+        } else {
+            if (lbl_801A66A0.unk_0 % 3 == 0) return;
+        }
+        break;
+    }
+    v2 = (u8 *)v0 + 0x244;
+    memset(&effect, 0, 0xe8);
+    effect.id = *(s16 *)((u8 *)arg0 + 0x18);
+    effect.kind = 5;
+    effect.flags = 0xffff;
+    effect.field88 = CARF(0x88);
+    v4 = F(0x90) + (f32)(F(0x74) * ((f32)fn_1_584AC() / F(0x24)));
+    z = F(0x1c) * (F(0x94) + v4);
+    effect.color.x = (F(0xdc) * v4) / F(0x48);
+    effect.color.y = (F(0xe0) * v4) / F(0x48);
+    effect.color.z = (F(0x48) * z) / F(0x48);
+    effect.direction.x = normal->x + (f32)(F(0x78) * ((f32)fn_1_584AC() / F(0x24) - F(0x1c)));
+    effect.direction.y = normal->y + (f32)(F(0x78) * ((f32)fn_1_584AC() / F(0x24) - F(0x1c)));
+    effect.direction.z = normal->z + (f32)(F(0x78) * ((f32)fn_1_584AC() / F(0x24) - F(0x1c)));
+    lbl_8006D668(&effect.direction);
+    effect.lifetime = 0x12;
+    if (!fn_1_66B8(arg0 + 0x3c, F(0x10))) return;
+    lbl_8006DC6C(&loc_8);
+    tx = *(volatile f32 *)((u8 *)arg0 + 0x3c); /* volatile: keep the three translation loads before the locked-cache stores. */
+    ty = CARF(0x40);
+    tz = CARF(0x44);
+    {
+        /* CPU-local locked-cache matrix scratch area, not a linked data object. */
+        enum { LOCKED_CACHE_MATRIX_BASE = 0xe0000000 };
+        ((f32 *)LOCKED_CACHE_MATRIX_BASE)[3] = tx;
+        ((f32 *)LOCKED_CACHE_MATRIX_BASE)[7] = ty;
+        ((f32 *)LOCKED_CACHE_MATRIX_BASE)[11] = tz;
+    }
+    v3 = 4;
+    do {
+        if (!(*(u32 *)v2 & 2)) {
+            effect.offset = *(VecA7 *)(v2 + 0x20);
+            fn_8006E250(&effect.offset, &effect.offset);
+            effect.offset.x *= D(0x88);
+            if ((s8)*(u8 *)((u8 *)v0 + 0x475) != -1 &&
+                fn_1_6EC0(*(u8 *)((u8 *)v0 + 0x475)) &&
+                camera_get_entry_field_0xa4(*(u8 *)((u8 *)v0 + 0x475)) == 0) {
+                effect.offset.x *= F(0x80);
+                effect.offset.z -= F(0x94);
+            }
+            lbl_8006E1B0(&effect.offset, &effect.offset);
+            factor = F(0x70) + (f32)(F(0x78) * ((f32)fn_1_584AC() / F(0x24)));
+            effect.tangent.x = CARF(0x48) * factor;
+            effect.tangent.y = CARF(0x4c) * factor;
+            effect.tangent.z = CARF(0x50) * factor;
+            dot = effect.tangent.x * normal->x;
+            dot += effect.tangent.y * normal->y;
+            dot += effect.tangent.z * normal->z;
+            dot = -dot;
+            effect.tangent.x += (f32)(dot * normal->x);
+            effect.tangent.y += (f32)(dot * normal->y);
+            effect.tangent.z += (f32)(dot * normal->z);
+            if ((s32)fn_1_584AC() % 3 == 0) {
+                factor = F(0x78) + (f32)(F(0xd8) * ((f32)fn_1_584AC() / F(0x24)));
+                speed = *(f32 *)((u8 *)v0 + 0x17c) / F(0xe4) - F(0x74);
+                clamp = speed < F(0) ? F(0) : speed > F(0x94) ? F(0x94) : speed;
+                factor *= clamp;
+                effect.tangent.x += (f32)(factor * normal->x);
+                effect.tangent.y += (f32)(factor * normal->y);
+                effect.tangent.z += (f32)(factor * normal->z);
+            }
+            effect.offset.x -= effect.tangent.x;
+            effect.offset.y -= effect.tangent.y;
+            effect.offset.z -= effect.tangent.z;
+            effect.position.x = F(0x1c) * (effect.offset.x + CARF(0x3c));
+            effect.position.y = F(0xd8) + (f32)(F(0x1c) * (effect.offset.y + CARF(0x40)));
+            effect.position.z = F(0x1c) * (effect.offset.z + CARF(0x44));
+            tx = F(0x80) * CARF(0x48);
+            effect.velocity.x = tx;
+            dot = tx * tx;
+            ty = F(0x80) * CARF(0x4c);
+            effect.velocity.y = ty;
+            dot += ty * ty;
+            tz = F(0x80) * CARF(0x50);
+            effect.velocity.z = tz;
+            dot += tz * tz;
+            v4 = lbl_8006D0B4(dot);
+            effect.velocity.x += (f32)(v4 * ((f32)fn_1_584AC() / F(0x24) - F(0x1c)));
+            effect.velocity.y += (f32)(v4 * ((f32)fn_1_584AC() / F(0x24) - F(0x1c)));
+            effect.velocity.z += (f32)(v4 * ((f32)fn_1_584AC() / F(0x24) - F(0x1c)));
+            fn_1_58F50(&effect);
+        }
+        v2 += 0x5c;
+    } while (--v3 > 0);
+}
+/* fzgx:end fn_1_6A7A4 */
+
 /* fzgx:begin fn_1_6D488 */
 #include "dolphin/hw_regs.h"
 

@@ -176,3 +176,6 @@ rel/option/_prolog/fn_4_B528.c:
 
 rel/option/_prolog/fn_4_ADF4.c:
 	.text       start:0x0000ADF4 end:0x0000B528 align:4
+
+rel/option/_prolog/fn_4_8B3C.c:
+	.text       start:0x00008B3C end:0x00008DC0 align:4

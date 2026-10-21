@@ -71,6 +71,207 @@ void fn_3_156A8(void) {
 }
 /* fzgx:end fn_3_156A8 */
 
+/* fzgx:begin fn_3_156D0 */
+extern struct Obj *fn_3_14074(void);
+extern u8 lbl_3_bss_A2408[8];
+extern void *fn_1_45D0(void *, u32, char *, u32);
+extern void fn_80008BEC(void *, u32, u32);
+extern void fn_3_17100(void);
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32, u32, char *, int);
+extern const f32 lbl_3_rodata_5FC[3];
+
+
+
+extern struct Obj *fn_3_14074(void);
+extern void fn_80008BEC(void *, u32, u32);
+
+struct Obj {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    s16 unk_C;
+    s16 unk_E;
+    s16 unk_10;
+    s16 unk_12;
+    u8 pad_14[8];
+    u8 unk_1C;
+    u8 pad_1D[3];
+    void *unk_20;
+};
+extern struct Obj *fn_3_14074(void);
+extern u8 fn_3_19C94(void);
+extern void fn_3_169B8(void);
+extern u32 fn_3_17820(void);
+extern void fn_3_1445C(void);
+extern u8 fn_3_14600(void);
+extern u32 fn_3_19F7C(void *, s32, s32);
+extern void fn_3_17830(void);
+extern void fn_3_177AC(void *);
+extern void fn_3_16FD0(void *);
+extern void fn_3_19CA4(void);
+extern void fn_3_19CCC(void);
+extern void fn_80008BEC(void *, u32, u32);
+extern void DCInvalidateRange(void *, u32);
+extern void DCStoreRange(void *, u32);
+extern void fn_1_A2D84(u32);
+extern u8 lbl_1_bss_9F8[];
+struct Input { u16 unk_0; u8 pad_2[18]; };
+
+typedef void (*EditorFunc)(struct Obj *);
+#define BUF ((void **)&lbl_3_bss_A23EC.unk_4)[(lbl_3_bss_A23EC.unk_0 + 1) % 2]
+#define CALL(n) (((EditorFunc *)&lbl_3_data_3738)[n])(obj)
+#define INPUT(off) (((u16 *)(lbl_1_bss_9F8 + (off)))[state.ptr->unk_12 * 10])
+#define BIT(off, n) ((INPUT(off) >> (n)) & 1)
+
+void fn_3_156D0(void) {
+    struct Obj *obj;
+    struct { Obj_3_bss_A23EC *ptr; } state;
+    void *saved;
+    u32 color;
+    u32 copy;
+    obj = fn_3_14074();
+    fn_80008BEC(BUF, 0, 0x2000);
+    if (!(lbl_3_bss_A23EC.unk_C & 0x20000000)) {
+        if (fn_3_19C94() != 9 && fn_3_19C94() != 10)
+            fn_3_169B8();
+        else
+            obj->unk_1C = fn_3_19C94();
+        if ((((u16 *)(lbl_1_bss_9F8 + 8))[(state.ptr = &lbl_3_bss_A23EC)->unk_12 * 10] >> 8 & 1) && (lbl_3_bss_A23EC.unk_C & 0x40000000)) {
+            obj = fn_3_14074();
+            saved = obj->unk_20;
+            obj->unk_20 = BUF;
+            obj->unk_8 = fn_3_17820();
+            CALL(0);
+            obj->unk_20 = saved;
+            lbl_3_bss_A23EC.unk_C = 0x80000000;
+            return;
+        }
+        /* Sample the controller index again for the held-button state. */
+        if (((((struct Input *)lbl_1_bss_9F8)[((volatile Obj_3_bss_A23EC *)state.ptr)->unk_12].unk_0 >> 8) & 1) && (lbl_3_bss_A23EC.unk_C & 0x80000000)) {
+            switch (obj->unk_1C) {
+            case 1:
+                obj->unk_8 = fn_3_17820();
+                CALL(obj->unk_1C);
+                if (lbl_3_bss_A23EC.unk_16 > 39) {
+                    obj->unk_0 |= 0x04000000;
+                    fn_3_1445C();
+                    lbl_3_bss_A23EC.unk_16 = 0;
+                } else if (!fn_3_14600()) {
+                    lbl_3_bss_A23EC.unk_16++;
+                }
+                break;
+            case 0:
+                obj->unk_8 = fn_3_17820();
+                CALL(obj->unk_1C);
+                if (lbl_3_bss_A23EC.unk_16 > 39) {
+                    obj->unk_0 |= 0x04000000;
+                    fn_3_1445C();
+                    lbl_3_bss_A23EC.unk_16 = 0;
+                } else if (!fn_3_14600()) {
+                    lbl_3_bss_A23EC.unk_16++;
+                }
+                return;
+            }
+        }
+        if (BIT(8, 8) && (lbl_3_bss_A23EC.unk_C & 0x80000000)) {
+            obj->unk_8 = fn_3_17820();
+            switch (obj->unk_1C) {
+            case 2:
+                CALL(obj->unk_1C);
+                fn_3_1445C();
+                break;
+            case 3: case 4: case 5: case 7: case 8:
+                if (!lbl_3_bss_A23EC.unk_10) {
+                    obj->unk_C = obj->unk_10;
+                    obj->unk_E = obj->unk_12;
+                    lbl_3_bss_A23EC.unk_10 = 1;
+                } else {
+                    lbl_3_bss_A23EC.unk_10 = 0;
+                    DCInvalidateRange(BUF, 0x2000);
+                    CALL(obj->unk_1C);
+                    DCStoreRange(BUF, 0x2000);
+                    fn_3_1445C();
+                }
+                break;
+            }
+        }
+        if (obj->unk_1C == 9) {
+            if ((INPUT(8) & 1) || (INPUT(10) & 1)) obj->unk_4 |= 0x20000000;
+            if (BIT(8, 1) || BIT(10, 1)) obj->unk_4 |= 0x10000000;
+            CALL(fn_3_19C94());
+        }
+        if (obj->unk_1C == 10) {
+            if ((INPUT(8) & 1) || (INPUT(10) & 1)) obj->unk_4 |= 0x20000000;
+            if (BIT(8, 1) || BIT(10, 1)) obj->unk_4 |= 0x10000000;
+            if (BIT(8, 3) || BIT(10, 3)) obj->unk_4 |= 0x80000000;
+            if (BIT(8, 2) || BIT(10, 2)) obj->unk_4 |= 0x40000000;
+            CALL(fn_3_19C94());
+        }
+    }
+    if ((((u16 *)(lbl_1_bss_9F8 + 8))[(state.ptr = &lbl_3_bss_A23EC)->unk_12 * 10] >> 10 & 1)) {
+        color = fn_3_19F7C(obj->unk_20, obj->unk_10, obj->unk_12);
+        obj->unk_8 = color;
+        if (((u8 *)&color)[3]) {
+            fn_3_17830();
+            copy = color;
+            fn_3_177AC(&copy);
+        }
+    }
+    switch (obj->unk_1C) {
+    case 3: case 4: case 5: case 7: case 8:
+        if (lbl_3_bss_A23EC.unk_10) {
+            saved = obj->unk_20;
+            obj->unk_20 = BUF;
+            obj->unk_8 = fn_3_17820();
+            DCInvalidateRange(BUF, 0x2000);
+            if (obj->unk_1C == 7) CALL(4);
+            else if (obj->unk_1C == 8) CALL(5);
+            else CALL(obj->unk_1C);
+            fn_3_16FD0(BUF);
+            DCStoreRange(BUF, 0x2000);
+            obj->unk_20 = saved;
+        } else {
+            obj->unk_8 = fn_3_17820();
+            saved = obj->unk_20;
+            obj->unk_20 = BUF;
+            CALL(0);
+            obj->unk_20 = saved;
+        }
+        break;
+    default:
+        saved = obj->unk_20;
+        obj->unk_8 = fn_3_17820();
+        obj->unk_20 = BUF;
+        CALL(0);
+        obj->unk_20 = saved;
+        break;
+    }
+    if (BIT(8, 9)) {
+        fn_1_A2D84(0xA9150500);
+        switch (obj->unk_1C) {
+        case 3: case 4: case 5: case 7: case 8:
+            if (!lbl_3_bss_A23EC.unk_10) {
+                lbl_3_bss_A23EC.unk_10 = 0;
+                lbl_3_bss_A23EC.unk_C = 0x20000000;
+                fn_3_19CA4();
+            } else {
+                lbl_3_bss_A23EC.unk_10 = 0;
+            }
+            break;
+        case 0: case 1: case 9: case 10:
+            fn_3_1445C();
+        default:
+            lbl_3_bss_A23EC.unk_10 = 0;
+            lbl_3_bss_A23EC.unk_C = 0x20000000;
+            fn_3_19CCC();
+            break;
+        }
+    }
+    obj->unk_4 = 0;
+}
+/* fzgx:end fn_3_156D0 */
+
 /* fzgx:begin fn_3_1683C noprologue */
 #include "types.h"
 #include "rel/customize/globals.h"

@@ -169,6 +169,74 @@ u32 fn_1_458A0(struct fn_1_458A0_Arg0 *arg0, void *arg1, u32 arg2, u32 arg3) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_458A0 */
 
+/* fzgx:begin fn_1_45A58 pool noprologue */
+#include "types.h"
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_384C0;
+u32 lbl_1_bss_384C4;
+u32 fzgx_obj_lbl_1_bss_384C8;
+u32 lbl_1_bss_384CC;
+u32 fzgx_obj_lbl_1_bss_384D0;
+u8 lbl_1_bss_384D0_fill_384D4;
+u8 lbl_1_bss_384D0_5;
+u16 lbl_1_bss_384D0_fill_384D6;
+u32 fzgx_obj_lbl_1_bss_384D8[5632];
+u32 lbl_1_bss_3DCD8;
+u32 fzgx_obj_lbl_1_bss_3DCDC[2];
+u8 lbl_1_bss_3DCE4;
+u8 lbl_1_bss_3DCE4_fill_3DCE5;
+u16 lbl_1_bss_3DCE4_fill_3DCE6;
+u32 lbl_1_bss_3DCE4_fill_3DCE8[16];
+u32 lbl_1_bss_3DD28[163];
+u8 lbl_1_bss_3DD28_28C;
+u8 lbl_1_bss_3DD28_fill_3DFB5;
+u16 lbl_1_bss_3DD28_fill_3DFB6;
+u32 lbl_1_bss_3DD28_fill_3DFB8[15];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
+    s = *(u8 *)&lbl_1_bss_384C4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C8;
+    s = *(u8 *)&lbl_1_bss_384CC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
+    s = *(u8 *)&lbl_1_bss_384D0_fill_384D4;
+    s = *(u8 *)&lbl_1_bss_384D0_5;
+    s = *(u8 *)&lbl_1_bss_384D0_fill_384D6;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
+    s = *(u8 *)&lbl_1_bss_3DCD8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCDC;
+    s = *(u8 *)&lbl_1_bss_3DCE4;
+    s = *(u8 *)&lbl_1_bss_3DCE4_fill_3DCE5;
+    s = *(u8 *)&lbl_1_bss_3DCE4_fill_3DCE6;
+    s = *(u8 *)&lbl_1_bss_3DCE4_fill_3DCE8;
+    s = *(u8 *)&lbl_1_bss_3DD28;
+    s = *(u8 *)&lbl_1_bss_3DD28_28C;
+    s = *(u8 *)&lbl_1_bss_3DD28_fill_3DFB5;
+    s = *(u8 *)&lbl_1_bss_3DD28_fill_3DFB6;
+    s = *(u8 *)&lbl_1_bss_3DD28_fill_3DFB8;
+}
+#pragma section code_type ".text"
+
+typedef void (*LoadCallback)(u32);
+
+/* arg0 is passed straight through to the slot's callback (r3 is untouched before bctrl). */
+void fn_1_45A58(u32 arg0) {
+    LoadCallback f;
+    u8 v;
+    ((u32 *)&lbl_1_bss_3DCE4)[lbl_1_bss_384D0_5] = 0;
+    f = ((LoadCallback *)&lbl_1_bss_3DD28_28C)[lbl_1_bss_384D0_5];
+    if (f != 0) {
+        f(arg0);
+    }
+    lbl_1_bss_384D0_5++;
+    v = lbl_1_bss_384D0_5;
+    lbl_1_bss_384D0_5 = (v > 15) ? 0 : v;
+}
+/* fzgx:end fn_1_45A58 */
+
 /* fzgx:begin fn_1_45AD4 */
 // Reports whether loading is already active or any load slot is occupied.
 int fn_1_45AD4(void) {

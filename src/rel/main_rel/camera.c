@@ -2895,6 +2895,77 @@ void camera_save_slot(u8 index) {
 }
 /* fzgx:end camera_save_slot */
 
+/* fzgx:begin fn_1_C10C pool noprologue */
+#include "types.h"
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+} CameraPreset;
+
+typedef struct {
+    u8 pad_0[0x5];
+    u8 unk_5;
+    u8 pad_6[0x2];
+    CameraPreset current;
+    u8 pad_2C[0x9C];
+    CameraPreset presets[1];
+} CameraState;
+
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_1010;
+u8 lbl_1_bss_1014;
+u8 lbl_1_bss_1010_gap_1015;
+u16 lbl_1_bss_1010_gap_1015_fill_1016;
+CameraPreset fzgx_obj_camera_state;
+u32 lbl_1_bss_103C;
+u32 lbl_1_bss_1040;
+u32 lbl_1_bss_1044;
+u8 fzgx_obj_camera_flag_0;
+u8 fzgx_obj_camera_flag_1;
+u16 lbl_1_bss_1010_gap_104A;
+u32 lbl_1_bss_104C[16];
+u32 lbl_1_bss_108C[13];
+u32 lbl_1_bss_10C0[6];
+CameraPreset fzgx_obj_lbl_1_bss_10D8[1];
+u32 lbl_1_bss_10D8_fill_10FC[19];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
+    s = *(u8 *)&lbl_1_bss_1014;
+    s = *(u8 *)&lbl_1_bss_1010_gap_1015;
+    s = *(u8 *)&lbl_1_bss_1010_gap_1015_fill_1016;
+    s = *(u8 *)&fzgx_obj_camera_state;
+    s = *(u8 *)&lbl_1_bss_103C;
+    s = *(u8 *)&lbl_1_bss_1040;
+    s = *(u8 *)&lbl_1_bss_1044;
+    s = *(u8 *)&fzgx_obj_camera_flag_0;
+    s = *(u8 *)&fzgx_obj_camera_flag_1;
+    s = *(u8 *)&lbl_1_bss_1010_gap_104A;
+    s = *(u8 *)&lbl_1_bss_104C;
+    s = *(u8 *)&lbl_1_bss_108C;
+    s = *(u8 *)&lbl_1_bss_10C0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_10D8;
+    s = *(u8 *)&lbl_1_bss_10D8_fill_10FC;
+}
+#pragma section code_type ".text"
+
+void fn_1_C10C(u8 idx) {
+    lbl_1_bss_1010_gap_1015 = 0;
+    fzgx_obj_camera_state = fzgx_obj_lbl_1_bss_10D8[idx];
+}
+/* fzgx:end fn_1_C10C */
+
 /* fzgx:begin fn_1_C178 noprologue */
 #include "types.h"
 

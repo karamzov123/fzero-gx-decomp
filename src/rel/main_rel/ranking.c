@@ -3071,12 +3071,346 @@ void fn_1_1598C4(s32 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6,
 }
 /* fzgx:end fn_1_1598C4 */
 
+/* fzgx:begin fn_1_159AE0 */
+extern u32 lbl_801A6410[];
+extern void fn_1_46B4(u32, Obj_1_bss_8EF20_At0 *, u8 *, u32);
+extern Obj_1_bss_8EF20_At0 *fn_1_4630(u32, u32, u8 *, u32);
+extern void fn_1_451C(void);
+extern void fn_1_A1340(void);
+extern s16 lbl_1_bss_962;
+extern s16 lbl_1_bss_96A;
+extern void fn_1_A1360(void);
+extern void fn_1_A1364(void);
+extern u8 lbl_1_bss_8F420[8];
+extern f32 lbl_1_rodata_D8C8[18];
+extern void fn_80008BEC(void *dst, int value, int size);
+extern void fn_1_1568C4(void *);
+extern void fn_80008BA8(void *, void *, int);
+extern void fn_1_1574E0(Obj_1_bss_8F428 *entry, u32 value);
+extern void fn_8006B7B4(void *);
+extern void fn_8006B870(void);
+extern void fn_1_157950(void);
+extern void fn_1_157FC8(void);
+extern u32 fn_1_157920(void);
+extern void fn_1_4060(void);
+extern u32 lbl_1_bss_8F57C[3];
+extern void fn_1_9AD88(void);
+extern void fn_1_1594AC(int index, int flag);
+extern void OSReport(const char *format, ...);
+extern void fn_1_465D0(void *object, int value);
+extern void fn_1_9AD54(void);
+
+extern void fn_1_1568C4(void *entry);
+
+extern u32 lbl_801A6410[];
+extern void fn_1_46B4(u32, Obj_1_bss_8EF20_At0 *, u8 *, u32);
+extern Obj_1_bss_8EF20_At0 *fn_1_4630(u32, u32, u8 *, u32);
+extern void fn_1_1569E8(void *entry);
+extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
+extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
+extern u32 lbl_1_bss_8F3FC[9];
+extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);
+extern void fn_1_4811C(s16 value);
+extern void fn_1_48004(s16 value, u32 arg);
+extern u32 lbl_1_rodata_DAF8[16];
+extern void fn_1_9A508(void);
+
+extern u32 lbl_801A63C0;
+extern u8 fn_1_128E10(u8);
+
+static inline void seed_rng(u32 seed) {
+    lbl_801A63C0 = seed ^ 0xCAE87FB5;
+}
+
+static inline s32 next_rng(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+#define DIGIT(field, divisor) lbl_1_bss_8F878.field = (v0_2 / (divisor)) % 10 + '0'
+
+void fn_1_159AE0(void) {
+    u8 v0;
+    u64 v35, v4, v66, v65;
+    u8 v37;
+    u32 v79, v83;
+    s32 v84;
+    u64 v0_2;
+
+    if (lbl_1_bss_8F878.unk_38 != 0) {
+        v0 = fn_1_128E10(lbl_1_bss_8F878.unk_39);
+    } else {
+        v0 = 0;
+    }
+    if (lbl_1_bss_8F878.unk_39 >= 41) {
+        v4 = ((u64)lbl_1_bss_8F878.unk_10 << 32) | lbl_1_bss_8F878.unk_14;
+        v35 = lbl_1_bss_8F878.unk_34 + ((u64)lbl_1_bss_8F878.unk_3A << 18) +
+              ((u64)lbl_1_bss_8F878.unk_3B << 23) +
+              ((u64)lbl_1_bss_8F878.unk_3C << 28) +
+              ((u64)lbl_1_bss_8F878.unk_3E << 33);
+        v66 = (v4 & 1023) + ((v4 >> 10) & 1023) + ((v4 >> 20) & 1023) +
+              ((v4 >> 30) & 1023) + ((v4 >> 40) & 1023) +
+              ((v4 >> 50) & 1023) + ((v4 >> 60) & 1023);
+        for (v65 = 0; v65 < 16; v65++) {
+            v37 = (&lbl_1_bss_8F878.unk_0)[v65];
+            v66 += v37;
+            v66 += v37 & (((v65 + 1) * 6505) & 1023);
+        }
+        v66 += lbl_1_bss_8F878.unk_3D * 19;
+        v66 += (v35 & 4095) + ((v35 >> 12) & 4095) +
+               ((v35 >> 24) & 4095) + ((v35 >> 36) & 4095);
+        for (v65 = 0; v65 < 29; v65 += 3) {
+            v66 += 1 << ((v35 >> v65) & 7);
+        }
+        v35 += (v66 & 4095) << 37;
+        seed_rng(v35 & 255);
+        v84 = next_rng();
+        v0_2 = v35 + (((u64)v84 * 0x31AFD498DULL) & ~255ULL);
+        DIGIT(unk_3F, 100000000000000ULL);
+        DIGIT(unk_44, 10000000000000ULL);
+        DIGIT(unk_49, 1000000000000ULL);
+        lbl_1_bss_8F878.unk_42 = '-';
+        DIGIT(unk_40, 100000000000ULL);
+        DIGIT(unk_45, 10000000000ULL);
+        DIGIT(unk_4A, 1000000000ULL);
+        DIGIT(unk_4E, 100000000ULL);
+        lbl_1_bss_8F878.unk_47 = '-';
+        DIGIT(unk_41, 10000000ULL);
+        DIGIT(unk_46, 1000000ULL);
+        DIGIT(unk_4B, 100000ULL);
+        DIGIT(unk_4F, 10000ULL);
+        lbl_1_bss_8F878.unk_4C = '-';
+        DIGIT(unk_43, 1000ULL);
+        DIGIT(unk_48, 100ULL);
+        DIGIT(unk_4D, 10ULL);
+        lbl_1_bss_8F878.unk_50 = v0_2 % 10 + '0';
+        lbl_1_bss_8F878.unk_51 = 0;
+    } else if (v0 != 0) {
+        v4 = lbl_1_bss_8F878.unk_10;
+        v4 <<= 32;
+        v4 |= lbl_1_bss_8F878.unk_14;
+        v35 = lbl_1_bss_8F878.unk_34 + (v0 << 18) + (lbl_1_bss_8F878.unk_3E << 22);
+        v66 = (v4 & 1023) + ((v4 >> 10) & 1023) + ((v4 >> 20) & 1023) +
+              ((v4 >> 30) & 1023) + ((v4 >> 40) & 1023) +
+              ((v4 >> 50) & 1023) + ((v4 >> 60) & 1023);
+        for (v65 = 0; v65 < 16; v65++) {
+            v37 = (&lbl_1_bss_8F878.unk_0)[v65];
+            v66 += v37;
+            v66 += v37 & (((v65 + 1) * 6505) & 1023);
+        }
+        v66 += lbl_1_bss_8F878.unk_3D * 19;
+        v66 += (v35 & 1023) + ((v35 >> 10) & 1023) +
+               ((v35 >> 20) & 1023) + ((v35 >> 30) & 1023);
+        for (v65 = 0; v65 < 29; v65 += 3) {
+            v66 += 1 << ((v35 >> v65) & 7);
+        }
+        v35 += (u64)((s32)v66 & 1023) << 26;
+        seed_rng(v35 & 255);
+        v84 = next_rng();
+        v0_2 = v35 + (((u64)v84 * 0xE90EDULL) & ~255ULL);
+        DIGIT(unk_3F, 10000000000ULL);
+        DIGIT(unk_43, 1000000000ULL);
+        DIGIT(unk_46, 100000000ULL);
+        lbl_1_bss_8F878.unk_42 = '-';
+        DIGIT(unk_40, 10000000ULL);
+        DIGIT(unk_44, 1000000ULL);
+        DIGIT(unk_48, 100000ULL);
+        DIGIT(unk_4A, 10000ULL);
+        lbl_1_bss_8F878.unk_47 = '-';
+        DIGIT(unk_41, 1000ULL);
+        DIGIT(unk_45, 100ULL);
+        DIGIT(unk_49, 10ULL);
+        lbl_1_bss_8F878.unk_4B = v0_2 % 10 + '0';
+        lbl_1_bss_8F878.unk_4C = 0;
+    } else {
+        v4 = lbl_1_bss_8F878.unk_10;
+        v4 <<= 32;
+        v4 |= lbl_1_bss_8F878.unk_14;
+        v35 = lbl_1_bss_8F878.unk_34 + (lbl_1_bss_8F878.unk_39 << 18) + (lbl_1_bss_8F878.unk_3E << 24);
+        v66 = (v4 & 1023) + ((v4 >> 10) & 1023) + ((v4 >> 20) & 1023) +
+              ((v4 >> 30) & 1023) + ((v4 >> 40) & 1023) +
+              ((v4 >> 50) & 1023) + ((v4 >> 60) & 1023);
+        for (v65 = 0; v65 < 16; v65++) {
+            v37 = (&lbl_1_bss_8F878.unk_0)[v65];
+            v66 += v37;
+            v66 += v37 & (((v65 + 1) * 6505) & 1023);
+        }
+        v66 += lbl_1_bss_8F878.unk_3D * 19;
+        v66 += (v35 & 2047) + ((v35 >> 11) & 2047) +
+               ((v35 >> 22) & 2047) + ((v35 >> 33) & 2047) +
+               ((v35 >> 44) & 2047) + ((v35 >> 55) & 2047);
+        for (v65 = 0; v65 < 29; v65 += 3) {
+            v66 += 1 << ((v35 >> v65) & 7);
+        }
+        v35 += (u64)((s32)v66 & 2047) << 28;
+        seed_rng(v35 & 255);
+        v84 = next_rng();
+        v0_2 = v35 + (((u64)v84 * 0xD1A94AULL) & ~255ULL);
+        DIGIT(unk_3F, 100000000000ULL);
+        DIGIT(unk_42, 10000000000ULL);
+        DIGIT(unk_46, 1000000000ULL);
+        DIGIT(unk_4A, 100000000ULL);
+        lbl_1_bss_8F878.unk_43 = '-';
+        DIGIT(unk_40, 10000000ULL);
+        DIGIT(unk_44, 1000000ULL);
+        DIGIT(unk_47, 100000ULL);
+        DIGIT(unk_4B, 10000ULL);
+        lbl_1_bss_8F878.unk_48 = '-';
+        DIGIT(unk_41, 1000ULL);
+        DIGIT(unk_45, 100ULL);
+        DIGIT(unk_49, 10ULL);
+        lbl_1_bss_8F878.unk_4C = v0_2 % 10 + '0';
+        lbl_1_bss_8F878.unk_4D = 0;
+    }
+}
+/* fzgx:end fn_1_159AE0 */
+
 /* fzgx:begin fn_1_15AC00 */
 // Return the address of the ranking state byte at offset 0x3f.
 u8 *fn_1_15AC00(void) {
     return &lbl_1_bss_8F878.unk_3F;
 }
 /* fzgx:end fn_1_15AC00 */
+
+/* fzgx:begin fn_1_15AC10 */
+extern u32 lbl_801A6410[];
+extern void fn_1_46B4(u32, Obj_1_bss_8EF20_At0 *, u8 *, u32);
+extern Obj_1_bss_8EF20_At0 *fn_1_4630(u32, u32, u8 *, u32);
+extern void fn_1_451C(void);
+extern void fn_1_A1340(void);
+extern s16 lbl_1_bss_962;
+extern s16 lbl_1_bss_96A;
+extern void fn_1_A1360(void);
+extern void fn_1_A1364(void);
+extern u8 lbl_1_bss_8F420[8];
+extern f32 lbl_1_rodata_D8C8[18];
+extern void fn_80008BEC(void *dst, int value, int size);
+extern void fn_1_1568C4(void *);
+extern void fn_80008BA8(void *, void *, int);
+extern void fn_1_1574E0(Obj_1_bss_8F428 *entry, u32 value);
+extern void fn_8006B7B4(void *);
+extern void fn_8006B870(void);
+extern void fn_1_157950(void);
+extern void fn_1_157FC8(void);
+extern u32 fn_1_157920(void);
+extern void fn_1_4060(void);
+extern u32 lbl_1_bss_8F57C[3];
+extern void fn_1_9AD88(void);
+extern void fn_1_1594AC(int index, int flag);
+extern void OSReport(const char *format, ...);
+extern void fn_1_465D0(void *object, int value);
+extern void fn_1_9AD54(void);
+
+extern void fn_1_1568C4(void *entry);
+
+extern u32 lbl_801A6410[];
+extern void fn_1_46B4(u32, Obj_1_bss_8EF20_At0 *, u8 *, u32);
+extern Obj_1_bss_8EF20_At0 *fn_1_4630(u32, u32, u8 *, u32);
+extern void fn_1_1569E8(void *entry);
+extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
+extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
+extern u32 lbl_1_bss_8F3FC[9];
+extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);
+extern void fn_1_4811C(s16 value);
+extern void fn_1_48004(s16 value, u32 arg);
+extern u32 lbl_1_rodata_DAF8[16];
+extern void fn_1_9A508(void);
+
+extern u32 fn_1_B7FC8(void);
+extern u32 fn_8003D4C0(void);
+extern u8 lbl_1_bss_718E0[23016];
+extern u32 lbl_801A63C0[];
+
+static inline void set_seed(u32 value) {
+    lbl_801A63C0[0] = value;
+}
+static inline s32 next_random(void) {
+    lbl_801A63C0[0] = lbl_801A63C0[0] * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0[0] >> 16) & 0x7FFF;
+}
+
+static inline u64 make_value(void) {
+    u32 t0 = fn_1_B7FC8();
+    u8 v0 = lbl_1_bss_718E0[0x5523];
+    u64 v1 = t0 & 0x3FFFFFFULL;
+    v1 += (u64)(v0 & 0x3F) << 26;
+    t0 = fn_8003D4C0();
+    return (v1 << 32) + t0;
+}
+
+u64 fn_1_15AC10(void) {
+    u64 v21;
+    u64 v18;
+    u64 v16;
+    u64 v76;
+    u64 v78;
+    u32 v13;
+    u32 v15;
+    s32 v67, v69, v71;
+    u8 *v82;
+    u32 t0;
+    u8 v0;
+    v21 = make_value();
+    v13 = ((u32)(((v21 >> 32) & 3) +
+                      ((v21 & 0x2000ULL) >> 11) +
+                      ((v21 & 0x100000ULL) >> 17)) & 0xFF) ^ 0xCAE87FB5;
+    set_seed(v13);
+    v16 = next_random();
+    for (v18 = 0; v18 < 64; v18 += 1) {
+        if (v18 != 13 && v18 != 20 && (v18 - 32) > 1) {
+            u64 v29 = (v21 >> v18) & 1;
+            u64 t4;
+            v29 += (v16 % (v18 + 11)) & 1;
+            t4 = 1ULL << v18;
+            v21 &= ~t4;
+            if (v29 & 1) {
+                v21 |= t4;
+            }
+        }
+    }
+    lbl_1_bss_8F878.unk_18 = 0x30 + (v21 / 1ULL) % 10;
+    lbl_1_bss_8F878.unk_19 = 0x30 + (v21 / 10ULL) % 10;
+    lbl_1_bss_8F878.unk_1A = 0x30 + (v21 / 100ULL) % 10;
+    lbl_1_bss_8F878.unk_1B = 0x30 + (v21 / 1000ULL) % 10;
+    lbl_1_bss_8F878.unk_1C = 45;
+    lbl_1_bss_8F878.unk_1D = 0x30 + (v21 / 10000ULL) % 10;
+    lbl_1_bss_8F878.unk_1E = 0x30 + (v21 / 100000ULL) % 10;
+    lbl_1_bss_8F878.unk_1F = 0x30 + (v21 / 1000000ULL) % 10;
+    lbl_1_bss_8F878.unk_20 = 0x30 + (v21 / 10000000ULL) % 10;
+    lbl_1_bss_8F878.unk_21 = 45;
+    lbl_1_bss_8F878.unk_22 = 0x30 + (v21 / 100000000ULL) % 10;
+    lbl_1_bss_8F878.unk_23 = 0x30 + (v21 / 1000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_24 = 0x30 + (v21 / 10000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_25 = 0x30 + (v21 / 100000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_26 = 45;
+    lbl_1_bss_8F878.unk_27 = 0x30 + (v21 / 1000000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_28 = 0x30 + (v21 / 10000000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_29 = 0x30 + (v21 / 100000000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_2A = 0x30 + (v21 / 1000000000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_2B = 45;
+    lbl_1_bss_8F878.unk_2C = 0x30 + (v21 / 10000000000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_2D = 0x30 + (v21 / 100000000000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_2E = 0x30 + (v21 / 1000000000000000000ULL) % 10;
+    lbl_1_bss_8F878.unk_2F = 0x30 + (v21 / 10000000000000000000ULL) % 10;
+    set_seed((u32)(v21 % 1000) ^ 0xCAE87FB5);
+    v67 = next_random();
+    v69 = next_random();
+    v71 = next_random();
+    v76 = (u64)v71 * ((u64)v69 * (u64)v67);
+    for (v18 = 5; v18 < 24; v18 += 1) {
+        v82 = &lbl_1_bss_8F878.unk_18 + v18;
+        if (*v82 != 45) {
+            *v82 += v76 % 10;
+            if (*v82 > 57) {
+                *v82 -= 10;
+            }
+            v76 /= 10;
+        }
+    }
+    lbl_1_bss_8F878.unk_30 = 0;
+    return v21;
+}
+/* fzgx:end fn_1_15AC10 */
 
 /* fzgx:begin fn_1_15B3E8 */
 // Return the current ranking state byte.

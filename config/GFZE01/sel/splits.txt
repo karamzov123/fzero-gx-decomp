@@ -767,3 +767,12 @@ rel/sel/sel/fn_10_17814.c:
 
 rel/sel/sel/fn_10_5E94.c:
 	.text       start:0x00005E94 end:0x00006518 align:4
+
+rel/sel/sel/fn_10_117D0.c:
+	.text       start:0x000117D0 end:0x00012024 align:4
+
+rel/sel/sel/fn_10_2406C.c:
+	.text       start:0x0002406C end:0x00024BD0 align:4
+
+rel/sel/name_entry/fn_10_261E4.c:
+	.text       start:0x000261E4 end:0x00026424 align:4

@@ -286,6 +286,115 @@ void fn_3_B984(void *entries, u8 *table) {
 }
 /* fzgx:end fn_3_B984 */
 
+/* fzgx:begin fn_3_BA74 pool noprologue */
+#include "rel/customize/customize.h"
+
+extern u8 lbl_3_bss_6DE20[64832];
+extern void *lbl_801A6410;
+extern void *fn_1_45D0(void *, u32, void *, u32);
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_80008BA8(void *, void *, u32);
+extern void *fn_1_7F254(void *, s32);
+extern void fn_1_FDC00(void);
+extern void fn_1_FE014(void);
+extern void fn_1_FD324(void);
+extern int fn_1_FD844(void *, void *);
+
+/* 0x10440-byte per-slot context in lbl_3_bss_2C7C0 */
+typedef struct {
+    void *obj;
+    u8 unk_4;
+    u8 pad_5[7];
+    u32 unk_C;
+    u8 pad_10[0x10420 - 0x10];
+    u32 unk_10420;
+    void *unk_10424;
+    void *unk_10428;
+    void *unk_1042C;
+    u8 pad_10430[0x10];
+} CtxSlot;
+
+/* lbl_3_bss_2C7C0 is four slots */
+#define SLOTS (*(CtxSlot (*)[4])&lbl_3_bss_2C7C0)
+
+/* callback block at +0x10420 of each slot */
+typedef struct {
+    u32 unk_0;
+    void *unk_4;
+    void *unk_8;
+    void *unk_C;
+    u8 pad_10[sizeof(CtxSlot) - 0x10];
+} CtxSlotHi;
+#define HI ((CtxSlotHi *)((u8 *)&lbl_3_bss_2C7C0 + 0x10420))
+
+#pragma opt_common_subs off
+typedef struct lbl_3_bss_F0_t {
+    u8 pad_0[0x8];
+    s16 unk_8;
+    u8 pad_A[0x26];
+} lbl_3_bss_F0_t;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+lbl_3_bss_F0_t fzgx_obj_lbl_3_bss_F0;
+u32 lbl_3_bss_120[8];
+u32 fzgx_obj_lbl_3_bss_140[33217];
+u16 lbl_3_bss_20844;
+u16 lbl_3_bss_F0_gap_20846;
+u32 fzgx_obj_lbl_3_bss_20848;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;
+    s = *(u8 *)&lbl_3_bss_120;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_140;
+    s = *(u8 *)&lbl_3_bss_20844;
+    s = *(u8 *)&lbl_3_bss_F0_gap_20846;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_20848;
+}
+#pragma section code_type ".text"
+
+void fn_3_BA74(void)
+{
+    s32 tmp_cse1;
+    u32 *buf;
+    u8 *base;
+    u8 idx;
+    CtxSlot *ctx;
+    u8 i;
+    u32 off;
+
+    idx = fzgx_obj_lbl_3_bss_F0.unk_8;
+    lbl_3_bss_7EBA4 = fn_1_45D0(lbl_801A6410, 0x440, lbl_3_data_11DC, 0x1281);
+    lbl_3_bss_7EBA8 = (u32)fn_1_45D0(lbl_801A6410, 0xA20, lbl_3_data_11DC, 0x1282);
+    fn_80008BEC(lbl_3_bss_7EBA4, 0, 0x440);
+    fn_80008BEC((void *)lbl_3_bss_7EBA8, 0, 0xA20);
+    buf = &lbl_3_bss_7EBA8;
+    lbl_3_bss_7EBA4->unk_3A0 = *buf;
+    base = (u8 *)&fzgx_obj_lbl_3_bss_140 + idx * 0x81C0;
+    for (i = 0; i < 3; i++) {
+        tmp_cse1 = i * 0x360;
+        fn_80008BA8((u8 *)*buf + tmp_cse1,
+                    lbl_3_bss_6DE20 + ((*((0x81A4 + i * 8) + (base))) - i * 25) * 0xA20 + tmp_cse1,
+                    0x360);
+    }
+    lbl_3_bss_7EBA4->unk_390 = 0x4000000;
+    lbl_3_bss_7EBA4->unk_3A4 = (u32)fn_1_7F254(base, 2);
+    off = idx * sizeof(CtxSlot);
+    ctx = (CtxSlot *)((u8 *)&lbl_3_bss_2C7C0 + off);
+    ctx->unk_4 = 4;
+    lbl_3_bss_7EBA4->unk_3BA = 1;
+    ctx->obj = lbl_3_bss_7EBA4;
+    ((CtxSlotHi *)((u8 *)HI + off))->unk_8 = fn_1_FDC00;
+    ((CtxSlotHi *)((u8 *)HI + off))->unk_C = fn_1_FE014;
+    ((CtxSlotHi *)((u8 *)HI + off))->unk_4 = fn_1_FD324;
+    ((CtxSlotHi *)((u8 *)HI + off))->unk_0 = 0;
+    ctx->unk_C = 0x20000000;
+    fn_1_FD844(base, ctx);
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_3_BA74 */
+
 /* fzgx:begin fn_3_BC60 */
 void fn_3_BC60(void) {
     u32 *value;

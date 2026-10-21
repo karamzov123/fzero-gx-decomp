@@ -5872,6 +5872,271 @@ void fn_1_B1710(int unused, void *ptr) {
 }
 /* fzgx:end fn_1_B1710 */
 
+/* fzgx:begin fn_1_B171C noprologue */
+#include "types.h"
+#include "rel/main_rel/memcard.h"
+
+extern void OSReport(const char *, ...);
+extern void OSPanic(const char *, int, const char *, ...);
+extern s32 CARDUnmount(s32);
+extern void fn_1_46B4(u32, void *, const char *, int);
+extern u32 lbl_801A6410;
+extern s32 lbl_801A66B4;
+extern f32 lbl_1_rodata_4AE0[114];
+extern const f32 lbl_1_rodata_4CA8;
+extern const char *fn_80019C48(void);
+extern u32 strlen(const char *);
+extern char *fn_80083970(char *, const char *);
+extern s32 strncmp(const char *, const char *, u32);
+extern char *strncpy(char *, const char *, u32);
+typedef struct FileEntry {
+ u8 unk_0, unk_1; char name[0x22]; u32 unk_24, unk_28; u8 pad[4];
+} FileEntry;
+typedef struct CardState {
+ u8 unk_0, unk_1; u8 pad_2[2]; s32 unk_4; u32 unk_8;
+ u8 pad_C[0xC]; u32 unk_18, unk_1C;
+ char unk_20[0x20]; u32 unk_40, unk_44; char unk_48[4], unk_4C[2];
+ u8 pad_4E[0x46]; FileEntry *unk_94; u8 pad_98[0x50]; u32 unk_E8;
+} CardState;
+typedef struct CardContext {
+ u8 unk_0; s8 unk_1; u8 unk_2, unk_3, unk_4, unk_5, unk_6, unk_7;
+ s16 unk_8, unk_A; void *unk_C; u8 pad_10[0x14]; CardState *unk_24;
+ s8 unk_28; u8 unk_29, unk_2A, unk_2B, unk_2C, unk_2D; u8 pad_2E[2];
+ u32 unk_30; f32 unk_34, unk_38;
+} CardContext;
+static inline void reset_context(CardContext *p, u8 *b) {
+ p->unk_24 = 0;
+ p->unk_2 = 255; p->unk_3 = 255; p->unk_4 = 255; p->unk_5 = 255; p->unk_6 = 255;
+ p->unk_7 = 0; p->unk_8 = -1; p->unk_A = -1;
+ p->unk_30 = 0; p->unk_34 = lbl_1_rodata_4CA8; p->unk_38 = lbl_1_rodata_4CA8;
+ p->unk_2A &= ~4;
+ b[0x5C08] = 0; b[0x1F8] = 1;
+}
+void fn_1_B171C(void *arg0) {
+ u8 *p_lbl_1_data_35AC8;
+ u8 *p_lbl_1_bss_716C0;
+ CardContext *p = arg0;
+ u32 v0;
+ p_lbl_1_data_35AC8 = (u8 *)&lbl_1_data_35AC8;
+ p_lbl_1_bss_716C0 = (u8 *)&lbl_1_bss_716C0;
+ OSReport((char *)p_lbl_1_data_35AC8 + 0x708C, p->unk_4);
+ v0 = p->unk_4;
+ if (v0 == 255) return;
+ switch (v0) {
+ default:
+ OSReport((char *)p_lbl_1_data_35AC8 + 0x6DDC, v0);
+ OSReport((char *)p_lbl_1_data_35AC8 + 0x6DF0, p->unk_3);
+ OSPanic((char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x151C, (char *)p_lbl_1_data_35AC8 + 0x6E04);
+ break;
+ case 1: {
+ u32 flags;
+ Obj_1_bss_9F8 *input;
+ p->unk_24->unk_8 &= ~0x200;
+ flags = p->unk_24->unk_8;
+ if (flags & 0x8000) p->unk_3 = 27;
+ else {
+ input = &lbl_1_bss_9F8;
+ if ((input->unk_8 >> 8) & 1) p->unk_3 = 27;
+ else if (((input->unk_8 >> 11) & 1) && !(flags & 2)) {
+ if (p->unk_5 == 3 && p->unk_C != 0) {
+ do {} while (CARDUnmount(p->unk_0) == -1);
+ fn_1_46B4(lbl_801A6410, p->unk_C, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x152E);
+ p->unk_7 = 0; p->unk_C = 0;
+ { CardState *s = p->unk_24; s->unk_1C = 0; s->unk_18 = 0; }
+ }
+ if (p->unk_6 != 255) { p->unk_3 = p->unk_6; p->unk_6 = 255; }
+ else p->unk_3 = p->unk_5;
+ p->unk_8 = -1; p->unk_A = -1; p->unk_2A &= ~4;
+ /* The alternate action resamples the live input rather than using the earlier snapshot. */
+ } else if ((((volatile Obj_1_bss_9F8 *)input)->unk_8 >> 10) & 1) {
+ /* Fetch the current card-state pointer when processing the newly sampled action. */
+ if (((volatile CardContext *)p)->unk_24->unk_8 & 0x400) {
+ p->unk_3 = 5; p->unk_24->unk_8 &= ~0x400; p->unk_24->unk_8 |= 0x200;
+ p->unk_2A &= ~4; p->unk_2A |= 0x10;
+ }
+ }
+ }
+ p_lbl_1_bss_716C0[0x5C49] = 0;
+ break;
+ }
+ case 27:
+ if (p->unk_24->unk_8 & 0x8000) p->unk_2 = 254;
+ else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) p->unk_2 = 254;
+ break;
+ case 3:
+ if (p->unk_1 == -127) {
+ p->unk_24->unk_4 = p->unk_1; p->unk_3 = 1; break;
+ }
+ switch (p->unk_24->unk_4) {
+ case -5: p->unk_24->unk_8 |= 2;
+ case -128: case -3: case -2: p->unk_3 = 1; break;
+ case -13:
+ if (p->unk_24->unk_8 & 0x8000) { p->unk_2A |= 4; p->unk_2 = 254; }
+ else if (lbl_801A66B4 == 5) p->unk_3 = 5;
+ else { p->unk_24->unk_8 |= 0x400; p->unk_3 = 1; }
+ break;
+ case -1: break;
+ case -6: case 0: p->unk_3 = 4; break;
+ default: p->unk_3 = 0; break;
+ }
+ break;
+ case 38: p->unk_3 = 3; break;
+ case 4:
+ switch (p->unk_24->unk_4) {
+ case -5: p->unk_24->unk_8 |= 2;
+ case -128: case -3: p->unk_3 = 1; break;
+ case -6:
+ if (p->unk_24->unk_8 & 0x8000) { p->unk_2A |= 4; p->unk_2 = 254; }
+ else p->unk_3 = 5;
+ break;
+ case -13:
+ if (p->unk_24->unk_8 & 0x8000) { p->unk_2A |= 4; p->unk_2 = 254; }
+ else if (lbl_801A66B4 == 5) p->unk_3 = 5;
+ else { p->unk_24->unk_8 |= 0x400; p->unk_3 = 1; }
+ break;
+ case -1: break;
+ case 0: p->unk_3 = 7; break;
+ default: p->unk_3 = 0; break;
+ }
+ break;
+ case 5:
+ if (p->unk_24->unk_4 != 0) {
+ int done;
+ if (!(p->unk_2A & 1)) { p->unk_28 = 12; p->unk_2A |= 1; done = 0; }
+ else if (p->unk_28 > 0) { p->unk_28--; done = 0; }
+ else done = 1;
+ if (done) {
+ if (p->unk_24->unk_4 == 2 || p->unk_24->unk_1 == 1) { p->unk_24->unk_4 = -126; p->unk_3 = 1; }
+ else { p->unk_3 = 6; p->unk_24->unk_8 |= 0x200; }
+ }
+ }
+ break;
+ case 6:
+ switch (p->unk_24->unk_4) {
+ case -5: p->unk_24->unk_8 |= 2;
+ case -128: case -3: p->unk_3 = 1; break;
+ case -1: break;
+ case 0: p->unk_3 = 22; p->unk_24->unk_8 &= ~0x200; break;
+ default: p->unk_3 = 0; break;
+ }
+ break;
+ case 22:
+ if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) { p->unk_3 = 27; p->unk_24->unk_4 = -121; }
+ break;
+ case 7:
+ switch (p->unk_24->unk_4) {
+ case -128: case -3: p->unk_3 = 1; break;
+ case -1: break;
+ case 0: p->unk_3 = 25; break;
+ default: p->unk_3 = 0; break;
+ }
+ break;
+ case 25:
+ switch (p->unk_24->unk_4) {
+ case -128: case -3: p->unk_3 = 1; break;
+ case -4: case -10: p->unk_2C++; break;
+ case -1: break;
+ case 0:
+ if (p->unk_24->unk_E8 & 4) {
+ const char *prefix;
+ u32 size;
+ u32 len;
+ const char *game;
+ char *end;
+ game = fn_80019C48();
+ prefix = (char *)lbl_1_rodata_4AE0 + 0x98;
+ len = strlen(prefix);
+ end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
+ if (!strncmp(p->unk_24->unk_48, game, 4) &&
+ !strncmp(p->unk_24->unk_4C, (char *)p_lbl_1_data_35AC8 + 0x7088, 2) &&
+ !strncmp(p->unk_24->unk_20, prefix, len) && end != 0) {
+ FileEntry *entry;
+ char *start;
+ entry = &p->unk_24->unk_94[p->unk_2D];
+ start = p->unk_24->unk_20 + len;
+ size = end - start;
+ strncpy(entry->name, start, size); entry->name[size] = 0;
+ entry->unk_1 = 2; entry->unk_24 = p->unk_24->unk_40; entry->unk_28 = p->unk_24->unk_44;
+ p->unk_2D++;
+ }
+ }
+ if (p->unk_24->unk_E8 & 0x10) {
+ const char *prefix;
+ u32 len;
+ const char *game;
+ char *end;
+ game = fn_80019C48();
+ prefix = (char *)lbl_1_rodata_4AE0 + 0x130;
+ len = strlen(prefix);
+ end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
+ if (!strncmp(p->unk_24->unk_48, game, 4) &&
+ !strncmp(p->unk_24->unk_4C, (char *)p_lbl_1_data_35AC8 + 0x7088, 2) &&
+ !strncmp(p->unk_24->unk_20, prefix, len) && end != 0) {
+ u32 size;
+ FileEntry *entry;
+ char *start;
+ entry = &p->unk_24->unk_94[p->unk_2D];
+ start = p->unk_24->unk_20 + len;
+ size = end - start;
+ strncpy(entry->name, start, size); entry->name[size] = 0;
+ entry->unk_1 = 4; entry->unk_24 = p->unk_24->unk_40; entry->unk_28 = p->unk_24->unk_44;
+ p->unk_2D++;
+ }
+ }
+ if (p->unk_24->unk_E8 & 0x20) {
+ const char *prefix;
+ u32 len;
+ const char *game;
+ char *end;
+ game = fn_80019C48();
+ prefix = (char *)lbl_1_rodata_4AE0 + 0x17C;
+ len = strlen(prefix);
+ end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
+ if (!strncmp(p->unk_24->unk_48, game, 4) &&
+ !strncmp(p->unk_24->unk_4C, (char *)p_lbl_1_data_35AC8 + 0x7088, 2) &&
+ !strncmp(p->unk_24->unk_20, prefix, len) && end != 0) {
+ u32 size;
+ FileEntry *entry;
+ char *start;
+ entry = &p->unk_24->unk_94[p->unk_2D];
+ start = p->unk_24->unk_20 + len;
+ size = end - start;
+ strncpy(entry->name, start, size); entry->name[size] = 0;
+ entry->unk_1 = 5; entry->unk_24 = p->unk_24->unk_40; entry->unk_28 = p->unk_24->unk_44;
+ p->unk_2D++;
+ }
+ }
+ p->unk_2C++;
+ break;
+ default: p->unk_3 = 0; break;
+ }
+ if (p->unk_2C == 127 || p->unk_3 != 255) {
+ *(u32 *)((u8 *)p->unk_24->unk_94 + p->unk_2D * 0x30 + 0x24) = 0;
+ if (p->unk_3 == 255) p->unk_3 = 26;
+ }
+ break;
+ case 26:
+ if (p->unk_24->unk_8 & 4) {
+ int done;
+ if (!(p->unk_24->unk_8 & 8)) { p->unk_28 = 45; p->unk_24->unk_8 |= 8; done = 0; }
+ else if (p->unk_28 > 0) { p->unk_28--; done = 0; }
+ else done = 1;
+ if (done) {
+ *(s32 *)(p_lbl_1_bss_716C0 + 0x1F4) = p->unk_24->unk_4;
+ fn_1_46B4(lbl_801A6410, p->unk_24, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x3EC);
+ reset_context(p, p_lbl_1_bss_716C0);
+ }
+ } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+ *(s32 *)(p_lbl_1_bss_716C0 + 0x1F4) = p->unk_24->unk_4;
+ fn_1_46B4(lbl_801A6410, p->unk_24, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x3EC);
+ reset_context(p, p_lbl_1_bss_716C0);
+ }
+ break;
+ }
+ if (p->unk_24 != 0) *(s32 *)(p_lbl_1_bss_716C0 + 0x1F4) = p->unk_24->unk_4;
+}
+/* fzgx:end fn_1_B171C */
+
 /* fzgx:begin fn_1_B2770 */
 // fn_1_B2770: main_rel .text:0x000B2770 size 0xC
 // Store byte 0x3 at offset 3 of the pointer argument
@@ -7007,6 +7272,366 @@ void fn_1_B40B4(int unused, void *ptr) {
     *(u8 *)((u8 *)ptr + 3) = 0x3;
 }
 /* fzgx:end fn_1_B40B4 */
+
+/* fzgx:begin fn_1_B40C0 noprologue */
+#include "types.h"
+#include "dolphin/card.h"
+#include "rel/main_rel/memcard.h"
+
+typedef struct B40Entry {
+    s32 unk_0;
+    u8 pad_4[4];
+    const char *unk_8;
+    u8 unk_C[32];
+    s32 unk_2C;
+} B40Entry;
+
+typedef struct B40Work {
+    u8 unk_0;
+    u8 unk_1;
+    u16 unk_2;
+    s32 unk_4;
+    u32 unk_8;
+    u8 pad_C[12];
+    u32 unk_18;
+    u32 unk_1C;
+    CARDStat unk_20;
+    u8 pad_8C[8];
+    B40Entry *unk_94;
+} B40Work;
+
+typedef struct B40State {
+    u8 unk_0;
+    s8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u8 unk_4;
+    u8 unk_5;
+    u8 unk_6;
+    u8 unk_7;
+    s16 unk_8;
+    s16 unk_A;
+    u32 unk_C;
+    u8 pad_10[20];
+    B40Work *unk_24;
+    s8 unk_28;
+    u8 unk_29;
+    u8 unk_2A;
+    u8 unk_2B;
+    u8 unk_2C;
+    u8 pad_2D[3];
+    u32 unk_30;
+    f32 unk_34;
+    f32 unk_38;
+} B40State;
+
+extern u32 lbl_801A6410;
+extern s32 lbl_801A66B4;
+extern const f32 lbl_1_rodata_4CA8;
+extern void fn_1_46B4(u32, u32, const char *, int);
+extern void OSReport(const char *, ...);
+extern void OSPanic(const char *, int, const char *, ...);
+extern const char *fn_80019C48(void);
+extern u8 *fn_80083970(u8 *, const u8 *);
+extern s32 strncmp(const char *, const char *, u32);
+extern u32 strlen(const char *);
+
+typedef union B40InputBits {
+    struct { u16 pad : 7; u16 value : 9; } a;
+    struct { u16 pad : 4; u16 value : 12; } b;
+    struct { u16 pad : 5; u16 value : 11; } c;
+} B40InputBits;
+
+void fn_1_B40C0(void *arg0)
+{
+    u8 *p_lbl_1_data_35AC8;
+    u8 *p_lbl_1_bss_716C0;
+    u8 *p_jumptable_1_data_3CD44;
+    B40State *s = arg0;
+    u8 *end;
+    u32 suffix_len;
+    B40Entry *entry;
+    const char *game;
+    u32 len;
+    s32 done;
+    u32 i;
+    p_lbl_1_data_35AC8 = (u8 *)&lbl_1_data_35AC8;
+    p_lbl_1_bss_716C0 = (u8 *)&lbl_1_bss_716C0;
+    p_jumptable_1_data_3CD44 = jumptable_1_data_3CD44;
+    for (;;) {
+        if (s->unk_4 == 255)
+            return;
+        switch (s->unk_4) {
+        default:
+            OSReport((char *)p_lbl_1_data_35AC8 + 0x6ddc, s->unk_4);
+            OSReport((char *)p_lbl_1_data_35AC8 + 0x6df0, s->unk_3);
+            OSPanic((char *)p_lbl_1_data_35AC8 + 0x6cf0, 0x1bbe, (char *)p_lbl_1_data_35AC8 + 0x6e04);
+            break;
+        case 1:
+            s->unk_24->unk_8 &= ~0x200;
+            if ((done = s->unk_24->unk_8) & 0x8000) {
+                s->unk_3 = 27;
+            /* Sample controller input independently of work-state writes. */
+            } else if (((((B40InputBits *)&lbl_1_bss_9F8.unk_8)->a.value >> 8) & 1)) {
+                s->unk_3 = 27;
+            } else if (((((B40InputBits *)&lbl_1_bss_9F8.unk_8)->b.value >> 11) & 1) && !(done & 2)) {
+                if (s->unk_5 == 3 && s->unk_C != 0) {
+                    while (CARDUnmount(s->unk_0) == -1) {}
+                    fn_1_46B4(lbl_801A6410, s->unk_C, (char *)p_lbl_1_data_35AC8 + 0x6cf0, 0x1bd0);
+                    s->unk_7 = 0;
+                    s->unk_C = 0;
+                    { B40Work *w = s->unk_24; w->unk_1C = 0; w->unk_18 = 0; }
+                }
+                if (s->unk_6 != 255) {
+                    s->unk_3 = s->unk_6;
+                    s->unk_6 = 255;
+                } else {
+                    s->unk_3 = s->unk_5;
+                }
+                s->unk_8 = -1;
+                s->unk_A = -1;
+                s->unk_2A &= ~4;
+            /* Sample the input and work pointer again for the format action. */
+            } else if ((((((volatile B40InputBits *)&lbl_1_bss_9F8.unk_8)->c.value >> 10) & 1)) && ((*(B40Work *volatile *)&s->unk_24)->unk_8 & 0x400)) {
+                s->unk_3 = 5;
+                s->unk_24->unk_8 &= ~0x400;
+                s->unk_24->unk_8 |= 0x200;
+                s->unk_2A &= ~4;
+                s->unk_2A |= 0x10;
+            }
+            p_lbl_1_bss_716C0[0x5c49] = 0;
+            break;
+        case 27:
+            if (s->unk_24->unk_8 & 0x8000) {
+                s->unk_2 = 254;
+            } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+                s->unk_2 = 254;
+            }
+            break;
+        case 3:
+            if (s->unk_1 == -127) {
+                s->unk_24->unk_4 = s->unk_1;
+                s->unk_3 = 1;
+                break;
+            }
+            switch (s->unk_24->unk_4) {
+            case -1: break;
+            case -5:
+                s->unk_24->unk_8 |= 2;
+            case -128: case -3: case -2:
+                s->unk_3 = 1;
+                break;
+            case -13:
+                if (s->unk_24->unk_8 & 0x8000) {
+                    s->unk_2A |= 4;
+                    s->unk_2 = 254;
+                } else if (lbl_801A66B4 == 5) {
+                    s->unk_3 = 5;
+                } else {
+                    s->unk_24->unk_8 |= 0x400;
+                    s->unk_3 = 1;
+                }
+                break;
+            case 0: case -6:
+                s->unk_3 = 4;
+                break;
+            default:
+                s->unk_3 = 0;
+                break;
+            }
+            break;
+        case 38:
+            s->unk_3 = 3;
+            break;
+        case 4:
+            switch (s->unk_24->unk_4) {
+            case -1: break;
+            case -5: s->unk_24->unk_8 |= 2;
+            case -128: case -3:
+                s->unk_3 = 1;
+                break;
+            case -6:
+                if (s->unk_24->unk_8 & 0x8000) {
+                    s->unk_2A |= 4;
+                    s->unk_2 = 254;
+                } else {
+                    s->unk_3 = 5;
+                }
+                break;
+            case -13:
+                if (s->unk_24->unk_8 & 0x8000) {
+                    s->unk_2A |= 4;
+                    s->unk_2 = 254;
+                } else if (lbl_801A66B4 == 5) {
+                    s->unk_3 = 5;
+                } else {
+                    s->unk_24->unk_8 |= 0x400;
+                    s->unk_3 = 1;
+                }
+                break;
+            case 0: s->unk_3 = 7; break;
+            default: s->unk_3 = 0; break;
+            }
+            break;
+        case 5:
+            if (s->unk_24->unk_4 != 0) {
+                if (!(s->unk_2A & 1)) {
+                    s->unk_28 = 12;
+                    s->unk_2A |= 1;
+                    done = 0;
+                } else if (s->unk_28 > 0) {
+                    s->unk_28--;
+                    done = 0;
+                } else {
+                    done = 1;
+                }
+                if (done) {
+                    if (s->unk_24->unk_4 == 2 || s->unk_24->unk_1 == 1) {
+                        s->unk_24->unk_4 = -126;
+                        s->unk_3 = 1;
+                    } else {
+                        s->unk_3 = 6;
+                        s->unk_24->unk_8 |= 0x200;
+                    }
+                }
+            }
+            break;
+        case 6:
+            switch (s->unk_24->unk_4) {
+            case -1: break;
+            case -5: s->unk_24->unk_8 |= 2;
+            case -128: case -3: s->unk_3 = 1; break;
+            case 0:
+                s->unk_3 = 22;
+                s->unk_24->unk_8 &= ~0x200;
+                break;
+            default: s->unk_3 = 0; break;
+            }
+            break;
+        case 22:
+            if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+                s->unk_3 = 27;
+                s->unk_24->unk_4 = -121;
+            }
+            break;
+        case 7:
+            switch (s->unk_24->unk_4) {
+            case -1: break;
+            case -128: case -3: s->unk_3 = 1; break;
+            case 0: s->unk_3 = 35; break;
+            default: s->unk_3 = 0; break;
+            }
+            break;
+        case 35:
+            switch (s->unk_24->unk_4) {
+            case -1: break;
+            case -128: case -3: s->unk_3 = 1; break;
+            case -4: case -10: s->unk_2C++; break;
+            case 0:
+                game = fn_80019C48();
+                end = fn_80083970((u8 *)&s->unk_24->unk_20, p_lbl_1_data_35AC8 + 0x6cfc);
+                if (strncmp((char *)s->unk_24->unk_20.gameName, game, 4) == 0 &&
+                    strncmp((char *)s->unk_24->unk_20.company, (char *)&p_lbl_1_data_35AC8[0x7088], 2) == 0) {
+                    for (i = 0; i < 127; i++) {
+                        entry = &s->unk_24->unk_94[i];
+                        if (entry != 0 && entry->unk_0 != 0) {
+                            len = strlen(entry->unk_8);
+                            suffix_len = end - ((u8 *)s->unk_24 + 0x20 + len);
+                            if (strncmp((char *)&s->unk_24->unk_20, entry->unk_8, len) == 0) {
+                                if (entry->unk_C[0] == 0) {
+                                    entry->unk_2C = 1;
+                                } else if (strncmp((char *)entry->unk_C, (char *)s->unk_24 + 0x20 + len, suffix_len) == 0) {
+                                    entry->unk_2C = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                done = 1;
+                for (i = 0; i < 127; i++) {
+                    entry = &s->unk_24->unk_94[i];
+                    if (entry->unk_0 != 0 && entry->unk_2C == 0) {
+                        done = 0;
+                    }
+                }
+                s->unk_2C++;
+                if (done) {
+                    s->unk_2C = 127;
+                    s->unk_3 = 255;
+                }
+                break;
+            default: s->unk_3 = 0; break;
+            }
+            if (s->unk_3 != 1) {
+                if (s->unk_2C == 127 || s->unk_3 != 255) {
+                    if (s->unk_3 == 255)
+                        s->unk_3 = 34;
+                } else if (s->unk_4 == 35 && s->unk_24->unk_4 == 0) {
+                    s->unk_24->unk_4 = CARDGetStatus(s->unk_0, s->unk_2C, &s->unk_24->unk_20);
+                    if (s->unk_2C == 126)
+                        s->unk_24->unk_2 = 0;
+                    continue;
+                }
+            }
+            break;
+        case 34:
+            if (s->unk_24->unk_8 & 4) {
+                if (!(s->unk_24->unk_8 & 8)) {
+                    s->unk_28 = 45;
+                    s->unk_24->unk_8 |= 8;
+                    done = 0;
+                } else if (s->unk_28 > 0) {
+                    s->unk_28--;
+                    done = 0;
+                } else {
+                    done = 1;
+                }
+                if (done) {
+                    *(s32 *)(p_lbl_1_bss_716C0 + 0x1f4) = s->unk_24->unk_4;
+                    fn_1_46B4(lbl_801A6410, (u32)s->unk_24, (char *)p_lbl_1_data_35AC8 + 0x6cf0, 0x3ec);
+                    s->unk_24 = 0;
+                    s->unk_2 = 255;
+                    s->unk_3 = 255;
+                    s->unk_4 = 255;
+                    s->unk_5 = 255;
+                    s->unk_6 = 255;
+                    s->unk_7 = 0;
+                    s->unk_8 = -1;
+                    s->unk_A = -1;
+                    s->unk_30 = 0;
+                    s->unk_34 = lbl_1_rodata_4CA8;
+                    s->unk_38 = lbl_1_rodata_4CA8;
+                    s->unk_2A &= ~4;
+                    p_lbl_1_bss_716C0[0x5c08] = 0;
+                    p_lbl_1_bss_716C0[0x1f8] = 1;
+                }
+            } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+                *(s32 *)(p_lbl_1_bss_716C0 + 0x1f4) = s->unk_24->unk_4;
+                fn_1_46B4(lbl_801A6410, (u32)s->unk_24, (char *)p_lbl_1_data_35AC8 + 0x6cf0, 0x3ec);
+                s->unk_24 = 0;
+                s->unk_2 = 255;
+                s->unk_3 = 255;
+                s->unk_4 = 255;
+                s->unk_5 = 255;
+                s->unk_6 = 255;
+                s->unk_7 = 0;
+                s->unk_8 = -1;
+                s->unk_A = -1;
+                s->unk_30 = 0;
+                s->unk_34 = lbl_1_rodata_4CA8;
+                s->unk_38 = lbl_1_rodata_4CA8;
+                s->unk_2A &= ~4;
+                p_lbl_1_bss_716C0[0x5c08] = 0;
+                p_lbl_1_bss_716C0[0x1f8] = 1;
+            }
+            break;
+        }
+        break;
+    }
+    if (s->unk_24 != 0)
+        *(s32 *)(p_lbl_1_bss_716C0 + 0x1f4) = s->unk_24->unk_4;
+}
+/* fzgx:end fn_1_B40C0 */
 
 /* fzgx:begin fn_1_B5258 noprologue */
 #include "types.h"

@@ -638,3 +638,12 @@ rel/customize/editor/fn_3_17100.c:
 
 rel/customize/toolkit/fn_3_2AAF4.c:
 	.text       start:0x0002AAF4 end:0x0002B268 align:4
+
+rel/customize/editor/fn_3_156D0.c:
+	.text       start:0x000156D0 end:0x00015F44 align:4
+
+rel/customize/_prolog/fn_3_48E0.c:
+	.text       start:0x000048E0 end:0x00004A84 align:4
+
+rel/customize/customize/fn_3_BA74.c:
+	.text       start:0x0000BA74 end:0x0000BC60 align:4

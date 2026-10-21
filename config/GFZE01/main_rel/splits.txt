@@ -8291,3 +8291,51 @@ rel/main_rel/font/fn_1_50190.c:
 
 rel/main_rel/bg_common/fn_1_103FCC.c:
 	.text       start:0x00103FCC end:0x00104710 align:4
+
+rel/main_rel/effect_car/fn_1_6A7A4.c:
+	.text       start:0x0006A7A4 end:0x0006AF70 align:4
+
+rel/main_rel/ranking/fn_1_15AC10.c:
+	.text       start:0x0015AC10 end:0x0015B3E8 align:4
+
+rel/main_rel/archive/fn_1_12E468.c:
+	.text       start:0x0012E468 end:0x0012ECA8 align:4
+
+rel/main_rel/memcard/fn_1_B40C0.c:
+	.text       start:0x000B40C0 end:0x000B4AC0 align:4
+
+rel/main_rel/memcard/fn_1_B171C.c:
+	.text       start:0x000B171C end:0x000B22AC align:4
+
+rel/main_rel/sel_static_disp/fn_1_13B548.c:
+	.text       start:0x0013B548 end:0x0013C134 align:4
+
+rel/main_rel/ranking/fn_1_159AE0.c:
+	.text       start:0x00159AE0 end:0x0015AC00 align:4
+
+rel/main_rel/camera/fn_1_C10C.c:
+	.text       start:0x0000C10C end:0x0000C178 align:4
+
+rel/main_rel/load/fn_1_45A58.c:
+	.text       start:0x00045A58 end:0x00045AD4 align:4
+
+rel/main_rel/screen_effect/fn_1_7BA48.c:
+	.text       start:0x0007BA48 end:0x0007BAF8 align:4
+
+rel/main_rel/driver/fn_1_AA590.c:
+	.text       start:0x000AA590 end:0x000AA6D8 align:4
+
+rel/main_rel/phys/fn_1_ECE04.c:
+	.text       start:0x000ECE04 end:0x000ECF68 align:4
+
+rel/main_rel/car/fn_1_854D4.c:
+	.text       start:0x000854D4 end:0x00085688 align:4
+
+rel/main_rel/ghost/fn_1_F0B5C.c:
+	.text       start:0x000F0B5C end:0x000F0D10 align:4
+
+rel/main_rel/car/fn_1_80CC4.c:
+	.text       start:0x00080CC4 end:0x00080F1C align:4
+
+rel/main_rel/car/fn_1_86E08.c:
+	.text       start:0x00086E08 end:0x00087074 align:4

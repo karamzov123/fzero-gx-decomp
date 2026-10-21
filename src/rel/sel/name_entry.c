@@ -934,6 +934,146 @@ void fn_10_260D4(void) {
 }
 /* fzgx:end fn_10_260D4 */
 
+/* fzgx:begin fn_10_261E4 pool */
+#include "dolphin/hw_regs.h"
+
+extern u8 lbl_10_bss_55CDC;
+extern s16 lbl_1_bss_960;
+extern u32 lbl_801A6410;
+extern void fn_1_435C(u32 value);
+extern void fn_1_426C(u32 value);
+extern void fn_1_A8F78(void);
+extern void fn_1_48140(int value);
+extern void fn_1_412A0(int value);
+extern u8 fn_1_B7C00(void);
+extern u8 fn_10_26434(void);
+extern void fn_10_26554(void);
+extern void fn_1_14BD94(void *);
+extern void fn_10_26424(void);
+extern u16 lbl_1_bss_9F8[5];
+extern u8 lbl_1_bss_8B3A0[0x9f];
+extern void fn_1_A2D84(void *);
+extern void fn_1_14BCBC(void *, u8);
+extern u8 lbl_1_bss_8E51D;
+extern u8 lbl_1_data_2B0D4[];
+extern u8 lbl_1_data_2B144[];
+extern s16 fn_1_12EF24(s16, s16);
+extern s32 fn_1_F89E4(u8);
+extern void fn_1_14A1AC(u8);
+extern void fn_1_14BC40(void);
+extern void fn_1_1554D0(void);
+extern void fn_1_1555B0(u8);
+extern void fn_1_47F74(s32);
+extern void fn_1_15555C(void);
+extern void fn_1_14BD74(void);
+
+
+typedef struct { u8 r, g, b, a; } Sig_fn_800081C8_Color;
+typedef Sig_fn_800081C8_Color Color;
+
+extern u32 lbl_801A66B4;
+
+extern Color fn_800081C8(Color, Color, f32);
+extern void fn_1_49410(void);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_495C8(u8);
+extern void fn_1_495B0(u32);
+extern void fn_1_49590(f32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4D494(void);
+extern void fn_1_49514(Color);
+extern void fn_1_4AE0C(const char *, ...);
+extern u32 fn_1_4D4C8(Color, f32, f32);
+extern void fn_1_49528(Color);
+
+/*
+ * Layout stand-in for the TU's .data block at lbl_10_data_6A48: the erase-dialog
+ * strings and the per-language pointer tables (question, YES, NO). The pointer
+ * tables are relocations in retail; here they are zero words so the private
+ * section's bytes can be proven equal and bound to the retail objects at submit.
+ */
+#pragma explicit_zero_data on
+static char sQuestionEn[32] = "OK to erase this course record?";
+static char sQuestionGe[36] = "GER OK to erase this course record?";
+static char sQuestionFr[36] = "FRE OK to erase this course record?";
+static char sQuestionSp[36] = "SPA OK to erase this course record?";
+static char sQuestionIt[36] = "ITA OK to erase this course record?";
+static char sQuestionJp[52] =
+    "\x82\xB1\x82\xCC\x83\x52\x81\x5B\x83\x58\x82\xCC\x83\x8C\x83\x52\x81\x5B\x83\x68\x82\xF0\x0A"
+    "\x83\x4E\x83\x8A\x83\x41\x82\xB5\x82\xC4\x82\xE0\x82\xE6\x82\xEB\x82\xB5\x82\xA2\x82\xC5\x82\xB7\x82\xA9\x3F";
+static char *sEraseQuestion[6] = {0};
+static char sYesEn[4] = "YES";
+static char sYesGe[8] = "GER YES";
+static char sYesFr[8] = "FRE YES";
+static char sYesSp[8] = "SPA YES";
+static char sYesIt[8] = "ITA YES";
+static char sYesJp[8] = "\x82\xCD\x82\xA2";
+static char *sEraseYes[6] = {0};
+static char sNoEn[4] = "NO";
+static char sNoGe[8] = "GER NO";
+static char sNoFr[8] = "FRE NO";
+static char sNoSp[8] = "SPA NO";
+static char sNoIt[8] = "ITA NO";
+static char sNoJp[8] = "\x82\xA2\x82\xA2\x82\xA6";
+static char *sEraseNo[6] = {0};
+#pragma explicit_zero_data reset
+
+/* Literal-pool primer: reproduces the order of the TU's shared .rodata pool. */
+extern void fzgx_pool_use(void *);
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_pool_fn_10_261E4(s32 x) {
+    s16 t0[14] = {0xB5, 0xB6, 0xAD, 0xB3, 0xB8, 0xB2, 0xB1, 0xAE, 0xB4, 0xB9, 0xB0, 0xAF, 0xB7, -1};
+    s16 t1[14] = {0xB5, 0xB6, 0xAD, 0xB3, 0xB8, 0xB2, 0xB1, 0xAE, 0xB4, 0xB9, 0xB0, 0xAF, 0xB7, -1};
+    fzgx_pool_use(t0);
+    fzgx_pool_use(t1);
+    fzgx_pool_use(sEraseQuestion);
+    fn_1_4955C(320.0f, 240.0f);
+    fn_1_4955C(0.1f, 400.0f);
+    fn_1_4955C(200.0f, 13.0f);
+    fn_1_4955C(26.0f, 1.5f);
+    fn_1_4955C(0.75f, 0.09f);
+    fn_1_4955C(0.5f, -1.0f);
+    fn_1_4955C(8.0f, 0.0f);
+    fn_1_4954C(x);
+}
+
+void fn_10_261E4(s32 arg0, u8 arg1) {
+    Color col = fn_800081C8((Color){0xA0, 0x50, 0x50, 0x00}, (Color){0xA0, 0xA0, 0xA0, 0x00}, 1.0f);
+
+    fn_1_49410();
+    fn_1_4955C(0.75f, 0.75f);
+    fn_1_4954C(0.09f);
+    fn_1_495C8(9);
+    fn_1_495B0(0x80000000);
+    fn_1_49590(0.5f);
+    fn_1_496FC(288.0f, arg0);
+    fn_1_495C8(10);
+    if (!arg1) {
+        fn_1_4D494();
+        fn_1_49514((Color){0xFF, 0xFF, 0xFF, 0x00});
+        fn_1_4AE0C("%s", sEraseYes[lbl_801A66B4]);
+        fn_1_4D4C8(col, 0.09f, 10.0f);
+    } else {
+        fn_1_49514((Color){0x70, 0x70, 0x70, 0x00});
+        fn_1_49528((Color){0x00, 0x00, 0x00, 0x00});
+        fn_1_4AE0C("%s", sEraseYes[lbl_801A66B4]);
+    }
+    fn_1_496FC(352.0f, arg0);
+    fn_1_495C8(8);
+    if (!arg1) {
+        fn_1_49514((Color){0x70, 0x70, 0x70, 0x00});
+        fn_1_49528((Color){0x00, 0x00, 0x00, 0x00});
+        fn_1_4AE0C("%s", sEraseNo[lbl_801A66B4]);
+    } else {
+        fn_1_4D494();
+        fn_1_49514((Color){0xFF, 0xFF, 0xFF, 0x00});
+        fn_1_4AE0C("%s", sEraseNo[lbl_801A66B4]);
+        fn_1_4D4C8(col, 0.09f, 10.0f);
+    }
+}
+/* fzgx:end fn_10_261E4 */
+
 /* fzgx:begin fn_10_26424 */
 void fn_10_26424(void) {
     lbl_10_bss_55CE2 = 1;
