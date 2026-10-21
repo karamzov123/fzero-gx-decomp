@@ -61,20 +61,21 @@ installing `zstd` was the remaining fix and is in `bootstrap.sh`, still unexerci
 
 ## Harvest outcome and leftovers (deltawave784/fzgx@13b0aeca)
 
-445 functions landed and link-verified (`state/forkimports/deltawave784.json`), the last 8
-through the selective/fix candidates above. The three DOL `#pragma optimize_for_size`
-functions and the other former "object match, link mismatch" cases all linked once landed
-alone; fn_1_10BA00's earlier failure was a `+swap` of `rel/main_rel/globals.h`, which the TU
-prologue also includes (now pinned).
+462 of the fork's 465 gains are landed and link-verified (`state/forkimports/deltawave784.json`;
+`kind` names the candidate). The last 25 came from the selective/fork-headers candidates above,
+plus two hand recipes:
+- `split-head` (4 pool matches: fn_3_E64, fn_3_130C8, fn_4_A82C, fn_8_5840): the fork defines the
+  TU's `.data` head as one array to put tables at their retail offsets. Our oracle binds an
+  anonymous `...data.0` base only to a same-start object named after the retail symbol
+  (`fzgx_obj_lbl_M_data_X`) and no larger than it, so split the array at the retail symbol's size;
+- `hand-view` (fn_1_12FD4): our generated header types a field differently from how the function
+  stores it; a local view struct cast from `&sym` matches in both the standalone and prologue forms.
 
-Left (20, bodies under `.fzgx/harvest/13b0aecab6ac-work/`):
-- matches refused by lint (15): the fork's C needs its own inline-asm vector helpers (A3:
-  fn_1_10846C, fn_1_113C58, fn_1_F6A8, fn_1_12D404), hardware `volatile`s or addresses
-  (S2/A1: fn_1_11E98, fn_1_12BB18, fn_1_12FD4, fn_1_14B1FC, fn_1_30054, fn_1_ECF88, fn_3_106FC,
-  fn_80068BFC), an unjustified `goto` (fn_8005D5A4), or allocator scaffolding (fn_1_65E8C,
-  fn_3_169B8). Never silence these with `fzgx-allow`;
-- near-misses (5): fn_3_E64, fn_3_130C8, fn_4_A82C, fn_8_5840 (about 98.5%), fn_3_6270
-  (does not compile here).
+The DOL `optimize_for_size` functions and the other former "link mismatch" cases linked once landed
+on their own. fn_1_10BA00's earlier failure was a header swap of a header the TU prologue includes.
+
+Left: fn_1_65E8C and fn_3_169B8 (the fork's C carries allocator scaffolding, inadmissible), and
+fn_3_6270 (94% here once its primer restores `.text`).
 
 ## Cloud session setup
 

@@ -71,7 +71,11 @@ options and with its names rebound by address; only oracle matches are submitted
 `fzgx verify` still gates the link. The first run against `deltawave784/fzgx`
 (`windows-and-types`) found 465 such functions, and 459 passed the oracle. **Fetch the
 active forks before starting new matching work** (`gh api repos/rayanht/fzgx/forks`). Cloud
-sessions: `tools/cloud/bootstrap.sh`, docs/CLOUD.md. Measured 2026-10-21, nothing left
+sessions: `tools/cloud/bootstrap.sh`, docs/CLOUD.md. Harvest candidates (raw, ours-prologue,
+selective, fork-headers, preprocessed) and their gates are in docs/CLOUD.md; candidates are checked
+in the spliced form (includes hoisted), because that is what the link compiles. On 2026-10-21 every
+fork of rayanht/fzgx and karamzov123/fzero-gx-decomp was compared by module+address: only
+deltawave784's `windows-and-types` holds matches we lack (462/465 landed, 3 left). Measured 2026-10-21, nothing left
 there: exact and opcode-identical clones (2 recipients), siblings with ≥70% opcode
 similarity (31 functions), SMB1 decomp as an engine donor (4 functions; it is also
 unlicensed).
