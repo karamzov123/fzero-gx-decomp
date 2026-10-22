@@ -23643,6 +23643,19 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80053DB4.c",
+    "symbols": [
+      "fn_80053DB4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80053EA0.c",
     "symbols": [
       "fn_80053EA0"
