@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (92.75% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (95.03% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -113,17 +113,19 @@ extern void fn_3_BFC(char *, void *, const char *, const char *);
 extern void fn_3_E64(u8 *);
 extern void fn_3_B984(void *, u8 *);
 
+static inline u32 key_bit(u32 value, u32 shift) { return (value >> shift) & 1; }
+
 static inline BOOL sub_check(u8 *b2, void *dst) {
     return fn_8008023C((u32)(b2 + 0x43C0), (u32)dst, 0x81C0) != 0;
 }
 
 #pragma opt_propagation off
-static inline void * *fn_3_8A90_array_read(void * *array) { return array; }
+static inline void **fn_3_8A90_array_read(void **array) { return array; }
 #pragma opt_lifetimes off
 void fn_3_8A90(void) {
-    u8 * lab_t1;
-    void * lab_t1_;
-    char * (* fzgx_live)[6];
+    u8 *lab_t1;
+    void *lab_t1_;
+    char *(*fzgx_live)[6];
     s16 crs;
     Obj_3_rodata_0 *ro;
     u8 *b2;
@@ -145,39 +147,41 @@ void fn_3_8A90(void) {
     void *e2;
 
     bss = &lbl_3_bss_0;
-    sp = (Sel *)&bss->unk_F0;
+    sp8 = (u8 *)bss + 0xF0;
     lbl_3_bss_7EC04 = 1;
-    sp8 = &sp->f_8;
-    crs = sp->f_8;
-    idx = sp->f_6;
+    sp = (Sel *)sp8;
+    crs = ((Sel *)sp8)->f_8;
+    idx = ((Sel *)sp8)->f_6;
     ro = &lbl_3_rodata_0;
     data = &lbl_3_data_0;
     b7 = (u8 *)bss + 0x70000;
     b2 = (u8 *)bss + 0x20000;
+    sp8 = (u8 *)sp8 + 8;
 
     if (bss->unk_1A) {
-        if (lbl_1_bss_9F8[idx].f_10 & 1 || lbl_1_bss_9F8[idx].f_12 & 1) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_10, 0) || key_bit(lbl_1_bss_9F8[idx].f_12, 0)) {
             *(u8 *)(b7 - 0x228C) = 0;
             fn_1_A2D84(0xA9011300);
         }
-        if (lbl_1_bss_9F8[idx].f_10 & 2 || lbl_1_bss_9F8[idx].f_12 & 2) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_10, 1) || key_bit(lbl_1_bss_9F8[idx].f_12, 1)) {
             *(u8 *)(b7 - 0x228C) = 1;
             fn_1_A2D84(0xA9011300);
         }
-        if (lbl_1_bss_9F8[idx].f_8 & 0x200) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_8, 9)) {
             *(u8 *)(b7 - 0x228C) = 1;
         }
-        if (lbl_1_bss_9F8[idx].f_8 & 0x100 || lbl_1_bss_9F8[idx].f_8 & 0x200) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_8, 8) || key_bit(lbl_1_bss_9F8[idx].f_8, 9)) {
             if (*(u8 *)(b7 - 0x228C) == 0) {
                 fn_1_A2D84(0xA9011100);
                 fn_1_FDFF4();
                 bss->unk_120 = 0x5D;
                 fn_1_1280(1);
-                temp = bss->unk_F0 | 0x40000000;
+                temp = bss->unk_F0;
                 *(void **)(b2 + 0x4374) = (void *)fn_3_B30;
                 data->unk_B4 = 0x5F;
                 *(void **)(b2 + 0x4378) = sp8;
-                bss->unk_F0 = temp;
+                bss->unk_F0 = temp | 0x40000000;
+
             } else {
                 fn_1_A2D84(0xA9011000);
             }
@@ -209,28 +213,29 @@ void fn_3_8A90(void) {
         fn_1_4AEC0(0);
         fn_1_4AEB4(ro->f_44);
         fn_3_E64(b7 - 0x228C);
-    } else if (bss->unk_1B) {
-        if (lbl_1_bss_9F8[idx].f_10 & 1 || lbl_1_bss_9F8[idx].f_12 & 1) {
+    }
+    else if (bss->unk_1B) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_10, 0) || key_bit(lbl_1_bss_9F8[idx].f_12, 0)) {
             *(u8 *)(b7 - 0x228C) = 0;
             fn_1_A2D84(0xA9011300);
         }
-        if (lbl_1_bss_9F8[idx].f_10 & 2 || lbl_1_bss_9F8[idx].f_12 & 2) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_10, 1) || key_bit(lbl_1_bss_9F8[idx].f_12, 1)) {
             *(u8 *)(b7 - 0x228C) = 1;
             fn_1_A2D84(0xA9011300);
         }
-        if (lbl_1_bss_9F8[idx].f_8 & 0x200) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_8, 9)) {
             *(u8 *)(b7 - 0x228C) = 1;
         }
-        if (lbl_1_bss_9F8[idx].f_8 & 0x100 || lbl_1_bss_9F8[idx].f_8 & 0x200) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_8, 8) || key_bit(lbl_1_bss_9F8[idx].f_8, 9)) {
             if (*(u8 *)(b7 - 0x228C) == 0) {
                 bss->unk_0 = 1;
                 bss->unk_120 = 0x5D;
                 fn_1_1280(1);
-                temp = bss->unk_F0 | 0x40000000;
+                temp = bss->unk_F0;
                 *(void **)(b2 + 0x4374) = (void *)fn_3_B30;
                 data->unk_B4 = 0x5F;
                 *(void **)(b2 + 0x4378) = sp8;
-                bss->unk_F0 = temp;
+                bss->unk_F0 = temp | 0x40000000;
                 fn_1_FDFF4();
                 lab_t1 = (u8 *)(b2 + 0x43C0);
                 fn_3_B984((void *)((u8 *)&lbl_3_bss_140 + (crs * 0x81C0)), lab_t1);
@@ -266,28 +271,29 @@ void fn_3_8A90(void) {
         fn_1_4AEC0(0);
         fn_1_4AEB4(ro->f_44);
         fn_3_E64(b7 - 0x228C);
-    } else if (bss->unk_1C) {
-        if (lbl_1_bss_9F8[idx].f_10 & 1 || lbl_1_bss_9F8[idx].f_12 & 1) {
+    }
+    else if (bss->unk_1C) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_10, 0) || key_bit(lbl_1_bss_9F8[idx].f_12, 0)) {
             *(u8 *)(b7 - 0x228C) = 0;
             fn_1_A2D84(0xA9011300);
         }
-        if (lbl_1_bss_9F8[idx].f_10 & 2 || lbl_1_bss_9F8[idx].f_12 & 2) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_10, 1) || key_bit(lbl_1_bss_9F8[idx].f_12, 1)) {
             *(u8 *)(b7 - 0x228C) = 1;
             fn_1_A2D84(0xA9011300);
         }
-        if (lbl_1_bss_9F8[idx].f_8 & 0x200) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_8, 9)) {
             *(u8 *)(b7 - 0x228C) = 1;
         }
-        if (lbl_1_bss_9F8[idx].f_8 & 0x100 || lbl_1_bss_9F8[idx].f_8 & 0x200) {
+        if (key_bit(lbl_1_bss_9F8[idx].f_8, 8) || key_bit(lbl_1_bss_9F8[idx].f_8, 9)) {
             if (*(u8 *)(b7 - 0x228C) == 0) {
                 bss->unk_0 = 1;
                 bss->unk_120 = 0x5D;
                 fn_1_1280(1);
-                temp = bss->unk_F0 | 0x40000000;
+                temp = bss->unk_F0;
                 *(void **)(b2 + 0x4374) = (void *)fn_3_B30;
                 data->unk_B4 = 0x6B;
                 *(void **)(b2 + 0x4378) = sp8;
-                bss->unk_F0 = temp;
+                bss->unk_F0 = temp | 0x40000000;
                 fn_1_FDFF4();
                 lab_t1 = (u8 *)(b2 + 0x43C0);
                 fn_3_B984((void *)((u8 *)&lbl_3_bss_140 + (crs * 0x81C0)), lab_t1);
@@ -331,7 +337,7 @@ void fn_3_8A90(void) {
         if ((sp->f_24 & 0x80000000) && !(sp->f_24 & 1) && !(bss->unk_F0 & 2)) {
             r3v = 1;
         } else {
-            r3v = fn_1_4C10() != 0;
+            if (fn_1_4C10()) { r3v = 1; } else { r3v = 0; }
         }
         if (r3v) {
             return;
@@ -369,7 +375,7 @@ void fn_3_8A90(void) {
             return;
         }
         if (bss->unk_38 < 3) {
-            if (lbl_1_bss_9F8[sp->f_6].f_0 & 0x400) {
+            if (key_bit(lbl_1_bss_9F8[sp->f_6].f_0, 10)) {
                 lab_t1_ = b7 - 0x21E0;
                 fn_1_FE5C4(bss->unk_38, lab_t1_, (u8 *)bss + 0x20, 1);
             } else {
@@ -386,11 +392,11 @@ void fn_3_8A90(void) {
             fn_1_FDFF4();
             bss->unk_120 = 0x5D;
             fn_1_1280(1);
-            temp = bss->unk_F0 | 0x40000000;
+            temp = bss->unk_F0;
             *(void **)(b2 + 0x4374) = (void *)fn_3_B30;
             data->unk_B4 = 0x5F;
             *(void **)(b2 + 0x4378) = sp8;
-            bss->unk_F0 = temp;
+            bss->unk_F0 = temp | 0x40000000;
         } else {
             switch (a) {
             case 7:
@@ -399,11 +405,11 @@ void fn_3_8A90(void) {
                 }
                 bss->unk_120 = 0x5D;
                 fn_1_1280(1);
-                temp = bss->unk_F0 | 0x40000000;
+                temp = bss->unk_F0;
                 *(void **)(b2 + 0x4374) = (void *)fn_3_B30;
                 data->unk_B4 = 0x6B;
                 *(void **)(b2 + 0x4378) = sp8;
-                bss->unk_F0 = temp;
+                bss->unk_F0 = temp | 0x40000000;
                 fn_1_FDFF4();
                 break;
             case 9:
@@ -429,6 +435,4 @@ void fn_3_8A90(void) {
     }
 }
 #pragma opt_lifetimes reset
-
 #pragma opt_propagation reset
-
