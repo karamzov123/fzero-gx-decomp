@@ -62068,6 +62068,36 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_14B93C.c",
+    "symbols": [
+      "fn_1_14B93C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sel_static_disp.c",
+    "pool": {
+      "@59": "lbl_1_rodata_99B0",
+      "@60": "lbl_1_rodata_99A8",
+      "...bss.0": "lbl_1_bss_8E518",
+      "fzgx_obj_lbl_1_bss_8E518": "lbl_1_bss_8E518",
+      "lbl_1_bss_8E518__fzgx_offset_4": "lbl_1_bss_8E518+0x4",
+      "fzgx_obj_lbl_1_bss_8E51D": "lbl_1_bss_8E51D",
+      "fzgx_obj_lbl_1_bss_8E520": "lbl_1_bss_8E520",
+      "fzgx_obj_lbl_1_bss_8E524": "lbl_1_bss_8E524",
+      "fzgx_obj_lbl_1_bss_8E528": "lbl_1_bss_8E528",
+      "fzgx_obj_lbl_1_bss_8E52C": "lbl_1_bss_8E52C",
+      "fzgx_obj_lbl_1_bss_8E530": "lbl_1_bss_8E530",
+      "fzgx_obj_lbl_1_bss_8E534": "lbl_1_bss_8E534",
+      "fzgx_obj_lbl_1_bss_8E538": "lbl_1_bss_8E538",
+      "fzgx_obj_lbl_1_bss_8E53C": "lbl_1_bss_8E53C",
+      "fzgx_obj_lbl_1_bss_8E540": "lbl_1_bss_8E540",
+      "fzgx_obj_lbl_1_bss_8E544": "lbl_1_bss_8E544",
+      "fzgx_obj_lbl_1_bss_8E548": "lbl_1_bss_8E548"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sel_static_disp/fn_1_14BC3C.c",
     "symbols": [
       "fn_1_14BC3C"
