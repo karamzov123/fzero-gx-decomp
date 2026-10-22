@@ -13131,6 +13131,257 @@ void fn_1_6767C(void) {
 }
 /* fzgx:end fn_1_6767C */
 
+/* fzgx:begin fn_1_67680 noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "rel/main_rel/effect.h"
+
+extern void *fn_1_86254(int);
+extern u32 fn_1_3FC8C(void);
+extern u32 fn_1_3FC58(void);
+extern void *memcpy(void *, const void *, u32);
+extern void *memset(void *, int, u32);
+
+/* Shared literal pool primer: reproduces retail's lbl_1_rodata_2950 layout. */
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_000(f32 *o) { *o = 60.0f; }
+static const u32 fzgx_pool_table_004[] = { 0x3DCCCCCD };
+void fzgx_pool_t004(const u32 **o) { *o = fzgx_pool_table_004; }
+void fzgx_pool_008(f32 *o) { *o = 32767.0f; }
+static const u32 fzgx_pool_table_00C[] = { 0x3D4CCCCD, 0x3FB1EB85, 0x1EB851EC, 0x469C4000, 0x00000000 };
+void fzgx_pool_t00C(const u32 **o) { *o = fzgx_pool_table_00C; }
+void fzgx_pool_020(f64 *o) { *o = 4503599627370496.0; }
+void fzgx_pool_028(f32 *o) { *o = 1.0f; }
+static const u32 fzgx_pool_table_02C[] = { 0xBCF5C28F, 0x402E0000, 0x00000000 };
+void fzgx_pool_t02C(const u32 **o) { *o = fzgx_pool_table_02C; }
+void fzgx_pool_038(f64 *o) { *o = 4503601774854144.0; }
+static const u32 fzgx_pool_table_040[] = { 0x3FF80000, 0x00000000, 0x3FE00000, 0x00000000, 0x00000000 };
+void fzgx_pool_t040(const u32 **o) { *o = fzgx_pool_table_040; }
+void fzgx_pool_054(f32 *o) { *o = 0.5f; }
+static const u32 fzgx_pool_table_058[] = { 0x41000000 };
+void fzgx_pool_t058(const u32 **o) { *o = fzgx_pool_table_058; }
+void fzgx_pool_05C(f32 *o) { *o = 255.0f; }
+static const u32 fzgx_pool_table_060[] = { 0x41700000 };
+void fzgx_pool_t060(const u32 **o) { *o = fzgx_pool_table_060; }
+void fzgx_pool_064(f32 *o) { *o = 0.2f; }
+static const u32 fzgx_pool_table_068[] = { 0x3DA3D70A, 0x3E800000, 0x3F7AE148, 0x3F7D70A4 };
+void fzgx_pool_t068(const u32 **o) { *o = fzgx_pool_table_068; }
+void fzgx_pool_078(f32 *o) { *o = 40.0f; }
+static const u32 fzgx_pool_table_07C[] = {
+    0x41A00000,
+    0x3FC00000, 0x3EE66666, 0xC000u << 16, 0x3DAAAAAB,
+    0x3E19999A, 0x3E000000, 0xBECCCCCD, 0xBE99999A,
+    0x40000000, 0x437A0000, 0x3FE33333, 0x33333333,
+    0x3FD99999, 0x9999999A
+};
+void fzgx_pool_t07C(const u32 **o) { *o = fzgx_pool_table_07C; }
+void fzgx_pool_0B8(f32 *o) { *o = 0.3f; }
+static const u32 fzgx_pool_table_0BC[] = {
+    0xBB83126F,
+    0x3C888889, 0x47800000, 0x45800000, 0x3F75C28F,
+    0x3ECCCCCD, 0x3D4ED917, 0x3D50E560, 0x3F733333
+};
+void fzgx_pool_t0BC(const u32 **o) { *o = fzgx_pool_table_0BC; }
+void fzgx_pool_0E0(f32 *o) { *o = 0.9f; }
+static const u32 fzgx_pool_table_0E4[] = { 0x00000000, 0x4062C000, 0x00000000 };
+void fzgx_pool_t0E4(const u32 **o) { *o = fzgx_pool_table_0E4; }
+void fzgx_pool_0F0(f64 *o) { *o = 10.0; }
+static const u32 fzgx_pool_table_0F8[] = { 0x40080000, 0x00000000, 0x00000000, 0x3DCCCCCD, (0xC019u << 16) | 0x999A };
+void fzgx_pool_t0F8(const u32 **o) { *o = fzgx_pool_table_0F8; }
+void fzgx_pool_10C(f32 *o) { *o = 5.0f; }
+static const u32 fzgx_pool_table_110[] = {
+    0x3FF33333, 0x33333333, 0x3FB99999, 0x9999999A,
+    0x41200000, 0x41900000, 0x3FE66666, 0x66666666,
+    0x40490000, 0x00000000, 0x00000000, 0x3DCCCCCD,
+    (0xC019u << 16) | 0x999A, 0x41980000, 0x40380000, 0x00000000,
+    0x3F3504F3, 0x00000000, 0x00000000, 0x00000000,
+    0x406FE000, 0x00000000, 0x3FECCCCC, 0xCCCCCCCD,
+    0x3B83126F, 0x3A83126F, 0x3C23D70A, 0xB4000000,
+    0x43700000, 0x42C80000, 0x43960000, 0x43480000,
+    0x461C4000, 0x459C4000, 0x434C0000, 0x42AA0000,
+    0xBD4CCCCD, 0x40800000, 0xBD75C28F, 0xBF000000,
+    0xBF800000, 0x00000000, 0x3FC99999, 0x9999999A,
+    0x44000000
+};
+void fzgx_pool_t110(const u32 **o) { *o = fzgx_pool_table_110; }
+void fzgx_pool_1C4(f32 *o) { *o = 0.03f; }
+static const u32 fzgx_pool_table_1C8[] = {
+    0x424C0000, 0x42B00000,
+    0xC008u << 16, 0x00000000, 0x40900000, 0x40C00000,
+    0x3F8CCCCD, 0x00000000, 0x3F666666, 0xBF8CCCCD,
+    0x00000000, 0x3F666666, 0x00000000, 0x00000000,
+    0xBF333333, 0x00000000, 0x00000000, 0x00000000,
+    0x3F99999A, 0x42480000, 0x3CCCCCCD
+};
+void fzgx_pool_t1C8(const u32 **o) { *o = fzgx_pool_table_1C8; }
+void fzgx_pool_21C(f32 *o) { *o = 0.8f; }
+static const u32 fzgx_pool_table_220[] = {
+    0x3D800000, 0x40200000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0xC040u << 16, 0x00000000, 0x3F847AE1, 0x47AE147B,
+    0x3FEE147B, 0x00000000, 0x406A4000, 0x00000000,
+    0x3F947AE1, 0x47AE147B
+};
+void fzgx_pool_t220(const u32 **o) { *o = fzgx_pool_table_220; }
+void fzgx_pool_268(f64 *o) { *o = 0.003; }
+static const u32 fzgx_pool_table_270[] = {
+    0xBFE66666, 0x60000000, 0xBF9EB851, 0xE0000000,
+    0x3FC20C49, 0xBA5E353F, 0x3FE66666, 0x60000000,
+    0x3FF00000, 0x00000000, 0x3FD33333, 0x33333333,
+    0x3FE99999, 0xA0000000, 0x40280000, 0x00000000,
+    0xBF666666, 0x3D8F5C29, 0x3F19999A, 0x41F00000,
+    0x3F87AE14, 0x41E00000, 0x40140000, 0x00000000,
+    0x40600000, 0x43340000, 0xFFFFFFFF, 0xFFFFFFFF,
+    0x403E0000, 0x00000000, 0x3F9EB851, 0xEB851EB8,
+    0x3F70A3D7, 0xBDA3D70A, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x43080000, 0x3C03126F, 0x3B94F209, 0x3C6A0EA1,
+    0x44FA0000, 0x447A0000, 0x40066666, 0x00000000,
+    0x00000000, 0x00000000, 0x3FA47AE1, 0x47AE147B,
+    0x3FEF5C28, 0xF5C28F5C, 0x3FEEB851, 0xEB851EB8,
+    0x3F999999, 0x9999999A, 0xBFF00000, 0x00000000,
+    0x3FE99999, 0x9999999A, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0xBD23D70A, 0x00000000, 0x40000000, 0x00000000,
+    0x40E00000, 0x00000000, 0x3FED70A3, 0xDE666666,
+    0xBF947AE1, 0x47AE147B
+};
+void fzgx_pool_t270(const u32 **o) { *o = fzgx_pool_table_270; }
+void fzgx_pool_3A8(f32 *o) { *o = -0.025f; }
+static const u32 fzgx_pool_table_3AC[] = {
+    0x00000000,
+    0x00000000, 0x00000000, 0x43360B61, 0x44400000,
+    0x41E80000, 0x00000000, 0x00000000, 0x00000000,
+    0x3F333333, 0x43FA0000, 0x44480000, 0x42CC0000,
+    0x451C4000
+};
+void fzgx_pool_t3AC(const u32 **o) { *o = fzgx_pool_table_3AC; }
+void fzgx_pool_3E4(f32 *o) { *o = 224.0f; }
+void fzgx_pool_3E8(f32 *o) { *o = 176.0f; }
+static const u32 fzgx_pool_table_3EC[] = {
+    0x00000000,
+    0x3F33A92A, 0x30553261, 0x3FC99999, 0xA0000000,
+    0x41800000, 0x40400000, 0x3FA99999, 0x9999999A
+};
+void fzgx_pool_t3EC(const u32 **o) { *o = fzgx_pool_table_3EC; }
+void fzgx_pool_410(f64 *o) { *o = -0.015; }
+void fzgx_pool_418(f32 *o) { *o = 0.02f; }
+#pragma section code_type ".text"
+
+#define F(p,n) (*(f32 *)((u8 *)(p)+(n)))
+#define S(p,n) (*(s16 *)((u8 *)(p)+(n)))
+#define U(p,n) (*(u16 *)((u8 *)(p)+(n)))
+#define I(p,n) (*(s32 *)((u8 *)(p)+(n)))
+#define B(p,n) (*(s8 *)((u8 *)(p)+(n)))
+#define V(p,n) (*(EffectVec *)((u8 *)(p)+(n)))
+
+typedef struct EffectVec {
+    f32 x, y, z;
+} EffectVec;
+
+static inline void vec_scale(EffectVec *v, f32 s) {
+    v->x *= s;
+    v->y *= s;
+    v->z *= s;
+}
+
+/* LCG random, 15 bits */
+static inline u32 rand15(void) {
+    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 12345;
+    return (lbl_1_data_1D628 >> 16) & 0x7fff;
+}
+#define frand() ((f32)rand15() / 32767.0f)
+
+typedef struct EffectPoolState {
+    u8 *pool[2];
+    s16 serial;
+} EffectPoolState;
+
+/* claims the first free slot of a 190-entry pool, -1 when full */
+static inline s32 alloc_slot(u8 *p) {
+    s32 i;
+    for (i = 0; i < 190; i++, p += 232) {
+        if (B(p,0) == 0) {
+            B(p,0) = 1;
+            return i;
+        }
+    }
+    return -1;
+}
+
+static inline void spawn(EffectPoolState *st, void *src, int bank) {
+    s32 i;
+    u8 *p;
+    if ((s32)fn_1_3FC8C() != 0) return;
+    if ((s32)fn_1_3FC58() != 0) return;
+    i = alloc_slot(st->pool[bank]);
+    if (i >= 0) {
+        p = st->pool[bank] + i * 232;
+        memcpy(p, src, 232);
+        B(p,0) = 1;
+        S(p,2) = i;
+        ((void (**)(void *))lbl_1_data_1D1D8)[S(p,12)](p);
+        S(p,4) = st->serial;
+        if ((s16)++st->serial < 0) st->serial = 0;
+    }
+}
+
+void fn_1_67680(void *arg0) {
+    EffectPoolState *st = (EffectPoolState *)&lbl_1_bss_6C848;
+    u8 loc_8[232];
+    void *t0;
+    s16 v16;
+    u32 v17,v18,v36,v37,v41;
+    s32 n;
+    f32 v0,v3,v31,v33,v34,v35,v42,v45;
+    f64 v43,v44,v47,v48;
+    v0=1.0f-F(arg0,136);
+    F(arg0,72)=F(arg0,72)*v0;
+    F(arg0,76)=F(arg0,76)*v0;
+    F(arg0,80)=F(arg0,80)*v0;
+    F(arg0,76)+= -0.015;
+    psvec_add((u8 *)arg0+60,(u8 *)arg0+72,(u8 *)arg0+60);
+    v3=F(arg0,136);
+    F(arg0,136)=v3+(f32)(0.03f*(f32)(F(arg0,140)-v3));
+    if(I(arg0,16)<40) F(arg0,180)=(f32)(F(arg0,180)*(f32)((f32)I(arg0,16)/40.0f));
+    n=I(arg0,16);
+    if(n<40) {
+        /* the fade factor is re-spelled per component: MWCC CSEs the register-only expression */
+        F(arg0,28)*=1.0f-(f32)(1.0f+(f32)(-0.025f*(f32)n));
+        F(arg0,32)*=1.0f-(f32)(1.0f+(f32)(-0.025f*(f32)n));
+        F(arg0,36)*=1.0f-(f32)(1.0f+(f32)(-0.025f*(f32)n));
+    }
+    t0=fn_1_86254(S(arg0,24));
+    memset(loc_8,0,232);
+    S(loc_8,24)=S(arg0,24);
+    S(loc_8,12)=36;
+    U(loc_8,26)=0xFFFF;
+    I(loc_8,52)=I((void *)lbl_1_bss_38458->unk_8,328);
+    for(v16=1;v16>0;v16--) {
+        V(loc_8,60)=V(arg0,60);
+        V(loc_8,72)=V(arg0,72);
+        I(loc_8,16)=(s32)(F(arg0,180)*(60.0f*(0.5f+(f32)(0.2f*frand()))));
+        F(loc_8,72)*=0.9f;
+        F(loc_8,76)*=0.9f;
+        F(loc_8,80)*=0.9f;
+        F(loc_8,60)-=F(loc_8,72);
+        F(loc_8,64)-=F(loc_8,76);
+        F(loc_8,68)-=F(loc_8,80);
+        F(loc_8,40)=F(arg0,40)*(F(arg0,180)*(0.3f+(f32)(0.2f*frand())));
+        F(loc_8,44)=F(arg0,40)*(F(arg0,180)*(10.0+(f32)(5.0f*frand())));
+        v42=0.8f+(f32)(0.2f*frand());
+        F(loc_8,28)=(255.0f*(0.5f*(1.0f+v42)))/255.0f;
+        F(loc_8,32)=(f32)(224.0f*v42)/255.0f;
+        F(loc_8,36)=(f32)(176.0f*v42)/255.0f;
+        F(loc_8,136)=0.003*frand();
+        F(loc_8,140)=0.02f;
+        S(loc_8,172)=364;
+        if(B(t0,1141)!=-1) spawn(st,loc_8,1);
+        else spawn(st,loc_8,0);
+    }
+}
+/* fzgx:end fn_1_67680 */
+
 /* fzgx:begin fn_1_67D0C noprologue */
 #include "dolphin/types.h"
 #include "psvec.h"

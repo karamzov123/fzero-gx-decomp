@@ -272,6 +272,296 @@ void fn_3_156D0(void) {
 }
 /* fzgx:end fn_3_156D0 */
 
+/* fzgx:begin fn_3_15F44 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/customize/editor.h"
+
+struct Sig_fn_3_1683C_Arg0 {
+    u8 pad_0[4];
+    f32 unk_4;
+    f32 unk_8;
+};
+typedef struct { u32 unk_0; } Sig_fn_1_4FC50_InputObject;
+struct fn_3_15F44_Copy88 {
+    union {
+        u32 a[22];
+        struct {
+            u8 pad_0[0x50];
+            void (*callback)(void);
+            u32 unk_54;
+        } named;
+    };
+};
+struct fn_3_15F44_lbl_3_rodata_538 {
+    u8 pad_0[4];
+    f32 unk_4, unk_8, unk_C, unk_10, unk_14;
+    f32 unk_18, unk_1C, unk_20, unk_24, unk_28;
+    f32 unk_2C, unk_30, unk_34, unk_38, unk_3C;
+    f32 unk_40, unk_44, unk_48, unk_4C, unk_50;
+    f32 unk_54, unk_58, unk_5C, unk_60, unk_64, unk_68, unk_6C;
+    f64 unk_70, unk_78;
+};
+struct fn_3_15F44_lbl_801A66A0 { u32 unk_0; };
+extern f32 lbl_8006D188(u32);
+extern int fn_1_4F734(FontDrawPacket *);
+extern s32 fn_1_4FC50(Sig_fn_1_4FC50_InputObject *, u32, u16, u16, u32);
+extern struct fn_3_15F44_lbl_3_rodata_538 lbl_3_rodata_538;
+extern struct fn_3_15F44_lbl_801A66A0 lbl_801A66A0;
+extern u16 fn_1_48690(u32);
+extern u32 fn_1_52690();
+extern u32 fn_3_17820(void);
+extern u32 lbl_1_rodata_26F8;
+extern u8 *fn_3_14074(void);
+extern void GXInvalidateTexAll(void);
+extern void fn_1_517EC(FontDrawPacket *, s16, s16, s16, s16, s16, s16);
+extern void fn_3_1683C(struct Sig_fn_3_1683C_Arg0 *, s16, s16);
+extern void fn_3_16E14(s16, s16);
+
+#define PF(off) (*(f32 *)((u8 *)&loc_C + (off)))
+#define PB(off) (*((u8 *)&loc_C + (off)))
+
+const u32 fzgx_pool_table_0[1] = {0xFFFFFFFF};
+static inline void fzgx_shared_pool_primer(f32 *p) {
+    p[0] = 192.0f;
+    p[1] = 105.0f;
+    p[2] = 90.0f;
+    p[3] = 32.0f;
+    p[4] = 0.0f;
+    p[5] = 184.0f;
+    p[6] = 86.0f;
+    p[7] = 100.0f;
+    p[8] = 175.0f;
+    p[9] = 88.0f;
+    p[10] = 0.5f;
+    p[11] = 10.0f;
+    p[12] = 420.0f;
+    p[13] = 334.0f;
+    p[14] = 29.0f;
+    p[15] = 320.0f;
+    p[16] = 232.0f;
+    p[17] = 50.0f;
+    p[18] = 4.0f;
+    p[19] = 480.0f;
+    p[20] = 92.0f;
+    p[21] = 1.0f;
+    p[22] = 1.0714285373687744f;
+    p[23] = 64.0f;
+    p[24] = 65535.0f;
+    p[25] = 119.0f;
+    p[26] = 30.0f;
+}
+
+void fn_3_15F44(void) {
+    struct fn_3_15F44_lbl_3_rodata_538 *p_lbl_3_rodata_538;
+    Obj_3_bss_A23EC *p_lbl_3_bss_A23EC;
+    Obj_3_bss_A23EC *p_flags;
+    s32 v0, v1, v2;
+    u32 *textures;
+    s16 v3, v4, v5, v6;
+    f32 v7, v8, v9, v10;
+    u32 v11, v12;
+    f32 v13, v14;
+    f64 v15;
+    f32 v16, v17;
+    u32 v18;
+    f32 v19;
+    f64 v20;
+    f32 v21, v23, v24, v25, v26, v27, v28;
+    s16 v22;
+    s32 v29;
+    s16 v30;
+    s32 v31;
+    f64 v32;
+    s16 v33;
+    f32 v34;
+    s32 v35;
+    u8 v36;
+    f32 v37, v38, v39, v40, v41, v42, v43, v44, v45;
+    u32 v46;
+    f64 v47;
+    f32 v48;
+    u8 v49, v50, v51;
+    u32 v52;
+    f32 v53;
+    u32 v54, v55;
+    s32 v56;
+    u32 v57, v58;
+    struct fn_3_15F44_Copy88 loc_C;
+    u32 loc_8;
+    u8 *t0;
+    u16 t3;
+    u32 t15;
+    f32 t16;
+    p_lbl_3_rodata_538 = &lbl_3_rodata_538;
+    t0 = fn_3_14074();
+    p_flags = &lbl_3_bss_A23EC;
+    if ((p_flags->unk_C & 0x20000000) != 0) {
+        v0 = p_flags->unk_14 - 1;
+        p_flags->unk_14 = v0 < 0 ? 0 : v0 > 5 ? 5 : v0;
+    } else {
+        v1 = p_flags->unk_14 + 1;
+        p_flags->unk_14 = v1 < 0 ? 0 : v1 > 5 ? 5 : v1;
+    }
+    v0 = 64 / (s32)(p_lbl_3_bss_A23EC = &lbl_3_bss_A23EC)->unk_11;
+    v4 = *(s16 *)(t0 + 16);
+    v6 = *(s16 *)(t0 + 18);
+    v3 = (s16)(v0 / 2);
+    v5 = (s16)(v0 / 2);
+    if (v4 - v3 < 0) v4 = v3;
+    else if (v4 + v3 >= 64) v4 = 64 - v3;
+    if (v6 - v5 < 0) v6 = v5;
+    else if (v6 + v5 >= 64) v6 = 64 - v5;
+
+    loc_C = *(struct fn_3_15F44_Copy88 *)&lbl_1_rodata_26F8;
+    v7 = 32.0f;
+    v8 = 192.0f;
+    v9 = 105.0f;
+    v10 = 90.0f;
+    v11 = 0x863A;
+    v12 = 0x400000A;
+    loc_C.a[0] = v11;
+    PF(4) = v8; PF(8) = v9; PF(12) = v10;
+    PF(16) = v7; PF(20) = v7;
+    loc_C.a[12] = v12;
+    PF(44) = 0.0f;
+    loc_C.a[20] = (u32)fn_3_1683C;
+    fn_1_4F734((FontDrawPacket *)&loc_C);
+
+    loc_C = *(struct fn_3_15F44_Copy88 *)&lbl_1_rodata_26F8;
+    v13 = 184.0f;
+    v14 = 86.0f;
+    loc_C.a[0] = 0x8607;
+    PF(4) = v13; PF(8) = v14; PF(12) = 100.0f;
+    loc_C.a[12] = 5;
+    fn_1_4F734((FontDrawPacket *)&loc_C);
+    t3 = fn_1_48690(loc_C.a[0]);
+    v15 = 4503601774854144.0;
+    PF(4) = (f32)(s32)((t3 & 0xFFFF) + 184);
+    loc_C.a[12] |= 0x80000;
+    fn_1_4F734((FontDrawPacket *)&loc_C);
+    if ((*(u32 *)t0 & 0x80000000) != 0) fn_3_16E14(192, 105);
+
+    loc_C = *(struct fn_3_15F44_Copy88 *)&lbl_1_rodata_26F8;
+    v22 = lbl_3_bss_A23EC.unk_14;
+    v16 = 175.0f;
+    v17 = 88.0f;
+    v18 = 0x8605;
+    v19 = 90.0f;
+    v20 = 4503601774854144.0;
+    v21 = 0.5f;
+    loc_C.a[0] = v18;
+    PF(4) = v16; PF(8) = v17; PF(12) = v19;
+    PF(44) = v21 + (f32)(v22 / 10.0f);
+    loc_C.a[12] = 5;
+    fn_1_4F734((FontDrawPacket *)&loc_C);
+    v23 = 420.0f;
+    v24 = 88.0f;
+    PF(4) = v23; PF(8) = v24; PF(12) = 90.0f;
+    loc_C.a[12] = 0x80005;
+    fn_1_4F734((FontDrawPacket *)&loc_C);
+    v25 = 175.0f;
+    v26 = 334.0f;
+    PF(4) = v25; PF(8) = v26; PF(12) = 90.0f;
+    loc_C.a[12] = 0x100005;
+    fn_1_4F734((FontDrawPacket *)&loc_C);
+    v27 = 420.0f;
+    v28 = 334.0f;
+    PF(4) = v27; PF(8) = v28; PF(12) = 90.0f;
+    loc_C.a[12] |= 0x80000;
+    fn_1_4F734((FontDrawPacket *)&loc_C);
+
+    loc_C = *(struct fn_3_15F44_Copy88 *)&lbl_1_rodata_26F8;
+    v29 = p_lbl_3_bss_A23EC->unk_11;
+    loc_C.a[0] = 0x8603;
+    v30 = v4;
+    v31 = v29 << 1;
+    v32 = 4503601774854144.0;
+    v33 = v6;
+    v34 = (f32)(s32)(202 + 4 * (v29 * (v3 + (*(s16 *)(t0 + 16) - v30))) + v31);
+    PF(4) = v34;
+    v35 = 94 + 4 * (v29 * (v5 + (*(s16 *)(t0 + 18) - v33))) + v31;
+    PF(8) = (f32)(s32)v35;
+    PF(12) = 29.0f;
+    loc_C.a[12] = 10;
+    fn_1_4F734((FontDrawPacket *)&loc_C);
+    GXInvalidateTexAll();
+
+    loc_C = *(struct fn_3_15F44_Copy88 *)&lbl_1_rodata_26F8;
+    v36 = p_lbl_3_bss_A23EC->unk_11;
+    v37 = 320.0f;
+    v38 = 232.0f;
+    v39 = 4.0f;
+    v40 = 50.0f;
+    PF(4) = 320.0f;
+    PF(8) = 232.0f; PF(12) = 50.0f;
+    PF(16) = PF(20) = 4.0f * (f32)(u32)v36;
+    loc_C.a[12] = 0x400000A;
+    loc_C.named.callback = (void (*)(void))fn_1_52690;
+    if (v36 > 1) fn_1_517EC((FontDrawPacket *)&loc_C, v30-v3, v33-v5, v3<<1, v5<<1, 64, 64);
+    fn_1_4FC50((Sig_fn_1_4FC50_InputObject *)&loc_C, 5, 64, 64, *(u32 *)(t0 + 32));
+
+    loc_C = *(struct fn_3_15F44_Copy88 *)&lbl_1_rodata_26F8;
+    v42 = 480.0f;
+    v43 = 92.0f;
+    v44 = 50.0f;
+    v45 = 1.0f;
+    PF(4) = v42; PF(8) = v43; PF(12) = v44;
+    PF(16) = v45; PF(20) = 1.0714285373687744f;
+    loc_C.a[12] = 5;
+    fn_1_4FC50((Sig_fn_1_4FC50_InputObject *)&loc_C, 5, 64, 64, *(u32 *)(t0 + 32));
+
+    t15 = fn_3_17820();
+    v46 = lbl_801A66A0.unk_0;
+    v47 = 4503599627370496.0;
+    v48 = 65535.0f;
+    loc_8 = t15;
+    v52 = (lbl_3_bss_A23EC.unk_17 * p_lbl_3_bss_A23EC->unk_11) & 0xFF;
+    v53 = v48 * (f32)(u32)(v46 % 120);
+    v54 = (lbl_3_bss_A23EC.unk_18 * p_lbl_3_bss_A23EC->unk_11) & 0xFF;
+    v56 = (s32)(64.0f * (f32)(1.0f + lbl_8006D188((s32)(v53 / 119.0f))));
+
+    loc_C = *(struct fn_3_15F44_Copy88 *)&lbl_1_rodata_26F8;
+    v36 = p_lbl_3_bss_A23EC->unk_11;
+    PF(4) = 320.0f;
+    PF(8) = 232.0f;
+    PF(12) = 30.0f;
+    PF(16) = PF(20) = 4.0f * (f32)(u32)v36;
+    loc_C.a[12] = 10;
+    loc_C.named.callback = (void (*)(void))fn_1_52690;
+    if (!__rlwnm(p_flags->unk_C, 3, 31, 31)) {
+        if (((u8 *)&loc_8)[0] >= 8 || ((u8 *)&loc_8)[1] >= 8 || ((u8 *)&loc_8)[2] >= 8)
+            PB(0x38) = PB(0x39) = PB(0x3A) = 255 - v56;
+        if (((u8 *)&loc_8)[0] < 248 || ((u8 *)&loc_8)[1] < 248 || ((u8 *)&loc_8)[2] < 248)
+            PB(0x3C) = PB(0x3D) = PB(0x3E) = v56;
+    } else {
+        PB(0x38) = PB(0x39) = PB(0x3A) = 255;
+        PB(0x3C) = PB(0x3D) = PB(0x3E) = 0;
+    }
+    if (p_lbl_3_bss_A23EC->unk_11 > 1)
+        fn_1_517EC((FontDrawPacket *)&loc_C, v52 + (v30-v3), v54 + (v33-v5), v3<<1, v5<<1, 64, 64);
+    textures = &lbl_3_bss_A23EC.unk_4;
+    fn_1_4FC50((Sig_fn_1_4FC50_InputObject *)&loc_C, 5, 64, 64, textures[(lbl_3_bss_A23EC.unk_0 + 1) % 2]);
+
+    loc_C = *(struct fn_3_15F44_Copy88 *)&lbl_1_rodata_26F8;
+    PF(4) = 480.0f;
+    PF(8) = 92.0f;
+    PF(12) = 30.0f;
+    PF(16) = 1.0f;
+    PF(20) = 1.0714285373687744f;
+    loc_C.a[12] = 5;
+    if (!__rlwnm(p_flags->unk_C, 3, 31, 31)) {
+        PB(0x38) = PB(0x39) = PB(0x3A) = 255 - (u8)v56 * 2;
+        PB(0x3C) = PB(0x3D) = PB(0x3E) = (u8)((u8)v56 * 2);
+    } else {
+        PB(0x38) = PB(0x39) = PB(0x3A) = 255;
+        PB(0x3C) = PB(0x3D) = PB(0x3A) = 0;
+    }
+    fn_1_4FC50((Sig_fn_1_4FC50_InputObject *)&loc_C, 5, 64, 64, textures[(lbl_3_bss_A23EC.unk_0 + 1) % 2]);
+    lbl_3_bss_A23EC.unk_0 = (lbl_3_bss_A23EC.unk_0 + 1) % 2;
+}
+/* fzgx:end fn_3_15F44 */
+
 /* fzgx:begin fn_3_1683C noprologue */
 #include "types.h"
 #include "rel/customize/globals.h"

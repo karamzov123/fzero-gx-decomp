@@ -6416,3 +6416,12 @@ dol/float2str.c:
 
 dol/fn_80046D94.c:
 	.text       start:0x80046D94 end:0x80046F7C align:4
+
+dol/fn_80050698.c:
+	.text       start:0x80050698 end:0x80050BD4 align:4
+
+dol/fn_8003EC44.c:
+	.text       start:0x8003EC44 end:0x8003F834 align:4
+
+dol/fn_80070100.c:
+	.text       start:0x80070100 end:0x80070158 align:4

@@ -4608,6 +4608,115 @@ void fn_8_5C54(s32 arg0) {
 }
 /* fzgx:end fn_8_5C54 */
 
+/* fzgx:begin fn_8_5FD4 */
+#include "rel/title/title.h"
+
+struct Sig_fn_1_F453C_fn_1_F453C_Arg0 { u8 unk_0[1]; };
+struct Sig_fn_1_F453C_fn_1_F453C_Arg1 { u32 unk_0; };
+extern u32 fn_1_F453C(struct Sig_fn_1_F453C_fn_1_F453C_Arg0 *, struct Sig_fn_1_F453C_fn_1_F453C_Arg1 *, u32);
+extern void fn_1_3EF14(void *);
+extern void fn_1_F4794(u16);
+
+typedef struct {
+    f32 x, y, z;
+} TitleVec;
+
+/* 0x80-byte record read from the title bitstream */
+typedef struct {
+    u32 a : 15;
+    u32 c : 3;
+    u32 d : 5;
+    u32 e : 5;
+    u32 : 4;
+    u32 b : 15;
+    u32 f : 5;
+    u32 g : 5;
+    u32 h : 5;
+    u32 : 2;
+    TitleVec va[4];
+    TitleVec vb[4];
+    TitleVec vc;
+    TitleVec vd;
+} TitleEntry;
+
+typedef struct {
+    u8 b0, b1, b2, b3, b4, b5, b6;
+} TitleRec7;
+
+typedef struct {
+    u8 pad_0[0xA0];
+    u16 recCount;
+    u8 pad_A2[2];
+    TitleRec7 recs[(0xFEF0 - 0xA4) / 7];
+    u16 count;
+    u8 pad_FEF2[0x5A];
+    TitleEntry entries[1];
+} TitleData;
+
+struct fn_8_5FD4_lbl_1_bss_7EFD8 {
+    u8 pad_0[0x18];
+    u8 unk_18;
+    u8 pad_19[0x27];
+    TitleData *unk_40;
+};
+extern struct fn_8_5FD4_lbl_1_bss_7EFD8 lbl_1_bss_7EFD8;
+
+#define TITLE_READ(n) fn_1_F453C((struct Sig_fn_1_F453C_fn_1_F453C_Arg0 *)lbl_8_bss_2B0, \
+                                 (struct Sig_fn_1_F453C_fn_1_F453C_Arg1 *)&lbl_8_bss_2AC, (n))
+
+static inline f32 title_read_f32(void) {
+    u32 bits = TITLE_READ(32);
+    return *(f32 *)&bits;
+}
+
+void fn_8_5FD4(void) {
+    u8 buf[0x14B8];
+    s32 i;
+    s32 j;
+
+    fn_1_3EF14(buf);
+    lbl_1_bss_7EFD8.unk_40->count = TITLE_READ(8);
+    lbl_1_bss_7EFD8.unk_18 = buf[8];
+    for (i = 0; i < lbl_1_bss_7EFD8.unk_40->count; i++) {
+        lbl_1_bss_7EFD8.unk_40->entries[i].a = TITLE_READ(14);
+        lbl_1_bss_7EFD8.unk_40->entries[i].b = TITLE_READ(14);
+        lbl_1_bss_7EFD8.unk_40->entries[i].c = TITLE_READ(4);
+        lbl_1_bss_7EFD8.unk_40->entries[i].d = TITLE_READ(5);
+        lbl_1_bss_7EFD8.unk_40->entries[i].e = TITLE_READ(5);
+        lbl_1_bss_7EFD8.unk_40->entries[i].f = TITLE_READ(5);
+        lbl_1_bss_7EFD8.unk_40->entries[i].g = TITLE_READ(5);
+        lbl_1_bss_7EFD8.unk_40->entries[i].h = TITLE_READ(5);
+        for (j = 0; j < lbl_1_bss_7EFD8.unk_18; j++) {
+            lbl_1_bss_7EFD8.unk_40->entries[i].va[j].x = title_read_f32();
+            lbl_1_bss_7EFD8.unk_40->entries[i].va[j].y = title_read_f32();
+            lbl_1_bss_7EFD8.unk_40->entries[i].va[j].z = title_read_f32();
+            lbl_1_bss_7EFD8.unk_40->entries[i].vb[j].x = title_read_f32();
+            lbl_1_bss_7EFD8.unk_40->entries[i].vb[j].y = title_read_f32();
+            lbl_1_bss_7EFD8.unk_40->entries[i].vb[j].z = title_read_f32();
+        }
+        lbl_1_bss_7EFD8.unk_40->entries[i].vc.x = title_read_f32();
+        lbl_1_bss_7EFD8.unk_40->entries[i].vc.y = title_read_f32();
+        lbl_1_bss_7EFD8.unk_40->entries[i].vc.z = title_read_f32();
+        lbl_1_bss_7EFD8.unk_40->entries[i].vd.x = title_read_f32();
+        lbl_1_bss_7EFD8.unk_40->entries[i].vd.y = title_read_f32();
+        lbl_1_bss_7EFD8.unk_40->entries[i].vd.z = title_read_f32();
+    }
+
+    lbl_1_bss_7EFD8.unk_40->recCount = TITLE_READ(13);
+    for (i = 0; i <= lbl_1_bss_7EFD8.unk_40->recCount; i++) {
+        lbl_1_bss_7EFD8.unk_40->recs[i].b0 = TITLE_READ(8);
+        lbl_1_bss_7EFD8.unk_40->recs[i].b3 = TITLE_READ(8);
+        lbl_1_bss_7EFD8.unk_40->recs[i].b4 = TITLE_READ(7);
+        lbl_1_bss_7EFD8.unk_40->recs[i].b5 = TITLE_READ(7);
+        lbl_1_bss_7EFD8.unk_40->recs[i].b6 = TITLE_READ(8);
+        lbl_1_bss_7EFD8.unk_40->recs[i].b1 = TITLE_READ(8);
+        lbl_1_bss_7EFD8.unk_40->recs[i].b2 = TITLE_READ(8);
+    }
+    fn_1_F4794(lbl_1_bss_7EFD8.unk_40->recCount);
+    lbl_1_bss_7EFD8.unk_40->recCount = 0;
+}
+/* fzgx:end fn_8_5FD4 */
+
 /* fzgx:begin fn_8_6558 */
 // fn_8_6558: returns a constant.
 int fn_8_6558(void) {

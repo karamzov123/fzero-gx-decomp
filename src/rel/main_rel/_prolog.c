@@ -1618,6 +1618,20 @@ void fn_1_3BDC(u32 arg0) {
 }
 /* fzgx:end fn_1_3BDC */
 
+/* fzgx:begin fn_1_3C18 noprologue */
+#include "dolphin/types.h"
+#include "dolphin/hw_regs.h"
+
+extern u8 lbl_1_bss_D7C[40];
+extern u32 OSGetTick(void);
+
+/* Milliseconds elapsed since the tick stored in slot arg0. */
+u32 fn_1_3C18(volatile s32 arg0) /* volatile: retail spills the slot index to the frame across OSGetTick */
+{
+    return ((OSGetTick() - ((u32 *)lbl_1_bss_D7C)[arg0]) * 8) / (OS_TIMER_CLOCK / 125000);
+}
+/* fzgx:end fn_1_3C18 */
+
 /* fzgx:begin fn_1_3C78 */
 extern u8 lbl_1_bss_D78;
 

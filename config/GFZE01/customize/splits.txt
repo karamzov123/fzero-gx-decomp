@@ -701,3 +701,15 @@ rel/customize/_prolog/fn_3_E64.c:
 
 rel/customize/emb_paste_editor/fn_3_130C8.c:
 	.text       start:0x000130C8 end:0x0001338C align:4
+
+rel/customize/toolkit/fn_3_1B4BC.c:
+	.text       start:0x0001B4BC end:0x0001BA20 align:4
+
+rel/customize/toolkit/fn_3_23A1C.c:
+	.text       start:0x00023A1C end:0x0002406C align:4
+
+rel/customize/toolkit/fn_3_1C278.c:
+	.text       start:0x0001C278 end:0x0001C8D0 align:4
+
+rel/customize/editor/fn_3_15F44.c:
+	.text       start:0x00015F44 end:0x0001683C align:4

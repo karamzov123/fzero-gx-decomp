@@ -8621,3 +8621,21 @@ rel/main_rel/font/fn_1_52968.c:
 
 rel/main_rel/phys/fn_1_E9BA8.c:
 	.text       start:0x000E9BA8 end:0x000E9C68 align:4
+
+rel/main_rel/_prolog/fn_1_3C18.c:
+	.text       start:0x00003C18 end:0x00003C78 align:4
+
+rel/main_rel/effect/fn_1_67680.c:
+	.text       start:0x00067680 end:0x00067D0C align:4
+
+rel/main_rel/car/fn_1_82724.c:
+	.text       start:0x00082724 end:0x00082C70 align:4
+
+rel/main_rel/car/fn_1_83070.c:
+	.text       start:0x00083070 end:0x000835E0 align:4
+
+rel/main_rel/bg_win/fn_1_15EFEC.c:
+	.text       start:0x0015EFEC end:0x0015F618 align:4
+
+rel/main_rel/effect_car/fn_1_6C87C.c:
+	.text       start:0x0006C87C end:0x0006CF3C align:4

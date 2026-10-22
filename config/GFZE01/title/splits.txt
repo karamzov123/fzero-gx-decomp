@@ -350,3 +350,6 @@ rel/title/operation/fn_8_DD64.c:
 
 rel/title/operation/fn_8_E440.c:
 	.text       start:0x0000E440 end:0x0000EFA4 align:4
+
+rel/title/title/fn_8_5FD4.c:
+	.text       start:0x00005FD4 end:0x00006558 align:4

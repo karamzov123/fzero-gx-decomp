@@ -9035,6 +9035,156 @@ void fn_10_D5D4(void) {
 #pragma fp_contract reset
 /* fzgx:end fn_10_D5D4 */
 
+/* fzgx:begin fn_10_DAF8 */
+#include "font.h"
+
+typedef struct SelDrawState {
+    s16 unk_0;
+    u8 pad_2[0x90];
+    s16 unk_92;
+    u8 pad_94[0xAC];
+    u32 flags;
+    u8 pad_144[0x2];
+    s16 unk_146;
+    s16 unk_148;
+} SelDrawState;
+
+typedef struct SelColor {
+    u8 r, g, b, a;
+} SelColor;
+
+extern SelDrawState lbl_1_bss_8B3A0;
+extern u32 lbl_801A66A8;
+extern FontDrawPacket lbl_1_rodata_26F8;
+extern f32 lbl_8006D188(s32);
+extern u16 fn_1_48690(u32);
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table_0[17] = {
+    0x00000000, 0x0000B500, 0x0000B600, 0x0000AD00,
+    0x0000B300, 0x0000B800, 0x0000B200, 0x0000B100,
+    0x0000AE00, 0x0000B400, 0x0000B900, 0x0000B000,
+    0x0000AF00, 0x0000B700, 0x00000000, 0x00000000,
+    0x00F0F0FF,
+};
+
+void fzgx_pool_primer_0(const u32 **t, f32 *f, f64 *d) {
+    *t = fzgx_pool_table_0;
+    f[0] = 1.0f;
+    f[1] = 0.5f;
+    f[2] = 0.0f;
+    f[3] = 0.2f;
+    f[4] = 0.4f;
+    f[5] = 320.0f;
+    f[6] = 3.0f;
+    f[7] = 323.0f;
+    f[8] = 4.0f;
+    f[9] = 5.0f;
+    f[10] = 6.0f;
+    f[11] = 0.25f;
+    f[12] = 16384.0f;
+    f[13] = 65536.0f;
+    f[14] = 60.0f;
+    f[15] = 1.875f;
+    f[16] = 0.5555556f;
+    d[0] = 4503601774854144.0;
+    d[1] = 4503599627370496.0;
+}
+
+static const u16 fzgx_pool_table_98[8] = {
+    0x0011, 0x0012, 0x0013, 0x0014, 0x0015, 0x0012, 0x0013, 0x0014,
+};
+static const u32 fzgx_pool_table_A8[2] = { 0x00000000, 0x00F0F0FF };
+
+void fzgx_pool_primer_1(const void **t) {
+    t[0] = fzgx_pool_table_98;
+    t[1] = fzgx_pool_table_A8;
+}
+#pragma section code_type ".text"
+
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
+
+void fn_10_DAF8(void) {
+    FontDrawPacket pkt;
+    f32 alpha;
+    u32 flags;
+    s16 i;
+
+    flags = lbl_1_bss_8B3A0.flags;
+    alpha = 1.0f;
+    if ((flags & 0x80000000) && (flags & 0x10)) {
+        f32 half = lbl_1_bss_8B3A0.unk_148 / 2.0f;
+        if (flags & 2) {
+            alpha = CLAMP(MAX((f32)lbl_1_bss_8B3A0.unk_146 - half, 0.0f) / half, 0.0f, 1.0f);
+        } else if (flags & 1) {
+            alpha = 1.0f - CLAMP((f32)lbl_1_bss_8B3A0.unk_146 / half, 0.0f, 1.0f);
+        }
+    } else if (lbl_1_bss_8B3A0.unk_0 == -1) {
+        return;
+    }
+
+    for (i = 0; i < 2; i++) {
+        pkt = lbl_1_rodata_26F8;
+        pkt.image = 0xA12D;
+        pkt.flags = 10;
+        pkt.x = 320.0f;
+        pkt.y = 218 + i * 40;
+        pkt.z = 3.0f;
+        pkt.alpha = alpha;
+        fn_1_51678(&pkt, pkt.image, 0, i * 24, fn_1_48690(pkt.image), 24);
+        fn_1_4F734(&pkt);
+
+        pkt = lbl_1_rodata_26F8;
+        pkt.image = 0xA12D;
+        pkt.flags = 10;
+        pkt.x = 323.0f;
+        pkt.y = 221 + i * 40;
+        pkt.z = 4.0f;
+        pkt.alpha = 0.4f * alpha;
+        {
+            SelColor shadow = { 0x00, 0x00, 0x00, 0x00 };
+            *(SelColor *)pkt.color = shadow;
+        }
+        fn_1_51678(&pkt, pkt.image, 0, i * 24, fn_1_48690(pkt.image), 24);
+        fn_1_4F734(&pkt);
+
+        pkt = lbl_1_rodata_26F8;
+        pkt.image = 0xA12E;
+        pkt.flags = 10;
+        pkt.x = 320.0f;
+        pkt.y = 218 + i * 40;
+        pkt.z = 5.0f;
+        pkt.alpha = 0.5f * alpha;
+        {
+            SelColor glow = { 0x00, 0xF0, 0xF0, 0xFF };
+            *(SelColor *)pkt.color = glow;
+        }
+        fn_1_51678(&pkt, pkt.image, 0, i * 40, fn_1_48690(pkt.image), 40);
+        fn_1_4F734(&pkt);
+
+        if (i == lbl_1_bss_8B3A0.unk_92) {
+            f32 s;
+            pkt = lbl_1_rodata_26F8;
+            pkt.image = 0xA127;
+            pkt.flags = 10;
+            pkt.x = 320.0f;
+            pkt.y = 218 + i * 40;
+            pkt.z = 6.0f;
+            pkt.color[0] = 0x50;
+            pkt.color[1] = 0xA0;
+            pkt.color[2] = 0xA0;
+            s = lbl_8006D188(16384.0f + 65536.0f * (f32)(lbl_801A66A8 % 60) / 60.0f);
+            s = 0.25f + (f32)(0.25f * s);
+            pkt.scale_x *= 1.875f;
+            pkt.alpha = alpha * s;
+            pkt.scale_y *= 0.5555556f;
+            fn_1_4F734(&pkt);
+        }
+    }
+}
+/* fzgx:end fn_10_DAF8 */
+
 /* fzgx:begin fn_10_E034 */
 typedef signed short s16;
 typedef signed long s32;

@@ -851,6 +851,178 @@ u32 fn_14_34A8(void) {
 }
 /* fzgx:end fn_14_34A8 */
 
+/* fzgx:begin fn_14_34FC noprologue */
+#include "types.h"
+#include "rel/pilotpoint/pilotpoint.h"
+
+extern f64 __fabs(f64);
+struct fn_14_34FC_lbl_14_rodata_0 {
+    u8 pad_0[0x60];
+    f64 unk_60;
+    u8 pad_68[0x50];
+    f64 unk_B8;
+    f64 unk_C0;
+    u8 pad_C8[0x58];
+    f32 unk_120;
+    f32 unk_124;
+};
+extern struct fn_14_34FC_lbl_14_rodata_0 lbl_14_rodata_0;
+struct Input34 {
+    u8 pad[8];
+    u16 pressed;
+    u8 padA[6];
+    volatile u16 repeat; /* volatile: retail re-reads the word at every test */
+    volatile u16 held;   /* volatile: retail re-reads the word at every test */
+};
+extern struct Input34 lbl_1_bss_9F8;
+extern u32 lbl_801A66A0;
+extern void fn_1_A2D84(u32);
+extern void fn_1_A514C(s32);
+
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer(volatile f32 *f, volatile f64 *d, volatile s32 *i) { /* volatile sinks: pool primer */
+    *f = 0.0f; *f = 167.0f; *f = 38.0f; *f = 90.0f;
+    *f = 320.0f; *f = 216.0f; *f = 8.0f; *f = 96.0f;
+    *f = 336.0f; *f = 380.0f; *d = 12.0;
+    *f = 1.0f; *f = 99.0f; *f = 30.0f; *f = 140.0f;
+    *f = 178.0f; *f = 254.0f; *f = 292.0f; *f = 541.0f;
+    *f = 575.0f; *f = 98.0f; *f = 42.0f;
+}
+void fzgx_pool_primer_conversion(volatile f64 *d, volatile s32 *i) { /* volatile sinks: pool primer */
+    *d = (f64)*i;
+}
+void fzgx_pool_primer_rest(volatile f32 *f, volatile f64 *d) { /* volatile sinks: pool primer */
+    *d = 60.0; *d = 25.0; *d = 29.0;
+}
+const u32 fzgx_pool_table_80[10] = {
+    0xA0FF00FF, 0xFFFFFF00, 0xA0FF00FF, 0xFFFFFF00,
+    0xA0FF00FF, 0xFFFFFF00, 0xA0FF00FF, 0xFF8080FF,
+    0xA0FF00FF, 0xFFFFFF00
+};
+void fzgx_pool_primer_tail(volatile f32 *f, volatile f64 *d) { /* volatile sinks: pool primer */
+    *f = 396.0f; *f = 190.0f; *f = 0.5f;
+    *d = 0.0; *d = 1.0; *d = 18.0;
+    *f = 136.0f; *f = 0.55f; *f = 108.0f; *f = 300.0f;
+    *f = 80.0f; *f = 400.0f; *f = 388.0f; *f = 97.0f;
+    *f = 0.05f; *d = 90.0; *d = 30.0; *d = 2.0;
+    *d = 4503599627370496.0;
+    *d = 9751287953004544.0;
+    *f = 10.0f; *f = 20.0f;
+}
+#pragma section code_type ".text"
+
+#define flags34(i) (&((Obj_14_bss_110 *)((u8 *)&lbl_14_bss_110 + (i) * 8))->unk_C)
+static inline s32 wrap34(s32 i, s32 min, s32 max) {
+    return i > max ? min : i < min ? max : i;
+}
+static inline s32 available34(u32 flags) {
+    s16 price;
+    if (flags & 4) return 1;
+    if (flags & 8) price = 15000;
+    else if (flags & 16) price = 20000;
+    else price = -1;
+    if (price > 99900) return 0;
+    return 1;
+}
+/* The flags word is read straight from the table: a helper parameter would copy it. */
+#define mode34(entry) \
+    (((entry) & 4) ? (lbl_14_bss_110.unk_0 | 0x80000000) : (lbl_14_bss_110.unk_0 & 0x7FFFFFFF))
+u32 fn_14_34FC(void) {
+    struct { Obj_14_bss_110 *value; } sel;
+    f32 v0;
+    f32 v1;
+    s16 direction;
+    s16 horizontal;
+    s16 old;
+    s16 candidate;
+    s16 count;
+    s16 i;
+    s16 parent;
+    u32 *flagbase;
+    u32 result;
+    f64 v3;
+    sel.value = &lbl_14_bss_110;
+    v0 = (f32)(s32)lbl_14_bss_92BC;
+    v1 = (v0 - 10.0f) / 20.0f;
+    result = 0;
+    direction = 0;
+    horizontal = 0;
+    old = sel.value->unk_4;
+    if ((s32)lbl_14_bss_92C0 == 1) {
+        /* The timer is re-read through a different lvalue so the front end keeps
+         * it a plain load temporary (the backend still folds it onto one lwz). */
+        if (((lbl_1_bss_9F8.pressed >> 8) & 1) || *(s32 *)&lbl_14_bss_92BC > 300) {
+            fn_1_A2D84(0xA9010100);
+            lbl_14_bss_92C0 = 0;
+            lbl_14_bss_92BC = 0;
+        }
+        return 0;
+    }
+    v3 = __fabs(v1);
+    if (v3 <= 1.0 && v3 >= 0.0) return 0;
+    if (((lbl_1_bss_9F8.repeat >> 1) & 1) || ((lbl_1_bss_9F8.held >> 1) & 1)) direction = 1;
+    if ((lbl_1_bss_9F8.repeat & 1) || (lbl_1_bss_9F8.held & 1)) direction--;
+    if (((lbl_1_bss_9F8.repeat >> 3) & 1) || ((lbl_1_bss_9F8.held >> 3) & 1)) horizontal = -1;
+    if (((lbl_1_bss_9F8.repeat >> 2) & 1) || ((lbl_1_bss_9F8.held >> 2) & 1)) horizontal++;
+    sel.value->unk_4 = wrap34(sel.value->unk_4 + direction, 0, 7);
+    while ((*flags34(sel.value->unk_4) & 1) || !available34(*flags34(sel.value->unk_4))) {
+        if (!direction) direction = 1;
+        sel.value->unk_4 = wrap34(sel.value->unk_4 + direction, 0, 7);
+    }
+    flagbase = &lbl_14_bss_110.unk_C;
+    /* Reload the selection after scanning the entry flags. */
+    lbl_14_bss_110.unk_0 = mode34(flagbase[*(volatile s16 *)&sel.value->unk_4 * 2]);
+    if (lbl_14_bss_110.unk_0 & 0x80000000) {
+        if (horizontal < 0) {
+            candidate = *(s16 *)((u8 *)&lbl_14_bss_110 + 6);
+            count = 0;
+            /* (u32) keeps the index extension distinct from the `candidate + 1` below */
+            while ((*flags34((u32)candidate) & 1) || !available34(*flags34((u32)candidate))) {
+                candidate = wrap34(candidate + 1, 1, 7);
+                if (count > 10) { candidate = 0; break; }
+                count++;
+            }
+            sel.value->unk_4 = candidate;
+        }
+    } else if (horizontal > 0) {
+        *(s16 *)((u8 *)&lbl_14_bss_110 + 6) = sel.value->unk_4;
+        sel.value->unk_4 = 0;
+    }
+    lbl_14_bss_110.unk_0 = mode34(flagbase[sel.value->unk_4 * 2]);
+    if (sel.value->unk_4 != old) fn_1_A2D84(0xA9010000);
+    if ((lbl_1_bss_9F8.pressed >> 8) & 1) {
+        parent = sel.value->unk_4;
+        if (flagbase[parent * 2] & 4) {
+            result = 1;
+            fn_1_A2D84(0xA9010200);
+        } else if (available34(flagbase[parent * 2]) == 1) {
+            flagbase[parent * 2] |= 0x40;
+            while (*flags34(parent) & 2) parent--;
+            flagbase[parent * 2] |= 1;
+            lbl_14_bss_110.unk_48 = lbl_801A66A0;
+            lbl_14_bss_110.unk_0 &= ~0x60000000;
+            if (flagbase[sel.value->unk_4 * 2] & 8) {
+                lbl_14_bss_110.unk_0 |= 0x40000000;
+                fn_1_A2D84(0xA9110400);
+            }
+            if (flagbase[sel.value->unk_4 * 2] & 16) {
+                lbl_14_bss_110.unk_0 |= 0x20000000;
+                fn_1_A514C(*(s16 *)((u8 *)&lbl_14_bss_110 + sel.value->unk_4 * 8 + 8));
+            }
+        }
+    }
+    for (i = 0; (u32)i < 8; i++) {
+        Obj_14_bss_110 *entry = (Obj_14_bss_110 *)((u8 *)&lbl_14_bss_110 + i * 8);
+        if (!(entry->unk_C & 1)) {
+            parent = i;
+            while (*flags34(parent) & 2) parent--;
+            if (*flags34(parent) & 1) entry->unk_C |= 1;
+        }
+    }
+    return result;
+}
+/* fzgx:end fn_14_34FC */
+
 /* fzgx:begin fn_14_3AE8 */
 #include "rel/pilotpoint/pilotpoint.h"
 
