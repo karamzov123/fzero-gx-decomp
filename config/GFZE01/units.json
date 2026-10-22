@@ -75703,6 +75703,21 @@
   },
   {
     "module": "option",
+    "source": "rel/option/_prolog/fn_4_BC04.c",
+    "symbols": [
+      "fn_4_BC04"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/option/_prolog.c",
+    "pool": {
+      "@194": "lbl_4_rodata_B00",
+      "@196": "lbl_4_rodata_B08"
+    }
+  },
+  {
+    "module": "option",
     "source": "rel/option/_prolog/fn_4_C768.c",
     "symbols": [
       "fn_4_C768"
@@ -82782,6 +82797,21 @@
       "...rodata.0": "lbl_8_rodata_408",
       "@6": "lbl_8_rodata_AF8",
       "@12": "lbl_8_rodata_B00"
+    }
+  },
+  {
+    "module": "title",
+    "source": "rel/title/operation/fn_8_E440.c",
+    "symbols": [
+      "fn_8_E440"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/title/operation.c",
+    "pool": {
+      "@194": "lbl_8_rodata_AF8",
+      "@196": "lbl_8_rodata_B00"
     }
   },
   {

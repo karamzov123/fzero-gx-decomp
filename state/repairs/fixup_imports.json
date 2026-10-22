@@ -10995,5 +10995,1098 @@
     "recipe": [],
     "link": "verified",
     "commit": "09e41e53"
+  },
+  "fn_4_BC04": {
+    "seed_symbol": "fn_10_2406C",
+    "generator": "fzgx fixup",
+    "transform": "bind exact clone",
+    "seed": "#include \"types.h\"\n\n#include \"rel/sel/sel.h\"\n#include \"rel/sel/data/lbl_10_rodata_1C40.h\"\n\ntypedef Obj_10_bss_55CD8_Target Obj_4_bss_5680_Target;\nextern u8 lbl_10_bss_55CDD;\nextern char *strncpy(char *, const char *, size_t);\nextern s32 strncmp(const char *, const char *, size_t);\nextern const f64 lbl_10_rodata_1C38;\nextern const f64 lbl_10_rodata_1CA8;\nextern const u32 lbl_10_rodata_1CA0;\nextern void *fn_1_45D0(u32, u32, u8 *, u32);\nextern void fn_1_435C(u32);\nextern s32 fn_1_3F8C(u32, u32, u32, u32);\nextern void fn_10_2325C(void);\nextern u8 lbl_1_bss_9F8[];\nextern u8 lbl_1_bss_A48[];\nextern u32 lbl_801A6410;\nextern void fn_1_A2D84(u32);\ntypedef struct { u8 r, g, b, a; } MenuColor;\ntypedef struct {\nu16 cur;\nu16 max;\nu8 *p4;\nu8 *p8;\nu8 *pC;\nu32 pad;\n} MenuEntry;\n#pragma opt_common_subs off\nvoid fn_10_2406C(void) {\nu8 *p;\nvoid *rp;\nu8 *q;\nu32 cnt;\ns32 flA;\ns32 flB;\ns32 flC;\nu8 buf[2];\ns32 i;\nu16 *repeat;\nu16 *held;\nObj_10_bss_55CD8_Target *state;\nu8 *t8;\nMenuEntry *e;\ns32 inputIndex;\nObj_10_bss_55CD8_Target *active;\nObj_10_bss_55CD8_Target **inputRef;\ns32 prev;\nu8 *alternate;\nMenuColor v68;\np = lbl_10_data_68E0;\nflA = 0;\nflB = 0;\nflC = 0;\nif (lbl_10_bss_55CD8->unk_0 >> 31) {\nif (lbl_10_bss_55CDD == 0) {\ngoto end; /* matches retail's single early-exit block */\n}\n}\nstate = lbl_10_bss_55CD8;\ne = (MenuEntry *)state->unk_3C + state->unk_D;\nt8 = lbl_1_bss_9F8 + 8;\nif ((((u16 *)t8)[state->unk_C * 10] >> 12) & 1) {\nif (e->cur == e->max - 1) {\nlbl_10_bss_55CD8->unk_0 |= 0x20000000;\nfn_1_A2D84(0xA9010F00);\n} else {\nMenuEntry *z;\nlbl_10_bss_55CD8->unk_F = 0;\nz = (MenuEntry *)lbl_10_bss_55CD8->unk_3C;\nfor (i = 0; i < lbl_10_bss_55CD8->unk_3B; i++) {\nz->cur = z->max - 1;\nz++;\n}\nfn_1_A2D84(0xA9010F00);\n}\n} else if (((((u16 *)t8)[state->unk_C * 10] >> 8) & 1) && lbl_10_bss_55CDD == 0) {\ns32 cur = e->cur;\nif (cur == e->max - 1) {\nlbl_10_bss_55CD8->unk_0 |= 0x20000000;\nfn_1_A2D84(0xA9010F00);\n} else {\ncnt = (u8)(state->unk_E);\nflA = 1;\nif (cnt == 7 && state->unk_36 != 0) {\nflB = 1;\n}\n{\nswitch (state->unk_F) {\ncase 0: q = e->p4 + cur * 2; break;\ncase 1: q = e->p8 + cur * 2; break;\ncase 2: q = e->pC + cur * 2; break;\n}\n}\nstrncpy((char *)buf, (char *)q, 2);\nif (strncmp((char *)q, (char *)(p + 0xb4), 2) == 0) {\nstrncpy((char *)((u8 *)lbl_10_bss_55CD8 + lbl_10_bss_55CD8->unk_E * 2 + 0x28), (char *)(p + 0xb0), 2);\n} else {\nstrncpy((char *)((u8 *)lbl_10_bss_55CD8 + lbl_10_bss_55CD8->unk_E * 2 + 0x28), (char *)q, 2);\n}\n{\nObj_10_bss_55CD8_Target **advanceRef = &lbl_10_bss_55CD8;\nObj_10_bss_55CD8_Target *advance = *advanceRef;\nif (advance->unk_E < 7) {\nadvance->unk_E = advance->unk_E + 1;\n} else {\nMenuEntry *z;\ns32 j;\nz = (MenuEntry *)advance->unk_3C;\nfor (j = 0; j < (*advanceRef)->unk_3B; j++) {\nz->cur = z->max - 1;\nz++;\n}\n}\n}\nlbl_10_bss_55CD8->unk_F = 0;\n}\n} else if (((((u16 *)t8) [lbl_10_bss_55CD8->unk_C * 10] >> 9) & 1) && lbl_10_bss_55CDD == 0) {\nu32 pos;\nstate = lbl_10_bss_55CD8;\npos = state->unk_E;\nflB = pos != 0;\nif (pos == 7 && state->unk_36 != 0) {\nlbl_10_bss_55CD8->unk_36 = 0;\nlbl_10_bss_55CD8->unk_37 = 0;\n} else {\nif (pos != 0) {\nstate->unk_E = state->unk_E - 1;\n}\nfor (i = lbl_10_bss_55CD8->unk_E; i <= 7; i++) {\nif (i < 7) {\nu8 *shift = (u8 *)lbl_10_bss_55CD8 + i * 2;\nshift[0x28] = shift[0x2a];\nshift = (u8 *)lbl_10_bss_55CD8 + i * 2;\nshift[0x29] = shift[0x2b];\n} else {\n*((u8 *)lbl_10_bss_55CD8 + i * 2 + 0x28) = 0;\n*((u8 *)lbl_10_bss_55CD8 + i * 2 + 0x29) = 0;\n}\n}\n}\nlbl_10_bss_55CD8->unk_F = 0;\ncnt = (u8)(lbl_10_bss_55CD8->unk_E);\n} else {\nheld = (u16 *)(lbl_1_bss_9F8 + 0x10);\nif (((held[lbl_10_bss_55CD8->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) >> 3) & 1)) {\nif (lbl_10_bss_55CD8->unk_D == 0) {\nlbl_10_bss_55CD8->unk_D = lbl_10_bss_55CD8->unk_3B - 1;\n} else {\nlbl_10_bss_55CD8->unk_D = lbl_10_bss_55CD8->unk_D - 1;\n}\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (((held[lbl_10_bss_55CD8->unk_C * 10] >> 2) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 2) & 1)) {\nif (lbl_10_bss_55CD8->unk_D == lbl_10_bss_55CD8->unk_3B - 1) {\nlbl_10_bss_55CD8->unk_D = 0;\n} else {\nlbl_10_bss_55CD8->unk_D = lbl_10_bss_55CD8->unk_D + 1;\n}\nlbl_10_bss_55CD8->unk_F = 0;\n} else if ((held[lbl_10_bss_55CD8->unk_C * 10] & 1) || (repeat[lbl_10_bss_55CD8->unk_C * 10] & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 8) & 1)) {\nif (e->cur == 0) {\ne->cur = e->max - 1;\n} else {\ne->cur = e->cur - 1;\n}\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (((held[lbl_10_bss_55CD8->unk_C * 10] >> 1) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 1) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 9) & 1)) {\nif (e->cur == e->max - 1) {\ne->cur = 0;\n} else {\ne->cur = e->cur + 1;\n}\nlbl_10_bss_55CD8->unk_F = 0;\n} else if ((((u16 *)t8)[lbl_10_bss_55CD8->unk_C * 10] >> 11) & 1) {\nflC = 1;\nlbl_10_bss_55CD8->unk_F = lbl_10_bss_55CD8->unk_F + 1;\nif (lbl_10_bss_55CD8->unk_F > 2) {\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (lbl_10_bss_55CD8->unk_F == 1) {\nalternate = e->p8;\nif (alternate == 0) {\nflC = 0;\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (strncmp((char *)(alternate + e->cur * 2), (char *)(p + 0xb0), 2) == 0) {\nflC = 0;\nlbl_10_bss_55CD8->unk_F = 0;\n}\n} else if (lbl_10_bss_55CD8->unk_F == 2) {\nalternate = e->pC;\nif (alternate == 0) {\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (strncmp((char *)(alternate + e->cur * 2), (char *)(p + 0xb0), 2) == 0) {\nlbl_10_bss_55CD8->unk_F = 0;\n}\n}\n}\n}\n{\nregister Obj_10_bss_55CD8_Target **ref = &lbl_10_bss_55CD8;\n/* Observe the shared state pointer independently before this update stage. */\nObj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target *volatile *)ref;\nObj_10_bss_55CD8_Target *after;\ns32 prev;\nprev = *(s8 *)&before->unk_10;\nbefore->unk_10 = ((s8 *)lbl_1_bss_A48)[before->unk_C << 4] >> 2;\nafter = *ref;\nif (*(s8 *)&after->unk_10 == 0) {\nu8 t = lbl_1_bss_A48[after->unk_C << 4];\nif ((s8)t > 0) {\nafter->unk_10 = 1;\n} else if ((s8)t < 0) {\n*(s8 *)&after->unk_10 = -1;\n} else {\n*(s8 *)&after->unk_10 = prev < 0 ? -1 : 1;\n}\n}\n}\n{\nregister Obj_10_bss_55CD8_Target **smoothRef = &lbl_10_bss_55CD8;\n/* Observe the shared state pointer again for the animation update. */\nObj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target *volatile *)smoothRef;\nu32 old12;\ns32 x;\nf64 d;\nObj_10_bss_55CD8_Target *smooth;\nphase->unk_11 = phase->unk_11 - phase->unk_10;\nsmooth = *smoothRef;\nold12 = smooth->unk_12;\nx = smooth->unk_E * 56 + 98 - old12;\nd = lbl_10_rodata_1CA8 * (f64)x;\nif ((s32)d != 0) {\nsmooth->unk_12 = (s32)((f64)old12 + d);\n} else {\ns32 step;\nif (x < 0) {\nstep = -1;\n} else {\nstep = x > 0;\n}\nsmooth->unk_12 += step;\n}\n}\nif (lbl_10_bss_55CD8->unk_14 != 0) {\nlbl_10_bss_55CD8->unk_14 = lbl_10_bss_55CD8->unk_14 - 1;\n}\nif (lbl_10_bss_55CD8->unk_15 != 0) {\nlbl_10_bss_55CD8->unk_15 = lbl_10_bss_55CD8->unk_15 - 1;\n}\nif (lbl_10_bss_55CD8->unk_16 != 0) {\nlbl_10_bss_55CD8->unk_16 = lbl_10_bss_55CD8->unk_16 - 1;\n}\nif (lbl_10_bss_55CD8->unk_17 != 0) {\nlbl_10_bss_55CD8->unk_17 = lbl_10_bss_55CD8->unk_17 - 1;\n}\nq = lbl_1_bss_9F8 + 0x10;\nif (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1)) {\nlbl_10_bss_55CD8->unk_14 = 8;\n}\nif (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1)) {\nlbl_10_bss_55CD8->unk_15 = 8;\n}\nif ((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) & 1) ||\n((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 8) & 1)) {\nlbl_10_bss_55CD8->unk_16 = 8;\n}\nif (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 1) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) >> 1) & 1) ||\n((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 9) & 1)) {\nlbl_10_bss_55CD8->unk_17 = 8;\n}\nif (flA != 0) {\nv68 = *(const MenuColor *)&lbl_10_rodata_1CA0;\nrp = fn_1_45D0 (*(u32 *)&lbl_801A6410, 0x12, p + 0xa0, 0xd4);\n*(u16 *)((u8 *)rp + 8) = (u16)((u32)(cnt & 0xFF) * 56 + 0x7e);\n*(u16 *)((u8 *)rp + 10) = 0x17a;\n*(u8 *)((u8 *)rp + 0) = 1;\n*(u8 *)((u8 *)rp + 1) = 0x18;\n*(u16 *)((u8 *)rp + 4) = 0x140;\n*(u16 *)((u8 *)rp + 6) = 0xb2;\n*(u8 *)((u8 *)rp + 2) = buf[0];\n*(u8 *)((u8 *)rp + 3) = buf[1];\n*(MenuColor *)((u8 *)rp + 0xd) = v68;\n*(u8 *)((u8 *)rp + 0xc) = cnt;\nfn_1_435C(lbl_10_bss_55CD8->unk_8);\nfn_1_3F8C((u32)(p + 0xc8), (u32)fn_10_2325C, (u32)rp, 0xb);\n}\nif (flB != 0) {\nlbl_10_bss_55CD8->unk_20 |= ((u32)0x80000000 >> cnt);\n}\nif (flA != 0) {\nlbl_10_bss_55CD8->unk_3A = 12;\n}\nif (flA != 0) {\nfn_1_A2D84(0xA9010F00);\n}\nif (flB != 0) {\nfn_1_A2D84(0xA9010200);\n}\nif (flC != 0) {\nfn_1_A2D84(0xA9010000);\n}\nif (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) >> 3) & 1) ||\n((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 2) & 1)) {\nfn_1_A2D84(0xA9010000);\n}\nif ((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 8) & 1) ||\n((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 1) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 1) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 9) & 1)) {\nfn_1_A2D84(0xA9010000);\n}\n\nif (lbl_10_bss_55CDD != 0) {\nfn_1_A2D84(0xA9010200);\nlbl_10_bss_55CD8->unk_0 &= ~0x80000000u;\n}\nlbl_10_bss_55CDD = 0;\nend:\nreturn;\n}\n#pragma opt_common_subs reset\n",
+    "seed_sha256": "633d06e6956e5899a07e618fb56a6c17089a22d072d0651b70d0e9bffe56278f",
+    "generated_sha256": "1e22bc6cfb7cb30b0c6c36860323362776e7c177e6b557d3b472aefbf6f6086e",
+    "generated_source": "\ntypedef signed char s8;\n\n\ntypedef signed long s32;\n\n\ntypedef unsigned char u8;\ntypedef unsigned short u16;\ntypedef unsigned long u32;\n\n\ntypedef double f64;\n\n\ntypedef unsigned long size_t;\n\n\n/* lbl_10_bss_55CD8: .bss size 0x4, 5 refs from sel.c */\ntypedef struct {\nu32 unk_0; /* 12 loads, 7 stores */\nu32 unk_4; /* 1 loads, 1 stores */\nu32 unk_8; /* 5 loads, 1 stores */\nu8 unk_C; /* 8 loads, 1 stores */\nu8 unk_D; /* 5 loads, 4 stores */\nu8 unk_E; /* 10 loads, 4 stores */\nu8 unk_F; /* 3 loads, 12 stores */\nu8 unk_10; /* 1 loads, 0 stores */\nu8 unk_11; /* 2 loads, 1 stores */\nu16 unk_12; /* 3 loads, 3 stores */\nu8 unk_14; /* 2 loads, 2 stores */\nu8 unk_15; /* 2 loads, 2 stores */\nu8 unk_16; /* 2 loads, 2 stores */\nu8 unk_17; /* 2 loads, 2 stores */\nu32 unk_18; /* 1 loads, 1 stores */\nu32 unk_1C; /* 1 loads, 1 stores */\nu32 unk_20; /* 3 loads, 2 stores */\nu8 pad_24[0x4];\nu8 unk_28; /* 2 loads, 0 stores */\nu8 pad_29[0xD];\nu8 unk_36; /* 2 loads, 1 stores */\nu8 unk_37; /* 0 loads, 1 stores */\nu8 pad_38[0x2];\nu8 unk_3A; /* 2 loads, 2 stores */\nu8 unk_3B; /* 5 loads, 2 stores */\nu32 unk_3C; /* 4 loads, 2 stores */\n} Obj_10_bss_55CD8_Target;\nextern Obj_10_bss_55CD8_Target *lbl_4_bss_5680;\n/* lbl_10_data_68E0: .data size 0xA0, 5 refs from sel.c (own data block) */\nextern u8 lbl_4_data_2F78[0xA0];\n\n\nextern u8 lbl_4_bss_5685;\nextern char *strncpy(char *, const char *, size_t);\nextern s32 strncmp(const char *, const char *, size_t);\n\n\nextern const f64 lbl_4_rodata_B70;\nextern const u32 lbl_4_rodata_B68;\nextern void *fn_1_45D0(u32, u32, u8 *, u32);\nextern void fn_1_435C(u32);\nextern s32 fn_1_3F8C(u32, u32, u32, u32);\nextern void fn_4_ADF4(void);\nextern u8 lbl_1_bss_9F8[];\nextern u8 lbl_1_bss_A48[];\nextern u32 lbl_801A6410;\nextern void fn_1_A2D84(u32);\ntypedef struct { u8 r, g, b, a; } MenuColor;\ntypedef struct {\nu16 cur;\nu16 max;\nu8 *p4;\nu8 *p8;\nu8 *pC;\nu32 pad;\n} MenuEntry;\n#pragma opt_common_subs off\nvoid fn_4_BC04(void) {\nu8 *p;\nvoid *rp;\nu8 *q;\nu32 cnt;\ns32 flA;\ns32 flB;\ns32 flC;\nu8 buf[2];\ns32 i;\nu16 *repeat;\nu16 *held;\nObj_10_bss_55CD8_Target *state;\nu8 *t8;\nMenuEntry *e;\ns32 inputIndex;\nObj_10_bss_55CD8_Target *active;\nObj_10_bss_55CD8_Target **inputRef;\ns32 prev;\nu8 *alternate;\nMenuColor v68;\np = lbl_4_data_2F78;\nflA = 0;\nflB = 0;\nflC = 0;\nif (lbl_4_bss_5680->unk_0 >> 31) {\nif (lbl_4_bss_5685 == 0) {\ngoto end; /* matches retail's single early-exit block */\n}\n}\nstate = lbl_4_bss_5680;\ne = (MenuEntry *)state->unk_3C + state->unk_D;\nt8 = lbl_1_bss_9F8 + 8;\nif ((((u16 *)t8)[state->unk_C * 10] >> 12) & 1) {\nif (e->cur == e->max - 1) {\nlbl_4_bss_5680->unk_0 |= 0x20000000;\nfn_1_A2D84(0xA9010F00);\n} else {\nMenuEntry *z;\nlbl_4_bss_5680->unk_F = 0;\nz = (MenuEntry *)lbl_4_bss_5680->unk_3C;\nfor (i = 0; i < lbl_4_bss_5680->unk_3B; i++) {\nz->cur = z->max - 1;\nz++;\n}\nfn_1_A2D84(0xA9010F00);\n}\n} else if (((((u16 *)t8)[state->unk_C * 10] >> 8) & 1) && lbl_4_bss_5685 == 0) {\ns32 cur = e->cur;\nif (cur == e->max - 1) {\nlbl_4_bss_5680->unk_0 |= 0x20000000;\nfn_1_A2D84(0xA9010F00);\n} else {\ncnt = (u8)(state->unk_E);\nflA = 1;\nif (cnt == 7 && state->unk_36 != 0) {\nflB = 1;\n}\n{\nswitch (state->unk_F) {\ncase 0: q = e->p4 + cur * 2; break;\ncase 1: q = e->p8 + cur * 2; break;\ncase 2: q = e->pC + cur * 2; break;\n}\n}\nstrncpy((char *)buf, (char *)q, 2);\nif (strncmp((char *)q, (char *)(p + 0xb4), 2) == 0) {\nstrncpy((char *)((u8 *)lbl_4_bss_5680 + lbl_4_bss_5680->unk_E * 2 + 0x28), (char *)(p + 0xb0), 2);\n} else {\nstrncpy((char *)((u8 *)lbl_4_bss_5680 + lbl_4_bss_5680->unk_E * 2 + 0x28), (char *)q, 2);\n}\n{\nObj_10_bss_55CD8_Target **advanceRef = &lbl_4_bss_5680;\nObj_10_bss_55CD8_Target *advance = *advanceRef;\nif (advance->unk_E < 7) {\nadvance->unk_E = advance->unk_E + 1;\n} else {\nMenuEntry *z;\ns32 j;\nz = (MenuEntry *)advance->unk_3C;\nfor (j = 0; j < (*advanceRef)->unk_3B; j++) {\nz->cur = z->max - 1;\nz++;\n}\n}\n}\nlbl_4_bss_5680->unk_F = 0;\n}\n} else if (((((u16 *)t8) [lbl_4_bss_5680->unk_C * 10] >> 9) & 1) && lbl_4_bss_5685 == 0) {\nu32 pos;\nstate = lbl_4_bss_5680;\npos = state->unk_E;\nflB = pos != 0;\nif (pos == 7 && state->unk_36 != 0) {\nlbl_4_bss_5680->unk_36 = 0;\nlbl_4_bss_5680->unk_37 = 0;\n} else {\nif (pos != 0) {\nstate->unk_E = state->unk_E - 1;\n}\nfor (i = lbl_4_bss_5680->unk_E; i <= 7; i++) {\nif (i < 7) {\nu8 *shift = (u8 *)lbl_4_bss_5680 + i * 2;\nshift[0x28] = shift[0x2a];\nshift = (u8 *)lbl_4_bss_5680 + i * 2;\nshift[0x29] = shift[0x2b];\n} else {\n*((u8 *)lbl_4_bss_5680 + i * 2 + 0x28) = 0;\n*((u8 *)lbl_4_bss_5680 + i * 2 + 0x29) = 0;\n}\n}\n}\nlbl_4_bss_5680->unk_F = 0;\ncnt = (u8)(lbl_4_bss_5680->unk_E);\n} else {\nheld = (u16 *)(lbl_1_bss_9F8 + 0x10);\nif (((held[lbl_4_bss_5680->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 3) & 1)) {\nif (lbl_4_bss_5680->unk_D == 0) {\nlbl_4_bss_5680->unk_D = lbl_4_bss_5680->unk_3B - 1;\n} else {\nlbl_4_bss_5680->unk_D = lbl_4_bss_5680->unk_D - 1;\n}\nlbl_4_bss_5680->unk_F = 0;\n} else if (((held[lbl_4_bss_5680->unk_C * 10] >> 2) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 2) & 1)) {\nif (lbl_4_bss_5680->unk_D == lbl_4_bss_5680->unk_3B - 1) {\nlbl_4_bss_5680->unk_D = 0;\n} else {\nlbl_4_bss_5680->unk_D = lbl_4_bss_5680->unk_D + 1;\n}\nlbl_4_bss_5680->unk_F = 0;\n} else if ((held[lbl_4_bss_5680->unk_C * 10] & 1) || (repeat[lbl_4_bss_5680->unk_C * 10] & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 8) & 1)) {\nif (e->cur == 0) {\ne->cur = e->max - 1;\n} else {\ne->cur = e->cur - 1;\n}\nlbl_4_bss_5680->unk_F = 0;\n} else if (((held[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 9) & 1)) {\nif (e->cur == e->max - 1) {\ne->cur = 0;\n} else {\ne->cur = e->cur + 1;\n}\nlbl_4_bss_5680->unk_F = 0;\n} else if ((((u16 *)t8)[lbl_4_bss_5680->unk_C * 10] >> 11) & 1) {\nflC = 1;\nlbl_4_bss_5680->unk_F = lbl_4_bss_5680->unk_F + 1;\nif (lbl_4_bss_5680->unk_F > 2) {\nlbl_4_bss_5680->unk_F = 0;\n} else if (lbl_4_bss_5680->unk_F == 1) {\nalternate = e->p8;\nif (alternate == 0) {\nflC = 0;\nlbl_4_bss_5680->unk_F = 0;\n} else if (strncmp((char *)(alternate + e->cur * 2), (char *)(p + 0xb0), 2) == 0) {\nflC = 0;\nlbl_4_bss_5680->unk_F = 0;\n}\n} else if (lbl_4_bss_5680->unk_F == 2) {\nalternate = e->pC;\nif (alternate == 0) {\nlbl_4_bss_5680->unk_F = 0;\n} else if (strncmp((char *)(alternate + e->cur * 2), (char *)(p + 0xb0), 2) == 0) {\nlbl_4_bss_5680->unk_F = 0;\n}\n}\n}\n}\n{\nregister Obj_10_bss_55CD8_Target **ref = &lbl_4_bss_5680;\n/* Observe the shared state pointer independently before this update stage. */\nObj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target *volatile *)ref;\nObj_10_bss_55CD8_Target *after;\ns32 prev;\nprev = *(s8 *)&before->unk_10;\nbefore->unk_10 = ((s8 *)lbl_1_bss_A48)[before->unk_C << 4] >> 2;\nafter = *ref;\nif (*(s8 *)&after->unk_10 == 0) {\nu8 t = lbl_1_bss_A48[after->unk_C << 4];\nif ((s8)t > 0) {\nafter->unk_10 = 1;\n} else if ((s8)t < 0) {\n*(s8 *)&after->unk_10 = -1;\n} else {\n*(s8 *)&after->unk_10 = prev < 0 ? -1 : 1;\n}\n}\n}\n{\nregister Obj_10_bss_55CD8_Target **smoothRef = &lbl_4_bss_5680;\n/* Observe the shared state pointer again for the animation update. */\nObj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target *volatile *)smoothRef;\nu32 old12;\ns32 x;\nf64 d;\nObj_10_bss_55CD8_Target *smooth;\nphase->unk_11 = phase->unk_11 - phase->unk_10;\nsmooth = *smoothRef;\nold12 = smooth->unk_12;\nx = smooth->unk_E * 56 + 98 - old12;\nd = lbl_4_rodata_B70 * (f64)x;\nif ((s32)d != 0) {\nsmooth->unk_12 = (s32)((f64)old12 + d);\n} else {\ns32 step;\nif (x < 0) {\nstep = -1;\n} else {\nstep = x > 0;\n}\nsmooth->unk_12 += step;\n}\n}\nif (lbl_4_bss_5680->unk_14 != 0) {\nlbl_4_bss_5680->unk_14 = lbl_4_bss_5680->unk_14 - 1;\n}\nif (lbl_4_bss_5680->unk_15 != 0) {\nlbl_4_bss_5680->unk_15 = lbl_4_bss_5680->unk_15 - 1;\n}\nif (lbl_4_bss_5680->unk_16 != 0) {\nlbl_4_bss_5680->unk_16 = lbl_4_bss_5680->unk_16 - 1;\n}\nif (lbl_4_bss_5680->unk_17 != 0) {\nlbl_4_bss_5680->unk_17 = lbl_4_bss_5680->unk_17 - 1;\n}\nq = lbl_1_bss_9F8 + 0x10;\nif (((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 3) & 1)) {\nlbl_4_bss_5680->unk_14 = 8;\n}\nif (((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 2) & 1)) {\nlbl_4_bss_5680->unk_15 = 8;\n}\nif ((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) & 1) ||\n((repeat[lbl_4_bss_5680->unk_C * 10] >> 8) & 1)) {\nlbl_4_bss_5680->unk_16 = 8;\n}\nif (((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 1) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 1) & 1) ||\n((repeat[lbl_4_bss_5680->unk_C * 10] >> 9) & 1)) {\nlbl_4_bss_5680->unk_17 = 8;\n}\nif (flA != 0) {\nv68 = *(const MenuColor *)&lbl_4_rodata_B68;\nrp = fn_1_45D0 (*(u32 *)&lbl_801A6410, 0x12, p + 0xa0, 0xd4);\n*(u16 *)((u8 *)rp + 8) = (u16)((u32)(cnt & 0xFF) * 56 + 0x7e);\n*(u16 *)((u8 *)rp + 10) = 0x17a;\n*(u8 *)((u8 *)rp + 0) = 1;\n*(u8 *)((u8 *)rp + 1) = 0x18;\n*(u16 *)((u8 *)rp + 4) = 0x140;\n*(u16 *)((u8 *)rp + 6) = 0xb2;\n*(u8 *)((u8 *)rp + 2) = buf[0];\n*(u8 *)((u8 *)rp + 3) = buf[1];\n*(MenuColor *)((u8 *)rp + 0xd) = v68;\n*(u8 *)((u8 *)rp + 0xc) = cnt;\nfn_1_435C(lbl_4_bss_5680->unk_8);\nfn_1_3F8C((u32)(p + 0xc8), (u32)fn_4_ADF4, (u32)rp, 0xb);\n}\nif (flB != 0) {\nlbl_4_bss_5680->unk_20 |= ((u32)0x80000000 >> cnt);\n}\nif (flA != 0) {\nlbl_4_bss_5680->unk_3A = 12;\n}\nif (flA != 0) {\nfn_1_A2D84(0xA9010F00);\n}\nif (flB != 0) {\nfn_1_A2D84(0xA9010200);\n}\nif (flC != 0) {\nfn_1_A2D84(0xA9010000);\n}\nif (((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 3) & 1) ||\n((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 2) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 2) & 1)) {\nfn_1_A2D84(0xA9010000);\n}\nif ((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 8) & 1) ||\n((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 1) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 9) & 1)) {\nfn_1_A2D84(0xA9010000);\n}\nif (lbl_4_bss_5685 != 0) {\nfn_1_A2D84(0xA9010200);\nlbl_4_bss_5680->unk_0 &= ~0x80000000u;\n}\nlbl_4_bss_5685 = 0;\nend:\nreturn;\n}\n#pragma opt_common_subs reset\n",
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "source": "rel/option/_prolog/fn_4_BC04.c",
+    "bytes": 2916,
+    "headers_sha256": "ad8d87f89ffdbc48b4eed82117ca68bc7df20930194490f8fa081141d0677717",
+    "oracle_sha256": "a07ffcea0a75ff8b33e8b1a58b6f616c8c390cf774c325caeec533336a536657",
+    "recipe": [
+      {
+        "label": "expand owned clone declarations",
+        "input_sha256": "633d06e6956e5899a07e618fb56a6c17089a22d072d0651b70d0e9bffe56278f",
+        "output_sha256": "dea1f27bee500b93ade5e953ec8f31531739e709538a85a0f763cc2e2ac59941",
+        "input_symbol": "fn_10_2406C",
+        "output_symbol": "fn_10_2406C",
+        "edits": [
+          [
+            0,
+            19,
+            ""
+          ],
+          [
+            20,
+            89,
+            "typedef signed char s8;"
+          ],
+          [
+            91,
+            145,
+            "\ntypedef signed long s32;\n\n\ntypedef unsigned char u8;\ntypedef unsigned short u16;\ntypedef unsigned long u32;\n\n\ntypedef double f64;\n\n\ntypedef unsigned long size_t;\n\n\n/* lbl_10_bss_55CD8: .bss size 0x4, 5 refs from sel.c */\ntypedef struct {\nu32 unk_0; /* 12 loads, 7 stores */\nu32 unk_4; /* 1 loads, 1 stores */\nu32 unk_8; /* 5 loads, 1 stores */\nu8 unk_C; /* 8 loads, 1 stores */\nu8 unk_D; /* 5 loads, 4 stores */\nu8 unk_E; /* 10 loads, 4 stores */\nu8 unk_F; /* 3 loads, 12 stores */\nu8 unk_10; /* 1 loads, 0 stores */\nu8 unk_11; /* 2 loads, 1 stores */\nu16 unk_12; /* 3 loads, 3 stores */\nu8 unk_14; /* 2 loads, 2 stores */\nu8 unk_15; /* 2 loads, 2 stores */\nu8 unk_16; /* 2 loads, 2 stores */\nu8 unk_17; /* 2 loads, 2 stores */\nu32 unk_18; /* 1 loads, 1 stores */\nu32 unk_1C; /* 1 loads, 1 stores */\nu32 unk_20; /* 3 loads, 2 stores */\nu8 pad_24[0x4];\nu8 unk_28; /* 2 loads, 0 stores */\nu8 pad_29[0xD];\nu8 unk_36; /* 2 loads, 1 stores */\nu8 unk_37; /* 0 loads, 1 stores */\nu8 pad_38[0x2];\nu8 unk_3A; /* 2 loads, 2 stores */\nu8 unk_3B; /* 5 loads, 2 stores */\nu32 unk_3C; /* 4 loads, 2 stores */\n} Obj_10_bss_55CD8_Target;\nextern Obj_10_bss_55CD8_Target *lbl_10_bss_55CD8;\n/* lbl_10_data_68E0: .data size 0xA0, 5 refs from sel.c (own data block) */\nextern u8 lbl_10_data_68E0[0xA0];\n\n"
+          ],
+          [
+            282,
+            318,
+            "\n"
+          ],
+          [
+            9296,
+            9297,
+            ""
+          ]
+        ]
+      },
+      {
+        "label": "bind exact clone",
+        "input_sha256": "dea1f27bee500b93ade5e953ec8f31531739e709538a85a0f763cc2e2ac59941",
+        "output_sha256": "1e22bc6cfb7cb30b0c6c36860323362776e7c177e6b557d3b472aefbf6f6086e",
+        "input_symbol": "fn_10_2406C",
+        "output_symbol": "fn_4_BC04",
+        "edits": [
+          [
+            1185,
+            1197,
+            "4_bss_5680"
+          ],
+          [
+            1289,
+            1301,
+            "4_data_2F78"
+          ],
+          [
+            1325,
+            1337,
+            "4_bss_5685"
+          ],
+          [
+            1470,
+            1521,
+            "4_rodata_B70;\nextern const u32 lbl_4_rodata_B68"
+          ],
+          [
+            1653,
+            1661,
+            "4_ADF4"
+          ],
+          [
+            1939,
+            1947,
+            "4_BC04"
+          ],
+          [
+            2245,
+            2257,
+            "4_data_2F78"
+          ],
+          [
+            2294,
+            2343,
+            "4_bss_5680->unk_0 >> 31) {\nif (lbl_4_bss_5685"
+          ],
+          [
+            2425,
+            2437,
+            "4_bss_5680"
+          ],
+          [
+            2592,
+            2604,
+            "4_bss_5680"
+          ],
+          [
+            2678,
+            2778,
+            "4_bss_5680->unk_F = 0;\nz = (MenuEntry *)lbl_4_bss_5680->unk_3C;\nfor (i = 0; i < lbl_4_bss_5680"
+          ],
+          [
+            2911,
+            2923,
+            "4_bss_5685"
+          ],
+          [
+            2979,
+            2991,
+            "4_bss_5680"
+          ],
+          [
+            3386,
+            3417,
+            "4_bss_5680 + lbl_4_bss_5680"
+          ],
+          [
+            3498,
+            3529,
+            "4_bss_5680 + lbl_4_bss_5680"
+          ],
+          [
+            3613,
+            3625,
+            "4_bss_5680"
+          ],
+          [
+            3884,
+            3896,
+            "4_bss_5680"
+          ],
+          [
+            3941,
+            3997,
+            "4_bss_5680->unk_C * 10] >> 9) & 1) && lbl_4_bss_5685"
+          ],
+          [
+            4027,
+            4039,
+            "4_bss_5680"
+          ],
+          [
+            4119,
+            4161,
+            "4_bss_5680->unk_36 = 0;\nlbl_4_bss_5680"
+          ],
+          [
+            4248,
+            4260,
+            "4_bss_5680"
+          ],
+          [
+            4319,
+            4331,
+            "4_bss_5680"
+          ],
+          [
+            4386,
+            4398,
+            "4_bss_5680"
+          ],
+          [
+            4456,
+            4514,
+            "4_bss_5680 + i * 2 + 0x28) = 0;\n*((u8 *)lbl_4_bss_5680"
+          ],
+          [
+            4546,
+            4598,
+            "4_bss_5680->unk_F = 0;\ncnt = (u8)(lbl_4_bss_5680"
+          ],
+          [
+            4670,
+            4883,
+            "4_bss_5680->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 3) & 1)) {\nif (lbl_4_bss_5680->unk_D == 0) {\nlbl_4_bss_5680->unk_D = lbl_4_bss_5680"
+          ],
+          [
+            4910,
+            4948,
+            "4_bss_5680->unk_D = lbl_4_bss_5680"
+          ],
+          [
+            4967,
+            5186,
+            "4_bss_5680->unk_F = 0;\n} else if (((held[lbl_4_bss_5680->unk_C * 10] >> 2) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 2) & 1)) {\nif (lbl_4_bss_5680->unk_D == lbl_4_bss_5680->unk_3B - 1) {\nlbl_4_bss_5680"
+          ],
+          [
+            5212,
+            5250,
+            "4_bss_5680->unk_D = lbl_4_bss_5680"
+          ],
+          [
+            5269,
+            5420,
+            "4_bss_5680->unk_F = 0;\n} else if ((held[lbl_4_bss_5680->unk_C * 10] & 1) || (repeat[lbl_4_bss_5680->unk_C * 10] & 1) || ((repeat[lbl_4_bss_5680"
+          ],
+          [
+            5524,
+            5689,
+            "4_bss_5680->unk_F = 0;\n} else if (((held[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680"
+          ],
+          [
+            5793,
+            5858,
+            "4_bss_5680->unk_F = 0;\n} else if ((((u16 *)t8)[lbl_4_bss_5680"
+          ],
+          [
+            5899,
+            6041,
+            "4_bss_5680->unk_F = lbl_4_bss_5680->unk_F + 1;\nif (lbl_4_bss_5680->unk_F > 2) {\nlbl_4_bss_5680->unk_F = 0;\n} else if (lbl_4_bss_5680"
+          ],
+          [
+            6111,
+            6123,
+            "4_bss_5680"
+          ],
+          [
+            6233,
+            6245,
+            "4_bss_5680"
+          ],
+          [
+            6275,
+            6287,
+            "4_bss_5680"
+          ],
+          [
+            6348,
+            6360,
+            "4_bss_5680"
+          ],
+          [
+            6461,
+            6473,
+            "4_bss_5680"
+          ],
+          [
+            6542,
+            6554,
+            "4_bss_5680"
+          ],
+          [
+            7139,
+            7151,
+            "4_bss_5680"
+          ],
+          [
+            7501,
+            7515,
+            "4_rodata_B70"
+          ],
+          [
+            7689,
+            7761,
+            "4_bss_5680->unk_14 != 0) {\nlbl_4_bss_5680->unk_14 = lbl_4_bss_5680"
+          ],
+          [
+            7785,
+            7857,
+            "4_bss_5680->unk_15 != 0) {\nlbl_4_bss_5680->unk_15 = lbl_4_bss_5680"
+          ],
+          [
+            7881,
+            7953,
+            "4_bss_5680->unk_16 != 0) {\nlbl_4_bss_5680->unk_16 = lbl_4_bss_5680"
+          ],
+          [
+            7977,
+            8049,
+            "4_bss_5680->unk_17 != 0) {\nlbl_4_bss_5680->unk_17 = lbl_4_bss_5680"
+          ],
+          [
+            8114,
+            8255,
+            "4_bss_5680->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 3) & 1)) {\nlbl_4_bss_5680"
+          ],
+          [
+            8294,
+            8435,
+            "4_bss_5680->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 2) & 1)) {\nlbl_4_bss_5680"
+          ],
+          [
+            8473,
+            8664,
+            "4_bss_5680->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) & 1) ||\n((repeat[lbl_4_bss_5680->unk_C * 10] >> 8) & 1)) {\nlbl_4_bss_5680"
+          ],
+          [
+            8703,
+            8907,
+            "4_bss_5680->unk_C * 20) >> 1) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 1) & 1) ||\n((repeat[lbl_4_bss_5680->unk_C * 10] >> 9) & 1)) {\nlbl_4_bss_5680"
+          ],
+          [
+            8970,
+            8984,
+            "4_rodata_B68"
+          ],
+          [
+            9411,
+            9476,
+            "4_bss_5680->unk_8);\nfn_1_3F8C((u32)(p + 0xc8), (u32)fn_4_ADF4"
+          ],
+          [
+            9515,
+            9527,
+            "4_bss_5680"
+          ],
+          [
+            9587,
+            9599,
+            "4_bss_5680"
+          ],
+          [
+            9765,
+            9984,
+            "4_bss_5680->unk_C * 20) >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 3) & 1) ||\n((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 2) & 1) || ((repeat[lbl_4_bss_5680"
+          ],
+          [
+            10060,
+            10372,
+            "4_bss_5680->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 8) & 1) ||\n((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 1) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680"
+          ],
+          [
+            10434,
+            10446,
+            "4_bss_5685"
+          ],
+          [
+            10483,
+            10495,
+            "4_bss_5680"
+          ],
+          [
+            10526,
+            10538,
+            "4_bss_5685"
+          ]
+        ],
+        "clone": {
+          "donor": "fn_10_2406C",
+          "recipient": "fn_4_BC04",
+          "bindings": {
+            "lbl_10_bss_55CD8": "lbl_4_bss_5680",
+            "lbl_10_data_68E0": "lbl_4_data_2F78",
+            "lbl_10_bss_55CDD": "lbl_4_bss_5685",
+            "lbl_10_rodata_1CA8": "lbl_4_rodata_B70",
+            "lbl_10_rodata_1C38": "lbl_4_rodata_B00",
+            "lbl_10_rodata_1C40": "lbl_4_rodata_B08",
+            "lbl_10_rodata_1CA0": "lbl_4_rodata_B68",
+            "fn_10_2325C": "fn_4_ADF4",
+            "fn_10_2406C": "fn_4_BC04"
+          },
+          "native_storage": false
+        }
+      }
+    ],
+    "link": "pending"
+  },
+  "fn_8_E440": {
+    "seed_symbol": "fn_10_2406C",
+    "generator": "fzgx fixup",
+    "transform": "bind exact clone",
+    "seed": "#include \"types.h\"\n\n#include \"rel/sel/sel.h\"\n#include \"rel/sel/data/lbl_10_rodata_1C40.h\"\n\ntypedef Obj_10_bss_55CD8_Target Obj_4_bss_5680_Target;\nextern u8 lbl_10_bss_55CDD;\nextern char *strncpy(char *, const char *, size_t);\nextern s32 strncmp(const char *, const char *, size_t);\nextern const f64 lbl_10_rodata_1C38;\nextern const f64 lbl_10_rodata_1CA8;\nextern const u32 lbl_10_rodata_1CA0;\nextern void *fn_1_45D0(u32, u32, u8 *, u32);\nextern void fn_1_435C(u32);\nextern s32 fn_1_3F8C(u32, u32, u32, u32);\nextern void fn_10_2325C(void);\nextern u8 lbl_1_bss_9F8[];\nextern u8 lbl_1_bss_A48[];\nextern u32 lbl_801A6410;\nextern void fn_1_A2D84(u32);\ntypedef struct { u8 r, g, b, a; } MenuColor;\ntypedef struct {\nu16 cur;\nu16 max;\nu8 *p4;\nu8 *p8;\nu8 *pC;\nu32 pad;\n} MenuEntry;\n#pragma opt_common_subs off\nvoid fn_10_2406C(void) {\nu8 *p;\nvoid *rp;\nu8 *q;\nu32 cnt;\ns32 flA;\ns32 flB;\ns32 flC;\nu8 buf[2];\ns32 i;\nu16 *repeat;\nu16 *held;\nObj_10_bss_55CD8_Target *state;\nu8 *t8;\nMenuEntry *e;\ns32 inputIndex;\nObj_10_bss_55CD8_Target *active;\nObj_10_bss_55CD8_Target **inputRef;\ns32 prev;\nu8 *alternate;\nMenuColor v68;\np = lbl_10_data_68E0;\nflA = 0;\nflB = 0;\nflC = 0;\nif (lbl_10_bss_55CD8->unk_0 >> 31) {\nif (lbl_10_bss_55CDD == 0) {\ngoto end; /* matches retail's single early-exit block */\n}\n}\nstate = lbl_10_bss_55CD8;\ne = (MenuEntry *)state->unk_3C + state->unk_D;\nt8 = lbl_1_bss_9F8 + 8;\nif ((((u16 *)t8)[state->unk_C * 10] >> 12) & 1) {\nif (e->cur == e->max - 1) {\nlbl_10_bss_55CD8->unk_0 |= 0x20000000;\nfn_1_A2D84(0xA9010F00);\n} else {\nMenuEntry *z;\nlbl_10_bss_55CD8->unk_F = 0;\nz = (MenuEntry *)lbl_10_bss_55CD8->unk_3C;\nfor (i = 0; i < lbl_10_bss_55CD8->unk_3B; i++) {\nz->cur = z->max - 1;\nz++;\n}\nfn_1_A2D84(0xA9010F00);\n}\n} else if (((((u16 *)t8)[state->unk_C * 10] >> 8) & 1) && lbl_10_bss_55CDD == 0) {\ns32 cur = e->cur;\nif (cur == e->max - 1) {\nlbl_10_bss_55CD8->unk_0 |= 0x20000000;\nfn_1_A2D84(0xA9010F00);\n} else {\ncnt = (u8)(state->unk_E);\nflA = 1;\nif (cnt == 7 && state->unk_36 != 0) {\nflB = 1;\n}\n{\nswitch (state->unk_F) {\ncase 0: q = e->p4 + cur * 2; break;\ncase 1: q = e->p8 + cur * 2; break;\ncase 2: q = e->pC + cur * 2; break;\n}\n}\nstrncpy((char *)buf, (char *)q, 2);\nif (strncmp((char *)q, (char *)(p + 0xb4), 2) == 0) {\nstrncpy((char *)((u8 *)lbl_10_bss_55CD8 + lbl_10_bss_55CD8->unk_E * 2 + 0x28), (char *)(p + 0xb0), 2);\n} else {\nstrncpy((char *)((u8 *)lbl_10_bss_55CD8 + lbl_10_bss_55CD8->unk_E * 2 + 0x28), (char *)q, 2);\n}\n{\nObj_10_bss_55CD8_Target **advanceRef = &lbl_10_bss_55CD8;\nObj_10_bss_55CD8_Target *advance = *advanceRef;\nif (advance->unk_E < 7) {\nadvance->unk_E = advance->unk_E + 1;\n} else {\nMenuEntry *z;\ns32 j;\nz = (MenuEntry *)advance->unk_3C;\nfor (j = 0; j < (*advanceRef)->unk_3B; j++) {\nz->cur = z->max - 1;\nz++;\n}\n}\n}\nlbl_10_bss_55CD8->unk_F = 0;\n}\n} else if (((((u16 *)t8) [lbl_10_bss_55CD8->unk_C * 10] >> 9) & 1) && lbl_10_bss_55CDD == 0) {\nu32 pos;\nstate = lbl_10_bss_55CD8;\npos = state->unk_E;\nflB = pos != 0;\nif (pos == 7 && state->unk_36 != 0) {\nlbl_10_bss_55CD8->unk_36 = 0;\nlbl_10_bss_55CD8->unk_37 = 0;\n} else {\nif (pos != 0) {\nstate->unk_E = state->unk_E - 1;\n}\nfor (i = lbl_10_bss_55CD8->unk_E; i <= 7; i++) {\nif (i < 7) {\nu8 *shift = (u8 *)lbl_10_bss_55CD8 + i * 2;\nshift[0x28] = shift[0x2a];\nshift = (u8 *)lbl_10_bss_55CD8 + i * 2;\nshift[0x29] = shift[0x2b];\n} else {\n*((u8 *)lbl_10_bss_55CD8 + i * 2 + 0x28) = 0;\n*((u8 *)lbl_10_bss_55CD8 + i * 2 + 0x29) = 0;\n}\n}\n}\nlbl_10_bss_55CD8->unk_F = 0;\ncnt = (u8)(lbl_10_bss_55CD8->unk_E);\n} else {\nheld = (u16 *)(lbl_1_bss_9F8 + 0x10);\nif (((held[lbl_10_bss_55CD8->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) >> 3) & 1)) {\nif (lbl_10_bss_55CD8->unk_D == 0) {\nlbl_10_bss_55CD8->unk_D = lbl_10_bss_55CD8->unk_3B - 1;\n} else {\nlbl_10_bss_55CD8->unk_D = lbl_10_bss_55CD8->unk_D - 1;\n}\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (((held[lbl_10_bss_55CD8->unk_C * 10] >> 2) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 2) & 1)) {\nif (lbl_10_bss_55CD8->unk_D == lbl_10_bss_55CD8->unk_3B - 1) {\nlbl_10_bss_55CD8->unk_D = 0;\n} else {\nlbl_10_bss_55CD8->unk_D = lbl_10_bss_55CD8->unk_D + 1;\n}\nlbl_10_bss_55CD8->unk_F = 0;\n} else if ((held[lbl_10_bss_55CD8->unk_C * 10] & 1) || (repeat[lbl_10_bss_55CD8->unk_C * 10] & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 8) & 1)) {\nif (e->cur == 0) {\ne->cur = e->max - 1;\n} else {\ne->cur = e->cur - 1;\n}\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (((held[lbl_10_bss_55CD8->unk_C * 10] >> 1) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 1) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 9) & 1)) {\nif (e->cur == e->max - 1) {\ne->cur = 0;\n} else {\ne->cur = e->cur + 1;\n}\nlbl_10_bss_55CD8->unk_F = 0;\n} else if ((((u16 *)t8)[lbl_10_bss_55CD8->unk_C * 10] >> 11) & 1) {\nflC = 1;\nlbl_10_bss_55CD8->unk_F = lbl_10_bss_55CD8->unk_F + 1;\nif (lbl_10_bss_55CD8->unk_F > 2) {\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (lbl_10_bss_55CD8->unk_F == 1) {\nalternate = e->p8;\nif (alternate == 0) {\nflC = 0;\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (strncmp((char *)(alternate + e->cur * 2), (char *)(p + 0xb0), 2) == 0) {\nflC = 0;\nlbl_10_bss_55CD8->unk_F = 0;\n}\n} else if (lbl_10_bss_55CD8->unk_F == 2) {\nalternate = e->pC;\nif (alternate == 0) {\nlbl_10_bss_55CD8->unk_F = 0;\n} else if (strncmp((char *)(alternate + e->cur * 2), (char *)(p + 0xb0), 2) == 0) {\nlbl_10_bss_55CD8->unk_F = 0;\n}\n}\n}\n}\n{\nregister Obj_10_bss_55CD8_Target **ref = &lbl_10_bss_55CD8;\n/* Observe the shared state pointer independently before this update stage. */\nObj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target *volatile *)ref;\nObj_10_bss_55CD8_Target *after;\ns32 prev;\nprev = *(s8 *)&before->unk_10;\nbefore->unk_10 = ((s8 *)lbl_1_bss_A48)[before->unk_C << 4] >> 2;\nafter = *ref;\nif (*(s8 *)&after->unk_10 == 0) {\nu8 t = lbl_1_bss_A48[after->unk_C << 4];\nif ((s8)t > 0) {\nafter->unk_10 = 1;\n} else if ((s8)t < 0) {\n*(s8 *)&after->unk_10 = -1;\n} else {\n*(s8 *)&after->unk_10 = prev < 0 ? -1 : 1;\n}\n}\n}\n{\nregister Obj_10_bss_55CD8_Target **smoothRef = &lbl_10_bss_55CD8;\n/* Observe the shared state pointer again for the animation update. */\nObj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target *volatile *)smoothRef;\nu32 old12;\ns32 x;\nf64 d;\nObj_10_bss_55CD8_Target *smooth;\nphase->unk_11 = phase->unk_11 - phase->unk_10;\nsmooth = *smoothRef;\nold12 = smooth->unk_12;\nx = smooth->unk_E * 56 + 98 - old12;\nd = lbl_10_rodata_1CA8 * (f64)x;\nif ((s32)d != 0) {\nsmooth->unk_12 = (s32)((f64)old12 + d);\n} else {\ns32 step;\nif (x < 0) {\nstep = -1;\n} else {\nstep = x > 0;\n}\nsmooth->unk_12 += step;\n}\n}\nif (lbl_10_bss_55CD8->unk_14 != 0) {\nlbl_10_bss_55CD8->unk_14 = lbl_10_bss_55CD8->unk_14 - 1;\n}\nif (lbl_10_bss_55CD8->unk_15 != 0) {\nlbl_10_bss_55CD8->unk_15 = lbl_10_bss_55CD8->unk_15 - 1;\n}\nif (lbl_10_bss_55CD8->unk_16 != 0) {\nlbl_10_bss_55CD8->unk_16 = lbl_10_bss_55CD8->unk_16 - 1;\n}\nif (lbl_10_bss_55CD8->unk_17 != 0) {\nlbl_10_bss_55CD8->unk_17 = lbl_10_bss_55CD8->unk_17 - 1;\n}\nq = lbl_1_bss_9F8 + 0x10;\nif (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1)) {\nlbl_10_bss_55CD8->unk_14 = 8;\n}\nif (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1)) {\nlbl_10_bss_55CD8->unk_15 = 8;\n}\nif ((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) & 1) ||\n((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 8) & 1)) {\nlbl_10_bss_55CD8->unk_16 = 8;\n}\nif (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 1) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) >> 1) & 1) ||\n((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 9) & 1)) {\nlbl_10_bss_55CD8->unk_17 = 8;\n}\nif (flA != 0) {\nv68 = *(const MenuColor *)&lbl_10_rodata_1CA0;\nrp = fn_1_45D0 (*(u32 *)&lbl_801A6410, 0x12, p + 0xa0, 0xd4);\n*(u16 *)((u8 *)rp + 8) = (u16)((u32)(cnt & 0xFF) * 56 + 0x7e);\n*(u16 *)((u8 *)rp + 10) = 0x17a;\n*(u8 *)((u8 *)rp + 0) = 1;\n*(u8 *)((u8 *)rp + 1) = 0x18;\n*(u16 *)((u8 *)rp + 4) = 0x140;\n*(u16 *)((u8 *)rp + 6) = 0xb2;\n*(u8 *)((u8 *)rp + 2) = buf[0];\n*(u8 *)((u8 *)rp + 3) = buf[1];\n*(MenuColor *)((u8 *)rp + 0xd) = v68;\n*(u8 *)((u8 *)rp + 0xc) = cnt;\nfn_1_435C(lbl_10_bss_55CD8->unk_8);\nfn_1_3F8C((u32)(p + 0xc8), (u32)fn_10_2325C, (u32)rp, 0xb);\n}\nif (flB != 0) {\nlbl_10_bss_55CD8->unk_20 |= ((u32)0x80000000 >> cnt);\n}\nif (flA != 0) {\nlbl_10_bss_55CD8->unk_3A = 12;\n}\nif (flA != 0) {\nfn_1_A2D84(0xA9010F00);\n}\nif (flB != 0) {\nfn_1_A2D84(0xA9010200);\n}\nif (flC != 0) {\nfn_1_A2D84(0xA9010000);\n}\nif (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) >> 3) & 1) ||\n((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 2) & 1)) {\nfn_1_A2D84(0xA9010000);\n}\nif ((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 8) & 1) ||\n((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 1) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 1) & 1) || ((repeat[lbl_10_bss_55CD8->unk_C * 10] >> 9) & 1)) {\nfn_1_A2D84(0xA9010000);\n}\n\nif (lbl_10_bss_55CDD != 0) {\nfn_1_A2D84(0xA9010200);\nlbl_10_bss_55CD8->unk_0 &= ~0x80000000u;\n}\nlbl_10_bss_55CDD = 0;\nend:\nreturn;\n}\n#pragma opt_common_subs reset\n",
+    "seed_sha256": "633d06e6956e5899a07e618fb56a6c17089a22d072d0651b70d0e9bffe56278f",
+    "generated_sha256": "e71023d96188219937a8654041e6e9fc6ae22789cc20f39a9614cf3f4a5ad1a4",
+    "generated_source": "\ntypedef signed char s8;\n\ntypedef signed long s32;\n\ntypedef unsigned char u8;\ntypedef unsigned short u16;\ntypedef unsigned long u32;\n\ntypedef double f64;\n\ntypedef unsigned long size_t;\n\n/* lbl_10_bss_55CD8: .bss size 0x4, 5 refs from sel.c */\ntypedef struct {\nu32 unk_0; /* 12 loads, 7 stores */\nu32 unk_4; /* 1 loads, 1 stores */\nu32 unk_8; /* 5 loads, 1 stores */\nu8 unk_C; /* 8 loads, 1 stores */\nu8 unk_D; /* 5 loads, 4 stores */\nu8 unk_E; /* 10 loads, 4 stores */\nu8 unk_F; /* 3 loads, 12 stores */\nu8 unk_10; /* 1 loads, 0 stores */\nu8 unk_11; /* 2 loads, 1 stores */\nu16 unk_12; /* 3 loads, 3 stores */\nu8 unk_14; /* 2 loads, 2 stores */\nu8 unk_15; /* 2 loads, 2 stores */\nu8 unk_16; /* 2 loads, 2 stores */\nu8 unk_17; /* 2 loads, 2 stores */\nu32 unk_18; /* 1 loads, 1 stores */\nu32 unk_1C; /* 1 loads, 1 stores */\nu32 unk_20; /* 3 loads, 2 stores */\nu8 pad_24[0x4];\nu8 unk_28; /* 2 loads, 0 stores */\nu8 pad_29[0xD];\nu8 unk_36; /* 2 loads, 1 stores */\nu8 unk_37; /* 0 loads, 1 stores */\nu8 pad_38[0x2];\nu8 unk_3A; /* 2 loads, 2 stores */\nu8 unk_3B; /* 5 loads, 2 stores */\nu32 unk_3C; /* 4 loads, 2 stores */\n} Obj_10_bss_55CD8_Target;\nextern Obj_10_bss_55CD8_Target *lbl_8_bss_550;\n/* lbl_10_data_68E0: .data size 0xA0, 5 refs from sel.c (own data block) */\nextern u8 lbl_8_data_A1E8[0xA0];\n\nextern u8 lbl_8_bss_555;\nextern char *strncpy(char *, const char *, size_t);\nextern s32 strncmp(const char *, const char *, size_t);\n\nextern const f64 lbl_8_rodata_B68;\nextern const u32 lbl_8_rodata_B60;\nextern void *fn_1_45D0(u32, u32, u8 *, u32);\nextern void fn_1_435C(u32);\nextern s32 fn_1_3F8C(u32, u32, u32, u32);\nextern void fn_8_D630(void);\nextern u8 lbl_1_bss_9F8[];\nextern u8 lbl_1_bss_A48[];\nextern u32 lbl_801A6410;\nextern void fn_1_A2D84(u32);\ntypedef struct { u8 r, g, b, a; } MenuColor;\ntypedef struct {\nu16 cur;\nu16 max;\nu8 *p4;\nu8 *p8;\nu8 *pC;\nu32 pad;\n} MenuEntry;\n#pragma opt_common_subs off\nvoid fn_8_E440(void) {\nu8 *p;\nvoid *rp;\nu8 *q;\nu32 cnt;\ns32 flA;\ns32 flB;\ns32 flC;\nu8 buf[2];\ns32 i;\nu16 *repeat;\nu16 *held;\nObj_10_bss_55CD8_Target *state;\nu8 *t8;\nMenuEntry *e;\ns32 inputIndex;\nObj_10_bss_55CD8_Target *active;\nObj_10_bss_55CD8_Target **inputRef;\ns32 prev;\nu8 *alternate;\nMenuColor v68;\np = lbl_8_data_A1E8;\nflA = 0;\nflB = 0;\nflC = 0;\nif (lbl_8_bss_550->unk_0 >> 31) {\nif (lbl_8_bss_555 == 0) {\ngoto end; /* matches retail's single early-exit block */\n}\n}\nstate = lbl_8_bss_550;\ne = (MenuEntry *)state->unk_3C + state->unk_D;\nt8 = lbl_1_bss_9F8 + 8;\nif ((((u16 *)t8)[state->unk_C * 10] >> 12) & 1) {\nif (e->cur == e->max - 1) {\nlbl_8_bss_550->unk_0 |= 0x20000000;\nfn_1_A2D84(0xA9010F00);\n} else {\nMenuEntry *z;\nlbl_8_bss_550->unk_F = 0;\nz = (MenuEntry *)lbl_8_bss_550->unk_3C;\nfor (i = 0; i < lbl_8_bss_550->unk_3B; i++) {\nz->cur = z->max - 1;\nz++;\n}\nfn_1_A2D84(0xA9010F00);\n}\n} else if (((((u16 *)t8)[state->unk_C * 10] >> 8) & 1) && lbl_8_bss_555 == 0) {\ns32 cur = e->cur;\nif (cur == e->max - 1) {\nlbl_8_bss_550->unk_0 |= 0x20000000;\nfn_1_A2D84(0xA9010F00);\n} else {\ncnt = (u8)(state->unk_E);\nflA = 1;\nif (cnt == 7 && state->unk_36 != 0) {\nflB = 1;\n}\n{\nswitch (state->unk_F) {\ncase 0: q = e->p4 + cur * 2; break;\ncase 1: q = e->p8 + cur * 2; break;\ncase 2: q = e->pC + cur * 2; break;\n}\n}\nstrncpy((char *)buf, (char *)q, 2);\nif (strncmp((char *)q, (char *)(p + 0xb4), 2) == 0) {\nstrncpy((char *)((u8 *)lbl_8_bss_550 + lbl_8_bss_550->unk_E * 2 + 0x28), (char *)(p + 0xb0), 2);\n} else {\nstrncpy((char *)((u8 *)lbl_8_bss_550 + lbl_8_bss_550->unk_E * 2 + 0x28), (char *)q, 2);\n}\n{\nObj_10_bss_55CD8_Target **advanceRef = &lbl_8_bss_550;\nObj_10_bss_55CD8_Target *advance = *advanceRef;\nif (advance->unk_E < 7) {\nadvance->unk_E = advance->unk_E + 1;\n} else {\nMenuEntry *z;\ns32 j;\nz = (MenuEntry *)advance->unk_3C;\nfor (j = 0; j < (*advanceRef)->unk_3B; j++) {\nz->cur = z->max - 1;\nz++;\n}\n}\n}\nlbl_8_bss_550->unk_F = 0;\n}\n} else if (((((u16 *)t8) [lbl_8_bss_550->unk_C * 10] >> 9) & 1) && lbl_8_bss_555 == 0) {\nu32 pos;\nstate = lbl_8_bss_550;\npos = state->unk_E;\nflB = pos != 0;\nif (pos == 7 && state->unk_36 != 0) {\nlbl_8_bss_550->unk_36 = 0;\nlbl_8_bss_550->unk_37 = 0;\n} else {\nif (pos != 0) {\nstate->unk_E = state->unk_E - 1;\n}\nfor (i = lbl_8_bss_550->unk_E; i <= 7; i++) {\nif (i < 7) {\nu8 *shift = (u8 *)lbl_8_bss_550 + i * 2;\nshift[0x28] = shift[0x2a];\nshift = (u8 *)lbl_8_bss_550 + i * 2;\nshift[0x29] = shift[0x2b];\n} else {\n*((u8 *)lbl_8_bss_550 + i * 2 + 0x28) = 0;\n*((u8 *)lbl_8_bss_550 + i * 2 + 0x29) = 0;\n}\n}\n}\nlbl_8_bss_550->unk_F = 0;\ncnt = (u8)(lbl_8_bss_550->unk_E);\n} else {\nheld = (u16 *)(lbl_1_bss_9F8 + 0x10);\nif (((held[lbl_8_bss_550->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) >> 3) & 1)) {\nif (lbl_8_bss_550->unk_D == 0) {\nlbl_8_bss_550->unk_D = lbl_8_bss_550->unk_3B - 1;\n} else {\nlbl_8_bss_550->unk_D = lbl_8_bss_550->unk_D - 1;\n}\nlbl_8_bss_550->unk_F = 0;\n} else if (((held[lbl_8_bss_550->unk_C * 10] >> 2) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 2) & 1)) {\nif (lbl_8_bss_550->unk_D == lbl_8_bss_550->unk_3B - 1) {\nlbl_8_bss_550->unk_D = 0;\n} else {\nlbl_8_bss_550->unk_D = lbl_8_bss_550->unk_D + 1;\n}\nlbl_8_bss_550->unk_F = 0;\n} else if ((held[lbl_8_bss_550->unk_C * 10] & 1) || (repeat[lbl_8_bss_550->unk_C * 10] & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 8) & 1)) {\nif (e->cur == 0) {\ne->cur = e->max - 1;\n} else {\ne->cur = e->cur - 1;\n}\nlbl_8_bss_550->unk_F = 0;\n} else if (((held[lbl_8_bss_550->unk_C * 10] >> 1) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 1) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 9) & 1)) {\nif (e->cur == e->max - 1) {\ne->cur = 0;\n} else {\ne->cur = e->cur + 1;\n}\nlbl_8_bss_550->unk_F = 0;\n} else if ((((u16 *)t8)[lbl_8_bss_550->unk_C * 10] >> 11) & 1) {\nflC = 1;\nlbl_8_bss_550->unk_F = lbl_8_bss_550->unk_F + 1;\nif (lbl_8_bss_550->unk_F > 2) {\nlbl_8_bss_550->unk_F = 0;\n} else if (lbl_8_bss_550->unk_F == 1) {\nalternate = e->p8;\nif (alternate == 0) {\nflC = 0;\nlbl_8_bss_550->unk_F = 0;\n} else if (strncmp((char *)(alternate + e->cur * 2), (char *)(p + 0xb0), 2) == 0) {\nflC = 0;\nlbl_8_bss_550->unk_F = 0;\n}\n} else if (lbl_8_bss_550->unk_F == 2) {\nalternate = e->pC;\nif (alternate == 0) {\nlbl_8_bss_550->unk_F = 0;\n} else if (strncmp((char *)(alternate + e->cur * 2), (char *)(p + 0xb0), 2) == 0) {\nlbl_8_bss_550->unk_F = 0;\n}\n}\n}\n}\n{\nregister Obj_10_bss_55CD8_Target **ref = &lbl_8_bss_550;\n/* Observe the shared state pointer independently before this update stage. */\nObj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target *volatile *)ref;\nObj_10_bss_55CD8_Target *after;\ns32 prev;\nprev = *(s8 *)&before->unk_10;\nbefore->unk_10 = ((s8 *)lbl_1_bss_A48)[before->unk_C << 4] >> 2;\nafter = *ref;\nif (*(s8 *)&after->unk_10 == 0) {\nu8 t = lbl_1_bss_A48[after->unk_C << 4];\nif ((s8)t > 0) {\nafter->unk_10 = 1;\n} else if ((s8)t < 0) {\n*(s8 *)&after->unk_10 = -1;\n} else {\n*(s8 *)&after->unk_10 = prev < 0 ? -1 : 1;\n}\n}\n}\n{\nregister Obj_10_bss_55CD8_Target **smoothRef = &lbl_8_bss_550;\n/* Observe the shared state pointer again for the animation update. */\nObj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target *volatile *)smoothRef;\nu32 old12;\ns32 x;\nf64 d;\nObj_10_bss_55CD8_Target *smooth;\nphase->unk_11 = phase->unk_11 - phase->unk_10;\nsmooth = *smoothRef;\nold12 = smooth->unk_12;\nx = smooth->unk_E * 56 + 98 - old12;\nd = lbl_8_rodata_B68 * (f64)x;\nif ((s32)d != 0) {\nsmooth->unk_12 = (s32)((f64)old12 + d);\n} else {\ns32 step;\nif (x < 0) {\nstep = -1;\n} else {\nstep = x > 0;\n}\nsmooth->unk_12 += step;\n}\n}\nif (lbl_8_bss_550->unk_14 != 0) {\nlbl_8_bss_550->unk_14 = lbl_8_bss_550->unk_14 - 1;\n}\nif (lbl_8_bss_550->unk_15 != 0) {\nlbl_8_bss_550->unk_15 = lbl_8_bss_550->unk_15 - 1;\n}\nif (lbl_8_bss_550->unk_16 != 0) {\nlbl_8_bss_550->unk_16 = lbl_8_bss_550->unk_16 - 1;\n}\nif (lbl_8_bss_550->unk_17 != 0) {\nlbl_8_bss_550->unk_17 = lbl_8_bss_550->unk_17 - 1;\n}\nq = lbl_1_bss_9F8 + 0x10;\nif (((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_8_bss_550->unk_C * 20) >> 3) & 1)) {\nlbl_8_bss_550->unk_14 = 8;\n}\nif (((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_8_bss_550->unk_C * 20) >> 2) & 1)) {\nlbl_8_bss_550->unk_15 = 8;\n}\nif ((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) & 1) ||\n((repeat[lbl_8_bss_550->unk_C * 10] >> 8) & 1)) {\nlbl_8_bss_550->unk_16 = 8;\n}\nif (((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) >> 1) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) >> 1) & 1) ||\n((repeat[lbl_8_bss_550->unk_C * 10] >> 9) & 1)) {\nlbl_8_bss_550->unk_17 = 8;\n}\nif (flA != 0) {\nv68 = *(const MenuColor *)&lbl_8_rodata_B60;\nrp = fn_1_45D0 (*(u32 *)&lbl_801A6410, 0x12, p + 0xa0, 0xd4);\n*(u16 *)((u8 *)rp + 8) = (u16)((u32)(cnt & 0xFF) * 56 + 0x7e);\n*(u16 *)((u8 *)rp + 10) = 0x17a;\n*(u8 *)((u8 *)rp + 0) = 1;\n*(u8 *)((u8 *)rp + 1) = 0x18;\n*(u16 *)((u8 *)rp + 4) = 0x140;\n*(u16 *)((u8 *)rp + 6) = 0xb2;\n*(u8 *)((u8 *)rp + 2) = buf[0];\n*(u8 *)((u8 *)rp + 3) = buf[1];\n*(MenuColor *)((u8 *)rp + 0xd) = v68;\n*(u8 *)((u8 *)rp + 0xc) = cnt;\nfn_1_435C(lbl_8_bss_550->unk_8);\nfn_1_3F8C((u32)(p + 0xc8), (u32)fn_8_D630, (u32)rp, 0xb);\n}\nif (flB != 0) {\nlbl_8_bss_550->unk_20 |= ((u32)0x80000000 >> cnt);\n}\nif (flA != 0) {\nlbl_8_bss_550->unk_3A = 12;\n}\nif (flA != 0) {\nfn_1_A2D84(0xA9010F00);\n}\nif (flB != 0) {\nfn_1_A2D84(0xA9010200);\n}\nif (flC != 0) {\nfn_1_A2D84(0xA9010000);\n}\nif (((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) >> 3) & 1) ||\n((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) >> 2) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 2) & 1)) {\nfn_1_A2D84(0xA9010000);\n}\nif ((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 8) & 1) ||\n((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) >> 1) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 1) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 9) & 1)) {\nfn_1_A2D84(0xA9010000);\n}\nif (lbl_8_bss_555 != 0) {\nfn_1_A2D84(0xA9010200);\nlbl_8_bss_550->unk_0 &= ~0x80000000u;\n}\nlbl_8_bss_555 = 0;\nend:\nreturn;\n}\n#pragma opt_common_subs reset\n",
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "source": "rel/title/operation/fn_8_E440.c",
+    "bytes": 2916,
+    "headers_sha256": "ad8d87f89ffdbc48b4eed82117ca68bc7df20930194490f8fa081141d0677717",
+    "oracle_sha256": "a07ffcea0a75ff8b33e8b1a58b6f616c8c390cf774c325caeec533336a536657",
+    "recipe": [
+      {
+        "label": "expand owned clone declarations",
+        "input_sha256": "633d06e6956e5899a07e618fb56a6c17089a22d072d0651b70d0e9bffe56278f",
+        "output_sha256": "dea1f27bee500b93ade5e953ec8f31531739e709538a85a0f763cc2e2ac59941",
+        "input_symbol": "fn_10_2406C",
+        "output_symbol": "fn_10_2406C",
+        "edits": [
+          [
+            0,
+            19,
+            ""
+          ],
+          [
+            20,
+            89,
+            "typedef signed char s8;"
+          ],
+          [
+            91,
+            145,
+            "\ntypedef signed long s32;\n\n\ntypedef unsigned char u8;\ntypedef unsigned short u16;\ntypedef unsigned long u32;\n\n\ntypedef double f64;\n\n\ntypedef unsigned long size_t;\n\n\n/* lbl_10_bss_55CD8: .bss size 0x4, 5 refs from sel.c */\ntypedef struct {\nu32 unk_0; /* 12 loads, 7 stores */\nu32 unk_4; /* 1 loads, 1 stores */\nu32 unk_8; /* 5 loads, 1 stores */\nu8 unk_C; /* 8 loads, 1 stores */\nu8 unk_D; /* 5 loads, 4 stores */\nu8 unk_E; /* 10 loads, 4 stores */\nu8 unk_F; /* 3 loads, 12 stores */\nu8 unk_10; /* 1 loads, 0 stores */\nu8 unk_11; /* 2 loads, 1 stores */\nu16 unk_12; /* 3 loads, 3 stores */\nu8 unk_14; /* 2 loads, 2 stores */\nu8 unk_15; /* 2 loads, 2 stores */\nu8 unk_16; /* 2 loads, 2 stores */\nu8 unk_17; /* 2 loads, 2 stores */\nu32 unk_18; /* 1 loads, 1 stores */\nu32 unk_1C; /* 1 loads, 1 stores */\nu32 unk_20; /* 3 loads, 2 stores */\nu8 pad_24[0x4];\nu8 unk_28; /* 2 loads, 0 stores */\nu8 pad_29[0xD];\nu8 unk_36; /* 2 loads, 1 stores */\nu8 unk_37; /* 0 loads, 1 stores */\nu8 pad_38[0x2];\nu8 unk_3A; /* 2 loads, 2 stores */\nu8 unk_3B; /* 5 loads, 2 stores */\nu32 unk_3C; /* 4 loads, 2 stores */\n} Obj_10_bss_55CD8_Target;\nextern Obj_10_bss_55CD8_Target *lbl_10_bss_55CD8;\n/* lbl_10_data_68E0: .data size 0xA0, 5 refs from sel.c (own data block) */\nextern u8 lbl_10_data_68E0[0xA0];\n\n"
+          ],
+          [
+            282,
+            318,
+            "\n"
+          ],
+          [
+            9296,
+            9297,
+            ""
+          ]
+        ]
+      },
+      {
+        "label": "bind exact clone",
+        "input_sha256": "dea1f27bee500b93ade5e953ec8f31531739e709538a85a0f763cc2e2ac59941",
+        "output_sha256": "1e22bc6cfb7cb30b0c6c36860323362776e7c177e6b557d3b472aefbf6f6086e",
+        "input_symbol": "fn_10_2406C",
+        "output_symbol": "fn_4_BC04",
+        "edits": [
+          [
+            1185,
+            1197,
+            "4_bss_5680"
+          ],
+          [
+            1289,
+            1301,
+            "4_data_2F78"
+          ],
+          [
+            1325,
+            1337,
+            "4_bss_5685"
+          ],
+          [
+            1470,
+            1521,
+            "4_rodata_B70;\nextern const u32 lbl_4_rodata_B68"
+          ],
+          [
+            1653,
+            1661,
+            "4_ADF4"
+          ],
+          [
+            1939,
+            1947,
+            "4_BC04"
+          ],
+          [
+            2245,
+            2257,
+            "4_data_2F78"
+          ],
+          [
+            2294,
+            2343,
+            "4_bss_5680->unk_0 >> 31) {\nif (lbl_4_bss_5685"
+          ],
+          [
+            2425,
+            2437,
+            "4_bss_5680"
+          ],
+          [
+            2592,
+            2604,
+            "4_bss_5680"
+          ],
+          [
+            2678,
+            2778,
+            "4_bss_5680->unk_F = 0;\nz = (MenuEntry *)lbl_4_bss_5680->unk_3C;\nfor (i = 0; i < lbl_4_bss_5680"
+          ],
+          [
+            2911,
+            2923,
+            "4_bss_5685"
+          ],
+          [
+            2979,
+            2991,
+            "4_bss_5680"
+          ],
+          [
+            3386,
+            3417,
+            "4_bss_5680 + lbl_4_bss_5680"
+          ],
+          [
+            3498,
+            3529,
+            "4_bss_5680 + lbl_4_bss_5680"
+          ],
+          [
+            3613,
+            3625,
+            "4_bss_5680"
+          ],
+          [
+            3884,
+            3896,
+            "4_bss_5680"
+          ],
+          [
+            3941,
+            3997,
+            "4_bss_5680->unk_C * 10] >> 9) & 1) && lbl_4_bss_5685"
+          ],
+          [
+            4027,
+            4039,
+            "4_bss_5680"
+          ],
+          [
+            4119,
+            4161,
+            "4_bss_5680->unk_36 = 0;\nlbl_4_bss_5680"
+          ],
+          [
+            4248,
+            4260,
+            "4_bss_5680"
+          ],
+          [
+            4319,
+            4331,
+            "4_bss_5680"
+          ],
+          [
+            4386,
+            4398,
+            "4_bss_5680"
+          ],
+          [
+            4456,
+            4514,
+            "4_bss_5680 + i * 2 + 0x28) = 0;\n*((u8 *)lbl_4_bss_5680"
+          ],
+          [
+            4546,
+            4598,
+            "4_bss_5680->unk_F = 0;\ncnt = (u8)(lbl_4_bss_5680"
+          ],
+          [
+            4670,
+            4883,
+            "4_bss_5680->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 3) & 1)) {\nif (lbl_4_bss_5680->unk_D == 0) {\nlbl_4_bss_5680->unk_D = lbl_4_bss_5680"
+          ],
+          [
+            4910,
+            4948,
+            "4_bss_5680->unk_D = lbl_4_bss_5680"
+          ],
+          [
+            4967,
+            5186,
+            "4_bss_5680->unk_F = 0;\n} else if (((held[lbl_4_bss_5680->unk_C * 10] >> 2) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 2) & 1)) {\nif (lbl_4_bss_5680->unk_D == lbl_4_bss_5680->unk_3B - 1) {\nlbl_4_bss_5680"
+          ],
+          [
+            5212,
+            5250,
+            "4_bss_5680->unk_D = lbl_4_bss_5680"
+          ],
+          [
+            5269,
+            5420,
+            "4_bss_5680->unk_F = 0;\n} else if ((held[lbl_4_bss_5680->unk_C * 10] & 1) || (repeat[lbl_4_bss_5680->unk_C * 10] & 1) || ((repeat[lbl_4_bss_5680"
+          ],
+          [
+            5524,
+            5689,
+            "4_bss_5680->unk_F = 0;\n} else if (((held[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680"
+          ],
+          [
+            5793,
+            5858,
+            "4_bss_5680->unk_F = 0;\n} else if ((((u16 *)t8)[lbl_4_bss_5680"
+          ],
+          [
+            5899,
+            6041,
+            "4_bss_5680->unk_F = lbl_4_bss_5680->unk_F + 1;\nif (lbl_4_bss_5680->unk_F > 2) {\nlbl_4_bss_5680->unk_F = 0;\n} else if (lbl_4_bss_5680"
+          ],
+          [
+            6111,
+            6123,
+            "4_bss_5680"
+          ],
+          [
+            6233,
+            6245,
+            "4_bss_5680"
+          ],
+          [
+            6275,
+            6287,
+            "4_bss_5680"
+          ],
+          [
+            6348,
+            6360,
+            "4_bss_5680"
+          ],
+          [
+            6461,
+            6473,
+            "4_bss_5680"
+          ],
+          [
+            6542,
+            6554,
+            "4_bss_5680"
+          ],
+          [
+            7139,
+            7151,
+            "4_bss_5680"
+          ],
+          [
+            7501,
+            7515,
+            "4_rodata_B70"
+          ],
+          [
+            7689,
+            7761,
+            "4_bss_5680->unk_14 != 0) {\nlbl_4_bss_5680->unk_14 = lbl_4_bss_5680"
+          ],
+          [
+            7785,
+            7857,
+            "4_bss_5680->unk_15 != 0) {\nlbl_4_bss_5680->unk_15 = lbl_4_bss_5680"
+          ],
+          [
+            7881,
+            7953,
+            "4_bss_5680->unk_16 != 0) {\nlbl_4_bss_5680->unk_16 = lbl_4_bss_5680"
+          ],
+          [
+            7977,
+            8049,
+            "4_bss_5680->unk_17 != 0) {\nlbl_4_bss_5680->unk_17 = lbl_4_bss_5680"
+          ],
+          [
+            8114,
+            8255,
+            "4_bss_5680->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 3) & 1)) {\nlbl_4_bss_5680"
+          ],
+          [
+            8294,
+            8435,
+            "4_bss_5680->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 2) & 1)) {\nlbl_4_bss_5680"
+          ],
+          [
+            8473,
+            8664,
+            "4_bss_5680->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) & 1) ||\n((repeat[lbl_4_bss_5680->unk_C * 10] >> 8) & 1)) {\nlbl_4_bss_5680"
+          ],
+          [
+            8703,
+            8907,
+            "4_bss_5680->unk_C * 20) >> 1) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 1) & 1) ||\n((repeat[lbl_4_bss_5680->unk_C * 10] >> 9) & 1)) {\nlbl_4_bss_5680"
+          ],
+          [
+            8970,
+            8984,
+            "4_rodata_B68"
+          ],
+          [
+            9411,
+            9476,
+            "4_bss_5680->unk_8);\nfn_1_3F8C((u32)(p + 0xc8), (u32)fn_4_ADF4"
+          ],
+          [
+            9515,
+            9527,
+            "4_bss_5680"
+          ],
+          [
+            9587,
+            9599,
+            "4_bss_5680"
+          ],
+          [
+            9765,
+            9984,
+            "4_bss_5680->unk_C * 20) >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 3) & 1) ||\n((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 2) & 1) || ((repeat[lbl_4_bss_5680"
+          ],
+          [
+            10060,
+            10372,
+            "4_bss_5680->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 8) & 1) ||\n((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 1) & 1) || ((repeat[lbl_4_bss_5680->unk_C * 10] >> 1) & 1) || ((repeat[lbl_4_bss_5680"
+          ],
+          [
+            10434,
+            10446,
+            "4_bss_5685"
+          ],
+          [
+            10483,
+            10495,
+            "4_bss_5680"
+          ],
+          [
+            10526,
+            10538,
+            "4_bss_5685"
+          ]
+        ],
+        "clone": {
+          "donor": "fn_10_2406C",
+          "recipient": "fn_4_BC04",
+          "bindings": {
+            "lbl_10_bss_55CD8": "lbl_4_bss_5680",
+            "lbl_10_data_68E0": "lbl_4_data_2F78",
+            "lbl_10_bss_55CDD": "lbl_4_bss_5685",
+            "lbl_10_rodata_1CA8": "lbl_4_rodata_B70",
+            "lbl_10_rodata_1C38": "lbl_4_rodata_B00",
+            "lbl_10_rodata_1C40": "lbl_4_rodata_B08",
+            "lbl_10_rodata_1CA0": "lbl_4_rodata_B68",
+            "fn_10_2325C": "fn_4_ADF4",
+            "fn_10_2406C": "fn_4_BC04"
+          },
+          "native_storage": false
+        }
+      },
+      {
+        "label": "expand owned clone declarations",
+        "input_sha256": "1e22bc6cfb7cb30b0c6c36860323362776e7c177e6b557d3b472aefbf6f6086e",
+        "output_sha256": "5811c162ce7140650c8cae3fdf2a1455a62a83349266a305cb8923849ab829e9",
+        "input_symbol": "fn_4_BC04",
+        "output_symbol": "fn_4_BC04",
+        "edits": [
+          [
+            26,
+            27,
+            ""
+          ],
+          [
+            52,
+            53,
+            ""
+          ],
+          [
+            136,
+            137,
+            ""
+          ],
+          [
+            158,
+            159,
+            ""
+          ],
+          [
+            189,
+            190,
+            ""
+          ],
+          [
+            1307,
+            1308,
+            ""
+          ],
+          [
+            1442,
+            1443,
+            ""
+          ]
+        ]
+      },
+      {
+        "label": "bind exact clone",
+        "input_sha256": "5811c162ce7140650c8cae3fdf2a1455a62a83349266a305cb8923849ab829e9",
+        "output_sha256": "e71023d96188219937a8654041e6e9fc6ae22789cc20f39a9614cf3f4a5ad1a4",
+        "input_symbol": "fn_4_BC04",
+        "output_symbol": "fn_8_E440",
+        "edits": [
+          [
+            1180,
+            1189,
+            "8_bss_55"
+          ],
+          [
+            1282,
+            1292,
+            "8_data_A1E"
+          ],
+          [
+            1316,
+            1325,
+            "8_bss_55"
+          ],
+          [
+            1458,
+            1505,
+            "8_rodata_B68;\nextern const u32 lbl_8_rodata_B60"
+          ],
+          [
+            1637,
+            1643,
+            "8_D630"
+          ],
+          [
+            1921,
+            1927,
+            "8_E440"
+          ],
+          [
+            2225,
+            2235,
+            "8_data_A1E"
+          ],
+          [
+            2273,
+            2317,
+            "8_bss_550->unk_0 >> 31) {\nif (lbl_8_bss_55"
+          ],
+          [
+            2400,
+            2409,
+            "8_bss_55"
+          ],
+          [
+            2565,
+            2574,
+            "8_bss_55"
+          ],
+          [
+            2649,
+            2742,
+            "8_bss_550->unk_F = 0;\nz = (MenuEntry *)lbl_8_bss_550->unk_3C;\nfor (i = 0; i < lbl_8_bss_55"
+          ],
+          [
+            2876,
+            2885,
+            "8_bss_55"
+          ],
+          [
+            2942,
+            2951,
+            "8_bss_55"
+          ],
+          [
+            3347,
+            3373,
+            "8_bss_550 + lbl_8_bss_55"
+          ],
+          [
+            3455,
+            3481,
+            "8_bss_550 + lbl_8_bss_55"
+          ],
+          [
+            3566,
+            3575,
+            "8_bss_55"
+          ],
+          [
+            3835,
+            3844,
+            "8_bss_55"
+          ],
+          [
+            3890,
+            3941,
+            "8_bss_550->unk_C * 10] >> 9) & 1) && lbl_8_bss_55"
+          ],
+          [
+            3972,
+            3981,
+            "8_bss_55"
+          ],
+          [
+            4062,
+            4099,
+            "8_bss_550->unk_36 = 0;\nlbl_8_bss_55"
+          ],
+          [
+            4187,
+            4196,
+            "8_bss_55"
+          ],
+          [
+            4256,
+            4265,
+            "8_bss_55"
+          ],
+          [
+            4321,
+            4330,
+            "8_bss_55"
+          ],
+          [
+            4389,
+            4442,
+            "8_bss_550 + i * 2 + 0x28) = 0;\n*((u8 *)lbl_8_bss_55"
+          ],
+          [
+            4475,
+            4522,
+            "8_bss_550->unk_F = 0;\ncnt = (u8)(lbl_8_bss_55"
+          ],
+          [
+            4595,
+            4797,
+            "8_bss_550->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) >> 3) & 1)) {\nif (lbl_8_bss_550->unk_D == 0) {\nlbl_8_bss_550->unk_D = lbl_8_bss_55"
+          ],
+          [
+            4825,
+            4858,
+            "8_bss_550->unk_D = lbl_8_bss_55"
+          ],
+          [
+            4878,
+            5084,
+            "8_bss_550->unk_F = 0;\n} else if (((held[lbl_8_bss_550->unk_C * 10] >> 2) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 2) & 1)) {\nif (lbl_8_bss_550->unk_D == lbl_8_bss_550->unk_3B - 1) {\nlbl_8_bss_55"
+          ],
+          [
+            5111,
+            5144,
+            "8_bss_550->unk_D = lbl_8_bss_55"
+          ],
+          [
+            5164,
+            5306,
+            "8_bss_550->unk_F = 0;\n} else if ((held[lbl_8_bss_550->unk_C * 10] & 1) || (repeat[lbl_8_bss_550->unk_C * 10] & 1) || ((repeat[lbl_8_bss_55"
+          ],
+          [
+            5411,
+            5567,
+            "8_bss_550->unk_F = 0;\n} else if (((held[lbl_8_bss_550->unk_C * 10] >> 1) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 1) & 1) || ((repeat[lbl_8_bss_55"
+          ],
+          [
+            5672,
+            5732,
+            "8_bss_550->unk_F = 0;\n} else if ((((u16 *)t8)[lbl_8_bss_55"
+          ],
+          [
+            5774,
+            5905,
+            "8_bss_550->unk_F = lbl_8_bss_550->unk_F + 1;\nif (lbl_8_bss_550->unk_F > 2) {\nlbl_8_bss_550->unk_F = 0;\n} else if (lbl_8_bss_55"
+          ],
+          [
+            5976,
+            5985,
+            "8_bss_55"
+          ],
+          [
+            6096,
+            6105,
+            "8_bss_55"
+          ],
+          [
+            6136,
+            6145,
+            "8_bss_55"
+          ],
+          [
+            6207,
+            6216,
+            "8_bss_55"
+          ],
+          [
+            6318,
+            6327,
+            "8_bss_55"
+          ],
+          [
+            6397,
+            6406,
+            "8_bss_55"
+          ],
+          [
+            6992,
+            7001,
+            "8_bss_55"
+          ],
+          [
+            7352,
+            7364,
+            "8_rodata_B68"
+          ],
+          [
+            7538,
+            7603,
+            "8_bss_550->unk_14 != 0) {\nlbl_8_bss_550->unk_14 = lbl_8_bss_55"
+          ],
+          [
+            7628,
+            7693,
+            "8_bss_550->unk_15 != 0) {\nlbl_8_bss_550->unk_15 = lbl_8_bss_55"
+          ],
+          [
+            7718,
+            7783,
+            "8_bss_550->unk_16 != 0) {\nlbl_8_bss_550->unk_16 = lbl_8_bss_55"
+          ],
+          [
+            7808,
+            7873,
+            "8_bss_550->unk_17 != 0) {\nlbl_8_bss_550->unk_17 = lbl_8_bss_55"
+          ],
+          [
+            7939,
+            8073,
+            "8_bss_550->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_8_bss_550->unk_C * 20) >> 3) & 1)) {\nlbl_8_bss_55"
+          ],
+          [
+            8113,
+            8247,
+            "8_bss_550->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_8_bss_550->unk_C * 20) >> 2) & 1)) {\nlbl_8_bss_55"
+          ],
+          [
+            8286,
+            8468,
+            "8_bss_550->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) & 1) ||\n((repeat[lbl_8_bss_550->unk_C * 10] >> 8) & 1)) {\nlbl_8_bss_55"
+          ],
+          [
+            8508,
+            8703,
+            "8_bss_550->unk_C * 20) >> 1) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) >> 1) & 1) ||\n((repeat[lbl_8_bss_550->unk_C * 10] >> 9) & 1)) {\nlbl_8_bss_55"
+          ],
+          [
+            8767,
+            8779,
+            "8_rodata_B60"
+          ],
+          [
+            9206,
+            9267,
+            "8_bss_550->unk_8);\nfn_1_3F8C((u32)(p + 0xc8), (u32)fn_8_D630"
+          ],
+          [
+            9306,
+            9315,
+            "8_bss_55"
+          ],
+          [
+            9376,
+            9385,
+            "8_bss_55"
+          ],
+          [
+            9552,
+            9762,
+            "8_bss_550->unk_C * 20) >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) >> 3) & 1) ||\n((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) >> 2) & 1) || ((repeat[lbl_8_bss_55"
+          ],
+          [
+            9839,
+            10138,
+            "8_bss_550->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_8_bss_550->unk_C * 10]) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 8) & 1) ||\n((*(u16 *)(q + lbl_8_bss_550->unk_C * 20) >> 1) & 1) || ((repeat[lbl_8_bss_550->unk_C * 10] >> 1) & 1) || ((repeat[lbl_8_bss_55"
+          ],
+          [
+            10201,
+            10210,
+            "8_bss_55"
+          ],
+          [
+            10248,
+            10257,
+            "8_bss_55"
+          ],
+          [
+            10289,
+            10298,
+            "8_bss_55"
+          ]
+        ],
+        "clone": {
+          "donor": "fn_4_BC04",
+          "recipient": "fn_8_E440",
+          "bindings": {
+            "lbl_4_bss_5680": "lbl_8_bss_550",
+            "lbl_4_data_2F78": "lbl_8_data_A1E8",
+            "lbl_4_bss_5685": "lbl_8_bss_555",
+            "lbl_4_rodata_B70": "lbl_8_rodata_B68",
+            "lbl_4_rodata_B00": "lbl_8_rodata_AF8",
+            "lbl_4_rodata_B08": "lbl_8_rodata_B00",
+            "lbl_4_rodata_B68": "lbl_8_rodata_B60",
+            "fn_4_ADF4": "fn_8_D630",
+            "fn_4_BC04": "fn_8_E440"
+          },
+          "native_storage": false
+        }
+      }
+    ],
+    "link": "pending"
   }
 }
