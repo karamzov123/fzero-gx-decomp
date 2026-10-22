@@ -8669,3 +8669,6 @@ rel/main_rel/effect/fn_1_65E8C.c:
 
 rel/main_rel/custom_memcard/fn_1_131C08.c:
 	.text       start:0x00131C08 end:0x00132488 align:4
+
+rel/main_rel/sound/fn_1_A1964.c:
+	.text       start:0x000A1964 end:0x000A1CE8 align:4
