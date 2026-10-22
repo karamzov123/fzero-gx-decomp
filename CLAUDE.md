@@ -90,6 +90,10 @@ selective, fork-headers, preprocessed) and their gates are in docs/CLOUD.md; can
 in the spliced form (includes hoisted), because that is what the link compiles. On 2026-10-21 every
 fork of rayanht/fzgx and karamzov123/fzero-gx-decomp was compared by module+address: only
 deltawave784's `windows-and-types` holds matches we lack (462/465 landed, 3 left).
+That was incomplete: on 2026-10-22 harvest learned to read a ref's `units.json` (its ledger
+snapshot lags commits), to include `blocked` functions (`fzgx unblock` before landing) and to retry
+lint-only failures with a `+tidy` pass; 18 more functions (21 KB) landed from deltawave784 and
+pabloski2300. Read each run's `results.json` leftovers, not only the landed count.
 
 ## Setup (once)
 
