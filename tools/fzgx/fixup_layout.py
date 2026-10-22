@@ -843,9 +843,12 @@ def initialized_data_views(p, symbol, text):
             if error:
                 continue
             used = sorted(set(used) | {n for n, m in all_fields.items() if m[0] in byte_offsets})
-        if not used or any(n not in decls or decls[n][0] not in ('u32', 's32', 'f32', 'char', 'u8', 'char *', 'void *',
-                                                                 'const char *', 'const void *', 'const u8 *')
-                           or len(decls[n][1]) > 1 for n in used):
+        scalar = ('u32', 's32', 'f32', 'char', 'u8', 'char *', 'void *', 'const char *', 'const void *', 'const u8 *')
+        # Other member types (struct tables such as {u16, u16, u32, char *} rows) are emitted as
+        # retail words through the union view below; their indexed uses keep MWCC's object
+        # addressing (`addi rT, base, off; lwzx rD, rT, rI`), which a folded pointer never gives.
+        if not used or any(n not in decls or decls[n][0] is None
+                           or (decls[n][0] in scalar and len(decls[n][1]) > 1) for n in used):
             continue
         statement = model[0]
         rest = text[:function.start()] + text[function.start():].replace(statement, '', 1)
@@ -910,7 +913,7 @@ def initialized_data_views(p, symbol, text):
                                    (prefix, cursor, (lo - cursor) // 4, ', '.join(value(i) for i in range(cursor, lo, 4))))
             ty, dims, declaration = decls[name]
             native = prefix + '_' + name
-            if '*' in ty and any(i not in relocations and any(raw[i:i + 4]) for i in range(lo, hi, 4)):
+            if ty not in scalar or ('*' in ty and any(i not in relocations and any(raw[i:i + 4]) for i in range(lo, hi, 4))):
                 # Inferred pointer arrays sometimes extend into adjacent text.
                 # Keep their bounds, but store non-pointer words as words rather
                 # than manufacturing literal pointer casts from string bytes.
@@ -965,7 +968,7 @@ def initialized_data_views(p, symbol, text):
                       '__declspec(section ".fzgxpool") static void fzgx_data_base_prime(void) {\n'
                       '    const void *volatile s;  /* fzgx-allow: S2 data base primer sink: the retail TU addressed .data '
                       'off its section base before its literal pool; the section is dropped at integration */\n'
-                      + ''.join('    s = %s;\n' % (n.split('.')[0]) for n in sinks) +
+                      + ''.join('    s = &%s;\n' % (n.split('.')[0]) for n in sinks) +
                       '}\n#pragma section code_type ".text"\n')
             head = rest[:at]
             lead = head.find('#pragma section code_type ".fzgxpool"')
@@ -973,6 +976,12 @@ def initialized_data_views(p, symbol, text):
             top = includes[-1].end() if includes else 0
             if lead >= 0:
                 top = min(top, lead) if top <= lead else lead
+            # Word-union views name the member's own type: keep the block after that type's definition.
+            for tname in set(re.findall(r'\b([A-Za-z_]\w*)\s+view\b', block)):
+                defined = list(re.finditer(r'\}\s*' + re.escape(tname) + r'\s*;\n|\bstruct\s+' + re.escape(tname)
+                                           + r'\s*\{.*?\n\};\n', head, re.S))
+                if defined and defined[-1].end() > top and (lead < 0 or defined[-1].end() <= lead):
+                    top = defined[-1].end()
             yield ('native initialized data objects ' + base + ', data base first',
                    rest[:top] + block + primer + rest[top:at] + rest[at:])
 
