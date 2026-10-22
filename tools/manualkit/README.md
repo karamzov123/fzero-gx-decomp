@@ -13,3 +13,16 @@ module default is used, which is wrong for most DOL functions (GC/1.2.5n vs a un
   appended unpermuted. 7 variables = 5040 variants in ~4 s.
 - `uv run python tools/manualkit/vsweep.py SYM1,SYM2,...` best saved body per symbol under
   GC/1.1 .. 2.7 (words per version).
+
+TU `.bss` layouts (MWCC addresses a TU's objects off one section base; only offset 0 of an object
+folds into a displacement, any other offset materializes the object's address: `addi rX, base, K;
+lwz 0x10(rX)`). When retail shows that and ours folds, the unit must define the TU's objects:
+- `uv run python tools/manualkit/bsslayout.py MODULE START END [ADDR=decl;decl...]` prints
+  definitions for every retail `.bss` object in [START, END) in address order (`fzgx_obj_` names,
+  unaligned dtk objects split into scalars, single-byte pads only where alignment would not place
+  the next object) plus a `.fzgxpool` first-access primer. Override an address to split a dtk object
+  that merges several retail objects (`OWNER__fzgx_offset_X` names).
+- `uv run python tools/manualkit/bssmap.py MODULE FILE BASE [MW]` compiles FILE and lists each
+  `.bss` symbol's offset against the address its name implies.
+Then access each field by its object name (struct views through a pointer fold). Landed
+fn_1_A1DCC, fn_1_A1964 (sound TU), fn_10_7130 (sel, 0x51B28 bytes of layout) this way.
