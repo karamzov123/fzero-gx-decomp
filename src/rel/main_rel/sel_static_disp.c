@@ -1691,6 +1691,95 @@ void fn_1_135D7C(s16 x, s16 y, u32 format, s16 index, void* arg4, s16 slot, int 
 }
 /* fzgx:end fn_1_135D7C */
 
+/* fzgx:begin fn_1_136174 noprologue */
+#include "types.h"
+
+typedef struct Fn1_136174_Color {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} Fn1_136174_Color;
+
+typedef struct Fn1_136174_Entry {
+    u32 flags;
+    u8 pad_4[0x819C];
+    u8 glyph;
+    u8 pad_81A1[0x3];
+    u8 unk_81A4;
+    u8 pad_81A5[0x7];
+    u8 unk_81AC;
+    u8 pad_81AD[0x7];
+    u8 unk_81B4;
+    u8 pad_81B5[0xB];
+} Fn1_136174_Entry;
+
+extern char lbl_1_data_41A30[]; /* "%s\n" */
+extern char lbl_1_data_41AB8[]; /* "?????\n" */
+extern const Fn1_136174_Color lbl_1_rodata_8A08; /* {0xB7, 0xCE, 0xEA, 0xFF} */
+extern void fn_1_49410(void);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_49514(Fn1_136174_Color *);
+extern void fn_1_5233C(void);
+extern void fn_1_49738(void (*)(void));
+extern void fn_1_49748(f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_495C8(s32);
+extern void fn_1_4CF3C(f32, const char *, ...);
+extern Fn1_136174_Entry *fn_1_12F118(void);
+extern Fn1_136174_Entry *fn_1_36AD0(void);
+extern char *fn_1_7F49C(s16, s16, char *);
+extern void fn_1_4962C(void);
+extern char *fn_1_14FEAC(u8, u8, u8, char *, s16);
+
+void fn_1_136174(s16 x, s16 y, s32 type, s16 glyph, s16 id, s16 slot, s32 unknown, f32 scale_x, f32 scale_y) {
+    char buf[32];
+    Fn1_136174_Entry *base;
+    Fn1_136174_Entry *entry;
+
+    if (id == 0) {
+        return;
+    }
+    if (glyph < 0) {
+        return;
+    }
+    fn_1_49410();
+    fn_1_496FC(x, y);
+    fn_1_4955C(scale_x, scale_y);
+    {
+        Fn1_136174_Color color = lbl_1_rodata_8A08;
+
+        fn_1_49514(&color);
+    }
+    fn_1_49738(fn_1_5233C);
+    fn_1_49748(1.0f);
+    fn_1_4954C(50.0f);
+    fn_1_495C8(type);
+    if (unknown) {
+        fn_1_4CF3C(122.0f, lbl_1_data_41AB8);
+        return;
+    }
+    if (glyph >= 0x29) {
+        base = fn_1_12F118();
+        if (base == fn_1_36AD0()) {
+            entry = &base[slot];
+        } else {
+            entry = &base[glyph - 0x29];
+        }
+        if (!(entry->flags & 0x40000000)) {
+            fn_1_4CF3C(122.0f, lbl_1_data_41A30, fn_1_7F49C(entry->glyph, id, buf));
+            return;
+        }
+        fn_1_496FC(x, y);
+        fn_1_4962C();
+        fn_1_4CF3C(122.0f, lbl_1_data_41A30, fn_1_14FEAC(entry->unk_81A4, entry->unk_81AC, entry->unk_81B4, buf, id));
+        return;
+    }
+    fn_1_4CF3C(122.0f, lbl_1_data_41A30, fn_1_7F49C(glyph, id, buf));
+}
+/* fzgx:end fn_1_136174 */
+
 /* fzgx:begin fn_1_1363F0 noprologue */
 #include "types.h"
 #include "dolphin/types.h"

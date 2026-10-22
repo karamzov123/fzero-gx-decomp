@@ -1000,6 +1000,105 @@ void fn_3_1B008(void *data, u32 x1, u32 y1, u32 x2, u32 y2) {
 }
 /* fzgx:end fn_3_1B008 */
 
+/* fzgx:begin fn_3_1B130 noprologue */
+#include "types.h"
+#include "font.h"
+#include "types.h"
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct Rgba {
+    u8 r, g, b, a;
+} Rgba;
+
+extern Rgba fn_3_149AC(void *, s16, s16);
+extern void fn_3_146C0(void *, s16, s16, s16, Rgba *);
+extern void fn_80008BEC(void *, int, u32);
+
+/* Scanline flood fill of the region whose colour equals the pixel at (x, y). */
+void fn_3_1B130(void *data, s16 x, s16 y, Rgba color) {
+    s16 queue_x[0x1000];
+    s16 queue_y[0x1000];
+    Rgba pixel;
+    Rgba target;
+    Rgba fill;
+    s16 left;
+    s16 right;
+    s16 head = 0;
+    s16 tail = 1;
+
+    target = fn_3_149AC(data, x, y);
+    fn_80008BEC(queue_x, 0xff, 0x2000);
+    fn_80008BEC(queue_y, 0xff, 0x2000);
+    queue_x[0] = x;
+    queue_y[0] = y;
+    if ((target.r >> 3) == (color.r >> 3) && (target.g >> 3) == (color.g >> 3) &&
+        (target.b >> 3) == (color.b >> 3) && target.a == color.a) {
+        return;
+    }
+
+    while (head != tail) {
+        for (x = queue_x[head]; x >= 0; x--) {
+            pixel = fn_3_149AC(data, x, queue_y[head]);
+            if (pixel.r != target.r || pixel.g != target.g || pixel.b != target.b ||
+                pixel.a != target.a) {
+                left = x + 1;
+                break;
+            }
+        }
+        if (x == -1) {
+            left = 1;
+        }
+        for (x = queue_x[head] + 1; x < 0x3f; x++) {
+            pixel = fn_3_149AC(data, x, queue_y[head]);
+            if (pixel.r != target.r || pixel.g != target.g || pixel.b != target.b ||
+                pixel.a != target.a) {
+                right = x;
+                break;
+            }
+        }
+        if (x == 0x3f) {
+            right = 0x3f;
+        }
+        fill = color;
+        fn_3_146C0(data, left, queue_y[head], right - left, &fill);
+
+        for (x = left, y = right; x < y; x++) {
+            s32 ny = queue_y[head] - 1;
+            if (ny < 1) {
+                break;
+            }
+            pixel = fn_3_149AC(data, x, (s16)ny);
+            if (pixel.r == target.r && pixel.g == target.g && pixel.b == target.b &&
+                pixel.a == target.a) {
+                queue_x[tail] = x;
+                queue_y[tail] = queue_y[head] - 1;
+                tail = (tail + 1) % 0x1000;
+            }
+        }
+        for (x = left, y = right; x < y; x++) {
+            s32 ny = queue_y[head] + 1;
+            if (ny >= 0x3f) {
+                break;
+            }
+            pixel = fn_3_149AC(data, x, (s16)ny);
+            if (pixel.r == target.r && pixel.g == target.g && pixel.b == target.b &&
+                pixel.a == target.a) {
+                queue_x[tail] = x;
+                queue_y[tail] = queue_y[head] + 1;
+                tail = (tail + 1) % 0x1000;
+            }
+        }
+        head = (head + 1) % 0x1000;
+    }
+}
+/* fzgx:end fn_3_1B130 */
+
 /* fzgx:begin fn_3_1B4BC */
 extern void fn_3_146C0(void *, s16, s16, s16, u32 *);
 

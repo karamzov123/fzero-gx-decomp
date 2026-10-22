@@ -713,3 +713,9 @@ rel/customize/toolkit/fn_3_1C278.c:
 
 rel/customize/editor/fn_3_15F44.c:
 	.text       start:0x00015F44 end:0x0001683C align:4
+
+rel/customize/toolkit/fn_3_1B130.c:
+	.text       start:0x0001B130 end:0x0001B4BC align:4
+
+rel/customize/customize/fn_3_AE74.c:
+	.text       start:0x0000AE74 end:0x0000B270 align:4

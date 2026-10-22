@@ -2807,6 +2807,192 @@ void fn_1_5C784(EffectWork *self) {
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_1_5C784 */
 
+/* fzgx:begin fn_1_5C83C noprologue */
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/effect.h"
+#include "dolphin/types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/effect.h"
+#include "psvec.h"
+
+#ifndef GAME_MAIN_REL_EFFECT_TYPES_H
+#define GAME_MAIN_REL_EFFECT_TYPES_H
+
+#endif  // GAME_MAIN_REL_EFFECT_TYPES_H
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+extern void fn_1_862D4(s16 value, void *result);
+
+extern void fn_1_8636C();
+
+extern void fn_8006FA24(void *, void *, void *, f32);
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 60.0f;
+    s = 0.10000000149011612f;
+    s = 32767.0f;
+    s = 0.05000000074505806f;
+    d = 0.07;
+    s = 20000.0f;
+    s = 0.0f;
+    d = 4503599627370496.0;
+    s = 1.0f;
+    s = -0.029999999329447746f;
+    d = 15.0;
+    d = 4503601774854144.0;
+    d = 1.5;
+    d = 0.5;
+}
+static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+    s = 8.0f;
+    s = 255.0f;
+    s = 15.0f;
+    s = 0.20000000298023224f;
+    s = 0.07999999821186066f;
+    s = 0.25f;
+    s = 0.9800000190734863f;
+    s = 0.9900000095367432f;
+    s = 40.0f;
+    s = 20.0f;
+    s = 1.5f;
+    s = 0.44999998807907104f;
+    s = -2.0f;
+    s = 0.0833333358168602f;
+    s = 0.15000000596046448f;
+    s = 0.125f;
+    s = -0.4000000059604645f;
+    s = -0.30000001192092896f;
+    s = 2.0f;
+    s = 250.0f;
+    d = 0.6;
+    d = 0.4;
+    s = 0.30000001192092896f;
+    s = -0.004000000189989805f;
+    s = 0.01666666753590107f;
+    s = 65536.0f;
+    s = 4096.0f;
+    s = 0.9599999785423279f;
+    s = 0.4000000059604645f;
+    s = 0.05050000175833702f;
+    s = 0.050999999046325684f;
+    s = 0.949999988079071f;
+    s = 0.8999999761581421f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 150.0;
+    d = 10.0;
+    d = 3.0;
+}
+static const u32 fzgx_pool_table6[3] = {0x00000000, 0x3DCCCCCD, 0xC019999A};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 5.0f;
+    d = 1.2;
+    d = 0.1;
+    s = 10.0f;
+    s = 18.0f;
+    d = 0.7;
+    d = 50.0;
+}
+static const u32 fzgx_pool_table8[3] = {0x00000000, 0x3DCCCCCD, 0xC019999A};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 19.0f;
+    d = 24.0;
+}
+#pragma section code_type ".text"
+
+struct Fn1_5C83CObject {
+    u8 state;
+    u8 _pad01[0xf];
+    s32 age;
+    u8 _pad14[0x4];
+    s16 owner;
+    u8 _pad1a[0x2];
+    f32 color_1c;
+    f32 color_20;
+    f32 color_24;
+    f32 size;
+    f32 target_size;
+    u8 _pad30[0xc];
+    f32 pos_3c;
+    f32 pos_40;
+    f32 pos_44;
+    f32 vel_48;
+    f32 vel_4c;
+    f32 vel_50;
+    u8 _pad54[0x34];
+    f32 blend;
+    f32 target_blend;
+    u8 _pad90[0x4];
+    f32 acc_94;
+    f32 acc_98;
+    f32 acc_9c;
+    u8 _pada0[0x12];
+    u16 flag_b2;
+    u8 _padb4[0x4];
+    u8 matrix_b8[1];
+};
+
+void fn_1_5C83C(struct Fn1_5C83CObject *self) {
+    f32 mtx[12];
+    f32 pos[3];
+    f32 t;
+    s32 age;
+
+    self->state = 2;
+    fn_1_862D4(self->owner, pos);
+    fn_1_8636C(self->owner, mtx);
+
+    t = 1.0f - self->blend;
+    self->vel_48 *= t;
+    self->vel_4c *= t;
+    self->vel_50 *= t;
+    self->pos_3c += self->vel_48;
+    self->pos_40 += self->vel_4c;
+    self->pos_44 += self->vel_50;
+
+    if (self->flag_b2 != 0) {
+        self->acc_94 += (f32)(0.2f * self->vel_48);
+        self->acc_98 += (f32)(0.2f * self->vel_4c);
+        self->acc_9c += (f32)(0.2f * self->vel_50);
+    }
+
+    fn_8006FA24(self->matrix_b8, mtx, self->matrix_b8, 0.05f);
+
+    self->blend += (f32)(0.05f * (self->target_blend - self->blend));
+    self->size += (f32)(0.2f * (self->target_size - self->size));
+
+    age = self->age;
+    if (age < 24.0) {
+        /* the common factor is CSE'd by the compiler; writing it out per
+           component keeps the color load ahead of the literal */
+        self->color_1c = self->color_1c * (1.0f - 1.0f / (f32)(age + 1));
+        self->color_20 = self->color_20 * (1.0f - 1.0f / (f32)(age + 1));
+        self->color_24 = self->color_24 * (1.0f - 1.0f / (f32)(age + 1));
+    }
+}
+/* fzgx:end fn_1_5C83C */
+
 /* fzgx:begin fn_1_5D010 */
 // fn_1_5D010: empty in retail (single blr).
 void fn_1_5D010(void) {

@@ -8645,3 +8645,15 @@ rel/main_rel/car/fn_1_93734.c:
 
 rel/main_rel/bg_win/fn_1_15E7F4.c:
 	.text       start:0x0015E7F4 end:0x0015EC40 align:4
+
+rel/main_rel/sel_static_disp/fn_1_136174.c:
+	.text       start:0x00136174 end:0x001363F0 align:4
+
+rel/main_rel/effect/fn_1_5C83C.c:
+	.text       start:0x0005C83C end:0x0005CA00 align:4
+
+rel/main_rel/bg_aur/fn_1_15176C.c:
+	.text       start:0x0015176C end:0x00151AF0 align:4
+
+rel/main_rel/stcoli/fn_1_26F34.c:
+	.text       start:0x00026F34 end:0x000278B8 align:4

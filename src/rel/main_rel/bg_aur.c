@@ -33,6 +33,136 @@ extern u8 lbl_1_rodata_D048[1200];
 extern int fn_1_8D690(s16 value);
 extern int fn_1_8D72C(s16 value);
 
+/* fzgx:begin fn_1_15176C */
+extern void OSPanic(const char *, int, const char *, ...);
+
+typedef struct {
+    u8 pad_0[0x4];
+    f32 unk_4;
+} AurParam;
+
+typedef struct {
+    u8 pad_0[0x10];
+    f32 unk_10;
+    u8 pad_14[0x20];
+    AurParam **unk_34;
+    u8 pad_38[0x4];
+    u32 unk_3C;
+} AurObj;
+
+typedef struct {
+    AurObj *obj;
+    u8 pad_4[0x4];
+    u32 flags;
+    u8 pad_C[0xA0];
+} AurEntryA;
+
+typedef struct {
+    u8 pad_0[0xC];
+    f32 unk_C;
+    u8 pad_10[0x18];
+    f32 unk_28[3];
+    AurObj *obj;
+    u8 unk_38;
+    u8 unk_39;
+    u8 unk_3A;
+    u8 unk_3B;
+} AurEntryB;
+
+typedef struct {
+    s32 unk_0;
+    u8 pad_4[0x80];
+    s32 countA;
+    AurEntryA entriesA[32];
+    u8 pad_1608[0x21C];
+    AurEntryB entriesB[64];
+    s32 countB;
+} AurMgr;
+
+s32 fn_1_15176C(s32 type, AurObj *obj) {
+    AurMgr *mgr;
+    AurEntryB *e;
+
+    if (obj == NULL) {
+        return 1;
+    }
+    mgr = (AurMgr *)lbl_1_data_2A7E0.unk_3C;
+    switch (type) {
+    case 0:
+        mgr->entriesA[mgr->countA].flags |= 0x40000000;
+        mgr->entriesA[mgr->countA].flags |= 0x10000000;
+        mgr->entriesA[mgr->countA].obj = obj;
+        mgr->countA++;
+        if (mgr->countA >= 32) {
+            OSPanic("bg_aur.c", 0x542, "SPOT LIGHT OVER!");
+        }
+        break;
+    case 1:
+        mgr->entriesA[mgr->countA].flags |= 0x40000000;
+        mgr->entriesA[mgr->countA].flags |= 0x20000000;
+        mgr->entriesA[mgr->countA].obj = obj;
+        mgr->countA++;
+        if (mgr->countA >= 32) {
+            OSPanic("bg_aur.c", 0x549, "SPOT LIGHT OVER!");
+        }
+        break;
+    case 2:
+        mgr->entriesA[mgr->countA].flags |= 0x40000000;
+        mgr->entriesA[mgr->countA].flags |= 0x10000000;
+        mgr->entriesA[mgr->countA].flags |= 0x08000000;
+        mgr->entriesA[mgr->countA].obj = obj;
+        mgr->countA++;
+        if (mgr->countA >= 32) {
+            OSPanic("bg_aur.c", 0x551, "SPOT LIGHT OVER!");
+        }
+        break;
+    case 3:
+        mgr->entriesA[mgr->countA].flags |= 0x40000000;
+        mgr->entriesA[mgr->countA].flags |= 0x20000000;
+        mgr->entriesA[mgr->countA].flags |= 0x08000000;
+        mgr->entriesA[mgr->countA].obj = obj;
+        mgr->countA++;
+        if (mgr->countA >= 32) {
+            OSPanic("bg_aur.c", 0x559, "SPOT LIGHT OVER!");
+        }
+        break;
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+        e = &mgr->entriesB[mgr->countB];
+        obj->unk_3C = 0;
+        e->obj = obj;
+        if (type == 4 || type == 5) {
+            e->unk_38 = 1;
+        } else if (type == 6) {
+            e->unk_39 = 1;
+        } else if (type == 7) {
+            e->unk_3A = 1;
+        } else if (type == 8) {
+            e->unk_3B = 1;
+        }
+        if (mgr->unk_0 == 0) {
+            s32 i;
+            e->unk_C = obj->unk_10;
+            /* frame counts -> seconds */
+            for (i = 0; i < 3; i++) {
+                if (obj->unk_34 != NULL && obj->unk_34[i] != NULL) {
+                    e->unk_28[i] = obj->unk_34[i]->unk_4 / 60.0f;
+                }
+            }
+        }
+        mgr->countB++;
+        if (mgr->countB >= 64) {
+            OSPanic("bg_aur.c", 0x57F, "ELEV STOP OVER! in bg_aur.c");
+        }
+        break;
+    }
+    return 1;
+}
+/* fzgx:end fn_1_15176C */
+
 /* fzgx:begin fn_1_151AF0 */
 int fn_1_151AF0(void *arg0, int mode, void *arg2, void *arg3, void *arg4, void *arg5) {
     u8 local_8[4];
