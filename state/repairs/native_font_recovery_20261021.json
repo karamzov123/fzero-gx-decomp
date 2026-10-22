@@ -1,0 +1,35 @@
+{
+  "symbol": "fn_10_266AC",
+  "module": "sel",
+  "executable_bytes": 760,
+  "classification": "recovered previously credited-but-unauthored function",
+  "source": "src/rel/sel/name_entry.c#fn_10_266AC",
+  "registered_unit": "rel/sel/fn_10_266AC.c",
+  "old_registered_unit": "rel/sel/name_entry/fn_10_266AC.c",
+  "old_unit_status": "nonmatching",
+  "new_unit_status": "matching",
+  "native_source_sha256": "40d0676441c07569843a47e417928f99b702dd5773c2366a27fbead723fe7481",
+  "mw": "GC/1.3.2",
+  "flags": "",
+  "object_percent": 100.0,
+  "word_errors": 0,
+  "shape_errors": 0,
+  "link": "verified",
+  "integration_commit": "e232dde7",
+  "replay_archive": "state/repairs/native_font_and_frontiers_20261021.json.gz",
+  "proof": [
+    "standalone native C object matches retail",
+    "generated tagged-TU unit compiles with project declarations",
+    "sel linked from native generated unit",
+    "all sixteen target hashes match retail",
+    "fzgx lint: zero findings",
+    "credited-but-unauthored audit decreased from one to zero"
+  ],
+  "native_repairs": [
+    "shared FontDrawPacket replaces private opaque packet",
+    "packet and packed color use independent automatic locals",
+    "GX FIFO accesses use volatile hardware stores",
+    "allocator identity helper and opt_common_subs workaround removed",
+    "stale missing-path registry corrected and unit switched to matching"
+  ]
+}
