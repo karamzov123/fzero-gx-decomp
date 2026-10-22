@@ -75772,6 +75772,18 @@
   },
   {
     "module": "option",
+    "source": "rel/option/_prolog/fn_4_467C.c",
+    "symbols": [
+      "fn_4_467C"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/option/_prolog.c",
+    "pool": true
+  },
+  {
+    "module": "option",
     "source": "rel/option/_prolog/fn_4_4784.c",
     "symbols": [
       "fn_4_4784"
@@ -80631,10 +80643,41 @@
     "symbols": [
       "fn_10_7130"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/sel/sel.c"
+    "tu": "rel/sel/sel.c",
+    "pool": {
+      "...bss.0": "lbl_10_bss_0",
+      "fzgx_obj_lbl_10_bss_0": "lbl_10_bss_0",
+      "fzgx_obj_lbl_10_bss_14": "lbl_10_bss_14",
+      "fzgx_obj_lbl_10_bss_18": "lbl_10_bss_18",
+      "fzgx_obj_lbl_10_bss_1A": "lbl_10_bss_1A",
+      "fzgx_obj_lbl_10_bss_1C": "lbl_10_bss_1C",
+      "fzgx_obj_lbl_10_bss_3C0": "lbl_10_bss_3C0",
+      "fzgx_obj_lbl_10_bss_49380": "lbl_10_bss_49380",
+      "fzgx_obj_lbl_10_bss_49384": "lbl_10_bss_49384",
+      "fzgx_obj_lbl_10_bss_49388": "lbl_10_bss_49388",
+      "fzgx_obj_lbl_10_bss_4938C": "lbl_10_bss_4938C",
+      "fzgx_obj_lbl_10_bss_4938E": "lbl_10_bss_4938E",
+      "fzgx_obj_lbl_10_bss_4938F": "lbl_10_bss_4938F",
+      "fzgx_obj_lbl_10_bss_49390": "lbl_10_bss_49390",
+      "fzgx_obj_lbl_10_bss_493A0": "lbl_10_bss_493A0",
+      "fzgx_obj_lbl_10_bss_4EEC0": "lbl_10_bss_4EEC0",
+      "fzgx_obj_lbl_10_bss_51740": "lbl_10_bss_51740",
+      "fzgx_obj_lbl_10_bss_51744": "lbl_10_bss_51744",
+      "fzgx_obj_lbl_10_bss_51748": "lbl_10_bss_51748",
+      "fzgx_obj_lbl_10_bss_5174E": "lbl_10_bss_5174E",
+      "fzgx_obj_lbl_10_bss_51750": "lbl_10_bss_51750",
+      "fzgx_obj_lbl_10_bss_51752": "lbl_10_bss_51752",
+      "lbl_10_bss_51752__fzgx_offset_2": "lbl_10_bss_51752+0x2",
+      "lbl_10_bss_51752__fzgx_offset_6": "lbl_10_bss_51752+0x6",
+      "lbl_10_bss_51752__fzgx_offset_16": "lbl_10_bss_51752+0x16",
+      "fzgx_obj_lbl_10_bss_51788": "lbl_10_bss_51788",
+      "fzgx_obj_lbl_10_bss_517EC": "lbl_10_bss_517EC",
+      "fzgx_obj_lbl_10_bss_5197C": "lbl_10_bss_5197C",
+      "lbl_10_bss_5197C__fzgx_offset_198": "lbl_10_bss_5197C+0x198"
+    }
   },
   {
     "module": "sel",
