@@ -1,3 +1,5 @@
+/* Non-matching: best partial attempt (94.88% in the project ledger). Scored for the
+ * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 /* Non-matching: best partial attempt (94.00% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "dolphin/types.h"
@@ -232,20 +234,25 @@ extern void lbl_8006E1F0(void *, f32, f32, f32);
 
 static inline f32 vmag(V3 *v)
 {
-    f32 x = v->x;
-    f32 y = v->y;
-    f32 z = v->z;
-    return lbl_8006D0B4((f32)(x * x) + y * y + z * z);
+    f32 fzgx_live_;
+    f32 fzgx_live;
+    f32 len;
+    fzgx_live_ = v->x;
+    len = fzgx_live_ * fzgx_live_;
+    fzgx_live = v->y;
+    len += fzgx_live * fzgx_live;
+    len += v->z * v->z;
+    return lbl_8006D0B4(len);
 }
 
 static inline f32 fn_1_266A8_operand(f32 right, f32 left) { return left + right; }
 #pragma opt_common_subs off
 void fn_1_266A8(Obj *obj)
 {
+    f32 s;
     f32 n;
     int flag;
     int i;
-    f32 s;
     f32 dot;
     f32 spd;
     f32 len;
@@ -285,11 +292,7 @@ void fn_1_266A8(Obj *obj)
         flag = 1;
     }
     if (obj->b481 > 0x3c) {
-        int old = flag;
-        flag = 0;
-        if (old != 0 && (obj->flags & 0x800000)) {
-            flag = 1;
-        }
+        flag = flag != 0 && (obj->flags & 0x800000);
     }
 
     if (flag != 0) {
@@ -338,8 +341,10 @@ void fn_1_266A8(Obj *obj)
                     f3 = f0;
                 }
                 obj->f4ac = f3;
-                obj->f184 = obj->f184 - obj->f4ac;
-                if (obj->f184 < 0.0f) {
+                {
+                    f32 h = obj->f184 - obj->f4ac;
+                    obj->f184 = h;
+                    if (h < 0.0f) {
                     if (!(obj->flags & 0x10080)) {
                         obj->b593 = 0x3c;
                     }
@@ -347,29 +352,32 @@ void fn_1_266A8(Obj *obj)
                     obj->f184 = 0.0f;
                     obj->f224 = 0.0f;
                 }
+                }
             }
         }
         lbl_8006D5F0(&obj->v1b0, &v44, dot * vmag(&obj->vel));
         if (dot < 0.0f) {
             if (obj->b216 == 0) {
                 f32 t = lbl_8006D0B4(1.0f - (f32)((dot / 0.7f) * (dot / 0.7f)));
-                f32 m = 0.2f + (f32)(0.6f * t);
+                f32 m = 0.6f * t;
+                m = 0.2f + m;
                 obj->f224 = obj->f224 * m;
                 obj->f228 = obj->f228 * (0.3f + (f32)(0.4f * m));
             } else {
                 f32 t = lbl_8006D0B4(1.0f - (f32)((dot / 0.7f) * (dot / 0.7f)));
-                f32 m = 0.64f + (f32)(0.35f * t);
+                f32 m = 0.35f * t;
+                m = 0.64f + m;
                 obj->f224 = obj->f224 * m;
                 obj->f228 = obj->f228 * (0.3f + (f32)(0.6f * m));
             }
         }
         if (spd > 1.8518518518518519) {
             if (obj->flags & 0x80) {
-                s = (f32)(3.4f - 1.7f * __fabs(dot));
+                { double p = 1.7f * __fabs(dot); s = (f32)(3.4f - p); }
             } else if (obj->b216 != 0) {
                 s = (f32)(2.0 - __fabs(dot));
             } else {
-                s = (f32)(3.0 - 1.5 * __fabs(dot));
+                { double p = 1.5 * __fabs(dot); s = (f32)(3.0 - p); }
             }
             if (dot < -0.4f && spd > 3.240740740740741) {
                 n = -s;
@@ -409,15 +417,18 @@ void fn_1_266A8(Obj *obj)
     } else if (obj->flags & 0x10) {
         f32 r = vmag(&obj->vel) / obj->f008;
         if (!(r < 0.046296296296296294)) {
-            f32 c, d, e, f3;
+        f32 d;
+        f32 e;
+        f32 c;
+        f32 f3;
             lbl_8006E1F0(&v8, 0.0f, 1.0f, 0.0f);
             c = lbl_8006D6FC(&v8, &obj->v1bc);
             d = lbl_8006D6FC(&obj->vel, &obj->v1bc);
-            e = vmag(&obj->vel);
+            r = vmag(&obj->vel);
             if (c < 0.0f) {
                 c = 0.0f;
             }
-            e = e * d;
+            e = r * d;
             obj->f224 = obj->f224 * c;
             f3 = (f32)(2.0 * __fabs(fn_1_266A8_operand((d), (0.5f))));
             psvec_scale(&obj->v1bc, e, &v14);
