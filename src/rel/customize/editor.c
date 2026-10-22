@@ -704,6 +704,201 @@ void fn_3_1683C(struct Arg0 *arg0, s16 off, s16 size) {
 }
 /* fzgx:end fn_3_1683C */
 
+/* fzgx:begin fn_3_169B8 pool noprologue */
+#include "dolphin/types.h"
+
+extern const struct fn_3_169B8_lbl_3_rodata_538_pool {
+    u8 pad_0[0x88];
+    f32 unk_88;
+    f32 unk_8C;
+    f32 unk_90;
+    f32 unk_94;
+    f32 unk_98;
+    f32 unk_9C;
+} lbl_3_rodata_538;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    u8 pad[0x18];
+} StickInput;
+
+typedef struct {
+    u8 pad[0x10];
+    s16 x;
+    s16 y;
+    u8 pad14[0x8];
+    u8 result;
+} Cursor;
+
+typedef struct {
+    u8 pad[0x11];
+    u8 speed;
+    volatile u8 port; /* fzgx-allow: S2 controller port is reread for each button query */
+    u8 pad13[0x9];
+} EditorInput;
+
+typedef struct {
+    u32 c;
+} fzgx_Col4;
+
+/* literal pool of the retail TU up to this function's constants, in retail order */
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer(s32 i, u32 u) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    volatile fzgx_Col4 c;  /* fzgx-allow: S2 pool primer sink */
+    {
+        fzgx_Col4 t = {0xFFFFFFFF};
+        c = t;
+    }
+    s = 192.0f;
+    s = 105.0f;
+    s = 90.0f;
+    s = 32.0f;
+    s = 0.0f;
+    s = 184.0f;
+    s = 86.0f;
+    s = 100.0f;
+    s = 175.0f;
+    s = 88.0f;
+    s = 0.5f;
+    s = 10.0f;
+    s = 420.0f;
+    s = 334.0f;
+    s = 29.0f;
+    s = 320.0f;
+    s = 232.0f;
+    s = 50.0f;
+    s = 4.0f;
+    s = 480.0f;
+    s = 92.0f;
+    s = 1.0f;
+    s = 1.0714285f;
+    s = 64.0f;
+    s = 65535.0f;
+    s = 119.0f;
+    s = 30.0f;
+    s = (f32)i;
+    s = (f32)u;
+}
+
+static void fzgx_pool_primer2(void) {
+    volatile fzgx_Col4 c;  /* fzgx-allow: S2 pool primer sink */
+    {
+        fzgx_Col4 t = {0x00000064};
+        c = t;
+    }
+    {
+        fzgx_Col4 t = {0x37373764};
+        c = t;
+    }
+}
+#pragma section code_type ".text"
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u8 lbl_3_bss_A23E8;
+EditorInput fzgx_obj_lbl_3_bss_A23EC;
+u8 fzgx_obj_lbl_3_bss_A2408;
+s16 lbl_3_bss_A240A;
+s16 lbl_3_bss_A240C;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&lbl_3_bss_A23E8;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_A23EC;
+    s = *(u8 *)&fzgx_obj_lbl_3_bss_A2408;
+    s = *(u8 *)&lbl_3_bss_A240A;
+    s = *(u8 *)&lbl_3_bss_A240C;
+}
+#pragma section code_type ".text"
+
+extern StickInput lbl_1_bss_BF0[];
+extern u8 lbl_1_bss_9F8[];
+extern u8 *fn_3_14074(void);
+extern u8 fn_3_19C94(void);
+
+#define SPEED (fzgx_obj_lbl_3_bss_A23EC.speed)
+#define PORT (fzgx_obj_lbl_3_bss_A23EC.port)
+#define PORT2 (((EditorInput *)&fzgx_obj_lbl_3_bss_A23EC)->port)
+/* one bit of a controller's held-button word (0x14-byte pad records) */
+#define BUTTON(p, n) ((((u16 *)(lbl_1_bss_9F8 + 0x10))[(p) * 10] >> (n)) & 1)
+#define CLAMP_POS(v) ((v) < 1 ? 1 : ((v) > 62 ? 62 : (v)))
+
+#pragma opt_propagation off
+void fn_3_169B8(void)
+{
+    struct fn_3_169B8_lbl_3_rodata_538_pool *pool_lbl_3_rodata_538 = (struct fn_3_169B8_lbl_3_rodata_538_pool *)&lbl_3_rodata_538;
+    Cursor *cursor;
+    u8 moved;
+    f32 x;
+    f32 y;
+    s32 v;
+    s16 half;
+    u32 port;
+
+    moved = 0;
+    cursor = (Cursor *)fn_3_14074();
+    port = PORT;
+    fzgx_obj_lbl_3_bss_A2408++;
+    x = ((port)[lbl_1_bss_BF0]).x;
+    y = ((port)[lbl_1_bss_BF0]).y;
+
+    if ((x < pool_lbl_3_rodata_538->unk_88 && (fzgx_obj_lbl_3_bss_A2408 % (SPEED + 6)) == 0) ||
+        (x < pool_lbl_3_rodata_538->unk_8C && (fzgx_obj_lbl_3_bss_A2408 % (SPEED + 4)) == 0) ||
+        (x < pool_lbl_3_rodata_538->unk_90 && (fzgx_obj_lbl_3_bss_A2408 % 4) == 0) ||
+        BUTTON(port, 0)) {
+        moved = 1;
+        v = cursor->x - 1;
+        cursor->x = CLAMP_POS(v);
+        lbl_3_bss_A23E8 = 1;
+    } else if ((x > pool_lbl_3_rodata_538->unk_94 && (fzgx_obj_lbl_3_bss_A2408 % (SPEED + 6)) == 0) ||
+               (x > pool_lbl_3_rodata_538->unk_98 && (fzgx_obj_lbl_3_bss_A2408 % (SPEED + 4)) == 0) ||
+               (x > pool_lbl_3_rodata_538->unk_9C && (fzgx_obj_lbl_3_bss_A2408 % 4) == 0) ||
+               BUTTON(PORT, 1)) {
+        moved = 1;
+        v = cursor->x + 1;
+        cursor->x = CLAMP_POS(v);
+        lbl_3_bss_A23E8 = 1;
+    }
+
+    if ((y > pool_lbl_3_rodata_538->unk_94 && (fzgx_obj_lbl_3_bss_A2408 % (SPEED + 6)) == 0) ||
+        (y > pool_lbl_3_rodata_538->unk_98 && (fzgx_obj_lbl_3_bss_A2408 % (SPEED + 4)) == 0) ||
+        (y > pool_lbl_3_rodata_538->unk_9C && (fzgx_obj_lbl_3_bss_A2408 % 4) == 0) ||
+        BUTTON(PORT, 3)) {
+        moved = 1;
+        v = cursor->y - 1;
+        cursor->y = CLAMP_POS(v);
+        lbl_3_bss_A23E8 = 1;
+    } else if ((y < pool_lbl_3_rodata_538->unk_88 && (fzgx_obj_lbl_3_bss_A2408 % (SPEED + 6)) == 0) ||
+               (y < pool_lbl_3_rodata_538->unk_8C && (fzgx_obj_lbl_3_bss_A2408 % (SPEED + 4)) == 0) ||
+               (y < pool_lbl_3_rodata_538->unk_90 && (fzgx_obj_lbl_3_bss_A2408 % 4) == 0) ||
+               BUTTON(PORT, 2)) {
+        moved = 1;
+        v = cursor->y + 1;
+        cursor->y = CLAMP_POS(v);
+        lbl_3_bss_A23E8 = 1;
+    }
+
+    if (moved) {
+        fzgx_obj_lbl_3_bss_A2408 = 1;
+    }
+
+    half = (64 / SPEED) / 2;
+    if (lbl_3_bss_A240A + half / 2 < 63 || lbl_3_bss_A240A - half / 2 > 0) {
+        lbl_3_bss_A240A = cursor->x;
+    }
+    {
+        s32 half2 = half;
+        if (lbl_3_bss_A240C + half2 / 2 < 63 || lbl_3_bss_A240C - half2 / 2 > 0) {
+            lbl_3_bss_A240C = cursor->y;
+        }
+    }
+
+    cursor->result = fn_3_19C94();
+}
+/* fzgx:end fn_3_169B8 */
+
 /* fzgx:begin fn_3_16E14 */
 #include "font.h"
 
