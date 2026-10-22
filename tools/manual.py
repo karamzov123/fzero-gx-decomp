@@ -67,7 +67,7 @@ def try_bodies(args) -> None:
     p = Project()
     for f in sorted(Path(args.dir).glob(args.glob)):
         try:
-            r = oracle.check(p, args.symbol, args.rows, source=f, mw_version=args.mw, extra_cflags=args.flags)
+            r = oracle.check(p, args.symbol, 5000, source=f, mw_version=args.mw, extra_cflags=args.flags)
         except Exception as error:  # one broken variant never stops the batch
             print(f'{f.name:28} EXC {error}')
             continue
@@ -79,9 +79,11 @@ def try_bodies(args) -> None:
         bad = sum(1 for line in r.diff if not line.startswith(('  ', 'p ', '...')))
         print(f'{f.name:28} {r.percent:8.3f} {tag:5} rows={bad} {"lint=" + ",".join(lint) if lint else ""}')
         if args.v and not r.matched:
-            for line in r.diff:
-                if not line.startswith(('  ', 'p ')):
-                    print('    ' + line)
+            shown = [line for line in r.diff if not line.startswith(('  ', 'p '))]
+            for line in shown[:args.rows]:
+                print('    ' + line)
+            if len(shown) > args.rows:
+                print(f'    ... {len(shown) - args.rows} more differing rows')
 
 
 def main() -> None:
