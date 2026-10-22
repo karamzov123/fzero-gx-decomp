@@ -42,7 +42,11 @@ def queue(args) -> None:
         if zlib.crc32(r['symbol'].encode()) % n != k:
             continue
         best = max(r['best_percent'] or 0.0, fuzzy.get(r['symbol'], 0.0))
-        if args.by == 'bytes':
+        if not (args.min_size <= r['size'] <= args.max_size) or best > args.max_best:
+            continue
+        if args.by == 'size':  # largest first: fresh territory for a strong model
+            key = -r['size']
+        elif args.by == 'bytes':
             key = -(r['size'] * (best / 100) ** 8)
         else:  # closeness: the nearest first, smaller first within half a point
             key = (-round(best * 2) / 2, r['size'])
@@ -61,9 +65,9 @@ def try_bodies(args) -> None:
     from fzgx import oracle
     from fzgx.lint import allocator_scaffolding, lint_file
     p = Project()
-    for f in sorted(Path(args.dir).glob('*.c')):
+    for f in sorted(Path(args.dir).glob(args.glob)):
         try:
-            r = oracle.check(p, args.symbol, 40, source=f, mw_version=args.mw, extra_cflags=args.flags)
+            r = oracle.check(p, args.symbol, args.rows, source=f, mw_version=args.mw, extra_cflags=args.flags)
         except Exception as error:  # one broken variant never stops the batch
             print(f'{f.name:28} EXC {error}')
             continue
@@ -72,7 +76,8 @@ def try_bodies(args) -> None:
             continue
         lint = [x[0] for x in lint_file(f)] + (['scaffolding'] if allocator_scaffolding(f.read_text()) else [])
         tag = 'MATCH' if r.matched else 'POOL' if r.matched_pool else ''
-        print(f'{f.name:28} {r.percent:8.3f} {tag:5} {"lint=" + ",".join(lint) if lint else ""}')
+        bad = sum(1 for line in r.diff if not line.startswith(('  ', 'p ', '...')))
+        print(f'{f.name:28} {r.percent:8.3f} {tag:5} rows={bad} {"lint=" + ",".join(lint) if lint else ""}')
         if args.v and not r.matched:
             for line in r.diff:
                 if not line.startswith(('  ', 'p ')):
@@ -84,7 +89,10 @@ def main() -> None:
     sub = ap.add_subparsers(dest='cmd', required=True)
     q = sub.add_parser('queue')
     q.add_argument('--shard', default='0/1', help='K/N: this session is K of N (0-based)')
-    q.add_argument('--by', choices=('closeness', 'bytes'), default='closeness')
+    q.add_argument('--by', choices=('closeness', 'bytes', 'size'), default='closeness')
+    q.add_argument('--min-size', type=int, default=0)
+    q.add_argument('--max-size', type=int, default=1 << 30)
+    q.add_argument('--max-best', type=float, default=100.0, help='skip functions whose best saved score is above this')
     q.add_argument('--top', type=int, default=30)
     t = sub.add_parser('try')
     t.add_argument('symbol')
@@ -92,6 +100,8 @@ def main() -> None:
     t.add_argument('--mw', default=None, help='compiler, e.g. GC/1.3.2 (default: the function\'s own)')
     t.add_argument('--flags', default=None, help='extra cflags, e.g. "-O4,s"')
     t.add_argument('-v', action='store_true')
+    t.add_argument('--rows', type=int, default=40, help='differing rows to print with -v (default 40)')
+    t.add_argument('--glob', default='*.c', help='which files in DIR to try (default *.c)')
     args = ap.parse_args()
     queue(args) if args.cmd == 'queue' else try_bodies(args)
 
