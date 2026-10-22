@@ -63551,6 +63551,30 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sound/fn_1_A1588.c",
+    "symbols": [
+      "fn_1_A1588"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sound.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sound/fn_1_A176C.c",
+    "symbols": [
+      "fn_1_A176C"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sound.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sound/fn_1_A1964.c",
     "symbols": [
       "fn_1_A1964"
