@@ -4665,6 +4665,162 @@ void fn_1_118D90(u32 arg0, f32 arg1) {
 }
 /* fzgx:end fn_1_118D90 */
 
+/* fzgx:begin fn_1_11CAB4 noprologue */
+#include "types.h"
+
+const u32 fzgx_pool_table_000[20] = {
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x3E800000, 0x00000000,
+    0x3C23D70A, 0x00000000, 0x00000000, 0x00000000,
+    0x3E7AD7F2, 0x9ABCAF48, 0x00000000, 0x00000000,
+    0x00000000, 0x3F000000, 0x3E800000, 0x00000000
+};
+#pragma section code_type ".fzgxpool"
+static f32 fzgx_pool_primer_050(u32 value) { return (f32)value; }
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_058[3] = {0x3F564CE9, 0xF49F49F4, 0x3B326750};
+#pragma section code_type ".fzgxpool"
+static f32 fzgx_pool_primer_064(void) { return -1.0f; }
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+static f32 fzgx_pool_primer_068(void) { return 0.0f; }
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_06C[240] = {
+    0xC0000000, 0x40000000, 0x34000000, 0xBF800001, 0x00000000, 0x00000000, 0x00000000, 0x00000000,  /* fzgx-allow: A1 retail pool bytes */
+    0x00000000, 0x00000000, 0xBAB26750, 0xBB326750, 0x38D1B717, 0x3F800000, 0x39D1B717, 0x3CCCCCCD,
+    0x3B8A71DE, 0x3FB33333, 0x28F5C28F, 0x3FD33333, 0x33333333, 0xBC9BA5E3, 0x3D6978D5, 0x3A7BEB9E,
+    0x00000000, 0x3FA4FDF3, 0xB1EB851F, 0xBFF00000, 0x00000000, 0x3F400000, 0xBE800000, 0xBF800000,
+    0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3E0D4FDF, 0x3B83126F, 0x3DED9168,
+    0x3D851EB8, 0x3D8523F6, 0x00000000, 0x40200000, 0x00000000, 0x3B800000, 0x00000000, 0x3FA99999,
+    0x9999999A, 0x3F664CEA, 0x00000000, 0x3F947AE1, 0x47AE147B, 0x3F1A36E2, 0xEB1C432D, 0x00000000,
+    0x00000000, 0x00000000, 0x3D48B439, 0x3B23D70B, 0x3D4CCCCD, 0xBE000000, 0x00000000, 0x3F8EB851,
+    0xEB851EB8, 0xBF000000, 0x00000000, 0x3FA70A3D, 0x70A3D70A, 0x396BEDFA, 0x00000000, 0x3FC99999,
+    0x9999999A, 0x3FE99999, 0x9999999A, 0x3FE00000, 0x00000000, 0x3CF5C28F, 0x3A83126F, 0x3DEB851F,
+    0x3CA52EFA, 0x3E116873, 0x3C8C9539, 0x3E0624DD, 0x3DA3D70A, 0x3CB851EC, 0x3E19999A, 0x3E4CCCCD,
+    0x3D23D70B, 0x3CDD2F1B, 0x3C8637BE, 0x3E03126F, 0x3E10624E, 0x3C8A71DE, 0x3E051EB8, 0x3D50E560,
+    0x3C68038B, 0x3DF3B646, 0x3E3B645A, 0x3C58ADAC, 0x3E989375, 0x3F4CCCCD, 0x41100000, 0x3A9D4952,
+    0x46FFFE00, 0x3B9D4952, 0x3A1D4952, 0xC7000000, 0x47800000, 0x421C0000, 0x3B03126F, 0x41E80000,
+    0xBA83126F, 0x3F0CCCCD, 0x3ECCCCCD, 0x3DCCCCCD, 0x00000000, 0x43300000, 0x80000000, 0x3727C5AC,
+    0x3B378034, 0x3B16BB99, 0x3CB37005, 0x3E178D50, 0x3CECBFB2, 0x3E2E147B, 0x3C23D70B, 0x3FF00000,
+    0x00000000, 0x47000000, 0x41400000, 0x3DF5C28F, 0x3D8F5C29, 0xBD178D50, 0x3DB851EC, 0x3D9DB22D,
+    0x3DE56042, 0x3E3851EC, 0xBC54FDF4, 0x3D8D4FDF, 0xBB03126F, 0x3CAC0831, 0xBCAC0831, 0x3D75C28F,
+    0x3D99999A, 0x3DAE147B, 0x3DBC6A7F, 0x3D71A9FC, 0x3D6147AE, 0x3D978D50, 0x3DEF9DB2, 0xBD449BA6,
+    0x3D449BA6, 0x3D03126F, 0x3D872B02, 0xBCA3D70A, 0x3DCAC083, 0x3E083127, 0xBD4CCCCD, 0x3D916873,
+    0x3DC28F5C, 0xBC1374BC, 0x3BC49BA6, 0x3D3851EC, 0x3D343958, 0x3D9374BC, 0x3DC6A7F0, 0xBC75C28F,
+    0x3DE978D5, 0x3E9F3B64, 0x3D1FBE77, 0xBE624DD3, 0x3F09BA5E, 0x3DA5E354, 0xBEF0A3D7, 0x3DAC0831,
+    0x3DD70A3D, 0x3CFDF3B6, 0x3DD91687, 0xBCFDF3B6, 0x00000000, 0x3FE851EB, 0x851EB852, 0x3D408312,
+    0x3DDD2F1B, 0x3DB020C5, 0x3D8B4396, 0x3B449BA6, 0x3B656042, 0x3B86594B, 0x00000000, 0x00000000,
+    0x00000000, 0x3F3AC2B2, 0x58BF258C, 0x3F4AC2B2, 0x58BF258C, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x3B6BEDFA, 0x3DFDF3B6, 0x3BFDC161, 0x3DB43958, 0x3D83126F,
+    0x3BE1BD1E, 0x3DA9FBE7, 0x3C83126F, 0x3BC75C4B, 0x3D9FBE77, 0x3D178D50, 0x00000000, 0x00000000,
+    0x00000000, 0xBDF5C28F, 0x00000000, 0x00000000, 0x00000000, 0x41880000, 0x40C00000, 0xBF333333,
+    0x3F666666, 0x3F99999A, 0x3B8EBCC7, 0x3B73DC06, 0x3D79DB23, 0x3BA52EFA, 0x3F174BC7, 0x3E820E63,
+    0x3F010625, 0xBC9374BC, 0xBC656042, 0x3C9374BC, 0x3D7DF3B6, 0x3B54ED2D, 0xBCC49BA6, 0x3EB33333
+};
+
+typedef struct {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct {
+    u8 flags;
+    u8 pad1[0xF];
+    Vec3f pos;
+    u8 pad1C[0x24];
+    f32 weight;
+} Node;
+
+typedef struct {
+    u8 pad0[0x18];
+    u32 count;
+    u8 pad1C[0x8];
+    Node *nodes;
+} NodeSet;
+
+extern void fn_1_10846C(NodeSet *set);
+extern f32 lbl_8006D0B4(f32 x);
+
+static inline void nodeset_vec_sub(Vec3f *a, Vec3f *b, Vec3f *out) {
+    out->x = a->x - b->x;
+    out->y = a->y - b->y;
+    out->z = a->z - b->z;
+}
+
+static inline f32 nodeset_vec_mag(Vec3f *v) {
+    f32 *p = (f32 *)v;
+    f32 x = p[0];
+    f32 y = p[1];
+    f32 z = p[2];
+    f32 sum;
+    sum = x * x;
+    sum += y * y;
+    sum += z * z;
+    return lbl_8006D0B4(sum);
+}
+
+void fn_1_11CAB4(NodeSet *set) {
+    u32 i;
+    Node *n;
+    Node * n_2;
+
+    if (set == NULL) {
+        return;
+    }
+    fn_1_10846C(set);
+
+    n = set->nodes;
+    for (i = 0; i < set->count; i++, n++) {
+        if (n->flags & 1) {
+            n->weight = -1.0f;
+            n->flags = 0;
+        } else {
+            n->weight = 0.0f;
+            n->flags = 1;
+        }
+    }
+
+    {
+        Vec3f center = {0};
+        Vec3f d;
+        u32 active;
+        f32 maxDist;
+
+        active = 0;
+        n_2 = set->nodes;
+        for (i = 0; i < set->count; i++, n_2++) {
+            if (n_2->flags & 1) {
+                active++;
+                center.x += n_2->pos.x;
+                center.y += n_2->pos.y;
+                center.z += n_2->pos.z;
+            }
+        }
+        center.x /= (f32)active;
+        center.y /= (f32)active;
+        center.z /= (f32)active;
+
+        maxDist = 0.0f;
+        n_2 = set->nodes;
+        for (i = 0; i < set->count; i++, n_2++) {
+            if (!(n_2->flags & 1)) {
+                nodeset_vec_sub(&n_2->pos, &center, &d);
+                if (nodeset_vec_mag(&d) > maxDist) {
+                    maxDist = nodeset_vec_mag(&d);
+                }
+            }
+        }
+
+        n_2 = set->nodes;
+        for (i = 0; i < set->count; i++, n_2++) {
+            if (!(n_2->flags & 1)) {
+                nodeset_vec_sub(&n_2->pos, &center, &d);
+                n_2->weight = -nodeset_vec_mag(&d) / maxDist;
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_11CAB4 */
+
 /* fzgx:begin fn_1_125CE8 noprologue */
 #include "types.h"
 

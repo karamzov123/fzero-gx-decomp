@@ -719,3 +719,9 @@ rel/customize/toolkit/fn_3_1B130.c:
 
 rel/customize/customize/fn_3_AE74.c:
 	.text       start:0x0000AE74 end:0x0000B270 align:4
+
+rel/customize/toolkit/fn_3_26A34.c:
+	.text       start:0x00026A34 end:0x000273F4 align:4
+
+rel/customize/emb_memcard/fn_3_F044.c:
+	.text       start:0x0000F044 end:0x0000F878 align:4

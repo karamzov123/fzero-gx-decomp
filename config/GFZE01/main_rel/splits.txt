@@ -8657,3 +8657,15 @@ rel/main_rel/bg_aur/fn_1_15176C.c:
 
 rel/main_rel/stcoli/fn_1_26F34.c:
 	.text       start:0x00026F34 end:0x000278B8 align:4
+
+rel/main_rel/bg_lig/fn_1_D5FA8.c:
+	.text       start:0x000D5FA8 end:0x000D6680 align:4
+
+rel/main_rel/accessory/fn_1_11CAB4.c:
+	.text       start:0x0011CAB4 end:0x0011CD3C align:4
+
+rel/main_rel/effect/fn_1_65E8C.c:
+	.text       start:0x00065E8C end:0x000660EC align:4
+
+rel/main_rel/custom_memcard/fn_1_131C08.c:
+	.text       start:0x00131C08 end:0x00132488 align:4
