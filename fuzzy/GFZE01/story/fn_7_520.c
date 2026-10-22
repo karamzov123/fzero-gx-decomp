@@ -1,3 +1,5 @@
+/* Non-matching: best partial attempt (98.02% in the project ledger). Scored for the
+ * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 /* Non-matching: best partial attempt (96.49% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
@@ -75,7 +77,8 @@ u32 fn_7_520(void) {
     if (lbl_1_bss_9C.unk_3 != 1) {
         size = fn_800090A4(lbl_801A6410) - 0x10000;
         *(u32 *)(base + 0x2E74) = fn_1_45D0(lbl_801A6410, size, base + 0x3A3C, 0x25F);
-        return fn_1_46BA0(*(u32 *)(base + 0x2E74), size);
+        /* fzgx: reloaded */
+        fn_1_46BA0(*(volatile u32 *)(base + 0x2E74), size);
     }
     fn_1_47E54(0xBA);
     fn_1_47E54(0x9A);
