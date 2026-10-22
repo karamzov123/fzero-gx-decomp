@@ -1,5 +1,5 @@
 {
- "generated": 1792641899,
+ "generated": 1792642359,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -76049,7 +76049,7 @@
    "addr": 795812,
    "size": 3796,
    "status": "unmatched",
-   "attempts": 1,
+   "attempts": 2,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
@@ -675906,6 +675906,27 @@
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26271,
+   "symbol": "fn_1_C24A4",
+   "agent": "hermes-kb3-camera-codex-1",
+   "harness": "codex",
+   "model": "gpt-6.1-sol",
+   "started": 1792642226,
+   "ended": 1792642358,
+   "checks": 12,
+   "final_percent": 65.28,
+   "tokens_in": 955006,
+   "tokens_out": 4533,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "plateau: 10 consecutive checks without improvement (best 72.8%)",
+   "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_1_C24A4.1792642358.c",
+   "stale_checks": 10,
+   "best_in_attempt": 72.75,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
