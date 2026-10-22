@@ -8642,3 +8642,6 @@ rel/main_rel/effect_car/fn_1_6C87C.c:
 
 rel/main_rel/car/fn_1_93734.c:
 	.text       start:0x00093734 end:0x000943F8 align:4
+
+rel/main_rel/bg_win/fn_1_15E7F4.c:
+	.text       start:0x0015E7F4 end:0x0015EC40 align:4
