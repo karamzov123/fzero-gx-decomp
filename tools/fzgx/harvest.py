@@ -525,6 +525,7 @@ def run(p: Project, ref: str, label: Optional[str] = None, do_land: bool = False
     with ThreadPoolExecutor(workers) as ex:
         results = list(ex.map(src.screen, syms))
     path = workdir / 'results.json'  # merged by symbol: a --symbol rerun keeps the rest
+    path.parent.mkdir(parents=True, exist_ok=True)
     merged = {r['symbol']: r for r in (json.loads(path.read_text()) if path.exists() else [])}
     merged.update((r['symbol'], r) for r in results)
     path.write_text(json.dumps(list(merged.values()), indent=1))

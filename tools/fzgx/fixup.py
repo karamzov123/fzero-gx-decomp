@@ -26,6 +26,11 @@ def digest(value):
     return hashlib.sha256(value).hexdigest()
 
 
+def source_text(path):
+    """Read content-addressed C without normalizing MWCC preprocessor CRLFs."""
+    return Path(path).read_bytes().decode('utf-8')
+
+
 _ENGINE = None
 
 
@@ -193,7 +198,7 @@ class Engine:
         if not lines:
             return proposals
         import difflib
-        text0 = Path(seed['source']).read_text()
+        text0 = source_text(seed['source'])
         body = text0.splitlines()
         name = self.project.resolve(seed['symbol']).name
         span = source._function_body_span(text0, name)
@@ -501,7 +506,7 @@ class Engine:
         return result
 
     def proposals(self, row, capture=None, max_orders=50000):
-        body = Path(row['source']).read_text()
+        body = source_text(row['source'])
         name = self.project.resolve(row['symbol']).name
         families = []
         deferred_graph = []
@@ -704,10 +709,22 @@ class Engine:
                 self.clone_skips.append(dict(symbol=row['symbol'], source=row['sha256'], error='expanded declarations changed compiler response'))
                 continue
             mapping = reuse.bindings(self.project, row['symbol'], target)
-            body = reuse.rebind(Path(flat['source']).read_text(), mapping)
+            try:
+                native = reuse.storage_bindings(self.project, row['symbol'], target,
+                                                flat['object'], self.check(flat))
+            except (ValueError, OSError) as error:
+                self.clone_skips.append(dict(symbol=row['symbol'], recipient=target,
+                                             source=row['sha256'], error=str(error)))
+                continue
+            for name, rebound_name in native.items():
+                if name in mapping and mapping[name] != rebound_name:
+                    raise ValueError('clone code/storage bindings disagree: ' + name)
+                mapping[name] = rebound_name
+            body = reuse.rebind(source_text(flat['source']), mapping)
             rebound = self.record(target, body, row['mw'], row['flags'], label='bind exact clone',
                 parent=flat['id'], seed=flat.get('seed', flat['id']),
-                clone=dict(donor=row['symbol'], recipient=target, bindings=mapping))
+                clone=dict(donor=row['symbol'], recipient=target, bindings=mapping,
+                           native_storage=bool(native)))
             origins[rebound['id']] = row
             if rebound['id'] in seen:
                 if rebound['id'] in existing:
@@ -847,13 +864,13 @@ class Engine:
             # Compose observed independent bit repairs; no private compile loop.
             responses=defaultdict(list);regional=defaultdict(list)
             for row in pending:
-                body=Path(row['source']).read_text()
+                body=source_text(row['source'])
                 responses[row['parent']].append((row['label'],body,self.words.get(row['id'])))
                 if row.get('regions'):
                     regional[row['parent']].append((row['label'],body,row['regions']))
             combined=[]
             for parent, values in responses.items():
-                seed=parents[parent]; body=Path(seed['source']).read_text(); target=self.targets[seed['symbol']][1]; baseline=self.words[parent]
+                seed=parents[parent]; body=source_text(seed['source']); target=self.targets[seed['symbol']][1]; baseline=self.words[parent]
                 choices=source.region_compositions(body,seed.get('regions',{}),regional[parent])
                 if len(baseline)==len(target):
                     choices+=source.linear_compositions(body,target,baseline,values)
@@ -907,8 +924,8 @@ def try_fix(p, symbol, body, budget_s=30.0, max_candidates=80, base=None, rounds
     report=engine.run([row],rounds=rounds,beam=beam,max_candidates=max_candidates,budget_s=budget_s,stop_on_match=True)
     best=report['best'][p.key(sym)]; matched=best.get('matched',False)
     check=engine.check(best) if best['score']>=0 else None
-    return dict(matched=matched,body=Path(best['source']).read_text() if matched else None,
-                best_body=Path(best['source']).read_text(),label=best.get('label'),
+    return dict(matched=matched,body=source_text(best['source']) if matched else None,
+                best_body=source_text(best['source']),label=best.get('label'),
                 best=max(check.percent,check.percent_adjusted) if check and check.ok else 0,
                 base=base.percent if base else row['score'],tried=report['compiled'],variants=report['compiled']+report['cached'],secs=time.monotonic()-start,
                 mw_version=best['mw'],extra_cflags=best['flags'])
@@ -966,13 +983,13 @@ def integrate(project, report, inputs, output):
         if hashlib.sha256(Path(record['source']).read_bytes()).hexdigest() != record['sha256']:
             failed.append({'symbol': symbol, 'error': 'changed seed'})
             continue
-        source = Path(probe['source']).read_text()
+        source = source_text(probe['source'])
         if api.lint(project, [probe['source']]):
             failed.append({'symbol': symbol, 'error': 'source lint'})
             continue
         work = project.work_path(symbol)
         work.parent.mkdir(parents=True, exist_ok=True)
-        if work.exists() and work.read_text() != source:
+        if work.exists() and source_text(work) != source:
             previous_sha = hashlib.sha256(work.read_bytes()).hexdigest()
             backup = output / (symbol.replace(':', '__') + '.previous-' + previous_sha[:12] + '.c')
             backup.write_bytes(work.read_bytes())
@@ -986,7 +1003,7 @@ def integrate(project, report, inputs, output):
             continue
         accepted.append(symbol)
         provenance[symbol] = {'seed_symbol': record.get('symbol', seed_symbol), 'generator': 'fzgx fixup', 'transform': probe['label'],
-                              'seed': Path(record['source']).read_text(), 'seed_sha256': record['sha256'],
+                              'seed': source_text(record['source']), 'seed_sha256': record['sha256'],
                               'generated_sha256': hashlib.sha256(source.encode()).hexdigest(), 'generated_source': source,
                               'compiler': mw, 'flags': record['flags'], 'source': result['unit'],
                               'bytes': project.resolve(symbol).size, 'headers_sha256': headers_sha256, 'oracle_sha256': oracle_sha256, 'recipe': row.get('recipe', []), 'link': result['link']}
@@ -1052,6 +1069,12 @@ def replay_archive(path):
                             body=engine.declarations.expand(row)
                         elif step['label'] == 'bind exact clone':
                             mapping=reuse.bindings(project,step['input_symbol'],step['output_symbol'])
+                            if step['clone'].get('native_storage'):
+                                native=reuse.storage_bindings(project,step['input_symbol'],step['output_symbol'],
+                                                              row['object'],engine.check(row))
+                                if any(name in mapping and mapping[name]!=value for name,value in native.items()):
+                                    raise ValueError(symbol+': clone code/storage bindings disagree')
+                                mapping.update(native)
                             if mapping != step['clone']['bindings']:
                                 raise ValueError(symbol+': clone bindings changed')
                             body=reuse.rebind(body,mapping)
@@ -1132,7 +1155,7 @@ def load_records(engine,args):
         rows.append(engine.record(symbol,body,mw,flags,**metadata))
     if args.symbol and (args.body or not args.corpus) and (clone_members is None or args.body):
         from . import api
-        body=Path(args.body).read_text() if args.body else api._attempt_text(p,args.symbol)
+        body=source_text(args.body) if args.body else api._attempt_text(p,args.symbol)
         if body is None:
             raise ValueError('no saved C for '+args.symbol)
         sym=p.resolve(args.symbol)
@@ -1152,7 +1175,7 @@ def load_records(engine,args):
                 continue
             if clone_members is not None and r['symbol'] not in clone_members:
                 continue
-            body=Path(r['source']).read_text()
+            body=source_text(r['source'])
             if digest(body.encode())!=r['sha256']:
                 raise ValueError(f"{r['symbol']}: frozen source changed")
             add(r['symbol'],body,r['mw'],r['flags'],label='saved-body',origin=r.get('origin'))
@@ -1237,7 +1260,7 @@ def repair_recipe(by_id, row):
         parent=by_id[current['parent']]
         recipe.append(dict(label=current['label'], input_sha256=parent['sha256'], output_sha256=current['sha256'],
                            input_symbol=parent['symbol'], output_symbol=current['symbol'],
-                           edits=source.edits(Path(parent['source']).read_text(),Path(current['source']).read_text()),
+                           edits=source.edits(source_text(parent['source']),source_text(current['source'])),
                            **({'clone':current['clone']} if 'clone' in current else {})))
         current=parent
     return current, list(reversed(recipe))
@@ -1260,8 +1283,8 @@ def archive_sources(report, path):
         if not row.get('object') or targets and row['symbol'] not in targets:
             continue
         seed,recipe=repair_recipe(by_id,row)
-        records.append(dict(symbol=row['symbol'],body=Path(row['source']).read_text(),sha256=row['sha256'],
-            seed=Path(seed['source']).read_text(),seed_sha256=seed['sha256'],seed_symbol=seed['symbol'],
+        records.append(dict(symbol=row['symbol'],body=source_text(row['source']),sha256=row['sha256'],
+            seed=source_text(seed['source']),seed_sha256=seed['sha256'],seed_symbol=seed['symbol'],
             generator='fzgx fixup',recipe=recipe,mw=row['mw'],flags=row['flags'],
             **{k:row[k] for k in ('raw_percent','percent','percent_adjusted','score','word_errors','aligned_word_percent','matched') if k in row}))
     path.write_bytes(gzip.compress(json.dumps(dict(format='fzgx-source-repairs-v1',

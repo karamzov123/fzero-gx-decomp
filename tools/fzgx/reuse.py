@@ -54,6 +54,92 @@ def bindings(p, donor, recipient):
     return dict(zip(a.refs, b.refs)) | {a.symbol.name: b.symbol.name}
 
 
+def storage_bindings(p, donor, recipient, obj, check):
+    """Project proven native TU objects through exact-clone section witnesses.
+
+    Code-reference renaming alone misses private fzgx_obj_ names and interior
+    aliases. Verify their recipient bytes and pointer bindings before renaming;
+    instruction equality does not prove module-local storage is interchangeable.
+    """
+    from . import poolfix
+    from .dataimport import payload
+
+    source, target = p.resolve(donor), p.resolve(recipient)
+    source_symbols, target_symbols = p.symbols(source.module), p.symbols(target.module)
+    elf = poolfix.Elf(Path(obj).read_bytes())
+    allocated = {s['name']: s for s in elf.symbols() if s['size'] and s['shndx'] < len(elf.sections)
+                 and elf.sections[s['shndx']]['flags'] & 2
+                 and not elf.sections[s['shndx']]['flags'] & 4}
+    proofs = [(private, pooled) for private, pooled, _ in check._pool_pairs
+              if private in allocated and re.fullmatch(r'[A-Za-z_]\w*', private)
+              and poolfix.binding_target(pooled)[0] in source_symbols]
+    if not proofs:
+        return {}
+    code = bindings(p, donor, recipient)
+    sections = {}
+    for old, new in code.items():
+        a, b = source_symbols.get(old), target_symbols.get(new)
+        if not a or not b or a.kind != 'object' or b.kind != 'object':
+            continue
+        if a.section != b.section:
+            raise ValueError('clone storage witness changed section')
+        delta = b.addr - a.addr
+        if a.section in sections and sections[a.section] != delta:
+            raise ValueError('clone storage witnesses disagree')
+        sections[a.section] = delta
+
+    def relocation_key(reloc, origin, project_source):
+        symbol = p.symbols(reloc['module'])[reloc['symbol']]
+        module, address = symbol.module, symbol.addr + reloc['addend']
+        if project_source and module == source.module:
+            if symbol.name in code:
+                replacement = target_symbols[code[symbol.name]]
+                module, address = replacement.module, replacement.addr + reloc['addend']
+            elif symbol.section in sections:
+                module, address = target.module, address + sections[symbol.section]
+            else:
+                raise ValueError('clone pointer has no recipient witness: ' + symbol.name)
+        return reloc['offset'] - origin, reloc['kind'], module, symbol.section, address
+
+    result = {}
+    for private, pooled in proofs:
+        own = allocated[private]
+        name, offset = poolfix.binding_target(pooled)
+        original = source_symbols.get(name)
+        if not original:
+            continue  # Shared objects in another module retain their identity.
+        if original.section not in sections:
+            raise ValueError('native clone object has no section witness: ' + name)
+        address = original.addr + offset + sections[original.section]
+        size = own['size']
+        owners = [s for s in target_symbols.values() if s.kind == 'object'
+                  and s.section == original.section and s.addr <= address and address + size <= s.end]
+        if not owners:
+            raise ValueError('native clone object has no bounded recipient: ' + name)
+        replacement = min(owners, key=lambda s: (s.size, -s.addr, s.name))
+        target_offset = address - replacement.addr
+        old_bytes, old_relocs = payload(p, original)
+        new_bytes, new_relocs = payload(p, replacement)
+        if offset < 0 or offset + size > len(old_bytes) or old_bytes[offset:offset + size] != new_bytes[target_offset:target_offset + size]:
+            raise ValueError('native clone object bytes differ: ' + name)
+        for relocs, start in ((old_relocs, offset), (new_relocs, target_offset)):
+            for r in relocs:
+                if r['offset'] < start + size and r['offset'] + 4 > start:
+                    if r['kind'] != 1 or r['offset'] < start or r['offset'] + 4 > start + size:
+                        raise ValueError('native clone contains a partial or unsupported pointer: ' + name)
+        old_keys = sorted(relocation_key(r, offset, True) for r in old_relocs if offset <= r['offset'] < offset + size)
+        new_keys = sorted(relocation_key(r, target_offset, False) for r in new_relocs if target_offset <= r['offset'] < target_offset + size)
+        if old_keys != new_keys:
+            raise ValueError('native clone pointer bindings differ: ' + name)
+        rebound = replacement.name + (f'__fzgx_offset_{target_offset:X}' if target_offset else '')
+        if private.startswith('fzgx_obj_'):
+            rebound = 'fzgx_obj_' + rebound
+        if private in result and result[private] != rebound:
+            raise ValueError('native clone object has conflicting bindings: ' + private)
+        result[private] = rebound
+    return result
+
+
 def rebind(body, mapping):
     from .sdkimport import replace_c_symbols
     return replace_c_symbols(body, mapping)
@@ -193,7 +279,7 @@ class Declarations:
     def expand(self, row):
         if row['id'] in self.expanded:
             return self.expanded[row['id']]
-        body = Path(row['source']).read_text()
+        body = Path(row['source']).read_bytes().decode('utf-8')
         if not re.search(r'(?m)^\s*#(?!pragma\b)', body):
             return declaration_closure(body)
         p = self.engine.project

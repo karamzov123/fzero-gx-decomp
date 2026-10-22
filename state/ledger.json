@@ -1,5 +1,5 @@
 {
- "generated": 1792561092,
+ "generated": 1792638786,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -114074,19 +114074,19 @@
   {
    "symbol": "fn_4_BC04",
    "module": "option",
-   "unit": null,
+   "unit": "rel/option/_prolog/fn_4_BC04.c",
    "addr": 48132,
    "size": 2916,
-   "status": "unmatched",
-   "attempts": 2,
+   "status": "matched",
+   "attempts": 3,
    "best_percent": 60.08,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "897a9300",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_4_C768",
@@ -123305,19 +123305,19 @@
   {
    "symbol": "fn_8_E440",
    "module": "title",
-   "unit": null,
+   "unit": "rel/title/operation/fn_8_E440.c",
    "addr": 58432,
    "size": 2916,
-   "status": "unmatched",
-   "attempts": 2,
+   "status": "matched",
+   "attempts": 3,
    "best_percent": 15.63786,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "897a9300",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_8_EFA4",
@@ -662403,6 +662403,48 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/customize:_prolog.1792616412.c",
    "stale_checks": 0,
    "best_in_attempt": 90.645035,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26265,
+   "symbol": "fn_4_BC04",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792638261,
+   "ended": 1792638261,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "bind exact clone",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26266,
+   "symbol": "fn_8_E440",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792638301,
+   "ended": 1792638301,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "bind exact clone",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
