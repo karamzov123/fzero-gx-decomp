@@ -75,8 +75,21 @@ def gain(tree: Path) -> List[str]:
     theirs = json.loads((tree / 'state/ledger.json').read_text())['functions']
     ours = dict(Ledger().db.execute('SELECT symbol, status FROM functions'))
     sha = (tree / '.complete').read_text().strip()
-    found = {r['symbol'] for r in theirs if r['status'] == 'matched' and ours.get(r['symbol']) == 'unmatched'}
-    found |= {k for k, v in fixup_imports(sha).items() if v.get('generated_source') and ours.get(k) == 'unmatched'}
+    # Blocked functions are open work too: an exact body elsewhere is what unblocks them
+    # (fn_80036AC4 matched on a fork branch while blocked here).
+    open_here = ('unmatched', 'blocked')
+    found = {r['symbol'] for r in theirs if r['status'] == 'matched' and ours.get(r['symbol']) in open_here}
+    found |= {k for k, v in fixup_imports(sha).items() if v.get('generated_source') and ours.get(k) in open_here}
+    # A ref's ledger snapshot can lag its commits; a unit is only created at submit, so a
+    # matching unit in the ref's config is a match too (the oracle still decides here).
+    units = tree / 'config/GFZE01/units.json'
+    if units.exists():
+        for u in json.loads(units.read_text()):
+            if u.get('status') == 'matching' and not u.get('asm') and not u.get('data'):
+                for name in u.get('symbols') or ():
+                    key = name if name in ours else f"{u.get('module')}:{name}"
+                    if ours.get(key) in open_here:
+                        found.add(key)
     return sorted(found)
 
 
