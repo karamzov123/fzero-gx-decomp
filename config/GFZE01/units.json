@@ -4540,11 +4540,16 @@
     "symbols": [
       "fn_17_9314"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/interview/interview.c",
-    "pool": true
+    "pool": {
+      "...rodata.0": "lbl_17_rodata_0",
+      "@23": "lbl_17_rodata_3C",
+      "@12": "lbl_17_rodata_20",
+      "@10": "lbl_17_rodata_18"
+    }
   },
   {
     "module": "interview",

@@ -60018,7 +60018,7 @@ void fn_17_8E68(s16 arg0, s16 arg1) {
 }
 /* fzgx:end fn_17_8E68 */
 
-/* fzgx:begin fn_17_9314 pool */
+/* fzgx:begin fn_17_9314 */
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[5] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
@@ -60279,13 +60279,13 @@ void fn_17_9314(const char *text) {
     fn_1_4A0D8(text);
     fn_1_49768(0);
     if (fn_1_A5DC4()) {
-        static const InterviewColor color = {0, 0, 0, 0xFF};
+        static const InterviewColor fzgx_pool_color = {0, 0, 0, 0xFF};
 
         params = lbl_1_rodata_26F8;
         params.font = 5;
         params.x = -8.0f;
         params.y = 450.0f;
-        params.color = color;
+        params.color = fzgx_pool_color;
         params.scale_x *= 12.0f / fn_1_48690(params.font);
         params.scale_y *= 12.0f / fn_1_486C4(params.font);
         params.unk_0C = 1.0f;
@@ -60295,13 +60295,13 @@ void fn_17_9314(const char *text) {
         params.unk_30 = 0;
         fn_1_4F734(&params);
     } else {
-        static const InterviewColor color = {0, 0, 0, 0xFF};
+        static const InterviewColor fzgx_pool_color = {0, 0, 0, 0xFF};
 
         params = lbl_1_rodata_26F8;
         params.font = 5;
         params.x = -8.0f;
         params.y = 450.0f;
-        params.color = color;
+        params.color = fzgx_pool_color;
         params.scale_x *= 12.0f / fn_1_48690(params.font);
         params.scale_y *= 12.0f / fn_1_486C4(params.font);
         params.unk_0C = 1.0f;
