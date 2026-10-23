@@ -381,7 +381,9 @@ void fn_1_F2DDC(void) {
 }
 /* fzgx:end fn_1_F2DDC */
 
-/* fzgx:begin fn_1_F2E50 pool */
+/* fzgx:begin fn_1_F2E50 */
+extern u32 OSGetTick(void);
+
 struct fn_1_F2E50_rec {
     u8 pad_0[0x40];
     u32 unk_40;
@@ -401,10 +403,10 @@ typedef struct lbl_1_bss_7EFD8_t {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u16 fzgx_obj_lbl_1_bss_7EFD0;
-u16 lbl_1_bss_7EFD0_gap_7EFD2;
+u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
 u8 fzgx_obj_lbl_1_bss_7EFD4;
-u8 lbl_1_bss_7EFD0_gap_7EFD5;
-u16 lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
+u8 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
+u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
 lbl_1_bss_7EFD8_t fzgx_obj_lbl_1_bss_7EFD8;
 u16 fzgx_obj_lbl_1_bss_7F01C;
 
@@ -412,10 +414,10 @@ u16 fzgx_obj_lbl_1_bss_7F01C;
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
-    s = *(u8 *)&lbl_1_bss_7EFD0_gap_7EFD2;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD4;
-    s = *(u8 *)&lbl_1_bss_7EFD0_gap_7EFD5;
-    s = *(u8 *)&lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7F01C;
 }

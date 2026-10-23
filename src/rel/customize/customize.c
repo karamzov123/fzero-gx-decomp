@@ -1296,7 +1296,7 @@ void fn_3_BE10(void) {
 }
 /* fzgx:end fn_3_BE10 */
 
-/* fzgx:begin fn_3_BE88 pool noprologue */
+/* fzgx:begin fn_3_BE88 noprologue */
 #include "types.h"
 
 extern int fn_1_4C10(void);
@@ -1317,7 +1317,7 @@ char fzgx_obj_lbl_3_data_199C[] = "EMB_MEMCARD_SAVE_PROC";
 char fzgx_obj_lbl_3_data_19B4[] = "EMB_MEMCARD_LOAD_PROC";
 char fzgx_obj_lbl_3_data_19CC[] = "EMB_MEMCARD_DEL_PROC";
 char fzgx_obj_lbl_3_data_19E4[] = "EMB_MEMCARD_FINISH";
-char *gap_04_000019F7_data__fzgx_offset_1[6] = {
+char *fzgx_pool_gap_04_000019F7_data__fzgx_offset_1[6] = {
     fzgx_obj_lbl_3_data_1970,
     fzgx_obj_lbl_3_data_1984,
     fzgx_obj_lbl_3_data_199C,

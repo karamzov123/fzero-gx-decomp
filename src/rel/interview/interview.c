@@ -210,7 +210,7 @@ void fn_17_3F0(void) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_17_3F0 */
 
-/* fzgx:begin fn_17_6C8 pool */
+/* fzgx:begin fn_17_6C8 */
 typedef struct Vec3f {
     f32 x;
     f32 y;
@@ -320,24 +320,24 @@ u8 lbl_17_bss_0;
 u8 lbl_17_bss_1;
 u8 lbl_17_bss_2;
 u8 lbl_17_bss_3;
-u32 lbl_17_bss_4;
-u32 lbl_17_bss_8;
+u32 lbl_17_bss_3__fzgx_offset_1;
+u32 lbl_17_bss_3__fzgx_offset_5;
 u32 lbl_17_bss_C;
 IvInfo *lbl_17_bss_10;
 u32 lbl_17_bss_14;
 u32 lbl_17_bss_18;
-u32 lbl_17_bss_1C;
+u32 lbl_17_bss_18__fzgx_offset_4;
 u32 lbl_17_bss_20;
 u32 lbl_17_bss_24[4];
 u32 lbl_17_bss_34[8];
 s32 lbl_17_bss_54;
 u32 lbl_17_bss_58;
-u16 lbl_17_bss_5C;
+u16 lbl_17_bss_58__fzgx_offset_4;
 IvEntry lbl_17_bss_60;
-s16 lbl_17_bss_D4;
+s16 lbl_17_bss_60__fzgx_offset_74;
 s16 lbl_17_bss_D6;
 IvPair lbl_17_bss_D8;
-u8 lbl_17_bss_F8;
+u8 lbl_17_bss_D8__fzgx_offset_20;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -346,24 +346,24 @@ static void fzgx_bss_layout(void) {
     s = lbl_17_bss_1;
     s = lbl_17_bss_2;
     s = lbl_17_bss_3;
-    s = lbl_17_bss_4;
-    s = lbl_17_bss_8;
+    s = lbl_17_bss_3__fzgx_offset_1;
+    s = lbl_17_bss_3__fzgx_offset_5;
     s = lbl_17_bss_C;
     s = (u32)lbl_17_bss_10;
     s = lbl_17_bss_14;
     s = lbl_17_bss_18;
-    s = lbl_17_bss_1C;
+    s = lbl_17_bss_18__fzgx_offset_4;
     s = lbl_17_bss_20;
     s = lbl_17_bss_24[0];
     s = lbl_17_bss_34[0];
     s = lbl_17_bss_54;
     s = lbl_17_bss_58;
-    s = lbl_17_bss_5C;
+    s = lbl_17_bss_58__fzgx_offset_4;
     s = lbl_17_bss_60.cam.unk_40;
-    s = lbl_17_bss_D4;
+    s = lbl_17_bss_60__fzgx_offset_74;
     s = lbl_17_bss_D6;
     s = lbl_17_bss_D8.unk_0;
-    s = lbl_17_bss_F8;
+    s = lbl_17_bss_D8__fzgx_offset_20;
 }
 #pragma section code_type ".text"
 
@@ -380,14 +380,14 @@ void fn_17_6C8(void) {
         lbl_1_bss_968 = 10;
         return;
     }
-    if ((flags & 1) && ((state = lbl_17_bss_5C) < 4 || (state > 5 && state < 12))) {
+    if ((flags & 1) && ((state = lbl_17_bss_58__fzgx_offset_4) < 4 || (state > 5 && state < 12))) {
         if (state < 4) {
             params = lbl_17_data_63BD0.cam;
-            lbl_17_bss_5C = 4;
-            lbl_17_bss_1C = lbl_17_data_63058.unk_10;
+            lbl_17_bss_58__fzgx_offset_4 = 4;
+            lbl_17_bss_18__fzgx_offset_4 = lbl_17_data_63058.unk_10;
             sub = &lbl_17_bss_60.cam;
             sub->unk_40 = 2;
-            lbl_17_bss_D4 = -95;
+            lbl_17_bss_60__fzgx_offset_74 = -95;
             lbl_17_bss_D6 = -20;
             fn_1_9724C(lbl_17_bss_D8.unk_0);
             fn_1_9724C((u32)lbl_17_bss_D8.unk_4);
@@ -395,7 +395,7 @@ void fn_17_6C8(void) {
             params = lbl_17_data_63D20.cam;
             sub = &lbl_17_bss_60.cam;
             sub->unk_20 = params.unk_20;
-            lbl_17_bss_5C = 12;
+            lbl_17_bss_58__fzgx_offset_4 = 12;
             lbl_17_bss_20 = lbl_17_data_63058.unk_30;
             sub->unk_40 = 1;
             sub->unk_24 = 0;
@@ -403,7 +403,7 @@ void fn_17_6C8(void) {
             sub->target = params.target;
             sub->unk_0 = params.unk_1C;
             sub->unk_20 = params.unk_20;
-            lbl_17_bss_D4 = -999;
+            lbl_17_bss_60__fzgx_offset_74 = -999;
             lbl_17_bss_D6 = -999;
             fn_17_71C0(&lbl_17_bss_60);
             fn_1_9724C(lbl_17_bss_D8.unk_0);
@@ -414,20 +414,20 @@ void fn_17_6C8(void) {
         cam->target = params.target;
         cam->unk_20 = params.unk_20;
         cam->unk_1C = params.unk_1C;
-        if ((lbl_17_bss_58 & 1) && lbl_17_bss_5C < 5 && sub->unk_40 >= 2) {
+        if ((lbl_17_bss_58 & 1) && lbl_17_bss_58__fzgx_offset_4 < 5 && sub->unk_40 >= 2) {
             actor = lbl_17_bss_D8.unk_4;
             cam->eye.x = actor->unk_A8;
             cam->eye.z = actor->unk_B0 - 1.0f;
             cam->target.x = actor->unk_A8;
         }
         lbl_1_bss_6EAB4 &= ~0x2C;
-        fn_8004BF0C(lbl_1_bss_6EAD0->first, lbl_17_bss_D4);
+        fn_8004BF0C(lbl_1_bss_6EAD0->first, lbl_17_bss_60__fzgx_offset_74);
         fn_8004BF0C(lbl_1_bss_6EAD0->second, lbl_17_bss_D6);
         fn_1_4A00(1, 30, (void *)lbl_17_bss_18);
         return;
     }
     if (!(flags & 0x20000000)) {
-        if (lbl_17_bss_F8 == 3) {
+        if (lbl_17_bss_D8__fzgx_offset_20 == 3) {
             fn_17_3F0();
         } else if ((s32)lbl_1_bss_5138.unk_E2 == 0) {
             lbl_1_bss_968 = lbl_17_bss_10->unk_190;
@@ -15203,7 +15203,7 @@ void fn_17_3A28(s32 a, s16 b, s16 c) {
 }
 /* fzgx:end fn_17_3A28 */
 
-/* fzgx:begin fn_17_3C5C pool */
+/* fzgx:begin fn_17_3C5C */
 struct fn_17_3C5C_Obj {
     u8 pad_0[5];
     u8 unk_5;
@@ -15228,7 +15228,7 @@ u8 fzgx_obj_lbl_17_bss_0;
 u8 fzgx_obj_lbl_17_bss_1;
 u8 lbl_17_bss_2;
 u8 lbl_17_bss_3;
-u32 lbl_17_bss_3_fill_4[2];
+u32 lbl_17_bss_3__fzgx_offset_1[2];
 u32 lbl_17_bss_C;
 struct fn_17_3C5C_Obj *lbl_17_bss_10;
 u32 fzgx_obj_lbl_17_bss_14;
@@ -15239,11 +15239,11 @@ u32 lbl_17_bss_34[8];
 u32 fzgx_obj_lbl_17_bss_54;
 u32 fzgx_obj_lbl_17_bss_58[2];
 u32 fzgx_obj_lbl_17_bss_60[29];
-u16 lbl_17_bss_60_fill_D4;
+u16 lbl_17_bss_60__fzgx_offset_74;
 u16 fzgx_obj_lbl_17_bss_D6;
 u32 fzgx_obj_lbl_17_bss_D8[8];
-u8 lbl_17_bss_D8_20;
-u8 lbl_17_bss_D8_fill_F9;
+u8 lbl_17_bss_D8__fzgx_offset_20;
+u8 lbl_17_bss_D8__fzgx_offset_21;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -15252,7 +15252,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_17_bss_1;
     s = *(u8 *)&lbl_17_bss_2;
     s = *(u8 *)&lbl_17_bss_3;
-    s = *(u8 *)&lbl_17_bss_3_fill_4;
+    s = *(u8 *)&lbl_17_bss_3__fzgx_offset_1;
     s = *(u8 *)&lbl_17_bss_C;
     s = *(u8 *)&lbl_17_bss_10;
     s = *(u8 *)&fzgx_obj_lbl_17_bss_14;
@@ -15263,11 +15263,11 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_17_bss_54;
     s = *(u8 *)&fzgx_obj_lbl_17_bss_58;
     s = *(u8 *)&fzgx_obj_lbl_17_bss_60;
-    s = *(u8 *)&lbl_17_bss_60_fill_D4;
+    s = *(u8 *)&lbl_17_bss_60__fzgx_offset_74;
     s = *(u8 *)&fzgx_obj_lbl_17_bss_D6;
     s = *(u8 *)&fzgx_obj_lbl_17_bss_D8;
-    s = *(u8 *)&lbl_17_bss_D8_20;
-    s = *(u8 *)&lbl_17_bss_D8_fill_F9;
+    s = *(u8 *)&lbl_17_bss_D8__fzgx_offset_20;
+    s = *(u8 *)&lbl_17_bss_D8__fzgx_offset_21;
 }
 #pragma section code_type ".text"
 
@@ -15289,7 +15289,7 @@ void fn_17_3C5C(void) {
         if (i == 0) {
             id = obj->unk_5;
         } else {
-            switch (lbl_17_bss_D8_20) {
+            switch (lbl_17_bss_D8__fzgx_offset_20) {
             case 0:
                 obj->unk_E = 1;
                 break;
@@ -15394,7 +15394,7 @@ void fn_17_4540(void) {
 }
 /* fzgx:end fn_17_4540 */
 
-/* fzgx:begin fn_17_456C pool */
+/* fzgx:begin fn_17_456C */
 typedef struct {
     f32 x, y, z;
 } Vec3;
@@ -15426,7 +15426,7 @@ u8 lbl_17_bss_0;
 u8 lbl_17_bss_1;
 u8 lbl_17_bss_2;
 u8 lbl_17_bss_3;
-u32 lbl_17_bss_3_fill_4[2];
+u32 lbl_17_bss_3__fzgx_offset_1[2];
 u32 lbl_17_bss_C;
 u32 lbl_17_bss_10;
 u32 lbl_17_bss_14;
@@ -15437,12 +15437,12 @@ u32 lbl_17_bss_34[8];
 u32 lbl_17_bss_54;
 u32 lbl_17_bss_58[2];
 InterviewData lbl_17_bss_60;
-s16 lbl_17_bss_60_74;
+s16 lbl_17_bss_60__fzgx_offset_74;
 s16 lbl_17_bss_D6;
 InterviewState *lbl_17_bss_D8[8];
-u16 lbl_17_bss_D8_fill_F8;
+u16 lbl_17_bss_D8__fzgx_offset_20;
 u16 lbl_17_bss_FA;
-u32 lbl_17_bss_FA_fill_FC[20];
+u32 lbl_17_bss_FA__fzgx_offset_2[20];
 u32 lbl_17_bss_14C;
 u32 lbl_17_bss_150[4];
 u32 lbl_17_bss_160[4];
@@ -15476,7 +15476,7 @@ static void fzgx_bss_layout(void) {
     fzgx_sink(&lbl_17_bss_1);
     fzgx_sink(&lbl_17_bss_2);
     fzgx_sink(&lbl_17_bss_3);
-    fzgx_sink(lbl_17_bss_3_fill_4);
+    fzgx_sink(lbl_17_bss_3__fzgx_offset_1);
     fzgx_sink(&lbl_17_bss_C);
     fzgx_sink(&lbl_17_bss_10);
     fzgx_sink(&lbl_17_bss_14);
@@ -15487,12 +15487,12 @@ static void fzgx_bss_layout(void) {
     fzgx_sink(&lbl_17_bss_54);
     fzgx_sink(lbl_17_bss_58);
     fzgx_sink(&lbl_17_bss_60);
-    fzgx_sink(&lbl_17_bss_60_74);
+    fzgx_sink(&lbl_17_bss_60__fzgx_offset_74);
     fzgx_sink(&lbl_17_bss_D6);
     fzgx_sink(lbl_17_bss_D8);
-    fzgx_sink(&lbl_17_bss_D8_fill_F8);
+    fzgx_sink(&lbl_17_bss_D8__fzgx_offset_20);
     fzgx_sink(&lbl_17_bss_FA);
-    fzgx_sink(lbl_17_bss_FA_fill_FC);
+    fzgx_sink(lbl_17_bss_FA__fzgx_offset_2);
     fzgx_sink(&lbl_17_bss_14C);
     fzgx_sink(lbl_17_bss_150);
     fzgx_sink(lbl_17_bss_160);
@@ -29822,7 +29822,7 @@ break;
 }
 /* fzgx:end fn_17_58E0 */
 
-/* fzgx:begin fn_17_5C24 pool */
+/* fzgx:begin fn_17_5C24 */
 typedef struct InterviewEntry {
     s16 id;
     u8 text[0x12];
@@ -43567,7 +43567,7 @@ u8 lbl_17_bss_0;
 u8 lbl_17_bss_1;
 u8 lbl_17_bss_2;
 u8 lbl_17_bss_3;
-u32 lbl_17_bss_3_fill_4[2];
+u32 lbl_17_bss_3__fzgx_offset_1[2];
 u32 lbl_17_bss_C;
 u32 lbl_17_bss_10;
 void *lbl_17_bss_14;
@@ -43578,10 +43578,10 @@ u32 lbl_17_bss_34[8];
 u32 lbl_17_bss_54;
 u32 lbl_17_bss_58[2];
 InterviewObj lbl_17_bss_60;
-u16 lbl_17_bss_60_tail_D4;
+u16 lbl_17_bss_60__fzgx_offset_74;
 u16 lbl_17_bss_D6;
 InterviewRef lbl_17_bss_D8;
-u16 lbl_17_bss_D8_tail_F8;
+u16 lbl_17_bss_D8__fzgx_offset_20;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -43590,7 +43590,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_17_bss_1;
     s = *(u8 *)&lbl_17_bss_2;
     s = *(u8 *)&lbl_17_bss_3;
-    s = *(u8 *)&lbl_17_bss_3_fill_4;
+    s = *(u8 *)&lbl_17_bss_3__fzgx_offset_1;
     s = *(u8 *)&lbl_17_bss_C;
     s = *(u8 *)&lbl_17_bss_10;
     s = *(u8 *)&lbl_17_bss_14;
@@ -43601,10 +43601,10 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_17_bss_54;
     s = *(u8 *)&lbl_17_bss_58;
     s = *(u8 *)&lbl_17_bss_60;
-    s = *(u8 *)&lbl_17_bss_60_tail_D4;
+    s = *(u8 *)&lbl_17_bss_60__fzgx_offset_74;
     s = *(u8 *)&lbl_17_bss_D6;
     s = *(u8 *)&lbl_17_bss_D8;
-    s = *(u8 *)&lbl_17_bss_D8_tail_F8;
+    s = *(u8 *)&lbl_17_bss_D8__fzgx_offset_20;
 }
 #pragma section code_type ".text"
 

@@ -177,7 +177,26 @@ void fn_1_131558(void) {
 }
 /* fzgx:end fn_1_131558 */
 
-/* fzgx:begin fn_1_131620 pool */
+/* fzgx:begin fn_1_131620 */
+extern u32 lbl_801A6410;
+extern u8 fn_1_B7C00(void);
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char* format, ...);
+extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
+extern void fn_80008BA8(void*, void*, s32);
+extern u32 lbl_1_bss_8CA6C[1605];
+extern void fn_1_1324C4(void *arg0);
+extern void fn_1_132774(void *arg0);
+
+extern u32 lbl_801A6410;
+extern u8 fn_1_B7C00(void);
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char* format, ...);
+extern void fn_80008BA8(void*, void*, s32);
+extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
+
 extern u32 lbl_801A6410;
 extern u8 fn_1_B7C00(void);
 extern s32 fn_1_B7CD4(void);
@@ -203,32 +222,32 @@ typedef struct {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 s32 fzgx_obj_lbl_1_bss_8CA40;
-u32 lbl_1_bss_8CA44_fill_8CA44;
-s32 lbl_1_bss_8CA44_4;
-u32 lbl_1_bss_8CA44_fill_8CA4C[2];
-void**lbl_1_bss_8CA44_10;
-u32 lbl_1_bss_8CA44_fill_8CA58[5];
-u32 lbl_1_bss_8CA6C_fill_8CA6C[69];
-MemcardEntry lbl_1_bss_8CA6C_114[128];
+u32 lbl_1_bss_8CA44__fzgx_offset_0;
+s32 lbl_1_bss_8CA44__fzgx_offset_4;
+u32 lbl_1_bss_8CA44__fzgx_offset_8[2];
+void**lbl_1_bss_8CA44__fzgx_offset_10;
+u32 lbl_1_bss_8CA44__fzgx_offset_14[5];
+u32 lbl_1_bss_8CA6C__fzgx_offset_0[69];
+MemcardEntry lbl_1_bss_8CA6C__fzgx_offset_114[128];
 u8 fzgx_obj_lbl_1_bss_8E380;
-u8 lbl_1_bss_8CA40_gap_8E381;
-u16 lbl_1_bss_8CA40_gap_8E381_fill_8E382;
+u8 fzgx_pool_lbl_1_bss_8CA40_gap_8E381;
+u16 fzgx_pool_lbl_1_bss_8CA40_gap_8E381_fill_8E382;
 u32 fzgx_obj_lbl_1_bss_8E384[17];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8CA40;
-    s = *(u8 *)&lbl_1_bss_8CA44_fill_8CA44;
-    s = *(u8 *)&lbl_1_bss_8CA44_4;
-    s = *(u8 *)&lbl_1_bss_8CA44_fill_8CA4C;
-    s = *(u8 *)&lbl_1_bss_8CA44_10;
-    s = *(u8 *)&lbl_1_bss_8CA44_fill_8CA58;
-    s = *(u8 *)&lbl_1_bss_8CA6C_fill_8CA6C;
-    s = *(u8 *)&lbl_1_bss_8CA6C_114;
+    s = *(u8 *)&lbl_1_bss_8CA44__fzgx_offset_0;
+    s = *(u8 *)&lbl_1_bss_8CA44__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_8CA44__fzgx_offset_8;
+    s = *(u8 *)&lbl_1_bss_8CA44__fzgx_offset_10;
+    s = *(u8 *)&lbl_1_bss_8CA44__fzgx_offset_14;
+    s = *(u8 *)&lbl_1_bss_8CA6C__fzgx_offset_0;
+    s = *(u8 *)&lbl_1_bss_8CA6C__fzgx_offset_114;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8E380;
-    s = *(u8 *)&lbl_1_bss_8CA40_gap_8E381;
-    s = *(u8 *)&lbl_1_bss_8CA40_gap_8E381_fill_8E382;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_8CA40_gap_8E381;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_8CA40_gap_8E381_fill_8E382;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8E384;
 }
 #pragma section code_type ".text"
@@ -242,7 +261,7 @@ void fn_1_131620(void) {
         if (fn_1_B7CD4() == 0) {
             lab_t1 = fn_1_B7C5C();
             OSReport((const char*)lbl_1_data_40EF8, lab_t1);
-            entry = lbl_1_bss_8CA6C_114;
+            entry = lbl_1_bss_8CA6C__fzgx_offset_114;
             for (i.value = 0; i.value < 128; i.value++) {
                 if (entry[i.value].unk_24 != 0) {
                     fn_1_46B4(lbl_801A6410, entry[i.value].unk_2C, lbl_1_data_40EA4, 0x1c9);
@@ -250,16 +269,16 @@ void fn_1_131620(void) {
             }
             fzgx_obj_lbl_1_bss_8CA40 = -1;
         } else {
-            entry = lbl_1_bss_8CA6C_114;
+            entry = lbl_1_bss_8CA6C__fzgx_offset_114;
             for (i.value = 0; i.value < 128; i.value++, entry++) {
                 if (entry->unk_24 != 0) {
-                    lbl_1_bss_8CA44_10[i.value] = entry->unk_2C;
+                    lbl_1_bss_8CA44__fzgx_offset_10[i.value] = entry->unk_2C;
                 } else {
-                    lbl_1_bss_8CA44_10[i.value] = 0;
+                    lbl_1_bss_8CA44__fzgx_offset_10[i.value] = 0;
                 }
             }
             fzgx_obj_lbl_1_bss_8CA40 = -1;
-            lbl_1_bss_8CA44_4 = -1;
+            lbl_1_bss_8CA44__fzgx_offset_4 = -1;
         }
     }
 }

@@ -52,25 +52,25 @@ static void sdk_layout____data_0(void) {
 
 static SIPacket Packet[4];
 
-static OSAlarm Alarm[4];
+static OSAlarm lbl_8015CA90__fzgx_offset_0[4];
 
-static unsigned char sdk_gap____bss_0_120[128];
+static unsigned char fzgx_pool_sdk_gap____bss_0_120[128];
 
-static __OSInterruptHandler RDSTHandler[4];
+static __OSInterruptHandler lbl_8015CBB0__fzgx_offset_0[4];
 
-static unsigned char sdk_gap____bss_0_1b0[48];
+static unsigned char lbl_8015CBB0__fzgx_offset_10[48];
 
-static vu32 InputBufferVcount[4];
+static vu32 lbl_8015CBB0__fzgx_offset_40[4];
 
 #pragma section code_type ".fzgxpool"
 static void sdk_layout____bss_0(void) {
     volatile unsigned char sink; // fzgx-allow: S2 SDK asynchronous state
     sink = *(unsigned char *)&Packet;
-    sink = *(unsigned char *)&Alarm;
-    sink = *(unsigned char *)&sdk_gap____bss_0_120;
-    sink = *(unsigned char *)&RDSTHandler;
-    sink = *(unsigned char *)&sdk_gap____bss_0_1b0;
-    sink = *(unsigned char *)&InputBufferVcount;
+    sink = *(unsigned char *)&lbl_8015CA90__fzgx_offset_0;
+    sink = *(unsigned char *)&fzgx_pool_sdk_gap____bss_0_120;
+    sink = *(unsigned char *)&lbl_8015CBB0__fzgx_offset_0;
+    sink = *(unsigned char *)&lbl_8015CBB0__fzgx_offset_10;
+    sink = *(unsigned char *)&lbl_8015CBB0__fzgx_offset_40;
 }
 #pragma section code_type ".text"
 
@@ -88,7 +88,7 @@ static inline void SITransferNext(s32 chan) {
         if (packet->chan != -1 && packet->fire <= __OSGetSystemTime()) {
             if (__SITransfer(packet->chan, packet->output, packet->outputBytes, packet->input,
                              packet->inputBytes, packet->callback)) {
-                OSCancelAlarm(&Alarm[chan]);
+                OSCancelAlarm(&lbl_8015CA90__fzgx_offset_0[chan]);
                 packet->chan = -1;
             }
             break;
@@ -128,23 +128,23 @@ void SIInterruptHandler(__OSInterrupt interrupt, OSContext *context) {
         x = (Si.poll & 0x03ff0000) >> 16;
         for (i = 0; i < 4; ++i) {
             if (SIGetResponseRaw(i)) {
-                InputBufferVcount[i] = vcount;
+                lbl_8015CBB0__fzgx_offset_40[i] = vcount;
             }
         }
         for (i = 0; i < 4; ++i) {
             if (!(Si.poll & (0x80000000 >> (31 - 7 + i)))) {
                 continue;
             }
-            if (InputBufferVcount[i] == 0 || InputBufferVcount[i] + (x / 2) < vcount) {
+            if (lbl_8015CBB0__fzgx_offset_40[i] == 0 || lbl_8015CBB0__fzgx_offset_40[i] + (x / 2) < vcount) {
                 return;
             }
         }
         for (i = 0; i < 4; ++i) {
-            InputBufferVcount[i] = 0;
+            lbl_8015CBB0__fzgx_offset_40[i] = 0;
         }
         for (i = 0; i < 4; ++i) {
-            if (RDSTHandler[i]) {
-                RDSTHandler[i](interrupt, context);
+            if (lbl_8015CBB0__fzgx_offset_0[i]) {
+                lbl_8015CBB0__fzgx_offset_0[i](interrupt, context);
             }
         }
     }

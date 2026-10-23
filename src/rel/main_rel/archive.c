@@ -302,7 +302,7 @@ OSPanic((char *)lbl_1_data_40608, 0x149, (char *)lbl_1_data_40720);
 }
 /* fzgx:end fn_1_12A734 */
 
-/* fzgx:begin fn_1_12A7C4 pool noprologue */
+/* fzgx:begin fn_1_12A7C4 noprologue */
 #include "types.h"
 #include "rel/main_rel/archive.h"
 
@@ -327,9 +327,9 @@ s32 fzgx_obj_lbl_1_bss_897A0;
 s32 lbl_1_bss_897A4;
 u32 lbl_1_bss_897A8;
 u8 fzgx_obj_lbl_1_bss_897AC[1];
-u8 lbl_1_bss_897AC_fill_897AD;
-u16 lbl_1_bss_897AC_fill_897AE;
-u32 lbl_1_bss_897AC_fill_897B0[1740];
+u8 lbl_1_bss_897AC__fzgx_offset_1;
+u16 lbl_1_bss_897AC__fzgx_offset_2;
+u32 lbl_1_bss_897AC__fzgx_offset_4[1740];
 u32 fzgx_obj_lbl_1_bss_8B2E0[48];
 u32 fzgx_obj_lbl_1_bss_8B3A0[83];
 
@@ -340,9 +340,9 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_1_bss_897A4;
     s = *(u8 *)&lbl_1_bss_897A8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_897AC;
-    s = *(u8 *)&lbl_1_bss_897AC_fill_897AD;
-    s = *(u8 *)&lbl_1_bss_897AC_fill_897AE;
-    s = *(u8 *)&lbl_1_bss_897AC_fill_897B0;
+    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8B2E0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8B3A0;
 }
@@ -2260,7 +2260,7 @@ void fn_1_12D354(void *arg0, void *arg1, void *arg2) {
 }
 /* fzgx:end fn_1_12D354 */
 
-/* fzgx:begin fn_1_12D404 pool noprologue */
+/* fzgx:begin fn_1_12D404 noprologue */
 #include "types.h"
 #include "types.h"
 #include "types.h"
@@ -2458,69 +2458,69 @@ extern Tbl lbl_1_rodata_8180;
 /* end game/main_rel/archive_types.h */
 
 u8 lbl_1_data_40798[] = "SEL_WAIT";
-u8 lbl_1_data_40798__fzgx_offset_C[] = "SEL_WAIT_01";
-u8 lbl_1_data_40798__fzgx_offset_18[] = "SEL_WAIT_02";
-u32 lbl_1_data_40798__fzgx_offset_24[3] = { 0, 0, 0 };
-u8 lbl_1_data_40798__fzgx_offset_30[] = "NON";
-u8 lbl_1_data_40798__fzgx_offset_34[] = "MASTER RECV";
-u8 lbl_1_data_40798__fzgx_offset_40[] = "MASTER SEND";
-u8 lbl_1_data_40798__fzgx_offset_4C[] = "SLAVE SEND";
-u8 lbl_1_data_40798__fzgx_offset_58[] = "SLAVE RECV";
-u8 lbl_1_data_40798__fzgx_offset_64[] = "INIT";
-u8 lbl_1_data_40798__fzgx_offset_6C[] = "TEST";
-u8 lbl_1_data_40798__fzgx_offset_74[] = "TESTEND";
-u8 lbl_1_data_40798__fzgx_offset_7C[] = "SETUP";
-u8 lbl_1_data_40798__fzgx_offset_84[] = "SETUP_DONE";
-u8 lbl_1_data_40798__fzgx_offset_90[] = "SETUP_COUNTER";
-u8 lbl_1_data_40798__fzgx_offset_A0[] = "SETUP_CNT_DONE";
-u8 lbl_1_data_40798__fzgx_offset_B0[] = "UNLINK";
-u8 lbl_1_data_40798__fzgx_offset_B8[] = "COIN";
-u8 lbl_1_data_40798__fzgx_offset_C0[] = "ENTRY_WAIT";
-u8 lbl_1_data_40798__fzgx_offset_CC[] = "CHALLENGER";
-u8 lbl_1_data_40798__fzgx_offset_D8[] = "CHALLENGER_OK";
-u8 lbl_1_data_40798__fzgx_offset_E8[] = "ENTRY";
-u8 lbl_1_data_40798__fzgx_offset_F0[] = "ENTRY_OK";
-u8 lbl_1_data_40798__fzgx_offset_FC[] = "SINGLECHECK";
-u8 lbl_1_data_40798__fzgx_offset_108[] = "SINGLECHECK_OK";
-u8 lbl_1_data_40798__fzgx_offset_118[] = "COURSE";
-u8 lbl_1_data_40798__fzgx_offset_120[] = "COURSE_OK";
-u8 lbl_1_data_40798__fzgx_offset_12C[] = "COURSE_DATA";
-u8 lbl_1_data_40798__fzgx_offset_138[] = "COURSE_DATA_OK";
-u8 lbl_1_data_40798__fzgx_offset_148[] = "MACHINE";
-u8 lbl_1_data_40798__fzgx_offset_150[] = "MACHINE_OK";
-u8 lbl_1_data_40798__fzgx_offset_15C[] = "CONFIG";
-u8 lbl_1_data_40798__fzgx_offset_164[] = "CONFIG_OK";
-u8 lbl_1_data_40798__fzgx_offset_170[] = "COUNTERADJUST";
-u8 lbl_1_data_40798__fzgx_offset_180[] = "LINKWAIT";
-u8 lbl_1_data_40798__fzgx_offset_18C[] = "LINKWAITOK";
-u8 lbl_1_data_40798__fzgx_offset_198[] = "LINKSEL";
-u8 lbl_1_data_40798__fzgx_offset_1A0[] = "LINKDELIVERYSTART";
-u8 lbl_1_data_40798__fzgx_offset_1B4[] = "LINKDELIVERY";
-u8 lbl_1_data_40798__fzgx_offset_1C4[] = "LINKDELIVERYOK";
-u8 lbl_1_data_40798__fzgx_offset_1D4[] = "LINKSELOK";
-u8 lbl_1_data_40798__fzgx_offset_1E0[] = "COURSEVIEW";
-u8 lbl_1_data_40798__fzgx_offset_1EC[] = "COURSEVIEW_OK";
-u8 lbl_1_data_40798__fzgx_offset_1FC[] = "LINKREQ";
-u8 lbl_1_data_40798__fzgx_offset_204[] = "LINKSTANDBY";
-u8 lbl_1_data_40798__fzgx_offset_210[] = "LINKOK";
-u8 lbl_1_data_40798__fzgx_offset_218[] = "LINK";
-u8 lbl_1_data_40798__fzgx_offset_220[] = "PAUSE";
-u8 lbl_1_data_40798__fzgx_offset_228[] = "ERROR";
-u8 lbl_1_data_40798__fzgx_offset_230[0xB4] = {0};
-u8 lbl_1_data_40798__fzgx_offset_2E4[] = "SelS_MachineConfigDisp";
-u8 lbl_1_data_40798__fzgx_offset_2FC[] = "vehicle/";
-u8 lbl_1_data_40798__fzgx_offset_308[] = "carcmntex.tpl";
-u8 lbl_1_data_40798__fzgx_offset_318[] = "..";
-u8 lbl_1_data_40798__fzgx_offset_31C[] = "RobExec";
-u8 lbl_1_data_40798__fzgx_offset_324[] = "/chara/arc/";
-u8 lbl_1_data_40798__fzgx_offset_330[] = "_sel";
-u8 lbl_1_data_40798__fzgx_offset_338[] = "_3000";
-u8 lbl_1_data_40798__fzgx_offset_340[] = "_1000";
-u8 lbl_1_data_40798__fzgx_offset_348[] = "_500";
-u8 lbl_1_data_40798__fzgx_offset_350[] = ".arc.lz";
-u8 lbl_1_data_40798__fzgx_offset_358[] = "sel_static.c";
-u8 lbl_1_data_40798__fzgx_offset_368[] = "sels_rob_arc_alloc: Pointer is NULL.\n";
-u8 lbl_1_data_40798__fzgx_offset_390[] = "sels_rob_arc_alloc: load_rob is full.\n";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_C[] = "SEL_WAIT_01";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_18[] = "SEL_WAIT_02";
+u32 fzgx_pool_lbl_1_data_40798__fzgx_offset_24[3] = { 0, 0, 0 };
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_30[] = "NON";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_34[] = "MASTER RECV";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_40[] = "MASTER SEND";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_4C[] = "SLAVE SEND";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_58[] = "SLAVE RECV";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_64[] = "INIT";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_6C[] = "TEST";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_74[] = "TESTEND";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_7C[] = "SETUP";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_84[] = "SETUP_DONE";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_90[] = "SETUP_COUNTER";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_A0[] = "SETUP_CNT_DONE";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_B0[] = "UNLINK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_B8[] = "COIN";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_C0[] = "ENTRY_WAIT";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_CC[] = "CHALLENGER";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_D8[] = "CHALLENGER_OK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_E8[] = "ENTRY";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_F0[] = "ENTRY_OK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_FC[] = "SINGLECHECK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_108[] = "SINGLECHECK_OK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_118[] = "COURSE";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_120[] = "COURSE_OK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_12C[] = "COURSE_DATA";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_138[] = "COURSE_DATA_OK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_148[] = "MACHINE";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_150[] = "MACHINE_OK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_15C[] = "CONFIG";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_164[] = "CONFIG_OK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_170[] = "COUNTERADJUST";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_180[] = "LINKWAIT";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_18C[] = "LINKWAITOK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_198[] = "LINKSEL";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_1A0[] = "LINKDELIVERYSTART";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_1B4[] = "LINKDELIVERY";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_1C4[] = "LINKDELIVERYOK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_1D4[] = "LINKSELOK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_1E0[] = "COURSEVIEW";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_1EC[] = "COURSEVIEW_OK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_1FC[] = "LINKREQ";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_204[] = "LINKSTANDBY";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_210[] = "LINKOK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_218[] = "LINK";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_220[] = "PAUSE";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_228[] = "ERROR";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_230[0xB4] = {0};
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_2E4[] = "SelS_MachineConfigDisp";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_2FC[] = "vehicle/";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_308[] = "carcmntex.tpl";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_318[] = "..";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_31C[] = "RobExec";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_324[] = "/chara/arc/";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_330[] = "_sel";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_338[] = "_3000";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_340[] = "_1000";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_348[] = "_500";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_350[] = ".arc.lz";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_358[] = "sel_static.c";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_368[] = "sels_rob_arc_alloc: Pointer is NULL.\n";
+u8 fzgx_pool_lbl_1_data_40798__fzgx_offset_390[] = "sels_rob_arc_alloc: load_rob is full.\n";
 
 struct fn_1_12D404_Copy160 { u32 a[41]; };
 typedef struct {
@@ -2591,7 +2591,7 @@ static inline s16 fn_1_12D404_count(s16 id) {
 }
 static inline void fn_1_12D404_alloc(void *p, u8 *data) {
     s32 i;
-    if (!p) OSPanic((char *)lbl_1_data_40798__fzgx_offset_358, 0x388, (char *)lbl_1_data_40798__fzgx_offset_368);
+    if (!p) OSPanic((char *)fzgx_pool_lbl_1_data_40798__fzgx_offset_358, 0x388, (char *)fzgx_pool_lbl_1_data_40798__fzgx_offset_368);
     for (i = 0; i < 12; i++) {
         if (!((Obj_1_bss_8B56C *)((u8 *)&lbl_1_bss_8B56C + i * 8))->unk_0) {
             ((Obj_1_bss_8B56C *)((u8 *)&lbl_1_bss_8B56C + i * 8))->unk_0 = (u32)p;
@@ -2599,14 +2599,14 @@ static inline void fn_1_12D404_alloc(void *p, u8 *data) {
             return;
         }
     }
-    OSPanic((char *)lbl_1_data_40798__fzgx_offset_358, 0x394, (char *)lbl_1_data_40798__fzgx_offset_390);
+    OSPanic((char *)fzgx_pool_lbl_1_data_40798__fzgx_offset_358, 0x394, (char *)fzgx_pool_lbl_1_data_40798__fzgx_offset_390);
 }
 
 static inline void fn_1_12D404_children(s16 v6, u8 *arg1, s32 (*arg5)[2], void *arg6, void *arg3, s32 v1, s32 j) {
             for (j = 0; (s16)j < fn_1_12D404_count(v6); j++) {
                 if (fn_1_12D404_sub(v6, (s16)j) != -1) {
                     fn_1_435C(arg3);
-                    arg5[v1][j] = fn_1_3F8C((char *)lbl_1_data_40798__fzgx_offset_31C, fn_1_8F62C, arg1 + v1 * 0x9C0 + j * 0x4E0, arg6);
+                    arg5[v1][j] = fn_1_3F8C((char *)fzgx_pool_lbl_1_data_40798__fzgx_offset_31C, fn_1_8F62C, arg1 + v1 * 0x9C0 + j * 0x4E0, arg6);
                 }
             }
 
@@ -2665,7 +2665,7 @@ void fn_1_12D404(u8 *arg0, u8 *arg1, u32 arg2, void *arg3, s32 *arg4, s32 (*arg5
                 fn_1_8F45C((Fn1_8F45C_Object *)(p0), value, (void *)v12, arg7);
             }
             fn_1_435C(arg6);
-            *p4 = fn_1_3F8C((char *)lbl_1_data_40798__fzgx_offset_31C, fn_1_8F62C, p0, saved_arg6);
+            *p4 = fn_1_3F8C((char *)fzgx_pool_lbl_1_data_40798__fzgx_offset_31C, fn_1_8F62C, p0, saved_arg6);
             fn_1_12CEA8(v6, p1, (void *)v12, arg7, arg8);
             fn_1_12D404_children(v6, p1, p5, saved_arg6, arg6, 0, 0);
             fn_1_12E0B8(v1, v6, (Fn12E0B8_Car *)(p0), (Fn12E0B8_Car *)(p1), 0, arg9, 1);

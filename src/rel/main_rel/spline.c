@@ -720,7 +720,7 @@ void fn_1_F7578(void) {
 }
 /* fzgx:end fn_1_F7578 */
 
-/* fzgx:begin fn_1_F75D8 pool noprologue */
+/* fzgx:begin fn_1_F75D8 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/light.h"
@@ -774,10 +774,10 @@ typedef struct {
 
 /* Per-player light overrides: a TU-local block of five 4-entry tables at lbl_1_bss_7F050. */
 static s32 fzgx_obj_lbl_1_bss_7F050[4];
-static LightColor_F75D8 sAmbient_F75D8[4];
-static s32 sColorSet_F75D8[4];
-static LightColor_F75D8 sColor_F75D8[4];
-static s32 sUnused_F75D8[4];
+static LightColor_F75D8 lbl_1_bss_7F050__fzgx_offset_10[4];
+static s32 lbl_1_bss_7F050__fzgx_offset_20[4];
+static LightColor_F75D8 lbl_1_bss_7F050__fzgx_offset_30[4];
+static s32 lbl_1_bss_7F050__fzgx_offset_40[4];
 
 extern s32 fn_1_5910(void);
 extern void fn_1_7BB80(LightObj_F75D8 *, s32);
@@ -829,7 +829,7 @@ void fn_1_F75D8(LightDesc_F75D8 **lights, s32 useOverride, s32 mode) {
         }
         if (i == 0) {
             if (useOverride && fzgx_obj_lbl_1_bss_7F050[idx] != 0) {
-                ambient = sAmbient_F75D8[idx];
+                ambient = lbl_1_bss_7F050__fzgx_offset_10[idx];
             } else {
                 ambient = light->ambient;
             }
@@ -843,8 +843,8 @@ void fn_1_F75D8(LightDesc_F75D8 **lights, s32 useOverride, s32 mode) {
             lbl_8006E1B0(light, &pos);
         }
         lbl_8006E1C0(&dir, &dir);
-        if (useOverride && sColorSet_F75D8[idx] != 0) {
-            LightColor_F75D8 color = sColor_F75D8[idx];
+        if (useOverride && lbl_1_bss_7F050__fzgx_offset_20[idx] != 0) {
+            LightColor_F75D8 color = lbl_1_bss_7F050__fzgx_offset_30[idx];
             fn_800356AC(&obj, &color);
         } else {
             LightColor_F75D8 color = light->color;

@@ -26,9 +26,9 @@ extern void *memset(void *, int, u32);
 s32 lbl_12_bss_8;
 u32 lbl_12_bss_C;
 MovieInner lbl_12_bss_10;
-u32 lbl_12_bss_10_fill_28[292];
-const void *lbl_12_bss_10_4A8;
-u32 lbl_12_bss_10_fill_4BC;
+u32 lbl_12_bss_10__fzgx_offset_18[292];
+const void *lbl_12_bss_10__fzgx_offset_4A8;
+u32 lbl_12_bss_10__fzgx_offset_4AC;
 u32 lbl_12_bss_4C0[42];
 u32 lbl_12_bss_568[140];
 u32 lbl_12_bss_798[258];
@@ -39,9 +39,9 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_12_bss_8;
     s = *(u8 *)&lbl_12_bss_C;
     s = *(u8 *)&lbl_12_bss_10;
-    s = *(u8 *)&lbl_12_bss_10_fill_28;
-    s = *(u8 *)&lbl_12_bss_10_4A8;
-    s = *(u8 *)&lbl_12_bss_10_fill_4BC;
+    s = *(u8 *)&lbl_12_bss_10__fzgx_offset_18;
+    s = *(u8 *)&lbl_12_bss_10__fzgx_offset_4A8;
+    s = *(u8 *)&lbl_12_bss_10__fzgx_offset_4AC;
     s = *(u8 *)&lbl_12_bss_4C0;
     s = *(u8 *)&lbl_12_bss_568;
     s = *(u8 *)&lbl_12_bss_798;
@@ -51,7 +51,7 @@ static void fzgx_bss_layout(void) {
 void fn_12_341C(void) {
     
     if (lbl_12_bss_8 < 1) {
-        lbl_12_bss_10_4A8 = lbl_12_rodata_448;
+        lbl_12_bss_10__fzgx_offset_4A8 = lbl_12_rodata_448;
         memset(&lbl_12_bss_10, 0, 0x4a8);
         lbl_12_bss_10.unk4 = 8;
         lbl_12_bss_10.unk14 = 1;

@@ -136,7 +136,7 @@ void fn_1_155FA8(u32 value) {
 }
 /* fzgx:end fn_1_155FA8 */
 
-/* fzgx:begin fn_1_155FB4 pool noprologue */
+/* fzgx:begin fn_1_155FB4 noprologue */
 typedef signed long s32;
 
 typedef unsigned char u8;
@@ -209,27 +209,19 @@ u8 unk_1A;
 u8 pad_1B[5];
 u8 pad_20[0x18];
 } Entry_155FB4;
-typedef struct {
-    u8 lab_pad[8];
-Entry_155FB4 *tab1;
-u8 pad_4[0x44];
-Entry_155FB4 tab2[10];
-u8 pad_278[0x250];
-char nm[0x11];
-} G_155FB4;
 /* the record fields compared after the loop-invariant id are re-read every pass */
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 Entry_155FB4 *fzgx_obj_lbl_1_bss_8EF20;
-u32 lbl_1_bss_8EF20_fill_8EF24[17];
+u32 lbl_1_bss_8EF20__fzgx_offset_4[17];
 u8 fzgx_obj_lbl_1_bss_8EF68;
-u8 lbl_1_bss_8EF68_fill_8EF69;
-u16 lbl_1_bss_8EF68_fill_8EF6A;
-u32 lbl_1_bss_8EF68_fill_8EF6C[285];
+u8 lbl_1_bss_8EF68__fzgx_offset_1;
+u16 lbl_1_bss_8EF68__fzgx_offset_2;
+u32 lbl_1_bss_8EF68__fzgx_offset_4[285];
 u32 fzgx_obj_lbl_1_bss_8F3E0;
-u32 lbl_1_bss_8F3E4_fill_8F3E4;
-char lbl_1_bss_8F3E4_4[0x11];
-u8 lbl_1_bss_8F3E4_fill_8F3F9;
-u16 lbl_1_bss_8F3E4_fill_8F3FA;
+u32 lbl_1_bss_8F3E4__fzgx_offset_0;
+char lbl_1_bss_8F3E4__fzgx_offset_4[0x11];
+u8 lbl_1_bss_8F3E4__fzgx_offset_15;
+u16 lbl_1_bss_8F3E4__fzgx_offset_16;
 u32 lbl_1_bss_8F3FC[9];
 u32 lbl_1_bss_8F420[2];
 
@@ -237,16 +229,16 @@ u32 lbl_1_bss_8F420[2];
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8EF20;
-    s = *(u8 *)&lbl_1_bss_8EF20_fill_8EF24;
+    s = *(u8 *)&lbl_1_bss_8EF20__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8EF68;
-    s = *(u8 *)&lbl_1_bss_8EF68_fill_8EF69;
-    s = *(u8 *)&lbl_1_bss_8EF68_fill_8EF6A;
-    s = *(u8 *)&lbl_1_bss_8EF68_fill_8EF6C;
+    s = *(u8 *)&lbl_1_bss_8EF68__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_8EF68__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_8EF68__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8F3E0;
-    s = *(u8 *)&lbl_1_bss_8F3E4_fill_8F3E4;
-    s = *(u8 *)&lbl_1_bss_8F3E4_4;
-    s = *(u8 *)&lbl_1_bss_8F3E4_fill_8F3F9;
-    s = *(u8 *)&lbl_1_bss_8F3E4_fill_8F3FA;
+    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_0;
+    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_15;
+    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_16;
     s = *(u8 *)&lbl_1_bss_8F3FC;
     s = *(u8 *)&lbl_1_bss_8F420;
 }
@@ -262,8 +254,8 @@ Entry_155FB4 *p;
 s32 i;
     size_t lab_t2;
 lab_t2 = 0x10;
-strncpy(lbl_1_bss_8F3E4_4, arg, lab_t2);
-lbl_1_bss_8F3E4_4[0x10] = 0;
+strncpy(lbl_1_bss_8F3E4__fzgx_offset_4, arg, lab_t2);
+lbl_1_bss_8F3E4__fzgx_offset_4[0x10] = 0;
 fn_1_3EF14((void *)&rec);
 if (rec.unk_0 & 0x1000) {
 a = fzgx_obj_lbl_1_bss_8EF20;

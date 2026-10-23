@@ -704,7 +704,7 @@ void fn_3_1683C(struct Arg0 *arg0, s16 off, s16 size) {
 }
 /* fzgx:end fn_3_1683C */
 
-/* fzgx:begin fn_3_169B8 pool noprologue */
+/* fzgx:begin fn_3_169B8 noprologue */
 #include "dolphin/types.h"
 
 extern const struct fn_3_169B8_lbl_3_rodata_538_pool {
@@ -799,8 +799,8 @@ static void fzgx_pool_primer2(void) {
 u8 lbl_3_bss_A23E8;
 EditorInput fzgx_obj_lbl_3_bss_A23EC;
 u8 fzgx_obj_lbl_3_bss_A2408;
-s16 lbl_3_bss_A240A;
-s16 lbl_3_bss_A240C;
+s16 lbl_3_bss_A2408__fzgx_offset_2;
+s16 lbl_3_bss_A2408__fzgx_offset_4;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -808,8 +808,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_3_bss_A23E8;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_A23EC;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_A2408;
-    s = *(u8 *)&lbl_3_bss_A240A;
-    s = *(u8 *)&lbl_3_bss_A240C;
+    s = *(u8 *)&lbl_3_bss_A2408__fzgx_offset_2;
+    s = *(u8 *)&lbl_3_bss_A2408__fzgx_offset_4;
 }
 #pragma section code_type ".text"
 
@@ -885,13 +885,13 @@ void fn_3_169B8(void)
     }
 
     half = (64 / SPEED) / 2;
-    if (lbl_3_bss_A240A + half / 2 < 63 || lbl_3_bss_A240A - half / 2 > 0) {
-        lbl_3_bss_A240A = cursor->x;
+    if (lbl_3_bss_A2408__fzgx_offset_2 + half / 2 < 63 || lbl_3_bss_A2408__fzgx_offset_2 - half / 2 > 0) {
+        lbl_3_bss_A2408__fzgx_offset_2 = cursor->x;
     }
     {
         s32 half2 = half;
-        if (lbl_3_bss_A240C + half2 / 2 < 63 || lbl_3_bss_A240C - half2 / 2 > 0) {
-            lbl_3_bss_A240C = cursor->y;
+        if (lbl_3_bss_A2408__fzgx_offset_4 + half2 / 2 < 63 || lbl_3_bss_A2408__fzgx_offset_4 - half2 / 2 > 0) {
+            lbl_3_bss_A2408__fzgx_offset_4 = cursor->y;
         }
     }
 

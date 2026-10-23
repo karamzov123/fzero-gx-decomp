@@ -250,7 +250,7 @@ void fn_9_6F0(void) {
 }
 /* fzgx:end fn_9_6F0 */
 
-/* fzgx:begin colchg_selmate_init pool noprologue */
+/* fzgx:begin colchg_selmate_init noprologue */
 #include "types.h"
 #include "rel/car_colchg/globals.h"
 
@@ -297,7 +297,7 @@ u32 fzgx_obj_lbl_9_bss_C;
 u32 fzgx_obj_lbl_9_bss_10;
 u32 fzgx_obj_lbl_9_bss_14[50];
 s16 fzgx_obj_lbl_9_bss_DC;
-u16 lbl_9_bss_0_gap_DE;
+u16 fzgx_pool_lbl_9_bss_0_gap_DE;
 lbl_9_bss_E0_t fzgx_obj_lbl_9_bss_E0;
 
 #pragma section code_type ".fzgxpool"
@@ -310,7 +310,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_9_bss_10;
     s = *(u8 *)&fzgx_obj_lbl_9_bss_14;
     s = *(u8 *)&fzgx_obj_lbl_9_bss_DC;
-    s = *(u8 *)&lbl_9_bss_0_gap_DE;
+    s = *(u8 *)&fzgx_pool_lbl_9_bss_0_gap_DE;
     s = *(u8 *)&fzgx_obj_lbl_9_bss_E0;
 }
 #pragma section code_type ".text"

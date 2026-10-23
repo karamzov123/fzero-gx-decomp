@@ -1805,32 +1805,32 @@ void fn_15_2620(struct fn_15_2620_Arg0 *arg0) {
 }
 /* fzgx:end fn_15_2620 */
 
-/* fzgx:begin fn_15_27D4 pool */
+/* fzgx:begin fn_15_27D4 */
 #include "rel/winning/winning.h"
 
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void prime1(void){ volatile f32 s; volatile f64 d; s=0.0f; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t2[14] = {0xff00ff,0x808080ff,0xffffffff,0xc3acef3b,0x43fc728f,0x44241408,0xc3ad35a2,0x43fe58b4,0x44243fbe,0x0,0x3f800000,0x0,0xc3acef3b,0x43fc728f}; // fzgx-allow: A1 0x808080FF is an RGBA colour constant in this table, not an address
-__declspec(section ".fzgxpool") static void keep2(void){ const u32 *volatile cp; cp=t2; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t3[1] = {0x44241408};
-__declspec(section ".fzgxpool") static void keep3(void){ const u32 *volatile cp; cp=t3; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t4[6] = {0xc3ad35a2,0x43fe58b4,0x44243fbe,0x0,0x3f800000,0x0};
-__declspec(section ".fzgxpool") static void keep4(void){ const u32 *volatile cp; cp=t4; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t2[14] = {0xff00ff,0x808080ff,0xffffffff,0xc3acef3b,0x43fc728f,0x44241408,0xc3ad35a2,0x43fe58b4,0x44243fbe,0x0,0x3f800000,0x0,0xc3acef3b,0x43fc728f}; // fzgx-allow: A1 0x808080FF is an RGBA colour constant in this table, not an address
+__declspec(section ".fzgxpool") static void keep2(void){ const u32 *volatile cp; cp=fzgx_pool_t2; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t3[1] = {0x44241408};
+__declspec(section ".fzgxpool") static void keep3(void){ const u32 *volatile cp; cp=fzgx_pool_t3; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t4[6] = {0xc3ad35a2,0x43fe58b4,0x44243fbe,0x0,0x3f800000,0x0};
+__declspec(section ".fzgxpool") static void keep4(void){ const u32 *volatile cp; cp=fzgx_pool_t4; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
 __declspec(section ".fzgxpool") static void prime5(void){ volatile f32 s; volatile f64 d; s=200.0f;s=1.0f; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t6[1] = {0xffc800ff};
-__declspec(section ".fzgxpool") static void keep6(void){ const u32 *volatile cp; cp=t6; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t6[1] = {0xffc800ff};
+__declspec(section ".fzgxpool") static void keep6(void){ const u32 *volatile cp; cp=fzgx_pool_t6; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
 __declspec(section ".fzgxpool") static void prime7(void){ volatile f32 s; volatile f64 d; s=30.0f;d=0.01;s=2.0f;s=320.0f;s=240.0f;s=20.0f;s=10.0f;s=0.5f;s=3.0f;s=0.03999999910593033f;d=4503601774854144.0; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t8[3] = {0x0,0x0,0x43480000};
-__declspec(section ".fzgxpool") static void keep8(void){ const u32 *volatile cp; cp=t8; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t8[3] = {0x0,0x0,0x43480000};
+__declspec(section ".fzgxpool") static void keep8(void){ const u32 *volatile cp; cp=fzgx_pool_t8; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
 __declspec(section ".fzgxpool") static void prime9(void){ volatile f32 s; volatile f64 d; s=0.6000000238418579f; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t10[5] = {0xff,0x404040ff,0x404088ff,0xaaaaaaff,0xff0000ff};
-__declspec(section ".fzgxpool") static void keep10(void){ const u32 *volatile cp; cp=t10; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t11[1] = {0x0};
-__declspec(section ".fzgxpool") static void keep11(void){ const u32 *volatile cp; cp=t11; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t12[1] = {0x0};
-__declspec(section ".fzgxpool") static void keep12(void){ const u32 *volatile cp; cp=t12; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-static const u32 t13[1] = {0x0};
-__declspec(section ".fzgxpool") static void keep13(void){ const u32 *volatile cp; cp=t13; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t10[5] = {0xff,0x404040ff,0x404088ff,0xaaaaaaff,0xff0000ff};
+__declspec(section ".fzgxpool") static void keep10(void){ const u32 *volatile cp; cp=fzgx_pool_t10; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t11[1] = {0x0};
+__declspec(section ".fzgxpool") static void keep11(void){ const u32 *volatile cp; cp=fzgx_pool_t11; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t12[1] = {0x0};
+__declspec(section ".fzgxpool") static void keep12(void){ const u32 *volatile cp; cp=fzgx_pool_t12; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
+static const u32 fzgx_pool_t13[1] = {0x0};
+__declspec(section ".fzgxpool") static void keep13(void){ const u32 *volatile cp; cp=fzgx_pool_t13; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
 __declspec(section ".fzgxpool") static void prime14(void){ volatile f32 s; volatile f64 d; s=1.5f;s=-0.8999999761581421f; } // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
 #pragma section code_type ".text"
 struct fn_15_27D4_Vec3 { f32 x,y,z; };
@@ -1920,7 +1920,7 @@ arg0->unk_A8.z=1.5f+p_tab->unk_34.z;break;
 default:break;
 }
 p_dst=fn_15_27D4_read_pointer(p_tab);
-p_dst->unk_C=*(const struct fn_15_27D4_Vec3 *)t11;break;
+p_dst->unk_C=*(const struct fn_15_27D4_Vec3 *)fzgx_pool_t11;break;
 default:break;
 }
 p_dst=*(p_tab->unk_4C+arg0->unk_4C4);

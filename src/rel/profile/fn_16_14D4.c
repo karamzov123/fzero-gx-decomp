@@ -16909,7 +16909,7 @@ u32 lbl_16_bss_154[50];
 s32 lbl_16_bss_21C;
 u32 lbl_16_bss_220[11152];
 u32 lbl_16_bss_B060[20];
-u16 lbl_16_bss_B060_fill_B0B0;
+u16 lbl_16_bss_B060__fzgx_offset_50;
 u16 lbl_16_bss_B0B2;
 u32 lbl_16_bss_B0B4;
 
@@ -16924,7 +16924,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_16_bss_21C;
     s = *(u8 *)&lbl_16_bss_220;
     s = *(u8 *)&lbl_16_bss_B060;
-    s = *(u8 *)&lbl_16_bss_B060_fill_B0B0;
+    s = *(u8 *)&lbl_16_bss_B060__fzgx_offset_50;
     s = *(u8 *)&lbl_16_bss_B0B2;
     s = *(u8 *)&lbl_16_bss_B0B4;
 }

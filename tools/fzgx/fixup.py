@@ -59,13 +59,14 @@ def _generate_in_worker(task):
 class Engine:
     def __init__(self, project, output, verbose=False):
         self.project, self.output, self.verbose = project, output, verbose
+        self.linkable_only = False
         from . import fixup_gc
         fixup_gc.guard(STATE_DIR)
         self._retention_lease = fixup_gc.acquire(output)
         self.generator_sha256 = digest(Path(__file__).read_bytes() + Path(source.__file__).read_bytes() + Path(evidence.__file__).read_bytes() + Path(layout.__file__).read_bytes() + Path(mwgraph.__file__).read_bytes() + b''.join((ROOT/'tools/fzgx'/name).read_bytes() for name in ('signatures.py','evidence.py','dataimport.py','lift.py','reuse.py','sdkimport.py')))
         output.mkdir(parents=True, exist_ok=True)
         self.headers = mwgraph.header_fingerprint(ROOT, project.version)
-        self.environment = digest(('region-frontier-v2' + self.headers + ''.join(digest((ROOT/'tools/fzgx'/f).read_bytes()) for f in
+        self.environment = digest(('region-frontier-v3-bound-responses' + self.headers + ''.join(digest((ROOT/'tools/fzgx'/f).read_bytes()) for f in
             ('oracle.py', 'poolfix.py', 'project.py', 'regflow.py', 'evidence.py')) +
             digest((ROOT/'config'/project.version/'ldscript.tpl').read_bytes())).encode())
         self.cache_path = output / 'cache.json'
@@ -340,10 +341,14 @@ class Engine:
                     if shared:
                         row.update(matched=False, object_matched=True, extra_data=shared)
             if row.get('matched'):
-                from .lint import lint_file
+                from .lint import allocator_scaffolding, lint_file
                 findings = lint_file(Path(row['source']))
                 if findings:
                     row.update(matched=False, object_matched=True, source_lint=findings)
+                if allocator_scaffolding(source_text(row['source'])):
+                    row.update(matched=False, object_matched=True, allocator_scaffolding=True)
+            if self.linkable_only and row.get('matched') and self.check(row).matched_pool:
+                row.update(matched=False, pool_only=True)
             failed = self.rejected.get(row['symbol'], {})
             if (failed.get('link') == 'rejected' and failed.get('generated_sha256') == row['sha256']
                     and failed.get('compiler') == row['mw'] and (failed.get('flags') or '') == row['flags']
@@ -362,9 +367,8 @@ class Engine:
 
         The object is restored when the repair does not produce a match, so a failed
         experiment never leaves a mutilated object behind, and the memo keyed on the
-        compiler response is cleared either way -- the response hash covers code and
-        data, not relocations, so a memoised verdict from before the rewrite would be
-        stale.
+        compiler response is refreshed either way: retargeted and raw objects
+        must never share a verdict under the raw compiler response's hash.
         """
         obj = row.get('object')
         if not obj:
@@ -401,11 +405,13 @@ class Engine:
         return False
 
     def _forget(self, row):
-        """Drop the memoised objdiff verdicts for one row and its symbol."""
+        """Refresh a mutated object's response and drop its old objdiff verdicts."""
         self.checks.pop(row['id'], None)
         memo = self.__dict__.setdefault('_response_checks', {})
         for key in [k for k in memo if k[0] == row['symbol']]:
             del memo[key]
+        obj = Path(row['object'])
+        row['response_sha256'] = self.response_hash(obj, self.words[row['id']])
 
     def check(self, row):
         if row['id'] not in self.checks:
@@ -513,7 +519,16 @@ class Engine:
         operators = {}
         captured_operators = []
         check = self.check(row)
+        if self.linkable_only:
+            if check.ok:
+                yield from layout.legacy_pool_primer_sections(body, row.get('object'))
+                yield from evidence.relocation_bindings(body, check)
+                yield from layout.bss_member_bindings(self.project, row['symbol'], body, row.get('object'), check)
+                yield from layout.private_data_objects(body, row.get('object'), check)
+                yield from layout.unused_pool_objects(self.project, row['symbol'], body, row.get('object'), check)
+            return
         if check.ok:
+            yield from layout.legacy_pool_primer_sections(body, row.get('object'))
             yield from layout.initialized_base_order(self.project, row['symbol'], body, row.get('object'), check)
             yield from evidence.range_switches(body, name, check)
             yield from layout.native_string_views(self.project, row['symbol'], body)
@@ -974,8 +989,12 @@ def integrate(project, report, inputs, output):
             skipped.append({'symbol': symbol, 'reason': 'this source/settings already failed the link'})
             continue
         state = ledger.get(symbol)
-        if state and state['status'] in ('matched', 'asm'):
+        upgrade = bool(state and state['status'] == 'matched' and state['link_state'] == 'pool')
+        if state and state['status'] in ('matched', 'asm') and not upgrade:
             skipped.append({'symbol': symbol, 'reason': 'already integrated'})
+            continue
+        if upgrade and not check.matched:
+            skipped.append({'symbol': symbol, 'reason': 'pool upgrade is not linkable'})
             continue
         if state is None or state['status'] == 'claimed':
             failed.append({'symbol': symbol, 'error': 'not unclaimed/unmatched'})
@@ -993,35 +1012,43 @@ def integrate(project, report, inputs, output):
             previous_sha = hashlib.sha256(work.read_bytes()).hexdigest()
             backup = output / (symbol.replace(':', '__') + '.previous-' + previous_sha[:12] + '.c')
             backup.write_bytes(work.read_bytes())
-        work.write_text(source)
+        if not upgrade:
+            work.write_text(source)
         mw = record['mw'] or oracle.module_flags(project, project.resolve(symbol).module)[1]
         result = api.submit(project, symbol, agent='deterministic-fixup',
                             message=probe['label'], harness='fixup', mw_version=mw,
-                            extra_cflags=record['flags'] or '')
+                            extra_cflags=record['flags'] or '',
+                            expected_pool_seed=record if upgrade else None,
+                            pool_upgrade_source=Path(probe['source']) if upgrade else None)
         if not result.get('ok'):
             failed.append({'symbol': symbol, 'result': result})
             continue
         accepted.append(symbol)
-        provenance[symbol] = {'seed_symbol': record.get('symbol', seed_symbol), 'generator': 'fzgx fixup', 'transform': probe['label'],
+        entry = {'seed_symbol': record.get('symbol', seed_symbol), 'generator': 'fzgx fixup', 'transform': probe['label'],
                               'seed': source_text(record['source']), 'seed_sha256': record['sha256'],
                               'generated_sha256': hashlib.sha256(source.encode()).hexdigest(), 'generated_source': source,
                               'compiler': mw, 'flags': record['flags'], 'source': result['unit'],
                               'bytes': project.resolve(symbol).size, 'headers_sha256': headers_sha256, 'oracle_sha256': oracle_sha256, 'recipe': row.get('recipe', []), 'link': result['link']}
-        provenance_path.write_text(json.dumps(provenance, indent=2) + '\n')
+        with oracle.build_lock('submit.lock'):
+            provenance = json.loads(provenance_path.read_text()) if provenance_path.exists() else {}
+            provenance[symbol] = entry
+            provenance_path.write_text(json.dumps(provenance, indent=2) + '\n')
     if accepted:
         with (STATE_DIR / 'verify_dependencies.jsonl').open('a') as out:
             out.write(json.dumps([str(provenance_path.relative_to(ROOT))]) + '\n')
     message = 'Integrate deterministic fixup matches'
     verification = api.verify_links(project, message) if accepted else None
     if verification:
-        for symbol in verification.get('verified', []):
-            if symbol in provenance:
-                provenance[symbol]['link'] = 'verified'
-                provenance[symbol]['commit'] = verification.get('commit')
-        for symbol in verification.get('rejected', []):
-            if symbol in provenance:
-                provenance[symbol]['link'] = 'rejected'
-        provenance_path.write_text(json.dumps(provenance, indent=2) + '\n')
+        with oracle.build_lock('submit.lock'):
+            provenance = json.loads(provenance_path.read_text()) if provenance_path.exists() else {}
+            for symbol in verification.get('verified', []):
+                if symbol in provenance:
+                    provenance[symbol]['link'] = 'verified'
+                    provenance[symbol]['commit'] = verification.get('commit')
+            for symbol in verification.get('rejected', []):
+                if symbol in provenance:
+                    provenance[symbol]['link'] = 'rejected'
+            provenance_path.write_text(json.dumps(provenance, indent=2) + '\n')
     outcome = {'accepted': accepted, 'failed': failed, 'skipped': skipped, 'rebound': rebound,
                'verification': verification}
     (output / 'integration.json').write_text(json.dumps(outcome, indent=2) + '\n')
@@ -1128,6 +1155,25 @@ def load_records(engine,args):
     from .ledger import Ledger
     from seeds.recovered import SavedCandidates
     p=engine.project;ledger=Ledger();rows=[]
+    if getattr(args, 'pool_upgrades', False):
+        from . import api
+        engine.linkable_only = True
+        selected = p.resolve(args.symbol) if args.symbol else None
+        if args.symbol and selected is None:
+            raise ValueError('unknown or ambiguous function: ' + args.symbol)
+        for state in ledger.db.execute("SELECT * FROM functions WHERE status='matched' AND link_state='pool' ORDER BY size DESC, symbol"):
+            sym = p.resolve(state['symbol'])
+            if (not sym or selected is not None and sym != selected or
+                    args.module and sym.module != args.module or
+                    args.max_size is not None and sym.size > args.max_size):
+                continue
+            unit = p.unit_of(sym)
+            if unit:
+                rows.append(engine.record(state['symbol'], api._canonical_text(p, unit),
+                                          *oracle.version_for(p, sym), label='accepted pool source'))
+            if args.limit and len(rows) >= args.limit:
+                break
+        return rows
     clone_members = None
     if getattr(args, 'clones', False):
         groups = reuse.families(p, args.max_size, args.module, args.symbol)
@@ -1292,6 +1338,8 @@ def archive_sources(report, path):
 
 
 def command(p,args):
+    if getattr(args, 'pool_upgrades', False) and (args.clones or args.body or args.corpus or args.capture or args.archive):
+        raise ValueError('--pool-upgrades selects canonical accepted C; do not combine it with other source selectors')
     if args.min_percent is None:
         args.min_percent = 0 if getattr(args, 'clones', False) else 95
     if args.rounds < 0 or args.beam < 1 or args.max_candidates < 1 or (args.budget is not None and args.budget <= 0):

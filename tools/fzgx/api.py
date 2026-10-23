@@ -706,23 +706,34 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
            harness: Optional[str] = None, model: Optional[str] = None,
            mw_version: Optional[str] = None, extra_cflags: Optional[str] = None,
            names: Optional[List[Dict[str, str]]] = None, tokens_in: int = 0,
-           tokens_out: int = 0, cost_usd: float = 0.0, max_diff_lines: int = 40) -> Dict[str, Any]:
+           tokens_out: int = 0, cost_usd: float = 0.0, max_diff_lines: int = 40,
+           expected_pool_seed: Optional[dict] = None,
+           pool_upgrade_source: Optional[Path] = None) -> Dict[str, Any]:
     l = Ledger()
     sym = p.resolve(symbol)
     if sym is None:
         return {"ok": False, "error": "unknown or ambiguous symbol"}
     key = p.key(sym)
     unit_src = p.unit_of(sym)
-    seed = _compiler_options(p, key)
+    seed = expected_pool_seed if expected_pool_seed is not None else _compiler_options(p, key)
     mw_version = mw_version or seed.get('mw')
     extra_cflags = extra_cflags if extra_cflags is not None else seed.get('flags')
     row = l.get(key)
+    if expected_pool_seed is not None:
+        current_mw, current_flags = oracle.version_for(p, sym)
+        current_mw = current_mw or oracle.module_flags(p, sym.module)[1]
+        if (not row or row['status'] != 'matched' or row['link_state'] != 'pool' or not unit_src
+                or hashlib.sha256(_canonical_text(p, unit_src).encode()).hexdigest() != expected_pool_seed['sha256']
+                or (current_mw, current_flags or '') != (expected_pool_seed['mw'], expected_pool_seed['flags'] or '')):
+            return {'ok': False, 'error': 'accepted pool source, settings or ownership changed during search'}
     if _is_shadow(agent) and (row is None or row["status"] != "claimed"):
         return {"ok": False, "error": "this trial has no active claim; its result is already final"}
     if row and row["status"] == "claimed" and row["claimed_by"] not in (agent, None):
         return {"ok": False, "error": f"claimed by {row['claimed_by']}, not {agent}"}
     work = p.work_path(key)
-    src = _work_source(p, key, unit_src or "")
+    if pool_upgrade_source is not None and expected_pool_seed is None:
+        return {'ok': False, 'error': 'pool upgrades require an expected canonical seed'}
+    src = pool_upgrade_source or _work_source(p, key, unit_src or "")
     if not unit_src and src is None:
         return {"ok": False, "error": "nothing to submit: no work copy"}
     candidate_path = src or oracle.unit_source_path(p, unit_src or "")
@@ -731,9 +742,13 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
     findings = lint_paths([candidate_path])
     if findings:
         return {"ok": False, "error": "lint", "findings": findings}
-    if unit_src and (mw_version or extra_cflags) and not _is_shadow(agent):
-        _set_unit_opts(p, unit_src, mw_version, extra_cflags)
-        _reconfigure_and_split(p)
+    if not _is_shadow(agent):
+        verify.preserve_pool(p, key)
+    pool_options_unchanged = (expected_pool_seed is not None and mw_version == current_mw
+                              and (extra_cflags or '') == (current_flags or ''))
+    if unit_src and (mw_version or extra_cflags) and not _is_shadow(agent) and not pool_options_unchanged:
+        if _set_unit_opts(p, unit_src, mw_version, extra_cflags):
+            _reconfigure_and_split(p)
     res = oracle.check(p, symbol, max_diff_lines, source=src, mw_version=mw_version, extra_cflags=extra_cflags)
     if res.ok and not _is_shadow(agent):
         # a symbol our object references that retail kept local to its TU must become global:
@@ -745,6 +760,8 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
             res = oracle.check(p, symbol, max_diff_lines, source=src,
                                mw_version=mw_version, extra_cflags=extra_cflags)
     reason = oracle.unit_fully_matches(res)
+    if expected_pool_seed is not None and res.matched_pool:
+        reason = 'pool upgrade is not linkable'
     if not reason and not unit_src and not _is_shadow(agent):
         # accepted: now it gets a unit (split range + entry); the batch verify does the one split+relink
         try:
@@ -795,14 +812,19 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
         return {"ok": True, "symbol": symbol, "commit": None, "unit": unit_src, "shadow": True, "saved": str(dest),
                 "note": "shadow trial: match recorded, nothing installed, relinked or committed"}
     if reason:
+        if expected_pool_seed is not None:
+            verify.restore_pool(p, key)
+            verify.pool_backup_path(key).unlink(missing_ok=True)
+            _reconfigure_and_split(p)
         return {"ok": False, "error": reason, "percent": res.percent, "diff": res.diff}
 
     # Accept on the per-object oracle; the batch relink (`fzgx verify`) checks every hash
     # once for all accepted units and bisects the rare object that matches but does not link.
     # A pool match is accepted but keeps linking the retail object: its private literal can
     # only become the TU's shared one when the whole TU is compiled as one unit.
-    if work.exists():
-        _install(p, unit_src, work.read_text(), pool=res.matched_pool)
+    install_source = pool_upgrade_source or work
+    if install_source.exists():
+        _install(p, unit_src, install_source.read_text(), pool=res.matched_pool)
     _discard_work(p, key)
     with oracle.build_lock("units.lock"):
         units = p.load_units()
@@ -817,8 +839,10 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
                     else:
                         u.pop("pool", None)
         p.save_units(units)
-    if res.pool_map:
+    if res.pool_map and expected_pool_seed is None:
         _reconfigure_and_split(p)  # build.ninja gains the mwcc_pool statement for this unit
+    # Existing pool units keep their splits. The verifier's Ninja configure
+    # edge installs their new binding maps together, without splitting per body.
     commit = None
     l.db.execute("UPDATE functions SET link_state=? WHERE symbol=?", ("pool" if res.matched_pool else "pending", key))
     if names:
@@ -838,16 +862,21 @@ def verify_links(p: Project, message: Optional[str] = None) -> Dict[str, Any]:
     return verify.verify(p, message)
 
 
-def _set_unit_opts(p: Project, unit_src: str, mw_version: Optional[str], extra_cflags: Optional[str]) -> None:
+def _set_unit_opts(p: Project, unit_src: str, mw_version: Optional[str], extra_cflags: Optional[str]) -> bool:
     units = p.load_units()
+    changed = False
     for u in units:
         if u["source"] == unit_src:
+            before = dict(u)
             if mw_version:
                 u["mw_version"] = mw_version
             if extra_cflags:
                 # the oracle reports a version's flags as a list; callers pass a string
                 u["extra_cflags"] = extra_cflags.split() if isinstance(extra_cflags, str) else list(extra_cflags)
-    p.save_units(units)
+            changed = u != before
+    if changed:
+        p.save_units(units)
+    return changed
 
 
 def release(p: Project, symbol: str, reason: str, harness: Optional[str] = None,

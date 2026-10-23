@@ -24,6 +24,68 @@ _RECHECK_ATTEMPTS = 3
 _RECHECK_SETTLE_S = 2
 
 
+def pool_backup_path(key: str) -> Path:
+    return STATE_DIR / 'pool_upgrades' / (key.replace(':', '__') + '.json')
+
+
+def preserve_pool(p: Project, key: str) -> None:
+    """Journal accepted C and compiler settings before attempting a linked upgrade."""
+    state = Ledger().get(key)
+    if not state or state['status'] != 'matched' or state['link_state'] != 'pool':
+        return
+    path = pool_backup_path(key)
+    sym = p.resolve(key)
+    unit = p.unit_record(p.unit_of(sym))
+    src = ROOT / 'src' / unit.get('tu', unit['source'])
+    saved = dict(unit=unit, matched_commit=state['matched_commit'])
+    if unit.get('tu'):
+        tf = tufile.parse(src.read_text())
+        block = tf.get(sym.name)
+        if block is None:
+            raise ValueError(f'{key}: accepted pool block is missing')
+        saved['block'] = dict(name=block.name, body=block.body, flags=block.flags)
+        saved['block_order'] = [b.name for b in tf.blocks]
+    else:
+        saved['source'] = src.read_text()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tufile._write_atomic(path, json.dumps(saved) + '\n')
+
+
+def restore_pool(p: Project, key: str) -> bool:
+    path = pool_backup_path(key)
+    if not path.exists():
+        return False
+    saved = json.loads(path.read_text())
+    unit = saved['unit']
+    src = ROOT / 'src' / unit.get('tu', unit['source'])
+    if 'block' in saved:
+        with tufile._lock(src):
+            tf = tufile.parse(src.read_text())
+            block = tufile.Block(**saved['block'])
+            old = tf.get(block.name)
+            if old:
+                tf.blocks[tf.blocks.index(old)] = block
+            else:
+                order = saved.get('block_order', [])
+                after = set(order[order.index(block.name) + 1:]) if block.name in order else set()
+                at = next((i for i, b in enumerate(tf.blocks) if b.name in after), len(tf.blocks))
+                # New concurrent blocks also retain retail address order.
+                sym = p.resolve(key)
+                at = next((i for i, b in enumerate(tf.blocks[:at])
+                           if (other := p.find_symbol(b.name, sym.module)) and other.addr > sym.addr), at)
+                tf.blocks.insert(at, block)
+            tufile._write_atomic(src, tf.render())
+    else:
+        src.write_text(saved['source'])
+    with oracle.build_lock('units.lock'):
+        units = p.load_units()
+        units = [unit if u['source'] == unit['source'] else u for u in units]
+        p.save_units(units)
+    Ledger().db.execute("UPDATE functions SET status='matched', link_state='pool', matched_commit=? WHERE symbol=?",
+                        (saved['matched_commit'], key))
+    return True
+
+
 def pending(l: Ledger) -> List[str]:
     """Symbols (ledger keys) accepted but not yet link-verified."""
     return [r["symbol"] for r in l.db.execute("SELECT symbol FROM functions WHERE link_state='pending' ORDER BY addr")]
@@ -223,6 +285,7 @@ def verify(p: Project, message: Optional[str] = None) -> Dict[str, object]:
         # final state: good units Matching, bad units uncarved (no unit without matched code); relink once more if we bisected
         if bad:
             from .uncarve import uncarve
+            restored = set()
             for k in bad:
                 keep = STATE_DIR / "attempts" / f"{k}.linkfail.{int(time.time())}.c"
                 keep.parent.mkdir(parents=True, exist_ok=True)
@@ -257,10 +320,13 @@ def verify(p: Project, message: Optional[str] = None) -> Dict[str, object]:
                         percent=100.0, link_fail=True)) + '\n')
                     l.db.execute("UPDATE attempts SET best_body_path=? WHERE id="
                                  "(SELECT id FROM attempts WHERE symbol=? ORDER BY id DESC LIMIT 1)", (str(keep), k))
-                l.db.execute("UPDATE functions SET status='unmatched', link_state=NULL, attempts=attempts+1 WHERE symbol=?", (k,))
+                if restore_pool(p, k):
+                    restored.add(k)
+                else:
+                    l.db.execute("UPDATE functions SET status='unmatched', link_state=NULL, attempts=attempts+1 WHERE symbol=?", (k,))
                 l.db.execute("UPDATE attempts SET outcome='link-mismatch', notes=COALESCE(notes,'')||' [object matched but link differed]' "
                              "WHERE id=(SELECT id FROM attempts WHERE symbol=? ORDER BY id DESC LIMIT 1)", (k,))
-            uncarve(p, [units[k] for k in bad], split=False)  # the unit, its split range and gen stub
+            uncarve(p, [units[k] for k in bad if k not in restored], split=False)
             _set_status(p, [units[k] for k in good], "matching")
             if not _relink(p):
                 return {"ok": False, "error": "relink failed after removing rejected units; accepted units remain matching",
@@ -294,6 +360,8 @@ def verify(p: Project, message: Optional[str] = None) -> Dict[str, object]:
             for k in good:
                 l.db.execute("UPDATE functions SET link_state='verified', matched_commit=? WHERE symbol=?", (commit, k))
             journal.unlink(missing_ok=True)
+            for k in good + bad:
+                pool_backup_path(k).unlink(missing_ok=True)
     evidence_queue = None
     if good or bad or dependencies:
         try:
