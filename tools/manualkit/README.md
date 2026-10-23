@@ -33,3 +33,11 @@ Untouched functions and REL literal pools:
 - `uv run python tools/manualkit/primer.py SYM FILE OUTDIR [MW]` adds the shared literal-pool primer
   to a native-literal body (literals inline, local aggregate initializers for word copies from the
   pool) so `...rodata.0` binds to the retail pool. Landed fn_1_DB268, fn_1_108BD0, fn_17_9314.
+- `python3 tools/manualkit/simscan.py [MIN_RATIO]` lists open functions whose instruction sequence
+  is >= MIN_RATIO (default 0.85) similar to a matched function in the same module. Derive the C
+  from the matched unit's generated source; immediates/offsets, a removed loop or a parameter
+  instead of a global are typical differences. Landed 7 this way on 2026-10-22 (fn_4_7DEC,
+  fn_4_A0C, fn_1_5D020, fn_1_1FC98, fn_1_12277C, fn_3_5D84).
+- `tools/manualkit/splitdata.py` (import it): `split(text, NAME, BASE, cuts)` splits a generated
+  `static union { u32 w[N]; ... } NAME = {{...}};` data object at byte addresses, so a sibling can
+  address a sub-table by its own object name (`addi rX, rData, 0x5f8`).
