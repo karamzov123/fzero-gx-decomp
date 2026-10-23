@@ -26,3 +26,10 @@ lwz 0x10(rX)`). When retail shows that and ours folds, the unit must define the 
   `.bss` symbol's offset against the address its name implies.
 Then access each field by its object name (struct views through a pointer fold). Landed
 fn_1_A1DCC, fn_1_A1964 (sound TU), fn_10_7130 (sel, 0x51B28 bytes of layout) this way.
+
+Untouched functions and REL literal pools:
+- `uv run python tools/manualkit/liftscan.py OUT.json [MW]` scores every lifter draft
+  (`.fzgx/lift/ctx/SYM_total.c`) of an open function; rewrite the best ones by hand from the asm.
+- `uv run python tools/manualkit/primer.py SYM FILE OUTDIR [MW]` adds the shared literal-pool primer
+  to a native-literal body (literals inline, local aggregate initializers for word copies from the
+  pool) so `...rodata.0` binds to the retail pool. Landed fn_1_DB268, fn_1_108BD0, fn_17_9314.
