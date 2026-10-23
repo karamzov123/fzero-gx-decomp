@@ -4167,11 +4167,16 @@
     "symbols": [
       "fn_17_613C"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/interview/interview.c",
-    "pool": true
+    "pool": {
+      "...rodata.0": "lbl_17_rodata_0",
+      "@36": "lbl_17_rodata_68",
+      "@12": "lbl_17_rodata_20",
+      "@23": "lbl_17_rodata_3C"
+    }
   },
   {
     "module": "interview",

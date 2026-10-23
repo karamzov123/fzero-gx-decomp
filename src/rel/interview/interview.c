@@ -43889,7 +43889,7 @@ void fn_17_60B4(void) {
 }
 /* fzgx:end fn_17_60B4 */
 
-/* fzgx:begin fn_17_613C pool */
+/* fzgx:begin fn_17_613C */
 #pragma section code_type ".fzgxpool"
 static const unsigned long fzgx_pool_table1[5] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const unsigned long *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
@@ -44137,7 +44137,7 @@ void fn_17_613C(void) {
 
     {
     InterviewTextParams params;
-    static const InterviewColor color = {0, 0, 0, 0xFF};
+    static const InterviewColor fzgx_pool_color = {0, 0, 0, 0xFF};
 
     params = lbl_1_rodata_26F8;
     params.font = 18;
@@ -44158,7 +44158,7 @@ void fn_17_613C(void) {
         params.scale_y *= (f32)(137 / fn_1_486C4(params.font));
         params.unk_2C = 0.7f;
     }
-    params.color = color;
+    params.color = fzgx_pool_color;
     fn_1_4E724(&params);
     }
 
