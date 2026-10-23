@@ -203,3 +203,6 @@ rel/interview/interview/fn_17_613C.c:
 
 rel/interview/interview/fn_17_3A28.c:
 	.text       start:0x00003A28 end:0x00003C5C align:4
+
+rel/interview/interview/fn_17_9314.c:
+	.text       start:0x00009314 end:0x00009618 align:4
