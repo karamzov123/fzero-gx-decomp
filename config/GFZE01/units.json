@@ -42957,6 +42957,21 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/car/fn_1_943F8.c",
+    "symbols": [
+      "fn_1_943F8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/car.c",
+    "pool": {
+      "@254": "lbl_1_rodata_4010",
+      "...data.0": "lbl_1_data_209C0"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/car/fn_1_950E8.c",
     "symbols": [
       "fn_1_950E8"
