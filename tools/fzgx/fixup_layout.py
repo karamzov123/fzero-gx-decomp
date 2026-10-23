@@ -151,19 +151,21 @@ def bss_member_bindings(p, symbol, body, obj, check):
     names = {}
     for name, s in own.items():
         if (s['shndx'] != section['index'] or not s['size'] or s['info'] & 15 != 1
-                or name in bound or name.startswith('fzgx_pool_') or '__fzgx_offset_' in name):
+                or name in bound or name.startswith('fzgx_pool_')):
             continue
         generated = re.fullmatch(r'(.+)_(?:gap|fill)_[0-9A-F]+(?:_fill_[0-9A-F]+)?', name)
         padding = generated or re.fullmatch(r'(?:sdk_)?gap____bss_\d+_[0-9A-Fa-f]+', name)
         member = re.fullmatch(r'(.+)_([0-9A-F]+)', name)
         synthetic = name.startswith('lbl_') and name not in retail
-        native = s['info'] == 1 and name not in retail
+        native = (s['info'] == 1 or name.startswith('fzgx_obj_')) and name not in retail
         if not generated and not synthetic and not native and not (member and member[1] in retail and name not in retail):
             continue
         address = origin + s['value']
         owner = next((o for o in objects if o.addr <= address and address + s['size'] <= o.end), None)
         if owner:
-            names[name] = owner.name + f'__fzgx_offset_{address-owner.addr:X}'
+            alias = owner.name + f'__fzgx_offset_{address-owner.addr:X}'
+            if alias != name:
+                names[name] = alias
         elif padding and 'gap' in name:
             # The linker drops private padding only after all relocations to
             # its section have gone; live uses still prevent externalization.
@@ -172,6 +174,97 @@ def bss_member_bindings(p, symbol, body, obj, check):
         return []
     text = re.sub(r'\b\w+\b', lambda m: names.get(m[0], m[0]), body)
     return [('canonical BSS subobjects and private layout padding', text)]
+
+
+def split_bss_primer_arrays(p, symbol, body, obj, check):
+    """Partition primer-only arrays into individually bounded retail BSS objects."""
+    if not obj or not check.ok:
+        return []
+    from .fixup_evidence import _function_span
+    from .sdkimport import masked
+    elf = poolfix.Elf(Path(obj).read_bytes())
+    section = elf.section('.bss')
+    if not section or section['type'] != 8:
+        return []
+    own = {s['name']: s for s in elf.symbols()}
+    retail = p.symbols(p.resolve(symbol).module)
+    origins = set()
+    for private, target, _ in check._pool_pairs:
+        anchor = own.get(private)
+        name, offset = poolfix.binding_target(target)
+        known = retail.get(name)
+        if (private.startswith('...bss') and anchor and known and known.section == '.bss'
+                and anchor['shndx'] == section['index']):
+            origins.add(known.addr + offset - anchor['value'])
+    if len(origins) != 1:
+        return []
+    origin = origins.pop()
+    objects = sorted((s for s in retail.values() if s.section == '.bss' and s.kind == 'object'
+                      and s.size), key=lambda s: s.addr)
+    code = masked(body)
+    primers = [span for s in own.values() if s['info'] & 15 == 2 and s['size']
+               and 0 < s['shndx'] < len(elf.sections)
+               and elf.sections[s['shndx']]['name'] == '.fzgxpool'
+               and (span := _function_span(code, s['name']))]
+    edits = []
+    for name, s in own.items():
+        if s['shndx'] != section['index'] or s['info'] & 15 != 1 or not s['size']:
+            continue
+        decl = re.search(r'(?m)^(static\s+)?(u8|s8|char|u16|s16|u32|s32|f32|f64)\s+'
+                         + re.escape(name) + r'\s*\[\s*(0[xX][0-9A-Fa-f]+|[0-9]+)\s*\]\s*;', code)
+        if not decl:
+            continue
+        width = SCALAR[decl[2]]
+        count = int(decl[3], 16) if decl[3].lower().startswith('0x') else int(decl[3])
+        if count * width != s['size']:
+            continue
+        uses = [m for m in re.finditer(r'\b' + re.escape(name) + r'\b', code)
+                if not decl.start() <= m.start() < decl.end()]
+        if len(uses) != 1 or not any(a <= uses[0].start() < b for a, b in primers):
+            continue
+        line_end = code.find('\n', uses[0].end())
+        if line_end < 0 or not code[uses[0].end():line_end].rstrip().endswith(';'):
+            continue
+        start, end = origin + s['value'], origin + s['value'] + s['size']
+        if start % 4:
+            continue
+        parts = []
+        at = start
+        while at < end:
+            owner = next((o for o in objects if o.addr <= at < o.end), None)
+            if owner is None:
+                break  # An unknown interval is not proven padding.
+            stop = min(end, owner.end)
+            if (at - start) % width or (stop - at) % width:
+                break
+            # MWCC four-aligns even byte arrays and byte-only structs. Use
+            # scalar elements until the next array can begin without padding.
+            while at < stop:
+                scalar = bool(at % 4)
+                size = width if scalar else stop - at
+                alias = owner.name + f'__fzgx_offset_{at-owner.addr:X}'
+                if at % width or (alias in own and alias != name):
+                    break
+                parts.append((alias, size, scalar))
+                at += size
+            if at != stop:
+                break
+        if at != end or len(parts) < 2:
+            continue
+        replacement = '\n'.join(f'{decl[1] or ""}{decl[2]} {alias}'
+                                + (';' if scalar else f'[{size // width}];')
+                                for alias, size, scalar in parts)
+        reads = ''.join('\n    /* Native section-order primer. */ (void)*(volatile u8 *)&'
+                        + alias + ';' for alias, _, _ in parts[1:])
+        edits.extend([(decl.start(), decl.end(), replacement),
+                      (uses[0].start(), uses[0].end(), parts[0][0]),
+                      (line_end, line_end, reads)])
+    if not edits:
+        return []
+    text = body
+    for a, b, value in sorted(edits, reverse=True):
+        text = text[:a] + value + text[b:]
+    return [('split primer-only BSS arrays at proven retail object boundaries', text)]
 
 
 def private_data_objects(body, obj, check):
@@ -207,6 +300,7 @@ def unused_pool_objects(p, symbol, body, obj, check):
     unit = p.unit_of(sym)
     retail = p.symbols(sym.module)
     names = {}
+    local_edits = []
     for section_name in ('.rodata', '.data'):
         section = elf.section(section_name)
         if not section or not any(s['name'] in bound and s['name'].startswith('..' + section_name)
@@ -232,13 +326,34 @@ def unused_pool_objects(p, symbol, body, obj, check):
             known = retail.get(name)
             if known and p.unit_of(known) == unit:
                 continue
+            local = re.fullmatch(r'([A-Za-z_]\w*)\$[0-9]+', name)
+            if local:
+                from .fixup_evidence import _function_span
+                from .sdkimport import masked
+                code = masked(body)
+                span = _function_span(code, sym.name)
+                declarations = list(re.finditer(r'(?m)^[ \t]*static\s+const\s+[\w \t*]+\b'
+                                                + re.escape(local[1]) + r'\b\s*(?:\[[^;=]*\])?\s*=', code))
+                if len(declarations) != 1 or not span or not span[0] <= declarations[0].start() < span[1]:
+                    continue
+                # MWCC gives static locals ELF-only $N suffixes. Rename their
+                # C identifier only inside the function, preserving member names.
+                uses = re.compile(r'\b' + re.escape(local[1]) + r'\b')
+                for use in uses.finditer(code, span[0], span[1]):
+                    prefix = code[span[0]:use.start()].rstrip()
+                    if not prefix.endswith(('.', '->')):
+                        local_edits.append((use.start(), use.end(), 'fzgx_pool_' + local[1]))
+                continue
             # Only rename objects defined in this source, never header declarations.
             if re.search(r'(?m)^(?:static\s+)?(?:const\s+)?[A-Za-z_][\w \t*]*\b' + re.escape(name)
                          + r'\b\s*(?:\[[^;=]*\])?\s*=', body):
                 names[name] = 'fzgx_pool_' + name
-    if not names:
+    if not names and not local_edits:
         return []
-    text = re.sub(r'\b\w+\b', lambda m: names.get(m[0], m[0]), body)
+    text = body
+    for a, b, value in sorted(set(local_edits), reverse=True):
+        text = text[:a] + value + text[b:]
+    text = re.sub(r'\b\w+\b', lambda m: names.get(m[0], m[0]), text)
     return [('discard unused initializer copies after verified pool binding', text)]
 
 

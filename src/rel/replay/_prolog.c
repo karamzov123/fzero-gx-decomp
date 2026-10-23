@@ -23,7 +23,7 @@ extern void fn_13_B00(void);
 extern void fn_13_B08(void);
 extern void fn_1_A8F78(void);
 
-/* fzgx:begin fn_13_0 pool noprologue */
+/* fzgx:begin fn_13_0 noprologue */
 #include "types.h"
 
 struct fn_13_0_Entry {
@@ -60,14 +60,14 @@ extern void fn_1_3FCD4(s32);
 extern void fn_13_A6C(void *);
 u32 fzgx_obj_lbl_13_bss_0;
 u32 lbl_13_bss_4;
-u32 lbl_13_bss_4_4;
-u8 lbl_13_bss_4_fill_9;
-u16 lbl_13_bss_4_fill_A;
-u32 lbl_13_bss_4_fill_C[11];
+u32 lbl_13_bss_4__fzgx_offset_4;
+u8 lbl_13_bss_4__fzgx_offset_8;
+u16 lbl_13_bss_4__fzgx_offset_A;
+u32 lbl_13_bss_4__fzgx_offset_C[10];
 u32 lbl_13_bss_38;
 u8 lbl_13_bss_3C;
-u8 lbl_13_bss_0_gap_3D;
-u16 lbl_13_bss_0_gap_3D_fill_3E;
+u8 fzgx_pool_lbl_13_bss_0_gap_3D;
+u16 fzgx_pool_lbl_13_bss_0_gap_3D_fill_3E;
 u32 lbl_13_bss_40[3];
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -75,14 +75,14 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;
     s = *(u8 *)&fzgx_obj_lbl_13_bss_0;
     s = *(u8 *)&lbl_13_bss_4;
-    s = *(u8 *)&lbl_13_bss_4_4;
-    s = *(u8 *)&lbl_13_bss_4_fill_9;
-    s = *(u8 *)&lbl_13_bss_4_fill_A;
-    s = *(u8 *)&lbl_13_bss_4_fill_C;
+    s = *(u8 *)&lbl_13_bss_4__fzgx_offset_4;
+    s = *(u8 *)&lbl_13_bss_4__fzgx_offset_8;
+    s = *(u8 *)&lbl_13_bss_4__fzgx_offset_A;
+    s = *(u8 *)&lbl_13_bss_4__fzgx_offset_C;
     s = *(u8 *)&lbl_13_bss_38;
     s = *(u8 *)&lbl_13_bss_3C;
-    s = *(u8 *)&lbl_13_bss_0_gap_3D;
-    s = *(u8 *)&lbl_13_bss_0_gap_3D_fill_3E;
+    s = *(u8 *)&fzgx_pool_lbl_13_bss_0_gap_3D;
+    s = *(u8 *)&fzgx_pool_lbl_13_bss_0_gap_3D_fill_3E;
     s = *(u8 *)&lbl_13_bss_40;
 }
 #pragma section code_type ".text"
@@ -143,10 +143,10 @@ void fn_13_0(void) {
                     ((u8 *)&fn_1_36AD0()[i])[j] = b.value;
                 }
                 t0 = (u32)fn_1_36AD0()[i].unk_4;
-                fn_80008BA8(&((struct fn_13_0_Entry *)((u8 *)&lbl_13_bss_4_4))[idx], (void *)t0, 0xC);
+                fn_80008BA8(&((struct fn_13_0_Entry *)((u8 *)&lbl_13_bss_4__fzgx_offset_4))[idx], (void *)t0, 0xC);
                 fn_1_12F10C(fn_1_36AD0());
             } else {
-                e = &((struct fn_13_0_Entry *)((u8 *)&lbl_13_bss_4_4))[idx];
+                e = &((struct fn_13_0_Entry *)((u8 *)&lbl_13_bss_4__fzgx_offset_4))[idx];
                 fzgx_value = (*((lbl_1_bss_26B80) + (i))).unk_1;
                 e->unk_1 = fzgx_value;
                 e->unk_2 = 1 << (*((lbl_1_bss_26B80) + (i))).unk_2;
@@ -155,7 +155,7 @@ void fn_13_0(void) {
                 e->unk_3 = 0;
                 e->unk_5 = 0;
                 e->unk_0 = 0;
-                fn_80008BEC(((struct fn_13_0_Entry *)((u8 *)&lbl_13_bss_4_4))[i].unk_6, 0x41, 5);
+                fn_80008BEC(((struct fn_13_0_Entry *)((u8 *)&lbl_13_bss_4__fzgx_offset_4))[i].unk_6, 0x41, 5);
             }
             n++;
         } else {
@@ -177,7 +177,7 @@ void fn_13_0(void) {
     fn_1_3EF8C(6);
     fn_1_3ED8C(0, unk22, 1, (u8)t2, 10, (u8)count, 0);
     fn_1_3EB78(n, locC, loc8, 0);
-    fn_1_3EC88(n, (u8 *)&lbl_13_bss_4_4);
+    fn_1_3EC88(n, (u8 *)&lbl_13_bss_4__fzgx_offset_4);
     fn_1_3EFF0(fn_13_A6C, 1);
     if (flag != 0) {
         fn_1_3FCB0(0x20000);

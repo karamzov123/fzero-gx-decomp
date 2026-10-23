@@ -491,3 +491,23 @@ without row alignment (`retail - ours` net rows):
   volatile qualifiers or identity read wrappers. Both functions passed the
   complete retail hash gate; sequence/slice-header frontiers remain partials in
   `state/repairs/movie-bitreader-frontiers-20261019.json.gz`.
+
+## BSS primer arrays and symbol extents (2026-10-23)
+
+- A primer-only array spanning several retail objects cannot bind as one
+  subobject. Split it at measured symbol boundaries, preserving its element
+  type and first-access order. Each resulting definition must independently
+  fit a named object in the same module and BSS section. Unknown intervals
+  are not proof of padding. `fn_3_83CC` needs the original 16-byte array split
+  into the retail 4-byte and 12-byte objects.
+- MWCC four-aligns file-scope byte arrays and byte-only structs. At an
+  unaligned boundary, scalar elements can occupy the leading bytes before
+  the next array. `fn_17_3410` needs byte scalars at offsets 0xD6, 0xD7,
+  0xFA and 0xFB; an array can then begin at 0xFC. The whole function and
+  linked targets must still match after the compiler measures this layout.
+- Do not widen a retail symbol merely to fit a candidate definition.
+  `fn_1_83070` provides direct extent evidence: four explicit byte stores
+  cover `lbl_1_bss_6D868` through +3, and the next symbol starts at +4.
+  Its inferred one-byte size was corrected to four, with the retail
+  instructions recorded in `state/repairs/bss_extents.json`. Existing
+  scalar header views remain unchanged.

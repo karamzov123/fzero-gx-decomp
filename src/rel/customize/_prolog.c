@@ -3822,7 +3822,7 @@ s32 fn_3_837C(s16 arg0) {
 }
 /* fzgx:end fn_3_837C */
 
-/* fzgx:begin fn_3_83CC pool */
+/* fzgx:begin fn_3_83CC */
 #include "rel/customize/globals.h"
 
 typedef struct {
@@ -3851,9 +3851,10 @@ typedef struct {
 } CustomizeMode;
 
 Obj_3_bss_0 lbl_3_bss_0;
-u8 lbl_3_bss_8[0x10];
+u8 lbl_3_bss_8__fzgx_offset_0[4];
+u8 lbl_3_bss_C__fzgx_offset_0[12];
 s16 lbl_3_bss_18;
-u8 lbl_3_bss_1A[2];
+u8 lbl_3_bss_18__fzgx_offset_4[2];
 CustomizePanel lbl_3_bss_20;
 Obj_3_bss_F0 lbl_3_bss_F0;
 typedef struct {
@@ -3900,9 +3901,10 @@ extern s32 fn_8008023C(const void *, const void *, u32);
 __declspec(section ".fzgxpool") static void fzgx___fzgx_pool_primer(void)
 {
     /* Native section-order primer. */ (void)*(volatile u32 *)&lbl_3_bss_0.unk_0;
-    /* Native section-order primer. */ (void)*(volatile u8 *)lbl_3_bss_8;
+    /* Native section-order primer. */ (void)*(volatile u8 *)lbl_3_bss_8__fzgx_offset_0;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_3_bss_C__fzgx_offset_0;
     /* Native section-order primer. */ (void)*(volatile s16 *)&lbl_3_bss_18;
-    /* Native section-order primer. */ (void)*(volatile u8 *)lbl_3_bss_1A;
+    /* Native section-order primer. */ (void)*(volatile u8 *)lbl_3_bss_18__fzgx_offset_4;
     /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_3_bss_20;
     /* Native section-order primer. */ (void)*(volatile s16 *)&lbl_3_bss_F0.unk_6;
 }

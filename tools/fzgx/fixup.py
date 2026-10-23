@@ -524,6 +524,7 @@ class Engine:
                 yield from layout.legacy_pool_primer_sections(body, row.get('object'))
                 yield from evidence.relocation_bindings(body, check)
                 yield from layout.bss_member_bindings(self.project, row['symbol'], body, row.get('object'), check)
+                yield from layout.split_bss_primer_arrays(self.project, row['symbol'], body, row.get('object'), check)
                 yield from layout.private_data_objects(body, row.get('object'), check)
                 yield from layout.unused_pool_objects(self.project, row['symbol'], body, row.get('object'), check)
             return

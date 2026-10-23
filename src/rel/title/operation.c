@@ -2080,7 +2080,7 @@ void fn_8_9B40(void) {
 }
 /* fzgx:end fn_8_9B40 */
 
-/* fzgx:begin fn_8_9B44 pool */
+/* fzgx:begin fn_8_9B44 */
 #include "rel/title/operation.h"
 
 typedef struct {
@@ -2105,11 +2105,11 @@ s32 fzgx_obj_lbl_8_bss_2B4;
 s32 fzgx_obj_lbl_8_bss_2B8;
 s32 fzgx_obj_lbl_8_bss_2BC;
 u8 fzgx_obj_lbl_8_bss_2C0[0xC];
-fn_8_9B44_Sub fzgx_obj_lbl_8_bss_2CC;
-fn_8_9B44_Sub fzgx_obj_lbl_8_bss_308;
-fn_8_9B44_Sub fzgx_obj_lbl_8_bss_344;
-fn_8_9B44_Sub fzgx_obj_lbl_8_bss_380;
-s32 fzgx_obj_lbl_8_bss_3BC[4];
+fn_8_9B44_Sub lbl_8_bss_2C0__fzgx_offset_C;
+fn_8_9B44_Sub lbl_8_bss_2C0__fzgx_offset_48;
+fn_8_9B44_Sub lbl_8_bss_2C0__fzgx_offset_84;
+fn_8_9B44_Sub lbl_8_bss_2C0__fzgx_offset_C0;
+s32 lbl_8_bss_2C0__fzgx_offset_FC[4];
 s32 fzgx_obj_lbl_8_bss_3CC;
 s32 fzgx_obj_lbl_8_bss_3D0;
 
@@ -2141,11 +2141,11 @@ __declspec(section ".fzgxpool") void fzgx_primer_fn_8_9B44(void) {
     sink = fzgx_obj_lbl_8_bss_2B8;
     sink = fzgx_obj_lbl_8_bss_2BC;
     sink = fzgx_obj_lbl_8_bss_2C0[0];
-    sink = fzgx_obj_lbl_8_bss_2CC.unk_4;
-    sink = fzgx_obj_lbl_8_bss_308.unk_4;
-    sink = fzgx_obj_lbl_8_bss_344.unk_4;
-    sink = fzgx_obj_lbl_8_bss_380.unk_4;
-    sink = fzgx_obj_lbl_8_bss_3BC[0];
+    sink = lbl_8_bss_2C0__fzgx_offset_C.unk_4;
+    sink = lbl_8_bss_2C0__fzgx_offset_48.unk_4;
+    sink = lbl_8_bss_2C0__fzgx_offset_84.unk_4;
+    sink = lbl_8_bss_2C0__fzgx_offset_C0.unk_4;
+    sink = lbl_8_bss_2C0__fzgx_offset_FC[0];
     sink = fzgx_obj_lbl_8_bss_3CC;
     sink = fzgx_obj_lbl_8_bss_3D0;
 }
@@ -2253,32 +2253,32 @@ void fn_8_9B44(void) {
         first = fn_1_9E14C(lbl_8_data_95B8.unk_0, (void *)lbl_8_data_95B8.unk_4, 0.0f);
         fn_1_9E14C(lbl_8_data_95B8.unk_8, (void *)lbl_8_data_95B8.unk_C, 0.0f);
         fn_1_9E14C(lbl_8_data_95B8.unk_10, (void *)lbl_8_data_95B8.unk_14, 0.0f);
-        fzgx_obj_lbl_8_bss_2CC.unk_C = fn_1_9E14C(lbl_8_data_95B8.unk_0, (void *)lbl_8_data_95B8.unk_4, alpha);
-        fzgx_obj_lbl_8_bss_2CC.unk_10 = fn_1_9E14C(lbl_8_data_95B8.unk_8, (void *)lbl_8_data_95B8.unk_C, alpha);
-        fzgx_obj_lbl_8_bss_2CC.unk_14 = fn_1_9E14C(lbl_8_data_95B8.unk_10, (void *)lbl_8_data_95B8.unk_14, alpha);
-        fzgx_obj_lbl_8_bss_2CC.unk_4 = fn_1_9E14C(lbl_8_data_95B8.unk_18, (void *)lbl_8_data_95B8.unk_1C, alpha);
+        lbl_8_bss_2C0__fzgx_offset_C.unk_C = fn_1_9E14C(lbl_8_data_95B8.unk_0, (void *)lbl_8_data_95B8.unk_4, alpha);
+        lbl_8_bss_2C0__fzgx_offset_C.unk_10 = fn_1_9E14C(lbl_8_data_95B8.unk_8, (void *)lbl_8_data_95B8.unk_C, alpha);
+        lbl_8_bss_2C0__fzgx_offset_C.unk_14 = fn_1_9E14C(lbl_8_data_95B8.unk_10, (void *)lbl_8_data_95B8.unk_14, alpha);
+        lbl_8_bss_2C0__fzgx_offset_C.unk_4 = fn_1_9E14C(lbl_8_data_95B8.unk_18, (void *)lbl_8_data_95B8.unk_1C, alpha);
         /* the product is held, so it stays fmul + fadd */
-        blend = 0.85 * (fzgx_obj_lbl_8_bss_2CC.unk_C - first);
-        fzgx_obj_lbl_8_bss_2CC.unk_C = first + blend;
+        blend = 0.85 * (lbl_8_bss_2C0__fzgx_offset_C.unk_C - first);
+        lbl_8_bss_2C0__fzgx_offset_C.unk_C = first + blend;
     }
 
-    fzgx_obj_lbl_8_bss_380.unk_C = -160.0f;
-    fzgx_obj_lbl_8_bss_380.unk_10 = 90.0f;
+    lbl_8_bss_2C0__fzgx_offset_C0.unk_C = -160.0f;
+    lbl_8_bss_2C0__fzgx_offset_C0.unk_10 = 90.0f;
     if (fzgx_obj_lbl_8_bss_3CC > fzgx_obj_lbl_8_bss_3D0 - 60) {
         f = (f32)(fzgx_obj_lbl_8_bss_3D0 - fzgx_obj_lbl_8_bss_3CC) / 60.0f;
-        fzgx_obj_lbl_8_bss_380.unk_4 = f;
-        fzgx_obj_lbl_8_bss_380.unk_4 = f * f;
+        lbl_8_bss_2C0__fzgx_offset_C0.unk_4 = f;
+        lbl_8_bss_2C0__fzgx_offset_C0.unk_4 = f * f;
     } else if (fzgx_obj_lbl_8_bss_3CC < 60) {
         f = (f32)fzgx_obj_lbl_8_bss_3CC / 60.0f;
-        fzgx_obj_lbl_8_bss_380.unk_4 = f;
-        fzgx_obj_lbl_8_bss_380.unk_4 = f * f;
+        lbl_8_bss_2C0__fzgx_offset_C0.unk_4 = f;
+        lbl_8_bss_2C0__fzgx_offset_C0.unk_4 = f * f;
     } else {
-        fzgx_obj_lbl_8_bss_380.unk_4 = 1.0f;
+        lbl_8_bss_2C0__fzgx_offset_C0.unk_4 = 1.0f;
     }
-    fzgx_obj_lbl_8_bss_3BC[0] = 0;
+    lbl_8_bss_2C0__fzgx_offset_FC[0] = 0;
     if (fzgx_obj_lbl_8_bss_3CC < fzgx_obj_lbl_8_bss_3D0 - 90 && fzgx_obj_lbl_8_bss_3CC > fzgx_obj_lbl_8_bss_3D0 - 180 &&
         fzgx_obj_lbl_8_bss_3CC % 30 > 10) {
-        fzgx_obj_lbl_8_bss_3BC[0] = 1;
+        lbl_8_bss_2C0__fzgx_offset_FC[0] = 1;
     }
 }
 /* fzgx:end fn_8_9B44 */

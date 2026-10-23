@@ -1164,7 +1164,7 @@ void fn_17_334C(void) {
 }
 /* fzgx:end fn_17_334C */
 
-/* fzgx:begin fn_17_3410 pool */
+/* fzgx:begin fn_17_3410 */
 typedef struct {
     f32 x, y, z;
 } Vec3;
@@ -1189,7 +1189,7 @@ u8 lbl_17_bss_0;
 u8 lbl_17_bss_1;
 u8 lbl_17_bss_2;
 u8 lbl_17_bss_3;
-u32 lbl_17_bss_3_fill_4[2];
+u32 lbl_17_bss_3__fzgx_offset_1[2];
 u32 lbl_17_bss_C;
 u32 lbl_17_bss_10;
 u32 lbl_17_bss_14;
@@ -1199,8 +1199,17 @@ u32 lbl_17_bss_24[4];
 u32 lbl_17_bss_34[8];
 u32 lbl_17_bss_54;
 u32 lbl_17_bss_58;
-u16 lbl_17_bss_5C;
-u8 lbl_17_bss_60[0x110];
+u16 lbl_17_bss_58__fzgx_offset_4;
+u8 lbl_17_bss_60__fzgx_offset_0[118];
+u8 lbl_17_bss_D6__fzgx_offset_0;
+u8 lbl_17_bss_D6__fzgx_offset_1;
+u8 lbl_17_bss_D8__fzgx_offset_0[34];
+u8 lbl_17_bss_FA__fzgx_offset_0;
+u8 lbl_17_bss_FA__fzgx_offset_1;
+u8 lbl_17_bss_FA__fzgx_offset_2[80];
+u8 lbl_17_bss_14C__fzgx_offset_0[4];
+u8 lbl_17_bss_150__fzgx_offset_0[16];
+u8 lbl_17_bss_160__fzgx_offset_0[16];
 InterviewCam lbl_17_bss_170;
 
 /* the TU's literal pool ahead of this function's constants (retail .rodata 0x0-0x128) */
@@ -1232,7 +1241,7 @@ static void fzgx_bss_layout(void) {
     fzgx_sink(&lbl_17_bss_1);
     fzgx_sink(&lbl_17_bss_2);
     fzgx_sink(&lbl_17_bss_3);
-    fzgx_sink(lbl_17_bss_3_fill_4);
+    fzgx_sink(lbl_17_bss_3__fzgx_offset_1);
     fzgx_sink(&lbl_17_bss_C);
     fzgx_sink(&lbl_17_bss_10);
     fzgx_sink(&lbl_17_bss_14);
@@ -1242,8 +1251,17 @@ static void fzgx_bss_layout(void) {
     fzgx_sink(lbl_17_bss_34);
     fzgx_sink(&lbl_17_bss_54);
     fzgx_sink(&lbl_17_bss_58);
-    fzgx_sink(&lbl_17_bss_5C);
-    fzgx_sink(lbl_17_bss_60);
+    fzgx_sink(&lbl_17_bss_58__fzgx_offset_4);
+    fzgx_sink(lbl_17_bss_60__fzgx_offset_0);
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_D6__fzgx_offset_0;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_D6__fzgx_offset_1;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_D8__fzgx_offset_0;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_FA__fzgx_offset_0;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_FA__fzgx_offset_1;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_FA__fzgx_offset_2;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_14C__fzgx_offset_0;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_150__fzgx_offset_0;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_17_bss_160__fzgx_offset_0;
     fzgx_sink(&lbl_17_bss_170);
 }
 
@@ -1304,7 +1322,7 @@ void fn_17_3410(void) {
         return;
     }
     lbl_17_bss_170.active = 1;
-    if (lbl_17_bss_5C == 0 && (lbl_17_bss_58 & 1)) {
+    if (lbl_17_bss_58__fzgx_offset_4 == 0 && (lbl_17_bss_58 & 1)) {
         InterviewCam *cam;
 
         lbl_8006D21C(0x71c);

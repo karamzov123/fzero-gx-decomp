@@ -1,0 +1,20 @@
+{
+  "main_rel:lbl_1_bss_6D868": {
+    "old_size": 1,
+    "size": 4,
+    "section": ".bss",
+    "address": "0x6D868",
+    "retail_function": "fn_1_83070",
+    "next_symbol": "lbl_1_bss_6D86C",
+    "instructions": [
+      "addi r26, r4, lbl_1_bss_6D820@l",
+      "addi r7, r26, 0x48",
+      "stb r0, 0x48(r26)",
+      "stb r0, 0x1(r7)",
+      "stb r0, 0x2(r7)",
+      "stb r0, 0x3(r7)"
+    ],
+    "reason": "Four explicit consecutive retail byte stores prove all four bytes; next named object starts at +4. Existing scalar header views are preserved.",
+    "hash_gate": "16 files OK"
+  }
+}
