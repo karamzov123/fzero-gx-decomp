@@ -17523,6 +17523,17 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80023D00.c",
+    "symbols": [
+      "fn_80023D00"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8002420C.c",
     "symbols": [
       "fn_8002420C"
@@ -17589,6 +17600,17 @@
       "@100": "lbl_801A6FD8",
       "@101": "lbl_801A6FDC"
     }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_800248D4.c",
+    "symbols": [
+      "fn_800248D4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main",
