@@ -511,3 +511,14 @@ without row alignment (`retail - ours` net rows):
   Its inferred one-byte size was corrected to four, with the retail
   instructions recorded in `state/repairs/bss_extents.json`. Existing
   scalar header views remain unchanged.
+
+## Empty case labels change switch tree selection (2026-10-23)
+
+MWCC selects a `switch` binary-search tree from the *distinct* case labels, and
+an empty `case N:` that falls into `default:` is not distinct. `fn_12_27884`
+needs the retail pivot order (`cmpwi 4` then `cmpwi 2`), which only appears when
+`case 4` has a body — the redundant `case 4: result = 0;` is load-bearing — and
+`case 5` is written as `case 5: break;` rather than sharing `default:`'s label.
+Folding either one into `default:` selects a three-case tree that pivots on 3
+and emits 246 words instead of 247. Always compare the pivot order before
+attributing a switch body's row diff to allocation.
