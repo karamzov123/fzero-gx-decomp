@@ -2209,7 +2209,7 @@ void fn_14_645C(void) {
 }
 /* fzgx:end fn_14_645C */
 
-/* fzgx:begin fn_14_6494 pool */
+/* fzgx:begin fn_14_6494 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
@@ -2387,7 +2387,7 @@ extern void fn_1_8D3F8(void *, fn_14_6494_Sprite *, u32 (*)(void), s32);
 extern void fn_1_50164(f32, f32, f32, f32, fn_14_6494_Sprite *);
 
 /* retail pool word 0x1f8: FF 00 FF FF */
-static const fn_14_6494_Color fn_14_6494_magenta = { 0xFF, 0x00, 0xFF, 0xFF };
+static const fn_14_6494_Color fzgx_pool_fn_14_6494_magenta = { 0xFF, 0x00, 0xFF, 0xFF };
 
 /* Index of the first lit entry that is either marked 0x40 or is the current
  * one; the caller does not use the result (retail keeps the loop anyway). */
@@ -2450,7 +2450,7 @@ void fn_14_6494(void) {
     s.x = 321.0f;
     s.y = 356.0f;
     s.z = 51.0f;
-    s.color = fn_14_6494_magenta;
+    s.color = fzgx_pool_fn_14_6494_magenta;
     s.alpha = 0.3f;
     if ((lbl_14_bss_110.flags & 0x20000000) && !fn_14_6494_expired()) {
         if (lbl_801A66A0 % 3 != 0) {

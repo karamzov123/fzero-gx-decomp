@@ -146,7 +146,7 @@ void fn_1_961F0(Fn1961F0Owner *owner) {
 }
 /* fzgx:end fn_1_961F0 */
 
-/* fzgx:begin fn_1_96230 pool noprologue */
+/* fzgx:begin fn_1_96230 noprologue */
 #include "types.h"
 
 typedef struct Fn196230Obj {
@@ -169,9 +169,9 @@ typedef struct Fn196230Data {
 
 extern Fn196230Data lbl_1_data_209C0;
 
-static const char *const sDirs[5] = {0};
-static const char *const sPacks[5] = {0};
-static const char *const sExts[4] = {0};
+static const char *const fzgx_pool_sDirs[5] = {0};
+static const char *const fzgx_pool_sPacks[5] = {0};
+static const char *const fzgx_pool_sExts[4] = {0};
 
 extern void fn_1_12AB38(void *);
 extern s32 fn_1_465D0(char *, s32);
@@ -1042,9 +1042,9 @@ void fn_1_96230(Fn196230Obj *obj, s32 idx, u32 mask1, u32 mask2, s32 flag) {
             if (flag == 0 && obj->ids[i] != -1 &&
                 (mask2 == 0x80000000 || mask2 == 0x40000000 || mask2 == 0x20000000 ||
                  mask2 == 0x10000000)) {
-                sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_fmt_6EE0, name, sDirs[i], sExts[0]);
+                sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_fmt_6EE0, name, fzgx_pool_sDirs[i], fzgx_pool_sExts[0]);
             } else {
-                sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_fmt_6EE0, name, sDirs[i], sExts[j]);
+                sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_fmt_6EE0, name, fzgx_pool_sDirs[i], fzgx_pool_sExts[j]);
             }
             if (flag) {
                 fn_1_12AB38(fzgx_pool_native_lbl_1_data_209C0_lock_6ED8);
@@ -1065,7 +1065,7 @@ void fn_1_96230(Fn196230Obj *obj, s32 idx, u32 mask1, u32 mask2, s32 flag) {
                 fn_1_12AB38(fzgx_pool_native_lbl_1_data_209C0_unlock_6EEC.view);
             }
             if (ok[i][j] == 0) {
-                sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_fmt_7278, name, sDirs[i]);
+                sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_fmt_7278, name, fzgx_pool_sDirs[i]);
                 if (flag) {
                     fn_1_12AB38(fzgx_pool_native_lbl_1_data_209C0_lock_6ED8);
                     ok[i][j] = fn_1_465D0(buf, 1) >= 0;
@@ -1088,7 +1088,7 @@ void fn_1_96230(Fn196230Obj *obj, s32 idx, u32 mask1, u32 mask2, s32 flag) {
         }
         for (j = 0; j < 4; j++) {
             if (ok[i][j]) {
-                sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_fmt_7284, name, sPacks[i]);
+                sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_fmt_7284, name, fzgx_pool_sPacks[i]);
                 if (flag) {
                     fn_1_12AB38(fzgx_pool_native_lbl_1_data_209C0_lock_6ED8);
                     fn_1_465D0(buf, 1);

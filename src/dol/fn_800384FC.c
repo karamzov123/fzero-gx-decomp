@@ -69,7 +69,7 @@ typedef enum {
 
 /* saved vertex state: descriptor list followed by the VTXFMT3 attribute list */
 static GXVtxDescList lbl_80178118[27];
-static GXVtxAttrFmtList vat[27];
+static GXVtxAttrFmtList lbl_80178118__fzgx_offset_D8[27];
 
 extern f32 fn_80088600(f32); /* sinf */
 extern f32 fn_80088624(f32); /* cosf */
@@ -106,7 +106,7 @@ void fn_800384FC(u8 numMajor, u8 numMinor) {
 
     GXGetVtxDesc(13, &ttype);
     fn_80032EB8(lbl_80178118);
-    GXGetVtxAttrFmtv(3, vat);
+    GXGetVtxAttrFmtv(3, lbl_80178118__fzgx_offset_D8);
 
     GXClearVtxDesc();
     GXSetVtxDesc(9, 1);
@@ -158,5 +158,5 @@ void fn_800384FC(u8 numMajor, u8 numMinor) {
     }
 
     GXSetVtxDescv(lbl_80178118);
-    GXSetVtxAttrFmtv(3, vat);
+    GXSetVtxAttrFmtv(3, lbl_80178118__fzgx_offset_D8);
 }

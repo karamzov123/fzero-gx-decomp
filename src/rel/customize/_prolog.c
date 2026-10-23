@@ -307,7 +307,7 @@ void fn_3_BFC(char *destination, void *unused, const char *source, const char *s
 }
 /* fzgx:end fn_3_BFC */
 
-/* fzgx:begin fn_3_E64 pool */
+/* fzgx:begin fn_3_E64 */
 #include "rel/customize/globals.h"
 
 typedef struct CustomizeNameEntry {
@@ -621,14 +621,14 @@ u16 fzgx_obj_lbl_3_data_0[0x54] = {
     0x001C, 0x001D, 0x001E, 0x001F, 0x0020, 0x0021, 0x0022, 0x0023, 0x0024, 0x0025,
     0x0026, 0x0027, 0x0028, 0xFFFF
 };
-u16 probe_head_rest[99 - 0x54] = {
+u16 fzgx_pool_probe_head_rest[99 - 0x54] = {
     0xFFFF, 0x0000, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
     0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF
 };
-u8 probe_pad0[0xE1C - 0xC8] = {1};
-char *probe_tblA[9] = {0};
-char *probe_tblB[9] = {0};
-u8 probe_pad1[0x15D4 - 0xE64] = {1};
+u8 fzgx_pool_probe_pad0[0xE1C - 0xC8] = {1};
+char *fzgx_pool_probe_tblA[9] = {0};
+char *fzgx_pool_probe_tblB[9] = {0};
+u8 fzgx_pool_probe_pad1[0x15D4 - 0xE64] = {1};
 
 extern Color fn_800081C8(Color, Color, f32);
 extern void fn_1_4955C(f32, f32);
@@ -648,11 +648,11 @@ extern u32 fn_1_4D4C8(Color, f32, f32);
 static void fzgx_base_order_data(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: the TU references .data before its other sections */
     s = *(u8 *)&fzgx_obj_lbl_3_data_0;
-    s = *(u8 *)&probe_head_rest;
-    s = *(u8 *)&probe_pad0;
-    s = *(u8 *)&probe_tblA;
-    s = *(u8 *)&probe_tblB;
-    s = *(u8 *)&probe_pad1;
+    s = *(u8 *)&fzgx_pool_probe_head_rest;
+    s = *(u8 *)&fzgx_pool_probe_pad0;
+    s = *(u8 *)&fzgx_pool_probe_tblA;
+    s = *(u8 *)&fzgx_pool_probe_tblB;
+    s = *(u8 *)&fzgx_pool_probe_pad1;
 }
 #pragma section code_type ".text"
 
@@ -727,7 +727,7 @@ void fn_3_E64(u8 *arg0) {
             fn_1_49514(white0);
         }
         fn_1_4954C(0.08f);
-        fn_1_4AE0C("%s", probe_tblA[lbl_801A66B4]);
+        fn_1_4AE0C("%s", fzgx_pool_probe_tblA[lbl_801A66B4]);
         fn_1_4D4C8(color, 0.09f, 10.0f);
     } else {
         {
@@ -739,7 +739,7 @@ void fn_3_E64(u8 *arg0) {
             fn_1_49528(black0);
         }
         fn_1_4954C(0.08f);
-        fn_1_4AE0C("%s", probe_tblA[lbl_801A66B4]);
+        fn_1_4AE0C("%s", fzgx_pool_probe_tblA[lbl_801A66B4]);
     }
     fn_1_496FC(352.0f, 320.0f);
     fn_1_495C8(8);
@@ -753,7 +753,7 @@ void fn_3_E64(u8 *arg0) {
             fn_1_49528(black1);
         }
         fn_1_4954C(0.08f);
-        fn_1_4AE0C("%s", probe_tblB[lbl_801A66B4]);
+        fn_1_4AE0C("%s", fzgx_pool_probe_tblB[lbl_801A66B4]);
     } else {
         fn_1_4D494();
         {
@@ -761,7 +761,7 @@ void fn_3_E64(u8 *arg0) {
             fn_1_49514(white1);
         }
         fn_1_4954C(0.08f);
-        fn_1_4AE0C("%s", probe_tblB[lbl_801A66B4]);
+        fn_1_4AE0C("%s", fzgx_pool_probe_tblB[lbl_801A66B4]);
         fn_1_4D4C8(color, 0.09f, 10.0f);
     }
 }
@@ -1680,7 +1680,7 @@ void fn_3_39F0(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_3_39F0 */
 
-/* fzgx:begin fn_3_3AE8 pool */
+/* fzgx:begin fn_3_3AE8 */
 #include "rel/customize/globals.h"
 
 typedef struct {
@@ -1774,9 +1774,9 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
 }
 static const u32 fzgx_pool_table11[16] = {0x43900000, 0x3DA3D70A, 0x41200000, 0x43B00000, 0xA0505000, 0xA0A0A000, 0xFFFFFF00, 0x70707000, 0x00000000, 0x70707000, 0x00000000, 0xFFFFFF00, 0x435C0000, 0x438C0000, 0x43820000, 0x43520000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep11(void) { const u32 *volatile cp; cp = fzgx_pool_table11; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_color_sel[1] = {0xFF000000};
-static const u32 fzgx_color_def[1] = {0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_color_sel; cp = fzgx_color_def; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_fzgx_color_sel[1] = {0xFF000000};
+static const u32 fzgx_pool_fzgx_color_def[1] = {0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_fzgx_color_sel; cp = fzgx_pool_fzgx_color_def; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
     volatile f32 s;  /* fzgx-allow: S2 pool primer sinks */
     s = 24.0f;
@@ -1877,10 +1877,10 @@ void fn_3_3AE8(s16 arg0, MenuEntry *arg1, s16 arg2) {
         fn_1_4AE0C((const char *)(data + 0x15D4), e->unk_4);
         if (i == lbl_1_bss_970.unk_4) {
             fn_1_496FC(x - 24.0f - 4.0f, y);
-            color = fzgx_color_sel[0];
+            color = fzgx_pool_fzgx_color_sel[0];
             fn_1_49514(&color);
             fn_1_4A0D8((const char *)(data + 0x17FC));
-            color2 = fzgx_color_def[0];
+            color2 = fzgx_pool_fzgx_color_def[0];
             fn_1_49514(&color2);
         }
     }
@@ -2370,7 +2370,7 @@ s32 fn_3_4538(void) {
 }
 /* fzgx:end fn_3_4538 */
 
-/* fzgx:begin fn_3_48E0 pool */
+/* fzgx:begin fn_3_48E0 */
 typedef struct {
     s16 index;
 } Sig_fn_3_AF8_Fn3AF8Arg;
@@ -2409,8 +2409,8 @@ u32 lbl_3_bss_20860[0x440];
 u32 lbl_3_bss_21960[0xA20];
 f32 lbl_3_bss_241E0[0x64];
 u32 lbl_3_bss_24370;
-int (*lbl_3_bss_24374)(Sig_fn_3_AF8_Fn3AF8Arg *);
-void *lbl_3_bss_24378;
+int (*lbl_3_bss_24370__fzgx_offset_4)(Sig_fn_3_AF8_Fn3AF8Arg *);
+void *lbl_3_bss_24370__fzgx_offset_8;
 u8 lbl_3_bss_2437C[0x2C];
 u32 lbl_3_bss_243A8[6];
 u8 lbl_3_bss_243C0[0x81C0];
@@ -2435,8 +2435,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_3_bss_21960;
     s = *(u8 *)&lbl_3_bss_241E0;
     s = *(u8 *)&lbl_3_bss_24370;
-    s = *(u8 *)&lbl_3_bss_24374;
-    s = *(u8 *)&lbl_3_bss_24378;
+    s = *(u8 *)&lbl_3_bss_24370__fzgx_offset_4;
+    s = *(u8 *)&lbl_3_bss_24370__fzgx_offset_8;
     s = *(u8 *)&lbl_3_bss_2437C;
     s = *(u8 *)&lbl_3_bss_243A8;
     s = *(u8 *)&lbl_3_bss_243C0;
@@ -2482,8 +2482,8 @@ void fn_3_48E0(void) {
         lbl_3_bss_120[0] = 0x5d;
         fn_1_1280(1);
         lbl_3_data_B4 = 0x60;
-        lbl_3_bss_24374 = fn_3_AF8;
-        lbl_3_bss_24378 = &lbl_3_bss_F0.unk_8;
+        lbl_3_bss_24370__fzgx_offset_4 = fn_3_AF8;
+        lbl_3_bss_24370__fzgx_offset_8 = &lbl_3_bss_F0.unk_8;
         lbl_3_bss_F0.flags |= 0x10000000;
         break;
     case 11:
@@ -2491,8 +2491,8 @@ void fn_3_48E0(void) {
         lbl_3_bss_120[0] = 0x5d;
         fn_1_1280(1);
         lbl_3_data_B4 = 0x5f;
-        lbl_3_bss_24374 = fn_3_AF8;
-        lbl_3_bss_24378 = &lbl_3_bss_F0.unk_8;
+        lbl_3_bss_24370__fzgx_offset_4 = fn_3_AF8;
+        lbl_3_bss_24370__fzgx_offset_8 = &lbl_3_bss_F0.unk_8;
         lbl_3_bss_F0.flags |= 0x10000000;
         break;
     }
@@ -5081,3 +5081,40 @@ s32 fn_3_9CA8(void) {
     return result;
 }
 /* fzgx:end fn_3_9CA8 */
+
+/* fzgx:begin fn_3_AC4C */
+#include "rel/customize/globals.h"
+
+typedef struct {
+    u8 pad[0x324];
+    s32 value;
+    u8 tail[0x118];
+} CustomizeEntry;
+
+extern CustomizeEntry lbl_3_bss_20860[4];
+extern u8 lbl_3_bss_21960[10368];
+extern u32 lbl_1_bss_6D82C;
+
+extern void fn_1_80F1C(s32, CustomizeEntry *);
+extern void fn_1_14DBCC(void *);
+extern void fn_80071718(u32);
+
+#pragma opt_propagation off
+void fn_3_AC4C(void) {
+    CustomizeEntry *entries = lbl_3_bss_20860;
+    s16 index = lbl_3_bss_F0.unk_8;
+
+    if ((*((entries) + (index))).value != -1) {
+        fn_1_80F1C((s16)(*((entries) + (index))).value, &entries[index]);
+        (*((entries) + (index))).value = -1;
+    }
+
+    fn_1_14DBCC((u8 *)lbl_3_bss_21960 + index * 0xa20);
+
+    if (lbl_1_bss_6D82C != 0) {
+        fn_80071718(lbl_1_bss_6D82C);
+        lbl_1_bss_6D82C = 0;
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_3_AC4C */

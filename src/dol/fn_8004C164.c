@@ -177,12 +177,12 @@ static inline void adxt_GetTimeSub(ADXTHandle *handle, s32 *count, s32 *scale) {
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 __declspec(section ".data") s32 lbl_8017E568;
 __declspec(section ".data") u32 lbl_8017E56C;
-__declspec(section ".data") s32 lbl_8017E56C_4;
-__declspec(section ".data") u32 lbl_8017E56C_fill_8017E574[6];
+__declspec(section ".data") s32 lbl_8017E56C__fzgx_offset_4;
+__declspec(section ".data") u32 lbl_8017E56C__fzgx_offset_8[6];
 __declspec(section ".data") u32 lbl_8017E58C;
-__declspec(section ".data") f32 lbl_8017E58C_4;
+__declspec(section ".data") f32 lbl_8017E58C__fzgx_offset_4;
 __declspec(section ".data") s32 lbl_8017E594;
-__declspec(section ".data") u32 lbl_8017E594_fill_8017E598[4];
+__declspec(section ".data") u32 lbl_8017E594__fzgx_offset_4[4];
 __declspec(section ".data") u32 lbl_8017E5A8[4];
 __declspec(section ".data") u32 lbl_8017E5B8;
 
@@ -191,12 +191,12 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&lbl_8017E568;
     s = *(u8 *)&lbl_8017E56C;
-    s = *(u8 *)&lbl_8017E56C_4;
-    s = *(u8 *)&lbl_8017E56C_fill_8017E574;
+    s = *(u8 *)&lbl_8017E56C__fzgx_offset_4;
+    s = *(u8 *)&lbl_8017E56C__fzgx_offset_8;
     s = *(u8 *)&lbl_8017E58C;
-    s = *(u8 *)&lbl_8017E58C_4;
+    s = *(u8 *)&lbl_8017E58C__fzgx_offset_4;
     s = *(u8 *)&lbl_8017E594;
-    s = *(u8 *)&lbl_8017E594_fill_8017E598;
+    s = *(u8 *)&lbl_8017E594__fzgx_offset_4;
     s = *(u8 *)&lbl_8017E5A8;
     s = *(u8 *)&lbl_8017E5B8;
 }
@@ -265,7 +265,7 @@ void fn_8004C164(ADXTHandle *handle, s32 *count, s32 *scale) {
         adxt_GetTimeSub(handle, count, scale);
         return;
     }
-    lbl_8017E58C_4 = 0.0f;
+    lbl_8017E58C__fzgx_offset_4 = 0.0f;
     status = handle->status;
     if (status == 3 || status == 4) {
         if (handle->paused == 0) {
@@ -275,14 +275,14 @@ void fn_8004C164(ADXTHandle *handle, s32 *count, s32 *scale) {
         }
         adxt_GetTimeSub(handle, &count2, &scale2);
         diff = 1000.0f * ((f32)count2 / (f32)scale2 - (f32)*count / (f32)lbl_8017E594);
-        lbl_8017E58C_4 = diff;
+        lbl_8017E58C__fzgx_offset_4 = diff;
         if (diff > 60.0f || diff < -60.0f) {
             if (lbl_8012B910[0] == 1) {
                 s32 saved = lbl_8017E568;
                 lbl_8017E568 = 0;
                 fn_8004C164(handle, &count2, &scale2);
                 lbl_8017E568 = saved;
-                lbl_8017E56C_4++;
+                lbl_8017E56C__fzgx_offset_4++;
             }
             handle->playback_time = (u32)((f32)lbl_8017E594 * ((f32)count2 / (f32)scale2));
             handle->playback_start_vsync = lbl_80178CB8[0];

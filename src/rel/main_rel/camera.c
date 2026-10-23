@@ -2766,7 +2766,7 @@ void camera_save_parameters(f32 first_parameter, f32 second_parameter) {
 }
 /* fzgx:end camera_save_parameters */
 
-/* fzgx:begin fn_1_BFA0 pool noprologue */
+/* fzgx:begin fn_1_BFA0 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/camera.h"
@@ -2799,12 +2799,12 @@ static inline void update_camera_transform(u8 *value) {
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_1010;
 u8 lbl_1_bss_1014;
-u8 lbl_1_bss_1010_gap_1015;
-u16 lbl_1_bss_1010_gap_1015_fill_1016;
+u8 fzgx_pool_lbl_1_bss_1010_gap_1015;
+u16 fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
 u8 fzgx_obj_camera_state;
-u8 camera_state_fill_1019;
-u16 camera_state_fill_101A;
-u32 camera_state_fill_101C[8];
+u8 camera_state__fzgx_offset_1;
+u16 camera_state__fzgx_offset_2;
+u32 camera_state__fzgx_offset_4[8];
 u32 lbl_1_bss_103C;
 f32 lbl_1_bss_1040;
 f32 lbl_1_bss_1044;
@@ -2815,12 +2815,12 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = *(u8 *)&lbl_1_bss_1014;
-    s = *(u8 *)&lbl_1_bss_1010_gap_1015;
-    s = *(u8 *)&lbl_1_bss_1010_gap_1015_fill_1016;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_1015;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
     s = *(u8 *)&fzgx_obj_camera_state;
-    s = *(u8 *)&camera_state_fill_1019;
-    s = *(u8 *)&camera_state_fill_101A;
-    s = *(u8 *)&camera_state_fill_101C;
+    s = *(u8 *)&camera_state__fzgx_offset_1;
+    s = *(u8 *)&camera_state__fzgx_offset_2;
+    s = *(u8 *)&camera_state__fzgx_offset_4;
     s = *(u8 *)&lbl_1_bss_103C;
     s = *(u8 *)&lbl_1_bss_1040;
     s = *(u8 *)&lbl_1_bss_1044;
@@ -2895,7 +2895,7 @@ void camera_save_slot(u8 index) {
 }
 /* fzgx:end camera_save_slot */
 
-/* fzgx:begin fn_1_C10C pool noprologue */
+/* fzgx:begin fn_1_C10C noprologue */
 #include "types.h"
 
 typedef struct {
@@ -2923,45 +2923,45 @@ typedef struct {
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_1010;
 u8 lbl_1_bss_1014;
-u8 lbl_1_bss_1010_gap_1015;
-u16 lbl_1_bss_1010_gap_1015_fill_1016;
+u8 fzgx_pool_lbl_1_bss_1010_gap_1015;
+u16 fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
 CameraPreset fzgx_obj_camera_state;
 u32 lbl_1_bss_103C;
 u32 lbl_1_bss_1040;
 u32 lbl_1_bss_1044;
 u8 fzgx_obj_camera_flag_0;
 u8 fzgx_obj_camera_flag_1;
-u16 lbl_1_bss_1010_gap_104A;
+u16 fzgx_pool_lbl_1_bss_1010_gap_104A;
 u32 lbl_1_bss_104C[16];
 u32 lbl_1_bss_108C[13];
 u32 lbl_1_bss_10C0[6];
 CameraPreset fzgx_obj_lbl_1_bss_10D8[1];
-u32 lbl_1_bss_10D8_fill_10FC[19];
+u32 lbl_1_bss_10D8__fzgx_offset_24[19];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = *(u8 *)&lbl_1_bss_1014;
-    s = *(u8 *)&lbl_1_bss_1010_gap_1015;
-    s = *(u8 *)&lbl_1_bss_1010_gap_1015_fill_1016;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_1015;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
     s = *(u8 *)&fzgx_obj_camera_state;
     s = *(u8 *)&lbl_1_bss_103C;
     s = *(u8 *)&lbl_1_bss_1040;
     s = *(u8 *)&lbl_1_bss_1044;
     s = *(u8 *)&fzgx_obj_camera_flag_0;
     s = *(u8 *)&fzgx_obj_camera_flag_1;
-    s = *(u8 *)&lbl_1_bss_1010_gap_104A;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_104A;
     s = *(u8 *)&lbl_1_bss_104C;
     s = *(u8 *)&lbl_1_bss_108C;
     s = *(u8 *)&lbl_1_bss_10C0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_10D8;
-    s = *(u8 *)&lbl_1_bss_10D8_fill_10FC;
+    s = *(u8 *)&lbl_1_bss_10D8__fzgx_offset_24;
 }
 #pragma section code_type ".text"
 
 void fn_1_C10C(u8 idx) {
-    lbl_1_bss_1010_gap_1015 = 0;
+    fzgx_pool_lbl_1_bss_1010_gap_1015 = 0;
     fzgx_obj_camera_state = fzgx_obj_lbl_1_bss_10D8[idx];
 }
 /* fzgx:end fn_1_C10C */
@@ -3087,7 +3087,7 @@ void camera_snapshot(void) {
 }
 /* fzgx:end camera_snapshot */
 
-/* fzgx:begin fn_1_C3B8 pool noprologue */
+/* fzgx:begin fn_1_C3B8 noprologue */
 #include "types.h"
 
 typedef struct {
@@ -3124,40 +3124,40 @@ extern void lbl_8006D5A4(CamVec *a, CamVec *b, CamVec *out, f32 t);
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_1010;
 u8 lbl_1_bss_1014;
-u8 lbl_1_bss_1010_gap_1015;
-u16 lbl_1_bss_1010_gap_1015_fill_1016;
+u8 fzgx_pool_lbl_1_bss_1010_gap_1015;
+u16 fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
 CamKey fzgx_obj_camera_state;
 u32 lbl_1_bss_103C;
 u32 lbl_1_bss_1040;
 u32 lbl_1_bss_1044;
 u8 fzgx_obj_camera_flag_0;
 u8 fzgx_obj_camera_flag_1;
-u16 lbl_1_bss_1010_gap_104A;
+u16 fzgx_pool_lbl_1_bss_1010_gap_104A;
 CamCtl lbl_1_bss_104C;
 u32 lbl_1_bss_108C[13];
 CamSway lbl_1_bss_10C0;
 CamKey fzgx_obj_lbl_1_bss_10D8[2];
-u32 lbl_1_bss_10D8_fill_1120[10];
+u32 lbl_1_bss_10D8__fzgx_offset_48[10];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = *(u8 *)&lbl_1_bss_1014;
-    s = *(u8 *)&lbl_1_bss_1010_gap_1015;
-    s = *(u8 *)&lbl_1_bss_1010_gap_1015_fill_1016;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_1015;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
     s = *(u8 *)&fzgx_obj_camera_state;
     s = *(u8 *)&lbl_1_bss_103C;
     s = *(u8 *)&lbl_1_bss_1040;
     s = *(u8 *)&lbl_1_bss_1044;
     s = *(u8 *)&fzgx_obj_camera_flag_0;
     s = *(u8 *)&fzgx_obj_camera_flag_1;
-    s = *(u8 *)&lbl_1_bss_1010_gap_104A;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_104A;
     s = *(u8 *)&lbl_1_bss_104C;
     s = *(u8 *)&lbl_1_bss_108C;
     s = *(u8 *)&lbl_1_bss_10C0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_10D8;
-    s = *(u8 *)&lbl_1_bss_10D8_fill_1120;
+    s = *(u8 *)&lbl_1_bss_10D8__fzgx_offset_48;
 }
 #pragma section code_type ".text"
 
@@ -3174,7 +3174,7 @@ void fn_1_C3B8(void) {
         fzgx_obj_camera_state.unk_1C = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
         fzgx_obj_camera_state.unk_20 = from.unk_20 + (s16)(t * (to.unk_20 - from.unk_20));
         if (lbl_1_bss_104C.counter >= lbl_1_bss_104C.total) {
-            lbl_1_bss_1010_gap_1015 = 0;
+            fzgx_pool_lbl_1_bss_1010_gap_1015 = 0;
         }
         break;
     case 3:
@@ -3191,7 +3191,7 @@ void fn_1_C3B8(void) {
         fzgx_obj_camera_state.unk_1C = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
         fzgx_obj_camera_state.unk_20 = from.unk_20 + (s16)(t * (to.unk_20 - from.unk_20));
         if (lbl_1_bss_104C.counter >= lbl_1_bss_104C.total) {
-            lbl_1_bss_1010_gap_1015 = 0;
+            fzgx_pool_lbl_1_bss_1010_gap_1015 = 0;
         }
         break;
     case 2:

@@ -8,7 +8,7 @@ extern u8 lbl_3_data_3574[60];
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, u8 *, s32);
 
-/* fzgx:begin fn_3_1338C pool noprologue */
+/* fzgx:begin fn_3_1338C noprologue */
 #include "types.h"
 
 extern void fn_1_426C(u32);
@@ -41,15 +41,15 @@ u32 fzgx_obj_lbl_3_bss_A1768;
 u32 *fzgx_obj_lbl_3_bss_A176C;
 u32 lbl_3_bss_A1770;
 u32 lbl_3_bss_A1774;
-u32 lbl_3_bss_A1778_fill_A1778;
-u32 lbl_3_bss_A1778_4;
-u32 lbl_3_bss_A1778_8;
-u32 lbl_3_bss_A1784_fill_A1784;
-u32 lbl_3_bss_A1784_4;
-u8 lbl_3_bss_A1784_8;
-u8 lbl_3_bss_A1784_fill_A178D;
-u16 lbl_3_bss_A1784_fill_A178E;
-u32 lbl_3_bss_A1784_fill_A1790[2];
+u32 lbl_3_bss_A1778__fzgx_offset_0;
+u32 lbl_3_bss_A1778__fzgx_offset_4;
+u32 lbl_3_bss_A1778__fzgx_offset_8;
+u32 lbl_3_bss_A1784__fzgx_offset_0;
+u32 lbl_3_bss_A1784__fzgx_offset_4;
+u8 lbl_3_bss_A1784__fzgx_offset_8;
+u8 lbl_3_bss_A1784__fzgx_offset_9;
+u16 lbl_3_bss_A1784__fzgx_offset_A;
+u32 lbl_3_bss_A1784__fzgx_offset_C[2];
 u32 lbl_3_bss_A1798;
 u32 fzgx_obj_lbl_3_bss_A179C;
 u32 fzgx_obj_lbl_3_bss_A17A0[11];
@@ -62,15 +62,15 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_3_bss_A176C;
     s = *(u8 *)&lbl_3_bss_A1770;
     s = *(u8 *)&lbl_3_bss_A1774;
-    s = *(u8 *)&lbl_3_bss_A1778_fill_A1778;
-    s = *(u8 *)&lbl_3_bss_A1778_4;
-    s = *(u8 *)&lbl_3_bss_A1778_8;
-    s = *(u8 *)&lbl_3_bss_A1784_fill_A1784;
-    s = *(u8 *)&lbl_3_bss_A1784_4;
-    s = *(u8 *)&lbl_3_bss_A1784_8;
-    s = *(u8 *)&lbl_3_bss_A1784_fill_A178D;
-    s = *(u8 *)&lbl_3_bss_A1784_fill_A178E;
-    s = *(u8 *)&lbl_3_bss_A1784_fill_A1790;
+    s = *(u8 *)&lbl_3_bss_A1778__fzgx_offset_0;
+    s = *(u8 *)&lbl_3_bss_A1778__fzgx_offset_4;
+    s = *(u8 *)&lbl_3_bss_A1778__fzgx_offset_8;
+    s = *(u8 *)&lbl_3_bss_A1784__fzgx_offset_0;
+    s = *(u8 *)&lbl_3_bss_A1784__fzgx_offset_4;
+    s = *(u8 *)&lbl_3_bss_A1784__fzgx_offset_8;
+    s = *(u8 *)&lbl_3_bss_A1784__fzgx_offset_9;
+    s = *(u8 *)&lbl_3_bss_A1784__fzgx_offset_A;
+    s = *(u8 *)&lbl_3_bss_A1784__fzgx_offset_C;
     s = *(u8 *)&lbl_3_bss_A1798;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_A179C;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_A17A0;
@@ -91,10 +91,10 @@ void fn_3_1338C(void) {
     u32 v;
 
     
-    fn_1_435C(lbl_3_bss_A1778_4);
-    fn_1_426C(lbl_3_bss_A1784_4);
-    fn_1_435C(lbl_3_bss_A1778_8);
-    fn_1_426C((*(u32 (*)[5])&lbl_3_bss_A1784_8)[1]);
+    fn_1_435C(lbl_3_bss_A1778__fzgx_offset_4);
+    fn_1_426C(lbl_3_bss_A1784__fzgx_offset_4);
+    fn_1_435C(lbl_3_bss_A1778__fzgx_offset_8);
+    fn_1_426C((*(u32 (*)[5])&lbl_3_bss_A1784__fzgx_offset_8)[1]);
     fn_3_1563C();
     fn_3_19C50();
     fn_3_142C4();

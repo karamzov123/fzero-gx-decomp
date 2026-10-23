@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import struct
 from pathlib import Path
 
 from . import oracle, poolfix
@@ -90,6 +91,39 @@ def initialized_base_order(p, symbol, body, obj, check):
     return [('native initialized section base before BSS', text)]
 
 
+def legacy_pool_primer_sections(body, obj):
+    """Keep uncalled legacy layout primers out of the function's linked text."""
+    if not obj:
+        return []
+    from .sdkimport import masked
+    elf = poolfix.Elf(Path(obj).read_bytes())
+    code = masked(body)
+    edits = []
+    for helper in elf.symbols():
+        name = helper['name']
+        if (helper['info'] & 15 != 2 or not helper['size']
+                or not 0 < helper['shndx'] < len(elf.sections)
+                or elf.sections[helper['shndx']]['name'] == '.fzgxpool'
+                or not re.fullmatch(r'fzgx_pool_primer_[0-9a-fA-F]+', name)):
+            continue
+        # A callable helper is program behavior, not a discarded layout primer.
+        if len(re.findall(r'\b' + re.escape(name) + r'\b', code)) != 1:
+            continue
+        definition = re.search(r'(?m)^[ \t]*static\s+void\s+' + re.escape(name)
+                               + r'\s*\(\s*void\s*\)\s*\{', code)
+        if definition:
+            edits.append(definition.start())
+    text = body
+    for at in sorted(edits, reverse=True):
+        text = text[:at] + '__declspec(section ".fzgxpool") ' + text[at:]
+    if edits and not re.search(r'#pragma\s+section\s+code_type\s+"\.fzgxpool"', code):
+        # MWCC requires the section to be declared before __declspec uses it.
+        at = min(edits)
+        text = (text[:at] + '#pragma section code_type ".fzgxpool"\n'
+                '#pragma section code_type ".text"\n' + text[at:])
+    return [('place legacy literal-pool primers in discarded section', text)] if edits else []
+
+
 def bss_member_bindings(p, symbol, body, obj, check):
     """Name generated layout pieces using their measured retail subobjects."""
     if not obj or not check.ok:
@@ -160,6 +194,52 @@ def private_data_objects(body, obj, check):
         return []
     text = re.sub(r'\b\w+\b', lambda m: names.get(m[0], m[0]), body)
     return [('private objects in verified shared data section', text)]
+
+
+def unused_pool_objects(p, symbol, body, obj, check):
+    """Identify unreferenced initializer copies left behind proven pool bindings."""
+    if not obj or not check.ok:
+        return []
+    elf = poolfix.Elf(Path(obj).read_bytes())
+    symbols = elf.symbols()
+    bound = {a for a, _, _ in check._pool_pairs}
+    sym = p.resolve(symbol)
+    unit = p.unit_of(sym)
+    retail = p.symbols(sym.module)
+    names = {}
+    for section_name in ('.rodata', '.data'):
+        section = elf.section(section_name)
+        if not section or not any(s['name'] in bound and s['name'].startswith('..' + section_name)
+                                  and s['shndx'] == section['index'] for s in symbols):
+            continue
+        # The oracle replaces bound references and discards primer code. Local
+        # initializer references disappear only if the whole section can go.
+        referenced = set()
+        for reloc in elf.sections:
+            if reloc['type'] != 4 or elf.sections[reloc['info']]['name'] in ('.fzgxpool', section_name):
+                continue
+            for at in range(reloc['offset'], reloc['offset'] + reloc['size'], 12):
+                _, info, _ = struct.unpack_from('>IIi', elf.data, at)
+                target = symbols[info >> 8]
+                if target['name'] not in bound:
+                    referenced.add(target['index'])
+        for own in symbols:
+            name = own['name']
+            if (own['shndx'] != section['index'] or own['info'] & 15 != 1 or not own['size']
+                    or name.startswith(('@', 'fzgx_pool_')) or name in bound
+                    or own['index'] in referenced):
+                continue
+            known = retail.get(name)
+            if known and p.unit_of(known) == unit:
+                continue
+            # Only rename objects defined in this source, never header declarations.
+            if re.search(r'(?m)^(?:static\s+)?(?:const\s+)?[A-Za-z_][\w \t*]*\b' + re.escape(name)
+                         + r'\b\s*(?:\[[^;=]*\])?\s*=', body):
+                names[name] = 'fzgx_pool_' + name
+    if not names:
+        return []
+    text = re.sub(r'\b\w+\b', lambda m: names.get(m[0], m[0]), body)
+    return [('discard unused initializer copies after verified pool binding', text)]
 
 
 def struct_text(tname, text):

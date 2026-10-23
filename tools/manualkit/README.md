@@ -27,6 +27,19 @@ lwz 0x10(rX)`). When retail shows that and ours folds, the unit must define the 
 Then access each field by its object name (struct views through a pointer fold). Landed
 fn_1_A1DCC, fn_1_A1964 (sound TU), fn_10_7130 (sel, 0x51B28 bytes of layout) this way.
 
+**Rank the frontier by words, not percent.** Raw objdiff percentages hide how much is
+left: 99.9% of 700 words is 3 words, 97% of 1200 is 36. `nearlist.py` compiles every
+unmatched function's best saved body with its recorded compiler settings and sorts by
+the *absolute* number of differing words, so the cheapest remaining functions come first
+(and 600-body sweeps of a high percentage band stop looking attractive):
+- `uv run python tools/manualkit/nearlist.py --min-percent 90 .fzgx/nearlist.json`
+
+Pair it with `fzgx stuck --min-percent 90 --json`, which labels each body's residual
+(regalloc / schedule / imm / ext / frame). Measured 2026-10-23: 137 bodies at >=90%, of
+which the sub-5-word tier is ~24 functions and ~20 KB; the single largest is
+`fn_1_7D6B8` (2852 B, 5 rows). Bodies whose residual is one `lis`/`ld` swap are
+MWCC scheduler tie-breaks, not source errors (see docs/MWCC_IDIOMS.md).
+
 Untouched functions and REL literal pools:
 - `uv run python tools/manualkit/liftscan.py OUT.json [MW]` scores every lifter draft
   (`.fzgx/lift/ctx/SYM_total.c`) of an open function; rewrite the best ones by hand from the asm.

@@ -214,7 +214,7 @@ char *fn_1_15BA78(char *name) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_15BA78 */
 
-/* fzgx:begin fn_1_15BB34 pool noprologue */
+/* fzgx:begin fn_1_15BB34 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/bg_win.h"
@@ -230,24 +230,24 @@ typedef struct {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u8 fzgx_obj_lbl_1_bss_8F8E0;
-u8 lbl_1_bss_8F8E0_fill_8F8E1;
-u16 lbl_1_bss_8F8E0_fill_8F8E2;
-u32 lbl_1_bss_8F8E0_fill_8F8E4[7];
-u8 lbl_1_bss_8F8E0_20;
-u8 lbl_1_bss_8F8E0_fill_8F901;
-u16 lbl_1_bss_8F8E0_fill_8F902;
-u32 lbl_1_bss_8F8E0_fill_8F904[31];
+u8 lbl_1_bss_8F8E0__fzgx_offset_1;
+u16 lbl_1_bss_8F8E0__fzgx_offset_2;
+u32 lbl_1_bss_8F8E0__fzgx_offset_4[7];
+u8 lbl_1_bss_8F8E0__fzgx_offset_20;
+u8 lbl_1_bss_8F8E0__fzgx_offset_21;
+u16 lbl_1_bss_8F8E0__fzgx_offset_22;
+u32 lbl_1_bss_8F8E0__fzgx_offset_24[31];
 u8 lbl_1_bss_8F980;
-u8 lbl_1_bss_8F980_fill_8F981;
-u16 lbl_1_bss_8F980_fill_8F982;
-u32 lbl_1_bss_8F980_fill_8F984[7];
+u8 lbl_1_bss_8F980__fzgx_offset_1;
+u16 lbl_1_bss_8F980__fzgx_offset_2;
+u32 lbl_1_bss_8F980__fzgx_offset_4[7];
 u8 lbl_1_bss_8F9A0;
-u8 lbl_1_bss_8F9A0_fill_8F9A1;
-u16 lbl_1_bss_8F9A0_fill_8F9A2;
-u32 lbl_1_bss_8F9A0_fill_8F9A4[239];
+u8 lbl_1_bss_8F9A0__fzgx_offset_1;
+u16 lbl_1_bss_8F9A0__fzgx_offset_2;
+u32 lbl_1_bss_8F9A0__fzgx_offset_4[239];
 u32 lbl_1_bss_8FD60;
-u16 lbl_1_bss_8FD60_4;
-u16 lbl_1_bss_8FD60_6;
+u16 lbl_1_bss_8FD60__fzgx_offset_4;
+u16 lbl_1_bss_8FD60__fzgx_offset_6;
 u32 fzgx_obj_lbl_1_bss_8FD68[16];
 u32 fzgx_obj_lbl_1_bss_8FDA8[53];
 
@@ -255,24 +255,24 @@ u32 fzgx_obj_lbl_1_bss_8FDA8[53];
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8F8E0;
-    s = *(u8 *)&lbl_1_bss_8F8E0_fill_8F8E1;
-    s = *(u8 *)&lbl_1_bss_8F8E0_fill_8F8E2;
-    s = *(u8 *)&lbl_1_bss_8F8E0_fill_8F8E4;
-    s = *(u8 *)&lbl_1_bss_8F8E0_20;
-    s = *(u8 *)&lbl_1_bss_8F8E0_fill_8F901;
-    s = *(u8 *)&lbl_1_bss_8F8E0_fill_8F902;
-    s = *(u8 *)&lbl_1_bss_8F8E0_fill_8F904;
+    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_20;
+    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_21;
+    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_22;
+    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_24;
     s = *(u8 *)&lbl_1_bss_8F980;
-    s = *(u8 *)&lbl_1_bss_8F980_fill_8F981;
-    s = *(u8 *)&lbl_1_bss_8F980_fill_8F982;
-    s = *(u8 *)&lbl_1_bss_8F980_fill_8F984;
+    s = *(u8 *)&lbl_1_bss_8F980__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_8F980__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_8F980__fzgx_offset_4;
     s = *(u8 *)&lbl_1_bss_8F9A0;
-    s = *(u8 *)&lbl_1_bss_8F9A0_fill_8F9A1;
-    s = *(u8 *)&lbl_1_bss_8F9A0_fill_8F9A2;
-    s = *(u8 *)&lbl_1_bss_8F9A0_fill_8F9A4;
+    s = *(u8 *)&lbl_1_bss_8F9A0__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_8F9A0__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_8F9A0__fzgx_offset_4;
     s = *(u8 *)&lbl_1_bss_8FD60;
-    s = *(u8 *)&lbl_1_bss_8FD60_4;
-    s = *(u8 *)&lbl_1_bss_8FD60_6;
+    s = *(u8 *)&lbl_1_bss_8FD60__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_8FD60__fzgx_offset_6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8FD68;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8FDA8;
 }
@@ -284,15 +284,15 @@ void fn_1_15BB34(void *value) {
     u16 unk_486;
 
     fn_80008BEC((u8 *)&fzgx_obj_lbl_1_bss_8F8E0, 0, 0x20);
-    fn_80008BEC((u8 *)&lbl_1_bss_8F8E0_20, 0, 0x20);
+    fn_80008BEC((u8 *)&lbl_1_bss_8F8E0__fzgx_offset_20, 0, 0x20);
     fn_80008BEC((u8 *)&lbl_1_bss_8F980, 0, 0x20);
     fn_80008BEC((u8 *)&lbl_1_bss_8F9A0, 0, 0x3c0);
 
     unk_484 = 0xffff;
     unk_486 = 0;
     lbl_1_bss_8FD60 = (u32)value;
-    lbl_1_bss_8FD60_4 = unk_484;
-    lbl_1_bss_8FD60_6 = unk_486;
+    lbl_1_bss_8FD60__fzgx_offset_4 = unk_484;
+    lbl_1_bss_8FD60__fzgx_offset_6 = unk_486;
 }
 /* fzgx:end fn_1_15BB34 */
 
@@ -1713,7 +1713,22 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
 #pragma opt_strength_reduction reset
 /* fzgx:end fn_1_15E7F4 */
 
-/* fzgx:begin fn_1_15EC40 pool */
+/* fzgx:begin fn_1_15EC40 */
+extern u32 lbl_1_bss_8FD60[2];
+extern int fn_1_15BCDC(void *);
+extern void fn_1_4060(void);
+
+extern u32 lbl_1_bss_8FE80[8];
+
+extern void *fn_1_435C(void *);
+extern void fn_1_15E220(u8 *value);
+extern void fn_1_3F8C(void *, void *, u8 *, s32);
+extern u32 lbl_1_bss_8FEA0;
+extern u8 lbl_1_bss_8FE7C;
+extern u32 strlen(const char *str);
+extern s32 fn_8006FC1C(const char *a, const char *b);
+extern void fn_1_15E1E8(u8 *value);
+
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -1832,26 +1847,26 @@ struct fn_1_15EC40_lbl_1_rodata_DD58 {
     f32 unk_188;
     f32 unk_18C;
 };
-const u8 lbl_1_rodata_DD58[4] = {0x49,0x74,0x24,0x00};
-const f64 lbl_1_rodata_DD60 = 4503601774854144.0;
-const u8 lbl_1_rodata_DD60__fzgx_offset_8[4] = {0xFF,0xFF,0xFF,0x00};
-const u8 lbl_1_rodata_DD6C[8] = {0x43,0xA0,0x00,0x00,0x43,0x70,0x00,0x00};
-const f32 lbl_1_rodata_DD6C__fzgx_offset_8 = 1.0f;
-const f32 lbl_1_rodata_DD6C__fzgx_offset_C = 0.800000012f;
-const u8 lbl_1_rodata_DD6C__fzgx_offset_10[24] = {0x43,0xE8,0x00,0x00,0x40,0xA0,0x00,0x00,0x3F,0x33,0x33,0x33,0x43,0x7F,0x00,0x00,0x40,0x53,0x33,0x33,0x41,0xA0,0x00,0x00};
-const f32 lbl_1_rodata_DD6C__fzgx_offset_28 = 0.5f;
-const u8 lbl_1_rodata_DD98[172] = {0x00,0x00,0x00,0x00,0x44,0x48,0x00,0x00,0x42,0x28,0x00,0x00,0x41,0xF0,0x00,0x00,0x46,0x80,0x00,0x00,0x47,0x00,0x00,0x00,0x3A,0x83,0x12,0x6F,0x40,0x40,0x00,0x00,0x41,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x4B,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0x4C,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x23,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0x98,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x4B,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0x4C,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x23,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0xE4,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x4B,0x00,0x00,0x00,0x64,0x00,0x00,0x01,0x30,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x4B,0x00,0x00,0x00,0x64,0x42,0xF0,0x00,0x00,0x41,0x20,0x00,0x00,0x40,0x00,0x00,0x00,0xC1,0x20,0x00,0x00,0x3E,0x80,0x00,0x00,0x42,0xC8,0x00,0x00,0x42,0x70,0x00,0x00,0x45,0xA0,0x00,0x00,0x3F,0xC0,0x00,0x00,0x43,0x50,0x00,0x00};
-const f32 lbl_1_rodata_DD98__fzgx_offset_AC = 0.899999976f;
-const u8 lbl_1_rodata_DD98__fzgx_offset_B0[8] = {0x42,0x48,0x00,0x00,0x43,0xB9,0x00,0x00};
-const u8 lbl_1_rodata_DE50[16] = {0x43,0x00,0x00,0x00,0x43,0x16,0x00,0x00,0x3E,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-const f64 lbl_1_rodata_DE50__fzgx_offset_10 = 4503599627370496.0;
-const u8 lbl_1_rodata_DE50__fzgx_offset_18[96] = {0x00,0x00,0x00,0x0F,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x0D,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x80,0x00,0x00,0x3F,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x80,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x80,0x00,0x00,0x3F,0x80,0x00,0x00,0x42,0x20,0x00,0x00,0x43,0xAF,0x00,0x00,0x3F,0xB3,0x33,0x33,0x42,0xB4,0x00,0x00};
-const f32 lbl_1_rodata_DE50__fzgx_offset_78 = 15.0f;
-const u8 lbl_1_rodata_DE50__fzgx_offset_7C[4] = {0x43,0x96,0x00,0x00};
-const f32 lbl_1_rodata_DE50__fzgx_offset_8C = 0.88499999f;
-const f32 lbl_1_rodata_DE50__fzgx_offset_90 = 315.0f;
-const f32 lbl_1_rodata_DE50__fzgx_offset_94 = 250.0f;
-const u8 lbl_1_rodata_DE50__fzgx_offset_98[4] = {0x3C,0x23,0xD7,0x0A};
+const u8 fzgx_pool_lbl_1_rodata_DD58[4] = {0x49,0x74,0x24,0x00};
+const f64 fzgx_pool_lbl_1_rodata_DD60 = 4503601774854144.0;
+const u8 fzgx_pool_lbl_1_rodata_DD60__fzgx_offset_8[4] = {0xFF,0xFF,0xFF,0x00};
+const u8 fzgx_pool_lbl_1_rodata_DD6C[8] = {0x43,0xA0,0x00,0x00,0x43,0x70,0x00,0x00};
+const f32 fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_8 = 1.0f;
+const f32 fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_C = 0.800000012f;
+const u8 fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_10[24] = {0x43,0xE8,0x00,0x00,0x40,0xA0,0x00,0x00,0x3F,0x33,0x33,0x33,0x43,0x7F,0x00,0x00,0x40,0x53,0x33,0x33,0x41,0xA0,0x00,0x00};
+const f32 fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_28 = 0.5f;
+const u8 fzgx_pool_lbl_1_rodata_DD98[172] = {0x00,0x00,0x00,0x00,0x44,0x48,0x00,0x00,0x42,0x28,0x00,0x00,0x41,0xF0,0x00,0x00,0x46,0x80,0x00,0x00,0x47,0x00,0x00,0x00,0x3A,0x83,0x12,0x6F,0x40,0x40,0x00,0x00,0x41,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x4B,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0x4C,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x23,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0x98,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x4B,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0x4C,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x23,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0xE4,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x4B,0x00,0x00,0x00,0x64,0x00,0x00,0x01,0x30,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x4B,0x00,0x00,0x00,0x64,0x42,0xF0,0x00,0x00,0x41,0x20,0x00,0x00,0x40,0x00,0x00,0x00,0xC1,0x20,0x00,0x00,0x3E,0x80,0x00,0x00,0x42,0xC8,0x00,0x00,0x42,0x70,0x00,0x00,0x45,0xA0,0x00,0x00,0x3F,0xC0,0x00,0x00,0x43,0x50,0x00,0x00};
+const f32 fzgx_pool_lbl_1_rodata_DD98__fzgx_offset_AC = 0.899999976f;
+const u8 fzgx_pool_lbl_1_rodata_DD98__fzgx_offset_B0[8] = {0x42,0x48,0x00,0x00,0x43,0xB9,0x00,0x00};
+const u8 fzgx_pool_lbl_1_rodata_DE50[16] = {0x43,0x00,0x00,0x00,0x43,0x16,0x00,0x00,0x3E,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+const f64 fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_10 = 4503599627370496.0;
+const u8 fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_18[96] = {0x00,0x00,0x00,0x0F,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x0D,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x80,0x00,0x00,0x3F,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x80,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x3F,0x80,0x00,0x00,0x3F,0x80,0x00,0x00,0x42,0x20,0x00,0x00,0x43,0xAF,0x00,0x00,0x3F,0xB3,0x33,0x33,0x42,0xB4,0x00,0x00};
+const f32 fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_78 = 15.0f;
+const u8 fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_7C[4] = {0x43,0x96,0x00,0x00};
+const f32 fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_8C = 0.88499999f;
+const f32 fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_90 = 315.0f;
+const f32 fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_94 = 250.0f;
+const u8 fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_98[4] = {0x3C,0x23,0xD7,0x0A};
 extern f32 fn_1_519FC(f32);
 extern f32 fn_1_51AC0(f32);
 extern u32 fn_1_58C4(void);
@@ -1926,14 +1941,14 @@ void fn_1_15EC40(struct fn_1_15EC40_Arg0 *arg0) {
     
     positive = 1;
     if (v0 > 45) {
-        v2 = (f32)(s32)(60 - v0) / lbl_1_rodata_DE50__fzgx_offset_78;
-        v3 = lbl_1_rodata_DD6C__fzgx_offset_28 * v2;
+        v2 = (f32)(s32)(60 - v0) / fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_78;
+        v3 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_28 * v2;
     } else if (v0 < 15) {
-        v2 = (f32)(u32)v0 / lbl_1_rodata_DE50__fzgx_offset_78;
-        v3 = lbl_1_rodata_DD6C__fzgx_offset_28 * v2;
+        v2 = (f32)(u32)v0 / fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_78;
+        v3 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_28 * v2;
     } else {
-        v3 = lbl_1_rodata_DD6C__fzgx_offset_28;
-        v2 = lbl_1_rodata_DD6C__fzgx_offset_8;
+        v3 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_28;
+        v2 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_8;
     }
     if (arg0->unk_0 & 8) {
         v7 = (arg0->unk_8 - 1) % 4;
@@ -1962,22 +1977,38 @@ void fn_1_15EC40(struct fn_1_15EC40_Arg0 *arg0) {
     fn_1_495B0(0x80000000);
     fn_1_495A0(v3);
     tmp_fn_1_58C4 = fn_1_58C4();
-    if (tmp_fn_1_58C4 == 1) v30 = lbl_1_rodata_DD6C__fzgx_offset_8;
-    else v30 = lbl_1_rodata_DD6C__fzgx_offset_C;
+    if (tmp_fn_1_58C4 == 1) v30 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_8;
+    else v30 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_C;
     tmp_fn_1_58C4 = fn_1_58C4();
-    if (tmp_fn_1_58C4 == 1) v31 = lbl_1_rodata_DD6C__fzgx_offset_8;
-    else v31 = lbl_1_rodata_DD6C__fzgx_offset_C;
-    fn_1_4955C(fn_1_15EC40_operand((lbl_1_rodata_DE50__fzgx_offset_8C * v2), (v31)), lbl_1_rodata_DD98__fzgx_offset_AC * v30);
-    v32.value = fn_1_51AC0(lbl_1_rodata_DE50__fzgx_offset_94);
-    fn_1_496FC(fn_1_519FC(lbl_1_rodata_DE50__fzgx_offset_90), v32.value);
+    if (tmp_fn_1_58C4 == 1) v31 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_8;
+    else v31 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_C;
+    fn_1_4955C(fn_1_15EC40_operand((fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_8C * v2), (v31)), fzgx_pool_lbl_1_rodata_DD98__fzgx_offset_AC * v30);
+    v32.value = fn_1_51AC0(fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_94);
+    fn_1_496FC(fn_1_519FC(fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_90), v32.value);
     fn_1_4AE0C((const char *)"%c%02d<%02d=%03d", v29 & 0xFF, (v6 >> 20) & 0xFF, (v6 >> 12) & 0xFF, v6 & 0xFFF);
     loc_8 = fzgx_pool_table14[0];
     fn_1_49514(&loc_8);
 }
 /* fzgx:end fn_1_15EC40 */
 
-/* fzgx:begin fn_1_15EFEC pool */
+/* fzgx:begin fn_1_15EFEC */
 #include "font.h"
+
+extern u32 lbl_1_bss_8FD60[2];
+extern int fn_1_15BCDC(void *);
+extern void fn_1_4060(void);
+
+extern u32 lbl_1_bss_8FE80[8];
+
+extern void *fn_1_435C(void *);
+extern void fn_1_15E220(u8 *value);
+extern void fn_1_3F8C(void *, void *, u8 *, s32);
+extern u32 lbl_1_bss_8FEA0;
+extern u8 lbl_1_bss_8FE7C;
+extern u32 strlen(const char *str);
+extern s32 fn_8006FC1C(const char *a, const char *b);
+extern void fn_1_15E1E8(u8 *value);
+
 
 struct fn_1_15EFEC_lbl_1_rodata_DD58 {
  u8 pad_0[8]; f64 unk_8; u8 pad_10[4]; f32 unk_14; u8 pad_18[4]; f32 unk_1C; f32 unk_20;
@@ -1987,19 +2018,19 @@ struct fn_1_15EFEC_lbl_1_rodata_DD58 {
 /* Shared literal-pool primer: lays the TU's pool out in retail order so this
  * function's literals land on the retail offsets. Dropped at integration. */
 #pragma section code_type ".fzgxpool"
-static const u32 lbl_1_rodata_DD58[2] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_lbl_1_rodata_DD58[2] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x49742400, 0x00000000
 };
 static void fzgx_fn_1_15EFEC_pool_8(void) {
  volatile f64 value = 4503601774854144.0; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_10[1] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_10[1] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0xFFFFFF00
 };
 static void fzgx_fn_1_15EFEC_pool_14(void) {
  volatile f32 value = 320.0f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_18[1] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_18[1] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x43700000
 };
 static void fzgx_fn_1_15EFEC_pool_1c(void) {
@@ -2008,19 +2039,19 @@ static void fzgx_fn_1_15EFEC_pool_1c(void) {
 static void fzgx_fn_1_15EFEC_pool_20(void) {
  volatile f32 value = 0.800000011920929f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_24[3] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_24[3] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x43E80000, 0x40A00000, 0x3F333333
 };
 static void fzgx_fn_1_15EFEC_pool_30(void) {
  volatile f32 value = 255.0f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_34[2] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_34[2] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x40533333, 0x41A00000
 };
 static void fzgx_fn_1_15EFEC_pool_3c(void) {
  volatile f32 value = 0.5f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_40[6] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_40[6] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x00000000, 0x44480000, 0x42280000, 0x41F00000, 0x46800000, 0x47000000
 };
 static void fzgx_fn_1_15EFEC_pool_58(void) {
@@ -2029,19 +2060,19 @@ static void fzgx_fn_1_15EFEC_pool_58(void) {
 static void fzgx_fn_1_15EFEC_pool_5c(void) {
  volatile f32 value = 3.0f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_60[33] = {
+static const u32 fzgx_pool_pool_pad_60[33] = {
  0x41000000, 0x00000000, 0x00000000, 0x0000004B, 0x00000064, 0x0000004C, 0x00000000, 0x00000023, 0x00000064, 0x00000098, 0x00000000, 0x0000004B, 0x00000064, 0x0000004C, 0x00000000, 0x00000023, 0x00000064, 0x000000E4, 0x00000000, 0x0000004B, 0x00000064, 0x00000130, 0x00000000, 0x0000004B, 0x00000064, 0x42F00000, 0x41200000, 0x40000000, 0xC1200000, 0x3E800000, 0x42C80000, 0x42700000, 0x45A00000 /* fzgx-allow: A1 exact retail literal-pool bytes (-10.0f) */
 };
 static void fzgx_fn_1_15EFEC_pool_e4(void) {
  volatile f32 value = 1.5f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_e8[1] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_e8[1] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x43500000
 };
 static void fzgx_fn_1_15EFEC_pool_ec(void) {
  volatile f32 value = 0.8999999761581421f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_f0[3] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_f0[3] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x42480000, 0x43B90000, 0x43000000
 };
 static void fzgx_fn_1_15EFEC_pool_fc(void) {
@@ -2050,13 +2081,13 @@ static void fzgx_fn_1_15EFEC_pool_fc(void) {
 static void fzgx_fn_1_15EFEC_pool_100(void) {
  volatile f32 value = 0.125f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_104[1] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_104[1] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x00000000
 };
 static void fzgx_fn_1_15EFEC_pool_108(void) {
  volatile f64 value = 4503599627370496.0; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_110[24] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_110[24] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x0000000F, 0x00000007, 0x0000000D, 0x00000005, 0x00000000, 0x00000000, 0x3F000000, 0x3F000000, 0x00000000, 0x3F000000, 0x3F000000, 0x3F800000, 0x3F000000, 0x00000000, 0x3F800000, 0x3F000000, 0x3F000000, 0x3F000000, 0x3F800000, 0x3F800000, 0x42200000, 0x43AF0000, 0x3FB33333, 0x42B40000
 };
 static void fzgx_fn_1_15EFEC_pool_170(void) {
@@ -2065,7 +2096,7 @@ static void fzgx_fn_1_15EFEC_pool_170(void) {
 static void fzgx_fn_1_15EFEC_pool_174(void) {
  volatile f32 value = 300.0f; /* volatile: materializes this shared-pool constant before the next data object */
 }
-static const u32 pool_pad_178[6] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
+static const u32 fzgx_pool_pool_pad_178[6] = { /* fzgx-allow: A1 exact retail literal-pool bytes */
  0x00FF0000, 0xE60000FF, 0xFFFFFF00, 0x3F628F5C, 0x439D8000, 0x437A0000
 };
 static void fzgx_fn_1_15EFEC_pool_190(void) {

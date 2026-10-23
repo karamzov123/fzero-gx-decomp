@@ -3059,7 +3059,7 @@ s32 fn_1_818AC(fn_1_818AC_Obj *a, fn_1_818AC_Obj *b) {
 }
 /* fzgx:end fn_1_818AC */
 
-/* fzgx:begin fn_1_82724 pool noprologue */
+/* fzgx:begin fn_1_82724 noprologue */
 #include "dolphin/types.h"
 #include "types.h"
 #include "types.h"
@@ -3262,23 +3262,23 @@ u32 fzgx_obj_lbl_1_bss_6D820;
 u32 fzgx_obj_lbl_1_bss_6D824;
 void *lbl_1_bss_6D828;
 u32 fzgx_obj_lbl_1_bss_6D82C;
-u32 lbl_1_bss_6D82C_4;
-u32 lbl_1_bss_6D82C_8;
+u32 lbl_1_bss_6D82C__fzgx_offset_4;
+u32 lbl_1_bss_6D82C__fzgx_offset_8;
 CarRuntime *fzgx_obj_lbl_1_bss_6D838;
 CarInitObject *fzgx_obj_lbl_1_bss_6D83C;
-void *lbl_1_bss_6D83C_4;
-CarShadow *lbl_1_bss_6D83C_8;
-s16 lbl_1_bss_6D83C_C;
+void *lbl_1_bss_6D83C__fzgx_offset_4;
+CarShadow *lbl_1_bss_6D83C__fzgx_offset_8;
+s16 lbl_1_bss_6D83C__fzgx_offset_C;
 s8 fzgx_obj_lbl_1_bss_6D84A;
-u8 lbl_1_bss_6D84A_fill_6D84B;
-u32 lbl_1_bss_6D84A_fill_6D84C;
+u8 lbl_1_bss_6D84A__fzgx_offset_1;
+u32 lbl_1_bss_6D84A__fzgx_offset_2;
 u32 lbl_1_bss_6D850;
 u8 lbl_1_bss_6D854;
-u8 lbl_1_bss_6D854_fill_6D855;
-u16 lbl_1_bss_6D854_fill_6D856;
-u32 lbl_1_bss_6D854_4;
-void *lbl_1_bss_6D854_8;
-u32 lbl_1_bss_6D854_fill_6D860;
+u8 lbl_1_bss_6D854__fzgx_offset_1;
+u16 lbl_1_bss_6D854__fzgx_offset_2;
+u32 lbl_1_bss_6D854__fzgx_offset_4;
+void *lbl_1_bss_6D854__fzgx_offset_8;
+u32 lbl_1_bss_6D854__fzgx_offset_C;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -3287,23 +3287,23 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D824;
     s = *(u8 *)&lbl_1_bss_6D828;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D82C;
-    s = *(u8 *)&lbl_1_bss_6D82C_4;
-    s = *(u8 *)&lbl_1_bss_6D82C_8;
+    s = *(u8 *)&lbl_1_bss_6D82C__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6D82C__fzgx_offset_8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D838;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D83C;
-    s = *(u8 *)&lbl_1_bss_6D83C_4;
-    s = *(u8 *)&lbl_1_bss_6D83C_8;
-    s = *(u8 *)&lbl_1_bss_6D83C_C;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_8;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D84A;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84B;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84C;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_6D850;
     s = *(u8 *)&lbl_1_bss_6D854;
-    s = *(u8 *)&lbl_1_bss_6D854_fill_6D855;
-    s = *(u8 *)&lbl_1_bss_6D854_fill_6D856;
-    s = *(u8 *)&lbl_1_bss_6D854_4;
-    s = *(u8 *)&lbl_1_bss_6D854_8;
-    s = *(u8 *)&lbl_1_bss_6D854_fill_6D860;
+    s = *(u8 *)&lbl_1_bss_6D854__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_6D854__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_6D854__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6D854__fzgx_offset_8;
+    s = *(u8 *)&lbl_1_bss_6D854__fzgx_offset_C;
 }
 #pragma section code_type ".text"
 
@@ -3325,33 +3325,33 @@ void fn_1_82724(void *arg0, void *arg1, CarInitInput *input, u32 count, u32 arg4
 
     lbl_1_bss_6D854 = 0;
     if (lbl_1_bss_960 == 9 && lbl_1_bss_9C == 6) {
-        lbl_1_bss_6D854_4 = 1;
+        lbl_1_bss_6D854__fzgx_offset_4 = 1;
         fn_1_8E188();
     } else {
-        lbl_1_bss_6D854_4 = 0;
+        lbl_1_bss_6D854__fzgx_offset_4 = 0;
     }
     {
-        pair.value = (struct ResourcePair *)&lbl_1_bss_6D854_8;
+        pair.value = (struct ResourcePair *)&lbl_1_bss_6D854__fzgx_offset_8;
         if (pair.value->archive == 0) {
-            lbl_1_bss_6D854_8 = fn_1_12ADA0(data + 0x13d0, pair.value->archive = fn_1_12AC00(data + 0x13bc));
+            lbl_1_bss_6D854__fzgx_offset_8 = fn_1_12ADA0(data + 0x13d0, pair.value->archive = fn_1_12AC00(data + 0x13bc));
         }
     }
     if (count > 30)
         count = 30;
-    if (fzgx_obj_lbl_1_bss_6D83C == 0 && lbl_1_bss_6D83C_8 == 0) {
+    if (fzgx_obj_lbl_1_bss_6D83C == 0 && lbl_1_bss_6D83C__fzgx_offset_8 == 0) {
     u32 *heap = &lbl_801A6410;
-    lbl_1_bss_6D82C_8 = 0;
-    lbl_1_bss_6D82C_4 = 0;
+    lbl_1_bss_6D82C__fzgx_offset_8 = 0;
+    lbl_1_bss_6D82C__fzgx_offset_4 = 0;
     fzgx_obj_lbl_1_bss_6D83C = fn_1_4630(*heap, count * 0x440, data + 0xe18, 0x7a1);
     for (i = 0; i < count; i++)
         fzgx_obj_lbl_1_bss_6D83C[i].sentinel = -1;
-    lbl_1_bss_6D83C_C = 0;
+    lbl_1_bss_6D83C__fzgx_offset_C = 0;
     for (i = 0; i < count; i++) {
         if (input[i].flags & 0x04000000)
-            lbl_1_bss_6D83C_C++;
+            lbl_1_bss_6D83C__fzgx_offset_C++;
     }
-    if (lbl_1_bss_6D83C_C != 0) {
-        lbl_1_bss_6D83C_4 = fn_1_4630(lbl_801A6410, lbl_1_bss_6D83C_C * 0xa20, data + 0xe18, 0x7aa);
+    if (lbl_1_bss_6D83C__fzgx_offset_C != 0) {
+        lbl_1_bss_6D83C__fzgx_offset_4 = fn_1_4630(lbl_801A6410, lbl_1_bss_6D83C__fzgx_offset_C * 0xa20, data + 0xe18, 0x7aa);
     }
     fn_1_818BC(input, count, arg4);
     qsort(fzgx_obj_lbl_1_bss_6D83C, count, 0x440, fn_1_818AC);
@@ -3372,7 +3372,7 @@ void fn_1_82724(void *arg0, void *arg1, CarInitInput *input, u32 count, u32 arg4
     shadow = fn_1_4630(lbl_801A6410, count * 0x4c, data + 0xe18, 0x7cc);
     {
         int shadowMode = fzgx_obj_lbl_1_bss_6D84A;
-        lbl_1_bss_6D83C_8 = shadow;
+        lbl_1_bss_6D83C__fzgx_offset_8 = shadow;
         fn_1_5672C(shadow, shadowMode);
     }
     fn_1_A7294(fzgx_obj_lbl_1_bss_6D83C, count);
@@ -3395,7 +3395,7 @@ void fn_1_82724(void *arg0, void *arg1, CarInitInput *input, u32 count, u32 arg4
     }
     {
     runtimeBase = fzgx_obj_lbl_1_bss_6D838;
-    shadowBase = lbl_1_bss_6D83C_8;
+    shadowBase = lbl_1_bss_6D83C__fzgx_offset_8;
     objectBase = fzgx_obj_lbl_1_bss_6D83C;
     for (i = 0; i < count; i++, runtimeBase++, shadowBase++, objectBase++) {
         fn_1_435C(arg0);
@@ -4153,7 +4153,7 @@ void fn_1_8365C(s32 enabled) {
 }
 /* fzgx:end fn_1_8365C */
 
-/* fzgx:begin fn_1_83858 pool noprologue */
+/* fzgx:begin fn_1_83858 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 
@@ -4335,15 +4335,15 @@ u32 lbl_1_bss_6D828;
 u32 fzgx_obj_lbl_1_bss_6D82C[3];
 u32 fzgx_obj_lbl_1_bss_6D838;
 u32 fzgx_obj_lbl_1_bss_6D83C[3];
-u16 lbl_1_bss_6D83C_fill_6D848;
+u16 lbl_1_bss_6D83C__fzgx_offset_C;
 u16 fzgx_obj_lbl_1_bss_6D84A;
-u32 lbl_1_bss_6D84A_fill_6D84C;
+u32 lbl_1_bss_6D84A__fzgx_offset_2;
 u32 lbl_1_bss_6D850;
 u32 lbl_1_bss_6D854[4];
 u32 fzgx_obj_lbl_1_bss_6D864;
 u8 fzgx_obj_lbl_1_bss_6D868;
-u8 lbl_1_bss_6D820_gap_6D869;
-u16 lbl_1_bss_6D820_gap_6D869_fill_6D86A;
+u8 fzgx_pool_lbl_1_bss_6D820_gap_6D869;
+u16 fzgx_pool_lbl_1_bss_6D820_gap_6D869_fill_6D86A;
 u32 lbl_1_bss_6D86C[34];
 lbl_1_bss_6D8F4_t lbl_1_bss_6D8F4;
 u32 lbl_1_bss_6D970;
@@ -4359,15 +4359,15 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D82C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D838;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D83C;
-    s = *(u8 *)&lbl_1_bss_6D83C_fill_6D848;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D84A;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84C;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_6D850;
     s = *(u8 *)&lbl_1_bss_6D854;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D864;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D868;
-    s = *(u8 *)&lbl_1_bss_6D820_gap_6D869;
-    s = *(u8 *)&lbl_1_bss_6D820_gap_6D869_fill_6D86A;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D820_gap_6D869;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D820_gap_6D869_fill_6D86A;
     s = *(u8 *)&lbl_1_bss_6D86C;
     s = *(u8 *)&lbl_1_bss_6D8F4;
     s = *(u8 *)&lbl_1_bss_6D970;
@@ -5376,7 +5376,7 @@ racer->flags &= ~0x200000;
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_850C4 */
 
-/* fzgx:begin fn_1_854D4 pool noprologue */
+/* fzgx:begin fn_1_854D4 noprologue */
 #include "rel/main_rel/car.h"
 
 extern u32 lbl_801A6410;
@@ -5870,21 +5870,21 @@ u32 lbl_1_bss_6D828;
 u32 fzgx_obj_lbl_1_bss_6D82C[3];
 Car *fzgx_obj_lbl_1_bss_6D838;
 u32 fzgx_obj_lbl_1_bss_6D83C[3];
-u16 lbl_1_bss_6D83C_fill_6D848;
+u16 lbl_1_bss_6D83C__fzgx_offset_C;
 s8 fzgx_obj_lbl_1_bss_6D84A;
-u8 lbl_1_bss_6D84A_fill_6D84B;
-u32 lbl_1_bss_6D84A_fill_6D84C;
+u8 lbl_1_bss_6D84A__fzgx_offset_1;
+u32 lbl_1_bss_6D84A__fzgx_offset_2;
 u32 lbl_1_bss_6D850;
 u32 lbl_1_bss_6D854[4];
 u32 fzgx_obj_lbl_1_bss_6D864;
 u8 fzgx_obj_lbl_1_bss_6D868;
-u8 lbl_1_bss_6D820_gap_6D869;
-u16 lbl_1_bss_6D820_gap_6D869_fill_6D86A;
+u8 fzgx_pool_lbl_1_bss_6D820_gap_6D869;
+u16 fzgx_pool_lbl_1_bss_6D820_gap_6D869_fill_6D86A;
 u32 lbl_1_bss_6D86C[34];
 u32 lbl_1_bss_6D8F4[30];
-u8 lbl_1_bss_6D8F4_78;
-u8 lbl_1_bss_6D8F4_fill_6D96D;
-u16 lbl_1_bss_6D8F4_fill_6D96E;
+u8 lbl_1_bss_6D8F4__fzgx_offset_78;
+u8 lbl_1_bss_6D8F4__fzgx_offset_79;
+u16 lbl_1_bss_6D8F4__fzgx_offset_7A;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -5895,21 +5895,21 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D82C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D838;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D83C;
-    s = *(u8 *)&lbl_1_bss_6D83C_fill_6D848;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D84A;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84B;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84C;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_6D850;
     s = *(u8 *)&lbl_1_bss_6D854;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D864;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D868;
-    s = *(u8 *)&lbl_1_bss_6D820_gap_6D869;
-    s = *(u8 *)&lbl_1_bss_6D820_gap_6D869_fill_6D86A;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D820_gap_6D869;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D820_gap_6D869_fill_6D86A;
     s = *(u8 *)&lbl_1_bss_6D86C;
     s = *(u8 *)&lbl_1_bss_6D8F4;
-    s = *(u8 *)&lbl_1_bss_6D8F4_78;
-    s = *(u8 *)&lbl_1_bss_6D8F4_fill_6D96D;
-    s = *(u8 *)&lbl_1_bss_6D8F4_fill_6D96E;
+    s = *(u8 *)&lbl_1_bss_6D8F4__fzgx_offset_78;
+    s = *(u8 *)&lbl_1_bss_6D8F4__fzgx_offset_79;
+    s = *(u8 *)&lbl_1_bss_6D8F4__fzgx_offset_7A;
 }
 #pragma section code_type ".text"
 
@@ -5959,11 +5959,586 @@ void fn_1_854D4(void) {
     fn_1_46B4(lbl_801A6410, (u32)fzgx_obj_lbl_1_bss_6D838, ((char *)(((u8 *)fzgx_pool_data_lbl_1_data_1FFF0))), 0xdeb);
     fzgx_obj_lbl_1_bss_6D838 = 0;
     fzgx_obj_lbl_1_bss_6D84A = 0;
-    lbl_1_bss_6D8F4_78 = 0;
+    lbl_1_bss_6D8F4__fzgx_offset_78 = 0;
 }
 /* fzgx:end fn_1_854D4 */
 
-/* fzgx:begin fn_1_85688 pool */
+/* fzgx:begin fn_1_85688 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+typedef struct {
+    u32 w[45];
+} Unk_23800000;
+
+typedef struct {
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+typedef struct {
+    u8 **unk_00;
+    void *unk_04;
+    u32 pad_08;
+} Fn1_87448_Slot;
+
+typedef struct {
+    u8 pad_00[0x330];
+    u32 unk_330;
+    Fn1_87448_Slot unk_334[1];
+} Fn1_87448_Obj;
+
+typedef struct {
+    u8 pad_00[2];
+    s8 unk_02;
+} Fn1_87448_Arg1;
+extern void fn_1_801F8(s16 arg0, void *arg1);
+extern s32 fn_1_46C70();
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern Unk_23800000 lbl_23800000[];
+extern u8* fn_1_36AD0();
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern u32 lbl_801A6410;
+extern void fn_1_56858(void *, int);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_12A734(s32 value);
+extern void fn_1_7F658(void *arg0);
+extern void fn_1_591A0(s32 id);
+extern void fn_1_8E1E8(void);
+extern void fn_1_FDFF4(void);
+extern u32 fn_80071718(u32);
+extern void fn_800711A8(u32 value);
+extern void _savegpr_27(void);
+extern void _restgpr_27(void);
+extern void OSReport(const char *format, ...);
+extern f32 lbl_1_rodata_3508[];
+extern int fn_1_20A5C(f32 *, f32 *);
+extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
+extern u8 * fn_1_14F04(void);
+extern void fn_1_17920(int, int, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void fn_1_892FC(void *arg0, int arg1, int arg2);
+extern void fn_1_23500();
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3530[22];
+extern u32 lbl_8006DBE4(void);
+extern void lbl_8006DFC4(void *arg0);
+extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_80072558(void);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_8B9B8(void *);
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern s32 fn_1_F7BE4();
+extern u8 lbl_1_rodata_3D34[164];
+extern s32 fn_1_45D0();
+extern void fn_1_C487C();
+extern void fn_1_43E8(u32 arg0);
+extern void fn_1_C4ABC(void);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_43F4(void);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_800713E0(struct Sig_fn_800713E0_fn_800713E0_Arg0 *, u32);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_A8F40(u8 arg0);
+extern s32 fn_1_41418(void *resource, u16 id);
+extern void fn_1_95210(void *arg0);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(u32, u32);
+extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
+extern const f32 lbl_1_rodata_3F6C;
+extern u8 *lbl_801A6D00;
+extern void mathutil_mtxA_rotate_y(int value);
+extern void mathutil_mtxA_rotate_z(int value);
+extern void lbl_8006D758(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E14C(f32 arg0);
+extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void *base, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern const f32 lbl_1_rodata_3E48[];
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void fn_1_150464(u32 arg0);
+extern void fn_1_810E4(u32 arg0);
+extern u8 lbl_1_rodata_3590[984];
+extern u32 fn_1_12AC00(unsigned char *value);
+extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
+extern u32 lbl_1_rodata_3A94[7];
+extern void lbl_8006DC6C(void *, u32, u32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern f32 fn_1_A71AC(void);
+extern u8 fn_1_5910();
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_1_6914(u32 index, u32 *output);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern u32 lbl_1_rodata_3B20[3];
+extern f32 lbl_1_rodata_3B2C[47];
+extern Triple lbl_1_rodata_3BE8;
+extern u32 fn_80007CDC(f32 *arg0);
+extern u32 fn_80007D58(f32 *arg0);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DD14(void *, void *);
+extern u32 lbl_1_rodata_3BF4[14];
+extern u32 lbl_1_bss_6D8F4[31];
+extern u32 lbl_801A66A0;
+extern u32 fn_1_56018(s32 value);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_87448();
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void lbl_8006D7DC(void *value);
+extern void lbl_8006DB74(void *value);
+extern f32 lbl_1_rodata_3C2C[33];
+extern u8 lbl_1_bss_8CA28;
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
+extern u32 fn_1_4630();
+extern void fn_1_550A8(void);
+extern void fn_1_545B8(void);
+extern void fn_1_550E0(void);
+extern void fn_80038F10(f32* out);
+extern void fn_80038FD8(u32 *left, u32 *top, u32 *width, u32 *height);
+extern void fn_80038BFC(f32* out);
+extern void fn_80015E18(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_800737E4(void *, s32);
+extern u32 fn_80038EEC();
+extern s32 __cvt_fp2unsigned(f32);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80008204(void *);
+extern void fn_80074300();
+extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_8003526C(u32, u8);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+extern void fn_1_4FC50(u32, u32, u16, u16, u32);
+extern u32 fn_80008E84(u32 arg0);
+extern void fn_1_426C(s32 value);
+extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
+extern void fn_1_12A2B8(u32 value);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_9724C();
+extern void fn_1_107C4C(void *arg);
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_95EF0();
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern s32 fn_1_41488(void *arg0, void *arg1);
+extern f32 lbl_1_rodata_4010[60];
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+extern void fn_1_42AD0(void *, s32, u16, s32, u16);
+extern void fn_1_41328(void *arg0);
+extern void fn_1_426E4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6D828;
+extern s32 fn_1_3F854(u32 arg0);
+extern s32 fn_1_8171C(s32 value);
+extern u8 lbl_1_rodata_3968[232];
+extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
+extern u32 lbl_1_bss_6D850;
+extern u32 lbl_1_bss_6D97C;
+extern u32 lbl_1_bss_6D978;
+extern f32 fn_1_86A2C(void *);
+extern void fn_1_85688(void);
+extern void fn_1_854D4(void);
+extern void fn_1_85934();
+extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
+extern u8 lbl_1_bss_6DA5C[30];
+extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
+extern void fn_1_8B8A4(void *arg);
+extern u8 lbl_1_bss_6DA7A;
+extern u8 lbl_1_bss_6DA7B[5];
+extern s32 fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern u8 lbl_1_rodata_3DD8[84];
+extern u32 lbl_1_bss_6D86C[34];
+extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern void fn_1_961F0(void *obj);
+extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+extern u32 lbl_1_rodata_3FA0[28];
+extern void fn_80007AB4(u8 *arg0);
+extern void fn_1_92554(void *arg0, s32 arg1);
+extern f32 lbl_1_rodata_3F70[12];
+extern u8 lbl_1_data_34348[12];
+extern void fn_1_12A2C4(u32 value);
+extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern u32 lbl_1_bss_6D970;
+extern u32 lbl_1_bss_6D974;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_850C4(void);
+
 typedef struct {
     u8 pad_0[0x324];
     s32 unk_324;
@@ -5996,19 +6571,19 @@ u32 fzgx_obj_lbl_1_bss_6D820;
 u32 fzgx_obj_lbl_1_bss_6D824;
 u32 lbl_1_bss_6D828;
 u32 fzgx_obj_lbl_1_bss_6D82C;
-u32 lbl_1_bss_6D82C_fill_6D830[2];
+u32 lbl_1_bss_6D82C__fzgx_offset_4[2];
 u32 fzgx_obj_lbl_1_bss_6D838;
 Fn85688Car *fzgx_obj_lbl_1_bss_6D83C;
-u32 lbl_1_bss_6D83C_4;
-u32 lbl_1_bss_6D83C_8;
-u16 lbl_1_bss_6D83C_C;
+u32 lbl_1_bss_6D83C__fzgx_offset_4;
+u32 lbl_1_bss_6D83C__fzgx_offset_8;
+u16 lbl_1_bss_6D83C__fzgx_offset_C;
 s8 fzgx_obj_lbl_1_bss_6D84A;
-u8 lbl_1_bss_6D84A_fill_6D84B;
-u32 lbl_1_bss_6D84A_fill_6D84C;
+u8 lbl_1_bss_6D84A__fzgx_offset_1;
+u32 lbl_1_bss_6D84A__fzgx_offset_2;
 u32 lbl_1_bss_6D850;
-u32 lbl_1_bss_6D854_fill_6D854;
-s32 lbl_1_bss_6D854_4;
-Fn85688Pair lbl_1_bss_6D854_8;
+u32 lbl_1_bss_6D854__fzgx_offset_0;
+s32 lbl_1_bss_6D854__fzgx_offset_4;
+Fn85688Pair lbl_1_bss_6D854__fzgx_offset_8;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -6017,19 +6592,19 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D824;
     s = *(u8 *)&lbl_1_bss_6D828;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D82C;
-    s = *(u8 *)&lbl_1_bss_6D82C_fill_6D830;
+    s = *(u8 *)&lbl_1_bss_6D82C__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D838;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D83C;
-    s = *(u8 *)&lbl_1_bss_6D83C_4;
-    s = *(u8 *)&lbl_1_bss_6D83C_8;
-    s = *(u8 *)&lbl_1_bss_6D83C_C;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_8;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D84A;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84B;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84C;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_6D850;
-    s = *(u8 *)&lbl_1_bss_6D854_fill_6D854;
-    s = *(u8 *)&lbl_1_bss_6D854_4;
-    s = *(u8 *)&lbl_1_bss_6D854_8;
+    s = *(u8 *)&lbl_1_bss_6D854__fzgx_offset_0;
+    s = *(u8 *)&lbl_1_bss_6D854__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6D854__fzgx_offset_8;
 }
 #pragma section code_type ".text"
 
@@ -6051,8 +6626,8 @@ void fn_1_85688(void) {
     u32 t;
     u32 lab_t1;
 
-    fn_1_56858((void *)lbl_1_bss_6D83C_8, fzgx_obj_lbl_1_bss_6D84A);
-    fn_1_46B4(*(u32 *)&lbl_801A6410, lbl_1_bss_6D83C_8, (const char *)"car.c", 0xdfa);
+    fn_1_56858((void *)lbl_1_bss_6D83C__fzgx_offset_8, fzgx_obj_lbl_1_bss_6D84A);
+    fn_1_46B4(*(u32 *)&lbl_801A6410, lbl_1_bss_6D83C__fzgx_offset_8, (const char *)"car.c", 0xdfa);
 
     i = 0;
     goto loop1_test; /* Keep the verified branch to loop1_test. */
@@ -6077,24 +6652,24 @@ loop1_test:
         fn_80071718(t);
         fzgx_obj_lbl_1_bss_6D82C = 0;
     }
-    t = lbl_1_bss_6D83C_4;
+    t = lbl_1_bss_6D83C__fzgx_offset_4;
     if (t) {
         lab_t1 = t;
         fn_1_46B4(*(u32 *)&lbl_801A6410, lab_t1, (const char *)"car.c", 0xdff);
-        lbl_1_bss_6D83C_4 = 0;
+        lbl_1_bss_6D83C__fzgx_offset_4 = 0;
     }
-    lbl_1_bss_6D83C_C = 0;
+    lbl_1_bss_6D83C__fzgx_offset_C = 0;
     fn_1_591A0(1);
-    q = &lbl_1_bss_6D854_8;
-    lbl_1_bss_6D83C_8 = 0;
+    q = &lbl_1_bss_6D854__fzgx_offset_8;
+    lbl_1_bss_6D83C__fzgx_offset_8 = 0;
     fzgx_obj_lbl_1_bss_6D83C = 0;
     if (q->unk_4) {
         fn_80071718(q->unk_4);
-        fn_800711A8(lbl_1_bss_6D854_8.unk_0);
+        fn_800711A8(lbl_1_bss_6D854__fzgx_offset_8.unk_0);
         q->unk_4 = 0;
-        lbl_1_bss_6D854_8.unk_0 = 0;
+        lbl_1_bss_6D854__fzgx_offset_8.unk_0 = 0;
     }
-    if (lbl_1_bss_6D854_4 != 0) {
+    if (lbl_1_bss_6D854__fzgx_offset_4 != 0) {
         fn_1_8E1E8();
     }
     if (*(s16 *)&lbl_1_bss_960 == 14 || *(s16 *)&lbl_1_bss_960 == 2 || *(s16 *)&lbl_1_bss_960 == 12) {
@@ -6828,7 +7403,7 @@ u8 fn_1_86A10(u32 arg0) {
 }
 /* fzgx:end fn_1_86A10 */
 
-/* fzgx:begin fn_1_86E08 pool noprologue */
+/* fzgx:begin fn_1_86E08 noprologue */
 #include "types.h"
 
 #pragma section code_type ".fzgxpool"
@@ -6990,20 +7565,20 @@ u32 lbl_1_bss_6D828;
 u32 fzgx_obj_lbl_1_bss_6D82C[3];
 u32 fzgx_obj_lbl_1_bss_6D838;
 fn_1_86E08_Machine *fzgx_obj_lbl_1_bss_6D83C;
-u32 lbl_1_bss_6D83C_fill_6D840[2];
-u16 lbl_1_bss_6D83C_fill_6D848;
+u32 lbl_1_bss_6D83C__fzgx_offset_4[2];
+u16 lbl_1_bss_6D83C__fzgx_offset_C;
 s8 fzgx_obj_lbl_1_bss_6D84A;
-u8 lbl_1_bss_6D84A_fill_6D84B;
-u32 lbl_1_bss_6D84A_fill_6D84C;
+u8 lbl_1_bss_6D84A__fzgx_offset_1;
+u32 lbl_1_bss_6D84A__fzgx_offset_2;
 u32 lbl_1_bss_6D850;
 u32 lbl_1_bss_6D854[4];
 u32 fzgx_obj_lbl_1_bss_6D864;
 u8 fzgx_obj_lbl_1_bss_6D868;
-u8 lbl_1_bss_6D820_gap_6D869;
-u16 lbl_1_bss_6D820_gap_6D869_fill_6D86A;
+u8 fzgx_pool_lbl_1_bss_6D820_gap_6D869;
+u16 fzgx_pool_lbl_1_bss_6D820_gap_6D869_fill_6D86A;
 u32 lbl_1_bss_6D86C[34];
 s32 lbl_1_bss_6D8F4[4];
-u32 lbl_1_bss_6D8F4_fill_6D904[27];
+u32 lbl_1_bss_6D8F4__fzgx_offset_10[27];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -7014,20 +7589,20 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D82C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D838;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D83C;
-    s = *(u8 *)&lbl_1_bss_6D83C_fill_6D840;
-    s = *(u8 *)&lbl_1_bss_6D83C_fill_6D848;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6D83C__fzgx_offset_C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D84A;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84B;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84C;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_6D84A__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_6D850;
     s = *(u8 *)&lbl_1_bss_6D854;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D864;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D868;
-    s = *(u8 *)&lbl_1_bss_6D820_gap_6D869;
-    s = *(u8 *)&lbl_1_bss_6D820_gap_6D869_fill_6D86A;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D820_gap_6D869;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D820_gap_6D869_fill_6D86A;
     s = *(u8 *)&lbl_1_bss_6D86C;
     s = *(u8 *)&lbl_1_bss_6D8F4;
-    s = *(u8 *)&lbl_1_bss_6D8F4_fill_6D904;
+    s = *(u8 *)&lbl_1_bss_6D8F4__fzgx_offset_10;
 }
 #pragma section code_type ".text"
 

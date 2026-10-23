@@ -379,7 +379,7 @@ void fn_1_6A7A4(u32 arg0, void *arg1, f32 arg2) {
 }
 /* fzgx:end fn_1_6A7A4 */
 
-/* fzgx:begin fn_1_6C87C pool noprologue */
+/* fzgx:begin fn_1_6C87C noprologue */
 #include "types.h"
 #include "rel/main_rel/effect_car.h"
 
@@ -532,7 +532,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
     s = -5.004882768844254e-05f;
     s = 16384.0f;
 }
-static const Fn1_6C87CVec dir_init = {0.0f, 0.1f, 1.5f};
+static const Fn1_6C87CVec fzgx_pool_dir_init = {0.0f, 0.1f, 1.5f};
 __declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     s = 800.0f;
@@ -606,7 +606,7 @@ void fn_1_6C87C(Fn1_6C87CCar *car, Fn1_6C87CVec *dir, f32 arg2) {
     work.unk_0c = 13;
     work.unk_1a = 0xffff;
     work.unk_34 = *(u32 *)(lbl_1_bss_38458->unk_8 + 0x168);
-    pos = dir_init;
+    pos = fzgx_pool_dir_init;
     lbl_8006DC6C(car->unk_b8);
     x = *(volatile f32 *)&car->unk_3c.x; /* Locked-cache column: retain the initial load order. */
     y = car->unk_3c.y;
@@ -1207,7 +1207,7 @@ void fn_1_6D6A8(struct Fn1_6D6A8Car *car) {
 }
 /* fzgx:end fn_1_6D6A8 */
 
-/* fzgx:begin fn_1_6DD68 pool noprologue */
+/* fzgx:begin fn_1_6DD68 noprologue */
 #include "types.h"
 #include "rel/main_rel/effect_car.h"
 
@@ -1435,7 +1435,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime31(void) {
     s = 119.0f;
     s = 51.0f;
 }
-static const Fn1_6DD68Vec ofs_init = {0.0f, 0.1f, 0.0f};
+static const Fn1_6DD68Vec fzgx_pool_ofs_init = {0.0f, 0.1f, 0.0f};
 __declspec(section ".fzgxpool") static void fzgx_pool_prime33(void) {
     volatile f32 s; /* fzgx-allow: S2 pool primer sink */
     s = 2.5f;
@@ -1508,7 +1508,7 @@ void fn_1_6DD68(Fn1_6DD68Car *car, u32 unused, u32 count) {
     work.unk_34 = obj->unk_1584;
     ratio = (f32)fn_1_584AC() / 32767.0f;
     {
-        Fn1_6DD68Vec ofs = ofs_init;
+        Fn1_6DD68Vec ofs = fzgx_pool_ofs_init;
         ofs.x = ratio - 0.5;
         pos = ofs;
     }

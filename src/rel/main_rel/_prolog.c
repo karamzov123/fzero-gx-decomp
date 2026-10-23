@@ -632,7 +632,7 @@ void fn_1_1300(void) {
 }
 /* fzgx:end fn_1_1300 */
 
-/* fzgx:begin fn_1_1304 pool noprologue */
+/* fzgx:begin fn_1_1304 noprologue */
 #include "types.h"
 
 extern const struct fn_1_1304_lbl_1_rodata_9C_pool {
@@ -673,7 +673,7 @@ char lbl_1_data_2A60[] = "WALLHIT";
 char lbl_1_data_2A68[] = "SIDEBYSIDE";
 char lbl_1_data_2A74[] = "START";
 char lbl_1_data_2A7C[] = "GOAL";
-char lbl_1_data_2A84[0x3C] = "LAP";
+char fzgx_pool_lbl_1_data_2A84[0x3C] = "LAP";
 u8 lbl_1_data_2AC0[0x80] = {
     0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
     0x4B, 0x00, 0x35, 0x35, 0x00, 0x4B, 0xCB, 0x35, 0xB5, 0x00, 0xCB, 0xCB, 0x00, 0xB5, 0x35, 0xCB,
@@ -694,7 +694,7 @@ u8 lbl_1_data_2B78[4] = { 1, 1, 1, 1 };
 
 /* TU .bss: reset/recalibrate masks, SI types, held buttons */
 u32 lbl_1_bss_978;
-u32 lbl_1_bss_97C;
+u32 lbl_1_bss_978__fzgx_offset_4;
 u32 lbl_1_bss_980[4];
 u16 lbl_1_bss_990[4];
 
@@ -711,7 +711,7 @@ extern BOOL fn_8001CC64(u32);
 extern int fn_8001CB64(u32);
 
 #define resetBits lbl_1_bss_978
-#define recalBits lbl_1_bss_97C
+#define recalBits lbl_1_bss_978__fzgx_offset_4
 #define siType lbl_1_bss_980
 #define heldButtons lbl_1_bss_990
 #define padReady lbl_1_data_2B64
@@ -732,7 +732,7 @@ static void fzgx_base_order_data(void) {
     s = *(u8 *)&lbl_1_data_2A68;
     s = *(u8 *)&lbl_1_data_2A74;
     s = *(u8 *)&lbl_1_data_2A7C;
-    s = *(u8 *)&lbl_1_data_2A84;
+    s = *(u8 *)&fzgx_pool_lbl_1_data_2A84;
     s = *(u8 *)&lbl_1_data_2AC0;
     s = *(u8 *)&lbl_1_data_2B40;
     s = *(u8 *)&lbl_1_data_2B50;
@@ -747,7 +747,7 @@ static void fzgx_base_order_data(void) {
 #pragma section RX ".fzgxpool"
 __declspec(section ".fzgxpool") void fzgx_primer(void) {
     lbl_1_bss_978 = 0;
-    lbl_1_bss_97C = 0;
+    lbl_1_bss_978__fzgx_offset_4 = 0;
     lbl_1_bss_980[0] = 0;
     lbl_1_bss_990[0] = 0;
 }
@@ -876,11 +876,7 @@ void fn_1_1304(Sig_fn_8001CF80_PADStatus *pads) {
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_1_1304 */
 
-/* fzgx:begin fn_1_17C8 pool noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "types.h"
-
+/* fzgx:begin fn_1_17C8 */
 extern struct ArenaData lbl_1_data_8;
 extern u32 OSGetArenaLo(void);
 extern u32 OSGetArenaHi(void);
@@ -946,11 +942,11 @@ typedef struct {
 } StickPoint;
 
 /* Ideal octagonal gate of the control stick. */
-static const StickPoint lbl_1_rodata_70[8] = {
+static const StickPoint fzgx_pool_lbl_1_rodata_70[8] = {
     { 108, 0 }, { 108, 108 }, { 0, 108 }, { -108, 108 },
     { -108, 0 }, { -108, -108 }, { 0, -108 }, { 108, -108 },
 };
-const u8 fzgx_rodata_80[0x28] = {
+const u8 fzgx_pool_fzgx_rodata_80[0x28] = {
     0x00, 0x10, 0x00, 0x04, 0x00, 0x20, 0x80, 0x00,
     0x00, 0x20, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
     0x80, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
@@ -984,13 +980,13 @@ void fn_1_17C8(s8 *outX, s8 *outY, StickPoint *gate, u8 *dz) {
         if (s < 0.0f || t < 0.0f) {
             continue;
         }
-        n = (f32)(s * lbl_1_rodata_70[i].x) + (f32)(t * lbl_1_rodata_70[j].x);
+        n = (f32)(s * fzgx_pool_lbl_1_rodata_70[i].x) + (f32)(t * fzgx_pool_lbl_1_rodata_70[j].x);
         neg = (u32)n >> 31;
         q = ((__abs(n) - dz[0]) * 100) / (100 - dz[0]);
         c = q < 0 ? 0 : (q > 100 ? 100 : q);
         sign = neg ? -1 : 1;
         *outX = sign * c;
-        n = (f32)(s * lbl_1_rodata_70[i].y) + (f32)(t * lbl_1_rodata_70[j].y);
+        n = (f32)(s * fzgx_pool_lbl_1_rodata_70[i].y) + (f32)(t * fzgx_pool_lbl_1_rodata_70[j].y);
         neg = (u32)n >> 31;
         q = ((__abs(n) - dz[1]) * 100) / (100 - dz[1]);
         c = q < 0 ? 0 : (q > 100 ? 100 : q);
@@ -1208,7 +1204,7 @@ u32 fn_1_1DF0(u16 *state, s8 *values, u32 flags) {
 }
 /* fzgx:end fn_1_1DF0 */
 
-/* fzgx:begin fn_1_2F04 pool noprologue */
+/* fzgx:begin fn_1_2F04 noprologue */
 typedef signed char s8;
 
 typedef signed long s32;
@@ -1242,34 +1238,34 @@ u32 lbl_1_bss_978[2];
 u32 lbl_1_bss_980[4];
 u32 lbl_1_bss_990[14];
 u8 lbl_1_bss_9C8;
-u8 lbl_1_bss_9C8_fill_9C9;
-u16 lbl_1_bss_9C8_fill_9CA;
-u32 lbl_1_bss_9C8_fill_9CC[11];
+u8 lbl_1_bss_9C8__fzgx_offset_1;
+u16 lbl_1_bss_9C8__fzgx_offset_2;
+u32 lbl_1_bss_9C8__fzgx_offset_4[11];
 u8 fzgx_obj_lbl_1_bss_9F8;
-u8 lbl_1_bss_9F8_fill_9F9;
-u16 lbl_1_bss_9F8_fill_9FA;
-u32 lbl_1_bss_9F8_fill_9FC[19];
+u8 lbl_1_bss_9F8__fzgx_offset_1;
+u16 lbl_1_bss_9F8__fzgx_offset_2;
+u32 lbl_1_bss_9F8__fzgx_offset_4[19];
 u8 fzgx_obj_lbl_1_bss_A48;
-u8 lbl_1_bss_A48_fill_A49;
-u16 lbl_1_bss_A48_fill_A4A;
-u32 lbl_1_bss_A48_fill_A4C[15];
+u8 lbl_1_bss_A48__fzgx_offset_1;
+u16 lbl_1_bss_A48__fzgx_offset_2;
+u32 lbl_1_bss_A48__fzgx_offset_4[15];
 u32 fzgx_obj_lbl_1_bss_A88[6];
 u32 fzgx_obj_lbl_1_bss_AA0[84];
 u32 lbl_1_bss_BF0[32];
 u32 fzgx_obj_lbl_1_bss_C70[20];
 u32 lbl_1_bss_CC0;
-u8 lbl_1_bss_CC0_4;
-u8 lbl_1_bss_CC0_fill_CC5;
-u16 lbl_1_bss_CC0_fill_CC6;
-u32 lbl_1_bss_CC0_fill_CC8[12];
-u8 lbl_1_bss_CC0_38;
-u8 lbl_1_bss_CC0_fill_CF9;
-u16 lbl_1_bss_CC0_fill_CFA;
-u32 lbl_1_bss_CC0_fill_CFC[11];
-u8 lbl_1_bss_CC0_68;
-u8 lbl_1_bss_CC0_fill_D29;
-u16 lbl_1_bss_CC0_fill_D2A;
-u32 lbl_1_bss_CC0_fill_D2C[11];
+u8 lbl_1_bss_CC0__fzgx_offset_4;
+u8 lbl_1_bss_CC0__fzgx_offset_5;
+u16 lbl_1_bss_CC0__fzgx_offset_6;
+u32 lbl_1_bss_CC0__fzgx_offset_8[12];
+u8 lbl_1_bss_CC0__fzgx_offset_38;
+u8 lbl_1_bss_CC0__fzgx_offset_39;
+u16 lbl_1_bss_CC0__fzgx_offset_3A;
+u32 lbl_1_bss_CC0__fzgx_offset_3C[11];
+u8 lbl_1_bss_CC0__fzgx_offset_68;
+u8 lbl_1_bss_CC0__fzgx_offset_69;
+u16 lbl_1_bss_CC0__fzgx_offset_6A;
+u32 lbl_1_bss_CC0__fzgx_offset_6C[11];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -1278,34 +1274,34 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_1_bss_980;
     s = *(u8 *)&lbl_1_bss_990;
     s = *(u8 *)&lbl_1_bss_9C8;
-    s = *(u8 *)&lbl_1_bss_9C8_fill_9C9;
-    s = *(u8 *)&lbl_1_bss_9C8_fill_9CA;
-    s = *(u8 *)&lbl_1_bss_9C8_fill_9CC;
+    s = *(u8 *)&lbl_1_bss_9C8__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_9C8__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_9C8__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_9F8;
-    s = *(u8 *)&lbl_1_bss_9F8_fill_9F9;
-    s = *(u8 *)&lbl_1_bss_9F8_fill_9FA;
-    s = *(u8 *)&lbl_1_bss_9F8_fill_9FC;
+    s = *(u8 *)&lbl_1_bss_9F8__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_9F8__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_9F8__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_A48;
-    s = *(u8 *)&lbl_1_bss_A48_fill_A49;
-    s = *(u8 *)&lbl_1_bss_A48_fill_A4A;
-    s = *(u8 *)&lbl_1_bss_A48_fill_A4C;
+    s = *(u8 *)&lbl_1_bss_A48__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_A48__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_A48__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_A88;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_AA0;
     s = *(u8 *)&lbl_1_bss_BF0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_C70;
     s = *(u8 *)&lbl_1_bss_CC0;
-    s = *(u8 *)&lbl_1_bss_CC0_4;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_CC5;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_CC6;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_CC8;
-    s = *(u8 *)&lbl_1_bss_CC0_38;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_CF9;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_CFA;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_CFC;
-    s = *(u8 *)&lbl_1_bss_CC0_68;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_D29;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_D2A;
-    s = *(u8 *)&lbl_1_bss_CC0_fill_D2C;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_5;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_6;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_8;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_38;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_39;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_3A;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_3C;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_68;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_69;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_6A;
+    s = *(u8 *)&lbl_1_bss_CC0__fzgx_offset_6C;
 }
 #pragma section code_type ".text"
 
@@ -1335,9 +1331,9 @@ u8 level;
 bits = (Fn1_2F04_Bits *)((u8 *)&fzgx_obj_lbl_1_bss_9F8);
 axes = (s8 *)((u8 *)&fzgx_obj_lbl_1_bss_A48);
 slot.value = (Fn1_2F04_Slot *)((u8 *)&lbl_1_bss_9C8);
-timer0.value = (u8 *)&lbl_1_bss_CC0_4;
-timer1.value = (u8 *)&lbl_1_bss_CC0_38;
-level_p.value = (u8 *)&lbl_1_bss_CC0_68;
+timer0.value = (u8 *)&lbl_1_bss_CC0__fzgx_offset_4;
+timer1.value = (u8 *)&lbl_1_bss_CC0__fzgx_offset_38;
+level_p.value = (u8 *)&lbl_1_bss_CC0__fzgx_offset_68;
 mode.value = lbl_1_data_2B78;
 for (i = 0; i < 4; i++) {
 if (slot.value->state == -1) {

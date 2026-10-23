@@ -8157,7 +8157,7 @@ void fn_1_B8E84(s32 card, u8 *out_flags, u32 *out_a, u32 *out_b) {
 }
 /* fzgx:end fn_1_B8E84 */
 
-/* fzgx:begin fn_1_B9904 pool noprologue */
+/* fzgx:begin fn_1_B9904 noprologue */
 #include "types.h"
 
 typedef struct {
@@ -8205,22 +8205,22 @@ typedef struct {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u8 fzgx_obj_lbl_1_bss_716C0;
-u8 lbl_1_bss_716C0_fill_716C1;
-u16 lbl_1_bss_716C0_fill_716C2;
-u32 lbl_1_bss_716C0_fill_716C4;
+u8 lbl_1_bss_716C0__fzgx_offset_1;
+u16 lbl_1_bss_716C0__fzgx_offset_2;
+u32 lbl_1_bss_716C0__fzgx_offset_4;
 MemcardSlot fzgx_obj_lbl_1_bss_716C8[2];
-u32 lbl_1_bss_716C0_gap_71808[0x16B0];
+u32 fzgx_pool_lbl_1_bss_716C0_gap_71808[0x16B0];
 u8 fzgx_obj_lbl_1_bss_772C8;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_716C0;
-    s = *(u8 *)&lbl_1_bss_716C0_fill_716C1;
-    s = *(u8 *)&lbl_1_bss_716C0_fill_716C2;
-    s = *(u8 *)&lbl_1_bss_716C0_fill_716C4;
+    s = *(u8 *)&lbl_1_bss_716C0__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_716C0__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_716C0__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_716C8;
-    s = *(u8 *)&lbl_1_bss_716C0_gap_71808;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_716C0_gap_71808;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_772C8;
 }
 #pragma section code_type ".text"
