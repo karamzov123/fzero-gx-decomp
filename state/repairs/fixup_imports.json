@@ -11633,6 +11633,49 @@
         ]
       }
     ],
+    "link": "verified",
+    "commit": "ca47c44b8"
+  },
+  "fn_3_AC4C": {
+    "seed_symbol": "fn_3_AC4C",
+    "generator": "fzgx fixup",
+    "transform": "address dereference at every site with opt_propagation off",
+    "seed": "#include \"types.h\"\n#include \"rel/customize/globals.h\"\n\ntypedef struct {\n    u8 pad[0x324];\n    s32 value;\n    u8 tail[0x118];\n} CustomizeEntry;\n\nextern CustomizeEntry lbl_3_bss_20860[4];\nextern u8 lbl_3_bss_21960[10368];\nextern u32 lbl_1_bss_6D82C;\n\nextern void fn_1_80F1C(s32, CustomizeEntry *);\nextern void fn_1_14DBCC(void *);\nextern void fn_80071718(u32);\n\nvoid fn_3_AC4C(void) {\n    CustomizeEntry *entries = lbl_3_bss_20860;\n    s16 index = lbl_3_bss_F0.unk_8;\n\n    if (entries[index].value != -1) {\n        fn_1_80F1C((s16)entries[index].value, &entries[index]);\n        entries[index].value = -1;\n    }\n\n    fn_1_14DBCC((u8 *)lbl_3_bss_21960 + index * 0xa20);\n\n    if (lbl_1_bss_6D82C != 0) {\n        fn_80071718(lbl_1_bss_6D82C);\n        lbl_1_bss_6D82C = 0;\n    }\n}\n",
+    "seed_sha256": "1c85c2f35fdf8b6c6ca7960c418245fab85f7a9de81b2ed74848d6f6814a2c18",
+    "generated_sha256": "6cec49de4de17820e38cab814aa1622a0094aa545210e74ab69c7e12b14b3bd8",
+    "generated_source": "#include \"types.h\"\n#include \"rel/customize/globals.h\"\n\ntypedef struct {\n    u8 pad[0x324];\n    s32 value;\n    u8 tail[0x118];\n} CustomizeEntry;\n\nextern CustomizeEntry lbl_3_bss_20860[4];\nextern u8 lbl_3_bss_21960[10368];\nextern u32 lbl_1_bss_6D82C;\n\nextern void fn_1_80F1C(s32, CustomizeEntry *);\nextern void fn_1_14DBCC(void *);\nextern void fn_80071718(u32);\n\n#pragma opt_propagation off\nvoid fn_3_AC4C(void) {\n    CustomizeEntry *entries = lbl_3_bss_20860;\n    s16 index = lbl_3_bss_F0.unk_8;\n\n    if ((*((entries) + (index))).value != -1) {\n        fn_1_80F1C((s16)(*((entries) + (index))).value, &entries[index]);\n        (*((entries) + (index))).value = -1;\n    }\n\n    fn_1_14DBCC((u8 *)lbl_3_bss_21960 + index * 0xa20);\n\n    if (lbl_1_bss_6D82C != 0) {\n        fn_80071718(lbl_1_bss_6D82C);\n        lbl_1_bss_6D82C = 0;\n    }\n}\n#pragma opt_propagation reset\n\n",
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "source": "rel/customize/_prolog/fn_3_AC4C.c",
+    "bytes": 168,
+    "headers_sha256": "ad8d87f89ffdbc48b4eed82117ca68bc7df20930194490f8fa081141d0677717",
+    "oracle_sha256": "a07ffcea0a75ff8b33e8b1a58b6f616c8c390cf774c325caeec533336a536657",
+    "recipe": [
+      {
+        "label": "address dereference at every site with opt_propagation off",
+        "input_sha256": "1c85c2f35fdf8b6c6ca7960c418245fab85f7a9de81b2ed74848d6f6814a2c18",
+        "output_sha256": "6cec49de4de17820e38cab814aa1622a0094aa545210e74ab69c7e12b14b3bd8",
+        "input_symbol": "fn_3_AC4C",
+        "output_symbol": "fn_3_AC4C",
+        "edits": [
+          [
+            361,
+            361,
+            "#pragma opt_propagation off\n"
+          ],
+          [
+            476,
+            592,
+            "(*((entries) + (index))).value != -1) {\n        fn_1_80F1C((s16)(*((entries) + (index))).value, &entries[index]);\n        (*((entries) + (index)))"
+          ],
+          [
+            776,
+            776,
+            "#pragma opt_propagation reset\n\n"
+          ]
+        ]
+      }
+    ],
     "link": "pending"
   }
 }

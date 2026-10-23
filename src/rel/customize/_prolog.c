@@ -5081,3 +5081,40 @@ s32 fn_3_9CA8(void) {
     return result;
 }
 /* fzgx:end fn_3_9CA8 */
+
+/* fzgx:begin fn_3_AC4C */
+#include "rel/customize/globals.h"
+
+typedef struct {
+    u8 pad[0x324];
+    s32 value;
+    u8 tail[0x118];
+} CustomizeEntry;
+
+extern CustomizeEntry lbl_3_bss_20860[4];
+extern u8 lbl_3_bss_21960[10368];
+extern u32 lbl_1_bss_6D82C;
+
+extern void fn_1_80F1C(s32, CustomizeEntry *);
+extern void fn_1_14DBCC(void *);
+extern void fn_80071718(u32);
+
+#pragma opt_propagation off
+void fn_3_AC4C(void) {
+    CustomizeEntry *entries = lbl_3_bss_20860;
+    s16 index = lbl_3_bss_F0.unk_8;
+
+    if ((*((entries) + (index))).value != -1) {
+        fn_1_80F1C((s16)(*((entries) + (index))).value, &entries[index]);
+        (*((entries) + (index))).value = -1;
+    }
+
+    fn_1_14DBCC((u8 *)lbl_3_bss_21960 + index * 0xa20);
+
+    if (lbl_1_bss_6D82C != 0) {
+        fn_80071718(lbl_1_bss_6D82C);
+        lbl_1_bss_6D82C = 0;
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_3_AC4C */

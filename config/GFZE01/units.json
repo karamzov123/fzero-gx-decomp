@@ -1134,6 +1134,17 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_AC4C.c",
+    "symbols": [
+      "fn_3_AC4C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c"
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_AF8.c",
     "symbols": [
       "fn_3_AF8"
