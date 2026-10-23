@@ -1,171 +1,221 @@
-/* Non-matching: best partial attempt (0.00% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.66% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
-extern u32 lbl_801A6C80;
-extern u8 lbl_80092C38[];
-extern u8 lbl_801A6608[];
+typedef struct {
+    u32 w0;
+    u32 w4;
+    u8 *w8;
+    u8 bC;
+    u8 bD;
+    u8 bE;
+    u8 bF;
+} SndChan;
+
+typedef struct {
+    u8 b0;
+    u8 b1;
+    u8 b2;
+    u8 b3;
+    u32 w4;
+    u32 w8;
+    u32 wC;
+    u8 *w10;
+    u32 w14;
+    void *w18;
+    u32 w1C;
+    u32 w20;
+    u32 w24;
+} SndBank;
+
+typedef struct {
+    SndChan chan[16];       /* 0x0000 */
+    u8 pad100[0x448 - 0x100];
+    u32 w448;
+    u8 pad44C[0x458 - 0x44C];
+    u8 b458;
+    u8 pad459[0x1188 - 0x459];
+    SndBank bank[16];       /* 0x1188 */
+    u8 pad1408[0x5B1C - 0x1408];
+    void (*cb1C)(s32, u32);
+} SndState;
+
+extern SndState *lbl_801A6C80;
+extern u16 lbl_80092C38[];
+extern u8 lbl_801A6608[8];
 extern void fn_800692A4(u32);
-extern u32 fn_80068EB4(void);
+extern void fn_80068EB4(void);
 
-u32 fn_8006953C(u32 arg0) {
-    u8 *base;
-    u32 selector;
-    u32 slot;
-    u32 i;
-    u32 j;
-    u32 key;
-    u32 entry;
-    u32 value;
-    u32 offset;
-    u32 temp;
-
-    base = (u8 *)lbl_801A6C80;
-    if ((arg0 >> 24) == 0xA0) {
-        selector = arg0 & 0x00FF0000;
-        if (selector == 0) {
-            fn_800692A4(arg0);
-        } else if (selector == 0x20000) {
-            key = arg0 & 0xF;
+static inline void fn_8006953C_loop1(u32 cmd) {
+    u8 i;
             for (i = 0; i < 16; i++) {
-                slot = (u32)(base + i * 40);
-                if (key == *(u8 *)(slot + 0x118A) &&
-                    *(u8 *)(slot + 0x1188) != 0 &&
-                    (*(u8 *)(slot + 0x1189) & 0x80) == 0)
-                    *(u8 *)(slot + 0x1188) |= 1;
-            }
-        } else if (selector == 0x30000) {
-            key = arg0 & 0xF;
-            for (i = 0; i < 16; i++) {
-                slot = (u32)(base + i * 40);
-                if (key == *(u8 *)(slot + 0x118A) &&
-                    *(u8 *)(slot + 0x1188) != 0 &&
-                    (*(u8 *)(slot + 0x1189) & 0x80) == 0)
-                    *(u8 *)(slot + 0x1188) &= 0xFE;
-            }
-        } else if (selector == 0x90000) {
-            *(u8 *)(base + 0x458) = arg0 & 0xF;
-            *(u32 *)(base + 0x448) = *(u16 *)(lbl_80092C38 + (((arg0 >> 7) & 0xFE)));
-        } else if (selector == 0xA0000) {
-            for (i = 0; i < 16; i++) {
-                slot = (u32)(base + i * 40);
-                if (*(u8 *)(slot + 0x1188) != 0 &&
-                    (*(u8 *)(slot + 0x1189) & 0x80) != 0 &&
-                    *(u8 *)(slot + 0x118A) == (arg0 & 0xF)) {
-                    *(u8 *)(slot + 0x1188) |= 6;
-                    offset = i * 40 + 0x11AC;
-                    value = *(u16 *)(lbl_80092C38 + (((arg0 >> 7) & 0xFE)));
-                    *(u32 *)(base + offset) = value;
-                    *(u32 *)(base + offset) = ~(*(u32 *)(base + offset) ^ 0xFFFFFFFF) + 1;
+                if ((cmd & 0xF) == lbl_801A6C80->bank[i].b2 && (s32)lbl_801A6C80->bank[i].b0 != 0 &&
+                    !(lbl_801A6C80->bank[i].b1 & 0x80)) {
+                    lbl_801A6C80->bank[i].b0 &= ~1;
                 }
             }
-        }
-        return 0xFFFFFFFF;
-    }
+}
 
-    key = arg0 >> 16;
-    slot = 0xFFFFFFFF;
-    for (i = 0; i < 16; i++) {
-        entry = *(u32 *)(base + i * 16 + 8);
-        if (entry != 0) {
-            u8 *table = (u8 *)(entry + *(u32 *)(entry + 0x24));
-            u32 count = table[0];
-            for (j = 0; j <= count; j++) {
-                if ((*(u32 *)(table + 4 + j * 4) >> 16) == key) {
-                    slot = i;
-                    break;
+void fn_8006953C(u32 cmd) {
+    SndChan * fzgx_live;
+    u8 idx;
+    u8 *d;
+    s8 found;
+    struct { u8 value; } i;
+    u32 ofs;
+    u8 j;
+    u8 hit;
+    u32 *p;
+    u32 off;
+    u8 *rec;
+    u32 sub;
+    u8 *tbl;
+    u8 flags;
+    u8 * rec_2;
+
+    found = -1;
+
+    if ((cmd >> 24) == 0xA0) {
+        if ((cmd & 0x00FF0000) > 0xA0000) {
+            return;
+        }
+        switch (cmd & 0x00FF0000) {
+        case 0:
+            fn_800692A4(cmd);
+            break;
+        case 0x20000:
+            for (i.value = 0; i.value < 16; i.value++) {
+                if ((cmd & 0xF) == lbl_801A6C80->bank[i.value].b2 && (s32)lbl_801A6C80->bank[i.value].b0 != 0 &&
+                    !(lbl_801A6C80->bank[i.value].b1 & 0x80)) {
+                    lbl_801A6C80->bank[i.value].b0 |= 1;
                 }
             }
-            if (slot != 0xFFFFFFFF)
-                break;
+            break;
+        case 0x30000:
+            fn_8006953C_loop1(cmd);
+            break;
+        case 0x60000:
+            break;
+        case 0x90000:
+            lbl_801A6C80->b458 = cmd & 0xF;
+            lbl_801A6C80->w448 = lbl_80092C38[((0x7F) & ((cmd >> 8)))];
+            break;
+        case 0xA0000:
+            for (i.value = 0; i.value < 16; i.value++) {
+                if ((s32)lbl_801A6C80->bank[i.value].b0 != 0 && (lbl_801A6C80->bank[i.value].b1 & 0x80) &&
+                    (cmd & 0xF) == lbl_801A6C80->bank[i.value].b2) {
+                    lbl_801A6C80->bank[i.value].b0 |= 6;
+                    lbl_801A6C80->bank[i.value].w24 = lbl_80092C38[(cmd >> 8) & 0x7F];
+                    lbl_801A6C80->bank[i.value].w24 = (lbl_801A6C80->bank[i.value].w24 ^ 0xFFFFFFFF) + 1;
+                }
+            }
+            break;
         }
-    }
-    if (slot == 0xFFFFFFFF) {
-        u32 (*callback)(u32, u32) = *(u32 (**)(u32, u32))(base + 0x5B1C);
-        if (callback != 0)
-            return callback((u32)-3, arg0);
-        return 0xFFFFFFFF;
-    }
-    {
-        u8 *table = (u8 *)(*(u32 *)(base + slot * 16 + 8) +
-                           *(u32 *)(*(u32 *)(base + slot * 16 + 8) + 0x24));
-        u32 count = *(u16 *)(table + 0);
-        key = (arg0 >> 8) & 0xFF;
-        if (key > table[count])
-            return 0xFFFFFFFF;
-        value = *(u32 *)(table + key * 4 + 4);
-        if (value == 0)
-            return 0xFFFFFFFF;
-        entry = (u32)(table + value);
+        return;
     }
 
-    value = *(u8 *)entry;
-    if ((value & 0x80) == 0) {
-        for (i = 0; i < 16; i++) {
-            slot = (u32)(base + i * 40);
-            if (*(u8 *)(slot + 0x1188) != 0 &&
-                *(u8 *)(slot + 0x118A) == (s8)slot &&
-                (*(u8 *)(slot + 0x1189) & 0x80) == 0) {
-                value = i;
+    hit = 0;
+    for (i.value = 0; i.value < 16; i.value++) {
+        fzgx_live = lbl_801A6C80->chan;
+        d = fzgx_live[i.value].w8;
+        if (d == NULL) {
+            continue;
+        }
+        p = (u32 *)(d + 0x24);
+        tbl = d + *p;
+        {
+    u8 fzgx_loop_j_3025;
+for (fzgx_loop_j_3025 = 0, ofs = 0; fzgx_loop_j_3025 <= tbl[0]; fzgx_loop_j_3025++, ofs += 1) {
+            p = (u32 *)(tbl + ofs);
+            if ((*p >> 16) == (cmd >> 16)) {
+                hit = 1;
                 break;
             }
         }
-    } else if ((value & 0x10) == 0x10) {
-        key = value & 0xF;
-        for (i = 0; i < 16; i++) {
-            slot = (u32)(base + i * 40);
-            if (*(u8 *)(slot + 0x1188) != 0 &&
-                (*(u8 *)(slot + 0x1189) & 0xF) == key) {
-                value = i;
+    j = fzgx_loop_j_3025;
+}
+        if (hit) {
+            found = i.value;
+            break;
+        }
+    }
+
+    if (found != -1) {
+    rec = tbl + (*p & 0xFFFF);
+    sub = (cmd >> 8) & 0xFF;
+    if (sub > rec[0]) {
+        return;
+    }
+    off = ((u32 *)(rec + 4))[sub];
+    if (off == 0) {
+        return;
+    }
+    rec_2 = tbl + off;
+    idx = 0x7F;
+    flags = rec_2[0];
+    if (!(flags & 0x80)) {
+        for (i.value = 0; i.value < 16; i.value++) {
+            if ((s32)lbl_801A6C80->bank[i.value].b0 != 0 && lbl_801A6C80->bank[i.value].b2 == found &&
+                !(lbl_801A6C80->bank[i.value].b1 & 0x80)) {
+                idx = i.value;
+                break;
+            }
+        }
+    } else if ((flags & 0x10) == 0x10) {
+        for (i.value = 0; i.value < 16; i.value++) {
+            if ((s32)lbl_801A6C80->bank[i.value].b0 != 0 && (lbl_801A6C80->bank[i.value].b1 & 0xF) == (flags & 0xF)) {
+                idx = i.value;
+                break;
+            }
+        }
+    }
+    if (idx == 0x7F) {
+        for (i.value = 0; i.value < 16; i.value++) {
+            if ((s32)lbl_801A6C80->bank[i.value].b0 == 0) {
+                idx = i.value;
+                break;
+            }
+        }
+    }
+    if (idx == 0x7F) {
+        for (i.value = 0; i.value < 16; i.value++) {
+            if (lbl_801A6C80->bank[i.value].b1 & 0x80) {
+                idx = i.value;
                 break;
             }
         }
     }
 
-    if (value == 0x7F) {
-        for (i = 0; i < 16; i++) {
-            if (*(u8 *)(base + i * 40 + 0x1188) == 0) {
-                value = i;
-                break;
-            }
-        }
-    }
-    if (value == 0x7F) {
-        for (i = 0; i < 16; i++) {
-            if (*(u8 *)(base + i * 40 + 0x1189) & 0x80) {
-                value = i;
-                break;
-            }
-        }
-    }
-    slot = value * 40;
-    *(u8 *)(base + slot + 0x118A) = (u8)slot;
-    *(u32 *)(base + slot + 0x118C) = 0x10000;
-    *(u32 *)(base + slot + 0x1190) = arg0;
-    *(u32 *)(base + slot + 0x1194) = 0;
-    *(u8 *)(base + slot + 0x1189) = *(u8 *)entry;
-    if ((*(u8 *)(base + slot + 0x1189) & 0x80) == 0) {
-        *(u8 *)(base + slot + 0x1188) = 0x90;
-        *(u32 *)(base + slot + 0x1198) = entry;
-        *(u32 *)(base + slot + 0x119C) = entry + 4;
-        *(u32 *)(base + slot + 0x11A0) = (u32)lbl_801A6608;
-        if (*(u32 *)(base + 0x448) == 0) {
-            *(u32 *)(base + slot + 0x11A4) = 0x7F0000;
-            *(u32 *)(base + slot + 0x11A8) = 0x7F0000;
-        } else if (*(u8 *)(base + 0x458) == (s8)slot) {
-            *(u32 *)(base + slot + 0x11AC) = *(u32 *)(base + 0x448);
-            *(u32 *)(base + slot + 0x11A4) = 0;
-            *(u32 *)(base + slot + 0x11A8) = 0;
-            *(u8 *)(base + slot + 0x1188) ^= 0x98;
-            *(u32 *)(base + 0x448) = 0;
+    lbl_801A6C80->bank[idx].b2 = found;
+    lbl_801A6C80->bank[idx].w4 = 0x10000;
+    lbl_801A6C80->bank[idx].w8 = cmd;
+    lbl_801A6C80->bank[idx].wC = 0;
+    lbl_801A6C80->bank[idx].b1 = rec_2[0];
+    if (!(lbl_801A6C80->bank[idx].b1 & 0x80)) {
+        lbl_801A6C80->bank[idx].b0 = 0x90;
+        lbl_801A6C80->bank[idx].w10 = rec_2;
+        lbl_801A6C80->bank[idx].w14 = (u32)(rec_2 + 4);
+        lbl_801A6C80->bank[idx].w18 = lbl_801A6608;
+        if (lbl_801A6C80->w448 == 0) {
+            lbl_801A6C80->bank[idx].w1C = 0x7F0000;
+            lbl_801A6C80->bank[idx].w20 = 0x7F0000;
+        } else if (lbl_801A6C80->b458 == found) {
+            lbl_801A6C80->bank[idx].w24 = lbl_801A6C80->w448;
+            lbl_801A6C80->bank[idx].w1C = 0;
+            lbl_801A6C80->bank[idx].w20 = 0;
+            lbl_801A6C80->bank[idx].b0 ^= 0x98;
+            lbl_801A6C80->w448 = 0;
         } else {
-            *(u32 *)(base + slot + 0x11A4) = 0x7F0000;
-            *(u32 *)(base + slot + 0x11A8) = 0x7F0000;
+            lbl_801A6C80->bank[idx].w1C = 0x7F0000;
+            lbl_801A6C80->bank[idx].w20 = 0x7F0000;
         }
     } else {
-        *(u8 *)(base + slot + 0x1188) = 0x80;
-        *(u32 *)(base + slot + 0x119C) = 0xFF000000;
-        *(u32 *)(base + slot + 0x11A0) = entry + 1;
+        lbl_801A6C80->bank[idx].b0 = 0x80;
+        lbl_801A6C80->bank[idx].w14 = 0xFF000000;
+        lbl_801A6C80->bank[idx].w18 = rec_2 + 1;
     }
-    return fn_80068EB4();
+    fn_80068EB4();
+    } else if (lbl_801A6C80->cb1C != NULL) {
+        lbl_801A6C80->cb1C(-3, cmd);
+    }
 }
