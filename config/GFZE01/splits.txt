@@ -6434,3 +6434,9 @@ dol/fn_80053DB4.c:
 
 dol/fn_80067F68.c:
 	.text       start:0x80067F68 end:0x80068BFC align:4
+
+dol/fn_80062654.c:
+	.text       start:0x80062654 end:0x80063094 align:4
+
+dol/fn_80069CE4.c:
+	.text       start:0x80069CE4 end:0x80069FCC align:4
