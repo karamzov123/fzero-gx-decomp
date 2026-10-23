@@ -3166,6 +3166,25 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/toolkit/fn_3_20748.c",
+    "symbols": [
+      "fn_3_20748"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/toolkit.c",
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_768",
+      "@5": "lbl_3_rodata_768",
+      "@45": "lbl_3_rodata_800",
+      "@116": "lbl_3_rodata_990",
+      "@106": "lbl_3_rodata_960",
+      "@71": "lbl_3_rodata_8F0"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/toolkit/fn_3_23524.c",
     "symbols": [
       "fn_3_23524"
