@@ -84996,10 +84996,10 @@
     "symbols": [
       "fn_15_4578"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/winning/winning.c"
+    "asm": true
   },
   {
     "module": "winning",
