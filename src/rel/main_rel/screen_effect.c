@@ -4093,6 +4093,216 @@ s32 fn_1_79C88(EffectManager *manager, u32 *out, s32 reverse, f32 value) {
 }
 /* fzgx:end fn_1_79C88 */
 
+/* fzgx:begin fn_1_79E54 noprologue */
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+typedef struct {
+f32 x;
+f32 y;
+f32 z;
+} Fn183D28Vec3;
+
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+
+extern f32 lbl_1_data_4;
+
+
+typedef struct {
+u32 id;
+u32 unk_4;
+void *unk_8;
+f32 time;
+} EffectEntry;
+typedef struct {
+u32 flags;
+s32 count;
+void *entries;
+} Sig_fn_1_7A67C_EffectTable;
+typedef struct {
+u8 pad_0[0x8];
+u8 unk_8[0xC];
+f32 unk_14;
+} EffectObj;
+typedef struct {
+u8 pad_0[0x8];
+EffectObj *obj;
+} EffectHolder;
+typedef struct {
+u8 pad_0[0x2C];
+f32 unk_2C;
+} CameraLike;
+struct fn_1_7A240_lbl_1_rodata_3278 {
+u8 pad_0[0x54];
+f32 unk_54;
+u8 pad_58[0x18];
+f32 unk_70;
+u8 pad_74[0xC];
+f32 unk_80;
+u8 pad_84[0x28];
+f32 unk_AC;
+f32 unk_B0;
+};
+extern f32 fn_1_A71AC(void);
+extern struct fn_1_7A240_lbl_1_rodata_3278 lbl_1_rodata_3278;
+extern CameraLike *lbl_801A6D00;
+extern void *fn_1_7A67C(Sig_fn_1_7A67C_EffectTable *);
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+static inline f32 effect_clamp_final(f32 low, f32 high, f32 value)
+{
+if (value < low) {
+return low;
+} else {
+return value > high ? high : value;
+}
+}
+void *fn_1_79E54(Sig_fn_1_7A67C_EffectTable *arg0, u32 *outId, f32 *outF,
+s32 advance, f32 scale)
+{
+s32 n31;
+s32 n30;
+struct fn_1_7A240_lbl_1_rodata_3278 *c;
+Sig_fn_1_7A67C_EffectTable *tbl;
+EffectObj *obj;
+EffectEntry *e;
+s32 i;
+s32 has1;
+s32 has40;
+s32 count;
+f32 result;
+f32 depth;
+f32 dist;
+f32 blend;
+f32 factor;
+f32 t;
+f32 k;
+f32 prevTime;
+EffectEntry *p;
+Fn183D28Vec3 pos;
+blend = scale;
+c = &lbl_1_rodata_3278;
+*outF = c->unk_54;
+e = (EffectEntry *)arg0->entries;
+obj = (EffectObj *)e->unk_8;
+if (obj == ((void *)0) ) {
+return ((void *)0) ;
+}
+tbl = arg0;
+count = tbl->count;
+has40 = tbl->flags & 0x40;
+has1 = tbl->flags & 1;
+n30 = has40 ? count - 2 : count;
+n31 = has1 ? n30 - 1 : n30;
+if (tbl->flags & 0x80) {
+result = c->unk_70;
+} else {
+result = lbl_1_data_4;
+}
+lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
+depth = -pos.z;
+dist = -lbl_801A6D00->unk_2C;
+if (tbl->flags & 2) {
+if (dist < c->unk_AC) {
+i = 0;
+} else {
+for (i = 0; i < tbl->count; i++, e++) {
+if (dist < e->time) {
+if (has1) {
+result = dist;
+p = (EffectEntry *)tbl->entries + n30 - 1;
+prevTime = p[-1].time;
+t = (dist - prevTime) / (p->time - prevTime);
+*outF = ((t) < c->unk_70 ? c->unk_70 : ((t) > c->unk_54 ? c->unk_54 : (t))) ;
+}
+if (has40) {
+if (!(tbl->flags & 0x80)) {
+factor = c->unk_B0 * obj->unk_14;
+blend = factor * blend;
+result = c->unk_80 * blend / (depth * fn_1_A71AC());
+} else if (!has1) {
+result = dist;
+}
+}
+break;
+}
+}
+}
+} else {
+if (depth < c->unk_AC) {
+i = 0;
+} else {
+f32 factorB = c->unk_B0 * obj->unk_14;
+blend = factorB * blend;
+k = depth * fn_1_A71AC();
+for (i = 0; i < n31; i++, e++) {
+t = e->time / c->unk_80;
+if (blend > t * k) {
+if (has1) {
+result = c->unk_80 * blend / k;
+p = (EffectEntry *)tbl->entries + n30 - 1;
+prevTime = p[-1].time;
+t = (result - prevTime) / (p->time - prevTime);
+*outF = ((t) < c->unk_70 ? c->unk_70 : ((t) > c->unk_54 ? c->unk_54 : (t))) ;
+}
+if (has40) {
+if (tbl->flags & 0x80) {
+result = dist;
+} else if (!has1) {
+result = c->unk_80 * blend / k;
+}
+}
+break;
+}
+}
+}
+}
+if (e->unk_8 != ((void *)0) && i < n31) {
+if (advance && i != n31 - 1) {
+    s32 j;
+    for (j = i; j < n31 - 1; j++) {
+        e++;
+        if (!e->unk_8) {
+            e--;
+            break;
+        }
+    }
+}
+if (has40) {
+struct { f32 low; f32 high; } bounds;
+f32 endTime;
+if (*outF >= (bounds.high = c->unk_54)) {
+p = (EffectEntry *)tbl->entries + count - 1;
+endTime = p->time;
+t = (endTime - result) / (endTime - p[-1].time);
+bounds.low = c->unk_70;
+*outF = effect_clamp_final(bounds.low, bounds.high, t);
+}
+}
+if (*outF > c->unk_70) {
+if (outId != ((void *)0) ) {
+*outId = e->id;
+}
+return e->unk_8;
+}
+}
+if (outId != ((void *)0) ) {
+*outId = 0;
+}
+return ((void *)0) ;
+}
+/* fzgx:end fn_1_79E54 */
+
 /* fzgx:begin fn_1_7A240 noprologue */
 typedef signed long s32;
 

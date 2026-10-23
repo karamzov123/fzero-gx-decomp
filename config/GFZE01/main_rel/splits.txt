@@ -8699,3 +8699,6 @@ rel/main_rel/stcoli/fn_1_1FC98.c:
 
 rel/main_rel/car/fn_1_943F8.c:
 	.text       start:0x000943F8 end:0x000950E8 align:4
+
+rel/main_rel/screen_effect/fn_1_79E54.c:
+	.text       start:0x00079E54 end:0x0007A240 align:4
