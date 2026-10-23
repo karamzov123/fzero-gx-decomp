@@ -8687,3 +8687,6 @@ rel/main_rel/bg_san/fn_1_DB268.c:
 
 rel/main_rel/bg_common/fn_1_108BD0.c:
 	.text       start:0x00108BD0 end:0x00108EEC align:4
+
+rel/main_rel/stcoli/fn_1_27E34.c:
+	.text       start:0x00027E34 end:0x00028184 align:4

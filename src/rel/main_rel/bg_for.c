@@ -1370,3 +1370,57 @@ void fn_1_E1A00(Fn1E1A00Object *obj, u8 *str) {
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_E1A00 */
+
+/* fzgx:begin fn_1_E3778 */
+extern s16 fn_1_E5430(s16);
+extern void *fn_1_E54A8(s16, s16);
+extern void fn_1_E1A00(void *, void *);
+extern void fn_1_E2DCC(void);
+extern void fn_1_E252C(s16, s16, void *);
+extern void fn_1_E2AE8(void);
+extern s32 fn_1_7B054(void);
+extern void fn_1_E5930(void *, s64);
+
+
+static inline void fn_1_E3778_loop2(void) {
+    s16 j;
+    s16 n;
+    void *p;
+    s16 i;
+    for (i = 0; i < 6; i++) {
+        n = fn_1_E5430(i);
+        p = fn_1_E54A8(i, 0);
+        for (j = 0; j < n; j++, p = (void *)((u8 *)p + 0x1a8)) {
+            fn_1_E252C(i, j, p);
+        }
+    }
+}
+
+static inline void fn_1_E3778_call_fn_1_E1A00(void * a0, void * a1) { fn_1_E1A00(a0, a1); }
+void fn_1_E3778(void) {
+    s16 n;
+    struct { u8 *value; } name;
+    void *p;
+    s16 i;
+    s16 j;
+
+    name.value = lbl_1_data_3DDA8;
+    for (i = 0; i < 6; i++) {
+        n = fn_1_E5430(i);
+        p = fn_1_E54A8(i, 0);
+        for (j = 0; j < n; j++, p = (void *)((u8 *)p + 0x1a8)) {
+            fn_1_E3778_call_fn_1_E1A00(p, name.value);
+        }
+    }
+    fn_1_E2DCC();
+    fn_1_E3778_loop2();
+    fn_1_E2AE8();
+    switch (lbl_1_data_2B0D4.pad_0[(s16)fn_1_7B054()]) {
+    case 13:
+        for (j = 0; j < (s16)fn_1_E5430(4); j++) {
+            fn_1_E5930(fn_1_E54A8(4, j), 3);
+        }
+        break;
+    }
+}
+/* fzgx:end fn_1_E3778 */
