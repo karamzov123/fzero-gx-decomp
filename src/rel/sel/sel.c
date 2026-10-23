@@ -1731,7 +1731,7 @@ void fn_10_4A84(void) {
 }
 /* fzgx:end fn_10_4A84 */
 
-/* fzgx:begin fn_10_4AE0 pool */
+/* fzgx:begin fn_10_4AE0 */
 #include "rel/sel/sel.h"
 
 extern u8 lbl_1_bss_8B3A0;
@@ -1761,10 +1761,12 @@ u32 fzgx_obj_lbl_10_bss_14;
 s16 fzgx_obj_lbl_10_bss_18;
 s16 fzgx_obj_lbl_10_bss_1A;
 u32 fzgx_obj_lbl_10_bss_1C;
-u8 lbl_10_bss_1C_fill_1D;
-u16 lbl_10_bss_1C_fill_1E;
-u32 lbl_10_bss_1C_fill_20[232];
-u32 fzgx_obj_lbl_10_bss_3C0[74736];
+u8 lbl_10_bss_1C__fzgx_offset_4;
+u16 lbl_10_bss_1C__fzgx_offset_6;
+u32 lbl_10_bss_1C__fzgx_offset_8[231];
+u32 lbl_10_bss_3C0__fzgx_offset_0[1];
+u32 lbl_10_bss_3C0__fzgx_offset_4[74735];
+u32 lbl_10_bss_49380__fzgx_offset_0[1];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -1774,10 +1776,12 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_10_bss_18;
     s = *(u8 *)&fzgx_obj_lbl_10_bss_1A;
     s = *(u8 *)&fzgx_obj_lbl_10_bss_1C;
-    s = *(u8 *)&lbl_10_bss_1C_fill_1D;
-    s = *(u8 *)&lbl_10_bss_1C_fill_1E;
-    s = *(u8 *)&lbl_10_bss_1C_fill_20;
-    s = *(u8 *)&fzgx_obj_lbl_10_bss_3C0;
+    s = *(u8 *)&lbl_10_bss_1C__fzgx_offset_4;
+    s = *(u8 *)&lbl_10_bss_1C__fzgx_offset_6;
+    s = *(u8 *)&lbl_10_bss_1C__fzgx_offset_8;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_10_bss_3C0__fzgx_offset_0;
+    s = *(u8 *)&lbl_10_bss_3C0__fzgx_offset_4;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_10_bss_49380__fzgx_offset_0;
 }
 #pragma section code_type ".text"
 

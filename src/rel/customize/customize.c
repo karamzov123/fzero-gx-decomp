@@ -706,7 +706,7 @@ void fn_3_AE74(void) {
 }
 /* fzgx:end fn_3_AE74 */
 
-/* fzgx:begin fn_3_B270 pool noprologue */
+/* fzgx:begin fn_3_B270 noprologue */
 #include "types.h"
 
 typedef struct Sig_fn_1_152CB4_Fn152CB4Cell {
@@ -743,7 +743,8 @@ typedef struct {
 fn_3_B270_Obj0 fzgx_obj_lbl_3_bss_0;
 s32 fzgx_obj_lbl_3_bss_8;
 s32 fzgx_obj_lbl_3_bss_C;
-u32 fzgx_obj_lbl_3_bss_10[4];
+u32 lbl_3_bss_C__fzgx_offset_4[2];
+u32 lbl_3_bss_18__fzgx_offset_0[2];
 fn_3_B270_List fzgx_obj_lbl_3_bss_20;
 fn_3_B270_Input fzgx_obj_lbl_3_bss_F0;
 
@@ -753,7 +754,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_3_bss_0;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_8;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_C;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_10;
+    s = *(u8 *)&lbl_3_bss_C__fzgx_offset_4;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_3_bss_18__fzgx_offset_0;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;
 }

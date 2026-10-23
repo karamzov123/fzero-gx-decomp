@@ -944,7 +944,7 @@ void fn_3_11FB4(u8 value_47, u8 value_46, u32 value_7EDC0) {
 }
 /* fzgx:end fn_3_11FB4 */
 
-/* fzgx:begin fn_3_12B14 pool noprologue */
+/* fzgx:begin fn_3_12B14 noprologue */
 #include "types.h"
 #include "rel/customize/globals.h"
 #include "rel/customize/emb_paste_editor.h"
@@ -1109,22 +1109,26 @@ typedef struct {
 
 /* The TU's .bss objects in retail order, addressed off one section base. */
 static void *fzgx_obj_lbl_3_bss_7EDC0;
-static u32 fzgx_obj_lbl_3_bss_7EDC4;
-static u32 fzgx_obj_lbl_3_bss_7EDC8;
+static u32 lbl_3_bss_7EDC0__fzgx_offset_4;
+static u32 lbl_3_bss_7EDC0__fzgx_offset_8;
 static Car *fzgx_obj_lbl_3_bss_7EDCC;
-static u32 fzgx_obj_lbl_3_bss_7EDD0;
-static u32 fzgx_obj_lbl_3_bss_7EDD4;
+static u32 lbl_3_bss_7EDCC__fzgx_offset_4;
+static u32 lbl_3_bss_7EDCC__fzgx_offset_8;
 static Sound fzgx_obj_lbl_3_bss_7EDD8;
 static u8 fzgx_obj_lbl_3_bss_7EE40[0x81C0];
 static Pool fzgx_obj_lbl_3_bss_87000;
 static u8 fzgx_obj_lbl_3_bss_87040[0x81C0];
 static u8 fzgx_obj_lbl_3_bss_8F200[0x10440];
 static Cam fzgx_obj_lbl_3_bss_9F640;
-static u8 fzgx_obj_lbl_3_bss_9F664[0x2C];
+static u8 lbl_3_bss_9F664__fzgx_offset_0[1];
+static u8 lbl_3_bss_9F665__fzgx_offset_0;
+static u8 lbl_3_bss_9F665__fzgx_offset_1;
+static u8 lbl_3_bss_9F665__fzgx_offset_2;
+static u8 lbl_3_bss_9F665__fzgx_offset_3[40];
 static Cam fzgx_obj_lbl_3_bss_9F690;
-static u8 fzgx_obj_lbl_3_bss_9F6B4[0x14];
-static Vec3u fzgx_obj_lbl_3_bss_9F6C8;
-static Vec3u fzgx_obj_lbl_3_bss_9F6D4;
+static u8 lbl_3_bss_9F690__fzgx_offset_24[0x14];
+static Vec3u lbl_3_bss_9F690__fzgx_offset_38;
+static Vec3u lbl_3_bss_9F690__fzgx_offset_44;
 
 
 
@@ -1133,22 +1137,26 @@ static Vec3u fzgx_obj_lbl_3_bss_9F6D4;
 #pragma section RX ".fzgxpool"
 __declspec(section ".fzgxpool") void fzgx_bss_primer(void) {
     fzgx_touch(&fzgx_obj_lbl_3_bss_7EDC0);
-    fzgx_touch(&fzgx_obj_lbl_3_bss_7EDC4);
-    fzgx_touch(&fzgx_obj_lbl_3_bss_7EDC8);
+    fzgx_touch(&lbl_3_bss_7EDC0__fzgx_offset_4);
+    fzgx_touch(&lbl_3_bss_7EDC0__fzgx_offset_8);
     fzgx_touch(&fzgx_obj_lbl_3_bss_7EDCC);
-    fzgx_touch(&fzgx_obj_lbl_3_bss_7EDD0);
-    fzgx_touch(&fzgx_obj_lbl_3_bss_7EDD4);
+    fzgx_touch(&lbl_3_bss_7EDCC__fzgx_offset_4);
+    fzgx_touch(&lbl_3_bss_7EDCC__fzgx_offset_8);
     fzgx_touch(&fzgx_obj_lbl_3_bss_7EDD8);
     fzgx_touch(fzgx_obj_lbl_3_bss_7EE40);
     fzgx_touch(&fzgx_obj_lbl_3_bss_87000);
     fzgx_touch(fzgx_obj_lbl_3_bss_87040);
     fzgx_touch(fzgx_obj_lbl_3_bss_8F200);
     fzgx_touch(&fzgx_obj_lbl_3_bss_9F640);
-    fzgx_touch(fzgx_obj_lbl_3_bss_9F664);
+    fzgx_touch(lbl_3_bss_9F664__fzgx_offset_0);
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_3_bss_9F665__fzgx_offset_0;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_3_bss_9F665__fzgx_offset_1;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_3_bss_9F665__fzgx_offset_2;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_3_bss_9F665__fzgx_offset_3;
     fzgx_touch(&fzgx_obj_lbl_3_bss_9F690);
-    fzgx_touch(fzgx_obj_lbl_3_bss_9F6B4);
-    fzgx_touch(&fzgx_obj_lbl_3_bss_9F6C8);
-    fzgx_touch(&fzgx_obj_lbl_3_bss_9F6D4);
+    fzgx_touch(lbl_3_bss_9F690__fzgx_offset_24);
+    fzgx_touch(&lbl_3_bss_9F690__fzgx_offset_38);
+    fzgx_touch(&lbl_3_bss_9F690__fzgx_offset_44);
 }
 
 #define FILE_NAME (((char *)&lbl_3_data_32DC))
@@ -1167,8 +1175,8 @@ void fn_3_12B14(void) {
     u8 j;
 
     fn_1_FC414(fzgx_obj_lbl_3_bss_8F200, (void *)(s32)(1));
-    eye = fzgx_obj_lbl_3_bss_9F6C8 = lbl_3_rodata_4C8;
-    at = fzgx_obj_lbl_3_bss_9F6D4 = lbl_3_rodata_4D4;
+    eye = lbl_3_bss_9F690__fzgx_offset_38 = lbl_3_rodata_4C8;
+    at = lbl_3_bss_9F690__fzgx_offset_44 = lbl_3_rodata_4D4;
     fzgx_obj_lbl_3_bss_9F690.eye = eye;
     fzgx_obj_lbl_3_bss_9F640.eye = eye;
     fzgx_obj_lbl_3_bss_9F690.at = at;
@@ -1221,8 +1229,8 @@ void fn_3_12B14(void) {
     pool->flags = NULL;
     pool->items = NULL;
     fzgx_obj_lbl_3_bss_7EDCC = NULL;
-    fzgx_obj_lbl_3_bss_7EDC8 = 0;
-    fzgx_obj_lbl_3_bss_7EDD0 = 0;
+    lbl_3_bss_7EDC0__fzgx_offset_8 = 0;
+    lbl_3_bss_7EDCC__fzgx_offset_4 = 0;
     fn_1_FDFF4();
 }
 /* fzgx:end fn_3_12B14 */

@@ -726,7 +726,7 @@ void fn_17_2D24(void) {
 }
 /* fzgx:end fn_17_2D24 */
 
-/* fzgx:begin fn_17_2D5C pool */
+/* fzgx:begin fn_17_2D5C */
 typedef struct InterviewRig {
     u8 pad_0[8];
     s16 unk_8;
@@ -749,14 +749,14 @@ u8 fzgx_obj_lbl_17_bss_0;
 u8 fzgx_obj_lbl_17_bss_1;
 u8 fzgx_obj_lbl_17_bss_2;
 u8 fzgx_obj_lbl_17_bss_3;
-u8 fzgx_obj_lbl_17_bss_3__b1;
-u8 fzgx_obj_lbl_17_bss_3__b2;
-u8 fzgx_obj_lbl_17_bss_3__b3;
-u8 fzgx_obj_lbl_17_bss_3__b4;
-u8 fzgx_obj_lbl_17_bss_3__b5;
-u8 fzgx_obj_lbl_17_bss_3__b6;
-u8 fzgx_obj_lbl_17_bss_3__b7;
-u8 fzgx_obj_lbl_17_bss_3__b8;
+u8 lbl_17_bss_3__fzgx_offset_1;
+u8 lbl_17_bss_3__fzgx_offset_2;
+u8 lbl_17_bss_3__fzgx_offset_3;
+u8 lbl_17_bss_3__fzgx_offset_4;
+u8 lbl_17_bss_3__fzgx_offset_5;
+u8 lbl_17_bss_3__fzgx_offset_6;
+u8 lbl_17_bss_3__fzgx_offset_7;
+u8 lbl_17_bss_3__fzgx_offset_8;
 u32 fzgx_obj_lbl_17_bss_C;
 u8 *fzgx_obj_lbl_17_bss_10;
 u32 fzgx_obj_lbl_17_bss_14;
@@ -807,14 +807,14 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     s = fzgx_obj_lbl_17_bss_1;
     s = fzgx_obj_lbl_17_bss_2;
     s = fzgx_obj_lbl_17_bss_3;
-    s = fzgx_obj_lbl_17_bss_3__b1;
-    s = fzgx_obj_lbl_17_bss_3__b2;
-    s = fzgx_obj_lbl_17_bss_3__b3;
-    s = fzgx_obj_lbl_17_bss_3__b4;
-    s = fzgx_obj_lbl_17_bss_3__b5;
-    s = fzgx_obj_lbl_17_bss_3__b6;
-    s = fzgx_obj_lbl_17_bss_3__b7;
-    s = fzgx_obj_lbl_17_bss_3__b8;
+    s = lbl_17_bss_3__fzgx_offset_1;
+    s = lbl_17_bss_3__fzgx_offset_2;
+    s = lbl_17_bss_3__fzgx_offset_3;
+    s = lbl_17_bss_3__fzgx_offset_4;
+    s = lbl_17_bss_3__fzgx_offset_5;
+    s = lbl_17_bss_3__fzgx_offset_6;
+    s = lbl_17_bss_3__fzgx_offset_7;
+    s = lbl_17_bss_3__fzgx_offset_8;
     s = fzgx_obj_lbl_17_bss_C;
     s = *(u32 *)&fzgx_obj_lbl_17_bss_10;
     s = fzgx_obj_lbl_17_bss_14;

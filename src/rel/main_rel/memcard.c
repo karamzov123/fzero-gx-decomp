@@ -8086,7 +8086,56 @@ u32 fn_1_B8170(s32 card) {
 }
 /* fzgx:end fn_1_B8170 */
 
-/* fzgx:begin fn_1_B8E84 pool */
+/* fzgx:begin fn_1_B8E84 */
+extern void* lbl_801A6410;
+extern int fn_1_45D0(void *arg0, int arg1, Obj_1_data_3C7B8 *arg2, int arg3);
+extern void fn_1_AB45C(void);
+extern void CARDMountAsync(u8, u32, void (*)(void), s32);
+extern int CARDGetSerialNo(u8 value, void *data);
+extern void CARDCheckAsync(u8 byte_val, int value);
+extern void CARDFormatAsync(u8 byte, int value);
+extern const f32 lbl_1_rodata_4CA8;
+extern const f64 lbl_1_rodata_4CB0;
+extern const f32 lbl_1_rodata_4CAC;
+extern void fn_80083DB0(void *dst, void *src);
+extern void strcat(void *dst, void *src);
+extern void CARDDeleteAsync(u8 byte, void *data, int arg);
+extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
+extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
+extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
+extern void CARDCreateAsync(u8 byte_val, void *arg1, void *arg2, void *arg3, u32 arg4);
+extern void CARDSetStatusAsync(u8 id, void *arg, void *data, int zero);
+extern void CARDRenameAsync(u8 id, void *data1, void *data2, int zero);
+extern void CARDReadAsync(void *arg0, void *arg1, void *arg2, int arg3, int arg4);
+extern const f64 lbl_1_rodata_4CC8;
+extern void fn_80030754(u8 value, void *data, int size, int mode);
+extern u8 lbl_1_bss_71810[161];
+extern u8 lbl_1_bss_718B8;
+extern u8 lbl_1_bss_718B9[7];
+extern int fn_8002A744(void);
+extern void fn_8002A74C(u16 value);
+extern int fn_8002DFE0(int arg0, u32 arg1, int arg2);
+extern int CARDCheck(int arg0);
+extern void fn_1_B9C38(s32 index);
+extern void fn_1_1596DC(u32);
+extern void fn_1_484CC(u32);
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern void fn_1_AA6D8(s32 arg0, u32 arg1, void *arg2);
+extern void fn_1_F755C(u8 value);
+extern void fn_1_A6840(u8 value);
+extern void OSPanic(void *arg0, u32 arg1, ...);
+extern void fn_1_F79C8(void);
+extern void *lbl_801A6410;
+extern void strncpy(void *arg0, void *arg1, int arg2);
+extern u32 lbl_1_bss_77310[28];
+extern u32 lbl_1_bss_7730C;
+extern u8 lbl_1_bss_772C8[66];
+extern u32 fn_1_4630(void *heap, u32 size, void *file, s32 line);
+extern s32 fn_8002FC14(s32 chan, void *fileName);
+extern s32 fn_80030338(s32 chan, void *oldName, void *newName);
+extern const f64 lbl_1_rodata_4CB8;
+extern void fn_1_C36EC(void);
+
 typedef struct CardEntry {
     u8 pad_00[0x3C];
     u32 unk_3C;
@@ -8104,12 +8153,12 @@ u8 fzgx_obj_lbl_1_bss_718B1;
 u32 fzgx_obj_lbl_1_bss_718B4;
 u8 fzgx_obj_lbl_1_bss_718B8;
 u8 fzgx_obj_lbl_1_bss_718B9;
-u8 fzgx_obj_lbl_1_bss_718B9__b1;
-u8 fzgx_obj_lbl_1_bss_718B9__b2;
-u8 fzgx_obj_lbl_1_bss_718B9__b3;
-u8 fzgx_obj_lbl_1_bss_718B9__b4;
-u8 fzgx_obj_lbl_1_bss_718B9__b5;
-u8 fzgx_obj_lbl_1_bss_718B9__b6;
+u8 lbl_1_bss_718B9__fzgx_offset_1;
+u8 lbl_1_bss_718B9__fzgx_offset_2;
+u8 lbl_1_bss_718B9__fzgx_offset_3;
+u8 lbl_1_bss_718B9__fzgx_offset_4;
+u8 lbl_1_bss_718B9__fzgx_offset_5;
+u8 lbl_1_bss_718B9__fzgx_offset_6;
 u32 fzgx_obj_lbl_1_bss_718C0[8];
 u32 fzgx_obj_lbl_1_bss_718E0[5754];
 u8 fzgx_obj_lbl_1_bss_772C8[66];
@@ -8132,12 +8181,12 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     s = fzgx_obj_lbl_1_bss_718B4;
     s = fzgx_obj_lbl_1_bss_718B8;
     s = fzgx_obj_lbl_1_bss_718B9;
-    s = fzgx_obj_lbl_1_bss_718B9__b1;
-    s = fzgx_obj_lbl_1_bss_718B9__b2;
-    s = fzgx_obj_lbl_1_bss_718B9__b3;
-    s = fzgx_obj_lbl_1_bss_718B9__b4;
-    s = fzgx_obj_lbl_1_bss_718B9__b5;
-    s = fzgx_obj_lbl_1_bss_718B9__b6;
+    s = lbl_1_bss_718B9__fzgx_offset_1;
+    s = lbl_1_bss_718B9__fzgx_offset_2;
+    s = lbl_1_bss_718B9__fzgx_offset_3;
+    s = lbl_1_bss_718B9__fzgx_offset_4;
+    s = lbl_1_bss_718B9__fzgx_offset_5;
+    s = lbl_1_bss_718B9__fzgx_offset_6;
     s = fzgx_obj_lbl_1_bss_718C0[0];
     s = fzgx_obj_lbl_1_bss_718E0[0];
     s = fzgx_obj_lbl_1_bss_772C8[0];
