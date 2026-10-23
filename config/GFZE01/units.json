@@ -26568,6 +26568,19 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80067F68.c",
+    "symbols": [
+      "fn_80067F68"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80068BFC.c",
     "symbols": [
       "fn_80068BFC"
