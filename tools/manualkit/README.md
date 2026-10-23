@@ -38,6 +38,10 @@ Untouched functions and REL literal pools:
   from the matched unit's generated source; immediates/offsets, a removed loop or a parameter
   instead of a global are typical differences. Landed 7 this way on 2026-10-22 (fn_4_7DEC,
   fn_4_A0C, fn_1_5D020, fn_1_1FC98, fn_1_12277C, fn_3_5D84).
+  For siblings with added or removed loops, widen the shortlist with
+  `--min-gram 0.4 --min-length-ratio 0.5 --max-length-ratio 2`.
+  These only change discovery filters; every derived body still needs the object oracle
+  and all sixteen linked hashes before acceptance.
 - `tools/manualkit/splitdata.py` (import it): `split(text, NAME, BASE, cuts)` splits a generated
   `static union { u32 w[N]; ... } NAME = {{...}};` data object at byte addresses, so a sibling can
   address a sub-table by its own object name (`addi rX, rData, 0x5f8`).
