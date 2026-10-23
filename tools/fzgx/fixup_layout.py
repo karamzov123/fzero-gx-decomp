@@ -334,7 +334,13 @@ def unused_pool_objects(p, symbol, body, obj, check):
                 span = _function_span(code, sym.name)
                 declarations = list(re.finditer(r'(?m)^[ \t]*static\s+const\s+[\w \t*]+\b'
                                                 + re.escape(local[1]) + r'\b\s*(?:\[[^;=]*\])?\s*=', code))
-                if len(declarations) != 1 or not span or not span[0] <= declarations[0].start() < span[1]:
+                # Separate scopes may each declare the same static name (fn_17_9314
+                # has one `color` per branch); their compiler symbols differ only by
+                # the `$N` suffix. Every use resolves to one of them, so renaming the
+                # identifier across the function preserves each scope's meaning. The
+                # engine still compiles the result before it is considered.
+                if not declarations or not span or any(
+                        not span[0] <= d.start() < span[1] for d in declarations):
                     continue
                 # MWCC gives static locals ELF-only $N suffixes. Rename their
                 # C identifier only inside the function, preserving member names.

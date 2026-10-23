@@ -76,11 +76,39 @@ def _references(data) -> Iterator[str]:
         for v in data:yield from _references(v)
     elif isinstance(data,str):yield data
 
+def _has_candidate(session: Path) -> bool:
+    sources = session / 'sources'
+    if sources.is_dir() and not sources.is_symlink():
+        c_count = 0
+        try:
+            with os.scandir(sources) as es:
+                for e in es:
+                    if e.name.endswith('.c') and HEX.fullmatch(e.name[:-2]):
+                        c_count += 1
+                        if c_count > 1:
+                            return True
+        except OSError:
+            pass
+    objects = session / 'objects'
+    if objects.is_dir() and not objects.is_symlink():
+        try:
+            with os.scandir(objects) as es:
+                for e in es:
+                    if e.is_dir(follow_symlinks=False):
+                        with os.scandir(e.path) as sub_es:
+                            for sub_e in sub_es:
+                                if HEX.fullmatch(sub_e.name) and sub_e.is_dir(follow_symlinks=False):
+                                    return True
+        except OSError:
+            pass
+    return False
+
 def plan(session,max_files,min_age):
     report=session/'report.json';cache_path=session/'cache.json'
     if not report.is_file() or report.is_symlink():raise ValueError('missing regular report')
     if not cache_path.is_file() or cache_path.is_symlink():raise ValueError('missing regular cache')
     if time.time()-report.stat().st_mtime<min_age:return None
+    if not _has_candidate(session):return []
     data=json.loads(report.read_text());cache=json.loads(cache_path.read_text())
     if not isinstance(data,dict) or not isinstance(data.get('records'),list) or not isinstance(cache,dict):
         raise ValueError('unsupported report/cache format')
@@ -273,11 +301,12 @@ def main(argv=None):
     before=headroom(STATE_DIR);results=[]
     if args.root.is_dir():
         def priority(p):
+            has_cand = _has_candidate(p)
             sources=p/'sources'
-            return (-(sources.stat().st_size if sources.exists() else 0), (p/'report.json').stat().st_mtime if (p/'report.json').exists() else float('inf'))
+            return (0 if has_cand else 1, -(sources.stat().st_size if sources.exists() else 0), (p/'report.json').stat().st_mtime if (p/'report.json').exists() else float('inf'))
         sessions=sorted((p for p in args.root.iterdir() if p.is_dir() and not p.name.startswith('.')),key=priority)
         acted=0
-        for p in sessions[:args.max_sessions*4]:
+        for p in sessions:
             r=compact(p,args.archives,dry_run=not args.apply or args.dry_run,min_age=args.min_age_hours*3600,max_files=args.max_files)
             print(json.dumps(r),flush=True)
             if r['status'] not in ('recent','retained'):results.append(r)

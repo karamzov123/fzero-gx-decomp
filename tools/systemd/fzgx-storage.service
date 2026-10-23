@@ -4,7 +4,7 @@ Description=Evidence-preserving fzgx fixup retention and disk/inode monitor
 [Service]
 Type=oneshot
 WorkingDirectory=%h/projects/fzgx
-ExecStart=%h/projects/fzgx/.venv/bin/python tools/fzgx/fixup_gc.py --apply --min-age-hours 1 --max-files 20000 --max-sessions 2 --status %h/.cache/fzgx-agents/storage-v1.json
+ExecStart=%h/projects/fzgx/.venv/bin/python tools/fzgx/fixup_gc.py --apply --min-age-hours 1 --max-files 20000 --max-sessions 20 --status %h/.cache/fzgx-agents/storage-v1.json
 Nice=15
 CPUWeight=10
 CPUQuota=50%
