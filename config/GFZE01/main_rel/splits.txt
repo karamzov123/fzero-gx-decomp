@@ -8681,3 +8681,6 @@ rel/main_rel/sound/fn_1_A176C.c:
 
 rel/main_rel/sel_static_disp/fn_1_14B93C.c:
 	.text       start:0x0014B93C end:0x0014BC3C align:4
+
+rel/main_rel/bg_san/fn_1_DB268.c:
+	.text       start:0x000DB268 end:0x000DB53C align:4

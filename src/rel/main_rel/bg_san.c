@@ -832,6 +832,134 @@ void fn_1_DB198(BgSanObject *object, void *arg1) {
 }
 /* fzgx:end fn_1_DB198 */
 
+/* fzgx:begin fn_1_DB268 */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 30.0f;
+    s = 1.0f;
+    s = 0.5f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x, y, z;
+} Fn1DB268_Vec;
+
+typedef struct {
+    Fn1DB268_Vec pos;
+    f32 height;
+} Fn1DB268_Point;
+
+typedef struct {
+    s16 head;
+    f32 height;
+    Fn1DB268_Point upper[128];
+    Fn1DB268_Point lower[128];
+} Fn1DB268_Trail;
+
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x8];
+    Fn1DB268_Vec pos;
+    s16 rot_x;
+    s16 rot_y;
+    s16 rot_z;
+    f32 scale;
+} Fn1DB268_Source;
+
+typedef struct {
+    Fn1DB268_Source *source;
+    Fn1DB268_Vec pos;
+    s32 age;
+    u8 pad_14[4];
+    Fn1DB268_Trail trail;
+} Fn1DB268_Effect;
+
+extern u32 fn_1_58C4(void);
+extern u32 lbl_801A66A0;
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006D7DC(void *);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void lbl_8006E1B0(void *, void *);
+
+void fn_1_DB268(Fn1DB268_Effect *effect) {
+    Fn1DB268_Trail *slot; /* the trail shifted to the head entry: slot->upper[0] is upper[head] */
+    Fn1DB268_Source *source;
+    Fn1DB268_Trail *trail;
+    Fn1DB268_Vec vecs[2];
+    f32 dist;
+    f32 drop;
+    f32 dz;
+    f32 dy;
+    f32 dx;
+    f32 rise;
+    s32 i;
+    Fn1DB268_Point *upper;
+    Fn1DB268_Point *lower;
+
+    if (fn_1_58C4() >= 2) {
+        return;
+    }
+    source = effect->source;
+    trail = &effect->trail;
+    if (lbl_801A66A0 & 1) {
+        return;
+    }
+    if (effect->age < 0xF8) {
+        effect->age++;
+    }
+    dx = source->pos.x - effect->pos.x;
+    dy = source->pos.y - effect->pos.y;
+    dz = source->pos.z - effect->pos.z;
+    vecs[1].x = dx;
+    vecs[1].y = dy;
+    vecs[1].z = dz;
+    dist = dx * dx;
+    dist += dy * dy;
+    dist += dz * dz;
+    dist = lbl_8006D0B4(dist);
+    trail->head = (trail->head + 1) % 128;
+    slot = (Fn1DB268_Trail *)((u8 *)trail + trail->head * sizeof(Fn1DB268_Point));
+    lbl_8006D7DC(&source->pos);
+    mathutil_mtxA_rotate_z(source->rot_z);
+    mathutil_mtxA_rotate_y(source->rot_y);
+    mathutil_mtxA_rotate_x(source->rot_x);
+    rise = 25.0f;
+    rise *= source->scale;
+    {
+        Fn1DB268_Vec offset = {0.0f, 0.0f, 0.0f};
+        offset.y = rise;
+        vecs[0] = offset;
+        lbl_8006E1B0(&vecs[0], &vecs[0]);
+        slot->upper[0].pos = vecs[0];
+    }
+    {
+        Fn1DB268_Vec offset = {0.0f, 0.0f, 0.0f};
+        offset.y = -rise;
+        vecs[0] = offset;
+        lbl_8006E1B0(&vecs[0], &vecs[0]);
+        slot->lower[0].pos = vecs[0];
+    }
+    drop = 0.1f * dist;
+    trail->height -= drop;
+    slot->upper[0].height = trail->height;
+    slot->lower[0].height = trail->height;
+    upper = trail->upper;
+    lower = trail->lower;
+    for (i = 0; i < 128; i++, upper++, lower++) {
+        if (i != trail->head) {
+            upper->height += 0.02f * dist;
+            lower->height += 0.02f * dist;
+        }
+    }
+    effect->pos = source->pos;
+}
+/* fzgx:end fn_1_DB268 */
+
 /* fzgx:begin fn_1_DB53C noprologue */
 #include "types.h"
 

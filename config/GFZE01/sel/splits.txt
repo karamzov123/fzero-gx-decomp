@@ -821,3 +821,6 @@ rel/sel/sel/fn_10_DAF8.c:
 
 rel/sel/sel/fn_10_1A8B0.c:
 	.text       start:0x0001A8B0 end:0x0001AD5C align:4
+
+rel/sel/sel/fn_10_1A458.c:
+	.text       start:0x0001A458 end:0x0001A760 align:4
