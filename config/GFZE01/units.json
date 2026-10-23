@@ -774,6 +774,17 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_5D84.c",
+    "symbols": [
+      "fn_3_5D84"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c"
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_5E88.c",
     "symbols": [
       "fn_3_5E88"
@@ -33522,8 +33533,8 @@
     "symbols": [
       "fn_1_12277C"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/accessory.c"
   },
@@ -45936,6 +45947,23 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/effect.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_5D020.c",
+    "symbols": [
+      "fn_1_5D020"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_2950",
+      "@13": "lbl_1_rodata_2978",
+      "@8": "lbl_1_rodata_295C",
+      "@16": "lbl_1_rodata_2988"
+    }
   },
   {
     "module": "main_rel",
@@ -66020,6 +66048,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_1FC98.c",
+    "symbols": [
+      "fn_1_1FC98"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/stcoli.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/stcoli/fn_1_1FFA0.c",
     "symbols": [
       "fn_1_1FFA0"
@@ -76059,6 +76098,31 @@
   },
   {
     "module": "option",
+    "source": "rel/option/_prolog/fn_4_7DEC.c",
+    "symbols": [
+      "fn_4_7DEC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/option/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_4_rodata_0",
+      "@47": "lbl_4_rodata_0+0x48",
+      "@7": "lbl_4_rodata_0+0x8",
+      "@48": "lbl_4_rodata_4C",
+      "@16": "lbl_4_rodata_0+0x10",
+      "@17": "lbl_4_rodata_0+0x18",
+      "@46": "lbl_4_rodata_0+0x44",
+      "@28": "lbl_4_rodata_0+0x30",
+      "@27": "lbl_4_rodata_0+0x28",
+      "...data.0": "lbl_4_data_0",
+      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_11AC+0x60",
+      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_11AC+0x62"
+    }
+  },
+  {
+    "module": "option",
     "source": "rel/option/_prolog/fn_4_800.c",
     "symbols": [
       "fn_4_800"
@@ -76256,6 +76320,31 @@
     "extra_cflags": [],
     "tu": "rel/option/_prolog.c",
     "pool": true
+  },
+  {
+    "module": "option",
+    "source": "rel/option/_prolog/fn_4_A0C.c",
+    "symbols": [
+      "fn_4_A0C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/option/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_4_rodata_0",
+      "@47": "lbl_4_rodata_0+0x48",
+      "@7": "lbl_4_rodata_0+0x8",
+      "@48": "lbl_4_rodata_4C",
+      "@16": "lbl_4_rodata_0+0x10",
+      "@17": "lbl_4_rodata_0+0x18",
+      "@46": "lbl_4_rodata_0+0x44",
+      "@28": "lbl_4_rodata_0+0x30",
+      "@27": "lbl_4_rodata_0+0x28",
+      "...data.0": "lbl_4_data_0",
+      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_11AC+0x60",
+      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_11AC+0x62"
+    }
   },
   {
     "module": "option",

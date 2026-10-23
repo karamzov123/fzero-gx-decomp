@@ -4821,6 +4821,180 @@ void fn_1_11CAB4(NodeSet *set) {
 }
 /* fzgx:end fn_1_11CAB4 */
 
+/* fzgx:begin fn_1_12277C */
+extern void *fn_80077B14(void *);
+extern void lbl_8006DBAC(void *);
+extern void fn_8006E250(void *, void *);
+extern void fn_1_10846C(void);
+extern f32 lbl_1_rodata_7B1C;
+extern f32 lbl_1_rodata_7B20;
+extern s32 fn_1_14D670(void);
+extern u32 lbl_801A66A0;
+extern s32 fn_1_86678(s32 arg);
+extern u32 lbl_1_bss_897AC[1741];
+extern u32 lbl_1_bss_897A4;
+extern u32 lbl_1_bss_897A8;
+extern void * lbl_801A6410;
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DC20(void);
+extern const f64 lbl_1_rodata_7BF8;
+extern void fn_80008BA8(void *dst, void *src, int size);
+extern void *fn_1_45D0(void *manager, int type, void *data, int code);
+extern void fn_1_105744(void);
+extern void fn_1_106DB4(void);
+extern void fn_1_9D0EC(u32, u32, void*, void*);
+extern void fn_1_103AA8(void);
+extern u32 lbl_1_bss_85288[2];
+extern void fn_1_103AD4(void);
+extern void fn_1_105768(void);
+extern void fn_1_9E5B8(void *);
+extern f32 lbl_1_rodata_7B58[40];
+extern u8 lbl_1_rodata_8058[16];
+extern int mathutil_mtxA_rotate_z__fzgx_offset_C();
+extern struct fn_1_129D9C_system *lbl_801A6D00;
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1C0(void *, void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006D7B0(void);
+extern void lbl_8006D668(void *);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void lbl_8006E14C(f32);
+extern void lbl_8006DB74(void *);
+extern void fn_80072558(void);
+extern void fn_80083DB0(void *, void *);
+extern void *fn_1_55210(void *);
+extern void *fn_1_548AC(u32);
+extern void *fn_1_5448C(void *);
+extern void fn_1_5489C(void *, void *);
+extern void fn_1_12A0E0(void);
+
+extern void *fn_80077B14(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DC20(void);
+extern void fn_8006E250(void *, void *);
+
+typedef union fn_1_12277C_Vec {
+    u32 w[3];
+    struct {
+        f32 x;
+        f32 y;
+        f32 z;
+    };
+} fn_1_12277C_Vec;
+
+typedef struct fn_1_12277C_Part {
+    s8 unk_0;
+    u8 pad_1;
+    u8 unk_2;
+    u8 pad_3;
+    u16 unk_4[6];
+    fn_1_12277C_Vec unk_10;
+    fn_1_12277C_Vec unk_1C;
+    fn_1_12277C_Vec unk_28;
+    fn_1_12277C_Vec unk_34;
+    u32 unk_40;
+} fn_1_12277C_Part;
+
+typedef struct fn_1_12277C_Model {
+    u8 pad_0[0x8];
+    u8 *unk_8;
+} fn_1_12277C_Model;
+
+typedef struct fn_1_12277C_Data {
+    u8 pad_0[0x150];
+    fn_1_12277C_Model *unk_150;
+} fn_1_12277C_Data;
+
+typedef struct fn_1_12277C_Object {
+    u8 unk_0;
+    u8 pad_1[7];
+    u32 unk_8;
+    fn_1_12277C_Data *unk_C;
+    void *unk_10;
+    u32 pad_14;
+    u32 unk_18;
+    u8 pad_1C[8];
+    fn_1_12277C_Part *unk_24;
+} fn_1_12277C_Object;
+
+static inline void fn_1_12277C_reset_parts(fn_1_12277C_Object *self)
+{
+    s32 i;
+    fn_1_12277C_Part *p;
+
+    p = self->unk_24;
+    for (i = 0; i < self->unk_18; i++, p++) {
+        lbl_8006DBE4();
+        lbl_8006E1B0(&p->unk_28, &p->unk_10);
+    }
+}
+
+static inline void fn_1_12277C_attach_parts(fn_1_12277C_Object *self, u8 *tbl)
+{
+    s32 i;
+    s32 j;
+    fn_1_12277C_Part *p;
+
+    p = self->unk_24;
+    for (i = 0; i < self->unk_18; i++, p++) {
+        for (j = 0; j < (s32)p->unk_2; j++) {
+            fn_8006E250(&p->unk_10, tbl + p->unk_4[j] * 64);
+        }
+    }
+}
+
+void fn_1_12277C(fn_1_12277C_Object *self)
+{
+    s32 i;
+    s32 n;
+    fn_1_12277C_Part *part;
+    u8 *pool;
+    u8 *tbl;
+
+    if (self == 0) {
+        return;
+    }
+    if (self->unk_10 == 0) {
+        return;
+    }
+    fn_80077B14(self->unk_10);
+
+    if (self->unk_0 & 2) {
+        self->unk_0 &= ~2;
+        lbl_8006DBAC(self->unk_C->unk_150->unk_8 +
+                    ((u32 *)&lbl_1_data_3FFBC)[self->unk_8] * 0x18c + 0x88);
+        lbl_8006DAEC();
+        fn_1_12277C_reset_parts(self);
+        lbl_8006DC20();
+    }
+
+    pool = self->unk_C->unk_150->unk_8 +
+           ((u32 *)&lbl_1_data_3FFBC)[self->unk_8] * 0x18c;
+    n = 0;
+    part = self->unk_24;
+    for (i = 0; i < self->unk_18; i++, part++) {
+        if (part->unk_0 & 1) {
+            lbl_8006DBAC(pool + 0x88);
+            lbl_8006E1B0(&part->unk_28, &part->unk_10);
+        }
+        else {
+            part->unk_10 = ((fn_1_12277C_Vec *)&lbl_1_bss_88B50)[n];
+            n++;
+        }
+    }
+
+    tbl = (u8 *)fn_80077B14(self->unk_10);
+    lbl_8006DBAC(self->unk_C->unk_150->unk_8 +
+                ((u32 *)&lbl_1_data_3FFBC)[self->unk_8] * 0x18c + 0x88);
+    fn_1_12277C_attach_parts(self, tbl);
+}
+/* fzgx:end fn_1_12277C */
+
 /* fzgx:begin fn_1_125CE8 noprologue */
 #include "types.h"
 

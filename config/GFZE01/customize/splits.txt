@@ -728,3 +728,6 @@ rel/customize/emb_memcard/fn_3_F044.c:
 
 rel/customize/editor/fn_3_169B8.c:
 	.text       start:0x000169B8 end:0x00016E14 align:4
+
+rel/customize/_prolog/fn_3_5D84.c:
+	.text       start:0x00005D84 end:0x00005E88 align:4

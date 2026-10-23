@@ -2804,6 +2804,49 @@ void fn_3_5CE4(u32 arg0, u32 arg1) {
 }
 /* fzgx:end fn_3_5CE4 */
 
+/* fzgx:begin fn_3_5D84 */
+typedef struct { u8 pad[0x8]; s16 unk_8; } Obj_F0;
+typedef struct { u32 unk_0; u8 pad_4[0x1]; u8 unk_5; u8 pad_6[0x81ba]; } Obj_140;
+typedef struct { u8 pad[0x324]; s32 value; u8 tail[0x118]; } CustomizeEntry;
+
+extern Obj_F0 lbl_3_bss_F0;
+extern Obj_140 lbl_3_bss_140[4];
+extern CustomizeEntry lbl_3_bss_20860[4];
+extern u32 lbl_3_bss_20848;
+extern u8 lbl_3_bss_21960[10368];
+extern u8 lbl_3_data_0[0x20704];
+extern u32 lbl_1_bss_6D82C;
+extern s16 fn_1_80CC4(u8, s32, s32, void *);
+extern void fn_1_12AB38(void *);
+extern u32 fn_1_D3884(void *);
+extern void fn_1_14DB48(u32 *, void *, u32);
+
+#pragma opt_propagation off
+void fn_3_5D84(s16 index) {
+    Obj_140 *meta;
+    u8 *data;
+    s32 off;
+
+    off = index * 0x81c0;
+    data = lbl_3_data_0;
+    lbl_3_bss_20860[index].value = -1;
+    meta = (Obj_140 *)((u8 *)&lbl_3_bss_140 + off);
+    if (meta->unk_0 & 0x80000000) {
+        if (!(meta->unk_0 & 0x40000000)) {
+            lbl_3_bss_20860[index].value = fn_1_80CC4(meta->unk_5, 1, 0, &lbl_3_bss_20860[index]);
+        } else {
+            if (lbl_1_bss_6D82C == 0) {
+                fn_1_12AB38(data + 0x18a4);
+                lbl_1_bss_6D82C = fn_1_D3884(data + 0x18b0);
+                fn_1_12AB38(data + 0x18c0);
+            }
+            fn_1_14DB48(&meta->unk_0, lbl_3_bss_21960 + index * 0xa20, 1U << lbl_3_bss_20848);
+        }
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_3_5D84 */
+
 /* fzgx:begin fn_3_5E88 */
 typedef struct {
     u8 pad[0x324];

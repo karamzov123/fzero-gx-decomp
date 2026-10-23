@@ -197,3 +197,9 @@ rel/option/_prolog/fn_4_7938.c:
 
 rel/option/_prolog/fn_4_467C.c:
 	.text       start:0x0000467C end:0x00004784 align:4
+
+rel/option/_prolog/fn_4_7DEC.c:
+	.text       start:0x00007DEC end:0x000080EC align:4
+
+rel/option/_prolog/fn_4_A0C.c:
+	.text       start:0x00000A0C end:0x00000D10 align:4

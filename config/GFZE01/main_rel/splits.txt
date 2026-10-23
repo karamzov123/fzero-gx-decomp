@@ -8690,3 +8690,9 @@ rel/main_rel/bg_common/fn_1_108BD0.c:
 
 rel/main_rel/stcoli/fn_1_27E34.c:
 	.text       start:0x00027E34 end:0x00028184 align:4
+
+rel/main_rel/effect/fn_1_5D020.c:
+	.text       start:0x0005D020 end:0x0005D1B8 align:4
+
+rel/main_rel/stcoli/fn_1_1FC98.c:
+	.text       start:0x0001FC98 end:0x0001FDB0 align:4
