@@ -6577,6 +6577,96 @@ compute:
 }
 /* fzgx:end fn_1_251F8 */
 
+/* fzgx:begin fn_1_253A4 noprologue */
+#include "types.h"
+
+// Scales collision response based on the flagged corner count.
+
+
+
+
+
+
+
+
+
+
+typedef struct {
+    u32 flag;                   // 0x0
+    u8 _4[0x5c - 0x4];
+} Corner;                       // 0x5c
+
+typedef struct {
+    u32 state;                  // 0x0
+    u8 _4[0x14 - 0x4];
+    f32 f14;                    // 0x14
+    f32 f18;                    // 0x18
+    u8 _1c[0xa4 - 0x1c];
+    f32 fa4;                    // 0xa4
+    u8 _a8[0x1f8 - 0xa8];
+    f32 f1f8;                   // 0x1f8
+    f32 f1fc;                   // 0x1fc
+    u8 _200[0x20c - 0x200];
+    f32 f20c;                   // 0x20c
+    u8 _210[0x244 - 0x210];
+    Corner corner[4];           // 0x244
+} ColObj;
+
+typedef struct {
+    u8 _0[0xc];
+    f32 kc;                     // 0xc
+    u8 _10[0x14 - 0x10];
+    f32 k14;                    // 0x14
+    u8 _18[0x60 - 0x18];
+    f32 k60;                    // 0x60
+    u8 _64[0x84 - 0x64];
+    f32 k84;                    // 0x84
+    u8 _88[0x130 - 0x88];
+    f32 k130;                   // 0x130
+    u8 _134[0x180 - 0x134];
+    f64 k180;                   // 0x180
+} ScalePool;
+
+extern const ScalePool lbl_1_rodata_840;
+
+f32 fn_1_253A4(ColObj *p) {
+    const ScalePool *k = &lbl_1_rodata_840;
+    f32 f1, v, s;
+    u32 flags = p->state;
+    int i;
+
+    if (!(flags & 0x400)) {
+        return k->kc;
+    }
+
+    v = k->k14;
+    s = k->k60;
+    for (i = 0; i < 4; i++) {
+        if (p->corner[i].flag & 4) {
+            v -= s;
+        }
+    }
+
+    f1 = p->f18 * (p->f1f8 * p->f1fc);
+    v = v * f1;
+    f1 = p->f14 + v;
+    f1 = f1 * -p->f1fc;
+    if (flags & 0x20000) {
+        f1 = f1 * k->k130;
+    }
+
+    {
+        f32 t = k->k84 * f1;
+        p->fa4 = p->fa4 + t;
+    }
+    if (__fabs(p->fa4) < k->k180) {
+        p->fa4 = k->kc;
+    }
+    p->f20c = p->f1fc;
+    return f1;
+}
+/* fzgx:end fn_1_253A4 */
+
 /* fzgx:begin fn_1_25480 noprologue */
 #include "types.h"
 #include "dolphin/types.h"
