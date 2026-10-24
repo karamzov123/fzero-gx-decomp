@@ -58385,6 +58385,45 @@ void fn_17_6C30(InterviewEntry *entry) {
 }
 /* fzgx:end fn_17_6C30 */
 
+/* fzgx:begin fn_17_6D60 */
+// Builds event model names and starts the corresponding animation.
+
+typedef struct {u8 pad[0x88];s32 index;} Model;
+typedef struct {u8 pad[0xc];s16 index;} Event;
+typedef struct {u32 x0;s32 handle;} Chain;
+extern Model *lbl_17_bss_D8[];
+extern const char lbl_17_data_0[];
+extern const char *lbl_1_data_20D1C[];
+extern s16 lbl_17_bss_D6[];
+extern u32 lbl_1_bss_6EAB4;
+extern Chain *lbl_1_bss_6EAD0[];
+extern s16 fn_1_12C930(s16),fn_1_12C710(s32),fn_1_12CB04(s16);
+extern s32 sprintf(char*,const char*,...);
+extern void fn_1_97204(Model*,const char*),fn_8004BF0C(s32,s16);
+#pragma push
+#pragma opt_propagation off
+void fn_17_6D60(Event *event) {
+ const char *data=lbl_17_data_0+0x60000;
+ char name[0x80];
+ Model *first=lbl_17_bss_D8[0];
+ s16 type=fn_1_12C710(first->index);
+ const char *prefix=lbl_1_data_20D1C[fn_1_12C930((s16)first->index)];
+ Model *model=lbl_17_bss_D8[0];
+ sprintf(name,data+0x417c,prefix,event->index+1);
+ switch(fn_1_12CB04(type)) {
+ case 2:{Model *p,*q;fn_1_97204(model,name);
+ p=lbl_17_bss_D8[2];sprintf(name,data+0x4184,event->index+1);fn_1_97204(p,name);
+ {s16 index=event->index;event=(Event*)lbl_17_bss_D8[3];sprintf(name,data+0x418c,index+1);fn_1_97204((Model*)event,name);}break;}
+ case 1:{Model *p;fn_1_97204(model,name);{s16 index=event->index;event=(Event*)lbl_17_bss_D8[2];sprintf(name,data+0x4194,index+1);fn_1_97204((Model*)event,name);}break;}
+ case 0:fn_1_97204(model,name);break;
+ }
+ {s32 offset=(s16)type*2;const char *times=data+0x2c88;s16 delay=*(const s16*)(times+offset);
+ lbl_17_bss_D6[0]=delay;lbl_1_bss_6EAB4&=~0x2c;
+ fn_8004BF0C(lbl_1_bss_6EAD0[0]->handle,delay);}
+}
+#pragma pop
+/* fzgx:end fn_17_6D60 */
+
 /* fzgx:begin fn_17_6F30 */
 typedef struct InterviewText {
     u8 pad0[0x86];

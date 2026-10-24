@@ -4553,6 +4553,17 @@
   },
   {
     "module": "interview",
+    "source": "rel/interview/interview/fn_17_6D60.c",
+    "symbols": [
+      "fn_17_6D60"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/interview/interview.c"
+  },
+  {
+    "module": "interview",
     "source": "rel/interview/interview/fn_17_6F30.c",
     "symbols": [
       "fn_17_6F30"
@@ -37088,6 +37099,20 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/bg_cas/fn_1_FDD7C.c",
+    "symbols": [
+      "fn_1_FDD7C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_cas.c",
+    "pool": {
+      "@25": "lbl_1_rodata_765C"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/bg_cas/fn_1_FDEC8.c",
     "symbols": [
       "fn_1_FDEC8"
@@ -49401,6 +49426,20 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_CFB28.c",
+    "symbols": [
+      "fn_1_CFB28"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/enemy_ctrl.c",
+    "pool": {
+      "@27": "jumptable_1_data_3D5E0"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/enemy_ctrl/fn_1_CFCA4.c",
     "symbols": [
       "fn_1_CFCA4"
@@ -55636,6 +55675,17 @@
     "source": "rel/main_rel/live_camera/fn_1_1350C.c",
     "symbols": [
       "fn_1_1350C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/live_camera.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/live_camera/fn_1_1361C.c",
+    "symbols": [
+      "fn_1_1361C"
     ],
     "status": "matching",
     "mw_version": null,
@@ -69235,6 +69285,17 @@
       "@125": "lbl_1_rodata_954",
       "@26": "lbl_1_rodata_84C"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_253A4.c",
+    "symbols": [
+      "fn_1_253A4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/stcoli.c"
   },
   {
     "module": "main_rel",
@@ -85884,6 +85945,17 @@
     "source": "rel/story/story_mode/fn_7_E84.c",
     "symbols": [
       "fn_7_E84"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/story/story_mode.c"
+  },
+  {
+    "module": "story",
+    "source": "rel/story/story_mode/fn_7_FB4.c",
+    "symbols": [
+      "fn_7_FB4"
     ],
     "status": "matching",
     "mw_version": null,

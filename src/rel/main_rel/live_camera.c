@@ -3804,3 +3804,78 @@ u8 fn_1_1350C(void *arg0, u8 *arg1) {
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_1350C */
+
+/* fzgx:begin fn_1_1361C noprologue */
+#include "types.h"
+
+extern u32 fn_1_45B2C(void *p);
+extern void fn_1_45964(void *a, void *buf, int n, u32 off, void *cb);
+extern void fn_1_1383C(void);
+extern void DCInvalidateRange(void *addr, u32 len);
+extern void fn_8000659C(void);
+extern void fn_1_3308(void);
+extern void fn_1_D3214(void);
+extern void fn_8001AF64(void);
+
+extern volatile u32 lbl_1_data_5184;  // volatile: retail reloads it on every access
+
+typedef struct {
+    u8 _0[0x2328];
+    volatile u32 w2328;   // 0x2328  read cursor (active buffer)
+    volatile u32 w232c;   // 0x232c  write offset
+    u8 _pad1[0x23b8 - 0x232c - 4];
+    volatile u8 b23b8;    // 0x23b8  buffer toggle
+    u8 _pad2[3];
+    volatile s32 w23bc;   // 0x23bc  DMA-ready flag
+} SomRing;
+
+extern SomRing lbl_1_bss_1800;
+
+u8 fn_1_1361C(void *a, u32 *b) {
+    SomRing *s = &lbl_1_bss_1800;
+    int n;
+
+    if (s->w232c == 0) {
+        n = lbl_1_data_5184;
+        s->b23b8 = 0;
+        if (s->w232c + lbl_1_data_5184 > fn_1_45B2C(a)) {
+            n = ((fn_1_45B2C(a) - s->w232c) + 0x1f) & ~0x1f;
+        }
+        if (n > 0) {
+            DCInvalidateRange((void *)b[s->b23b8], lbl_1_data_5184);
+            s->w23bc = 0;
+            fn_1_45964(a, (void *)b[s->b23b8], n, s->w232c, fn_1_1383C);
+        }
+        s->w232c += lbl_1_data_5184;
+        s->b23b8 = 1 - s->b23b8;
+    }
+
+    if (s->w2328 == 0) {
+        n = lbl_1_data_5184;
+        if (s->w232c + lbl_1_data_5184 > fn_1_45B2C(a)) {
+            n = ((fn_1_45B2C(a) - s->w232c) + 0x1f) & ~0x1f;
+        }
+        while (s->w23bc == 0) {
+            fn_8000659C();
+            fn_1_3308();
+            fn_1_D3214();
+            fn_8001AF64();
+        }
+        if (n > 0) {
+            DCInvalidateRange((void *)b[s->b23b8], lbl_1_data_5184);
+            s->w23bc = 0;
+            fn_1_45964(a, (void *)b[s->b23b8], n, s->w232c, fn_1_1383C);
+        }
+        s->w232c += lbl_1_data_5184;
+        s->b23b8 = 1 - s->b23b8;
+    }
+
+    {
+        u8 *buf = (u8 *)b[s->b23b8];
+        u8 ret = buf[s->w2328];
+        s->w2328 = s->w2328 + 1;
+        if (s->w2328 >= lbl_1_data_5184) s->w2328 = 0;
+        return ret;
+    }
+}
+/* fzgx:end fn_1_1361C */
