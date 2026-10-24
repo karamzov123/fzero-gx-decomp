@@ -392,10 +392,26 @@
     "symbols": [
       "fn_9_AF0"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/car_colchg/car_colchg.c"
+    "tu": "rel/car_colchg/car_colchg.c",
+    "pool": {
+      "...data.0": "lbl_9_data_0",
+      "@24": "lbl_9_rodata_8",
+      "fzgx_obj_lbl_9_data_0": "lbl_9_data_0",
+      "fzgx_obj_lbl_9_data_4": "lbl_9_data_4",
+      "fzgx_obj_lbl_9_data_2C": "lbl_9_data_2C",
+      "fzgx_obj_lbl_9_data_40": "lbl_9_data_40",
+      "fzgx_obj_lbl_9_data_54": "lbl_9_data_54",
+      "fzgx_obj_lbl_9_data_68": "lbl_9_data_68",
+      "fzgx_obj_lbl_9_data_7C": "lbl_9_data_7C",
+      "fzgx_obj_lbl_9_data_80": "lbl_9_data_80",
+      "fzgx_obj_lbl_9_data_84": "lbl_9_data_84",
+      "lbl_9_data_84__fzgx_offset_4": "lbl_9_data_84+0x4",
+      "lbl_9_data_84__fzgx_offset_10": "lbl_9_data_84+0x10",
+      "lbl_9_data_84__fzgx_offset_14": "lbl_9_data_84+0x14"
+    }
   },
   {
     "module": "car_colchg",
@@ -61335,6 +61351,26 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/relocation.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/rep_memcard/fn_1_154A08.c",
+    "symbols": [
+      "fn_1_154A08"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/rep_memcard.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_8ED90",
+      "fzgx_obj_lbl_1_bss_8ED90": "lbl_1_bss_8ED90",
+      "fzgx_obj_lbl_1_bss_8ED94": "lbl_1_bss_8ED94",
+      "lbl_1_bss_8ED94__fzgx_offset_4": "lbl_1_bss_8ED94+0x4",
+      "fzgx_obj_lbl_1_bss_8EDA0": "lbl_1_bss_8EDA0",
+      "fzgx_obj_lbl_1_bss_8EDA4": "lbl_1_bss_8EDA4",
+      "fzgx_obj_lbl_1_bss_8EDF0": "lbl_1_bss_8EDF0"
+    }
   },
   {
     "module": "main_rel",
