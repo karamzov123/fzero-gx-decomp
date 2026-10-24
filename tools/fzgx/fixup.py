@@ -340,6 +340,11 @@ class Engine:
                     shared = [s.name for s in definitions if s.name not in owned and s.name not in mapped]
                     if shared:
                         row.update(matched=False, object_matched=True, extra_data=shared)
+            if row.get('matched') and row.get('object') and layout.unused_bss_definitions(
+                    self.project, row['symbol'], source_text(row['source']), row['object'], self.check(row)):
+                # A function-only oracle match must not hide unused generated
+                # storage that still changes the linked module's BSS extent.
+                row.update(matched=False, object_matched=True, extra_unused_bss=True)
             if row.get('matched'):
                 from .lint import allocator_scaffolding, lint_file
                 findings = lint_file(Path(row['source']))
@@ -525,8 +530,12 @@ class Engine:
                 yield from evidence.relocation_bindings(body, check)
                 yield from layout.bss_member_bindings(self.project, row['symbol'], body, row.get('object'), check)
                 yield from layout.split_bss_primer_arrays(self.project, row['symbol'], body, row.get('object'), check)
+                yield from layout.unused_bss_primer_objects(self.project, row['symbol'], body, row.get('object'), check)
+                yield from layout.unused_bss_definitions(self.project, row['symbol'], body, row.get('object'), check)
                 yield from layout.private_data_objects(body, row.get('object'), check)
                 yield from layout.unused_pool_objects(self.project, row['symbol'], body, row.get('object'), check)
+                if row.get('extra_helpers'):
+                    yield from source.inline_helpers(body, name, set(row['extra_helpers']))
             return
         if check.ok:
             yield from layout.legacy_pool_primer_sections(body, row.get('object'))
@@ -537,6 +546,7 @@ class Engine:
             yield from layout.overlapping_field_views(self.project, row['symbol'], body)
             yield from evidence.relocation_bindings(body, check)
             yield from layout.bss_member_bindings(self.project, row['symbol'], body, row.get('object'), check)
+            yield from layout.unused_bss_definitions(self.project, row['symbol'], body, row.get('object'), check)
             yield from layout.private_data_objects(body, row.get('object'), check)
         yield from source.split_declaration_groups(body, name)
         yield from source.accessor_lifetimes(body, name)

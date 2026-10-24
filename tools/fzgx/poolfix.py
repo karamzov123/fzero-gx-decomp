@@ -176,34 +176,13 @@ class Elf:
         return done, skipped
 
     def drop_private_data(self, private_names: List[str]) -> bool:
-        """Empty .data when every object symbol in it was retargeted (a switch jump table the
-        retail data unit already holds); else leave it."""
-        dsec = self.section(".data")
-        if dsec is None:
-            return True
-        others = [s for s in self.symbols()
-                  if s["shndx"] == dsec["index"] and (s["info"] & 0xF) == STT_OBJECT and s["name"] not in private_names]
-        if others and any(n.startswith('...data') for n in private_names):
-            indices = {s['index'] for s in others}
-            referenced = any((struct.unpack_from('>I', self.data, off + 4)[0] >> 8) in indices
-                             for rs in self.sections if rs['type'] == SHT_RELA
-                             for off in range(rs['offset'], rs['offset'] + rs['size'], 12))
-            if not referenced and all(s['name'].startswith(('@', 'fzgx_pool_')) for s in others):
-                for s in others:
-                    self.data[s['off'] + 4:s['off'] + 16] = struct.pack('>IIBBH', 0, 0, 0, 0, SHN_UNDEF)
-                others = []
-        if others:
-            return False
-        dsec["size"] = 0
-        dsec["addralign"] = 1
-        dsec["flags"] = 0
-        self._write_shdr(dsec)
-        # the table's own relocations (its entries point at the function's labels) go with it
-        for rs in self.sections:
-            if rs["type"] == SHT_RELA and rs["info"] == dsec["index"]:
-                rs["size"] = 0
-                self._write_shdr(rs)
-        return True
+        """Discard retargeted tables and unused compiler-private string copies.
+
+        Like rodata, the entire section must have no surviving incoming
+        relocation, including references through its anonymous section base.
+        A bound string need not be named ...data for that proof to hold.
+        """
+        return self.drop_private_rodata(private_names, '.data')
 
     def drop_section(self, name: str) -> bool:
         """Empty a section and the relocations applied to it (the pool primer's code section:

@@ -1067,6 +1067,32 @@ void fn_3_16FD0(u32 arg0) {
 }
 /* fzgx:end fn_3_16FD0 */
 
+/* fzgx:begin fn_3_17098 */
+#pragma opt_propagation off
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+
+#pragma opt_common_subs off
+#pragma peephole off
+void fn_3_17098(void) {
+    u32 *b = (u32 *)&lbl_3_bss_A2410;
+    s32 c = 0x40000000;
+    b[2] = c;
+{
+    s8 i = 0;
+    ((u8 *)b)[0xC] = i;
+    b[1] = *(u32 *)((u8 *)&lbl_3_data_35C0 + (i * 4));
+    ((u16 *)b)[8] = i;
+    ((u16 *)b)[9] = i;
+    ((u16 *)b)[10] = i;
+    ((u16 *)b)[11] = 0xFF;
+    ((u16 *)b)[16] = i;
+}
+}
+#pragma peephole reset
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_3_17098 */
+
 /* fzgx:begin fn_3_170E0 */
 void fn_3_170E0(void) {
     fn_3_17100();

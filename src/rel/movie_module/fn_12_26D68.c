@@ -30,18 +30,18 @@ typedef struct MovieInfo {
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base
  * (dtk's lbl_12_bss_96A0 covers the first four objects) */
 u32 lbl_12_bss_96A0;
-u32 fzgx_movie_bufs[16];   /* 0x96A4 */
-u32 fzgx_movie_pair[2];    /* 0x96E4 */
-MovieInfo fzgx_movie_info; /* 0x96EC */
+u32 lbl_12_bss_96A0__fzgx_offset_4[16];   /* 0x96A4 */
+u32 lbl_12_bss_96A0__fzgx_offset_44[2];    /* 0x96E4 */
+MovieInfo lbl_12_bss_96A0__fzgx_offset_4C; /* 0x96EC */
 u8 lbl_12_bss_9710[73760];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&lbl_12_bss_96A0;
-    s = *(u8 *)&fzgx_movie_bufs;
-    s = *(u8 *)&fzgx_movie_pair;
-    s = *(u8 *)&fzgx_movie_info;
+    s = *(u8 *)&lbl_12_bss_96A0__fzgx_offset_4;
+    s = *(u8 *)&lbl_12_bss_96A0__fzgx_offset_44;
+    s = *(u8 *)&lbl_12_bss_96A0__fzgx_offset_4C;
     s = *(u8 *)&lbl_12_bss_9710;
 }
 #pragma section code_type ".text"
@@ -109,19 +109,19 @@ s32 fn_12_26D68(Sig_fn_12_24A88_MovieObject *movie, MovieSetup *setup) {
     /* the pending description: count in range, and when either direct buffer is
      * missing, the pair and every per-stream buffer must be set.  The loop counter
      * is shared with the channel loop below (retail reuses one variable). */
-    if (fzgx_movie_info.count <= 0 || fzgx_movie_info.count > 16) {
+    if (lbl_12_bss_96A0__fzgx_offset_4C.count <= 0 || lbl_12_bss_96A0__fzgx_offset_4C.count > 16) {
         err = -1;
         goto done; /* fzgx-allow: S1 retail joins the four failures on one error value */
     }
-    if (fzgx_movie_info.buf0 == 0 || fzgx_movie_info.buf1 == 0) {
+    if (lbl_12_bss_96A0__fzgx_offset_4C.buf0 == 0 || lbl_12_bss_96A0__fzgx_offset_4C.buf1 == 0) {
         for (i = 0; i < 2; i++) {
-            if (fzgx_movie_pair[i] == 0) {
+            if (lbl_12_bss_96A0__fzgx_offset_44[i] == 0) {
                 err = -1;
                 goto done; /* fzgx-allow: S1 */
             }
         }
-        for (i = 0; i < fzgx_movie_info.count; i++) {
-            if (fzgx_movie_bufs[i] == 0) {
+        for (i = 0; i < lbl_12_bss_96A0__fzgx_offset_4C.count; i++) {
+            if (lbl_12_bss_96A0__fzgx_offset_4[i] == 0) {
                 err = -1;
                 goto done; /* fzgx-allow: S1 */
             }
@@ -133,9 +133,9 @@ done:
         return fn_12_24A88(movie, 0xff000f15);
     }
 
-    setup->info = fzgx_movie_info;
-    memcpy(setup->pair, fzgx_movie_pair, 8);
-    memcpy(setup->bufs, fzgx_movie_bufs, 0x40);
+    setup->info = lbl_12_bss_96A0__fzgx_offset_4C;
+    memcpy(setup->pair, lbl_12_bss_96A0__fzgx_offset_44, 8);
+    memcpy(setup->bufs, lbl_12_bss_96A0__fzgx_offset_4, 0x40);
     setup->field000 = 0;
     setup->field070 = 0;
     setup->field074 = 5;

@@ -495,7 +495,7 @@ s32 fn_1_45E84(s32 value) {
 }
 /* fzgx:end fn_1_45E84 */
 
-/* fzgx:begin fn_1_46144 pool noprologue */
+/* fzgx:begin fn_1_46144 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/load.h"
@@ -636,29 +636,29 @@ typedef struct {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_384C0;
-u8 lbl_1_bss_384C0_gap_384C4[12];
+u8 fzgx_pool_lbl_1_bss_384C0_gap_384C4[12];
 s32 fzgx_obj_lbl_1_bss_384D0;                /* +0x10 busy */
-u32 fzgx_obj_lbl_1_bss_384D0_4;
+u32 lbl_1_bss_384D0__fzgx_offset_4;
 LoadSlot fzgx_obj_lbl_1_bss_384D8[0x400];    /* +0x18 slot table */
-u8 fzgx_obj_lbl_1_bss_384D8_fill_4000[0x5820 - 0x4018];
-s32 fzgx_obj_lbl_1_bss_3DCE0;                /* +0x5820 next free slot */
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_384D8_fill_4000[0x5820 - 0x4018];
+s32 lbl_1_bss_3DCDC__fzgx_offset_4;                /* +0x5820 next free slot */
 s32 fzgx_obj_lbl_1_bss_3DCE4[16];            /* +0x5824 pending requests */
-u32 fzgx_obj_lbl_1_bss_3DD24[2];
-u8 *fzgx_obj_lbl_1_bss_3DD2C;                /* +0x586c work buffer */
+u32 fzgx_pool_fzgx_obj_lbl_1_bss_3DD24[2];
+u8 *lbl_1_bss_3DD28__fzgx_offset_4;                /* +0x586c work buffer */
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
-    s = *(u8 *)&lbl_1_bss_384C0_gap_384C4;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_384C0_gap_384C4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0_4;
+    s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8_fill_4000;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCE0;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_384D8_fill_4000;
+    s = *(u8 *)&lbl_1_bss_3DCDC__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCE4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DD24;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DD2C;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_3DD24;
+    s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_4;
 }
 #pragma section code_type ".text"
 
@@ -699,18 +699,18 @@ int fn_1_46144(LoadArchive *archive, s32 locked, s32 named) {
         fn_1_D3214();
     }
     fzgx_obj_lbl_1_bss_384D0 = 1;
-    DCInvalidateRange(fzgx_obj_lbl_1_bss_3DD2C, 0x20);
-    ARQPostRequest(&request, 0, 1, 1, aram, (u32)fzgx_obj_lbl_1_bss_3DD2C, 0x20, (ARQCallback)fn_1_45890);
+    DCInvalidateRange(lbl_1_bss_3DD28__fzgx_offset_4, 0x20);
+    ARQPostRequest(&request, 0, 1, 1, aram, (u32)lbl_1_bss_3DD28__fzgx_offset_4, 0x20, (ARQCallback)fn_1_45890);
     while (fn_1_46144_busy()) {
         fn_1_D3214();
     }
-    header = (ArcHeader *)fzgx_obj_lbl_1_bss_3DD2C;
+    header = (ArcHeader *)lbl_1_bss_3DD28__fzgx_offset_4;
     size = (header->size + 0x1f) & ~0x1f;
     offset = header->offset;
     archive->end = size + offset;
     fzgx_obj_lbl_1_bss_384D0 = 1;
-    DCInvalidateRange(fzgx_obj_lbl_1_bss_3DD2C + offset, size);
-    ARQPostRequest(&request, 0, 1, 1, aram + offset, (u32)(fzgx_obj_lbl_1_bss_3DD2C + offset), size, (ARQCallback)fn_1_45890);
+    DCInvalidateRange(lbl_1_bss_3DD28__fzgx_offset_4 + offset, size);
+    ARQPostRequest(&request, 0, 1, 1, aram + offset, (u32)(lbl_1_bss_3DD28__fzgx_offset_4 + offset), size, (ARQCallback)fn_1_45890);
     while (fn_1_46144_busy()) {
         fn_1_D3214();
     }
@@ -718,13 +718,13 @@ int fn_1_46144(LoadArchive *archive, s32 locked, s32 named) {
         OSReport((const char *)lbl_1_data_67D0);
         return 0;
     }
-    entry = (ArcEntry *)(fzgx_obj_lbl_1_bss_3DD2C + offset);
+    entry = (ArcEntry *)(lbl_1_bss_3DD28__fzgx_offset_4 + offset);
     count = entry->size;
     for (i = 0; i < count; i++, entry++) {
         if (entry->unk_0 == 0) {
             slotAddr = entry->offset;
             slotSize = entry->size;
-            slot = &fzgx_obj_lbl_1_bss_384D8[fzgx_obj_lbl_1_bss_3DCE0];
+            slot = &fzgx_obj_lbl_1_bss_384D8[lbl_1_bss_3DCDC__fzgx_offset_4];
             slot->flags = (locked ? 0x10000000 : 0) | 0x40000000;
             slot->addr = aram + slotAddr;
             slot->size = (slotSize + 0x1f) & ~0x1f;
@@ -735,7 +735,7 @@ int fn_1_46144(LoadArchive *archive, s32 locked, s32 named) {
                 slot->flags |= 0x08000000;
                 slot->unk_4 = i;
             }
-            next = fzgx_obj_lbl_1_bss_3DCE0;
+            next = lbl_1_bss_3DCDC__fzgx_offset_4;
             for (k = 0; k < 0x400; k++) {
                 next++;
                 if (fzgx_obj_lbl_1_bss_384D8[next].flags == 0) {
@@ -745,7 +745,7 @@ int fn_1_46144(LoadArchive *archive, s32 locked, s32 named) {
                     next = 0;
                 }
             }
-            fzgx_obj_lbl_1_bss_3DCE0 = next;
+            lbl_1_bss_3DCDC__fzgx_offset_4 = next;
         }
     }
     return 1;

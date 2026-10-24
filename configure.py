@@ -420,6 +420,16 @@ def add_pool_rules() -> None:
             vm = re.compile(r"^  \w+ = ", re.M).search(text, m.start())
             if not vm:
                 continue
+            # A changed retargeter must rebuild these objects even when the C
+            # and mapping stay identical. Compiler edges already have an
+            # implicit dependency group for the compiler and depfile tool.
+            edge = text[m.start():vm.start()]
+            if "tools/fzgx/poolfix.py" not in edge:
+                updated = edge.replace(" | ", " | tools/fzgx/poolfix.py ", 1)
+                if updated == edge:
+                    sys.exit("build.ninja: mwcc_pool edge has no implicit dependencies")
+                text = text[:m.start()] + updated + text[vm.start():]
+                vm = re.compile(r"^  \w+ = ", re.M).search(text, m.start())
             if not re.search(rf"^  poolmap = .*{re.escape(stem)}", text, re.M):
                 text = text[:vm.start()] + f"  poolmap = {poolmap}\n" + text[vm.start():]
                 n += 1

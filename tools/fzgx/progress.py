@@ -17,8 +17,8 @@ Four registries decide the answer, and they fail differently (findings 279/280):
     units.json    that the unit is built from C     (is it compiled?)
     build/gen/    the generated translation unit   (was it actually built?)
 
-A function is **authored** only when the ledger calls it matched, it has a units.json
-record, and that unit's generated file exists. Only an authored function should count as
+A function is **authored** only when the ledger calls it matched, its units.json
+record selects matching C, and that unit's compiled object exists. Only an authored function should count as
 progress, and only an authored function can honestly be *completed*.
 """
 
@@ -109,7 +109,13 @@ def units() -> Dict[str, dict]:
         if path.exists():
             for u in json.loads(path.read_text()):
                 for sym in u.get("symbols") or ():
-                    _UNITS.setdefault(f"{u['module']}:{sym}", u)
+                    key = f"{u['module']}:{sym}"
+                    previous = _UNITS.get(key)
+                    # A retired nonmatching record can precede its active
+                    # replacement. Measure the unit configure.py links.
+                    if previous is None or (previous.get("status") != "matching"
+                                            and u.get("status") == "matching"):
+                        _UNITS[key] = u
     return _UNITS
 
 
@@ -128,12 +134,17 @@ def gen_built(record: Optional[dict]) -> bool:
 
     So probe all three and let the filesystem decide rather than encoding a guess.
 
+    The registry must also select that object for linking: probes can leave a
+    compiled object for a pool-only or nonmatching unit that still links retail.
     Requiring a built object is also what separates real work from a green build: a body in a
     TU file with no units.json entry leaves `configure.py` printing "Missing configuration for
     <unit>", skipping the unit, and the build still green while nothing of ours is linked
     (docs/findings/280).
     """
-    if not record:
+    # Oracle probes leave objects for nonmatching and pool-only units too.
+    # configure.py links those units from retail, irrespective of stale object
+    # presence. Only the matching status selects the compiled reconstruction.
+    if not record or record.get("status") != "matching":
         return False
     src = record.get("source") or ""
     # `source` is `rel/<mod>/<unit>.c` and `<unit>` may contain slashes of its own

@@ -11785,7 +11785,7 @@ void fn_1_C132C(Fn1C132CObject *object, u8 *data) {
 }
 /* fzgx:end fn_1_C132C */
 
-/* fzgx:begin fn_1_C1394 pool noprologue */
+/* fzgx:begin fn_1_C1394 noprologue */
 #include "types.h"
 
 typedef struct McEntry {
@@ -11824,30 +11824,30 @@ typedef struct McState {
 
 /* memcard.c .bss, in retail order: every object is addressed off the section base */
 u8 lbl_1_bss_716C0[0x8];
-u8 fzgx_obj_716C8[0x1EC];
+u8 fzgx_pool_fzgx_obj_716C8[0x1EC];
 s32 lbl_1_bss_718B4;
 u8 lbl_1_bss_718B8;
-u8 fzgx_obj_718B9;
-u16 fzgx_obj_718BA;
-u8 fzgx_obj_718BC[0x5CC0 - 0x1FC];
+u8 fzgx_pool_fzgx_obj_718B9;
+u16 fzgx_pool_fzgx_obj_718BA;
+u8 fzgx_pool_fzgx_obj_718BC[0x5CC0 - 0x1FC];
 McEntry lbl_1_bss_77380[2][128];
 void *lbl_1_bss_7A380;
-u8 fzgx_obj_7A384[0x18];
+u8 fzgx_pool_fzgx_obj_7A384[0x18];
 McName lbl_1_bss_7A39C[2][127];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&lbl_1_bss_716C0;
-    s = *(u8 *)&fzgx_obj_716C8;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_716C8;
     s = *(u8 *)&lbl_1_bss_718B4;
     s = *(u8 *)&lbl_1_bss_718B8;
-    s = *(u8 *)&fzgx_obj_718B9;
-    s = *(u8 *)&fzgx_obj_718BA;
-    s = *(u8 *)&fzgx_obj_718BC;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_718B9;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_718BA;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_718BC;
     s = *(u8 *)&lbl_1_bss_77380;
     s = *(u8 *)&lbl_1_bss_7A380;
-    s = *(u8 *)&fzgx_obj_7A384;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_7A384;
     s = *(u8 *)&lbl_1_bss_7A39C;
 }
 #pragma section code_type ".text"

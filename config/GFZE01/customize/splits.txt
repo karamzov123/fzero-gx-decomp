@@ -216,9 +216,6 @@ rel/customize/editor/fn_3_1563C.c:
 rel/customize/editor/fn_3_156A8.c:
 	.text       start:0x000156A8 end:0x000156D0
 
-rel/customize/editor/fn_3_17098.c:
-	.text       start:0x00017098 end:0x000170E0
-
 rel/customize/editor/fn_3_170E0.c:
 	.text       start:0x000170E0 end:0x00017100
 
@@ -737,3 +734,6 @@ rel/customize/toolkit/fn_3_20748.c:
 
 rel/customize/_prolog/fn_3_AC4C.c:
 	.text       start:0x0000AC4C end:0x0000ACF4 align:4
+
+rel/customize/editor/fn_3_17098.c:
+	.text       start:0x00017098 end:0x000170E0 align:4

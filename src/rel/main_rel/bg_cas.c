@@ -872,6 +872,111 @@ void fn_1_FC60C(void) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_FC60C */
 
+/* fzgx:begin fn_1_FC760 */
+extern void fn_80038F10(f32 *);
+extern void fn_80038FD8(u32 *, u32 *, u32 *, u32 *);
+extern void fn_80038BFC(f32 *);
+extern void fn_80015C1C(void *, f32,f32,f32,f32,f32,f32,f32,f32,f32);
+extern void fn_80015B50(void *,f32,f32,f32);
+extern void lbl_8006DFFC(void *,void *,void *);
+extern void fn_80015D7C(void *,f32,f32,f32,f32,f32,f32);
+extern void fn_800737E4(void *,s32);
+extern void fn_80038EEC(f32,f32,f32,f32,f32,f32);
+extern void fn_80074188(u32,u32,u32,u32);
+extern void fn_80074300(u16,u16,u16,u16);
+extern void fn_80074438(u32,u32,u32,u32);
+extern void fn_800744F8(void *,u32);
+extern void fn_8003526C(void *,u8);
+extern void fn_80007C2C(void);
+extern void lbl_8006DBAC(void *);
+extern void DCInvalidateRange(void *,u32);
+extern void GXInitTexObj(void *,void *,u16,u16,int,int,int,u8);
+extern void GXInitTexObjLOD(void *,int,int,f32,f32,f32,u8,u8,int);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+
+typedef struct {
+    u8 pad_0[0xC];
+    f32 unk_C;
+    u32 unk_10;
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+    f32 unk_20;
+} Pool;
+extern Pool lbl_1_rodata_7600;
+
+typedef struct {
+    u8 pad_0[0x14];
+    f32 unk_14;
+    f32 unk_18;
+    u8 pad_1C[0x124];
+    u32 unk_140;
+} BssPool;
+
+typedef struct { f32 m[12]; } Mat;
+typedef struct { f32 m[16]; } Mat44;
+typedef struct { f32 m[6]; } View;
+typedef struct { f32 m[7]; } Saved;
+typedef struct { u8 pad[0x40]; Mat unk_40; Mat unk_70; Mat unk_A0; u8 unk_D0[0x10]; u8 unk_E0[0x4000]; f32 unk_40E0; f32 unk_40E4; f32 unk_40E8; } Texture;
+typedef struct {u8 pad[0x10428]; void (*unk_10428)(void *,Texture *); } Owner;
+
+void fn_1_FC760(void *arg0, Texture *arg1) {
+Pool *p_ro = (Pool *)&lbl_1_rodata_7600;
+BssPool *p_bss = (BssPool *)&lbl_1_bss_850C0;
+f32 v0,v1,v2;
+f32 near,far,range;
+f32 scale,ratio;
+Mat44 loc_B8;
+Mat loc_88;
+Mat loc_58;
+View loc_40;
+Saved loc_24;
+u32 loc_20,loc_1C,loc_18,loc_14;
+u32 loc_10;
+fn_80038F10(loc_40.m);
+fn_80038FD8(&loc_20,&loc_1C,&loc_18,&loc_14);
+fn_80038BFC(loc_24.m);
+v0=p_ro->unk_14;
+v1=arg1->unk_40E4;
+v2=arg1->unk_40E8;
+fn_80015C1C(&loc_88,-v2,v2,-v1,v1,p_bss->unk_14,v0,v0,v0,v0);
+near=p_bss->unk_14;
+far=p_bss->unk_18;
+range=far-near;
+fn_80015B50(&loc_58,p_ro->unk_C,p_ro->unk_C,p_ro->unk_C);
+ratio=far/range;
+loc_58.m[2]=ratio;
+loc_58.m[3]=(far*near)/range;
+scale=p_ro->unk_18;
+loc_58.m[6]=ratio*scale;
+loc_58.m[7]=loc_58.m[3]*scale;
+loc_58.m[10]=p_ro->unk_1C;
+lbl_8006DFFC(&loc_88,&arg1->unk_A0,&arg1->unk_40);
+lbl_8006DFFC(&loc_58,&arg1->unk_A0,&arg1->unk_70);
+fn_80015D7C(&loc_B8,arg1->unk_40E8,-arg1->unk_40E8,-arg1->unk_40E4,arg1->unk_40E4,p_bss->unk_14,p_bss->unk_18);
+fn_800737E4(&loc_B8,0);
+fn_80038EEC(p_ro->unk_C,p_ro->unk_C,p_ro->unk_20,p_ro->unk_20,p_ro->unk_C,p_ro->unk_1C);
+fn_80074188(0,0,128,128);
+fn_80074300(0,0,128,128);
+fn_80074438(128,128,17,0);
+loc_10=p_ro->unk_10;
+fn_800744F8(&loc_10,0xffffff);
+fn_8003526C(arg1->unk_E0,1);
+fn_80007C2C();
+lbl_8006DBAC(&arg1->unk_A0);
+((Owner *)arg0)->unk_10428(arg0,arg1);
+DCInvalidateRange(arg1->unk_E0,p_bss->unk_140);
+fn_8003526C(arg1->unk_E0,1);
+GXInitTexObj(arg1,arg1->unk_E0,128,128,1,0,0,0);
+GXInitTexObjLOD(arg1,1,1,p_ro->unk_C,p_ro->unk_C,p_ro->unk_C,0,0,0);
+GXInvalidateTexAll();
+fn_80038EEC(loc_40.m[0],loc_40.m[1],loc_40.m[2],loc_40.m[3],loc_40.m[4],loc_40.m[5]);
+fn_80074188(loc_20,loc_1C,loc_18,loc_14);
+fn_80072270(&loc_24);
+}
+/* fzgx:end fn_1_FC760 */
+
 /* fzgx:begin fn_1_FCA10 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"

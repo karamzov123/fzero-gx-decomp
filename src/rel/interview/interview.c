@@ -966,7 +966,7 @@ void fn_17_2D5C(u32 arg0, u32 arg1) {
 }
 /* fzgx:end fn_17_2D5C */
 
-/* fzgx:begin fn_17_3090 pool */
+/* fzgx:begin fn_17_3090 */
 extern void fn_17_50F0(void);
 extern void fn_17_3E08(void);
 extern void fn_17_4540(void);
@@ -989,7 +989,7 @@ extern f32 lbl_17_rodata_24[5];
 typedef struct InterviewFlags {
     u8 pad[4];
     u32 flags;
-    u8 rest[0x6E];
+
 } InterviewFlags;
 
 /* interview.c file-scope objects, in retail order: MWCC addresses them off one section base. */
@@ -997,8 +997,8 @@ u8 lbl_17_bss_0;
 u8 lbl_17_bss_1;
 u8 lbl_17_bss_2;
 u8 lbl_17_bss_3;
-u32 lbl_17_bss_4;
-u32 lbl_17_bss_8;
+u32 lbl_17_bss_3__fzgx_offset_1;
+u32 lbl_17_bss_3__fzgx_offset_5;
 u32 lbl_17_bss_C;
 u32 lbl_17_bss_10;
 u32 lbl_17_bss_14;
@@ -1017,8 +1017,8 @@ static void fzgx_bss_layout(void) {
     s = lbl_17_bss_1;
     s = lbl_17_bss_2;
     s = lbl_17_bss_3;
-    s = lbl_17_bss_4;
-    s = lbl_17_bss_8;
+    s = lbl_17_bss_3__fzgx_offset_1;
+    s = lbl_17_bss_3__fzgx_offset_5;
     s = lbl_17_bss_C;
     s = lbl_17_bss_10;
     s = lbl_17_bss_14;

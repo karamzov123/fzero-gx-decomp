@@ -5835,9 +5835,6 @@ rel/main_rel/bg_win/fn_1_15E688.c:
 rel/main_rel/bg_cas/fn_1_FC60C.c:
 	.text       start:0x000FC60C end:0x000FC760 align:4
 
-rel/main_rel/bg_cas/fn_1_FC760.c:
-	.text       start:0x000FC760 end:0x000FCA10 align:4
-
 rel/main_rel/mdlload/fn_1_D35D4.c:
 	.text       start:0x000D35D4 end:0x000D3768 align:4
 
@@ -8705,3 +8702,6 @@ rel/main_rel/screen_effect/fn_1_79E54.c:
 
 rel/main_rel/accessory/fn_1_11ED0C.c:
 	.text       start:0x0011ED0C end:0x0011F250 align:4
+
+rel/main_rel/bg_cas/fn_1_FC760.c:
+	.text       start:0x000FC760 end:0x000FCA10 align:4

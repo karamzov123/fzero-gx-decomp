@@ -2123,7 +2123,7 @@ void fn_3_4218(void) {
 }
 /* fzgx:end fn_3_4218 */
 
-/* fzgx:begin fn_3_4380 pool */
+/* fzgx:begin fn_3_4380 */
 extern u8 lbl_3_bss_140;
 extern struct fn_3_4380_lbl_3_data_0 lbl_3_data_0;
 
@@ -2161,18 +2161,18 @@ u32 lbl_3_bss_C[3];
 u32 fzgx_obj_lbl_3_bss_18[2];
 s16 fzgx_obj_lbl_3_bss_20[0x68];
 u8 fzgx_obj_lbl_3_bss_F0;
-u8 lbl_3_bss_F0_fill_F1;
-u16 lbl_3_bss_F0_fill_F2;
-u32 lbl_3_bss_F0_fill_F4[11];
+u8 fzgx_pool_lbl_3_bss_F0_fill_F1;
+u16 fzgx_pool_lbl_3_bss_F0_fill_F2;
+u32 fzgx_pool_lbl_3_bss_F0_fill_F4[11];
 s32 lbl_3_bss_120;
-u32 lbl_3_bss_120_fill_124[7];
-u32 lbl_3_bss_140_fill_140[32688];
-u8 lbl_3_bss_140_1FEC0;
-u8 lbl_3_bss_140_fill_20001;
-u16 lbl_3_bss_140_fill_20002;
-u32 lbl_3_bss_140_fill_20004[528];
+u32 fzgx_pool_lbl_3_bss_120_fill_124[7];
+u32 fzgx_pool_lbl_3_bss_140_fill_140[32688];
+u8 fzgx_pool_lbl_3_bss_140_1FEC0;
+u8 fzgx_pool_lbl_3_bss_140_fill_20001;
+u16 fzgx_pool_lbl_3_bss_140_fill_20002;
+u32 fzgx_pool_lbl_3_bss_140_fill_20004[528];
 u16 lbl_3_bss_20844;
-u16 lbl_3_bss_20844_fill_20846;
+u16 fzgx_pool_lbl_3_bss_20844_fill_20846;
 u32 lbl_3_bss_20848;
 u32 lbl_3_bss_2084C;
 u32 lbl_3_bss_20850;
@@ -2193,18 +2193,18 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_3_bss_18;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;
-    s = *(u8 *)&lbl_3_bss_F0_fill_F1;
-    s = *(u8 *)&lbl_3_bss_F0_fill_F2;
-    s = *(u8 *)&lbl_3_bss_F0_fill_F4;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_F0_fill_F1;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_F0_fill_F2;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_F0_fill_F4;
     s = *(u8 *)&lbl_3_bss_120;
-    s = *(u8 *)&lbl_3_bss_120_fill_124;
-    s = *(u8 *)&lbl_3_bss_140_fill_140;
-    s = *(u8 *)&lbl_3_bss_140_1FEC0;
-    s = *(u8 *)&lbl_3_bss_140_fill_20001;
-    s = *(u8 *)&lbl_3_bss_140_fill_20002;
-    s = *(u8 *)&lbl_3_bss_140_fill_20004;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_120_fill_124;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_140_fill_140;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_140_1FEC0;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_140_fill_20001;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_140_fill_20002;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_140_fill_20004;
     s = *(u8 *)&lbl_3_bss_20844;
-    s = *(u8 *)&lbl_3_bss_20844_fill_20846;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_20844_fill_20846;
     s = *(u8 *)&lbl_3_bss_20848;
     s = *(u8 *)&lbl_3_bss_2084C;
     s = *(u8 *)&lbl_3_bss_20850;

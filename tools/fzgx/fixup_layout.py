@@ -104,7 +104,7 @@ def legacy_pool_primer_sections(body, obj):
         if (helper['info'] & 15 != 2 or not helper['size']
                 or not 0 < helper['shndx'] < len(elf.sections)
                 or elf.sections[helper['shndx']]['name'] == '.fzgxpool'
-                or not re.fullmatch(r'fzgx_pool_primer_[0-9a-fA-F]+', name)):
+                or not re.fullmatch(r'fzgx_pool_primer_[0-9a-fA-F]+|fzgx_bss_layout|primer', name)):
             continue
         # A callable helper is program behavior, not a discarded layout primer.
         if len(re.findall(r'\b' + re.escape(name) + r'\b', code)) != 1:
@@ -157,7 +157,10 @@ def bss_member_bindings(p, symbol, body, obj, check):
         padding = generated or re.fullmatch(r'(?:sdk_)?gap____bss_\d+_[0-9A-Fa-f]+', name)
         member = re.fullmatch(r'(.+)_([0-9A-F]+)', name)
         synthetic = name.startswith('lbl_') and name not in retail
-        native = (s['info'] == 1 or name.startswith('fzgx_obj_')) and name not in retail
+        # Generated section members can have global binding and arbitrary C
+        # names (for example sprite_8_344). Their measured extent, rather than
+        # linkage or spelling, determines whether a retail subobject owns them.
+        native = s['info'] & 15 == 1 and name not in retail
         if not generated and not synthetic and not native and not (member and member[1] in retail and name not in retail):
             continue
         address = origin + s['value']
@@ -265,6 +268,99 @@ def split_bss_primer_arrays(p, symbol, body, obj, check):
     for a, b, value in sorted(edits, reverse=True):
         text = text[:a] + value + text[b:]
     return [('split primer-only BSS arrays at proven retail object boundaries', text)]
+
+
+def unused_bss_primer_objects(p, symbol, body, obj, check):
+    """Mark storage used only by discarded layout primers as private copies.
+
+    Live section members still need individual retail bounds and bindings. A
+    declaration referenced only by primer code has no live C consumer; retain
+    its size/order for MWCC, then let poolfix's relocation guard discard it.
+    """
+    if not obj or not check.ok:
+        return []
+    from .fixup_evidence import _function_span
+    from .sdkimport import masked
+
+    elf = poolfix.Elf(Path(obj).read_bytes())
+    section = elf.section('.bss')
+    bound = {a for a, _, _ in check._pool_pairs}
+    symbols = elf.symbols()
+    if not section or not any(s['name'] in bound and s['name'].startswith('...bss')
+                              and s['shndx'] == section['index'] for s in symbols):
+        return []
+    code = masked(body)
+    retail = p.symbols(p.resolve(symbol).module)
+    primers = [span for s in symbols if s['info'] & 15 == 2 and s['size']
+               and 0 < s['shndx'] < len(elf.sections)
+               and elf.sections[s['shndx']]['name'] == '.fzgxpool'
+               and (span := _function_span(code, s['name']))]
+    names = {}
+    for own in symbols:
+        name = own['name']
+        if (own['shndx'] != section['index'] or own['info'] & 15 != 1 or not own['size']
+                or name in bound or name.startswith('fzgx_pool_')
+                or name.removeprefix('fzgx_obj_') in retail):
+            continue
+        # Restrict this to plain, uninitialized file-scope declarations. All
+        # remaining occurrences must lie in emitted discarded primer functions.
+        decl = re.search(r'(?m)^(?:static\s+)?(?:struct\s+)?[A-Za-z_]\w*\s+\**\s*'
+                         + re.escape(name) + r'\s*(?:\[[^;=\n]*\])?\s*;', code)
+        if not decl or any(a <= decl.start() < b for a, b in primers):
+            continue
+        uses = [m for m in re.finditer(r'\b' + re.escape(name) + r'\b', code)
+                if not decl.start() <= m.start() < decl.end()]
+        if not uses or any(not any(a <= m.start() < b for a, b in primers) for m in uses):
+            continue
+        names[name] = 'fzgx_pool_' + name
+    if not names:
+        return []
+    text = re.sub(r'\b\w+\b', lambda m: names.get(m[0], m[0]), body)
+    return [('discard BSS copies used only by layout primers', text)]
+
+
+def unused_bss_definitions(p, symbol, body, obj, check):
+    """Remove unused generated BSS copies left in old standalone sources.
+
+    These aliases are not retail exports. Keep owned storage and every
+    declaration mentioned by source or ELF relocations outside its definition.
+    """
+    if not obj or not check.ok:
+        return []
+    from .sdkimport import masked
+    elf = poolfix.Elf(Path(obj).read_bytes())
+    section = elf.section('.bss')
+    if not section or section['type'] != 8:
+        return []
+    code = masked(body)
+    sym = p.resolve(symbol)
+    retail, unit = p.symbols(sym.module), p.unit_of(sym)
+    referenced = {struct.unpack_from('>I', elf.data, pos + 4)[0] >> 8
+                  for rs in elf.sections if rs['type'] == 4
+                  for pos in range(rs['offset'], rs['offset'] + rs['size'], 12)}
+    edits = []
+    for own in elf.symbols():
+        name = own['name']
+        if (own['shndx'] != section['index'] or own['info'] & 15 != 1 or not own['size']
+                or name in retail or own['index'] in referenced
+                or not name.startswith(('fzgx_obj_', 'lbl_'))):
+            continue
+        native = name.removeprefix('fzgx_obj_')
+        alias = re.fullmatch(r'(.+)__fzgx_offset_[0-9A-F]+', native)
+        known = retail.get(native) or (retail.get(alias[1]) if alias else None)
+        if known and unit is not None and p.unit_of(known) == unit:
+            continue
+        uses = list(re.finditer(r'\b' + re.escape(name) + r'\b', code))
+        decl = re.search(r'(?m)^(?:static\s+)?(?:' + '|'.join(SCALAR) + r')\s+\**\s*'
+                         + re.escape(name) + r'\s*(?:\[[^;=\n]*\])?\s*;[^\S\n]*\n?', code)
+        if len(uses) == 1 and decl and decl.start() <= uses[0].start() < decl.end():
+            if code[:decl.start()].count('{') != code[:decl.start()].count('}'):
+                continue
+            edits.append((decl.start(), decl.end()))
+    text = body
+    for start, end in sorted(edits, reverse=True):
+        text = text[:start] + text[end:]
+    return [('remove unused unowned BSS declaration copies', text)] if edits else []
 
 
 def private_data_objects(body, obj, check):

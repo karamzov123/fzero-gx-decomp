@@ -511,6 +511,61 @@ without row alignment (`retail - ours` net rows):
   Its inferred one-byte size was corrected to four, with the retail
   instructions recorded in `state/repairs/bss_extents.json`. Existing
   scalar header views remain unchanged.
+- BSS objects used only by discarded layout primers can keep their original
+  declarations and first-access order while being named as private pool copies.
+  `unused_bss_primer_objects` checks every source use against emitted primer
+  functions and excludes known retail objects. It does not infer padding from
+  gaps or externalize live members. The existing relocation guard must still
+  prove the entire private section can disappear. This closes the otherwise
+  unbound one-byte primer objects in `fn_1_A1DCC` and `fn_1_A1964`.
+- Generated live BSS members need not be static or named `fzgx_obj_*`.
+  `bss_member_bindings` can name a globally bound member such as `sprite_8_344`
+  from its measured section offset, provided its complete extent fits one
+  retail object. The oracle independently checks module, section, address and
+  size before accepting that binding.
+- An oversized view can include a neighboring object's storage only through
+  unused trailing padding. In `fn_1_31C3C`, the last live `GameState` field
+  ends at 0x1464, within `lbl_1_bss_3C30`'s measured 0x14BC bytes. Reducing
+  its trailing padding from 0x1508 to 0x14BC and keeping the remaining 0x4C
+  bytes as a separate primer-only array preserves MWCC's section layout and
+  allows the live definition to pass the existing object-bounds proof.
+
+## Unused compiler strings after data binding (2026-10-24)
+
+`fn_1_EB4BC` binds its two live compiler strings (`@12` and `@26`)
+to retail data, leaving thirteen unused compiler strings in the private
+`.data` section. These copies need no anonymous `...data` binding to be
+removed. Data cleanup uses the same whole-section relocation guard as
+rodata: every remaining object must be compiler-private, and no incoming
+relocation, including one against the section base, may survive. Named
+owned data and live strings remain intact. The function then matches fully
+without any changes to its machine instructions.
+
+## Extra helper bodies in accepted pool sources (2026-10-24)
+
+MWCC can inline every use of a static helper while retaining an unused
+out-of-line copy. `fn_3_23724`'s clamp and `fn_1_5D378`'s random helper
+already generate matching caller instructions; declaring those helpers
+`static inline` removes the extra bodies. Pool upgrades use the existing
+inline-helper family only for helpers the compiled object actually emits.
+The full oracle must still prove that the target instructions are unchanged.
+
+An uncalled legacy `primer` is different: its accesses establish the BSS
+order, so retain its body in `.fzgxpool` rather than removing it. This closes
+`fn_1_384E8`; its definition is the identifier's only source occurrence.
+For `fn_17_3090`, the last BSS view's unused trailing array rounded its size
+from the retail object's 0x76 bytes to 0x78. Keeping only the live fields
+makes the view fit the measured owner without changing later layout.
+
+Old standalone sources can also contain generated global BSS copies that
+their functions never reference. `fn_1_FC760` and `fn_3_17098` use the
+header-declared retail objects, leaving nine and twenty unused definitions.
+Their function diffs match even though the extra BSS breaks module hashes.
+`unused_bss_definitions` removes only generated, unowned aliases whose sole
+source occurrence is a file-scope declaration and which have no ELF
+references. Retail exports, owned storage and referenced definitions stay.
+The repair engine excludes these storage-bearing object-only matches until
+the copies are removed; the complete link/hash gate remains mandatory.
 
 ## Empty case labels change switch tree selection (2026-10-23)
 

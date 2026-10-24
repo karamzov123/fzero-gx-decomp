@@ -3562,7 +3562,7 @@ def split_helper_calls(body, name):
         yield f'split inline/external helper {name} uses {mask:x}',text
 
 
-def inline_helpers(body, name):
+def inline_helpers(body, name, helpers=None):
     """Do not emit unused out-of-line copies of reconstructed static helpers.
 
     A REL retains these copies even when the target function inlined every call.
@@ -3576,7 +3576,8 @@ def inline_helpers(body, name):
     """
     pattern = re.compile(r'\bstatic\s+(?!inline\b)(?:'+TYPE+r')\s+(\w+)\s*\([^;{}]*\)\s*'
                          r'(?:(?://[^\n]*|/\*(?:[^*]|\*(?!/))*\*/)\s*)*\{')
-    sites = [m.start()+len('static ') for m in pattern.finditer(body) if m[1] != name]
+    sites = [m.start()+len('static ') for m in pattern.finditer(body)
+             if m[1] != name and (helpers is None or m[1] in helpers)]
     if len(sites)>1:
         text=body
         for at in reversed(sites):
@@ -3586,7 +3587,7 @@ def inline_helpers(body, name):
         yield 'inline helper at '+str(at), body[:at]+'inline '+body[at:]
     for definition in re.finditer(r'\bstatic\s+inline\s+(?:'+TYPE+r')\s+(\w+)\s*\([^;{}]*\)\s*\{',body):
         helper=definition[1]
-        if helper==name:
+        if helper==name or helpers is not None and helper not in helpers:
             continue
         prototypes=list(re.finditer(r'(?m)^(?!static\b)(?:extern\s+)?(?:'+TYPE+r')\s+'+re.escape(helper)+r'\s*\([^;{}]*\);',body[:definition.start()]))
         if prototypes:
@@ -3598,5 +3599,5 @@ def inline_helpers(body, name):
     # another TU. Keep its body available to the inliner without exporting it.
     pattern = re.compile(r'(?m)^(?!static\b|extern\b)(?:'+TYPE+r')\s+(\w+)\s*\([^;{}]*\)\s*\{')
     for match in pattern.finditer(body):
-        if match[1] != name:
+        if match[1] != name and (helpers is None or match[1] in helpers):
             yield 'internal inline helper '+match[1], body[:match.start()]+'static inline '+body[match.start():]
