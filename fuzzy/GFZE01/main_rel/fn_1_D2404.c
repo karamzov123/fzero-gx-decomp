@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.93% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.60% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -46,7 +46,8 @@ void fn_1_D2404(void) {
     u32 j;
     Obj_1_bss_7ACD8_Target *entry;
     u32 i;
-    struct { u16 value; } found;
+    s32 found;
+    s32 found2;
     Obj_1_bss_7ACD8_Target *entry_2;
     Obj_1_bss_7ACD8_Target *p;
     u32 val;
@@ -120,12 +121,12 @@ void fn_1_D2404(void) {
     Obj_1_bss_7ACD8_Target * fzgx_loop_p_4110;
     u32 fzgx_loop_j_4110;
                             entry_2_2 = (Obj_1_bss_7ACD8_Target *)state->unk_0;
-                            found.value = 1;
+                            found = 1;
                             fzgx_loop_p_4110 = entry_2_2;
                             fzgx_loop_j_4110 = 0;
                             while ((fzgx_loop_j_4110 & 0xFF) < state->unk_D) {
-                                if (fzgx_loop_p_4110->unk_10 < 6 && found.value != 0 && k_id == fzgx_loop_p_4110->unk_4) {
-                                    found.value = 0;
+                                if (fzgx_loop_p_4110->unk_10 < 6 && found != 0 && k_id == fzgx_loop_p_4110->unk_4) {
+                                    found = 0;
                                 }
                                 fzgx_loop_j_4110++;
                                 fzgx_loop_p_4110 = (Obj_1_bss_7ACD8_Target *)((u8 *)fzgx_loop_p_4110 + 0x64);
@@ -133,13 +134,13 @@ void fn_1_D2404(void) {
     p = fzgx_loop_p_4110;
     j = fzgx_loop_j_4110;
 }
-                            if (found.value != 0) {
+                            if (found != 0) {
                                 v = val & 0xFF;
                                 k_mask = k & 0xFF;
-                                found.value = 1;
+                                found2 = 1;
                                 j = 0;
                                 while ((j & 0xFF) < state->unk_D) {
-                                    if (entry_2_2->unk_10 >= 6 && found.value != 0) {
+                                    if (entry_2_2->unk_10 >= 6 && found2 != 0) {
                                         entry_2_2->unk_10 = v;
                                         entry_2_2->unk_14 = v;
                                         entry_2_2->unk_4 = k_id;
@@ -159,7 +160,7 @@ void fn_1_D2404(void) {
                                         } else {
                                             entry_2_2->unk_3C = 0;
                                         }
-                                        found.value = 0;
+                                        found2 = 0;
                                     }
                                     j++;
                                     entry_2_2 = (Obj_1_bss_7ACD8_Target *)((u8 *)entry_2_2 + 0x64);
