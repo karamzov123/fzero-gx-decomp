@@ -672,3 +672,19 @@ function that parks the base, it means the parked value was not available at
 that point, i.e. a rematerialisation/spill decision under a different live set.
 Chase the surrounding pressure (values live across the calls in that region)
 rather than another spelling of the access.
+
+### Register homes are coupled, so a one-row fix can move another (fn_12_7870, 2026-10-25)
+
+`fn_12_7870` (80 B, 98.5%) is a three-way colour permutation around one
+address computation: retail `slwi r4` (the incoming `arg1`), `lha r0` (the
+scalar), `addi r7` (the entry); ours `slwi r7`, `lha r4`, `addi r7`. Giving the
+shift its own local declared before the scalar (`u32 scaled; s16 x;`) produces
+retail's `slwi r4` but moves the entry into r4 and the scalar into r7 (97.5),
+and *removing* the scalar local flips the shift back to r7. So the shift's home
+is conditioned on whether that local exists at all, not on how the shift is
+spelled (`<<=`, `*= 2`, `arg1 + arg1`, an inline expression: all identical).
+
+Practical rule: when a residue is a permutation, score each row's home against
+the other values' homes before editing - a candidate that fixes one row without
+fixing the set is not progress, and the score will happily rise or fall for the
+wrong reason.
