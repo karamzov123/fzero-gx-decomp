@@ -643,3 +643,32 @@ primer can leave extra initialized bytes and prevent an otherwise exact
 native data section from binding. Full source and the 25 live member proofs
 are in `state/repairs/game_shutdown_20261025.json.gz` and
 `state/repairs/game_shutdown_layout_20261025.json`.
+
+### Global address CSE and rematerialisation (probed 2026-10-25, GC/1.3.2)
+
+Probes compiled with the project flags (`-O4,p -inline auto -sdata 0 -sdata2 0`),
+`extern S g;` and a `call(&g)` between the uses:
+
+- **Straight line, one use per statement, a call between them**: the base is
+  re-materialised for *every* statement (`lis r3, g@ha; addi r3, r3, g@l;
+  lwz r3, off(r3)`), whether the source spells `g.field`, `db->field` through a
+  pointer local, `*(u32 *)((u8 *)&g + off)` or `((u32 *)&g)[i]`. No parking.
+- **Loop body, no call between the uses**: the base is parked once in a
+  callee-saved register in the prologue and every access in the body reads
+  `off(rN)`, including accesses spelled through different typed views
+  (`S **`, `u32 **`, `u32 *`) in the same body.
+- **Address live across a call** (the same `&g` passed to two calls, or a
+  global read before and after a call in a loop): the base is parked and reused
+  on both sides of the call.
+- **Address passed as an argument of an inlined function** (`f(at_d(&g))`):
+  parked like any other live-across-call value; the inline boundary does not
+  force rematerialisation.
+- `#pragma opt_common_subs off` disables far more than these address CSEs: on
+  `fn_17_3E08` it cost the whole `_savegpr_26` prologue (99.1 -> 83.0).
+
+So a retail `lis/addi` on a symbol the function already addresses elsewhere
+does *not* imply a second symbol or a different expression type. Within a
+function that parks the base, it means the parked value was not available at
+that point, i.e. a rematerialisation/spill decision under a different live set.
+Chase the surrounding pressure (values live across the calls in that region)
+rather than another spelling of the access.
