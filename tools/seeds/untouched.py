@@ -52,7 +52,7 @@ def prepare(output: Path, max_size: int):
             continue
         attempts = ledger.db.execute(
             'SELECT best_body_path,best_in_attempt FROM attempts WHERE symbol=?', (row['symbol'],)).fetchall()
-        if row['best_percent'] > 0 or any(
+        if (row['best_percent'] or 0) > 0 or any(
                 a['best_in_attempt'] > 0 or (a['best_body_path'] and Path(a['best_body_path']).is_file())
                 for a in attempts):
             prior.append(row['symbol'])
