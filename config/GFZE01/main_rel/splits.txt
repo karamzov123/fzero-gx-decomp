@@ -8882,3 +8882,6 @@ rel/main_rel/game/fn_1_3522C.c:
 
 rel/main_rel/camera/fn_1_CC5C.c:
 	.text       start:0x0000CC5C end:0x0000D960 align:4
+
+rel/main_rel/bg_common/fn_1_106D30.c:
+	.text       start:0x00106D30 end:0x00106DB4 align:4
