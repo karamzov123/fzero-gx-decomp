@@ -1,9 +1,11 @@
-/* Non-matching: best partial attempt (86.32% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.91% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
 typedef struct {
-    f32 x, y, z;
+    f32 x;
+    f32 y;
+    f32 z;
 } fn_1_117424_Vec3;
 
 typedef struct {
@@ -34,7 +36,7 @@ typedef struct {
     fn_1_117424_AccessoryData *unk_C;
     void *unk_10;
     u8 pad_14[4];
-    u32 unk_18;
+    s32 unk_18;
     u8 pad_1C[8];
     fn_1_117424_Particle *unk_24;
 } fn_1_117424_AccessoryObject;
@@ -66,6 +68,7 @@ static inline f32 fn_1_117424_array_read(s32 index, f32 *array) { return array[i
 #pragma opt_dead_assignments off
 static inline f32 fn_1_117424_read_pointer_(fn_1_117424_Particle * owner) { return owner->pos.x; }
 #pragma opt_common_subs off
+#pragma opt_loop_invariants off
 void fn_1_117424(fn_1_117424_AccessoryObject *self) {
     fn_1_117424_Particle * fzgx_live_2;
     f32 fzgx_live_;
@@ -84,7 +87,7 @@ void fn_1_117424(fn_1_117424_AccessoryObject *self) {
         fn_80083970(fn_1_117424_model_names(data)[self->unk_8], data + 0x4bc);
         if (self->unk_0 & 2) {
             self->unk_0 &= ~2;
-            lbl_8006DBAC(fn_1_117424_read_pointer(self)->unk_150->unk_8 + table[self->unk_8] * 0x18c + 0x88);
+            lbl_8006DBAC(fn_1_117424_read_pointer(self)->unk_150->unk_8 + ((self->unk_8)[table]) * 0x18c + 0x88);
             lbl_8006DAEC();
             fzgx_live = self->unk_24;
             item = fzgx_live;
@@ -103,20 +106,18 @@ void fn_1_117424(fn_1_117424_AccessoryObject *self) {
         i = 0;
         while (i < self->unk_18) {
             if (!(item->unk_0 & 1)) {
-                f64 fall = *(f32 *)(k + 0x58 / 4);
-                f32 gravity = fn_1_117424_array_read(0x60 / 4, k);
                 item->prev = item->pos;
                 item->pos.x += item->vel.x;
                 item->pos.y += item->vel.y;
                 item->pos.z += item->vel.z;
-                item->pos.y = (*(f32 volatile *)&(item->pos.y)) /* Retail reloads this field. */ - fall;
-                item->vel.y -= gravity;
+                item->pos.y = (*(f32 volatile *)&(item->pos.y)) /* Retail reloads this field. */ - 0.0013611111376020642;
+                item->vel.y -= 0.0027222223579883575f;
             }
             i++;
             item++;
         }
 
-        model = fn_1_117424_read_pointer(self)->unk_150->unk_8 + table[self->unk_8] * 0x18c;
+        model = fn_1_117424_read_pointer(self)->unk_150->unk_8 + ((self->unk_8)[table]) * 0x18c;
         fzgx_live_2 = self->unk_24;
         item = fzgx_live_2;
         i = 0;
@@ -132,7 +133,7 @@ void fn_1_117424(fn_1_117424_AccessoryObject *self) {
             item++;
         }
 
-        model = fn_1_117424_read_pointer(self)->unk_150->unk_8 + table[self->unk_8] * 0x18c;
+        model = fn_1_117424_read_pointer(self)->unk_150->unk_8 + ((self->unk_8)[table]) * 0x18c;
         fzgx_live_2 = self->unk_24;
         item = fzgx_live_2;
         i = 0;
@@ -144,19 +145,25 @@ void fn_1_117424(fn_1_117424_AccessoryObject *self) {
 
                 lbl_8006DBAC(model + 0x88);
                 lbl_8006E1B0(item->unk_28, &target);
-                t = fn_1_117424_array_read(0x3d0 / 4, k) / item->unk_40;
-                x = fn_1_117424_read_pointer_(item);
-                item->pos.x = x + (f64)(t * (target.x - x));
-                fzgx_live_ = target.y;
-                item->pos.y += (f64)(*(f64 *)(k + 0x340 / 4) * (fzgx_live_ - (*(f32 volatile *)&(item->pos.y)) /* Retail reloads this field. */));
-                item->pos.z += t * (target.z - (*(f32 volatile *)&(item->pos.z)) /* Retail reloads this field. */);
+                t = -0.12f / item->unk_40;
+                {
+                    f32 dy = target.y - item->pos.y;
+                    f32 dz = target.z - item->pos.z;
+                    f32 dx = target.x - item->pos.x;
+                    f32 sy = 0.76 * dy;
+                    f32 sx = ((dx) * (t));
+                    f32 sz = t * dz;
+                    item->pos.x += sx;
+                    item->pos.y += sy;
+                    item->pos.z += sz;
+                }
             }
             i++;
             item++;
         }
 
         {
-            f32 damp = fn_1_117424_array_read(0x200 / 4, k);
+            f32 damp = 0.8f;
             fzgx_live_2 = self->unk_24;
             item = fzgx_live_2;
             i = 0;
@@ -170,20 +177,22 @@ void fn_1_117424(fn_1_117424_AccessoryObject *self) {
         }
 
         mtx = fn_80077B14(self->unk_10);
-        lbl_8006DBAC(fn_1_117424_read_pointer(self)->unk_150->unk_8 + table[self->unk_8] * 0x18c + 0x88);
+        lbl_8006DBAC(fn_1_117424_read_pointer(self)->unk_150->unk_8 + ((self->unk_8)[table]) * 0x18c + 0x88);
         fzgx_live_2 = self->unk_24;
         item = fzgx_live_2;
         i = 0;
         while (i < self->unk_18) {
-            int j;
+            s32 j;
             for (j = 0; j < item->unk_2; j++) {
-                fn_8006E250(&item->pos, mtx + item->unk_4[j] * 0x40);
+                fn_8006E250(&item->pos, mtx + ((j)[item->unk_4]) * 0x40);
             }
             i++;
             item++;
         }
     }
 }
+#pragma opt_loop_invariants reset
+
 #pragma opt_common_subs reset
 
 #pragma opt_dead_assignments reset
