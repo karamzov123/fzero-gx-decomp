@@ -152,3 +152,6 @@ rel/winning/winning/fn_15_4124.c:
 
 rel/winning/winning/fn_15_644.c:
 	.text       start:0x00000644 end:0x00000B8C align:4
+
+rel/winning/winning/fn_15_3B24.c:
+	.text       start:0x00003B24 end:0x0000401C align:4
