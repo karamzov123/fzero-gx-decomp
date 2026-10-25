@@ -4022,6 +4022,223 @@ void fn_1_FF6B8(CasEmitter *em) {
 }
 /* fzgx:end fn_1_FF6B8 */
 
+/* fzgx:begin fn_1_FFA0C */
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+/* begin game/main_rel/bg_cas_types.h (deltawave784-windows-and-types) */
+#ifndef GAME_MAIN_REL_BG_CAS_TYPES_H
+#define GAME_MAIN_REL_BG_CAS_TYPES_H
+
+// Types (and the externs that name them) of bg_cas.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    f32 x, y, z;
+} fn_1_FF6B8_CasVec;
+
+typedef struct {
+    s32 life;        /* 0x00 */
+    fn_1_FF6B8_CasVec pos;      /* 0x04 */
+    fn_1_FF6B8_CasVec prev;     /* 0x10 */
+    fn_1_FF6B8_CasVec vel;      /* 0x1C */
+    s16 rot;         /* 0x28 */
+    s16 rotVel;      /* 0x2A */
+    f32 scale;       /* 0x2C */
+    f32 size;        /* 0x30 */
+} CasParticle;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 active;      /* 0x04 */
+    fn_1_FF6B8_CasVec pos;      /* 0x08 */
+    u8 pad_14[0xC];
+    fn_1_FF6B8_CasVec vel;      /* 0x20 */
+    u8 pad_2C[0xC];
+    f32 size;        /* 0x38 */
+    CasParticle particles[20]; /* 0x3C */
+} CasEmitter;
+
+#endif  // GAME_MAIN_REL_BG_CAS_TYPES_H
+
+/* end game/main_rel/bg_cas_types.h */
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+}
+static const unsigned long fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const unsigned long *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = 6600.0f;
+    s = 110.0f;
+    s = 60.0f;
+    s = 15.0f;
+}
+static const unsigned long fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const unsigned long *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+}
+static const unsigned long fzgx_pool_table6[3] = {0x00000000, 0x00000000, 0xBF800000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const unsigned long *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 100.0f;
+    s = 300.0f;
+    s = 32767.0f;
+    s = 4.0f;
+    s = 10.0f;
+    s = 2.0f;
+    s = 200.0f;
+    s = 400.0f;
+    s = 2500.0f;
+    s = 1000.0f;
+    s = 1400.0f;
+    d = 0.5;
+    d = 5.0;
+    s = 7.0f;
+    s = 2.5f;
+    s = 768.0f;
+}
+static const unsigned long fzgx_pool_table8[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const unsigned long *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+    s = 0.10000000149011612f;
+    s = 0.5f;
+    s = 0.25f;
+    s = 0.05000000074505806f;
+    s = -2000.0f;
+    s = 1.0199999809265137f;
+    s = 30.0f;
+    s = 22.0f;
+    d = 0.9;
+    s = 0.6000000238418579f;
+    s = 0.4000000059604645f;
+    s = 255.0f;
+    s = 0.800000011920929f;
+    s = 0.30000001192092896f;
+    s = 1.2999999523162842f;
+    s = 0.7071067690849304f;
+}
+static const unsigned long fzgx_pool_table10[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const unsigned long *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.1;
+    d = 1280.0;
+    s = 0.8999999761581421f;
+}
+static const unsigned long fzgx_pool_table12[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const unsigned long *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.98;
+    s = 20.0f;
+    s = 0.20000000298023224f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 scale;        /* 0x00 */
+    f32 size;         /* 0x04 */
+    f32 mtx[3][4];    /* 0x08 */
+    u32 flags;        /* 0x38 */
+    u8 r, g, b, a;    /* 0x3C */
+} CasDrawParams;
+
+extern s32 fn_1_54E34(void *, f32);
+extern u32 fn_1_584AC(void);
+extern void fn_1_1011CC(int, int);
+extern void fn_1_9EDE8(void *);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006D9D8(void *);
+extern void lbl_8006D7B0(void);
+extern void mathutil_mtxA_rotate_z(s16);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006D848(f32);
+extern void lbl_8006DFC4(void *);
+extern void *memset(void *, int, u32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void lbl_8006D758(void);
+extern void fn_80073778(void *, s32);
+
+#define cas_set_color(P, S, A, Z) do { \
+    f32 r, g, b; \
+    (S) = 0.2f * (S); \
+    (S) = 0.8f + (S); \
+    r = 0.5f * (1.0f + (S)); \
+    g = 0.8f * (S); \
+    b = 0.5f * (S); \
+    (P)->r = 255.0f * r * (A); \
+    (P)->g = 255.0f * g * (A); \
+    (P)->b = 255.0f * b * (A); \
+    (P)->a = 0xff; \
+    (P)->flags |= 4; \
+    (P)->size = (Z); \
+} while (0)
+
+void fn_1_FFA0C(CasEmitter *em) {
+    CasDrawParams params;
+    f32 mtx[3][4];
+    f32 vec[3];
+    u8 *obj;
+    CasParticle *p;
+    s32 i;
+    f32 size;
+    f32 dist;
+    f32 shade;
+    f32 intensity;
+
+    p = em->particles;
+    obj = *(u8 **)(lbl_1_bss_38458->unk_8 + 0x168);
+    for (i = 0; i < 20; i++, p++) {
+        if (p->life > 0) {
+            size = p->size;
+            lbl_8006DCA4();
+            if (fn_1_54E34(&p->pos, size)) {
+                lbl_8006D9D8(&p->pos);
+                lbl_8006D7B0();
+                mathutil_mtxA_rotate_z(p->rot);
+                psvec_set(vec, *(f32 *)(LC_BASE + 0x2C), *(f32 *)(LC_BASE + 0x1C), *(f32 *)(LC_BASE + 0xC));
+                {
+                    f32 x = vec[0];
+                    f32 y = vec[1];
+                    f32 z = *(f32 *)(LC_BASE + 0x2C);
+                    x = x * x;
+                    x = y * y + x;
+                    x = z * z + x;
+                    dist = lbl_8006D0B4(x);
+                }
+                if (dist > 0.1f + size) {
+                    lbl_8006DB74(mtx);
+                    lbl_8006D848((dist - size) / dist);
+                    lbl_8006DFC4(mtx);
+                }
+                memset(&params, 0, sizeof(params));
+                lbl_8006DB74(params.mtx);
+                params.scale = 0.70710677f * size;
+                shade = (f32)(u16)fn_1_584AC() / 32767.0f;
+                cas_set_color(&params, shade, p->scale, size);
+                fn_1_1011CC(0, 1);
+                fn_800728A8(1, 4, 1, 0);
+                lbl_8006D758();
+                fn_80073778(*(void **)(obj + 0x24), 0);
+                fn_1_9EDE8(&params);
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_FFA0C */
+
 /* fzgx:begin fn_1_FFC60 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"

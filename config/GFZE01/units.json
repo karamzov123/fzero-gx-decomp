@@ -37772,10 +37772,22 @@
     "symbols": [
       "fn_1_FFA0C"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/bg_cas.c"
+    "tu": "rel/main_rel/bg_cas.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_76A8",
+      "@79": "lbl_1_rodata_76A8+0x88",
+      "@94": "lbl_1_rodata_76A8+0xC8",
+      "@78": "lbl_1_rodata_76A8+0x80",
+      "@56": "lbl_1_rodata_76A8+0x3C",
+      "@116": "lbl_1_rodata_76A8+0xF4",
+      "@91": "lbl_1_rodata_76A8+0xBC",
+      "@32": "lbl_1_rodata_76A8+0x8",
+      "@80": "lbl_1_rodata_76A8+0x8C",
+      "@90": "lbl_1_rodata_76A8+0xB8"
+    }
   },
   {
     "module": "main_rel",
