@@ -7793,6 +7793,391 @@ void fn_1_25870(Fn_1_25870 *self) {
 }
 /* fzgx:end fn_1_25870 */
 
+/* fzgx:begin fn_1_266A8 noprologue */
+#include "dolphin/types.h"
+#include "types.h"
+#include "psvec.h"
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+#pragma fp_contract on
+
+typedef struct { f32 x, y, z; } CollisionVec3;
+
+typedef struct CollisionObject {
+    u32 flags;
+    u8 pad4[4];
+    f32 scale;
+    u8 padC[0x70];
+    CollisionVec3 position;
+    u8 pad88[0xC];
+    CollisionVec3 velocity;
+    u8 padA0[0x24];
+    f32 field_c4;
+    f32 field_c8;
+    u8 padCC[0xB0];
+    f32 field_17c;
+    u8 pad180[4];
+    f32 field_184;
+    u8 pad188[2];
+    u8 field_18a;
+    u8 field_18b;
+    u8 pad18C[0x24];
+    CollisionVec3 collision;
+    CollisionVec3 normal;
+    u8 pad1C8[0x4B];
+    u8 field_213;
+    u16 field_214;
+    u8 field_216;
+    u8 pad217[0xD];
+    f32 field_224;
+    f32 field_228;
+    u8 pad22C[0x18];
+    u32 field_244;
+    u8 pad248[0x58];
+    u32 field_2a0;
+    u8 pad2A4[0x58];
+    u32 field_2fc;
+    u8 pad300[0x58];
+    u32 field_358;
+    u8 pad35C[0x58];
+    struct { CollisionVec3 point; u8 pad[0x18]; CollisionVec3 dest; } parts[4];
+    s8 field_474;
+    u8 pad475[0xC];
+    u8 field_481;
+    u8 pad482[0x2A];
+    f32 field_4ac;
+    u8 pad4B0[0x50];
+    CollisionVec3 field_500;
+    u8 pad50C[0x87];
+    u8 field_593;
+    u8 pad594[0x46];
+    u16 field_5da;
+} CollisionObject;
+
+extern const f32 lbl_1_rodata_840[3];
+extern s32 fn_1_25A14(CollisionObject *);
+extern void fn_1_F7338(s32, s32, s32);
+extern void fn_1_29044(CollisionObject *, CollisionVec3 *, CollisionVec3 *);
+extern void fn_1_2A2A4(CollisionObject *);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D6FC(void *, void *);
+extern void lbl_8006D5F0(void *, void *, f32);
+extern void fn_8006E2B0(void *, CollisionVec3 *);
+extern void lbl_8006E1F0(CollisionVec3 *, f32, f32, f32);
+
+// Pool primer: volatile writes retain the original translation-unit literal order.
+#pragma push
+#pragma section code_type ".fzgxpool"
+/* volatile: preserve literal-pool order by keeping each primer store observable. */
+static void fzgx_pool_primer(volatile f32 *f, volatile f64 *d)
+{
+    *d = 274877969920.00000; /* 0 */
+    *f = 45.0000000f; /* 8 */
+    *f = 0.0f; /* c */
+    *f = 1.70000005f; /* 10 */
+    *f = 1.0f; /* 14 */
+    *f = 0.1f; /* 18 */
+    *f = 0.5f; /* 1c */
+    *d = 4503599627370496.0; /* 20 */
+    *d = 34359747031.000000; /* 28 */
+    *d = 17179873312.000000; /* 30 */
+    *f = 0.6f; /* 38 */
+    *f = 5.00000000f; /* 3c */
+    *d = 2.0463635858390458e-13; /* 40 */
+    *d = 131072.00000000000; /* 48 */
+    *d = 216.00000000000000; /* 50 */
+    *d = 2.0; /* 58 */
+    *d = 1.1920931688891301e-7; /* 60 */
+    *f = 0.2f; /* 68 */
+    *d = 0.83999999999999997; /* 70 */
+    *d = 2.0000004760921000; /* 78 */
+    *f = 1.39999998f; /* 80 */
+    *f = 1.5f; /* 84 */
+    *d = 0.025000009690120350; /* 88 */
+    *f = 0.4f; /* 90 */
+    *f = 3.20000005f; /* 94 */
+    *f = 0.15f; /* 98 */
+    *f = -0.250000000f; /* 9c */
+    *d = 2.3096799886546114e-9; /* a0 */
+    *d = 9.0221874811608268e-12; /* a8 */
+    *f = 0.7f; /* b0 */
+    *d = 0.60000002384185791; /* b8 */
+    *d = 4.5776374420825048e-7; /* c0 */
+    *d = 5.3776428844767350e-19; /* c8 */
+    *d = 0.56999999999999995; /* d0 */
+    *d = 0.000068359368015080690; /* d8 */
+    *d = 0.0000000000000000; /* e0 */
+    *d = 0.0078125055239070210; /* e8 */
+    *d = 13510800916852244; /* f0 */
+    *d = 0.0099999997764825821; /* f8 */
+    *d = 3.5242919890636131e-14; /* 100 */
+    *d = 13.888888888888889; /* 108 */
+    *d = 7922576.8125000000; /* 110 */
+    *d = 8.8544385506608402e+20; /* 118 */
+    *f = 2.20000005f; /* 120 */
+    *f = -0.5f; /* 124 */
+    *d = 1.9719995846449581e-24; /* 128 */
+    *f = 0.3f; /* 130 */
+    *d = 0.4; /* 138 */
+    *d = 0.1; /* 140 */
+    *d = 8796095277632.0000; /* 148 */
+    *d = 90.000000000000000; /* 150 */
+    *d = 7.9472909961415816e-7; /* 158 */
+    *d = 2.5087589366215800e+21; /* 160 */
+    *d = 524288.13043212891; /* 168 */
+    *d = 3.4587650591954883e+18; /* 170 */
+    *f = 20.0f; /* 178 */
+    *f = 1.01f; /* 17c */
+    *d = 1.0000000000000000; /* 180 */
+    *d = 0.55000001192092896; /* 188 */
+    *d = 102.40003949403763; /* 190 */
+    *d = 6204963985555456.0; /* 198 */
+    *d = 0.92592592592592593; /* 1a0 */
+    *d = 5.5555555555555554; /* 1a8 */
+    *d = 0.016249999403953552; /* 1b0 */
+    *d = 0.10000000149011612; /* 1b8 */
+    *d = 0.30000001192092896; /* 1c0 */
+    *d = 0.046296296296296294; /* 1c8 */
+    *f = 0.9f; /* 1d0 */
+    *f = 1.11f; /* 1d4 */
+    *d = 0.0023148148148148147; /* 1d8 */
+    *d = 0.5; /* 1e0 */
+    *d = 0.004629629629629629; /* 1e8 */
+    *d = 0.023148148148148147; /* 1f0 */
+    *f = 2000.0f; /* 1f8 */
+    *f = 500.0f; /* 1fc */
+    *d = 0.2; /* 200 */
+    *f = 0.64f; /* 208 */
+    *f = 0.35f; /* 20c */
+    *d = 1.8518518518518519; /* 210 */
+    *d = 3.4000000953674316; /* 218 */
+    *d = 1.7000000476837158; /* 220 */
+    *d = 3.0; /* 228 */
+    *d = 1.5; /* 230 */
+    *f = -0.4f; /* 238 */
+    *d = 3.240740740740741; /* 240 */
+    *f = -1.0f; /* 248 */
+}
+
+#pragma pop
+
+static inline f32 collision_vector_squared(const CollisionVec3 *v)
+{
+    f32 sum; f32 x; f32 y; f32 z;
+    x=v->x; y=v->y;
+    sum = (f32)(x*x); sum += y*y;
+    z=v->z; sum += z*z;
+    return sum;
+}
+#define LENGTH(v) lbl_8006D0B4(collision_vector_squared(&(v)))
+
+static inline f32 collision_factor(f32 speed, CollisionObject *obj,
+                                  CollisionVec3 *projected, CollisionVec3 *remainder,
+                                  f32 projection)
+{
+    f32 factor = 2.0 * __fabs(0.5f + speed);
+    psvec_scale(&obj->normal, projection, projected);
+    psvec_sub(&obj->velocity, projected, remainder);
+    return factor;
+}
+
+void fn_1_266A8(CollisionObject *obj)
+{
+    CollisionVec3 impulse;
+    CollisionVec3 converted;
+    CollisionVec3 part;
+    CollisionVec3 remainder;
+    CollisionVec3 projected;
+    CollisionVec3 up;
+    f32 k;      /* scalar fed to the paired-single scale kernels */
+    f32 dot;
+    f32 speed;
+    f32 collisionLength;
+    f32 damage;
+    s32 hit;
+    s32 active;
+    s32 i;
+    const f32 *pool = (const f32 *)&lbl_1_rodata_840;
+
+    hit = fn_1_25A14(obj);
+    collisionLength = LENGTH(obj->collision);
+    speed = LENGTH(obj->velocity) / obj->scale;
+    if (collisionLength > 0.0023148148148148147) {
+        if (hit != 0) {
+            obj->flags |= 0x800000;
+            if (obj->field_213 < 180) {
+                obj->field_213++;
+            }
+        } else {
+            obj->flags |= 0x1000000;
+        }
+        if ((obj->flags & 0x10) && obj->field_17c > 0.1) {
+            if (collisionLength > 2.0) {
+                fn_1_F7338(obj->field_474, 2, 9);
+            } else if (collisionLength > 0.5) {
+                fn_1_F7338(obj->field_474, 3, 9);
+            } else {
+                fn_1_F7338(obj->field_474, 4, 9);
+            }
+        }
+    }
+    active = 0;
+    if (collisionLength > 0.004629629629629629 && speed > 0.004629629629629629) {
+        active = 1;
+    }
+    if (obj->field_481 > 60) {
+        active = active && (obj->flags & 0x800000);
+    }
+    if (active) {
+        obj->field_500 = obj->collision;
+        dot = lbl_8006D6FC(&obj->collision, &obj->velocity);
+        if (dot > 0.0f) {
+            dot = 0.0f;
+        }
+        if (speed > 0.023148148148148147) {
+            f32 normalDot = lbl_8006D6FC(&obj->collision, &obj->normal);
+            damage = 0.0f;
+            if ((f32)__fabs(normalDot) < 0.7f) {
+                normalDot = dot;
+                normalDot *= dot;
+                normalDot = (0.15f + normalDot) / 1.5f;
+                normalDot *= LENGTH(obj->velocity);
+                damage = normalDot;
+                if (obj->flags & 0x200) {
+                    damage /= 2000.0f;
+                } else {
+                    damage /= 500.0f;
+                    if (obj->field_216) {
+                        damage *= 0.15f;
+                    }
+                }
+            }
+            if (dot < -0.5f) {
+                obj->flags &= 0xFF9FFF9F;
+                obj->field_18a = 0;
+                obj->field_18b = 0;
+            }
+            if (obj->field_17c > 0.1f) {
+                if (damage > 0.4) {
+                    fn_1_F7338(obj->field_474, 2, 9);
+                } else if (damage > 0.2) {
+                    fn_1_F7338(obj->field_474, 3, 9);
+                } else {
+                    fn_1_F7338(obj->field_474, 4, 9);
+                }
+            }
+            if ((obj->flags & 0x800000) && obj->field_214 == 0 && obj->field_593 == 0) {
+                f32 amount;
+                f32 limit;
+                amount = damage * *(f32 *)((u8 *)obj + 0x30);
+                if (!(obj->flags & 0x200) && amount > 20.0f) {
+                    amount = 20.0f;
+                }
+                limit = 1.01f * obj->field_5da;
+                if (amount > limit) {
+                    amount = limit;
+                }
+                obj->field_4ac = amount;
+                if ((obj->field_184 -= obj->field_4ac) < 0.0f) {
+                    if (!(obj->flags & 0x10080)) {
+                        obj->field_593 = 60;
+                    }
+                    obj->flags |= 0x80;
+                    obj->field_184 = 0.0f;
+                    obj->field_224 = 0.0f;
+                }
+            }
+        }
+        lbl_8006D5F0(&obj->collision, &impulse, dot * LENGTH(obj->velocity));
+        if (dot < 0.0f) {
+            if (obj->field_216 == 0) {
+                f32 t = dot / 0.7f;
+                f32 m = 0.2f + (f32)(0.6f * lbl_8006D0B4(1.0f - (f32)(t * t)));
+                obj->field_224 *= m;
+                obj->field_228 *= 0.3f + (f32)(0.4f * m);
+            } else {
+                f32 t = dot / 0.7f;
+                f32 m = 0.64f + (f32)(0.35f * lbl_8006D0B4(1.0f - (f32)(t * t)));
+                obj->field_224 *= m;
+                obj->field_228 *= 0.3f + (f32)(0.6f * m);
+            }
+        }
+        if (speed > 1.8518518518518519) {
+            f32 factor;
+            if (obj->flags & 0x80) {
+                factor = 3.4000000953674316 - (f64)(1.7000000476837158 * __fabs(dot));
+            } else if (obj->field_216) {
+                factor = 2.0 - __fabs(dot);
+            } else {
+                factor = 3.0 - (f64)(1.5 * __fabs(dot));
+            }
+            if (dot < -0.4f && speed > 3.240740740740741) {
+                k = -factor;
+                psvec_scale(&impulse, k, &impulse);
+                psvec_add(&impulse, &obj->velocity, &obj->velocity);
+            } else {
+                k = -factor;
+                psvec_scale(&impulse, k, &impulse);
+                psvec_add(&impulse, &obj->velocity, &obj->velocity);
+            }
+            if (obj->field_216 == 0) {
+                obj->field_244 |= 4;
+                obj->field_2a0 |= 4;
+                obj->field_2fc |= 4;
+                obj->field_358 |= 4;
+            }
+            obj->field_216 = 20;
+        } else {
+            k = -1.0f;
+            psvec_scale(&impulse, k, &impulse);
+            psvec_add(&impulse, &obj->velocity, &obj->velocity);
+        }
+        fn_8006E2B0(&impulse, &converted);
+        obj->field_c4 += converted.x;
+        obj->field_c8 += converted.z;
+        if (obj->flags & 0x400) {
+            for (i = 0; i < 4; i++) {
+                part = obj->parts[i].point;
+                part.z += 0.2f;
+                fn_1_29044(obj, &part, &obj->parts[i].dest);
+            }
+        }
+        if (obj->field_481 > 60) {
+            fn_1_2A2A4(obj);
+        }
+    } else if (obj->flags & 0x10) {
+        if (!(LENGTH(obj->velocity) / obj->scale < 0.046296296296296294)) {
+            register f32 len;
+            lbl_8006E1F0(&up, 0.0f, 1.0f, 0.0f);
+            k = lbl_8006D6FC(&up, &obj->normal);
+            /* speed and dot are dead here; retail reuses their registers for
+             * the normal projection. */
+            speed = lbl_8006D6FC(&obj->velocity, &obj->normal);
+            len = LENGTH(obj->velocity);
+            if (k < 0.0f) {
+                k = 0.0f;
+            }
+            obj->field_224 *= k;
+            dot = len * speed;
+            len = collision_factor(speed, obj, &projected, &remainder, dot);
+            if (len < 0.9f) {
+                lbl_8006D5F0(&remainder, &remainder, 0.9f * ((1.0f - (f32)(1.11f * len)) * k));
+            }
+            psvec_scale(&projected, k, &projected);
+            psvec_sub(&obj->velocity, &projected, &obj->velocity);
+            psvec_add(&obj->velocity, &remainder, &obj->velocity);
+        }
+    }
+    psvec_add(&obj->position, &obj->collision, &obj->position);
+}
+/* fzgx:end fn_1_266A8 */
+
 /* fzgx:begin fn_1_26F34 noprologue */
 #include "types.h"
 #include "types.h"
