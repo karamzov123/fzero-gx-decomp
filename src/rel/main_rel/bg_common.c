@@ -1159,7 +1159,38 @@ void fn_1_104730(int index, int use_matrix) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_104730 */
 
-/* fzgx:begin fn_1_1049E0 pool */
+/* fzgx:begin fn_1_1049E0 */
+extern f32 lbl_1_rodata_78E8[19];
+extern void fn_1_103B00();
+extern f32 lbl_1_rodata_7934[11];
+extern void fn_1_9E5B8(void *);
+extern void *fn_1_54448(s32 arg0);
+extern void fn_1_103FCC(void);
+extern void fn_1_10688C(void);
+extern void fn_1_106B68(void);
+extern s32 fn_1_5910(void);
+extern f32 lbl_1_rodata_7960[43];
+extern f32 lbl_1_rodata_7A40[2];
+extern s32 fn_1_58C4(void);
+extern void lbl_8006DCA4(void);
+extern void fn_1_57714(s32 arg0);
+extern void fn_1_57720(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_1_57CD0(s32 arg0, void *arg1);
+extern u8 lbl_1_bss_86EC4;
+extern void fn_80008BEC(void *arg0, int arg1, int arg2);
+extern void fn_1_1088B8(void *arg);
+extern void lbl_8006DBAC(void *arg);
+extern void lbl_8006E1B0(void *arg0, void *arg1);
+extern void fn_1_107F74(void *arg0, int arg1);
+extern u32 lbl_801A6410;
+extern u32 lbl_1_data_3F284[2];
+extern s32 OSIsThreadTerminated(void *arg0);
+extern void OSCancelThread(void *arg0);
+extern void fn_1_46B4(s32 arg0, s32 arg1, u8 *arg2, s32 arg3);
+extern void fn_1_469BC(void);
+extern void fn_1_466B0(s32 arg0, s32 arg1);
+extern u32 lbl_1_bss_85288[2];
+
 #ifndef GAME_MAIN_REL_BG_COMMON_TYPES_H
 #define GAME_MAIN_REL_BG_COMMON_TYPES_H
 
@@ -1322,31 +1353,31 @@ void fzgx_pool_fn_1_1049E0_d(f32 *o, int i) {
 
 /* The TU's .bss objects starting at lbl_1_bss_85280, in retail order. */
 u32 fzgx_obj_lbl_1_bss_85280;
-u32 fzgx_obj_lbl_1_bss_85284;
+u32 lbl_1_bss_85280__fzgx_offset_4;
 u32 fzgx_obj_lbl_1_bss_85288[2];
 f32 fzgx_obj_lbl_1_bss_85290;
 s32 fzgx_obj_lbl_1_bss_85294;
 struct fn_1_1049E0_record fzgx_obj_lbl_1_bss_85298[4];
 struct fn_1_1049E0_sub fzgx_obj_lbl_1_bss_854B8;
-s32 fzgx_obj_lbl_1_bss_854C8;
-u32 fzgx_obj_lbl_1_bss_854CC[210];
-ARQRequest fzgx_obj_lbl_1_bss_85814;
-u32 fzgx_obj_lbl_1_bss_85834[210];
+s32 lbl_1_bss_854B8__fzgx_offset_10;
+u32 lbl_1_bss_854B8__fzgx_offset_14[210];
+ARQRequest lbl_1_bss_854B8__fzgx_offset_35C;
+u32 lbl_1_bss_854B8__fzgx_offset_37C[210];
 
 #pragma section code_type ".fzgxpool"
 /* Fixes the .bss emission order. */
 void fzgx_bss_fn_1_1049E0(u32 *o) {
     o[0] = fzgx_obj_lbl_1_bss_85280;
-    o[10] = fzgx_obj_lbl_1_bss_85284;
+    o[10] = lbl_1_bss_85280__fzgx_offset_4;
     o[1] = fzgx_obj_lbl_1_bss_85288[0];
     o[2] = *(u32 *)&fzgx_obj_lbl_1_bss_85290;
     o[3] = fzgx_obj_lbl_1_bss_85294;
     o[4] = fzgx_obj_lbl_1_bss_85298[0].unk_7C;
     o[5] = fzgx_obj_lbl_1_bss_854B8.unk_C;
-    o[6] = fzgx_obj_lbl_1_bss_854C8;
-    o[7] = fzgx_obj_lbl_1_bss_854CC[0];
-    o[8] = fzgx_obj_lbl_1_bss_85814.length;
-    o[9] = fzgx_obj_lbl_1_bss_85834[0];
+    o[6] = lbl_1_bss_854B8__fzgx_offset_10;
+    o[7] = lbl_1_bss_854B8__fzgx_offset_14[0];
+    o[8] = lbl_1_bss_854B8__fzgx_offset_35C.length;
+    o[9] = lbl_1_bss_854B8__fzgx_offset_37C[0];
 }
 #pragma section code_type ".text"
 
@@ -1456,14 +1487,14 @@ void fn_1_1049E0(void *arg0, f32 arg1) {
             }
         }
     }
-    if (fzgx_obj_lbl_1_bss_854C8 == 1) {
+    if (lbl_1_bss_854B8__fzgx_offset_10 == 1) {
         s16 index;
-        void *dest = (void *)fzgx_obj_lbl_1_bss_85284;
+        void *dest = (void *)lbl_1_bss_85280__fzgx_offset_4;
         t11 = 178 - (fzgx_obj_lbl_1_bss_854B8.unk_C - 60) / 2;
         index = t11 < 0 ? 0 : t11 > 209 ? 209 : t11;
-        DCInvalidateRange(dest, fzgx_obj_lbl_1_bss_854CC[index]);
-        ARQPostRequest(&fzgx_obj_lbl_1_bss_85814, 0, 1, 1, fzgx_obj_lbl_1_bss_85834[index],
-            fzgx_obj_lbl_1_bss_85284, fzgx_obj_lbl_1_bss_854CC[index], (ARQCallback)fn_1_106D30);
+        DCInvalidateRange(dest, lbl_1_bss_854B8__fzgx_offset_14[index]);
+        ARQPostRequest(&lbl_1_bss_854B8__fzgx_offset_35C, 0, 1, 1, lbl_1_bss_854B8__fzgx_offset_37C[index],
+            lbl_1_bss_85280__fzgx_offset_4, lbl_1_bss_854B8__fzgx_offset_14[index], (ARQCallback)fn_1_106D30);
     }
 }
 /* fzgx:end fn_1_1049E0 */

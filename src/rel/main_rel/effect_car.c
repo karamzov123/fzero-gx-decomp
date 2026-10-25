@@ -2397,8 +2397,35 @@ s16 fn_1_6E320(EffCar *car, EffVec *offset, u8 mode) {
 }
 /* fzgx:end fn_1_6E320 */
 
-/* fzgx:begin fn_1_6ED40 pool */
+/* fzgx:begin fn_1_6ED40 */
 #include "rel/main_rel/car_test.h"
+
+extern void fn_1_6F90C(void *arg0, void *arg1);
+extern s16 fn_1_72318(void);
+extern void fn_1_71D0C(void *arg0, void *arg1);
+
+extern void *lbl_801A6410;
+extern void fn_1_46B4(u32 value, void *field, u8 *data, s32 code);
+extern u32 fn_1_4630(u32 value, u32 size, u8 *data, s32 code);
+extern void fn_1_862D4(s16 value, void *result);
+extern void fn_1_58E3C(void *entry);
+extern u32 fn_1_58C4(void);
+extern s8 lbl_1_bss_6C878[];
+extern struct fn_1_6F404_lbl_1_rodata_2D70 lbl_1_rodata_2D70;
+extern void * fn_1_868C0(s8);
+extern u32 fn_1_71024(void *, void *, u32, f32);
+extern u32 fn_1_7099C(void *, void *, u32, f32, f32);
+extern u32 fn_1_71768(void *, void *);
+extern u32 fn_1_702A0(void *, void *, u32, u32);
+extern u32 fn_80008C20(void *, void *, void *);
+extern u32 lbl_8006E1C0(void *, void *);
+extern u32 fn_1_584AC(void);
+extern u32 fn_1_6FD58(void *, void *, f32, f32);
+extern u32 fn_1_A33F0(u32, f32);
+extern u32 fn_1_6D7BC(void *, void *, f32);
+extern u32 fn_1_A5594(u32, void *);
+extern u32 fn_1_714A8(void *, void *, u32, f32);
+
 
 /* begin game/main_rel/car_test_types.h (deltawave784/windows-and-types@cf9407c75) */
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -2663,7 +2690,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime41(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     d = 0.4000000059604645;
 }
-static const Fn183D28Vec3 offset_init = {0.0f, 0.1f, 1.5f};
+static const Fn183D28Vec3 fzgx_pool_offset_init = {0.0f, 0.1f, 1.5f};
 __declspec(section ".fzgxpool") static void fzgx_pool_prime43(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     d = 40.0;
@@ -2692,7 +2719,7 @@ void fn_1_6ED40(struct fn_1_6ED40_Arg0 *arg0, void *arg1) {
  loc_14.kind=27;
  loc_14.flag=1;
  loc_14.owner=*(u32 *)((u8 *)lbl_1_bss_38458->unk_8+0xb0);
- loc_8=offset_init;
+ loc_8=fzgx_pool_offset_init;
  lbl_8006DC6C(arg0->unk_B8);
  {
  f32 z;

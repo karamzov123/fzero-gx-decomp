@@ -16919,7 +16919,7 @@ void fn_10_17814(s32 arg0) {
 }
 /* fzgx:end fn_10_17814 */
 
-/* fzgx:begin fn_10_17E44 pool */
+/* fzgx:begin fn_10_17E44 */
 #include "font.h"
 #include "rel/main_rel/globals.h"
 #include "rel/sel/sel.h"
@@ -17306,8 +17306,8 @@ struct Sig_fn_1_52250_fn_1_52250_Arg1 {
 };
 struct fn_10_17E44_Copy88 { u32 a[22]; };
 struct Color { u8 r, g, b, a; };
-static const struct Color green0 = {0, 255, 0, 255};
-static const struct Color green1 = {0, 255, 0, 255};
+static const struct Color fzgx_pool_green0 = {0, 255, 0, 255};
+static const struct Color fzgx_pool_green1 = {0, 255, 0, 255};
 struct fn_10_17E44_lbl_10_rodata_158 {
     u8 pad_0[0x44];
     f32 unk_44;

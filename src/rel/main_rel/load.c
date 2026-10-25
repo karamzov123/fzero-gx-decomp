@@ -29,7 +29,7 @@ extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
 extern void strcat(void *arg0, void *arg1);
 extern void fn_1_48004(s32 value, s32 arg);
 
-/* fzgx:begin fn_1_451E4 pool noprologue */
+/* fzgx:begin fn_1_451E4 noprologue */
 #include "types.h"
 #include "types.h"
 
@@ -115,177 +115,177 @@ extern void ARQPostRequest(ARQRequest *, u32, u32, u32, u32, u32, u32, ARQCallba
 extern void OSPanic(const char *, int, const char *, ...);
 
 /* load.c .bss; MWCC lays these out in reverse order, so the last one is at the base */
-static ARQRequest sReq;        /* 0x58D4 */
-static LoadWork sWork;         /* 0x5874 */
-static u32 sBufSize;           /* 0x5870 */
-static u32 sBuf;               /* 0x586C */
-static u32 s5868;              /* 0x5868 */
-static s32 sKind;              /* 0x5864 */
-static u8 sPad581C[0x48];      /* 0x581C */
-static u32 s5818;              /* 0x5818 */
-static LoadCommand sCmds[512]; /* 0x4018 */
-static u8 sPad10[0x4008];      /* 0x0010 */
-static volatile s32 sArqBusy;  /* 0x000C: cleared by the ARQ callback */
-static volatile s32 sDvdState; /* 0x0008: set by the DVD callbacks */
-static s32 sTail;              /* 0x0004 */
+static ARQRequest lbl_1_bss_3DD28__fzgx_offset_6C;        /* 0x58D4 */
+static LoadWork lbl_1_bss_3DD28__fzgx_offset_C;         /* 0x5874 */
+static u32 lbl_1_bss_3DD28__fzgx_offset_8;           /* 0x5870 */
+static u32 lbl_1_bss_3DD28__fzgx_offset_4;               /* 0x586C */
+static u32 lbl_1_bss_3DD28__fzgx_offset_0;              /* 0x5868 */
+static s32 lbl_1_bss_3DCE4__fzgx_offset_40;              /* 0x5864 */
+static u8 fzgx_pool_sPad581C[0x48];      /* 0x581C */
+static u32 lbl_1_bss_3DCD8__fzgx_offset_0;              /* 0x5818 */
+static LoadCommand lbl_1_bss_384D8__fzgx_offset_4000[512]; /* 0x4018 */
+static u8 fzgx_pool_sPad10[0x4008];      /* 0x0010 */
+static volatile s32 lbl_1_bss_384CC__fzgx_offset_0;  /* 0x000C: cleared by the ARQ callback */
+static volatile s32 lbl_1_bss_384C8__fzgx_offset_0; /* 0x0008: set by the DVD callbacks */
+static s32 lbl_1_bss_384C4__fzgx_offset_0;              /* 0x0004 */
 static s32 fzgx_obj_lbl_1_bss_384C0; /* 0x0000: queue head */
 #define sHead fzgx_obj_lbl_1_bss_384C0
 
 #pragma section code_type ".fzgxpool"
 u32 fzgx_bss_order_451E4(void) {
-    return (u32)&sWork + (u32)&sReq + (u32)&sBufSize + (u32)&sBuf + (u32)&s5868 + (u32)&sKind +
-           (u32)sPad581C + (u32)&s5818 + (u32)sCmds + (u32)sPad10 + (u32)&sArqBusy +
-           (u32)&sDvdState + (u32)&sTail + (u32)&sHead;
+    return (u32)&lbl_1_bss_3DD28__fzgx_offset_C + (u32)&lbl_1_bss_3DD28__fzgx_offset_6C + (u32)&lbl_1_bss_3DD28__fzgx_offset_8 + (u32)&lbl_1_bss_3DD28__fzgx_offset_4 + (u32)&lbl_1_bss_3DD28__fzgx_offset_0 + (u32)&lbl_1_bss_3DCE4__fzgx_offset_40 +
+           (u32)fzgx_pool_sPad581C + (u32)&lbl_1_bss_3DCD8__fzgx_offset_0 + (u32)lbl_1_bss_384D8__fzgx_offset_4000 + (u32)fzgx_pool_sPad10 + (u32)&lbl_1_bss_384CC__fzgx_offset_0 +
+           (u32)&lbl_1_bss_384C8__fzgx_offset_0 + (u32)&lbl_1_bss_384C4__fzgx_offset_0 + (u32)&sHead;
 }
 #pragma section code_type ".text"
 
-#define HALF ((sBufSize >> 1) & ~31)
+#define HALF ((lbl_1_bss_3DD28__fzgx_offset_8 >> 1) & ~31)
 
 void fn_1_451E4(void) {
     LoadCommand *cmd;
     void *file;
     LoadBlock *block;
 
-    if (sTail == sHead) {
+    if (lbl_1_bss_384C4__fzgx_offset_0 == sHead) {
         return;
     }
-    cmd = &sCmds[sTail];
+    cmd = &lbl_1_bss_384D8__fzgx_offset_4000[lbl_1_bss_384C4__fzgx_offset_0];
     switch (cmd->type) {
     case 14:
         cmd->type = 0;
-        sTail = fn_1_45E84(sTail);
+        lbl_1_bss_384C4__fzgx_offset_0 = fn_1_45E84(lbl_1_bss_384C4__fzgx_offset_0);
         break;
     case 12:
-        if (sDvdState > 0) {
+        if (lbl_1_bss_384C8__fzgx_offset_0 > 0) {
             break;
         }
-        sBuf = cmd->arg0;
-        sBufSize = cmd->arg1;
-        sTail = fn_1_45E84(sTail);
+        lbl_1_bss_3DD28__fzgx_offset_4 = cmd->arg0;
+        lbl_1_bss_3DD28__fzgx_offset_8 = cmd->arg1;
+        lbl_1_bss_384C4__fzgx_offset_0 = fn_1_45E84(lbl_1_bss_384C4__fzgx_offset_0);
         break;
     case 11:
-        if (sDvdState > 0) {
+        if (lbl_1_bss_384C8__fzgx_offset_0 > 0) {
             break;
         }
-        s5818 = cmd->arg0;
-        sTail = fn_1_45E84(sTail);
+        lbl_1_bss_3DCD8__fzgx_offset_0 = cmd->arg0;
+        lbl_1_bss_384C4__fzgx_offset_0 = fn_1_45E84(lbl_1_bss_384C4__fzgx_offset_0);
         break;
     case 13:
-        if (sDvdState > 0) {
+        if (lbl_1_bss_384C8__fzgx_offset_0 > 0) {
             break;
         }
         ((void (*)(u32))cmd->arg0)(cmd->arg1);
-        sTail = fn_1_45E84(sTail);
+        lbl_1_bss_384C4__fzgx_offset_0 = fn_1_45E84(lbl_1_bss_384C4__fzgx_offset_0);
         break;
     /* commands 1-6 open a file; they share the loader below and differ only in kind */
-    case 1: sKind = 0; goto start;
-    case 2: sKind = 1; goto start; /* Keep the verified branch to start. */
-    case 3: sKind = 2; goto start; /* Keep the verified branch to start. */
-    case 4: sKind = 3; goto start; /* Keep the verified branch to start. */
-    case 5: sKind = 4; goto start; /* Keep the verified branch to start. */
-    case 6: sKind = 5;
+    case 1: lbl_1_bss_3DCE4__fzgx_offset_40 = 0; goto start;
+    case 2: lbl_1_bss_3DCE4__fzgx_offset_40 = 1; goto start; /* Keep the verified branch to start. */
+    case 3: lbl_1_bss_3DCE4__fzgx_offset_40 = 2; goto start; /* Keep the verified branch to start. */
+    case 4: lbl_1_bss_3DCE4__fzgx_offset_40 = 3; goto start; /* Keep the verified branch to start. */
+    case 5: lbl_1_bss_3DCE4__fzgx_offset_40 = 4; goto start; /* Keep the verified branch to start. */
+    case 6: lbl_1_bss_3DCE4__fzgx_offset_40 = 5;
     start:
-        if (sDvdState > 0) {
+        if (lbl_1_bss_384C8__fzgx_offset_0 > 0) {
             break;
         }
-        memset(&sWork, 0, sizeof(LoadWork));
-        file = sWork.file;
+        memset(&lbl_1_bss_3DD28__fzgx_offset_C, 0, sizeof(LoadWork));
+        file = lbl_1_bss_3DD28__fzgx_offset_C.file;
         if (!fn_80006C2C(cmd->arg0, file)) {
             OSPanic("load.c", 0x138, "cannot open file\n");
         }
-        sWork.flags |= 1;
-        sWork.total = fn_80006DE8(file);
-        sWork.index = 0;
-        sWork.remaining = (sWork.total + 31) & ~31;
-        sWork.chunk = sWork.remaining < HALF ? sWork.remaining : HALF;
-        block = fn_1_45BF0(sWork.total);
-        sWork.block = block;
+        lbl_1_bss_3DD28__fzgx_offset_C.flags |= 1;
+        lbl_1_bss_3DD28__fzgx_offset_C.total = fn_80006DE8(file);
+        lbl_1_bss_3DD28__fzgx_offset_C.index = 0;
+        lbl_1_bss_3DD28__fzgx_offset_C.remaining = (lbl_1_bss_3DD28__fzgx_offset_C.total + 31) & ~31;
+        lbl_1_bss_3DD28__fzgx_offset_C.chunk = lbl_1_bss_3DD28__fzgx_offset_C.remaining < HALF ? lbl_1_bss_3DD28__fzgx_offset_C.remaining : HALF;
+        block = fn_1_45BF0(lbl_1_bss_3DD28__fzgx_offset_C.total);
+        lbl_1_bss_3DD28__fzgx_offset_C.block = block;
         if (block == NULL) {
             fn_80006CE4(file);
-            sWork.flags &= ~1;
-            sTail = fn_1_45E84(sTail);
+            lbl_1_bss_3DD28__fzgx_offset_C.flags &= ~1;
+            lbl_1_bss_384C4__fzgx_offset_0 = fn_1_45E84(lbl_1_bss_384C4__fzgx_offset_0);
             break;
         }
         block->id = cmd->arg0;
-        sDvdState = 1;
-        if (!fn_80006DAC(file, (void *)sBuf, sWork.chunk, sWork.index * HALF, fn_1_45BA4, fn_1_45BE0, 0)) {
+        lbl_1_bss_384C8__fzgx_offset_0 = 1;
+        if (!fn_80006DAC(file, (void *)lbl_1_bss_3DD28__fzgx_offset_4, lbl_1_bss_3DD28__fzgx_offset_C.chunk, lbl_1_bss_3DD28__fzgx_offset_C.index * HALF, fn_1_45BA4, fn_1_45BE0, 0)) {
             OSPanic("load.c", 0x150, "cannot read file\n");
         }
         cmd->type = 7;
         break;
     case 7:
-        if (sDvdState < 0) {
+        if (lbl_1_bss_384C8__fzgx_offset_0 < 0) {
             cmd->type = 14;
-            sDvdState = 0;
+            lbl_1_bss_384C8__fzgx_offset_0 = 0;
             break;
         }
-        if (sDvdState != 0) {
+        if (lbl_1_bss_384C8__fzgx_offset_0 != 0) {
             break;
         }
     case 8:
     transfer:
-        file = (void *)(sBuf + HALF * (sWork.index & 1));
-        block = (LoadBlock *)(sWork.block->data + sWork.index * HALF);
-        sArqBusy = 1;
-        ARQPostRequest(&sReq, 0, 0, 1, (u32)file, (u32)block, sWork.chunk, fn_1_451D4);
-        sWork.index++;
-        sWork.remaining -= sWork.chunk;
-        if (sWork.remaining == 0) {
+        file = (void *)(lbl_1_bss_3DD28__fzgx_offset_4 + HALF * (lbl_1_bss_3DD28__fzgx_offset_C.index & 1));
+        block = (LoadBlock *)(lbl_1_bss_3DD28__fzgx_offset_C.block->data + lbl_1_bss_3DD28__fzgx_offset_C.index * HALF);
+        lbl_1_bss_384CC__fzgx_offset_0 = 1;
+        ARQPostRequest(&lbl_1_bss_3DD28__fzgx_offset_6C, 0, 0, 1, (u32)file, (u32)block, lbl_1_bss_3DD28__fzgx_offset_C.chunk, fn_1_451D4);
+        lbl_1_bss_3DD28__fzgx_offset_C.index++;
+        lbl_1_bss_3DD28__fzgx_offset_C.remaining -= lbl_1_bss_3DD28__fzgx_offset_C.chunk;
+        if (lbl_1_bss_3DD28__fzgx_offset_C.remaining == 0) {
             cmd->type = 10;
             break;
         }
-        sWork.chunk = sWork.remaining < HALF ? sWork.remaining : HALF;
-        file = (void *)(sBuf + HALF * (sWork.index & 1));
-        sDvdState = 1;
-        if (!fn_80006DAC(sWork.file, file, sWork.chunk,
-                         sWork.index * HALF, fn_1_45BA4, fn_1_45BE0, 0)) {
+        lbl_1_bss_3DD28__fzgx_offset_C.chunk = lbl_1_bss_3DD28__fzgx_offset_C.remaining < HALF ? lbl_1_bss_3DD28__fzgx_offset_C.remaining : HALF;
+        file = (void *)(lbl_1_bss_3DD28__fzgx_offset_4 + HALF * (lbl_1_bss_3DD28__fzgx_offset_C.index & 1));
+        lbl_1_bss_384C8__fzgx_offset_0 = 1;
+        if (!fn_80006DAC(lbl_1_bss_3DD28__fzgx_offset_C.file, file, lbl_1_bss_3DD28__fzgx_offset_C.chunk,
+                         lbl_1_bss_3DD28__fzgx_offset_C.index * HALF, fn_1_45BA4, fn_1_45BE0, 0)) {
             OSPanic("load.c", 0x195, "cannot read file\n");
         }
         cmd->type = 9;
     case 9:
-        if (sArqBusy != 0) {
+        if (lbl_1_bss_384CC__fzgx_offset_0 != 0) {
             break;
         }
-        if (sDvdState < 0) {
+        if (lbl_1_bss_384C8__fzgx_offset_0 < 0) {
             cmd->type = 14;
-            sDvdState = 0;
+            lbl_1_bss_384C8__fzgx_offset_0 = 0;
             break;
         }
-        if (sDvdState != 0) {
+        if (lbl_1_bss_384C8__fzgx_offset_0 != 0) {
             break;
         }
         /* both transfers are done: start the next chunk */
         goto transfer;
     case 10:
-        if (sArqBusy != 0) {
+        if (lbl_1_bss_384CC__fzgx_offset_0 != 0) {
             break;
         }
-        switch (sKind) {
+        switch (lbl_1_bss_3DCE4__fzgx_offset_40) {
         case 0:
-            sWork.block->flags = 0x40000000;
+            lbl_1_bss_3DD28__fzgx_offset_C.block->flags = 0x40000000;
             break;
         case 1:
-            sWork.block->flags = 0x50000000;
+            lbl_1_bss_3DD28__fzgx_offset_C.block->flags = 0x50000000;
             break;
         case 2:
         case 4:
-            if (!fn_1_46144(sWork.block, 0, sKind == 4)) {
+            if (!fn_1_46144(lbl_1_bss_3DD28__fzgx_offset_C.block, 0, lbl_1_bss_3DCE4__fzgx_offset_40 == 4)) {
                 OSPanic("load.c", 0x1C7, "ARAM archive extend error");
             }
-            sWork.block->flags = (sKind == 4) ? 0 : 0x4000000;
+            lbl_1_bss_3DD28__fzgx_offset_C.block->flags = (lbl_1_bss_3DCE4__fzgx_offset_40 == 4) ? 0 : 0x4000000;
             break;
         case 3:
         case 5:
-            if (!fn_1_46144(sWork.block, 1, sKind == 5)) {
+            if (!fn_1_46144(lbl_1_bss_3DD28__fzgx_offset_C.block, 1, lbl_1_bss_3DCE4__fzgx_offset_40 == 5)) {
                 OSPanic("load.c", 0x1D1, "ARAM archive extend error");
             }
-            sWork.block->flags = (sKind == 5) ? 0 : 0x14000000;
+            lbl_1_bss_3DD28__fzgx_offset_C.block->flags = (lbl_1_bss_3DCE4__fzgx_offset_40 == 5) ? 0 : 0x14000000;
             break;
         }
-        fn_80006CE4(sWork.file);
-        sWork.flags &= ~1;
-        sKind = 0;
-        sTail = fn_1_45E84(sTail);
+        fn_80006CE4(lbl_1_bss_3DD28__fzgx_offset_C.file);
+        lbl_1_bss_3DD28__fzgx_offset_C.flags &= ~1;
+        lbl_1_bss_3DCE4__fzgx_offset_40 = 0;
+        lbl_1_bss_384C4__fzgx_offset_0 = fn_1_45E84(lbl_1_bss_384C4__fzgx_offset_0);
         break;
     }
 }
