@@ -452,7 +452,7 @@ extern u32 lbl_1_bss_3F60C[1388];
 extern u8 lbl_1_bss_40C6C[44384];
 extern void OSPanic(const char *, int, const char *, ...);
 extern int fn_1_45D0(int, int, const char *, int);
-extern u32 fn_8000B334(u32, u32);
+extern u32 OSAllocFromArenaLo(u32, u32);
 extern u32 fn_1_4BA24(u8, int, void *);
 extern void GXInitTexObj(void *, void *, u16, u16, int, int, int, u8);
 
@@ -779,7 +779,7 @@ int fn_1_48A0C(int ch, int idx, Obj_1_data_1AEA8 *font, int noLoad) {
     }
 
     if (noLoad) {
-        lbl_1_bss_3E060[tex] = fn_8000B334(*(u16 *)((u8 *)font + 0x28), 0x20);
+        lbl_1_bss_3E060[tex] = OSAllocFromArenaLo(*(u16 *)((u8 *)font + 0x28), 0x20);
     } else {
         lbl_1_bss_3E060[tex] = fn_1_45D0(lbl_801A6410, *(u16 *)((u8 *)font + 0x28),
                                          (const char *)(((u8 *)fzgx_pool_data_lbl_1_data_1BCC8)), 0x14E);

@@ -3,7 +3,7 @@
 extern u16 lbl_801A6CC4;
 extern u16 lbl_801A6CC6;
 extern u32 VISetBlack(u32);
-extern u32 fn_8003416C(void);
+extern u32 GXDrawDone(void);
 extern u32 fn_80034444(u32);
 extern u32 fn_8007001C(void);
 extern u32 fn_80070100(void);
@@ -17,7 +17,7 @@ void fn_8006FCB4(void) {
     VISetBlack(0);
     fn_80034444((u32)fn_800700F4);
     lbl_801A6CB4 = 0;
-    fn_8003416C();
+    GXDrawDone();
     lbl_801A6CD0 = 1;
     lbl_801A6CCC = -1;
     lbl_801A6CC6 = 0;

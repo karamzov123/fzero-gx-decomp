@@ -47,7 +47,7 @@ BOOL DVDCancelAsync(DVDCommandBlock *block, DVDCBCallback callback) {
         lbl_801A68E0 = 1;
         lbl_801A68E4 = callback;
         if (block->command == 4 || block->command == 1) {
-            fn_80016D50();
+            DVDLowBreak();
         }
         break;
     case 2:

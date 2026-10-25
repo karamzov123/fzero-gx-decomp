@@ -29,7 +29,7 @@ extern void fn_1_46B4(u32, u32, const char *, int);
 extern void fn_1_48140(int);
 extern void fn_1_8D168(Sig_fn_1_8D168_Fn1_8D168State *);
 extern void fn_1_D3214(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 
 void _epilog(void) {
     struct _epilog_lbl_16_bss_0 *p_lbl_16_bss_0;
@@ -99,6 +99,6 @@ void _epilog(void) {
         fn_1_451E4();
         fn_1_3308();
         fn_1_D3214();
-        fn_8001AF64();
+        VIWaitForRetrace();
     }
 }

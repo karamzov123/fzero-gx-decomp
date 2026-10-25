@@ -15,7 +15,7 @@ extern void *OSGetArenaHi(void);
 extern u32 OSGetTick(void);
 extern char lbl_80095EA0[15];
 extern s32 DVDOpen(char *, DVDFileInfo *);
-extern void *fn_8000B360(u32, u32);
+extern void *OSAllocFromArenaHi(u32, u32);
 extern s32 fn_80006354(DVDFileInfo *, void *, u32, u32);
 extern s32 DVDClose(DVDFileInfo *);
 extern void OSLink(void *, u32);
@@ -37,7 +37,7 @@ void fn_8000591C(void) {
     DVDOpen(lbl_80095EA0, &file_info);
     size = (file_info.length + 0x1F) & ~0x1Fu;
     total = size + module_size;
-    module = fn_8000B360(total, 0x20);
+    module = OSAllocFromArenaHi(total, 0x20);
     fn_80006354(&file_info, module, size, 0);
     DVDClose(&file_info);
     OSLink(module, 0);

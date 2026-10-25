@@ -61,7 +61,7 @@ extern void fn_1_FB18C(void);
 
 extern void fn_1_F8918(u8 *, u8 *);
 extern u16 lbl_1_data_414[36];
-extern void fn_8001D3E4(int index, int value);
+extern void PADControlMotor(int index, int value);
 extern u32 lbl_801A66A0;
 
 /* fzgx:begin fn_1_F4F08 */
@@ -469,7 +469,7 @@ void fn_1_F7128(void) {
             if (src->unk_0 == 6 || src->unk_0 == 5) {
                 dst->unk_2 = 0;
             } else if ((u8)(src->unk_0 - 1) <= 2 || src->unk_0 == 4) {
-                fn_8001D3E4(i, 1);
+                PADControlMotor(i, 1);
                 dst->unk_2 = src->unk_2;
             }
             src->unk_0 = 0;
@@ -481,31 +481,31 @@ void fn_1_F7128(void) {
     dst = &lbl_1_bss_7F03C;
     for (i = 0; i < 4; i++) {
         if (dst->unk_0 == 6) {
-            fn_8001D3E4(i, 0);
+            PADControlMotor(i, 0);
             dst->unk_0 = 0;
         } else if (dst->unk_0 == 5) {
-            fn_8001D3E4(i, 2);
+            PADControlMotor(i, 2);
             dst->unk_0 = 0;
         } else {
             if (dst->unk_0 == 3) {
                 if (lbl_801A66A0 & 1) {
-                    fn_8001D3E4(i, 0);
+                    PADControlMotor(i, 0);
                 } else {
-                    fn_8001D3E4(i, 1);
+                    PADControlMotor(i, 1);
                 }
             }
             if (dst->unk_0 == 4) {
                 if (lbl_801A66A0 & 1) {
-                    fn_8001D3E4(i, 2);
+                    PADControlMotor(i, 2);
                 } else {
-                    fn_8001D3E4(i, 1);
+                    PADControlMotor(i, 1);
                 }
             }
             if (dst->unk_2 != 0) {
                 dst->unk_2--;
             }
             if (dst->unk_2 == 1) {
-                fn_8001D3E4(i, dst->unk_0 == 1 ? 2 : 0);
+                PADControlMotor(i, dst->unk_0 == 1 ? 2 : 0);
                 dst->unk_0 = 0;
                 dst->unk_2 = 0;
             }
@@ -603,7 +603,7 @@ extern void fn_1_FB18C(void);
 
 extern void fn_1_F8918(u8 *, u8 *);
 extern u16 lbl_1_data_414[36];
-extern void fn_8001D3E4(int index, int value);
+extern void PADControlMotor(int index, int value);
 extern u32 lbl_801A66A0;
 
 
@@ -2462,7 +2462,7 @@ extern void fn_1_FB18C(void);
 
 extern void fn_1_F8918(u8 *, u8 *);
 extern u16 lbl_1_data_414[36];
-extern void fn_8001D3E4(int index, int value);
+extern void PADControlMotor(int index, int value);
 extern u32 lbl_801A66A0;
 
 
@@ -2937,8 +2937,8 @@ extern void fn_1_5948(int);
 extern void fn_1_627C(int);
 extern int fn_1_58C4(void);
 extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern void fn_80015CB0(f32 *, f32, f32, f32, f32, f32, f32);
-extern void fn_80038FD8(u32 *, u32 *, u32 *, u32 *);
+extern void C_MTXLightPerspective(f32 *, f32, f32, f32, f32, f32, f32);
+extern void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
 
 typedef struct SplineEntry {
     u8 pad0[0x104];
@@ -3002,7 +3002,7 @@ void fn_1_FA89C(SplineMain *arg0) {
     v3 = (u8 *)v0;
     while (v2 < t0) {
         fn_1_5948(v2);
-        fn_80038FD8(&v4->f104, &v4->f114, &v4->f124, &v4->f134);
+        GXGetScissor(&v4->f104, &v4->f114, &v4->f124, &v4->f134);
         t3 = (u32)((f32)v4->f124 / v0->f164);
         v4->f144 = t3;
         t4 = (u32)((f32)v4->f134 / v0->f164);
@@ -3020,7 +3020,7 @@ void fn_1_FA89C(SplineMain *arg0) {
         fn_1_A714C(&sp14, &sp10, &spC, &sp8);
         v15 = (f32)((f32)((f32)((f32)(s16)(v8 + v6) / (f32)(s16)v10) - v1) - v14);
         v16 = (f32)((f32)((f32)((f32)(s16)(v7 + v5) / (f32)(s16)v9) - v1) - v13);
-        fn_80015CB0((f32 *)(((0x44) + (v3))), sp14, sp10, (f32)(v1 / v16), (f32)(lbl_1_rodata_7494 / v15), (f32)((-v13) / v16), (f32)((-v14) / v15));
+        C_MTXLightPerspective((f32 *)(((0x44) + (v3))), sp14, sp10, (f32)(v1 / v16), (f32)(lbl_1_rodata_7494 / v15), (f32)((-v13) / v16), (f32)((-v14) / v15));
         fn_1_627C(v2);
         v4 = (SplineEntry *)((u8 *)v4 + 4);
         v3 += 0x30;

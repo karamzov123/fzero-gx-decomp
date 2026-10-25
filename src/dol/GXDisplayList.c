@@ -244,7 +244,7 @@ typedef union {
     f64 f64;
 } PPCWGPipe;
 
-void fn_80038A18(void *list, u32 nbytes);
+void GXCallDisplayList(void *list, u32 nbytes);
 
 void fn_8003458C(void);
 
@@ -256,7 +256,7 @@ extern GXData *const gx;
 volatile PPCWGPipe
     GXFIFO : FZGX_ADDR_GXFIFO; // fzgx-allow: S2 SDK asynchronous state
 
-void fn_80038A18(void *list, u32 nbytes) {
+void GXCallDisplayList(void *list, u32 nbytes) {
     if (gx->dirtyState != 0) {
         fn_8003458C();
     }

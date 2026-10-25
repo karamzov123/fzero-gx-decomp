@@ -26,7 +26,7 @@ extern void fn_8006B048(Fn8006B188Entry *, s32);
 extern s32 fn_80013428(s32, void *);
 extern void fn_800137C4(s32, void *);
 extern s32 fn_8006AF94(void);
-extern u32 fn_80013994(u32);
+extern u32 PADSetSamplingCallback(u32);
 
 #pragma opt_strength_reduction off
 #pragma opt_loop_invariants off
@@ -50,7 +50,7 @@ void fn_8006B188(void) {
             i++;
             off += 0x1248;
         } while (i < 4);
-        fn_80013994((u32)(void *)fn_8006AF94);
+        PADSetSamplingCallback((u32)(void *)fn_8006AF94);
         lbl_801A6C88 = 1;
     }
 }

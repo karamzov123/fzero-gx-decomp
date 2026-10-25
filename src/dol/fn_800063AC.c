@@ -11,14 +11,14 @@ typedef struct StringGroup { u8 **stringList; s32 numStrings; } StringGroup;
 typedef struct Glyph { void *image; u16 code; u16 width; } Glyph;
 extern u32 OSGetArenaHi(void);
 extern u32 OSGetFontEncode(void);
-extern void *fn_8000B360(u32, u32);
+extern void *OSAllocFromArenaHi(u32, u32);
 extern u32 fn_8000CEBC(Sig_fn_8000CEBC_OSFontHeader *, void *);
 extern StringGroup lbl_8012205C[];
 extern u32 lbl_801A66F0;
 extern StringGroup *lbl_801A66F4;
 extern s16 lbl_801A66EC;
 extern Glyph lbl_8015B940[128];
-extern void *fn_8000B334(u32, u32);
+extern void *OSAllocFromArenaLo(u32, u32);
 extern void fn_8000D1F0(u8 *, void *, u32, u32, u32 *);
 extern void DCStoreRange(void *, u32);
 extern void OSSetArenaHi(u32);
@@ -74,11 +74,11 @@ void fn_800063AC(u32 arg0, u32 arg1, u32 arg2) {
     }
     arena = OSGetArenaHi();
     if ((OSGetFontEncode() & 0xFFFF) == 1) {
-        font = fn_8000B360(0x90EE4, 32);
-        temp = fn_8000B360(0x4D000, 32);
+        font = OSAllocFromArenaHi(0x90EE4, 32);
+        temp = OSAllocFromArenaHi(0x4D000, 32);
     } else {
-        font = fn_8000B360(0x10120, 32);
-        temp = fn_8000B360(0x3000, 32);
+        font = OSAllocFromArenaHi(0x10120, 32);
+        temp = OSAllocFromArenaHi(0x3000, 32);
     }
     fn_8000CEBC((Sig_fn_8000CEBC_OSFontHeader *)font, (void *)temp);
     group = (StringGroup *)lbl_801A66F4;
@@ -102,7 +102,7 @@ void fn_800063AC(u32 arg0, u32 arg1, u32 arg2) {
                 }
                 if (i < count) continue;
                 glyph->code = code;
-                glyph->image = fn_8000B334(0x120, 32);
+                glyph->image = OSAllocFromArenaLo(0x120, 32);
                 fn_8000D1F0(start, glyph->image, 0, 6, &width);
                 DCStoreRange(glyph->image, 0x120);
                 glyph->width = width;

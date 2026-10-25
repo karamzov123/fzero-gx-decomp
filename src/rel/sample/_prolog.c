@@ -10,12 +10,12 @@ struct PrologFile { u8 pad[0x34]; u32 length; u32 callback; };
 struct PrologModule { u8 pad[0x20]; u32 size; u8 pad24[0x10]; u32 entry; u8 pad38[0x10]; u32 offset; };
 extern int DVDOpen(const char *, struct PrologFile *);
 extern int DVDClose(struct PrologFile *);
-extern void *fn_8000B360(u32,u32);
+extern void *OSAllocFromArenaHi(u32,u32);
 extern u32 fn_80006354(struct PrologFile *,void *,u32,u32);
 extern u32 sample_lz_decode(void *,void *);
 extern void *OSGetArenaLo(void);
 extern void OSSetArenaLo(void *);
-extern struct PrologModule *fn_8000B334(u32,u32);
+extern struct PrologModule *OSAllocFromArenaLo(u32,u32);
 extern u32 OSLinkFixed(struct PrologModule *,void *);
 static inline u32 next_key(u64 state) {
     return (u64)state * 0x180A9B36BB94ULL + 0xCD8F3;
@@ -67,7 +67,7 @@ u32 _prolog(void) {
     lab_t0 = name;
     memset(lab_t0, 0, 50);
     size = (file.length + t0 - 1) & ~(t0 - 1);
-    data = fn_8000B360(size,t0);
+    data = OSAllocFromArenaHi(size,t0);
     fn_80006354(&file,data,size,0);
     DVDClose(&file);
     for(i=0;i<size/4;i++) {
@@ -81,7 +81,7 @@ u32 _prolog(void) {
     bss = (void *)((((((u32)module) + (31)) + (module->offset))) & ~31);
     moduleSize = (u32)bss + module->size - (u32)module;
     OSSetArenaLo(module);
-    module = fn_8000B334(moduleSize,32);
+    module = OSAllocFromArenaLo(moduleSize,32);
     OSLinkFixed(module,bss);
     return module->entry;
 }

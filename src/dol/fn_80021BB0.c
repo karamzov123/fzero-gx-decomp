@@ -5,7 +5,7 @@ extern u8 lbl_80126240[7968];
 extern u32 lbl_80160500[480];
 extern void fn_80021B2C(void);
 extern u16 lbl_801A64F0[4];
-extern void fn_80021B84(void);
+extern void cbForCancelAllSync(void);
 extern u8 lbl_801A6B30[8];
 /* The DSP callback updates this flag asynchronously while the wait spins. */
 extern volatile s32 lbl_801A6B24;
@@ -13,7 +13,7 @@ extern u32 lbl_801A6B28;
 extern void OSInitThreadQueue(void *);
 extern s32 fn_80028DD0(void);
 extern void DSPInit(void);
-extern void fn_80028DD8(void *);
+extern void DSPAddTask(void *);
 
 typedef struct {
     u8 unk0[0x780];
@@ -47,7 +47,7 @@ void fn_80021BB0(void) {
     state->unk7a6 = 0x30;
     state->unk7a8 = (u32)fn_80021B20;
     state->unk7ac = (u32)fn_80021B2C;
-    state->unk7b0 = (u32)fn_80021B84;
+    state->unk7b0 = (u32)cbForCancelAllSync;
     state->unk7b4 = 0;
     state->unk784 = 0;
 
@@ -57,7 +57,7 @@ void fn_80021BB0(void) {
     if (!fn_80028DD0()) {
         DSPInit();
     }
-    fn_80028DD8((void *)&state->unk780);
+    DSPAddTask((void *)&state->unk780);
     while (!lbl_801A6B24) {
     }
 }

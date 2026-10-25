@@ -69,14 +69,14 @@ extern char lbl_80188870[256];
 
 s32 DVDGetCommandBlockStatus(const DVDCommandBlock *block);
 s32 DVDGetDriveStatus(void);
-s32 fn_80019B78(DVDCommandBlock *block);
+s32 DVDCancel(DVDCommandBlock *block);
 u32 OSGetTick(void);
 void DCInvalidateRange(void *addr, u32 nBytes);
 void DCStoreRange(void *addr, u32 nBytes);
 s32 DVDGetTransferredSize(DVDFileInfo *fileinfo);
 void fn_800555C0(s32 result, DVDFileInfo *file_info);
-s32 fn_800174D0(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, void (*callback)(s32, DVDFileInfo *), s32 prio);
-s32 fn_800175C0(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 prio);
+s32 DVDReadAsyncPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, void (*callback)(s32, DVDFileInfo *), s32 prio);
+s32 DVDReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 prio);
 s32 DVDClose(DVDFileInfo *fileInfo);
 s32 DVDOpen(const char *fileName, DVDFileInfo *fileInfo);
 void *memset(void *dst, int c, u32 n);
@@ -245,9 +245,9 @@ int fn_8005596C(void *object, int sectors, void *buffer) {
     aligned_length = (length + 31) & ~31;
     DCInvalidateRange(buffer, aligned_length);
     if (lbl_801322C8[0] == 0) {
-        result = fn_800174D0(&handle->file_info, buffer, aligned_length, offset, fn_800555C0, GCCI_DVD_PRIORITY);
+        result = DVDReadAsyncPrio(&handle->file_info, buffer, aligned_length, offset, fn_800555C0, GCCI_DVD_PRIORITY);
     } else {
-        result = fn_800175C0(&handle->file_info, buffer, aligned_length, offset, GCCI_DVD_PRIORITY);
+        result = DVDReadPrio(&handle->file_info, buffer, aligned_length, offset, GCCI_DVD_PRIORITY);
     }
     if (result == 0) {
         return 0;

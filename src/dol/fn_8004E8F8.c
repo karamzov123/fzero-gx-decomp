@@ -27,9 +27,9 @@ struct fn_8004E8F8_lbl_8017E980 {
 extern struct fn_8004E8F8_lbl_8012B930 lbl_8012B930;
 extern struct fn_8004E8F8_lbl_80178CB8 lbl_80178CB8;
 extern struct fn_8004E8F8_lbl_8017E980 lbl_8017E980;
-extern void fn_80010CB0(void *);
+extern void OSResumeThread(void *);
 extern void fn_80058E44(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 
 void fn_8004E8F8(void) {
     struct fn_8004E8F8_lbl_8017E980 *p_s = &lbl_8017E980;
@@ -40,14 +40,14 @@ void fn_8004E8F8(void) {
         u32 v0;
         u32 v1;
 
-        fn_8001AF64();
+        VIWaitForRetrace();
         v0 = p_a->unk_0;
         v1 = p_s->count_14 + 1;
         p_a->unk_0 = v0 + 1;
         p_s->count_14 = v1;
         fn_80058E44();
         if (p_s->field_CA0 == 0) {
-            fn_80010CB0(&p_s->thread_28);
+            OSResumeThread(&p_s->thread_28);
             if (p_b->callback_0 != 0) {
                 p_b->callback_0(p_b->unk_4);
             }

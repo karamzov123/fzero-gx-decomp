@@ -16,7 +16,7 @@ typedef struct {
 } Fn8005C120State;
 
 extern Fn8005C120State lbl_80192BD0;
-extern u32 fn_8001E954(u32);
+extern u32 ARAlloc(u32);
 extern void *memset(void *, int, u32);
 
 #pragma opt_propagation off
@@ -33,7 +33,7 @@ void fn_8005C120(void) {
         if (s->unk04 == 0) {
             s->unk08 = 32;
             s->unk0C = 0x40000;
-            s->unk10 = fn_8001E954(0x40000);
+            s->unk10 = ARAlloc(0x40000);
         }
         memset(s->entries, 0, 0x180);
         n = s->unk08;

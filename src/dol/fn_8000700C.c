@@ -7,7 +7,7 @@ extern char **lbl_801A6700;
 extern u32 lbl_801A6704;
 extern u8 lbl_8015BD40[256];
 extern char lbl_801A63F8[2];
-extern s32 fn_80016DF8(const char *);
+extern s32 DVDConvertPathToEntrynum(const char *);
 extern void OSPanic(const char *, int, const char *, ...);
 extern char *fn_80083DB0(char *, const char *);
 extern size_t strlen(const char *);
@@ -23,7 +23,7 @@ s32 fn_8000700C(const char *path) {
 
     str.value = lbl_801220C0;
     if (lbl_801A66F8 == 0) {
-        result = fn_80016DF8(path);
+        result = DVDConvertPathToEntrynum(path);
     } else {
         if (lbl_801A6704 == 0) {
             OSPanic(str.value + 0x58, 749, str.value + 0x80);

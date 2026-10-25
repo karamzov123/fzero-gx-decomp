@@ -187,8 +187,8 @@ extern void fn_1_4D2AC(void *data, f32 scale, f32 value);
 extern s32 fn_1_3F164(void);
 extern f32 lbl_1_rodata_26F8[22];
 extern f32 fn_1_A6FE8(void);
-extern void fn_80015E18(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
-extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(void *, s32);
 extern void fn_1_50190(f32 a, f32 b, f32 c, f32 d, f32 e, f32 f);
 extern void fn_1_52BF8(void *arg0, u32 arg1, s16 arg2);
@@ -1357,7 +1357,7 @@ typedef struct {
 } MsgData;
 
 extern u32 fn_80006DE8(MsgData *);
-extern u32 fn_8000B360(u32, u32);
+extern u32 OSAllocFromArenaHi(u32, u32);
 extern u32 fn_80006D1C(MsgData *, void *, u32, u32);
 extern u32 fn_8002071C(void);
 extern u32 ARGetDMAStatus(void);
@@ -1402,7 +1402,7 @@ void fn_1_4B8DC(void)
     }
 
     size = (fn_80006DE8(&msg) + 0x1F) & ~0x1F;
-    p = (void *)fn_8000B360(size, 0x20);
+    p = (void *)OSAllocFromArenaHi(size, 0x20);
     fn_80006D1C(&msg, p, size, 0);
     flag = 1;
     (void) flag;  /* fzgx: keeps the web at its definition */
@@ -1810,8 +1810,8 @@ extern void fn_1_4D2AC(void *data, f32 scale, f32 value);
 extern s32 fn_1_3F164(void);
 extern f32 lbl_1_rodata_26F8[22];
 extern f32 fn_1_A6FE8(void);
-extern void fn_80015E18(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
-extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(void *, s32);
 extern void fn_1_50190(f32 a, f32 b, f32 c, f32 d, f32 e, f32 f);
 extern void fn_1_52BF8(void *arg0, u32 arg1, s16 arg2);
@@ -3327,11 +3327,11 @@ void fn_1_4E638(s32 arg) {
 
     values = lbl_1_rodata_26F8;
     if (arg != 0) {
-        fn_80015E18( (f32 *)(void *)((u8 *)lbl_801A6D00 + 0xc8),
+        C_MTXPerspective( (f32 *)(void *)((u8 *)lbl_801A6D00 + 0xc8),
                     values[26], fn_1_A6FE8(), values[27], values[28]);
         fn_800737E4((u8 *)lbl_801A6D00 + 0xc8, 0);
     } else {
-        fn_80015EE8((u8 *)lbl_801A6D00 + 0xc8,
+        C_MTXOrtho((u8 *)lbl_801A6D00 + 0xc8,
                     values[22], values[29], values[22], values[30],
                     values[22], values[28]);
         fn_800737E4((u8 *)lbl_801A6D00 + 0xc8, 1);
@@ -4599,8 +4599,8 @@ extern void fn_1_4D2AC(void *data, f32 scale, f32 value);
 extern s32 fn_1_3F164(void);
 extern f32 lbl_1_rodata_26F8[22];
 extern f32 fn_1_A6FE8(void);
-extern void fn_80015E18(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
-extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(void *, s32);
 extern void fn_1_50190(f32 a, f32 b, f32 c, f32 d, f32 e, f32 f);
 extern void fn_1_52BF8(void *arg0, u32 arg1, s16 arg2);
@@ -4976,8 +4976,8 @@ extern void fn_1_4D2AC(void *data, f32 scale, f32 value);
 extern s32 fn_1_3F164(void);
 extern f32 lbl_1_rodata_26F8[22];
 extern f32 fn_1_A6FE8(void);
-extern void fn_80015E18(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
-extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(void *, s32);
 extern void fn_1_50190(f32 a, f32 b, f32 c, f32 d, f32 e, f32 f);
 extern void fn_1_52BF8(void *arg0, u32 arg1, s16 arg2);
@@ -5617,8 +5617,8 @@ extern void fn_1_4D2AC(void *data, f32 scale, f32 value);
 extern s32 fn_1_3F164(void);
 extern f32 lbl_1_rodata_26F8[22];
 extern f32 fn_1_A6FE8(void);
-extern void fn_80015E18(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
-extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(void *, s32);
 extern void fn_1_50190(f32 a, f32 b, f32 c, f32 d, f32 e, f32 f);
 extern void fn_1_52BF8(void *arg0, u32 arg1, s16 arg2);

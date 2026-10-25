@@ -69,14 +69,14 @@ extern char lbl_80188870[256];
 
 s32 DVDGetCommandBlockStatus(const DVDCommandBlock *block);
 s32 DVDGetDriveStatus(void);
-s32 fn_80019B78(DVDCommandBlock *block);
+s32 DVDCancel(DVDCommandBlock *block);
 u32 OSGetTick(void);
 void DCInvalidateRange(void *addr, u32 nBytes);
 void DCStoreRange(void *addr, u32 nBytes);
 s32 DVDGetTransferredSize(DVDFileInfo *fileinfo);
 void fn_800555C0(s32 result, DVDFileInfo *file_info);
-s32 fn_800174D0(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, void (*callback)(s32, DVDFileInfo *), s32 prio);
-s32 fn_800175C0(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 prio);
+s32 DVDReadAsyncPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, void (*callback)(s32, DVDFileInfo *), s32 prio);
+s32 DVDReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 prio);
 s32 DVDClose(DVDFileInfo *fileInfo);
 s32 DVDOpen(const char *fileName, DVDFileInfo *fileInfo);
 void *memset(void *dst, int c, u32 n);
@@ -149,7 +149,7 @@ void fn_800557CC(void *object) {
     DVDGetCommandBlockStatus(&handle->file_info.cb);
     DVDGetDriveStatus();
     lbl_801878B8.canceling = 1;
-    cancel_result = fn_80019B78(&handle->file_info.cb);
+    cancel_result = DVDCancel(&handle->file_info.cb);
     lbl_801878B8.canceling = 0;
     if (cancel_result < 0) {
         gcci_call_error("E0092917:DVDCancel failed.", handle);

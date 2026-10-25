@@ -41,7 +41,7 @@ void stateReady();
 
 void cbForStateError(u32 intType);
 
-void fn_80017DA8(u32 intType);
+void cbForUnrecoveredError(u32 intType);
 
 static inline void stateError(u32 error) {
     __DVDStoreErrorCode(error);
@@ -56,7 +56,7 @@ static inline void stateTimeout() {
     cbForStateError(0);
 }
 
-u32 fn_80017A60(u32 error);
+u32 CategorizeError(u32 error);
 
 static inline BOOL CheckCancel(u32 resume) {
     DVDCommandBlock *finished;
@@ -76,7 +76,7 @@ static inline BOOL CheckCancel(u32 resume) {
     return 0;
 }
 
-void fn_80017DA8(u32 intType);
+void cbForUnrecoveredError(u32 intType);
 
 void fn_80017EA8();
 
@@ -105,7 +105,7 @@ void cbForStateGettingError(u32 intType) {
     }
     error = __DIRegs[8];
     status = error & 0xff000000;
-    errorCategory = fn_80017A60(error);
+    errorCategory = CategorizeError(error);
     if (errorCategory == 1) {
         executing_801A68C0->state = -1;
         stateError(error);
@@ -132,7 +132,7 @@ void cbForStateGettingError(u32 intType) {
     }
     if (errorCategory == 3) {
         if ((error & 0x00ffffff) == 0x00031100) {
-            DVDLowSeek(executing_801A68C0->offset, fn_80017DA8);
+            DVDLowSeek(executing_801A68C0->offset, cbForUnrecoveredError);
         } else {
             lbl_801A6904(executing_801A68C0);
         }

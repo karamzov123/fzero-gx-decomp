@@ -34,12 +34,12 @@ static inline void SetRun(OSThread *thread) {
     RunQueueHint = 1;
 }
 
-void fn_8001036C(OSThread *thread);
+void UnsetRun(OSThread *thread);
 
 OSThread *SetEffectivePriority(OSThread *thread, OSPriority priority) {
     switch (thread->state) {
     case OS_THREAD_STATE_READY:
-        fn_8001036C(thread);
+        UnsetRun(thread);
         thread->priority = priority;
         SetRun(thread);
         break;

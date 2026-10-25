@@ -28,7 +28,7 @@ extern u32 fn_80072CC4(u32, u32, u32, u32, u32);
 extern u32 fn_80072D64(u32, u32, u32, u32, u32, u32);
 extern u32 fn_80072EDC(u32, u32);
 extern u32 fn_800734A8(u32, u32, u32, u32);
-extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_8007245C(u32);
 extern void fn_80072864(u32);
 extern void fn_800728A8(s32, s32, s32, s32);
@@ -74,7 +74,7 @@ void fn_80005EDC(void) {
     fn_80072864(2);
     lbl_8006D758();
     GXLoadPosMtxImm(lbl_801A6D00[0], 0);
-    fn_80015EE8(&mtx, lbl_801A6E9C, lbl_801A6EA4, lbl_801A6E9C, lbl_801A6EA8, lbl_801A6E9C, lbl_801A6EA0);
+    C_MTXOrtho(&mtx, lbl_801A6E9C, lbl_801A6EA4, lbl_801A6E9C, lbl_801A6EA8, lbl_801A6E9C, lbl_801A6EA0);
     fn_800737E4(&mtx, 1);
     ((u8 *)&color)[0] = 255;
     ((u8 *)&color)[1] = 255;

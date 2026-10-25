@@ -31,7 +31,7 @@ BOOL DVDReadDiskID(DVDCommandBlock *block, DVDDiskID *diskID, DVDCBCallback call
 
 s32 DVDGetDriveStatus();
 
-BOOL fn_80019430(DVDCommandBlock *block, void *addr, s32 length, s32 offset,
+BOOL DVDReadAbsAsyncForBS(DVDCommandBlock *block, void *addr, s32 length, s32 offset,
                  DVDCBCallback callback);
 
 void OSSetArenaHi(void *newHi);
@@ -59,11 +59,11 @@ void cb(s32 result, DVDCommandBlock *block) {
         switch (lbl_801A6910) {
         case 0:
             lbl_801A6910 = 1;
-            fn_80019430(block, bb2_801A6914, ((((u32)sizeof(bb2_801A6914) + 31) & ~31)), 0x420, cb);
+            DVDReadAbsAsyncForBS(block, bb2_801A6914, ((((u32)sizeof(bb2_801A6914) + 31) & ~31)), 0x420, cb);
             break;
         case 1:
             lbl_801A6910 = 2;
-            fn_80019430(block, bb2_801A6914->FSTAddress,
+            DVDReadAbsAsyncForBS(block, bb2_801A6914->FSTAddress,
                         ((((u32)bb2_801A6914->FSTLength + 31) & ~31)), bb2_801A6914->FSTPosition,
                         cb);
         }

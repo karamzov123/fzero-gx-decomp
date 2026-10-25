@@ -2258,13 +2258,13 @@ extern s32 fn_1_13018(void);
 extern s32 fn_1_467F4(void);
 extern void fn_1_451E4(void);
 extern void fn_1_D3214(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 
 void fn_7_4050(void) {
     while (fn_1_467F4() || fn_1_13018()) {
         fn_1_451E4();
         fn_1_D3214();
-        fn_8001AF64();
+        VIWaitForRetrace();
     }
 }
 /* fzgx:end fn_7_4050 */

@@ -2,7 +2,7 @@
 
 BOOL EXIProbe(s32 chan);
 s32 ReadArrayUnlock(s32 chan, u32 data, void *rbuf, s32 rlen, s32 mode);
-s32 fn_8002AE70(void);
+s32 DummyLen(void);
 
 extern CARDControl lbl_80177960[2];
 
@@ -48,7 +48,7 @@ void DoneCallback(void *_task) {
     input = (u8 *)((((u32)input + 31) & ~31));
     output = input + 32;
     Ans2 = *(u32 *)output;
-    dummy = fn_8002AE70();
+    dummy = DummyLen();
     rlen = dummy;
     data = ((Ans2 ^ card->scramble) & 0xffff0000);
     if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
@@ -60,7 +60,7 @@ void DoneCallback(void *_task) {
     wk = exnor(card->scramble, rshift);
     wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
     card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
-    dummy = fn_8002AE70();
+    dummy = DummyLen();
     rlen = dummy;
     data = (((Ans2 << 16) ^ card->scramble) & 0xffff0000);
     if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {

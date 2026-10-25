@@ -3815,7 +3815,7 @@ extern void DCInvalidateRange(void *addr, u32 len);
 extern void fn_8000659C(void);
 extern void fn_1_3308(void);
 extern void fn_1_D3214(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 
 extern volatile u32 lbl_1_data_5184;  // volatile: retail reloads it on every access
 
@@ -3859,7 +3859,7 @@ u8 fn_1_1361C(void *a, u32 *b) {
             fn_8000659C();
             fn_1_3308();
             fn_1_D3214();
-            fn_8001AF64();
+            VIWaitForRetrace();
         }
         if (n > 0) {
             DCInvalidateRange((void *)b[s->b23b8], lbl_1_data_5184);

@@ -9,14 +9,14 @@ struct Fn8004E8A0 {
 };
 
 extern struct Fn8004E8A0 lbl_8017E980;
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern void fn_80058DB4(void);
 
 void fn_8004E8A0(void) {
     struct Fn8004E8A0* state = &lbl_8017E980;
 
     while (state->field_C94 == 1) {
-        fn_8001AF64();
+        VIWaitForRetrace();
         state->count_18 += 1;
         fn_80058DB4();
     }

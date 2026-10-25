@@ -58,7 +58,7 @@ struct fn_80070774_lbl_801A6D30_T {
 extern f32 lbl_801A7410;
 extern f32 lbl_801A7414;
 extern f64 lbl_801A7418;
-extern s32 fn_8001B42C(u32 *);
+extern s32 VIConfigure(u32 *);
 extern struct fn_80070774_lbl_801A6CF4_T *lbl_801A6CF4;
 extern struct fn_80070774_lbl_801A6D30_T *lbl_801A6D30;
 extern u32 GXInit(u32, u32);
@@ -81,10 +81,10 @@ extern u32 lbl_801A7918;
 extern void DCFlushRange(void *, u32);
 extern void GXInitFifoBase(struct Sig_GXInitFifoBase_GXInitFifoBase_Arg0 *, u32, u32);
 extern void GXInitFifoPtrs(struct Sig_GXInitFifoPtrs_GXInitFifoPtrs_Arg0 *, u32, u32);
-extern void fn_8001AF64(void);
-extern void fn_8001BC54(void);
-extern void fn_8001BD84(u32);
-extern void fn_800350F4(u32);
+extern void VIWaitForRetrace(void);
+extern void VIFlush(void);
+extern void VISetNextFrameBuffer(u32);
+extern void GXSetDispCopyGamma(u32);
 extern void fn_80035110(void *, Sig_fn_80035110_GXBool);
 
 static inline u8 * fn_80070774_read_pointer(struct fn_80070774_lbl_801A6CF4_T * owner) { return owner->unk_1A; }
@@ -157,13 +157,13 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     fn_80035110((void *)lbl_801A6D30->unk_4, 1);
     fn_80035110((void *)lbl_801A6D30->unk_8, 0);
     fn_80035110((void *)lbl_801A6D30->unk_4, 0);
-    fn_800350F4(0);
-    fn_8001B42C((u32 *)lbl_801A6CF4);
-    fn_8001BD84(t0.value);
-    fn_8001BC54();
-    fn_8001AF64();
+    GXSetDispCopyGamma(0);
+    VIConfigure((u32 *)lbl_801A6CF4);
+    VISetNextFrameBuffer(t0.value);
+    VIFlush();
+    VIWaitForRetrace();
     if ((lbl_801A6CF4->unk_0 & 0x1) != 0) {
-        fn_8001AF64();
+        VIWaitForRetrace();
     }
 }
 #pragma opt_common_subs reset

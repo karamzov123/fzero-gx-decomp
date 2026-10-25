@@ -1,7 +1,7 @@
 #include "types.h"
 #include "dol/globals.h"
 
-extern void fn_80038CFC(s32);
+extern void GXSetCurrentMtx(s32);
 extern u32 lbl_801A6D9C;
 extern f32 lbl_8019F130[7];
 extern f32 lbl_801A74A8;
@@ -17,7 +17,7 @@ void fn_80078CDC(s32 arg0) {
     Fn80078CDCData *data;
 
     if (arg0 != 0) {
-        fn_80038CFC(0);
+        GXSetCurrentMtx(0);
     }
 
     value = lbl_801A6D9C;

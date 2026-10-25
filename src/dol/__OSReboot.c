@@ -18,17 +18,17 @@ void DVDInit();
 
 BOOL fn_8001989C(BOOL autoInval);
 
-void fn_800198AC();
+void DVDResume();
 
 s32 DVDGetCommandBlockStatus(const DVDCommandBlock *block);
 
-BOOL fn_800195D4(DVDCommandBlock *block, DVDCBCallback callback);
+BOOL DVDCancelStreamAsync(DVDCommandBlock *block, DVDCBCallback callback);
 
 DVDDiskID *fn_80019C48();
 
 int DVDCheckDisk();
 
-BOOL fn_80019354(DVDCommandBlock *block, void *addr, s32 length, s32 offset, DVDCBCallback callback,
+BOOL DVDReadAbsAsyncPrio(DVDCommandBlock *block, void *addr, s32 length, s32 offset, DVDCBCallback callback,
                  s32 prio);
 
 void __DVDPrepareResetAsync(DVDCBCallback callback);
@@ -103,7 +103,7 @@ void __OSReboot(u16 resetCode, u32 bootDol) {
     OSSetCurrentContext(&exceptionContext);
     DVDInit();
     fn_8001989C(1);
-    fn_800198AC();
+    DVDResume();
     lbl_801A67C8 = 0;
     __DVDPrepareResetAsync(fn_8000EB04);
     __OSMaskInterrupts(~0x1F);
@@ -116,7 +116,7 @@ void __OSReboot(u16 resetCode, u32 bootDol) {
     if (!__OSIsGcam && IsStreamEnabled()) {
         AISetStreamVolLeft(0);
         AISetStreamVolRight(0);
-        fn_800195D4(&dvdCmd, 0);
+        DVDCancelStreamAsync(&dvdCmd, 0);
         time = OSGetTime();
         while (DVDGetCommandBlockStatus(&dvdCmd)) {
             ReadApploader(time);
@@ -124,7 +124,7 @@ void __OSReboot(u16 resetCode, u32 bootDol) {
         AISetStreamPlayState(0);
     }
     lab_t5 = 0;
-    fn_80019354(&dvdCmd2, &lbl_8015BFA0, 32, 0x2440, 0, lab_t5);
+    DVDReadAbsAsyncPrio(&dvdCmd2, &lbl_8015BFA0, 32, 0x2440, 0, lab_t5);
     time = OSGetTime();
     while (DVDGetCommandBlockStatus(&dvdCmd2)) {
         ReadApploader(time);
@@ -132,7 +132,7 @@ void __OSReboot(u16 resetCode, u32 bootDol) {
     offset = lbl_8015BFA0.size + 0x20;
     numBytes = ((((u32)lbl_8015BFA0.rebootSize + 31) & ~31));
     lab_t5 = 0;
-    fn_80019354(&dvdCmd3, (void *)(FZGX_ADDR___OSRebootBuffer), numBytes, offset + 0x2440, 0, lab_t5);
+    DVDReadAbsAsyncPrio(&dvdCmd3, (void *)(FZGX_ADDR___OSRebootBuffer), numBytes, offset + 0x2440, 0, lab_t5);
     time = OSGetTime();
     while (DVDGetCommandBlockStatus(&dvdCmd3)) {
         ReadApploader(time);

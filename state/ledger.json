@@ -1,5 +1,5 @@
 {
- "generated": 1792961090,
+ "generated": 1792962704,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -925,16 +925,16 @@
    "unit": "rel/customize/_prolog/fn_3_15A0.c",
    "addr": 5536,
    "size": 7680,
-   "status": "asm",
+   "status": "matched",
    "attempts": 8,
-   "best_percent": 60.6,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": "Unrecoverable locally: all 8 attempts' best bodies (peak 60.6%) were saved on /Users/rayan/fzgx/.fzgx/attempts/ and no copy exists in this repo's state/repairs archives (large_near_frontier_20260914, large_closures_20260915 both lack it). No seed to hand-decomp from. 7680 B / large region. Needs either the rayan-host bodies copied into state/repairs/ as a portable archive, or a fresh carve from .text with a new seed. Do not re-dispatch to the stochastic fleet: 8 attempts across 4 model tiers all plateaued 54.7-60.6%, which is the measured stopping condition.",
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_3_33A0",
@@ -3608,7 +3608,7 @@
   {
    "symbol": "fn_3_14BBC",
    "module": "customize",
-   "unit": "rel/customize/emblem/fn_3_14BBC.c",
+   "unit": null,
    "addr": 84924,
    "size": 604,
    "status": "unmatched",
@@ -6773,16 +6773,16 @@
    "unit": "dol/__init_registers.c",
    "addr": 2147496624,
    "size": 144,
-   "status": "asm",
+   "status": "matched",
    "attempts": 2,
-   "best_percent": null,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "__init_data",
@@ -9369,9 +9369,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8000B334",
+   "symbol": "OSAllocFromArenaLo",
    "module": "main",
-   "unit": "dol/fn_8000B334.c",
+   "unit": "dol/OSAllocFromArenaLo.c",
    "addr": 2147529524,
    "size": 44,
    "status": "matched",
@@ -9386,9 +9386,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8000B360",
+   "symbol": "OSAllocFromArenaHi",
    "module": "main",
-   "unit": "dol/fn_8000B360.c",
+   "unit": "dol/OSAllocFromArenaHi.c",
    "addr": 2147529568,
    "size": 32,
    "status": "matched",
@@ -10185,9 +10185,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8000D55C",
+   "symbol": "__OSGetInterruptHandler",
    "module": "main",
-   "unit": "dol/fn_8000D55C.c",
+   "unit": "dol/__OSGetInterruptHandler.c",
    "addr": 2147538268,
    "size": 20,
    "status": "matched",
@@ -11256,9 +11256,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001036C",
+   "symbol": "UnsetRun",
    "module": "main",
-   "unit": "dol/fn_8001036C.c",
+   "unit": "dol/UnsetRun.c",
    "addr": 2147550060,
    "size": 104,
    "status": "matched",
@@ -11392,9 +11392,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80010CB0",
+   "symbol": "OSResumeThread",
    "module": "main",
-   "unit": "dol/fn_80010CB0.c",
+   "unit": "dol/OSResumeThread.c",
    "addr": 2147552432,
    "size": 648,
    "status": "matched",
@@ -11460,9 +11460,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80011298",
+   "symbol": "OSSetThreadPriority",
    "module": "main",
-   "unit": "dol/fn_80011298.c",
+   "unit": "dol/OSSetThreadPriority.c",
    "addr": 2147553944,
    "size": 192,
    "status": "matched",
@@ -12106,9 +12106,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800133B8",
+   "symbol": "SIRefreshSamplingRate",
    "module": "main",
-   "unit": "dol/fn_800133B8.c",
+   "unit": "dol/SIRefreshSamplingRate.c",
    "addr": 2147562424,
    "size": 36,
    "status": "matched",
@@ -12259,9 +12259,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80013934",
+   "symbol": "SamplingHandler",
    "module": "main",
-   "unit": "dol/fn_80013934.c",
+   "unit": "dol/SamplingHandler.c",
    "addr": 2147563828,
    "size": 96,
    "status": "matched",
@@ -12276,9 +12276,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80013994",
+   "symbol": "PADSetSamplingCallback",
    "module": "main",
-   "unit": "dol/fn_80013994.c",
+   "unit": "dol/PADSetSamplingCallback.c",
    "addr": 2147563924,
    "size": 84,
    "status": "matched",
@@ -12735,9 +12735,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800157AC",
+   "symbol": "InitializeUART",
    "module": "main",
-   "unit": "dol/fn_800157AC.c",
+   "unit": "dol/InitializeUART.c",
    "addr": 2147571628,
    "size": 112,
    "status": "matched",
@@ -12854,9 +12854,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80015B24",
+   "symbol": "PSMTXIdentity",
    "module": "main",
-   "unit": "dol/fn_80015B24.c",
+   "unit": "dol/PSMTXIdentity.c",
    "addr": 2147572516,
    "size": 44,
    "status": "matched",
@@ -12871,9 +12871,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "module": "main",
-   "unit": "dol/fn_80015B50.c",
+   "unit": "dol/PSMTXScale.c",
    "addr": 2147572560,
    "size": 40,
    "status": "matched",
@@ -12888,9 +12888,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80015B78",
+   "symbol": "PSMTXQuat",
    "module": "main",
-   "unit": "dol/fn_80015B78.c",
+   "unit": "dol/PSMTXQuat.c",
    "addr": 2147572600,
    "size": 164,
    "status": "matched",
@@ -12922,9 +12922,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80015CB0",
+   "symbol": "C_MTXLightPerspective",
    "module": "main",
-   "unit": "dol/fn_80015CB0.c",
+   "unit": "dol/C_MTXLightPerspective.c",
    "addr": 2147572912,
    "size": 204,
    "status": "matched",
@@ -12939,9 +12939,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "module": "main",
-   "unit": "dol/fn_80015D7C.c",
+   "unit": "dol/C_MTXFrustum.c",
    "addr": 2147573116,
    "size": 156,
    "status": "matched",
@@ -12956,9 +12956,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80015E18",
+   "symbol": "C_MTXPerspective",
    "module": "main",
-   "unit": "dol/fn_80015E18.c",
+   "unit": "dol/C_MTXPerspective.c",
    "addr": 2147573272,
    "size": 208,
    "status": "matched",
@@ -12973,9 +12973,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80015EE8",
+   "symbol": "C_MTXOrtho",
    "module": "main",
-   "unit": "dol/fn_80015EE8.c",
+   "unit": "dol/C_MTXOrtho.c",
    "addr": 2147573480,
    "size": 152,
    "status": "matched",
@@ -13024,9 +13024,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800162A0",
+   "symbol": "AlarmHandler_dvdlow",
    "module": "main",
-   "unit": "dol/fn_800162A0.c",
+   "unit": "dol/AlarmHandler_dvdlow.c",
    "addr": 2147574432,
    "size": 132,
    "status": "matched",
@@ -13058,9 +13058,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80016394",
+   "symbol": "Read",
    "module": "main",
-   "unit": "dol/fn_80016394.c",
+   "unit": "dol/Read.c",
    "addr": 2147574676,
    "size": 272,
    "status": "matched",
@@ -13075,9 +13075,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800164A4",
+   "symbol": "SeekTwiceBeforeRead",
    "module": "main",
-   "unit": "dol/fn_800164A4.c",
+   "unit": "dol/SeekTwiceBeforeRead.c",
    "addr": 2147574948,
    "size": 128,
    "status": "matched",
@@ -13092,9 +13092,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80016524",
+   "symbol": "DVDLowRead",
    "module": "main",
-   "unit": "dol/fn_80016524.c",
+   "unit": "dol/DVDLowRead.c",
    "addr": 2147575076,
    "size": 664,
    "status": "matched",
@@ -13279,9 +13279,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80016D50",
+   "symbol": "DVDLowBreak",
    "module": "main",
-   "unit": "dol/fn_80016D50.c",
+   "unit": "dol/DVDLowBreak.c",
    "addr": 2147577168,
    "size": 20,
    "status": "matched",
@@ -13347,9 +13347,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80016DF8",
+   "symbol": "DVDConvertPathToEntrynum",
    "module": "main",
-   "unit": "dol/fn_80016DF8.c",
+   "unit": "dol/DVDConvertPathToEntrynum.c",
    "addr": 2147577336,
    "size": 756,
    "status": "matched",
@@ -13466,9 +13466,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800174D0",
+   "symbol": "DVDReadAsyncPrio",
    "module": "main",
-   "unit": "dol/fn_800174D0.c",
+   "unit": "dol/DVDReadAsyncPrio.c",
    "addr": 2147579088,
    "size": 192,
    "status": "matched",
@@ -13500,9 +13500,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800175C0",
+   "symbol": "DVDReadPrio",
    "module": "main",
-   "unit": "dol/fn_800175C0.c",
+   "unit": "dol/DVDReadPrio.c",
    "addr": 2147579328,
    "size": 280,
    "status": "matched",
@@ -13602,9 +13602,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800178CC",
+   "symbol": "cbForStateReadingFST",
    "module": "main",
-   "unit": "dol/fn_800178CC.c",
+   "unit": "dol/cbForStateReadingFST.c",
    "addr": 2147580108,
    "size": 140,
    "status": "matched",
@@ -13670,9 +13670,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80017A60",
+   "symbol": "CategorizeError",
    "module": "main",
-   "unit": "dol/fn_80017A60.c",
+   "unit": "dol/CategorizeError.c",
    "addr": 2147580512,
    "size": 180,
    "status": "matched",
@@ -13704,9 +13704,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80017DA8",
+   "symbol": "cbForUnrecoveredError",
    "module": "main",
-   "unit": "dol/fn_80017DA8.c",
+   "unit": "dol/cbForUnrecoveredError.c",
    "addr": 2147581352,
    "size": 104,
    "status": "matched",
@@ -13721,9 +13721,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80017E10",
+   "symbol": "cbForUnrecoveredErrorRetry",
    "module": "main",
-   "unit": "dol/fn_80017E10.c",
+   "unit": "dol/cbForUnrecoveredErrorRetry.c",
    "addr": 2147581456,
    "size": 152,
    "status": "matched",
@@ -13772,9 +13772,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80018028",
+   "symbol": "stateCheckID",
    "module": "main",
-   "unit": "dol/fn_80018028.c",
+   "unit": "dol/stateCheckID.c",
    "addr": 2147581992,
    "size": 224,
    "status": "matched",
@@ -13823,9 +13823,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80018170",
+   "symbol": "cbForStateCheckID2a",
    "module": "main",
-   "unit": "dol/fn_80018170.c",
+   "unit": "dol/cbForStateCheckID2a.c",
    "addr": 2147582320,
    "size": 116,
    "status": "matched",
@@ -13959,9 +13959,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80018650",
+   "symbol": "cbForStateCoverClosed",
    "module": "main",
-   "unit": "dol/fn_80018650.c",
+   "unit": "dol/cbForStateCoverClosed.c",
    "addr": 2147583568,
    "size": 112,
    "status": "matched",
@@ -14044,9 +14044,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80018D1C",
+   "symbol": "cbForStateBusy",
    "module": "main",
-   "unit": "dol/fn_80018D1C.c",
+   "unit": "dol/cbForStateBusy.c",
    "addr": 2147585308,
    "size": 1592,
    "status": "matched",
@@ -14061,9 +14061,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80019354",
+   "symbol": "DVDReadAbsAsyncPrio",
    "module": "main",
-   "unit": "dol/fn_80019354.c",
+   "unit": "dol/DVDReadAbsAsyncPrio.c",
    "addr": 2147586900,
    "size": 220,
    "status": "matched",
@@ -14078,9 +14078,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80019430",
+   "symbol": "DVDReadAbsAsyncForBS",
    "module": "main",
-   "unit": "dol/fn_80019430.c",
+   "unit": "dol/DVDReadAbsAsyncForBS.c",
    "addr": 2147587120,
    "size": 208,
    "status": "matched",
@@ -14112,9 +14112,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800195D4",
+   "symbol": "DVDCancelStreamAsync",
    "module": "main",
-   "unit": "dol/fn_800195D4.c",
+   "unit": "dol/DVDCancelStreamAsync.c",
    "addr": 2147587540,
    "size": 188,
    "status": "matched",
@@ -14214,9 +14214,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800198AC",
+   "symbol": "DVDResume",
    "module": "main",
-   "unit": "dol/fn_800198AC.c",
+   "unit": "dol/DVDResume.c",
    "addr": 2147588268,
    "size": 80,
    "status": "matched",
@@ -14248,9 +14248,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80019B78",
+   "symbol": "DVDCancel",
    "module": "main",
-   "unit": "dol/fn_80019B78.c",
+   "unit": "dol/DVDCancel.c",
    "addr": 2147588984,
    "size": 172,
    "status": "matched",
@@ -14469,9 +14469,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001A2EC",
+   "symbol": "__DVDPrintFatalMessage",
    "module": "main",
-   "unit": "dol/fn_8001A2EC.c",
+   "unit": "dol/__DVDPrintFatalMessage.c",
    "addr": 2147590892,
    "size": 48,
    "status": "matched",
@@ -14520,9 +14520,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001A55C",
+   "symbol": "__VIRetraceHandler",
    "module": "main",
-   "unit": "dol/fn_8001A55C.c",
+   "unit": "dol/__VIRetraceHandler.c",
    "addr": 2147591516,
    "size": 560,
    "status": "matched",
@@ -14605,9 +14605,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001AAB4",
+   "symbol": "VIInit",
    "module": "main",
-   "unit": "dol/fn_8001AAB4.c",
+   "unit": "dol/VIInit.c",
    "addr": 2147592884,
    "size": 1200,
    "status": "matched",
@@ -14622,9 +14622,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001AF64",
+   "symbol": "VIWaitForRetrace",
    "module": "main",
-   "unit": "dol/fn_8001AF64.c",
+   "unit": "dol/VIWaitForRetrace.c",
    "addr": 2147594084,
    "size": 84,
    "status": "matched",
@@ -14673,9 +14673,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001B42C",
+   "symbol": "VIConfigure",
    "module": "main",
-   "unit": "dol/fn_8001B42C.c",
+   "unit": "dol/VIConfigure.c",
    "addr": 2147595308,
    "size": 2088,
    "status": "matched",
@@ -14690,9 +14690,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001BC54",
+   "symbol": "VIFlush",
    "module": "main",
-   "unit": "dol/fn_8001BC54.c",
+   "unit": "dol/VIFlush.c",
    "addr": 2147597396,
    "size": 304,
    "status": "matched",
@@ -14707,9 +14707,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001BD84",
+   "symbol": "VISetNextFrameBuffer",
    "module": "main",
-   "unit": "dol/fn_8001BD84.c",
+   "unit": "dol/VISetNextFrameBuffer.c",
    "addr": 2147597700,
    "size": 108,
    "status": "matched",
@@ -14894,9 +14894,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "module": "main",
-   "unit": "dol/fn_8001C4A8.c",
+   "unit": "dol/PADOriginCallback.c",
    "addr": 2147599528,
    "size": 196,
    "status": "matched",
@@ -14928,9 +14928,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001C62C",
+   "symbol": "PADProbeCallback",
    "module": "main",
-   "unit": "dol/fn_8001C62C.c",
+   "unit": "dol/PADProbeCallback.c",
    "addr": 2147599916,
    "size": 216,
    "status": "matched",
@@ -14945,9 +14945,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001C704",
+   "symbol": "PADTypeAndStatusCallback",
    "module": "main",
-   "unit": "dol/fn_8001C704.c",
+   "unit": "dol/PADTypeAndStatusCallback.c",
    "addr": 2147600132,
    "size": 812,
    "status": "matched",
@@ -14979,9 +14979,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001CB64",
+   "symbol": "PADReset",
    "module": "main",
-   "unit": "dol/fn_8001CB64.c",
+   "unit": "dol/PADReset.c",
    "addr": 2147601252,
    "size": 256,
    "status": "matched",
@@ -14996,9 +14996,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001CC64",
+   "symbol": "PADRecalibrate",
    "module": "main",
-   "unit": "dol/fn_8001CC64.c",
+   "unit": "dol/PADRecalibrate.c",
    "addr": 2147601508,
    "size": 260,
    "status": "matched",
@@ -15013,9 +15013,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001CD68",
+   "symbol": "PADInit",
    "module": "main",
-   "unit": "dol/fn_8001CD68.c",
+   "unit": "dol/PADInit.c",
    "addr": 2147601768,
    "size": 536,
    "status": "matched",
@@ -15030,9 +15030,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001CF80",
+   "symbol": "PADRead",
    "module": "main",
-   "unit": "dol/fn_8001CF80.c",
+   "unit": "dol/PADRead.c",
    "addr": 2147602304,
    "size": 940,
    "status": "matched",
@@ -15064,9 +15064,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001D3E4",
+   "symbol": "PADControlMotor",
    "module": "main",
-   "unit": "dol/fn_8001D3E4.c",
+   "unit": "dol/PADControlMotor.c",
    "addr": 2147603428,
    "size": 164,
    "status": "matched",
@@ -15081,9 +15081,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001D488",
+   "symbol": "PADSetSpec",
    "module": "main",
-   "unit": "dol/fn_8001D488.c",
+   "unit": "dol/PADSetSpec.c",
    "addr": 2147603592,
    "size": 96,
    "status": "matched",
@@ -15166,9 +15166,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001DC3C",
+   "symbol": "OnReset_Pad",
    "module": "main",
-   "unit": "dol/fn_8001DC3C.c",
+   "unit": "dol/OnReset_Pad.c",
    "addr": 2147605564,
    "size": 404,
    "status": "matched",
@@ -15183,9 +15183,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001DDD0",
+   "symbol": "SamplingHandler_Pad",
    "module": "main",
-   "unit": "dol/fn_8001DDD0.c",
+   "unit": "dol/SamplingHandler_Pad.c",
    "addr": 2147605968,
    "size": 96,
    "status": "matched",
@@ -15200,9 +15200,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001DE30",
+   "symbol": "PADSetSamplingCallback_Pad",
    "module": "main",
-   "unit": "dol/fn_8001DE30.c",
+   "unit": "dol/PADSetSamplingCallback_Pad.c",
    "addr": 2147606064,
    "size": 84,
    "status": "matched",
@@ -15608,9 +15608,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001E954",
+   "symbol": "ARAlloc",
    "module": "main",
-   "unit": "dol/fn_8001E954.c",
+   "unit": "dol/ARAlloc.c",
    "addr": 2147608916,
    "size": 104,
    "status": "matched",
@@ -15625,9 +15625,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8001E9BC",
+   "symbol": "ARFree",
    "module": "main",
-   "unit": "dol/fn_8001E9BC.c",
+   "unit": "dol/ARFree.c",
    "addr": 2147609020,
    "size": 116,
    "status": "matched",
@@ -15744,9 +15744,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80020530",
+   "symbol": "ARQInit",
    "module": "main",
-   "unit": "dol/fn_80020530.c",
+   "unit": "dol/ARQInit.c",
    "addr": 2147616048,
    "size": 112,
    "status": "matched",
@@ -16492,9 +16492,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80021B84",
+   "symbol": "cbForCancelAllSync",
    "module": "main",
-   "unit": "dol/fn_80021B84.c",
+   "unit": "dol/cbForCancelAllSync.c",
    "addr": 2147621764,
    "size": 44,
    "status": "matched",
@@ -17024,16 +17024,16 @@
    "unit": "dol/fn_80023D00.c",
    "addr": 2147630336,
    "size": 1292,
-   "status": "asm",
+   "status": "matched",
    "attempts": 2,
-   "best_percent": null,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_8002420C",
@@ -17126,16 +17126,16 @@
    "unit": "dol/fn_800248D4.c",
    "addr": 2147633364,
    "size": 948,
-   "status": "asm",
+   "status": "matched",
    "attempts": 0,
-   "best_percent": null,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_80024C88",
@@ -18260,9 +18260,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028DD8",
+   "symbol": "DSPAddTask",
    "module": "main",
-   "unit": "dol/fn_80028DD8.c",
+   "unit": "dol/DSPAddTask.c",
    "addr": 2147651032,
    "size": 112,
    "status": "matched",
@@ -18685,9 +18685,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "module": "main",
-   "unit": "dol/fn_8002A698.c",
+   "unit": "dol/CARDInit.c",
    "addr": 2147657368,
    "size": 172,
    "status": "matched",
@@ -18923,9 +18923,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8002AE70",
+   "symbol": "DummyLen",
    "module": "main",
-   "unit": "dol/fn_8002AE70.c",
+   "unit": "dol/DummyLen.c",
    "addr": 2147659376,
    "size": 196,
    "status": "matched",
@@ -20402,9 +20402,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80032268",
+   "symbol": "__GXFifoReadEnable",
    "module": "main",
-   "unit": "dol/fn_80032268.c",
+   "unit": "dol/__GXFifoReadEnable.c",
    "addr": 2147689064,
    "size": 36,
    "status": "matched",
@@ -20419,9 +20419,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8003228C",
+   "symbol": "__GXFifoReadDisable",
    "module": "main",
-   "unit": "dol/fn_8003228C.c",
+   "unit": "dol/__GXFifoReadDisable.c",
    "addr": 2147689100,
    "size": 32,
    "status": "matched",
@@ -20436,9 +20436,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800322AC",
+   "symbol": "__GXFifoLink",
    "module": "main",
-   "unit": "dol/fn_800322AC.c",
+   "unit": "dol/__GXFifoLink.c",
    "addr": 2147689132,
    "size": 60,
    "status": "matched",
@@ -20453,9 +20453,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800322E8",
+   "symbol": "__GXWriteFifoIntEnable",
    "module": "main",
-   "unit": "dol/fn_800322E8.c",
+   "unit": "dol/__GXWriteFifoIntEnable.c",
    "addr": 2147689192,
    "size": 60,
    "status": "matched",
@@ -20470,9 +20470,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80032324",
+   "symbol": "__GXWriteFifoIntReset",
    "module": "main",
-   "unit": "dol/fn_80032324.c",
+   "unit": "dol/__GXWriteFifoIntReset.c",
    "addr": 2147689252,
    "size": 60,
    "status": "matched",
@@ -20589,9 +20589,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80032BE0",
+   "symbol": "__GXCalculateVLim",
    "module": "main",
-   "unit": "dol/fn_80032BE0.c",
+   "unit": "dol/__GXCalculateVLim.c",
    "addr": 2147691488,
    "size": 292,
    "status": "matched",
@@ -20793,9 +20793,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80033D4C",
+   "symbol": "GXSetNumTexGens",
    "module": "main",
-   "unit": "dol/fn_80033D4C.c",
+   "unit": "dol/GXSetNumTexGens.c",
    "addr": 2147695948,
    "size": 64,
    "status": "matched",
@@ -20827,9 +20827,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80033E20",
+   "symbol": "GXFlush",
    "module": "main",
-   "unit": "dol/fn_80033E20.c",
+   "unit": "dol/GXFlush.c",
    "addr": 2147696160,
    "size": 92,
    "status": "matched",
@@ -20912,9 +20912,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8003416C",
+   "symbol": "GXDrawDone",
    "module": "main",
-   "unit": "dol/fn_8003416C.c",
+   "unit": "dol/GXDrawDone.c",
    "addr": 2147697004,
    "size": 128,
    "status": "matched",
@@ -20929,9 +20929,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800341EC",
+   "symbol": "GXPokeAlphaMode",
    "module": "main",
-   "unit": "dol/fn_800341EC.c",
+   "unit": "dol/GXPokeAlphaMode.c",
    "addr": 2147697132,
    "size": 20,
    "status": "matched",
@@ -20946,9 +20946,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80034200",
+   "symbol": "GXPokeAlphaRead",
    "module": "main",
-   "unit": "dol/fn_80034200.c",
+   "unit": "dol/GXPokeAlphaRead.c",
    "addr": 2147697152,
    "size": 20,
    "status": "matched",
@@ -20963,9 +20963,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80034214",
+   "symbol": "GXPokeAlphaUpdate",
    "module": "main",
-   "unit": "dol/fn_80034214.c",
+   "unit": "dol/GXPokeAlphaUpdate.c",
    "addr": 2147697172,
    "size": 28,
    "status": "matched",
@@ -20997,9 +20997,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800342B8",
+   "symbol": "GXPokeColorUpdate",
    "module": "main",
-   "unit": "dol/fn_800342B8.c",
+   "unit": "dol/GXPokeColorUpdate.c",
    "addr": 2147697336,
    "size": 28,
    "status": "matched",
@@ -21031,9 +21031,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800342E8",
+   "symbol": "GXPokeDither",
    "module": "main",
-   "unit": "dol/fn_800342E8.c",
+   "unit": "dol/GXPokeDither.c",
    "addr": 2147697384,
    "size": 28,
    "status": "matched",
@@ -21048,9 +21048,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80034304",
+   "symbol": "GXPokeZMode",
    "module": "main",
-   "unit": "dol/fn_80034304.c",
+   "unit": "dol/GXPokeZMode.c",
    "addr": 2147697412,
    "size": 40,
    "status": "matched",
@@ -21116,9 +21116,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800343BC",
+   "symbol": "GXTokenInterruptHandler",
    "module": "main",
-   "unit": "dol/fn_800343BC.c",
+   "unit": "dol/GXTokenInterruptHandler.c",
    "addr": 2147697596,
    "size": 136,
    "status": "matched",
@@ -21150,9 +21150,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80034488",
+   "symbol": "GXFinishInterruptHandler",
    "module": "main",
-   "unit": "dol/fn_80034488.c",
+   "unit": "dol/GXFinishInterruptHandler.c",
    "addr": 2147697800,
    "size": 132,
    "status": "matched",
@@ -21252,9 +21252,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800347EC",
+   "symbol": "GXSetPointSize",
    "module": "main",
-   "unit": "dol/fn_800347EC.c",
+   "unit": "dol/GXSetPointSize.c",
    "addr": 2147698668,
    "size": 72,
    "status": "matched",
@@ -21303,9 +21303,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800348DC",
+   "symbol": "GXSetCoPlanar",
    "module": "main",
-   "unit": "dol/fn_800348DC.c",
+   "unit": "dol/GXSetCoPlanar.c",
    "addr": 2147698908,
    "size": 60,
    "status": "matched",
@@ -21507,9 +21507,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800350F4",
+   "symbol": "GXSetDispCopyGamma",
    "module": "main",
-   "unit": "dol/fn_800350F4.c",
+   "unit": "dol/GXSetDispCopyGamma.c",
    "addr": 2147700980,
    "size": 28,
    "status": "matched",
@@ -21949,9 +21949,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80036388",
+   "symbol": "GXLoadTexObj",
    "module": "main",
-   "unit": "dol/fn_80036388.c",
+   "unit": "dol/GXLoadTexObj.c",
    "addr": 2147705736,
    "size": 84,
    "status": "matched",
@@ -22017,9 +22017,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8003658C",
+   "symbol": "GXSetTexRegionCallback",
    "module": "main",
-   "unit": "dol/fn_8003658C.c",
+   "unit": "dol/GXSetTexRegionCallback.c",
    "addr": 2147706252,
    "size": 20,
    "status": "matched",
@@ -22034,9 +22034,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800365A0",
+   "symbol": "GXSetTlutRegionCallback",
    "module": "main",
-   "unit": "dol/fn_800365A0.c",
+   "unit": "dol/GXSetTlutRegionCallback.c",
    "addr": 2147706272,
    "size": 20,
    "status": "matched",
@@ -22170,9 +22170,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80036EB4",
+   "symbol": "GXSetNumIndStages",
    "module": "main",
-   "unit": "dol/fn_80036EB4.c",
+   "unit": "dol/GXSetNumIndStages.c",
    "addr": 2147708596,
    "size": 40,
    "status": "matched",
@@ -22493,9 +22493,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800377C8",
+   "symbol": "GXSetNumTevStages",
    "module": "main",
-   "unit": "dol/fn_800377C8.c",
+   "unit": "dol/GXSetNumTevStages.c",
    "addr": 2147710920,
    "size": 48,
    "status": "matched",
@@ -22612,9 +22612,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80037BF4",
+   "symbol": "GXSetZCompLoc",
    "module": "main",
-   "unit": "dol/fn_80037BF4.c",
+   "unit": "dol/GXSetZCompLoc.c",
    "addr": 2147711988,
    "size": 56,
    "status": "matched",
@@ -22697,9 +22697,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80037DB4",
+   "symbol": "GXSetFieldMode",
    "module": "main",
-   "unit": "dol/fn_80037DB4.c",
+   "unit": "dol/GXSetFieldMode.c",
    "addr": 2147712436,
    "size": 124,
    "status": "matched",
@@ -22787,19 +22787,19 @@
    "unit": "dol/fn_80038944.c",
    "addr": 2147715396,
    "size": 212,
-   "status": "asm",
+   "status": "matched",
    "attempts": 38,
-   "best_percent": 99.79245,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
-   "symbol": "fn_80038A18",
+   "symbol": "GXCallDisplayList",
    "module": "main",
    "unit": "dol/GXDisplayList.c",
    "addr": 2147715608,
@@ -22833,9 +22833,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80038B3C",
+   "symbol": "GXSetProjectionv",
    "module": "main",
-   "unit": "dol/fn_80038B3C.c",
+   "unit": "dol/GXSetProjectionv.c",
    "addr": 2147715900,
    "size": 192,
    "status": "matched",
@@ -22850,9 +22850,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80038BFC",
+   "symbol": "GXGetProjectionv",
    "module": "main",
-   "unit": "dol/fn_80038BFC.c",
+   "unit": "dol/GXGetProjectionv.c",
    "addr": 2147716092,
    "size": 96,
    "status": "matched",
@@ -22901,9 +22901,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80038CFC",
+   "symbol": "GXSetCurrentMtx",
    "module": "main",
-   "unit": "dol/fn_80038CFC.c",
+   "unit": "dol/GXSetCurrentMtx.c",
    "addr": 2147716348,
    "size": 56,
    "status": "matched",
@@ -22986,9 +22986,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80038F48",
+   "symbol": "GXSetScissor",
    "module": "main",
-   "unit": "dol/fn_80038F48.c",
+   "unit": "dol/GXSetScissor.c",
    "addr": 2147716936,
    "size": 144,
    "status": "matched",
@@ -23003,9 +23003,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "module": "main",
-   "unit": "dol/fn_80038FD8.c",
+   "unit": "dol/GXGetScissor.c",
    "addr": 2147717080,
    "size": 72,
    "status": "matched",
@@ -23020,9 +23020,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "module": "main",
-   "unit": "dol/fn_80039020.c",
+   "unit": "dol/GXSetScissorBoxOffset.c",
    "addr": 2147717152,
    "size": 64,
    "status": "matched",
@@ -23071,9 +23071,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8003910C",
+   "symbol": "GXSetGPMetric",
    "module": "main",
-   "unit": "dol/fn_8003910C.c",
+   "unit": "dol/GXSetGPMetric.c",
    "addr": 2147717388,
    "size": 2120,
    "status": "matched",
@@ -23105,9 +23105,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80039AFC",
+   "symbol": "GXClearGPMetric",
    "module": "main",
-   "unit": "dol/fn_80039AFC.c",
+   "unit": "dol/GXClearGPMetric.c",
    "addr": 2147719932,
    "size": 16,
    "status": "matched",
@@ -28479,7 +28479,7 @@
   {
    "symbol": "fn_8004F00C",
    "module": "main",
-   "unit": "dol/fn_8004F00C.c",
+   "unit": null,
    "addr": 2147807244,
    "size": 608,
    "status": "unmatched",
@@ -28805,16 +28805,16 @@
    "unit": "dol/fn_80050BD4.c",
    "addr": 2147814356,
    "size": 912,
-   "status": "asm",
+   "status": "matched",
    "attempts": 8,
-   "best_percent": 99.552635,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_80050F64",
@@ -31593,16 +31593,16 @@
    "unit": "dol/fn_80059884.c",
    "addr": 2147850372,
    "size": 144,
-   "status": "asm",
+   "status": "matched",
    "attempts": 12,
-   "best_percent": 99.583336,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_80059914",
@@ -33463,16 +33463,16 @@
    "unit": "dol/fn_80067DE4.c",
    "addr": 2147909092,
    "size": 388,
-   "status": "asm",
+   "status": "matched",
    "attempts": 40,
-   "best_percent": 99.93814,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_80067F68",
@@ -34381,16 +34381,16 @@
    "unit": "dol/fn_8006C7E8.c",
    "addr": 2147928040,
    "size": 324,
-   "status": "asm",
+   "status": "matched",
    "attempts": 17,
-   "best_percent": 99.75309,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_8006C92C",
@@ -36863,16 +36863,16 @@
    "unit": "dol/fn_800736C0.c",
    "addr": 2147956416,
    "size": 184,
-   "status": "asm",
+   "status": "matched",
    "attempts": 15,
-   "best_percent": 99.565216,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_80073778",
@@ -38359,16 +38359,16 @@
    "unit": "dol/fn_80078DA8.c",
    "addr": 2147978664,
    "size": 356,
-   "status": "asm",
+   "status": "matched",
    "attempts": 22,
-   "best_percent": 99.83146,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_80078F0C",
@@ -38580,16 +38580,16 @@
    "unit": "dol/__div2u.c",
    "addr": 2147981552,
    "size": 236,
-   "status": "asm",
+   "status": "matched",
    "attempts": 7,
-   "best_percent": 2.3559322,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "__div2i",
@@ -38597,16 +38597,16 @@
    "unit": "dol/__div2i.c",
    "addr": 2147981788,
    "size": 312,
-   "status": "asm",
+   "status": "matched",
    "attempts": 4,
-   "best_percent": 14.717949,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "__mod2u",
@@ -38614,16 +38614,16 @@
    "unit": "dol/__mod2u.c",
    "addr": 2147982100,
    "size": 228,
-   "status": "asm",
+   "status": "matched",
    "attempts": 7,
-   "best_percent": 51.91228,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "__mod2i",
@@ -38631,16 +38631,16 @@
    "unit": "dol/__mod2i.c",
    "addr": 2147982328,
    "size": 268,
-   "status": "asm",
+   "status": "matched",
    "attempts": 5,
-   "best_percent": 22.61194,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "__shl2i",
@@ -38699,16 +38699,16 @@
    "unit": "dol/fn_80079D74.c",
    "addr": 2147982708,
    "size": 176,
-   "status": "asm",
+   "status": "matched",
    "attempts": 8,
-   "best_percent": 55.977272,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "__cvt_dbl_usll",
@@ -38716,16 +38716,16 @@
    "unit": "dol/__cvt_dbl_usll.c",
    "addr": 2147982884,
    "size": 204,
-   "status": "asm",
+   "status": "matched",
    "attempts": 3,
-   "best_percent": null,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_80079EF0",
@@ -46703,7 +46703,7 @@
   {
    "symbol": "fn_1_90E0",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_90E0.c",
+   "unit": null,
    "addr": 37088,
    "size": 6056,
    "status": "unmatched",
@@ -48984,16 +48984,16 @@
    "unit": "rel/main_rel/stcoli/fn_1_216F0.c",
    "addr": 136944,
    "size": 572,
-   "status": "asm",
+   "status": "matched",
    "attempts": 9,
-   "best_percent": 99.65035,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_2192C",
@@ -51293,7 +51293,7 @@
   {
    "symbol": "fn_1_3B7D4",
    "module": "main_rel",
-   "unit": "rel/main_rel/game/fn_1_3B7D4.c",
+   "unit": null,
    "addr": 243668,
    "size": 4268,
    "status": "unmatched",
@@ -52571,16 +52571,16 @@
    "unit": "rel/main_rel/game/fn_1_4068C.c",
    "addr": 263820,
    "size": 132,
-   "status": "asm",
+   "status": "matched",
    "attempts": 48,
-   "best_percent": 99.63636,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_40710",
@@ -53217,16 +53217,16 @@
    "unit": "rel/main_rel/motasglist/fn_1_4247C.c",
    "addr": 271484,
    "size": 560,
-   "status": "asm",
+   "status": "matched",
    "attempts": 10,
-   "best_percent": 99.85714,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_426AC",
@@ -63026,16 +63026,16 @@
    "unit": "rel/main_rel/screen_effect/fn_1_76504.c",
    "addr": 484612,
    "size": 332,
-   "status": "asm",
+   "status": "matched",
    "attempts": 16,
-   "best_percent": 99.518074,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_76650",
@@ -67052,7 +67052,7 @@
   {
    "symbol": "fn_1_8A1B4",
    "module": "main_rel",
-   "unit": "rel/main_rel/car/fn_1_8A1B4.c",
+   "unit": null,
    "addr": 565684,
    "size": 5836,
    "status": "unmatched",
@@ -71458,16 +71458,16 @@
    "unit": "rel/main_rel/sound/fn_1_A3BD8.c",
    "addr": 670680,
    "size": 160,
-   "status": "asm",
+   "status": "matched",
    "attempts": 15,
-   "best_percent": 99.5,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_A3C78",
@@ -72223,16 +72223,16 @@
    "unit": "rel/main_rel/prog/fn_1_A7024.c",
    "addr": 684068,
    "size": 296,
-   "status": "asm",
+   "status": "matched",
    "attempts": 21,
-   "best_percent": 99.797295,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_A714C",
@@ -86571,16 +86571,16 @@
    "unit": "rel/main_rel/bg_cas/fn_1_FDEC8.c",
    "addr": 1040072,
    "size": 300,
-   "status": "asm",
+   "status": "matched",
    "attempts": 16,
-   "best_percent": 99.6,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_FDFF4",
@@ -88285,7 +88285,7 @@
   {
    "symbol": "fn_1_10976C",
    "module": "main_rel",
-   "unit": "rel/main_rel/accessory/fn_1_10976C.c",
+   "unit": null,
    "addr": 1087340,
    "size": 3280,
    "status": "unmatched",
@@ -88390,16 +88390,16 @@
    "unit": "rel/main_rel/accessory/fn_1_10B5A8.c",
    "addr": 1095080,
    "size": 560,
-   "status": "asm",
+   "status": "matched",
    "attempts": 16,
-   "best_percent": 99.78571,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_10B7D8",
@@ -88679,16 +88679,16 @@
    "unit": "rel/main_rel/accessory/fn_1_112F40.c",
    "addr": 1126208,
    "size": 932,
-   "status": "asm",
+   "status": "matched",
    "attempts": 12,
-   "best_percent": 99.78541,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_1132E4",
@@ -90988,7 +90988,7 @@
   {
    "symbol": "fn_1_12F4A8",
    "module": "main_rel",
-   "unit": "rel/main_rel/archive/fn_1_12F4A8.c",
+   "unit": null,
    "addr": 1242280,
    "size": 5860,
    "status": "unmatched",
@@ -93694,16 +93694,16 @@
    "unit": "rel/main_rel/sel_static_disp/fn_1_149E2C.c",
    "addr": 1351212,
    "size": 216,
-   "status": "asm",
+   "status": "matched",
    "attempts": 18,
-   "best_percent": 99.62963,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_149F04",
@@ -96142,16 +96142,16 @@
    "unit": "rel/main_rel/bg_aur/fn_1_152CB4.c",
    "addr": 1387700,
    "size": 760,
-   "status": "asm",
+   "status": "matched",
    "attempts": 12,
-   "best_percent": 99.76316,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_152FAC",
@@ -101310,16 +101310,16 @@
    "unit": "rel/movie_module/fn_12_72F4.c",
    "addr": 29428,
    "size": 172,
-   "status": "asm",
+   "status": "matched",
    "attempts": 31,
-   "best_percent": 99.88372,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "MPVCDEC_IntraBlocks",
@@ -102398,7 +102398,7 @@
    "unit": "rel/movie_module/fn_12_D0B8.c",
    "addr": 53432,
    "size": 884,
-   "status": "blocked",
+   "status": "matched",
    "attempts": 1,
    "best_percent": 100.0,
    "claimed_by": null,
@@ -109521,16 +109521,16 @@
    "unit": "rel/movie_module/fn_12_335B8.c",
    "addr": 210360,
    "size": 76,
-   "status": "asm",
+   "status": "matched",
    "attempts": 9,
-   "best_percent": 26.31579,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_12_33604",
@@ -124141,16 +124141,16 @@
    "unit": "rel/winning/winning/fn_15_4578.c",
    "addr": 17784,
    "size": 3588,
-   "status": "asm",
+   "status": "matched",
    "attempts": 4,
-   "best_percent": 48.83,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_15_537C",
@@ -222122,7 +222122,7 @@
   },
   {
    "id": 4662,
-   "symbol": "fn_8003228C",
+   "symbol": "__GXFifoReadDisable",
    "agent": "dol1-codex-54",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -223088,7 +223088,7 @@
   },
   {
    "id": 4708,
-   "symbol": "fn_800342E8",
+   "symbol": "GXPokeDither",
    "agent": "dol1-codex-49",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -224054,7 +224054,7 @@
   },
   {
    "id": 4754,
-   "symbol": "fn_80032324",
+   "symbol": "__GXWriteFifoIntReset",
    "agent": "dol1-codex-102",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -225188,7 +225188,7 @@
   },
   {
    "id": 4808,
-   "symbol": "fn_80017DA8",
+   "symbol": "cbForUnrecoveredError",
    "agent": "dol1-codex-152",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -225356,7 +225356,7 @@
   },
   {
    "id": 4816,
-   "symbol": "fn_800157AC",
+   "symbol": "InitializeUART",
    "agent": "dol1-codex-162",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -225650,7 +225650,7 @@
   },
   {
    "id": 4830,
-   "symbol": "fn_8003416C",
+   "symbol": "GXDrawDone",
    "agent": "dol1-codex-176",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -225692,7 +225692,7 @@
   },
   {
    "id": 4832,
-   "symbol": "fn_80034488",
+   "symbol": "GXFinishInterruptHandler",
    "agent": "dol1-codex-178",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -226217,7 +226217,7 @@
   },
   {
    "id": 4857,
-   "symbol": "fn_8001D3E4",
+   "symbol": "PADControlMotor",
    "agent": "dol1-codex-203",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -226469,7 +226469,7 @@
   },
   {
    "id": 4869,
-   "symbol": "fn_80017A60",
+   "symbol": "CategorizeError",
    "agent": "dol1-codex-214",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -226679,7 +226679,7 @@
   },
   {
    "id": 4879,
-   "symbol": "fn_800174D0",
+   "symbol": "DVDReadAsyncPrio",
    "agent": "dol1-codex-224",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -226847,7 +226847,7 @@
   },
   {
    "id": 4887,
-   "symbol": "fn_80015CB0",
+   "symbol": "C_MTXLightPerspective",
    "agent": "dol1-codex-233",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -227456,7 +227456,7 @@
   },
   {
    "id": 4916,
-   "symbol": "fn_8001CC64",
+   "symbol": "PADRecalibrate",
    "agent": "dol1-codex-259",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -228338,7 +228338,7 @@
   },
   {
    "id": 4958,
-   "symbol": "fn_80017DA8",
+   "symbol": "cbForUnrecoveredError",
    "agent": "librarian",
    "harness": null,
    "model": null,
@@ -240413,7 +240413,7 @@
   },
   {
    "id": 5533,
-   "symbol": "fn_80016D50",
+   "symbol": "DVDLowBreak",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -240707,7 +240707,7 @@
   },
   {
    "id": 5547,
-   "symbol": "fn_800133B8",
+   "symbol": "SIRefreshSamplingRate",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -242744,7 +242744,7 @@
   },
   {
    "id": 5644,
-   "symbol": "fn_8000D55C",
+   "symbol": "__OSGetInterruptHandler",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -244298,7 +244298,7 @@
   },
   {
    "id": 5718,
-   "symbol": "fn_80020530",
+   "symbol": "ARQInit",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -244928,7 +244928,7 @@
   },
   {
    "id": 5748,
-   "symbol": "fn_80013994",
+   "symbol": "PADSetSamplingCallback",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -244949,7 +244949,7 @@
   },
   {
    "id": 5749,
-   "symbol": "fn_8001DE30",
+   "symbol": "PADSetSamplingCallback_Pad",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -246188,7 +246188,7 @@
   },
   {
    "id": 5808,
-   "symbol": "fn_8001036C",
+   "symbol": "UnsetRun",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -260510,7 +260510,7 @@
   },
   {
    "id": 6490,
-   "symbol": "fn_80033E20",
+   "symbol": "GXFlush",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -260825,7 +260825,7 @@
   },
   {
    "id": 6505,
-   "symbol": "fn_80021B84",
+   "symbol": "cbForCancelAllSync",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -260888,7 +260888,7 @@
   },
   {
    "id": 6508,
-   "symbol": "fn_8001BD84",
+   "symbol": "VISetNextFrameBuffer",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -263177,7 +263177,7 @@
   },
   {
    "id": 6617,
-   "symbol": "fn_80039AFC",
+   "symbol": "GXClearGPMetric",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -263198,7 +263198,7 @@
   },
   {
    "id": 6618,
-   "symbol": "fn_80034200",
+   "symbol": "GXPokeAlphaRead",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -264059,7 +264059,7 @@
   },
   {
    "id": 6659,
-   "symbol": "fn_80010CB0",
+   "symbol": "OSResumeThread",
    "agent": "big1-codex-14",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -266411,7 +266411,7 @@
   },
   {
    "id": 6771,
-   "symbol": "fn_800175C0",
+   "symbol": "DVDReadPrio",
    "agent": "stmw1-codex-74",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -268385,7 +268385,7 @@
   },
   {
    "id": 6865,
-   "symbol": "fn_8001CD68",
+   "symbol": "PADInit",
    "agent": "stmw1-codex-165",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -268595,7 +268595,7 @@
   },
   {
    "id": 6875,
-   "symbol": "fn_8001A55C",
+   "symbol": "__VIRetraceHandler",
    "agent": "stmw1-codex-178",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -269561,7 +269561,7 @@
   },
   {
    "id": 6921,
-   "symbol": "fn_80016524",
+   "symbol": "DVDLowRead",
    "agent": "stmw1-codex-224",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -270149,7 +270149,7 @@
   },
   {
    "id": 6949,
-   "symbol": "fn_80016DF8",
+   "symbol": "DVDConvertPathToEntrynum",
    "agent": "stmw1-codex-252",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -270884,7 +270884,7 @@
   },
   {
    "id": 6984,
-   "symbol": "fn_8001CF80",
+   "symbol": "PADRead",
    "agent": "stmw1-codex-287",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -271934,7 +271934,7 @@
   },
   {
    "id": 7034,
-   "symbol": "fn_8001B42C",
+   "symbol": "VIConfigure",
    "agent": "stmw1-codex-338",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -273593,7 +273593,7 @@
   },
   {
    "id": 7113,
-   "symbol": "fn_8000B360",
+   "symbol": "OSAllocFromArenaHi",
    "agent": "small1-codex-65",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -273635,7 +273635,7 @@
   },
   {
    "id": 7115,
-   "symbol": "fn_8000B334",
+   "symbol": "OSAllocFromArenaLo",
    "agent": "small1-codex-64",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -274706,7 +274706,7 @@
   },
   {
    "id": 7166,
-   "symbol": "fn_80011298",
+   "symbol": "OSSetThreadPriority",
    "agent": "small1-codex-118",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275105,7 +275105,7 @@
   },
   {
    "id": 7185,
-   "symbol": "fn_80013934",
+   "symbol": "SamplingHandler",
    "agent": "small1-codex-138",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275357,7 +275357,7 @@
   },
   {
    "id": 7197,
-   "symbol": "fn_80015B24",
+   "symbol": "PSMTXIdentity",
    "agent": "small1-codex-151",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275378,7 +275378,7 @@
   },
   {
    "id": 7198,
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "agent": "small1-codex-152",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275399,7 +275399,7 @@
   },
   {
    "id": 7199,
-   "symbol": "fn_80015B78",
+   "symbol": "PSMTXQuat",
    "agent": "small1-codex-153",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275441,7 +275441,7 @@
   },
   {
    "id": 7201,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "small1-codex-155",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275462,7 +275462,7 @@
   },
   {
    "id": 7202,
-   "symbol": "fn_80015EE8",
+   "symbol": "C_MTXOrtho",
    "agent": "small1-codex-157",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275483,7 +275483,7 @@
   },
   {
    "id": 7203,
-   "symbol": "fn_80015E18",
+   "symbol": "C_MTXPerspective",
    "agent": "small1-codex-156",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275504,7 +275504,7 @@
   },
   {
    "id": 7204,
-   "symbol": "fn_800162A0",
+   "symbol": "AlarmHandler_dvdlow",
    "agent": "small1-codex-158",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275525,7 +275525,7 @@
   },
   {
    "id": 7205,
-   "symbol": "fn_800164A4",
+   "symbol": "SeekTwiceBeforeRead",
    "agent": "small1-codex-160",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275903,7 +275903,7 @@
   },
   {
    "id": 7223,
-   "symbol": "fn_800178CC",
+   "symbol": "cbForStateReadingFST",
    "agent": "small1-codex-177",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275945,7 +275945,7 @@
   },
   {
    "id": 7225,
-   "symbol": "fn_80017E10",
+   "symbol": "cbForUnrecoveredErrorRetry",
    "agent": "small1-codex-179",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275966,7 +275966,7 @@
   },
   {
    "id": 7226,
-   "symbol": "fn_80018028",
+   "symbol": "stateCheckID",
    "agent": "small1-codex-180",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -275987,7 +275987,7 @@
   },
   {
    "id": 7227,
-   "symbol": "fn_80018170",
+   "symbol": "cbForStateCheckID2a",
    "agent": "small1-codex-181",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276071,7 +276071,7 @@
   },
   {
    "id": 7231,
-   "symbol": "fn_80018650",
+   "symbol": "cbForStateCoverClosed",
    "agent": "small1-codex-185",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276113,7 +276113,7 @@
   },
   {
    "id": 7233,
-   "symbol": "fn_80019354",
+   "symbol": "DVDReadAbsAsyncPrio",
    "agent": "small1-codex-187",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276134,7 +276134,7 @@
   },
   {
    "id": 7234,
-   "symbol": "fn_80019430",
+   "symbol": "DVDReadAbsAsyncForBS",
    "agent": "small1-codex-188",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276155,7 +276155,7 @@
   },
   {
    "id": 7235,
-   "symbol": "fn_800195D4",
+   "symbol": "DVDCancelStreamAsync",
    "agent": "small1-codex-189",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276218,7 +276218,7 @@
   },
   {
    "id": 7238,
-   "symbol": "fn_800198AC",
+   "symbol": "DVDResume",
    "agent": "small1-codex-192",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276239,7 +276239,7 @@
   },
   {
    "id": 7239,
-   "symbol": "fn_80019B78",
+   "symbol": "DVDCancel",
    "agent": "small1-codex-193",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276365,7 +276365,7 @@
   },
   {
    "id": 7245,
-   "symbol": "fn_8001A2EC",
+   "symbol": "__DVDPrintFatalMessage",
    "agent": "small1-codex-199",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276449,7 +276449,7 @@
   },
   {
    "id": 7249,
-   "symbol": "fn_8001AF64",
+   "symbol": "VIWaitForRetrace",
    "agent": "small1-codex-201",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276491,7 +276491,7 @@
   },
   {
    "id": 7251,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "small1-codex-206",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276554,7 +276554,7 @@
   },
   {
    "id": 7254,
-   "symbol": "fn_8001C62C",
+   "symbol": "PADProbeCallback",
    "agent": "small1-codex-208",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276575,7 +276575,7 @@
   },
   {
    "id": 7255,
-   "symbol": "fn_8001DDD0",
+   "symbol": "SamplingHandler_Pad",
    "agent": "small1-codex-210",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276596,7 +276596,7 @@
   },
   {
    "id": 7256,
-   "symbol": "fn_8001D488",
+   "symbol": "PADSetSpec",
    "agent": "small1-codex-209",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276848,7 +276848,7 @@
   },
   {
    "id": 7268,
-   "symbol": "fn_8001E954",
+   "symbol": "ARAlloc",
    "agent": "small1-codex-222",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -276869,7 +276869,7 @@
   },
   {
    "id": 7269,
-   "symbol": "fn_8001E9BC",
+   "symbol": "ARFree",
    "agent": "small1-codex-223",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -277709,7 +277709,7 @@
   },
   {
    "id": 7309,
-   "symbol": "fn_80028DD8",
+   "symbol": "DSPAddTask",
    "agent": "small1-codex-263",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -277898,7 +277898,7 @@
   },
   {
    "id": 7318,
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "agent": "small1-codex-273",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278045,7 +278045,7 @@
   },
   {
    "id": 7325,
-   "symbol": "fn_8002AE70",
+   "symbol": "DummyLen",
    "agent": "small1-codex-278",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278759,7 +278759,7 @@
   },
   {
    "id": 7359,
-   "symbol": "fn_80032268",
+   "symbol": "__GXFifoReadEnable",
    "agent": "small1-codex-313",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278780,7 +278780,7 @@
   },
   {
    "id": 7360,
-   "symbol": "fn_800322AC",
+   "symbol": "__GXFifoLink",
    "agent": "small1-codex-314",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278801,7 +278801,7 @@
   },
   {
    "id": 7361,
-   "symbol": "fn_800322E8",
+   "symbol": "__GXWriteFifoIntEnable",
    "agent": "small1-codex-315",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278927,7 +278927,7 @@
   },
   {
    "id": 7367,
-   "symbol": "fn_80033D4C",
+   "symbol": "GXSetNumTexGens",
    "agent": "small1-codex-321",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279011,7 +279011,7 @@
   },
   {
    "id": 7371,
-   "symbol": "fn_80034214",
+   "symbol": "GXPokeAlphaUpdate",
    "agent": "small1-codex-326",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279032,7 +279032,7 @@
   },
   {
    "id": 7372,
-   "symbol": "fn_800341EC",
+   "symbol": "GXPokeAlphaMode",
    "agent": "small1-codex-325",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279074,7 +279074,7 @@
   },
   {
    "id": 7374,
-   "symbol": "fn_800342B8",
+   "symbol": "GXPokeColorUpdate",
    "agent": "small1-codex-328",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279095,7 +279095,7 @@
   },
   {
    "id": 7375,
-   "symbol": "fn_800343BC",
+   "symbol": "GXTokenInterruptHandler",
    "agent": "small1-codex-330",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279116,7 +279116,7 @@
   },
   {
    "id": 7376,
-   "symbol": "fn_80034304",
+   "symbol": "GXPokeZMode",
    "agent": "small1-codex-329",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279200,7 +279200,7 @@
   },
   {
    "id": 7380,
-   "symbol": "fn_800347EC",
+   "symbol": "GXSetPointSize",
    "agent": "small1-codex-334",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279263,7 +279263,7 @@
   },
   {
    "id": 7383,
-   "symbol": "fn_800348DC",
+   "symbol": "GXSetCoPlanar",
    "agent": "small1-codex-337",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279452,7 +279452,7 @@
   },
   {
    "id": 7392,
-   "symbol": "fn_800350F4",
+   "symbol": "GXSetDispCopyGamma",
    "agent": "small1-codex-346",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279620,7 +279620,7 @@
   },
   {
    "id": 7400,
-   "symbol": "fn_80036388",
+   "symbol": "GXLoadTexObj",
    "agent": "small1-codex-354",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279641,7 +279641,7 @@
   },
   {
    "id": 7401,
-   "symbol": "fn_8003658C",
+   "symbol": "GXSetTexRegionCallback",
    "agent": "small1-codex-355",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279662,7 +279662,7 @@
   },
   {
    "id": 7402,
-   "symbol": "fn_800365A0",
+   "symbol": "GXSetTlutRegionCallback",
    "agent": "small1-codex-356",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -279704,7 +279704,7 @@
   },
   {
    "id": 7404,
-   "symbol": "fn_80036EB4",
+   "symbol": "GXSetNumIndStages",
    "agent": "small1-codex-359",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280040,7 +280040,7 @@
   },
   {
    "id": 7420,
-   "symbol": "fn_800377C8",
+   "symbol": "GXSetNumTevStages",
    "agent": "small1-codex-374",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280124,7 +280124,7 @@
   },
   {
    "id": 7424,
-   "symbol": "fn_80037BF4",
+   "symbol": "GXSetZCompLoc",
    "agent": "small1-codex-378",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280229,7 +280229,7 @@
   },
   {
    "id": 7429,
-   "symbol": "fn_80037DB4",
+   "symbol": "GXSetFieldMode",
    "agent": "small1-codex-383",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280271,7 +280271,7 @@
   },
   {
    "id": 7431,
-   "symbol": "fn_80038A18",
+   "symbol": "GXCallDisplayList",
    "agent": "small1-codex-385",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280313,7 +280313,7 @@
   },
   {
    "id": 7433,
-   "symbol": "fn_80038B3C",
+   "symbol": "GXSetProjectionv",
    "agent": "small1-codex-387",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280334,7 +280334,7 @@
   },
   {
    "id": 7434,
-   "symbol": "fn_80038BFC",
+   "symbol": "GXGetProjectionv",
    "agent": "small1-codex-388",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280397,7 +280397,7 @@
   },
   {
    "id": 7437,
-   "symbol": "fn_80038CFC",
+   "symbol": "GXSetCurrentMtx",
    "agent": "small1-codex-391",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280439,7 +280439,7 @@
   },
   {
    "id": 7439,
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "agent": "small1-codex-394",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280460,7 +280460,7 @@
   },
   {
    "id": 7440,
-   "symbol": "fn_80038F48",
+   "symbol": "GXSetScissor",
    "agent": "small1-codex-393",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -280481,7 +280481,7 @@
   },
   {
    "id": 7441,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "small1-codex-395",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -290078,7 +290078,7 @@
   },
   {
    "id": 7898,
-   "symbol": "fn_80038BFC",
+   "symbol": "GXGetProjectionv",
    "agent": "sweep",
    "harness": null,
    "model": null,
@@ -290141,7 +290141,7 @@
   },
   {
    "id": 7901,
-   "symbol": "fn_80017E10",
+   "symbol": "cbForUnrecoveredErrorRetry",
    "agent": "sweep",
    "harness": null,
    "model": null,
@@ -290309,7 +290309,7 @@
   },
   {
    "id": 7909,
-   "symbol": "fn_80038B3C",
+   "symbol": "GXSetProjectionv",
    "agent": "sweep",
    "harness": null,
    "model": null,
@@ -291695,7 +291695,7 @@
   },
   {
    "id": 7975,
-   "symbol": "fn_8003416C",
+   "symbol": "GXDrawDone",
    "agent": "sweep",
    "harness": null,
    "model": null,
@@ -292073,7 +292073,7 @@
   },
   {
    "id": 7993,
-   "symbol": "fn_8003658C",
+   "symbol": "GXSetTexRegionCallback",
    "agent": "luna128-codex-17",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -292451,7 +292451,7 @@
   },
   {
    "id": 8011,
-   "symbol": "fn_80034214",
+   "symbol": "GXPokeAlphaUpdate",
    "agent": "luna128-codex-38",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -292598,7 +292598,7 @@
   },
   {
    "id": 8018,
-   "symbol": "fn_8000B360",
+   "symbol": "OSAllocFromArenaHi",
    "agent": "luna128-codex-42",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -292976,7 +292976,7 @@
   },
   {
    "id": 8036,
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "agent": "luna128b-codex-10",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -293354,7 +293354,7 @@
   },
   {
    "id": 8054,
-   "symbol": "fn_80015B24",
+   "symbol": "PSMTXIdentity",
    "agent": "luna128b-codex-27",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -293753,7 +293753,7 @@
   },
   {
    "id": 8073,
-   "symbol": "fn_8000B334",
+   "symbol": "OSAllocFromArenaLo",
    "agent": "luna128b-codex-24",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -294341,7 +294341,7 @@
   },
   {
    "id": 8101,
-   "symbol": "fn_80037BF4",
+   "symbol": "GXSetZCompLoc",
    "agent": "luna128b-codex-68",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -294677,7 +294677,7 @@
   },
   {
    "id": 8117,
-   "symbol": "fn_800348DC",
+   "symbol": "GXSetCoPlanar",
    "agent": "luna128b-codex-85",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -294719,7 +294719,7 @@
   },
   {
    "id": 8119,
-   "symbol": "fn_80032324",
+   "symbol": "__GXWriteFifoIntReset",
    "agent": "luna128b-codex-84",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -294866,7 +294866,7 @@
   },
   {
    "id": 8126,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "luna128b-codex-93",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -295937,7 +295937,7 @@
   },
   {
    "id": 8177,
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "agent": "luna128b-codex-145",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -295958,7 +295958,7 @@
   },
   {
    "id": 8178,
-   "symbol": "fn_800347EC",
+   "symbol": "GXSetPointSize",
    "agent": "luna128b-codex-144",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -296420,7 +296420,7 @@
   },
   {
    "id": 8200,
-   "symbol": "fn_800198AC",
+   "symbol": "DVDResume",
    "agent": "luna128b-codex-170",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -297575,7 +297575,7 @@
   },
   {
    "id": 8255,
-   "symbol": "fn_80034214",
+   "symbol": "GXPokeAlphaUpdate",
    "agent": "luna128c-codex-1",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -297764,7 +297764,7 @@
   },
   {
    "id": 8264,
-   "symbol": "fn_8000B360",
+   "symbol": "OSAllocFromArenaHi",
    "agent": "luna128c-codex-2",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -299108,7 +299108,7 @@
   },
   {
    "id": 8328,
-   "symbol": "fn_8001D488",
+   "symbol": "PADSetSpec",
    "agent": "luna128c-codex-85",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -299906,7 +299906,7 @@
   },
   {
    "id": 8366,
-   "symbol": "fn_8001E954",
+   "symbol": "ARAlloc",
    "agent": "luna128c-codex-118",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -301523,7 +301523,7 @@
   },
   {
    "id": 8443,
-   "symbol": "fn_8001E9BC",
+   "symbol": "ARFree",
    "agent": "luna128c-codex-192",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -303287,7 +303287,7 @@
   },
   {
    "id": 8527,
-   "symbol": "fn_800164A4",
+   "symbol": "SeekTwiceBeforeRead",
    "agent": "luna128c-codex-275",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -304358,7 +304358,7 @@
   },
   {
    "id": 8578,
-   "symbol": "fn_8001E9BC",
+   "symbol": "ARFree",
    "agent": "sweep",
    "harness": null,
    "model": null,
@@ -311687,7 +311687,7 @@
   },
   {
    "id": 8927,
-   "symbol": "fn_80011298",
+   "symbol": "OSSetThreadPriority",
    "agent": "lift",
    "harness": "fzgx",
    "model": "m2c",
@@ -312254,7 +312254,7 @@
   },
   {
    "id": 8954,
-   "symbol": "fn_80011298",
+   "symbol": "OSSetThreadPriority",
    "agent": "lift",
    "harness": "fzgx",
    "model": "m2c",
@@ -314564,7 +314564,7 @@
   },
   {
    "id": 9064,
-   "symbol": "fn_800175C0",
+   "symbol": "DVDReadPrio",
    "agent": "sourcealign",
    "harness": "fzgx",
    "model": "none",
@@ -314606,7 +314606,7 @@
   },
   {
    "id": 9066,
-   "symbol": "fn_80016DF8",
+   "symbol": "DVDConvertPathToEntrynum",
    "agent": "sourcealign",
    "harness": "fzgx",
    "model": "none",
@@ -314879,7 +314879,7 @@
   },
   {
    "id": 9079,
-   "symbol": "fn_8003910C",
+   "symbol": "GXSetGPMetric",
    "agent": "sdk90-luna-20260909-235835-codex-4",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -315614,7 +315614,7 @@
   },
   {
    "id": 9114,
-   "symbol": "fn_8001A55C",
+   "symbol": "__VIRetraceHandler",
    "agent": "sdk90-luna-20260909-235835-codex-30",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -315719,7 +315719,7 @@
   },
   {
    "id": 9119,
-   "symbol": "fn_8001BC54",
+   "symbol": "VIFlush",
    "agent": "sdk90-luna-20260909-235835-codex-53",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -320087,7 +320087,7 @@
   },
   {
    "id": 9327,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "near95-under500-20260910-001452-codex-203",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -320528,7 +320528,7 @@
   },
   {
    "id": 9348,
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "agent": "near95-under500-20260910-001452-codex-224",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -321620,7 +321620,7 @@
   },
   {
    "id": 9400,
-   "symbol": "fn_80018028",
+   "symbol": "stateCheckID",
    "agent": "near95-under500-20260910-001452-codex-277",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -327164,7 +327164,7 @@
   },
   {
    "id": 9664,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "shadow-deepseek-near95-16checks-20260910-081910-codex-203",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -327710,7 +327710,7 @@
   },
   {
    "id": 9690,
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "agent": "shadow-deepseek-near95-16checks-20260910-081910-codex-224",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -329012,7 +329012,7 @@
   },
   {
    "id": 9752,
-   "symbol": "fn_80018028",
+   "symbol": "stateCheckID",
    "agent": "shadow-deepseek-near95-16checks-20260910-081910-codex-277",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -331805,7 +331805,7 @@
   },
   {
    "id": 9885,
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "agent": "shadow-deepseek-near95-retry-20260910-084656-codex-123",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -333338,7 +333338,7 @@
   },
   {
    "id": 9958,
-   "symbol": "fn_80018028",
+   "symbol": "stateCheckID",
    "agent": "shadow-deepseek-near95-isolated-20260910-090055-codex-67",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -333506,7 +333506,7 @@
   },
   {
    "id": 9966,
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "agent": "shadow-deepseek-near95-final-20260910-091420-codex-2",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -338420,7 +338420,7 @@
   },
   {
    "id": 10200,
-   "symbol": "fn_8003910C",
+   "symbol": "GXSetGPMetric",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-4",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -339869,7 +339869,7 @@
   },
   {
    "id": 10269,
-   "symbol": "fn_8001A55C",
+   "symbol": "__VIRetraceHandler",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-58",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -340079,7 +340079,7 @@
   },
   {
    "id": 10279,
-   "symbol": "fn_80016524",
+   "symbol": "DVDLowRead",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-35",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -343376,7 +343376,7 @@
   },
   {
    "id": 10436,
-   "symbol": "fn_8001BC54",
+   "symbol": "VIFlush",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-241",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -345413,7 +345413,7 @@
   },
   {
    "id": 10533,
-   "symbol": "fn_80018028",
+   "symbol": "stateCheckID",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-336",
    "harness": null,
    "model": null,
@@ -346022,7 +346022,7 @@
   },
   {
    "id": 10562,
-   "symbol": "fn_80018028",
+   "symbol": "stateCheckID",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-336",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -346169,7 +346169,7 @@
   },
   {
    "id": 10569,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-368",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -347639,7 +347639,7 @@
   },
   {
    "id": 10639,
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-422",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -348542,7 +348542,7 @@
   },
   {
    "id": 10682,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-456",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -351314,7 +351314,7 @@
   },
   {
    "id": 10814,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-566",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -352154,7 +352154,7 @@
   },
   {
    "id": 10854,
-   "symbol": "fn_8003910C",
+   "symbol": "GXSetGPMetric",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-3",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -353225,7 +353225,7 @@
   },
   {
    "id": 10905,
-   "symbol": "fn_8001A55C",
+   "symbol": "__VIRetraceHandler",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-59",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -353372,7 +353372,7 @@
   },
   {
    "id": 10912,
-   "symbol": "fn_80016524",
+   "symbol": "DVDLowRead",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-66",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -356123,7 +356123,7 @@
   },
   {
    "id": 11043,
-   "symbol": "fn_8001BC54",
+   "symbol": "VIFlush",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-197",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -358223,7 +358223,7 @@
   },
   {
    "id": 11143,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-297",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -359084,7 +359084,7 @@
   },
   {
    "id": 11184,
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-339",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -359567,7 +359567,7 @@
   },
   {
    "id": 11207,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-361",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -361310,7 +361310,7 @@
   },
   {
    "id": 11290,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-444",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -361667,7 +361667,7 @@
   },
   {
    "id": 11307,
-   "symbol": "fn_8002A698",
+   "symbol": "CARDInit",
    "agent": "deterministic-released-repairs-20260910",
    "harness": "fzgx",
    "model": "fixup",
@@ -363347,7 +363347,7 @@
   },
   {
    "id": 11387,
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-30",
    "harness": null,
    "model": null,
@@ -363431,7 +363431,7 @@
   },
   {
    "id": 11391,
-   "symbol": "fn_80015B24",
+   "symbol": "PSMTXIdentity",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-34",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -364145,7 +364145,7 @@
   },
   {
    "id": 11425,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-68",
    "harness": null,
    "model": null,
@@ -364460,7 +364460,7 @@
   },
   {
    "id": 11440,
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-83",
    "harness": null,
    "model": null,
@@ -367841,7 +367841,7 @@
   },
   {
    "id": 11601,
-   "symbol": "fn_800162A0",
+   "symbol": "AlarmHandler_dvdlow",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-244",
    "harness": null,
    "model": null,
@@ -368933,7 +368933,7 @@
   },
   {
    "id": 11653,
-   "symbol": "fn_80038F48",
+   "symbol": "GXSetScissor",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-296",
    "harness": null,
    "model": null,
@@ -369857,7 +369857,7 @@
   },
   {
    "id": 11697,
-   "symbol": "fn_80015EE8",
+   "symbol": "C_MTXOrtho",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-340",
    "harness": null,
    "model": null,
@@ -370109,7 +370109,7 @@
   },
   {
    "id": 11709,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-352",
    "harness": null,
    "model": null,
@@ -370739,7 +370739,7 @@
   },
   {
    "id": 11739,
-   "symbol": "fn_80015B78",
+   "symbol": "PSMTXQuat",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-382",
    "harness": null,
    "model": null,
@@ -373532,7 +373532,7 @@
   },
   {
    "id": 11872,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-515",
    "harness": null,
    "model": null,
@@ -374288,7 +374288,7 @@
   },
   {
    "id": 11908,
-   "symbol": "fn_80015CB0",
+   "symbol": "C_MTXLightPerspective",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-551",
    "harness": null,
    "model": null,
@@ -374561,7 +374561,7 @@
   },
   {
    "id": 11921,
-   "symbol": "fn_80015E18",
+   "symbol": "C_MTXPerspective",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-564",
    "harness": null,
    "model": null,
@@ -374939,7 +374939,7 @@
   },
   {
    "id": 11939,
-   "symbol": "fn_8001C62C",
+   "symbol": "PADProbeCallback",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-582",
    "harness": null,
    "model": null,
@@ -377102,7 +377102,7 @@
   },
   {
    "id": 12042,
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-17",
    "harness": null,
    "model": null,
@@ -377501,7 +377501,7 @@
   },
   {
    "id": 12061,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-37",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -377711,7 +377711,7 @@
   },
   {
    "id": 12071,
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-47",
    "harness": null,
    "model": null,
@@ -380189,7 +380189,7 @@
   },
   {
    "id": 12189,
-   "symbol": "fn_800162A0",
+   "symbol": "AlarmHandler_dvdlow",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-165",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -381134,7 +381134,7 @@
   },
   {
    "id": 12234,
-   "symbol": "fn_80038F48",
+   "symbol": "GXSetScissor",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-210",
    "harness": null,
    "model": null,
@@ -381890,7 +381890,7 @@
   },
   {
    "id": 12270,
-   "symbol": "fn_80015EE8",
+   "symbol": "C_MTXOrtho",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-246",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -382058,7 +382058,7 @@
   },
   {
    "id": 12278,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-254",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -382457,7 +382457,7 @@
   },
   {
    "id": 12297,
-   "symbol": "fn_80015B78",
+   "symbol": "PSMTXQuat",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-273",
    "harness": null,
    "model": null,
@@ -384410,7 +384410,7 @@
   },
   {
    "id": 12390,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-366",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -385187,7 +385187,7 @@
   },
   {
    "id": 12427,
-   "symbol": "fn_80015E18",
+   "symbol": "C_MTXPerspective",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-403",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -385523,7 +385523,7 @@
   },
   {
    "id": 12443,
-   "symbol": "fn_8001C62C",
+   "symbol": "PADProbeCallback",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-419",
    "harness": null,
    "model": null,
@@ -388106,7 +388106,7 @@
   },
   {
    "id": 12566,
-   "symbol": "fn_8001CB64",
+   "symbol": "PADReset",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-542",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -388295,7 +388295,7 @@
   },
   {
    "id": 12575,
-   "symbol": "fn_8001CC64",
+   "symbol": "PADRecalibrate",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-551",
    "harness": null,
    "model": null,
@@ -389072,7 +389072,7 @@
   },
   {
    "id": 12612,
-   "symbol": "fn_80016394",
+   "symbol": "Read",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-588",
    "harness": null,
    "model": null,
@@ -390185,7 +390185,7 @@
   },
   {
    "id": 12665,
-   "symbol": "fn_80032BE0",
+   "symbol": "__GXCalculateVLim",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-641",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -391046,7 +391046,7 @@
   },
   {
    "id": 12706,
-   "symbol": "fn_8001BC54",
+   "symbol": "VIFlush",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-682",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -392768,7 +392768,7 @@
   },
   {
    "id": 12788,
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "agent": "deepseek-start-stop-20260911-020749-codex-4",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -392978,7 +392978,7 @@
   },
   {
    "id": 12798,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "deepseek-start-stop-20260911-020749-codex-15",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -393167,7 +393167,7 @@
   },
   {
    "id": 12807,
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "agent": "deepseek-start-stop-20260911-020749-codex-23",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -393419,7 +393419,7 @@
   },
   {
    "id": 12819,
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-4",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -393629,7 +393629,7 @@
   },
   {
    "id": 12829,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-14",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -393860,7 +393860,7 @@
   },
   {
    "id": 12840,
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-23",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -395414,7 +395414,7 @@
   },
   {
    "id": 12914,
-   "symbol": "fn_800162A0",
+   "symbol": "AlarmHandler_dvdlow",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-98",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -396023,7 +396023,7 @@
   },
   {
    "id": 12943,
-   "symbol": "fn_80038F48",
+   "symbol": "GXSetScissor",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-127",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -396653,7 +396653,7 @@
   },
   {
    "id": 12973,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-157",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -396947,7 +396947,7 @@
   },
   {
    "id": 12987,
-   "symbol": "fn_80015B78",
+   "symbol": "PSMTXQuat",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-171",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -398102,7 +398102,7 @@
   },
   {
    "id": 13042,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-226",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -398900,7 +398900,7 @@
   },
   {
    "id": 13080,
-   "symbol": "fn_8001C62C",
+   "symbol": "PADProbeCallback",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-264",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -400727,7 +400727,7 @@
   },
   {
    "id": 13167,
-   "symbol": "fn_8001CB64",
+   "symbol": "PADReset",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-351",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -400895,7 +400895,7 @@
   },
   {
    "id": 13175,
-   "symbol": "fn_8001CC64",
+   "symbol": "PADRecalibrate",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-359",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -401567,7 +401567,7 @@
   },
   {
    "id": 13207,
-   "symbol": "fn_80016394",
+   "symbol": "Read",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-391",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -403310,7 +403310,7 @@
   },
   {
    "id": 13290,
-   "symbol": "fn_8001BC54",
+   "symbol": "VIFlush",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-474",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -409463,7 +409463,7 @@
   },
   {
    "id": 13583,
-   "symbol": "fn_8001DC3C",
+   "symbol": "OnReset_Pad",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-767",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -416834,7 +416834,7 @@
   },
   {
    "id": 13934,
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "agent": "all-none-20260911-codex-25",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -416897,7 +416897,7 @@
   },
   {
    "id": 13937,
-   "symbol": "fn_80015B24",
+   "symbol": "PSMTXIdentity",
    "agent": "all-none-20260911-codex-29",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -417506,7 +417506,7 @@
   },
   {
    "id": 13966,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "all-none-20260911-codex-55",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -417842,7 +417842,7 @@
   },
   {
    "id": 13982,
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "agent": "all-none-20260911-codex-70",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -420320,7 +420320,7 @@
   },
   {
    "id": 14100,
-   "symbol": "fn_800162A0",
+   "symbol": "AlarmHandler_dvdlow",
    "agent": "all-none-20260911-codex-188",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -422063,7 +422063,7 @@
   },
   {
    "id": 14183,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "all-none-20260911-codex-271",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -422504,7 +422504,7 @@
   },
   {
    "id": 14204,
-   "symbol": "fn_80015B78",
+   "symbol": "PSMTXQuat",
    "agent": "all-none-20260911-codex-292",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -424415,7 +424415,7 @@
   },
   {
    "id": 14295,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "all-none-20260911-codex-383",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -425297,7 +425297,7 @@
   },
   {
    "id": 14337,
-   "symbol": "fn_8001C62C",
+   "symbol": "PADProbeCallback",
    "agent": "all-none-20260911-codex-425",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -427250,7 +427250,7 @@
   },
   {
    "id": 14430,
-   "symbol": "fn_8001CB64",
+   "symbol": "PADReset",
    "agent": "all-none-20260911-codex-518",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -427439,7 +427439,7 @@
   },
   {
    "id": 14439,
-   "symbol": "fn_8001CC64",
+   "symbol": "PADRecalibrate",
    "agent": "all-none-20260911-codex-527",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -428090,7 +428090,7 @@
   },
   {
    "id": 14470,
-   "symbol": "fn_80016394",
+   "symbol": "Read",
    "agent": "all-none-20260911-codex-558",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -428552,7 +428552,7 @@
   },
   {
    "id": 14492,
-   "symbol": "fn_80015B50",
+   "symbol": "PSMTXScale",
    "agent": "all-none-fixed-20260911-codex-22",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -428615,7 +428615,7 @@
   },
   {
    "id": 14495,
-   "symbol": "fn_80015B24",
+   "symbol": "PSMTXIdentity",
    "agent": "all-none-fixed-20260911-codex-25",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -429182,7 +429182,7 @@
   },
   {
    "id": 14522,
-   "symbol": "fn_80039020",
+   "symbol": "GXSetScissorBoxOffset",
    "agent": "all-none-fixed-20260911-codex-52",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -429518,7 +429518,7 @@
   },
   {
    "id": 14538,
-   "symbol": "fn_80038FD8",
+   "symbol": "GXGetScissor",
    "agent": "all-none-fixed-20260911-codex-68",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -431912,7 +431912,7 @@
   },
   {
    "id": 14652,
-   "symbol": "fn_800162A0",
+   "symbol": "AlarmHandler_dvdlow",
    "agent": "all-none-fixed-20260911-codex-182",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -433571,7 +433571,7 @@
   },
   {
    "id": 14731,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "all-none-fixed-20260911-codex-261",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -433991,7 +433991,7 @@
   },
   {
    "id": 14751,
-   "symbol": "fn_80015B78",
+   "symbol": "PSMTXQuat",
    "agent": "all-none-fixed-20260911-codex-281",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -435860,7 +435860,7 @@
   },
   {
    "id": 14840,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "all-none-fixed-20260911-codex-370",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -436742,7 +436742,7 @@
   },
   {
    "id": 14882,
-   "symbol": "fn_8001C62C",
+   "symbol": "PADProbeCallback",
    "agent": "all-none-fixed-20260911-codex-411",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -438590,7 +438590,7 @@
   },
   {
    "id": 14970,
-   "symbol": "fn_8001CB64",
+   "symbol": "PADReset",
    "agent": "all-none-fixed-20260911-codex-500",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -438779,7 +438779,7 @@
   },
   {
    "id": 14979,
-   "symbol": "fn_8001CC64",
+   "symbol": "PADRecalibrate",
    "agent": "all-none-fixed-20260911-codex-509",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -439430,7 +439430,7 @@
   },
   {
    "id": 15010,
-   "symbol": "fn_80016394",
+   "symbol": "Read",
    "agent": "all-none-fixed-20260911-codex-540",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -440963,7 +440963,7 @@
   },
   {
    "id": 15083,
-   "symbol": "fn_8001BC54",
+   "symbol": "VIFlush",
    "agent": "all-none-fixed-20260911-codex-613",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -446507,7 +446507,7 @@
   },
   {
    "id": 15347,
-   "symbol": "fn_8001DC3C",
+   "symbol": "OnReset_Pad",
    "agent": "all-none-fixed-20260911-codex-877",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -451946,7 +451946,7 @@
   },
   {
    "id": 15606,
-   "symbol": "fn_8001CD68",
+   "symbol": "PADInit",
    "agent": "all-none-fixed-20260911-codex-1136",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -453290,7 +453290,7 @@
   },
   {
    "id": 15670,
-   "symbol": "fn_8001A55C",
+   "symbol": "__VIRetraceHandler",
    "agent": "all-none-fixed-20260911-codex-1200",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -456713,7 +456713,7 @@
   },
   {
    "id": 15833,
-   "symbol": "fn_80010CB0",
+   "symbol": "OSResumeThread",
    "agent": "all-none-fixed-20260911-codex-1363",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -457553,7 +457553,7 @@
   },
   {
    "id": 15873,
-   "symbol": "fn_80016524",
+   "symbol": "DVDLowRead",
    "agent": "all-none-fixed-20260911-codex-1403",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -462950,7 +462950,7 @@
   },
   {
    "id": 16130,
-   "symbol": "fn_80016524",
+   "symbol": "DVDLowRead",
    "agent": "all-none-workers-20260911-codex-159",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -467444,7 +467444,7 @@
   },
   {
    "id": 16344,
-   "symbol": "fn_8001C704",
+   "symbol": "PADTypeAndStatusCallback",
    "agent": "all-none-workers-20260911-codex-372",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -470237,7 +470237,7 @@
   },
   {
    "id": 16477,
-   "symbol": "fn_8001CF80",
+   "symbol": "PADRead",
    "agent": "all-none-workers-20260911-codex-505",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -473912,7 +473912,7 @@
   },
   {
    "id": 16652,
-   "symbol": "fn_8001AAB4",
+   "symbol": "VIInit",
    "agent": "all-none-workers-20260911-codex-680",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -478406,7 +478406,7 @@
   },
   {
    "id": 16866,
-   "symbol": "fn_80018D1C",
+   "symbol": "cbForStateBusy",
    "agent": "all-none-workers-20260911-codex-894",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -481031,7 +481031,7 @@
   },
   {
    "id": 16991,
-   "symbol": "fn_8001B42C",
+   "symbol": "VIConfigure",
    "agent": "all-none-workers-20260911-codex-1019",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -481283,7 +481283,7 @@
   },
   {
    "id": 17003,
-   "symbol": "fn_8003910C",
+   "symbol": "GXSetGPMetric",
    "agent": "all-none-workers-20260911-codex-1031",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -485840,7 +485840,7 @@
   },
   {
    "id": 17220,
-   "symbol": "fn_80010CB0",
+   "symbol": "OSResumeThread",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -486050,7 +486050,7 @@
   },
   {
    "id": 17230,
-   "symbol": "fn_8001C4A8",
+   "symbol": "PADOriginCallback",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -486134,7 +486134,7 @@
   },
   {
    "id": 17234,
-   "symbol": "fn_8001C62C",
+   "symbol": "PADProbeCallback",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -489410,7 +489410,7 @@
   },
   {
    "id": 17390,
-   "symbol": "fn_80015D7C",
+   "symbol": "C_MTXFrustum",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -490523,7 +490523,7 @@
   },
   {
    "id": 17443,
-   "symbol": "fn_8001BC54",
+   "symbol": "VIFlush",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -490565,7 +490565,7 @@
   },
   {
    "id": 17445,
-   "symbol": "fn_8001A55C",
+   "symbol": "__VIRetraceHandler",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -490649,7 +490649,7 @@
   },
   {
    "id": 17449,
-   "symbol": "fn_8003910C",
+   "symbol": "GXSetGPMetric",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -494492,7 +494492,7 @@
   },
   {
    "id": 17632,
-   "symbol": "fn_800162A0",
+   "symbol": "AlarmHandler_dvdlow",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494513,7 +494513,7 @@
   },
   {
    "id": 17633,
-   "symbol": "fn_80016394",
+   "symbol": "Read",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494534,7 +494534,7 @@
   },
   {
    "id": 17634,
-   "symbol": "fn_80016524",
+   "symbol": "DVDLowRead",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494555,7 +494555,7 @@
   },
   {
    "id": 17635,
-   "symbol": "fn_8001CB64",
+   "symbol": "PADReset",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494576,7 +494576,7 @@
   },
   {
    "id": 17636,
-   "symbol": "fn_8001CC64",
+   "symbol": "PADRecalibrate",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494597,7 +494597,7 @@
   },
   {
    "id": 17637,
-   "symbol": "fn_8001CF80",
+   "symbol": "PADRead",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494618,7 +494618,7 @@
   },
   {
    "id": 17638,
-   "symbol": "fn_8001DC3C",
+   "symbol": "OnReset_Pad",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494639,7 +494639,7 @@
   },
   {
    "id": 17639,
-   "symbol": "fn_80018D1C",
+   "symbol": "cbForStateBusy",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494660,7 +494660,7 @@
   },
   {
    "id": 17640,
-   "symbol": "fn_8001CD68",
+   "symbol": "PADInit",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -494681,7 +494681,7 @@
   },
   {
    "id": 17641,
-   "symbol": "fn_8001C704",
+   "symbol": "PADTypeAndStatusCallback",
    "agent": "sdkimport",
    "harness": "fzgx",
    "model": "sdkimport",
@@ -495080,7 +495080,7 @@
   },
   {
    "id": 17660,
-   "symbol": "fn_8001B42C",
+   "symbol": "VIConfigure",
    "agent": "large-regions-luna48-20260914-codex-15",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -495605,7 +495605,7 @@
   },
   {
    "id": 17685,
-   "symbol": "fn_8001AAB4",
+   "symbol": "VIInit",
    "agent": "large-regions-luna48-20260914-codex-40",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -496214,7 +496214,7 @@
   },
   {
    "id": 17714,
-   "symbol": "fn_8001B42C",
+   "symbol": "VIConfigure",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -496235,7 +496235,7 @@
   },
   {
    "id": 17715,
-   "symbol": "fn_8001B42C",
+   "symbol": "VIConfigure",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -496256,7 +496256,7 @@
   },
   {
    "id": 17716,
-   "symbol": "fn_8001AAB4",
+   "symbol": "VIInit",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -496277,7 +496277,7 @@
   },
   {
    "id": 17717,
-   "symbol": "fn_8001C704",
+   "symbol": "PADTypeAndStatusCallback",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -496298,7 +496298,7 @@
   },
   {
    "id": 17718,
-   "symbol": "fn_8001CD68",
+   "symbol": "PADInit",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -496361,7 +496361,7 @@
   },
   {
    "id": 17721,
-   "symbol": "fn_80018D1C",
+   "symbol": "cbForStateBusy",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -496445,7 +496445,7 @@
   },
   {
    "id": 17725,
-   "symbol": "fn_80016524",
+   "symbol": "DVDLowRead",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -496466,7 +496466,7 @@
   },
   {
    "id": 17726,
-   "symbol": "fn_80016394",
+   "symbol": "Read",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,

@@ -8945,7 +8945,7 @@ extern void lbl_8006DAEC(void);
 extern void lbl_8006DFD8(void *);
 extern void GXInitTexObj(TexObj62794 *, void *, u16, u16, s32, s32, s32, u8);
 extern void fn_8003526C(void *, u8);
-extern void fn_80038BFC(f32 *);
+extern void GXGetProjectionv(f32 *);
 extern void fn_80038F10(f32 *);
 extern void fn_80072864(u32);
 extern void fn_800728A8(s32, s32, s32, s32);
@@ -8996,7 +8996,7 @@ void fn_1_62794(void *arg0) {
     fn_8003526C(buf, 0);
     GXInitTexObj(&loc_5C, buf, w, h, 4, 0, 0, 0);
     fn_80072864(0);
-    fn_80038BFC(loc_28);
+    GXGetProjectionv(loc_28);
     lbl_8006DAEC();
     lbl_8006DAEC();
     lbl_8006D758();

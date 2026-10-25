@@ -16,7 +16,7 @@ typedef struct fn_8005BFB4_Globals {
 } fn_8005BFB4_Globals;
 
 extern fn_8005BFB4_Globals lbl_80192BD0;
-extern u32 fn_8001E9BC(u32 *);
+extern u32 ARFree(u32 *);
 extern void fn_8005A5BC(const char *message);
 extern char lbl_800929AC[43];
 extern void *memset(void *, int, u32);
@@ -43,7 +43,7 @@ void fn_8005BFB4(void) {
         e = &p->entries[0];
         memset(e, 0, 0x180);
         if (((0) == (p->unk_4))) {
-            fn_8001E9BC(&stamp);
+            ARFree(&stamp);
             if (stamp != p->unk_C) {
                 fn_8005A5BC(lbl_800929AC);
             }

@@ -3,7 +3,7 @@
 #include "rel/main_rel/reset.h"
 
 extern s32 fn_1_B7E48(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern void VISetBlack(int arg0);
 extern void fn_8006B224(void);
 extern void fn_8006FFCC(int arg0);
@@ -43,7 +43,7 @@ void fn_1_D3214(void) {
         result = fn_1_B7E48();
         if (result == 0 && state->unk_2 == 0) {
             state->unk_2 = 1;
-            fn_8001AF64();
+            VIWaitForRetrace();
             VISetBlack(1);
             callback = state->unk_4;
             if (callback != 0) {
@@ -130,7 +130,7 @@ void fn_1_D3474(void) {
     result = fn_1_B7E48();
     if (result == 0 && state->unk_2 == 0) {
         state->unk_2 = 1;
-        fn_8001AF64();
+        VIWaitForRetrace();
         VISetBlack(1);
         callback = state->unk_4;
         if (callback != 0) {

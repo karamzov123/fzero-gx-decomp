@@ -24,7 +24,7 @@ extern void fn_80059028(int server_id, SVMCallbackFunction function, void *objec
 extern int OSCreateThread(ADXMThread *thread, void *(*func)(void *), void *param,
                           void *stack, u32 stackSize, s32 priority, u16 attr);
 extern ADXMThread *fn_800102AC(void);
-extern s32 fn_80010CB0(ADXMThread *thread);
+extern s32 OSResumeThread(ADXMThread *thread);
 
 extern void fn_8004E7D4(void *argument);
 extern void fn_8004E8A0(void *argument);
@@ -179,9 +179,9 @@ void fn_8004E59C(ADXMThreadParams* params)
         adxm_safe_end = 0;
         adxm_set_prio = 0;
 
-        fn_80010CB0(&adxm_vsync_thread);
-        fn_80010CB0(&adxm_fs_thread);
-        fn_80010CB0(&adxm_mwidle_thread);
+        OSResumeThread(&adxm_vsync_thread);
+        OSResumeThread(&adxm_fs_thread);
+        OSResumeThread(&adxm_mwidle_thread);
         fn_80059028(6, fn_8004E9D8, 0);
     }
     adxm_init_level++;

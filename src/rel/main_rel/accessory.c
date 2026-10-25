@@ -1679,7 +1679,7 @@ extern const struct fn_1_129D9C_rodata lbl_1_rodata_8068;
 extern u32 fn_1_862A8(u32, Vec3_12999C *);
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 extern void * fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
 extern struct fn_1_129D9C_system *lbl_801A6D00;
 
 #endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
@@ -2145,7 +2145,7 @@ extern const struct fn_1_129D9C_rodata lbl_1_rodata_8068;
 extern u32 fn_1_862A8(u32, Vec3_12999C *);
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 extern void * fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
 extern struct fn_1_129D9C_system *lbl_801A6D00;
 
 #endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
@@ -3109,7 +3109,7 @@ extern const struct fn_1_129D9C_rodata lbl_1_rodata_8068;
 extern u32 fn_1_862A8(u32, Vec3_12999C *);
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 extern void * fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
 extern struct fn_1_129D9C_system *lbl_801A6D00;
 
 #endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
@@ -3474,7 +3474,7 @@ extern const struct fn_1_129D9C_rodata lbl_1_rodata_8068;
 extern u32 fn_1_862A8(u32, Vec3_12999C *);
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 extern void * fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
 extern struct fn_1_129D9C_system *lbl_801A6D00;
 
 #endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
@@ -4195,7 +4195,7 @@ extern const struct fn_1_129D9C_rodata lbl_1_rodata_8068;
 extern u32 fn_1_862A8(u32, Vec3_12999C *);
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 extern void * fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
 extern struct fn_1_129D9C_system *lbl_801A6D00;
 
 #endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
@@ -5404,7 +5404,7 @@ extern const struct fn_1_129D9C_rodata lbl_1_rodata_8068;
 extern u32 fn_1_862A8(u32, Vec3_12999C *);
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 extern void * fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
 extern struct fn_1_129D9C_system *lbl_801A6D00;
 
 #endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
@@ -6089,7 +6089,7 @@ extern const struct fn_1_129D9C_rodata lbl_1_rodata_8068;
 extern u32 fn_1_862A8(u32, Vec3_12999C *);
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 extern void * fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
 extern struct fn_1_129D9C_system *lbl_801A6D00;
 
 #endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
@@ -8312,7 +8312,7 @@ typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
     f32 f15;
 } Sig_fn_80015EE8_Fn80015EE8Out;
 
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(void *, s32);
 extern void fn_80074918(u8, s32, u8);
 
@@ -8324,7 +8324,7 @@ void fn_1_12A080(void) {
     Sig_fn_80015EE8_Fn80015EE8Out out;
 
     fzgx_live = pool_lbl_1_rodata_8068->unk_50;
-    fn_80015EE8(&out, pool_lbl_1_rodata_8068->unk_0, fzgx_live, pool_lbl_1_rodata_8068->unk_0, pool_lbl_1_rodata_8068->unk_D8, pool_lbl_1_rodata_8068->unk_DC, pool_lbl_1_rodata_8068->unk_E0);
+    C_MTXOrtho(&out, pool_lbl_1_rodata_8068->unk_0, fzgx_live, pool_lbl_1_rodata_8068->unk_0, pool_lbl_1_rodata_8068->unk_D8, pool_lbl_1_rodata_8068->unk_DC, pool_lbl_1_rodata_8068->unk_E0);
     fn_800737E4(&out, 1);
     fn_80074918(1, 3, 1);
 }

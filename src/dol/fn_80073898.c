@@ -6,7 +6,7 @@ struct fn_80073898_lbl_801A6D38_T {
 };
 
 extern struct fn_80073898_lbl_801A6D38_T *lbl_801A6D38;
-extern u32 fn_80036EB4(u32);
+extern u32 GXSetNumIndStages(u32);
 
 void fn_80073898(u32 arg0) {
     u32 v0;
@@ -17,7 +17,7 @@ void fn_80073898(u32 arg0) {
     v1 = lbl_801A6D38->unk_840;
     v2 = arg0;
     if (v1 != v0) {
-    t0 = fn_80036EB4(v2);
+    t0 = GXSetNumIndStages(v2);
     v2 = t0;
     v2 = (u32)lbl_801A6D38;
     *(u8 *)((u8 *)v2 + 2112) = arg0;

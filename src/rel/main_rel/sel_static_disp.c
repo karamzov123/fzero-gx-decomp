@@ -7203,7 +7203,7 @@ typedef struct fn_1_568F8_Mtx44 {
 
 extern fn_1_568F8_Pool lbl_1_rodata_28B0;
 extern void fn_1_870BC(fn_1_568F8_Data *, s8, fn_1_568F8_Data *, s32, u8, f32);
-extern void fn_80015EE8(fn_1_568F8_Mtx44 *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(fn_1_568F8_Mtx44 *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(fn_1_568F8_Mtx44 *, s32);
 extern void fn_800744F8(fn_1_568F8_Color, u32);
 extern void fn_800725DC(fn_1_568F8_Color);
@@ -7282,8 +7282,8 @@ extern void *fn_1_8472C(Sig_fn_1_8472C_Fn18472CObject *);
 extern char *fn_1_14FEAC(void *,void *,void *,char *,void *);
 extern void *fn_1_7F49C(s16,void *,void *);
 extern s8 fn_1_8421C(u32,u32);
-extern void fn_80038BFC(f32 *);
-extern u32 fn_80038FD8(void *,void *,void *,void *);
+extern void GXGetProjectionv(f32 *);
+extern u32 GXGetScissor(void *,void *,void *,void *);
 
 
 extern void fn_1_F7870(u32);
@@ -7358,9 +7358,9 @@ void fn_1_14267C(u32 arg0,u32 arg1,u32 arg2,f32 arg3,f32 arg4) {
  } else fn_1_4A0D8(fn_1_7F49C(v5,0,loc_68));
  if(v2) {
   t24=fn_1_8421C(v2,0);
-  fn_80038BFC((f32 *)&loc_2C);
-  fn_80038FD8(&loc_18,&loc_14,&loc_10,&loc_C);
-  fn_80015EE8((void *)&loc_D4,((const f32 *)lbl_1_rodata_92C0)[66],fzgx_pool_16C.v,((const f32 *)lbl_1_rodata_92C0)[66],fzgx_pool_170.v,((const f32 *)lbl_1_rodata_92C0)[66],fzgx_pool_174.v);
+  GXGetProjectionv((f32 *)&loc_2C);
+  GXGetScissor(&loc_18,&loc_14,&loc_10,&loc_C);
+  C_MTXOrtho((void *)&loc_D4,((const f32 *)lbl_1_rodata_92C0)[66],fzgx_pool_16C.v,((const f32 *)lbl_1_rodata_92C0)[66],fzgx_pool_170.v,((const f32 *)lbl_1_rodata_92C0)[66],fzgx_pool_174.v);
   fn_800737E4((void *)&loc_D4,1);
   q=&lbl_1_data_1E5C0;
   loc_A0=*q;

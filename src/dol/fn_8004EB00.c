@@ -6,10 +6,10 @@ extern void OSDisableScheduler(void);
 extern u32 fn_800102AC(void);
 extern u32 fn_80011358(void);
 extern u32 lbl_8012B918[];
-extern void fn_80011298(u32, u32);
+extern void OSSetThreadPriority(u32, u32);
 extern void OSEnableScheduler(void);
 extern void OSRestoreInterrupts(u32);
-extern void fn_80010CB0(void *);
+extern void OSResumeThread(void *);
 
 struct GlobalState {
     u32 unk0[2];
@@ -34,12 +34,12 @@ void fn_8004EB00(void) {
         state->unk_c8c = 1;
         value = fn_800102AC();
         result = fn_80011358();
-        fn_80011298(value, lbl_8012B918[0]);
+        OSSetThreadPriority(value, lbl_8012B918[0]);
         state->unk_c88 = result;
         state->unk_c8c = 0;
         OSEnableScheduler();
         OSRestoreInterrupts(interrupts);
-        fn_80010CB0(&state->unk_970);
+        OSResumeThread(&state->unk_970);
     }
     state->count++;
 }

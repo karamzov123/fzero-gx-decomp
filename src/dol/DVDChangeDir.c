@@ -8,7 +8,7 @@ struct FSTEntry {
     unsigned int nextEntryOrLength;
 };
 
-s32 fn_80016DF8(const char *pathPtr);
+s32 DVDConvertPathToEntrynum(const char *pathPtr);
 
 extern FSTEntry *FstStart;
 
@@ -16,7 +16,7 @@ extern u32 lbl_801A68B0;
 
 BOOL DVDChangeDir(char *dirName) {
     s32 entry;
-    entry = fn_80016DF8(dirName);
+    entry = DVDConvertPathToEntrynum(dirName);
     if ((entry < 0) ||
         ((((FstStart[entry].isDirAndStringOff & 0xff000000) == 0) ? 0 : 1) == 0)) {
         return 0;

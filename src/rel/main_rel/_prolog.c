@@ -702,13 +702,13 @@ extern void fn_1_15665C(u32, s32);
 extern void fn_1_156730(s32);
 extern void fn_1_D332C(Sig_fn_8001CF80_PADStatus *);
 extern void fn_80008BA8(void *, void *, u32);
-extern u32 fn_8001CF80(Sig_fn_8001CF80_PADStatus *);
+extern u32 PADRead(Sig_fn_8001CF80_PADStatus *);
 extern u32 SIProbe(s32);
 extern s32 fn_8006B294(s32, u32 *);
 extern void fn_8006B470(void *);
 extern void fn_80008BEC(void *, int, u32);
-extern BOOL fn_8001CC64(u32);
-extern int fn_8001CB64(u32);
+extern BOOL PADRecalibrate(u32);
+extern int PADReset(u32);
 
 #define resetBits lbl_1_bss_978
 #define recalBits lbl_1_bss_978__fzgx_offset_4
@@ -763,7 +763,7 @@ void fn_1_1304(Sig_fn_8001CF80_PADStatus *pads) {
     u32 lab_t2;
 
     fn_80008BA8(old, pads, sizeof(old));
-    fn_8001CF80(pads);
+    PADRead(pads);
 
     for (i = 0; i < 4; i++) {
         siType[i] = SIProbe(i);
@@ -856,7 +856,7 @@ void fn_1_1304(Sig_fn_8001CF80_PADStatus *pads) {
             bits &= ~(0x80000000 >> chan);
         }
         if (recalBits != 0) {
-            r = fn_8001CC64(recalBits);
+            r = PADRecalibrate(recalBits);
             t = (s32)(-r | r) >> 31;
             r = resetBits | recalBits;
             recalBits = 0;
@@ -865,7 +865,7 @@ void fn_1_1304(Sig_fn_8001CF80_PADStatus *pads) {
     }
 
     if (resetBits != 0) {
-        if (fn_8001CB64(resetBits)) {
+        if (PADReset(resetBits)) {
             recalBits = resetBits;
         }
         resetBits = 0;
@@ -1476,7 +1476,7 @@ struct fn_1_3920_Out {
 extern u32 lbl_1_data_2B68[4];
 extern u8 lbl_1_data_2B64;
 extern int fn_1_D357C(void);
-extern void fn_8001CF80(void *);
+extern void PADRead(void *);
 extern u32 SIProbe(u32);
 extern void fn_8006B470(void *);
 extern void fn_1_D332C(u16 *);
@@ -1538,7 +1538,7 @@ void fn_1_3920(void) {
         } else if (lbl_1_bss_D58__fzgx_offset_14 < 4) {
             lbl_1_bss_D58__fzgx_offset_14 = lbl_1_bss_D58__fzgx_offset_14 + 1;
         } else {
-            fn_8001CF80(out);
+            PADRead(out);
             i = 0;
             q = lbl_1_bss_980;
             do {

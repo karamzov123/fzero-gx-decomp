@@ -134,7 +134,7 @@
         2147715720
       ],
       "functions": [
-        "fn_80038A18"
+        "GXCallDisplayList"
       ],
       "sdk": "tww",
       "source": "src/dolphin/gx/GXDisplayList.c"

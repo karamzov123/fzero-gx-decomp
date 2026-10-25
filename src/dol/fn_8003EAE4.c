@@ -36,19 +36,19 @@ extern void GXSetTevOp(u32, u32);
 extern void GXSetVtxDesc(u32, u32);
 extern void GXSetVtxAttrFmt(u32, u32, u32, u32, u8);
 extern u32 fn_80035960(u32, u32, u32, u32, u32, u32, u32);
-extern void fn_80033D4C(u32);
+extern void GXSetNumTexGens(u32);
 extern void fn_8003591C(u8);
-extern void fn_800377C8(u32);
+extern void GXSetNumTevStages(u32);
 extern void fn_80037B14(s32, s32, s32, s32);
 extern void fn_80037BC0(u8, s32, u8);
-extern void fn_80037BF4(u32);
-extern void fn_80038BFC(f32 *);
+extern void GXSetZCompLoc(u32);
+extern void GXGetProjectionv(f32 *);
 
 void fn_8003EAE4(void) {
     f32 tmp[4];
     struct fn_8003EAE4_lbl_80178C18 *p = &lbl_80178C18;
 
-    fn_80038BFC((f32 *)((u8 *)p + 0x70));
+    GXGetProjectionv((f32 *)((u8 *)p + 0x70));
     p->unk_30 = lbl_801A71D8;
     p->unk_34 = lbl_801A71D8;
     p->unk_38 = lbl_801A71D8;
@@ -75,13 +75,13 @@ void fn_8003EAE4(void) {
     GXClearVtxDesc();
     GXInvalidateVtxCache();
     fn_80037B14(1, 4, 5, 0);
-    fn_80037BF4(0);
+    GXSetZCompLoc(0);
     fn_8003591C(1);
     fn_80035960(4, 0, 0, 0, 0, 0, 2);
     GXSetTevOrder(0, 0xff, 0xff, 4);
     GXSetTevOp(0, 4);
-    fn_80033D4C(0);
-    fn_800377C8(1);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
     fn_80037BC0(0, 7, 0);
     GXSetVtxDesc(9, 1);
     GXSetVtxAttrFmt(0, 9, 1, 4, 0);

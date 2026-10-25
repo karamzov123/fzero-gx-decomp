@@ -13,7 +13,7 @@ enum OS_THREAD_STATE {
 // Hardware or OS state can change asynchronously.
 extern volatile BOOL RunQueueHint; // fzgx-allow: S2 SDK asynchronous state
 
-void fn_8001036C(OSThread *thread);
+void UnsetRun(OSThread *thread);
 
 OSPriority __OSGetEffectivePriority(OSThread *thread);
 
@@ -54,7 +54,7 @@ s32 OSSuspendThread(OSThread *thread) {
             thread->state = OS_THREAD_STATE_READY;
             break;
         case OS_THREAD_STATE_READY:
-            fn_8001036C(thread);
+            UnsetRun(thread);
             break;
         case OS_THREAD_STATE_WAITING:
             do {

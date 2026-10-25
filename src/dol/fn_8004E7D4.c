@@ -20,7 +20,7 @@ extern u32 lbl_8012B918[6];
 extern u32 lbl_8012B930[];
 
 extern s32 fn_80058C94(void);
-extern void fn_80011298(void *thread, u32 value);
+extern void OSSetThreadPriority(void *thread, u32 value);
 
 void fn_8004E7D4(void) {
     struct Fn8004E7D4_State *state;
@@ -36,7 +36,7 @@ void fn_8004E7D4(void) {
         if (fn_80058C94() == 0 || state->unk_C == 1) {
             if (state->unk_C == 1) {
                 state->unk_C = 0;
-                fn_80011298(&state->thread, thread_config[5]);
+                OSSetThreadPriority(&state->thread, thread_config[5]);
             }
             if (lbl_8012B930[0] != 0) {
                 ((Fn8004E7D4_Callback)lbl_8012B930[0])(callback[1]);

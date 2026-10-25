@@ -103,7 +103,7 @@ extern void fn_1_56000(u8, u8, u8);
 extern void fn_1_5621C(f32, f32, f32, f32);
 extern void fn_1_56298(f32, f32, f32, f32);
 extern void fn_1_9E598(Sig_fn_1_9E598_Node *);
-extern void fn_80038BFC(f32 *);
+extern void GXGetProjectionv(f32 *);
 extern void lbl_8006D758(void);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
@@ -234,7 +234,7 @@ void fn_1_103264(fn_1_D8EEC_LigEntry *arg0, void *arg1) {
         if (*(s32 *)((u8 *)arg0 + 104) == 0 || loc_8.z > -(v28 = v28 + v23)) {
             *(f32 *)((u8 *)arg0 + 108) = p_lbl_1_rodata_78D0->unk_10;
         } else {
-            fn_80038BFC(loc_2C);
+            GXGetProjectionv(loc_2C);
             v40 = fn_1_9E514(loc_8.z + v28);
             v43 = *(u32 *)((u8 *)arg0 + 120);
             v42 = p_lbl_1_rodata_78D0->unk_18;
@@ -706,7 +706,7 @@ extern void fn_1_5621C(f32, f32, f32, f32);
 extern void fn_1_56298(f32, f32, f32, f32);
 extern void fn_1_9E598(Sig_fn_1_9E598_Node *);
 extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern void fn_80038BFC(f32 *);
+extern void GXGetProjectionv(f32 *);
 extern void fn_80072558(void);
 extern void fn_80072B7C(u32);
 extern void lbl_8006D758(void);
@@ -853,7 +853,7 @@ void fn_1_103FCC(void *arg0) {
     lbl_8006E0A4(v3 + 8);
     v4 = 0.0f;
     fn_1_56298(v4, v4, v4, v4);
-    fn_80038BFC((f32 *)&loc_24);
+    GXGetProjectionv((f32 *)&loc_24);
     v5 = 1.0f;
     v6 = v5 / loc_24.a[3];
     v7 = *(f32 *)(0xE0000000 + 0x2C);

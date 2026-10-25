@@ -8,7 +8,7 @@
   "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/scanf.c"
  ],
  "sdk_functions": 876,
- "dol_functions": 1992,
+ "dol_functions": 1980,
  "hits": [
   {
    "dol": "PPCHalt",
@@ -71,7 +71,7 @@
    "named": true
   },
   {
-   "dol": "fn_8000A224",
+   "dol": "OSGetConsoleType",
    "size": 40,
    "addr": 2147525156,
    "sdk": [
@@ -80,7 +80,7 @@
    "sources": [
     "libs/dolphin/os/OS.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "ClearArena",
@@ -275,7 +275,7 @@
    "named": true
   },
   {
-   "dol": "fn_8000AF78",
+   "dol": "OSCancelAlarm",
    "size": 284,
    "addr": 2147528568,
    "sdk": [
@@ -284,7 +284,7 @@
    "sources": [
     "libs/dolphin/os/OSAlarm.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "DecrementerExceptionCallback",
@@ -671,7 +671,7 @@
    "named": true
   },
   {
-   "dol": "fn_8000CDD8",
+   "dol": "OSGetFontEncode",
    "size": 88,
    "addr": 2147536344,
    "sdk": [
@@ -680,7 +680,7 @@
    "sources": [
     "libs/dolphin/os/OSFont.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "OSDisableInterrupts",
@@ -791,7 +791,7 @@
    "named": true
   },
   {
-   "dol": "fn_8000D9CC",
+   "dol": "__OSDispatchInterrupt",
    "size": 836,
    "addr": 2147539404,
    "sdk": [
@@ -800,7 +800,7 @@
    "sources": [
     "libs/dolphin/os/OSInterrupt.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "Relocate",
@@ -1235,7 +1235,7 @@
    "named": true
   },
   {
-   "dol": "fn_80010410",
+   "dol": "SetEffectivePriority",
    "size": 448,
    "addr": 2147550224,
    "sdk": [
@@ -1244,7 +1244,7 @@
    "sources": [
     "libs/dolphin/os/OSThread.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "SelectThread",
@@ -1271,7 +1271,7 @@
    "named": true
   },
   {
-   "dol": "fn_80010828",
+   "dol": "OSCreateThread",
    "size": 488,
    "addr": 2147551272,
    "sdk": [
@@ -1280,10 +1280,10 @@
    "sources": [
     "libs/dolphin/os/OSThread.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80010A10",
+   "dol": "OSExitThread",
    "size": 228,
    "addr": 2147551760,
    "sdk": [
@@ -1292,7 +1292,7 @@
    "sources": [
     "libs/dolphin/os/OSThread.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "OSCancelThread",
@@ -1319,7 +1319,7 @@
    "named": false
   },
   {
-   "dol": "fn_80010F38",
+   "dol": "OSSuspendThread",
    "size": 368,
    "addr": 2147553080,
    "sdk": [
@@ -1328,10 +1328,10 @@
    "sources": [
     "libs/dolphin/os/OSThread.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_800110A8",
+   "dol": "OSSleepThread",
    "size": 236,
    "addr": 2147553448,
    "sdk": [
@@ -1340,10 +1340,10 @@
    "sources": [
     "libs/dolphin/os/OSThread.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80011194",
+   "dol": "OSWakeupThread",
    "size": 260,
    "addr": 2147553684,
    "sdk": [
@@ -1352,7 +1352,7 @@
    "sources": [
     "libs/dolphin/os/OSThread.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "OSClearStack",
@@ -2075,7 +2075,7 @@
    "named": false
   },
   {
-   "dol": "fn_8001581C",
+   "dol": "WriteUARTN",
    "size": 540,
    "addr": 2147571740,
    "sdk": [
@@ -2084,7 +2084,7 @@
    "sources": [
     "libs/dolphin/exi/EXIUart.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "DBInit",
@@ -2303,7 +2303,7 @@
    "named": false
   },
   {
-   "dol": "fn_800167BC",
+   "dol": "DVDLowSeek",
    "size": 148,
    "addr": 2147575740,
    "sdk": [
@@ -2312,7 +2312,7 @@
    "sources": [
     "libs/dolphin/dvd/dvdlow.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "DVDLowWaitCoverClose",
@@ -2327,7 +2327,7 @@
    "named": true
   },
   {
-   "dol": "fn_8001687C",
+   "dol": "DVDLowReadDiskID",
    "size": 164,
    "addr": 2147575932,
    "sdk": [
@@ -2336,7 +2336,7 @@
    "sources": [
     "libs/dolphin/dvd/dvdlow.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "DVDLowStopMotor",
@@ -2351,7 +2351,7 @@
    "named": true
   },
   {
-   "dol": "fn_800169AC",
+   "dol": "DVDLowRequestError",
    "size": 140,
    "addr": 2147576236,
    "sdk": [
@@ -2360,10 +2360,10 @@
    "sources": [
     "libs/dolphin/dvd/dvdlow.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80016A38",
+   "dol": "DVDLowInquiry",
    "size": 156,
    "addr": 2147576376,
    "sdk": [
@@ -2372,10 +2372,10 @@
    "sources": [
     "libs/dolphin/dvd/dvdlow.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80016AD4",
+   "dol": "DVDLowAudioStream",
    "size": 152,
    "addr": 2147576532,
    "sdk": [
@@ -2384,10 +2384,10 @@
    "sources": [
     "libs/dolphin/dvd/dvdlow.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80016B6C",
+   "dol": "DVDLowRequestAudioStatus",
    "size": 140,
    "addr": 2147576684,
    "sdk": [
@@ -2396,10 +2396,10 @@
    "sources": [
     "libs/dolphin/dvd/dvdlow.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80016BF8",
+   "dol": "DVDLowAudioBufferConfig",
    "size": 156,
    "addr": 2147576824,
    "sdk": [
@@ -2408,7 +2408,7 @@
    "sources": [
     "libs/dolphin/dvd/dvdlow.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "DVDLowReset",
@@ -2447,7 +2447,7 @@
    "named": true
   },
   {
-   "dol": "fn_800170EC",
+   "dol": "DVDFastOpen",
    "size": 116,
    "addr": 2147578092,
    "sdk": [
@@ -2456,10 +2456,10 @@
    "sources": [
     "libs/dolphin/dvd/dvdfs.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80017160",
+   "dol": "DVDOpen",
    "size": 200,
    "addr": 2147578208,
    "sdk": [
@@ -2468,7 +2468,7 @@
    "sources": [
     "libs/dolphin/dvd/dvdfs.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "DVDClose",
@@ -2483,7 +2483,7 @@
    "named": true
   },
   {
-   "dol": "fn_8001724C",
+   "dol": "entryToPath",
    "size": 352,
    "addr": 2147578444,
    "sdk": [
@@ -2492,10 +2492,10 @@
    "sources": [
     "libs/dolphin/dvd/dvdfs.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_800173AC",
+   "dol": "DVDGetCurrentDir",
    "size": 196,
    "addr": 2147578796,
    "sdk": [
@@ -2504,10 +2504,10 @@
    "sources": [
     "libs/dolphin/dvd/dvdfs.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80017470",
+   "dol": "DVDChangeDir",
    "size": 96,
    "addr": 2147578992,
    "sdk": [
@@ -2516,7 +2516,7 @@
    "sources": [
     "libs/dolphin/dvd/dvdfs.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "DVDInit",
@@ -2579,7 +2579,7 @@
    "named": false
   },
   {
-   "dol": "fn_80017B14",
+   "dol": "cbForStateGettingError",
    "size": 660,
    "addr": 2147580692,
    "sdk": [
@@ -2588,7 +2588,7 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_80017DA8",
@@ -2615,7 +2615,7 @@
    "named": false
   },
   {
-   "dol": "fn_80017ED0",
+   "dol": "cbForStateGoToRetry",
    "size": 344,
    "addr": 2147581648,
    "sdk": [
@@ -2624,7 +2624,7 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_80018028",
@@ -2663,7 +2663,7 @@
    "named": true
   },
   {
-   "dol": "fn_8001821C",
+   "dol": "cbForStateCheckID1",
    "size": 276,
    "addr": 2147582492,
    "sdk": [
@@ -2672,10 +2672,10 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80018414",
+   "dol": "cbForStateCheckID3",
    "size": 252,
    "addr": 2147582996,
    "sdk": [
@@ -2684,7 +2684,7 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "AlarmHandler",
@@ -2699,7 +2699,7 @@
    "named": true
   },
   {
-   "dol": "fn_80018554",
+   "dol": "stateCoverClosed",
    "size": 204,
    "addr": 2147583316,
    "sdk": [
@@ -2708,7 +2708,7 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "stateCoverClosed_CMD",
@@ -2891,7 +2891,7 @@
    "named": false
   },
   {
-   "dol": "fn_800198FC",
+   "dol": "DVDCancelAsync",
    "size": 636,
    "addr": 2147588348,
    "sdk": [
@@ -2900,7 +2900,7 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_80019B78",
@@ -2915,7 +2915,7 @@
    "named": false
   },
   {
-   "dol": "fn_80019C50",
+   "dol": "DVDCheckDisk",
    "size": 248,
    "addr": 2147589200,
    "sdk": [
@@ -2924,10 +2924,10 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80019D48",
+   "dol": "__DVDPrepareResetAsync",
    "size": 284,
    "addr": 2147589448,
    "sdk": [
@@ -2936,7 +2936,7 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "__DVDClearWaitingQueue",
@@ -3119,7 +3119,7 @@
    "named": false
   },
   {
-   "dol": "fn_8001AFB8",
+   "dol": "setFbbRegs",
    "size": 724,
    "addr": 2147594168,
    "sdk": [
@@ -3128,10 +3128,10 @@
    "sources": [
     "libs/dolphin/vi/vi.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_8001B28C",
+   "dol": "setVerticalRegs",
    "size": 416,
    "addr": 2147594892,
    "sdk": [
@@ -3140,7 +3140,7 @@
    "sources": [
     "libs/dolphin/vi/vi.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_8001BC54",
@@ -3179,7 +3179,7 @@
    "named": true
   },
   {
-   "dol": "fn_8001BE74",
+   "dol": "getCurrentFieldEvenOdd",
    "size": 104,
    "addr": 2147597940,
    "sdk": [
@@ -3188,7 +3188,7 @@
    "sources": [
     "libs/dolphin/vi/vi.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "VIGetTvFormat",
@@ -3239,7 +3239,7 @@
    "named": true
   },
   {
-   "dol": "fn_8001C304",
+   "dol": "UpdateOrigin",
    "size": 420,
    "addr": 2147599108,
    "sdk": [
@@ -3248,7 +3248,7 @@
    "sources": [
     "libs/dolphin/pad/Pad.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_8001C4A8",
@@ -3323,7 +3323,7 @@
    "named": true
   },
   {
-   "dol": "fn_8001DBC8",
+   "dol": "PADSetAnalogMode",
    "size": 116,
    "addr": 2147605448,
    "sdk": [
@@ -3332,7 +3332,7 @@
    "sources": [
     "libs/dolphin/pad/Pad.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_8001DDD0",
@@ -3515,7 +3515,7 @@
    "named": true
   },
   {
-   "dol": "fn_8001E314",
+   "dol": "AIInit",
    "size": 364,
    "addr": 2147607316,
    "sdk": [
@@ -3524,10 +3524,10 @@
    "sources": [
     "libs/dolphin/ai/ai.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_8001E480",
+   "dol": "__AISHandler",
    "size": 124,
    "addr": 2147607680,
    "sdk": [
@@ -3536,10 +3536,10 @@
    "sources": [
     "libs/dolphin/ai/ai.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_8001E4FC",
+   "dol": "__AIDHandler",
    "size": 172,
    "addr": 2147607804,
    "sdk": [
@@ -3548,7 +3548,7 @@
    "sources": [
     "libs/dolphin/ai/ai.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "__AICallbackStackSwitch",
@@ -3563,7 +3563,7 @@
    "named": true
   },
   {
-   "dol": "fn_8001E600",
+   "dol": "__AI_SRC_INIT",
    "size": 484,
    "addr": 2147608064,
    "sdk": [
@@ -3572,7 +3572,7 @@
    "sources": [
     "libs/dolphin/ai/ai.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "ARGetDMAStatus",
@@ -3623,7 +3623,7 @@
    "named": false
   },
   {
-   "dol": "fn_8001EA30",
+   "dol": "ARInit",
    "size": 196,
    "addr": 2147609136,
    "sdk": [
@@ -3632,10 +3632,10 @@
    "sources": [
     "libs/dolphin/ar/ar.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_8001EAF4",
+   "dol": "__ARHandler",
    "size": 120,
    "addr": 2147609332,
    "sdk": [
@@ -3644,10 +3644,10 @@
    "sources": [
     "libs/dolphin/ar/ar.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_8001EB6C",
+   "dol": "__ARChecksize",
    "size": 6132,
    "addr": 2147609452,
    "sdk": [
@@ -3656,10 +3656,10 @@
    "sources": [
     "libs/dolphin/ar/ar.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80020360",
+   "dol": "__ARQServiceQueueLo",
    "size": 256,
    "addr": 2147615584,
    "sdk": [
@@ -3668,10 +3668,10 @@
    "sources": [
     "libs/dolphin/ar/arq.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80020464",
+   "dol": "__ARQInterruptServiceRoutine",
    "size": 204,
    "addr": 2147615844,
    "sdk": [
@@ -3680,7 +3680,7 @@
    "sources": [
     "libs/dolphin/ar/arq.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_80020530",
@@ -3695,7 +3695,7 @@
    "named": false
   },
   {
-   "dol": "fn_800205A0",
+   "dol": "ARQPostRequest",
    "size": 348,
    "addr": 2147616160,
    "sdk": [
@@ -3704,7 +3704,7 @@
    "sources": [
     "libs/dolphin/ar/arq.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_80021B84",
@@ -3767,7 +3767,7 @@
    "named": true
   },
   {
-   "dol": "fn_80028D0C",
+   "dol": "DSPInit",
    "size": 196,
    "addr": 2147650828,
    "sdk": [
@@ -3776,7 +3776,7 @@
    "sources": [
     "libs/dolphin/dsp/dsp.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_80028DD8",
@@ -3791,7 +3791,7 @@
    "named": false
   },
   {
-   "dol": "fn_80028FA0",
+   "dol": "__DSPHandler",
    "size": 1060,
    "addr": 2147651488,
    "sdk": [
@@ -3800,7 +3800,7 @@
    "sources": [
     "libs/dolphin/dsp/dsp_task.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "__DSP_exec_task",
@@ -3827,7 +3827,7 @@
    "named": true
   },
   {
-   "dol": "fn_800296F0",
+   "dol": "__DSP_insert_task",
    "size": 160,
    "addr": 2147653360,
    "sdk": [
@@ -3836,10 +3836,10 @@
    "sources": [
     "libs/dolphin/dsp/dsp_task.c"
    ],
-   "named": false
+   "named": true
   },
   {
-   "dol": "fn_80029790",
+   "dol": "__DSP_remove_task",
    "size": 148,
    "addr": 2147653520,
    "sdk": [
@@ -3848,7 +3848,7 @@
    "sources": [
     "libs/dolphin/dsp/dsp_task.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "__CARDSyncCallback",
@@ -4163,7 +4163,7 @@
    "named": false
   },
   {
-   "dol": "fn_8002AF34",
+   "dol": "__CARDUnlock",
    "size": 2904,
    "addr": 2147659572,
    "sdk": [
@@ -4172,7 +4172,7 @@
    "sources": [
     "libs/dolphin/card/CARDUnlock.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "InitCallback",
@@ -4439,7 +4439,7 @@
    "named": true
   },
   {
-   "dol": "fn_8002D6B0",
+   "dol": "IsCard",
    "size": 204,
    "addr": 2147669680,
    "sdk": [
@@ -4448,7 +4448,7 @@
    "sources": [
     "libs/dolphin/card/CARDMount.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "CARDProbeEx",
@@ -4463,7 +4463,7 @@
    "named": true
   },
   {
-   "dol": "fn_8002D8F8",
+   "dol": "DoMount",
    "size": 1040,
    "addr": 2147670264,
    "sdk": [
@@ -4472,7 +4472,7 @@
    "sources": [
     "libs/dolphin/card/CARDMount.c"
    ],
-   "named": false
+   "named": true
   },
   {
    "dol": "__CARDMountCallback",
@@ -5029,9 +5029,217 @@
  ],
  "ambiguous": [
   {
-   "dol": "fn_8001A7D0",
+   "dol": "fn_80034378",
    "size": 68,
-   "addr": 2147592144,
+   "addr": 2147697528,
+   "sdk": [
+    "AIRegisterDMACallback",
+    "AIRegisterStreamCallback",
+    "ARRegisterDMACallback",
+    "VISetPostRetraceCallback",
+    "VISetPreRetraceCallback"
+   ],
+   "sources": [
+    "libs/dolphin/ai/ai.c",
+    "libs/dolphin/ar/ar.c",
+    "libs/dolphin/vi/vi.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "MWTRACE",
+   "size": 80,
+   "addr": 2148067016,
+   "sdk": [
+    "DBPrintf",
+    "__DSP_debug_printf"
+   ],
+   "sources": [
+    "libs/dolphin/db/db.c",
+    "libs/dolphin/dsp/dsp_debug.c"
+   ],
+   "named": true
+  },
+  {
+   "dol": "fn_80074A7C",
+   "size": 16,
+   "addr": 2147961468,
+   "sdk": [
+    "DVDSetAutoInvalidation",
+    "OSSetCurrentHeap"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c",
+    "libs/dolphin/os/OSAlloc.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "_epilog_rel_sample",
+   "size": 40,
+   "addr": 2147580472,
+   "sdk": [
+    "stateGettingError",
+    "stateGoToRetry",
+    "stateMotorStopped"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c"
+   ],
+   "named": true
+  },
+  {
+   "dol": "fn_8001989C",
+   "size": 16,
+   "addr": 2147588252,
+   "sdk": [
+    "DVDSetAutoInvalidation",
+    "OSSetCurrentHeap"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c",
+    "libs/dolphin/os/OSAlloc.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_80018108",
+   "size": 52,
+   "addr": 2147582216,
+   "sdk": [
+    "stateCheckID2a",
+    "stateCheckID3"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_800176D8",
+   "size": 36,
+   "addr": 2147579608,
+   "sdk": [
+    "cbForCancelSync",
+    "cbForPrepareStreamSync",
+    "cbForReadSync",
+    "cbForSeekSync"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c",
+    "libs/dolphin/dvd/dvdfs.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "__DVDLowSetWAType",
+   "size": 68,
+   "addr": 2147577212,
+   "sdk": [
+    "ETHSetProtoType",
+    "__DVDLowSetWAType"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvdlow.c",
+    "libs/dolphin/eth/eth.c"
+   ],
+   "named": true
+  },
+  {
+   "dol": "fn_8006FFCC",
+   "size": 16,
+   "addr": 2147942348,
+   "sdk": [
+    "DVDSetAutoInvalidation",
+    "OSSetCurrentHeap"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c",
+    "libs/dolphin/os/OSAlloc.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_800186C0",
+   "size": 40,
+   "addr": 2147583680,
+   "sdk": [
+    "stateGettingError",
+    "stateGoToRetry",
+    "stateMotorStopped"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_8001813C",
+   "size": 52,
+   "addr": 2147582268,
+   "sdk": [
+    "stateCheckID2a",
+    "stateCheckID3"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_80006BDC",
+   "size": 80,
+   "addr": 2147511260,
+   "sdk": [
+    "DBPrintf",
+    "__DSP_debug_printf"
+   ],
+   "sources": [
+    "libs/dolphin/db/db.c",
+    "libs/dolphin/dsp/dsp_debug.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_800321D8",
+   "size": 68,
+   "addr": 2147688920,
+   "sdk": [
+    "AIRegisterDMACallback",
+    "AIRegisterStreamCallback",
+    "ARRegisterDMACallback",
+    "VISetPostRetraceCallback",
+    "VISetPreRetraceCallback"
+   ],
+   "sources": [
+    "libs/dolphin/ai/ai.c",
+    "libs/dolphin/ar/ar.c",
+    "libs/dolphin/vi/vi.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_80034444",
+   "size": 68,
+   "addr": 2147697732,
+   "sdk": [
+    "AIRegisterDMACallback",
+    "AIRegisterStreamCallback",
+    "ARRegisterDMACallback",
+    "VISetPostRetraceCallback",
+    "VISetPreRetraceCallback"
+   ],
+   "sources": [
+    "libs/dolphin/ai/ai.c",
+    "libs/dolphin/ar/ar.c",
+    "libs/dolphin/vi/vi.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_8001DF00",
+   "size": 68,
+   "addr": 2147606272,
    "sdk": [
     "AIRegisterDMACallback",
     "AIRegisterStreamCallback",
@@ -5057,6 +5265,36 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c",
     "libs/dolphin/os/OSAlloc.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_80070DE0",
+   "size": 16,
+   "addr": 2147945952,
+   "sdk": [
+    "DVDSetAutoInvalidation",
+    "OSSetCurrentHeap"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c",
+    "libs/dolphin/os/OSAlloc.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_8002DFE0",
+   "size": 72,
+   "addr": 2147672032,
+   "sdk": [
+    "CARDMount",
+    "CARDRename",
+    "CARDSetStatus"
+   ],
+   "sources": [
+    "libs/dolphin/card/CARDMount.c",
+    "libs/dolphin/card/CARDRename.c",
+    "libs/dolphin/card/CARDStat.c"
    ],
    "named": false
   },
@@ -5098,39 +5336,9 @@
    "named": false
   },
   {
-   "dol": "fn_80030338",
-   "size": 72,
-   "addr": 2147681080,
-   "sdk": [
-    "CARDMount",
-    "CARDRename",
-    "CARDSetStatus"
-   ],
-   "sources": [
-    "libs/dolphin/card/CARDMount.c",
-    "libs/dolphin/card/CARDRename.c",
-    "libs/dolphin/card/CARDStat.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_800186C0",
-   "size": 40,
-   "addr": 2147583680,
-   "sdk": [
-    "stateGettingError",
-    "stateGoToRetry",
-    "stateMotorStopped"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvd.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_80077BAC",
+   "dol": "fn_800068F4",
    "size": 16,
-   "addr": 2147974060,
+   "addr": 2147510516,
    "sdk": [
     "DVDSetAutoInvalidation",
     "OSSetCurrentHeap"
@@ -5142,29 +5350,20 @@
    "named": false
   },
   {
-   "dol": "fn_80018108",
-   "size": 52,
-   "addr": 2147582216,
+   "dol": "fn_8001A7D0",
+   "size": 68,
+   "addr": 2147592144,
    "sdk": [
-    "stateCheckID2a",
-    "stateCheckID3"
+    "AIRegisterDMACallback",
+    "AIRegisterStreamCallback",
+    "ARRegisterDMACallback",
+    "VISetPostRetraceCallback",
+    "VISetPreRetraceCallback"
    ],
    "sources": [
-    "libs/dolphin/dvd/dvd.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_8002F8EC",
-   "size": 72,
-   "addr": 2147678444,
-   "sdk": [
-    "CARDRead",
-    "CARDWrite"
-   ],
-   "sources": [
-    "libs/dolphin/card/CARDRead.c",
-    "libs/dolphin/card/CARDWrite.c"
+    "libs/dolphin/ai/ai.c",
+    "libs/dolphin/ar/ar.c",
+    "libs/dolphin/vi/vi.c"
    ],
    "named": false
   },
@@ -5182,22 +5381,6 @@
    "named": false
   },
   {
-   "dol": "fn_800176D8",
-   "size": 36,
-   "addr": 2147579608,
-   "sdk": [
-    "cbForCancelSync",
-    "cbForPrepareStreamSync",
-    "cbForReadSync",
-    "cbForSeekSync"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvd.c",
-    "libs/dolphin/dvd/dvdfs.c"
-   ],
-   "named": false
-  },
-  {
    "dol": "fn_800300F4",
    "size": 72,
    "addr": 2147680500,
@@ -5210,273 +5393,6 @@
     "libs/dolphin/card/CARDMount.c",
     "libs/dolphin/card/CARDRename.c",
     "libs/dolphin/card/CARDStat.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_80034444",
-   "size": 68,
-   "addr": 2147697732,
-   "sdk": [
-    "AIRegisterDMACallback",
-    "AIRegisterStreamCallback",
-    "ARRegisterDMACallback",
-    "VISetPostRetraceCallback",
-    "VISetPreRetraceCallback"
-   ],
-   "sources": [
-    "libs/dolphin/ai/ai.c",
-    "libs/dolphin/ar/ar.c",
-    "libs/dolphin/vi/vi.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "DBPrintf",
-   "size": 80,
-   "addr": 2147572436,
-   "sdk": [
-    "DBPrintf",
-    "__DSP_debug_printf"
-   ],
-   "sources": [
-    "libs/dolphin/db/db.c",
-    "libs/dolphin/dsp/dsp_debug.c"
-   ],
-   "named": true
-  },
-  {
-   "dol": "fn_80019C24",
-   "size": 36,
-   "addr": 2147589156,
-   "sdk": [
-    "cbForCancelSync",
-    "cbForPrepareStreamSync",
-    "cbForReadSync",
-    "cbForSeekSync"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvd.c",
-    "libs/dolphin/dvd/dvdfs.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "__init_user",
-   "size": 32,
-   "addr": 2147555464,
-   "sdk": [
-    "DVDGetFileInfoStatus",
-    "OSGetResetSwitchState",
-    "OSInitCond",
-    "OSSignalCond",
-    "OSVReport",
-    "asin",
-    "atan2",
-    "exp",
-    "fmod",
-    "log10",
-    "mbtowc",
-    "pow",
-    "sqrt",
-    "strnicmp"
-   ],
-   "sources": [
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/extras.c",
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/mbstring.c",
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c",
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c",
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c",
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c",
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c",
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c",
-    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c",
-    "libs/dolphin/dvd/dvdfs.c",
-    "libs/dolphin/os/OSError.c",
-    "libs/dolphin/os/OSMutex.c",
-    "libs/dolphin/os/OSResetSW.c"
-   ],
-   "named": true
-  },
-  {
-   "dol": "fn_800068F4",
-   "size": 16,
-   "addr": 2147510516,
-   "sdk": [
-    "DVDSetAutoInvalidation",
-    "OSSetCurrentHeap"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvd.c",
-    "libs/dolphin/os/OSAlloc.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_80006BDC",
-   "size": 80,
-   "addr": 2147511260,
-   "sdk": [
-    "DBPrintf",
-    "__DSP_debug_printf"
-   ],
-   "sources": [
-    "libs/dolphin/db/db.c",
-    "libs/dolphin/dsp/dsp_debug.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_80070DE0",
-   "size": 16,
-   "addr": 2147945952,
-   "sdk": [
-    "DVDSetAutoInvalidation",
-    "OSSetCurrentHeap"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvd.c",
-    "libs/dolphin/os/OSAlloc.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "__DVDLowSetWAType",
-   "size": 68,
-   "addr": 2147577212,
-   "sdk": [
-    "ETHSetProtoType",
-    "__DVDLowSetWAType"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvdlow.c",
-    "libs/dolphin/eth/eth.c"
-   ],
-   "named": true
-  },
-  {
-   "dol": "fn_8002DFE0",
-   "size": 72,
-   "addr": 2147672032,
-   "sdk": [
-    "CARDMount",
-    "CARDRename",
-    "CARDSetStatus"
-   ],
-   "sources": [
-    "libs/dolphin/card/CARDMount.c",
-    "libs/dolphin/card/CARDRename.c",
-    "libs/dolphin/card/CARDStat.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_80017EA8",
-   "size": 40,
-   "addr": 2147581608,
-   "sdk": [
-    "stateGettingError",
-    "stateGoToRetry",
-    "stateMotorStopped"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvd.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_8001A78C",
-   "size": 68,
-   "addr": 2147592076,
-   "sdk": [
-    "AIRegisterDMACallback",
-    "AIRegisterStreamCallback",
-    "ARRegisterDMACallback",
-    "VISetPostRetraceCallback",
-    "VISetPreRetraceCallback"
-   ],
-   "sources": [
-    "libs/dolphin/ai/ai.c",
-    "libs/dolphin/ar/ar.c",
-    "libs/dolphin/vi/vi.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_8002F570",
-   "size": 72,
-   "addr": 2147677552,
-   "sdk": [
-    "CARDRead",
-    "CARDWrite"
-   ],
-   "sources": [
-    "libs/dolphin/card/CARDRead.c",
-    "libs/dolphin/card/CARDWrite.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "MWTRACE",
-   "size": 80,
-   "addr": 2148067016,
-   "sdk": [
-    "DBPrintf",
-    "__DSP_debug_printf"
-   ],
-   "sources": [
-    "libs/dolphin/db/db.c",
-    "libs/dolphin/dsp/dsp_debug.c"
-   ],
-   "named": true
-  },
-  {
-   "dol": "fn_80006904",
-   "size": 16,
-   "addr": 2147510532,
-   "sdk": [
-    "DVDSetAutoInvalidation",
-    "OSSetCurrentHeap"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvd.c",
-    "libs/dolphin/os/OSAlloc.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_8001DF00",
-   "size": 68,
-   "addr": 2147606272,
-   "sdk": [
-    "AIRegisterDMACallback",
-    "AIRegisterStreamCallback",
-    "ARRegisterDMACallback",
-    "VISetPostRetraceCallback",
-    "VISetPreRetraceCallback"
-   ],
-   "sources": [
-    "libs/dolphin/ai/ai.c",
-    "libs/dolphin/ar/ar.c",
-    "libs/dolphin/vi/vi.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_8001E7E4",
-   "size": 68,
-   "addr": 2147608548,
-   "sdk": [
-    "AIRegisterDMACallback",
-    "AIRegisterStreamCallback",
-    "ARRegisterDMACallback",
-    "VISetPostRetraceCallback",
-    "VISetPreRetraceCallback"
-   ],
-   "sources": [
-    "libs/dolphin/ai/ai.c",
-    "libs/dolphin/ar/ar.c",
-    "libs/dolphin/vi/vi.c"
    ],
    "named": false
   },
@@ -5518,23 +5434,9 @@
    "named": true
   },
   {
-   "dol": "fn_8001989C",
-   "size": 16,
-   "addr": 2147588252,
-   "sdk": [
-    "DVDSetAutoInvalidation",
-    "OSSetCurrentHeap"
-   ],
-   "sources": [
-    "libs/dolphin/dvd/dvd.c",
-    "libs/dolphin/os/OSAlloc.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "_epilog_rel_sample",
+   "dol": "fn_80017EA8",
    "size": 40,
-   "addr": 2147580472,
+   "addr": 2147581608,
    "sdk": [
     "stateGettingError",
     "stateGoToRetry",
@@ -5543,12 +5445,12 @@
    "sources": [
     "libs/dolphin/dvd/dvd.c"
    ],
-   "named": true
+   "named": false
   },
   {
-   "dol": "fn_8006FFCC",
+   "dol": "fn_80006904",
    "size": 16,
-   "addr": 2147942348,
+   "addr": 2147510532,
    "sdk": [
     "DVDSetAutoInvalidation",
     "OSSetCurrentHeap"
@@ -5560,37 +5462,43 @@
    "named": false
   },
   {
-   "dol": "fn_80017590",
-   "size": 48,
-   "addr": 2147579280,
+   "dol": "fn_80030338",
+   "size": 72,
+   "addr": 2147681080,
    "sdk": [
-    "cbForPrepareStreamAsync",
-    "cbForReadAsync",
-    "cbForSeekAsync"
+    "CARDMount",
+    "CARDRename",
+    "CARDSetStatus"
    ],
    "sources": [
-    "libs/dolphin/dvd/dvdfs.c"
+    "libs/dolphin/card/CARDMount.c",
+    "libs/dolphin/card/CARDRename.c",
+    "libs/dolphin/card/CARDStat.c"
    ],
    "named": false
   },
   {
-   "dol": "fn_80074A7C",
-   "size": 16,
-   "addr": 2147961468,
+   "dol": "fn_8001E7E4",
+   "size": 68,
+   "addr": 2147608548,
    "sdk": [
-    "DVDSetAutoInvalidation",
-    "OSSetCurrentHeap"
+    "AIRegisterDMACallback",
+    "AIRegisterStreamCallback",
+    "ARRegisterDMACallback",
+    "VISetPostRetraceCallback",
+    "VISetPreRetraceCallback"
    ],
    "sources": [
-    "libs/dolphin/dvd/dvd.c",
-    "libs/dolphin/os/OSAlloc.c"
+    "libs/dolphin/ai/ai.c",
+    "libs/dolphin/ar/ar.c",
+    "libs/dolphin/vi/vi.c"
    ],
    "named": false
   },
   {
-   "dol": "fn_80028F50",
+   "dol": "DBPrintf",
    "size": 80,
-   "addr": 2147651408,
+   "addr": 2147572436,
    "sdk": [
     "DBPrintf",
     "__DSP_debug_printf"
@@ -5599,43 +5507,7 @@
     "libs/dolphin/db/db.c",
     "libs/dolphin/dsp/dsp_debug.c"
    ],
-   "named": false
-  },
-  {
-   "dol": "fn_80034378",
-   "size": 68,
-   "addr": 2147697528,
-   "sdk": [
-    "AIRegisterDMACallback",
-    "AIRegisterStreamCallback",
-    "ARRegisterDMACallback",
-    "VISetPostRetraceCallback",
-    "VISetPreRetraceCallback"
-   ],
-   "sources": [
-    "libs/dolphin/ai/ai.c",
-    "libs/dolphin/ar/ar.c",
-    "libs/dolphin/vi/vi.c"
-   ],
-   "named": false
-  },
-  {
-   "dol": "fn_800321D8",
-   "size": 68,
-   "addr": 2147688920,
-   "sdk": [
-    "AIRegisterDMACallback",
-    "AIRegisterStreamCallback",
-    "ARRegisterDMACallback",
-    "VISetPostRetraceCallback",
-    "VISetPreRetraceCallback"
-   ],
-   "sources": [
-    "libs/dolphin/ai/ai.c",
-    "libs/dolphin/ar/ar.c",
-    "libs/dolphin/vi/vi.c"
-   ],
-   "named": false
+   "named": true
   },
   {
    "dol": "fn_8000F5F0",
@@ -5675,6 +5547,50 @@
    "named": false
   },
   {
+   "dol": "fn_8002F570",
+   "size": 72,
+   "addr": 2147677552,
+   "sdk": [
+    "CARDRead",
+    "CARDWrite"
+   ],
+   "sources": [
+    "libs/dolphin/card/CARDRead.c",
+    "libs/dolphin/card/CARDWrite.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_80019C24",
+   "size": 36,
+   "addr": 2147589156,
+   "sdk": [
+    "cbForCancelSync",
+    "cbForPrepareStreamSync",
+    "cbForReadSync",
+    "cbForSeekSync"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c",
+    "libs/dolphin/dvd/dvdfs.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_80028F50",
+   "size": 80,
+   "addr": 2147651408,
+   "sdk": [
+    "DBPrintf",
+    "__DSP_debug_printf"
+   ],
+   "sources": [
+    "libs/dolphin/db/db.c",
+    "libs/dolphin/dsp/dsp_debug.c"
+   ],
+   "named": false
+  },
+  {
    "dol": "fn_80074D08",
    "size": 16,
    "addr": 2147962120,
@@ -5689,24 +5605,108 @@
    "named": false
   },
   {
-   "dol": "fn_8001813C",
-   "size": 52,
-   "addr": 2147582268,
+   "dol": "fn_8002F8EC",
+   "size": 72,
+   "addr": 2147678444,
    "sdk": [
-    "stateCheckID2a",
-    "stateCheckID3"
+    "CARDRead",
+    "CARDWrite"
    ],
    "sources": [
-    "libs/dolphin/dvd/dvd.c"
+    "libs/dolphin/card/CARDRead.c",
+    "libs/dolphin/card/CARDWrite.c"
    ],
    "named": false
+  },
+  {
+   "dol": "fn_8001A78C",
+   "size": 68,
+   "addr": 2147592076,
+   "sdk": [
+    "AIRegisterDMACallback",
+    "AIRegisterStreamCallback",
+    "ARRegisterDMACallback",
+    "VISetPostRetraceCallback",
+    "VISetPreRetraceCallback"
+   ],
+   "sources": [
+    "libs/dolphin/ai/ai.c",
+    "libs/dolphin/ar/ar.c",
+    "libs/dolphin/vi/vi.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_80077BAC",
+   "size": 16,
+   "addr": 2147974060,
+   "sdk": [
+    "DVDSetAutoInvalidation",
+    "OSSetCurrentHeap"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvd.c",
+    "libs/dolphin/os/OSAlloc.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "fn_80017590",
+   "size": 48,
+   "addr": 2147579280,
+   "sdk": [
+    "cbForPrepareStreamAsync",
+    "cbForReadAsync",
+    "cbForSeekAsync"
+   ],
+   "sources": [
+    "libs/dolphin/dvd/dvdfs.c"
+   ],
+   "named": false
+  },
+  {
+   "dol": "__init_user",
+   "size": 32,
+   "addr": 2147555464,
+   "sdk": [
+    "DVDGetFileInfoStatus",
+    "OSGetResetSwitchState",
+    "OSInitCond",
+    "OSSignalCond",
+    "OSVReport",
+    "asin",
+    "atan2",
+    "exp",
+    "fmod",
+    "log10",
+    "mbtowc",
+    "pow",
+    "sqrt",
+    "strnicmp"
+   ],
+   "sources": [
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/extras.c",
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common/mbstring.c",
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c",
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c",
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c",
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c",
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c",
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c",
+    "libs/PowerPC_EABI_Support/src/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c",
+    "libs/dolphin/dvd/dvdfs.c",
+    "libs/dolphin/os/OSError.c",
+    "libs/dolphin/os/OSMutex.c",
+    "libs/dolphin/os/OSResetSW.c"
+   ],
+   "named": true
   }
  ],
  "summary": {
   "hits": 418,
   "bytes": 102576,
-  "unnamed_hits": 105,
-  "unnamed_bytes": 35576,
+  "unnamed_hits": 52,
+  "unnamed_bytes": 10948,
   "ambiguous": 39,
   "by_lib": {
    "card": 25464,

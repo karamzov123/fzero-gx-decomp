@@ -15,8 +15,8 @@ typedef struct fn_8004E4DC_state {
 } fn_8004E4DC_state;
 
 extern fn_8004E4DC_state lbl_8017E980;
-extern void fn_80011298(void *, s32);
-extern void fn_80010CB0(void *);
+extern void OSSetThreadPriority(void *, s32);
+extern void OSResumeThread(void *);
 extern void OSCancelThread(void *);
 extern void fn_80058B54(void);
 
@@ -25,16 +25,16 @@ void fn_8004E4DC(void) {
 
     if (--state->counter == 0) {
         state->value_ca4 = 0;
-        fn_80011298(&state->thread_28, 1);
+        OSSetThreadPriority(&state->thread_28, 1);
         while (state->flag_ca0 == 0) {
-            fn_80010CB0(&state->thread_28);
+            OSResumeThread(&state->thread_28);
         }
         OSCancelThread(&state->thread_340);
         OSCancelThread(&state->thread_658);
         state->value_cac = 0;
-        fn_80010CB0(&state->thread_970);
+        OSResumeThread(&state->thread_970);
         while (state->flag_ca8 == 0) {
-            fn_80010CB0(&state->thread_970);
+            OSResumeThread(&state->thread_970);
         }
         fn_80058B54();
     }

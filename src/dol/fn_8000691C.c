@@ -17,11 +17,11 @@ extern u8 lbl_801A66DA;
 extern const f64 lbl_801A6EC8;
 extern const f64 lbl_801A6EF8;
 extern s32 fn_8000F5F0(void);
-extern void fn_8001CF80(void *);
+extern void PADRead(void *);
 extern void fn_8006B470(void *);
 extern void fn_8006FDEC(void);
 extern u32 fn_8006FFCC(u32);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern void fn_8006FEFC(void);
 extern void OSResetSystem(int, u32, int);
 extern void VISetBlack(u32);
@@ -35,7 +35,7 @@ void fn_8000691C(void) {
     u32 n;
     f64 d;
 
-    fn_8001CF80(sp30);
+    PADRead(sp30);
     fn_8006B470(sp8);
 
     p = sp30;
@@ -60,7 +60,7 @@ void fn_8000691C(void) {
 
     d = (f64)lbl_801A66D9;
     if (d > lbl_801A6EF8) {
-        fn_8001AF64();
+        VIWaitForRetrace();
         VISetBlack(1);
         fn_8006FFCC(0);
         fn_8006FDEC();

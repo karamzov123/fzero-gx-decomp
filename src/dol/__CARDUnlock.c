@@ -3,7 +3,7 @@
 #include <dolphin/os/OSCache.h>
 #include <dolphin/os/OSTime.h>
 
-DSPTaskInfo *fn_80028DD8(DSPTaskInfo *task);
+DSPTaskInfo *DSPAddTask(DSPTaskInfo *task);
 
 extern CARDControl lbl_80177960[2];
 
@@ -61,7 +61,7 @@ u32 bitrev(u32 data);
 
 s32 ReadArrayUnlock(s32 chan, u32 data, void *rbuf, s32 rlen, s32 mode);
 
-s32 fn_8002AE70(void);
+s32 DummyLen(void);
 
 void InitCallback(void *_task);
 
@@ -96,7 +96,7 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
     output = input + 32;
     fsts = 0;
     init_val = GetInitVal();
-    dummy = fn_8002AE70();
+    dummy = DummyLen();
     rlen = dummy;
     if (ReadArrayUnlock(chan, init_val, rbuf, rlen, 0) < 0) {
         return -3;
@@ -106,7 +106,7 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
     wk1 = ~(wk ^ (wk >> 7) ^ (wk >> 15) ^ (wk >> 23));
     card->scramble = (wk | ((wk1 << 31) & 0x80000000));
     card->scramble = bitrev(card->scramble);
-    dummy = fn_8002AE70();
+    dummy = DummyLen();
     rlen = 20 + dummy;
     data = 0;
     if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
@@ -165,7 +165,7 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
     task->res_cb = ((void *)0);
     task->done_cb = DoneCallback;
     task->req_cb = ((void *)0);
-    fn_80028DD8(task);
+    DSPAddTask(task);
     dp = (u32 *)flashID;
     *dp++ = para1A;
     *dp++ = para1B;

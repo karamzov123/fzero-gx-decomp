@@ -12,7 +12,7 @@ extern u32 fn_80005A08(void);
 extern u32 fn_800063AC(void);
 extern u32 fn_80006B30(u32);
 extern u32 fn_800071B8(void);
-extern u32 fn_8001AAB4(void);
+extern u32 VIInit(void);
 extern u32 fn_8006CCC8(void);
 extern void mathutil_init(void);
 extern u32 fn_80070158(u32);
@@ -39,7 +39,7 @@ void fn_80005660(void) {
     DVDInit();
     fn_80006AFC();
     fn_80006B30((u32)fn_80006354);
-    fn_8001AAB4();
+    VIInit();
     mathutil_init();
     fn_80070158(1);
     fn_8007075C(1);

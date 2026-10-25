@@ -59,7 +59,7 @@ extern volatile BOOL lbl_801A6898; // fzgx-allow: S2 SDK asynchronous state
 
 extern vu32 NextCommandNumber_801A689C;
 
-void fn_80016394(void *addr, u32 length, u32 offset, DVDLowCallback callback);
+void Read(void *addr, u32 length, u32 offset, DVDLowCallback callback);
 
 static DVDCommand CommandList_8015CD70[3];
 
@@ -91,7 +91,7 @@ static inline BOOL ProcessNextCommand() {
     ((void)0);
     if (CommandList_8015CD70[n].cmd == 1) {
         ++NextCommandNumber_801A689C;
-        fn_80016394(CommandList_8015CD70[n].addr, CommandList_8015CD70[n].length,
+        Read(CommandList_8015CD70[n].addr, CommandList_8015CD70[n].length,
                     CommandList_8015CD70[n].offset, CommandList_8015CD70[n].callback);
         return 1;
     } else if (CommandList_8015CD70[n].cmd == 2) {

@@ -16,7 +16,7 @@ typedef void (*DVDOptionalCommandChecker)(DVDCommandBlock *block, void (*cb)(u32
 
 typedef void (*stateFunc)(DVDCommandBlock *block);
 
-BOOL fn_80016524(void *addr, u32 length, u32 offset, DVDLowCallback callback);
+BOOL DVDLowRead(void *addr, u32 length, u32 offset, DVDLowCallback callback);
 
 BOOL DVDLowSeek(u32 offset, DVDLowCallback callback);
 
@@ -45,13 +45,13 @@ extern DVDCommandBlock DummyCommandBlock_8015CE80;
 
 void stateReady();
 
-void fn_80018D1C(u32 intType);
+void cbForStateBusy(u32 intType);
 
 extern DVDOptionalCommandChecker lbl_801A6480;
 
 void stateReady();
 
-void fn_80018D1C(u32 intType);
+void cbForStateBusy(u32 intType);
 
 void stateBusy(DVDCommandBlock *block) {
     DVDCommandBlock *finished;
@@ -60,7 +60,7 @@ void stateBusy(DVDCommandBlock *block) {
     case 5:
         __DIRegs[1] = __DIRegs[1];
         block->currTransferSize = sizeof(DVDDiskID);
-        DVDLowReadDiskID(block->addr, fn_80018D1C);
+        DVDLowReadDiskID(block->addr, cbForStateBusy);
         break;
     case 1:
     case 4:
@@ -77,67 +77,67 @@ void stateBusy(DVDCommandBlock *block) {
             block->currTransferSize = block->length - block->transferredSize > 0x80000
                                           ? 0x80000
                                           : block->length - block->transferredSize;
-            fn_80016524((void *)((u8 *)block->addr + block->transferredSize),
+            DVDLowRead((void *)((u8 *)block->addr + block->transferredSize),
                         block->currTransferSize, block->offset + block->transferredSize,
-                        fn_80018D1C);
+                        cbForStateBusy);
         }
         break;
     case 2:
         __DIRegs[1] = __DIRegs[1];
-        DVDLowSeek(block->offset, fn_80018D1C);
+        DVDLowSeek(block->offset, cbForStateBusy);
         break;
     case 3:
-        DVDLowStopMotor(fn_80018D1C);
+        DVDLowStopMotor(cbForStateBusy);
         break;
     case 15:
-        DVDLowStopMotor(fn_80018D1C);
+        DVDLowStopMotor(cbForStateBusy);
         break;
     case 6:
         __DIRegs[1] = __DIRegs[1];
         if (lbl_801A68D4) {
             executing_801A68C0->currTransferSize = 0;
-            DVDLowRequestAudioStatus(0, fn_80018D1C);
+            DVDLowRequestAudioStatus(0, cbForStateBusy);
         } else {
             executing_801A68C0->currTransferSize = 1;
-            DVDLowAudioStream(0, block->length, block->offset, fn_80018D1C);
+            DVDLowAudioStream(0, block->length, block->offset, cbForStateBusy);
         }
         break;
     case 7:
         __DIRegs[1] = __DIRegs[1];
-        DVDLowAudioStream(0x10000, 0, 0, fn_80018D1C);
+        DVDLowAudioStream(0x10000, 0, 0, cbForStateBusy);
         break;
     case 8:
         __DIRegs[1] = __DIRegs[1];
         lbl_801A68D4 = 1;
-        DVDLowAudioStream(0, 0, 0, fn_80018D1C);
+        DVDLowAudioStream(0, 0, 0, cbForStateBusy);
         break;
     case 9:
         __DIRegs[1] = __DIRegs[1];
-        DVDLowRequestAudioStatus(0, fn_80018D1C);
+        DVDLowRequestAudioStatus(0, cbForStateBusy);
         break;
     case 10:
         __DIRegs[1] = __DIRegs[1];
-        DVDLowRequestAudioStatus(0x10000, fn_80018D1C);
+        DVDLowRequestAudioStatus(0x10000, cbForStateBusy);
         break;
     case 11:
         __DIRegs[1] = __DIRegs[1];
-        DVDLowRequestAudioStatus(0x20000, fn_80018D1C);
+        DVDLowRequestAudioStatus(0x20000, cbForStateBusy);
         break;
     case 12:
         __DIRegs[1] = __DIRegs[1];
-        DVDLowRequestAudioStatus(0x30000, fn_80018D1C);
+        DVDLowRequestAudioStatus(0x30000, cbForStateBusy);
         break;
     case 13:
         __DIRegs[1] = __DIRegs[1];
-        DVDLowAudioBufferConfig(block->offset, block->length, fn_80018D1C);
+        DVDLowAudioBufferConfig(block->offset, block->length, cbForStateBusy);
         break;
     case 14:
         __DIRegs[1] = __DIRegs[1];
         block->currTransferSize = sizeof(DVDDriveInfo);
-        DVDLowInquiry(block->addr, fn_80018D1C);
+        DVDLowInquiry(block->addr, cbForStateBusy);
         break;
     default:
-        lbl_801A6480(block, fn_80018D1C);
+        lbl_801A6480(block, cbForStateBusy);
         break;
     }
 }

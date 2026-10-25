@@ -2903,7 +2903,7 @@ typedef struct fn_1_568F8_Mtx44 {
 
 extern fn_1_568F8_Pool lbl_1_rodata_28B0;
 extern void fn_1_870BC(fn_1_568F8_Data *, s8, fn_1_568F8_Data *, s32, u8, f32);
-extern void fn_80015EE8(fn_1_568F8_Mtx44 *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(fn_1_568F8_Mtx44 *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(fn_1_568F8_Mtx44 *, s32);
 extern void fn_800744F8(fn_1_568F8_Color, u32);
 extern void fn_800725DC(fn_1_568F8_Color);
@@ -8879,7 +8879,7 @@ typedef struct fn_1_568F8_Mtx44 {
 
 extern fn_1_568F8_Pool lbl_1_rodata_28B0;
 extern void fn_1_870BC(fn_1_568F8_Data *, s8, fn_1_568F8_Data *, s32, u8, f32);
-extern void fn_80015EE8(fn_1_568F8_Mtx44 *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(fn_1_568F8_Mtx44 *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(fn_1_568F8_Mtx44 *, s32);
 extern void fn_800744F8(fn_1_568F8_Color, u32);
 extern void fn_800725DC(fn_1_568F8_Color);

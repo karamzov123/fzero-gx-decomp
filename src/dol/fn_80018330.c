@@ -4,8 +4,8 @@ extern void __DVDStoreErrorCode(s32 error);
 extern void DVDReset(void);
 extern void cbForStateError(s32 state);
 extern void fn_80017838(void);
-extern void fn_800178CC(void);
-extern void fn_80016524(u32, u32, u32, u32);
+extern void cbForStateReadingFST(void);
+extern void DVDLowRead(u32, u32, u32, u32);
 extern void cbForStateGettingError(void);
 extern void DVDLowRequestError(void (*callback)(void));
 extern void OSPanic(const char *, ...);
@@ -42,10 +42,10 @@ void fn_80018330(u32 state) {
         if (bootInfo_801A68C8->field3c < BB2[2]) {
             OSPanic(lbl_801A6484, 0x287, lbl_80123FE4);
         }
-        fn_80016524(bootInfo_801A68C8->field38,
+        DVDLowRead(bootInfo_801A68C8->field38,
                     (BB2[2] + 0x1f) & ~0x1f,
                     BB2[1],
-                    (u32)fn_800178CC);
+                    (u32)cbForStateReadingFST);
     } else {
         DVDLowRequestError(cbForStateGettingError);
     }

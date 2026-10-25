@@ -44,7 +44,7 @@ extern void fn_800377F8(s32, f32, f32, f32, f32, Sig_fn_800371F8_GXColor);
 extern void fn_80072864(u32);
 extern void lbl_8006D758(void);
 extern void GXLoadPosMtxImm(void *, u32);
-extern void fn_80015EE8(Fn80005B10Mtx44, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(Fn80005B10Mtx44, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(Fn80005B10Mtx44, s32);
 extern void fn_80073778(void *, s32);
 extern void fn_8003462C(u32, u32, u32);
@@ -80,7 +80,7 @@ void fn_80005B10(void *arg0) {
     fn_80072864(2);
     lbl_8006D758();
     GXLoadPosMtxImm(lbl_801A6D00, 0);
-    fn_80015EE8(mtx, lbl_801A6E5C, lbl_801A6E64, lbl_801A6E5C, lbl_801A6E68, lbl_801A6E5C, lbl_801A6E6C);
+    C_MTXOrtho(mtx, lbl_801A6E5C, lbl_801A6E64, lbl_801A6E5C, lbl_801A6E68, lbl_801A6E5C, lbl_801A6E6C);
     fn_800737E4(mtx, 1);
     color.r = 255;
     color.g = 255;

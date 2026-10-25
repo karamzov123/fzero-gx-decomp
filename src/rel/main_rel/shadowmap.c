@@ -179,13 +179,13 @@ typedef struct ShadowMap {
 
 extern f64 __fabs(f64);
 extern void fn_80038F10(void *);
-extern void fn_80038FD8(u32 *, u32 *, u32 *, u32 *);
-extern void fn_80038BFC(void *);
+extern void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
+extern void GXGetProjectionv(void *);
 extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006D89C(f32, f32);
 extern void lbl_8006E0D8(f32, f32, f32);
-extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(void *, s32);
 extern void fn_80038EEC(f32, f32, f32, f32, f32, f32);
 extern void fn_80074188(u32, u32, u32, u32);
@@ -261,8 +261,8 @@ do_work:
     }
 
     fn_80038F10(loc_80);
-    fn_80038FD8(&loc_24, &loc_20, &loc_1C, &loc_18);
-    fn_80038BFC(loc_64);
+    GXGetScissor(&loc_24, &loc_20, &loc_1C, &loc_18);
+    GXGetProjectionv(loc_64);
 
     if (flag) {
         ax = __fabs(unk_48->pos.x);
@@ -295,7 +295,7 @@ do_work:
     {
         f32 v3 = p_rodata->unk_4C;
         f32 v13 = p_rodata->unk_40;
-        fn_80015EE8(loc_C8, v3, v13, v13, v3, p_rodata->unk_4, p_rodata->unk_50);
+        C_MTXOrtho(loc_C8, v3, v13, v13, v3, p_rodata->unk_4, p_rodata->unk_50);
     }
     fn_800737E4(loc_C8, 1);
     fn_80038EEC(p_rodata->unk_4, p_rodata->unk_4, p_rodata->unk_54, p_rodata->unk_54, p_rodata->unk_4, p_rodata->unk_44);

@@ -2,7 +2,7 @@
 #include <dolphin/os/OSInterrupt.h>
 #pragma scheduling off
 
-__OSInterruptHandler fn_8000D55C(__OSInterrupt interrupt);
+__OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt);
 
 extern EXIControl Ecb_8015CCB0[3];
 
@@ -25,7 +25,7 @@ void SetExiInterruptMask(s32 chan, EXIControl *exi) {
         }
         break;
     case 2:
-        if (fn_8000D55C(25) == 0 || (exi->state & 0x10)) {
+        if (__OSGetInterruptHandler(25) == 0 || (exi->state & 0x10)) {
             __OSMaskInterrupts((0x80000000u >> (25)));
         } else {
             __OSUnmaskInterrupts((0x80000000u >> (25)));

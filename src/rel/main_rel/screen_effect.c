@@ -2213,8 +2213,8 @@ extern void fn_1_550A8(void);
 extern u32 fn_1_7926C(u32);
 extern f64 fn_1_550E0(void);
 extern void lbl_8006DD14(void *, void *);
-extern void fn_80038FD8(s32 *, s32 *, s32 *, s32 *);
-extern void fn_80038BFC(f32* out);
+extern void GXGetScissor(s32 *, s32 *, s32 *, s32 *);
+extern void GXGetProjectionv(f32* out);
 extern void fn_80072270(f32 *, f64);
 extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 
@@ -3626,8 +3626,8 @@ extern void fn_1_7926C(s32);
 extern void fn_1_550E0(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_80038F10(f32 *);
-extern void fn_80038FD8(u32 *, u32 *, u32 *, u32 *);
-extern void fn_80038BFC(f32 *);
+extern void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
+extern void GXGetProjectionv(f32 *);
 extern void fn_80072270(f32 *);
 extern void fn_80074188(u32, u32, u32, u32);
 extern void fn_80038EEC(f32, f32, f32, f32, f32, f32);
@@ -3662,8 +3662,8 @@ void fn_1_79654(void) {
         if (mode == 1 || (u8)(mode - 3) <= 1) {
             lbl_8006DD14(lbl_801A6D00[0]->mtx, mtx);
             fn_80038F10(proj);
-            fn_80038FD8(&a, &b, &c, &d);
-            fn_80038BFC(vp);
+            GXGetScissor(&a, &b, &c, &d);
+            GXGetProjectionv(vp);
             fn_1_550A8();
             flag.value = 1;
             if (!((u8)(mode - 3) <= 1)) {
@@ -5279,7 +5279,7 @@ extern s8 fn_1_A5DC4(void);
 extern u32 __cvt_fp2unsigned(f32);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_80038F10(f32 *);
-extern void fn_80038FD8(u32 *, u32 *, u32 *, u32 *);
+extern void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
 extern void fn_1_A71CC(void);
 extern void fn_1_550A8(void);
 extern f32 lbl_8006D188(s16);
@@ -5424,7 +5424,7 @@ void fn_1_7B558(s32 arg0, s32 arg1, u32 x, u32 y, u32 w, u32 h, f32 scale) {
     }
     lbl_8006DD14(lbl_801A6D00.mtx + 3, mtx);
     fn_80038F10(viewport);
-    fn_80038FD8(&sx, &sy, &sw, &sh);
+    GXGetScissor(&sx, &sy, &sw, &sh);
     fn_1_A71CC();
     fn_1_550A8();
     angle = (s16)lbl_1_bss_6D778__fzgx_offset_28 + 0x4000;

@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern u32 fn_80019B78(void);
+extern u32 DVDCancel(void);
 
 s32 DVDClose(void) {
-    fn_80019B78();
+    DVDCancel();
     return 1;
 }

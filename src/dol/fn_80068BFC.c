@@ -106,7 +106,7 @@ extern volatile s32 lbl_801A6C7C; /* Updated asynchronously by the ARQ callbacks
 extern u32 lbl_801A6410;
 extern void fn_80067F68(u32,u32,u32,u32,u32,u32);
 extern void fn_800631EC(void);
-extern u32 fn_8001E954(u32);
+extern u32 ARAlloc(u32);
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL);
 extern u32 fn_80008E34(u32,u32);
@@ -137,7 +137,7 @@ s32 fn_80068BFC(u32 arg0,u32 arg1,u32 arg2,u32 arg3,u32 arg4,u32 arg5) {
         STATE->unk_1a4 = STATE->unk_1a0;
         STATE->unk_100 = arg3;
     } else {
-        STATE->unk_1a0 = fn_8001E954(arg2);
+        STATE->unk_1a0 = ARAlloc(arg2);
         STATE->unk_1a4 = STATE->unk_1a0;
         enabled = OSDisableInterrupts();
         STATE->unk_100 = fn_80008E34(lbl_801A6410,arg1);

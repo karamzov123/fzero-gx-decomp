@@ -236,13 +236,13 @@ typedef struct _GXData {
     u32 dirtyState;
 } GXData;
 
-s32 fn_80010CB0(OSThread *thread);
+s32 OSResumeThread(OSThread *thread);
 
 s32 OSSuspendThread(OSThread *thread);
 
-void fn_800322E8(u8 hiWatermarkEn, u8 loWatermarkEn);
+void __GXWriteFifoIntEnable(u8 hiWatermarkEn, u8 loWatermarkEn);
 
-void fn_80032324(u8 hiWatermarkClr, u8 loWatermarkClr);
+void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr);
 
 extern GXData *const gx;
 
@@ -258,17 +258,17 @@ extern u32 lbl_801A6C08;
 
 static inline void GXOverflowHandler() {
     lbl_801A6C08 += 1;
-    fn_800322E8(0, 1);
-    fn_80032324(1, 0);
+    __GXWriteFifoIntEnable(0, 1);
+    __GXWriteFifoIntReset(1, 0);
     lbl_801A6C00 = 1;
     OSSuspendThread(lbl_801A6BF8);
 }
 
 static inline void GXUnderflowHandler() {
-    fn_80010CB0(lbl_801A6BF8);
+    OSResumeThread(lbl_801A6BF8);
     lbl_801A6C00 = 0;
-    fn_80032324(1, 1);
-    fn_800322E8(1, 0);
+    __GXWriteFifoIntReset(1, 1);
+    __GXWriteFifoIntEnable(1, 0);
 }
 
 static inline void GXBreakPointHandler(OSContext *context) {

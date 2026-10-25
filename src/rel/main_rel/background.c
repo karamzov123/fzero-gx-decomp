@@ -16,7 +16,7 @@ extern void lbl_8006DB74(void *);
 extern void fn_1_9DDA8(u32, u32, u32);
 extern void fn_1_9DFB8(u32, u32, u32, u32);
 extern void GXPeekZ(u32, u32, void *);
-extern void fn_80034200(u32);
+extern void GXPokeAlphaRead(u32);
 extern void fn_8003432C(u32, u32, u32 *);
 
 /* fzgx:begin fn_1_9CF78 */
@@ -196,7 +196,7 @@ extern void lbl_8006DB74(void *);
 extern void fn_1_9DDA8(u32, u32, u32);
 extern void fn_1_9DFB8(u32, u32, u32, u32);
 extern void GXPeekZ(u32, u32, void *);
-extern void fn_80034200(u32);
+extern void GXPokeAlphaRead(u32);
 extern void fn_8003432C(u32, u32, u32 *);
 
 extern s32 fn_1_9D93C(s32, u32 *);
@@ -600,7 +600,7 @@ void fn_1_9E1D0(void) {
         while (count > 0) {
             if (entry->unk_4 == 0) {
                 GXPeekZ((u16)entry->unk_0, (u16)entry->unk_2, &entry->unk_4);
-                fn_80034200(2);
+                GXPokeAlphaRead(2);
                 fn_8003432C((u16)entry->unk_0, (u16)entry->unk_2, &result);
                 entry->unk_8 = (u8)(result >> 24);
             }
@@ -626,7 +626,7 @@ typedef struct {
     u32 pad;
 } ScreenPoint;
 
-extern void fn_80038BFC(f32 *);
+extern void GXGetProjectionv(f32 *);
 extern void fn_80038F10(f32 *);
 
 /* Projects camera-space points to clamped screen coordinates. */
@@ -643,7 +643,7 @@ void fn_1_9E29C(s32 count, Vec3f *src, ScreenPoint *dst) {
     f32 t;
     s32 i;
 
-    fn_80038BFC(proj);
+    GXGetProjectionv(proj);
     fn_80038F10(vp);
     halfW = 0.5f * vp[2];
     halfH = 0.5f * vp[3];
@@ -693,7 +693,7 @@ void fn_1_9E29C(s32 count, Vec3f *src, ScreenPoint *dst) {
 
 /* fzgx:begin fn_1_9E514 */
 extern f32 lbl_1_rodata_42C0[4];
-extern void fn_80038BFC(f32 *);
+extern void GXGetProjectionv(f32 *);
 extern u32 __cvt_fp2unsigned(f32);
 
 typedef struct {
@@ -708,7 +708,7 @@ s32 fn_1_9E514(f32 arg0) {
     f32 prod;
     f32 value;
 
-    fn_80038BFC((f32 *)&data);
+    GXGetProjectionv((f32 *)&data);
     prod = data.unk_14 * arg0;
     value = data.unk_18 + prod;
     value /= arg0;

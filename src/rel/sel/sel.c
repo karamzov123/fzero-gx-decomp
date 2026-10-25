@@ -6656,7 +6656,7 @@ void fn_10_C49C(void) {
 extern void fn_1_451E4(void);
 extern void fn_1_3308(void);
 extern void fn_1_D3214(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern s32 fn_1_467F4(void);
 extern s32 fn_1_13018(void);
 extern void fn_8006FDEC(void);
@@ -6668,7 +6668,7 @@ body:
     fn_1_451E4();
     fn_1_3308();
     fn_1_D3214();
-    fn_8001AF64();
+    VIWaitForRetrace();
 check:
     if (fn_1_467F4() != 0) {
         goto body; // Continue the irreducible retail loop.
@@ -8213,7 +8213,7 @@ extern void fn_1_131004(void);
 extern void fn_1_451E4(void);
 extern void fn_1_3308(void);
 extern void fn_1_D3214(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern s32 fn_1_13018(void);
 extern s32 fn_8006FDEC(void);
 extern u32 fn_1_4404(void *obj);
@@ -19884,7 +19884,7 @@ extern void fn_1_131004(void);
 extern void fn_1_451E4(void);
 extern void fn_1_3308(void);
 extern void fn_1_D3214(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern s32 fn_1_13018(void);
 extern s32 fn_8006FDEC(void);
 extern u32 fn_1_4404(void *obj);
@@ -23552,7 +23552,7 @@ extern void fn_1_131004(void);
 extern void fn_1_451E4(void);
 extern void fn_1_3308(void);
 extern void fn_1_D3214(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern s32 fn_1_13018(void);
 extern s32 fn_8006FDEC(void);
 extern u32 fn_1_4404(void *obj);

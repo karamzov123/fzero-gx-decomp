@@ -28,7 +28,7 @@ extern f32 lbl_801A6C64;
 extern const f32 lbl_801A71C8;
 extern const f64 lbl_801A71D0;
 extern struct fn_8003E9EC_lbl_8012B658 lbl_8012B658;
-extern void fn_80015B24(void *);
+extern void PSMTXIdentity(void *);
 extern u8 lbl_80178C18[144];
 extern u32 lbl_801A6C54;
 extern u32 lbl_801A6C60;
@@ -47,7 +47,7 @@ void fn_8003E9EC(u32 arg0) {
     u32 counter;
 
     p = (struct fn_8003E9EC_lbl_8012B658 *)&lbl_8012B658;
-    fn_80015B24(&lbl_80178C18);
+    PSMTXIdentity(&lbl_80178C18);
     counter = lbl_801A6C54;
     lbl_801A6C74 = arg0;
     lbl_801A6C60 = __OSCoreClock / 60 * 3;

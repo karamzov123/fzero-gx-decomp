@@ -3,8 +3,8 @@
 extern u32 __OSSetInterruptHandler(u32, u32);
 extern u32 OSInitThreadQueue(void *);
 extern u32 __OSUnmaskInterrupts(u32);
-extern void fn_800343BC(void);
-extern void fn_80034488(void);
+extern void GXTokenInterruptHandler(void);
+extern void GXFinishInterruptHandler(void);
 extern u32 lbl_801A6C1C;
 // PE register block is memory-mapped hardware and must be accessed volatile.
 extern volatile u16 *__peReg;
@@ -12,8 +12,8 @@ extern volatile u16 *__peReg;
 void __GXPEInit(void) {
     u32 current;
 
-    __OSSetInterruptHandler(0x12, (u32)fn_800343BC);
-    __OSSetInterruptHandler(0x13, (u32)fn_80034488);
+    __OSSetInterruptHandler(0x12, (u32)GXTokenInterruptHandler);
+    __OSSetInterruptHandler(0x13, (u32)GXFinishInterruptHandler);
     OSInitThreadQueue(&lbl_801A6C1C);
     __OSUnmaskInterrupts(0x2000);
     __OSUnmaskInterrupts(0x1000);

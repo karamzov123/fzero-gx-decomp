@@ -22,7 +22,7 @@ struct FSTEntry {
 
 void OSReport(const char *msg, ...);
 
-s32 fn_80016DF8(const char *pathPtr);
+s32 DVDConvertPathToEntrynum(const char *pathPtr);
 
 BOOL DVDGetCurrentDir(char *path, u32 maxlen);
 
@@ -31,7 +31,7 @@ extern FSTEntry *FstStart;
 BOOL DVDOpen(const char *fileName, DVDFileInfo *fileInfo) {
     s32 entry;
     char currentDir[128];
-    entry = fn_80016DF8(fileName);
+    entry = DVDConvertPathToEntrynum(fileName);
     if (0 > entry) {
         DVDGetCurrentDir(currentDir, 128);
         OSReport("Warning: DVDOpen(): file '%s' was not found under %s.\n", fileName, currentDir);

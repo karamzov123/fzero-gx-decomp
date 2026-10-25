@@ -18,7 +18,7 @@ extern volatile BOOL RunQueueHint; // fzgx-allow: S2 SDK asynchronous state
 
 OSThreadQueue __OSActiveThreadQueue : FZGX_ADDR___OSActiveThreadQueue;
 
-void fn_8001036C(OSThread *thread);
+void UnsetRun(OSThread *thread);
 
 OSPriority __OSGetEffectivePriority(OSThread *thread);
 
@@ -55,7 +55,7 @@ void OSCancelThread(OSThread *thread) {
     switch (thread->state) {
     case OS_THREAD_STATE_READY:
         if (!(0 < thread->suspend)) {
-            fn_8001036C(thread);
+            UnsetRun(thread);
         }
         break;
     case OS_THREAD_STATE_RUNNING:

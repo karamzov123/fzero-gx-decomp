@@ -2,7 +2,7 @@
 
 extern u32 DummyCommandBlock_8015CE80[];
 extern u32 FatalErrorFlag_801A68D8;
-extern void fn_8001A2EC(void);
+extern void __DVDPrintFatalMessage(void);
 extern u32 lbl_801A68E0;
 extern u32 lbl_801A68E4;
 extern void stateReady(void);
@@ -23,7 +23,7 @@ void cbForStateError(u32 arg0, u32 arg1) {
         *(s32 *)((u8 *)executing + 12) = -1;
         stateTimeout();
     } else {
-        fn_8001A2EC();
+        __DVDPrintFatalMessage();
         executing = executing_801A68C0;
         FatalErrorFlag_801A68D8 = 1;
         executing_801A68C0 = (struct Executing *)&DummyCommandBlock_8015CE80;

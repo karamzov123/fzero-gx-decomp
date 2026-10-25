@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u32 fn_800174D0(u32, u32, u32, u32, u32, u32);
+extern u32 DVDReadAsyncPrio(u32, u32, u32, u32, u32, u32);
 
 struct fn_80006DAC_Arg0 {
     u32 unk_0;
@@ -15,7 +15,7 @@ u32 fn_80006DAC(struct fn_80006DAC_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32
     if ((s32)arg0->unk_0 != 1) {
     v0 += 4;
     v1 = 2;
-    t0 = fn_800174D0(v0, arg1, arg2, arg3, arg4, v1);
+    t0 = DVDReadAsyncPrio(v0, arg1, arg2, arg3, arg4, v1);
     v0 = t0;
     v1 = v0;
     }

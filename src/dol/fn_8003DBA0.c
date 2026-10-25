@@ -15,7 +15,7 @@ extern void fn_80034378(void (*func)(void));
 extern u32 lbl_801A6C44;
 extern Entry *lbl_801A6C4C;
 extern void fn_8003D4E0(void);
-extern void fn_80039AFC(void);
+extern void GXClearGPMetric(void);
 extern void PPCMtpmc1(u32 value);
 extern void PPCMtpmc2(u32 value);
 extern void PPCMtpmc3(u32 value);
@@ -34,7 +34,7 @@ void fn_8003DBA0(void) {
     fn_80034378(fn_8003D698);
     lbl_801A6C4C[lbl_801A6C44].unk4 = 0;
     fn_8003D4E0();
-    fn_80039AFC();
+    GXClearGPMetric();
     PPCMtpmc1(0);
     PPCMtpmc2(0);
     PPCMtpmc3(0);

@@ -2151,8 +2151,8 @@ extern size_t strlen(const char *);
 extern s32 strncmp(const char *, const char *, size_t);
 extern u32 OSGetArenaHi(void);
 extern void OSSetArenaHi(u32);
-extern u32 fn_8000B334(u32,u32);
-extern u32 fn_8000B360(u32,u32);
+extern u32 OSAllocFromArenaLo(u32,u32);
+extern u32 OSAllocFromArenaHi(u32,u32);
 extern void *fn_1_45D0(u32,u32,void *,u32);
 extern s32 fn_1_45B2C(void *);
 extern s32 fn_1_458A0(void *,void *,u32,u32);
@@ -2205,8 +2205,8 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
   if(arg3!=0) {
    if(arg2!=0) {
     arena=OSGetArenaHi();
-    dst=fn_8000B334(sizeB+0x10,0x20);
-    tmp=fn_8000B360(sizeA,0x20);
+    dst=OSAllocFromArenaLo(sizeB+0x10,0x20);
+    tmp=OSAllocFromArenaHi(sizeA,0x20);
    } else dst=(u32)fn_1_45D0(handle,sizeB+0x10,lbl_1_data_1A368,0x12F);
   } else dst=arg0->unk_20;
   hdr=(dst+0x2F)&~0x1F;
@@ -2221,7 +2221,7 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
  } else {
   sizeC=(fn_1_45B2C(&info)+0x1F)&~0x1F;
   if(arg3!=0) {
-   if(arg2!=0) dst=fn_8000B334(sizeC+0x20,0x20);
+   if(arg2!=0) dst=OSAllocFromArenaLo(sizeC+0x20,0x20);
    else dst=(u32)fn_1_45D0(handle,sizeC+0x20,lbl_1_data_1A368,0x156);
   } else dst=arg0->unk_20;
   hdr=(dst+0x2F)&~0x1F;
@@ -2231,7 +2231,7 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
  }
  *(u32 *)dst=*(u32 *)hdr;
  *(u32 *)(dst+4)=hdr+4;
- if(arg2!=0) *(u32 *)(dst+0xC)=fn_8000B334(*(u32 *)dst<<5,0x20);
+ if(arg2!=0) *(u32 *)(dst+0xC)=OSAllocFromArenaLo(*(u32 *)dst<<5,0x20);
  else *(u32 *)(dst+0xC)=(u32)fn_1_45D0(handle,*(u32 *)dst<<5,lbl_1_data_1A368,0x168);
  for(i=0;i<*(u32 *)dst;i++) {
   u32 flags;

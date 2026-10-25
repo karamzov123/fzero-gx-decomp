@@ -3,7 +3,7 @@
 
 extern u32 lbl_8017E980[];
 extern u32 fn_800102AC(void);
-extern void fn_80011298(u32, u32);
+extern void OSSetThreadPriority(u32, u32);
 
 struct GlobalState {
     u32 unk0[2];
@@ -24,6 +24,6 @@ void fn_8004EA94(void) {
     if (state->count == 0) {
         value = fn_800102AC();
         OSSuspendThread((OSThread *)&state->unk_970);
-        fn_80011298(value, state->unk_c88);
+        OSSetThreadPriority(value, state->unk_c88);
     }
 }

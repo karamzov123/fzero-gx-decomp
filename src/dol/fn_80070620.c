@@ -12,7 +12,7 @@ extern void OSPanic(const char *, int, const char *, ...);
 
 
 s32 VIGetTvFormat();                                /* extern */
-s32 fn_8001B42C(u32 *);                         /* extern */
+s32 VIConfigure(u32 *);                         /* extern */
 s32 GXAdjustForOverscan(u32, u32 *, s32, s32);  /* extern */
 
 void fn_80070620(s32 arg0) {
@@ -39,6 +39,6 @@ void fn_80070620(s32 arg0) {
     }
     GXAdjustForOverscan(*(u32 *)((u8 *)(&lbl_801A6CF4) + 0), (u32 *)(lbl_8019E150), 0, 0x10);
     (*(u32 *)((u8 *)(&lbl_801A6CF4) + 0)) = (u32)(lbl_8019E150);
-    fn_8001B42C((u32 *)(lbl_8019E150));
+    VIConfigure((u32 *)(lbl_8019E150));
     (*(u8 *)((u8 *)(&lbl_801A6CEA) + 0)) = 1;
 }

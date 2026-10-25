@@ -13,7 +13,7 @@ extern u32 fn_80036F24(void);
 extern u32 __GXSetGenMode(void);
 extern u32 __GXSetVCD(void);
 extern u32 fn_80033650(void);
-extern u32 fn_80032BE0(void);
+extern u32 __GXCalculateVLim(void);
 extern void __GXSendFlushPrim(void);
 
 void fn_8003462C(u32 arg0, u32 arg1, u32 arg2) {
@@ -34,7 +34,7 @@ void fn_8003462C(u32 arg0, u32 arg1, u32 arg2) {
             fn_80033650();
         }
         if (gx->flags & 0x18) {
-            fn_80032BE0();
+            __GXCalculateVLim();
         }
         gx->flags = 0;
     }

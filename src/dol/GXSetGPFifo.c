@@ -247,15 +247,15 @@ typedef struct _GXData {
     u32 dirtyState;
 } GXData;
 
-void fn_80032268(void);
+void __GXFifoReadEnable(void);
 
-void fn_8003228C(void);
+void __GXFifoReadDisable(void);
 
-void fn_800322AC(u8 en);
+void __GXFifoLink(u8 en);
 
-void fn_800322E8(u8 hiWatermarkEn, u8 loWatermarkEn);
+void __GXWriteFifoIntEnable(u8 hiWatermarkEn, u8 loWatermarkEn);
 
-void fn_80032324(u8 hiWatermarkClr, u8 loWatermarkClr);
+void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr);
 
 extern GXData *const gx;
 
@@ -272,8 +272,8 @@ extern GXBool lbl_801A6BFC;
 void GXSetGPFifo(GXFifoObj *fifo) {
     int interrupts = OSDisableInterrupts();
     u32 reg;
-    fn_8003228C();
-    fn_800322E8(0, 0);
+    __GXFifoReadDisable();
+    __GXWriteFifoIntEnable(0, 0);
     lbl_801A6BF4 = fifo;
     (*(vu16 *)((vu16 *)(__cpReg) + (16)) = (u16)fifo->base);
     (*(vu16 *)((vu16 *)(__cpReg) + (18)) = (u16)fifo->end);
@@ -292,15 +292,15 @@ void GXSetGPFifo(GXFifoObj *fifo) {
     fn_80009FF4();
     if (lbl_801A6BF0 == lbl_801A6BF4) {
         lbl_801A6BFC = 1;
-        fn_800322E8(1, 0);
-        fn_800322AC(1);
+        __GXWriteFifoIntEnable(1, 0);
+        __GXFifoLink(1);
     } else {
         lbl_801A6BFC = 0;
-        fn_800322E8(0, 0);
-        fn_800322AC(0);
+        __GXWriteFifoIntEnable(0, 0);
+        __GXFifoLink(0);
     }
     reg = gx->cpEnable;
-    fn_80032324(1, 1);
-    fn_80032268();
+    __GXWriteFifoIntReset(1, 1);
+    __GXFifoReadEnable();
     OSRestoreInterrupts(interrupts);
 }

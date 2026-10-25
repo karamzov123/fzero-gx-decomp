@@ -23,13 +23,13 @@ extern u32 *__piReg;
 
 extern u16 *__cpReg;
 
-void fn_80033E20(void);
+void GXFlush(void);
 
 extern GXBool lbl_801A6BFC;
 
 void __GXSaveCPUFifoAux(GXFifoObj *fifo) {
     int interrupts = OSDisableInterrupts();
-    fn_80033E20();
+    GXFlush();
     fifo->base = ((void *)((u32)((*(vu32 *)((vu32 *)(__piReg) + (3)))) + (0x8000 << 16)));
     fifo->end = ((void *)((u32)((*(vu32 *)((vu32 *)(__piReg) + (4)))) + (0x8000 << 16)));
     fifo->write_ptr =

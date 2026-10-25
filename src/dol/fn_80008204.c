@@ -27,7 +27,7 @@ extern void fn_80073898(u32);
 extern void fn_800728A8(s32, s32, s32, s32);
 extern void fn_80074918(u8, s32, u8);
 extern void fn_800720B0(u32);
-extern void fn_80038BFC(f32 *);
+extern void GXGetProjectionv(f32 *);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006D758(void);
 extern void lbl_8006DB30(void);
@@ -72,7 +72,7 @@ void fn_80008204(Color *color) {
     fn_800728A8(0, 1, 0, 0);
     fn_80074918(1, 7, 1);
     fn_800720B0(0);
-    fn_80038BFC(proj);
+    GXGetProjectionv(proj);
 
     n = proj[6] / proj[5];
     switch ((u32)proj[0]) {

@@ -110,19 +110,19 @@ dol/_ExitProcess.c:
 dol/SIProbe.c:
 	.text       start:0x80013158 end:0x8001317C
 
-dol/fn_800133B8.c:
+dol/SIRefreshSamplingRate.c:
 	.text       start:0x800133B8 end:0x800133DC
 
 dol/fn_800133DC.c:
 	.text       start:0x800133DC end:0x800133E0
 
-dol/fn_800157AC.c:
+dol/InitializeUART.c:
 	.text       start:0x800157AC end:0x8001581C
 
 dol/__DVDInitWA.c:
 	.text       start:0x80015F80 end:0x80015FC0
 
-dol/fn_80016D50.c:
+dol/DVDLowBreak.c:
 	.text       start:0x80016D50 end:0x80016D64
 
 dol/__DVDLowSetWAType.c:
@@ -131,7 +131,7 @@ dol/__DVDLowSetWAType.c:
 dol/DVDClose.c:
 	.text       start:0x80017228 end:0x8001724C
 
-dol/fn_800174D0.c:
+dol/DVDReadAsyncPrio.c:
 	.text       start:0x800174D0 end:0x80017590
 
 dol/fn_80017768.c:
@@ -143,10 +143,10 @@ dol/stateTimeout.c:
 dol/_epilog_rel_sample.c:
 	.text       start:0x80017A38 end:0x80017A60
 
-dol/fn_80017A60.c:
+dol/CategorizeError.c:
 	.text       start:0x80017A60 end:0x80017B14
 
-dol/fn_80017DA8.c:
+dol/cbForUnrecoveredError.c:
 	.text       start:0x80017DA8 end:0x80017E10
 
 dol/fn_80017EA8.c:
@@ -161,7 +161,7 @@ dol/__DVDDequeueWaitingQueue.c:
 dol/fn_8001BE6C.c:
 	.text       start:0x8001BE6C end:0x8001BE74
 
-dol/fn_8001D3E4.c:
+dol/PADControlMotor.c:
 	.text       start:0x8001D3E4 end:0x8001D488
 
 dol/AIGetStreamVolLeft.c:
@@ -338,7 +338,7 @@ dol/fn_80031FF4.c:
 dol/__GXFifoInit.c:
 	.text       start:0x8003221C end:0x80032268
 
-dol/fn_8003228C.c:
+dol/__GXFifoReadDisable.c:
 	.text       start:0x8003228C end:0x800322AC
 
 dol/fn_80032360.c:
@@ -356,10 +356,10 @@ dol/GXInvalidateVtxCache.c:
 dol/fn_80033E7C.c:
 	.text       start:0x80033E7C end:0x80033EB0
 
-dol/fn_800342E8.c:
+dol/GXPokeDither.c:
 	.text       start:0x800342E8 end:0x80034304
 
-dol/fn_80034488.c:
+dol/GXFinishInterruptHandler.c:
 	.text       start:0x80034488 end:0x8003450C
 
 dol/fn_80035680.c:
@@ -872,7 +872,7 @@ dol/fn_8008B6BC.c:
 dol/fn_8008D7B0.c:
 	.text       start:0x8008D7B0 end:0x8008D7C0 align:4
 
-dol/fn_8000D55C.c:
+dol/__OSGetInterruptHandler.c:
 	.text       start:0x8000D55C end:0x8000D570 align:4
 
 dol/fn_800510C4.c:
@@ -932,7 +932,7 @@ dol/fn_8007075C.c:
 dol/__OSReschedule.c:
 	.text       start:0x800107F8 end:0x80010828 align:4
 
-dol/fn_80020530.c:
+dol/ARQInit.c:
 	.text       start:0x80020530 end:0x800205A0 align:4
 
 dol/fn_80006904.c:
@@ -980,10 +980,10 @@ dol/fn_80034378.c:
 dol/fn_80034444.c:
 	.text       start:0x80034444 end:0x80034488 align:4
 
-dol/fn_80013994.c:
+dol/PADSetSamplingCallback.c:
 	.text       start:0x80013994 end:0x800139E8 align:4
 
-dol/fn_8001DE30.c:
+dol/PADSetSamplingCallback_Pad.c:
 	.text       start:0x8001DE30 end:0x8001DE84 align:4
 
 dol/fn_8006A998.c:
@@ -1001,7 +1001,7 @@ dol/__OSGetEffectivePriority.c:
 dol/fn_80089144.c:
 	.text       start:0x80089144 end:0x80089174 align:4
 
-dol/fn_8001036C.c:
+dol/UnsetRun.c:
 	.text       start:0x8001036C end:0x800103D4 align:4
 
 dol/GXInitTexCacheRegion.c:
@@ -1754,7 +1754,7 @@ dol/fn_800280F0.c:
 dol/fn_80023638.c:
 	.text       start:0x80023638 end:0x80023684 align:4
 
-dol/fn_80033E20.c:
+dol/GXFlush.c:
 	.text       start:0x80033E20 end:0x80033E7C align:4
 
 dol/fn_80008E34.c:
@@ -1793,7 +1793,7 @@ dol/fn_800176D8.c:
 dol/fn_80019C24.c:
 	.text       start:0x80019C24 end:0x80019C48 align:4
 
-dol/fn_80021B84.c:
+dol/cbForCancelAllSync.c:
 	.text       start:0x80021B84 end:0x80021BB0 align:4
 
 dol/fn_800133E0.c:
@@ -1802,7 +1802,7 @@ dol/fn_800133E0.c:
 dol/fn_80021FBC.c:
 	.text       start:0x80021FBC end:0x80022014 align:4
 
-dol/fn_8001BD84.c:
+dol/VISetNextFrameBuffer.c:
 	.text       start:0x8001BD84 end:0x8001BDF0 align:4
 
 dol/CARDGetResultCode.c:
@@ -1946,10 +1946,10 @@ dol/fn_80074A8C.c:
 dol/fn_80078CDC.c:
 	.text       start:0x80078CDC end:0x80078D48 align:4
 
-dol/fn_80039AFC.c:
+dol/GXClearGPMetric.c:
 	.text       start:0x80039AFC end:0x80039B0C align:4
 
-dol/fn_80034200.c:
+dol/GXPokeAlphaRead.c:
 	.text       start:0x80034200 end:0x80034214 align:4
 
 dol/fn_80072864.c:
@@ -2057,7 +2057,7 @@ dol/__OSLockSramEx.c:
 dol/__OSLockSram.c:
 	.text       start:0x8000F8BC end:0x8000F918 align:4
 
-dol/fn_80013934.c:
+dol/SamplingHandler.c:
 	.text       start:0x80013934 end:0x80013994 align:4
 
 dol/DBPrintf.c:
@@ -2066,43 +2066,43 @@ dol/DBPrintf.c:
 dol/fn_80017590.c:
 	.text       start:0x80017590 end:0x800175C0 align:4
 
-dol/fn_80018170.c:
+dol/cbForStateCheckID2a.c:
 	.text       start:0x80018170 end:0x800181E4 align:4
 
-dol/fn_80018650.c:
+dol/cbForStateCoverClosed.c:
 	.text       start:0x80018650 end:0x800186C0 align:4
 
-dol/fn_800178CC.c:
+dol/cbForStateReadingFST.c:
 	.text       start:0x800178CC end:0x80017958 align:4
 
-dol/fn_800195D4.c:
+dol/DVDCancelStreamAsync.c:
 	.text       start:0x800195D4 end:0x80019690 align:4
 
 dol/DVDInquiryAsync.c:
 	.text       start:0x80019690 end:0x80019760 align:4
 
-dol/fn_8001A2EC.c:
+dol/__DVDPrintFatalMessage.c:
 	.text       start:0x8001A2EC end:0x8001A31C align:4
 
-dol/fn_80019430.c:
+dol/DVDReadAbsAsyncForBS.c:
 	.text       start:0x80019430 end:0x80019500 align:4
 
-dol/fn_80019B78.c:
+dol/DVDCancel.c:
 	.text       start:0x80019B78 end:0x80019C24 align:4
 
-dol/fn_8001AF64.c:
+dol/VIWaitForRetrace.c:
 	.text       start:0x8001AF64 end:0x8001AFB8 align:4
 
 dol/__DVDPopWaitingQueue.c:
 	.text       start:0x80019F04 end:0x80019FA4 align:4
 
-dol/fn_8001DDD0.c:
+dol/SamplingHandler_Pad.c:
 	.text       start:0x8001DDD0 end:0x8001DE30 align:4
 
 dol/__DVDClearWaitingQueue.c:
 	.text       start:0x80019E64 end:0x80019E9C align:4
 
-dol/fn_80019354.c:
+dol/DVDReadAbsAsyncPrio.c:
 	.text       start:0x80019354 end:0x80019430 align:4
 
 dol/VISetBlack.c:
@@ -2141,7 +2141,7 @@ dol/fn_80026F4C.c:
 dol/fn_80028424.c:
 	.text       start:0x80028424 end:0x800284A0 align:4
 
-dol/fn_80028DD8.c:
+dol/DSPAddTask.c:
 	.text       start:0x80028DD8 end:0x80028E48 align:4
 
 dol/fn_80025D5C.c:
@@ -2192,64 +2192,64 @@ dol/DeleteCallback.c:
 dol/GXInitFifoPtrs.c:
 	.text       start:0x80031CF0 end:0x80031D60 align:4
 
-dol/fn_80032268.c:
+dol/__GXFifoReadEnable.c:
 	.text       start:0x80032268 end:0x8003228C align:4
 
-dol/fn_8002AE70.c:
+dol/DummyLen.c:
 	.text       start:0x8002AE70 end:0x8002AF34 align:4
 
-dol/fn_800322E8.c:
+dol/__GXWriteFifoIntEnable.c:
 	.text       start:0x800322E8 end:0x80032324 align:4
 
-dol/fn_800341EC.c:
+dol/GXPokeAlphaMode.c:
 	.text       start:0x800341EC end:0x80034200 align:4
 
-dol/fn_80033D4C.c:
+dol/GXSetNumTexGens.c:
 	.text       start:0x80033D4C end:0x80033D8C align:4
 
-dol/fn_800342B8.c:
+dol/GXPokeColorUpdate.c:
 	.text       start:0x800342B8 end:0x800342D4 align:4
 
-dol/fn_800322AC.c:
+dol/__GXFifoLink.c:
 	.text       start:0x800322AC end:0x800322E8 align:4
 
-dol/fn_800343BC.c:
+dol/GXTokenInterruptHandler.c:
 	.text       start:0x800343BC end:0x80034444 align:4
 
 dol/__GXPEInit.c:
 	.text       start:0x8003450C end:0x8003458C align:4
 
-dol/fn_800350F4.c:
+dol/GXSetDispCopyGamma.c:
 	.text       start:0x800350F4 end:0x80035110 align:4
 
-dol/fn_80036388.c:
+dol/GXLoadTexObj.c:
 	.text       start:0x80036388 end:0x800363DC align:4
 
 dol/fn_80034890.c:
 	.text       start:0x80034890 end:0x800348DC align:4
 
-dol/fn_80036EB4.c:
+dol/GXSetNumIndStages.c:
 	.text       start:0x80036EB4 end:0x80036EDC align:4
 
 dol/fn_80036EDC.c:
 	.text       start:0x80036EDC end:0x80036F24 align:4
 
-dol/fn_80034304.c:
+dol/GXPokeZMode.c:
 	.text       start:0x80034304 end:0x8003432C align:4
 
-dol/fn_800365A0.c:
+dol/GXSetTlutRegionCallback.c:
 	.text       start:0x800365A0 end:0x800365B4 align:4
 
-dol/fn_800377C8.c:
+dol/GXSetNumTevStages.c:
 	.text       start:0x800377C8 end:0x800377F8 align:4
 
-dol/fn_80038CFC.c:
+dol/GXSetCurrentMtx.c:
 	.text       start:0x80038CFC end:0x80038D34 align:4
 
 dol/fn_800433A4.c:
 	.text       start:0x800433A4 end:0x800433D0 align:4
 
-dol/fn_80037DB4.c:
+dol/GXSetFieldMode.c:
 	.text       start:0x80037DB4 end:0x80037E30 align:4
 
 dol/fn_800433F4.c:
@@ -2951,7 +2951,7 @@ dol/fn_80087BA4.c:
 dol/__FileWrite.c:
 	.text       start:0x800809E0 end:0x80080A38 align:4
 
-dol/fn_80038BFC.c:
+dol/GXGetProjectionv.c:
 	.text       start:0x80038BFC end:0x80038C5C align:4
 
 dol/fn_8006CCC8.c:
@@ -2960,7 +2960,7 @@ dol/fn_8006CCC8.c:
 dol/fn_80028130.c:
 	.text       start:0x80028130 end:0x80028164 align:4
 
-dol/fn_80017E10.c:
+dol/cbForUnrecoveredErrorRetry.c:
 	.text       start:0x80017E10 end:0x80017EA8 align:4
 
 dol/__CARDEnableInterrupt.c:
@@ -2978,19 +2978,19 @@ dol/__OSGetDIConfig.c:
 dol/SISetCommand.c:
 	.text       start:0x8001254C end:0x80012560 align:4
 
-dol/fn_80038B3C.c:
+dol/GXSetProjectionv.c:
 	.text       start:0x80038B3C end:0x80038BFC align:4
 
 dol/fn_8005466C.c:
 	.text       start:0x8005466C end:0x800546A0 align:4
 
-dol/fn_8003416C.c:
+dol/GXDrawDone.c:
 	.text       start:0x8003416C end:0x800341EC align:4
 
 dol/fn_80058EE4.c:
 	.text       start:0x80058EE4 end:0x80058EF4 align:4
 
-dol/fn_8003658C.c:
+dol/GXSetTexRegionCallback.c:
 	.text       start:0x8003658C end:0x800365A0 align:4
 
 dol/AIStartDMA.c:
@@ -3002,7 +3002,7 @@ dol/fn_80020A0C.c:
 dol/fn_8006CE1C.c:
 	.text       start:0x8006CE1C end:0x8006CE44 align:4
 
-dol/fn_8000B334.c:
+dol/OSAllocFromArenaLo.c:
 	.text       start:0x8000B334 end:0x8000B360 align:4
 
 dol/strchr.c:
@@ -3011,16 +3011,16 @@ dol/strchr.c:
 dol/__DVDFSInit.c:
 	.text       start:0x80016DC0 end:0x80016DF8 align:4
 
-dol/fn_80037BF4.c:
+dol/GXSetZCompLoc.c:
 	.text       start:0x80037BF4 end:0x80037C2C align:4
 
-dol/fn_80032324.c:
+dol/__GXWriteFifoIntReset.c:
 	.text       start:0x80032324 end:0x80032360 align:4
 
 dol/fn_80074D28.c:
 	.text       start:0x80074D28 end:0x80074D68 align:4
 
-dol/fn_800348DC.c:
+dol/GXSetCoPlanar.c:
 	.text       start:0x800348DC end:0x80034918 align:4
 
 dol/fn_8004BF68.c:
@@ -3038,13 +3038,13 @@ dol/fn_800300F4.c:
 dol/__DBExceptionDestinationAux.c:
 	.text       start:0x80015A60 end:0x80015AA8 align:4
 
-dol/fn_800347EC.c:
+dol/GXSetPointSize.c:
 	.text       start:0x800347EC end:0x80034834 align:4
 
 dol/fn_80063EF4.c:
 	.text       start:0x80063EF4 end:0x80063F38 align:4
 
-dol/fn_800198AC.c:
+dol/DVDResume.c:
 	.text       start:0x800198AC end:0x800198FC align:4
 
 dol/fn_8008023C.c:
@@ -3056,10 +3056,10 @@ dol/fn_80072BD0.c:
 dol/fn_8005B010.c:
 	.text       start:0x8005B010 end:0x8005B068 align:4
 
-dol/fn_80034214.c:
+dol/GXPokeAlphaUpdate.c:
 	.text       start:0x80034214 end:0x80034230 align:4
 
-dol/fn_8000B360.c:
+dol/OSAllocFromArenaHi.c:
 	.text       start:0x8000B360 end:0x8000B380 align:4
 
 dol/fn_8006CD50.c:
@@ -3080,7 +3080,7 @@ dol/fn_8008A5BC.c:
 dol/fn_80059BAC.c:
 	.text       start:0x80059BAC end:0x80059C0C align:4
 
-dol/fn_8001D488.c:
+dol/PADSetSpec.c:
 	.text       start:0x8001D488 end:0x8001D4E8 align:4
 
 dol/fn_80078BC4.c:
@@ -3098,7 +3098,7 @@ dol/fn_80058680.c:
 dol/fn_80070A58.c:
 	.text       start:0x80070A58 end:0x80070AC0 align:4
 
-dol/fn_8001E954.c:
+dol/ARAlloc.c:
 	.text       start:0x8001E954 end:0x8001E9BC align:4
 
 dol/fn_8006413C.c:
@@ -3134,7 +3134,7 @@ dol/fn_800095A4.c:
 dol/SIGetStatus.c:
 	.text       start:0x800124D0 end:0x8001254C align:4
 
-dol/fn_800164A4.c:
+dol/SeekTwiceBeforeRead.c:
 	.text       start:0x800164A4 end:0x80016524 align:4
 
 dol/OSGetSoundMode.c:
@@ -3194,7 +3194,7 @@ dol/fn_80018330.c:
 dol/cbForStateError.c:
 	.text       start:0x80017958 end:0x80017A04 align:4
 
-dol/fn_8001E9BC.c:
+dol/ARFree.c:
 	.text       start:0x8001E9BC end:0x8001EA30 align:4
 
 dol/fn_800829EC.c:
@@ -4059,7 +4059,7 @@ dol/fn_800780A4.c:
 dol/fn_80047608.c:
 	.text       start:0x80047608 end:0x8004768C align:4
 
-dol/fn_80011298.c:
+dol/OSSetThreadPriority.c:
 	.text       start:0x80011298 end:0x80011358 align:4
 
 dol/fn_80078D60.c:
@@ -4356,13 +4356,13 @@ dol/TRKTargetAccessDefault.c:
 dol/ClearArena.c:
 	.text       start:0x8000A24C end:0x8000A374 align:4
 
-dol/fn_800175C0.c:
+dol/DVDReadPrio.c:
 	.text       start:0x800175C0 end:0x800176D8 align:4
 
 dol/fn_80083F10.c:
 	.text       start:0x80083F10 end:0x80084F1C align:4
 
-dol/fn_80016DF8.c:
+dol/DVDConvertPathToEntrynum.c:
 	.text       start:0x80016DF8 end:0x800170EC align:4
 
 dol/fn_80043B48.c:
@@ -4707,7 +4707,7 @@ dol/fn_800551D0.c:
 dol/fn_80056950.c:
 	.text       start:0x80056950 end:0x80056A50 align:4
 
-dol/fn_80018028.c:
+dol/stateCheckID.c:
 	.text       start:0x80018028 end:0x80018108 align:4
 
 dol/fn_800134DC.c:
@@ -4821,7 +4821,7 @@ dol/fn_80082A7C.c:
 dol/fn_8004DFF0.c:
 	.text       start:0x8004DFF0 end:0x8004E098 align:4
 
-dol/fn_8002A698.c:
+dol/CARDInit.c:
 	.text       start:0x8002A698 end:0x8002A744 align:4
 
 dol/fn_8007B338.c:
@@ -4881,7 +4881,7 @@ dol/fn_8006F828.c:
 dol/fn_8006B7B4.c:
 	.text       start:0x8006B7B4 end:0x8006B870 align:4
 
-dol/fn_80015CB0.c:
+dol/C_MTXLightPerspective.c:
 	.text       start:0x80015CB0 end:0x80015D7C align:4
 
 dol/fn_80024378.c:
@@ -4908,7 +4908,7 @@ dol/fn_8004EA94.c:
 dol/fn_80057378.c:
 	.text       start:0x80057378 end:0x8005741C align:4
 
-dol/fn_80015EE8.c:
+dol/C_MTXOrtho.c:
 	.text       start:0x80015EE8 end:0x80015F80 align:4
 
 dol/fn_800139E8.c:
@@ -4917,7 +4917,7 @@ dol/fn_800139E8.c:
 dol/fn_80024D84.c:
 	.text       start:0x80024D84 end:0x80024DF0 align:4
 
-dol/fn_80015E18.c:
+dol/C_MTXPerspective.c:
 	.text       start:0x80015E18 end:0x80015EE8 align:4
 
 dol/fn_8008EB8C.c:
@@ -4950,7 +4950,7 @@ dol/fn_8008D7CC.c:
 dol/fn_80032EB8.c:
 	.text       start:0x80032EB8 end:0x80032F48 align:4
 
-dol/fn_80032BE0.c:
+dol/__GXCalculateVLim.c:
 	.text       start:0x80032BE0 end:0x80032D04 align:4
 
 dol/fn_8007E96C.c:
@@ -4974,7 +4974,7 @@ dol/ddh_cc_read.c:
 dol/fn_80078C28.c:
 	.text       start:0x80078C28 end:0x80078CDC align:4
 
-dol/fn_80038F48.c:
+dol/GXSetScissor.c:
 	.text       start:0x80038F48 end:0x80038FD8 align:4
 
 dol/fn_8003610C.c:
@@ -5058,7 +5058,7 @@ dol/fn_8006F038.c:
 dol/fn_8005741C.c:
 	.text       start:0x8005741C end:0x80057494 align:4
 
-dol/fn_80039020.c:
+dol/GXSetScissorBoxOffset.c:
 	.text       start:0x80039020 end:0x80039060 align:4
 
 dol/DVDGetTransferredSize.c:
@@ -5145,7 +5145,7 @@ dol/fn_8004B1DC.c:
 dol/fn_80026FE0.c:
 	.text       start:0x80026FE0 end:0x8002805C align:4
 
-dol/fn_80010CB0.c:
+dol/OSResumeThread.c:
 	.text       start:0x80010CB0 end:0x80010F38 align:4
 
 dol/fn_80072614.c:
@@ -5154,25 +5154,25 @@ dol/fn_80072614.c:
 dol/fn_80009AA8.c:
 	.text       start:0x80009AA8 end:0x80009CAC align:4
 
-dol/fn_8001C4A8.c:
+dol/PADOriginCallback.c:
 	.text       start:0x8001C4A8 end:0x8001C56C align:4
 
-dol/fn_8001C62C.c:
+dol/PADProbeCallback.c:
 	.text       start:0x8001C62C end:0x8001C704 align:4
 
 dol/fn_80048340.c:
 	.text       start:0x80048340 end:0x80049728 align:4
 
-dol/fn_80015D7C.c:
+dol/C_MTXFrustum.c:
 	.text       start:0x80015D7C end:0x80015E18 align:4
 
-dol/fn_8001BC54.c:
+dol/VIFlush.c:
 	.text       start:0x8001BC54 end:0x8001BD84 align:4
 
-dol/fn_8001A55C.c:
+dol/__VIRetraceHandler.c:
 	.text       start:0x8001A55C end:0x8001A78C align:4
 
-dol/fn_8003910C.c:
+dol/GXSetGPMetric.c:
 	.text       start:0x8003910C end:0x80039954 align:4
 
 dol/fn_8003E9EC.c:
@@ -5265,43 +5265,43 @@ dol/GetTypeCallback.c:
 dol/__DVDInterruptHandler.c:
 	.text       start:0x80015FC0 end:0x800162A0 align:4
 
-dol/fn_800162A0.c:
+dol/AlarmHandler_dvdlow.c:
 	.text       start:0x800162A0 end:0x80016324 align:4
 
-dol/fn_80016394.c:
+dol/Read.c:
 	.text       start:0x80016394 end:0x800164A4 align:4
 
-dol/fn_80016524.c:
+dol/DVDLowRead.c:
 	.text       start:0x80016524 end:0x800167BC align:4
 
-dol/fn_8001CB64.c:
+dol/PADReset.c:
 	.text       start:0x8001CB64 end:0x8001CC64 align:4
 
-dol/fn_8001CC64.c:
+dol/PADRecalibrate.c:
 	.text       start:0x8001CC64 end:0x8001CD68 align:4
 
-dol/fn_8001CF80.c:
+dol/PADRead.c:
 	.text       start:0x8001CF80 end:0x8001D32C align:4
 
-dol/fn_8001DC3C.c:
+dol/OnReset_Pad.c:
 	.text       start:0x8001DC3C end:0x8001DDD0 align:4
 
-dol/fn_80018D1C.c:
+dol/cbForStateBusy.c:
 	.text       start:0x80018D1C end:0x80019354 align:4
 
-dol/fn_8001CD68.c:
+dol/PADInit.c:
 	.text       start:0x8001CD68 end:0x8001CF80 align:4
 
-dol/fn_8001C704.c:
+dol/PADTypeAndStatusCallback.c:
 	.text       start:0x8001C704 end:0x8001CA30 align:4
 
-dol/fn_8001AAB4.c:
+dol/VIInit.c:
 	.text       start:0x8001AAB4 end:0x8001AF64 align:4
 
 dol/fn_8007C910.c:
 	.text       start:0x8007C910 end:0x8007CE0C align:4
 
-dol/fn_8001B42C.c:
+dol/VIConfigure.c:
 	.text       start:0x8001B42C end:0x8001BC54 align:4
 
 dol/data/__OSDriveBlock.c:
@@ -5337,13 +5337,13 @@ dol/fn_8000BFC0.c:
 dol/__flush_cache.c:
 	.init       start:0x80003424 end:0x80003458 align:4
 
-dol/fn_80015B24.c:
+dol/PSMTXIdentity.c:
 	.text       start:0x80015B24 end:0x80015B50 align:4
 
-dol/fn_80015B50.c:
+dol/PSMTXScale.c:
 	.text       start:0x80015B50 end:0x80015B78 align:4
 
-dol/fn_80015B78.c:
+dol/PSMTXQuat.c:
 	.text       start:0x80015B78 end:0x80015C1C align:4
 
 dol/__AICallbackStackSwitch.c:
@@ -5487,7 +5487,7 @@ dol/fn_80037B14.c:
 dol/fn_80039B38.c:
 	.text       start:0x80039B38 end:0x80039B7C align:4
 
-dol/fn_80038FD8.c:
+dol/GXGetScissor.c:
 	.text       start:0x80038FD8 end:0x80039020 align:4
 
 dol/fn_80034B7C.c:

@@ -80,9 +80,9 @@ extern u32 VIGetTvFormat(void);
 extern u32 OSGetProgressiveMode(void);
 extern void OSPanic(const char *, int, const char *, ...);
 extern void GXAdjustForOverscan(Sig_GXAdjustForOverscan_GXRenderModeObj *, Sig_GXAdjustForOverscan_GXRenderModeObj *, u16, u16);
-extern s32 fn_8001B42C(u32);
-extern void fn_8001AF64(void);
-extern void fn_8001BC54(void);
+extern s32 VIConfigure(u32);
+extern void VIWaitForRetrace(void);
+extern void VIFlush(void);
 extern void fn_8007423C(u32, u32, u32, u32);
 extern void fn_800743C4(s32, u32);
 extern void fn_80035110(void *, Sig_fn_80035110_GXBool);
@@ -129,19 +129,19 @@ void fn_1_A6870(u32 *arg0) {
     case 0:
         GXAdjustForOverscan(lbl_801A6CF4, &lbl_8019E150, 0, 16);
         lbl_801A6CF4 = &lbl_8019E150;
-        fn_8001B42C((u32)&lbl_8019E150);
-        fn_8001AF64();
-        fn_8001AF64();
-        fn_8001BC54();
+        VIConfigure((u32)&lbl_8019E150);
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        VIFlush();
         *arg0 = 0;
         break;
     case 1:
         GXAdjustForOverscan(lbl_801A6CF4, &lbl_8019E150, 0, 16);
         lbl_801A6CF4 = &lbl_8019E150;
-        fn_8001B42C((u32)&lbl_8019E150);
-        fn_8001AF64();
-        fn_8001AF64();
-        fn_8001BC54();
+        VIConfigure((u32)&lbl_8019E150);
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        VIFlush();
         *arg0 = 1;
         break;
     case 2:
@@ -151,19 +151,19 @@ void fn_1_A6870(u32 *arg0) {
         lbl_801A6CF4->viYOrigin = 60;
         GXAdjustForOverscan(lbl_801A6CF4, &lbl_8019E150, 0, 12);
         lbl_801A6CF4 = &lbl_8019E150;
-        fn_8001B42C((u32)&lbl_8019E150);
-        fn_8001AF64();
-        fn_8001AF64();
-        fn_8001BC54();
+        VIConfigure((u32)&lbl_8019E150);
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        VIFlush();
         *arg0 = 2;
         break;
     case 3:
         GXAdjustForOverscan(lbl_801A6CF4, &lbl_8019E150, 0, 0);
         lbl_801A6CF4 = &lbl_8019E150;
-        fn_8001B42C((u32)&lbl_8019E150);
-        fn_8001AF64();
-        fn_8001AF64();
-        fn_8001BC54();
+        VIConfigure((u32)&lbl_8019E150);
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        VIFlush();
         *arg0 = 3;
         break;
     }

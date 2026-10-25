@@ -11,9 +11,9 @@ extern u32 lbl_801A6BF4;
 extern u8 lbl_801A6BFC;
 extern u32 GXSetCPUFifo(u32);
 extern BOOL OSDisableInterrupts(void);
-extern void fn_80032324(u8, u8);
-extern void fn_800322E8(u32, u32);
-extern void fn_800322AC(u8);
+extern void __GXWriteFifoIntReset(u8, u8);
+extern void __GXWriteFifoIntEnable(u32, u32);
+extern void __GXFifoLink(u8);
 extern u32 fn_80009FF4(void);
 extern BOOL OSRestoreInterrupts(BOOL);
 
@@ -27,15 +27,15 @@ u32 GXSetCPUFifo(u32 arg0) {
         (*(struct GXSetCPUFifo___piReg_T **)((u8 *)(&__piReg) + 0))->unk_10 = (*(s32 *)((u8 *)(arg0) + 4)) & 0x3FFFFFFF;
         (*(struct GXSetCPUFifo___piReg_T **)((u8 *)(&__piReg) + 0))->unk_14 = (*(s32 *)((u8 *)(arg0) + 24)) & 0x3FFFFFE0 & 0xFBFFFFFF;
         (*(u8 *)((u8 *)(&lbl_801A6BFC) + 0)) = 1;
-        fn_80032324(1U, 1U);
-        fn_800322E8(1U, 0U);
-        fn_800322AC(1U);
+        __GXWriteFifoIntReset(1U, 1U);
+        __GXWriteFifoIntEnable(1U, 0U);
+        __GXFifoLink(1U);
     } else {
         if ((u8) (*(u8 *)((u8 *)(&lbl_801A6BFC) + 0)) != 0) {
-            fn_800322AC(0U);
+            __GXFifoLink(0U);
             (*(u8 *)((u8 *)(&lbl_801A6BFC) + 0)) = 0;
         }
-        fn_800322E8(0U, 0U);
+        __GXWriteFifoIntEnable(0U, 0U);
         (*(struct GXSetCPUFifo___piReg_T **)((u8 *)(&__piReg) + 0))->unk_C = (*(s32 *)((u8 *)(arg0) + 0)) & 0x3FFFFFFF;
         (*(struct GXSetCPUFifo___piReg_T **)((u8 *)(&__piReg) + 0))->unk_10 = (*(s32 *)((u8 *)(arg0) + 4)) & 0x3FFFFFFF;
         (*(struct GXSetCPUFifo___piReg_T **)((u8 *)(&__piReg) + 0))->unk_14 = (*(s32 *)((u8 *)(arg0) + 24)) & 0x3FFFFFE0 & 0xFBFFFFFF;

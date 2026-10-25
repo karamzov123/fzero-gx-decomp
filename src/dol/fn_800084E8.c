@@ -40,7 +40,7 @@ extern void lbl_8006DAEC(void);
 extern void lbl_8006D758(void);
 extern void fn_80072558(void);
 extern void lbl_8006DB30(void);
-extern void fn_80038BFC(f32 *viewport);
+extern void GXGetProjectionv(f32 *viewport);
 extern void fn_8003462C(u32 type, u32 fmt, u32 count);
 extern void fn_80008A4C(fn_800084E8_Rect *rect);
 
@@ -70,7 +70,7 @@ void fn_800084E8(void *arg0, fn_800084E8_Rect *rect) {
     lbl_8006D758();
     fn_80072558();
     lbl_8006DB30();
-    fn_80038BFC(viewport);
+    GXGetProjectionv(viewport);
     sx = -1.0f / viewport[1];
     sy = 1.0f / viewport[3];
     left = sx * (rect->left * rect->z);
