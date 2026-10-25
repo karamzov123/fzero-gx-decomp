@@ -81351,6 +81351,22 @@
   },
   {
     "module": "pilotpoint",
+    "source": "rel/pilotpoint/pilotpoint/fn_14_904.c",
+    "symbols": [
+      "fn_14_904"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/pilotpoint/pilotpoint.c",
+    "pool": {
+      "...rodata.0": "lbl_14_rodata_0",
+      "@32": "lbl_14_rodata_60",
+      "...data.0": "lbl_14_data_0"
+    }
+  },
+  {
+    "module": "pilotpoint",
     "source": "rel/pilotpoint/pilotpoint/fn_14_A1F4.c",
     "symbols": [
       "fn_14_A1F4"
