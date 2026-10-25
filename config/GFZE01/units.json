@@ -88349,6 +88349,17 @@
   },
   {
     "module": "winning",
+    "source": "rel/winning/winning/fn_15_644.c",
+    "symbols": [
+      "fn_15_644"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/winning/winning.c"
+  },
+  {
+    "module": "winning",
     "source": "rel/winning/winning/fn_15_B90.c",
     "symbols": [
       "fn_15_B90"
