@@ -3980,7 +3980,7 @@ void fn_1_A358C(s32 arg0) {
 }
 /* fzgx:end fn_1_A358C */
 
-/* fzgx:begin fn_1_A3654 pool noprologue */
+/* fzgx:begin fn_1_A3654 noprologue */
 #include "types.h"
 
 typedef struct SoundCarEntry {
@@ -4004,40 +4004,40 @@ extern u32 lbl_801A66C8[];
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u8 fzgx_obj_lbl_1_bss_6EA98[4];
-u8 lbl_1_bss_6EA9C_pad[0x73C];
+u8 fzgx_pool_lbl_1_bss_6EA9C_pad[0x73C];
 u8 fzgx_obj_lbl_1_bss_6F1D8;
-u8 lbl_1_bss_6F1D9_fill;
-u16 lbl_1_bss_6F1DA_fill;
+u8 fzgx_pool_lbl_1_bss_6F1D9_fill;
+u16 fzgx_pool_lbl_1_bss_6F1DA_fill;
 u32 fzgx_obj_lbl_1_bss_6F1DC;
 u8 fzgx_obj_lbl_1_bss_6F1E0;
 u8 fzgx_obj_lbl_1_bss_6F1E1;
-u16 lbl_1_bss_6F1E2_fill;
-SoundCarEntry lbl_1_bss_6F1E4[11];
-u32 lbl_1_bss_6F1E4_fill[2];
+u16 fzgx_pool_lbl_1_bss_6F1E2_fill;
+SoundCarEntry fzgx_pool_lbl_1_bss_6F1E4[11];
+u32 fzgx_pool_lbl_1_bss_6F1E4_fill[2];
 u32 lbl_1_bss_6F2C8[4];
 u8 fzgx_obj_lbl_1_bss_6F2D8[0x3E];
-u16 lbl_1_bss_6F316_fill;
-u32 lbl_1_bss_6F318_fill[5];
-s16 lbl_1_bss_6F32C[4];
+u16 fzgx_pool_lbl_1_bss_6F316_fill;
+u32 fzgx_pool_lbl_1_bss_6F318_fill[5];
+s16 fzgx_pool_lbl_1_bss_6F32C[4];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
-    s = *(u8 *)&lbl_1_bss_6EA9C_pad;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA9C_pad;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1D8;
-    s = *(u8 *)&lbl_1_bss_6F1D9_fill;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F1D9_fill;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1DC;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E1;
-    s = *(u8 *)&lbl_1_bss_6F1E2_fill;
-    s = *(u8 *)&lbl_1_bss_6F1E4;
-    s = *(u8 *)&lbl_1_bss_6F1E4_fill;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F1E2_fill;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F1E4;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F1E4_fill;
     s = *(u8 *)&lbl_1_bss_6F2C8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6F2D8;
-    s = *(u8 *)&lbl_1_bss_6F316_fill;
-    s = *(u8 *)&lbl_1_bss_6F318_fill;
-    s = *(u8 *)&lbl_1_bss_6F32C;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F316_fill;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F318_fill;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F32C;
 }
 #pragma section code_type ".text"
 
@@ -4060,7 +4060,7 @@ void fn_1_A3654(void *player, u32 id) {
     flags = fn_1_864E8(car);
     flags2 = fn_1_864FC(car);
 
-    if (lbl_1_bss_6F1E4[id].active != 0) {
+    if (fzgx_pool_lbl_1_bss_6F1E4[id].active != 0) {
         if ((flags & 0x8) && !(lbl_1_bss_6F2C8[id] & 0x8)) {
             PLAY_SE(0xA9090E00);
         } else if ((flags & 0x20000) && !(lbl_1_bss_6F2C8[id] & 0x20000)) {
@@ -4085,19 +4085,19 @@ void fn_1_A3654(void *player, u32 id) {
         }
 
         obj = fn_1_86254(car);
-        if (ABS((s32)obj->unk_4B0) >= 100 && lbl_1_bss_6F32C[id] == 0 && speed > 100.0f) {
+        if (ABS((s32)obj->unk_4B0) >= 100 && fzgx_pool_lbl_1_bss_6F32C[id] == 0 && speed > 100.0f) {
             PLAY_SE(0xA9091B00);
-            lbl_1_bss_6F32C[id] = obj->unk_4B0;
-        } else if (ABS((s32)obj->unk_4B0) < 100 && lbl_1_bss_6F32C[id] != 0) {
+            fzgx_pool_lbl_1_bss_6F32C[id] = obj->unk_4B0;
+        } else if (ABS((s32)obj->unk_4B0) < 100 && fzgx_pool_lbl_1_bss_6F32C[id] != 0) {
             PLAY_SE(0xA9091C00);
-            lbl_1_bss_6F32C[id] = 0;
+            fzgx_pool_lbl_1_bss_6F32C[id] = 0;
         }
     }
 
     if ((flags & 0x80) && !(lbl_1_bss_6F2C8[id] & 0x80)) {
         PLAY_SE(0xA9091C00);
         PLAY_SE(0xA9091600);
-        lbl_1_bss_6F32C[id] = 0;
+        fzgx_pool_lbl_1_bss_6F32C[id] = 0;
     }
 
     if ((flags2 & 0x10) && ((lbl_801A66C8[0] + 1) & 7) == 0) {

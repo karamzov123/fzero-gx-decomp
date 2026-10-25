@@ -68350,11 +68350,21 @@
     "symbols": [
       "fn_1_A3654"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/sound.c",
-    "pool": true
+    "pool": {
+      "@88": "lbl_1_rodata_4540",
+      "...bss.0": "lbl_1_bss_6EA98",
+      "fzgx_obj_lbl_1_bss_6EA98": "lbl_1_bss_6EA98",
+      "fzgx_obj_lbl_1_bss_6F1D8": "lbl_1_bss_6F1D8",
+      "fzgx_obj_lbl_1_bss_6F1DC": "lbl_1_bss_6F1DC",
+      "fzgx_obj_lbl_1_bss_6F1E0": "lbl_1_bss_6F1E0",
+      "fzgx_obj_lbl_1_bss_6F1E1": "lbl_1_bss_6F1E1",
+      "lbl_1_bss_6F2C8": "lbl_1_bss_6F2C8",
+      "fzgx_obj_lbl_1_bss_6F2D8": "lbl_1_bss_6F2D8"
+    }
   },
   {
     "module": "main_rel",
