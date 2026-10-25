@@ -1096,6 +1096,285 @@ void fn_1_1324C4(void *arg0) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_1324C4 */
 
+/* fzgx:begin fn_1_132774 */
+#include "font.h"
+
+extern u32 lbl_801A66B4;
+extern const FontDrawPacket lbl_1_rodata_26F8;
+extern const f32 lbl_1_rodata_85F0;
+extern const f32 lbl_1_rodata_861C;
+extern const f32 lbl_1_rodata_863C;
+extern const f32 lbl_1_rodata_8644;
+extern const f32 lbl_1_rodata_864C;
+extern const f32 lbl_1_rodata_8650;
+extern const u32 lbl_1_rodata_8654;
+extern const f32 lbl_1_rodata_8658;
+typedef struct {
+    f32 unk_0;
+} F32Box;
+
+extern const F32Box lbl_1_rodata_865C;
+extern const F32Box lbl_1_rodata_8660;
+extern const f32 lbl_1_rodata_8664;
+extern const f32 lbl_1_rodata_8668;
+extern const f32 lbl_1_rodata_866C;
+extern const f32 lbl_1_rodata_8670;
+extern const f32 lbl_1_rodata_8674;
+extern const f32 lbl_1_rodata_8678;
+extern const f32 lbl_1_rodata_867C;
+extern const f32 lbl_1_rodata_8680;
+extern const f32 lbl_1_rodata_8684;
+extern const f32 lbl_1_rodata_8688;
+extern const f32 lbl_1_rodata_868C;
+extern const f32 lbl_1_rodata_8690;
+
+extern void fn_1_13D02C(void);
+extern void fn_1_49410(void);
+extern void fn_1_139F18(s16 *);
+extern void fn_1_139D60(s16 *);
+extern void fn_1_13A460(s16 *);
+extern void fn_1_13A038(s16 *);
+extern void fn_1_13A654(s16 *);
+extern void fn_1_13A21C(s16 *);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_133DBC(s32);
+extern void fn_1_134AD4(void);
+extern void fn_1_134A4C(void);
+extern void *fn_1_13F7F8(s32, s32);
+extern void fn_1_1380F0(void *);
+extern void fn_1_13ABA8(u32);
+extern void fn_1_134EE4(s32, s32, s32, f32);
+extern void fn_1_135894(s32, s16, s32, s16, s32, s16, s32, f32, f32);
+extern void fn_1_136174(s32, s32, s32, s16, s16, s16, s32, f32, f32);
+extern void fn_1_1363F0(u8, s32, s32);
+extern void fn_1_1368A0(s16, u8, s32, f32, f32, f32, f32, f32);
+extern void fn_1_13750C(s32, s32, s16, s16);
+extern void fn_1_13A848(s32, s32, s32, s16, s32, f32, f32);
+extern void fn_1_13A994(s32, s32, s32, s16, s16, s32, f32, f32);
+extern u16 fn_1_48690(u32);
+extern u16 fn_1_486C4(u32);
+extern void fn_1_1332FC(s32, s32, s32);
+extern void fn_1_133748(s32, s32);
+extern void fn_1_13354C(s32, s32, s32);
+extern void fn_1_133968(void);
+extern void fn_1_133A8C(void);
+extern void fn_1_138A04(s32, s32, s32);
+extern void fn_1_137548(s32, s32, s32, s32);
+extern void fn_1_133BD8(void);
+extern u8 fn_1_141F94(u8);
+extern void fn_1_138E44(s32, s32, s32);
+extern void fn_1_137584(s32, s32, s32, s32);
+extern void fn_1_13923C(s32, s32);
+extern void fn_1_13FB8C(s32, s32, s32, s32, s32, f32);
+extern void fn_1_14083C(s32, s32, s32, s32, s32, f32, f32);
+
+typedef struct {
+    u8 pad_0[0xE];
+    s16 unk_E;
+    u8 pad_10[0x4];
+    u8 unk_14;
+    u8 pad_15[0xB];
+} CardSlot;
+
+typedef struct {
+    u8 pad_0[0x14];
+    s16 unk_14;
+    u8 pad_16[0x7E];
+} Rec94;
+
+#pragma opt_common_subs off
+void fn_1_132774(void *arg0) {
+    Obj_1_bss_8B3A0 *work;
+    s16 slot;
+    s16 row;
+    s16 index;
+    s16 n;
+    s16 i;
+    u8 bit;
+    s32 count;
+    s32 sel;
+    u8 pos;
+    FontDrawPacket packet;
+    s32 k;
+
+    fn_1_13D02C();
+    fn_1_49410();
+    work = &lbl_1_bss_8B3A0;
+    if (!(work->unk_94 & 0x80000000)) {
+        if (work->unk_94 & 0x20000000) {
+            *(s16 *)arg0 = work->unk_9E;
+            fn_1_139F18(arg0);
+            fn_1_139D60(arg0);
+        } else if (work->unk_94 & 0x40000) {
+            fn_1_13A460(arg0);
+            fn_1_13A038(arg0);
+        } else {
+            fn_1_13A654(arg0);
+            fn_1_13A21C(arg0);
+        }
+    } else {
+        for (i = 0; i < 4; i++) {
+            if (((CardSlot *)work)[i].unk_E != -1) {
+                u8 *mask = &((CardSlot *)work)[i].unk_14;
+                for (bit = 0; bit < 8; bit++) {
+                    if (*mask & (1 << bit)) {
+                        break;
+                    }
+                }
+                fn_1_496FC(lbl_1_rodata_8658, (f32)(i * 24 + 100));
+                fn_1_4AE0C((const char *)lbl_1_data_41930, i + 1, bit);
+            }
+        }
+    }
+
+    fn_1_133DBC(1);
+    fn_1_134AD4();
+    fn_1_134A4C();
+    fn_1_1380F0(fn_1_13F7F8(2, (s16)lbl_801A66B4));
+
+    if (work->unk_94 & 0x20000000) {
+        if (*(s16 *)&lbl_1_bss_960 == 2) {
+            fn_1_13ABA8(0x88000000);
+        } else if (*(s16 *)&lbl_1_bss_960 == 9) {
+            fn_1_13ABA8(0x08000000);
+        } else if (work->unk_94 & 0x02000000) {
+            fn_1_13ABA8(0x28000000);
+        } else {
+            fn_1_13ABA8(0xA8000000);
+        }
+    }
+
+    if (work->unk_94 & 0x20000000) {
+        s16 card;
+
+        sel = lbl_1_bss_8B3A0.unk_9E;
+        index = sel;
+        card = ((CardSlot *)&lbl_1_bss_8B3A0)[index].unk_E;
+        fn_1_134EE4(0, 0, 0, lbl_1_rodata_861C);
+        fn_1_135894(0xE7, 0x16E - ((s32)lbl_801A66B4 == 5 ? 0 : (card > 0x28 ? 4 : 7)), 6, card, 0, *(s16 *)arg0, 0, lbl_1_rodata_863C, lbl_1_rodata_863C);
+        {
+            f32 h = lbl_1_rodata_85F0;
+            fn_1_136174(0xE7, 0x163, 1, card, lbl_801A66B4, *(s16 *)arg0, 0, h, h);
+        }
+        fn_1_1363F0(sel, 0, 0);
+        fn_1_1368A0(card, sel, 0, lbl_1_rodata_865C.unk_0, lbl_1_rodata_8644, lbl_1_rodata_8660.unk_0, lbl_1_rodata_863C,
+                    lbl_1_rodata_863C);
+        fn_1_13750C(0x12, 0x3A, card, index);
+        fn_1_13A848(0x1C0, 0x114, 1, card, 0, lbl_1_rodata_864C, lbl_1_rodata_8650);
+        {
+            f32 h = lbl_1_rodata_8664;
+            fn_1_13A994(0x1C0, 0x128, 1, card, lbl_801A66B4, 0, h, h);
+        }
+    } else {
+        packet = lbl_1_rodata_26F8;
+        packet.image = 0x9D11;
+        packet.x = lbl_1_rodata_8668;
+        packet.y = lbl_1_rodata_866C;
+        packet.z = lbl_1_rodata_8670;
+        fn_1_4F734(&packet);
+        packet.flags = 7;
+        packet.x = lbl_1_rodata_8674 - packet.x;
+        fn_1_4F734(&packet);
+
+        packet = lbl_1_rodata_26F8;
+        packet.image = 0x12;
+        packet.x = lbl_1_rodata_8678;
+        packet.y = lbl_1_rodata_867C;
+        packet.scale_x *= lbl_1_rodata_8680 / (f32)fn_1_48690(packet.image);
+        packet.scale_y *= lbl_1_rodata_8684 / (f32)fn_1_486C4(packet.image);
+        packet.z = lbl_1_rodata_8688;
+        *(u32 *)packet.color = lbl_1_rodata_8654;
+        packet.alpha = lbl_1_rodata_85F0;
+        fn_1_4F734(&packet);
+
+        fn_1_1332FC(0xF, 0x38, 0);
+        fn_1_1332FC(0x269, 0x38, 1);
+        fn_1_133748(0x7E, 0xFD);
+        fn_1_13354C(7, 0x42, 0);
+        fn_1_13354C(0x279, 0x42, 1);
+        fn_1_133968();
+
+        if (work->unk_94 & 0x40000) {
+            fn_1_133A8C();
+            for (row = 0, n = 0; row < 4; row++) {
+                s16 card = ((CardSlot *)&lbl_1_bss_8B3A0)[row].unk_E;
+                if (card != -1) {
+                    switch (n) {
+                    case 0:
+                        k = row;
+                        fn_1_138A04(0xE, 0x41, k);
+                        fn_1_137548(0x26, 0x7B, card, k);
+                        break;
+                    case 1:
+                        k = row;
+                        fn_1_138A04(0xE, 0x10A, k);
+                        fn_1_137548(0x26, 0x144, card, k);
+                        break;
+                    }
+                    n++;
+                }
+            }
+        } else {
+            fn_1_1332FC(0x13C, 0x38, 0);
+            fn_1_133BD8();
+            for (slot = 0; slot < 4; slot++) {
+                s16 card = ((CardSlot *)&lbl_1_bss_8B3A0)[slot].unk_E;
+                pos = fn_1_141F94(slot);
+                if (card != -1) {
+                    switch (pos) {
+                    case 0:
+                        k = slot;
+                        fn_1_138E44(0xE, 0x41, k);
+                        fn_1_137584(0x1E, 0x88, card, k);
+                        break;
+                    case 1:
+                        k = slot;
+                        fn_1_138E44(0x13A, 0x41, k);
+                        fn_1_137584(0x14B, 0x88, card, k);
+                        break;
+                    case 2:
+                        k = slot;
+                        fn_1_138E44(0xE, 0x10A, k);
+                        fn_1_137584(0x1E, 0x151, card, k);
+                        break;
+                    case 3:
+                        k = slot;
+                        fn_1_138E44(0x13A, 0x10A, k);
+                        fn_1_137584(0x14B, 0x151, card, k);
+                        break;
+                    }
+                }
+            }
+            for (pos = lbl_1_bss_8B3A0.unk_4; pos < 4; pos++) {
+                fn_1_13923C((pos % 2) * 0x12D + 0x1E, (pos / 2) * 0xC9 + 0x88);
+            }
+        }
+    }
+
+    if (*(s16 *)&lbl_1_bss_960 != 2 && !(work->unk_94 & 0x02000000)) {
+        s32 car;
+        s16 time;
+        s16 cur = lbl_1_bss_962;
+
+        car = lbl_1_bss_8B3A0.unk_0;
+        time = ((Rec94 *)((u8 *)lbl_1_bss_8B3A0.unk_A4 - 0x818))[cur].unk_14;
+        count = 0x9E;
+        if ((s16)car == 0) {
+            if (lbl_1_bss_8B3A0.unk_4 == 4) {
+                count = 0x7E;
+            } else {
+                count = 0xAB;
+            }
+        }
+        if (time > 0 || (lbl_1_bss_8B3A0.unk_140 & 0x80000000)) {
+            fn_1_13FB8C(0x140, 0xF0, 0x16D, count, car == 3, lbl_1_rodata_868C);
+            fn_1_14083C(0x140, 0xF0, 0x16D, count, 10, lbl_1_rodata_8690, lbl_1_rodata_863C);
+        }
+    }
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_132774 */
+
 /* fzgx:begin fn_1_132FB4 */
 #include "font.h"
 
