@@ -60154,6 +60154,31 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/ranking/fn_1_1556B4.c",
+    "symbols": [
+      "fn_1_1556B4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/ranking.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_8EF20",
+      "fzgx_obj_lbl_1_bss_8EF20": "lbl_1_bss_8EF20",
+      "lbl_1_bss_8EF20__fzgx_offset_4": "lbl_1_bss_8EF20+0x4",
+      "lbl_1_bss_8EF20__fzgx_offset_40": "lbl_1_bss_8EF20+0x40",
+      "lbl_1_bss_8EF20__fzgx_offset_44": "lbl_1_bss_8EF20+0x44",
+      "fzgx_obj_lbl_1_bss_8EF68": "lbl_1_bss_8EF68",
+      "lbl_1_bss_8EF68__fzgx_offset_230": "lbl_1_bss_8EF68+0x230",
+      "fzgx_obj_lbl_1_bss_8F3E0": "lbl_1_bss_8F3E0",
+      "lbl_1_bss_8F3E4__fzgx_offset_0": "lbl_1_bss_8F3E4",
+      "lbl_1_bss_8F3E4__fzgx_offset_4": "lbl_1_bss_8F3E4+0x4",
+      "lbl_1_bss_8F3FC": "lbl_1_bss_8F3FC",
+      "lbl_1_bss_8F420": "lbl_1_bss_8F420"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/ranking/fn_1_155F7C.c",
     "symbols": [
       "fn_1_155F7C"

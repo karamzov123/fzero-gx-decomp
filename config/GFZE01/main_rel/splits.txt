@@ -8723,3 +8723,6 @@ rel/main_rel/rep_memcard/fn_1_154A08.c:
 
 rel/main_rel/custom_memcard/fn_1_132774.c:
 	.text       start:0x00132774 end:0x00132FB4 align:4
+
+rel/main_rel/ranking/fn_1_1556B4.c:
+	.text       start:0x001556B4 end:0x00155F7C align:4
