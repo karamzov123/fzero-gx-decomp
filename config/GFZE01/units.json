@@ -3813,6 +3813,23 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/toolkit/fn_3_2B778.c",
+    "symbols": [
+      "fn_3_2B778"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/toolkit.c",
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_768",
+      "@11": "lbl_3_rodata_800",
+      "@36": "lbl_3_rodata_960",
+      "@5": "lbl_3_rodata_768+0x28"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/toolkit/fn_3_2BFB4.c",
     "symbols": [
       "fn_3_2BFB4"
@@ -37691,6 +37708,17 @@
       "@100": "lbl_1_rodata_76A8+0xFC",
       "@18": "lbl_1_rodata_76A8+0x18"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/bg_common/fn_1_103264.c",
+    "symbols": [
+      "fn_1_103264"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_common.c"
   },
   {
     "module": "main_rel",
@@ -84672,6 +84700,24 @@
   },
   {
     "module": "sel",
+    "source": "rel/sel/sel/fn_10_210F0.c",
+    "symbols": [
+      "fn_10_210F0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/2.0",
+    "extra_cflags": [],
+    "tu": "rel/sel/sel.c",
+    "pool": {
+      "...rodata.0": "lbl_10_rodata_158",
+      "@26": "lbl_10_rodata_1E0",
+      "@27": "lbl_10_rodata_1E8",
+      "@9": "lbl_10_rodata_158+0x44",
+      "@10": "lbl_10_rodata_158+0x48"
+    }
+  },
+  {
+    "module": "sel",
     "source": "rel/sel/sel/fn_10_21978.c",
     "symbols": [
       "fn_10_21978"
@@ -87040,6 +87086,21 @@
       "lbl_7_bss_1960__fzgx_offset_10": "lbl_7_bss_1960+0x10",
       "lbl_7_bss_1960__fzgx_offset_18": "lbl_7_bss_1960+0x18",
       "lbl_7_bss_1960__fzgx_offset_1C": "lbl_7_bss_1960+0x1C"
+    }
+  },
+  {
+    "module": "story",
+    "source": "rel/story/story_mode/fn_7_4648.c",
+    "symbols": [
+      "fn_7_4648"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
+    "extra_cflags": [],
+    "tu": "rel/story/story_mode.c",
+    "pool": {
+      "@136": "jumptable_7_data_1400C",
+      "@138": "lbl_7_rodata_798"
     }
   },
   {

@@ -8816,3 +8816,6 @@ rel/main_rel/mdlload/fn_1_D4964.c:
 
 rel/main_rel/sel_static_disp/fn_1_143780.c:
 	.text       start:0x00143780 end:0x00143E7C align:4
+
+rel/main_rel/bg_common/fn_1_103264.c:
+	.text       start:0x00103264 end:0x00103AA8 align:4

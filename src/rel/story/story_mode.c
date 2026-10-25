@@ -2487,6 +2487,382 @@ void fn_7_44DC(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_7_44DC */
 
+/* fzgx:begin fn_7_4648 */
+#include "rel/story/story_mode.h"
+
+typedef struct {
+    f32 x, y, z;
+} StoryVec;
+typedef struct {
+    u8 pad_0[0x200];
+    s32 unk_200[8];
+    s32 unk_220[8];
+    u32 unk_240;
+    u32 unk_244;
+    s16 unk_248;
+} StoryTriggerContext;
+typedef struct {
+    u16 unk_0;
+    u16 unk_2;
+    s32 unk_4, unk_8, unk_C, unk_10;
+    f32 unk_14;
+} StoryTrigger;
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x78];
+    StoryVec unk_7C;
+    u8 pad_88[0xF4];
+    f32 unk_17C;
+    u8 pad_180[4];
+    f32 unk_184;
+    u8 pad_188[0x2FA];
+    u8 unk_482;
+} StoryVehicle;
+typedef struct {
+    u8 pad_0[0x54];
+    StoryVec unk_54;
+    u8 pad_60[0xD8];
+    u64 unk_138;
+} StoryEventObject;
+typedef struct {
+    u8 pad_0[0x1EC];
+    u8 unk_1EC;
+    u8 unk_1ED;
+    u16 unk_1EE;
+} StoryTime;
+typedef struct {
+    u8 pad_0[0x115];
+    u8 unk_115;
+    u8 pad_116[2];
+    s32 unk_118;
+} StoryPlayer;
+typedef struct {
+    u8 pad_0[0x2C];
+    StoryPlayer *unk_2C[4];
+} StoryPlayerList;
+typedef struct {
+    u8 pad_0[8];
+    u16 unk_8;
+    u8 pad_A[0xA];
+} StoryInput;
+extern StoryInput lbl_1_bss_9F8[];
+typedef struct {
+    u8 pad_0[8];
+    u16 hi : 6;
+    u16 b9 : 1;
+    u16 b8 : 1;
+    u16 lo : 8;
+    u8 pad_A[0xA];
+} StoryInputBits;
+/* view of StoryInput starting at its button word */
+typedef struct {
+    u16 unk_0;
+    u8 pad_2[0x12];
+} StoryButtons;
+extern s32 fn_7_4E28(s32, s32, s32);
+extern s32 fn_7_4EF8(u32, f32, f32);
+extern f64 lbl_7_rodata_798[6];
+extern s16 fn_1_3F0C8(void);
+extern u8 fn_1_86810(int);
+extern StoryVehicle *fn_1_86254(s32);
+extern void OSReport(const char *, ...);
+extern StoryTime *fn_1_8627C(s32);
+extern s16 fn_1_E5568(s16);
+extern StoryEventObject *fn_1_E54A8(s16, s16);
+extern u32 fn_1_E57C4(void *);
+extern s16 fn_1_E5430(s16);
+extern u32 fn_1_8C66C(u32);
+extern f32 fn_1_8C6A0(u32);
+extern u32 fn_1_F1B94(void);
+
+#pragma opt_propagation off
+static inline s32 storyButtonEither(u16 buttons) {
+    switch (__rlwinm(buttons, 24, 31, 31) | __rlwinm(buttons, 23, 31, 31)) {
+    default: return 1;
+    case 0: return 0;
+    }
+}
+
+static inline f32 storyDistanceSquared(const StoryVec *a, const StoryVec *b) {
+    f32 x = a->x;
+    f32 y = a->y;
+    f32 z = a->z;
+    f32 result;
+    x -= b->x;
+    y -= b->y;
+    z -= b->z;
+    result = x*x;
+    result += y*y;
+    result += z*z;
+    return result;
+}
+
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+#pragma opt_common_subs off
+s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1, f32 arg2) {
+    Obj_7_bss_1960 *p_lbl_7_bss_1960;
+    u16 v0;
+    s32 v1;
+    f32 v2;
+    StoryTrigger *trigger;
+    trigger = arg1;
+    v0 = arg1->unk_2;
+    p_lbl_7_bss_1960 = &lbl_7_bss_1960;
+    v1 = 0;
+    v2 = arg2;
+    switch (v0) {
+    case 0: {
+        u32 *flags = (u32 *)trigger->unk_4;
+        s32 truth;
+        switch ((s32)flags) {
+        case 0: flags = &context->unk_244; break;
+        case 1: flags = &context->unk_240; break;
+        }
+        if ((u32)flags + 0x10000 == 0xFFFF) {
+            v1 = 1;
+            break;
+        }
+        truth = trigger->unk_8;
+        if (*flags & trigger->unk_C) v1 = truth;
+        else v1 = !truth;
+        break;
+    }
+    case 1:
+        v1 = fn_7_4E28(trigger->unk_8, context->unk_220[trigger->unk_4], trigger->unk_C);
+        break;
+    case 6:
+        if (p_lbl_7_bss_1960->unk_4->unk_D == 0) v1 = 1;
+        break;
+    case 2:
+        if (fn_1_3F0C8() == 0x29) v1 = 1;
+        break;
+    case 3:
+        if (p_lbl_7_bss_1960->unk_4->unk_C != 0) v1 = 1;
+        break;
+    case 4: {
+        StoryPlayerList *slot = (StoryPlayerList *)((u8 *)p_lbl_7_bss_1960->unk_4 + fn_1_86810(p_lbl_7_bss_1960->unk_34) * 4);
+        if (slot->unk_2C[0]->unk_115 == 0) v1 = 1;
+        break;
+    }
+    case 5: {
+        s32 value = trigger->unk_8;
+        switch (trigger->unk_4) {
+        case 0:
+            if (fn_1_86254(value)->unk_0 & 0x80) v1 = 1;
+            break;
+        case 1:
+            if (fn_1_86254(p_lbl_7_bss_1960->unk_34)->unk_482 >= value) v1 = 1;
+            break;
+        default:
+            OSReport((char *)lbl_7_data_13FFC);
+            break;
+        }
+        break;
+    }
+    case 7: {
+        s32 kind = trigger->unk_4;
+        s32 op = trigger->unk_8;
+        s32 value = trigger->unk_C;
+        s32 current;
+        if (kind == 8) {
+            StoryTime *time = fn_1_8627C(p_lbl_7_bss_1960->unk_34);
+            s32 minutes;
+            s32 seconds;
+            s32 milliseconds = time->unk_1EE;
+            seconds = time->unk_1ED * 1000;
+            minutes = time->unk_1EC * 60000;
+            current = minutes + milliseconds;
+            current = seconds + current;
+            value = value * 1000 / 60;
+        } else {
+            current = context->unk_200[kind];
+        }
+        v1 = fn_7_4E28(op, current, value);
+        break;
+    }
+    case 8: {
+        s32 b;
+        s32 a;
+        s32 c;
+        f32 radius;
+        a = trigger->unk_8;
+        b = trigger->unk_C;
+        c = trigger->unk_10;
+        radius = trigger->unk_14;
+        switch (trigger->unk_4) {
+        case 0:
+            v1 = fn_7_4E28(b, fn_1_E5568((s16)a), c);
+            break;
+        case 1:
+            if (b == -1) {
+                b = (32 - c) & 31;
+                for (c = 0; c < fn_1_E5430((s16)a); c++) {
+                    if (__rlwnm(fn_1_E57C4(fn_1_E54A8((s16)a, (s16)c)), b, 31, 31)) {
+                        v1 = 1;
+                        break;
+                    }
+                }
+            } else {
+                v1 = __rlwnm(fn_1_E57C4(fn_1_E54A8((s16)a, (s16)b)), (32 - c) & 31, 31, 31) ? 1 : 0;
+            }
+            break;
+        case 2:
+            if (b == -1) {
+                for (b = 0; b < fn_1_E5430((s16)a); b++) {
+                    u32 flags = fn_1_E57C4(fn_1_E54A8((s16)a, (s16)b));
+                    if (flags & c) {
+                        v1 = 1;
+                        break;
+                    }
+                }
+            } else {
+                u32 flags = fn_1_E57C4(fn_1_E54A8((s16)a, (s16)b));
+                v1 = (flags & c) != 0;
+            }
+            break;
+        case 3: {
+            u64 flags = fn_1_E54A8((s16)a, (s16)b)->unk_138;
+            if (flags & (s64)c) v1 = 1;
+            break;
+        }
+        case 4: {
+            u64 flags = fn_1_E54A8((s16)a, (s16)b)->unk_138;
+            if (flags & ((s64)c << 32)) v1 = 1;
+            break;
+        }
+        case 5: {
+            StoryEventObject *object = fn_1_E54A8((s16)a, (s16)b);
+            StoryVehicle *vehicle = fn_1_86254(c);
+            v1 = fn_7_4EF8(4, storyDistanceSquared(&object->unk_54, &vehicle->unk_7C), radius*radius);
+            break;
+        }
+        default:
+            OSReport((char *)lbl_7_data_13FFC);
+            break;
+        }
+        break;
+    }
+    case 9: {
+        s32 op = trigger->unk_8;
+        f32 value = trigger->unk_14;
+        StoryVehicle *vehicle = fn_1_86254(trigger->unk_4);
+        v1 = fn_7_4EF8(op, vehicle->unk_17C, value);
+        break;
+    }
+    case 10: {
+        s32 id = trigger->unk_4;
+        StoryVec *pos = (StoryVec *)trigger->unk_8;
+        s32 op = trigger->unk_C;
+        f32 radius = trigger->unk_14;
+        StoryVehicle *vehicle;
+        if ((s32)pos == 0) pos = &fn_1_86254(p_lbl_7_bss_1960->unk_34)->unk_7C;
+        vehicle = fn_1_86254(id);
+        v1 = fn_7_4EF8(op, storyDistanceSquared(pos, &vehicle->unk_7C), radius*radius);
+        break;
+    }
+    case 11: {
+        s32 id;
+        s32 op;
+        s32 other;
+        f32 value;
+        s32 current;
+        id = trigger->unk_4;
+        op = trigger->unk_C;
+        value = trigger->unk_14;
+        switch (trigger->unk_8) {
+        case 0:
+            current = fn_1_8C66C(id);
+            v1 = fn_7_4E28(op, current, trigger->unk_10);
+            break;
+        case 1:
+            current = fn_1_8C66C(id);
+            v1 = fn_7_4E28(op, current, *(s32 *)trigger->unk_10);
+            break;
+        case 2: {
+            other = trigger->unk_10;
+            current = fn_1_8C66C(id);
+            if (other == current) {
+                f32 f = fn_1_8C6A0(id);
+                v1 = fn_7_4EF8(op, f, value);
+            }
+            break;
+        }
+        default:
+            OSReport((char *)lbl_7_data_13FFC);
+            break;
+        }
+        break;
+    }
+    case 12: {
+        s32 kind;
+        s32 op;
+        s32 id;
+        f32 value;
+        f32 current;
+        StoryVehicle *vehicle;
+        id = trigger->unk_4;
+        kind = trigger->unk_8;
+        op = trigger->unk_C;
+        value = trigger->unk_14;
+        vehicle = fn_1_86254(id);
+        switch (kind) {
+        case 0: current = vehicle->unk_184; break;
+        case 1: current = (f32)fn_1_86810(id); break;
+        default: OSReport((char *)lbl_7_data_13FFC); break;
+        }
+        v1 = fn_7_4EF8(op, current, value);
+        break;
+    }
+    case 13: {
+        s32 truth = trigger->unk_8;
+        s32 mask = trigger->unk_C;
+        u32 flags = fn_1_86254(trigger->unk_4)->unk_0;
+        if (flags & mask) v1 = truth;
+        else v1 = !truth;
+        break;
+    }
+    case 14:
+        switch (trigger->unk_4) {
+        case 0: {
+            StoryButtons *buttonBase = (StoryButtons *)&lbl_1_bss_9F8[0].unk_8;
+            u16 buttons = buttonBase[p_lbl_7_bss_1960->unk_35].unk_0;
+            v1 = storyButtonEither(buttons);
+            break;
+        }
+        case 1: {
+            u32 pressed = __rlwinm(lbl_1_bss_9F8[p_lbl_7_bss_1960->unk_35].unk_8, 24, 31, 31);
+            v1 = pressed;
+            break;
+        }
+        case 2: {
+            u32 pressed = __rlwinm(lbl_1_bss_9F8[p_lbl_7_bss_1960->unk_35].unk_8, 23, 31, 31);
+            v1 = pressed;
+            break;
+        }
+        }
+        break;
+    case 15: {
+        s32 op = trigger->unk_8;
+        s32 value = trigger->unk_C;
+        StoryPlayerList *slot = (StoryPlayerList *)((u8 *)p_lbl_7_bss_1960->unk_4 + fn_1_86810(trigger->unk_4) * 4);
+        StoryPlayer *player = slot->unk_2C[0];
+        v1 = fn_7_4E28(op, player->unk_118, value);
+        break;
+    }
+    case 16:
+        v1 = fn_7_4E28(trigger->unk_4, context->unk_248, trigger->unk_8);
+        break;
+    case 17: {
+        s32 id = trigger->unk_4;
+        v1 = (fn_1_F1B94() == id) ? 1 : 0;
+        break;
+    }
+    }
+    return v1;
+}
+/* fzgx:end fn_7_4648 */
+
 /* fzgx:begin fn_7_4E28 */
 extern char lbl_7_data_13FFC[15];
 extern void OSReport(char *, ...);

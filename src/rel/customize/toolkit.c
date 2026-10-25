@@ -8319,6 +8319,316 @@ void fn_3_2B774(void) {
 }
 /* fzgx:end fn_3_2B774 */
 
+/* fzgx:begin fn_3_2B778 */
+#include "font.h"
+
+struct fn_3_2B778_Color { u8 r, g, b, a; };
+#pragma pool_data on
+#pragma force_active on
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table_0[10] = {
+    0x3F333333, 4294967040u, 4294901760u, 4278190080u,
+    0x0000FF00, 4294050047u, 4294901760u, 0x3EEAAAAB,
+    0x438E0000, 0x43A48000
+};
+static f32 fzgx_pool_primer_28(void) { return 100.0f; }
+static const u32 fzgx_pool_table_2C[27] = {
+    0x3F6AAAAB, 0x43B40000, 0x3F0AAAAB, 0x43DC8000,
+    0x43A60000, 0x43AC8000, 0x43B30000, 0x3EF99999,
+    0x43C58000, 0x43A58000, 0x43B38000, 0x43A00000,
+    0x43B50000, 0x43480000, 0x43A18000, 0x43BE8000,
+    0x41500000, 0x3C008081, 0x40C00000, 0x40E00000,
+    0x3E189899, 0x3E048485, 0x43040000, 0x43160000,
+    0x3F4CCCCD, 0x3E99999A, 0x00000000
+};
+static f32 fzgx_pool_primer_98(s32 x) { return (f32)x; }
+static const u32 fzgx_pool_table_A0[56] = {
+    0x00004A00, 0x00005400, 0x00003800, 0x00003E00,
+    0x00003700, 0x00005500, 0x00003000, 0x00003500,
+    0x00003A00, 0x00004000, 0x00004400, 0x00005000,
+    0x00003300, 0x00002E00, 0x00003100, 0x00004F00,
+    0x00003900, 0x00003D00, 0x00004C00, 0x00003F00,
+    0x00004800, 0x00005200, 0x00004500, 0x00005300,
+    0x00003C00, 0x00005600, 0x00004300, 0x00004200,
+    0x00003200, 0x00002F00, 0x00003400, 0x00003600,
+    0x00004D00, 0x00004600, 0x00004100, 0x00005100,
+    0x00004E00, 0x00004700, 0x00003B00, 0x00004B00,
+    0x00004900, 4294050047u, 4294901760u, 0x43BE0000,
+    0x43A70000, 0x3ED00000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x43F00000, 0x44200000, 0x42780000, 0x3FABABAC
+};
+static f32 fzgx_pool_primer_180(void) { return 8.0f; }
+static const u32 fzgx_pool_table_184[2] = {
+    0x3E000000, 0x3F800000
+};
+static f32 fzgx_pool_primer_18C(void) { return 0.5f; }
+static const u32 fzgx_pool_table_190[7] = {
+    0x43570000, 0x40400000, 0x43340000, 0x42B40000,
+    0x43700000, 0x42300000, 0x42B3CCCD
+};
+static f32 fzgx_pool_primer_1AC(f32 x) { x += 40.0f; x += 16384.0f; x += 65536.0f; x += 60.0f; x += 80.0f; return x; }
+static const u32 fzgx_pool_table_1C0[14] = {
+    0x43E60000, 0x3F2AAAAB, 0x3F1B9B9C, 3225419776u,
+    0x00000000, 0x3F1E9E9F, 0x3F018182, 0x43580000,
+    0x3E4CCCCD, 0x430C0000, 0x437A0000, 0x43C80000,
+    0x44098000, 0x3EEEEEEF
+};
+static f32 fzgx_pool_primer_1F8(u32 x) { return (f32)x; }
+static const u32 fzgx_pool_table_200[88] = {
+    0x00000000, 0x41200000, 3231711232u, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 3204448256u, 0x43360B61, 0x41200000,
+    0x00000000, 0x41200000, 3231711232u, 0x00000000,
+    0x00000000, 0x00000000, 0x40700000, 0x40600000,
+    0x3D4CCCCD, 0x00000000, 0x41200000, 3231711232u,
+    0x00000000, 0x00000000, 0x00000000, 0x3E800000,
+    0x00000000, 0x41200000, 3231711232u, 0x00000000,
+    0x00000000, 0x00000000, 0x40612121, 0x410CB4B5,
+    0x4128D8D9, 0x439D8000, 0x40000000, 0x3FA66666,
+    0x3F19999A, 0x3F20A0A1, 0x3F40C0C1, 0x40666666,
+    0x41100000, 0x00000000, 0x41200000, 3231711232u,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000003, 0x00020001,
+    0x00000001, 0x00020003, 0x00000000, 0x40A00000,
+    3245342720u, 0x00000000, 0x00000000, 0x00000000,
+    0x40A6C6C7, 0x00000000, 0x00000000, 3193493721u,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00FFFF00, 0x00FFFF00,
+    0x00FF0000, 0x00FF0000, 0x00FF0000, 0x00FF0000,
+    4294901760u, 0x43850000, 0x42F00000, 0x4408C000,
+    0x432D0000, 0x41B80000, 0x435F0000, 0x43808000
+};
+static f32 fzgx_pool_primer_360(void) { return 20.0f; }
+static const u32 fzgx_pool_table_364[146] = {
+    0x41400000, 0x42878000, 0x40200000, 0x3EB33333,
+    0x3E19999A, 0x41300000, 0x41800000, 0x00FFFF00,
+    0x00FFFF00, 0x00FF0000, 0x00FF0000, 0x438F0000,
+    0x43190000, 0x438A8000, 3264086016u, 0x432C0000,
+    0x427C0000, 0x40800000, 0x41C00000, 0x40A00000,
+    0x00170018, 0x0019001F, 4294967040u, 4294901760u,
+    0x3DCCCCCD, 0x42FE0000, 3221225472u, 0x41700000,
+    0x3ED55555, 0x19FF1900, 0x19FF1900, 0x19FF1900,
+    0x00FFFF00, 0x00FFFF00, 4294901760u, 0x43210000,
+    0x438B0000, 0x43380000, 0x423C0000, 0x43450000,
+    0x43868000, 0x43350000, 0x43180000, 0x43948000,
+    0x42090000, 0x42180000, 0x43460000, 0x438A0000,
+    0x00FFFF00, 0x00FFFF00, 0x00FFFF00, 0x00FFFF00,
+    0x00006500, 0x00006D00, 0x00008000, 0x00005800,
+    0x00006900, 0x00007500, 0x00006400, 0x00007400,
+    0x00006300, 0x00006C00, 0x00005A00, 0x00006E00,
+    0x00008200, 0x00006B00, 0x00007900, 0x00006800,
+    0x00006A00, 0x00005900, 0x00006F00, 0x00005700,
+    0x00007200, 0x00007E00, 0x00007300, 0x00007100,
+    0x00005B00, 0x00008100, 0x00006200, 0x00007A00,
+    0x00005D00, 0x00007C00, 0x00005C00, 0x00006100,
+    0x00006000, 0x00005E00, 0x00007F00, 0x00005F00,
+    0x00007700, 0x00007000, 0x00007600, 0x00007800,
+    0x00007D00, 0x00006700, 0x00007B00, 0x00006600,
+    0x00FFFF00, 0x00FFFF00, 0x00FFFF00, 0x3F400000,
+    0x42140000, 0x42940000, 0x41D00000, 0x428C0000,
+    0x00FFFF00, 0x00FFFF00, 0x00FFFF00, 0x00FFFF00,
+    0x43130000, 0x439E8000, 0x42F40000, 0x431C0000,
+    0x43980000, 0x44160000, 0x3DCCCCD0, 0x3EAE147A,
+    3268149248u, 0x42CC0000, 0x3F666666, 0x3F28F5C3,
+    0x42BE0000, 0x42A80000, 0x00230024, 0x00250000,
+    4294967040u, 4294901760u, 4294049792u, 0x42E80000,
+    0x41F00000, 0x42080000, 0x43430000, 0x43870000,
+    0x434A0000, 0x41600000, 0x434C0000, 0x41AC0000,
+    0x3FC00000, 0x42400000, 0x42EA0000, 0x43260000,
+    0x437F0000, 0x41E80000, 0x19FF1900, 0x19FF1900,
+    0x19FF1900, 4294901760u
+};
+static f32 fzgx_pool_primer_5AC(void) { return 27.0f; }
+static const u32 fzgx_pool_table_5B0[63] = {
+    0x42800000, 0x43000000, 0x43470000, 0x43560000,
+    0x43420000, 0x43790000, 0x431D0000, 0x438D0000,
+    0x00000000, 3248488448u, 0x00000000, 0x42980000,
+    0x43650000, 0x43958000, 0x3FAAAAAB, 0x428A0000,
+    0x42AA0000, 0x439A8000, 0x00000000, 3248488448u,
+    0x00000000, 0x439A0000, 0x00020001, 4278190080u,
+    4294967040u, 4294967040u, 0x00FF0000, 4294967040u,
+    3267624960u, 0x00000000, 0x40568000, 0x00000000,
+    0x00000000, 0x42616667, 0x41173333, 0x0000A309,
+    0x0000A307, 0x0000A308, 0x0000A31C, 0x0000A318,
+    0x0000A31A, 0x0000A31D, 0x0000A319, 0x0000A31B,
+    4294050047u, 0x41880000, 0x43030000, 0x433E0000,
+    0x42900000, 0x42580000, 0x43270000, 0x43530000,
+    0x433E199A, 0x3EF8F8F9, 0x3F1C9C9D, 4294967295u,
+    0x44148000, 0x42F80000, 0x43140000, 0x41C80000,
+    0x43960000, 0x3A83126F, 0x00000000
+};
+static const struct fn_3_2B778_Color fzgx_pool_color_6AC = {0, 0, 0, 0};
+static const struct fn_3_2B778_Color fzgx_pool_color_6B0 = {255, 208, 0, 0};
+static f32 fzgx_pool_primer_6B4(void) { return 136.0f; }
+#pragma section code_type ".text"
+#pragma force_active reset
+
+struct fn_3_2B778_lbl_801A66A8 {
+    u32 unk_0;
+};
+
+extern f32 lbl_8006D188(u32);
+extern struct fn_3_2B778_lbl_801A66A8 lbl_801A66A8;
+extern u32 fn_1_50A90(void *, u32, u32, u32, u32);
+extern u32 lbl_1_rodata_26F8;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_49410(void);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_495C8(u8);
+extern void fn_1_495FC(void);
+extern void fn_1_4965C(u8);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_50164(f32, f32, f32, f32, void *);
+
+/* Pulsing colour channel: base + base * sin(phase of a 60-frame cycle). */
+#define PULSE(base) \
+    (u8)((base) + (f32)((base) * lbl_8006D188((s32)(16384.0f + 65536.0f * (f32)(lbl_801A66A8.unk_0 % 60) / 60.0f))))
+
+void fn_3_2B778(s32 x, s32 y, s16 z, s16 idx, s32 selected) {
+    s16 sel;
+    s16 bx;
+    s16 by;
+    FontDrawPacket pkt;
+
+    bx = x - 90;
+    by = y - 112;
+    if (fn_1_B7C00() != 0) {
+        return;
+    }
+    pkt = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    pkt.image = 18;
+    pkt.x = (s16)x;
+    pkt.y = (s16)y;
+    pkt.z = (s16)z;
+    pkt.flags = 10;
+    if (selected == 1) {
+        pkt.color[0] = PULSE(40.0f);
+        pkt.color[1] = PULSE(80.0f);
+        pkt.color[2] = PULSE(80.0f);
+    } else {
+        *(struct fn_3_2B778_Color *)pkt.color = fzgx_pool_color_6AC;
+    }
+    pkt.alpha = 0.5f;
+    pkt.scale_x = 20.0f;
+    pkt.scale_y = 27.0f;
+    fn_1_4F734(&pkt);
+
+    {
+    s16 zz;
+    pkt = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    zz = z;
+    pkt.image = 0xA109;
+    pkt.x = (s16)x;
+    pkt.y = (s16)y;
+    pkt.z = zz - 1;
+    pkt.flags = 10;
+    fn_1_50A90(&pkt, 30, 28, 180, 224);
+
+    pkt = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    sel = idx;
+    switch (sel) {
+    case 0:
+        pkt.image = 0x8506;
+        break;
+    case 1:
+        pkt.image = 0x8504;
+        break;
+    case 2:
+        pkt.image = 0x8508;
+        break;
+    default:
+        pkt.image = 0x8506;
+        break;
+    }
+    pkt.x = bx + 90;
+    pkt.y = by + 53;
+    pkt.z = zz - 3;
+    pkt.flags = 10;
+    fn_1_4F734(&pkt);
+
+    pkt = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    switch (sel) {
+    case 0:
+        pkt.image = 0x8507;
+        break;
+    case 1:
+        pkt.image = 0x8505;
+        break;
+    case 2:
+        pkt.image = 0x8509;
+        break;
+    default:
+        pkt.image = 0x8507;
+        break;
+    }
+    pkt.x = bx + 90;
+    pkt.y = by + 53;
+    pkt.z = zz - 2;
+    *(struct fn_3_2B778_Color *)pkt.color = fzgx_pool_color_6B0;
+    pkt.flags = 10;
+    pkt.alpha = 0.5f;
+    fn_1_4F734(&pkt);
+
+    if (lbl_3_bss_F0.unk_A == 5) {
+        fn_1_49410();
+        fn_1_495FC();
+        fn_1_495B0(0x80000000);
+        fn_1_4965C(2);
+        fn_1_495C8(9);
+        fn_1_4955C(0.5f, 0.5f);
+        fn_1_496FC(bx + 90, by + 92);
+        fn_1_4954C(zz - 2);
+        switch (sel) {
+        case 0:
+            fn_1_4AE0C((const char *)(&lbl_3_data_4648.unk_0)[276 + lbl_3_bss_F0.unk_A]);
+            break;
+        case 1:
+            fn_1_4AE0C((const char *)(&lbl_3_data_4648.unk_0)[282 + lbl_3_bss_F0.unk_A]);
+            break;
+        case 2:
+            fn_1_4AE0C((const char *)(&lbl_3_data_4648.unk_0)[288 + lbl_3_bss_F0.unk_A]);
+            break;
+        default:
+            fn_1_4AE0C((const char *)(&lbl_3_data_4648.unk_0)[276 + lbl_3_bss_F0.unk_A]);
+            break;
+        }
+    }
+
+    pkt = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    switch (sel) {
+    case 0:
+        pkt.image = 0x8501;
+        break;
+    case 1:
+        pkt.image = 0x8500;
+        break;
+    case 2:
+        pkt.image = 0x8502;
+        break;
+    default:
+        pkt.image = 0x8501;
+        break;
+    }
+    pkt.x = bx + 90;
+    pkt.y = by + 154;
+    pkt.z = zz - 3;
+    pkt.flags = 10;
+    fn_1_4F734(&pkt);
+
+    pkt = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    pkt.image = 12;
+    pkt.x = bx + 90;
+    pkt.y = by + 154;
+    pkt.z = zz - 2;
+    pkt.flags = 10;
+    fn_1_50164(136.0f, 100.0f, 8.0f, 8.0f, &pkt);
+    }
+}
+/* fzgx:end fn_3_2B778 */
+
 /* fzgx:begin fn_3_2BFB4 noprologue */
 #include "types.h"
 #include "font.h"
