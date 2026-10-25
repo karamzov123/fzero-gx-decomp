@@ -2309,3 +2309,6 @@ rel/movie_module/fn_12_28304.c:
 
 rel/movie_module/fn_12_38AF0.c:
 	.text       start:0x00038AF0 end:0x00038D94 align:4
+
+rel/movie_module/fn_12_1578.c:
+	.text       start:0x00001578 end:0x00001F84 align:4

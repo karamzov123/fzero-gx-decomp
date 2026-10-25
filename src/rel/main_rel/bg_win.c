@@ -1347,6 +1347,73 @@ void fn_1_15E434(u32 value) {
 }
 /* fzgx:end fn_1_15E434 */
 
+/* fzgx:begin fn_1_15E44C pool noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_win.h"
+#include "font.h"
+
+extern u32 fn_1_435C(u32 value);
+extern s32 fn_1_3F8C(u32, u32, u32, u32);
+extern void fn_1_15E1E8(u8 *value);
+
+typedef struct {
+    Obj_1_bss_8FD68 header;
+    Obj_1_bss_8FDA8 entries;
+    u8 unk_114;
+    u8 pad_115[3];
+    s32 unk_118;
+    u8 pad_11C[0x1c];
+    u32 unk_138;
+} WindowState;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_8FD68[16];
+Obj_1_bss_8FDA8 fzgx_obj_lbl_1_bss_8FDA8;
+u8 lbl_1_bss_8FE7C;
+u8 lbl_1_bss_8FD68_gap_8FE7D;
+u16 lbl_1_bss_8FD68_gap_8FE7D_fill_8FE7E;
+s32 lbl_1_bss_8FE80;
+u32 lbl_1_bss_8FE80_fill_8FE84[7];
+u32 lbl_1_bss_8FEA0;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8FD68;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8FDA8;
+    s = *(u8 *)&lbl_1_bss_8FE7C;
+    s = *(u8 *)&lbl_1_bss_8FD68_gap_8FE7D;
+    s = *(u8 *)&lbl_1_bss_8FD68_gap_8FE7D_fill_8FE7E;
+    s = *(u8 *)&lbl_1_bss_8FE80;
+    s = *(u8 *)&lbl_1_bss_8FE80_fill_8FE84;
+    s = *(u8 *)&lbl_1_bss_8FEA0;
+}
+#pragma section code_type ".text"
+
+void fn_1_15E44C(void) {
+    
+    u8 state = lbl_1_bss_3C30.unk_13F5;
+    s32 index = *(s32 *)((u32)&lbl_1_bss_8FE80 + ((state - 1) % 4) * 4);
+    u32 value = lbl_1_bss_8FEA0;
+    void *result;
+
+    if (lbl_1_bss_8FE7C) {
+        s32 count = lbl_1_bss_3C30.unk_13F4;
+        lbl_1_bss_8FE7C = 0;
+        if (count - state < 4 && index != -1) {
+            s32 offset = index * 0x34;
+            Obj_1_bss_8FDA8 *entry = (Obj_1_bss_8FDA8 *)((u32)&fzgx_obj_lbl_1_bss_8FDA8 + offset);
+            entry->unk_0 |= 0x10;
+            result = (void *)fn_1_435C(value);
+            fn_1_3F8C((u32)lbl_1_data_4C980, (u32)fn_1_15E1E8, (u32)&entry->unk_9, 13);
+            (&fzgx_obj_lbl_1_bss_8FDA8.unk_9)[offset] = 0x3c;
+            fn_1_435C((u32)result);
+        }
+    }
+}
+/* fzgx:end fn_1_15E44C */
+
 /* fzgx:begin fn_1_15E540 */
 // Initializes a background-window entry once, then marks it ready for reuse.
 void fn_1_15E540(s32 index, void *arg) {

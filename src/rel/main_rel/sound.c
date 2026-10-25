@@ -4367,6 +4367,244 @@ u8 fn_1_A3D5C(void *obj, s8 *pan, s8 *span, u8 *vol) {
 }
 /* fzgx:end fn_1_A3D5C */
 
+/* fzgx:begin fn_1_A4268 pool noprologue */
+#include "types.h"
+#include "dolphin/os/OSFastCast.h"
+
+/* The sound TU's .bss (retail lbl_1_bss_6EA98): retail addresses every
+   object below off one section base register, so they are defined here in
+   retail order. */
+typedef struct {
+    u8 flags;
+    u8 id;
+    u8 unk2;
+    u8 vol;
+    u8 pad4[0x10];
+} fn_1_A4268_Chan;
+
+static u8 fzgx_obj_lbl_1_bss_6EA98[0x4];
+static u8 fzgx_obj_sound_pad4[0x2A];
+static u8 fzgx_obj_sound_enabled;       /* 0x2E */
+static u8 fzgx_obj_sound_pad30[0x710];
+static u8 fzgx_obj_sound_740;           /* 0x740 */
+static u32 fzgx_obj_sound_744;          /* 0x744 */
+static u8 fzgx_obj_sound_pad748[0x4];
+static fn_1_A4268_Chan fzgx_obj_sound_chans[4]; /* 0x74C */
+static u8 fzgx_obj_sound_active[0x94];  /* 0x79C */
+static u32 fzgx_obj_sound_mode[0x37];   /* 0x830 */
+static f32 fzgx_obj_sound_level[4];     /* 0x90C */
+
+extern void fzgx_sink(void *);
+
+#pragma section code_type ".fzgxpool"
+void fzgx_bss_order(void) {
+    fzgx_sink(fzgx_obj_lbl_1_bss_6EA98);
+    fzgx_sink(fzgx_obj_sound_pad4);
+    fzgx_sink(&fzgx_obj_sound_enabled);
+    fzgx_sink(fzgx_obj_sound_pad30);
+    fzgx_sink(&fzgx_obj_sound_740);
+    fzgx_sink(&fzgx_obj_sound_744);
+    fzgx_sink(fzgx_obj_sound_pad748);
+    fzgx_sink(fzgx_obj_sound_chans);
+    fzgx_sink(fzgx_obj_sound_active);
+    fzgx_sink(fzgx_obj_sound_mode);
+    fzgx_sink(fzgx_obj_sound_level);
+}
+#pragma section code_type ".text"
+
+extern f32 fn_1_8652C(void *);
+extern const f32 lbl_1_rodata_4474;
+extern const f32 lbl_1_rodata_454C;
+extern const f32 lbl_1_rodata_4588;
+extern const f32 lbl_1_rodata_458C;
+extern const f32 lbl_1_rodata_4590;
+extern const f32 lbl_1_rodata_4564;
+extern s32 fn_1_58C4(void);
+extern s32 fn_80063094(s32, void *, s32);
+extern s32 fn_80067344(u32, u32, u32, u32);
+extern s32 fn_80067898(u32);
+extern u32 fn_1_864E8(void *);
+extern s32 fn_1_3F864(void);
+extern void *fn_1_86254(void *);
+
+/* Number of the car's four units with bit 2 set. */
+#define FN_1_A4268_COUNT(n, car)                                   \
+    n = 0;                                                         \
+    if ((*(u32 *)((u8 *)(car) + 0x244) & 0x4) != 0) { n = 1; }     \
+    if ((*(u32 *)((u8 *)(car) + 0x2A0) & 0x4) != 0) { n++; }       \
+    if ((*(u32 *)((u8 *)(car) + 0x2FC) & 0x4) != 0) { n++; }       \
+    if ((*(u32 *)((u8 *)(car) + 0x358) & 0x4) != 0) { n++; }
+
+static inline u8 fn_1_A4268_CountUnits(void *id) {
+    u8 count = 0;
+    void *car = fn_1_86254(id);
+    u32 unit;
+    for (unit = 0; unit < 4; unit++) {
+        if ((*(u32 *)((u8 *)car + 0x244 + unit * 0x5C) & 0x4) != 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+void fn_1_A4268(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
+    s32 v0;
+    f32 v1;
+    u32 j;
+    u8 v23;
+    u32 v19;
+    u8 v12;
+    u8 v13;
+    u8 v4;
+    u8 v5;
+    u8 v7;
+    u32 i;
+    void *v14;
+    f32 v15;
+    u8 v27;
+    s8 v30;
+    s32 v31;
+    f32 v40;
+    u8 loc_C;
+    u8 loc_8;
+    s32 t0;
+    void *t2;
+
+    v12 = 0;
+    v13 = 0;
+    t0 = fn_1_58C4();
+    if (fzgx_obj_sound_enabled == 0) {
+        return;
+    }
+    v4 = 0;
+    v5 = 0;
+    if ((u32)t0 > 1) {
+        for (i = 0; i < (u32)t0; i++) {
+            v0 = fzgx_obj_sound_chans[i].id;
+            if ((u32)v0 != 255 && (fn_1_864E8((void *)v0) & 0x2) != 0) {
+                v4 = i;
+                break;
+            }
+        }
+        for (j = 0; j < (u32)t0; j++) {
+            v0 = fzgx_obj_sound_chans[j].id;
+            if ((u32)v0 != 255) {
+                v7 = 0;
+                t2 = fn_1_86254((void *)v0);
+                for (v31 = 0; v31 < 4; v31++) {
+                    if ((*(u32 *)((u8 *)t2 + 0x244 + v31 * 0x5C) & 0x4) != 0) {
+                        v7++;
+                    }
+                }
+                if (v7 != 0) {
+                    v5 = j;
+                    break;
+                }
+            }
+        }
+    }
+    if (v4 == arg2) {
+        v12 = 1;
+    }
+    if (v5 == arg2) {
+        v13 = 1;
+    }
+    v14 = fn_1_86254(arg0);
+    if (v12 != 0) {
+        if (fn_1_8652C(arg0) > lbl_1_rodata_454C && fn_1_3F864() != 0 && (arg1 & 0x880) == 0 && (arg1 & 0x2) != 0) {
+            v15 = *(f32 *)((u8 *)v14 + 384);
+            if (v15 < lbl_1_rodata_4474) {
+                v1 = lbl_1_rodata_4588 - (f32)(lbl_1_rodata_458C * v15);
+            } else {
+                v1 = lbl_1_rodata_4588 + (f32)(lbl_1_rodata_4590 * v15);
+            }
+            loc_C = __OSf32tou8(v1);
+            if (fzgx_obj_sound_enabled != 0) {
+                fn_80063094(6, (void *)0xA6000000, loc_C); /* fzgx-allow: A2 sound command code */
+            }
+            if (fzgx_obj_sound_enabled != 0) {
+                fn_80063094(6, (void *)0xA5100000, arg3 & 0xFF); /* fzgx-allow: A2 sound command code */
+            }
+            fzgx_obj_sound_chans[arg2].flags |= 8;
+        }
+        v0 = fzgx_obj_sound_mode[arg2];
+        if ((v0 & 0x2) == 0 || ((arg1 & 0x80) != 0 && (v0 & 0x80) == 0) || ((arg1 & 0x800) != 0 && (v0 & 0x800) == 0)) {
+            if ((fzgx_obj_sound_chans[arg2].flags & 0x8) != 0) {
+                if (fzgx_obj_sound_enabled != 0) {
+                    fn_80063094(6, (void *)0xA6000000, 0); /* fzgx-allow: A2 sound command code */
+                }
+                if (fzgx_obj_sound_enabled != 0) {
+                    fn_80063094(6, (void *)0xA5100000, 0); /* fzgx-allow: A2 sound command code */
+                }
+                fzgx_obj_sound_chans[arg2].flags &= ~8;
+            }
+        }
+    }
+    v19 = (arg1 & 0x80);
+    if (v19 != 0) {
+        return;
+    }
+    FN_1_A4268_COUNT(v23, v14);
+    if (v23 != 0) {
+        v40 = lbl_1_rodata_4564 * fzgx_obj_sound_level[(u32)arg0];
+        loc_8 = __OSf32tou8(v40);
+        v27 = fzgx_obj_sound_chans[arg2].vol;
+        if (v27 < loc_8) {
+            v27++;
+        } else if (v27 > loc_8) {
+            v27--;
+        }
+        fzgx_obj_sound_chans[arg2].vol = (v27 > 127) ? 127 : v27;
+        if (fzgx_obj_sound_active[arg2] == 0) {
+            fn_80067344(1, 16, 0xB0270000, fzgx_obj_sound_chans[arg2].unk2);
+            if (fzgx_obj_sound_740 == 0 && fzgx_obj_sound_744 <= 45) {
+                fn_80067898(0xA9092900);
+            }
+        }
+        fzgx_obj_sound_active[arg2] = v23;
+    } else {
+        v30 = (fzgx_obj_sound_chans[arg2].vol = 0);
+        if (v30 > 0) {
+            v30--;
+        }
+        fzgx_obj_sound_chans[arg2].vol = v30;
+    }
+    if (v13 == 0) {
+        return;
+    }
+    if (v23 != 0) {
+        v0 = (arg3 & 0xFF) + 50;
+        arg3 = ((v0 < 1) ? 1 : ((v0 > 127) ? 127 : v0)) & 0xFF;
+        if (v19 != 0 && (fzgx_obj_sound_chans[arg2].flags & 0x10) != 0) {
+            if (fzgx_obj_sound_enabled != 0) {
+                fn_80063094(7, (void *)0xA6000000, 0); /* fzgx-allow: A2 sound command code */
+            }
+            if (fzgx_obj_sound_enabled != 0) {
+                fn_80063094(7, (void *)0xA5100000, 0); /* fzgx-allow: A2 sound command code */
+            }
+            fzgx_obj_sound_chans[arg2].flags &= ~16;
+            return;
+        }
+        v27 = fzgx_obj_sound_chans[arg2].vol;
+        if (fzgx_obj_sound_enabled != 0) {
+            fn_80063094(7, (void *)0xA6000000, v27); /* fzgx-allow: A2 sound command code */
+        }
+        if (fzgx_obj_sound_enabled != 0) {
+            fn_80063094(7, (void *)0xA5100000, arg3); /* fzgx-allow: A2 sound command code */
+        }
+        fzgx_obj_sound_chans[arg2].flags |= 16;
+    } else if ((fzgx_obj_sound_chans[arg2].flags & 0x10) != 0) {
+        if (fzgx_obj_sound_enabled != 0) {
+            fn_80063094(7, (void *)0xA6000000, 0); /* fzgx-allow: A2 sound command code */
+        }
+        if (fzgx_obj_sound_enabled != 0) {
+            fn_80063094(7, (void *)0xA5100000, 0); /* fzgx-allow: A2 sound command code */
+        }
+        fzgx_obj_sound_chans[arg2].flags &= ~16;
+    }
+}
+/* fzgx:end fn_1_A4268 */
+
 /* fzgx:begin fn_1_A4BC8 noprologue */
 #include "types.h"
 

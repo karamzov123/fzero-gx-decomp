@@ -29,6 +29,268 @@ extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
 extern void strcat(void *arg0, void *arg1);
 extern void fn_1_48004(s32 value, s32 arg);
 
+/* fzgx:begin fn_1_451E4 pool noprologue */
+#include "types.h"
+#include "types.h"
+
+/* begin dolphin/ar.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef DOLPHIN_AR_H
+#define DOLPHIN_AR_H
+
+/* ARAM DMA request queue (ARQ), Dolphin SDK names. */
+
+/* begin layout_check.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef LAYOUT_CHECK_H
+#define LAYOUT_CHECK_H
+
+/* Compile-time layout checks for owned types. They declare array typedefs
+ * only, so they emit no code or data under MWCC: a wrong size or offset is
+ * a negative array bound and fails the compile. */
+#define LAYOUT_CHECK_JOIN2(a, b) a##b
+#define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
+#define CHECK_SIZE(T, size) \
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+#define CHECK_OFFSET(T, field, offset) \
+    typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
+        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+
+#endif
+
+/* end layout_check.h */
+
+typedef void (*ARQCallback)(u32 pointerToARQRequest);
+
+typedef struct ARQRequest {
+    struct ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    ARQCallback callback;
+} ARQRequest;
+
+CHECK_OFFSET(ARQRequest, dest, 0x14);
+CHECK_SIZE(ARQRequest, 0x20);
+
+#endif
+
+/* end dolphin/ar.h */
+
+typedef struct LoadCommand {
+    u32 type;
+    u32 arg0;
+    u32 arg1;
+} LoadCommand;
+
+typedef struct LoadBlock {
+    u32 flags;
+    u32 id;
+    u32 data;
+} LoadBlock;
+
+typedef struct LoadWork {
+    u32 flags;
+    u8 file[0x48];
+    LoadBlock *block;
+    u32 index;
+    u32 chunk;
+    u32 remaining;
+    u32 total;
+} LoadWork;
+
+extern s32 fn_1_45E84(s32);
+extern LoadBlock *fn_1_45BF0(u32);
+extern void fn_1_45BE0(void);
+extern void fn_1_45BA4(s32);
+extern void fn_1_451D4(u32);
+extern int fn_1_46144(LoadBlock *, u32, u32);
+extern void *memset(void *, int, u32);
+extern int fn_80006C2C(u32, void *);
+extern u32 fn_80006DE8(void *);
+extern void fn_80006CE4(void *);
+extern int fn_80006DAC(void *, void *, u32, u32, void (*)(s32), void (*)(void), u32);
+extern void ARQPostRequest(ARQRequest *, u32, u32, u32, u32, u32, u32, ARQCallback);
+extern void OSPanic(const char *, int, const char *, ...);
+
+/* load.c .bss; MWCC lays these out in reverse order, so the last one is at the base */
+static ARQRequest sReq;        /* 0x58D4 */
+static LoadWork sWork;         /* 0x5874 */
+static u32 sBufSize;           /* 0x5870 */
+static u32 sBuf;               /* 0x586C */
+static u32 s5868;              /* 0x5868 */
+static s32 sKind;              /* 0x5864 */
+static u8 sPad581C[0x48];      /* 0x581C */
+static u32 s5818;              /* 0x5818 */
+static LoadCommand sCmds[512]; /* 0x4018 */
+static u8 sPad10[0x4008];      /* 0x0010 */
+static volatile s32 sArqBusy;  /* 0x000C: cleared by the ARQ callback */
+static volatile s32 sDvdState; /* 0x0008: set by the DVD callbacks */
+static s32 sTail;              /* 0x0004 */
+static s32 fzgx_obj_lbl_1_bss_384C0; /* 0x0000: queue head */
+#define sHead fzgx_obj_lbl_1_bss_384C0
+
+#pragma section code_type ".fzgxpool"
+u32 fzgx_bss_order_451E4(void) {
+    return (u32)&sWork + (u32)&sReq + (u32)&sBufSize + (u32)&sBuf + (u32)&s5868 + (u32)&sKind +
+           (u32)sPad581C + (u32)&s5818 + (u32)sCmds + (u32)sPad10 + (u32)&sArqBusy +
+           (u32)&sDvdState + (u32)&sTail + (u32)&sHead;
+}
+#pragma section code_type ".text"
+
+#define HALF ((sBufSize >> 1) & ~31)
+
+void fn_1_451E4(void) {
+    LoadCommand *cmd;
+    void *file;
+    LoadBlock *block;
+
+    if (sTail == sHead) {
+        return;
+    }
+    cmd = &sCmds[sTail];
+    switch (cmd->type) {
+    case 14:
+        cmd->type = 0;
+        sTail = fn_1_45E84(sTail);
+        break;
+    case 12:
+        if (sDvdState > 0) {
+            break;
+        }
+        sBuf = cmd->arg0;
+        sBufSize = cmd->arg1;
+        sTail = fn_1_45E84(sTail);
+        break;
+    case 11:
+        if (sDvdState > 0) {
+            break;
+        }
+        s5818 = cmd->arg0;
+        sTail = fn_1_45E84(sTail);
+        break;
+    case 13:
+        if (sDvdState > 0) {
+            break;
+        }
+        ((void (*)(u32))cmd->arg0)(cmd->arg1);
+        sTail = fn_1_45E84(sTail);
+        break;
+    /* commands 1-6 open a file; they share the loader below and differ only in kind */
+    case 1: sKind = 0; goto start;
+    case 2: sKind = 1; goto start; /* Keep the verified branch to start. */
+    case 3: sKind = 2; goto start; /* Keep the verified branch to start. */
+    case 4: sKind = 3; goto start; /* Keep the verified branch to start. */
+    case 5: sKind = 4; goto start; /* Keep the verified branch to start. */
+    case 6: sKind = 5;
+    start:
+        if (sDvdState > 0) {
+            break;
+        }
+        memset(&sWork, 0, sizeof(LoadWork));
+        file = sWork.file;
+        if (!fn_80006C2C(cmd->arg0, file)) {
+            OSPanic("load.c", 0x138, "cannot open file\n");
+        }
+        sWork.flags |= 1;
+        sWork.total = fn_80006DE8(file);
+        sWork.index = 0;
+        sWork.remaining = (sWork.total + 31) & ~31;
+        sWork.chunk = sWork.remaining < HALF ? sWork.remaining : HALF;
+        block = fn_1_45BF0(sWork.total);
+        sWork.block = block;
+        if (block == NULL) {
+            fn_80006CE4(file);
+            sWork.flags &= ~1;
+            sTail = fn_1_45E84(sTail);
+            break;
+        }
+        block->id = cmd->arg0;
+        sDvdState = 1;
+        if (!fn_80006DAC(file, (void *)sBuf, sWork.chunk, sWork.index * HALF, fn_1_45BA4, fn_1_45BE0, 0)) {
+            OSPanic("load.c", 0x150, "cannot read file\n");
+        }
+        cmd->type = 7;
+        break;
+    case 7:
+        if (sDvdState < 0) {
+            cmd->type = 14;
+            sDvdState = 0;
+            break;
+        }
+        if (sDvdState != 0) {
+            break;
+        }
+    case 8:
+    transfer:
+        file = (void *)(sBuf + HALF * (sWork.index & 1));
+        block = (LoadBlock *)(sWork.block->data + sWork.index * HALF);
+        sArqBusy = 1;
+        ARQPostRequest(&sReq, 0, 0, 1, (u32)file, (u32)block, sWork.chunk, fn_1_451D4);
+        sWork.index++;
+        sWork.remaining -= sWork.chunk;
+        if (sWork.remaining == 0) {
+            cmd->type = 10;
+            break;
+        }
+        sWork.chunk = sWork.remaining < HALF ? sWork.remaining : HALF;
+        file = (void *)(sBuf + HALF * (sWork.index & 1));
+        sDvdState = 1;
+        if (!fn_80006DAC(sWork.file, file, sWork.chunk,
+                         sWork.index * HALF, fn_1_45BA4, fn_1_45BE0, 0)) {
+            OSPanic("load.c", 0x195, "cannot read file\n");
+        }
+        cmd->type = 9;
+    case 9:
+        if (sArqBusy != 0) {
+            break;
+        }
+        if (sDvdState < 0) {
+            cmd->type = 14;
+            sDvdState = 0;
+            break;
+        }
+        if (sDvdState != 0) {
+            break;
+        }
+        /* both transfers are done: start the next chunk */
+        goto transfer;
+    case 10:
+        if (sArqBusy != 0) {
+            break;
+        }
+        switch (sKind) {
+        case 0:
+            sWork.block->flags = 0x40000000;
+            break;
+        case 1:
+            sWork.block->flags = 0x50000000;
+            break;
+        case 2:
+        case 4:
+            if (!fn_1_46144(sWork.block, 0, sKind == 4)) {
+                OSPanic("load.c", 0x1C7, "ARAM archive extend error");
+            }
+            sWork.block->flags = (sKind == 4) ? 0 : 0x4000000;
+            break;
+        case 3:
+        case 5:
+            if (!fn_1_46144(sWork.block, 1, sKind == 5)) {
+                OSPanic("load.c", 0x1D1, "ARAM archive extend error");
+            }
+            sWork.block->flags = (sKind == 5) ? 0 : 0x14000000;
+            break;
+        }
+        fn_80006CE4(sWork.file);
+        sWork.flags &= ~1;
+        sKind = 0;
+        sTail = fn_1_45E84(sTail);
+        break;
+    }
+}
+/* fzgx:end fn_1_451E4 */
+
 /* fzgx:begin fn_1_45730 noprologue */
 #include "types.h"
 #include "rel/main_rel/load.h"
@@ -168,6 +430,141 @@ u32 fn_1_458A0(struct fn_1_458A0_Arg0 *arg0, void *arg1, u32 arg2, u32 arg3) {
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_458A0 */
+
+/* fzgx:begin fn_1_45964 pool noprologue */
+#include "types.h"
+#include "types.h"
+
+/* begin dolphin/ar.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef DOLPHIN_AR_H
+#define DOLPHIN_AR_H
+
+/* ARAM DMA request queue (ARQ), Dolphin SDK names. */
+
+/* begin layout_check.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef LAYOUT_CHECK_H
+#define LAYOUT_CHECK_H
+
+/* Compile-time layout checks for owned types. They declare array typedefs
+ * only, so they emit no code or data under MWCC: a wrong size or offset is
+ * a negative array bound and fails the compile. */
+#define LAYOUT_CHECK_JOIN2(a, b) a##b
+#define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
+#define CHECK_SIZE(T, size) \
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+#define CHECK_OFFSET(T, field, offset) \
+    typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
+        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+
+#endif
+
+/* end layout_check.h */
+
+typedef void (*ARQCallback)(u32 pointerToARQRequest);
+
+typedef struct ARQRequest {
+    struct ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    ARQCallback callback;
+} ARQRequest;
+
+CHECK_OFFSET(ARQRequest, dest, 0x14);
+CHECK_SIZE(ARQRequest, 0x20);
+
+#endif
+
+/* end dolphin/ar.h */
+
+struct S45964 {
+    s32 kind;
+    u8 pad[0x50];
+    u32 value;
+};
+
+extern u32 fn_1_45A58(void);
+extern void DCInvalidateRange(void *, u32);
+extern void ARQPostRequest(void *, u32, u32, u32, u32, void *, u32, void *);
+extern u32 fn_80006DAC(void *, void *, u32, u32, void *, void *, u32);
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u8 fzgx_obj_lbl_1_bss_384C0;
+u8 lbl_1_bss_384C0_fill_384C1;
+u16 lbl_1_bss_384C0_fill_384C2;
+u32 lbl_1_bss_384C4;
+u32 fzgx_obj_lbl_1_bss_384C8;
+u32 lbl_1_bss_384CC;
+u32 fzgx_obj_lbl_1_bss_384D0;
+u8 lbl_1_bss_384D0_4;
+u8 lbl_1_bss_384D0_fill_384D5;
+u16 lbl_1_bss_384D0_fill_384D6;
+u32 fzgx_obj_lbl_1_bss_384D8[5632];
+u32 lbl_1_bss_3DCD8;
+u32 fzgx_obj_lbl_1_bss_3DCDC[2];
+u32 lbl_1_bss_3DCE4[16];
+u32 lbl_1_bss_3DCE4_fill_3DD24;
+u32 lbl_1_bss_3DD28[35];
+u8 lbl_1_bss_3DD28_8C[16][32];
+u32 lbl_1_bss_3DD28_28C[16];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
+    s = *(u8 *)&lbl_1_bss_384C0_fill_384C1;
+    s = *(u8 *)&lbl_1_bss_384C0_fill_384C2;
+    s = *(u8 *)&lbl_1_bss_384C4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C8;
+    s = *(u8 *)&lbl_1_bss_384CC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
+    s = *(u8 *)&lbl_1_bss_384D0_4;
+    s = *(u8 *)&lbl_1_bss_384D0_fill_384D5;
+    s = *(u8 *)&lbl_1_bss_384D0_fill_384D6;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
+    s = *(u8 *)&lbl_1_bss_3DCD8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCDC;
+    s = *(u8 *)&lbl_1_bss_3DCE4;
+    s = *(u8 *)&lbl_1_bss_3DCE4_fill_3DD24;
+    s = *(u8 *)&lbl_1_bss_3DD28;
+    s = *(u8 *)&lbl_1_bss_3DD28_8C;
+    s = *(u8 *)&lbl_1_bss_3DD28_28C;
+}
+#pragma section code_type ".text"
+
+#pragma opt_propagation off
+u32 fn_1_45964(struct S45964 *arg0, void *arg1, u32 arg2, u32 arg3, u32 arg4) {
+    u32 i;
+    u32 indexBytes;
+    u8 n;
+    u32 size;
+    u32 offset;
+    u8 *req;
+
+    i = lbl_1_bss_384D0_4;
+    n = (u8)(i + 1);
+    lbl_1_bss_384D0_4 = i + 1;
+    indexBytes = i << 2;
+    req = lbl_1_bss_3DD28_8C[i];
+    *(u32 *)((u8 *)lbl_1_bss_3DCE4 + indexBytes) = 1;
+    *(u32 *)((u8 *)lbl_1_bss_3DD28_28C + indexBytes) = arg4;
+    offset = arg3;
+    lbl_1_bss_384D0_4 = (n > 15) ? 0 : n;
+    switch (arg0->kind) {
+    case 1:
+        size = arg2;
+        DCInvalidateRange(arg1, size);
+        ARQPostRequest(req, 0, 1, 1, arg0->value + offset, arg1, size, (void *)fn_1_45A58);
+        return 1;
+    default:
+        return fn_80006DAC((u8 *)arg0 + 4, arg1, arg2, offset, (void *)fn_1_45A58, (void *)fn_1_45A58, 0);
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_45964 */
 
 /* fzgx:begin fn_1_45A58 noprologue */
 #include "types.h"

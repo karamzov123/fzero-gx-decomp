@@ -1159,6 +1159,315 @@ void fn_1_104730(int index, int use_matrix) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_104730 */
 
+/* fzgx:begin fn_1_1049E0 pool */
+#ifndef GAME_MAIN_REL_BG_COMMON_TYPES_H
+#define GAME_MAIN_REL_BG_COMMON_TYPES_H
+
+#endif  // GAME_MAIN_REL_BG_COMMON_TYPES_H
+
+extern s32 fn_1_58C4(void);
+extern void lbl_8006DCA4(void);
+
+/* begin dolphin/ar.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef DOLPHIN_AR_H
+#define DOLPHIN_AR_H
+
+/* ARAM DMA request queue (ARQ), Dolphin SDK names. */
+
+/* begin layout_check.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef LAYOUT_CHECK_H
+#define LAYOUT_CHECK_H
+
+/* Compile-time layout checks for owned types. They declare array typedefs
+ * only, so they emit no code or data under MWCC: a wrong size or offset is
+ * a negative array bound and fails the compile. */
+#define LAYOUT_CHECK_JOIN2(a, b) a##b
+#define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
+#define CHECK_SIZE(T, size) \
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+#define CHECK_OFFSET(T, field, offset) \
+    typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
+        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+
+#endif
+
+/* end layout_check.h */
+
+typedef void (*ARQCallback)(u32 pointerToARQRequest);
+
+typedef struct ARQRequest {
+    struct ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    ARQCallback callback;
+} ARQRequest;
+
+CHECK_OFFSET(ARQRequest, dest, 0x14);
+CHECK_SIZE(ARQRequest, 0x20);
+
+#endif
+
+/* end dolphin/ar.h */
+
+struct fn_1_1049E0_lbl_801A63C0 { u32 unk_0; };
+struct fn_1_1049E0_record {
+    f32 pos[3];
+    f32 start[3];
+    f32 middle[3];
+    f32 end[3];
+    u8 pad_30[0x48];
+    f32 unk_78;
+    u16 unk_7C;
+    u8 unk_7E;
+    u8 unk_7F;
+    s16 unk_80;
+    s16 unk_82;
+    s16 unk_84;
+    s16 unk_86;
+};
+struct fn_1_1049E0_sub {
+    u8 pad_0[0xC];
+    s16 unk_C;
+    u8 pad_E[0x2];
+};
+extern struct fn_1_1049E0_lbl_801A63C0 lbl_801A63C0;
+extern s16 camera_get_mode(void);
+extern s16 fn_1_3F0C8(void);
+extern s32 fn_1_58C4(void);
+extern s32 fn_1_6514(s32);
+extern u32 fn_1_864E8(s32);
+extern s32 fn_1_F2F34(void);
+extern u8 lbl_1_bss_6F239;
+extern void fn_1_104730(int, int);
+extern void fn_1_5948(int);
+extern void fn_1_627C(int);
+extern void fn_1_A2D84(u32);
+extern s32 fn_1_54E34(void *, f32);
+extern void lbl_8006DCA4(void);
+extern void fn_1_106D30(u32);
+extern void DCInvalidateRange(void *, u32);
+extern void ARQPostRequest(ARQRequest *, u32, u32, u32, u32, u32, u32, ARQCallback);
+
+#pragma section code_type ".fzgxpool"
+/* Primes the TU literal pool (lbl_1_rodata_78D0) in retail order. Conversion
+   constants are pooled after a function's own literals, so each one closes
+   its primer function. The pool section is created here, before the .bss
+   objects below, which fixes the order of the two section-base registers. */
+void fzgx_pool_fn_1_1049E0(f32 *o, s32 s) {
+    o[0] = 60.0f;
+    o[1] = 182.04445f;
+    o[2] = (f32)s;
+}
+
+void fzgx_pool_fn_1_1049E0_b(f32 *o, f64 *d, u32 u) {
+    o[3] = 1.0f;
+    o[4] = 0.5f;
+    o[5] = 0.0f;
+    o[6] = 5.0f;
+    o[7] = 0.2f;
+    o[8] = -1.0f;
+    o[9] = 32768.0f;
+    o[10] = 16384.0f;
+    o[11] = 2.0f;
+    o[12] = 98304.0f;
+    o[13] = 0.25f;
+    o[14] = 3.0f;
+    o[15] = 0.4f;
+    o[16] = -0.1f;
+    o[17] = 0.6f;
+    o[18] = 2.5f;
+    o[19] = 20.0f;
+    o[20] = 0.85f;
+    o[21] = 6.6666665f;
+    o[22] = 1.5f;
+    o[23] = 30.0f;
+    o[24] = 0.01f;
+    d[0] = 0.0;
+    d[1] = 3.0;
+    o[25] = 32767.0f;
+    d[2] = 0.5;
+    o[26] = (f32)u;
+}
+
+void fzgx_pool_fn_1_1049E0_c(f32 *o) {
+    o[27] = 4.0f;
+    o[28] = 65536.0f;
+    o[29] = 0.3f;
+    o[30] = 0.8f;
+    o[31] = 0.7f;
+    o[32] = 24576.0f;
+    o[33] = 8192.0f;
+    o[34] = 8.0f;
+    o[35] = 4096.0f;
+    o[36] = -20.0f;
+}
+
+/* An aggregate initializer is pooled when it is parsed, ahead of the
+   function's literals. */
+void fzgx_pool_fn_1_1049E0_d(f32 *o, int i) {
+    f32 t[9] = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f };
+    o[37] = t[i];
+    o[38] = 1040.0f;
+    o[39] = 9.5f;
+    o[40] = 40.0f;
+    o[41] = 29.5f;
+    o[42] = 140.0f;
+    o[43] = 109.5f;
+}
+#pragma section code_type ".text"
+
+/* The TU's .bss objects starting at lbl_1_bss_85280, in retail order. */
+u32 fzgx_obj_lbl_1_bss_85280;
+u32 fzgx_obj_lbl_1_bss_85284;
+u32 fzgx_obj_lbl_1_bss_85288[2];
+f32 fzgx_obj_lbl_1_bss_85290;
+s32 fzgx_obj_lbl_1_bss_85294;
+struct fn_1_1049E0_record fzgx_obj_lbl_1_bss_85298[4];
+struct fn_1_1049E0_sub fzgx_obj_lbl_1_bss_854B8;
+s32 fzgx_obj_lbl_1_bss_854C8;
+u32 fzgx_obj_lbl_1_bss_854CC[210];
+ARQRequest fzgx_obj_lbl_1_bss_85814;
+u32 fzgx_obj_lbl_1_bss_85834[210];
+
+#pragma section code_type ".fzgxpool"
+/* Fixes the .bss emission order. */
+void fzgx_bss_fn_1_1049E0(u32 *o) {
+    o[0] = fzgx_obj_lbl_1_bss_85280;
+    o[10] = fzgx_obj_lbl_1_bss_85284;
+    o[1] = fzgx_obj_lbl_1_bss_85288[0];
+    o[2] = *(u32 *)&fzgx_obj_lbl_1_bss_85290;
+    o[3] = fzgx_obj_lbl_1_bss_85294;
+    o[4] = fzgx_obj_lbl_1_bss_85298[0].unk_7C;
+    o[5] = fzgx_obj_lbl_1_bss_854B8.unk_C;
+    o[6] = fzgx_obj_lbl_1_bss_854C8;
+    o[7] = fzgx_obj_lbl_1_bss_854CC[0];
+    o[8] = fzgx_obj_lbl_1_bss_85814.length;
+    o[9] = fzgx_obj_lbl_1_bss_85834[0];
+}
+#pragma section code_type ".text"
+
+void fn_1_1049E0(void *arg0, f32 arg1) {
+    s32 count;
+    struct fn_1_1049E0_record *rec;
+    struct { s32 value; } i;
+    s32 count2;
+    s32 j;
+    u8 phase;
+    s32 elapsed, span, rest;
+    s16 t11;
+    u16 frame;
+    u16 now;
+
+    frame = *(u16 *)arg0;
+    fzgx_obj_lbl_1_bss_854B8.unk_C = frame;
+    if (frame == 420) {
+        u32 seed = lbl_801A63C0.unk_0 * 0x676A4B6B + 0x33CB;
+        lbl_801A63C0.unk_0 = seed;
+        fzgx_obj_lbl_1_bss_85294 = (seed >> 16) & 0x7FFF;
+        count = fn_1_58C4();
+        for (i.value = 0; i.value < count; i.value++) {
+            rec = &fzgx_obj_lbl_1_bss_85298[i.value];
+            if ((s16)fn_1_6514(i.value) == 1) {
+                fn_1_104730(i.value, 1);
+                fn_1_5948(i.value);
+                switch (fzgx_obj_lbl_1_bss_85294 % 2) {
+                case 0:
+                    rec->unk_82 = 600;
+                    rec->unk_84 = 0;
+                    rec->unk_86 = 0;
+                    break;
+                case 1:
+                default:
+                    rec->unk_82 = 0;
+                    rec->unk_84 = 0;
+                    rec->unk_86 = 0;
+                    break;
+                }
+                rec->unk_78 = -20.0f;
+                { struct VecWords { u32 a, b, c; };
+                  *(struct VecWords *)&rec->pos = *(struct VecWords *)&rec->start; }
+                rec->unk_7F = 0;
+                fn_1_627C(i.value);
+            }
+        }
+    }
+    count2 = fn_1_58C4();
+    for (j = 0; j < count2; j++) {
+        s32 bounds[5] = { 420, 360, 300, 40, 0 };
+        rec = &fzgx_obj_lbl_1_bss_85298[j];
+        if (rec->unk_7F == 0 && (s16)fn_1_6514(j) == 1 && fn_1_F2F34() == 0) {
+            now = *(u16 *)arg0;
+            for (phase = 0; phase < 5; phase++) {
+                if (now > bounds[phase]) break;
+            }
+            fn_1_5948(j);
+            if ((fn_1_864E8(camera_get_mode()) & 0x8000) == 0) {
+                if ((lbl_1_bss_3C30.unk_0 & 0x100) != 0 && fn_1_3F0C8() == 40)
+                    fn_1_104730(j, 1);
+                else
+                    fn_1_104730(j, 0);
+            }
+            fn_1_627C(j);
+            span = bounds[phase - 1] - bounds[phase];
+            elapsed = *(u16 *)arg0 - bounds[phase];
+            rest = span - elapsed;
+            switch (phase) {
+            case 1:
+                rec->pos[0] = ((f32)(rec->start[0] * (f32)elapsed) + (f32)(rec->middle[0] * (f32)rest)) / (f32)span;
+                rec->pos[1] = ((f32)(rec->start[1] * (f32)elapsed) + (f32)(rec->middle[1] * (f32)rest)) / (f32)span;
+                rec->pos[2] = ((f32)(rec->start[2] * (f32)elapsed) + (f32)(rec->middle[2] * (f32)rest)) / (f32)span;
+                rec->unk_80 = rec->unk_82 * elapsed + (elapsed * (rec->unk_84 * elapsed)) / 2 + (elapsed * (elapsed * (rec->unk_86 * elapsed))) / 6;
+                break;
+            case 2:
+                rec->pos[0] = rec->middle[0];
+                rec->pos[1] = rec->middle[1];
+                rec->pos[2] = rec->middle[2];
+                rec->unk_78 = ((f32)(-20.0f * (f32)elapsed) + (f32)(15.0f * (f32)rest)) / (f32)span;
+                if (lbl_1_bss_6F239 == 0) {
+                    fn_1_A2D84(0xA9091800);
+                    lbl_1_bss_6F239 = 1;
+                }
+                break;
+            case 3:
+                rec->pos[0] = rec->middle[0];
+                rec->pos[1] = rec->middle[1];
+                rec->pos[2] = rec->middle[2];
+                break;
+            case 4:
+                rec->pos[0] = ((f32)(rec->middle[0] * (f32)elapsed) + (f32)(rec->end[0] * (f32)rest)) / (f32)span;
+                rec->pos[1] = ((f32)(rec->middle[1] * (f32)elapsed) + (f32)(rec->end[1] * (f32)rest)) / (f32)span;
+                rec->pos[2] = ((f32)(rec->middle[2] * (f32)elapsed) + (f32)(rec->end[2] * (f32)rest)) / (f32)span;
+                rec->unk_80 = rec->unk_82 * rest + (rest * (rec->unk_84 * rest)) / 2 + (rest * (rest * (rec->unk_86 * rest))) / 6;
+                fn_1_A2D84(0xA9091900);
+                break;
+            }
+            now = *(u16 *)arg0;
+            rec->unk_7E = now / 60;
+            rec->unk_7C = now;
+            if (phase == 4) {
+                fn_1_5948(j);
+                lbl_8006DCA4();
+                if (fn_1_54E34(rec, 5.0f) == 0) rec->unk_7F = 1;
+                fn_1_627C(j);
+            }
+        }
+    }
+    if (fzgx_obj_lbl_1_bss_854C8 == 1) {
+        s16 index;
+        void *dest = (void *)fzgx_obj_lbl_1_bss_85284;
+        t11 = 178 - (fzgx_obj_lbl_1_bss_854B8.unk_C - 60) / 2;
+        index = t11 < 0 ? 0 : t11 > 209 ? 209 : t11;
+        DCInvalidateRange(dest, fzgx_obj_lbl_1_bss_854CC[index]);
+        ARQPostRequest(&fzgx_obj_lbl_1_bss_85814, 0, 1, 1, fzgx_obj_lbl_1_bss_85834[index],
+            fzgx_obj_lbl_1_bss_85284, fzgx_obj_lbl_1_bss_854CC[index], (ARQCallback)fn_1_106D30);
+    }
+}
+/* fzgx:end fn_1_1049E0 */
+
 /* fzgx:begin fn_1_105724 */
 // fn_1_105724: simple wrapper function calling fn_1_106B68
 void fn_1_105724(void) {

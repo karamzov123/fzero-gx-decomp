@@ -334,6 +334,472 @@ void fn_1_7D694(Object *obj) {
 }
 /* fzgx:end fn_1_7D694 */
 
+/* fzgx:begin fn_1_7D6B8 */
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
+typedef struct {
+    void *info;                 /* -> Fn1_7D6B8Info * */
+    s32 *count;
+    u32 unk_8;
+} Fn1_7D6B8Slot;                /* 0xC */
+
+typedef struct {
+    u8 pad_0[0x334];
+    Fn1_7D6B8Slot slots[0x16];
+    u8 pad_43C[0x440 - 0x43C];
+} Fn1_7D6B8Block;               /* 0x440 */
+
+typedef struct {
+    u8 *value;
+} Fn1_7D6B8ColorContainer;
+
+typedef struct {
+    void *base;
+    u8 field_4;
+    u8 field_5;
+    u8 field_6;
+    u8 field_7;
+    u8 field_8;
+    u8 pad_9[0x13];
+    Fn1_7D6B8ColorContainer *unk_1c;
+    u32 field_20;
+    u8 field_24;
+} Fn1_7D6B8Arg;
+
+typedef struct {
+    u8 pad_18[0x18];
+    u16 unk_18;
+} Fn1_7D6B8Info;
+
+/* Halfword fields not yet named in car_test.h. */
+#define INPUT_14 (*(u16 *)&lbl_1_bss_9F8.pad_14[0])
+#define INPUT_24 (*(u16 *)&lbl_1_bss_9F8.pad_14[0x10])
+#define INPUT_26 (*(u16 *)&lbl_1_bss_9F8.pad_14[0x12])
+extern void * memset(void *, int, u32);
+extern u8 fn_1_816E8(void *, u8);
+extern u32 fn_800793D4(u8 *, u32, u32);
+
+/* saturate a u8 channel at 0xFF after a signed step */
+#define CLAMP_U8(x) (((x) > 0xFFU) ? 0xFF : (x))
+
+#pragma opt_dead_assignments off
+#pragma opt_pointer_analysis off
+#pragma opt_propagation off
+void fn_1_7D6B8(void *arg0) {
+    s32 *temp_r3_2;
+    Fn1_7D6B8Block *block_entry;
+    Fn1_7D6B8Block *block_entry2;
+    s32 temp_r0_2;
+    s32 temp_r3_4;
+    s32 temp_r4;
+    s32 shift_idx;
+    struct { s32 value; } temp_r5;
+    s32 temp_r8;
+    s8 temp_r10;
+    struct { s32 value; } var_r0;
+    s32 var_r6_2;
+    s8 var_r4;
+    s8 var_r4_2;
+    s8 var_r5;
+    s8 var_r6;
+    u8 *temp_r3_14;
+    u8 *temp_r3_15;
+    u8 *temp_r3_16;
+    u8 *temp_r3_6;
+    u8 *temp_r3_7;
+    u8 *temp_r3_8;
+    u8 *temp_r4_19;
+    u8 *temp_r4_21;
+    u8 *temp_r4_23;
+    u8 *temp_r4_25;
+    u8 *temp_r4_3;
+    u8 *temp_r4_5;
+    u8 *temp_r4_7;
+    u8 *temp_r4_9;
+    void *temp_r3_10;
+    void *temp_r3_11;
+    void *temp_r3_12;
+    u8 temp_r0;
+    u8 temp_r0_3;
+    u8 temp_r0_4;
+    u8 temp_r0_5;
+    u8 temp_r3;
+    u8 temp_r3_13;
+    u8 temp_r3_5;
+    u8 temp_r3_9;
+    u8 temp_r4_10;
+    u8 temp_r4_14;
+    u8 temp_r4_16;
+    u8 temp_r4_18;
+    u8 temp_r4_22;
+    u8 temp_r4_24;
+    u8 temp_r4_26;
+    u8 temp_r4_2;
+    u8 temp_r4_6;
+    u8 temp_r4_8;
+    u8 *temp_r4_20;
+    u8 *temp_r4_4;
+    void *temp_r3_3;
+    void *temp_r4_11;
+    void *temp_r4_12;
+    void *temp_r4_13;
+    void *temp_r4_15;
+    void *temp_r4_17;
+    void *temp_r9;
+
+    var_r5 = 0;
+    var_r6 = 0;
+    var_r4 = 0;
+    if (!((*(s32 *)((u8 *)(lbl_1_bss_6D7E8) + 32)) & 0x40000000)) {
+        temp_r0 = *(u8 *)((u8 *)(arg0) + 6);
+        switch ((s8) temp_r0) {                     /* switch 1; irregular */
+        case 0:                                     /* switch 1 */
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 3U) & 1)) {
+                var_r4 = -1;
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 2U) & 1)) {
+                var_r4 += 1;
+            }
+            (*(u8 *)((u8 *)(arg0) + 4)) = (u8) ((*(u8 *)((u8 *)(arg0) + 4)) + var_r4);
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 4)) < 1) {
+                (*(u8 *)((u8 *)(arg0) + 4)) = 4U;
+            }
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 4)) > 4) {
+                (*(u8 *)((u8 *)(arg0) + 4)) = 1U;
+            }
+            if (((u16) lbl_1_bss_9F8.unk_8 >> 8U) & 1) {
+                (*(u8 *)((u8 *)(arg0) + 6)) = (u8) (*(u8 *)((u8 *)(arg0) + 4));
+                return;
+            }
+            break;
+        case 1:                                     /* switch 1 */
+            if (((*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8.unk_12 & 1)) {
+                var_r4 = -1;
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 1U) & 1)) {
+                var_r4 += 1;
+            }
+            (*(u8 *)((u8 *)(arg0) + 7)) = (u8) ((*(u8 *)((u8 *)(arg0) + 7)) + var_r4);
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 7)) < 0) {
+                (*(u8 *)((u8 *)(arg0) + 7)) = 0x28U;
+            }
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 7)) > 0x28) {
+                (*(u8 *)((u8 *)(arg0) + 7)) = 0U;
+            }
+            block_entry = &((Fn1_7D6B8Block *)(*(void **)arg0))[(s8) *(u8 *)((u8 *)arg0 + 7)];
+            temp_r0_2 = (s8) *block_entry->slots[(s8) *(u8 *)((u8 *)arg0 + 36)].count;
+            if (((u16) INPUT_14 >> 0xBU) & 1) {
+                if (((u16) (*(u16 volatile *)&(INPUT_26)) /* Retail reloads this field. */ >> 3U) & 1) {
+                    var_r6 = -1;
+                }
+                if (((u16) INPUT_26 >> 2U) & 1) {
+                    var_r6 += 1;
+                }
+                block_entry2 = &((Fn1_7D6B8Block *)(*(u32 *)arg0))[*(s8 *)((u8 *)arg0 + 7)];
+                temp_r10 = *(s8 *)((u8 *)(arg0) + 36);
+                temp_r8 = (s8) (*(Fn1_7D6B8Info **)block_entry2->slots[temp_r10].info)->unk_18;
+                if (var_r6 != 0) {
+                    temp_r9 = (void *)((u8 *)(arg0) + temp_r10);
+                    temp_r8 -= 1;
+                    var_r6_2 = (s8) (*(u8 *)((u8 *)(temp_r9) + 37)) + var_r6;
+                    if (var_r6_2 > temp_r8) {
+                        var_r6_2 = 0;
+                    } else if (var_r6_2 < 0) {
+                        var_r6_2 = temp_r8;
+                    }
+                    (*(u8 *)((u8 *)(temp_r9) + 37)) = (u8) var_r6_2;
+                }
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 3U) & 1)) {
+                var_r5 = -1;
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 2U) & 1)) {
+                var_r5 += 1;
+            }
+            (*(u8 *)((u8 *)(arg0) + 8)) = (u8) ((*(u8 *)((u8 *)(arg0) + 8)) + var_r5);
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 8)) < 0) {
+                (*(u8 *)((u8 *)(arg0) + 8)) = (u8) (s8) temp_r0_2;
+            }
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 8)) > (s8) temp_r0_2) {
+                (*(u8 *)((u8 *)(arg0) + 8)) = 0U;
+            }
+            if (var_r4 != 0) {
+                (*(u8 *)((u8 *)(arg0) + 8)) = (u8) (s8) temp_r0_2;
+                (*(s8 *)((u8 *)(arg0) + 37)) = 0;
+                (*(s8 *)((u8 *)(arg0) + 38)) = 0;
+                (*(s8 *)((u8 *)(arg0) + 39)) = 0;
+                (*(s8 *)((u8 *)(arg0) + 40)) = 0;
+                (*(s8 *)((u8 *)(arg0) + 41)) = 0;
+            }
+            temp_r3 = *(u8 *)((u8 *)(arg0) + 8);
+            shift_idx = (s8) temp_r3;
+            if ((shift_idx != (s8) temp_r0_2) && (((u16) lbl_1_bss_9F8.unk_8 >> 0xBU) & 1)) {
+                temp_r5.value = *(s32 *)((u8 *)(arg0) + 12);
+                temp_r4 = (s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4;
+                (*(s32 *)((u8 *)((temp_r5.value + temp_r4)) + 0)) ^= (1 << shift_idx);
+            }
+            if (((u16) lbl_1_bss_9F8.unk_8 >> 0xAU) & 1) {
+                temp_r3_2 = (s32 *)((*(s32 *)((u8 *)(arg0) + 12)) + ((s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4));
+                if ((*(s32 *)((u8 *)(temp_r3_2) + 0)) & 0x80000000) {
+                    memset((void *)(temp_r3_2), (s32)(0), (u32)(4U));
+                } else {
+                    memset((void *)(temp_r3_2), (s32)(-1), (u32)(4U));
+                }
+            }
+            if (((u16) lbl_1_bss_9F8.unk_8 >> 8U) & 1) {
+                (*(u8 *)((u8 *)(arg0) + 6)) = 2U;
+            }
+            if (((u16) lbl_1_bss_9F8.unk_8 >> 9U) & 1) {
+                (*(u8 *)((u8 *)(arg0) + 6)) = 0U;
+                (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
+            }
+            if (((u16) (*(u16 *)((u8 *)(&lbl_1_bss_9F8) + 28)) >> 4U) & 1) {
+                (*(s32 *)((u8 *)(arg0) + 32)) = (s32) ((*(s32 *)((u8 *)(arg0) + 32)) ^ 0x80000000);
+            }
+            var_r4_2 = 0;
+            if (((u16) INPUT_14 >> 0xBU) & 1) {
+                if (((u16) INPUT_26 >> 1U) & 1) {
+                    var_r4_2 = 1;
+                } else if (INPUT_26 & 1) {
+                    var_r4_2 = -1;
+                }
+            } else if ((((u16) lbl_1_bss_9F8.unk_12 >> 6U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 5U) & 1)) {
+                var_r4_2 = 1;
+            } else if ((((u16) lbl_1_bss_9F8.unk_12 >> 7U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 4U) & 1)) {
+                var_r4_2 = -1;
+            }
+            if (var_r4_2 != 0) {
+                u8 mask;
+                do {
+                    temp_r3_4 = (s8) (*(u8 *)((u8 *)(arg0) + 36)) + var_r4_2;
+                    if (temp_r3_4 > 4) {
+                        var_r0.value = 0;
+                    } else {
+                        var_r0.value = 4;
+                        if (temp_r3_4 >= 0) {
+                            var_r0.value = temp_r3_4;
+                        }
+                    }
+                    (*(u8 *)((u8 *)(arg0) + 36)) = (u8) var_r0.value;
+                    temp_r4_2 = *(u8 *)((u8 *)(arg0) + 36);
+                    mask = 1;
+                    temp_r4 = mask << (s8) temp_r4_2;
+                    mask = temp_r4;
+                    temp_r3_3 = (void *)((*(s32 *)((u8 *)(arg0) + 0)) + ((s8) (*(u8 *)((u8 *)(arg0) + 7)) * 0x440));
+                } while (!(temp_r4 & (*(u8 *)((u8 *)(temp_r3_3) + 908))));
+                (*(u8 *)((u8 *)(arg0) + 8)) = fn_1_816E8(temp_r3_3, temp_r4_2);
+                return;
+            }
+            break;
+        case 2:                                     /* switch 1 */
+            if (((u16) lbl_1_bss_9F8.unk_8 >> 9U) & 1) {
+                (*(u8 *)((u8 *)(arg0) + 6)) = 1U;
+            }
+            if (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 3U) & 1) {
+                var_r4 = -1;
+            }
+            if (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 2U) & 1) {
+                var_r4 += 1;
+            }
+            if ((*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ & 1) {
+                var_r5 = -1;
+            }
+            if (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 1U) & 1) {
+                var_r5 += 1;
+            }
+            (*(u8 *)((u8 *)(arg0) + 5)) = (u8) ((*(u8 *)((u8 *)(arg0) + 5)) + var_r4);
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 5)) < 0) {
+                (*(u8 *)((u8 *)(arg0) + 5)) = 2U;
+            }
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 5)) > 2) {
+                (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
+            }
+            temp_r0_3 = *(u8 *)((u8 *)(arg0) + 5);
+            switch ((s8) temp_r0_3) {               /* switch 2; irregular */
+            case 0:                                 /* switch 2 */
+                temp_r4_3 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                (*(u8 *)((u8 *)(temp_r4_3) + 0)) = (u8) ((*(u8 *)((u8 *)(temp_r4_3) + 0)) + var_r5);
+                temp_r4_4 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                temp_r3_5 = *(u8 *)((u8 *)(temp_r4_4) + 0);
+                (*(u8 *)((u8 *)(temp_r4_4) + 0)) = CLAMP_U8(temp_r3_5);
+                break;
+            case 1:                                 /* switch 2 */
+                temp_r4_5 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                (*(u8 *)((u8 *)(temp_r4_5) + 1)) = (u8) ((*(u8 *)((u8 *)(temp_r4_5) + 1)) + var_r5);
+                temp_r3_6 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                temp_r4_6 = *(u8 *)((u8 *)(temp_r3_6) + 1);
+                (*(u8 *)((u8 *)(temp_r3_6) + 1)) = CLAMP_U8(temp_r4_6);
+                break;
+            case 2:                                 /* switch 2 */
+                temp_r4_7 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                (*(u8 *)((u8 *)(temp_r4_7) + 2)) = (u8) ((*(u8 *)((u8 *)(temp_r4_7) + 2)) + var_r5);
+                temp_r3_7 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                temp_r4_8 = *(u8 *)((u8 *)(temp_r3_7) + 2);
+                (*(u8 *)((u8 *)(temp_r3_7) + 2)) = CLAMP_U8(temp_r4_8);
+                break;
+            case 3:                                 /* switch 2 */
+                temp_r4_9 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                (*(u8 *)((u8 *)(temp_r4_9) + 3)) = (u8) ((*(u8 *)((u8 *)(temp_r4_9) + 3)) + var_r5);
+                temp_r3_8 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                temp_r4_10 = *(u8 *)((u8 *)(temp_r3_8) + 3);
+                (*(u8 *)((u8 *)(temp_r3_8) + 3)) = CLAMP_U8(temp_r4_10);
+                break;
+            }
+            if (((u16) (*(u16 *)((u8 *)(&lbl_1_bss_9F8) + 28)) >> 4U) & 1) {
+                (*(s32 *)((u8 *)(arg0) + 32)) = (s32) ((*(s32 *)((u8 *)(arg0) + 32)) ^ 0x80000000);
+                return;
+            }
+            break;
+        case 4:                                     /* switch 1 */
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 3U) & 1)) {
+                var_r4 = -1;
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 2U) & 1)) {
+                var_r4 += 1;
+            }
+            if (((*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8.unk_12 & 1)) {
+                var_r5 = -1;
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 1U) & 1)) {
+                var_r5 += 1;
+            }
+            (*(u8 *)((u8 *)(arg0) + 5)) = (u8) ((*(u8 *)((u8 *)(arg0) + 5)) + var_r4);
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 5)) < 0) {
+                (*(u8 *)((u8 *)(arg0) + 5)) = 3U;
+            }
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 5)) > 3) {
+                (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
+            }
+            temp_r0_4 = *(u8 *)((u8 *)(arg0) + 5);
+            switch ((s8) temp_r0_4) {               /* switch 3; irregular */
+            case 0:                                 /* switch 3 */
+                temp_r4_11 = (void *)(*(void **)((u8 *)(arg0) + 24));
+                (*(u8 *)((u8 *)(temp_r4_11) + 0)) = (u8) ((*(u8 *)((u8 *)(temp_r4_11) + 0)) + var_r5);
+                temp_r4_12 = (void *)(*(void **)((u8 *)(arg0) + 24));
+                temp_r3_9 = *(u8 *)((u8 *)(temp_r4_12) + 0);
+                (*(u8 *)((u8 *)(temp_r4_12) + 0)) = CLAMP_U8(temp_r3_9);
+                break;
+            case 1:                                 /* switch 3 */
+                temp_r4_13 = (void *)(*(void **)((u8 *)(arg0) + 24));
+                (*(u8 *)((u8 *)(temp_r4_13) + 1)) = (u8) ((*(u8 *)((u8 *)(temp_r4_13) + 1)) + var_r5);
+                temp_r3_10 = (void *)(*(void **)((u8 *)(arg0) + 24));
+                temp_r4_14 = *(u8 *)((u8 *)(temp_r3_10) + 1);
+                (*(u8 *)((u8 *)(temp_r3_10) + 1)) = CLAMP_U8(temp_r4_14);
+                break;
+            case 2:                                 /* switch 3 */
+                temp_r4_15 = (void *)(*(void **)((u8 *)(arg0) + 24));
+                (*(u8 *)((u8 *)(temp_r4_15) + 2)) = (u8) ((*(u8 *)((u8 *)(temp_r4_15) + 2)) + var_r5);
+                temp_r3_11 = (void *)(*(void **)((u8 *)(arg0) + 24));
+                temp_r4_16 = *(u8 *)((u8 *)(temp_r3_11) + 2);
+                (*(u8 *)((u8 *)(temp_r3_11) + 2)) = CLAMP_U8(temp_r4_16);
+                break;
+            case 3:                                 /* switch 3 */
+                temp_r4_17 = (void *)(*(void **)((u8 *)(arg0) + 24));
+                (*(u8 *)((u8 *)(temp_r4_17) + 3)) = (u8) ((*(u8 *)((u8 *)(temp_r4_17) + 3)) + var_r5);
+                temp_r3_12 = (void *)(*(void **)((u8 *)(arg0) + 24));
+                temp_r4_18 = *(u8 *)((u8 *)(temp_r3_12) + 3);
+                (*(u8 *)((u8 *)(temp_r3_12) + 3)) = CLAMP_U8(temp_r4_18);
+                break;
+            }
+            if (((u16) lbl_1_bss_9F8.unk_8 >> 0xBU) & 1) {
+                fn_800793D4((void *)(*(void **)((u8 *)(arg0) + 24)), (s32)(0), (u32)(4U));
+            }
+            if (((u16) lbl_1_bss_9F8.unk_8 >> 9U) & 1) {
+                (*(u8 *)((u8 *)(arg0) + 6)) = 0U;
+                (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
+                return;
+            }
+            break;
+        case 3:                                     /* switch 1 */
+            if (((u16) lbl_1_bss_9F8.unk_8 >> 9U) & 1) {
+                (*(u8 *)((u8 *)(arg0) + 6)) = 0U;
+                (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 3U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) INPUT_26 >> 3U) & 1)) {
+                var_r4 = -1;
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 2U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) INPUT_26 >> 2U) & 1)) {
+                var_r4 += 1;
+            }
+            if (((*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8.unk_12 & 1) || ((*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ & 1) || (INPUT_26 & 1)) {
+                var_r5 = -1;
+            }
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 1U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) INPUT_26 >> 1U) & 1)) {
+                var_r5 += 1;
+            }
+            (*(u8 *)((u8 *)(arg0) + 5)) = (u8) ((*(u8 *)((u8 *)(arg0) + 5)) + var_r4);
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 5)) < 0) {
+                (*(u8 *)((u8 *)(arg0) + 5)) = 2U;
+            }
+            if ((s8) (*(u8 *)((u8 *)(arg0) + 5)) > 2) {
+                (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
+            }
+            temp_r0_5 = *(u8 *)((u8 *)(arg0) + 5);
+            switch ((s8) temp_r0_5) {               /* switch 4; irregular */
+            case 0:                                 /* switch 4 */
+                temp_r4_19 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                (*(u8 *)((u8 *)(temp_r4_19) + 0)) += var_r5;
+                temp_r4_20 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                temp_r3_13 = *(u8 *)((u8 *)(temp_r4_20) + 0);
+                (*(u8 *)((u8 *)(temp_r4_20) + 0)) = CLAMP_U8(temp_r3_13);
+                return;
+            case 1:                                 /* switch 4 */
+                temp_r4_21 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                (*(u8 *)((u8 *)(temp_r4_21) + 1)) = (u8) ((*(u8 *)((u8 *)(temp_r4_21) + 1)) + var_r5);
+                temp_r3_14 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                temp_r4_22 = *(u8 *)((u8 *)(temp_r3_14) + 1);
+                (*(u8 *)((u8 *)(temp_r3_14) + 1)) = CLAMP_U8(temp_r4_22);
+                return;
+            case 2:                                 /* switch 4 */
+                temp_r4_23 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                (*(u8 *)((u8 *)(temp_r4_23) + 2)) = (u8) ((*(u8 *)((u8 *)(temp_r4_23) + 2)) + var_r5);
+                temp_r3_15 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                temp_r4_24 = *(u8 *)((u8 *)(temp_r3_15) + 2);
+                (*(u8 *)((u8 *)(temp_r3_15) + 2)) = CLAMP_U8(temp_r4_24);
+                return;
+            case 3:                                 /* switch 4 */
+                temp_r4_25 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                (*(u8 *)((u8 *)(temp_r4_25) + 3)) = (u8) ((*(u8 *)((u8 *)(temp_r4_25) + 3)) + var_r5);
+                temp_r3_16 = (u8 *)(*(u8 **)((u8 *)((*(u8 ***)((u8 *)(arg0) + 28))) + 0));
+                temp_r4_26 = *(u8 *)((u8 *)(temp_r3_16) + 3);
+                (*(u8 *)((u8 *)(temp_r3_16) + 3)) = CLAMP_U8(temp_r4_26);
+                break;
+            }
+            break;
+        case 5:                                     /* switch 1 */
+            break;
+        }
+    }
+}
+#pragma opt_propagation reset
+
+#pragma opt_pointer_analysis reset
+
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_7D6B8 */
+
 /* fzgx:begin fn_1_7E7A4 */
 typedef struct Fn1_7E7A4Data {
     void *field_0;

@@ -830,3 +830,12 @@ rel/sel/sel/fn_10_1AD5C.c:
 
 rel/sel/sel/fn_10_210F0.c:
 	.text       start:0x000210F0 end:0x00021978 align:4
+
+rel/sel/sel/fn_10_13128.c:
+	.text       start:0x00013128 end:0x000139E4 align:4
+
+rel/sel/sel/fn_10_14FDC.c:
+	.text       start:0x00014FDC end:0x00015B20 align:4
+
+rel/sel/sel/fn_10_17E44.c:
+	.text       start:0x00017E44 end:0x00018A50 align:4

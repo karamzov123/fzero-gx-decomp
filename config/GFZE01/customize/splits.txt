@@ -740,3 +740,6 @@ rel/customize/editor/fn_3_17098.c:
 
 rel/customize/toolkit/fn_3_2B778.c:
 	.text       start:0x0002B778 end:0x0002BFB4 align:4
+
+rel/customize/editor/fn_3_18960.c:
+	.text       start:0x00018960 end:0x00019C50 align:4

@@ -1982,6 +1982,371 @@ void fn_1_8B10(fn_1_8B10_CameraObject *camera, CameraOutput *output) {
 }
 /* fzgx:end fn_1_8B10 */
 
+/* fzgx:begin fn_1_8D08 pool noprologue */
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+#include "types.h"
+
+/* begin game/main_rel/car_test_types.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+// Types (and the externs that name them) of car_test.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+#ifndef GAME_MAIN_REL_CAR_TYPES_H
+#define GAME_MAIN_REL_CAR_TYPES_H
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+#endif  // GAME_VEC3_H
+
+#endif  // GAME_MAIN_REL_CAR_TYPES_H
+
+/* end game/main_rel/car_types.h */
+
+typedef struct Sig_fn_1_8B10_CameraOutput {
+    f32 x0;
+    f32 y0;
+    s16 flags0;
+    u8 pad_0A[2];
+    f32 x1;
+    f32 y1;
+    s16 flags1;
+    u8 pad_16[2];
+    f32 x2;
+    f32 y2;
+    s16 flags2;
+} Sig_fn_1_8B10_CameraOutput;
+typedef struct Sig_fn_1_8B10_fn_1_8B10_CameraObject {
+    s16 pad_00;
+    s16 kind;
+    u8 pad_04[0xA0];
+    s16 index;
+} Sig_fn_1_8B10_fn_1_8B10_CameraObject;
+
+typedef struct fn_1_8D08_Vec { f32 x, y, z; } fn_1_8D08_Vec;
+
+typedef struct fn_1_8D08_Camera {
+    s16 unk_00;
+    s16 index;            /* 0x02 */
+    s16 unk_04;
+    s16 angle;            /* 0x06 */
+    f32 unk_08;
+    f32 unk_0C;
+    fn_1_8D08_Vec pos;    /* 0x10 */
+    u8 pad_1C[0xC];
+    fn_1_8D08_Vec look;   /* 0x28 */
+    f32 mtx[3][4];        /* 0x34 */
+    fn_1_8D08_Vec unk_64;
+    f32 lerp;             /* 0x70 */
+    u8 pad_74[4];
+    s16 unk_78;
+    u8 pad_7A[2];
+    f32 unk_7C;
+    f32 unk_80;
+    f32 unk_84;
+    s32 unk_88;
+    fn_1_8D08_Vec target; /* 0x8C */
+    fn_1_8D08_Vec unk_98;
+    s16 mode;             /* 0xA4 */
+    s16 prevMode;         /* 0xA6 */
+    u16 unk_A8;
+    u8 pad_AA[0x1E4 - 0xAA];
+    fn_1_8D08_Vec unk_1E4;
+    f32 unk_1F0;
+    f32 unk_1F4;
+    s16 unk_1F8;
+    s16 unk_1FA;
+} fn_1_8D08_Camera;
+
+extern f32 fn_1_A888(fn_1_8D08_Camera *);
+extern s32 fn_1_58C4(void);
+extern s32 fn_1_5910(void);
+extern u32 fn_1_F2F34(void);
+extern void lbl_8006E1C0(fn_1_8D08_Vec *, fn_1_8D08_Vec *);
+extern void mathutil_mtxA_rotate_x(s16);
+extern u8 fn_1_FA4C0(void);
+extern void lbl_8006DC6C(void *);
+extern void fn_1_862D4(s16, fn_1_8D08_Vec *);
+extern void fn_1_8636C(s16, void *);
+extern void fn_1_8A0C(s16);
+extern void fn_1_8B10(Sig_fn_1_8B10_fn_1_8B10_CameraObject *, Sig_fn_1_8B10_CameraOutput *);
+
+/* Native shared literal pool, including the preceding camera literals. */
+const f32 fzgx_camera_literal_0 = 0.3f;
+const f32 fzgx_camera_literal_1 = 1.1f;
+const u32 fzgx_camera_up_x[1] = {0};
+const u32 fzgx_camera_up_y[1] = {0x3F800000};
+const u32 fzgx_camera_up_z[1] = {0};
+const fn_1_8D08_Vec fzgx_camera_target = {0.0f, 0.0f, 0.0f};
+const u32 fzgx_camera_fwd_x[1] = {0};
+const u32 fzgx_camera_fwd_y[1] = {0};
+const u32 fzgx_camera_fwd_z[1] = {0xBF800000};
+const f32 fzgx_camera_height[1] = {55.0f};
+const f32 fzgx_camera_zero[1] = {0.0f};
+const f32 fzgx_camera_distance[1] = {-10.0f};
+const f64 fzgx_camera_half[1] = {0.5};
+
+/* translate the locked-cache matrix A */
+static inline void mtxA_set_translate(fn_1_8D08_Vec *v) {
+    f32 x = v->x;
+    f32 y = v->y;
+    f32 z = v->z;
+    *(f32 *)(0xE0000000 + 0x0C) = x;
+    *(f32 *)(0xE0000000 + 0x1C) = y;
+    *(f32 *)(0xE0000000 + 0x2C) = z;
+}
+
+/* look point: matrix A applied to (0, 0, -10) */
+#define camera_update_look(cam) { \
+    /* Read the scale before the locked-cache matrix column. */ \
+    dist = *(volatile f32 *)fzgx_camera_distance; \
+    /* Preserve locked-cache matrix access order. */ \
+    x = *(volatile f32 *)(0xE0000000 + 0x08); \
+    x = x * dist + *(f32 *)(0xE0000000 + 0x0C); \
+    y = *(f32 *)(0xE0000000 + 0x18); \
+    y = y * dist + *(f32 *)(0xE0000000 + 0x1C); \
+    z = *(f32 *)(0xE0000000 + 0x28); \
+    z = z * dist + *(f32 *)(0xE0000000 + 0x2C); \
+    cam->look.x = x; \
+    cam->look.y = y; \
+    cam->look.z = z; \
+}
+
+static inline f32 fn_1_8D08_look_z(f32 distance) {
+    f32 value = *(f32 *)(0xE0000000 + 0x28);
+    value = value * distance + *(f32 *)(0xE0000000 + 0x2C);
+    return value;
+}
+static inline f32 fn_1_8D08_read_pointer(fn_1_8D08_Camera * owner) { return owner->lerp; }
+static inline f32 (* fn_1_8D08_read_pointer_(fn_1_8D08_Camera * owner))[4] { return owner->mtx; }
+static inline f32 (* fn_1_8D08_read_pointer__(fn_1_8D08_Camera * owner))[4] { return owner->mtx; }
+#pragma opt_lifetimes off
+void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
+    f32 z;
+    f32 y;
+    f32 x;
+    f32 dist;
+    Sig_fn_1_8B10_CameraOutput out;
+    f32 mtx[3][4];
+    fn_1_8D08_Vec pos;
+
+    cam->unk_A8 = 0;
+    cam->mode = 1;
+    if ((u32)fn_1_58C4() == 1 && (s32)fn_1_F2F34() == 0) {
+        cam->mode = fn_1_FA4C0();
+    }
+    cam->prevMode = cam->mode;
+    fn_1_8B10((Sig_fn_1_8B10_fn_1_8B10_CameraObject *)cam, &out);
+    fn_1_862D4(cam->index, &pos);
+    fn_1_8636C(cam->index, fn_1_8D08_read_pointer__(cam));
+    lbl_8006DC6C(fn_1_8D08_read_pointer_(cam));
+    {
+        f32 fzgx_lc0_z;
+        f32 fzgx_lc0_y;
+        f32 fzgx_lc0_x;
+        /* Capture the first coordinate before the remaining matrix-translation loads. */
+        fzgx_lc0_x = *(volatile f32 *)&((&pos)->x);
+        fzgx_lc0_y = (&pos)->y;
+        fzgx_lc0_z = (&pos)->z;
+        /* Locked-cache stores must complete before copying the pool vector. */
+        /* Preserve locked-cache matrix access order. */
+        *(volatile f32 *)(0xE0000000 + 0x0C) = fzgx_lc0_x;
+        /* Preserve locked-cache matrix access order. */
+        *(volatile f32 *)(0xE0000000 + 0x1C) = fzgx_lc0_y;
+        /* Preserve locked-cache matrix access order. */
+        *(volatile f32 *)(0xE0000000 + 0x2C) = fzgx_lc0_z;
+    }
+    {
+        fn_1_8D08_Vec up;
+        u32 c, b, a;
+        /* Ordered word copy following the locked-cache stores. */
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        a = *(volatile const u32 *)fzgx_camera_up_x;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        b = *(volatile const u32 *)fzgx_camera_up_y;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        c = *(volatile const u32 *)fzgx_camera_up_z;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        ((volatile u32 *)&up)[0] = a;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        ((volatile u32 *)&up)[1] = b;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        ((volatile u32 *)&up)[2] = c;
+        lbl_8006E1C0(&up, &cam->unk_64);
+    }
+    {
+        fn_1_8D08_Vec target = fzgx_camera_target;
+        target.y = out.x0;
+        target.z = out.y0;
+        cam->target = target;
+    }
+    cam->angle = out.flags0;
+    cam->unk_08 = fzgx_camera_height[0];
+    cam->unk_0C = arg1;
+    cam->unk_84 = fzgx_camera_zero[0];
+    cam->unk_78 = 0;
+    cam->unk_7C = fzgx_camera_zero[0];
+    cam->unk_80 = fzgx_camera_zero[0];
+    cam->unk_88 = 0;
+    lbl_8006DC6C(fn_1_8D08_read_pointer__(cam));
+    {
+        f32 fzgx_lc1_z;
+        f32 fzgx_lc1_y;
+        f32 fzgx_lc1_x;
+        /* Capture the first coordinate before the remaining matrix-translation loads. */
+        fzgx_lc1_x = *(volatile f32 *)&((&pos)->x);
+        fzgx_lc1_y = (&pos)->y;
+        fzgx_lc1_z = (&pos)->z;
+        *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc1_x;
+        *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc1_y;
+        *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc1_z;
+    }
+    lbl_8006E1B0((Fn183D28Vec3 *)&cam->target, (Fn183D28Vec3 *)&cam->pos);
+    lbl_8006DC6C(fn_1_8D08_read_pointer__(cam));
+    {
+        f32 fzgx_lc2_z;
+        f32 fzgx_lc2_y;
+        f32 fzgx_lc2_x;
+        /* Capture the first coordinate before the remaining matrix-translation loads. */
+        fzgx_lc2_x = *(volatile f32 *)&((&cam->pos)->x);
+        fzgx_lc2_y = (&cam->pos)->y;
+        fzgx_lc2_z = (&cam->pos)->z;
+        *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc2_x;
+        *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc2_y;
+        *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc2_z;
+    }
+    mathutil_mtxA_rotate_x(cam->angle);
+    camera_update_look(cam);
+    cam->unk_1E4 = cam->pos;
+    cam->unk_1F0 = fzgx_camera_zero[0];
+    cam->unk_1F4 = fzgx_camera_zero[0];
+    cam->unk_1FA = 0;
+    /* Complete initialization before the ordered forward-vector copy. */
+    /* Preserve ordered vector initialization around the locked-cache accesses. */
+    *(volatile s16 *)&cam->unk_1F8 = -1;
+    {
+        u32 b, a;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        a = *(volatile const u32 *)fzgx_camera_fwd_x;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        b = *(volatile const u32 *)fzgx_camera_fwd_y;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        ((volatile u32 *)&cam->unk_98)[0] = a;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        ((volatile u32 *)&cam->unk_98)[1] = b;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        b = *(volatile const u32 *)fzgx_camera_fwd_z;
+        /* Preserve ordered vector initialization around the locked-cache accesses. */
+        ((volatile u32 *)&cam->unk_98)[2] = b;
+    }
+    {
+        fn_1_8D08_Vec pos2;
+        fn_1_862D4(cam->index, &pos2);
+        fn_1_8636C(cam->index, mtx);
+        lbl_8006DC6C(mtx);
+        {
+            f32 fzgx_lc3_z;
+            f32 fzgx_lc3_y;
+            f32 fzgx_lc3_x;
+            /* Capture the first coordinate before the remaining matrix-translation loads. */
+            fzgx_lc3_x = *(volatile f32 *)&((&pos2)->x);
+            fzgx_lc3_y = (&pos2)->y;
+            fzgx_lc3_z = (&pos2)->z;
+            *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc3_x;
+            *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc3_y;
+            *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc3_z;
+        }
+    }
+    cam->lerp = fn_1_A888(cam);
+    cam->unk_78 = 0;
+    if (cam->mode < 5) {
+        cam->target.y = cam->target.y + (f32)(cam->lerp * (out.x2 - cam->target.y));
+        cam->target.z = cam->target.z + (f32)(cam->lerp * (out.y2 - cam->target.y));
+        {
+            f64 angle = cam->angle;
+            f32 delta;
+            f32 weight = fn_1_8D08_read_pointer(cam);
+            f32 step;
+            f64 half;
+            delta = out.flags2 - cam->angle;
+            step = weight * delta;
+            half = step * fzgx_camera_half[0];
+#pragma fp_contract off
+            cam->angle = angle + half;
+#pragma fp_contract on
+        }
+        lbl_8006DC6C(fn_1_8D08_read_pointer__(cam));
+        {
+            f32 fzgx_lc4_z;
+            f32 fzgx_lc4_y;
+            f32 fzgx_lc4_x;
+            /* Capture the first coordinate before the remaining matrix-translation loads. */
+            fzgx_lc4_x = *(volatile f32 *)&((&pos)->x);
+            fzgx_lc4_y = (&pos)->y;
+            fzgx_lc4_z = (&pos)->z;
+            *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc4_x;
+            *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc4_y;
+            *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc4_z;
+        }
+        lbl_8006E1B0((Fn183D28Vec3 *)&cam->target, (Fn183D28Vec3 *)&cam->pos);
+        lbl_8006DC6C(fn_1_8D08_read_pointer__(cam));
+        {
+            f32 fzgx_lc5_z;
+            f32 fzgx_lc5_y;
+            f32 fzgx_lc5_x;
+            /* Capture the first coordinate before the remaining matrix-translation loads. */
+            fzgx_lc5_x = *(volatile f32 *)&((&cam->pos)->x);
+            fzgx_lc5_y = (&cam->pos)->y;
+            fzgx_lc5_z = (&cam->pos)->z;
+            *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc5_x;
+            *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc5_y;
+            *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc5_z;
+        }
+        mathutil_mtxA_rotate_x(cam->angle);
+        {
+            f32 look_z;
+            /* Read the scale before the locked-cache matrix column. */
+            dist = *(volatile f32 *)fzgx_camera_distance;
+            /* Preserve locked-cache matrix access order. */
+            x = *(volatile f32 *)(0xE0000000 + 0x08);
+            x = x * dist + *(f32 *)(0xE0000000 + 0x0C);
+            y = *(f32 *)(0xE0000000 + 0x18);
+            /* Preserve matrix-column load order. */
+            /* Preserve locked-cache matrix access order. */
+            z = *(volatile f32 *)(0xE0000000 + 0x1C);
+            y = y * dist + z;
+            look_z = *(f32 *)(0xE0000000 + 0x28);
+            look_z = look_z * dist + *(f32 *)(0xE0000000 + 0x2C);
+            cam->look.x = x;
+            cam->look.y = y;
+            cam->look.z = look_z;
+        }
+    }
+    fn_1_8A0C(fn_1_5910());
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_8D08 */
+
 /* fzgx:begin fn_1_A888 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
@@ -2876,6 +3241,195 @@ void camera_save_parameters(f32 first_parameter, f32 second_parameter) {
 }
 /* fzgx:end camera_save_parameters */
 
+/* fzgx:begin fn_1_B870 pool noprologue */
+#include "types.h"
+#include "types.h"
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct B870Camera {
+    u8 pad_0[0x4];
+    Vec3f pos;    /* 0x04 */
+    Vec3f lookAt; /* 0x10 */
+    f32 fov;      /* 0x1C */
+    s16 rotZ;     /* 0x20 */
+} B870Camera;
+
+typedef struct {
+    u8 pad_0[0x8];
+    u16 unk_8;
+} B870Bss_D58;
+
+typedef struct {
+    s8 stick[4];
+    u8 unk_4;
+} B870Bss_A48;
+
+typedef struct {
+    u16 unk_0;
+    u16 unk_2;
+    u8 pad_4[0x4];
+    u16 unk_8;
+} B870Bss_9F8;
+
+extern B870Bss_D58 lbl_1_bss_D58;
+extern B870Bss_A48 lbl_1_bss_A48;
+extern B870Bss_9F8 lbl_1_bss_9F8;
+
+/* camera.c's .bss cluster at lbl_1_bss_1010, addressed off one section base. */
+u32 fzgx_obj_lbl_1_bss_1010;
+u8 lbl_1_bss_1014;
+B870Camera lbl_1_bss_1018;
+f32 fzgx_obj_lbl_1_bss_103C;
+f32 lbl_1_bss_1040;
+f32 lbl_1_bss_1044;
+u8 lbl_1_bss_1048;
+u8 lbl_1_bss_1049;
+
+extern void fn_1_C770(void);
+extern void fn_8006EDBC(Vec3f *, Vec3f *, s16 *, s16 *);
+extern void lbl_8006D7DC(Vec3f *);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void lbl_8006E1B0(Vec3f *, Vec3f *);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern f32 lbl_8006D0E8(f32);
+extern f32 lbl_8006D0B4(f32);
+
+/* Primer: the .bss order and the literals of earlier camera.c functions, as in retail. */
+extern void fzgx_touch_f(f32);
+extern void fzgx_touch(void *);
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_pool_primer(void) {
+    fzgx_touch(&fzgx_obj_lbl_1_bss_1010);
+    fzgx_touch(&lbl_1_bss_1014);
+    fzgx_touch(&lbl_1_bss_1018);
+    fzgx_touch(&fzgx_obj_lbl_1_bss_103C);
+    fzgx_touch(&lbl_1_bss_1040);
+    fzgx_touch(&lbl_1_bss_1044);
+    fzgx_touch(&lbl_1_bss_1048);
+    fzgx_touch(&lbl_1_bss_1049);
+    fzgx_touch_f(1.0f);
+    fzgx_touch_f(0.1f);
+    fzgx_touch_f(0.01f);
+    fzgx_touch_f(55.0f);
+}
+
+#pragma opt_lifetimes off
+void fn_1_B870(void) {
+    f32 speed;
+    f32 clamped;
+    f32 scale;
+    s32 rot;
+    s32 zoom;
+    u32 buttons;
+    s16 rotX;
+    s16 rotY;
+
+    if ((lbl_1_bss_D58.unk_8 >> 10) & 1) {
+        lbl_1_bss_1048 ^= 1;
+    }
+    if (lbl_1_bss_1014 != 0) {
+        fn_1_C770();
+        return;
+    }
+    fn_8006EDBC(&lbl_1_bss_1018.pos, &lbl_1_bss_1018.lookAt, &rotX, &rotY);
+    speed = fzgx_obj_lbl_1_bss_103C;
+    speed = 0.040000000000000008 * speed;
+    speed = speed * (1.0 + 4.0 * lbl_1_bss_A48.unk_4 / 140.0);
+    clamped = (speed > 50.0) ? 50.0 : speed;
+    {
+        Vec3f offsetA = {0.0f, 0.0f, 0.0f};
+        Vec3f offsetB = {0.0f, 0.0f, 0.0f};
+        Vec3f tmp;
+
+        if (lbl_1_bss_1049 != 0 && !((lbl_1_bss_9F8.unk_0 >> 6) & 1)) {
+            offsetA.x = speed * (*((0) + (lbl_1_bss_A48.stick))) / 60.0;
+            if ((lbl_1_bss_9F8.unk_2 >> 9) & 1) {
+                offsetA.y = clamped * (*((1) + (lbl_1_bss_A48.stick))) / 60.0;
+            } else {
+                offsetA.z = -clamped * (*((1) + (lbl_1_bss_A48.stick))) / 60.0;
+            }
+            offsetB.x = speed * (*((2) + (lbl_1_bss_A48.stick))) / 60.0;
+            if (((*(volatile u16 *)&lbl_1_bss_9F8.unk_2) >> 9) & 1) { /* Retail reloads the mode for the second stick. */
+                offsetB.y = clamped * (*((3) + (lbl_1_bss_A48.stick))) / 60.0;
+            } else {
+                offsetB.z = -clamped * (*((3) + (lbl_1_bss_A48.stick))) / 60.0;
+            }
+        }
+        lbl_8006D7DC(&lbl_1_bss_1018.pos);
+        mathutil_mtxA_rotate_y(rotY);
+        mathutil_mtxA_rotate_x(rotX);
+        mathutil_mtxA_rotate_z(lbl_1_bss_1018.rotZ);
+        lbl_8006E1B0(&offsetA, &lbl_1_bss_1018.pos);
+        fn_8006E250(&lbl_1_bss_1018.lookAt, &tmp);
+        tmp.x += offsetB.x;
+        tmp.y += offsetB.y;
+        tmp.z += offsetB.z;
+        lbl_8006E1B0(&tmp, &lbl_1_bss_1018.lookAt);
+        tmp.x = lbl_1_bss_1018.lookAt.x - lbl_1_bss_1018.pos.x;
+        tmp.y = lbl_1_bss_1018.lookAt.y - lbl_1_bss_1018.pos.y;
+        tmp.z = lbl_1_bss_1018.lookAt.z - lbl_1_bss_1018.pos.z;
+        if (__fmadds(tmp.z, tmp.z, __fmadds(tmp.y, tmp.y, tmp.x * tmp.x)) < 0.09) {
+            scale = 0.3 * lbl_8006D0E8(__fmadds(tmp.z, tmp.z, __fmadds(tmp.y, tmp.y, tmp.x * tmp.x)));
+            lbl_1_bss_1018.lookAt.x = lbl_1_bss_1018.pos.x + (f32)(tmp.x * scale);
+            lbl_1_bss_1018.lookAt.y = lbl_1_bss_1018.pos.y + (f32)(tmp.y * scale);
+            lbl_1_bss_1018.lookAt.z = lbl_1_bss_1018.pos.z + (f32)(tmp.z * scale);
+        }
+    }
+    {
+        Vec3f *pos = &lbl_1_bss_1018.pos;
+        Vec3f *lookAt = &lbl_1_bss_1018.lookAt;
+        f32 dx = pos->x;
+        f32 dz = pos->z;
+        f32 dy = pos->y;
+        dx -= lookAt->x;
+        dy -= lookAt->y;
+        dz -= lookAt->z;
+        dx = dx * dx;
+        dx = dy * dy + dx;
+        dx = dz * dz + dx;
+        fzgx_obj_lbl_1_bss_103C = lbl_8006D0B4(dx);
+    }
+    if (((lbl_1_bss_9F8.unk_2 >> 9) & 1) && lbl_1_bss_1049 != 0) {
+        buttons = (*(u16 volatile *)&(lbl_1_bss_9F8.unk_0)) /* Retail reloads this field. */;
+        if (buttons & 1) {
+            rot = 0x800;
+        } else {
+            rot = ((buttons >> 1) & 1) ? -0x800 : 0;
+        }
+{
+    B870Camera *cam = &lbl_1_bss_1018;
+        cam->rotZ += rot;
+}
+        buttons = lbl_1_bss_9F8.unk_0;
+        if ((buttons >> 2) & 1) {
+            zoom = 1;
+        } else {
+            zoom = ((buttons >> 3) & 1) ? -1 : 0;
+        }
+        lbl_1_bss_1018.fov += zoom;
+        lbl_1_bss_1018.fov = (lbl_1_bss_1018.fov < 0.1) ? 0.1
+                           : (lbl_1_bss_1018.fov > 90000.0) ? 90000.0 : lbl_1_bss_1018.fov;
+        if ((lbl_1_bss_9F8.unk_8 >> 9) & 1) {
+            lbl_1_bss_1018.rotZ = 0;
+            lbl_1_bss_1018.fov = 55.0f;
+        }
+    }
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_B870 */
+
 /* fzgx:begin fn_1_BFA0 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -3314,6 +3868,386 @@ void fn_1_C3B8(void) {
     lbl_1_bss_104C.counter++;
 }
 /* fzgx:end fn_1_C3B8 */
+
+/* fzgx:begin fn_1_CC5C pool noprologue */
+#include "types.h"
+#include "types.h"
+#include "types.h"
+
+#ifndef REL_MAIN_REL_CAMERA_H
+#define REL_MAIN_REL_CAMERA_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_4068: .data size 0x1, 3 refs from camera.c (own data block)
+extern u16 lbl_1_data_4068;
+
+// lbl_1_bss_D58: .bss size 0x18, 3 refs from camera.c
+#ifndef FZGX_TYPES_LBL_1_BSS_D58
+#define FZGX_TYPES_LBL_1_BSS_D58
+// one layout for every TU header that declares this symbol (librarian, typedefs.json)
+typedef struct {
+    u16 unk_0;  // 5 loads, 0 stores
+    u16 unk_2;  // 1 loads, 0 stores
+    u8 pad_4[0x4];
+    u16 unk_8;  // 24 loads, 0 stores
+    u16 unk_A;  // 3 loads, 0 stores
+    u8 pad_C[0x4];
+    u16 unk_10;  // 18 loads, 0 stores
+    u16 unk_12;  // 4 loads, 0 stores
+    u8 pad_14[0x4];
+} Obj_1_bss_D58;
+#endif
+extern Obj_1_bss_D58 lbl_1_bss_D58;
+
+#endif  // REL_MAIN_REL_CAMERA_H
+
+/* end rel/main_rel/camera.h */
+
+/* RGBA colour, passed by value (MWCC copies it to the stack per call) */
+typedef struct { u8 r, g, b, a; } fn_1_CC5C_Color;
+
+u16 lbl_1_data_4068 = 0xF000;
+u8 fn_1_CC5C_menu_cursor = 9;
+u8 fn_1_CC5C_menu_selected = 3;
+u8 fn_1_CC5C_menu_data_pad[0x1BC] = {
+    0x09, 0x7B, 0x20, 0x25, 0x33, 0x64, 0x2C, 0x20, 0x25, 0x31, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x7B,
+    0x20, 0x20, 0x30, 0x2C, 0x7B, 0x20, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38,
+    0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x20, 0x7D, 0x2C, 0x20, 0x7B, 0x20,
+    0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25,
+    0x38, 0x2E, 0x33, 0x66, 0x20, 0x7D, 0x2C, 0x20, 0x20, 0x25, 0x35, 0x2E, 0x31, 0x66, 0x2C, 0x20,
+    0x25, 0x35, 0x64, 0x2C, 0x20, 0x30, 0x2C, 0x7D, 0x2C, 0x0A, 0x00, 0x00, 0x09, 0x20, 0x20, 0x20,
+    0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x7B, 0x20, 0x20, 0x30, 0x2C,
+    0x7B, 0x20, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C,
+    0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x20, 0x7D, 0x2C, 0x20, 0x7B, 0x20, 0x20, 0x25, 0x38, 0x2E,
+    0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66,
+    0x20, 0x7D, 0x2C, 0x20, 0x20, 0x25, 0x35, 0x2E, 0x31, 0x66, 0x2C, 0x20, 0x25, 0x35, 0x64, 0x2C,
+    0x20, 0x30, 0x2C, 0x7D, 0x2C, 0x20, 0x25, 0x73, 0x7D, 0x2C, 0x0A, 0x00, 0x09, 0x7B, 0x20, 0x20,
+    0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38,
+    0x2E, 0x33, 0x66, 0x20, 0x7D, 0x2C, 0x0A, 0x00, 0x09, 0x7B, 0x20, 0x30, 0x30, 0x2C, 0x7B, 0x20,
+    0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25,
+    0x38, 0x2E, 0x33, 0x66, 0x20, 0x7D, 0x2C, 0x20, 0x7B, 0x20, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66,
+    0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x20, 0x7D,
+    0x2C, 0x20, 0x25, 0x35, 0x64, 0x2C, 0x20, 0x20, 0x50, 0x45, 0x52, 0x53, 0x5F, 0x44, 0x45, 0x47,
+    0x52, 0x45, 0x45, 0x2C, 0x20, 0x25, 0x73, 0x7D, 0x2C, 0x0A, 0x00, 0x00, 0x09, 0x7B, 0x20, 0x30,
+    0x30, 0x2C, 0x7B, 0x20, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33,
+    0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x20, 0x7D, 0x2C, 0x20, 0x7B, 0x20, 0x20, 0x25,
+    0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E, 0x33, 0x66, 0x2C, 0x20, 0x25, 0x38, 0x2E,
+    0x33, 0x66, 0x20, 0x7D, 0x2C, 0x20, 0x25, 0x35, 0x64, 0x2C, 0x20, 0x20, 0x25, 0x31, 0x31, 0x2E,
+    0x33, 0x66, 0x2C, 0x20, 0x25, 0x73, 0x7D, 0x2C, 0x0A, 0x00, 0x00, 0x00, 0x4E, 0x4F, 0x52, 0x4D,
+    0x41, 0x4C, 0x00, 0x00, 0x45, 0x41, 0x53, 0x45, 0x5F, 0x4F, 0x55, 0x54, 0x00, 0x00, 0x00, 0x00,
+    0x45, 0x41, 0x53, 0x45, 0x5F, 0x49, 0x4E, 0x5F, 0x4F, 0x55, 0x54, 0x00, 0x53, 0x54, 0x41, 0x54,
+    0x49, 0x43, 0x5F, 0x4D, 0x4F, 0x56, 0x45, 0x5F, 0x50, 0x45, 0x52, 0x53, 0x00, 0x00, 0x00, 0x00,
+    0x53, 0x54, 0x41, 0x54, 0x49, 0x43, 0x5F, 0x46, 0x49, 0x58, 0x00, 0x00,
+};
+char fn_1_CC5C_fmt_1C0[0x10] = { 0x43, 0x41, 0x4D, 0x83, 0x47, 0x83, 0x66, 0x83, 0x42, 0x83, 0x5E, 0x0A, 0x00, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_1D0[0x8] = { 0x82, 0xA2, 0x82, 0xC7, 0x82, 0xA4, 0x20, 0x00 };
+char fn_1_CC5C_fmt_1D8[0x8] = { 0x82, 0xC6, 0x82, 0xB6, 0x82, 0xE9, 0x0A, 0x00 };
+char fn_1_CC5C_fmt_1E0[0x10] = { 0x83, 0x5A, 0x83, 0x62, 0x83, 0x67, 0x20, 0x83, 0x4A, 0x83, 0x81, 0x83, 0x89, 0x41, 0x0A, 0x00 };
+char fn_1_CC5C_fmt_1F0[0x10] = { 0x83, 0x5A, 0x83, 0x62, 0x83, 0x67, 0x20, 0x83, 0x4A, 0x83, 0x81, 0x83, 0x89, 0x42, 0x0A, 0x00 };
+char fn_1_CC5C_fmt_200[0xC] = { 0x91, 0xAC, 0x93, 0x78, 0x20, 0x25, 0x31, 0x2E, 0x33, 0x66, 0x0A, 0x00 };
+char fn_1_CC5C_fmt_20C[0xC] = { 0x83, 0x52, 0x83, 0x7D, 0x20, 0x25, 0x33, 0x64, 0x0A, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_218[0x14] = { 0x4E, 0x4F, 0x52, 0x4D, 0x41, 0x4C, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x3A, 0x20, 0x50, 0x4C, 0x41, 0x59, 0x0A, 0x00 };
+char fn_1_CC5C_fmt_22C[0x14] = { 0x45, 0x41, 0x53, 0x45, 0x5F, 0x49, 0x4E, 0x5F, 0x4F, 0x55, 0x54, 0x20, 0x3A, 0x20, 0x50, 0x4C, 0x41, 0x59, 0x0A, 0x00 };
+char fn_1_CC5C_fmt_240[0x14] = { 0x45, 0x41, 0x53, 0x45, 0x5F, 0x4F, 0x55, 0x54, 0x20, 0x20, 0x20, 0x20, 0x3A, 0x20, 0x50, 0x4C, 0x41, 0x59, 0x0A, 0x00 };
+char fn_1_CC5C_fmt_254[0x10] = { 0x83, 0x4A, 0x83, 0x81, 0x83, 0x89, 0x41, 0x82, 0xC9, 0x88, 0xDA, 0x93, 0xAE, 0x0A, 0x00, 0x00 };
+char fn_1_CC5C_fmt_264[0x10] = { 0x83, 0x4A, 0x83, 0x81, 0x83, 0x89, 0x42, 0x82, 0xC9, 0x88, 0xDA, 0x93, 0xAE, 0x0A, 0x00, 0x00 };
+char fn_1_CC5C_fmt_274[0xC] = { 0x82, 0xC6, 0x82, 0xB6, 0x82, 0xE9, 0x0A, 0x0A, 0x00, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_280[0x8] = { 0x20, 0x4E, 0x4F, 0x52, 0x4D, 0x41, 0x4C, 0x00 };
+char fn_1_CC5C_fmt_288[0x8] = { 0x20, 0x4F, 0x55, 0x54, 0x00, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_290[0xC] = { 0x20, 0x49, 0x4E, 0x5F, 0x4F, 0x55, 0x54, 0x0A, 0x00, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_29C[0x8] = { 0x20, 0x43, 0x41, 0x4D, 0x5F, 0x42, 0x00, 0x00 };
+char fn_1_CC5C_fmt_2A4[0x8] = { 0x20, 0x53, 0x54, 0x41, 0x54, 0x49, 0x43, 0x00 };
+char fn_1_CC5C_fmt_2AC[0x10] = { 0x20, 0x53, 0x54, 0x41, 0x54, 0x49, 0x43, 0x5F, 0x46, 0x49, 0x58, 0x0A, 0x00, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_2BC[0x4] = { 0x0A, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_2C0[0xC] = { 0x54, 0x49, 0x4D, 0x45, 0x52, 0x3A, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_2CC[0xC] = { 0x20, 0x70, 0x65, 0x72, 0x73, 0x3A, 0x25, 0x35, 0x2E, 0x33, 0x66, 0x00 };
+char fn_1_CC5C_fmt_2D8[0x10] = { 0x20, 0x7A, 0x61, 0x6E, 0x67, 0x3A, 0x25, 0x30, 0x34, 0x68, 0x78, 0x0A, 0x00, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_2E8[0x10] = { 0x83, 0x4A, 0x83, 0x81, 0x83, 0x89, 0x41, 0x20, 0x78, 0x3A, 0x25, 0x35, 0x2E, 0x33, 0x66, 0x00 };
+char fn_1_CC5C_fmt_2F8[0xC] = { 0x20, 0x79, 0x3A, 0x25, 0x35, 0x2E, 0x33, 0x66, 0x00, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_304[0xC] = { 0x20, 0x7A, 0x3A, 0x25, 0x35, 0x2E, 0x33, 0x66, 0x0A, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_310[0x10] = { 0x81, 0x40, 0x81, 0x40, 0x81, 0x40, 0x20, 0x20, 0x78, 0x3A, 0x25, 0x35, 0x2E, 0x33, 0x66, 0x00 };
+char fn_1_CC5C_fmt_320[0x10] = { 0x20, 0x20, 0x70, 0x65, 0x72, 0x73, 0x3A, 0x25, 0x35, 0x2E, 0x33, 0x66, 0x0A, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_330[0x10] = { 0x20, 0x20, 0x7A, 0x61, 0x6E, 0x67, 0x3A, 0x25, 0x30, 0x34, 0x68, 0x78, 0x0A, 0x00, 0x00, 0x00 };
+char fn_1_CC5C_fmt_340[0x10] = { 0x83, 0x4A, 0x83, 0x81, 0x83, 0x89, 0x42, 0x20, 0x78, 0x3A, 0x25, 0x35, 0x2E, 0x33, 0x66, 0x00 };
+extern void fn_1_49410(void);
+extern void fn_1_49514(fn_1_CC5C_Color);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_495FC(void);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4A0D8(const char *);
+extern void fn_1_4AE0C(const char *, ...);
+
+#pragma opt_common_subs off
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_1010;
+u8 lbl_1_bss_1014;
+u8 lbl_1_bss_1010_gap_1015;
+u16 lbl_1_bss_1010_gap_1015_fill_1016;
+u8 fzgx_obj_camera_state;
+u8 camera_state_fill_1019;
+u16 camera_state_fill_101A;
+u32 camera_state_fill_101C[8];
+u32 lbl_1_bss_103C;
+u32 lbl_1_bss_1040;
+u32 lbl_1_bss_1044;
+u8 fzgx_obj_camera_flag_0;
+u8 fzgx_obj_camera_flag_1;
+u16 lbl_1_bss_1010_gap_104A;
+u32 fzgx_obj_lbl_1_bss_104C;
+u32 lbl_1_bss_104C_fill_1050[15];
+u32 lbl_1_bss_108C[13];
+u32 lbl_1_bss_10C0[6];
+u8 fzgx_obj_lbl_1_bss_10D8;
+u8 lbl_1_bss_10D8_fill_10D9;
+u16 lbl_1_bss_10D8_fill_10DA;
+u32 lbl_1_bss_10D8_fill_10DC[26];
+u8 lbl_1_bss_10D8_6C;
+u8 lbl_1_bss_10D8_fill_1145;
+u16 lbl_1_bss_10D8_fill_1146;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
+    s = *(u8 *)&lbl_1_bss_1014;
+    s = *(u8 *)&lbl_1_bss_1010_gap_1015;
+    s = *(u8 *)&lbl_1_bss_1010_gap_1015_fill_1016;
+    s = *(u8 *)&fzgx_obj_camera_state;
+    s = *(u8 *)&camera_state_fill_1019;
+    s = *(u8 *)&camera_state_fill_101A;
+    s = *(u8 *)&camera_state_fill_101C;
+    s = *(u8 *)&lbl_1_bss_103C;
+    s = *(u8 *)&lbl_1_bss_1040;
+    s = *(u8 *)&lbl_1_bss_1044;
+    s = *(u8 *)&fzgx_obj_camera_flag_0;
+    s = *(u8 *)&fzgx_obj_camera_flag_1;
+    s = *(u8 *)&lbl_1_bss_1010_gap_104A;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_104C;
+    s = *(u8 *)&lbl_1_bss_104C_fill_1050;
+    s = *(u8 *)&lbl_1_bss_108C;
+    s = *(u8 *)&lbl_1_bss_10C0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_10D8;
+    s = *(u8 *)&lbl_1_bss_10D8_fill_10D9;
+    s = *(u8 *)&lbl_1_bss_10D8_fill_10DA;
+    s = *(u8 *)&lbl_1_bss_10D8_fill_10DC;
+    s = *(u8 *)&lbl_1_bss_10D8_6C;
+    s = *(u8 *)&lbl_1_bss_10D8_fill_1145;
+    s = *(u8 *)&lbl_1_bss_10D8_fill_1146;
+}
+
+/* literal pool of the retail TU in retail order; this function's own
+ * colour table and 2.0f follow the 0.0001 double. */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = 0.10000000149011612f;
+    s = 0.009999999776482582f;
+    s = 55.0f;
+}
+static const unsigned long fzgx_pool_table2[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const unsigned long *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.04000000000000001;
+    d = 1.0;
+    d = 4.0;
+    d = 140.0;
+    d = 50.0;
+    d = 60.0;
+    d = 0.09;
+    d = 0.3;
+    d = 0.1;
+    d = 90000.0;
+    d = 4503599627370496.0;
+    d = 4503601774854144.0;
+    d = 0.02;
+    s = 60.0f;
+    s = 15.0f;
+    s = 0.8999999761581421f;
+    s = 0.0f;
+    s = 0.5f;
+}
+static const unsigned long fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const unsigned long *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 55.0;
+    s = 10.0f;
+}
+static const unsigned long fzgx_pool_table6[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const unsigned long *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.0;
+    d = 0.5;
+    d = 0.0001;
+}
+#pragma section code_type ".text"
+
+/* one past the camera state block: a field address equal to it has no value to show */
+#define END_ADDR ((u32)&lbl_1_bss_10D8_6C)
+
+/* the field address is advanced through a pointer cast so the offset stays on the
+ * address variable (retail: addi r3, r3, 0xc; lfs f1, 0x0(r3)) */
+#define ADVANCE(off) p = (u32)((u8 *)p + (off))
+#define FIELD(type) (*(type *)p)
+
+#define SELECT_COLOR(n) \
+    if ((s32)fn_1_CC5C_menu_selected == (n)) fn_1_49514(colors[0]); else fn_1_49514(colors[2])
+
+#define PRINT_VALUE(fmt, val) \
+    if (p != END_ADDR) fn_1_4AE0C(fmt, val); else fn_1_4A0D8(fmt)
+
+#define PRINT_VALUE2(fmt, val) \
+    if (p != END_ADDR) { \
+        if (p == END_ADDR) fn_1_4AE0C(fmt, val); else fn_1_4AE0C(fmt, val); \
+    } else fn_1_4A0D8(fmt)
+
+void fn_1_CC5C(void) {
+    fn_1_CC5C_Color colors[3] = { { 0x00, 0xFF, 0x00, 0xFF }, { 0x80, 0x80, 0x80, 0xFF }, { 0xFF, 0xFF, 0xFF, 0xFF } };
+    u8 idx;
+    u16 x;
+    u16 y;
+    u32 p;
+
+    idx = fn_1_CC5C_menu_cursor;
+    x = (idx % 4) * 150;
+    y = ((idx >> 2) & 0x3F) * 60;
+    if (((lbl_1_bss_D58.unk_2 >> 8) & 1) == 0) {
+        fn_1_49410();
+        fn_1_4954C(2.0f);
+        fn_1_4955C(0.5f, 0.5f);
+        fn_1_495FC();
+        fn_1_496FC((f32)x, (f32)y);
+
+        SELECT_COLOR(0);
+        fn_1_4A0D8(fn_1_CC5C_fmt_1C0);
+        SELECT_COLOR(1);
+        p = (u32)&fn_1_CC5C_menu_cursor;
+        PRINT_VALUE(fn_1_CC5C_fmt_1D0, fn_1_CC5C_menu_cursor);
+        SELECT_COLOR(2);
+        fn_1_4A0D8(fn_1_CC5C_fmt_1D8);
+        SELECT_COLOR(3);
+        fn_1_4A0D8(fn_1_CC5C_fmt_1E0);
+        SELECT_COLOR(4);
+        fn_1_4A0D8(fn_1_CC5C_fmt_1F0);
+        SELECT_COLOR(5);
+        p = (u32)&fzgx_obj_lbl_1_bss_104C;
+        ADVANCE(12);
+        PRINT_VALUE2(fn_1_CC5C_fmt_200, FIELD(f32));
+        SELECT_COLOR(6);
+        p = (u32)&fzgx_obj_lbl_1_bss_104C;
+        ADVANCE(8);
+        PRINT_VALUE2(fn_1_CC5C_fmt_20C, FIELD(u32));
+        SELECT_COLOR(7);
+        fn_1_4A0D8(fn_1_CC5C_fmt_218);
+        SELECT_COLOR(8);
+        fn_1_4A0D8(fn_1_CC5C_fmt_22C);
+        SELECT_COLOR(9);
+        fn_1_4A0D8(fn_1_CC5C_fmt_240);
+        SELECT_COLOR(10);
+        fn_1_4A0D8(fn_1_CC5C_fmt_254);
+        SELECT_COLOR(11);
+        fn_1_4A0D8(fn_1_CC5C_fmt_264);
+        SELECT_COLOR(12);
+        fn_1_4A0D8(fn_1_CC5C_fmt_274);
+        SELECT_COLOR(13);
+        fn_1_4A0D8(fn_1_CC5C_fmt_280);
+        SELECT_COLOR(14);
+        fn_1_4A0D8(fn_1_CC5C_fmt_288);
+        SELECT_COLOR(15);
+        fn_1_4A0D8(fn_1_CC5C_fmt_290);
+        SELECT_COLOR(16);
+        fn_1_4A0D8(fn_1_CC5C_fmt_29C);
+        SELECT_COLOR(17);
+        fn_1_4A0D8(fn_1_CC5C_fmt_2A4);
+        SELECT_COLOR(18);
+        fn_1_4A0D8(fn_1_CC5C_fmt_2AC);
+        SELECT_COLOR(19);
+        fn_1_4A0D8(fn_1_CC5C_fmt_2BC);
+        SELECT_COLOR(20);
+        p = (u32)&fzgx_obj_lbl_1_bss_104C;
+        PRINT_VALUE(fn_1_CC5C_fmt_2C0, fzgx_obj_lbl_1_bss_104C);
+        SELECT_COLOR(21);
+        p = (u32)&fzgx_obj_camera_state;
+        ADVANCE(28);
+        PRINT_VALUE(fn_1_CC5C_fmt_2CC, FIELD(f32));
+        SELECT_COLOR(22);
+        p = (u32)&fzgx_obj_camera_state;
+        ADVANCE(32);
+        PRINT_VALUE(fn_1_CC5C_fmt_2D8, FIELD(s16));
+        SELECT_COLOR(23);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(4);
+        PRINT_VALUE(fn_1_CC5C_fmt_2E8, FIELD(f32));
+        SELECT_COLOR(24);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(8);
+        PRINT_VALUE(fn_1_CC5C_fmt_2F8, FIELD(f32));
+        SELECT_COLOR(25);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(12);
+        PRINT_VALUE(fn_1_CC5C_fmt_304, FIELD(f32));
+        SELECT_COLOR(26);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(16);
+        PRINT_VALUE(fn_1_CC5C_fmt_310, FIELD(f32));
+        SELECT_COLOR(27);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(20);
+        PRINT_VALUE(fn_1_CC5C_fmt_2F8, FIELD(f32));
+        SELECT_COLOR(28);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(24);
+        PRINT_VALUE(fn_1_CC5C_fmt_304, FIELD(f32));
+        SELECT_COLOR(29);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(28);
+        PRINT_VALUE(fn_1_CC5C_fmt_320, FIELD(f32));
+        SELECT_COLOR(30);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(32);
+        PRINT_VALUE(fn_1_CC5C_fmt_330, FIELD(s16));
+        SELECT_COLOR(31);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(40);
+        PRINT_VALUE(fn_1_CC5C_fmt_340, FIELD(f32));
+        SELECT_COLOR(32);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(44);
+        PRINT_VALUE(fn_1_CC5C_fmt_2F8, FIELD(f32));
+        SELECT_COLOR(33);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(48);
+        PRINT_VALUE(fn_1_CC5C_fmt_304, FIELD(f32));
+        SELECT_COLOR(34);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(52);
+        PRINT_VALUE(fn_1_CC5C_fmt_310, FIELD(f32));
+        SELECT_COLOR(35);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(56);
+        PRINT_VALUE(fn_1_CC5C_fmt_2F8, FIELD(f32));
+        SELECT_COLOR(36);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(60);
+        PRINT_VALUE(fn_1_CC5C_fmt_304, FIELD(f32));
+        SELECT_COLOR(37);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(64);
+        PRINT_VALUE(fn_1_CC5C_fmt_320, FIELD(f32));
+        SELECT_COLOR(38);
+        p = (u32)&fzgx_obj_lbl_1_bss_10D8;
+        ADVANCE(68);
+        PRINT_VALUE(fn_1_CC5C_fmt_330, FIELD(s16));
+    }
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_CC5C */
 
 /* fzgx:begin camera_get_state_object */
 // Returns the camera state object's base address.
