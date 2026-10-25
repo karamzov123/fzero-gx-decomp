@@ -1,186 +1,114 @@
-/* Non-matching: best partial attempt (68.18% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (72.58% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "rel/main_rel/memcard.h"
 
-struct fn_1_14C35C_lbl_1_data_42878 {
-    u8 pad_0[0x600];
-    u16 unk_600[29];
-    u8 pad_63A[2];
-    u16 unk_63C[29];
-    u8 pad_676[2];
-    u16 unk_678[33];
-    u8 pad_6BA[2];
-    u16 unk_6BC[13];
-    u8 pad_6D6[2];
-    u8 unk_6D8[29];
-    u8 pad_6F5[3];
-    u8 unk_6F8[29];
-    u8 pad_715[3];
-    u8 unk_718[33];
-    u8 pad_739[3];
-    u8 unk_73C[13];
-    u8 pad_749[3];
-    u32 unk_74C;
-    u32 unk_750;
-    u8 pad_754[0x1C];
-    u32 unk_770;
-    u32 unk_774;
-    u8 pad_778[0x1C];
-    char unk_794[4];
-};
-
-struct fn_1_14C35C_lbl_1_bss_8E518 {
-    u8 pad_0[0x8];
-    u32 unk_8;
-    u8 pad_C[0xC];
-    f32 unk_18;
-    u8 pad_1C[0x4];
-    u32 unk_20;
-    u8 pad_24[0xC];
-    u8 unk_30;
-    u8 pad_31[0xF];
-    u8 unk_40;
-    u8 unk_41;
-    u8 pad_42[0xA];
-    u32 unk_4C;
-    u32 unk_50;
-    u32 unk_54;
-    u32 unk_58;
-    u32 unk_5C;
-    u8 pad_60[0x14];
-    u32 unk_74;
-    s32 unk_78;
-};
-
-extern char * fn_80083DB0(char *, const char *);
-extern char * strncpy(char *, const char *, size_t);
-extern size_t strlen(const char *);
-extern struct fn_1_14C35C_lbl_1_bss_8E518 lbl_1_bss_8E518;
-extern struct fn_1_14C35C_lbl_1_data_42878 lbl_1_data_42878;
-extern u32 fn_1_1556B4(u32, u32);
+typedef struct { u32 a,b; } Pair;
+typedef struct {
+ u8 pad0[0x600];
+ u16 t0[29]; u8 p0[2];
+ u16 t1[29]; u8 p1[2];
+ u16 t2[33]; u8 p2[2];
+ u16 t3[13]; u8 p3[2];
+ u8 k0[29]; u8 p4[3];
+ u8 k1[29]; u8 p5[3];
+ u8 k2[33]; u8 p6[3];
+ u8 k3[13]; u8 p7[3];
+ Pair a; u8 p8[0x1c]; Pair b; u8 p9[0x1c]; char text[4];
+} Data;
+/* Extended view: the shared header currently exposes only the initial fields. */
+typedef struct {
+ u8 p0[8]; s32 unk_8; u8 p1[0xc]; f32 unk_18;
+ u32 unk_1c; s32 unk_20; u8 p2[0xc]; u8 unk_30;
+ u8 p3[0xf]; u8 unk_40,unk_41; u8 p4[0xa];
+ s32 unk_4c; Pair pair; s32 unk_58,unk_5c;
+ u8 text[20]; s32 unk_74,unk_78;
+} State;
+extern void fn_1_1556B4(u8,u8);
 extern s32 fn_1_155F7C(void);
 extern u32 fn_1_155F8C(void);
-extern u32 fn_1_155FB4(const char *);
-extern u32 lbl_1_bss_3C04;
-extern u32 lbl_1_bss_718E0;
+extern void fn_1_155FB4(char *);
+extern char *fn_80083DB0(char *,const char *);
+extern char *strncpy(char *,const char *,size_t);
+extern size_t strlen(const char *);
 extern u32 lbl_801A66B4;
-
-void fn_1_14C35C(void)
-{
-    struct fn_1_14C35C_lbl_1_bss_8E518 *p_state = (struct fn_1_14C35C_lbl_1_bss_8E518 *)&lbl_1_bss_8E518;
-    struct fn_1_14C35C_lbl_1_data_42878 *p_data = (struct fn_1_14C35C_lbl_1_data_42878 *)&lbl_1_data_42878;
-    u8 *kp;
-    u8 *src;
-    u8 *dst;
-    u32 buf[8];
-    u32 i;
-    u16 *res;
-    u32 c;
-    s32 value;
-
-    p_state->unk_40 = 42;
-    p_state->unk_41 = 0;
-    fn_1_1556B4(42, 0);
-    p_state->unk_4C = 0;
-    if ((s32)lbl_801A66B4 == 5) {
-        p_state->unk_50 = p_data->unk_74C;
-        p_state->unk_54 = *(u32 *)((u8 *)&p_data->unk_74C + 4);
-    } else {
-        p_state->unk_50 = p_data->unk_770;
-        p_state->unk_54 = *(u32 *)((u8 *)&p_data->unk_770 + 4);
-    }
-    kp = (u8 *)p_state + 0x60;
-    for (i = 0; i < 19; i++) {
-        *kp++ = 0;
-    }
-    p_state->unk_58 = 0;
-    p_state->unk_5C = p_state->unk_54 - 1;
-    strncpy((char *)((u8 *)p_state + 0x60), (const char *)((u8 *)&lbl_1_bss_718E0 + 0x5522), strlen((const char *)((u8 *)&lbl_1_bss_718E0 + 0x5522)));
-    p_state->unk_4C = strlen((const char *)((u8 *)&lbl_1_bss_718E0 + 0x5522)) >> 1;
-    if ((s32)lbl_801A66B4 != 5) {
-        p_state->unk_4C = strlen((const char *)((u8 *)&lbl_1_bss_718E0 + 0x5522));
-        fn_80083DB0((char *)buf, (const char *)((u8 *)p_state + 0x60));
-        src = (u8 *)buf;
-        dst = (u8 *)p_state + 0x60;
-        while ((c = *src) != 0) {
-            if (c < 128) {
-                kp = p_data->unk_6D8;
-                for (i = 0; i < 29; i++) {
-                    /* goto leaves the four-table chain on the first key match */
-                    if (c == *kp) {
-                        res = (u16 *)((u8 *)&p_data->unk_600 + (i << 1));
-                        goto found;
-                    }
-                    kp++;
-                }
-                kp = p_data->unk_6F8;
-                for (i = 0; i < 29; i++) {
-                    /* goto leaves the four-table chain on the first key match */
-                    if (c == *kp) {
-                        res = (u16 *)((u8 *)&p_data->unk_63C + (i << 1));
-                        goto found;
-                    }
-                    kp++;
-                }
-                kp = p_data->unk_718;
-                for (i = 0; i < 33; i++) {
-                    /* goto leaves the four-table chain on the first key match */
-                    if (c == *kp) {
-                        res = (u16 *)((u8 *)&p_data->unk_678 + (i << 1));
-                        goto found;
-                    }
-                    kp++;
-                }
-                kp = p_data->unk_73C;
-                for (i = 0; i < 13; i++) {
-                    /* goto leaves the four-table chain on the first key match */
-                    if (c == *kp) {
-                        res = (u16 *)((u8 *)&p_data->unk_6BC + (i << 1));
-                        goto found;
-                    }
-                    kp++;
-                }
-                res = 0;
-found:
-                if (res != 0) {
-                    strncpy((char *)dst, (const char *)res, 2);
-                    dst += 2;
-                }
-                src += 1;
-            } else {
-                strncpy((char *)dst, (const char *)src, 2);
-                dst += 2;
-                src += 2;
-            }
-        }
-        *dst = 0;
-    }
-    if ((s32)p_state->unk_4C == 0) {
-        p_state->unk_5C = 0;
-    }
-    if ((s32)p_state->unk_8 != 0) {
-        if (fn_1_155F7C() != 0) {
-            p_state->unk_8 = 0;
-            p_state->unk_74 = 1;
-            p_state->unk_78 = fn_1_155F8C();
-            fn_1_155FB4(p_data->unk_794);
-            value = p_state->unk_78 - 2;
-            lbl_1_bss_3C04 = 1860;
-            if (value < 0) {
-                value = 0;
-            } else {
-                if (p_state->unk_78 - 2 > 10 - p_state->unk_30) {
-                    value = 10 - p_state->unk_30;
-                } else {
-                    value = p_state->unk_78 - 2;
-                }
-            }
-            p_state->unk_20 = value;
-            p_state->unk_18 = (f32)value;
-        } else {
-            p_state->unk_8 = 0;
-            p_state->unk_74 = 0;
-            lbl_1_bss_3C04 = 660;
-        }
-    }
+static inline void clear(u8 *p) {
+ u32 i;
+ for(i=0;i<19;i++) *p++=0;
+}
+#pragma opt_propagation off
+static inline u16 *lookup(Data *d,u32 c) {
+ u8 *k;
+ u16 *t;
+ k=d->k0;
+ { u32 i;
+ for(i=0;i<29;i++,k++) if(c==*k) { t=d->t0; return t+i; }
+ k=d->k1;
+ for(i=0;i<29;i++,k++) if(c==*k) { t=d->t1; return t+i; }
+ k=d->k2;
+ for(i=0;i<33;i++,k++) if(c==*k) { t=d->t2; return t+i; }
+ k=d->k3;
+ for(i=0;i<13;i++,k++) if(c==*k) { t=d->t3; return t+i; }
+ }
+ return 0;
+}
+#pragma opt_propagation off
+static inline void fn_1_14C35C_call_fn_1_1556B4(u8 a0, s8 a1) { fn_1_1556B4(a0, a1); }
+void fn_1_14C35C(void) {
+    u8 fzgx_value;
+ State *s=(State *)&lbl_1_bss_8E518;
+ Data *d=(Data *)&lbl_1_data_42878;
+ u8 *src;
+ u8 *dst;
+ u32 buf[8];
+ u32 c;
+ u16 *res;
+ struct {s32 value;} value;
+ fzgx_value = 0;
+ s->unk_40 = fzgx_value;
+ s->unk_41=0;
+ fn_1_14C35C_call_fn_1_1556B4(0, 0);
+ s->unk_4c=0;
+ if((s32)lbl_801A66B4==5) s->pair=d->a;
+ else s->pair=d->b;
+ clear(s->text);
+ s->unk_5c=s->pair.b-1;
+ s->unk_58=0;
+ strncpy((char *)s->text,(char *)lbl_1_bss_718E0.pad_5522,strlen((char *)lbl_1_bss_718E0.pad_5522));
+ s->unk_4c=strlen((char *)lbl_1_bss_718E0.pad_5522)>>1;
+ if((s32)lbl_801A66B4!=5) {
+  s->unk_4c=strlen((char *)lbl_1_bss_718E0.pad_5522);
+  fn_80083DB0((char *)buf,(char *)s->text);
+  src=(u8 *)buf;
+  dst=s->text;
+  while((c=*src)!=0) {
+   if(c<128) {
+    res=lookup(d,c);
+    if(res) {strncpy((char *)dst,(char *)res,2); dst+=2;}
+    src++;
+   } else {strncpy((char *)dst,(char *)src,2); dst+=2; src+=2;}
+  }
+  *dst=0;
+ }
+ if(s->unk_4c==0) s->unk_5c=0;
+ if(s->unk_8!=0) {
+  if(fn_1_155F7C()!=0) {
+   s->unk_8=0; s->unk_74=1;
+   s->unk_78=fn_1_155F8C();
+   fn_1_155FB4(d->text);
+   { s32 original=s->unk_78;
+   s32 test=original-2;
+   lbl_1_bss_3C04=0x744;
+   if(test<0) value.value=0;
+   else { value.value=original-2;
+    if(test>10-s->unk_30) value.value=10-s->unk_30;
+   }
+   }
+   s->unk_20=value.value;
+   s->unk_18=value.value;
+  } else {
+   s->unk_8=0; s->unk_74=0; lbl_1_bss_3C04=0x294;
+  }
+ }
 }

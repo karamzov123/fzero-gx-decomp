@@ -1,6 +1,7 @@
-/* Non-matching: best partial attempt (83.45% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.57% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
+#include "rel/main_rel/mdlload.h"
 
 typedef struct {
     u32 unk_0;
@@ -15,7 +16,7 @@ typedef struct {
 
 extern s32 lbl_1_bss_7AD60[6];
 extern f32 lbl_1_rodata_6168[112];
-extern u8 lbl_1_data_2A7E0[];
+
 extern u32 lbl_801A66A0;
 extern u32 fn_1_5910(void);
 extern void fn_80072EDC(s32, s32);
@@ -66,7 +67,7 @@ void fn_1_D523C(Fn1D523CArg *arg0) {
     s32 q1C;
     q1C = p1C + 1;
     index = fn_1_5910();
-    scales = (f32 *) *(u32 *) (lbl_1_data_2A7E0 + 0x3C);
+    scales = (f32 *) lbl_1_data_2A7E0.unk_3C;
     base = (u8 *) scales + 0xC140;
     entry = base + index * 2;
 
@@ -94,27 +95,22 @@ void fn_1_D523C(Fn1D523CArg *arg0) {
     fn_80073778(base, q18);
     fn_80072AB0(pC, 0, 0);
 
-    mtx[0][1] = c.value[0x10 / 4];
-    mtx[0][2] = c.value[0x10 / 4];
-    mtx[0][0] = *(s16 *) (entry + 0x2638);
-    mtx[0][3] = *(f32 *) (entry + 0x2620);
-    mtx[1][0] = c.value[0x10 / 4];
-    t = scales[index];
-    limit = c.value[0x168 / 4];
-    if (t >= limit) {
-        t = limit;
-    }
-    t = c.value[0xC / 4] - t / c.value[0x16C / 4];
-    mtx[1][2] = c.value[0x10 / 4];
-    mtx[1][1] = ((t) * (*(s16 *) (entry + 0x263A)));
-    mtx[1][3] = *(f32 *) (entry + 0x2624);
+    mtx[0][0] = *(s16 *) (base + 0x2638);
+    mtx[0][1] = 0.0f;
+    mtx[0][2] = 0.0f;
+    mtx[0][3] = *(f32 *) (base + 0x2620);
+    mtx[1][0] = 0.0f;
+    t = scales[index] < 23.0f ? scales[index] : 23.0f;
+    mtx[1][1] = (f32)*(s16 *) (base + 0x263A) * (1.0f - t / 24.0f);
+    mtx[1][2] = 0.0f;
+    mtx[1][3] = *(f32 *) (base + 0x2624);
     GXLoadTexMtxImm(mtx, q14, 1);
 
     fn_800738E0(p1C, q10, p18);
-    fn_80073778(base + *(s16 *) (entry + 0x2630) * 0x900 + ((lbl_801A66A0 >> 3) & 7) * 0x120 + 0x320, p18);
+    fn_80073778(base + *(s16 *) (entry + 0x2630) * 0x900 + ((lbl_801A66A0 >> 1) & 7) * 0x120 + 0x320, p18);
     lab_t4 = 0x10;
     fn_80073E8C(pC, p1C, 0x10, 0x10, lab_t4, 0x10, 2, 1, 0, 0);
-    fn_800739E0(p1C, 4, 4);
+    fn_800739E0(arg0->unk_1C, 4, 4);
     arg0->unk_1C = q1C;
 }
     arg0->unk_C = qC;
