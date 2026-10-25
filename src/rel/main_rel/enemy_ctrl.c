@@ -72,7 +72,7 @@ void fn_1_C487C(void) {
 }
 /* fzgx:end fn_1_C487C */
 
-/* fzgx:begin fn_1_C489C pool noprologue */
+/* fzgx:begin fn_1_C489C noprologue */
 #include "types.h"
 
 struct fn_1_C489C_p_lbl_1_rodata_5168_40_E12 {
@@ -88,13 +88,13 @@ struct fn_1_C489C_lbl_1_rodata_5168 {
 };
 extern f32 lbl_1_bss_7AC64[9];
 #pragma pool_data on
-const u8 lbl_1_rodata_5168[64] = {
+const u8 fzgx_pool_lbl_1_rodata_5168[64] = {
         0x62, 0x55, 0x2d, 0x46, 0x64, 0x64, 0x0a, 0x00, 0x64, 0x5a, 0x32, 0x50, 0x6e, 0x6e, 0x14, 0x05,
         0x66, 0x5e, 0x3c, 0x5a, 0x7d, 0x7d, 0x23, 0x14, 0x67, 0x60, 0x46, 0x64, 0x87, 0x87, 0x37, 0x1e,
         0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x66, 0x5f, 0x32, 0x50, 0x82, 0x82, 0x1e, 0x0a,
         0x69, 0x64, 0x41, 0x5a, 0x8c, 0x8c, 0x28, 0x14, 0x6c, 0x66, 0x4b, 0x64, 0x96, 0x96, 0x32, 0x28,
 };
-static const struct fn_1_C489C_p_lbl_1_rodata_5168_40_E12 vehicle_parameters[41] = {
+static const struct fn_1_C489C_p_lbl_1_rodata_5168_40_E12 fzgx_pool_vehicle_parameters[41] = {
         { 2, {75, 70}, 75, {0, 25, 100, 0}, 0x80000000 },
         { 1, {80, 90}, 75, {0, 30, 100, 0}, 0x80000000 },
         { 2, {70, 100}, 80, {0, 30, 100, 0}, 0x80000000 },
@@ -137,88 +137,88 @@ static const struct fn_1_C489C_p_lbl_1_rodata_5168_40_E12 vehicle_parameters[41]
         { 0, {75, 85}, 80, {0, 30, 100, 0}, 0x80000000 },
         { 2, {95, 100}, 95, {0, 30, 100, 0}, 0x80000000 },
 };
-const u32 lbl_1_rodata_5394[14] = {
+const u32 fzgx_pool_lbl_1_rodata_5394[14] = {
     0x44E10000, 0x44ED8000, 0x452F0000, 0x454BC000, 0x45674000, 0x456D8000, 0x45834000, 0x4585C000,
     0x4592E000, 0x45A8C000, 0x45BB8000, 0x45F96000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_53CC[16] = {
+const u32 fzgx_pool_lbl_1_rodata_53CC[16] = {
     0x44110000, 0x44480000, 0x45098000, 0x45354000, 0x457A0000, 0x458CA000, 0x45B54000, 0x45D16000,
     0x45FA0000, 0x4607F000, 0x464E4000, 0x4668D000, 0x466D8000, 0x46716800, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_540C[6] = {
+const u32 fzgx_pool_lbl_1_rodata_540C[6] = {
     0x45B22000, 0x45CB2000, 0x4636D000, 0x46403000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_5424[6] = {
+const u32 fzgx_pool_lbl_1_rodata_5424[6] = {
     0x459DD000, 0x45A0F000, 0x45B54000, 0x45B86000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_543C[14] = {
+const u32 fzgx_pool_lbl_1_rodata_543C[14] = {
     0x3F800000, 0x43C80000, 0x45674000, 0x45992000, 0x45D16000, 0x45F0A000, 0x46002000, 0x4607F000,
     0x460CA000, 0x46115000, 0x467D2000, 0x468A4800, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_5474[8] = {
+const u32 fzgx_pool_lbl_1_rodata_5474[8] = {
     0x44ED8000, 0x45322000, 0x4625A000, 0x46354000, 0x4644E000, 0x46610000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_5494[14] = {
+const u32 fzgx_pool_lbl_1_rodata_5494[14] = {
     0x3F800000, 0x44278000, 0x45C1C000, 0x45CB2000, 0x45DAC000, 0x45E42000, 0x45F3C000, 0x45FD2000,
     0x46435000, 0x465DE000, 0x46610000, 0x466E4800, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_54CC[10] = {
+const u32 fzgx_pool_lbl_1_rodata_54CC[10] = {
     0x44BB8000, 0x44ED8000, 0x452F0000, 0x454E4000, 0x45A28000, 0x45AD7000, 0x45D16000, 0x45D48000,
     0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_54F4[6] = {
+const u32 fzgx_pool_lbl_1_rodata_54F4[6] = {
     0x42480000, 0x43FA0000, 0x46787000, 0x46866000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_550C[4] = {
+const u32 fzgx_pool_lbl_1_rodata_550C[4] = {
     0x45610000, 0x4573C000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_551C[4] = {
+const u32 fzgx_pool_lbl_1_rodata_551C[4] = {
     0x464E9000, 0x4654F800, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_552C[16] = {
+const u32 fzgx_pool_lbl_1_rodata_552C[16] = {
     0x43DC0000, 0x444A8000, 0x44D70000, 0x4507A000, 0x45412000, 0x45D39000, 0x460B1000, 0x4628C000,
     0x4639C800, 0x4642D800, 0x46816000, 0x46834000, 0x46898000, 0x468FC000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_556C[14] = {
+const u32 fzgx_pool_lbl_1_rodata_556C[14] = {
     0x432F0000, 0x43D70000, 0x45A28000, 0x45A8C000, 0x461DD000, 0x4620F000, 0x46487800, 0x466A6000,
     0x46802000, 0x4681B000, 0x469E9800, 0x46A02800, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_55A4[32] = {
+const u32 fzgx_pool_lbl_1_rodata_55A4[32] = {
     0x44048000, 0x444D4000, 0x450FC000, 0x451C4000, 0x454DA000, 0x455AC000, 0x45A2D000, 0x45AA5000,
     0x45A2D000, 0x45AD7000, 0x45B86000, 0x45BF9000, 0x45CF3000, 0x45D66000, 0x45F0F000, 0x45F5F000,
     0x45FDC000, 0x46034000, 0x46075000, 0x460A4800, 0x4616A000, 0x46199800, 0x46200000, 0x4622F800,
     0x46296000, 0x462C5800, 0x4644E000, 0x465AC000, 0x466D8000, 0x46775800, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_5624[4] = {
+const u32 fzgx_pool_lbl_1_rodata_5624[4] = {
     0x44BB8000, 0x44D48000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_5634[20] = {
+const u32 fzgx_pool_lbl_1_rodata_5634[20] = {
     0x43A00000, 0x44F78000, 0x45098000, 0x45462000, 0x45778000, 0x45816000, 0x458DE000, 0x45AE6000,
     0x45D2A000, 0x45D7A000, 0x45E6F000, 0x4605E800, 0x46315800, 0x46412000, 0x4661C800, 0x466EC000,
     0x468C3C00, 0x468DA400, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_5684[22] = {
+const u32 fzgx_pool_lbl_1_rodata_5684[22] = {
     0x45802000, 0x45857000, 0x459F6000, 0x45A28000, 0x45B54000, 0x45BB8000, 0x45D61000, 0x45D93000,
     0x4601B000, 0x4604A800, 0x460B1000, 0x460CA000, 0x46115000, 0x4612E000, 0x46234800, 0x46255000,
     0x462BB800, 0x462DC000, 0x46383800, 0x4639C800, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_56DC[12] = {
+const u32 fzgx_pool_lbl_1_rodata_56DC[12] = {
     0x44688000, 0x44960000, 0x45610000, 0x45CE4000, 0x46002000, 0x46115000, 0x4636D000, 0x463B8000,
     0x4694D400, 0x469D0800, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_570C[6] = {
+const u32 fzgx_pool_lbl_1_rodata_570C[6] = {
     0x43480000, 0x43FA0000, 0x45DAC000, 0x45E10000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_5724[12] = {
+const u32 fzgx_pool_lbl_1_rodata_5724[12] = {
     0x3C23D70A, 0x42480000, 0x45EA6000, 0x45FA0000, 0x460B1000, 0x46160000, 0x46593000, 0x465C5000,
     0x46642000, 0x466A6000, 0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_5754[18] = {
+const u32 fzgx_pool_lbl_1_rodata_5754[18] = {
     0x44960000, 0x44E74000, 0x455AC000, 0x457A0000, 0x45C80000, 0x45DE8000, 0x45F0A000, 0x45FD2000,
     0x4612E000, 0x46250000, 0x463D1000, 0x46435000, 0x46499000, 0x46548000, 0x466A6000, 0x466F1000,
     0xBF800000, 0xBF800000,
 };
-const u32 lbl_1_rodata_579C[18] = {
+const u32 fzgx_pool_lbl_1_rodata_579C[18] = {
     0x45898000, 0x4592E000, 0x45E42000, 0x45F0A000, 0x46034000, 0x4604D000, 0x46034000, 0x4604D000,
     0x463D1000, 0x4644E000, 0x46629000, 0x46723000, 0x46898000, 0x468D6800, 0x46A28000, 0x46A4D800,
     0xBF800000, 0xBF800000,
@@ -286,7 +286,7 @@ void fn_1_C489C(void *arg0) {
     *(u8 *)((u8 *)v0 + 42) = 99;
     *(u8 *)((u8 *)v0 + 55) = 255;
     v5 = 0.0;
-    *(f32 *)((u8 *)v0 + 36) = 0.2 * (100.0 - (f32)(lbl_1_bss_7AC64[4] * (f32)(u32)vehicle_parameters[*(u8 *)((u8 *)v0 + 56)].unk_3));
+    *(f32 *)((u8 *)v0 + 36) = 0.2 * (100.0 - (f32)(lbl_1_bss_7AC64[4] * (f32)(u32)fzgx_pool_vehicle_parameters[*(u8 *)((u8 *)v0 + 56)].unk_3));
     v6 = *(f32 *)((u8 *)v0 + 36);
     v5 = clamp_value(v6);
     v7 = 1.0;
@@ -299,11 +299,11 @@ void fn_1_C489C(void *arg0) {
         *(u32 *)((u8 *)v0 + 0) |= 0x400000;
     if (*(f32 *)((u8 *)arg0 + 560) > 15.0)
         *(u32 *)((u8 *)v0 + 0) |= 0x200000;
-    *(u32 *)((u8 *)v0 + 0) = (*(u32 *)((u8 *)v0 + 0) & ~0x8000) | ((vehicle_parameters[*(u8 *)((u8 *)v0 + 56)].unk_8 >> 14) & 0x8000);
-    *(u32 *)((u8 *)v0 + 0) = (*(u32 *)((u8 *)v0 + 0) & ~0x4000) | ((vehicle_parameters[*(u8 *)((u8 *)v0 + 56)].unk_8 >> 14) & 0x4000);
+    *(u32 *)((u8 *)v0 + 0) = (*(u32 *)((u8 *)v0 + 0) & ~0x8000) | ((fzgx_pool_vehicle_parameters[*(u8 *)((u8 *)v0 + 56)].unk_8 >> 14) & 0x8000);
+    *(u32 *)((u8 *)v0 + 0) = (*(u32 *)((u8 *)v0 + 0) & ~0x4000) | ((fzgx_pool_vehicle_parameters[*(u8 *)((u8 *)v0 + 56)].unk_8 >> 14) & 0x4000);
     *(u8 *)((u8 *)v0 + 43) = 255;
     *(u8 *)((u8 *)v0 + 54) = 255;
-    *(u8 *)((u8 *)v0 + 49) = vehicle_parameters[*(u8 *)((u8 *)v0 + 56)].unk_0;
+    *(u8 *)((u8 *)v0 + 49) = fzgx_pool_vehicle_parameters[*(u8 *)((u8 *)v0 + 56)].unk_0;
     *(u8 *)((u8 *)v0 + 51) = 255;
     *(u8 *)((u8 *)v0 + 52) = 255;
 }

@@ -8690,7 +8690,7 @@ u8 fn_1_86A10(u32 arg0) {
 }
 /* fzgx:end fn_1_86A10 */
 
-/* fzgx:begin fn_1_86A2C pool noprologue */
+/* fzgx:begin fn_1_86A2C noprologue */
 #include "types.h"
 #include "dolphin/hw_regs.h"
 #include "types.h"
@@ -8730,20 +8730,20 @@ typedef struct lbl_1_bss_6D83C_t {
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 lbl_1_bss_6D83C_t fzgx_obj_lbl_1_bss_6D83C;
 u8 fzgx_obj_lbl_1_bss_6D84A;
-u32 lbl_1_bss_6D850;
-u32 lbl_1_bss_6D854[4];
-u32 fzgx_obj_lbl_1_bss_6D864;
-u8 fzgx_obj_lbl_1_bss_6D868;
+u32 fzgx_pool_lbl_1_bss_6D850;
+u32 fzgx_pool_lbl_1_bss_6D854[4];
+u32 fzgx_pool_fzgx_obj_lbl_1_bss_6D864;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_6D868;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D83C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D84A;
-    s = *(u8 *)&lbl_1_bss_6D850;
-    s = *(u8 *)&lbl_1_bss_6D854;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_6D864;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_6D868;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D850;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D854;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_6D864;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_6D868;
 }
 #pragma section code_type ".text"
 

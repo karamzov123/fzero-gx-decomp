@@ -16877,24 +16877,24 @@ extern u32 fn_1_A1964(u32);
 
 /* The TU's own .bss objects (lbl_16_bss_0 is their section base in retail). */
 static u32 fzgx_obj_lbl_16_bss_0;
-static char *fzgx_bss_4[41];
-static u8 fzgx_bss_A8[0xA8];
-static u32 fzgx_bss_150;
-static struct Panel fzgx_bss_154;
-static u8 fzgx_bss_200[0x1C];
-static s32 fzgx_bss_21C;
+static char *lbl_16_bss_0__fzgx_offset_4[41];
+static u8 fzgx_pool_fzgx_bss_A8[0xA8];
+static u32 lbl_16_bss_150__fzgx_offset_0;
+static struct Panel lbl_16_bss_154__fzgx_offset_0;
+static u8 fzgx_pool_fzgx_bss_200[0x1C];
+static s32 lbl_16_bss_21C__fzgx_offset_0;
 
 /* Literal-pool primer: reproduces the TU pool's first-use order. */
 static const u32 fzgx_pool_table_4[1] = { 0 };
 #pragma section RX ".fzgxpool"
 __declspec(section ".fzgxpool") void fzgx_pool_primer(volatile f32 *o, volatile f64 *d, volatile u32 *w) { /* volatile keeps every reference */
     w[0] = fzgx_obj_lbl_16_bss_0;
-    w[0] = (u32)fzgx_bss_4[0];
-    w[0] = fzgx_bss_A8[0];
-    w[0] = fzgx_bss_150;
-    o[0] = fzgx_bss_154.depth;
-    w[0] = fzgx_bss_200[0];
-    w[0] = fzgx_bss_21C;
+    w[0] = (u32)lbl_16_bss_0__fzgx_offset_4[0];
+    w[0] = fzgx_pool_fzgx_bss_A8[0];
+    w[0] = lbl_16_bss_150__fzgx_offset_0;
+    o[0] = lbl_16_bss_154__fzgx_offset_0.depth;
+    w[0] = fzgx_pool_fzgx_bss_200[0];
+    w[0] = lbl_16_bss_21C__fzgx_offset_0;
     fn_1_49590(0.0f);
     w[0] = fzgx_pool_table_4[0];
     o[0] = 320.0f;
@@ -16953,9 +16953,9 @@ void fn_16_1038(void) {
         break;
     }
     if (state.p->mode == 5) {
-        fn_1_4D784(0, 0, 1, 0xE4, buf, fzgx_bss_4[lbl_1_bss_8B614.index] + (state.p->mode << 11));
+        fn_1_4D784(0, 0, 1, 0xE4, buf, lbl_16_bss_0__fzgx_offset_4[lbl_1_bss_8B614.index] + (state.p->mode << 11));
     } else {
-        fn_1_4D784(1, 0, 1, 0xE4, buf, fzgx_bss_4[lbl_1_bss_8B614.index] + (state.p->mode << 11));
+        fn_1_4D784(1, 0, 1, 0xE4, buf, lbl_16_bss_0__fzgx_offset_4[lbl_1_bss_8B614.index] + (state.p->mode << 11));
     }
     state2.p = &lbl_1_bss_8B614;
     fn_80083DB0(lbl_16_bss_B0B8.biographies[state2.p->index][state.p->mode], buf);
@@ -16995,12 +16995,12 @@ void fn_16_1038(void) {
     state6.p->busy = 1;
     state5.p->cursor = fn_1_46B44(lbl_1_bss_8B614.arg64, lbl_1_bss_8B614.arg68);
 
-    fn_1_435C(fzgx_bss_150);
-    fn_1_4A00(1, 15, fzgx_bss_150);
+    fn_1_435C(lbl_16_bss_150__fzgx_offset_0);
+    fn_1_4A00(1, 15, lbl_16_bss_150__fzgx_offset_0);
     lbl_16_bss_B0B4 = 0;
     *(s32 *)(((u8 *)fzgx_pool_data_lbl_16_data_82B00)) = fn_1_3F8C(((u8 *)fzgx_pool_data_lbl_16_data_0_82D70), fn_16_6508, 0, 8);
     index2 = state2.p->index;
-    fzgx_bss_21C = -1;
+    lbl_16_bss_21C__fzgx_offset_0 = -1;
     offset = index2 * 0x440;
     entry = (struct Entry *)(lbl_16_bss_220 + offset);
     ((struct Entry *)(lbl_16_bss_220 + offset))->handle = (s16)fn_1_80CC4(index2, 0, 0, entry);
@@ -17038,7 +17038,7 @@ void fn_16_1038(void) {
     lbl_1_bss_8B614.p = *(const f32 *)fzgx_pool_table_4;
     lbl_1_bss_8B614.q = 0.5f;
     lbl_1_bss_8B614.r = *(const f32 *)fzgx_pool_table_4;
-    fzgx_bss_154.depth = 30.0f;
+    lbl_16_bss_154__fzgx_offset_0.depth = 30.0f;
     fzgx_value = &(lbl_1_bss_8B614.flags);
     *fzgx_value = 0;
     lbl_1_bss_8B614.flags |= 0x80000000;

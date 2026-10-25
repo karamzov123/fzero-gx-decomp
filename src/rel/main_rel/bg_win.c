@@ -1347,7 +1347,7 @@ void fn_1_15E434(u32 value) {
 }
 /* fzgx:end fn_1_15E434 */
 
-/* fzgx:begin fn_1_15E44C pool noprologue */
+/* fzgx:begin fn_1_15E44C noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/bg_win.h"
@@ -1371,10 +1371,10 @@ typedef struct {
 u32 fzgx_obj_lbl_1_bss_8FD68[16];
 Obj_1_bss_8FDA8 fzgx_obj_lbl_1_bss_8FDA8;
 u8 lbl_1_bss_8FE7C;
-u8 lbl_1_bss_8FD68_gap_8FE7D;
-u16 lbl_1_bss_8FD68_gap_8FE7D_fill_8FE7E;
+u8 fzgx_pool_lbl_1_bss_8FD68_gap_8FE7D;
+u16 fzgx_pool_lbl_1_bss_8FD68_gap_8FE7D_fill_8FE7E;
 s32 lbl_1_bss_8FE80;
-u32 lbl_1_bss_8FE80_fill_8FE84[7];
+u32 fzgx_pool_lbl_1_bss_8FE80_fill_8FE84[7];
 u32 lbl_1_bss_8FEA0;
 
 #pragma section code_type ".fzgxpool"
@@ -1383,10 +1383,10 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8FD68;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8FDA8;
     s = *(u8 *)&lbl_1_bss_8FE7C;
-    s = *(u8 *)&lbl_1_bss_8FD68_gap_8FE7D;
-    s = *(u8 *)&lbl_1_bss_8FD68_gap_8FE7D_fill_8FE7E;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_8FD68_gap_8FE7D;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_8FD68_gap_8FE7D_fill_8FE7E;
     s = *(u8 *)&lbl_1_bss_8FE80;
-    s = *(u8 *)&lbl_1_bss_8FE80_fill_8FE84;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_8FE80_fill_8FE84;
     s = *(u8 *)&lbl_1_bss_8FEA0;
 }
 #pragma section code_type ".text"

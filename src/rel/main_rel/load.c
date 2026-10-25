@@ -431,7 +431,7 @@ u32 fn_1_458A0(struct fn_1_458A0_Arg0 *arg0, void *arg1, u32 arg2, u32 arg3) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_458A0 */
 
-/* fzgx:begin fn_1_45964 pool noprologue */
+/* fzgx:begin fn_1_45964 noprologue */
 #include "types.h"
 #include "types.h"
 
@@ -493,45 +493,45 @@ extern u32 fn_80006DAC(void *, void *, u32, u32, void *, void *, u32);
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u8 fzgx_obj_lbl_1_bss_384C0;
-u8 lbl_1_bss_384C0_fill_384C1;
-u16 lbl_1_bss_384C0_fill_384C2;
+u8 lbl_1_bss_384C0__fzgx_offset_1;
+u16 lbl_1_bss_384C0__fzgx_offset_2;
 u32 lbl_1_bss_384C4;
 u32 fzgx_obj_lbl_1_bss_384C8;
 u32 lbl_1_bss_384CC;
 u32 fzgx_obj_lbl_1_bss_384D0;
-u8 lbl_1_bss_384D0_4;
-u8 lbl_1_bss_384D0_fill_384D5;
-u16 lbl_1_bss_384D0_fill_384D6;
+u8 lbl_1_bss_384D0__fzgx_offset_4;
+u8 lbl_1_bss_384D0__fzgx_offset_5;
+u16 lbl_1_bss_384D0__fzgx_offset_6;
 u32 fzgx_obj_lbl_1_bss_384D8[5632];
 u32 lbl_1_bss_3DCD8;
 u32 fzgx_obj_lbl_1_bss_3DCDC[2];
 u32 lbl_1_bss_3DCE4[16];
-u32 lbl_1_bss_3DCE4_fill_3DD24;
+u32 lbl_1_bss_3DCE4__fzgx_offset_40;
 u32 lbl_1_bss_3DD28[35];
-u8 lbl_1_bss_3DD28_8C[16][32];
-u32 lbl_1_bss_3DD28_28C[16];
+u8 lbl_1_bss_3DD28__fzgx_offset_8C[16][32];
+u32 lbl_1_bss_3DD28__fzgx_offset_28C[16];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
-    s = *(u8 *)&lbl_1_bss_384C0_fill_384C1;
-    s = *(u8 *)&lbl_1_bss_384C0_fill_384C2;
+    s = *(u8 *)&lbl_1_bss_384C0__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_384C0__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_384C4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384C8;
     s = *(u8 *)&lbl_1_bss_384CC;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
-    s = *(u8 *)&lbl_1_bss_384D0_4;
-    s = *(u8 *)&lbl_1_bss_384D0_fill_384D5;
-    s = *(u8 *)&lbl_1_bss_384D0_fill_384D6;
+    s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_5;
+    s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
     s = *(u8 *)&lbl_1_bss_3DCD8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCDC;
     s = *(u8 *)&lbl_1_bss_3DCE4;
-    s = *(u8 *)&lbl_1_bss_3DCE4_fill_3DD24;
+    s = *(u8 *)&lbl_1_bss_3DCE4__fzgx_offset_40;
     s = *(u8 *)&lbl_1_bss_3DD28;
-    s = *(u8 *)&lbl_1_bss_3DD28_8C;
-    s = *(u8 *)&lbl_1_bss_3DD28_28C;
+    s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_8C;
+    s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_28C;
 }
 #pragma section code_type ".text"
 
@@ -544,15 +544,15 @@ u32 fn_1_45964(struct S45964 *arg0, void *arg1, u32 arg2, u32 arg3, u32 arg4) {
     u32 offset;
     u8 *req;
 
-    i = lbl_1_bss_384D0_4;
+    i = lbl_1_bss_384D0__fzgx_offset_4;
     n = (u8)(i + 1);
-    lbl_1_bss_384D0_4 = i + 1;
+    lbl_1_bss_384D0__fzgx_offset_4 = i + 1;
     indexBytes = i << 2;
-    req = lbl_1_bss_3DD28_8C[i];
+    req = lbl_1_bss_3DD28__fzgx_offset_8C[i];
     *(u32 *)((u8 *)lbl_1_bss_3DCE4 + indexBytes) = 1;
-    *(u32 *)((u8 *)lbl_1_bss_3DD28_28C + indexBytes) = arg4;
+    *(u32 *)((u8 *)lbl_1_bss_3DD28__fzgx_offset_28C + indexBytes) = arg4;
     offset = arg3;
-    lbl_1_bss_384D0_4 = (n > 15) ? 0 : n;
+    lbl_1_bss_384D0__fzgx_offset_4 = (n > 15) ? 0 : n;
     switch (arg0->kind) {
     case 1:
         size = arg2;

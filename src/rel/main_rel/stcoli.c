@@ -13910,7 +13910,7 @@ void fn_1_2B524(Fn2B524_Self *self) {
 }
 /* fzgx:end fn_1_2B524 */
 
-/* fzgx:begin fn_1_2B684 pool noprologue */
+/* fzgx:begin fn_1_2B684 noprologue */
 #include "types.h"
 #include "psvec.h"
 #include "types.h"
@@ -14029,15 +14029,15 @@ __declspec(section ".fzgxpool") void fzgx_pool_fn_1_2B684(void) {
     fzgx_use_f(0.57f);
 }
 
-static const f32 fzgx_quat_91C[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+static const f32 fzgx_pool_fzgx_quat_91C[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 extern void fzgx_use_p(const void *);
 
 __declspec(section ".fzgxpool") void fzgx_pool2_fn_1_2B684(void) {
-    fzgx_use_p(fzgx_quat_91C);
+    fzgx_use_p(fzgx_pool_fzgx_quat_91C);
     fzgx_use_f(-0.1f);
 }
 
-static const f32 fzgx_span_930[33] = {
+static const f32 fzgx_pool_fzgx_span_930[33] = {
     200.0f, 0.02f, 1.035f, 2.0f, 0.04f, 0.8f, 2.6840277f, 1.971901e30f, 13.888889f,
     1.1920929e-7f, 800.0f, 0.95f, 2.2f, -0.5f, 0.002f, 0.001f, 0.3f, 0.0f, 1.6999999f,
     -1.5881868e-23f, 1.4499999f, -1.5881868e-23f, 80.0f, 1700.0f, 3.3515625f, 0.0f,
@@ -14045,11 +14045,11 @@ static const f32 fzgx_span_930[33] = {
 };
 
 __declspec(section ".fzgxpool") void fzgx_pool3_fn_1_2B684(void) {
-    fzgx_use_p(fzgx_span_930);
+    fzgx_use_p(fzgx_pool_fzgx_span_930);
     fzgx_use_f(0.99f);
 }
 
-static const f32 fzgx_span_9B8[78] = {
+static const f32 fzgx_pool_fzgx_span_9B8[78] = {
     20.0f, 1.01f, 1.875f, 0.0f, 1.7624999f, -1.0842022e-19f, 3.4f, 0.75f, 182.04445f, -45.0f,
     1.8564814f, 3.8506526e24f, 2.347222f, -2.2789315e-30f, 1.13f, 0.0f, 1.4499999f, -1.0842022e-19f,
     1.65f, 2.0f, 1.3101851f, -2.6592785e27f, 0.9f, 1.11f, 0.88657403f, -0.0787037f, 1.75f, 0.0f,
@@ -14061,28 +14061,28 @@ static const f32 fzgx_span_9B8[78] = {
 };
 
 __declspec(section ".fzgxpool") void fzgx_pool4_fn_1_2B684(void) {
-    fzgx_use_p(fzgx_span_9B8);
+    fzgx_use_p(fzgx_pool_fzgx_span_9B8);
     fzgx_use_d(0.0);
 }
 
-static const f32 fzgx_span_AF8[30] = {
+static const f32 fzgx_pool_fzgx_span_AF8[30] = {
     0.992f, 0.008f, 50.0f, 15.0f, 4000.0f, 0.0f, 2.1999998f, -107374184.0f, 1.3f, 0.009000001f,
     6.109741f, 0.0f, 46.25f, 1100.0f, 120.0f, -50.0f, 176.0f, -0.0f, 30.0f, -0.2f, 90.0f, 0.006f,
     2.2893517f, -5.943034e-19f, -5.0f, 4.5f, 3640.0f, 2.5f, -0.3f, 0.00006f,
 };
 
 __declspec(section ".fzgxpool") void fzgx_pool5_fn_1_2B684(void) {
-    fzgx_use_p(fzgx_span_AF8);
+    fzgx_use_p(fzgx_pool_fzgx_span_AF8);
     fzgx_use_f(65536.0f);
 }
 
-static const f32 fzgx_span_B74[11] = {
+static const f32 fzgx_pool_fzgx_span_B74[11] = {
     6.6666665f, 3.5f, 0.00024414063f, 9000.0f, 9.477427e-38f, 9.62465e-38f, 1.8475e-40f,
     3.7909697e-37f, 2.3511322e-38f, 1.1296296f, 4.111937e-16f,
 };
 
 __declspec(section ".fzgxpool") void fzgx_pool6_fn_1_2B684(void) {
-    fzgx_use_p(fzgx_span_B74);
+    fzgx_use_p(fzgx_pool_fzgx_span_B74);
     fzgx_use_f(0.0015f);
     fzgx_use_f(450.0f);
     fzgx_use_f(1365.0f);

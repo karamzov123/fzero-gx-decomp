@@ -1982,7 +1982,7 @@ void fn_1_8B10(fn_1_8B10_CameraObject *camera, CameraOutput *output) {
 }
 /* fzgx:end fn_1_8B10 */
 
-/* fzgx:begin fn_1_8D08 pool noprologue */
+/* fzgx:begin fn_1_8D08 noprologue */
 #include "types.h"
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -2092,19 +2092,19 @@ extern void fn_1_8A0C(s16);
 extern void fn_1_8B10(Sig_fn_1_8B10_fn_1_8B10_CameraObject *, Sig_fn_1_8B10_CameraOutput *);
 
 /* Native shared literal pool, including the preceding camera literals. */
-const f32 fzgx_camera_literal_0 = 0.3f;
-const f32 fzgx_camera_literal_1 = 1.1f;
-const u32 fzgx_camera_up_x[1] = {0};
-const u32 fzgx_camera_up_y[1] = {0x3F800000};
-const u32 fzgx_camera_up_z[1] = {0};
-const fn_1_8D08_Vec fzgx_camera_target = {0.0f, 0.0f, 0.0f};
-const u32 fzgx_camera_fwd_x[1] = {0};
-const u32 fzgx_camera_fwd_y[1] = {0};
-const u32 fzgx_camera_fwd_z[1] = {0xBF800000};
-const f32 fzgx_camera_height[1] = {55.0f};
-const f32 fzgx_camera_zero[1] = {0.0f};
-const f32 fzgx_camera_distance[1] = {-10.0f};
-const f64 fzgx_camera_half[1] = {0.5};
+const f32 fzgx_pool_fzgx_camera_literal_0 = 0.3f;
+const f32 fzgx_pool_fzgx_camera_literal_1 = 1.1f;
+const u32 fzgx_pool_fzgx_camera_up_x[1] = {0};
+const u32 fzgx_pool_fzgx_camera_up_y[1] = {0x3F800000};
+const u32 fzgx_pool_fzgx_camera_up_z[1] = {0};
+const fn_1_8D08_Vec fzgx_pool_fzgx_camera_target = {0.0f, 0.0f, 0.0f};
+const u32 fzgx_pool_fzgx_camera_fwd_x[1] = {0};
+const u32 fzgx_pool_fzgx_camera_fwd_y[1] = {0};
+const u32 fzgx_pool_fzgx_camera_fwd_z[1] = {0xBF800000};
+const f32 fzgx_pool_fzgx_camera_height[1] = {55.0f};
+const f32 fzgx_pool_fzgx_camera_zero[1] = {0.0f};
+const f32 fzgx_pool_fzgx_camera_distance[1] = {-10.0f};
+const f64 fzgx_pool_fzgx_camera_half[1] = {0.5};
 
 /* translate the locked-cache matrix A */
 static inline void mtxA_set_translate(fn_1_8D08_Vec *v) {
@@ -2119,7 +2119,7 @@ static inline void mtxA_set_translate(fn_1_8D08_Vec *v) {
 /* look point: matrix A applied to (0, 0, -10) */
 #define camera_update_look(cam) { \
     /* Read the scale before the locked-cache matrix column. */ \
-    dist = *(volatile f32 *)fzgx_camera_distance; \
+    dist = *(volatile f32 *)fzgx_pool_fzgx_camera_distance; \
     /* Preserve locked-cache matrix access order. */ \
     x = *(volatile f32 *)(0xE0000000 + 0x08); \
     x = x * dist + *(f32 *)(0xE0000000 + 0x0C); \
@@ -2181,11 +2181,11 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         u32 c, b, a;
         /* Ordered word copy following the locked-cache stores. */
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        a = *(volatile const u32 *)fzgx_camera_up_x;
+        a = *(volatile const u32 *)fzgx_pool_fzgx_camera_up_x;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        b = *(volatile const u32 *)fzgx_camera_up_y;
+        b = *(volatile const u32 *)fzgx_pool_fzgx_camera_up_y;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        c = *(volatile const u32 *)fzgx_camera_up_z;
+        c = *(volatile const u32 *)fzgx_pool_fzgx_camera_up_z;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
         ((volatile u32 *)&up)[0] = a;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
@@ -2195,18 +2195,18 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         lbl_8006E1C0(&up, &cam->unk_64);
     }
     {
-        fn_1_8D08_Vec target = fzgx_camera_target;
+        fn_1_8D08_Vec target = fzgx_pool_fzgx_camera_target;
         target.y = out.x0;
         target.z = out.y0;
         cam->target = target;
     }
     cam->angle = out.flags0;
-    cam->unk_08 = fzgx_camera_height[0];
+    cam->unk_08 = fzgx_pool_fzgx_camera_height[0];
     cam->unk_0C = arg1;
-    cam->unk_84 = fzgx_camera_zero[0];
+    cam->unk_84 = fzgx_pool_fzgx_camera_zero[0];
     cam->unk_78 = 0;
-    cam->unk_7C = fzgx_camera_zero[0];
-    cam->unk_80 = fzgx_camera_zero[0];
+    cam->unk_7C = fzgx_pool_fzgx_camera_zero[0];
+    cam->unk_80 = fzgx_pool_fzgx_camera_zero[0];
     cam->unk_88 = 0;
     lbl_8006DC6C(fn_1_8D08_read_pointer__(cam));
     {
@@ -2238,8 +2238,8 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
     mathutil_mtxA_rotate_x(cam->angle);
     camera_update_look(cam);
     cam->unk_1E4 = cam->pos;
-    cam->unk_1F0 = fzgx_camera_zero[0];
-    cam->unk_1F4 = fzgx_camera_zero[0];
+    cam->unk_1F0 = fzgx_pool_fzgx_camera_zero[0];
+    cam->unk_1F4 = fzgx_pool_fzgx_camera_zero[0];
     cam->unk_1FA = 0;
     /* Complete initialization before the ordered forward-vector copy. */
     /* Preserve ordered vector initialization around the locked-cache accesses. */
@@ -2247,15 +2247,15 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
     {
         u32 b, a;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        a = *(volatile const u32 *)fzgx_camera_fwd_x;
+        a = *(volatile const u32 *)fzgx_pool_fzgx_camera_fwd_x;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        b = *(volatile const u32 *)fzgx_camera_fwd_y;
+        b = *(volatile const u32 *)fzgx_pool_fzgx_camera_fwd_y;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
         ((volatile u32 *)&cam->unk_98)[0] = a;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
         ((volatile u32 *)&cam->unk_98)[1] = b;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        b = *(volatile const u32 *)fzgx_camera_fwd_z;
+        b = *(volatile const u32 *)fzgx_pool_fzgx_camera_fwd_z;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
         ((volatile u32 *)&cam->unk_98)[2] = b;
     }
@@ -2290,7 +2290,7 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
             f64 half;
             delta = out.flags2 - cam->angle;
             step = weight * delta;
-            half = step * fzgx_camera_half[0];
+            half = step * fzgx_pool_fzgx_camera_half[0];
 #pragma fp_contract off
             cam->angle = angle + half;
 #pragma fp_contract on
@@ -2326,7 +2326,7 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         {
             f32 look_z;
             /* Read the scale before the locked-cache matrix column. */
-            dist = *(volatile f32 *)fzgx_camera_distance;
+            dist = *(volatile f32 *)fzgx_pool_fzgx_camera_distance;
             /* Preserve locked-cache matrix access order. */
             x = *(volatile f32 *)(0xE0000000 + 0x08);
             x = x * dist + *(f32 *)(0xE0000000 + 0x0C);
@@ -3241,7 +3241,7 @@ void camera_save_parameters(f32 first_parameter, f32 second_parameter) {
 }
 /* fzgx:end camera_save_parameters */
 
-/* fzgx:begin fn_1_B870 pool noprologue */
+/* fzgx:begin fn_1_B870 noprologue */
 #include "types.h"
 #include "types.h"
 
@@ -3288,12 +3288,12 @@ extern B870Bss_9F8 lbl_1_bss_9F8;
 /* camera.c's .bss cluster at lbl_1_bss_1010, addressed off one section base. */
 u32 fzgx_obj_lbl_1_bss_1010;
 u8 lbl_1_bss_1014;
-B870Camera lbl_1_bss_1018;
+B870Camera camera_state__fzgx_offset_0;
 f32 fzgx_obj_lbl_1_bss_103C;
 f32 lbl_1_bss_1040;
 f32 lbl_1_bss_1044;
-u8 lbl_1_bss_1048;
-u8 lbl_1_bss_1049;
+u8 camera_flag_0__fzgx_offset_0;
+u8 camera_flag_1__fzgx_offset_0;
 
 extern void fn_1_C770(void);
 extern void fn_8006EDBC(Vec3f *, Vec3f *, s16 *, s16 *);
@@ -3313,12 +3313,12 @@ extern void fzgx_touch(void *);
 __declspec(section ".fzgxpool") void fzgx_pool_primer(void) {
     fzgx_touch(&fzgx_obj_lbl_1_bss_1010);
     fzgx_touch(&lbl_1_bss_1014);
-    fzgx_touch(&lbl_1_bss_1018);
+    fzgx_touch(&camera_state__fzgx_offset_0);
     fzgx_touch(&fzgx_obj_lbl_1_bss_103C);
     fzgx_touch(&lbl_1_bss_1040);
     fzgx_touch(&lbl_1_bss_1044);
-    fzgx_touch(&lbl_1_bss_1048);
-    fzgx_touch(&lbl_1_bss_1049);
+    fzgx_touch(&camera_flag_0__fzgx_offset_0);
+    fzgx_touch(&camera_flag_1__fzgx_offset_0);
     fzgx_touch_f(1.0f);
     fzgx_touch_f(0.1f);
     fzgx_touch_f(0.01f);
@@ -3337,13 +3337,13 @@ void fn_1_B870(void) {
     s16 rotY;
 
     if ((lbl_1_bss_D58.unk_8 >> 10) & 1) {
-        lbl_1_bss_1048 ^= 1;
+        camera_flag_0__fzgx_offset_0 ^= 1;
     }
     if (lbl_1_bss_1014 != 0) {
         fn_1_C770();
         return;
     }
-    fn_8006EDBC(&lbl_1_bss_1018.pos, &lbl_1_bss_1018.lookAt, &rotX, &rotY);
+    fn_8006EDBC(&camera_state__fzgx_offset_0.pos, &camera_state__fzgx_offset_0.lookAt, &rotX, &rotY);
     speed = fzgx_obj_lbl_1_bss_103C;
     speed = 0.040000000000000008 * speed;
     speed = speed * (1.0 + 4.0 * lbl_1_bss_A48.unk_4 / 140.0);
@@ -3353,7 +3353,7 @@ void fn_1_B870(void) {
         Vec3f offsetB = {0.0f, 0.0f, 0.0f};
         Vec3f tmp;
 
-        if (lbl_1_bss_1049 != 0 && !((lbl_1_bss_9F8.unk_0 >> 6) & 1)) {
+        if (camera_flag_1__fzgx_offset_0 != 0 && !((lbl_1_bss_9F8.unk_0 >> 6) & 1)) {
             offsetA.x = speed * (*((0) + (lbl_1_bss_A48.stick))) / 60.0;
             if ((lbl_1_bss_9F8.unk_2 >> 9) & 1) {
                 offsetA.y = clamped * (*((1) + (lbl_1_bss_A48.stick))) / 60.0;
@@ -3367,29 +3367,29 @@ void fn_1_B870(void) {
                 offsetB.z = -clamped * (*((3) + (lbl_1_bss_A48.stick))) / 60.0;
             }
         }
-        lbl_8006D7DC(&lbl_1_bss_1018.pos);
+        lbl_8006D7DC(&camera_state__fzgx_offset_0.pos);
         mathutil_mtxA_rotate_y(rotY);
         mathutil_mtxA_rotate_x(rotX);
-        mathutil_mtxA_rotate_z(lbl_1_bss_1018.rotZ);
-        lbl_8006E1B0(&offsetA, &lbl_1_bss_1018.pos);
-        fn_8006E250(&lbl_1_bss_1018.lookAt, &tmp);
+        mathutil_mtxA_rotate_z(camera_state__fzgx_offset_0.rotZ);
+        lbl_8006E1B0(&offsetA, &camera_state__fzgx_offset_0.pos);
+        fn_8006E250(&camera_state__fzgx_offset_0.lookAt, &tmp);
         tmp.x += offsetB.x;
         tmp.y += offsetB.y;
         tmp.z += offsetB.z;
-        lbl_8006E1B0(&tmp, &lbl_1_bss_1018.lookAt);
-        tmp.x = lbl_1_bss_1018.lookAt.x - lbl_1_bss_1018.pos.x;
-        tmp.y = lbl_1_bss_1018.lookAt.y - lbl_1_bss_1018.pos.y;
-        tmp.z = lbl_1_bss_1018.lookAt.z - lbl_1_bss_1018.pos.z;
+        lbl_8006E1B0(&tmp, &camera_state__fzgx_offset_0.lookAt);
+        tmp.x = camera_state__fzgx_offset_0.lookAt.x - camera_state__fzgx_offset_0.pos.x;
+        tmp.y = camera_state__fzgx_offset_0.lookAt.y - camera_state__fzgx_offset_0.pos.y;
+        tmp.z = camera_state__fzgx_offset_0.lookAt.z - camera_state__fzgx_offset_0.pos.z;
         if (__fmadds(tmp.z, tmp.z, __fmadds(tmp.y, tmp.y, tmp.x * tmp.x)) < 0.09) {
             scale = 0.3 * lbl_8006D0E8(__fmadds(tmp.z, tmp.z, __fmadds(tmp.y, tmp.y, tmp.x * tmp.x)));
-            lbl_1_bss_1018.lookAt.x = lbl_1_bss_1018.pos.x + (f32)(tmp.x * scale);
-            lbl_1_bss_1018.lookAt.y = lbl_1_bss_1018.pos.y + (f32)(tmp.y * scale);
-            lbl_1_bss_1018.lookAt.z = lbl_1_bss_1018.pos.z + (f32)(tmp.z * scale);
+            camera_state__fzgx_offset_0.lookAt.x = camera_state__fzgx_offset_0.pos.x + (f32)(tmp.x * scale);
+            camera_state__fzgx_offset_0.lookAt.y = camera_state__fzgx_offset_0.pos.y + (f32)(tmp.y * scale);
+            camera_state__fzgx_offset_0.lookAt.z = camera_state__fzgx_offset_0.pos.z + (f32)(tmp.z * scale);
         }
     }
     {
-        Vec3f *pos = &lbl_1_bss_1018.pos;
-        Vec3f *lookAt = &lbl_1_bss_1018.lookAt;
+        Vec3f *pos = &camera_state__fzgx_offset_0.pos;
+        Vec3f *lookAt = &camera_state__fzgx_offset_0.lookAt;
         f32 dx = pos->x;
         f32 dz = pos->z;
         f32 dy = pos->y;
@@ -3401,7 +3401,7 @@ void fn_1_B870(void) {
         dx = dz * dz + dx;
         fzgx_obj_lbl_1_bss_103C = lbl_8006D0B4(dx);
     }
-    if (((lbl_1_bss_9F8.unk_2 >> 9) & 1) && lbl_1_bss_1049 != 0) {
+    if (((lbl_1_bss_9F8.unk_2 >> 9) & 1) && camera_flag_1__fzgx_offset_0 != 0) {
         buttons = (*(u16 volatile *)&(lbl_1_bss_9F8.unk_0)) /* Retail reloads this field. */;
         if (buttons & 1) {
             rot = 0x800;
@@ -3409,7 +3409,7 @@ void fn_1_B870(void) {
             rot = ((buttons >> 1) & 1) ? -0x800 : 0;
         }
 {
-    B870Camera *cam = &lbl_1_bss_1018;
+    B870Camera *cam = &camera_state__fzgx_offset_0;
         cam->rotZ += rot;
 }
         buttons = lbl_1_bss_9F8.unk_0;
@@ -3418,12 +3418,12 @@ void fn_1_B870(void) {
         } else {
             zoom = ((buttons >> 3) & 1) ? -1 : 0;
         }
-        lbl_1_bss_1018.fov += zoom;
-        lbl_1_bss_1018.fov = (lbl_1_bss_1018.fov < 0.1) ? 0.1
-                           : (lbl_1_bss_1018.fov > 90000.0) ? 90000.0 : lbl_1_bss_1018.fov;
+        camera_state__fzgx_offset_0.fov += zoom;
+        camera_state__fzgx_offset_0.fov = (camera_state__fzgx_offset_0.fov < 0.1) ? 0.1
+                           : (camera_state__fzgx_offset_0.fov > 90000.0) ? 90000.0 : camera_state__fzgx_offset_0.fov;
         if ((lbl_1_bss_9F8.unk_8 >> 9) & 1) {
-            lbl_1_bss_1018.rotZ = 0;
-            lbl_1_bss_1018.fov = 55.0f;
+            camera_state__fzgx_offset_0.rotZ = 0;
+            camera_state__fzgx_offset_0.fov = 55.0f;
         }
     }
 }

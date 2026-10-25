@@ -12640,7 +12640,56 @@ u32 fn_1_C39FC(void) {
 }
 /* fzgx:end fn_1_C39FC */
 
-/* fzgx:begin fn_1_C40A0 pool */
+/* fzgx:begin fn_1_C40A0 */
+extern void* lbl_801A6410;
+extern int fn_1_45D0(void *arg0, int arg1, Obj_1_data_3C7B8 *arg2, int arg3);
+extern void fn_1_AB45C(void);
+extern void CARDMountAsync(u8, u32, void (*)(void), s32);
+extern int CARDGetSerialNo(u8 value, void *data);
+extern void CARDCheckAsync(u8 byte_val, int value);
+extern void CARDFormatAsync(u8 byte, int value);
+extern const f32 lbl_1_rodata_4CA8;
+extern const f64 lbl_1_rodata_4CB0;
+extern const f32 lbl_1_rodata_4CAC;
+extern void fn_80083DB0(void *dst, void *src);
+extern void strcat(void *dst, void *src);
+extern void CARDDeleteAsync(u8 byte, void *data, int arg);
+extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
+extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
+extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
+extern void CARDCreateAsync(u8 byte_val, void *arg1, void *arg2, void *arg3, u32 arg4);
+extern void CARDSetStatusAsync(u8 id, void *arg, void *data, int zero);
+extern void CARDRenameAsync(u8 id, void *data1, void *data2, int zero);
+extern void CARDReadAsync(void *arg0, void *arg1, void *arg2, int arg3, int arg4);
+extern const f64 lbl_1_rodata_4CC8;
+extern void fn_80030754(u8 value, void *data, int size, int mode);
+extern u8 lbl_1_bss_71810[161];
+extern u8 lbl_1_bss_718B8;
+extern u8 lbl_1_bss_718B9[7];
+extern int fn_8002A744(void);
+extern void fn_8002A74C(u16 value);
+extern int fn_8002DFE0(int arg0, u32 arg1, int arg2);
+extern int CARDCheck(int arg0);
+extern void fn_1_B9C38(s32 index);
+extern void fn_1_1596DC(u32);
+extern void fn_1_484CC(u32);
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern void fn_1_AA6D8(s32 arg0, u32 arg1, void *arg2);
+extern void fn_1_F755C(u8 value);
+extern void fn_1_A6840(u8 value);
+extern void OSPanic(void *arg0, u32 arg1, ...);
+extern void fn_1_F79C8(void);
+extern void *lbl_801A6410;
+extern void strncpy(void *arg0, void *arg1, int arg2);
+extern u32 lbl_1_bss_77310[28];
+extern u32 lbl_1_bss_7730C;
+extern u8 lbl_1_bss_772C8[66];
+extern u32 fn_1_4630(void *heap, u32 size, void *file, s32 line);
+extern s32 fn_8002FC14(s32 chan, void *fileName);
+extern s32 fn_80030338(s32 chan, void *oldName, void *newName);
+extern const f64 lbl_1_rodata_4CB8;
+extern void fn_1_C36EC(void);
+
 /* memcard.c's .rodata (retail lbl_1_rodata_5168 onwards) is addressed from one
  * section base, so its tables are defined here in retail order. */
 typedef struct {
@@ -12665,7 +12714,7 @@ typedef struct {
 
 #define FLAGS(x) (x)
 
-static const MemcardRodataA lbl_1_rodata_5168_a[8] = {
+static const MemcardRodataA fzgx_pool_lbl_1_rodata_5168_a[8] = {
     { 0x62, 0x55, 0x2D, 0x46, 0x64, 0x64, 0x0A, 0x00 },
     { 0x64, 0x5A, 0x32, 0x50, 0x6E, 0x6E, 0x14, 0x05 },
     { 0x66, 0x5E, 0x3C, 0x5A, 0x7D, 0x7D, 0x23, 0x14 },
@@ -12676,7 +12725,7 @@ static const MemcardRodataA lbl_1_rodata_5168_a[8] = {
     { 0x6C, 0x66, 0x4B, 0x64, 0x96, 0x96, 0x32, 0x28 },
 };
 
-static const MemcardRodataB lbl_1_rodata_5168_b[41] = {
+static const MemcardRodataB fzgx_pool_lbl_1_rodata_5168_b[41] = {
     { 0x02, 0x4B, 0x46, 0x4B, 0x00196400, FLAGS(0x80000000) },
     { 0x01, 0x50, 0x5A, 0x4B, 0x001E6400, FLAGS(0x80000000) },
     { 0x02, 0x46, 0x64, 0x50, 0x001E6400, FLAGS(0x80000000) },
@@ -12721,7 +12770,7 @@ static const MemcardRodataB lbl_1_rodata_5168_b[41] = {
 };
 
 /* retail .rodata 0x5394..0x57F8: float tables used by other memcard.c functions */
-static const u32 lbl_1_rodata_5394_tail[281] = {
+static const u32 fzgx_pool_lbl_1_rodata_5394_tail[281] = {
     0x44E10000, 0x44ED8000, 0x452F0000, 0x454BC000, 0x45674000, 0x456D8000, 0x45834000, 0x4585C000,
     0x4592E000, 0x45A8C000, 0x45BB8000, 0x45F96000, 0xBF800000, 0xBF800000,
     0x44110000, 0x44480000, 0x45098000, 0x45354000, 0x457A0000, 0x458CA000, 0x45B54000, 0x45D16000,
@@ -12779,7 +12828,7 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer_2(f64 *out)
     out[3] = 0.5;
 }
 __declspec(section ".fzgxpool") f64 fzgx_pool_primer_3(s32 x) { return (f64)x; }
-__declspec(section ".fzgxpool") u32 fzgx_pool_primer_4(s32 i) { return lbl_1_rodata_5394_tail[i]; }
+__declspec(section ".fzgxpool") u32 fzgx_pool_primer_4(s32 i) { return fzgx_pool_lbl_1_rodata_5394_tail[i]; }
 
 typedef struct {
     u8 unk_0;
@@ -12833,10 +12882,10 @@ void fn_1_C40A0(Racer *racer)
     for (i = 0; i < count; i++) {
         if (racer->unk_0 & 0x04000000) {
             sub = racer->unk_484;
-            if ((((u32 *)lbl_1_rodata_5168_b)[sub->unk_38 * 3 + 2] >> 30) & 1) {
-                sub->unk_31 = *((const u8 *)lbl_1_rodata_5168_b + sub->unk_38 * sizeof(MemcardRodataB));
+            if ((((u32 *)fzgx_pool_lbl_1_rodata_5168_b)[sub->unk_38 * 3 + 2] >> 30) & 1) {
+                sub->unk_31 = *((const u8 *)fzgx_pool_lbl_1_rodata_5168_b + sub->unk_38 * sizeof(MemcardRodataB));
             } else {
-                sub->unk_31 = (offset + *((const u8 *)lbl_1_rodata_5168_b + sub->unk_38 * sizeof(MemcardRodataB))) & 3;
+                sub->unk_31 = (offset + *((const u8 *)fzgx_pool_lbl_1_rodata_5168_b + sub->unk_38 * sizeof(MemcardRodataB))) & 3;
             }
         }
         racer++;
@@ -12845,16 +12894,16 @@ void fn_1_C40A0(Racer *racer)
     case 1:
         kind = lbl_1_bss_7AC64.unk_0;
         if (kind == 2 || kind == 3) {
-            lbl_1_bss_7AC64.unk_1C = 1.2 * (0.01 * lbl_1_rodata_5168_a[kind].unk_6);
-            lbl_1_bss_7AC64.unk_4 = 1.1 * (0.01 * lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_0);
-            lbl_1_bss_7AC64.unk_8 = 1.05 * (0.01 * lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_1);
-            lbl_1_bss_7AC64.unk_C = 1.025 * (0.01 * lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_2);
+            lbl_1_bss_7AC64.unk_1C = 1.2 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[kind].unk_6);
+            lbl_1_bss_7AC64.unk_4 = 1.1 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_0);
+            lbl_1_bss_7AC64.unk_8 = 1.05 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_1);
+            lbl_1_bss_7AC64.unk_C = 1.025 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_2);
         }
         break;
     case 0x10:
         kind = lbl_1_bss_7AC64.unk_0;
         if (kind == 2 || kind == 3) {
-            lbl_1_bss_7AC64.unk_1C = 1.1 * (0.01 * lbl_1_rodata_5168_a[kind].unk_6);
+            lbl_1_bss_7AC64.unk_1C = 1.1 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[kind].unk_6);
         }
         break;
     }
