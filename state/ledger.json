@@ -1,5 +1,5 @@
 {
- "generated": 1792964329,
+ "generated": 1792967010,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -46962,7 +46962,7 @@
    "addr": 48468,
    "size": 588,
    "status": "unmatched",
-   "attempts": 2,
+   "attempts": 3,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
@@ -685398,6 +685398,27 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_7_520.1792964307.c",
    "stale_checks": 11,
    "best_in_attempt": 98.01527,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26723,
+   "symbol": "fn_1_BD54",
+   "agent": "fleettest-codex-1",
+   "harness": "codex",
+   "model": "gpt-6.1-sol",
+   "started": 1792966711,
+   "ended": 1792967008,
+   "checks": 34,
+   "final_percent": 62.537415,
+   "tokens_in": 1499692,
+   "tokens_out": 9532,
+   "cost_usd": 0.0,
+   "outcome": "released",
+   "notes": "Improved 46.8% to 62.5% under GC/1.3.2; repaired signed-byte conversion (removed erroneous 2^52 subtraction), float call prototypes/ABIs, six float-difference/double-weight interpolation components, local angle outputs, and matrix offsets. Tried scalar and staged double temporaries, aggregate results, inline helpers, loops, pointer representations, optimization pragmas, and all compiler versions. Remaining blocker is reproducing retail's six-component parallel arithmetic scheduling and persistent +8 state base: candidate interleaves products/adds/stores, retains only two PS input FPRs instead of three, and colors state/pool/flags differently. No verified match.",
+   "best_body_path": "/home/armandofm/projects/fzgx/.fzgx/attempts/fn_1_BD54.1792967008.c",
+   "stale_checks": 7,
+   "best_in_attempt": 62.537415,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }
