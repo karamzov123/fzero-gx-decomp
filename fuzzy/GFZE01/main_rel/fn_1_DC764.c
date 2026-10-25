@@ -56,8 +56,8 @@ extern void fn_1_556B8(void *);
 extern void fn_1_56000(u8,u8,u8);
 extern void fn_1_560F0(s32,void *);
 extern void fn_1_5621C(f32,f32,f32,f32);
-extern void fn_80015EE8(Sig_fn_80015EE8_Fn80015EE8Out *,f32,f32,f32,f32,f32,f32);
-extern void fn_80038BFC(f32 *);
+extern void C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *,f32,f32,f32,f32,f32,f32);
+extern void GXGetProjectionv(f32 *);
 extern void fn_80072558(void);
 extern void fn_80072B7C(u32);
 extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *,s32);
@@ -108,8 +108,8 @@ void fn_1_DC764(struct fn_1_DC764_Arg0 *arg0) {
           f32 v21=0.0f+v19*__fabs(v11);
           v22=v21* *(s16 *)((u8 *)v0+0x2264)/30.0f;
         }
-        fn_80038BFC((f32 *)&loc_50);
-        fn_80015EE8(&loc_9C,5.0f,-5.0f,-5.0f,5.0f,0.1f,90000.0f);
+        GXGetProjectionv((f32 *)&loc_50);
+        C_MTXOrtho(&loc_9C,5.0f,-5.0f,-5.0f,5.0f,0.1f,90000.0f);
         fn_800737E4((struct Sig_fn_800737E4_fn_800737E4_Arg0 *)&loc_9C,1);
         lbl_8006D7F4(0.0f,0.0f,-0.1f);
         fn_80072558();
