@@ -77,6 +77,13 @@ def source_record(p, symbol):
             if candidate.exists():
                 path = candidate
                 options = _read(path.with_suffix('.json'), {})
+                # Release and ledger restores rewrite a saved body in place, and an older
+                # sidecar then carries a stale digest (104 rows in the local ledger). The
+                # body is still the best evidence for this function, so keep it and let
+                # oracle.version_for pick the settings from the unit instead of refusing
+                # to work the function at all.
+                if options.get('sha256') and options['sha256'] != _sha(path.read_text().encode()):
+                    options = {}
                 break
         if path is None:
             unit = p.unit_of(sym)

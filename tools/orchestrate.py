@@ -633,7 +633,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         reused = reuse.run(p, max_size=a.max_size or 255, module=a.module)
         from fzgx import lift  # scoped: the lifter needs the build tree, not the harness
         lifted = lift.apply(p, [a.module] if a.module else None, a.max_size or 400)
-        print(f"trivial pass: {triv.get('applied', 0)} matched mechanically; reuse: {len(reused['matched'])}; "
+        # reuse.run defers to fixup's clone pass, which reports its landings as `matches`.
+        reuse_n = len(reused.get('matches') or reused.get('matched') or [])
+        print(f"trivial pass: {triv.get('applied', 0)} matched mechanically; reuse: {reuse_n}; "
               f"lifter: {lifted.get('submitted', 0)} submitted of {lifted.get('lifted', 0)} lifted", flush=True)
         ledger = Ledger()
         symbols = [s for s in symbols if (row := ledger.get(api._key(p, s))) is not None and row['status'] == 'unmatched']
