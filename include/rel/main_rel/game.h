@@ -173,7 +173,7 @@ extern u32 lbl_1_data_6708;
 // lbl_1_bss_38200: .bss size 0x1, 2 refs from game.c
 extern u8 lbl_1_bss_38200;
 
-// lbl_1_bss_25E98: .bss size 0x1, 2 refs from game.c
+// lbl_1_bss_25E98: .bss size 0x4, 2 refs from game.c
 extern u8 lbl_1_bss_25E98;
 
 // lbl_1_data_66E0: .data size 0x10, 2 refs from game.c (own data block)

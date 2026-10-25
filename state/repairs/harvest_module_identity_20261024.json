@@ -1,0 +1,32 @@
+{
+  "donor_head": "9631e03bf0f7f50c0e239f3a5e415fd99cb3cbe5",
+  "donor_worktree_file_sha256": "2235c070543a69a5b1639e47a0fb49de4e604ac8ed6f46cec1c5b3f498796651",
+  "snapshot_ref": "91b07949c65093b73d00d6b2c92613b4cef78b9c",
+  "before": "qualified interview:_prolog incorrectly returned no source",
+  "cases": [
+    {
+      "symbol": "interview:_prolog",
+      "module": "interview",
+      "bytes": 476,
+      "compiler": "GC/1.3.2",
+      "flags": "",
+      "source_path": "rel/interview/interview.c",
+      "candidate_filename": "interview___prolog.raw.c",
+      "source_sha256": "f3c8ba9d6b89a706e00f156f5eef794a9db36a460d63d319ebc83698efa2b22d",
+      "matched": true,
+      "source": "#include \"types.h\"\n\ntypedef struct {\n    u32 unk_0;\n    u32 unk_4;\n    u32 unk_8;\n    u32 unk_C;\n    u32 unk_10;\n    u32 unk_14;\n    f32 unk_18;\n    f32 unk_1C;\n} PrologRodata;\n\ntypedef struct {\n    u8 pad_0[0x4];\n    u8 unk_4;\n    u8 unk_5;\n    u8 unk_6;\n} PrologState;\n\ntypedef struct {\n    u8 pad_0[0x10];\n    u32 unk_10;\n    u32 unk_14;\n    u32 unk_18;\n    u32 unk_1C;\n    u32 unk_20;\n    u32 unk_24;\n    u8 unk_28;\n    u8 pad_29[0x3];\n    f32 unk_2C;\n    u8 unk_30;\n    u8 pad_31[0x3];\n    u8 pad_34[0x20];\n    u32 unk_54;\n} PrologBss;\n\ntypedef struct {\n    u32 x;\n    u32 y;\n    u32 z;\n} PrologVec3;\n\nextern const PrologRodata lbl_17_rodata_0;\nextern PrologBss lbl_17_bss_0;\nextern PrologState lbl_1_bss_525C;\nextern u8 lbl_17_data_63E50[];\ntypedef struct { u32 unk_0; } L801A6410;\nextern L801A6410 lbl_801A6410;\nextern u32 lbl_801A66B4;\nextern s16 lbl_1_bss_964;\nextern u16 lbl_1_bss_96A;\nextern u32 lbl_1_bss_7167C;\nextern u32 lbl_1_bss_71680;\nextern u32 lbl_1_bss_71684;\n\nextern void fn_17_23C(void);\nextern void fn_17_2B4(void);\nextern void fn_17_394(void);\nextern s32 fn_1_45D0(u32, u32, u32, u32);\nextern u32 fn_1_3CF0(u32, u32);\nextern void fn_1_47F74(s32);\nextern void fn_80008BEC(void *, int, u32);\nextern void *memset(void *, int, u32);\nextern void fn_1_4A00(s32, s32, u32);\nextern u32 fn_1_B724(void *, void *, u32, f32);\n\n#pragma opt_common_subs off\n#pragma opt_propagation off\nvoid _prolog(void) {\n    const PrologRodata *ro;\n    PrologBss *bss;\n    PrologState *state;\n    const u32 *gp;\n    PrologVec3 sB;\n    PrologVec3 sA;\n\n    ro = &lbl_17_rodata_0;\n    bss = &lbl_17_bss_0;\n    state = &lbl_1_bss_525C;\n    bss->unk_10 = (u32)state;\n    bss->unk_14 = fn_1_45D0(lbl_801A6410.unk_0, 0x173C, (u32)lbl_17_data_63E50, 0x240);\n    gp = (const u32 *)&lbl_801A6410;\n    bss->unk_18 = fn_1_45D0(*gp, 0x173C, (u32)lbl_17_data_63E50, 0x241);\n    fn_1_3CF0(bss->unk_14, 0x80);\n    fn_1_3CF0(bss->unk_18, 0x80);\n    fn_1_47F74(0x8C);\n    fn_1_47F74(0xA1);\n    bss->unk_1C = 0;\n    bss->unk_20 = -1;\n    bss->unk_24 = 0x1E;\n    bss->unk_28 = 1;\n    bss->unk_2C = ro->unk_18;\n    bss->unk_30 = 0;\n    fn_80008BEC((void *)&bss->pad_34, 0xFF, 0x20);\n    lbl_1_bss_96A = 0xC5;\n    bss->unk_54 = lbl_801A66B4;\n    if (lbl_1_bss_964 == 10) {\n        memset((void *)bss->unk_10, 0, 0x198);\n        state->unk_4 = 6;\n        state->unk_5 = 6;\n        state->unk_6 = 1;\n    }\n    fn_1_4A00(1, 0x1E, bss->unk_18);\n    lbl_1_bss_7167C = (u32)&fn_17_23C;\n    lbl_1_bss_71680 = (u32)&fn_17_2B4;\n    lbl_1_bss_71684 = (u32)&fn_17_394;\n    sA.x = ro->unk_C;\n    sA.y = ro->unk_10;\n    sA.z = ro->unk_14;\n    sB.x = ro->unk_0;\n    sB.y = ro->unk_4;\n    sB.z = ro->unk_8;\n    fn_1_B724(&sB, &sA, 0, ro->unk_1C);\n}\n#pragma opt_propagation reset\n#pragma opt_common_subs reset\n"
+    },
+    {
+      "symbol": "title:_epilog",
+      "module": "title",
+      "bytes": 140,
+      "compiler": "GC/1.3.2",
+      "flags": "",
+      "source_path": "rel/title/title.c",
+      "candidate_filename": "title___epilog.raw.c",
+      "source_sha256": "a348eae1354def2c8f3d09b6fe505dc5ec9cf28d5b798f686a97fad5b46a3706",
+      "matched": true,
+      "source": "#include \"types.h\"\n\nextern u8 lbl_801A66B9;\nextern u32 lbl_8_bss_234;\nextern u32 lbl_8_bss_238;\nextern s16 lbl_1_bss_960;\n\nextern void fn_1_4FEC(void);\nextern void fn_1_C3378(void);\nextern void fn_1_F7A20(void);\nextern s32 fn_1_3FC38(void);\nextern void fn_1_37E98(void);\nextern void fn_1_435C(u32);\nextern void fn_1_41A8(void);\nextern void fn_1_47A60(s16);\n\n#pragma opt_dead_assignments off\nvoid _epilog(void) {\n    if (!lbl_801A66B9) {\n        fn_1_4FEC();\n        fn_1_C3378();\n        fn_1_F7A20();\n        lbl_801A66B9 = 1;\n    }\n    if (fn_1_3FC38()) {\n        fn_1_37E98();\n    }\n    fn_1_435C(lbl_8_bss_234);\n    fn_1_41A8();\n    fn_1_435C(lbl_8_bss_238);\n    fn_1_41A8();\n    fn_1_47A60(lbl_1_bss_960);\n}\n#pragma opt_dead_assignments reset\n"
+    }
+  ]
+}

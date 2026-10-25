@@ -286,11 +286,14 @@ def unused_bss_primer_objects(p, symbol, body, obj, check):
     section = elf.section('.bss')
     bound = {a for a, _, _ in check._pool_pairs}
     symbols = elf.symbols()
-    if not section or not any(s['name'] in bound and s['name'].startswith('...bss')
-                              and s['shndx'] == section['index'] for s in symbols):
+    # Named-object bindings prove BSS copies too. Some functions address the
+    # objects directly and never emit an anonymous section-base relocation.
+    if not section or not any(s['name'] in bound and s['shndx'] == section['index']
+                              for s in symbols):
         return []
     code = masked(body)
-    retail = p.symbols(p.resolve(symbol).module)
+    sym = p.resolve(symbol)
+    retail, unit = p.symbols(sym.module), p.unit_of(sym)
     primers = [span for s in symbols if s['info'] & 15 == 2 and s['size']
                and 0 < s['shndx'] < len(elf.sections)
                and elf.sections[s['shndx']]['name'] == '.fzgxpool'
@@ -299,8 +302,12 @@ def unused_bss_primer_objects(p, symbol, body, obj, check):
     for own in symbols:
         name = own['name']
         if (own['shndx'] != section['index'] or own['info'] & 15 != 1 or not own['size']
-                or name in bound or name.startswith('fzgx_pool_')
-                or name.removeprefix('fzgx_obj_') in retail):
+                or name in bound or name.startswith('fzgx_pool_')):
+            continue
+        known = retail.get(name.removeprefix('fzgx_obj_'))
+        # A saved layout can use an ordinary retail name for a private copy.
+        # Primer-only uses do not confer ownership of that retail definition.
+        if known and (unit is None or p.unit_of(known) == unit):
             continue
         # Restrict this to plain, uninitialized file-scope declarations. All
         # remaining occurrences must lie in emitted discarded primer functions.
@@ -322,12 +329,14 @@ def unused_bss_primer_objects(p, symbol, body, obj, check):
 def unused_bss_definitions(p, symbol, body, obj, check):
     """Remove unused generated BSS copies left in old standalone sources.
 
-    These aliases are not retail exports. Keep owned storage and every
-    declaration mentioned by source or ELF relocations outside its definition.
+    Keep owned storage and every declaration mentioned by live source or ELF
+    relocations. Unowned retail names retain an extern declaration; their
+    actual definitions still belong to the retail owner.
     """
     if not obj or not check.ok:
         return []
     from .sdkimport import masked
+    from .fixup_evidence import _function_span
     elf = poolfix.Elf(Path(obj).read_bytes())
     section = elf.section('.bss')
     if not section or section['type'] != 8:
@@ -339,10 +348,21 @@ def unused_bss_definitions(p, symbol, body, obj, check):
                   for rs in elf.sections if rs['type'] == 4
                   for pos in range(rs['offset'], rs['offset'] + rs['size'], 12)}
     edits = []
+    emitted = {s['name'] for s in elf.symbols() if s['info'] & 15 == 2 and s['size']}
+    # Old static-inline primers were never called or emitted. Their source
+    # references alone kept otherwise unused definition copies alive here.
+    for match in re.finditer(r'(?m)^static\s+inline\s+void\s+(fzgx_bss_\w+)\s*\(void\)\s*\{', code):
+        name = match[1]
+        span = _function_span(code, name)
+        if span and name not in emitted and len(re.findall(r'\b' + re.escape(name) + r'\b', code)) == 1:
+            edits.append((match.start(), span[1], ''))
+    live = code
+    for start, end, _ in edits:
+        live = live[:start] + re.sub(r'[^\n]', ' ', live[start:end]) + live[end:]
     for own in elf.symbols():
         name = own['name']
         if (own['shndx'] != section['index'] or own['info'] & 15 != 1 or not own['size']
-                or name in retail or own['index'] in referenced
+                or own['index'] in referenced
                 or not name.startswith(('fzgx_obj_', 'lbl_'))):
             continue
         native = name.removeprefix('fzgx_obj_')
@@ -350,16 +370,19 @@ def unused_bss_definitions(p, symbol, body, obj, check):
         known = retail.get(native) or (retail.get(alias[1]) if alias else None)
         if known and unit is not None and p.unit_of(known) == unit:
             continue
-        uses = list(re.finditer(r'\b' + re.escape(name) + r'\b', code))
-        decl = re.search(r'(?m)^(?:static\s+)?(?:' + '|'.join(SCALAR) + r')\s+\**\s*'
+        uses = list(re.finditer(r'\b' + re.escape(name) + r'\b', live))
+        decl = re.search(r'(?m)^(?:static\s+)?(?:struct\s+)?[A-Za-z_]\w*\s+\**\s*'
                          + re.escape(name) + r'\s*(?:\[[^;=\n]*\])?\s*;[^\S\n]*\n?', code)
         if len(uses) == 1 and decl and decl.start() <= uses[0].start() < decl.end():
             if code[:decl.start()].count('{') != code[:decl.start()].count('}'):
                 continue
-            edits.append((decl.start(), decl.end()))
+            replacement = 'extern ' + body[decl.start():decl.end()] if name in retail else ''
+            if name in retail and replacement.startswith('extern static '):
+                replacement = replacement.replace('extern static ', 'extern ', 1)
+            edits.append((decl.start(), decl.end(), replacement))
     text = body
-    for start, end in sorted(edits, reverse=True):
-        text = text[:start] + text[end:]
+    for start, end, replacement in sorted(edits, reverse=True):
+        text = text[:start] + replacement + text[end:]
     return [('remove unused unowned BSS declaration copies', text)] if edits else []
 
 

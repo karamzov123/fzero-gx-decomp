@@ -25,6 +25,121 @@ extern const f64 lbl_1_rodata_D5B0;
 extern f64 fn_80083E84(u8 *text);
 extern s32 atoi(u8 *text);
 
+/* fzgx:begin fn_1_154A08 */
+extern u32 lbl_801A6410;
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_1_46B4(u32 arg0, u32 arg1, u8 *arg2, s32 arg3);
+extern u32 fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, s32 arg3);
+extern u8 lbl_1_bss_8EDA0;
+extern void fn_1_154F1C(void);
+extern void *memset(void *dest, int value, u32 size);
+extern void fn_1_155120(void);
+extern const f64 lbl_1_rodata_D5A8;
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_495FC(void);
+extern f32 fn_1_4B090(void *);
+extern int fn_1_4B16C(void *);
+extern const f32 lbl_1_rodata_D5A0;
+extern void fn_1_4966C(f32, f32);
+extern int fn_1_FA638(void);
+extern void fn_1_4AF64(void *, ...);
+extern void fn_1_49614(void);
+extern const f64 lbl_1_rodata_D5B0;
+extern f64 fn_80083E84(u8 *text);
+extern s32 atoi(u8 *text);
+
+extern u32 lbl_801A6410;
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_1_46B4(u32 arg0, u32 arg1, u8 *arg2, s32 arg3);
+extern u32 fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, s32 arg3);
+
+typedef struct {
+    u32 unk_0;
+    u8 unk_4;
+    u8 pad_5[0x3];
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    s8 unk_14;
+    u8 pad_15[0x37];
+} RepMemcardReplay;
+
+extern u8 fn_1_B7C00(void);
+extern void fn_1_B9C0C(void);
+extern void fn_1_BC29C(RepMemcardReplay *arg0);
+extern void fn_1_C1394(RepMemcardReplay *arg0);
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_8ED90;  /* saved replay data */
+u32 fzgx_obj_lbl_1_bss_8ED94;  /* its size */
+u32 lbl_1_bss_8ED94__fzgx_offset_4[2];
+u8 fzgx_obj_lbl_1_bss_8EDA0;
+u8 fzgx_pool_lbl_1_bss_8ED90_gap_8EDA1;
+u16 fzgx_pool_lbl_1_bss_8ED90_gap_8EDA1_fill_8EDA2;
+RepMemcardReplay fzgx_obj_lbl_1_bss_8EDA4;
+u32 fzgx_obj_lbl_1_bss_8EDF0[76];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8ED90;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8ED94;
+    s = *(u8 *)&lbl_1_bss_8ED94__fzgx_offset_4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8EDA0;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_8ED90_gap_8EDA1;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_8ED90_gap_8EDA1_fill_8EDA2;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8EDA4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8EDF0;
+}
+#pragma section code_type ".text"
+
+// REP_MEMCARD_ACTION: wait for the memory-card task, then keep (or drop) the loaded replay.
+void fn_1_154A08(void) {
+    RepMemcardReplay *replay;
+    RepMemcardReplay *saved;
+    u32 buf;
+    s8 state;
+
+    if (fn_1_B7C00()) {
+        return;
+    }
+    if (lbl_1_bss_8ED94__fzgx_offset_4[0] != 0) {
+        fn_1_46B4(lbl_801A6410, lbl_1_bss_8ED94__fzgx_offset_4[0], lbl_1_data_49AC8, 0xcd);
+    }
+    state = fzgx_obj_lbl_1_bss_8EDA4.unk_14;
+    if (state == 1) {
+        fn_1_B9C0C();
+        fn_1_BC29C(&fzgx_obj_lbl_1_bss_8EDA4);
+        lbl_1_data_49AB4.unk_0 = 4;
+    } else if (state == 2) {
+        if (fzgx_obj_lbl_1_bss_8ED90 != 0) {
+            fn_1_46B4(lbl_801A6410, fzgx_obj_lbl_1_bss_8ED90, lbl_1_data_49AC8, 0xda);
+        }
+        replay = &fzgx_obj_lbl_1_bss_8EDA4;
+        if ((s32)replay->unk_C != 0) {
+            buf = fn_1_4630(lbl_801A6410, replay->unk_C, lbl_1_data_49AC8, 0xdf);
+            fn_80008BA8(buf, (saved = &fzgx_obj_lbl_1_bss_8EDA4)->unk_8, replay->unk_C);
+            fn_1_B9C0C();
+            if (saved->unk_8 != 0) {
+                fn_1_46B4(lbl_801A6410, saved->unk_8, lbl_1_data_49AC8, 0xe9);
+                saved->unk_8 = 0;
+            }
+            fzgx_obj_lbl_1_bss_8ED90 = fn_1_4630(lbl_801A6410, replay->unk_C, lbl_1_data_49AC8, 0xee);
+            fzgx_obj_lbl_1_bss_8ED94 = replay->unk_C;
+            replay->unk_C = 0;
+            fn_80008BA8(fzgx_obj_lbl_1_bss_8ED90, buf, fzgx_obj_lbl_1_bss_8ED94);
+            fn_1_46B4(lbl_801A6410, buf, lbl_1_data_49AC8, 0xf9);
+        }
+        lbl_1_data_49AB4.unk_0 = 4;
+        fn_1_BC29C(&fzgx_obj_lbl_1_bss_8EDA4);
+    } else if (state == 8) {
+        fn_1_C1394(&fzgx_obj_lbl_1_bss_8EDA4);
+        lbl_1_data_49AB4.unk_0 = 1;
+    }
+}
+/* fzgx:end fn_1_154A08 */
+
 /* fzgx:begin fn_1_154BE4 */
 extern u32 lbl_801A6410;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);

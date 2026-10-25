@@ -1,5 +1,5 @@
 {
- "generated": 1792811023,
+ "generated": 1792883335,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -1118,10 +1118,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_3_4538",
@@ -1980,7 +1980,7 @@
    "addr": 39180,
    "size": 924,
    "status": "matched",
-   "attempts": 4,
+   "attempts": 5,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -1988,7 +1988,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_3_9CA8",
@@ -2150,7 +2150,7 @@
    "addr": 47732,
    "size": 492,
    "status": "matched",
-   "attempts": 9,
+   "attempts": 10,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -2158,7 +2158,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_3_BC60",
@@ -3187,7 +3187,7 @@
    "addr": 78024,
    "size": 708,
    "status": "matched",
-   "attempts": 1,
+   "attempts": 2,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
@@ -3195,7 +3195,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_3_1338C",
@@ -3238,7 +3238,7 @@
    "addr": 79112,
    "size": 676,
    "status": "matched",
-   "attempts": 1,
+   "attempts": 2,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
@@ -3246,7 +3246,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_3_137AC",
@@ -3872,10 +3872,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": "6695b5e3",
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_3_170E0",
@@ -4909,10 +4909,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_3_23A1C",
@@ -5359,19 +5359,19 @@
   {
    "symbol": "interview:_prolog",
    "module": "interview",
-   "unit": null,
+   "unit": "rel/interview/interview/_prolog.c",
    "addr": 0,
    "size": 476,
-   "status": "unmatched",
-   "attempts": 5,
-   "best_percent": 86.731094,
+   "status": "matched",
+   "attempts": 6,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "pending"
   },
   {
    "symbol": "interview:_epilog",
@@ -5674,10 +5674,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_17_3160",
@@ -5771,7 +5771,7 @@
    "addr": 14888,
    "size": 564,
    "status": "matched",
-   "attempts": 7,
+   "attempts": 8,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -5779,7 +5779,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_17_3C5C",
@@ -6281,7 +6281,7 @@
    "addr": 27696,
    "size": 304,
    "status": "matched",
-   "attempts": 20,
+   "attempts": 21,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -6289,7 +6289,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_17_6D60",
@@ -31866,7 +31866,7 @@
    "addr": 2147852876,
    "size": 560,
    "status": "matched",
-   "attempts": 5,
+   "attempts": 6,
    "best_percent": 96.171425,
    "claimed_by": null,
    "claimed_at": null,
@@ -31874,7 +31874,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "mfCiGetFileSize",
@@ -37561,7 +37561,7 @@
    "addr": 2147964592,
    "size": 600,
    "status": "matched",
-   "attempts": 6,
+   "attempts": 7,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -37569,7 +37569,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_80075908",
@@ -46724,7 +46724,7 @@
    "addr": 43144,
    "size": 460,
    "status": "matched",
-   "attempts": 6,
+   "attempts": 7,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -46732,7 +46732,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_AA54",
@@ -48378,10 +48378,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": "b37ca544",
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_17B5C",
@@ -50299,10 +50299,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_2E1B8",
@@ -50452,10 +50452,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_30054",
@@ -50464,7 +50464,7 @@
    "addr": 196692,
    "size": 1108,
    "status": "matched",
-   "attempts": 4,
+   "attempts": 5,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
@@ -50472,7 +50472,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_304A8",
@@ -50571,10 +50571,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_320A4",
@@ -50617,7 +50617,7 @@
    "addr": 206336,
    "size": 504,
    "status": "matched",
-   "attempts": 9,
+   "attempts": 10,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -50625,7 +50625,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_327F8",
@@ -50719,7 +50719,7 @@
    "addr": 215332,
    "size": 412,
    "status": "matched",
-   "attempts": 6,
+   "attempts": 7,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -50727,7 +50727,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_34AC0",
@@ -51047,10 +51047,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_385A4",
@@ -51064,10 +51064,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_3867C",
@@ -51093,7 +51093,7 @@
    "addr": 232380,
    "size": 312,
    "status": "matched",
-   "attempts": 12,
+   "attempts": 13,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -51101,7 +51101,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_38CF4",
@@ -51115,10 +51115,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_3908C",
@@ -51149,10 +51149,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_39420",
@@ -51166,10 +51166,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_395CC",
@@ -51217,10 +51217,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_3A2C4",
@@ -51268,10 +51268,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_3B11C",
@@ -51336,10 +51336,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_3CE94",
@@ -51370,10 +51370,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_3DDAC",
@@ -51540,10 +51540,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_3EB78",
@@ -51552,7 +51552,7 @@
    "addr": 256888,
    "size": 272,
    "status": "matched",
-   "attempts": 8,
+   "attempts": 9,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -51560,7 +51560,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_3EC88",
@@ -51948,10 +51948,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": "ca986079",
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_3F4FC",
@@ -53863,16 +53863,16 @@
    "unit": "rel/main_rel/load/fn_1_45E98.c",
    "addr": 286360,
    "size": 684,
-   "status": "unmatched",
-   "attempts": 12,
-   "best_percent": 98.84,
+   "status": "matched",
+   "attempts": 13,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_46144",
@@ -53886,10 +53886,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_464BC",
@@ -60176,10 +60176,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_5D4FC",
@@ -60822,10 +60822,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": "924f2754",
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_61370",
@@ -63703,19 +63703,19 @@
   {
    "symbol": "fn_1_7ACDC",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/screen_effect/fn_1_7ACDC.c",
    "addr": 503004,
    "size": 888,
-   "status": "unmatched",
-   "attempts": 3,
-   "best_percent": 99.1,
+   "status": "matched",
+   "attempts": 4,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_7B054",
@@ -63916,10 +63916,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_7BB80",
@@ -64166,7 +64166,7 @@
    "addr": 518388,
    "size": 208,
    "status": "matched",
-   "attempts": 10,
+   "attempts": 11,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -64174,7 +64174,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_7E9C4",
@@ -64693,7 +64693,7 @@
    "addr": 527556,
    "size": 600,
    "status": "matched",
-   "attempts": 5,
+   "attempts": 6,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -64701,7 +64701,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_80F1C",
@@ -70864,7 +70864,7 @@
    "addr": 655892,
    "size": 220,
    "status": "matched",
-   "attempts": 9,
+   "attempts": 10,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -70872,7 +70872,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_A02F0",
@@ -70949,7 +70949,7 @@
    "addr": 657784,
    "size": 300,
    "status": "matched",
-   "attempts": 10,
+   "attempts": 11,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -70957,7 +70957,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_A0AA4",
@@ -71005,10 +71005,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_A0D7C",
@@ -71051,7 +71051,7 @@
    "addr": 659948,
    "size": 340,
    "status": "matched",
-   "attempts": 9,
+   "attempts": 10,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -71059,7 +71059,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_A1340",
@@ -71124,10 +71124,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_A176C",
@@ -71141,10 +71141,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_A1964",
@@ -71158,10 +71158,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_A1CE8",
@@ -71192,10 +71192,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_A2210",
@@ -73295,7 +73295,7 @@
    "addr": 699288,
    "size": 792,
    "status": "matched",
-   "attempts": 4,
+   "attempts": 5,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -73303,7 +73303,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_AAEB0",
@@ -75935,10 +75935,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_C17CC",
@@ -76338,7 +76338,7 @@
    "addr": 814988,
    "size": 664,
    "status": "matched",
-   "attempts": 9,
+   "attempts": 10,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -76346,7 +76346,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_1_C7224",
@@ -81732,10 +81732,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_EB85C",
@@ -83024,10 +83024,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_F2740",
@@ -86339,10 +86339,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": "5607407a",
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_FCA10",
@@ -89637,10 +89637,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": "a48591fa",
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_128DD8",
@@ -105957,10 +105957,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_12_270AC",
@@ -117313,10 +117313,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_10_8780",
@@ -117942,10 +117942,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_10_C49C",
@@ -122510,7 +122510,7 @@
    "addr": 27792,
    "size": 652,
    "status": "matched",
-   "attempts": 4,
+   "attempts": 5,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -122518,7 +122518,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_8_6F1C",
@@ -122544,7 +122544,7 @@
    "addr": 29096,
    "size": 732,
    "status": "matched",
-   "attempts": 8,
+   "attempts": 9,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -122552,7 +122552,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_8_7484",
@@ -122612,7 +122612,7 @@
    "addr": 31820,
    "size": 688,
    "status": "matched",
-   "attempts": 6,
+   "attempts": 7,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
@@ -122620,7 +122620,7 @@
    "matched_commit": null,
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pool"
+   "link_state": "pending"
   },
   {
    "symbol": "fn_8_7EFC",
@@ -122855,10 +122855,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_8_A3A4",
@@ -123875,10 +123875,10 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "e80ec573f",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": "pending"
+   "link_state": "verified"
   },
   {
    "symbol": "fn_15_30E8",
@@ -677554,13 +677554,13 @@
    "harness": null,
    "model": null,
    "started": 1792720778,
-   "ended": null,
+   "ended": 1792881794,
    "checks": 1,
    "final_percent": 99.1,
    "tokens_in": 0,
    "tokens_out": 0,
    "cost_usd": 0.0,
-   "outcome": null,
+   "outcome": "expired",
    "notes": null,
    "best_body_path": null,
    "stale_checks": 0,
@@ -681681,6 +681681,573 @@
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26546,
+   "symbol": "fn_1_3EB78",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792849129,
+   "ended": 1792849129,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26547,
+   "symbol": "fn_1_38BBC",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792849289,
+   "ended": 1792849289,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26548,
+   "symbol": "fn_1_AAB98",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792849299,
+   "ended": 1792849299,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26549,
+   "symbol": "fn_1_34924",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792849335,
+   "ended": 1792849344,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26550,
+   "symbol": "fn_3_13508",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792849399,
+   "ended": 1792849399,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "canonical BSS subobjects and private layout padding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26551,
+   "symbol": "fn_1_7E8F4",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850142,
+   "ended": 1792850142,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "remove unused unowned BSS declaration copies",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26552,
+   "symbol": "fn_1_C6F8C",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850145,
+   "ended": 1792850145,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "remove unused unowned BSS declaration copies",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26553,
+   "symbol": "fn_1_A888",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850147,
+   "ended": 1792850147,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard unused initializer copies after verified pool binding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26554,
+   "symbol": "fn_1_32600",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850151,
+   "ended": 1792850151,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "remove unused unowned BSS declaration copies",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26555,
+   "symbol": "fn_17_6C30",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850154,
+   "ended": 1792850154,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26556,
+   "symbol": "fn_3_BA74",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850161,
+   "ended": 1792850161,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26557,
+   "symbol": "fn_1_80CC4",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850165,
+   "ended": 1792850165,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26558,
+   "symbol": "fn_8_6C90",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850171,
+   "ended": 1792850171,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26559,
+   "symbol": "fn_8_71A8",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850176,
+   "ended": 1792850176,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26560,
+   "symbol": "fn_8_7C4C",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850185,
+   "ended": 1792850185,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26561,
+   "symbol": "fn_1_A0978",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850603,
+   "ended": 1792850603,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "canonical BSS subobjects and private layout padding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26562,
+   "symbol": "fn_1_A0214",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850607,
+   "ended": 1792850607,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "canonical BSS subobjects and private layout padding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26563,
+   "symbol": "fn_1_A11EC",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792850615,
+   "ended": 1792850615,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "canonical BSS subobjects and private layout padding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26564,
+   "symbol": "fn_1_30054",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792851973,
+   "ended": 1792851973,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "canonical BSS subobjects and private layout padding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26565,
+   "symbol": "fn_17_3A28",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792852370,
+   "ended": 1792852373,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "canonical BSS subobjects and private layout padding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26566,
+   "symbol": "fn_3_130C8",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792852581,
+   "ended": 1792852582,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "canonical BSS subobjects and private layout padding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26567,
+   "symbol": "fn_800756B0",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792852587,
+   "ended": 1792852587,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "canonical BSS subobjects and private layout padding",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26568,
+   "symbol": "fn_8005A24C",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792852597,
+   "ended": 1792852604,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26569,
+   "symbol": "fn_3_990C",
+   "agent": "deterministic-fixup",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792852844,
+   "ended": 1792852844,
+   "checks": 0,
+   "final_percent": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "discard BSS copies used only by layout primers",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26570,
+   "symbol": "interview:_prolog",
+   "agent": "solo-module-harvest",
+   "harness": "harvest",
+   "model": "local-cline-worktree@9631e03bf (CC0)",
+   "started": 1792857376,
+   "ended": 1792857385,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "Harvest module-specific interview entry point from measured local donor",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26571,
+   "symbol": "fn_1_45E98",
+   "agent": "solo-section-views",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792881580,
+   "ended": 1792881794,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "Recover non-owning load-state section extent",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26572,
+   "symbol": "fn_1_7ACDC",
+   "agent": "solo-section-views",
+   "harness": "fixup",
+   "model": null,
+   "started": 1792881794,
+   "ended": 1792882018,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "Recover non-owning load-state section extent",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }

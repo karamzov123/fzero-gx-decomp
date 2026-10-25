@@ -16,5 +16,87 @@
     ],
     "reason": "Four explicit consecutive retail byte stores prove all four bytes; next named object starts at +4. Existing scalar header views are preserved.",
     "hash_gate": "16 files OK"
+  },
+  "main_rel:lbl_1_bss_25E98": {
+    "old_size": 1,
+    "size": 4,
+    "section": ".bss",
+    "address": "0x25E98",
+    "retail_function": "fn_1_3EB78",
+    "next_symbol": "lbl_1_bss_25E9C",
+    "instructions": [
+      "0003EB94: addi r9, r8, lbl_1_bss_3C00@l",
+      "0003EB9C: addis r8, r9, 0x2",
+      "0003EBB4: addi r30, r8, 0x2298",
+      "0003EC24: stb r28, 0x0(r30)",
+      "0003EC28: addi r30, r30, 0x1",
+      "0003EC5C: cmpwi r28, 0x4",
+      "0003EC60: blt .L_0003EBCC"
+    ],
+    "reason": "The byte-store pointer starts at 0x25E98 and advances once per selected entry in a four-entry loop. The next object begins at +4.",
+    "hash_gate": "16 files OK"
+  },
+  "main_rel:lbl_1_bss_718B2": {
+    "old_size": 0,
+    "size": 1,
+    "section": ".bss",
+    "address": "0x718B2",
+    "retail_function": "fn_1_AAB98",
+    "next_symbol": "lbl_1_bss_718B4",
+    "instructions": [
+      "000AABB0: addi r31, r3, lbl_1_bss_716C0@l",
+      "000AAC04: stb r0, 0x1f2(r31)",
+      "000AAC38: lbz r0, 0x1f2(r31)",
+      "000AAC54: stb r0, 0x1f2(r31)",
+      "000AAE98: stb r5, 0x1f2(r31)"
+    ],
+    "reason": "Repeated byte loads/stores at section base 0x716C0 + 0x1F2 prove this independently accessed byte between the objects at 0x718B1 and 0x718B4.",
+    "hash_gate": "16 files OK"
+  },
+  "customize:lbl_3_bss_A17D0": {
+    "old_size": 1,
+    "size": 2,
+    "section": ".bss",
+    "address": "0xA17D0",
+    "retail_function": "fn_3_13508",
+    "next_symbol": "lbl_3_bss_A17D2",
+    "instructions": [
+      "0001351C: addi r31, r3, lbl_3_bss_A1768@l",
+      "0001352C: lbz r0, 0x68(r31)",
+      "00013538: addi r3, r31, 0x68",
+      "0001353C: lbz r0, 0x1(r3)"
+    ],
+    "reason": "Retail loads both base 0xA1768 + 0x68 and byte +1 through its materialized address. The next object begins at +2.",
+    "hash_gate": "16 files OK"
+  },
+  "main_rel:lbl_1_bss_6EAA5": {
+    "old_size": 0,
+    "size": 1,
+    "section": ".bss",
+    "address": "0x6EAA5",
+    "retail_function": "fn_1_A0214",
+    "next_symbol": "lbl_1_bss_6EAA6",
+    "instructions": [
+      "000A021C: lis r3, lbl_1_bss_6EA98@ha",
+      "000A0228: addi r31, r3, lbl_1_bss_6EA98@l",
+      "000A022C: lbz r0, 0xd(r31)"
+    ],
+    "reason": "The byte load through the proven 0x6EA98 section base at +0xD accesses 0x6EAA5, between the independent byte objects at 0x6EAA4 and 0x6EAA6. fn_1_A0978 and fn_1_A11EC load the same byte. Preserve existing header types.",
+    "hash_gate": "16 files OK"
+  },
+  "main_rel:lbl_1_bss_6F318": {
+    "old_size": 0,
+    "size": 2,
+    "section": ".bss",
+    "address": "0x6F318",
+    "retail_function": "fn_1_A11EC",
+    "next_symbol": "lbl_1_bss_6F31A",
+    "instructions": [
+      "000A11F4: lis r3, lbl_1_bss_6EA98@ha",
+      "000A1200: addi r31, r3, lbl_1_bss_6EA98@l",
+      "000A12A4: sth r6, 0x880(r31)"
+    ],
+    "reason": "The retail halfword store at section base 0x6EA98 + 0x880 proves a two-byte object at 0x6F318. It ends exactly at the next named object. Existing header views remain unchanged.",
+    "hash_gate": "16 files OK"
   }
 }

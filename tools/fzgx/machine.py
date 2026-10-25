@@ -244,6 +244,18 @@ def _mwcc_formatting(signatures, stack, copy_sites, copy_sizes, float_calls, abs
             original = ir.late_unwrap(original.expr)
         known = signatures.get(original.c_symbol_name) if isinstance(original, ir.GlobalSymbol) else None
         known = known or signatures.get(target.format(fmt))
+        # A direct, constant-length memset proves backing storage even when
+        # individual fields (or an interior matrix pointer) have no inferred
+        # aggregate type. copy_context bounds the range by the retail frame.
+        # stack_offset deliberately rejects masks/alignment expressions: their
+        # pointee extent is still unknown and must pass the escaped-local guard.
+        callee = ir.late_unwrap(original.expr) if isinstance(original, ir.AddressOf) else original
+        if isinstance(callee, ir.GlobalSymbol) and callee.c_symbol_name == 'memset' and len(self.args) == 3:
+            offset, size = stack_offset(self.args[0]), ir.late_unwrap(self.args[2])
+            while isinstance(size, ir.Cast) and size.type.is_int() and (size.type.get_size_bytes() or 0) >= 4:
+                size = ir.late_unwrap(size.expr)
+            if offset is not None and offset >= 8 and isinstance(size, ir.Literal) and size.value > 0:
+                copy_sites[offset] = max(copy_sites.get(offset, 0), size.value)
         if target.format(fmt) == 'M2C_STRUCT_COPY' and len(self.args) == 3:
             offset, size = stack_offset(self.args[0]), ir.late_unwrap(self.args[2])
             if isinstance(size, ir.Literal) and size.value > 0 and size.value % 4 == 0:

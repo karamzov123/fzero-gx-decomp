@@ -1,0 +1,51 @@
+{
+  "symbol": "fn_1_45E98",
+  "bytes": 684,
+  "section": ".bss",
+  "base": "lbl_1_bss_384C0",
+  "base_address": 230592,
+  "view_size": 22640,
+  "final_pointer_offset": 22636,
+  "definition_changes": false,
+  "cause": "MWCC scheduler dependency range uses allocated symbol declaration extent even for cast accesses through a TU section base",
+  "original_declared_size": 4,
+  "instruction_words_differing_before": 2,
+  "instruction_words_differing_after": 0,
+  "source_repair": "non-owning array view; removed dead web marker and redundant strcat pointer copies",
+  "compiler": "GC/1.3.2",
+  "flags": "",
+  "access_evidence": [
+    "00045EE8: lwz r0, 0x10(r31)",
+    "00045F40: lwz r3, 0x586c(r31)",
+    "00045F44: stw r0, 0x10(r31)",
+    "00045F5C: lwz r8, 0x586c(r31)",
+    "00045F80: lwz r0, 0x10(r31)",
+    "00045FD4: lwz r25, 0x586c(r31)",
+    "00046040: lwz r6, 0x586c(r31)"
+  ],
+  "retail_members": [
+    {
+      "symbol": "lbl_1_bss_384C0",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 230592,
+      "size": 4
+    },
+    {
+      "symbol": "lbl_1_bss_384D0",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 230608,
+      "size": 8
+    },
+    {
+      "symbol": "lbl_1_bss_384D8",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 230616,
+      "size": 22528
+    }
+  ],
+  "hash_gate": "16 files OK",
+  "verified_commit": "62ec754fd"
+}

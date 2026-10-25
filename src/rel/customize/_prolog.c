@@ -4247,7 +4247,7 @@ void fn_3_9800(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_3_9800 */
 
-/* fzgx:begin fn_3_990C pool */
+/* fzgx:begin fn_3_990C */
 typedef struct {
     u32 flags;
     u8 pad_4;
@@ -4319,24 +4319,24 @@ typedef struct {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 s32 fzgx_obj_lbl_3_bss_0;
-s32 fzgx_obj_lbl_3_bss_4;
+s32 lbl_3_bss_0__fzgx_offset_4;
 s32 fzgx_obj_lbl_3_bss_8;
 u32 fzgx_obj_lbl_3_bss_C[3];
 u16 fzgx_obj_lbl_3_bss_18;
-u8 fzgx_obj_lbl_3_bss_1A;
-u8 fzgx_obj_lbl_3_bss_1B;
-u8 fzgx_obj_lbl_3_bss_1C;
-u8 fzgx_obj_lbl_3_bss_1D;
-u16 fzgx_obj_lbl_3_bss_1E;
+u8 lbl_3_bss_18__fzgx_offset_2;
+u8 lbl_3_bss_18__fzgx_offset_3;
+u8 lbl_3_bss_18__fzgx_offset_4;
+u8 lbl_3_bss_18__fzgx_offset_5;
+u16 lbl_3_bss_7EBAC__fzgx_offset_0;
 CustomizeSub20 fzgx_obj_lbl_3_bss_20;
 CustomizeInput fzgx_obj_lbl_3_bss_F0;
-u32 fzgx_obj_lbl_3_bss_118[2];
+u32 lbl_3_bss_F0__fzgx_offset_28[2];
 s32 fzgx_obj_lbl_3_bss_120;
-u32 fzgx_obj_lbl_3_bss_124[7];
+u32 lbl_3_bss_120__fzgx_offset_4[7];
 CustomizePlayer lbl_3_bss_140[4];
-u32 fzgx_obj_lbl_3_bss_20840;
+u32 lbl_3_bss_140__fzgx_offset_20700;
 u16 fzgx_obj_lbl_3_bss_20844;
-u16 fzgx_obj_lbl_3_bss_20846;
+u16 fzgx_pool_fzgx_obj_lbl_3_bss_20846;
 u32 fzgx_obj_lbl_3_bss_20848;
 u32 fzgx_obj_lbl_3_bss_2084C;
 u32 fzgx_obj_lbl_3_bss_20850;
@@ -4347,10 +4347,10 @@ u32 fzgx_obj_lbl_3_bss_241E0[100];
 u32 fzgx_obj_lbl_3_bss_24370[3];
 u32 fzgx_obj_lbl_3_bss_2437C[11];
 s32 fzgx_obj_lbl_3_bss_243A8;
-u32 fzgx_obj_lbl_3_bss_243AC[5];
-u32 fzgx_obj_lbl_3_bss_243C0[0x2100];
+u32 lbl_3_bss_243A8__fzgx_offset_4[5];
+u32 fzgx_pool_fzgx_obj_lbl_3_bss_243C0[0x2100];
 CustomizeCtx lbl_3_bss_2C7C0[4];
-u32 fzgx_obj_lbl_3_bss_6D8C0[0x44B9];
+u32 fzgx_pool_fzgx_obj_lbl_3_bss_6D8C0[0x44B9];
 CustomizeObj *lbl_3_bss_7EBA4;
 void *lbl_3_bss_7EBA8;
 
@@ -4791,23 +4791,23 @@ extern void fn_1_FD324(void);
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_3_bss_0;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_4;
+    s = *(u8 *)&lbl_3_bss_0__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_8;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_C;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_18;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_1A;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_1B;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_1C;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_1D;
+    s = *(u8 *)&lbl_3_bss_18__fzgx_offset_2;
+    s = *(u8 *)&lbl_3_bss_18__fzgx_offset_3;
+    s = *(u8 *)&lbl_3_bss_18__fzgx_offset_4;
+    s = *(u8 *)&lbl_3_bss_18__fzgx_offset_5;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_118;
+    s = *(u8 *)&lbl_3_bss_F0__fzgx_offset_28;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_120;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_124;
+    s = *(u8 *)&lbl_3_bss_120__fzgx_offset_4;
     s = *(u8 *)&lbl_3_bss_140;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_20840;
+    s = *(u8 *)&lbl_3_bss_140__fzgx_offset_20700;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20844;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_20846;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_20846;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20848;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_2084C;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20850;
@@ -4818,10 +4818,10 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_3_bss_24370;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_2437C;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_243A8;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_243AC;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_243C0;
+    s = *(u8 *)&lbl_3_bss_243A8__fzgx_offset_4;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_243C0;
     s = *(u8 *)&lbl_3_bss_2C7C0;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_6D8C0;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_6D8C0;
     s = *(u8 *)&lbl_3_bss_7EBA4;
     s = *(u8 *)&lbl_3_bss_7EBA8;
 }
@@ -4838,9 +4838,9 @@ void fn_3_990C(void) {
     u32 flags;
 
     idx = fzgx_obj_lbl_3_bss_F0.idx;
-    fzgx_obj_lbl_3_bss_1A = 0;
-    fzgx_obj_lbl_3_bss_1B = 0;
-    fzgx_obj_lbl_3_bss_1C = 0;
+    lbl_3_bss_18__fzgx_offset_2 = 0;
+    lbl_3_bss_18__fzgx_offset_3 = 0;
+    lbl_3_bss_18__fzgx_offset_4 = 0;
     lbl_3_bss_140[idx].flags |= 0x80000000;
     lbl_3_bss_140[idx].flags |= 0x40000000;
     fn_3_0(idx, 0);

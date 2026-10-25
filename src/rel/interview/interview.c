@@ -1,5 +1,123 @@
 #include "types.h"
 
+/* fzgx:begin _prolog */
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+} PrologRodata;
+
+typedef struct {
+    u8 pad_0[0x4];
+    u8 unk_4;
+    u8 unk_5;
+    u8 unk_6;
+} PrologState;
+
+typedef struct {
+    u8 pad_0[0x10];
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    u32 unk_24;
+    u8 unk_28;
+    u8 pad_29[0x3];
+    f32 unk_2C;
+    u8 unk_30;
+    u8 pad_31[0x3];
+    u8 pad_34[0x20];
+    u32 unk_54;
+} PrologBss;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} PrologVec3;
+
+extern const PrologRodata lbl_17_rodata_0;
+extern PrologBss lbl_17_bss_0;
+extern PrologState lbl_1_bss_525C;
+extern u8 lbl_17_data_63E50[];
+typedef struct { u32 unk_0; } L801A6410;
+extern L801A6410 lbl_801A6410;
+extern u32 lbl_801A66B4;
+extern s16 lbl_1_bss_964;
+extern u16 lbl_1_bss_96A;
+extern u32 lbl_1_bss_7167C;
+extern u32 lbl_1_bss_71680;
+extern u32 lbl_1_bss_71684;
+
+extern void fn_17_23C(void);
+extern void fn_17_2B4(void);
+extern void fn_17_394(void);
+extern s32 fn_1_45D0(u32, u32, u32, u32);
+extern u32 fn_1_3CF0(u32, u32);
+extern void fn_1_47F74(s32);
+extern void fn_80008BEC(void *, int, u32);
+extern void *memset(void *, int, u32);
+extern void fn_1_4A00(s32, s32, u32);
+extern u32 fn_1_B724(void *, void *, u32, f32);
+
+#pragma opt_common_subs off
+#pragma opt_propagation off
+void _prolog(void) {
+    const PrologRodata *ro;
+    PrologBss *bss;
+    PrologState *state;
+    const u32 *gp;
+    PrologVec3 sB;
+    PrologVec3 sA;
+
+    ro = &lbl_17_rodata_0;
+    bss = &lbl_17_bss_0;
+    state = &lbl_1_bss_525C;
+    bss->unk_10 = (u32)state;
+    bss->unk_14 = fn_1_45D0(lbl_801A6410.unk_0, 0x173C, (u32)lbl_17_data_63E50, 0x240);
+    gp = (const u32 *)&lbl_801A6410;
+    bss->unk_18 = fn_1_45D0(*gp, 0x173C, (u32)lbl_17_data_63E50, 0x241);
+    fn_1_3CF0(bss->unk_14, 0x80);
+    fn_1_3CF0(bss->unk_18, 0x80);
+    fn_1_47F74(0x8C);
+    fn_1_47F74(0xA1);
+    bss->unk_1C = 0;
+    bss->unk_20 = -1;
+    bss->unk_24 = 0x1E;
+    bss->unk_28 = 1;
+    bss->unk_2C = ro->unk_18;
+    bss->unk_30 = 0;
+    fn_80008BEC((void *)&bss->pad_34, 0xFF, 0x20);
+    lbl_1_bss_96A = 0xC5;
+    bss->unk_54 = lbl_801A66B4;
+    if (lbl_1_bss_964 == 10) {
+        memset((void *)bss->unk_10, 0, 0x198);
+        state->unk_4 = 6;
+        state->unk_5 = 6;
+        state->unk_6 = 1;
+    }
+    fn_1_4A00(1, 0x1E, bss->unk_18);
+    lbl_1_bss_7167C = (u32)&fn_17_23C;
+    lbl_1_bss_71680 = (u32)&fn_17_2B4;
+    lbl_1_bss_71684 = (u32)&fn_17_394;
+    sA.x = ro->unk_C;
+    sA.y = ro->unk_10;
+    sA.z = ro->unk_14;
+    sB.x = ro->unk_0;
+    sB.y = ro->unk_4;
+    sB.z = ro->unk_8;
+    fn_1_B724(&sB, &sA, 0, ro->unk_1C);
+}
+#pragma opt_propagation reset
+#pragma opt_common_subs reset
+/* fzgx:end _prolog */
+
 /* fzgx:begin _epilog */
 extern const f32 lbl_17_rodata_20;
 extern u32 lbl_17_bss_14[1];
@@ -1458,7 +1576,7 @@ void fn_17_38C4(void) {
 }
 /* fzgx:end fn_17_38C4 */
 
-/* fzgx:begin fn_17_3A28 pool */
+/* fzgx:begin fn_17_3A28 */
 #include "rel/interview/interview.h"
 
 typedef struct {
@@ -1479,28 +1597,32 @@ extern void fn_1_92530(void);
 extern s32 fn_1_3F8C(void *, void (*)(void), u8 *, u32);
 
 static u8 fzgx_obj_lbl_17_bss_0;
-static u8 s_gap_1;
-static u8 s_gap_2;
-static u8 s_gap_3;
-static u32 s_gap_4[3];
-static InterviewEntry *s_entries;
-static u32 s_gap_14[8];
-static s32 s_values[41];
-static u8 *s_objects[30];
-static void *s_150;
+static u8 lbl_17_bss_1__fzgx_offset_0;
+static u8 lbl_17_bss_2__fzgx_offset_0;
+static u8 lbl_17_bss_3__fzgx_offset_0;
+static u32 fzgx_pool_s_gap_4[3];
+static InterviewEntry *lbl_17_bss_10__fzgx_offset_0;
+static u32 fzgx_pool_s_gap_14[8];
+static s32 lbl_17_bss_34__fzgx_offset_0[8];
+static u32 fzgx_pool_interview_values_tail[33];
+static u8 *lbl_17_bss_D8__fzgx_offset_0[8];
+static u32 fzgx_pool_interview_objects_tail[22];
+static void *lbl_17_bss_150__fzgx_offset_0;
 
 #pragma section RX ".fzgxpool" ".fzgxpool"
 __declspec(section ".fzgxpool") void fzgx_bss_primer(void) {
     fzgx_obj_lbl_17_bss_0 = 0;
-    s_gap_1 = 0;
-    s_gap_2 = 0;
-    s_gap_3 = 0;
-    s_gap_4[0] = 0;
-    s_entries = 0;
-    s_gap_14[0] = 0;
-    s_values[0] = 0;
-    s_objects[0] = 0;
-    s_150 = 0;
+    lbl_17_bss_1__fzgx_offset_0 = 0;
+    lbl_17_bss_2__fzgx_offset_0 = 0;
+    lbl_17_bss_3__fzgx_offset_0 = 0;
+    fzgx_pool_s_gap_4[0] = 0;
+    lbl_17_bss_10__fzgx_offset_0 = 0;
+    fzgx_pool_s_gap_14[0] = 0;
+    lbl_17_bss_34__fzgx_offset_0[0] = 0;
+    fzgx_pool_interview_values_tail[0] = 0;
+    lbl_17_bss_D8__fzgx_offset_0[0] = 0;
+    fzgx_pool_interview_objects_tail[0] = 0;
+    lbl_17_bss_150__fzgx_offset_0 = 0;
 }
 
 extern u8 fn_17_1794__fzgx_offset_0[];
@@ -15149,7 +15271,7 @@ void fn_17_3A28(s32 a, s16 b, s16 c) {
 
     
 
-    switch ((31 - __cntlzw(s_entries[c].flags)) & 3) {
+    switch ((31 - __cntlzw(lbl_17_bss_10__fzgx_offset_0[c].flags)) & 3) {
     case 0:
         mask = 0x80000000;
         break;
@@ -15167,8 +15289,8 @@ void fn_17_3A28(s32 a, s16 b, s16 c) {
         break;
     }
 
-    s_objects[b] = fn_1_4630(lbl_801A6410, 0x4E0, ((u8 *)fzgx_pool_data_lbl_17_data_63E50), 0x927);
-    obj = s_objects[b];
+    lbl_17_bss_D8__fzgx_offset_0[b] = fn_1_4630(lbl_801A6410, 0x4E0, ((u8 *)fzgx_pool_data_lbl_17_data_63E50), 0x927);
+    obj = lbl_17_bss_D8__fzgx_offset_0[b];
     fn_1_8F198(obj, a, 0x80000000, mask);
 
     if (c == 0) {
@@ -15178,7 +15300,7 @@ void fn_17_3A28(s32 a, s16 b, s16 c) {
     } else {
         struct { s16 *value; } table;
         table.value = (s16 *)(((u8 *)fzgx_pool_data_lbl_17_data_0_62C34));
-        switch (table.value[*(s32 *)(s_objects[0] + 0x88)]) {
+        switch (table.value[*(s32 *)(lbl_17_bss_D8__fzgx_offset_0[0] + 0x88)]) {
         case 3:
         case 4:
             fn_1_934CC(obj, obj + 0x148, ((u8 *)fzgx_pool_data_lbl_17_data_0_64060));
@@ -15190,10 +15312,10 @@ void fn_17_3A28(s32 a, s16 b, s16 c) {
     }
 
     fn_1_12A2B8(1);
-    s_values[b] = fn_1_97F1C(s_objects[b], a);
+    lbl_17_bss_34__fzgx_offset_0[b] = fn_1_97F1C(lbl_17_bss_D8__fzgx_offset_0[b], a);
     fn_1_12A2B8(0);
 
-    switch ((31 - __cntlzw(s_entries[c].flags)) & 3) {
+    switch ((31 - __cntlzw(lbl_17_bss_10__fzgx_offset_0[c].flags)) & 3) {
     case 0:
         level = 0;
         break;
@@ -15216,7 +15338,7 @@ void fn_17_3A28(s32 a, s16 b, s16 c) {
         obj[0x98] = level;
     }
 
-    fn_1_435C(s_150);
+    fn_1_435C(lbl_17_bss_150__fzgx_offset_0);
     fn_1_3F8C(((u8 *)fzgx_pool_data_lbl_17_data_0_64070), fn_1_92530, obj, 10);
 }
 /* fzgx:end fn_17_3A28 */
@@ -44508,7 +44630,7 @@ void fn_17_6B2C(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_17_6B2C */
 
-/* fzgx:begin fn_17_6C30 pool */
+/* fzgx:begin fn_17_6C30 */
 #include "sofdec/sj.h"
 
 /* begin sofdec/adxt.h (deltawave784/fzgx, CC0) */
@@ -44660,9 +44782,9 @@ typedef struct lbl_17_bss_D8_t {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 lbl_17_bss_D8_t fzgx_obj_lbl_17_bss_D8;
-u16 lbl_17_bss_D8_tail_F8;
+u16 fzgx_pool_lbl_17_bss_D8_tail_F8;
 u16 lbl_17_bss_FA;
-u32 lbl_17_bss_FA_fill_FC[20];
+u32 fzgx_pool_lbl_17_bss_FA_fill_FC[20];
 u32 lbl_17_bss_14C;
 u32 lbl_17_bss_150[4];
 u32 lbl_17_bss_160[4];
@@ -44672,9 +44794,9 @@ u32 fzgx_obj_lbl_17_bss_170[10];
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_17_bss_D8;
-    s = *(u8 *)&lbl_17_bss_D8_tail_F8;
+    s = *(u8 *)&fzgx_pool_lbl_17_bss_D8_tail_F8;
     s = *(u8 *)&lbl_17_bss_FA;
-    s = *(u8 *)&lbl_17_bss_FA_fill_FC;
+    s = *(u8 *)&fzgx_pool_lbl_17_bss_FA_fill_FC;
     s = *(u8 *)&lbl_17_bss_14C;
     s = *(u8 *)&lbl_17_bss_150;
     s = *(u8 *)&lbl_17_bss_160;
@@ -58384,6 +58506,45 @@ void fn_17_6C30(InterviewEntry *entry) {
     fn_8004BF0C(lbl_1_bss_6EAD0->handle, -0x14);
 }
 /* fzgx:end fn_17_6C30 */
+
+/* fzgx:begin fn_17_6D60 */
+// Builds event model names and starts the corresponding animation.
+
+typedef struct {u8 pad[0x88];s32 index;} Model;
+typedef struct {u8 pad[0xc];s16 index;} Event;
+typedef struct {u32 x0;s32 handle;} Chain;
+extern Model *lbl_17_bss_D8[];
+extern const char lbl_17_data_0[];
+extern const char *lbl_1_data_20D1C[];
+extern s16 lbl_17_bss_D6[];
+extern u32 lbl_1_bss_6EAB4;
+extern Chain *lbl_1_bss_6EAD0[];
+extern s16 fn_1_12C930(s16),fn_1_12C710(s32),fn_1_12CB04(s16);
+extern s32 sprintf(char*,const char*,...);
+extern void fn_1_97204(Model*,const char*),fn_8004BF0C(s32,s16);
+#pragma push
+#pragma opt_propagation off
+void fn_17_6D60(Event *event) {
+ const char *data=lbl_17_data_0+0x60000;
+ char name[0x80];
+ Model *first=lbl_17_bss_D8[0];
+ s16 type=fn_1_12C710(first->index);
+ const char *prefix=lbl_1_data_20D1C[fn_1_12C930((s16)first->index)];
+ Model *model=lbl_17_bss_D8[0];
+ sprintf(name,data+0x417c,prefix,event->index+1);
+ switch(fn_1_12CB04(type)) {
+ case 2:{Model *p,*q;fn_1_97204(model,name);
+ p=lbl_17_bss_D8[2];sprintf(name,data+0x4184,event->index+1);fn_1_97204(p,name);
+ {s16 index=event->index;event=(Event*)lbl_17_bss_D8[3];sprintf(name,data+0x418c,index+1);fn_1_97204((Model*)event,name);}break;}
+ case 1:{Model *p;fn_1_97204(model,name);{s16 index=event->index;event=(Event*)lbl_17_bss_D8[2];sprintf(name,data+0x4194,index+1);fn_1_97204((Model*)event,name);}break;}
+ case 0:fn_1_97204(model,name);break;
+ }
+ {s32 offset=(s16)type*2;const char *times=data+0x2c88;s16 delay=*(const s16*)(times+offset);
+ lbl_17_bss_D6[0]=delay;lbl_1_bss_6EAB4&=~0x2c;
+ fn_8004BF0C(lbl_1_bss_6EAD0[0]->handle,delay);}
+}
+#pragma pop
+/* fzgx:end fn_17_6D60 */
 
 /* fzgx:begin fn_17_6F30 */
 typedef struct InterviewText {

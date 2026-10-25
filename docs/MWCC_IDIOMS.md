@@ -577,3 +577,69 @@ needs the retail pivot order (`cmpwi 4` then `cmpwi 2`), which only appears when
 Folding either one into `default:` selects a three-case tree that pivots on 3
 and emits 246 words instead of 247. Always compare the pivot order before
 attributing a switch body's row diff to allocation.
+
+## Unused BSS definitions can outlive their layout primers (2026-10-24)
+
+A static-inline layout primer that is never called or emitted can keep BSS
+copies alive in the source after MWCC has discarded the primer. Remove the
+uncalled primer and unused, unowned definition copies together. Keep an
+`extern` declaration for an ordinary retail name; keep definitions whose range
+belongs to the current unit. `fn_1_32600`, `fn_1_7E8F4` and `fn_1_C6F8C` reproduce
+this with unchanged function bodies and exact MWCC object matches.
+
+Primer-only private copies also occur when the oracle binds every live BSS
+object by name, without an anonymous `...bss` section-base binding. Either kind
+of verified BSS binding can anchor the cleanup. Restrict uses to emitted
+`.fzgxpool` functions, retain known retail definitions, and leave poolfix's
+incoming-relocation and complete-section checks in place.
+
+A primer-only BSS copy may also use an ordinary retail symbol name. Its spelling
+is not an ownership proof: preserve it when the current unit owns its range;
+otherwise only uses inside emitted `.fzgxpool` functions may be privatized.
+`fn_800756B0` and `fn_8005A24C` reproduce this case without changing their live
+function bodies. All live relocations and complete-section cleanup remain gated.
+
+Oversized saved live declarations can include later layout objects. In
+`fn_1_30054`, bound `BurnerSub` to `lbl_1_bss_3C30`'s measured 0x14BC bytes and the
+buffer pointer to `lbl_1_bss_523C`'s 0x20 bytes; retain the previous section extent
+and first-access order with discarded primer-only tails. `fn_17_3C5C` explicitly
+clears eight object slots, proving the eight-entry object view used by
+`fn_17_3A28`; its value table is also eight entries at `.bss+0x34`.
+
+An initialized section copy needs its real pointers as well as its bytes.
+`fn_3_130C8`'s saved data contains a 60-pointer manual/help table, not zero-filled
+string placeholders. Recover it with `dataimport.pool_objects` and `payload`,
+and express its pointers as symbolic relocations. Retain anonymous padding
+objects in that proof, even when their measured bytes happen to be zero.
+
+### Non-owning section views and scheduling (2026-10-24)
+
+- A section-base symbol declared as a short scalar or prefix can distort MWCC's
+  memory dependencies even when every cast access computes the right address.
+  `fn_1_45E98` needs the non-owning load-state view through `+0x586c`;
+  `fn_1_7ACDC` needs the course-load view through `+0x19c`. In both, correcting
+  the declaration extent removes the final two differing instruction words.
+  Preserve recovered member types and all individual object definitions and
+  ownership; a larger external section view does not allocate or transfer data.
+  Proofs and reproducible C are in `state/repairs/*load_state_view_20261024.json`
+  and `state/repairs/fixup_imports.json`.
+
+### Enum-biased callback tables and high BSS scalars (fn_1_37E98)
+
+An `addi` of `0x38c`, a 16-byte indexed add, and a load at `-0x238`
+represent `modes[mode - 36].cleanup`: the callback is eight bytes into each
+entry. The table starts at data base plus `0x38c`; folding the negative load
+displacement into the table base would put it among preceding strings and
+lose the enum bias. Native
+initialized entries reproduce the original address calculation, whereas a
+byte pointer into a larger word array adds another instruction.
+
+Separate native scalar objects in the high part of the BSS section let MWCC
+reuse its low section base with `addis ..., ..., 2`. A single aggregate or
+explicit high-address pointer produces different addressing. Preserve each
+member's measured owner and bounds, including interior aliases, and discard
+primer-only copies through the existing binding checks. An obsolete string
+primer can leave extra initialized bytes and prevent an otherwise exact
+native data section from binding. Full source and the 25 live member proofs
+are in `state/repairs/game_shutdown_20261025.json.gz` and
+`state/repairs/game_shutdown_layout_20261025.json`.

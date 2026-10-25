@@ -1798,7 +1798,7 @@ void fn_1_80C18(u8 *arg0, u8 *arg1, s8 arg2) {
 }
 /* fzgx:end fn_1_80C18 */
 
-/* fzgx:begin fn_1_80CC4 pool noprologue */
+/* fzgx:begin fn_1_80CC4 noprologue */
 #include "rel/main_rel/car.h"
 
 extern s32 fn_1_8171C(s32);
@@ -1822,12 +1822,12 @@ typedef struct {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_6D82C;
-u32 lbl_1_bss_6D82C_fill_6D830[2];
+u32 fzgx_pool_lbl_1_bss_6D82C_fill_6D830[2];
 u32 fzgx_obj_lbl_1_bss_6D838;
 u32 fzgx_obj_lbl_1_bss_6D83C[3];
-u16 lbl_1_bss_6D83C_fill_6D848;
+u16 fzgx_pool_lbl_1_bss_6D83C_fill_6D848;
 u16 fzgx_obj_lbl_1_bss_6D84A;
-u32 lbl_1_bss_6D84A_fill_6D84C;
+u32 fzgx_pool_lbl_1_bss_6D84A_fill_6D84C;
 u32 lbl_1_bss_6D850;
 u32 lbl_1_bss_6D854[4];
 
@@ -1835,12 +1835,12 @@ u32 lbl_1_bss_6D854[4];
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D82C;
-    s = *(u8 *)&lbl_1_bss_6D82C_fill_6D830;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D82C_fill_6D830;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D838;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D83C;
-    s = *(u8 *)&lbl_1_bss_6D83C_fill_6D848;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D83C_fill_6D848;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6D84A;
-    s = *(u8 *)&lbl_1_bss_6D84A_fill_6D84C;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_6D84A_fill_6D84C;
     s = *(u8 *)&lbl_1_bss_6D850;
     s = *(u8 *)&lbl_1_bss_6D854;
 }

@@ -1063,7 +1063,7 @@ void fn_3_B984(void *entries, u8 *table) {
 }
 /* fzgx:end fn_3_B984 */
 
-/* fzgx:begin fn_3_BA74 pool noprologue */
+/* fzgx:begin fn_3_BA74 noprologue */
 #include "rel/customize/customize.h"
 
 extern u8 lbl_3_bss_6DE20[64832];
@@ -1116,7 +1116,7 @@ lbl_3_bss_F0_t fzgx_obj_lbl_3_bss_F0;
 u32 lbl_3_bss_120[8];
 u32 fzgx_obj_lbl_3_bss_140[33217];
 u16 lbl_3_bss_20844;
-u16 lbl_3_bss_F0_gap_20846;
+u16 fzgx_pool_lbl_3_bss_F0_gap_20846;
 u32 fzgx_obj_lbl_3_bss_20848;
 
 #pragma section code_type ".fzgxpool"
@@ -1126,7 +1126,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_3_bss_120;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_140;
     s = *(u8 *)&lbl_3_bss_20844;
-    s = *(u8 *)&lbl_3_bss_F0_gap_20846;
+    s = *(u8 *)&fzgx_pool_lbl_3_bss_F0_gap_20846;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20848;
 }
 #pragma section code_type ".text"

@@ -338,6 +338,242 @@ void fn_15_3AC(void) {
 }
 /* fzgx:end fn_15_3AC */
 
+/* fzgx:begin fn_15_644 */
+struct fn_15_644_Entry {
+    u8 pad_0[4];
+    u8 unk_4;
+    u8 unk_5;
+    u8 pad_6[2];
+};
+
+struct fn_15_644_World {
+    struct fn_15_644_Entry unk_0[9];
+    u8 pad_48[0x14A];
+    u8 unk_192;
+    u8 pad_193;
+    u8 unk_194[16];
+};
+
+struct fn_15_644_lbl_15_bss_0 {
+    u8 pad_0[0x10];
+    u32 unk_10;
+    u32 unk_14;
+    u8 pad_18[8];
+    u8 unk_20;
+    u8 pad_21[0xB];
+    struct fn_15_644_World *unk_2C;
+    s32 unk_30;
+    u8 pad_34[4];
+    s16 unk_38;
+};
+
+struct fn_15_644_lbl_1_bss_9F8 {
+    u8 pad_0[0x10];
+    u16 unk_10;
+    u16 unk_12;
+};
+
+struct fn_15_644_lbl_1_bss_D58 {
+    u8 pad_0[8];
+    u16 unk_8;
+};
+
+struct fn_15_644_lbl_1_bss_525C {
+    u8 pad_0[0x191];
+    u8 unk_191;
+};
+
+extern struct fn_15_644_lbl_15_bss_0 lbl_15_bss_0;
+extern struct fn_15_644_lbl_1_bss_9F8 lbl_1_bss_9F8;
+extern struct fn_15_644_lbl_1_bss_D58 lbl_1_bss_D58;
+extern struct fn_15_644_lbl_1_bss_525C lbl_1_bss_525C;
+extern u32 lbl_1_data_20B14[];
+extern u8 lbl_15_data_0[];
+extern u16 lbl_1_bss_968;
+extern u16 lbl_1_bss_96A;
+extern s16 lbl_1_bss_962;
+
+extern void fn_1_A8EB0(int, int);
+extern void fn_1_A8F40(u8);
+extern void fn_1_A8E78(int);
+extern void fn_1_A8DD4(const char *, ...);
+extern s16 fn_1_12C930(s16);
+extern s16 fn_1_12C710(s32);
+extern void *fn_1_7F49C(s16, s16, void *);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_4A00(s32, u8, void *);
+
+#pragma opt_loop_invariants off
+void fn_15_644(void) {
+    u16 rep;
+    s32 row;
+    u8 *str = lbl_15_data_0;
+    struct fn_15_644_lbl_15_bss_0 *work = &lbl_15_bss_0;
+    struct fn_15_644_World *world;
+    struct fn_15_644_Entry *entry;
+    struct fn_15_644_lbl_1_bss_D58 *ctrl;
+    u16 name[18];
+    s16 dir;
+    s16 i;
+    s16 id;
+    struct { s16 value; } j;
+    u32 color;
+    u32 *colors;
+    struct fn_15_644_lbl_1_bss_9F8 *pad;
+    struct { u32 value; } flags;
+
+    if (!(work->unk_14 & 0x20000000)) {
+        return;
+    }
+    world = work->unk_2C;
+    rep = lbl_1_bss_9F8.unk_10;
+    if (((rep >> 3) & 1) || ((lbl_1_bss_9F8.unk_12 >> 3) & 1)) {
+        dir = -1;
+    } else if (((rep >> 2) & 1) || ((lbl_1_bss_9F8.unk_12 >> 2) & 1)) {
+        dir = 1;
+    } else {
+        dir = 0;
+    }
+    work->unk_30 = (work->unk_30 + dir + 9) % 9;
+
+    rep = (u16)lbl_1_bss_9F8.unk_10;
+    if ((rep & 1) || (lbl_1_bss_9F8.unk_12 & 1)) {
+        dir = -1;
+    } else {
+        pad = &lbl_1_bss_9F8;
+        if (((rep >> 1) & 1) || ((pad->unk_12 >> 1) & 1)) {
+            dir = 1;
+        } else {
+            dir = 0;
+        }
+    }
+
+    if (dir != 0) {
+        if ((row = work->unk_30) >= 0 && row < 4) {
+            world->unk_0[work->unk_30].unk_4 = (world->unk_0[work->unk_30].unk_4 + dir + 41) % 41;
+            world->unk_0[work->unk_30].unk_5 = world->unk_0[work->unk_30].unk_4;
+        } else {
+            switch (work->unk_30 - 4) {
+            case 0:
+                work->unk_14 ^= 0x80000000;
+                break;
+            case 1:
+                break;
+            case 2:
+                work->unk_2C->unk_192 += dir;
+                if (work->unk_2C->unk_192 == 0) {
+                    work->unk_2C->unk_192 = 4;
+                }
+                if (work->unk_2C->unk_192 > 4) {
+                    work->unk_2C->unk_192 = 1;
+                }
+                break;
+            }
+        }
+    }
+
+    entry = work->unk_2C->unk_0;
+    fn_1_A8EB0(10, 19);
+    fn_1_A8F40(255);
+    fn_1_A8E78((int)(str + 0xB0));
+    colors = lbl_1_data_20B14;
+    for (i = 0; i < 4; i++) {
+        if (i == work->unk_30) {
+            fn_1_A8F40(51);
+        } else {
+            fn_1_A8F40(255);
+        }
+        id = entry->unk_4;
+        fn_1_A8DD4((char *)(str + 0xD0), i, id);
+        color = colors[fn_1_12C930(id)];
+        fn_1_7F49C(fn_1_12C710(id), 0, name);
+        fn_1_A8DD4((char *)(str + 0xE4), color, name);
+        entry++;
+    }
+    for (; i < 9; i++) {
+        if (i == work->unk_30) {
+            fn_1_A8F40(51);
+        } else {
+            fn_1_A8F40(255);
+        }
+        switch (i - 4) {
+        case 0:
+            if (work->unk_14 & 0x80000000) {
+                fn_1_A8E78((int)(str + 0xF0));
+            } else {
+                fn_1_A8E78((int)(str + 0xFC));
+            }
+            break;
+        case 1:
+            fn_1_A8E78((int)(str + 0x108));
+            break;
+        case 2:
+            fn_1_A8DD4((char *)(str + 0x120), work->unk_2C->unk_192);
+            break;
+        case 3:
+            fn_1_A8E78((int)(str + 0x134));
+            break;
+        case 4:
+            fn_1_A8E78((int)(str + 0x144));
+            break;
+        }
+    }
+    fn_1_A8F40(255);
+
+    ctrl = &lbl_1_bss_D58;
+    if (((ctrl->unk_8 >> 8) & 1) && !fn_1_B7C00()) {
+        flags.value = work->unk_14 & 0xFFFFFF01;
+        lbl_1_bss_525C.unk_191 = 0;
+        work->unk_14 = flags.value;
+        switch (work->unk_30 - 4) {
+        case 1:
+            work->unk_14 = flags.value | 9;
+            lbl_1_bss_525C.unk_191 |= 1;
+            lbl_1_bss_96A = 0xB8;
+            work->unk_20 = 1;
+            break;
+        case 2:
+            work->unk_14 = flags.value | 0x81;
+            lbl_1_bss_525C.unk_191 |= 2;
+            work->unk_38 = work->unk_2C->unk_192;
+            lbl_1_bss_96A = 0xB8;
+            work->unk_20 = 1;
+            for (j.value = 0; j.value < work->unk_38; j.value++) {
+                work->unk_2C->unk_194[j.value] = j.value;
+            }
+            break;
+        case 3:
+            work->unk_14 = flags.value | 5;
+            lbl_1_bss_96A = 0xB8;
+            work->unk_20 = 1;
+            break;
+        case 4:
+            work->unk_14 = flags.value | 3;
+            lbl_1_bss_525C.unk_191 |= 1;
+            lbl_1_bss_96A = 0xB8;
+            work->unk_20 = 0;
+            break;
+        default:
+            work->unk_14 &= ~1;
+            work->unk_20 = 1;
+            break;
+        }
+        if ((work->unk_14 & 0x78) == 0) {
+            fn_1_4A00(1, 30, (void *)work->unk_10);
+        } else {
+            fn_1_4A00(0, 0, (void *)work->unk_10);
+        }
+        lbl_1_bss_96A = 0xB8;
+    }
+    if (((ctrl->unk_8 >> 12) & 1) && !fn_1_B7C00() && work->unk_20 &&
+        (work->unk_14 & 0x20000000) && lbl_1_bss_962 == 183) {
+        lbl_1_bss_968 = 10;
+    }
+}
+
+#pragma opt_loop_invariants reset
+/* fzgx:end fn_15_644 */
+
 /* fzgx:begin fn_15_B8C */
 // fn_15_B8C: empty in retail (single blr).
 void fn_15_B8C(void) {
@@ -2788,6 +3024,304 @@ void fn_15_3B00(void) {
     fn_1_7EAE8(t0);
 }
 /* fzgx:end fn_15_3B00 */
+
+/* fzgx:begin fn_15_3B24 */
+typedef struct fn_15_3B24_Machine {
+    u32 flags;
+    u8 pad_4[0x81A0 - 0x4];
+    u8 unk_81A0;
+    u8 pad_81A1[3];
+    u8 unk_81A4;
+    u8 pad_81A5[7];
+    u8 unk_81AC;
+    u8 pad_81AD[7];
+    u8 unk_81B4;
+} fn_15_3B24_Machine;
+
+typedef struct fn_15_3B24_Racer {
+    fn_15_3B24_Machine *machine;
+    u8 pad_4;
+    u8 id;
+    u8 color;
+    u8 pad_7;
+} fn_15_3B24_Racer;
+
+typedef struct fn_15_3B24_Entry {
+    s16 index;
+    s16 id;
+    s32 type;
+    u8 color;
+    u8 pad_9[3];
+    u32 flags;
+    u16 parts[4];
+    s32 type_copy;
+    u8 pad_1C[4];
+} fn_15_3B24_Entry;
+
+typedef struct fn_15_3B24_Work {
+    u8 pad_0[0x14];
+    u32 flags;
+    u8 pad_18[0x9];
+    u8 unk_21;
+    u8 pad_22[0x2];
+    void *heap_a;
+    void *heap_b;
+    fn_15_3B24_Racer *racers;
+    u8 pad_30[0x4];
+    u8 unk_34;
+    u8 unk_35;
+    u8 unk_36;
+    u8 pad_37[0x3];
+    s16 count;
+    u8 pad_3C[0x2];
+    u8 unk_3E;
+    u8 pad_3F[0xD];
+    u8 *objects;
+    u8 pad_50[0x100];
+    u32 *scene;
+} fn_15_3B24_Work;
+
+typedef struct fn_15_3B24_Rodata {
+    f32 zero;
+    u8 pad_4[0x54];
+    f32 unk_58;
+    f32 unk_5C;
+    u8 pad_60[0xA4];
+    f32 unk_104;
+    f32 unk_108;
+    f32 unk_10C;
+    f32 unk_110;
+} fn_15_3B24_Rodata;
+
+typedef struct fn_15_3B24_Car {
+    u8 pad_0[0x390];
+    u32 unk_390;
+    u8 pad_394[0x3BA - 0x394];
+    s16 unk_3BA;
+} fn_15_3B24_Car;
+
+typedef struct fn_15_3B24_Model {
+    u32 flags;
+    u8 pad_4[0x8];
+    f32 unk_C;
+    u8 pad_10[0x22];
+    u8 unk_32;
+} fn_15_3B24_Model;
+
+extern fn_15_3B24_Work lbl_15_bss_0;
+extern const fn_15_3B24_Rodata lbl_15_rodata_0;
+extern u8 lbl_15_data_0[];
+extern u32 lbl_801A6410;
+extern u8 lbl_1_data_28060[];
+
+extern void *fn_1_45D0(u32, u32, void *, u32);
+extern void *fn_1_4630(u32, u32, void *, u32);
+extern void fn_1_3CF0(void *, u32);
+extern void fn_1_435C(void *);
+extern void fn_1_3F8C(void *, void *, void *, u32);
+extern void fn_1_4310(u32);
+extern void fn_1_981C4(void);
+extern void fn_1_98230(void);
+extern void fn_1_9835C(void);
+extern void fn_1_584D4(void);
+extern void fn_1_80058(s8, fn_15_3B24_Entry *);
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_80008BA8(void *, void *, u32);
+extern s32 fn_1_FA088(void);
+extern void fn_1_FA0A0(void);
+extern s32 fn_1_FA004(void);
+extern void fn_1_FA01C(void);
+extern void fn_1_81834(u8, s8, s8);
+extern u8 *fn_1_83070(void *, void *, fn_15_3B24_Entry *, s16);
+extern void fn_1_82724(void *, void *, fn_15_3B24_Entry *, s16, u32);
+extern void fn_1_835E0(void *, void *, void *);
+extern void fn_1_86194(f32);
+extern void fn_1_817C0(void);
+extern void *fn_1_86254(u32);
+extern void fn_1_C3A0C(void *);
+extern void fn_1_C42F4(void);
+extern void fn_1_861B4(void);
+extern void fn_1_C6F80(u8);
+extern fn_15_3B24_Car *fn_1_868C0(s8);
+extern void fn_1_22E8C(void *, void *);
+
+#pragma opt_propagation off
+void fn_15_3B24(void) {
+    fn_15_3B24_Racer *list;
+    fn_15_3B24_Entry *entry;
+    fn_15_3B24_Racer *racer;
+    u8 *preset;
+    fn_15_3B24_Work *work;
+    u8 *str;
+    const fn_15_3B24_Rodata *rodata;
+    fn_15_3B24_Racer *racers;
+    s16 i;
+    fn_15_3B24_Racer *src;
+    fn_15_3B24_Model *model;
+    fn_15_3B24_Car *car;
+    u8 *obj;
+    s16 j;
+    s16 slot;
+    fn_15_3B24_Machine *machine;
+    f32 scale;
+    f32 x;
+    fn_15_3B24_Entry entries[3];
+    u8 buf[0xB4];
+
+    rodata = (const fn_15_3B24_Rodata *)&lbl_15_rodata_0;
+    str = (u8 *)&lbl_15_data_0;
+    work = (fn_15_3B24_Work *)&lbl_15_bss_0;
+    list = work->racers;
+    racers = list;
+    work->unk_21 = 1;
+    work->heap_a = fn_1_45D0(lbl_801A6410, 0x173C, str + 0xA4, 0xA4E);
+    work->heap_b = fn_1_45D0(lbl_801A6410, 0x173C, str + 0xA4, 0xA4F);
+    fn_1_3CF0(work->heap_a, 128);
+    fn_1_3CF0(work->heap_b, 128);
+    fn_1_981C4();
+    fn_1_435C(work->heap_a);
+    fn_1_3F8C(str + 0x2A8, fn_1_98230, NULL, 10);
+    fn_1_435C(work->heap_b);
+    fn_1_3F8C(str + 0x2B0, fn_1_9835C, NULL, 21);
+    fn_1_584D4();
+    work->scene = fn_1_4630(lbl_801A6410, 0x14B8, str + 0xA4, 0xA66);
+    *work->scene |= 0x20C040;
+
+    racer = racers;
+    entry = entries;
+    for (i = 0; i < work->count; i++) {
+        fn_1_80058((s8)racer->id, entry);
+        if (work->flags & 0x40) {
+            slot = ((u8 *)racers)[0xF8];
+        } else {
+            slot = i;
+        }
+        entry->index = i;
+        src = &racers[slot];
+        entry->id = src->id;
+        entry->color = src->color;
+        switch ((31 - __cntlzw(entry->color)) & 3) {
+        case 0:
+            entry->color = 0x10;
+            break;
+        case 1:
+            entry->color = 0x20;
+            break;
+        case 2:
+            entry->color = 0x40;
+            break;
+        case 3:
+            entry->color = 0x80;
+            break;
+        default:
+            entry->color = 0x10;
+            break;
+        }
+        entry->type = 2;
+        if (entry->id >= 41) {
+            machine = src->machine;
+            if (machine != NULL && (machine->flags & 0x80000000)) {
+                fn_80008BEC(entry->parts, 0, 16);
+                if (machine->flags & 0x40000000) {
+                    work->unk_3E = 1;
+                    if (slot == 0) {
+                        if (fn_1_FA088()) {
+                            work->unk_34 = 1;
+                            work->unk_36 = 1;
+                            fn_1_FA0A0();
+                        }
+                        if (fn_1_FA004()) {
+                            work->unk_35 = 1;
+                            work->unk_36 = 1;
+                            fn_1_FA01C();
+                        }
+                    }
+                    entry->flags |= 0x4000000;
+                    entry->parts[0] = machine->unk_81A4;
+                    entry->parts[1] = machine->unk_81AC;
+                    entry->parts[2] = machine->unk_81B4;
+                } else {
+                    entry->id = machine->unk_81A0;
+                }
+                entry->type_copy = entry->type;
+            }
+        }
+        entry++;
+        racer++;
+    }
+
+    fn_1_81834(0, -1, 0);
+    work->objects = fn_1_83070(work->heap_a, work->heap_b, entries, work->count);
+    fn_1_82724(work->heap_a, work->heap_b, entries, work->count, 1);
+    fn_1_835E0(work->scene, work->heap_a, NULL);
+    if (!(work->flags & 1)) {
+        fn_1_86194(rodata->unk_104);
+    } else if (work->flags & 0x78) {
+        fn_1_86194(rodata->zero);
+    } else {
+        fn_1_86194(rodata->zero);
+        fn_1_817C0();
+    }
+    fn_1_C3A0C(fn_1_86254(0));
+    fn_1_435C(work->heap_a);
+    fn_1_3F8C(str + 0x2BC, fn_1_C42F4, fn_1_86254(0), 2);
+    fn_1_4310(0);
+    fn_1_861B4();
+    if (work->flags & 0x40000000) {
+        fn_1_C6F80(1);
+    }
+
+    obj = work->objects;
+    preset = lbl_1_data_28060 + 0x438;
+    scale = rodata->unk_58;
+    for (j = 0; j < work->count; j++, obj += 0x620) {
+        model = *(fn_15_3B24_Model **)(obj + 0x484);
+        car = fn_1_868C0((s8)j);
+        car->unk_3BA = 1;
+        if (!(work->flags & 0x78)) {
+            model->unk_C = rodata->zero;
+        }
+        car->unk_390 |= 0x40000;
+        model->flags |= 2;
+        switch (j) {
+        case 0:
+            model->unk_32 = 0x22;
+            x = rodata->zero;
+            *(f32 *)(obj + 0x7C) = x;
+            *(f32 *)(obj + 0x84) = rodata->unk_5C;
+            x = rodata->zero;
+            *(f32 *)(obj + 0x94) = x;
+            *(f32 *)(obj + 0x98) = x;
+            *(f32 *)(obj + 0x9C) = x;
+            break;
+        case 1:
+            model->unk_32 = 0x23;
+            x = rodata->unk_108;
+            *(f32 *)(obj + 0x7C) = x;
+            *(f32 *)(obj + 0x84) = rodata->unk_10C;
+            x = rodata->zero;
+            *(f32 *)(obj + 0x94) = x;
+            *(f32 *)(obj + 0x98) = x;
+            *(f32 *)(obj + 0x9C) = x;
+            break;
+        case 2:
+            model->unk_32 = 0x24;
+            x = rodata->unk_110;
+            *(f32 *)(obj + 0x7C) = x;
+            *(f32 *)(obj + 0x84) = rodata->unk_10C;
+            x = rodata->zero;
+            *(f32 *)(obj + 0x94) = x;
+            *(f32 *)(obj + 0x98) = x;
+            *(f32 *)(obj + 0x9C) = x;
+            break;
+        }
+        fn_80008BA8(buf, preset, 0xB4);
+        fn_1_22E8C(obj, buf);
+        *(f32 *)(obj + 0xC) = scale;
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_15_3B24 */
 
 /* fzgx:begin fn_15_401C */
 extern u32 fn_1_C6F80(u32);

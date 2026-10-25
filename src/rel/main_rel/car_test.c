@@ -375,7 +375,31 @@ void fn_1_7E7A4(Fn1_7E7A4Data *arg0) {
 }
 /* fzgx:end fn_1_7E7A4 */
 
-/* fzgx:begin fn_1_7E8F4 pool */
+/* fzgx:begin fn_1_7E8F4 */
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
 extern const f32 lbl_1_rodata_3500;
 extern const f32 lbl_1_rodata_3504;
 
@@ -406,11 +430,7 @@ typedef struct lbl_1_bss_6D7F4_t {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 lbl_1_bss_6D620_t fzgx_obj_lbl_1_bss_6D620;
-u32 lbl_1_bss_6D758[6];
-u32 fzgx_obj_lbl_1_bss_6D770;
-u32 fzgx_obj_lbl_1_bss_6D774;
-u32 fzgx_obj_lbl_1_bss_6D778[12];
-u32 fzgx_obj_lbl_1_bss_6D7A8[6];
+extern u32 lbl_1_bss_6D758[6];
 lbl_1_bss_6D7F4_t fzgx_obj_lbl_1_bss_6D7F4;
 
 #pragma opt_propagation off

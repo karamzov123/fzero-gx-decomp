@@ -1,0 +1,795 @@
+{
+  "fn_1_30054": {
+    "repair": "Separate live object bounds from discarded section-layout tails",
+    "state": {
+      "symbol": "lbl_1_bss_3C30",
+      "retail_size": 5308,
+      "previous_copy_size": 5644
+    },
+    "buffer": {
+      "symbol": "lbl_1_bss_523C",
+      "retail_size": 32,
+      "previous_copy_size": 4096
+    },
+    "function_body": "unchanged",
+    "measured_tail_bytes": [
+      336,
+      4064
+    ],
+    "hash_gate": "16 files OK"
+  },
+  "fn_17_3A28": {
+    "repair": "Recover eight-entry value and object arrays; retain measured discarded layout tails",
+    "values_symbol": "lbl_17_bss_34",
+    "values_bytes": 32,
+    "objects_symbol": "lbl_17_bss_D8",
+    "objects_bytes": 32,
+    "caller": "fn_17_3C5C",
+    "caller_instructions": [
+      "00003C5C: stwu r1, -0x20(r1)",
+      "00003C60: mflr r0",
+      "00003C64: lis r3, lbl_17_bss_0@ha",
+      "00003C68: stw r0, 0x24(r1)",
+      "00003C6C: li r0, 0x0",
+      "00003C70: stw r31, 0x1c(r1)",
+      "00003C74: addi r31, r3, lbl_17_bss_0@l",
+      "00003C78: addi r3, r31, 0xd8",
+      "00003C7C: stw r30, 0x18(r1)",
+      "00003C80: li r30, 0x0",
+      "00003C84: stw r29, 0x14(r1)",
+      "00003C88: stw r28, 0x10(r1)",
+      "00003C8C: lwz r29, 0x10(r31)",
+      "00003C90: stw r0, 0x0(r3)",
+      "00003C94: stw r0, 0x4(r3)",
+      "00003C98: stw r0, 0x8(r3)",
+      "00003C9C: stw r0, 0xc(r3)",
+      "00003CA0: stw r0, 0x10(r3)",
+      "00003CA4: stw r0, 0x14(r3)",
+      "00003CA8: stw r0, 0x18(r3)",
+      "00003CAC: stw r0, 0x1c(r3)",
+      "00003CB0: b .L_00003DDC",
+      ".L_00003CB4:",
+      "00003CB4: extsh. r0, r30",
+      "00003CB8: bne .L_00003CC4",
+      "00003CBC: lbz r28, 0x5(r29)",
+      "00003CC0: b .L_00003D2C",
+      ".L_00003CC4:",
+      "00003CC4: lbz r0, 0xf8(r31)",
+      "00003CC8: cmpwi r0, 0x1",
+      "00003CCC: beq .L_00003CF8",
+      "00003CD0: bge .L_00003CE0",
+      "00003CD4: cmpwi r0, 0x0",
+      "00003CD8: bge .L_00003CEC",
+      "00003CDC: b .L_00003D10",
+      ".L_00003CE0:",
+      "00003CE0: cmpwi r0, 0x3",
+      "00003CE4: bge .L_00003D10",
+      "00003CE8: b .L_00003D04",
+      ".L_00003CEC:",
+      "00003CEC: li r0, 0x1",
+      "00003CF0: stb r0, 0xe(r29)",
+      "00003CF4: b .L_00003D18",
+      ".L_00003CF8:",
+      "00003CF8: li r0, 0x2",
+      "00003CFC: stb r0, 0xe(r29)",
+      "00003D00: b .L_00003D18",
+      ".L_00003D04:",
+      "00003D04: li r0, 0x4",
+      "00003D08: stb r0, 0xe(r29)",
+      "00003D0C: b .L_00003D18",
+      ".L_00003D10:",
+      "00003D10: li r0, 0x8",
+      "00003D14: stb r0, 0xe(r29)",
+      ".L_00003D18:",
+      "00003D18: li r3, 0x2c",
+      "00003D1C: li r4, 0x1",
+      "00003D20: li r5, 0x1",
+      "00003D24: bl fn_17_3A28",
+      "00003D28: b .L_00003DE8",
+      ".L_00003D2C:",
+      "00003D2C: mr r3, r28",
+      "00003D30: bl fn_1_12CB04",
+      "00003D34: extsh r0, r3",
+      "00003D38: cmpwi r0, 0x1",
+      "00003D3C: beq .L_00003D9C",
+      "00003D40: bge .L_00003D50",
+      "00003D44: cmpwi r0, 0x0",
+      "00003D48: bge .L_00003DC8",
+      "00003D4C: b .L_00003DD8",
+      ".L_00003D50:",
+      "00003D50: cmpwi r0, 0x3",
+      "00003D54: bge .L_00003DD8",
+      "00003D58: mr r3, r28",
+      "00003D5C: mr r4, r30",
+      "00003D60: mr r5, r30",
+      "00003D64: bl fn_17_3A28",
+      "00003D68: mr r3, r28",
+      "00003D6C: li r4, 0x0",
+      "00003D70: bl fn_1_12CCB0",
+      "00003D74: mr r5, r30",
+      "00003D78: li r4, 0x2",
+      "00003D7C: bl fn_17_3A28",
+      "00003D80: mr r3, r28",
+      "00003D84: li r4, 0x1",
+      "00003D88: bl fn_1_12CCB0",
+      "00003D8C: mr r5, r30",
+      "00003D90: li r4, 0x3",
+      "00003D94: bl fn_17_3A28",
+      "00003D98: b .L_00003DD8",
+      ".L_00003D9C:",
+      "00003D9C: mr r3, r28",
+      "00003DA0: mr r4, r30",
+      "00003DA4: mr r5, r30",
+      "00003DA8: bl fn_17_3A28",
+      "00003DAC: mr r3, r28",
+      "00003DB0: li r4, 0x0",
+      "00003DB4: bl fn_1_12CCB0",
+      "00003DB8: mr r5, r30",
+      "00003DBC: li r4, 0x2",
+      "00003DC0: bl fn_17_3A28",
+      "00003DC4: b .L_00003DD8",
+      ".L_00003DC8:",
+      "00003DC8: mr r3, r28",
+      "00003DCC: mr r4, r30",
+      "00003DD0: mr r5, r30",
+      "00003DD4: bl fn_17_3A28",
+      ".L_00003DD8:",
+      "00003DD8: addi r30, r30, 0x1",
+      ".L_00003DDC:",
+      "00003DDC: extsh r0, r30",
+      "00003DE0: cmpwi r0, 0x2",
+      "00003DE4: blt .L_00003CB4",
+      ".L_00003DE8:",
+      "00003DE8: lwz r0, 0x24(r1)",
+      "00003DEC: lwz r31, 0x1c(r1)",
+      "00003DF0: lwz r30, 0x18(r1)",
+      "00003DF4: lwz r29, 0x14(r1)",
+      "00003DF8: lwz r28, 0x10(r1)",
+      "00003DFC: mtlr r0",
+      "00003E00: addi r1, r1, 0x20",
+      "00003E04: blr"
+    ],
+    "function_body": "unchanged",
+    "hash_gate": "16 files OK"
+  },
+  "fn_3_130C8": {
+    "section": ".data",
+    "start": 13152,
+    "size": 568,
+    "bytes": "4d6f766520437572736f720000000000834a815b835c838b82cc88da93ae000048656c700000000090e096be95b682cc955c8ea6000000004368616e67652050656e2053697a65008379839383548343835982cc95cf8d5800000000446973706c6179204772696400000000834f838a8362836882cc955c8ea60000537972696e6765008358837c834383670000000053656c65637400008c8892e8000000004261636b0000000082e082c782e900004368616e676520436f6c6f7200000000904682cc95cf8d58000000005b454d424c454d20454449544f525d2048454c50000000005b454d424c454d20454449544f525d204d414e55414c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000656d626c656d5f6d616b65725f63616c63000000656d626c656d5f6d616b65725f64697370000000656d626c656d2e63000000002e2f656d626c656d2f73616d706c652e62696e002e2f656d",
+    "relocations": [
+      {
+        "offset": 24,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3360",
+        "addend": 0
+      },
+      {
+        "offset": 28,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 32,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 36,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 40,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 44,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3370",
+        "addend": 0
+      },
+      {
+        "offset": 48,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3380",
+        "addend": 0
+      },
+      {
+        "offset": 52,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 56,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 60,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 64,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 68,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3388",
+        "addend": 0
+      },
+      {
+        "offset": 72,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3360",
+        "addend": 0
+      },
+      {
+        "offset": 76,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 80,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 84,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 88,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 92,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3370",
+        "addend": 0
+      },
+      {
+        "offset": 96,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3398",
+        "addend": 0
+      },
+      {
+        "offset": 100,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 104,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 108,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 112,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 116,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_33A8",
+        "addend": 0
+      },
+      {
+        "offset": 120,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_33BC",
+        "addend": 0
+      },
+      {
+        "offset": 124,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 128,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 132,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 136,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 140,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_33CC",
+        "addend": 0
+      },
+      {
+        "offset": 144,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_33DC",
+        "addend": 0
+      },
+      {
+        "offset": 148,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 152,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 156,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 160,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 164,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_33E4",
+        "addend": 0
+      },
+      {
+        "offset": 168,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_33F0",
+        "addend": 0
+      },
+      {
+        "offset": 172,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 176,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 180,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 184,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 188,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_33F8",
+        "addend": 0
+      },
+      {
+        "offset": 192,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3400",
+        "addend": 0
+      },
+      {
+        "offset": 196,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 200,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 204,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 208,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 212,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3408",
+        "addend": 0
+      },
+      {
+        "offset": 216,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3410",
+        "addend": 0
+      },
+      {
+        "offset": 220,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 224,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 228,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 232,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 236,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3420",
+        "addend": 0
+      },
+      {
+        "offset": 240,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_342C",
+        "addend": 0
+      },
+      {
+        "offset": 244,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 248,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 252,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 256,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_336C",
+        "addend": 0
+      },
+      {
+        "offset": 260,
+        "kind": 1,
+        "module": "customize",
+        "symbol": "lbl_3_data_3444",
+        "addend": 0
+      }
+    ],
+    "relocation_offsets": [
+      252,
+      256,
+      260,
+      264,
+      268,
+      272,
+      276,
+      280,
+      284,
+      288,
+      292,
+      296,
+      300,
+      304,
+      308,
+      312,
+      316,
+      320,
+      324,
+      328,
+      332,
+      336,
+      340,
+      344,
+      348,
+      352,
+      356,
+      360,
+      364,
+      368,
+      372,
+      376,
+      380,
+      384,
+      388,
+      392,
+      396,
+      400,
+      404,
+      408,
+      412,
+      416,
+      420,
+      424,
+      428,
+      432,
+      436,
+      440,
+      444,
+      448,
+      452,
+      456,
+      460,
+      464,
+      468,
+      472,
+      476,
+      480,
+      484,
+      488
+    ],
+    "objects": [
+      {
+        "name": "lbl_3_data_3360",
+        "address": 13152,
+        "size": 12
+      },
+      {
+        "name": "lbl_3_data_336C",
+        "address": 13164,
+        "size": 4
+      },
+      {
+        "name": "lbl_3_data_3370",
+        "address": 13168,
+        "size": 16
+      },
+      {
+        "name": "lbl_3_data_3380",
+        "address": 13184,
+        "size": 5
+      },
+      {
+        "name": "lbl_3_data_3388",
+        "address": 13192,
+        "size": 16
+      },
+      {
+        "name": "lbl_3_data_3398",
+        "address": 13208,
+        "size": 16
+      },
+      {
+        "name": "lbl_3_data_33A8",
+        "address": 13224,
+        "size": 20
+      },
+      {
+        "name": "lbl_3_data_33BC",
+        "address": 13244,
+        "size": 13
+      },
+      {
+        "name": "lbl_3_data_33CC",
+        "address": 13260,
+        "size": 16
+      },
+      {
+        "name": "lbl_3_data_33DC",
+        "address": 13276,
+        "size": 8
+      },
+      {
+        "name": "lbl_3_data_33E4",
+        "address": 13284,
+        "size": 12
+      },
+      {
+        "name": "lbl_3_data_33F0",
+        "address": 13296,
+        "size": 7
+      },
+      {
+        "name": "lbl_3_data_33F8",
+        "address": 13304,
+        "size": 8
+      },
+      {
+        "name": "lbl_3_data_3400",
+        "address": 13312,
+        "size": 5
+      },
+      {
+        "name": "lbl_3_data_3408",
+        "address": 13320,
+        "size": 8
+      },
+      {
+        "name": "lbl_3_data_3410",
+        "address": 13328,
+        "size": 13
+      },
+      {
+        "name": "lbl_3_data_3420",
+        "address": 13344,
+        "size": 12
+      },
+      {
+        "name": "lbl_3_data_342C",
+        "address": 13356,
+        "size": 21
+      },
+      {
+        "name": "lbl_3_data_3444",
+        "address": 13380,
+        "size": 304
+      },
+      {
+        "name": "lbl_3_data_3574",
+        "address": 13684,
+        "size": 60
+      },
+      {
+        "name": "gap_04_00003385_data",
+        "address": 13189,
+        "size": 3
+      },
+      {
+        "name": "gap_04_000033C9_data",
+        "address": 13257,
+        "size": 3
+      },
+      {
+        "name": "gap_04_000033F7_data",
+        "address": 13303,
+        "size": 1
+      },
+      {
+        "name": "gap_04_00003405_data",
+        "address": 13317,
+        "size": 3
+      },
+      {
+        "name": "gap_04_0000341D_data",
+        "address": 13341,
+        "size": 3
+      },
+      {
+        "name": "gap_04_00003441_data",
+        "address": 13377,
+        "size": 3
+      }
+    ],
+    "repair": "Restore measured .data bytes and symbolic ADDR32 bindings, retaining the existing instruction body",
+    "generator": "dataimport.pool_objects + dataimport.payload; canonical subobject bindings",
+    "compiled_data_sha256": "01a30b1c59e715f72a4356042856d90a852fcd1524b406c3c88e267c2f5986bf",
+    "compiled_relocation_count": 60,
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "compiler_object_sha256": "5d3ca2862e4419d737c0062c56a0bbb3a482ca99dd52e97c9a3890fcf14d5c35",
+    "validation": "Fresh stock-MWCC object: all 568 initialized bytes and 60 symbolic ADDR32 bindings equal retail before pool cleanup",
+    "hash_gate": "16 files OK"
+  },
+  "named_primer_copies": {
+    "functions": [
+      "fn_800756B0",
+      "fn_8005A24C",
+      "fn_3_990C"
+    ],
+    "rule": "Only emitted-primer uses; exclude verified bound objects and definitions owned by the current unit; retain all live relocation guards",
+    "hash_gate": "16 files OK"
+  }
+}

@@ -2394,6 +2394,127 @@ void fn_1_FDC00(void *arg0, struct fn_1_FDC00_Arg1 *arg1, f32 arg2) {
 }
 /* fzgx:end fn_1_FDC00 */
 
+/* fzgx:begin fn_1_FDD7C */
+extern void fn_80008BEC(void *arg0, int arg1, int arg2);
+extern void fn_1_FCA10(void);
+extern int fn_1_FCF50(void);
+extern void *fn_1_563B8(void *);
+extern f32 lbl_1_rodata_761C[13];
+extern void fn_1_7EB8C(void *, f32);
+extern void fn_1_7F20C(void *, s32, f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DBAC(void *);
+extern void fn_1_FD3A8(void);
+extern void *memset(void *, int, u32);
+extern void fn_1_FE7D8(u8 *, s32);
+extern void fn_1_FF420(u8 *);
+extern void fn_80074788(int);
+extern void fn_80072864(int);
+extern void fn_800745A4(int, int, int, int, int, int);
+extern void fn_800734A8(int, int, int, int);
+extern void fn_80072AB0(int, int, int);
+extern void fn_800735C8(int, int);
+extern void fn_80073620(int, int);
+extern void fn_80073C6C(int);
+extern void fn_80072C24(int, int, int, int, int);
+extern void fn_80072D64(int, int, int, int, int, int);
+extern void fn_80072CC4(int, int, int, int, int);
+extern void fn_80072E20(int, int, int, int, int, int);
+extern void fn_80073678(int);
+extern void fn_80074660(int);
+extern void fn_80074918(int, int, int);
+extern void fn_800720B0(int);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
+extern void fn_1_9AD54(void);
+extern void fn_1_9AD88(void);
+extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
+extern const f64 lbl_1_rodata_760C;
+extern void OSPanic(const char *, int, const char *, ...);
+extern void lbl_8006D758(void);
+extern void lbl_8006E13C(void *);
+extern void lbl_8006E0A4(void *);
+extern void fn_80008BA8(void *, void *, u32);
+extern u8 lbl_1_bss_851E0[36];
+extern void fn_1_7F230(void *, s32, f32);
+extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
+extern void fn_1_FEC7C(void *object);
+extern const f32 lbl_1_rodata_76A8;
+
+extern f32 lbl_1_rodata_7614[2];
+
+extern f32 fn_1_843BC(void *);
+extern int fn_1_FCF50(void);
+extern void *fn_1_563B8(void *);
+extern void fn_1_566EC(s32, s32);
+extern void fn_1_7EB8C(void *, f32);
+extern void fn_1_7F20C(void *, s32, f32);
+extern void fn_1_7F1E8(void *, s32, f32);
+extern void lbl_8006DFE8(void *);
+extern void lbl_8006DCA4(void);
+
+typedef struct {
+    u8 pad_0[0x32C];
+    u8 *unk_32C;
+    u8 pad_330[0x60];
+    u32 unk_390;
+    u8 pad_394[0x26];
+    s16 unk_3BA;
+} BgCasRacer;
+
+typedef struct {
+    u8 pad_0[0x40E0];
+    f32 unk_40E0;
+    u8 pad_40E4[0xC];
+    s16 *unk_40F0;
+} BgCasScene;
+
+void fn_1_FDD7C(BgCasRacer **arg0, BgCasScene *scene) {
+    s16 index;
+    BgCasRacer *racer;
+    f32 value;
+    void *saved;
+    s16 state;
+    s32 mode;
+
+    racer = *arg0;
+    state = racer->unk_3BA;
+    if (state == 3) {
+        racer->unk_3BA = 2;
+    }
+    if (scene->unk_40F0 == NULL) {
+        return;
+    }
+    index = *scene->unk_40F0;
+    if (racer->unk_32C == NULL) {
+        value = lbl_1_rodata_7614[0];
+    } else {
+        value = scene->unk_40E0 = fn_1_843BC(racer);
+        if (value <= 0.7f) {
+            return;
+        }
+    }
+    saved = fn_1_563B8((void *)fn_1_FCF50);
+    mode = index;
+    fn_1_566EC(1, 0xFF);
+    if (racer->unk_32C != NULL) {
+        lbl_8006DFE8(racer->unk_32C + 0x14C);
+    } else {
+        lbl_8006DCA4();
+    }
+    if (index == 0) {
+        fn_1_7EB8C(racer, value);
+    } else if (racer->unk_390 & 0x04000000) {
+        fn_1_7F20C(racer, mode, value);
+    } else {
+        fn_1_7F1E8(racer, mode, value);
+    }
+    fn_1_566EC(0, 0);
+    fn_1_563B8(saved);
+    racer->unk_3BA = state;
+}
+/* fzgx:end fn_1_FDD7C */
+
 /* fzgx:begin fn_1_FDFF4 */
 #include "rel/main_rel/bg_cas.h"
 

@@ -4963,7 +4963,54 @@ void fn_1_AA6D8(u8 kind, u8 slot, DriverParam *param) {
 }
 /* fzgx:end fn_1_AA6D8 */
 
-/* fzgx:begin fn_1_AAB98 pool */
+/* fzgx:begin fn_1_AAB98 */
+extern void *lbl_801A6410;
+extern void fn_80071718(void *value);
+extern void fn_800711A8(void *value);
+extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
+extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006E0A4(void *arg0);
+extern void fn_8006F6A8(void *arg0);
+extern void lbl_8006DB30(void);
+extern void fn_1_A861C(void *arg0, void *arg1);
+extern void fn_1_A8834(void *arg0, void *arg1);
+extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
+extern void fn_1_3920(void);
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern void fn_8001A78C(void (*func)(void));
+extern void fn_8001A7D0(void (*func)(void));
+extern void fn_1_A9420(u8 value);
+extern void fn_1_A948C(int);
+extern void fn_1_A943C(int, int);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern void fn_1_A942C(u8 value);
+extern void fn_1_A96BC(void);
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A5C98(void *);
+extern u8 lbl_1_bss_716C8[320];
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A9420(u8 value);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern u32 fn_1_451C(void);
+extern void sprintf(void *buffer, char *format, ...);
+extern void fn_1_A5AA0(void *buffer, void *destination);
+extern u32 lbl_1_bss_71670;
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+extern void fn_1_A8528(void *arg0, void *arg1);
+extern u32 fn_1_A7024(f32, f32, f32, f32);
+extern u32 fn_80074918(u32, u32, u32);
+
 extern void *lbl_801A6410;
 extern void fn_80071718(void *value);
 extern void fn_800711A8(void *value);
@@ -5046,28 +5093,30 @@ typedef struct {
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u8 fzgx_obj_lbl_1_bss_716C0[8];
 fn_1_AAB98_Entry fzgx_obj_lbl_1_bss_716C8[2];
-u8 lbl_1_bss_71808[8];
+u8 lbl_1_bss_71808__fzgx_offset_0[4];
+u8 lbl_1_bss_7180C__fzgx_offset_0[4];
 fn_1_AAB98_Entry lbl_1_bss_71810;
-u8 lbl_1_bss_718B0;
+u8 lbl_1_bss_71810__fzgx_offset_A0;
 u8 lbl_1_bss_718B1;
 u8 lbl_1_bss_718B2;
-u8 lbl_1_bss_718B3;
-u8 lbl_1_bss_718B4_fill[0x5C48 - 0x1F4];
-u8 lbl_1_bss_77308;
+u8 fzgx_pool_lbl_1_bss_718B3;
+u8 fzgx_pool_lbl_1_bss_718B4_fill[0x5C48 - 0x1F4];
+u8 lbl_1_bss_772C8__fzgx_offset_40;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_716C0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_716C8;
-    s = *(u8 *)&lbl_1_bss_71808;
+    s = *(u8 *)&lbl_1_bss_71808__fzgx_offset_0;
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_1_bss_7180C__fzgx_offset_0;
     s = *(u8 *)&lbl_1_bss_71810;
-    s = *(u8 *)&lbl_1_bss_718B0;
+    s = *(u8 *)&lbl_1_bss_71810__fzgx_offset_A0;
     s = *(u8 *)&lbl_1_bss_718B1;
     s = *(u8 *)&lbl_1_bss_718B2;
-    s = *(u8 *)&lbl_1_bss_718B3;
-    s = *(u8 *)&lbl_1_bss_718B4_fill;
-    s = *(u8 *)&lbl_1_bss_77308;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_718B3;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_718B4_fill;
+    s = *(u8 *)&lbl_1_bss_772C8__fzgx_offset_40;
 }
 #pragma section code_type ".text"
 
@@ -5148,7 +5197,7 @@ static inline void fn_1_AAB98_commit(void) {
     e->unk_7 = 0;
     lbl_1_bss_718B1 = lbl_1_bss_718B2;
     e->unk_24 = cur->unk_24;
-    if (lbl_1_bss_77308 == 2) {
+    if (lbl_1_bss_772C8__fzgx_offset_40 == 2) {
         e->unk_2A |= 4;
         if (e->unk_24 != NULL) {
             e->unk_24->unk_8 &= ~4;
@@ -5181,9 +5230,9 @@ void fn_1_AAB98(void) {
     }
 
     if (idx == 0 && active) {
-        lbl_1_bss_77308 = 1;
+        lbl_1_bss_772C8__fzgx_offset_40 = 1;
         lbl_1_bss_718B2 = 0;
-    } else if (lbl_1_bss_77308 == 0) {
+    } else if (lbl_1_bss_772C8__fzgx_offset_40 == 0) {
         input = &lbl_1_bss_9F8;
         if (((input->unk_10 & 1) || (input->unk_12 & 1)) && lbl_1_bss_718B2 == 1) {
             fn_1_A2DC4(0xA9011300);
@@ -5193,16 +5242,16 @@ void fn_1_AAB98(void) {
             fn_1_A2DC4(0xA9011300);
             lbl_1_bss_718B2 = 1;
         }
-        lbl_1_bss_77308 = fn_1_AAB98_confirm();
+        lbl_1_bss_772C8__fzgx_offset_40 = fn_1_AAB98_confirm();
     }
 
-    switch (lbl_1_bss_77308) {
+    switch (lbl_1_bss_772C8__fzgx_offset_40) {
     case 2:
         fn_1_AAB98_setTone(&lbl_1_bss_71810);
         lbl_1_bss_718B2 = 0;
         /* fallthrough */
     case 1:
-        if (lbl_1_bss_77308 == 1 && !fn_1_AAB98_tick(&lbl_1_bss_71810)) {
+        if (lbl_1_bss_772C8__fzgx_offset_40 == 1 && !fn_1_AAB98_tick(&lbl_1_bss_71810)) {
             break;
         }
         fn_1_AAB98_commit();

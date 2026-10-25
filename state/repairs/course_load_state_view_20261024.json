@@ -1,0 +1,77 @@
+{
+  "symbol": "fn_1_7ACDC",
+  "bytes": 888,
+  "section": ".bss",
+  "base": "lbl_1_bss_6D600",
+  "base_address": 448000,
+  "view_size": 416,
+  "definition_changes": false,
+  "original_declared_size": 32,
+  "instruction_words_differing_before": 2,
+  "instruction_words_differing_after": 0,
+  "compiler": "GC/1.3.2",
+  "flags": "",
+  "source_repair": "Retain original Obj_1_bss_6D600 header type; expose full non-owning section view through the load-state fields. No object definition or ownership change.",
+  "retail_members": [
+    {
+      "symbol": "lbl_1_bss_6D600",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 448000,
+      "size": 32
+    },
+    {
+      "symbol": "lbl_1_bss_6D620",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 448032,
+      "size": 312
+    },
+    {
+      "symbol": "lbl_1_bss_6D758",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 448344,
+      "size": 24
+    },
+    {
+      "symbol": "lbl_1_bss_6D770",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 448368,
+      "size": 4
+    },
+    {
+      "symbol": "lbl_1_bss_6D774",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 448372,
+      "size": 4
+    },
+    {
+      "symbol": "lbl_1_bss_6D778",
+      "module": "main_rel",
+      "section": ".bss",
+      "address": 448376,
+      "size": 48
+    }
+  ],
+  "access_evidence": [
+    "0007AD4C: lwz r0, 0x170(r30)",
+    "0007AD58: lwz r0, 0x174(r30)",
+    "0007AD68: lwz r3, 0x170(r30)",
+    "0007AD7C: stw r0, 0x170(r30)",
+    "0007AD80: lwz r3, 0x174(r30)",
+    "0007AD94: stw r0, 0x174(r30)",
+    "0007ADEC: stw r3, 0x170(r30)",
+    "0007ADF4: stw r3, 0x198(r30)",
+    "0007ADFC: lwz r4, 0x170(r30)",
+    "0007AE04: stw r3, 0x174(r30)",
+    "0007AE0C: stw r3, 0x19c(r30)",
+    "0007AF90: stw r5, 0x178(r30)",
+    "0007AF9C: lwz r7, 0x174(r30)",
+    "0007B018: stw r0, 0x178(r30)"
+  ],
+  "hash_gate": "16 files OK",
+  "verified_commit": "62ec754fd"
+}

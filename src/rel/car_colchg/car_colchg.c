@@ -489,6 +489,140 @@ void colchg_chgcol_init(void) {
 }
 /* fzgx:end colchg_chgcol_init */
 
+/* fzgx:begin fn_9_AF0 */
+extern void colchg_menu_disp(void);
+void fn_1_426C(s16);
+extern void colchg_ezsel_disp(void);
+extern void colchg_save_disp(void);
+extern u16 lbl_1_bss_968;
+extern struct Struct_lbl_1_bss_D58 lbl_1_bss_D58;
+s32 fn_1_4C10(void);
+void fn_1_A8EB0(s32, s32);
+s32 fn_1_7F49C(s16, s32, void *);
+void fn_1_A8DD4(const char *, ...);
+void fn_1_80058(s8, struct CarColchgEntry *);
+void fn_1_80C18(u32, struct CarColchgEntry *, s32);
+void fn_1_426C(s16);
+s32 fn_1_4C10(void);
+void fn_1_A8EB0(s32, s32);
+s32 fn_1_7F49C(s16, s32, void *);
+void fn_1_A8DD4(const char *, ...);
+void fn_1_80058(s8, struct CarColchgEntry *);
+void fn_1_80C18(u32, struct CarColchgEntry *, s32);
+extern s16 lbl_1_bss_962;
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern struct Struct_lbl_1_bss_970 lbl_1_bss_970;
+extern u16 lbl_1_bss_96A;
+extern struct Entry *lbl_1_data_1FB6C[];
+extern u32 lbl_801A6410;
+void fn_1_7FA04(u32);
+void fn_1_8D168(u32);
+void fn_1_435C(u32);
+void fn_1_41A8(void);
+void fn_1_46B4(u32, u32, void *, s32);
+void fn_1_6400(void);
+u16 fn_1_3F8C(char *, void (*)(void), s32, s32);
+void fn_1_4A00(s32, s32, u32);
+extern void fn_9_1BCC(void);
+extern void fn_9_1AC4(void);
+extern u32 lbl_801A66A0;
+
+struct Struct_lbl_1_bss_D58 {
+    u16 held;  // 0x0
+    u8 pad_2[0x6];
+    volatile u16 hold;  // 0x8  volatile: retail re-reads the pad for every test
+    u8 pad_A[0x6];
+    volatile u16 trig;  // 0x10 volatile: retail re-reads the pad for every test
+    volatile u16 rep;   // 0x12 volatile: retail re-reads the pad for every test
+};
+
+/* the R/G/B name table (lbl_9_rodata_8) points at the retail strings */
+extern char lbl_9_data_7C[];
+extern char lbl_9_data_80[];
+extern char lbl_9_data_84[];
+
+struct Entry {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;  // color, 0xRRGGBBAA
+};
+
+/* car_colchg.c's .data up to this function's strings, in retail order: retail addresses them
+   off the TU's section base (lbl_9_data_0), so the earlier objects are laid out here too. */
+s16 fzgx_obj_lbl_9_data_0 = 5;
+char fzgx_obj_lbl_9_data_4[0x28] = "car_colchg.c\0\0\0\0LightMain\0\0\0light_calc";
+char fzgx_obj_lbl_9_data_2C[0x11] = "colchg_menu_disp";
+char fzgx_obj_lbl_9_data_40[0x13] = "colchg_selcar_disp";
+char fzgx_obj_lbl_9_data_54[0x14] = "colchg_selmate_disp";
+char fzgx_obj_lbl_9_data_68[0x13] = "colchg_chgcol_disp";
+char fzgx_obj_lbl_9_data_7C[2] = "R";
+char fzgx_obj_lbl_9_data_80[2] = "G";
+char fzgx_obj_lbl_9_data_84[4] = "B";
+char lbl_9_data_84__fzgx_offset_4[0xC] = "%s%s:%d\n";
+char lbl_9_data_84__fzgx_offset_10[4] = ">";
+char lbl_9_data_84__fzgx_offset_14[2] = " ";
+
+// Channel editor: pick R/G/B with left/right, change it with up/down, write it back into the entry.
+void fn_9_AF0(void) {
+    s16 rgb[3];
+    s16 *chan;
+    struct Entry *entries;
+    u32 color;
+    s8 delta;
+    s8 step;
+    s8 i;
+    s32 value;
+    u8 shift;
+
+    if (fn_1_4C10() == 0) {
+        if ((lbl_1_bss_D58.hold >> 9) & 1) {
+            lbl_1_bss_96A = 0x76;
+        }
+        delta = 0;
+        step = 0;
+        entries = lbl_1_data_1FB6C[lbl_9_bss_8->unk_0];
+        if (((lbl_1_bss_D58.trig >> 3) & 1) || ((lbl_1_bss_D58.rep >> 3) & 1)) {
+            delta = -1;
+        }
+        if (((lbl_1_bss_D58.trig >> 2) & 1) || ((lbl_1_bss_D58.rep >> 2) & 1)) {
+            delta++;
+        }
+        if (delta != 0) {
+            value = (*(Obj_9_bss_8_Target **)&lbl_9_bss_8)->unk_6 + delta;
+            (*(Obj_9_bss_8_Target **)&lbl_9_bss_8)->unk_6 = value > 2 ? 0 : value < 0 ? 2 : value;
+        }
+        color = entries[lbl_9_bss_8->unk_4].unk8;
+        chan = (0, rgb);  // the comma keeps chan its own pointer; `chan = rgb` is folded into rgb
+        rgb[0] = color >> 24;
+        rgb[1] = (color >> 16) & 0xFF;
+        rgb[2] = (color >> 8) & 0xFF;
+        if ((lbl_1_bss_D58.trig & 1) || (lbl_1_bss_D58.rep & 1)) {
+            step = -1;
+        }
+        if (((lbl_1_bss_D58.trig >> 1) & 1) || ((lbl_1_bss_D58.rep >> 1) & 1)) {
+            step++;
+        }
+        if (step != 0) {
+            value = rgb[(*(Obj_9_bss_8_Target **)&lbl_9_bss_8)->unk_6] + step;
+            rgb[(*(Obj_9_bss_8_Target **)&lbl_9_bss_8)->unk_6] = value > 255 ? 0 : value < 0 ? 255 : value;
+        }
+        shift = (3 - (*(Obj_9_bss_8_Target **)&lbl_9_bss_8)->unk_6) * 8;
+        entries[(*(Obj_9_bss_8_Target **)&lbl_9_bss_8)->unk_4].unk8 &= ~(0xFF << shift);
+        entries[lbl_9_bss_8->unk_4].unk8 |= rgb[lbl_9_bss_8->unk_6] << shift;
+        {
+            char *names[3] = {lbl_9_data_7C, lbl_9_data_80, lbl_9_data_84};
+
+            fn_1_A8EB0(2, 0x14);
+            for (i = 0; i < 3; i++) {
+                fn_1_A8DD4(lbl_9_data_84__fzgx_offset_4, i == lbl_9_bss_8->unk_6 ? lbl_9_data_84__fzgx_offset_10 : lbl_9_data_84__fzgx_offset_14,
+                           names[i], chan[i]);
+            }
+        }
+    }
+}
+/* fzgx:end fn_9_AF0 */
+
 /* fzgx:begin fn_9_DC0 */
 // Refresh the collision-change state from the current global settings.
 void fn_9_DC0(void) {

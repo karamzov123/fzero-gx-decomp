@@ -130,7 +130,54 @@ void fn_1_C6F80(u8 value) {
 }
 /* fzgx:end fn_1_C6F80 */
 
-/* fzgx:begin fn_1_C6F8C pool */
+/* fzgx:begin fn_1_C6F8C */
+extern u32 lbl_1_bss_7AC48[5];
+extern void *lbl_801A6410;
+extern void fn_1_46B4(void *, u32, void *, u32);
+extern void fn_1_C489C(void);
+extern u32 lbl_1_bss_7AC54[4];
+extern u8 lbl_1_bss_7AC90[12];
+extern u32 lbl_1_rodata_5D40[7];
+extern u32 fn_1_5910(void *);
+extern u8 fn_1_86810(void *);
+extern u32 fn_1_3F7E0(void);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(u32);
+extern const f32 lbl_1_rodata_5C3C;
+extern const f32 lbl_1_rodata_5D18;
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_495C8(u32);
+extern void fn_1_49728(u32);
+extern void fn_1_4AE0C(void *, ...);
+extern const f32 lbl_1_rodata_5D5C;
+extern const f32 lbl_1_rodata_5D60;
+extern f32 lbl_1_rodata_26F8[22];
+extern const f32 lbl_1_rodata_5D64;
+extern const f32 lbl_1_rodata_5D68;
+extern void fn_1_51E60(void *);
+extern const f32 lbl_1_rodata_5D6C;
+extern void fn_1_C8DC0(void);
+extern void fn_80008E84(u32);
+extern const f32 lbl_1_rodata_5D88;
+extern const f32 lbl_1_rodata_5D8C;
+extern void fn_1_4955C(f32, f32);
+extern const f32 lbl_1_rodata_5CD4;
+extern const f32 lbl_1_rodata_5D90;
+extern void fn_1_4966C(f32, f32);
+extern const f64 lbl_1_rodata_5C00;
+extern const f32 lbl_1_rodata_5CFC;
+extern const f32 lbl_1_rodata_5DC8;
+extern const f32 lbl_1_rodata_5E0C;
+extern int sprintf(char *, const char *, ...);
+extern s16 fn_1_12C7B8(s16);
+extern s32 fn_1_465D0(char *, s32);
+extern s8 fn_1_86690(s8);
+extern u32 fn_1_12C930(u32);
+extern u8 fn_1_86624(void);
+extern u8 lbl_1_bss_9C;
+extern void *fn_1_868C0(s8);
+extern void fn_80006E10(u32);
+
 extern const f32 lbl_1_rodata_5A50;
 extern const f32 lbl_1_rodata_5A54;
 extern const f32 lbl_1_rodata_5A58;
@@ -241,17 +288,10 @@ typedef struct lbl_1_bss_8B3A0_t {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 lbl_1_bss_3C30_t fzgx_obj_lbl_1_bss_3C30;
-u32 fzgx_obj_lbl_1_bss_50EC[5];
-u32 fzgx_obj_lbl_1_bss_5100;
-u32 fzgx_obj_lbl_1_bss_5104[13];
-u32 fzgx_obj_lbl_1_bss_5138[65];
-u32 lbl_1_bss_523C[8];
+extern u32 lbl_1_bss_523C[8];
 lbl_1_bss_8B3A0_t fzgx_obj_lbl_1_bss_8B3A0;
-u32 lbl_1_bss_8B4EC[32];
-u32 fzgx_obj_lbl_1_bss_8B56C[24];
-u32 lbl_1_bss_8B5CC[8];
-u32 fzgx_obj_lbl_1_bss_8B5EC;
-u8 fzgx_obj_lbl_1_bss_8B5F0;
+extern u32 lbl_1_bss_8B4EC[32];
+extern u32 lbl_1_bss_8B5CC[8];
 
 #pragma opt_loop_invariants off
 #pragma opt_dead_assignments off
@@ -2650,6 +2690,94 @@ void fn_1_CFA4C(u32 arg0, u32 arg1) {
     fn_1_520CC();
 }
 /* fzgx:end fn_1_CFA4C */
+
+/* fzgx:begin fn_1_CFB28 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/enemy_ctrl.h"
+
+extern u32 lbl_1_rodata_26F8;
+extern const f32 lbl_1_rodata_6020;
+extern const f64 lbl_1_rodata_6018;
+extern const f32 lbl_1_rodata_6024;
+extern const f32 lbl_1_rodata_5CFC;
+extern u16 fn_1_48690(u32);
+extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
+extern int fn_1_4F734(FontDrawPacket *);
+
+#pragma opt_common_subs on
+void fn_1_CFB28(f32 value) {
+    s32 index;
+    f64 cur;
+    f64 d;
+    FontDrawPacket packet;
+
+    switch (lbl_1_data_2A7E0.unk_0) {
+    case 0:
+        break;
+    case 1:
+    case 17:
+    case 18:
+        index = 0;
+        break;
+    case 2:
+    case 3:
+        index = 1;
+        break;
+    case 4:
+    case 5:
+        index = 2;
+        break;
+    case 6:
+    case 7:
+        index = 3;
+        break;
+    case 8:
+    case 9:
+        index = 4;
+        break;
+    case 10:
+        index = 5;
+        break;
+    case 11:
+    case 12:
+        index = 6;
+        break;
+    case 13:
+        index = 7;
+        break;
+    case 14:
+        index = 8;
+        break;
+    case 15:
+        index = 9;
+        break;
+    case 16:
+        index = 10;
+        break;
+    case 19:
+        index = 11;
+        break;
+    }
+
+    packet = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+    packet.image = (0x10000 - 0x4500);
+    fn_1_51678(&packet, packet.image, 0, (s16)(36 * index), (s16)fn_1_48690(packet.image), 36);
+
+    d = (lbl_1_rodata_6020 - lbl_1_data_3D554) * lbl_1_rodata_6018;
+    cur = lbl_1_data_3D554 + d;
+    /* byte-offset stores, in this order: named members (y, alpha, z, flags, x) reschedule the
+     * fadd ahead of the stores and cost a register swap */
+    *(f32 *)((u8 *)&packet + 0x8) = lbl_1_rodata_6024;
+    *(f32 *)((u8 *)&packet + 0x2C) = value;
+    *(f32 *)((u8 *)&packet + 0xC) = lbl_1_rodata_5CFC;
+    *(u32 *)((u8 *)&packet + 0x30) = 10;
+    lbl_1_data_3D554 = cur;
+    *(f32 *)((u8 *)&packet + 0x4) = lbl_1_data_3D554;
+    fn_1_4F734(&packet);
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_CFB28 */
 
 /* fzgx:begin fn_1_CFCA4 noprologue */
 #include "types.h"

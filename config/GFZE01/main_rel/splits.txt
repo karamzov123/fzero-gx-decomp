@@ -8705,3 +8705,30 @@ rel/main_rel/accessory/fn_1_11ED0C.c:
 
 rel/main_rel/bg_cas/fn_1_FC760.c:
 	.text       start:0x000FC760 end:0x000FCA10 align:4
+
+rel/main_rel/screen_effect/fn_1_7ACDC.c:
+	.text       start:0x0007ACDC end:0x0007B054 align:4
+
+rel/main_rel/stcoli/fn_1_253A4.c:
+	.text       start:0x000253A4 end:0x00025480 align:4
+
+rel/main_rel/bg_cas/fn_1_FDD7C.c:
+	.text       start:0x000FDD7C end:0x000FDEC8 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_CFB28.c:
+	.text       start:0x000CFB28 end:0x000CFCA4 align:4
+
+rel/main_rel/rep_memcard/fn_1_154A08.c:
+	.text       start:0x00154A08 end:0x00154BE4 align:4
+
+rel/main_rel/live_camera/fn_1_1361C.c:
+	.text       start:0x0001361C end:0x0001383C align:4
+
+rel/main_rel/game/fn_1_37E98.c:
+	.text       start:0x00037E98 end:0x000382C4 align:4
+
+rel/main_rel/custom_memcard/fn_1_132774.c:
+	.text       start:0x00132774 end:0x00132FB4 align:4
+
+rel/main_rel/ranking/fn_1_1556B4.c:
+	.text       start:0x001556B4 end:0x00155F7C align:4

@@ -495,6 +495,139 @@ s32 fn_1_45E84(s32 value) {
 }
 /* fzgx:end fn_1_45E84 */
 
+/* fzgx:begin fn_1_45E98 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+/* Non-owning view of load.c BSS, through its buffer pointer at +0x586c.
+ * Individual retail objects retain their definitions and ownership. */
+extern u8 lbl_1_bss_384C0[0x5870];
+
+extern void fn_1_D3214(void);
+extern void fn_1_45890(u32);
+extern void DCInvalidateRange(void *, u32);
+typedef void (*Sig_ARQPostRequest_ARQCallback)(u32);
+typedef struct Sig_ARQPostRequest_ARQRequest {
+    struct Sig_ARQPostRequest_ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    Sig_ARQPostRequest_ARQCallback callback;
+} Sig_ARQPostRequest_ARQRequest;
+extern void ARQPostRequest(Sig_ARQPostRequest_ARQRequest *, u32, u32, u32, u32, void *, u32, Sig_ARQPostRequest_ARQCallback);
+typedef struct Sig_fn_8006A3DC_Fn8006A3DCHeader {
+    u32 magic;
+    u32 data_offset;
+    u32 unk_8;
+    u32 table_offset;
+} Sig_fn_8006A3DC_Fn8006A3DCHeader;
+typedef struct Sig_fn_8006A3DC_Fn8006A3DCResult {
+    void *header, *data, *table;
+    u32 count;
+    void *end;
+    u32 unk_14;
+    u32 unk_18;
+} Sig_fn_8006A3DC_Fn8006A3DCResult;
+extern s32 fn_8006A3DC(Sig_fn_8006A3DC_Fn8006A3DCHeader *, Sig_fn_8006A3DC_Fn8006A3DCResult *);
+extern void OSPanic(const char *, int, const char *, ...);
+extern void fn_80006FE0(char *, u32);
+extern void strcat(void *, void *);
+extern s32 fn_8006A554(void *, void *);
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+} fn_1_45E98_Entry;
+typedef struct {
+    char filename[0x88];
+    char message[0x14];
+    char path[0x10];
+} fn_1_45E98_Data;
+#pragma opt_common_subs off
+static inline int is_busy(u8 *base) {
+    s8 n;
+    if (*(s32 *)(base + 0x10) != 0) return 1;
+    for (n = 0; n < 16; n++) {
+        if (((s32 *)(base + 0x5824))[n] != 0) return 1;
+    }
+    return 0;
+}
+#pragma opt_common_subs reset
+
+extern u8 fn_1_451E4__fzgx_offset_104[];
+extern u8 fn_1_451E4__fzgx_offset_110[];
+extern u8 fn_1_451E4__fzgx_offset_11C[];
+extern u8 fn_1_451E4__fzgx_offset_128[];
+extern u8 fn_1_451E4__fzgx_offset_26C[];
+extern u8 fn_1_451E4__fzgx_offset_298[];
+extern u8 fn_1_451E4__fzgx_offset_39C[];
+extern u8 fn_1_451E4__fzgx_offset_3D8[];
+extern u8 fn_1_451E4__fzgx_offset_534[];
+extern u8 fn_1_451E4__fzgx_offset_64[];
+extern u8 fn_1_451E4__fzgx_offset_78[];
+extern u8 fn_1_451E4__fzgx_offset_A0[];
+extern u8 fn_1_451E4__fzgx_offset_C0[];
+extern u8 fn_1_451E4__fzgx_offset_EC[];
+extern u8 fn_1_451E4__fzgx_offset_F8[];
+static union {u32 words[34]; char view[0x88];} fzgx_pool_native_lbl_1_data_6730_filename = {{0x6C6F6164, 0x2E630000, 0x63616E6E, 0x6F74206F, 0x70656E20, 0x66696C65, 0x0A000000, 0x63616E6E, 0x6F742072, 0x65616420, 0x66696C65, 0x0A000000, 0x4152414D, 0x20617263, 0x68697665, 0x20657874, 0x656E6420, 0x6572726F, 0x72000000, (u32)fn_1_451E4__fzgx_offset_534, (u32)fn_1_451E4__fzgx_offset_EC, (u32)fn_1_451E4__fzgx_offset_F8, (u32)fn_1_451E4__fzgx_offset_104, (u32)fn_1_451E4__fzgx_offset_110, (u32)fn_1_451E4__fzgx_offset_11C, (u32)fn_1_451E4__fzgx_offset_128, (u32)fn_1_451E4__fzgx_offset_26C, (u32)fn_1_451E4__fzgx_offset_298, (u32)fn_1_451E4__fzgx_offset_39C, (u32)fn_1_451E4__fzgx_offset_3D8, (u32)fn_1_451E4__fzgx_offset_A0, (u32)fn_1_451E4__fzgx_offset_78, (u32)fn_1_451E4__fzgx_offset_C0, (u32)fn_1_451E4__fzgx_offset_64}}; /* fzgx-allow: A1 measured pool bytes and bindings */
+static char fzgx_pool_native_lbl_1_data_6730_message[0x14] = {0x6E, 0x6F, 0x74, 0x20, 0x61, 0x72, 0x63, 0x68, 0x69, 0x76, 0x65, 0x20, 0x66, 0x69, 0x6C, 0x65, 0x00, 0x00, 0x00, 0x00}; /* fzgx-allow: A1 measured pool bytes and bindings */
+static s8 fzgx_pool_native_lbl_1_data_6730_path[0x10] = {0x2F, 0x00, 0x00, 0x00, 0x4E, 0x6F, 0x74, 0x20, 0x41, 0x52, 0x41, 0x4D, 0x20, 0x41, 0x72, 0x63}; /* fzgx-allow: A1 measured pool bytes and bindings */
+
+void fn_1_45E98(u32 arg0, void *arg1) {
+    u8 *base;
+    s32 n;
+    s32 i;
+    s32 result;
+    Sig_fn_8006A3DC_Fn8006A3DCHeader *hdr;
+    Sig_ARQPostRequest_ARQRequest arq;
+    char buf[256];
+    fn_1_45E98_Entry *tab;
+    u32 key;
+    fn_1_45E98_Entry *e;
+    s32 tmp_call3;
+
+    base = (u8 *)&lbl_1_bss_384C0;
+
+    e = (fn_1_45E98_Entry *)(base + 0x18);
+    result = -1;
+    for (i = 0; i < 0x400 && result == -1; i++, e++) {
+        if ((e->unk_0 & 0x04000000) != 0) {
+            while (is_busy(base)) fn_1_D3214();
+            *(u32 *)(base + 0x10) = 1;
+            DCInvalidateRange((*(void **)(base + 0x586c)), e->unk_C);
+            ARQPostRequest(&arq, 0, 1, 1, e->unk_8, *(void **)(base + 0x586c), e->unk_C, fn_1_45890);
+            while (is_busy(base)) fn_1_D3214();
+            hdr = *(Sig_fn_8006A3DC_Fn8006A3DCHeader **)(base + 0x586c);
+{
+    Sig_fn_8006A3DC_Fn8006A3DCResult res;
+            tmp_call3 = fn_8006A3DC(hdr, &res);
+            if (!tmp_call3) {
+                OSPanic(fzgx_pool_native_lbl_1_data_6730_filename.view, 0x370, fzgx_pool_native_lbl_1_data_6730_message);
+            }
+            fn_80006FE0(buf, 0xff);
+            strcat(buf, fzgx_pool_native_lbl_1_data_6730_path);
+            strcat(buf, (void *)arg0);
+            result = fn_8006A554(&res, buf);
+}
+            if (result > 0) {
+                key = e->unk_8 + *(u32 *)(*(u8 **)(base + 0x586c) + hdr->data_offset + result * 12 + 4);
+                tab = (fn_1_45E98_Entry *)(base + 0x18);
+                for (n = 0; n < 0x400; n++, tab++) {
+                    if ((tab->unk_0 & 0x48000000) == 0x48000000 && tab->unk_8 == key) {
+                        *(fn_1_45E98_Entry **)arg1 = tab;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_45E98 */
+
 /* fzgx:begin fn_1_46144 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"

@@ -54,14 +54,14 @@ typedef struct {
 
 /* This TU's .bss cluster, laid out in retail order (addressed off one base). */
 u8 lbl_8019F040[0x20];
-f32 lbl_8019F060[3][4];
-f32 lbl_8019F090[3][3][4];
-s32 lbl_8019F120[3];
-u8 lbl_8019F12C[0x14];
-fn_800756B0_Vec lbl_8019F140;
-u8 lbl_8019F14C[0x2C];
-f32 lbl_8019F178[3][4];
-u8 lbl_8019F1A8[0x41E0 - 0x168];
+f32 lbl_8019F040__fzgx_offset_20[3][4];
+f32 lbl_8019F040__fzgx_offset_50[3][3][4];
+s32 lbl_8019F040__fzgx_offset_E0[3];
+u8 fzgx_pool_lbl_8019F12C[0x14];
+fn_800756B0_Vec lbl_8019F130__fzgx_offset_10;
+u8 fzgx_pool_lbl_8019F14C[0x2C];
+f32 lbl_8019F158__fzgx_offset_20[3][4];
+u8 fzgx_pool_lbl_8019F1A8[0x41E0 - 0x168];
 fn_800756B0_State lbl_801A3220;
 
 extern s32 lbl_801A6D78;
@@ -82,14 +82,14 @@ extern void lbl_8006D668(fn_800756B0_Vec *);
 #pragma section RX ".fzgxpool"
 __declspec(section ".fzgxpool") void fn_800756B0_primer(void) {
     fn_80075080(lbl_8019F040);
-    fn_80075080(lbl_8019F060);
-    fn_80075080(lbl_8019F090);
-    fn_80075080(lbl_8019F120);
-    fn_80075080(lbl_8019F12C);
-    fn_80075080(&lbl_8019F140);
-    fn_80075080(lbl_8019F14C);
-    fn_80075080(lbl_8019F178);
-    fn_80075080(lbl_8019F1A8);
+    fn_80075080(lbl_8019F040__fzgx_offset_20);
+    fn_80075080(lbl_8019F040__fzgx_offset_50);
+    fn_80075080(lbl_8019F040__fzgx_offset_E0);
+    fn_80075080(fzgx_pool_lbl_8019F12C);
+    fn_80075080(&lbl_8019F130__fzgx_offset_10);
+    fn_80075080(fzgx_pool_lbl_8019F14C);
+    fn_80075080(lbl_8019F158__fzgx_offset_20);
+    fn_80075080(fzgx_pool_lbl_8019F1A8);
     fn_80075080(&lbl_801A3220);
 }
 
@@ -115,15 +115,15 @@ void fn_800756B0(fn_800756B0_Arg0 *arg0, fn_800756B0_Arg1 *arg1) {
         arg1 = (fn_800756B0_Arg1 *)((u8 *)arg1 + 0x20);
     }
     if (lbl_801A6D78 != 0) {
-        GXLoadTexMtxImm(lbl_8019F060, 0x24, 0);
+        GXLoadTexMtxImm(lbl_8019F040__fzgx_offset_20, 0x24, 0);
     } else {
-        GXLoadTexMtxImm(lbl_8019F178, 0x24, 0);
+        GXLoadTexMtxImm(lbl_8019F158__fzgx_offset_20, 0x24, 0);
     }
     for (i = 0; i < 3; i++) {
-        if (lbl_8019F120[i] != 0) {
-            GXLoadTexMtxImm(lbl_8019F090[i], 0x33 + i * 3, 0);
+        if (lbl_8019F040__fzgx_offset_E0[i] != 0) {
+            GXLoadTexMtxImm(lbl_8019F040__fzgx_offset_50[i], 0x33 + i * 3, 0);
         } else {
-            GXLoadTexMtxImm(lbl_8019F178, 0x33 + i * 3, 0);
+            GXLoadTexMtxImm(lbl_8019F158__fzgx_offset_20, 0x33 + i * 3, 0);
         }
     }
     fn_80075080(arg1);
@@ -172,7 +172,7 @@ void fn_800756B0(fn_800756B0_Arg0 *arg0, fn_800756B0_Arg1 *arg1) {
         lbl_8006E1B0(&arg0->pos, &lbl_801A3220.unk_50);
         lbl_801A3220.unk_50.z = lbl_801A3220.unk_50.z - arg0->unk_14;
     } else {
-        lbl_801A3220.unk_50 = lbl_8019F140;
+        lbl_801A3220.unk_50 = lbl_8019F130__fzgx_offset_10;
     }
     lbl_8006D668(&lbl_801A3220.unk_50);
 }

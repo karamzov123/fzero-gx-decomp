@@ -132,7 +132,7 @@ void fn_3_1349C(void) {
 }
 /* fzgx:end fn_3_1349C */
 
-/* fzgx:begin fn_3_13508 pool noprologue */
+/* fzgx:begin fn_3_13508 noprologue */
 #include "types.h"
 
 /* lbl_1_bss_9F8: table of 0x14-byte entries with a u16 flag word at +8 */
@@ -160,7 +160,7 @@ u32 lbl_3_bss_A176C;
 u32 lbl_3_bss_A1770;
 u32 lbl_3_bss_A1774;
 u8 lbl_3_bss_A1778[8];
-u32 lbl_3_bss_A1780;
+u32 lbl_3_bss_A1778__fzgx_offset_8;
 u8 lbl_3_bss_A1784[0x14];
 u32 lbl_3_bss_A1798;
 u32 lbl_3_bss_A179C;
@@ -177,7 +177,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_3_bss_A1770;
     s = *(u8 *)&lbl_3_bss_A1774;
     s = *(u8 *)&lbl_3_bss_A1778;
-    s = *(u8 *)&lbl_3_bss_A1780;
+    s = *(u8 *)&lbl_3_bss_A1778__fzgx_offset_8;
     s = *(u8 *)&lbl_3_bss_A1784;
     s = *(u8 *)&lbl_3_bss_A1798;
     s = *(u8 *)&lbl_3_bss_A179C;
@@ -208,7 +208,7 @@ void fn_3_13508(void) {
     if (lbl_3_bss_A17D0[1] != 0) return;
 
     if (lbl_3_bss_A17A0.flags & 0x40000000) {
-        fn_1_4A00(1, 15, lbl_3_bss_A1780);
+        fn_1_4A00(1, 15, lbl_3_bss_A1778__fzgx_offset_8);
         lbl_3_bss_A17A0.flags &= ~0x40000000;
         lbl_3_bss_A17D2 = 15;
         lbl_3_bss_A17A0.flags |= 0x20000000;

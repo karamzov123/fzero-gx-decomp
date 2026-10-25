@@ -206,3 +206,9 @@ rel/interview/interview/fn_17_3A28.c:
 
 rel/interview/interview/fn_17_9314.c:
 	.text       start:0x00009314 end:0x00009618 align:4
+
+rel/interview/interview/_prolog.c:
+	.text       start:0x00000000 end:0x000001DC align:4
+
+rel/interview/interview/fn_17_6D60.c:
+	.text       start:0x00006D60 end:0x00006F30 align:4

@@ -188,3 +188,6 @@ rel/story/story_mode/fn_7_1710.c:
 
 rel/story/story_mode/fn_7_3AB0.c:
 	.text       start:0x00003AB0 end:0x00003FCC align:4
+
+rel/story/story_mode/fn_7_FB4.c:
+	.text       start:0x00000FB4 end:0x00001134 align:4

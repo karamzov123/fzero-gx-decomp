@@ -1,0 +1,11 @@
+{
+ "interview:_prolog": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1792856608,
+  "mw": "GC/1.3.2",
+  "sha256": "f3c8ba9d6b89a706e00f156f5eef794a9db36a460d63d319ebc83698efa2b22d",
+  "source": "local-cline-worktree@9631e03bf (CC0)",
+  "status": "matched"
+ }
+}

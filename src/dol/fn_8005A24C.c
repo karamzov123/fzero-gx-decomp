@@ -33,7 +33,7 @@ MfCiErrorCallback lbl_80190178;
 void *lbl_8019017C;
 char lbl_8019017C__fzgx_offset_4[300];
 MfCiObject lbl_8019017C__fzgx_offset_130[MFCI_MAX_HANDLES];
-int lbl_80190B70;
+int fzgx_pool_lbl_80190B70;
 
 int sprintf(char *s, const char *format, ...);
 unsigned long strlen(const char *s);
@@ -51,7 +51,7 @@ static const void *fzgx_pool_layout(int x) {
     s = *(u8 *)&lbl_8019017C;
     s = *(u8 *)&lbl_8019017C__fzgx_offset_4;
     s = *(u8 *)&lbl_8019017C__fzgx_offset_130;
-    s = *(u8 *)&lbl_80190B70;
+    s = *(u8 *)&fzgx_pool_lbl_80190B70;
     if (x == 0) return lbl_80092528;
     if (x == 1) return "E1041001:invalid entry number.(mfCiOpenEntry)";
     if (x == 2) return "E1041002:rw is illigal.(mfCiOpenEntry)";

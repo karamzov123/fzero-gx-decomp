@@ -101,13 +101,15 @@ class Source:
         self.fixups = fixup_imports((tree / '.complete').read_text().strip())
         self.our_include = [ROOT / 'include', ROOT / 'build/GFZE01/include']
         self._headers: Optional[List[str]] = None
-        self.units = {s: u for u in json.loads((tree / 'config/GFZE01/units.json').read_text())
+        self.units = {(u['module'], s): u for u in json.loads((tree / 'config/GFZE01/units.json').read_text())
                       for s in u.get('symbols', [])}
-        self.blocks: Dict[str, Path] = {}
+        self.blocks: Dict[tuple[str, str], Path] = {}
         for path in (tree / 'src').rglob('*.c'):
+            parts = path.relative_to(tree / 'src').parts
+            module = parts[1] if len(parts) > 1 and parts[0] == 'rel' else 'main'
             text = path.read_text(errors='replace')
             for m in re.finditer(r'^/\* fzgx:begin (\w+)', text, re.M):
-                self.blocks.setdefault(m[1], path)
+                self.blocks.setdefault((module, m[1]), path)
         self._maps: Dict[str, Dict[str, str]] = {}
 
     @staticmethod
@@ -134,13 +136,17 @@ class Source:
         return reuse.rebind(body, used) if used else body
 
     def unit_text(self, sym: str):
-        u = self.units.get(sym) or {}
+        s = self.p.resolve(sym)
+        if s is None:
+            return None, None
+        key = (s.module, s.name)
+        u = self.units.get(key) or {}
         for path in ([self.tree / 'src' / u['tu']] if u.get('tu') else []) + (
-                [self.blocks[sym]] if sym in self.blocks else []):
+                [self.blocks[key]] if key in self.blocks else []):
             if path.exists():
                 tf = tufile.parse(path.read_text(errors='replace'))
-                if tf.get(sym):
-                    return tf, tufile.gen_text(tf, sym)
+                if tf.get(s.name):
+                    return tf, tufile.gen_text(tf, s.name)
         if u.get('source') and (self.tree / 'src' / u['source']).exists():
             return None, (self.tree / 'src' / u['source']).read_text(errors='replace')
         return None, None
@@ -155,7 +161,7 @@ class Source:
             key = f'FZGX_PRAGMA_{len(markers)}_'
             markers[key] = m[0].strip()
             return m[0] + '\n' + key
-        src = self.workdir / 'pp' / f'{tag}.c'
+        src = self.workdir / 'pp' / f'{tag.replace(":", "__")}.c'
         src.parent.mkdir(parents=True, exist_ok=True)
         src.write_text(PRAGMA_RE.sub(keep, text))
         cmd = [str(ROOT / 'build/tools/wibo'), str(ROOT / 'build/compilers' / mw / 'mwcceppc.exe'),
@@ -334,7 +340,8 @@ class Source:
             # or an include kept after inlined ref headers compiles differently in the link
             inc, rest = tufile.split_includes(body)
             body = ('\n'.join(inc) + '\n\n' + rest) if inc else rest
-        f = self.workdir / 'bodies' / f'{sym}.{kind}.c'
+        # Qualified REL keys belong in metadata; ':' is not a Windows filename.
+        f = self.workdir / 'bodies' / f'{sym.replace(":", "__")}.{kind}.c'
         f.parent.mkdir(parents=True, exist_ok=True)
         f.write_text(body)
         r = oracle.check(self.p, sym, 0, source=f, mw_version=mw, extra_cflags=shlex.join(flags))
@@ -355,7 +362,7 @@ class Source:
         inc, rest = tufile.split_includes(body)
         have = {ln.strip() for ln in prologue.splitlines()}
         inc = [ln for ln in inc if ln.strip() not in have]
-        g = self.workdir / 'bodies' / f'{sym}.{kind}.gen.c'
+        g = self.workdir / 'bodies' / f'{sym.replace(":", "__")}.{kind}.gen.c'
         g.write_text(prologue + '\n' + ('\n'.join(inc) + '\n\n' if inc else '') + rest)
         r = oracle.check(self.p, sym, 0, source=g, mw_version=rec['mw'], extra_cflags=rec['flags'])
         if not r.ok:
@@ -420,7 +427,7 @@ class Source:
         if s is None:
             return dict(symbol=sym, status='unknown-here')
         module = s.module
-        u = self.units.get(sym) or {}
+        u = self.units.get((module, s.name)) or {}
         mw = u.get('mw_version') or oracle.module_flags(self.p, module)[1]
         flags = list(u.get('extra_cflags') or [])
         ftf, ftext = self.unit_text(sym)
@@ -457,7 +464,7 @@ class Source:
             firsts = [('raw', lambda: self.rebind(ftext, module))]
         if firsts and ftf is not None and has_tu:
             firsts.append(('ours-prologue', lambda: prologue + '\n'
-                           + self.rebind(ftf.get(sym).body, module)))
+                           + self.rebind(ftf.get(s.name).body, module)))
         for kind, make in firsts:
             try:
                 body = make()
