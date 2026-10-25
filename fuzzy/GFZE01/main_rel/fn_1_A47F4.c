@@ -1,113 +1,140 @@
-/* Non-matching: best partial attempt (74.22% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (96.24% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
-#include "dolphin/os.h"
-typedef struct { f32 x,y,z; } Sig_fn_1_862D4_Triple;
-typedef Sig_fn_1_862D4_Triple Sig_fn_1_8658C_Vec3U32;
-struct fn_1_A47F4_lbl_1_rodata_45A4 { f32 unk_0; };
-struct fn_1_A47F4_lbl_1_rodata_45B8 { f64 unk_0; };
-struct fn_1_A47F4_lbl_1_rodata_45C0 { f32 unk_0; };
+#include "dolphin/os/OSFastCast.h"
+typedef struct { f32 x,y,z; } Vec;
 extern u8 lbl_1_bss_6F1E4[85];
+extern void fn_1_862D4(u8, Vec *);
+extern void fn_1_8658C(u8, Vec *);
 extern f32 fn_1_8652C(u8);
+extern void fn_1_681C(u32, void *);
+extern void fn_1_6898(u32, void *);
+extern f32 lbl_8006D0B4(f32);
+extern f64 __fabs(f64);
+extern s16 camera_get_mode(void);
+extern s32 camera_get_state(void);
+extern f64 lbl_1_rodata_4598;
 extern f32 lbl_1_rodata_4470, lbl_1_rodata_45A0, lbl_1_rodata_45A8;
 extern f32 lbl_1_rodata_45AC, lbl_1_rodata_45B0, lbl_1_rodata_45B4;
 extern f32 lbl_1_rodata_45C4, lbl_1_rodata_45C8, lbl_1_rodata_45CC;
-extern f32 lbl_8006D0B4(f32);
-extern f64 __fabs(f64);
-extern f64 lbl_1_rodata_4598;
-extern s16 camera_get_mode(void);
-extern s32 camera_get_state(void);
-extern struct fn_1_A47F4_lbl_1_rodata_45A4 lbl_1_rodata_45A4;
-extern struct fn_1_A47F4_lbl_1_rodata_45B8 lbl_1_rodata_45B8;
-extern struct fn_1_A47F4_lbl_1_rodata_45C0 lbl_1_rodata_45C0;
-extern void fn_1_681C(u32, void *);
-extern void fn_1_6898(u32, void *);
-extern void fn_1_862D4(u8, Sig_fn_1_862D4_Triple *);
-extern void fn_1_8658C(u8, Sig_fn_1_8658C_Vec3U32 *);
-void fn_1_A47F4(u32 arg0, u8 arg1, u32 arg2, s8 *arg3, s8 *arg4) {
-    s32 v0;
-    u8 v1;
-    f32 v2,v3,v4,v5,v6,v7,v8,v9;
-    u32 v10,v11;
-    f32 unk_2,v13,v14,v15,v16;
-    s16 v17;
-    s32 state;
-    f32 v18,v19,v20,v21,v22,unk_6,v24;
-    s8 v25;
-    s32 v26;
-    s8 v27;
-    s32 v28;
-    Sig_fn_1_862D4_Triple loc_38;
-    Sig_fn_1_8658C_Vec3U32 loc_2C;
-    f32 loc_20[3];
-    f32 loc_14[3];
-    s8 loc_10,loc_C;
-    u8 loc_8;
-    f32 t2,t5;
-    v0 = arg0 * 20;
-    loc_8 = arg1;
-    v1 = lbl_1_bss_6F1E4[v0+1];
-    fn_1_862D4(v1, &loc_38);
-    fn_1_8658C(v1, &loc_2C);
-    t2 = fn_1_8652C(v1);
-    fn_1_681C(arg2, loc_20);
-    fn_1_6898(arg2, loc_14);
-    v2 = loc_20[1] - loc_14[1];
-    v3 = loc_20[2] - loc_14[2];
-    t5 = lbl_8006D0B4((f32)((loc_20[0]-loc_14[0])*(loc_20[0]-loc_14[0])) + v2*v2 + v3*v3);
-    v4 = loc_2C.y - loc_14[1];
-    v5 = loc_38.y - loc_20[1];
-    v6 = loc_2C.z - loc_14[2];
-    v7 = (f32)((loc_2C.x-loc_14[0])*(loc_2C.x-loc_14[0])) + v4*v4 + v6*v6;
-    v8 = lbl_1_rodata_4598 * t5;
-    v9 = (f32)((loc_38.x-loc_20[0])*(loc_38.x-loc_20[0])) + v5*v5 + (loc_38.z-loc_20[2])*(loc_38.z-loc_20[2]);
-    if (v9 <= v7) v10=1; else v10=0;
-    if (v8 > t2) v11=1; else v11=0;
-    OSu8tof32(&loc_8, &unk_2);
-    v13 = lbl_1_rodata_45A4.unk_0 * unk_2;
-    v14 = lbl_1_rodata_45A0 + v13;
-    v18 = v8 - t2;
-    v15=t2;
-    if(t2 >= lbl_1_rodata_45A8) v15=lbl_1_rodata_45A8;
-    v16=v8;
-    if(v8 >= lbl_1_rodata_45AC) v16=lbl_1_rodata_45AC;
-    v15=lbl_1_rodata_45B0-v15;
-    v16=lbl_1_rodata_45B0-v16;
-    v17=camera_get_mode();
-    state=camera_get_state();
-    if(v17==(s32)v1 && (s8)state!=9) v19=lbl_1_rodata_4470;
-    else if(v11) v19=lbl_1_rodata_4470;
-    else {
-        v18=(f32)__fabs(v18);
-        if(v18>lbl_1_rodata_45B4) v19=lbl_1_rodata_45B4/v18;
-        else v19=lbl_1_rodata_4470;
-    }
-    v20=v14*(v16/(v15*v19));
-    v20=v20-v14;
-    v20=lbl_1_rodata_45C0.unk_0*(f32)(v20/lbl_1_rodata_45B8.unk_0);
-    if(v20<lbl_1_rodata_45C4) v21=lbl_1_rodata_45C4;
-    else if(v20>lbl_1_rodata_45C8) v21=lbl_1_rodata_45C8;
-    else v21=v20;
-    v22=v21;
-    if(v10 | (lbl_1_bss_6F1E4[v0]&1)) *(f32 *)(lbl_1_bss_6F1E4+v0+16)=v21;
-    else {
-        v22=*(f32 *)(lbl_1_bss_6F1E4+v0+16)-lbl_1_rodata_4470;
-        if(v22<lbl_1_rodata_45C4) v22=lbl_1_rodata_45C4;
-        else if(v22>lbl_1_rodata_45C8) v22=lbl_1_rodata_45C8;
-        *(f32 *)(lbl_1_bss_6F1E4+v0+16)=v22;
-    }
-    OSf32tos8(&v22,&loc_10);
-    *arg3=loc_10;
-    OSs8tof32(arg3,&unk_6);
-    v24=(v22-unk_6)/lbl_1_rodata_45CC;
-    OSf32tos8(&v24,&loc_C);
-    *arg4=loc_C;
-    v25=*arg3;
-    if(v25<-3) v26=-3;
-    else {v26=32; if(v25<=32) v26=v25;}
-    *arg3=v26;
-    v27=*arg4;
-    if(v27<-64) v28=-64;
-    else {v28=63; if(v27<=63) v28=v27;}
-    *arg4=v28;
+extern struct { f32 value; } lbl_1_rodata_45A4;
+extern struct { f64 value; } lbl_1_rodata_45B8;
+extern struct { f32 value; } lbl_1_rodata_45C0;
+
+static inline f32 distance2(Vec *a, Vec *b) {
+    f32 x;
+    f32 y;
+    f32 z;
+    x=a->x-b->x;
+    y=a->y-b->y;
+    z=a->z-b->z;
+    x*=x;
+    x+=y*y;
+    x+=z*z;
+    return x;
 }
+static inline f32 clamp(f32 x) {
+    f32 result=lbl_1_rodata_45C4;
+    if(x<result) return result;
+    result=lbl_1_rodata_45C8;
+    if(x>result) return result;
+    return x;
+}
+#pragma opt_common_subs off
+#pragma opt_dead_assignments off
+static inline f32 fn_1_A47F4_read_pointer(Vec * owner) { return owner->y; }
+#pragma opt_loop_invariants on
+void fn_1_A47F4(u32 index, u8 speed, u32 object, s8 *whole, s8 *fraction) {
+    f32 fzgx_live__;
+    f32 fzgx_live_;
+    f32 fzgx_live;
+    s32 offset;
+    u32 nearer;
+    f32 source;
+    s32 exceeds;
+    s32 mode;
+    u8 id;
+    f32 output;
+    f32 base;
+    f32 difference;
+    f32 factor;
+    f32 distA;
+    f32 distance;
+    f32 distB;
+    struct { f32 value; } x;
+    f32 y;
+    f32 z;
+    Vec a;
+    Vec b;
+    Vec c;
+    Vec d;
+    u8 byte;
+    offset=index*20;
+    byte=speed;
+    id=lbl_1_bss_6F1E4[offset+1];
+    fn_1_862D4(id,&a);
+    fn_1_8658C(id,&b);
+    source=fn_1_8652C(id);
+    fn_1_681C(object,&c);
+    fn_1_6898(object,&d);
+    fzgx_live_ = c.x;
+    fzgx_live__ = c.y;
+    x.value=fzgx_live_-d.x; y=fzgx_live__-d.y; z=c.z-d.z;
+    x.value*=x.value; x.value+=y*y; x.value+=z*z;
+    distance=lbl_8006D0B4(x.value);
+    x.value=b.x-d.x; y=b.y-d.y; z=b.z-d.z;
+    distA=x.value*x.value; distA+=y*y; distA+=z*z;
+    fzgx_live = a.x;
+    fzgx_live_ = c.x;
+    x.value=fzgx_live-fzgx_live_; y=fn_1_A47F4_read_pointer(&a)-c.y; z=a.z-c.z;
+{
+    f32 scaled;
+    scaled=lbl_1_rodata_4598*distance;
+    distB=x.value*x.value; distB+=y*y; distB+=z*z;
+    if(distB<=distA) nearer=1; else nearer=0;
+    if(scaled>source) exceeds=1; else exceeds=0;
+    { f32 multiplier=lbl_1_rodata_45A4.value*__OSu8tof32(&byte);
+    base=lbl_1_rodata_45A0+multiplier; }
+    difference=scaled-source;
+    if(source>=lbl_1_rodata_45A8) source=lbl_1_rodata_45A8;
+    if(scaled>=lbl_1_rodata_45AC) scaled=lbl_1_rodata_45AC;
+    source=lbl_1_rodata_45B0-source;
+    scaled=lbl_1_rodata_45B0-scaled;
+    mode=camera_get_mode();
+    { s32 state=camera_get_state();
+    if(mode==(s32)id && (s8)state!=9) factor=lbl_1_rodata_4470;
+    else if(exceeds) factor=lbl_1_rodata_4470;
+    else {
+        f32 magnitude=(f32)__fabs(difference);
+        if(magnitude>lbl_1_rodata_45B4) factor=lbl_1_rodata_45B4/magnitude;
+        else factor=lbl_1_rodata_4470;
+    }}
+    output=base*(scaled/(source*factor));
+}
+    output=(f32)((output-base)/lbl_1_rodata_45B8.value);
+    output=lbl_1_rodata_45C0.value*output;
+    output=clamp(output);
+    if(nearer | (lbl_1_bss_6F1E4[offset]&1)) *(f32 *)(lbl_1_bss_6F1E4+offset+16)=output;
+    else {
+        f32 *entry;
+        entry=(f32 *)(lbl_1_bss_6F1E4+offset+16);
+        output=*entry;
+        output-=lbl_1_rodata_4470;
+        output=clamp(output);
+        *entry=output;
+    }
+    *whole=(s8)__OSf32tos8(output);
+    output=(output-__OSs8tof32(whole))/lbl_1_rodata_45CC;
+    *fraction=(s8)__OSf32tos8(output);
+    { s32 v, result;
+    v=*whole;
+    if(v < -3) result=-3;
+    else { result=32; if(v<=32) result=v; }
+    *whole=result;
+    v=*fraction;
+    if(v < -64) result=-64;
+    else { result=63; if(v<=63) result=v; }
+    *fraction=result; }
+}
+#pragma opt_loop_invariants reset
+
