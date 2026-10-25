@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (82.86% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (83.09% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -36,9 +36,6 @@ void fn_3_7038(void) {
     u8 *b20000;
     u8 *b70000;
     u8 *b80000;
-    u8 *p24;
-    u8 *p21;
-    u8 *p25;
     s16 buf1[3];
     s16 buf2[3];
     s16 lo;
@@ -58,9 +55,6 @@ void fn_3_7038(void) {
     b20000 = bss + 0x20000;
     b70000 = bss + 0x70000;
     b80000 = bss + 0x80000;
-    p24 = b70000 - 0x2740;
-    p21 = b80000 - 0x1DC0;
-    p25 = b80000 - 0x1910;
 
     fn_1_4A00(1, 0xF, *(u32 *) (b20000 + 0x850));
     *(u32 *) (b20000 + 0x43A8) = 0;
@@ -70,15 +64,15 @@ void fn_3_7038(void) {
     }
 
     for (i = 0; i < fn_1_14F014(); i++) {
-        fn_1_14E9E4(i, p24 + i * 0x10);
+        fn_1_14E9E4(i, (b70000 - 0x2740) + i * 0x10);
     }
 
     fn_80008BEC(buf1, 0, 6);
     for (j = 0; j < fn_1_14F014(); j++) {
-        s16 v = *(s16 *) (p24 + j * 0x10 + 2);
+        s16 v = *(s16 *) ((b70000 - 0x2740) + j * 0x10 + 2);
 
-        dst = p21 + v * 0x190 + buf1[v] * 0x10;
-        fn_80008BA8(dst, p24 + j * 0x10, 0x10);
+        dst = (b80000 - 0x1DC0) + v * 0x190 + buf1[v] * 0x10;
+        fn_80008BA8(dst, (b70000 - 0x2740) + j * 0x10, 0x10);
         buf1[v] = buf1[v] + 1;
     }
 
@@ -96,10 +90,10 @@ void fn_3_7038(void) {
 
     fn_80008BEC(buf2, 0, 6);
     for (i = 0; i < fn_1_14F014(); i++) {
-        s16 v = *(s16 *) (p24 + i * 0x10 + 2);
+        s16 v = *(s16 *) ((b70000 - 0x2740) + i * 0x10 + 2);
 
-        dst = p21 + v * 0x190 + buf2[v] * 0x10;
-        fn_80008BA8(dst, p24 + i * 0x10, 0x10);
+        dst = (b80000 - 0x1DC0) + v * 0x190 + buf2[v] * 0x10;
+        fn_80008BA8(dst, (b70000 - 0x2740) + i * 0x10, 0x10);
         buf2[v] = buf2[v] + 1;
     }
 
@@ -113,7 +107,7 @@ void fn_3_7038(void) {
     *(u8 *) ((u8 *) rowp + 0x8) = *(s16 *) ((u8 *) rowp + 0x58);
     *(u8 *) ((u8 *) rowp + 0x10) = *(s16 *) ((u8 *) rowp + 0x8E);
 
-    dst = p25;
+    dst = b80000 - 0x1910;
     total = 0;
     for (row = 0; row < 3; row++) {
         for (col = 0; col < rowp[0x10]; col++) {

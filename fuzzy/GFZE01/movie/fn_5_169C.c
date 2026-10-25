@@ -114,7 +114,7 @@ extern void *fn_1_4630(u32, u32, const char *, s32);
 extern void fn_1_458A0(struct fn_5_169C_Load *, void *, u32, u32);
 extern int fn_80083BCC(const char *, const char *);
 extern u32 VIGetNextField(void);
-extern void fn_8001AF64(void);
+extern void VIWaitForRetrace(void);
 extern u32 fn_1_435C(u32);
 extern s32 fn_1_3F8C(const char *, void (*)(void), s32, s32);
 extern void fn_80070704(s32);
@@ -288,7 +288,7 @@ void fn_5_169C(void) {
     e->b = 0;
     e->c = 0;
     if (VIGetNextField()) {
-        fn_8001AF64();
+        VIWaitForRetrace();
     }
 
     fn_1_435C(p->unk_30);

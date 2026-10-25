@@ -16,7 +16,7 @@ extern u32 fn_1_E9BA8(void);
 extern void fn_1_E9C68(void);
 extern s32 fn_1_3F8C(void *, void *, u32, u32);
 extern int sprintf(char *, const char *, ...);
-extern s32 fn_80016DF8(const char *);
+extern s32 DVDConvertPathToEntrynum(const char *);
 extern void OSReport(const char *, ...);
 extern s32 fn_1_45730(void *, void *);
 extern s32 fn_1_45B2C(void *);
@@ -93,7 +93,7 @@ void fn_1_E9770(void *arg0, void *arg1, u32 arg2, u32 arg3) {
         tmp_call16=(u32)fn_1_4630(lbl_801A6410,0x3ea8,data+0x2d4,0x25e);
         lab_t0 = loc_1C0;
         sprintf(lab_t0, (char *)data+0x2f4, ((u32 *)(data+0x8c))[S(0x16c8)]);
-        OSReport((char *)data+0x304, loc_1C0, fn_80016DF8(loc_1C0));
+        OSReport((char *)data+0x304, loc_1C0, DVDConvertPathToEntrynum(loc_1C0));
         if (fn_1_45730(loc_1C0, loc_64)!=0) {
             B(0x174e)++;
             v12=(fn_1_45B2C(loc_64)+31)&~31;

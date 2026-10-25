@@ -7,7 +7,7 @@
 extern s32 fn_1_106CAC(void);
 extern s32 OSIsThreadTerminated(void *arg0);
 extern u32 OSCreateThread(void *arg0, void *arg1, void *arg2, void *arg3, u32 arg4, u32 arg5, u32 arg6);
-extern long fn_80010CB0(void *arg0);
+extern long OSResumeThread(void *arg0);
 
 #pragma opt_common_subs off
 #pragma opt_propagation off
@@ -66,6 +66,6 @@ void fn_1_106D30(s32 lab_unused0, s32 lab_unused1) {
         *(s32 *)((u8 *)&lbl_1_bss_854B8__fzgx_offset_10) = 0;
         OSCreateThread((void *)((u8 *)&lbl_1_bss_854B8__fzgx_offset_6E0), (void *)fn_1_106CAC, 0,
                        ((u8 *)&lbl_1_bss_854B8__fzgx_offset_A08) + 0x1000, 0x1000, 0x1E, 1);
-        fn_80010CB0((void *)((u8 *)&lbl_1_bss_854B8__fzgx_offset_6E0));
+        OSResumeThread((void *)((u8 *)&lbl_1_bss_854B8__fzgx_offset_6E0));
     }
 }

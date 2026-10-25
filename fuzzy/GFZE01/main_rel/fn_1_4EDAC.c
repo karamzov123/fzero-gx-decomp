@@ -52,8 +52,8 @@ struct FontDrawPacketOffsets {
 };
 
 extern f32 fn_1_A6FE8(void);
-extern void fn_80015E18(void *, f32, f32, f32, f32);
-extern void fn_80015EE8(void *, f32, f32, f32, f32, f32, f32);
+extern void C_MTXPerspective(void *, f32, f32, f32, f32);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_800737E4(void *, s32);
 extern void fn_80074660(u32);
 extern void fn_80073678(u32);
@@ -123,10 +123,10 @@ void fn_1_4EDAC(FontDrawPacket *packet_arg, f32 arg1, f32 arg2) {
     points[3].x = 0.0f; points[3].y = 0.0f; points[3].z = 0.0f;
 
     if (is_perspective) {
-        fn_80015E18(&lbl_801A6D00.unk_0->unk_c8, 55.0f, fn_1_A6FE8(), 0.1f, 90000.0f);
+        C_MTXPerspective(&lbl_801A6D00.unk_0->unk_c8, 55.0f, fn_1_A6FE8(), 0.1f, 90000.0f);
         fn_800737E4(&lbl_801A6D00.unk_0->unk_c8, 0);
     } else {
-        fn_80015EE8(&lbl_801A6D00.unk_0->unk_c8, 0.0f, 480.0f, 0.0f, 640.0f, 0.0f, 90000.0f);
+        C_MTXOrtho(&lbl_801A6D00.unk_0->unk_c8, 0.0f, 480.0f, 0.0f, 640.0f, 0.0f, 90000.0f);
         fn_800737E4(&lbl_801A6D00.unk_0->unk_c8, 1);
     }
 
