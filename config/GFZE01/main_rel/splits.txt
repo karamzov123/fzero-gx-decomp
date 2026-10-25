@@ -8720,3 +8720,6 @@ rel/main_rel/bg_cas/fn_1_FDD7C.c:
 
 rel/main_rel/rep_memcard/fn_1_154A08.c:
 	.text       start:0x00154A08 end:0x00154BE4 align:4
+
+rel/main_rel/custom_memcard/fn_1_132774.c:
+	.text       start:0x00132774 end:0x00132FB4 align:4

@@ -44824,6 +44824,21 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/custom_memcard/fn_1_132774.c",
+    "symbols": [
+      "fn_1_132774"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/custom_memcard.c",
+    "pool": {
+      "@100": "lbl_1_rodata_8600",
+      "@101": "lbl_1_rodata_8608"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/custom_memcard/fn_1_132FB4.c",
     "symbols": [
       "fn_1_132FB4"
