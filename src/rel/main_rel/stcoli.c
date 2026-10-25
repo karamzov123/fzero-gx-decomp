@@ -854,6 +854,339 @@ s32 fn_1_14F18(fn_1_14F18_Vec *pos, void *arg1, fn_1_14F18_Vec *dir, f32 *outT,
 }
 /* fzgx:end fn_1_14F18 */
 
+/* fzgx:begin fn_1_16BA0 noprologue */
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/stcoli.h"
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct {
+    u8 pad_0[0x8];
+    f32 zero;
+    u8 pad_C[0x1C];
+    f32 wideThreshold;
+    f32 threshold;
+} fn_1_16BA0_Pool;
+
+typedef struct {
+    u8 pad_0[0x8];
+    f32 a0;
+    f32 ax;
+    f32 ay;
+    f32 az;
+    u8 pad_18[0xC];
+    f32 b0;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    u8 pad_34[0x18];
+    s8 canBack;
+    s8 canFwd;
+    u8 pad_4E[0x2];
+} fn_1_16BA0_Plane;
+
+typedef struct {
+    s32 count;
+    fn_1_16BA0_Plane *planes;
+    u8 pad_8[0x4];
+} fn_1_16BA0_Seg;
+
+extern f32 lbl_1_rodata_6C8[2];
+extern s16 fn_1_7B054(void);
+
+#pragma opt_propagation off
+s32 fn_1_16BA0(Vec3f *pos, f32 *ratio, s32 idx, s32 *sub, s32 strict) {
+    fn_1_16BA0_Pool *pool;
+    f32 thr;
+    f32 neg;
+    f32 a;
+    f32 b;
+    f32 z;
+    f32 bz;
+    f32 az;
+    f32 ay;
+    f32 y;
+    f32 by;
+    f32 ax;
+    f32 x;
+    f32 bx;
+    f32 sb;
+    f32 sa;
+    s32 result;
+    s32 flag;
+    s32 i;
+    s32 count;
+    s32 cur;
+    s32 n;
+    s32 first;
+    fn_1_16BA0_Seg *segs;
+    fn_1_16BA0_Plane *p;
+    s32 j;
+    s32 k;
+    s32 back;
+    s32 fwd;
+
+    pool = (fn_1_16BA0_Pool *)&lbl_1_rodata_6C8;
+    if (fn_1_7B054() == 25) {
+        thr = pool->wideThreshold;
+    } else {
+        thr = pool->threshold;
+    }
+    *ratio = pool->zero;
+    count = lbl_1_bss_3BE0->unk_8;
+    segs = (fn_1_16BA0_Seg *)lbl_1_bss_3BE0->unk_C;
+    if (idx < 0 || count <= idx) {
+        idx = 0;
+    }
+    result = -1;
+    cur = *sub;
+    flag = lbl_1_bss_3BE0->unk_7D;
+    if (cur == 0) {
+        cur = 1;
+    }
+    n = 10;
+    if (count < 10) {
+        n = count;
+    }
+    neg = -thr;
+    first = segs[idx].count;
+    for (i = 0; i < n; i++) {
+        j = (idx + count) % count;
+        if (strict != 0 && first != segs[j].count) {
+            break;
+        }
+        if (cur != 0 && segs[j].count <= cur) {
+            k = segs[j].count - 1;
+        } else {
+            k = cur;
+        }
+        p = &segs[j].planes[k];
+        x = pos->x;
+        y = pos->y;
+        z = pos->z;
+        ax = p->ax;
+        bx = p->bx;
+        sa = x * ax;
+        ay = p->ay;
+        sb = x * bx;
+        by = p->by;
+        az = p->az;
+        sa += y * ay;
+        sb += y * by;
+        bz = p->bz;
+        sa += z * az;
+        sb += z * bz;
+        a = p->a0 + sa;
+        b = p->b0 + sb;
+        if (j == 0) {
+            fwd = neg <= b;
+            back = z < pool->zero;
+            if (flag != 0) {
+                back = 1;
+            }
+        } else if (j == count - 1) {
+            fwd = z >= pool->zero;
+            back = neg <= a;
+            if (flag != 0 && fn_1_7B054() != 41) {
+                fwd = 1;
+            }
+        } else {
+            fwd = neg <= b;
+            back = neg <= a;
+        }
+        if (fwd == 0) {
+            if (strict != 0 && p->canFwd == 0) {
+                break;
+            }
+            idx++;
+        } else if (back == 0) {
+            if (strict != 0 && p->canBack == 0) {
+                break;
+            }
+            idx--;
+        } else {
+            *sub = k;
+            result = j;
+            *ratio = a / (a + b);
+            break;
+        }
+    }
+    return result;
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_16BA0 */
+
+/* fzgx:begin fn_1_16E68 noprologue */
+#include "types.h"
+#include "rel/main_rel/stcoli.h"
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    s = 0.0f;
+    s = 1.0f;
+    s = -5.0f;
+    s = 10.0f;
+    s = -1.0f;
+    s = 2.0f;
+    s = 0.5f;
+    s = 2.5f;
+    s = 1.7000000476837158f;
+    s = 0.0010000000474974513f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x, y, z;
+} StcoliVec;
+
+typedef struct {
+    u8 pad_0[0x8];
+    f32 d1;
+    f32 n1x, n1y, n1z;
+    u8 pad_18[0xC];
+    f32 d2;
+    f32 n2x, n2y, n2z;
+    u8 pad_34[0x1C];
+} StcoliPlanePair;
+
+typedef struct {
+    u32 unk_0;
+    StcoliPlanePair *planes;
+    u32 unk_8;
+} StcoliSegment;
+
+extern s16 fn_1_7B054(void);
+
+/* signed distances of the point to the segment's two boundary planes */
+#define PLANE1(v, p) ny = (p)->n1y; nz = (p)->n1z; dot = x * (p)->n1x; dot = y * ny + dot; dot = z * nz + dot; v = (p)->d1 + dot
+#define PLANE2(v, p) ny = (p)->n2y; nz = (p)->n2z; dot = x * (p)->n2x; dot = y * ny + dot; dot = z * nz + dot; v = (p)->d2 + dot
+
+#pragma opt_propagation off
+f32 fn_1_16E68(StcoliVec *pos, s32 idx, s32 sub) {
+    f32 thresh;
+    s32 count;
+    StcoliPlanePair *p;
+    StcoliSegment *seg;
+    f32 nz20;
+    f32 ny20;
+    f32 y0;
+    f32 x0;
+    f32 dot20;
+    f32 nz10;
+    f32 ny10;
+    f32 dot10;
+    f32 nz11;
+    f32 ny11;
+    f32 dot11;
+    f32 nz21;
+    f32 ny21;
+    f32 y1;
+    f32 x1;
+    f32 dot21;
+    f32 z2;
+    f32 y2;
+    f32 x2;
+    f32 dot22;
+    f32 negThresh;
+    f32 nz12;
+    f32 ny12;
+    f32 dot12;
+    f32 a;
+    f32 b;
+
+    if (fn_1_7B054() == 25) {
+        thresh = 1.7f;
+    } else {
+        thresh = 0.001f;
+    }
+    count = lbl_1_bss_3BE0->unk_8;
+    if (idx < 0 || count <= idx) {
+        idx = 0;
+    }
+    seg = (StcoliSegment *)lbl_1_bss_3BE0->unk_C;
+    p = seg[idx].planes + sub;
+
+    if (idx == 0) {
+        if (!(pos->z < 0.0f)) {
+            return 0.0f;
+        }
+        x0 = pos->x;
+        y0 = pos->y;
+        ny20 = p->n2y;
+        nz20 = p->n2z;
+        dot20 = x0 * p->n2x;
+        dot20 = y0 * ny20 + dot20;
+        dot20 = pos->z * nz20 + dot20;
+        b = p->d2 + dot20;
+        if (!(-thresh <= b)) {
+            return 1.0f;
+        }
+        ny10 = p->n1y;
+        nz10 = p->n1z;
+        dot10 = x0 * p->n1x;
+        dot10 = y0 * ny10 + dot10;
+        dot10 = pos->z * nz10 + dot10;
+        a = p->d1 + dot10;
+    } else if (idx == count - 1) {
+        if (!(pos->z >= 0.0f)) {
+            return 1.0f;
+        }
+        x1 = pos->x;
+        y1 = pos->y;
+        ny21 = p->n1y;
+        nz21 = p->n1z;
+        dot21 = x1 * p->n1x;
+        dot21 = y1 * ny21 + dot21;
+        dot21 = pos->z * nz21 + dot21;
+        a = p->d1 + dot21;
+        if (!(-thresh <= a)) {
+            return 0.0f;
+        }
+        ny11 = p->n2y;
+        nz11 = p->n2z;
+        dot11 = x1 * p->n2x;
+        dot11 = y1 * ny11 + dot11;
+        dot11 = pos->z * nz11 + dot11;
+        b = p->d2 + dot11;
+    } else {
+        x2 = pos->x;
+        y2 = pos->y;
+        z2 = pos->z;
+        negThresh = -thresh;
+        dot22 = x2 * p->n2x;
+        dot22 = y2 * p->n2y + dot22;
+        dot22 = z2 * p->n2z + dot22;
+        b = p->d2 + dot22;
+        if (!(negThresh <= b)) {
+            return 1.0f;
+        }
+        ny12 = p->n1y;
+        nz12 = p->n1z;
+        dot12 = x2 * p->n1x;
+        dot12 = y2 * ny12 + dot12;
+        dot12 = z2 * nz12 + dot12;
+        a = p->d1 + dot12;
+        if (!(negThresh <= a)) {
+            return 0.0f;
+        }
+    }
+    return a / (a + b);
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_16E68 */
+
 /* fzgx:begin fn_1_17098 noprologue */
 #include "types.h"
 #include "types.h"
@@ -4286,6 +4619,169 @@ void fn_1_21F18(StcoliDrawEntity *entity, f32 *scale, f32 time) {
 }
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_21F18 */
+
+/* fzgx:begin fn_1_224F8 noprologue */
+#include "types.h"
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/stcoli.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_STCOLI_TYPES_H
+#define GAME_MAIN_REL_STCOLI_TYPES_H
+
+typedef struct Fn_1_20258Constants {
+    unsigned char pad08[8];
+    f32 value08;
+    f32 value0c;
+    unsigned char pad10[0xb0];
+    f64 valuec0;
+    f32 valuec8;
+    unsigned char padcc[4];
+    f64 valued0;
+} Fn_1_20258Constants;
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+#endif  // GAME_VEC3_H
+
+extern Fn_1_20258Constants lbl_1_rodata_6C8;
+
+#endif  // GAME_MAIN_REL_STCOLI_TYPES_H
+
+/* end game/main_rel/stcoli_types.h */
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} StcoliGateVec;
+
+typedef struct {
+    StcoliGateVec pos;
+    s16 rot_x;
+    s16 rot_y;
+    s16 rot_z;
+    u8 pad_12[2];
+    f32 width;
+    f32 height;
+    u8 pad_1C[4];
+    u32 round;
+} StcoliGate;
+
+typedef struct {
+    u8 pad_0[0x8];
+    f32 zero;    /* 0x08 */
+    f32 one;     /* 0x0C */
+    u8 pad_10[0x4];
+    f32 ten;     /* 0x14 */
+    f32 neg_one; /* 0x18 */
+    u8 pad_1C[0x4];
+    f32 half;    /* 0x20 */
+} Fn_1_224F8Constants;
+
+extern s16 fn_1_7B054();
+extern void lbl_8006DAEC(void);
+extern void lbl_8006D7DC(void *);
+extern u32 mathutil_mtxA_rotate_x(u32);
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern u32 mathutil_mtxA_rotate_z(u32);
+extern void lbl_8006DF44(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DB30(void);
+
+#pragma section code_type ".fzgxpool"
+/* Volatile stores preserve the retail shared literal pool's ordering. */
+void fzgx_fn_1_224F8_pool_primer(volatile f64 *d, volatile f32 *f) {
+    *d = 4503601774854144.0;
+    *f = 0.0f;
+    *f = 1.0f;
+    *f = -5.0f;
+    *f = 10.0f;
+    *f = -1.0f;
+    *f = 2.0f;
+    *f = 0.5f;
+}
+#pragma section code_type ".text"
+
+s32 fn_1_224F8(StcoliGateVec *start, StcoliGateVec *end, u32 *mask) {
+    const Fn_1_224F8Constants *c;
+    s32 result;
+    s32 i;
+    s32 first;
+    StcoliGate *gate;
+    StcoliGateVec p0;
+    StcoliGateVec p1;
+    StcoliGateVec delta;
+    StcoliGateVec hit;
+    f32 sx;
+    f32 sy;
+    f32 t;
+    s32 below1;
+
+    c = (const Fn_1_224F8Constants *)&lbl_1_rodata_6C8;
+    result = -1;
+    if (fn_1_7B054() == -1) {
+        return -1;
+    }
+    if (lbl_1_bss_3BE0 == NULL) {
+        return -1;
+    }
+    first = __cntlzw(*mask);
+    lbl_8006DAEC();
+    for (i = first, gate = &((StcoliGate *)lbl_1_bss_3BE0->unk_B0)[first]; i < (s32)lbl_1_bss_3BE0->unk_AC; i++, gate++) {
+        if (!__rlwnm(*mask, (i + 1) & 0x1F, 31, 31)) {
+            continue;
+        }
+        lbl_8006D7DC(gate);
+        if (gate->rot_z) {
+            mathutil_mtxA_rotate_z(gate->rot_z);
+        }
+        if (gate->rot_y) {
+            mathutil_mtxA_rotate_y(gate->rot_y);
+        }
+        if (gate->rot_x) {
+            mathutil_mtxA_rotate_x(gate->rot_x);
+        }
+        lbl_8006DF44();
+        lbl_8006E1B0(start, &p0);
+        lbl_8006E1B0(end, &p1);
+        below1 = p1.z < 0.0f;
+        if (!(p0.z < 0.0f) || below1) {
+            continue;
+        }
+        sx = 0.5f * (10.0f * gate->width);
+        sy = 0.5f * (10.0f * gate->height);
+        p0.x /= sx;
+        p0.y /= sy;
+        p1.x /= sx;
+        p1.y /= sy;
+        psvec_sub(&p0, &p1, &delta);
+        t = -(p0.z / delta.z);
+        psvec_scale_add(&p0, &delta, t, &hit);
+        if (gate->round) {
+            f32 xx = hit.x * hit.x;
+            f32 yy = hit.y * hit.y;
+            if (xx + yy <= 1.0f) {
+                result = i;
+                break;
+            }
+        } else if ((-1.0f) <= hit.x && hit.x <= 1.0f && (-1.0f) <= hit.y && hit.y <= 1.0f) {
+            result = i;
+            break;
+        }
+    }
+    lbl_8006DB30();
+    if (result >= 0) {
+        *mask &= 0xFFFFFFFFu >> (result + 1);
+    }
+    return result;
+}
+/* fzgx:end fn_1_224F8 */
 
 /* fzgx:begin fn_1_2277C noprologue */
 #include "dolphin/types.h"
@@ -9790,6 +10286,80 @@ void fn_1_28F08(ScaleInfo *scale, Vec3 *src, f32 bias)
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_28F08 */
 
+/* fzgx:begin fn_1_29044 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+/* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+extern void fn_8006E2B0(void *, Vec3 *);
+
+typedef struct {
+    u8 pad[0xA0];
+    Vec3 v;
+} Object29044;
+
+/* Volatile preserves the ordered input stack copy before the call. */
+static inline void copy_vec(volatile Vec3 *out, f32 z, f32 y, f32 x)
+{
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+static inline void cross_vec(const Vec3 *a, const Vec3 *b, Vec3 *out)
+{
+    f32 ax = a->x;
+    f32 ay = a->y;
+    f32 az = a->z;
+    f32 bx = b->x;
+    f32 by = b->y;
+    f32 bz = b->z;
+    f32 x, y, z;
+    x = ay * bz;
+    x -= az * by;
+    y = az * bx;
+    y -= ax * bz;
+    z = ax * by;
+    z -= ay * bx;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+#pragma opt_propagation off
+#pragma opt_common_subs off
+void fn_1_29044(Object29044 *self, Vec3 *vec, void *arg2)
+{
+    Vec3 result;
+    Vec3 cross;
+    Vec3 input;
+
+    copy_vec(&input, vec->z, vec->y, vec->x);
+    fn_8006E2B0(arg2, &result);
+    cross_vec(&input, &result, &cross);
+    psvec_add(&self->v, &cross, &self->v);
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_29044 */
+
 /* fzgx:begin fn_1_294D0 noprologue */
 #include "types.h"
 #include "dolphin/types.h"
@@ -14563,6 +15133,157 @@ void fn_1_2D888(fn_1_2D888_Box *box) {
     fn_1_50A90(&text, 18.0f * fade, 45.0f * fade, w, h);
 }
 /* fzgx:end fn_1_2D888 */
+
+/* fzgx:begin fn_1_2DB50 noprologue */
+#include "types.h"
+#include "rel/main_rel/stcoli.h"
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[1] = {0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 15.0f;
+    s = 1.0f;
+    s = 10.0f;
+    s = 1.25f;
+    s = 0.10000000149011612f;
+    s = 0.8999999761581421f;
+    s = 0.0006000000284984708f;
+    s = 0.4000000059604645f;
+    s = 0.75f;
+    s = 70.0f;
+    s = 0.5f;
+    s = 36.0f;
+    s = 16.0f;
+    s = 45.0f;
+    s = 0.0007999999797903001f;
+    s = 18.0f;
+    s = 50.0f;
+}
+static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+}
+static const u32 fzgx_pool_table5[52] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.800000011920929f;
+    s = 80.0f;
+    s = 60.0f;
+}
+static const u32 fzgx_pool_table7[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+}
+#pragma section code_type ".text"
+
+extern void fn_1_A2DC4(u32 addr);
+extern s32 ghost_test_record_flag0(u8 value);
+extern s32 fn_1_F9D44(u32 value);
+extern u8 fn_1_F8C50(u8 value);
+extern void fn_1_2D524(Obj_1_bss_5138 *obj);
+extern u32 fn_1_4060(void);
+extern void fn_80008BEC(void *dst, int value, u32 size);
+
+#pragma opt_propagation off
+static inline void fn_1_2DB50_transition(Obj_1_bss_5138 *obj, s32 zero, u8 *threshold) {
+    s32 condition;
+    *threshold = obj->unk_2 + obj->unk_3 + obj->unk_E4 + 4;
+    obj->unk_E0 = zero;
+    obj->unk_E1++;
+    if (obj->unk_E1 == 1) {
+        if (obj->unk_E3 == 0xff) {
+            condition = zero;
+        } else if (ghost_test_record_flag0(lbl_1_bss_3C30.unk_6) != 0) {
+            condition = 0;
+        } else {
+            condition = 1;
+        }
+        if (condition == 0) {
+            obj->unk_E1 = 2;
+        }
+    }
+}
+
+void fn_1_2DB50(Obj_1_bss_5138 *obj) {
+    s32 condition;
+    u8 threshold;
+    f32 v;
+    f32 t;
+
+    if (obj->unk_E0 == 0x78) {
+        fn_1_A2DC4(0xA9011100);
+    }
+    if (++obj->unk_E0 > 0x78) {
+        t = (f32)(s32)(obj->unk_E0 - 0x78);
+        if (t > 15.0f) {
+            fn_1_2DB50_transition(obj, 0, &threshold);
+            if (obj->unk_E1 == 2) {
+                if (obj->unk_E5 == 0xff) {
+                    condition = 0;
+                } else if (fn_1_F9D44(obj->unk_E5 & 0xf) != 0) {
+                    condition = 0;
+                } else {
+                    condition = 1;
+                }
+                if (condition == 0) {
+                    obj->unk_E1 = 3;
+                }
+            }
+            if (obj->unk_E1 == 3) {
+                if (obj->unk_EB == 0xff) {
+                    condition = 0;
+                } else if (fn_1_F8C50(obj->unk_EB) != 0) {
+                    condition = 0;
+                } else {
+                    condition = 1;
+                }
+                if (condition == 0) {
+                    obj->unk_E1 = 4;
+                }
+            }
+            if (obj->unk_E1 >= threshold) {
+                fn_80008BEC(&lbl_1_bss_5138, 0, 0xec);
+                lbl_1_bss_5138.unk_10 = 320;
+                lbl_1_bss_5138.unk_12 = 180;
+                lbl_1_bss_5138.unk_E1 = 0;
+                lbl_1_bss_5138.unk_E0 = 0;
+                lbl_1_bss_5138.unk_0 = 0;
+                lbl_1_bss_5138.unk_2 = 0;
+                lbl_1_bss_5138.unk_3 = 0;
+                lbl_1_bss_5138.unk_1C = 0.0f;
+                lbl_1_bss_5138.unk_20 = 0;
+                lbl_1_bss_5138.unk_E2 = 0;
+                lbl_1_bss_5138.unk_E3 = 0xff;
+                lbl_1_bss_5138.unk_E4 = 0;
+                lbl_1_bss_5138.unk_E5 = 0xff;
+                lbl_1_bss_5138.unk_EB = 0xff;
+                fn_1_4060();
+                return;
+            }
+            t = 15.0f;
+            fn_1_2D524(obj);
+        }
+        obj->unk_1C = 1.0f - t / 15.0f;
+    } else {
+        v = (f32)obj->unk_E0 / 15.0f;
+        obj->unk_1C = v;
+        if (v > 1.0f) {
+            obj->unk_1C = 1.0f;
+            if (obj->unk_E0 == 0x78) {
+                obj->unk_E0 = 0x77;
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_2DB50 */
 
 /* fzgx:begin fn_1_2DF98 noprologue */
 #include "types.h"

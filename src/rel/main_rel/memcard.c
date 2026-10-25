@@ -6137,6 +6137,158 @@ void fn_1_B171C(void *arg0) {
 }
 /* fzgx:end fn_1_B171C */
 
+/* fzgx:begin fn_1_B22AC noprologue */
+#include "rel/main_rel/memcard.h"
+
+typedef struct {
+    char name[0x40];
+    u32 unk_40;
+    u8 pad_44[0x8];
+} MemcardKind;
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    char name[0x22];
+    u32 unk_24;
+    u32 unk_28;
+    u32 unk_2C;
+} MemcardEntry;
+
+typedef struct {
+    u8 pad_00[0x08];
+    u32 unk_08;
+    u32 unk_0C;
+    u8 pad_10[0x10];
+    char unk_20[0x20];
+    u32 unk_40;
+    u32 unk_44;
+    char unk_48[4];
+    char unk_4C[0x48];
+    MemcardEntry *unk_94;
+    char unk_98[0x20];
+    u32 unk_B8;
+    u8 pad_BC[0x20];
+    u32 unk_DC;
+} MemcardWork;
+
+typedef struct {
+    u8 pad_00[0x24];
+    MemcardWork *unk_24;
+    u8 pad_28[0x05];
+    u8 unk_2D;
+} MemcardCtx;
+
+extern MemcardKind lbl_1_rodata_4AE0[];
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32, u32, const char *, int);
+extern u32 fn_1_4630(u32, u32, const char *, int);
+extern const char *fn_80019C48(void);
+extern size_t strlen(const char *);
+extern char *fn_80083970(char *, const char *);
+extern s32 strncmp(const char *, const char *, size_t);
+extern char *strncpy(char *, const char *, size_t);
+extern int sprintf(char *, const char *, ...);
+
+static inline u32 parseHex(u8 *s, int n) {
+    int i;
+    u32 c;
+    u32 sum = 0;
+
+    for (i = 0; i < n; i++, s++) {
+        c = *s;
+        if (c >= 'A' && c <= 'F') {
+            c -= 'A' - 10;
+        } else {
+            c -= '0';
+        }
+        sum += c << ((n - 1 - i) * 4);
+    }
+    return sum;
+}
+
+void fn_1_B22AC(MemcardCtx *ctx, s32 kind) {
+    char * fzgx_live;
+    char *base;
+    MemcardEntry *entry;
+    const char *code;
+    MemcardKind *info;
+    size_t len;
+    char *p1;
+    size_t n_2;
+    char *p2;
+    u32 value;
+    size_t n;
+
+    base = (char *)&lbl_1_data_35AC8;
+    code = fn_80019C48();
+    info = &lbl_1_rodata_4AE0[kind];
+    len = strlen(info->name);
+    p1 = fn_80083970(ctx->unk_24->unk_20, base + 0x6cfc);
+    p2 = fn_80083970(ctx->unk_24->unk_20, base + 0x6dd4);
+    if (strncmp(ctx->unk_24->unk_48, code, 4) != 0) {
+        return;
+    }
+    if (strncmp(ctx->unk_24->unk_4C, base + 0x7088, 2) != 0) {
+        return;
+    }
+    if (strncmp(ctx->unk_24->unk_20, info->name, len) != 0) {
+        return;
+    }
+    if (p1 == NULL && p2 == NULL) {
+        return;
+    }
+
+    entry = &ctx->unk_24->unk_94[ctx->unk_2D];
+    if (p1 != NULL) {
+        n = p1 - (ctx->unk_24->unk_20 + len);
+        fzgx_live = entry->name;
+        strncpy(fzgx_live, ctx->unk_24->unk_20 + len, n);
+        fzgx_live = entry->name;
+        fzgx_live[n] = 0;
+    } else {
+        n_2 = p2 - (ctx->unk_24->unk_20 + len);
+        fzgx_live = entry->name;
+        strncpy(fzgx_live, ctx->unk_24->unk_20 + len, n_2);
+        fzgx_live = entry->name;
+        fzgx_live[n_2] = 0;
+    }
+    entry->unk_1 = kind;
+    value = *(volatile u32 *)&info->unk_40;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+    entry->unk_24 = (*(MemcardWork *volatile *)&ctx->unk_24)->unk_40;
+    entry->unk_28 = ctx->unk_24->unk_44;
+    ctx->unk_2D++;
+    ctx->unk_24->unk_08 |= 0x20;
+    ctx->unk_24->unk_08 |= 0x4;
+
+    if (value == 0 && kind == 4) {
+        fzgx_live = entry->name;
+        ctx->unk_24->unk_B8 = parseHex((u8 *)fzgx_live, 5);
+    } else if (value == 0 && kind == 5) {
+        fzgx_live = entry->name;
+        ctx->unk_24->unk_B8 = parseHex((u8 *)fzgx_live, 8);
+    } else if (value == 0 && kind == 2) {
+        ctx->unk_24->unk_B8 = 16040;
+    } else {
+        ctx->unk_24->unk_B8 = value;
+    }
+
+    ctx->unk_24->unk_0C = entry->unk_24;
+    fzgx_live = entry->name;
+    sprintf(ctx->unk_24->unk_98, base + 0x713c, info->name, fzgx_live);
+    if (entry->unk_2C != 0) {
+        fn_1_46B4(lbl_801A6410, entry->unk_2C, base + 0x6cf0, 0x16f4);
+        entry->unk_2C = 0;
+    }
+    entry->unk_2C = fn_1_4630(lbl_801A6410, ctx->unk_24->unk_B8, base + 0x6cf0, 0x16f7);
+    if (ctx->unk_24->unk_DC != 0) {
+        fn_1_46B4(lbl_801A6410, ctx->unk_24->unk_DC, base + 0x6cf0, 0x16f9);
+        ctx->unk_24->unk_DC = 0;
+    }
+    ctx->unk_24->unk_DC = fn_1_4630(lbl_801A6410, ctx->unk_24->unk_0C, base + 0x6cf0, 0x16fc);
+}
+/* fzgx:end fn_1_B22AC */
+
 /* fzgx:begin fn_1_B2770 */
 // fn_1_B2770: main_rel .text:0x000B2770 size 0xC
 // Store byte 0x3 at offset 3 of the pointer argument

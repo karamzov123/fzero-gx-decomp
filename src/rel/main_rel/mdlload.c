@@ -667,6 +667,55 @@ void fn_1_D41D8(void) {
 }
 /* fzgx:end fn_1_D41D8 */
 
+/* fzgx:begin fn_1_D42A8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/mdlload.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/mdlload.h"
+
+#ifndef GAME_MAIN_REL_MDLLOAD_TYPES_H
+#define GAME_MAIN_REL_MDLLOAD_TYPES_H
+
+#endif  // GAME_MAIN_REL_MDLLOAD_TYPES_H
+
+/* end game/main_rel/mdlload_types.h */
+
+extern void fn_1_681C(u8, u32 *);
+extern void fn_1_6898(u8, u32 *);
+extern f32 lbl_1_rodata_6168[112];
+
+typedef struct D42Vec { f32 x, y, z; } D42Vec;
+/* Volatile preserves the repeated source-vector reads in the clamped-distance calculation. */
+static inline f32 d42dist(volatile D42Vec *a, D42Vec *b) {
+    f32 value;
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    dx = a->x;
+    dx -= b->x;
+    dy = a->y;
+    dy -= b->y;
+    dz = a->z;
+    dz -= b->z;
+    value = dx*dx;
+    value = value + dy*dy;
+    value = value + dz*dz;
+    return value;
+}
+static inline f32 fn_1_D42A8_array_read(f32 *array, s32 index) { return array[index]; }
+#pragma opt_common_subs off
+void fn_1_D42A8(u32 arg0, int arg1) {
+    D42Vec a;
+    D42Vec b;
+    fn_1_681C((u8)arg1, (u32 *)&a);
+    fn_1_6898((u8)arg1, (u32 *)&b);
+    ((f32 *)arg0)[arg1] = d42dist(&a, &b) < fn_1_D42A8_array_read(lbl_1_rodata_6168, 0) ? d42dist(&a, &b) : fn_1_D42A8_array_read(lbl_1_rodata_6168, 0);
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_D42A8 */
+
 /* fzgx:begin fn_1_D4360 */
 void fn_1_D4360(void *base) {
     *(s32 *)((char *)base + 0xc074) = 200;
@@ -928,6 +977,96 @@ void fn_1_D47F0(void *base, u32 index) {
 }
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_D47F0 */
+
+/* fzgx:begin fn_1_D4964 noprologue */
+#include "types.h"
+#include "rel/main_rel/mdlload.h"
+
+typedef struct { u32 dummy[8]; } Sig_GXInitTexObj_GXTexObj;
+typedef Sig_GXInitTexObj_GXTexObj Sig_GXInitTexObjLOD_GXTexObj;
+extern const f32 lbl_1_rodata_6168;
+extern u32 lbl_801A63C0;
+extern u32 fn_1_D523C(void *);
+extern void fn_80008BEC(void *, int, u32);
+extern void DCFlushRange(void *, u32);
+extern void GXInitTexObj(Sig_GXInitTexObj_GXTexObj *, void *, u16, u16, int, int, int, u8);
+extern void GXInitTexObjLOD(Sig_GXInitTexObjLOD_GXTexObj *, int, int, f32, f32, f32, u8, u8, int);
+extern void GXInvalidateTexAll(void);
+struct Table16 { s32 a[16]; };
+struct Pool { u8 pad[16]; f32 zero; u8 gap[0x34]; struct Table16 a,b,c,d; };
+#define R(off) (*(const s32 *)((u8 *)&lbl_1_rodata_6168 + (off)))
+static inline int random15(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+void fn_1_D4964(u32 arg0) {
+    struct Pool *pool=(struct Pool *)&lbl_1_rodata_6168;
+    u8 *v0 = (u8 *)(arg0 + 0xC140);
+    s32 loc_C8[16];
+    s32 loc_88[16];
+    s32 loc_48[16];
+    s32 loc_8[16];
+    int v10, v18, v15, v19, v21, v16, v25, v33, slope;
+    u8 *v9;
+    int v40, v47, v35, y, x, v53;
+    *(struct Table16 *)loc_C8=pool->a;
+    *(struct Table16 *)loc_88=pool->b;
+    *(struct Table16 *)loc_48=pool->c;
+    *(struct Table16 *)loc_8=pool->d;
+    fn_80008BEC((void *)(v0 + 32), 0, 512);
+    for (v10=0; v10<16; v10++) {
+        for(v15=0;v15<8;v15++) {
+            for(v18=0;v18<8;v18++) {
+                v19=v15*8+v18;
+                v21=v19/2;
+                v16=((v19&1)^((u32)v19>>31))-((u32)v19>>31);
+                if(v21+v10*32<512) {
+                    v25=loc_88[v10];
+                    slope=loc_48[v10];
+                    if(slope>0) v25+=v18*slope;
+                    else v25+=(v18-7)*slope;
+                    slope=loc_8[v10];
+                    if(slope>0) v25+=v15*slope;
+                    else v25+=(v15-7)*slope;
+                    if(random15()%100<v25) {
+                        v33=random15()%loc_C8[v10];
+                        if(v16) ((u8 *)(v0+32))[v10*32+v21]|=v33;
+                        else ((u8 *)(v0+32))[v10*32+v21]|=v33<<4;
+                    }
+                }
+            }
+        }
+    }
+    DCFlushRange((void *)(v0+32),512);
+    fn_80008BEC((void *)(v0+544),0,9216);
+    for(v35=0;v35<4;v35++) {
+        *(s16 *)(v0+9768+v35*2)=v35*3+1;
+        for(v40=0;v40<8;v40++) {
+            for(v47=0;v47<*(s16 *)(v0+9768+v35*2);v47++) {
+                v53=random15()%16;
+                y=random15()%16;
+                *(u8 *)(v0+544+v35*2304+v40*288+v53+y*16)=16;
+                *(u8 *)(v0+544+v35*2304+((v40+1)%8)*288+v53+y*16)=1;
+                *(u8 *)(v0+544+v35*2304+((v40+2)%8)*288+v53+y*16)=17;
+            }
+        }
+    }
+    DCFlushRange((void *)(v0+544),9216);
+    GXInitTexObj((Sig_GXInitTexObj_GXTexObj *)v0,(void *)(v0+32),32,32,0,1,1,0);
+    GXInitTexObjLOD((Sig_GXInitTexObjLOD_GXTexObj *)v0,1,1,pool->zero,pool->zero,pool->zero,0,0,0);
+    {
+    int v58, v56;
+    for(v56=0;v56<4;v56++) {
+        for(v58=0;v58<8;v58++) {
+            GXInitTexObj((Sig_GXInitTexObj_GXTexObj *)(v0+v56*2304+v58*288+800),(void *)(v0+v56*2304+v58*288+544),16,16,2,1,1,0);
+            GXInitTexObjLOD((Sig_GXInitTexObjLOD_GXTexObj *)(v0+v56*2304+v58*288+800),0,0,pool->zero,pool->zero,pool->zero,0,0,0);
+        }
+    }
+    }
+    GXInvalidateTexAll();
+    lbl_1_data_2A7E0.unk_2C=(u32)fn_1_D523C;
+}
+/* fzgx:end fn_1_D4964 */
 
 /* fzgx:begin fn_1_D4FFC noprologue */
 #include "types.h"

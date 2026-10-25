@@ -4501,6 +4501,260 @@ f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_5E3C4 */
 
+/* fzgx:begin fn_1_5E4D8 noprologue */
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+#include "types.h"
+#include "rel/main_rel/effect.h"
+
+/* begin game/main_rel/car_test_types.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+// Types (and the externs that name them) of car_test.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+#ifndef GAME_MAIN_REL_CAR_TYPES_H
+#define GAME_MAIN_REL_CAR_TYPES_H
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+#endif  // GAME_VEC3_H
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+#endif  // GAME_MAIN_REL_CAR_TYPES_H
+
+/* end game/main_rel/car_types.h */
+
+typedef struct FzgxV3 {
+    f32 x, y, z;
+} FzgxV3;
+
+#pragma section code_type ".fzgxpool"
+/* volatile: preserve literal pool order by retaining each primer store. */
+void fzgx_pool_primer(volatile f32 *f, volatile f64 *d) {
+    *f = 60.0f;
+    *f = 0.1f;
+    *f = 32767.0f;
+    *f = 0.05f;
+    *d = 0.07;
+    *f = 20000.0f;
+    *d = 4503599627370496.0;
+    *f = 1.0f;
+    *f = -0.03f;
+    *d = 15.0;
+    *d = 4503601774854144.0;
+    *d = 1.5;
+    *d = 0.5;
+    *f = 0.0f;
+    *f = 0.5f;
+    *f = 8.0f;
+    *f = 255.0f;
+    *f = 15.0f;
+    *f = 0.2f;
+    *f = 0.08f;
+    *f = 0.25f;
+    *f = 0.98f;
+    *f = 0.99f;
+    *f = 40.0f;
+    *f = 20.0f;
+    *f = 1.5f;
+    *f = 0.45f;
+    *f = -2.0f;
+    *f = 0.0833333358168602f;
+    *f = 0.15f;
+    *f = 0.125f;
+    *f = -0.4f;
+    *f = -0.3f;
+    *f = 2.0f;
+    *f = 250.0f;
+    *d = 0.6;
+    *d = 0.4;
+    *f = 0.3f;
+    *f = -0.004f;
+    *f = 0.01666666753590107f;
+    *f = 65536.0f;
+    *f = 4096.0f;
+    *f = 0.96f;
+    *f = 0.4f;
+    *f = 0.0505f;
+    *f = 0.051f;
+    *f = 0.95f;
+    *f = 0.9f;
+    *d = 150.0;
+    *d = 10.0;
+    *d = 3.0;
+}
+
+/* Aggregate initializers get their own pool object (no dedupe). */
+/* volatile: preserve literal pool order by retaining each primer store. */
+void fzgx_pool_primer_b(volatile f32 *f, volatile f64 *d, FzgxV3 *v) {
+    FzgxV3 t = {0.0f, 0.1f, -2.4f};
+    *v = t;
+    *f = 5.0f;
+    *d = 1.2;
+    *d = 0.1;
+    *f = 10.0f;
+    *f = 18.0f;
+    *d = 0.7;
+    *d = 50.0;
+}
+
+/* volatile: preserve literal pool order by retaining each primer store. */
+void fzgx_pool_primer_c(volatile f32 *f, volatile f64 *d, FzgxV3 *v) {
+    FzgxV3 t = {0.0f, 0.1f, -2.4f};
+    *v = t;
+    *f = 19.0f;
+    *d = 24.0;
+    *f = 0.70710677f;
+    *d = 0.0;
+    *d = 255.0;
+    *d = 0.9;
+    *f = 0.004f;
+    *f = 0.001f;
+    *f = 0.01f;
+    *f = -1.1920928955078125e-07f;
+    *f = 240.0f;
+    *f = 100.0f;
+    *f = 300.0f;
+    *f = 200.0f;
+    *f = 10000.0f;
+    *f = 5000.0f;
+    *f = 204.0f;
+    *f = 85.0f;
+    *f = -0.05f;
+    *f = 4.0f;
+    *f = -0.06f;
+    *f = -0.5f;
+    *f = -1.0f;
+    *d = 0.2;
+    *f = 512.0f;
+    *f = 0.03f;
+    *f = 51.0f;
+    *f = 88.0f;
+    *d = -3.0;
+    *f = 4.5f;
+    *f = 6.0f;
+}
+#pragma section code_type ".text"
+
+extern f32 lbl_8006D0B4(f32);
+extern void *lbl_8006DC6C(void *);
+extern void fn_1_8636C(int,void *);
+extern void fn_1_862D4(int,Triple *);
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern u32 mathutil_mtxA_rotate_x(u32);
+extern u32 mathutil_mtxA_rotate_z(u32);
+#define S(o) (*(s16 *)((u8 *)arg0+(o)))
+#define H(o) (*(u16 *)((u8 *)arg0+(o)))
+#define I(o) (*(s32 *)((u8 *)arg0+(o)))
+#define F(o) (*(f32 *)((u8 *)arg0+(o)))
+#define RF(p,o) (*(f32 *)((u8 *)(p)+(o)))
+#define RS(p,o) (*(s16 *)((u8 *)(p)+(o)))
+#define RB(p,o) (*(s8 *)((u8 *)(p)+(o)))
+#pragma opt_unroll_count 8
+static inline Obj_1_bss_6C84C_Target *find_effect(Obj_1_bss_6C84C_Target *p, s32 count, s32 key) {
+    for (; count != 0; count--, p++) {
+        if (RB(p,0) && p->unk_4 == key) break;
+    }
+    if (count == 0) p = 0;
+    return p;
+}
+
+void fn_1_5E4D8(void *arg0) {
+Obj_1_bss_6C84C_Target *obj;
+s32 active=0;
+s32 key;
+u8 *p;
+s32 count;
+s32 j;
+struct {u32 a[12];} matrix;
+Fn183D28Vec3 offset;
+Triple pos;
+Fn183D28Vec3 rel;
+f32 z,y,x,t,f;
+f32 dx,dz,dy;
+void *car=(void *)I(0x38);
+if(H(0xb2)==1 && *(u16 *)((u8 *)car+0x214)!=0) {active=1; I(0x10)++;}
+fn_1_8636C(S(0x18),&matrix);
+fn_1_862D4(S(0x18),&pos);
+lbl_8006DC6C(&matrix);
+if(H(0xb2)==1 && active) {
+key=S(0x58);
+find_effect(*(Obj_1_bss_6C84C_Target **)&lbl_1_bss_6C848,190,key);
+obj=find_effect(lbl_1_bss_6C84C,200,key);
+if(obj) {
+lbl_8006DC6C(&matrix);
+/* volatile: keeps x's load first (locked-cache column idiom). */
+x=*(volatile f32 *)((u8 *)obj+0x3c); y=RF(obj,0x40); z=RF(obj,0x44);
+*(f32 *)(LC_BASE + 0xC)=x; *(f32 *)(LC_BASE + 0x1C)=y; *(f32 *)(LC_BASE + 0x2C)=z;
+f=1.2f;
+switch(I(0x14)) {
+case 0: {Fn183D28Vec3 v={1.1f,0.0f,0.9f}; ((f32 *)&v)[1]=-f; rel=v; break;}
+case 1: {Fn183D28Vec3 v={-1.1f,0.0f,0.9f}; ((f32 *)&v)[1]=-f; rel=v; break;}
+case 2: {Fn183D28Vec3 v={0.0f,0.0f,-0.7f}; ((f32 *)&v)[1]=-f; rel=v; break;}
+}
+mathutil_mtxA_rotate_y(RS(obj,0x56)); mathutil_mtxA_rotate_x(RS(obj,0x54)); mathutil_mtxA_rotate_z(RS(obj,0x58));
+lbl_8006E1B0(&rel,(Fn183D28Vec3 *)((u8 *)arg0+0x88));
+}}
+/* angular velocity decay (0x5a, 0x5c): a two-element loop keeps 0.98f and the
+   int-to-float bias in registers across both stores */
+if(!active) {for(count=0;count<2;count++) ((s16 *)((u8 *)arg0+0x5a))[count]*=0.98f;}
+lbl_8006DC6C(&matrix);
+/* volatile: keeps x's load first (locked-cache column idiom). */
+{ f32 pz,py,px;
+/* volatile: retain x as the first column load. */
+px=*(volatile f32 *)&pos; py=((f32 *)&pos)[1];pz=((f32 *)&pos)[2];f=0.01f;
+*(f32 *)(LC_BASE + 0xC)=px; *(f32 *)(LC_BASE + 0x1C)=py; *(f32 *)(LC_BASE + 0x2C)=pz;
+}
+S(0x54)+=S(0x5a);S(0x56)+=S(0x5c);
+F(0x28)=F(0x28)+(f32)(f*(F(0x2c)-F(0x28)));
+mathutil_mtxA_rotate_y(S(0x56)); mathutil_mtxA_rotate_x(S(0x54));
+{Fn183D28Vec3 v={0.0f,0.0f,0.0f};((f32 *)&v)[2]=-F(0x28);offset=v;}
+lbl_8006E1B0(&offset,(Fn183D28Vec3 *)((u8 *)arg0+0x3c));
+if(!active) {F(0x94)+=F(0xa0);F(0x98)+=F(0xa4);F(0x9c)+=F(0xa8);}
+F(0xb4)=0.5f*((f32)I(0x10)<0.0f ? 0.0f : (f32)I(0x10)>15.0f ? 15.0f : (f32)I(0x10));
+if(I(0x10)<20 && !active) {
+x=F(0x1c);
+f=1.0f-(1.0f+(f32)(-0.05f*(f32)I(0x10)));
+F(0x1c)=x*f;F(0x20)*=f;F(0x24)*=f;
+}
+if(!active) {
+dx=((f32 *)&pos)[0]-F(0x88); dy=((f32 *)&pos)[1]; dy=dy-F(0x8c); dz=((f32 *)&pos)[2]; dz=dz-F(0x90);
+dx=dx*dx;
+dx=dy*dy+dx;
+dx=dz*dz+dx;
+t=lbl_8006D0B4(dx);
+if(t>50.0f) *(u8 *)arg0=3;
+else if(t>10.0f) {x=F(0x1c);f=1.0f-(f32)(0.025f*(t-10.0f));F(0x1c)=x*f;F(0x20)*=f;F(0x24)*=f;}
+}
+}
+/* fzgx:end fn_1_5E4D8 */
+
 /* fzgx:begin fn_1_5EB08 */
 typedef struct FnObj {
     u8 pad18[0x18];

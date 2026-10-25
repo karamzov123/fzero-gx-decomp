@@ -2188,6 +2188,81 @@ void fn_1_43E08(Obj *object, Entry *entry, u16 frameA, u16 frameB, f32 value) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_43E08 */
 
+/* fzgx:begin fn_1_442D8 */
+typedef struct fn_1_442D8_Key {
+    u16 flags;
+    u16 frame;
+    f32 value;
+    f32 tanIn;
+    f32 tanOut;
+} fn_1_442D8_Key;
+struct fn_1_442D8_Arg0 { f32 unk_0, unk_4, unk_8; };
+struct fn_1_442D8_Arg1 { u8 pad_0[0xD4]; u16 unk_D4[36]; fn_1_442D8_Key *unk_11C[1]; };
+extern const f32 lbl_1_rodata_F50, lbl_1_rodata_F70, lbl_1_rodata_F74, lbl_1_rodata_F78, lbl_1_rodata_F7C;
+extern const f64 lbl_1_rodata_F58, lbl_1_rodata_F60;
+
+/* Evaluate a keyframe track: linear (mode 1) or Hermite (mode 0) between the bracketing keys. */
+#define EVAL_TRACK(idx, dst)                                                                        \
+    {                                                                                               \
+        s32 i;                                                                                      \
+        u32 count = arg1->unk_D4[idx];                                                              \
+        if (count != 0) {                                                                           \
+            fn_1_442D8_Key *keys = arg1->unk_11C[idx];                                              \
+            fn_1_442D8_Key *key;                                                                    \
+            u32 start;                                                                              \
+            f32 c, b, a, value, duration, t, t3, t2, three, negprod;                                \
+            if (arg3 < (f32)keys[0].frame) {                                                        \
+                value = keys[0].value;                                                              \
+            } else if (arg3 >= (f32)keys[count - 1].frame) {                                        \
+                value = keys[count - 1].value;                                                      \
+            } else {                                                                                \
+                key = keys;                                                                         \
+                i = 0;                                                                              \
+                while (arg3 >= (f32)key[1].frame) {                                                 \
+                    key++;                                                                          \
+                    i++;                                                                            \
+                }                                                                                   \
+                keys += i;                                                                          \
+                key = keys;                                                                         \
+                start = key[0].frame;                                                               \
+                duration = (f32)((s32)key[1].frame - (s32)start);                                   \
+                t = (arg3 - (f32)start) / duration;                                                 \
+                value = key[0].value;                                                               \
+                a = key[1].value;                                                                   \
+                b = key[0].tanOut;                                                                  \
+                c = key[1].tanIn;                                                                   \
+                switch (key[0].flags & 3) {                                                         \
+                case 1:                                                                             \
+                    value = value + (f32)(t * (a - value));                                         \
+                    break;                                                                          \
+                case 0:                                                                             \
+                    t2 = t * t;                                                                     \
+                    t3 = t2 * t;                                                                    \
+                    three = lbl_1_rodata_F70 * t2;                                                  \
+                    negprod = lbl_1_rodata_F78 * t3;                                                \
+                    value = (f32)(value * (lbl_1_rodata_F50 + ((f32)(2.0f * t3) - three))) +        \
+                            (f32)(a * (negprod + three));                                           \
+                    value = value + (f32)((f32)(lbl_1_rodata_F7C * duration) *                      \
+                                          ((f32)(b * (t + (t3 - (f32)(2.0f * t2)))) +               \
+                                           (f32)(c * (t3 - t2))));                                  \
+                    break;                                                                          \
+                }                                                                                   \
+            }                                                                                       \
+            dst = value;                                                                            \
+            result = 1;                                                                             \
+        }                                                                                           \
+    }
+
+s32 fn_1_442D8(struct fn_1_442D8_Arg0 *arg0, struct fn_1_442D8_Arg1 *arg1, u32 arg2, f32 arg3) {
+    s32 result = 0;
+
+    EVAL_TRACK((u16)arg2, arg0->unk_0)
+    EVAL_TRACK((u16)((u16)arg2 + 1), arg0->unk_4)
+    EVAL_TRACK((u16)((u16)arg2 + 2), arg0->unk_8)
+    return result;
+}
+/* fzgx:end fn_1_442D8 */
+
 /* fzgx:begin fn_1_449A8 noprologue */
 #include "types.h"
 #include "psvec.h"

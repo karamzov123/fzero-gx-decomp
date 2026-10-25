@@ -1004,6 +1004,178 @@ void fn_1_DD890(Sig_fn_1_DD4DC_DDObj *arg0, f32 arg1) {
 }
 /* fzgx:end fn_1_DD890 */
 
+/* fzgx:begin fn_1_DE180 noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "types.h"
+
+/* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct fn_1_DE180_Obj {
+    u8 pad_0[0x18];
+    f32 unk_18;
+    u8 pad_1C[0x4];
+    f32 unk_20;
+    u8 pad_24[0x20];
+    Vec3 pos;
+    f32 unk_50;
+    u8 pad_54[0x18];
+    Vec3 vel;
+    u8 pad_78[0xC0];
+    u64 flags;
+} fn_1_DE180_Obj;
+
+/* shared literal pool: -1.0f at 0x0, 0.0f at 0x20, 1.0f at 0x28 */
+typedef struct fn_1_DE180_Pool {
+    f32 neg_one;
+    u8 pad_4[0x1C];
+    f32 zero;
+    u8 pad_24[0x4];
+    f32 one;
+} fn_1_DE180_Pool;
+
+extern const fn_1_DE180_Pool lbl_1_rodata_6780;
+
+extern f32 lbl_8006D534(Vec3 *, Vec3 *);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_80008BA8(void *, void *, u32);
+extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
+extern void lbl_8006D668(Vec3 *);
+extern void fn_80008BEC(void *, int, u32);
+
+#pragma opt_common_subs off
+#pragma opt_propagation on
+
+static inline void fn_1_DE180_cross(Vec3 *a, Vec3 *b, Vec3 *out) {
+    f32 ay = a->y;
+    f32 az = a->z;
+    f32 bx = b->x;
+    f32 by;
+    f32 bz = b->z;
+    f32 ax = a->x;
+    f32 x;
+    f32 z;
+    f32 y;
+    by = b->y;
+    y = az * bx;
+    y -= ax * bz;
+    z = ax * by;
+    z -= ay * bx;
+    x = ay * bz;
+    x -= az * by;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+static inline f32 fn_1_DE180_dot(Vec3 *a, Vec3 *b) {
+    f32 result;
+    f32 ay;
+    f32 az;
+    f32 ax;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    ax = a->x;
+    bx = b->x;
+    ay = a->y;
+    by = b->y;
+    az = a->z;
+    bz = b->z;
+    result = ax * bx;
+    result += ay * by;
+    result += az * bz;
+    return result;
+}
+
+static inline void fn_1_DE180_perp(const fn_1_DE180_Pool *pool, Vec3 *a, Vec3 *b, Vec3 *out) {
+    Vec3 *n = out;
+    fn_1_DE180_cross(a, b, out);
+    fn_1_DE180_cross(out, b, out);
+    if (fn_1_DE180_dot(out, out) > pool->zero) {
+        lbl_8006D668(n);
+    }
+}
+
+static inline BOOL fn_1_DE180_clamp(const fn_1_DE180_Pool *pool, Vec3 *v, f32 r) {
+    Vec3 *p;
+    if (r < pool->zero) {
+        return FALSE;
+    }
+    p = v;
+    if (fn_1_DE180_dot(v, v) <= r * r) {
+        fn_80008BEC(p, 0, sizeof(Vec3));
+        return TRUE;
+    }
+    return FALSE;
+}
+
+void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
+    f32 damping;
+    f32 side_scale;
+    f32 fzgx_live;
+    f32 scale;
+    const fn_1_DE180_Pool *pool;
+    Vec3 push;
+    Vec3 side;
+    Vec3 pos;
+    f32 s;
+    f32 k;
+    f32 dist;
+
+    pool = &lbl_1_rodata_6780;
+    if ((obj->flags & 0x8000) != 0) {
+        return;
+    }
+    dist = lbl_8006D534(&obj->pos, dir);
+    if (dist > pool->zero) {
+        return;
+    }
+    s = lbl_8006D0B4(pool->one - (f32)(dist * dist));
+    k = obj->unk_50;
+    scale = k * -obj->unk_18;
+    fn_80008BA8(&push, dir, sizeof(Vec3));
+    lbl_8006D5F0(&push, &push, scale * dist);
+    fn_80008BA8(&pos, &obj->pos, sizeof(Vec3));
+
+    fn_1_DE180_perp(pool, &pos, dir, &side);
+    if (!(fn_1_DE180_dot(&pos, &side) > pool->zero)) {
+        fzgx_live = pool->neg_one;
+        psvec_scale(&side, fzgx_live, &side);
+    }
+    side_scale = k * s;
+    psvec_scale(&side, side_scale, &side);
+    if (fn_1_DE180_clamp(pool, &push, radius) == TRUE) {
+        obj->flags |= 0x8000;
+        if ((obj->flags & 0x8000000) == 0) {
+            obj->flags |= 0x100000000ULL;
+        }
+    }
+    psvec_add(&push, &side, &obj->pos);
+    damping = pool->one - obj->unk_20;
+    psvec_scale(&obj->vel, damping, &obj->vel);
+}
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_DE180 */
+
 /* fzgx:begin fn_1_DE9C4 noprologue */
 #include "types.h"
 #include "rel/main_rel/bg_for.h"

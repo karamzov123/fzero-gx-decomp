@@ -216,6 +216,118 @@ s8 fn_1_5370(s8 arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_5370 */
 
+/* fzgx:begin fn_1_56B8 noprologue */
+#include "types.h"
+#include "rel/main_rel/camera.h"
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+    u8 pad_A[0x8];
+    s16 unk_12;
+    s16 unk_14;
+    u8 pad_16[0x1E0 - 0x16];
+} fn_1_56B8_Camera;
+
+/* lbl_1_bss_F68 heads a run of three camera pointers */
+typedef struct {
+    Obj_1_bss_F68_Target *target;
+    GameCameraEntry *entries;
+    fn_1_56B8_Camera *live;
+} fn_1_56B8_Cluster;
+
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *, f32);
+extern void fn_1_8A0C(s32);
+extern void fn_1_EBE4(fn_1_56B8_Camera *, s16, s32, f32);
+extern void fn_1_EE04(fn_1_56B8_Camera *);
+
+#pragma opt_common_subs off
+void fn_1_56B8(void) {
+    GameCameraEntry *entry;
+    fn_1_56B8_Cluster *c = (fn_1_56B8_Cluster *)&lbl_1_bss_F68;
+    u32 count = 0;
+    u32 reset;
+    u8 i;
+    u8 mode;
+    f32 scale;
+    reset = 0;
+
+    switch ((s8)c->target->unk_48) {
+    case 0:
+        count = 1;
+        break;
+    case 1:
+    case 2:
+        count = 2;
+        break;
+    case 3:
+    case 4:
+    case 5:
+    case 7:
+        count = 3;
+        break;
+    case 6:
+        count = 3;
+        reset = 1;
+        break;
+    case 8:
+        count = 4;
+        break;
+    case 9:
+        reset = 1;
+        break;
+    case 10:
+        count = 1;
+        reset = 1;
+        break;
+    case 11:
+        count = 0;
+        reset = 0;
+        break;
+    }
+
+    entry = c->entries;
+    for (i = 0; i < count; i++, entry++) {
+        scale = fn_1_A6FE8();
+        mode = c->target->unk_48;
+        if ((s8)mode == 1 || (i == 0 && (s8)mode == 3) ||
+            (i == 1 && (s8)mode == 4) ||
+            (i == 2 && (s8)mode == 5)) {
+            scale *= 2.0;
+        }
+        if ((s8)mode == 2) {
+            scale *= 0.5;
+        }
+        fn_1_8D08(entry, scale);
+        fn_1_8A0C(i);
+    }
+
+    if (reset) {
+        fn_1_56B8_Camera saved;
+        fn_1_56B8_Camera *live;
+
+        scale = fn_1_A6FE8();
+        live = c->live;
+        saved = *live;
+        fn_1_EBE4(live, 0, 0, scale);
+        c->live->unk_0 = saved.unk_0;
+        c->live->unk_1 = saved.unk_1;
+        c->live->unk_2 = saved.unk_2;
+        c->live->unk_4 = saved.unk_4;
+        c->live->unk_6 = saved.unk_6;
+        c->live->unk_8 = saved.unk_8;
+        c->live->unk_12 = saved.unk_12;
+        c->live->unk_14 = saved.unk_14;
+        fn_1_EE04(c->live);
+    }
+}
+/* fzgx:end fn_1_56B8 */
+
 /* fzgx:begin fn_1_6400 */
 struct fn_1_6400_lbl_801A6410 {
     u32 unk_0;

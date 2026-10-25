@@ -21507,6 +21507,124 @@ void fn_10_1A8B0(s16 x, s16 y) {
 }
 /* fzgx:end fn_10_1A8B0 */
 
+/* fzgx:begin fn_10_1AD5C noprologue */
+#include "dolphin/types.h"
+#include "rel/sel/sel.h"
+
+typedef struct { u32 flags; f32 x,y,z,sx,sy; u8 pad18[0x18]; u32 mode; u8 pad34[0x24]; } Desc;
+typedef struct { u16 id; u16 pad2; void *a,*b; u32 padc; void *c; u8 pad14[0x24]; f32 a38,a3c,a40,a44,a48,a4c; u8 pad50[0x14]; u16 flag; u16 pad66; } Config;
+typedef struct { f32 f; const char *a,*b; } Text;
+typedef struct { Text rows[78]; } TextTable;
+typedef struct { u8 pad[0x94]; u32 flags; u8 pad98[6]; u8 id; } State;
+extern u8 lbl_1_bss_8B3A0[];
+extern u8 lbl_1_bss_8CA28;
+extern s32 lbl_801A66B4;
+extern const Desc lbl_1_rodata_26F8;
+extern const f32 lbl_10_rodata_158[988];
+#define F(off) pool[(off)/4]
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_10_1A8B0(int,int);
+extern int fn_1_D66B0(void);
+extern void fn_1_8D3F8(void *,void *,void (*)(void),void *);
+extern void fn_1_131C08(void),fn_1_131B90(void);
+extern void fn_1_8CED0(void *,u16,u16);
+extern void fn_1_134AD4(void),fn_1_13DA0C(void),fn_1_13DC54(void),fn_1_13DDB8(void);
+extern void fn_10_21C20(s16,s16);
+extern void fn_1_1380F0(void);
+extern void fn_1_13B328(u32,s32);
+extern void fn_1_134EE4(s32,s32,s32,f32);
+extern void fn_1_135894(s32,s32,s32,s32,s32,s32,s32,f32,f32);
+extern void fn_1_136174(s32,s32,s32,s16,s16,s32,s32,f32,f32);
+extern void fn_1_1363F0(s32,s32,s32);
+extern void fn_1_1368A0(s32,s32,s32,f32,f32,f32,f32,f32);
+extern void fn_1_13A848(s16,s16,s32,s32,s32,f32,f32);
+extern void fn_1_13A994(s32,s32,s32,s32,s16,s32,f32,f32);
+extern void fn_1_133DBC(s32);
+extern void fn_10_1BFC4(s32,s32,Text *,...);
+extern void fn_1_53FE4(void *,u8);
+static inline void setconfig_impl(Config *c, f32 z,f32 y,f32 x) { c->a38=x;c->a3c=y;c->a40=z;c->a44=x;c->a48=y;c->a4c=x; }
+static inline void setdesc_impl(Desc *d, f32 z,f32 y,f32 x) { d->x=x;d->y=y;d->z=z;d->mode=10; }
+/* Volatile pool view keeps the first component load ahead of the stores. */
+#define setdesc(p,zz,yy,xx) setdesc_impl(p,zz,yy,*(const volatile f32 *)&(xx))
+#pragma opt_common_subs off
+#pragma opt_dead_assignments off
+void fn_10_1AD5C(void) {
+ TextTable table;
+ Config config;
+ Desc desc;
+ Desc last;
+ s32 id;
+ s16 car;
+ State *state;
+ struct { u8 *value; } entries;
+ const f32 *pool = (const f32 *)lbl_10_rodata_158;
+ fn_80008BEC(&config,0,0x68);
+ state=(State *)lbl_1_bss_8B3A0;
+ config.id=state->id;
+ config.a=lbl_10_bss_51B7C;
+ config.b=lbl_10_bss_52EFC;
+ config.c=lbl_10_bss_493A0;
+ fn_10_1A8B0(320,200);
+ if (!(((State *)lbl_1_bss_8B3A0)->flags & 0x80000000)) {
+ desc=lbl_1_rodata_26F8;
+ setdesc(&desc,F(0x6f0),F(0xf54),F(0x58));
+ if(lbl_1_bss_8CA28) { desc.sx*=F(0x254); desc.sy*=F(0x254); }
+ { f32 zero,z,y,x;
+ /* Volatile views preserve the four component reads before the writes. */
+ x=*(const volatile f32 *)&F(0x48); zero=*(const volatile f32 *)&F(0x4c); y=*(const volatile f32 *)&F(0x80c); z=*(const volatile f32 *)&F(0x810);
+ config.a38=x; config.a3c=y; config.a40=z; config.a44=x; config.a48=zero; config.a4c=zero;
+ }
+ config.flag=(u8)fn_1_D66B0();
+ fn_1_8D3F8(&lbl_10_bss_517EC,&desc,fn_1_131C08,&config);
+ desc=lbl_1_rodata_26F8;
+ setdesc(&desc,F(0x29c),F(0xf5c),F(0xf58));
+ if(lbl_1_bss_8CA28) { desc.sx*=F(0x254); desc.sy*=F(0x254); }
+ { f32 z,y,x;
+ /* Volatile views retain the first two component reads before the writes. */
+ x=*(const volatile f32 *)&F(0x4c); y=*(const volatile f32 *)&F(0x48); z=F(0xf60);
+ setconfig_impl(&config,z,y,x);
+ }
+ fn_1_8CED0(&lbl_10_bss_5197C,640,396);
+ lbl_10_bss_5197C.unk_44=F(0x654);
+ fn_1_8D3F8(&lbl_10_bss_5197C,&desc,fn_1_131B90,&config);
+ fn_1_134AD4();fn_1_13DA0C();fn_1_13DC54();fn_1_13DDB8();
+ fn_10_21C20(1,(s16)lbl_801A66B4);
+ fn_1_1380F0();
+ fn_1_13B328(0x1000000,0);
+ id=state->id;
+ entries.value=lbl_1_bss_8B3A0;
+ car=*(s16 *)(((((s16)id << 5)) + (entries.value)) + 14);
+ fn_1_134EE4(0,1,0,F(0x4c));
+ fn_1_135894(213,366,6,car,0,id,0,F(0x44),F(0x44));
+ fn_1_136174(213,355,1,car,(s16)lbl_801A66B4,id,0,F(0x48),F(0x48));
+ fn_1_1363F0(id,0,1);
+ fn_1_1368A0(car,id,0,F(0x274),F(0x278),F(0x27c),F(0x44),F(0x44));
+ fn_1_13A848(448,276,1,car,0,F(0xf64),F(0x488));
+ fn_1_13A994(448,296,1,car,(s16)lbl_801A66B4,0,F(0x48),F(0x48));
+ fn_1_133DBC(1);
+ table=*(const TextTable *)((const u8 *)pool+0xbac);
+ fn_10_1BFC4(24,67,&table.rows[lbl_801A66B4],lbl_10_data_6280);
+ fn_10_1BFC4(24,101,(&table.rows[lbl_801A66B4])+6,2,12,3,16,31);
+ fn_10_1BFC4(24,135,(&table.rows[lbl_801A66B4])+66,99);
+ fn_10_1BFC4(24,169,(&table.rows[lbl_801A66B4])+72,999);
+ fn_10_1BFC4(24,203,(&table.rows[lbl_801A66B4])+24,lbl_10_data_6294);
+ fn_10_1BFC4(24,237,(&table.rows[lbl_801A66B4])+36,99999);
+ fn_10_1BFC4(24,271,(&table.rows[lbl_801A66B4])+54,12345);
+ fn_10_1BFC4(24,305,(&table.rows[lbl_801A66B4])+60,9999);
+ last=lbl_1_rodata_26F8;
+ { f32 z,y,x;
+ /* Volatile views preserve component reads ahead of the descriptor stores. */
+ x=*(const volatile f32 *)&F(0xf68); y=*(const volatile f32 *)&F(0xf6c); z=*(const volatile f32 *)&F(0x114);
+ last.x=x; last.y=y; last.z=z; last.mode=10; last.flags=0x9500;
+ }
+ fn_1_53FE4(&last,0);
+ }
+}
+#pragma opt_dead_assignments reset
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_10_1AD5C */
+
 /* fzgx:begin fn_10_1B2F4 */
 #include "font.h"
 

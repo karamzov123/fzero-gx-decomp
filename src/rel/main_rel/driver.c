@@ -1765,6 +1765,231 @@ void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh) {
 }
 /* fzgx:end fn_1_A8834 */
 
+/* fzgx:begin fn_1_A89B0 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+typedef f32 fzgx_Mtx[3][4];
+typedef struct { f32 x, y, z; } fzgx_Vec;
+
+typedef struct fn_1_A89B0_Obj {
+    fzgx_Mtx mtx;           /* 0x000 */
+    fzgx_Vec pos[2][4];     /* 0x030, 0x060 */
+    u8 pad_90[0xC0 - 0x90];
+    fzgx_Vec ofs[2];        /* 0x0C0, 0x0CC */
+    u8 pad_d8[0x10C - 0xD8];
+    f32 len1;               /* 0x10C */
+    f32 len2;               /* 0x110 */
+    u8 pad_114[0x12C - 0x114];
+    fzgx_Mtx joints[7];     /* 0x12C */
+} fn_1_A89B0_Obj;
+
+typedef struct fn_1_A89B0_Arg1 {
+    u8 pad_0[0x1FC];
+    f32 unk_1FC;
+} fn_1_A89B0_Arg1;
+
+extern fzgx_Mtx *lbl_801A6D00;
+
+extern void lbl_8006DAEC(void);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006D758(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void lbl_8006E1F0(void *, f32, f32, f32);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006D668(void *);
+extern u32 fn_1_44884(void *);
+
+/* primes the shared literal pool lbl_1_rodata_4A28 in retail order */
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_A89B0(f32 *o) {
+    o[0] = 0.0f;
+    o[1] = -0.1f;
+    o[2] = 0.1f;
+    o[3] = 5.0f;
+    o[4] = 0.5f;
+    o[5] = 50.0f;
+    o[6] = 10.0f;
+    o[7] = 57.295776f;
+    o[8] = -10.0f;
+    o[9] = 0.2f;
+    o[10] = -30.0f;
+    o[11] = 1.8518518f;
+    o[12] = -1.8518518f;
+    o[13] = 4.1666667f;
+    o[14] = 25.0f;
+    o[15] = 30.0f;
+    o[16] = 182.04445f;
+    o[17] = 0.46296296f;
+    o[18] = 1.0f;
+    o[19] = 15.0f;
+    o[20] = 45.0f;
+    o[21] = -45.0f;
+    o[22] = 0.75f;
+    o[23] = 0.05f;
+    o[24] = -0.05f;
+    o[25] = -60.0f;
+    o[26] = 0.02f;
+    o[27] = 2.0f;
+}
+#pragma section code_type ".text"
+
+#define MTXA ((f32 (*)[4])0xE0000000)
+
+/* Keep the source translation loads ordered before locked-cache writes. */
+static inline void mtxA_set_translate(volatile fzgx_Vec *p) {
+    MTXA[0][3] = p->x;
+    MTXA[1][3] = p->y;
+    MTXA[2][3] = p->z;
+}
+
+static inline void mtxA_translate_x(f32 scale) {
+    f32 x;
+    f32 y;
+    f32 z;
+    x = MTXA[0][0];
+    y = MTXA[1][0];
+    z = MTXA[2][0];
+    x = x * scale + MTXA[0][3];
+    y = y * scale + MTXA[1][3];
+    z = z * scale + MTXA[2][3];
+    MTXA[0][3] = x;
+    MTXA[1][3] = y;
+    MTXA[2][3] = z;
+}
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+
+void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side) {
+    fzgx_Vec tip;
+    fzgx_Vec dir;
+    fzgx_Vec bend;
+    fzgx_Vec mid;
+    f32 tz;
+    f32 ty;
+    f32 tx;
+    f32 a;
+    f32 b;
+    f32 scale;
+    f32 *vec;
+    fzgx_Vec *ofs;
+    s32 j1;
+    s32 j2;
+    f32 *m2;
+    f32 v;
+    f32 r1sq;
+    f32 x;
+    f32 y;
+    f32 r1;
+    f32 lenDiff;
+    f32 dist;
+    f32 distsq;
+    f32 tipz;
+    f32 tipy;
+    f32 delta;
+
+    if (arg1 != NULL) {
+        v = arg1->unk_1FC;
+    } else {
+        v = 0.0f;
+    }
+    if (side != 0) {
+        vec = &obj->pos[0][0].x;
+        scale = 0.05f;
+        ofs = &obj->ofs[0];
+        j1 = 3;
+        j2 = 4;
+        if (v > 0.0f) {
+            a = v;
+            b = 0.0f;
+        } else {
+            a = 0.0f;
+            b = v;
+        }
+    } else {
+        vec = &obj->pos[1][0].x;
+        scale = -0.05f;
+        ofs = &obj->ofs[1];
+        j1 = 5;
+        j2 = 6;
+        if (v > 0.0f) {
+            a = 0.0f;
+            b = v;
+        } else {
+            a = v;
+            b = 0.0f;
+        }
+    }
+
+    lbl_8006DAEC();
+    mathutil_mtxA_rotate_x((s32)(182.04445f * (25.0f * b)));
+    lbl_8006DFC4(vec);
+    mathutil_mtxA_rotate_x((s32)(182.04445f * (25.0f * a)));
+    vec = &obj->joints[j1][0][0];
+    lbl_8006DB74(vec);
+
+    lbl_8006D758();
+    /* Keep the source translation loads ordered before locked-cache writes. */
+    tx = *(volatile f32 *)&ofs->x;
+    ty = ofs->y;
+    tz = ofs->z;
+    MTXA[0][3] = tx;
+    MTXA[1][3] = ty;
+    MTXA[2][3] = tz;
+    mtxA_translate_x(scale);
+    mathutil_mtxA_rotate_z((s32)(182.04445f * (-60.0f * v)));
+    lbl_8006E0B4(-scale, 0.0f, 0.02f);
+    psvec_set(&tip.x, MTXA[2][3], MTXA[1][3], MTXA[0][3]);
+    m2 = &obj->joints[j2][0][0];
+    lbl_8006DBAC(vec);
+
+    tipy = tip.y;
+    tipz = tip.z;
+    distsq = tip.x;
+    dir.x = delta = distsq - (*lbl_801A6D00)[0][3];
+    distsq = (f32)(delta * delta);
+    dir.y = delta = tipy - (*lbl_801A6D00)[1][3];
+    distsq = delta * delta + distsq;
+    dir.z = delta = tipz - (*lbl_801A6D00)[2][3];
+    dist = lbl_8006D0B4(delta * delta + distsq);
+    lbl_8006D668(&dir);
+    fn_1_44884(&dir);
+
+    r1 = obj->len1;
+    r1sq = r1 * r1;
+    lenDiff = r1sq - (f32)(obj->len2 * obj->len2);
+    x = (lenDiff + (f32)(dist * dist)) / (2.0f * dist);
+    if (r1 > x) {
+        distsq = lbl_8006D0B4(r1sq - (f32)(x * x));
+    } else {
+        distsq = 0.0f;
+        x = r1;
+    }
+    y = -distsq;
+    lbl_8006E1F0(&bend, x, y, 0.0f);
+    mid.x = vec[3] + bend.x;
+    mid.y = vec[7] + bend.y;
+    mid.z = vec[11] + bend.z;
+    lbl_8006D668(&bend);
+    fn_1_44884(&bend);
+    lbl_8006DB74(vec);
+
+    bend.x = tip.x - mid.x;
+    bend.y = tip.y - mid.y;
+    bend.z = tip.z - mid.z;
+    lbl_8006D668(&bend);
+    fn_1_44884(&bend);
+    mtxA_set_translate(&mid);
+    lbl_8006DB74(m2);
+    lbl_8006DB30();
+}
+/* fzgx:end fn_1_A89B0 */
+
 /* fzgx:begin fn_1_A8D4C */
 void fn_1_A8D4C(void) {
     lbl_1_bss_6F640 += 1;

@@ -614,6 +614,83 @@ void fn_1_9E1D0(void) {
 }
 /* fzgx:end fn_1_9E1D0 */
 
+/* fzgx:begin fn_1_9E29C */
+typedef struct {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct {
+    s16 x;
+    s16 y;
+    u32 flags;
+    u32 pad;
+} ScreenPoint;
+
+extern void fn_80038BFC(f32 *);
+extern void fn_80038F10(f32 *);
+
+/* Projects camera-space points to clamped screen coordinates. */
+#pragma push
+#pragma fp_contract off
+void fn_1_9E29C(s32 count, Vec3f *src, ScreenPoint *dst) {
+    Vec3f p;
+    f32 proj[7];
+    f32 vp[6];
+    f32 halfW, halfH;
+    f32 dxmax, dymax, cx, cy, xmax, ymax;
+    f32 nx, ny;
+    f32 inv;
+    f32 t;
+    s32 i;
+
+    fn_80038BFC(proj);
+    fn_80038F10(vp);
+    halfW = 0.5f * vp[2];
+    halfH = 0.5f * vp[3];
+    cx = vp[0] + halfW;
+    cy = vp[1] + halfH;
+    xmax = (vp[0] + vp[2]) - 1.0f;
+    ymax = (vp[1] + vp[3]) - 1.0f;
+    dxmax = xmax - cx;
+    dymax = ymax - cy;
+
+    for (i = 0; i < count; i++) {
+        p = src[i];
+        dst[i].flags = 0x1000000;
+        if (p.z < 0.0f) {
+            t = 1.0f / p.z;
+            ny = proj[4] + t * (p.y * proj[3]);
+            nx = proj[2] + t * (p.x * proj[1]);
+            nx = 0.5f * (1.0f + nx);
+            p.x = vp[0] + vp[2] * (1.0f - nx);
+            p.y = vp[1] + vp[3] * (0.5f * (1.0f + ny));
+            if (p.x < vp[0]) {
+                t = (vp[0] - cx) / (p.x - cx);
+                p.x = vp[0];
+                p.y = cy + t * (p.y - cy);
+            } else if (p.x > xmax) {
+                t = dxmax / (p.x - cx);
+                p.x = xmax;
+                p.y = cy + t * (p.y - cy);
+            }
+            if (p.y < vp[1]) {
+                t = (vp[1] - cy) / (p.y - cy);
+                p.y = vp[1];
+                p.x = cx + t * (p.x - cx);
+            } else if (p.y > ymax) {
+                t = dymax / (p.y - cy);
+                p.y = ymax;
+                p.x = cx + t * (p.x - cx);
+            }
+            dst[i].x = (s16)p.x;
+            dst[i].y = (s16)p.y;
+            dst[i].flags = 0;
+        }
+    }
+}
+#pragma pop
+/* fzgx:end fn_1_9E29C */
+
 /* fzgx:begin fn_1_9E514 */
 extern f32 lbl_1_rodata_42C0[4];
 extern void fn_80038BFC(f32 *);

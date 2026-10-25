@@ -6446,3 +6446,12 @@ dol/fn_80023D00.c:
 
 dol/fn_800248D4.c:
 	.text       start:0x800248D4 end:0x80024C88 align:4
+
+dol/fn_800075AC.c:
+	.text       start:0x800075AC end:0x80007654 align:4
+
+dol/fn_8006B99C.c:
+	.text       start:0x8006B99C end:0x8006BA74 align:4
+
+dol/fn_8003B63C.c:
+	.text       start:0x8003B63C end:0x8003B798 align:4

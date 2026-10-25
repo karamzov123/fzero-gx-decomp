@@ -1374,6 +1374,420 @@ void fn_1_EE3F4(void) {
 }
 /* fzgx:end fn_1_EE3F4 */
 
+/* fzgx:begin fn_1_EE530 noprologue */
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "psvec.h"
+
+#ifndef REL_MAIN_REL_GHOST_H
+#define REL_MAIN_REL_GHOST_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_bss_7B180: .bss size 0x8, referenced by 29 functions, shape {'object': 873}
+// the ghost .bss run from 0x7B180 as one view: retail addresses the TU's objects off this base (dtk sizes it 8; the objects at 7B188..7ED5C are separate symbols). Offsets from base-relative loads/stores in retail; mixed-width offsets are byte arrays.
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    u32 unk_24;
+    u8 pad_28[0x4];
+    u8 arr_2C[0x1];
+    u8 unk_2D;
+    u8 unk_2E;
+    u8 unk_2F;
+    u8 arr_30[0x1];
+    u8 unk_31;
+    u8 unk_32;
+    u8 unk_33;
+    u8 arr_34[0x1];
+    u8 unk_35;
+    u8 unk_36;
+    u8 pad_37[0x1];
+    u32 unk_38;
+    u32 unk_3C;
+    u32 unk_40;
+    u8 arr_44[0x4];
+    u32 unk_48;
+    u32 unk_4C;
+    u8 arr_50[0x1];
+    u8 unk_51;
+    u16 unk_52;
+    u8 arr_54[0x13B0];
+    u32 unk_1404;
+    u8 arr_1408[0x1F8];
+    u32 unk_1600;
+    u8 arr_1604[0x10];
+    u32 unk_1614;
+    u8 arr_1618[0x10];
+    u32 unk_1628;
+    u8 arr_162C[0x10];
+    u32 unk_163C;
+    u8 arr_1640[0x10];
+    u32 unk_1650;
+    u8 arr_1654[0x10];
+    u32 unk_1664;
+    u8 arr_1668[0x10];
+    u32 unk_1678;
+    u8 arr_167C[0x10];
+    u32 unk_168C;
+    u8 arr_1690[0x10];
+    u32 unk_16A0;
+    u8 arr_16A4[0x10];
+    u32 unk_16B4;
+    u8 arr_16B8[0x10];
+    u32 unk_16C8;
+    u8 unk_16CC;
+    u8 pad_16CD[0x3];
+    u32 unk_16D0;
+    u32 unk_16D4;
+    u32 unk_16D8;
+    u32 unk_16DC;
+    u8 unk_16E0;
+    u8 pad_16E1[0x3];
+    u32 unk_16E4;
+    u32 unk_16E8;
+    u32 unk_16EC;
+    u32 unk_16F0;
+    u32 unk_16F4;
+    u32 unk_16F8;
+    u32 unk_16FC;
+    u32 unk_1700;
+    u32 unk_1704;
+    u32 unk_1708;
+    u32 unk_170C;
+    u32 unk_1710;
+    u32 unk_1714;
+    u32 unk_1718;
+    u32 unk_171C;
+    u32 unk_1720;
+    u32 unk_1724;
+    u32 unk_1728;
+    u32 unk_172C;
+    u32 unk_1730;
+    u32 unk_1734;
+    u32 unk_1738;
+    u32 unk_173C;
+    u32 unk_1740;
+    u32 unk_1744;
+    u32 unk_1748;
+    u8 unk_174C;
+    u8 unk_174D;
+    u8 unk_174E;
+    u8 pad_174F[0x1];
+    u32 unk_1750;
+    u8 unk_1754;
+    u8 pad_1755[0x3];
+    f32 unk_1758;
+    f32 unk_175C;
+    f32 unk_1760;
+    u8 pad_1764[0x30];
+    u32 unk_1794;
+    u8 arr_1798[0x10];
+    u32 unk_17A8;
+    u8 arr_17AC[0x10];
+    u32 unk_17BC;
+    u32 unk_17C0;
+    u32 unk_17C4;
+    u32 unk_17C8;
+    u32 unk_17CC;
+    u16 unk_17D0;
+    u16 unk_17D2;
+    u16 unk_17D4;
+    u16 unk_17D6;
+    u16 unk_17D8;
+    u8 pad_17DA[0x2];
+    u32 unk_17DC;
+    u32 unk_17E0;
+    u32 unk_17E4;
+    u32 unk_17E8;
+    u32 unk_17EC;
+    u8 unk_17F0;
+    u8 unk_17F1;
+    u8 unk_17F2;
+    u8 unk_17F3;
+    u8 unk_17F4;
+    u8 unk_17F5;
+    u8 unk_17F6;
+    u8 unk_17F7;
+    u8 unk_17F8;
+    u8 unk_17F9;
+    u8 unk_17FA;
+    u8 unk_17FB;
+    u8 unk_17FC;
+    u8 unk_17FD;
+    u8 unk_17FE;
+    u8 pad_17FF[0x1];
+    u16 unk_1800;
+    u8 arr_1802[0xA];
+    u8 arr_180C[0x14];
+    u32 unk_1820;
+    u32 unk_1824;
+    u8 arr_1828[0x10];
+    u16 unk_1838;
+    s16 unk_183A;
+    u32 unk_183C;
+    u8 pad_1840[0x18];
+    u8 arr_1858[0x80];
+    u8 arr_18D8[0x30];
+    u8 arr_1908[0xC0];
+    u8 arr_19C8[0x620];
+    u32 unk_1FE8;
+    u16 unk_1FEC;
+    u8 pad_1FEE[0x76];
+    u32 unk_2064;
+    u32 unk_2068;
+    u32 unk_206C;
+    u8 pad_2070[0x64];
+    u8 arr_20D4[0x60];
+    u8 arr_2134[0xB4];
+    f32 unk_21E8;
+    u8 pad_21EC[0x20];
+    f32 unk_220C;
+    u8 pad_2210[0x24D];
+    u8 unk_245D;
+    u8 pad_245E[0x141A];
+    u32 unk_3878;
+    u32 unk_387C;
+    u8 unk_3880;
+    u8 pad_3881[0x3];
+    u32 unk_3884;
+    u32 unk_3888;
+    u8 unk_388C;
+    u8 pad_388D[0x3];
+    u32 unk_3890;
+    u32 unk_3894;
+    u32 unk_3898;
+    f32 unk_389C;
+    f32 unk_38A0;
+    u8 unk_38A4;
+    u8 unk_38A5;
+    u8 unk_38A6;
+    u8 pad_38A7[0x1];
+    u32 unk_38A8;
+    u32 unk_38AC;
+    u32 unk_38B0;
+    u32 unk_38B4;
+    u32 unk_38B8;
+    f32 unk_38BC;
+    u32 unk_38C0;
+    u8 arr_38C4[0x30];
+    u8 arr_38F4[0xC0];
+    u32 unk_39B4;
+    u32 unk_39B8;
+    u32 unk_39BC;
+    u8 arr_39C0[0x30];
+    u32 unk_39F0;
+    u8 arr_39F4[0x10];
+    u8 arr_3A04[0x30];
+    u8 arr_3A34[0xC0];
+    u8 arr_3AF4[0xC];
+    u8 arr_3B00[0x30];
+    u32 unk_3B30;
+    u8 arr_3B34[0x8];
+    u32 unk_3B3C;
+    u32 unk_3B40;
+    u32 unk_3B44;
+    u8 pad_3B48[0x2];
+    u16 unk_3B4A;
+    u8 pad_3B4C[0x30];
+    u32 unk_3B7C;
+    u8 arr_3B80[0x58];
+    u32 unk_3BD8;
+} Obj_1_bss_7B180;
+extern Obj_1_bss_7B180 lbl_1_bss_7B180;
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_3E62C: .data size 0x80, 5 refs from ghost.c (own data block)
+extern u8 lbl_1_data_3E62C[0x80];
+
+  // typedefs.json decl override
+
+// lbl_1_data_3E73C: .data size 0x158, 1 refs from ghost.c (own data block)
+extern u8 lbl_1_data_3E73C[0x158];
+
+#endif  // REL_MAIN_REL_GHOST_H
+
+/* end rel/main_rel/ghost.h */
+
+#pragma fp_contract on
+typedef struct Sig_fn_1_87610_Fn187610Data {
+ u8 pad_000[2]; s8 field_002; u8 pad_003[0x205]; u8 field_208[0x120];
+} Sig_fn_1_87610_Fn187610Data;
+typedef struct Sig_fn_1_87610_Fn187610Object {
+ u8 pad_000[0x328]; s8 field_328; u8 pad_329[7]; void *field_330; u8 pad_334[0x86]; s16 field_3BA;
+} Sig_fn_1_87610_Fn187610Object;
+extern const f32 lbl_1_rodata_6B60, lbl_1_rodata_6BBC, lbl_1_rodata_6BD0, lbl_1_rodata_6C18;
+extern const f32 lbl_1_rodata_6CEC, lbl_1_rodata_6CF0, lbl_1_rodata_6CF4, lbl_1_rodata_6CF8, lbl_1_rodata_6CFC, lbl_1_rodata_6D00;
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D668(void *);
+extern s32 fn_1_5910(void);
+extern void OSPanic(const char *, int, const char *, ...);
+extern void fn_1_14E5E4(u32, u32, f32);
+extern void fn_1_556B8(void *);
+extern void fn_1_55FF0(f32);
+extern void fn_1_56000(u8,u8,u8);
+extern void fn_1_5621C(f32,f32,f32,f32);
+extern void fn_1_56298(f32,f32,f32,f32);
+extern void fn_1_681C(u32,u32 *);
+extern void fn_1_875B4(void *,void *,void *,f32);
+extern void fn_1_875EC(void *,void *,void *,f32);
+extern void fn_1_87610(Sig_fn_1_87610_Fn187610Object *,Sig_fn_1_87610_Fn187610Data *);
+extern void fn_80072558(void);
+extern void fn_80074A60(u32,u32);
+extern void fn_80074A6C(void);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DC20(void);
+extern void lbl_8006DD14(void *,void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E14C(f32);
+extern u32 lbl_8006DAEC(void);
+extern u32 lbl_8006DCA4(void);
+extern void lbl_8006E0A4(void *);
+
+typedef struct { f32 x,y,z; } EEVec;
+typedef struct { void **model; u32 a,b; } EEModel;
+typedef struct { u8 pad[0x334]; EEModel models[3]; } EEObject;
+#define eeclamp(x,lo,hi) ((x)<(lo)?(lo):((x)>(hi)?(hi):(x)))
+static inline f32 eefade(f32 value) { return lbl_1_rodata_6CEC*(eeclamp(value-lbl_1_rodata_6CF4,lbl_1_rodata_6B60,lbl_1_rodata_6CF0)/lbl_1_rodata_6CF8); }
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+void fn_1_EE530(void) {
+ Obj_1_bss_7B180 *p_lbl_1_bss_7B180;
+ u32 v2;
+ f32 **v5;
+ u32 *v6;
+ u32 v7, v8, v10, v4, v3, v1;
+ u32 v0;
+ s32 v9;
+ u32 v11;
+ s32 v13;
+ f32 v12;
+ f32 v21;
+ f32 v30,v29,v31,v32,v33,v34,v35;
+ f32 dx;
+ s8 v37;
+ f32 loc_50[12];
+ f32 loc_20[12];
+ f32 loc_14[3];
+ f32 loc_8[3];
+ p_lbl_1_bss_7B180 = &lbl_1_bss_7B180;
+ if ((s32)p_lbl_1_bss_7B180->unk_8 != 0) {
+ if (p_lbl_1_bss_7B180->unk_174E <= 1) v0=0;
+ else if (p_lbl_1_bss_7B180->unk_174E <= 3) v0=1;
+ else v0=2;
+
+ v1=(u32)p_lbl_1_bss_7B180->arr_38C4;
+ v2=(u32)&p_lbl_1_bss_7B180->unk_39B4;
+ v3=(u32)&p_lbl_1_bss_7B180->unk_39F0;
+ v4=(u32)&p_lbl_1_bss_7B180->unk_1800;
+ v5=(f32 **)&p_lbl_1_bss_7B180->unk_1600;
+ v6=(u32 *)&p_lbl_1_bss_7B180->unk_1824;
+ v7=(u32)&p_lbl_1_bss_7B180->unk_17A8;
+ v8=(u32)&p_lbl_1_bss_7B180->unk_1794;
+ v9=-32767;
+ for(v10=0;v10<p_lbl_1_bss_7B180->unk_174E;v10++) {
+ lbl_8006DD14((void *)v1,loc_50);
+ v13=*(s32 *)v3;
+ *(EEVec *)loc_14=*(EEVec *)v2;
+ if(v9<v13) v9=v13;
+ if (*(u16 *)v4>1 &&
+ !((*(f32 **)v5)[*(u32 *)v6-1] <= (f32)*(u16 *)v4)) {
+ v12=lbl_1_rodata_6B60;
+ fn_1_56298(v12,v12,v12,v12);
+ v12=lbl_1_rodata_6BD0;
+ fn_1_5621C(v12,v12,v12,v12);
+ fn_1_681C((u8)fn_1_5910(),(u32 *)loc_8);
+ psvec_sub(loc_14,loc_8,loc_8);
+ v12=loc_8[0]*loc_8[0];
+ v12=loc_8[1]*loc_8[1]+v12;
+ v12=loc_8[2]*loc_8[2]+v12;
+ v21=lbl_8006D0B4(v12);
+ lbl_8006D668(loc_8);
+ psvec_scale(loc_8,lbl_1_rodata_6CFC,loc_8);
+ psvec_add(loc_14,loc_8,loc_8);
+ fn_1_56000(1,3,1);
+ lbl_8006DCA4();
+ lbl_8006E0A4(loc_8);
+ lbl_8006DFC4(loc_50);
+ lbl_8006E14C((lbl_1_rodata_6CFC+v21)/v21);
+ fn_80072558();
+ fn_1_55FF0(lbl_1_rodata_6D00);
+ if ((s32)p_lbl_1_bss_7B180->unk_20 != 0 && v10==p_lbl_1_bss_7B180->unk_174E-1) {
+ v12=lbl_1_rodata_6C18; fn_1_5621C(v12,v12,lbl_1_rodata_6BD0,lbl_1_rodata_6BD0);
+ } else {v12=lbl_1_rodata_6BD0; fn_1_5621C(v12,v12,lbl_1_rodata_6C18,v12);}
+ v11=*(u32 *)v7;
+ if(v11) {
+ fn_1_14E5E4(v11,*(s16 *)((u8 *)*(u32 *)v8+954),lbl_1_rodata_6D00);
+ } else {
+ v11=*(u32 *)v8;
+ if(v11) {
+ fn_1_556B8(*((EEObject *)v11)->models[v0].model);
+ lbl_8006DAEC();
+ v11=*(u32 *)v8;
+ fn_1_87610((Sig_fn_1_87610_Fn187610Object *)v11,(Sig_fn_1_87610_Fn187610Data *)v11);
+ v11=*(u32 *)v8;
+ fn_1_875B4((void *)v11,(void *)v11,(void *)(s8)*(s16 *)((u8 *)v11+954),lbl_1_rodata_6D00);
+ lbl_8006DC20();
+ }}
+ v12=lbl_1_rodata_6B60; fn_1_5621C(v12,v12,v12,v12);
+ fn_1_56000(1,3,1);
+ fn_1_681C((u8)fn_1_5910(),(u32 *)loc_8);
+ dx=loc_8[0];
+ dx-=loc_14[0];
+ v29=loc_8[1];
+ v29-=loc_14[1];
+ v30=loc_8[2];
+ v30-=loc_14[2];
+ v31=dx*dx;
+ v31=v29*v29+v31;
+ v31=v30*v30+v31;
+ v33=eeclamp(eefade(v31),lbl_1_rodata_6B60,lbl_1_rodata_6BBC);
+ lbl_8006DCA4();lbl_8006E0A4(loc_14);lbl_8006DFC4(loc_50);fn_80072558();fn_80074A60(4,1);
+ if((s32)p_lbl_1_bss_7B180->unk_20!=0 && v10==p_lbl_1_bss_7B180->unk_174E-1) {
+ v12=lbl_1_rodata_6C18;fn_1_5621C(v12,v12,lbl_1_rodata_6BD0,lbl_1_rodata_6BD0);
+ }else {v12=lbl_1_rodata_6BD0;fn_1_5621C(v12,v12,lbl_1_rodata_6C18,v12);}
+ v11=*(u32 *)v8;
+ if(v11) {
+ v37=(s8)*(s16 *)((u8 *)v11+954);
+ lbl_8006DB74(loc_20);
+ v11=*(u32 *)v8;
+ if((*(u32 *)((u8 *)v11+912)&0x4000000)!=0) {
+ v11=*(u32 *)((u8 *)v11+928);
+ if(!v11) return;
+ fn_1_14E5E4(v11,v37,v33);
+ } else {
+ if((s8)*(u8 *)((u8 *)v11+808)>=41) OSPanic((char *)lbl_1_data_3E62C,3173,(char *)lbl_1_data_3E73C);
+ {
+ u32 object;
+ v11=v37*12;
+ object=*(u32 *)v8;
+ fn_1_556B8(**(void ***)((u8 *)object+v11+820));
+ }
+ lbl_8006DAEC();
+ v11=*(u32 *)v8;
+ fn_1_87610((Sig_fn_1_87610_Fn187610Object *)v11,(Sig_fn_1_87610_Fn187610Data *)v11);
+ v11=*(u32 *)v8;
+ fn_1_875EC((void *)v11,(void *)v11,(void *)(s8)*(s16 *)((u8 *)v11+954),v33);
+ lbl_8006DC20();
+ }}
+ fn_80074A6C();
+ v12=lbl_1_rodata_6BD0;fn_1_5621C(v12,v12,v12,v12);fn_1_56000(1,3,1);
+ }
+ v1+=48; v2+=12; v3+=4; v4+=2; v5++; v6++; v7+=4; v8+=4;
+ }
+ }
+}
+/* fzgx:end fn_1_EE530 */
+
 /* fzgx:begin fn_1_EEB44 noprologue */
 typedef signed short s16;
 typedef signed long s32;

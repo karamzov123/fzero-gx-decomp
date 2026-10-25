@@ -1662,6 +1662,108 @@ void fn_1_3CC4(void) {
 }
 /* fzgx:end fn_1_3CC4 */
 
+/* fzgx:begin fn_1_3CF0 noprologue */
+#include "types.h"
+
+/* 0x24-byte work node: 32 fixed nodes follow the manager, then `count` extra nodes */
+struct fn_1_3CF0_Node {
+    void (*func)(void);
+    u32 unk_4;
+    struct fn_1_3CF0_Node *next;
+    struct fn_1_3CF0_Node *prev;
+    u32 id;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    void *data;
+};
+
+struct fn_1_3CF0_Mgr {
+    struct fn_1_3CF0_Node *free_list;
+    struct fn_1_3CF0_Node *fixed;
+    u32 unk_8;
+    u32 count;
+    u32 unk_10;
+    u32 unk_14;
+    struct fn_1_3CF0_Node *slots[32];
+    struct fn_1_3CF0_Node nodes[32];
+};
+
+struct fn_1_3CF0_lbl_1_data_2B80 {
+    u8 pad_0[0x18];
+    void *unk_18;
+    char message[0x28];
+    u8 unk_44[0xAC];
+};
+
+extern struct fn_1_3CF0_lbl_1_data_2B80 lbl_1_data_2B80;
+extern struct fn_1_3CF0_Mgr *lbl_1_bss_DAC;
+extern void OSReport(const char *, ...);
+extern void fn_1_4370(void);
+
+#pragma opt_propagation off
+static inline void fn_1_3CF0_init_fixed(struct fn_1_3CF0_Mgr *mgr, struct fn_1_3CF0_Node *nodes, struct fn_1_3CF0_lbl_1_data_2B80 *data, u32 j) {
+    struct fn_1_3CF0_Node *fixed_e;
+    for (fixed_e = nodes; j < 32; j++, fixed_e++) {
+        mgr->slots[0] = fixed_e;
+        mgr = (struct fn_1_3CF0_Mgr *)((u8 *)mgr + 4);
+        fixed_e->func = fn_1_4370;
+        fixed_e->unk_18 = 0;
+        fixed_e->next = NULL;
+        fixed_e->prev = NULL;
+        fixed_e->id = j;
+        fixed_e->unk_14 = 0;
+        fixed_e->data = data->unk_18;
+    }
+}
+void fn_1_3CF0(struct fn_1_3CF0_Mgr *buf, u32 count) {
+    struct fn_1_3CF0_lbl_1_data_2B80 *data = &lbl_1_data_2B80;
+    struct fn_1_3CF0_Node *fixed_e;
+    struct fn_1_3CF0_Node *e;
+    struct fn_1_3CF0_Mgr *mgr;
+    u32 j;
+    struct fn_1_3CF0_Node *prev;
+    struct fn_1_3CF0_Node *nodes;
+    u32 i;
+
+    if (count == 0) {
+        OSReport(data->message);
+    }
+    lbl_1_bss_DAC = buf;
+    mgr = buf;
+    buf->unk_8 = 0;
+    nodes = buf->nodes;
+    if (count == 0) {
+        buf->free_list = NULL;
+    } else {
+        buf->free_list = &nodes[32];
+    }
+    buf++;
+    mgr->fixed = nodes;
+    mgr->count = count;
+    mgr->unk_10 = 0;
+    mgr->unk_14 = 0;
+
+    /* extra nodes: a doubly linked free list */
+    prev = NULL;
+    for (i = 32, e = &nodes[32]; i < count + 32; i++, e++) {
+        e->func = NULL;
+        e->unk_18 = 0;
+        e->unk_4 = 0;
+        e->id = i;
+        e->prev = prev;
+        e->next = e + 1;
+        e->unk_14 = 0;
+        e->data = data->unk_44;
+        prev = e;
+    }
+    nodes[count + 31].next = NULL;
+
+    /* fixed nodes */
+    fn_1_3CF0_init_fixed(mgr, nodes, data, 0);
+}
+/* fzgx:end fn_1_3CF0 */
+
 /* fzgx:begin fn_1_3F8C */
 typedef struct Fn1_3F8C_Entry Fn1_3F8C_Entry;
 
