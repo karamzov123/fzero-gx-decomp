@@ -55,7 +55,12 @@ def export(ref: str) -> Path:
     tree = STATE_DIR / 'harvest' / sha[:12]
     if not (tree / '.complete').exists():
         tree.mkdir(parents=True, exist_ok=True)
-        data = _git('archive', sha, 'src', 'include', 'config', 'state/ledger.json')
+        # Older forks have no `include/` (or no ledger): archive only the paths the ref
+        # actually has, or `git archive` rejects the whole pathspec list with exit 128.
+        top = {n.rstrip('/') for n in _git('ls-tree', '--name-only', sha).decode().split()}
+        want = [path for path in ('src', 'include', 'config', 'state/ledger.json')
+                if path.split('/')[0] in top]
+        data = _git('archive', sha, *want)
         tarfile.open(fileobj=io.BytesIO(data)).extractall(tree, filter='data')
         (tree / '.complete').write_text(sha + '\n')
     return tree
@@ -72,7 +77,10 @@ def fixup_imports(sha: str) -> Dict[str, dict]:
 
 
 def gain(tree: Path) -> List[str]:
-    theirs = json.loads((tree / 'state/ledger.json').read_text())['functions']
+    # Forks predating `state/ledger.json` (and `include/`) still carry matches; the
+    # units.json and fixup_imports scans below are then the only evidence.
+    ledger = tree / 'state/ledger.json'
+    theirs = json.loads(ledger.read_text())['functions'] if ledger.exists() else []
     ours = dict(Ledger().db.execute('SELECT symbol, status FROM functions'))
     sha = (tree / '.complete').read_text().strip()
     # Blocked functions are open work too: an exact body elsewhere is what unblocks them
@@ -101,7 +109,10 @@ class Source:
         self.fixups = fixup_imports((tree / '.complete').read_text().strip())
         self.our_include = [ROOT / 'include', ROOT / 'build/GFZE01/include']
         self._headers: Optional[List[str]] = None
-        self.units = {(u['module'], s): u for u in json.loads((tree / 'config/GFZE01/units.json').read_text())
+        units = tree / 'config/GFZE01/units.json'
+        # A ref in the pre-fzgx layout (dtk `splits.txt` + `src/game`, `src/dolphin`) has no
+        # units.json and no fzgx blocks: it has no candidate this tool can screen.
+        self.units = {(u['module'], s): u for u in (json.loads(units.read_text()) if units.exists() else [])
                       for s in u.get('symbols', [])}
         self.blocks: Dict[tuple[str, str], Path] = {}
         for path in (tree / 'src').rglob('*.c'):
