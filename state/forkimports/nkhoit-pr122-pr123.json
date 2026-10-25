@@ -1,0 +1,56 @@
+{
+  "upstream_ref": "640e87238155650c00fc406e3ff58f46e9ec9d35",
+  "pull_requests": {
+    "122": {
+      "commit": "a6b7bb4ec2b7839a1932a7a6bf4f41e819b978a6",
+      "symbols": [
+        "fn_15_3B24"
+      ],
+      "merge_commit": "b16e81ee33a8a2269e87d0992b0c863a10ee92ea"
+    },
+    "123": {
+      "commits": [
+        "b6c6e882d8d35d7378d971375b803d2b1da51c89",
+        "4f788d1e560f4b1625db63ff3435d5560e8d0ca1"
+      ],
+      "symbols": [
+        "fn_1_132774",
+        "fn_1_1556B4"
+      ],
+      "merge_commit": "640e87238155650c00fc406e3ff58f46e9ec9d35"
+    }
+  },
+  "author": "Khoi Tran (nkhoit)",
+  "classification": "synchronization of merged upstream C; not newly authored reconstructions",
+  "records": [
+    {
+      "symbol": "fn_15_3B24",
+      "sha256": "25be49f10af1ef385596161840c125babee3bdf518d00cfdc9c9cf9c8616b75b",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "matched": true,
+      "word_errors": 0
+    },
+    {
+      "symbol": "fn_1_132774",
+      "sha256": "13018a64eff3505955c132c41ce3bc389201f5c151240dc4a4e90afb3e2fea3d",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "matched": true,
+      "word_errors": 0
+    },
+    {
+      "symbol": "fn_1_1556B4",
+      "sha256": "f8edb629bb2a6666c42c25a57a0fd5d5f40c3ecd204ca2469f6b7886bfad02cf",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "matched": true,
+      "word_errors": 0
+    }
+  ],
+  "excluded_from_new_reconstruction": [
+    "fn_1_132774",
+    "fn_1_1556B4",
+    "fn_15_3B24"
+  ]
+}
