@@ -9017,3 +9017,27 @@ rel/main_rel/motasglist/fn_1_438AC.c:
 
 rel/main_rel/phys/fn_1_E2DCC.c:
 	.text       start:0x000E2DCC end:0x000E3324 align:4
+
+rel/main_rel/car_test/fn_1_7ECB8.c:
+	.text       start:0x0007ECB8 end:0x0007F1E8 align:4
+
+rel/main_rel/bg_for/fn_1_E1408.c:
+	.text       start:0x000E1408 end:0x000E1934 align:4
+
+rel/main_rel/bg_for/fn_1_DE4B0.c:
+	.text       start:0x000DE4B0 end:0x000DE9C4 align:4
+
+rel/main_rel/bg_for/fn_1_DF6AC.c:
+	.text       start:0x000DF6AC end:0x000DFBBC align:4
+
+rel/main_rel/bg_for/fn_1_DEDC4.c:
+	.text       start:0x000DEDC4 end:0x000DF2A4 align:4
+
+rel/main_rel/stcoli/fn_1_28184.c:
+	.text       start:0x00028184 end:0x00028660 align:4
+
+rel/main_rel/stcoli/fn_1_210A8.c:
+	.text       start:0x000210A8 end:0x000214C4 align:4
+
+rel/main_rel/bg_for/fn_1_DF2A4.c:
+	.text       start:0x000DF2A4 end:0x000DF6AC align:4
