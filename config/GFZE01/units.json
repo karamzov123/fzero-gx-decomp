@@ -48555,6 +48555,21 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_62360.c",
+    "symbols": [
+      "fn_1_62360"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_2950",
+      "@23": "lbl_1_rodata_2988"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/effect/fn_1_62794.c",
     "symbols": [
       "fn_1_62794"

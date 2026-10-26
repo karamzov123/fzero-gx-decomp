@@ -8942,3 +8942,6 @@ rel/main_rel/game/fn_1_30824.c:
 
 rel/main_rel/game/fn_1_36B10.c:
 	.text       start:0x00036B10 end:0x00037AA8 align:4
+
+rel/main_rel/effect/fn_1_62360.c:
+	.text       start:0x00062360 end:0x00062794 align:4
