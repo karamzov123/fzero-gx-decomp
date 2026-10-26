@@ -9041,3 +9041,27 @@ rel/main_rel/stcoli/fn_1_210A8.c:
 
 rel/main_rel/bg_for/fn_1_DF2A4.c:
 	.text       start:0x000DF2A4 end:0x000DF6AC align:4
+
+rel/main_rel/stcoli/fn_1_290E8.c:
+	.text       start:0x000290E8 end:0x000294D0 align:4
+
+rel/main_rel/bg_common/fn_1_105CC8.c:
+	.text       start:0x00105CC8 end:0x00106084 align:4
+
+rel/main_rel/effect/fn_1_65748.c:
+	.text       start:0x00065748 end:0x00065AAC align:4
+
+rel/main_rel/stcoli/fn_1_1ACC0.c:
+	.text       start:0x0001ACC0 end:0x0001B010 align:4
+
+rel/main_rel/bg_common/fn_1_108128.c:
+	.text       start:0x00108128 end:0x0010846C align:4
+
+rel/main_rel/stcoli/fn_1_2ABD4.c:
+	.text       start:0x0002ABD4 end:0x0002AF0C align:4
+
+rel/main_rel/stcoli/fn_1_15248.c:
+	.text       start:0x00015248 end:0x00015578 align:4
+
+rel/main_rel/shadowmap/fn_1_5745C.c:
+	.text       start:0x0005745C end:0x00057714 align:4

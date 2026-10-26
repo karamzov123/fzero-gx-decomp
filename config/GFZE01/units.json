@@ -38175,6 +38175,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/bg_common/fn_1_105CC8.c",
+    "symbols": [
+      "fn_1_105CC8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/bg_common/fn_1_106084.c",
     "symbols": [
       "fn_1_106084"
@@ -38387,6 +38398,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/bg_common.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/bg_common/fn_1_108128.c",
+    "symbols": [
+      "fn_1_108128"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -49272,6 +49294,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/effect.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_65748.c",
+    "symbols": [
+      "fn_1_65748"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -67721,6 +67754,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/shadowmap/fn_1_5745C.c",
+    "symbols": [
+      "fn_1_5745C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/shadowmap/fn_1_57714.c",
     "symbols": [
       "fn_1_57714"
@@ -70771,6 +70815,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_15248.c",
+    "symbols": [
+      "fn_1_15248"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/stcoli/fn_1_15578.c",
     "symbols": [
       "fn_1_15578"
@@ -70999,6 +71054,17 @@
     "source": "rel/main_rel/stcoli/fn_1_19AE0.c",
     "symbols": [
       "fn_1_19AE0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_1ACC0.c",
+    "symbols": [
+      "fn_1_1ACC0"
     ],
     "status": "matching",
     "mw_version": null,
@@ -71778,6 +71844,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_290E8.c",
+    "symbols": [
+      "fn_1_290E8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/stcoli/fn_1_294D0.c",
     "symbols": [
       "fn_1_294D0"
@@ -71957,6 +72034,17 @@
     "pool": {
       "@46": "lbl_1_rodata_84C"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_2ABD4.c",
+    "symbols": [
+      "fn_1_2ABD4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -73135,6 +73223,17 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_11CE0.c",
+    "symbols": [
+      "fn_12_11CE0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "movie_module",
@@ -79840,6 +79939,17 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_4F3C.c",
+    "symbols": [
+      "fn_12_4F3C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "movie_module",
