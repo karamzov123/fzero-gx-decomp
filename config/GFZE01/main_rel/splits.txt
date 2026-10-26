@@ -8900,3 +8900,42 @@ rel/main_rel/memcard/fn_1_B8338.c:
 
 rel/main_rel/memcard/fn_1_B9DE8.c:
 	.text       start:0x000B9DE8 end:0x000BA144 align:4
+
+rel/main_rel/game/fn_1_3CE94.c:
+	.text       start:0x0003CE94 end:0x0003DB9C align:4
+
+rel/main_rel/game/fn_1_3DE80.c:
+	.text       start:0x0003DE80 end:0x0003E5D0 align:4
+
+rel/main_rel/stcoli/fn_1_3A330.c:
+	.text       start:0x0003A330 end:0x0003AEC4 align:4
+
+rel/main_rel/game/fn_1_33A20.c:
+	.text       start:0x00033A20 end:0x00034924 align:4
+
+rel/main_rel/game/fn_1_35BC4.c:
+	.text       start:0x00035BC4 end:0x00036330 align:4
+
+rel/main_rel/game/fn_1_3E6D8.c:
+	.text       start:0x0003E6D8 end:0x0003EA70 align:4
+
+rel/main_rel/game/fn_1_3B11C.c:
+	.text       start:0x0003B11C end:0x0003B7D4 align:4
+
+rel/main_rel/game/fn_1_395CC.c:
+	.text       start:0x000395CC end:0x00039C60 align:4
+
+rel/main_rel/game/fn_1_3129C.c:
+	.text       start:0x0003129C end:0x0003181C align:4
+
+rel/main_rel/game/fn_1_30D84.c:
+	.text       start:0x00030D84 end:0x0003129C align:4
+
+rel/main_rel/game/fn_1_39C60.c:
+	.text       start:0x00039C60 end:0x0003A044 align:4
+
+rel/main_rel/game/fn_1_304A8.c:
+	.text       start:0x000304A8 end:0x00030824 align:4
+
+rel/main_rel/game/fn_1_30824.c:
+	.text       start:0x00030824 end:0x00030D84 align:4
