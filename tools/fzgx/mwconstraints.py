@@ -35,7 +35,66 @@ def _recover_undecoded(word):
     if word >> 26 == 63 and (word >> 1) & 0x3FF == 32:
         return _Insn('fcmpo.' if word & 1 else 'fcmpo',
                      'cr%d, f%d, f%d' % ((word >> 23) & 7, (word >> 16) & 31, (word >> 11) & 31))
+    # Gekko paired-single quantized load/store (primary 56/57/60/61). Capstone decodes
+    # none of them, so the first `psq_l` of every vector body ended the projection as
+    # `unsupported-instruction` before any register could be bound (fn_1_1FDB0 row 3).
+    # Only the memory form matters here: it names both the FPR and the base GPR.
+    opcode = word >> 26
+    if opcode in (56, 57, 60, 61):
+        rt, ra, qr = (word >> 21) & 31, (word >> 16) & 31, (word >> 12) & 7
+        disp = word & 0xFFFF
+        if disp & 0x8000:
+            disp -= 0x10000
+        if opcode in (56, 60):
+            return _Insn('psq_l' if opcode == 56 else 'psq_st',
+                         'f%d, %d(r%d), %d, qr%d' % (rt, disp, ra, (word >> 15) & 1, qr))
+        return _Insn('psq_lu' if opcode == 57 else 'psq_stu',
+                     'f%d, %d(r%d), qr%d' % (rt, disp, ra, qr))
+    if opcode == 4:
+        return _paired_single(word)
     return None
+
+
+# Gekko paired-single arithmetic (primary opcode 4, A-form: frD in 21-25, frA in 16-20,
+# frC in 11-15, frB in 6-10, extended opcode in 1-5). Capstone has no paired-single
+# decoder and reports several of these words as unrelated Altivec operations
+# (`ps_sub` -> `vmsumshm`), which silently dropped every paired-single register from the
+# constraint set. `fields` lists the operand positions the form actually uses, in the
+# order they are emitted; a field that the form leaves as a structural constant is not
+# emitted, because binding it would claim two unrelated webs share a register.
+_PS_FORMS = {
+    8:  ('ps_mr', 'DC'),
+    10: ('ps_sum0', 'DACB'),
+    11: ('ps_sum1', 'DACB'),
+    12: ('ps_muls0', 'DAB'),
+    13: ('ps_muls1', 'DAB'),
+    14: ('ps_madds0', 'DACB'),
+    15: ('ps_madds1', 'DACB'),
+    18: ('ps_div', 'DAC'),
+    20: ('ps_sub', 'DAC'),
+    21: ('ps_add', 'DAC'),
+    23: ('ps_sel', 'DACB'),
+    24: ('ps_res', 'DAB'),
+    25: ('ps_mul', 'DAB'),
+    26: ('ps_rsqrte', 'DAB'),
+    29: ('ps_madd', 'DACB'),
+    30: ('ps_msub', 'DACB'),
+    31: ('ps_nmadd', 'DACB'),
+}
+_PS_MERGE = {16: 'ps_merge00', 18: 'ps_merge10', 19: 'ps_merge11'}
+
+
+def _paired_single(word):
+    """One opcode-4 row with its real mnemonic and used operand fields."""
+    xo = (word >> 1) & 0x1F
+    if xo == 16:
+        name = _PS_MERGE.get((word >> 6) & 0x1F, 'ps_merge%02d' % ((word >> 6) & 0x1F))
+        fields = 'DAC'
+    else:
+        name, fields = _PS_FORMS.get(xo, ('ps_xo%02d' % xo, 'DACB'))
+    value = {'D': (word >> 21) & 31, 'A': (word >> 16) & 31,
+             'C': (word >> 11) & 31, 'B': (word >> 6) & 31}
+    return _Insn(name, ', '.join('f%d' % value[f] for f in fields))
 
 
 def _consistent_hard_map(hard):
@@ -67,7 +126,10 @@ def target_mapping(target, ours):
     def decode(words):
         rows = list(md.disasm(b''.join(w.to_bytes(4, 'big') for w in words), 0))
         if len(rows) == len(words):
-            rows = [row if row.mnemonic != '.byte' else (_recover_undecoded(w) or row)
+            # Paired-single rows are replaced whether or not capstone produced a row for
+            # them: its Altivec decode is a different instruction with different registers.
+            rows = [(_recover_undecoded(w) or row)
+                    if row.mnemonic == '.byte' or w >> 26 in (4, 56, 57, 60, 61) else row
                     for row, w in zip(rows, words)]
         return rows
     if not target or not ours or len(target) != len(ours):

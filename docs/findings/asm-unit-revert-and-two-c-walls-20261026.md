@@ -44,3 +44,27 @@ below the `Vec3` locals, and `#pragma opt_propagation off` (which regressed the
 body to 90.0%).
 
 Both remain unmatched with their bodies preserved in `.fzgx/attempts/`.
+
+## Tooling: the constraint engine can now read paired-single code
+
+`fzgx fixup --capture` runs on this host (lldb + wibo, replay verified, 0 errors) and
+modeled `fn_1_1FDB0` exactly: `same_code`, `same_object`, two allocator passes, both
+with a selection-order witness. The projection step was unreachable, though, because
+`mwconstraints.target_mapping` stopped at the first `psq_l` of the body as
+`unsupported-instruction` (row 3): the pinned capstone has no Gekko paired-single
+decoder, and it reports several opcode-4 words as unrelated Altivec operations
+(`ps_sub` -> `vmsumshm`), so every paired-single register was dropped from the
+constraint set. `_recover_undecoded` now decodes opcode 56/57/60/61 (psq_l/lu/st/stu)
+and opcode 4 with a form table that emits only the operand fields each mnemonic uses.
+
+Measured after the change:
+
+- matched paired-single siblings map onto themselves completely - `fn_1_7B558` 300
+  words, `fn_12_11CE0` 159 words, both `fixed-graph-hypothesis`, 0 conflicts, 0
+  incompatible rows, 30 and 20 registers bound;
+- `fn_1_1FDB0` moves from `unsupported-instruction` (no data at all) to
+  `needs-web-alignment` with six register conflicts and only two shape rows (64, 68),
+  which are the swapped `lfs b.z` / `psq_l b.xy` pair in the clamp block.
+
+The projection still requires an identical instruction shape, so this function needs
+those two scheduling rows closed first; that is the next step, not a colour search.
