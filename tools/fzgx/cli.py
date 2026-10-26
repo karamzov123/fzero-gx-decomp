@@ -415,8 +415,11 @@ def cmd_harvest(a, p):
 
 def cmd_lift(a, p):
     from . import lift
+    # An explicitly named symbol is a request for that function: the 160-byte
+    # default cap quietly selected it and lifted nothing ("candidates 1,
+    # lifted 0"), so a large hand-picked function looked like a lifter failure.
     _print(lift.apply(p, tu=a.tu, callees=a.callee, symbols=a.symbol, submit=not a.no_submit, engine=a.engine, resume=a.resume,
-                      max_size=0xFFFFFFFF if a.all else 160, limit=0 if a.all else 2000), a.json)
+                      max_size=0xFFFFFFFF if (a.all or a.symbol) else 160, limit=0 if a.all else 2000), a.json)
     return 0
 
 

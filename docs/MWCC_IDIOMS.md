@@ -688,3 +688,48 @@ Practical rule: when a residue is a permutation, score each row's home against
 the other values' homes before editing - a candidate that fixes one row without
 fixing the set is not progress, and the score will happily rise or fall for the
 wrong reason.
+
+### The return value is pre-coloured to r3, and its absence is a signature (2026-10-25)
+
+Retail bodies that end in the epilogue with **no** conversion into `r3` are
+`void` functions whose callers discard the result, even when a reconstructed
+header spells a return type. `fn_12_3A64` (movie_module, 0x354) and its sibling
+`fn_12_3710` are the same case: retail's last write to `r3` is `lis r3, 0x4330`
+(the u32->double bias inside the inlined table builder), the only caller
+(`fn_12_A5C`) drops the value, and the saved bodies carry `s8`/`u16` returns.
+
+Measured on `fn_12_3A64`, same body otherwise:
+
+| return shape | instructions | residue |
+|---|---|---|
+| `s8` + `return (u32)far_z;` | 214 | one trailing `extsb r3, r29`; every other row matches |
+| `u32` + `return far_z;`    | 214 | one trailing `mr r3, r29` |
+| `void`, no return          | 213 | retail's instruction count, 20 rows of callee-saved rotation |
+
+Two consequences:
+
+- MWCC pre-colours the returned expression to `r3`, so *any* value-returning
+  shape adds exactly one trailing copy. A diff whose only residue is a final
+  `extsb`/`clrlwi`/`mr` into `r3` is evidence about the signature, not about the
+  last statement. The score cannot see this: the wrong `s8` body reads 99.5.
+- Dropping the return does **not** simply remove that instruction. `/tmp` probe:
+  `void` reached retail's exact instruction count but permuted three
+  callee-saved homes, because the returned web had been pinning the numbering.
+  When two shapes differ only in a colouring rotation, the cheaper of the two
+  (the one with matching instruction count) is not automatically forgivable:
+  check whether retail shares one register between two *roles* (here the call
+  argument and the inlined loop's destination pointer), which is a web-sharing
+  question no return-type edit can express.
+
+### Declaration order: real but weak, and exhausted by permutation (2026-10-25)
+
+All 720 permutations of the seven locals of `fn_12_3A64` compile to **12
+distinct objects** (so declaration order does reach the allocator), yet every
+one of them scores the same 90.61% with the same 20 differing rows, and a full
+5040-permutation sweep of the same body never beat it. On `fn_12_3710` the same
+scan gives 6 distinct objects and one score.
+
+So `fixup`'s declaration-order family is a genuine lever, but when it reports
+`no-predicted-declaration-repair` after enumerating the orders, the residue is
+*not* an ordering problem: retail is reusing one register for two roles (or
+keeping one less web live), and no permutation expresses that.
