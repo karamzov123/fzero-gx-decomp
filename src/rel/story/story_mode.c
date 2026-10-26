@@ -305,6 +305,136 @@ void fn_7_51C(void) {
 }
 /* fzgx:end fn_7_51C */
 
+/* fzgx:begin fn_7_520 */
+struct fn_7_520_flag {
+    u8 pad_0[3];
+    s8 unk_3;
+};
+
+extern struct fn_7_520_flag lbl_1_bss_9C;
+extern u32 lbl_801A6410;
+extern void **lbl_1_bss_6EAD0;
+extern const f32 lbl_7_rodata_528;
+
+extern void fn_7_4050(void);
+extern u32 fn_7_4094(void *, u32, u32, u32);
+extern void fn_1_4CC0(void);
+extern void fn_8006CE1C(f32);
+extern void fn_1_A0680(void);
+extern void fn_1_47F74(s32);
+extern void fn_1_411A4(u32);
+extern u32 fn_1_4706C(void);
+extern u32 fn_1_46A60(void);
+extern u32 fn_1_4404(void);
+extern u32 fn_800090A4(u32);
+extern u32 fn_1_45D0(u32, u32, void *, u32);
+extern u32 fn_1_46BA0(u32, u32);
+extern void fn_1_47E54(s32);
+extern void fn_1_41104(u32);
+extern u32 fn_1_46BFC(void);
+extern u32 fn_1_46B44(u32, void *);
+extern u32 fn_80008E84(u32);
+extern int sprintf(char *, const char *, ...);
+extern s32 fn_1_465D0(char *, s32);
+extern void fn_1_4A00(s32, u8, u32);
+extern u32 fn_1_A1588(void *, u32);
+
+u8 lbl_7_data_0[0x2A0] = {1};
+static u8 fzgx_pool_data_gap0[0x12E74 - 0x2A0] = {1};
+u32 lbl_7_data_12E70__fzgx_offset_4 = 1;
+s32 lbl_7_data_12E78 = 1;
+static u8 fzgx_pool_data_gap1[0x13A3C - 0x12E7C] = {1};
+char lbl_7_data_13A3C[0xD] = {1};
+static u8 fzgx_pool_data_gap2[0x13D9C - 0x13A4C] = {1};
+char lbl_7_data_13A58__fzgx_offset_344[0x14] = {1};
+char lbl_7_data_13A58__fzgx_offset_358[0x18] = {1};
+char lbl_7_data_13A58__fzgx_offset_370[0x18] = {1};
+
+u32 lbl_7_bss_0;
+u32 lbl_7_bss_4[2];
+u32 lbl_7_bss_C;
+u8 *lbl_7_bss_10;
+u8 *lbl_7_bss_14;
+u32 lbl_7_bss_18;
+u32 lbl_7_bss_1C__fzgx_offset_0[2];
+u32 lbl_7_bss_1C__fzgx_offset_8;
+u32 lbl_7_bss_1C__fzgx_offset_C;
+u32 lbl_7_bss_1C__fzgx_offset_10;
+u32 lbl_7_bss_1C__fzgx_offset_14;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&lbl_7_bss_0;
+    s = *(u8 *)&lbl_7_bss_4;
+    s = *(u8 *)&lbl_7_bss_C;
+    s = *(u8 *)&lbl_7_bss_10;
+    s = *(u8 *)&lbl_7_bss_14;
+    s = *(u8 *)&lbl_7_bss_18;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_0;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_8;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_C;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_10;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_14;
+}
+#pragma section code_type ".text"
+
+void fn_7_520(void) {
+    u32 size;
+    u8 i;
+    char buf[56];
+    const char * lab_t1;
+
+    fn_7_4050();
+    fn_1_4CC0();
+    fn_8006CE1C(lbl_7_rodata_528);
+    fn_1_A0680();
+    fn_1_47F74(0xBA);
+    fn_1_47F74(0x9A);
+    fn_1_47F74(0x9B);
+    fn_1_411A4(1);
+    fn_1_411A4(6);
+    fn_1_4706C();
+    fn_1_46A60();
+{
+    u32 heap;
+    heap = fn_1_4404();
+    if (lbl_1_bss_9C.unk_3 != 1) {
+        size = fn_800090A4(lbl_801A6410) - 0x10000;
+        lbl_7_data_12E70__fzgx_offset_4 = fn_1_45D0(lbl_801A6410, size, lbl_7_data_13A3C, 0x25F);
+        /* fzgx: reloaded */
+        fn_1_46BA0(*(volatile u32 *)&lbl_7_data_12E70__fzgx_offset_4, size);
+    }
+    fn_1_47E54(0xBA);
+    fn_1_47E54(0x9A);
+    fn_1_47E54(0x9B);
+    fn_1_41104(1);
+    fn_1_41104(6);
+    if (lbl_7_data_12E70__fzgx_offset_4 != 0xFFFFFFFF) {
+        fn_1_46BFC();
+        fn_1_46B44((u32)fn_7_4094, &lbl_7_data_12E70__fzgx_offset_4);
+    }
+    fn_80008E84(heap);
+}
+    sprintf(buf, lbl_7_data_13A58__fzgx_offset_344);
+    fn_1_465D0(buf, 1);
+    for (i = 1; i < 10; i++) {
+        sprintf(buf, lbl_7_data_13A58__fzgx_offset_358, i);
+        fn_1_465D0(buf, 1);
+        lab_t1 = lbl_7_data_13A58__fzgx_offset_370;
+        sprintf(buf, lab_t1, i);
+        fn_1_465D0(buf, 1);
+    }
+    lbl_7_bss_1C__fzgx_offset_C = 0;
+    lbl_7_bss_1C__fzgx_offset_10 = 10;
+    lbl_7_bss_1C__fzgx_offset_14 = 1;
+    lbl_7_data_12E78 = -1;
+    lbl_7_bss_4[0] = 0;
+    fn_1_4A00(1, 0x1E, lbl_7_bss_1C__fzgx_offset_0[0]);
+    fn_1_A1588(*lbl_1_bss_6EAD0, 0x2E);
+}
+/* fzgx:end fn_7_520 */
+
 /* fzgx:begin fn_7_D20 */
 struct fn_7_D20_lbl_7_bss_10 {
     u32 unk_0;

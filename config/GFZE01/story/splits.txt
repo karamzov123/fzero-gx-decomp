@@ -194,3 +194,6 @@ rel/story/story_mode/fn_7_FB4.c:
 
 rel/story/story_mode/fn_7_4648.c:
 	.text       start:0x00004648 end:0x00004E28 align:4
+
+rel/story/story_mode/fn_7_520.c:
+	.text       start:0x00000520 end:0x0000072C align:4
