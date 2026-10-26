@@ -901,13 +901,24 @@
     "symbols": [
       "fn_3_4F08"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-O2"
-    ],
+    "extra_cflags": [],
     "tu": "rel/customize/_prolog.c",
-    "pool": true
+    "pool": {
+      "...bss.0": "lbl_3_bss_0",
+      "lbl_3_bss_0": "lbl_3_bss_0",
+      "lbl_3_bss_8": "lbl_3_bss_8",
+      "lbl_3_bss_C": "lbl_3_bss_C",
+      "fzgx_obj_lbl_3_bss_18": "lbl_3_bss_18",
+      "fzgx_obj_lbl_3_bss_20": "lbl_3_bss_20",
+      "fzgx_obj_lbl_3_bss_F0": "lbl_3_bss_F0",
+      "lbl_3_bss_120": "lbl_3_bss_120",
+      "fzgx_obj_lbl_3_bss_20850": "lbl_3_bss_20850",
+      "fzgx_obj_lbl_3_bss_243A8": "lbl_3_bss_243A8",
+      "fzgx_obj_lbl_3_bss_6D8C0": "lbl_3_bss_6D8C0",
+      "fzgx_obj_lbl_3_bss_6DD70": "lbl_3_bss_6DD70"
+    }
   },
   {
     "module": "customize",
@@ -68332,13 +68343,29 @@
     "symbols": [
       "fn_1_A24CC"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-O4"
-    ],
+    "extra_cflags": [],
     "tu": "rel/main_rel/sound.c",
-    "pool": true
+    "pool": {
+      "...bss.0": "lbl_1_bss_6EA98",
+      "fzgx_obj_lbl_1_bss_6EA98": "lbl_1_bss_6EA98",
+      "fzgx_obj_lbl_1_bss_6EA9C": "lbl_1_bss_6EA9C",
+      "lbl_1_bss_6EAA4": "lbl_1_bss_6EAA4",
+      "lbl_1_bss_6EAA6": "lbl_1_bss_6EAA6",
+      "lbl_1_bss_6EAA8": "lbl_1_bss_6EAA8",
+      "lbl_1_bss_6EAB0": "lbl_1_bss_6EAB0",
+      "fzgx_obj_lbl_1_bss_6EAB4": "lbl_1_bss_6EAB4",
+      "fzgx_obj_lbl_1_bss_6EAC6": "lbl_1_bss_6EAC6",
+      "fzgx_obj_lbl_1_bss_6EAD0": "lbl_1_bss_6EAD0",
+      "fzgx_obj_lbl_1_bss_6F1D8": "lbl_1_bss_6F1D8",
+      "fzgx_obj_lbl_1_bss_6F1DC": "lbl_1_bss_6F1DC",
+      "fzgx_obj_lbl_1_bss_6F1E0": "lbl_1_bss_6F1E0",
+      "lbl_1_bss_6F1E1": "lbl_1_bss_6F1E1",
+      "fzgx_obj_lbl_1_bss_6F1E4": "lbl_1_bss_6F1E4",
+      "lbl_1_bss_6F239": "lbl_1_bss_6F239",
+      "lbl_1_bss_6F23C": "lbl_1_bss_6F23C"
+    }
   },
   {
     "module": "main_rel",

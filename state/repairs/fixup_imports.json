@@ -26388,5 +26388,219 @@
     "recipe": [],
     "link": "verified",
     "commit": "6ac94a043"
+  },
+  "fn_1_A24CC": {
+    "seed_symbol": "fn_1_A24CC",
+    "generator": "fzgx fixup",
+    "transform": "discard BSS copies used only by layout primers",
+    "seed": "#include \"types.h\"\n#include \"rel/main_rel/globals.h\"\n#include \"rel/main_rel/sound.h\"\n#include \"sofdec/sj.h\"\n#include \"types.h\"\n#include \"rel/main_rel/globals.h\"\n#include \"rel/main_rel/sound.h\"\n\n/* begin sofdec/adxt.h (deltawave784/fzgx, CC0) */\n#ifndef SOFDEC_ADXT_H\n#define SOFDEC_ADXT_H\n\n/* CRI ADX talker (ADXT) handle, shared by the ADXT_* / adxt_* units of the DOL. */\n\n/* begin layout_check.h (deltawave784/fzgx, CC0) */\n#ifndef LAYOUT_CHECK_H\n#define LAYOUT_CHECK_H\n\n/* Compile-time layout checks for owned types. They declare array typedefs\n * only, so they emit no code or data under MWCC: a wrong size or offset is\n * a negative array bound and fails the compile. */\n#define LAYOUT_CHECK_JOIN2(a, b) a##b\n#define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)\n#define CHECK_SIZE(T, size) \\\n    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]\n#define CHECK_OFFSET(T, field, offset) \\\n    typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \\\n        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]\n\n#endif\n\n/* end layout_check.h */\n\ntypedef struct AdxSjdHandle AdxSjdHandle;\n\ntypedef struct ADXStream ADXStream;\n\ntypedef struct AXRNAHandle AXRNAHandle;\n\ntypedef struct LSCObject LSCObject;\n\ntypedef struct ADX_AMP ADX_AMP;\n\ntypedef struct ADXTHandle {\n    s8 used;\n    s8 status;\n    s8 stream_type;\n    s8 maximum_channels;\n    AdxSjdHandle *decoder;\n    ADXStream *stream;\n    AXRNAHandle *rna;\n    SJ *stream_sj;\n    SJ *input_sj;\n    SJ *output_sj[2];\n    u8 *input_buffer;\n    s32 input_buffer_size;\n    s32 input_extra_size;\n    u8 *output_buffer;\n    s32 output_buffer_size;\n    s32 output_buffer_distance;\n    s32 server_frequency;\n    s16 stream_buffer_sectors;\n    s16 minimum_buffer_sectors;\n    s16 output_volume;\n    s16 output_pan[2];\n    s16 field_46;\n    s32 maximum_decode_samples;\n    s32 loop_count;\n    s32 link_data_length;\n    s32 field_54;\n    s32 field_58;\n    s32 field_5C;\n    s16 error_code;\n    u8 reserved_62[2];\n    s32 field_64;\n    s16 field_68;\n    s16 field_6A;\n    s8 stream_loop_enabled;\n    s8 auto_receiver;\n    u8 reserved_6E[2];\n    s8 suppress_playback;\n    s8 decoder_ready;\n    s8 paused;\n    u8 reserved_73;\n    ADX_AMP *amplifier;\n    SJ *amplifier_input[2];\n    SJ *amplifier_output[2];\n    s32 time_offset;\n    s32 eos_sector;\n    s32 loop_sample_count;\n    LSCObject *linked_stream_controller;\n    s8 link_enabled;\n    u8 reserved_99[3];\n    u32 playback_time;\n    s32 playback_start_vsync;\n    s32 linked_decoded_samples;\n    s8 pending_stream_start;\n    u8 reserved_A9[3];\n    u8 *work_end;\n    const char *pending_filename;\n    void *pending_directory;\n    s32 pending_file_offset;\n    s32 pending_file_sectors;\n} ADXTHandle;\n\nCHECK_OFFSET(ADXTHandle, decoder, 0x4);\nCHECK_OFFSET(ADXTHandle, output_volume, 0x40);\nCHECK_OFFSET(ADXTHandle, error_code, 0x60);\nCHECK_OFFSET(ADXTHandle, stream_loop_enabled, 0x6C);\nCHECK_OFFSET(ADXTHandle, amplifier, 0x74);\nCHECK_OFFSET(ADXTHandle, linked_stream_controller, 0x94);\nCHECK_OFFSET(ADXTHandle, playback_time, 0x9C);\nCHECK_OFFSET(ADXTHandle, pending_file_sectors, 0xBC);\nCHECK_SIZE(ADXTHandle, 0xC0);\n\n#endif\n\n/* end sofdec/adxt.h */\n/* begin game/main_rel/sound_types.h (deltawave784/fzgx, CC0) */\n#ifndef GAME_MAIN_REL_SOUND_TYPES_H\n#define GAME_MAIN_REL_SOUND_TYPES_H\n\n// Types (and the externs that name them) of sound.c, hoisted out of its prologue so that\n// a block can compile standalone and under the prologue. Hand-owned (librarian).\n\n/* sofdec/adxt.h: inlined above */\n\ntypedef struct {\n    u8 unk_0[0x3A0];\n    void *unk_3A0;\n} SoundObject;\n\nextern SoundObject *fn_1_86854(s8 arg0);\n\n#endif  // GAME_MAIN_REL_SOUND_TYPES_H\n\n/* end game/main_rel/sound_types.h */\n\nextern const f32 lbl_1_rodata_42E0;\nextern int OSGetSoundMode(void);\nextern u32 fn_1_44A4(void);\nextern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);\nextern void fn_80008BEC(void *dest, int value, u32 size);\nextern void fn_80022014(u32 arg0);\nextern void fn_80025D50(u32 arg0, u32 arg1);\nextern void fn_8004B7D4();\nextern void fn_8004BBA4();\nextern void ADXT_Stop(ADXTHandle *handle);\nextern void fn_8004CAC8(ADXTHandle *handle);\nextern u32 fn_8004CD70(u32, u32, u32);\nextern u32 fn_8004E59C(u32);\nextern u32 fn_8004EC34(u32);\nextern void fn_80065890();\nextern void fn_8006589C(u32 value);\nextern void fn_800658A8(u32 arg0);\nextern u32 fn_1_9FE74(void *arg);\nextern void fn_1_9FEE8(void *arg);\nextern void fn_1_9FF50(void);\nextern void fn_1_9FF54(void);\nextern void fn_1_9FF58(void);\nextern void fn_1_A04AC(void);\nextern s16 fn_1_3F0C8(void);\nextern void fn_1_3EF14(void *arg1);\nextern u32 fn_1_F2F34(void);\nextern u32 fn_1_864E8(int index);\nextern u8 lbl_1_rodata_43B4[184];\nextern void ADXT_Pause(ADXTHandle *handle, s32 paused);\nextern u8 lbl_1_bss_A88[24];\nextern u8 lbl_1_bss_CC0[152];\nextern s32 fn_1_3F864();\nextern s32 fn_1_3F854(void);\nextern u32 fn_1_86514(int index);\nextern f32 fn_1_8652C(int index);\nextern s32 fn_80067344(u32 arg0, u32 arg1, u32 arg2, u32 arg3);\nextern s32 fn_80067898(u32 value);\nextern void *lbl_801A6410;\nextern u32 ARAlloc(u32 value);\nextern u32 fn_80020778(void);\nextern u32 fn_80025E18(void);\nextern u32 fn_80068BFC(u32, u32, u32, u32, u32);\nextern s32 fn_1_45D0();\nextern void AIInit(u8 *stack);\nextern void fn_1_4438(void);\nextern void fn_80020724(void);\nextern void fn_8002361C(u32 value0, u32 value1);\nextern void fn_8002805C(void);\nextern void fn_800411F4(void);\nextern s8 fn_1_86690(s8 index);\nextern void fn_1_14E9E4(int arg0, void *arg1);\nextern u32 lbl_1_rodata_451C[5];\nextern u32 lbl_1_rodata_4478[41];\nextern void *fn_1_86254(int index);\nextern u32 lbl_1_rodata_45D0[82];\nextern u32 fn_80008E84();\nextern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);\nextern u8 lbl_1_bss_6EAA6;\nextern u8 lbl_1_bss_6EAA4;\nextern void fn_80067974(void);\nextern void fn_800280F0(void);\nextern void fn_80026FE0(void);\nextern u32 lbl_1_bss_6EAA8[2];\nextern u8 lbl_1_bss_6EAB0;\nextern u32 ARInit(u32 *stack_index_addr, u32 num_entries);\nextern void ARQInit(void);\nextern u8 lbl_1_bss_6F1E1;\nextern void fn_1_A2DF4(s32 arg0, void *arg1, s32 arg2);\nextern void fn_1_A0680(void);\nextern void fn_800674FC(u16 arg0, u32 arg1, s16 arg2);\nextern s16 camera_get_mode(void);\nextern u8 lbl_1_bss_6F2D8[62];\nextern void fn_1_A5470(s32 value);\nextern u8 fn_1_3F13C(void);\nextern u32 fn_1_EB0B0(void);\nextern u32 fn_1_F1B94(void);\nextern u32 lbl_1_rodata_4718[];\nextern u32 lbl_1_rodata_4730[];\nextern u32 lbl_1_rodata_47A8[];\nextern u8 lbl_1_bss_6F41C[260];\nextern void *lbl_1_rodata_4820[41];\nextern s32 fn_8004C658(char *arg0);\nextern int fn_8004BBCC(u32 obj);\nextern int fn_1_3FC38(void);\nextern s32 fn_80063094(s32 arg0, s32 arg1, s32 arg2);\nextern s32 fn_80065D70(u32 idx);\n\ntypedef struct {\n    ADXTHandle *unk_0;\n    ADXTHandle *unk_4;\n} fn_1_A24CC_AdxPair;\n\ntypedef struct {\n    u8 pad_0[0x38];\n    fn_1_A24CC_AdxPair *unk_38;\n    u8 pad_3C[0x748 - 0x3C];\n    u8 unk_748;\n    u8 unk_749;\n    u8 pad_74A[0x7A4 - 0x74A];\n    u32 unk_7A4;\n} fn_1_A24CC_SoundState;\n\ntypedef struct {\n    u8 pad_0[0x118];\n    s32 unk_118;\n} fn_1_A24CC_Entry;\n\ntypedef struct {\n    u8 pad_0[4];\n    u8 unk_4;\n    u8 unk_5;\n    u8 unk_6;\n    u8 pad_7[7];\n    u8 ids[30];\n    fn_1_A24CC_Entry *entries[30];\n    u8 pad_A4[0x14C0 - 0xA4];\n} fn_1_A24CC_RaceInfo;\n\n\n/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */\nu32 fzgx_obj_lbl_1_bss_6EA98;\nu32 fzgx_obj_lbl_1_bss_6EA9C[2];\nu8 lbl_1_bss_6EAA4;\nu8 lbl_1_bss_6EA98_gap_6EAA5;\nu8 lbl_1_bss_6EAA6;\nu8 lbl_1_bss_6EA98_gap_6EAA7;\nu32 lbl_1_bss_6EAA8[2];\nu8 lbl_1_bss_6EAB0;\nu8 lbl_1_bss_6EA98_gap_6EAB1;\nu16 lbl_1_bss_6EA98_gap_6EAB1_fill_6EAB2;\nu32 fzgx_obj_lbl_1_bss_6EAB4[4];\nu16 lbl_1_bss_6EAB4_fill_6EAC4;\nu16 fzgx_obj_lbl_1_bss_6EAC6;\nu32 lbl_1_bss_6EAC6_fill_6EAC8[2];\nfn_1_A24CC_AdxPair *fzgx_obj_lbl_1_bss_6EAD0;\nu32 lbl_1_bss_6EAD0_fill_6EAD4[449];\nu8 fzgx_obj_lbl_1_bss_6F1D8;\nu8 lbl_1_bss_6EA98_gap_6F1D9;\nu16 lbl_1_bss_6EA98_gap_6F1D9_fill_6F1DA;\nu32 fzgx_obj_lbl_1_bss_6F1DC;\nu8 fzgx_obj_lbl_1_bss_6F1E0;\nu8 lbl_1_bss_6F1E1;\nu16 lbl_1_bss_6EA98_gap_6F1E2;\nu32 fzgx_obj_lbl_1_bss_6F1E4[21];\nu8 lbl_1_bss_6F1E4_fill_6F238;\nu8 lbl_1_bss_6F239;\nu16 lbl_1_bss_6EA98_gap_6F23A;\nu32 lbl_1_bss_6F23C;\nu16 lbl_1_bss_6F23C_fill_6F240;\nu8 lbl_1_bss_6F23C_fill_6F242;\n\n#pragma section code_type \".fzgxpool\"\nstatic void fzgx_bss_layout(void) {\n    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;\n    s = *(u8 *)&lbl_1_bss_6EAA4;\n    s = *(u8 *)&lbl_1_bss_6EA98_gap_6EAA5;\n    s = *(u8 *)&lbl_1_bss_6EAA6;\n    s = *(u8 *)&lbl_1_bss_6EA98_gap_6EAA7;\n    s = *(u8 *)&lbl_1_bss_6EAA8;\n    s = *(u8 *)&lbl_1_bss_6EAB0;\n    s = *(u8 *)&lbl_1_bss_6EA98_gap_6EAB1;\n    s = *(u8 *)&lbl_1_bss_6EA98_gap_6EAB1_fill_6EAB2;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAB4;\n    s = *(u8 *)&lbl_1_bss_6EAB4_fill_6EAC4;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAC6;\n    s = *(u8 *)&lbl_1_bss_6EAC6_fill_6EAC8;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAD0;\n    s = *(u8 *)&lbl_1_bss_6EAD0_fill_6EAD4;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1D8;\n    s = *(u8 *)&lbl_1_bss_6EA98_gap_6F1D9;\n    s = *(u8 *)&lbl_1_bss_6EA98_gap_6F1D9_fill_6F1DA;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1DC;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E0;\n    s = *(u8 *)&lbl_1_bss_6F1E1;\n    s = *(u8 *)&lbl_1_bss_6EA98_gap_6F1E2;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E4;\n    s = *(u8 *)&lbl_1_bss_6F1E4_fill_6F238;\n    s = *(u8 *)&lbl_1_bss_6F239;\n    s = *(u8 *)&lbl_1_bss_6EA98_gap_6F23A;\n    s = *(u8 *)&lbl_1_bss_6F23C;\n    s = *(u8 *)&lbl_1_bss_6F23C_fill_6F240;\n    s = *(u8 *)&lbl_1_bss_6F23C_fill_6F242;\n}\n#pragma section code_type \".text\"\n\nvoid fn_1_A24CC(void) {\n    \n    fn_1_A24CC_RaceInfo info;\n    fn_1_A24CC_Entry *entry;\n    s32 id;\n    u32 i;\n    u8 first;\n    s8 slot;\n    u32 flags;\n\n    if (*(s16 *)&lbl_1_bss_960 != 2 && *(s16 *)&lbl_1_bss_960 != 9) {\n        return;\n    }\n    if (fn_1_3F0C8() != 0x29) {\n        return;\n    }\n    fn_1_3EF14(&info);\n    if (lbl_1_bss_8CA24 != 0 || lbl_1_bss_8B5F0 != 0 || lbl_1_bss_8B5F1 != 0 || info.unk_5 == 3 ||\n        info.unk_5 == 4 || info.unk_4 == 1) {\n        return;\n    }\n    if ((s32)fn_1_F2F34() != 0) {\n        return;\n    }\n\n    first = info.unk_6;\n    for (i = 0; i < 30; i++) {\n        id = info.ids[i];\n        flags = fn_1_864E8(id);\n        entry = info.entries[i];\n        if (!(flags & 0x200)) {\n            break;\n        }\n    }\n\n    if (first > 0x2D) {\n        slot = -1;\n    } else {\n        slot = (s8)lbl_1_rodata_43B4[first * 4];\n    }\n\n    if (id == 0xFF) {\n        return;\n    }\n    if (entry->unk_118 == (u8)(info.unk_4 - 1) && fzgx_obj_lbl_1_bss_6F1E0 != 0 && lbl_1_bss_6F1E1 != 0 && slot != -1) {\n        ADXT_Stop(fzgx_obj_lbl_1_bss_6EAD0->unk_0);\n        ADXT_Pause(fzgx_obj_lbl_1_bss_6EAD0->unk_4, 0);\n        flags = lbl_1_bss_6F23C;\n        lbl_1_bss_6F1E1 = 0;\n        lbl_1_bss_6F23C = flags & ~0x20;\n    }\n    fzgx_obj_lbl_1_bss_6F1E0 = 0;\n}\n",
+    "seed_sha256": "ec124ebf35abd7be09074655ab1ea3e67a98a73007b2f909124cb8bf81cc2526",
+    "generated_sha256": "3253b668812f62255af8514238e0244e8248f769f98b7b7311f09b806f67ae41",
+    "generated_source": "#include \"types.h\"\n#include \"rel/main_rel/globals.h\"\n#include \"rel/main_rel/sound.h\"\n#include \"sofdec/sj.h\"\n#include \"types.h\"\n#include \"rel/main_rel/globals.h\"\n#include \"rel/main_rel/sound.h\"\n\n/* begin sofdec/adxt.h (deltawave784/fzgx, CC0) */\n#ifndef SOFDEC_ADXT_H\n#define SOFDEC_ADXT_H\n\n/* CRI ADX talker (ADXT) handle, shared by the ADXT_* / adxt_* units of the DOL. */\n\n/* begin layout_check.h (deltawave784/fzgx, CC0) */\n#ifndef LAYOUT_CHECK_H\n#define LAYOUT_CHECK_H\n\n/* Compile-time layout checks for owned types. They declare array typedefs\n * only, so they emit no code or data under MWCC: a wrong size or offset is\n * a negative array bound and fails the compile. */\n#define LAYOUT_CHECK_JOIN2(a, b) a##b\n#define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)\n#define CHECK_SIZE(T, size) \\\n    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]\n#define CHECK_OFFSET(T, field, offset) \\\n    typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \\\n        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]\n\n#endif\n\n/* end layout_check.h */\n\ntypedef struct AdxSjdHandle AdxSjdHandle;\n\ntypedef struct ADXStream ADXStream;\n\ntypedef struct AXRNAHandle AXRNAHandle;\n\ntypedef struct LSCObject LSCObject;\n\ntypedef struct ADX_AMP ADX_AMP;\n\ntypedef struct ADXTHandle {\n    s8 used;\n    s8 status;\n    s8 stream_type;\n    s8 maximum_channels;\n    AdxSjdHandle *decoder;\n    ADXStream *stream;\n    AXRNAHandle *rna;\n    SJ *stream_sj;\n    SJ *input_sj;\n    SJ *output_sj[2];\n    u8 *input_buffer;\n    s32 input_buffer_size;\n    s32 input_extra_size;\n    u8 *output_buffer;\n    s32 output_buffer_size;\n    s32 output_buffer_distance;\n    s32 server_frequency;\n    s16 stream_buffer_sectors;\n    s16 minimum_buffer_sectors;\n    s16 output_volume;\n    s16 output_pan[2];\n    s16 field_46;\n    s32 maximum_decode_samples;\n    s32 loop_count;\n    s32 link_data_length;\n    s32 field_54;\n    s32 field_58;\n    s32 field_5C;\n    s16 error_code;\n    u8 reserved_62[2];\n    s32 field_64;\n    s16 field_68;\n    s16 field_6A;\n    s8 stream_loop_enabled;\n    s8 auto_receiver;\n    u8 reserved_6E[2];\n    s8 suppress_playback;\n    s8 decoder_ready;\n    s8 paused;\n    u8 reserved_73;\n    ADX_AMP *amplifier;\n    SJ *amplifier_input[2];\n    SJ *amplifier_output[2];\n    s32 time_offset;\n    s32 eos_sector;\n    s32 loop_sample_count;\n    LSCObject *linked_stream_controller;\n    s8 link_enabled;\n    u8 reserved_99[3];\n    u32 playback_time;\n    s32 playback_start_vsync;\n    s32 linked_decoded_samples;\n    s8 pending_stream_start;\n    u8 reserved_A9[3];\n    u8 *work_end;\n    const char *pending_filename;\n    void *pending_directory;\n    s32 pending_file_offset;\n    s32 pending_file_sectors;\n} ADXTHandle;\n\nCHECK_OFFSET(ADXTHandle, decoder, 0x4);\nCHECK_OFFSET(ADXTHandle, output_volume, 0x40);\nCHECK_OFFSET(ADXTHandle, error_code, 0x60);\nCHECK_OFFSET(ADXTHandle, stream_loop_enabled, 0x6C);\nCHECK_OFFSET(ADXTHandle, amplifier, 0x74);\nCHECK_OFFSET(ADXTHandle, linked_stream_controller, 0x94);\nCHECK_OFFSET(ADXTHandle, playback_time, 0x9C);\nCHECK_OFFSET(ADXTHandle, pending_file_sectors, 0xBC);\nCHECK_SIZE(ADXTHandle, 0xC0);\n\n#endif\n\n/* end sofdec/adxt.h */\n/* begin game/main_rel/sound_types.h (deltawave784/fzgx, CC0) */\n#ifndef GAME_MAIN_REL_SOUND_TYPES_H\n#define GAME_MAIN_REL_SOUND_TYPES_H\n\n// Types (and the externs that name them) of sound.c, hoisted out of its prologue so that\n// a block can compile standalone and under the prologue. Hand-owned (librarian).\n\n/* sofdec/adxt.h: inlined above */\n\ntypedef struct {\n    u8 unk_0[0x3A0];\n    void *unk_3A0;\n} SoundObject;\n\nextern SoundObject *fn_1_86854(s8 arg0);\n\n#endif  // GAME_MAIN_REL_SOUND_TYPES_H\n\n/* end game/main_rel/sound_types.h */\n\nextern const f32 lbl_1_rodata_42E0;\nextern int OSGetSoundMode(void);\nextern u32 fn_1_44A4(void);\nextern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);\nextern void fn_80008BEC(void *dest, int value, u32 size);\nextern void fn_80022014(u32 arg0);\nextern void fn_80025D50(u32 arg0, u32 arg1);\nextern void fn_8004B7D4();\nextern void fn_8004BBA4();\nextern void ADXT_Stop(ADXTHandle *handle);\nextern void fn_8004CAC8(ADXTHandle *handle);\nextern u32 fn_8004CD70(u32, u32, u32);\nextern u32 fn_8004E59C(u32);\nextern u32 fn_8004EC34(u32);\nextern void fn_80065890();\nextern void fn_8006589C(u32 value);\nextern void fn_800658A8(u32 arg0);\nextern u32 fn_1_9FE74(void *arg);\nextern void fn_1_9FEE8(void *arg);\nextern void fn_1_9FF50(void);\nextern void fn_1_9FF54(void);\nextern void fn_1_9FF58(void);\nextern void fn_1_A04AC(void);\nextern s16 fn_1_3F0C8(void);\nextern void fn_1_3EF14(void *arg1);\nextern u32 fn_1_F2F34(void);\nextern u32 fn_1_864E8(int index);\nextern u8 lbl_1_rodata_43B4[184];\nextern void ADXT_Pause(ADXTHandle *handle, s32 paused);\nextern u8 lbl_1_bss_A88[24];\nextern u8 lbl_1_bss_CC0[152];\nextern s32 fn_1_3F864();\nextern s32 fn_1_3F854(void);\nextern u32 fn_1_86514(int index);\nextern f32 fn_1_8652C(int index);\nextern s32 fn_80067344(u32 arg0, u32 arg1, u32 arg2, u32 arg3);\nextern s32 fn_80067898(u32 value);\nextern void *lbl_801A6410;\nextern u32 ARAlloc(u32 value);\nextern u32 fn_80020778(void);\nextern u32 fn_80025E18(void);\nextern u32 fn_80068BFC(u32, u32, u32, u32, u32);\nextern s32 fn_1_45D0();\nextern void AIInit(u8 *stack);\nextern void fn_1_4438(void);\nextern void fn_80020724(void);\nextern void fn_8002361C(u32 value0, u32 value1);\nextern void fn_8002805C(void);\nextern void fn_800411F4(void);\nextern s8 fn_1_86690(s8 index);\nextern void fn_1_14E9E4(int arg0, void *arg1);\nextern u32 lbl_1_rodata_451C[5];\nextern u32 lbl_1_rodata_4478[41];\nextern void *fn_1_86254(int index);\nextern u32 lbl_1_rodata_45D0[82];\nextern u32 fn_80008E84();\nextern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);\nextern u8 lbl_1_bss_6EAA6;\nextern u8 lbl_1_bss_6EAA4;\nextern void fn_80067974(void);\nextern void fn_800280F0(void);\nextern void fn_80026FE0(void);\nextern u32 lbl_1_bss_6EAA8[2];\nextern u8 lbl_1_bss_6EAB0;\nextern u32 ARInit(u32 *stack_index_addr, u32 num_entries);\nextern void ARQInit(void);\nextern u8 lbl_1_bss_6F1E1;\nextern void fn_1_A2DF4(s32 arg0, void *arg1, s32 arg2);\nextern void fn_1_A0680(void);\nextern void fn_800674FC(u16 arg0, u32 arg1, s16 arg2);\nextern s16 camera_get_mode(void);\nextern u8 lbl_1_bss_6F2D8[62];\nextern void fn_1_A5470(s32 value);\nextern u8 fn_1_3F13C(void);\nextern u32 fn_1_EB0B0(void);\nextern u32 fn_1_F1B94(void);\nextern u32 lbl_1_rodata_4718[];\nextern u32 lbl_1_rodata_4730[];\nextern u32 lbl_1_rodata_47A8[];\nextern u8 lbl_1_bss_6F41C[260];\nextern void *lbl_1_rodata_4820[41];\nextern s32 fn_8004C658(char *arg0);\nextern int fn_8004BBCC(u32 obj);\nextern int fn_1_3FC38(void);\nextern s32 fn_80063094(s32 arg0, s32 arg1, s32 arg2);\nextern s32 fn_80065D70(u32 idx);\n\ntypedef struct {\n    ADXTHandle *unk_0;\n    ADXTHandle *unk_4;\n} fn_1_A24CC_AdxPair;\n\ntypedef struct {\n    u8 pad_0[0x38];\n    fn_1_A24CC_AdxPair *unk_38;\n    u8 pad_3C[0x748 - 0x3C];\n    u8 unk_748;\n    u8 unk_749;\n    u8 pad_74A[0x7A4 - 0x74A];\n    u32 unk_7A4;\n} fn_1_A24CC_SoundState;\n\ntypedef struct {\n    u8 pad_0[0x118];\n    s32 unk_118;\n} fn_1_A24CC_Entry;\n\ntypedef struct {\n    u8 pad_0[4];\n    u8 unk_4;\n    u8 unk_5;\n    u8 unk_6;\n    u8 pad_7[7];\n    u8 ids[30];\n    fn_1_A24CC_Entry *entries[30];\n    u8 pad_A4[0x14C0 - 0xA4];\n} fn_1_A24CC_RaceInfo;\n\n\n/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */\nu32 fzgx_obj_lbl_1_bss_6EA98;\nu32 fzgx_obj_lbl_1_bss_6EA9C[2];\nu8 lbl_1_bss_6EAA4;\nu8 fzgx_pool_lbl_1_bss_6EA98_gap_6EAA5;\nu8 lbl_1_bss_6EAA6;\nu8 fzgx_pool_lbl_1_bss_6EA98_gap_6EAA7;\nu32 lbl_1_bss_6EAA8[2];\nu8 lbl_1_bss_6EAB0;\nu8 fzgx_pool_lbl_1_bss_6EA98_gap_6EAB1;\nu16 fzgx_pool_lbl_1_bss_6EA98_gap_6EAB1_fill_6EAB2;\nu32 fzgx_obj_lbl_1_bss_6EAB4[4];\nu16 fzgx_pool_lbl_1_bss_6EAB4_fill_6EAC4;\nu16 fzgx_obj_lbl_1_bss_6EAC6;\nu32 fzgx_pool_lbl_1_bss_6EAC6_fill_6EAC8[2];\nfn_1_A24CC_AdxPair *fzgx_obj_lbl_1_bss_6EAD0;\nu32 fzgx_pool_lbl_1_bss_6EAD0_fill_6EAD4[449];\nu8 fzgx_obj_lbl_1_bss_6F1D8;\nu8 fzgx_pool_lbl_1_bss_6EA98_gap_6F1D9;\nu16 fzgx_pool_lbl_1_bss_6EA98_gap_6F1D9_fill_6F1DA;\nu32 fzgx_obj_lbl_1_bss_6F1DC;\nu8 fzgx_obj_lbl_1_bss_6F1E0;\nu8 lbl_1_bss_6F1E1;\nu16 fzgx_pool_lbl_1_bss_6EA98_gap_6F1E2;\nu32 fzgx_obj_lbl_1_bss_6F1E4[21];\nu8 fzgx_pool_lbl_1_bss_6F1E4_fill_6F238;\nu8 lbl_1_bss_6F239;\nu16 fzgx_pool_lbl_1_bss_6EA98_gap_6F23A;\nu32 lbl_1_bss_6F23C;\nu16 fzgx_pool_lbl_1_bss_6F23C_fill_6F240;\nu8 fzgx_pool_lbl_1_bss_6F23C_fill_6F242;\n\n#pragma section code_type \".fzgxpool\"\nstatic void fzgx_bss_layout(void) {\n    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;\n    s = *(u8 *)&lbl_1_bss_6EAA4;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6EAA5;\n    s = *(u8 *)&lbl_1_bss_6EAA6;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6EAA7;\n    s = *(u8 *)&lbl_1_bss_6EAA8;\n    s = *(u8 *)&lbl_1_bss_6EAB0;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6EAB1;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6EAB1_fill_6EAB2;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAB4;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EAB4_fill_6EAC4;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAC6;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EAC6_fill_6EAC8;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAD0;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EAD0_fill_6EAD4;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1D8;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6F1D9;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6F1D9_fill_6F1DA;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1DC;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E0;\n    s = *(u8 *)&lbl_1_bss_6F1E1;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6F1E2;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E4;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F1E4_fill_6F238;\n    s = *(u8 *)&lbl_1_bss_6F239;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6F23A;\n    s = *(u8 *)&lbl_1_bss_6F23C;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F23C_fill_6F240;\n    s = *(u8 *)&fzgx_pool_lbl_1_bss_6F23C_fill_6F242;\n}\n#pragma section code_type \".text\"\n\nvoid fn_1_A24CC(void) {\n    \n    fn_1_A24CC_RaceInfo info;\n    fn_1_A24CC_Entry *entry;\n    s32 id;\n    u32 i;\n    u8 first;\n    s8 slot;\n    u32 flags;\n\n    if (*(s16 *)&lbl_1_bss_960 != 2 && *(s16 *)&lbl_1_bss_960 != 9) {\n        return;\n    }\n    if (fn_1_3F0C8() != 0x29) {\n        return;\n    }\n    fn_1_3EF14(&info);\n    if (lbl_1_bss_8CA24 != 0 || lbl_1_bss_8B5F0 != 0 || lbl_1_bss_8B5F1 != 0 || info.unk_5 == 3 ||\n        info.unk_5 == 4 || info.unk_4 == 1) {\n        return;\n    }\n    if ((s32)fn_1_F2F34() != 0) {\n        return;\n    }\n\n    first = info.unk_6;\n    for (i = 0; i < 30; i++) {\n        id = info.ids[i];\n        flags = fn_1_864E8(id);\n        entry = info.entries[i];\n        if (!(flags & 0x200)) {\n            break;\n        }\n    }\n\n    if (first > 0x2D) {\n        slot = -1;\n    } else {\n        slot = (s8)lbl_1_rodata_43B4[first * 4];\n    }\n\n    if (id == 0xFF) {\n        return;\n    }\n    if (entry->unk_118 == (u8)(info.unk_4 - 1) && fzgx_obj_lbl_1_bss_6F1E0 != 0 && lbl_1_bss_6F1E1 != 0 && slot != -1) {\n        ADXT_Stop(fzgx_obj_lbl_1_bss_6EAD0->unk_0);\n        ADXT_Pause(fzgx_obj_lbl_1_bss_6EAD0->unk_4, 0);\n        flags = lbl_1_bss_6F23C;\n        lbl_1_bss_6F1E1 = 0;\n        lbl_1_bss_6F23C = flags & ~0x20;\n    }\n    fzgx_obj_lbl_1_bss_6F1E0 = 0;\n}\n",
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "seed_compiler": "GC/1.3.2",
+    "seed_flags": "-O4",
+    "source": "rel/main_rel/sound/fn_1_A24CC.c",
+    "bytes": 416,
+    "headers_sha256": "53a637d198f3e1d9598cd12d3f25c04650af4e6a07d903205df5f7ad8f41faae",
+    "oracle_sha256": "a07ffcea0a75ff8b33e8b1a58b6f616c8c390cf774c325caeec533336a536657",
+    "recipe": [
+      {
+        "label": "restore module compiler defaults",
+        "input_sha256": "ec124ebf35abd7be09074655ab1ea3e67a98a73007b2f909124cb8bf81cc2526",
+        "output_sha256": "ec124ebf35abd7be09074655ab1ea3e67a98a73007b2f909124cb8bf81cc2526",
+        "input_symbol": "fn_1_A24CC",
+        "output_symbol": "fn_1_A24CC",
+        "edits": []
+      },
+      {
+        "label": "discard BSS copies used only by layout primers",
+        "input_sha256": "ec124ebf35abd7be09074655ab1ea3e67a98a73007b2f909124cb8bf81cc2526",
+        "output_sha256": "3253b668812f62255af8514238e0244e8248f769f98b7b7311f09b806f67ae41",
+        "input_symbol": "fn_1_A24CC",
+        "output_symbol": "fn_1_A24CC",
+        "edits": [
+          [
+            7513,
+            7513,
+            "fzgx_pool_"
+          ],
+          [
+            7563,
+            7563,
+            "fzgx_pool_"
+          ],
+          [
+            7637,
+            7668,
+            "fzgx_pool_lbl_1_bss_6EA98_gap_6EAB1;\nu16 fzgx_pool_"
+          ],
+          [
+            7743,
+            7743,
+            "fzgx_pool_"
+          ],
+          [
+            7805,
+            7805,
+            "fzgx_pool_"
+          ],
+          [
+            7886,
+            7886,
+            "fzgx_pool_"
+          ],
+          [
+            7951,
+            7982,
+            "fzgx_pool_lbl_1_bss_6EA98_gap_6F1D9;\nu16 fzgx_pool_"
+          ],
+          [
+            8103,
+            8103,
+            "fzgx_pool_"
+          ],
+          [
+            8167,
+            8167,
+            "fzgx_pool_"
+          ],
+          [
+            8219,
+            8219,
+            "fzgx_pool_"
+          ],
+          [
+            8271,
+            8302,
+            "fzgx_pool_lbl_1_bss_6F23C_fill_6F240;\nu8 fzgx_pool_"
+          ],
+          [
+            8645,
+            8645,
+            "fzgx_pool_"
+          ],
+          [
+            8721,
+            8721,
+            "fzgx_pool_"
+          ],
+          [
+            8830,
+            8873,
+            "fzgx_pool_lbl_1_bss_6EA98_gap_6EAB1;\n    s = *(u8 *)&fzgx_pool_"
+          ],
+          [
+            8969,
+            8969,
+            "fzgx_pool_"
+          ],
+          [
+            9055,
+            9055,
+            "fzgx_pool_"
+          ],
+          [
+            9141,
+            9141,
+            "fzgx_pool_"
+          ],
+          [
+            9227,
+            9270,
+            "fzgx_pool_lbl_1_bss_6EA98_gap_6F1D9;\n    s = *(u8 *)&fzgx_pool_"
+          ],
+          [
+            9441,
+            9441,
+            "fzgx_pool_"
+          ],
+          [
+            9526,
+            9526,
+            "fzgx_pool_"
+          ],
+          [
+            9603,
+            9603,
+            "fzgx_pool_"
+          ],
+          [
+            9679,
+            9723,
+            "fzgx_pool_lbl_1_bss_6F23C_fill_6F240;\n    s = *(u8 *)&fzgx_pool_"
+          ]
+        ]
+      }
+    ],
+    "link": "pending"
+  },
+  "fn_3_4F08": {
+    "seed_symbol": "fn_3_4F08",
+    "generator": "fzgx fixup",
+    "transform": "discard BSS copies used only by layout primers",
+    "seed": "#include \"types.h\"\n\n#include \"rel/customize/globals.h\"\n\nstruct B0 {\n    u8 pad_0[0x18];\n    u16 unk_18;\n};\n\nstruct F0 {\n    u32 flags;\n    u32 pad_4;\n    s16 unk_8;\n    s16 unk_A;\n    s16 unk_C;\n};\n\nextern s16 lbl_1_bss_966;\nextern u32 lbl_3_data_B8;\nextern u8 lbl_3_data_1698[380];\nextern u8 lbl_1_bss_6EAD0[1800];\nextern u32 fn_3_0(u32, u32);\nextern void fn_3_6F90(void);\nextern void fn_3_5A50(void);\nextern u32 fn_3_4C58(void);\nextern void fn_3_29C94(void);\nextern void fn_1_14E9E4(int, void *);\nextern int fn_1_14F014(void);\nextern void fn_1_4A00(s32, u8, u32);\nextern s32 fn_8006FDEC(void);\nextern s32 fn_1_3F8C(void *, void *, u32, u32);\nextern void fn_1_A176C(u32, u32);\nextern void fn_1_FE004(void);\n\n\ntypedef struct lbl_3_bss_18_t {\n    u16 unk_18;\n    u8 pad_2[0x6];\n} lbl_3_bss_18_t;\n\ntypedef struct lbl_3_bss_F0_t {\n    u8 fzgx_byte_F0;\n    u8 pad_1[0x2f];\n} lbl_3_bss_F0_t;\n\ntypedef struct lbl_3_bss_120_t {\n    u8 fzgx_byte_120;\n    u8 pad_1[0x1f];\n} lbl_3_bss_120_t;\n\nObj_3_bss_0 lbl_3_bss_0;\nu32 lbl_3_bss_8;\nu32 lbl_3_bss_C[3];\nlbl_3_bss_18_t fzgx_obj_lbl_3_bss_18;\nu32 fzgx_obj_lbl_3_bss_20[52];\nlbl_3_bss_F0_t fzgx_obj_lbl_3_bss_F0;\nlbl_3_bss_120_t lbl_3_bss_120;\nu8 fzgx_obj_lbl_3_bss_140[0x20710];\nu32 fzgx_obj_lbl_3_bss_20850;\nu8 fzgx_obj_lbl_3_bss_20854[0x3b54];\nu32 fzgx_obj_lbl_3_bss_243A8;\nu8 fzgx_obj_lbl_3_bss_243AC[0x49514];\nu8 fzgx_obj_lbl_3_bss_6D8C0[0x4b0];\nu32 fzgx_obj_lbl_3_bss_6DD70;\n\n#pragma section code_type \".fzgxpool\"\nstatic void fzgx_bss_layout(void) {\n    volatile u8 s; /* fzgx-allow: S2 layout primer sink */\n    s = *(u8 *)&lbl_3_bss_0.unk_0;\n    s = *(u8 *)&lbl_3_bss_8;\n    s = *(u8 *)&lbl_3_bss_C;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_18;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_20;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;\n    s = *(u8 *)&lbl_3_bss_120;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_140;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_20850;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_20854;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_243A8;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_243AC;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_6D8C0;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_6DD70;\n}\n#pragma section code_type \".text\"\n\nvoid fn_3_4F08(void) {\n    struct { u32 value; } v0;\n    u32 v1;\n    struct F0 *f;\n    u8 *q;\n    s32 i;\n\n\n    fzgx_obj_lbl_3_bss_18.unk_18 = 10;\n    f = (struct F0 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0);\n    fn_3_0(f->unk_8, 1);\n    q = fzgx_obj_lbl_3_bss_6D8C0;\n    for (i = 0; (s16)i < (s16)fn_1_14F014(); i++) {\n        fn_1_14E9E4(i, q);\n        q += 0x10;\n    }\n    fn_3_6F90();\n    if (lbl_1_bss_966 == 0x5d && (*(u32 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0) & 0x2000000)) {\n        fn_3_5A50();\n        fn_3_4C58();\n        *(u32 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0) &= ~0x2000000;\n    } else {\n        fn_3_4C58();\n        fn_1_4A00(1, 0xf, fzgx_obj_lbl_3_bss_20850);\n        fzgx_obj_lbl_3_bss_243A8 = 0;\n        if ((s32)lbl_3_data_B8 == -1) {\n            fn_8006FDEC();\n            lbl_3_data_B8 = fn_1_3F8C(lbl_3_data_1698, (void *)fn_3_29C94, 0, 8);\n        }\n        fn_1_A176C(**(u32 **)lbl_1_bss_6EAD0, 8);\n    }\n    *(s32 *)((u8 *)&lbl_3_bss_120.fzgx_byte_120) = -1;\n    ((struct F0 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0))->unk_C = 0;\n    if (lbl_1_bss_966 != 0x5d || !(*(u32 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0) & 0x2000000)) {\n        fn_1_FE004();\n        fzgx_obj_lbl_3_bss_6DD70 = 0;\n    }\n}\n",
+    "seed_sha256": "cd1694ae34bec1c9f3a607685a2e1d3753ba39a03719e7f36eada516a36016fe",
+    "generated_sha256": "0bec7dade8151be837e29aac2879ee2a1fd75c9f102c6808446c6bf87c4c4c12",
+    "generated_source": "#include \"types.h\"\n\n#include \"rel/customize/globals.h\"\n\nstruct B0 {\n    u8 pad_0[0x18];\n    u16 unk_18;\n};\n\nstruct F0 {\n    u32 flags;\n    u32 pad_4;\n    s16 unk_8;\n    s16 unk_A;\n    s16 unk_C;\n};\n\nextern s16 lbl_1_bss_966;\nextern u32 lbl_3_data_B8;\nextern u8 lbl_3_data_1698[380];\nextern u8 lbl_1_bss_6EAD0[1800];\nextern u32 fn_3_0(u32, u32);\nextern void fn_3_6F90(void);\nextern void fn_3_5A50(void);\nextern u32 fn_3_4C58(void);\nextern void fn_3_29C94(void);\nextern void fn_1_14E9E4(int, void *);\nextern int fn_1_14F014(void);\nextern void fn_1_4A00(s32, u8, u32);\nextern s32 fn_8006FDEC(void);\nextern s32 fn_1_3F8C(void *, void *, u32, u32);\nextern void fn_1_A176C(u32, u32);\nextern void fn_1_FE004(void);\n\n\ntypedef struct lbl_3_bss_18_t {\n    u16 unk_18;\n    u8 pad_2[0x6];\n} lbl_3_bss_18_t;\n\ntypedef struct lbl_3_bss_F0_t {\n    u8 fzgx_byte_F0;\n    u8 pad_1[0x2f];\n} lbl_3_bss_F0_t;\n\ntypedef struct lbl_3_bss_120_t {\n    u8 fzgx_byte_120;\n    u8 pad_1[0x1f];\n} lbl_3_bss_120_t;\n\nObj_3_bss_0 lbl_3_bss_0;\nu32 lbl_3_bss_8;\nu32 lbl_3_bss_C[3];\nlbl_3_bss_18_t fzgx_obj_lbl_3_bss_18;\nu32 fzgx_obj_lbl_3_bss_20[52];\nlbl_3_bss_F0_t fzgx_obj_lbl_3_bss_F0;\nlbl_3_bss_120_t lbl_3_bss_120;\nu8 fzgx_pool_fzgx_obj_lbl_3_bss_140[0x20710];\nu32 fzgx_obj_lbl_3_bss_20850;\nu8 fzgx_pool_fzgx_obj_lbl_3_bss_20854[0x3b54];\nu32 fzgx_obj_lbl_3_bss_243A8;\nu8 fzgx_pool_fzgx_obj_lbl_3_bss_243AC[0x49514];\nu8 fzgx_obj_lbl_3_bss_6D8C0[0x4b0];\nu32 fzgx_obj_lbl_3_bss_6DD70;\n\n#pragma section code_type \".fzgxpool\"\nstatic void fzgx_bss_layout(void) {\n    volatile u8 s; /* fzgx-allow: S2 layout primer sink */\n    s = *(u8 *)&lbl_3_bss_0.unk_0;\n    s = *(u8 *)&lbl_3_bss_8;\n    s = *(u8 *)&lbl_3_bss_C;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_18;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_20;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;\n    s = *(u8 *)&lbl_3_bss_120;\n    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_140;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_20850;\n    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_20854;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_243A8;\n    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_243AC;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_6D8C0;\n    s = *(u8 *)&fzgx_obj_lbl_3_bss_6DD70;\n}\n#pragma section code_type \".text\"\n\nvoid fn_3_4F08(void) {\n    struct { u32 value; } v0;\n    u32 v1;\n    struct F0 *f;\n    u8 *q;\n    s32 i;\n\n\n    fzgx_obj_lbl_3_bss_18.unk_18 = 10;\n    f = (struct F0 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0);\n    fn_3_0(f->unk_8, 1);\n    q = fzgx_obj_lbl_3_bss_6D8C0;\n    for (i = 0; (s16)i < (s16)fn_1_14F014(); i++) {\n        fn_1_14E9E4(i, q);\n        q += 0x10;\n    }\n    fn_3_6F90();\n    if (lbl_1_bss_966 == 0x5d && (*(u32 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0) & 0x2000000)) {\n        fn_3_5A50();\n        fn_3_4C58();\n        *(u32 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0) &= ~0x2000000;\n    } else {\n        fn_3_4C58();\n        fn_1_4A00(1, 0xf, fzgx_obj_lbl_3_bss_20850);\n        fzgx_obj_lbl_3_bss_243A8 = 0;\n        if ((s32)lbl_3_data_B8 == -1) {\n            fn_8006FDEC();\n            lbl_3_data_B8 = fn_1_3F8C(lbl_3_data_1698, (void *)fn_3_29C94, 0, 8);\n        }\n        fn_1_A176C(**(u32 **)lbl_1_bss_6EAD0, 8);\n    }\n    *(s32 *)((u8 *)&lbl_3_bss_120.fzgx_byte_120) = -1;\n    ((struct F0 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0))->unk_C = 0;\n    if (lbl_1_bss_966 != 0x5d || !(*(u32 *)((u8 *)&fzgx_obj_lbl_3_bss_F0.fzgx_byte_F0) & 0x2000000)) {\n        fn_1_FE004();\n        fzgx_obj_lbl_3_bss_6DD70 = 0;\n    }\n}\n",
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "seed_compiler": "GC/1.3.2",
+    "seed_flags": "-O2",
+    "source": "rel/customize/_prolog/fn_3_4F08.c",
+    "bytes": 360,
+    "headers_sha256": "53a637d198f3e1d9598cd12d3f25c04650af4e6a07d903205df5f7ad8f41faae",
+    "oracle_sha256": "a07ffcea0a75ff8b33e8b1a58b6f616c8c390cf774c325caeec533336a536657",
+    "recipe": [
+      {
+        "label": "restore module compiler defaults",
+        "input_sha256": "cd1694ae34bec1c9f3a607685a2e1d3753ba39a03719e7f36eada516a36016fe",
+        "output_sha256": "cd1694ae34bec1c9f3a607685a2e1d3753ba39a03719e7f36eada516a36016fe",
+        "input_symbol": "fn_3_4F08",
+        "output_symbol": "fn_3_4F08",
+        "edits": []
+      },
+      {
+        "label": "discard BSS copies used only by layout primers",
+        "input_sha256": "cd1694ae34bec1c9f3a607685a2e1d3753ba39a03719e7f36eada516a36016fe",
+        "output_sha256": "0bec7dade8151be837e29aac2879ee2a1fd75c9f102c6808446c6bf87c4c4c12",
+        "input_symbol": "fn_3_4F08",
+        "output_symbol": "fn_3_4F08",
+        "edits": [
+          [
+            1191,
+            1191,
+            "pool_fzgx_"
+          ],
+          [
+            1257,
+            1257,
+            "pool_fzgx_"
+          ],
+          [
+            1324,
+            1324,
+            "pool_fzgx_"
+          ],
+          [
+            1816,
+            1816,
+            "pool_fzgx_"
+          ],
+          [
+            1898,
+            1898,
+            "pool_fzgx_"
+          ],
+          [
+            1982,
+            1982,
+            "pool_fzgx_"
+          ]
+        ]
+      }
+    ],
+    "link": "pending"
   }
 }

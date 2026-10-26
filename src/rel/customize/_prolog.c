@@ -2683,7 +2683,7 @@ void fn_3_4C58(void) {
 }
 /* fzgx:end fn_3_4C58 */
 
-/* fzgx:begin fn_3_4F08 pool */
+/* fzgx:begin fn_3_4F08 */
 #include "rel/customize/globals.h"
 
 struct B0 {
@@ -2739,11 +2739,11 @@ lbl_3_bss_18_t fzgx_obj_lbl_3_bss_18;
 u32 fzgx_obj_lbl_3_bss_20[52];
 lbl_3_bss_F0_t fzgx_obj_lbl_3_bss_F0;
 lbl_3_bss_120_t lbl_3_bss_120;
-u8 fzgx_obj_lbl_3_bss_140[0x20710];
+u8 fzgx_pool_fzgx_obj_lbl_3_bss_140[0x20710];
 u32 fzgx_obj_lbl_3_bss_20850;
-u8 fzgx_obj_lbl_3_bss_20854[0x3b54];
+u8 fzgx_pool_fzgx_obj_lbl_3_bss_20854[0x3b54];
 u32 fzgx_obj_lbl_3_bss_243A8;
-u8 fzgx_obj_lbl_3_bss_243AC[0x49514];
+u8 fzgx_pool_fzgx_obj_lbl_3_bss_243AC[0x49514];
 u8 fzgx_obj_lbl_3_bss_6D8C0[0x4b0];
 u32 fzgx_obj_lbl_3_bss_6DD70;
 
@@ -2757,11 +2757,11 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;
     s = *(u8 *)&lbl_3_bss_120;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_140;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_140;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_20850;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_20854;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_20854;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_243A8;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_243AC;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_3_bss_243AC;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_6D8C0;
     s = *(u8 *)&fzgx_obj_lbl_3_bss_6DD70;
 }
