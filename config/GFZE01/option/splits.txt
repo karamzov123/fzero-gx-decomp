@@ -203,3 +203,6 @@ rel/option/_prolog/fn_4_7DEC.c:
 
 rel/option/_prolog/fn_4_A0C.c:
 	.text       start:0x00000A0C end:0x00000D10 align:4
+
+rel/option/_prolog/fn_4_28FC.c:
+	.text       start:0x000028FC end:0x00003128 align:4
