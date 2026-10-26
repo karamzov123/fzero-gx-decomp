@@ -8897,3 +8897,33 @@ rel/main_rel/accessory/fn_1_111980.c:
 
 rel/main_rel/accessory/fn_1_123050.c:
 	.text       start:0x00123050 end:0x001244F0 align:4
+
+rel/main_rel/stcoli/fn_1_19AE0.c:
+	.text       start:0x00019AE0 end:0x0001ACC0 align:4
+
+rel/main_rel/burner/fn_1_98F28.c:
+	.text       start:0x00098F28 end:0x0009A0A4 align:4
+
+rel/main_rel/accessory/fn_1_110478.c:
+	.text       start:0x00110478 end:0x00111510 align:4
+
+rel/main_rel/stcoli/fn_1_1C0D0.c:
+	.text       start:0x0001C0D0 end:0x0001D0CC align:4
+
+rel/main_rel/effect/fn_1_662D8.c:
+	.text       start:0x000662D8 end:0x00067294 align:4
+
+rel/main_rel/stcoli/fn_1_1EBD4.c:
+	.text       start:0x0001EBD4 end:0x0001FB80 align:4
+
+rel/main_rel/accessory/fn_1_11F250.c:
+	.text       start:0x0011F250 end:0x001201E4 align:4
+
+rel/main_rel/stcoli/fn_1_1DCD8.c:
+	.text       start:0x0001DCD8 end:0x0001EBD4 align:4
+
+rel/main_rel/ghost/fn_1_ED540.c:
+	.text       start:0x000ED540 end:0x000EE3F4 align:4
+
+rel/main_rel/accessory/fn_1_1192D0.c:
+	.text       start:0x001192D0 end:0x0011A158 align:4
