@@ -95,9 +95,18 @@ differ structurally are ordinary decompilation work and remain the real queue.
 
 ## Operational note
 
-A corpus sweep is not read-only: `fzgx fixup` carves units for symbols that do not
-have one, which writes `config/*/splits.txt`, `config/*/units.json` and a
-`/* fzgx:begin */` block into the owning TU. During this session a separate import
-process was also committing `src/` and `config/` changes in the same checkout, so
-`git status` had to be read before and after every sweep; keep `--output` under
-`.fzgx/` and check the tree before believing any tracked-file change is your own.
+A corpus sweep itself stays read-only outside `.fzgx/`: `fzgx fixup` does not carve,
+it only reads `unit_of()` and compiles uncarved symbols into scratch objects
+(`oracle.check`'s uncarved path), so `--output` under `.fzgx/` touches no tracked
+file. That matters here because a separate import process was committing `src/` and
+`config/` changes in this same checkout throughout the session (`5c69914df` landed
+mid-run), so `git status` has to be read before attributing any tracked-file change
+to the sweep.
+
+That commit also left the tree's build red, independently of this work: it
+registered the unit `rel/main_rel/game/fn_1_3181C.c` in `splits.txt` and
+`units.json` with a poolfix retarget list but no C source. `configure.py` then
+generates the `// fn_1_3181C: not matched yet` stub, mwcc compiles it to an empty
+object, and `tools/fzgx/poolfix.py` exits 1 because every requested retarget is
+skipped. 123 other stub units build fine, so the rule is that a registered unit
+with retargets needs a source; this one has none.
