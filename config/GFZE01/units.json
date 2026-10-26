@@ -53412,6 +53412,63 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/game/fn_1_3181C.c",
+    "symbols": [
+      "fn_1_3181C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/game.c",
+    "pool": {
+      "@8": "lbl_1_rodata_DF8",
+      "fzgx_pool_lbl_1_data_6400": "lbl_1_data_6400",
+      "...bss.0": "lbl_1_bss_3C00",
+      "fzgx_obj_lbl_1_bss_3C00": "lbl_1_bss_3C00",
+      "fzgx_obj_lbl_1_bss_3C04": "lbl_1_bss_3C04",
+      "fzgx_obj_lbl_1_bss_3C08": "lbl_1_bss_3C08",
+      "fzgx_obj_lbl_1_bss_3C10": "lbl_1_bss_3C10",
+      "fzgx_obj_lbl_1_bss_3C11": "lbl_1_bss_3C11",
+      "fzgx_obj_lbl_1_bss_3C12": "lbl_1_bss_3C12",
+      "lbl_1_bss_3C12__fzgx_offset_1": "lbl_1_bss_3C12+0x1",
+      "lbl_1_bss_3C12__fzgx_offset_2": "lbl_1_bss_3C12+0x2",
+      "fzgx_obj_lbl_1_bss_3C1C": "lbl_1_bss_3C1C",
+      "fzgx_obj_lbl_1_bss_3C2A": "lbl_1_bss_3C2A",
+      "lbl_1_bss_3C2A__fzgx_offset_1": "lbl_1_bss_3C2A+0x1",
+      "lbl_1_bss_3C2A__fzgx_offset_2": "lbl_1_bss_3C2A+0x2",
+      "fzgx_obj_lbl_1_bss_3C30": "lbl_1_bss_3C30",
+      "fzgx_obj_lbl_1_bss_50EC": "lbl_1_bss_50EC",
+      "fzgx_obj_lbl_1_bss_5100": "lbl_1_bss_5100",
+      "fzgx_obj_lbl_1_bss_5104": "lbl_1_bss_5104",
+      "fzgx_obj_lbl_1_bss_5138": "lbl_1_bss_5138",
+      "fzgx_obj_lbl_1_bss_523C": "lbl_1_bss_523C",
+      "fzgx_obj_lbl_1_bss_525C": "lbl_1_bss_525C",
+      "fzgx_obj_lbl_1_bss_53F4": "lbl_1_bss_53F4",
+      "fzgx_obj_lbl_1_bss_53F8": "lbl_1_bss_53F8",
+      "fzgx_obj_lbl_1_bss_5480": "lbl_1_bss_5480",
+      "fzgx_obj_lbl_1_bss_25B80": "lbl_1_bss_25B80",
+      "fzgx_obj_lbl_1_bss_25B84": "lbl_1_bss_25B84",
+      "fzgx_obj_lbl_1_bss_25B88": "lbl_1_bss_25B88",
+      "fzgx_obj_lbl_1_bss_25B98": "lbl_1_bss_25B98",
+      "fzgx_obj_lbl_1_bss_25B9C": "lbl_1_bss_25B9C",
+      "fzgx_obj_lbl_1_bss_25BA0": "lbl_1_bss_25BA0",
+      "fzgx_obj_lbl_1_bss_25C48": "lbl_1_bss_25C48",
+      "fzgx_obj_lbl_1_bss_25CA4": "lbl_1_bss_25CA4",
+      "fzgx_obj_lbl_1_bss_25CD0": "lbl_1_bss_25CD0",
+      "fzgx_obj_lbl_1_bss_25E74": "lbl_1_bss_25E74",
+      "fzgx_obj_lbl_1_bss_25E90": "lbl_1_bss_25E90",
+      "fzgx_obj_lbl_1_bss_25E98": "lbl_1_bss_25E98",
+      "fzgx_obj_lbl_1_bss_25E9C": "lbl_1_bss_25E9C",
+      "fzgx_obj_lbl_1_bss_2625C": "lbl_1_bss_2625C",
+      "fzgx_obj_lbl_1_bss_2627C": "lbl_1_bss_2627C",
+      "fzgx_obj_lbl_1_bss_262F4": "lbl_1_bss_262F4",
+      "fzgx_obj_lbl_1_bss_262F8": "lbl_1_bss_262F8",
+      "lbl_1_bss_262F8__fzgx_offset_4": "lbl_1_bss_262F8+0x4",
+      "fzgx_obj_lbl_1_bss_26300": "lbl_1_bss_26300"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/game/fn_1_31C3C.c",
     "symbols": [
       "fn_1_31C3C"
@@ -59322,6 +59379,47 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_B8338.c",
+    "symbols": [
+      "fn_1_B8338"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_716C0",
+      "fzgx_obj_lbl_1_bss_716C0": "lbl_1_bss_716C0",
+      "fzgx_obj_lbl_1_bss_716C8": "lbl_1_bss_716C8",
+      "fzgx_obj_lbl_1_bss_71808": "lbl_1_bss_71808",
+      "fzgx_obj_lbl_1_bss_7180C": "lbl_1_bss_7180C",
+      "fzgx_obj_lbl_1_bss_71810": "lbl_1_bss_71810",
+      "fzgx_obj_lbl_1_bss_718B1": "lbl_1_bss_718B1",
+      "fzgx_obj_lbl_1_bss_718B2": "lbl_1_bss_718B2",
+      "fzgx_obj_lbl_1_bss_718B4": "lbl_1_bss_718B4",
+      "fzgx_obj_lbl_1_bss_718B8": "lbl_1_bss_718B8",
+      "fzgx_obj_lbl_1_bss_718B9": "lbl_1_bss_718B9",
+      "lbl_1_bss_718B9__fzgx_offset_1": "lbl_1_bss_718B9+0x1",
+      "lbl_1_bss_718B9__fzgx_offset_2": "lbl_1_bss_718B9+0x2",
+      "lbl_1_bss_718B9__fzgx_offset_3": "lbl_1_bss_718B9+0x3",
+      "fzgx_obj_lbl_1_bss_718C0": "lbl_1_bss_718C0",
+      "fzgx_obj_lbl_1_bss_718E0": "lbl_1_bss_718E0",
+      "fzgx_obj_lbl_1_bss_772C8": "lbl_1_bss_772C8",
+      "fzgx_obj_lbl_1_bss_7730A": "lbl_1_bss_7730A",
+      "fzgx_obj_lbl_1_bss_7730C": "lbl_1_bss_7730C",
+      "fzgx_obj_lbl_1_bss_77310": "lbl_1_bss_77310",
+      "lbl_1_bss_77310__fzgx_offset_24": "lbl_1_bss_77310+0x24",
+      "lbl_1_bss_77310__fzgx_offset_28": "lbl_1_bss_77310+0x28",
+      "lbl_1_bss_77310__fzgx_offset_29": "lbl_1_bss_77310+0x29",
+      "lbl_1_bss_77310__fzgx_offset_2A": "lbl_1_bss_77310+0x2A",
+      "lbl_1_bss_77310__fzgx_offset_2B": "lbl_1_bss_77310+0x2B",
+      "lbl_1_bss_77310__fzgx_offset_2C": "lbl_1_bss_77310+0x2C",
+      "lbl_1_bss_77310__fzgx_offset_34": "lbl_1_bss_77310+0x34",
+      "lbl_1_bss_77310__fzgx_offset_64": "lbl_1_bss_77310+0x64"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/memcard/fn_1_B88C4.c",
     "symbols": [
       "fn_1_B88C4"
@@ -59462,6 +59560,20 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/memcard.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_B9DE8.c",
+    "symbols": [
+      "fn_1_B9DE8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard.c",
+    "pool": {
+      "...data.0": "lbl_1_data_35AC8"
+    }
   },
   {
     "module": "main_rel",
@@ -59706,6 +59818,55 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_C062C.c",
+    "symbols": [
+      "fn_1_C062C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard.c",
+    "pool": {
+      "...data.0": "lbl_1_data_35AC8",
+      "...bss.0": "lbl_1_bss_716C0",
+      "fzgx_obj_lbl_1_bss_716C0": "lbl_1_bss_716C0",
+      "fzgx_obj_lbl_1_bss_716C8": "lbl_1_bss_716C8",
+      "fzgx_obj_lbl_1_bss_71808": "lbl_1_bss_71808",
+      "lbl_1_bss_7180C": "lbl_1_bss_7180C",
+      "lbl_1_bss_71810": "lbl_1_bss_71810",
+      "lbl_1_bss_71810__fzgx_offset_A0": "lbl_1_bss_71810+0xA0",
+      "fzgx_obj_lbl_1_bss_718B1": "lbl_1_bss_718B1",
+      "fzgx_obj_lbl_1_bss_718B4": "lbl_1_bss_718B4",
+      "lbl_1_bss_718B8": "lbl_1_bss_718B8",
+      "lbl_1_bss_718B9": "lbl_1_bss_718B9",
+      "lbl_1_bss_718B9__fzgx_offset_1": "lbl_1_bss_718B9+0x1",
+      "lbl_1_bss_718B9__fzgx_offset_3": "lbl_1_bss_718B9+0x3",
+      "fzgx_obj_lbl_1_bss_718C0": "lbl_1_bss_718C0",
+      "fzgx_obj_lbl_1_bss_718E0": "lbl_1_bss_718E0",
+      "lbl_1_bss_772C8": "lbl_1_bss_772C8",
+      "lbl_1_bss_772C8__fzgx_offset_40": "lbl_1_bss_772C8+0x40",
+      "fzgx_obj_lbl_1_bss_7730A": "lbl_1_bss_7730A",
+      "lbl_1_bss_7730C": "lbl_1_bss_7730C",
+      "lbl_1_bss_77310": "lbl_1_bss_77310",
+      "lbl_1_bss_77310__fzgx_offset_24": "lbl_1_bss_77310+0x24",
+      "lbl_1_bss_77310__fzgx_offset_28": "lbl_1_bss_77310+0x28",
+      "lbl_1_bss_77310__fzgx_offset_29": "lbl_1_bss_77310+0x29",
+      "lbl_1_bss_77310__fzgx_offset_2A": "lbl_1_bss_77310+0x2A",
+      "lbl_1_bss_77310__fzgx_offset_2C": "lbl_1_bss_77310+0x2C",
+      "lbl_1_bss_77310__fzgx_offset_34": "lbl_1_bss_77310+0x34",
+      "lbl_1_bss_77310__fzgx_offset_64": "lbl_1_bss_77310+0x64",
+      "lbl_1_bss_77380": "lbl_1_bss_77380",
+      "lbl_1_bss_7A380": "lbl_1_bss_7A380",
+      "lbl_1_bss_7A388": "lbl_1_bss_7A388",
+      "lbl_1_bss_7A39C": "lbl_1_bss_7A39C",
+      "lbl_1_bss_7AB90": "lbl_1_bss_7AB90",
+      "lbl_1_bss_7AB90__fzgx_offset_4": "lbl_1_bss_7AB90+0x4",
+      "lbl_1_bss_7AB90__fzgx_offset_24": "lbl_1_bss_7AB90+0x24",
+      "lbl_1_bss_7AB90__fzgx_offset_28": "lbl_1_bss_7AB90+0x28"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/memcard/fn_1_C0B0C.c",
     "symbols": [
       "fn_1_C0B0C"
@@ -59714,6 +59875,55 @@
     "mw_version": "GC/1.3",
     "extra_cflags": [],
     "tu": "rel/main_rel/memcard.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_C0E00.c",
+    "symbols": [
+      "fn_1_C0E00"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard.c",
+    "pool": {
+      "...data.0": "lbl_1_data_35AC8",
+      "...bss.0": "lbl_1_bss_716C0",
+      "fzgx_obj_lbl_1_bss_716C0": "lbl_1_bss_716C0",
+      "fzgx_obj_lbl_1_bss_716C8": "lbl_1_bss_716C8",
+      "fzgx_obj_lbl_1_bss_71808": "lbl_1_bss_71808",
+      "lbl_1_bss_7180C": "lbl_1_bss_7180C",
+      "lbl_1_bss_71810": "lbl_1_bss_71810",
+      "lbl_1_bss_71810__fzgx_offset_A0": "lbl_1_bss_71810+0xA0",
+      "fzgx_obj_lbl_1_bss_718B1": "lbl_1_bss_718B1",
+      "fzgx_obj_lbl_1_bss_718B4": "lbl_1_bss_718B4",
+      "lbl_1_bss_718B8": "lbl_1_bss_718B8",
+      "lbl_1_bss_718B9": "lbl_1_bss_718B9",
+      "lbl_1_bss_718B9__fzgx_offset_1": "lbl_1_bss_718B9+0x1",
+      "lbl_1_bss_718B9__fzgx_offset_3": "lbl_1_bss_718B9+0x3",
+      "fzgx_obj_lbl_1_bss_718C0": "lbl_1_bss_718C0",
+      "fzgx_obj_lbl_1_bss_718E0": "lbl_1_bss_718E0",
+      "lbl_1_bss_772C8": "lbl_1_bss_772C8",
+      "lbl_1_bss_772C8__fzgx_offset_40": "lbl_1_bss_772C8+0x40",
+      "fzgx_obj_lbl_1_bss_7730A": "lbl_1_bss_7730A",
+      "lbl_1_bss_7730C": "lbl_1_bss_7730C",
+      "lbl_1_bss_77310": "lbl_1_bss_77310",
+      "lbl_1_bss_77310__fzgx_offset_24": "lbl_1_bss_77310+0x24",
+      "lbl_1_bss_77310__fzgx_offset_28": "lbl_1_bss_77310+0x28",
+      "lbl_1_bss_77310__fzgx_offset_29": "lbl_1_bss_77310+0x29",
+      "lbl_1_bss_77310__fzgx_offset_2A": "lbl_1_bss_77310+0x2A",
+      "lbl_1_bss_77310__fzgx_offset_2C": "lbl_1_bss_77310+0x2C",
+      "lbl_1_bss_77310__fzgx_offset_34": "lbl_1_bss_77310+0x34",
+      "lbl_1_bss_77310__fzgx_offset_64": "lbl_1_bss_77310+0x64",
+      "lbl_1_bss_77380": "lbl_1_bss_77380",
+      "lbl_1_bss_7A380": "lbl_1_bss_7A380",
+      "lbl_1_bss_7A388": "lbl_1_bss_7A388",
+      "lbl_1_bss_7A39C": "lbl_1_bss_7A39C",
+      "lbl_1_bss_7AB90": "lbl_1_bss_7AB90",
+      "lbl_1_bss_7AB90__fzgx_offset_4": "lbl_1_bss_7AB90+0x4",
+      "lbl_1_bss_7AB90__fzgx_offset_24": "lbl_1_bss_7AB90+0x24",
+      "lbl_1_bss_7AB90__fzgx_offset_28": "lbl_1_bss_7AB90+0x28"
+    }
   },
   {
     "module": "main_rel",
@@ -74534,6 +74744,19 @@
     "source": "rel/movie_module/fn_12_27478.c",
     "symbols": [
       "fn_12_27478"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_27884.c",
+    "symbols": [
+      "fn_12_27884"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
