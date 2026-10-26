@@ -20475,6 +20475,24 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80037E30.c",
+    "symbols": [
+      "fn_80037E30"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-sdata",
+      "8",
+      "-sdata2",
+      "8",
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": true
+  },
+  {
+    "module": "main",
     "source": "dol/fn_800384FC.c",
     "symbols": [
       "fn_800384FC"
