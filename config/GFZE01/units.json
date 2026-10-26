@@ -34555,6 +34555,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_115BE8.c",
+    "symbols": [
+      "fn_1_115BE8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_1166EC.c",
     "symbols": [
       "fn_1_1166EC"
@@ -34563,6 +34574,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/accessory.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_11677C.c",
+    "symbols": [
+      "fn_1_11677C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -34722,6 +34744,17 @@
       "@204": "lbl_1_rodata_7B20",
       "@206": "lbl_1_rodata_7B08"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_12744C.c",
+    "symbols": [
+      "fn_1_12744C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -34891,6 +34924,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/accessory.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_12907C.c",
+    "symbols": [
+      "fn_1_12907C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -40657,6 +40701,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/burner/fn_1_9BBE4.c",
+    "symbols": [
+      "fn_1_9BBE4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/burner/fn_1_9CC40.c",
     "symbols": [
       "fn_1_9CC40"
@@ -43835,6 +43890,17 @@
       "fzgx_obj_lbl_1_bss_6E160": "lbl_1_bss_6E160",
       "fzgx_obj_lbl_1_bss_6E82C": "lbl_1_bss_6E82C"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/car/fn_1_8B9B8.c",
+    "symbols": [
+      "fn_1_8B9B8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -47605,6 +47671,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_59EE4.c",
+    "symbols": [
+      "fn_1_59EE4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/effect/fn_1_5A8CC.c",
     "symbols": [
       "fn_1_5A8CC"
@@ -48149,6 +48226,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/effect.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_5EB98.c",
+    "symbols": [
+      "fn_1_5EB98"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -70732,6 +70820,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_192E8.c",
+    "symbols": [
+      "fn_1_192E8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/stcoli/fn_1_19AE0.c",
     "symbols": [
       "fn_1_19AE0"
@@ -71523,6 +71622,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/stcoli.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_29A0C.c",
+    "symbols": [
+      "fn_1_29A0C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
