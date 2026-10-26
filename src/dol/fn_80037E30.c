@@ -137,13 +137,13 @@ void fn_8003462C(GXPrimitive type, GXVtxFmt fmt, u16 vert_num);
 volatile PPCWGPipe GXFIFO : FZGX_ADDR_GXFIFO;
 
 static GXVtxDescList lbl_80178118[27];
-static GXVtxAttrFmtList vat[27];
+static GXVtxAttrFmtList fzgx_obj_lbl_80178118__fzgx_offset_D8[27];
 #pragma section code_type ".fzgxpool"
 static void layout____bss_0(void) {
 // Hardware or OS state can change asynchronously.
     volatile unsigned char sink; // fzgx-allow: S2 discarded layout primer
     sink = *(unsigned char *)&lbl_80178118;
-    sink = *(unsigned char *)&vat;
+    sink = *(unsigned char *)&fzgx_obj_lbl_80178118__fzgx_offset_D8;
 }
 #pragma section code_type ".text"
 
@@ -167,7 +167,7 @@ float fn_80088600(float);
 
 static inline void GetVertState(void) {
     fn_80032EB8(lbl_80178118);
-    GXGetVtxAttrFmtv(GX_VTXFMT3, vat);
+    GXGetVtxAttrFmtv(GX_VTXFMT3, fzgx_obj_lbl_80178118__fzgx_offset_D8);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
     GXSetVtxDesc(GX_VA_NRM, GX_DIRECT);
@@ -177,7 +177,7 @@ static inline void GetVertState(void) {
 
 static inline void RestoreVertState(void) {
     GXSetVtxDescv(lbl_80178118);
-    GXSetVtxAttrFmtv(GX_VTXFMT3, vat);
+    GXSetVtxAttrFmtv(GX_VTXFMT3, fzgx_obj_lbl_80178118__fzgx_offset_D8);
 }
 
 void fn_80037E30(u8 numEdges) {

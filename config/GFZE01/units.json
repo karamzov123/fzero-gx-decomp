@@ -20479,7 +20479,7 @@
     "symbols": [
       "fn_80037E30"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [
       "-sdata",
@@ -20489,7 +20489,18 @@
       "-use_lmw_stmw",
       "on"
     ],
-    "pool": true
+    "pool": {
+      "@89": "lbl_801A7134",
+      "@90": "lbl_801A7138",
+      "@91": "lbl_801A713C",
+      "@95": "lbl_801A7148",
+      "@97": "lbl_801A7150",
+      "@92": "lbl_801A7130",
+      "@93": "lbl_801A7140",
+      "...bss.0": "lbl_80178118",
+      "lbl_80178118": "lbl_80178118",
+      "fzgx_obj_lbl_80178118__fzgx_offset_D8": "lbl_80178118+0xD8"
+    }
   },
   {
     "module": "main",
