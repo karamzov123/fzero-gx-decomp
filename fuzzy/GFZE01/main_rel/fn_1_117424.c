@@ -1,199 +1,212 @@
-/* Non-matching: best partial attempt (98.91% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.04% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
+
+
+
+
+
+
+
+
+
+
+
+
+
 #include "types.h"
+#include "psvec.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
+extern u8 lbl_1_data_3FFBC[0x574];
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+#ifndef REL_MAIN_REL_CAR_TEST_H
+#define REL_MAIN_REL_CAR_TEST_H
+
+#endif  // REL_MAIN_REL_CAR_TEST_H
+
+/* end rel/main_rel/car_test.h */
 
 typedef struct {
     f32 x;
     f32 y;
     f32 z;
-} fn_1_117424_Vec3;
+} Fn183D28Vec3;
 
-typedef struct {
-    u8 unk_0;
-    u8 pad_1;
-    u8 unk_2;
-    u8 pad_3;
-    u16 unk_4[6];
-    fn_1_117424_Vec3 pos;
-    fn_1_117424_Vec3 prev;
-    u8 unk_28[0xC];
-    fn_1_117424_Vec3 vel;
-    f32 unk_40;
-} fn_1_117424_Particle;
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
-typedef struct {
-    u8 pad_0[0x150];
-    struct {
-        u8 pad_0[8];
-        u8 *unk_8;
-    } *unk_150;
-} fn_1_117424_AccessoryData;
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
-typedef struct {
-    u8 unk_0;
-    u8 pad_1[7];
-    u32 unk_8;
-    fn_1_117424_AccessoryData *unk_C;
-    void *unk_10;
-    u8 pad_14[4];
-    s32 unk_18;
-    u8 pad_1C[8];
-    fn_1_117424_Particle *unk_24;
-} fn_1_117424_AccessoryObject;
+/* end game/main_rel/car_test_types.h */
+/* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
 
-extern f32 lbl_1_rodata_7AB8[];
-extern u8 lbl_1_data_3F510[];
-extern u8 *fn_80077B14(void *);
-extern u8 *fn_80083970(u8 *, const u8 *);
-extern void lbl_8006DBAC(void *);
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+#endif  // GAME_VEC3_H
+#ifndef REL_MAIN_REL_ACCESSORY_H
+#define REL_MAIN_REL_ACCESSORY_H
+
+#endif  // REL_MAIN_REL_ACCESSORY_H
+
+/* end rel/main_rel/accessory.h */
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+ u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
+};
+typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
+extern void lbl_8006DBAC(Vec3 *);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DBE4(void);
-extern void lbl_8006E1B0(void *, void *);
 extern void lbl_8006DC20(void);
-extern void fn_8006E250(void *, void *);
-
-#pragma opt_propagation on
-static inline u32 *fn_1_117424_model_indices(u8 *base) {
-    u32 *indices = (u32 *)(base + 0xaac);
-    return indices;
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D0E8(f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern const u8 lbl_1_rodata_7AB8[];
+typedef struct Node {
+ u8 flags, pad1, count, pad3;
+ u16 links[6];
+ Fn183D28Vec3 pos,prev,local,vel;
+ f32 weight;
+} Node;
+typedef struct { Node *a,*b; f32 length; } Link;
+typedef struct { u8 pad[8]; u8 *base; } Model;
+typedef struct { u8 pad[0x150]; Model *model; } Owner;
+typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
+ struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
+ u32 pad14,count,linkCount,pad20; Node *nodes; Link *links; } Work;
+#define F(o) (*(const f32 *)(pool+(o)))
+#define D(o) (*(const f64 *)(pool+(o)))
+extern u8 lbl_1_data_3F510[];
+extern u8 *fn_80083970(u8 *, const char *);
+#define ACC (data)
+#pragma opt_propagation off
+static inline u32 *fn_1_117424_indices(u8 *base) {
+ u32 *indices = (u32 *)(base + 0xaac);
+ return indices;
 }
-
-static inline u8 **fn_1_117424_model_names(u8 *base) {
-    u8 **names = (u8 **)(base + 0x79c);
-    return names;
+static inline u8 **fn_1_117424_names(u8 *base) {
+ u8 **names = (u8 **)(base + 0x79c);
+ return names;
 }
-
-static inline fn_1_117424_AccessoryData * fn_1_117424_read_pointer(fn_1_117424_AccessoryObject * owner) { return owner->unk_C; }
-static inline f32 fn_1_117424_array_read(s32 index, f32 *array) { return array[index]; }
-#pragma opt_dead_assignments off
-static inline f32 fn_1_117424_read_pointer_(fn_1_117424_Particle * owner) { return owner->pos.x; }
+#define INDEX(i) (fn_1_117424_indices(ACC)[i])
+#define MODELB (arg0->owner->model->base+INDEX(arg0->index)*396)
+static inline f32 fn_1_117424_read_pointer(Link * owner) { return owner->length; }
+extern u8 lbl_1_bss_88B50[0xC00];
 #pragma opt_common_subs off
-#pragma opt_loop_invariants off
-void fn_1_117424(fn_1_117424_AccessoryObject *self) {
-    fn_1_117424_Particle * fzgx_live_2;
-    f32 fzgx_live_;
-    f32 *k = lbl_1_rodata_7AB8;
-    fn_1_117424_Particle * fzgx_live;
-    u8 *data = lbl_1_data_3F510;
-#define table fn_1_117424_model_indices(data)
-
-    if (self != 0 && self->unk_10 != 0) {
-        fn_1_117424_Particle *item;
-        u32 i;
-        u8 *model;
-        u8 *mtx;
-
-        fn_80077B14(self->unk_10);
-        fn_80083970(fn_1_117424_model_names(data)[self->unk_8], data + 0x4bc);
-        if (self->unk_0 & 2) {
-            self->unk_0 &= ~2;
-            lbl_8006DBAC(fn_1_117424_read_pointer(self)->unk_150->unk_8 + ((self->unk_8)[table]) * 0x18c + 0x88);
-            lbl_8006DAEC();
-            fzgx_live = self->unk_24;
-            item = fzgx_live;
-            i = 0;
-            while (i < self->unk_18) {
-                lbl_8006DBE4();
-                lbl_8006E1B0(item->unk_28, &item->pos);
-                i++;
-                item++;
-            }
-            lbl_8006DC20();
-        }
-
-        fzgx_live_2 = self->unk_24;
-        item = fzgx_live_2;
-        i = 0;
-        while (i < self->unk_18) {
-            if (!(item->unk_0 & 1)) {
-                item->prev = item->pos;
-                item->pos.x += item->vel.x;
-                item->pos.y += item->vel.y;
-                item->pos.z += item->vel.z;
-                item->pos.y = (*(f32 volatile *)&(item->pos.y)) /* Retail reloads this field. */ - 0.0013611111376020642;
-                item->vel.y -= 0.0027222223579883575f;
-            }
-            i++;
-            item++;
-        }
-
-        model = fn_1_117424_read_pointer(self)->unk_150->unk_8 + ((self->unk_8)[table]) * 0x18c;
-        fzgx_live_2 = self->unk_24;
-        item = fzgx_live_2;
-        i = 0;
-        while (i < self->unk_18) {
-            lbl_8006DBAC(model + 0x88);
-            lbl_8006DAEC();
-            if (item->unk_0 & 1) {
-                lbl_8006DBE4();
-                lbl_8006E1B0(item->unk_28, &item->pos);
-            }
-            lbl_8006DC20();
-            i++;
-            item++;
-        }
-
-        model = fn_1_117424_read_pointer(self)->unk_150->unk_8 + ((self->unk_8)[table]) * 0x18c;
-        fzgx_live_2 = self->unk_24;
-        item = fzgx_live_2;
-        i = 0;
-        while (i < self->unk_18) {
-            if (!(item->unk_0 & 1)) {
-                fn_1_117424_Vec3 target;
-                f32 t;
-                f32 x;
-
-                lbl_8006DBAC(model + 0x88);
-                lbl_8006E1B0(item->unk_28, &target);
-                t = -0.12f / item->unk_40;
-                {
-                    f32 dy = target.y - item->pos.y;
-                    f32 dz = target.z - item->pos.z;
-                    f32 dx = target.x - item->pos.x;
-                    f32 sy = 0.76 * dy;
-                    f32 sx = ((dx) * (t));
-                    f32 sz = t * dz;
-                    item->pos.x += sx;
-                    item->pos.y += sy;
-                    item->pos.z += sz;
-                }
-            }
-            i++;
-            item++;
-        }
-
-        {
-            f32 damp = 0.8f;
-            fzgx_live_2 = self->unk_24;
-            item = fzgx_live_2;
-            i = 0;
-            while (i < self->unk_18) {
-                i++;
-                item->vel.x = damp * (fn_1_117424_read_pointer_(item) - item->prev.x);
-                item->vel.y = damp * ((*(f32 volatile *)&(item->pos.y)) /* Retail reloads this field. */ - item->prev.y);
-                item->vel.z = damp * (item->pos.z - item->prev.z);
-                item++;
-            }
-        }
-
-        mtx = fn_80077B14(self->unk_10);
-        lbl_8006DBAC(fn_1_117424_read_pointer(self)->unk_150->unk_8 + ((self->unk_8)[table]) * 0x18c + 0x88);
-        fzgx_live_2 = self->unk_24;
-        item = fzgx_live_2;
-        i = 0;
-        while (i < self->unk_18) {
-            s32 j;
-            for (j = 0; j < item->unk_2; j++) {
-                fn_8006E250(&item->pos, mtx + ((j)[item->unk_4]) * 0x40);
-            }
-            i++;
-            item++;
-        }
-    }
+void fn_1_117424(Work *arg0) {
+ const u8 *pool=lbl_1_rodata_7AB8;
+ u8 *data=lbl_1_data_3F510;
+ u8 *fmodel;
+ Node *n1;
+ u8 *model3;
+ u32 fi;
+ u32 i1;
+ Node *n3;
+ u32 fj;
+ u32 i3;
+ Node *fn;
+ u16 *lp;
+ u8 *model5;
+ u32 i5;
+ Node *n5;
+ u32 vi;
+ Node *vn;
+ Node *n2;
+ u32 i2;
+ u32 i6;
+ Node *n6;
+ u8 *model6;
+ Fn183D28Vec3 diff;
+ Fn183D28Vec3 target;
+ Fn183D28Vec3 *qp = &diff;
+#define dif (*qp)
+ if(arg0 && arg0->obj) {
+ fn_80077B14(arg0->obj);
+ fn_80083970(fn_1_117424_names(ACC)[arg0->index],(const char *)(ACC+0x4bc));
+ if(arg0->flags & 2) {
+ arg0->flags &= ~2;
+ lbl_8006DBAC((Vec3 *)(MODELB+136));
+ lbl_8006DAEC();
+ for(i1=0,n1=arg0->nodes;i1<arg0->count;i1++,n1++) {
+ lbl_8006DBE4();
+ lbl_8006E1B0(&n1->local,&n1->pos);
+ }
+ lbl_8006DC20();
+ }
+ for(i2=0,n2=arg0->nodes;i2<arg0->count;i2++,n2++) {
+ if(!(n2->flags&1)) {
+ n2->prev=n2->pos;
+ n2->pos.x+=n2->vel.x;
+ n2->pos.y+=n2->vel.y;
+ n2->pos.z+=n2->vel.z;
+ n2->pos.y-=D(0x58);
+ n2->vel.y-=F(0x60);
+ }
+ }
+ model3=MODELB;
+ for(i3=0,n3=arg0->nodes;i3<arg0->count;i3++,n3++) {
+ lbl_8006DBAC((Vec3 *)(model3+136));
+ lbl_8006DAEC();
+ if(n3->flags&1) {
+ lbl_8006DBE4();
+ lbl_8006E1B0(&n3->local,&n3->pos);
+ }
+ lbl_8006DC20();
+ }
+ model6=MODELB;
+ for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
+ if(!(n6->flags&1)) {
+ f32 kk,x,y,z;
+ lbl_8006DBAC((Vec3 *)(model6+136));
+ lbl_8006E1B0(&n6->local,&target);
+ kk=F(0x3d0)/n6->weight;
+ x=kk*(target.x-n6->pos.x);
+ y=D(0x340)*(target.y-n6->pos.y);
+ z=kk*(target.z-n6->pos.z);
+ n6->pos.x+=x;
+ n6->pos.y+=y;
+ n6->pos.z+=z;
+ }
+ }
+ for(vi=0,vn=arg0->nodes;vi<arg0->count;vi++,vn++) {
+ vn->vel.x=F(0x200)*(vn->pos.x-vn->prev.x);
+ vn->vel.y=F(0x200)*(vn->pos.y-vn->prev.y);
+ vn->vel.z=F(0x200)*(vn->pos.z-vn->prev.z);
+ }
+ fmodel=(u8 *)fn_80077B14(arg0->obj);
+ lbl_8006DBAC((Vec3 *)(MODELB+136));
+ for(fi=0,fn=arg0->nodes;fi<arg0->count;fi++,fn++) {
+ for(fj=0,lp=(u16 *)fn;(s32)fj<fn->count;lp++,fj++) {
+ fn_8006E250((Vec3f *)&fn->pos,(Vec3f *)(fmodel+(lp[2]<<6)));
+ }
+ }
+ }
 }
-#pragma opt_loop_invariants reset
-
 #pragma opt_common_subs reset
-
-#pragma opt_dead_assignments reset
-
