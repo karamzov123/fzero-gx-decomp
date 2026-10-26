@@ -8978,3 +8978,12 @@ rel/main_rel/accessory/fn_1_126774.c:
 
 rel/main_rel/accessory/fn_1_11C440.c:
 	.text       start:0x0011C440 end:0x0011CAB4 align:4
+
+rel/main_rel/accessory/fn_1_11CD3C.c:
+	.text       start:0x0011CD3C end:0x0011D1FC align:4
+
+rel/main_rel/accessory/fn_1_125DF0.c:
+	.text       start:0x00125DF0 end:0x001262A4 align:4
+
+rel/main_rel/accessory/fn_1_12744C.c:
+	.text       start:0x0012744C end:0x00127FB8 align:4
