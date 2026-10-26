@@ -8990,12 +8990,12 @@ void fn_1_3908C(void) {
 case 31: case 32: case 33: case 34: case 35: case 36: {
 
     v0 = 1;
-    
+
 } break;
 default: {
 
     v0 = 0;
-    
+
 } break;
 }
     fn_1_A11EC();

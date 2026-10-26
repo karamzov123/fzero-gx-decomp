@@ -1,0 +1,36 @@
+{
+  "baseline_commit": "8d699f352",
+  "match_commit": "cba5afd86",
+  "donor_repository": "https://github.com/nkhoit/fzero-gx-decomp",
+  "compiler": "GC/1.3.2",
+  "extra_cflags": "",
+  "function_count": 13,
+  "function_bytes": 24216,
+  "actual_translation_units": ["src/rel/main_rel/game.c", "src/rel/main_rel/stcoli.c"],
+  "imports": [
+    {"symbol":"fn_1_3CE94","bytes":3336,"donor_commit":"68c4da0c2a92250791a23a948af15ec71c6d22f3","candidate_sha256":"2800dda0276da5ffef8545d5e3883620adf99dfc21b1de21eebe4daf6e225918"},
+    {"symbol":"fn_1_3A330","bytes":2964,"donor_commit":"1a606312812b5b27765790088bb2b0fcbbdebcb5","candidate_sha256":"725b3a90cfc80468b685bd70ceff95e7ffb19bce88f5d49c5cf965d7a0a72546"},
+    {"symbol":"fn_1_3DE80","bytes":1872,"donor_commit":"1a606312812b5b27765790088bb2b0fcbbdebcb5","candidate_sha256":"3d66456b939d8f2876291078c0118b84adc7c8ac92f41b65140e152d7fff331b"},
+    {"symbol":"fn_1_33A20","bytes":3844,"donor_commit":"2fb1d8ed5c6eeeb0ea1e8e908c320d4c373b2705","candidate_sha256":"333bb9a138b2d37c8b01d6c3ea4c837ed04d1c877363eb02c4df6ef4d1a58c38"},
+    {"symbol":"fn_1_35BC4","bytes":1900,"donor_commit":"3605e63dc0e7035890e1edc6b2c2f65a17007ce8","candidate_sha256":"ce07cf3d5c4542b9ed0ff057552acd36d7fcee2edd3a888c32168ec113011fea"},
+    {"symbol":"fn_1_3E6D8","bytes":920,"donor_commit":"e1ffc7ec096c82ee4a2390eb57b9e934ccf04fac","candidate_sha256":"19d5a45483855db80cd60e8b3650ee147abc46a1f7f95ae93741bde7e816bc70"},
+    {"symbol":"fn_1_3B11C","bytes":1720,"donor_commit":"4f3c3b50194e7aae9f8daffc991b7f6c5bf182ac","candidate_sha256":"e916fd2169480d9b719979581a60d1d55b4cc5a24300d988758db873b73b310d"},
+    {"symbol":"fn_1_395CC","bytes":1684,"donor_commit":"28f1b4c3bd63cafd876f55032ee6fc71ef0e35c9","candidate_sha256":"ca725744c3be1213dc6328b14ad65206992976e05a94a8b6539b0fac2447b98e"},
+    {"symbol":"fn_1_3129C","bytes":1408,"donor_commit":"bab02b97dc5b78af91d73ab2baa890375d4e39ee","candidate_sha256":"1dc75baee47ee6fd191f6f60f1bb698f6a39eedcc1d47c5541f798933adf8c4b"},
+    {"symbol":"fn_1_30D84","bytes":1304,"donor_commit":"2a5f841ec7e929651d636ce917e03e456433ea9c","candidate_sha256":"f7b81ae2838adfa62e1fd15817012f4cb6b50fad1b7fc30139cd4770b7eef83a"},
+    {"symbol":"fn_1_39C60","bytes":996,"donor_commit":"ddd553e370a29dadbee4b5097678471833466532","candidate_sha256":"b0bda2a4954075a24bc39b9df5a0574b3ed5a6a762dd403f7abf58415771fee3"},
+    {"symbol":"fn_1_304A8","bytes":892,"donor_commit":"10bfc1521cffa1efa304aca3a6190185dcf82e21","candidate_sha256":"01f8bc2874176acf71290944b8398ea6d94ef06a84991146c2062e551538eaab"},
+    {"symbol":"fn_1_30824","bytes":1376,"donor_commit":"7440b5c988df6c1b3a677d053767c02aafd11dd7","candidate_sha256":"be37316cad293fb3e05bc7d4ff56da66b762d8758bffc757a453f9f4c798c4ea"}
+  ],
+  "reproduction": [
+    "Fetch the pinned donor commits and run uv run tools/fzgx.py harvest COMMIT --symbol SYMBOL --land. Deduplicate the combined 3A330/3DE80 branch against its individual branches.",
+    "Retain each imported function's complete native section definitions, primer and relocation map. The committed translation units and config/GFZE01/units.json are the self-contained build inputs.",
+    "Run uv run tools/fzgx.py verify, python3 configure.py && ninja, sha1sum -c config/GFZE01/build.sha1, uv run tools/fzgx.py lint and uv run tools/fzgx.py snapshot."
+  ],
+  "notes": [
+    "All thirteen functions were independently compiled and matched against this project's current retail objects, then accepted by the full 16-target hash gate. These are nkhoit's reconstructions, imported rather than newly authored here.",
+    "Candidate hashes identify the harvested standalone bodies before TU installation. The compiler is GC/1.3.2 with empty extra flags for every import.",
+    "A foreground command timeout interrupted fn_1_3E6D8 after claiming it. Its pinned donor was re-screened and the same claim completed through api.write_unit and api.submit. No claim was force-reassigned.",
+    "No subagents were used, no commits were pushed, and the pre-existing tools/fzgx/asmunit.py edit was left untouched."
+  ]
+}
