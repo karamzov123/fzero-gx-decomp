@@ -53710,11 +53710,15 @@
     "symbols": [
       "fn_1_3522C"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/game.c",
-    "pool": true
+    "pool": {
+      "...data.0": "lbl_1_data_5730",
+      "...bss.0": "lbl_1_bss_3C00",
+      "fzgx_obj_lbl_1_bss_3C00": "lbl_1_bss_3C00"
+    }
   },
   {
     "module": "main_rel",
@@ -68675,11 +68679,14 @@
     "symbols": [
       "fn_1_A4268"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/sound.c",
-    "pool": true
+    "pool": {
+      "...bss.0": "lbl_1_bss_6EA98",
+      "fzgx_obj_lbl_1_bss_6EA98": "lbl_1_bss_6EA98"
+    }
   },
   {
     "module": "main_rel",
