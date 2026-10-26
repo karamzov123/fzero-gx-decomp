@@ -72534,6 +72534,17 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_118E8.c",
+    "symbols": [
+      "fn_12_118E8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_11A8.c",
     "symbols": [
       "fn_12_11A8"
