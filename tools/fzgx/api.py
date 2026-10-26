@@ -746,7 +746,7 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
         verify.preserve_pool(p, key)
     pool_options_unchanged = (expected_pool_seed is not None and mw_version == current_mw
                               and (extra_cflags or '') == (current_flags or ''))
-    if unit_src and (mw_version or extra_cflags) and not _is_shadow(agent) and not pool_options_unchanged:
+    if unit_src and (mw_version is not None or extra_cflags is not None) and not _is_shadow(agent) and not pool_options_unchanged:
         if _set_unit_opts(p, unit_src, mw_version, extra_cflags):
             _reconfigure_and_split(p)
     res = oracle.check(p, symbol, max_diff_lines, source=src, mw_version=mw_version, extra_cflags=extra_cflags)
@@ -771,9 +771,9 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
             # a version the oracle chose among the module's candidates is the unit's version
             if not mw_version and res.mw_version and res.mw_version != oracle.module_flags(p, sym.module)[1]:
                 mw_version = res.mw_version
-            if not extra_cflags and getattr(res, "extra_cflags", None):
+            if extra_cflags is None and getattr(res, "extra_cflags", None):
                 extra_cflags = res.extra_cflags
-            if mw_version or extra_cflags:
+            if mw_version is not None or extra_cflags is not None:
                 _set_unit_opts(p, unit_src, mw_version, extra_cflags)
         except Exception as e:
             return {"ok": False, "error": f"carve failed: {e}"}
@@ -870,8 +870,9 @@ def _set_unit_opts(p: Project, unit_src: str, mw_version: Optional[str], extra_c
             before = dict(u)
             if mw_version:
                 u["mw_version"] = mw_version
-            if extra_cflags:
-                # the oracle reports a version's flags as a list; callers pass a string
+            if extra_cflags is not None:
+                # An explicit empty override restores the module defaults.
+                # The oracle reports a version's flags as a list; callers pass a string.
                 u["extra_cflags"] = extra_cflags.split() if isinstance(extra_cflags, str) else list(extra_cflags)
             changed = u != before
     if changed:

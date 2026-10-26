@@ -995,7 +995,7 @@ def integrate(project, report, inputs, output):
             rebound.append({'from': seed_symbol, 'to': symbol})
         previous = provenance.get(symbol, {})
         if (previous.get('link') == 'rejected' and previous.get('generated_sha256') == digest(Path(probe['source']).read_bytes())
-                and previous.get('compiler') == record['mw'] and (previous.get('flags') or '') == (record['flags'] or '')
+                and previous.get('compiler') == probe['mw'] and (previous.get('flags') or '') == (probe['flags'] or '')
                 and previous.get('headers_sha256') == headers_sha256 and previous.get('oracle_sha256') == oracle_sha256):
             skipped.append({'symbol': symbol, 'reason': 'this source/settings already failed the link'})
             continue
@@ -1025,10 +1025,11 @@ def integrate(project, report, inputs, output):
             backup.write_bytes(work.read_bytes())
         if not upgrade:
             work.write_text(source)
-        mw = record['mw'] or oracle.module_flags(project, project.resolve(symbol).module)[1]
+        mw = probe['mw'] or oracle.module_flags(project, project.resolve(symbol).module)[1]
+        flags = probe['flags'] or ''
         result = api.submit(project, symbol, agent='deterministic-fixup',
                             message=probe['label'], harness='fixup', mw_version=mw,
-                            extra_cflags=record['flags'] or '',
+                            extra_cflags=flags,
                             expected_pool_seed=record if upgrade else None,
                             pool_upgrade_source=Path(probe['source']) if upgrade else None)
         if not result.get('ok'):
@@ -1038,7 +1039,7 @@ def integrate(project, report, inputs, output):
         entry = {'seed_symbol': record.get('symbol', seed_symbol), 'generator': 'fzgx fixup', 'transform': probe['label'],
                               'seed': source_text(record['source']), 'seed_sha256': record['sha256'],
                               'generated_sha256': hashlib.sha256(source.encode()).hexdigest(), 'generated_source': source,
-                              'compiler': mw, 'flags': record['flags'], 'source': result['unit'],
+                              'compiler': mw, 'flags': flags, 'seed_compiler': record['mw'], 'seed_flags': record['flags'], 'source': result['unit'],
                               'bytes': project.resolve(symbol).size, 'headers_sha256': headers_sha256, 'oracle_sha256': oracle_sha256, 'recipe': row.get('recipe', []), 'link': result['link']}
         with oracle.build_lock('submit.lock'):
             provenance = json.loads(provenance_path.read_text()) if provenance_path.exists() else {}

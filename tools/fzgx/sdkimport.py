@@ -196,7 +196,10 @@ def include_directories(sdk: Path) -> list:
     includes += [str(d.relative_to(sdk)) for d in sdk.rglob('*')
                  if d.is_dir() and d.name.lower() in ('include', 'inc') and '.git' not in d.parts
                  and len(d.relative_to(sdk).parts) <= 6]
-    includes += [str(path.parent.relative_to(sdk)) for path in sorted(sdk.rglob('stddef.h'))]
+    # Embedded MSL math headers sit deeper than the generic Include scan.
+    # float.h includes fdlibm.h, including when compiling non-math SDK units.
+    for header in ('stddef.h', 'fdlibm.h'):
+        includes += [str(path.parent.relative_to(sdk)) for path in sorted(sdk.rglob(header))]
     return [sdk / inc for inc in dict.fromkeys(includes) if (sdk / inc).is_dir()]
 
 

@@ -1,3 +1,8 @@
+/* GXDrawCylinder, adapted from zeldaret/tww (CC0-1.0), revision
+ * 11d6aa597a6b6218a38eff2726c841a31f851a57, src/dolphin/gx/GXDraw.c.
+ * Native BSS members and the pi literal are verified against GFZE01.
+ * Reproduction evidence: state/repairs/solo-20261026-sdk-cylinder.json.
+ */
 #include "sdk_addresses.h"
 
 #include "types.h"

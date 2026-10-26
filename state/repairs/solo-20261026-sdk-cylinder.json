@@ -1,0 +1,37 @@
+{
+  "baseline": "9798a50cc",
+  "functions": [
+    {"symbol":"fn_1_A24CC","bytes":416,"previous_link_state":"pool","seed_flags":"-use_lmw_stmw on -O2","winner_flags":"","compiler":"GC/1.3.2"},
+    {"symbol":"fn_3_4F08","bytes":360,"previous_link_state":"pool","seed_flags":"-use_lmw_stmw on -O2","winner_flags":"","compiler":"GC/1.3.2"},
+    {"symbol":"fn_80037E30","bytes":1740,"previous_status":"unmatched","compiler":"GC/1.2.5n","flags":"-sdata 8 -sdata2 8 -use_lmw_stmw on","source":"src/dol/fn_80037E30.c"}
+  ],
+  "total_linked_function_bytes": 2516,
+  "donor": {
+    "repository":"https://github.com/zeldaret/tww",
+    "revision":"11d6aa597a6b6218a38eff2726c841a31f851a57",
+    "source":"src/dolphin/gx/GXDraw.c",
+    "source_sha256":"4ae5696a64edf44c094f24d2d54336be7adfbf947925973c725bea60c0780d20",
+    "license":"CC0-1.0",
+    "license_sha256":"a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "function":"GXDrawCylinder"
+  },
+  "repairs": [
+    "SDK include discovery must find the embedded fdlibm.h include directory; otherwise GXDraw.c fails in float.h. The original full-TU compile failed all profiles; all 12 compiler profiles compiled after the fix.",
+    "Use sdkimport.shared_storage with aggregate=None on the donor declaration closure. The native BSS definitions reproduce every instruction; an external aggregate rematerializes its base and changes allocation (76 differing words).",
+    "Replace 3.141593f (40490fdc) with 3.1415927410125732f, whose exact IEEE-754 bytes are the retail lbl_801A7138 payload 40490fdb.",
+    "Prove the 648-byte lbl_80178118 .bss owner. vcd is 216 bytes at offset zero; vat is 432 bytes at offset D8. Bind vat as fzgx_obj_lbl_80178118__fzgx_offset_D8. The existing oracle proves both definitions and produces a complete pool map. Without the member name proof, the function remains pool-only.",
+    "Keep the first-access primer in .fzgxpool, which the existing poolfix path discards only after checking and binding the native BSS objects.",
+    "Submit the winning probe compiler/flags, not its seed's settings. Explicit empty extra_cflags must clear overrides, while None preserves them. Record seed and winner settings separately in deterministic repair provenance."
+  ],
+  "reproduction": [
+    "uv run tools/fzgx.py sourcealign --compile-sdk tww --root src/dolphin/gx/GXDraw.c",
+    "uv run tools/fzgx.py sourcealign --discover --root src/dolphin/gx/GXDraw.c",
+    "Use sdkimport.source_body and shared_storage(aggregate=None), retain the donor inline helpers, bind call relocations, apply the measured pi and BSS-member corrections, then oracle.check and api.submit/verify_links.",
+    "The committed src/dol/fn_80037E30.c, compiler settings and pool map in config/GFZE01/units.json reproduce the final object directly."
+  ],
+  "negative_results": {
+    "historical_flags_cohort":"20 unresolved functions, 987 distinct seed/default-setting records evaluated; no further exact matches. Stop this cohort rather than repeating it.",
+    "m2c_large_dol":"Four targets, six generated bodies; no exact matches. Cylinder generation had an undeclared stack array; licensed SDK reuse supplied the correct natural C instead."
+  },
+  "verification":"All three functions were submitted through the real MWCC object oracle and verified by the full retail hash gate. No unit tests or subagents were used."
+}
