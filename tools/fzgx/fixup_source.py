@@ -653,6 +653,162 @@ def dead_uses(body: str, name: str) -> List[Tuple[str, str]]:
     return out
 
 
+def self_assign_barriers(body: str, name: str) -> List[Tuple[str, str]]:
+    """Zero-cost self-assignment barriers (`v = v;`) for coloring order, inline AST
+    substitution, and loop constant propagation (fn_1_CDC8C, fn_4_28FC, fn_1_22F90).
+
+    1. User-local barrier (`v = expr; v = v;`): prevents single-definition IRO expression
+       folding into downstream uses while coalescing `v = v;` to zero instructions, keeping
+       intermediate values in user-local vregs (colored after IRO CSE `@` temporaries).
+    2. Inline parameter barrier (`param = param;`): inside `static inline` helpers, stops
+       MWCC's AST inliner from substituting the caller's argument expression directly into
+       uses of `param`, preserving top-down expression lowering order.
+    3. Loop-step barrier (`for (...; ...; step, v = v)`): prevents `opt_propagation` from
+       constant-propagating `v = 0.0f` / `v = 0` into a loop without `#pragma opt_propagation off`.
+    """
+    out: List[Tuple[str, str]] = []
+    a = _decl_anchor(body, name)
+    if a:
+        span, locs, top, _ = a
+        names = [l[3] for l in locs if not l[4]][:16]
+        inner = body[top:span[2]]
+        per_var_sites = []
+        for nm in names:
+            for m in re.finditer(r'(?m)^([ \t]+)' + re.escape(nm) + r'\s*=\s*(?!' + re.escape(nm) + r'\s*;)[^=;\n][^;\n]*;\n', inner):
+                s = top + m.end()
+                stmt = f"{m.group(1)}{nm} = {nm};\n"
+                if body[s:s + len(stmt)] == stmt:
+                    continue
+                out.append((f"self-assign barrier {nm} after definition", body[:s] + stmt + body[s:]))
+                per_var_sites.append((s, stmt))
+            # Loop-step self-assignment barrier (`for (...; ...; step, nm = nm)`) when `nm`
+            # is initialized to a constant before a `for` loop and read inside it.
+            for fm in re.finditer(r'(?m)^([ \t]*)' + re.escape(nm) + r'\s*=\s*(?:0(?:\.0f?)?|-?\d+(?:\.\d*f?)?|0x[0-9A-Fa-f]+)\s*;\n'
+                                  r'((?:[ \t]*[^\n;{}]+;\n){0,4}[ \t]*for\s*\([^;\n]*;[^;\n]*;)([^)\n]+)\)', inner):
+                step_s, step_e = top + fm.start(3), top + fm.end(3)
+                step_txt = body[step_s:step_e].strip()
+                if re.search(r'\b' + re.escape(nm) + r'\b', step_txt):
+                    continue
+                out.append((f"loop-step self-assign barrier {nm}",
+                            body[:step_s] + f" {step_txt}, {nm} = {nm}" + body[step_e:]))
+        if len(per_var_sites) > 1:
+            text = body
+            for s, stmt in sorted(per_var_sites, reverse=True):
+                text = text[:s] + stmt + text[s:]
+            out.append(("self-assign barriers after all local definitions", text))
+    # Inline parameter barriers (`param = param;`) in `static inline` helpers (and `name` itself if inline).
+    for hm in re.finditer(r'\bstatic\s+inline\s+' + TYPE + r'\s*(?:(?<=\*)|\s)(\w+)\s*\(([^;{}]*)\)\s*\{', body):
+        hname = hm.group(1)
+        hspan = _function_body_span(body, hname)
+        if not hspan:
+            continue
+        hparams = _parameters(body, hspan)
+        if not hparams:
+            continue
+        hlocs = _locals(body, hspan)
+        htop = hlocs[-1][1] if hlocs else hspan[1] + (1 if body[hspan[1]:hspan[1] + 1] == "\n" else 0)
+        hindent = re.match(r"\s*", body[hlocs[0][0]:hlocs[0][1]]).group(0) if hlocs else "    "
+        all_barriers = []
+        for _, pnm in hparams:
+            stmt = f"{hindent}{pnm} = {pnm};\n"
+            if stmt in body[htop:hspan[2]]:
+                continue
+            all_barriers.append(stmt)
+            out.append((f"inline param barrier {hname}:{pnm}", body[:htop] + stmt + body[htop:]))
+        if len(all_barriers) > 1:
+            out.append((f"inline param barriers {hname}:all", body[:htop] + "".join(all_barriers) + body[htop:]))
+    return out
+
+
+def const_array_qualifiers(body: str, name: str) -> List[Tuple[str, str]]:
+    """Qualify read-only `extern` array declarations as `const` so MWCC's pre-RA
+    instruction scheduler can hoist loads (`lhz`/`lwz`/`lbz`) across stores (`stb`/`stw`)
+    that cannot alias read-only tables (fn_8006953C)."""
+    from .sdkimport import masked
+    code = masked(body)
+    span = _function_body_span(code, name)
+    if not span:
+        return []
+    out: List[Tuple[str, str]] = []
+    edits = []
+    for m in re.finditer(r'(?m)^([ \t]*extern\s+)(?!const\b)((?:u8|s8|u16|s16|u32|s32|f32|f64|char|short|int|long|unsigned(?:\s+\w+)?|signed(?:\s+\w+)?|struct\s+\w+)\s+)'
+                         r'([A-Za-z_]\w*)\s*(\[[^\]]*\](?:\[[^\]]*\])*)\s*;', code[:span[0]]):
+        sym = m.group(3)
+        if not re.search(r'\b' + re.escape(sym) + r'\b', code[span[1]:span[2]]):
+            continue
+        # Skip if written to (`sym[...] = ...`) inside the function body.
+        if re.search(r'\b' + re.escape(sym) + r'\b[^\n;]*?(?<![=!<>])=(?!=)', code[span[1]:span[2]]):
+            continue
+        pos = m.end(1)
+        edits.append((pos, sym))
+        out.append((f"const-qualify read-only array {sym}", body[:pos] + "const " + body[pos:]))
+    if len(edits) > 1:
+        text = body
+        for pos, _ in reversed(edits):
+            text = text[:pos] + "const " + text[pos:]
+        out.append(("const-qualify all read-only extern arrays", text))
+    return out
+
+
+def scalarized_loop_structs(body: str, name: str) -> List[Tuple[str, str]]:
+    """Group loop-local variables into an unreferenced-address local struct so MWCC's
+    `local_var_Scalarize` pass replaces each member with a synthetic `@` variable numbered
+    in first-access order (colored before user locals in `SelectColors`), with zero-cost
+    entry `(void)fzgx_lp.m;` touches controlling the exact `@` order without `#pragma` (fn_1_4BD4C)."""
+    from .sdkimport import masked
+    code = masked(body)
+    a = _decl_anchor(body, name)
+    if not a:
+        return []
+    span, locs, top, indent = a
+    if len(locs) < 2:
+        return []
+    inner = code[top:span[2]]
+    # Identify locals used inside any loop and never address-taken.
+    loop_spans = list(_loop_regions(code, top, span[2]))
+    if not loop_spans:
+        return []
+    eligible = []
+    for s0, e0, typ, nm, dims in locs:
+        if dims or '{' in typ or _init_of(body[s0:e0]):
+            continue
+        if re.search(r'&\s*\b' + re.escape(nm) + r'\b', inner):
+            continue
+        if any( re.search(r'\b' + re.escape(nm) + r'\b', code[ls:le]) for ls, le in loop_spans ):
+            eligible.append((s0, e0, typ.strip(), nm))
+    if not (2 <= len(eligible) <= 5):
+        return []
+    holder = 'fzgx_lp'
+    while re.search(r'\b' + holder + r'\b', code):
+        holder += '_'
+    fields = ' '.join(f'{declarator(typ, nm)};' for _, _, typ, nm in eligible)
+    struct_decl = f'{indent}struct {{ {fields} }} {holder};\n'
+    first_pos = eligible[0][0]
+    edits = []
+    for i, (s0, e0, _, _) in enumerate(eligible):
+        edits.append((s0, e0, struct_decl if i == 0 else ''))
+    names_pat = re.compile(r'(?<![.\w])(?<!->)\b(' + '|'.join(re.escape(nm) for *_, nm in eligible) + r')\b')
+    for m in names_pat.finditer(code, top, span[2]):
+        edits.append((m.start(), m.end(), f'{holder}.{m.group(1)}'))
+    base_text = body
+    for s0, e0, repl in sorted(edits, reverse=True):
+        base_text = base_text[:s0] + repl + base_text[e0:]
+    out: List[Tuple[str, str]] = [("scalarized loop struct (" + ",".join(nm for *_, nm in eligible) + ")", base_text)]
+    # Propose cyclic and reversed entry first-access orders via `(void)fzgx_lp.nm;` at function entry.
+    new_a = _decl_anchor(base_text, name)
+    if new_a:
+        _, _, new_top, _ = new_a
+        nms = [nm for *_, nm in eligible]
+        orders = list(itertools.permutations(nms)) if len(nms) <= 3 else (
+            [tuple(nms[i:] + nms[:i]) for i in range(len(nms))] + [tuple(reversed(nms))]
+        )
+        for order in orders[:8]:
+            primer = ''.join(f'{indent}(void){holder}.{nm};\n' for nm in order)
+            out.append((f"scalarized loop struct order {'/'.join(order)}", base_text[:new_top] + primer + base_text[new_top:]))
+    return out
+
+
+
 def variable_splits(body: str, name: str) -> List[Tuple[str, str]]:
     """A local assigned in two regions split into two locals, the second declared last:
     a second assignment otherwise creates a rename web numbered above every named local."""
@@ -849,7 +1005,9 @@ def rewrites(body: str, name: str) -> List[Tuple[str, str]]:
     out: List[Tuple[str, str]] = []
     for fn in (scope_moves, split_inits, hoists, compound_assignments, through_local, return_values,
                call_results_to_locals, wrap_constant_pointers, decse_repeated_expressions,
-               member_copy_states, scalar_carriers, unwrap_scalar_carriers, dead_uses, variable_splits, signedness_flips, store_view_signedness, mask_spellings,
+               member_copy_states, scalar_carriers, unwrap_scalar_carriers, dead_uses,
+               self_assign_barriers, const_array_qualifiers, scalarized_loop_structs,
+               variable_splits, signedness_flips, store_view_signedness, mask_spellings,
                float_precision, embedded_call_assignments, condition_embedded_assignments, loop_helpers):
         try:
             out += fn(body, name)

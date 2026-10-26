@@ -733,3 +733,55 @@ So `fixup`'s declaration-order family is a genuine lever, but when it reports
 `no-predicted-declaration-repair` after enumerating the orders, the residue is
 *not* an ordering problem: retail is reusing one register for two roles (or
 keeping one less web live), and no permutation expresses that.
+
+### Zero-cost self-assignment barriers (`v = v;`) for coloring, inlining, and loop propagation (2026-10-26)
+
+Implemented in `fixup_source.self_assign_barriers`:
+
+- **User-local barrier (`v = expr; v = v;`, `fn_1_CDC8C`)**: A single-definition scalar local
+  is normally folded by IRO into its downstream use, turning its value into a high-numbered
+  expression temporary colored *before* IRO CSE `@` temporaries in `SelectColors`. Adding
+  `v = v;` immediately after `v = expr;` prevents single-definition folding while coalescing
+  the self-copy to zero instructions. The value remains in its user-local vreg (`v32..vK`),
+  which is popped *after* IRO CSE `@` temporaries (`@101` in `fn_1_CDC8C` claims `f0` first).
+- **Inline parameter barrier (`param = param;`, `fn_4_28FC`)**: Inside a `static inline`
+  helper (`draw_marker` / `draw_marker2`), MWCC's AST inliner substitutes the caller's argument
+  expression directly into uses of `param`, changing top-down expression lowering order
+  (`320.0f + 2.0f * pos` vs `2.0f * pos + 320.0f`). Placing `param = param;` at the start of the
+  helper body stops AST argument substitution and coalesces to zero instructions.
+- **Loop-step barrier (`for (...; ...; step, v = v)`, `fn_1_22F90`)**: When `v = 0.0f;` is set
+  before a `for` loop and read inside the loop without modification, `opt_propagation`
+  constant-propagates `0.0f` into the loop. Appending `, v = v` to the `for` step creates a
+  loop-carried reaching definition that blocks constant propagation for `v` alone without
+  needing `#pragma opt_propagation off`.
+
+### `extern const` read-only arrays unlock pre-RA load scheduling across stores (`fn_8006953C`, 2026-10-26)
+
+Implemented in `fixup_source.const_array_qualifiers`:
+
+- An unqualified `extern u16 table[];` is treated by MWCC's pre-RA scheduler as potentially
+  aliasing preceding byte/halfword/word stores (`stb`, `sth`, `stw`), preventing `lhz`/`lwz`
+  from being hoisted across the store. Qualifying read-only tables as `extern const u16 table[];`
+  proves non-aliasing and unlocks pre-RA load scheduling across stores (`fn_8006953C`).
+
+### `local_var_Scalarize` struct grouping and entry first-access order (`fn_1_4BD4C`, 2026-10-26)
+
+Implemented in `fixup_source.scalarized_loop_structs`:
+
+- Grouping unescaped loop locals into a local `struct { ... } lp;` causes MWCC's
+  `local_var_Scalarize` pass to replace each member with a synthetic `@` variable numbered in
+  *first-access order* (above ordinary user locals, so colored before them in `SelectColors`).
+- Placing zero-cost `(void)lp.member;` statements at function entry controls the exact `@`
+  numbering order without emitting instructions or requiring `#pragma opt_dead_assignments off`.
+
+### Dual `.data` + `.bss` section bases and high-offset `.data + 0x10000` (`fn_7_520`, 2026-10-26)
+
+Implemented in `fixup_layout.tu_section_layout`:
+
+- When a function accesses both `.data` (including offsets `>= 0x8000` via `addis rH, rD, 1`,
+  i.e. `...data.0 + 0x10000`) and `.bss` globals defined in the TU, `PPC_FindBaseRegisters`
+  allocates `...data.0@ha/@l` (`v38, v39`), `...bss.0@ha/@l` (`v40, v41`), and
+  `...data.0 + 0x10000` (`v42`). Defining both the `.data` and `.bss` TU objects in the unit
+  gives `...data.0 + 0x10000` the highest virtual register (`r31`) while keeping `...data.0` in
+  `r4` and `...bss.0` in `r3`/`r30`.
+

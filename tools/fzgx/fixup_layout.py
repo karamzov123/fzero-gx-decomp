@@ -1424,6 +1424,11 @@ def tu_section_layout(p, symbol, body, check):
         if text:
             out.append((f'define retail TU bss objects ({mode})', text))
             bases.append((mode, text))
+            try:
+                for label, dual_text in initialized_data_views(p, symbol, text):
+                    out.append((f'{label} + retail TU bss ({mode})', dual_text))
+            except (ValueError, KeyError, IndexError, AttributeError, OSError):
+                pass
     for name, base in bases + [('body', body)]:
         for cast in ('', '(u8 *)'):
             try:
