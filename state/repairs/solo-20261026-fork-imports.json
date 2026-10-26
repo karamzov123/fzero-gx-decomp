@@ -1,0 +1,32 @@
+{
+  "source_repository": "https://github.com/nkhoit/fzero-gx-decomp",
+  "baseline_commit": "9ca99f100",
+  "source_commits": ["5c69914df", "dc0c6a85d"],
+  "total_function_bytes": 10240,
+  "newly_matched_functions": 6,
+  "formerly_pool_only_functions": 2,
+  "verification": {
+    "compiler": "GC/1.3.2",
+    "object_matches": "All eight imported bodies compiled and matched their current retail targets before submission.",
+    "full_hash_gate": "sha1sum -c config/GFZE01/build.sha1: all 16 outputs OK",
+    "lint": "uv run tools/fzgx.py lint: 0 finding(s)",
+    "claims": "No claims left open after fn_1_3181C was finalized."
+  },
+  "imports": [
+    {"symbol":"fn_12_27884","bytes":980,"donor_commit":"39086b22a27923179e71f68c5bfad357a9cc0308","source_sha256":"55f73caa24d67f9f46f4e7e975dbe48a054ed08d680079cc2c76aa3b5905fad9","flags":"-use_lmw_stmw on","source":"src/rel/movie_module/fn_12_27884.c"},
+    {"symbol":"fn_1_B8338","bytes":1420,"donor_commit":"25c8a9c636ce3e295be0803d951f5fb53d1a6971","source_sha256":"9d32686cd4a9290fd7630a8dd8d0b2178c7352a42a91910bbc6de546ac9b34f1","flags":"","source":"src/rel/main_rel/memcard.c"},
+    {"symbol":"fn_1_B9DE8","bytes":860,"donor_commit":"996a65a95ab374ccd9bf8a55a80276af1de37ac4","source_sha256":"60f437763d37ea98bd831a928af7e5b916a07a7bab0e8cdd57679542dae2f4a5","flags":"","source":"src/rel/main_rel/memcard.c"},
+    {"symbol":"fn_1_C062C","bytes":1248,"donor_commit":"e458371df9c8170a0dc1de7fb48146ddb12137c2","source_sha256":"6afe97a8ee3a4dbefdc5daa5da87f1729219c48a5da68f09c981a92f736a51f6","flags":"","source":"src/rel/main_rel/memcard.c"},
+    {"symbol":"fn_1_C0E00","bytes":1324,"donor_commit":"df0f9d57091513215cbc3ccad28348635340293f","source_sha256":"3fbd02c5fffc57f6fb983a130a73c82388c6c3d7dd8d22dc67a9e6a11dcb46d3","flags":"","source":"src/rel/main_rel/memcard.c"},
+    {"symbol":"fn_1_3181C","bytes":1056,"donor_commit":"3b7b0224d842ed1dd7a22ef95f1b6b080b01340b","source_sha256":"7f216b32bc96059bffcc004bc20e7088bf4cd30d58cc37d546b73d47e8632f81","flags":"","source":"src/rel/main_rel/game.c"},
+    {"symbol":"fn_1_3522C","bytes":1932,"donor_commit":"d690965bef9f7946bf63f90fb391e133ead5564b","source_sha256":"d643b7e0bc36691a3233bbbdae58ceb69ab34b16c3de61155cee78f7f69a0e89","flags":"","source":"src/rel/main_rel/game.c","previous_link_state":"pool"},
+    {"symbol":"fn_1_A4268","bytes":1420,"donor_commit":"d690965bef9f7946bf63f90fb391e133ead5564b","source_sha256":"53173ad4417e9bc0522b760ab3b14e2f4a00d43630f75c23b2e76187d7b09711","flags":"","source":"src/rel/main_rel/sound.c","previous_link_state":"pool"}
+  ],
+  "notes": [
+    "Source hashes describe harvested standalone candidate bodies before TU installation and pool relocation binding.",
+    "Use fzgx harvest with the pinned donor commits and explicit symbols to reproduce candidate extraction. Pool-only upgrades use api.submit with expected_pool_seed and pool_upgrade_source; they must retain the old canonical source if rejected.",
+    "The initial import was interrupted after carving fn_1_3181C. Its source was restored from the independently checked donor, then written through the original claim and submitted. No open claim remains.",
+    "The existing tools/fzgx/asmunit.py edit was not changed or committed by this work.",
+    "No subagents were used and no commits were pushed."
+  ]
+}
