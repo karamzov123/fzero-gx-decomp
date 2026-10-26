@@ -38528,6 +38528,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/bg_for/fn_1_DDF80.c",
+    "symbols": [
+      "fn_1_DDF80"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/bg_for/fn_1_DE180.c",
     "symbols": [
       "fn_1_DE180"
@@ -41890,10 +41901,10 @@
     "symbols": [
       "fn_1_BD54"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c"
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -64689,6 +64700,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/screen_effect/fn_1_7B2E8.c",
+    "symbols": [
+      "fn_1_7B2E8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/screen_effect/fn_1_7B4C0.c",
     "symbols": [
       "fn_1_7B4C0"
@@ -71158,6 +71180,17 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/stcoli.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_1FDB0.c",
+    "symbols": [
+      "fn_1_1FDB0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",

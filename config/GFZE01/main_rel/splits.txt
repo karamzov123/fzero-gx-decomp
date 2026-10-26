@@ -9065,3 +9065,12 @@ rel/main_rel/stcoli/fn_1_15248.c:
 
 rel/main_rel/shadowmap/fn_1_5745C.c:
 	.text       start:0x0005745C end:0x00057714 align:4
+
+rel/main_rel/bg_for/fn_1_DDF80.c:
+	.text       start:0x000DDF80 end:0x000DE180 align:4
+
+rel/main_rel/stcoli/fn_1_1FDB0.c:
+	.text       start:0x0001FDB0 end:0x0001FFA0 align:4
+
+rel/main_rel/screen_effect/fn_1_7B2E8.c:
+	.text       start:0x0007B2E8 end:0x0007B4C0 align:4
