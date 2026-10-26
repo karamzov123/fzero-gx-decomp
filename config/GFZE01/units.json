@@ -34602,6 +34602,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_11A774.c",
+    "symbols": [
+      "fn_1_11A774"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_11CAB4.c",
     "symbols": [
       "fn_1_11CAB4"
@@ -38433,6 +38444,28 @@
       "@37": "lbl_1_rodata_6780+0x20",
       "@38": "lbl_1_rodata_6780+0x24"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/bg_for/fn_1_DFBBC.c",
+    "symbols": [
+      "fn_1_DFBBC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/bg_for/fn_1_E07B8.c",
+    "symbols": [
+      "fn_1_E07B8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -43712,6 +43745,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/car/fn_1_892FC.c",
+    "symbols": [
+      "fn_1_892FC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/car/fn_1_8A168.c",
     "symbols": [
       "fn_1_8A168"
@@ -44744,6 +44788,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/car.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/car/fn_1_92554.c",
+    "symbols": [
+      "fn_1_92554"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -60446,6 +60501,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/phys/fn_1_E3C38.c",
+    "symbols": [
+      "fn_1_E3C38"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/phys/fn_1_E49D4.c",
     "symbols": [
       "fn_1_E49D4"
@@ -61040,6 +61106,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/phys.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/phys/fn_1_E8938.c",
+    "symbols": [
+      "fn_1_E8938"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -70677,9 +70754,31 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_1B2A4.c",
+    "symbols": [
+      "fn_1_1B2A4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/stcoli/fn_1_1C0D0.c",
     "symbols": [
       "fn_1_1C0D0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_1D0CC.c",
+    "symbols": [
+      "fn_1_1D0CC"
     ],
     "status": "matching",
     "mw_version": null,
@@ -71219,6 +71318,17 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/stcoli.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_25A14.c",
+    "symbols": [
+      "fn_1_25A14"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",

@@ -8927,3 +8927,33 @@ rel/main_rel/ghost/fn_1_ED540.c:
 
 rel/main_rel/accessory/fn_1_1192D0.c:
 	.text       start:0x001192D0 end:0x0011A158 align:4
+
+rel/main_rel/car/fn_1_92554.c:
+	.text       start:0x00092554 end:0x000933D8 align:4
+
+rel/main_rel/car/fn_1_892FC.c:
+	.text       start:0x000892FC end:0x0008A168 align:4
+
+rel/main_rel/stcoli/fn_1_1B2A4.c:
+	.text       start:0x0001B2A4 end:0x0001C0D0 align:4
+
+rel/main_rel/phys/fn_1_E3C38.c:
+	.text       start:0x000E3C38 end:0x000E49D4 align:4
+
+rel/main_rel/accessory/fn_1_11A774.c:
+	.text       start:0x0011A774 end:0x0011B4E4 align:4
+
+rel/main_rel/stcoli/fn_1_25A14.c:
+	.text       start:0x00025A14 end:0x000266A8 align:4
+
+rel/main_rel/phys/fn_1_E8938.c:
+	.text       start:0x000E8938 end:0x000E95B4 align:4
+
+rel/main_rel/bg_for/fn_1_E07B8.c:
+	.text       start:0x000E07B8 end:0x000E1408 align:4
+
+rel/main_rel/stcoli/fn_1_1D0CC.c:
+	.text       start:0x0001D0CC end:0x0001DCD8 align:4
+
+rel/main_rel/bg_for/fn_1_DFBBC.c:
+	.text       start:0x000DFBBC end:0x000E07B8 align:4
