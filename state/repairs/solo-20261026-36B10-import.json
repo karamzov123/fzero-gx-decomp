@@ -1,0 +1,20 @@
+{
+  "baseline_commit": "947b03e6a",
+  "match_commit": "638fe0693",
+  "donor_repository": "https://github.com/nkhoit/fzero-gx-decomp",
+  "donor_commit": "2de7322d9535c461a56b5c1e594bf281e1179d07",
+  "symbol": "fn_1_36B10",
+  "bytes": 3992,
+  "unit": "rel/main_rel/game/fn_1_36B10.c",
+  "translation_unit": "src/rel/main_rel/game.c",
+  "candidate_sha256": "a5c84a3958f21262bc4e59d02506d9b0b8b2b455c40d8cd093185070a57336eb",
+  "compiler": "GC/1.3.2",
+  "extra_cflags": "",
+  "verification": "Independently MWCC-compiled against current retail objects, then submitted and link-verified through the full 16-target hash gate.",
+  "reproduction": "uv run tools/fzgx.py harvest 2de7322d9535c461a56b5c1e594bf281e1179d07 --symbol fn_1_36B10 --workers 2 --land; uv run tools/fzgx.py verify",
+  "notes": [
+    "This is an imported nkhoit reconstruction, not newly authored here. The candidate hash identifies the standalone screened body before TU installation.",
+    "The delayed notification for proc_5921b8e1afd8 belongs to the preceding 13-function batch and contributes no additional credit here.",
+    "No subagents were used or commits pushed. The pre-existing tools/fzgx/asmunit.py modification was preserved."
+  ]
+}

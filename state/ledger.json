@@ -1,5 +1,5 @@
 {
- "generated": 1793028364,
+ "generated": 1793028739,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -50970,19 +50970,19 @@
   {
    "symbol": "fn_1_36B10",
    "module": "main_rel",
-   "unit": null,
+   "unit": "rel/main_rel/game/fn_1_36B10.c",
    "addr": 224016,
    "size": 3992,
-   "status": "unmatched",
-   "attempts": 3,
+   "status": "matched",
+   "attempts": 4,
    "best_percent": null,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": null,
+   "matched_commit": "638fe0693",
    "blocked_reason": null,
    "prev_status": null,
-   "link_state": null
+   "link_state": "verified"
   },
   {
    "symbol": "fn_1_37AA8",
@@ -686697,6 +686697,27 @@
    "cost_usd": 0.0,
    "outcome": "matched",
    "notes": "harvest fn_1_30824 from fork2-nkhoit-fzero-gx-decomp/contrib/game-30824@7440b5c9",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 26785,
+   "symbol": "fn_1_36B10",
+   "agent": "harvest-fork2-nkhoit-fzero-gx-decomp",
+   "harness": "harvest",
+   "model": "fork2-nkhoit-fzero-gx-decomp/contrib/game-36B10@2de7322d",
+   "started": 1793028564,
+   "ended": 1793028643,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "matched",
+   "notes": "harvest fn_1_36B10 from fork2-nkhoit-fzero-gx-decomp/contrib/game-36B10@2de7322d",
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 100.0,
