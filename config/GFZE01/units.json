@@ -34420,10 +34420,10 @@
     "symbols": [
       "fn_1_10E3B4"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c"
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -34615,10 +34615,10 @@
     "symbols": [
       "fn_1_120804"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c"
+    "asm": true
   },
   {
     "module": "main_rel",
