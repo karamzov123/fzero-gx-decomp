@@ -8885,3 +8885,15 @@ rel/main_rel/camera/fn_1_CC5C.c:
 
 rel/main_rel/bg_common/fn_1_106D30.c:
 	.text       start:0x00106D30 end:0x00106DB4 align:4
+
+rel/main_rel/archive/fn_1_12F4A8.c:
+	.text       start:0x0012F4A8 end:0x00130B8C align:4
+
+rel/main_rel/phys/fn_1_E5CC4.c:
+	.text       start:0x000E5CC4 end:0x000E733C align:4
+
+rel/main_rel/accessory/fn_1_111980.c:
+	.text       start:0x00111980 end:0x00112F40 align:4
+
+rel/main_rel/accessory/fn_1_123050.c:
+	.text       start:0x00123050 end:0x001244F0 align:4

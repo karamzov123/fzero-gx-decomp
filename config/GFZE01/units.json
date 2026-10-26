@@ -34455,6 +34455,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_111980.c",
+    "symbols": [
+      "fn_1_111980"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_112F40.c",
     "symbols": [
       "fn_1_112F40"
@@ -34619,6 +34630,17 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/accessory.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_123050.c",
+    "symbols": [
+      "fn_1_123050"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -36016,6 +36038,17 @@
       "fzgx_obj_lbl_1_bss_8B5F0": "lbl_1_bss_8B5F0",
       "fzgx_obj_lbl_1_bss_8B5F1": "lbl_1_bss_8B5F1"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/archive/fn_1_12F4A8.c",
+    "symbols": [
+      "fn_1_12F4A8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -60843,6 +60876,17 @@
     "pool": {
       "@29": "lbl_1_rodata_6800"
     }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/phys/fn_1_E5CC4.c",
+    "symbols": [
+      "fn_1_E5CC4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main_rel",
