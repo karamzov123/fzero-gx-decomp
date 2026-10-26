@@ -8987,3 +8987,12 @@ rel/main_rel/accessory/fn_1_125DF0.c:
 
 rel/main_rel/accessory/fn_1_12744C.c:
 	.text       start:0x0012744C end:0x00127FB8 align:4
+
+rel/main_rel/accessory/fn_1_11F250.c:
+	.text       start:0x0011F250 end:0x001201E4 align:4
+
+rel/main_rel/accessory/fn_1_11A774.c:
+	.text       start:0x0011A774 end:0x0011B4E4 align:4
+
+rel/main_rel/accessory/fn_1_1192D0.c:
+	.text       start:0x001192D0 end:0x0011A158 align:4

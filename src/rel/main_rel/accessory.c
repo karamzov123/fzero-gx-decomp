@@ -6638,6 +6638,575 @@ void fn_1_118D90(u32 arg0, f32 arg1) {
 }
 /* fzgx:end fn_1_118D90 */
 
+/* fzgx:begin fn_1_1192D0 noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
+extern u8 lbl_1_data_3FFBC[0x574];
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+#ifndef REL_MAIN_REL_CAR_TEST_H
+#define REL_MAIN_REL_CAR_TEST_H
+
+#endif  // REL_MAIN_REL_CAR_TEST_H
+
+/* end rel/main_rel/car_test.h */
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+/* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+#endif  // GAME_VEC3_H
+#ifndef REL_MAIN_REL_ACCESSORY_H
+#define REL_MAIN_REL_ACCESSORY_H
+
+#endif  // REL_MAIN_REL_ACCESSORY_H
+
+/* end rel/main_rel/accessory.h */
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+ u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
+};
+typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
+extern void lbl_8006DBAC(Vec3 *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006DC20(void);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D0E8(f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern const u8 lbl_1_rodata_7AB8[];
+typedef struct Node {
+ u8 flags, pad1, count, pad3;
+ u16 links[6];
+ Fn183D28Vec3 pos,prev,local,vel;
+ f32 weight;
+} Node;
+typedef struct { Node *a,*b; f32 length; } Link;
+typedef struct { u8 pad[8]; u8 *base; } Model;
+typedef struct { u8 pad[0x88]; s32 kind; u8 pad8c[0x150 - 0x8c]; Model *model; } Owner;
+typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
+ struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
+ u32 pad14,count,linkCount,pad20; Node *nodes; Link *links; } Work;
+#define F(o) (*(const f32 *)(pool+(o)))
+#define D(o) (*(const f64 *)(pool+(o)))
+#define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
+static inline f32 fn_1_1192D0_read_pointer(Link * owner) { return owner->length; }
+static inline void fn_1_1192D0_sphere(Work *arg0, const u8 *pool, s32 base, f32 cx, f32 cy, f32 cz, s32 ro, s32 so) {
+ Fn183D28Vec3 center;
+ Fn183D28Vec3 diff;
+ u32 ki;
+ Node *kn;
+ f32 scale;
+ center.x=cx; center.y=cy; center.z=cz;
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+base));
+ lbl_8006E1B0(&center,&center);
+ for(ki=0,kn=arg0->nodes;ki<arg0->count;ki++,kn++) {
+ if(!(kn->flags&1)) {
+ f32 x,y,z,r;
+ x=kn->pos.x; y=kn->pos.y; z=kn->pos.z;
+ x-=center.x; y-=center.y; z-=center.z;
+ r=(f32)(x*x)+y*y+z*z;
+ if(r<F(ro)) {
+ scale=F(so)*lbl_8006D0E8(r);
+ psvec_sub_scale_add(&kn->pos,&center,scale,&diff,&kn->pos);
+ }
+ }
+ }
+}
+#define SPHERE(BASE, CX, CY, CZ, RO, SO) fn_1_1192D0_sphere(arg0, pool, BASE, CX, CY, CZ, RO, SO);
+
+#pragma opt_common_subs off
+static inline void fn_1_1192D0_loop0(Work *arg0) {
+ u32 i1;
+ Node *n1;
+ for(i1=0,n1=arg0->nodes;i1<arg0->count;i1++,n1++) {
+ lbl_8006DBE4();
+ lbl_8006E1B0(&n1->local,&n1->pos);
+ }
+}
+
+#define delta (*dp)
+static inline void fn_1_1192D0_constrain(const u8 *pool, Node *a, Node *b, Link *l, f32 *len, Fn183D28Vec3 *dp) {
+ f32 wb;
+ f32 inv;
+ f32 s;
+ f32 wa;
+ f32 fb;
+ f32 r;
+ f32 fa;
+ f32 cx;
+ f32 cy;
+ f32 cz;
+ f32 x;
+ inv=lbl_8006D118(*len,len);
+ r=lbl_8006D0B4(fn_1_1192D0_read_pointer(l));
+ s=inv*(*len-r);
+ *len=s;
+ cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
+ wa=a->weight; wb=b->weight;
+ x=a->pos.x;
+ delta.x=cx; delta.y=cy; delta.z=cz;
+ r=F(0xa0)/(wa+wb);
+ fa=wa*r; fb=wb*r;
+ a->pos.x=x-(f32)(cx*fa);
+ a->pos.y-=(f32)(cy*fa);
+ a->pos.z-=(f32)(cz*fa);
+ b->pos.x+=(f32)(cx*fb);
+ b->pos.y+=(f32)(cy*fb);
+ b->pos.z+=(f32)(cz*fb);
+}
+#undef delta
+static inline void fn_1_1192D0_loop6(u8 *fmodel, Work *arg0) {
+ u16 *lp;
+ u32 fi;
+ u32 fj;
+ Node *fn;
+ for(fi=0,fn=arg0->nodes;fi<arg0->count;fi++,fn++) {
+ for(fj=0,lp=(u16 *)fn;(s32)fj<fn->count;lp++,fj++) {
+ fn_8006E250((Vec3f *)&fn->pos,(Vec3f *)(fmodel+(lp[2]<<6)));
+ }
+ }
+}
+
+static inline void fn_1_1192D0_loop1(Work *arg0) {
+ u32 i3;
+ u8 *model3;
+ Node *n3;
+ model3=arg0->owner->model->base+INDEX(arg0->index)*396;
+ for(i3=0,n3=arg0->nodes;i3<arg0->count;i3++,n3++) {
+ lbl_8006DBAC((Vec3 *)(model3+136));
+ lbl_8006DAEC();
+ if(n3->flags&1) {
+ lbl_8006DBE4();
+ lbl_8006E1B0(&n3->local,&n3->pos);
+ }
+ lbl_8006DC20();
+ }
+}
+
+void fn_1_1192D0(Work *arg0) {
+ u32 ki;
+ u8 *fmodel;
+ u32 li;
+ u32 vi;
+ u32 k;
+ Node *kn;
+ const u8 *pool=lbl_1_rodata_7AB8;
+ Node *vn;
+ Link *l;
+ Node *a;
+ Node *n2;
+ u32 i2;
+ u32 i6;
+ Node *n6;
+ u8 *model6;
+ Node *b;
+ Fn183D28Vec3 deltav;
+ Fn183D28Vec3 random;
+ Fn183D28Vec3 target;
+ Fn183D28Vec3 *dp = &deltav;
+#define delta (*dp)
+ f32 len;
+ if(arg0 && arg0->obj) {
+ fn_80077B14(arg0->obj);
+ if(arg0->flags & 2) {
+ arg0->flags &= ~2;
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+INDEX(arg0->index)*396+136));
+ lbl_8006DAEC();
+ fn_1_1192D0_loop0(arg0);
+ lbl_8006DC20();
+ }
+ for(i2=0,n2=arg0->nodes;i2<arg0->count;i2++,n2++) {
+ if(!(n2->flags&1)) {
+ n2->prev=n2->pos;
+ n2->pos.x+=n2->vel.x;
+ n2->pos.y+=n2->vel.y;
+ n2->pos.z+=n2->vel.z;
+ n2->pos.y-=D(0x58);
+ n2->vel.y-=F(0x60);
+ }
+ }
+ fn_1_1192D0_loop1(arg0);
+ for(k=0;k<4;k++) {
+ for(li=0,l=arg0->links;li<arg0->linkCount;li++,l++) {
+ a=l->a; b=l->b;
+ if(a && b) {
+ f32 y,z,x;
+ x=a->pos.x-b->pos.x;
+ y=a->pos.y-b->pos.y;
+ z=a->pos.z-b->pos.z;
+ delta.x=x; delta.y=y; delta.z=z;
+ len=(f32)(x*x)+y*y+z*z;
+ if(len-F(0x9c)>fn_1_1192D0_read_pointer(l)) fn_1_1192D0_constrain(pool,a,b,l,&len,dp);
+ }
+ }
+ }
+ model6=arg0->owner->model->base+INDEX(arg0->index)*396;
+ for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
+ if(!(n6->flags&1)) {
+ f32 kk;
+ f32 x;
+ f32 y;
+ f32 z;
+ lbl_8006DBAC((Vec3 *)(model6+136));
+ lbl_8006E1B0(&n6->local,&target);
+ kk=F(0xe4)/n6->weight;
+ x=kk*(target.x-n6->pos.x);
+ y=kk*(target.y-n6->pos.y);
+ z=kk*(target.z-n6->pos.z);
+ n6->pos.x+=x;
+ n6->pos.y+=y;
+ n6->pos.z+=z;
+ }
+ }
+ if(arg0->owner->kind==0x29) {
+ SPHERE(0x1c60,F(0x2f8),F(0x68),F(0x68),0x3f4,0x2d4)
+ SPHERE(0x1c60,F(0xc4),F(0x68),F(0x68),0x3f8,0x3fc)
+ SPHERE(0x241c,F(0x2f8),F(0x68),F(0x68),0x3f4,0x2d4)
+ SPHERE(0x241c,F(0xc4),F(0x68),F(0x68),0x3f8,0x3fc)
+ } else if(arg0->owner->kind==0x15) {
+ SPHERE(0x1c60,F(0x3c0),F(0x68),F(0x68),0x400,0x2e8)
+ SPHERE(0x1c60,F(0x27c),F(0x68),F(0x68),0x264,0x238)
+ SPHERE(0x1c60,F(0x238),F(0x68),F(0x68),0x264,0x238)
+ SPHERE(0x241c,F(0x3c0),F(0x68),F(0x68),0x400,0x2e8)
+ SPHERE(0x241c,F(0x27c),F(0x68),F(0x68),0x264,0x238)
+ SPHERE(0x241c,F(0x238),F(0x68),F(0x68),0x264,0x238)
+ }
+ for(vi=0,vn=arg0->nodes;vi<arg0->count;vi++,vn++) {
+ fn_1_1286F4((Sig_fn_1_1286F4_Vec3f *)&random);
+ vn->vel.x*=D(0x190); vn->vel.y*=D(0x190); vn->vel.z*=D(0x190);
+ vn->vel.x+=(f64)(D(0x188)*(vn->pos.x-vn->prev.x));
+ vn->vel.y+=(f64)(D(0x188)*(vn->pos.y-vn->prev.y));
+ vn->vel.z+=(f64)(D(0x188)*(vn->pos.z-vn->prev.z));
+ vn->vel.x+=(f64)(D(0x198)*random.x); vn->vel.y+=(f64)(D(0x198)*random.y); vn->vel.z+=(f64)(D(0x198)*random.z);
+ }
+ fmodel=(u8 *)fn_80077B14(arg0->obj);
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+INDEX(arg0->index)*396+136));
+ fn_1_1192D0_loop6(fmodel, arg0);
+ }
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_1192D0 */
+
+/* fzgx:begin fn_1_11A774 noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
+extern u8 lbl_1_data_3FFBC[0x574];
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+#ifndef REL_MAIN_REL_CAR_TEST_H
+#define REL_MAIN_REL_CAR_TEST_H
+
+#endif  // REL_MAIN_REL_CAR_TEST_H
+
+/* end rel/main_rel/car_test.h */
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+/* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+#endif  // GAME_VEC3_H
+#ifndef REL_MAIN_REL_ACCESSORY_H
+#define REL_MAIN_REL_ACCESSORY_H
+
+#endif  // REL_MAIN_REL_ACCESSORY_H
+
+/* end rel/main_rel/accessory.h */
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+ u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
+};
+typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
+extern void lbl_8006DBAC(Vec3 *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006DC20(void);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D0E8(f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern const u8 lbl_1_rodata_7AB8[];
+typedef struct Node {
+ u8 flags, pad1, count, pad3;
+ u16 links[6];
+ Fn183D28Vec3 pos,prev,local,vel;
+ f32 weight;
+} Node;
+typedef struct { Node *a,*b; f32 length; } Link;
+typedef struct { u8 pad[8]; u8 *base; } Model;
+typedef struct { u8 pad[0x88]; s32 kind; u8 pad8c[0x150 - 0x8c]; Model *model; } Owner;
+typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
+ struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
+ u32 pad14,count,linkCount,pad20; Node *nodes; Link *links; } Work;
+#define F(o) (*(const f32 *)(pool+(o)))
+#define D(o) (*(const f64 *)(pool+(o)))
+#define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
+static inline f32 fn_1_11A774_read_pointer(Link * owner) { return owner->length; }
+#define SPHERE(BASE, CX, CY, CZ, RADIUS, STRENGTH) { \
+ Fn183D28Vec3 diff; \
+ Fn183D28Vec3 center; \
+ f32 scale; \
+ f32 cx,cy,cz; \
+ cz=CZ; cy=CY; cx=CX; \
+ center.x=cx; center.y=cy; center.z=cz; \
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+BASE)); \
+ lbl_8006E1B0(&center,&center); \
+ for(ki=0,kn=arg0->nodes;ki<arg0->count;ki++,kn++) { \
+ if(!(kn->flags&1)) { \
+ f32 x,z,y,r; \
+ x=kn->pos.x; y=kn->pos.y; z=kn->pos.z; \
+ x-=center.x; y-=center.y; z-=center.z; \
+ r=(f32)(x*x)+y*y+z*z; \
+ if(r<RADIUS) { \
+ scale=STRENGTH*lbl_8006D0E8(r); \
+ psvec_sub_scale_add(&kn->pos,&center,scale,&diff,&kn->pos); \
+ } \
+ } \
+ } \
+}
+
+
+#define delta (*dp)
+static inline void fn_1_11A774_constrain(const u8 *pool, Node *a, Node *b, Link *l, f32 *len, Fn183D28Vec3 *dp) {
+ f32 wb;
+ f32 inv;
+ f32 s;
+ f32 wa;
+ f32 fb;
+ f32 r;
+ f32 fa;
+ f32 cx;
+ f32 cy;
+ f32 cz;
+ f32 x;
+ inv=lbl_8006D118(*len,len);
+ r=lbl_8006D0B4(fn_1_11A774_read_pointer(l));
+ s=inv*(*len-r);
+ *len=s;
+ cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
+ wa=a->weight; wb=b->weight;
+ x=a->pos.x;
+ delta.x=cx; delta.y=cy; delta.z=cz;
+ r=F(0xa0)/(wa+wb);
+ fa=wa*r; fb=wb*r;
+ a->pos.x=x-(f32)(cx*fa);
+ a->pos.y-=(f32)(cy*fa);
+ a->pos.z-=(f32)(cz*fa);
+ b->pos.x+=(f32)(cx*fb);
+ b->pos.y+=(f32)(cy*fb);
+ b->pos.z+=(f32)(cz*fb);
+}
+#undef delta
+#define LINKFIX { fn_1_11A774_constrain(pool,a,b,l,&len,dp); }
+#pragma opt_common_subs off
+static inline void fn_1_11A774_loop0(Work *arg0) {
+ u32 i1;
+ Node *n1;
+ for(i1=0,n1=arg0->nodes;i1<arg0->count;i1++,n1++) {
+ lbl_8006DBE4();
+ lbl_8006E1B0(&n1->local,&n1->pos);
+ }
+}
+
+void fn_1_11A774(Work *arg0) {
+ const u8 *pool=lbl_1_rodata_7AB8;
+ u8 *fmodel;
+ u32 i3;
+ u32 k;
+ Link *l;
+ Node *kn;
+ Node *fn;
+ Node *n3;
+ Node *a;
+ u32 fj;
+ u8 *model3;
+ u32 ki;
+ Node *vn;
+ u32 fi;
+ u32 li;
+ u32 vi;
+ u16 *lp;
+ Node *b;
+ Node *n2;
+ u32 i2;
+ f32 c68;
+ f32 c404;
+ f32 c410;
+ f32 c424;
+ f32 c2b4;
+ f32 c418;
+ f32 c41c;
+ f32 c3b4;
+ f32 c414;
+ Fn183D28Vec3 deltav;
+ Fn183D28Vec3 random;
+ Fn183D28Vec3 *dp = &deltav;
+#define delta (*dp)
+ f32 len;
+ if(arg0 && arg0->obj) {
+ fn_80077B14(arg0->obj);
+ if(arg0->flags & 2) {
+ arg0->flags &= ~2;
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+INDEX(arg0->index)*396+136));
+ lbl_8006DAEC();
+ fn_1_11A774_loop0(arg0);
+ lbl_8006DC20();
+ }
+ for(i2=0,n2=arg0->nodes;i2<arg0->count;i2++,n2++) {
+ if(!(n2->flags&1)) {
+ n2->prev=n2->pos;
+ n2->pos.x+=n2->vel.x;
+ n2->pos.y+=n2->vel.y;
+ n2->pos.z+=n2->vel.z;
+ n2->pos.y-=D(0x58);
+ n2->vel.y-=F(0x60);
+ }
+ }
+ model3=arg0->owner->model->base+INDEX(arg0->index)*396;
+ for(i3=0,n3=arg0->nodes;i3<arg0->count;i3++,n3++) {
+ lbl_8006DBAC((Vec3 *)(model3+136));
+ lbl_8006DAEC();
+ if(n3->flags&1) {
+ lbl_8006DBE4();
+ lbl_8006E1B0(&n3->local,&n3->pos);
+ }
+ lbl_8006DC20();
+ }
+ for(k=0;k<8;k++) {
+ c68=F(0x68); c404=F(0x404); c410=F(0x410); c414=F(0x414); c2b4=F(0x2b4); c418=F(0x418); c41c=F(0x41c); c3b4=F(0x3b4); c424=F(0x424);
+ for(li=0,l=arg0->links;li<arg0->linkCount;li++,l++) {
+ a=l->a; b=l->b;
+ if(a && b) {
+ f32 y;
+ f32 wa;
+ f32 x;
+ f32 inv;
+ f32 s;
+ f32 cz;
+ f32 cy;
+ f32 r;
+ f32 cx;
+ f32 fa;
+ f32 wb;
+ f32 z;
+ f32 fb;
+ x=a->pos.x-b->pos.x;
+ y=a->pos.y-b->pos.y;
+ z=a->pos.z-b->pos.z;
+ delta.x=x; delta.y=y; delta.z=z;
+ len=(f32)(x*x)+y*y+z*z;
+ if(len-F(0x9c)>fn_1_11A774_read_pointer(l)) LINKFIX
+ if(F(0x1a4)+len<fn_1_11A774_read_pointer(l)) LINKFIX
+ }
+ }
+ SPHERE(532,c404,c68,c68,F(0x408),F(0x40c))
+ SPHERE(532,c2b4,c414,c410,F(0x398),F(0x2a8))
+ SPHERE(532,c2b4,c414,c68,F(0x398),F(0x2a8))
+ SPHERE(532,c2b4,c414,c418,F(0x398),F(0x2a8))
+ SPHERE(532,c41c,c414,c410,F(0x420),F(0xc4))
+ SPHERE(532,c41c,c414,c68,F(0x420),F(0xc4))
+ SPHERE(532,c41c,c414,c418,F(0x420),F(0xc4))
+ SPHERE(0x1948,c424,c3b4,c68,F(0x3f8),F(0x3fc))
+ }
+ for(vi=0,vn=arg0->nodes;vi<arg0->count;vi++,vn++) {
+ fn_1_1286F4((Sig_fn_1_1286F4_Vec3f *)&random);
+ vn->vel.x*=D(0x190); vn->vel.y*=D(0x190); vn->vel.z*=D(0x190);
+ vn->vel.x+=(f64)(D(0x188)*(vn->pos.x-vn->prev.x));
+ vn->vel.y+=(f64)(D(0x188)*(vn->pos.y-vn->prev.y));
+ vn->vel.z+=(f64)(D(0x188)*(vn->pos.z-vn->prev.z));
+ vn->vel.x+=(f64)(D(0x198)*random.x); vn->vel.y+=(f64)(D(0x198)*random.y); vn->vel.z+=(f64)(D(0x198)*random.z);
+ }
+ fmodel=(u8 *)fn_80077B14(arg0->obj);
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+INDEX(arg0->index)*396+136));
+ for(fi=0,fn=arg0->nodes;fi<arg0->count;fi++,fn++) {
+ for(fj=0,lp=(u16 *)fn;(s32)fj<fn->count;lp++,fj++) {
+ fn_8006E250((Vec3f *)&fn->pos,(Vec3f *)(fmodel+(lp[2]<<6)));
+ }
+ }
+ }
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_11A774 */
+
 /* fzgx:begin fn_1_11B958 noprologue */
 #include "types.h"
 #include "psvec.h"
@@ -7880,6 +8449,319 @@ void fn_1_11ED0C(fn_1_10D2F0_Obj *obj) {
     }
 }
 /* fzgx:end fn_1_11ED0C */
+
+/* fzgx:begin fn_1_11F250 noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
+extern u8 lbl_1_data_3FFBC[0x574];
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+#ifndef REL_MAIN_REL_CAR_TEST_H
+#define REL_MAIN_REL_CAR_TEST_H
+
+#endif  // REL_MAIN_REL_CAR_TEST_H
+
+/* end rel/main_rel/car_test.h */
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+/* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+#endif  // GAME_VEC3_H
+#ifndef REL_MAIN_REL_ACCESSORY_H
+#define REL_MAIN_REL_ACCESSORY_H
+
+#endif  // REL_MAIN_REL_ACCESSORY_H
+
+/* end rel/main_rel/accessory.h */
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+ u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
+};
+typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
+extern void lbl_8006DBAC(Vec3 *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006DC20(void);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D0E8(f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern const u8 lbl_1_rodata_7AB8[];
+typedef struct Node {
+ u8 flags, pad1, count, pad3;
+ u16 links[6];
+ Fn183D28Vec3 pos,prev,local,vel;
+ f32 weight;
+} Node;
+typedef struct { Node *a,*b; f32 length; } Link;
+typedef struct { u8 pad[8]; u8 *base; } Model;
+typedef struct { u8 pad[0x88]; s32 kind; u8 pad8c[0x150 - 0x8c]; Model *model; } Owner;
+typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
+ struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
+ u32 pad14,count,linkCount,pad20; Node *nodes; Link *links; } Work;
+#define F(o) (*(const f32 *)(pool+(o)))
+#define D(o) (*(const f64 *)(pool+(o)))
+#define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
+static inline f32 fn_1_11F250_read_pointer(Link * owner) { return owner->length; }
+#define SPHERE(BASE, CX, CY, CZ, RADIUS, STRENGTH) { \
+ Fn183D28Vec3 diff; \
+ Fn183D28Vec3 center; \
+ f32 scale; \
+ f32 cx,cy,cz; \
+ cz=CZ; cy=CY; cx=CX; \
+ center.x=cx; center.y=cy; center.z=cz; \
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+BASE)); \
+ lbl_8006E1B0(&center,&center); \
+ for(ki=0,kn=arg0->nodes;ki<arg0->count;ki++,kn++) { \
+ if(!(kn->flags&1)) { \
+ f32 x,z,y,r; \
+ x=kn->pos.x; y=kn->pos.y; z=kn->pos.z; \
+ x-=center.x; y-=center.y; z-=center.z; \
+ r=(f32)(x*x)+y*y+z*z; \
+ if(r<RADIUS) { \
+ scale=STRENGTH*lbl_8006D0E8(r); \
+ psvec_sub_scale_add(&kn->pos,&center,scale,&diff,&kn->pos); \
+ } \
+ } \
+ } \
+}
+
+
+extern u32 lbl_801A66A0;
+extern f32 lbl_8006D668(void *);
+static inline f32 fn_1_11F250_measure(Node *a, Node *b, Fn183D28Vec3 *dp) {
+ f32 x;
+ f32 y;
+ f32 z;
+ x=a->pos.x-b->pos.x;
+ y=a->pos.y-b->pos.y;
+ z=a->pos.z-b->pos.z;
+ (*dp).x=x; (*dp).y=y; (*dp).z=z;
+ { f32 d; d=x*x; d+=y*y; d+=z*z; return d; }
+}
+#define delta (*dp)
+static inline void fn_1_11F250_constrain(const u8 *pool, Node *a, Node *b, Link *l, f32 *len, Fn183D28Vec3 *dp) {
+ f32 wb;
+ f32 inv;
+ f32 s;
+ f32 wa;
+ f32 fb;
+ f32 r;
+ f32 fa;
+ f32 cx;
+ f32 cy;
+ f32 cz;
+ f32 x;
+ inv=lbl_8006D118(*len,len);
+ r=lbl_8006D0B4(fn_1_11F250_read_pointer(l));
+ s=inv*(*len-r);
+ *len=s;
+ cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
+ wa=a->weight; wb=b->weight;
+ x=a->pos.x;
+ delta.x=cx; delta.y=cy; delta.z=cz;
+ r=F(0xa0)/(wa+wb);
+ fa=wa*r; fb=wb*r;
+ a->pos.x=x-(f32)(cx*fa);
+ a->pos.y-=(f32)(cy*fa);
+ a->pos.z-=(f32)(cz*fa);
+ b->pos.x+=(f32)(cx*fb);
+ b->pos.y+=(f32)(cy*fb);
+ b->pos.z+=(f32)(cz*fb);
+}
+#define LINKFIX { fn_1_11F250_constrain(pool,a,b,l,&len,dp); }
+#undef delta
+#pragma opt_common_subs off
+static inline void fn_1_11F250_loop0(Work *arg0) {
+ u32 i1;
+ Node *n1;
+ for(i1=0,n1=arg0->nodes;i1<arg0->count;i1++,n1++) {
+ lbl_8006DBE4();
+ lbl_8006E1B0(&n1->local,&n1->pos);
+ }
+}
+
+void fn_1_11F250(Work *arg0) {
+ const u8 *pool=lbl_1_rodata_7AB8;
+ u8 *fmodel;
+ u32 i3;
+ u32 k;
+ Link *l;
+ Node *kn;
+ Node *fn;
+ Node *n3;
+ Node *a;
+ u32 fj;
+ u8 *model3;
+ u32 ki;
+ Node *vn;
+ u32 fi;
+ u32 li;
+ u32 vi;
+ u16 *lp;
+ Node *n2;
+ u32 i2;
+ f32 c68;
+ f32 c2d4;
+ f32 c238;
+ f32 c1c8;
+ f32 c4b0;
+ f32 c4ac;
+ u32 i6;
+ Node *n6;
+ u8 *model6;
+ Node *b;
+ Fn183D28Vec3 deltav;
+ Fn183D28Vec3 random;
+ Fn183D28Vec3 push;
+ Fn183D28Vec3 target;
+ Fn183D28Vec3 *dp = &deltav;
+#define delta (*dp)
+ f32 len;
+ if(arg0 && arg0->obj) {
+ fn_80077B14(arg0->obj);
+ if(arg0->flags & 2) {
+ arg0->flags &= ~2;
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+INDEX(arg0->index)*396+136));
+ lbl_8006DAEC();
+ fn_1_11F250_loop0(arg0);
+ lbl_8006DC20();
+ }
+ for(i2=0,n2=arg0->nodes;i2<arg0->count;i2++,n2++) {
+ if(!(n2->flags&1)) {
+ n2->prev=n2->pos;
+ n2->pos.x+=n2->vel.x;
+ n2->pos.y+=n2->vel.y;
+ n2->pos.z+=n2->vel.z;
+ n2->pos.y-=D(0x58);
+ n2->vel.y-=F(0x60);
+ }
+ }
+ model3=arg0->owner->model->base+INDEX(arg0->index)*396;
+ for(i3=0,n3=arg0->nodes;i3<arg0->count;i3++,n3++) {
+ lbl_8006DBAC((Vec3 *)(model3+136));
+ lbl_8006DAEC();
+ if(n3->flags&1) {
+ lbl_8006DBE4();
+ lbl_8006E1B0(&n3->local,&n3->pos);
+ }
+ lbl_8006DC20();
+ }
+ for(k=0;k<4;k++) {
+ c68=F(0x68); c2d4=F(0x2d4); c238=F(0x238); c1c8=F(0x1c8); c4ac=F(0x4ac); c4b0=F(0x4b0);
+ for(li=0,l=arg0->links;li<arg0->linkCount;li++,l++) {
+ a=l->a; b=l->b;
+ if(a && b) {
+ f32 y;
+ f32 wa;
+ f32 x;
+ f32 inv;
+ f32 s;
+ f32 cz;
+ f32 cy;
+ f32 r;
+ f32 cx;
+ f32 fa;
+ f32 wb;
+ f32 z;
+ f32 fb;
+ x=a->pos.x-b->pos.x;
+ y=a->pos.y-b->pos.y;
+ z=a->pos.z-b->pos.z;
+ delta.x=x; delta.y=y; delta.z=z;
+ len=(f32)(x*x)+y*y+z*z;
+ if(len-F(0x9c)>fn_1_11F250_read_pointer(l)) LINKFIX
+ if(F(0x1a4)+len<fn_1_11F250_read_pointer(l) && li<20) LINKFIX
+ if((y=a->pos.y)<F(0x68) || b->pos.y<F(0x68)) {
+ if(y<F(0x68)) a->pos.y=F(0x248);
+ if(b->pos.y<F(0x68)) b->pos.y=F(0x248);
+ len=fn_1_11F250_measure(a,b,dp);
+ LINKFIX
+ }
+ }
+ }
+ SPHERE(532,c2d4,c68,c68,F(0x4a0),F(0x428))
+ SPHERE(0xb5c,c68,c68,c68,F(0x4a4),F(0x4a8))
+ SPHERE(0xb5c,c238,c68,c68,F(0x264),F(0x238))
+ SPHERE(0xb5c,c1c8,c68,c68,F(0x264),F(0x238))
+ SPHERE(0x1318,c68,c68,c68,F(0x4a4),F(0x4a8))
+ SPHERE(0x1318,c238,c68,c68,F(0x264),F(0x238))
+ SPHERE(0x1318,c1c8,c68,c68,F(0x264),F(0x238))
+ SPHERE(532,c4b0,c4ac,c68,F(0x4b4),F(0x4b8))
+ }
+ if(lbl_801A66A0%90<20) {
+ model6=arg0->owner->model->base+INDEX(arg0->index)*396;
+ for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
+ lbl_8006DBAC((Vec3 *)(model6+136));
+ lbl_8006E1B0(&n6->local,&target);
+ push.x=n6->pos.x-target.x;
+ push.y=n6->pos.y-target.y;
+ push.z=n6->pos.z-target.z;
+ lbl_8006D668(&push);
+ n6->vel.x-=(f32)(F(0x1a4)*push.x);
+ n6->vel.y-=(f32)(F(0x1a4)*push.y);
+ n6->vel.z-=(f32)(F(0x1a4)*push.z);
+ }
+ }
+ for(vi=0,vn=arg0->nodes;vi<arg0->count;vi++,vn++) {
+ fn_1_1286F4((Sig_fn_1_1286F4_Vec3f *)&random);
+ vn->vel.x*=D(0x190); vn->vel.y*=D(0x190); vn->vel.z*=D(0x190);
+ vn->vel.x+=(f64)(D(0x188)*(vn->pos.x-vn->prev.x));
+ vn->vel.y+=(f64)(D(0x188)*(vn->pos.y-vn->prev.y));
+ vn->vel.z+=(f64)(D(0x188)*(vn->pos.z-vn->prev.z));
+ vn->vel.x+=(f64)(D(0x198)*random.x); vn->vel.y+=(f64)(D(0x198)*random.y); vn->vel.z+=(f64)(D(0x198)*random.z);
+ }
+ fmodel=(u8 *)fn_80077B14(arg0->obj);
+ lbl_8006DBAC((Vec3 *)(arg0->owner->model->base+INDEX(arg0->index)*396+136));
+ for(fi=0,fn=arg0->nodes;fi<arg0->count;fi++,fn++) {
+ for(fj=0,lp=(u16 *)fn;(s32)fj<fn->count;lp++,fj++) {
+ fn_8006E250((Vec3f *)&fn->pos,(Vec3f *)(fmodel+(lp[2]<<6)));
+ }
+ }
+ }
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_11F250 */
 
 /* fzgx:begin fn_1_12277C */
 extern void *fn_80077B14(void *);
