@@ -8987,3 +8987,33 @@ rel/main_rel/stcoli/fn_1_29A0C.c:
 
 rel/main_rel/stcoli/fn_1_192E8.c:
 	.text       start:0x000192E8 end:0x00019AE0 align:4
+
+rel/main_rel/bg_common/fn_1_106084.c:
+	.text       start:0x00106084 end:0x001067A8 align:4
+
+rel/main_rel/effect_car/fn_1_694A4.c:
+	.text       start:0x000694A4 end:0x00069BBC align:4
+
+rel/main_rel/bg_san/fn_1_DB9B0.c:
+	.text       start:0x000DB9B0 end:0x000DC084 align:4
+
+rel/main_rel/bg_common/fn_1_1071E8.c:
+	.text       start:0x001071E8 end:0x0010780C align:4
+
+rel/main_rel/accessory/fn_1_1256EC.c:
+	.text       start:0x001256EC end:0x00125CE8 align:4
+
+rel/main_rel/spline/fn_1_FB18C.c:
+	.text       start:0x000FB18C end:0x000FB770 align:4
+
+rel/main_rel/stcoli/fn_1_22F90.c:
+	.text       start:0x00022F90 end:0x00023500 align:4
+
+rel/main_rel/stcoli/fn_1_2AF0C.c:
+	.text       start:0x0002AF0C end:0x0002B478 align:4
+
+rel/main_rel/motasglist/fn_1_438AC.c:
+	.text       start:0x000438AC end:0x00043E08 align:4
+
+rel/main_rel/phys/fn_1_E2DCC.c:
+	.text       start:0x000E2DCC end:0x000E3324 align:4
