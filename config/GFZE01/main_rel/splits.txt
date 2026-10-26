@@ -8960,3 +8960,21 @@ rel/main_rel/accessory/fn_1_1256EC.c:
 
 rel/main_rel/accessory/fn_1_10D7D4.c:
 	.text       start:0x0010D7D4 end:0x0010DDE4 align:4
+
+rel/main_rel/accessory/fn_1_1132E4.c:
+	.text       start:0x001132E4 end:0x001137E4 align:4
+
+rel/main_rel/accessory/fn_1_10BE3C.c:
+	.text       start:0x0010BE3C end:0x0010C4E4 align:4
+
+rel/main_rel/accessory/fn_1_10AD18.c:
+	.text       start:0x0010AD18 end:0x0010B344 align:4
+
+rel/main_rel/accessory/fn_1_11B958.c:
+	.text       start:0x0011B958 end:0x0011BFCC align:4
+
+rel/main_rel/accessory/fn_1_126774.c:
+	.text       start:0x00126774 end:0x00126DE8 align:4
+
+rel/main_rel/accessory/fn_1_11C440.c:
+	.text       start:0x0011C440 end:0x0011CAB4 align:4
