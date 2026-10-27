@@ -58,3 +58,13 @@ Untouched functions and REL literal pools:
 - `tools/manualkit/splitdata.py` (import it): `split(text, NAME, BASE, cuts)` splits a generated
   `static union { u32 w[N]; ... } NAME = {{...}};` data object at byte addresses, so a sibling can
   address a sub-table by its own object name (`addi rX, rData, 0x5f8`).
+
+REL pool literals and register permutations (2026-10-26, accessory cloth family):
+- `uv run python tools/manualkit/poollits.py IN.c OUT.c [POOLSYM]` turns `F(0xNN)`/`D(0xNN)` macro
+  reads of a main_rel literal pool (default `lbl_1_rodata_7AB8`) into native literals; then
+  `primer.py` makes MWCC's int->float conversion constants land on retail's pool slots
+  (closed fn_1_110478 and fn_1_111980).
+- `uv run python tools/manualkit/regmap.py SYM FILE [MW]` prints the retail->ours callee-saved
+  register correspondence per 0x200-byte block. A uniform shift means one web is claimed in the
+  wrong order; a block-local swap points at one loop's variables (separate loop counters per loop,
+  loops as blocks vs inline helpers, decl order). Pair with `declsearch.py`.
