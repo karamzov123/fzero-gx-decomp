@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (72.57% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (72.69% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
