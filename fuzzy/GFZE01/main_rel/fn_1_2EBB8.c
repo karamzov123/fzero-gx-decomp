@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (81.52% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (81.75% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "rel/main_rel/stcoli.h"
 
