@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.21% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (98.60% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 /* fzgx:begin fn_1_11B4E4 noprologue */
 #include "types.h"
@@ -91,6 +91,7 @@ static inline void fn_1_11B4E4_sort_y(Group *row) {
    if (a->p10.y<b->p10.y) fn_1_128884(a,b,0x44);
  }
 }
+#pragma opt_propagation off
 #pragma opt_loop_invariants off
 void fn_1_11B4E4(Sig_fn_1_10846C_Obj10846C *obj) {
  u32 i;
@@ -109,10 +110,9 @@ void fn_1_11B4E4(Sig_fn_1_10846C_Obj10846C *obj) {
   u32 xj;
   Group *xb;
   u32 xi;
-  u32 xoff;
   Group *xa;
-  for (xi=0,xa=obj->groups,xoff=xi;xi<obj->groupCount;xoff+=0x44,xi++,xa++) {
-   for (xj=xi+1,xb=(Group *)((u8 *)obj->groups+xoff+0x44);xj<obj->groupCount;xj++,xb++)
+  for (xi=0,xa=obj->groups;xi<obj->groupCount;xi++,xa++) {
+   for (xj=xi+1,xb=&obj->groups[xi]+1;xj<obj->groupCount;xj++,xb++)
     if (xa->p10.x>xb->p10.x) fn_1_128884(xa,xb,0x44);
   }
   }
@@ -179,4 +179,5 @@ void fn_1_11B4E4(Sig_fn_1_10846C_Obj10846C *obj) {
  }
 }
 #pragma opt_loop_invariants reset
+#pragma opt_propagation reset
 /* fzgx:end fn_1_11B4E4 */
