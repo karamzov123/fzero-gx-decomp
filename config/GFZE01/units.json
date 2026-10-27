@@ -34524,6 +34524,23 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_110478.c",
+    "symbols": [
+      "fn_1_110478"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/accessory.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_7AB8",
+      "@60": "lbl_1_rodata_7B20",
+      "@76": "lbl_1_rodata_7B58",
+      "@56": "lbl_1_rodata_7B08"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_111510.c",
     "symbols": [
       "fn_1_111510"
