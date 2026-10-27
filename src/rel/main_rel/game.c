@@ -3498,6 +3498,465 @@ void fn_1_327F8(struct fn_1_327F8_Arg0 *arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_327F8 */
 
+/* fzgx:begin fn_1_32A40 noprologue */
+#include "types.h"
+#include "rel/main_rel/game.h"
+
+typedef struct {
+    u8 pad_0[0x168];
+    u8 unk_168;
+    u8 unk_169;
+    u16 unk_16A;
+} RacerInfo;
+
+typedef struct {
+    u32 flags;
+    s16 unk_4;
+    s16 unk_6;
+    f32 unk_8;
+    u8 pad_C[0xA4 - 0xC];
+    f32 unk_A4;
+    u8 pad_A8[0xBC - 0xA8];
+    f32 unk_BC;
+    u8 pad_C0[0xD8 - 0xC0];
+    f32 unk_D8;
+    u8 pad_DC[0x17C - 0xDC];
+    f32 unk_17C;
+    u8 pad_180[0x184 - 0x180];
+    f32 unk_184;
+    u8 pad_188[0x18B - 0x188];
+    u8 unk_18B;
+    u8 pad_18C[0x218 - 0x18C];
+    u32 unk_218;
+    u8 pad_21C[0x224 - 0x21C];
+    f32 unk_224;
+    u8 pad_228[0x474 - 0x228];
+    s8 unk_474;
+    s8 unk_475;
+    u8 pad_476[0x482 - 0x476];
+    u8 unk_482;
+    u8 pad_483[0x49C - 0x483];
+    RacerInfo *unk_49C;
+    u8 pad_4A0[0x50D - 0x4A0];
+    u8 unk_50D;
+    u8 pad_50E[0x580 - 0x50E];
+    f32 unk_580;
+    u8 pad_584[0x58C - 0x584];
+    u32 unk_58C;
+} Racer;
+
+/* .bss 0x3C00 */
+typedef struct {
+    u8 pad_0[0x2A];
+    s16 unk_2A;
+    u8 pad_2C[0x4];
+} GameHead;
+
+/* .bss 0x3C30 */
+typedef struct {
+    u32 flags;
+    u8 unk_4;
+    u8 mode;
+    u8 pad_6[2];
+    u8 unk_8;
+    u8 pad_9[3];
+    u8 unk_C;
+    u8 unk_D;
+    u8 pad_E[0xA4 - 0xE];
+    u16 unk_A4;
+    u8 pad_A6[0x13F6 - 0xA6];
+    u8 unk_13F6;
+    u8 pad_13F7[3];
+    u16 unk_13FA[4];
+    u8 unk_1402;
+    u8 unk_1403;
+    u8 unk_1404;
+    u8 pad_1405[0x1468 - 0x1405];
+    u8 unk_1468[0xB];
+    u8 unk_1473;
+    u8 pad_1474[0x14BC - 0x1474];
+} GameSub;
+
+typedef struct {
+    u8 data[0x1FC];
+} RacerCopy;
+
+typedef struct {
+    u8 pad_0[0x4];
+    f32 zero;
+    u8 pad_8[0x4];
+    f32 one;
+    u8 pad_10[0x1E4 - 0x10];
+    f32 hundred;
+} GameRodata;
+
+typedef struct {
+    f32 unk_0;
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 flags;
+    u8 unk_19;
+} RacerStatus;
+
+static u32 fzgx_obj_lbl_1_bss_3C00;
+static u8 lbl_1_bss_3C04__fzgx_offset_0[4];
+static u8 lbl_1_bss_3C08__fzgx_offset_0[8];
+static u8 fzgx_obj_lbl_1_bss_3C10;
+static u8 fzgx_obj_lbl_1_bss_3C11;
+static u16 fzgx_obj_lbl_1_bss_3C12;
+static u32 lbl_1_bss_3C12__fzgx_offset_2;
+static u32 lbl_1_bss_3C12__fzgx_offset_6;
+static u32 fzgx_obj_lbl_1_bss_3C1C;
+static u8 lbl_1_bss_3C1C__fzgx_offset_4[0x8];
+static u16 lbl_1_bss_3C1C__fzgx_offset_C;
+static s16 fzgx_obj_lbl_1_bss_3C2A;
+static u32 lbl_1_bss_3C2A__fzgx_offset_2;
+static GameSub fzgx_obj_lbl_1_bss_3C30;
+static u16 fzgx_obj_lbl_1_bss_50EC[4];
+static u8 lbl_1_bss_50EC__fzgx_offset_8[8];
+static s16 lbl_1_bss_50EC__fzgx_offset_10;
+static u8 fzgx_pool_fzgx_obj_bss_gap_50FE[0x25B84 - 0x5100];
+static u32 fzgx_obj_lbl_1_bss_25B84;
+static void * fzgx_obj_lbl_1_bss_25B88;
+static u16 * lbl_1_bss_25B88__fzgx_offset_4;
+static u32 lbl_1_bss_25B88__fzgx_offset_8[2];
+static u16 fzgx_obj_lbl_1_bss_25B98;
+static u32 fzgx_obj_lbl_1_bss_25B9C;
+static u8 fzgx_pool_fzgx_obj_bss_gap_25BA0[0x26304 - 0x25BA0];
+static f32 fzgx_obj_lbl_1_bss_26304[4];
+static RacerCopy fzgx_obj_lbl_1_bss_26314[4];
+static u8 fzgx_obj_lbl_1_bss_26B04[0x14];
+static u8 fzgx_obj_lbl_1_bss_26B18;
+static u8 fzgx_obj_lbl_1_bss_26B19;
+static u8 fzgx_obj_lbl_1_bss_26B1A;
+static u8 fzgx_obj_lbl_1_bss_26B1B;
+static u8 fzgx_obj_lbl_1_bss_26B1C;
+static u8 fzgx_obj_lbl_1_bss_26B1D;
+static u8 fzgx_obj_lbl_1_bss_26B1E;
+static u8 lbl_1_bss_26B1E__fzgx_offset_1;
+static u8 lbl_1_bss_26B1E__fzgx_offset_2[0x20];
+static f32 lbl_1_bss_26B1E__fzgx_offset_22;
+static f32 lbl_1_bss_26B1E__fzgx_offset_26;
+
+static const u32 fzgx_pool_lbl_1_rodata_BD8[1] = {0xFFFFFF00};
+static const f32 fzgx_pool_lbl_1_rodata_BD8_4[1] = {0.0f};
+static const u32 fzgx_pool_lbl_1_rodata_BD8_8[1] = {0x41700000};
+static const f32 fzgx_pool_lbl_1_rodata_BD8_C[1] = {1.0f};
+extern u8 lbl_1_data_5F6C__fzgx_offset_0[];
+extern u8 lbl_1_data_5FA8__fzgx_offset_0[];
+extern u8 lbl_1_data_5FE0__fzgx_offset_0[];
+extern u8 lbl_1_data_6020__fzgx_offset_0[];
+extern u8 lbl_1_data_605C__fzgx_offset_0[];
+extern u8 lbl_1_data_609C__fzgx_offset_0[];
+extern u8 lbl_1_data_60CC__fzgx_offset_0[];
+extern u8 lbl_1_data_6104__fzgx_offset_0[];
+extern u8 lbl_1_data_613C__fzgx_offset_0[];
+extern u8 lbl_1_data_617C__fzgx_offset_0[];
+extern u8 lbl_1_data_61BC__fzgx_offset_0[];
+extern u8 lbl_1_data_61C8__fzgx_offset_0[];
+extern u8 lbl_1_data_62C0__fzgx_offset_0[];
+extern u8 lbl_1_data_62C4__fzgx_offset_0[];
+static const u32 fzgx_pool_lbl_1_rodata_BD8_10[(0x1E4 - 0x10) / 4] = {
+    0x41200000, 0x3FA00000, 0x3DCCCCCD, 0x3F666666, 0x3A1D4952, 0x3ECCCCCD, 0x3F400000, 0x428C0000,
+    0x3F000000, 0x42100000, 0x41800000, 0x42340000, 0x3A51B717, 0x41900000, 0x42480000, 0x0,
+    0x43300000, 0x0, (u32)lbl_1_data_5F6C__fzgx_offset_0, (u32)lbl_1_data_5F6C__fzgx_offset_0, (u32)lbl_1_data_5F6C__fzgx_offset_0, (u32)lbl_1_data_5F6C__fzgx_offset_0, (u32)lbl_1_data_5F6C__fzgx_offset_0, (u32)lbl_1_data_5FA8__fzgx_offset_0,
+    (u32)lbl_1_data_5FA8__fzgx_offset_0, (u32)lbl_1_data_5FA8__fzgx_offset_0, (u32)lbl_1_data_5FA8__fzgx_offset_0, (u32)lbl_1_data_5FA8__fzgx_offset_0, (u32)lbl_1_data_5FE0__fzgx_offset_0, (u32)lbl_1_data_5FE0__fzgx_offset_0, (u32)lbl_1_data_5FE0__fzgx_offset_0, (u32)lbl_1_data_5FE0__fzgx_offset_0,
+    (u32)lbl_1_data_5FE0__fzgx_offset_0, (u32)lbl_1_data_6020__fzgx_offset_0, (u32)lbl_1_data_6020__fzgx_offset_0, (u32)lbl_1_data_6020__fzgx_offset_0, (u32)lbl_1_data_6020__fzgx_offset_0, (u32)lbl_1_data_6020__fzgx_offset_0, (u32)lbl_1_data_605C__fzgx_offset_0, (u32)lbl_1_data_605C__fzgx_offset_0,
+    (u32)lbl_1_data_605C__fzgx_offset_0, (u32)lbl_1_data_605C__fzgx_offset_0, (u32)lbl_1_data_605C__fzgx_offset_0, (u32)lbl_1_data_609C__fzgx_offset_0, (u32)lbl_1_data_609C__fzgx_offset_0, (u32)lbl_1_data_609C__fzgx_offset_0, (u32)lbl_1_data_609C__fzgx_offset_0, (u32)lbl_1_data_609C__fzgx_offset_0,
+    (u32)lbl_1_data_60CC__fzgx_offset_0, (u32)lbl_1_data_60CC__fzgx_offset_0, (u32)lbl_1_data_60CC__fzgx_offset_0, (u32)lbl_1_data_60CC__fzgx_offset_0, (u32)lbl_1_data_60CC__fzgx_offset_0, (u32)lbl_1_data_6104__fzgx_offset_0, (u32)lbl_1_data_6104__fzgx_offset_0, (u32)lbl_1_data_6104__fzgx_offset_0,
+    (u32)lbl_1_data_6104__fzgx_offset_0, (u32)lbl_1_data_6104__fzgx_offset_0, (u32)lbl_1_data_613C__fzgx_offset_0, (u32)lbl_1_data_613C__fzgx_offset_0, (u32)lbl_1_data_613C__fzgx_offset_0, (u32)lbl_1_data_613C__fzgx_offset_0, (u32)lbl_1_data_613C__fzgx_offset_0, (u32)lbl_1_data_617C__fzgx_offset_0,
+    (u32)lbl_1_data_617C__fzgx_offset_0, (u32)lbl_1_data_617C__fzgx_offset_0, (u32)lbl_1_data_617C__fzgx_offset_0, (u32)lbl_1_data_617C__fzgx_offset_0, (u32)lbl_1_data_61BC__fzgx_offset_0, (u32)lbl_1_data_61C8__fzgx_offset_0, 0x3F4CCCCD, 0x42A00000,
+    0x42700000, 0x0, 0x43300000, 0x80000000, 0x0, 0xFFFFFF00, 0x43EB0000, 0x3D800000,  /* fzgx-allow: A1 retail data bytes */
+    0x41600000, 0x42FE0000, 0x3E800000, 0x3E8FED4, 0xFE70FE0C, 0xFE0CFE0C, 0x461C4000, 0x466A6000,
+    0x461C3C00, 0xFFFFFF00, 0x80808000, 0x43A00000, 0x43700000, 0x438C0000, 0x43480000, 0x42200000,  /* fzgx-allow: A1 retail data bytes */
+    0x41F00000, 0x80808000, 0xFFFFFF00, 0x80808000, 0xFFFFFF00, 0xFFFFFF00, (u32)lbl_1_data_62C0__fzgx_offset_0, (u32)lbl_1_data_62C4__fzgx_offset_0,  /* fzgx-allow: A1 retail data bytes */
+    0xFFFFFF00, 0x3D4CCCCD, 0x3E19999A, 0x3DA3D70A, 0x40000000, 0x40800000, 0x437F0000, 0x3F8CCCCD,
+    0x42180000, 0x41A00000, 0x43340000, 0x40400000, 0x3951B717
+};
+static const f32 fzgx_pool_lbl_1_rodata_BD8_1E4[1] = {100.0f};
+
+#pragma section code_type ".fzgxpool"
+u32 fzgx_bss_order(void) {
+    u32 sum = 0;
+    sum += fzgx_obj_lbl_1_bss_3C00;
+    sum += lbl_1_bss_3C04__fzgx_offset_0[0];
+    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_1_bss_3C08__fzgx_offset_0;
+    sum += fzgx_obj_lbl_1_bss_3C10;
+    sum += fzgx_obj_lbl_1_bss_3C11;
+    sum += fzgx_obj_lbl_1_bss_3C12;
+    sum += lbl_1_bss_3C12__fzgx_offset_2;
+    sum += lbl_1_bss_3C12__fzgx_offset_6;
+    sum += fzgx_obj_lbl_1_bss_3C1C;
+    sum += lbl_1_bss_3C1C__fzgx_offset_4[0];
+    sum += lbl_1_bss_3C1C__fzgx_offset_C;
+    sum += fzgx_obj_lbl_1_bss_3C2A;
+    sum += lbl_1_bss_3C2A__fzgx_offset_2;
+    sum += fzgx_obj_lbl_1_bss_3C30.flags;
+    sum += fzgx_obj_lbl_1_bss_50EC[0];
+    sum += lbl_1_bss_50EC__fzgx_offset_8[0];
+    sum += lbl_1_bss_50EC__fzgx_offset_10;
+    sum += fzgx_pool_fzgx_obj_bss_gap_50FE[0];
+    sum += fzgx_obj_lbl_1_bss_25B84;
+    sum += (u32)fzgx_obj_lbl_1_bss_25B88;
+    sum += (u32)lbl_1_bss_25B88__fzgx_offset_4;
+    sum += lbl_1_bss_25B88__fzgx_offset_8[0];
+    sum += fzgx_obj_lbl_1_bss_25B98;
+    sum += fzgx_obj_lbl_1_bss_25B9C;
+    sum += fzgx_pool_fzgx_obj_bss_gap_25BA0[0];
+    sum += *(u32 *)&fzgx_obj_lbl_1_bss_26304[0];
+    sum += fzgx_obj_lbl_1_bss_26314[0].data[0];
+    sum += fzgx_obj_lbl_1_bss_26B04[0];
+    sum += fzgx_obj_lbl_1_bss_26B18;
+    sum += fzgx_obj_lbl_1_bss_26B19;
+    sum += fzgx_obj_lbl_1_bss_26B1A;
+    sum += fzgx_obj_lbl_1_bss_26B1B;
+    sum += fzgx_obj_lbl_1_bss_26B1C;
+    sum += fzgx_obj_lbl_1_bss_26B1D;
+    sum += fzgx_obj_lbl_1_bss_26B1E;
+    sum += lbl_1_bss_26B1E__fzgx_offset_1;
+    sum += lbl_1_bss_26B1E__fzgx_offset_2[0];
+    sum += *(u32 *)&lbl_1_bss_26B1E__fzgx_offset_22;
+    sum += *(u32 *)&lbl_1_bss_26B1E__fzgx_offset_26;
+    sum += (u32)&fzgx_pool_lbl_1_rodata_BD8;
+    sum += (u32)&fzgx_pool_lbl_1_rodata_BD8_4;
+    sum += (u32)&fzgx_pool_lbl_1_rodata_BD8_8;
+    sum += (u32)&fzgx_pool_lbl_1_rodata_BD8_C;
+    sum += (u32)&fzgx_pool_lbl_1_rodata_BD8_10;
+    sum += (u32)&fzgx_pool_lbl_1_rodata_BD8_1E4;
+    return sum;
+}
+#pragma section code_type ".text"
+
+#define racer_slot_data (&lbl_1_data_3D544.unk_0)
+
+extern const GameRodata lbl_1_rodata_BD8;
+extern u8 lbl_1_bss_718E0[];
+
+extern void fn_1_1566F8(s32, RacerStatus *);
+extern void fn_1_1567A8(s32);
+extern void fn_1_156754(s32);
+extern void fn_1_8D894(Racer *);
+extern void fn_1_F7338(s32, s32, s32);
+extern void fn_1_2E928(Racer *);
+extern s32 fn_1_32600(Racer *);
+extern void fn_1_32200(Racer *, s32);
+extern u32 fn_1_8C884(s32);
+extern void fn_1_15E764(s32, void *);
+extern void fn_1_327F8(Racer *, s32);
+extern void fn_1_D07AC(u32, u32);
+extern void fn_1_A2D84(u32);
+extern void fn_80008BA8(void *, void *, u32);
+
+void fn_1_32A40(Racer *racer) {
+    s8 idx;
+    s32 a;
+    s32 b;
+    s32 c;
+    RacerStatus status;
+
+    idx = racer->unk_474;
+    if (idx != -1 && !(fzgx_obj_lbl_1_bss_3C30.flags & 0x800)) {
+        status.flags = 0;
+        status.unk_19 = racer->unk_6 % 5;
+        status.unk_14 = fzgx_pool_lbl_1_rodata_BD8_4[0];
+        a = (racer->flags & 0x400) &&
+            !(fzgx_obj_lbl_1_bss_26B1C & (1 << idx));
+        b = 0;
+        if (a) {
+            if ((__rlwnm(lbl_1_bss_718E0[2], (32 - racer->unk_474) & 31, 31, 31))) {
+                b = 1;
+            }
+        }
+        c = 0;
+        if (b && fzgx_obj_lbl_1_bss_3C2A != 42) {
+            c = 1;
+        }
+        if (c) {
+            if (racer->flags & 0x8000) {
+                status.flags |= 1;
+            } else {
+                status.flags &= ~1;
+            }
+            status.unk_0 = racer->unk_8;
+            status.unk_C = racer->unk_17C;
+            status.unk_4 = racer->unk_580;
+            status.unk_8 = racer->unk_A4;
+            status.unk_10 = racer->unk_224;
+            if (racer->flags & 0x400040) {
+                status.flags |= 8;
+            }
+            if (racer->flags & 0x10) {
+                status.flags |= 4;
+                status.unk_14 = racer->unk_BC;
+            }
+            if (racer->flags & 0x2800000) {
+                status.flags |= 0x10;
+            }
+            if ((racer->unk_218 >> 29) & 1) {
+                status.flags |= 0x20;
+            }
+            if (racer->flags & 0x80) {
+                if (racer->flags & 0x40000000) {
+                    status.flags |= 0x40;
+                }
+                if (!(racer->unk_58C & 0x10) && racer->unk_50D == 0xEF) {
+                    status.flags |= 2;
+                }
+                status.flags |= 0x80;
+            }
+        } else {
+            status.unk_0 = fzgx_pool_lbl_1_rodata_BD8_4[0];
+        }
+        fn_1_1566F8(racer->unk_474, &status);
+        fn_1_1567A8(racer->unk_474);
+        if (fzgx_obj_lbl_1_bss_3C30.mode == 2 && !(racer->flags & 0x10000)) {
+            if (!(lbl_1_bss_26B1E__fzgx_offset_22 < racer->unk_184) &&
+                fzgx_pool_lbl_1_rodata_BD8_1E4[0] == racer->unk_184 && racer->unk_18B != 0 &&
+                !(racer->unk_218 & 0x8000000)) {
+                racer->unk_58C |= 0x40;
+            }
+        }
+    }
+
+    if (!(fzgx_obj_lbl_1_bss_3C30.flags & 0x200000)) {
+        s32 player = racer->unk_474;
+
+        if (racer->flags & 0x10000) {
+            s8 slot = racer->unk_475;
+            if (slot != -1) {
+                u8 mask = 1 << slot;
+                if (!(fzgx_obj_lbl_1_bss_26B1E & mask)) {
+                    fzgx_obj_lbl_1_bss_26B1E |= mask;
+                    slot = racer->unk_475;
+                    if (slot != -1 && fzgx_obj_lbl_1_bss_26304[slot] < fzgx_pool_lbl_1_rodata_BD8_C[0]) {
+                        fn_80008BA8(&fzgx_obj_lbl_1_bss_26314[slot], racer->unk_49C, 0x1FC);
+                        fzgx_obj_lbl_1_bss_26304[racer->unk_475] = racer->unk_D8;
+                        if (racer->unk_482 > 30) {
+                            fzgx_obj_lbl_1_bss_26B04[racer->unk_475] = 30;
+                        } else {
+                            fzgx_obj_lbl_1_bss_26B04[racer->unk_475] = racer->unk_482;
+                        }
+                    }
+                    if (fzgx_obj_lbl_1_bss_3C30.mode == 5) {
+                        fzgx_obj_lbl_1_bss_50EC[racer->unk_475] = 180;
+                    } else {
+                        fzgx_obj_lbl_1_bss_50EC[racer->unk_475] = 480;
+                    }
+                    if (!(racer->flags & 0x4000000)) {
+                        fn_1_8D894(racer);
+                    }
+                    {
+                        u16 *timer = &fzgx_obj_lbl_1_bss_50EC[racer->unk_475];
+                        lbl_1_bss_25B88__fzgx_offset_8[0]++;
+                        if (fzgx_obj_lbl_1_bss_25B98 == 0) {
+                            lbl_1_bss_25B88__fzgx_offset_4 = timer;
+                            fzgx_obj_lbl_1_bss_25B84 = 1;
+                        }
+                    }
+                    if (lbl_1_bss_50EC__fzgx_offset_10 == -1) {
+                        lbl_1_bss_50EC__fzgx_offset_10 = racer->unk_475;
+                    }
+                    racer_slot_data[racer->unk_475] = 0;
+                } else {
+                    fzgx_obj_lbl_1_bss_50EC[slot] -= fzgx_obj_lbl_1_bss_50EC[slot] != 0;
+                }
+            }
+            if (player != -1) {
+                u8 mask = 1 << player;
+                if (!(lbl_1_bss_50EC__fzgx_offset_8[0] & mask)) {
+                    fn_1_F7338(player, 5, 0);
+                }
+                lbl_1_bss_50EC__fzgx_offset_8[0] |= mask;
+                fzgx_obj_lbl_1_bss_3C30.unk_1468[player] = fzgx_obj_lbl_1_bss_3C30.unk_4;
+                fn_1_156754(player);
+            }
+            if (!(fzgx_obj_lbl_1_bss_3C30.flags & 0x800)) {
+                lbl_1_bss_26B1E__fzgx_offset_2[racer->unk_4] = 1;
+            }
+            racer->flags |= 1;
+            fn_1_2E928(racer);
+        } else if (fn_1_32600(racer)) {
+            fn_1_32200(racer, player);
+        } else {
+            RacerInfo *info = racer->unk_49C;
+            if (!(racer->flags & 0x8000200) && (fzgx_obj_lbl_1_bss_3C30.flags & 0x40000)) {
+                u32 n = fn_1_8C884(racer->unk_4);
+                u32 q;
+                u32 rem;
+                GameSub *sub = &fzgx_obj_lbl_1_bss_3C30;
+                if (sub->unk_1403 < n) {
+                    s32 v;
+                    q = n >> 2;
+                    rem = n & 3;
+                    if (q >= sub->unk_1404) {
+                        q = sub->unk_1404 - 1;
+                    }
+                    v = fzgx_obj_lbl_1_bss_3C30.unk_13FA[rem] - fzgx_obj_lbl_1_bss_3C30.unk_1402 * q * 60;
+                    if (v < 0) {
+                        v = 0;
+                    }
+                    if (v != 0) {
+                        sub->unk_1403 = n;
+                        fzgx_obj_lbl_1_bss_3C30.unk_A4 += v;
+                        if (racer->unk_475 != -1) {
+                            fn_1_15E764(racer->unk_475, fzgx_obj_lbl_1_bss_25B88);
+                        }
+                    }
+                }
+            }
+            if (racer->flags & 0x40000) {
+                fn_1_327F8(racer, player);
+            }
+            if (racer->unk_475 != -1) {
+                fn_1_D07AC((u8)racer->unk_475,
+                           info->unk_16A | ((info->unk_168 << 20) | (info->unk_169 << 12)));
+            }
+        }
+
+        if (fzgx_obj_lbl_1_bss_3C30.mode == 2 && !(racer->flags & 0x10000)) {
+            if (racer->unk_58C & 0x40) {
+                fzgx_obj_lbl_1_bss_3C30.mode = 6;
+            }
+            lbl_1_bss_26B1E__fzgx_offset_26 = racer->unk_184;
+        }
+        if (racer->unk_474 != -1 && fzgx_obj_lbl_1_bss_3C30.mode == 1) {
+            u8 k = racer->unk_482 / 5;
+            if (!(fzgx_obj_lbl_1_bss_3C30.flags & 0x800) && fzgx_obj_lbl_1_bss_3C30.unk_1473 == 0) {
+                u8 d = k - fzgx_obj_lbl_1_bss_3C30.unk_1473;
+                fzgx_obj_lbl_1_bss_3C30.unk_1473 = k;
+                fzgx_obj_lbl_1_bss_3C30.unk_13F6 += d;
+                if (d) {
+                    fn_1_A2D84(0xA9092800);
+                }
+            }
+        }
+        if (!(fzgx_obj_lbl_1_bss_3C30.flags & 0x20)) {
+            u8 joined;
+            u8 left;
+            GameSub *sub;
+            s32 i;
+            sub = &fzgx_obj_lbl_1_bss_3C30;
+            joined = lbl_1_bss_50EC__fzgx_offset_8[0];
+            sub->unk_C = 0;
+            left = fzgx_obj_lbl_1_bss_26B1B;
+            sub->unk_D = sub->unk_8;
+            for (i = 0; i < 4; i++) {
+                u32 mask = 1 << i;
+                if (joined & mask) {
+                    sub->unk_C++;
+                }
+                if (left & mask) {
+                    sub->unk_D--;
+                }
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_32A40 */
+
 /* fzgx:begin fn_1_331EC noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
