@@ -9002,3 +9002,27 @@ rel/main_rel/accessory/fn_1_110478.c:
 
 rel/main_rel/accessory/fn_1_111980.c:
 	.text       start:0x00111980 end:0x00112F40 align:4
+
+rel/main_rel/stcoli/fn_1_2DE00.c:
+	.text       start:0x0002DE00 end:0x0002DF98 align:4
+
+rel/main_rel/game/fn_1_320A4.c:
+	.text       start:0x000320A4 end:0x00032200 align:4
+
+rel/main_rel/game/fn_1_359B8.c:
+	.text       start:0x000359B8 end:0x00035BC4 align:4
+
+rel/main_rel/game/fn_1_37AA8.c:
+	.text       start:0x00037AA8 end:0x00037E98 align:4
+
+rel/main_rel/game/fn_1_382C4.c:
+	.text       start:0x000382C4 end:0x000384E8 align:4
+
+rel/main_rel/game/fn_1_3B7D4.c:
+	.text       start:0x0003B7D4 end:0x0003C880 align:4
+
+rel/main_rel/stcoli/fn_1_3C880.c:
+	.text       start:0x0003C880 end:0x0003CDB0 align:4
+
+rel/main_rel/game/fn_1_3EC88.c:
+	.text       start:0x0003EC88 end:0x0003ED8C align:4
