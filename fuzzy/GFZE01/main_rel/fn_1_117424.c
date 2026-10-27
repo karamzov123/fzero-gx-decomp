@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (99.04% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.86% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 
 
@@ -143,6 +143,7 @@ void fn_1_117424(Work *arg0) {
  u32 i6;
  Node *n6;
  u8 *model6;
+ Owner *owner;
  Fn183D28Vec3 diff;
  Fn183D28Vec3 target;
  Fn183D28Vec3 *qp = &diff;
@@ -152,7 +153,8 @@ void fn_1_117424(Work *arg0) {
  fn_80083970(fn_1_117424_names(ACC)[arg0->index],(const char *)(ACC+0x4bc));
  if(arg0->flags & 2) {
  arg0->flags &= ~2;
- lbl_8006DBAC((Vec3 *)(MODELB+136));
+ owner=arg0->owner;
+ lbl_8006DBAC((Vec3 *)(owner->model->base+INDEX(arg0->index)*396+136));
  lbl_8006DAEC();
  for(i1=0,n1=arg0->nodes;i1<arg0->count;i1++,n1++) {
  lbl_8006DBE4();
@@ -170,7 +172,8 @@ void fn_1_117424(Work *arg0) {
  n2->vel.y-=F(0x60);
  }
  }
- model3=MODELB;
+ owner=arg0->owner;
+ model3=owner->model->base+INDEX(arg0->index)*396;
  for(i3=0,n3=arg0->nodes;i3<arg0->count;i3++,n3++) {
  lbl_8006DBAC((Vec3 *)(model3+136));
  lbl_8006DAEC();
@@ -180,16 +183,17 @@ void fn_1_117424(Work *arg0) {
  }
  lbl_8006DC20();
  }
- model6=MODELB;
+ owner=arg0->owner;
+ model6=owner->model->base+INDEX(arg0->index)*396;
  for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
  if(!(n6->flags&1)) {
  f32 kk,x,y,z;
  lbl_8006DBAC((Vec3 *)(model6+136));
  lbl_8006E1B0(&n6->local,&target);
  kk=F(0x3d0)/n6->weight;
- x=kk*(target.x-n6->pos.x);
  y=D(0x340)*(target.y-n6->pos.y);
  z=kk*(target.z-n6->pos.z);
+ x=kk*(target.x-n6->pos.x);
  n6->pos.x+=x;
  n6->pos.y+=y;
  n6->pos.z+=z;
@@ -201,7 +205,8 @@ void fn_1_117424(Work *arg0) {
  vn->vel.z=F(0x200)*(vn->pos.z-vn->prev.z);
  }
  fmodel=(u8 *)fn_80077B14(arg0->obj);
- lbl_8006DBAC((Vec3 *)(MODELB+136));
+ owner=arg0->owner;
+ lbl_8006DBAC((Vec3 *)(owner->model->base+INDEX(arg0->index)*396+136));
  for(fi=0,fn=arg0->nodes;fi<arg0->count;fi++,fn++) {
  for(fj=0,lp=(u16 *)fn;(s32)fj<fn->count;lp++,fj++) {
  fn_8006E250((Vec3f *)&fn->pos,(Vec3f *)(fmodel+(lp[2]<<6)));
