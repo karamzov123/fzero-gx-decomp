@@ -81374,9 +81374,12 @@
     "symbols": [
       "fn_12_3DCF0"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "movie_module",
