@@ -68,3 +68,12 @@ REL pool literals and register permutations (2026-10-26, accessory cloth family)
   register correspondence per 0x200-byte block. A uniform shift means one web is claimed in the
   wrong order; a block-local swap points at one loop's variables (separate loop counters per loop,
   loops as blocks vs inline helpers, decl order). Pair with `declsearch.py`.
+
+Partial twins and structural diffs (2026-10-27):
+- `python3 tools/manualkit/cover.py [K]` ranks unmatched functions by how much of their code (K-instruction
+  windows, registers masked) already exists in matched functions of the same module, with the donors.
+  It finds donors whose body is a block inside the target, which `simscan.py` misses (fn_4_8E38 <-
+  fn_4_9C14, landed first try by reusing the donor unit's TU-layout prologue).
+- `uv run python tools/manualkit/opdiff.py SYM FILE MW [FLAGS]` is an opcode-level diff of a draft against
+  retail: whole blocks inserted/deleted show where control flow is laid out differently (fn_80065F34's
+  error paths had to be nested `else` branches, not `goto cleanup`). Use it before register tuning.
