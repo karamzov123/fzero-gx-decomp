@@ -3514,6 +3514,47 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/toolkit/fn_3_1C8D0.c",
+    "symbols": [
+      "fn_3_1C8D0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/toolkit.c",
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_768",
+      "@14": "lbl_3_rodata_768+0x1C",
+      "@29": "lbl_3_rodata_768+0x58",
+      "@17": "lbl_3_rodata_768+0x28",
+      "@30": "lbl_3_rodata_768+0x5C",
+      "@31": "lbl_3_rodata_768+0x60",
+      "@45": "lbl_3_rodata_800",
+      "@15": "lbl_3_rodata_768+0x20",
+      "@16": "lbl_3_rodata_768+0x24",
+      "@19": "lbl_3_rodata_768+0x30",
+      "@20": "lbl_3_rodata_768+0x34",
+      "@21": "lbl_3_rodata_768+0x38",
+      "@27": "lbl_3_rodata_768+0x50",
+      "@23": "lbl_3_rodata_768+0x40",
+      "@28": "lbl_3_rodata_768+0x54",
+      "@26": "lbl_3_rodata_768+0x4C",
+      "@32": "lbl_3_rodata_768+0x64",
+      "@33": "lbl_3_rodata_768+0x68",
+      "@34": "lbl_3_rodata_768+0x6C",
+      "@36": "lbl_3_rodata_768+0x74",
+      "@37": "lbl_3_rodata_768+0x78",
+      "@35": "lbl_3_rodata_768+0x70",
+      "@38": "lbl_3_rodata_768+0x7C",
+      "@39": "lbl_3_rodata_768+0x80",
+      "@42": "lbl_3_rodata_768+0x8C",
+      "@40": "lbl_3_rodata_768+0x84",
+      "@41": "lbl_3_rodata_768+0x88",
+      "@43": "lbl_3_rodata_768+0x90"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/toolkit/fn_3_1D338.c",
     "symbols": [
       "fn_3_1D338"
