@@ -430,6 +430,185 @@ void fn_1_F5B88(Obj_1_data_2A7E0_At3C *arg0) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_F5B88 */
 
+/* fzgx:begin fn_1_F5D94 */
+#include "rel/main_rel/burner.h"
+
+#ifndef GAME_MAIN_REL_BURNER_TYPES_H
+#define GAME_MAIN_REL_BURNER_TYPES_H
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_9CCE8_Vec3;
+
+extern void fn_8006E294(fn_1_9CCE8_Vec3 *);
+
+#endif  // GAME_MAIN_REL_BURNER_TYPES_H
+
+/* end game/main_rel/burner_types.h */
+/* begin game/vec3.h (fork-deltawave784/windows-and-types@b1e6f2df) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+struct fn_1_F5D94_lbl_801A6D00 { u32 unk_0; };
+extern u32 lbl_801A63C0;
+extern struct fn_1_F5D94_lbl_801A6D00 lbl_801A6D00;
+extern u32 lbl_801A66CC;
+extern void lbl_8006DBAC(Vec3 *);
+extern f32 lbl_8006D0B4(f32);
+
+#pragma section code_type ".fzgxpool"
+void fzgx_fn_1_F5D94_pool_primer(volatile f32 *p, volatile f64 *q) {  /* fzgx-allow: S2 volatile keeps the verified access order */
+    *p = 0.0f; *p = 6.0f; *p = 32767.0f; *p = 0.02f;
+    *p = 1.0f; *p = 15.0f; *q = 4503601774854144.0;
+    *p = 0.1f; *p = 36.0f; *q = 0.5; *p = 1.5f; *p = 2.0f;
+    *p = 0.4f; *p = 0.5f; *p = 0.2f; *p = 30.0f; *p = 180.0f;
+    *p = 2.5f; *p = 0.025f; *p = 0.0005f; *p = 0.04f; *p = 0.05f;
+}
+#pragma section code_type ".text"
+
+#define F(o) (*(f32 *)((u8 *)v13 + (o)))
+#define I(o) (*(s32 *)((u8 *)v13 + (o)))
+static inline s32 fn_1_F5D94_rnd(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+#define RND() ((f32)fn_1_F5D94_rnd() / 32767.0f)
+
+static inline f32 fn_1_F5D94_distance(fn_1_9CCE8_Vec3 *a, fn_1_9CCE8_Vec3 *b) {
+    register f32 dx = a->x;
+    register f32 dy = a->y;
+    register f32 dz = a->z;
+    dx -= b->x;
+    dy -= b->y;
+    dz -= b->z;
+    dx = (f32)(dx * dx);
+    dx += dy * dy;
+    dx += dz * dz;
+    return lbl_8006D0B4(dx);
+}
+
+static inline f32 fn_1_F5D94_clamp(f32 value, f32 low, f32 high) {
+    if (value < low) return low;
+    if (value > high) return high;
+    return value;
+}
+
+#pragma opt_floatingpoint off
+#pragma opt_propagation on
+static inline f32 fn_1_F5D94_reciprocal(f32 value) {
+    return 1.0f / (1.0f + (f32)(2.5f * value));
+}
+void fn_1_F5D94(void *arg0) {
+    register f32 v5;
+    f32 v0, v1, v2, v6, v9, v10, v11;
+    s32 v12;
+    void *v13 = arg0;
+    s32 v8;
+    f32 v21;
+    f32 v36;
+    fn_1_9CCE8_Vec3 loc_14;
+    fn_1_9CCE8_Vec3 loc_8;
+
+    lbl_8006DBAC((Vec3 *)lbl_801A66CC);
+    fn_8006E294(&loc_8);
+    lbl_8006DBAC((Vec3 *)(lbl_801A6D00.unk_0 + 48));
+    fn_8006E294(&loc_14);
+    F(8) = fn_1_F5D94_distance(&loc_14, &loc_8);
+    v2 = F(12);
+    F(12) = v2 + (f32)(0.1f * (1.0f - v2));
+    v5 = F(8);
+    v8 = (s32)(36.0f * F(12));
+    if (v5 > 0.5) {
+        v9 = 2.0f;
+        v6 = 1.5f;
+        v10 = v5 - v9;
+        v6 = fn_1_F5D94_clamp(v10, v6, v9);
+        v11 = 1.0f / v6;
+        v8 = (s32)((f32)v8 * v11);
+    }
+    v13 = (u8 *)v13 + 20;
+    for (v12 = 36; v12 > 0; v12--) {
+        if (v8 > v12 && I(48) == 0) {
+            v21 = 0.0f;
+            F(0) = 6.0f * RND();
+            F(4) = 6.0f * RND();
+            F(8) = 6.0f * RND();
+            *(fn_1_9CCE8_Vec3 *)((u8 *)v13 + 12) = *(fn_1_9CCE8_Vec3 *)v13;
+            F(24) = v21 + (f32)(0.4f * (RND() - 0.5f));
+            F(28) = 0.1f + (f32)(0.2f * RND());
+            F(32) = v21 + (f32)(0.4f * (RND() - 0.5f));
+            F(36) = v21;
+            F(40) = 0.02f * (1.0f + RND());
+            F(44) = 0.02f * (1.0f + RND());
+            F(40) = F(44);
+            I(48) = (s32)(30.0f + (f32)(180.0f * RND()));
+        }
+        if (I(48) > 0) {
+            v0 = F(24);
+            v1 = F(28);
+            v2 = F(32);
+            v0 = (f32)(v0 * v0);
+            v0 += v1 * v1;
+            v0 += v2 * v2;
+            v5 = fn_1_F5D94_reciprocal(v36 = lbl_8006D0B4(v0));
+            F(40) = (1.0f - (f32)(v5 * RND())) * F(44);
+            v0 = RND();
+            F(24) = F(24) + (f32)(0.025f * (f32)(v36 * (v0 - 0.5f)));
+            v0 = RND();
+            F(28) = F(28) + (f32)(0.025f * (f32)(v36 * (v0 - 0.5f)));
+            v0 = RND();
+            F(32) += (f32)(0.025f * (f32)(v36 * (v0 - 0.5f)));
+            v21 = 0.0f;
+            F(28) += 0.0005f;
+            F(24) += (f32)(0.04f * (v21 - F(24)));
+            F(28) += (f32)(0.04f * (0.2f - F(28)));
+            F(32) += (f32)(0.04f * (v21 - F(32)));
+            *(fn_1_9CCE8_Vec3 *)((u8 *)v13 + 12) = *(fn_1_9CCE8_Vec3 *)v13;
+            v0 = RND();
+            F(0) = F(0) + (F(24) + (f32)(0.05f * (v0 - 0.5f)));
+            v0 = RND();
+            F(4) = F(4) + (F(28) + (f32)(0.05f * (v0 - 0.5f)));
+            v0 = RND();
+            F(8) = F(8) + (F(32) + (f32)(0.05f * (v0 - 0.5f)));
+            while (F(0) < 0.0f) F(0) += 6.0f;
+            while (F(0) > 6.0f) F(0) -= 6.0f;
+            while (F(4) < 0.0f) F(4) += 6.0f;
+            while (F(4) > 6.0f) F(4) -= 6.0f;
+            while (F(8) < 0.0f) F(8) += 6.0f;
+            while (F(8) > 6.0f) F(8) -= 6.0f;
+            I(48)--;
+            if ((f32)I(48) < 15.0f) {
+                F(36) = F(36) * ((f32)I(48) / (f32)(I(48) + 1));
+            } else {
+                F(36) = F(36) + (f32)(0.2f * (1.0f - F(36)));
+            }
+            if (I(48) <= 0) {
+                F(36) = 0.0f;
+                I(48) = 0;
+            }
+        }
+        v13 = (u8 *)v13 + 52;
+    }
+}
+/* fzgx:end fn_1_F5D94 */
+
 /* fzgx:begin fn_1_F70C0 */
 // fn_1_F70C0: returns a constant.
 int fn_1_F70C0(void) {
@@ -3071,6 +3250,225 @@ void fn_1_FB180(int *value) {
     *value = 1;
 }
 /* fzgx:end fn_1_FB180 */
+
+/* fzgx:begin fn_1_FB18C noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "rel/main_rel/spline.h"
+
+typedef struct {
+    f32 x, y, z;
+} SplineVec;
+
+typedef struct {
+    u8 pad_0[0x8];
+    s16 unk_8;
+    u8 pad_A[0xE];
+    f32 unk_18;
+    u8 pad_1C[0x3C];
+    f32 unk_58;
+    u8 pad_5C[0x28];
+    f32 unk_84;
+    u8 pad_88[0x6C];
+    f32 unk_F4;
+    u8 pad_F8[0x5C];
+    u32 unk_154;
+} SplineObj;
+
+extern u32 lbl_801A63C0;
+extern u32 lbl_801A66A0;
+
+extern s16 fn_1_E5430(s16);
+extern SplineObj *fn_1_E54A8(s16, s16);
+extern s32 fn_1_E5770(SplineObj *, u64);
+extern void fn_1_E5930(SplineObj *, u64);
+extern void fn_1_E594C(SplineObj *, u64);
+extern s16 fn_1_E5568(s16);
+extern u32 fn_1_DE180(SplineObj *, SplineVec *, f32);
+/* retail evaluates the float argument before the object at both call sites */
+extern void fn_1_E57F4(f32, SplineObj *);
+extern void fn_1_E5988(SplineObj *, SplineVec *);
+extern void fn_1_E5A94(SplineObj *, SplineVec *);
+extern void fn_1_E57FC(SplineObj *, SplineVec *);
+extern void fn_80008BEC(void *, int, u32);
+
+/* Shared literal pool primer: earlier functions of the TU fill the pool up to +0xF0.
+ * MWCC emits a function's aggregate initializers before its scalar literals and the
+ * int-to-float constants last, so each group gets its own primer. */
+#pragma section code_type ".fzgxpool"
+extern void fzgx_pool_sink(const void *);
+void fzgx_pool_primer(void) {
+    u32 t[4] = {0x00000000, 0x028001E0, 0x00000000, 0x00000001};
+    fzgx_pool_sink(t);
+}
+void fzgx_pool_primer2(f32 *f) {
+    f[0] = 1.0f;
+    f[1] = -1.0f;
+}
+void fzgx_pool_primer2b(f32 *f, u32 u, s32 s) {
+    f[2] = (f32)u;
+    f[3] = (f32)s;
+}
+void fzgx_pool_primer2c(f32 *f, f64 *d) {
+    f[4] = 490000.0f;
+    f[5] = 20.0f;
+    f[6] = 13.0f;
+    f[7] = 0.5f;
+    d[0] = 50.0;
+    d[1] = 10.0;
+    f[8] = 0.0f;
+}
+void fzgx_pool_primer3(f32 *f, f64 *d) {
+    {
+        u32 t[3] = {0x00000000, 0x41A00000, 0x00000000};
+        fzgx_pool_sink(t);
+    }
+    {
+        u32 t[33] = {
+            0x41A00000, 0x00000000, 0x00000000, 0x00000001, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000001, 0x012C0005, 0x000500C8, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000001,
+            0x02580003, 0x001401F4, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000,
+        };
+        fzgx_pool_sink(t);
+    }
+    f[9] = -0.5f;
+    f[10] = 32767.0f;
+    f[11] = 0.05235988f;
+    d[2] = 216.0;
+}
+#pragma section code_type ".text"
+
+static inline s32 spline_rand(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+static inline f32 spline_clamp01(f32 x) {
+    return (x < 0.0f) ? 0.0f : ((x > 1.0f) ? 1.0f : x);
+}
+
+/* Fade pass: age every object and fade it out over its last 30 frames. */
+static inline void spline_fade_pass(void) {
+    s16 i2;
+    SplineObj *obj2;
+    s16 n;
+    f32 limit;
+    f32 rem;
+    f32 t;
+
+    n = fn_1_E5430(4);
+    for (i2 = 0; i2 < n; i2++) {
+        obj2 = fn_1_E54A8(4, i2);
+        if (!fn_1_E5770(obj2, 3)) {
+            obj2->unk_154++;
+        }
+        limit = (obj2->unk_8 % 4 == 0) ? 240.0f : 120.0f;
+        if ((f32)obj2->unk_154 > limit) {
+            obj2->unk_154 = 0;
+            fn_1_E5930(obj2, 3);
+        } else {
+            rem = limit - (f32)obj2->unk_154;
+            if (rem < 30.0f) {
+                t = rem / 30.0f;
+                fn_1_E57F4(spline_clamp01(t), obj2);
+            }
+        }
+    }
+}
+
+/* Spawn scan over the n objects, starting at the running spawn count. */
+static inline void spline_spawn_loop(s16 n) {
+    s16 i3;
+    s16 count;
+    SplineObj *obj3;
+
+    count = 0;
+    for (i3 = count; i3 < n; i3++) {
+        obj3 = fn_1_E54A8(4, i3);
+        if (fn_1_E5770(obj3, 3) && count < lbl_1_bss_84428.unk_8 && fn_1_E5568(4) < lbl_1_bss_84428.unk_A) {
+            SplineVec out;
+            SplineVec tmp;
+            SplineVec scale;
+            SplineVec rot;
+            f32 dx;
+            f32 dy;
+            f32 dz;
+
+            fn_1_E594C(obj3, 3);
+            fn_1_E594C(obj3, 0x8000);
+            fn_1_E57F4(1.0f, obj3);
+            obj3->unk_154 = 0;
+
+            /* position: box center offset by a random point of the box */
+            psvec_scale(&lbl_1_bss_84428.unk_1C, -0.5f, &tmp);
+            dx = lbl_1_bss_84428.unk_1C * ((f32)spline_rand() / 32767.0f);
+            dy = lbl_1_bss_84428.unk_20 * ((f32)spline_rand() / 32767.0f);
+            dz = lbl_1_bss_84428.unk_24 * ((f32)spline_rand() / 32767.0f);
+            tmp.x += dx;
+            tmp.y += dy;
+            tmp.z += dz;
+            psvec_add((u8 *)&lbl_1_bss_84428 + 0x10, &tmp, &out);
+            fn_1_E5988(obj3, &out);
+
+            rot.x = 0.05235988f * (spline_rand() % 2 + 2);
+            rot.y = 0.05235988f * (spline_rand() % 2 + 2);
+            rot.z = 0.05235988f * (spline_rand() % 2 + 2);
+            fn_1_E5A94(obj3, &rot);
+
+            fn_80008BEC(&scale, 0, sizeof(scale));
+            scale.z = (spline_rand() % 180 + 30) / 216.0;
+            fn_1_E57FC(obj3, &scale);
+            count++;
+        }
+    }
+}
+
+#pragma inline_max_size(4096)
+void fn_1_FB18C(void) {
+    SplineObj *obj1;
+    s16 i1;
+    s16 n;
+    f32 v;
+    f32 base;
+
+    n = fn_1_E5430(4);
+    {
+        SplineVec up = {0.0f, 1.0f, 0.0f};
+
+        base = 0.0f;
+        for (i1 = 0; i1 < n; i1++) {
+            obj1 = fn_1_E54A8(4, i1);
+            if (fn_1_E5770(obj1, 0x20)) {
+                v = 0.99f * obj1->unk_84 * obj1->unk_F4;
+                if (obj1->unk_58 < base + v) {
+                    obj1->unk_58 = base + v;
+                    fn_1_DE180(obj1, &up, 0.05f * obj1->unk_18);
+                    fn_1_E5930(obj1, 0x40000000);
+                }
+            }
+        }
+    }
+
+    spline_fade_pass();
+
+    if ((s32)lbl_1_bss_84428.unk_0 == 1) {
+        if (lbl_1_bss_84428.unk_4 != -1) {
+            lbl_1_bss_84428.unk_4 = (lbl_1_bss_84428.unk_4-- > 0) ? lbl_1_bss_84428.unk_4-- : 0;
+        }
+        if (lbl_1_bss_84428.unk_4 == 0) {
+            lbl_1_bss_84428.unk_0 = 0;
+        }
+
+        n = fn_1_E5430(4);
+        if (lbl_801A66A0 % lbl_1_bss_84428.unk_6 == 0) {
+            spline_spawn_loop(n);
+        }
+    }
+}
+/* fzgx:end fn_1_FB18C */
 
 /* fzgx:begin fn_1_FB770 */
 int fn_1_FB770(int flag, u32 *value) {

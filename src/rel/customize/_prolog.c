@@ -203,6 +203,106 @@ void fn_3_8F8(void) {
 }
 /* fzgx:end fn_3_8F8 */
 
+/* fzgx:begin _epilog pool */
+#include "rel/customize/globals.h"
+
+extern void fn_3_11FA0(void);
+extern void fn_3_130A8(void);
+extern void fn_8006CE1C(f32);
+extern void fn_1_3C78(void);
+extern u32 fn_1_435C(u32);
+extern void fn_1_41A8(void);
+extern void fn_1_6400(void);
+extern void fn_1_46B4(u32, u32, const char *, int);
+extern void OSReport(const char *, ...);
+extern void fn_1_8D168(void *);
+extern void fn_1_48140(int);
+extern void fn_1_412A0(u32);
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_1_56298(f32, f32, f32, f32);
+extern void fn_1_A0AA4(void);
+extern s32 fn_1_46DC4(s32);
+
+extern u32 lbl_801A6410[];
+extern u32 lbl_801A66C8[];
+extern u8 lbl_1_bss_970[];
+
+typedef struct {
+    u8 pad[0x64];
+} EpilogSlot;
+
+Obj_3_bss_0 lbl_3_bss_0;
+u8 epilog_bss_8[8];
+u32 epilog_obj;
+u8 epilog_bss_14[0x12C];
+Obj_3_bss_140 lbl_3_bss_140;
+u8 epilog_bss_20844[8];
+u32 epilog_camA;
+u32 epilog_camB;
+u32 epilog_heapObj;
+u8 epilog_bss_20858[0x241E0 - 0x20858];
+EpilogSlot epilog_slots[4];
+
+typedef struct {
+    u8 pad0[0x1164];
+    char strA[0x1C];
+    char strB[0x5C];
+    char file[0x3C];
+    char fmt[0x10];
+} EpilogData;
+
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_bss_layout__epilog(void) {
+    fn_80008BEC(&lbl_3_bss_0, 0, sizeof(lbl_3_bss_0));
+    fn_80008BEC(epilog_bss_8, 0, sizeof(epilog_bss_8));
+    fn_80008BEC(&epilog_obj, 0, sizeof(epilog_obj));
+    fn_80008BEC(epilog_bss_14, 0, sizeof(epilog_bss_14));
+    fn_80008BEC(&lbl_3_bss_140, 0, sizeof(lbl_3_bss_140));
+    fn_80008BEC(epilog_bss_20844, 0, sizeof(epilog_bss_20844));
+    fn_80008BEC(&epilog_camA, 0, sizeof(epilog_camA));
+    fn_80008BEC(&epilog_camB, 0, sizeof(epilog_camB));
+    fn_80008BEC(&epilog_heapObj, 0, sizeof(epilog_heapObj));
+    fn_80008BEC(epilog_bss_20858, 0, sizeof(epilog_bss_20858));
+    fn_80008BEC(epilog_slots, 0, sizeof(epilog_slots));
+}
+
+void _epilog(void) {
+    EpilogData *data;
+    u16 i;
+
+    data = (EpilogData *)&lbl_3_data_0;
+    fn_8006CE1C(0.0f);
+    fn_1_3C78();
+    fn_1_435C(epilog_camA);
+    fn_1_41A8();
+    fn_1_435C(epilog_camB);
+    fn_1_41A8();
+    fn_1_6400();
+    fn_1_46B4(lbl_801A6410[0], epilog_obj, data->file, 0x45E);
+    epilog_obj = 0;
+    fn_1_46B4(lbl_801A6410[0], epilog_camA, data->file, 0x461);
+    fn_1_46B4(lbl_801A6410[0], epilog_camB, data->file, 0x462);
+    OSReport(data->fmt, lbl_801A66C8[0]);
+    fn_1_46B4(lbl_801A6410[0], epilog_heapObj, data->file, 0x465);
+    epilog_heapObj = 0;
+    for (i = 0; i < 4; i++) {
+        fn_1_8D168(&epilog_slots[i]);
+    }
+    fn_1_48140(0x9A);
+    fn_1_48140(0x89);
+    fn_1_412A0(1);
+    fn_1_412A0(3);
+    fn_80008BEC(&lbl_3_bss_140, 0, 0x20700);
+    fn_3_11FA0();
+    fn_3_130A8();
+    lbl_1_bss_970[4] = 0;
+    fn_1_56298(0.0f, 0.0f, 0.0f, 0.0f);
+    fn_1_A0AA4();
+    fn_1_46DC4((s32)data->strA);
+    fn_1_46DC4((s32)data->strB);
+}
+/* fzgx:end _epilog */
+
 /* fzgx:begin fn_3_AF8 */
 extern u8 lbl_3_bss_140[132868];
 

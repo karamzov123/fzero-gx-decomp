@@ -526,6 +526,65 @@ void fn_1_5773C(fn_1_5773C_Vec3 *arg0, fn_1_5773C_Vec3 *arg1, u8 *arg2) {
 }
 /* fzgx:end fn_1_5773C */
 
+/* fzgx:begin fn_1_57810 noprologue */
+#include "sdk_addresses.h"
+#include "types.h"
+
+/* GX write-gather FIFO */
+typedef union { u8 u8; f32 f32; } FifoT;
+#define FIFO (*(volatile FifoT *)FZGX_ADDR_GXFIFO)  /* fzgx-allow: S2 volatile view keeps the verified load order */
+typedef struct { u8 r, g, b, a; } Col;
+typedef struct { f32 x, y, z; } Vtx3;
+extern void *lbl_801A6D00;
+extern void GXLoadPosMtxImm(void *, int);
+extern void fn_1_57DC0(void);
+extern void fn_8003462C(u8, u8, u16);
+
+static inline void Pos3(f32 x, f32 y, f32 z) {
+    FIFO.f32 = x;
+    FIFO.f32 = y;
+    FIFO.f32 = z;
+}
+static inline void Col4(u8 r, u8 g, u8 b, u8 a) {
+    FIFO.u8 = r;
+    FIFO.u8 = g;
+    FIFO.u8 = b;
+    FIFO.u8 = a;
+}
+
+/* retail keeps the trip count in two webs (an uncoalesced copy): lifetimes off */
+#pragma opt_lifetimes off
+void fn_1_57810(u16 n, Vtx3 *verts, Col *color) {
+    u8 a;
+    u8 b;
+    u8 g;
+    u8 r;
+    int count;
+    int i;
+    Vtx3 *p;
+    u32 cw;
+    u8 *cb;
+    if (n < 2) return;
+    fn_1_57DC0();
+    cw = *(u32 *)color;
+    GXLoadPosMtxImm(lbl_801A6D00, 0);
+    fn_8003462C(0xB0, 0, n);
+    cb = (u8 *)&cw;
+    r = cb[0];
+    g = cb[1];
+    b = cb[2];
+    a = cb[3];
+    count = n;
+    p = verts;
+    for (i = count; i > 0; i--) {
+        Pos3(p->x, p->y, p->z);
+        Col4(r, g, b, a);
+        p++;
+    }
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_57810 */
+
 /* fzgx:begin fn_1_579A0 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"

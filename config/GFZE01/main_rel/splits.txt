@@ -9095,3 +9095,48 @@ rel/main_rel/memcard/fn_1_B6B28.c:
 
 rel/main_rel/sel_static_disp/fn_1_147A04.c:
 	.text       start:0x00147A04 end:0x00148444 align:4
+
+rel/main_rel/burner/fn_1_9A0A8.c:
+	.text       start:0x0009A0A8 end:0x0009A1E8 align:4
+
+rel/main_rel/shadowmap/fn_1_57810.c:
+	.text       start:0x00057810 end:0x000579A0 align:4
+
+rel/main_rel/live_camera/fn_1_1138C.c:
+	.text       start:0x0001138C end:0x00011544 align:4
+
+rel/main_rel/stcoli/fn_1_15248.c:
+	.text       start:0x00015248 end:0x00015578 align:4
+
+rel/main_rel/accessory/fn_1_122348.c:
+	.text       start:0x00122348 end:0x0012277C align:4
+
+rel/main_rel/sel_static_disp/fn_1_1507C4.c:
+	.text       start:0x001507C4 end:0x00150C8C align:4
+
+rel/main_rel/spline/fn_1_FB18C.c:
+	.text       start:0x000FB18C end:0x000FB770 align:4
+
+rel/main_rel/accessory/fn_1_1250D0.c:
+	.text       start:0x001250D0 end:0x001256EC align:4
+
+rel/main_rel/bg_common/fn_1_1071E8.c:
+	.text       start:0x001071E8 end:0x0010780C align:4
+
+rel/main_rel/replay/fn_1_F4810.c:
+	.text       start:0x000F4810 end:0x000F4E3C align:4
+
+rel/main_rel/spline/fn_1_F5D94.c:
+	.text       start:0x000F5D94 end:0x000F65A0 align:4
+
+rel/main_rel/ghost/fn_1_F0168.c:
+	.text       start:0x000F0168 end:0x000F0508 align:4
+
+rel/main_rel/camera/fn_1_C770.c:
+	.text       start:0x0000C770 end:0x0000CC5C align:4
+
+rel/main_rel/effect_car/fn_1_7099C.c:
+	.text       start:0x0007099C end:0x00071024 align:4
+
+rel/main_rel/driver/fn_1_C24A4.c:
+	.text       start:0x000C24A4 end:0x000C3378 align:4

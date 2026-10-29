@@ -1894,6 +1894,131 @@ void fn_1_9A0A4(void) {
 }
 /* fzgx:end fn_1_9A0A4 */
 
+/* fzgx:begin fn_1_9A0A8 noprologue */
+typedef unsigned char u8;
+typedef signed char s8;
+typedef unsigned int u32;
+typedef float f32;
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 14.0f;
+    s = 0.0f;
+    s = 900.0f;
+    s = 2.0f;
+    s = 10.0f;
+}
+static const unsigned long fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const unsigned long *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.0;
+    d = 0.8;
+    d = 0.1;
+    s = 0.003921568859368563f;
+}
+static const unsigned long fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const unsigned long *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.0;
+    s = 0.15000000596046448f;
+    s = 0.10000000149011612f;
+    s = 0.10999999940395355f;
+    s = 0.11999999731779099f;
+    d = 4503601774854144.0;
+    s = 0.5f;
+    s = 1.7000000476837158f;
+    s = 1.0f;
+    s = 40.0f;
+    s = 5.0f;
+    s = 0.05000000074505806f;
+    s = 0.800000011920929f;
+    s = 1.6000001430511475f;
+    s = 0.6000000238418579f;
+    s = 0.7071067690849304f;
+    s = -1.8000000715255737f;
+    s = 1.2000000476837158f;
+    s = 0.23999999463558197f;
+    s = 0.6399999856948853f;
+    s = -0.20000000298023224f;
+    s = -2.0999999046325684f;
+    s = 32768.0f;
+    s = 24576.0f;
+    s = 53248.0f;
+    s = 40960.0f;
+    s = 0.75f;
+    s = 0.11313708871603012f;
+    s = 80.0f;
+    s = 9.999999046325684f;
+    s = 0.8999999761581421f;
+    s = 0.20000000298023224f;
+    s = 32767.0f;
+    s = 4.0f;
+    s = 0.25f;
+    s = 0.4000000059604645f;
+    s = 0.949999988079071f;
+}
+static const unsigned long fzgx_pool_table6[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const unsigned long *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.05;
+    d = 4503599627370496.0;
+    s = 15.0f;
+    s = 35.0f;
+}
+#pragma section code_type ".text"
+
+extern const f32 lbl_1_rodata_4100;
+extern int fn_1_6EC0(u8);
+extern u32 fn_1_5910(void);
+extern void fn_1_681C(u32, f32 *);
+
+static inline f32 clampz(f32 t)
+{
+    if (t > 0.0f) {
+        return t;
+    }
+    return 0.0f;
+}
+
+#pragma scheduling on
+#pragma peephole on
+#pragma opt_propagation off
+f32 fn_1_9A0A8(u8 *p)
+{
+    f32 v[3];
+    f32 r = 1.0f;
+    f32 a, c, b, d;
+    u8 id;
+    id = p[0x475];
+    if (fn_1_6EC0(id)) {
+        if ((u32)(s8)p[0x475] == fn_1_5910()) {
+            fn_1_681C(p[0x475], v);
+            a = v[0] - *(f32 *)(p + 0x7c);
+            b = v[1];
+            b = b - *(f32 *)(p + 0x80);
+            c = v[2];
+            c = c - *(f32 *)(p + 0x84);
+            d = a * a;
+            d = d + b * b;
+            d = d + c * c;
+            if (clampz(d - 15.0f) / 35.0f < 0.0f) {
+                r = 0.0f;
+            } else if (clampz(d - 15.0f) / 35.0f > 1.0f) {
+                r = 1.0f;
+            } else {
+                r = clampz(d - 15.0f) / 35.0f;
+            }
+        }
+    }
+    return r;
+}
+#pragma opt_propagation reset
+#pragma peephole reset
+/* fzgx:end fn_1_9A0A8 */
+
 /* fzgx:begin fn_1_9A508 */
 extern u8 lbl_1_rodata_EB4[124];
 extern void *lbl_801A6410;

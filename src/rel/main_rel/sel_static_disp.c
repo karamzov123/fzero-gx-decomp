@@ -16518,6 +16518,171 @@ void fn_1_150654(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_150654 */
 
+/* fzgx:begin fn_1_1507C4 noprologue */
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+
+/* begin game/main_rel/car_test_types.h (fork-deltawave784/windows-and-types@b1e6f2df) */
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+// Types (and the externs that name them) of car_test.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+
+#pragma fp_contract off
+
+typedef struct {
+    u8 pad_0[0x8];
+    u32 flags;
+    u16 unk_C;
+    u8 pad_E[0x2];
+    s32 life;
+    u8 pad_14[0x6];
+    u16 unk_1A;
+    f32 unk_1C;
+    f32 unk_20;
+    f32 unk_24;
+    u8 pad_28[0x14];
+    Fn183D28Vec3 pos;
+    Fn183D28Vec3 vel;
+    u8 pad_54[0xc];
+    Fn183D28Vec3 prev;
+    u8 pad_6C[0x1c];
+    f32 unk_88;
+    f32 unk_8C;
+    u8 pad_90[0xe8 - 0x90];
+} Fn1507C4Particle;
+
+extern s32 fn_1_54E34(void *, f32);
+extern f32 fn_1_A71AC(void);
+extern s16 fn_1_58E3C(void *);
+extern u32 lbl_8006DCA4(void);
+extern u32 lbl_8006D5F0(void *, void *, f32);
+extern void *memset(void *, int, u32);
+extern s32 lbl_801A63C0;
+extern u32 lbl_801A66A0;
+
+static inline s32 fn_1_1507C4_rand(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+/* Pool primer: fixes retail's literal-pool order for this TU (dropped at integration). */
+static const u32 fzgx_pool_table_0[4] = {0x00000000, 0xBF800000, 0x00000000, 0x41A00000};
+
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_pool_primer(f32 *out, f64 *dout, s32 n) {
+    out[0] = *(f32 *)&fzgx_pool_table_0[0];
+    out[1] = 10.0f;
+    out[2] = 32767.0f;
+    dout[1] = 4503601774854144.0;
+    out[4] = -1.1920929e-07f;
+    out[5] = 2400.0f;
+    out[6] = 50.0f;
+    out[7] = 0.5f;
+    out[8] = 60.0f;
+    out[9] = 0.2f;
+    out[10] = 0.8f;
+    out[11] = 0.7f;
+    out[12] = 0.3f;
+    out[13] = 7.0f;
+    dout[0] = 0.5;
+    out[14] = 255.0f;
+    out[15] = 1.0f;
+    out[16] = 102.0f;
+    out[17] = 0.0f;
+    out[18] = 0.0005f;
+    out[19] = 0.003f;
+}
+
+static inline f32 RANDF(void) {
+    return (f32)fn_1_1507C4_rand() / 32767.0f;
+}
+
+static inline f32 fn_1_1507C4_random_range(f32 base, f32 range) {
+    return base + range * RANDF();
+}
+
+static inline void fn_1_1507C4_copy_vec(const Fn183D28Vec3 *src, Fn183D28Vec3 *dst) {
+    dst->x = src->x;
+    dst->y = src->y;
+    dst->z = src->z;
+}
+
+void fn_1_1507C4(Fn183D28Vec3 *pos, Fn183D28Vec3 *vel) {
+    Fn183D28Vec3 view;
+    Fn1507C4Particle p;
+    f32 size;
+    f32 t;
+    f32 spread;
+    u8 i;
+
+    spread = 7.0f;
+
+    lbl_8006DCA4();
+    if (fn_1_54E34(pos, 10.0f) == 0) {
+        return;
+    }
+    lbl_8006E1B0(pos, &view);
+    if (view.z > -1.1920929e-07f) {
+        return;
+    }
+    size = 2400.0f / (-view.z * fn_1_A71AC());
+    if (size < 10.0f) {
+        if (lbl_801A66A0 % 3 != 0) {
+            return;
+        }
+    } else if (size < 50.0f) {
+        if (lbl_801A66A0 & 1) {
+            return;
+        }
+    }
+
+    memset(&p, 0, sizeof(p));
+    p.unk_C = 15;
+    p.unk_1A = 0xFFFF;
+    p.flags |= 0x1000;
+    for (i = 2; i != 0; i--) {
+        fn_1_1507C4_copy_vec(pos, &p.pos);
+        p.life = 0.5f * (60.0f * fn_1_1507C4_random_range(0.2f, 0.8f));
+        p.prev = p.pos;
+        t = 10.0f * fn_1_1507C4_random_range(0.7f, 0.3f);
+        lbl_8006D5F0(vel, vel, t);
+        p.vel.x = vel->x;
+        p.vel.y = vel->y;
+        p.vel.z = vel->z;
+        p.vel.x += spread * (RANDF() - 0.5);
+        p.vel.y += spread * (RANDF() - 0.5);
+        p.vel.z += spread * (RANDF() - 0.5);
+        p.pos.x -= p.vel.x;
+        p.pos.y -= p.vel.y;
+        p.pos.z -= p.vel.z;
+        t = 0.8f + 0.2f * RANDF();
+        p.unk_1C = (255.0f * (0.5f * (1.0f + t))) / 255.0f;
+        p.unk_20 = (102.0f * t) / 255.0f;
+        p.unk_24 = 0.0f;
+        p.unk_88 = 0.0005f * RANDF();
+        p.unk_8C = 0.003f;
+        fn_1_58E3C(&p);
+    }
+}
+/* fzgx:end fn_1_1507C4 */
+
 /* fzgx:begin fn_1_150C8C */
 // Marks each static display entry active before updating it.
 void fn_1_150C8C(fn_1_150C8C_Object *obj) {

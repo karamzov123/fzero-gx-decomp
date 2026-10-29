@@ -1948,6 +1948,508 @@ void fn_8_8C80(void) {
 }
 /* fzgx:end fn_8_8C80 */
 
+/* fzgx:begin fn_8_8E00 pool noprologue */
+#include "types.h"
+#include "rel/main_rel/game.h"
+#include "types.h"
+#include "types.h"
+
+/* begin game/main_rel/adxt_stop_types.h (fork-deltawave784/windows-and-types@b1e6f2df) */
+#ifndef GAME_MAIN_REL_ADXT_STOP_TYPES_H
+#define GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+// The ADXT handle layout recovered from ADXT_Stop's accesses (signature types), shared by game.c and
+// live_camera.c, which carried identical copies. Hand-owned (librarian).
+
+
+typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
+typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
+typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
+
+typedef struct Sig_ADXT_Stop_SJCK {
+    unsigned char *data;
+    int len;
+} Sig_ADXT_Stop_SJCK;
+
+typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
+typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+
+struct Sig_ADXT_Stop_SJInterface {
+    void *reserved[3];
+    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+};
+
+struct Sig_ADXT_Stop_SJ {
+    const Sig_ADXT_Stop_SJInterface *interface;
+};
+
+typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
+typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
+
+typedef struct Sig_ADXT_Stop_ADXTHandle {
+    s8 used;
+    s8 status;
+    s8 stream_type;
+    s8 maximum_channels;
+    Sig_ADXT_Stop_AdxSjdHandle *decoder;
+    Sig_ADXT_Stop_ADXStream *stream;
+    Sig_ADXT_Stop_AXRNAHandle *rna;
+    Sig_ADXT_Stop_SJ *stream_sj;
+    Sig_ADXT_Stop_SJ *input_sj;
+    Sig_ADXT_Stop_SJ *output_sj[2];
+    u8 *input_buffer;
+    s32 input_buffer_size;
+    s32 input_extra_size;
+    u8 *output_buffer;
+    s32 output_buffer_size;
+    s32 output_buffer_distance;
+    s32 server_frequency;
+    s16 stream_buffer_sectors;
+    s16 minimum_buffer_sectors;
+    s16 output_volume;
+    s16 output_pan[2];
+    s16 field_46;
+    s32 maximum_decode_samples;
+    s32 loop_count;
+    s32 link_data_length;
+    s32 field_54;
+    s32 field_58;
+    s32 field_5C;
+    s16 error_code;
+    u8 reserved_62[2];
+    s32 field_64;
+    s16 field_68;
+    s16 field_6A;
+    s8 stream_loop_enabled;
+    s8 auto_receiver;
+    u8 reserved_6E[2];
+    s8 suppress_playback;
+    s8 decoder_ready;
+    s8 paused;
+    u8 reserved_73;
+    Sig_ADXT_Stop_ADX_AMP *amplifier;
+    Sig_ADXT_Stop_SJ *amplifier_input[2];
+    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    s32 time_offset;
+    s32 eos_sector;
+    s32 loop_sample_count;
+    Sig_ADXT_Stop_LSCObject *linked_stream_controller;
+    s8 link_enabled;
+    u8 reserved_99[3];
+    u32 playback_time;
+    s32 playback_start_vsync;
+    s32 linked_decoded_samples;
+    s8 pending_stream_start;
+    u8 reserved_A9[3];
+    u8 *work_end;
+    const char *pending_filename;
+    void *pending_directory;
+    s32 pending_file_offset;
+    s32 pending_file_sectors;
+} Sig_ADXT_Stop_ADXTHandle;
+
+#endif  // GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+/* end game/main_rel/adxt_stop_types.h */
+/* begin game/vec3.h (fork-deltawave784/windows-and-types@b1e6f2df) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct { f32 v[13]; } TitleView;
+typedef struct { f32 v[12]; } TitleMtx;
+typedef union { f64 align; u32 v[0x14b8/4]; } TitleWork;
+typedef struct {
+    u8 pad[0x484];
+    u32 a;
+    void *b, *c, *d, *e, *f, *g;
+} TitleMachine;
+typedef struct {
+    void *a;
+    u8 pad4[0xc];
+    void *b;
+    u32 pad14;
+    void *c;
+    u32 pad1c;
+    void *d;
+    u32 pad24;
+    void *e;
+    u32 pad2c;
+    void *f;
+    u8 pad34[0x24];
+    void *h;
+    u32 pad5c;
+    void *g;
+} TitleModels;
+typedef struct { u32 a,b; TitleModels *models; } TitleResource;
+typedef struct { u8 pad[0x10]; TitleResource *a,*b; } TitleResources;
+typedef struct { f32 a,b,c,d,e; } TitleMotion;
+typedef struct {
+    s32 unk_0;
+    u32 unk_4, unk_8;
+    u8 pad_C[0x118];
+    s32 unk_124, unk_128, unk_12C, unk_130, unk_134, unk_138;
+    u32 unk_13C[9], unk_160[9], unk_184[9], unk_1A8[9], unk_1CC[9][4], unk_25C[9];
+    s32 unk_280;
+} TitleCtx;
+typedef struct { s32 unk_0, unk_4, unk_8, unk_C; } TitleCue;
+typedef struct { s32 unk_0, unk_4; } TitleStep;
+typedef struct {
+    u8 pad[0xca4];
+    void (*unk_CA4[13])(void);
+    TitleCue unk_CD8[13];
+    u32 pad_DA8[27];
+    TitleStep unk_E14[9];
+} TitleData;
+
+extern f32 lbl_8_rodata_160[10];
+extern TitleData lbl_8_data_7E50;
+extern TitleCtx lbl_8_bss_2A8;
+extern TitleView lbl_1_data_1E5C0;
+extern TitleMotion lbl_1_bss_C70;
+extern TitleResources lbl_1_bss_38460;
+extern s32 lbl_801A66B4;
+extern u8 lbl_1_bss_CC0;
+extern u16 lbl_1_bss_96A;
+extern void (*lbl_1_bss_26C60)(void);
+extern u32 fn_8_5C54(u32);
+extern void fn_1_3EF14(void *);
+extern void fn_1_3FBF4(u32);
+extern void fn_80008BA8(void *, const void *, u32);
+extern TitleMachine *fn_1_86254(u32);
+extern void fn_1_2C688(void *);
+extern void fn_1_985EC(void *);
+extern void fn_1_F2E50(u32);
+extern void fn_1_F38C0(void);
+extern void fn_1_F2EB8(void);
+extern void camera_init(void);
+extern void fn_1_3308(void);
+extern int fn_1_3F038(void);
+extern void fn_1_D0D68(void *);
+extern u32 fn_1_A1588(Sig_ADXT_Stop_ADXTHandle *, u32);
+extern void fn_8006CE1C(f32);
+extern void fn_1_3F894(void);
+extern void fn_1_F7870(void *);
+extern f32 lbl_8006D21C(u32);
+extern void fn_1_A71CC(void);
+extern f32 fn_1_A6FE8(void);
+extern u32 fn_1_A7024(f32, f32, f32, f32);
+extern f32 lbl_8006D668(void *);
+extern void fn_8006E978(f32 *, Vec3 *, Vec3 *);
+extern void mathutil_mtxA_from_quat(void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006D758(void);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void lbl_8006E14C(f32);
+extern void lbl_8006DBAC(Vec3 *);
+extern void fn_80072558(void);
+extern void fn_1_556B8(void *);
+extern void fn_1_5621C(f32, f32, f32, f32);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void fn_1_56298(f32, f32, f32, f32);
+extern void fn_1_A722C(void);
+#define RF(off) RF_##off
+#define RF_0x20 20.0f
+#define RF_0x34 0.0f
+#define RF_0x38 1.0f
+#define RF_0xac 60.0f
+#define RF_0xb0 0.7f
+#define RF_0xb4 0.01f
+#define RF_0xb8 240.0f
+#define RF_0xbc 45.0f
+#define RF_0xc0 0.001f
+#define RF_0xc4 100.0f
+#define RF_0xc8 -200.0f
+#define RF_0xcc 120.0f
+#define RF_0xd0 200.0f
+#define RF_0xd4 -120.0f
+#define RF_0xd8 -0.01f
+#define RF_0xdc 10.0f
+#define RF_0xe0 -10240.0f
+#define RF_0xe4 1.8f
+#define RF_0xe8 -1.8f
+#define RF_0xec -20.0f
+#define RF_0xf0 -4096.0f
+#define RF_0xf4 -2048.0f
+#define RF_0xf8 1.1f
+#define RF_0xfc -0.51f
+#define RF_0x100 4096.0f
+#define RF_0x104 -1.1f
+#define RF_0x108 0.8f
+#define RD(off) 1.0
+#define RV(off) (*(Vec3 *)((u8 *)pool + (off)))
+
+typedef struct { u8 r,g,b,a; } TitlePoolColor;
+extern void fn_8_8E00_pool_color(TitlePoolColor *);
+#pragma section code_type ".fzgxpool"
+void fzgx_fn_8_8E00_pool_a(volatile f64 *d, volatile f32 *f, s32 n) {  /* fzgx-allow: S2 volatile keeps the verified access order */
+    d[0]=15.0; f[0]=320.0f; f[1]=640.0f;
+    d[1]=1.0; f[2]=150.0f; f[3]=0.1f;
+    f[4]=20.0f; f[5]=0.8333333134651184f; f[6]=(f32)n;
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_fn_8_8E00_pool_b(volatile f32 *f) {  /* fzgx-allow: S2 volatile keeps the verified access order */
+    TitlePoolColor c={255,255,255,0};
+    fn_8_8E00_pool_color(&c);
+    f[0]=0.0f; f[1]=1.0f; f[2]=0.5f; f[3]=0.09f; f[4]=5.0f; f[5]=255.0f;
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_fn_8_8E00_pool_c(volatile f32 *f) {  /* fzgx-allow: S2 volatile keeps the verified access order */
+    TitlePoolColor c0={255,255,255,0},c1={255,255,255,0},c2={255,255,255,0},c3={255,255,255,0},c4={255,255,255,0},c5={255,255,255,0};
+    fn_8_8E00_pool_color(&c0); fn_8_8E00_pool_color(&c1); fn_8_8E00_pool_color(&c2); fn_8_8E00_pool_color(&c3); fn_8_8E00_pool_color(&c4); fn_8_8E00_pool_color(&c5);
+    f[0]=0.3f;
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_fn_8_8E00_pool_d(void) {
+    TitlePoolColor c0={255,255,255,0},c1={255,255,255,0},c2={255,255,255,0},c3={255,255,255,0},c4={255,255,255,0};
+    fn_8_8E00_pool_color(&c0); fn_8_8E00_pool_color(&c1); fn_8_8E00_pool_color(&c2); fn_8_8E00_pool_color(&c3); fn_8_8E00_pool_color(&c4);
+}
+#pragma section code_type ".text"
+
+#pragma opt_propagation off
+void fn_8_8E00(void) {
+    f32 *pool = lbl_8_rodata_160;
+    TitleData *data = &lbl_8_data_7E50;
+    TitleCtx *ctx = &lbl_8_bss_2A8;
+    u32 w12,w11,w10,w9,w8,w7,w6,w5,w4,w3,w2,w1,w0;
+    s32 count;
+#define lbl_8_bss_2A8 (*ctx)
+    TitleWork work;
+    TitleMtx m1, m0;
+    TitleView view;
+    Vec3 up, eye;
+    f32 quat[4];
+    void *save_b, *save_c, *save_d, *save_e;
+    TitleStep *step;
+    u32 *p25C, *p13C, *p160;
+    u32 (*p1CC)[4];
+    u32 *p1A8, *p184;
+    s32 i;
+    TitleMachine *machine;
+    u32 save_a;
+    void *save_f, *save_g;
+    TitleCue *cue;
+    s32 j;
+    struct { TitleMotion *p; } motion;
+    s32 next_count;
+    s32 mode;
+    void *model0, *model1, *model2, *model3, *model4, *model5, *model6, *model7;
+    f32 x, tx, sz;
+    f32 a,b,c,d,e;
+    f32 scale;
+    f32 v;
+    TitleView *src;
+    fn_1_3EF14(&work);
+    if (lbl_8_bss_2A8.unk_124 <= 0) fn_1_3FBF4(0);
+    {
+        p25C=ctx->unk_25C;
+        p13C=ctx->unk_13C;
+        p160=ctx->unk_160;
+        step=data->unk_E14;
+        p1CC=ctx->unk_1CC;
+        p1A8=ctx->unk_1A8;
+        p184=ctx->unk_184;
+        for (i=0; i<9; i++, step++, p25C++, p13C++, p160++, p1CC++, p1A8++, p184++) {
+            if (ctx->unk_12C == step->unk_4) {
+                fn_80008BA8((void *)ctx->unk_8, (void *)p13C[0], p25C[0]);
+                fn_8_5C54(0);
+                machine=fn_1_86254(0);
+                save_a=machine->a; save_b=machine->b; save_c=machine->c; save_d=machine->d; save_e=machine->e; save_f=machine->f; save_g=machine->g;
+                fn_80008BA8(machine, (void *)p160[0], 0x620);
+                machine->a=save_a; machine->b=save_b; machine->c=save_c; machine->d=save_d; machine->e=save_e; machine->f=save_f; machine->g=save_g;
+                fn_80008BA8(machine->b,(void *)p1CC[0][0],0xc0);
+                fn_80008BA8(machine->c,(void *)p1CC[0][1],0xc0);
+                fn_80008BA8(machine->d,(void *)p1CC[0][2],0xc0);
+                fn_80008BA8(machine->e,(void *)p1CC[0][3],0xc0);
+                fn_80008BA8(machine->f,(void *)p1A8[0],0x194);
+                fn_80008BA8(machine->g,(void *)p184[0],0x1fc);
+                fn_1_2C688(machine);
+                fn_1_985EC(machine);
+                lbl_1_bss_26C60();
+                fn_1_F2E50(1);
+                fn_1_F38C0();
+                fn_1_F2EB8();
+                camera_init();
+                fn_1_3308();
+            }
+        }
+    }
+    if (fn_1_3F038()) { lbl_1_bss_96A=0xa3; return; }
+    lbl_1_data_3D544.unk_0 |= 0x40000000;
+    fn_1_D0D68(0);
+    if (lbl_8_bss_2A8.unk_12C>3 && lbl_8_bss_2A8.unk_0==0) {
+        fn_1_A1588((Sig_ADXT_Stop_ADXTHandle *)lbl_1_bss_6EAD0.unk_0->unk_0,0x34);
+        lbl_8_bss_2A8.unk_0=1;
+    }
+    {
+        cue=data->unk_CD8;
+        for (j=0;j<13;j++,cue++) {
+            if (ctx->unk_12C==cue->unk_0 && cue->unk_4==-1) {
+                ctx->unk_12C=59940;
+            } else if (ctx->unk_12C==cue->unk_0) {
+                s32 timer, enabled, duration;
+                duration=cue->unk_4;
+                enabled=cue->unk_8;
+                timer=cue->unk_C;
+                ctx->unk_124=duration;
+                ctx->unk_128=duration;
+                ctx->unk_130=enabled;
+                ctx->unk_280=timer;
+                ctx->unk_134=j;
+                if (enabled) fn_1_3FBF4(1);
+            }
+        }
+    }
+    if (lbl_8_bss_2A8.unk_130 && lbl_8_bss_2A8.unk_280<=0) {
+        fn_1_3FBF4(0); lbl_8_bss_2A8.unk_130=0; lbl_8_bss_2A8.unk_280=0;
+    }
+    {
+        s32 timer=ctx->unk_280;
+        count = ctx->unk_124;
+        ctx->unk_280=timer-1;
+        if (count>0) {
+            s32 index=ctx->unk_134;
+            ctx->unk_124=count-1;
+            if (index>=0 && index<13) {
+                void (**callbacks)(void) = data->unk_CA4;
+                callbacks[index]();
+            }
+        }
+    }
+    if (lbl_8_bss_2A8.unk_12C>59940)
+        fn_8006CE1C((f32)(lbl_8_bss_2A8.unk_12C-59940)/RF(0xac));
+    if (lbl_8_bss_2A8.unk_12C>60000) { fn_8006CE1C(RF(0x38)); fn_1_3F894(); }
+    {
+        src=&lbl_1_data_1E5C0;
+        mode=lbl_801A66B4;
+        motion.p=&lbl_1_bss_C70;
+        count = ctx->unk_12C;
+        next_count = count + 1;
+        ctx->unk_12C = next_count;
+        view=*src;
+        a=motion.p->a; b=motion.p->b; c=motion.p->c; d=motion.p->d; e=motion.p->e;
+    }
+    if (mode==5 && !lbl_1_bss_38460.a) return;
+    if (mode!=5 && !lbl_1_bss_38460.b) return;
+    if (mode==5) {
+        model0=lbl_1_bss_38460.a->models->a; model1=lbl_1_bss_38460.a->models->b;
+        model2=lbl_1_bss_38460.a->models->c; model3=lbl_1_bss_38460.a->models->d;
+        model4=lbl_1_bss_38460.a->models->e; model5=lbl_1_bss_38460.a->models->f;
+        model6=lbl_1_bss_38460.a->models->g; model7=lbl_1_bss_38460.a->models->h;
+    } else {
+        model0=lbl_1_bss_38460.b->models->a; model1=lbl_1_bss_38460.b->models->b;
+        model2=lbl_1_bss_38460.b->models->c; model3=lbl_1_bss_38460.b->models->d;
+        model4=lbl_1_bss_38460.b->models->e; model5=lbl_1_bss_38460.b->models->f;
+        model6=lbl_1_bss_38460.b->models->g; model7=lbl_1_bss_38460.b->models->h;
+    }
+    {
+        f32 input3 = src->v[3];
+        f32 factor = RF(0xb0);
+        f32 p3 = input3*factor;
+        f32 p4 = src->v[4]*factor;
+        view.v[3]=p3-p4;
+        view.v[4]=p3+p4;
+    }
+    view.v[5]=src->v[5];
+    fn_1_F7870(&view);
+    scale=RF(0xb4)/(RF(0xb8)/lbl_8006D21C(0x1000));
+    fn_1_A71CC();
+    fn_1_A7024(RF(0xbc),fn_1_A6FE8(),RF(0xc0),RF(0xc4));
+    { static const u32 u0[1]={0},u1[1]={0},u2[1]={0x3f800000}; u32 uz,uy,ux; ux=u0[0]; uy=u1[0]; uz=u2[0]; *(u32 *)&up.x=ux; *(u32 *)&up.y=uy; *(u32 *)&up.z=uz; { Vec3 temp={0.0f,0.0f,0.01f}; x=RF(0xc8)*scale; temp.x=x; temp.y=RF(0xcc)*scale; eye=temp; } }
+    lbl_8006D668(&eye);
+    fn_8006E978(quat,&up,&eye);
+    mathutil_mtxA_from_quat(quat);
+    lbl_8006DB74(&m0);
+    lbl_8006D758();
+    tx=RF(0xd0)*scale;
+    lbl_8006E0B4(tx,RF(0xd4)*scale,RF(0xd8));
+    sz=RF(0xdc)*scale; lbl_8006E14C(sz);
+    lbl_8006DB74(&m1);
+    lbl_8006DBAC((Vec3 *)&m1);
+    fn_80072558();
+    if (model3) fn_1_556B8(model3);
+    fn_1_5621C(RF(0x38),(f32)(RD(0x10)-__fabs(d)),(f32)(RD(0x10)-__fabs(d)),RF(0x38));
+    lbl_8006DBAC((Vec3 *)&m1);
+    mathutil_mtxA_rotate_x((s32)(RF(0xe0)*d));
+    lbl_8006E0B4(RF(0xe4),RF(0x34),RF(0x34));
+    fn_80072558();
+    if (model0) fn_1_556B8(model0);
+    v=RF(0x38); fn_1_5621C(v,v,v,v);
+    fn_1_5621C(RF(0x38),(f32)(RD(0x10)-__fabs(e)),(f32)(RD(0x10)-__fabs(e)),RF(0x38));
+    lbl_8006DBAC((Vec3 *)&m1);
+    mathutil_mtxA_rotate_x((s32)(RF(0xe0)*e));
+    lbl_8006E0B4(RF(0xe8),RF(0x34),RF(0x34));
+    fn_80072558();
+    if (model4) fn_1_556B8(model4);
+    v=RF(0x38); fn_1_5621C(v,v,v,v);
+    { static const u32 u0[1]={0},u1[1]={0},u2[1]={0x3f800000}; u32 uz,uy,ux; ux=u0[0]; uy=u1[0]; uz=u2[0]; *(u32 *)&up.x=ux; *(u32 *)&up.y=uy; *(u32 *)&up.z=uz; { Vec3 temp={0.0f,0.0f,0.01f}; temp.x=x; temp.y=RF(0xec)*scale; eye=temp; } }
+    lbl_8006D668(&eye);
+    fn_8006E978(quat,&up,&eye);
+    mathutil_mtxA_from_quat(quat);
+    lbl_8006DB74(&m0);
+    lbl_8006D758();
+    lbl_8006E0B4(tx,RF(0x20)*scale,RF(0xd8));
+    mathutil_mtxA_rotate_z((s32)(RF(0xf0)*a));
+    mathutil_mtxA_rotate_x((s32)(RF(0xf4)*b));
+    lbl_8006E14C(sz);
+    lbl_8006DB74(&m1);
+    fn_80072558();
+    if (model5) fn_1_556B8(model5);
+    if (c>RF(0x34)) fn_1_5621C(RF(0x38),(f32)(RD(0x10)-__fabs(c)),(f32)(RD(0x10)-__fabs(c)),RF(0x38));
+    lbl_8006DBAC((Vec3 *)&m1);
+    lbl_8006E0B4(RF(0xf8),RF(0x34),RF(0xfc));
+    if (c>RF(0x34)) mathutil_mtxA_rotate_y((s32)(RF(0x100)*c));
+    if (model6) fn_1_556B8(model6);
+    v=RF(0x38); fn_1_5621C(v,v,v,v);
+    if (c<RF(0x34)) fn_1_5621C(RF(0x38),(f32)(RD(0x10)-__fabs(c)),(f32)(RD(0x10)-__fabs(c)),RF(0x38));
+    lbl_8006DBAC((Vec3 *)&m1);
+    lbl_8006E0B4(RF(0x104),RF(0x34),RF(0xfc));
+    if (c<RF(0x34)) mathutil_mtxA_rotate_y((s32)(RF(0x100)*c));
+    if (model7) fn_1_556B8(model7);
+    v=RF(0x38); fn_1_5621C(v,v,v,v);
+    if ((lbl_1_bss_CC0>>6)&1) lbl_8_bss_2A8.unk_138=5;
+    if (lbl_8_bss_2A8.unk_138>0) { v=RF(0x108); fn_1_56298(v,v,v,v); lbl_8_bss_2A8.unk_138--; }
+    lbl_8006DBAC((Vec3 *)&m1);
+    fn_80072558();
+    if (model1) fn_1_556B8(model1);
+    lbl_8006DBAC((Vec3 *)&m1);
+    fn_80072558();
+    if (lbl_8_bss_2A8.unk_138>0) { v=RF(0x108); fn_1_56298(v,v,v,v); }
+    fn_1_556B8(model2);
+    v=RF(0x34); fn_1_56298(v,v,v,v);
+    fn_1_A722C();
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_8_8E00 */
+
 /* fzgx:begin fn_8_988C */
 extern int sprintf(char *, const char *, ...);
 

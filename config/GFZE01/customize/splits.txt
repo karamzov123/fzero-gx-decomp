@@ -767,3 +767,9 @@ rel/customize/emb_paste_editor/fn_3_11FF0.c:
 
 rel/customize/_prolog/fn_3_6270.c:
 	.text       start:0x00006270 end:0x00006540 align:4
+
+rel/customize/toolkit/fn_3_286BC.c:
+	.text       start:0x000286BC end:0x00028EBC align:4
+
+rel/customize/_prolog/_epilog.c:
+	.text       start:0x00000944 end:0x00000AF8 align:4

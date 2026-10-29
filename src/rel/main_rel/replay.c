@@ -1283,6 +1283,92 @@ u32 fn_1_F47AC(void) {
 }
 /* fzgx:end fn_1_F47AC */
 
+/* fzgx:begin fn_1_F4810 */
+struct fn_1_F4810_Arg0 { u8 unk_0[1]; };
+struct fn_1_F4810_Arg1 { u8 unk_0; };
+struct fn_1_F4810_Arg3 { u8 unk_0; };
+struct fn_1_F4810_Arg4 { u8 unk_0; };
+struct fn_1_F4810_Arg5 { u8 unk_0; };
+struct fn_1_F4810_Arg6 { u8 unk_0; };
+
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+static inline s32 read_bits(struct fn_1_F4810_Arg0 *src, u32 *pos, s32 count) {
+    s32 value = 0;
+    while (count > 0) {
+        if (src->unk_0[*pos >> 3] & (1 << (*pos & 7)))
+            value |= 1 << (count - 1);
+        count--;
+        (*pos)++;
+    }
+    return value;
+}
+
+static inline s32 read_version_bits(struct fn_1_F4810_Arg0 *src, u32 *pos, s32 count) {
+    s32 i;
+    s32 n = count;
+    s32 value = 0;
+    count = count;
+    for (i = 0; i < 7; i++) {
+        if (src->unk_0[*pos >> 3] & (1 << (*pos & 7)))
+            value |= 1 << (n - 1);
+        n--;
+        (*pos)++;
+    }
+    return value;
+}
+
+/* retail recomputes the buffer address inside the loop instead of hoisting it */
+#pragma opt_loop_invariants off
+void fn_1_F4810(struct fn_1_F4810_Arg0 *arg0, struct fn_1_F4810_Arg1 *arg1, u8 *arg2, struct fn_1_F4810_Arg3 *arg3, struct fn_1_F4810_Arg4 *arg4, struct fn_1_F4810_Arg5 *arg5, struct fn_1_F4810_Arg6 *arg6, u8 *arg7, u8 *arg8) {
+    u32 pos = 8;
+    u8 version;
+    u8 id;
+    u8 *out;
+    s32 total;
+    s32 index;
+    u32 j;
+    u8 present;
+    version = read_version_bits(arg0, &pos, 7);
+    arg1->unk_0 = read_bits(arg0, &pos, 6);
+    read_bits(arg0, &pos, 32);
+    read_bits(arg0, &pos, 32);
+    arg6->unk_0 = read_bits(arg0, &pos, 5);
+    arg5->unk_0 = read_bits(arg0, &pos, 3);
+    arg4->unk_0 = read_bits(arg0, &pos, 2);
+    pos += 8;
+    out = arg8;
+    total = 0;
+    for (index = 0; index < arg6->unk_0; index++) {
+        present = read_bits(arg0, &pos, 1);
+        id = read_bits(arg0, &pos, 6);
+        if (version >= 3) pos += 5;
+        if (version >= 2) pos += 7;
+        if (present) {
+            *arg2 = id;
+            pos += 2;
+            if (version < 2) pos += 7;
+            *arg7 = read_bits(arg0, &pos, 1);
+            if (*arg7) {
+                u8 buffer[0x81c0];
+                for (j = 0; j < 0x81c0; j++) {
+                    buffer[j] = read_bits(arg0, &pos, 8);
+                }
+                out[0] = buffer[0x81a4];
+                out[1] = buffer[0x81ac];
+                out[2] = buffer[0x81b4];
+            }
+            out += 3;
+            total++;
+            arg7++;
+            arg2++;
+        }
+    }
+    arg3->unk_0 = total;
+}
+#pragma opt_loop_invariants reset
+/* fzgx:end fn_1_F4810 */
+
 /* fzgx:begin fn_1_F4E3C */
 extern const f32 lbl_1_rodata_6D6C;
 extern const f32 lbl_1_rodata_6D68;

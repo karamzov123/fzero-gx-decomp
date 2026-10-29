@@ -2728,6 +2728,92 @@ void fn_1_103B0(LiveCamState *cam) {
 }
 /* fzgx:end fn_1_103B0 */
 
+/* fzgx:begin fn_1_1138C noprologue */
+#include "rel/main_rel/live_camera.h"
+
+typedef struct { f32 x, y, z; } V3;
+extern u32 lbl_801A63C0;
+extern const f64 lbl_1_rodata_540;
+extern void fn_1_8636C(int, void *);
+extern void fn_1_862D4(int, V3 *);
+extern u32 fn_1_862A8(u32, V3 *);
+extern void *lbl_8006DC6C(void *);
+extern void lbl_8006E1B0(void *, void *);
+
+typedef struct {
+    u8 type;
+    u8 pad_1[3];
+    s16 unk_4;
+    s16 unk_6;
+    u8 pad_8[0xC];
+    s16 unk_14;
+    u8 pad_16[6];
+    u8 unk_1C[0x30];
+    V3 unk_4C;
+    f32 unk_58;
+    s16 unk_5C;
+    u8 pad_5E[0x12];
+    f32 unk_70;
+    f32 unk_74;
+    f32 unk_78;
+    u8 unk_7C[0x40];
+} Cam;
+
+#pragma opt_propagation off
+static inline void fn_1_1138C_read_pointer(Cam *c, Obj_1_data_4754 *base, s32 index)
+{
+    extern const f32 lbl_1_rodata_608[13];
+    Obj_1_data_4754 *entry = (Obj_1_data_4754 *)((u8 *)base + (index << 4));
+    c->unk_5C = entry->unk_C;
+    c->unk_58 = lbl_1_rodata_608[0];
+}
+#pragma opt_strength_reduction on
+void fn_1_1138C(Cam *c)
+{
+    V3 b;
+    V3 a;
+    u32 r;
+    u32 state;
+    struct { f32 value; } t;
+    extern const f32 lbl_1_rodata_604;
+
+    if (c->type == 5 || c->type <= 1 || c->type == 2) {
+        state = lbl_801A63C0 * 0x676a4b6b + 0x33cb;
+        lbl_801A63C0 = state;
+        r = (state >> 16) & 0x7fff;
+        c->unk_14 = r % 6;
+        c->unk_4 = r % 6;
+    }
+    fn_1_8636C(c->unk_6, c->unk_7C);
+    fn_1_862D4(c->unk_6, &a);
+    lbl_8006DC6C(c->unk_7C);
+    {
+        f32 az;
+        f32 ay;
+        f32 ax;
+        /* Read the translation column before updating locked cache. */
+        ax = *(volatile f32 *)&a.x;
+        ay = a.y;
+        az = a.z;
+        *(f32 *)(0xE000000C) = ax;
+        *(f32 *)(0xE000001C) = ay;
+        *(f32 *)(0xE000002C) = az;
+    }
+    lbl_8006E1B0((u8 *)&lbl_1_data_4754 + c->unk_4 * 16, c->unk_1C);
+    c->unk_4C = a;
+    fn_1_862A8(c->unk_6, &b);
+    t.value = (f32)lbl_1_data_4484.unk_0;
+    c->unk_70 = c->unk_70 + (f32)(t.value * (f32)(lbl_1_rodata_604 * (b.x - c->unk_70)));
+    c->unk_74 = c->unk_74 + (f32)(t.value * (f32)(lbl_1_rodata_604 * (b.y - c->unk_74)));
+    c->unk_78 = c->unk_78 + (f32)(t.value * (f32)(lbl_1_rodata_604 * (b.z - c->unk_78)));
+    {
+        Obj_1_data_4754 *base = &lbl_1_data_4754;
+        fn_1_1138C_read_pointer(c, base, c->unk_4);
+    }
+}
+#pragma opt_strength_reduction reset
+/* fzgx:end fn_1_1138C */
+
 /* fzgx:begin fn_1_11544 */
 #pragma fp_contract off
 

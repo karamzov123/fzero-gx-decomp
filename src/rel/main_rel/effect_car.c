@@ -5590,6 +5590,292 @@ void fn_1_702A0(void *arg0, void *arg1, u8 count_arg, u8 arg3) {
 }
 /* fzgx:end fn_1_702A0 */
 
+/* fzgx:begin fn_1_7099C pool noprologue */
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+#include "rel/main_rel/effect_car.h"
+#include "rel/main_rel/effect.h"
+
+/* begin game/main_rel/car_test_types.h (fork-deltawave784/windows-and-types@b1e6f2df) */
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+// Types (and the externs that name them) of car_test.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+
+struct fn_1_7099C_Arg0 {
+ u8 pad_0[0x18]; u16 unk_18; u8 pad_1A[0x1E]; u32 unk_38;
+ Fn183D28Vec3 pos; Fn183D28Vec3 vel; u8 pad_54[0x64]; u8 matrix[0x30];
+};
+
+const u32 fzgx_pool_table_000[7] = {0x0,0xBF800000,0x41C80000,0x41700000,0x41000000,0x43160000,0x41200000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_01C(volatile f32 *p) { *p=0.5f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_020[1] = {0x3E000000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_024(volatile f32 *p) { *p=32767.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_028[6] = {0x41F00000,0x41A00000,0x44960000,0x3E19999A,0x43300000,0x80000000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_040(volatile f64 *p) { *p=4503599627370496.0; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_048(volatile f32 *p) { *p=255.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_04C[4] = {0x42CC0000,0x3FE99999,0x9999999A,0x3FCCCCCD};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_05C(volatile f32 *p) { *p=3.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_060[1] = {0x3C23D70A};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_064(volatile f32 *p) { *p=0.6000000238418579f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_068[3] = {0x3FD33333,0x33333333,0x3F333333};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_074(volatile f32 *p) { *p=0.20000000298023224f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const f32 fzgx_pool_table_078[1] = {0.4000000059604645f};
+const u32 fzgx_pool_table_07C[5] = {0x3DCCCCCD,0x3FC00000,0x0,0x40000000,0x0};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_090(volatile f32 *p) { *p=0.800000011920929f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_094(volatile f32 *p) { *p=1.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_098[5] = {0x42AA0000,0x3E800000,0x0,0x0,0x0};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_0AC(volatile f32 *p) { *p=100.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_0B0[2] = {0x40600000,0x41B80000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_0B8(volatile f32 *p) { *p=60.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_0BC[5] = {0x40800000,0x34000000,0x43080000,0x3CF5C28F,0x0};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_0D0(volatile f64 *p) { *p=0.5; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_0D8[2] = {0x3E99999A,0x43000000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_0E0(volatile f32 *p) { *p=224.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_0E4(volatile f32 *p) { *p=500.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_0E8[5] = {0x3F6E147B,0x40A00000,0x40000000,0x3D4CCCCD,0x3DA3D70A};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_0FC(volatile f32 *p) { *p=0.8999999761581421f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_100[2] = {0x3FD33333,0x40000000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_108(volatile f64 *p) { *p=0.2; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_110[4] = {0xBFD33333,0x33333333,0xBFF00000,0x0};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_120(volatile f64 *p) { *p=0.0; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_128(volatile f64 *p) { *p=30.0; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_130[12] = {0x40080000,0x0,0x3A83126F,0x3B03126F,0x3FF33333,0x461C4000,0x453B8000,0x43360B61,0x3F109091,0x3F30B0B1,0x4066C16C,0x20000000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_160(volatile f64 *p) { *p=5.0; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_168[6] = {0x3FE3851E,0xB851EB85,0x46800000,0x0,0x3DCCCCCD,0x3FC00000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_180(volatile f32 *p) { *p=800.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_184(volatile f32 *p) { *p=1000.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_188[20] = {0x3FA99999,0x9999999A,0x40280000,0x0,0xBFC47AE1,0x47AE147B,0x405DC000,0x0,0x40040000,0x0,0x3FF00000,0x0,0x449C4000,0x0,0x3FD99999,0x9999999A,0x43960000,0x0,0x3FC99999,0xA0000000};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_1D8(volatile f32 *p) { *p=2500.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_1DC(volatile f32 *p) { *p=5000.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_1E0[4] = {0x3FB99999,0x9999999A,0x40490000,0x0};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_1F0(volatile f64 *p) { *p=0.0003; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_1F8(volatile f64 *p) { *p=0.02; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_200[18] = {0x3F99999A,0x0,0x3FE33333,0x33333333,0x42300000,0x0,0x3FF4CCCC,0xCCCCCCCD,0x3A03126F,0x0,0x3F689374,0xBC6A7EFA,0x469C4000,0x0,0x3F800000,0x3F000000,0x42080000,0x0};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_248(volatile f64 *p) { *p=10.0; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_250[19] = {0x0,0x0,0xC0000000,0x44400000,0x0,0x0,0x0,0x41800000,0x45800000,0x40C00000,0x44E38E39,0x42EE0000,0x424C0000,0x0,0x3DCCCCCD,0x0,0x40200000,0x43C80000,0x44FA0000};  /* fzgx-allow: A1 retail pool bytes */
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_29C(volatile f32 *p) { *p=176.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_2A0[32] = {0x0,0x3DCCCCCD,0x40000000,0x0,0x3F800000,0x0,0x3FE66666,0x0,0x3FD55555,0x60000000,0x3FE99999,0xA0000000,0x0,0xBF000000,0x3FA66666,0xBF99999A,0x44BB8000,0x0,0x3FD99999,0xA0000000,0x0,0x3DCCCCCD,0x3FC00000,0x0,0x40440000,0x0,0xC0200000,0x44A00000,0x0,0x3ECCCCCD,0x3F800000,0x402CCCCD};  /* fzgx-allow: A1 retail pool bytes */
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_320(volatile f32 *p) { *p=50.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_324[26] = {0x0,0x0,0x0,0x42900000,0x40B66666,0x3FB99999,0xA0000000,0x3FF66666,0x60000000,0x0,0x0,0x0,0x43800000,0x44800000,0x0,0x0,0x0,0x3D75C28F,0x0,0x3F9EB851,0xEB851EB8,0x3B449BA6,0x0,0x3DCCCCCD,0x0,0x41100000};
+const u32 fzgx_pool_table_38C[1] = {0x0};
+const u32 fzgx_pool_table_390[1] = {0x3DCCCCCD};
+const u32 fzgx_pool_table_394[1] = {0x3FC00000};
+
+#pragma pool_data on
+static Obj_1_bss_38458_Target *fzgx_obj_lbl_1_bss_38458[1];
+static u32 fzgx_obj_bss_next[1];
+#pragma section code_type ".fzgxpool"
+void fzgx_bss_primer(volatile u32 *p) { *p = (u32)fzgx_obj_lbl_1_bss_38458[0]; *p = fzgx_obj_bss_next[0]; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+extern f32 fn_1_8652C(int);
+extern u32 fn_1_584AC(void);
+extern u8 *memset(u8 *, int, u32);
+extern void *lbl_8006DC6C(void *);
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+extern s16 fn_1_59078(Obj_1_bss_6C84C_Target *);
+extern s16 fn_1_58F50(const void *);
+#define F(o) F_##o
+#define D(o) D_##o
+#define F_0x180 800.0f
+#define F_0x184 1000.0f
+#define F_0x1d8 2500.0f
+#define F_0x1dc 5000.0f
+#define F_0x320 50.0f
+#define F_0x24 32767.0f
+#define F_0x5c 3.0f
+#define F_0xb8 60.0f
+#define F_0xfc 0.9f
+#define F_0x64 0.6f
+#define F_0x78 fzgx_pool_table_078[0]
+#define F_0x94 1.0f
+#define F_0x90 0.8f
+#define F_0x74 0.2f
+#define F_0xe0 224.0f
+#define F_0x48 255.0f
+#define F_0x29c 176.0f
+#define F_0x1c 0.5f
+#define D_0x1f8 0.02
+#define D_0xd0 0.5
+#define D_0x120 0.0
+#define D_0x108 0.2
+#define D_0x128 30.0
+#define D_0x160 5.0
+#define D_0x248 10.0
+#define D_0x1f0 0.0003
+struct fn_1_7099C_ResourceSlot { Obj_1_bss_38458_Target *value; };
+static inline u32 fn_1_7099C_resource(Obj_1_bss_38458_Target **p) {
+ return *(u32 *)(((struct fn_1_7099C_ResourceSlot *)p)->value->unk_8+0x148);
+}
+#define E(o) (*(f32 *)((u8 *)&loc_14+(o)))
+#pragma pool_data on
+void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 arg3, f32 arg4) {
+ u8 count;
+ u32 v0;
+ f32 speed, scale, spread;
+ struct { u16 a[116]; } loc_14;
+ Fn183D28Vec3 loc_8;
+ f32 z,y,x, r, c;
+ f64 clamp;
+ struct { Obj_1_bss_38458_Target **value; } res;
+ Obj_1_bss_38458_Target **slot;
+ v0=arg0->unk_38;
+ speed=fn_1_8652C(*(s16 *)&arg0->unk_18);
+ if ((s32)arg2 != 0) {
+  if(speed < 100.0f) {
+   if((s32)(fn_1_584AC() & 0xffff) % 3 != 0) return;
+  } else {
+   if((s32)(fn_1_584AC() & 0xffff) % 4 == 0) return;
+  }
+ }
+ memset((u8 *)&loc_14,0,232);
+ slot=fzgx_obj_lbl_1_bss_38458;
+ *(s16 *)&loc_14.a[12]=*(s16 *)&arg0->unk_18;
+ loc_14.a[6]=29;
+ loc_14.a[13]=0xffff;
+ /* Read the resource manager pointer once for this effect. */
+ *(u32 *)((u8 *)&loc_14+0x34)=*(u32 *)((*slot)->unk_8+0x148);
+ *(u32 *)&loc_8=fzgx_pool_table_38C[0];
+ *((u32 *)&loc_8+1)=fzgx_pool_table_390[0];
+ *((u32 *)&loc_8+2)=fzgx_pool_table_394[0];
+ lbl_8006DC6C(arg0->matrix);
+ x=*(volatile f32 *)&arg0->pos.x; y=arg0->pos.y; z=arg0->pos.z;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+ *(f32 *)(LC_BASE + 0xC)=x; *(f32 *)(LC_BASE + 0x1C)=y; *(f32 *)(LC_BASE + 0x2C)=z;
+ lbl_8006E1B0(&loc_8,&loc_8);
+ if(speed < 500.0f) count=1;
+ if(500.0f <= speed && speed < F(0x180)) count=2;
+ if(F(0x180) <= speed && speed < F(0x184)) count=3;
+ if(F(0x184) <= speed) count=5;
+ scale=speed/F(0x1d8);
+ spread=speed/F(0x1dc);
+ while(count) {
+  *(Fn183D28Vec3 *)((u8 *)&loc_14+0x3c)=loc_8;
+  *(Fn183D28Vec3 *)((u8 *)&loc_14+0x48)=arg0->vel;
+  if(arg4 > F(0x320)) {
+   r=(f32)(fn_1_584AC()&0xffff)/F(0x24);
+   r=F(0x64)*r;
+   c=F(0xfc)+r;
+   c=F(0xb8)*c;
+   c=F(0x5c)*c;
+   *(s32 *)((u8 *)&loc_14+0x10)=(s32)c;
+  } else {
+   r=(f32)(fn_1_584AC()&0xffff)/F(0x24);
+   r=F(0x64)*r;
+   c=F(0xfc)+r;
+   c=F(0xb8)*c;
+   *(s32 *)((u8 *)&loc_14+0x10)=(s32)c;
+  }
+  E(0x48)=E(0x48)+(f64)(F(0x78)*((f32)(fn_1_584AC()&0xffff)/F(0x24)-D(0xd0)));
+  E(0x50)=E(0x50)+(f64)(F(0x78)*((f32)(fn_1_584AC()&0xffff)/F(0x24)-D(0xd0)));
+  E(0x48)=E(0x48)+(f32)(arg1->x*scale);
+  E(0x4c)=E(0x4c)+(f32)(arg1->y*scale);
+  E(0x50)=E(0x50)+(f32)(arg1->z*scale);
+  E(0x3c)=E(0x3c)-E(0x48); E(0x40)=E(0x40)-E(0x4c); E(0x44)=E(0x44)-E(0x50);
+  if(spread < D(0x120)) clamp=D(0x120);
+  else if(spread > D(0x108)) clamp=D(0x108);
+  else clamp=spread;
+  E(0x28)=arg3+clamp;
+  if(arg3 < F(0x94)) E(0x2c)=D(0x128)+(f64)(D(0x160)*((f32)(fn_1_584AC()&0xffff)/F(0x24)));
+  else E(0x2c)=arg4+(f64)(D(0x248)*((f32)(fn_1_584AC()&0xffff)/F(0x24)));
+  if(arg3 < F(0x94)) {
+   r=(f32)(fn_1_584AC()&0xffff)/F(0x24);
+   r=F(0x74)*r;
+   c=F(0x90)+r;
+   E(0x1c)=(f32)(F(0x48)*(f32)(F(0x1c)*(f32)(F(0x94)+c)))/F(0x48);
+   E(0x20)=(f32)(F(0xe0)*c)/F(0x48);
+   E(0x24)=(f32)(F(0x29c)*c)/F(0x48);
+  } else {
+   r=(f32)(fn_1_584AC()&0xffff)/F(0x24);
+   r=F(0x74)*r;
+   c=F(0x90)+r;
+   c=F(0x1c)*c;
+   E(0x1c)=(f32)(F(0x48)*(f32)(F(0x1c)*(f32)(F(0x94)+c)))/F(0x48);
+   E(0x20)=(f32)(F(0xe0)*c)/F(0x48);
+   E(0x24)=(f32)(F(0x29c)*c)/F(0x48);
+  }
+  E(0x88)=D(0x1f0)*((f32)(fn_1_584AC()&0xffff)/F(0x24));
+  E(0x8c)=D(0x1f8)+speed/F(0x184);
+  loc_14.a[0x56]=0x16c;
+  if(*(s8 *)(v0+0x475) != -1) fn_1_59078((Obj_1_bss_6C84C_Target *)&loc_14);
+  else fn_1_58F50(&loc_14);
+  count--;
+ }
+}
+/* fzgx:end fn_1_7099C */
+
 /* fzgx:begin fn_1_71024 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
