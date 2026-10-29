@@ -6482,3 +6482,6 @@ dol/fn_8008ECE0.c:
 
 dol/fn_8008EED8.c:
 	.text       start:0x8008EED8 end:0x8008EFE0 align:4
+
+dol/fn_80044EF8.c:
+	.text       start:0x80044EF8 end:0x800452FC align:4
