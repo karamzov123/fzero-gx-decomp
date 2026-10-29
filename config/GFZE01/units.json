@@ -18730,8 +18730,8 @@
     "symbols": [
       "fn_80022BF4"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": []
   },
   {
@@ -27206,12 +27206,20 @@
     "symbols": [
       "fn_8005C7C0"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
       "-use_lmw_stmw",
       "on"
-    ]
+    ],
+    "pool": {
+      "...rodata.0": "lbl_800929D8",
+      "@41": "lbl_801A7248",
+      "@38": "lbl_801A7250",
+      "@37": "lbl_801A7238",
+      "@44": "lbl_801A7218",
+      "@39": "lbl_801A7254"
+    }
   },
   {
     "module": "main",
@@ -29246,6 +29254,16 @@
     "source": "dol/fn_800720B0.c",
     "symbols": [
       "fn_800720B0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80072168.c",
+    "symbols": [
+      "fn_80072168"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
