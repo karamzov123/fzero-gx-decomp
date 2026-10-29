@@ -83846,6 +83846,17 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_CBC8.c",
+    "symbols": [
+      "fn_12_CBC8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_CCB0.c",
     "symbols": [
       "fn_12_CCB0"
@@ -83869,6 +83880,17 @@
     "source": "rel/movie_module/fn_12_CF2C.c",
     "symbols": [
       "fn_12_CF2C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_D038.c",
+    "symbols": [
+      "fn_12_D038"
     ],
     "status": "matching",
     "mw_version": null,

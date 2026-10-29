@@ -2315,3 +2315,9 @@ rel/movie_module/fn_12_1578.c:
 
 rel/movie_module/fn_12_27884.c:
 	.text       start:0x00027884 end:0x00027C58 align:4
+
+rel/movie_module/fn_12_D038.c:
+	.text       start:0x0000D038 end:0x0000D0B8 align:4
+
+rel/movie_module/fn_12_CBC8.c:
+	.text       start:0x0000CBC8 end:0x0000CCB0 align:4
