@@ -746,3 +746,6 @@ rel/customize/editor/fn_3_18960.c:
 
 rel/customize/toolkit/fn_3_1C8D0.c:
 	.text       start:0x0001C8D0 end:0x0001D338 align:4
+
+rel/customize/emb_paste_editor/fn_3_11FF0.c:
+	.text       start:0x00011FF0 end:0x00012910 align:4
