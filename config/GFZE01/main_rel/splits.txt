@@ -9092,3 +9092,6 @@ rel/main_rel/live_camera/fn_1_F3D0.c:
 
 rel/main_rel/memcard/fn_1_B6B28.c:
 	.text       start:0x000B6B28 end:0x000B7C00 align:4
+
+rel/main_rel/sel_static_disp/fn_1_147A04.c:
+	.text       start:0x00147A04 end:0x00148444 align:4

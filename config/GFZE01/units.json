@@ -1055,6 +1055,18 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_6270.c",
+    "symbols": [
+      "fn_3_6270"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c",
+    "pool": true
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_6540.c",
     "symbols": [
       "fn_3_6540"
@@ -1413,6 +1425,18 @@
       "lbl_3_bss_20": "lbl_3_bss_20",
       "lbl_3_bss_F0": "lbl_3_bss_F0"
     }
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_A12C.c",
+    "symbols": [
+      "fn_3_A12C"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c",
+    "pool": true
   },
   {
     "module": "customize",
@@ -2509,6 +2533,18 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/customize/emb_paste_editor.c"
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/emb_paste_editor/fn_3_11FF0.c",
+    "symbols": [
+      "fn_3_11FF0"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/emb_paste_editor.c",
+    "pool": true
   },
   {
     "module": "customize",
@@ -29200,6 +29236,16 @@
     "source": "dol/fn_80071ED4.c",
     "symbols": [
       "fn_80071ED4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_800720B0.c",
+    "symbols": [
+      "fn_800720B0"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -68271,6 +68317,18 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_147A04.c",
+    "symbols": [
+      "fn_1_147A04"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sel_static_disp.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sel_static_disp/fn_1_148444.c",
     "symbols": [
       "fn_1_148444"
@@ -83910,6 +83968,18 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/option/_prolog.c"
+  },
+  {
+    "module": "option",
+    "source": "rel/option/_prolog/fn_4_40C4.c",
+    "symbols": [
+      "fn_4_40C4"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/option/_prolog.c",
+    "pool": true
   },
   {
     "module": "option",

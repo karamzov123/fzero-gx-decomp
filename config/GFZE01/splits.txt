@@ -6470,3 +6470,6 @@ dol/fn_8006953C.c:
 
 dol/fn_8005C9D8.c:
 	.text       start:0x8005C9D8 end:0x8005CBF4 align:4
+
+dol/fn_800720B0.c:
+	.text       start:0x800720B0 end:0x80072168 align:4

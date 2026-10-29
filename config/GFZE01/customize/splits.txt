@@ -758,3 +758,12 @@ rel/customize/_prolog/fn_3_5070.c:
 
 rel/customize/toolkit/fn_3_225F8.c:
 	.text       start:0x000225F8 end:0x00023524 align:4
+
+rel/customize/_prolog/fn_3_A12C.c:
+	.text       start:0x0000A12C end:0x0000AC4C align:4
+
+rel/customize/emb_paste_editor/fn_3_11FF0.c:
+	.text       start:0x00011FF0 end:0x00012910 align:4
+
+rel/customize/_prolog/fn_3_6270.c:
+	.text       start:0x00006270 end:0x00006540 align:4
