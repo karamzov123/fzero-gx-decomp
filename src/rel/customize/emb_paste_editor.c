@@ -944,7 +944,7 @@ void fn_3_11FB4(u8 value_47, u8 value_46, u32 value_7EDC0) {
 }
 /* fzgx:end fn_3_11FB4 */
 
-/* fzgx:begin fn_3_11FF0 pool noprologue */
+/* fzgx:begin fn_3_11FF0 noprologue */
 #include "types.h"
 #include "rel/main_rel/game.h"
 
@@ -1093,19 +1093,19 @@ typedef struct Parts {
 /* .bss of emb_paste_editor.c: static objects are addressed off the section base */
 static Entry *lbl_3_bss_7EDC0;
 #define s_entries lbl_3_bss_7EDC0
-static u32 s_unk_7EDC4;
-static void *s_partsBuf;          /* 0x7EDC8 */
-static Model *s_model;            /* lbl_3_bss_7EDCC */
-static void *s_unk_7EDD0;
-static u16 s_unk_7EDD4;
-static u8 s_unk_7EDD6;
+static u32 fzgx_pool_s_unk_7EDC4;
+static void *lbl_3_bss_7EDC0__fzgx_offset_8;          /* 0x7EDC8 */
+static Model *lbl_3_bss_7EDCC__fzgx_offset_0;            /* lbl_3_bss_7EDCC */
+static void *lbl_3_bss_7EDCC__fzgx_offset_4;
+static u16 fzgx_pool_s_unk_7EDD4;
+static u8 lbl_3_bss_7EDCC__fzgx_offset_A;
 static EditorState lbl_3_bss_7EDD8;
 Entry lbl_3_bss_7EE40;
 static Slots lbl_3_bss_87000;
 static Entry lbl_3_bss_87040;
 static Work lbl_3_bss_8F200;
 static Camera lbl_3_bss_9F640;
-static u8 lbl_3_bss_9F664[0x2C];
+static u8 fzgx_pool_lbl_3_bss_9F664[0x2C];
 static Camera2 lbl_3_bss_9F690;
 
 extern u32 lbl_3_rodata_288[60];
@@ -1293,7 +1293,8 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
     s = 0.921875f;
     s = 0.9375f;
 }
-static const unsigned long fzgx_pool_table4[25] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000, 0x00000000, 0x00000000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000};  /* fzgx-allow: A1 retail pool bytes (float bit patterns) */
+static const unsigned long fzgx_pool_table4[25] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000, 0x00000000, 0x00000000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000};  /* fzgx-allow: A1 float bit patterns (5.0f, -15.625f, 2.5f) in retail pool table, not addresses */
+  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const unsigned long *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
   /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
@@ -1351,19 +1352,19 @@ static void fzgx_base_order_data(void) {
 /* fixes the .bss layout: objects are emitted in first-access order */
 void fzgx_bss_order(void) {
     fn_80008BEC(&s_entries, 0, 0);
-    fn_80008BEC(&s_unk_7EDC4, 0, 0);
-    fn_80008BEC(&s_partsBuf, 0, 0);
-    fn_80008BEC(&s_model, 0, 0);
-    fn_80008BEC(&s_unk_7EDD0, 0, 0);
-    fn_80008BEC(&s_unk_7EDD4, 0, 0);
-    fn_80008BEC(&s_unk_7EDD6, 0, 0);
+    fn_80008BEC(&fzgx_pool_s_unk_7EDC4, 0, 0);
+    fn_80008BEC(&lbl_3_bss_7EDC0__fzgx_offset_8, 0, 0);
+    fn_80008BEC(&lbl_3_bss_7EDCC__fzgx_offset_0, 0, 0);
+    fn_80008BEC(&lbl_3_bss_7EDCC__fzgx_offset_4, 0, 0);
+    fn_80008BEC(&fzgx_pool_s_unk_7EDD4, 0, 0);
+    fn_80008BEC(&lbl_3_bss_7EDCC__fzgx_offset_A, 0, 0);
     fn_80008BEC(&lbl_3_bss_7EDD8, 0, 0);
     fn_80008BEC(&lbl_3_bss_7EE40, 0, 0);
     fn_80008BEC(&lbl_3_bss_87000, 0, 0);
     fn_80008BEC(&lbl_3_bss_87040, 0, 0);
     fn_80008BEC(&lbl_3_bss_8F200, 0, 0);
     fn_80008BEC(&lbl_3_bss_9F640, 0, 0);
-    fn_80008BEC(&lbl_3_bss_9F664, 0, 0);
+    fn_80008BEC(&fzgx_pool_lbl_3_bss_9F664, 0, 0);
     fn_80008BEC(&lbl_3_bss_9F690, 0, 0);
 }
 #pragma section code_type ".text"
@@ -1428,10 +1429,10 @@ void fn_3_11FF0(void) {
     lbl_3_bss_7EDD8.unk_38 = 0;
     fn_1_435C(lbl_3_bss_7EDD8.unk_4);
     lbl_3_bss_7EDD8.unk_A = fn_1_3F8C(fzgx_pool_native_lbl_3_data_1A40_unk_190C, fn_3_E6F8, 0, 6);
-    s_model = fn_1_45D0(HEAP, 0x440, fzgx_pool_native_lbl_3_data_1A40_file, 0xA3B);
-    fn_80008BEC(s_model, 0, 0x440);
+    lbl_3_bss_7EDCC__fzgx_offset_0 = fn_1_45D0(HEAP, 0x440, fzgx_pool_native_lbl_3_data_1A40_file, 0xA3B);
+    fn_80008BEC(lbl_3_bss_7EDCC__fzgx_offset_0, 0, 0x440);
     if (!(CUR.parts[0].flags & 0x40000000)) {
-        lbl_3_bss_7EDD8.unk_44 = fn_1_80CC4(CUR.parts[0].unk_5, 0, 0, s_model);
+        lbl_3_bss_7EDD8.unk_44 = fn_1_80CC4(CUR.parts[0].unk_5, 0, 0, lbl_3_bss_7EDCC__fzgx_offset_0);
         mode = 1;
         if (CUR.kind == 4) {
             CUR.parts[0].unk_8 = 2;
@@ -1451,8 +1452,8 @@ void fn_3_11FF0(void) {
             lbl_3_bss_87040.parts[i].unk_34 = CUR.parts[i].unk_34;
         }
     } else {
-        s_partsBuf = fn_1_45D0(HEAP, 0xA20, fzgx_pool_native_lbl_3_data_1A40_file, 0xA5F);
-        fn_80008BEC(s_partsBuf, 0, 0xA20);
+        lbl_3_bss_7EDC0__fzgx_offset_8 = fn_1_45D0(HEAP, 0xA20, fzgx_pool_native_lbl_3_data_1A40_file, 0xA5F);
+        fn_80008BEC(lbl_3_bss_7EDC0__fzgx_offset_8, 0, 0xA20);
         fn_80008BEC(&parts, 0, sizeof(Parts));
         {
             for (j = 0; j < 3; j++) {
@@ -1460,18 +1461,18 @@ void fn_3_11FF0(void) {
             }
             parts.flag = 1;
             mode = 1;
-            fn_1_14D8DC(&parts, s_partsBuf, 1);
+            fn_1_14D8DC(&parts, lbl_3_bss_7EDC0__fzgx_offset_8, 1);
         }
-        s_model->unk_3A0 = s_partsBuf;
-        s_model->unk_390 |= 0x04000000;
+        lbl_3_bss_7EDCC__fzgx_offset_0->unk_3A0 = lbl_3_bss_7EDC0__fzgx_offset_8;
+        lbl_3_bss_7EDCC__fzgx_offset_0->unk_390 |= 0x04000000;
         for (i = 0; i < 4; i++) {
             fn_3_12FD4(5, (u8)CUR.parts[i].unk_20, CUR.sel[CUR.parts[i].unk_20].id, &CUR.parts[i].unk_30, &CUR.parts[i].unk_34);
         }
     }
-    s_unk_7EDD0 = fn_1_7F254(&CUR, mode);
-    s_model->unk_3A4 = s_unk_7EDD0;
+    lbl_3_bss_7EDCC__fzgx_offset_4 = fn_1_7F254(&CUR, mode);
+    lbl_3_bss_7EDCC__fzgx_offset_0->unk_3A4 = lbl_3_bss_7EDCC__fzgx_offset_4;
     lbl_3_bss_8F200.unk_4 = 4;
-    lbl_3_bss_8F200.model = s_model;
+    lbl_3_bss_8F200.model = lbl_3_bss_7EDCC__fzgx_offset_0;
     lbl_3_bss_8F200.unk_10424 = fn_1_FD324;
     lbl_3_bss_8F200.unk_10428 = fn_1_FDC00;
     lbl_3_bss_8F200.unk_1042C = fn_1_FD27C;
@@ -1533,7 +1534,7 @@ void fn_3_11FF0(void) {
         }
         fn_1_45850(&file2);
     }
-    s_unk_7EDD6 = 0;
+    lbl_3_bss_7EDCC__fzgx_offset_A = 0;
 }
 /* fzgx:end fn_3_11FF0 */
 

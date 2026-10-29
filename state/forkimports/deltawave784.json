@@ -3916,15 +3916,6 @@
   "source": "deltawave784/fzgx@13b0aeca (CC0)",
   "status": "pool"
  },
- "fn_3_11FF0": {
-  "flags": "",
-  "kind": "raw+allow",
-  "landed": 1793243663,
-  "mw": "GC/1.3.2",
-  "sha256": "2e320973fdc8620a6b6add9a60dfea1d03fbd790050c261c51408d9de1ae6913",
-  "source": "deltawave784/fzgx@7d73e43f (CC0)",
-  "status": "pool"
- },
  "fn_3_12B14": {
   "flags": "",
   "kind": "raw",

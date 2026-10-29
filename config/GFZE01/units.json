@@ -2540,11 +2540,27 @@
     "symbols": [
       "fn_3_11FF0"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/customize/emb_paste_editor.c",
-    "pool": true
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_288",
+      "...data.0": "lbl_3_data_1A40",
+      "...bss.0": "lbl_3_bss_7EDC0",
+      "lbl_3_bss_7EDC0": "lbl_3_bss_7EDC0",
+      "lbl_3_bss_7EDC0__fzgx_offset_8": "lbl_3_bss_7EDC0+0x8",
+      "lbl_3_bss_7EDCC__fzgx_offset_0": "lbl_3_bss_7EDCC",
+      "lbl_3_bss_7EDCC__fzgx_offset_4": "lbl_3_bss_7EDCC+0x4",
+      "lbl_3_bss_7EDCC__fzgx_offset_A": "lbl_3_bss_7EDCC+0xA",
+      "lbl_3_bss_7EDD8": "lbl_3_bss_7EDD8",
+      "lbl_3_bss_87000": "lbl_3_bss_87000",
+      "lbl_3_bss_87040": "lbl_3_bss_87040",
+      "lbl_3_bss_8F200": "lbl_3_bss_8F200",
+      "lbl_3_bss_9F640": "lbl_3_bss_9F640",
+      "lbl_3_bss_9F690": "lbl_3_bss_9F690",
+      "lbl_3_bss_7EE40": "lbl_3_bss_7EE40"
+    }
   },
   {
     "module": "customize",
