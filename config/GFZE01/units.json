@@ -74995,6 +74995,18 @@
   },
   {
     "module": "movie",
+    "source": "rel/movie/_prolog/fn_5_169C.c",
+    "symbols": [
+      "fn_5_169C"
+    ],
+    "status": "nonmatching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/movie/_prolog.c",
+    "pool": true
+  },
+  {
+    "module": "movie",
     "source": "rel/movie/_prolog/fn_5_200.c",
     "symbols": [
       "fn_5_200"
