@@ -353,3 +353,6 @@ rel/title/operation/fn_8_E440.c:
 
 rel/title/title/fn_8_5FD4.c:
 	.text       start:0x00005FD4 end:0x00006558 align:4
+
+rel/title/operation/fn_8_B380.c:
+	.text       start:0x0000B380 end:0x0000B840 align:4

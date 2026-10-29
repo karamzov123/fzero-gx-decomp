@@ -212,3 +212,6 @@ rel/interview/interview/_prolog.c:
 
 rel/interview/interview/fn_17_6D60.c:
 	.text       start:0x00006D60 end:0x00006F30 align:4
+
+rel/interview/interview/fn_17_2938.c:
+	.text       start:0x00002938 end:0x00002B9C align:4

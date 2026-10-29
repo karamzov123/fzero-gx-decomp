@@ -9029,3 +9029,66 @@ rel/main_rel/game/fn_1_3EC88.c:
 
 rel/main_rel/game/fn_1_32A40.c:
 	.text       start:0x00032A40 end:0x000331EC align:4
+
+rel/main_rel/burner/fn_1_9A7BC.c:
+	.text       start:0x0009A7BC end:0x0009A864 align:4
+
+rel/main_rel/bg_common/fn_1_107F74.c:
+	.text       start:0x00107F74 end:0x00108128 align:4
+
+rel/main_rel/effect/fn_1_60D54.c:
+	.text       start:0x00060D54 end:0x00060F7C align:4
+
+rel/main_rel/face/fn_1_D2404.c:
+	.text       start:0x000D2404 end:0x000D27B8 align:4
+
+rel/main_rel/bg_cas/fn_1_FF038.c:
+	.text       start:0x000FF038 end:0x000FF420 align:4
+
+rel/main_rel/som/fn_1_1304C.c:
+	.text       start:0x0001304C end:0x0001350C align:4
+
+rel/main_rel/accessory/fn_1_1262A4.c:
+	.text       start:0x001262A4 end:0x00126774 align:4
+
+rel/main_rel/stcoli/fn_1_28184.c:
+	.text       start:0x00028184 end:0x00028660 align:4
+
+rel/main_rel/effect_car/fn_1_71768.c:
+	.text       start:0x00071768 end:0x00071CA0 align:4
+
+rel/main_rel/motasglist/fn_1_438AC.c:
+	.text       start:0x000438AC end:0x00043E08 align:4
+
+rel/main_rel/effect_car/fn_1_71D0C.c:
+	.text       start:0x00071D0C end:0x00072318 align:4
+
+rel/main_rel/accessory/fn_1_11A158.c:
+	.text       start:0x0011A158 end:0x0011A774 align:4
+
+rel/main_rel/accessory/fn_1_10CC38.c:
+	.text       start:0x0010CC38 end:0x0010D2F0 align:4
+
+rel/main_rel/effect_car/fn_1_6E62C.c:
+	.text       start:0x0006E62C end:0x0006ED40 align:4
+
+rel/main_rel/sel_static_disp/fn_1_144254.c:
+	.text       start:0x00144254 end:0x00144A5C align:4
+
+rel/main_rel/effect_car/fn_1_6BFB8.c:
+	.text       start:0x0006BFB8 end:0x0006C87C align:4
+
+rel/main_rel/effect_car/fn_1_6AF70.c:
+	.text       start:0x0006AF70 end:0x0006B8A4 align:4
+
+rel/main_rel/font/fn_1_50A90.c:
+	.text       start:0x00050A90 end:0x00051564 align:4
+
+rel/main_rel/bitmap/fn_1_487EC.c:
+	.text       start:0x000487EC end:0x00048A0C align:4
+
+rel/main_rel/live_camera/fn_1_F3D0.c:
+	.text       start:0x0000F3D0 end:0x0000F6A8 align:4
+
+rel/main_rel/memcard/fn_1_B6B28.c:
+	.text       start:0x000B6B28 end:0x000B7C00 align:4

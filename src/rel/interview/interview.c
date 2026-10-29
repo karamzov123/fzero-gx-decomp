@@ -772,6 +772,212 @@ void fn_17_1794(void) {
 }
 /* fzgx:end fn_17_1794 */
 
+/* fzgx:begin fn_17_2938 pool */
+typedef struct {
+    u8 r, g, b, a;
+} IvColor;
+
+typedef struct {
+    u8 pad_0[4];
+    u8 kind;
+} IvMode;
+
+typedef struct {
+    u8 pad_00[0x8];
+    s16 kind;
+    u8 pad_0a[0x6];
+    void *unk_10;
+    void *unk_14;
+    u8 pad_18[0x74 - 0x18];
+} IvSub;
+
+/* The TU's own .data, addressed off one section base in retail. */
+static union { u32 w[101198]; u8 v[0x62D38]; } fzgx_pool_init_lbl_17_data_0 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0xFA, 0x3C23D70A, 0x0, 0xBF5B645A, 0x3F15C28F, 0xBFBE147B, 0xBE53F7CF, 0x3F483127,
+    0x3DDD2F1B, 0x41F00000, 0x0, 0x0, 0xBF374BC7, 0x3F20C49C, 0xBF920C4A, 0xBE53F7CF,
+    0x3F483127, 0x3DDD2F1B, 0x41F00000, 0x0, 0x0, 0xC8, 0x3C23D70A, 0x0,
+    0x3F804189, 0x3F87AE14, 0xBEE147AE, 0x3BC49BA6, 0x3F4A3D71, 0xBD23D70A, 0x41E8CCCD, 0xFFFF0000,
+    0x0, 0x3EAC0831, 0x3F05E354, 0xBF12F1AA, 0xBD0F5C29, 0x3F52B021, 0xBCAC0831, 0x41E8CCCD,
+    0xFFFF0000, 0x0, 0xC8, 0x3C23D70A, 0x0, 0xBD656042, 0x3F410625, 0xBF86872B,
+    0xBCBC6A7F, 0x3F3DF3B6, 0xBEF645A2, 0x41E80000, 0xFFFF0000, 0x0, 0xBD656042, 0x3F410625,
+    0xBF86872B, 0xBCBC6A7F, 0x3F3DF3B6, 0xBEF645A2, 0x41E80000, 0xFFFF0000, 0x20000, 0xC8,
+    0x3C23D70A, 0x0, 0xBE343958, 0x3F50A3D7, 0xBF983127, 0x0,
+}};
+#define lbl_17_data_0 (fzgx_pool_init_lbl_17_data_0.v)
+s16 lbl_17_data_62D38[5][4][4] = { 1 };
+s16 lbl_17_data_62DD8[5][4][4] = { 1 };
+s16 lbl_17_data_62E78[5][4][4] = { 1 };
+s16 lbl_17_data_62F18[5][4][4] = { 1 };
+s16 lbl_17_data_62FB8[5][4][4] = { 1 };
+u8 lbl_17_data_63058[0x63E50 - 0x63058] = { 1 };
+char lbl_17_data_63E50[0x250] = "interview.c";
+
+/* The TU's own .bss, also addressed off one section base. */
+u8 lbl_17_bss_0;
+u8 lbl_17_bss_1;
+u8 lbl_17_bss_2;
+u8 lbl_17_bss_3;
+u32 lbl_17_bss_4[2];
+u32 lbl_17_bss_C;
+IvMode *lbl_17_bss_10;
+u32 lbl_17_bss_14;
+u32 lbl_17_bss_18;
+s32 lbl_17_bss_1C;
+s32 lbl_17_bss_20;
+u32 lbl_17_bss_24[4];
+u32 lbl_17_bss_34[8];
+s32 lbl_17_bss_54;
+u32 lbl_17_bss_58;
+u16 lbl_17_bss_5C;
+u16 lbl_17_bss_5E;
+IvSub lbl_17_bss_60;
+u16 lbl_17_bss_D4;
+u16 lbl_17_bss_D6;
+u32 lbl_17_bss_D8[8];
+u8 lbl_17_bss_F8;
+u8 lbl_17_bss_F9;
+u16 lbl_17_bss_FA;
+u32 lbl_17_bss_FC;
+u8 lbl_17_bss_100;
+u8 lbl_17_bss_101;
+u16 lbl_17_bss_102;
+s32 lbl_17_bss_104;
+s16 lbl_17_bss_108;
+u16 lbl_17_bss_10A;
+f32 lbl_17_bss_10C;
+f32 lbl_17_bss_110;
+f32 lbl_17_bss_114;
+IvColor lbl_17_bss_118[4];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&lbl_17_data_0;
+    s = *(u8 *)&lbl_17_data_62D38;
+    s = *(u8 *)&lbl_17_data_62DD8;
+    s = *(u8 *)&lbl_17_data_62E78;
+    s = *(u8 *)&lbl_17_data_62F18;
+    s = *(u8 *)&lbl_17_data_62FB8;
+    s = *(u8 *)&lbl_17_data_63058;
+    s = *(u8 *)&lbl_17_data_63E50;
+    s = *(u8 *)&lbl_17_bss_0;
+    s = *(u8 *)&lbl_17_bss_1;
+    s = *(u8 *)&lbl_17_bss_2;
+    s = *(u8 *)&lbl_17_bss_3;
+    s = *(u8 *)&lbl_17_bss_4;
+    s = *(u8 *)&lbl_17_bss_C;
+    s = *(u8 *)&lbl_17_bss_10;
+    s = *(u8 *)&lbl_17_bss_14;
+    s = *(u8 *)&lbl_17_bss_18;
+    s = *(u8 *)&lbl_17_bss_1C;
+    s = *(u8 *)&lbl_17_bss_20;
+    s = *(u8 *)&lbl_17_bss_24;
+    s = *(u8 *)&lbl_17_bss_34;
+    s = *(u8 *)&lbl_17_bss_54;
+    s = *(u8 *)&lbl_17_bss_58;
+    s = *(u8 *)&lbl_17_bss_5C;
+    s = *(u8 *)&lbl_17_bss_5E;
+    s = *(u8 *)&lbl_17_bss_60;
+    s = *(u8 *)&lbl_17_bss_D4;
+    s = *(u8 *)&lbl_17_bss_D6;
+    s = *(u8 *)&lbl_17_bss_D8;
+    s = *(u8 *)&lbl_17_bss_F8;
+    s = *(u8 *)&lbl_17_bss_F9;
+    s = *(u8 *)&lbl_17_bss_FA;
+    s = *(u8 *)&lbl_17_bss_FC;
+    s = *(u8 *)&lbl_17_bss_100;
+    s = *(u8 *)&lbl_17_bss_101;
+    s = *(u8 *)&lbl_17_bss_102;
+    s = *(u8 *)&lbl_17_bss_104;
+    s = *(u8 *)&lbl_17_bss_108;
+    s = *(u8 *)&lbl_17_bss_10A;
+    s = *(u8 *)&lbl_17_bss_10C;
+    s = *(u8 *)&lbl_17_bss_110;
+    s = *(u8 *)&lbl_17_bss_114;
+    s = *(u8 *)&lbl_17_bss_118;
+}
+#pragma section code_type ".text"
+
+extern const f32 lbl_17_rodata_20;
+extern const IvColor lbl_17_rodata_38;
+extern u32 lbl_801A6410;
+
+extern u32 fn_17_2D5C(u32, u32);
+extern void fn_1_4A00(s32, s32, u32);
+extern void *fn_17_72C0(s16);
+extern void fn_17_74C0(IvSub *);
+extern void fn_1_154F1C(void);
+extern void fn_1_46B4(u32, void *, const char *, int);
+extern void fn_1_154FC0(void);
+extern void fn_1_154FA8(void);
+extern void camera_disable_flags(void);
+
+static inline s16 iv_entry(s32 kind, s16 row, s16 col, s16 i) {
+    switch (kind) {
+    case 5:
+        return lbl_17_data_62DD8[row][col][i];
+    case 3:
+        return lbl_17_data_62E78[row][col][i];
+    case 29:
+        return lbl_17_data_62F18[row][col][i];
+    case 32:
+        return lbl_17_data_62FB8[row][col][i];
+    case 4:
+    default:
+        return lbl_17_data_62D38[row][col][i];
+    }
+}
+
+void fn_17_2938(void) {
+    IvColor color;
+    IvMode *mode;
+    struct { s16 value; } i;
+    u8 col;
+    u8 row;
+    u32 kind;
+    void *r;
+
+    fn_17_2D5C(lbl_17_bss_14, lbl_17_bss_18);
+    fn_1_4A00(1, 30, lbl_17_bss_18);
+    if (lbl_17_bss_58 & 1) {
+        lbl_17_bss_5C = 0;
+        mode = lbl_17_bss_10;
+        lbl_17_bss_1C = 0;
+        lbl_17_bss_20 = -1;
+        lbl_17_bss_104 = 0;
+        lbl_17_bss_108 = 0;
+        lbl_17_bss_10C = lbl_17_rodata_20;
+        lbl_17_bss_110 = lbl_17_rodata_20;
+        lbl_17_bss_114 = lbl_17_rodata_20;
+        color = lbl_17_rodata_38;
+        col = lbl_17_bss_F8;
+        row = lbl_17_bss_100;
+        kind = (u8)(mode->kind);
+        for (i.value = 0; i.value < 4; i.value++) {
+            lbl_17_bss_118[i.value] = color;
+            if (iv_entry(kind, lbl_17_bss_100, lbl_17_bss_F8, i.value) > 0) {
+                lbl_17_bss_104++;
+            }
+        }
+        fn_1_154F1C();
+        if (lbl_17_bss_60.unk_10 != NULL) {
+            fn_1_46B4(lbl_801A6410, lbl_17_bss_60.unk_10, lbl_17_data_63E50, 1337);
+        }
+        lbl_17_bss_60.kind = mode->kind;
+        r = fn_17_72C0(lbl_17_bss_60.kind);
+        lbl_17_bss_60.unk_10 = r;
+        lbl_17_bss_60.unk_14 = r;
+        if (lbl_17_bss_54 == 0) {
+            fn_1_154FC0();
+        } else {
+            fn_1_154FA8();
+        }
+        fn_17_74C0(&lbl_17_bss_60);
+        camera_disable_flags();
+    }
+}
+/* fzgx:end fn_17_2938 */
+
 /* fzgx:begin fn_17_2B9C */
 #include "rel/interview/interview.h"
 

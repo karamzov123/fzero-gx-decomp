@@ -1378,6 +1378,250 @@ mode_done:
 }
 /* fzgx:end fn_1_EE44 */
 
+/* fzgx:begin fn_1_F3D0 pool noprologue */
+#include "types.h"
+#include "font.h"
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 pad_2[0x4];
+    s16 unk_6;
+    u8 pad_8[0xA];
+    s16 unk_12;
+} fn_1_F3D0_Arg;
+
+typedef struct {
+    u8 pad_0[0x8];
+    f32 unk_8;
+    u8 pad_C[0x8];
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+    u8 pad_20[0x60];
+    f32 unk_80;
+    f32 unk_84;
+    f32 unk_88;
+    f32 unk_8C;
+    f32 unk_90;
+    f32 unk_94;
+    f32 unk_98;
+} fn_1_F3D0_Rodata;
+
+extern fn_1_F3D0_Rodata lbl_1_rodata_4E0;
+extern const FontDrawPacket lbl_1_rodata_26F8;
+extern s16 lbl_1_bss_960;
+
+extern s32 fn_1_F2F34(void);
+extern s32 fn_1_40BB4(void);
+extern u32 fn_1_E688(f32);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16);
+extern void fn_1_495B0(u32);
+extern void fn_1_495C8(u8);
+extern void fn_1_49590(f32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_495A0(f32);
+extern void fn_1_A8F40(u8);
+extern f32 fn_1_8652C(int);
+extern void fn_1_520A0(void);
+extern void fn_1_52070(u32);
+extern void fn_1_4966C(f32, f32);
+extern void fn_1_520CC(void);
+
+/* camera mode handlers stored in the retail .data table at lbl_1_data_43B8+0x88 */
+extern void fn_1_1138C(void);
+extern void fn_1_11748(void);
+extern void fn_1_11ABC(void);
+extern void fn_1_11E98(void);
+extern void fn_1_107B8(void);
+extern void fn_1_10268(void);
+extern void fn_1_DA34(void);
+extern void fn_1_11544(void);
+extern void fn_1_1189C(void);
+extern void fn_1_11C08(void);
+extern void fn_1_1212C(void);
+extern void fn_1_10AF0(void);
+extern void fn_1_103B0(void);
+
+/* file-scope .data objects of the retail TU (lbl_1_data_43B8 .. +0x39C), in retail order:
+ * MWCC addresses them off one section base, and the name table at +0x1BC is its own object */
+char fzgx_obj_lbl_1_data_43B8[12] = "OVERTAKE";
+char fzgx_obj_lbl_1_data_43C4[8] = "JUMP";
+char fzgx_obj_lbl_1_data_43CC[12] = "ENEMYHIT";
+char fzgx_obj_lbl_1_data_43D8[8] = "WALLHIT";
+char fzgx_obj_lbl_1_data_43E0[12] = "SIDEBYSIDE";
+char fzgx_obj_lbl_1_data_43EC[8] = "START";
+char fzgx_obj_lbl_1_data_43F4[8] = "GOAL";
+char fzgx_obj_lbl_1_data_43FC[4] = "LAP";
+const char *fzgx_obj_lbl_1_data_4400[8] = {
+    fzgx_obj_lbl_1_data_43B8, fzgx_obj_lbl_1_data_43C4, fzgx_obj_lbl_1_data_43CC,
+    fzgx_obj_lbl_1_data_43D8, fzgx_obj_lbl_1_data_43E0, fzgx_obj_lbl_1_data_43EC,
+    fzgx_obj_lbl_1_data_43F4, fzgx_obj_lbl_1_data_43FC,
+};
+char fzgx_obj_lbl_1_data_4420[16] = "live_camera.c";
+char fzgx_obj_lbl_1_data_4430[16] = "livecam error\n";
+void (*fzgx_obj_lbl_1_data_4440[14])(void) = {
+    fn_1_1138C, fn_1_11748, fn_1_11ABC, fn_1_11E98, fn_1_107B8, fn_1_10268, fn_1_DA34,
+    fn_1_11544, fn_1_1189C, fn_1_11C08, fn_1_1212C, fn_1_10AF0, fn_1_103B0, fn_1_DA34,
+};
+u32 fzgx_obj_lbl_1_data_4478[3] = { 0x00110000, 0x000C1100, 0x000C1100 };
+u32 fzgx_obj_lbl_1_data_4484[28] = {
+    0x00010000, 0x1, 0x3, 0x5, 0x7, 0x8, 0x9, 0xA, 0xB, 0xD, 0xE, 0xF, 0x10, 0x11,
+    0x15, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1F, 0x20, 0x21, 0x22, 0x23, 0x24, 0x1,
+};
+u32 fzgx_obj_lbl_1_data_44F4[3] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
+u16 fzgx_obj_lbl_1_data_4500[4] = { 0x2A, 0x2A, 0x3C, 0 };
+char fzgx_obj_lbl_1_data_4508[12] = "AUTO CAMERA";
+char fzgx_obj_lbl_1_data_4514[16] = "COURSE CAMERA";
+char fzgx_obj_lbl_1_data_4524[12] = "CAR CAMERA";
+char fzgx_obj_lbl_1_data_4530[16] = "SELECT CAMERA";
+char fzgx_obj_lbl_1_data_4540[20] = "LIVECAM MODE MAX";
+char fzgx_obj_lbl_1_data_4554[20] = "OLD RANDOM CAMERA";
+char fzgx_obj_lbl_1_data_4568[12] = "TABLE MODE";
+const char *fzgx_obj_lbl_1_data_4574[7] = {
+    fzgx_obj_lbl_1_data_4508, fzgx_obj_lbl_1_data_4514, fzgx_obj_lbl_1_data_4524,
+    fzgx_obj_lbl_1_data_4530, fzgx_obj_lbl_1_data_4540, fzgx_obj_lbl_1_data_4554,
+    fzgx_obj_lbl_1_data_4568,
+};
+char fzgx_obj_lbl_1_data_4590[8] = "\x81\xF4%s";
+char fzgx_obj_lbl_1_data_4598[16] = "\x81\xF4" "Brain Cleaner";
+char fzgx_obj_lbl_1_data_45A8[32] = "\x81\xF4" "Cover of Mute City's theme";
+char fzgx_obj_lbl_1_data_45C8[28] = "\x81\xF4" "Cover of Big Blue's theme";
+char fzgx_obj_lbl_1_data_45E4[4] = "%s";
+char fzgx_obj_lbl_1_data_45E8[4] = "]";
+char fzgx_obj_lbl_1_data_45EC[4] = "[";
+char fzgx_obj_lbl_1_data_45F0[8] = "\t\n\v\f\r";
+char fzgx_obj_lbl_1_data_45F8[16] = "GAME CAMERA\n";
+char fzgx_obj_lbl_1_data_4608[24] = "LIVE WITH GAME CAMERA\n";
+char fzgx_obj_lbl_1_data_4620[16] = "SELECT CAMERA\n";
+char fzgx_obj_lbl_1_data_4630[4] = "%s\n";
+char fzgx_obj_lbl_1_data_4634[4] = "%4d";
+char fzgx_obj_lbl_1_data_4638[4] = "cam";
+char fzgx_obj_lbl_1_data_463C[28] = "livecam_stage_demo_%d.bin";
+char fzgx_obj_lbl_1_data_4658[28] = "livecam_stage_demo_1.bin";
+char fzgx_obj_lbl_1_data_4674[24] = "livecam_stage_50_4p.bin";
+char fzgx_obj_lbl_1_data_468C[24] = "livecam_stage_50_3p.bin";
+char fzgx_obj_lbl_1_data_46A4[24] = "livecam_stage_50_2p.bin";
+char fzgx_obj_lbl_1_data_46BC[32] = "livecam_stage_demo_50_end.bin";
+char fzgx_obj_lbl_1_data_46DC[24] = "livecam_stage_%d.bin";
+char fzgx_obj_lbl_1_data_46F4[20] = "livecam_stage_1.bin";
+char fzgx_obj_lbl_1_data_4708[4] = "..";
+char fzgx_obj_lbl_1_data_470C[16] = "livecam_%d.bin";
+char fzgx_obj_lbl_1_data_471C[16] = "livecam_1.bin";
+char fzgx_obj_lbl_1_data_472C[20] = "livecam_ball_%d.bin";
+char fzgx_obj_lbl_1_data_4740[20] = "livecam_ball_1.bin";
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_1148[2];
+f32 lbl_1_bss_1148_8;
+u32 lbl_1_bss_1148_fill_1154[2];
+u8 fzgx_obj_lbl_1_bss_115C;
+u8 lbl_1_bss_1148_gap_115D;
+u16 lbl_1_bss_1148_gap_115D_fill_115E;
+f32 lbl_1_bss_1160[3];
+u32 lbl_1_bss_1160_fill_116C[400];
+u8 fzgx_obj_lbl_1_bss_17AC;
+u8 lbl_1_bss_1148_gap_17AD;
+u16 lbl_1_bss_1148_gap_17AD_fill_17AE;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_1148;
+    s = *(u8 *)&lbl_1_bss_1148_8;
+    s = *(u8 *)&lbl_1_bss_1148_fill_1154;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_115C;
+    s = *(u8 *)&lbl_1_bss_1148_gap_115D;
+    s = *(u8 *)&lbl_1_bss_1148_gap_115D_fill_115E;
+    s = *(u8 *)&lbl_1_bss_1160;
+    s = *(u8 *)&lbl_1_bss_1160_fill_116C;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_17AC;
+    s = *(u8 *)&lbl_1_bss_1148_gap_17AD;
+    s = *(u8 *)&lbl_1_bss_1148_gap_17AD_fill_17AE;
+}
+#pragma section code_type ".text"
+
+void fn_1_F3D0(fn_1_F3D0_Arg *arg) {
+    fn_1_F3D0_Rodata *ro = &lbl_1_rodata_4E0;
+    f32 alpha;
+    s32 value;
+    FontDrawPacket packet1;
+    FontDrawPacket packet2;
+
+    if (fn_1_F2F34() != 0 && arg->unk_12 != 5 && fn_1_40BB4() == 0) {
+        fzgx_obj_lbl_1_bss_115C = 1;
+        fn_1_E688(lbl_1_bss_1148_8);
+        alpha = lbl_1_bss_1160[0];
+        fn_1_49410();
+        fn_1_494DC(6);
+        fn_1_495B0((u32)0xC0 << 24);  /* colour/flag word, not an address */
+        fn_1_495C8(9);
+        fn_1_49590(ro->unk_18);
+        fn_1_496FC(ro->unk_8, ro->unk_80);
+        fn_1_495A0(alpha);
+
+        if (arg->unk_1 != 0) {
+            switch (arg->unk_1) {
+            case 1:
+                fn_1_4AE0C(fzgx_obj_lbl_1_data_45F8);
+                break;
+            case 2:
+                fn_1_4AE0C(fzgx_obj_lbl_1_data_4608);
+                break;
+            case 0:
+                break;
+            }
+        } else {
+            switch (arg->unk_0) {
+            case 3:
+                fn_1_4AE0C(fzgx_obj_lbl_1_data_4620);
+                break;
+            default:
+                fn_1_A8F40(0x33);
+                fn_1_4AE0C(fzgx_obj_lbl_1_data_4630, fzgx_obj_lbl_1_data_4574[arg->unk_0]);
+                fn_1_A8F40(0xFF);
+                break;
+            }
+        }
+
+        alpha = lbl_1_bss_1160[1];
+        value = fn_1_8652C(arg->unk_6);
+        fn_1_49410();
+        if (lbl_1_bss_960 == 12) {
+            fn_1_494DC(0x2B);
+        } else {
+            fn_1_494DC(0xF);
+        }
+        fn_1_520A0();
+        fn_1_52070(0x220);
+        fn_1_496FC(ro->unk_84, ro->unk_88);
+        fn_1_4966C(ro->unk_1C, ro->unk_14);
+        fn_1_495A0(alpha);
+        fn_1_4AE0C(fzgx_obj_lbl_1_data_4634, value);
+
+        packet1 = lbl_1_rodata_26F8;
+        packet1.image = (lbl_1_bss_960 == 12) ? 0x9601 : 0x9401;
+        packet1.x = ro->unk_8C;
+        packet1.y = ro->unk_90;
+        packet1.alpha = alpha;
+        fn_1_4F734(&packet1);
+        fn_1_520CC();
+
+        alpha = lbl_1_bss_1160[2];
+        packet2 = lbl_1_rodata_26F8;
+        packet2.image = (lbl_1_bss_960 == 12) ? 0x9602 : 0x941F;
+        fn_1_520A0();
+        fn_1_52070(0x220);
+        packet2.x = ro->unk_94;
+        packet2.y = ro->unk_98;
+        packet2.alpha = alpha;
+        fn_1_4F734(&packet2);
+        fn_1_520CC();
+    }
+}
+/* fzgx:end fn_1_F3D0 */
+
 /* fzgx:begin fn_1_F6A8 noprologue */
 #include "types.h"
 #include "types.h"

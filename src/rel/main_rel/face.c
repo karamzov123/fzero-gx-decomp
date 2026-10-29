@@ -460,6 +460,174 @@ void fn_1_D2110(FaceObj *o) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_D2110 */
 
+/* fzgx:begin fn_1_D2404 noprologue */
+#include "types.h"
+
+typedef struct FaceEntry {
+    u32 flags;
+    u32 id;
+    s32 unk8;
+    u8 padC[4];
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    u8 pad20[0x18];
+    u32 unk38;
+    u32 unk3C;
+    u8 pad40[0x24];
+} FaceEntry;
+
+typedef struct FaceManager {
+    FaceEntry *entries;
+    void **list4;
+    void **list8;
+    u8 countC;
+    u8 countD;
+    u8 padE[2];
+    s32 unk10;
+} FaceManager;
+
+extern FaceManager lbl_1_bss_7ACD8;
+extern s32 lbl_1_data_3D924;
+
+extern u32 fn_1_58C4(void);
+extern void fn_1_D2F50(void);
+extern void fn_1_D2F84(void);
+extern u8 fn_1_D2E44(u8);
+extern void fn_1_D2110(FaceEntry *);
+extern u32 fn_1_864E8(u32);
+extern s16 fn_1_3F0C8(void);
+extern u32 fn_1_3F440(u8);
+extern s8 fn_1_86690(s8);
+extern s16 fn_1_12C7B8(s16);
+extern s32 fn_1_D123C(u8);
+extern void fn_80071718(void *);
+extern void fn_800711A8(void *);
+
+void fn_1_D2404(void) {
+    FaceManager *mgr = &lbl_1_bss_7ACD8;
+    s8 player;
+    s32 id;
+    u8 j;
+    FaceEntry *e_2;
+    FaceEntry *g;
+    u32 idx;
+    u8 m;
+    FaceEntry *f;
+    FaceEntry *e;
+    u8 i;
+    u8 n;
+    u8 slot;
+    s32 found;
+    s32 pending;
+    u8 q;
+    u8 k;
+
+    if (fn_1_58C4() <= 1 && lbl_1_data_3D924 != -1) {
+        fn_1_D2F50();
+        e = mgr->entries;
+        for (i = 0; i < mgr->countD; i++, e++) {
+            e->unk14 = fn_1_D2E44(e->id);
+        }
+        e_2 = mgr->entries;
+        for (j = 0; j < mgr->countD; j++, e_2++) {
+            fn_1_D2110(e_2);
+            if (e_2->unk3C != 0) {
+                e_2->unk3C--;
+            }
+            if (e_2->unk38 != 0) {
+                e_2->unk38--;
+            }
+            if ((fn_1_864E8(e_2->id) & 0x2800000) && fn_1_3F0C8() == 41) {
+                e_2->unk38 = 10;
+            }
+            if (e_2->unk10 != e_2->unk14) {
+                e_2->unk1C--;
+            } else {
+                e_2->unk1C = 20;
+            }
+            if (e_2->unk1C != 0) {
+                continue;
+            }
+            f = mgr->entries;
+            for (k = 0; k < mgr->countD; k++, f++) {
+                if (mgr->unk10 == 0 && f->unk10 < 6 && f->unk14 >= 6) {
+                    idx = (u8)f->id;
+                    if (mgr->list8[idx] != NULL) {
+                        fn_80071718(mgr->list8[idx]);
+                        mgr->list8[idx] = NULL;
+                    }
+                    if (mgr->list4[idx] != NULL) {
+                        fn_800711A8(mgr->list4[idx]);
+                        mgr->list4[idx] = NULL;
+                    }
+                }
+                if (f->unk10 != 0 && f->unk14 == 0 && fn_1_3F0C8() == 41) {
+                    f->unk3C = 70;
+                } else {
+                    f->unk3C = 0;
+                }
+                f->unk10 = f->unk14;
+                if (mgr->unk10 != 0) {
+                    f->unk18 = f->id;
+                } else {
+                    f->unk18 = fn_1_3F440(f->unk14);
+                }
+            }
+            if (mgr->unk10 != 0) {
+                continue;
+            }
+            player = (s8)j;
+            for (m = 0; m < mgr->countC; m++) {
+                id = m;
+                slot = fn_1_D2E44(id);
+                if (slot >= 6) {
+                    continue;
+                }
+                g = mgr->entries;
+                found = 1;
+                f = g;
+                for (n = 0; n < mgr->countD; n++, f++) {
+                    if (f->unk10 < 6 && found && m == f->id) {
+                        found = 0;
+                    }
+                }
+                if (!found) {
+                    continue;
+                }
+                pending = 1;
+                for (q = 0; q < mgr->countD; q++, g++) {
+                    if (g->unk10 >= 6 && pending) {
+                        g->unk10 = slot;
+                        g->unk14 = slot;
+                        g->id = id;
+                        g->unk8 = fn_1_12C7B8(fn_1_86690(player));
+                        if (mgr->unk10 != 0) {
+                            g->unk18 = m;
+                        } else {
+                            g->unk18 = fn_1_3F440(g->unk14);
+                        }
+                        if (fn_1_D123C(m)) {
+                            g->flags &= ~0x80000000;
+                        } else {
+                            g->flags |= 0x80000000;
+                        }
+                        if (g->unk14 == 0) {
+                            g->unk3C = 70;
+                        } else {
+                            g->unk3C = 0;
+                        }
+                        pending = 0;
+                    }
+                }
+            }
+        }
+        fn_1_D2F84();
+    }
+}
+/* fzgx:end fn_1_D2404 */
+
 /* fzgx:begin fn_1_D2D24 */
 Obj_1_bss_7ACD8_Target *fn_1_D2D24(s32 index) {
     return &lbl_1_bss_7ACD8[index];

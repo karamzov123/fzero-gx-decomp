@@ -6437,6 +6437,153 @@ void fn_1_60C88(Obj_60C88 *this)
 #pragma opt_propagation reset
 /* fzgx:end fn_1_60C88 */
 
+/* fzgx:begin fn_1_60D54 noprologue */
+#include "types.h"
+#include "rel/main_rel/effect.h"
+#include "dolphin/os/OSFastCast.h"
+
+extern u8 *lbl_801A6D00;
+extern void *memset(void *, int, u32);
+extern void fn_1_556B8(void *);
+extern void fn_1_55FC4(f32);
+extern void fn_1_56000(u8, u8, u8);
+extern void fn_1_5621C(f32, f32, f32, f32);
+extern void fn_80072558(void);
+extern void *lbl_8006DC6C(void *);
+extern void lbl_8006E14C(f32);
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} fn_1_60D54_Color;
+
+typedef struct {
+    u8 pad[0x3c];
+    fn_1_60D54_Color color;
+} fn_1_60D54_Light;
+
+const u32 fzgx_pool_table_000[2] = {0x42700000, 0x3DCCCCCD};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_008(void) {
+    /* Volatile stores force shared literal-pool entries. */
+    volatile f32 value;
+    value = 32767.0f;
+}
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_00C[5] = {0x3D4CCCCD, 0x3FB1EB85, 0x1EB851EC, 0x469C4000, 0x00000000};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_020(void) {
+    /* Volatile stores force shared literal-pool entries. */
+    volatile f64 value;
+    value = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_028(void) {
+    /* Volatile stores force shared literal-pool entries. */
+    volatile f32 value;
+    value = 1.0f;
+}
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_02C[16] = { /* fzgx-allow: A1 retail shared literal-pool bytes */
+    0xBCF5C28F, 0x402E0000, 0x00000000, 0x43300000, 0x80000000, 0x3FF80000, 0x00000000, 0x3FE00000, 0x00000000, 0x00000000, 0x3F000000, 0x41000000, 0x437F0000, 0x41700000, 0x3E4CCCCD, 0x3DA3D70A
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_06C(void) {
+    /* Volatile stores force shared literal-pool entries. */
+    volatile f32 value;
+    value = 0.25f;
+}
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_070[9] = { /* fzgx-allow: A1 retail shared literal-pool bytes */
+    0x3F7AE148, 0x3F7D70A4, 0x42200000, 0x41A00000, 0x3FC00000, 0x3EE66666, 0xC0000000, 0x3DAAAAAB, 0x3E19999A  /* fzgx-allow: A1 retail pool bytes */
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_094(void) {
+    /* Volatile stores force shared literal-pool entries. */
+    volatile f32 value;
+    value = 0.125f;
+}
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_098[72] = { /* fzgx-allow: A1 retail shared literal-pool bytes */
+    0xBECCCCCD, 0xBE99999A, 0x40000000, 0x437A0000, 0x3FE33333, 0x33333333, 0x3FD99999, 0x9999999A, 0x3E99999A, 0xBB83126F, 0x3C888889, 0x47800000, 0x45800000, 0x3F75C28F, 0x3ECCCCCD, 0x3D4ED917, 0x3D50E560, 0x3F733333, 0x3F666666, 0x00000000, 0x4062C000, 0x00000000, 0x40240000, 0x00000000, 0x40080000, 0x00000000, 0x00000000, 0x3DCCCCCD, 0xC019999A, 0x40A00000, 0x3FF33333, 0x33333333, 0x3FB99999, 0x9999999A, 0x41200000, 0x41900000, 0x3FE66666, 0x66666666, 0x40490000, 0x00000000, 0x00000000, 0x3DCCCCCD, 0xC019999A, 0x41980000, 0x40380000, 0x00000000, 0x3F3504F3, 0x00000000, 0x00000000, 0x00000000, 0x406FE000, 0x00000000, 0x3FECCCCC, 0xCCCCCCCD, 0x3B83126F, 0x3A83126F, 0x3C23D70A, 0xB4000000, 0x43700000, 0x42C80000, 0x43960000, 0x43480000, 0x461C4000, 0x459C4000, 0x434C0000, 0x42AA0000, 0xBD4CCCCD, 0x40800000, 0xBD75C28F, 0xBF000000, 0xBF800000, 0x00000000  /* fzgx-allow: A1 retail pool bytes */
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_1B8(void) {
+    /* Volatile stores force shared literal-pool entries. */
+    volatile f64 value;
+    value = 0.2;
+}
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_1C0[56] = { /* fzgx-allow: A1 retail shared literal-pool bytes */
+    0x44000000, 0x3CF5C28F, 0x424C0000, 0x42B00000, 0xC0080000, 0x00000000, 0x40900000, 0x40C00000, 0x3F8CCCCD, 0x00000000, 0x3F666666, 0xBF8CCCCD, 0x00000000, 0x3F666666, 0x00000000, 0x00000000, 0xBF333333, 0x00000000, 0x00000000, 0x00000000, 0x3F99999A, 0x42480000, 0x3CCCCCCD, 0x3F4CCCCD, 0x3D800000, 0x40200000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xC0400000, 0x00000000, 0x3F847AE1, 0x47AE147B, 0x3FEE147B, 0x00000000, 0x406A4000, 0x00000000, 0x3F947AE1, 0x47AE147B, 0x3F689374, 0xBC6A7EFA, 0xBFE66666, 0x60000000, 0xBF9EB851, 0xE0000000, 0x3FC20C49, 0xBA5E353F, 0x3FE66666, 0x60000000, 0x3FF00000, 0x00000000, 0x3FD33333, 0x33333333  /* fzgx-allow: A1 retail pool bytes */
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_2A0(void) {
+    /* Volatile stores force shared literal-pool entries. */
+    volatile f64 value;
+    value = 0.800000011920929;
+}
+#pragma section code_type ".text"
+
+static inline u16 fn_1_60D54_rand(void) {
+    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
+    return (lbl_1_data_1D628 >> 16) & 0x7FFF;
+}
+
+#pragma opt_dead_assignments off
+void fn_1_60D54(u8 *arg0) {
+    void *obj;
+    f32 r;
+    f32 g;
+    f32 size;
+    f32 scale;
+    f32 b;
+    f32 intensity;
+    f64 t;
+    fn_1_60D54_Color color;
+    fn_1_60D54_Light light;
+
+    obj = *(void **)(arg0 + 0x34);
+    intensity = 0.25f * *(f32 *)(arg0 + 0xb4);
+    scale = (0.125f + (f32)(0.25f * intensity)) *
+            (1.0f + (f32)fn_1_60D54_rand() / 32767.0f);
+    size = 0.2 * (*(f32 *)(arg0 + 0x28) * (0.800000011920929 + (t = 0.2 * ((f32)fn_1_60D54_rand() / 32767.0f))));
+    memset(&light, 0, 0x40);
+    r = scale * *(f32 *)(arg0 + 0x1c);
+    g = scale * *(f32 *)(arg0 + 0x20);
+    b = scale * *(f32 *)(arg0 + 0x24);
+    light.color.r = __OSf32tou8(r);
+    light.color.g = __OSf32tou8(g);
+    light.color.b = __OSf32tou8(b);
+    light.color.a = 0xff;
+    lbl_8006DC6C(lbl_801A6D00 + 0x30);
+    {
+        f32 z;
+        f32 y;
+        f32 x;
+        /* Preserve the matrix translation load ordering before locked-cache writes. */
+        x = *(volatile f32 *)(arg0 + 0x3c);
+        y = *(f32 *)(arg0 + 0x40);
+        z = *(f32 *)(arg0 + 0x44);
+        *(f32 *)(0xE0000000 + 0x0C) = x;
+        *(f32 *)(0xE0000000 + 0x1C) = y;
+        *(f32 *)(0xE0000000 + 0x2C) = z;
+    }
+    lbl_8006E14C(size);
+    fn_1_55FC4(size);
+    fn_1_56000(1, 3, 0);
+    fn_1_5621C(r, g, b, 1.0f);
+    fn_80072558();
+    fn_1_556B8(obj);
+    fn_1_5621C(1.0f, 1.0f, 1.0f, 1.0f);
+    fn_1_56000(1, 3, 1);
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_60D54 */
+
 /* fzgx:begin fn_1_60F7C */
 // fn_1_60F7C: empty in retail (single blr).
 void fn_1_60F7C(void) {

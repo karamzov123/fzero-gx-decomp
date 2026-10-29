@@ -746,3 +746,15 @@ rel/customize/editor/fn_3_18960.c:
 
 rel/customize/toolkit/fn_3_1C8D0.c:
 	.text       start:0x0001C8D0 end:0x0001D338 align:4
+
+rel/customize/emb_memcard/fn_3_CE94.c:
+	.text       start:0x0000CE94 end:0x0000D9A0 align:4
+
+rel/customize/_prolog/fn_3_6AC4.c:
+	.text       start:0x00006AC4 end:0x00006D2C align:4
+
+rel/customize/_prolog/fn_3_5070.c:
+	.text       start:0x00005070 end:0x00005500 align:4
+
+rel/customize/toolkit/fn_3_225F8.c:
+	.text       start:0x000225F8 end:0x00023524 align:4

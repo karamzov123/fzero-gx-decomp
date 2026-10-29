@@ -4246,6 +4246,229 @@ void fn_1_508C4(fn_1_508C4_FontObject *obj, f32 dx, f32 dy) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_508C4 */
 
+/* fzgx:begin fn_1_50A90 noprologue */
+#include "types.h"
+#include "font.h"
+
+struct fn_1_50A90_Copy88 { u32 a[22]; };
+struct fn_1_50A90_lbl_1_rodata_2758 { f64 unk_0; };
+struct fn_1_50A90_lbl_1_rodata_2778 { f64 unk_0; };
+
+extern struct fn_1_50A90_lbl_1_rodata_2758 lbl_1_rodata_2758;
+extern struct fn_1_50A90_lbl_1_rodata_2778 lbl_1_rodata_2778;
+extern const f32 lbl_1_rodata_2750;
+extern u16 fn_1_48690(u32);
+extern u16 fn_1_486C4(u32);
+extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
+extern int fn_1_4F734(FontDrawPacket *);
+
+#define PF(o) (*(f32 *)((u8 *)&packet + (o)))
+#define FLAGS (*(u32 *)((u8 *)&packet + 48))
+#define COPY() (packet = *(struct fn_1_50A90_Copy88 *)arg0)
+#define SETUP(a,b,c,d) fn_1_51678((FontDrawPacket *)&packet, *(u32 *)arg0, (s16)(a), (s16)(b), (s16)(c), (s16)(d))
+#define DRAW() fn_1_4F734((FontDrawPacket *)&packet)
+
+#pragma opt_lifetimes off
+void fn_1_50A90(void *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    u32 v6;
+    u32 v4;
+    s32 v0;
+    u32 v1;
+    u32 v3;
+    u32 v2;
+    u32 v5;
+    f32 texRight;
+    f32 rightX;
+    f32 bottomY;
+    f32 innerX;
+    f32 innerY;
+    f32 endTex;
+    f32 v13;
+    f32 ratioY;
+    f32 endTexY;
+    f32 v8;
+    f64 v7;
+    u32 v9;
+    u32 v10;
+    u32 v11;
+    f64 v12;
+    f32 v14;
+    f32 v15;
+    f32 v16;
+    f32 v17;
+    f32 v18;
+    f32 y;
+    f32 texBottom;
+    f32 ratioX;
+    f32 remainderY;
+    f32 posX;
+    f32 posRX;
+    f32 posY;
+    f32 posRY;
+    s16 i;
+    s16 count;
+    struct fn_1_50A90_Copy88 packet;
+    u16 t0;
+    u16 t1;
+    v0 = ((s32)((-arg1) & ~arg1) >> 31);
+    v1 = (arg1 & v0);
+    v2 = (v1 << 1);
+    v3 = (arg2 & ((s32)((-arg2) & ~arg2) >> 31));
+    v4 = v2;
+    if ((s32)arg3 > (s32)v2) {
+        v4 = arg3;
+    }
+    v5 = (v3 << 1);
+    v6 = v5;
+    if ((s32)arg4 > (s32)v5) {
+        v6 = arg4;
+    }
+    t0 = fn_1_48690(*(u32 *)((u8 *)arg0 + 0));
+    v7 = lbl_1_rodata_2758.unk_0;
+    v8 = (f32)(u32)(t0 & 0xFFFF);
+    t1 = fn_1_486C4(*(u32 *)((u8 *)arg0 + 0));
+    v9 = (t1 & 0xFFFF);
+    v10 = *(u32 *)((u8 *)arg0 + 48);
+    v11 = (v10 & 0x3);
+    v12 = lbl_1_rodata_2778.unk_0;
+    v13 = (f32)(u32)v9;
+    v14 = (f32)(v8 - (f32)(s32)v2);
+    v15 = (f32)(v13 - (f32)(s32)v5);
+    v16 = (f32)(s32)(v4 - v2);
+    v17 = (f32)(s32)(v6 - v5);
+    switch (v11) {
+    case 1:
+    default: v18 = *(f32 *)((u8 *)arg0 + 4); break;
+    case 2: v18 = *(f32 *)((u8 *)arg0 + 4) - (f32)((s32)v4 / 2); break;
+    case 3: v18 = *(f32 *)((u8 *)arg0 + 4) - (f32)(s32)v4; break;
+    }
+    switch ((v10 >> 2) & 3) {
+    case 1:
+    default: y = *(f32 *)((u8 *)arg0 + 8); break;
+    case 2: y = *(f32 *)((u8 *)arg0 + 8) - (f32)((s32)v6 / 2); break;
+    case 3: y = *(f32 *)((u8 *)arg0 + 8) - (f32)(s32)v6; break;
+    }
+    COPY();
+    SETUP(0, 0, (s16)v1, (s16)v3);
+    PF(4) = v18;
+    PF(8) = y;
+    FLAGS &= ~15;
+    DRAW();
+
+    COPY();
+    texRight = v8 - (f32)(s32)v1;
+    SETUP((s16)texRight, 0, (s16)v1, (s16)v3);
+    innerX = v18 + (f32)(s32)v1;
+    rightX = v16 + innerX;
+    PF(4) = rightX;
+    PF(8) = y;
+    FLAGS &= ~15;
+    DRAW();
+
+    COPY();
+    texBottom = v13 - (f32)(s32)v3;
+    SETUP(0, (s16)texBottom, (s16)v1, (s16)v3);
+    innerY = y + (f32)(s32)v3;
+    bottomY = v17 + innerY;
+    PF(4) = v18;
+    PF(8) = bottomY;
+    FLAGS &= ~15;
+    DRAW();
+
+    COPY();
+    SETUP((s16)texRight, (s16)texBottom, (s16)v1, (s16)v3);
+    PF(4) = rightX;
+    PF(8) = bottomY;
+    FLAGS &= ~15;
+    DRAW();
+
+    COPY();
+    SETUP((s16)v1, (s16)v3, (s16)v14, (s16)v15);
+    ratioX = v16 / v14;
+    ratioY = v17 / v15;
+    PF(4) = innerX;
+    PF(8) = innerY;
+    FLAGS &= ~15;
+    PF(16) *= ratioX;
+    PF(20) *= ratioY;
+    DRAW();
+
+    if (lbl_1_rodata_2750 != v16) {
+        count = (s16)ratioX;
+        i = 0;
+        endTex = (f32)(s32)v3 + v15;
+        while (i < count) {
+            COPY();
+            SETUP((s16)v1, 0, (s16)v14, (s16)v3);
+            posX = innerX + (f32)((f32)i * v14);
+            PF(4) = posX;
+            PF(8) = y;
+            FLAGS &= ~15;
+            DRAW();
+            COPY();
+            SETUP((s16)v1, (s16)endTex, (s16)v14, (s16)v3);
+            PF(4) = posX;
+            PF(8) = bottomY;
+            FLAGS &= ~15;
+            DRAW();
+            i++;
+        }
+        texRight = v16 - (f32)(v14 * (f32)count);
+        COPY();
+        SETUP((s16)v1, 0, (s16)texRight, (s16)v3);
+        posRX = innerX + (f32)((f32)i * v14);
+        PF(4) = posRX;
+        PF(8) = y;
+        FLAGS &= ~15;
+        DRAW();
+        COPY();
+        SETUP((s16)v1, (s16)endTex, (s16)texRight, (s16)v3);
+        PF(4) = posRX;
+        PF(8) = bottomY;
+        FLAGS &= ~15;
+        DRAW();
+    }
+    if (lbl_1_rodata_2750 != v17) {
+        s16 iY;
+        s16 countY;
+        countY = (s16)ratioY;
+        iY = 0;
+        endTexY = (f32)(s32)v1 + v14;
+        while (iY < countY) {
+            COPY();
+            SETUP(0, (s16)v3, (s16)v1, (s16)v15);
+            posY = innerY + (f32)((f32)iY * v15);
+            PF(4) = v18;
+            PF(8) = posY;
+            FLAGS &= ~15;
+            DRAW();
+            COPY();
+            SETUP((s16)endTexY, (s16)v3, (s16)v1, (s16)v15);
+            PF(4) = rightX;
+            PF(8) = posY;
+            FLAGS &= ~15;
+            DRAW();
+            iY++;
+        }
+        remainderY = v17 - (f32)(v15 * (f32)countY);
+        COPY();
+        SETUP(0, (s16)v3, (s16)v1, (s16)remainderY);
+        posRY = innerY + (f32)((f32)iY * v15);
+        PF(4) = v18;
+        PF(8) = posRY;
+        FLAGS &= ~15;
+        DRAW();
+        COPY();
+        SETUP((s16)endTexY, (s16)v3, (s16)v1, (s16)remainderY);
+        PF(4) = rightX;
+        PF(8) = posRY;
+        FLAGS &= ~15;
+        DRAW();
+    }
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_50A90 */
+
 /* fzgx:begin fn_1_51564 */
 // Update the six halfwords that define the active font state.
 void fn_1_51564(u16 first, u16 second, u16 third, u16 fourth, u16 fifth, u16 sixth) {

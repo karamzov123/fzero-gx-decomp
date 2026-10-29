@@ -6,6 +6,140 @@ extern u32 lbl_1_bss_3BBC;
 extern void sprintf(char *, const char *, ...);
 extern void fn_1_465D0(char *, int);
 
+/* fzgx:begin fn_1_1304C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/som.h"
+
+extern u32 lbl_1_bss_3BBC;
+extern int sprintf(char *s, const char *format, ...);
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+
+typedef void (*SomCallback)(u32);
+
+typedef struct SomSource {
+    u8 pad_0[0x80];
+    u8 *dst;
+    SomCallback callback;
+} SomSource;
+
+extern int fn_1_45730(void *source, void *file);
+extern int fn_1_45850(void *file);
+extern void *fn_1_45D0(void *heap, u32 size, void *file, u32 line);
+extern void fn_1_46B4(void *heap, void *ptr, void *file, u32 line);
+extern u8 fn_1_1361C(void *file, void *buffers);
+extern void fn_80008BA8(void *dst, void *src, u32 size);
+extern void *volatile lbl_801A6410[1];  /* fzgx-allow: S2 volatile keeps the verified access order */
+extern volatile u32 lbl_1_data_5184;  /* fzgx-allow: S2 volatile keeps the verified access order */
+extern u8 lbl_1_bss_1800[];
+
+/* LZSS decoder: 4 KB ring buffer, 12-bit offsets, 4-bit lengths (threshold 2). */
+u32 *fn_1_1304C(SomSource *source, void *image) {
+    u32 size;
+    void *buffers[2];
+    u32 header[2];
+    u8 file[0x5c];
+    u8 window[0x1000 + 0x12 - 1];
+    int offset;
+    int r;
+    u32 pos;
+    u8 *out;
+    u32 flags;
+    u8 *dst;
+    u32 end;
+    SomCallback callback;
+    int len;
+    int k;
+    long i;
+    u8 c;
+
+    dst = source->dst;
+    callback = source->callback;
+    *(u32 *)(lbl_1_bss_1800 + 0x2328) = 0;
+    *(u32 *)(lbl_1_bss_1800 + 0x232c) = 0;
+    lbl_1_bss_1800[0x23b8] = 0;
+    if (image != 0) {
+        fn_80008BA8(file, image, 0x5c);
+    } else if (fn_1_45730(source, file) == 0) {
+        return 0;
+    }
+
+    buffers[0] = fn_1_45D0(lbl_801A6410[0], lbl_1_data_5184, &lbl_1_data_5188, 0x243);
+    buffers[1] = fn_1_45D0(lbl_801A6410[0], lbl_1_data_5184, &lbl_1_data_5188, 0x244);
+
+    header[0] = fn_1_1361C(file, buffers) << 24;
+    header[0] |= fn_1_1361C(file, buffers) << 16;
+    header[0] |= fn_1_1361C(file, buffers) << 8;
+    header[0] |= fn_1_1361C(file, buffers);
+    header[1] = fn_1_1361C(file, buffers) << 24;
+    header[1] |= fn_1_1361C(file, buffers) << 16;
+    header[1] |= fn_1_1361C(file, buffers) << 8;
+    header[1] |= fn_1_1361C(file, buffers);
+
+    end = __lwbrx(header, 0) + 8;
+    size = __lwbrx(header, 4);
+    if (end == 0 || size == 0) {
+        return 0;
+    }
+
+    out = dst;
+    pos = 8;
+    for (i = 0; i < 0xfee; i++) {
+        window[i] = 0;
+    }
+    r = 0xfee;
+    flags = 0;
+    for (;;) {
+        flags >>= 1;
+        if ((flags & 0x100) == 0) {
+            if (pos >= end) {
+                break;
+            }
+            flags = fn_1_1361C(file, buffers) | 0xff00;
+            pos++;
+        }
+        if (flags & 1) {
+            if (pos >= end) {
+                break;
+            }
+            c = fn_1_1361C(file, buffers);
+            *out++ = c;
+            pos++;
+            window[r] = c;
+            r++;
+            r &= 0xfff;
+        } else {
+            if (pos >= end) {
+                break;
+            }
+            offset = fn_1_1361C(file, buffers);
+            if (pos + 1 >= end) {
+                break;
+            }
+            len = fn_1_1361C(file, buffers);
+            pos += 2;
+            offset |= (len & 0xf0) << 4;
+            len = (len & 0xf) + 2;
+            for (k = 0; k <= len; k++) {
+                c = window[(offset + k) & 0xfff];
+                *out++ = c;
+                window[r] = c;
+                r++;
+                r &= 0xfff;
+            }
+        }
+    }
+
+    fn_1_45850(file);
+    fn_1_46B4(lbl_801A6410[0], buffers[1], &lbl_1_data_5188, 0x277);
+    fn_1_46B4(lbl_801A6410[0], buffers[0], &lbl_1_data_5188, 0x278);
+    if (callback != 0) {
+        callback(size);
+    }
+    return &size;
+}
+/* fzgx:end fn_1_1304C */
+
 /* fzgx:begin fn_1_1383C */
 void fn_1_1383C(void) {
     lbl_1_bss_3BBC = 1;

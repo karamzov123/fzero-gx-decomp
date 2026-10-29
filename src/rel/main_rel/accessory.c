@@ -3174,6 +3174,234 @@ void fn_1_10C9B0(Fn10C9B0List *list) {
 }
 /* fzgx:end fn_1_10C9B0 */
 
+/* fzgx:begin fn_1_10CC38 noprologue */
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
+extern u8 lbl_1_data_3FFBC[0x574];
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+#ifndef REL_MAIN_REL_CAR_TEST_H
+#define REL_MAIN_REL_CAR_TEST_H
+
+#endif  // REL_MAIN_REL_CAR_TEST_H
+
+/* end rel/main_rel/car_test.h */
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+/* begin game/vec3.h (deltawave784/fzgx@7d73e43f (CC0)) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+#endif  // GAME_VEC3_H
+#ifndef REL_MAIN_REL_ACCESSORY_H
+#define REL_MAIN_REL_ACCESSORY_H
+
+#endif  // REL_MAIN_REL_ACCESSORY_H
+
+/* end rel/main_rel/accessory.h */
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 { u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20; };
+struct fn_1_10CC38_lbl_1_rodata_7AB8 {
+ u8 pad_0[0x58]; f64 unk_58; f32 unk_60; u8 pad_64[0x38]; f32 unk_9C;
+ u8 pad_A0[0xA8]; Vec3f unk_148; f32 unk_154, unk_158, unk_15C, unk_160;
+};
+extern const struct fn_1_10CC38_lbl_1_rodata_7AB8 lbl_1_rodata_7AB8;
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void lbl_8006DBAC(Vec3 *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006DC20(void);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+typedef struct Particle {
+ u8 flags; u8 pad1; u8 count; u8 pad3; u16 links[6];
+ Vec3f pos, prev, local, vel; f32 mass;
+} Particle;
+typedef struct ModelData { u8 pad[8]; u8 *data; } ModelData;
+typedef struct Owner { u8 pad[0x150]; ModelData *model; } Owner;
+typedef struct Rope {
+ u8 flags; u8 pad[7]; u32 index; Owner *owner; struct Sig_fn_80077B14_fn_80077B14_Arg0 *handle;
+ u32 unk14, count, unk1c, unk20; Particle *particles;
+} Rope;
+#define BASE(r) ((r)->owner->model->data + ((u32 *)lbl_1_data_3FFBC)[(r)->index] * 0x18c)
+#define SETMAT(b) lbl_8006DBAC((Vec3 *)((b) + 0x88))
+#define TRANS(a,b) lbl_8006E1B0((Fn183D28Vec3 *)(a),(Fn183D28Vec3 *)(b))
+#pragma opt_lifetimes off
+void fn_1_10CC38(Rope *arg0) {
+    Particle * p_r2;
+    u32 i_r2;
+    Particle * p_r3;
+    f32 dx_r2;
+    f32 dy_r2;
+    f32 len_r2;
+    f32 dz_r2;
+    f32 scale_r2;
+    u32 i_r3;
+    Particle * p_r4;
+    u32 i_r4;
+ f32 z, y, x;
+ f32 s;
+ const struct fn_1_10CC38_lbl_1_rodata_7AB8 *pool = &lbl_1_rodata_7AB8;
+ Particle *group;
+ Particle *p;
+ u32 i;
+ struct { u8 *value; } base_holder;
+#define base base_holder.value
+ s32 j;
+ u16 *link;
+ u8 *vertices;
+ Vec3f loc_20, loc_14, loc_8;
+ f64 gravity;
+ f32 accel;
+ f32 len, scale;
+ f32 dx,dy,dz;
+ f32 limit;
+ if (arg0 && arg0->handle) {
+ fn_80077B14(arg0->handle);
+ if (arg0->flags & 2) {
+ arg0->flags &= ~2;
+ SETMAT(BASE(arg0));
+ lbl_8006DAEC();
+ p=arg0->particles;
+ for(i=0;i<arg0->count;i++,p++) {
+ lbl_8006DBE4(); TRANS(&p->local,&p->pos);
+ }
+ lbl_8006DC20();
+ }
+ p_r2=arg0->particles;
+ for(i_r2=0;i_r2<arg0->count;i_r2++,p_r2++) {
+ if (!(p_r2->flags & 1)) {
+ p_r2->prev=p_r2->pos;
+ p_r2->pos.x+=p_r2->vel.x; p_r2->pos.y+=p_r2->vel.y; p_r2->pos.z+=p_r2->vel.z;
+ p_r2->pos.y=(f32)(p_r2->pos.y-pool->unk_58);
+ p_r2->vel.y-=pool->unk_60;
+ }
+ }
+ { u8 *b2; u32 k;
+ b2=BASE(arg0); p_r3=arg0->particles;
+ for(k=0;k<arg0->count;k++,p_r3++) {
+ SETMAT(b2); lbl_8006DAEC();
+ if(p_r3->flags&1) { lbl_8006DBE4(); TRANS(&p_r3->local,&p_r3->pos); }
+ lbl_8006DC20();
+ } }
+{ u32 k; Particle *q; u8 *b3;
+ b3=BASE(arg0); q=arg0->particles; limit=pool->unk_9C;
+ for(k=0;k<arg0->count;k++,q++) {
+ SETMAT(b3); TRANS(&q->local,&loc_8);
+ dx=q->pos.x-loc_8.x; loc_14.x=dx;
+ len=dx*dx;
+ dy=q->pos.y-loc_8.y; loc_14.y=dy;
+ len+=dy*dy;
+ dz=q->pos.z-loc_8.z; loc_14.z=dz;
+ len+=dz*dz;
+ if(len>limit) {
+ scale=lbl_8006D0B4(limit/len);
+ q->pos.x=loc_8.x+(f32)(loc_14.x*scale);
+ q->pos.y=loc_8.y+(f32)(loc_14.y*scale);
+ q->pos.z=loc_8.z+(f32)(loc_14.z*scale);
+ q->prev=q->pos;
+ }
+ }
+ }
+ {
+ u8 *matrix=arg0->owner->model->data;
+ loc_20=pool->unk_148;
+ lbl_8006DBAC((Vec3 *)(matrix+0x844));
+ s=pool->unk_154;
+ {
+ x=*(f32 *)(0xE0000008); y=*(f32 *)(0xE0000018); z=*(f32 *)(0xE0000028);
+ x=x*s+*(f32 *)(0xE000000C); y=y*s+*(f32 *)(0xE000001C); z=z*s+*(f32 *)(0xE000002C);
+ *(f32 *)(0xE000000C)=x; *(f32 *)(0xE000001C)=y; *(f32 *)(0xE000002C)=z; }
+ TRANS(&loc_20,&loc_20);
+ }
+ { u32 k; Particle *q;
+ base=BASE(arg0); q=arg0->particles;
+ for(k=0;k<arg0->count;k++,q++) {
+ if(!(q->flags&1)) {
+ dx_r2=q->pos.x-loc_20.x; loc_14.x=dx_r2;
+ dy_r2=q->pos.y-loc_20.y; loc_14.y=dy_r2;
+ len_r2=dy_r2*dy_r2+(f32)(dx_r2*dx_r2);
+ dz_r2=q->pos.z-loc_20.z;
+ len_r2=dz_r2*dz_r2+len_r2; loc_14.z=dz_r2;
+ if(len_r2<pool->unk_158) {
+ scale_r2=pool->unk_15C/lbl_8006D0B4(len_r2);
+ q->pos.x=loc_20.x+(f32)(loc_14.x*scale_r2);
+ q->pos.y=loc_20.y+(f32)(loc_14.y*scale_r2);
+ q->pos.z=loc_20.z+(f32)(loc_14.z*scale_r2);
+ }
+ }
+ }
+ }
+ group=arg0->particles;
+ for(i_r3=0;i_r3<(arg0->count-1)/3;i_r3++,group+=3) {
+ SETMAT(base); TRANS(&group->local,&loc_14);
+ group->prev=loc_14;
+ loc_14.x=group->pos.x-loc_14.x; loc_14.y=group->pos.y-loc_14.y; loc_14.z=group->pos.z-loc_14.z;
+ SETMAT(base); TRANS(&group[1].local,&group[1].pos);
+ group[1].pos.x+=loc_14.x; group[1].pos.y+=loc_14.y; group[1].pos.z+=loc_14.z;
+ SETMAT(base); TRANS(&group[2].local,&group[2].pos);
+ group[2].pos.x+=loc_14.x; group[2].pos.y+=loc_14.y; group[2].pos.z+=loc_14.z;
+ group->prev=group->pos; group[1].prev=group[1].pos; group[2].prev=group[2].pos;
+ }
+ group->prev=group->pos;
+ accel=pool->unk_160;
+ p_r4=arg0->particles;
+ for(i_r4=0;i_r4<arg0->count;i_r4++,p_r4++) {
+ p_r4->vel.x=(accel/p_r4->mass)*(p_r4->pos.x-p_r4->prev.x);
+ p_r4->vel.y=(accel/p_r4->mass)*(p_r4->pos.y-p_r4->prev.y);
+ p_r4->vel.z=(accel/p_r4->mass)*(p_r4->pos.z-p_r4->prev.z);
+ }
+ vertices=(u8 *)fn_80077B14(arg0->handle);
+ SETMAT(BASE(arg0));
+ { Particle *q; s32 l; u32 k; u16 *link;
+ q=arg0->particles;
+ for(k=0;k<arg0->count;k++,q++) {
+ link=(u16 *)q;
+ for(l=0;l<q->count;link++,l++) {
+ fn_8006E250(&q->pos,(Vec3f *)(vertices+(link[2]<<6)));
+ }
+ }
+ }
+ }
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_10CC38 */
+
 /* fzgx:begin fn_1_10D2F0 noprologue */
 #include "types.h"
 
@@ -7973,6 +8201,205 @@ void fn_1_1192D0(Work *arg0) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_1192D0 */
 
+/* fzgx:begin fn_1_11A158 noprologue */
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "psvec.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_ACCESSORY_TYPES_H
+#define GAME_MAIN_REL_ACCESSORY_TYPES_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_40530: .data size 0x6C, referenced by 26 functions, shape {}
+extern char lbl_1_data_40530[0x6C];
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+#ifndef REL_MAIN_REL_ACCESSORY_H
+#define REL_MAIN_REL_ACCESSORY_H
+
+#endif  // REL_MAIN_REL_ACCESSORY_H
+#ifndef REL_MAIN_REL_CLOTH_H
+#define REL_MAIN_REL_CLOTH_H
+
+#endif  // REL_MAIN_REL_CLOTH_H
+
+#ifndef GAME_MAIN_REL_SHARED_TYPES_H
+#define GAME_MAIN_REL_SHARED_TYPES_H
+
+#endif  // GAME_MAIN_REL_SHARED_TYPES_H
+
+typedef struct fn_1_10D2F0_Vec3 {
+    f32 x, y, z;
+} fn_1_10D2F0_Vec3;
+
+typedef struct fn_1_10D2F0_Entry {
+    u8 unk_0;
+    u8 unk_1;
+    u8 pad_2[0xE];
+    fn_1_10D2F0_Vec3 unk_10;
+    fn_1_10D2F0_Vec3 unk_1C;
+    fn_1_10D2F0_Vec3 unk_28;
+    u8 pad_34[0xC];
+    f32 unk_40;
+} fn_1_10D2F0_Entry;
+
+typedef struct fn_1_10D2F0_Link {
+    fn_1_10D2F0_Entry *a;
+    fn_1_10D2F0_Entry *b;
+    f32 len;
+} fn_1_10D2F0_Link;
+
+typedef struct fn_1_10D2F0_Obj {
+    u8 pad_0[0x18];
+    u32 unk_18;
+    u32 unk_1C;
+    u8 pad_20[4];
+    fn_1_10D2F0_Entry *unk_24;
+    fn_1_10D2F0_Link *unk_28;
+} fn_1_10D2F0_Obj;
+
+typedef struct Point1024C4 {
+    u8 pad[0x10];
+    f32 v[3];
+} Point1024C4;
+
+extern f32 fn_1_1289BC(const Point1024C4 *a, const Point1024C4 *b);
+
+#endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
+
+/* end game/main_rel/accessory_types.h */
+/* rel/main_rel/accessory.h: inlined above */
+
+extern u32 fn_1_4630(u32, u32, const char *, s32);
+extern u32 lbl_801A6410;
+extern void fn_1_10846C(void *);
+extern void fn_1_128884(void *, void *, s32);
+
+typedef fn_1_10D2F0_Entry Entry;
+
+void fn_1_11A158(fn_1_10D2F0_Obj *obj) {
+    u32 div;
+    u32 j;
+    Entry *a;
+    u32 k;
+    u32 rows;
+    u32 i;
+    u32 count;
+    u32 n;
+    u32 q;
+    Entry *base;
+    Entry *p;
+    Entry *b;
+    f32 num;
+
+    if (obj != NULL) {
+        fn_1_10846C(obj);
+
+        for (i = 0, p = obj->unk_24; i < obj->unk_18; i++, p++) {
+            if (p->unk_0 & 1) {
+                p->unk_0 = 0;
+                p->unk_40 = -1.0f;
+            } else {
+                p->unk_0 = 1;
+                p->unk_40 = 0.0f;
+            }
+        }
+
+        for (i = 0, p = obj->unk_24; i < obj->unk_18; i++, p++) {
+            for (j = i + 1, a = obj->unk_24 + i + 1; j < obj->unk_18; j++, a++) {
+                if (p->unk_0 == 0 && a->unk_0 != 0) {
+                    fn_1_128884(p, a, sizeof(Entry));
+                }
+            }
+        }
+
+        for (i = 0, p = obj->unk_24; i < obj->unk_18; i++, p++) {
+            for (j = i + 1, a = obj->unk_24 + i + 1; j < obj->unk_18; j++, a++) {
+                if (p->unk_0 == a->unk_0 && p->unk_10.x < a->unk_10.x) {
+                    fn_1_128884(p, a, sizeof(Entry));
+                }
+            }
+        }
+
+        for (i = 0, p = obj->unk_24; i < obj->unk_18 / 13; i++, p += 13) {
+            for (j = 0, a = p; j < 13; j++, a++) {
+                for (k = j + 1, b = a + 1; k < 13; k++, b++) {
+                    if (a->unk_10.z < b->unk_10.z) {
+                        fn_1_128884(a, b, sizeof(Entry));
+                    }
+                }
+            }
+        }
+
+        /* first row: positive-z entries by descending y, the rest by ascending y */
+        for (i = 0, p = obj->unk_24; i < 13; i++, p++) {
+            for (j = i + 1, a = p + 1; j < 13; j++, a++) {
+                if (p->unk_10.z > 0.0f && a->unk_10.z > 0.0f && p->unk_10.y > a->unk_10.y) {
+                    fn_1_128884(p, a, sizeof(Entry));
+                } else if (p->unk_10.z <= 0.0f && a->unk_10.z <= 0.0f && p->unk_10.y < a->unk_10.y) {
+                    fn_1_128884(p, a, sizeof(Entry));
+                }
+            }
+        }
+
+        base = obj->unk_24;
+        count = obj->unk_18;
+        p = base;
+        for (i = 0; i < count; i++) {
+            if (p->unk_0 != 0 && p[1].unk_0 == 0) {
+                break;
+            }
+            p++;
+        }
+        p++;
+        rows = (count - (p - base)) / 13;
+        div = rows + 1;
+        for (i = 0; i < rows; i++, p += 13) {
+            num = -(f32)(i + 1);
+            for (j = 0; j < 13; j++) {
+                p[j].unk_40 = num / (f32)div;
+            }
+            for (j = 0, a = p; j < 13; j++, a++) {
+                for (k = j + 1, b = a + 1; k < 13; k++, b++) {
+                    if (a->unk_10.z > 0.0f && b->unk_10.z > 0.0f && a->unk_10.y > b->unk_10.y) {
+                        fn_1_128884(a, b, sizeof(Entry));
+                    } else if (a->unk_10.z <= 0.0f && b->unk_10.z <= 0.0f && a->unk_10.y < b->unk_10.y) {
+                        fn_1_128884(a, b, sizeof(Entry));
+                    }
+                }
+            }
+        }
+
+        q = obj->unk_18 / 13;
+        obj->unk_1C = q * 12 + (q - 1) * 13;
+        obj->unk_28 = (fn_1_10D2F0_Link *)fn_1_4630(lbl_801A6410, obj->unk_1C * sizeof(fn_1_10D2F0_Link), lbl_1_data_40530, 0x1D66);
+
+        n = 0;
+        p = obj->unk_24;
+        for (i = 0; i < obj->unk_18 - 1; i++, p++) {
+            if ((i + 1) % 13 != 0) {
+                obj->unk_28[n].a = p;
+                obj->unk_28[n].b = p + 1;
+                obj->unk_28[n].len = fn_1_1289BC((const Point1024C4 *)p, (const Point1024C4 *)(p + 1));
+                n++;
+            }
+        }
+
+        p = obj->unk_24;
+        for (i = 0; i < obj->unk_18 - 13; n++, i++, p++) {
+            obj->unk_28[n].a = p;
+            obj->unk_28[n].b = p + 13;
+            obj->unk_28[n].len = fn_1_1289BC((const Point1024C4 *)p, (const Point1024C4 *)(p + 13));
+        }
+    }
+}
+/* fzgx:end fn_1_11A158 */
+
 /* fzgx:begin fn_1_11A774 noprologue */
 #include "types.h"
 #include "psvec.h"
@@ -10712,6 +11139,309 @@ void fn_1_125DF0(Work *arg0) {
 }
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_125DF0 */
+
+/* fzgx:begin fn_1_1262A4 noprologue */
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "types.h"
+#include "psvec.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_ACCESSORY_TYPES_H
+#define GAME_MAIN_REL_ACCESSORY_TYPES_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_40530: .data size 0x6C, referenced by 26 functions, shape {}
+extern char lbl_1_data_40530[0x6C];
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+#ifndef REL_MAIN_REL_ACCESSORY_H
+#define REL_MAIN_REL_ACCESSORY_H
+
+#endif  // REL_MAIN_REL_ACCESSORY_H
+#ifndef REL_MAIN_REL_CLOTH_H
+#define REL_MAIN_REL_CLOTH_H
+
+#endif  // REL_MAIN_REL_CLOTH_H
+
+#ifndef GAME_MAIN_REL_SHARED_TYPES_H
+#define GAME_MAIN_REL_SHARED_TYPES_H
+
+#endif  // GAME_MAIN_REL_SHARED_TYPES_H
+
+typedef struct Point1024C4 {
+    u8 pad[0x10];
+    f32 v[3];
+} Point1024C4;
+
+extern f32 fn_1_1289BC(const Point1024C4 *a, const Point1024C4 *b);
+
+#endif  // GAME_MAIN_REL_ACCESSORY_TYPES_H
+
+/* end game/main_rel/accessory_types.h */
+
+/* The TU's shared literal pool (lbl_1_rodata_7AB8...), primed in retail order. */
+#pragma section code_type ".fzgxpool"
+static const unsigned long fzgx_pool_table1[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const unsigned long *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.1920928955078125e-07;
+    s = 0.009999999776482582f;
+}
+static const unsigned long fzgx_pool_table5[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const unsigned long *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1e-07;
+}
+static const unsigned long fzgx_pool_table7[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const unsigned long *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+    s = 0.25f;
+}
+static const unsigned long fzgx_pool_table9[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep9(void) { const unsigned long *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+    d = 0.0013611111376020642;
+    s = 0.0027222223579883575f;
+    s = -1.0f;
+    s = 0.0f;
+    s = -2.0f;
+    s = 2.0f;
+    s = 1.1920928955078125e-07f;
+    s = -1.0000001192092896f;
+}
+static const unsigned long fzgx_pool_table13[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep13(void) { const unsigned long *volatile cp; cp = fzgx_pool_table13; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = -0.0013611111789941788f;
+    s = -0.0027222223579883575f;
+    s = 9.999999747378752e-05f;
+    s = 1.0f;
+    s = 0.00039999998989515007f;
+    s = 0.02500000037252903f;
+    s = 0.004224999807775021f;
+    d = 0.0749999976158142;
+    d = 0.3;
+    s = -0.01899999938905239f;
+    s = 0.05700000002980232f;
+    s = 0.0009609999833628535f;
+}
+static const unsigned long fzgx_pool_table15[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep15(void) { const unsigned long *volatile cp; cp = fzgx_pool_table15; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime16(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.04099999949336052;
+    d = -1.0;
+    s = 0.75f;
+    s = -0.25f;
+}
+static const unsigned long fzgx_pool_table17[9] = {0xBF800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3E0D4FDF, 0x3B83126F, 0x3DED9168};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep17(void) { const unsigned long *volatile cp; cp = fzgx_pool_table17; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.06499999761581421f;
+    s = 0.06500999629497528f;
+}
+static const unsigned long fzgx_pool_table19[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep19(void) { const unsigned long *volatile cp; cp = fzgx_pool_table19; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime20(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 8.0;
+    s = 0.00390625f;
+}
+static const unsigned long fzgx_pool_table21[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep21(void) { const unsigned long *volatile cp; cp = fzgx_pool_table21; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime22(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.05;
+    d = 0.0027222223579883575;
+    d = 0.02;
+    d = 0.0001;
+}
+static const unsigned long fzgx_pool_table23[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep23(void) { const unsigned long *volatile cp; cp = fzgx_pool_table23; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime24(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.04899999871850014f;
+    s = 0.002500000176951289f;
+    s = 0.05000000074505806f;
+}
+#pragma section code_type ".text"
+
+typedef struct ClothNode1262A4 {
+    u8 flags;
+    u8 pad_1[0xF];
+    f32 height;  /* 0x10 */
+    f32 order;   /* 0x14 */
+    f32 side;    /* 0x18 */
+    u8 pad_1C[0x24];
+    f32 weight;  /* 0x40 */
+} ClothNode1262A4;
+
+typedef struct ClothLink1262A4 {
+    ClothNode1262A4 *a;
+    ClothNode1262A4 *b;
+    f32 len;
+} ClothLink1262A4;
+
+typedef struct ClothObj1262A4 {
+    u8 pad_0[0x18];
+    u32 nodeCount;
+    u32 linkCount;
+    u8 pad_20[4];
+    ClothNode1262A4 *nodes;
+    ClothLink1262A4 *links;
+} ClothObj1262A4;
+
+extern void fn_1_10846C(void *);
+extern void fn_1_128884(void *, void *, s32);
+extern void *fn_1_4630(u32, u32, const char *, s32);
+extern u32 lbl_801A6410;
+extern char lbl_1_data_40530[0x6C];
+
+void fn_1_1262A4(ClothObj1262A4 *obj) {
+    u32 c0;
+    ClothNode1262A4 *e4;
+    ClothNode1262A4 *e0;
+    ClothNode1262A4 *nodes;
+    ClothNode1262A4 *e2;
+    ClothNode1262A4 *pc;
+    ClothNode1262A4 *front;
+    ClothNode1262A4 *back;
+    ClothNode1262A4 *src;
+    u32 k;
+    u32 m;
+    ClothNode1262A4 *e;
+    ClothNode1262A4 *dst;
+    ClothNode1262A4 *e3;
+    ClothNode1262A4 * ring_2;
+    ClothNode1262A4 sorted[8];
+    struct { u32 value; } i;
+    u32 ja;
+    u32 jb;
+    u32 g;
+    u32 idx;
+    f32 t;
+    ClothNode1262A4 *ring;
+    ClothNode1262A4 *pb;
+
+    if (obj == NULL) {
+        return;
+    }
+    fn_1_10846C(obj);
+
+    c0 = 0;
+    e0 = obj->nodes;
+    for (; c0 < obj->nodeCount; c0++, e0++) {
+        if (e0->flags & 1) {
+            e0->weight = -1.0f;
+            e0->flags = 0;
+        } else {
+            e0->weight = 0.0f;
+            e0->flags = 1;
+        }
+    }
+
+    /* sort by height */
+    e0 = obj->nodes;
+    for (c0 = 0; c0 < obj->nodeCount; c0++, e0++) {
+        pb = &obj->nodes[c0] + 1;
+        for (ja = c0 + 1; ja < obj->nodeCount; ja++, pb++) {
+            if (e0->height > pb->height) {
+                fn_1_128884(e0, pb, sizeof(ClothNode1262A4));
+            }
+        }
+    }
+
+    /* move the first raised pinned node to the end */
+    nodes = obj->nodes;
+    e2 = nodes;
+    for (i.value = 0; i.value < obj->nodeCount; i.value++, e2++) {
+        if (e2->height > 0.05f && (e2->flags & 1)) {
+            pb = e2;
+            break;
+        }
+    }
+    for (c0 = pb - nodes; c0 < obj->nodeCount - 1; c0++, pb++) {
+        fn_1_128884(pb, pb + 1, sizeof(ClothNode1262A4));
+    }
+
+    /* order each ring of eight */
+    ring = obj->nodes;
+    for (g = 0; g < obj->nodeCount / 8; g++, ring += 8) {
+        for (i.value = 0, pb = ring; i.value < 8; i.value++, pb++) {
+            jb = i.value + 1;
+            pc = pb + 1;
+            for (; jb < 8; jb++, pc++) {
+                if (pb->order < pc->order) {
+                    fn_1_128884(pb, pc, sizeof(ClothNode1262A4));
+                }
+            }
+        }
+        front = sorted;
+        *front = ring[0];
+        front++;
+        back = sorted;
+        back += 7;
+        e = ring + 1;
+        for (k = 1; k < 8; k++, e++) {
+            if (e->side > 0.0f) {
+                *front = *e;
+                front++;
+            } else {
+                *back = *e;
+                back--;
+            }
+        }
+        t = -(f32)g;
+        dst = ring;
+        src = sorted;
+        for (m = 0; m < 8; m++, dst++, src++) {
+            *dst = *src;
+            dst->weight = t / (f32)(obj->nodeCount / 8 - 1);
+        }
+    }
+
+    obj->linkCount = 0x40;
+    obj->links = fn_1_4630(lbl_801A6410, obj->linkCount * sizeof(ClothLink1262A4), lbl_1_data_40530, 0x2DF1);
+
+    idx = 0;
+    ring_2 = obj->nodes;
+    for (g = 0; g < obj->nodeCount / 8 - 1; g++, ring_2 += 8) {
+        e3 = ring_2;
+        for (i.value = 0; i.value < 7; i.value++, e3++) {
+            obj->links[idx].a = e3;
+            obj->links[idx].b = e3 + 1;
+            obj->links[idx].len = fn_1_1289BC((Point1024C4 *)e3, (Point1024C4 *)(e3 + 1));
+            idx++;
+        }
+        obj->links[idx].a = &ring_2[7];
+        obj->links[idx].b = ring_2;
+        obj->links[idx].len = fn_1_1289BC((Point1024C4 *)&ring_2[7], (Point1024C4 *)ring_2);
+        idx++;
+    }
+    ring_2 = obj->nodes;
+    for (g = 0; g < obj->nodeCount / 8 - 1; g++, ring_2 += 8) {
+        e4 = ring_2;
+        for (i.value = 0; i.value < 8; i.value++, e4++) {
+            obj->links[idx].a = e4;
+            obj->links[idx].b = e4 + 8;
+            obj->links[idx].len = fn_1_1289BC((Point1024C4 *)e4, (Point1024C4 *)(e4 + 8));
+            idx++;
+        }
+    }
+}
+/* fzgx:end fn_1_1262A4 */
 
 /* fzgx:begin fn_1_126774 noprologue */
 #include "types.h"

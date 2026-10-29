@@ -441,6 +441,104 @@ void fn_1_48780(void) {
 }
 /* fzgx:end fn_1_48780 */
 
+/* fzgx:begin fn_1_487EC pool */
+#ifndef GAME_MAIN_REL_BITMAP_TYPES_H
+#define GAME_MAIN_REL_BITMAP_TYPES_H
+
+#endif  // GAME_MAIN_REL_BITMAP_TYPES_H
+
+extern f32 lbl_1_bss_3E05C;
+
+extern s32 fn_1_48A0C(u32, u32, void *, u32);
+
+typedef struct {
+    s32 unk_0;
+    u8 pad_4[0x28];
+    u16 *unk_2C;
+    s16 *unk_30;
+    f32 unk_34;
+} BitmapGroup;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_3E058;
+f32 lbl_1_bss_3E05C;
+u32 lbl_1_bss_3E060[0x56B];
+s32 lbl_1_bss_3F60C[0x56B];
+s32 lbl_1_bss_40BB8;
+s32 lbl_1_bss_40BBC[0x2C];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3E058;
+    s = *(u8 *)&lbl_1_bss_3E05C;
+    s = *(u8 *)&lbl_1_bss_3E060;
+    s = *(u8 *)&lbl_1_bss_3F60C;
+    s = *(u8 *)&lbl_1_bss_40BB8;
+    s = *(u8 *)&lbl_1_bss_40BBC;
+}
+#pragma section code_type ".text"
+
+static inline void reset_bitmap_groups(s32 zero, BitmapGroup **group, u16 **p) {
+    s32 j;
+    s32 *count;
+    s32 k;
+
+    lbl_1_bss_40BB8 = zero;
+    count = lbl_1_bss_40BBC;
+    for (j = zero; j < 0x2C; count++, j++, (*group)++) {
+        *count = zero;
+        if ((*group)->unk_0 == -1) {
+            *p = (*group)->unk_2C;
+            k = 0;
+            while (**p != 0) {
+                *(s16 *)((u8 *)(*group)->unk_30 + k) = -1;
+                (*p)++;
+                k += 2;
+                (*count)++;
+            }
+        }
+    }
+}
+
+void fn_1_487EC(void) {
+    s32 *count;
+    s32 j;
+    BitmapGroup *group;
+    s32 i;
+    BitmapGroup *target;
+    s32 n;
+    u16 key;
+    u16 *q;
+    u16 *p;
+    s32 k;
+
+    for (i = 0; i < 0x56B; i++) {
+        lbl_1_bss_3E060[i] = 0;
+        lbl_1_bss_3F60C[i] = -1;
+    }
+
+    /* count the entries of every terminator-marked group and reset their slots */
+    group = (BitmapGroup *)&lbl_1_data_1AEA8;
+    reset_bitmap_groups(0, &group, &p);
+
+    target = (BitmapGroup *)&lbl_1_data_1AEA8 + 42;
+    for (i = 0; i < 0x56B; i++) {
+        key = ((u16 *)&lbl_1_data_1A3B8)[i];
+        n = 0;
+        q = target->unk_2C;
+        while (*q != 0) {
+            if (*q == key && fn_1_48A0C(n, 0x2A, target, 1) != 0) {
+                lbl_1_bss_40BB8++;
+                break;
+            }
+            n++;
+            q++;
+        }
+    }
+}
+/* fzgx:end fn_1_487EC */
+
 /* fzgx:begin fn_1_48A0C noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
