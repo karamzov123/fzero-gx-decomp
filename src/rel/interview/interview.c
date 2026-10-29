@@ -15670,6 +15670,84 @@ void fn_17_3C5C(void) {
 }
 /* fzgx:end fn_17_3C5C */
 
+/* fzgx:begin fn_17_3E08 */
+#include "rel/interview/interview.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} InterviewVec;
+
+extern u8 lbl_17_data_62A48[660];
+extern f32 lbl_17_rodata_0[];
+extern s16 fn_1_12C710(int);
+extern s32 fn_1_12CB04(s16 arg0);
+extern void fn_1_8F62C(void *arg0);
+
+#define SLOTS ((Obj_17_bss_D8_At0 **)&lbl_17_bss_D8)
+
+/* fzgx: the address is an argument of an inlined function, so MWCC re-materialises
+   it per call instead of CSE-ing it off the TU base (retail 0x3F58 lis/addi r3). */
+static inline Obj_17_bss_D8_AtC *slot_ptr(void *db, u32 offset) {
+    db = db;
+    offset = offset;
+    return *(Obj_17_bss_D8_AtC **)((u8 *)db + offset);
+}
+#define ROWS ((InterviewVec *)lbl_17_data_62A48)
+#define SEAT_NODE(expr, Type) \
+    do { \
+        Type *node = (expr); \
+        f32 row_z; \
+        f32 row_x; \
+        f32 flat; \
+        fn_1_8F62C(node); \
+        flag = i; \
+        row_x = ROWS[lbl_17_bss_D8.unk_0->unk_88].x; \
+        row_z = ROWS[lbl_17_bss_D8.unk_0->unk_88].z; \
+        switch (flag) { \
+        case 0: \
+            flat = rod[8]; \
+            node->unk_A8 = flat; \
+            node->unk_AC = flat; \
+            node->unk_B0 = flat; \
+            break; \
+        default: { \
+            f64 seat_x = ((f64 *)rod)[0x20] - (f64)row_x; \
+            f32 seat_ac = (*((8) + (rod))); \
+            f32 seat_z = rod[0x3E] - row_z; \
+            node->unk_A8 = (f32)seat_x; \
+            node->unk_AC = seat_ac; \
+            node->unk_B0 = seat_z; \
+        } break; \
+        } \
+    } while (0)
+
+void fn_17_3E08(void) {
+    Obj_17_bss_D8_At0 *o;
+    s16 i;
+    f32 *rod = lbl_17_rodata_0;
+    s32 flag;
+    for (i = 0; i < 2; i++) {
+        o = SLOTS[i];
+        switch ((s16)fn_1_12CB04(fn_1_12C710(o->unk_88))) {
+        case 2:
+            SEAT_NODE(o, Obj_17_bss_D8_At0);
+            SEAT_NODE((Obj_17_bss_D8_At8 *)SLOTS[2], Obj_17_bss_D8_At8);
+            SEAT_NODE(slot_ptr(&lbl_17_bss_D8, 0xC), Obj_17_bss_D8_AtC);
+            break;
+        case 1:
+            SEAT_NODE(o, Obj_17_bss_D8_At0);
+            SEAT_NODE(lbl_17_bss_D8.unk_8, Obj_17_bss_D8_At8);
+            break;
+        case 0:
+            SEAT_NODE(o, Obj_17_bss_D8_At0);
+            break;
+        }
+    }
+}
+/* fzgx:end fn_17_3E08 */
+
 /* fzgx:begin fn_17_416C */
 extern u32 lbl_17_bss_34[8];
 extern u32 lbl_17_bss_D8[8];

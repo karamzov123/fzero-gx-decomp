@@ -26604,5 +26604,39 @@
     ],
     "link": "verified",
     "commit": "245a22ace"
+  },
+  "fn_17_3E08": {
+    "seed_symbol": "fn_17_3E08",
+    "generator": "fzgx fixup",
+    "transform": "fn_1_12C710: extern s8 fn_1_12C710(s32 arg0); -> extern s16 fn_1_12C710(int);",
+    "seed": "#include \"types.h\"\n#include \"rel/interview/interview.h\"\n\ntypedef struct {\n    f32 x;\n    f32 y;\n    f32 z;\n} InterviewVec;\n\nextern u8 lbl_17_data_62A48[660];\nextern f32 lbl_17_rodata_0[];\nextern s8 fn_1_12C710(s32 arg0);\nextern s32 fn_1_12CB04(s16 arg0);\nextern void fn_1_8F62C(void *arg0);\n\n#define SLOTS ((Obj_17_bss_D8_At0 **)&lbl_17_bss_D8)\n\n/* fzgx: the address is an argument of an inlined function, so MWCC re-materialises\n   it per call instead of CSE-ing it off the TU base (retail 0x3F58 lis/addi r3). */\nstatic inline Obj_17_bss_D8_AtC *slot_ptr(void *db, u32 offset) {\n    db = db;\n    offset = offset;\n    return *(Obj_17_bss_D8_AtC **)((u8 *)db + offset);\n}\n#define ROWS ((InterviewVec *)lbl_17_data_62A48)\n#define SEAT_NODE(expr, Type) \\\n    do { \\\n        Type *node = (expr); \\\n        f32 row_z; \\\n        f32 row_x; \\\n        f32 flat; \\\n        fn_1_8F62C(node); \\\n        flag = i; \\\n        row_x = ROWS[lbl_17_bss_D8.unk_0->unk_88].x; \\\n        row_z = ROWS[lbl_17_bss_D8.unk_0->unk_88].z; \\\n        switch (flag) { \\\n        case 0: \\\n            flat = rod[8]; \\\n            node->unk_A8 = flat; \\\n            node->unk_AC = flat; \\\n            node->unk_B0 = flat; \\\n            break; \\\n        default: { \\\n            f64 seat_x = ((f64 *)rod)[0x20] - (f64)row_x; \\\n            f32 seat_ac = (*((8) + (rod))); \\\n            f32 seat_z = rod[0x3E] - row_z; \\\n            node->unk_A8 = (f32)seat_x; \\\n            node->unk_AC = seat_ac; \\\n            node->unk_B0 = seat_z; \\\n        } break; \\\n        } \\\n    } while (0)\n\nvoid fn_17_3E08(void) {\n    Obj_17_bss_D8_At0 *o;\n    s16 i;\n    f32 *rod = lbl_17_rodata_0;\n    s32 flag;\n    for (i = 0; i < 2; i++) {\n        o = SLOTS[i];\n        switch ((s16)fn_1_12CB04(fn_1_12C710(o->unk_88))) {\n        case 2:\n            SEAT_NODE(o, Obj_17_bss_D8_At0);\n            SEAT_NODE((Obj_17_bss_D8_At8 *)SLOTS[2], Obj_17_bss_D8_At8);\n            SEAT_NODE(slot_ptr(&lbl_17_bss_D8, 0xC), Obj_17_bss_D8_AtC);\n            break;\n        case 1:\n            SEAT_NODE(o, Obj_17_bss_D8_At0);\n            SEAT_NODE(lbl_17_bss_D8.unk_8, Obj_17_bss_D8_At8);\n            break;\n        case 0:\n            SEAT_NODE(o, Obj_17_bss_D8_At0);\n            break;\n        }\n    }\n}\n\n",
+    "seed_sha256": "402f676bb94e75903ec896a357a96b7e686a058a11e52128e55222871cd4cfa5",
+    "generated_sha256": "b6dc6ce4f897dbc9ee4ff6dfcd4fb9787e786356f03817cff316353d85f90272",
+    "generated_source": "#include \"types.h\"\n#include \"rel/interview/interview.h\"\n\ntypedef struct {\n    f32 x;\n    f32 y;\n    f32 z;\n} InterviewVec;\n\nextern u8 lbl_17_data_62A48[660];\nextern f32 lbl_17_rodata_0[];\nextern s16 fn_1_12C710(int);\nextern s32 fn_1_12CB04(s16 arg0);\nextern void fn_1_8F62C(void *arg0);\n\n#define SLOTS ((Obj_17_bss_D8_At0 **)&lbl_17_bss_D8)\n\n/* fzgx: the address is an argument of an inlined function, so MWCC re-materialises\n   it per call instead of CSE-ing it off the TU base (retail 0x3F58 lis/addi r3). */\nstatic inline Obj_17_bss_D8_AtC *slot_ptr(void *db, u32 offset) {\n    db = db;\n    offset = offset;\n    return *(Obj_17_bss_D8_AtC **)((u8 *)db + offset);\n}\n#define ROWS ((InterviewVec *)lbl_17_data_62A48)\n#define SEAT_NODE(expr, Type) \\\n    do { \\\n        Type *node = (expr); \\\n        f32 row_z; \\\n        f32 row_x; \\\n        f32 flat; \\\n        fn_1_8F62C(node); \\\n        flag = i; \\\n        row_x = ROWS[lbl_17_bss_D8.unk_0->unk_88].x; \\\n        row_z = ROWS[lbl_17_bss_D8.unk_0->unk_88].z; \\\n        switch (flag) { \\\n        case 0: \\\n            flat = rod[8]; \\\n            node->unk_A8 = flat; \\\n            node->unk_AC = flat; \\\n            node->unk_B0 = flat; \\\n            break; \\\n        default: { \\\n            f64 seat_x = ((f64 *)rod)[0x20] - (f64)row_x; \\\n            f32 seat_ac = (*((8) + (rod))); \\\n            f32 seat_z = rod[0x3E] - row_z; \\\n            node->unk_A8 = (f32)seat_x; \\\n            node->unk_AC = seat_ac; \\\n            node->unk_B0 = seat_z; \\\n        } break; \\\n        } \\\n    } while (0)\n\nvoid fn_17_3E08(void) {\n    Obj_17_bss_D8_At0 *o;\n    s16 i;\n    f32 *rod = lbl_17_rodata_0;\n    s32 flag;\n    for (i = 0; i < 2; i++) {\n        o = SLOTS[i];\n        switch ((s16)fn_1_12CB04(fn_1_12C710(o->unk_88))) {\n        case 2:\n            SEAT_NODE(o, Obj_17_bss_D8_At0);\n            SEAT_NODE((Obj_17_bss_D8_At8 *)SLOTS[2], Obj_17_bss_D8_At8);\n            SEAT_NODE(slot_ptr(&lbl_17_bss_D8, 0xC), Obj_17_bss_D8_AtC);\n            break;\n        case 1:\n            SEAT_NODE(o, Obj_17_bss_D8_At0);\n            SEAT_NODE(lbl_17_bss_D8.unk_8, Obj_17_bss_D8_At8);\n            break;\n        case 0:\n            SEAT_NODE(o, Obj_17_bss_D8_At0);\n            break;\n        }\n    }\n}\n\n",
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "seed_compiler": "GC/1.3.2",
+    "seed_flags": "",
+    "source": "rel/interview/interview/fn_17_3E08.c",
+    "bytes": 868,
+    "headers_sha256": "f1997625a5a3337360e1eb1f0154f62999f419d23023bf8f5e20f6cbdfdb97d0",
+    "oracle_sha256": "a07ffcea0a75ff8b33e8b1a58b6f616c8c390cf774c325caeec533336a536657",
+    "recipe": [
+      {
+        "label": "fn_1_12C710: extern s8 fn_1_12C710(s32 arg0); -> extern s16 fn_1_12C710(int);",
+        "input_sha256": "402f676bb94e75903ec896a357a96b7e686a058a11e52128e55222871cd4cfa5",
+        "output_sha256": "b6dc6ce4f897dbc9ee4ff6dfcd4fb9787e786356f03817cff316353d85f90272",
+        "input_symbol": "fn_17_3E08",
+        "output_symbol": "fn_17_3E08",
+        "edits": [
+          [
+            196,
+            218,
+            "16 fn_1_12C710(int"
+          ]
+        ]
+      }
+    ],
+    "link": "pending"
   }
 }
