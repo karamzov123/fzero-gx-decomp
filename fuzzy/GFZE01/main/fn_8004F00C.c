@@ -1,101 +1,104 @@
-/* Non-matching: best partial attempt (36.27% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (87.29% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
-extern s16 lbl_800911E0[32];
+struct Out {
+    u16 hi;
+    u16 lo;
+};
 
-static s16 fn_8004F00C_clamp(s32 v) {
-    if (v > 0x7FFF) {
-        return 0x7FFF;
+struct Coef {
+    s16 a;
+    s16 b;
+};
+
+struct Acc {
+    s16 v;
+};
+
+extern const s32 lbl_800911E0[16];
+
+#define CLAMP16(v)                     \
+    if (v > 32767 || v < -32768) {     \
+        if (v < -32768) {              \
+            v = -32768;                \
+        } else if (v > 32767) {        \
+            v = 32767;                 \
+        }                              \
     }
-    if (v < -0x8000) {
-        return -0x8000;
-    }
-    return (s16)v;
-}
 
-s16 fn_8004F00C(s16 *in, s16 count, s16 *outA, s16 *stateA, s16 *outB, s16 *stateB,
-                s16 coef1, s16 coef2, s16 *pred, s16 step, s16 bias) {
-    s16 sA0 = stateA[0];
-    s16 sA1 = stateA[1];
-    s16 sB0 = stateB[0];
-    s16 sB1 = stateB[1];
-    s16 half = (s16)(((s32)count + ((u32)count >> 31)) >> 1);
-    s16 i;
-    s16 lastA = 0;
-    s16 lastB = 0;
+/* Stereo ADPCM frame pairs (left block then right block, 0x12 bytes each),
+ * left decoded to arg2 and right to arg4. */
+#pragma opt_loop_invariants on
+#pragma opt_lifetimes off
+s32 fn_8004F00C(s8 *arg0, s32 arg1, struct Out *arg2, struct Coef *arg3, struct Out *arg4,
+                struct Coef *arg5, s16 arg6, s16 arg7, struct Acc *arg8, s16 arg9, s16 arg10) {
+    s32 t1;
+    s32 t0;
+    s32 hi1;
+    s32 hi0;
+    s8 b1;
+    s8 b0;
+    s16 v1;
+    s16 v0;
+    s32 j;
+    s32 i;
+    s32 y1;
+    s32 x1;
+    s32 y0;
+    s32 x0;
 
-    for (i = 0; i < half; i++) {
-        s16 *oA = outA;
-        s16 *oB = outB;
-        s16 hdr;
-        s16 hdr2;
-        s16 idxA;
-        s16 idxB;
-        s16 j;
-        s8 *bp;
+    x0 = arg3->a;
+    y0 = arg3->b;
+    x1 = arg5->a;
+    y1 = arg5->b;
 
-        hdr = in[0];
-        if (((u32)hdr << 16) & 0x10000) {
-            return (s16)(i << 1);
+    for (i = 0; i < arg1 / 2; i++) {
+        v0 = *(s16 *)arg0;
+        if (v0 & 0x8000) {
+            return i * 2;
         }
-        {
-            s16 p = pred[0];
-
-            pred[0] = (s16)(bias + p * step);
-            idxA = (s16)(((u16)(hdr ^ p) << 13 >> 19) + 1);
-            pred[0] = (s16)((u16)pred[0] >> 1);
+        v0 = (s16)(1 + ((v0 ^ arg8->v) & 0x1FFF));
+        arg8->v = (s16)(arg8->v * arg9 + arg10);
+        arg8->v = (s16)(0x7FFF & arg8->v);
+        v1 = *(s16 *)(arg0 + 0x12);
+        if (v1 & 0x8000) {
+            return i * 2;
         }
-        hdr2 = ((s16 *)((s8 *)in + 0x12))[0];
-        if (((u32)hdr2 << 16) & 0x10000) {
-            return (s16)(i << 1);
-        }
-        {
-            s16 p = pred[0];
-
-            pred[0] = (s16)(bias + p * step);
-            idxB = (s16)(((u16)(hdr2 ^ p) << 13 >> 19) + 1);
-            pred[0] = (s16)((u16)pred[0] >> 1);
-        }
-        bp = (s8 *)in + 2;
+        v1 = (s16)(1 + ((v1 ^ arg8->v) & 0x1FFF));
+        arg8->v = (s16)(arg8->v * arg9 + arg10);
+        arg8->v = (s16)(0x7FFF & arg8->v);
+        arg0 += 2;
         for (j = 0; j < 16; j++) {
-            s8 x0 = bp[0];
-            s8 x1 = bp[0x12];
-            s16 v0;
-            s16 v1;
-            s16 v2;
-            s16 v3;
-
-            bp++;
-            v0 = fn_8004F00C_clamp(((coef1 * sA0 + coef2 * sA1) >> 12) + (x0 >> 4) * idxA);
-            v1 = fn_8004F00C_clamp(((coef1 * sB0 + coef2 * sB1) >> 12) + (x1 >> 4) * idxB);
-            {
-                s16 t0 = lbl_800911E0[(u8)x0 << 28 >> 30];
-                s16 t1 = lbl_800911E0[(u8)x1 << 28 >> 30];
-
-                v2 = fn_8004F00C_clamp(((coef1 * v0 + coef2 * sA0) >> 12) + t0 * idxA);
-                v3 = fn_8004F00C_clamp(((coef1 * v1 + coef2 * sB0) >> 12) + t1 * idxB);
-            }
-            oA[0] = v0;
-            oB[0] = v1;
-            oA[1] = v2;
-            oB[1] = v3;
-            oA += 2;
-            oB += 2;
-            sA1 = sA0;
-            sA0 = v0;
-            sB1 = sB0;
-            sB0 = v1;
-            lastA = v0;
-            lastB = v1;
+            b0 = arg0[0];
+            b1 = arg0[0x12];
+            arg0++;
+            hi0 = ((arg6 * x0 + arg7 * y0) >> 12) + (b0 >> 4) * v0;
+            CLAMP16(hi0)
+            hi1 = ((arg6 * x1 + arg7 * y1) >> 12) + (b1 >> 4) * v1;
+            CLAMP16(hi1)
+            y1 = hi1;
+            arg2->hi = hi0;
+            arg4->hi = hi1;
+            t0 = lbl_800911E0[b0 & 0xF];
+            t1 = lbl_800911E0[b1 & 0xF];
+            y0 = hi0;
+            x0 = t0 * v0 + ((arg6 * hi0 + arg7 * x0) >> 12);
+            CLAMP16(x0)
+            x1 = t1 * v1 + ((arg6 * y1 + arg7 * x1) >> 12);
+            CLAMP16(x1)
+            arg2->lo = x0;
+            arg2++;
+            arg4->lo = x1;
+            arg4++;
         }
-        in = (s16 *)(bp + 0x12);
-        outA = oA;
-        outB = oB;
+        arg0 += 0x12;
     }
-    stateA[0] = lastA;
-    stateA[1] = lastB;
-    stateB[0] = lastA;
-    stateB[1] = lastB;
-    return count;
+    arg3->a = x0;
+    arg3->b = y0;
+    arg5->a = x1;
+    arg5->b = y1;
+    return arg1;
 }
+#pragma opt_lifetimes reset
+#pragma opt_loop_invariants reset
