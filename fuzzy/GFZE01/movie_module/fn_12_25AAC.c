@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.21% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.62% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -44,8 +44,6 @@ typedef struct RingInfo {
     s32 len1;
     s32 unk10;
     s32 unk14;
-    s32 unk18;
-    s32 unk1c;
 } RingInfo;
 
 typedef struct PtsInfo {
@@ -89,14 +87,15 @@ static inline s32 choose_stream(SfdHandle *handle, s32 id) {
         return id;
     case 2:
         return select_stream(handle, id);
-    case 3:
+    case 0:
+    default:
         return id;
     }
     return id;
 }
 
 static inline s32 is_seq_start(u8 *buf, s32 len) {
-    s32 c;
+    u8 c;
 
     if (len < 4) {
         return 0;
@@ -111,10 +110,10 @@ static inline s32 is_seq_start(u8 *buf, s32 len) {
         return 0;
     }
     c = buf[3];
-    if ((u32)c == 0xB3) {
+    if (c == 0xB3) {
         return 1;
     }
-    return (u8)c == 0xB8;
+    return c == 0xB8;
 }
 
 static inline s32 is_changed(SfdHandle *handle, SfmpsWork *work, s32 id) {
@@ -125,6 +124,7 @@ static inline s32 is_changed(SfdHandle *handle, SfmpsWork *work, s32 id) {
 }
 
 static inline s32 write_data(SfdHandle *handle, u8 *buf, s32 len, s32 pts) {
+    PtsInfo pi;
     void *stream;
     s32 err;
     RingInfo info;
@@ -132,7 +132,6 @@ static inline s32 write_data(SfdHandle *handle, u8 *buf, s32 len, s32 pts) {
     s32 len0;
     u8 *ptr1;
     s32 extra;
-    PtsInfo pi;
 
     stream = handle->stream;
     err = fn_12_224FC(handle, stream, &info);

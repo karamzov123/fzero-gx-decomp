@@ -987,7 +987,7 @@
  {
   "symbol": "fn_12_25AAC",
   "module": "movie_module",
-  "percent": 97.21,
+  "percent": 97.62,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
@@ -1028,9 +1028,7 @@
    "-i",
    "include",
    "-i",
-   "build/GFZE01/include",
-   "-use_lmw_stmw",
-   "on"
+   "build/GFZE01/include"
   ]
  },
  {
@@ -1762,6 +1760,53 @@
   "symbol": "fn_12_DC78",
   "module": "movie_module",
   "percent": 8.72,
+  "mw": "GC/1.3.2",
+  "flags": [
+   "-nodefaults",
+   "-proc",
+   "gekko",
+   "-align",
+   "powerpc",
+   "-enum",
+   "int",
+   "-fp",
+   "hardware",
+   "-Cpp_exceptions",
+   "off",
+   "-O4,p",
+   "-inline",
+   "auto",
+   "-pragma",
+   "cats off",
+   "-pragma",
+   "warn_notinlined off",
+   "-maxerrors",
+   "1",
+   "-nosyspath",
+   "-RTTI",
+   "off",
+   "-fp_contract",
+   "on",
+   "-str",
+   "reuse",
+   "-multibyte",
+   "-DBUILD_VERSION=0",
+   "-DVERSION_GFZE01",
+   "-DNDEBUG=1",
+   "-sdata",
+   "0",
+   "-sdata2",
+   "0",
+   "-i",
+   "include",
+   "-i",
+   "build/GFZE01/include"
+  ]
+ },
+ {
+  "symbol": "fn_14_2590",
+  "module": "pilotpoint",
+  "percent": 86.59,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
@@ -14344,7 +14389,7 @@
  {
   "symbol": "fn_800643F4",
   "module": "main",
-  "percent": 96.0,
+  "percent": 98.86,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
@@ -14381,7 +14426,9 @@
    "-i",
    "include",
    "-i",
-   "build/GFZE01/include"
+   "build/GFZE01/include",
+   "-use_lmw_stmw",
+   "on"
   ]
  },
  {
@@ -14518,7 +14565,7 @@
  {
   "symbol": "fn_8006AA44",
   "module": "main",
-  "percent": 96.72,
+  "percent": 96.84,
   "mw": "GC/1.2.5n",
   "flags": [
    "-nodefaults",
@@ -14820,49 +14867,6 @@
   "symbol": "fn_80078944",
   "module": "main",
   "percent": 48.38,
-  "mw": "GC/1.2.5n",
-  "flags": [
-   "-nodefaults",
-   "-proc",
-   "gekko",
-   "-align",
-   "powerpc",
-   "-enum",
-   "int",
-   "-fp",
-   "hardware",
-   "-Cpp_exceptions",
-   "off",
-   "-O4,p",
-   "-inline",
-   "auto",
-   "-pragma",
-   "cats off",
-   "-pragma",
-   "warn_notinlined off",
-   "-maxerrors",
-   "1",
-   "-nosyspath",
-   "-RTTI",
-   "off",
-   "-fp_contract",
-   "on",
-   "-str",
-   "reuse",
-   "-multibyte",
-   "-DBUILD_VERSION=0",
-   "-DVERSION_GFZE01",
-   "-DNDEBUG=1",
-   "-i",
-   "include",
-   "-i",
-   "build/GFZE01/include"
-  ]
- },
- {
-  "symbol": "fn_8008EED8",
-  "module": "main",
-  "percent": 97.01,
   "mw": "GC/1.2.5n",
   "flags": [
    "-nodefaults",

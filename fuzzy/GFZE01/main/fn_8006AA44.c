@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (96.72% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (96.84% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -37,22 +37,26 @@ struct fn_8006AA44_Arg2 {
 
 #pragma opt_propagation off
 void fn_8006AA44(struct fn_8006AA44_Arg0 *arg0, struct fn_8006AA44_Arg1 *arg1, struct fn_8006AA44_Arg2 *arg2) {
+    u8 *fzgx_value_;
+    s32 fzgx_value;
     s32 t;
+    struct { s32 value; } c;
 
     if ((arg1->unk_2 ^ arg2->unk_20) & 8) {
-        arg2->unk_28 = 64;
-        arg2->unk_4 = 80;
+        c.value = 64;
+        arg2->unk_4 = 64;
+        arg2->unk_28 = c.value;
         arg2->unk_5 = 80;
         t = (arg2->unk_4 - arg2->unk_5) / 2;
         if (t < -128) {
             t = -128;
-            (void) t;
         } else if (t > 127) {
             t = 127;
         }
         arg2->unk_6 = t;
         arg2->unk_E = 176;
-        arg2->unk_F = 176;
+        fzgx_value_ = &(arg2->unk_F);
+        *fzgx_value_ = 176;
         t = (arg2->unk_E - arg2->unk_F) / 2;
         if (t < -128) {
             t = -128;
@@ -91,7 +95,7 @@ void fn_8006AA44(struct fn_8006AA44_Arg0 *arg0, struct fn_8006AA44_Arg1 *arg1, s
                 arg2->unk_E = v;
                 max = v;
             }
-            denom = (max - min) - (u8)(radius * 2);
+            denom = (max - min) - (u8)radius * 2;
             if (denom == 0) {
                 denom = 1;
             }
@@ -122,8 +126,7 @@ void fn_8006AA44(struct fn_8006AA44_Arg0 *arg0, struct fn_8006AA44_Arg1 *arg1, s
                 arg2->unk_F = v;
                 max = v;
             }
-            denom = (max - min) - (u8)(radius * 2);
-            if (denom == 0) {
+            if ((denom = (max - min) - 2 * (u8)radius) == 0) {
                 denom = 1;
             }
             t = (v - (min + radius)) * 255 / denom;
@@ -143,7 +146,8 @@ void fn_8006AA44(struct fn_8006AA44_Arg0 *arg0, struct fn_8006AA44_Arg1 *arg1, s
         }
         arg0->unk_6 = t;
     } else {
-        arg0->unk_5 = 0;
+        fzgx_value = 0;
+        arg0->unk_5 = fzgx_value;
         arg0->unk_4 = 0;
         arg0->unk_6 = 0;
     }
