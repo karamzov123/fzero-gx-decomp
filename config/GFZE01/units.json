@@ -32380,6 +32380,19 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8008EED8.c",
+    "symbols": [
+      "fn_8008EED8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.1",
+    "extra_cflags": [],
+    "pool": {
+      "@18": "lbl_8015B900"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8008EFE0.c",
     "symbols": [
       "fn_8008EFE0"
