@@ -1,104 +1,94 @@
-/* Non-matching: best partial attempt (87.29% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (88.72% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
-struct Out {
-    u16 hi;
-    u16 lo;
-};
-
-struct Coef {
-    s16 a;
-    s16 b;
-};
-
-struct Acc {
-    s16 v;
-};
+#pragma use_lmw_stmw on
 
 extern const s32 lbl_800911E0[16];
 
-#define CLAMP16(v)                     \
-    if (v > 32767 || v < -32768) {     \
-        if (v < -32768) {              \
-            v = -32768;                \
-        } else if (v > 32767) {        \
-            v = 32767;                 \
-        }                              \
+#define CLAMP16(x)                                   \
+    if ((x) > 0x7fff || (x) < -0x8000) {             \
+        if ((x) < -0x8000) {                         \
+            (x) = -0x8000;                           \
+        } else if ((x) > 0x7fff) {                   \
+            (x) = 0x7fff;                            \
+        }                                            \
     }
 
-/* Stereo ADPCM frame pairs (left block then right block, 0x12 bytes each),
- * left decoded to arg2 and right to arg4. */
-#pragma opt_loop_invariants on
+static inline const s32 fn_8004F00C_array_read(const s32 *array, s32 index) { return array[index]; }
+#pragma opt_dead_assignments off
+static inline u8 *fn_8004F00C_array_read_(u8 *array) { return array; }
 #pragma opt_lifetimes off
-s32 fn_8004F00C(s8 *arg0, s32 arg1, struct Out *arg2, struct Coef *arg3, struct Out *arg4,
-                struct Coef *arg5, s16 arg6, s16 arg7, struct Acc *arg8, s16 arg9, s16 arg10) {
-    s32 t1;
-    s32 t0;
-    s32 hi1;
-    s32 hi0;
-    s8 b1;
-    s8 b0;
-    s16 v1;
-    s16 v0;
-    s32 j;
-    s32 i;
-    s32 y1;
-    s32 x1;
-    s32 y0;
-    s32 x0;
+s32 fn_8004F00C(u8 *src, s32 n, s16 *out_l, s16 *hist_l, s16 *out_r, s16 *hist_r, s16 c1, s16 c2,
+                s16 *seed, s16 mul, s16 add)
+{
+    s32 l1;
+    s32 r1;
+    s32 r0;
+    s32 l0;
+    s32 hdr_2;
+    s32 b;
+    s32 blocks;
+    s32 hdr;
+    s16 scale_r;
+    s32 k;
+    s16 scale_l;
+    s32 tmp_cse1;
+    s32 nl, nr;
 
-    x0 = arg3->a;
-    y0 = arg3->b;
-    x1 = arg5->a;
-    y1 = arg5->b;
-
-    for (i = 0; i < arg1 / 2; i++) {
-        v0 = *(s16 *)arg0;
-        if (v0 & 0x8000) {
-            return i * 2;
+    blocks = n / 2;
+    l0 = hist_l[0];
+    l1 = hist_l[1];
+    r0 = hist_r[0];
+    r1 = hist_r[1];
+    for (b = 0; b < blocks; b++) {
+        hdr = *(s16 *)src;
+        if (hdr & 0x8000) {
+            tmp_cse1 = b * 2;
+            return tmp_cse1;
         }
-        v0 = (s16)(1 + ((v0 ^ arg8->v) & 0x1FFF));
-        arg8->v = (s16)(arg8->v * arg9 + arg10);
-        arg8->v = (s16)(0x7FFF & arg8->v);
-        v1 = *(s16 *)(arg0 + 0x12);
-        if (v1 & 0x8000) {
-            return i * 2;
+        k = *seed;
+        *seed = k * mul + add;
+        *seed &= 0x7fff;
+        scale_l = ((hdr ^ k) & 0x1fff) + 1;
+        hdr_2 = *(s16 *)(src + 0x12);
+        if (hdr_2 & 0x8000) {
+            return tmp_cse1;
         }
-        v1 = (s16)(1 + ((v1 ^ arg8->v) & 0x1FFF));
-        arg8->v = (s16)(arg8->v * arg9 + arg10);
-        arg8->v = (s16)(0x7FFF & arg8->v);
-        arg0 += 2;
-        for (j = 0; j < 16; j++) {
-            b0 = arg0[0];
-            b1 = arg0[0x12];
-            arg0++;
-            hi0 = ((arg6 * x0 + arg7 * y0) >> 12) + (b0 >> 4) * v0;
-            CLAMP16(hi0)
-            hi1 = ((arg6 * x1 + arg7 * y1) >> 12) + (b1 >> 4) * v1;
-            CLAMP16(hi1)
-            y1 = hi1;
-            arg2->hi = hi0;
-            arg4->hi = hi1;
-            t0 = lbl_800911E0[b0 & 0xF];
-            t1 = lbl_800911E0[b1 & 0xF];
-            y0 = hi0;
-            x0 = t0 * v0 + ((arg6 * hi0 + arg7 * x0) >> 12);
-            CLAMP16(x0)
-            x1 = t1 * v1 + ((arg6 * y1 + arg7 * x1) >> 12);
-            CLAMP16(x1)
-            arg2->lo = x0;
-            arg2++;
-            arg4->lo = x1;
-            arg4++;
+        k = *seed;
+        *seed = k * mul + add;
+        *seed &= 0x7fff;
+        scale_r = ((((((hdr_2)) ^ ((k))))) & 0x1fff) + 1;
+        src += 2;
+        for (k = 0; k < 16; k++) {
+            s8 bl = (s8)fn_8004F00C_array_read_(src)[0];
+            s32 br = (s8)fn_8004F00C_array_read_(src)[0x12];
+            src++;
+            l1 = (bl >> 4) * scale_l + ((c1 * l0 + c2 * l1) >> 12);
+            CLAMP16(l1);
+            nr = ((scale_r) * ((br >> 4))) + ((c1 * r0 + c2 * r1) >> 12);
+            CLAMP16(nr);
+            out_l[0] = l1;
+            out_r[0] = nr;
+            l0 = fn_8004F00C_array_read(lbl_800911E0, bl & 0xf) * scale_l + ((c1 * l1 + c2 * l0) >> 12);
+            CLAMP16(l0);
+            r0 = fn_8004F00C_array_read(lbl_800911E0, br & 0xf) * scale_r + ((c1 * nr + c2 * r0) >> 12);
+            CLAMP16(r0);
+            out_l[1] = l0;
+            r1 = nr;
+            out_l += 2;
+            out_r[1] = r0;
+            out_r += 2;
         }
-        arg0 += 0x12;
+        src += 0x12;
     }
-    arg3->a = x0;
-    arg3->b = y0;
-    arg5->a = x1;
-    arg5->b = y1;
-    return arg1;
+    hist_l[0] = l0;
+    hist_l[1] = l1;
+    hist_r[0] = r0;
+    hist_r[1] = r1;
+    return n;
 }
 #pragma opt_lifetimes reset
-#pragma opt_loop_invariants reset
+
+#pragma opt_dead_assignments reset
+
