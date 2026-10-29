@@ -22312,6 +22312,36 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_800456A0.c",
+    "symbols": [
+      "fn_800456A0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_800900A0",
+      "lbl_800900A0": "lbl_800900A0",
+      "lbl_800900A0__fzgx_offset_30": "lbl_800900A0+0x30",
+      "lbl_800900A0__fzgx_offset_830": "lbl_800900A0+0x830",
+      "lbl_800900A0__fzgx_offset_838": "lbl_800900A0+0x838",
+      "lbl_800900A0__fzgx_offset_858": "lbl_800900A0+0x858",
+      "...bss.0": "lbl_8017A288",
+      "lbl_8017A288": "lbl_8017A288",
+      "lbl_8017A288__fzgx_offset_4": "lbl_8017A288+0x4",
+      "lbl_8017A288__fzgx_offset_8": "lbl_8017A288+0x8",
+      "lbl_8017A288__fzgx_offset_C": "lbl_8017A288+0xC",
+      "lbl_8017A288__fzgx_offset_E": "lbl_8017A288+0xE",
+      "lbl_8017A288__fzgx_offset_10": "lbl_8017A288+0x10"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80045D3C.c",
     "symbols": [
       "fn_80045D3C"
