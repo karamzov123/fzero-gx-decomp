@@ -209,7 +209,15 @@ uv run tools/fzgx.py fixup --capture --corpus .fzgx/near95-fast-batch --output .
 ```
 
 Capture requires macOS's `xcrun lldb` and the repository's native Wibo with its
-loader symbols. Cached replay rejects changed source hashes, header hashes or
+loader symbols. On Linux a bare `lldb` with embedded Python is enough, provided
+Wibo is at `build/tools/wibo`: the release binary from
+`python3 tools/download_tool.py wibo build/tools/wibo --tag 1.0.0` carries the
+debug info the loader breakpoint needs (`loadPEFromSource`). Verified on a Linux
+host at 0.51 s/function with exact replay on six saved bodies; see
+`docs/findings/390-linux-allocator-capture-unblocked.md`, which also records that
+the six classic register walls come back `fixed-graph-hypothesis`
+(`fn_12_3A64`) or `needs-web-alignment` (the rest) and that the projected run
+closes none of them. Cached replay rejects changed source hashes, header hashes or
 compiler settings. The normal relocation-aware oracle and all 16 target hashes
 remain the acceptance authority. No model batch was resumed.
 
