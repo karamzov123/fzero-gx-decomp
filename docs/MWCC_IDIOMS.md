@@ -754,6 +754,13 @@ Implemented in `fixup_source.self_assign_barriers`:
   constant-propagates `0.0f` into the loop. Appending `, v = v` to the `for` step creates a
   loop-carried reaching definition that blocks constant propagation for `v` alone without
   needing `#pragma opt_propagation off`.
+- **Limit (measured on `fn_12_3A64`, 2026-10-29)**: the barrier does *not* extend a web's
+  liveness to the epilogue, so it cannot substitute for a `return` when the question is a
+  callee-saved *panel* rank. Every tail form - `far_z = far_z;`, `far_z = (u32)far_z;`, with
+  `opt_dead_assignments`/`opt_lifetimes` off, and the same for `near_z`/`table`/`object` -
+  is byte-identical to the body without it (213 words, the same 20 rows). `opt_propagation off`
+  on top of a self-assign is catastrophic there (216 words, 130 rows). Use the barrier for
+  single-definition folding, not for liveness.
 
 ### `extern const` read-only arrays unlock pre-RA load scheduling across stores (`fn_8006953C`, 2026-10-26)
 
