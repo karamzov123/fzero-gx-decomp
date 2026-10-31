@@ -9140,3 +9140,18 @@ rel/main_rel/effect_car/fn_1_7099C.c:
 
 rel/main_rel/driver/fn_1_C24A4.c:
 	.text       start:0x000C24A4 end:0x000C3378 align:4
+
+rel/main_rel/game/fn_1_32200.c:
+	.text       start:0x00032200 end:0x00032600 align:4
+
+rel/main_rel/game/fn_1_36330.c:
+	.text       start:0x00036330 end:0x00036A94 align:4
+
+rel/main_rel/game/fn_1_2FAA0.c:
+	.text       start:0x0002FAA0 end:0x0002FDBC align:4
+
+rel/main_rel/sel_static_disp/fn_1_148950.c:
+	.text       start:0x00148950 end:0x001490FC align:4
+
+rel/main_rel/stcoli/fn_1_2AF0C.c:
+	.text       start:0x0002AF0C end:0x0002B478 align:4

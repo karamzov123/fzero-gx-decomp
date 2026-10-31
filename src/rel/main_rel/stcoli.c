@@ -14372,6 +14372,220 @@ int fn_1_2A8D0(Sig_fn_1_2A694_O * arg0, u8 * arg1, u32 * arg2, u32 arg3, Sig_fn_
 }
 /* fzgx:end fn_1_2A8D0 */
 
+/* fzgx:begin fn_1_2AF0C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/stcoli.h"
+#include "psvec.h"
+
+typedef struct HoverVec {
+    f32 x, y, z;
+} HoverVec;
+
+/* One hover corner: 4 x 0x5C at machine +0x244 (front right, front left, back right, back left). */
+typedef struct HoverCorner {
+    u32 flags;          /* 0x00 ground/air state (0x2 in contact) */
+    u8 pad_4[0x1C];
+    HoverVec pos;       /* 0x20 world position, current */
+    HoverVec normal1;   /* 0x2C track normal 1 */
+    HoverVec normal2;   /* 0x38 track normal 2 */
+    f32 slope;          /* 0x44 slope / compression */
+    u8 pad_48[0x4];
+    HoverVec force;     /* 0x4C suspension force (machine frame) */
+    f32 magnitude;      /* 0x58 suspension magnitude */
+} HoverCorner;
+
+typedef struct HoverMachine {
+    u8 pad_0[0x1C8];
+    f32 unk_1C8;
+    u8 pad_1CC[0x4C];
+    u32 terrain_flags;          /* 0x218 */
+    u8 pad_21C[0x28];
+    HoverCorner corners[4];     /* 0x244 */
+    u8 pad_3B4[0xD4];
+    void *track_records[4];     /* 0x488 track-query records (0xC0 each) */
+    u8 pad_498[0x74];
+    u8 unk_50C;
+    u8 pad_50D[0x7F];
+    u32 flags2;                 /* 0x58C */
+} HoverMachine;
+
+/* Corner indices a, b, c, d: the normal is (a - b) x (c - d). */
+typedef struct CornerQuad {
+    u8 c[4];
+} CornerQuad;
+
+/* One quad per set of corners probed: all four, then three with corner 0, 1, 2 or 3 missing. */
+typedef struct CornerQuads {
+    CornerQuad q[5];
+} CornerQuads;
+
+struct fn_1_2AF0C_pool {
+    u8 pad_0[0xC];
+    f32 zero;
+    u8 pad_10[0x4];
+    f32 one;
+    u8 pad_18[0x32C];
+    CornerQuads quads;
+};
+
+extern const struct fn_1_2AF0C_pool lbl_1_rodata_840;
+extern u8 *lbl_801A66CC;
+extern s16 fn_1_7B054(void);
+extern u8 *fn_1_14F04(void);
+extern void fn_1_2ABD4(HoverMachine *, HoverCorner *);
+extern f32 lbl_8006D668(void *);
+
+static inline void hover_cross(const HoverVec *a, const HoverVec *b, HoverVec *out) {
+    f32 ax, ay, az, bx, by, bz;
+    f32 x, y, z;
+    ay = a->y;
+    ax = a->x;
+    az = a->z;
+    by = b->y;
+    bx = b->x;
+    bz = b->z;
+    x = ay * bz;
+    x -= az * by;
+    y = az * bx;
+    y -= ax * bz;
+    z = ax * by;
+    z -= ay * bx;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+s32 fn_1_2AF0C(HoverMachine *racer, HoverVec *normal) {
+    const struct fn_1_2AF0C_pool *pool = &lbl_1_rodata_840;
+    CornerQuads quads;
+    u8 entry[4];
+    HoverVec up;
+    HoverVec edge;
+    f32 len;
+    f32 zero;
+    f32 one;
+    struct { s32 value; } modulated;
+    s32 result;
+    s32 i;
+    s32 strip_hits;
+    HoverCorner *c;
+    u32 airborne;
+    u32 probed;
+    CornerQuad *quad;
+    u8 no_static;
+    u8 *area;
+    u32 flags;
+    u32 bit;
+
+    quads = pool->quads;
+    result = 0;
+    no_static = 0;
+    /* courses 36 and 37: the modulated roads */
+    modulated.value = 1;
+    if (fn_1_7B054() != 36 && fn_1_7B054() != 37) {
+        modulated.value = 0;
+    }
+    probed = 0;
+    airborne = 0;
+    quad = NULL;
+    strip_hits = 0;
+    for (i = 0, c = racer->corners; i < 4; i++, c++) {
+        entry[i] = 4;
+        /* the pointer the modulated-road shape function reads */
+        *(void **)(fn_1_14F04() + 0x700) = racer->track_records[i];
+        fn_1_2ABD4(racer, c);
+        if (!(c->flags & 2) || (modulated.value && !(c->flags & 8) && racer->unk_1C8 > pool->zero)) {
+            area = fn_1_14F04();
+            /* slot 4 of the query area holds no hit: the probe met no static collision */
+            if (*(u32 *)(lbl_801A66CC + 0x310) == 0) {
+                no_static++;
+            }
+            flags = *(u32 *)(area + 0x118);
+            if (flags & 0xC00) {
+                strip_hits++;
+            } else if (flags & 0x3E00000) {
+                entry[i] = *(u32 *)(area + 0x10C);
+            }
+            bit = 1 << i;
+            probed |= bit;
+            if (!(c->flags & 2)) {
+                airborne |= bit;
+            }
+        }
+    }
+    /* course 15 (Cylinder Knot): contact is forced when every probe without ground hit static collision */
+    if (airborne != 0 && no_static == 0 && fn_1_7B054() == 15) {
+        airborne = 0;
+        zero = pool->zero;
+        one = pool->one;
+        for (i = 0; i < 4; i++) {
+            c = &racer->corners[i];
+            c->flags |= 0xA;
+            c->magnitude = zero;
+            c->slope = zero;
+            c->normal1.x = zero;
+            c->normal1.y = one;
+            c->normal1.z = zero;
+            c->normal2.x = zero;
+            c->normal2.y = one;
+            c->normal2.z = zero;
+            c->force.x = zero;
+            c->force.y = zero;
+            c->force.z = zero;
+        }
+    }
+    if (entry[0] == entry[1] && entry[1] == entry[2] && entry[2] == entry[3]) {
+        racer->unk_50C = entry[0];
+    }
+    if (airborne == 15) {
+        quad = &quads.q[0];
+    } else if (airborne == 14) {
+        quad = &quads.q[1];
+    } else if (airborne == 13) {
+        quad = &quads.q[2];
+    } else if (airborne == 11) {
+        quad = &quads.q[3];
+    } else if (airborne == 7) {
+        quad = &quads.q[4];
+    } else if (modulated.value) {
+        if (probed == 15) {
+            quad = &quads.q[0];
+        } else if (probed == 14) {
+            quad = &quads.q[1];
+        } else if (probed == 13) {
+            quad = &quads.q[2];
+        } else if (probed == 11) {
+            quad = &quads.q[3];
+        } else if (probed == 7) {
+            quad = &quads.q[4];
+        }
+    }
+    if (quad != NULL) {
+        psvec_sub(&racer->corners[quad->c[0]].pos, &racer->corners[quad->c[1]].pos, &up);
+        psvec_sub(&racer->corners[quad->c[2]].pos, &racer->corners[quad->c[3]].pos, &edge);
+        hover_cross(&up, &edge, &up);
+        len = lbl_8006D668(&up);
+        if ((*(u32 *)&len & 0x7F800000) != 0x7F800000) {
+            for (i = 0, c = racer->corners; i < 4; i++, c++) {
+                result = 1;
+                c->normal2 = up;
+                *normal = c->normal2;
+                if (!(c->flags & 8)) {
+                    c->normal1 = up;
+                    psvec_scale(&c->normal1, c->magnitude, &c->force);
+                }
+            }
+        }
+        if (strip_hits >= 3) {
+            racer->terrain_flags |= 0x2000000;
+            racer->flags2 |= 0x200;
+        }
+    }
+    return result;
+}
+/* fzgx:end fn_1_2AF0C */
+
 /* fzgx:begin fn_1_2B478 */
 struct fn_1_2B478_Arg0 {
     u8 pad_0[0x1C8];
