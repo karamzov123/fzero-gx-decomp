@@ -3869,21 +3869,12 @@ void fn_1_C3B8(void) {
 }
 /* fzgx:end fn_1_C3B8 */
 
-/* fzgx:begin fn_1_C770 pool noprologue */
-#include "types.h"
-
-typedef struct {
-    u16 unk_0;
-    u8 pad_2[0x6];
-    u16 unk_8;
-    u8 pad_A[0x6];
-    u16 unk_10;
-} PadState;
-
+/* fzgx:begin fn_1_C770 */
 typedef struct {
     u32 w[9];
 } CamKey;
 
+/* playback of the camera keys (fn_1_C3B8) */
 typedef struct {
     s32 counter;
     s32 state;
@@ -3892,52 +3883,45 @@ typedef struct {
     u8 pad_10[0x30];
 } CamCtl;
 
-typedef struct {
-    u8 pad_0[0x14];
-    f32 unk_14;
-} Obj_BF0;
-
-extern PadState lbl_1_bss_D58;
 extern f32 lbl_1_bss_BF0[32];
-extern void OSReport(const char *, ...);
 
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_1010;
 u8 lbl_1_bss_1014;
-u8 lbl_1_bss_1010_gap_1015;
-u16 lbl_1_bss_1010_gap_1015_fill_1016;
+u8 fzgx_pool_lbl_1_bss_1010_gap_1015;
+u16 fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
 CamKey fzgx_obj_camera_state;
-u32 lbl_1_bss_103C;
-u32 lbl_1_bss_1040;
-u32 lbl_1_bss_1044;
+u8 lbl_1_bss_103C[4];
+f32 lbl_1_bss_1040;
+f32 lbl_1_bss_1044;
 u8 fzgx_obj_camera_flag_0;
 u8 fzgx_obj_camera_flag_1;
-u16 lbl_1_bss_1010_gap_104A;
+u16 fzgx_pool_lbl_1_bss_1010_gap_104A;
 CamCtl lbl_1_bss_104C;
-u32 lbl_1_bss_108C[13];
-u32 lbl_1_bss_10C0[6];
+u8 lbl_1_bss_108C[52];
+f32 lbl_1_bss_10C0[6];
 CamKey fzgx_obj_lbl_1_bss_10D8[2];
-CamKey lbl_1_bss_1120;
+CamKey lbl_1_bss_10D8__fzgx_offset_48;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = *(u8 *)&lbl_1_bss_1014;
-    s = *(u8 *)&lbl_1_bss_1010_gap_1015;
-    s = *(u8 *)&lbl_1_bss_1010_gap_1015_fill_1016;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_1015;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
     s = *(u8 *)&fzgx_obj_camera_state;
     s = *(u8 *)&lbl_1_bss_103C;
     s = *(u8 *)&lbl_1_bss_1040;
     s = *(u8 *)&lbl_1_bss_1044;
     s = *(u8 *)&fzgx_obj_camera_flag_0;
     s = *(u8 *)&fzgx_obj_camera_flag_1;
-    s = *(u8 *)&lbl_1_bss_1010_gap_104A;
+    s = *(u8 *)&fzgx_pool_lbl_1_bss_1010_gap_104A;
     s = *(u8 *)&lbl_1_bss_104C;
     s = *(u8 *)&lbl_1_bss_108C;
     s = *(u8 *)&lbl_1_bss_10C0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_10D8;
-    s = *(u8 *)&lbl_1_bss_1120;
+    s = *(u8 *)&lbl_1_bss_10D8__fzgx_offset_48;
 }
 
 /* the camera TU's literal pool in retail order, ahead of this function's constants */
@@ -3978,28 +3962,30 @@ static void fzgx_pool_tail(f64 *d, f32 *f) {
 }
 #pragma section code_type ".text"
 
-u16 lbl_1_data_4068 = 0xF000;
-u8 lbl_1_data_406A = 9;
-u8 lbl_1_data_406B = 3;
+/* the TU's .data from lbl_1_data_4068: the editor's bytes (item 1's value, the selected item),
+ * then the report formats ahead of this function's strings */
+u16 fzgx_pool_lbl_1_data_4068 = 0xF000;
+u8 fzgx_pool_camera_editor_move = 9;
+u8 fzgx_pool_camera_editor_item = 3;
 
+extern void fzgx_touch(const char *);
 #pragma section code_type ".fzgxpool"
-/* this TU's .data in retail order: the menu bytes, then the report strings ahead of this function's */
 static void fzgx_data_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink */
-    s = lbl_1_data_4068;
-    s = lbl_1_data_406A;
-    s = lbl_1_data_406B;
-    OSReport("\t{ %3d, %1.3f, {  0,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f },  %5.1f, %5d, 0,},\n");
-    OSReport("\t              {  0,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f },  %5.1f, %5d, 0,}, %s},\n");
-    OSReport("\t{  %8.3f, %8.3f, %8.3f },\n");
-    OSReport("\t{ 00,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f }, %5d,  PERS_DEGREE, %s},\n");
-    OSReport("\t{ 00,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f }, %5d,  %11.3f, %s},\n");
+    s = fzgx_pool_lbl_1_data_4068;
+    s = fzgx_pool_camera_editor_move;
+    s = fzgx_pool_camera_editor_item;
+    fzgx_touch("\t{ %3d, %1.3f, {  0,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f },  %5.1f, %5d, 0,},\n");
+    fzgx_touch("\t              {  0,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f },  %5.1f, %5d, 0,}, %s},\n");
+    fzgx_touch("\t{  %8.3f, %8.3f, %8.3f },\n");
+    fzgx_touch("\t{ 00,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f }, %5d,  PERS_DEGREE, %s},\n");
+    fzgx_touch("\t{ 00,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f }, %5d,  %11.3f, %s},\n");
 }
 #pragma section code_type ".text"
 
 extern void camera_save_slot(u8);
 extern void camera_snapshot(void);
-extern void fn_1_C038(f32, f32, s32);
+extern void fn_1_C038(f32 start, f32 end, s32 frames);  /* retail evaluates the floats first */
 extern void fn_1_C10C(u8);
 extern void fn_1_C178(void *);
 extern void camera_report_position(void);
@@ -4007,36 +3993,26 @@ extern void fn_1_C268(s32);
 extern void fn_1_C304(s32);
 extern void fn_1_C3B8(void);
 
-/* step v past one end of [lo, hi] and it restarts from the other */
+/* a value stepped past one end of [lo, hi] restarts from the other */
 #define WRAP(v, lo, hi) ((v) > (hi) ? (lo) : ((v) < (lo) ? (hi) : (v)))
-
-#pragma opt_common_subs off
-static inline s32 menu_wrap(s32 value, s32 direction, s32 amount) {
-    value += direction * amount;
-    return WRAP(value, 0, 15);
-}
 
 static inline s32 menu_prev(s32 item) {
     if (item - 1 > 38) return 0;
-    --item;
-    return item < 0 ? 38 : item;
+    return --item < 0 ? 38 : item;
 }
 static inline s32 menu_next(s32 item) {
     if (item + 1 > 38) return 0;
-    ++item;
-    return item < 0 ? 38 : item;
+    return ++item < 0 ? 38 : item;
 }
-#pragma opt_common_subs on
 
-/* Debug camera menu: up/down picks an item, left/right edits or triggers it. */
+/* The camera editor's input: up/down picks an item, left/right edits or runs it. */
 void fn_1_C770(void) {
-    PadState *pad = &lbl_1_bss_D58;
+    Obj_1_bss_D58 *pad = &lbl_1_bss_D58;
     s32 item;
     s32 dir;
     s32 step;
     s32 n;
     s32 v;
-    f64 f;
     f64 d;
 
     dir = 0;
@@ -4050,16 +4026,16 @@ void fn_1_C770(void) {
         step = 10.0f * lbl_1_bss_BF0[5];
     }
 
-    item = lbl_1_data_406B;
+    item = fzgx_pool_camera_editor_item;
     if (item == 1) {
-        n = lbl_1_data_406A;
+        n = fzgx_pool_camera_editor_move;
         n += dir * step;
         if (n > 15) {
             v = 0;
         } else {
             v = n < 0 ? 15 : n;
         }
-        lbl_1_data_406A = v;
+        fzgx_pool_camera_editor_move = v;
     }
     if (item == 2 && dir != 0) {
         lbl_1_bss_1014 = 0;
@@ -4067,76 +4043,75 @@ void fn_1_C770(void) {
     if (item == 3 && dir != 0) {
         camera_save_slot(0);
     }
-    if ((s32)lbl_1_data_406B == 4 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 4 && dir != 0) {
         camera_save_slot(1);
     }
-    if ((s32)lbl_1_data_406B == 5) {
+    if ((s32)fzgx_pool_camera_editor_item == 5) {
         d = 0.0001 * dir * step;
-        f = WRAP(lbl_1_bss_104C.rate + d, 0.0, 0.5);
-        lbl_1_bss_104C.rate = f;
+        lbl_1_bss_104C.rate = WRAP(lbl_1_bss_104C.rate + d, 0.0, 0.5);
     }
-    if ((s32)lbl_1_data_406B == 6) {
+    if ((s32)fzgx_pool_camera_editor_item == 6) {
         v = lbl_1_bss_104C.total + dir * step;
         lbl_1_bss_104C.total = WRAP(v, 0, 1000);
     }
-    if ((s32)lbl_1_data_406B == 7 && dir != 0) {
-        lbl_1_bss_1010_gap_1015 = 1;
-        lbl_1_bss_1120 = fzgx_obj_camera_state;
-        lbl_1_bss_104C.state = 0;
+    if ((s32)fzgx_pool_camera_editor_item == 7 && dir != 0) {
+        fzgx_pool_lbl_1_bss_1010_gap_1015 = 1;
+        lbl_1_bss_10D8__fzgx_offset_48 = fzgx_obj_camera_state;
+        lbl_1_bss_104C.state = 0;  /* NORMAL */
         camera_snapshot();
     }
-    if ((s32)lbl_1_data_406B == 8 && dir != 0) {
-        lbl_1_bss_1010_gap_1015 = 1;
-        lbl_1_bss_1120 = fzgx_obj_camera_state;
-        lbl_1_bss_104C.state = 3;
+    if ((s32)fzgx_pool_camera_editor_item == 8 && dir != 0) {
+        fzgx_pool_lbl_1_bss_1010_gap_1015 = 1;
+        lbl_1_bss_10D8__fzgx_offset_48 = fzgx_obj_camera_state;
+        lbl_1_bss_104C.state = 3;  /* EASE_IN_OUT */
         fn_1_C038(0.0f, 1.0f, lbl_1_bss_104C.total);
         camera_snapshot();
     }
-    if ((s32)lbl_1_data_406B == 9 && dir != 0) {
-        lbl_1_bss_1010_gap_1015 = 1;
-        lbl_1_bss_1120 = fzgx_obj_camera_state;
-        lbl_1_bss_104C.state = 2;
+    if ((s32)fzgx_pool_camera_editor_item == 9 && dir != 0) {
+        fzgx_pool_lbl_1_bss_1010_gap_1015 = 1;
+        lbl_1_bss_10D8__fzgx_offset_48 = fzgx_obj_camera_state;
+        lbl_1_bss_104C.state = 2;  /* EASE_OUT */
         camera_snapshot();
     }
-    if ((s32)lbl_1_data_406B == 10 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 10 && dir != 0) {
         fn_1_C10C(0);
     }
-    if ((s32)lbl_1_data_406B == 11 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 11 && dir != 0) {
         fn_1_C10C(1);
     }
-    if ((s32)lbl_1_data_406B == 12 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 12 && dir != 0) {
         lbl_1_bss_1014 = 0;
     }
-    if ((s32)lbl_1_data_406B == 13 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 13 && dir != 0) {
         fn_1_C178("NORMAL");
     }
-    if ((s32)lbl_1_data_406B == 14 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 14 && dir != 0) {
         fn_1_C178("EASE_OUT");
     }
-    if ((s32)lbl_1_data_406B == 15 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 15 && dir != 0) {
         fn_1_C178("EASE_IN_OUT");
     }
-    if ((s32)lbl_1_data_406B == 16 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 16 && dir != 0) {
         camera_report_position();
     }
-    if ((s32)lbl_1_data_406B == 17 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 17 && dir != 0) {
         fn_1_C268((s32)"STATIC_MOVE_PERS");
     }
-    if ((s32)lbl_1_data_406B == 18 && dir != 0) {
+    if ((s32)fzgx_pool_camera_editor_item == 18 && dir != 0) {
         fn_1_C304((s32)"STATIC_FIX");
     }
 
     if ((pad->unk_10 >> 3) & 1) {
-        lbl_1_data_406B = menu_prev(lbl_1_data_406B);
+        fzgx_pool_camera_editor_item = menu_prev(fzgx_pool_camera_editor_item);
     } else if ((pad->unk_10 >> 2) & 1) {
-        lbl_1_data_406B = menu_next(lbl_1_data_406B);
+        fzgx_pool_camera_editor_item = menu_next(fzgx_pool_camera_editor_item);
     }
 
-    if (lbl_1_bss_1010_gap_1015 != 0) {
+    if (fzgx_pool_lbl_1_bss_1010_gap_1015 != 0) {
         fn_1_C3B8();
     }
     if (((lbl_1_bss_D58.unk_0 >> 10) & 1) && ((lbl_1_bss_D58.unk_8 >> 11) & 1)) {
-        lbl_1_bss_1010_gap_1015 = 0;
+        fzgx_pool_lbl_1_bss_1010_gap_1015 = 0;
         lbl_1_bss_1014 = 0;
     }
 }

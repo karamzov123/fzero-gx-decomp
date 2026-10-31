@@ -9155,3 +9155,21 @@ rel/main_rel/sel_static_disp/fn_1_148950.c:
 
 rel/main_rel/stcoli/fn_1_2AF0C.c:
 	.text       start:0x0002AF0C end:0x0002B478 align:4
+
+rel/main_rel/effect_car/fn_1_6D7BC.c:
+	.text       start:0x0006D7BC end:0x0006DD68 align:4
+
+rel/main_rel/background/fn_1_9C724.c:
+	.text       start:0x0009C724 end:0x0009CC40 align:4
+
+rel/main_rel/car/fn_1_85C58.c:
+	.text       start:0x00085C58 end:0x00085F70 align:4
+
+rel/main_rel/memcard/fn_1_C42F4.c:
+	.text       start:0x000C42F4 end:0x000C47B4 align:4
+
+rel/main_rel/bg_for/fn_1_E3324.c:
+	.text       start:0x000E3324 end:0x000E35F0 align:4
+
+rel/main_rel/_prolog/fn_1_3308.c:
+	.text       start:0x00003308 end:0x00003920 align:4

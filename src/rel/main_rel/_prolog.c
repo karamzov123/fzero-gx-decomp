@@ -1450,6 +1450,286 @@ void fn_1_3238(void) {
 }
 /* fzgx:end fn_1_3238 */
 
+/* fzgx:begin fn_1_3308 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+/* one pad as PADRead returns it (PADStatus) */
+typedef struct InputPad {
+    u16 button;
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    s8 substickY;
+    u8 triggerLeft;
+    u8 triggerRight;
+    u8 analogA;
+    u8 analogB;
+    s8 err;
+} InputPad;
+
+/* one button word pair: the pad's buttons and the word fn_1_1C00 derives from the pad */
+typedef struct InputButtons {
+    u16 button;
+    u16 unk_2;
+} InputButtons;
+
+/* .bss 0x9F8[port]: held, previous, pressed (held & ~previous), released (previous & ~held) */
+typedef struct InputPortButtons {
+    InputButtons held;
+    InputButtons previous;
+    InputButtons pressed;
+    InputButtons released;
+    InputButtons unk_10;
+} InputPortButtons;
+
+/* the pad's stick, trigger and analog bytes */
+typedef struct InputAxes {
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    s8 substickY;
+    u8 triggerLeft;
+    u8 triggerRight;
+    u8 analogA;
+    u8 analogB;
+} InputAxes;
+
+/* .bss 0xA48[port] */
+typedef struct InputPortAxes {
+    InputAxes current;
+    InputAxes previous;
+} InputPortAxes;
+
+/* .bss 0xA88[port]: the 6-byte control record */
+typedef struct InputControl {
+    u8 request;
+    s8 steer;
+    s8 pitch;
+    s8 strafe;
+    u8 accelerator;
+    u8 brake;
+} InputControl;
+
+/* .bss 0xBF0[port]: the eight stick and trigger values as floats */
+typedef struct InputAxisFloats {
+    f32 value[8];
+} InputAxisFloats;
+
+/* .bss 0xC70[port]: record bytes 1..5 / 100 */
+typedef struct InputControlFloats {
+    f32 steer;
+    f32 pitch;
+    f32 strafe;
+    f32 accelerator;
+    f32 brake;
+} InputControlFloats;
+
+extern void fn_1_1304(InputPad *pads);
+extern void fn_80008BA8(void *dst, void *src, u32 size);
+extern void PADClamp(InputPad *pads);
+extern void fn_1_1C00(const u8 *values, u32 flags, u16 *result);
+extern s32 fn_1_3FC28(void);
+extern s32 fn_1_3EFA8(void);
+extern void fn_1_21E4(InputAxes *axes);
+extern void fn_1_F2820(InputControl *controls, u8 *newly, u8 *previous);
+extern void fn_80008BEC(void *dst, int value, u32 size);
+extern void fn_1_2F04(void);
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one section base */
+u32 lbl_1_bss_978[2];
+u32 lbl_1_bss_980[4];
+u16 lbl_1_bss_990[4];
+InputPad lbl_1_bss_990__fzgx_offset_8[4];
+InputPad lbl_1_bss_9C8[4];
+InputPortButtons fzgx_obj_lbl_1_bss_9F8[4];
+InputPortAxes fzgx_obj_lbl_1_bss_A48[4];
+InputControl fzgx_obj_lbl_1_bss_A88[4];
+u32 fzgx_obj_lbl_1_bss_AA0[84];
+InputAxisFloats lbl_1_bss_BF0[4];
+InputControlFloats fzgx_obj_lbl_1_bss_C70[4];
+u8 lbl_1_bss_CC0[0x98];
+InputPortButtons lbl_1_bss_D58__fzgx_offset_0;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&lbl_1_bss_978;
+    s = *(u8 *)&lbl_1_bss_980;
+    s = *(u8 *)&lbl_1_bss_990;
+    s = *(u8 *)&lbl_1_bss_990__fzgx_offset_8;
+    s = *(u8 *)&lbl_1_bss_9C8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_9F8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_A48;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_A88;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_AA0;
+    s = *(u8 *)&lbl_1_bss_BF0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_C70;
+    s = *(u8 *)&lbl_1_bss_CC0;
+    s = *(u8 *)&lbl_1_bss_D58__fzgx_offset_0;
+}
+#pragma section code_type ".text"
+
+/* per port: the button words and the stick bytes */
+static inline void input_update_buttons(void) {
+    InputPad *pad;
+    InputPortButtons *buttons;
+    InputPortAxes *stick;
+    u32 port;
+
+    pad = lbl_1_bss_990__fzgx_offset_8;
+    buttons = fzgx_obj_lbl_1_bss_9F8;
+    stick = fzgx_obj_lbl_1_bss_A48;
+    for (port = 0; port < 4; port++) {
+        buttons->previous = buttons->held;
+        buttons->held.button = pad->button;
+        buttons->pressed.button = buttons->held.button & ~buttons->previous.button;
+        buttons->released.button = buttons->previous.button & ~buttons->held.button;
+        fn_1_1C00((const u8 *)pad, buttons->previous.unk_2, &buttons->held.unk_2);
+        stick->previous = stick->current;
+        buttons->pressed.unk_2 = buttons->held.unk_2 & ~buttons->previous.unk_2;
+        buttons->released.unk_2 = buttons->previous.unk_2 & ~buttons->held.unk_2;
+        stick->current.stickX = pad->stickX;
+        stick->current.stickY = pad->stickY;
+        stick->current.substickX = pad->substickX;
+        stick->current.substickY = pad->substickY;
+        stick->current.triggerLeft = pad->triggerLeft;
+        stick->current.triggerRight = pad->triggerRight;
+        stick->current.analogA = pad->analogA;
+        stick->current.analogB = pad->analogB;
+        pad++;
+        buttons++;
+        stick++;
+    }
+}
+
+/* per port: the record bytes and the stick values as floats */
+static inline void input_update_floats(InputAxes *src, InputPad *pad) {
+    InputControl *control;
+    InputAxisFloats *axis;
+    InputControlFloats *value;
+    u32 port;
+
+    control = fzgx_obj_lbl_1_bss_A88;
+    axis = lbl_1_bss_BF0;
+    value = fzgx_obj_lbl_1_bss_C70;
+    for (port = 0; port < 4; port++) {
+        value->steer = control->steer / 100.0f;
+        value->pitch = control->pitch / 100.0f;
+        value->strafe = control->strafe / 100.0f;
+        value->accelerator = control->accelerator / 100.0f;
+        value->brake = control->brake / 100.0f;
+        if (pad->err == -1) {
+            fn_80008BEC(axis, 0, sizeof(InputAxisFloats));
+        } else {
+            axis->value[0] = src->stickX / 100.0f;
+            axis->value[1] = src->stickY / 100.0f;
+            axis->value[2] = src->substickX / 100.0f;
+            axis->value[3] = src->substickY / 100.0f;
+            axis->value[4] = src->triggerLeft / 100.0f;
+            axis->value[5] = src->triggerRight / 100.0f;
+            axis->value[6] = src->analogA / 100.0f;
+            axis->value[7] = src->analogB / 100.0f;
+        }
+        pad++;
+        src++;
+        control++;
+        axis++;
+        value++;
+    }
+}
+
+void fn_1_3308(void) {
+    u8 previous[4];
+    InputAxes axes[4];
+    u8 *prev;
+    InputPad *raw;
+
+    fn_1_1304(lbl_1_bss_990__fzgx_offset_8);
+    fn_80008BA8(lbl_1_bss_9C8, lbl_1_bss_990__fzgx_offset_8, sizeof(lbl_1_bss_9C8));
+    PADClamp(lbl_1_bss_990__fzgx_offset_8);
+
+    input_update_buttons();
+
+    /* replay mode (rule flag 0x00800000), not paused: the replay keeps last frame's request bits */
+    if (fn_1_3FC28() && !fn_1_3EFA8()) {
+        InputControl *control;
+        u32 port;
+
+        control = fzgx_obj_lbl_1_bss_A88;
+        for (port = 0; port < 4; port++) {
+            (&lbl_1_bss_7EFD8.unk_20)[port] = control->request;
+            control++;
+        }
+    }
+    /* each record's request bits before fn_1_21E4 rebuilds the records */
+    prev = previous;
+    previous[0] = fzgx_obj_lbl_1_bss_A88[0].request;
+    previous[1] = fzgx_obj_lbl_1_bss_A88[1].request;
+    previous[2] = fzgx_obj_lbl_1_bss_A88[2].request;
+    previous[3] = fzgx_obj_lbl_1_bss_A88[3].request;
+    fn_1_21E4(axes);
+    /* the replay hook records the records or, during playback, overwrites them */
+    if (fn_1_3FC28()) {
+        fn_1_F2820(fzgx_obj_lbl_1_bss_A88, lbl_1_bss_CC0, &lbl_1_bss_7EFD8.unk_20);
+    }
+
+    raw = lbl_1_bss_9C8;
+    input_update_floats(axes, raw);
+
+    /* request bits 0x04/0x08: accelerator/brake past 0.97; .bss 0xCC0[port]: bits newly set */
+    {
+        u32 port;
+        u8 *newly;
+        InputControl *control;
+        InputControlFloats *value;
+
+        control = fzgx_obj_lbl_1_bss_A88;
+        newly = lbl_1_bss_CC0;
+        value = fzgx_obj_lbl_1_bss_C70;
+        for (port = 0; port < 4; port++, control++) {
+            if (value->accelerator > 0.97) {
+                control->request |= 0x04;
+            } else {
+                control->request &= ~0x04;
+            }
+            if (value->brake > 0.97) {
+                control->request |= 0x08;
+            } else {
+                control->request &= ~0x08;
+            }
+            *newly = control->request & ~*prev;
+            value++;
+            prev++;
+            newly++;
+        }
+    }
+
+    fn_1_2F04();
+
+    /* .bss 0xD58: every connected port's button words ORed */
+    fn_80008BEC(&lbl_1_bss_D58__fzgx_offset_0, 0, sizeof(InputPortButtons));
+    {
+        InputPortButtons *buttons;
+        u32 port;
+        u32 k;
+
+        buttons = fzgx_obj_lbl_1_bss_9F8;
+        for (port = 0; port < 4; port++) {
+            if (raw->err != -1) {
+                /* held, previous, pressed, released, unk_10 */
+                for (k = 0; k < 5; k++) {
+                    (&lbl_1_bss_D58__fzgx_offset_0.held)[k].button |= (&buttons->held)[k].button;
+                    (&lbl_1_bss_D58__fzgx_offset_0.held)[k].unk_2 |= (&buttons->held)[k].unk_2;
+                }
+            }
+            raw++;
+            buttons++;
+        }
+    }
+}
+/* fzgx:end fn_1_3308 */
+
 /* fzgx:begin fn_1_3920 noprologue */
 #include "types.h"
 
