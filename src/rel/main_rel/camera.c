@@ -3876,10 +3876,10 @@ typedef struct {
 
 /* playback of the camera keys (fn_1_C3B8) */
 typedef struct {
-    s32 counter;
-    s32 state;
-    s32 total;
-    f32 rate;
+    s32 unk_0;
+    s32 unk_4;
+    s32 unk_8;
+    f32 unk_C;
     u8 pad_10[0x30];
 } CamCtl;
 
@@ -3965,16 +3965,16 @@ static void fzgx_pool_tail(f64 *d, f32 *f) {
 /* the TU's .data from lbl_1_data_4068: the editor's bytes (item 1's value, the selected item),
  * then the report formats ahead of this function's strings */
 u16 fzgx_pool_lbl_1_data_4068 = 0xF000;
-u8 fzgx_pool_camera_editor_move = 9;
-u8 fzgx_pool_camera_editor_item = 3;
+u8 fzgx_pool_data_406A = 9;
+u8 fzgx_pool_data_406B = 3;
 
 extern void fzgx_touch(const char *);
 #pragma section code_type ".fzgxpool"
 static void fzgx_data_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink */
     s = fzgx_pool_lbl_1_data_4068;
-    s = fzgx_pool_camera_editor_move;
-    s = fzgx_pool_camera_editor_item;
+    s = fzgx_pool_data_406A;
+    s = fzgx_pool_data_406B;
     fzgx_touch("\t{ %3d, %1.3f, {  0,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f },  %5.1f, %5d, 0,},\n");
     fzgx_touch("\t              {  0,{  %8.3f, %8.3f, %8.3f }, {  %8.3f, %8.3f, %8.3f },  %5.1f, %5d, 0,}, %s},\n");
     fzgx_touch("\t{  %8.3f, %8.3f, %8.3f },\n");
@@ -4026,16 +4026,16 @@ void fn_1_C770(void) {
         step = 10.0f * lbl_1_bss_BF0[5];
     }
 
-    item = fzgx_pool_camera_editor_item;
+    item = fzgx_pool_data_406B;
     if (item == 1) {
-        n = fzgx_pool_camera_editor_move;
+        n = fzgx_pool_data_406A;
         n += dir * step;
         if (n > 15) {
             v = 0;
         } else {
             v = n < 0 ? 15 : n;
         }
-        fzgx_pool_camera_editor_move = v;
+        fzgx_pool_data_406A = v;
     }
     if (item == 2 && dir != 0) {
         lbl_1_bss_1014 = 0;
@@ -4043,68 +4043,68 @@ void fn_1_C770(void) {
     if (item == 3 && dir != 0) {
         camera_save_slot(0);
     }
-    if ((s32)fzgx_pool_camera_editor_item == 4 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 4 && dir != 0) {
         camera_save_slot(1);
     }
-    if ((s32)fzgx_pool_camera_editor_item == 5) {
+    if ((s32)fzgx_pool_data_406B == 5) {
         d = 0.0001 * dir * step;
-        lbl_1_bss_104C.rate = WRAP(lbl_1_bss_104C.rate + d, 0.0, 0.5);
+        lbl_1_bss_104C.unk_C = WRAP(lbl_1_bss_104C.unk_C + d, 0.0, 0.5);
     }
-    if ((s32)fzgx_pool_camera_editor_item == 6) {
-        v = lbl_1_bss_104C.total + dir * step;
-        lbl_1_bss_104C.total = WRAP(v, 0, 1000);
+    if ((s32)fzgx_pool_data_406B == 6) {
+        v = lbl_1_bss_104C.unk_8 + dir * step;
+        lbl_1_bss_104C.unk_8 = WRAP(v, 0, 1000);
     }
-    if ((s32)fzgx_pool_camera_editor_item == 7 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 7 && dir != 0) {
         fzgx_pool_lbl_1_bss_1010_gap_1015 = 1;
         lbl_1_bss_10D8__fzgx_offset_48 = fzgx_obj_camera_state;
-        lbl_1_bss_104C.state = 0;  /* NORMAL */
+        lbl_1_bss_104C.unk_4 = 0;  /* NORMAL */
         camera_snapshot();
     }
-    if ((s32)fzgx_pool_camera_editor_item == 8 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 8 && dir != 0) {
         fzgx_pool_lbl_1_bss_1010_gap_1015 = 1;
         lbl_1_bss_10D8__fzgx_offset_48 = fzgx_obj_camera_state;
-        lbl_1_bss_104C.state = 3;  /* EASE_IN_OUT */
-        fn_1_C038(0.0f, 1.0f, lbl_1_bss_104C.total);
+        lbl_1_bss_104C.unk_4 = 3;  /* EASE_IN_OUT */
+        fn_1_C038(0.0f, 1.0f, lbl_1_bss_104C.unk_8);
         camera_snapshot();
     }
-    if ((s32)fzgx_pool_camera_editor_item == 9 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 9 && dir != 0) {
         fzgx_pool_lbl_1_bss_1010_gap_1015 = 1;
         lbl_1_bss_10D8__fzgx_offset_48 = fzgx_obj_camera_state;
-        lbl_1_bss_104C.state = 2;  /* EASE_OUT */
+        lbl_1_bss_104C.unk_4 = 2;  /* EASE_OUT */
         camera_snapshot();
     }
-    if ((s32)fzgx_pool_camera_editor_item == 10 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 10 && dir != 0) {
         fn_1_C10C(0);
     }
-    if ((s32)fzgx_pool_camera_editor_item == 11 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 11 && dir != 0) {
         fn_1_C10C(1);
     }
-    if ((s32)fzgx_pool_camera_editor_item == 12 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 12 && dir != 0) {
         lbl_1_bss_1014 = 0;
     }
-    if ((s32)fzgx_pool_camera_editor_item == 13 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 13 && dir != 0) {
         fn_1_C178("NORMAL");
     }
-    if ((s32)fzgx_pool_camera_editor_item == 14 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 14 && dir != 0) {
         fn_1_C178("EASE_OUT");
     }
-    if ((s32)fzgx_pool_camera_editor_item == 15 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 15 && dir != 0) {
         fn_1_C178("EASE_IN_OUT");
     }
-    if ((s32)fzgx_pool_camera_editor_item == 16 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 16 && dir != 0) {
         camera_report_position();
     }
-    if ((s32)fzgx_pool_camera_editor_item == 17 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 17 && dir != 0) {
         fn_1_C268((s32)"STATIC_MOVE_PERS");
     }
-    if ((s32)fzgx_pool_camera_editor_item == 18 && dir != 0) {
+    if ((s32)fzgx_pool_data_406B == 18 && dir != 0) {
         fn_1_C304((s32)"STATIC_FIX");
     }
 
     if ((pad->unk_10 >> 3) & 1) {
-        fzgx_pool_camera_editor_item = menu_prev(fzgx_pool_camera_editor_item);
+        fzgx_pool_data_406B = menu_prev(fzgx_pool_data_406B);
     } else if ((pad->unk_10 >> 2) & 1) {
-        fzgx_pool_camera_editor_item = menu_next(fzgx_pool_camera_editor_item);
+        fzgx_pool_data_406B = menu_next(fzgx_pool_data_406B);
     }
 
     if (fzgx_pool_lbl_1_bss_1010_gap_1015 != 0) {

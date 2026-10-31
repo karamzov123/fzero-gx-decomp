@@ -19275,22 +19275,22 @@ void fn_1_C40A0(Racer *racer)
 
 /* the CPU block of a machine (+0x484) */
 typedef struct {
-    u32 flags;
+    u32 unk_0;
     u8 pad_4[0x2A];
     u8 unk_2E;
     u8 pad_2F[2];
-    u8 route;
+    u8 unk_31;
     u8 pad_32;
     u8 unk_33;
-    u8 route_pending;
+    u8 unk_34;
     u8 pad_35[5];
-    u8 cooldown;
+    u8 unk_3A;
 } CpuBlock;
 
 typedef struct {
-    u32 flags;
+    u32 unk_0;
     u8 pad_4[0x480];
-    CpuBlock *cpu;
+    CpuBlock *unk_484;
     u8 pad_488[0x620 - 0x488];
 } Machine;
 
@@ -19298,7 +19298,7 @@ typedef struct {
 typedef struct {
     u8 pad_0[0x88];
     s32 unk_88;
-    s32 route;
+    s32 unk_8C;
 } Progress;
 
 /* the pre-pass's per-race table (.bss 0x7AC50 points to it) */
@@ -19307,7 +19307,7 @@ typedef struct {
     u32 unk_78[30];
     u32 unk_F0[30];
     u32 unk_168[30];
-    u8 route[30];
+    u8 unk_1E0[30];
     u8 unk_1FE[30];
 } CpuPairs;
 
@@ -19471,7 +19471,7 @@ void fn_1_C42F4(Machine *cars)
     count = (s8)fn_1_86624();
     fn_80008BEC(fzgx_obj_lbl_1_bss_7AC50, 0, 0x1E0);
     for (i = 0; i < count; i++) {
-        fzgx_obj_lbl_1_bss_7AC50->route[i] = fn_1_8627C(i)->route;
+        fzgx_obj_lbl_1_bss_7AC50->unk_1E0[i] = fn_1_8627C(i)->unk_8C;
         for (j = i + 1; j < count; j++) {
             gap = fn_1_8CAF4(i, j);
             side = fn_1_8CA70(i, j);
@@ -19497,51 +19497,51 @@ void fn_1_C42F4(Machine *cars)
     }
 
     for (i = 0; i < count; i++) {
-        if (!(cars[i].flags & 0x04000000)) {
+        if (!(cars[i].unk_0 & 0x04000000)) {
             continue;
         }
-        cpu = cars[i].cpu;
-        if ((cpu->flags >> 27) & 1) {
+        cpu = cars[i].unk_484;
+        if ((cpu->unk_0 >> 27) & 1) {
             cpu->unk_2E--;
             if (cpu->unk_2E == 0 ||
                 (cpu->unk_2E < 120 &&
                  (fzgx_obj_lbl_1_data_3D230 = fzgx_obj_lbl_1_data_3D230 * 0x41C64E6D + 0x3039,
                   ((fzgx_obj_lbl_1_data_3D230 >> 16) & 0x7FFF) < 273))) {
-                cpu->flags &= ~0x08000000;
+                cpu->unk_0 &= ~0x08000000;
                 cpu->unk_2E = 0;
             }
         }
-        if (cpu->cooldown != 0) {
-            cpu->cooldown--;
+        if (cpu->unk_3A != 0) {
+            cpu->unk_3A--;
         }
         progress = fn_1_8627C(i);
-        if (cpu->route_pending != 0xFF) {
+        if (cpu->unk_34 != 0xFF) {
             fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] = 0;
-            cpu->flags &= ~0x10000;
+            cpu->unk_0 &= ~0x10000;
             if (cpu->unk_33 == 0xFF) {
-                cpu->unk_33 = cpu->route;
+                cpu->unk_33 = cpu->unk_31;
             }
-            cpu->route = cpu->route_pending;
-            cpu->route_pending = 0xFF;
-        } else if (progress->unk_88 > 1 && progress->route != cpu->route % (progress->unk_88 - 1) + 1) {
+            cpu->unk_31 = cpu->unk_34;
+            cpu->unk_34 = 0xFF;
+        } else if (progress->unk_88 > 1 && progress->unk_8C != cpu->unk_31 % (progress->unk_88 - 1) + 1) {
             car = fn_1_86254(i);
             fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i]++;
-            cpu->flags |= 0x10000;
-            if (fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] > 60 || (car->flags & 0x2) || (car->flags & 0x800000)) {
+            cpu->unk_0 |= 0x10000;
+            if (fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] > 60 || (car->unk_0 & 0x2) || (car->unk_0 & 0x800000)) {
                 fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] = 0;
-                cpu->flags &= ~0x10000;
+                cpu->unk_0 &= ~0x10000;
                 if (cpu->unk_33 == 0xFF) {
-                    cpu->unk_33 = cpu->route;
-                } else if (cpu->unk_33 == progress->route - 1) {
+                    cpu->unk_33 = cpu->unk_31;
+                } else if (cpu->unk_33 == progress->unk_8C - 1) {
                     cpu->unk_33 = 0xFF;
                 }
-                cpu->route = progress->route - 1;
+                cpu->unk_31 = progress->unk_8C - 1;
             }
-        } else if (!((cpu->flags >> 26) & 1)) {
+        } else if (!((cpu->unk_0 >> 26) & 1)) {
             fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] = 0;
-            cpu->flags &= ~0x10000;
+            cpu->unk_0 &= ~0x10000;
             if (cpu->unk_33 != 0xFF && progress->unk_88 == 1) {
-                cpu->route = cpu->unk_33;
+                cpu->unk_31 = cpu->unk_33;
                 cpu->unk_33 = 0xFF;
             }
         }

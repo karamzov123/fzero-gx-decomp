@@ -512,9 +512,9 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime16(void) {
 
 /* .bss 0x9F8: the buttons of one pad port */
 typedef struct PadButtons {
-    u16 held;
+    u16 unk_0;
     u8 pad_2[6];
-    u16 pressed;
+    u16 unk_8;
     u8 pad_A[6];
     u16 unk_10;
     u16 unk_12;
@@ -566,7 +566,7 @@ static inline s32 fn_1_2FAA0_input(void) {
         }
         lbl_1_bss_25BA0__fzgx_offset_98 = 1;
     }
-    if ((fn_1_2FAA0_pad_word(&((PadButtons *)&lbl_1_bss_9F8)->pressed, lbl_1_bss_3C1C__fzgx_offset_4) >> 8) & 1) {
+    if ((fn_1_2FAA0_pad_word(&((PadButtons *)&lbl_1_bss_9F8)->unk_8, lbl_1_bss_3C1C__fzgx_offset_4) >> 8) & 1) {
         if (lbl_1_bss_25BA0__fzgx_offset_98 == 0) {
             decided = 1;
             lbl_1_bss_25BA0__fzgx_offset_4C = 1 << fzgx_obj_lbl_1_bss_5104;
@@ -575,8 +575,8 @@ static inline s32 fn_1_2FAA0_input(void) {
             lbl_1_bss_25BA0__fzgx_offset_54 = 0;
             fn_1_A2DC4(0xA9011000);
         }
-    } else if (((fn_1_2FAA0_pad_word(&((PadButtons *)&lbl_1_bss_9F8)->pressed, lbl_1_bss_3C1C__fzgx_offset_4) >> 9) & 1) ||
-               ((fn_1_2FAA0_pad_word(&((PadButtons *)&lbl_1_bss_9F8)->pressed, lbl_1_bss_3C1C__fzgx_offset_4) >> 12) & 1)) {
+    } else if (((fn_1_2FAA0_pad_word(&((PadButtons *)&lbl_1_bss_9F8)->unk_8, lbl_1_bss_3C1C__fzgx_offset_4) >> 9) & 1) ||
+               ((fn_1_2FAA0_pad_word(&((PadButtons *)&lbl_1_bss_9F8)->unk_8, lbl_1_bss_3C1C__fzgx_offset_4) >> 12) & 1)) {
         lbl_1_bss_25BA0__fzgx_offset_54 = 0;
         fn_1_A2DC4(0xA9011000);
     }
@@ -3587,22 +3587,22 @@ void fn_1_320A4(void)
 
 /* fzgx:begin fn_1_32200 */
 typedef struct RaceSetup {
-    u32 flags;
-    u8 laps;
-    u8 race_type;
+    u32 unk_0;
+    u8 unk_4;
+    u8 unk_5;
     u8 pad_6[2];
-    u8 humans;
+    u8 unk_8;
     u8 pad_9[0x14B3];
 } RaceSetup;
 
 typedef struct Racer {
-    u32 flags;
-    s16 index;
+    u32 unk_0;
+    s16 unk_4;
     u8 pad_6[0x474 - 0x6];
-    s8 port;
-    s8 player;
+    s8 unk_474;
+    s8 unk_475;
     u8 pad_476[0x58C - 0x476];
-    u32 flags2;
+    u32 unk_58C;
     u8 pad_590[0x5D9 - 0x590];
     u8 unk_5D9;
 } Racer;
@@ -3632,7 +3632,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_bss_3C00[0];
     s = fzgx_pool_gap_3C04[0];
-    s = fzgx_obj_lbl_1_bss_3C30.flags;
+    s = fzgx_obj_lbl_1_bss_3C30.unk_0;
     s = fzgx_obj_lbl_1_bss_50EC[0];
     s = fzgx_pool_gap_5100[0];
     s = fzgx_obj_lbl_1_bss_25B84;
@@ -3655,12 +3655,12 @@ extern void fn_1_2E928(Racer *racer);
 
 /* one step of a player's countdown while out: cut to `start` once it is above `limit`, then count down */
 static inline void fn_1_32200_countdown(Racer *racer, u16 limit, u16 start) {
-    s8 player = racer->player;
+    s8 player = racer->unk_475;
     u16 *timer;
 
     if (fzgx_obj_lbl_1_bss_50EC[player] > limit) {
         fzgx_obj_lbl_1_bss_50EC[player] = start;
-        timer = &fzgx_obj_lbl_1_bss_50EC[racer->player];
+        timer = &fzgx_obj_lbl_1_bss_50EC[racer->unk_475];
         lbl_1_bss_25B88__fzgx_offset_8++;
         if (fzgx_obj_lbl_1_bss_25B98 == 0) {
             if (lbl_1_bss_25B88__fzgx_offset_4 == NULL) {
@@ -3680,16 +3680,16 @@ void fn_1_32200(Racer *racer, s32 port) {
     u8 mask;
     u8 cause;
 
-    if (racer->player != -1) {
-        mask = 1 << racer->player;
+    if (racer->unk_475 != -1) {
+        mask = 1 << racer->unk_475;
         cause = 0xFF;
-        if (racer->flags & 0x10000000) {
+        if (racer->unk_0 & 0x10000000) {
             fzgx_obj_lbl_1_bss_26B18 |= mask;
             cause = 2;
-        } else if (racer->flags & 0x80) {
+        } else if (racer->unk_0 & 0x80) {
             fzgx_obj_lbl_1_bss_26B19 |= mask;
             cause = 0;
-        } else if (racer->flags & 0x800) {
+        } else if (racer->unk_0 & 0x800) {
             fzgx_obj_lbl_1_bss_26B1A |= mask;
             cause = 1;
         }
@@ -3708,20 +3708,20 @@ void fn_1_32200(Racer *racer, s32 port) {
             break;
         }
         if (lbl_1_data_5B7C != 5) {
-            (&lbl_1_data_3D544.unk_0)[racer->player] = 0;
+            (&lbl_1_data_3D544.unk_0)[racer->unk_475] = 0;
         }
     }
     if (port != -1) {
         fzgx_obj_lbl_1_bss_26B1B |= 1 << port;
-        if (racer->flags2 & 0x10) {
+        if (racer->unk_58C & 0x10) {
             if (++racer->unk_5D9 > 60) {
                 racer->unk_5D9 = 60;
                 fzgx_obj_lbl_1_bss_26B1C |= 1 << port;
             }
         }
     }
-    if (racer->index < fzgx_obj_lbl_1_bss_3C30.humans) {
-        racer->flags |= 0x08000000;
+    if (racer->unk_4 < fzgx_obj_lbl_1_bss_3C30.unk_8) {
+        racer->unk_0 |= 0x08000000;
     }
     fn_1_2E928(racer);
 }
@@ -8791,27 +8791,27 @@ void fn_1_35BC4(void)
 typedef s32 (*RaceRuleFn)(void);
 
 typedef struct RaceSetup {
-    u32 flags;
-    u8 laps;
-    u8 race_type;
-    u8 course;
+    u32 unk_0;
+    u8 unk_4;
+    u8 unk_5;
+    u8 unk_6;
     u8 unk_7;
-    u8 humans;
-    u8 racers;
+    u8 unk_8;
+    u8 unk_9;
     u8 pad_A[0x9A];
     u16 unk_A4;
     u8 unk_A6;
     u8 unk_A7;
     RaceRuleFn unk_A8;
     RaceRuleFn unk_AC;
-    RaceRuleFn start_sequence;
-    RaceRuleFn race_frame;
+    RaceRuleFn unk_B0;
+    RaceRuleFn unk_B4;
     RaceRuleFn unk_B8;
     RaceRuleFn unk_BC;
     RaceRuleFn unk_C0;
     RaceRuleFn unk_C4;
     RaceRuleFn unk_C8;
-    RaceRuleFn race_over_test;
+    RaceRuleFn unk_CC;
     u8 pad_D0[0x1326];
     u8 unk_13F6;
     u8 pad_13F7[3];
@@ -8957,7 +8957,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     s = fzgx_pool_gap_3C20[0];
     s = fzgx_obj_lbl_1_bss_3C2A;
     s = fzgx_pool_gap_3C2C[0];
-    s = fzgx_obj_lbl_1_bss_3C30.flags;
+    s = fzgx_obj_lbl_1_bss_3C30.unk_0;
     s = fzgx_pool_lbl_1_bss_3C30__14B8;
     s = fzgx_pool_gap_50EC[0];
     s = fzgx_pool_lbl_1_bss_50EC__C;
@@ -9188,31 +9188,31 @@ void fn_1_36330(void) {
     fzgx_obj_lbl_1_bss_3C30.unk_A8 = NULL;
     fzgx_obj_lbl_1_bss_3C30.unk_C8 = NULL;
     fzgx_obj_lbl_1_bss_3C30.unk_AC = NULL;
-    fzgx_obj_lbl_1_bss_3C30.start_sequence = NULL;
-    fzgx_obj_lbl_1_bss_3C30.race_frame = NULL;
+    fzgx_obj_lbl_1_bss_3C30.unk_B0 = NULL;
+    fzgx_obj_lbl_1_bss_3C30.unk_B4 = NULL;
     fzgx_obj_lbl_1_bss_3C30.unk_B8 = NULL;
     fzgx_obj_lbl_1_bss_3C30.unk_BC = NULL;
     fzgx_obj_lbl_1_bss_3C30.unk_C0 = NULL;
     fzgx_obj_lbl_1_bss_3C30.unk_C4 = NULL;
-    fzgx_obj_lbl_1_bss_3C30.race_over_test = fn_1_33890;
+    fzgx_obj_lbl_1_bss_3C30.unk_CC = fn_1_33890;
     fzgx_obj_lbl_1_bss_3C30.unk_A7 = 0;
     fzgx_obj_lbl_1_bss_3C30.unk_13F6 = lbl_1_rodata_DCD4[fn_1_3FC9C()];
     fzgx_obj_lbl_1_bss_3C2A = -1;
     fzgx_obj_lbl_1_bss_26C58 = 0;
     switch (fzgx_pool_data_5B7C) {
     case 3:
-        fzgx_obj_lbl_1_bss_3C30.flags |= 0x04008050;
+        fzgx_obj_lbl_1_bss_3C30.unk_0 |= 0x04008050;
         break;
     case 4:
-        fzgx_obj_lbl_1_bss_3C30.flags |= 0x40;
+        fzgx_obj_lbl_1_bss_3C30.unk_0 |= 0x40;
         break;
     case 1:
     case 2:
-        fzgx_obj_lbl_1_bss_3C30.flags |= 0x00800000;
+        fzgx_obj_lbl_1_bss_3C30.unk_0 |= 0x00800000;
         break;
     }
     if (fzgx_obj_lbl_1_bss_26C5C != 0) {
-        fzgx_obj_lbl_1_bss_3C30.flags |= 0x40000;
+        fzgx_obj_lbl_1_bss_3C30.unk_0 |= 0x40000;
     } else {
         fzgx_obj_lbl_1_bss_3C30.unk_A4 = 0;
         fzgx_obj_lbl_1_bss_3C30.unk_13FA = 0;
@@ -9221,15 +9221,15 @@ void fn_1_36330(void) {
         fzgx_obj_lbl_1_bss_3C30.unk_1400 = 0;
         fzgx_obj_lbl_1_bss_3C30.unk_1402 = 0;
     }
-    if (fzgx_obj_lbl_1_bss_3C30.race_type != 0 || fzgx_pool_data_5B84 != 0) {
+    if (fzgx_obj_lbl_1_bss_3C30.unk_5 != 0 || fzgx_pool_data_5B84 != 0) {
         fn_1_3FCF8();
     }
     fzgx_pool_data_5B84 = 1;
-    fzgx_obj_lbl_1_bss_3C30.flags |= fzgx_obj_lbl_1_bss_3C08;
+    fzgx_obj_lbl_1_bss_3C30.unk_0 |= fzgx_obj_lbl_1_bss_3C08;
     if (lbl_1_bss_962 == 0xA2) {
-        fzgx_obj_lbl_1_bss_3C30.flags |= 0x01000000;
+        fzgx_obj_lbl_1_bss_3C30.unk_0 |= 0x01000000;
     }
-    if ((fzgx_obj_lbl_1_bss_3C30.flags & 0x00800000) && fzgx_obj_lbl_1_bss_3C00[0] != 0 &&
+    if ((fzgx_obj_lbl_1_bss_3C30.unk_0 & 0x00800000) && fzgx_obj_lbl_1_bss_3C00[0] != 0 &&
         fzgx_pool_data_5B7C != 5) {
         fn_1_F2780(fzgx_obj_lbl_1_bss_3C00[0], fzgx_obj_lbl_1_bss_25E98);
         if (*(s16 *)&lbl_1_bss_960 == 12 || lbl_1_bss_962 == 0xA0) {
@@ -9243,14 +9243,14 @@ void fn_1_36330(void) {
     fn_80006E10(fzgx_pool_data_6570);
     fn_80006E10(fzgx_pool_data_6448);
     if (fzgx_obj_lbl_1_bss_3C10 == 0) {
-        fzgx_obj_lbl_1_bss_3C30.flags |= 0x100000;
+        fzgx_obj_lbl_1_bss_3C30.unk_0 |= 0x100000;
     }
-    fzgx_obj_lbl_1_bss_3C30.flags &= fzgx_pool_data_5B80;
+    fzgx_obj_lbl_1_bss_3C30.unk_0 &= fzgx_pool_data_5B80;
     fn_1_3522C();
     /* first phase request: 0x28 race start or 0x27 course view, else 0x25 course intro */
-    if (fzgx_obj_lbl_1_bss_3C30.humans == 0 || fzgx_pool_data_5B7C != 1) {
+    if (fzgx_obj_lbl_1_bss_3C30.unk_8 == 0 || fzgx_pool_data_5B7C != 1) {
         fn_1_30054();
-        if (fzgx_obj_lbl_1_bss_3C30.flags & 0x201) {
+        if (fzgx_obj_lbl_1_bss_3C30.unk_0 & 0x201) {
             fzgx_pool_lbl_1_bss_3C30__14B8 = 0x28;
         } else {
             fzgx_pool_lbl_1_bss_3C30__14B8 = 0x27;
@@ -9260,7 +9260,7 @@ void fn_1_36330(void) {
         fzgx_pool_lbl_1_bss_25CD0__1A0 = 1;
     }
     fn_1_E9770(fzgx_obj_lbl_1_bss_25B88, fzgx_obj_lbl_1_bss_25CA4, fzgx_pool_data_5B7C,
-               fzgx_obj_lbl_1_bss_3C30.course);
+               fzgx_obj_lbl_1_bss_3C30.unk_6);
     if (fzgx_pool_data_5B7C == 5) {
         fn_1_3F8C0();
     } else {

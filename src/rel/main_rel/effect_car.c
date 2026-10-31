@@ -2344,37 +2344,37 @@ typedef struct {
 /* A machine's state block: +0x475 is its player (viewport) slot, -1 for none. */
 typedef struct MachineState_6D7BC {
     u8 pad_000[0x475];
-    s8 player;           /* 0x475 */
+    s8 unk_475;           /* 0x475 */
 } MachineState_6D7BC;
 
 /* The record the effect is spawned from (laid out like an effect record). */
 typedef struct Source_6D7BC {
     u8 pad_00[0x18];
-    s16 machine;         /* 0x18 */
+    s16 unk_18;         /* 0x18 */
     u8 pad_1a[0x1e];
-    MachineState_6D7BC *state; /* 0x38 */
+    MachineState_6D7BC *unk_38; /* 0x38 */
     u8 pad_3c[0xc];
     Vec_6D7BC unk_48;    /* 0x48 */
     u8 pad_54[0x64];
-    u8 mtx[0x30];        /* 0xb8 */
+    u8 unk_B8[0x30];        /* 0xb8 */
 } Source_6D7BC;
 
 /* An effect record (0xE8 bytes). */
 typedef struct Effect_6D7BC {
     u8 pad_00[0xc];
-    s16 kind;            /* 0x0c */
+    s16 unk_C;            /* 0x0c */
     u8 pad_0e[0xa];
-    s16 machine;         /* 0x18 */
+    s16 unk_18;         /* 0x18 */
     u16 unk_1a;          /* 0x1a */
     Vec_6D7BC unk_1c;    /* 0x1c */
     f32 unk_28;          /* 0x28 */
     f32 unk_2c;          /* 0x2c */
     u8 pad_30[0x8];
-    MachineState_6D7BC *state; /* 0x38 */
-    Vec_6D7BC pos;       /* 0x3c */
+    MachineState_6D7BC *unk_38; /* 0x38 */
+    Vec_6D7BC unk_3C;       /* 0x3c */
     u8 pad_48[0xc];
-    s16 rot_x;           /* 0x54 */
-    s16 rot_y;           /* 0x56 */
+    s16 unk_54;           /* 0x54 */
+    s16 unk_56;           /* 0x56 */
     u8 pad_58[0x2];
     s16 unk_5a;          /* 0x5a */
     s16 unk_5c;          /* 0x5c */
@@ -2435,23 +2435,23 @@ void fn_1_6D7BC(Source_6D7BC *src, void *arg1, f32 strength) {
     f32 k;
     f32 t;
 
-    state = src->state;
-    fn_1_862D4(src->machine, &pos);
+    state = src->unk_38;
+    fn_1_862D4(src->unk_18, &pos);
     memset(&work, 0, sizeof(work));
-    work.machine = src->machine;
-    work.kind = 16;
-    work.state = src->state;
+    work.unk_18 = src->unk_18;
+    work.unk_C = 16;
+    work.unk_38 = src->unk_38;
     work.unk_1a = 1;
     for (count = 1; count != 0; count--) {
-        work.rot_x = fn_1_584AC();
-        work.rot_y = fn_1_584AC();
+        work.unk_54 = fn_1_584AC();
+        work.unk_56 = fn_1_584AC();
         work.unk_5a = 16.0f + (f32)(4096.0f * ((f32)(u16)fn_1_584AC() / 32767.0f));
         work.unk_5c = 16.0f + (f32)(4096.0f * ((f32)(u16)fn_1_584AC() / 32767.0f));
         lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
         work.unk_28 = 3.0f * (0.4f + (f32)(0.6f * ((f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f)));
         lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
         work.unk_2c = 6.0f * (0.8f + (f32)(0.2f * ((f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f)));
-        lbl_8006DC6C(src->mtx);
+        lbl_8006DC6C(src->unk_B8);
         lc.value = LC_BASE;
         {
             f32 z;
@@ -2464,17 +2464,17 @@ void fn_1_6D7BC(Source_6D7BC *src, void *arg1, f32 strength) {
             *(f32 *)(lc.value + 0x1C) = y;
             *(f32 *)(lc.value + 0x2C) = z;
         }
-        mathutil_mtxA_rotate_y(work.rot_y);
-        mathutil_mtxA_rotate_x(work.rot_x);
+        mathutil_mtxA_rotate_y(work.unk_56);
+        mathutil_mtxA_rotate_x(work.unk_54);
         {
             Vec_6D7BC d = {0.0f, 0.0f, 0.0f};
             d.z = -work.unk_28;
             dir = d;
         }
-        lbl_8006E1B0(&dir, &work.pos);
-        work.unk_94.x = 0.5f * (work.pos.x + pos.x);
-        work.unk_94.y = 0.5f * (work.pos.y + pos.y);
-        work.unk_94.z = 0.5f * (work.pos.z + pos.z);
+        lbl_8006E1B0(&dir, &work.unk_3C);
+        work.unk_94.x = 0.5f * (work.unk_3C.x + pos.x);
+        work.unk_94.y = 0.5f * (work.unk_3C.y + pos.y);
+        work.unk_94.z = 0.5f * (work.unk_3C.z + pos.z);
         work.unk_a0.x = src->unk_48.x;
         work.unk_a0.y = src->unk_48.y;
         work.unk_a0.z = src->unk_48.z;
@@ -2492,7 +2492,7 @@ void fn_1_6D7BC(Source_6D7BC *src, void *arg1, f32 strength) {
         work.unk_70.z = side[2] + (f32)(0.4f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
         lbl_8006D668(&work.unk_70);
         work.unk_ac = 24;
-        if (state->player != -1) {
+        if (state->unk_475 != -1) {
             fn_1_59078((Obj_1_bss_6C84C_Target *)&work);
         } else {
             fn_1_58F50(&work);

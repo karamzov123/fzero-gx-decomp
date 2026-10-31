@@ -14384,49 +14384,49 @@ typedef struct HoverVec {
 
 /* One hover corner: 4 x 0x5C at machine +0x244 (front right, front left, back right, back left). */
 typedef struct HoverCorner {
-    u32 flags;          /* 0x00 ground/air state (0x2 in contact) */
+    u32 unk_0;          /* 0x00 ground/air state (0x2 in contact) */
     u8 pad_4[0x1C];
-    HoverVec pos;       /* 0x20 world position, current */
-    HoverVec normal1;   /* 0x2C track normal 1 */
-    HoverVec normal2;   /* 0x38 track normal 2 */
-    f32 slope;          /* 0x44 slope / compression */
+    HoverVec unk_20;       /* 0x20 world position, current */
+    HoverVec unk_2C;   /* 0x2C track normal 1 */
+    HoverVec unk_38;   /* 0x38 track normal 2 */
+    f32 unk_44;          /* 0x44 slope / compression */
     u8 pad_48[0x4];
-    HoverVec force;     /* 0x4C suspension force (machine frame) */
-    f32 magnitude;      /* 0x58 suspension magnitude */
+    HoverVec unk_4C;     /* 0x4C suspension force (machine frame) */
+    f32 unk_58;      /* 0x58 suspension magnitude */
 } HoverCorner;
 
 typedef struct HoverMachine {
     u8 pad_0[0x1C8];
     f32 unk_1C8;
     u8 pad_1CC[0x4C];
-    u32 terrain_flags;          /* 0x218 */
+    u32 unk_218;          /* 0x218 */
     u8 pad_21C[0x28];
-    HoverCorner corners[4];     /* 0x244 */
+    HoverCorner unk_244[4];     /* 0x244 */
     u8 pad_3B4[0xD4];
-    void *track_records[4];     /* 0x488 track-query records (0xC0 each) */
+    void *unk_488[4];     /* 0x488 track-query records (0xC0 each) */
     u8 pad_498[0x74];
     u8 unk_50C;
     u8 pad_50D[0x7F];
-    u32 flags2;                 /* 0x58C */
+    u32 unk_58C;                 /* 0x58C */
 } HoverMachine;
 
 /* Corner indices a, b, c, d: the normal is (a - b) x (c - d). */
 typedef struct CornerQuad {
-    u8 c[4];
+    u8 unk_0[4];
 } CornerQuad;
 
 /* One quad per set of corners probed: all four, then three with corner 0, 1, 2 or 3 missing. */
 typedef struct CornerQuads {
-    CornerQuad q[5];
+    CornerQuad unk_0[5];
 } CornerQuads;
 
 struct fn_1_2AF0C_pool {
     u8 pad_0[0xC];
-    f32 zero;
+    f32 unk_C;
     u8 pad_10[0x4];
-    f32 one;
+    f32 unk_14;
     u8 pad_18[0x32C];
-    CornerQuads quads;
+    CornerQuads unk_344;
 };
 
 extern const struct fn_1_2AF0C_pool lbl_1_rodata_840;
@@ -14478,7 +14478,7 @@ s32 fn_1_2AF0C(HoverMachine *racer, HoverVec *normal) {
     u32 flags;
     u32 bit;
 
-    quads = pool->quads;
+    quads = pool->unk_344;
     result = 0;
     no_static = 0;
     /* courses 36 and 37: the modulated roads */
@@ -14490,12 +14490,12 @@ s32 fn_1_2AF0C(HoverMachine *racer, HoverVec *normal) {
     airborne = 0;
     quad = NULL;
     strip_hits = 0;
-    for (i = 0, c = racer->corners; i < 4; i++, c++) {
+    for (i = 0, c = racer->unk_244; i < 4; i++, c++) {
         entry[i] = 4;
         /* the pointer the modulated-road shape function reads */
-        *(void **)(fn_1_14F04() + 0x700) = racer->track_records[i];
+        *(void **)(fn_1_14F04() + 0x700) = racer->unk_488[i];
         fn_1_2ABD4(racer, c);
-        if (!(c->flags & 2) || (modulated.value && !(c->flags & 8) && racer->unk_1C8 > pool->zero)) {
+        if (!(c->unk_0 & 2) || (modulated.value && !(c->unk_0 & 8) && racer->unk_1C8 > pool->unk_C)) {
             area = fn_1_14F04();
             /* slot 4 of the query area holds no hit: the probe met no static collision */
             if (*(u32 *)(lbl_801A66CC + 0x310) == 0) {
@@ -14509,7 +14509,7 @@ s32 fn_1_2AF0C(HoverMachine *racer, HoverVec *normal) {
             }
             bit = 1 << i;
             probed |= bit;
-            if (!(c->flags & 2)) {
+            if (!(c->unk_0 & 2)) {
                 airborne |= bit;
             }
         }
@@ -14517,69 +14517,69 @@ s32 fn_1_2AF0C(HoverMachine *racer, HoverVec *normal) {
     /* course 15 (Cylinder Knot): contact is forced when every probe without ground hit static collision */
     if (airborne != 0 && no_static == 0 && fn_1_7B054() == 15) {
         airborne = 0;
-        zero = pool->zero;
-        one = pool->one;
+        zero = pool->unk_C;
+        one = pool->unk_14;
         for (i = 0; i < 4; i++) {
-            c = &racer->corners[i];
-            c->flags |= 0xA;
-            c->magnitude = zero;
-            c->slope = zero;
-            c->normal1.x = zero;
-            c->normal1.y = one;
-            c->normal1.z = zero;
-            c->normal2.x = zero;
-            c->normal2.y = one;
-            c->normal2.z = zero;
-            c->force.x = zero;
-            c->force.y = zero;
-            c->force.z = zero;
+            c = &racer->unk_244[i];
+            c->unk_0 |= 0xA;
+            c->unk_58 = zero;
+            c->unk_44 = zero;
+            c->unk_2C.x = zero;
+            c->unk_2C.y = one;
+            c->unk_2C.z = zero;
+            c->unk_38.x = zero;
+            c->unk_38.y = one;
+            c->unk_38.z = zero;
+            c->unk_4C.x = zero;
+            c->unk_4C.y = zero;
+            c->unk_4C.z = zero;
         }
     }
     if (entry[0] == entry[1] && entry[1] == entry[2] && entry[2] == entry[3]) {
         racer->unk_50C = entry[0];
     }
     if (airborne == 15) {
-        quad = &quads.q[0];
+        quad = &quads.unk_0[0];
     } else if (airborne == 14) {
-        quad = &quads.q[1];
+        quad = &quads.unk_0[1];
     } else if (airborne == 13) {
-        quad = &quads.q[2];
+        quad = &quads.unk_0[2];
     } else if (airborne == 11) {
-        quad = &quads.q[3];
+        quad = &quads.unk_0[3];
     } else if (airborne == 7) {
-        quad = &quads.q[4];
+        quad = &quads.unk_0[4];
     } else if (modulated.value) {
         if (probed == 15) {
-            quad = &quads.q[0];
+            quad = &quads.unk_0[0];
         } else if (probed == 14) {
-            quad = &quads.q[1];
+            quad = &quads.unk_0[1];
         } else if (probed == 13) {
-            quad = &quads.q[2];
+            quad = &quads.unk_0[2];
         } else if (probed == 11) {
-            quad = &quads.q[3];
+            quad = &quads.unk_0[3];
         } else if (probed == 7) {
-            quad = &quads.q[4];
+            quad = &quads.unk_0[4];
         }
     }
     if (quad != NULL) {
-        psvec_sub(&racer->corners[quad->c[0]].pos, &racer->corners[quad->c[1]].pos, &up);
-        psvec_sub(&racer->corners[quad->c[2]].pos, &racer->corners[quad->c[3]].pos, &edge);
+        psvec_sub(&racer->unk_244[quad->unk_0[0]].unk_20, &racer->unk_244[quad->unk_0[1]].unk_20, &up);
+        psvec_sub(&racer->unk_244[quad->unk_0[2]].unk_20, &racer->unk_244[quad->unk_0[3]].unk_20, &edge);
         hover_cross(&up, &edge, &up);
         len = lbl_8006D668(&up);
         if ((*(u32 *)&len & 0x7F800000) != 0x7F800000) {
-            for (i = 0, c = racer->corners; i < 4; i++, c++) {
+            for (i = 0, c = racer->unk_244; i < 4; i++, c++) {
                 result = 1;
-                c->normal2 = up;
-                *normal = c->normal2;
-                if (!(c->flags & 8)) {
-                    c->normal1 = up;
-                    psvec_scale(&c->normal1, c->magnitude, &c->force);
+                c->unk_38 = up;
+                *normal = c->unk_38;
+                if (!(c->unk_0 & 8)) {
+                    c->unk_2C = up;
+                    psvec_scale(&c->unk_2C, c->unk_58, &c->unk_4C);
                 }
             }
         }
         if (strip_hits >= 3) {
-            racer->terrain_flags |= 0x2000000;
-            racer->flags2 |= 0x200;
+            racer->unk_218 |= 0x2000000;
+            racer->unk_58C |= 0x200;
         }
     }
     return result;

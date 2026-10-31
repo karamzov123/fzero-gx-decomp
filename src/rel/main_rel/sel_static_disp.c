@@ -10537,7 +10537,7 @@ typedef struct {
     u8 pad_42[0x12];
     u16 unk_54;
     u8 pad_56[0x6];
-    s32 state;
+    s32 unk_5C;
     u8 unk_60;
     u8 unk_61;
     u8 pad_62[0x2];
@@ -10847,7 +10847,7 @@ void fn_1_148950(s32 mode, const fn_1_148950_Row *row) {
     fn_1_4F734(&packet);
     x = mode == 3 ? 445 : 455;
     y = row->unk_64 + 12;
-    if (!fn_1_148950_mode_1_3(mode) && row->state == 0xFF) {
+    if (!fn_1_148950_mode_1_3(mode) && row->unk_5C == 0xFF) {
         fn_1_49410();
         fn_1_494DC(0x15);
         fn_1_495B0(0x80000000);
@@ -10857,7 +10857,7 @@ void fn_1_148950(s32 mode, const fn_1_148950_Row *row) {
         fn_1_4955C(0.8f, 1.0f);
         fn_1_4966C(-1.0f, 0.0f);
         fn_1_4A0D8(fzgx_pool_data_lbl_1_data_42198_680);
-    } else if (!fn_1_148950_mode_1_3(mode) && row->state == 0xFE) {
+    } else if (!fn_1_148950_mode_1_3(mode) && row->unk_5C == 0xFE) {
         fn_1_49410();
         fn_1_494DC(0x15);
         fn_1_495B0(0x80000000);
