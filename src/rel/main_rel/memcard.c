@@ -19323,7 +19323,7 @@ u8 fzgx_obj_lbl_1_bss_7AC48[8];
 CpuPairs *fzgx_obj_lbl_1_bss_7AC50;
 void *fzgx_obj_lbl_1_bss_7AC54[4];
 CpuLevel fzgx_obj_lbl_1_bss_7AC64;
-u8 fzgx_pool_pad_7AC88[8];
+u8 fzgx_pool_gap_7AC88[8];
 u8 fzgx_obj_lbl_1_bss_7AC90;                    /* CPU system on */
 u8 fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b1;      /* best human rank */
 u8 fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b2;      /* worst human rank */
@@ -19332,11 +19332,11 @@ f32 lbl_1_bss_7AC90__fzgx_offset_4;             /* best human's progress */
 f32 lbl_1_bss_7AC90__fzgx_offset_8;             /* worst human's progress */
 
 char fzgx_obj_lbl_1_data_3D138[0xC] = "OVERTAKE";
-u8 fzgx_pool_pad_3D144[0xEC] = { 0 };    /* the other behaviour names and their table at 0x3D180 */
+u8 fzgx_pool_gap_3D144[0xEC] = { 0 };    /* the other behaviour names and their table at 0x3D180 */
 u32 fzgx_obj_lbl_1_data_3D230 = 1;      /* the CPU random generator */
 char fzgx_obj_lbl_1_data_3D234[0x10] = "enemy_ctrl.c";
 char lbl_1_data_3D234__fzgx_offset_10[0x10] = "line%02d.bin";
-u8 fzgx_pool_pad_3D254[0x14] = { 0 };    /* "rb", "enemy_line", ".." */
+u8 fzgx_pool_gap_3D254[0x14] = { 0 };    /* "rb", "enemy_line", ".." */
 char lbl_1_data_3D234__fzgx_offset_34[4] = "wb";
 
 /* retail .rodata 0x5168..0x57E4 (the CPU tables), so the literals below land at retail's offsets */
@@ -19420,7 +19420,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     s = (u32)fzgx_obj_lbl_1_bss_7AC50;
     s = (u32)fzgx_obj_lbl_1_bss_7AC54[0];
     s = fzgx_obj_lbl_1_bss_7AC64.unk_0;
-    s = fzgx_pool_pad_7AC88[0];
+    s = fzgx_pool_gap_7AC88[0];
     s = fzgx_obj_lbl_1_bss_7AC90;
     s = fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b1;
     s = fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b2;
