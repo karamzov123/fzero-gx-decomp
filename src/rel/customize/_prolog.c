@@ -2907,7 +2907,7 @@ void fn_3_4F08(void) {
 }
 /* fzgx:end fn_3_4F08 */
 
-/* fzgx:begin fn_3_5070 pool */
+/* fzgx:begin fn_3_5070 */
 #include "rel/customize/globals.h"
 
 typedef struct {
@@ -2939,11 +2939,11 @@ extern void fn_3_BD00(s32, s32, s32, u32);
 
 #pragma pool_data on
 Obj_3_bss_0 lbl_3_bss_0;
-u8 lbl_3_bss_8[0x10];
+u8 fzgx_pool_lbl_3_bss_8[0x10];
 s16 lbl_3_bss_18;
-u8 lbl_3_bss_1A[1];
-u8 lbl_3_bss_1D;
-u8 lbl_3_bss_1E[0xD0];
+u8 fzgx_pool_lbl_3_bss_18__fzgx_offset_2[1];
+u8 lbl_3_bss_18__fzgx_offset_5;
+u8 fzgx_pool_lbl_3_bss_18__fzgx_offset_6[0xD0];
 Obj_3_bss_F0 lbl_3_bss_F0;
 
 #pragma section code_type ".fzgxpool"
@@ -2951,11 +2951,11 @@ Obj_3_bss_F0 lbl_3_bss_F0;
 static void fzgx___fzgx_pool_primer(void) {
     void *volatile p; /* primer: fixes the retail section order of the BSS objects */
     p = &lbl_3_bss_0;
-    p = &lbl_3_bss_8;
+    p = &fzgx_pool_lbl_3_bss_8;
     p = &lbl_3_bss_18;
-    p = &lbl_3_bss_1A;
-    p = &lbl_3_bss_1D;
-    p = &lbl_3_bss_1E;
+    p = &fzgx_pool_lbl_3_bss_18__fzgx_offset_2;
+    p = &lbl_3_bss_18__fzgx_offset_5;
+    p = &fzgx_pool_lbl_3_bss_18__fzgx_offset_6;
     p = &lbl_3_bss_F0;
 }
 #pragma force_active reset
@@ -3091,7 +3091,7 @@ s32 fn_3_5070(void) {
                 case 3:
                     lbl_3_bss_6DD74 = 1;
                     result = 6;
-                    lbl_3_bss_1D = 0;
+                    lbl_3_bss_18__fzgx_offset_5 = 0;
                     break;
                 }
                 menu.p->unk_C = 0;
