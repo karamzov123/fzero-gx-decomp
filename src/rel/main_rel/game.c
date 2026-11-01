@@ -21114,6 +21114,133 @@ void fn_1_3EC88(u8 count, GameEntrant *src) {
 }
 /* fzgx:end fn_1_3EC88 */
 
+/* fzgx:begin fn_1_3ED8C pool */
+typedef struct RaceSetup {
+    u32 unk_0;
+    u8 unk_4;
+    u8 unk_5;
+    u8 unk_6;
+    u8 unk_7;
+    u8 unk_8;
+    u8 unk_9;
+    u8 pad_A[0x9C];
+    u8 unk_A6;
+    u8 pad_A7[0x135D];
+    u8 unk_1404;
+    u8 pad_1405[0x5F];
+    u32 unk_1464;
+    u8 pad_1468[0x4];
+    u8 unk_146C;
+    u8 unk_146D;
+    u16 unk_146E;
+    u8 unk_1470;
+    u8 unk_1471;
+    u8 unk_1472;
+    u8 pad_1473[0x49];
+} RaceSetup;
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u8 fzgx_obj_lbl_1_bss_3C00[4];
+u8 fzgx_pool_gap_3C04[0x2C];
+RaceSetup fzgx_obj_lbl_1_bss_3C30;
+u8 fzgx_pool_gap_50EC[0x150];
+u8 fzgx_obj_lbl_1_bss_523C[0x20];
+u8 fzgx_pool_gap_525C[0x19C];
+void *fzgx_obj_lbl_1_bss_53F8[34];
+u8 fzgx_pool_gap_5480[0x20DDC];
+u8 fzgx_obj_lbl_1_bss_2625C[0x20];
+u32 fzgx_obj_lbl_1_bss_2627C[30];
+u8 fzgx_obj_lbl_1_bss_262F4;
+u8 fzgx_pool_gap_262F5;
+u8 fzgx_pool_gap_262F6;
+u8 fzgx_pool_gap_262F7;
+u8 fzgx_pool_gap_262F8[0x880];
+u8 fzgx_pool_gap_26B78;
+u8 fzgx_pool_gap_26B79;
+u8 fzgx_obj_lbl_1_bss_26B7A;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b1;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b2;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b3;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b4;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b5;
+u8 fzgx_pool_gap_26B80[0xDC];
+u32 fzgx_obj_lbl_1_bss_26C5C;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_3C00[0];
+    s = fzgx_pool_gap_3C04[0];
+    s = fzgx_obj_lbl_1_bss_3C30.unk_0;
+    s = fzgx_pool_gap_50EC[0];
+    s = fzgx_obj_lbl_1_bss_523C[0];
+    s = fzgx_pool_gap_525C[0];
+    s = *(u32 *)fzgx_obj_lbl_1_bss_53F8;
+    s = fzgx_pool_gap_5480[0];
+    s = fzgx_obj_lbl_1_bss_2625C[0];
+    s = fzgx_obj_lbl_1_bss_2627C[0];
+    s = fzgx_obj_lbl_1_bss_262F4;
+    s = fzgx_pool_gap_262F5;
+    s = fzgx_pool_gap_262F6;
+    s = fzgx_pool_gap_262F7;
+    s = fzgx_pool_gap_262F8[0];
+    s = fzgx_pool_gap_26B78;
+    s = fzgx_pool_gap_26B79;
+    s = fzgx_obj_lbl_1_bss_26B7A;
+    s = fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b1;
+    s = fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b2;
+    s = fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b3;
+    s = fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b4;
+    s = fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b5;
+    s = fzgx_pool_gap_26B80[0];
+    s = fzgx_obj_lbl_1_bss_26C5C;
+}
+#pragma section code_type ".text"
+
+extern u8 lbl_1_data_5B7C;
+
+void fn_1_3ED8C(RaceSetup *setup, u8 unk_4, u8 unk_1404, u8 course, u8 unk_7, u8 racers, u32 flags) {
+    u32 i;
+
+    if (setup == NULL) {
+        setup = &fzgx_obj_lbl_1_bss_3C30;
+    }
+    setup->unk_0 = flags;
+    setup->unk_4 = unk_4;
+    setup->unk_1404 = unk_1404;
+    setup->unk_5 = lbl_1_data_5B7C;
+    if (lbl_1_data_5B7C == 1) {
+        setup->unk_A6 = course;
+        setup->unk_6 = 0;
+    } else {
+        setup->unk_A6 = 0xFF;
+        setup->unk_6 = course;
+    }
+    setup->unk_7 = unk_7;
+    setup->unk_9 = racers;
+    setup->unk_8 = 0;
+    setup->unk_1464 = 0;
+    setup->unk_146C = 0;
+    setup->unk_146D = 0;
+    setup->unk_1470 = 0;
+    setup->unk_146E = 1500;
+    fzgx_obj_lbl_1_bss_26C5C = 0;
+    /* retail stores one byte at 0x26B7C (stb), though symbols.txt types lbl_1_bss_26B7A as 2-byte data */
+    fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b2 = 0;
+    fzgx_obj_lbl_1_bss_3C00[0] = 0;
+    fzgx_obj_lbl_1_bss_262F4 = 1;
+    for (i = 0; i < 30; i++) {
+        fzgx_obj_lbl_1_bss_2625C[i] = i;
+        fzgx_obj_lbl_1_bss_523C[i] = 0x10;
+        fzgx_obj_lbl_1_bss_2627C[i] = 0;
+        fzgx_obj_lbl_1_bss_53F8[i] = NULL;
+    }
+    setup->unk_1471 = 0xFF;
+    setup->unk_1472 = 0xFF;
+}
+/* fzgx:end fn_1_3ED8C */
+
 /* fzgx:begin fn_1_3EF08 */
 void fn_1_3EF08(u8 value) {
     lbl_1_bss_262F4 = value;
