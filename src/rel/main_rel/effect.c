@@ -3226,7 +3226,7 @@ void fn_1_5C83C(struct Fn1_5C83CObject *self) {
 }
 /* fzgx:end fn_1_5C83C */
 
-/* fzgx:begin fn_1_5CA00 pool noprologue */
+/* fzgx:begin fn_1_5CA00 noprologue */
 #include "types.h"
 #include "types.h"
 #include "rel/main_rel/globals.h"
@@ -3351,14 +3351,14 @@ static void fzgx_fn_1_5CA00_pool2(void) {
  d=150.0; d=10.0; d=3.0;
 }
 #pragma section code_type ".text"
-static const f32 fn_1_5CA00_pool_vec0[3] = {0.0f,0.1f,-2.4f};
+static const f32 fzgx_pool_fn_1_5CA00_pool_vec0[3] = {0.0f,0.1f,-2.4f};
 #pragma section code_type ".fzgxpool"
 static void fzgx_fn_1_5CA00_pool3(void) {
  volatile f32 f; volatile f64 d;  /* fzgx-allow: S2 volatile keeps the verified access order */
  f=5.0f; d=1.2; d=0.1; f=10.0f; f=18.0f; d=0.7; d=50.0;
 }
 #pragma section code_type ".text"
-static const f32 fn_1_5CA00_pool_vec1[3] = {0.0f,0.1f,-2.4f};
+static const f32 fzgx_pool_fn_1_5CA00_pool_vec1[3] = {0.0f,0.1f,-2.4f};
 #pragma section code_type ".fzgxpool"
 static void fzgx_fn_1_5CA00_pool4(void) {
  volatile f32 f; volatile f64 d;  /* fzgx-allow: S2 volatile keeps the verified access order */

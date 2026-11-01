@@ -10307,7 +10307,7 @@ void fn_1_147508(s32 mode, fn_1_147508_Entry *entry) {
 }
 /* fzgx:end fn_1_147508 */
 
-/* fzgx:begin fn_1_147A04 pool noprologue */
+/* fzgx:begin fn_1_147A04 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/sel_static_disp.h"
@@ -10532,7 +10532,7 @@ extern void fn_1_14A004(void);
 extern void fn_1_14A008(void);
 /* +0x000: the 45 state-name strings, then their pointer table at +0x200 */
 static char fzgx_obj_lbl_1_data_42198[4] = "NON";
-static const char *fzgx_data_names[45] = {
+static const char *fzgx_pool_fzgx_data_names[45] = {
     fzgx_obj_lbl_1_data_42198, "MASTER RECV", "MASTER SEND", "SLAVE SEND", "SLAVE RECV", "INIT", "TEST", "TESTEND",
     "SETUP", "SETUP_DONE", "SETUP_COUNTER", "SETUP_CNT_DONE", "UNLINK", "COIN", "ENTRY_WAIT",
     "CHALLENGER", "CHALLENGER_OK", "ENTRY", "ENTRY_OK", "SINGLECHECK", "SINGLECHECK_OK",
@@ -10540,10 +10540,10 @@ static const char *fzgx_data_names[45] = {
     "CONFIG", "CONFIG_OK", "COUNTERADJUST", "LINKWAIT", "LINKWAITOK", "LINKSEL",
     "LINKDELIVERYSTART", "LINKDELIVERY", "LINKDELIVERYOK", "LINKSELOK", "COURSEVIEW",
     "COURSEVIEW_OK", "LINKREQ", "LINKSTANDBY", "LINKOK", "LINK", "PAUSE", "ERROR"};
-static void (*fzgx_data_tbl[11])(void) = {
+static void (*fzgx_pool_fzgx_data_tbl[11])(void) = {
     fn_1_1420E0, fn_1_144E90, fn_1_144EE8, fn_1_149E2C, fn_1_149F04, fn_1_149DA4,
     fn_1_149DE8, fn_1_149F5C, fn_1_14A000, fn_1_14A004, fn_1_14A008};
-static unsigned long fzgx_data_b[84] = {  /* fzgx-allow: A1 retail data bytes */
+static unsigned long fzgx_pool_fzgx_data_b[84] = {  /* fzgx-allow: A1 retail data bytes */
     0x5B000000, 0x5D000000, 0x4E414D45, 0x3A000000, 0x25640000, 0x4E414D45, 0x00000000, 0x50494C4F,
     0x54205241, 0x4E4B0000, 0x25316400, 0x252D3264, 0x00000000, 0x25303264, 0x3C253032, 0x643D2530,
     0x33640000, 0x25303264, 0x3B253032, 0x643C2530, 0x33640000, 0x25346400, 0x83418343, 0x838B8367,
@@ -10557,13 +10557,13 @@ static unsigned long fzgx_data_b[84] = {  /* fzgx-allow: A1 retail data bytes */
     0x41434B00, 0x50524143, 0x54494345, 0x00000000};
 __declspec(section ".fzgxpool") static void fzgx_data_prime1(void) {
     void *volatile sink; const char *volatile str;  /* fzgx-allow: S2 data primer sinks */
-    sink = fzgx_data_names;
-    sink = fzgx_data_tbl;
-    sink = fzgx_data_b;
+    sink = fzgx_pool_fzgx_data_names;
+    sink = fzgx_pool_fzgx_data_tbl;
+    sink = fzgx_pool_fzgx_data_b;
     str = "GOMAR & SHIOH";
     str = "GOMAR , SHIOH";
 }
-static unsigned long fzgx_data_c[133] = {  /* fzgx-allow: A1 retail data bytes */
+static unsigned long fzgx_pool_fzgx_data_c[133] = {  /* fzgx-allow: A1 retail data bytes */
     0x43617069, 0x74616C20, 0x4C657474, 0x65727300, 0x47455220, 0x43617069, 0x74616C20, 0x4C657474,
     0x65727300, 0x46524520, 0x43617069, 0x74616C20, 0x4C657474, 0x65727300, 0x53504120, 0x43617069,
     0x74616C20, 0x4C657474, 0x65727300, 0x49544120, 0x43617069, 0x74616C20, 0x4C657474, 0x65727300,
@@ -10583,7 +10583,7 @@ static unsigned long fzgx_data_c[133] = {  /* fzgx-allow: A1 retail data bytes *
     0xC182B720, 0x839F208C, 0x8892E820, 0x83B45B25, 0x735D0000};
 __declspec(section ".fzgxpool") static void fzgx_data_prime2(void) {
     void *volatile sink; const char *volatile str;  /* fzgx-allow: S2 data primer sinks */
-    sink = fzgx_data_c;
+    sink = fzgx_pool_fzgx_data_c;
     str = "\201\347";
     str = "  ";
     str = "\201\350";

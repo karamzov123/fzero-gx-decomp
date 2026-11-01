@@ -2205,7 +2205,7 @@ void fn_7_31F4(u32 arg0, u32 arg1, u32 arg2, f32 arg3, f32 arg4) {
 }
 /* fzgx:end fn_7_31F4 */
 
-/* fzgx:begin fn_7_33F0 pool */
+/* fzgx:begin fn_7_33F0 */
 #include "font.h"
 #include "rel/story/story_mode.h"
 
@@ -2747,10 +2747,10 @@ u32 fzgx_obj_lbl_7_bss_10;
 u32 fzgx_obj_lbl_7_bss_14;
 u32 lbl_7_bss_18;
 u32 fzgx_obj_lbl_7_bss_1C[3];
-s32 lbl_7_bss_1C_C;
-u32 lbl_7_bss_1C_fill_2C[4];
-u32 lbl_7_bss_1C_20;
-u32 lbl_7_bss_1C_fill_40[2];
+s32 lbl_7_bss_1C__fzgx_offset_C;
+u32 lbl_7_bss_1C__fzgx_offset_10[4];
+u32 lbl_7_bss_1C__fzgx_offset_20;
+u32 lbl_7_bss_1C__fzgx_offset_24[2];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -2762,10 +2762,10 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_7_bss_14;
     s = *(u8 *)&lbl_7_bss_18;
     s = *(u8 *)&fzgx_obj_lbl_7_bss_1C;
-    s = *(u8 *)&lbl_7_bss_1C_C;
-    s = *(u8 *)&lbl_7_bss_1C_fill_2C;
-    s = *(u8 *)&lbl_7_bss_1C_20;
-    s = *(u8 *)&lbl_7_bss_1C_fill_40;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_C;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_10;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_20;
+    s = *(u8 *)&lbl_7_bss_1C__fzgx_offset_24;
 }
 #pragma section code_type ".text"
 
@@ -2781,7 +2781,7 @@ void fn_7_33F0(void) {
     void *v46;
     FontDrawPacket loc_8;
     
-    v0 = lbl_7_bss_1C_20;
+    v0 = lbl_7_bss_1C__fzgx_offset_20;
     if (v0 <= 0) {
         v0 += 233;
     } else {
@@ -2794,15 +2794,15 @@ void fn_7_33F0(void) {
         loc_8.x = 320.0f;
         loc_8.y = v1;
         loc_8.flags = 10;
-        if (lbl_7_bss_1C_C <= 100) {
-            loc_8.scale_x = 80.0f * (f32)lbl_7_bss_1C_C / 100.0f;
+        if (lbl_7_bss_1C__fzgx_offset_C <= 100) {
+            loc_8.scale_x = 80.0f * (f32)lbl_7_bss_1C__fzgx_offset_C / 100.0f;
             loc_8.scale_y = 0.5f;
             fn_1_4F734(&loc_8);
         } else {
-            fn_1_50A90(&loc_8, 640, 3, 640, (s32)(136.0f * ((f32)(lbl_7_bss_1C_C - 100) / 100.0f)));
+            fn_1_50A90(&loc_8, 640, 3, 640, (s32)(136.0f * ((f32)(lbl_7_bss_1C__fzgx_offset_C - 100) / 100.0f)));
         }
     }
-    if ((s32)lbl_7_bss_1C_C == 200) {
+    if ((s32)lbl_7_bss_1C__fzgx_offset_C == 200) {
         loc_8 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
         v14 = 16.0f + v1;
         loc_8.image = 0x10000 - 17889;
