@@ -91,7 +91,7 @@ Building
 - Clone the repository:
 
   ```sh
-  git clone https://github.com/rayanht/fzgx.git
+  git clone https://github.com/karamzov123/fzero-gx-decomp.git
   ```
 
 - Copy your game's disc image to `orig/` (not `orig/GFZE01/`).
