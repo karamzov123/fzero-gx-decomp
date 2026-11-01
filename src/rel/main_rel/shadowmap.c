@@ -459,6 +459,175 @@ void fn_1_571E8(fn_1_571E8_Arg0 *arg0) {
 }
 /* fzgx:end fn_1_571E8 */
 
+/* fzgx:begin fn_1_5745C noprologue */
+#include "types.h"
+#include "psvec.h"
+
+extern const f32 lbl_1_rodata_28B0;
+#define SHADOW_ZERO (*(const f32 *)((const u8 *)&lbl_1_rodata_28B0 + 4))
+#define SHADOW_SIZE (*(const f32 *)((const u8 *)&lbl_1_rodata_28B0 + 0x4c))
+#define SHADOW_DEPTH (*(const f64 *)((const u8 *)&lbl_1_rodata_28B0 + 0x90))
+#define SHADOW_BIAS (*(const f64 *)((const u8 *)&lbl_1_rodata_28B0 + 0x98))
+
+typedef struct ShadowQuadVec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} ShadowQuadVec3;
+
+typedef struct ShadowQuad {
+    void *next;
+    void (*draw)(struct ShadowQuad *);
+    ShadowQuadVec3 p0;
+    ShadowQuadVec3 p1;
+    ShadowQuadVec3 p2;
+    ShadowQuadVec3 p3;
+    u32 unk_38;
+    u8 color[4];
+    u32 mode;
+} ShadowQuad;
+
+typedef struct ShadowSrc {
+    u32 flags;
+    u32 mask;
+    f32 alpha;
+    u8 mtx[0x0C];
+    f32 x;
+    u8 pad_1C[0x0C];
+    f32 y;
+    u8 pad_2C[0x0C];
+    f32 z;
+    u32 unk_3C;
+} ShadowSrc;
+
+typedef struct ShadowCam {
+    u8 pad_0[0xD4];
+    ShadowQuadVec3 pos;
+} ShadowCam;
+
+typedef struct ShadowCtx {
+    u8 pad_0[0x2C];
+    f32 scale;
+    u8 pad_30[0x30];
+    u8 mtx[0x30];
+} ShadowCtx;
+
+extern ShadowCam *lbl_801A66CC;
+extern ShadowCtx *lbl_801A6D00;
+
+extern void *fn_1_548AC(u32);
+extern s32 fn_1_54E34(void *, f32);
+extern void *fn_1_54384(f32);
+extern void fn_1_571E8(ShadowQuad *);
+extern void fn_1_5489C(void **, void **);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006D848(f32);
+extern void lbl_8006E1D8(void *, f32, f32, f32);
+
+#pragma section code_type ".fzgxpool"
+static const unsigned long fzgx_pool_table1[1] = {0x00000000}; /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const unsigned long *volatile cp; cp = fzgx_pool_table1; } /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile float s; /* fzgx-allow: S2 pool primer sink */
+    s = 0.0f;
+}
+static const unsigned long fzgx_pool_table3[14] = {0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00FF00FF}; /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const unsigned long *volatile cp; cp = fzgx_pool_table3; } /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile float s; /* fzgx-allow: S2 pool primer sink */
+    s = -3.0f;
+    s = 1.0f;
+    s = 20.0f;
+    s = 3.0f;
+    s = 100.0f;
+    s = 128.0f;
+}
+static const unsigned long fzgx_pool_table5[12] = {0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000}; /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const unsigned long *volatile cp; cp = fzgx_pool_table5; } /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile float s; volatile double d; /* fzgx-allow: S2 pool primer sinks */
+    s = 6.0f;
+    s = 0.05000000074505806f;
+    d = 6.1;
+    d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+
+/* The locked cache holds the transform; the active camera is shared render state. */
+static inline void ShadowCam_set_lc(void) {
+    ShadowCam *cam;
+    psvec_set(&cam->pos,
+              (cam = *(ShadowCam *volatile *)&lbl_801A66CC, *(f32 *)(0xE0000000 + 0x2C)),  /* fzgx-allow: S2 volatile keeps the verified access order */
+              *(f32 *)(0xE0000000 + 0x1C),
+              *(f32 *)(0xE0000000 + 0x0C));
+}
+#define ShadowCam_set(cam) ShadowCam_set_lc()
+
+#pragma opt_common_subs off
+void fn_1_5745C(ShadowSrc *src, u32 *color) {
+    struct { ShadowCam **value; } cameraSlot;
+    u32 flags;
+    void *list;
+    ShadowQuad *quad;
+    f32 size;
+    f32 n;
+
+    if (!((src->flags >> 2) & 1)) {
+        return;
+    }
+    flags = src->flags & src->mask;
+    if (!(flags & 1) && !(flags & 2)) {
+        return;
+    }
+    quad = (ShadowQuad *)fn_1_548AC(sizeof(ShadowQuad));
+    if (quad == NULL) {
+        return;
+    }
+    lbl_8006DCA4();
+    lbl_801A66CC->pos.x = src->x;
+    lbl_801A66CC->pos.y = src->y;
+    lbl_801A66CC->pos.z = src->z;
+    if (fn_1_54E34(&lbl_801A66CC->pos, 3.0f) == 0) {
+        return;
+    }
+    lbl_8006DFC4(src->mtx);
+    list = fn_1_54384(lbl_801A6D00->scale);
+    quad->draw = fn_1_571E8;
+    /* The active camera is shared render state. */
+    ShadowCam_set(*(ShadowCam *volatile *)&lbl_801A66CC);
+    lbl_801A66CC->pos.z = -lbl_801A66CC->pos.z;
+    if (lbl_801A66CC->pos.z > 6.1) {
+        lbl_8006DB74(lbl_801A6D00->mtx);
+        lbl_8006D848((lbl_801A66CC->pos.z - 3.0f) / lbl_801A66CC->pos.z);
+        lbl_8006DFC4(lbl_801A6D00->mtx);
+        quad->mode = 3;
+    } else {
+        quad->mode = 7;
+    }
+    size = 3.0f;
+    if ((src->flags >> 1) & 1) {
+        n = -size;
+        lbl_8006E1D8(&quad->p0, n, n, 0.0f);
+        lbl_8006E1D8(&quad->p1, size, n, 0.0f);
+        lbl_8006E1D8(&quad->p2, size, size, 0.0f);
+        lbl_8006E1D8(&quad->p3, n, size, 0.0f);
+    } else {
+        n = -size;
+        lbl_8006E1D8(&quad->p0, n, 0.0f, n);
+        lbl_8006E1D8(&quad->p1, size, 0.0f, n);
+        lbl_8006E1D8(&quad->p2, size, 0.0f, size);
+        lbl_8006E1D8(&quad->p3, n, 0.0f, size);
+    }
+    quad->unk_38 = src->unk_3C;
+    *(u32 *)quad->color = *color;
+    quad->color[3] = quad->color[3] * src->alpha;
+    fn_1_5489C(list, (void **)quad);
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_5745C */
+
 /* fzgx:begin fn_1_57714 */
 // Updates the shadow-map enable flag.
 void fn_1_57714(u8 value) {

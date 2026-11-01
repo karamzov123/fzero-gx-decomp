@@ -15,6 +15,20 @@ clean, hash/lint-verified pinned local `main` commit to the approved fork using
 a normal fast-forward push. It must never accept candidates, merge, rebase,
 force-push, or change worker ownership.
 
+## Permanent source-import restriction (owner, 2026-10-26)
+
+Do not directly harvest, cherry-pick, or manually copy further code, tooling, data,
+partials, or repair recipes from nkhoit (called "nkoit" by the owner), including
+cached candidates and indirect copies through another fork. Do not fetch its refs
+for direct matching/import work. The owner will continue using this contributor's
+work through pull requests; this restriction does not block that PR workflow or
+maintaining work already accepted through it. It does not authorize agents to merge
+or publish PRs. Keep existing landed code and historical attribution; no rollback
+was requested. Independent deltawave784 contributions remain permitted under the
+normal source, MWCC, lint, provenance and 16-target hash gates. The direct-import
+restriction has no automatic expiry; only an explicit owner instruction may change
+it. See `PROJECT_MEMORY.md` and `docs/SOURCE_IMPORT_POLICY.md`.
+
 ## Matcher (one function per session)
 
 Headless Codex matchers use `tools/orchestrate.py` and one shared local Codex

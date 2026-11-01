@@ -893,6 +893,151 @@ void fn_3_14778(u16 arg0, u16 arg1, u8 arg2, u32 arg3) {
 }
 /* fzgx:end fn_3_14778 */
 
+/* fzgx:begin fn_3_149AC noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "font.h"
+#include "rel/customize/emblem.h"
+
+struct fn_3_137AC_lbl_3_bss_A17D0 { u8 unk_0; u8 unk_1; };
+
+struct fn_3_13508_Entry { u16 unk_0; u8 pad_2[0x12]; };
+
+struct fn_3_13508_Table {
+    union {
+        struct { u8 pad_8[0x8]; struct fn_3_13508_Entry unk_8[1]; };
+        struct { u8 pad_0[0x8]; u16 flags; u8 pad_A[0xA]; } e[1];
+    };
+};
+
+struct fn_3_13508_fn_3_13508_Table {
+    union {
+        struct { u8 pad_8[0x8]; struct fn_3_13508_Entry unk_8[1]; };
+        struct { u8 pad_0[0x8]; u16 flags; u8 pad_A[0xA]; } fn_3_13508_e[1];
+    };
+};
+extern u32 lbl_801A6410;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_426C(u32 idx);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_48140(int index);
+extern void fn_3_142C4(void);
+extern void fn_3_1563C(void);
+extern void fn_3_19C50(void);
+extern struct fn_3_13508_Table lbl_1_bss_9F8;
+extern u8 fn_1_1318B8(void);
+extern u8 fn_3_19C94(void);
+extern u32 fn_3_19CE0(void);
+extern void fn_3_19D50(void);
+extern void fn_3_18614(void);
+extern void fn_3_170E0(void);
+extern void fn_3_156D0(void);
+extern void fn_1_4A00(s32 fadeIn, u8 steps, u32 arg);
+extern void fn_1_A2D84(u32 arg0);
+extern struct fn_3_137AC_lbl_3_bss_A17D0 lbl_3_bss_A17D0;
+extern f32 lbl_3_rodata_4E0[22];
+extern FontDrawPacket lbl_1_rodata_26F8;
+extern void fn_1_133DBC(void* arg0);
+extern void fn_1_134AD4(void);
+extern u32 fn_1_13ABA8(u32);
+extern s32 fn_1_1318D4(void);
+extern s32 fn_1_B8EDC(u32);
+extern u32 fn_3_18960(s16);
+extern u32 fn_3_15F44(s16);
+extern u32 fn_3_17854(s16);
+extern u32 fn_3_BF1C(void);
+extern u32 fn_3_139F0(void);
+extern s32 fn_1_45D0();
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 fn_3_17820(void);
+extern void fn_80008BA8(void *, void *, u32);
+extern void fn_3_17830(void);
+extern void fn_3_177AC(u32 *);
+extern u32 *lbl_3_bss_A1770;
+extern u32 *lbl_3_bss_A1774;
+extern s32 fn_3_14600(void);
+extern void fn_1_4CC0(void);
+extern s16 lbl_3_bss_A17D2;
+extern u16 lbl_1_bss_96A;
+extern s32 fn_1_45730(void *, void *);
+extern u32 fn_1_45B2C(void *);
+extern void fn_1_458A0(void *, void *, u32, u32);
+extern void fn_1_45850(void *);
+extern s32 fn_1_F7BE4(u32);
+extern u16 lbl_3_bss_A23DA[3];
+extern void fn_3_14BBC(void *, s16, s16, s16, u32 *);
+extern void fn_3_14E18(void *, s16, void *, s16, void *);
+
+extern void * memcpy(void *, const void *, u32);
+
+typedef struct EmblemColor {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} EmblemColor;
+
+/* Reads one texel of the emblem texture (4x4 tiles) as an RGBA8 color. */
+u32 fn_3_149AC(u8 *data, s16 x, s16 y) {
+    u16 pix;
+    EmblemColor color;
+    s16 tileX;
+    s16 tileY;
+    s16 tilesW;
+    s16 tile;
+    s16 px;
+    s16 py;
+    s16 offset;
+    u8 hi;
+    u8 lo;
+
+    switch ((s32)lbl_3_bss_A23E0) {
+    default:
+    case 6:
+        /* All unsupported formats share the common return. */
+        goto done;
+    case 4:
+        tileX = x / 4;
+        tileY = y / 4;
+        tilesW = (lbl_3_bss_A23D8 + 1) / 4;
+        tile = tileX + tileY * tilesW;
+        px = x % 4;
+        py = y % 4;
+        hi = data[(offset = (tile << 5) + ((px + (py << 2)) << 1))];
+        lo = data[offset + 1];
+        pix = hi << 8;
+        pix |= lo;
+        color.r = ((((pix & 0xF800) >> 8)) | ((pix & 7)));
+        color.g = ((pix & 0x7E0) >> 3) | (pix & 3);
+        color.b = (pix & 7) | ((pix & 0x1F) << 3);
+        break;
+    case 5:
+        tileX = x / 4;
+        tileY = y / 4;
+        tilesW = (lbl_3_bss_A23D8 + 1) / 4;
+        tile = tileX + tileY * tilesW;
+        px = x % 4;
+        py = y % 4;
+        offset = (tile << 5) + ((px + (py << 2)) << 1);
+        memcpy(&pix, data + offset, 2);
+        if (pix & 0x8000) {
+            color.a = 0xFF;
+            color.r = (pix >> 7) & 0xF8;
+            color.g = (pix >> 2) & 0xF8;
+            color.b = (pix & 0x1F) << 3;
+        } else {
+            color.a = (pix >> 8) & 0x70;
+            color.r = (pix >> 4) & 0xF0;
+            color.g = pix & 0xF0;
+            color.b = (pix & 0xF) << 4;
+        }
+        break;
+    }
+done:
+    return *(u32 *)&color;
+}
+/* fzgx:end fn_3_149AC */
+
 /* fzgx:begin fn_3_15240 */
 extern void fn_3_14E18(void *, s16, void *, s16, void *);
 

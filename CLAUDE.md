@@ -73,6 +73,19 @@ Each was measured, not assumed. The evidence is in `docs/findings/`.
   oc1 spent 57% of six hours' attempts on a band measured at 0 matches (283). Re-run the
   virgin-by-band table before changing or trusting a band.
 
+## Permanent source-import policy (owner, 2026-10-26)
+
+Do not directly harvest, cherry-pick or manually copy further work from **nkhoit**
+(the owner's "nkoit"), including cached candidates, tools, data and repair recipes,
+or indirect copies through another fork. Do not fetch its refs for direct imports.
+The owner will still use this contributor's work **through pull requests**; that
+workflow and maintaining already-accepted work remain allowed. This does not grant
+agents merge or publishing authorization. Keep existing landed work and attribution;
+no rollback was requested. Independent **deltawave784** contributions remain allowed
+under the normal gates. The direct-import restriction is permanent unless the owner
+explicitly changes it. See `PROJECT_MEMORY.md` and `docs/SOURCE_IMPORT_POLICY.md`.
+Historical fork reports below do not override this policy.
+
 ## Other forks and cloud sessions are a source of matches (2026-10-21)
 
 `fzgx harvest REF [--land]` tries every function matched on another ref (a fork branch,

@@ -3036,6 +3036,104 @@ void fn_1_107F74(BgObj *obj, int flag) {
 #pragma peephole reset
 /* fzgx:end fn_1_107F74 */
 
+/* fzgx:begin fn_1_108128 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn108128Vec;
+
+typedef struct {
+    u8 pad_00[0x2];
+    u8 count;
+    u8 pad_03;
+    u16 indices[6];
+    Fn108128Vec pos;
+    u8 pad_1C[0x28];
+} Fn108128Entry;
+
+typedef struct {
+    u8 pad_00[0x10];
+    void *model;
+    u8 pad_14[0x4];
+    u32 count;
+    u8 pad_1C[0x8];
+    Fn108128Entry *entries;
+} Fn108128Context;
+
+extern s32 fn_80077B14(void *);
+extern f32 lbl_8006D668(Fn108128Vec *);
+extern u32 lbl_801A66A0;
+
+static inline void fn_1_108128_cross(Fn108128Vec *a, Fn108128Vec *b, Fn108128Vec *axb) {
+    f32 ax = a->x, ay = a->y, az = a->z;
+    f32 bx = *(volatile f32 *)&b->x, by = b->y, bz = b->z;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+    f32 nx = ay * bz;
+    f32 ny = az * bx;
+    f32 nz = ax * by;
+    nx -= az * by;
+    ny -= ax * bz;
+    nz -= ay * bx;
+    axb->x = nx;
+    axb->y = ny;
+    axb->z = nz;
+}
+
+// Compute a face normal for every (alternating) strip entry and copy it to its vertices.
+void fn_1_108128(Fn108128Context *context, u32 stride) {
+    u32 i;
+    s32 base;
+    Fn108128Entry *e;
+    u32 odd;
+    u32 j;
+    Fn108128Vec a;
+    Fn108128Vec b;
+    Fn108128Vec n;
+
+// Unit normal of the triangle (center, p0, p1).
+#define FACE_NORMAL(p0, p1, center)                                 \
+    psvec_sub(p0, center, &a);                                      \
+    psvec_sub(p1, center, &b);                                      \
+    lbl_8006D668(&a);                                               \
+    lbl_8006D668(&b);                                               \
+    fn_1_108128_cross(&a, &b, &n)
+
+    if (context != NULL && context->model != NULL) {
+        base = fn_80077B14(context->model);
+        e = context->entries;
+        odd = (lbl_801A66A0 & 1) ^ 1;
+        for (i = 0; i < context->count; i++, e++) {
+            if (odd && (i & 1)) {
+                continue;
+            }
+            if (!odd && !(i & 1)) {
+                continue;
+            }
+            if (i > context->count - 1 - stride) {
+                if (i + 1 == stride) {
+                    FACE_NORMAL(&e[-1].pos, &(e - stride)->pos, &e->pos);
+                } else {
+                    FACE_NORMAL(&(e - stride)->pos, &e[1].pos, &e->pos);
+                }
+            } else {
+                if (i + 1 == stride) {
+                    FACE_NORMAL(&e[stride].pos, &e[-1].pos, &e->pos);
+                } else {
+                    FACE_NORMAL(&e[1].pos, &e[stride].pos, &e->pos);
+                }
+            }
+            for (j = 0; j < e->count; j++) {
+                *(Fn108128Vec *)(base + e->indices[j] * 0x40 + 0xC) = n;
+            }
+        }
+    }
+#undef FACE_NORMAL
+}
+/* fzgx:end fn_1_108128 */
+
 /* fzgx:begin fn_1_108BD0 noprologue */
 #include "types.h"
 

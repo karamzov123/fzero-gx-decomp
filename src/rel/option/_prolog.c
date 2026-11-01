@@ -8133,6 +8133,234 @@ void fn_4_8248(void) {
 }
 /* fzgx:end fn_4_8248 */
 
+/* fzgx:begin fn_4_82A0 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/option/globals.h"
+
+struct fn_4_82A0_Bss {
+    u8 pad_0[0x2];
+    u8 unk_2;
+    u8 pad_3[0x27D];
+    u8 unk_280;
+    u8 unk_281;
+    u8 unk_282;
+};
+
+struct fn_4_82A0_Data {
+    u8 pad_0[0x2D72];
+    u8 unk_2D72;
+    u8 pad_2D73;
+    s16 unk_2D74;
+};
+
+struct fn_4_82A0_Rodata {
+    u8 pad_0[0x8];
+    f32 unk_8;
+    u32 unk_C;
+    f64 unk_10;
+    f64 unk_18;
+    u8 pad_20[0x8];
+    f64 unk_28;
+    f64 unk_30;
+    u8 pad_38[0xC];
+    f32 unk_44;
+    f32 unk_48;
+    u8 pad_4C[0x4];
+    f32 unk_50;
+    u8 pad_54[0x4];
+    f32 unk_58;
+    u8 pad_5C[0x4];
+    f64 unk_60;
+    f64 unk_68;
+    u8 pad_70[0x14];
+    f32 unk_84;
+    f64 unk_88;
+    f64 unk_90;
+    f64 unk_98;
+    f32 unk_A0;
+    u8 pad_A4[0x4];
+    f64 unk_A8;
+    u8 pad_B0[0x4];
+    f32 unk_B4;
+    u8 pad_B8[0x4];
+    f32 unk_BC;
+    f32 unk_C0;
+    u8 pad_C4[0x4];
+    f32 unk_C8;
+    f32 unk_CC;
+    u8 pad_D0[0x394 - 0xD0];
+    f32 unk_394;
+    f32 unk_398;
+};
+
+extern struct fn_4_82A0_Rodata lbl_4_rodata_0;
+extern FontDrawPacket lbl_1_rodata_26F8;
+extern s32 lbl_801A66B4;
+extern s16 lbl_1_bss_962;
+
+extern void fn_1_49410(void);
+extern void fn_1_49738(void *);
+extern void fn_1_49748(f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_49590(f32);
+extern void fn_1_495C8(u8);
+extern void fn_1_4954C(f32);
+extern void fn_1_496FC(f32, f32);
+extern f32 fn_1_4B040(const char *);
+extern void fn_1_53E40(u32, f32, f32, f32, f32, f32, const char *);
+extern void fn_4_2D4(u8, const char *);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_53BD8(void *, f32, f32, f32, f32, f32);
+extern void fn_1_1380F0(const char *);
+extern void fn_1_13ABA8(u32);
+extern void fn_1_5233C(void);
+
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+#pragma fp_contract off
+static inline void fn_4_82A0_print(const char *format, const char **table, s32 *language) {
+    table = (const char **)table[*language];
+    fn_1_4AE0C(format, (const char *)table);
+}
+void fn_4_82A0(void) {
+    struct fn_4_82A0_Bss *bss;
+    u8 *data;
+    struct fn_4_82A0_Rodata *ro;
+    const char *handle;
+    u32 mode;
+    s32 *language0;
+    s32 *language1;
+    const char **table1;
+    s32 *language2;
+    s32 *language3;
+    struct { const char **p; } table3;
+    s32 *language4;
+    s32 *language5;
+    s32 *language6;
+    const char **table7;
+    s32 *language7;
+    const char **table8;
+    s32 *language8;
+    const char **table0;
+    const char **table2;
+    const char **table4;
+    const char **table5;
+    const char **table6;
+    f32 width;
+    f64 half;
+    f32 spacing;
+    f32 w2;
+    f32 w3;
+    f64 factor;
+    f64 scale_factor;
+    f64 pad;
+    f64 scale;
+    u8 page;
+    s16 selection;
+    FontDrawPacket pkt;
+
+    bss = (struct fn_4_82A0_Bss *)&lbl_4_bss_0;
+    data = lbl_4_data_0;
+    ro = &lbl_4_rodata_0;
+
+    fn_1_49410();
+    fn_1_49738(fn_1_5233C);
+    fn_1_49748(ro->unk_48);
+    if (lbl_801A66B4 != 5) {
+        fn_1_495B0(0x80000000);
+        fn_1_49590(ro->unk_8);
+    }
+    table0 = (const char **)(data + 0x9F8);
+    language0 = &lbl_801A66B4;
+    fn_1_53E40(0, ro->unk_50, ro->unk_C8, ro->unk_BC, ro->unk_C0, ro->unk_CC, table0[*language0]);
+    language1 = &lbl_801A66B4;
+    table4 = (const char **)(data + 0xE8);
+    language2 = (s32 *)*language1;
+    handle = table4[(s32)language2];
+    if (bss->unk_280 != 0) {
+        table8 = (const char **)(data + 0x884);
+        table8 = (const char **)table8[(s32)language2];
+        fn_4_2D4(bss->unk_281, (const char *)table8);
+        mode = 0x48000000;
+    } else {
+        fn_1_49410();
+        fn_1_495C8(9);
+        fn_1_4954C(ro->unk_BC);
+        fn_1_49738(fn_1_5233C);
+        fn_1_49748(ro->unk_48);
+        if (lbl_801A66B4 != 5) {
+            fn_1_495B0(0x80000000);
+            fn_1_49590(ro->unk_8);
+        }
+        fn_1_496FC(ro->unk_50, ro->unk_84);
+        table8 = (const char **)(data + 0xA58);
+        language3 = &lbl_801A66B4;
+        fn_1_4AE0C((const char *)(data + 0x1210), table8[*language3]);
+        table4 = (const char **)(data + 0xA58);
+        language4 = &lbl_801A66B4;
+        table4 = (const char **)table4[*language4];
+        width = fn_1_4B040((const char *)table4);
+        language5 = &lbl_801A66B4;
+        table5 = (const char **)(data + 0xA88);
+        table5 = (const char **)table5[*language5];
+        w2 = fn_1_4B040((const char *)table5);
+        language6 = &lbl_801A66B4;
+        table6 = (const char **)(data + 0xABC);
+        table6 = (const char **)table6[*language6];
+        w3 = fn_1_4B040((const char *)table6);
+        if (w2 > w3) {
+            w3 = w2;
+        }
+        spacing = ro->unk_88 + w3;
+        fn_1_496FC(ro->unk_90 - (half = ro->unk_98 * spacing), ro->unk_A0);
+        table8 = (const char **)(data + 0xA88);
+        language7 = &lbl_801A66B4;
+        fn_1_4AE0C((const char *)(data + 0x1210), table8[*language7]);
+        fn_1_496FC(ro->unk_90 + half, ro->unk_A0);
+        table8 = (const char **)(data + 0xABC);
+        language8 = &lbl_801A66B4;
+        fn_1_4AE0C((const char *)(data + 0x1210), table8[*language8]);
+        if (spacing + w3 > width) {
+            width = spacing + w3;
+        }
+        if (((struct fn_4_82A0_Data *)data)->unk_2D72 != (page = bss->unk_282) ||
+            ((struct fn_4_82A0_Data *)data)->unk_2D74 != lbl_1_bss_962) {
+            bss->unk_2 = 0;
+            selection = lbl_1_bss_962;
+            ((struct fn_4_82A0_Data *)data)->unk_2D72 = page;
+            ((struct fn_4_82A0_Data *)data)->unk_2D74 = selection;
+        }
+        pad = 0.0;
+        scale = 0.0;
+        if (page == 0) {
+            factor = ro->unk_A8;
+        } else {
+            factor = ro->unk_98;
+        }
+        pkt = lbl_1_rodata_26F8;
+        pad = ro->unk_10;
+        pkt.image = 0x12;
+        pkt.x = ro->unk_90 + spacing * factor;
+        pkt.y = ro->unk_A0;
+        pkt.z = ro->unk_394;
+        scale_factor = ro->unk_18;
+        scale = w3 + pad;
+        pkt.scale_x = scale * scale_factor;
+        pkt.scale_y = ro->unk_44;
+        pkt.flags = 10;
+        pkt.alpha = ro->unk_28 * (ro->unk_30 + lbl_8006D188((bss->unk_2 << 10) + 0x4000));
+        *(u32 *)pkt.color = ro->unk_C;
+        fn_1_4F734(&pkt);
+        fn_1_53BD8(0, ro->unk_50, ro->unk_58, ro->unk_60 + width, ro->unk_68 + ro->unk_B4,
+                   ro->unk_398);
+        mode = 0x28000000;
+    }
+    fn_1_1380F0(handle);
+    fn_1_13ABA8(mode);
+}
+/* fzgx:end fn_4_82A0 */
+
 /* fzgx:begin fn_4_869C noprologue */
 #include "types.h"
 

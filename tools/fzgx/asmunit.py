@@ -77,8 +77,20 @@ def make(p: Project, symbols: List[str]) -> Dict[str, object]:
     refused: List[dict] = []
     for s in symbols:
         sym = p.resolve(s)
-        if sym is None or p.unit_of(sym):
+        if sym is None:
             continue
+        # A registered unit is only a reason to skip when it already produces bytes. Units left
+        # `nonmatching` by a TU migration (a units.json record with a `tu` and no src file at
+        # all) are exactly the functions that have no source to build, so the old guard made
+        # them permanently unconvertible: `unit_of` is split-based, so it is truthy for any
+        # claimed range. Measured on fn_1_10E3B4 and fn_1_120804, 7 KB each of paired-single
+        # assembly with no possible C body.
+        existing = p.unit_of(sym)
+        if existing:
+            record = next((u for u in p.load_units()
+                           if u.get('module') == sym.module and u.get('source') == existing), None)
+            if record is None or record.get('status') == 'matching':
+                continue
         aliases = _compiler_generated_aliases(p, sym)
         if aliases:
             # Refuse before carving. Naming the aliases is the useful part: it is the

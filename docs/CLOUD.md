@@ -10,6 +10,16 @@ Two sources of matched C that cost no local model time feed one landing path:
   and push their own session branch. Nothing from a cloud branch counts until the
   local harvest re-checks it against the oracle and `fzgx verify` passes all 16 hashes.
 
+## Current owner restriction
+
+The permanent policy in [SOURCE_IMPORT_POLICY.md](SOURCE_IMPORT_POLICY.md) overrides
+historical fork guidance here: no direct harvesting, cherry-picking or copying from
+nkhoit (the owner's "nkoit"), including cached or indirectly copied candidates.
+Do not fetch its refs for direct imports. The owner will still use that contributor's
+work through pull requests; this does not authorize agents to merge or publish PRs.
+Already-landed code and attribution stay. Independent deltawave784 contributions
+remain permitted with the normal oracle, lint, provenance and 16-target hash gates.
+
 ## Harvesting a ref
 
 A harvest takes a git ref (a fork branch or a `claude/*` session branch), lists the

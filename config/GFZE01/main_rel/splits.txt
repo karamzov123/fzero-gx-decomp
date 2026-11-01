@@ -9140,3 +9140,87 @@ rel/main_rel/ghost/fn_1_F0168.c:
 
 rel/main_rel/memcard/fn_1_B6B28.c:
 	.text       start:0x000B6B28 end:0x000B7C00 align:4
+
+rel/main_rel/sel_static_disp/fn_1_141A80.c:
+	.text       start:0x00141A80 end:0x00141C10 align:4
+
+rel/main_rel/stcoli/fn_1_1FDB0.c:
+	.text       start:0x0001FDB0 end:0x0001FFA0 align:4
+
+rel/main_rel/effect/fn_1_654B0.c:
+	.text       start:0x000654B0 end:0x000656C8 align:4
+
+rel/main_rel/phys/fn_1_E7524.c:
+	.text       start:0x000E7524 end:0x000E7764 align:4
+
+rel/main_rel/shadowmap/fn_1_5745C.c:
+	.text       start:0x0005745C end:0x00057714 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14E5E4.c:
+	.text       start:0x0014E5E4 end:0x0014E8A4 align:4
+
+rel/main_rel/bg_for/fn_1_E3324.c:
+	.text       start:0x000E3324 end:0x000E35F0 align:4
+
+rel/main_rel/effect/fn_1_59770.c:
+	.text       start:0x00059770 end:0x00059A70 align:4
+
+rel/main_rel/car/fn_1_85C58.c:
+	.text       start:0x00085C58 end:0x00085F70 align:4
+
+rel/main_rel/stcoli/fn_1_2ABD4.c:
+	.text       start:0x0002ABD4 end:0x0002AF0C align:4
+
+rel/main_rel/bg_common/fn_1_108128.c:
+	.text       start:0x00108128 end:0x0010846C align:4
+
+rel/main_rel/accessory/fn_1_11BFCC.c:
+	.text       start:0x0011BFCC end:0x0011C440 align:4
+
+rel/main_rel/effect/fn_1_6028C.c:
+	.text       start:0x0006028C end:0x00060734 align:4
+
+rel/main_rel/sel_static_disp/fn_1_146C88.c:
+	.text       start:0x00146C88 end:0x00147188 align:4
+
+rel/main_rel/car_test/fn_1_7ECB8.c:
+	.text       start:0x0007ECB8 end:0x0007F1E8 align:4
+
+rel/main_rel/rob/fn_1_97288.c:
+	.text       start:0x00097288 end:0x000977BC align:4
+
+rel/main_rel/accessory/fn_1_1244F0.c:
+	.text       start:0x001244F0 end:0x00124AD4 align:4
+
+rel/main_rel/bg_lig/fn_1_D6C10.c:
+	.text       start:0x000D6C10 end:0x000D720C align:4
+
+rel/main_rel/sel_static_disp/fn_1_13ABA8.c:
+	.text       start:0x0013ABA8 end:0x0013B24C align:4
+
+rel/main_rel/stcoli/fn_1_192E8.c:
+	.text       start:0x000192E8 end:0x00019AE0 align:4
+
+rel/main_rel/bg_cas/fn_1_FFE7C.c:
+	.text       start:0x000FFE7C end:0x0010069C align:4
+
+rel/main_rel/phys/fn_1_E8938.c:
+	.text       start:0x000E8938 end:0x000E95B4 align:4
+
+rel/main_rel/bg_win/fn_1_15BBC4.c:
+	.text       start:0x0015BBC4 end:0x0015BCDC align:4
+
+rel/main_rel/car/fn_1_8DBB0.c:
+	.text       start:0x0008DBB0 end:0x0008DD54 align:4
+
+rel/main_rel/ghost/fn_1_F0E00.c:
+	.text       start:0x000F0E00 end:0x000F1300 align:4
+
+rel/main_rel/effect/fn_1_5CA00.c:
+	.text       start:0x0005CA00 end:0x0005D010 align:4
+
+rel/main_rel/memcard/fn_1_B8EDC.c:
+	.text       start:0x000B8EDC end:0x000B9904 align:4
+
+rel/main_rel/ghost/fn_1_EB8F4.c:
+	.text       start:0x000EB8F4 end:0x000EC900 align:4

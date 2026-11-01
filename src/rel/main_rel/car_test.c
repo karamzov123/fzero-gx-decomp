@@ -1145,6 +1145,333 @@ void fn_1_7EB8C(Object *arg0) {
 }
 /* fzgx:end fn_1_7EB8C */
 
+/* fzgx:begin fn_1_7ECB8 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+struct fn_1_7ECB8_lbl_1_rodata_3508 {
+    u8 pad_0[0x10];
+    f32 unk_10;
+    u8 pad_14[0x4];
+    f64 unk_18;
+    u8 pad_20[0x8];
+    f32 unk_28;
+    u8 pad_2C[0x4];
+    f64 unk_30;
+    f32 unk_38;
+    f32 unk_3C;
+    f32 unk_40;
+    f32 unk_44;
+    f32 unk_48;
+    f32 unk_4C;
+    f32 unk_50;
+    f32 unk_54;
+    f32 unk_58;
+    u8 pad_5C[0x4];
+    f64 unk_60;
+    f32 unk_68;
+    u8 pad_6C[0x4];
+    f64 unk_70;
+    f64 unk_78;
+};
+
+extern f32 lbl_8006D188(u32);
+extern f64 __fabs(f64);
+static const f32 fzgx_pool_table_0[4] = {3.0f,2.0f,2.0f,1.5f};
+static const f32 fzgx_pool_table_10[2] = {0.0f,0.0f};
+static const f64 fzgx_pool_table_18[2] = {1.1920928955078125e-07,0.1};
+static const f32 fzgx_pool_table_28[2] = {1.0f,0.0f};
+static const f64 fzgx_pool_table_30[1] = {0.15000000074505807};
+static const f32 fzgx_pool_table_38[1] = {0.05000000074505806f};
+static const f32 fzgx_pool_table_3C[1] = {30.0f};
+/* The 1/256 literal is the compiler's own (from the `/ 256.0f` below); the primer
+ * emits it here so it pools at retail's +0x40, between the two tables. */
+#pragma section code_type ".fzgxpool"
+f32 fzgx_pool_primer_40(f32 x) { return x / 256.0f; }
+#pragma section code_type ".text"
+static const f32 fzgx_pool_table_44[1] = {182.04444885253906f};
+static const f32 fzgx_pool_table_48[1] = {180.0f};
+static const f32 fzgx_pool_table_4C[1] = {44.0f};
+static const f32 fzgx_pool_table_50[1] = {89.0f};
+static const f32 fzgx_pool_table_54[1] = {360.0f};
+static const f32 fzgx_pool_table_58[2] = {60.0f,0.0f};
+static const f64 fzgx_pool_table_60[1] = {0.12999999932944775};
+static const f32 fzgx_pool_table_68[2] = {0.029999999329447746f,0.0f};
+extern u32 fn_1_14DDF4(u32);
+extern u32 lbl_8006DB74(u32);
+extern u32 lbl_8006DFC4(u32);
+extern u32 lbl_801A6D00;
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern void * fn_1_14DD68(u32);
+extern void fn_1_556B8(void *);
+extern void fn_80008BA8(u32, u32, u32);
+extern void fn_80072558(void);
+extern void lbl_8006D848(f32);
+extern void lbl_8006E0A4(u32);
+
+#pragma opt_common_subs off
+#pragma opt_branch off
+#pragma opt_lifetimes off
+
+static inline f32 depth_fade(f32 z, f64 absZ) {
+    f32 result = fzgx_pool_table_10[0];
+    if (absZ < fzgx_pool_table_18[0])
+        return result;
+    if (z < fzgx_pool_table_30[0])
+        result = fzgx_pool_table_28[0] + (f32)(fzgx_pool_table_38[0] / z);
+    return result;
+}
+
+static inline f32 depth_fade_near(f32 z, f64 absZ) {
+    f32 result = fzgx_pool_table_10[0];
+    if (absZ < fzgx_pool_table_18[0])
+        return result;
+    if (z < fzgx_pool_table_60[0])
+        result = fzgx_pool_table_28[0] + (f32)(fzgx_pool_table_68[0] / z);
+    return result;
+}
+
+/* The low bound is the result variable itself: retail keeps both in f3. */
+static inline f32 clamp_rotation(f32 x, f32 low, f32 high) {
+    if (x < low)
+        return low;
+    if (x > high)
+        return high;
+    return x;
+}
+static inline f32 clamp_angle(f32 x) {
+    f32 result = fzgx_pool_table_10[0];
+    if (x < result)
+        return result;
+    result = fzgx_pool_table_48[0];
+    if (x > result)
+        return result;
+    return x;
+}
+static inline f32 progress_angle(f32 scale, u32 progress) {
+    f32 x;
+    return (x = scale * (f32)progress,
+            x < fzgx_pool_table_10[0] ? fzgx_pool_table_10[0] :
+            (x > fzgx_pool_table_48[0] ? fzgx_pool_table_48[0] : x));
+}
+
+static inline s16 angle_short(f64 angle) { return (s16)angle; }
+typedef struct {
+    u8 pad[0x208];
+    struct { u32 vector[3]; u8 pad[8]; } transforms[2];
+} PositionView;
+
+void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
+    u32 v0;
+    u32 v1;
+    f32 v2;
+    f64 absZ;
+    f32 v3;
+    f32 v4;
+    f32 v5;
+    f32 v6;
+    f32 v7;
+    f32 v8;
+    f32 v9;
+    f32 v10;
+    u32 v11;
+    f32 v12;
+    f32 v13;
+    f32 v14;
+    f32 v15;
+    f32 v16;
+    f32 v17;
+    u32 v18;
+    f32 v19;
+    f32 v20;
+    u32 loc_44[3];
+    u32 loc_38[3];
+    u32 loc_2C[3];
+    f32 loc_20[3];
+    f32 loc_14[3];
+    f32 loc_8[3];
+    union { f64 f; u32 w[2]; } unsigned_conversion;
+    /* frame */
+    void * t0;
+    u32 t1;
+    u32 t3;
+    u32 t5;
+    u32 t11;
+    u32 t14;
+    u32 t16;
+    f32 t22;
+    u32 t23;
+    u32 t24;
+    u32 t25;
+    u32 t27;
+    v0 = *(u32 *)((u8 *)arg0 + 932);
+    v2 = (f32)(arg3);
+    if ((*(u32 *)((u8 *)arg0 + 912) & 0x4000000) != 0) {
+    if ((arg2 & 0x40000000) != 0) {
+    v1 = 0;
+    if ((s16)arg1 == 1) {
+    v1 = *(u32 *)((u8 *)arg0 + 928);
+    t0 = (void *)(fn_1_14DD68(v1));
+    v1 = (u32)(t0);
+    } else {
+    if ((s16)arg1 == 2) {
+    v1 = *(u32 *)((u8 *)arg0 + 928);
+    t1 = fn_1_14DDF4(v1);
+    v1 = t1;
+    }
+    }
+    lbl_8006E0A4(v1);
+    }
+    v1 = 0xE0000000;
+    v3 = *(f32 *)((u8 *)v1 + 44);
+    absZ = __fabs(v3);
+    psvec_set(&loc_20[0], v3, *(f32 *)((u8 *)v1 + 28), *(f32 *)((u8 *)v1 + 12));
+    v4 = depth_fade(v3, absZ);
+    v1 = (u32)&lbl_801A6D00;
+    v1 = *(u32 *)((u8 *)v1 + 0);
+    v1 += 96;
+    t3 = lbl_8006DB74(v1);
+    v1 = t3;
+    v2 = (f32)(v4);
+    lbl_8006D848(v2);
+    v1 = (u32)&lbl_801A6D00;
+    v1 = *(u32 *)((u8 *)v1 + 0);
+    v1 += 96;
+    t5 = lbl_8006DFC4(v1);
+    v1 = t5;
+    fn_80072558();
+    fn_80072558();
+    v1 = (s16)arg1;
+    v1 = (v1 * 48);
+    v1 = ((u32 (*)[6][2])v0)[(s16)arg1][*(s16 *)((u8 *)arg0 + 954)][0];
+    v1 = *(u32 *)((u8 *)v1 + 8);
+    v1 = *(u32 *)((u8 *)v1 + 0);
+    fn_1_556B8((void *)v1);
+    } else {
+    if ((s8)*(u8 *)((u8 *)arg0 + 808) == 4) {
+    if ((arg2 & ~0x7FFFFFFF) != 0) {
+    v1 = (u32)&loc_44;
+    fn_80008BA8(v1, (u32)((u8 *)arg0 + 520), 12);
+    v1 = (u32)&loc_44;
+    lbl_8006E0A4(v1);
+    v1 = *(u32 *)((u8 *)arg0 + 812);
+    if (v1 != 0) {
+    /* the bound and its negation are common subexpressions: one load, one fneg */
+    v6 = clamp_rotation((f32)(-fzgx_pool_table_3C[0] * *(f32 *)((u8 *)v1 + 164)) / 256.0f,
+                        -fzgx_pool_table_3C[0], fzgx_pool_table_3C[0]);
+    v1 = (s32)(f32)(*(volatile const f32 *)fzgx_pool_table_44 * v6);  /* fzgx-allow: S2 volatile keeps the verified access order */
+    t11 = mathutil_mtxA_rotate_y(v1);
+    v1 = t11;
+    }
+    } else {
+    if ((arg2 & 0x40000000) != 0) {
+    v1 = (u32)loc_38;
+    fn_80008BA8(v1, (u32)((u8 *)arg0 + 520), 12);
+    v1 = (u32)loc_38;
+    lbl_8006E0A4(v1);
+    }
+    }
+    v1 = 0xE0000000;
+    v9 = *(f32 *)((u8 *)v1 + 44);
+    absZ = __fabs(v9);
+    psvec_set(&loc_14[0], v9, *(f32 *)((u8 *)v1 + 28), *(f32 *)((u8 *)v1 + 12));
+    v10 = depth_fade(v9, absZ);
+    v1 = (u32)&lbl_801A6D00;
+    v1 = *(u32 *)((u8 *)v1 + 0);
+    v1 += 96;
+    t14 = lbl_8006DB74(v1);
+    v1 = t14;
+    v2 = (f32)(v10);
+    lbl_8006D848(v2);
+    v1 = (u32)&lbl_801A6D00;
+    v1 = *(u32 *)((u8 *)v1 + 0);
+    v1 += 96;
+    t16 = lbl_8006DFC4(v1);
+    v1 = t16;
+    fn_80072558();
+    fn_80072558();
+    v1 = *(u32 *)((u8 *)v0 + (*(s16 *)((u8 *)arg0 + 954) << 3));
+    v1 = *(u32 *)((u8 *)v1 + 8);
+    v1 = *(u32 *)((u8 *)v1 + 0);
+    fn_1_556B8((void *)v1);
+    } else {
+    if ((s8)*(u8 *)((u8 *)arg0 + 808) == 40) {
+    if ((arg2 & ~0x3FFFFFFF) != 0) {
+    v1 = (u32)loc_2C;
+    fn_80008BA8(v1, (u32)((PositionView *)arg0)->transforms[(s16)arg1 - 1].vector, 12);
+    v1 = (u32)loc_2C;
+    lbl_8006E0A4(v1);
+    }
+    if ((arg2 & ~0x7FFFFFFF) != 0) {
+    v1 = *(u32 *)((u8 *)arg0 + 812);
+    t22 = fzgx_pool_table_10[0];
+    if (v1 != 0) {
+    v11 = *(u32 *)((u8 *)v1 + 0);
+    if ((v11 & 0x60) != 0) {
+    v2 = (f32)(fzgx_pool_table_48[0]);
+    v14 = (v11 & 0x600000) ? fzgx_pool_table_4C[0] : fzgx_pool_table_50[0];
+    v14 = v2 / v14;
+    /* Load the conversion scale after the clamped progress is evaluated. */
+    v1 = (s32)(f32)(*(volatile const f32 *)fzgx_pool_table_44 * (f32)(s32)angle_short(progress_angle(v14, *(u8 *)((u8 *)v1 + 394))));
+    t22 = lbl_8006D188(v1);
+    }
+    if ((s16)arg1 == 1) {
+    v15 = fzgx_pool_table_54[0];
+    v16 = fzgx_pool_table_44[0];
+    v1 = (s32)(f32)(v16 * (f32)(s32)angle_short((f32)(v15 - (f32)(t22 * fzgx_pool_table_58[0]))));
+    t23 = mathutil_mtxA_rotate_y(v1);
+    v1 = t23;
+    } else {
+    v17 = fzgx_pool_table_44[0];
+    v1 = (s32)(f32)(v17 * (f32)(s32)angle_short((f32)(t22 * fzgx_pool_table_58[0])));
+    t24 = mathutil_mtxA_rotate_y(v1);
+    v1 = t24;
+    }
+    }
+    }
+    v1 = *(s16 *)((u8 *)arg0 + 954);
+    v18 = (u32)(arg0);
+    if ((s16)v1 == 0) {
+    v1 = (v1 << 3);
+    v19 = *(f32 *)(0xE0000000 + 0x2C);
+    absZ = __fabs(v19);
+    v1 = *(u32 *)((u8 *)v0 + v1);
+    v1 = *(u32 *)((u8 *)v1 + 8);
+    v18 = *(u32 *)((u8 *)v1 + ((s16)arg1 << 3));
+    psvec_set(&loc_8[0], v19, *(f32 *)(0xE0000000 + 0x1C), *(f32 *)(0xE0000000 + 0x0C));
+    v20 = depth_fade_near(v19, absZ);
+    v1 = (u32)&lbl_801A6D00;
+    v1 = *(u32 *)((u8 *)v1 + 0);
+    v1 += 96;
+    t25 = lbl_8006DB74(v1);
+    v1 = t25;
+    v2 = (f32)(v20);
+    lbl_8006D848(v2);
+    v1 = (u32)&lbl_801A6D00;
+    v1 = *(u32 *)((u8 *)v1 + 0);
+    v1 += 96;
+    t27 = lbl_8006DFC4(v1);
+    v1 = t27;
+    fn_80072558();
+    } else {
+    v1 = (v1 * 12);
+    v1 = (u32)((u8 *)v18 + v1);
+    v1 = *(u32 *)((u8 *)v1 + 824);
+    v1 = *(u32 *)((u8 *)v1 + 8);
+    v18 = *(u32 *)((u8 *)v1 + ((s16)arg1 << 3));
+    }
+    fn_80072558();
+    v1 = v18;
+    fn_1_556B8((void *)v1);
+    }
+    }
+    }
+}
+#pragma opt_lifetimes reset
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_7ECB8 */
+
 /* fzgx:begin fn_1_7F1E8 */
 void fn_1_7F1E8(u32 arg0, u32 arg1) {
     fn_1_7ECB8(arg0, arg1, 0x80000000); // fzgx-allow: A1 retail sentinel

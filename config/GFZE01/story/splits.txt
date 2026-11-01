@@ -200,3 +200,6 @@ rel/story/story_mode/fn_7_520.c:
 
 rel/story/story_mode/fn_7_72C.c:
 	.text       start:0x0000072C end:0x00000D20 align:4
+
+rel/story/story_mode/fn_7_33F0.c:
+	.text       start:0x000033F0 end:0x00003AB0 align:4

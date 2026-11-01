@@ -4659,6 +4659,462 @@ void fn_1_FFC60(void *arg0) {
 }
 /* fzgx:end fn_1_FFC60 */
 
+/* fzgx:begin fn_1_FFE7C noprologue */
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/burner.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+#include "types.h"
+
+#ifndef GAME_MAIN_REL_BURNER_TYPES_H
+#define GAME_MAIN_REL_BURNER_TYPES_H
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_9CCE8_Vec3;
+
+extern void fn_8006E294(fn_1_9CCE8_Vec3 *);
+
+#endif  // GAME_MAIN_REL_BURNER_TYPES_H
+#ifndef GAME_MAIN_REL_CAMERA_TYPES_H
+#define GAME_MAIN_REL_CAMERA_TYPES_H
+
+/* begin game/vec3.h (fork-deltawave784/windows-and-types@215f1cd8) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+#endif  // GAME_VEC3_H
+
+typedef struct Transform {
+    u8 pad_08[0x8];
+    f32 unk_08;
+    u8 pad_0c[0xc];
+    f32 unk_18;
+    u8 pad_1c[0xc];
+    f32 unk_28;
+    u8 pad_2c[0x24];
+    u8 unk_50[0x2c];
+    u32 unk_7C;
+} Transform;
+
+typedef struct CameraStateLocal {
+    u8 pad_d4[0xd4];
+    f32 unk_D4;
+    f32 unk_D8;
+    f32 unk_DC;
+} CameraStateLocal;
+
+extern Transform *lbl_801A6D00;
+extern CameraStateLocal *lbl_801A66CC;
+
+#endif  // GAME_MAIN_REL_CAMERA_TYPES_H
+
+/* end game/main_rel/camera_types.h */
+
+struct fn_1_FFE7C_lbl_1_rodata_76A8 {
+    f32 unk_0;
+    u8 pad_4[0x4];
+    f32 unk_8;
+    u8 pad_C[0xC];
+    f32 unk_18;
+    u8 pad_1C[0x4];
+    f64 unk_20;
+    u8 pad_28[0x14];
+    f32 unk_3C;
+    u8 pad_40[0x8];
+    f32 unk_48;
+    u8 pad_4C[0x14];
+    f64 unk_60;
+    u8 pad_68[0xC];
+    f32 unk_74;
+    u8 pad_78[0x8];
+    f64 unk_80;
+    u8 pad_88[0x4];
+    f32 unk_8C;
+    u8 pad_90[0x4];
+    f32 unk_94;
+    u8 pad_98[0x8];
+    f32 unk_A0;
+    u8 pad_A4[0x10];
+    f32 unk_B4;
+    u8 pad_B8[0x38];
+    f32 unk_F0;
+    f32 unk_F4;
+    f32 unk_F8;
+    f32 unk_FC;
+    f32 unk_100;
+    f32 unk_104;
+    f32 unk_108;
+    f32 unk_10C;
+    f32 unk_110;
+    f32 unk_114;
+    f32 unk_118;
+    f32 unk_11C;
+    f32 unk_120;
+};
+struct fn_1_FFE7C_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+extern f32 lbl_8006D0B4(f32);
+extern struct fn_1_FFE7C_lbl_1_rodata_76A8 lbl_1_rodata_76A8;
+#define lbl_801A6D00 (*(struct fn_1_FFE7C_lbl_801A6D00 *)&lbl_801A6D00)
+extern u32 fn_1_1FB80(u32, u32);
+extern u32 fn_1_584AC(void);
+#define lbl_801A66CC (*(u32 *)&lbl_801A66CC)
+extern void fn_1_681C(u32, u32 *);
+extern void lbl_8006DBAC(Vec3 *);
+
+/* Shared constant-pool zero and its alignment word. */
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_zero(volatile f32 *s) {  /* fzgx-allow: S2 volatile keeps the verified access order */
+    *s = 0.0f;
+}
+#pragma section code_type ".text"
+#pragma force_active on
+static const u32 fzgx_pool_table_4[1] = {0};
+#pragma force_active reset
+
+/* Prime the shared compiler literal pool used by neighbouring routines. */
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer(volatile f32 *s, volatile f64 *d) {  /* fzgx-allow: S2 volatile keeps the verified access order */
+    *s = 1.0f;
+    *s = 6600.0f;
+    *s = 110.0f;
+    *s = 60.0f;
+    *s = 15.0f;
+    *d = 4503601774854144.0;
+    *d = 0.0;
+    *s = -1.0f;
+    *s = 100.0f;
+    *s = 300.0f;
+    *s = 32767.0f;
+    *s = 4.0f;
+    *s = 10.0f;
+    *s = 2.0f;
+    *s = 200.0f;
+    *s = 400.0f;
+    *s = 2500.0f;
+    *s = 1000.0f;
+    *s = 1400.0f;
+    *d = 0.5;
+    *d = 5.0;
+    *s = 7.0f;
+    *s = 2.5f;
+    *s = 768.0f;
+    *d = 4503599627370496.0;
+    *s = 0.1f;
+    *s = 0.5f;
+    *s = 0.25f;
+    *s = 0.05f;
+    *s = -2000.0f;
+    *s = 1.02f;
+    *s = 30.0f;
+    *s = 22.0f;
+    *d = 0.9;
+    *s = 0.6f;
+    *s = 0.4f;
+    *s = 255.0f;
+    *s = 0.8f;
+    *s = 0.3f;
+    *s = 1.3f;
+    *s = 0.70710677f;
+    *d = 0.1;
+    *d = 1280.0;
+    *s = 0.9f;
+    *d = 0.98;
+    *s = 20.0f;
+    *s = 0.2f;
+    *s = 6.0f;
+    *s = 0.02f;
+    *s = 0.15f;
+    *s = 1.5f;
+    *s = -0.075f;
+    *s = -0.1f;
+    *s = 180.0f;
+    *s = 0.04f;
+    *s = 0.0005f;
+    *s = -0.15f;
+    *s = -0.2f;
+}
+#pragma section code_type ".text"
+
+static inline f32 fn_1_FFE7C_clamp(f32 value, f32 minimum, f32 maximum) {
+    if (value < minimum) return minimum;
+    if (value > maximum) return maximum;
+    return value;
+}
+
+static inline s32 fn_1_FFE7C_less_equal(s32 quota, s32 index) {
+    return quota <= index;
+}
+
+#pragma opt_lifetimes on
+#pragma opt_propagation on
+void fn_1_FFE7C(void * arg0) {
+    struct fn_1_FFE7C_lbl_1_rodata_76A8 *p_lbl_1_rodata_76A8;
+    f32 v0;
+    register f32 dz;
+    f32 v1;
+    f32 v2;
+    f64 v3;
+    f32 v4;
+    f32 v5;
+    f32 v6;
+    u32 v7;
+    f32 v9;
+    f32 v10;
+    f64 v11;
+    f32 v12;
+    s32 v13;
+    void * v14;
+    s32 v8;
+    u32 v15;
+    f32 v16;
+    f64 v17;
+    f32 v18;
+    f64 v19;
+    f32 v20;
+    f64 v21;
+    f32 v22;
+    u32 v23;
+    f32 v24;
+    f32 v25;
+    f32 v26;
+    f32 v27;
+    f32 v28;
+    f32 v29;
+    f32 v30;
+    f32 v31;
+    f32 v32;
+    f32 v33;
+    f32 v34;
+    f32 v35;
+    f32 v36;
+    f32 v37;
+    f32 v38;
+    u32 v39;
+    f32 v40;
+    f32 v41;
+    f64 v42;
+    f32 v43;
+    f32 v44;
+    f32 v45;
+    f32 v46;
+    f32 v47;
+    f32 v48;
+    f32 v49;
+    f32 v50;
+    f32 v51;
+    f32 v52;
+    f32 v53;
+    f32 v54;
+    f32 v55;
+    f32 v56;
+    f32 v57;
+    f32 v58;
+    f32 v59;
+    f32 v60;
+    u32 v61;
+    f32 v62;
+    f32 v63;
+    f32 v64;
+    f32 v65;
+    f32 v66;
+    f32 v67;
+    f32 v68;
+    f32 v69;
+    f32 v70;
+    f32 v71;
+    f32 v72;
+    f32 v73;
+    f32 v74;
+    f32 v75;
+    f32 v76;
+    f32 v77;
+    f32 v78;
+    f64 v79;
+    u32 v80;
+    f32 v81;
+    struct { f32 a[3]; } loc_20;
+    fn_1_9CCE8_Vec3 loc_14;
+    u32 loc_8[3];
+    /* frame */
+    f32 t4;
+    u32 t6;
+    u32 t7;
+    u32 t8;
+    u32 t9;
+    u32 t10;
+    u32 t11;
+    u32 t12;
+    u32 t13;
+    u32 t14;
+    u32 t15;
+    f32 t16;
+    u32 t17;
+    u32 t18;
+    u32 t19;
+    u32 t20;
+    u32 t21;
+    u32 t22;
+    u32 t23;
+    /* 13 instruction(s) not lifted: see the ??? markers */
+    p_lbl_1_rodata_76A8 = (struct fn_1_FFE7C_lbl_1_rodata_76A8 *)&lbl_1_rodata_76A8;
+    lbl_8006DBAC((Vec3 *)lbl_801A66CC);
+    fn_8006E294((fn_1_9CCE8_Vec3 *)&loc_14);
+    lbl_8006DBAC((Vec3 *)(lbl_801A6D00.unk_0 + 48));
+    fn_8006E294((fn_1_9CCE8_Vec3 *)&loc_20);
+    v0 = loc_20.a[0];
+    v2 = loc_20.a[1];
+    v1 = loc_20.a[2];
+    v0 -= loc_14.x;
+    v2 -= loc_14.y;
+    v1 -= loc_14.z;
+    v0 = v0 * v0;
+    v0 = v2 * v2 + v0;
+    v0 = v1 * v1 + v0;
+    t4 = lbl_8006D0B4(v0);
+    *(f32 *)((u8 *)arg0 + 8) = t4;
+    fn_1_681C(0, (u32 *)loc_8);
+    t6 = fn_1_1FB80((u32)loc_8, 4096);
+    if (t6 != 0) {
+        v6 = 0.0;
+    } else {
+        v6 = 1.0f;
+    }
+    v2 = *(f32 *)((u8 *)arg0 + 12);
+    v3 = 0.5;
+    v4 = 20.0f;
+    *(f32 *)((u8 *)arg0 + 12) = (f32)(v2 + (f32)(0.15f * (f32)(v6 - v2)));
+    v5 = *(f32 *)((u8 *)arg0 + 8);
+    v6 = (f32)(v4 * *(f32 *)((u8 *)arg0 + 12));
+    v7 = t6;
+    v8 = (s32)(f32)(v4 * *(f32 *)((u8 *)arg0 + 12));
+    if (v5 > v3) {
+    v9 = 2.0f;
+    v6 = 1.5f;
+    v10 = (f32)(v5 - v9);
+    v6 = fn_1_FFE7C_clamp(v10, v6, v9);
+    v11 = 4503601774854144.0;
+    v12 = (f32)(1.0f / v6);
+    v6 = (f32)(s32)v8;
+    v8 = (s32)(f32)(v6 * v12);
+    }
+    v14 = (void *)(((u8 *)arg0 + 20));
+    v13 = 20;
+    do {
+    /* Skip spawning when the active-particle quota is exhausted. */
+    if (fn_1_FFE7C_less_equal(v8, v13)) goto active;
+    if ((s32)*(u32 *)((u8 *)v14 + 48) == 0) {
+    *(f32 *)((u8 *)v14 + 0) = 6.0f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f);
+    *(f32 *)((u8 *)v14 + 4) = 6.0f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f);
+    *(f32 *)((u8 *)v14 + 8) = 6.0f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f);
+    *(fn_1_9CCE8_Vec3 *)((u8 *)v14 + 12) = *(fn_1_9CCE8_Vec3 *)v14;
+    *(f32 *)((u8 *)v14 + 24) = -0.075f + (f32)(0.4f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f));
+    *(f32 *)((u8 *)v14 + 28) = -0.1f + (f32)(0.4f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f));
+    v16 = 0.0f;
+    *(f32 *)((u8 *)v14 + 32) = v16 + (f32)(0.4f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f));
+    *(f32 *)((u8 *)v14 + 36) = v16;
+    *(f32 *)((u8 *)v14 + 40) = 0.02f * (f32)(1.0f + (f32)(fn_1_584AC() & 0xFFFF) / 32767.0f);
+    *(f32 *)((u8 *)v14 + 44) = 0.02f * (f32)(1.0f + (f32)(fn_1_584AC() & 0xFFFF) / 32767.0f);
+    *(f32 *)((u8 *)v14 + 40) = *(f32 *)((u8 *)v14 + 44);
+    *(u32 *)((u8 *)v14 + 48) = (s32)(30.0f + (f32)(180.0f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f)));
+    }
+active:
+    if ((s32)*(u32 *)((u8 *)v14 + 48) > 0) {
+    v40 = *(f32 *)((u8 *)v14 + 24);
+    v41 = *(f32 *)((u8 *)v14 + 28);
+    v38 = *(f32 *)((u8 *)v14 + 32);
+    v0 = v40 * v40;
+    v0 = v41 * v41 + v0;
+    v0 = v38 * v38 + v0;
+    t16 = lbl_8006D0B4(v0);
+    v38 = (f32)(t16);
+    v43 = v38;
+    *(f32 *)((u8 *)v14 + 40) = *(f32 *)((u8 *)v14 + 44) * (f32)(1.0f - (f32)((f32)(1.0f / (f32)(1.0f + (f32)(2.5f * v43))) * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f)));
+    *(f32 *)((u8 *)v14 + 24) += (f32)(0.04f * (f32)(v43 * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f)));
+    *(f32 *)((u8 *)v14 + 28) += (f32)(0.04f * (f32)(v43 * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f)));
+    *(f32 *)((u8 *)v14 + 32) += (f32)(0.04f * (f32)(v43 * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f)));
+    v52 = 0.04f;
+    v38 = -0.2f;
+    v55 = (-0.15f);
+    v56 = 0.0f;
+    v57 = 0.0005f;
+    v58 = *(f32 *)((u8 *)v14 + 28);
+    *(f32 *)((u8 *)v14 + 28) = (f32)(v58 - v57);
+    v59 = *(f32 *)((u8 *)v14 + 24);
+    *(f32 *)((u8 *)v14 + 24) = (f32)(v59 + (f32)(v52 * (f32)(v55 - v59)));
+    v60 = *(f32 *)((u8 *)v14 + 28);
+    v38 = (f32)((f32)(v38 - v60));
+    v38 = (f32)((f32)(v52 * v38));
+    v38 = (f32)((f32)(v60 + v38));
+    *(f32 *)((u8 *)v14 + 28) = v38;
+    v38 = (f32)(*(f32 *)((u8 *)v14 + 32));
+    *(f32 *)((u8 *)v14 + 32) = (f32)(v38 + (f32)(v52 * (f32)(v56 - v38)));
+    *(fn_1_9CCE8_Vec3 *)((u8 *)v14 + 12) = *(fn_1_9CCE8_Vec3 *)v14;
+    *(f32 *)((u8 *)v14 + 0) += (f32)(*(f32 *)((u8 *)v14 + 24) + (f32)(0.05f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f)));
+    *(f32 *)((u8 *)v14 + 4) += (f32)(*(f32 *)((u8 *)v14 + 28) + (f32)(0.05f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f)));
+    *(f32 *)((u8 *)v14 + 8) += (f32)(*(f32 *)((u8 *)v14 + 32) + (f32)(0.05f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f)));
+    v70 = 6.0f;
+    v71 = 0.0f;
+    while (*(f32 *)((u8 *)v14 + 0) < v71) {
+        *(f32 *)((u8 *)v14 + 0) += v70;
+    }
+    while (*(f32 *)((u8 *)v14 + 0) > 6.0f) {
+        *(f32 *)((u8 *)v14 + 0) -= 6.0f;
+    }
+    while (*(f32 *)((u8 *)v14 + 4) < 0.0f) {
+        *(f32 *)((u8 *)v14 + 4) += 6.0f;
+    }
+    while (*(f32 *)((u8 *)v14 + 4) > 6.0f) {
+        *(f32 *)((u8 *)v14 + 4) -= 6.0f;
+    }
+    while (*(f32 *)((u8 *)v14 + 8) < 0.0f) {
+        *(f32 *)((u8 *)v14 + 8) += 6.0f;
+    }
+    while (*(f32 *)((u8 *)v14 + 8) > 6.0f) {
+        *(f32 *)((u8 *)v14 + 8) -= 6.0f;
+    }
+    (*(s32 *)((u8 *)v14 + 48))--;
+    v80 = *(u32 *)((u8 *)v14 + 48);
+    if ((f32)(s32)v80 < 15.0f) {
+    *(f32 *)((u8 *)v14 + 36) *= (f32)(s32)v80 / (f32)(s32)(v80 + 1);
+    } else {
+    v81 = *(f32 *)((u8 *)v14 + 36);
+    v38 = (f32)(0.2f);
+    *(f32 *)((u8 *)v14 + 36) = (f32)(v81 + (f32)(v38 * (f32)(1.0f - v81)));
+    }
+    if ((s32)*(u32 *)((u8 *)v14 + 48) <= 0) {
+    *(f32 *)((u8 *)v14 + 36) = 0.0f;
+    *(u32 *)((u8 *)v14 + 48) = 0;
+    }
+    }
+    v14 = (u8 *)v14 + 0x34;
+    } while (--v13 > 0);
+    return;
+}
+#pragma opt_propagation reset
+
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_FFE7C */
+
 /* fzgx:begin fn_1_1011CC */
 void fn_1_1011CC(int arg0, int arg1) {
     fn_80074788(0);

@@ -296,6 +296,109 @@ void fn_1_15BB34(void *value) {
 }
 /* fzgx:end fn_1_15BB34 */
 
+/* fzgx:begin fn_1_15BBC4 pool noprologue */
+#include "types.h"
+#include "types.h"
+
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+
+/* end rel/main_rel/globals.h */
+
+extern void fn_1_15C0AC(void);
+extern void fn_1_15BEBC(u16, void *);
+extern u32 fn_1_15BE38(void);
+extern void fn_80008BEC(void *, int, u32);
+
+typedef struct { u8 pad[4]; u16 val; u16 pad2; } Ent;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_8F8E0[8];
+Ent lbl_1_bss_8F8E0_20[16];
+u16 lbl_1_bss_8F980[16];
+u16 lbl_1_bss_8F9A0[15][32];
+u32 lbl_1_bss_8FD60;
+u16 lbl_1_bss_8FD60_4;
+u16 lbl_1_bss_8FD60_6;
+u32 fzgx_obj_lbl_1_bss_8FD68[16];
+u32 fzgx_obj_lbl_1_bss_8FDA8[53];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8F8E0;
+    s = *(u8 *)&lbl_1_bss_8F8E0_20;
+    s = *(u8 *)&lbl_1_bss_8F980;
+    s = *(u8 *)&lbl_1_bss_8F9A0;
+    s = *(u8 *)&lbl_1_bss_8FD60;
+    s = *(u8 *)&lbl_1_bss_8FD60_4;
+    s = *(u8 *)&lbl_1_bss_8FD60_6;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8FD68;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_8FDA8;
+}
+#pragma section code_type ".text"
+
+#pragma opt_strength_reduction off
+#pragma opt_propagation reset
+#pragma opt_lifetimes off
+#pragma inline_max_size(4096)
+static inline void update_row(s32 i, Ent *ep, u16 *ip) {
+    struct { u16 (*value)[32]; } row;
+    u16 idx;
+    s32 n;
+    u16 v;
+    row.value = &lbl_1_bss_8F9A0[i - 1];
+    idx = *ip;
+    fn_1_15BEBC(i, ep);
+    v = (*row.value)[idx];
+    if (v == 0) {
+        (*row.value)[idx] = ep->val;
+    } else {
+        u16 x = ep->val;
+        if (x != v) {
+            n = (s32)(idx + 1) % 32;
+            *ip = n;
+            (*row.value)[(u16)n] = x;
+        }
+    }
+}
+
+static inline u16 poll_win_input(void) {
+    s32 i;
+    u16 *ip;
+    Ent *ep;
+    if (lbl_1_bss_8FD60_6 != 0) {
+        lbl_1_bss_8FD60_6 = lbl_1_bss_8FD60_6 - 1;
+        return lbl_1_bss_8FD60_4;
+    }
+    fn_1_15C0AC();
+    ep = &lbl_1_bss_8F8E0_20[1];
+    ip = &lbl_1_bss_8F980[1];
+    for (i = 1; i < 16; i++) {
+        update_row(i, ep, ip);
+        ep++;
+        ip++;
+    }
+    {
+        u32 r = fn_1_15BE38();
+        lbl_1_bss_8FD60_4 = r;
+        if ((u16)r != 0xffff) {
+            lbl_1_bss_8FD60_6 = 0x78;
+            fn_80008BEC(lbl_1_bss_8F9A0, 0, 0x3c0);
+        }
+    }
+    return lbl_1_bss_8FD60_4;
+}
+
+u16 fn_1_15BBC4(void) {
+    return poll_win_input();
+}
+#pragma opt_propagation reset
+#pragma opt_strength_reduction reset
+/* fzgx:end fn_1_15BBC4 */
+
 /* fzgx:begin fn_1_15BCDC noprologue */
 #include "types.h"
 
