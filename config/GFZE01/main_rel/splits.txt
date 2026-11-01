@@ -9084,14 +9084,8 @@ rel/main_rel/effect_car/fn_1_6AF70.c:
 rel/main_rel/font/fn_1_50A90.c:
 	.text       start:0x00050A90 end:0x00051564 align:4
 
-rel/main_rel/bitmap/fn_1_487EC.c:
-	.text       start:0x000487EC end:0x00048A0C align:4
-
 rel/main_rel/live_camera/fn_1_F3D0.c:
 	.text       start:0x0000F3D0 end:0x0000F6A8 align:4
-
-rel/main_rel/memcard/fn_1_B6B28.c:
-	.text       start:0x000B6B28 end:0x000B7C00 align:4
 
 rel/main_rel/sel_static_disp/fn_1_147A04.c:
 	.text       start:0x00147A04 end:0x00148444 align:4
@@ -9129,9 +9123,6 @@ rel/main_rel/replay/fn_1_F4810.c:
 rel/main_rel/spline/fn_1_F5D94.c:
 	.text       start:0x000F5D94 end:0x000F65A0 align:4
 
-rel/main_rel/ghost/fn_1_F0168.c:
-	.text       start:0x000F0168 end:0x000F0508 align:4
-
 rel/main_rel/camera/fn_1_C770.c:
 	.text       start:0x0000C770 end:0x0000CC5C align:4
 
@@ -9141,35 +9132,11 @@ rel/main_rel/effect_car/fn_1_7099C.c:
 rel/main_rel/driver/fn_1_C24A4.c:
 	.text       start:0x000C24A4 end:0x000C3378 align:4
 
-rel/main_rel/game/fn_1_32200.c:
-	.text       start:0x00032200 end:0x00032600 align:4
+rel/main_rel/bitmap/fn_1_487EC.c:
+	.text       start:0x000487EC end:0x00048A0C align:4
 
-rel/main_rel/game/fn_1_36330.c:
-	.text       start:0x00036330 end:0x00036A94 align:4
+rel/main_rel/ghost/fn_1_F0168.c:
+	.text       start:0x000F0168 end:0x000F0508 align:4
 
-rel/main_rel/game/fn_1_2FAA0.c:
-	.text       start:0x0002FAA0 end:0x0002FDBC align:4
-
-rel/main_rel/sel_static_disp/fn_1_148950.c:
-	.text       start:0x00148950 end:0x001490FC align:4
-
-rel/main_rel/stcoli/fn_1_2AF0C.c:
-	.text       start:0x0002AF0C end:0x0002B478 align:4
-
-rel/main_rel/effect_car/fn_1_6D7BC.c:
-	.text       start:0x0006D7BC end:0x0006DD68 align:4
-
-rel/main_rel/background/fn_1_9C724.c:
-	.text       start:0x0009C724 end:0x0009CC40 align:4
-
-rel/main_rel/car/fn_1_85C58.c:
-	.text       start:0x00085C58 end:0x00085F70 align:4
-
-rel/main_rel/memcard/fn_1_C42F4.c:
-	.text       start:0x000C42F4 end:0x000C47B4 align:4
-
-rel/main_rel/bg_for/fn_1_E3324.c:
-	.text       start:0x000E3324 end:0x000E35F0 align:4
-
-rel/main_rel/_prolog/fn_1_3308.c:
-	.text       start:0x00003308 end:0x00003920 align:4
+rel/main_rel/memcard/fn_1_B6B28.c:
+	.text       start:0x000B6B28 end:0x000B7C00 align:4

@@ -441,7 +441,24 @@ void fn_1_48780(void) {
 }
 /* fzgx:end fn_1_48780 */
 
-/* fzgx:begin fn_1_487EC pool */
+/* fzgx:begin fn_1_487EC */
+extern void fn_1_48214(int index, int enabled);
+extern void fn_1_4DDC0(void);
+extern void fn_1_4F724(void);
+extern s32 lbl_801A6410;
+extern void OSPanic(const unsigned char *, ...);
+extern int fn_1_45D0(int, int, const unsigned char *, int);
+extern int fn_80008F88(int, int);
+extern void fn_8006FDEC(void);
+extern void fn_80009064(u32 value);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
+extern void *fn_1_48730(u32 value);
+extern void fn_1_47AD4(Obj_1_data_FCD4 *obj, u8 value, int arg2, int arg3);
+extern f32 lbl_1_rodata_10C0[5];
+extern f32 lbl_1_bss_3E05C;
+
+extern void *fn_1_48730(u32 value);
+
 #ifndef GAME_MAIN_REL_BITMAP_TYPES_H
 #define GAME_MAIN_REL_BITMAP_TYPES_H
 
@@ -461,21 +478,21 @@ typedef struct {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_3E058;
-f32 lbl_1_bss_3E05C;
-u32 lbl_1_bss_3E060[0x56B];
-s32 lbl_1_bss_3F60C[0x56B];
-s32 lbl_1_bss_40BB8;
-s32 lbl_1_bss_40BBC[0x2C];
+f32 fzgx_obj_lbl_1_bss_3E05C;
+u32 fzgx_obj_lbl_1_bss_3E060[0x56B];
+s32 lbl_1_bss_3F60C__fzgx_offset_0[0x56B];
+s32 lbl_1_bss_3F60C__fzgx_offset_15AC;
+s32 fzgx_obj_lbl_1_bss_40BBC[0x2C];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3E058;
-    s = *(u8 *)&lbl_1_bss_3E05C;
-    s = *(u8 *)&lbl_1_bss_3E060;
-    s = *(u8 *)&lbl_1_bss_3F60C;
-    s = *(u8 *)&lbl_1_bss_40BB8;
-    s = *(u8 *)&lbl_1_bss_40BBC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3E05C;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3E060;
+    s = *(u8 *)&lbl_1_bss_3F60C__fzgx_offset_0;
+    s = *(u8 *)&lbl_1_bss_3F60C__fzgx_offset_15AC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_40BBC;
 }
 #pragma section code_type ".text"
 
@@ -484,8 +501,8 @@ static inline void reset_bitmap_groups(s32 zero, BitmapGroup **group, u16 **p) {
     s32 *count;
     s32 k;
 
-    lbl_1_bss_40BB8 = zero;
-    count = lbl_1_bss_40BBC;
+    lbl_1_bss_3F60C__fzgx_offset_15AC = zero;
+    count = fzgx_obj_lbl_1_bss_40BBC;
     for (j = zero; j < 0x2C; count++, j++, (*group)++) {
         *count = zero;
         if ((*group)->unk_0 == -1) {
@@ -514,8 +531,8 @@ void fn_1_487EC(void) {
     s32 k;
 
     for (i = 0; i < 0x56B; i++) {
-        lbl_1_bss_3E060[i] = 0;
-        lbl_1_bss_3F60C[i] = -1;
+        fzgx_obj_lbl_1_bss_3E060[i] = 0;
+        lbl_1_bss_3F60C__fzgx_offset_0[i] = -1;
     }
 
     /* count the entries of every terminator-marked group and reset their slots */
@@ -529,7 +546,7 @@ void fn_1_487EC(void) {
         q = target->unk_2C;
         while (*q != 0) {
             if (*q == key && fn_1_48A0C(n, 0x2A, target, 1) != 0) {
-                lbl_1_bss_40BB8++;
+                lbl_1_bss_3F60C__fzgx_offset_15AC++;
                 break;
             }
             n++;
