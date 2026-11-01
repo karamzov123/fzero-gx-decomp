@@ -1976,6 +1976,83 @@ u32 fn_1_46ED8(void) {
 }
 /* fzgx:end fn_1_46ED8 */
 
+/* fzgx:begin fn_1_46EE8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/load.h"
+
+extern void fn_8000659C(void);
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+} LoadSlot;
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+s32 fzgx_obj_lbl_1_bss_384C0;
+s32 lbl_1_bss_384C4;
+u8 fzgx_pool_gap_384C8[0x10];
+LoadSlot fzgx_obj_lbl_1_bss_384D8[0x400];
+u8 fzgx_pool_gap_3C4D8[0x1800];
+u32 lbl_1_bss_3DCD8;
+u32 fzgx_obj_lbl_1_bss_3DCDC;
+s32 lbl_1_bss_3DCDC__fzgx_offset_4;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
+    s = *(u8 *)&lbl_1_bss_384C4;
+    s = *(u8 *)&fzgx_pool_gap_384C8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
+    s = *(u8 *)&fzgx_pool_gap_3C4D8;
+    s = *(u8 *)&lbl_1_bss_3DCD8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCDC;
+    s = *(u8 *)&lbl_1_bss_3DCDC__fzgx_offset_4;
+}
+#pragma section code_type ".text"
+
+/* a helper: inlined, it gives retail's register for the stored zero in this loop */
+static inline void clear_flagged_slots(void) {
+    LoadSlot *slot;
+    s32 i;
+
+    slot = fzgx_obj_lbl_1_bss_384D8;
+    for (i = 0; i < 0x400; i++, slot++) {
+        if (slot->unk_0 == 0x80000000) {
+            slot->unk_0 = 0;
+            lbl_1_bss_3DCD8 = slot->unk_8;
+        }
+    }
+}
+
+/* Called from fn_1_36330. While the load queue has entries not done (0x384C0 queued, 0x384C4 done), clears the
+ * slots flagged 0x80000000, keeping the last one's word +8 in 0x3DCD8, then marks the queue done; then clears
+ * every slot without 0x10000000 (set for locked slots in fn_1_46144) and lowers the next free slot (0x3DCDC+4). */
+void fn_1_46EE8(void) {
+    LoadSlot *slot;
+    s32 i;
+
+    fn_8000659C();
+    if (fzgx_obj_lbl_1_bss_384C0 != lbl_1_bss_384C4) {
+        clear_flagged_slots();
+        lbl_1_bss_384C4 = fzgx_obj_lbl_1_bss_384C0;
+    }
+    slot = fzgx_obj_lbl_1_bss_384D8;
+    for (i = 0; i < 0x400; i++, slot++) {
+        if (!(slot->unk_0 & 0x10000000)) {
+            slot->unk_0 = 0;
+            if (i < lbl_1_bss_3DCDC__fzgx_offset_4) {
+                lbl_1_bss_3DCDC__fzgx_offset_4 = i;
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_46EE8 */
+
 /* fzgx:begin fn_1_4706C */
 typedef struct {
     u32 flag;

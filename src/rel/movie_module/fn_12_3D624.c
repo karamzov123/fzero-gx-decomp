@@ -1,70 +1,68 @@
 #include "types.h"
-static const char version[] = "\nCRI CFT/GC Ver.1.29 Build:May  9 2003 15:17:25\n";
-#pragma section code_type ".fzgxpool"
-void fzgx_fn_12_3D624_pool_primer(volatile f32 *p) {  /* fzgx-allow: S2 volatile keeps the verified access order */
- p[0] = 0.5f;
- p[1] = 2.017f;
- p[2] = -0.392f;
- p[3] = 0.0f;
- p[4] = -0.813f;
- p[5] = 1.596f;
- p[6] = 1.164f;
- p[7] = 127.0f;
- p[8] = 278.696f;
- p[9] = 255.0f;
-}
-#pragma section code_type ".text"
-extern u32 lbl_12_data_E98[2];
+
+extern u32 lbl_12_data_E98[];
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 f32 lbl_12_bss_1CC80[256];
-f32 lbl_12_bss_1CC80_400[256];
-f32 lbl_12_bss_1CC80_800[256];
-f32 lbl_12_bss_1CC80_C00[256];
-f32 lbl_12_bss_1CC80_1000[256];
-u32 lbl_12_bss_1CC80_1400[2];
-f32 lbl_12_bss_1E088;
-u32 lbl_12_bss_1E088_fill_1E08C[212];
+f32 lbl_12_bss_1CC80__fzgx_offset_400[256];
+f32 lbl_12_bss_1CC80__fzgx_offset_800[256];
+f32 lbl_12_bss_1CC80__fzgx_offset_C00[256];
+f32 lbl_12_bss_1CC80__fzgx_offset_1000[256];
+u32 lbl_12_bss_1CC80__fzgx_offset_1400;
+
+const char fzgx_pool_head[0x34] = "\nCRI CFT/GC Ver.1.29 Build:May  9 2003 15:17:25\n";
+
+/* Literal-pool primer: fixes retail's first-use order of the TU's pooled constants.
+ * Volatile stores preserve every literal in the pool rather than eliminating overwritten values. */
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_pool_primer(volatile f32 *p, s32 n) { /* volatile: retain literal-pool primer stores. */
+    p[0] = 0.5f;
+    p[0] = 2.017f;
+    p[0] = -0.392f;
+    p[0] = 0.0f;
+    p[0] = -0.813f;
+    p[0] = 1.596f;
+    p[0] = 1.164f;
+    p[0] = 127.0f;
+    p[0] = 278.696f;
+    p[0] = 255.0f;
+    p[0] = (f32)n;
+}
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
-    volatile u8 s; /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    volatile u8 s; /* fzgx-allow: S2 BSS primer ordering */
     s = *(u8 *)&lbl_12_bss_1CC80;
-    s = *(u8 *)&lbl_12_bss_1CC80_400;
-    s = *(u8 *)&lbl_12_bss_1CC80_800;
-    s = *(u8 *)&lbl_12_bss_1CC80_C00;
-    s = *(u8 *)&lbl_12_bss_1CC80_1000;
-    s = *(u8 *)&lbl_12_bss_1CC80_1400;
-    s = *(u8 *)&lbl_12_bss_1E088;
-    s = *(u8 *)&lbl_12_bss_1E088_fill_1E08C;
+    s = *(u8 *)&lbl_12_bss_1CC80__fzgx_offset_400;
+    s = *(u8 *)&lbl_12_bss_1CC80__fzgx_offset_800;
+    s = *(u8 *)&lbl_12_bss_1CC80__fzgx_offset_C00;
+    s = *(u8 *)&lbl_12_bss_1CC80__fzgx_offset_1000;
+    s = *(u8 *)&lbl_12_bss_1CC80__fzgx_offset_1400;
 }
 #pragma section code_type ".text"
 
-#pragma opt_dead_assignments off
-static inline void initialize_tables(f32 scale) {
- u32 i;
- f32 y;
- f32 *a = lbl_12_bss_1CC80_1000;
- f32 *b = lbl_12_bss_1CC80_C00;
- f32 *c = lbl_12_bss_1CC80_800;
- f32 *d = lbl_12_bss_1CC80;
-#pragma opt_unroll_loops off
- lbl_12_bss_1CC80_1400[0] = (*((lbl_12_data_E98) + (0)));
- for (i=0;i<256;i++) {
- y = scale * (f32)(s32)(i-16);
- a[i] = y;
- b[i] = -0.392f * (f32)(s32)(i-128);
- c[i] = 2.017f * (f32)(s32)(i-128);
- d[i] = 1.596f * (f32)(s32)(i-128);
-{
- f32 *e = lbl_12_bss_1CC80_400;
- e[i] = -0.813f * (f32)(s32)(i-128);
-}
- }
-}
-#pragma opt_dead_assignments reset
-#pragma opt_dead_assignments off
+/* Fills five 256-entry float tables with scaled (i - 16) and (i - 128) values for i = 0..255,
+ * after copying the word at lbl_12_data_E98 to the word after them. */
+#pragma opt_propagation off
 void fn_12_3D624(void) {
- initialize_tables(1.164f);
+    s32 i;
+    f32 y;
+    f32 *p4;
+    f32 *p3;
+    f32 *p2;
+    f32 *p0;
+    f32 *p1;
+
+    lbl_12_bss_1CC80__fzgx_offset_1400 = lbl_12_data_E98[0];
+    for (i = 0, p4 = lbl_12_bss_1CC80__fzgx_offset_1000, p3 = lbl_12_bss_1CC80__fzgx_offset_C00,
+        p2 = lbl_12_bss_1CC80__fzgx_offset_800, p0 = lbl_12_bss_1CC80, p1 = lbl_12_bss_1CC80__fzgx_offset_400;
+         i < 256; i++, p4++, p3++, p2++, p0++, p1++) {
+        y = 1.164f * (f32)(i - 16);
+        *p4 = y;
+        *p3 = -0.392f * (f32)(i - 128);
+        *p2 = 2.017f * (f32)(i - 128);
+        *p0 = 1.596f * (f32)(i - 128);
+        *p1 = -0.813f * (f32)(i - 128);
+    }
 }
-#pragma opt_dead_assignments reset
-
-
+#pragma opt_propagation reset

@@ -1015,3 +1015,105 @@ void fn_1_57DC0(void) {
     fn_80074788(1);
 }
 /* fzgx:end fn_1_57DC0 */
+
+/* fzgx:begin fn_1_57E84 noprologue */
+#include "types.h"
+#include "rel/main_rel/shadowmap.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} ColorVertex;
+
+typedef struct {
+    u8 pad_0[0x8];
+    u8 unk_8[0x30];
+    u32 unk_38;
+    u16 unk_3C;
+    u8 pad_3E[0x2];
+    ColorVertex *unk_40;
+    Obj_1_data_1C670 unk_44;
+} Fn1_57E84_Object;
+
+typedef union {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+    f32 f32;
+} WGPipe;
+
+volatile WGPipe GXWGFifo : 0xCC008000; /* fzgx-allow: A1 write-gather FIFO port */
+
+extern void fn_800746A8(u32, u32);
+extern void fn_8007245C(u32);
+extern void fn_800728A8(u32, u32, u32, u32);
+extern void fn_800720B0(u32);
+extern void fn_800747D0(u32, u32, u32, u32, u32, u32, u32);
+extern void fn_800734A8(u32, u32, u32, u32);
+extern void fn_80072EDC(u32, u32);
+extern void fn_80073C6C(u32);
+extern void fn_80073678(u32);
+extern void fn_80074660(u32);
+extern void fn_80073898(u32);
+extern void fn_80074788(u32);
+extern void fn_80074918(u8, s32, u8);
+extern void GXLoadPosMtxImm(void *, int);
+extern void fn_8003462C(u32, u32, u32);
+
+static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
+    GXWGFifo.u8 = r;
+    GXWGFifo.u8 = g;
+    GXWGFifo.u8 = b;
+    GXWGFifo.u8 = a;
+}
+
+/* fn_1_57DC0's body: retail inlines that same-TU function here */
+static inline void state_apply(void) {
+    fn_800746A8(lbl_1_data_1C670.unk_0, lbl_1_data_1C670.unk_14);
+    fn_8007245C(0xa00);
+    fn_800728A8(lbl_1_data_1C670.unk_4, lbl_1_data_1C670.unk_8,
+                lbl_1_data_1C670.unk_C, lbl_1_data_1C670.unk_10);
+    fn_800720B0(0);
+    fn_800747D0(4, 0, 1, 1, 0, 2, 1);
+    fn_800734A8(0, 0xff, 0xff, 4);
+    fn_80072EDC(0, 4);
+    fn_80073C6C(0);
+    fn_80073678(1);
+    fn_80074660(0);
+    fn_80073898(0);
+    fn_80074788(1);
+}
+
+void fn_1_57E84(Fn1_57E84_Object *object) {
+    Obj_1_data_1C670 saved;
+    ColorVertex *v;
+    s32 i;
+    s32 count;
+
+    saved = lbl_1_data_1C670;
+    lbl_1_data_1C670 = object->unk_44;
+    state_apply();
+    fn_80074918(1, 3, 1);
+    GXLoadPosMtxImm(object->unk_8, 0);
+    fn_8003462C(object->unk_38, 0, object->unk_3C);
+    count = object->unk_3C;
+    v = object->unk_40;
+    for (i = 0; i < count; i++) {
+        GXPosition3f32(v->x, v->y, v->z);
+        GXColor4u8(v->r, v->g, v->b, v->a);
+        v++;
+    }
+    lbl_1_data_1C670 = saved;
+}
+/* fzgx:end fn_1_57E84 */

@@ -6488,3 +6488,24 @@ dol/fn_80044EF8.c:
 
 dol/fn_800456A0.c:
 	.text       start:0x800456A0 end:0x80045D3C align:4
+
+dol/fn_80022EA4.c:
+	.text       start:0x80022EA4 end:0x800230A0 align:4
+
+dol/fn_80060724.c:
+	.text       start:0x80060724 end:0x80060950 align:4
+
+dol/fn_80069FCC.c:
+	.text       start:0x80069FCC end:0x8006A1F8 align:4
+
+dol/fn_8006AA44.c:
+	.text       start:0x8006AA44 end:0x8006AC44 align:4
+
+dol/fn_80063F38.c:
+	.text       start:0x80063F38 end:0x8006413C align:4
+
+dol/fn_80070AC0.c:
+	.text       start:0x80070AC0 end:0x80070CF8 align:4
+
+dol/fn_80060950.c:
+	.text       start:0x80060950 end:0x80060BDC align:4

@@ -1004,6 +1004,117 @@ void fn_1_DD890(Sig_fn_1_DD4DC_DDObj *arg0, f32 arg1) {
 }
 /* fzgx:end fn_1_DD890 */
 
+/* fzgx:begin fn_1_DDF80 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec;
+
+/* bg_for.c's literal pool: -1.0f at 0x0, 0.0f at 0x20, 1.0f at 0x28 */
+typedef struct {
+    f32 unk_0;
+    u8 pad_4[0x1C];
+    f32 unk_20;
+    u8 pad_24[0x4];
+    f32 unk_28;
+} Pool;
+
+extern const Pool lbl_1_rodata_6780;
+extern f32 lbl_8006D534(Vec *, Vec *);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_80008BA8(void *, void *, u32);
+extern void lbl_8006D5F0(Vec *, Vec *, f32);
+extern void lbl_8006D668(Vec *);
+
+/* opt_common_subs off as in fn_1_DE180, which repeats this code; opt_propagation off keeps the pool pointer
+ * in one register from the start, as retail does */
+#pragma opt_common_subs off
+#pragma opt_propagation off
+
+static inline void cross(Vec *a, Vec *b, Vec *out) {
+    f32 ax;
+    f32 ay;
+    f32 az;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    f32 x;
+    f32 y;
+    f32 z;
+
+    ay = a->y;
+    bz = b->z;
+    az = a->z;
+    bx = b->x;
+    by = b->y;
+    ax = a->x;
+
+    x = ay * bz;
+    x -= az * by;
+    y = az * bx;
+    y -= ax * bz;
+    z = ax * by;
+    z -= ay * bx;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+static inline f32 dot(Vec *a, Vec *b) {
+    f32 result;
+    f32 ay;
+    f32 az;
+    f32 ax;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    ax = a->x;
+    bx = b->x;
+    ay = a->y;
+    by = b->y;
+    az = a->z;
+    bz = b->z;
+    result = ax * bx;
+    result += ay * by;
+    result += az * bz;
+    return result;
+}
+
+/* a helper of its own gives the -1.0 and the final scale retail's register order */
+static inline void flip(const Pool *pool, Vec *v) {
+    psvec_scale(v, pool->unk_0, v);
+}
+
+void fn_1_DDF80(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
+    const Pool *pool = &lbl_1_rodata_6780;
+    Vec pos;
+    f32 c;
+    f32 s;
+
+    c = lbl_8006D534(a, b);
+    s = lbl_8006D0B4(pool->unk_28 - (f32)(c * c));
+    fn_80008BA8(along, b, sizeof(Vec));
+    lbl_8006D5F0(along, along, along_scale * c);
+    fn_80008BA8(&pos, a, sizeof(Vec));
+    cross(&pos, b, side);
+    cross(side, b, side);
+    if (dot(side, side) > pool->unk_20) {
+        lbl_8006D668(side);
+    }
+    if (!(dot(&pos, side) > pool->unk_20)) {
+        flip(pool, side);
+    }
+    psvec_scale(side, side_scale * s, side);
+}
+
+#pragma opt_propagation reset
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_DDF80 */
+
 /* fzgx:begin fn_1_DE180 noprologue */
 #include "types.h"
 #include "psvec.h"

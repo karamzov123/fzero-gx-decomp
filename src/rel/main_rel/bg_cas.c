@@ -5584,3 +5584,182 @@ break;
 }
 }
 /* fzgx:end fn_1_10161C */
+
+/* fzgx:begin fn_1_1018BC */
+typedef struct {
+    u32 unk_0;
+    char unk_4[0x100];
+} fn_1_1018BC_Entry;
+
+typedef struct {
+    u8 pad_0[0x4];
+    u32 unk_4;
+} fn_1_1018BC_Model;
+
+typedef struct {
+    f32 x, y, z;
+} fn_1_1018BC_Vec;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[0xF];
+    fn_1_1018BC_Vec unk_10;
+} fn_1_1018BC_Node;
+
+typedef struct {
+    fn_1_1018BC_Node *unk_0;
+    fn_1_1018BC_Node *unk_4;
+    u8 pad_8[0x10];
+} fn_1_1018BC_Edge;
+
+typedef struct {
+    u8 pad_0[0x8];
+    fn_1_1018BC_Model **unk_8;
+} fn_1_1018BC_Table;
+
+/* lbl_1_bss_85250 seen from here: bg_cas.h types unk_20 as 0xC-byte records, but this function walks it in
+ * 0x18-byte steps (two node pointers each) */
+typedef struct {
+    s32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    fn_1_1018BC_Table *unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    fn_1_1018BC_Edge *unk_20;
+    u32 unk_24;
+} fn_1_1018BC_State;
+
+typedef struct {
+    u8 r, g, b, a;
+} fn_1_1018BC_Color;
+
+typedef struct {
+    fn_1_1018BC_Vec unk_0;
+    fn_1_1018BC_Color unk_C;
+} fn_1_1018BC_Vertex;
+
+typedef struct {
+    u8 pad_0[0x10];
+    u8 unk_10[0x30];
+} fn_1_1018BC_Camera;
+
+typedef struct {
+    u8 pad_0[0x20];
+    void *unk_20;
+} fn_1_1018BC_Models;
+
+typedef struct {
+    u8 pad_0[0x8];
+    fn_1_1018BC_Models *unk_8;
+} fn_1_1018BC_Library;
+
+extern fn_1_1018BC_Library *lbl_1_bss_38454;
+extern fn_1_1018BC_Camera *camera_get_state_object(void);
+extern void fn_80077B14(fn_1_1018BC_Model *);
+extern void fn_1_49410(void);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4AE0C(const char *, ...);
+extern void fn_1_A8EB0(int, int);
+extern void fn_1_A8DD4(const char *, ...);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E14C(f32);
+extern void fn_80072558(void);
+extern void fn_1_556B8(void *);
+extern void fn_1_57714(u8);
+extern void fn_1_57720(u32, u32, u32, u32);
+extern void fn_1_57BBC(fn_1_1018BC_Vertex *, fn_1_1018BC_Vertex *);
+
+/* the TU's .data from lbl_1_data_3EFB8, at retail offsets, so MWCC addresses it off one section base: the
+ * model entry, the three mode names and their table at +0x158, then this function's two formats at +0x1AC and
+ * +0x1B0; the gap objects stand for the retail data in between, which this function does not touch */
+fn_1_1018BC_Entry fzgx_obj_lbl_1_data_3EFB8[1] = { { 0x23, "m_fut2" } };
+u32 fzgx_pool_gap_104 = 1;
+/* the cloth test's three mode names, in Shift-JIS: "uneune (wavy) mode (no control)",
+ * "buranburan (dangling) mode (PAD0)", "guruguru (spinning) mode (PAD1)" */
+char *fzgx_pool_data_158[3] = {
+    "\x82\xa4\x82\xcb\x82\xa4\x82\xcb\x83\x82\x81[\x83h(\x82\xbb\x82\xa4\x82\xb3\x82\xc8\x82\xb5)",
+    "\x82\xd4\x82\xe7\x82\xf1\x82\xd4\x82\xe7\x82\xf1\x83\x82\x81[\x83h(PAD0)",
+    "\x82\xae\x82\xe9\x82\xae\x82\xe9\x83\x82\x81[\x83h(PAD1)",
+};
+u32 fzgx_pool_gap_164[0x12] = { 1 };
+
+/* the TU's two zero vectors at lbl_1_rodata_77F8 and 0x7804, ahead of this function's constants */
+const f32 fzgx_pool_rodata_77F8[6] = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+
+/* this function's line colours: retail keeps a red/green pair for each end of the line (.rodata 0x7810) */
+const fn_1_1018BC_Color fzgx_pool_rodata_7810 = { 0xFF, 0x00, 0x00, 0xFF };
+const fn_1_1018BC_Color fzgx_pool_rodata_7814 = { 0x00, 0xFF, 0x00, 0xFF };
+const fn_1_1018BC_Color fzgx_pool_rodata_7818 = { 0xFF, 0x00, 0x00, 0xFF };
+const fn_1_1018BC_Color fzgx_pool_rodata_781C = { 0x00, 0xFF, 0x00, 0xFF };
+
+/* ClothDisp, the draw task fn_1_1014B4 registers under that name: draws the selected cloth model, then a line
+ * per edge between its nodes, red or green by bit 0 of each node's first byte */
+/* without this, MWCC colours the section bases and the camera pointer in a different order */
+#pragma opt_common_subs off
+void fn_1_1018BC(void) {
+    fn_1_1018BC_State *st = (fn_1_1018BC_State *)&lbl_1_bss_85250;
+    fn_1_1018BC_Camera *cam;
+    fn_1_1018BC_Table *table;
+    fn_1_1018BC_Model *model;
+    fn_1_1018BC_Vertex v[2];
+    u32 i;
+
+    cam = camera_get_state_object();
+    table = st->unk_10;
+    if (table == NULL) {
+        return;
+    }
+    if ((lbl_1_bss_D58.unk_8 & 1) || ((lbl_1_bss_D58.unk_8 >> 1) & 1)) {
+        return;
+    }
+    model = table->unk_8[st->unk_4 * 2];
+    if (model == NULL) {
+        return;
+    }
+    fn_80077B14(model);
+    fn_1_49410();
+    fn_1_496FC(20.0f, 50.0f);
+    fn_1_4AE0C("%s", fzgx_pool_data_158[st->unk_14]);
+    fn_1_A8EB0(3, 3);
+    fn_1_A8DD4("Cloth Test [%s] %d\n", fzgx_obj_lbl_1_data_3EFB8[st->unk_8].unk_4, st->unk_4);
+    lbl_8006DCA4();
+    lbl_8006E0A4(cam->unk_10);
+    lbl_8006E14C(0.5f);
+    fn_80072558();
+    fn_1_556B8(lbl_1_bss_38454->unk_8->unk_20);
+    lbl_8006DCA4();
+    fn_80072558();
+    fn_1_556B8(model);
+    if (!(model->unk_4 & 0x10)) {
+        return;
+    }
+    if (st->unk_0 == 0) {
+        return;
+    }
+    fn_1_57714(0xC);
+    fn_1_57720(1, 1, 1, 0);
+    lbl_8006DCA4();
+    lbl_8006E14C(0.9999f);
+    fn_80072558();
+    for (i = 0; i < st->unk_24; i++) {
+        v[0].unk_0 = st->unk_20[i].unk_0->unk_10;
+        if (st->unk_20[i].unk_0->unk_0 & 1) {
+            v[0].unk_C = fzgx_pool_rodata_7810;
+        } else {
+            v[0].unk_C = fzgx_pool_rodata_7814;
+        }
+        v[1].unk_0 = st->unk_20[i].unk_4->unk_10;
+        if (st->unk_20[i].unk_4->unk_0 & 1) {
+            v[1].unk_C = fzgx_pool_rodata_7818;
+        } else {
+            v[1].unk_C = fzgx_pool_rodata_781C;
+        }
+        fn_1_57BBC(&v[0], &v[1]);
+    }
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_1018BC */

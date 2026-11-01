@@ -893,6 +893,62 @@ void fn_3_14778(u16 arg0, u16 arg1, u8 arg2, u32 arg3) {
 }
 /* fzgx:end fn_3_14778 */
 
+/* fzgx:begin fn_3_14794 */
+extern u16 lbl_3_bss_A23D8;
+extern u32 lbl_3_bss_A23E0;
+
+extern void *memset(void *, int, u32);
+
+/* colour c (r, g, b, a bytes) as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up,
+ * otherwise 3 bits of alpha and 4 bits per colour) */
+#define RGB565(c) ((u16)((((c)[0] & 0xF8) << 8) | (((c)[1] & 0xFC) << 3) | (((c)[2] & 0xF8) >> 3)))
+#define RGB5A3(c)                                                                                       \
+    ((c)[3] >= 0xE0 ? (((c)[0] & 0xF8) << 7) | (((c)[1] & 0xF8) << 2) | (((c)[2] & 0xF8) >> 3) | 0x8000 \
+                    : (((c)[0] & 0xF0) << 4) | ((c)[1] & 0xF0) | (((c)[2] & 0xF0) >> 4) | (((c)[3] & 0xE0) << 7))
+
+/* writes colour (r, g, b, a bytes) into the canvas pixel at (x, y); lbl_3_bss_A23D8 holds the canvas width and
+ * lbl_3_bss_A23E0 its texture format (4 RGB565, 5 RGB5A3), pixels in 4 x 4 tiles of 16-bit texels.
+ * canvas is __restrict: retail reads the alpha byte again before it stores the texel's high byte */
+void fn_3_14794(u8 *__restrict canvas, s16 x, s16 y, const u8 *color) {
+    s16 offset;
+    s16 bx;
+    s16 by;
+    s16 bw;
+    s16 px;
+    s16 py;
+    s16 blk;
+    u8 hi;
+    u8 lo;
+
+    switch (lbl_3_bss_A23E0) {
+    case 4:
+        bx = x / 4;
+        by = y / 4;
+        bw = lbl_3_bss_A23D8 / 4;
+        px = x % 4;
+        py = y % 4;
+        blk = bx + by * bw;
+        offset = blk * 32 + (px + py * 4) * 2;
+        hi = RGB565(color) >> 8;
+        lo = RGB565(color) & 0xFF;
+        memset(&canvas[offset], hi, 1);
+        memset(&canvas[offset + 1], lo, 1);
+        break;
+    case 5:
+        bx = x >> 2;
+        by = y >> 2;
+        bw = lbl_3_bss_A23D8 >> 2;
+        blk = bx + by * bw;
+        offset = blk * 32 + ((x & 3) + (y & 3) * 4) * 2;
+        canvas[offset] = (u16)RGB5A3(color) >> 8;
+        canvas[offset + 1] = RGB5A3(color);
+        break;
+    case 6: /* empty in retail too: its compare tree tests 4, 5 and 6 */
+        break;
+    }
+}
+/* fzgx:end fn_3_14794 */
+
 /* fzgx:begin fn_3_149AC noprologue */
 #include "types.h"
 #include "rel/customize/globals.h"
@@ -1038,6 +1094,150 @@ done:
 }
 /* fzgx:end fn_3_149AC */
 
+/* fzgx:begin fn_3_14BBC */
+extern u16 lbl_3_bss_A23D8;
+extern u32 lbl_3_bss_A23E0;
+
+extern void *memset(void *, int, u32);
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} Color;
+
+/* colour c as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up, otherwise 3 bits of
+ * alpha and 4 bits per colour) */
+#define RGB565(c) ((u16)((((c).r & 0xF8) << 8) | (((c).g & 0xFC) << 3) | (((c).b & 0xF8) >> 3)))
+#define RGB5A3(c)                                                                                      \
+    ((c).a >= 0xE0 ? (((c).r & 0xF8) << 7) | (((c).g & 0xF8) << 2) | (((c).b & 0xF8) >> 3) | 0x8000 \
+                   : (((c).r & 0xF0) << 4) | ((c).g & 0xF0) | (((c).b & 0xF0) >> 4) | (((c).a & 0xE0) << 7))
+
+/* writes colour c into the canvas pixel at (x, y); lbl_3_bss_A23D8 holds the canvas width and lbl_3_bss_A23E0 its
+ * texture format (4 RGB565, 5 RGB5A3), pixels in 4 x 4 tiles of 16-bit texels */
+static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
+    s16 offset;
+    s16 bx;
+    s16 by;
+    s16 bw;
+    s16 px;
+    s16 py;
+    s16 blk;
+
+    switch (lbl_3_bss_A23E0) {
+    case 4:
+        bx = x / 4;
+        by = y / 4;
+        bw = lbl_3_bss_A23D8 / 4;
+        px = x % 4;
+        py = y % 4;
+        blk = bx + by * bw;
+        offset = blk * 32 + (px + py * 4) * 2;
+        memset(&canvas[offset], (u8)(RGB565(c) >> 8), 1);
+        memset(&canvas[offset + 1], (u8)RGB565(c), 1);
+        break;
+    case 5:
+        bx = x >> 2;
+        by = y >> 2;
+        bw = lbl_3_bss_A23D8 >> 2;
+        px = x & 3;
+        py = y & 3;
+        blk = bx + by * bw;
+        offset = blk * 32 + (px + py * 4) * 2;
+        canvas[offset] = (u16)RGB5A3(c) >> 8;
+        canvas[offset + 1] = RGB5A3(c);
+        break;
+    case 6: /* empty in retail too: its compare tree tests 4, 5 and 6 */
+        break;
+    }
+}
+
+/* writes *color into n canvas pixels from (x, y) along the row */
+void fn_3_14BBC(u8 *canvas, s16 x, s16 y, s16 n, Color *color) {
+    s16 i;
+
+    for (i = 0; i < n; i++) {
+        put_pixel(canvas, x + i, y, *color);
+    }
+}
+/* fzgx:end fn_3_14BBC */
+
+/* fzgx:begin fn_3_14E18 */
+extern u16 lbl_3_bss_A23D8;
+extern u32 lbl_3_bss_A23E0;
+
+extern void *memset(void *, int, u32);
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} Color;
+
+extern u32 fn_3_149AC(const u8 *canvas, s16 x, s16 y);
+
+/* colour c as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up, otherwise 3 bits of
+ * alpha and 4 bits per colour) */
+#define RGB565(c) ((u16)((((c).r & 0xF8) << 8) | (((c).g & 0xFC) << 3) | (((c).b & 0xF8) >> 3)))
+#define RGB5A3(c)                                                                                      \
+    ((c).a >= 0xE0 ? (((c).r & 0xF8) << 7) | (((c).g & 0xF8) << 2) | (((c).b & 0xF8) >> 3) | 0x8000 \
+                   : (((c).r & 0xF0) << 4) | ((c).g & 0xF0) | (((c).b & 0xF0) >> 4) | (((c).a & 0xE0) << 7))
+
+/* writes colour c into the canvas pixel at (x, y); lbl_3_bss_A23D8 holds the canvas width and lbl_3_bss_A23E0 its
+ * texture format (4 RGB565, 5 RGB5A3), pixels in 4 x 4 tiles of 16-bit texels (fn_3_14BBC's helper) */
+static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
+    s16 offset;
+    s16 bx;
+    s16 by;
+    s16 bw;
+    s16 px;
+    s16 py;
+    s16 blk;
+    u32 texel; /* u32: as u16 the second call keeps it in another register than retail */
+
+    switch (lbl_3_bss_A23E0) {
+    case 4:
+        bx = x / 4;
+        by = y / 4;
+        bw = lbl_3_bss_A23D8 / 4;
+        px = x % 4;
+        py = y % 4;
+        blk = bx + by * bw;
+        offset = blk * 32 + (px + py * 4) * 2;
+        texel = RGB565(c);
+        memset(&canvas[offset], (u8)(texel >> 8), 1);
+        memset(&canvas[offset + 1], (u8)texel, 1);
+        break;
+    case 5:
+        bx = x >> 2;
+        by = y >> 2;
+        bw = lbl_3_bss_A23D8 >> 2;
+        px = x & 3;
+        py = y & 3;
+        blk = bx + by * bw;
+        offset = blk * 32 + (px + py * 4) * 2;
+        canvas[offset] = (u16)RGB5A3(c) >> 8;
+        canvas[offset + 1] = RGB5A3(c);
+        break;
+    case 6: /* empty in retail too: its compare tree tests 4, 5 and 6 */
+        break;
+    }
+}
+
+/* swaps the canvas pixels at (x0, y0) and (x1, y1) */
+void fn_3_14E18(u8 *canvas, s16 x0, s16 y0, s16 x1, s16 y1) {
+    Color c1;
+    Color c0;
+
+    *(u32 *)&c0 = fn_3_149AC(canvas, x0, y0);
+    *(u32 *)&c1 = fn_3_149AC(canvas, x1, y1);
+    put_pixel(canvas, x0, y0, c1);
+    put_pixel(canvas, x1, y1, c0);
+}
+/* fzgx:end fn_3_14E18 */
+
 /* fzgx:begin fn_3_15240 */
 extern void fn_3_14E18(void *, s16, void *, s16, void *);
 
@@ -1059,3 +1259,75 @@ void fn_3_15240(void *arg0, s16 arg1, void *arg2, u16 arg3, s16 arg4, void *arg5
     }
 }
 /* fzgx:end fn_3_15240 */
+
+/* fzgx:begin fn_3_152BC */
+extern u16 lbl_3_bss_A23D8;
+extern u32 lbl_3_bss_A23E0;
+
+extern void *memset(void *, int, u32);
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} Color;
+
+/* colour c as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up, otherwise 3 bits of
+ * alpha and 4 bits per colour) */
+#define RGB565(c) ((u16)((((c).r & 0xF8) << 8) | (((c).g & 0xFC) << 3) | (((c).b & 0xF8) >> 3)))
+#define RGB5A3(c)                                                                                      \
+    ((c).a >= 0xE0 ? (((c).r & 0xF8) << 7) | (((c).g & 0xF8) << 2) | (((c).b & 0xF8) >> 3) | 0x8000 \
+                   : (((c).r & 0xF0) << 4) | ((c).g & 0xF0) | (((c).b & 0xF0) >> 4) | (((c).a & 0xE0) << 7))
+
+/* writes colour c into the canvas pixel at (x, y); lbl_3_bss_A23D8 holds the canvas width and lbl_3_bss_A23E0 its
+ * texture format (4 RGB565, 5 RGB5A3), pixels in 4 x 4 tiles of 16-bit texels */
+static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
+    s16 offset;
+    s16 bx;
+    s16 by;
+    s16 bw;
+    s16 px;
+    s16 py;
+    s16 blk;
+
+    switch (lbl_3_bss_A23E0) {
+    case 4:
+        bx = x / 4;
+        by = y / 4;
+        bw = lbl_3_bss_A23D8 / 4;
+        px = x % 4;
+        py = y % 4;
+        blk = bx + by * bw;
+        offset = blk * 32 + (px + py * 4) * 2;
+        memset(&canvas[offset], (u8)(RGB565(c) >> 8), 1);
+        memset(&canvas[offset + 1], (u8)RGB565(c), 1);
+        break;
+    case 5:
+        bx = x >> 2;
+        by = y >> 2;
+        bw = lbl_3_bss_A23D8 >> 2;
+        px = x & 3;
+        py = y & 3;
+        blk = bx + by * bw;
+        offset = blk * 32 + (px + py * 4) * 2;
+        canvas[offset] = (u16)RGB5A3(c) >> 8;
+        canvas[offset + 1] = RGB5A3(c);
+        break;
+    case 6: /* empty in retail too: its compare tree tests 4, 5 and 6 */
+        break;
+    }
+}
+
+/* fills the canvas pixels x0 <= x < x1, y0 <= y < y1 with *color, column by column */
+void fn_3_152BC(u8 *canvas, s16 y0, s16 x0, s16 y1, s16 x1, Color *color) {
+    s16 x;
+    s16 y;
+
+    for (x = x0; x < x1; x++) {
+        for (y = y0; y < y1; y++) {
+            put_pixel(canvas, x, y, *color);
+        }
+    }
+}
+/* fzgx:end fn_3_152BC */

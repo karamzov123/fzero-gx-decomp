@@ -791,3 +791,33 @@ rel/customize/emb_paste_editor/fn_3_FD30.c:
 
 rel/customize/emb_memcard/fn_3_D9A0.c:
 	.text       start:0x0000D9A0 end:0x0000E5D4 align:4
+
+rel/customize/editor/fn_3_177AC.c:
+	.text       start:0x000177AC end:0x00017820 align:4
+
+rel/customize/_prolog/fn_3_14E4.c:
+	.text       start:0x000014E4 end:0x000015A0 align:4
+
+rel/customize/emblem/fn_3_14794.c:
+	.text       start:0x00014794 end:0x000149AC align:4
+
+rel/customize/emb_paste_editor/fn_3_10260.c:
+	.text       start:0x00010260 end:0x000104C4 align:4
+
+rel/customize/emblem/fn_3_152BC.c:
+	.text       start:0x000152BC end:0x0001552C align:4
+
+rel/customize/emblem/fn_3_14BBC.c:
+	.text       start:0x00014BBC end:0x00014E18 align:4
+
+rel/customize/_prolog/fn_3_680C.c:
+	.text       start:0x0000680C end:0x00006AC4 align:4
+
+rel/customize/emblem/fn_3_14E18.c:
+	.text       start:0x00014E18 end:0x00015240 align:4
+
+rel/customize/_prolog/fn_3_5500.c:
+	.text       start:0x00005500 end:0x00005A50 align:4
+
+rel/customize/_prolog/fn_3_7E5C.c:
+	.text       start:0x00007E5C end:0x0000837C align:4

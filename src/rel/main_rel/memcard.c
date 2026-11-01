@@ -18556,6 +18556,45 @@ void fn_1_BFE20(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 
 }
 /* fzgx:end fn_1_BFE20 */
 
+/* fzgx:begin fn_1_C00EC */
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_49514(u32 *);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_4CF3C(const char *, f32, ...);
+extern const u32 lbl_1_rodata_50D8;
+extern u32 lbl_801A66B4;
+
+/* memcard.c's .data objects this function uses, at their retail offsets, so MWCC addresses them off one section
+ * base; the fzgx_pool_gap_ objects span the retail objects in between */
+u32 fzgx_obj_lbl_1_data_35AC8 = 1;
+u8 fzgx_pool_gap_35ACC[0x74D0] = {1};
+char *fzgx_pool_data_3CF9C[6][3] = {(char *)1}; /* per language: "VS BATTLE", "GRAND PRIX", "TIME ATTACK" */
+u8 fzgx_pool_gap_3CFE4[0x5C] = {1};
+char *fzgx_pool_data_3D040[6][4] = {(char *)1}; /* per language: "Novice", "Standard", "Expert", "Master" */
+
+/* retail allocates the size of the second call apart from its table lookup: a temporary kept by
+ * opt_propagation off */
+#pragma opt_propagation off
+void fn_1_C00EC(u8 a, u8 b, s32 x, s32 y, f32 scale) {
+    u32 color;
+    f32 size;
+
+    if (a <= 2 && b <= 3) {
+        fn_1_496FC((f32)x, (f32)y);
+        color = lbl_1_rodata_50D8;
+        fn_1_49514(&color);
+        fn_1_4955C(scale, scale);
+        if (a == 1) {
+            fn_1_4CF3C("%s(%s)", 117.0f, fzgx_pool_data_3CF9C[lbl_801A66B4][a], fzgx_pool_data_3D040[lbl_801A66B4][b]);
+        } else {
+            size = 117.0f;
+            fn_1_4CF3C(fzgx_pool_data_3CF9C[lbl_801A66B4][a], size);
+        }
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_C00EC */
+
 /* fzgx:begin fn_1_C023C */
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[114] = {0x665F7A65, 0x726F5F64, 0x65627567, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x7379735F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000350, 0x00000004, 0xFFFFFFFF, 0xFFFFFFFF, 0x665F7A65, 0x726F0000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000001, 0x7379735F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000B4F, 0x000059E0, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6700, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000002, 0x67686F5F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000153, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6300, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000003, 0x6761725F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000154, 0x00020700, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6500, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000004, 0x656D625F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000152, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A7200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000005, 0x7265705F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000451, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
@@ -22035,6 +22074,60 @@ void fn_1_C2454(void) {
     state[-0x6af4] = 0;
 }
 /* fzgx:end fn_1_C2454 */
+
+/* fzgx:begin fn_1_C3378 */
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern void fn_80008BA8(void *dst, void *src, u32 size);
+extern u32 fn_1_A6F1C(void);
+extern void fn_1_3B34(void);
+
+/* the 0x20-byte entries of the block lbl_1_bss_718C0.unk_0 points to; unk_10 is s16 like the table copied into it */
+typedef struct {
+    u8 pad_0[0x10];
+    s16 unk_10;
+    u8 pad_12[0x4];
+    u8 unk_16;
+    u8 pad_17[0x9];
+} Obj_1_bss_718C0_Entry;
+
+// Sets the save block's defaults: clears it, then copies in the game's controller options, the button settings
+// after fn_1_3B34 has put the stock ones back.
+void fn_1_C3378(void) {
+    Obj_1_bss_718C0_Entry *entry;
+    u8 *bytes;
+    s16 *src;
+    s32 i;
+
+    fn_80008BEC(&lbl_1_bss_718E0, 0, 0x59E0);
+    lbl_1_bss_718C0.unk_0 = (Obj_1_bss_718C0_At0 *)((u8 *)&lbl_1_bss_718E0 + 0x55C2);
+    /* retail stores halfwords at 0x0, 0x6, 0x1A0 and 0x5520 (sth), though symbols.txt types lbl_1_bss_718E0 as
+     * byte data */
+    lbl_1_bss_718E0.unk_1A0 = 0;
+    lbl_1_bss_718E0.unk_5520 = 0;
+    lbl_1_bss_718E0.unk_0 = 0;
+    lbl_1_bss_718E0.unk_6 = 0;
+    lbl_1_bss_718E0.unk_2 = 0xF;
+    fn_80008BA8((u8 *)&lbl_1_bss_718E0 + 0x8, lbl_1_data_2AC0, 0x40);
+    fn_80008BA8((u8 *)&lbl_1_bss_718E0 + 0x48, lbl_1_data_2B40, 0x8);
+    fn_80008BA8((u8 *)&lbl_1_bss_718E0 + 0x5542, &lbl_1_data_2B50, 0x8);
+    fn_80008BA8((u8 *)&lbl_1_bss_718E0 + 0x554A, &lbl_1_data_2B58, 0x8);
+    lbl_1_bss_718E0.unk_3 = fn_1_A6F1C();
+    fn_1_3B34();
+    fn_80008BA8((u8 *)&lbl_1_bss_718E0 + 0x50, lbl_1_bss_AA0, 0x150);
+    fn_80008BA8((u8 *)&lbl_1_bss_718E0 + 0x5556, &lbl_1_data_2B60, 0x4);
+
+    bytes = &lbl_1_bss_718C0.unk_0->unk_4;
+    for (i = 0; i < 4; i++) {
+        bytes[i] = 50;
+    }
+    entry = (Obj_1_bss_718C0_Entry *)lbl_1_bss_718C0.unk_0;
+    src = &lbl_1_data_3D11C.unk_0;
+    for (i = 0; i < 4; i++, src++) {
+        entry[i].unk_10 = *src;
+        entry[i].unk_16 = 1;
+    }
+}
+/* fzgx:end fn_1_C3378 */
 
 /* fzgx:begin fn_1_C34F0 */
 #include "rel/main_rel/globals.h"

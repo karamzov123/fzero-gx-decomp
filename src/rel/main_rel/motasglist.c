@@ -2476,6 +2476,70 @@ s32 fn_1_442D8(struct fn_1_442D8_Arg0 *arg0, struct fn_1_442D8_Arg1 *arg1, u32 a
 }
 /* fzgx:end fn_1_442D8 */
 
+/* fzgx:begin fn_1_44884 */
+extern void lbl_8006D668(void *vector);
+extern f32 *lbl_801A6D00;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+static inline Vec3 *cross(Vec3 *a, Vec3 *b, Vec3 *out) {
+    f32 ax;
+    f32 ay;
+    f32 az;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    f32 x;
+    f32 y;
+    f32 z;
+
+    ay = a->y;
+    bz = b->z;
+    az = a->z;
+    by = b->y;
+    bx = b->x;
+    ax = a->x;
+
+    x = ay * bz;
+    x -= az * by;
+    y = az * bx;
+    y -= ax * bz;
+    z = ax * by;
+    z -= ay * bx;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+    return out;
+}
+
+#pragma opt_propagation off
+void fn_1_44884(Vec3 *dir) {
+    Vec3 side;
+    Vec3 up;
+    Vec3 *pu = &up;
+
+    pu->x = lbl_801A6D00[2];
+    pu->y = lbl_801A6D00[6];
+    pu->z = lbl_801A6D00[10];
+    lbl_8006D668(cross(pu, dir, &side));
+    cross(dir, &side, pu);
+    lbl_801A6D00[0] = dir->x;
+    lbl_801A6D00[4] = dir->y;
+    lbl_801A6D00[8] = dir->z;
+    lbl_801A6D00[1] = side.x;
+    lbl_801A6D00[5] = side.y;
+    lbl_801A6D00[9] = side.z;
+    lbl_801A6D00[2] = pu->x;
+    lbl_801A6D00[6] = pu->y;
+    lbl_801A6D00[10] = pu->z;
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_44884 */
+
 /* fzgx:begin fn_1_449A8 noprologue */
 #include "types.h"
 #include "psvec.h"
@@ -2536,6 +2600,93 @@ void fn_1_449A8(void *vector) {
     *(f32 *)(0xE0000000 + 0x2C) = v.z;
 }
 /* fzgx:end fn_1_449A8 */
+
+/* fzgx:begin fn_1_4502C */
+extern void fn_1_46EB4(u32, u32);
+extern u32 lbl_1_bss_958[2];
+
+/* a slot of the table at .bss 0x384D8 (0x400 of them) */
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+} LoadSlot;
+
+/* an entry of the file preload ring at .bss 0x3C4D8 (512 of them) */
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+} LoadCommand;
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u32 fzgx_obj_lbl_1_bss_384C0;
+u32 fzgx_pool_gap_384C4;
+volatile u32 fzgx_obj_lbl_1_bss_384C8; /* fzgx-allow: S2 load state that fn_1_451E4 polls */
+volatile u32 fzgx_obj_lbl_1_bss_384CC; /* fzgx-allow: S2 cleared by the ARQ callback fn_1_451D4 */
+volatile u32 fzgx_obj_lbl_1_bss_384D0; /* fzgx-allow: S2 cleared by the ARQ callback fn_1_45890 */
+u32 fzgx_pool_gap_384D4;
+LoadSlot fzgx_obj_lbl_1_bss_384D8[0x400];
+LoadCommand lbl_1_bss_384D8__fzgx_offset_4000[0x200];
+u32 fzgx_obj_lbl_1_bss_3DCD8;
+u32 fzgx_obj_lbl_1_bss_3DCDC;
+u32 lbl_1_bss_3DCDC__fzgx_offset_4;
+u32 fzgx_obj_lbl_1_bss_3DCE4[16];
+u32 lbl_1_bss_3DCE4__fzgx_offset_40;
+u32 fzgx_obj_lbl_1_bss_3DD28;
+u32 lbl_1_bss_3DD28__fzgx_offset_4;
+u32 lbl_1_bss_3DD28__fzgx_offset_8;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
+    s = *(u8 *)&fzgx_pool_gap_384C4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384CC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
+    s = *(u8 *)&fzgx_pool_gap_384D4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
+    s = *(u8 *)&lbl_1_bss_384D8__fzgx_offset_4000;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCD8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCDC;
+    s = *(u8 *)&lbl_1_bss_3DCDC__fzgx_offset_4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCE4;
+    s = *(u8 *)&lbl_1_bss_3DCE4__fzgx_offset_40;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DD28;
+    s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_8;
+}
+#pragma section code_type ".text"
+
+void fn_1_4502C(void) {
+    s32 i;
+    LoadSlot *p;
+
+    p = fzgx_obj_lbl_1_bss_384D8;
+    for (i = 0; i < 0x400; i++, p++) {
+        p->unk_0 = 0;
+    }
+    for (i = 0; i < 0x200; i++) {
+        lbl_1_bss_384D8__fzgx_offset_4000[i].unk_0 = 0;
+    }
+    fn_1_46EB4(0x704000, 0xF23FFF);
+    fzgx_obj_lbl_1_bss_3DCD8 = fzgx_obj_lbl_1_bss_3DCDC;
+    fzgx_obj_lbl_1_bss_384C8 = 0;
+    fzgx_obj_lbl_1_bss_384D0 = 0;
+    lbl_1_bss_3DCDC__fzgx_offset_4 = 0;
+    fzgx_obj_lbl_1_bss_384CC = 0;
+    for (i = 0; i < 16; i++) {
+        fzgx_obj_lbl_1_bss_3DCE4[i] = 0;
+    }
+    lbl_1_bss_3DCE4__fzgx_offset_40 = 0;
+    fzgx_obj_lbl_1_bss_3DD28 = 0;
+    lbl_1_bss_3DD28__fzgx_offset_4 = lbl_1_bss_958[0];
+    lbl_1_bss_3DD28__fzgx_offset_8 = 0x1E000;
+}
+/* fzgx:end fn_1_4502C */
 
 /* fzgx:begin fn_1_451D4 */
 void fn_1_451D4(void) {

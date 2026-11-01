@@ -271,6 +271,157 @@ void fn_1_DE14(Fn1DE14State *state) {
 }
 /* fzgx:end fn_1_DE14 */
 
+/* fzgx:begin fn_1_DF74 */
+extern void *memset(void *, int, u32);
+extern int sprintf(char *, const char *, ...);
+extern s8 fn_1_A5DC4(void);
+extern s32 fn_1_F7BE4(s16);
+extern u8 fn_1_F8CF0(s32);
+extern f32 lbl_1_rodata_4E0[5];
+extern char *lbl_1_data_212A8[45];
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn1DF74Vec;
+
+/* local view of lbl_1_rodata_4E0 */
+typedef struct {
+    f32 unk_0;
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    f32 unk_18;
+} Fn1DF74Rodata;
+
+/* the retail TU's .data before the strings this function prints, so the strings land at their retail offsets */
+u8 fzgx_obj_lbl_1_data_43B8[0xC] = {1};
+u8 fzgx_pool_gap_43C4[0x1CC] = {1};
+
+/* the strings this function prints, each led by the Shift-JIS note sign 0x81F4 (as bytes: MWCC re-encodes a
+ * non-ASCII string literal) */
+struct {
+    u8 note[2];
+    char text[6];
+} fzgx_pool_data_4590 = {{0x81, 0xF4}, "%s"};
+struct {
+    u8 note[2];
+    char text[14];
+} fzgx_pool_data_4598 = {{0x81, 0xF4}, "Brain Cleaner"};
+struct {
+    u8 note[2];
+    char text[30];
+} fzgx_pool_data_45A8 = {{0x81, 0xF4}, "Cover of Mute City's theme"};
+struct {
+    u8 note[2];
+    char text[26];
+} fzgx_pool_data_45C8 = {{0x81, 0xF4}, "Cover of Big Blue's theme"};
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base */
+u8 fzgx_obj_lbl_1_bss_1148[8];
+f32 lbl_1_bss_1148__fzgx_offset_8;
+f32 lbl_1_bss_1148__fzgx_offset_C;
+f32 lbl_1_bss_1148__fzgx_offset_10;
+u8 fzgx_pool_gap_115C[4];
+Fn1DF74Vec fzgx_obj_lbl_1_bss_1160;
+f32 lbl_1_bss_1160__fzgx_offset_C;
+f32 lbl_1_bss_1160__fzgx_offset_10;
+s16 lbl_1_bss_1160__fzgx_offset_14;
+s16 lbl_1_bss_1160__fzgx_offset_16;
+char lbl_1_bss_1160__fzgx_offset_18[44][0x22];
+s16 lbl_1_bss_1160__fzgx_offset_5F0;
+s16 fzgx_pool_gap_1752;
+s16 lbl_1_bss_1160__fzgx_offset_5F4[44];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_data_43B8[0];
+    s = fzgx_pool_gap_43C4[0];
+    s = fzgx_obj_lbl_1_bss_1148[0];
+    s = lbl_1_bss_1148__fzgx_offset_8;
+    s = lbl_1_bss_1148__fzgx_offset_C;
+    s = lbl_1_bss_1148__fzgx_offset_10;
+    s = fzgx_pool_gap_115C[0];
+    s = fzgx_obj_lbl_1_bss_1160.x;
+    s = lbl_1_bss_1160__fzgx_offset_C;
+    s = lbl_1_bss_1160__fzgx_offset_10;
+    s = lbl_1_bss_1160__fzgx_offset_14;
+    s = lbl_1_bss_1160__fzgx_offset_16;
+    s = lbl_1_bss_1160__fzgx_offset_18[0][0];
+    s = lbl_1_bss_1160__fzgx_offset_5F0;
+    s = fzgx_pool_gap_1752;
+    s = lbl_1_bss_1160__fzgx_offset_5F4[0];
+}
+#pragma section code_type ".text"
+
+/* opt_dead_assignments off keeps the read of k->unk_14 (0.0) into zero where it is written, ahead of the product's
+ * loads, which gives retail's float registers */
+#pragma opt_dead_assignments off
+void fn_1_DF74(void) {
+    s16 i;
+    s16 n;
+    Fn1DF74Rodata *k;
+    f32 zero;
+    f32 half;
+
+    k = (Fn1DF74Rodata *)lbl_1_rodata_4E0;
+    if (fn_1_A5DC4()) {
+        lbl_1_bss_1160__fzgx_offset_C = k->unk_4;
+        lbl_1_bss_1160__fzgx_offset_10 = k->unk_8;
+    } else {
+        lbl_1_bss_1160__fzgx_offset_C = k->unk_C;
+        lbl_1_bss_1160__fzgx_offset_10 = k->unk_10;
+    }
+    half = lbl_1_bss_1160__fzgx_offset_C * k->unk_18;
+    lbl_1_bss_1160__fzgx_offset_14 = 0;
+    lbl_1_bss_1160__fzgx_offset_16 = 0;
+    zero = k->unk_14;
+    lbl_1_bss_1148__fzgx_offset_C = zero;
+    lbl_1_bss_1148__fzgx_offset_10 = half;
+    memset(lbl_1_bss_1160__fzgx_offset_18, 0, sizeof(lbl_1_bss_1160__fzgx_offset_18));
+    lbl_1_bss_1160__fzgx_offset_5F0 = 0;
+    for (i = 0; i < 41; i++) {
+        if (fn_1_F7BE4(i) != 0) {
+            n = lbl_1_bss_1160__fzgx_offset_5F0;
+            lbl_1_bss_1160__fzgx_offset_5F4[n] = i;
+            sprintf(lbl_1_bss_1160__fzgx_offset_18[n], (char *)&fzgx_pool_data_4590, lbl_1_data_212A8[i]);
+            lbl_1_bss_1160__fzgx_offset_5F0++;
+        }
+    }
+    n = lbl_1_bss_1160__fzgx_offset_5F0;
+    lbl_1_bss_1160__fzgx_offset_5F4[n] = 41;
+    sprintf(lbl_1_bss_1160__fzgx_offset_18[n], (char *)&fzgx_pool_data_4598);
+    lbl_1_bss_1160__fzgx_offset_16 = lbl_1_bss_1160__fzgx_offset_5F0++;
+    if (fn_1_F8CF0(0)) {
+        n = lbl_1_bss_1160__fzgx_offset_5F0;
+        lbl_1_bss_1160__fzgx_offset_5F4[n] = 42;
+        sprintf(lbl_1_bss_1160__fzgx_offset_18[n], (char *)&fzgx_pool_data_45A8);
+        lbl_1_bss_1160__fzgx_offset_5F0++;
+    }
+    if (fn_1_F8CF0(1)) {
+        n = lbl_1_bss_1160__fzgx_offset_5F0;
+        lbl_1_bss_1160__fzgx_offset_5F4[n] = 43;
+        sprintf(lbl_1_bss_1160__fzgx_offset_18[n], (char *)&fzgx_pool_data_45C8);
+        lbl_1_bss_1160__fzgx_offset_5F0++;
+    }
+    lbl_1_bss_1148__fzgx_offset_8 = k->unk_14;
+    /* through a pointer, so x is stored off the vector's address (addi r3,r30,0x18) as in retail */
+    {
+        f32 *v = &fzgx_obj_lbl_1_bss_1160.x;
+
+        *v++ = k->unk_14;
+        *v++ = k->unk_14;
+        *v = k->unk_14;
+    }
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_DF74 */
+
 /* fzgx:begin fn_1_E174 noprologue */
 #include "types.h"
 
@@ -2728,6 +2879,265 @@ void fn_1_103B0(LiveCamState *cam) {
 }
 /* fzgx:end fn_1_103B0 */
 
+/* fzgx:begin fn_1_107B8 noprologue */
+#include "types.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+/* one livecam_N.bin record (0x28 bytes); fn_1_F6A8 loads them to lbl_1_bss_17C4+0x4 */
+typedef struct {
+    u32 unk_0;
+    Vec3 unk_4;
+    Vec3 unk_10;
+    s16 unk_1C;
+    u8 pad_1E[0x2];
+    f32 unk_20;
+    u8 unk_24;
+    u8 pad_25[0x3];
+} fn_1_107B8_Record;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[0x3];
+    s16 unk_4;
+    s16 unk_6;
+    u8 pad_8[0x4];
+    u32 unk_C;
+    u8 pad_10[0x4];
+    s16 unk_14;
+    u8 pad_16[0x2];
+    u32 unk_18;
+    Vec3 unk_1C;
+    u8 pad_28[0x24];
+    Vec3 unk_4C;
+    f32 unk_58;
+    s16 unk_5C;
+    u8 pad_5E[0x8];
+    s16 unk_66;
+    u8 pad_68[0x8];
+    Vec3 unk_70;
+} Sig_fn_1_101D0_Fn_1_101D0_State;
+
+/* the TU's .rodata pool: 1.0f at +0x0, 0.0f at +0x14, 0.0001f at +0xB8, 200.0f at +0xBC */
+struct fn_1_107B8_lbl_1_rodata_4E0 {
+    f32 unk_0;
+    u8 pad_4[0x10];
+    f32 unk_14;
+    u8 pad_18[0xA0];
+    f32 unk_B8;
+    f32 unk_BC;
+};
+
+typedef struct {
+    f32 unk_0;
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+} fn_1_107B8_Obj17D0;
+
+/* file-scope .bss objects of the retail TU this function uses, at their retail offsets, so MWCC addresses them
+ * off one section base; the fzgx_pool_gap_ objects span the retail objects in between */
+u8 fzgx_obj_lbl_1_bss_1148[0x14];
+u8 fzgx_pool_gap_115C[0x658];
+u8 fzgx_obj_lbl_1_bss_17B4;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b1;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b2;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b3;
+s32 lbl_1_bss_17B4__fzgx_offset_4;
+s32 lbl_1_bss_17B4__fzgx_offset_8;
+u8 fzgx_pool_gap_17C0[4];
+u32 fzgx_obj_lbl_1_bss_17C4;
+fn_1_107B8_Record *lbl_1_bss_17C4__fzgx_offset_4;  /* livecam_N.bin records */
+Vec3 *lbl_1_bss_17C4__fzgx_offset_8;               /* livecam_ball_N.bin points */
+fn_1_107B8_Obj17D0 fzgx_obj_lbl_1_bss_17D0;
+f32 lbl_1_bss_17D0__fzgx_offset_18;
+f32 lbl_1_bss_17D0__fzgx_offset_1C;
+
+/* the retail TU's .data objects this function uses, likewise off one section base */
+char fzgx_obj_lbl_1_data_43B8[12] = "OVERTAKE";
+u8 fzgx_pool_gap_43C4[0xC0] = {1};
+u32 fzgx_obj_lbl_1_data_4484[27] = {0x00010000};
+u32 lbl_1_data_4484__fzgx_offset_6C = 1;
+s32 fzgx_obj_lbl_1_data_44F4 = -1;
+s32 lbl_1_data_44F4__fzgx_offset_4 = -1;  /* livecam_N.bin record count */
+s32 lbl_1_data_44F4__fzgx_offset_8 = -1;  /* livecam_ball_N.bin point count */
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u8 s;  /* fzgx-allow: S2 pool primer sink */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_1148;
+    s = *(u8 *)&fzgx_pool_gap_115C;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_17B4;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b1;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b2;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b3;
+    s = *(u8 *)&lbl_1_bss_17B4__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_17B4__fzgx_offset_8;
+    s = *(u8 *)&fzgx_pool_gap_17C0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_17C4;
+    s = *(u8 *)&lbl_1_bss_17C4__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_17C4__fzgx_offset_8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_17D0;
+    s = *(u8 *)&lbl_1_bss_17D0__fzgx_offset_18;
+    s = *(u8 *)&lbl_1_bss_17D0__fzgx_offset_1C;
+    s = *(u8 *)&fzgx_obj_lbl_1_data_43B8;
+    s = *(u8 *)&fzgx_pool_gap_43C4;
+    s = *(u8 *)&fzgx_obj_lbl_1_data_4484;
+    s = *(u8 *)&lbl_1_data_4484__fzgx_offset_6C;
+    s = *(u8 *)&fzgx_obj_lbl_1_data_44F4;
+    s = *(u8 *)&lbl_1_data_44F4__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_data_44F4__fzgx_offset_8;
+}
+#pragma section code_type ".text"
+
+extern const struct fn_1_107B8_lbl_1_rodata_4E0 lbl_1_rodata_4E0;
+extern u32 lbl_801A63C0;
+extern void fn_1_862D4(s16, Vec3 *);
+extern void fn_1_862A8(s16, Vec3 *);
+
+#pragma opt_common_subs off
+void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
+    f32 dz;
+    const struct fn_1_107B8_lbl_1_rodata_4E0 *ro;
+    fn_1_107B8_Record *rec;
+    u32 nrec;
+    u32 nball;
+    Vec3 *ball;
+    struct { u32 value; } i;
+    struct { u32 value; } n;
+    s32 best;
+    s32 *p;
+    fn_1_107B8_Record *r;
+    f32 dy;
+    s32 changed;
+    f32 dx;
+    struct { u8 value; } none;
+    f32 d;
+    f32 bestd;
+    Vec3 target;
+    Vec3 here;
+    Vec3 pos;
+    s32 list[20];
+    u8 mode;
+
+    ro = &lbl_1_rodata_4E0;
+    lbl_1_data_4484__fzgx_offset_6C = 1;
+    r = lbl_1_bss_17C4__fzgx_offset_4;
+    rec = &r[cam->unk_4];
+    mode = cam->unk_0;
+    if (mode == 5 || mode <= 1 || mode == 2) {
+        nrec = lbl_1_data_44F4__fzgx_offset_4;
+        fn_1_862D4(cam->unk_6, &here);  /* retail fetches this position and never reads it */
+        nball = lbl_1_data_44F4__fzgx_offset_8;
+        ball = lbl_1_bss_17C4__fzgx_offset_8;
+        fn_1_862D4(cam->unk_6, &pos);
+        /* the ball point nearest the followed machine */
+        best = 0;
+        dz = ball[0].z;
+        dy = ball[0].y;
+        dx = ball[0].x;
+        dx -= pos.x;
+        dy -= pos.y;
+        dz -= pos.z;
+        bestd = dx * dx;
+        bestd += dy * dy;
+        bestd += dz * dz;
+        for (i.value = 1; i.value < nball; i.value++) {
+            dz = ball[i.value].z;
+            dy = ball[i.value].y;
+            dx = ball[i.value].x;
+            dz -= pos.z;
+            dy -= pos.y;
+            dx -= pos.x;
+            d = dx * dx;
+            d += dy * dy;
+            d += dz * dz;
+            if (!(bestd < d)) {
+                bestd = d;
+                best = i.value;
+            }
+        }
+        changed = 0;
+        if (lbl_1_bss_17B4__fzgx_offset_4 != best) {
+            lbl_1_bss_17B4__fzgx_offset_4 = best;
+            changed = 1;
+        }
+        if (changed) {
+            /* pick one of the records tied to that point at random */
+            n.value = 0;
+            p = list;
+            none.value = 1;
+            for (i.value = 0; i.value < nrec; r++, i.value++) {
+                if (best == r->unk_0) {
+                    *p = i.value;
+                    none.value = 0;
+                    p++;
+                    n.value++;
+                }
+            }
+            if (none.value) {
+                lbl_1_bss_17B4__fzgx_offset_8 = 0;
+            } else {
+                lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+                lbl_1_bss_17B4__fzgx_offset_8 = list[((lbl_801A63C0 >> 16) & 0x7FFF) % n.value];
+            }
+            cam->unk_18 = 1;
+        }
+        cam->unk_14 = lbl_1_bss_17B4__fzgx_offset_8;
+        cam->unk_C |= 0x200000;
+    }
+    fn_1_862D4(cam->unk_6, &target);
+    fn_1_862A8(cam->unk_6, &cam->unk_70);
+    cam->unk_1C = rec->unk_4;
+    if (rec->unk_24 == 3) {
+        cam->unk_4C = rec->unk_10;
+    } else {
+        cam->unk_4C = target;
+    }
+    fzgx_obj_lbl_1_bss_17B4 = rec->unk_24;
+    cam->unk_5C = rec->unk_1C;
+    cam->unk_58 = rec->unk_20;
+    dz = cam->unk_1C.z;
+    dy = cam->unk_1C.y;
+    dx = cam->unk_1C.x;
+    dz -= target.z;
+    dy -= target.y;
+    dx -= target.x;
+    d = dx * dx;
+    d += dy * dy;
+    d += dz * dz;
+    lbl_1_bss_17D0__fzgx_offset_18 = d;
+    lbl_1_bss_17D0__fzgx_offset_1C = d;
+    switch (rec->unk_24) {
+    case 1:
+    case 2:
+    case 5:
+        cam->unk_66 = 180;
+        break;
+    case 4:
+        cam->unk_66 = 200;
+        fzgx_obj_lbl_1_bss_17D0.unk_0 = ro->unk_14;
+        fzgx_obj_lbl_1_bss_17D0.unk_4 = ro->unk_0;
+        fzgx_obj_lbl_1_bss_17D0.unk_10 = ro->unk_14;
+        fzgx_obj_lbl_1_bss_17D0.unk_14 = ro->unk_B8;
+        fzgx_obj_lbl_1_bss_17D0.unk_C = ro->unk_BC;
+        fzgx_obj_lbl_1_bss_17D0.unk_8 = ro->unk_BC;
+        break;
+    default:
+        cam->unk_66 = 120;
+        break;
+    }
+}
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_107B8 */
+
 /* fzgx:begin fn_1_1138C noprologue */
 #include "rel/main_rel/live_camera.h"
 
@@ -2933,6 +3343,100 @@ void fn_1_11544(LiveCam *cam) {
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_11544 */
+
+/* fzgx:begin fn_1_11748 noprologue */
+#include "types.h"
+
+typedef struct {
+    f32 x, y, z;
+} V3;
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[5] = {0x3F800000, 0x43960000, 0x43A00000, 0x436A0000, 0x43660000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table3[68] = {0x3F000000, 0x40000000, 0x3C23D70A, 0x3CA3D70A, 0x0032FFFF, 0x000000FF, 0x000000FF, 0x00000000, 0x3FC99999, 0x9999999A, 0x3F19999A, 0x42780000, 0x41800000, 0x3E4CCCCD, 0x40400000, 0x446B0000, 0x44228000, 0x42100000, 0x43300000, 0x80000000, 0x43300000, 0x00000000, 0x46121800, 0x44E10000, 0x406A4000, 0x00000000, 0x42000000, 0x43F20000, 0x43D40000, 0x44130000, 0x43DD8000, 0x43F00000, 0x43D70000, 0x00000000, 0x3FE80000, 0x00000000, 0x3FE99999, 0x9999999A, 0x3FF00000, 0x00000000, 0x38D1B717, 0x43480000, 0x00000000, 0x00000000, 0x00000000, 0x40E00000, 0x46FFFE00, 0x00000000, 0x00000000, 0x00000000, 0x3FE00000, 0x00000000, 0x3FEC0000, 0x00000000, 0xBE000000, 0x41F00000, 0x3F947AE1, 0x47AE147B, 0x40504000, 0x00000000, 0x3FA99999, 0x9999999A, 0x40240000, 0x00000000, 0x40100000, 0x00000000, 0x40800000, 0x3D4CCCCD};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = 55.0f;
+}
+static const u32 fzgx_pool_table5[9] = {0x00000000, 0x40310000, 0x00000000, 0xBFF00000, 0x00000000, 0x3ECCCCCD, 0x00000000, 0x3FD99999, 0x9999999A};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+typedef struct {
+    u8 pad_0[0x1C];
+    s32 unk_1C;
+} Entry;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[3];
+    s16 unk_4;
+    s16 unk_6;
+    u8 pad_8[0xC];
+    s16 unk_14;
+    u8 pad_16[6];
+    u8 unk_1C[0x18];
+    V3 unk_34;
+    u8 pad_40[0x18];
+    f32 unk_58;
+    u8 pad_5C[0xC];
+    s16 unk_68;
+    u8 pad_6A[4];
+    s16 unk_6E;
+    V3 unk_70;
+    u8 unk_7C[0x40];
+} Cam;
+
+extern f32 lbl_1_bss_17F0;
+extern f32 lbl_1_bss_17F4;
+extern u32 lbl_801A63C0;
+extern Entry lbl_1_data_47B4[];
+extern void fn_1_862A8(int, V3 *);
+extern void fn_1_8636C(int, void *);
+extern void fn_1_862D4(int, V3 *);
+extern void fn_1_8645C(int, void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1B0(void *, void *);
+
+void fn_1_11748(Cam *c)
+{
+    V3 pos;
+    u32 state;
+    u32 r;
+
+    if (c->unk_0 == 5 || c->unk_0 <= 1 || c->unk_0 == 2) {
+        state = lbl_801A63C0 * 0x676a4b6b + 0x33cb;
+        lbl_801A63C0 = state;
+        r = (state >> 16) & 0x7fff;
+        c->unk_14 = r % 20;
+        c->unk_4 = r % 20;
+    }
+    c->unk_68 = 2;
+    {
+        V3 v = {0.0f, 0.0f, 0.0f};
+
+        c->unk_34 = v;
+    }
+    c->unk_6E = 0;
+    lbl_1_bss_17F0 = 0.0f;
+    lbl_1_bss_17F4 = 0.0f;
+    fn_1_862A8(c->unk_6, &c->unk_70);
+    fn_1_8636C(c->unk_6, c->unk_7C);
+    c->unk_58 = 55.0f;
+    fn_1_862D4(c->unk_6, &pos);
+    if (lbl_1_data_47B4[c->unk_4].unk_1C != 0) {
+        fn_1_8645C(c->unk_6, c->unk_7C);
+        lbl_8006DBAC(c->unk_7C);
+        lbl_8006E1B0(&lbl_1_data_47B4[c->unk_4], c->unk_1C);
+    }
+}
+/* fzgx:end fn_1_11748 */
 
 /* fzgx:begin fn_1_1189C noprologue */
 #include "types.h"
@@ -3149,6 +3653,109 @@ void fn_1_11ABC(LiveCamera *camera) {
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_11ABC */
+
+/* fzgx:begin fn_1_11C08 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/live_camera.h"
+#include "dolphin/hw_regs.h"
+
+typedef struct {
+    f32 x, y, z;
+} fn_1_11C08_Vec;
+
+/* local view of the live camera record, fields as this function uses them */
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[3];
+    s16 unk_4;
+    s16 unk_6;
+    u8 pad_8[0xC];
+    s16 unk_14;
+    u8 pad_16[6];
+    fn_1_11C08_Vec unk_1C;
+    u8 pad_28[0xC];
+    fn_1_11C08_Vec unk_34;
+    u8 pad_40[0xC];
+    fn_1_11C08_Vec unk_4C;
+    u8 pad_58[0x18];
+    fn_1_11C08_Vec unk_70;
+} fn_1_11C08_Camera;
+
+extern s32 fn_1_40BB4(void);
+extern void fn_1_8636C(s16, void *);
+extern void fn_1_862D4(s16, fn_1_11C08_Vec *);
+extern void fn_1_862A8(s16, fn_1_11C08_Vec *);
+extern u32 fn_1_20A5C(fn_1_11C08_Vec *, u32 *);
+extern void fn_1_15578(fn_1_11C08_Vec *, fn_1_11C08_Vec *, u32 *, fn_1_11C08_Vec *, s32, u32 *, s32, s32, s32, s32);
+extern void lbl_8006DC6C(void *);
+extern void lbl_8006E1B0(fn_1_11C08_Vec *, fn_1_11C08_Vec *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+
+/* fp_contract off: retail keeps each product separate (fmuls; fadds). opt_propagation off, with the x/y/z
+ * temporaries for the locked-cache stores, gives retail's register colouring (as in fn_1_11544) */
+#pragma fp_contract off
+#pragma opt_propagation off
+
+/* moves dst toward src by rate * f of the difference, per component */
+static inline void fn_1_11C08_follow(fn_1_11C08_Vec *dst, f32 *src, f32 rate, f32 f) {
+    dst->x = dst->x + f * (rate * (src[0] - dst->x));
+    dst->y = dst->y + f * (rate * (src[1] - dst->y));
+    dst->z = dst->z + f * (rate * (src[2] - dst->z));
+}
+
+void fn_1_11C08(fn_1_11C08_Camera *cam) {
+    f32 mtx[3][4];
+    fn_1_11C08_Vec pos;
+    fn_1_11C08_Vec up;
+    fn_1_11C08_Vec target;
+    fn_1_11C08_Vec hit;
+    u32 id;
+    u32 buf;
+    f32 z;
+    f32 y;
+    f32 x;
+
+    if (cam->unk_0 == 3 && fn_1_40BB4() == 0) {
+        if ((lbl_1_bss_9F8.unk_A >> 1) & 1) {
+            cam->unk_14++;
+        }
+        if (lbl_1_bss_9F8.unk_A & 1) {
+            cam->unk_14--;
+        }
+        if (cam->unk_14 > 8) {
+            cam->unk_14 = 0;
+        }
+        if (cam->unk_14 < 0) {
+            cam->unk_14 = 8;
+        }
+    }
+
+    fn_1_8636C(cam->unk_6, mtx);
+    fn_1_11C08_follow(&cam->unk_34, &lbl_1_data_4AA0[cam->unk_4].unk_C, lbl_1_data_4AA0[cam->unk_4].unk_18,
+                      lbl_1_data_4484.unk_0);
+    fn_1_862D4(cam->unk_6, &pos);
+    lbl_8006DC6C(mtx);
+    x = pos.x;
+    y = pos.y;
+    z = pos.z;
+    ((f32 *)LC_BASE)[3] = x;
+    ((f32 *)LC_BASE)[7] = y;
+    ((f32 *)LC_BASE)[11] = z;
+    lbl_8006E1B0(&cam->unk_34, &cam->unk_1C);
+    cam->unk_4C = pos;
+    fn_1_862A8(cam->unk_6, &up);
+    fn_1_11C08_follow(&cam->unk_70, &up.x, 0.05f, lbl_1_data_4484.unk_0);
+    lbl_8006DAEC();
+    id = fn_1_20A5C(&cam->unk_1C, &buf);
+    target = cam->unk_4C;
+    fn_1_15578(&cam->unk_1C, &target, &buf, &hit, 0x40005, &id, 1, 0, 0, 0);
+    lbl_8006DB30();
+}
+#pragma opt_propagation reset
+#pragma fp_contract reset
+/* fzgx:end fn_1_11C08 */
 
 /* fzgx:begin fn_1_11E98 noprologue */
 #include "types.h"

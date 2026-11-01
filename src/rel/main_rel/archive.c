@@ -1788,6 +1788,146 @@ void fn_1_12C0EC(FnData *arg) {
 }
 /* fzgx:end fn_1_12C0EC */
 
+/* fzgx:begin fn_1_12C110 */
+/* the menu state's four 0x20-byte player entries (+0xE: machine) */
+typedef struct {
+    u8 pad_0[0xE];
+    s16 unk_E;
+    u8 pad_10[0x10];
+} Entry_12C110;
+
+typedef struct {
+    Entry_12C110 ents[4];
+    u8 pad_80[0x14];
+    u32 unk_94;
+} Menu_12C110;
+
+/* 0x81C0-byte records returned by fn_1_12F118 */
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x819C];
+    u8 unk_81A0;
+    u8 pad_81A1[0x1F];
+} Rec_12C110;
+
+/* the 0x24-byte block fn_1_80058 fills */
+typedef struct {
+    s16 unk_0;
+    u8 pad_2[0x2];
+    u32 unk_4;
+    u8 unk_8;
+    u8 pad_9[0x17];
+} Slot_12C110;
+
+/* 0x440-byte records indexed by the slot */
+typedef struct {
+    u8 pad_0[0x324];
+    s32 unk_324;
+    u8 pad_328[0x118];
+} Car_12C110;
+
+extern Rec_12C110 *fn_1_12F118(void);
+extern void fn_1_80058(s8, Slot_12C110 *);
+extern void fn_1_80270(Slot_12C110 *, Car_12C110 *);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_12A2B8(u32);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_12AC00(void *arg0);
+extern int fn_1_8623C(void);
+extern void *lbl_1_bss_6D82C;
+
+void fn_1_12C110(Car_12C110 *cars, s16 arg1, s16 arg2) {
+    u8 *archive_data = lbl_1_data_40798;
+    s16 found;
+    s16 j;
+    Slot_12C110 slot;
+    Car_12C110 *car;
+    Menu_12C110 *menu;
+    s16 i;
+    Rec_12C110 *recs;
+    s16 k;
+    s16 id;
+
+    recs = fn_1_12F118();
+    for (i = 0; i < 41; i++) {
+        found = -1;
+        for (j = 0; j < 4; j++) {
+            id = ((Menu_12C110 *)&lbl_1_bss_8B3A0)->ents[j].unk_E;
+            if (id == i) {
+                found = i;
+                break;
+            }
+        }
+        if (found != -1) {
+            fn_1_80058(found, &slot);
+            slot.unk_8 = 0;
+            slot.unk_8 |= 1 << arg1;
+            slot.unk_4 = 1 << arg2;
+            car = &cars[found];
+            if (car->unk_324 != -1) {
+                fn_1_12A2D0(car->unk_324);
+                fn_1_12A2B8(1);
+            }
+            fn_1_12AB38(archive_data + 0x2FC);
+            if (lbl_1_bss_6D82C == NULL) {
+                lbl_1_bss_6D82C = fn_1_12AC00(archive_data + 0x308);
+            }
+            fn_1_80270(&slot, car);
+            fn_1_12AB38(archive_data + 0x318);
+            fn_1_12A2B8(0);
+        }
+    }
+
+    menu = (Menu_12C110 *)&lbl_1_bss_8B3A0;
+    if (menu->unk_94 & 0x02000000) {
+        return;
+    }
+    for (i = 0; i < 41; i++) {
+        found = -1;
+        if (menu->unk_94 & 0x40000000) {
+            if (menu->ents[0].unk_E == i) {
+                found = i;
+            }
+            if (menu->ents[0].unk_E > 40 && (recs[fn_1_8623C()].unk_0 & 0x80000000) &&
+                !(recs[fn_1_8623C()].unk_0 & 0x40000000) && i == recs[fn_1_8623C()].unk_81A0) {
+                found = i;
+            }
+            for (j = 1; j < 4; j++) {
+                id = ((Menu_12C110 *)&lbl_1_bss_8B3A0)->ents[j].unk_E;
+                if (id == i || i == 4 || i == 5 || i == 6 || i == 2) {
+                    found = i;
+                    break;
+                }
+            }
+        } else {
+            for (j = 0; j < 4; j++) {
+                id = ((Menu_12C110 *)&lbl_1_bss_8B3A0)->ents[j].unk_E;
+                if (id == i) {
+                    found = i;
+                    break;
+                }
+                if (id > 40 && (recs[j].unk_0 & 0x80000000) &&
+                    !(recs[j].unk_0 & 0x40000000) && i == recs[j].unk_81A0) {
+                    found = i;
+                    break;
+                }
+            }
+        }
+        if (found != -1) {
+            fn_1_80058(found, &slot);
+            slot.unk_8 = 0;
+            for (k = 0; k < 4; k++) {
+                slot.unk_8 |= 1 << (arg1 + k);
+            }
+            slot.unk_4 = 0;
+            fn_1_12AB38(archive_data + 0x2FC);
+            fn_1_80270(&slot, &cars[found]);
+            fn_1_12AB38(archive_data + 0x318);
+        }
+    }
+}
+/* fzgx:end fn_1_12C110 */
+
 /* fzgx:begin fn_1_12C47C */
 void fn_1_12C47C(void *arg0, void *arg1, s32 arg2) {
     void *entry;

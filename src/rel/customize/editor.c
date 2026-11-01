@@ -1376,6 +1376,32 @@ void fn_3_17100(void) {
 }
 /* fzgx:end fn_3_17100 */
 
+/* fzgx:begin fn_3_177AC */
+extern u32 lbl_3_rodata_608[38];
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} Color;
+
+void fn_3_177AC(Color color) {
+    *(Color *)&lbl_3_bss_A2410.unk_4 = color;
+    if (__rlwnm(lbl_3_bss_A2410.unk_8, 3, 31, 31)) {
+        Color prev;
+        *(u32 *)&prev = lbl_3_rodata_608[0];
+        prev.r = lbl_3_bss_A2410.unk_10;
+        prev.g = lbl_3_bss_A2410.unk_12;
+        prev.b = lbl_3_bss_A2410.unk_14;
+        *(Color *)&lbl_3_bss_A2410.unk_0 = prev;
+        lbl_3_bss_A2410.unk_10 = color.r;
+        lbl_3_bss_A2410.unk_12 = color.g;
+        lbl_3_bss_A2410.unk_14 = color.b;
+    }
+}
+/* fzgx:end fn_3_177AC */
+
 /* fzgx:begin fn_3_17820 */
 u32 fn_3_17820(void) {
     return *(u32 *)&(*(u16 (*)[20])&lbl_3_bss_A2410)[2];
