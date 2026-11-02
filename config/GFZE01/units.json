@@ -19438,6 +19438,21 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80021C7C.c",
+    "symbols": [
+      "fn_80021C7C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "pool": {
+      "...bss.0": "lbl_80160500",
+      "fzgx_obj_lbl_80160500": "lbl_80160500",
+      "lbl_80160500__fzgx_offset_500": "lbl_80160500+0x500"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80021FBC.c",
     "symbols": [
       "fn_80021FBC"

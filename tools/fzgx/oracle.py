@@ -1413,10 +1413,14 @@ def compile_unit(project: Project, unit: str, unit_src: str,
     overrides the input; probes must supply a scratch `output` to preserve the link object.
     """
     meta = project.objdiff_units().get(unit, {})
-    flags = meta.get("scratch", {}).get("c_flags", "").replace(" -lang=c", "")
-    flags += f" -i include -i build/{project.version}/include"
     ucfg = project.unit_record(unit_src) or {}
-    mw = ucfg.get("mw_version") or ("GC/1.2.5n" if unit.startswith("main/") else "GC/1.3.2")
+    if meta.get("scratch", {}).get("c_flags"):
+        flags = meta["scratch"]["c_flags"].replace(" -lang=c", "")
+        flags += f" -i include -i build/{project.version}/include"
+        mw = ucfg.get("mw_version") or ("GC/1.2.5n" if unit.startswith("main/") else "GC/1.3.2")
+    else:
+        flags, mw = _module_flags(project, ucfg.get("module") or unit.split("/", 1)[0])
+        mw = ucfg.get("mw_version") or mw
     obj = output or _base_object(project, unit)
     obj.parent.mkdir(parents=True, exist_ok=True)
     src = source or unit_source_path(project, unit_src)

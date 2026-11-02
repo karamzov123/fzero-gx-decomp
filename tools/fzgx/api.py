@@ -140,10 +140,15 @@ def sync(p: Project) -> Dict[str, int]:
     matched = 0
     for u in p.load_units():
         if u["status"] == "matching":
+            target_status = "asm" if u.get("asm") else "matched"
             for s in u.get("symbols", []):
-                row = l.get(s)
-                if row and row["status"] != "matched":
-                    l.db.execute("UPDATE functions SET status='matched', best_percent=100, link_state='verified' WHERE symbol=?", (s,))
+                key = _key(p, f"{u['module']}:{s}")
+                row = l.get(key) or l.get(s)
+                if row and row["status"] != target_status:
+                    if target_status == "asm":
+                        l.db.execute("UPDATE functions SET status='asm', link_state='verified' WHERE symbol=?", (row["symbol"],))
+                    else:
+                        l.db.execute("UPDATE functions SET status='matched', best_percent=100, link_state='verified' WHERE symbol=?", (row["symbol"],))
                     matched += 1
     return {"functions": len(rows), "inserted": n, "marked_matched": matched}
 
