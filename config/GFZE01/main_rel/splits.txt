@@ -9216,15 +9216,6 @@ rel/main_rel/effect/fn_1_5CA00.c:
 rel/main_rel/car/fn_1_8DBB0.c:
 	.text       start:0x0008DBB0 end:0x0008DD54 align:4
 
-rel/main_rel/ghost/fn_1_F0E00.c:
-	.text       start:0x000F0E00 end:0x000F1300 align:4
-
-rel/main_rel/memcard/fn_1_B8EDC.c:
-	.text       start:0x000B8EDC end:0x000B9904 align:4
-
-rel/main_rel/ghost/fn_1_EB8F4.c:
-	.text       start:0x000EB8F4 end:0x000EC900 align:4
-
 rel/main_rel/burner/fn_1_9A5CC.c:
 	.text       start:0x0009A5CC end:0x0009A770 align:4
 
@@ -9374,3 +9365,12 @@ rel/main_rel/live_camera/fn_1_DF74.c:
 
 rel/main_rel/stcoli/fn_1_2EE3C.c:
 	.text       start:0x0002EE3C end:0x0002F294 align:4
+
+rel/main_rel/ghost/fn_1_EB8F4.c:
+	.text       start:0x000EB8F4 end:0x000EC900 align:4
+
+rel/main_rel/ghost/fn_1_F0E00.c:
+	.text       start:0x000F0E00 end:0x000F1300 align:4
+
+rel/main_rel/memcard/fn_1_B8EDC.c:
+	.text       start:0x000B8EDC end:0x000B9904 align:4

@@ -11339,7 +11339,7 @@ void fn_1_B8E84(s32 card, u8 *out_flags, u32 *out_a, u32 *out_b) {
 }
 /* fzgx:end fn_1_B8E84 */
 
-/* fzgx:begin fn_1_B8EDC pool noprologue */
+/* fzgx:begin fn_1_B8EDC noprologue */
 #include "dolphin/types.h"
 #include "rel/main_rel/memcard.h"
 
@@ -13378,36 +13378,36 @@ u32 fzgx_obj_lbl_1_bss_716C8[80];
 u32 fzgx_obj_lbl_1_bss_71808;
 u32 lbl_1_bss_7180C;
 u32 lbl_1_bss_71810[40];
-u8 lbl_1_bss_71810_fill_718B0;
+u8 lbl_1_bss_71810__fzgx_offset_A0;
 u8 fzgx_obj_lbl_1_bss_718B1;
-u16 lbl_1_bss_716C0_gap_718B2;
+u16 fzgx_pool_gap_bss_718B2;
 u32 fzgx_obj_lbl_1_bss_718B4;
 u8 lbl_1_bss_718B8;
 u8 lbl_1_bss_718B9;
-u16 lbl_1_bss_718B9_fill_718BA;
-u32 lbl_1_bss_718B9_fill_718BC;
+u16 lbl_1_bss_718B9__fzgx_offset_1;
+u32 lbl_1_bss_718B9__fzgx_offset_3;
 u32 fzgx_obj_lbl_1_bss_718C0[8];
 u32 fzgx_obj_lbl_1_bss_718E0[5754];
 u32 lbl_1_bss_772C8[16];
-u16 lbl_1_bss_772C8_fill_77308;
+u16 lbl_1_bss_772C8__fzgx_offset_40;
 u8 fzgx_obj_lbl_1_bss_7730A;
-u8 lbl_1_bss_716C0_gap_7730B;
+u8 fzgx_pool_gap_bss_7730B;
 u32 lbl_1_bss_7730C;
 u32 lbl_1_bss_77310[9];
-u8 lbl_1_bss_77310_24;
-u8 lbl_1_bss_77310_fill_77335;
-u16 lbl_1_bss_77310_fill_77336;
-u8 lbl_1_bss_77310_28;
-u8 lbl_1_bss_77310_fill_77339;
-u16 lbl_1_bss_77310_fill_7733A;
-u8 lbl_1_bss_77310_2C;
-u8 lbl_1_bss_77310_fill_7733D;
-u16 lbl_1_bss_77310_fill_7733E;
-u32 lbl_1_bss_77310_fill_77340;
-u8 lbl_1_bss_77310_34;
-u8 lbl_1_bss_77310_fill_77345;
-u16 lbl_1_bss_77310_fill_77346;
-u32 lbl_1_bss_77310_fill_77348[14];
+u8 lbl_1_bss_77310__fzgx_offset_24;
+u8 lbl_1_bss_77310__fzgx_offset_25;
+u16 lbl_1_bss_77310__fzgx_offset_26;
+u8 lbl_1_bss_77310__fzgx_offset_28;
+u8 lbl_1_bss_77310__fzgx_offset_29;
+u16 lbl_1_bss_77310__fzgx_offset_2A;
+u8 lbl_1_bss_77310__fzgx_offset_2C;
+u8 lbl_1_bss_77310__fzgx_offset_2D;
+u16 lbl_1_bss_77310__fzgx_offset_2E;
+u32 lbl_1_bss_77310__fzgx_offset_30;
+u8 lbl_1_bss_77310__fzgx_offset_34;
+u8 lbl_1_bss_77310__fzgx_offset_35;
+u16 lbl_1_bss_77310__fzgx_offset_36;
+u32 lbl_1_bss_77310__fzgx_offset_38[14];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -13417,36 +13417,36 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_71808;
     s = *(u8 *)&lbl_1_bss_7180C;
     s = *(u8 *)&lbl_1_bss_71810;
-    s = *(u8 *)&lbl_1_bss_71810_fill_718B0;
+    s = *(u8 *)&lbl_1_bss_71810__fzgx_offset_A0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718B1;
-    s = *(u8 *)&lbl_1_bss_716C0_gap_718B2;
+    s = *(u8 *)&fzgx_pool_gap_bss_718B2;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718B4;
     s = *(u8 *)&lbl_1_bss_718B8;
     s = *(u8 *)&lbl_1_bss_718B9;
-    s = *(u8 *)&lbl_1_bss_718B9_fill_718BA;
-    s = *(u8 *)&lbl_1_bss_718B9_fill_718BC;
+    s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718C0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718E0;
     s = *(u8 *)&lbl_1_bss_772C8;
-    s = *(u8 *)&lbl_1_bss_772C8_fill_77308;
+    s = *(u8 *)&lbl_1_bss_772C8__fzgx_offset_40;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7730A;
-    s = *(u8 *)&lbl_1_bss_716C0_gap_7730B;
+    s = *(u8 *)&fzgx_pool_gap_bss_7730B;
     s = *(u8 *)&lbl_1_bss_7730C;
     s = *(u8 *)&lbl_1_bss_77310;
-    s = *(u8 *)&lbl_1_bss_77310_24;
-    s = *(u8 *)&lbl_1_bss_77310_fill_77335;
-    s = *(u8 *)&lbl_1_bss_77310_fill_77336;
-    s = *(u8 *)&lbl_1_bss_77310_28;
-    s = *(u8 *)&lbl_1_bss_77310_fill_77339;
-    s = *(u8 *)&lbl_1_bss_77310_fill_7733A;
-    s = *(u8 *)&lbl_1_bss_77310_2C;
-    s = *(u8 *)&lbl_1_bss_77310_fill_7733D;
-    s = *(u8 *)&lbl_1_bss_77310_fill_7733E;
-    s = *(u8 *)&lbl_1_bss_77310_fill_77340;
-    s = *(u8 *)&lbl_1_bss_77310_34;
-    s = *(u8 *)&lbl_1_bss_77310_fill_77345;
-    s = *(u8 *)&lbl_1_bss_77310_fill_77346;
-    s = *(u8 *)&lbl_1_bss_77310_fill_77348;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_24;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_25;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_26;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_28;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_29;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_2A;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_2C;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_2D;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_2E;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_30;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_34;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_35;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_36;
+    s = *(u8 *)&lbl_1_bss_77310__fzgx_offset_38;
 }
 #pragma section code_type ".text"
 
@@ -14436,9 +14436,9 @@ u32 color;
 struct { s32 value; } count;
 u32 fadeArg;
 s32 old;
-t = (f32)(*(s32 *)((u8 *)&lbl_1_bss_77310_24)) / ((0x3dc)==0x1c8 ? 0.0f : (0x3dc)==0x1e0 ? 1.0f : (0x3dc)==0x238 ? 8.0f : (0x3dc)==0x23c ? 0.5f : (0x3dc)==0x244 ? 320.0f : (0x3dc)==0x260 ? 0.01f : (0x3dc)==0x344 ? 0.09f : (0x3dc)==0x348 ? 0.7f : (0x3dc)==0x3ac ? 1.5f : (0x3dc)==0x3b0 ? 40.0f : (0x3dc)==0x3dc ? 15.0f : (0x3dc)==0x3e0 ? 5.0f : (0x3dc)==0x3e4 ? 100.0f : (0x3dc)==0x3e8 ? 1.1111111640930176f : (0x3dc)==0x3ec ? 3.0f : (0x3dc)==0x3f0 ? 185.0f : 255.0f) ;
+t = (f32)(*(s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_24)) / ((0x3dc)==0x1c8 ? 0.0f : (0x3dc)==0x1e0 ? 1.0f : (0x3dc)==0x238 ? 8.0f : (0x3dc)==0x23c ? 0.5f : (0x3dc)==0x244 ? 320.0f : (0x3dc)==0x260 ? 0.01f : (0x3dc)==0x344 ? 0.09f : (0x3dc)==0x348 ? 0.7f : (0x3dc)==0x3ac ? 1.5f : (0x3dc)==0x3b0 ? 40.0f : (0x3dc)==0x3dc ? 15.0f : (0x3dc)==0x3e0 ? 5.0f : (0x3dc)==0x3e4 ? 100.0f : (0x3dc)==0x3e8 ? 1.1111111640930176f : (0x3dc)==0x3ec ? 3.0f : (0x3dc)==0x3f0 ? 185.0f : 255.0f) ;
 alpha = t * t;
-if (lbl_1_bss_77310_28) {
+if (lbl_1_bss_77310__fzgx_offset_28) {
 slide = (s32)(((0x244)==0x1c8 ? 0.0f : (0x244)==0x1e0 ? 1.0f : (0x244)==0x238 ? 8.0f : (0x244)==0x23c ? 0.5f : (0x244)==0x244 ? 320.0f : (0x244)==0x260 ? 0.01f : (0x244)==0x344 ? 0.09f : (0x244)==0x348 ? 0.7f : (0x244)==0x3ac ? 1.5f : (0x244)==0x3b0 ? 40.0f : (0x244)==0x3dc ? 15.0f : (0x244)==0x3e0 ? 5.0f : (0x244)==0x3e4 ? 100.0f : (0x244)==0x3e8 ? 1.1111111640930176f : (0x244)==0x3ec ? 3.0f : (0x244)==0x3f0 ? 185.0f : 255.0f) * (((0x1e0)==0x1c8 ? 0.0f : (0x1e0)==0x1e0 ? 1.0f : (0x1e0)==0x238 ? 8.0f : (0x1e0)==0x23c ? 0.5f : (0x1e0)==0x244 ? 320.0f : (0x1e0)==0x260 ? 0.01f : (0x1e0)==0x344 ? 0.09f : (0x1e0)==0x348 ? 0.7f : (0x1e0)==0x3ac ? 1.5f : (0x1e0)==0x3b0 ? 40.0f : (0x1e0)==0x3dc ? 15.0f : (0x1e0)==0x3e0 ? 5.0f : (0x1e0)==0x3e4 ? 100.0f : (0x1e0)==0x3e8 ? 1.1111111640930176f : (0x1e0)==0x3ec ? 3.0f : (0x1e0)==0x3f0 ? 185.0f : 255.0f) - alpha));
 } else {
 slide = (s32)(((0x244)==0x1c8 ? 0.0f : (0x244)==0x1e0 ? 1.0f : (0x244)==0x238 ? 8.0f : (0x244)==0x23c ? 0.5f : (0x244)==0x244 ? 320.0f : (0x244)==0x260 ? 0.01f : (0x244)==0x344 ? 0.09f : (0x244)==0x348 ? 0.7f : (0x244)==0x3ac ? 1.5f : (0x244)==0x3b0 ? 40.0f : (0x244)==0x3dc ? 15.0f : (0x244)==0x3e0 ? 5.0f : (0x244)==0x3e4 ? 100.0f : (0x244)==0x3e8 ? 1.1111111640930176f : (0x244)==0x3ec ? 3.0f : (0x244)==0x3f0 ? 185.0f : 255.0f) * -(((0x1e0)==0x1c8 ? 0.0f : (0x1e0)==0x1e0 ? 1.0f : (0x1e0)==0x238 ? 8.0f : (0x1e0)==0x23c ? 0.5f : (0x1e0)==0x244 ? 320.0f : (0x1e0)==0x260 ? 0.01f : (0x1e0)==0x344 ? 0.09f : (0x1e0)==0x348 ? 0.7f : (0x1e0)==0x3ac ? 1.5f : (0x1e0)==0x3b0 ? 40.0f : (0x1e0)==0x3dc ? 15.0f : (0x1e0)==0x3e0 ? 5.0f : (0x1e0)==0x3e4 ? 100.0f : (0x1e0)==0x3e8 ? 1.1111111640930176f : (0x1e0)==0x3ec ? 3.0f : (0x1e0)==0x3f0 ? 185.0f : 255.0f) - alpha));
@@ -14489,20 +14489,20 @@ fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_3B74C.v[86][lb
            (const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_3B74C.v[38][lbl_801A66B4]);
 }
 count.value = 0;
-a = (s32 *)((u8 *)&lbl_1_bss_77310_34 + 8) + index * 6;
-if (*(a -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index] & 2)) count.value = 1;
-b = (s32 *)((u8 *)&lbl_1_bss_77310_34 + 16) + index * 6;
-if (*(b -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index] & 8)) count.value++;
-c = (s32 *)((u8 *)&lbl_1_bss_77310_34 + 12) + index * 6;
-if (*(c -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index] & 4)) count.value++;
-d = (s32 *)((u8 *)&lbl_1_bss_77310_34 + 20) + index * 6;
-if (*(d -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index] & 16)) count.value++;
-e = (s32 *)((u8 *)&lbl_1_bss_77310_34 + 24) + index * 6;
-if (*(e -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index] & 32)) count.value++;
+a = (s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_34 + 8) + index * 6;
+if (*(a -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index] & 2)) count.value = 1;
+b = (s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_34 + 16) + index * 6;
+if (*(b -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index] & 8)) count.value++;
+c = (s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_34 + 12) + index * 6;
+if (*(c -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index] & 4)) count.value++;
+d = (s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_34 + 20) + index * 6;
+if (*(d -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index] & 16)) count.value++;
+e = (s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_34 + 24) + index * 6;
+if (*(e -= 1) < 0 && !(((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index] & 32)) count.value++;
 y = 330 - (count.value - 1) * 25 / 2;
 fn_1_495C8(8);
 fn_1_4955C(((0x348)==0x1c8 ? 0.0f : (0x348)==0x1e0 ? 1.0f : (0x348)==0x238 ? 8.0f : (0x348)==0x23c ? 0.5f : (0x348)==0x244 ? 320.0f : (0x348)==0x260 ? 0.01f : (0x348)==0x344 ? 0.09f : (0x348)==0x348 ? 0.7f : (0x348)==0x3ac ? 1.5f : (0x348)==0x3b0 ? 40.0f : (0x348)==0x3dc ? 15.0f : (0x348)==0x3e0 ? 5.0f : (0x348)==0x3e4 ? 100.0f : (0x348)==0x3e8 ? 1.1111111640930176f : (0x348)==0x3ec ? 3.0f : (0x348)==0x3f0 ? 185.0f : 255.0f) , ((0x348)==0x1c8 ? 0.0f : (0x348)==0x1e0 ? 1.0f : (0x348)==0x238 ? 8.0f : (0x348)==0x23c ? 0.5f : (0x348)==0x244 ? 320.0f : (0x348)==0x260 ? 0.01f : (0x348)==0x344 ? 0.09f : (0x348)==0x348 ? 0.7f : (0x348)==0x3ac ? 1.5f : (0x348)==0x3b0 ? 40.0f : (0x348)==0x3dc ? 15.0f : (0x348)==0x3e0 ? 5.0f : (0x348)==0x3e4 ? 100.0f : (0x348)==0x3e8 ? 1.1111111640930176f : (0x348)==0x3ec ? 3.0f : (0x348)==0x3f0 ? 185.0f : 255.0f) );
-if (*a < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index]) & 2) && lbl_1_bss_962 != 100) {
+if (*a < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index]) & 2) && lbl_1_bss_962 != 100) {
 fn_1_496FC((f32)(slide + 130), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_3B74C.v[85][lbl_801A66B4]);
 fn_1_496FC((f32)(slide + 255), (f32)y);
@@ -14511,7 +14511,7 @@ fn_1_496FC((f32)(slide + 360), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_35AC8_73AC.v);
 y += 25;
 }
-if (*b < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index]) & 8) && lbl_1_bss_962 != 100) {
+if (*b < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index]) & 8) && lbl_1_bss_962 != 100) {
 fn_1_496FC((f32)(slide + 130), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_3B74C.v[84][lbl_801A66B4]);
 fn_1_496FC((f32)(slide + 255), (f32)y);
@@ -14520,7 +14520,7 @@ fn_1_496FC((f32)(slide + 360), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_35AC8_73CC.v);
 y += 25;
 }
-if (*c < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index]) & 4) && lbl_1_bss_962 != 100) {
+if (*c < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index]) & 4) && lbl_1_bss_962 != 100) {
 fn_1_496FC((f32)(slide + 130), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_3B74C.v[83][lbl_801A66B4]);
 fn_1_496FC((f32)(slide + 255), (f32)y);
@@ -14529,7 +14529,7 @@ fn_1_496FC((f32)(slide + 360), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_35AC8_73EC.v);
 y += 25;
 }
-if (*d < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index]) & 16)) {
+if (*d < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index]) & 16)) {
 fn_1_496FC((f32)(slide + 130), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_3B74C.v[82][lbl_801A66B4]);
 fn_1_496FC((f32)(slide + 255), (f32)y);
@@ -14538,7 +14538,7 @@ fn_1_496FC((f32)(slide + 360), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_35AC8_73EC.v);
 y += 25;
 }
-if (*e < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310_2C))[index]) & 32) && lbl_1_bss_962 != 100) {
+if (*e < 0 && !((((u32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_2C))[index]) & 32) && lbl_1_bss_962 != 100) {
 fn_1_496FC((f32)(slide + 130), (f32)y);
 fn_1_4AE0C((const char *)fzgx_pool_init_fzgx_pool_data_lbl_1_data_3B74C.v[81][lbl_801A66B4]);
 fn_1_496FC((f32)(slide + 255), (f32)y);
@@ -14552,15 +14552,15 @@ fadeArg = fade;
 fn_1_4D274(&fadeArg, ((0x3b0)==0x1c8 ? 0.0f : (0x3b0)==0x1e0 ? 1.0f : (0x3b0)==0x238 ? 8.0f : (0x3b0)==0x23c ? 0.5f : (0x3b0)==0x244 ? 320.0f : (0x3b0)==0x260 ? 0.01f : (0x3b0)==0x344 ? 0.09f : (0x3b0)==0x348 ? 0.7f : (0x3b0)==0x3ac ? 1.5f : (0x3b0)==0x3b0 ? 40.0f : (0x3b0)==0x3dc ? 15.0f : (0x3b0)==0x3e0 ? 5.0f : (0x3b0)==0x3e4 ? 100.0f : (0x3b0)==0x3e8 ? 1.1111111640930176f : (0x3b0)==0x3ec ? 3.0f : (0x3b0)==0x3f0 ? 185.0f : 255.0f) );
 fn_1_4AEC0(0);
 fn_1_4AEB4(((0x1c8)==0x1c8 ? 0.0f : (0x1c8)==0x1e0 ? 1.0f : (0x1c8)==0x238 ? 8.0f : (0x1c8)==0x23c ? 0.5f : (0x1c8)==0x244 ? 320.0f : (0x1c8)==0x260 ? 0.01f : (0x1c8)==0x344 ? 0.09f : (0x1c8)==0x348 ? 0.7f : (0x1c8)==0x3ac ? 1.5f : (0x1c8)==0x3b0 ? 40.0f : (0x1c8)==0x3dc ? 15.0f : (0x1c8)==0x3e0 ? 5.0f : (0x1c8)==0x3e4 ? 100.0f : (0x1c8)==0x3e8 ? 1.1111111640930176f : (0x1c8)==0x3ec ? 3.0f : (0x1c8)==0x3f0 ? 185.0f : 255.0f) );
-if (lbl_1_bss_77310_28) {
-old = (*(s32 *)((u8 *)&lbl_1_bss_77310_24)) ;
-(*(s32 *)((u8 *)&lbl_1_bss_77310_24)) = old + 1;
-if (old >= 15) (*(s32 *)((u8 *)&lbl_1_bss_77310_24)) = 15;
-if (((lbl_1_bss_9F8.unk_8 >> 8) & 1) && (*(s32 *)((u8 *)&lbl_1_bss_77310_24)) >= 15)
-lbl_1_bss_77310_28 = 0;
+if (lbl_1_bss_77310__fzgx_offset_28) {
+old = (*(s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_24)) ;
+(*(s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_24)) = old + 1;
+if (old >= 15) (*(s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_24)) = 15;
+if (((lbl_1_bss_9F8.unk_8 >> 8) & 1) && (*(s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_24)) >= 15)
+lbl_1_bss_77310__fzgx_offset_28 = 0;
 } else {
-old = (*(s32 *)((u8 *)&lbl_1_bss_77310_24)) ;
-(*(s32 *)((u8 *)&lbl_1_bss_77310_24)) = old - 1;
+old = (*(s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_24)) ;
+(*(s32 *)((u8 *)&lbl_1_bss_77310__fzgx_offset_24)) = old - 1;
 if (old < 0) return 1;
 }
 return 0;

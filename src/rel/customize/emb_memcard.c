@@ -651,8 +651,28 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_3_CE94 */
 
-/* fzgx:begin fn_3_D9A0 pool */
+/* fzgx:begin fn_3_D9A0 */
 #include "font.h"
+
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_801A6410;
+extern u32 lbl_3_data_1A18;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_C1394(u32 *arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
+extern u32 lbl_3_rodata_288[60];
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
+extern void fn_1_7BCCC(struct Vec3 *);
+extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035420(struct GXLightObj *, f32, int);
+extern void fn_800356AC(struct GXLightObj *, u32 *);
+extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
+extern void fn_1_7BB80(struct GXLightObj *, int);
+extern void fn_1_7BD6C(int);
+extern void fn_80074CF4(f32, f32, f32);
+
 
 extern u32 lbl_3_bss_7ED58[18];
 extern u32 lbl_801A6410;
@@ -718,7 +738,7 @@ static void fzgx_fn_3_D9A0_pool_head(void) {
     fn_3_D9A0_primer_d(4503601774854144.0);
 }
 #pragma section code_type ".text"
-const u32 fn_3_D9A0_pool_words[] = { 0xFFFF0000, 0xFFFF0000, 0xFFFFFF00 };
+const u32 fzgx_pool_fn_3_D9A0_pool_words[] = { 0xFFFF0000, 0xFFFF0000, 0xFFFFFF00 };
 #pragma section code_type ".fzgxpool"
 static void fzgx_fn_3_D9A0_pool_tail(void) {
     fn_3_D9A0_primer_f(185.0f);
