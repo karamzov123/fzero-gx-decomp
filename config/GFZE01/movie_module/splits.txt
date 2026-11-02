@@ -2322,6 +2322,9 @@ rel/movie_module/fn_12_D038.c:
 rel/movie_module/fn_12_CBC8.c:
 	.text       start:0x0000CBC8 end:0x0000CCB0 align:4
 
+rel/movie_module/fn_12_25AAC.c:
+	.text       start:0x00025AAC end:0x00025DA8 align:4
+
 rel/movie_module/fn_12_3D624.c:
 	.text       start:0x0003D624 end:0x0003D730 align:4
 

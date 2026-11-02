@@ -348,6 +348,12 @@ rel/title/title/fn_8_5840.c:
 rel/title/operation/fn_8_DD64.c:
 	.text       start:0x0000DD64 end:0x0000E440 align:4
 
+rel/title/operation/fn_8_D034.c:
+	.text       start:0x0000D034 end:0x0000D5F4 align:4
+
+rel/title/operation/fn_8_C038.c:
+	.text       start:0x0000C038 end:0x0000C7B0 align:4
+
 rel/title/operation/fn_8_E440.c:
 	.text       start:0x0000E440 end:0x0000EFA4 align:4
 
