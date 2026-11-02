@@ -1948,7 +1948,7 @@ void fn_8_8C80(void) {
 }
 /* fzgx:end fn_8_8C80 */
 
-/* fzgx:begin fn_8_8E00 pool noprologue */
+/* fzgx:begin fn_8_8E00 noprologue */
 #include "types.h"
 #include "rel/main_rel/game.h"
 #include "types.h"
@@ -2383,7 +2383,7 @@ void fn_8_8E00(void) {
     scale=RF(0xb4)/(RF(0xb8)/lbl_8006D21C(0x1000));
     fn_1_A71CC();
     fn_1_A7024(RF(0xbc),fn_1_A6FE8(),RF(0xc0),RF(0xc4));
-    { static const u32 u0[1]={0},u1[1]={0},u2[1]={0x3f800000}; u32 uz,uy,ux; ux=u0[0]; uy=u1[0]; uz=u2[0]; *(u32 *)&up.x=ux; *(u32 *)&up.y=uy; *(u32 *)&up.z=uz; { Vec3 temp={0.0f,0.0f,0.01f}; x=RF(0xc8)*scale; temp.x=x; temp.y=RF(0xcc)*scale; eye=temp; } }
+    { static const u32 fzgx_pool_u0[1]={0},fzgx_pool_u1[1]={0},fzgx_pool_u2[1]={0x3f800000}; u32 uz,uy,ux; ux=fzgx_pool_u0[0]; uy=fzgx_pool_u1[0]; uz=fzgx_pool_u2[0]; *(u32 *)&up.x=ux; *(u32 *)&up.y=uy; *(u32 *)&up.z=uz; { Vec3 temp={0.0f,0.0f,0.01f}; x=RF(0xc8)*scale; temp.x=x; temp.y=RF(0xcc)*scale; eye=temp; } }
     lbl_8006D668(&eye);
     fn_8006E978(quat,&up,&eye);
     mathutil_mtxA_from_quat(quat);
@@ -2410,7 +2410,7 @@ void fn_8_8E00(void) {
     fn_80072558();
     if (model4) fn_1_556B8(model4);
     v=RF(0x38); fn_1_5621C(v,v,v,v);
-    { static const u32 u0[1]={0},u1[1]={0},u2[1]={0x3f800000}; u32 uz,uy,ux; ux=u0[0]; uy=u1[0]; uz=u2[0]; *(u32 *)&up.x=ux; *(u32 *)&up.y=uy; *(u32 *)&up.z=uz; { Vec3 temp={0.0f,0.0f,0.01f}; temp.x=x; temp.y=RF(0xec)*scale; eye=temp; } }
+    { static const u32 fzgx_pool_u0[1]={0},fzgx_pool_u1[1]={0},fzgx_pool_u2[1]={0x3f800000}; u32 uz,uy,ux; ux=fzgx_pool_u0[0]; uy=fzgx_pool_u1[0]; uz=fzgx_pool_u2[0]; *(u32 *)&up.x=ux; *(u32 *)&up.y=uy; *(u32 *)&up.z=uz; { Vec3 temp={0.0f,0.0f,0.01f}; temp.x=x; temp.y=RF(0xec)*scale; eye=temp; } }
     lbl_8006D668(&eye);
     fn_8006E978(quat,&up,&eye);
     mathutil_mtxA_from_quat(quat);
@@ -4264,7 +4264,7 @@ void fn_8_B138(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_8_B138 */
 
-/* fzgx:begin fn_8_B380 pool */
+/* fzgx:begin fn_8_B380 */
 #include "rel/title/globals.h"
 
 #ifndef REL_TITLE_OPERATION_H
@@ -4323,43 +4323,43 @@ extern s32 lbl_801A66B4;
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u16 fzgx_obj_lbl_8_bss_2A8;
-u16 lbl_8_bss_2A8_gap_2AA;
+u16 fzgx_pool_gap_bss_2AA;
 u32 fzgx_obj_lbl_8_bss_2AC;
 u32 fzgx_obj_lbl_8_bss_2B0;
 u32 lbl_8_bss_2B4;
 u32 lbl_8_bss_2B8;
 u32 lbl_8_bss_2BC;
 u32 fzgx_obj_lbl_8_bss_2C0[18];
-OpSprite lbl_8_bss_2C0_48;
-u32 lbl_8_bss_2C0_fill_320[24];
-OpSprite lbl_8_bss_2C0_C0;
-u32 lbl_8_bss_2C0_fill_398[10];
-s32 lbl_8_bss_2C0_100;
-u32 lbl_8_bss_2C0_fill_3C4[2];
+OpSprite lbl_8_bss_2C0__fzgx_offset_48;
+u32 lbl_8_bss_2C0__fzgx_offset_60[24];
+OpSprite lbl_8_bss_2C0__fzgx_offset_C0;
+u32 lbl_8_bss_2C0__fzgx_offset_D8[10];
+s32 lbl_8_bss_2C0__fzgx_offset_100;
+u32 lbl_8_bss_2C0__fzgx_offset_104[2];
 s32 fzgx_obj_lbl_8_bss_3CC;
 s32 fzgx_obj_lbl_8_bss_3D0;
-u32 lbl_8_bss_3D0_fill_3D4[91];
+u32 lbl_8_bss_3D0__fzgx_offset_4[91];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_8_bss_2A8;
-    s = *(u8 *)&lbl_8_bss_2A8_gap_2AA;
+    s = *(u8 *)&fzgx_pool_gap_bss_2AA;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_2AC;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_2B0;
     s = *(u8 *)&lbl_8_bss_2B4;
     s = *(u8 *)&lbl_8_bss_2B8;
     s = *(u8 *)&lbl_8_bss_2BC;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_2C0;
-    s = *(u8 *)&lbl_8_bss_2C0_48;
-    s = *(u8 *)&lbl_8_bss_2C0_fill_320;
-    s = *(u8 *)&lbl_8_bss_2C0_C0;
-    s = *(u8 *)&lbl_8_bss_2C0_fill_398;
-    s = *(u8 *)&lbl_8_bss_2C0_100;
-    s = *(u8 *)&lbl_8_bss_2C0_fill_3C4;
+    s = *(u8 *)&lbl_8_bss_2C0__fzgx_offset_48;
+    s = *(u8 *)&lbl_8_bss_2C0__fzgx_offset_60;
+    s = *(u8 *)&lbl_8_bss_2C0__fzgx_offset_C0;
+    s = *(u8 *)&lbl_8_bss_2C0__fzgx_offset_D8;
+    s = *(u8 *)&lbl_8_bss_2C0__fzgx_offset_100;
+    s = *(u8 *)&lbl_8_bss_2C0__fzgx_offset_104;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_3CC;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_3D0;
-    s = *(u8 *)&lbl_8_bss_3D0_fill_3D4;
+    s = *(u8 *)&lbl_8_bss_3D0__fzgx_offset_4;
 }
 #pragma section code_type ".text"
 
@@ -4884,7 +4884,7 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer2(volatile f32 *f, OpColor 
 
 __declspec(section ".fzgxpool") void fzgx_pool_primer3(void) {
     /* retail pool 0x4C..0xAB: color initializers and two six-float tables */
-    static const u32 words[24] = {  /* fzgx-allow: A1 retail pool bytes */
+    static const u32 fzgx_pool_words24[24] = {  /* fzgx-allow: A1 retail pool bytes */
         0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0x3E99999A, 0xFFFFFF00,
         0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0x00000000, 0x00000000, 0x3F800000, 0x00000000,
         0x00000000, 0x3C23D70A, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3C23D70A
@@ -4931,7 +4931,7 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer6(volatile f32 *f, volatile
 }
 
 __declspec(section ".fzgxpool") void fzgx_pool_primer7(void) {
-    static const u32 words[14] = { /* fzgx-allow: A1 retail pool bytes */
+    static const u32 fzgx_pool_words14[14] = { /* fzgx-allow: A1 retail pool bytes */
         0xFFFFFF00, 0x42E00000, 0x43880000, 0x41F00000,
         0x428C0000, 0xFFFFFF00, 0xFF4040FF, 0x3F8E38E4,
         0x43200000, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00,
@@ -4959,9 +4959,9 @@ static inline void op_update_banner(OpSprite *banner) {
     } else {
         banner->unk_4 = 1.0f;
     }
-    lbl_8_bss_2C0_100 = 0;
+    lbl_8_bss_2C0__fzgx_offset_100 = 0;
     if (timer < dur - 90 && timer > dur - 180 && timer % 30 > 10) {
-        lbl_8_bss_2C0_100 = 1;
+        lbl_8_bss_2C0__fzgx_offset_100 = 1;
     }
 }
 #undef dur
@@ -5036,7 +5036,7 @@ void fn_8_B380(void) {
         curvesZ = ((OpCurve *)fzgx_pool_data_lbl_8_data_7E50_11DC);
         fn_1_9E14C(curvesZ[2].count, curvesZ[2].keys, 0.0f);
         t = fn_1_9E14C(fzgx_pool_data_lbl_8_data_7E50_11DC[0], ((OpCurve *)fzgx_pool_data_lbl_8_data_7E50_11DC)[0].keys, scale);
-        logo = &lbl_8_bss_2C0_48;
+        logo = &lbl_8_bss_2C0__fzgx_offset_48;
         logo->unk_C = t;
         logo->unk_10 = fn_1_9E14C(curvesY[1].count, curvesY[1].keys, scale);
         logo->unk_14 = fn_1_9E14C(curvesZ[2].count, curvesZ[2].keys, scale);
@@ -5047,7 +5047,7 @@ void fn_8_B380(void) {
         logo->unk_10 = logo->unk_10 + t;
     }
 
-    op_update_banner(&lbl_8_bss_2C0_C0);
+    op_update_banner(&lbl_8_bss_2C0__fzgx_offset_C0);
 
     fn_1_49410();
     if (lbl_801A66B4 == 5) {

@@ -5935,7 +5935,7 @@ void fn_1_702A0(void *arg0, void *arg1, u8 count_arg, u8 arg3) {
 }
 /* fzgx:end fn_1_702A0 */
 
-/* fzgx:begin fn_1_7099C pool noprologue */
+/* fzgx:begin fn_1_7099C noprologue */
 #include "dolphin/hw_regs.h"
 #include "types.h"
 #include "types.h"
@@ -6082,9 +6082,9 @@ const u32 fzgx_pool_table_394[1] = {0x3FC00000};
 
 #pragma pool_data on
 static Obj_1_bss_38458_Target *fzgx_obj_lbl_1_bss_38458[1];
-static u32 fzgx_obj_bss_next[1];
+static u32 fzgx_pool_bss_next[1];
 #pragma section code_type ".fzgxpool"
-void fzgx_bss_primer(volatile u32 *p) { *p = (u32)fzgx_obj_lbl_1_bss_38458[0]; *p = fzgx_obj_bss_next[0]; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+void fzgx_bss_primer(volatile u32 *p) { *p = (u32)fzgx_obj_lbl_1_bss_38458[0]; *p = fzgx_pool_bss_next[0]; }  /* fzgx-allow: S2 volatile keeps the verified access order */
 #pragma section code_type ".text"
 extern f32 fn_1_8652C(int);
 extern u32 fn_1_584AC(void);
