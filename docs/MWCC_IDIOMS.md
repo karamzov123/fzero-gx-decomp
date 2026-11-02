@@ -792,3 +792,27 @@ Implemented in `fixup_layout.tu_section_layout`:
   gives `...data.0 + 0x10000` the highest virtual register (`r31`) while keeping `...data.0` in
   `r4` and `...bss.0` in `r3`/`r30`.
 
+### Measured TU `.data`/`.bss` section-base reconstruction with `.fzgxpool` primers (deep40k, 2026-11-01)
+
+Observed across 93 functions in PR #164 (`interview.c`, `cloth.c`, `sel.c`):
+
+- **Section-base addressing in large TUs**: MWCC generates base-relative addressing for `.data` and `.bss` references using a shared TU section base register. In split single-function units, declaring globals as external symbols fails because MWCC cannot resolve base-relative offsets across translation unit boundaries.
+- **Measured gap layout**: Reconstructing the retail TU's preceding objects and gaps (`fzgx_obj_...`, `fzgx_pool_gap_...`) up to the target function's accesses preserves exact member offsets. Nonzero initializers (e.g. `{1}`) keep `.data` objects in `.data` without landing in `.bss`.
+- **`.fzgxpool` primer functions**: Placing primer routines (`fzgx_data_prime`, `fzgx_bss_prime`) inside `#pragma section code_type ".fzgxpool"` that touch each object sequentially via `fzgx_touch(obj)` forces MWCC to emit base-relative offsets matching retail layout. The linker (`tools/fzgx_pool.py`) strips or rebinds `.fzgxpool` at link time.
+
+### Anonymous single-member struct wrappers for stack spill and allocator control (`fn_1_10DDE4`, 2026-11-01)
+
+- Wrapping an otherwise scalar variable in a single-member anonymous struct (`struct { s32 value; } cols;`) forces MWCC's stack allocator and register coloring to treat the variable as an aggregate. This prevents inappropriate scalar promotions, unwanted register reuse across loop boundaries, and rotation of callee-saved homes without modifying runtime behavior or incurring extra instructions.
+
+### Retail `.rodata` pool gap alignment via raw pool bytes (`cloth.c`, `fn_10_1A760`, 2026-11-01)
+
+- When a function reuses literals at specific module pool offsets that are difficult to synthesize via C literals, raw retail rodata words can be declared in `.fzgxpool` using the linter-approved annotations:
+  - `/* fzgx-allow: A1 retail pool bytes */` for static const u32 arrays.
+  - `/* fzgx-allow: S2 pool primer sink */` for volatile keep/prime functions.
+- This places retail rodata constants at exact offsets within the compilation unit while remaining fully compliant with `fzgx lint`.
+
+### Instruction scheduling for vector/struct member stores via typed array casting (`fn_10_1A760`, 2026-11-01)
+
+- When retail instruction scheduling loads struct/vector members in one order (e.g., `x`, `z`, `y`) and stores them in another (e.g., `y` first, then `x` and `z`), normal C assignment statements reorder stores to match declaration order. Casting through `u32 *` arrays and ordering the explicit array element copies reproduces retail's exact interleaved load/store schedule without inline assembly.
+
+
