@@ -853,6 +853,180 @@ void fn_1_E174(f32 arg0) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_E174 */
 
+/* fzgx:begin fn_1_E688 */
+#include "font.h"
+
+extern int sprintf(char *, const char *, ...);
+extern void fn_1_49410(void);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_495A0(f32);
+extern void fn_1_49590(f32);
+extern void fn_1_495C8(u8);
+extern void fn_1_495B0(u32);
+extern void fn_1_496FC(f32, f32);
+extern f32 fn_1_4B068(const char *);
+extern void fn_1_49514(u32 *);
+extern s8 fn_1_A5DC4(void);
+extern u16 fn_1_48690(u32);
+extern u16 fn_1_486C4(u32);
+extern void fn_1_50190(void *, f32, f32, f32, f32, f32, f32);
+extern const FontDrawPacket lbl_1_rodata_26F8;
+
+typedef struct {
+    u8 r, g, b, a;
+} Fn1E688Color;
+
+/* the retail TU's .data before the strings this function prints, so the strings land at their retail offsets */
+u8 fzgx_obj_lbl_1_data_43B8[0xC] = {1};
+u8 fzgx_pool_gap_43C4[0x220] = {1};
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base */
+u8 fzgx_obj_lbl_1_bss_1148[0xC];
+f32 lbl_1_bss_1148__fzgx_offset_C;
+f32 lbl_1_bss_1148__fzgx_offset_10;
+u8 fzgx_pool_gap_115C[4];
+u8 fzgx_obj_lbl_1_bss_1160[0xC];
+f32 lbl_1_bss_1160__fzgx_offset_C;
+f32 lbl_1_bss_1160__fzgx_offset_10;
+s16 fzgx_pool_gap_1174;
+s16 lbl_1_bss_1160__fzgx_offset_16;
+char lbl_1_bss_1160__fzgx_offset_18[44][0x22];
+s16 lbl_1_bss_1160__fzgx_offset_5F0;
+
+/* the literals earlier functions of the TU put in the .rodata pool (0x4E0..0x507), so this function's own
+ * literals and conversion constants land at their retail offsets */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime(void) {
+    volatile f32 s;  /* fzgx-allow: S2 primer sink */
+    s = 1.0f;
+    s = 300.0f;
+    s = 320.0f;
+    s = 234.0f;
+    s = 230.0f;
+    s = 0.0f;
+    s = 0.5f;
+    s = 2.0f;
+    s = 0.01f;
+    s = 0.02f;
+}
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_data_43B8[0];
+    s = fzgx_pool_gap_43C4[0];
+    s = fzgx_obj_lbl_1_bss_1148[0];
+    s = lbl_1_bss_1148__fzgx_offset_C;
+    s = lbl_1_bss_1148__fzgx_offset_10;
+    s = fzgx_pool_gap_115C[0];
+    s = fzgx_obj_lbl_1_bss_1160[0];
+    s = lbl_1_bss_1160__fzgx_offset_C;
+    s = lbl_1_bss_1160__fzgx_offset_10;
+    s = fzgx_pool_gap_1174;
+    s = lbl_1_bss_1160__fzgx_offset_16;
+    s = lbl_1_bss_1160__fzgx_offset_18[0][0];
+    s = lbl_1_bss_1160__fzgx_offset_5F0;
+}
+#pragma section code_type ".text"
+
+/* retail keeps every product separate (fmuls; fadds), with no fused multiply-add */
+#pragma fp_contract off
+void fn_1_E688(f32 alpha) {
+    char text[5][35];
+    FontDrawPacket packet;
+    s16 i;
+    s16 idx;
+    f32 width;
+
+    alpha = (alpha < 0.0f) ? 0.0f : ((alpha > 1.0f) ? 1.0f : alpha);
+    lbl_1_bss_1148__fzgx_offset_C += 0.2 * -lbl_1_bss_1148__fzgx_offset_C;
+    for (i = 0; i < 5; i++) {
+        idx = i - 2 + lbl_1_bss_1160__fzgx_offset_16;
+        if (idx < 0) {
+            idx = idx + lbl_1_bss_1160__fzgx_offset_5F0;
+        } else if (idx > lbl_1_bss_1160__fzgx_offset_5F0 - 1) {
+            idx = idx - lbl_1_bss_1160__fzgx_offset_5F0;
+        }
+        if (i == 2) {
+            sprintf(text[i], "%s", lbl_1_bss_1160__fzgx_offset_18[idx]);
+        } else {
+            sprintf(text[i], "%s", lbl_1_bss_1160__fzgx_offset_18[idx]);
+        }
+    }
+    if (alpha <= 0.0f) {
+        return;
+    }
+    fn_1_49410();
+    fn_1_4954C(2.0f);
+    fn_1_4955C(0.6f, 0.6f);
+    fn_1_495A0(alpha);
+    fn_1_49590(0.5f);
+    fn_1_495C8(9);
+    fn_1_495B0((1U << 31) | (1U << 30));
+    for (i = 0; i < 5; i++) {
+        fn_1_496FC(lbl_1_bss_1148__fzgx_offset_C + (320.0f + lbl_1_bss_1160__fzgx_offset_C * (i - 2)), 62.0f);
+        fn_1_4A0D8(text[i]);
+    }
+    width = fn_1_4B068(text[2]);
+    {
+        Fn1E688Color color = {0x00, 0x32, 0xFF, 0xFF};
+
+        width = (16.0f + width) / 2.0f;
+        lbl_1_bss_1148__fzgx_offset_10 +=0.2f * (width - lbl_1_bss_1148__fzgx_offset_10);
+        fn_1_49514((u32 *)&color);
+    }
+    fn_1_496FC(320.0f + lbl_1_bss_1148__fzgx_offset_10, 62.0f);
+    fn_1_4A0D8("]");
+    fn_1_496FC(320.0f - lbl_1_bss_1148__fzgx_offset_10, 62.0f);
+    fn_1_4A0D8("[");
+    /* retail has both branches, word for word, each with its own pooled colour */
+    if (fn_1_A5DC4()) {
+        Fn1E688Color color = {0x00, 0x00, 0x00, 0xFF};
+
+        packet = lbl_1_rodata_26F8;
+        packet.image = 5;
+        packet.x = 320.0f - lbl_1_bss_1160__fzgx_offset_C / 2.0f;
+        packet.y = 62.0f;
+        *(Fn1E688Color *)packet.color = color;
+        packet.scale_x *= lbl_1_bss_1160__fzgx_offset_10 / fn_1_48690(packet.image);
+        packet.scale_y *= 32 / fn_1_486C4(packet.image);
+        packet.alpha = alpha;
+        packet.z = 1.0f;
+        packet.flags = 0x8000B;
+        fn_1_4F734(&packet);
+        packet.flags = 9;
+        packet.x = 320.0f + lbl_1_bss_1160__fzgx_offset_C / 2.0f;
+        fn_1_4F734(&packet);
+    } else {
+        Fn1E688Color color = {0x00, 0x00, 0x00, 0xFF};
+
+        packet = lbl_1_rodata_26F8;
+        packet.image = 5;
+        packet.x = 320.0f - lbl_1_bss_1160__fzgx_offset_C / 2.0f;
+        packet.y = 62.0f;
+        *(Fn1E688Color *)packet.color = color;
+        packet.scale_x *= lbl_1_bss_1160__fzgx_offset_10 / fn_1_48690(packet.image);
+        packet.scale_y *= 32 / fn_1_486C4(packet.image);
+        packet.alpha = alpha;
+        packet.z = 1.0f;
+        packet.flags = 0x8000B;
+        fn_1_4F734(&packet);
+        packet.flags = 9;
+        packet.x = 320.0f + lbl_1_bss_1160__fzgx_offset_C / 2.0f;
+        fn_1_4F734(&packet);
+    }
+    packet = lbl_1_rodata_26F8;
+    packet.image = 0x9607;
+    packet.x = 320.0f;
+    packet.y = 62.0f;
+    packet.z = 3.0f;
+    packet.flags = 10;
+    packet.alpha = alpha;
+    fn_1_50190(&packet, fn_1_A5DC4() ? 940.0f : 650.0f, 36.0f, 0.0f, 0.0f, 3.0f, 3.0f);
+}
+#pragma fp_contract reset
+/* fzgx:end fn_1_E688 */
+
 /* fzgx:begin fn_1_EBE4 noprologue */
 #include "types.h"
 

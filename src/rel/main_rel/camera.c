@@ -2950,6 +2950,200 @@ camera->unk_1FA = config.count;
 }
 /* fzgx:end fn_1_AEB8 */
 
+/* fzgx:begin fn_1_AFC8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+#include "dolphin/hw_regs.h"
+
+/* the TU's .rodata pool from lbl_1_rodata_200 in retail bytes, with this function's literals primed at their
+ * retail offsets, so MWCC addresses them off one pool base */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[12] = {0x3E99999A, 0x3F8CCCCD, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xBF800000, 0x425C0000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table2[3] = {0xC1200000, 0x3FE00000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+}
+static const u32 fzgx_pool_table3[35] = {0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x40400000, 0x00000000, 0x44BB8000, 0x42540000, 0x40400000, 0x3C23D70A, 0x3FA99999, 0x9999999A, 0x3827C5AC, 0x42A00000, 0x42D80000, 0x3FACCCCD, 0x42B40000, 0x3F99999A, 0x3E4CCCCD, 0x00000000, 0x3F847AE1, 0x47AE147B, 0x3D4CCCCD};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.10000000149011612f;
+}
+static const u32 fzgx_pool_table4[2] = {0x3FC33333, 0x33333333};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+}
+static const u32 fzgx_pool_table5[19] = {0x43360B61, 0x3ECCCCCD, 0x00000000, 0x3FBEB851, 0xEB851EB8, 0x459C4000, 0x00000000, 0x3FF33333, 0x33333333, 0x3FF66666, 0x66666666, 0x3FFB3333, 0x33333333, 0x3FB47AE1, 0x47AE147B, 0x3FC99999, 0x9999999A, 0x3FA47AE1, 0x47AE147B};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+}
+static const u32 fzgx_pool_table6[21] = {0x00000000, 0x3FB99999, 0x9999999A, 0x3FC00000, 0x40133333, 0x3F333333, 0x00000000, 0x3FD33333, 0x33333333, 0x404B8000, 0x00000000, 0x4062C000, 0x00000000, 0x42820000, 0x39782F05, 0x42700000, 0x3991A2B4, 0x401CC28F, 0x5C28F5C3, 0x40A00000, 0x403C28F6};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+}
+static const u32 fzgx_pool_table7[20] = {0xC1500000, 0xC1A00000, 0x41500000, 0x00000000, 0x00000000, 0x00000000, 0x40080000, 0x00000000, 0x3F947AE1, 0x47AE147B, 0x42800000, 0x00000000, 0x4060E000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.0;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x, y, z;
+} CamVec;
+
+typedef struct {
+    u32 unk_0;
+    CamVec pos;
+    CamVec at;
+    f32 unk_1C;
+    s16 unk_20;
+} CamKey;
+
+/* one 0x54-byte entry of the transition tables lbl_1_data_3A2C / lbl_1_data_3BD0 */
+typedef struct {
+    s32 unk_0;
+    f32 unk_4;
+    CamKey unk_8;
+    CamKey unk_2C;
+    s16 unk_50;
+} CamPreset;
+
+/* one 0x1FC-byte game_camera_entries record (camera.h) */
+typedef struct {
+    u8 pad_0[0x2];
+    s16 unk_2;
+    u8 pad_4[0x4];
+    f32 unk_8;
+    u8 pad_C[0x4];
+    CamVec unk_10;
+    u8 pad_1C[0xC];
+    CamVec unk_28;
+    f32 unk_34[3][4];
+    u8 pad_64[0x14];
+    s16 unk_78;
+    u8 pad_7A[0x12];
+    CamVec unk_8C;
+    CamVec unk_98;
+    s16 unk_A4;
+    u8 pad_A6[0x14A];
+    f32 unk_1F0;
+    f32 unk_1F4;
+    u8 pad_1F8[0x2];
+    s16 unk_1FA;
+} Camera;
+
+extern void fn_1_862D4(s16 index, CamVec *out);
+extern void fn_1_863E4(s16 index, f32 (*out)[4]);
+extern void fn_80008DB4(f32 (*a)[4], f32 (*b)[4], f32 (*out)[4], f32 t);
+extern void lbl_8006DC6C(f32 (*m)[4]);
+extern void lbl_8006E1B0(CamVec *in, CamVec *out);
+extern void lbl_8006D5A4(CamVec *a, CamVec *b, CamVec *out, f32 t);
+
+static inline f32 fn_1_AFC8_clamp(f32 x, f32 lo, f32 hi) {
+    if (x < lo) {
+        return lo;
+    }
+    if (x > hi) {
+        return hi;
+    }
+    return x;
+}
+
+/* While cam->unk_78 (counted down by camera_update_transition) is positive, blends the camera toward the current
+ * transition preset (lbl_1_data_3BD0 entry cam->unk_A4 in game mode 14, else lbl_1_data_3A2C): mode 0 from unk_8
+ * to unk_2C by the elapsed fraction, mode 3 by the eased value unk_1F0 (step unk_1F4), mode 2 by the fixed
+ * fraction unk_4 from where the camera is. Then it passes unk_34, car cam->unk_2's orientation (fn_1_863E4) and
+ * 0.1 to fn_80008DB4, loads unk_34 into mtxA with the car's position (fn_1_862D4) as translation, and passes
+ * unk_8C/unk_10 and unk_98/unk_28 to lbl_8006E1B0. */
+void fn_1_AFC8(Camera *cam) {
+    CamPreset *preset;
+    CamKey from;
+    CamKey to;
+    CamVec pos;
+    f32 mtx[3][4];
+    f32 t;
+    u32 n;
+    f32 z;
+    f32 y;
+    f32 x;
+    s32 index;
+    f32 step;
+
+    index = cam->unk_A4;
+    if (*(s16 *)&lbl_1_bss_960 == 14) {
+        camera_transition_count = 14;
+        preset = &((CamPreset *)lbl_1_data_3BD0)[index];
+    } else {
+        camera_transition_count = 5;
+        preset = &((CamPreset *)&lbl_1_data_3A2C)[index];
+    }
+    from = preset->unk_8;
+    to = preset->unk_2C;
+    if (cam->unk_78 > 0) {
+        switch (preset->unk_50) {
+        case 0:
+            t = 1.0 - (f32)cam->unk_78 / (f32)preset->unk_0;
+            lbl_8006D5A4(&from.pos, &to.pos, &cam->unk_8C, t);
+            lbl_8006D5A4(&from.at, &to.at, &cam->unk_98, t);
+            cam->unk_8 = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
+            cam->unk_1FA = from.unk_20 + (s16)(t * (to.unk_20 - from.unk_20));
+            break;
+        case 3:
+            n = preset->unk_0;
+            step = 1.0f / (n * n / 4);
+            if ((u32)cam->unk_78 < n / 2.0f) {
+                cam->unk_1F4 -= step;
+            } else {
+                cam->unk_1F4 += step;
+            }
+            cam->unk_1F0 += cam->unk_1F4;
+            cam->unk_1F0 = fn_1_AFC8_clamp(cam->unk_1F0, 0.0f, 1.0f);
+            t = cam->unk_1F0;
+            lbl_8006D5A4(&from.pos, &to.pos, &cam->unk_8C, t);
+            lbl_8006D5A4(&from.at, &to.at, &cam->unk_98, t);
+            cam->unk_8 = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
+            cam->unk_1FA = from.unk_20 + (s16)(t * (to.unk_20 - from.unk_20));
+            break;
+        case 2:
+            lbl_8006D5A4(&cam->unk_8C, &to.pos, &cam->unk_8C, preset->unk_4);
+            lbl_8006D5A4(&cam->unk_98, &to.at, &cam->unk_98, preset->unk_4);
+            cam->unk_8 += (f32)(preset->unk_4 * (to.unk_1C - cam->unk_8));
+            cam->unk_1FA += (s32)(preset->unk_4 * (to.unk_20 - cam->unk_1FA));
+            break;
+        }
+        fn_1_862D4(cam->unk_2, &pos);
+        fn_1_863E4(cam->unk_2, mtx);
+        fn_80008DB4(cam->unk_34, mtx, cam->unk_34, 0.1f);
+        lbl_8006DC6C(cam->unk_34);
+        /* mtxA's translation column in the locked cache */
+        x = *(volatile f32 *)&pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+        y = pos.y;
+        z = pos.z;
+        *(f32 *)(LC_BASE + 0xC) = x;
+        *(f32 *)(LC_BASE + 0x1C) = y;
+        *(f32 *)(LC_BASE + 0x2C) = z;
+        lbl_8006E1B0(&cam->unk_8C, &cam->unk_10);
+        lbl_8006E1B0(&cam->unk_98, &cam->unk_28);
+    }
+}
+/* fzgx:end fn_1_AFC8 */
+
 /* fzgx:begin camera_get_target_orientation */
 typedef struct Transform {
     u8 pad_08[0x8];

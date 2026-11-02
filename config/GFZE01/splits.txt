@@ -6509,3 +6509,15 @@ dol/fn_80070AC0.c:
 
 dol/fn_80060950.c:
 	.text       start:0x80060950 end:0x80060BDC align:4
+
+dol/fn_8005D258.c:
+	.text       start:0x8005D258 end:0x8005D5A4 align:4
+
+dol/fn_80051F38.c:
+	.text       start:0x80051F38 end:0x80052430 align:4
+
+dol/fn_800718BC.c:
+	.text       start:0x800718BC end:0x80071C04 align:4
+
+dol/fn_80066C14.c:
+	.text       start:0x80066C14 end:0x800672E4 align:4

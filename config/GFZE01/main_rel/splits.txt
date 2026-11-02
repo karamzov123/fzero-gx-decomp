@@ -9366,6 +9366,51 @@ rel/main_rel/live_camera/fn_1_DF74.c:
 rel/main_rel/stcoli/fn_1_2EE3C.c:
 	.text       start:0x0002EE3C end:0x0002F294 align:4
 
+rel/main_rel/stcoli/fn_1_290E8.c:
+	.text       start:0x000290E8 end:0x000294D0 align:4
+
+rel/main_rel/car/fn_1_85934.c:
+	.text       start:0x00085934 end:0x00085C58 align:4
+
+rel/main_rel/screen_effect/fn_1_75D84.c:
+	.text       start:0x00075D84 end:0x000761B8 align:4
+
+rel/main_rel/sound/fn_1_A0680.c:
+	.text       start:0x000A0680 end:0x000A0978 align:4
+
+rel/main_rel/driver/fn_1_A9B70.c:
+	.text       start:0x000A9B70 end:0x000A9FFC align:4
+
+rel/main_rel/car_test/fn_1_7E1DC.c:
+	.text       start:0x0007E1DC end:0x0007E7A4 align:4
+
+rel/main_rel/camera/fn_1_AFC8.c:
+	.text       start:0x0000AFC8 end:0x0000B42C align:4
+
+rel/main_rel/memcard/fn_1_B5A3C.c:
+	.text       start:0x000B5A3C end:0x000B5F00 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_D0428.c:
+	.text       start:0x000D0428 end:0x000D0728 align:4
+
+rel/main_rel/mdlload/fn_1_D523C.c:
+	.text       start:0x000D523C end:0x000D550C align:4
+
+rel/main_rel/bg_lig/fn_1_D6748.c:
+	.text       start:0x000D6748 end:0x000D6C10 align:4
+
+rel/main_rel/live_camera/fn_1_E688.c:
+	.text       start:0x0000E688 end:0x0000EBE4 align:4
+
+rel/main_rel/phys/fn_1_E9770.c:
+	.text       start:0x000E9770 end:0x000E9BA8 align:4
+
+rel/main_rel/ghost/fn_1_EF0A8.c:
+	.text       start:0x000EF0A8 end:0x000EF484 align:4
+
+rel/main_rel/spline/fn_1_F85A0.c:
+	.text       start:0x000F85A0 end:0x000F8918 align:4
+
 rel/main_rel/ghost/fn_1_EB8F4.c:
 	.text       start:0x000EB8F4 end:0x000EC900 align:4
 
@@ -9374,3 +9419,24 @@ rel/main_rel/ghost/fn_1_F0E00.c:
 
 rel/main_rel/memcard/fn_1_B8EDC.c:
 	.text       start:0x000B8EDC end:0x000B9904 align:4
+
+rel/main_rel/accessory/fn_1_1201E4.c:
+	.text       start:0x001201E4 end:0x00120804 align:4
+
+rel/main_rel/bg_san/fn_1_D9D8C.c:
+	.text       start:0x000D9D8C end:0x000DA3A0 align:4
+
+rel/main_rel/ghost/fn_1_F0508.c:
+	.text       start:0x000F0508 end:0x000F0B5C align:4
+
+rel/main_rel/phys/fn_1_E9CFC.c:
+	.text       start:0x000E9CFC end:0x000EA314 align:4
+
+rel/main_rel/load/fn_1_47330.c:
+	.text       start:0x00047330 end:0x000479B0 align:4
+
+rel/main_rel/ghost/fn_1_EFA8C.c:
+	.text       start:0x000EFA8C end:0x000F0164 align:4
+
+rel/main_rel/accessory/fn_1_12295C.c:
+	.text       start:0x0012295C end:0x00123050 align:4

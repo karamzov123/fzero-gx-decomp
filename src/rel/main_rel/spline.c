@@ -1540,6 +1540,69 @@ void fn_1_F8580(void) {
 }
 /* fzgx:end fn_1_F8580 */
 
+/* fzgx:begin fn_1_F85A0 */
+extern u32 OSGetTick(void);
+extern u32 lbl_801A63C0;
+
+static inline s32 next_rand(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676a4b6b + 0x33cb;
+    return (lbl_801A63C0 >> 16) & 0x7fff;
+}
+
+/* as a helper the shuffle body is large enough that MWCC unrolls its 100 passes by 2, as retail does */
+static inline s32 rand_index(void) {
+    return next_rand() % 32;
+}
+
+/* Encodes the block into dst: a key made from the time base is stored at +0x60 with its 32 bits in a shuffled
+ * order, and every other byte is XORed with the generator seeded from it. fn_1_F8918 reverses it. */
+void fn_1_F85A0(Obj_1_bss_7F0C0 *save, u8 *dst) {
+    u8 order[32];
+    u8 *src;
+    u8 *hdr;
+    u8 *out;
+    u32 tick;
+    u32 key;
+    u32 i;
+    u32 tmp;  /* u32, not u8: a u8 swaps tmp's and a's registers */
+    u8 a;
+    u8 b;
+
+    tick = OSGetTick();
+    key = (tick >> 14) + (tick << 18);
+    lbl_801A63C0 = key ^ 0xcae87fb5;
+    for (i = 0; i < 32; i++) {
+        order[i] = i;
+    }
+    for (i = 0; i < 100; i++) {
+        a = rand_index();
+        b = rand_index();
+        tmp = order[a];
+        order[a] = order[b];
+        order[b] = tmp;
+    }
+    /* tick is reused for the shuffled key: a fresh local takes a saved register that retail gives key */
+    tick = 0;
+    for (i = 0; i < 32; i++) {
+        tick += ((key & (1 << order[i])) >> order[i]) << i;
+    }
+    src = (u8 *)save;
+    hdr = src + 0x60;
+    *(u32 *)hdr = tick;
+    lbl_801A63C0 = tick ^ 0xcae87fb5;
+    out = dst;
+    for (i = 0; i < 0x5360; i++) {
+        if (src < hdr || hdr + 4 <= src) {
+            *out = *src ^ (next_rand() % 255 + 1);
+        } else {
+            *out = *src;
+        }
+        src++;
+        out++;
+    }
+}
+/* fzgx:end fn_1_F85A0 */
+
 /* fzgx:begin fn_1_F8918 */
 extern u32 lbl_801A63C0;
 

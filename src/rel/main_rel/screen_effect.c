@@ -1217,6 +1217,117 @@ void fn_1_729F8(struct fn_1_729F8_Arg0 *arg0)
 }
 /* fzgx:end fn_1_729F8 */
 
+/* fzgx:begin fn_1_75D84 */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[8] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFF910000, 0xFF760044, 0x6600FF32, 0x94009494, 0xCB0005CF, 0x00FF0000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 255.0f;
+    s = 40.0f;
+    s = 1.0f;
+    s = 0.5f;
+    s = 0.02500000037252903f;
+    s = 40.959999084472656f;
+    s = 409.6000061035156f;
+    s = 2.0f;
+    s = -2.0f;
+    s = 0.009999999776482582f;
+    s = 0.003000000026077032f;
+    s = 5.0f;
+    s = 15.0f;
+    d = 4503601774854144.0;
+    d = 4503599627370496.0;
+    s = 480.0f;
+    s = 0.949999988079071f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+    s16 unk_A;
+} fn_1_75D84_Rect;
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+} fn_1_75D84_Size;
+
+typedef union {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+    f32 f32;
+} WGPipe;
+
+volatile WGPipe GXWGFifo : 0xCC008000; /* fzgx-allow: A1 write-gather FIFO port */
+
+extern u16 fn_1_A5DB0(void);
+extern void fn_8003462C(u32, u32, u32);
+extern void OSPanic(const char *, int, const char *, ...);
+extern u8 lbl_1_data_1DAC0[0x44];
+extern u8 lbl_1_data_1DB9C[0x24];
+
+static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+static inline void GXTexCoord2f32(const f32 s, const f32 t) {
+    GXWGFifo.f32 = s;
+    GXWGFifo.f32 = t;
+}
+
+static inline BOOL fn_1_75D84_in_unit(f32 v) {
+    if (v > 1.0f) {
+        return FALSE;
+    }
+    if (v < 0.0f) {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+void fn_1_75D84(const f32 *pos, const fn_1_75D84_Rect *rect, fn_1_75D84_Size *size) {
+    f32 s[4];
+    f32 t[4];
+    s32 h;
+    s32 y;
+    s32 i;
+
+    s[0] = s[3] = (f32)(rect->unk_0 - size->unk_0) / (f32)size->unk_4;
+    s[1] = s[2] = (f32)(rect->unk_0 + rect->unk_4 - size->unk_0) / (f32)size->unk_4;
+    t[0] = t[1] = (f32)((s32)((f32)(rect->unk_2 * fn_1_A5DB0()) / 480.0f) - size->unk_2) / (f32)size->unk_6;
+    h = (s32)((f32)(rect->unk_6 * fn_1_A5DB0()) / 480.0f);
+    y = (s32)((f32)(rect->unk_2 * fn_1_A5DB0()) / 480.0f);
+    t[2] = t[3] = (f32)(y + h - size->unk_2) / (f32)size->unk_6;
+
+    for (i = 0; i < 4; i++) {
+        if (!fn_1_75D84_in_unit(s[i]) || !fn_1_75D84_in_unit(t[i])) {
+            OSPanic((const char *)lbl_1_data_1DAC0, 1939, (const char *)lbl_1_data_1DB9C);
+        }
+    }
+
+    fn_8003462C(0x80, 0, 4);
+    GXPosition3f32(pos[0] + rect->unk_8, pos[1] + rect->unk_A, 0.0f);
+    GXTexCoord2f32(s[0], t[0]);
+    GXPosition3f32(pos[3] + rect->unk_8, pos[4] + rect->unk_A, 0.0f);
+    GXTexCoord2f32(s[1], t[1]);
+    GXPosition3f32(pos[6] + rect->unk_8, pos[7] + rect->unk_A, 0.0f);
+    GXTexCoord2f32(s[2], t[2]);
+    GXPosition3f32(pos[9] + rect->unk_8, pos[10] + rect->unk_A, 0.0f);
+    GXTexCoord2f32(s[3], t[3]);
+}
+/* fzgx:end fn_1_75D84 */
+
 /* fzgx:begin fn_1_761B8 */
 struct fn_1_761B8_Arg0 {
     u8 pad_0[0xE0];

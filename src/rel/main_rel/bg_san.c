@@ -102,6 +102,188 @@ s32 fn_1_D8FC4(s32 arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_D8FC4 */
 
+/* fzgx:begin fn_1_D9D8C */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[12] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001, 0x00000000, 0x42C80000, 0x40400000, 0x00000000, 0x3FE66666, 0x66666666, 0x3FD33333, 0x33333333};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 32767.0f;
+}
+static const u32 fzgx_pool_table2[13] = {0x436B0000, 0x42A00000, 0x41F00000, 0x40800000, 0x00000000, 0x3FE00000, 0x00000000, 0x4072C000, 0x00000000, 0x40310000, 0x00000000, 0x454CCCCD, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+}
+static const u32 fzgx_pool_table3[10] = {0x3FEF5C28, 0xF5C28F5C, 0x3DA3D70A, 0x00000000, 0x3FEFAE14, 0x7AE147AE, 0x3F947AE1, 0x47AE147B, 0x43C80000, 0x3F3504F3};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+}
+static const u32 fzgx_pool_table4[45] = {0x00000000, 0x40000000, 0x00000000, 0x43300000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xBF800000, 0x3FC00000, 0x3F000000, 0x41200000, 0x40A00000, 0x3F19999A, 0x432A0000, 0x42F00000, 0x42000000, 0x42B40000, 0x3ECCCCCD, 0x44400000, 0x00000000, 0x3FA99999, 0x9999999A, 0x40200000, 0x3DCCCCCD, 0x42480000, 0x41A00000, 0x428C0000, 0x42040000, 0x41700000, 0x3F266666, 0x3F400000, 0x43360B61, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3EE4F8B5, 0x88E368F1, 0xBF800000, 0x47C35000, 0x41400000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_D9D8C_Vec;
+
+/* one 0x44-byte node of the state's node array */
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u16 unk_4[6];
+    fn_1_D9D8C_Vec unk_10;
+    fn_1_D9D8C_Vec unk_1C;
+    fn_1_D9D8C_Vec unk_28;
+    fn_1_D9D8C_Vec unk_34;
+    f32 unk_40;
+} fn_1_D9D8C_Node;
+
+/* one 0xC-byte link between two nodes */
+typedef struct {
+    fn_1_D9D8C_Node *unk_0;
+    fn_1_D9D8C_Node *unk_4;
+    f32 unk_8;
+} fn_1_D9D8C_Link;
+
+typedef struct {
+    u8 pad_0[0xC];
+    u32 unk_C;
+    u32 unk_10;
+    fn_1_D9D8C_Node *unk_14;
+    fn_1_D9D8C_Link *unk_18;
+} fn_1_D9D8C_State;
+
+/* 0x40-byte vertex of the model returned by fn_80077B14 */
+typedef struct {
+    fn_1_D9D8C_Vec unk_0;
+    u8 pad_C[0x34];
+} fn_1_D9D8C_Vertex;
+
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern u32 lbl_801A63C0;
+
+/* one step of the executable's random generator, lbl_801A63C0, scaled to [0, 1]; returned as f64 so the
+ * callers' scale and offset are applied in double precision, as retail does */
+static inline f64 randf_D9D8C(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f;
+}
+
+static inline f32 sqlen_D9D8C(f32 x, f32 y, f32 z) {
+    x *= x;
+    x += y * y;
+    x += z * z;
+    return x;
+}
+
+/* random push added to a node's velocity */
+static inline void jitter_D9D8C(fn_1_D9D8C_Node *node) {
+    node->unk_34.x += (f64)(0.02f * randf_D9D8C()) - 0.005f;
+    node->unk_34.y += (f32)(0.004f * (f32)randf_D9D8C());
+    node->unk_34.z += (f64)(0.02f * 10.0 * randf_D9D8C()) - 0.02f * 5.0;
+}
+/* Steps the node and link arrays of `state`: moves free nodes by their velocity, relaxes the links four
+ * times, damps the velocities and adds a random push, then copies each node's position into the model's
+ * vertices listed in the node. The casts keep products unfused, as retail has no fused multiply-adds there. */
+void fn_1_D9D8C(fn_1_D9D8C_State *state, void *model, s32 index) {
+    fn_1_D9D8C_Vertex *verts;
+    u32 j;
+    u32 pass;
+    fn_1_D9D8C_Link *link;
+    fn_1_D9D8C_Node *a;
+    fn_1_D9D8C_Node *b;
+    u32 i;
+    fn_1_D9D8C_Node *node;
+    f32 len;
+    fn_1_D9D8C_Vec d;
+    fn_1_D9D8C_Vec *dp = &d;
+    f32 inv;
+    f32 r;
+    f32 wa;
+    f32 wb;
+    f32 fa;
+    f32 fb;
+
+    if (state != NULL && model != NULL) {
+        verts = (fn_1_D9D8C_Vertex *)fn_80077B14(model);
+
+        for (i = 0, node = state->unk_14; i < state->unk_C; i++, node++) {
+            if (!(node->unk_0 & 1)) {
+                node->unk_1C = node->unk_10;
+                node->unk_10.x += node->unk_34.x;
+                node->unk_10.y += node->unk_34.y;
+                node->unk_10.z += node->unk_34.z;
+                node->unk_10.y -= 0.0013611111376020642;
+                node->unk_34.y -= 0.0027222223579883575f;
+            }
+        }
+
+        for (pass = 0; pass < 4; pass++) {
+            for (j = 0, link = state->unk_18; j < state->unk_10; j++, link++) {
+                a = link->unk_0;
+                b = link->unk_4;
+                if (a != NULL && b != NULL) {
+                    dp->x = a->unk_10.x - b->unk_10.x;
+                    dp->y = a->unk_10.y - b->unk_10.y;
+                    dp->z = a->unk_10.z - b->unk_10.z;
+                    len = sqlen_D9D8C(dp->x, dp->y, dp->z);
+                    if (len - 0.0001f > link->unk_8) {
+                        inv = lbl_8006D118(len, &len);
+                        r = lbl_8006D0B4(link->unk_8);
+                        len = inv * (len - r);
+                        dp->x *= len;
+                        dp->y *= len;
+                        dp->z *= len;
+                        wa = a->unk_40;
+                        wb = b->unk_40;
+                        r = 1.0f / (wa + wb);
+                        fa = wa * r;
+                        fb = wb * r;
+                        a->unk_10.x -= (f32)(dp->x * fa);
+                        a->unk_10.y -= (f32)(dp->y * fa);
+                        a->unk_10.z -= (f32)(dp->z * fa);
+                        b->unk_10.x += (f32)(dp->x * fb);
+                        b->unk_10.y += (f32)(dp->y * fb);
+                        b->unk_10.z += (f32)(dp->z * fb);
+                    }
+                }
+            }
+        }
+
+        for (i = 0, node = state->unk_14; i < state->unk_C; i++, node++) {
+            node->unk_34.x *= 0.9;
+            node->unk_34.y *= 0.9;
+            node->unk_34.z *= 0.9;
+            node->unk_34.x += (f64)(0.1 * (node->unk_10.x - node->unk_1C.x));
+            node->unk_34.y += (f64)(0.1 * (node->unk_10.y - node->unk_1C.y));
+            node->unk_34.z += (f64)(0.1 * (node->unk_10.z - node->unk_1C.z));
+            /* retail repeats the same push on both paths of index (the loop is compiled twice) */
+            if (index == 0) {
+                jitter_D9D8C(node);
+            } else {
+                jitter_D9D8C(node);
+            }
+        }
+
+        for (i = 0, node = state->unk_14; i < state->unk_C; i++, node++) {
+            for (j = 0; j < node->unk_2; j++) {
+                verts[node->unk_4[j]].unk_0 = node->unk_10;
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_D9D8C */
+
 /* fzgx:begin fn_1_DA3A0 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"

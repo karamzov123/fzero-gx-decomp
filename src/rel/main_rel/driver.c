@@ -2682,6 +2682,69 @@ void fn_1_A9A28(s16 x0, s16 y0, s16 x1, s16 y1, GXColor color) {
 }
 /* fzgx:end fn_1_A9A28 */
 
+/* fzgx:begin fn_1_A9B70 noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} GXColor;
+
+typedef union {
+    u8 u8;
+    f32 f32;
+} PPCWGPipe;
+
+volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
+
+extern void fn_8003462C(u32, u32, u32);
+extern void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color);
+
+static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
+    GXWGFifo.u8 = r;
+    GXWGFifo.u8 = g;
+    GXWGFifo.u8 = b;
+    GXWGFifo.u8 = a;
+}
+
+/* fn_1_A9A28's body (one line, GXBegin 0xA8), which retail inlines here four times */
+static inline void fn_1_A9B70_line(s16 x0, s16 y0, s16 x1, s16 y1, GXColor color) {
+    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+        fn_8003462C(0xA8, 0, 2);
+        GXPosition3f32(0.5f + x0, 0.5f + y0, 0.0f);
+        GXColor4u8(color.r, color.g, color.b, color.a);
+        GXPosition3f32(0.5f + x1, 0.5f + y1, 0.0f);
+        GXColor4u8(color.r, color.g, color.b, color.a);
+    }
+}
+
+/* Outlines the w by h rectangle at (x, y) with four lines, filling it first through fn_1_A9FFC when either side
+ * is 2 or less, while lbl_1_bss_71690.unk_0 is set. */
+void fn_1_A9B70(s16 x, s16 y, s16 w, s16 h, GXColor color) {
+    if ((s32)lbl_1_bss_71690.unk_0 == 0 || w == 0 || h == 0) {
+        return;
+    }
+    if (w <= 2 || h <= 2) {
+        fn_1_A9FFC(x, y, w, h, color);
+    }
+    fn_1_A9B70_line(x, y, x + w - 1, y, color);
+    fn_1_A9B70_line(x + w - 1, y, x + w - 1, y + h - 1, color);
+    fn_1_A9B70_line(x, y + 1, x, y + h, color);
+    fn_1_A9B70_line(x + 1, y + h - 1, x + w, y + h - 1, color);
+}
+/* fzgx:end fn_1_A9B70 */
+
 /* fzgx:begin fn_1_A9FFC noprologue */
 #include "types.h"
 #include "dolphin/hw_regs.h"

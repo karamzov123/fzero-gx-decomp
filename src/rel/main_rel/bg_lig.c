@@ -401,6 +401,124 @@ int fn_1_D6740(void) {
 }
 /* fzgx:end fn_1_D6740 */
 
+/* fzgx:begin fn_1_D6748 */
+typedef struct {
+    f32 x, y, z;
+} Vec3_D6748;
+
+/* the 0xE8-byte record fn_1_58E3C copies into a free effect slot */
+typedef struct {
+    u8 pad_0[0xC];
+    s16 unk_C;
+    u8 pad_E[0xA];
+    s16 unk_18;
+    u16 unk_1A;
+    f32 unk_1C;
+    f32 unk_20;
+    f32 unk_24;
+    f32 unk_28;
+    u8 pad_2C[4];
+    f32 unk_30;
+    u8 pad_34[8];
+    Vec3_D6748 unk_3C;
+    Vec3_D6748 unk_48;
+    u8 pad_54[0x1C];
+    Vec3_D6748 unk_70;
+    u8 pad_7C[0xC];
+    Vec3_D6748 unk_88;
+    Vec3_D6748 unk_94;
+    u8 pad_A0[0xC];
+    s16 unk_AC;
+    u8 pad_AE[4];
+    u16 unk_B2;
+    u8 pad_B4[0x34];
+} Desc_D6748;
+
+extern s32 fn_1_66B8(void *arg0, f32 arg1);
+extern s32 fn_1_58C4(void);
+extern void fn_1_681C(u8 value, void *out);
+extern u32 fn_1_584AC(void);
+extern s16 fn_1_58E3C(void *source);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D668(void *);
+extern void *memset(void *dst, int value, u32 size);
+extern u32 lbl_801A63C0;
+
+/* one step of the executable's random generator, lbl_801A63C0 */
+static inline s32 rand15_D6748(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+static inline f32 dist2_D6748(Vec3_D6748 *a, Vec3_D6748 *b) {
+    f32 dx = a->x;
+    f32 dy = a->y;
+    f32 dz = a->z;
+
+    dx -= b->x;
+    dy -= b->y;
+    dz -= b->z;
+    dx *= dx;
+    dx += dy * dy;
+    dx += dz * dz;
+    return dx;
+}
+
+/* distance from p to the nearest viewport camera (fn_1_58C4 viewports, fn_1_681C positions) */
+static inline f32 nearest_camera_D6748(Vec3_D6748 *p) {
+    Vec3_D6748 cam;
+    u32 n;
+    u32 i;
+    f32 best;
+
+    n = fn_1_58C4();
+    fn_1_681C(0, &cam);
+    best = lbl_8006D0B4(dist2_D6748(p, &cam));
+    for (i = 1; i < n; i++) {
+        fn_1_681C(i, &cam);
+        best = best < lbl_8006D0B4(dist2_D6748(p, &cam)) ? best : lbl_8006D0B4(dist2_D6748(p, &cam));
+    }
+    return best;
+}
+
+void fn_1_D6748(Vec3_D6748 *a, Vec3_D6748 *b, s16 kind) {
+    Desc_D6748 desc;
+    f32 s;
+
+    if (fn_1_66B8(a, 4.0f) == 0 && fn_1_66B8(b, 4.0f) == 0) {
+        return;
+    }
+    if (nearest_camera_D6748(a) < 2000.0f || nearest_camera_D6748(b) < 2000.0f) {
+        return;
+    }
+    memset(&desc, 0, 0xE8);
+    desc.unk_18 = 0;
+    desc.unk_C = 0x13;
+    desc.unk_1A = 0xFFFF;
+    desc.unk_88 = *a;
+    desc.unk_94 = *b;
+    desc.unk_3C = *b;
+    {
+        Vec3_D6748 zero = {0.0f, 0.0f, 0.0f};
+        desc.unk_48 = zero;
+    }
+    /* the casts keep each product unfused: retail has fmul/fadd here, no fmadd */
+    desc.unk_28 = 1.0 + (f64)(0.2 * (rand15_D6748() / 32767.0f - 0.5));
+    desc.unk_30 = 1.0 + (f64)(0.2 * (rand15_D6748() / 32767.0f - 0.5));
+    desc.unk_B2 = kind;
+    s = 0.8f + (f32)(0.2f * ((u16)fn_1_584AC() / 32767.0f));
+    desc.unk_1C = 255.0f * (0.5f * (1.0f + s)) / 255.0f;
+    desc.unk_20 = 224.0f * s / 255.0f;
+    desc.unk_24 = 176.0f * s / 255.0f;
+    desc.unk_70.x = 0.8f * ((u16)fn_1_584AC() / 32767.0f - 0.5f);
+    desc.unk_70.y = 0.8f * ((u16)fn_1_584AC() / 32767.0f - 0.5f);
+    desc.unk_70.z = 0.8f * ((u16)fn_1_584AC() / 32767.0f - 0.5f);
+    lbl_8006D668(&desc.unk_70);
+    desc.unk_AC = 20;
+    fn_1_58E3C(&desc);
+}
+/* fzgx:end fn_1_D6748 */
+
 /* fzgx:begin fn_1_D6C10 noprologue */
 #include "types.h"
 #include "rel/main_rel/bg_lig.h"

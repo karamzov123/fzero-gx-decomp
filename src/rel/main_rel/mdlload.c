@@ -1163,6 +1163,173 @@ void fn_1_D4FFC(u8 *base, u32 index) {
 }
 /* fzgx:end fn_1_D4FFC */
 
+/* fzgx:begin fn_1_D523C */
+typedef struct {
+    u8 pad_0[0x15];
+    u8 unk_15;
+} D523C_Mode;
+
+typedef struct {
+    u8 pad_0[0x4];
+    D523C_Mode *unk_4;
+    u8 pad_8[0x4];
+    s32 unk_C;
+    s32 unk_10;
+    s32 unk_14;
+    s32 unk_18;
+    s32 unk_1C;
+} D523C_State;
+
+/* the block at +0xC140 of lbl_1_data_2A7E0.unk_3C; field names as fn_1_D4FFC's view of it */
+typedef struct {
+    u8 pad_0[0x2620];
+    f32 rand0;
+    f32 rand1;
+    s16 thresh[4];
+    s16 sel[4];
+    s16 unk_2638;
+    s16 unk_263A;
+} D523C_Tex;
+
+/* the retail TU's .bss words this function uses, in retail order: MWCC addresses them off one section base */
+s32 fzgx_obj_lbl_1_bss_7AD60;
+s32 lbl_1_bss_7AD60__fzgx_offset_4;
+s32 lbl_1_bss_7AD60__fzgx_offset_8;
+s32 lbl_1_bss_7AD60__fzgx_offset_C;
+s32 lbl_1_bss_7AD60__fzgx_offset_10;
+
+extern u32 lbl_801A66A0;
+extern u32 fn_1_5910(void);
+extern void fn_80072EDC(s32, s32);
+extern void fn_800734A8(s32, s32, s32, s32);
+extern void fn_800745A4(s32, s32, s32, s32, s32, s32);
+extern void fn_80073778(void *, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void GXLoadTexMtxImm(f32 (*)[4], s32, s32);
+extern void fn_800738E0(s32, s32, s32);
+extern void fn_80073E8C(s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
+extern void fn_800739E0(s32, s32, s32);
+extern void DCFlushRange(void *address, u32 length);
+
+/* Primes the TU literal pool (fn_1_D4964's and fn_1_D4FFC's constants first) so this function's constants land
+ * at retail's offsets, then the .bss words in order (after the pool, so the pool base gets r30 as in retail). */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 30.0f;
+    s = 0.6499999761581421f;
+    s = 0.75f;
+    s = 1.0f;
+    s = 0.0f;
+    s = 182.04444885253906f;
+    d = 0.5;
+    d = 2.0;
+    d = 4503599627370496.0;
+    s = 0.5f;
+    s = 0.02500000037252903f;
+    s = 0.9900000095367432f;
+    s = 1.649999976158142f;
+    s = 3000.0f;
+    s = 100.0f;
+}
+
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    s32 table[64] = {
+        0, 0, 14, 14, 0, 0, 14, 14, 12, 12, 9, 9, 12, 12, 9, 9,
+        0, 0, -180, -180, 0, 0, -180, -180, -30, -30, 0, 0, -30, -30, 0, 0,
+        0, 0, 20, -20, 0, 0, 20, -20, 10, -10, -10, 10, 10, -10, -10, 10,
+        0, 0, 20, 20, 0, 0, -20, -20, 10, 10, -10, -10, -10, -10, 10, 10,
+    };
+    DCFlushRange(table, sizeof(table));
+}
+
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    f32 ref[3] = {0.0f, 1.0f, 0.0f};
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    DCFlushRange(ref, sizeof(ref));
+    s = 0.8999999761581421f;
+    s = 32767.0f;
+    d = 4503601774854144.0;
+}
+
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile s32 v;  /* fzgx-allow: S2 pool primer sinks */
+    v = fzgx_obj_lbl_1_bss_7AD60;
+    v = lbl_1_bss_7AD60__fzgx_offset_4;
+    v = lbl_1_bss_7AD60__fzgx_offset_8;
+    v = lbl_1_bss_7AD60__fzgx_offset_C;
+    v = lbl_1_bss_7AD60__fzgx_offset_10;
+}
+#pragma section code_type ".text"
+
+/* Callback stored by fn_1_D4964 in lbl_1_data_2A7E0.unk_2C. Does nothing when the sel entry for fn_1_5910's port is
+ * -1, when state->unk_4->unk_15 is 2, or (unless it is 1) when the five state words equal the ones saved last time;
+ * otherwise saves them, issues the GX setup calls with a 2x4 texture matrix (GXLoadTexMtxImm) and advances the words. */
+void fn_1_D523C(D523C_State *state) {
+    f32 mtx[3][4];
+    f32 *obj;
+    D523C_Tex *tex;
+    s32 n10_1 = state->unk_10 + 1;
+    s32 n10_2 = state->unk_10 + 2;
+    s32 n18 = state->unk_18;
+    s32 n18_1 = n18 + 1;
+    s32 n18_2 = n18 + 2;
+    s32 n14_3 = state->unk_14 + 3;
+    s32 n14_6 = state->unk_14 + 6;
+    s32 nC = state->unk_C;
+    s32 nC_1 = nC + 1;
+    s32 n1C = state->unk_1C;
+    s32 n1C_1 = n1C + 1;
+    u32 port;
+    u8 mode;
+    f32 scale;
+
+    port = fn_1_5910();
+    obj = (f32 *)lbl_1_data_2A7E0.unk_3C;
+    tex = (D523C_Tex *)((u8 *)obj + 0xC140);
+    if (tex->sel[port] == -1) {
+        return;
+    }
+    mode = state->unk_4->unk_15;
+    if (mode == 2 ||
+        (mode != 1 && fzgx_obj_lbl_1_bss_7AD60 == state->unk_10 && lbl_1_bss_7AD60__fzgx_offset_4 == state->unk_18 &&
+         lbl_1_bss_7AD60__fzgx_offset_8 == state->unk_14 && lbl_1_bss_7AD60__fzgx_offset_C == state->unk_C &&
+         lbl_1_bss_7AD60__fzgx_offset_10 == state->unk_1C)) {
+        return;
+    }
+    fzgx_obj_lbl_1_bss_7AD60 = state->unk_10;
+    lbl_1_bss_7AD60__fzgx_offset_4 = state->unk_18;
+    lbl_1_bss_7AD60__fzgx_offset_8 = state->unk_14;
+    lbl_1_bss_7AD60__fzgx_offset_C = state->unk_C;
+    lbl_1_bss_7AD60__fzgx_offset_10 = state->unk_1C;
+    fn_80072EDC(nC, 1);
+    fn_800734A8(nC, n10_1, n18_1, 4);
+    fn_800745A4(n10_1, 1, 4, n14_3, 0, 0x7D);
+    fn_80073778(tex, n18_1);
+    fn_80072AB0(nC, 0, 0);
+    mtx[0][0] = tex->unk_2638;
+    mtx[0][1] = 0.0f;
+    mtx[0][2] = 0.0f;
+    mtx[0][3] = tex->rand0;
+    mtx[1][0] = 0.0f;
+    scale = obj[port] < 23.0f ? obj[port] : 23.0f;
+    scale = 1.0f - scale / 24.0f;
+    mtx[1][1] = tex->unk_263A * scale;
+    mtx[1][2] = 0.0f;
+    mtx[1][3] = tex->rand1;
+    GXLoadTexMtxImm(mtx, n14_3, 1);
+    fn_800738E0(n1C, n10_1, n18);
+    fn_80073778((u8 *)tex + tex->sel[port] * 0x900 + ((lbl_801A66A0 >> 1) & 7) * 0x120 + 0x320, n18);
+    fn_80073E8C(nC, n1C, 0x10, 0x10, 0x10, 0x10, 2, 1, 0, 0);
+    fn_800739E0(state->unk_1C, 4, 4);
+    state->unk_1C = n1C_1;
+    state->unk_C = nC_1;
+    state->unk_10 = n10_2;
+    state->unk_18 = n18_2;
+    state->unk_14 = n14_6;
+}
+/* fzgx:end fn_1_D523C */
+
 /* fzgx:begin fn_1_D5958 */
 // fn_1_D5958: iterate through 4 structures, calling fn_1_D550C on each.
 void fn_1_D5958(void *arg) {
