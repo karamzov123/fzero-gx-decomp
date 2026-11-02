@@ -214,6 +214,388 @@ void fn_1_1024F8(void) {
 }
 /* fzgx:end fn_1_1024F8 */
 
+/* fzgx:begin fn_1_102750 */
+typedef struct {
+    f32 x, y, z;
+} fn_1_102750_Vec;
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u16 unk_4[6];
+    fn_1_102750_Vec unk_10;
+    fn_1_102750_Vec unk_1C;
+    fn_1_102750_Vec unk_28;
+    fn_1_102750_Vec unk_34;
+    f32 unk_40;
+} fn_1_102750_Node;
+
+typedef struct {
+    fn_1_102750_Node *unk_0;
+    fn_1_102750_Node *unk_4;
+    f32 unk_8;
+    u8 pad_C[0xC];
+} fn_1_102750_Edge;
+
+typedef struct {
+    fn_1_102750_Vec unk_0;
+    u8 pad_C[0x34];
+} fn_1_102750_Vertex;
+
+typedef struct {
+    u8 pad_0[0x8];
+    struct Sig_fn_80077B14_fn_80077B14_Arg0 **unk_8;
+} fn_1_102750_Table;
+
+/* lbl_1_bss_85250 seen from here: node records of 0x44 bytes at unk_18, edges of 0x18 bytes at unk_20 */
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    fn_1_102750_Table *unk_10;
+    u32 unk_14;
+    fn_1_102750_Node *unk_18;
+    u32 unk_1C;
+    fn_1_102750_Edge *unk_20;
+    u32 unk_24;
+} fn_1_102750_State;
+
+typedef struct {
+    u8 pad_0[0x10];
+    fn_1_102750_Vec unk_10;
+} fn_1_102750_Camera;
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0;
+extern fn_1_102750_Vertex *fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern fn_1_102750_Camera *camera_get_state_object(void);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+
+/* retail .rodata 0x77F8-0x789F ahead of this function's constants, so they land at their retail offsets; the
+ * function reuses the literal 1.0f (0x7888) */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_rodata_77F8[36] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFF0000FF, 0x00FF00FF, 0xFF0000FF, 0x00FF00FF, 0x41A00000, 0x42480000, 0x3F000000, 0x3F7FF972, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3E7AD7F2, 0x9ABCAF48, 0xBF800000, 0x00000000, 0x4187999A, 0x00000000, 0x3FFF3333, 0x33333333, 0xBFFF3333, 0x33333333, 0x3FC00000, 0x00000000, 0x3FE00000, 0x00000000, 0x3FE33333, 0x33333333, 0x3F1A36E2, 0xE0000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_77F8(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_77F8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_7888(void) { volatile f32 s; s = 1.0f; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_rodata_788C[5] = {0x3F8CCCCD, 0x3F733333, 0x00000000, 0x3F847AE1, 0x47AE147B};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_788C(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_788C; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+/* Cloth test mode 1 ("buranburan (dangling) mode" in the mode-name table), run by fn_1_10161C's switch on unk_14:
+ * moves the nodes of kind 1 with bit 0 clear by their y velocity, which drops 0.0027 a step, pulls together the
+ * two nodes of each edge whose squared length passes unk_8, pushes nodes out to 0.55 from the camera, stores each
+ * node's displacement this step in unk_34 and copies the positions into the model's vertices */
+void fn_1_102750(void) {
+    fn_1_102750_State *st = (fn_1_102750_State *)&lbl_1_bss_85250;
+    struct Sig_fn_80077B14_fn_80077B14_Arg0 *model;
+    fn_1_102750_Vertex *out;
+    fn_1_102750_Camera *cam;
+    fn_1_102750_Edge *e;
+    u32 i;
+    u32 j;
+    fn_1_102750_Node *n;
+
+    model = st->unk_10->unk_8[st->unk_4 * 2];
+    if (model == NULL) {
+        return;
+    }
+    out = fn_80077B14(model);
+    for (i = 0, n = st->unk_18; i < st->unk_1C; i++, n++) {
+        if (n->unk_1 == 1 && (n->unk_0 & 1) == 0) {
+            n->unk_1C = n->unk_10;
+            n->unk_10.y += n->unk_34.y - 0.0013611111376020642;
+            if (n->unk_10.y < 0.01f) {
+                n->unk_10.y = 0.01f;
+            }
+            n->unk_34.y -= 0.0027222223579883575f;
+        }
+    }
+    for (i = 0, e = st->unk_20; i < st->unk_24; i++, e++) {
+        fn_1_102750_Node *a;
+        fn_1_102750_Node *b;
+        fn_1_102750_Vec delta;
+        f32 len;
+        fn_1_102750_Vec *dp = &delta;
+        f32 y, z, x;
+        f32 d;
+        a = e->unk_0;
+        b = e->unk_4;
+        x = a->unk_10.x - b->unk_10.x;
+        y = a->unk_10.y - b->unk_10.y;
+        z = a->unk_10.z - b->unk_10.z;
+        dp->x = x;
+        dp->y = y;
+        dp->z = z;
+        d = x * x;
+        d += y * y;
+        d += z * z;
+        len = d;
+        if (len - 0.0001f > e->unk_8) {
+            f32 inv, r, s, k, wa, wb;
+            inv = lbl_8006D118(len, &len);
+            r = lbl_8006D0B4(e->unk_8);
+            s = inv * (len - r);
+            len = s;
+            dp->x *= s;
+            dp->y *= s;
+            dp->z *= s;
+            k = 1.0f / (a->unk_40 + b->unk_40);
+            wa = a->unk_40 * k;
+            wb = b->unk_40 * k;
+            a->unk_10.x -= (f32)(dp->x * wa);
+            a->unk_10.y -= (f32)(dp->y * wa);
+            a->unk_10.z -= (f32)(dp->z * wa);
+            b->unk_10.x += (f32)(dp->x * wb);
+            b->unk_10.y += (f32)(dp->y * wb);
+            b->unk_10.z += (f32)(dp->z * wb);
+        }
+    }
+    cam = camera_get_state_object();
+    for (i = 0, e = st->unk_20; i < st->unk_24; i++, e++) {
+        fn_1_102750_Node *a;
+        fn_1_102750_Node *b;
+        fn_1_102750_Vec v;
+        f32 x, y, z, d;
+        f32 da, db;
+        s32 near;
+        a = e->unk_0;
+        b = e->unk_4;
+        near = 0;
+        z = a->unk_10.z - cam->unk_10.z;
+        y = a->unk_10.y - cam->unk_10.y;
+        x = a->unk_10.x - cam->unk_10.x;
+        d = x * x;
+        d += y * y;
+        d += z * z;
+        da = lbl_8006D0B4(d);
+        z = b->unk_10.z - cam->unk_10.z;
+        /* a compound subtraction here: it gives retail's float registers for this distance */
+        y = b->unk_10.y;
+        y -= cam->unk_10.y;
+        x = b->unk_10.x - cam->unk_10.x;
+        d = x * x;
+        d += y * y;
+        d += z * z;
+        db = lbl_8006D0B4(d);
+        if (da < 0.55f || db < 0.55f) {
+            near = 1;
+        }
+        if (near) {
+            da = 0.55f / da;
+            db = 0.55f / db;
+            if ((a->unk_0 & 1) == 0 && da > 1.0f) {
+                v.x = a->unk_10.x - cam->unk_10.x;
+                v.y = a->unk_10.y - cam->unk_10.y;
+                v.z = a->unk_10.z - cam->unk_10.z;
+                v.x *= da;
+                v.y *= da;
+                v.z *= da;
+                a->unk_10.x = v.x + cam->unk_10.x;
+                a->unk_10.y = v.y + cam->unk_10.y;
+                a->unk_10.z = v.z + cam->unk_10.z;
+            }
+            if ((b->unk_0 & 1) == 0 && db > 1.0f) {
+                v.x = b->unk_10.x - cam->unk_10.x;
+                v.y = b->unk_10.y - cam->unk_10.y;
+                v.z = b->unk_10.z - cam->unk_10.z;
+                v.x *= db;
+                v.y *= db;
+                v.z *= db;
+                b->unk_10.x = v.x + cam->unk_10.x;
+                b->unk_10.y = v.y + cam->unk_10.y;
+                b->unk_10.z = v.z + cam->unk_10.z;
+            }
+        }
+    }
+    for (i = 0, n = st->unk_18; i < st->unk_1C; i++, n++) {
+        n->unk_34.x = n->unk_10.x - n->unk_1C.x;
+        n->unk_34.y = n->unk_10.y - n->unk_1C.y;
+        n->unk_34.z = n->unk_10.z - n->unk_1C.z;
+    }
+    for (i = 0, n = st->unk_18; i < st->unk_1C; i++, n++) {
+        if (n->unk_1 == 1 && (n->unk_0 & 1) == 0) {
+            for (j = 0; j < n->unk_2; j++) {
+                out[n->unk_4[j]].unk_0 = n->unk_10;
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_102750 */
+
+/* fzgx:begin fn_1_102C08 */
+typedef struct {
+    f32 x, y, z;
+} fn_1_102C08_Vec;
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u16 unk_4[6];
+    fn_1_102C08_Vec unk_10;
+    fn_1_102C08_Vec unk_1C;
+    fn_1_102C08_Vec unk_28;
+    fn_1_102C08_Vec unk_34;
+    f32 unk_40;
+} fn_1_102C08_Node;
+
+typedef struct {
+    fn_1_102C08_Node *unk_0;
+    fn_1_102C08_Node *unk_4;
+    f32 unk_8;
+    u8 pad_C[0xC];
+} fn_1_102C08_Edge;
+
+typedef struct {
+    fn_1_102C08_Vec unk_0;
+    u8 pad_C[0x34];
+} fn_1_102C08_Vertex;
+
+typedef struct {
+    u8 pad_0[0x8];
+    struct Sig_fn_80077B14_fn_80077B14_Arg0 **unk_8;
+} fn_1_102C08_Table;
+
+/* lbl_1_bss_85250 seen from here: node records of 0x44 bytes at unk_18, edges of 0x18 bytes at unk_20 */
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    fn_1_102C08_Table *unk_10;
+    u32 unk_14;
+    fn_1_102C08_Node *unk_18;
+    u32 unk_1C;
+    fn_1_102C08_Edge *unk_20;
+    u32 unk_24;
+} fn_1_102C08_State;
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0;
+extern fn_1_102C08_Vertex *fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+
+extern f32 lbl_1_bss_BF0[32];
+extern void lbl_8006D758(void);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E1B0(fn_1_102C08_Vec *, fn_1_102C08_Vec *);
+
+/* retail .rodata 0x77F8-0x78B7 ahead of this function's constants, so they land at their retail offsets; the
+ * function reuses the literals 0.0f (0x784C) and 1.0f (0x7888) and fn_1_102750's constants (0x78A0-0x78B4) */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_rodata_77F8[21] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFF0000FF, 0x00FF00FF, 0xFF0000FF, 0x00FF00FF, 0x41A00000, 0x42480000, 0x3F000000, 0x3F7FF972, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3E7AD7F2, 0x9ABCAF48, 0xBF800000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_77F8(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_77F8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_784C(void) { volatile f32 s; s = 0.0f; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_rodata_7850[14] = {0x4187999A, 0x00000000, 0x3FFF3333, 0x33333333, 0xBFFF3333, 0x33333333, 0x3FC00000, 0x00000000, 0x3FE00000, 0x00000000, 0x3FE33333, 0x33333333, 0x3F1A36E2, 0xE0000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_7850(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_7850; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_7888(void) { volatile f32 s; s = 1.0f; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_rodata_788C[5] = {0x3F8CCCCD, 0x3F733333, 0x00000000, 0x3F847AE1, 0x47AE147B};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_788C(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_788C; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_78A0(void) { volatile f64 d; volatile f32 s; d = 0.0013611111376020642; s = 0.01f; s = 0.0027222223579883575f; s = 0.0001f; s = 0.55f; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+/* Cloth test mode 2 ("guruguru (spinning) mode (PAD1)" in the mode-name table), run by fn_1_10161C's switch on
+ * unk_14: builds a matrix that turns by port 1's axis values (lbl_1_bss_BF0 port 1, values 2 and 3) between the
+ * calls with (16.4, 0.75, 0) and (-16.4, -0.75, 0), steps the nodes of kind 1 with bit 0 clear as mode 1 does,
+ * places every other node at its unk_28 point through that matrix, applies the edges, stores each node's
+ * displacement this step in unk_34 and copies all positions into the model's vertices */
+void fn_1_102C08(void) {
+    fn_1_102C08_State *st = (fn_1_102C08_State *)&lbl_1_bss_85250;
+    struct Sig_fn_80077B14_fn_80077B14_Arg0 *model;
+    fn_1_102C08_Vertex *out;
+    fn_1_102C08_Edge *e;
+    u32 i;
+    u32 j;
+    fn_1_102C08_Node *n;
+    f32 mtx[3][4];
+
+    lbl_8006D758();
+    lbl_8006E0B4(16.4f, 0.75f, 0.0f);
+    mathutil_mtxA_rotate_y(32768.0f * lbl_1_bss_BF0[10]);
+    mathutil_mtxA_rotate_z(32768.0f * lbl_1_bss_BF0[11]);
+    lbl_8006E0B4(-16.4f, -0.75f, 0.0f);
+    lbl_8006DB74(mtx);
+    model = st->unk_10->unk_8[st->unk_4 * 2];
+    if (model == NULL) {
+        return;
+    }
+    out = fn_80077B14(model);
+    for (i = 0, n = st->unk_18; i < st->unk_1C; i++, n++) {
+        if (n->unk_1 == 1 && (n->unk_0 & 1) == 0) {
+            n->unk_1C = n->unk_10;
+            n->unk_10.y += n->unk_34.y - 0.0013611111376020642;
+            if (n->unk_10.y < 0.01f) {
+                n->unk_10.y = 0.01f;
+            }
+            n->unk_34.y -= 0.0027222223579883575f;
+        }
+    }
+    for (i = 0, n = st->unk_18; i < st->unk_1C; i++, n++) {
+        if (n->unk_1 != 1 || (n->unk_0 & 1) != 0) {
+            lbl_8006D758();
+            lbl_8006DFC4(mtx);
+            lbl_8006E1B0(&n->unk_28, &n->unk_10);
+        }
+    }
+    for (i = 0, e = st->unk_20; i < st->unk_24; i++, e++) {
+        fn_1_102C08_Node *a;
+        fn_1_102C08_Node *b;
+        fn_1_102C08_Vec delta;
+        f32 len;
+        fn_1_102C08_Vec *dp = &delta;
+        f32 y, z, x;
+        f32 d;
+        a = e->unk_0;
+        b = e->unk_4;
+        x = a->unk_10.x - b->unk_10.x;
+        y = a->unk_10.y - b->unk_10.y;
+        z = a->unk_10.z - b->unk_10.z;
+        dp->x = x;
+        dp->y = y;
+        dp->z = z;
+        d = x * x;
+        d += y * y;
+        d += z * z;
+        len = d;
+        if (len - 0.0001f > e->unk_8) {
+            f32 inv, r, s, k, wa, wb;
+            inv = lbl_8006D118(len, &len);
+            r = lbl_8006D0B4(e->unk_8);
+            s = inv * (len - r);
+            len = s;
+            dp->x *= s;
+            dp->y *= s;
+            dp->z *= s;
+            k = 1.0f / (a->unk_40 + b->unk_40);
+            wa = a->unk_40 * k;
+            wb = b->unk_40 * k;
+            a->unk_10.x -= (f32)(dp->x * wa);
+            a->unk_10.y -= (f32)(dp->y * wa);
+            a->unk_10.z -= (f32)(dp->z * wa);
+            b->unk_10.x += (f32)(dp->x * wb);
+            b->unk_10.y += (f32)(dp->y * wb);
+            b->unk_10.z += (f32)(dp->z * wb);
+        }
+    }
+    for (i = 0, n = st->unk_18; i < st->unk_1C; i++, n++) {
+        n->unk_34.x = n->unk_10.x - n->unk_1C.x;
+        n->unk_34.y = n->unk_10.y - n->unk_1C.y;
+        n->unk_34.z = n->unk_10.z - n->unk_1C.z;
+    }
+    for (i = 0, n = st->unk_18; i < st->unk_1C; i++, n++) {
+        for (j = 0; j < n->unk_2; j++) {
+            out[n->unk_4[j]].unk_0 = n->unk_10;
+        }
+    }
+}
+/* fzgx:end fn_1_102C08 */
+
 /* fzgx:begin fn_1_102FD0 */
 // Initialize the cloth subsystem and reset its shared state.
 void fn_1_102FD0(void) {
@@ -528,6 +910,172 @@ loop_test:
     }
 }
 /* fzgx:end fn_1_1050D0 */
+
+/* fzgx:begin fn_1_10688C noprologue */
+#include "types.h"
+
+extern s32 fn_1_465D0(char *, s32);
+extern s32 fn_1_467F4(void);
+extern void fn_1_451E4(void);
+extern void fn_1_D3214(void);
+extern u32 fn_1_46C70(char *);
+extern s32 fn_1_45730(char *, void *);
+extern u32 fn_1_45B2C(void *);
+extern u32 fn_1_45B68(void *);
+extern void fn_1_45850(void *);
+extern u32 fn_1_45D0(u32, u32, char *, s32);
+extern u32 fn_1_4630(u32, u32, char *, s32);
+extern int sprintf(char *, const char *, ...);
+extern void OSReport(const char *, ...);
+extern void OSPanic(const char *, int, const char *, ...);
+extern u32 GXGetTexBufferSize(u16, u16, u32, u8, u8);
+extern void GXInitTexObj(void *, void *, u16, u16, u32, u32, u32, u8);
+extern u32 lbl_801A6410;
+extern u32 lbl_1_bss_38460[21];
+
+/* local views of the two models this function reads from the common model list (lbl_1_bss_38460[2]): a texture
+ * count at 0x18 and 0x20-byte texture records from 0x40, each with a GXTexObj pointer at 0x8 and a flag at 0xD */
+typedef struct {
+    u8 pad_0[0x8];
+    void *unk_8;
+    u8 pad_C;
+    u8 unk_D;
+    u8 pad_E[0x12];
+} fn_1_10688C_Tex;
+
+typedef struct {
+    u8 pad_0[0x18];
+    u16 unk_18;
+    u8 pad_1A[0x26];
+    fn_1_10688C_Tex unk_40[1];
+} fn_1_10688C_Model;
+
+/* the retail TU's .data objects this function uses, at their retail offsets, so MWCC addresses them and this
+ * function's strings off one section base */
+u8 fzgx_obj_lbl_1_data_3F188[0xC] = "OVERTAKE";
+u8 fzgx_pool_gap_3F194[0xF0] = {1};
+u32 fzgx_obj_lbl_1_data_3F284[2] = {1};
+u8 fzgx_pool_gap_3F28C[0xC0] = {1};
+char fzgx_obj_lbl_1_data_3F34C[0xC] = "bg_common.c";
+u8 fzgx_pool_gap_3F358[0x24] = {1};
+
+/* the retail TU's .bss objects from lbl_1_bss_85280, addressed off one section base */
+u32 fzgx_obj_lbl_1_bss_85280;
+u32 lbl_1_bss_85280__fzgx_offset_4;
+u8 fzgx_pool_gap_85288[0x230];
+u32 fzgx_obj_lbl_1_bss_854B8[4];
+s32 lbl_1_bss_854B8__fzgx_offset_10;
+u32 lbl_1_bss_854B8__fzgx_offset_14[210];
+u8 fzgx_pool_gap_85814[0x20];
+u32 lbl_1_bss_854B8__fzgx_offset_37C[210];
+u32 lbl_1_bss_854B8__fzgx_offset_6C4;
+u32 lbl_1_bss_854B8__fzgx_offset_6C8;
+u32 lbl_1_bss_854B8__fzgx_offset_6CC;
+u8 lbl_1_bss_854B8__fzgx_offset_6D0;
+u8 lbl_1_bss_854B8__fzgx_offset_6D1;
+u8 fzgx_pool_gap_85B8A;
+u8 fzgx_pool_gap_85B8B;
+u32 lbl_1_bss_854B8__fzgx_offset_6D4[3];
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_85280;
+    s = lbl_1_bss_85280__fzgx_offset_4;
+    s = fzgx_pool_gap_85288[0];
+    s = fzgx_obj_lbl_1_bss_854B8[0];
+    s = lbl_1_bss_854B8__fzgx_offset_10;
+    s = lbl_1_bss_854B8__fzgx_offset_14[0];
+    s = fzgx_pool_gap_85814[0];
+    s = lbl_1_bss_854B8__fzgx_offset_37C[0];
+    s = lbl_1_bss_854B8__fzgx_offset_6C4;
+    s = lbl_1_bss_854B8__fzgx_offset_6C8;
+    s = lbl_1_bss_854B8__fzgx_offset_6CC;
+    s = lbl_1_bss_854B8__fzgx_offset_6D0;
+    s = lbl_1_bss_854B8__fzgx_offset_6D1;
+    s = fzgx_pool_gap_85B8A;
+    s = fzgx_pool_gap_85B8B;
+    s = lbl_1_bss_854B8__fzgx_offset_6D4[0];
+}
+__declspec(section ".fzgxpool") static void fzgx_data_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_data_3F188[0];
+    s = fzgx_pool_gap_3F194[0];
+    s = fzgx_obj_lbl_1_data_3F284[0];
+    s = fzgx_pool_gap_3F28C[0];
+    s = fzgx_obj_lbl_1_data_3F34C[0];
+    s = fzgx_pool_gap_3F358[0];
+}
+#pragma section code_type ".text"
+
+void fn_1_10688C(void) {
+    char name[0x80];
+    u8 info[0x5C];
+    fn_1_10688C_Model *models[2];
+    s32 j;
+    u32 *set;
+    fn_1_10688C_Model *model;
+    s16 k;
+    s16 i;
+    fn_1_10688C_Tex *tex;
+    u32 size;
+
+    fn_1_465D0("jpeg/compo.arc", 3);
+    while (fn_1_467F4() != 0) {
+        fn_1_451E4();
+        fn_1_D3214();
+    }
+    lbl_1_bss_854B8__fzgx_offset_6C4 = fn_1_46C70("jpeg/compo.arc");
+    lbl_1_bss_854B8__fzgx_offset_6C8 = 0;
+    for (i = 0; i < 210; i++) {
+        sprintf(name, "jpeg/compo/compo%03d.jpg", i + 1);
+        if (fn_1_45730(name, info) == 0) {
+            OSReport("file '%s' ", name);
+            OSPanic(fzgx_obj_lbl_1_data_3F34C, 0x83A, "is not in ARAM");
+        }
+        lbl_1_bss_854B8__fzgx_offset_14[i] = fn_1_45B2C(info);
+        lbl_1_bss_854B8__fzgx_offset_37C[i] = fn_1_45B68(info);
+        fn_1_45850(info);
+        if (lbl_1_bss_854B8__fzgx_offset_6C8 < lbl_1_bss_854B8__fzgx_offset_14[i]) {
+            lbl_1_bss_854B8__fzgx_offset_6C8 = lbl_1_bss_854B8__fzgx_offset_14[i];
+        }
+    }
+    if (lbl_1_bss_85280__fzgx_offset_4 != 0) {
+        OSReport("already allocated jpeg_decode_ram!\n");
+    } else {
+        lbl_1_bss_85280__fzgx_offset_4 =
+            fn_1_45D0(lbl_801A6410, lbl_1_bss_854B8__fzgx_offset_6C8, fzgx_obj_lbl_1_data_3F34C, 0x847);
+    }
+    size = GXGetTexBufferSize(0x80, 0x80, 6, 0, 0);
+    lbl_1_bss_854B8__fzgx_offset_6CC = size;
+    if (fzgx_obj_lbl_1_data_3F284[0] != 0 || fzgx_obj_lbl_1_data_3F284[1] != 0 || fzgx_obj_lbl_1_bss_85280 != 0) {
+        OSReport("already allocated jpeg_buff!\n");
+    } else {
+        fzgx_obj_lbl_1_data_3F284[0] = fn_1_4630(lbl_801A6410, size, fzgx_obj_lbl_1_data_3F34C, 0x84F);
+        fzgx_obj_lbl_1_data_3F284[1] =
+            fn_1_4630(lbl_801A6410, lbl_1_bss_854B8__fzgx_offset_6CC, fzgx_obj_lbl_1_data_3F34C, 0x850);
+        fzgx_obj_lbl_1_bss_85280 = fn_1_4630(lbl_801A6410, 0x4000, fzgx_obj_lbl_1_data_3F34C, 0x851);
+    }
+    lbl_1_bss_854B8__fzgx_offset_6D0 = 0;
+    lbl_1_bss_854B8__fzgx_offset_6D1 = 0;
+    lbl_1_bss_854B8__fzgx_offset_10 = 1;
+    set = *(u32 **)(lbl_1_bss_38460[2] + 8);
+    models[0] = (fn_1_10688C_Model *)set[0x30 / 4];
+    models[1] = (fn_1_10688C_Model *)set[0x38 / 4];
+    for (j = 0; j < 2; j++) {
+        model = models[j];
+        tex = model->unk_40;
+        for (k = 0; k < model->unk_18; k++) {
+            if (tex->unk_D == 1) {
+                lbl_1_bss_854B8__fzgx_offset_6D4[lbl_1_bss_854B8__fzgx_offset_6D1++] = (u32)tex->unk_8;
+                GXInitTexObj(tex->unk_8, (void *)fzgx_obj_lbl_1_data_3F284[lbl_1_bss_854B8__fzgx_offset_6D0], 0x80,
+                             0x80, 6, 0, 0, 0);
+            }
+            tex++;
+        }
+    }
+}
+/* fzgx:end fn_1_10688C */
 
 /* fzgx:begin fn_1_106CAC */
 extern s32 fn_1_151AF0(void *arg0, int arg1, void *arg2, void *arg3, void *arg4, void *arg5);

@@ -2556,6 +2556,120 @@ void fn_1_9A578(void) {
 }
 /* fzgx:end fn_1_9A578 */
 
+/* fzgx:begin fn_1_9A5CC */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 6885000.0f;
+    d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+
+/* local view of lbl_1_data_2A7E0 with the fields this function touches (globals.h's type lacks 0x6-0x2B) */
+typedef struct {
+    s16 unk_0;
+    u8 pad_2[0x4];
+    u8 unk_6[4];
+    u8 pad_A[0x2];
+    u32 unk_C[4];
+    f32 unk_1C[4];
+    u8 pad_2C[0x18];
+    u32 unk_44;
+    u8 pad_48[0x3C];
+    s32 unk_84;
+    u32 unk_88;
+    u8 pad_8C[0x8];
+    f32 unk_94;
+    f32 unk_98;
+    u8 pad_9C[0x5C];
+} fn_1_9A5CC_Data2A7E0;
+
+/* one of the 0x24-byte entries of lbl_1_data_2ABAC (0x318 bytes, 22 entries) */
+typedef struct {
+    u8 pad_0[0xC];
+    void (*unk_C)(void);
+    u8 pad_10[0x14];
+} fn_1_9A5CC_Data2ABAC;
+
+typedef struct {
+    u8 pad_0[0xC];
+    f32 unk_C;
+    u8 pad_10[0xC];
+    f32 unk_1C;
+    u8 pad_20[0x270];
+} fn_1_9A5CC_Data2C8D0;
+
+extern u32 fn_1_58C4(void);
+extern s32 fn_1_3F0C8(void);
+extern void fn_1_103030(void);
+extern u32 fn_1_9D260(void);
+extern u32 fn_1_9D230(void);
+extern void fn_1_9AD54(void);
+
+/* the retail TU's .data objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base (lbl_1_data_2A0C0); the fzgx_pool_gap_ objects span the retail objects in between */
+u32 fzgx_obj_lbl_1_data_2A0C0[4] = {1};
+u8 fzgx_pool_gap_2A0D0[0x2A7E0 - 0x2A0D0] = {1};
+fn_1_9A5CC_Data2A7E0 fzgx_obj_lbl_1_data_2A7E0 = {1};
+u8 fzgx_pool_gap_2A8D8[0x2ABAC - 0x2A8D8] = {1};
+fn_1_9A5CC_Data2ABAC fzgx_obj_lbl_1_data_2ABAC[22] = {1};
+u8 fzgx_pool_gap_2AEC4[0x2C8D0 - 0x2AEC4] = {1};
+fn_1_9A5CC_Data2C8D0 fzgx_obj_lbl_1_data_2C8D0 = {1};
+
+/* The BackGroundCalc task (priority 23). Stores the viewport count, advances four frame counters (each by its
+ * step byte; counter 1 holds while fn_1_3F0C8 returns 0x27) that wrap at 6885000 and are mirrored as floats,
+ * then runs entry [0x2A7E0]'s update from lbl_1_data_2ABAC while that index is positive and fn_1_9D230 is 0
+ * (fewer than three viewports), and fn_1_9AD54 otherwise. */
+void fn_1_9A5CC(void) {
+    u32 viewports;
+    s32 i;
+
+    if (fzgx_obj_lbl_1_data_2A7E0.unk_84 != 0) {
+        viewports = 4;
+    } else {
+        viewports = fn_1_58C4();
+    }
+    fzgx_obj_lbl_1_data_2A7E0.unk_88 = viewports;
+    fzgx_obj_lbl_1_data_2C8D0.unk_C = fzgx_obj_lbl_1_data_2A7E0.unk_98;
+    fzgx_obj_lbl_1_data_2C8D0.unk_1C = fzgx_obj_lbl_1_data_2A7E0.unk_94;
+    for (i = 0; i < 4; i++) {
+        /* retail stores single bytes at 0x2A7E6 + i (stb), though symbols.txt types lbl_1_data_2A7E0 as 4-byte data */
+        fzgx_obj_lbl_1_data_2A7E0.unk_6[i] = 0;
+        switch (i) {
+        case 1:
+            if ((s16)fn_1_3F0C8() != 0x27) {
+                fzgx_obj_lbl_1_data_2A7E0.unk_6[i] = 1;
+            }
+            break;
+        default:
+            fzgx_obj_lbl_1_data_2A7E0.unk_6[i] = 1;
+            break;
+        }
+        fzgx_obj_lbl_1_data_2A7E0.unk_C[i] += fzgx_obj_lbl_1_data_2A7E0.unk_6[i];
+        if (fzgx_obj_lbl_1_data_2A7E0.unk_C[i] >= 6885000) {
+            fzgx_obj_lbl_1_data_2A7E0.unk_C[i] = 0;
+        }
+        fzgx_obj_lbl_1_data_2A7E0.unk_1C[i] = fzgx_obj_lbl_1_data_2A7E0.unk_C[i];
+    }
+    fzgx_obj_lbl_1_data_2A7E0.unk_44++;
+    /* retail reads lbl_1_bss_960 signed (lha); globals.h declares it u16 */
+    if (*(s16 *)&lbl_1_bss_960 == 10) {
+        fzgx_obj_lbl_1_data_2A7E0.unk_6[1] = 0;
+        fzgx_obj_lbl_1_data_2A7E0.unk_C[1] = 6885000;
+        fzgx_obj_lbl_1_data_2A7E0.unk_1C[1] = 6885000.0f;
+    }
+    fn_1_103030();
+    if (fzgx_obj_lbl_1_data_2A7E0.unk_0 > 0) {
+        fn_1_9D260();
+        if ((s32)fn_1_9D230() == 0) {
+            fzgx_obj_lbl_1_data_2ABAC[fzgx_obj_lbl_1_data_2A7E0.unk_0].unk_C();
+            return;
+        }
+    }
+    fn_1_9AD54();
+}
+/* fzgx:end fn_1_9A5CC */
+
 /* fzgx:begin fn_1_9A770 */
 typedef void (*fn_1_9A770_callback)(void);
 

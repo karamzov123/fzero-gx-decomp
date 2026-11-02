@@ -5196,6 +5196,197 @@ void fn_1_7B218(s32 enabled) {
 }
 /* fzgx:end fn_1_7B218 */
 
+/* fzgx:begin fn_1_7B2E8 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+typedef struct {
+    f32 unk_0;
+    u32 unk_4;
+    s16 unk_8;
+} fn_1_7B2E8_State;
+
+typedef struct {
+    u8 pad_0[0x8];
+    f32 unk_8[3];
+    f32 unk_14;
+} fn_1_7B2E8_Model;
+
+typedef struct {
+    s32 unk_0;
+    u32 unk_4;
+    struct {
+        fn_1_7B2E8_Model *unk_0;
+        char *unk_4;
+    } *unk_8;
+} fn_1_7B2E8_List;
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ object spans the retail objects in between, which this function does not touch.
+ * The .bss, .rodata and .data primers below must come in that order: it sets which section base MWCC keeps in
+ * which saved register. */
+u8 fzgx_obj_lbl_1_bss_6D600[0x20];
+u8 fzgx_pool_gap_6D620[0x150];
+void *fzgx_obj_lbl_1_bss_6D770;
+fn_1_7B2E8_List *fzgx_obj_lbl_1_bss_6D774;
+u32 fzgx_obj_lbl_1_bss_6D778;
+f32 lbl_1_bss_6D778__fzgx_offset_4[4];
+f32 lbl_1_bss_6D778__fzgx_offset_14[5];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6D600;
+    s = *(u8 *)&fzgx_pool_gap_6D620;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6D770;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6D774;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6D778;
+    s = *(u8 *)&lbl_1_bss_6D778__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6D778__fzgx_offset_14;
+}
+#pragma section code_type ".text"
+
+extern void fzgx_pool_sink_p(void *);
+extern void fzgx_pool_sink_f(f32);
+
+/* Shared literal pool primer: screen_effect.unk_8 pools its literals behind one
+   base (lbl_1_rodata_3278 here). These dummy functions, in a section the link
+   ignores, reference the pooled literals in retail address order. */
+#pragma section ".fzgxpool"
+
+typedef struct { u32 a; f32 b; f32 unk_8; u32 unk_C; } fzgx_pool_Img16;
+typedef struct { u8 r, g, b, a; } fzgx_pool_Color;
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer_0(void) {
+    fzgx_pool_Img16 i0 = {0x04050000, -200.0f, 1000.0f, 0x006E9600};
+    fzgx_pool_Img16 i1 = {0x08050000, -200.0f, 2000.0f, 0x0A0A2800};
+    fzgx_pool_Img16 i2 = {0x07040000, 0.0f, 3000.0f, 0x171A1D00};
+    fzgx_pool_Img16 i3 = {0x0C020000, 0.0f, 820.0f, 0x6E787900};
+    fzgx_pool_Img16 i4 = {0xFF040000, 0.0f, 100.0f, 0};
+    fzgx_pool_sink_p(&i0);
+    fzgx_pool_sink_p(&i1);
+    fzgx_pool_sink_p(&i2);
+    fzgx_pool_sink_p(&i3);
+    fzgx_pool_sink_p(&i4);
+    fzgx_pool_sink_f(0.03125f);
+    fzgx_pool_sink_f(1.0f);
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer_1(s32 a, u32 b) {
+    fzgx_pool_sink_f((f32)a);
+    fzgx_pool_sink_f((f32)b);
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer_2(void) {
+    fzgx_pool_sink_f(0.016666668f);
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer_3(void) {
+    fzgx_pool_Color c0 = {0xFF, 0xFF, 0xFF, 0xFF};
+    fzgx_pool_sink_p(&c0);
+}
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer_4(void) {
+    fzgx_pool_sink_f(0.0f);
+    fzgx_pool_sink_f(640.0f);
+    fzgx_pool_sink_f(480.0f);
+    fzgx_pool_sink_f(320.0f);
+    fzgx_pool_sink_f(240.0f);
+    fzgx_pool_sink_f(0.03f);
+    fzgx_pool_sink_f(0.75f);
+    fzgx_pool_sink_f(0.02f);
+    fzgx_pool_sink_f(1.5f);
+    fzgx_pool_sink_f(360.0f);
+    fzgx_pool_sink_f(128.0f);
+    fzgx_pool_sink_f(0.5f);
+    fzgx_pool_sink_f(8.0f);
+    fzgx_pool_sink_f(408.0f);
+    fzgx_pool_sink_f(100.0f);
+    fzgx_pool_sink_f(1.1920928955078125e-07f);
+    fzgx_pool_sink_f(2.0f);
+    fzgx_pool_sink_f(60.0f);
+    fzgx_pool_sink_f(182.04444885f);
+    fzgx_pool_sink_f(255.0f);
+}
+
+#pragma section ".text"
+
+/* the retail TU's .data objects this function uses, at their retail offsets, so MWCC addresses them and the
+ * string literals after them off one section base; the gaps span retail objects this function does not touch */
+char fzgx_obj_lbl_1_data_1DCF0[4] = "NON";
+u8 fzgx_pool_gap_1DCF4[0x2B0] = {1};
+fn_1_7B2E8_State fzgx_obj_lbl_1_data_1DFA4 = {0.0f, 0, -1};
+u8 fzgx_pool_gap_1DFB0[0x508] = {1};
+
+extern void fzgx_touch(const void *);
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_data_layout(void) {
+    fzgx_touch(fzgx_obj_lbl_1_data_1DCF0);
+    fzgx_touch(fzgx_pool_gap_1DCF4);
+    fzgx_touch(&fzgx_obj_lbl_1_data_1DFA4);
+    fzgx_touch(fzgx_pool_gap_1DFB0);
+    fzgx_touch("GRID");
+    fzgx_touch("%sst%02d.tpl.lz");
+    fzgx_touch("stage/");
+    fzgx_touch("%sst%02d.gma.lz");
+    fzgx_touch("enemy_line/line%02d.bin");
+    fzgx_touch("stage/COLI_COURSE%02d.lz");
+}
+#pragma section code_type ".text"
+
+extern void fn_1_7B4C0(void);
+extern void *fn_1_D38C4(char *path);
+extern fn_1_7B2E8_List *fn_1_D35D4(char *path, void *tpl);
+extern void sprintf(char *dst, const char *format, ...);
+extern char *fn_80083970(char *, char *);
+
+/* averages the bounding-sphere centres of every model whose name does not contain "GRID" and keeps the largest
+ * radius; as its own inline function its locals take the register order retail has */
+static inline void fn_1_7B2E8_bounds(void) {
+    f32 sum[3] = {0.0f, 0.0f, 0.0f};
+    s32 off;
+    s32 i;
+    s32 count;
+    f32 scale;
+    f32 radius;  /* never initialised in retail either: the first compare reads f31 as it is */
+    fn_1_7B2E8_Model *model;
+
+    count = 0;
+    for (i = 0, off = 0; i < fzgx_obj_lbl_1_bss_6D774->unk_0; off += 8, i++) {
+        model = *(fn_1_7B2E8_Model **)((u8 *)fzgx_obj_lbl_1_bss_6D774->unk_8 + off);
+        if (fn_80083970(*(char **)((u8 *)fzgx_obj_lbl_1_bss_6D774->unk_8 + off + 4), "GRID") == NULL) {
+            radius = model->unk_14 > radius ? model->unk_14 : radius;
+            count++;
+            psvec_add(sum, model->unk_8, sum);
+        }
+    }
+    scale = 1.0f / (f32)count;
+    psvec_scale(sum, scale, lbl_1_bss_6D778__fzgx_offset_4);
+    lbl_1_bss_6D778__fzgx_offset_4[3] = radius;
+    lbl_1_bss_6D778__fzgx_offset_14[0] = radius;
+    lbl_1_bss_6D778__fzgx_offset_14[1] = 0.0f;
+    lbl_1_bss_6D778__fzgx_offset_14[2] = radius;
+}
+
+void fn_1_7B2E8(u32 course) {
+    char text_a[0x20];
+    char text_b[0x20];
+
+    if (fzgx_obj_lbl_1_data_1DFA4.unk_8 != course) {
+        fn_1_7B4C0();
+        sprintf(text_a, "%sselst%02d.tpl.lz", "stage/", course);
+        sprintf(text_b, "%sselst%02d.gma.lz", "stage/", course);
+        fzgx_obj_lbl_1_bss_6D770 = fn_1_D38C4(text_a);
+        fzgx_obj_lbl_1_bss_6D774 = fn_1_D35D4(text_b, fzgx_obj_lbl_1_bss_6D770);
+    }
+    if (fzgx_obj_lbl_1_bss_6D770 != NULL && fzgx_obj_lbl_1_bss_6D774 != NULL) {
+        fn_1_7B2E8_bounds();
+    }
+    fzgx_obj_lbl_1_data_1DFA4.unk_8 = course;
+}
+/* fzgx:end fn_1_7B2E8 */
+
 /* fzgx:begin fn_1_7B4C0 */
 // Releases active screen effects and resets the effect state.
 void fn_1_7B4C0(void) {

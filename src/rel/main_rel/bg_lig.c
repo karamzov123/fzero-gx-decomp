@@ -1073,6 +1073,95 @@ void fn_1_D7724(Vec3Bits *dst, s16 index) {
 }
 /* fzgx:end fn_1_D7724 */
 
+/* fzgx:begin fn_1_D7758 noprologue */
+#include "types.h"
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[4] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = 0.0f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec;
+
+/* one of the 20 records of 0x30 bytes from lbl_1_data_2A7E0.unk_3C + 0x30 (fn_1_D79E4 clears them) */
+typedef struct {
+    u8 pad_0[0x30];
+    f32 unk_30;
+    f32 unk_34;
+    f32 unk_38;
+    Vec unk_3C;
+    f32 unk_48;
+    f32 unk_4C;
+    f32 unk_50;
+    f32 unk_54;
+    s16 unk_58;
+    s16 unk_5A;
+    s16 unk_5C;
+} Rec;
+
+extern struct {
+    u8 pad_0[0x3C];
+    Rec *unk_3C;
+} lbl_1_data_2A7E0;
+extern u32 lbl_801A63C0;
+extern void lbl_8006D8D8(s32);
+extern void lbl_8006E1C0(Vec *, Vec *);
+
+/* one step of the executable's random generator, lbl_801A63C0 */
+static inline s32 rand(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+#pragma fp_contract off
+void fn_1_D7758(Vec *pos, f32 scale) {
+    f32 size = 100.0f * scale;
+    f32 speed = 3.0f * scale;
+    u8 *base = (u8 *)lbl_1_data_2A7E0.unk_3C;
+    Rec *rec;
+    s32 n = 0;
+    s32 i = 0;
+    f32 t;
+
+    while (n < 5) {
+        /* retail keeps the unreachable branch this if/else leaves (b; b) */
+        if (i < 20) {
+            rec = (Rec *)(base + i * 0x30);
+        } else {
+            return;
+        }
+        if (rec->unk_5C <= 0) {
+            t = 0.7 + 0.3 * (rand() / 32767.0f);
+            rec->unk_30 = pos->x;
+            rec->unk_34 = pos->y;
+            rec->unk_38 = pos->z;
+            rec->unk_48 = 235.0f * t;
+            rec->unk_4C = 80.0f * t;
+            rec->unk_50 = 30.0f * t;
+            rec->unk_54 = size;
+            rec->unk_58 = 0;
+            rec->unk_5A = 512.0 * ((rand() / 32767.0f) - 0.5);
+            rec->unk_5C = scale * (300.0 * (0.7 + 0.3 * (rand() / 32767.0f)));
+            rec->unk_3C.x = 0.0f;
+            rec->unk_3C.z = speed;
+            rec->unk_3C.y = scale * (17.0 * (0.3 + 0.7 * (rand() / 32767.0f)));
+            lbl_8006D8D8(3276.8f * n);
+            lbl_8006E1C0(&rec->unk_3C, &rec->unk_3C);
+            n++;
+        }
+        i++;
+    }
+}
+/* fzgx:end fn_1_D7758 */
+
 /* fzgx:begin fn_1_D79E4 */
 void fn_1_D79E4(void *obj) {
     memset((u8 *)obj + 0x30, 0, 0x3c0);

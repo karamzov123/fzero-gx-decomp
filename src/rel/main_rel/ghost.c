@@ -2976,6 +2976,144 @@ void fn_1_EF5DC(void) {
 }
 /* fzgx:end fn_1_EF5DC */
 
+/* fzgx:begin fn_1_EF5E0 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/ghost.h"
+
+extern u32 lbl_801A6410[];
+extern void fn_1_EE530(void);
+extern void fn_1_46B4(u32, void *, const char *, int);
+extern void *fn_1_4630(u32, u32, const char *, int);
+extern void fn_80008BA8(void *, void *, u32);
+extern u8 *fn_1_3F0D8(u32, f32 *, u8 *);
+extern u8 *fn_1_36AD0(void);
+
+/* three words copied as one (retail loads two before storing them, MWCC's struct-copy order) */
+typedef struct {
+    u32 unk_0[3];
+} Fn1EF5E0Words;
+
+/* local view of a lbl_1_bss_7B1AC entry */
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u8 unk_4;
+    u8 unk_5;
+    u8 unk_6;
+    u8 unk_7;
+    u8 unk_8;
+    u8 unk_9;
+    u8 unk_A;
+    u8 pad_B[0xD];
+    s16 unk_18;
+    u8 pad_1A[0x2];
+    Fn1EF5E0Words unk_1C;
+} Fn1EF5E0Entry;
+
+/* the retail TU's .data objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; its .bss primer comes first, which gives the .bss base r30 and the .data base r29 as in retail */
+u8 fzgx_obj_lbl_1_data_3E358[0xC] = {1};
+u8 fzgx_pool_gap_3E364[0x1D4 - 0xC] = {1};
+s32 fzgx_obj_lbl_1_data_3E52C = 1;
+u32 fzgx_obj_lbl_1_data_3E530 = 1;
+s16 lbl_1_data_3E530__fzgx_offset_4 = 1;
+s16 fzgx_pool_gap_3E536 = 1;
+u8 fzgx_pool_gap_3E538[0x2D4 - 0x1E0] = {1};
+char fzgx_pool_data_3E62C[8] = "ghost.c";
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base */
+u32 fzgx_obj_lbl_1_bss_7B180[2];
+s32 fzgx_obj_lbl_1_bss_7B188;
+s32 lbl_1_bss_7B188__fzgx_offset_4;
+u8 fzgx_pool_gap_7B190[0x1C];
+Fn1EF5E0Entry fzgx_obj_lbl_1_bss_7B1AC[127];
+void *fzgx_obj_lbl_1_bss_7C584[177];
+u8 fzgx_pool_gap_7C848[0x14];
+u32 fzgx_obj_lbl_1_bss_7C85C;
+u8 lbl_1_bss_7C85C__fzgx_offset_4;
+u8 fzgx_pool_gap_7C861;
+u8 fzgx_pool_gap_7C862;
+u8 fzgx_pool_gap_7C863;
+void *lbl_1_bss_7C85C__fzgx_offset_8;
+u8 fzgx_pool_gap_7C868[0xE4];
+u32 fzgx_obj_lbl_1_bss_7C94C[21];
+s32 lbl_1_bss_7C94C__fzgx_offset_54;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_7B180[0];
+    s = fzgx_obj_lbl_1_bss_7B188;
+    s = lbl_1_bss_7B188__fzgx_offset_4;
+    s = fzgx_pool_gap_7B190[0];
+    s = fzgx_obj_lbl_1_bss_7B1AC[0].unk_0;
+    s = (u32)fzgx_obj_lbl_1_bss_7C584[0];
+    s = fzgx_pool_gap_7C848[0];
+    s = fzgx_obj_lbl_1_bss_7C85C;
+    s = lbl_1_bss_7C85C__fzgx_offset_4;
+    s = fzgx_pool_gap_7C861;
+    s = fzgx_pool_gap_7C862;
+    s = fzgx_pool_gap_7C863;
+    s = (u32)lbl_1_bss_7C85C__fzgx_offset_8;
+    s = fzgx_pool_gap_7C868[0];
+    s = fzgx_obj_lbl_1_bss_7C94C[0];
+    s = lbl_1_bss_7C94C__fzgx_offset_54;
+    s = fzgx_obj_lbl_1_data_3E358[0];
+    s = fzgx_pool_gap_3E364[0];
+    s = fzgx_obj_lbl_1_data_3E52C;
+    s = fzgx_obj_lbl_1_data_3E530;
+    s = lbl_1_data_3E530__fzgx_offset_4;
+    s = fzgx_pool_gap_3E536;
+    s = fzgx_pool_gap_3E538[0];
+    s = fzgx_pool_data_3E62C[0];
+}
+#pragma section code_type ".text"
+
+void fn_1_EF5E0(void) {
+    f32 a;
+    u8 b;
+    s16 value;
+    u8 *record;
+    u8 *records;
+    void *buffer;
+
+    if (fzgx_obj_lbl_1_bss_7B188 != 0 && lbl_1_bss_7B188__fzgx_offset_4 != 0) {
+        fn_1_EE530();
+        if (fzgx_obj_lbl_1_bss_7C584[0] != NULL) {
+            fn_1_46B4(lbl_801A6410[0], fzgx_obj_lbl_1_bss_7C584[0], fzgx_pool_data_3E62C, 0xEDD);
+        }
+        buffer = fn_1_4630(lbl_801A6410[0], 0x3E80, fzgx_pool_data_3E62C, 0xEE0);
+        fn_80008BA8(buffer, lbl_1_bss_7C85C__fzgx_offset_8, 0x3E80);
+        record = fn_1_3F0D8(0, &a, &b);
+        value = lbl_1_data_3E530__fzgx_offset_4;
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_0 = value;
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_1 = lbl_1_bss_7C85C__fzgx_offset_4;
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_18 = lbl_1_bss_7C94C__fzgx_offset_54;
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_1C = *(Fn1EF5E0Words *)(record + 0x1D8);
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_8 = 0x46;
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_9 = 0x5A;
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_A = 0;
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_3 = 1;
+        if (value >= 0x29 && value < 0x3A) {
+            records = fn_1_36AD0();
+            fzgx_obj_lbl_1_bss_7B1AC[0].unk_4 = 1;
+            fzgx_obj_lbl_1_bss_7B1AC[0].unk_5 = records[0x81A4];
+            fzgx_obj_lbl_1_bss_7B1AC[0].unk_6 = records[0x81AC];
+            fzgx_obj_lbl_1_bss_7B1AC[0].unk_7 = records[0x81B4];
+        } else {
+            fzgx_obj_lbl_1_bss_7B1AC[0].unk_4 = 0;
+        }
+        fzgx_obj_lbl_1_bss_7B1AC[0].unk_2 = lbl_1_bss_8B3A0.unk_9F << 8;
+        fzgx_obj_lbl_1_bss_7C584[0] = buffer;
+        fzgx_obj_lbl_1_data_3E52C = 6;
+    }
+}
+/* fzgx:end fn_1_EF5E0 */
+
 /* fzgx:begin fn_1_EF764 */
 // fn_1_EF764: empty in retail (single blr).
 void fn_1_EF764(void) {
@@ -3740,6 +3878,63 @@ s32 fn_1_F0B5C(s32 i, V3 *out) {
     return 1;
 }
 /* fzgx:end fn_1_F0B5C */
+
+/* fzgx:begin fn_1_F0D10 noprologue */
+#include "types.h"
+
+typedef struct { f32 x, y, z, w; } Quat;
+
+extern void fn_1_F5458(Quat *out, s32 count, f32 *times, void *keys, f32 frame);
+extern void fn_80008BEC(void *dst, int value, int size);
+extern void mathutil_mtxA_from_quat(Quat *q);
+extern void lbl_8006DB74(void *mtx);
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u32 fzgx_obj_lbl_1_bss_7B180[2];
+u8 fzgx_pool_gap_7B188[0x13FC];
+u32 fzgx_obj_lbl_1_bss_7C584[127];
+f32 *lbl_1_bss_7C584__fzgx_offset_1FC[5];
+u8 fzgx_pool_gap_7C794[0xC8];
+u32 fzgx_obj_lbl_1_bss_7C85C[19];
+void *lbl_1_bss_7C85C__fzgx_offset_4C[5];
+u8 fzgx_pool_gap_7C8BC[0x90];
+u32 fzgx_obj_lbl_1_bss_7C94C[13];
+u16 lbl_1_bss_7C94C__fzgx_offset_34[18];
+s32 lbl_1_bss_7C94C__fzgx_offset_58[5];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7B180;
+    s = *(u8 *)&fzgx_pool_gap_7B188;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7C584;
+    s = *(u8 *)&lbl_1_bss_7C584__fzgx_offset_1FC;
+    s = *(u8 *)&fzgx_pool_gap_7C794;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7C85C;
+    s = *(u8 *)&lbl_1_bss_7C85C__fzgx_offset_4C;
+    s = *(u8 *)&fzgx_pool_gap_7C8BC;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7C94C;
+    s = *(u8 *)&lbl_1_bss_7C94C__fzgx_offset_34;
+    s = *(u8 *)&lbl_1_bss_7C94C__fzgx_offset_58;
+}
+#pragma section code_type ".text"
+
+s32 fn_1_F0D10(s32 i, void *mtx) {
+    Quat q;
+
+    fn_1_F5458(&q, lbl_1_bss_7C94C__fzgx_offset_58[i], lbl_1_bss_7C584__fzgx_offset_1FC[i],
+               lbl_1_bss_7C85C__fzgx_offset_4C[i], (f32)lbl_1_bss_7C94C__fzgx_offset_34[i]);
+    if ((f32)lbl_1_bss_7C94C__fzgx_offset_34[i] >=
+        lbl_1_bss_7C584__fzgx_offset_1FC[i][lbl_1_bss_7C94C__fzgx_offset_58[i] - 1]) {
+        fn_80008BEC(mtx, 0, 0x30);
+        return 0;
+    }
+    mathutil_mtxA_from_quat(&q);
+    lbl_8006DB74(mtx);
+    return 1;
+}
+/* fzgx:end fn_1_F0D10 */
 
 /* fzgx:begin fn_1_F0E00 pool noprologue */
 #include "dolphin/types.h"

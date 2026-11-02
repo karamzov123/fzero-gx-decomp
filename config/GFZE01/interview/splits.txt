@@ -215,3 +215,27 @@ rel/interview/interview/fn_17_6D60.c:
 
 rel/interview/interview/fn_17_2938.c:
 	.text       start:0x00002938 end:0x00002B9C align:4
+
+rel/interview/interview/fn_17_7F94.c:
+	.text       start:0x00007F94 end:0x0000802C align:4
+
+rel/interview/interview/fn_17_65F4.c:
+	.text       start:0x000065F4 end:0x000066C0 align:4
+
+rel/interview/interview/fn_17_8B44.c:
+	.text       start:0x00008B44 end:0x00008C7C align:4
+
+rel/interview/interview/fn_17_8870.c:
+	.text       start:0x00008870 end:0x00008B44 align:4
+
+rel/interview/interview/fn_17_8F84.c:
+	.text       start:0x00008F84 end:0x00009314 align:4
+
+rel/interview/interview/fn_17_7A74.c:
+	.text       start:0x00007A74 end:0x00007F94 align:4
+
+rel/interview/interview/fn_17_2414.c:
+	.text       start:0x00002414 end:0x00002938 align:4
+
+rel/interview/interview/fn_17_424C.c:
+	.text       start:0x0000424C end:0x00004540 align:4

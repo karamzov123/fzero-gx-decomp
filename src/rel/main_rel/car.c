@@ -4041,6 +4041,164 @@ setupEffects:
 }
 /* fzgx:end fn_1_82724 */
 
+/* fzgx:begin fn_1_82C70 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+/* the racer block (0x620 bytes); +0x474 is the controller port, -1 when none */
+typedef struct {
+    u8 pad_0[0x474];
+    s8 unk_474;
+} Fn1_82C70_Racer;
+
+/* the car object (0x440 bytes a machine) */
+typedef struct {
+    u8 pad_0[0x328];
+    s8 unk_328;
+    u8 pad_329[0x3];
+    Fn1_82C70_Racer *unk_32C;
+    u8 pad_330[0x74];
+    void *unk_3A4;
+    u8 pad_3A8[0x12];
+    s16 unk_3BA;
+} Fn1_82C70_Car;
+
+/* a garage record (0x81C0 bytes) */
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x1];
+    u8 unk_5;
+    u8 pad_6[0x1];
+    u8 unk_7;
+    u8 pad_8[0x8198];
+    u8 unk_81A0;
+} Fn1_82C70_Record;
+
+/* the emblem projection work area (0x10440 bytes a machine) */
+typedef struct {
+    Fn1_82C70_Car *unk_0;
+    u8 unk_4;
+    u8 pad_5[0x3];
+    f32 unk_8;
+    u32 unk_C;
+    u8 pad_10[0x10410];
+    u32 unk_10420;
+    s32 (*unk_10424)(void **);
+    void (*unk_10428)(void *, void *, f32);
+    void (*unk_1042C)(void *, void *);
+    u8 pad_10430[0x10];
+} Fn1_82C70_Work;
+
+/* lbl_1_bss_525C as this function reads it: a table of 8-byte entries led by a record pointer, and a byte at +0xF8 */
+typedef struct {
+    Fn1_82C70_Record *unk_0;
+    u8 pad_4[0x4];
+} Fn1_82C70_RecordSlot;
+
+typedef struct {
+    Fn1_82C70_RecordSlot unk_0[0x1F];
+    u8 unk_F8;
+    u8 pad_F9[0x9F];
+} Fn1_82C70_Obj_525C;
+
+extern Fn1_82C70_Obj_525C lbl_1_bss_525C;
+extern u8 lbl_1_bss_6D854;
+extern char lbl_1_data_206D8[];
+extern int fn_1_8623C(void);
+extern Fn1_82C70_Record *fn_1_36AD0(void);
+extern void *fn_1_7F254(Fn1_82C70_Record *record, s32 levels);
+extern u8 fn_1_FD844(Fn1_82C70_Record *record, Fn1_82C70_Work *work);
+extern void *fn_1_435C(void *manager);
+extern void fn_1_FE004(void);
+extern s32 fn_1_3F8C(char *name, void (*func)(void *), void *arg, u32 priority);
+extern void fn_1_FCFA4(void *);
+extern s32 fn_1_FDB40(void **);
+extern void fn_1_FDC00(void *, void *, f32);
+extern void fn_1_FDD7C(void *, void *);
+
+void fn_1_82C70(void *manager, u8 index, Fn1_82C70_Car *car, Fn1_82C70_Work *work_base, u8 flag) {
+    u8 port;
+    Fn1_82C70_Record *record;
+    Fn1_82C70_Work *work;
+    s32 levels;
+    u8 ok;
+
+    record = NULL;
+    if (lbl_1_bss_8B3A0.unk_94 & 0x40000000) {
+        port = fn_1_8623C();
+        if (index != port) {
+            return;
+        }
+    } else {
+        port = car->unk_32C->unk_474;
+    }
+    if (*(s16 *)&lbl_1_bss_960 == 2) {
+        if (port == 0xFF) {
+            return;
+        }
+        record = (Fn1_82C70_Record *)((u8 *)fn_1_36AD0() + port * 0x81C0);
+    } else if (*(s16 *)&lbl_1_bss_960 == 14) {
+        if (lbl_1_bss_525C.unk_F8 >= 3) {
+            record = lbl_1_bss_525C.unk_0[lbl_1_bss_525C.unk_F8].unk_0;
+        } else {
+            record = lbl_1_bss_525C.unk_0[index].unk_0;
+        }
+        if (record == NULL) {
+            return;
+        }
+        port = 0;
+    } else if (*(s16 *)&lbl_1_bss_960 == 12) {
+        port = 0;
+        flag = 1;
+        record = fn_1_36AD0();
+        if (record->unk_0 & 0x80000000) {
+            if (record->unk_0 & 0x40000000) {
+                if (car->unk_328 != record->unk_5) {
+                    return;
+                }
+            } else if (car->unk_328 != record->unk_81A0) {
+                return;
+            }
+        }
+    }
+    if (record->unk_7 == 0) {
+        return;
+    }
+    /* retail forms these four addresses from work_base + 0x10000 and the rest from the work pointer */
+    work_base[port].unk_10420 = 0;
+    work_base[port].unk_10428 = fn_1_FDC00;
+    work_base[port].unk_1042C = fn_1_FDD7C;
+    work_base[port].unk_10424 = fn_1_FDB40;
+    work = &work_base[port];
+    work->unk_4 = 4;
+    work->unk_0 = car;
+    work->unk_8 = 1.0f;
+    work->unk_C = 0x40000000;
+    if (*(s16 *)&lbl_1_bss_960 == 14) {
+        car->unk_3BA = 1;
+        work->unk_C = 0x20000000;
+        levels = 2;
+    } else if (flag == 1) {
+        car->unk_3BA = 0;
+        levels = 5;
+    } else {
+        car->unk_3BA = 1;
+        levels = 6;
+    }
+    car->unk_3A4 = fn_1_7F254(record, levels);
+    if (car->unk_3A4 == NULL) {
+        return;
+    }
+    ok = fn_1_FD844(record, work);
+    if (ok) {
+        fn_1_435C(manager);
+        fn_1_FE004();
+        fn_1_3F8C(lbl_1_data_206D8, fn_1_FCFA4, work, 0x12);
+    }
+    lbl_1_bss_6D854 = ok;
+}
+/* fzgx:end fn_1_82C70 */
+
 /* fzgx:begin fn_1_82EDC noprologue */
 #include "types.h"
 
@@ -15289,6 +15447,114 @@ void fn_1_8DBA4(u8 value) {
     lbl_1_bss_6D820 = value;
 }
 /* fzgx:end fn_1_8DBA4 */
+
+/* fzgx:begin fn_1_8DBB0 noprologue */
+#include "types.h"
+
+typedef struct {
+    u8 pad_0[0x9];
+    u8 unk_9;
+    u8 pad_A[0x14AE];
+} fn_1_8DBB0_Setup;
+
+typedef struct {
+    u8 pad_0[0x32C];
+    u8 *unk_32C;
+    u8 pad_330[0x5C];
+    u8 unk_38C;
+    u8 pad_38D[0x2D];
+    s16 unk_3BA;
+    u8 pad_3BC[0x84];
+} fn_1_8DBB0_Car;
+
+typedef struct {
+    u8 pad_0[0x1C];
+    fn_1_8DBB0_Car *unk_1C;
+    u8 pad_20[0xA];
+    u8 unk_2A;
+    u8 pad_2B[0x1ED];
+    u8 unk_218;
+    u8 pad_219[0xDF3];
+    s16 unk_100C[30][5];
+} fn_1_8DBB0_Manager;
+
+extern u8 lbl_1_bss_6D820;
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3E2C;
+extern void fn_1_3EF14(void *);
+extern void fn_80008BEC(void *, int, u32);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006DD7C(void);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void lbl_8006DB74(void *);
+extern void fn_1_3BDC(s32);
+extern void fn_1_84860(void *);
+extern s16 fn_1_3C18(s32);
+
+static inline fn_1_8DBB0_Car *get_car(fn_1_8DBB0_Manager *mgr, s8 index) {
+    if (index < (s8)mgr->unk_2A && mgr->unk_1C != NULL) {
+        return &mgr->unk_1C[index];
+    }
+    return NULL;
+}
+
+static inline s8 next_lod(fn_1_8DBB0_Car *car, s8 lod) {
+    s8 i = lod;
+
+    if (i == 5) {
+        return i;
+    }
+    if (lod < 0 || i > 5) {
+        return (lod < 0) ? 0 : ((lod > 5) ? 5 : lod);
+    }
+    for (; i < 5; i++) {
+        if (car->unk_38C & (1 << i)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+/* retail re-extends got after the timing calls (got stays in a callee-saved register across them), so common
+ * subexpressions are not merged here */
+#pragma opt_common_subs off
+void fn_1_8DBB0(void) {
+    s16 *row;
+    fn_1_8DBB0_Setup setup;
+    s32 i;
+    fn_1_8DBB0_Car *car;
+    s32 lod;
+    s8 got;
+    fn_1_8DBB0_Manager *mgr = (fn_1_8DBB0_Manager *)&lbl_1_bss_6D820;
+
+    fn_1_3EF14(&setup);
+    fn_80008BEC(mgr->unk_100C, 0, sizeof(mgr->unk_100C));
+    mgr->unk_218 = 1;
+    row = mgr->unk_100C[0];
+    for (i = 0; i < setup.unk_9; i++) {
+        for (lod = 0; lod < 5; lod++) {
+            car = get_car(mgr, i);
+            lbl_8006DCA4();
+            lbl_8006DD7C();
+            lbl_8006E0B4(lbl_1_rodata_3518[0], lbl_1_rodata_3518[0], lbl_1_rodata_3E2C);
+            lbl_8006DB74(car->unk_32C + 0x14C);
+            got = next_lod(car, lod);
+            if (got == -1) {
+                break;
+            }
+            lod = got;
+            car->unk_3BA = lod;
+            fn_1_3BDC(0);
+            fn_1_84860(car);
+            row[lod] = fn_1_3C18(0);
+            lod = got;
+        }
+        row += 5;
+    }
+    mgr->unk_218 = 0;
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_8DBB0 */
 
 /* fzgx:begin fn_1_8E084 noprologue */
 #include "types.h"

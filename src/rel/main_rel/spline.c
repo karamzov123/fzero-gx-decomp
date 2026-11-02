@@ -2232,6 +2232,99 @@ void fn_1_F9888(s16 arg0) {
 }
 /* fzgx:end fn_1_F9888 */
 
+/* fzgx:begin fn_1_F9A80 */
+extern void fn_1_F9E38(void);
+extern s32 ghost_test_record_flag0(s32 arg);
+extern void ghost_set_record_flag1(s32 arg);
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+} Element;
+
+typedef struct {
+    Element elements[44];
+} Table;
+
+extern Table lbl_1_rodata_6E38;
+extern void fn_80008BA8(void *dst, const void *src, u32 size);
+
+static inline void get_element(Element *dst, s16 index) {
+    Table table;
+    table = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &table.elements[index], 10);
+}
+
+static inline s16 find_element_by_unk2(s16 unk_2, s16 nth) {
+    Element elem;
+    s16 i;
+    s16 count;
+
+    i = 0;
+    count = 0;
+    for (; i < 44; i++) {
+        get_element(&elem, i);
+        if (elem.unk_2 == unk_2) {
+            if (count == nth) {
+                return i;
+            }
+            count++;
+        }
+    }
+    return -1;
+}
+
+static inline s16 get_element_index_in_unk2_group(s16 index) {
+    Element elem;
+    s16 i;
+
+    get_element(&elem, index);
+    for (i = 0; ; i++) {
+        if (find_element_by_unk2(elem.unk_2, i) == index) {
+            return i;
+        }
+    }
+}
+
+void fn_1_F9A80(void) {
+    s16 i;
+
+    fn_1_F9E38();
+    for (i = 0; i < 2; i++) {
+        ((u32 *)&lbl_1_bss_7F0C0)[4676] &= ~(0x80000000 >> (31 - (i * 2 + 1)));
+    }
+    for (i = 0; i < 6; i++) {
+        ((u32 *)&lbl_1_bss_7F0C0)[4672] &= ~(0x80000000 >> (i + 16));
+    }
+    /* retail stores the word a seventh time with no new bit cleared */
+    ((u32 *)&lbl_1_bss_7F0C0)[4672] &= ~0xFC00;
+
+    for (i = 0; i < 44; i++) {
+        Element elem;
+        s16 group_idx;
+
+        get_element(&elem, i);
+        group_idx = get_element_index_in_unk2_group(i);
+        switch (elem.unk_2) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            if (ghost_test_record_flag0(elem.unk_8)) {
+                ghost_set_record_flag1(elem.unk_8);
+            }
+            break;
+        case 3:
+            break;
+        }
+    }
+}
+/* fzgx:end fn_1_F9A80 */
+
 /* fzgx:begin fn_1_F9C6C */
 void fn_1_F9C6C(void) {
     fn_1_F9D04(0);

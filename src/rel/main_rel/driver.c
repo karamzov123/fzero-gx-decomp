@@ -2306,6 +2306,121 @@ void fn_1_A9464(u16 arg0, u16 arg1) {
 }
 /* fzgx:end fn_1_A9464 */
 
+/* fzgx:begin fn_1_A948C noprologue */
+#include "types.h"
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 pad_3;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+    u8 pad_A[2];
+    char *unk_C;
+} fn_1_A948C_Header;
+
+/* an entry of the font table lbl_1_data_1AEA8 */
+typedef struct {
+    u8 pad_0[4];
+    u8 unk_4;
+    u8 unk_5;
+    u8 pad_6[0x32];
+} fn_1_A948C_Font;
+
+extern fn_1_A948C_Font lbl_1_data_1AEA8[];
+extern size_t strlen(const char *);
+extern char *strchr(const char *, int);
+extern char *strrchr(const char *, int);
+extern char *fn_80083DB0(char *, const char *);
+extern void OSReport(const char *, ...);
+
+/* the retail TU's .data and .bss objects this function uses, at their retail offsets, so MWCC addresses them
+ * off one section base each */
+u32 fzgx_obj_lbl_1_data_35990[3] = {3, 3, 0};
+s32 fzgx_obj_lbl_1_data_3599C = 1;
+
+fn_1_A948C_Header fzgx_obj_lbl_1_bss_6F648;
+char lbl_1_bss_6F648__fzgx_offset_10[0x1000];
+fn_1_A948C_Header fzgx_obj_lbl_1_bss_70658[0x100];
+s32 fzgx_obj_lbl_1_bss_71658;
+s32 lbl_1_bss_71658__fzgx_offset_4;
+s32 lbl_1_bss_71658__fzgx_offset_8;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_data_35990[0];
+    s = fzgx_obj_lbl_1_data_3599C;
+    s = fzgx_obj_lbl_1_bss_6F648.unk_0;
+    s = lbl_1_bss_6F648__fzgx_offset_10[0];
+    s = fzgx_obj_lbl_1_bss_70658[0].unk_0;
+    s = fzgx_obj_lbl_1_bss_71658;
+    s = lbl_1_bss_71658__fzgx_offset_4;
+    s = lbl_1_bss_71658__fzgx_offset_8;
+}
+#pragma section code_type ".text"
+
+/* opt_lifetimes off keeps end one variable across both assignments, so the size and the end pointer share
+ * a register as in retail (addi r28,r3,1; add r28,r5,r28) */
+#pragma opt_lifetimes off
+int fn_1_A948C(const char *str) {
+    char *end = (char *)strlen(str) + 1;
+    char *dst = fzgx_obj_lbl_1_bss_6F648.unk_C;
+    s32 scale_x;
+    s32 scale_y;
+    s32 lines;
+    fn_1_A948C_Header *p;
+
+    end = dst + (u32)end;
+
+    if (fzgx_obj_lbl_1_data_3599C == 0) {
+        return 0;
+    }
+    if (end >= lbl_1_bss_6F648__fzgx_offset_10 + sizeof(lbl_1_bss_6F648__fzgx_offset_10)) {
+        if (lbl_1_bss_71658__fzgx_offset_4 == 0) {
+            OSReport("[ERROR] print.c : all_str\n");
+            lbl_1_bss_71658__fzgx_offset_4 = 1;
+        }
+        return 0;
+    }
+    if (fzgx_obj_lbl_1_bss_71658 + 1 >= 0x100) {
+        if (lbl_1_bss_71658__fzgx_offset_8 == 0) {
+            OSReport("[ERROR] print.c : ps_comm\n");
+            lbl_1_bss_71658__fzgx_offset_8 = 1;
+        }
+        return 0;
+    }
+    fzgx_obj_lbl_1_bss_70658[fzgx_obj_lbl_1_bss_71658] = fzgx_obj_lbl_1_bss_6F648;
+    fn_80083DB0(dst, str);
+    p = &fzgx_obj_lbl_1_bss_6F648;
+    fzgx_obj_lbl_1_bss_71658++;
+    fzgx_obj_lbl_1_bss_6F648.unk_C = end;
+    if ((p->unk_2 >> 1) & 1) {
+        scale_x = lbl_1_data_1AEA8[fzgx_obj_lbl_1_data_35990[fzgx_obj_lbl_1_bss_6F648.unk_0]].unk_4;
+    } else {
+        scale_x = 1;
+    }
+    if ((p->unk_2 >> 1) & 1) {
+        scale_y = lbl_1_data_1AEA8[fzgx_obj_lbl_1_data_35990[fzgx_obj_lbl_1_bss_6F648.unk_0]].unk_5;
+    } else {
+        scale_y = 1;
+    }
+    if (strrchr(str, '\n') != NULL) {
+        fzgx_obj_lbl_1_bss_6F648.unk_8 = scale_x * (strlen(strrchr(str, '\n')) - 1);
+    } else {
+        fzgx_obj_lbl_1_bss_6F648.unk_8 += scale_x * strlen(str);
+    }
+    for (lines = 0; strchr(str, '\n') != NULL; lines++) {
+        str = strchr(str, '\n') + 1;
+    }
+    fzgx_obj_lbl_1_bss_6F648.unk_6 += lines * scale_y;
+    return 1;
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_A948C */
+
 /* fzgx:begin fn_1_A96BC */
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_6F648[4];
@@ -2517,6 +2632,161 @@ void fn_1_A9868(u32 arg0, u32 arg1, u32 arg2, f32 arg3) {
     p_lbl_1_bss_71690->unk_0 = 1;
 }
 /* fzgx:end fn_1_A9868 */
+
+/* fzgx:begin fn_1_A9A28 noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} GXColor;
+
+typedef union {
+    u8 u8;
+    f32 f32;
+} PPCWGPipe;
+
+volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
+
+extern void fn_8003462C(u32, u32, u32);
+
+/* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value color in registers across them. */
+static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
+    GXWGFifo.u8 = r;
+    GXWGFifo.u8 = g;
+    GXWGFifo.u8 = b;
+    GXWGFifo.u8 = a;
+}
+
+/* Draws one line (GXBegin 0xA8, two vertices) from (x0, y0) to (x1, y1), each coordinate offset by 0.5,
+ * while lbl_1_bss_71690.unk_0 is set. */
+void fn_1_A9A28(s16 x0, s16 y0, s16 x1, s16 y1, GXColor color) {
+    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+        fn_8003462C(0xA8, 0, 2);
+        GXPosition3f32(0.5f + x0, 0.5f + y0, 0.0f);
+        GXColor4u8(color.r, color.g, color.b, color.a);
+        GXPosition3f32(0.5f + x1, 0.5f + y1, 0.0f);
+        GXColor4u8(color.r, color.g, color.b, color.a);
+    }
+}
+/* fzgx:end fn_1_A9A28 */
+
+/* fzgx:begin fn_1_A9FFC noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} GXColor;
+
+typedef union {
+    u8 u8;
+    f32 f32;
+} PPCWGPipe;
+
+volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
+
+extern void fn_8003462C(u32, u32, u32);
+
+/* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value color in registers across them. */
+static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
+    GXWGFifo.u8 = r;
+    GXWGFifo.u8 = g;
+    GXWGFifo.u8 = b;
+    GXWGFifo.u8 = a;
+}
+
+/* Fills the w by h rectangle at (x, y) with one color (GXBegin 0x80, four vertices), each coordinate offset
+ * by 0.5, while lbl_1_bss_71690.unk_0 is set. */
+void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color) {
+    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+        fn_8003462C(0x80, 0, 4);
+        GXPosition3f32(0.5f + x, 0.5f + y, 0.0f);
+        GXColor4u8(color.r, color.g, color.b, color.a);
+        GXPosition3f32(0.5f + (x + w), 0.5f + y, 0.0f);
+        GXColor4u8(color.r, color.g, color.b, color.a);
+        GXPosition3f32(0.5f + (x + w), 0.5f + (y + h), 0.0f);
+        GXColor4u8(color.r, color.g, color.b, color.a);
+        GXPosition3f32(0.5f + x, 0.5f + (y + h), 0.0f);
+        GXColor4u8(color.r, color.g, color.b, color.a);
+    }
+}
+/* fzgx:end fn_1_A9FFC */
+
+/* fzgx:begin fn_1_AA188 noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} GXColor;
+
+typedef union {
+    u8 u8;
+    f32 f32;
+} PPCWGPipe;
+
+volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
+
+extern void fn_8003462C(u32, u32, u32);
+
+/* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value colors in registers across them. */
+static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
+    GXWGFifo.u8 = r;
+    GXWGFifo.u8 = g;
+    GXWGFifo.u8 = b;
+    GXWGFifo.u8 = a;
+}
+
+/* Fills the w by h rectangle at (x, y) with one color per corner (GXBegin 0x80, four vertices, clockwise from
+ * (x, y)), each coordinate offset by 0.5, while lbl_1_bss_71690.unk_0 is set. */
+void fn_1_AA188(s16 x, s16 y, s16 w, s16 h, GXColor c0, GXColor c1, GXColor c2, GXColor c3) {
+    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+        fn_8003462C(0x80, 0, 4);
+        GXPosition3f32(0.5f + x, 0.5f + y, 0.0f);
+        GXColor4u8(c0.r, c0.g, c0.b, c0.a);
+        GXPosition3f32(0.5f + (x + w), 0.5f + y, 0.0f);
+        GXColor4u8(c1.r, c1.g, c1.b, c1.a);
+        GXPosition3f32(0.5f + (x + w), 0.5f + (y + h), 0.0f);
+        GXColor4u8(c2.r, c2.g, c2.b, c2.a);
+        GXPosition3f32(0.5f + x, 0.5f + (y + h), 0.0f);
+        GXColor4u8(c3.r, c3.g, c3.b, c3.a);
+    }
+}
+/* fzgx:end fn_1_AA188 */
 
 /* fzgx:begin fn_1_AA350 noprologue */
 #include "types.h"
