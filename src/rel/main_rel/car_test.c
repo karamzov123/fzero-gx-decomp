@@ -800,6 +800,229 @@ void fn_1_7D6B8(void *arg0) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_7D6B8 */
 
+/* fzgx:begin fn_1_7E1DC */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = 100.0f;
+    s = 17.320507049560547f;
+}
+static const u32 fzgx_pool_table2[3] = {0x00FF00FF, 0x00FF00FF, 0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = -100.0f;
+    s = 3.0f;
+    s = 6.0f;
+    s = -3.0f;
+    s = 182.04444885253906f;
+    s = 255.0f;
+    d = 4503601774854144.0;
+    d = 4503599627370496.0;
+}
+static const u32 fzgx_pool_table4[47] = {0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0x7F7F7F00, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 160.0f;
+    s = 0.3499999940395355f;
+    s = 0.5f;
+    s = 320.0f;
+    s = 30.0f;
+    s = 120.0f;
+    s = 300.0f;
+    s = 10.0f;
+    s = 200.0f;
+    s = 410.0f;
+    s = 450.0f;
+    s = 350.0f;
+    s = 420.0f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} Color;
+
+typedef struct _GXLightObj {
+    u32 dummy[16];
+} GXLightObj;
+
+typedef struct {
+    Color *unk_0;
+    f32 unk_4;
+    s16 unk_8;
+    s16 unk_A;
+} Fn7E1DCView;
+
+typedef struct {
+    u8 pad_0[0x1C];
+    Fn7E1DCView *unk_1C;
+    u32 unk_20;
+} Fn7E1DCObj;
+
+/* .bss 0x9F8 is four 0x14-byte button records (held, previous, pressed, released); this reads the second */
+typedef struct {
+    u16 unk_0;
+    u16 unk_2;
+    u8 pad_4[0x4];
+    u16 unk_8;
+    u8 pad_A[0xA];
+} PadRec;
+
+typedef struct {
+    u8 pad_0[0x8];
+    struct {
+        u8 pad_0[0x20];
+        void *unk_20;
+    } *unk_8;
+} Fn7E1DCBg;
+
+extern u32 lbl_801A6CE0;
+extern Fn7E1DCBg *lbl_1_bss_38454;
+
+extern void lbl_8006D758(void);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E0A4(Vec3 *v);
+extern void lbl_8006E1B0(Vec3 *src, Vec3 *dst);
+extern void mathutil_mtxA_rotate_y(s16 angle);
+extern void mathutil_mtxA_rotate_z(s16 angle);
+extern void fn_1_57714(s32 arg0);
+extern void fn_1_57720(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_1_5773C(Vec3 *a, Vec3 *b, Color *c);
+extern void fn_1_57810(s32 n, Vec3 *pts, Color *c);
+extern void fn_80072558(void);
+extern void fn_80077F8C(void *arg0);
+extern void *memcpy(void *dst, const void *src, u32 n);
+extern void fn_1_7BCCC(Vec3 *v);
+extern void fn_80035680(GXLightObj *lt, f32 x, f32 y, f32 z);
+extern void fn_80035690(GXLightObj *lt, f32 x, f32 y, f32 z);
+extern void fn_80035420(GXLightObj *lt, f32 cutoff, s32 fn);
+extern void fn_800356AC(GXLightObj *lt, Color *c);
+extern void GXInitLightDistAttn(GXLightObj *lt, f32 ref_dist, f32 ref_br, s32 fn);
+extern void fn_1_7BB80(GXLightObj *lt, s32 id);
+extern void fn_1_7BD6C(s32 arg0);
+extern void fn_80074CF4(f32 r, f32 g, f32 b);
+
+/* car_test.h types lbl_1_bss_6D7E8 as u32; it holds a pointer, reread after every store as retail does */
+#define OBJ_6D7E8 (*(Fn7E1DCObj **)&lbl_1_bss_6D7E8)
+#define PAD (((PadRec *)&lbl_1_bss_9F8)[1])
+/* degrees to the 0x10000-per-turn angle unit; folds to an int constant (315 gives 0xE000) */
+#define DEG_TO_S16(deg) ((s16)(182.04445f * (deg)))
+#define CLAMP(x, lo, hi) (((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi) : (x)))
+
+void fn_1_7E1DC(void) {
+    Fn7E1DCObj *obj = (Fn7E1DCObj *)lbl_1_bss_6D7E8;
+    Vec3 v;
+    GXLightObj light;
+    Vec3 pts[21];
+    s8 i;
+
+    if (obj->unk_20 & 0x40000000) {
+        return;
+    }
+    if ((PAD.unk_2 >> 4) & 1) {
+        OBJ_6D7E8->unk_1C->unk_8 += DEG_TO_S16(1);
+    }
+    if ((PAD.unk_2 >> 5) & 1) {
+        OBJ_6D7E8->unk_1C->unk_8 += DEG_TO_S16(359);
+    }
+    if ((PAD.unk_2 >> 7) & 1) {
+        OBJ_6D7E8->unk_1C->unk_A += DEG_TO_S16(1);
+    }
+    if ((PAD.unk_2 >> 6) & 1) {
+        OBJ_6D7E8->unk_1C->unk_A += DEG_TO_S16(359);
+    }
+    if ((PAD.unk_2 >> 8) & 1) {
+        OBJ_6D7E8->unk_1C->unk_4 += 0.1f;
+    }
+    if ((PAD.unk_2 >> 9) & 1) {
+        OBJ_6D7E8->unk_1C->unk_4 -= 0.1f;
+    }
+    OBJ_6D7E8->unk_1C->unk_8 %= DEG_TO_S16(360);
+    OBJ_6D7E8->unk_1C->unk_A %= DEG_TO_S16(360);
+    OBJ_6D7E8->unk_1C->unk_4 = CLAMP(OBJ_6D7E8->unk_1C->unk_4, 0.01f, 17.320507049560547f);
+    if ((PAD.unk_8 >> 9) & 1) {
+        OBJ_6D7E8->unk_1C->unk_4 = 17.320507049560547f;
+        OBJ_6D7E8->unk_1C->unk_8 = DEG_TO_S16(315);
+        OBJ_6D7E8->unk_1C->unk_A = DEG_TO_S16(45);
+    }
+
+    v.x = OBJ_6D7E8->unk_1C->unk_4;
+    v.z = 0.0f;
+    v.y = 0.0f;
+    lbl_8006D758();
+    mathutil_mtxA_rotate_y(OBJ_6D7E8->unk_1C->unk_8);
+    mathutil_mtxA_rotate_z(OBJ_6D7E8->unk_1C->unk_A);
+    lbl_8006E1B0(&v, &v);
+
+    if (((PAD.unk_2 >> 7) & 1) || ((PAD.unk_2 >> 4) & 1) || ((PAD.unk_2 >> 6) & 1) || ((PAD.unk_2 >> 5) & 1) ||
+        ((PAD.unk_2 >> 8) & 1) || ((PAD.unk_2 >> 9) & 1) || ((PAD.unk_0 >> 8) & 1)) {
+        Vec3 origin = {0.0f, 0.0f, 0.0f};
+        Color green = {0x00, 0xFF, 0x00, 0xFF};
+        Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+        Vec3 w;
+
+        w.x = OBJ_6D7E8->unk_1C->unk_4;
+        w.z = 0.0f;
+        w.y = 0.0f;
+        lbl_8006DCA4();
+        fn_1_57714(6);
+        fn_1_57720(1, 1, 1, 0);
+        fn_1_5773C(&origin, &v, &green);
+        lbl_8006E0A4(&v);
+        fn_80072558();
+        if (lbl_801A6CE0 & 1) {
+            fn_80077F8C(lbl_1_bss_38454->unk_8->unk_20);
+        }
+        /* a 20-point circle about each axis, closed by repeating the first point */
+        for (i = 0; i < 20; i++) {
+            lbl_8006D758();
+            mathutil_mtxA_rotate_y(DEG_TO_S16(i * 360 / 20));
+            mathutil_mtxA_rotate_z(OBJ_6D7E8->unk_1C->unk_A);
+            lbl_8006E1B0(&w, &pts[i]);
+        }
+        memcpy(&pts[20], &pts[0], sizeof(Vec3));
+        lbl_8006DCA4();
+        fn_1_57810(21, pts, &white);
+        for (i = 0; i < 20; i++) {
+            lbl_8006D758();
+            mathutil_mtxA_rotate_y(OBJ_6D7E8->unk_1C->unk_8);
+            mathutil_mtxA_rotate_z(DEG_TO_S16(i * 360 / 20));
+            lbl_8006E1B0(&w, &pts[i]);
+        }
+        memcpy(&pts[20], &pts[0], sizeof(Vec3));
+        lbl_8006DCA4();
+        fn_1_57810(21, pts, &white);
+    }
+
+    lbl_8006DCA4();
+    lbl_8006E1B0(&v, &v);
+    fn_1_7BCCC(&v);
+    fn_80035680(&light, v.x, v.y, v.z);
+    fn_80035690(&light, v.x, v.y, v.z);
+    fn_80035420(&light, 0.0f, 0);
+    {
+        Color c = *OBJ_6D7E8->unk_1C->unk_0;
+        fn_800356AC(&light, &c);
+    }
+    GXInitLightDistAttn(&light, 0.0f, 0.0f, 0);
+    fn_1_7BB80(&light, 1);
+    fn_1_7BD6C(1);
+    fn_80074CF4(0.6f, 0.6f, 0.6f);
+}
+/* fzgx:end fn_1_7E1DC */
+
 /* fzgx:begin fn_1_7E7A4 */
 typedef struct Fn1_7E7A4Data {
     void *field_0;

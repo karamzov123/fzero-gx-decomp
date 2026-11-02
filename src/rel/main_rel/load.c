@@ -2171,6 +2171,183 @@ u32 fn_1_47268(void) {
 }
 /* fzgx:end fn_1_47268 */
 
+/* fzgx:begin fn_1_47330 */
+#include "sdk_addresses.h"
+
+typedef union PPCWGPipe {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+    s8 s8;
+    s16 s16;
+    s32 s32;
+    f32 f32;
+    f64 f64;
+} PPCWGPipe;
+
+/* GX write-gather FIFO: hardware register, every store must reach it. */
+volatile PPCWGPipe GXWGFifo : FZGX_ADDR_GXFIFO;
+
+extern void fn_80074918(u8, s32, u8);
+extern void fn_80074788(u32);
+extern void fn_80074660(u32);
+extern void fn_80073678(u32);
+extern void fn_80073C6C(s32);
+extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_80072864(u32);
+extern void fn_8007245C(u32);
+extern u32 fn_800371F8(u32, void *);
+extern void fn_8003462C(u32, u32, u32);
+
+typedef struct LoadEntry {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_c;
+} LoadEntry;
+
+typedef struct Pos { f32 x, y, z; } Pos;
+typedef struct Color { u8 r, g, b, a; } Color;
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between */
+u32 fzgx_obj_lbl_1_bss_384C0;
+u8 fzgx_pool_gap_384C4[0x14];
+LoadEntry fzgx_obj_lbl_1_bss_384D8[0x580];
+u32 fzgx_pool_gap_3DCD8;
+u32 fzgx_obj_lbl_1_bss_3DCDC;
+u8 fzgx_pool_gap_3DCE0[0x314];
+u32 fzgx_obj_lbl_1_bss_3DFF4;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
+    s = *(u8 *)&fzgx_pool_gap_384C4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
+    s = *(u8 *)&fzgx_pool_gap_3DCD8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCDC;
+    s = *(u8 *)&fzgx_pool_gap_3DCE0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_3DFF4;
+}
+#pragma section code_type ".text"
+
+static inline void VERT(f32 x, f32 y, f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+void fn_1_47330(Pos *pos, f32 width, f32 height) {
+    LoadEntry *entry;
+    s32 i;
+    s32 draw;
+
+    fn_80074918(0, 7, 0);
+    fn_80074788(1);
+    fn_80074660(0);
+    fn_80073678(1);
+    fn_80073C6C(0);
+    fn_800747D0(4, 0, 0, 0, 0, 2, 2);
+    fn_80072AB0(0, 0, 0);
+    fn_800734A8(0, 255, 255, 4);
+    fn_80072C24(0, 15, 15, 15, 2);
+    fn_80072D64(0, 0, 0, 0, 1, 0);
+    fn_80072CC4(0, 7, 7, 7, 1);
+    fn_80072E20(0, 0, 0, 0, 1, 0);
+    fn_800728A8(1, 4, 5, 0);
+    fn_80072864(2);
+    fn_8007245C(512);
+    {
+        Color color = { 0x00, 0x00, 0x00, 0xFF };
+        fn_800371F8(1, &color);
+    }
+    fn_8003462C(128, 7, 4);
+    VERT(pos->x, pos->y, pos->z);
+    VERT(pos->x + width, pos->y, pos->z);
+    VERT(pos->x + width, pos->y + height, pos->z);
+    VERT(pos->x, pos->y + height, pos->z);
+    width -= 1.0f;
+    height -= 1.0f;
+    pos->x += 1.0f;
+    pos->y += 1.0f;
+    {
+        Color color = { 0x7F, 0x7F, 0x7F, 0xFF };
+        fn_800371F8(1, &color);
+    }
+    fn_8003462C(128, 7, 4);
+    VERT(pos->x, pos->y, pos->z - 0.001f);
+    VERT(pos->x + width, pos->y, pos->z - 0.001f);
+    VERT(pos->x + width, pos->y + height, pos->z - 0.001f);
+    VERT(pos->x, pos->y + height, pos->z - 0.001f);
+    {
+        Color color = { 0x00, 0x00, 0xFF, 0xFF };
+        fn_800371F8(1, &color);
+    }
+    fn_8003462C(128, 7, 4);
+    VERT(pos->x + (f32)fzgx_obj_lbl_1_bss_3DCDC * width / 16777216.0f, pos->y, pos->z - 0.002f);
+    VERT(pos->x + (f32)fzgx_obj_lbl_1_bss_3DFF4 * width / 16777216.0f, pos->y, pos->z - 0.002f);
+    VERT(pos->x + (f32)fzgx_obj_lbl_1_bss_3DFF4 * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
+    VERT(pos->x + (f32)fzgx_obj_lbl_1_bss_3DCDC * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
+
+    entry = fzgx_obj_lbl_1_bss_384D8;
+    for (i = 0; i < 0x400; i++, entry++) {
+        draw = 0;
+        if (entry->unk_0 == 0x40000000) {
+            Color color = { 0xFF, 0x00, 0x00, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        } else if (entry->unk_0 == 0x50000000) {
+            Color color = { 0xFF, 0x7F, 0xFF, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        } else if (entry->unk_0 == 0x20000000) {
+            Color color = { 0x7F, 0x00, 0x00, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        } else if (entry->unk_0 == 0x30000000) {
+            Color color = { 0x7F, 0x3F, 0x7F, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        } else if (entry->unk_0 == 0x80000000) {
+            Color color = { 0xFF, 0xFF, 0x00, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        } else if (entry->unk_0 == 0x04000000) {
+            Color color = { 0x7F, 0x7F, 0x7F, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        } else if (entry->unk_0 == 0x14000000) {
+            Color color = { 0xFF, 0xFF, 0xFF, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        } else if (entry->unk_0 == 0x48000000) {
+            Color color = { 0x4F, 0xFF, 0x4F, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        } else if (entry->unk_0 == 0x58000000) {
+            Color color = { 0xAF, 0xFF, 0x4F, 0xFF };
+            fn_800371F8(1, &color);
+            draw = 1;
+        }
+        if (draw) {
+            fn_8003462C(128, 7, 4);
+            VERT(pos->x + (f32)entry->unk_8 * width / 16777216.0f, pos->y, pos->z - 0.002f);
+            VERT(pos->x + width * (f32)(entry->unk_8 + entry->unk_c) / 16777216.0f, pos->y, pos->z - 0.002f);
+            VERT(pos->x + width * (f32)(entry->unk_8 + entry->unk_c) / 16777216.0f, pos->y + height, pos->z - 0.002f);
+            VERT(pos->x + (f32)entry->unk_8 * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
+        }
+    }
+}
+/* fzgx:end fn_1_47330 */
+
 /* fzgx:begin fn_1_479B0 */
 // Reset the loading state and clear the associated resource markers.
 void fn_1_479B0(void) {

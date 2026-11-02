@@ -3668,6 +3668,122 @@ void fn_1_D01B0(f32 farg0) {
 }
 /* fzgx:end fn_1_D01B0 */
 
+/* fzgx:begin fn_1_D0428 */
+/* the race-setup block as fn_1_3EF14 copies it to the stack (0x14B8 bytes; globals.h's 0x14BC-byte
+ * Obj_1_bss_3C30 moves the frame); fields as globals.h names them */
+typedef struct {
+    u8 pad_0[0x5];
+    u8 unk_5;
+    u8 unk_6;
+    u8 pad_7[0x145D];
+    u32 unk_1464;
+    u8 pad_1468[0x50];
+} fn_1_D0428_Setup;
+
+/* fn_1_128E8C's output: a time as minutes, seconds, milliseconds */
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u16 unk_2;
+    u8 pad_4[0x14];
+    u16 unk_18;
+} fn_1_D0428_Record;
+
+extern s32 fn_1_3F7D0(void);
+extern s32 fn_1_101C0(void);
+extern void fn_1_3EF14(void *);
+extern u32 fn_1_3F114(void);
+extern void fn_1_12EF80(u8, s16 *, s16 *);
+extern void fn_1_128E8C(u8, fn_1_D0428_Record *);
+extern void fn_1_52070(int);
+extern void fn_1_52088(void);
+/* retail passes these extra arguments; the callees' own units declare fewer */
+extern void fn_1_CFB28(s16, f32);
+/* same registers as fn_1_CFCA4(const char *, f32, f32, f32); this order evaluates the floats first, as retail */
+extern void fn_1_CFCA4(f32, f32, const char *, f32);
+extern void fn_1_CFF94(u32, u8, f32);
+extern void fn_1_D01B0(u32, s16, f32);
+extern s16 fn_1_7B054(void);
+extern u32 lbl_801A66B4;
+extern u8 lbl_1_data_2BD54[0xA68];
+extern const f32 lbl_1_rodata_5C38;
+extern const f32 lbl_1_rodata_5CCC;
+extern const f32 lbl_1_rodata_5CFC;
+extern const f32 lbl_1_rodata_5D90;
+extern const f64 lbl_1_rodata_6018;
+extern const f32 lbl_1_rodata_6020;
+extern const f32 lbl_1_rodata_6028;
+
+#define CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+
+static inline s32 in_range(s32 x, s32 lo, s32 hi) {
+    if (x > hi) {
+        return 0;
+    }
+    return x >= lo;
+}
+
+void fn_1_D0428(void) {
+    s32 now;
+    s32 start;
+    u32 value;
+    u32 flag;
+    s32 best;
+    s32 cur;
+    u32 time;
+    f32 alpha;
+    f64 d;
+    s32 course;
+    s16 a;
+    s16 b;
+    fn_1_D0428_Record rec;
+    fn_1_D0428_Setup setup;
+
+    now = fn_1_3F7D0();
+    start = fn_1_101C0();
+    if (!in_range(now, 20, start)) {
+        return;
+    }
+    fn_1_3EF14(&setup);
+    value = fn_1_3F114();
+    fn_1_12EF80(setup.unk_6, &a, &b);
+    flag = 0;
+    fn_1_128E8C((u8)b, &rec);
+    time = setup.unk_1464;
+    best = rec.unk_1 * 1000 + rec.unk_0 * 60000 + rec.unk_2;
+    cur = ((time >> 12) & 0xFF) * 1000 + ((time >> 20) & 0xFF) * 60000 + (time & 0xFFF);
+    if (rec.unk_18 == 0 || best == 0x7FFFF) {
+        flag = 1;
+    }
+    if (best > cur) {
+        flag = 1;
+    }
+    if (in_range(now, start - 120, start)) {
+        alpha = (f32)(start - now) / lbl_1_rodata_5C38;
+    } else if (in_range(now, 10, 40)) {
+        alpha = lbl_1_rodata_5CFC - (f32)(40 - now) / lbl_1_rodata_5CCC;
+    } else if (now < 10) {
+        alpha = lbl_1_rodata_5D90;
+    } else {
+        alpha = lbl_1_rodata_5CFC;
+    }
+    fn_1_52070(0x60);
+    fn_1_CFB28(now, alpha);
+    /* the f64 step keeps retail's separate fmul and fadd */
+    d = (lbl_1_rodata_6020 - lbl_1_data_3D558.unk_0) * lbl_1_rodata_6018;
+    lbl_1_data_3D558.unk_0 = lbl_1_data_3D558.unk_0 + d;
+    course = CLAMP(fn_1_7B054(), 0, 110); /* 111 courses x 6 languages of name pointers */
+    fn_1_CFCA4(lbl_1_data_3D558.unk_0, lbl_1_rodata_6028,
+               ((const char **)(lbl_1_data_2BD54 + course * 0x18))[lbl_801A66B4], alpha);
+    fn_1_52070(0x220);
+    fn_1_CFF94(flag, (u8)value, alpha);
+    if (setup.unk_5 == 2) {
+        fn_1_D01B0(flag, b, alpha);
+    }
+    fn_1_52088();
+}
+/* fzgx:end fn_1_D0428 */
+
 /* fzgx:begin fn_1_D0728 */
 #pragma opt_propagation off
 void fn_1_D0728(u32 arg0, u32 arg1) {

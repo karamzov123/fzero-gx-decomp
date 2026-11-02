@@ -11416,6 +11416,173 @@ void fn_1_11F250(Work *arg0) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_11F250 */
 
+/* fzgx:begin fn_1_1201E4 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct RopeNode {
+    u8 unk_0;
+    u8 pad_1[0xF];
+    Vec3 unk_10;
+    u8 pad_1C[0x24];
+    f32 unk_40;
+} RopeNode;
+
+typedef struct Link {
+    RopeNode *unk_0;
+    RopeNode *unk_4;
+    f32 unk_8;
+} Link;
+
+typedef struct RopeOwner {
+    u8 pad_0[0x8C];
+    s32 unk_8C;
+} RopeOwner;
+
+typedef struct Rope {
+    u8 pad_0[0xC];
+    RopeOwner *unk_C;
+    u8 pad_10[0x8];
+    u32 unk_18;
+    u32 unk_1C;
+    u8 pad_20[0x4];
+    RopeNode *unk_24;
+    Link *unk_28;
+} Rope;
+
+extern u32 lbl_801A6410;
+extern void fn_1_10846C(Rope *);
+extern void fn_1_128884(void *, void *, s32);
+extern void *fn_1_4630(u32, u32, const char *, s32);
+extern f32 fn_1_1289BC(RopeNode *, RopeNode *);
+
+void fn_1_1201E4(Rope *rope) {
+    u32 i;
+    u32 m;
+    RopeNode *b;
+    RopeNode *a;
+    RopeNode *p;
+    RopeNode *n;
+    s32 last;
+    u32 c;
+    u32 j;
+    RopeNode *q;
+    u32 k;
+    u32 rows;
+    s32 cols;
+
+    if (rope == NULL) {
+        return;
+    }
+    cols = (rope->unk_C->unk_8C == 2) ? 9 : 13;
+    fn_1_10846C(rope);
+
+    for (i = 0, n = rope->unk_24; i < rope->unk_18; i++, n++) {
+        if (n->unk_0 & 1) {
+            n->unk_0 = 0;
+            n->unk_40 = -1.0f;
+        } else {
+            n->unk_0 = 1;
+            n->unk_40 = 0.0f;
+        }
+    }
+
+    for (i = 0, a = rope->unk_24; i < rope->unk_18; i++, a++) {
+        for (j = i + 1, b = &rope->unk_24[i] + 1; j < rope->unk_18; j++, b++) {
+            if (a->unk_0 == 0 && b->unk_0 != 0) {
+                fn_1_128884(a, b, sizeof(RopeNode));
+            }
+        }
+    }
+
+    for (i = 0, a = rope->unk_24; i < rope->unk_18; i++, a++) {
+        for (j = i + 1, b = &rope->unk_24[i] + 1; j < rope->unk_18; j++, b++) {
+            if (a->unk_0 == b->unk_0 && a->unk_10.x < b->unk_10.x) {
+                fn_1_128884(a, b, sizeof(RopeNode));
+            }
+        }
+    }
+
+    for (i = 0, a = rope->unk_24; i < cols; i++, a++) {
+        for (j = i + 1, b = a + 1; j < cols; j++, b++) {
+            if (a->unk_10.z > b->unk_10.z) {
+                fn_1_128884(a, b, sizeof(RopeNode));
+            }
+        }
+    }
+
+    for (i = cols, a = &rope->unk_24[cols]; i < cols * 2; i++, a++) {
+        for (j = i + 1, b = a + 1; j < cols * 2; j++, b++) {
+            if (a->unk_10.z > b->unk_10.z) {
+                fn_1_128884(a, b, sizeof(RopeNode));
+            }
+        }
+    }
+
+    p = rope->unk_24;
+    for (i = 0; i < rope->unk_18; i++) {
+        if (p->unk_0 != 0 && p[1].unk_0 == 0) {
+            break;
+        }
+        p++;
+    }
+    p++;
+
+    rows = (rope->unk_18 - (p - rope->unk_24)) / cols;
+    for (j = 0; j < rows; j++) {
+        for (c = 0; c < cols; c++) {
+            p[c].unk_40 = -(f32)(j + 1) / (f32)(rows + 1);
+        }
+        for (c = 0, n = p; c < cols; c++, n++) {
+            for (m = c + 1, q = n + 1; m < cols; m++, q++) {
+                if (n->unk_10.z > q->unk_10.z) {
+                    fn_1_128884(n, q, sizeof(RopeNode));
+                }
+            }
+        }
+        p += cols;
+    }
+
+    rows = rope->unk_18 / cols;
+    rope->unk_1C = rows * ((u32)cols - 1) + (rows - 1) * cols + (cols - 1) * 2;
+    rope->unk_28 = fn_1_4630(lbl_801A6410, rope->unk_1C * sizeof(Link), (const char *)&lbl_1_data_40530, 0x248F);
+
+    last = cols - 1;
+    for (i = 0, k = 0, a = rope->unk_24; i < last; i++, a++) {
+        rope->unk_28[k].unk_0 = a;
+        rope->unk_28[k].unk_4 = a + cols + 1;
+        rope->unk_28[k].unk_8 = fn_1_1289BC(rope->unk_28[k].unk_0, rope->unk_28[k].unk_4);
+        k++;
+    }
+    for (i = 0, a = rope->unk_24; i < last; i++, a++) {
+        rope->unk_28[k].unk_0 = a + 1;
+        rope->unk_28[k].unk_4 = a + cols;
+        rope->unk_28[k].unk_8 = fn_1_1289BC(rope->unk_28[k].unk_0, rope->unk_28[k].unk_4);
+        k++;
+    }
+    for (i = 0, a = rope->unk_24; i < rope->unk_18 - 1; i++, a++) {
+        if ((i + 1) % cols != 0) {
+            rope->unk_28[k].unk_0 = a;
+            rope->unk_28[k].unk_4 = a + 1;
+            rope->unk_28[k].unk_8 = fn_1_1289BC(a, a + 1);
+            k++;
+        }
+    }
+    for (i = 0, a = rope->unk_24; i < rope->unk_18 - cols; i++, a++) {
+        rope->unk_28[k].unk_0 = a;
+        rope->unk_28[k].unk_4 = a + (u32)cols;
+        rope->unk_28[k].unk_8 = fn_1_1289BC(a, a + (u32)cols);
+        k++;
+    }
+}
+/* fzgx:end fn_1_1201E4 */
+
 /* fzgx:begin fn_1_122348 noprologue */
 #include "types.h"
 
@@ -11717,6 +11884,184 @@ void fn_1_12277C(fn_1_12277C_Object *self)
     fn_1_12277C_attach_parts(self, tbl);
 }
 /* fzgx:end fn_1_12277C */
+
+/* fzgx:begin fn_1_12295C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct RopeNode {
+    u8 unk_0;
+    u8 pad_1[0xF];
+    Vec3 unk_10;
+    u8 pad_1C[0x24];
+    f32 unk_40;
+} RopeNode;
+
+typedef struct Link {
+    RopeNode *unk_0;
+    RopeNode *unk_4;
+    f32 unk_8;
+} Link;
+
+typedef struct RopeOwner {
+    u8 pad_0[0x8C];
+    s32 unk_8C;
+} RopeOwner;
+
+typedef struct Rope {
+    u8 pad_0[0xC];
+    RopeOwner *unk_C;
+    u8 pad_10[0x8];
+    u32 unk_18;
+    u32 unk_1C;
+    u8 pad_20[0x4];
+    RopeNode *unk_24;
+    Link *unk_28;
+} Rope;
+
+extern u32 lbl_801A6410;
+extern void fn_1_10846C(Rope *);
+extern void fn_1_128884(void *, void *, s32);
+extern void *fn_1_4630(u32, u32, const char *, s32);
+extern f32 fn_1_1289BC(RopeNode *, RopeNode *);
+
+void fn_1_12295C(Rope *rope) {
+    u32 i;
+    u32 m;
+    RopeNode *b;
+    RopeNode *a;
+    RopeNode *p;
+    RopeNode *n;
+    s32 last;
+    u32 j;
+    RopeNode *q;
+    u32 k;
+    u32 rows;
+    s32 cols;
+
+    if (rope == NULL) {
+        return;
+    }
+    cols = (rope->unk_C->unk_8C == 2) ? 8 : 12;
+    fn_1_10846C(rope);
+
+    for (i = 0, n = rope->unk_24; i < rope->unk_18; i++, n++) {
+        if (n->unk_0 & 1) {
+            n->unk_0 = 0;
+            n->unk_40 = -1.0f;
+        } else {
+            n->unk_0 = 1;
+            n->unk_40 = 0.0f;
+        }
+    }
+
+    for (i = 0, a = rope->unk_24; i < rope->unk_18; i++, a++) {
+        for (j = i + 1, b = &rope->unk_24[i] + 1; j < rope->unk_18; j++, b++) {
+            if (a->unk_0 == 0 && b->unk_0 != 0) {
+                fn_1_128884(a, b, sizeof(RopeNode));
+            }
+        }
+    }
+
+    for (i = 0, a = rope->unk_24; i < rope->unk_18; i++, a++) {
+        for (j = i + 1, b = &rope->unk_24[i] + 1; j < rope->unk_18; j++, b++) {
+            if (a->unk_0 == b->unk_0 && a->unk_10.x > b->unk_10.x) {
+                fn_1_128884(a, b, sizeof(RopeNode));
+            }
+        }
+    }
+
+    for (i = 0, a = rope->unk_24; i < cols; i++, a++) {
+        for (j = i + 1, b = a + 1; j < cols; j++, b++) {
+            if (a->unk_10.z > b->unk_10.z) {
+                fn_1_128884(a, b, sizeof(RopeNode));
+            }
+        }
+    }
+
+    for (i = cols, a = &rope->unk_24[cols]; i < cols * 2; i++, a++) {
+        for (j = i + 1, b = a + 1; j < cols * 2; j++, b++) {
+            if (a->unk_10.z > b->unk_10.z) {
+                fn_1_128884(a, b, sizeof(RopeNode));
+            }
+        }
+    }
+
+    p = rope->unk_24;
+    for (i = 0; i < rope->unk_18; i++) {
+        if (p->unk_0 != 0 && p[1].unk_0 == 0) {
+            break;
+        }
+        p++;
+    }
+    p++;
+
+    rows = (rope->unk_18 - (p - rope->unk_24)) / cols;
+    for (j = 0; j < rows; j++) {
+        for (i = 0; i < cols; i++) {
+            p[i].unk_40 = -(f32)(j + 1) / (f32)(rows + 1);
+        }
+        for (i = 0, n = p; i < cols; i++, n++) {
+            for (m = i + 1, q = n + 1; m < cols; m++, q++) {
+                if (n->unk_10.z > q->unk_10.z) {
+                    fn_1_128884(n, q, sizeof(RopeNode));
+                }
+            }
+        }
+        p += cols;
+    }
+
+    rows = rope->unk_18 / cols;
+    rope->unk_1C = rows * ((u32)cols - 1) + (rows - 1) * cols + (cols - 1) * 4;
+    rope->unk_28 = fn_1_4630(lbl_801A6410, rope->unk_1C * sizeof(Link), (const char *)&lbl_1_data_40530, 0x279A);
+
+    last = cols - 1;
+    for (i = 0, k = 0, a = rope->unk_24; i < last; i++, a++) {
+        rope->unk_28[k].unk_0 = a;
+        rope->unk_28[k].unk_4 = a + cols + 1;
+        rope->unk_28[k].unk_8 = fn_1_1289BC(rope->unk_28[k].unk_0, rope->unk_28[k].unk_4);
+        k++;
+    }
+    for (i = 0, a = rope->unk_24; i < last; i++, a++) {
+        rope->unk_28[k].unk_0 = a + 1;
+        rope->unk_28[k].unk_4 = a + cols;
+        rope->unk_28[k].unk_8 = fn_1_1289BC(rope->unk_28[k].unk_0, rope->unk_28[k].unk_4);
+        k++;
+    }
+    for (i = 0, a = rope->unk_24; i < last; i++, a++) {
+        rope->unk_28[k].unk_0 = a + cols;
+        rope->unk_28[k].unk_4 = a + cols + 1 + cols;
+        rope->unk_28[k].unk_8 = fn_1_1289BC(rope->unk_28[k].unk_0, rope->unk_28[k].unk_4);
+        k++;
+    }
+    for (i = 0, b = rope->unk_24; i < last; i++, b++) {
+        rope->unk_28[k].unk_0 = b + cols + 1;
+        rope->unk_28[k].unk_4 = b + cols + cols;
+        rope->unk_28[k].unk_8 = fn_1_1289BC(rope->unk_28[k].unk_0, rope->unk_28[k].unk_4);
+        k++;
+    }
+    for (i = 0, a = rope->unk_24; i < rope->unk_18 - 1; i++, a++) {
+        if ((i + 1) % cols != 0) {
+            rope->unk_28[k].unk_0 = a;
+            rope->unk_28[k].unk_4 = a + 1;
+            rope->unk_28[k].unk_8 = fn_1_1289BC(a, a + 1);
+            k++;
+        }
+    }
+    for (i = 0, a = rope->unk_24; i < rope->unk_18 - cols; i++, a++) {
+        rope->unk_28[k].unk_0 = a;
+        rope->unk_28[k].unk_4 = a + (u32)cols;
+        rope->unk_28[k].unk_8 = fn_1_1289BC(a, a + (u32)cols);
+        k++;
+    }
+}
+/* fzgx:end fn_1_12295C */
 
 /* fzgx:begin fn_1_1244F0 noprologue */
 #include "types.h"

@@ -458,6 +458,133 @@ void fn_1_A0214(void) {
 }
 /* fzgx:end fn_1_A0214 */
 
+/* fzgx:begin fn_1_A02F0 */
+#include "dolphin/hw_regs.h"
+#include "dolphin/os/OSTime.h"
+
+extern void *lbl_801A6410;
+extern void fn_1_46B4(u32, void *, void *, u32);
+extern void fn_80065D70(int);
+extern void fn_1_A04C4(void);
+extern void fn_1_4438(void);
+extern void fn_1_446C(void);
+extern void fn_80067DE4(void);
+extern u32 ARFree(u32 *);
+extern void fn_8004BF0C(void *, s32);
+extern void ADXT_Stop(void *);
+extern s32 fn_1_D357C(void);
+extern void fn_8004CAC8(void *);
+extern void ADXT_Finish(void);
+extern void fn_8004E4DC(void);
+extern void fn_80028090(void);
+extern void fn_80025EE0(void);
+extern void fn_800207B4(void);
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u32 fzgx_obj_lbl_1_bss_6EA98;
+u32 fzgx_obj_lbl_1_bss_6EA9C;
+/* volatile: the wait loop's start tick and flag; the flag is cleared by the fn_1_9FF58 callback (fn_1_A04C4 registers it) */
+volatile OSTick lbl_1_bss_6EA9C__fzgx_offset_4;
+volatile u8 fzgx_obj_lbl_1_bss_6EAA4; /* fzgx-allow: S2 cleared by the fn_1_9FF58 callback */
+u8 fzgx_obj_lbl_1_bss_6EAA5;
+u8 fzgx_pool_gap_6EAA6;
+u8 fzgx_pool_gap_6EAA7;
+u8 fzgx_pool_gap_6EAA8[0x8];
+u8 fzgx_obj_lbl_1_bss_6EAB0;
+u8 fzgx_pool_gap_6EAB1;
+u8 fzgx_pool_gap_6EAB2;
+u8 fzgx_pool_gap_6EAB3;
+u8 fzgx_pool_gap_6EAB4[0x10];
+u8 fzgx_pool_gap_6EAC4;
+u8 fzgx_pool_gap_6EAC5;
+u8 fzgx_obj_lbl_1_bss_6EAC6;
+u8 fzgx_pool_gap_6EAC7;
+void *lbl_1_bss_6EAC6__fzgx_offset_2;
+u32 lbl_1_bss_6EAC6__fzgx_offset_6;
+void **fzgx_obj_lbl_1_bss_6EAD0;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
+    s = *(u8 *)&lbl_1_bss_6EA9C__fzgx_offset_4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA5;
+    s = *(u8 *)&fzgx_pool_gap_6EAA6;
+    s = *(u8 *)&fzgx_pool_gap_6EAA7;
+    s = *(u8 *)&fzgx_pool_gap_6EAA8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAB0;
+    s = *(u8 *)&fzgx_pool_gap_6EAB1;
+    s = *(u8 *)&fzgx_pool_gap_6EAB2;
+    s = *(u8 *)&fzgx_pool_gap_6EAB3;
+    s = *(u8 *)&fzgx_pool_gap_6EAB4;
+    s = *(u8 *)&fzgx_pool_gap_6EAC4;
+    s = *(u8 *)&fzgx_pool_gap_6EAC5;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAC6;
+    s = *(u8 *)&fzgx_pool_gap_6EAC7;
+    s = *(u8 *)&lbl_1_bss_6EAC6__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_6EAC6__fzgx_offset_6;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAD0;
+}
+#pragma section code_type ".text"
+
+/* Waits for the callback to clear the flag; after 100 ms, clears it, sets 0x6EAA5 and calls fn_1_A04C4. */
+static inline void fn_1_A02F0_wait(void) {
+    lbl_1_bss_6EA9C__fzgx_offset_4 = OSGetTick();
+    fzgx_obj_lbl_1_bss_6EAA4 = 1;
+    while (fzgx_obj_lbl_1_bss_6EAA4 != 0) {
+        if (OSGetTick() - lbl_1_bss_6EA9C__fzgx_offset_4 >= OS_TIMER_CLOCK / 1000 * 100) {
+            fzgx_obj_lbl_1_bss_6EAA4 = 0;
+            fzgx_obj_lbl_1_bss_6EAA5 = 1;
+            fn_1_A04C4();
+        }
+    }
+}
+
+void fn_1_A02F0(void) {
+    if (fzgx_obj_lbl_1_bss_6EAB0 == 0) {
+        return;
+    }
+    fn_1_A02F0_wait();
+    fn_80065D70(0);
+    fn_1_4438();
+    fn_1_46B4((u32)lbl_801A6410, lbl_1_bss_6EAC6__fzgx_offset_2, &lbl_1_data_33F1C, 0x1BF);
+    fn_1_446C();
+    fn_80067DE4();
+    ARFree(&lbl_1_bss_6EAC6__fzgx_offset_6);
+    if (fzgx_obj_lbl_1_bss_6EAD0 == NULL) {
+        return;
+    }
+    fn_1_4438();
+    if (fzgx_obj_lbl_1_bss_6EAD0[0] != NULL) {
+        fn_8004BF0C(fzgx_obj_lbl_1_bss_6EAD0[0], -999);
+        ADXT_Stop(fzgx_obj_lbl_1_bss_6EAD0[0]);
+        if (fn_1_D357C() == 0) {
+            fn_8004CAC8(fzgx_obj_lbl_1_bss_6EAD0[0]);
+        }
+    }
+    if (fzgx_obj_lbl_1_bss_6EAD0[1] != NULL) {
+        fn_8004BF0C(fzgx_obj_lbl_1_bss_6EAD0[1], -999);
+        ADXT_Stop(fzgx_obj_lbl_1_bss_6EAD0[1]);
+        if (fn_1_D357C() == 0) {
+            fn_8004CAC8(fzgx_obj_lbl_1_bss_6EAD0[1]);
+        }
+    }
+    fzgx_obj_lbl_1_bss_6EAD0[0] = NULL;
+    fzgx_obj_lbl_1_bss_6EAD0[1] = NULL;
+    ADXT_Finish();
+    fn_8004E4DC();
+    fn_1_46B4((u32)lbl_801A6410, fzgx_obj_lbl_1_bss_6EAD0, &lbl_1_data_33F1C, 0x1DA);
+    fzgx_obj_lbl_1_bss_6EAD0 = NULL;
+    fn_1_446C();
+    fn_80028090();
+    fn_80025EE0();
+    fn_800207B4();
+}
+/* fzgx:end fn_1_A02F0 */
+
 /* fzgx:begin fn_1_A04AC */
 void fn_1_A04AC(void) {
     lbl_1_bss_6F1E0 = 1;
@@ -571,6 +698,196 @@ void fn_1_A04C4(void) {
     p_lbl_1_bss_6EA98->unk_D = 0;
 }
 /* fzgx:end fn_1_A04C4 */
+
+/* fzgx:begin fn_1_A0680 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sound.h"
+#include "dolphin/hw_regs.h"
+#include "dolphin/os/OSTime.h"
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 pad_3[0x11];
+} fn_1_A0680_Voice;
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u8 pad_8[0x8];
+    u8 unk_10[0x4A248];
+    u8 unk_4A258[0x4A248];
+} fn_1_A0680_Players;
+
+extern void fn_1_A04C4(void);
+extern void fn_1_A0D7C(void);
+extern u32 fn_8004CD70(s32, void *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_A2DF4(s32, void *, s32);
+extern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);
+
+/* fn_1_A2DF4 passes its second argument, a sound command code, on as a pointer */
+static inline void fn_1_A0680_send(s32 channel, u32 command, s32 value) {
+    fn_1_A2DF4(channel, (void *)command, value);
+}
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u32 fzgx_obj_lbl_1_bss_6EA98;
+u32 fzgx_obj_lbl_1_bss_6EA9C;
+/* volatile: the wait loop's start tick and flag; the flag is cleared by the fn_1_9FF58 callback (fn_1_A04C4 registers it) */
+volatile OSTick lbl_1_bss_6EA9C__fzgx_offset_4;
+volatile u8 fzgx_obj_lbl_1_bss_6EAA4; /* fzgx-allow: S2 cleared by the fn_1_9FF58 callback */
+u8 fzgx_obj_lbl_1_bss_6EAA5;
+u8 fzgx_obj_lbl_1_bss_6EAA6;
+u8 fzgx_pool_gap_6EAA7;
+u8 fzgx_pool_gap_6EAA8[0xC];
+u32 fzgx_obj_lbl_1_bss_6EAB4;
+u8 fzgx_pool_gap_6EAB8[0xC];
+u8 lbl_1_bss_6EAB4__fzgx_offset_10;
+u8 fzgx_pool_gap_6EAC5;
+u8 fzgx_obj_lbl_1_bss_6EAC6;
+u8 fzgx_pool_gap_6EAC7;
+u8 fzgx_pool_gap_6EAC8[0x8];
+fn_1_A0680_Players *fzgx_obj_lbl_1_bss_6EAD0;
+u32 lbl_1_bss_6EAD0__fzgx_offset_4;
+u8 lbl_1_bss_6EAD0__fzgx_offset_8[0x700];
+u8 fzgx_pool_gap_6F1D8[0xC];
+fn_1_A0680_Voice fzgx_obj_lbl_1_bss_6F1E4[4];
+u8 lbl_1_bss_6F1E4__fzgx_offset_50[4];
+u8 lbl_1_bss_6F1E4__fzgx_offset_54;
+u8 fzgx_obj_lbl_1_bss_6F239;
+u8 fzgx_pool_gap_6F23A;
+u8 fzgx_pool_gap_6F23B;
+u32 fzgx_obj_lbl_1_bss_6F23C;
+u8 lbl_1_bss_6F23C__fzgx_offset_4;
+u8 lbl_1_bss_6F23C__fzgx_offset_5;
+u8 lbl_1_bss_6F23C__fzgx_offset_6;
+u8 fzgx_obj_lbl_1_bss_6F243;
+u8 fzgx_obj_lbl_1_bss_6F244;
+u8 lbl_1_bss_6F244__fzgx_offset_1;
+u8 fzgx_pool_gap_6F246;
+u8 fzgx_pool_gap_6F247;
+u8 lbl_1_bss_6F244__fzgx_offset_4[4];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
+    s = *(u8 *)&lbl_1_bss_6EA9C__fzgx_offset_4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA5;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA6;
+    s = *(u8 *)&fzgx_pool_gap_6EAA7;
+    s = *(u8 *)&fzgx_pool_gap_6EAA8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAB4;
+    s = *(u8 *)&fzgx_pool_gap_6EAB8;
+    s = *(u8 *)&lbl_1_bss_6EAB4__fzgx_offset_10;
+    s = *(u8 *)&fzgx_pool_gap_6EAC5;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAC6;
+    s = *(u8 *)&fzgx_pool_gap_6EAC7;
+    s = *(u8 *)&fzgx_pool_gap_6EAC8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAD0;
+    s = *(u8 *)&lbl_1_bss_6EAD0__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6EAD0__fzgx_offset_8;
+    s = *(u8 *)&fzgx_pool_gap_6F1D8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F1E4;
+    s = *(u8 *)&lbl_1_bss_6F1E4__fzgx_offset_50;
+    s = *(u8 *)&lbl_1_bss_6F1E4__fzgx_offset_54;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F239;
+    s = *(u8 *)&fzgx_pool_gap_6F23A;
+    s = *(u8 *)&fzgx_pool_gap_6F23B;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F23C;
+    s = *(u8 *)&lbl_1_bss_6F23C__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_6F23C__fzgx_offset_5;
+    s = *(u8 *)&lbl_1_bss_6F23C__fzgx_offset_6;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F243;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6F244;
+    s = *(u8 *)&lbl_1_bss_6F244__fzgx_offset_1;
+    s = *(u8 *)&fzgx_pool_gap_6F246;
+    s = *(u8 *)&fzgx_pool_gap_6F247;
+    s = *(u8 *)&lbl_1_bss_6F244__fzgx_offset_4;
+}
+#pragma section code_type ".text"
+
+/* Waits for the callback to clear the flag; after 100 ms, clears it, sets 0x6EAA5 and calls fn_1_A04C4. */
+static inline void fn_1_A0680_wait(void) {
+    lbl_1_bss_6EA9C__fzgx_offset_4 = OSGetTick();
+    fzgx_obj_lbl_1_bss_6EAA4 = 1;
+    while (fzgx_obj_lbl_1_bss_6EAA4 != 0) {
+        if (OSGetTick() - lbl_1_bss_6EA9C__fzgx_offset_4 >= OS_TIMER_CLOCK / 1000 * 100) {
+            fzgx_obj_lbl_1_bss_6EAA4 = 0;
+            fzgx_obj_lbl_1_bss_6EAA5 = 1;
+            fn_1_A04C4();
+        }
+    }
+}
+
+/* Unless 0x6EAA5 is set: waits around fn_1_A0D7C, creates the two ADX players if missing, clears the voice
+ * tables and sends the sound system its start-up commands. */
+void fn_1_A0680(void) {
+    s32 i;
+
+    if (fzgx_obj_lbl_1_bss_6EAA5 != 0) {
+        return;
+    }
+    fn_1_A0680_wait();
+    fn_1_A0D7C();
+    fn_1_A0680_wait();
+
+    if (fzgx_obj_lbl_1_bss_6EAD0 != NULL) {
+        if (fzgx_obj_lbl_1_bss_6EAD0->unk_0 == 0) {
+            fzgx_obj_lbl_1_bss_6EAD0->unk_0 =
+                fn_8004CD70(2, fzgx_obj_lbl_1_bss_6EAD0->unk_10, sizeof(fzgx_obj_lbl_1_bss_6EAD0->unk_10));
+        }
+        if (fzgx_obj_lbl_1_bss_6EAD0->unk_4 == 0) {
+            fzgx_obj_lbl_1_bss_6EAD0->unk_4 =
+                fn_8004CD70(2, fzgx_obj_lbl_1_bss_6EAD0->unk_4A258, sizeof(fzgx_obj_lbl_1_bss_6EAD0->unk_4A258));
+        }
+    }
+
+    fzgx_obj_lbl_1_bss_6EAC6 = 1;
+    fzgx_obj_lbl_1_bss_6EAA6 = 1;
+    fn_80008BEC(fzgx_obj_lbl_1_bss_6F1E4, 0, sizeof(fzgx_obj_lbl_1_bss_6F1E4));
+    for (i = 0; i < 4; i++) {
+        fzgx_obj_lbl_1_bss_6F1E4[i].unk_1 = 0xFF;
+        fzgx_obj_lbl_1_bss_6F1E4[i].unk_2 = 0;
+        lbl_1_bss_6F1E4__fzgx_offset_50[i] = 0;
+    }
+    fn_80008BEC(lbl_1_bss_6EAD0__fzgx_offset_8, 0, sizeof(lbl_1_bss_6EAD0__fzgx_offset_8));
+    fzgx_obj_lbl_1_bss_6EAB4 = 0;
+    lbl_1_bss_6F1E4__fzgx_offset_54 = 0;
+    fzgx_obj_lbl_1_bss_6F239 = 0;
+    fzgx_obj_lbl_1_bss_6F23C = 0;
+    lbl_1_bss_6EAB4__fzgx_offset_10 = 0xFF;
+    lbl_1_bss_6F23C__fzgx_offset_4 = 0;
+    lbl_1_bss_6F23C__fzgx_offset_5 = 0;
+    lbl_1_bss_6F23C__fzgx_offset_6 = 0;
+    fzgx_obj_lbl_1_bss_6F243 = 0;
+    fzgx_obj_lbl_1_bss_6F244 = 1;
+    if (lbl_1_bss_6F244__fzgx_offset_1 != 0) {
+        fn_1_A2E24(0x10, 0xA0010000, 0);
+    } else {
+        fn_1_A2E24(0x10, 0xA0010000, 0x7F);
+    }
+    fn_1_A2E24(0x10, 0xA0100000, 0x7F);
+    fn_1_A0680_send(0x10, 0xA5100000, 0);
+    fn_1_A0680_send(0, 0xA6000000, 0);
+    fn_1_A0680_send(1, 0xA6000000, 0);
+    fn_1_A0680_send(2, 0xA6000000, 0);
+    fn_1_A0680_send(3, 0xA6000000, 0);
+    fn_1_A0680_send(6, 0xA6000000, 0);
+    fn_1_A0680_send(7, 0xA6000000, 0);
+    fn_1_A0680_send(5, 0xA6000000, 0);
+    fn_1_A0680_send(4, 0xA6000000, 0);
+    for (i = 0; i < 4; i++) {
+        lbl_1_bss_6F244__fzgx_offset_4[i] = 9;
+    }
+}
+/* fzgx:end fn_1_A0680 */
 
 /* fzgx:begin fn_1_A0978 */
 extern void *lbl_801A6410;
@@ -797,6 +1114,113 @@ void fn_1_A0978(void) {
     fn_1_A24CC();
 }
 /* fzgx:end fn_1_A0978 */
+
+/* fzgx:begin fn_1_A0AA4 */
+#include "dolphin/hw_regs.h"
+#include "dolphin/os/OSTime.h"
+
+extern void fn_1_A04C4(void);
+extern void fn_1_A116C(void);
+extern s32 fn_1_D357C(void);
+extern void fn_8004BF0C(void *, s32);
+extern void ADXT_Stop(void *);
+extern void fn_8004CAC8(void *);
+extern void fn_1_A2DF4(s32, void *, s32);
+extern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);
+
+/* fn_1_A2DF4 passes its second argument, a sound command code, on as a pointer */
+static inline void fn_1_A0AA4_send(s32 channel, u32 command, s32 value) {
+    fn_1_A2DF4(channel, (void *)command, value);
+}
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u32 fzgx_obj_lbl_1_bss_6EA98;
+u32 fzgx_obj_lbl_1_bss_6EA9C;
+/* volatile: the wait loop's start tick and flag; the flag is cleared by the fn_1_9FF58 callback (fn_1_A04C4 registers it) */
+volatile OSTick lbl_1_bss_6EA9C__fzgx_offset_4;
+volatile u8 fzgx_obj_lbl_1_bss_6EAA4; /* fzgx-allow: S2 cleared by the fn_1_9FF58 callback */
+u8 fzgx_obj_lbl_1_bss_6EAA5;
+u8 fzgx_pool_gap_6EAA6;
+u8 fzgx_pool_gap_6EAA7;
+u8 fzgx_pool_gap_6EAA8[0x1C];
+u8 fzgx_pool_gap_6EAC4;
+u8 fzgx_pool_gap_6EAC5;
+u8 fzgx_obj_lbl_1_bss_6EAC6;
+u8 fzgx_pool_gap_6EAC7;
+u8 fzgx_pool_gap_6EAC8[0x8];
+void **fzgx_obj_lbl_1_bss_6EAD0;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
+    s = *(u8 *)&lbl_1_bss_6EA9C__fzgx_offset_4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA5;
+    s = *(u8 *)&fzgx_pool_gap_6EAA6;
+    s = *(u8 *)&fzgx_pool_gap_6EAA7;
+    s = *(u8 *)&fzgx_pool_gap_6EAA8;
+    s = *(u8 *)&fzgx_pool_gap_6EAC4;
+    s = *(u8 *)&fzgx_pool_gap_6EAC5;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAC6;
+    s = *(u8 *)&fzgx_pool_gap_6EAC7;
+    s = *(u8 *)&fzgx_pool_gap_6EAC8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAD0;
+}
+#pragma section code_type ".text"
+
+/* Waits for the callback to clear the flag; after 100 ms, clears it, sets 0x6EAA5 and calls fn_1_A04C4. */
+static inline void fn_1_A0AA4_wait(void) {
+    lbl_1_bss_6EA9C__fzgx_offset_4 = OSGetTick();
+    fzgx_obj_lbl_1_bss_6EAA4 = 1;
+    while (fzgx_obj_lbl_1_bss_6EAA4 != 0) {
+        if (OSGetTick() - lbl_1_bss_6EA9C__fzgx_offset_4 >= OS_TIMER_CLOCK / 1000 * 100) {
+            fzgx_obj_lbl_1_bss_6EAA4 = 0;
+            fzgx_obj_lbl_1_bss_6EAA5 = 1;
+            fn_1_A04C4();
+        }
+    }
+}
+
+void fn_1_A0AA4(void) {
+    if (fzgx_obj_lbl_1_bss_6EAA5 != 0) {
+        return;
+    }
+    if (fzgx_obj_lbl_1_bss_6EAC6 != 0) {
+        fn_1_A0AA4_send(0x10, 0xA6000000, 0);
+        fn_1_A0AA4_send(0x10, 0xA5100000, 0);
+        fn_1_A2E24(0x10, 0xA0000300, 0);
+        fn_1_A2E24(0x10, 0xA0000400, 0);
+        fn_1_A2E24(0x10, 0xA0000100, 0);
+        fn_1_A0AA4_wait();
+        fn_1_A116C();
+        fzgx_obj_lbl_1_bss_6EAC6 = 0;
+    }
+    if (fzgx_obj_lbl_1_bss_6EAD0 == NULL) {
+        return;
+    }
+    if (fn_1_D357C() != 0) {
+        return;
+    }
+    if (*(s16 *)&lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
+        return;
+    }
+    if (fzgx_obj_lbl_1_bss_6EAD0[0] != NULL) {
+        fn_8004BF0C(fzgx_obj_lbl_1_bss_6EAD0[0], -999);
+        ADXT_Stop(fzgx_obj_lbl_1_bss_6EAD0[0]);
+        fn_8004CAC8(fzgx_obj_lbl_1_bss_6EAD0[0]);
+    }
+    if (fzgx_obj_lbl_1_bss_6EAD0[1] != NULL) {
+        fn_8004BF0C(fzgx_obj_lbl_1_bss_6EAD0[1], -999);
+        ADXT_Stop(fzgx_obj_lbl_1_bss_6EAD0[1]);
+        fn_8004CAC8(fzgx_obj_lbl_1_bss_6EAD0[1]);
+    }
+    fzgx_obj_lbl_1_bss_6EAD0[0] = NULL;
+    fzgx_obj_lbl_1_bss_6EAD0[1] = NULL;
+}
+/* fzgx:end fn_1_A0AA4 */
 
 /* fzgx:begin fn_1_A0C68 */
 enum {
@@ -1256,6 +1680,139 @@ void fn_1_A1340(void) {
 void fn_1_A1360(void) {
 }
 /* fzgx:end fn_1_A1360 */
+
+/* fzgx:begin fn_1_A1364 */
+#include "dolphin/hw_regs.h"
+#include "dolphin/os/OSTime.h"
+
+extern void fn_1_A04C4(void);
+extern void fn_80065D70(int);
+extern s32 fn_1_D357C(void);
+extern void fn_8004BF0C(void *, s32);
+extern void ADXT_Stop(void *);
+extern void fn_8004CAC8(void *);
+extern void fn_1_A2DF4(s32, void *, s32);
+extern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);
+
+/* fn_1_A2DF4 passes its second argument, a sound command code, on as a pointer */
+static inline void fn_1_A1364_send(s32 channel, u32 command, s32 value) {
+    fn_1_A2DF4(channel, (void *)command, value);
+}
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u32 fzgx_obj_lbl_1_bss_6EA98;
+u32 fzgx_obj_lbl_1_bss_6EA9C;
+/* volatile: the wait loop's start tick and flag; the flag is cleared by the fn_1_9FF58 callback (fn_1_A04C4 registers it) */
+volatile OSTick lbl_1_bss_6EA9C__fzgx_offset_4;
+volatile u8 fzgx_obj_lbl_1_bss_6EAA4; /* fzgx-allow: S2 cleared by the fn_1_9FF58 callback */
+u8 fzgx_obj_lbl_1_bss_6EAA5;
+u8 fzgx_pool_gap_6EAA6;
+u8 fzgx_pool_gap_6EAA7;
+u8 fzgx_pool_gap_6EAA8[0x1C];
+u8 fzgx_pool_gap_6EAC4;
+u8 fzgx_pool_gap_6EAC5;
+u8 fzgx_obj_lbl_1_bss_6EAC6;
+u8 fzgx_pool_gap_6EAC7;
+u8 fzgx_pool_gap_6EAC8[0x8];
+void **fzgx_obj_lbl_1_bss_6EAD0;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
+    s = *(u8 *)&lbl_1_bss_6EA9C__fzgx_offset_4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA5;
+    s = *(u8 *)&fzgx_pool_gap_6EAA6;
+    s = *(u8 *)&fzgx_pool_gap_6EAA7;
+    s = *(u8 *)&fzgx_pool_gap_6EAA8;
+    s = *(u8 *)&fzgx_pool_gap_6EAC4;
+    s = *(u8 *)&fzgx_pool_gap_6EAC5;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAC6;
+    s = *(u8 *)&fzgx_pool_gap_6EAC7;
+    s = *(u8 *)&fzgx_pool_gap_6EAC8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAD0;
+}
+#pragma section code_type ".text"
+
+/* fn_1_A116C, defined above in the retail TU and inlined here */
+static inline void fn_1_A116C(void) {
+    switch ((*(s16 *)&lbl_1_bss_960)) {
+    case 2:
+    case 8:
+    case 9:
+    case 12:
+        fn_80065D70(1);
+        break;
+    case 1:
+    case 5:
+    case 13:
+        fn_80065D70(2);
+        break;
+    case 4:
+        if (lbl_1_bss_962 != 0x3D) {
+            fn_80065D70(3);
+        }
+        break;
+    case 14:
+    case 16:
+        fn_80065D70(3);
+        break;
+    }
+}
+
+/* Waits for the callback to clear the flag; after 100 ms, clears it, sets 0x6EAA5 and calls fn_1_A04C4. */
+static inline void fn_1_A1364_wait(void) {
+    lbl_1_bss_6EA9C__fzgx_offset_4 = OSGetTick();
+    fzgx_obj_lbl_1_bss_6EAA4 = 1;
+    while (fzgx_obj_lbl_1_bss_6EAA4 != 0) {
+        if (OSGetTick() - lbl_1_bss_6EA9C__fzgx_offset_4 >= OS_TIMER_CLOCK / 1000 * 100) {
+            fzgx_obj_lbl_1_bss_6EAA4 = 0;
+            fzgx_obj_lbl_1_bss_6EAA5 = 1;
+            fn_1_A04C4();
+        }
+    }
+}
+
+void fn_1_A1364(void) {
+    if (fzgx_obj_lbl_1_bss_6EAA5 != 0) {
+        return;
+    }
+    if (fzgx_obj_lbl_1_bss_6EAC6 != 0) {
+        fn_1_A1364_send(0x10, 0xA6000000, 0);
+        fn_1_A1364_send(0x10, 0xA5100000, 0);
+        fn_1_A2E24(0x10, 0xA0000300, 0);
+        fn_1_A2E24(0x10, 0xA0000400, 0);
+        fn_1_A2E24(0x10, 0xA0000100, 0);
+        fn_1_A1364_wait();
+        fn_1_A116C();
+        fzgx_obj_lbl_1_bss_6EAC6 = 0;
+    }
+    if (fzgx_obj_lbl_1_bss_6EAD0 == NULL) {
+        return;
+    }
+    if (fn_1_D357C() != 0) {
+        return;
+    }
+    if (*(s16 *)&lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
+        return;
+    }
+    if (fzgx_obj_lbl_1_bss_6EAD0[0] != NULL) {
+        fn_8004BF0C(fzgx_obj_lbl_1_bss_6EAD0[0], -999);
+        ADXT_Stop(fzgx_obj_lbl_1_bss_6EAD0[0]);
+        fn_8004CAC8(fzgx_obj_lbl_1_bss_6EAD0[0]);
+    }
+    if (fzgx_obj_lbl_1_bss_6EAD0[1] != NULL) {
+        fn_8004BF0C(fzgx_obj_lbl_1_bss_6EAD0[1], -999);
+        ADXT_Stop(fzgx_obj_lbl_1_bss_6EAD0[1]);
+        fn_8004CAC8(fzgx_obj_lbl_1_bss_6EAD0[1]);
+    }
+    fzgx_obj_lbl_1_bss_6EAD0[0] = NULL;
+    fzgx_obj_lbl_1_bss_6EAD0[1] = NULL;
+}
+/* fzgx:end fn_1_A1364 */
 
 /* fzgx:begin fn_1_A1588 */
 extern void *lbl_801A6410;

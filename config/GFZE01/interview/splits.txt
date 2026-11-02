@@ -239,3 +239,9 @@ rel/interview/interview/fn_17_2414.c:
 
 rel/interview/interview/fn_17_424C.c:
 	.text       start:0x0000424C end:0x00004540 align:4
+
+rel/interview/interview/fn_17_1798.c:
+	.text       start:0x00001798 end:0x00001DA4 align:4
+
+rel/interview/interview/fn_17_50F0.c:
+	.text       start:0x000050F0 end:0x000058E0 align:4

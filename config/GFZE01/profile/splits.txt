@@ -167,3 +167,6 @@ rel/profile/fn_16_1038.c:
 
 rel/profile/fn_16_2560.c:
 	.text       start:0x00002560 end:0x00002B68 align:4
+
+rel/profile/fn_16_3BCC.c:
+	.text       start:0x00003BCC end:0x00004490 align:4

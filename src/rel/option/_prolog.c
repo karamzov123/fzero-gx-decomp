@@ -2428,6 +2428,191 @@ void fn_4_EA0(void) {
 }
 /* fzgx:end fn_4_EA0 */
 
+/* fzgx:begin fn_4_EF8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+typedef struct { s8 x, y; } StickPoint;
+typedef struct { u8 x, y; } CalPair;
+typedef struct { u16 button; s8 stickX; s8 stickY; u8 rest[8]; } CalPad;
+
+extern CalPad lbl_1_bss_9C8[4];
+extern void fn_1_A2D84(u32);
+extern s32 lbl_8006D24C(f32, f32);
+extern void fn_1_17C8(s8 *, s8 *, StickPoint *, u8 *);
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u16 fzgx_obj_lbl_4_bss_0;
+u16 fzgx_pool_gap_2;
+u32 fzgx_pool_gap_4[3];
+u16 fzgx_obj_lbl_4_bss_10;
+u16 fzgx_pool_gap_12;
+CalPair lbl_4_bss_10__fzgx_offset_4;
+u16 fzgx_pool_gap_16;
+u32 fzgx_pool_gap_18;
+u16 fzgx_pool_gap_1C;
+u8 lbl_4_bss_10__fzgx_offset_E;
+u8 fzgx_pool_gap_1F;
+StickPoint lbl_4_bss_10__fzgx_offset_10[8];
+StickPoint lbl_4_bss_10__fzgx_offset_20[8];
+StickPoint lbl_4_bss_10__fzgx_offset_30[8];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_4_bss_0;
+    s = *(u8 *)&fzgx_pool_gap_2;
+    s = *(u8 *)&fzgx_pool_gap_4;
+    s = *(u8 *)&fzgx_obj_lbl_4_bss_10;
+    s = *(u8 *)&fzgx_pool_gap_12;
+    s = *(u8 *)&lbl_4_bss_10__fzgx_offset_4;
+    s = *(u8 *)&fzgx_pool_gap_16;
+    s = *(u8 *)&fzgx_pool_gap_18;
+    s = *(u8 *)&fzgx_pool_gap_1C;
+    s = *(u8 *)&lbl_4_bss_10__fzgx_offset_E;
+    s = *(u8 *)&fzgx_pool_gap_1F;
+    s = *(u8 *)&lbl_4_bss_10__fzgx_offset_10;
+    s = *(u8 *)&lbl_4_bss_10__fzgx_offset_20;
+    s = *(u8 *)&lbl_4_bss_10__fzgx_offset_30;
+}
+#pragma section code_type ".text"
+
+/* sound_play (owner's notes) at most once per 3 frames */
+static inline void fn_4_EF8_sound(void) {
+    if (lbl_4_bss_10__fzgx_offset_E == 0) {
+        fn_1_A2D84(0xA9010300);
+        lbl_4_bss_10__fzgx_offset_E = 3;
+    }
+}
+
+static inline void fn_4_EF8_set_gate(s32 k, s32 x, s32 y) {
+    fn_4_EF8_sound();
+    lbl_4_bss_10__fzgx_offset_10[k].x = x;
+    lbl_4_bss_10__fzgx_offset_10[k].y = y;
+}
+
+/* fn_1_17C8 maps the stick position at p through the measured gate (0x20) and dead zone (0x14) */
+static inline void fn_4_EF8_remap(s8 *p) {
+    fn_1_17C8(p, p + 1, lbl_4_bss_10__fzgx_offset_10, &lbl_4_bss_10__fzgx_offset_4.x);
+}
+
+void fn_4_EF8(s32 port) {
+    CalPair prev;
+    u16 *rep;
+    s32 x;
+    s32 y;
+    u16 ang;
+    s32 i;
+    f32 gate_len;
+    f32 far_len;
+    f32 len;
+
+    if (lbl_4_bss_10__fzgx_offset_E != 0) {
+        lbl_4_bss_10__fzgx_offset_E--;
+    }
+    prev = lbl_4_bss_10__fzgx_offset_4;
+    /* 0x14-byte pad records; unk_10 (+0x10) is read through the stepped pointer (retail lhzu) */
+    rep = &lbl_1_bss_9F8.unk_0;
+    rep += port * 10;
+    if (((*(rep += 8) >> 1) & 1) && lbl_4_bss_10__fzgx_offset_4.x < 50) {
+        lbl_4_bss_10__fzgx_offset_4.x++;
+    }
+    if ((*rep & 1) && lbl_4_bss_10__fzgx_offset_4.x != 0) {
+        lbl_4_bss_10__fzgx_offset_4.x--;
+    }
+    if (((*rep >> 3) & 1) && lbl_4_bss_10__fzgx_offset_4.y < 50) {
+        lbl_4_bss_10__fzgx_offset_4.y++;
+    }
+    if (((*rep >> 2) & 1) && lbl_4_bss_10__fzgx_offset_4.y != 0) {
+        lbl_4_bss_10__fzgx_offset_4.y--;
+    }
+    if (prev.x != lbl_4_bss_10__fzgx_offset_4.x || prev.y != lbl_4_bss_10__fzgx_offset_4.y) {
+        fn_1_A2D84(0xA9010300);
+    }
+    x = lbl_1_bss_9C8[port].stickX;
+    y = lbl_1_bss_9C8[port].stickY;
+    ang = lbl_8006D24C(y, x);
+    if ((ang & 0x3FFF) >= 0x1000 && (ang & 0x3FFF) <= 0x3000) {
+        /* diagonals: 1, 3, 5, 7 */
+        if (y > 0) {
+            i = (x > 0) ? 1 : 3;
+        } else {
+            i = (x < 0) ? 5 : 7;
+        }
+        {
+            /* conversion order sets retail's stack slots */
+            f32 gy;
+            f32 fy;
+            f32 sy;
+            gy = lbl_4_bss_10__fzgx_offset_10[i].y;
+            gate_len = lbl_4_bss_10__fzgx_offset_10[i].x;
+            fy = lbl_4_bss_10__fzgx_offset_20[i].y;
+            far_len = lbl_4_bss_10__fzgx_offset_20[i].x;
+            sy = y;
+            len = x;
+            gate_len *= gate_len;
+            gate_len += gy * gy;
+            len *= len;
+            len += sy * sy;
+            far_len *= far_len;
+            far_len += fy * fy;
+        }
+        if (gate_len < len) {
+            fn_4_EF8_set_gate(i, x, y);
+        }
+        if (far_len < len) {
+            lbl_4_bss_10__fzgx_offset_20[i].x = x;
+            lbl_4_bss_10__fzgx_offset_30[i].x = x;
+            lbl_4_bss_10__fzgx_offset_30[i].y = y;
+            lbl_4_bss_10__fzgx_offset_20[i].y = y;
+            fn_4_EF8_remap(&lbl_4_bss_10__fzgx_offset_30[i].x);
+        }
+        return;
+    }
+    if (lbl_4_bss_10__fzgx_offset_10[0].x < x && (ang > 0xF000 || ang < 0x1000)) {
+        fn_4_EF8_set_gate(0, x, y);
+    }
+    if (lbl_4_bss_10__fzgx_offset_10[2].y < y && ang > 0x3000 && ang < 0x5000) {
+        fn_4_EF8_set_gate(2, x, y);
+    }
+    if (lbl_4_bss_10__fzgx_offset_10[4].x > x && ang > 0x7000 && ang < 0x9000) {
+        fn_4_EF8_set_gate(4, x, y);
+    }
+    if (lbl_4_bss_10__fzgx_offset_10[6].y > y && ang > 0xB000 && ang < 0xD000) {
+        fn_4_EF8_set_gate(6, x, y);
+    }
+    if (lbl_4_bss_10__fzgx_offset_20[0].x < x) {
+        lbl_4_bss_10__fzgx_offset_30[0].x = x;
+        lbl_4_bss_10__fzgx_offset_20[0].x = x;
+        lbl_4_bss_10__fzgx_offset_30[0].y = y;
+        lbl_4_bss_10__fzgx_offset_20[0].y = y;
+        fn_4_EF8_remap(&lbl_4_bss_10__fzgx_offset_30[0].x);
+    }
+    if (lbl_4_bss_10__fzgx_offset_20[2].y < y) {
+        lbl_4_bss_10__fzgx_offset_20[2].x = x;
+        lbl_4_bss_10__fzgx_offset_30[2].x = x;
+        lbl_4_bss_10__fzgx_offset_30[2].y = y;
+        lbl_4_bss_10__fzgx_offset_20[2].y = y;
+        fn_4_EF8_remap(&lbl_4_bss_10__fzgx_offset_30[2].x);
+    }
+    if (lbl_4_bss_10__fzgx_offset_20[4].x > x) {
+        lbl_4_bss_10__fzgx_offset_20[4].x = x;
+        lbl_4_bss_10__fzgx_offset_30[4].x = x;
+        lbl_4_bss_10__fzgx_offset_30[4].y = y;
+        lbl_4_bss_10__fzgx_offset_20[4].y = y;
+        fn_4_EF8_remap(&lbl_4_bss_10__fzgx_offset_30[4].x);
+    }
+    if (lbl_4_bss_10__fzgx_offset_20[6].y > y) {
+        lbl_4_bss_10__fzgx_offset_20[6].x = x;
+        lbl_4_bss_10__fzgx_offset_30[6].x = x;
+        lbl_4_bss_10__fzgx_offset_30[6].y = y;
+        lbl_4_bss_10__fzgx_offset_20[6].y = y;
+        fn_4_EF8_remap(&lbl_4_bss_10__fzgx_offset_30[6].x);
+    }
+}
+/* fzgx:end fn_4_EF8 */
+
 /* fzgx:begin fn_4_1444 */
 #include "dolphin/hw_regs.h"
 
@@ -3996,6 +4181,238 @@ void fn_4_28FC(void) {
     fn_80072378();
 }
 /* fzgx:end fn_4_28FC */
+
+/* fzgx:begin fn_4_3128 noprologue */
+#include "types.h"
+
+struct fn_4_3128_Rodata {
+    u8 pad_0[0x8];
+    f32 unk_8;
+    u8 pad_C[0x3C];
+    f32 unk_48;
+    u8 pad_4C[0x4];
+    f32 unk_50;
+    u8 pad_54[0x4];
+    f32 unk_58;
+    u8 pad_5C[0x60];
+    f32 unk_BC;
+    f32 unk_C0;
+    f32 unk_C4;
+    u8 pad_C8[0x4];
+    f32 unk_CC;
+    u8 pad_D0[0x1D4 - 0xD0];
+    f32 unk_1D4;
+    f32 unk_1D8;
+    f32 unk_1DC;
+    f32 unk_1E0;
+};
+
+extern struct fn_4_3128_Rodata lbl_4_rodata_0;
+extern s32 lbl_801A66B4;
+
+extern void fn_1_49410(void);
+extern void fn_1_49738(void *);
+extern void fn_1_49748(f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_49590(f32);
+extern void fn_1_495C8(u8);
+extern void fn_1_53E40(u32, f32, f32, f32, f32, f32, const char *);
+extern void fn_4_2D4(u8, const char *);
+extern void fn_4_18B8(void);
+extern void fn_4_28FC(void);
+extern int sprintf(char *, const char *, ...);
+extern void fn_1_1380F0(const char *);
+extern void fn_1_13ABA8(u32);
+extern void fn_1_5233C(void);
+
+/* the retail TU's .data objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base: an empty string and per-language text tables; the fzgx_pool_gap_ objects span the rest */
+static u8 fzgx_obj_lbl_4_data_0[0xC] = {1};
+static char fzgx_pool_data_C[4] = "";
+static u8 fzgx_pool_gap_10[0xD8] = {1};
+static char *fzgx_pool_data_E8[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_100[0xA4] = {1};
+static char *fzgx_pool_data_1A4[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_1BC[0x80] = {1};
+static char *fzgx_pool_data_23C[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_254[0x60] = {1};
+static char *fzgx_pool_data_2B4[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_2CC[0x48] = {1};
+static char *fzgx_pool_data_314[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_32C[0x38] = {1};
+static char *fzgx_pool_data_364[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_37C[0x1E4] = {1};
+static char *fzgx_pool_data_560[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_578[0x144] = {1};
+static char *fzgx_pool_data_6BC[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_6D4[0x1B0] = {1};
+static char *fzgx_pool_data_884[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_89C[0x24] = {1};
+static char *fzgx_pool_data_8C0[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_8D8[0x328] = {1};
+static char *fzgx_pool_data_C00[6] = {fzgx_pool_data_C};
+static u8 fzgx_pool_gap_C18[0x120] = {1};
+static char *fzgx_pool_data_D38[6] = {fzgx_pool_data_C};
+#pragma section code_type ".fzgxpool"
+static void fzgx_data_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .data objects in first-access order */
+    s = fzgx_obj_lbl_4_data_0[0];
+    s = fzgx_pool_data_C[0];
+    s = fzgx_pool_gap_10[0];
+    s = *fzgx_pool_data_E8[0];
+    s = fzgx_pool_gap_100[0];
+    s = *fzgx_pool_data_1A4[0];
+    s = fzgx_pool_gap_1BC[0];
+    s = *fzgx_pool_data_23C[0];
+    s = fzgx_pool_gap_254[0];
+    s = *fzgx_pool_data_2B4[0];
+    s = fzgx_pool_gap_2CC[0];
+    s = *fzgx_pool_data_314[0];
+    s = fzgx_pool_gap_32C[0];
+    s = *fzgx_pool_data_364[0];
+    s = fzgx_pool_gap_37C[0];
+    s = *fzgx_pool_data_560[0];
+    s = fzgx_pool_gap_578[0];
+    s = *fzgx_pool_data_6BC[0];
+    s = fzgx_pool_gap_6D4[0];
+    s = *fzgx_pool_data_884[0];
+    s = fzgx_pool_gap_89C[0];
+    s = *fzgx_pool_data_8C0[0];
+    s = fzgx_pool_gap_8D8[0];
+    s = *fzgx_pool_data_C00[0];
+    s = fzgx_pool_gap_C18[0];
+    s = *fzgx_pool_data_D38[0];
+}
+#pragma section code_type ".text"
+
+/* the .bss bytes this function reads, at their retail offsets, likewise addressed off one section base */
+static u8 fzgx_obj_lbl_4_bss_0[2];
+static u8 fzgx_pool_gap_2;
+static u8 fzgx_pool_gap_3;
+static u8 fzgx_pool_gap_4[0xE];
+static u8 fzgx_pool_bss_12;
+static u8 fzgx_pool_gap_13;
+static u8 fzgx_pool_gap_14[0x46];
+static u8 fzgx_pool_bss_5A;
+static u8 fzgx_pool_bss_5B;
+static u8 fzgx_pool_bss_5C;
+static u8 fzgx_pool_bss_5D;
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = fzgx_obj_lbl_4_bss_0[0];
+    s = fzgx_pool_gap_2;
+    s = fzgx_pool_gap_3;
+    s = fzgx_pool_gap_4[0];
+    s = fzgx_pool_bss_12;
+    s = fzgx_pool_gap_13;
+    s = fzgx_pool_gap_14[0];
+    s = fzgx_pool_bss_5A;
+    s = fzgx_pool_bss_5B;
+    s = fzgx_pool_bss_5C;
+    s = fzgx_pool_bss_5D;
+}
+#pragma section code_type ".text"
+
+/* Draws the controller calibration screen. The .bss byte at 0x5A picks the step (retail English texts):
+ * 0 "Adjust the Calibration. Press the A Button on the Controller you want adjusted.", 1 "Save changes?",
+ * 2 the Control Stick (fn_4_18B8) or steering wheel (fn_4_28FC) adjustment, 3 "Is this OK?",
+ * 4 "The Controller has been disconnected. Reconnect the Controller in Socket %d ...", 5 "Return to the default
+ * settings?". The guide text and flags go to fn_1_1380F0 and fn_1_13ABA8 at the end. */
+void fn_4_3128(void) {
+    struct fn_4_3128_Rodata *const ro = &lbl_4_rodata_0;
+    char *guide;
+    u32 flags;
+    u8 count;
+    char buf[512];
+
+    guide = fzgx_pool_data_1A4[lbl_801A66B4];
+    flags = 0x20000000;
+    fn_1_49410();
+    fn_1_495C8(1);
+    fn_1_49738(fn_1_5233C);
+    fn_1_49748(ro->unk_48);
+    if (lbl_801A66B4 != 5) {
+        fn_1_495B0(0x80000000);
+        fn_1_49590(ro->unk_8);
+    }
+    switch (fzgx_pool_bss_5A) {
+    case 0:
+        flags = 0x28000000;
+        guide = fzgx_pool_data_23C[lbl_801A66B4];
+        fn_1_53E40(0, ro->unk_50, ro->unk_58, ro->unk_BC, ro->unk_C0, ro->unk_CC, fzgx_pool_data_6BC[lbl_801A66B4]);
+        break;
+    case 1:
+        if (fzgx_pool_bss_5B == 0) {
+            flags = 0;
+            guide = fzgx_pool_data_1A4[lbl_801A66B4];
+        } else {
+            flags = 0x48000000;
+            guide = fzgx_pool_data_E8[lbl_801A66B4];
+            fn_4_2D4(fzgx_pool_bss_5C & 1, fzgx_pool_data_884[lbl_801A66B4]);
+        }
+        break;
+    case 2:
+        switch (fzgx_pool_bss_12) {
+        case 0:
+            flags = 0x48000000;
+            guide = fzgx_pool_data_2B4[lbl_801A66B4];
+            fn_1_53E40(0, ro->unk_50, ro->unk_1D4, ro->unk_BC, ro->unk_1D8, ro->unk_1DC, fzgx_pool_data_C00[lbl_801A66B4]);
+            fn_4_18B8();
+            break;
+        case 1:
+            flags = 0x28000000;
+            guide = fzgx_pool_data_314[lbl_801A66B4];
+            fn_1_53E40(0, ro->unk_50, ro->unk_1E0, ro->unk_BC, ro->unk_1D8, ro->unk_C4, fzgx_pool_data_D38[lbl_801A66B4]);
+            fn_4_28FC();
+            break;
+        }
+        break;
+    case 3:
+        flags = 0x48000000;
+        guide = fzgx_pool_data_E8[lbl_801A66B4];
+        fn_4_2D4(fzgx_pool_bss_5C, fzgx_pool_data_8C0[lbl_801A66B4]);
+        switch (fzgx_pool_bss_12) {
+        case 0:
+            fn_4_18B8();
+            break;
+        case 1:
+            fn_4_28FC();
+            break;
+        }
+        break;
+    case 4:
+        count = fzgx_pool_bss_5D;
+        guide = fzgx_pool_data_C;
+        flags = 0;
+        fn_1_49410();
+        fn_1_49738(fn_1_5233C);
+        fn_1_49748(ro->unk_48);
+        if (lbl_801A66B4 != 5) {
+            fn_1_495B0(0x80000000);
+            fn_1_49590(ro->unk_8);
+        }
+        sprintf(buf, fzgx_pool_data_560[lbl_801A66B4], count + 1);
+        fn_1_53E40(0, ro->unk_50, ro->unk_58, ro->unk_BC, ro->unk_C0, ro->unk_C4, buf);
+        break;
+    case 5:
+        flags = 0x48000000;
+        guide = fzgx_pool_data_E8[lbl_801A66B4];
+        fn_4_2D4(fzgx_pool_bss_5C, fzgx_pool_data_364[lbl_801A66B4]);
+        switch (fzgx_pool_bss_12) {
+        case 0:
+            fn_4_18B8();
+            break;
+        case 1:
+            fn_4_28FC();
+            break;
+        }
+        break;
+    }
+    fn_1_1380F0(guide);
+    fn_1_13ABA8(flags);
+}
+/* fzgx:end fn_4_3128 */
 
 /* fzgx:begin fn_4_347C noprologue */
 #include "types.h"
