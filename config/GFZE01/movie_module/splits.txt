@@ -2342,3 +2342,9 @@ rel/movie_module/fn_12_3710.c:
 
 rel/movie_module/fn_12_BBC0.c:
 	.text       start:0x0000BBC0 end:0x0000C218 align:4
+
+rel/movie_module/fn_12_7870.c:
+	.text       start:0x00007870 end:0x000078C0 align:4
+
+rel/movie_module/fn_12_11204.c:
+	.text       start:0x00011204 end:0x00011254 align:4

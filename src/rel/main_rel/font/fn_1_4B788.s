@@ -1,0 +1,59 @@
+.include "macros.inc"
+.file "fn_1_4B788.c"
+
+# 0x0004B788..0x0004B83C | size: 0xB4
+.text
+.balign 4
+
+# .text:0x0 | 0x4B788 | size: 0xB4
+.fn fn_1_4B788, global
+/* 0004B788 0004B864  3C C0 00 00 */	lis r6, lbl_1_bss_4BA44@ha
+/* 0004B78C 0004B868  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 0004B790 0004B86C  38 C6 00 00 */	addi r6, r6, lbl_1_bss_4BA44@l
+/* 0004B794 0004B870  C0 43 00 04 */	lfs f2, 0x4(r3)
+/* 0004B798 0004B874  C0 06 00 04 */	lfs f0, 0x4(r6)
+/* 0004B79C 0004B878  FC 02 00 40 */	fcmpo cr0, f2, f0
+/* 0004B7A0 0004B87C  40 80 00 08 */	bge .L_0004B7A8
+/* 0004B7A4 0004B880  D0 46 00 04 */	stfs f2, 0x4(r6)
+.L_0004B7A8:
+/* 0004B7A8 0004B884  C0 04 00 1C */	lfs f0, 0x1c(r4)
+/* 0004B7AC 0004B888  3C C0 00 00 */	lis r6, lbl_1_bss_4BA44@ha
+/* 0004B7B0 0004B88C  38 C6 00 00 */	addi r6, r6, lbl_1_bss_4BA44@l
+/* 0004B7B4 0004B890  C0 43 00 04 */	lfs f2, 0x4(r3)
+/* 0004B7B8 0004B894  EC 21 00 32 */	fmuls f1, f1, f0
+/* 0004B7BC 0004B898  C0 06 00 08 */	lfs f0, 0x8(r6)
+/* 0004B7C0 0004B89C  EC 22 08 2A */	fadds f1, f2, f1
+/* 0004B7C4 0004B8A0  FC 01 00 40 */	fcmpo cr0, f1, f0
+/* 0004B7C8 0004B8A4  40 81 00 08 */	ble .L_0004B7D0
+/* 0004B7CC 0004B8A8  D0 26 00 08 */	stfs f1, 0x8(r6)
+.L_0004B7D0:
+/* 0004B7D0 0004B8AC  3C C0 00 00 */	lis r6, lbl_1_bss_4BA44@ha
+/* 0004B7D4 0004B8B0  C0 23 00 08 */	lfs f1, 0x8(r3)
+/* 0004B7D8 0004B8B4  38 C6 00 00 */	addi r6, r6, lbl_1_bss_4BA44@l
+/* 0004B7DC 0004B8B8  C0 06 00 0C */	lfs f0, 0xc(r6)
+/* 0004B7E0 0004B8BC  FC 01 00 40 */	fcmpo cr0, f1, f0
+/* 0004B7E4 0004B8C0  40 80 00 08 */	bge .L_0004B7EC
+/* 0004B7E8 0004B8C4  D0 26 00 0C */	stfs f1, 0xc(r6)
+.L_0004B7EC:
+/* 0004B7EC 0004B8C8  88 E5 00 05 */	lbz r7, 0x5(r5)
+/* 0004B7F0 0004B8CC  3C 00 43 30 */	lis r0, 0x4330
+/* 0004B7F4 0004B8D0  3C C0 00 00 */	lis r6, lbl_1_rodata_10E0@ha
+/* 0004B7F8 0004B8D4  3C A0 00 00 */	lis r5, lbl_1_bss_4BA44@ha
+/* 0004B7FC 0004B8D8  90 E1 00 0C */	stw r7, 0xc(r1)
+/* 0004B800 0004B8DC  38 A5 00 00 */	addi r5, r5, lbl_1_bss_4BA44@l
+/* 0004B804 0004B8E0  C8 46 00 00 */	lfd f2, lbl_1_rodata_10E0@l(r6)
+/* 0004B808 0004B8E4  90 01 00 08 */	stw r0, 0x8(r1)
+/* 0004B80C 0004B8E8  C0 24 00 20 */	lfs f1, 0x20(r4)
+/* 0004B810 0004B8EC  C8 01 00 08 */	lfd f0, 0x8(r1)
+/* 0004B814 0004B8F0  C0 63 00 08 */	lfs f3, 0x8(r3)
+/* 0004B818 0004B8F4  EC 40 10 28 */	fsubs f2, f0, f2
+/* 0004B81C 0004B8F8  C0 05 00 10 */	lfs f0, 0x10(r5)
+/* 0004B820 0004B8FC  EC 22 00 72 */	fmuls f1, f2, f1
+/* 0004B824 0004B900  EC 23 08 2A */	fadds f1, f3, f1
+/* 0004B828 0004B904  FC 01 00 40 */	fcmpo cr0, f1, f0
+/* 0004B82C 0004B908  40 81 00 08 */	ble .L_0004B834
+/* 0004B830 0004B90C  D0 25 00 10 */	stfs f1, 0x10(r5)
+.L_0004B834:
+/* 0004B834 0004B910  38 21 00 10 */	addi r1, r1, 0x10
+/* 0004B838 0004B914  4E 80 00 20 */	blr
+.endfn fn_1_4B788

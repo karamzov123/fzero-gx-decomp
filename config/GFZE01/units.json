@@ -54248,10 +54248,10 @@
     "symbols": [
       "fn_1_4B6D4"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -54259,10 +54259,10 @@
     "symbols": [
       "fn_1_4B788"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "asm": true
   },
   {
     "module": "main_rel",
@@ -71353,6 +71353,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_141C10.c",
+    "symbols": [
+      "fn_1_141C10"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sel_static_disp/fn_1_141F94.c",
     "symbols": [
       "fn_1_141F94"
@@ -79570,6 +79581,17 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_11204.c",
+    "symbols": [
+      "fn_12_11204"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_11254.c",
     "symbols": [
       "fn_12_11254"
@@ -86805,6 +86827,17 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_7870.c",
+    "symbols": [
+      "fn_12_7870"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "movie_module",
