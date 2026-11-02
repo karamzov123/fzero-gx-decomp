@@ -9443,3 +9443,6 @@ rel/main_rel/accessory/fn_1_12295C.c:
 
 rel/main_rel/sel_static_disp/fn_1_141C10.c:
 	.text       start:0x00141C10 end:0x00141F94 align:4
+
+rel/main_rel/car/fn_1_81164.c:
+	.text       start:0x00081164 end:0x00081408 align:4
