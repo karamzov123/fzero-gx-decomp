@@ -69,12 +69,33 @@ def _compiler_generated_aliases(p: Project, sym) -> List[str]:
     return out
 
 
+def _snapshot_file(snapshot: Dict[Path, Optional[bytes]], path: Path) -> None:
+    if path not in snapshot:
+        snapshot[path] = path.read_bytes() if path.exists() else None
+
+
+def _restore_snapshot(p: Project, snapshot: Dict[Path, Optional[bytes]], split: bool = True) -> None:
+    with oracle.build_lock("units.lock"):
+        for path, data in snapshot.items():
+            if data is None:
+                path.unlink(missing_ok=True)
+            else:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(data)
+    p._symbols.clear()
+    p.__dict__.get("_splits_cache", {}).clear()
+    if split:
+        from .api import _reconfigure_and_split
+        _reconfigure_and_split(p)
+
+
 def make(p: Project, symbols: List[str]) -> Dict[str, object]:
     """Carve each symbol into an assembly-backed unit, split, copy the asm, relink and hash.
-    On a hash failure every unit of this call is uncarved and nothing is kept."""
-    l = Ledger()
+    On a hash failure every unit of this call is restored to its exact pre-call state."""
     made: List[tuple] = []
     refused: List[dict] = []
+    snapshot: Dict[Path, Optional[bytes]] = {}
+    _snapshot_file(snapshot, p.units_path)
     for s in symbols:
         sym = p.resolve(s)
         if sym is None:
@@ -98,9 +119,29 @@ def make(p: Project, symbols: List[str]) -> Dict[str, object]:
             refused.append({"symbol": s, "reason": "address aliases compiler-generated symbols",
                             "aliases": aliases[:6], "alias_count": len(aliases)})
             continue
+        cfg = p.module_config_dir(sym.module)
+        for cfg_name in ("splits.txt", "symbols.txt", "ldscript.tpl"):
+            _snapshot_file(snapshot, cfg / cfg_name)
+        default_src = f"{carve.unit_dir_for(p, sym)}/{sym.name}.c"
+        for cand_src in {existing, default_src} - {None}:
+            _snapshot_file(snapshot, ROOT / "src" / cand_src)
+            _snapshot_file(snapshot, ROOT / "src" / (cand_src[:-2] + ".s"))
+            _snapshot_file(snapshot, carve.tufile.gen_path(p, cand_src))
+        if sym.scope == "local":
+            suffixed = f"{sym.name}_{sym.addr:08X}"
+            cand_paths = {(ROOT / "src" / (u.get("tu") or u["source"])).with_suffix(".s" if u.get("asm") else ".c")
+                          for u in p.load_units() if sym.module == "main" or u["module"] == sym.module}
+            hdr_root = ROOT / "include" if sym.module == "main" else ROOT / "include/rel" / sym.module
+            if hdr_root.exists():
+                cand_paths.update(hdr_root.rglob("*.h"))
+            for cpath in cand_paths:
+                if cpath.exists() and suffixed in cpath.read_text(errors="ignore"):
+                    _snapshot_file(snapshot, cpath)
         cr = carve.carve(p, s)
         c_src = ROOT / "src" / cr.source
         s_source = cr.source[:-2] + ".s"
+        _snapshot_file(snapshot, c_src)
+        _snapshot_file(snapshot, ROOT / "src" / s_source)
         # the unit keeps its .c name (the split's unit name, what uncarve knows); `asm` makes
         # configure compile src/<name>.s instead
         with oracle.build_lock("units.lock"):
@@ -118,7 +159,7 @@ def make(p: Project, symbols: List[str]) -> Dict[str, object]:
         if refused:
             out["refused"] = refused
         return out
-    return finalize(p, made, refused)
+    return finalize(p, made, refused, snapshot=snapshot)
 
 
 def resume(p: Project) -> Dict[str, object]:
@@ -169,7 +210,8 @@ def resume(p: Project) -> Dict[str, object]:
     return finalize(p, made)
 
 
-def finalize(p: Project, made: List[tuple], refused: Optional[List[dict]] = None) -> Dict[str, object]:
+def finalize(p: Project, made: List[tuple], refused: Optional[List[dict]] = None,
+             snapshot: Optional[Dict[Path, Optional[bytes]]] = None) -> Dict[str, object]:
     """Relink, hash and record. `refused` are symbols make() declined up front; they ride along
     in every return so a caller sees the whole outcome, including the ones never attempted."""
     import time  # scoped: phase timing
@@ -177,41 +219,61 @@ def finalize(p: Project, made: List[tuple], refused: Optional[List[dict]] = None
     t0 = time.time()
     def phase(msg: str) -> None:
         print(f"  asm-unit: {msg} ({time.time() - t0:.1f}s)", flush=True)
-    with oracle.build_lock():
-        phase("build lock acquired")
-        cp = oracle.configure(p)
-        if cp.returncode != 0:
-            raise RuntimeError(cp.stderr[-1500:])
-        phase("configured")
-        cp = oracle.run(["ninja", p.rel(p.build_dir / "config.json")])  # the split writes the units' asm
-        if cp.returncode != 0:
-            raise RuntimeError((cp.stdout + cp.stderr)[-1500:])
-        phase("split")
-        for s, module, c_source, s_source in made:
-            asm = p.module_build_dir(module) / "asm" / s_source
-            if not asm.exists():
-                uncarve(p, [x[2] for x in made], split=False)
-                return {"ok": False, "error": f"{s}: no split assembly at {asm}", "made": [],
-                        **({"refused": refused} if refused else {})}
-            dst = ROOT / "src" / s_source
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            text, n = fix_branch_hints(asm.read_text())
-            dst.write_text(text)
-            if n:
-                phase(f"{s}: {n} backward branch hint(s) respelled for GNU as")
-        phase("assembly copied")
-        cp = oracle.configure(p)
-        if cp.returncode == 0:
-            cp = oracle.relink(p)
-        linked = cp.returncode == 0
-        phase("relinked" if linked else "relink FAILED")
+
+    def _rollback(split: bool = True) -> None:
+        for _, _, _, s_source in made:
+            (ROOT / "src" / s_source).unlink(missing_ok=True)
+        if snapshot is not None:
+            _restore_snapshot(p, snapshot, split=split)
+        else:
+            uncarve(p, [x[2] for x in made], split=split)
+
+    missing_asm: Optional[str] = None
+    try:
+        with oracle.build_lock():
+            phase("build lock acquired")
+            cp = oracle.configure(p)
+            if cp.returncode != 0:
+                raise RuntimeError(cp.stderr[-1500:])
+            phase("configured")
+            cp = oracle.run(["ninja", p.rel(p.build_dir / "config.json")])  # the split writes the units' asm
+            if cp.returncode != 0:
+                raise RuntimeError((cp.stdout + cp.stderr)[-1500:])
+            phase("split")
+            for s, module, c_source, s_source in made:
+                asm = p.module_build_dir(module) / "asm" / s_source
+                if not asm.exists():
+                    missing_asm = f"{s}: no split assembly at {asm}"
+                    break
+                dst = ROOT / "src" / s_source
+                if snapshot is not None:
+                    _snapshot_file(snapshot, dst)
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                text, n = fix_branch_hints(asm.read_text())
+                dst.write_text(text)
+                if n:
+                    phase(f"{s}: {n} backward branch hint(s) respelled for GNU as")
+            if missing_asm is None:
+                phase("assembly copied")
+                cp = oracle.configure(p)
+                if cp.returncode == 0:
+                    cp = oracle.relink(p)
+                linked = cp.returncode == 0
+                phase("relinked" if linked else "relink FAILED")
+            else:
+                linked = False
+    except Exception:
+        _rollback(split=True)
+        raise
+    if missing_asm is not None:
+        _rollback(split=True)
+        return {"ok": False, "error": missing_asm, "made": [],
+                **({"refused": refused} if refused else {})}
     if not linked:
-        # outside the lock: uncarve takes it again (flock is not reentrant)
+        # outside the lock: rollback takes units.lock / build.lock (flock is not reentrant)
         tail = (cp.stdout + cp.stderr)[-3000:]
         print(tail, flush=True)
-        for s, module, c_source, s_source in made:
-            (ROOT / "src" / s_source).unlink(missing_ok=True)
-        uncarve(p, [x[2] for x in made], split=True)
+        _rollback(split=True)
         return {"ok": False, "error": "the tree no longer hashes with these units; rolled back", "made": [], "log": tail,
                 **({"refused": refused} if refused else {})}
     for s, module, c_source, s_source in made:

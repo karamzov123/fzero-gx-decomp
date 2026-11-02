@@ -115,9 +115,17 @@ class Elf:
 
     def add_string(self, strtab: dict, text: str) -> int:
         """Append `text` to a string table by moving the table to the end of the file."""
+        encoded = text.encode("ascii") + b"\0"
+        shdr_end = self.shoff + self.shnum * self.shentsize
+        if strtab["offset"] >= shdr_end and strtab["offset"] + strtab["size"] == len(self.data):
+            pos = strtab["size"]
+            self.data += encoded
+            strtab["size"] += len(encoded)
+            self._write_shdr(strtab)
+            return pos
         old = bytes(self.data[strtab["offset"]:strtab["offset"] + strtab["size"]])
-        new = old + text.encode("ascii") + b"\0"
-        end = max(len(self.data), self.shoff + self.shnum * self.shentsize)
+        new = old + encoded
+        end = max(len(self.data), shdr_end)
         self.data[end:] = b""
         self.data += b"\0" * ((4 - end % 4) % 4)
         strtab["offset"] = len(self.data)

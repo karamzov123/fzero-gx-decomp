@@ -7,12 +7,16 @@
 | requirement | state |
 | --- | --- |
 | LLDB with embedded Python | present: `lldb 23.1.4`, embedded Python `/usr/bin/python3`. `mwgraph` already falls back from `xcrun lldb` to a bare `lldb`. |
-| Wibo at `build/tools/wibo` | **absent**. Installed with the repo's own downloader: `python3 tools/download_tool.py wibo build/tools/wibo --tag 1.0.0` |
+| Wibo at `build/tools/wibo` | **absent**. Installed with the repo's own downloader: `python3 tools/download_tool.py wibo build/tools/wibo --tag 1.2.0` |
 | the stock PE compiler under it | works: `build/tools/wibo build/compilers/GC/1.3.2/mwcceppc.exe` prints its banner and exits 0 |
 
-The release Wibo matters: `wibo-x86_64` 1.0.0 is a statically linked ELF **with
+The release Wibo matters: `wibo-x86_64` 1.2.0 is a statically linked ELF **with
 debug info**, which is what the capture needs, because `mwgraph_lldb.run` breaks
 on the loader by name (`loadPEFromSource`). A stripped build would not attach.
+Do not downgrade `build/tools/wibo` to `1.0.0`: `wibo 1.0.0` allocates Win32
+`HANDLE`s monotonically past `0x7ffc` (8190 handles), overflowing `mwldeppc.exe`'s
+signed 16-bit Mac `refNum` conversion (`0x411560`/`0x4115a0`) at handle `0x8000`
+and failing `main.elf` / `main_rel.preplf` links with `Can't read library file`.
 
 No Windows, Wine or macOS is involved. Nothing else was missing.
 

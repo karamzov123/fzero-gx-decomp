@@ -168,6 +168,15 @@ config.dtk_tag = "v1.8.3"
 config.objdiff_tag = "v3.8.1"
 config.sjiswrap_tag = "v1.2.2"
 config.wibo_tag = "1.2.0"
+if not is_windows() and not config.wrapper:
+    _wibo_bin = config.build_dir / "tools" / "wibo"
+    if _wibo_bin.is_file():
+        try:
+            _ver = subprocess.run([str(_wibo_bin), "--version"], capture_output=True, text=True, timeout=5)
+            if config.wibo_tag not in (_ver.stdout + _ver.stderr):
+                _wibo_bin.unlink(missing_ok=True)
+        except OSError:
+            _wibo_bin.unlink(missing_ok=True)
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
