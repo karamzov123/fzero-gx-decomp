@@ -230,3 +230,6 @@ rel/option/_prolog/fn_4_3128.c:
 
 rel/option/_prolog/fn_4_EF8.c:
 	.text       start:0x00000EF8 end:0x00001444 align:4
+
+rel/option/_prolog/fn_4_18B8.c:
+	.text       start:0x000018B8 end:0x00002394 align:4
