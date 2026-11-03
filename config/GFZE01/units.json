@@ -28195,9 +28195,30 @@
     "symbols": [
       "fn_8005DCEC"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": {
+      "...rodata.0": "lbl_800929D8",
+      "@550": "lbl_801A7218",
+      "@538": "lbl_801A7228",
+      "@537": "lbl_801A7220",
+      "@553": "lbl_801A7248",
+      "@540": "lbl_801A7250",
+      "@539": "lbl_801A7238",
+      "@541": "lbl_801A7254",
+      "@542": "lbl_801A725C",
+      "@543": "lbl_801A7260",
+      "@544": "lbl_801A7268",
+      "@545": "lbl_801A7270",
+      "@546": "lbl_801A7278",
+      "@548": "lbl_801A7240",
+      "@547": "lbl_801A7230",
+      "fzgx_pool_rodata_lbl_800929D8": "lbl_800929D8"
+    }
   },
   {
     "module": "main",
