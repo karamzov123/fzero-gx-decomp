@@ -7819,6 +7819,246 @@ void fn_1_B5258(char *destination, void *unused, const char *source, const char 
 }
 /* fzgx:end fn_1_B5258 */
 
+/* fzgx:begin fn_1_B5310 */
+extern void* lbl_801A6410;
+extern int fn_1_45D0(void *arg0, int arg1, Obj_1_data_3C7B8 *arg2, int arg3);
+extern void fn_1_AB45C(void);
+extern void CARDMountAsync(u8, u32, void (*)(void), s32);
+extern int CARDGetSerialNo(u8 value, void *data);
+extern void CARDCheckAsync(u8 byte_val, int value);
+extern void CARDFormatAsync(u8 byte, int value);
+extern const f32 lbl_1_rodata_4CA8;
+extern const f64 lbl_1_rodata_4CB0;
+extern const f32 lbl_1_rodata_4CAC;
+extern void fn_80083DB0(void *dst, void *src);
+extern void strcat(void *dst, void *src);
+extern void CARDDeleteAsync(u8 byte, void *data, int arg);
+extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
+extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
+extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
+extern void CARDCreateAsync(u8 byte_val, void *arg1, void *arg2, void *arg3, u32 arg4);
+extern void CARDSetStatusAsync(u8 id, void *arg, void *data, int zero);
+extern void CARDRenameAsync(u8 id, void *data1, void *data2, int zero);
+extern void CARDReadAsync(void *arg0, void *arg1, void *arg2, int arg3, int arg4);
+extern const f64 lbl_1_rodata_4CC8;
+extern void fn_80030754(u8 value, void *data, int size, int mode);
+extern u8 lbl_1_bss_71810[161];
+extern u8 lbl_1_bss_718B8;
+extern u8 lbl_1_bss_718B9[7];
+extern int fn_8002A744(void);
+extern void fn_8002A74C(u16 value);
+extern int fn_8002DFE0(int arg0, u32 arg1, int arg2);
+extern int CARDCheck(int arg0);
+extern void fn_1_B9C38(s32 index);
+extern void fn_1_1596DC(u32);
+extern void fn_1_484CC(u32);
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern void fn_1_AA6D8(s32 arg0, u32 arg1, void *arg2);
+extern void fn_1_F755C(u8 value);
+extern void fn_1_A6840(u8 value);
+extern void OSPanic(void *arg0, u32 arg1, ...);
+extern void fn_1_F79C8(void);
+extern void *lbl_801A6410;
+extern void strncpy(void *arg0, void *arg1, int arg2);
+extern u32 lbl_1_bss_77310[28];
+extern u32 lbl_1_bss_7730C;
+extern u8 lbl_1_bss_772C8[66];
+extern u32 fn_1_4630(void *heap, u32 size, void *file, s32 line);
+extern s32 fn_8002FC14(s32 chan, void *fileName);
+extern s32 fn_80030338(s32 chan, void *oldName, void *newName);
+extern const f64 lbl_1_rodata_4CB8;
+extern void fn_1_C36EC(void);
+
+typedef struct {
+    u8 r, g, b, a;
+} Color;
+
+/* a message table row: one string per language */
+typedef const char *MsgRow[6];
+
+extern s32 lbl_801A66B4;
+extern Color fn_80007F70(Color, Color, f32, u32);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16);
+extern void fn_1_495C8(u8);
+extern void fn_1_4954C(f32);
+extern void fn_1_49514(Color);
+extern void fn_1_49528(Color);
+extern void fn_1_49614(void);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_4966C(f32, f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_49590(f32);
+extern void fn_1_495A0(f32);
+extern void fn_1_495FC(void);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4A0D8(const char *);
+extern void fn_1_4AE0C(const char *, ...);
+extern void fn_1_4D494(void);
+extern u32 fn_1_4D4C8(Color, f32, f32);
+extern void fn_1_B5258(char *, const char *, const char *, const char *);
+
+
+/* the retail TU's .data objects this function uses, at their retail offsets; pool_data on makes MWCC address
+ * them and the string literals off one section base, as retail does (addi rX, r30, 0x5C84); the fzgx_pool_gap_
+ * objects span the retail objects in between, and the literals land after them at 0x3CDE0, "%s" and "A" first */
+/* view of the task record: the low bit of +0x2A picks the fast pulse */
+typedef struct {
+    u8 pad_0[0x2A];
+    u8 unk_2A;          /* 0x2A */
+    u8 pad_2B[0x76];
+} McTaskView;
+
+/* file-scope objects of the retail TU .bss, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_716C0[2];
+u8 fzgx_obj_lbl_1_bss_716C8[2][0xA0];
+u32 fzgx_obj_lbl_1_bss_71808;
+u32 fzgx_obj_lbl_1_bss_7180C;
+McTaskView fzgx_obj_lbl_1_bss_71810;
+u8 fzgx_obj_lbl_1_bss_718B1;
+u8 fzgx_obj_lbl_1_bss_718B2;
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_716C0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_716C8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_71808;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7180C;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_71810;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B1;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B2;
+}
+#pragma section code_type ".text"
+#pragma pool_data on
+u8 fzgx_obj_lbl_1_data_35AC8[4] = {0x04, 0x04, 0x00, 0x00};
+u8 fzgx_pool_gap_35ACC[0x5C80] = {1};
+MsgRow fzgx_obj_lbl_1_data_3B74C[0x71] = {{(const char *)1}};
+u8 fzgx_pool_gap_3C1E4[0xBFC] = {1};
+
+extern void fzgx_touch(const void *);
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_data_layout(void) {
+    fzgx_touch(fzgx_obj_lbl_1_data_35AC8);
+    fzgx_touch(fzgx_pool_gap_35ACC);
+    fzgx_touch(fzgx_obj_lbl_1_data_3B74C);
+    fzgx_touch(fzgx_pool_gap_3C1E4);
+    fzgx_touch("%s");
+    fzgx_touch("A");
+}
+#pragma section code_type ".text"
+
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[120] = {0x665F7A65, 0x726F5F64, 0x65627567, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x7379735F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000350, 0x00000004, 0xFFFFFFFF, 0xFFFFFFFF, 0x665F7A65, 0x726F0000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000001, 0x7379735F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000B4F, 0x000059E0, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6700, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000002, 0x67686F5F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000153, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6300, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000003, 0x6761725F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000154, 0x00020700, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6500, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000004, 0x656D625F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000152, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A7200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000005, 0x7265705F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000451, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF, 0x00000000, 0x47200000, 0x43300000, 0x80000000, 0x43300000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+}
+static const u32 fzgx_pool_table2[4] = {0x46C00000, 0x405F8000, 0x00000000, 0x42FC0000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+/* a black-to-white pulse (fn_80007F70), fast or slow; defined here so its colours land at .rodata 0x4CD4,
+ * where fn_1_B5310 and fn_1_B5654 read the same pairs */
+static inline Color pulse_color(s32 fast) {
+    if (fast) {
+        Color from = {0x00, 0x00, 0x00, 0x00};
+        Color to = {0xFF, 0xFF, 0xFF, 0x00};
+        return fn_80007F70(from, to, 10.0f, fzgx_obj_lbl_1_bss_71808);
+    } else {
+        Color from = {0x00, 0x00, 0x00, 0x00};
+        Color to = {0xFF, 0xFF, 0xFF, 0x00};
+        return fn_80007F70(from, to, 1.0f, fzgx_obj_lbl_1_bss_71808);
+    }
+}
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 10.0f;
+}
+#pragma section code_type ".text"
+
+void fn_1_B5310(void) {
+    Color from = {0xA0, 0x50, 0x50, 0x00};
+    Color to = {0xA0, 0xA0, 0xA0, 0x00};
+    Color color;
+    Color pulse;
+
+    color = fn_80007F70(from, to, 1.0f, fzgx_obj_lbl_1_bss_71808);
+    fn_1_49410();
+    fn_1_494DC(0x2A);
+    fn_1_495C8(9);
+    fn_1_4954C(0.0010000000474974513f);
+    {
+        Color white = {0xFF, 0xFF, 0xFF, 0x00};
+        fn_1_49514(white);
+    }
+    fn_1_49614();
+    fn_1_4955C(0.800000011920929f, 0.800000011920929f);
+    fn_1_4966C(-1.0f, 8.0f);
+    if (lbl_801A66B4 != 5) {
+        fn_1_495B0(0x80000000);
+        fn_1_49590(0.5f);
+        fn_1_4966C(-1.0f, 4.0f);
+    }
+    fn_1_496FC(320.0f, 152.0f);
+    fn_1_4A0D8(fzgx_obj_lbl_1_data_3B74C[28][lbl_801A66B4]);
+    pulse = pulse_color(__rlwnm(fzgx_obj_lbl_1_bss_71810.unk_2A, 0, 31, 31));
+    fn_1_496FC(288.0f, 280.0f);
+    fn_1_495C8(10);
+    if (fzgx_obj_lbl_1_bss_718B2 == 0) {
+        fn_1_4D494();
+        fn_1_49514(pulse);
+        fn_1_4AE0C("%s", fzgx_obj_lbl_1_data_3B74C[37][lbl_801A66B4]);
+        fn_1_4D4C8(color, 0.10500000417232513f, 10.0f);
+    } else {
+        {
+            Color grey = {0x70, 0x70, 0x70, 0x00};
+            fn_1_49514(grey);
+        }
+        {
+            Color black = {0x00, 0x00, 0x00, 0x00};
+            fn_1_49528(black);
+        }
+        fn_1_4AE0C("%s", fzgx_obj_lbl_1_data_3B74C[37][lbl_801A66B4]);
+    }
+    fn_1_496FC(352.0f, 280.0f);
+    fn_1_495C8(8);
+    if (fzgx_obj_lbl_1_bss_718B2 == 0) {
+        {
+            Color grey = {0x70, 0x70, 0x70, 0x00};
+            fn_1_49514(grey);
+        }
+        {
+            Color black = {0x00, 0x00, 0x00, 0x00};
+            fn_1_49528(black);
+        }
+        fn_1_4AE0C("%s", fzgx_obj_lbl_1_data_3B74C[38][lbl_801A66B4]);
+    } else {
+        fn_1_4D494();
+        fn_1_49514(pulse);
+        fn_1_4AE0C("%s", fzgx_obj_lbl_1_data_3B74C[38][lbl_801A66B4]);
+        fn_1_4D4C8(color, 0.10500000417232513f, 10.0f);
+    }
+    {
+        Color white = {0xFF, 0xFF, 0xFF, 0x00};
+        fn_1_49514(white);
+    }
+    {
+        Color black = {0x00, 0x00, 0x00, 0x00};
+        fn_1_49528(black);
+    }
+    fn_1_495C8(9);
+    fn_1_495FC();
+    fn_1_496FC(320.0f, 350.0f);
+    fn_1_495A0(0.009999999776482582f);
+    fn_1_4A0D8("A");
+    fn_1_49410();
+}
+#pragma pool_data reset
+/* fzgx:end fn_1_B5310 */
+
 /* fzgx:begin fn_1_B5654 */
 extern void* lbl_801A6410;
 extern int fn_1_45D0(void *arg0, int arg1, Obj_1_data_3C7B8 *arg2, int arg3);
