@@ -138,9 +138,6 @@ rel/pilotpoint/pilotpoint/fn_14_3DF0.c:
 rel/pilotpoint/pilotpoint/fn_14_C850.c:
 	.text       start:0x0000C850 end:0x0000CC70 align:4
 
-rel/pilotpoint/data/lbl_14_bss_180.c:
-	.bss        start:0x00000180 end:0x00008340 align:32
-
 rel/pilotpoint/pilotpoint/fn_14_8A54.c:
 	.text       start:0x00008A54 end:0x0000A1F4 align:4
 
@@ -225,6 +222,123 @@ rel/pilotpoint/data/lbl_14_data_AF8.c:
 rel/pilotpoint/data/lbl_14_data_C10.c:
 	.data       start:0x00000C10 end:0x000011FC align:8
 
+rel/pilotpoint/data/lbl_14_bss_0.c:
+	.bss        start:0x00000000 end:0x00000018 align:32
+
+rel/pilotpoint/data/lbl_14_bss_18.c:
+	.bss        start:0x00000018 end:0x00000020 align:8
+
+rel/pilotpoint/data/lbl_14_bss_20.c:
+	.bss        start:0x00000020 end:0x00000110 align:32
+
+rel/pilotpoint/data/lbl_14_bss_110.c:
+	.bss        start:0x00000110 end:0x00000160 align:16
+
+rel/pilotpoint/data/lbl_14_bss_160.c:
+	.bss        start:0x00000160 end:0x00000180 align:32
+
+rel/pilotpoint/data/lbl_14_bss_180.c:
+	.bss        start:0x00000180 end:0x00008340 align:32
+
+rel/pilotpoint/data/lbl_14_bss_8340.c:
+	.bss        start:0x00008340 end:0x00008348 align:8
+
+rel/pilotpoint/data/lbl_14_bss_8348.c:
+	.bss        start:0x00008348 end:0x00008350 align:8
+
+rel/pilotpoint/data/lbl_14_bss_8350.c:
+	.bss        start:0x00008350 end:0x00009258 align:8
+
+rel/pilotpoint/data/lbl_14_bss_9258.c:
+	.bss        start:0x00009258 end:0x000092C0 align:8
+
+rel/pilotpoint/data/lbl_14_bss_92C0.c:
+	.bss        start:0x000092C0 end:0x000092E8 align:32
+
+rel/pilotpoint/data/lbl_14_bss_92E8.c:
+	.bss        start:0x000092E8 end:0x000092F0 align:8
+
+rel/pilotpoint/data/lbl_14_bss_92F0.c:
+	.bss        start:0x000092F0 end:0x000092F8 align:16
+
+rel/pilotpoint/data/lbl_14_bss_92F8.c:
+	.bss        start:0x000092F8 end:0x00009460 align:8
+
+rel/pilotpoint/data/lbl_14_bss_9460.c:
+	.bss        start:0x00009460 end:0x00009482 align:32
+
+rel/pilotpoint/data/lbl_14_data_2E0.c:
+	.data       start:0x000002E0 end:0x00000300 align:8
+
+rel/pilotpoint/data/lbl_14_data_300.c:
+	.data       start:0x00000300 end:0x00000308 align:8
+
+rel/pilotpoint/data/lbl_14_data_308.c:
+	.data       start:0x00000308 end:0x00000388 align:8
+
+rel/pilotpoint/data/lbl_14_data_388.c:
+	.data       start:0x00000388 end:0x000003D8 align:8
+
+rel/pilotpoint/data/lbl_14_data_3D8.c:
+	.data       start:0x000003D8 end:0x000005E0 align:8
+
+rel/pilotpoint/data/lbl_14_data_5E0.c:
+	.data       start:0x000005E0 end:0x00000620 align:8
+
+rel/pilotpoint/data/lbl_14_data_620.c:
+	.data       start:0x00000620 end:0x00000678 align:8
+
+rel/pilotpoint/data/lbl_14_data_678.c:
+	.data       start:0x00000678 end:0x00000680 align:8
+
+rel/pilotpoint/data/lbl_14_data_680.c:
+	.data       start:0x00000680 end:0x000006A0 align:8
+
+rel/pilotpoint/data/lbl_14_data_6A0.c:
+	.data       start:0x000006A0 end:0x000006A8 align:8
+
+rel/pilotpoint/data/lbl_14_data_6A8.c:
+	.data       start:0x000006A8 end:0x000006C8 align:8
+
+rel/pilotpoint/data/lbl_14_data_6C8.c:
+	.data       start:0x000006C8 end:0x00000800 align:8
+
+rel/pilotpoint/data/lbl_14_data_800.c:
+	.data       start:0x00000800 end:0x00000808 align:8
+
+rel/pilotpoint/data/lbl_14_data_808.c:
+	.data       start:0x00000808 end:0x00000820 align:8
+
+rel/pilotpoint/data/lbl_14_data_820.c:
+	.data       start:0x00000820 end:0x00000828 align:8
+
+rel/pilotpoint/data/lbl_14_data_828.c:
+	.data       start:0x00000828 end:0x00000840 align:8
+
+rel/pilotpoint/data/lbl_14_data_840.c:
+	.data       start:0x00000840 end:0x000008D8 align:8
+
+rel/pilotpoint/data/lbl_14_data_8D8.c:
+	.data       start:0x000008D8 end:0x000008F0 align:8
+
+rel/pilotpoint/data/lbl_14_data_8F0.c:
+	.data       start:0x000008F0 end:0x00000920 align:8
+
+rel/pilotpoint/data/lbl_14_data_920.c:
+	.data       start:0x00000920 end:0x00000938 align:8
+
+rel/pilotpoint/data/lbl_14_data_938.c:
+	.data       start:0x00000938 end:0x00000A28 align:8
+
+rel/pilotpoint/data/lbl_14_data_A28.c:
+	.data       start:0x00000A28 end:0x00000A40 align:8
+
+rel/pilotpoint/data/lbl_14_data_A40.c:
+	.data       start:0x00000A40 end:0x00000A9C align:8
+
+rel/pilotpoint/data/lbl_14_data_BB0.c:
+	.data       start:0x00000BB0 end:0x00000BF8 align:8
+
 rel/pilotpoint/data/lbl_14_data_1280.c:
 	.data       start:0x00001280 end:0x0000201C align:8
 
@@ -233,3 +347,75 @@ rel/pilotpoint/data/lbl_14_data_20E0.c:
 
 rel/pilotpoint/data/lbl_14_data_21B8.c:
 	.data       start:0x000021B8 end:0x00002480 align:8
+
+rel/pilotpoint/data/lbl_14_data_24C8.c:
+	.data       start:0x000024C8 end:0x00002530 align:8
+
+rel/pilotpoint/data/lbl_14_data_2530.c:
+	.data       start:0x00002530 end:0x00002568 align:8
+
+rel/pilotpoint/data/lbl_14_data_2568.c:
+	.data       start:0x00002568 end:0x000025E0 align:8
+
+rel/pilotpoint/data/lbl_14_data_25E0.c:
+	.data       start:0x000025E0 end:0x00002608 align:8
+
+rel/pilotpoint/data/lbl_14_data_2608.c:
+	.data       start:0x00002608 end:0x00002630 align:8
+
+rel/pilotpoint/data/lbl_14_data_2630.c:
+	.data       start:0x00002630 end:0x00002668 align:8
+
+rel/pilotpoint/data/lbl_14_data_2668.c:
+	.data       start:0x00002668 end:0x00002690 align:8
+
+rel/pilotpoint/data/lbl_14_data_2690.c:
+	.data       start:0x00002690 end:0x000026B8 align:8
+
+rel/pilotpoint/data/lbl_14_data_26B8.c:
+	.data       start:0x000026B8 end:0x000027B8 align:8
+
+rel/pilotpoint/data/lbl_14_data_2F48.c:
+	.data       start:0x00002F48 end:0x00002FB0 align:8
+
+rel/pilotpoint/data/lbl_14_data_2FB0.c:
+	.data       start:0x00002FB0 end:0x00002FC0 align:8
+
+rel/pilotpoint/data/lbl_14_data_2FC0.c:
+	.data       start:0x00002FC0 end:0x00003028 align:8
+
+rel/pilotpoint/data/lbl_14_data_3028.c:
+	.data       start:0x00003028 end:0x00003030 align:8
+
+rel/pilotpoint/data/lbl_14_data_3030.c:
+	.data       start:0x00003030 end:0x00003048 align:8
+
+rel/pilotpoint/data/lbl_14_data_3048.c:
+	.data       start:0x00003048 end:0x00003060 align:8
+
+rel/pilotpoint/data/lbl_14_data_3060.c:
+	.data       start:0x00003060 end:0x00003248 align:8
+
+rel/pilotpoint/data/lbl_14_data_3248.c:
+	.data       start:0x00003248 end:0x000032A8 align:8
+
+rel/pilotpoint/data/lbl_14_data_32A8.c:
+	.data       start:0x000032A8 end:0x000032D0 align:8
+
+rel/pilotpoint/data/lbl_14_data_32D0.c:
+	.data       start:0x000032D0 end:0x00003388 align:8
+
+rel/pilotpoint/data/lbl_14_data_3388.c:
+	.data       start:0x00003388 end:0x00003408 align:8
+
+rel/pilotpoint/data/lbl_14_data_3408.c:
+	.data       start:0x00003408 end:0x00003460 align:8
+
+rel/pilotpoint/data/lbl_14_data_3460.c:
+	.data       start:0x00003460 end:0x00003480 align:8
+
+rel/pilotpoint/data/lbl_14_data_3480.c:
+	.data       start:0x00003480 end:0x00003534 align:8
+
+rel/pilotpoint/data/lbl_14_rodata_0.c:
+	.rodata     start:0x00000000 end:0x0000054C align:8

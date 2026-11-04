@@ -62,3 +62,18 @@ rel/replay/_prolog/fn_13_0.c:
 
 rel/replay/_prolog/fn_13_3FC.c:
 	.text       start:0x000003FC end:0x00000A40 align:4
+
+rel/replay/data/lbl_13_bss_0.c:
+	.bss        start:0x00000000 end:0x00000038 align:8
+
+rel/replay/data/lbl_13_bss_38.c:
+	.bss        start:0x00000038 end:0x00000040 align:8
+
+rel/replay/data/lbl_13_bss_40.c:
+	.bss        start:0x00000040 end:0x00000050 align:8
+
+rel/replay/data/lbl_13_bss_50.c:
+	.bss        start:0x00000050 end:0x0000005E align:8
+
+rel/replay/data/lbl_13_data_0.c:
+	.data       start:0x00000000 end:0x000000B0 align:8

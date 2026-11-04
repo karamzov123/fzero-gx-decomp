@@ -3,9 +3,6 @@
 
 extern char lbl_10_data_3788[35];
 extern char lbl_10_data_37AC[19];
-extern char lbl_10_data_37C0[19];
-extern char lbl_10_data_37D4[19];
-extern char lbl_10_data_37E8[19];
 
 
 
@@ -17,22 +14,4 @@ __declspec(section ".data") char lbl_10_data_3788[35] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_37AC[19] __attribute__((aligned(4))) = "Memcard no use GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_37C0[19] __attribute__((aligned(8))) = "Memcard no use FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_37D4[19] __attribute__((aligned(4))) = "Memcard no use SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_37E8[19] __attribute__((aligned(8))) = "Memcard no use ITA";
 #pragma explicit_zero_data reset

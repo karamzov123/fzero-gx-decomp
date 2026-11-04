@@ -2,16 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_6270[8];
-extern char lbl_10_data_6278[8];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_6270[8] __attribute__((aligned(8))) = "%dPlays";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_6278[8] __attribute__((aligned(8))) = "%dTimes";
 #pragma explicit_zero_data reset

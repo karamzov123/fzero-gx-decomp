@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_36B8[69];
-extern char lbl_10_data_3700[16];
-extern char lbl_10_data_3710[16];
-extern char lbl_10_data_3720[16];
-extern char lbl_10_data_3730[16];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_36B8[69] __attribute__((aligned(8))) = "This Memory Card can not be used. \n\tPlease remove the Memory Card. \n";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3700[16] __attribute__((aligned(8))) = "Other Error GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3710[16] __attribute__((aligned(8))) = "Other Error FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3720[16] __attribute__((aligned(8))) = "Other Error SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3730[16] __attribute__((aligned(8))) = "Other Error ITA";
 #pragma explicit_zero_data reset

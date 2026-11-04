@@ -2,38 +2,10 @@
 #include "types.h"
 
 extern char lbl_10_data_3430[133];
-extern char lbl_10_data_34B8[13];
-extern char lbl_10_data_34C8[13];
-extern char lbl_10_data_34D8[13];
-extern char lbl_10_data_34E8[13];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_3430[133] __attribute__((aligned(8))) = "This Memory Card can not be used. \n\tThis Memory Card needs to be\n\tformatted by NINTENDO GAME"
     "CUBE. \n\tPlease remove the Memory Card. \n";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_34B8[13] __attribute__((aligned(8))) = "Encoding GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_34C8[13] __attribute__((aligned(8))) = "Encoding FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_34D8[13] __attribute__((aligned(8))) = "Encoding SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_34E8[13] __attribute__((aligned(8))) = "Encoding ITA";
 #pragma explicit_zero_data reset

@@ -3,9 +3,6 @@
 
 extern char lbl_10_data_48C8[17];
 extern char lbl_10_data_48DC[17];
-extern char lbl_10_data_48F0[17];
-extern char lbl_10_data_4904[17];
-extern char lbl_10_data_4918[17];
 
 
 
@@ -17,22 +14,4 @@ __declspec(section ".data") char lbl_10_data_48C8[17] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_48DC[17] __attribute__((aligned(4))) = "Now checking GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_48F0[17] __attribute__((aligned(8))) = "Now checking FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4904[17] __attribute__((aligned(4))) = "Now checking SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4918[17] __attribute__((aligned(8))) = "Now checking ITA";
 #pragma explicit_zero_data reset

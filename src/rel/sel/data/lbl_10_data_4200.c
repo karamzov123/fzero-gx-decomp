@@ -2,10 +2,6 @@
 #include "types.h"
 
 extern char lbl_10_data_4200[230];
-extern char lbl_10_data_42E8[12];
-extern char lbl_10_data_42F4[12];
-extern char lbl_10_data_4300[12];
-extern char lbl_10_data_430C[12];
 
 
 
@@ -13,28 +9,4 @@ extern char lbl_10_data_430C[12];
 __declspec(section ".data") char lbl_10_data_4200[230] __attribute__((aligned(8))) = "Please make sure there is no foreign objectin the slot,\tbefore you insert the Memory Card. \nIt"
     " is recommended to only save F-ZERO GX data in the Memory Card.  \nDo not touch the Memory Cardd"
     "uring the play. It can damage to file. \n";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_42E8[12] __attribute__((aligned(8))) = "Caution GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_42F4[12] __attribute__((aligned(4))) = "Caution FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4300[12] __attribute__((aligned(8))) = "Caution SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_430C[12] __attribute__((aligned(4))) = "Caution ITA";
 #pragma explicit_zero_data reset

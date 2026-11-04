@@ -6,6 +6,7 @@ extern char lbl_10_data_317C[16];
 extern char lbl_10_data_318C[16];
 extern char lbl_10_data_319C[16];
 extern char lbl_10_data_31AC[16];
+extern char lbl_10_data_31BC[60];
 
 
 
@@ -35,4 +36,12 @@ __declspec(section ".data") char lbl_10_data_319C[16] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_31AC[16] __attribute__((aligned(4))) = "Load Failed ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_31BC[60] __attribute__((aligned(4))) = "\203\215\201[\203h\202\311\216\270\224s\202\265\202\334\202\265\202\275\201B\n\203\201\203\202"
+    "\203\212\201[\203J\201[\203h\202\360\224\262\202\242\202\304\202\255\202\276\202\263\202\242\201"
+    "B\n\000\000\000";
 #pragma explicit_zero_data reset

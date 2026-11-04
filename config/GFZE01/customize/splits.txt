@@ -555,12 +555,6 @@ rel/customize/_prolog/fn_3_10A4.c:
 rel/customize/_prolog/fn_3_0.c:
 	.text       start:0x00000000 end:0x0000042C align:4
 
-rel/customize/data/lbl_3_data_1EA8.c:
-	.data       start:0x00001EA8 end:0x00002DCC align:8
-
-rel/customize/data/lbl_3_data_3618.c:
-	.data       start:0x00003618 end:0x00003738 align:8
-
 rel/customize/_prolog/fn_3_4380.c:
 	.text       start:0x00004380 end:0x00004538 align:4
 
@@ -807,18 +801,6 @@ rel/customize/toolkit/fn_3_29508.c:
 rel/customize/toolkit/fn_3_20B3C.c:
 	.text       start:0x00020B3C end:0x00021300 align:4
 
-rel/customize/data/lbl_3_data_0.c:
-	.data       start:0x00000000 end:0x00000F18 align:8
-
-rel/customize/data/lbl_3_data_1668.c:
-	.data       start:0x00001668 end:0x000018E4 align:8
-
-rel/customize/data/lbl_3_data_3780.c:
-	.data       start:0x00003780 end:0x00004648 align:8
-
-rel/customize/data/lbl_3_data_4B70.c:
-	.data       start:0x00004B70 end:0x00004BB4 align:8
-
 rel/customize/data/lbl_3_bss_0.c:
 	.bss        start:0x00000000 end:0x00000008 align:32
 
@@ -900,6 +882,21 @@ rel/customize/data/lbl_3_bss_7EBA0.c:
 rel/customize/data/lbl_3_bss_7EBA8.c:
 	.bss        start:0x0007EBA8 end:0x0007EBB0 align:8
 
+rel/customize/data/lbl_3_bss_A2410.c:
+	.bss        start:0x000A2410 end:0x000A2438 align:16
+
+rel/customize/data/lbl_3_bss_A2438.c:
+	.bss        start:0x000A2438 end:0x000A2458 align:8
+
+rel/customize/data/lbl_3_bss_A2458.c:
+	.bss        start:0x000A2458 end:0x000A2460 align:8
+
+rel/customize/data/lbl_3_bss_A2460.c:
+	.bss        start:0x000A2460 end:0x000A2468 align:32
+
+rel/customize/data/lbl_3_bss_A2468.c:
+	.bss        start:0x000A2468 end:0x000A24B6 align:8
+
 rel/customize/data/lbl_3_bss_7EBB0.c:
 	.bss        start:0x0007EBB0 end:0x0007EC08 align:16
 
@@ -924,17 +921,173 @@ rel/customize/data/lbl_3_bss_7EE40.c:
 rel/customize/data/lbl_3_bss_87000.c:
 	.bss        start:0x00087000 end:0x00087040 align:32
 
-rel/customize/data/lbl_3_bss_A2410.c:
-	.bss        start:0x000A2410 end:0x000A2438 align:16
+rel/customize/data/lbl_3_data_0.c:
+	.data       start:0x00000000 end:0x00000F18 align:8
 
-rel/customize/data/lbl_3_bss_A2438.c:
-	.bss        start:0x000A2438 end:0x000A2458 align:8
+rel/customize/data/lbl_3_data_11D8.c:
+	.data       start:0x000011D8 end:0x00001230 align:8
 
-rel/customize/data/lbl_3_bss_A2458.c:
-	.bss        start:0x000A2458 end:0x000A2460 align:8
+rel/customize/data/lbl_3_data_1230.c:
+	.data       start:0x00001230 end:0x000015D8 align:8
 
-rel/customize/data/lbl_3_bss_A2460.c:
-	.bss        start:0x000A2460 end:0x000A2468 align:32
+rel/customize/data/lbl_3_data_15D8.c:
+	.data       start:0x000015D8 end:0x000015F0 align:8
 
-rel/customize/data/lbl_3_bss_A2468.c:
-	.bss        start:0x000A2468 end:0x000A24B6 align:8
+rel/customize/data/lbl_3_data_1668.c:
+	.data       start:0x00001668 end:0x000018E4 align:8
+
+rel/customize/data/lbl_3_data_1930.c:
+	.data       start:0x00001930 end:0x00001958 align:8
+
+rel/customize/data/lbl_3_data_1958.c:
+	.data       start:0x00001958 end:0x00001970 align:8
+
+rel/customize/data/lbl_3_data_1970.c:
+	.data       start:0x00001970 end:0x000019F8 align:8
+
+rel/customize/data/lbl_3_data_1A10.c:
+	.data       start:0x00001A10 end:0x00001A18 align:8
+
+rel/customize/data/lbl_3_data_1A18.c:
+	.data       start:0x00001A18 end:0x00001A30 align:8
+
+rel/customize/data/lbl_3_data_1A30.c:
+	.data       start:0x00001A30 end:0x00001A40 align:8
+
+rel/customize/data/lbl_3_data_1A40.c:
+	.data       start:0x00001A40 end:0x00001A70 align:8
+
+rel/customize/data/lbl_3_data_1A70.c:
+	.data       start:0x00001A70 end:0x00001C70 align:8
+
+rel/customize/data/lbl_3_data_1C70.c:
+	.data       start:0x00001C70 end:0x00001C98 align:8
+
+rel/customize/data/lbl_3_data_1C98.c:
+	.data       start:0x00001C98 end:0x00001CA8 align:8
+
+rel/customize/data/lbl_3_data_1CA8.c:
+	.data       start:0x00001CA8 end:0x00001D10 align:8
+
+rel/customize/data/lbl_3_data_1D10.c:
+	.data       start:0x00001D10 end:0x00001E50 align:8
+
+rel/customize/data/lbl_3_data_1E50.c:
+	.data       start:0x00001E50 end:0x00001E68 align:8
+
+rel/customize/data/lbl_3_data_1E68.c:
+	.data       start:0x00001E68 end:0x00001EA8 align:8
+
+rel/customize/data/lbl_3_data_1EA8.c:
+	.data       start:0x00001EA8 end:0x00001EB0 align:8
+
+rel/customize/data/lbl_3_data_1EB0.c:
+	.data       start:0x00001EB0 end:0x00002DE0 align:8
+
+rel/customize/data/lbl_3_data_2DE0.c:
+	.data       start:0x00002DE0 end:0x00002E80 align:8
+
+rel/customize/data/lbl_3_data_2E80.c:
+	.data       start:0x00002E80 end:0x00002E90 align:8
+
+rel/customize/data/lbl_3_data_2E90.c:
+	.data       start:0x00002E90 end:0x00002EC0 align:8
+
+rel/customize/data/lbl_3_data_2EC0.c:
+	.data       start:0x00002EC0 end:0x00002EE0 align:8
+
+rel/customize/data/lbl_3_data_2EE0.c:
+	.data       start:0x00002EE0 end:0x00002F20 align:8
+
+rel/customize/data/lbl_3_data_2F20.c:
+	.data       start:0x00002F20 end:0x00002F50 align:8
+
+rel/customize/data/lbl_3_data_2F50.c:
+	.data       start:0x00002F50 end:0x00002F78 align:8
+
+rel/customize/data/lbl_3_data_2F78.c:
+	.data       start:0x00002F78 end:0x00003068 align:8
+
+rel/customize/data/lbl_3_data_3068.c:
+	.data       start:0x00003068 end:0x000030C8 align:8
+
+rel/customize/data/lbl_3_data_30C8.c:
+	.data       start:0x000030C8 end:0x000030E0 align:8
+
+rel/customize/data/lbl_3_data_30E0.c:
+	.data       start:0x000030E0 end:0x00003120 align:8
+
+rel/customize/data/lbl_3_data_3120.c:
+	.data       start:0x00003120 end:0x00003168 align:8
+
+rel/customize/data/lbl_3_data_3168.c:
+	.data       start:0x00003168 end:0x00003180 align:8
+
+rel/customize/data/lbl_3_data_3180.c:
+	.data       start:0x00003180 end:0x0000318C align:8
+
+rel/customize/data/lbl_3_data_32F0.c:
+	.data       start:0x000032F0 end:0x00003308 align:8
+
+rel/customize/data/lbl_3_data_3320.c:
+	.data       start:0x00003320 end:0x00003360 align:8
+
+rel/customize/data/lbl_3_data_3360.c:
+	.data       start:0x00003360 end:0x00003370 align:8
+
+rel/customize/data/lbl_3_data_3370.c:
+	.data       start:0x00003370 end:0x00003380 align:8
+
+rel/customize/data/lbl_3_data_3380.c:
+	.data       start:0x00003380 end:0x00003388 align:8
+
+rel/customize/data/lbl_3_data_3388.c:
+	.data       start:0x00003388 end:0x00003398 align:8
+
+rel/customize/data/lbl_3_data_3398.c:
+	.data       start:0x00003398 end:0x000033A8 align:8
+
+rel/customize/data/lbl_3_data_33A8.c:
+	.data       start:0x000033A8 end:0x000033F0 align:8
+
+rel/customize/data/lbl_3_data_33F0.c:
+	.data       start:0x000033F0 end:0x000033F8 align:8
+
+rel/customize/data/lbl_3_data_33F8.c:
+	.data       start:0x000033F8 end:0x00003400 align:8
+
+rel/customize/data/lbl_3_data_3400.c:
+	.data       start:0x00003400 end:0x00003408 align:8
+
+rel/customize/data/lbl_3_data_3408.c:
+	.data       start:0x00003408 end:0x00003410 align:8
+
+rel/customize/data/lbl_3_data_3410.c:
+	.data       start:0x00003410 end:0x00003420 align:8
+
+rel/customize/data/lbl_3_data_3420.c:
+	.data       start:0x00003420 end:0x000035B0 align:8
+
+rel/customize/data/lbl_3_data_3618.c:
+	.data       start:0x00003618 end:0x00003738 align:8
+
+rel/customize/data/lbl_3_data_3780.c:
+	.data       start:0x00003780 end:0x00004648 align:8
+
+rel/customize/data/lbl_3_data_4B70.c:
+	.data       start:0x00004B70 end:0x00004BB4 align:8
+
+rel/customize/data/lbl_3_rodata_0.c:
+	.rodata     start:0x00000000 end:0x00000044 align:8
+
+rel/customize/data/lbl_3_rodata_248.c:
+	.rodata     start:0x00000248 end:0x00000378 align:8
+
+rel/customize/data/lbl_3_rodata_4C8.c:
+	.rodata     start:0x000004C8 end:0x00000768 align:8
+
+rel/customize/data/lbl_3_rodata_800.c:
+	.rodata     start:0x00000800 end:0x000008F0 align:8
+
+rel/customize/data/lbl_3_rodata_8F0.c:
+	.rodata     start:0x000008F0 end:0x00000960 align:8

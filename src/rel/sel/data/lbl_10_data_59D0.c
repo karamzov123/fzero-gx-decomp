@@ -3,9 +3,6 @@
 
 extern char lbl_10_data_59D0[100];
 extern char lbl_10_data_5A34[17];
-extern char lbl_10_data_5A48[17];
-extern char lbl_10_data_5A5C[17];
-extern char lbl_10_data_5A70[17];
 
 
 
@@ -18,22 +15,4 @@ __declspec(section ".data") char lbl_10_data_59D0[100] __attribute__((aligned(8)
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_5A34[17] __attribute__((aligned(4))) = "CREATE_CARD\t GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5A48[17] __attribute__((aligned(8))) = "CREATE_CARD\t FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5A5C[17] __attribute__((aligned(4))) = "CREATE_CARD\t SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5A70[17] __attribute__((aligned(8))) = "CREATE_CARD\t ITA";
 #pragma explicit_zero_data reset

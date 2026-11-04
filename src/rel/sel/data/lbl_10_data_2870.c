@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_2870[14];
-extern char lbl_10_data_2880[18];
-extern char lbl_10_data_2894[18];
-extern char lbl_10_data_28A8[18];
-extern char lbl_10_data_28BC[18];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2870[14] __attribute__((aligned(8))) = "Course Select";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2880[18] __attribute__((aligned(8))) = "Course Select GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2894[18] __attribute__((aligned(4))) = "Course Select FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_28A8[18] __attribute__((aligned(8))) = "Course Select SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_28BC[18] __attribute__((aligned(4))) = "Course Select ITA";
 #pragma explicit_zero_data reset

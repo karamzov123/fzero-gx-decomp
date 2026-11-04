@@ -2,38 +2,10 @@
 #include "types.h"
 
 extern char lbl_10_data_31F8[104];
-extern char lbl_10_data_3260[12];
-extern char lbl_10_data_326C[12];
-extern char lbl_10_data_3278[12];
-extern char lbl_10_data_3284[12];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_31F8[104] __attribute__((aligned(8))) = "This Memory Card can not be used. \n\tThere is no F-ZERO GX game data. \n\tPlease remove the Mem"
     "ory Card. \n";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3260[12] __attribute__((aligned(8))) = "No File GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_326C[12] __attribute__((aligned(4))) = "No File FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3278[12] __attribute__((aligned(8))) = "No File SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3284[12] __attribute__((aligned(4))) = "No File ITA";
 #pragma explicit_zero_data reset

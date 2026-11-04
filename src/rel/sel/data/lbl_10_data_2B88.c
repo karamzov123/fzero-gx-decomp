@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_2B88[8];
-extern char lbl_10_data_2B90[12];
-extern char lbl_10_data_2B9C[12];
-extern char lbl_10_data_2BA8[12];
-extern char lbl_10_data_2BB4[12];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2B88[8] __attribute__((aligned(8))) = "Whf Cup";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2B90[12] __attribute__((aligned(8))) = "Whf Cup GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2B9C[12] __attribute__((aligned(4))) = "Whf Cup FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2BA8[12] __attribute__((aligned(8))) = "Whf Cup SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2BB4[12] __attribute__((aligned(4))) = "Whf Cup ITA";
 #pragma explicit_zero_data reset

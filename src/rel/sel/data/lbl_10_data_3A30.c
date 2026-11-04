@@ -3,9 +3,6 @@
 
 extern char lbl_10_data_3A30[82];
 extern char lbl_10_data_3A84[17];
-extern char lbl_10_data_3A98[17];
-extern char lbl_10_data_3AAC[17];
-extern char lbl_10_data_3AC0[17];
 
 
 
@@ -17,22 +14,4 @@ __declspec(section ".data") char lbl_10_data_3A30[82] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_3A84[17] __attribute__((aligned(4))) = "Can not read GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3A98[17] __attribute__((aligned(8))) = "Can not read FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3AAC[17] __attribute__((aligned(4))) = "Can not read SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3AC0[17] __attribute__((aligned(8))) = "Can not read ITA";
 #pragma explicit_zero_data reset

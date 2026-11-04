@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_6A48[32];
-extern char lbl_10_data_6A68[36];
-extern char lbl_10_data_6A8C[36];
-extern char lbl_10_data_6AB0[36];
-extern char lbl_10_data_6AD4[36];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_6A48[32] __attribute__((aligned(8))) = "OK to erase this course record\077";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_6A68[36] __attribute__((aligned(8))) = "GER OK to erase this course record\077";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_6A8C[36] __attribute__((aligned(4))) = "FRE OK to erase this course record\077";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_6AB0[36] __attribute__((aligned(8))) = "SPA OK to erase this course record\077";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_6AD4[36] __attribute__((aligned(4))) = "ITA OK to erase this course record\077";
 #pragma explicit_zero_data reset

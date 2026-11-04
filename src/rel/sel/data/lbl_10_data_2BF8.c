@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_2BF8[15];
-extern char lbl_10_data_2C08[19];
-extern char lbl_10_data_2C1C[19];
-extern char lbl_10_data_2C30[19];
-extern char lbl_10_data_2C44[19];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2BF8[15] __attribute__((aligned(8))) = "Machine Select";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2C08[19] __attribute__((aligned(8))) = "Machine Select GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2C1C[19] __attribute__((aligned(4))) = "Machine Select FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2C30[19] __attribute__((aligned(8))) = "Machine Select SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2C44[19] __attribute__((aligned(4))) = "Machine Select ITA";
 #pragma explicit_zero_data reset

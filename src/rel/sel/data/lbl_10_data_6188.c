@@ -3,11 +3,6 @@
 
 extern char lbl_10_data_6188[11];
 extern char lbl_10_data_6194[12];
-extern char lbl_10_data_61A0[5];
-extern char lbl_10_data_61A8[13];
-extern char lbl_10_data_61B8[6];
-extern char lbl_10_data_61C0[29];
-extern char lbl_10_data_61E0[23];
 
 
 
@@ -19,34 +14,4 @@ __declspec(section ".data") char lbl_10_data_6188[11] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_6194[12] __attribute__((aligned(4))) = "PILOT POINT";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_61A0[5] __attribute__((aligned(8))) = "%dpt";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_61A8[13] __attribute__((aligned(8))) = "PILOT POINTS";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_61B8[6] __attribute__((aligned(8))) = "%dpts";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_61C0[29] __attribute__((aligned(8))) = "More points to get the parts";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_61E0[23] __attribute__((aligned(8))) = "You can get the parts.";
 #pragma explicit_zero_data reset

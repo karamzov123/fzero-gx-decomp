@@ -2,9 +2,18 @@
 #include "types.h"
 
 extern char lbl_10_data_6038[12];
+extern u8 lbl_10_data_6044[];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_6038[12] __attribute__((aligned(8))) = "Rival Ghost";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_10_data_6044[] __attribute__((aligned(4))) = {
+    0x83U, 0x89U, 0x83U, 0x43U, 0x83U, 0x6FU, 0x83U, 0x8BU, 0x83U, 0x53U, 0x81U, 0x5BU, 0x83U, 0x58U, 0x83U, 0x67U, 0x00U, 0x00U, 0x00U, 0x00U
+};
 #pragma explicit_zero_data reset

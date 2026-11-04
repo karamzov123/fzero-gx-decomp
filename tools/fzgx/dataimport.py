@@ -608,6 +608,12 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 retail_regions = regions(p, first['module'], first['section'])
                 if any(base + len(raw) == end for base, raw in retail_regions):
                     padded_end = end
+                for base, raw in retail_regions:
+                    if raw and base <= first['address'] < base + len(raw):
+                        if end > base + len(raw):
+                            raise ValueError('object extends past the retail section end')
+                        # An unaligned section end is the split end; never round past it.
+                        padded_end = min(padded_end, base + len(raw))
                 # NOBITS sections have no retail bytes to compare against: a BSS
                 # group that nothing follows is the section tail, and rounding it
                 # up would extend the split past the section (dtk rejects that).
@@ -671,7 +677,10 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 # off the compiler's section alignment because its predecessor is owned
                 # elsewhere. Retry it as independent chunks that each begin at an aligned
                 # member: every chunk is still compiled and validated on its own.
-                cuts = [i for i, (r, _) in enumerate(group) if i and r['address'] % 8 == 0]
+                # Cut only where the previous member's word-rounded end meets the cut:
+                # a padding gap between chunks would belong to no split.
+                cuts = [i for i, (r, _) in enumerate(group) if i and r['address'] % 8 == 0
+                        and ((group[i - 1][0]['address'] + group[i - 1][0]['size'] + 3) & -4) == r['address']]
                 if not cuts and not regenerate and any(r['method'] == 'declared-bss' for r, _ in group):
                     # A header type that does not reproduce the retail extent: keep the
                     # storage as an opaque byte array of the retail size instead.
@@ -709,6 +718,23 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                     pending.append(retry)
         if not regenerate:
             records = isolate_guard(p, records, skipped)
+            # An existing data unit is re-imported whole or not at all: if a retry or
+            # the isolation guard dropped any of its members, leave the unit as it is.
+            while True:
+                kept = {(r['module'], r['symbol']) for r in records}
+                partial = set()
+                for r in records:
+                    owner = p.unit_of(p.find_symbol(r['symbol'], r['module']))
+                    unit = p.unit_record(owner) if owner else None
+                    if unit and unit.get('data') and any((r['module'], name) not in kept for name in unit['symbols']):
+                        partial.add(owner)
+                if not partial:
+                    break
+                drop = [r for r in records if p.unit_of(p.find_symbol(r['symbol'], r['module'])) in partial]
+                records = [r for r in records if r not in drop]
+                skipped.extend(dict(symbol=r['symbol'], reason='existing data unit only partly importable')
+                               for r in drop)
+                records = isolate_guard(p, records, skipped)
         applied = bool(apply and records and not (regenerate and skipped))
         if applied:
             _install(p, records, scratch)
@@ -953,7 +979,10 @@ def _install(p, records, scratch):
                         ['build/tools/dtk', 'shasum', '-q', '-c', f'config/{p.version}/build.sha1']):
             cp = oracle.run(command, timeout=1800)
             if cp.returncode:
-                raise ValueError((cp.stdout + cp.stderr)[-6000:])
+                # mwld prints one "section ignored" warning per object; keep the real error.
+                log = re.sub(r'### mwldeppc\.exe Linker Warning:\n#\s+Section \'[^\']*\' is unknown\. Section ignored\.\n',
+                             '', cp.stdout + cp.stderr)
+                raise ValueError(log[-6000:])
         # Prove the actual Ninja objects too, including BSS layout (no file bytes).
         fresh = Project(p.version)
         for r in records:

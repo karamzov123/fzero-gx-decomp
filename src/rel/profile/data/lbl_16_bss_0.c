@@ -11,6 +11,21 @@ extern u8 lbl_16_bss_220[44608];
 extern s16 lbl_16_bss_B060[41];
 extern u16 lbl_16_bss_B0B2;
 extern u32 lbl_16_bss_B0B4;
+extern u8 lbl_16_bss_B0B8[503808];
+extern u16 lbl_16_bss_860B8[4];
+extern u8 lbl_16_bss_860C0[8];
+
+
+/* Storage extent is known; element/field types are not recovered. */
+__declspec(section ".data") u8 lbl_16_bss_860C0[8] __attribute__((aligned(32)));
+
+
+
+__declspec(section ".data") u16 lbl_16_bss_860B8[4] __attribute__((aligned(8)));
+
+
+/* Storage extent is known; element/field types are not recovered. */
+__declspec(section ".data") u8 lbl_16_bss_B0B8[503808] __attribute__((aligned(8)));
 
 
 

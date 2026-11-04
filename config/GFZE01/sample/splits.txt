@@ -15,3 +15,6 @@ rel/sample/fn_18_444.c:
 
 rel/sample/_prolog.c:
 	.text       start:0x00000000 end:0x000003FC align:4
+
+rel/sample/data/lbl_18_section4_0.c:
+	.rodata     start:0x00000000 end:0x00000005 align:8

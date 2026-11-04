@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_49D0[22];
-extern char lbl_10_data_49E8[22];
-extern char lbl_10_data_4A00[22];
-extern char lbl_10_data_4A18[22];
-extern char lbl_10_data_4A30[22];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_49D0[22] __attribute__((aligned(8))) = "Failed to read/write\n";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_49E8[22] __attribute__((aligned(8))) = "Read Write falied GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4A00[22] __attribute__((aligned(8))) = "Read Write failed FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4A18[22] __attribute__((aligned(8))) = "Read Write failed SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4A30[22] __attribute__((aligned(8))) = "Read Write failed ITA";
 #pragma explicit_zero_data reset

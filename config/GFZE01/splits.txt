@@ -5802,12 +5802,6 @@ dol/data/lbl_8015BE40.c:
 dol/data/lbl_80187118.c:
 	.bss        start:0x80187118 end:0x80187330 align:8
 
-dol/data/lbl_80187380.c:
-	.bss        start:0x80187380 end:0x801873C0 align:8
-
-dol/data/lbl_8019E140.c:
-	.bss        start:0x8019E140 end:0x8019E150 align:8
-
 dol/fn_8007A440.c:
 	.text       start:0x8007A440 end:0x8007A710 align:4
 
@@ -6555,9 +6549,6 @@ dol/data/lbl_8015CF68.c:
 dol/data/lbl_80176160.c:
 	.bss        start:0x80176160 end:0x80177BA0 align:8
 
-dol/data/lbl_80187330.c:
-	.bss        start:0x80187330 end:0x80187380 align:8
-
 dol/data/lbl_8019E150.c:
 	.bss        start:0x8019E150 end:0x801A50B8 align:8
 
@@ -6599,3 +6590,126 @@ dol/data/lbl_8015B100.c:
 
 dol/data/lbl_8015B400.c:
 	.data       start:0x8015B400 end:0x8015B438 align:32
+
+dol/data/lbl_80187330.c:
+	.bss        start:0x80187330 end:0x80187370 align:8
+
+dol/data/lbl_80187370.c:
+	.bss        start:0x80187370 end:0x80187380 align:8
+
+dol/data/lbl_80187380.c:
+	.bss        start:0x80187380 end:0x801873C0 align:8
+
+dol/data/lbl_801873C0.c:
+	.bss        start:0x801873C0 end:0x801873D8 align:8
+
+dol/data/lbl_801873D8.c:
+	.bss        start:0x801873D8 end:0x80187430 align:8
+
+dol/data/lbl_80187430.c:
+	.bss        start:0x80187430 end:0x801878B8 align:8
+
+dol/data/lbl_801878B8.c:
+	.bss        start:0x801878B8 end:0x801878C8 align:8
+
+dol/data/lbl_801878C8.c:
+	.bss        start:0x801878C8 end:0x80188870 align:8
+
+dol/data/lbl_80188870.c:
+	.bss        start:0x80188870 end:0x80188970 align:8
+
+dol/data/lbl_80188970.c:
+	.bss        start:0x80188970 end:0x80188A78 align:8
+
+dol/data/lbl_80188A78.c:
+	.bss        start:0x80188A78 end:0x80188A88 align:8
+
+dol/data/lbl_80188A88.c:
+	.bss        start:0x80188A88 end:0x8018AE10 align:8
+
+dol/data/lbl_8018AE10.c:
+	.bss        start:0x8018AE10 end:0x8018AE18 align:8
+
+dol/data/lbl_8018AE18.c:
+	.bss        start:0x8018AE18 end:0x8018B2A0 align:8
+
+dol/data/lbl_8018B2A0.c:
+	.bss        start:0x8018B2A0 end:0x8018F2A8 align:8
+
+dol/data/lbl_8018F2A8.c:
+	.bss        start:0x8018F2A8 end:0x8018FEB0 align:8
+
+dol/data/lbl_8018FEB0.c:
+	.bss        start:0x8018FEB0 end:0x8018FEE0 align:8
+
+dol/data/lbl_8018FEE0.c:
+	.bss        start:0x8018FEE0 end:0x8018FF60 align:8
+
+dol/data/lbl_8018FF60.c:
+	.bss        start:0x8018FF60 end:0x8018FF68 align:8
+
+dol/data/lbl_8018FF68.c:
+	.bss        start:0x8018FF68 end:0x8018FF70 align:8
+
+dol/data/lbl_8018FF70.c:
+	.bss        start:0x8018FF70 end:0x8018FF78 align:8
+
+dol/data/lbl_8018FF78.c:
+	.bss        start:0x8018FF78 end:0x80190178 align:8
+
+dol/data/lbl_80190178.c:
+	.bss        start:0x80190178 end:0x80190B70 align:8
+
+dol/data/lbl_80190B70.c:
+	.bss        start:0x80190B70 end:0x80190C78 align:8
+
+dol/data/lbl_80190C78.c:
+	.bss        start:0x80190C78 end:0x80190C80 align:8
+
+dol/data/lbl_80190C80.c:
+	.bss        start:0x80190C80 end:0x80190C88 align:8
+
+dol/data/lbl_80190C88.c:
+	.bss        start:0x80190C88 end:0x80192BD0 align:8
+
+dol/data/lbl_80192BD0.c:
+	.bss        start:0x80192BD0 end:0x80192D68 align:8
+
+dol/data/lbl_80192D68.c:
+	.bss        start:0x80192D68 end:0x801932A8 align:8
+
+dol/data/lbl_801932A8.c:
+	.bss        start:0x801932A8 end:0x80193308 align:8
+
+dol/data/lbl_80193308.c:
+	.bss        start:0x80193308 end:0x80193368 align:8
+
+dol/data/lbl_80193368.c:
+	.bss        start:0x80193368 end:0x801934A0 align:8
+
+dol/data/lbl_801934A0.c:
+	.bss        start:0x801934A0 end:0x80193680 align:8
+
+dol/data/lbl_80193680.c:
+	.bss        start:0x80193680 end:0x80193860 align:8
+
+dol/data/lbl_80193860.c:
+	.bss        start:0x80193860 end:0x80193B08 align:8
+
+dol/data/lbl_80193B08.c:
+	.bss        start:0x80193B08 end:0x80193B28 align:8
+
+dol/data/lbl_80193B28.c:
+	.bss        start:0x80193B28 end:0x80193B48 align:8
+
+dol/data/lbl_80193B48.c:
+	.bss        start:0x80193B48 end:0x80199670 align:8
+
+dol/data/lbl_80199670.c:
+	.bss        start:0x80199670 end:0x8019DF90 align:8
+
+dol/data/lbl_8019DF90.c:
+	.bss        start:0x8019DF90 end:0x8019E140 align:8
+
+dol/data/lbl_8019E140.c:
+	.bss        start:0x8019E140 end:0x8019E150 align:8

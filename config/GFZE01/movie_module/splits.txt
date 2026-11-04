@@ -1944,24 +1944,6 @@ rel/movie_module/fn_12_3CB74.c:
 rel/movie_module/fn_12_3D144.c:
 	.text       start:0x0003D144 end:0x0003D624 align:4
 
-rel/movie_module/data/lbl_12_bss_DB0.c:
-	.bss        start:0x00000DB0 end:0x00004DB0 align:16
-
-rel/movie_module/data/lbl_12_bss_9710.c:
-	.bss        start:0x00009710 end:0x0001B730 align:16
-
-rel/movie_module/data/lbl_12_bss_BB0.c:
-	.bss        start:0x00000BB0 end:0x00000DB0 align:8
-
-rel/movie_module/data/lbl_12_bss_63B0.c:
-	.bss        start:0x000063B0 end:0x000063F0 align:16
-
-rel/movie_module/data/lbl_12_bss_6948.c:
-	.bss        start:0x00006948 end:0x00006988 align:8
-
-rel/movie_module/data/lbl_12_bss_7A50.c:
-	.bss        start:0x00007A50 end:0x00007C58 align:16
-
 rel/movie_module/fn_12_21C00.c:
 	.text       start:0x00021C00 end:0x00021D30 align:4
 
@@ -2348,6 +2330,222 @@ rel/movie_module/fn_12_7870.c:
 
 rel/movie_module/fn_12_11204.c:
 	.text       start:0x00011204 end:0x00011254 align:4
+
+rel/movie_module/data/lbl_12_bss_0.c:
+	.bss        start:0x00000000 end:0x00000008 align:32
+
+rel/movie_module/data/lbl_12_bss_8.c:
+	.bss        start:0x00000008 end:0x00000010 align:8
+
+rel/movie_module/data/lbl_12_bss_10.c:
+	.bss        start:0x00000010 end:0x000004C0 align:16
+
+rel/movie_module/data/lbl_12_bss_4C0.c:
+	.bss        start:0x000004C0 end:0x00000568 align:32
+
+rel/movie_module/data/lbl_12_bss_568.c:
+	.bss        start:0x00000568 end:0x00000798 align:8
+
+rel/movie_module/data/lbl_12_bss_798.c:
+	.bss        start:0x00000798 end:0x00000BA0 align:8
+
+rel/movie_module/data/lbl_12_bss_BA0.c:
+	.bss        start:0x00000BA0 end:0x00000BA8 align:32
+
+rel/movie_module/data/lbl_12_bss_BA8.c:
+	.bss        start:0x00000BA8 end:0x00000DB0 align:8
+
+rel/movie_module/data/lbl_12_bss_DB0.c:
+	.bss        start:0x00000DB0 end:0x00004DB0 align:16
+
+rel/movie_module/data/lbl_12_bss_4DB0.c:
+	.bss        start:0x00004DB0 end:0x00004DB8 align:16
+
+rel/movie_module/data/lbl_12_bss_4DB8.c:
+	.bss        start:0x00004DB8 end:0x00004DC0 align:8
+
+rel/movie_module/data/lbl_12_bss_4DC0.c:
+	.bss        start:0x00004DC0 end:0x00004E00 align:32
+
+rel/movie_module/data/lbl_12_bss_4E00.c:
+	.bss        start:0x00004E00 end:0x00004E40 align:32
+
+rel/movie_module/data/lbl_12_bss_4E40.c:
+	.bss        start:0x00004E40 end:0x00004E60 align:32
+
+rel/movie_module/data/lbl_12_bss_4E60.c:
+	.bss        start:0x00004E60 end:0x00004E78 align:32
+
+rel/movie_module/data/lbl_12_bss_4E78.c:
+	.bss        start:0x00004E78 end:0x00005280 align:8
+
+rel/movie_module/data/lbl_12_bss_5280.c:
+	.bss        start:0x00005280 end:0x000052F0 align:32
+
+rel/movie_module/data/lbl_12_bss_52F0.c:
+	.bss        start:0x000052F0 end:0x000054F0 align:16
+
+rel/movie_module/data/lbl_12_bss_54F0.c:
+	.bss        start:0x000054F0 end:0x000058F0 align:16
+
+rel/movie_module/data/lbl_12_bss_58F0.c:
+	.bss        start:0x000058F0 end:0x00005CF0 align:16
+
+rel/movie_module/data/lbl_12_bss_5CF0.c:
+	.bss        start:0x00005CF0 end:0x00005D70 align:16
+
+rel/movie_module/data/lbl_12_bss_5D70.c:
+	.bss        start:0x00005D70 end:0x000061F0 align:16
+
+rel/movie_module/data/lbl_12_bss_61F0.c:
+	.bss        start:0x000061F0 end:0x00006230 align:16
+
+rel/movie_module/data/lbl_12_bss_6230.c:
+	.bss        start:0x00006230 end:0x00006330 align:16
+
+rel/movie_module/data/lbl_12_bss_6330.c:
+	.bss        start:0x00006330 end:0x000063B0 align:16
+
+rel/movie_module/data/lbl_12_bss_63B0.c:
+	.bss        start:0x000063B0 end:0x000063F0 align:16
+
+rel/movie_module/data/lbl_12_bss_63F0.c:
+	.bss        start:0x000063F0 end:0x00006430 align:16
+
+rel/movie_module/data/lbl_12_bss_6430.c:
+	.bss        start:0x00006430 end:0x00006530 align:16
+
+rel/movie_module/data/lbl_12_bss_6530.c:
+	.bss        start:0x00006530 end:0x00006570 align:16
+
+rel/movie_module/data/lbl_12_bss_6570.c:
+	.bss        start:0x00006570 end:0x00006670 align:16
+
+rel/movie_module/data/lbl_12_bss_6670.c:
+	.bss        start:0x00006670 end:0x000066F0 align:16
+
+rel/movie_module/data/lbl_12_bss_66F0.c:
+	.bss        start:0x000066F0 end:0x000068F0 align:16
+
+rel/movie_module/data/lbl_12_bss_68F0.c:
+	.bss        start:0x000068F0 end:0x000068F8 align:16
+
+rel/movie_module/data/lbl_12_bss_68F8.c:
+	.bss        start:0x000068F8 end:0x00006900 align:8
+
+rel/movie_module/data/lbl_12_bss_6900.c:
+	.bss        start:0x00006900 end:0x00006908 align:32
+
+rel/movie_module/data/lbl_12_bss_6908.c:
+	.bss        start:0x00006908 end:0x00006910 align:8
+
+rel/movie_module/data/lbl_12_bss_6910.c:
+	.bss        start:0x00006910 end:0x00006918 align:16
+
+rel/movie_module/data/lbl_12_bss_6918.c:
+	.bss        start:0x00006918 end:0x00006920 align:8
+
+rel/movie_module/data/lbl_12_bss_6920.c:
+	.bss        start:0x00006920 end:0x00006928 align:32
+
+rel/movie_module/data/lbl_12_bss_6928.c:
+	.bss        start:0x00006928 end:0x00006930 align:8
+
+rel/movie_module/data/lbl_12_bss_6930.c:
+	.bss        start:0x00006930 end:0x00006938 align:16
+
+rel/movie_module/data/lbl_12_bss_6938.c:
+	.bss        start:0x00006938 end:0x00006940 align:8
+
+rel/movie_module/data/lbl_12_bss_6940.c:
+	.bss        start:0x00006940 end:0x00006948 align:32
+
+rel/movie_module/data/lbl_12_bss_6948.c:
+	.bss        start:0x00006948 end:0x00006968 align:8
+
+rel/movie_module/data/lbl_12_bss_6968.c:
+	.bss        start:0x00006968 end:0x00006988 align:8
+
+rel/movie_module/data/lbl_12_bss_6988.c:
+	.bss        start:0x00006988 end:0x00006990 align:8
+
+rel/movie_module/data/lbl_12_bss_6990.c:
+	.bss        start:0x00006990 end:0x000069B0 align:16
+
+rel/movie_module/data/lbl_12_bss_69B0.c:
+	.bss        start:0x000069B0 end:0x00007250 align:16
+
+rel/movie_module/data/lbl_12_bss_7250.c:
+	.bss        start:0x00007250 end:0x00007A50 align:16
+
+rel/movie_module/data/lbl_12_bss_7A50.c:
+	.bss        start:0x00007A50 end:0x00007C58 align:16
+
+rel/movie_module/data/lbl_12_bss_7C58.c:
+	.bss        start:0x00007C58 end:0x00007E88 align:8
+
+rel/movie_module/data/lbl_12_bss_7E88.c:
+	.bss        start:0x00007E88 end:0x000096A0 align:8
+
+rel/movie_module/data/lbl_12_bss_96A0.c:
+	.bss        start:0x000096A0 end:0x00009710 align:32
+
+rel/movie_module/data/lbl_12_bss_9710.c:
+	.bss        start:0x00009710 end:0x0001B730 align:16
+
+rel/movie_module/data/lbl_12_bss_1B730.c:
+	.bss        start:0x0001B730 end:0x0001B738 align:16
+
+rel/movie_module/data/lbl_12_bss_1B738.c:
+	.bss        start:0x0001B738 end:0x0001B740 align:8
+
+rel/movie_module/data/lbl_12_bss_1B740.c:
+	.bss        start:0x0001B740 end:0x0001B758 align:32
+
+rel/movie_module/data/lbl_12_bss_1B758.c:
+	.bss        start:0x0001B758 end:0x0001B770 align:8
+
+rel/movie_module/data/lbl_12_bss_1B770.c:
+	.bss        start:0x0001B770 end:0x0001B778 align:16
+
+rel/movie_module/data/lbl_12_bss_1B778.c:
+	.bss        start:0x0001B778 end:0x0001B780 align:8
+
+rel/movie_module/data/lbl_12_bss_1B780.c:
+	.bss        start:0x0001B780 end:0x0001B8A0 align:32
+
+rel/movie_module/data/lbl_12_bss_1B8A0.c:
+	.bss        start:0x0001B8A0 end:0x0001B9A0 align:32
+
+rel/movie_module/data/lbl_12_bss_1B9A0.c:
+	.bss        start:0x0001B9A0 end:0x0001B9A8 align:32
+
+rel/movie_module/data/lbl_12_bss_1B9A8.c:
+	.bss        start:0x0001B9A8 end:0x0001B9B0 align:8
+
+rel/movie_module/data/lbl_12_bss_1B9B0.c:
+	.bss        start:0x0001B9B0 end:0x0001B9D8 align:16
+
+rel/movie_module/data/lbl_12_bss_1B9D8.c:
+	.bss        start:0x0001B9D8 end:0x0001CC58 align:8
+
+rel/movie_module/data/lbl_12_bss_1CC58.c:
+	.bss        start:0x0001CC58 end:0x0001CC60 align:8
+
+rel/movie_module/data/lbl_12_bss_1CC60.c:
+	.bss        start:0x0001CC60 end:0x0001CC80 align:32
+
+rel/movie_module/data/lbl_12_bss_1CC80.c:
+	.bss        start:0x0001CC80 end:0x0001E088 align:8
+
+rel/movie_module/data/lbl_12_bss_1E088.c:
+	.bss        start:0x0001E088 end:0x0001E3DC align:8
+
+rel/movie_module/data/lbl_12_data_68.c:
+	.data       start:0x00000068 end:0x000000B0 align:8
+
+rel/movie_module/data/lbl_12_data_D38.c:
+	.data       start:0x00000D38 end:0x00000EA0 align:8
 
 rel/movie_module/data/lbl_12_rodata_0.c:
 	.rodata     start:0x00000000 end:0x000004F0 align:8

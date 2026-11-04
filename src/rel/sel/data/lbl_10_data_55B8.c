@@ -2,46 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_55B8[31];
-extern char lbl_10_data_55D8[209];
-extern char lbl_10_data_56AC[24];
-extern char lbl_10_data_56C4[24];
-extern char lbl_10_data_56DC[24];
-extern char lbl_10_data_56F4[24];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_55B8[31] __attribute__((aligned(8))) = "You need %d coin(s) to renew. ";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_55D8[209] __attribute__((aligned(8))) = "Renewing your F-ZERO LICENSE CARD. \nYour new F-ZERO LICENSE CARD will be issued after the game "
-    "play. \nYour ex-F-ZERO LICENSE CARD will not be usable after transfer. \nPlease retrieve your F-"
-    "ZERO LICENSE CARD. ";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_56AC[24] __attribute__((aligned(4))) = "RENEW_LICENSE_CARD\t GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_56C4[24] __attribute__((aligned(4))) = "RENEW_LICENSE_CARD\t FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_56DC[24] __attribute__((aligned(4))) = "RENEW_LICENSE_CARD\t SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_56F4[24] __attribute__((aligned(4))) = "RENEW_LICENSE_CARD\t ITA";
 #pragma explicit_zero_data reset

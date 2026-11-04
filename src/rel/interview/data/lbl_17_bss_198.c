@@ -3,6 +3,11 @@
 
 extern u32 lbl_17_bss_198[95];
 extern u8 lbl_17_bss_314[64];
+extern f32 lbl_17_bss_354[7];
+
+
+
+__declspec(section ".data") f32 lbl_17_bss_354[7] __attribute__((aligned(4)));
 
 
 

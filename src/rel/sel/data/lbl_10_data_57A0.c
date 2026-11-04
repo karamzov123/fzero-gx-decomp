@@ -3,9 +3,6 @@
 
 extern char lbl_10_data_57A0[83];
 extern char lbl_10_data_57F4[28];
-extern char lbl_10_data_5810[28];
-extern char lbl_10_data_582C[28];
-extern char lbl_10_data_5848[28];
 
 
 
@@ -17,22 +14,4 @@ __declspec(section ".data") char lbl_10_data_57A0[83] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_57F4[28] __attribute__((aligned(4))) = "NOT_RENEW_LICENSE_CARD\t GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5810[28] __attribute__((aligned(8))) = "NOT_RENEW_LICENSE_CARD\t FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_582C[28] __attribute__((aligned(4))) = "NOT_RENEW_LICENSE_CARD\t SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5848[28] __attribute__((aligned(8))) = "NOT_RENEW_LICENSE_CARD\t ITA";
 #pragma explicit_zero_data reset

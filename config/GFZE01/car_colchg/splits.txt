@@ -116,3 +116,21 @@ rel/car_colchg/car_colchg/colchg_menu_disp.c:
 
 rel/car_colchg/car_colchg/fn_9_AF0.c:
 	.text       start:0x00000AF0 end:0x00000DC0 align:4
+
+rel/car_colchg/data/lbl_9_bss_0.c:
+	.bss        start:0x00000000 end:0x00000008 align:8
+
+rel/car_colchg/data/lbl_9_bss_8.c:
+	.bss        start:0x00000008 end:0x00000010 align:8
+
+rel/car_colchg/data/lbl_9_bss_10.c:
+	.bss        start:0x00000010 end:0x000000E0 align:8
+
+rel/car_colchg/data/lbl_9_bss_E0.c:
+	.bss        start:0x000000E0 end:0x000000E8 align:8
+
+rel/car_colchg/data/lbl_9_data_0.c:
+	.data       start:0x00000000 end:0x000001B8 align:8
+
+rel/car_colchg/data/lbl_9_rodata_0.c:
+	.rodata     start:0x00000000 end:0x0000005C align:8

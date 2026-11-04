@@ -6,6 +6,27 @@ extern char lbl_10_data_5064[16];
 extern char lbl_10_data_5074[16];
 extern char lbl_10_data_5084[16];
 extern char lbl_10_data_5094[16];
+extern char lbl_10_data_50A4[48];
+extern char lbl_10_data_50D4[24];
+extern char lbl_10_data_50EC[23];
+extern char lbl_10_data_5104[23];
+extern char lbl_10_data_511C[23];
+extern char lbl_10_data_5134[23];
+extern char lbl_10_data_514C[32];
+extern char lbl_10_data_516C[63];
+extern char lbl_10_data_51AC[21];
+extern char lbl_10_data_51C4[21];
+extern char lbl_10_data_51DC[21];
+extern char lbl_10_data_51F4[21];
+extern char lbl_10_data_520C[72];
+extern char lbl_10_data_5254[48];
+extern char lbl_10_data_5284[15];
+extern char lbl_10_data_5294[15];
+extern char lbl_10_data_52A4[15];
+extern char lbl_10_data_52B4[15];
+extern char lbl_10_data_52C4[48];
+extern char lbl_10_data_52F4[103];
+extern char lbl_10_data_535C[26];
 
 
 
@@ -35,4 +56,136 @@ __declspec(section ".data") char lbl_10_data_5084[16] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_5094[16] __attribute__((aligned(4))) = "FAILED_LOAD ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_50A4[48] __attribute__((aligned(4))) = "\203\215\201[\203h\202\311\216\270\224s\202\265\202\334\202\265\202\275\201B\n\203J\201[\203h"
+    "\202\360\202\250\216\346\202\350\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_50D4[24] __attribute__((aligned(4))) = "Can not use this card. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_50EC[23] __attribute__((aligned(4))) = "CANT_USE_THIS_CARD GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5104[23] __attribute__((aligned(4))) = "CANT_USE_THIS_CARD FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_511C[23] __attribute__((aligned(4))) = "CANT_USE_THIS_CARD SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5134[23] __attribute__((aligned(4))) = "CANT_USE_THIS_CARD ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_514C[32] __attribute__((aligned(4))) = "\202\261\202\314\203J\201[\203h\202\315\216g\227p\202\305\202\253\202\334\202\271\202\361\201B"
+    "\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_516C[63] __attribute__((aligned(4))) = "This is not a F-ZERO LICENSE CARD. \nPlease retrieve the card. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_51AC[21] __attribute__((aligned(4))) = "NOT_LICENSE_CARD GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_51C4[21] __attribute__((aligned(4))) = "NOT_LICENSE_CARD FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_51DC[21] __attribute__((aligned(4))) = "NOT_LICENSE_CARD SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_51F4[21] __attribute__((aligned(4))) = "NOT_LICENSE_CARD ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_520C[72] __attribute__((aligned(4))) = "\202e\201|\202y\202d\202q\202n \203\211\203C\203Z\203\223\203X\203J\201[\203h\202\305\202\315"
+    "\202\240\202\350\202\334\202\271\202\361\201B\n\203J\201[\203h\202\360\202\250\216\346\202\350"
+    "\202\255\202\276\202\263\202\242\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5254[48] __attribute__((aligned(4))) = "The data is broken. \nPlease retrieve the card. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5284[15] __attribute__((aligned(4))) = "BREAK_CARD GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5294[15] __attribute__((aligned(4))) = "BREAK_CARD FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_52A4[15] __attribute__((aligned(4))) = "BREAK_CARD SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_52B4[15] __attribute__((aligned(4))) = "BREAK_CARD ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_52C4[48] __attribute__((aligned(4))) = "\203f\201[\203^\202\252\211\363\202\352\202\304\202\242\202\334\202\267\201B\n\203J\201[\203h"
+    "\202\360\202\250\216\346\202\350\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_52F4[103] __attribute__((aligned(4))) = "The F-ZERO LICENSE CARD has \nexpired and the data is \nalready transferred. \nPlease retrieve t"
+    "he card. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_535C[26] __attribute__((aligned(4))) = "ALREADY_TRANSFER_CARD GER";
 #pragma explicit_zero_data reset

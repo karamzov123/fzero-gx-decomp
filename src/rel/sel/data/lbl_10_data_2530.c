@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_2530[7];
-extern char lbl_10_data_2538[11];
-extern char lbl_10_data_2544[11];
-extern char lbl_10_data_2550[11];
-extern char lbl_10_data_255C[11];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2530[7] __attribute__((aligned(8))) = "Replay";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2538[11] __attribute__((aligned(8))) = "Replay GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2544[11] __attribute__((aligned(4))) = "Replay FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2550[11] __attribute__((aligned(8))) = "Replay SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_255C[11] __attribute__((aligned(4))) = "Replay ITA";
 #pragma explicit_zero_data reset

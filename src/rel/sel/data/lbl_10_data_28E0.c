@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_28E0[8];
-extern char lbl_10_data_28E8[12];
-extern char lbl_10_data_28F4[12];
-extern char lbl_10_data_2900[12];
-extern char lbl_10_data_290C[12];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_28E0[8] __attribute__((aligned(8))) = "ALL Cup";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_28E8[12] __attribute__((aligned(8))) = "ALL Cup GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_28F4[12] __attribute__((aligned(4))) = "ALL Cup FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2900[12] __attribute__((aligned(8))) = "ALL Cup SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_290C[12] __attribute__((aligned(4))) = "ALL Cup ITA";
 #pragma explicit_zero_data reset

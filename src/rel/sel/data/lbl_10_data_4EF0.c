@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_4EF0[38];
-extern char lbl_10_data_4F18[17];
-extern char lbl_10_data_4F2C[17];
-extern char lbl_10_data_4F40[17];
-extern char lbl_10_data_4F54[17];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_4EF0[38] __attribute__((aligned(8))) = "If you have the F-ZERO LICENSE CARD. ";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4F18[17] __attribute__((aligned(8))) = "HAVE_LICENSE GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4F2C[17] __attribute__((aligned(4))) = "HAVE_LICENSE FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4F40[17] __attribute__((aligned(8))) = "HAVE_LICENSE SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4F54[17] __attribute__((aligned(4))) = "HAVE_LICENSE ITA";
 #pragma explicit_zero_data reset

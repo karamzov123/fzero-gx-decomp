@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_2988[13];
-extern char lbl_10_data_2998[17];
-extern char lbl_10_data_29AC[17];
-extern char lbl_10_data_29C0[17];
-extern char lbl_10_data_29D4[17];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2988[13] __attribute__((aligned(8))) = "Sapphire Cup";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2998[17] __attribute__((aligned(8))) = "Sapphire Cup GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_29AC[17] __attribute__((aligned(4))) = "Sapphire Cup FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_29C0[17] __attribute__((aligned(8))) = "Sapphire Cup SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_29D4[17] __attribute__((aligned(4))) = "Sapphire Cup ITA";
 #pragma explicit_zero_data reset

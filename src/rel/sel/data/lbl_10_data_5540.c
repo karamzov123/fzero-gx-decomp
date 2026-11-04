@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_5540[32];
-extern char lbl_10_data_5560[16];
-extern char lbl_10_data_5570[16];
-extern char lbl_10_data_5580[16];
-extern char lbl_10_data_5590[16];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_5540[32] __attribute__((aligned(8))) = "You need %d coin(s) to create. ";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5560[16] __attribute__((aligned(8))) = "NEED_COINS\t GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5570[16] __attribute__((aligned(8))) = "NEED_COINS\t FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5580[16] __attribute__((aligned(8))) = "NEED_COINS\t SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5590[16] __attribute__((aligned(8))) = "NEED_COINS\t ITA";
 #pragma explicit_zero_data reset

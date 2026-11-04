@@ -4,9 +4,6 @@
 extern char lbl_16_data_82D98[17];
 extern char lbl_16_data_82DB0[4];
 extern u8 lbl_16_data_82DB4[4];
-extern char lbl_16_data_82DB8[5];
-extern char lbl_16_data_82DC0[15];
-extern char lbl_16_data_82DD0[25];
 
 
 
@@ -26,22 +23,4 @@ __declspec(section ".data") char lbl_16_data_82DB0[4] __attribute__((aligned(8))
 __declspec(section ".data") u8 lbl_16_data_82DB4[4] __attribute__((aligned(4))) = {
     0x00U, 0x00U, 0x00U, 0x00U
 };
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_16_data_82DB8[5] __attribute__((aligned(8))) = "NAME";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_16_data_82DC0[15] __attribute__((aligned(8))) = "CHARACTER LIST";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_16_data_82DD0[25] __attribute__((aligned(8))) = "Select a Pilot to View. ";
 #pragma explicit_zero_data reset

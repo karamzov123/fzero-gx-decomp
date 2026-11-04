@@ -2,10 +2,21 @@
 #include "types.h"
 
 extern char lbl_10_data_17A0[100];
+extern char lbl_10_data_1804[132];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_17A0[100] __attribute__((aligned(8))) = "Compete by yourself for the Best Total of certain laps. \n\tSelect either solo or against the gh"
     "ost.\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1804[132] __attribute__((aligned(4))) = "\203R\201[\203X\202\360\213K\222\350\216\374\211\361\221\226\215s\202\265\201A\202\273\202\314"
+    "\203g\201[\203^\203\213\203^\203C\203\200\202\360\213\243\202\242\202\334\202\267\201B\n\t/bcfff"
+    "200/\201u\222P\223\306\221\226\215s\201E\203S\201[\203X\203g\203J\201[\221\316\220\355\201v/bcff"
+    "ffff/\202\314\202\242\202\270\202\352\202\251\202\360\221I\202\327\202\334\202\267\201B\n\000"
+    "\000";
 #pragma explicit_zero_data reset

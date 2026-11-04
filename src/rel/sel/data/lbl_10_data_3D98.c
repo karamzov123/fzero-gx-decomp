@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_3D98[38];
-extern char lbl_10_data_3DC0[12];
-extern char lbl_10_data_3DCC[12];
-extern char lbl_10_data_3DD8[12];
-extern char lbl_10_data_3DE4[12];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_3D98[38] __attribute__((aligned(8))) = "Finished saving in the Memory card. \n";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3DC0[12] __attribute__((aligned(8))) = "Save ok GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3DCC[12] __attribute__((aligned(4))) = "Save ok FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3DD8[12] __attribute__((aligned(8))) = "Save ok SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3DE4[12] __attribute__((aligned(4))) = "Save ok ITA";
 #pragma explicit_zero_data reset

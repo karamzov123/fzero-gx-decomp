@@ -207,6 +207,21 @@ rel/story/story_mode/fn_7_33F0.c:
 rel/story/story_mode/fn_7_2538.c:
 	.text       start:0x00002538 end:0x000031F4 align:4
 
+rel/story/data/lbl_7_bss_0.c:
+	.bss        start:0x00000000 end:0x00000010 align:8
+
+rel/story/data/lbl_7_bss_10.c:
+	.bss        start:0x00000010 end:0x00000018 align:8
+
+rel/story/data/lbl_7_bss_18.c:
+	.bss        start:0x00000018 end:0x00000048 align:8
+
+rel/story/data/lbl_7_bss_48.c:
+	.bss        start:0x00000048 end:0x00001960 align:8
+
+rel/story/data/lbl_7_bss_1960.c:
+	.bss        start:0x00001960 end:0x00001A71 align:8
+
 rel/story/data/lbl_7_data_0.c:
 	.data       start:0x00000000 end:0x0000BC10 align:8
 
@@ -215,3 +230,15 @@ rel/story/data/lbl_7_data_BC20.c:
 
 rel/story/data/lbl_7_data_13DE0.c:
 	.data       start:0x00013DE0 end:0x0001400C align:8
+
+rel/story/data/lbl_7_rodata_0.c:
+	.rodata     start:0x00000000 end:0x00000528 align:8
+
+rel/story/data/lbl_7_rodata_528.c:
+	.rodata     start:0x00000528 end:0x00000780 align:8
+
+rel/story/data/lbl_7_rodata_780.c:
+	.rodata     start:0x00000780 end:0x00000788 align:8
+
+rel/story/data/lbl_7_rodata_788.c:
+	.rodata     start:0x00000788 end:0x00000798 align:8

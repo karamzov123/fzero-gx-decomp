@@ -155,3 +155,60 @@ rel/winning/winning/fn_15_644.c:
 
 rel/winning/winning/fn_15_3B24.c:
 	.text       start:0x00003B24 end:0x0000401C align:4
+
+rel/winning/data/lbl_15_bss_D0.c:
+	.bss        start:0x000000D0 end:0x000003F8 align:8
+
+rel/winning/data/lbl_15_data_0.c:
+	.data       start:0x00000000 end:0x00000020 align:8
+
+rel/winning/data/lbl_15_data_30.c:
+	.data       start:0x00000030 end:0x00000050 align:8
+
+rel/winning/data/lbl_15_data_60.c:
+	.data       start:0x00000060 end:0x00000068 align:8
+
+rel/winning/data/lbl_15_data_68.c:
+	.data       start:0x00000068 end:0x00000070 align:8
+
+rel/winning/data/lbl_15_data_70.c:
+	.data       start:0x00000070 end:0x00000090 align:8
+
+rel/winning/data/lbl_15_data_1C40.c:
+	.data       start:0x00001C40 end:0x00001C50 align:8
+
+rel/winning/data/lbl_15_data_1C50.c:
+	.data       start:0x00001C50 end:0x00001C68 align:8
+
+rel/winning/data/lbl_15_data_1C68.c:
+	.data       start:0x00001C68 end:0x00001C70 align:8
+
+rel/winning/data/lbl_15_data_1C70.c:
+	.data       start:0x00001C70 end:0x00001C78 align:8
+
+rel/winning/data/lbl_15_data_1C78.c:
+	.data       start:0x00001C78 end:0x00001C80 align:8
+
+rel/winning/data/lbl_15_data_1D10.c:
+	.data       start:0x00001D10 end:0x00001D50 align:8
+
+rel/winning/data/lbl_15_data_1DB0.c:
+	.data       start:0x00001DB0 end:0x00001DB4 align:8
+
+rel/winning/data/lbl_15_data_1DF8.c:
+	.data       start:0x00001DF8 end:0x00001E6C align:8
+
+rel/winning/data/lbl_15_data_1F70.c:
+	.data       start:0x00001F70 end:0x00001F7D align:8
+
+rel/winning/data/lbl_15_rodata_90.c:
+	.rodata     start:0x00000090 end:0x00000098 align:8
+
+rel/winning/data/lbl_15_rodata_98.c:
+	.rodata     start:0x00000098 end:0x000000D0 align:8
+
+rel/winning/data/lbl_15_rodata_D0.c:
+	.rodata     start:0x000000D0 end:0x000000D8 align:8
+
+rel/winning/data/lbl_15_rodata_D8.c:
+	.rodata     start:0x000000D8 end:0x000001EC align:8

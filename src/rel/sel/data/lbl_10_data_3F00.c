@@ -2,38 +2,10 @@
 #include "types.h"
 
 extern char lbl_10_data_3F00[103];
-extern char lbl_10_data_3F68[18];
-extern char lbl_10_data_3F7C[18];
-extern char lbl_10_data_3F90[18];
-extern char lbl_10_data_3FA4[18];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_3F00[103] __attribute__((aligned(8))) = "The Memory Card is ready. \n\tDo not touch the Memory Card during the play. \n\tIt can damage th"
     "e file. \n ";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3F68[18] __attribute__((aligned(8))) = "Memcard ready GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3F7C[18] __attribute__((aligned(4))) = "Memcard ready FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3F90[18] __attribute__((aligned(8))) = "Memcard ready SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_3FA4[18] __attribute__((aligned(4))) = "Memcard ready ITA";
 #pragma explicit_zero_data reset

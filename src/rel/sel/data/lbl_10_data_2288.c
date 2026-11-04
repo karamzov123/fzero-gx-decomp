@@ -6,6 +6,8 @@ extern char lbl_10_data_2294[16];
 extern char lbl_10_data_22A4[16];
 extern char lbl_10_data_22B4[16];
 extern char lbl_10_data_22C4[16];
+extern char lbl_10_data_22D4[16];
+extern char lbl_10_data_22E4[10];
 
 
 
@@ -35,4 +37,16 @@ __declspec(section ".data") char lbl_10_data_22B4[16] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_22C4[16] __attribute__((aligned(4))) = "Mode Select ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_22D4[16] __attribute__((aligned(4))) = "\203\202\201[\203h\203Z\203\214\203N\203g\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_22E4[10] __attribute__((aligned(4))) = "VS Battle";
 #pragma explicit_zero_data reset

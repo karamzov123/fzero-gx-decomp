@@ -2,11 +2,6 @@
 #include "types.h"
 
 extern u32 lbl_80187330[16];
-extern u32 lbl_80187370[4];
-
-
-
-__declspec(section ".data") u32 lbl_80187370[4] __attribute__((aligned(8)));
 
 
 

@@ -3,9 +3,6 @@
 
 extern char lbl_10_data_4948[25];
 extern char lbl_10_data_4964[18];
-extern char lbl_10_data_4978[18];
-extern char lbl_10_data_498C[18];
-extern char lbl_10_data_49A0[18];
 
 
 
@@ -17,22 +14,4 @@ __declspec(section ".data") char lbl_10_data_4948[25] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_4964[18] __attribute__((aligned(4))) = "Read Write OK GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_4978[18] __attribute__((aligned(8))) = "Read Write OK FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_498C[18] __attribute__((aligned(4))) = "Read Write OK SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_49A0[18] __attribute__((aligned(8))) = "Read Write OK ITA";
 #pragma explicit_zero_data reset

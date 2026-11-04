@@ -2,37 +2,9 @@
 #include "types.h"
 
 extern char lbl_10_data_2C68[15];
-extern char lbl_10_data_2C78[19];
-extern char lbl_10_data_2C8C[19];
-extern char lbl_10_data_2CA0[19];
-extern char lbl_10_data_2CB4[19];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2C68[15] __attribute__((aligned(8))) = "Machine Config";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2C78[19] __attribute__((aligned(8))) = "Machine Config GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2C8C[19] __attribute__((aligned(4))) = "Machine Config FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2CA0[19] __attribute__((aligned(8))) = "Machine Config SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_2CB4[19] __attribute__((aligned(4))) = "Machine Config ITA";
 #pragma explicit_zero_data reset

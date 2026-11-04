@@ -3,9 +3,6 @@
 
 extern char lbl_10_data_5B90[28];
 extern char lbl_10_data_5BAC[18];
-extern char lbl_10_data_5BC0[18];
-extern char lbl_10_data_5BD4[18];
-extern char lbl_10_data_5BE8[18];
 
 
 
@@ -17,22 +14,4 @@ __declspec(section ".data") char lbl_10_data_5B90[28] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_5BAC[18] __attribute__((aligned(4))) = "WITHOUT_CARD\t GER";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5BC0[18] __attribute__((aligned(8))) = "WITHOUT_CARD\t FRA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5BD4[18] __attribute__((aligned(4))) = "WITHOUT_CARD\t SPA";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_10_data_5BE8[18] __attribute__((aligned(8))) = "WITHOUT_CARD\t ITA";
 #pragma explicit_zero_data reset

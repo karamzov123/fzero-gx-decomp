@@ -4,6 +4,7 @@
 
 extern char lbl_16_data_82BF8[36];
 #include "rel/profile/data/lbl_16_data_82C1C.h"
+extern char lbl_16_data_82D3C[92];
 
 
 
@@ -102,4 +103,11 @@ __declspec(section ".data") Data_lbl_16_data_82C1C lbl_16_data_82C1C __attribute
     0x526F6245U,
     0x78656300U
 };
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_16_data_82D3C[92] __attribute__((aligned(4))) = "ProfileMenuDisp\000BMP%02d_0300\000\000\000\000movie/ending/%s\000end\000DriverProfileDisp\000"
+    "\000\000MachineProfileDisp\000";
 #pragma explicit_zero_data reset
