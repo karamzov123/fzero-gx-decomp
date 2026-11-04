@@ -7220,3 +7220,9 @@ dol/data/gDBCommTable.c:
 
 dol/data/lbl_8015B900.c:
 	.data       start:0x8015B900 end:0x8015B919 align:32
+
+dol/fn_80071D30.c:
+	.text       start:0x80071D30 end:0x80071ED4 align:4
+
+dol/fn_8005FDE0.c:
+	.text       start:0x8005FDE0 end:0x8006060C align:4

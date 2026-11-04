@@ -16271,3 +16271,6 @@ rel/main_rel/data/lbl_1_bss_8E550.c:
 
 rel/main_rel/data/lbl_1_bss_8ED88.c:
 	.bss        start:0x0008ED88 end:0x0008ED90 align:8
+
+rel/main_rel/sel_static_disp/fn_1_14083C.c:
+	.text       start:0x0014083C end:0x00140EE8 align:4
