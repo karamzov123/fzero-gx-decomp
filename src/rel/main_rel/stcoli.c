@@ -6465,6 +6465,460 @@ void fn_1_1DCD8(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
 }
 /* fzgx:end fn_1_1DCD8 */
 
+/* fzgx:begin fn_1_1EBD4 noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
+#include "rel/main_rel/globals.h"
+#include "psvec.h"
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+#endif
+
+typedef struct {
+    u32 unk_0;
+} Seg;
+
+typedef struct {
+    s32 unk_0;
+    u8 pad_4[0x4];
+    u32 unk_8;
+    u8 pad_C[0xC];
+    u32 unk_18;
+    Seg *unk_1C[4];
+    f32 unk_2C[4];
+    u32 unk_3C[4];
+    s32 unk_4C[4];
+} Rec;
+
+typedef struct {
+    Rec *unk_0;
+    Rec *unk_4;
+} Ctx;
+
+typedef struct {
+    s32 unk_0;
+    s32 unk_4;
+    f32 unk_8;
+    u32 unk_C;
+    f32 unk_10;
+    Vec3 unk_14;
+    Vec3 unk_20;
+    Vec3 unk_2C;
+    Vec3 unk_38;
+    u32 *unk_44;
+} Contact;
+
+typedef struct {
+    u8 pad_0[0x1B8];
+    s32 unk_1B8;
+    s32 unk_1BC;
+    s32 unk_1C0;
+    f32 unk_1C4;
+    u8 pad_1C8[0xC];
+    u32 unk_1D4;
+    u8 pad_1D8[0x4];
+    f32 unk_1DC;
+    f32 unk_1E0;
+    u8 pad_1E4[0x48];
+    Contact unk_22C;
+} Mgr;
+
+#define LC ((f32 *)LC_BASE)
+
+/* the .rodata pool of stcoli.c up to this function's own literal at 0x774 */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    s = 0.0f;
+    s = 1.0f;
+    s = -5.0f;
+    s = 10.0f;
+    s = -1.0f;
+    s = 2.0f;
+    s = 0.5f;
+    s = 2.5f;
+    s = 1.7f;
+    s = 0.001f;
+    s = 182.04444885253906f;
+    s = -0.5f;
+    s = 200.0f;
+    s = 0.1f;
+    s = 5.0f;
+    s = 50.0f;
+    s = -50.0f;
+}
+static const u32 fzgx_pool_table1[24] = {0x24, 0x28, 0x2C, 0x30, 0x34, 0x38, 0x3C, 0x40, 0x44, 0x0, 0x4, 0x8, 0xC, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x0, 0x3FE00000, 0x0, 0x3F847AE1, 0x40000000, 0x44FA0000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+extern Mgr *lbl_801A66CC;
+extern f32 *lbl_801A6D00;
+extern s16 fn_1_7B054(void);
+extern void fn_1_18784(u32, Seg *, Vec3 *, void *, f32);
+extern int fn_1_17B5C(int, int, int, f32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void fn_8006E250(Vec3 *, Vec3 *);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006E1C0(Vec3 *, Vec3 *);
+extern f32 lbl_8006D668(Vec3 *);
+extern void lbl_8006D5F0(Vec3 *, f32, Vec3 *);
+extern u32 mathutil_mtxA_rotate_z(u32);
+
+static inline int fn_1_1EBD4_finite(f32 x)
+{
+    union { f32 f; u32 u; } bits;
+    bits.f = x;
+    return (bits.u & 0x7F800000) != 0x7F800000;
+}
+
+static inline void fn_1_1EBD4_translate_x(f32 scale)
+{
+    f32 x, y, z;
+    f32 *axis;
+    f32 *pos;
+    /* retail holds the matrix base in its own saved register across loop 1 */
+    axis = pos = LC;
+    x = axis[0];
+    y = axis[4];
+    z = axis[8];
+    x = x * scale + pos[3];
+    y = y * scale + pos[7];
+    z = z * scale + pos[11];
+    pos[3] = x;
+    pos[7] = y;
+    pos[11] = z;
+}
+
+static inline void fn_1_1EBD4_translate_y(f32 scale)
+{
+    f32 x, y, z;
+    x = LC[1];
+    y = LC[5];
+    z = LC[9];
+    x = x * scale + LC[3];
+    y = y * scale + LC[7];
+    z = z * scale + LC[11];
+    LC[3] = x;
+    LC[7] = y;
+    LC[11] = z;
+}
+
+static inline void fn_1_1EBD4_axis_y(Vec3 *out, f32 scale)
+{
+    f32 x, y, z;
+    x = LC[1];
+    y = LC[5];
+    z = LC[9];
+    x *= scale;
+    y *= scale;
+    z *= scale;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+static inline int fn_1_1EBD4_allowed(Ctx *ctx, Seg *seg, int id, int side)
+{
+    s32 index;
+    s32 count;
+    u32 needed;
+    u32 flags;
+    u32 mask;
+    s32 other;
+    s32 mode;
+    if (ctx == NULL) return 0;
+    index = ctx->unk_0->unk_0;
+    count = ctx->unk_4->unk_0;
+    flags = ctx->unk_4->unk_3C[index];
+    if (count <= index) return 0;
+    if (!__rlwnm(flags, (side + 1) & 31, 31, 31)) return 0;
+    mask = 0x03E00000;
+    if (lbl_801A66CC->unk_1B8 == count) mask |= 0xC00;
+    other = ctx->unk_4->unk_4C[index];
+    needed = seg->unk_0 & mask;
+    if (needed == (needed & flags)) {
+        if (ctx->unk_4->unk_1C[index] == seg || fn_1_17B5C(other, id, lbl_1_bss_3BE0->unk_8, 200.0f)) {
+            if (fn_1_7B054() == 0x10) {
+                if (id >= 0x5F && id <= 0x79 && !(other >= 0x5F && other <= 0x79)) {
+                    mode = lbl_801A66CC->unk_1BC;
+                    if ((mode == 1 && side == 0) || (mode == 2 && side == 1)) return 0;
+                }
+                return 1;
+            } else if (fn_1_7B054() == 0x1C) {
+                if (id >= 0x74 && id <= 0x90) {
+                    if (other < 0x74) {
+                        mode = lbl_801A66CC->unk_1BC;
+                        if ((mode == 1 && side == 1) || (mode == 2 && side == 0)) return 0;
+                    }
+                    if (other > 0x90) {
+                        mode = lbl_801A66CC->unk_1BC;
+                        if ((mode == 1 && side == 0) || (mode == 2 && side == 1)) return 0;
+                    }
+                    return 1;
+                } else if (id >= 0xA8 && id <= 0xC6) {
+                    if (other < 0xA8) {
+                        mode = lbl_801A66CC->unk_1BC;
+                        if ((mode == 1 && side == 0) || (mode == 2 && side == 1)) return 0;
+                    }
+                    if (other > 0xC6) {
+                        mode = lbl_801A66CC->unk_1BC;
+                        if ((mode == 1 && side == 1) || (mode == 2 && side == 0)) return 0;
+                    }
+                    return 1;
+                }
+                return 1;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
+static inline void fn_1_1EBD4_slip(Mgr *g)
+{
+    s32 n = g->unk_1C0;
+    if ((n >= 0x1E && n <= 0x45) ||
+        (n == 0x5C && 0.5f <= g->unk_1C4) ||
+        (n >= 0x5D && g->unk_1C0 <= 0x60) ||
+        (n == 0x61 && 0.5f >= g->unk_1C4) ||
+        (n >= 0x78 && g->unk_1C0 <= 0x8B)) {
+        g->unk_1D4 = 0x80000;
+    }
+}
+
+/* retail translates the locked-cache matrix in place (fmadds into the loaded register) */
+#pragma opt_lifetimes off
+void fn_1_1EBD4(Vec3 *arg0, Vec3 *arg1, u32 arg2, Seg *seg, Vec3 *scale, Ctx *ctx, void *arg6, int id, f32 arg8)
+{
+    Vec3 a;
+    Vec3 b;
+    Vec3 q;
+    Vec3 d;
+    Vec3 e;
+    Vec3 dd;
+    f32 up;
+    u32 near;
+    s32 side;
+    s32 side2;
+    u32 outer;
+    u32 edge;
+    u32 hits;
+    u32 kind;
+    s32 inside;
+    f32 down;
+    Contact *c;
+    f32 width;
+    f32 radius;
+    s32 allowed;
+    f32 sgn;
+    f32 quarter;
+    f32 zero;
+    f32 ra;
+    f32 rb;
+    f32 t;
+    f32 db;
+    f32 disc;
+    f32 s;
+    f32 t2;
+    s32 inside2;
+    s32 found2;
+    f32 da;
+    f32 depth;
+    f32 off;
+    Vec3 p;
+    s32 found;
+    s32 n;
+    s32 any;
+
+    if (seg->unk_0 & 1) {
+        kind = 0x400001;
+        sgn = 1.0f;
+    } else {
+        kind = 0x400000;
+        sgn = -1.0f;
+    }
+    outer = 0xF0000000;
+    edge = 0xF0000000;
+    hits = 0;
+    fn_1_18784(arg2, seg, scale, arg6, arg8);
+    quarter = 0.25f;
+    near = arg2 & 0x02000000;
+    zero = 0.0f;
+    radius = lbl_801A66CC->unk_1DC;
+    width = lbl_801A66CC->unk_1E0;
+    for (side = 0; side <= 1; side++) {
+        c = &lbl_801A66CC->unk_22C;
+        found = 0;
+        lbl_8006DAEC();
+        off = radius * (side == 0 ? 0.5f : -0.5f);
+        fn_1_1EBD4_translate_x(off);
+        fn_8006E250(arg0, &a);
+        a.x /= width;
+        a.y /= width;
+        fn_8006E250(arg1, &b);
+        b.x /= width;
+        b.y /= width;
+        psvec_sub(&a, &b, &d);
+        ra = (f32)(a.x * a.x) + (f32)(a.y * a.y) - quarter;
+        rb = (f32)(b.x * b.x) + (f32)(b.y * b.y) - quarter;
+        inside = sgn * ra <= zero;
+        if (inside) outer &= ~(0x80000000 >> side);
+        if (ra > zero && rb > zero) edge &= ~(0x80000000 >> side);
+        allowed = fn_1_1EBD4_allowed(ctx, seg, id, side);
+        da = (f32)(d.x * d.x) + (f32)(d.y * d.y);
+        db = (f32)(d.x * b.x) + (f32)(d.y * b.y);
+        disc = (f32)(db * db) - (f32)(da * rb);
+        if (disc >= zero) {
+            s = lbl_8006D0B4(disc);
+            if (fn_1_1EBD4_finite(s)) {
+                t = -(db + (f32)(sgn * s)) / da;
+                if (zero <= t && t <= 1.0f) {
+                    if (c->unk_C == 0 || t < c->unk_10) {
+                        if (fn_1_1EBD4_finite(t)) found = 1;
+                    }
+                }
+            }
+        }
+        if (allowed && !found && inside && c->unk_C == 0 && near) {
+            found = 1;
+            t = zero;
+        }
+        if (found) {
+            f32 x = b.x + (f32)(t * d.x);
+            if (side == 0) {
+                if (x < zero) found = 0;
+            } else {
+                if (x > zero) found = 0;
+            }
+        }
+        if (found) {
+            psvec_scale_add(&b, &d, t, &q);
+            psvec_sub(arg0, arg1, &e);
+            psvec_scale_add(arg1, &e, t, &c->unk_14);
+            c->unk_20.x = e.x = sgn * q.x;
+            c->unk_20.y = e.y = sgn * q.y;
+            c->unk_20.z = e.z = zero;
+            lbl_8006E1C0(&c->unk_20, &c->unk_20);
+            lbl_8006D668(&c->unk_20);
+            depth = sgn * (0.5f - lbl_8006D0B4((f32)(a.x * a.x) + (f32)(a.y * a.y)));
+            if (depth > zero) {
+                lbl_8006D5F0(&e, depth, &e);
+                e.x *= width;
+                e.y *= width;
+                lbl_8006E1C0(&e, &c->unk_2C);
+            } else {
+                c->unk_2C.x = zero;
+                c->unk_2C.y = zero;
+                c->unk_2C.z = zero;
+            }
+            c->unk_10 = t;
+            c->unk_C = kind;
+            c->unk_0 = lbl_801A66CC->unk_1BC;
+            c->unk_4 = lbl_801A66CC->unk_1C0;
+            c->unk_8 = lbl_801A66CC->unk_1C4;
+            c->unk_44 = ctx != NULL ? &ctx->unk_0->unk_3C[ctx->unk_0->unk_0] : NULL;
+            hits |= 0x80000000 >> side;
+        }
+        lbl_8006DB30();
+    }
+    up = 0.5f * width;
+    zero = 0.0f;
+    down = -0.5f * width;
+    for (side2 = 2; side2 <= 3; side2++) {
+        c = &lbl_801A66CC->unk_22C;
+        found2 = 0;
+        lbl_8006DAEC();
+        if (side2 == 3) mathutil_mtxA_rotate_z(0x8000);
+        if (seg->unk_0 & 1) {
+            fn_1_1EBD4_translate_y(up);
+        } else {
+            fn_1_1EBD4_translate_y(down);
+        }
+        fn_8006E250(arg0, &a);
+        a.x /= radius;
+        fn_8006E250(arg1, &b);
+        b.x /= radius;
+        inside2 = zero >= a.y;
+        if (inside2) outer &= ~(0x80000000 >> side2);
+        if ((zero < sgn * a.y && zero < sgn * b.y) || (-0.5f > a.x && -0.5f > b.x) || (0.5f < a.x && 0.5f < b.x)) {
+            edge &= ~(0x80000000 >> side2);
+        }
+        allowed = fn_1_1EBD4_allowed(ctx, seg, id, side2);
+        if (inside2 && b.y >= zero) {
+            if (!((-0.5f > b.x && -0.5f > a.x) || (0.5f < b.x && 0.5f < a.x))) {
+                t2 = b.y / (b.y - a.y);
+                if (c->unk_C == 0 || t2 < c->unk_10) {
+                    if (fn_1_1EBD4_finite(t2)) found2 = 1;
+                }
+            }
+        }
+        if (!found2 && inside2 && c->unk_C == 0 && allowed && near) {
+            found2 = 1;
+            t2 = zero;
+        }
+        if (found2) {
+            psvec_sub_scale_add(&a, &b, t2, &dd, &p);
+            if ((allowed && !(seg->unk_0 & 1)) || (-0.5f <= p.x && p.x <= 0.5f)) {
+                f32 depth2;
+
+                psvec_sub_scale_add(arg0, arg1, t2, &dd, &c->unk_14);
+                c->unk_20.x = lbl_801A6D00[1];
+                c->unk_20.y = lbl_801A6D00[5];
+                c->unk_20.z = lbl_801A6D00[9];
+                depth2 = -a.y;
+                if (depth2 > zero) {
+                    fn_1_1EBD4_axis_y(&c->unk_2C, depth2);
+                } else {
+                    c->unk_2C.x = zero;
+                    c->unk_2C.y = zero;
+                    c->unk_2C.z = zero;
+                }
+                c->unk_10 = t2;
+                c->unk_C = kind;
+                c->unk_0 = lbl_801A66CC->unk_1BC;
+                c->unk_4 = lbl_801A66CC->unk_1C0;
+                c->unk_8 = lbl_801A66CC->unk_1C4;
+                c->unk_44 = ctx != NULL ? &ctx->unk_0->unk_3C[ctx->unk_0->unk_0] : NULL;
+                hits |= 0x80000000 >> side2;
+            }
+        }
+        lbl_8006DB30();
+    }
+    if (hits != 0 && (arg2 & 0x200000) && fn_1_7B054() == 0x20) {
+        fn_1_1EBD4_slip(lbl_801A66CC);
+    }
+    if (!(seg->unk_0 & 1)) {
+        any = 0;
+        if ((edge >> 31) || ((edge >> 30) & 1) || (((edge >> 29) & 1) && ((edge >> 28) & 1))) any = 1;
+        if (any || hits != 0) {
+            outer = 0xF0000000;
+        } else {
+            outer = 0;
+        }
+    }
+    if (ctx != NULL) {
+        ctx->unk_0->unk_1C[ctx->unk_0->unk_0] = seg;
+        ctx->unk_0->unk_2C[ctx->unk_0->unk_0] = scale->x;
+        if ((outer | hits) != 0) {
+            ctx->unk_0->unk_3C[ctx->unk_0->unk_0] = seg->unk_0 | (outer | hits);
+        } else {
+            ctx->unk_0->unk_3C[ctx->unk_0->unk_0] = seg->unk_0;
+        }
+        ctx->unk_0->unk_4C[ctx->unk_0->unk_0] = id;
+        if (ctx->unk_0->unk_0 < 3) ctx->unk_0->unk_0++;
+    }
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_1EBD4 */
+
 /* fzgx:begin fn_1_1FB80 noprologue */
 #include "types.h"
 #include "rel/main_rel/stcoli.h"
