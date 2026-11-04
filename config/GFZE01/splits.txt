@@ -6524,3 +6524,78 @@ dol/fn_80066C14.c:
 
 dol/fn_80021C7C.c:
 	.text       start:0x80021C7C end:0x80021FBC align:4
+
+dol/data/lbl_8015B920.c:
+	.bss        start:0x8015B920 end:0x8015BE40 align:8
+
+dol/data/DriveInfo.c:
+	.bss        start:0x8015BF00 end:0x8015BF20 align:8
+
+dol/data/__OSErrorTable.c:
+	.bss        start:0x8015BF50 end:0x8015BF94 align:8
+
+dol/data/lbl_8015BFA0.c:
+	.bss        start:0x8015BFA0 end:0x8015BFC0 align:8
+
+dol/data/RunQueue.c:
+	.bss        start:0x8015C018 end:0x8015C118 align:8
+
+dol/data/Packet.c:
+	.bss        start:0x8015CA10 end:0x8015CCB0 align:8
+
+dol/data/CommandList.c:
+	.bss        start:0x8015CD70 end:0x8015CDAC align:8
+
+dol/data/BB2.c:
+	.bss        start:0x8015CE40 end:0x8015CE80 align:8
+
+dol/data/lbl_8015CF68.c:
+	.bss        start:0x8015CF68 end:0x80164D60 align:8
+
+dol/data/lbl_80176160.c:
+	.bss        start:0x80176160 end:0x80177BA0 align:8
+
+dol/data/lbl_80187330.c:
+	.bss        start:0x80187330 end:0x80187380 align:8
+
+dol/data/lbl_8019E150.c:
+	.bss        start:0x8019E150 end:0x801A50B8 align:8
+
+dol/data/TRK_Use_BBA.c:
+	.bss        start:0x801A5648 end:0x801A63B0 align:8
+
+dol/data/lbl_80095EA0.c:
+	.data       start:0x80095EA0 end:0x80095EB0 align:32
+
+dol/data/lbl_801220C0.c:
+	.data       start:0x801220C0 end:0x801225F4 align:32
+
+dol/data/lbl_80123D00.c:
+	.data       start:0x80123D00 end:0x80123FD8 align:32
+
+dol/data/lbl_80124058.c:
+	.data       start:0x80124058 end:0x801240A8 align:8
+
+dol/data/lbl_80124110.c:
+	.data       start:0x80124110 end:0x80124158 align:16
+
+dol/data/lbl_80124428.c:
+	.data       start:0x80124428 end:0x8012457C align:8
+
+dol/data/lbl_80128990.c:
+	.data       start:0x80128990 end:0x80129550 align:16
+
+dol/data/lbl_801295E0.c:
+	.data       start:0x801295E0 end:0x8012AD30 align:32
+
+dol/data/lbl_80130BC0.c:
+	.data       start:0x80130BC0 end:0x801325D8 align:32
+
+dol/data/lbl_80132788.c:
+	.data       start:0x80132788 end:0x801327F4 align:8
+
+dol/data/lbl_8015B100.c:
+	.data       start:0x8015B100 end:0x8015B300 align:32
+
+dol/data/lbl_8015B400.c:
+	.data       start:0x8015B400 end:0x8015B438 align:32

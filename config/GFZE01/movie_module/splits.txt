@@ -2348,3 +2348,15 @@ rel/movie_module/fn_12_7870.c:
 
 rel/movie_module/fn_12_11204.c:
 	.text       start:0x00011204 end:0x00011254 align:4
+
+rel/movie_module/data/lbl_12_rodata_0.c:
+	.rodata     start:0x00000000 end:0x000004F0 align:8
+
+rel/movie_module/data/lbl_12_rodata_570.c:
+	.rodata     start:0x00000570 end:0x0000069C align:8
+
+rel/movie_module/data/lbl_12_rodata_760.c:
+	.rodata     start:0x00000760 end:0x00000938 align:8
+
+rel/movie_module/data/lbl_12_rodata_9F0.c:
+	.rodata     start:0x000009F0 end:0x00002E9C align:8

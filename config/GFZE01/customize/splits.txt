@@ -573,9 +573,6 @@ rel/customize/data/lbl_3_bss_140.c:
 rel/customize/data/lbl_3_data_1EA8.c:
 	.data       start:0x00001EA8 end:0x00002DCC align:8
 
-rel/customize/data/lbl_3_data_0.c:
-	.data       start:0x00000000 end:0x000000A8 align:8
-
 rel/customize/data/lbl_3_data_3618.c:
 	.data       start:0x00003618 end:0x00003738 align:8
 
@@ -827,3 +824,15 @@ rel/customize/toolkit/fn_3_29508.c:
 
 rel/customize/toolkit/fn_3_20B3C.c:
 	.text       start:0x00020B3C end:0x00021300 align:4
+
+rel/customize/data/lbl_3_data_0.c:
+	.data       start:0x00000000 end:0x00000F18 align:8
+
+rel/customize/data/lbl_3_data_1668.c:
+	.data       start:0x00001668 end:0x000018E4 align:8
+
+rel/customize/data/lbl_3_data_3780.c:
+	.data       start:0x00003780 end:0x00004648 align:8
+
+rel/customize/data/lbl_3_data_4B70.c:
+	.data       start:0x00004B70 end:0x00004BB4 align:8

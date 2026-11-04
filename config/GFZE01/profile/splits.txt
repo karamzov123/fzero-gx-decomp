@@ -170,3 +170,6 @@ rel/profile/fn_16_2560.c:
 
 rel/profile/fn_16_3BCC.c:
 	.text       start:0x00003BCC end:0x00004490 align:4
+
+rel/profile/data/lbl_16_bss_0.c:
+	.bss        start:0x00000000 end:0x0000B0B8 align:32

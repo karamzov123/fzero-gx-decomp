@@ -1,0 +1,94 @@
+#ifndef DATA_LBL_1_RODATA_33B0_H
+#define DATA_LBL_1_RODATA_33B0_H
+
+#include "types.h"
+
+typedef struct {
+    u32 at_0;
+    u32 at_4;
+    u32 at_8;
+    u32 at_C;
+    u32 at_10;
+    u32 at_14;
+    u32 at_18;
+    u32 at_1C;
+    u32 at_20;
+    u32 at_24;
+    u32 at_28;
+    u32 at_2C;
+    u32 at_30;
+    u32 at_34;
+    u32 at_38;
+    u32 at_3C;
+    u32 at_40;
+    u32 at_44;
+    u32 at_48;
+    u32 at_4C;
+    u32 at_50;
+    u32 at_54;
+    u32 at_58;
+    u32 at_5C;
+    u32 at_60;
+    u32 at_64;
+    u32 at_68;
+    u32 at_6C;
+    u32 at_70;
+    u32 at_74;
+    u32 at_78;
+    u32 at_7C;
+    u32 at_80;
+    u32 at_84;
+    u32 at_88;
+    u32 at_8C;
+    u32 at_90;
+    u32 at_94;
+    u8 *at_98;
+    u8 *at_9C;
+    u8 *at_A0;
+    u8 *at_A4;
+    u8 *at_A8;
+    u8 *at_AC;
+    u32 at_B0;
+    u32 at_B4;
+    u32 at_B8;
+    u32 at_BC;
+    u32 at_C0;
+    u32 at_C4;
+    u32 at_C8;
+    u32 at_CC;
+    u32 at_D0;
+    u8 *at_D4;
+    u8 *at_D8;
+    u8 *at_DC;
+    u8 *at_E0;
+    u8 *at_E4;
+    u8 *at_E8;
+    u8 *at_EC;
+    u8 *at_F0;
+    u32 at_F4;
+    u32 at_F8;
+    u32 at_FC;
+    u32 at_100;
+    u32 at_104;
+    u32 at_108;
+    u32 at_10C;
+    u32 at_110;
+    u32 at_114;
+    u32 at_118;
+    u32 at_11C;
+    u32 at_120;
+    u32 at_124;
+    u32 at_128;
+    u32 at_12C;
+    u32 at_130;
+    u32 at_134;
+    u32 at_138;
+    u32 at_13C;
+    u32 at_140;
+    u32 at_144;
+    u32 at_148;
+    u32 at_14C;
+} Data_lbl_1_rodata_33B0;
+extern const Data_lbl_1_rodata_33B0 lbl_1_rodata_33B0;
+
+#endif

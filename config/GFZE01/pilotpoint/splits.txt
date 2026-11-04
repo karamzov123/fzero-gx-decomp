@@ -212,3 +212,24 @@ rel/pilotpoint/pilotpoint/fn_14_2C80.c:
 
 rel/pilotpoint/pilotpoint/fn_14_B484.c:
 	.text       start:0x0000B484 end:0x0000BCDC align:4
+
+rel/pilotpoint/data/lbl_14_data_0.c:
+	.data       start:0x00000000 end:0x00000200 align:8
+
+rel/pilotpoint/data/lbl_14_data_AD8.c:
+	.data       start:0x00000AD8 end:0x00000AE0 align:8
+
+rel/pilotpoint/data/lbl_14_data_AF8.c:
+	.data       start:0x00000AF8 end:0x00000B74 align:8
+
+rel/pilotpoint/data/lbl_14_data_C10.c:
+	.data       start:0x00000C10 end:0x000011FC align:8
+
+rel/pilotpoint/data/lbl_14_data_1280.c:
+	.data       start:0x00001280 end:0x0000201C align:8
+
+rel/pilotpoint/data/lbl_14_data_20E0.c:
+	.data       start:0x000020E0 end:0x00002160 align:8
+
+rel/pilotpoint/data/lbl_14_data_21B8.c:
+	.data       start:0x000021B8 end:0x00002480 align:8
