@@ -622,6 +622,19 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                         for s in p.symbols(first['module']).values()):
                     padded_end = end
                 owner = p.unit_of(p.find_symbol(first['symbol'], first['module']))
+                # Zero padding up to an existing split that follows closely (alignment of
+                # that split's unit) has no symbol of its own; own it, or no split would.
+                following = [sp.start for sp in p.splits(first['module'])
+                             if sp.section == first['section'] and sp.unit != owner and sp.start >= padded_end]
+                if following:
+                    gap_end = min(following)
+                    if (0 < gap_end - padded_end < 8
+                            and not any(sm.section == first['section'] and end <= sm.addr < gap_end
+                                        for sm in p.symbols(first['module']).values())
+                            and (first['section'] in BSS or any(
+                                base <= end and gap_end <= base + len(raw) and not any(raw[end-base:gap_end-base])
+                                for base, raw in retail_regions))):
+                        padded_end = gap_end
                 if padded_end != end:
                     if any(s.section == first['section'] and end <= s.addr < padded_end
                            for s in p.symbols(first['module']).values()):
@@ -766,7 +779,10 @@ def isolated_runs(p, records):
 
 
 def isolate_guard(p, records, skipped):
-    """Never leave a run of unowned BSS objects boxed in by owned splits.
+    """Never leave a run of unowned objects boxed in by owned splits.
+
+    Outside BSS the same situation is a hard dtk error ("Unsplit data in .rodata from
+    X to next split"), e.g. a skipped non-finite word between two imported chunks.
 
     DTK drops a zero-only auto range that is isolated between splits, and its
     symbols with it, so an unowned BSS run whose neighbours both become owned
@@ -778,7 +794,7 @@ def isolate_guard(p, records, skipped):
     while changed:
         changed = False
         new = {r['symbol']: r for r in records}
-        for module, section in sorted({(r['module'], r['section']) for r in records if r['section'] in BSS}):
+        for module, section in sorted({(r['module'], r['section']) for r in records}):
             syms = sorted((s for s in p.symbols(module).values()
                            if s.section == section and s.kind == 'object' and s.size),
                           key=lambda s: s.addr)
