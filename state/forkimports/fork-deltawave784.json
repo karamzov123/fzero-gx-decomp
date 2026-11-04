@@ -224,6 +224,15 @@
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
   "status": "matched"
  },
+ "fn_1_14083C": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793830953,
+  "mw": "GC/1.3",
+  "sha256": "7ed1375ba21050ca134b447951ce4372dcac550c2d1ec36c609c9a15f86f046a",
+  "source": "fork-deltawave784/windows-and-types@6a718733",
+  "status": "matched"
+ },
  "fn_1_141A80": {
   "flags": "",
   "kind": "raw",
@@ -557,6 +566,16 @@
   "source": "fork-deltawave784/windows-and-types@b1e6f2df",
   "status": "pool"
  },
+ "fn_1_C3A0C": {
+  "flags": "",
+  "kind": "raw+fork-headers+s16-local",
+  "landed": 1793831538,
+  "mw": "GC/1.3.2",
+  "sha256": "1fe07907d60341539cb719004efecce29ab5ae0f0938492851a3f550461ead9e",
+  "source": "fork-deltawave784/windows-and-types@6a718733",
+  "status": "matched",
+  "note": "fork declares lbl_1_bss_960 s16 module-wide; here a local s16 read of it keeps retail's single lha"
+ },
  "fn_1_C770": {
   "flags": "",
   "kind": "raw",
@@ -872,6 +891,15 @@
   "source": "fork-deltawave784/windows-and-types@4b722344",
   "status": "matched"
  },
+ "fn_8005FDE0": {
+  "flags": "",
+  "kind": "fork-headers+trim",
+  "landed": 1793831069,
+  "mw": "GC/1.3.2",
+  "sha256": "a2f944179958fb9c1ac8616aa85bb809703a8d4e4fed0eac2516a621ae0d597a",
+  "source": "fork-deltawave784/windows-and-types@6a718733",
+  "status": "matched"
+ },
  "fn_80062360": {
   "flags": "",
   "kind": "fork-headers+trim",
@@ -889,6 +917,15 @@
   "sha256": "a385ce471d6e128c5a278d4fcc3e2836fc5e60c8f4973e88f9fdb8ec8ee10776",
   "source": "fork-deltawave784/windows-and-types@4b722344",
   "status": "pool"
+ },
+ "fn_80071D30": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793830833,
+  "mw": "GC/1.3.2",
+  "sha256": "0df655602641c69f937ee3dd869c10ebda78ac81102df8f6ea34482d4ba94b7f",
+  "source": "fork-deltawave784/windows-and-types@6a718733",
+  "status": "matched"
  },
  "fn_8_5FD4": {
   "flags": "",
