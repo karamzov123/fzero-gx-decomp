@@ -921,15 +921,6 @@ rel/customize/data/lbl_3_bss_7EE40.c:
 rel/customize/data/lbl_3_bss_87000.c:
 	.bss        start:0x00087000 end:0x00087040 align:32
 
-rel/customize/data/lbl_3_data_0.c:
-	.data       start:0x00000000 end:0x00000F18 align:8
-
-rel/customize/data/lbl_3_data_11D8.c:
-	.data       start:0x000011D8 end:0x00001230 align:8
-
-rel/customize/data/lbl_3_data_1230.c:
-	.data       start:0x00001230 end:0x000015D8 align:8
-
 rel/customize/data/lbl_3_data_15D8.c:
 	.data       start:0x000015D8 end:0x000015F0 align:8
 
@@ -938,12 +929,6 @@ rel/customize/data/lbl_3_data_1668.c:
 
 rel/customize/data/lbl_3_data_1930.c:
 	.data       start:0x00001930 end:0x00001958 align:8
-
-rel/customize/data/lbl_3_data_1958.c:
-	.data       start:0x00001958 end:0x00001970 align:8
-
-rel/customize/data/lbl_3_data_1970.c:
-	.data       start:0x00001970 end:0x000019F8 align:8
 
 rel/customize/data/lbl_3_data_1A10.c:
 	.data       start:0x00001A10 end:0x00001A18 align:8
@@ -1065,6 +1050,27 @@ rel/customize/data/lbl_3_data_3408.c:
 rel/customize/data/lbl_3_data_3410.c:
 	.data       start:0x00003410 end:0x00003420 align:8
 
+rel/customize/data/lbl_3_rodata_0.c:
+	.rodata     start:0x00000000 end:0x00000044 align:8
+
+rel/customize/data/lbl_3_rodata_248.c:
+	.rodata     start:0x00000248 end:0x00000378 align:8
+
+rel/customize/data/lbl_3_data_0.c:
+	.data       start:0x00000000 end:0x00000F18 align:8
+
+rel/customize/data/lbl_3_data_11D8.c:
+	.data       start:0x000011D8 end:0x00001230 align:8
+
+rel/customize/data/lbl_3_data_1230.c:
+	.data       start:0x00001230 end:0x000015D8 align:8
+
+rel/customize/data/lbl_3_data_1958.c:
+	.data       start:0x00001958 end:0x00001970 align:8
+
+rel/customize/data/lbl_3_data_1970.c:
+	.data       start:0x00001970 end:0x000019F8 align:8
+
 rel/customize/data/lbl_3_data_3420.c:
 	.data       start:0x00003420 end:0x000035B0 align:8
 
@@ -1076,12 +1082,6 @@ rel/customize/data/lbl_3_data_3780.c:
 
 rel/customize/data/lbl_3_data_4B70.c:
 	.data       start:0x00004B70 end:0x00004BB4 align:8
-
-rel/customize/data/lbl_3_rodata_0.c:
-	.rodata     start:0x00000000 end:0x00000044 align:8
-
-rel/customize/data/lbl_3_rodata_248.c:
-	.rodata     start:0x00000248 end:0x00000378 align:8
 
 rel/customize/data/lbl_3_rodata_4C8.c:
 	.rodata     start:0x000004C8 end:0x00000768 align:8

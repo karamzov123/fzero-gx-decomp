@@ -176,8 +176,12 @@ def is_text_pool(data):
 def number(raw, kind):
     value = struct.unpack('>' + BASIC[kind][1], raw)[0]
     if kind in ('f32', 'float', 'f64', 'double'):
-        if not math.isfinite(value):
-            raise ValueError('non-finite floating bits need an explicit union storage layout')
+        if math.isinf(value):
+            # MWCC folds this constant to the exact IEEE infinity (measured on GC/1.3.2).
+            one = '1.0f' if len(raw) == 4 else '1.0'
+            return f'({"-" if value < 0 else ""}{one} / 0.0{"f" if len(raw) == 4 else ""})'
+        if math.isnan(value):
+            raise ValueError('NaN floating bits need an explicit union storage layout')
         text = format(value, '.9g' if len(raw) == 4 else '.17g')
         if '.' not in text and 'e' not in text:
             text += '.0'
@@ -454,7 +458,7 @@ def generate(p, sym, recipe=None, opaque_bss=False):
             init, method = c_string(data[:-1]), 'string-pool' if text_pool else 'string'
         else:
             if kind in ('f32', 'f64', 'float', 'double') and any(
-                    not math.isfinite(struct.unpack('>' + BASIC[kind][1], data[i:i+width])[0])
+                    math.isnan(struct.unpack('>' + BASIC[kind][1], data[i:i+width])[0])
                     for i in range(0, sym.size, width)):
                 if known:
                     raise ValueError('non-finite data with an existing scalar declaration needs a recovered union layout')
@@ -618,7 +622,9 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 # NOBITS sections have no retail bytes to compare against: a BSS
                 # group that nothing follows is the section tail, and rounding it
                 # up would extend the split past the section (dtk rejects that).
-                if first['section'] in BSS and not any(
+                # dtk also ends a DOL section at its last symbol (main .data: 0x8015B919, not
+                # the header's 0x8015B920), so the same tail rule holds there.
+                if (first['section'] in BSS or first['module'] == 'main') and not any(
                         s.section == first['section'] and s.addr >= end
                         for s in p.symbols(first['module']).values()):
                     padded_end = end
@@ -724,6 +730,11 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                     rescued.add(key)
                     try:
                         if any(sym.scope != 'global' for sym in run):
+                            continue
+                        # A one-byte run compiles at alignment 1, so the compiler check below
+                        # would pass an odd start that dtk cannot carry as a split (measured:
+                        # lbl_1_bss_8E51D vanished). Leave those to isolate_guard.
+                        if run[0].addr % 8:
                             continue
                         retry = []
                         for sym in run:

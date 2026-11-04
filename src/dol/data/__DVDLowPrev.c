@@ -4,6 +4,16 @@
 
 extern DVDLowBuffer __DVDLowPrev;
 extern DVDLowBuffer __DVDLowCurr;
+extern u8 BB2[32];
+extern u8 lbl_8015CE60[32];
+
+
+/* Storage extent is known; element/field types are not recovered. */
+__declspec(section ".data") u8 lbl_8015CE60[32] __attribute__((aligned(8)));
+
+
+/* Storage extent is known; element/field types are not recovered. */
+__declspec(section ".data") u8 BB2[32] __attribute__((aligned(8)));
 
 
 

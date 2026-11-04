@@ -6,6 +6,9 @@ extern char lbl_10_data_1C94[37];
 extern char lbl_10_data_1CBC[37];
 extern char lbl_10_data_1CE4[37];
 extern char lbl_10_data_1D0C[37];
+extern char lbl_10_data_1D34[32];
+extern char lbl_10_data_1D54[8];
+extern char lbl_10_data_1D5C[12];
 
 
 
@@ -35,4 +38,23 @@ __declspec(section ".data") char lbl_10_data_1CE4[37] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_1D0C[37] __attribute__((aligned(4))) = "ITA You haven't beaten the set time.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1D34[32] __attribute__((aligned(4))) = "\213K\222\350\203^\203C\203\200\202\311\222B\202\265\202\304\202\242\202\334\202\271\202\361\201"
+    "B\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1D54[8] __attribute__((aligned(4))) = "Machine";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1D5C[12] __attribute__((aligned(4))) = "GER Machine";
 #pragma explicit_zero_data reset

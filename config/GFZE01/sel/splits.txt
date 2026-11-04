@@ -753,9 +753,6 @@ rel/sel/data/lbl_10_data_1290.c:
 rel/sel/data/lbl_10_data_12A8.c:
 	.data       start:0x000012A8 end:0x00001320 align:8
 
-rel/sel/data/lbl_10_data_1380.c:
-	.data       start:0x00001380 end:0x000013D0 align:8
-
 rel/sel/data/lbl_10_data_13D0.c:
 	.data       start:0x000013D0 end:0x00001418 align:8
 
@@ -795,9 +792,6 @@ rel/sel/data/lbl_10_data_18C0.c:
 rel/sel/data/lbl_10_data_1908.c:
 	.data       start:0x00001908 end:0x00001958 align:8
 
-rel/sel/data/lbl_10_data_19B8.c:
-	.data       start:0x000019B8 end:0x000019E8 align:8
-
 rel/sel/data/lbl_10_data_19E8.c:
 	.data       start:0x000019E8 end:0x00001A18 align:8
 
@@ -824,27 +818,6 @@ rel/sel/data/lbl_10_data_1B48.c:
 
 rel/sel/data/lbl_10_data_1C08.c:
 	.data       start:0x00001C08 end:0x00001C40 align:8
-
-rel/sel/data/lbl_10_data_1C40.c:
-	.data       start:0x00001C40 end:0x00001C70 align:8
-
-rel/sel/data/lbl_10_data_1C70.c:
-	.data       start:0x00001C70 end:0x00001D34 align:8
-
-rel/sel/data/lbl_10_data_1D68.c:
-	.data       start:0x00001D68 end:0x00001D80 align:8
-
-rel/sel/data/lbl_10_data_1D80.c:
-	.data       start:0x00001D80 end:0x00001D8C align:8
-
-rel/sel/data/lbl_10_data_1D98.c:
-	.data       start:0x00001D98 end:0x00001DD0 align:8
-
-rel/sel/data/lbl_10_data_1DD0.c:
-	.data       start:0x00001DD0 end:0x00001E80 align:8
-
-rel/sel/data/lbl_10_data_21B0.c:
-	.data       start:0x000021B0 end:0x000021F8 align:8
 
 rel/sel/data/lbl_10_data_2288.c:
 	.data       start:0x00002288 end:0x000022F0 align:8
@@ -909,12 +882,6 @@ rel/sel/data/lbl_10_data_2490.c:
 rel/sel/data/lbl_10_data_2500.c:
 	.data       start:0x00002500 end:0x00002518 align:8
 
-rel/sel/data/lbl_10_data_2518.c:
-	.data       start:0x00002518 end:0x00002530 align:8
-
-rel/sel/data/lbl_10_data_2530.c:
-	.data       start:0x00002530 end:0x00002538 align:8
-
 rel/sel/data/lbl_10_data_2538.c:
 	.data       start:0x00002538 end:0x00002550 align:8
 
@@ -944,9 +911,6 @@ rel/sel/data/lbl_10_data_2648.c:
 
 rel/sel/data/lbl_10_data_26B8.c:
 	.data       start:0x000026B8 end:0x000026D0 align:8
-
-rel/sel/data/lbl_10_data_26D0.c:
-	.data       start:0x000026D0 end:0x00002700 align:8
 
 rel/sel/data/lbl_10_data_2700.c:
 	.data       start:0x00002700 end:0x00002718 align:8
@@ -1071,18 +1035,6 @@ rel/sel/data/lbl_10_data_2B50.c:
 rel/sel/data/lbl_10_data_2B88.c:
 	.data       start:0x00002B88 end:0x00002B90 align:8
 
-rel/sel/data/lbl_10_data_2B90.c:
-	.data       start:0x00002B90 end:0x00002BA8 align:8
-
-rel/sel/data/lbl_10_data_2BA8.c:
-	.data       start:0x00002BA8 end:0x00002BC0 align:8
-
-rel/sel/data/lbl_10_data_2BC0.c:
-	.data       start:0x00002BC0 end:0x00002BE8 align:8
-
-rel/sel/data/lbl_10_data_2BE8.c:
-	.data       start:0x00002BE8 end:0x00002BF0 align:8
-
 rel/sel/data/lbl_10_data_2BF0.c:
 	.data       start:0x00002BF0 end:0x00002BF8 align:8
 
@@ -1112,36 +1064,6 @@ rel/sel/data/lbl_10_data_2CC8.c:
 
 rel/sel/data/lbl_10_data_30B0.c:
 	.data       start:0x000030B0 end:0x000030C0 align:8
-
-rel/sel/data/lbl_10_data_30C0.c:
-	.data       start:0x000030C0 end:0x000030D0 align:8
-
-rel/sel/data/lbl_10_data_30D0.c:
-	.data       start:0x000030D0 end:0x000030E0 align:8
-
-rel/sel/data/lbl_10_data_30E0.c:
-	.data       start:0x000030E0 end:0x000030F0 align:8
-
-rel/sel/data/lbl_10_data_30F0.c:
-	.data       start:0x000030F0 end:0x00003148 align:8
-
-rel/sel/data/lbl_10_data_3148.c:
-	.data       start:0x00003148 end:0x000031F8 align:8
-
-rel/sel/data/lbl_10_data_31F8.c:
-	.data       start:0x000031F8 end:0x00003260 align:8
-
-rel/sel/data/lbl_10_data_3260.c:
-	.data       start:0x00003260 end:0x00003278 align:8
-
-rel/sel/data/lbl_10_data_3278.c:
-	.data       start:0x00003278 end:0x00003290 align:8
-
-rel/sel/data/lbl_10_data_3290.c:
-	.data       start:0x00003290 end:0x00003430 align:8
-
-rel/sel/data/lbl_10_data_3430.c:
-	.data       start:0x00003430 end:0x000034B8 align:8
 
 rel/sel/data/lbl_10_data_34B8.c:
 	.data       start:0x000034B8 end:0x000034C8 align:8
@@ -1296,12 +1218,6 @@ rel/sel/data/lbl_10_data_41A8.c:
 rel/sel/data/lbl_10_data_4200.c:
 	.data       start:0x00004200 end:0x000042E8 align:8
 
-rel/sel/data/lbl_10_data_42E8.c:
-	.data       start:0x000042E8 end:0x00004300 align:8
-
-rel/sel/data/lbl_10_data_4300.c:
-	.data       start:0x00004300 end:0x00004318 align:8
-
 rel/sel/data/lbl_10_data_44E0.c:
 	.data       start:0x000044E0 end:0x00004508 align:8
 
@@ -1428,24 +1344,6 @@ rel/sel/data/lbl_10_data_54E8.c:
 rel/sel/data/lbl_10_data_5540.c:
 	.data       start:0x00005540 end:0x00005560 align:8
 
-rel/sel/data/lbl_10_data_5560.c:
-	.data       start:0x00005560 end:0x00005570 align:8
-
-rel/sel/data/lbl_10_data_5570.c:
-	.data       start:0x00005570 end:0x00005580 align:8
-
-rel/sel/data/lbl_10_data_5580.c:
-	.data       start:0x00005580 end:0x00005590 align:8
-
-rel/sel/data/lbl_10_data_5590.c:
-	.data       start:0x00005590 end:0x000055A0 align:8
-
-rel/sel/data/lbl_10_data_55A0.c:
-	.data       start:0x000055A0 end:0x000055B8 align:8
-
-rel/sel/data/lbl_10_data_55B8.c:
-	.data       start:0x000055B8 end:0x000055D8 align:8
-
 rel/sel/data/lbl_10_data_55D8.c:
 	.data       start:0x000055D8 end:0x000057A0 align:8
 
@@ -1491,9 +1389,6 @@ rel/sel/data/lbl_10_data_5EC0.c:
 rel/sel/data/lbl_10_data_5EE0.c:
 	.data       start:0x00005EE0 end:0x00005F00 align:8
 
-rel/sel/data/lbl_10_data_5F00.c:
-	.data       start:0x00005F00 end:0x00005FA0 align:8
-
 rel/sel/data/lbl_10_data_6008.c:
 	.data       start:0x00006008 end:0x00006028 align:8
 
@@ -1533,9 +1428,6 @@ rel/sel/data/lbl_10_data_6168.c:
 rel/sel/data/lbl_10_data_6188.c:
 	.data       start:0x00006188 end:0x000061A0 align:8
 
-rel/sel/data/lbl_10_data_61A0.c:
-	.data       start:0x000061A0 end:0x000061A8 align:8
-
 rel/sel/data/lbl_10_data_61A8.c:
 	.data       start:0x000061A8 end:0x000061B8 align:8
 
@@ -1563,18 +1455,6 @@ rel/sel/data/lbl_10_data_6238.c:
 rel/sel/data/lbl_10_data_6268.c:
 	.data       start:0x00006268 end:0x00006270 align:8
 
-rel/sel/data/lbl_10_data_6270.c:
-	.data       start:0x00006270 end:0x00006278 align:8
-
-rel/sel/data/lbl_10_data_6278.c:
-	.data       start:0x00006278 end:0x00006280 align:8
-
-rel/sel/data/lbl_10_data_6280.c:
-	.data       start:0x00006280 end:0x00006380 align:8
-
-rel/sel/data/lbl_10_data_6380.c:
-	.data       start:0x00006380 end:0x00006390 align:8
-
 rel/sel/data/lbl_10_data_6390.c:
 	.data       start:0x00006390 end:0x000063E8 align:8
 
@@ -1598,6 +1478,162 @@ rel/sel/data/lbl_10_data_6670.c:
 
 rel/sel/data/lbl_10_data_68E0.c:
 	.data       start:0x000068E0 end:0x00006980 align:8
+
+rel/sel/data/lbl_10_rodata_0.c:
+	.rodata     start:0x00000000 end:0x00000094 align:8
+
+rel/sel/data/lbl_10_rodata_158.c:
+	.rodata     start:0x00000158 end:0x000001E8 align:8
+
+rel/sel/data/lbl_10_rodata_588.c:
+	.rodata     start:0x00000588 end:0x000015D4 align:8
+
+rel/sel/data/lbl_10_rodata_1658.c:
+	.rodata     start:0x00001658 end:0x00001768 align:8
+
+rel/sel/data/lbl_10_rodata_18C0.c:
+	.rodata     start:0x000018C0 end:0x00001980 align:8
+
+rel/sel/data/lbl_10_rodata_1AE8.c:
+	.rodata     start:0x00001AE8 end:0x00001AF8 align:8
+
+rel/sel/data/lbl_10_rodata_1AF8.c:
+	.rodata     start:0x00001AF8 end:0x00001B80 align:8
+
+rel/sel/data/lbl_10_rodata_1B80.c:
+	.rodata     start:0x00001B80 end:0x00001B88 align:8
+
+rel/sel/data/lbl_10_rodata_1B88.c:
+	.rodata     start:0x00001B88 end:0x00001BD4 align:8
+
+rel/sel/data/lbl_10_rodata_1C38.c:
+	.rodata     start:0x00001C38 end:0x00001CA4 align:8
+
+rel/sel/data/lbl_10_data_1320.c:
+	.data       start:0x00001320 end:0x00001380 align:8
+
+rel/sel/data/lbl_10_data_1380.c:
+	.data       start:0x00001380 end:0x000013D0 align:8
+
+rel/sel/data/lbl_10_data_1958.c:
+	.data       start:0x00001958 end:0x000019B8 align:8
+
+rel/sel/data/lbl_10_data_19B8.c:
+	.data       start:0x000019B8 end:0x000019E8 align:8
+
+rel/sel/data/lbl_10_data_1C40.c:
+	.data       start:0x00001C40 end:0x00001C70 align:8
+
+rel/sel/data/lbl_10_data_1C70.c:
+	.data       start:0x00001C70 end:0x00001D68 align:8
+
+rel/sel/data/lbl_10_data_1D68.c:
+	.data       start:0x00001D68 end:0x00001D80 align:8
+
+rel/sel/data/lbl_10_data_1D80.c:
+	.data       start:0x00001D80 end:0x00001D98 align:8
+
+rel/sel/data/lbl_10_data_1D98.c:
+	.data       start:0x00001D98 end:0x00001DD0 align:8
+
+rel/sel/data/lbl_10_data_1DD0.c:
+	.data       start:0x00001DD0 end:0x00001E80 align:8
+
+rel/sel/data/lbl_10_data_21B0.c:
+	.data       start:0x000021B0 end:0x000021F8 align:8
+
+rel/sel/data/lbl_10_data_2518.c:
+	.data       start:0x00002518 end:0x00002530 align:8
+
+rel/sel/data/lbl_10_data_2530.c:
+	.data       start:0x00002530 end:0x00002538 align:8
+
+rel/sel/data/lbl_10_data_26D0.c:
+	.data       start:0x000026D0 end:0x00002700 align:8
+
+rel/sel/data/lbl_10_data_2B90.c:
+	.data       start:0x00002B90 end:0x00002BA8 align:8
+
+rel/sel/data/lbl_10_data_2BA8.c:
+	.data       start:0x00002BA8 end:0x00002BC0 align:8
+
+rel/sel/data/lbl_10_data_2BC0.c:
+	.data       start:0x00002BC0 end:0x00002BE8 align:8
+
+rel/sel/data/lbl_10_data_2BE8.c:
+	.data       start:0x00002BE8 end:0x00002BF0 align:8
+
+rel/sel/data/lbl_10_data_30C0.c:
+	.data       start:0x000030C0 end:0x000030D0 align:8
+
+rel/sel/data/lbl_10_data_30D0.c:
+	.data       start:0x000030D0 end:0x000030E0 align:8
+
+rel/sel/data/lbl_10_data_30E0.c:
+	.data       start:0x000030E0 end:0x000030F0 align:8
+
+rel/sel/data/lbl_10_data_30F0.c:
+	.data       start:0x000030F0 end:0x00003148 align:8
+
+rel/sel/data/lbl_10_data_3148.c:
+	.data       start:0x00003148 end:0x000031F8 align:8
+
+rel/sel/data/lbl_10_data_31F8.c:
+	.data       start:0x000031F8 end:0x00003260 align:8
+
+rel/sel/data/lbl_10_data_3260.c:
+	.data       start:0x00003260 end:0x00003278 align:8
+
+rel/sel/data/lbl_10_data_3278.c:
+	.data       start:0x00003278 end:0x00003290 align:8
+
+rel/sel/data/lbl_10_data_3290.c:
+	.data       start:0x00003290 end:0x00003430 align:8
+
+rel/sel/data/lbl_10_data_3430.c:
+	.data       start:0x00003430 end:0x000034B8 align:8
+
+rel/sel/data/lbl_10_data_34F8.c:
+	.data       start:0x000034F8 end:0x000035F0 align:8
+
+rel/sel/data/lbl_10_data_42E8.c:
+	.data       start:0x000042E8 end:0x000044E0 align:8
+
+rel/sel/data/lbl_10_data_5560.c:
+	.data       start:0x00005560 end:0x00005570 align:8
+
+rel/sel/data/lbl_10_data_5570.c:
+	.data       start:0x00005570 end:0x00005580 align:8
+
+rel/sel/data/lbl_10_data_5580.c:
+	.data       start:0x00005580 end:0x00005590 align:8
+
+rel/sel/data/lbl_10_data_5590.c:
+	.data       start:0x00005590 end:0x000055A0 align:8
+
+rel/sel/data/lbl_10_data_55A0.c:
+	.data       start:0x000055A0 end:0x000055B8 align:8
+
+rel/sel/data/lbl_10_data_55B8.c:
+	.data       start:0x000055B8 end:0x000055D8 align:8
+
+rel/sel/data/lbl_10_data_5F00.c:
+	.data       start:0x00005F00 end:0x00005FA0 align:8
+
+rel/sel/data/lbl_10_data_61A0.c:
+	.data       start:0x000061A0 end:0x000061A8 align:8
+
+rel/sel/data/lbl_10_data_6270.c:
+	.data       start:0x00006270 end:0x00006278 align:8
+
+rel/sel/data/lbl_10_data_6278.c:
+	.data       start:0x00006278 end:0x00006280 align:8
+
+rel/sel/data/lbl_10_data_6280.c:
+	.data       start:0x00006280 end:0x00006380 align:8
+
+rel/sel/data/lbl_10_data_6380.c:
+	.data       start:0x00006380 end:0x00006390 align:8
 
 rel/sel/data/lbl_10_data_6980.c:
 	.data       start:0x00006980 end:0x000069C0 align:8
@@ -1633,40 +1669,10 @@ rel/sel/data/lbl_10_data_6B68.c:
 	.data       start:0x00006B68 end:0x00006B88 align:8
 
 rel/sel/data/lbl_10_data_6B88.c:
-	.data       start:0x00006B88 end:0x00006BAC align:8
+	.data       start:0x00006B88 end:0x00006BD0 align:8
 
 rel/sel/data/lbl_10_data_6BD0.c:
 	.data       start:0x00006BD0 end:0x00006BEF align:8
-
-rel/sel/data/lbl_10_rodata_0.c:
-	.rodata     start:0x00000000 end:0x00000094 align:8
-
-rel/sel/data/lbl_10_rodata_158.c:
-	.rodata     start:0x00000158 end:0x000001E8 align:8
-
-rel/sel/data/lbl_10_rodata_588.c:
-	.rodata     start:0x00000588 end:0x000015D4 align:8
-
-rel/sel/data/lbl_10_rodata_1658.c:
-	.rodata     start:0x00001658 end:0x00001768 align:8
-
-rel/sel/data/lbl_10_rodata_18C0.c:
-	.rodata     start:0x000018C0 end:0x00001980 align:8
-
-rel/sel/data/lbl_10_rodata_1AE8.c:
-	.rodata     start:0x00001AE8 end:0x00001AF8 align:8
-
-rel/sel/data/lbl_10_rodata_1AF8.c:
-	.rodata     start:0x00001AF8 end:0x00001B80 align:8
-
-rel/sel/data/lbl_10_rodata_1B80.c:
-	.rodata     start:0x00001B80 end:0x00001B88 align:8
-
-rel/sel/data/lbl_10_rodata_1B88.c:
-	.rodata     start:0x00001B88 end:0x00001BD4 align:8
-
-rel/sel/data/lbl_10_rodata_1C38.c:
-	.rodata     start:0x00001C38 end:0x00001CA4 align:8
 
 rel/sel/data/lbl_10_rodata_1D68.c:
 	.rodata     start:0x00001D68 end:0x00001D70 align:8
