@@ -100809,6 +100809,18 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_C3A0C.c",
+    "symbols": [
+      "fn_1_C3A0C"
+    ],
+    "status": "nonmatching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard.c",
+    "pool": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/memcard/fn_1_C40A0.c",
     "symbols": [
       "fn_1_C40A0"
