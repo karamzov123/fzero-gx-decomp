@@ -4513,3 +4513,883 @@ s32 fn_7_4EF8(u32 arg0, f32 arg1, f32 arg2) {
     return result;
 }
 /* fzgx:end fn_7_4EF8 */
+
+/* fzgx:begin fn_7_4FD0 pool */
+#include "rel/story/story_mode.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/globals.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+#ifndef REL_MAIN_REL_GAME_H
+#define REL_MAIN_REL_GAME_H
+
+// lbl_1_bss_6EAD0: .bss size 0x708, 6 refs from game.c
+#ifndef FZGX_TYPES_LBL_1_BSS_6EAD0
+#define FZGX_TYPES_LBL_1_BSS_6EAD0
+// one layout for every TU header that declares this symbol (librarian, typedefs.json)
+typedef struct {
+    u32 unk_0;  // 23 loads, 0 stores
+    u32 unk_4;  // 9 loads, 0 stores
+} Obj_1_bss_6EAD0_At0;
+typedef struct {
+    Obj_1_bss_6EAD0_At0 *unk_0;  // 34 loads, 0 stores
+    u8 pad_4[0x704];
+} Obj_1_bss_6EAD0;
+#endif
+extern Obj_1_bss_6EAD0 lbl_1_bss_6EAD0;
+
+// lbl_1_bss_9C: .bss size 0x1, 2 refs from game.c
+extern u8 lbl_1_bss_9C;
+
+#endif  // REL_MAIN_REL_GAME_H
+#ifndef GAME_MAIN_REL_CAR_TYPES_H
+#define GAME_MAIN_REL_CAR_TYPES_H
+#ifndef REL_MAIN_REL_CAR_H
+#define REL_MAIN_REL_CAR_H
+
+#endif  // REL_MAIN_REL_CAR_H
+
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+#endif  // GAME_VEC3_H
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct {
+    u8 pad_0[0x118];
+    u32 unk_118;
+    u32 unk_11C;
+    u8 pad_120[0x20];
+    s32 unk_140;
+    f32 unk_144;
+    f32 unk_148;
+    f32 unk_14C;
+    f32 unk_150;
+} CarSound;
+
+typedef struct {
+    u32 flags;
+    u8 pad_4[0x498];
+    CarSound *sound;
+} fn_1_85F90_Car;
+
+extern void fn_1_41F58(Fn1967A8Resource *arg0, s32 arg1, void (*arg2)(void), void *arg3);
+
+#endif  // GAME_MAIN_REL_CAR_TYPES_H
+
+/* end game/main_rel/car_types.h */
+/* begin game/main_rel/adxt_stop_types.h (fork-deltawave784/windows-and-types@8c8d7cc3) */
+#ifndef GAME_MAIN_REL_ADXT_STOP_TYPES_H
+#define GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+// The ADXT handle layout recovered from ADXT_Stop's accesses (signature types), shared by game.c and
+// live_camera.c, which carried identical copies. Hand-owned (librarian).
+
+
+typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
+typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
+typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
+
+typedef struct Sig_ADXT_Stop_SJCK {
+    unsigned char *data;
+    int len;
+} Sig_ADXT_Stop_SJCK;
+
+typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
+typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+
+struct Sig_ADXT_Stop_SJInterface {
+    void *reserved[3];
+    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+};
+
+struct Sig_ADXT_Stop_SJ {
+    const Sig_ADXT_Stop_SJInterface *interface;
+};
+
+typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
+typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
+
+typedef struct Sig_ADXT_Stop_ADXTHandle {
+    s8 used;
+    s8 status;
+    s8 stream_type;
+    s8 maximum_channels;
+    Sig_ADXT_Stop_AdxSjdHandle *decoder;
+    Sig_ADXT_Stop_ADXStream *stream;
+    Sig_ADXT_Stop_AXRNAHandle *rna;
+    Sig_ADXT_Stop_SJ *stream_sj;
+    Sig_ADXT_Stop_SJ *input_sj;
+    Sig_ADXT_Stop_SJ *output_sj[2];
+    u8 *input_buffer;
+    s32 input_buffer_size;
+    s32 input_extra_size;
+    u8 *output_buffer;
+    s32 output_buffer_size;
+    s32 output_buffer_distance;
+    s32 server_frequency;
+    s16 stream_buffer_sectors;
+    s16 minimum_buffer_sectors;
+    s16 output_volume;
+    s16 output_pan[2];
+    s16 field_46;
+    s32 maximum_decode_samples;
+    s32 loop_count;
+    s32 link_data_length;
+    s32 field_54;
+    s32 field_58;
+    s32 field_5C;
+    s16 error_code;
+    u8 reserved_62[2];
+    s32 field_64;
+    s16 field_68;
+    s16 field_6A;
+    s8 stream_loop_enabled;
+    s8 auto_receiver;
+    u8 reserved_6E[2];
+    s8 suppress_playback;
+    s8 decoder_ready;
+    s8 paused;
+    u8 reserved_73;
+    Sig_ADXT_Stop_ADX_AMP *amplifier;
+    Sig_ADXT_Stop_SJ *amplifier_input[2];
+    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    s32 time_offset;
+    s32 eos_sector;
+    s32 loop_sample_count;
+    Sig_ADXT_Stop_LSCObject *linked_stream_controller;
+    s8 link_enabled;
+    u8 reserved_99[3];
+    u32 playback_time;
+    s32 playback_start_vsync;
+    s32 linked_decoded_samples;
+    s8 pending_stream_start;
+    u8 reserved_A9[3];
+    u8 *work_end;
+    const char *pending_filename;
+    void *pending_directory;
+    s32 pending_file_offset;
+    s32 pending_file_sectors;
+} Sig_ADXT_Stop_ADXTHandle;
+
+#endif  // GAME_MAIN_REL_ADXT_STOP_TYPES_H
+
+/* end game/main_rel/adxt_stop_types.h */
+
+extern int fn_1_4C10(void);
+extern int fn_1_4CAC(void);
+extern int fn_1_40F44(void);
+extern void OSReport(const char *, ...);
+extern u32 fn_1_3ED8C(u32,u32,u32,u32,u32,u32,u32);
+extern u32 fn_1_3F4B8(u32,u32,u32,u32,u32,u32);
+extern u32 fn_1_3EB78(u32,void *,void *,void *);
+extern u32 fn_1_3EA90(u32,void *,void *,void *);
+extern void *fn_1_E54A8(s16,s16);
+extern s16 fn_1_E5430(s16);
+extern void *fn_1_86254(s32);
+extern void fn_1_86194(f32);
+typedef struct Sig_fn_1_24F10_Fn_1_24F10 {
+    int flags; u8 pad04[0x2c]; f32 field30; u8 pad34[0x150]; f32 field184;
+    u8 pad188[0x8c]; u16 field214; u8 pad216[0xe]; f32 field224;
+    u8 pad228[0x284]; f32 field4ac; u8 pad4b0[0xe3]; u8 field593;
+    u8 pad594[0x46]; u16 field5da;
+} Sig_fn_1_24F10_Fn_1_24F10;
+extern int fn_1_24F10(Sig_fn_1_24F10_Fn_1_24F10 *,f32);
+typedef struct { u8 pad[0x3bc]; u32 value; } Sig_fn_1_8E448_fn_1_8E448_Object;
+extern Sig_fn_1_8E448_fn_1_8E448_Object *fn_1_868C0(s8);
+extern void fn_1_8E448(Sig_fn_1_8E448_fn_1_8E448_Object *,u32);
+extern void *fn_1_8627C(s32);
+extern u32 fn_1_864E8(s32);
+extern void fn_1_85F90(fn_1_85F90_Car *,void *,f32,f32,f32,f32);
+extern void fn_1_8B880(void);
+extern void *fn_1_214C4(void *,u32,f32);
+extern u32 fn_1_17920(void *,u32,f32);
+extern u8 *fn_1_14F04(void);
+struct Sig_fn_1_207DC_A {
+    u8 pad_0[0x30]; f32 unk_30; f32 unk_34; u8 pad_38[4]; f32 unk_3C;
+    u8 pad_40[0x28]; f32 unk_68; f32 unk_6C; u8 pad_70[0xC]; u32 unk_7C;
+};
+extern void fn_1_207DC(struct Sig_fn_1_207DC_A *,void *,f32);
+typedef struct Sig_fn_1_25004_Fn_1_25004_Obj {
+    u32 flags00; s16 field04; u8 pad06[0x8e]; f32 field94; f32 field98; f32 field9c;
+    f32 fielda0; f32 fielda4; f32 fielda8; u8 padac[0xd0]; f32 field17c;
+    u8 pad180[4]; f32 field184; u8 pad188[0x9c]; f32 field224;
+    u8 pad228[0x24c]; u8 field474; u8 pad475[0x117]; u32 flags58c;
+} Sig_fn_1_25004_Fn_1_25004_Obj;
+extern void fn_1_25004(Sig_fn_1_25004_Fn_1_25004_Obj *);
+extern void fn_1_8D988(void);
+extern void fn_1_8DAB4(void);
+extern void camera_set_entry_field_0xa8(u8,s16);
+extern s32 fn_1_3F1AC(void);
+extern void fn_1_A2D84(u32);
+extern u32 fn_1_A1588(Sig_ADXT_Stop_ADXTHandle *,u32);
+
+extern void *lbl_1_bss_84[];
+
+extern u32 lbl_1_bss_6F23C;
+
+typedef struct { u8 pad[4]; f32 f4,f8,fc,f10,f14; u8 pad18[8]; f32 f20; u8 pad24[0x1c]; f32 f40; u8 pad44[0x70]; } CarSpec;
+extern CarSpec lbl_1_data_28060[];
+
+typedef struct { f32 x,y,z; } ActionVec;
+typedef struct { u8 r,g,b,a; } ActionColor;
+typedef struct { u32 flags; u8 pad4[0x2e]; u8 mode; } CarControl;
+typedef struct {
+    u32 flags; s16 field4; s16 field6; f32 field8,fieldc,field10,field14;
+    u8 pad18[0x7c]; ActionVec field94,fielda0; u8 padac[0xd0];
+    f32 field17c; f32 field180; f32 field184; u8 pad188[0x98];
+    f32 field220,field224,field228,field22c; u8 pad230[0xc]; f32 field23c;
+    u8 pad240[0x244]; CarControl *field484; u8 pad488[0x14]; void *field49c;
+    u8 pad4a0[0x13a]; u16 field5da;
+} ActionCar;
+typedef struct { u8 pad[0xe]; s16 fieldE; u8 pad10[0x128]; u32 flags138,flags13c; } FlagObject;
+typedef struct { u8 pad[0x390]; u32 flags390; } Racer;
+typedef struct { u8 pad[0x200]; s32 vars[8]; s32 vars2[8]; u32 flags240,flags244; } ActionState;
+typedef struct { u16 unk0,opcode; s32 op,index,value,extra; f32 amount; } ActionCommand;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u8 fzgx_obj_lbl_7_bss_1960;
+u8 lbl_7_bss_1960_fill_1961;
+u16 lbl_7_bss_1960_fill_1962;
+Obj_7_bss_1960_At4 *lbl_7_bss_1960_4;
+u8 lbl_7_bss_1960_8;
+u8 lbl_7_bss_1960_fill_1969;
+u16 lbl_7_bss_1960_fill_196A;
+u32 lbl_7_bss_1960_C;
+u32 lbl_7_bss_1960_10;
+u32 lbl_7_bss_1960_fill_1974;
+u8 lbl_7_bss_1960_18;
+u8 lbl_7_bss_1960_fill_1979;
+u16 lbl_7_bss_1960_fill_197A;
+f32 lbl_7_bss_1960_1C;
+u32 lbl_7_bss_1960_fill_1980;
+f32 lbl_7_bss_1960_24;
+u32 lbl_7_bss_1960_fill_1988;
+u8 lbl_7_bss_1960_2C;
+u8 lbl_7_bss_1960_fill_198D;
+u16 lbl_7_bss_1960_fill_198E;
+u32 lbl_7_bss_1960_fill_1990;
+u8 lbl_7_bss_1960_34;
+u8 lbl_7_bss_1960_35;
+u8 lbl_7_bss_1960_36;
+u8 lbl_7_bss_1960_37;
+u8 lbl_7_bss_1960_38;
+u8 lbl_7_bss_1960_39;
+u8 lbl_7_bss_1960_3A;
+u8 lbl_7_bss_1960_fill_199B;
+u32 lbl_7_bss_1960_3C;
+/* slot tables: 4 player slots, 30 object slots */
+u8 lbl_7_bss_1960_40[4];
+u8 lbl_7_bss_1960_44[4];
+u32 lbl_7_bss_1960_48[4];
+u8 lbl_7_bss_1960_58[30];
+u8 lbl_7_bss_1960_78[30];
+u32 lbl_7_bss_1960_98[30];
+u8 lbl_7_bss_1960_fill_1A70;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_7_bss_1960;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1961;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1962;
+    s = *(u8 *)&lbl_7_bss_1960_4;
+    s = *(u8 *)&lbl_7_bss_1960_8;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1969;
+    s = *(u8 *)&lbl_7_bss_1960_fill_196A;
+    s = *(u8 *)&lbl_7_bss_1960_C;
+    s = *(u8 *)&lbl_7_bss_1960_10;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1974;
+    s = *(u8 *)&lbl_7_bss_1960_18;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1979;
+    s = *(u8 *)&lbl_7_bss_1960_fill_197A;
+    s = *(u8 *)&lbl_7_bss_1960_1C;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1980;
+    s = *(u8 *)&lbl_7_bss_1960_24;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1988;
+    s = *(u8 *)&lbl_7_bss_1960_2C;
+    s = *(u8 *)&lbl_7_bss_1960_fill_198D;
+    s = *(u8 *)&lbl_7_bss_1960_fill_198E;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1990;
+    s = *(u8 *)&lbl_7_bss_1960_34;
+    s = *(u8 *)&lbl_7_bss_1960_35;
+    s = *(u8 *)&lbl_7_bss_1960_36;
+    s = *(u8 *)&lbl_7_bss_1960_37;
+    s = *(u8 *)&lbl_7_bss_1960_38;
+    s = *(u8 *)&lbl_7_bss_1960_39;
+    s = *(u8 *)&lbl_7_bss_1960_3A;
+    s = *(u8 *)&lbl_7_bss_1960_fill_199B;
+    s = *(u8 *)&lbl_7_bss_1960_3C;
+    s = *(u8 *)lbl_7_bss_1960_40;
+    s = *(u8 *)lbl_7_bss_1960_44;
+    s = *(u8 *)lbl_7_bss_1960_48;
+    s = *(u8 *)lbl_7_bss_1960_58;
+    s = *(u8 *)lbl_7_bss_1960_78;
+    s = *(u8 *)lbl_7_bss_1960_98;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1A70;
+}
+#pragma section code_type ".text"
+
+static const u32 pool_head[1]={0};
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer(volatile f32 *p,volatile u32 *w,u32 n) { /* fzgx-allow: S2 retail literal-pool layout primer */
+    w[0]=pool_head[0];
+    p[0]=0.0f; p[1]=1.0f; p[2]=300.0f; p[3]=640.0f; p[4]=480.0f;
+    p[5]=(f32)n;
+}
+#pragma section code_type ".text"
+
+static const u32 pool_color0[1]={0};
+static const u32 pool_color1[1]={0};
+static const u32 pool_color2[1]={0};
+static const u32 pool_color4[1]={0x40000000};
+static const u32 pool_color3[1]={0x40000000};
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer2(volatile f32 *p,volatile u32 *w,s32 sn) { /* fzgx-allow: S2 retail literal-pool layout primer */
+    w[1]=pool_color0[0]; w[2]=pool_color1[0]; w[3]=pool_color2[0];
+    w[4]=pool_color4[0]; w[5]=pool_color3[0];
+    p[6]=100.0f; p[7]=-10000000.0f; p[8]=(f32)sn;
+}
+#pragma section code_type ".text"
+
+static inline void set_slot(u8 *a,u8 *b,u32 *c,s32 slot,u32 x,u32 y,u32 flags) {
+    a[slot]=x;
+    b[slot]=y;
+    c[slot]=flags;
+}
+static inline void clear_object_flags(FlagObject *obj,u32 high,u32 low) {
+    *(u64 *)&obj->flags138 &= ~(((u64)high << 32) | low);
+}
+#pragma opt_dead_assignments off
+void fn_7_4FD0(ActionState *arg0,ActionCommand *arg1,f32 arg2) {
+    s32 i;
+    s32 j;
+    s32 end;
+    s32 first;
+    s32 op;
+    s32 index;
+    s32 value;
+    s32 extra;
+    s32 fzgx_loop_i_14578;
+    s32 fzgx_loop_i_19806;
+    s32 fzgx_loop_i_18323;
+    s32 fzgx_loop_i_16747;
+    if ((fn_1_4C10()!=0 && fn_1_4CAC()==0) || fn_1_40F44()!=0)
+        lbl_7_bss_1960_2C=1;
+    switch (arg1->opcode) {
+    case 0:
+        op=arg1->op; index=arg1->index; value=arg1->value;
+        switch(op) {
+        case 0:
+            if(index<8) arg0->vars[index]=value;
+            else if(index==9) for(i=0;i<8;i++) arg0->vars[i]=value;
+            break;
+        case 1:
+            if(index<8) arg0->vars[index]+=value;
+            else if(index==9) for(i=0;i<8;i++) arg0->vars[i]+=value;
+            break;
+        case 2:
+            if(index<8) {
+                if(value) lbl_7_bss_1960_C |= 0x80000000U >> index;
+                else lbl_7_bss_1960_C &= ~(0x80000000U >> index);
+            } else if(index==9) {
+                {
+    s32 fzgx_loop_i_9184;
+for(fzgx_loop_i_9184=0;fzgx_loop_i_9184<8;fzgx_loop_i_9184++) {
+                    if(value) lbl_7_bss_1960_C |= 0x80000000U >> index;
+                    else lbl_7_bss_1960_C &= ~(0x80000000U >> index);
+                }
+    i = fzgx_loop_i_9184;
+}
+            }
+            break;
+        default: OSReport((char *)lbl_7_data_14054); break;
+        }
+        break;
+    case 20:
+        op=arg1->op; index=arg1->index; value=arg1->value;
+        switch(op) {
+        case 0:
+            if(index<8) arg0->vars2[index]=value;
+            else if(index==8) for(i=0;i<8;i++) arg0->vars2[i]=value;
+            break;
+        case 1:
+            if(index<8) arg0->vars2[index]+=value;
+            else if(index==8) for(i=0;i<8;i++) arg0->vars2[i]+=value;
+            break;
+        default: OSReport((char *)lbl_7_data_14054); break;
+        }
+        break;
+    case 1:
+        op=arg1->op; index=arg1->index;
+        switch(op) {
+        case 1: lbl_7_bss_1960_36=index; break;
+        case 2: lbl_7_bss_1960_37=index; break;
+        case 3: lbl_7_bss_1960_38=index; break;
+        case 0: lbl_7_bss_1960_39=index; break;
+        case 4: lbl_7_bss_1960_8=index; break;
+        case 5: lbl_7_bss_1960_3A=index; break;
+        case 6: lbl_7_bss_1960_3C=index; break;
+        default: OSReport((char *)lbl_7_data_14054); break;
+        }
+        break;
+    case 2:
+        fn_1_3ED8C(0,lbl_7_bss_1960_37,1,lbl_7_bss_1960_36,
+            lbl_7_bss_1960_39,lbl_7_bss_1960_38,lbl_7_bss_1960_3C);
+        if(lbl_7_bss_1960_8)
+            fn_1_3F4B8(lbl_7_bss_1960_8,lbl_7_bss_1960_3A,0,0,0,0);
+        break;
+    case 3:
+        for(i=0;i<4;i++) {
+            lbl_7_bss_1960_40[i]=255;
+            lbl_7_bss_1960_44[i]=255;
+            lbl_7_bss_1960_48[i]=0;
+        }
+        for(j=0;j<30;j++) {
+            lbl_7_bss_1960_58[j]=255;
+            lbl_7_bss_1960_78[j]=255;
+            lbl_7_bss_1960_98[j]=0;
+        }
+        break;
+    case 4:
+        lbl_7_bss_1960_35=*(u8 *)arg1->op;
+        break;
+    case 5: {
+        s32 op,index,value;
+        u8 *scan;
+        op=arg1->op; index=arg1->index; value=arg1->value;
+        switch(op) {
+        case 0:
+            lbl_7_bss_1960_34=0;
+            set_slot(lbl_7_bss_1960_40,lbl_7_bss_1960_44,lbl_7_bss_1960_48,lbl_7_bss_1960_35,index,value,0);
+            break;
+        case 1:
+            {
+    s32 fzgx_loop_i_11476;
+for(fzgx_loop_i_11476=0,scan=lbl_7_bss_1960_58;fzgx_loop_i_11476<30 && *scan!=255;scan++,fzgx_loop_i_11476++) {}
+    i = fzgx_loop_i_11476;
+}
+            if(i==30) OSReport((char *)lbl_7_data_14064);
+            set_slot(lbl_7_bss_1960_58,lbl_7_bss_1960_78,lbl_7_bss_1960_98,i,index,value,0);
+            break;
+        case 2:
+            lbl_7_bss_1960_34=0;
+            set_slot(lbl_7_bss_1960_40,lbl_7_bss_1960_44,lbl_7_bss_1960_48,lbl_7_bss_1960_35,index,value,0x100000);
+            break;
+        case 3:
+            {
+    s32 fzgx_loop_i_11930;
+for(fzgx_loop_i_11930=0,scan=lbl_7_bss_1960_58;fzgx_loop_i_11930<30 && *scan!=255;scan++,fzgx_loop_i_11930++) {}
+    i = fzgx_loop_i_11930;
+}
+            if(i==30) OSReport((char *)lbl_7_data_14064);
+            set_slot(lbl_7_bss_1960_58,lbl_7_bss_1960_78,lbl_7_bss_1960_98,i,index,value,0x100000);
+            break;
+        default: OSReport((char *)lbl_7_data_14054); break;
+        }
+        break;
+    }
+    case 6:
+        fn_1_3EB78(1,lbl_7_bss_1960_40,lbl_7_bss_1960_44,lbl_7_bss_1960_48);
+        fn_1_3EA90((u8)(lbl_7_bss_1960_38-1),lbl_7_bss_1960_58,lbl_7_bss_1960_78,lbl_7_bss_1960_98);
+        break;
+    case 7: {
+        s32 i,op,index;
+        u32 value,extra;
+        op=arg1->op; index=arg1->index; value=arg1->value; extra=arg1->extra;
+        switch(op) {
+        case 0:
+            if(value!=-1) {
+                s32 group=(s16)index;
+                FlagObject *obj=fn_1_E54A8(group,(s16)value);
+                obj->flags13c |= extra;
+            } else {
+    s16 fzgx_loop_i_12810;
+for(fzgx_loop_i_12810=0;(s16)fzgx_loop_i_12810<(s16)fn_1_E5430((s16)index);fzgx_loop_i_12810++) {
+                FlagObject *obj=fn_1_E54A8((s16)index,fzgx_loop_i_12810); obj->flags13c |= extra;
+            }
+    i = fzgx_loop_i_12810;
+}
+            break;
+        case 1:
+            if(value!=-1) {
+                s32 group=(s16)index;
+                FlagObject *obj=fn_1_E54A8(group,(s16)value);
+                obj->flags138 |= extra;
+            } else {
+    s16 fzgx_loop_i_13145;
+for(fzgx_loop_i_13145=0;(s16)fzgx_loop_i_13145<(s16)fn_1_E5430((s16)index);fzgx_loop_i_13145++) {
+                FlagObject *obj=fn_1_E54A8((s16)index,fzgx_loop_i_13145); obj->flags138 |= extra;
+            }
+    i = fzgx_loop_i_13145;
+}
+            break;
+        case 2:
+            if(value!=-1) {
+                s32 group=(s16)index;
+                clear_object_flags(fn_1_E54A8(group,(s16)value),0,extra);
+            }
+            else {
+                s16 k;
+                for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++)
+                    clear_object_flags(fn_1_E54A8((s16)index,k),0,extra);
+            }
+            break;
+        case 3:
+            if(value!=-1) {
+                s32 group=(s16)index;
+                clear_object_flags(fn_1_E54A8(group,(s16)value),extra,0);
+            }
+            else {
+                s16 k;
+                for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++)
+                    clear_object_flags(fn_1_E54A8((s16)index,k),extra,0);
+            }
+            break;
+        case 4: {
+            u32 id=(value<<4)|extra;
+            {
+    s32 fzgx_loop_i_13895;
+for(fzgx_loop_i_13895=0;fzgx_loop_i_13895<(s16)fn_1_E5430((s16)index);fzgx_loop_i_13895++) {
+                FlagObject *obj=fn_1_E54A8((s16)index,(s16)fzgx_loop_i_13895);
+                if(obj->fieldE==id) clear_object_flags(obj,0,0x2000);
+            }
+    i = fzgx_loop_i_13895;
+}
+            break;
+        }
+        default: OSReport((char *)lbl_7_data_14054); break;
+        }
+        break;
+    }
+    case 8: {
+        s32 first, i, op, index;
+        f32 *fp=0;
+        u16 *sp=0;
+        s32 end;
+        f32 amount;
+        f32 base;
+        first=arg1->op; index=arg1->index; op=arg1->value; amount=arg1->amount;
+        if(first==99) {end=lbl_7_bss_1960_38-1;first=0;}
+        else if(first==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        else end=first;
+        {
+for(fzgx_loop_i_14578=first;fzgx_loop_i_14578<=end;fzgx_loop_i_14578++) {
+            ActionCar *car=fn_1_86254(fzgx_loop_i_14578);
+            CarSpec *spec=&lbl_1_data_28060[car->field6];
+            switch(index) {
+            case 9:
+                if(op==1) {base=100.0f;sp=&car->field5da;fp=&car->field184;}
+                else {
+                    base=(f32)car->field5da; fp=&car->field184; sp=0;
+                    if(op==2 && car->field184+amount>(f32)car->field5da)
+                        amount=(f32)car->field5da-car->field184;
+                }
+                break;
+            case 0: base=spec->f4; fp=&car->field8; break;
+            case 1: base=spec->f8; fp=&car->field220; break;
+            case 2: base=spec->fc; fp=&car->field22c; break;
+            case 3: op=0; fn_1_86194(amount); break;
+            case 4: base=spec->f10; fp=&car->fieldc; break;
+            case 5: base=spec->f14; fp=&car->field10; break;
+            case 6: op=0; fn_1_24F10((Sig_fn_1_24F10_Fn_1_24F10 *)car,amount); break;
+            case 7: base=spec->f20; fp=&car->field14; break;
+            case 8: base=spec->f40; fp=&car->field23c; break;
+            default: op=0; break;
+            }
+            if(amount==-10000000.0f) amount=base;
+            if(sp) switch(op) {
+            case 0: break;
+            case 1: *sp=(s32)amount; break;
+            case 2: *sp+=(s32)amount; break;
+            case 3: *sp-=(s32)amount; break;
+            default: OSReport((char *)lbl_7_data_14054); break;
+            }
+            if(fp) switch(op) {
+            case 0: break;
+            case 1: *fp=amount; break;
+            case 2: *fp+=amount; break;
+            case 3: *fp-=amount; break;
+            default: OSReport((char *)lbl_7_data_14054); break;
+            }
+        }
+    i = fzgx_loop_i_14578;
+}
+        break;
+    }
+    case 9: {
+        s32 selector, first, value, op, end;
+        u32 notmask,notvalue;
+        s32 i;
+        u32 mask;
+        selector=arg1->op; op=arg1->index; value=arg1->value;
+        if(selector==99) {end=lbl_7_bss_1960_38-1;first=0;}
+        else if(selector==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        else {end=selector;first=selector;}
+        mask=0x80000000U>>value; notvalue=~value; notmask=~mask;
+        for(i=first;i<=end;i++) {
+            ActionCar *car=fn_1_86254(i);
+            switch(op) {
+            case 0: car->flags=value; break;
+            case 1: car->flags|=mask; break;
+            case 2: car->flags&=notmask; break;
+            case 3: car->flags|=value; break;
+            case 4: car->flags&=notvalue; break;
+            default: OSReport((char *)lbl_7_data_14054); break;
+            }
+        }
+        break;
+    }
+    case 10: {
+        s32 selector, first, value, op, end;
+        u32 notmask,notvalue;
+        s32 i;
+        u32 mask;
+        selector=arg1->op; op=arg1->index; value=arg1->value;
+        if(selector==99) {end=lbl_7_bss_1960_38-1;first=0;}
+        else if(selector==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        else {end=selector;first=selector;}
+        mask=0x80000000U>>value; notvalue=~value; notmask=~mask;
+        for(i=first;i<=end;i++) {
+            Racer *racer=(Racer *)fn_1_868C0((s8)i);
+            switch(op) {
+            case 0: racer->flags390=value; break;
+            case 1: racer->flags390|=mask; break;
+            case 2: racer->flags390&=notmask; break;
+            case 3: racer->flags390|=value; break;
+            case 4: racer->flags390&=notvalue; break;
+            default: OSReport((char *)lbl_7_data_14054); break;
+            }
+        }
+        break;
+    }
+    case 11: {
+        u32 value;
+        s32 first, end;
+        first=arg1->op; value=arg1->index;
+        if(first==99) {end=lbl_7_bss_1960_38-1;first=0;}
+        else if(first==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        else end=first;
+        for(i=first;i<=end;i++) {
+            Sig_fn_1_8E448_fn_1_8E448_Object *racer=fn_1_868C0((s8)i);
+            fn_1_8E448(racer,value);
+        }
+        break;
+    }
+    case 12: {
+        f32 x=(f32)arg1->index;
+        f32 z=arg1->amount;
+        f32 y=(f32)arg1->value;
+        ActionCar *car;
+        u32 flags;
+        u32 index;
+        index=arg1->op;
+        car=fn_1_86254(index);
+        fn_1_8627C(index);
+        flags=fn_1_864E8(index);
+        fn_1_85F90((fn_1_85F90_Car *)car,(void *)-1,y,z,1.0f,x);
+        fn_1_8B880();
+        car->flags=flags|(car->flags&0x400);
+        break;
+    }
+    case 13: {
+        f32 x=(f32)arg1->index;
+        f32 z=arg1->amount;
+        f32 y=(f32)arg1->value;
+        ActionCar *car;
+        u32 flags;
+        f32 result;
+        ActionVec pos;
+        void *entry;
+        u32 index;
+        index=arg1->op;
+        car=fn_1_86254(index);
+        fn_1_8627C(index);
+        flags=fn_1_864E8(index);
+        entry=fn_1_214C4(&result,0,x);
+        fn_1_17920(entry,0,result);
+        fn_1_207DC((struct Sig_fn_1_207DC_A *)(fn_1_14F04()+0x400),&pos,z);
+        fn_1_85F90((fn_1_85F90_Car *)car,entry,y,pos.x,pos.y,pos.z);
+        fn_1_8B880();
+        car->flags=flags|(car->flags&0x400);
+        break;
+    }
+    case 14: {
+        s32 first, i, op, value, end;
+        first=arg1->op; op=arg1->index; value=arg1->value;
+        if(first==99) {end=lbl_7_bss_1960_38-1;first=0;}
+        else if(first==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        else end=first;
+        {
+for(fzgx_loop_i_19806=first;fzgx_loop_i_19806<=end;fzgx_loop_i_19806++) {
+            CarControl *control=((ActionCar *)fn_1_86254(fzgx_loop_i_19806))->field484;
+            switch(op) {
+            case -99: control->flags|=value; break;
+            case -98: control->flags&=~value; break;
+            case 0: control->flags&=~1;control->mode=0;break;
+            default: control->flags|=1;control->mode=op;break;
+            }
+        }
+    i = fzgx_loop_i_19806;
+}
+        break;
+    }
+    case 15:
+        op=arg1->op; index=arg1->index;
+        switch(op) {
+        case 0: (&lbl_1_bss_9C)[6]=index;break;
+        case 1: (&lbl_1_bss_9C)[7]=index;break;
+        default: OSReport((char *)lbl_7_data_14054);break;
+        }
+        break;
+    case 16: {
+        ActionCar *car=fn_1_86254(arg1->op);
+        ActionVec a=car->field94;
+        ActionVec b=car->fielda0;
+        f32 x=car->field224;
+        f32 y=car->field17c;
+        fn_1_25004((Sig_fn_1_25004_Fn_1_25004_Obj *)car);
+        car->field224=x;car->field17c=y;
+        car->field94=a;car->fielda0=b;
+        break;
+    }
+    case 17:
+        op=arg1->op; index=arg1->index;
+        switch(op) {
+        case 0:
+            if(index<8) lbl_1_bss_84[0]=&arg0->vars[index];
+            else OSReport((char *)lbl_7_data_14054);
+            break;
+        case 1: lbl_1_bss_84[1]=&((ActionCar *)fn_1_86254(index))->field17c;break;
+        case 2: lbl_1_bss_84[2]=((ActionCar *)fn_1_86254(index))->field49c;break;
+        case 3: lbl_1_bss_84[3]=lbl_7_bss_1960_4;break;
+        case 4: lbl_1_bss_84[4]=(void *)index;break;
+        case 5: lbl_1_bss_84[5]=(void *)index;break;
+        default: OSReport((char *)lbl_7_data_14054);break;
+        }
+        break;
+    case 18:
+        if(arg1->op) fn_1_8D988();
+        else fn_1_8DAB4();
+        break;
+    case 19:
+        op=arg1->op; index=arg1->index;
+        switch(op) {
+        case 0: camera_set_entry_field_0xa8(0,(s16)index);break;
+        default: OSReport((char *)lbl_7_data_14054);break;
+        }
+        break;
+    case 21: {
+        u32 *flags;
+        s32 op,value;
+        flags=(u32 *)arg1->index; op=arg1->op; value=arg1->value;
+        switch((s32)flags) {
+        case 0: flags=&arg0->flags244;break;
+        case 1: flags=&arg0->flags240;break;
+        case 2: flags=(u32 *)lbl_7_bss_1960_4;break;
+        }
+        switch(op) {
+        case 0: *flags=value;break;
+        case 1: *flags|=0x80000000U>>value;break;
+        case 2: *flags&=~(0x80000000U>>value);break;
+        case 3: *flags|=value;break;
+        case 4: *flags&=~value;break;
+        default: OSReport((char *)lbl_7_data_14054);break;
+        }
+        break;
+    }
+    case 22: {
+        u32 handle;
+        s32 op, extra, value;
+        extra=arg1->value;op=arg1->op;value=arg1->index;
+        if(extra==0) handle=lbl_1_bss_6EAD0.unk_0->unk_0;
+        else handle=lbl_1_bss_6EAD0.unk_0->unk_4;
+        switch(op) {
+        case 0:
+            if(!lbl_7_bss_1960_2C && !fn_1_3F1AC()) fn_1_A2D84(value);
+            break;
+        case 1:
+            if(!lbl_7_bss_1960_2C && !fn_1_3F1AC()) fn_1_A1588((Sig_ADXT_Stop_ADXTHandle *)handle,(u8)value);
+            break;
+        case 2: lbl_1_bss_6EAB4.unk_0|=value;break;
+        }
+        break;
+    }
+    case 23: {
+        s32 op;
+        f32 amount;
+        op=arg1->op;amount=arg1->amount;
+        switch(op) {
+        case 0: {
+            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
+            ((ActionColor *)&lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color0;
+            (&lbl_7_bss_1960_18)[slot]=0;
+            (&lbl_7_bss_1960_24)[slot]=0.0f;
+            (&lbl_7_bss_1960_1C)[slot]=0.0f;
+            break;
+        }
+        case 1: {
+            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
+            ((ActionColor *)&lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color1;
+            (&lbl_7_bss_1960_18)[slot]=2;
+            (&lbl_7_bss_1960_1C)[slot]=0.0f;
+            (&lbl_7_bss_1960_24)[slot]=amount;
+            break;
+        }
+        case 2: {
+            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
+            ((ActionColor *)&lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color2;
+            (&lbl_7_bss_1960_18)[slot]=1;
+            (&lbl_7_bss_1960_1C)[slot]=1.0f;
+            (&lbl_7_bss_1960_24)[slot]=-amount;
+            break;
+        }
+        case 4: {
+            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
+            ((ActionColor *)&lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color4;
+            (&lbl_7_bss_1960_18)[slot]=1;
+            (&lbl_7_bss_1960_1C)[slot]=1.0f;
+            (&lbl_7_bss_1960_24)[slot]=-amount;
+            break;
+        }
+        case 3: {
+            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
+            ((ActionColor *)&lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color3;
+            (&lbl_7_bss_1960_18)[slot]=2;
+            (&lbl_7_bss_1960_1C)[slot]=0.0f;
+            (&lbl_7_bss_1960_24)[slot]=amount;
+            break;
+        }
+        }
+        fzgx_obj_lbl_7_bss_1960++;
+        if(fzgx_obj_lbl_7_bss_1960>=2) fzgx_obj_lbl_7_bss_1960--;
+        break;
+    }
+    case 24: lbl_1_bss_8B3A0.unk_8=arg1->op;break;
+    }
+    if(lbl_7_bss_1960_2C) lbl_1_bss_6F23C&=~1;
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_7_4FD0 */

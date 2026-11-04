@@ -9527,3 +9527,15 @@ rel/main_rel/stcoli/fn_1_1EBD4.c:
 
 rel/main_rel/effect_car/fn_1_6B8A4.c:
 	.text       start:0x0006B8A4 end:0x0006BFB8 align:4
+
+rel/main_rel/burner/fn_1_9BBE4.c:
+	.text       start:0x0009BBE4 end:0x0009C724 align:4
+
+rel/main_rel/cloth/fn_1_101BC4.c:
+	.text       start:0x00101BC4 end:0x0010240C align:4
+
+rel/main_rel/font/fn_1_4EDAC.c:
+	.text       start:0x0004EDAC end:0x0004F724 align:4
+
+rel/main_rel/bg_san/fn_1_DB9B0.c:
+	.text       start:0x000DB9B0 end:0x000DC084 align:4

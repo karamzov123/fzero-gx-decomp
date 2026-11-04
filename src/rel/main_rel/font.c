@@ -3911,6 +3911,354 @@ s32 fn_1_4EC74(const FontDrawPacket *packet) {
 }
 /* fzgx:end fn_1_4EC74 */
 
+/* fzgx:begin fn_1_4EDAC noprologue */
+#include "types.h"
+#include "font.h"
+#include "types.h"
+#include "dolphin/types.h"
+#include "dolphin/hw_regs.h"
+#include "psvec_fill.h"
+#include "dolphin/gx.h"
+
+struct fn_1_4EDAC_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+const u32 lbl_1_rodata_26F8[22] = {
+0,0,0,0x3dcccccd,0x3f800000,0x3f800000,0,0,
+0x3f800000,0x3f800000,0,0x3f800000,5,0,0xffffffff,0,0,0,0,0,0,0
+};
+
+#pragma section code_type ".fzgxpool"
+static void fn_1_4EDAC_pool_primer(f32 *f, f64 *d) {
+    f[0] = 0.0f;
+    f[1] = 1.0f;
+    d[0] = 4503599627370496.0;
+    f[2] = 55.0f;
+    f[3] = 0.1f;
+    f[4] = 90000.0f;
+    f[5] = 480.0f;
+    f[6] = 640.0f;
+    d[1] = 4503601774854144.0;
+    d[2] = 0.5;
+    f[7] = 0.75f;
+    d[3] = 0.002405626;
+    f[8] = 320.0f;
+    f[9] = 240.0f;
+    f[10] = 255.0f;
+}
+#pragma section code_type
+extern struct fn_1_4EDAC_lbl_801A6D00 lbl_801A6D00;
+
+typedef struct DrawVertex { f32 x, y, z; } DrawVertex;
+typedef struct DrawColor { u8 r, g, b, a; } DrawColor;
+typedef struct DrawFields {
+    u32 id;
+    f32 x, y, depth;
+    f32 scale_x, scale_y;
+    f32 u0, v0, u1, v1;
+    s16 angle_z, angle_y;
+    f32 alpha;
+    u32 flags;
+    f32 pivot;
+    DrawColor color, add_color;
+    s32 format;
+    u16 width, height;
+    u32 image;
+    FontDrawPacket *texture;
+    void (*callback)(FontDrawPacket *, DrawVertex *);
+} DrawFields;
+
+extern f32 fn_1_A6FE8(void);
+extern void C_MTXPerspective(void *, f32, f32, f32, f32);
+extern void C_MTXOrtho(void *, f32, f32, f32, f32, f32, f32);
+extern void fn_800737E4(void *, s32);
+extern void fn_80074660(u32);
+extern void fn_80073678(u32);
+extern void fn_1_4E220(FontDrawPacket *, u32, u32, u32, u32);
+extern s32 fn_1_A6F1C(void);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006E15C(f32, f32, f32);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void lbl_8006E1B0(void *, void *);
+extern void fn_1_492F0(FontDrawPacket *, void *);
+extern s32 fn_1_486F8(u32);
+extern u32 fn_800371F8(u32, void *);
+extern void fn_8003462C(u32, u32, u32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_800724C8(void);
+extern void fn_8007245C(u32);
+extern void fn_80074788(u32);
+extern void fn_80073898(u32);
+extern void fn_80073C6C(s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_80074918(u8, s32, u8);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern u32 fn_800720B0(u32);
+extern void fn_80072864(u32);
+extern u16 fn_1_A5DB0(void);
+extern u16 fn_1_A5D88(void);
+extern u32 fn_80074188(u32, u32, u32, u32);
+
+static inline void draw_vertex(DrawVertex *v, f32 u, f32 t) {
+    f32 z = v->z;
+    f32 y = v->y;
+    f32 x = v->x;
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+    GXWGFifo.f32 = u;
+    GXWGFifo.f32 = t;
+}
+
+static inline void draw_reset(void) {
+    fn_800724C8();
+    fn_8007245C(0x2200);
+    fn_80074788(0);
+    fn_80074660(1);
+    fn_80073678(1);
+    fn_80073898(0);
+    fn_80073C6C(0);
+    fn_800745A4(0, 1, 4, 0x3c, 0, 0x7d);
+    fn_800734A8(0, 0, 0, 0xff);
+    fn_80072AB0(0, 0, 0);
+    fn_80072C24(0, 15, 2, 8, 4);
+    fn_80072D64(0, 0, 0, 0, 1, 0);
+    fn_80072CC4(0, 7, 1, 4, 2);
+    fn_80072E20(0, 0, 0, 0, 1, 0);
+    fn_80074918(1, 7, 0);
+    fn_800728A8(1, 4, 5, 0);
+    fn_800720B0(0);
+    fn_80072864(2);
+}
+
+#pragma opt_lifetimes on
+static inline u32 draw_perspective(FontDrawPacket *packet) {
+    u32 result = (packet->flags >> 18) & 1;
+    return result;
+}
+
+static inline u8 draw_min255(s32 value) {
+    u8 result = value < 255 ? value : 255;
+    return result;
+}
+
+static inline void draw_rgb(DrawColor *color, u8 blue, u8 green, u8 red) {
+    color->r = red;
+    color->g = green;
+    color->b = blue;
+}
+
+void fn_1_4EDAC(FontDrawPacket *arg0, f32 arg1, f32 arg2) {
+    u32 v0;
+    f32 v1;
+    DrawVertex *v2;
+    u8 perspective;
+#define v3 perspective
+    f32 y, depth, u0, u1, t0, t1;
+    DrawColor add_color, color;
+    u32 flags;
+    DrawFields *packet = (DrawFields *)arg0;
+    perspective = draw_perspective(arg0);
+    v0 = lbl_801A6D00.unk_0;
+    v1 = 0.0f;
+    v2 = (DrawVertex *)(v0 + 152);
+    psvec_fill4(v2, v1);
+    if (v3) {
+        C_MTXPerspective((void *)(lbl_801A6D00.unk_0 + 0xc8), 55.0f, fn_1_A6FE8(),
+            0.1f, 90000.0f);
+        fn_800737E4((void *)(lbl_801A6D00.unk_0 + 0xc8), 0);
+    } else {
+        C_MTXOrtho((void *)(lbl_801A6D00.unk_0 + 0xc8), v1, 480.0f,
+            v1, 640.0f, v1, 90000.0f);
+        fn_800737E4((void *)(lbl_801A6D00.unk_0 + 0xc8), 1);
+    }
+    flags = arg0->flags;
+    *(u8 *)(lbl_801A6D00.unk_0 + 0x197) = v3;
+    if ((flags & 0x1000000) && packet->texture) {
+        fn_80074660(2);
+        fn_80073678(2);
+        fn_1_4E220(packet->texture, 1, 1, 1, 0x21);
+    } else {
+        fn_80073678(1);
+    }
+    v1 = packet->x;
+    y = packet->y;
+    depth = -packet->depth;
+    u0 = packet->u0;
+    u1 = packet->u1;
+    t0 = packet->v0;
+    t1 = packet->v1;
+    switch (arg0->flags & 3) {
+    case 0:
+    case 1:
+    default:
+        v2[0].x = v2[2].x = 0.0f;
+        v2[1].x = v2[3].x = arg1;
+        break;
+    case 2: {
+        f32 right;
+        f32 left;
+        left = -arg1 / 2.0;
+        right = arg1 / 2.0;
+        v2[0].x = v2[2].x = left;
+        v2[1].x = v2[3].x = right;
+        break;
+    }
+    case 3: {
+        f32 right;
+        f32 left;
+        left = -arg1;
+        right = 0.0f;
+        v2[0].x = v2[2].x = left;
+        v2[1].x = v2[3].x = right;
+        break;
+    }
+    }
+    switch ((arg0->flags >> 2) & 3) {
+    case 0:
+    case 1:
+    default:
+        v2[0].y = v2[1].y = 0.0f;
+        v2[2].y = v2[3].y = arg2;
+        break;
+    case 2: {
+        f32 right;
+        f32 left;
+        left = -arg2 / 2.0;
+        right = arg2 / 2.0;
+        v2[0].y = v2[1].y = left;
+        v2[2].y = v2[3].y = right;
+        break;
+    }
+    case 3: {
+        f32 right;
+        f32 left;
+        left = -arg2;
+        right = 0.0f;
+        v2[0].y = v2[1].y = left;
+        v2[2].y = v2[3].y = right;
+        break;
+    }
+    }
+    if ((arg0->flags & 0x8000000) && (fn_1_A6F1C() == 1 || fn_1_A6F1C() == 2)) {
+        lbl_8006D7F4(packet->pivot, 0.0f, 0.0f);
+        lbl_8006E15C(0.75f, 1.0f, 1.0f);
+        lbl_8006E0B4(v1 - packet->pivot, y, 0.0f);
+    } else {
+        lbl_8006D7F4(v1, y, 0.0f);
+    }
+    if (packet->angle_z)
+        mathutil_mtxA_rotate_z((s16)-packet->angle_z);
+    if (packet->angle_y)
+        mathutil_mtxA_rotate_y((s16)-packet->angle_y);
+    lbl_8006E15C(packet->scale_x, packet->scale_y, 1.0f);
+    lbl_8006E1B0(&v2[0], &v2[0]);
+    lbl_8006E1B0(&v2[1], &v2[1]);
+    lbl_8006E1B0(&v2[2], &v2[2]);
+    lbl_8006E1B0(&v2[3], &v2[3]);
+    fn_1_492F0(arg0, v2);
+    if (v3) {
+        f32 scratch;
+        f32 scale;
+        f32 cy;
+        f32 cx;
+        f32 vx;
+        scale = 0.002405626 * packet->depth;
+        vx = v2[0].x;
+        cx = 320.0f;
+        cy = 240.0f;
+        scratch = vx - cx;
+        v2[0].x = scratch * scale;
+        scratch = v2[0].y - cy;
+        v2[0].y = -(scratch * scale);
+        scratch = v2[1].x - cx;
+        v2[1].x = scratch * scale;
+        scratch = v2[1].y - cy;
+        v2[1].y = -(scratch * scale);
+        scratch = v2[2].x - cx;
+        v2[2].x = scratch * scale;
+        scratch = v2[2].y - cy;
+        v2[2].y = -(scratch * scale);
+        scratch = v2[3].x - cx;
+        v2[3].x = scratch * scale;
+        scratch = v2[3].y - cy;
+        v2[3].y = -(scratch * scale);
+    }
+    if (arg0->flags & 0x80000) {
+        u0 = packet->u1;
+        u1 = packet->u0;
+    }
+    if (arg0->flags & 0x100000) {
+        t0 = packet->v1;
+        t1 = packet->v0;
+    }
+    if (!(arg0->flags & 0x800000) && !(arg0->flags & 0x10000000) &&
+        (fn_1_486F8(packet->id) == 0 || fn_1_486F8(packet->id) == 1)) {
+        u32 sum;
+        color.r = 0;
+        color.g = 0;
+        color.b = 0;
+        color.a = (s32)(255.0f * packet->alpha);
+        sum = packet->color.r + packet->add_color.r;
+        add_color.r = (s32)sum < 255 ? sum : 255;
+        sum = packet->color.g + packet->add_color.g;
+        add_color.g = (s32)sum < 255 ? sum : 255;
+        sum = packet->color.b + packet->add_color.b;
+        add_color.b = draw_min255(sum);
+        add_color.a = 0;
+        { DrawColor copy = color; fn_800371F8(1, &copy); }
+        { DrawColor copy = add_color; fn_800371F8(2, &copy); }
+    } else {
+        u32 blue, red;
+        s8 green;
+        /* volatile: preserve the retail RGB channel read order. */
+        red = *(volatile u8 *)&packet->color.r;
+        /* volatile: preserve the retail RGB channel read order. */
+        green = *(volatile u8 *)&packet->color.g;
+        /* volatile: preserve the retail RGB channel read order. */
+        blue = *(volatile u8 *)&packet->color.b;
+        /* volatile: retain the retail red-before-green stack stores. */
+        *(volatile u8 *)&color.r = red;
+        /* volatile: retain the retail red-before-green stack stores. */
+        *(volatile u8 *)&color.g = green;
+        color.b = blue;
+        color.a = (s32)(255.0f * packet->alpha);
+        { DrawColor copy = color; fn_800371F8(1, &copy); }
+        { DrawColor copy = packet->add_color; fn_800371F8(2, &copy); }
+    }
+    if ((arg0->flags & 0x4000000) && packet->callback)
+        packet->callback(arg0, v2);
+    if (!v3) {
+        v2[0].z = v2[1].z = v2[2].z = v2[3].z = depth;
+    }
+    fn_8003462C(0x80, 7, 4);
+    draw_vertex(&v2[0], u0, t0);
+    draw_vertex(&v2[1], u1, t0);
+    draw_vertex(&v2[3], u1, t1);
+    draw_vertex(&v2[2], u0, t1);
+    fn_80072AB0(1, 0, 0);
+    if ((arg0->flags & 0x1000000) && packet->texture) {
+        draw_reset();
+        fn_80074660(1);
+        fn_80072AB0(1, 0, 0);
+    }
+    if (arg0->flags & 0x4000000) {
+        struct { u32 value; } height;
+        draw_reset();
+        height.value = (u16)fn_1_A5DB0();
+        fn_80074188(0, 0, fn_1_A5D88(), height.value);
+    }
+}
+/* fzgx:end fn_1_4EDAC */
+
 /* fzgx:begin fn_1_4F724 */
 // Clear the font state value before the next initialization.
 void fn_1_4F724(void) {

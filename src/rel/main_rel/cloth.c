@@ -88,6 +88,383 @@ void fn_1_101AE8(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 /* fzgx:end fn_1_101AE8 */
 
+/* fzgx:begin fn_1_101BC4 */
+#include "dolphin/types.h"
+#include "dolphin/hw_regs.h"
+#include "dolphin/gx.h"
+
+/* begin game/main_rel/cloth_types.h (fork-deltawave784/windows-and-types@8c8d7cc3) */
+#ifndef GAME_MAIN_REL_CLOTH_TYPES_H
+#define GAME_MAIN_REL_CLOTH_TYPES_H
+
+// Types (and the externs that name them) of cloth.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+struct fn_1_10240C_lbl_801A6410 {
+    u32 unk_0;
+};
+
+extern struct fn_1_10240C_lbl_801A6410 lbl_801A6410;
+
+#endif  // GAME_MAIN_REL_CLOTH_TYPES_H
+
+/* end game/main_rel/cloth_types.h */
+
+struct fn_1_101BC4_Copy12 { u32 a[3]; };
+
+struct fn_1_101BC4_lbl_1_rodata_77F8 {
+    u8 pad_0[0x38];
+    struct fn_1_101BC4_Copy12 unk_38;
+    u8 pad_44[4];
+    const f64 unk_48;
+    const f32 unk_50, unk_54, unk_58;
+    u8 pad_5C[4];
+    const f64 unk_60, unk_68;
+    const f32 unk_70;
+    u8 pad_74[4];
+    const f64 unk_78, unk_80;
+    const f64 unk_88;
+    const f32 unk_90, unk_94, unk_98;
+};
+
+typedef struct Point1024C4 {
+    u8 pad[0x10];
+    f32 v[3];
+} Point1024C4;
+
+struct fn_1_101BC4_Sig_fn_80077B14_fn_80077B14_Arg0 {
+    u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
+};
+
+struct Sig_fn_80077B64_fn_80077B64_Arg0 {
+    u8 pad_0[4]; u32 unk_4;
+};
+
+extern const struct fn_1_101BC4_lbl_1_rodata_77F8 lbl_1_rodata_77F8;
+extern f32 fn_1_1024C4(const Point1024C4 *a, const Point1024C4 *b);
+extern f64 __fabs(f64);
+extern s32 fn_80077B14(struct fn_1_101BC4_Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void *fn_80077B64(struct Sig_fn_80077B64_fn_80077B64_Arg0 *);
+extern u32 fn_1_4630();
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern void fn_1_10240C(u32 arg0, u32 arg1, s32 arg2);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+
+typedef struct Sig_fn_1_1024C4_Point1024C4 {
+    u8 pad[0x10]; f32 v[3];
+} Sig_fn_1_1024C4_Point1024C4;
+
+/* Preserve the ordered accesses of the chained vector copies. */
+static inline void fn_1_101BC4_copy12(volatile struct fn_1_101BC4_Copy12 *dst, const volatile struct fn_1_101BC4_Copy12 *src) {
+    *dst = *src;
+}
+
+void fn_1_101BC4(u32 arg0) {
+    const struct fn_1_101BC4_lbl_1_rodata_77F8 *p_lbl_1_rodata_77F8;
+    Obj_1_bss_85250 *p_lbl_1_bss_85250;
+    struct { u32 value; } v0;
+    u32 v4;
+    u32 v2;
+    f64 v3;
+    f64 v5;
+    u32 v6;
+    struct { u32 value; } v1;
+    u32 v6_2;
+#define v1 v1.value
+    u32 v7;
+    u32 v8;
+    s32 v9;
+    u32 v11;
+    s32 v14;
+    u32 v12;
+    u32 v13;
+    u32 v10;
+    f32 v15;
+    f32 v16;
+    u32 v17;
+    u32 v18;
+    u32 v19;
+    u32 v20;
+    u32 v21;
+    u32 v22;
+    u32 v23;
+    u8 v24;
+    u32 v26;
+    u32 v27;
+    f32 v28;
+    f64 v29;
+    f32 v30;
+    f32 v31;
+    u32 v33;
+    u32 v35;
+    u32 v37;
+    u32 v39;
+    f64 v40;
+    u32 v41;
+    u32 v44;
+    f32 v46;
+    f32 v45;
+    u32 v47;
+    u32 v48;
+    u32 v49;
+    f32 v50;
+    u32 v51;
+    u32 v52;
+    f32 v53;
+    u32 v54;
+    u32 v55;
+    u32 v59;
+    u32 v60;
+    u32 v61;
+    f32 v62;
+    u32 v63;
+    u32 v64;
+    f32 dz, dy, dx;
+    p_lbl_1_rodata_77F8 = &lbl_1_rodata_77F8;
+    p_lbl_1_bss_85250 = &lbl_1_bss_85250;
+    if (arg0 != 0) {
+        v7 = (u32)p_lbl_1_bss_85250->unk_18;
+        if (v7 != 0) {
+            fn_1_46B4(*(u32 *)&lbl_801A6410, v7, &lbl_1_data_3F17C, 281);
+            p_lbl_1_bss_85250->unk_18 = 0;
+        }
+        v8 = (u32)p_lbl_1_bss_85250->unk_20;
+        if (v8 != 0) {
+            fn_1_46B4(*(u32 *)&lbl_801A6410, v8, &lbl_1_data_3F17C, 282);
+            p_lbl_1_bss_85250->unk_20 = 0;
+        }
+        v1 = (u32)fn_80077B64((struct Sig_fn_80077B64_fn_80077B64_Arg0 *)arg0);
+        v2 = fn_80077B14((struct fn_1_101BC4_Sig_fn_80077B14_fn_80077B14_Arg0 *)arg0);
+        p_lbl_1_bss_85250->unk_18 = (Obj_1_bss_85250_At18 *)
+            fn_1_4630(*(u32 *)&lbl_801A6410, *(u32 *)v1 * 68, &lbl_1_data_3F17C, 287);
+        v3 = p_lbl_1_rodata_77F8->unk_48;
+        v4 = 0;
+        p_lbl_1_bss_85250->unk_1C = 0;
+        while (v4 < *(u32 *)v1) {
+            v10 = (u32)p_lbl_1_bss_85250->unk_18;
+            v0.value = p_lbl_1_bss_85250->unk_1C;
+            v14 = -1;
+            v13 = v10;
+            for (v12 = 0; v12 < v0.value; v12++, v13 += 68) {
+                dx = *(f32 *)(v13 + 16);
+                dy = *(f32 *)(v13 + 20);
+                dz = *(f32 *)(v13 + 24);
+                dx -= *(f32 *)v2;
+                dy -= *(f32 *)(v2 + 4);
+                dz -= *(f32 *)(v2 + 8);
+                dx *= dx;
+                dx = dy * dy + dx;
+                dx = dz * dz + dx;
+                if (dx < v3) {
+                    v14 = v12;
+                    break;
+                }
+            }
+            if ((v14 + 0x10000U) != 65535) {
+                v17 = v10 + v14 * 68;
+                v0.value = ((Obj_1_bss_85250_At18 *)v17)->unk_2 << 1;
+                *(u16 *)(v17 + v0.value + 4) = v4;
+                ((Obj_1_bss_85250_At18 *)((u8 *)p_lbl_1_bss_85250->unk_18 + v14 * 68))->unk_2++;
+            } else {
+                v20 = v0.value * 68;
+                v6 = v10 + v20;
+                fn_1_101BC4_copy12((struct fn_1_101BC4_Copy12 *)(v6 + 40), (struct fn_1_101BC4_Copy12 *)v2);
+                fn_1_101BC4_copy12((struct fn_1_101BC4_Copy12 *)(v6 + 28), (struct fn_1_101BC4_Copy12 *)(v6 + 40));
+                fn_1_101BC4_copy12((struct fn_1_101BC4_Copy12 *)(v6 + 16), (struct fn_1_101BC4_Copy12 *)(v6 + 28));
+                fn_1_101BC4_copy12((struct fn_1_101BC4_Copy12 *)(v6 + 52), &p_lbl_1_rodata_77F8->unk_38);
+                ((Obj_1_bss_85250_At18 *)v6)->unk_0 = *(u8 *)(v2 + 53);
+                ((Obj_1_bss_85250_At18 *)v6)->unk_2 = 1;
+                fn_80008BEC((void *)(v6 + 4), 255, 10);
+                ((Obj_1_bss_85250_At18 *)v6)->unk_4 = v4;
+                ((Obj_1_bss_85250_At18 *)v6)->unk_40 = p_lbl_1_rodata_77F8->unk_50;
+                p_lbl_1_bss_85250->unk_1C++;
+            }
+            v4++;
+            v2 += 64;
+        }
+        v26 = (u32)p_lbl_1_bss_85250->unk_18;
+        v27 = 0;
+        while (v27 < p_lbl_1_bss_85250->unk_1C) {
+            if ((((Obj_1_bss_85250_At18 *)v26)->unk_0 & 1) != 0) {
+                ((Obj_1_bss_85250_At18 *)v26)->unk_0 = 1;
+                v28 = p_lbl_1_rodata_77F8->unk_54;
+                ((Obj_1_bss_85250_At18 *)v26)->unk_1 = 0;
+                ((Obj_1_bss_85250_At18 *)v26)->unk_40 = v28;
+            } else if (*(f32 *)(v26 + 16) > p_lbl_1_rodata_77F8->unk_58) {
+                v29 = p_lbl_1_rodata_77F8->unk_60;
+                ((Obj_1_bss_85250_At18 *)v26)->unk_1 = 1;
+                v5 = ((Obj_1_bss_85250_At18 *)v26)->unk_18;
+                if (v5 > v29 || v5 < p_lbl_1_rodata_77F8->unk_68) {
+                    v28 = p_lbl_1_rodata_77F8->unk_54;
+                    ((Obj_1_bss_85250_At18 *)v26)->unk_0 = 1;
+                    ((Obj_1_bss_85250_At18 *)v26)->unk_40 = v28;
+                }
+                if (((Obj_1_bss_85250_At18 *)v26)->unk_14 > p_lbl_1_rodata_77F8->unk_70) {
+                    v5 = __fabs(((Obj_1_bss_85250_At18 *)v26)->unk_18);
+                    if (v5 > p_lbl_1_rodata_77F8->unk_78 && v5 < p_lbl_1_rodata_77F8->unk_80) {
+                        v28 = p_lbl_1_rodata_77F8->unk_54;
+                        ((Obj_1_bss_85250_At18 *)v26)->unk_0 = 1;
+                        ((Obj_1_bss_85250_At18 *)v26)->unk_40 = v28;
+                    }
+                }
+            } else if (((Obj_1_bss_85250_At18 *)v26)->unk_14 > p_lbl_1_rodata_77F8->unk_70) {
+                ((Obj_1_bss_85250_At18 *)v26)->unk_1 = 2;
+            } else if (((Obj_1_bss_85250_At18 *)v26)->unk_18 > p_lbl_1_rodata_77F8->unk_54) {
+                ((Obj_1_bss_85250_At18 *)v26)->unk_1 = 3;
+            } else {
+                ((Obj_1_bss_85250_At18 *)v26)->unk_1 = 4;
+            }
+            v27++;
+            v26 += 68;
+        }
+        v2 = 0;
+        v33 = (u32)p_lbl_1_bss_85250->unk_18;
+        while (v2 < p_lbl_1_bss_85250->unk_1C) {
+            v12 = v2 + 1;
+            v1 = (u32)p_lbl_1_bss_85250->unk_18 + v2 * 68 + 68;
+            while (v12 < p_lbl_1_bss_85250->unk_1C) {
+                if (((Obj_1_bss_85250_At18 *)v33)->unk_1 > ((Obj_1_bss_85250_At18 *)v1)->unk_1)
+                    fn_1_10240C(v33, v1, 68);
+                v12++;
+                v1 += 68;
+            }
+            v2++;
+            v33 += 68;
+        }
+        v2 = 0;
+        v1 = (u32)p_lbl_1_bss_85250->unk_18;
+        while (v2 < p_lbl_1_bss_85250->unk_1C) {
+            v35 = (u32)p_lbl_1_bss_85250->unk_18 + v2 * 68 + 68;
+            v6 = v2 + 1;
+            while (v6 < p_lbl_1_bss_85250->unk_1C) {
+                if (((Obj_1_bss_85250_At18 *)v1)->unk_1 == ((Obj_1_bss_85250_At18 *)v35)->unk_1 &&
+                    ((Obj_1_bss_85250_At18 *)v1)->unk_14 > ((Obj_1_bss_85250_At18 *)v35)->unk_14)
+                    fn_1_10240C(v1, v35, 68);
+                v6++;
+                v35 += 68;
+            }
+            v2++;
+            v1 += 68;
+        }
+        v2 = 0;
+        v1 = (u32)p_lbl_1_bss_85250->unk_18;
+        v3 = p_lbl_1_rodata_77F8->unk_88;
+        while (v2 < p_lbl_1_bss_85250->unk_1C) {
+            v37 = (u32)p_lbl_1_bss_85250->unk_18 + v2 * 68 + 68;
+            v6 = v2 + 1;
+            while (v6 < p_lbl_1_bss_85250->unk_1C) {
+                if (((Obj_1_bss_85250_At18 *)v1)->unk_1 == ((Obj_1_bss_85250_At18 *)v37)->unk_1 &&
+                    __fabs((f32)(((Obj_1_bss_85250_At18 *)v1)->unk_14 - ((Obj_1_bss_85250_At18 *)v37)->unk_14)) < v3 &&
+                    ((Obj_1_bss_85250_At18 *)v1)->unk_18 > ((Obj_1_bss_85250_At18 *)v37)->unk_18)
+                    fn_1_10240C(v1, v37, 68);
+                v6++;
+                v37 += 68;
+            }
+            v2++;
+            v1 += 68;
+        }
+        v2 = 0;
+        v1 = (u32)p_lbl_1_bss_85250->unk_18;
+        while (v2 < p_lbl_1_bss_85250->unk_1C) {
+            v39 = (u32)p_lbl_1_bss_85250->unk_18 + v2 * 68 + 68;
+            v6 = v2 + 1;
+            while (v6 < p_lbl_1_bss_85250->unk_1C) {
+                if (((Obj_1_bss_85250_At18 *)v1)->unk_1 == ((Obj_1_bss_85250_At18 *)v39)->unk_1) {
+                    v40 = p_lbl_1_rodata_77F8->unk_88;
+                    if (__fabs((f32)(((Obj_1_bss_85250_At18 *)v1)->unk_14 - ((Obj_1_bss_85250_At18 *)v39)->unk_14)) < v40 &&
+                        __fabs((f32)(((Obj_1_bss_85250_At18 *)v1)->unk_18 - ((Obj_1_bss_85250_At18 *)v39)->unk_18)) < v40 &&
+                        *(f32 *)(v1 + 16) > *(f32 *)(v39 + 16))
+                        fn_1_10240C(v1, v39, 68);
+                }
+                v6++;
+                v39 += 68;
+            }
+            v2++;
+            v1 += 68;
+        }
+        v41 = p_lbl_1_bss_85250->unk_1C;
+        p_lbl_1_bss_85250->unk_28 = 0;
+        v44 = (u32)p_lbl_1_bss_85250->unk_18;
+        p_lbl_1_bss_85250->unk_2C = 0;
+        for (v11 = 0; v11 < v41 - 1; v11++) {
+            if (((Obj_1_bss_85250_At18 *)v44)->unk_1 == 1 && ((Obj_1_bss_85250_At18 *)v44)->unk_45 == 1) {
+                v45 = ((Obj_1_bss_85250_At18 *)v44)->unk_14;
+                v46 = ((Obj_1_bss_85250_At18 *)v44)->unk_58;
+                v5 = p_lbl_1_rodata_77F8->unk_88;
+                if (__fabs((f32)(v45 - v46)) < v5) {
+                    if (__fabs(v45) < v5 && __fabs(v46) < v5)
+                        p_lbl_1_bss_85250->unk_28++;
+                    p_lbl_1_bss_85250->unk_2C++;
+                }
+            }
+            v44 += 68;
+        }
+        v47 = p_lbl_1_bss_85250->unk_28;
+        v48 = p_lbl_1_bss_85250->unk_2C / v47 - 1;
+        p_lbl_1_bss_85250->unk_2C = v48;
+        v49 = v47 * (v48 + 1) + v48 * (v47 + 1);
+        p_lbl_1_bss_85250->unk_24 = v49;
+        p_lbl_1_bss_85250->unk_20 = (Obj_1_bss_85250_At20 *)
+            fn_1_4630(*(u32 *)&lbl_801A6410, v49 * 24, &lbl_1_data_3F17C, 433);
+        v2 = 0;
+        v4 = (u32)p_lbl_1_bss_85250->unk_18;
+        v6_2 = 0;
+        while (v2 < p_lbl_1_bss_85250->unk_1C - 1) {
+            if (((Obj_1_bss_85250_At18 *)v4)->unk_1 == 1 && ((Obj_1_bss_85250_At18 *)v4)->unk_45 == 1) {
+                v50 = ((Obj_1_bss_85250_At18 *)v4)->unk_14;
+                if (__fabs((f32)(v50 - ((Obj_1_bss_85250_At18 *)v4)->unk_58)) < p_lbl_1_rodata_77F8->unk_88) {
+                    v51 = v4 + 68;
+                    *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24) = v4;
+                    *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 4) = v51;
+                    v15 = fn_1_1024C4( (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v4), (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v51));
+                    v0.value = (u32)p_lbl_1_bss_85250->unk_20;
+                    v53 = p_lbl_1_rodata_77F8->unk_90;
+                    *(f32 *)(v0.value + v6_2 * 24 + 8) = v15;
+                    v16 = p_lbl_1_rodata_77F8->unk_94;
+                    v52 = (u32)p_lbl_1_bss_85250->unk_20;
+                    v28 = p_lbl_1_rodata_77F8->unk_98;
+                    *(f32 *)(v52 + v6_2 * 24 + 12) = v53;
+                    *(f32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 16) = v16;
+                    *(f32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 20) = v28;
+                    v6_2++;
+                }
+            }
+            v2++;
+            v4 += 68;
+        }
+        v2 = 0;
+        v4 = (u32)p_lbl_1_bss_85250->unk_18;
+        v3 = p_lbl_1_rodata_77F8->unk_88;
+        while (v2 < p_lbl_1_bss_85250->unk_1C) {
+            v60 = v2 + 1;
+            v59 = (u32)p_lbl_1_bss_85250->unk_18 + v2 * 68 + 68;
+            for (; v60 < p_lbl_1_bss_85250->unk_1C; v60++, v59 += 68) {
+                if (((Obj_1_bss_85250_At18 *)v4)->unk_1 == 1 && ((Obj_1_bss_85250_At18 *)v59)->unk_1 == 1 &&
+                    __fabs((f32)(((Obj_1_bss_85250_At18 *)v4)->unk_18 - ((Obj_1_bss_85250_At18 *)v59)->unk_18)) < v3) {
+                    *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24) = v4;
+                    *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 4) = v59;
+                    v15 = fn_1_1024C4( (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v4), (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v59));
+                    v0.value = (u32)p_lbl_1_bss_85250->unk_20;
+                    v62 = p_lbl_1_rodata_77F8->unk_90;
+                    *(f32 *)(v0.value + v6_2 * 24 + 8) = v15;
+                    v16 = p_lbl_1_rodata_77F8->unk_94;
+                    v52 = (u32)p_lbl_1_bss_85250->unk_20;
+                    v28 = p_lbl_1_rodata_77F8->unk_98;
+                    *(f32 *)(v52 + v6_2 * 24 + 12) = v62;
+                    *(f32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 16) = v16;
+                    *(f32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 20) = v28;
+                    v6_2++;
+                    break;
+                }
+            }
+            v2++;
+            v4 += 68;
+        }
+    }
+}
+/* fzgx:end fn_1_101BC4 */
+
 /* fzgx:begin fn_1_10240C */
 struct fn_1_10240C_lbl_801A6410 {
     u32 unk_0;

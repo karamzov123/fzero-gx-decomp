@@ -1379,6 +1379,238 @@ void fn_1_DB53C(void *arg0, f32 arg1) {
 }
 /* fzgx:end fn_1_DB53C */
 
+/* fzgx:begin fn_1_DB9B0 */
+#include "psvec.h"
+#include "rel/main_rel/bg_lig.h"
+#include "dolphin/types.h"
+#include "dolphin/hw_regs.h"
+#include "dolphin/gx.h"
+
+#ifndef GAME_MAIN_REL_BG_SAN_TYPES_H
+#define GAME_MAIN_REL_BG_SAN_TYPES_H
+
+#ifndef GAME_MAIN_REL_SHARED_TYPES_H
+#define GAME_MAIN_REL_SHARED_TYPES_H
+
+#endif  // GAME_MAIN_REL_SHARED_TYPES_H
+
+#endif  // GAME_MAIN_REL_BG_SAN_TYPES_H
+
+/* end game/main_rel/bg_san_types.h */
+/* begin game/vec3.h (fork-deltawave784/windows-and-types@8c8d7cc3) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+  /* takes the handler (reads handler->unk_08); non-prototype so Handler.unk_04 accepts it */
+
+struct fn_1_DB9B0_lbl_1_rodata_6638 {
+    f32 unk_0; u8 pad_4[4]; f32 unk_8; f32 unk_C;
+    u8 pad_10[0x34];
+    u32 unk_44; u32 unk_48; u32 unk_4C;
+    u32 unk_50; u32 unk_54; u32 unk_58;
+    f32 unk_5C; f64 unk_60; f64 unk_68; f64 unk_70;
+    f32 unk_78; f32 unk_7C; f32 unk_80;
+    u8 pad_84[4]; f64 unk_88; f64 unk_90;
+};
+
+extern s32 fn_1_58C4();
+
+extern f32 lbl_1_rodata_6638;
+
+extern s32 fn_1_5910();
+
+extern void fn_1_DB9B0(void *arg0);
+
+extern f32 lbl_8006D188(s32);
+extern f32 lbl_8006D534(Vec3 *, Vec3 *);
+extern f64 __fabs(f64);
+extern u32 lbl_8006D46C(f32);
+extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_8003462C(u32 arg0, u32 arg1, u32 arg2);
+
+void fn_1_5948(s32);
+
+typedef struct Sig_fn_1_DB9B0_DB53CVec {
+    f32 x; f32 y; f32 z;
+} Sig_fn_1_DB9B0_DB53CVec;
+typedef struct Sig_fn_1_DB9B0_DB53CObj {
+    u8 pad_0[0x4];
+    u32 mask;
+    u8 pad_8[0x4];
+    Sig_fn_1_DB9B0_DB53CVec pos;
+} Sig_fn_1_DB9B0_DB53CObj;
+
+typedef struct DB9B0Point { Vec3 pos; f32 t; } DB9B0Point;
+typedef struct DB9B0Trail { s16 head; u8 pad_2[6]; DB9B0Point a[128]; DB9B0Point b[128]; } DB9B0Trail;
+typedef union DB9B0Pipe { f32 f; u8 b; } DB9B0Pipe;
+// Graphics FIFO accesses are volatile hardware writes.
+#define wgPipe (*(volatile DB9B0Pipe *)&GXWGFifo)
+#define DB9B0_PIPE_F wgPipe.f
+
+/* Prime the module's shared literal pool in retail order. */
+#pragma section code_type ".fzgxpool"
+void fzgx_DB9B0_pool_head(void) {
+    lbl_8006D46C(0.0f);
+    lbl_8006D46C(30.0f);
+    lbl_8006D46C(1.0f);
+    lbl_8006D46C(0.5f);
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+void fzgx_DB9B0_pool_vectors(void) {
+    Vec3 a = {0.0f, 0.0f, 0.0f};
+    Vec3 b = {0.0f, 0.0f, 0.0f};
+    lbl_8006D534(&a, &b);
+    lbl_8006D46C(25.0f);
+    lbl_8006D46C(0.1f);
+    lbl_8006D46C(0.02f);
+    lbl_8006D46C(2000.0f);
+    lbl_8006D46C(2500.0f);
+    lbl_8006D46C(500.0f);
+    lbl_8006D46C(650.0f);
+}
+#pragma section code_type ".text"
+
+static inline void DB9B0_cross(Vec3 *a, Vec3 *b, Vec3 *out) {
+    f32 x = a->y * b->z;
+    f32 y = a->z * b->x;
+    f32 z = a->x * b->y;
+    z -= ((a->y) * (b->x));
+    x -= a->z * b->y;
+    y -= a->x * b->z;
+    out->y = y;
+    out->x = x;
+    out->z = z;
+}
+
+static inline void DB9B0_position_yzx(f32 y, f32 z, f32 x) {
+    wgPipe.f = x; wgPipe.f = y; wgPipe.f = z;
+}
+static inline void DB9B0_position(f64 x, f32 y, f32 z) {
+    wgPipe.f = x; wgPipe.f = y; wgPipe.f = z;
+}
+static inline void DB9B0_color(u8 r, u8 g, u8 b, u8 a) {
+    wgPipe.b = r; wgPipe.b = g; wgPipe.b = b; wgPipe.b = a;
+}
+static inline void DB9B0_tex(f32 s, f32 t) {
+    wgPipe.f = s; wgPipe.f = t;
+}
+
+#pragma opt_lifetimes off
+void fn_1_DB9B0(void *arg0) {
+    s32 v3_r2;
+    const struct fn_1_DB9B0_lbl_1_rodata_6638 *p_lbl_1_rodata_6638 = ((const struct fn_1_DB9B0_lbl_1_rodata_6638 *)&lbl_1_rodata_6638);
+    Sig_fn_1_DB9B0_DB53CObj *v1;
+    u8 *v0;
+    s32 v3;
+    DB9B0Point *v52;
+    f32 v20, v33, v49, v62;
+    s32 v34, v63, v43;
+    if ((u32)fn_1_58C4() < 2) {
+        v0 = (u8 *)arg0 + 24;
+        v1 = *(Sig_fn_1_DB9B0_DB53CObj **)arg0;
+        if (*(s32 *)((u8 *)arg0 + 16) >= 128) {
+            fn_8003462C(152, 0, 30);
+            {
+            Vec3 loc_8C, loc_80;
+            s32 v19 = (*(s16 *)v0 + 1) % 128;
+            Vec3 loc_74 = { 0.5f, 0.0f, 0.0f };
+            Vec3 loc_68, loc_5C, loc_50;
+            DB9B0Point *v25;
+            s32 next;
+            for (v3 = 0; v3 < 15; v3++) {
+                v20 = (f32)v3 / 14.0f;
+                fn_1_681C((u8)fn_1_5910(), (u32 *)&loc_50);
+                next = v19;
+                v19 = (v19 + 8) % 128;
+                v25 = (DB9B0Point *)(v0 + (next << 4) + 8);
+                psvec_sub(&v25->pos, &loc_50, &loc_8C);
+                psvec_sub(&v25->pos, &((DB9B0Trail *)v0)->a[v19].pos, &loc_80);
+                DB9B0_cross(&loc_8C, &loc_80, &loc_68);
+                if (0.0 != loc_68.x ||
+                    0.0 != loc_68.y ||
+                    0.0 != loc_68.z) {
+                    lbl_8006D5F0(&loc_68, &loc_74, 0.5f);
+                }
+                psvec_scale(&loc_74, (f32)((2.5 * *(f32 *)((u8 *)v1 + 32)) * (1.0 + v20)), &loc_5C);
+                v33 = (f32)__fabs(lbl_8006D188(lbl_8006D46C(lbl_8006D534(&loc_8C, &loc_80))));
+                v34 = (s32)(v33 * (255.0f * lbl_8006D188((s32)(32768.0f * v20))));
+                if (*(s32 *)((u8 *)arg0 + 16) < 248) {
+                    v34 = (s32)((f32)(u32)(u8)v34 * ((f32)(*(s32 *)((u8 *)arg0 + 16) - 128) / 120.0f));
+                }
+                v34 = (s32)((f32)(u32)(u8)v34 * *(f32 *)((u8 *)arg0 + 20));
+                {
+                f32 positionX = ((volatile DB9B0Point *)v25)->pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+                f32 offsetX = loc_5C.x;
+                DB9B0_position_yzx(v25->pos.y + loc_5C.y, v25->pos.z + loc_5C.z, positionX + offsetX);
+                DB9B0_color(255, 255, 255, v34);
+                DB9B0_tex(0.0f, v25->t);
+                DB9B0_position_yzx(v25->pos.y - loc_5C.y, v25->pos.z - loc_5C.z, v25->pos.x - offsetX);
+                DB9B0_color(255, 255, 255, v34);
+                DB9B0_tex(1.0f, v25->t);
+                }
+            }
+            }
+            fn_8003462C(152, 0, 30);
+            {
+            Vec3 loc_44, loc_38;
+            s32 v13 = (*(s16 *)v0 + 1) % 128;
+            Vec3 loc_2C = { 0.5f, 0.0f, 0.0f };
+            Vec3 loc_20, loc_14, loc_8;
+            for (v3_r2 = 0; v3_r2 < 15; v3_r2++) {
+                v49 = (f32)v3_r2 / 14.0f;
+                fn_1_681C((u8)fn_1_5910(), (u32 *)&loc_8);
+                v43 = v13;
+                v13 = (v13 + 8) % 128;
+                v52 = (DB9B0Point *)((u32)v0 + (u32)(v43 << 4) + 2056);
+                psvec_sub(&v52->pos, &loc_8, &loc_44);
+                psvec_sub(&v52->pos, (void *)((u32)v0 + (u32)(v13 << 4) + 2056), &loc_38);
+                DB9B0_cross(&loc_44, &loc_38, &loc_20);
+                if (0.0 != loc_20.x ||
+                    0.0 != loc_20.y ||
+                    0.0 != loc_20.z) {
+                    lbl_8006D5F0(&loc_20, &loc_2C, 0.5f);
+                }
+                psvec_scale(&loc_2C, (f32)((2.5 * *(f32 *)((u8 *)v1 + 32)) * (1.0 + v49)), &loc_14);
+                v62 = (f32)__fabs(lbl_8006D188(lbl_8006D46C(lbl_8006D534(&loc_44, &loc_38))));
+                v63 = (s32)(v62 * (255.0f * lbl_8006D188((s32)(32768.0f * v49))));
+                if (*(s32 *)((u8 *)arg0 + 16) < 248) {
+                    v63 = (s32)((f32)(u32)(u8)v63 * ((f32)(*(s32 *)((u8 *)arg0 + 16) - 128) / 120.0f));
+                }
+                {
+                    f32 baseX = ((volatile DB9B0Point *)v52)->pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+                    f32 offsetX = loc_14.x;
+                    f32 positionX = baseX + offsetX;
+                    DB9B0_position(positionX, v52->pos.y + loc_14.y, v52->pos.z + loc_14.z);
+                    DB9B0_color(255, 255, 255, v63);
+                    DB9B0_tex(0.0f, v52->t);
+                    DB9B0_position(v52->pos.x - offsetX, v52->pos.y - loc_14.y, v52->pos.z - loc_14.z);
+                    DB9B0_color(255, 255, 255, v63);
+                    DB9B0_tex(1.0f, v52->t);
+                }
+            }
+            }
+        }
+    }
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_DB9B0 */
+
 /* fzgx:begin fn_1_DC084 */
 typedef struct Vec3 {
     f32 x;
