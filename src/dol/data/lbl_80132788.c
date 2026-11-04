@@ -3,6 +3,7 @@
 
 extern char lbl_80132788[34];
 extern char lbl_801327AC[70];
+extern f32 lbl_801327F8[10];
 
 
 
@@ -14,4 +15,12 @@ __declspec(section ".data") char lbl_80132788[34] __attribute__((aligned(8))) = 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_801327AC[70] __attribute__((aligned(4))) = "Warning: ARCOpen(): file '%s' was not found under %s in the archive.\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") f32 lbl_801327F8[10] __attribute__((aligned(8))) = {
+    0.0995469242f, 0.0998378024f, 0.100064509f, 0.100226693f, 0.100324109f, 0.100324109f, 0.100226693f, 0.100064509f, 0.0998378024f, 0.0995469242f
+};
 #pragma explicit_zero_data reset

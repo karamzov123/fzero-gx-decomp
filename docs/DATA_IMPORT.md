@@ -94,3 +94,23 @@ emits the typed initializer. Two fixes came with it. `is_text_pool` accepts U+30
 (the ideographic space, which `str.isprintable()` rejects). Grouping now lets padding owned by
 either neighbour's unit join them. Two unnamed per-language string-pointer tables
 (`lbl_17_data_6282C`, `lbl_17_data_6288C`) were named in `symbols.txt`.
+
+## main trig tables and BSS isolation (2026-11-04)
+
+dtk's 0x28068-byte `lbl_801327F8` is four tables, now split in `symbols.txt`:
+the 10 weights `fn_8006C7E8` reads (`f32[10]`), sin(k·π/32768) for k = 0..16384
+(`f32[0x4008]`, ending 1.0 and padded with seven zeros), tan over the same range (`f32[0x4008]`,
+ending at +inf), and 4,096 atan (value, derivative) pairs (`f32[0x2000]`). The four sizes add up
+exactly to the dtk symbol. Infinities are emitted as `(1.0f / 0.0f)`, which MWCC folds to the exact
+IEEE bits; only NaNs still need the bits union. dtk ends a DOL section at its last symbol
+(main `.data` ends at 0x8015B919), so a DOL section's tail object is not word-rounded.
+
+Not imported: `lbl_80095EC0` plus `lbl_8011851B` span exactly 0x8C000 bytes (640×448×2). That is one
+image-sized buffer, about 90 KB of it CMPR-like blocks and the rest zero. Splitting the zeros off
+would invent object boundaries, and dumping it would be an asset blob.
+
+dtk drops any unowned BSS run boxed in by splits, even from an 8-aligned start. The guard
+withdraws one chunk per step and the rescue retries the exposed run in between. Rescued lone
+bytes and halfwords are scalars, because MWCC 4-aligns every array (even `u8[1]`) and every struct.
+Two dtk symbols that are really one object with an interior reference cannot both be emitted:
+`lbl_1_bss_4E6D0` (0x16002) and the 2-aligned `lbl_1_bss_646D2` that follows it.

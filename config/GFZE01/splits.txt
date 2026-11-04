@@ -4827,9 +4827,6 @@ dol/CARDInit.c:
 dol/fn_8007B338.c:
 	.text       start:0x8007B338 end:0x8007C3B8 align:4
 
-dol/data/__files.c:
-	.data       start:0x8015AE58 end:0x8015AF98 align:8
-
 dol/OSGetTick.c:
 	.text       start:0x80011424 end:0x8001142C align:4
 
@@ -6537,32 +6534,11 @@ dol/data/lbl_801220C0.c:
 dol/data/lbl_80123D00.c:
 	.data       start:0x80123D00 end:0x80123FD8 align:32
 
-dol/data/lbl_80124058.c:
-	.data       start:0x80124058 end:0x801240A8 align:8
-
-dol/data/lbl_80124110.c:
-	.data       start:0x80124110 end:0x80124158 align:16
-
 dol/data/lbl_80124428.c:
 	.data       start:0x80124428 end:0x8012457C align:8
 
 dol/data/lbl_80128990.c:
 	.data       start:0x80128990 end:0x80129550 align:16
-
-dol/data/lbl_801295E0.c:
-	.data       start:0x801295E0 end:0x8012AD30 align:32
-
-dol/data/lbl_80130BC0.c:
-	.data       start:0x80130BC0 end:0x801325D8 align:32
-
-dol/data/lbl_80132788.c:
-	.data       start:0x80132788 end:0x801327F4 align:8
-
-dol/data/lbl_8015B100.c:
-	.data       start:0x8015B100 end:0x8015B300 align:32
-
-dol/data/lbl_8015B400.c:
-	.data       start:0x8015B400 end:0x8015B438 align:32
 
 dol/data/lbl_8008FF40.c:
 	.rodata     start:0x8008FF40 end:0x8009009C align:32
@@ -7094,3 +7070,153 @@ dol/data/lbl_80095BA8.c:
 
 dol/data/lbl_80095CD0.c:
 	.rodata     start:0x80095CD0 end:0x80095D98 align:16
+
+dol/data/lbl_80121EC0.c:
+	.data       start:0x80121EC0 end:0x80121ED8 align:32
+
+dol/data/lbl_80121ED8.c:
+	.data       start:0x80121ED8 end:0x80121F28 align:8
+
+dol/data/lbl_80121F28.c:
+	.data       start:0x80121F28 end:0x80121F38 align:8
+
+dol/data/lbl_80121F38.c:
+	.data       start:0x80121F38 end:0x80121F78 align:8
+
+dol/data/lbl_80121F78.c:
+	.data       start:0x80121F78 end:0x80121FB0 align:8
+
+dol/data/lbl_80121FB0.c:
+	.data       start:0x80121FB0 end:0x80121FC8 align:16
+
+dol/data/lbl_80121FC8.c:
+	.data       start:0x80121FC8 end:0x80122030 align:8
+
+dol/data/lbl_80124058.c:
+	.data       start:0x80124058 end:0x801240A8 align:8
+
+dol/data/lbl_80124110.c:
+	.data       start:0x80124110 end:0x80124158 align:16
+
+dol/data/lbl_801295E0.c:
+	.data       start:0x801295E0 end:0x8012AD30 align:32
+
+dol/data/lbl_8012AFB8.c:
+	.data       start:0x8012AFB8 end:0x8012B030 align:8
+
+dol/data/lbl_8012B030.c:
+	.data       start:0x8012B030 end:0x8012B0A8 align:16
+
+dol/data/lbl_8012B3B8.c:
+	.data       start:0x8012B3B8 end:0x8012B3E0 align:8
+
+dol/data/lbl_8012B3E0.c:
+	.data       start:0x8012B3E0 end:0x8012B400 align:32
+
+dol/data/lbl_8012B548.c:
+	.data       start:0x8012B548 end:0x8012B590 align:8
+
+dol/data/lbl_8012B590.c:
+	.data       start:0x8012B590 end:0x8012B5D0 align:16
+
+dol/data/lbl_8012B5D0.c:
+	.data       start:0x8012B5D0 end:0x8012B5F8 align:16
+
+dol/data/lbl_8012B5F8.c:
+	.data       start:0x8012B5F8 end:0x8012B654 align:8
+
+dol/data/lbl_8012B658.c:
+	.data       start:0x8012B658 end:0x8012B6E8 align:8
+
+dol/data/lbl_8012B6E8.c:
+	.data       start:0x8012B6E8 end:0x8012B6F0 align:8
+
+dol/data/lbl_8012B6F0.c:
+	.data       start:0x8012B6F0 end:0x8012B6F8 align:16
+
+dol/data/lbl_8012B8F8.c:
+	.data       start:0x8012B8F8 end:0x8012B900 align:8
+
+dol/data/lbl_8012B900.c:
+	.data       start:0x8012B900 end:0x8012B910 align:32
+
+dol/data/lbl_8012B910.c:
+	.data       start:0x8012B910 end:0x8012B918 align:16
+
+dol/data/lbl_8012B918.c:
+	.data       start:0x8012B918 end:0x8012B930 align:8
+
+dol/data/lbl_8012B930.c:
+	.data       start:0x8012B930 end:0x8012B938 align:16
+
+dol/data/lbl_8012B938.c:
+	.data       start:0x8012B938 end:0x8012D9B8 align:8
+
+dol/data/lbl_801309C0.c:
+	.data       start:0x801309C0 end:0x80130A48 align:32
+
+dol/data/lbl_80130BC0.c:
+	.data       start:0x80130BC0 end:0x801325D8 align:32
+
+dol/data/lbl_80132788.c:
+	.data       start:0x80132788 end:0x80132820 align:8
+
+dol/data/lbl_80132820.c:
+	.data       start:0x80132820 end:0x80142840 align:32
+
+dol/data/lbl_80142840.c:
+	.data       start:0x80142840 end:0x80152860 align:32
+
+dol/data/lbl_80152860.c:
+	.data       start:0x80152860 end:0x8015A860 align:32
+
+dol/data/lbl_8015AA10.c:
+	.data       start:0x8015AA10 end:0x8015AB70 align:16
+
+dol/data/lbl_8015AB70.c:
+	.data       start:0x8015AB70 end:0x8015ABC0 align:16
+
+dol/data/lbl_8015ABC0.c:
+	.data       start:0x8015ABC0 end:0x8015ABD8 align:32
+
+dol/data/lbl_8015ABD8.c:
+	.data       start:0x8015ABD8 end:0x8015AC08 align:8
+
+dol/data/lbl_8015AC08.c:
+	.data       start:0x8015AC08 end:0x8015AD10 align:8
+
+dol/data/lbl_8015AD10.c:
+	.data       start:0x8015AD10 end:0x8015AD28 align:16
+
+dol/data/lbl_8015AD28.c:
+	.data       start:0x8015AD28 end:0x8015AD38 align:8
+
+dol/data/lbl_8015AD38.c:
+	.data       start:0x8015AD38 end:0x8015AD48 align:8
+
+dol/data/lbl_8015AD48.c:
+	.data       start:0x8015AD48 end:0x8015AE58 align:8
+
+dol/data/__files.c:
+	.data       start:0x8015AE58 end:0x8015AF98 align:8
+
+dol/data/lbl_8015AF98.c:
+	.data       start:0x8015AF98 end:0x8015AFD8 align:8
+
+dol/data/lbl_8015B100.c:
+	.data       start:0x8015B100 end:0x8015B300 align:32
+
+dol/data/lbl_8015B400.c:
+	.data       start:0x8015B400 end:0x8015B438 align:32
+
+dol/data/gTRKRestoreFlags.c:
+	.data       start:0x8015B868 end:0x8015B898 align:8
+
+dol/data/lbl_8015B898.c:
+	.data       start:0x8015B898 end:0x8015B8D8 align:8
+
+dol/data/gDBCommTable.c:
+	.data       start:0x8015B8D8 end:0x8015B900 align:8
+
+dol/data/lbl_8015B900.c:
+	.data       start:0x8015B900 end:0x8015B919 align:32
