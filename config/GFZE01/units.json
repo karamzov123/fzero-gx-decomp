@@ -44462,6 +44462,43 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/car/fn_1_818BC.c",
+    "symbols": [
+      "fn_1_818BC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/car.c",
+    "pool": {
+      "...bss.0": "lbl_1_bss_6D820",
+      "fzgx_obj_lbl_1_bss_6D820": "lbl_1_bss_6D820",
+      "fzgx_obj_lbl_1_bss_6D82C": "lbl_1_bss_6D82C",
+      "fzgx_obj_lbl_1_bss_6D83C": "lbl_1_bss_6D83C",
+      "lbl_1_bss_6D83C__fzgx_offset_4": "lbl_1_bss_6D83C+0x4",
+      "...data.0": "lbl_1_data_1F1D8",
+      "fzgx_obj_lbl_1_data_1F1D8": "lbl_1_data_1F1D8",
+      "fzgx_obj_lbl_1_data_1F4FC": "lbl_1_data_1F4FC",
+      "fzgx_obj_lbl_1_data_1FFE0": "lbl_1_data_1FFE0",
+      "lbl_1_data_1FFE0__fzgx_offset_4": "lbl_1_data_1FFE0+0x4",
+      "fzgx_obj_lbl_1_data_1FFF0": "lbl_1_data_1FFF0",
+      "lbl_1_data_1FFF0__fzgx_offset_8": "lbl_1_data_1FFF0+0x8",
+      "fzgx_obj_lbl_1_data_20518": "lbl_1_data_20518",
+      "lbl_1_data_20518__fzgx_offset_18": "lbl_1_data_20518+0x18",
+      "lbl_1_data_20518__fzgx_offset_24": "lbl_1_data_20518+0x24",
+      "lbl_1_data_20518__fzgx_offset_30": "lbl_1_data_20518+0x30",
+      "fzgx_obj_lbl_1_data_205A8": "lbl_1_data_205A8",
+      "lbl_1_data_205A8__fzgx_offset_14": "lbl_1_data_205A8+0x14",
+      "lbl_1_data_205A8__fzgx_offset_1C": "lbl_1_data_205A8+0x1C",
+      "lbl_1_data_205A8__fzgx_offset_24": "lbl_1_data_205A8+0x24",
+      "lbl_1_data_205A8__fzgx_offset_3C": "lbl_1_data_205A8+0x3C",
+      "lbl_1_data_205A8__fzgx_offset_4C": "lbl_1_data_205A8+0x4C",
+      "lbl_1_data_205A8__fzgx_offset_60": "lbl_1_data_205A8+0x60",
+      "lbl_1_data_205A8__fzgx_offset_AC": "lbl_1_data_205A8+0xAC"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/car/fn_1_82724.c",
     "symbols": [
       "fn_1_82724"
@@ -66432,6 +66469,25 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/phys/fn_1_E3C38.c",
+    "symbols": [
+      "fn_1_E3C38"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/phys.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_6780",
+      "@33": "lbl_1_rodata_6780+0x20",
+      "@42": "lbl_1_rodata_67A8",
+      "@23": "lbl_1_rodata_6780",
+      "@32": "lbl_1_rodata_6780+0x18",
+      "@51": "lbl_1_rodata_67B4"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/phys/fn_1_E49D4.c",
     "symbols": [
       "fn_1_E49D4"
@@ -77645,6 +77701,23 @@
       "@30": "lbl_1_rodata_6E8",
       "@24": "lbl_1_rodata_6D0",
       "@25": "lbl_1_rodata_6D4"
+    }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/stcoli/fn_1_1EBD4.c",
+    "symbols": [
+      "fn_1_1EBD4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/stcoli.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_6C8",
+      "@25": "lbl_1_rodata_6D4",
+      "@24": "lbl_1_rodata_6D0",
+      "@30": "lbl_1_rodata_6E8"
     }
   },
   {

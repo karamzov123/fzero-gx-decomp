@@ -9515,3 +9515,12 @@ rel/main_rel/car/fn_1_8B9B8.c:
 
 rel/main_rel/car/fn_1_892FC.c:
 	.text       start:0x000892FC end:0x0008A168 align:4
+
+rel/main_rel/phys/fn_1_E3C38.c:
+	.text       start:0x000E3C38 end:0x000E49D4 align:4
+
+rel/main_rel/car/fn_1_818BC.c:
+	.text       start:0x000818BC end:0x00082724 align:4
+
+rel/main_rel/stcoli/fn_1_1EBD4.c:
+	.text       start:0x0001EBD4 end:0x0001FB80 align:4
