@@ -3,6 +3,11 @@
 #include "rel/customize/globals.h"
 
 extern Obj_3_bss_140 lbl_3_bss_140;
+extern s16 lbl_3_bss_20844;
+
+
+
+__declspec(section ".data") s16 lbl_3_bss_20844 __attribute__((aligned(4)));
 
 
 

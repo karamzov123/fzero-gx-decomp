@@ -26,6 +26,20 @@ then checks the actual Ninja objects too. Failed integration restores the files
 it changed and rebuilds the previous tree. Commit the tooling, source, headers,
 splits, units and provenance together; never push.
 
+## Group retries (2026-11-04)
+
+Contiguous unowned objects are grouped into one compile, so one bad member used
+to reject its whole run. A failing group is now retried as independent chunks,
+each beginning at an 8-byte-aligned member (MWCC's minimum section alignment):
+runs that crossed two TUs' headers with conflicting typedefs, or that started off
+alignment because their predecessor belongs to a function unit, import in pieces.
+Every chunk is still compiled, validated and hash-checked on its own; `--regenerate`
+keeps the recorded groups and never splits. A BSS chunk that still fails because a
+header type does not reproduce the retail extent is retried with that member as an
+opaque `u8[size]` (method `opaque-bss-header-mismatch`). Measured on the whole tree:
+screened importable data 481 KB -> 1.2 MB (the second figure includes regrouped
+existing units).
+
 ## Layout rules recovered from real imports
 
 - Existing BSS header declarations retain their structs and pointer fields.

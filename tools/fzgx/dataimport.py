@@ -286,7 +286,7 @@ def declared_record_initializer(sym, declaration, data, relocations=None):
     return declaration['declaration'], values[0], declaration['path'][8:]
 
 
-def generate(p, sym, recipe=None):
+def generate(p, sym, recipe=None, opaque_bss=False):
     if sym.kind != 'object' or sym.section not in SECTIONS or not sym.size or not sym.name.isidentifier():
         raise ValueError('not a supported named data object')
     if sym.name.startswith('jumptable_'):
@@ -320,8 +320,8 @@ def generate(p, sym, recipe=None):
             init, method = None, 'string-buffer'
     elif sym.section in BSS:
         # Headers carry recovered structs. Do not flatten them into byte arrays.
-        known = next((d for d in decls if d['path'].startswith('include/')), None)
-        if known is None:
+        known = None if opaque_bss else next((d for d in decls if d['path'].startswith('include/')), None)
+        if known is None and not opaque_bss:
             known = next((d for d in decls if re.fullmatch(
                 r'(?:volatile\s+)?(?:' + '|'.join(BASIC) + r')\s+\w+\s*(?:\[[0-9a-fA-FxX]+\])*', d['declaration'])), None)
         if known:
@@ -329,6 +329,9 @@ def generate(p, sym, recipe=None):
             if known['path'].startswith('include/'):
                 includes.append(known['path'][8:])
             method = 'declared-bss'
+        elif opaque_bss:
+            decl, method = f'u8 {sym.name}[{sym.size}]', 'opaque-bss-header-mismatch'
+            extras.append('/* Storage extent is known; the header type does not reproduce the retail layout. */')
         else:
             decl, method = f'u8 {sym.name}[{sym.size}]', 'opaque-bss'
             extras.append('/* Storage extent is known; element/field types are not recovered. */')
@@ -591,7 +594,10 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 ready.append((record, source))
             except (ValueError, KeyError) as e:
                 skipped.append(dict(symbol=name, reason=str(e)))
-        for group in data_groups(p, ready, preserve_units=regenerate):
+        pending = list(data_groups(p, ready, preserve_units=regenerate))
+        rescued = set()
+        while pending:
+            group = pending.pop(0)
             try:
                 first, last = group[0][0], group[-1][0]
                 end = last['address'] + last['size']
@@ -601,6 +607,13 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 padded_end = (end + 3) & -4
                 retail_regions = regions(p, first['module'], first['section'])
                 if any(base + len(raw) == end for base, raw in retail_regions):
+                    padded_end = end
+                # NOBITS sections have no retail bytes to compare against: a BSS
+                # group that nothing follows is the section tail, and rounding it
+                # up would extend the split past the section (dtk rejects that).
+                if first['section'] in BSS and not any(
+                        s.section == first['section'] and s.addr >= end
+                        for s in p.symbols(first['module']).values()):
                     padded_end = end
                 owner = p.unit_of(p.find_symbol(first['symbol'], first['module']))
                 if padded_end != end:
@@ -654,12 +667,120 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 validate_padding(group, obj)
                 records.extend(r for r, _ in group)
             except ValueError as e:
+                # A contiguous run can span retail objects whose headers conflict, or start
+                # off the compiler's section alignment because its predecessor is owned
+                # elsewhere. Retry it as independent chunks that each begin at an aligned
+                # member: every chunk is still compiled and validated on its own.
+                cuts = [i for i, (r, _) in enumerate(group) if i and r['address'] % 8 == 0]
+                if not cuts and not regenerate and any(r['method'] == 'declared-bss' for r, _ in group):
+                    # A header type that does not reproduce the retail extent: keep the
+                    # storage as an opaque byte array of the retail size instead.
+                    retry = []
+                    for r, src in group:
+                        if r['method'] == 'declared-bss':
+                            src, r = generate(p, p.find_symbol(r['symbol'], r['module']), opaque_bss=True)
+                        retry.append((r, src))
+                    pending.insert(0, retry)
+                    continue
+                if cuts and not regenerate:
+                    bounds = [0] + cuts + [len(group)]
+                    pending[:0] = [group[a:b] for a, b in zip(bounds, bounds[1:])]
+                    continue
                 skipped.extend(dict(symbol=r['symbol'], reason=str(e)) for r, _ in group)
+            if not pending and not regenerate:
+                # An unowned BSS run boxed in by owned splits would be dropped by DTK
+                # with its symbols; import it too, as opaque storage of its retail extent.
+                for run in isolated_runs(p, records):
+                    key = tuple(sym.name for sym in run)
+                    if key in rescued:
+                        continue
+                    rescued.add(key)
+                    try:
+                        if any(sym.scope != 'global' for sym in run):
+                            continue
+                        retry = []
+                        for sym in run:
+                            src, r = generate(p, sym, opaque_bss=True)
+                            retry.append((r, src))
+                    except (ValueError, KeyError):
+                        continue
+                    names_in_run = set(key)
+                    skipped[:] = [x for x in skipped if x['symbol'].split(':')[-1] not in names_in_run]
+                    pending.append(retry)
+        if not regenerate:
+            records = isolate_guard(p, records, skipped)
         applied = bool(apply and records and not (regenerate and skipped))
         if applied:
             _install(p, records, scratch)
     return dict(imported=applied, objects=len(records), bytes=sum(r['size'] for r in records),
                 records=records, skipped=skipped)
+
+
+def isolated_runs(p, records):
+    """Maximal runs of unowned BSS objects with owned objects on both sides."""
+    new = {r['symbol'] for r in records}
+    runs = []
+    for module, section in sorted({(r['module'], r['section']) for r in records if r['section'] in BSS}):
+        syms = sorted((s for s in p.symbols(module).values()
+                       if s.section == section and s.kind == 'object' and s.size),
+                      key=lambda s: s.addr)
+        owned = [s.name in new or p.unit_of(s) is not None for s in syms]
+        i = 0
+        while i < len(syms):
+            if owned[i]:
+                i += 1
+                continue
+            j = i
+            while j < len(syms) and not owned[j]:
+                j += 1
+            if i and j < len(syms):
+                runs.append(syms[i:j])
+            i = j
+    return runs
+
+
+def isolate_guard(p, records, skipped):
+    """Never leave a run of unowned BSS objects boxed in by owned splits.
+
+    DTK drops a zero-only auto range that is isolated between splits, and its
+    symbols with it, so an unowned BSS run whose neighbours both become owned
+    vanishes from the link (measured: lbl_3_bss_20844..2084C, lbl_3_bss_A23D8).
+    Withdraw the newly imported chunk on one side instead; repeat until no run
+    is isolated.
+    """
+    changed = True
+    while changed:
+        changed = False
+        new = {r['symbol']: r for r in records}
+        for module, section in sorted({(r['module'], r['section']) for r in records if r['section'] in BSS}):
+            syms = sorted((s for s in p.symbols(module).values()
+                           if s.section == section and s.kind == 'object' and s.size),
+                          key=lambda s: s.addr)
+            owned = [s.name in new or p.unit_of(s) is not None for s in syms]
+            i = 0
+            while i < len(syms):
+                if owned[i]:
+                    i += 1
+                    continue
+                j = i
+                while j < len(syms) and not owned[j]:
+                    j += 1
+                # syms[i:j] is a maximal unowned run
+                if i and j < len(syms):
+                    victim = new.get(syms[j].name) or new.get(syms[i - 1].name)
+                    if victim is not None:
+                        start = victim['unit_start']
+                        drop = [r for r in records if r['module'] == module and r.get('unit_start') == start]
+                        records = [r for r in records if r not in drop]
+                        skipped.extend(dict(symbol=r['symbol'],
+                                            reason=f'would isolate unowned {syms[i].name} between splits')
+                                       for r in drop)
+                        changed = True
+                        break
+                i = j
+            if changed:
+                break
+    return records
 
 
 def boundary_closure(p, names):
@@ -695,6 +816,26 @@ def boundary_closure(p, names):
             if zero or (unit and unit.get('data')):
                 selected[(other.module, other.name)] = other
                 pending.append(other)
+    # A BSS member that starts where an existing data unit ends cannot begin its own
+    # unit off the section alignment; grow that unit to include it instead.
+    grown = True
+    while grown:
+        grown = False
+        for s in list(selected.values()):
+            if s.section not in BSS:
+                continue
+            for other in p.symbols(s.module).values():
+                if other.section != s.section or not other.size or other.end != s.addr:
+                    continue
+                owner = p.unit_of(other)
+                unit = p.unit_record(owner) if owner else None
+                if not (unit and unit.get('data')):
+                    continue
+                for name in unit['symbols']:
+                    member = p.find_symbol(name, s.module)
+                    if member and (member.module, member.name) not in selected:
+                        selected[(member.module, member.name)] = member
+                        grown = True
     # Keep invalid user names in the error report.
     return [f'{m}:{n}' for m, n in selected] + [n for n in names if p.resolve(n) is None]
 

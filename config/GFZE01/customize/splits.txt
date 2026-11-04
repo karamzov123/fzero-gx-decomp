@@ -396,9 +396,6 @@ rel/customize/emblem/fn_3_15240.c:
 rel/customize/_prolog/fn_3_3438.c:
 	.text       start:0x00003438 end:0x0000368C align:4
 
-rel/customize/data/lbl_3_bss_2C7C0.c:
-	.bss        start:0x0002C7C0 end:0x0006D8C0 align:32
-
 rel/customize/_prolog/fn_3_77B0.c:
 	.text       start:0x000077B0 end:0x00007864 align:4
 
@@ -510,9 +507,6 @@ rel/customize/_prolog/fn_3_3F20.c:
 rel/customize/editor/fn_3_16E14.c:
 	.text       start:0x00016E14 end:0x00016FD0 align:4
 
-rel/customize/data/lbl_3_bss_7E240.c:
-	.bss        start:0x0007E240 end:0x0007E6F0 align:32
-
 rel/customize/data/lbl_3_bss_A1778.c:
 	.bss        start:0x000A1778 end:0x000A1784 align:8
 
@@ -521,12 +515,6 @@ rel/customize/data/lbl_3_bss_A2408.c:
 
 rel/customize/toolkit/fn_3_1AE40.c:
 	.text       start:0x0001AE40 end:0x0001AEE4 align:4
-
-rel/customize/data/lbl_3_bss_6DD78.c:
-	.bss        start:0x0006DD78 end:0x0006DE20 align:8
-
-rel/customize/data/lbl_3_bss_A2458.c:
-	.bss        start:0x000A2458 end:0x000A2460 align:8
 
 rel/customize/customize/fn_3_BF1C.c:
 	.text       start:0x0000BF1C end:0x0000C128 align:4
@@ -567,9 +555,6 @@ rel/customize/_prolog/fn_3_10A4.c:
 rel/customize/_prolog/fn_3_0.c:
 	.text       start:0x00000000 end:0x0000042C align:4
 
-rel/customize/data/lbl_3_bss_140.c:
-	.bss        start:0x00000140 end:0x00020844 align:32
-
 rel/customize/data/lbl_3_data_1EA8.c:
 	.data       start:0x00001EA8 end:0x00002DCC align:8
 
@@ -587,9 +572,6 @@ rel/customize/toolkit/fn_3_1A648.c:
 
 rel/customize/_prolog/fn_3_6E14.c:
 	.text       start:0x00006E14 end:0x00006F90 align:4
-
-rel/customize/data/lbl_3_bss_7EE40.c:
-	.bss        start:0x0007EE40 end:0x00087000 align:32
 
 rel/customize/data/lbl_3_bss_87040.c:
 	.bss        start:0x00087040 end:0x0008F200 align:32
@@ -836,3 +818,123 @@ rel/customize/data/lbl_3_data_3780.c:
 
 rel/customize/data/lbl_3_data_4B70.c:
 	.data       start:0x00004B70 end:0x00004BB4 align:8
+
+rel/customize/data/lbl_3_bss_0.c:
+	.bss        start:0x00000000 end:0x00000008 align:32
+
+rel/customize/data/lbl_3_bss_8.c:
+	.bss        start:0x00000008 end:0x00000018 align:8
+
+rel/customize/data/lbl_3_bss_18.c:
+	.bss        start:0x00000018 end:0x00000020 align:8
+
+rel/customize/data/lbl_3_bss_20.c:
+	.bss        start:0x00000020 end:0x000000F0 align:32
+
+rel/customize/data/lbl_3_bss_F0.c:
+	.bss        start:0x000000F0 end:0x00000120 align:16
+
+rel/customize/data/lbl_3_bss_120.c:
+	.bss        start:0x00000120 end:0x00000140 align:32
+
+rel/customize/data/lbl_3_bss_140.c:
+	.bss        start:0x00000140 end:0x00020848 align:32
+
+rel/customize/data/lbl_3_bss_20848.c:
+	.bss        start:0x00020848 end:0x00020850 align:8
+
+rel/customize/data/lbl_3_bss_20850.c:
+	.bss        start:0x00020850 end:0x00020860 align:16
+
+rel/customize/data/lbl_3_bss_20860.c:
+	.bss        start:0x00020860 end:0x00021960 align:32
+
+rel/customize/data/lbl_3_bss_21960.c:
+	.bss        start:0x00021960 end:0x000241E0 align:32
+
+rel/customize/data/lbl_3_bss_241E0.c:
+	.bss        start:0x000241E0 end:0x00024370 align:8
+
+rel/customize/data/lbl_3_bss_24370.c:
+	.bss        start:0x00024370 end:0x000243A8 align:16
+
+rel/customize/data/lbl_3_bss_243A8.c:
+	.bss        start:0x000243A8 end:0x000243C0 align:8
+
+rel/customize/data/lbl_3_bss_243C0.c:
+	.bss        start:0x000243C0 end:0x0002C580 align:32
+
+rel/customize/data/lbl_3_bss_2C580.c:
+	.bss        start:0x0002C580 end:0x0002C7C0 align:32
+
+rel/customize/data/lbl_3_bss_2C7C0.c:
+	.bss        start:0x0002C7C0 end:0x0006D8C0 align:32
+
+rel/customize/data/lbl_3_bss_6D8C0.c:
+	.bss        start:0x0006D8C0 end:0x0006DD70 align:32
+
+rel/customize/data/lbl_3_bss_6DD70.c:
+	.bss        start:0x0006DD70 end:0x0006DD78 align:16
+
+rel/customize/data/lbl_3_bss_6DD78.c:
+	.bss        start:0x0006DD78 end:0x0006DE20 align:8
+
+rel/customize/data/lbl_3_bss_6DE20.c:
+	.bss        start:0x0006DE20 end:0x0007DB60 align:32
+
+rel/customize/data/lbl_3_bss_7DB60.c:
+	.bss        start:0x0007DB60 end:0x0007E080 align:32
+
+rel/customize/data/lbl_3_bss_7E080.c:
+	.bss        start:0x0007E080 end:0x0007E240 align:32
+
+rel/customize/data/lbl_3_bss_7E240.c:
+	.bss        start:0x0007E240 end:0x0007E6F0 align:32
+
+rel/customize/data/lbl_3_bss_7E6F0.c:
+	.bss        start:0x0007E6F0 end:0x0007EBA0 align:16
+
+rel/customize/data/lbl_3_bss_7EBA0.c:
+	.bss        start:0x0007EBA0 end:0x0007EBA8 align:32
+
+rel/customize/data/lbl_3_bss_7EBA8.c:
+	.bss        start:0x0007EBA8 end:0x0007EBB0 align:8
+
+rel/customize/data/lbl_3_bss_7EBB0.c:
+	.bss        start:0x0007EBB0 end:0x0007EC08 align:16
+
+rel/customize/data/lbl_3_bss_7EC08.c:
+	.bss        start:0x0007EC08 end:0x0007ED58 align:8
+
+rel/customize/data/lbl_3_bss_7ED58.c:
+	.bss        start:0x0007ED58 end:0x0007EDA0 align:8
+
+rel/customize/data/lbl_3_bss_7EDA0.c:
+	.bss        start:0x0007EDA0 end:0x0007EDC0 align:32
+
+rel/customize/data/lbl_3_bss_7EDC0.c:
+	.bss        start:0x0007EDC0 end:0x0007EDD8 align:32
+
+rel/customize/data/lbl_3_bss_7EDD8.c:
+	.bss        start:0x0007EDD8 end:0x0007EE40 align:8
+
+rel/customize/data/lbl_3_bss_7EE40.c:
+	.bss        start:0x0007EE40 end:0x00087000 align:32
+
+rel/customize/data/lbl_3_bss_87000.c:
+	.bss        start:0x00087000 end:0x00087040 align:32
+
+rel/customize/data/lbl_3_bss_A2410.c:
+	.bss        start:0x000A2410 end:0x000A2438 align:16
+
+rel/customize/data/lbl_3_bss_A2438.c:
+	.bss        start:0x000A2438 end:0x000A2458 align:8
+
+rel/customize/data/lbl_3_bss_A2458.c:
+	.bss        start:0x000A2458 end:0x000A2460 align:8
+
+rel/customize/data/lbl_3_bss_A2460.c:
+	.bss        start:0x000A2460 end:0x000A2468 align:32
+
+rel/customize/data/lbl_3_bss_A2468.c:
+	.bss        start:0x000A2468 end:0x000A24B6 align:8
