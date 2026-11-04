@@ -52164,6 +52164,36 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/effect_car/fn_1_68284.c",
+    "symbols": [
+      "fn_1_68284"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect_car.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_2D70",
+      "@33": "lbl_1_rodata_2D70",
+      "@34": "lbl_1_rodata_2D70+0x4",
+      "@35": "lbl_1_rodata_2D70+0x8",
+      "@36": "lbl_1_rodata_2D70+0xC",
+      "@37": "lbl_1_rodata_2D70+0x10",
+      "@234": "lbl_1_rodata_2D70+0x38",
+      "@38": "lbl_1_rodata_2D70+0x14",
+      "@40": "lbl_1_rodata_2D70+0x1C",
+      "@39": "lbl_1_rodata_2D70+0x18",
+      "@235": "lbl_1_rodata_2D70+0x40",
+      "@42": "lbl_1_rodata_2D70+0x24",
+      "@41": "lbl_1_rodata_2D70+0x20",
+      "@44": "lbl_1_rodata_2D70+0x2C",
+      "@45": "lbl_1_rodata_2D70+0x30",
+      "@43": "lbl_1_rodata_2D70+0x28",
+      "@46": "lbl_1_rodata_2D70+0x34"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/effect_car/fn_1_68B68.c",
     "symbols": [
       "fn_1_68B68"

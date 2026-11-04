@@ -440,6 +440,15 @@
   "source": "fork-deltawave784/windows-and-types@4b722344",
   "status": "matched"
  },
+ "fn_1_68284": {
+  "flags": "",
+  "kind": "selective+s16-view",
+  "landed": 1793807061,
+  "mw": "GC/1.3.2",
+  "sha256": "c64ffe315b3040985de95490d52c8e9b001606ee48b6f66d4c137b0194c93fee",
+  "source": "fork-deltawave784/windows-and-types@8c8d7cc3",
+  "status": "matched"
+ },
  "fn_1_6C87C": {
   "flags": "",
   "kind": "raw",

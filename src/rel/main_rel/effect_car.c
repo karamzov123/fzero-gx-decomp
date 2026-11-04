@@ -93,6 +93,681 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 }
 /* fzgx:end fn_1_68248 */
 
+/* fzgx:begin fn_1_68284 noprologue */
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+#include "types.h"
+#include "rel/main_rel/effect_car.h"
+
+/* begin game/main_rel/car_types.h (fork-deltawave784/windows-and-types@8c8d7cc3) */
+#ifndef GAME_MAIN_REL_CAR_TYPES_H
+#define GAME_MAIN_REL_CAR_TYPES_H
+
+// Types (and the externs that name them) of car.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+/* begin game/vec3.h (fork-deltawave784/windows-and-types@8c8d7cc3) */
+#ifndef GAME_VEC3_H
+#define GAME_VEC3_H
+
+// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
+// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
+// stcoli). Hand-owned (librarian).
+
+
+typedef struct Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+#endif  // GAME_VEC3_H
+
+/* end game/vec3.h */
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+/* game/vec3.h: inlined above */
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct {
+    u8 pad_0[0x400];
+    u8 mtx[0x70];
+    u8 mtx2[0x30];
+} CamObj;
+
+typedef struct {
+    u8 pad_0[0x118];
+    u32 unk_118;
+    u32 unk_11C;
+    u8 pad_120[0x20];
+    s32 unk_140;
+    f32 unk_144;
+    f32 unk_148;
+    f32 unk_14C;
+    f32 unk_150;
+} CarSound;
+
+typedef struct {
+    u32 flags;
+    u8 pad_4[0x498];
+    CarSound *sound;
+} fn_1_85F90_Car;
+
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(CarObject *arg0, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern void fn_1_41F58(Fn1967A8Resource *arg0, s32 arg1, void (*arg2)(void), void *arg3);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern Triple lbl_1_rodata_3BE8;
+extern void fn_1_55210(struct Model *);
+/* retail takes (obj, idx, mask, mask2) (fn_1_8F198 passes all four); non-prototype until fn_1_8F45C passes its own four through */
+extern void fn_1_8E7D0();
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+
+#endif  // GAME_MAIN_REL_CAR_TYPES_H
+
+/* end game/main_rel/car_types.h */
+/* game/vec3.h: inlined above */
+
+struct Sig_fn_1_862A8_fn_1_862A8_Arg1 {
+    u32 unk_0; u32 unk_4; u32 unk_8;
+};
+struct Sig_fn_1_6F90C_EffectCarData {
+    u32 flags;
+    s16 field_4;
+    u8 pad_6[0x475 - 6];
+    s8 field_475;
+};
+typedef struct { f32 x, y, z; } Sig_fn_1_6F90C_Vec3f;
+struct Sig_fn_1_6F90C_EffectCar {
+    u8 pad_00[0x38];
+    struct Sig_fn_1_6F90C_EffectCarData *data;
+    Sig_fn_1_6F90C_Vec3f pos;
+    u8 pad_48[0x5c - 0x48];
+    u16 field_5c;
+    u8 pad_5e[0xb2 - 0x5e];
+    u16 field_b2;
+};
+struct Sig_fn_1_6D6A8_Fn1_6D6A8Car {
+    u8 pad_00[0x18]; s16 field_18;
+};
+struct fn_1_68284_lbl_801A66A0 { u32 unk_0; };
+extern struct fn_1_68284_lbl_801A66A0 lbl_801A66A0;
+extern u32 lbl_801A66C8;
+extern f32 fn_1_8652C(int);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D668(void *);
+extern u32 fn_1_58C4(void);
+extern s32 fn_1_66B8(u32, f32);
+extern u32 fn_1_6C87C(u32, void *, f32);
+extern u32 fn_1_6D488(u32, void *, f32);
+extern u32 fn_1_862A8(u32, struct Sig_fn_1_862A8_fn_1_862A8_Arg1 *);
+extern u32 fn_1_864E8(int);
+extern u32 fn_1_86514(int);
+extern void *fn_1_868C0(s8);
+extern void fn_1_681C(u32, u32 *);
+extern void fn_1_6D6A8(struct Sig_fn_1_6D6A8_Fn1_6D6A8Car *, f32);
+extern void fn_1_6F404(void *, void *);
+extern void fn_1_6F8D0(void *, void *);
+extern void fn_1_6F90C(struct Sig_fn_1_6F90C_EffectCar *, void *);
+extern void fn_1_71CA0(void *, void *, u16);
+extern void fn_1_862D4(int, Triple *);
+extern void fn_1_8636C(int, void *);
+extern void fn_1_A2D84(u32);
+extern void fn_1_A3C78(s32, s32);
+extern void lbl_8006DBAC(Vec3 *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern u32 fn_1_6BFB8(u32);
+extern void *fn_1_8627C(s32);
+extern u32 fn_1_1FB80(u32, u32);
+extern u32 fn_1_6DD68(u32, u32, u32);
+extern u32 fn_1_6E62C(u32, void *);
+extern s16 camera_get_mode(void);
+extern u32 fn_1_6ED40(u32, void *);
+extern void fn_1_723E0(void *);
+extern u16 fn_1_584AC(void);
+extern void fn_1_A2E5C(s32, s32);
+extern s32 fn_1_6EC0(u8);
+
+/* Clamp x to [lo, hi]. */
+static inline f32 clampf(f32 lo, f32 hi, f32 x) {
+    if (x < lo) return lo;
+    if (x > hi) return hi;
+    return x;
+}
+extern s16 fn_1_6E320(void *, void *, u8, f32);
+extern u32 fn_1_6A7A4(u32, void *);
+extern u32 fn_1_6AF70(u32, void *);
+extern u32 fn_1_6B8A4(u32, void *);
+extern void fn_1_6F288(void *);
+extern void fn_1_106EA4(f32);
+extern f64 __fabs(f64);
+
+#define F32_AT(p, o) (*(f32 *)((u8 *)(p) + (o)))
+#define U32_AT(p, o) (*(u32 *)((u8 *)(p) + (o)))
+#define S32_AT(p, o) (*(s32 *)((u8 *)(p) + (o)))
+#define S16_AT(p, o) (*(s16 *)((u8 *)(p) + (o)))
+#define U16_AT(p, o) (*(u16 *)((u8 *)(p) + (o)))
+#define S8_AT(p, o) (*(s8 *)((u8 *)(p) + (o)))
+static inline f32 effect_distance(const f32 *p, const f32 *q) {
+    f32 x = p[0] - q[0];
+    f32 y = p[1];
+    f32 z;
+    y -= q[1];
+    z = p[2];
+    z -= q[2];
+    x *= x;
+    x = y*y + x;
+    x = z*z + x;
+    return lbl_8006D0B4(x);
+}
+#define DISTANCE() effect_distance((f32 *)&loc_5C,loc_8)
+
+#pragma section code_type ".fzgxpool"
+/* Primes the literal pool in retail order (lbl_1_rodata_2D70). */
+void fzgx_pool_fn_1_68284(f32 *out) {
+    out[0] = 0.0f;
+    out[1] = -1.0f;
+    out[2] = 25.0f;
+    out[3] = 15.0f;
+    out[4] = 8.0f;
+    out[5] = 150.0f;
+    out[6] = 10.0f;
+    out[7] = 0.5f;
+    out[8] = 0.125f;
+    out[9] = 32767.0f;
+    out[10] = 30.0f;
+    out[11] = 20.0f;
+    out[12] = 1200.0f;
+    out[13] = 0.15f;
+}
+#pragma section code_type ".text"
+
+static inline void fn_1_68284_cross(const Vec3f *a, const Vec3f *b, f32 *out) {
+    f32 ax, ay, az, bx, by, bz;
+    f32 x, y, z;
+    ay = a->y;
+    bz = b->z;
+    az = a->z;
+    bx = b->x;
+    by = b->y;
+    ax = a->x;
+    x = ay * bz;
+    y = az * bx;
+    z = ax * by;
+    x -= az * by;
+    y -= ax * bz;
+    z -= ay * bx;
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+}
+void fn_1_68284(u32 arg0) {
+    u32 flags;
+    void *state;
+    s16 id;
+    u32 data;
+    s16 level;
+    s32 active;
+    u32 i;
+    u32 count;
+    struct { f32 value; } distance;
+    f32 speed;
+    f32 a, c, b;
+    s32 divisor;
+    u32 bits;
+    u32 mask;
+    f32 intensity;
+    Triple loc_5C;
+    Vec3f loc_50;
+    Vec3f loc_44;
+    Vec3f loc_38;
+    Vec3f loc_2C;
+    f32 loc_20[3];
+    Vec3f loc_14;
+    f32 loc_8[3];
+
+    id = S16_AT(arg0,0x18);
+    data = U32_AT(arg0,0x38);
+    active = 0;
+    state = fn_1_868C0((s8)id);
+    level = S16_AT(state,0x3ba);
+    fn_1_862D4(id, &loc_5C);
+    count = fn_1_58C4();
+    fn_1_681C(0,(u32 *)loc_8);
+    distance.value = DISTANCE();
+    for (i = 1; i < count; i++) {
+        fn_1_681C((u8)i, (u32 *)loc_8);
+        distance.value = distance.value < DISTANCE() ? distance.value : DISTANCE();
+    }
+    loc_50 = *(Vec3f *)(arg0 + 0x3c);
+    loc_44.x = F32_AT(&loc_5C,0) - loc_50.x;
+    loc_44.y = F32_AT(&loc_5C,4) - loc_50.y;
+    loc_44.z = F32_AT(&loc_5C,8) - loc_50.z;
+    flags = fn_1_864E8(id);
+    speed = fn_1_8652C(id);
+    fn_1_8636C(id,(void *)(arg0+0xb8));
+    lbl_8006DBAC((Vec3 *)(arg0+0xb8));
+    lbl_8006E1F0(&loc_2C,0.0f,0.0f,-1.0f);
+    fn_1_862A8(S16_AT(arg0,0x18),(struct Sig_fn_1_862A8_fn_1_862A8_Arg1 *)&loc_38);
+    fn_1_68284_cross(&loc_2C, &loc_38, loc_20);
+    lbl_8006D668(loc_20);
+    *(Triple *)(arg0 + 0x3c) = loc_5C;
+    *(Vec3f *)(arg0 + 0x48) = loc_44;
+    F32_AT(arg0,0x88) = distance.value;
+    a = F32_AT(data,0x184);
+    if (a < 25.0f) {
+        divisor = 30;
+        if (a < 15.0f) divisor = 15;
+        fn_1_A3C78(S16_AT(data,4),lbl_801A66A0.unk_0 % (u32)divisor);
+    }
+    if (U16_AT(data,0x214)) {
+        if (!(lbl_801A66C8 & 0xf)) fn_1_A2D84(0xa9092e00);
+        fn_1_71CA0((void *)arg0,&loc_38,U16_AT(data,0x214));
+        if (U16_AT(data,0x214) < 180) return;
+    }
+    if (!fn_1_66B8((u32)&loc_5C,8.0f) && S8_AT(data,0x475) == -1) return;
+    if (flags & 0x80) active = 1;
+    if (active) {
+        if (flags & 0x40000000) fn_1_6F90C((struct Sig_fn_1_6F90C_EffectCar *)arg0,&loc_38);
+        if (U32_AT(data,0x58c) & 0x100) fn_1_6F90C((struct Sig_fn_1_6F90C_EffectCar *)arg0,&loc_38);
+        if (*(s16 *)&lbl_1_bss_960 == 9) fn_1_6F8D0((void *)arg0,&loc_38);
+        if (S16_AT(arg0,0x5c)) S16_AT(arg0,0x5c)--;
+        fn_1_6F404((void *)arg0,&loc_38);
+        return;
+    }
+    U32_AT(state,0x390) &= ~0x200000;
+    U32_AT(state,0x390) &= ~0x1000000;
+    S16_AT(arg0,0x5c) = 0;
+    S16_AT(arg0,0xb2) = 0;
+    if (level >= 5 && S8_AT(data,0x475) == -1) return;
+    if (F32_AT(data,0x184) < 25.0f && !active) fn_1_6C87C(arg0,&loc_38,F32_AT(data,0x184));
+    if ((fn_1_86514(id) >> 27) & 1) {
+        if ((U32_AT(arg0,8) >> 18) & 1) {
+            fn_1_6D6A8((struct Sig_fn_1_6D6A8_Fn1_6D6A8Car *)arg0,F32_AT(data,0x184));
+            fn_1_6D488(arg0,&loc_38,F32_AT(data,0x184));
+            U32_AT(arg0,8) &= ~0x40000;
+        }
+    } else {
+        U32_AT(arg0,8) |= 0x40000;
+    }
+    if (level >= 3 && !(flags & 0x20) && S8_AT(data,0x475) == -1) return;
+    mask = flags & 0x20;
+    if (mask && !active) fn_1_6BFB8(arg0);
+    if (!(flags & 2)) {
+        if (S32_AT(arg0,0x14)) S32_AT(arg0,0x14)--;
+    } else if ((f32)S32_AT(arg0,0x14) < 150.0f) {
+        if (lbl_801A66A0.unk_0 & 1) S32_AT(arg0,0x14)++;
+    }
+    if (lbl_1_data_2A7E0.unk_0 == 10) {
+        a = (f32)__fabs(F32_AT(fn_1_8627C(id),0x108));
+        intensity = clampf(0.0f, 10.0f, (f32)(((a) / 2.0f)) - 8.0f);
+        bits = fn_1_1FB80(arg0+0x3c,0x1f8);
+        if (bits & 8) fn_1_6DD68(arg0,(u32)&loc_38,16);
+        else if (bits & 16) fn_1_6DD68(arg0,(u32)&loc_38,8);
+        else if (bits & 32) fn_1_6DD68(arg0,(u32)&loc_38,4);
+        else if (bits & 64) fn_1_6DD68(arg0,(u32)&loc_38,(s32)intensity);
+        else if (bits & 128) fn_1_6DD68(arg0,(u32)&loc_38,(s32)intensity);
+        else if (bits & 256) fn_1_6DD68(arg0,(u32)&loc_38,(s32)intensity);
+    }
+    if (lbl_1_data_2A7E0.unk_0 == 4) {
+        fn_1_8627C(id);
+        if (fn_1_1FB80(arg0+0x3c,1) & 1) {
+            fn_1_6E62C(arg0,loc_20);
+            if (id != camera_get_mode() || fn_1_58C4() != 0) fn_1_6ED40(arg0,&loc_38);
+        }
+    }
+    if ((fn_1_86514(id) >> 29) & 1) fn_1_723E0((void *)arg0);
+    if (level >= 2 && (fn_1_584AC() % 2) && S8_AT(data,0x475) == -1) return;
+    if ((flags & 0x400000) && !active) {
+        S32_AT(arg0,0x14) = 150.0f * (0.125f + (f32)(0.125f * ((f32)fn_1_584AC() / 32767.0f)));
+        fn_1_A2E5C(id,1);
+    }
+    if ((flags & 0x40) && !active) {
+        S32_AT(arg0,0x14) = 150.0f * (0.125f + (f32)(0.125f * ((f32)fn_1_584AC() / 32767.0f)));
+        fn_1_A2E5C(id,0);
+        loc_14.x = -loc_2C.x;
+        loc_14.y = -loc_2C.y;
+        loc_14.z = -loc_2C.z;
+        if (id == camera_get_mode() && fn_1_58C4() == 1 && fn_1_6EC0(0))
+            fn_1_6E320((void *)arg0,&loc_14,0,0.0f);
+    }
+    if (mask && !active && S32_AT(arg0,0x14)) fn_1_6A7A4(arg0,&loc_38);
+    if (!active) fn_1_6AF70(arg0,loc_20);
+    if (flags & 0x10) {
+        S16_AT(arg0,0x5a) = (s32)clampf(0.0f, 30.0f, (20.0f * speed) / 1200.0f);
+    }
+    if (S16_AT(arg0,0x5a) > 0) {
+        S16_AT(arg0,0x5a)--;
+        fn_1_6B8A4(arg0,loc_20);
+    }
+    if ((flags & 8) || (flags & 0x20000)) {
+        if ((U32_AT(arg0,8) >> 13) & 1) fn_1_6F288((void *)arg0);
+        U32_AT(arg0,8) &= ~0x2000;
+    } else U32_AT(arg0,8) |= 0x2000;
+    if (flags & 0x800000) fn_1_106EA4(0.15f);
+}
+/* fzgx:end fn_1_68284 */
+
 /* fzgx:begin fn_1_68B68 */
 // Stub function that immediately returns.
 void fn_1_68B68(void) {
