@@ -16147,6 +16147,1219 @@ void fn_1_BC29C(void) {
 }
 /* fzgx:end fn_1_BC29C */
 
+/* fzgx:begin fn_1_BC310 noprologue */
+#include "types.h"
+#include "font.h"
+#include "dolphin/os/OSTime.h"
+#include "dolphin/hw_regs.h"
+
+typedef struct {
+    u8 r, g, b, a;
+} Color;
+
+/* a message table row: one string per language */
+typedef const char *MsgRow[6];
+
+/* one memory card slot */
+typedef struct {
+    u8 pad_0;
+    s8 status;          /* 0x01: negative on a card error */
+    u8 busy;            /* 0x02: 0xFF when idle */
+    u8 pad_3[0x39];
+    s32 free_blocks;    /* 0x3C */
+    u8 pad_40[0x60];
+} McSlot;
+
+typedef struct {
+    u8 pad_0[2];
+    u8 busy;            /* 0x02: 0xFF when idle */
+    u8 pad_3[0x9E];
+} McTask;
+
+/* one save file in a card's directory listing */
+typedef struct {
+    u8 used;            /* 0x00 */
+    u8 type;            /* 0x01 */
+    u8 pad_2[0x22];
+    u32 size;           /* 0x24 */
+    u32 time;           /* 0x28: seconds */
+    void *info;         /* 0x2C */
+} McFile;
+
+typedef struct {
+    u8 unk_0, unk_1, unk_2, unk_3, unk_4, unk_5, unk_6, unk_7;
+} McFileKey;
+
+/* replay/ghost header shown for type 2 files: one layout per region */
+typedef struct {
+    u8 unk_0, unk_1, unk_2, unk_3;
+    u16 unk_4;
+    u8 unk_6, unk_7, unk_8, unk_9;
+} McGhostA;
+
+typedef struct {
+    u8 unk_0, unk_1;
+    u8 pad_2[2];
+    u8 unk_4, unk_5, unk_6, unk_7;
+    u8 pad_8[0x1C];
+    u8 unk_24, unk_25;
+    u16 unk_26;
+} McGhostB;
+
+
+typedef struct {
+    u32 flags;                  /* 0x00 */
+    s8 options;                 /* 0x04 */
+    u8 pad_5[0xF];
+    s8 option_lit;              /* 0x14 */
+    u8 pad_15;
+    s16 card;                   /* 0x16 */
+    s16 cursor;                 /* 0x18 */
+    s16 mark_card;              /* 0x1A */
+    s16 mark_index;             /* 0x1C */
+    u8 unk_1E[2];               /* 0x1E */
+    u8 unk_20[2];               /* 0x20 */
+    s8 state;                   /* 0x22 */
+    u8 pad_23[9];
+    s16 top[2];                 /* 0x2C */
+    s16 count[2];               /* 0x30 */
+    u8 pad_34[8];
+    u8 sort;                    /* 0x3C */
+    u8 sort_request;            /* 0x3D */
+    u8 hidden;                  /* 0x3E */
+    u8 pad_3F;
+    s32 result[2];              /* 0x40 */
+} McMenu;
+
+/* file-scope objects of the retail TU .bss, in retail order: MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_716C0[2];
+McSlot fzgx_obj_lbl_1_bss_716C8[2];
+u32 fzgx_obj_lbl_1_bss_71808;
+u32 fzgx_obj_lbl_1_bss_7180C;
+McTask fzgx_obj_lbl_1_bss_71810;
+u8 fzgx_obj_lbl_1_bss_718B1;
+u8 fzgx_obj_lbl_1_bss_718B2;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_718B3;
+u32 fzgx_obj_lbl_1_bss_718B4;
+u8 fzgx_obj_lbl_1_bss_718B8;
+u8 fzgx_obj_lbl_1_bss_718B9;
+u8 lbl_1_bss_718B9__fzgx_offset_1;
+u8 lbl_1_bss_718B9__fzgx_offset_2;
+s32 lbl_1_bss_718B9__fzgx_offset_3;     /* frame timer */
+u32 fzgx_obj_lbl_1_bss_718C0[8];
+u32 fzgx_obj_lbl_1_bss_718E0[0x167A];
+u8 fzgx_obj_lbl_1_bss_772C8[0x42];
+u8 fzgx_obj_lbl_1_bss_7730A;
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_7730B;
+u32 fzgx_obj_lbl_1_bss_7730C;
+u32 fzgx_obj_lbl_1_bss_77310[0x1C];
+McFile fzgx_obj_lbl_1_bss_77380[2][128];
+u32 fzgx_obj_lbl_1_bss_7A380[2];
+u32 fzgx_obj_lbl_1_bss_7A388[4];
+u8 lbl_1_bss_7A388__fzgx_offset_10;     /* confirm prompt result */
+McFileKey fzgx_obj_lbl_1_bss_7A39C[2][127];
+u8 lbl_1_bss_7A39C__fzgx_offset_7F0;    /* confirm prompt: No is selected */
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_716C0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_716C8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_71808;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7180C;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_71810;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B1;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B2;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_718B3;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B4;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B9;
+    s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_2;
+    s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_3;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718C0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_718E0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_772C8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7730A;
+    s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_7730B;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7730C;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_77310;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_77380;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7A380;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7A388;
+    s = *(u8 *)&lbl_1_bss_7A388__fzgx_offset_10;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_7A39C;
+    s = *(u8 *)&lbl_1_bss_7A39C__fzgx_offset_7F0;
+}
+#pragma section code_type ".text"
+
+/* the retail TU's .data objects this function uses, at their retail offsets; pool_data on makes MWCC address
+ * them and the string literals off one section base, as retail does */
+#pragma pool_data on
+u8 fzgx_obj_lbl_1_data_35AC8[4] = {0x04, 0x04, 0x00, 0x00};
+u8 fzgx_pool_gap_35ACC[0x5C80] = {1};
+MsgRow fzgx_obj_lbl_1_data_3B74C[0x71] = {{(const char *)1}};
+u8 fzgx_pool_gap_3C1E4[0xBFC] = {1};
+
+extern void fzgx_touch(const void *);
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_data_layout(void) {
+    fzgx_touch(fzgx_obj_lbl_1_data_35AC8);
+    fzgx_touch(fzgx_pool_gap_35ACC);
+    fzgx_touch(fzgx_obj_lbl_1_data_3B74C);
+    fzgx_touch(fzgx_pool_gap_3C1E4);
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+static void fzgx_string_layout1(void) {
+    fzgx_touch("%s");
+    fzgx_touch("A");
+    fzgx_touch("SLOT");
+    fzgx_touch("FILE");
+    fzgx_touch("ACCESS COMPLETE");
+    fzgx_touch("PHASE1");
+    fzgx_touch("WAIT");
+    fzgx_touch("NOW");
+    fzgx_touch("OK");
+    fzgx_touch("PHASE2");
+    fzgx_touch("PHASE3");
+    fzgx_touch("%d");
+    fzgx_touch("FREE");
+    fzgx_touch("REQUIRED");
+    fzgx_touch("");
+    fzgx_touch(" ");
+    fzgx_touch("%s%s%s");
+    fzgx_touch("%02d/%02d/%02d ");
+}
+#pragma section code_type ".text"
+u8 fzgx_pool_gap_3CE68[0x4] = {1};
+#pragma section code_type ".fzgxpool"
+static void fzgx_string_layout2(void) {
+    fzgx_touch("WARNING");
+    fzgx_touch("/bcffa0a0/      \x82S/bcffffff/");
+    fzgx_touch("/bcffa0a0/    \x82P\x82W/bcffffff/");
+    fzgx_touch("/bcffa0a0/      \x82R/bcffffff/");
+    fzgx_touch("/bcffa0a0/\x82R\x81`\x82P\x82R/bcffffff/");
+}
+#pragma section code_type ".text"
+u8 fzgx_pool_gap_3CEF4[0x24] = {1};
+#pragma section code_type ".fzgxpool"
+static void fzgx_string_layout3(void) {
+    fzgx_touch("\x81\xA0");
+    fzgx_touch("%04d/%02d/%02d %02d:%02d");
+    fzgx_touch("\x81\xA3");
+    fzgx_touch("%s\x0A");
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[114] = {0x665F7A65, 0x726F5F64, 0x65627567, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x7379735F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000350, 0x00000004, 0xFFFFFFFF, 0xFFFFFFFF, 0x665F7A65, 0x726F0000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000001, 0x7379735F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000B4F, 0x000059E0, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6700, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000002, 0x67686F5F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000153, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6300, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000003, 0x6761725F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000154, 0x00020700, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A6500, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000004, 0x656D625F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000152, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF, 0x667A7200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000005, 0x7265705F, 0x652E6269, 0x6E000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000451, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 40960.0f;
+    d = 4503601774854144.0;
+    d = 4503599627370496.0;
+    s = 1.0f;
+    s = 24576.0f;
+    d = 126.0;
+    s = 126.0f;
+}
+static const u32 fzgx_pool_table3[4] = {0x00000000, 0xFFFFFF00, 0x00000000, 0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 10.0f;
+}
+static const u32 fzgx_pool_table5[9] = {0xA0505000, 0xA0A0A000, 0xFFFFFF00, 0x70707000, 0x00000000, 0x70707000, 0x00000000, 0xFFFFFF00, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0010000000474974513f;
+    s = 0.800000011920929f;
+    s = -1.0f;
+    s = 8.0f;
+    s = 0.5f;
+    s = 4.0f;
+    s = 320.0f;
+    s = 152.0f;
+    s = 288.0f;
+    s = 280.0f;
+    s = 0.10500000417232513f;
+    s = 352.0f;
+    s = 350.0f;
+    s = 0.009999999776482582f;
+}
+static const u32 fzgx_pool_table7[9] = {0xA0505000, 0xA0A0A000, 0xFFFFFF00, 0x70707000, 0x00000000, 0x70707000, 0x00000000, 0xFFFFFF00, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 198.0f;
+    s = 298.0f;
+    s = 0.0949999988079071f;
+}
+static const u32 fzgx_pool_table9[9] = {0xA0505000, 0xA0A0A000, 0xFFFFFF00, 0x70707000, 0x00000000, 0x70707000, 0x00000000, 0xFFFFFF00, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep9(void) { const u32 *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 192.0f;
+}
+static const u32 fzgx_pool_table11[16] = {0xF0F0F000, 0x9090FF00, 0xFFFF6000, 0xFFFF6000, 0xFFFFFF00, 0xFFFFFF00, 0xFFA0A000, 0xFFFF6000, 0xFFFF6000, 0xFFFFFF00, 0xFFFFFF00, 0xFFA0A000, 0xFFFF6000, 0xFFFFFF00, 0xFFFFFF00, 0xFFA0A000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep11(void) { const u32 *volatile cp; cp = fzgx_pool_table11; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime12(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0000000116860974e-07f;
+    d = 1.8;
+    d = 0.0;
+    d = 1.0;
+    d = 1.3;
+    d = 0.5;
+    d = 0.2;
+    d = 0.7;
+    d = 0.3;
+    s = 225.0f;
+    s = 0.09000000357627869f;
+    s = 0.699999988079071f;
+}
+static const u32 fzgx_pool_table13[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep13(void) { const u32 *volatile cp; cp = fzgx_pool_table13; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 125.0;
+    d = 45.0;
+    s = 310.0f;
+    s = 258.0f;
+    s = 17.0f;
+    s = 15.625f;
+    s = 0.5625f;
+    s = 0.75f;
+    d = 40.0;
+    s = 340.0f;
+    s = 370.0f;
+    s = 10.416666984558105f;
+    s = 380.0f;
+}
+static const u32 fzgx_pool_table15[7] = {0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep15(void) { const u32 *volatile cp; cp = fzgx_pool_table15; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime16(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.5f;
+    s = 40.0f;
+    s = 120.0f;
+    s = 9.999999747378752e-05f;
+    s = 180.0f;
+    s = 240.0f;
+    s = 220.0f;
+    s = 190.0f;
+    s = 200.0f;
+    s = 360.0f;
+}
+static const u32 fzgx_pool_table17[2] = {0xFF402000, 0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep17(void) { const u32 *volatile cp; cp = fzgx_pool_table17; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 15.0f;
+    s = 5.0f;
+    s = 100.0f;
+    s = 1.1111111640930176f;
+    s = 3.0f;
+    s = 185.0f;
+    s = 255.0f;
+    s = 0.019999999552965164f;
+}
+#pragma section code_type ".text"
+extern s32 lbl_801A66B4;
+extern s16 lbl_1_bss_960;
+extern const FontDrawPacket lbl_1_rodata_26F8;
+
+extern f32 lbl_8006D188(s16);
+extern Color fn_800081C8(Color, Color, f32);
+extern void OSTicksToCalendarTime(OSTime, OSCalendarTime *);
+extern void fn_1_49410(void);
+extern void fn_1_49514(Color);
+extern void fn_1_49528(Color);
+extern void fn_1_4953C(s16);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_49590(f32);
+extern void fn_1_495B0(u32);
+extern void fn_1_495C8(u8);
+extern void fn_1_495FC(void);
+extern void fn_1_49614(void);
+extern void fn_1_4966C(f32, f32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_49738(void *);
+extern void fn_1_49748(f32);
+extern u32 fn_1_4AEC0(u32);
+extern void fn_1_4AEB4(f32);
+extern void fn_1_4CF3C(const char *, f32, ...);
+extern void fn_1_4D494(void);
+extern u32 fn_1_4D4C8(Color, f32, f32);
+extern s32 fn_1_4FC50(FontDrawPacket *, s32, s32, s32, void *);
+extern void fn_1_5233C();
+extern void fn_1_53BD8(Color *, f32, f32, f32, f32, f32);
+extern void fn_1_B5258(char *, const char *, const char *, const char *);
+extern s32 fn_1_B8EDC(s32);
+extern void fn_1_BB974(McMenu *);
+extern void fn_1_BE978(s32, s32, s32, s32, Color *);
+extern void fn_1_BED04(s32, s32, s32, s32, Color *, s32);
+extern void fn_1_BF198(s32, s32, s32, s32, Color *);
+extern void fn_1_BF520(s32, s32, s32, s32, Color *);
+extern void fn_1_BF600(s32, s32, s32, s32, Color *, f32);
+extern void fn_1_BF700(s32, s32, s32, s32, s32, f32, f32, f32);
+extern void fn_1_BF9C4(s32, s32, s32, f32, f32);
+extern void fn_1_BFBF4(s32, s32, s32, f32, f32);
+extern void fn_1_BFCF8(s32, s32, s32, s32, s32, f32, f32);
+extern void fn_1_BFE20(s32, s32, f32, f32, f32, f32, f32);
+extern void fn_1_C00EC(s32, s32, s32, s32, f32);
+extern void fn_1_C023C(s32, s32, f32, s32, s32, s32, s32, s32, f32);
+extern void fn_1_C0374(s32, s32, f32, s32, s32, s32, s32, s32, f32);
+extern void fn_1_135D7C(s32, s32, s32, s32, s16, s32, s32, f32, f32, f32);
+extern void fn_1_1358BC(s32, s32, s32, s32, s16, s32, s32, s32, f32, f32, f32);
+extern u32 fn_1_154E34(s32 *);
+
+#define MSG(row) (fzgx_obj_lbl_1_data_3B74C[row][lbl_801A66B4])
+/* |sin| of the frame timer, scaled to a 16-bit angle */
+#define WAVE(shift) __fabs(lbl_8006D188(lbl_1_bss_718B9__fzgx_offset_3 << (shift)))
+/* top of list row i: rows are 19 units apart */
+#define ROW_Y(i) ((i) * 19 + 120)
+
+/* the Yes / No prompt drawn over the file list; the highlighted answer pulses */
+static inline void draw_confirm(f32 z) {
+    Color from = {0xA0, 0x50, 0x50, 0x00};
+    Color to = {0xA0, 0xA0, 0xA0, 0x00};
+    Color pulse;
+    const char *question;
+
+    pulse = fn_800081C8(from, to, 1.0f);
+    fn_1_49410();
+    fn_1_4955C(0.75f, 0.75f);
+    fn_1_4954C(z);
+    fn_1_495C8(9);
+    fn_1_496FC(288.0f, 270.0f);
+    fn_1_495C8(10);
+    if (lbl_1_bss_7A39C__fzgx_offset_7F0 == 0) {
+        fn_1_4D494();
+        {
+            Color white = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(white);
+        }
+        fn_1_4AE0C("%s", MSG(39));
+        fn_1_4D4C8(pulse, z + 0.00005f, 10.0f);
+    } else {
+        {
+            Color grey = {0x70, 0x70, 0x70, 0x00};
+            fn_1_49514(grey);
+        }
+        {
+            Color black = {0x00, 0x00, 0x00, 0x00};
+            fn_1_49528(black);
+        }
+        fn_1_4AE0C("%s", MSG(39));
+    }
+    fn_1_496FC(352.0f, 270.0f);
+    fn_1_495C8(8);
+    if (lbl_1_bss_7A39C__fzgx_offset_7F0 == 0) {
+        {
+            Color grey = {0x70, 0x70, 0x70, 0x00};
+            fn_1_49514(grey);
+        }
+        {
+            Color black = {0x00, 0x00, 0x00, 0x00};
+            fn_1_49528(black);
+        }
+        fn_1_4AE0C("%s", MSG(40));
+    } else {
+        fn_1_4D494();
+        {
+            Color white = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(white);
+        }
+        fn_1_4AE0C("%s", MSG(40));
+        fn_1_4D4C8(pulse, z + 0.00005f, 10.0f);
+    }
+    question = MSG(102);
+    fn_1_4AEC0(1);
+    fn_1_4AEB4(1.5f);
+    fn_1_49410();
+    if (lbl_801A66B4 != 5) {
+        fn_1_49590(0.5f);
+        fn_1_495B0(0x80000000);
+    }
+    fn_1_4955C(0.75f, 0.75f);
+    fn_1_4954C(0.02f);
+    fn_1_495C8(9);
+    fn_1_496FC(320.0f, 220.0f);
+    fn_1_4966C(-1.0f, 8.0f);
+    fn_1_4A0D8(question);
+    fn_1_4AEC0(0);
+    fn_1_4AEB4(0.0f);
+}
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_helper(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = 270.0f;
+    s = 4.999999873689376e-05f;
+}
+#pragma section code_type ".text"
+
+/* bubble-sort both cards' listings (and their keys) by save time, oldest first */
+static inline void sort_listings(void) {
+    McFile *files;
+    McFileKey *keys;
+    s32 card;
+    McFile swap;
+    McFileKey swap_key;
+    s32 i;
+    s32 j;
+    s32 count;
+
+    for (card = 0; card < 2; card++) {
+        files = fzgx_obj_lbl_1_bss_77380[card];
+        keys = fzgx_obj_lbl_1_bss_7A39C[card];
+
+        count = 0;
+        for (i = 0; i < 127; i++) {
+            if (files[i].size != 0) {
+                count++;
+            }
+        }
+        for (i = 0; i < count - 1; i++) {
+            for (j = i + 1; j < count; j++) {
+                if (files[i].time > files[j].time) {
+                    swap = files[i];
+                    files[i] = files[j];
+                    files[j] = swap;
+                    swap_key = keys[i];
+                    keys[i] = keys[j];
+                    keys[j] = swap_key;
+                }
+            }
+        }
+    }
+}
+
+/* pulse a colour's red and green with the frame timer */
+static inline Color pulse_red_green(Color c) {
+    c.r = 255.0 * WAVE(9);
+    c.g = 255.0 * WAVE(9);
+    return c;
+}
+
+void fn_1_BC310(McMenu *menu) {
+    char text[0x104];
+    FontDrawPacket packet;
+    OSCalendarTime date;
+    Color tab_on = {0x32, 0x00, 0x00, 0x00};
+    Color tab_off = {0x00, 0x32, 0x00, 0x00};
+    Color frame = {0x00, 0x00, 0x00, 0x00};
+    Color lit;
+    McFile *file;
+    s32 index;
+    u8 busy;
+    s8 state;
+    McFile *list;
+    Color *tab;
+    s32 i;
+    s32 first;
+    s32 y;
+    u32 shown;
+    s32 ok;
+    McGhostA *ghost_a;
+    McGhostB *ghost_b;
+    McFileKey *key;
+    s16 *top;
+
+    busy = 0;
+    if (fzgx_obj_lbl_1_bss_716C8[0].busy != 0xFF) {
+        busy |= 1;
+    }
+    if (fzgx_obj_lbl_1_bss_716C8[1].busy != 0xFF) {
+        busy |= 2;
+    }
+    if (fzgx_obj_lbl_1_bss_71810.busy != 0xFF) {
+        busy |= 4;
+    }
+    if (busy) {
+        return;
+    }
+
+    state = menu->state;
+    if (state == 2) {
+        lbl_1_bss_7A388__fzgx_offset_10 = fn_1_B8EDC(menu->card);
+        return;
+    }
+    if (menu->hidden & 1) {
+        return;
+    }
+    if (state == 3) {
+        return;
+    }
+    if (state == 7) {
+        {
+            Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+            fn_1_53BD8(&white, 320.0f, 240.0f, 300.0f, 200.0f, 0.021f);
+        }
+        draw_confirm(0.0204999987f);
+    }
+
+    /* re-sort both cards' listings by time when the sort mode changes */
+    if (menu->sort != menu->sort_request) {
+        menu->sort = menu->sort_request;
+        switch (menu->sort) {
+        default:
+            fn_1_BB974(menu);
+            break;
+        case 1:
+            sort_listings();
+            break;
+        }
+    }
+
+    list = fzgx_obj_lbl_1_bss_77380[menu->card];
+    if (menu->card == 0) {
+        top = &menu->top[0];
+    } else {
+        top = &menu->top[1];
+    }
+
+    /* header: the two slot tabs */
+    fn_1_49410();
+    fn_1_495FC();
+    fn_1_4955C(0.75f, 0.75f);
+    fn_1_495C8(0);
+    fn_1_4966C(-2.0f, 0.0f);
+    if (lbl_801A66B4 != 5) {
+        fn_1_49590(0.5f);
+        fn_1_495B0(0x80000000);
+        fn_1_495C8(1);
+        fn_1_4966C(-1.0f, 0.0f);
+    }
+    if (lbl_801A66B4 != 5) {
+        fn_1_496FC(95.0f, 80.0f);
+    } else {
+        fn_1_496FC(54.0f, 80.0f);
+    }
+    if (menu->card == 0) {
+        Color yellow = {0xFF, 0xFF, 0xA0, 0x00};
+        fn_1_49514(yellow);
+    } else {
+        Color grey = {0x80, 0x80, 0x80, 0x00};
+        fn_1_49514(grey);
+    }
+    fn_1_4CF3C(MSG(37), 73.0f);
+    if (lbl_801A66B4 != 5) {
+        fn_1_496FC(203.0f, 80.0f);
+    } else {
+        fn_1_496FC(164.0f, 80.0f);
+    }
+    if (menu->card == 1) {
+        Color yellow = {0xFF, 0xFF, 0xA0, 0x00};
+        fn_1_49514(yellow);
+    } else {
+        Color grey = {0x80, 0x80, 0x80, 0x00};
+        fn_1_49514(grey);
+    }
+    fn_1_4CF3C(MSG(38), 73.0f);
+    fn_1_495C8(0);
+    fn_1_4955C(0.7f, 0.7f);
+
+    /* free space on the selected card */
+    if (fzgx_obj_lbl_1_bss_716C8[menu->card].status == 0) {
+        s32 blocks;
+
+        if (menu->options & 1) {
+            if (menu->flags & 4) {
+                blocks = 3;
+            } else if (menu->flags & 0x10) {
+                blocks = 3;
+            } else if (menu->flags & 0x20) {
+                fn_1_154E34(&blocks);
+                blocks = (blocks + 0x405F) & ~0x1FFF;
+                blocks = blocks / 0x2000;
+                if (blocks < 3) {
+                    blocks = 3;
+                }
+            }
+            fn_1_496FC(280.0f, 80.0f);
+            {
+                Color white = {0xFF, 0xFF, 0xFF, 0x00};
+                fn_1_49514(white);
+            }
+            if (fzgx_obj_lbl_1_bss_716C8[menu->card].free_blocks >= 0) {
+                fn_1_4CF3C(MSG(110), 300.0f, blocks, fzgx_obj_lbl_1_bss_716C8[menu->card].free_blocks);
+            }
+        } else {
+            fn_1_496FC(300.0f, 80.0f);
+            {
+                Color white = {0xFF, 0xFF, 0xFF, 0x00};
+                fn_1_49514(white);
+            }
+            if (fzgx_obj_lbl_1_bss_716C8[menu->card].free_blocks >= 0) {
+                fn_1_4CF3C(MSG(109), 300.0f, fzgx_obj_lbl_1_bss_716C8[menu->card].free_blocks);
+            }
+        }
+    }
+
+    fn_1_BE978(0x25, 0x46, 0x70, 0x23, &tab_on);
+    fn_1_BE978(0x93, 0x46, 0x70, 0x23, &tab_off);
+    tab = menu->card == 0 ? &tab_on : &tab_off;
+    fn_1_BED04(0x25, 0x69, 0xDC, 0xD9, tab, menu->card);
+    fn_1_BF198(0x101, 0x69, 0x174, 0xD9, tab);
+
+    /* a card error: show its message and nothing else */
+    if (menu->result[menu->card] != 0) {
+        ok = 0;
+        if (fzgx_obj_lbl_1_bss_716C8[menu->card].status != -1 && fzgx_obj_lbl_1_bss_716C8[menu->card].status != -3) {
+            ok = 1;
+        }
+        if (ok) {
+            fn_1_49410();
+            if (lbl_801A66B4 != 5) {
+                fn_1_49590(0.5f);
+                fn_1_495B0(0x80000000);
+            }
+            fn_1_495FC();
+            {
+                Color yellow = {0xFF, 0xFF, 0xA0, 0x00};
+                fn_1_49514(yellow);
+            }
+            fn_1_4955C(0.75f, 0.75f);
+            fn_1_496FC(333.0f, 215.0f);
+            fn_1_495C8(9);
+            fn_1_4966C(0.0f, 8.0f);
+            fn_1_4AEC0(1);
+            fn_1_4AEB4(1.5f);
+            if (menu->result[menu->card] == -2) {
+                if (menu->card == 0) {
+                    fn_1_B5258(text, MSG(75), "SLOT", MSG(37));
+                } else if (menu->card == 1) {
+                    fn_1_B5258(text, MSG(75), "SLOT", MSG(38));
+                }
+                fn_1_4AE0C(text);
+            } else if (menu->result[menu->card] == -13 || menu->result[menu->card] == -126) {
+                if (menu->card == 0) {
+                    fn_1_B5258(text, MSG(34), "SLOT", MSG(37));
+                } else if (menu->card == 1) {
+                    fn_1_B5258(text, MSG(34), "SLOT", MSG(38));
+                }
+                fn_1_4AE0C(text);
+            } else if (menu->result[menu->card] == -6) {
+                if (menu->card == 0) {
+                    fn_1_B5258(text, MSG(54), "SLOT", MSG(37));
+                } else if (menu->card == 1) {
+                    fn_1_B5258(text, MSG(54), "SLOT", MSG(38));
+                }
+                fn_1_4AE0C(text);
+            } else {
+                if (menu->card == 0) {
+                    fn_1_B5258(text, MSG(31), "SLOT", MSG(37));
+                } else if (menu->card == 1) {
+                    fn_1_B5258(text, MSG(31), "SLOT", MSG(38));
+                }
+                fn_1_4AE0C(text);
+            }
+            fn_1_4AEC0(0);
+            fn_1_4AEB4(0.0f);
+            return;
+        }
+    }
+
+    /* no card in the slot */
+    if (menu->card == 0) {
+        if (menu->unk_20[0] == 0 && menu->unk_1E[0] == 0) {
+            fn_1_49410();
+            if (lbl_801A66B4 != 5) {
+                fn_1_49590(0.5f);
+                fn_1_495B0(0x80000000);
+            }
+            fn_1_495FC();
+            {
+                Color yellow = {0xFF, 0xFF, 0xA0, 0x00};
+                fn_1_49514(yellow);
+            }
+            fn_1_4955C(0.75f, 0.75f);
+            fn_1_496FC(333.0f, 215.0f);
+            fn_1_495C8(9);
+            fn_1_4966C(0.0f, 8.0f);
+            fn_1_4AEC0(1);
+            fn_1_4AEB4(1.5f);
+            fn_1_B5258(text, MSG(89), "SLOT", MSG(37));
+            fn_1_4AE0C(text);
+            fn_1_4AEC0(0);
+            fn_1_4AEB4(0.0f);
+            return;
+        }
+    } else if (menu->card == 1) {
+        if (menu->unk_20[1] == 0 && menu->unk_1E[1] == 0) {
+            fn_1_49410();
+            if (lbl_801A66B4 != 5) {
+                fn_1_49590(0.5f);
+                fn_1_495B0(0x80000000);
+            }
+            fn_1_495FC();
+            {
+                Color yellow = {0xFF, 0xFF, 0xA0, 0x00};
+                fn_1_49514(yellow);
+            }
+            fn_1_4955C(0.75f, 0.75f);
+            fn_1_496FC(333.0f, 215.0f);
+            fn_1_495C8(9);
+            fn_1_4966C(0.0f, 8.0f);
+            fn_1_4AEC0(1);
+            fn_1_4AEB4(1.5f);
+            fn_1_B5258(text, MSG(89), "SLOT", MSG(38));
+            fn_1_4AE0C(text);
+            fn_1_4AEC0(0);
+            fn_1_4AEB4(0.0f);
+            return;
+        }
+    }
+
+    /* keep the cursor inside the ten visible rows */
+    if (*top > menu->cursor) {
+        *top = menu->cursor;
+    } else if (*top + 10 <= menu->cursor) {
+        *top = menu->cursor - 9;
+    }
+    first = *top;
+    fn_1_49614();
+    fn_1_49738(fn_1_5233C);
+    fn_1_49748(1.0f);
+
+    for (i = 0; i < 10; i++) {
+        file = &list[first] + i;
+        index = i + first;
+        if (index >= menu->count[menu->card]) {
+            continue;
+        }
+        if (file->used != 0 && index < menu->count[menu->card] - 1) {
+            if (menu->cursor == index) {
+                if (menu->state != 6) {
+                    lit.r = 112.0 + (f64)(64.0 * WAVE(9));
+                    lit.g = 112.0 + (f64)(64.0 * WAVE(9));
+                    lit.b = 112.0 + (f64)(64.0 * WAVE(9));
+                    lit.a = 0;
+                } else {
+                    Color grey = {0x70, 0x70, 0x70, 0x00};
+                    lit = grey;
+                }
+                fn_1_BF600(0x3C, ROW_Y(i) - 3, 0x222, 0x18, &lit, 0.09f);
+            }
+            {
+                Color pink = {0xA0, 0x80, 0x80, 0x00};
+                fn_1_49514(pink);
+            }
+            fn_1_496FC(86.0f, ROW_Y(i));
+            fn_1_4CF3C(MSG(111), 100.0f);
+            {
+                Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+                fn_1_49514(white);
+            }
+            if (file->type != 0) {
+                fn_1_495C8(9);
+                fn_1_496FC(73.0f, ROW_Y(i) + 8.399999999999999);
+                fn_1_4955C(0.99f, 0.9f);
+                fn_1_4AE0C("\x81\xA0");
+                fn_1_496FC(73.0f, ROW_Y(i) + 8.399999999999999);
+                fn_1_4955C(0.54f, 0.54f);
+                fn_1_4966C(-4.0f, 0.0f);
+                fn_1_4CF3C("%d", 16.0f, (file->size + 0x1FFF) >> 13);
+                fn_1_4966C(-2.0f, 0.0f);
+                fn_1_495C8(0);
+                fn_1_4955C(0.7f, 0.7f);
+                if (lbl_801A66B4 != 5) {
+                    fn_1_4966C(-1.0f, 0.0f);
+                }
+            }
+            continue;
+        }
+
+        if (menu->state != 6) {
+            lit.r = 112.0 + (f64)(64.0 * WAVE(9));
+            lit.g = 112.0 + (f64)(64.0 * WAVE(9));
+            lit.b = 112.0 + (f64)(64.0 * WAVE(9));
+            lit.a = 0;
+        } else {
+            Color grey = {0x70, 0x70, 0x70, 0x00};
+            lit = grey;
+        }
+        if (menu->state == 5) {
+            if (i + first == menu->count[menu->card] - 1) {
+                fn_1_BF600(0x40, ROW_Y(i) - 3, 0x222, 0x18, &lit, 0.09f);
+                {
+                    Color yellow = {0xFF, 0xFF, 0x40, 0x00};
+                    fn_1_49514(yellow);
+                }
+            } else if (menu->mark_index == index && menu->card == menu->mark_card) {
+                Color cyan = {0x00, 0xFF, 0xFF, 0x00};
+                fn_1_49514(cyan);
+            } else {
+                Color grey = {0x80, 0x80, 0x80, 0x00};
+                fn_1_49514(grey);
+            }
+        } else if (menu->cursor == index) {
+            fn_1_BF600(0x3C, ROW_Y(i) - 3, 0x222, 0x18, &lit, 0.09f);
+            {
+                Color yellow = {0xFF, 0xFF, 0x40, 0x00};
+                fn_1_49514(yellow);
+            }
+        } else {
+            Color white = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(white);
+        }
+
+        OSTicksToCalendarTime(OS_TIMER_CLOCK * (OSTime)file->time, &date);
+        fn_1_496FC(86.0f, ROW_Y(i));
+        if (file->type == 2) {
+            fn_1_4955C(0.7f, 0.7f);
+            {
+                Color tint = {0xFF, 0xFF, 0xA0, 0xFF};
+                fn_1_49514(tint);
+            }
+            fn_1_4CF3C(MSG(83), 55.0f);
+            if (lbl_1_bss_960 == 2) {
+                ghost_a = file->info;
+                ghost_b = NULL;
+            } else {
+                ghost_a = NULL;
+                ghost_b = file->info;
+            }
+            if (ghost_a != NULL) {
+                fn_1_BF700(ghost_a->unk_0, 0, 1, 0xBE, ROW_Y(i) - 1, 0.3f, 0.3f, 0.08f);
+                fn_1_BFBF4(ghost_a->unk_1, 0x152, ROW_Y(i) + 3, 0.8f, 0.08f);
+                fn_1_C023C(0xD5, ROW_Y(i) + 9, 0.55f, ghost_a->unk_0, ghost_a->unk_6, ghost_a->unk_7, ghost_a->unk_8, ghost_a->unk_9, 0.0600000024f);
+            }
+            if (ghost_b != NULL) {
+                fn_1_BF700(ghost_b->unk_0, 0, 1, 0xBE, ROW_Y(i) - 1, 0.3f, 0.3f, 0.08f);
+                fn_1_BFBF4(ghost_b->unk_1, 0x152, ROW_Y(i) + 3, 0.8f, 0.08f);
+                fn_1_C023C(0xD5, ROW_Y(i) + 9, 0.55f, ghost_b->unk_0, ghost_b->unk_4, ghost_b->unk_5, ghost_b->unk_6, ghost_b->unk_7, 0.0600000024f);
+            }
+        } else if (file->type == 4) {
+            {
+                Color tint = {0xA0, 0xA0, 0xFF, 0xFF};
+                fn_1_49514(tint);
+            }
+            fn_1_4955C(0.7f, 0.7f);
+            fn_1_4CF3C(MSG(82), 55.0f);
+            if (file->info != NULL) {
+                packet = lbl_1_rodata_26F8;
+                packet.x = 190.0f;
+                packet.y = ROW_Y(i) - 1;
+                packet.z = 0.08f;
+                packet.scale_x = 0.3f;
+                packet.scale_y = 0.3f;
+                fn_1_4FC50(&packet, 5, 0x40, 0x40, file->info);
+            }
+        } else if (file->type == 5) {
+            fn_1_4955C(0.7f, 0.7f);
+            {
+                Color tint = {0xFF, 0xA0, 0xA0, 0xFF};
+                fn_1_49514(tint);
+            }
+            fn_1_4CF3C(MSG(81), 55.0f);
+            key = &fzgx_obj_lbl_1_bss_7A39C[menu->card][index];
+            fn_1_C00EC(key->unk_1, key->unk_2, 0xBE, ROW_Y(i) + 2, 0.55f);
+            fn_1_BFBF4(key->unk_0, 0x152, ROW_Y(i) + 3, 0.8f, 0.08f);
+        } else {
+            fn_1_4955C(0.7f, 0.7f);
+            fn_1_496FC(64.0f, ROW_Y(i));
+            if (!(menu->options & 1)) {
+                if ((menu->options & 4) && menu->state == 5) {
+                    Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+                    fn_1_49514(white);
+                } else {
+                    Color grey = {0x80, 0x80, 0x80, 0xFF};
+                    fn_1_49514(grey);
+                }
+            } else {
+                Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+                fn_1_49514(white);
+            }
+            fn_1_4AE0C(MSG(106));
+        }
+
+        {
+            Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+            fn_1_49514(white);
+        }
+        if (file->type != 0) {
+            fn_1_495C8(9);
+            fn_1_496FC(73.0f, ROW_Y(i) + 8.399999999999999);
+            fn_1_4955C(0.99f, 0.9f);
+            fn_1_4AE0C("\x81\xA0");
+            fn_1_496FC(73.0f, ROW_Y(i) + 8.399999999999999);
+            fn_1_4955C(0.54f, 0.54f);
+            fn_1_4966C(-4.0f, 0.0f);
+            fn_1_4CF3C("%d", 16.0f, (file->size + 0x1FFF) >> 13);
+            fn_1_4966C(-2.0f, 0.0f);
+            fn_1_495C8(0);
+            fn_1_4955C(0.7f, 0.7f);
+            if (lbl_801A66B4 != 5) {
+                fn_1_4966C(-1.0f, 0.0f);
+            }
+        }
+        {
+            Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+            fn_1_49514(white);
+        }
+        fn_1_496FC(460.0f, ROW_Y(i) + 2);
+        fn_1_4955C(1.0f, 0.65f);
+        if (file->type != 0) {
+            fn_1_4CF3C("%04d/%02d/%02d %02d:%02d", 130.0f, date.year, date.mon + 1, date.mday, date.hour,
+                       date.min);
+        }
+    }
+
+    /* scroll arrows */
+    fn_1_49410();
+    if (lbl_801A66B4 != 5) {
+        fn_1_49590(0.5f);
+        fn_1_495B0(0x80000000);
+    }
+    fn_1_4955C(0.75f, 0.75f);
+    fn_1_495C8(0);
+    fn_1_49614();
+    if (menu->count[menu->card] > 10) {
+        if (*top != 0) {
+            fn_1_496FC(60.0 - (f64)(6.0 * WAVE(9)), (f32)(110.0 - (f64)(10.0 * WAVE(10))));
+            {
+                Color black = {0x00, 0x00, 0x00, 0x00};
+
+                fn_1_49514(pulse_red_green(black));
+            }
+            fn_1_4955C(0.5 * WAVE(9), 0.5f);
+            fn_1_4A0D8("\x81\xA3");
+        }
+        if (*top != menu->count[menu->card] - 10) {
+            fn_1_496FC(60.0 + (f64)(6.0 * WAVE(9)), (f32)(320.0 + (f64)(10.0 * WAVE(10))));
+            {
+                Color black = {0x00, 0x00, 0x00, 0x00};
+
+                fn_1_49514(pulse_red_green(black));
+            }
+            fn_1_4955C(0.5 * WAVE(9), 0.5f);
+            fn_1_4953C(-0x8000);
+            fn_1_4A0D8("\x81\xA3");
+        }
+    }
+
+    fn_1_49410();
+    if (lbl_801A66B4 != 5) {
+        fn_1_49590(0.5f);
+        fn_1_495B0(0x80000000);
+    }
+    fn_1_495FC();
+    {
+        Color yellow = {0xFF, 0xFF, 0xA0, 0x00};
+        fn_1_49514(yellow);
+    }
+    fn_1_4955C(0.75f, 0.75f);
+    fn_1_495C8(0);
+
+    /* the options panel of the selected file */
+    if (menu->state == 6) {
+        shown = 0;
+        for (i = 0; i < 4; i++) {
+            if (menu->options & (1 << i)) {
+                shown++;
+            }
+        }
+        if (shown > 1) {
+            s32 panel_y = (menu->cursor - *top) * 19 + 120;
+            s32 lit_panel;
+
+            fn_1_496FC(380.0f, panel_y);
+            if (lbl_1_bss_960 == 2 && ((menu->flags & 0x20) || (menu->flags & 4))) {
+                lit_panel = 1;
+            } else {
+                lit_panel = 0;
+            }
+            y = panel_y;
+            for (i = 0; i < 4; i++) {
+                lit.r = 112.0 + (f64)(64.0 * WAVE(9));
+                lit.g = 112.0 + (f64)(64.0 * WAVE(9));
+                lit.b = 112.0 + (f64)(64.0 * WAVE(9));
+                lit.a = 0;
+                if (lit_panel) {
+                    if (menu->count[menu->card] - 1 != menu->cursor) {
+                        if (menu->option_lit & (1 << i)) {
+                            fn_1_BF600(0x17A, y, 0x38, 0x12, &lit, 0.065f);
+                            {
+                                Color cyan = {0x00, 0xFF, 0xFF, 0x00};
+                                fn_1_49514(cyan);
+                            }
+                        } else if (fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].used != 0 &&
+                                   menu->cursor < menu->count[menu->card] - 1) {
+                            Color grey = {0x80, 0x80, 0x80, 0x00};
+                            fn_1_49514(grey);
+                        } else if (lbl_1_bss_960 == 2 && (menu->flags & 0x20)) {
+                            Color grey = {0x80, 0x80, 0x80, 0x00};
+                            fn_1_49514(grey);
+                        } else {
+                            Color white = {0xFF, 0xFF, 0xFF, 0x00};
+                            fn_1_49514(white);
+                        }
+                    } else if (menu->option_lit & (1 << i)) {
+                        fn_1_BF600(0x17A, y, 0x38, 0x12, &lit, 0.065f);
+                        {
+                            Color cyan = {0x00, 0xFF, 0xFF, 0x00};
+                            fn_1_49514(cyan);
+                        }
+                    } else {
+                        Color grey = {0x80, 0x80, 0x80, 0x00};
+                        fn_1_49514(grey);
+                    }
+                } else if (menu->option_lit & (1 << i)) {
+                    fn_1_BF600(0x17A, y, 0x38, 0x12, &lit, 0.065f);
+                    {
+                        Color cyan = {0x00, 0xFF, 0xFF, 0x00};
+                        fn_1_49514(cyan);
+                    }
+                } else {
+                    Color white = {0xFF, 0xFF, 0xFF, 0x00};
+                    fn_1_49514(white);
+                }
+                if (menu->options & (1 << i)) {
+                    if ((1 << i) & 1) {
+                        fn_1_4AE0C("%s\n", MSG(90));
+                    } else if ((1 << i) & 2) {
+                        fn_1_4AE0C("%s\n", MSG(91));
+                    } else if ((1 << i) & 4) {
+                        fn_1_4AE0C("%s\n", MSG(92));
+                    } else if ((1 << i) & 8) {
+                        fn_1_4CF3C("%s\n", 53.0f, MSG(93));
+                    }
+                    y += 18;
+                }
+            }
+            fn_1_BF520(0x174, panel_y - 6, 0x44, shown * 18 + 12, &frame);
+        }
+    }
+
+    /* scroll bar */
+    fn_1_BFE20(0x268, 0x70, 0.07f, 16.0f, 204.0f, (f32)*top / (f32)menu->count[menu->card],
+               10.0f / (f32)menu->count[menu->card]);
+
+    /* details of the file under the cursor */
+    if (fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].used != 0 &&
+        menu->cursor < menu->count[menu->card] - 1) {
+        fn_1_BF520(0x26, 0x14A, 0x24E, 0x50, &frame);
+        fn_1_49410();
+        if (lbl_801A66B4 != 5) {
+            fn_1_49590(0.5f);
+            fn_1_495B0(0x80000000);
+        }
+        fn_1_495FC();
+        {
+            Color white = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(white);
+        }
+        fn_1_4955C(0.75f, 0.75f);
+        fn_1_495C8(0);
+        fn_1_496FC(64.0f, 340.0f);
+        fn_1_4AE0C("%s\n", MSG(112));
+    } else {
+        fn_1_BF520(0x26, 0x14A, 0x24E, 0x50, &frame);
+        fn_1_49410();
+        if (lbl_801A66B4 != 5) {
+            fn_1_49590(0.5f);
+            fn_1_495B0(0x80000000);
+        }
+        fn_1_495FC();
+        {
+            Color white = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(white);
+        }
+        fn_1_4955C(0.75f, 0.75f);
+        fn_1_495C8(0);
+        fn_1_496FC(64.0f, 340.0f);
+        if (fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].type == 2) {
+            if (lbl_1_bss_960 == 2) {
+                ghost_a = fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].info;
+                ghost_b = NULL;
+            } else {
+                ghost_a = NULL;
+                ghost_b = fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].info;
+            }
+            fn_1_4AE0C("%s\n", MSG(83));
+            if (ghost_a != NULL) {
+                fn_1_BF700(ghost_a->unk_0, 0, 1, 0x166, 0x14A, 1.2f, 1.2f, 0.0600000024f);
+                fn_1_BF9C4(ghost_a->unk_1, 0xFD, 0x15E, 0.75f, 0.0600000024f);
+                fn_1_BFCF8(ghost_a->unk_2, ghost_a->unk_3, ghost_a->unk_4, 0x214, 0x176, 1.0f, 0.0600000024f);
+                if (lbl_1_bss_960 == 2) {
+                    fn_1_C0374(0x214, 0x160, 0.6f, ghost_a->unk_0, ghost_a->unk_6, ghost_a->unk_7, ghost_a->unk_8, ghost_a->unk_9, 0.0600000024f);
+                } else if (ghost_a->unk_0 >= 0x29 && ghost_a->unk_6 != 0) {
+                    fn_1_1358BC(0x214, 0x160, 10, ghost_a->unk_0, lbl_801A66B4, ghost_a->unk_7, ghost_a->unk_8,
+                                ghost_a->unk_9, 0.65f, 0.65f, 0.0600000024f);
+                } else {
+                    fn_1_135D7C(0x214, 0x160, 10, ghost_a->unk_0, lbl_801A66B4, 0, 0, 0.65f, 0.65f, 0.0600000024f);
+                }
+            }
+            if (ghost_b != NULL) {
+                fn_1_BF700(ghost_b->unk_0, 0, 1, 0x166, 0x14A, 1.2f, 1.2f, 0.0600000024f);
+                fn_1_BF9C4(ghost_b->unk_1, 0xFD, 0x15E, 0.75f, 0.0600000024f);
+                fn_1_BFCF8(ghost_b->unk_24, ghost_b->unk_25, ghost_b->unk_26, 0x214, 0x176, 1.0f, 0.0600000024f);
+                if (lbl_1_bss_960 == 2) {
+                    fn_1_C0374(0x214, 0x160, 0.6f, ghost_b->unk_0, ghost_b->unk_4, ghost_b->unk_5, ghost_b->unk_6, ghost_b->unk_7, 0.0600000024f);
+                } else if (ghost_b->unk_0 >= 0x29 && ghost_b->unk_4 != 0) {
+                    fn_1_1358BC(0x214, 0x160, 10, ghost_b->unk_0, lbl_801A66B4, ghost_b->unk_5, ghost_b->unk_6,
+                                ghost_b->unk_7, 0.65f, 0.65f, 0.0600000024f);
+                } else {
+                    fn_1_135D7C(0x214, 0x160, 10, ghost_b->unk_0, lbl_801A66B4, 0, 0, 0.65f, 0.65f, 0.0600000024f);
+                }
+            }
+        } else if (fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].type == 4) {
+            if (fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].info != NULL) {
+                packet = lbl_1_rodata_26F8;
+                packet.x = 308.0f;
+                packet.y = 337.0f;
+                packet.z = 0.0600000024f;
+                packet.scale_x = 1.0714285f;
+                packet.scale_y = 1.0714285f;
+                fn_1_4FC50(&packet, 5, 0x40, 0x40, fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].info);
+                fn_1_4AE0C(MSG(82));
+            }
+        } else if (fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].type == 5) {
+            fn_1_4AE0C(MSG(81));
+            key = &fzgx_obj_lbl_1_bss_7A39C[menu->card][menu->cursor];
+            fn_1_BF9C4(key->unk_0, 0xFD, 0x15E, 0.75f, 0.0600000024f);
+            fn_1_BF700(key->unk_3, i, 1, 0x16A, 0x14A, 1.2f, 1.2f, 0.0600000024f);
+            if (lbl_1_bss_960 == 2) {
+                fn_1_C0374(0x214, 0x172, 0.6f, key->unk_3, key->unk_4, key->unk_5, key->unk_6, key->unk_7, 0.0600000024f);
+            } else if (key->unk_3 >= 0x29 && key->unk_4 != 0) {
+                fn_1_1358BC(0x214, 0x172, 10, key->unk_3, lbl_801A66B4, key->unk_5, key->unk_6, key->unk_7,
+                            0.65f, 0.65f, 0.0600000024f);
+            } else {
+                fn_1_135D7C(0x214, 0x172, 10, key->unk_3, lbl_801A66B4, 0, 0, 0.65f, 0.65f, 0.0600000024f);
+            }
+        } else if (!(menu->options & 1)) {
+            if ((menu->options & 4) && menu->state == 5) {
+                {
+                    Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+                    fn_1_49514(white);
+                }
+                fn_1_4AE0C(MSG(107));
+            } else {
+                {
+                    Color grey = {0x80, 0x80, 0x80, 0xFF};
+                    fn_1_49514(grey);
+                }
+                fn_1_4AE0C(MSG(108));
+            }
+        } else {
+            {
+                Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+                fn_1_49514(white);
+            }
+            fn_1_4AE0C(MSG(107));
+        }
+    }
+    lbl_1_bss_718B9__fzgx_offset_3++;
+}
+#pragma pool_data reset
+/* fzgx:end fn_1_BC310 */
+
 /* fzgx:begin fn_1_BE978 */
 #include "font.h"
 
