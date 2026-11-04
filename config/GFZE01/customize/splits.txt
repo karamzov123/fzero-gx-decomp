@@ -897,30 +897,6 @@ rel/customize/data/lbl_3_bss_A2460.c:
 rel/customize/data/lbl_3_bss_A2468.c:
 	.bss        start:0x000A2468 end:0x000A24B6 align:8
 
-rel/customize/data/lbl_3_bss_7EBB0.c:
-	.bss        start:0x0007EBB0 end:0x0007EC08 align:16
-
-rel/customize/data/lbl_3_bss_7EC08.c:
-	.bss        start:0x0007EC08 end:0x0007ED58 align:8
-
-rel/customize/data/lbl_3_bss_7ED58.c:
-	.bss        start:0x0007ED58 end:0x0007EDA0 align:8
-
-rel/customize/data/lbl_3_bss_7EDA0.c:
-	.bss        start:0x0007EDA0 end:0x0007EDC0 align:32
-
-rel/customize/data/lbl_3_bss_7EDC0.c:
-	.bss        start:0x0007EDC0 end:0x0007EDD8 align:32
-
-rel/customize/data/lbl_3_bss_7EDD8.c:
-	.bss        start:0x0007EDD8 end:0x0007EE40 align:8
-
-rel/customize/data/lbl_3_bss_7EE40.c:
-	.bss        start:0x0007EE40 end:0x00087000 align:32
-
-rel/customize/data/lbl_3_bss_87000.c:
-	.bss        start:0x00087000 end:0x00087040 align:32
-
 rel/customize/data/lbl_3_data_15D8.c:
 	.data       start:0x000015D8 end:0x000015F0 align:8
 
@@ -1091,3 +1067,27 @@ rel/customize/data/lbl_3_rodata_800.c:
 
 rel/customize/data/lbl_3_rodata_8F0.c:
 	.rodata     start:0x000008F0 end:0x00000960 align:8
+
+rel/customize/data/lbl_3_bss_7EBB0.c:
+	.bss        start:0x0007EBB0 end:0x0007EC08 align:16
+
+rel/customize/data/lbl_3_bss_7EC08.c:
+	.bss        start:0x0007EC08 end:0x0007ED58 align:8
+
+rel/customize/data/lbl_3_bss_7ED58.c:
+	.bss        start:0x0007ED58 end:0x0007EDA0 align:8
+
+rel/customize/data/lbl_3_bss_7EDA0.c:
+	.bss        start:0x0007EDA0 end:0x0007EDC0 align:32
+
+rel/customize/data/lbl_3_bss_7EDC0.c:
+	.bss        start:0x0007EDC0 end:0x0007EDD8 align:32
+
+rel/customize/data/lbl_3_bss_7EDD8.c:
+	.bss        start:0x0007EDD8 end:0x0007EE40 align:8
+
+rel/customize/data/lbl_3_bss_7EE40.c:
+	.bss        start:0x0007EE40 end:0x00087000 align:32
+
+rel/customize/data/lbl_3_bss_87000.c:
+	.bss        start:0x00087000 end:0x00087040 align:32

@@ -291,7 +291,7 @@ def declared_record_initializer(sym, declaration, data, relocations=None):
     return declaration['declaration'], values[0], declaration['path'][8:]
 
 
-def generate(p, sym, recipe=None, opaque_bss=False):
+def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False):
     if sym.kind != 'object' or sym.section not in SECTIONS or not sym.size or not sym.name.isidentifier():
         raise ValueError('not a supported named data object')
     if sym.name.startswith('jumptable_'):
@@ -334,6 +334,10 @@ def generate(p, sym, recipe=None, opaque_bss=False):
             if known['path'].startswith('include/'):
                 includes.append(known['path'][8:])
             method = 'declared-bss'
+        elif opaque_bss and scalar_byte and (sym.size == 1 or (sym.size == 2 and sym.addr % 2 == 0)):
+            # MWCC 4-aligns every array, even u8[1]; a lone byte or halfword is a scalar.
+            decl, method = f'{"u8" if sym.size == 1 else "u16"} {sym.name}', 'opaque-bss-scalar'
+            extras.append('/* Storage extent is known; element/field types are not recovered. */')
         elif opaque_bss:
             decl, method = f'u8 {sym.name}[{sym.size}]', 'opaque-bss-header-mismatch'
             extras.append('/* Storage extent is known; the header type does not reproduce the retail layout. */')
@@ -601,152 +605,162 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 skipped.append(dict(symbol=name, reason=str(e)))
         pending = list(data_groups(p, ready, preserve_units=regenerate))
         rescued = set()
-        while pending:
-            group = pending.pop(0)
-            try:
-                first, last = group[0][0], group[-1][0]
-                end = last['address'] + last['size']
-                # DTK starts residual auto data on a word boundary. The linker
-                # supplies trailing zeros when aligning that next input; adding
-                # a C padding array would itself align and insert extra bytes.
-                padded_end = (end + 3) & -4
-                retail_regions = regions(p, first['module'], first['section'])
-                if any(base + len(raw) == end for base, raw in retail_regions):
-                    padded_end = end
-                for base, raw in retail_regions:
-                    if raw and base <= first['address'] < base + len(raw):
-                        if end > base + len(raw):
-                            raise ValueError('object extends past the retail section end')
-                        # An unaligned section end is the split end; never round past it.
-                        padded_end = min(padded_end, base + len(raw))
-                # NOBITS sections have no retail bytes to compare against: a BSS
-                # group that nothing follows is the section tail, and rounding it
-                # up would extend the split past the section (dtk rejects that).
-                # dtk also ends a DOL section at its last symbol (main .data: 0x8015B919, not
-                # the header's 0x8015B920), so the same tail rule holds there.
-                if (first['section'] in BSS or first['module'] == 'main') and not any(
-                        s.section == first['section'] and s.addr >= end
-                        for s in p.symbols(first['module']).values()):
-                    padded_end = end
-                owner = p.unit_of(p.find_symbol(first['symbol'], first['module']))
-                # Zero padding up to an existing split that follows closely (alignment of
-                # that split's unit) has no symbol of its own; own it, or no split would.
-                following = [sp.start for sp in p.splits(first['module'])
-                             if sp.section == first['section'] and sp.unit != owner and sp.start >= padded_end]
-                if following:
-                    gap_end = min(following)
-                    if (0 < gap_end - padded_end < 8
-                            and not any(sm.section == first['section'] and end <= sm.addr < gap_end
-                                        for sm in p.symbols(first['module']).values())
-                            and (first['section'] in BSS or any(
-                                base <= end and gap_end <= base + len(raw) and not any(raw[end-base:gap_end-base])
-                                for base, raw in retail_regions))):
-                        padded_end = gap_end
-                if padded_end != end:
-                    if any(s.section == first['section'] and end <= s.addr < padded_end
-                           for s in p.symbols(first['module']).values()):
-                        raise ValueError('trailing split needs its adjacent data symbol')
-                    if any(s.unit != owner and s.section == first['section'] and s.start < padded_end and end < s.end
-                           for s in p.splits(first['module'])):
-                        raise ValueError('trailing padding belongs to another split')
-                    if first['section'] not in BSS and not any(
-                            base <= end <= padded_end <= base + len(raw) and not any(raw[end-base:padded_end-base])
-                            for base, raw in retail_regions):
-                        raise ValueError('trailing padding is not zero or exceeds the section')
-                source_name = f'{p.module_src_prefix(first["module"])}/data/{first["symbol"]}.c'
-                # MWCC emits unreferenced BSS definitions in reverse order.
-                # Data-only units have no code accesses to establish an order;
-                # reverse their definitions while retaining the retail layout
-                # for validation and split ownership.
-                definitions = reversed(group) if first['section'] in BSS else group
-                text = '\n'.join(source for _, source in definitions)
-                # The group now owns some relocation targets. Their real
-                # declarations replace the address-only external fallback.
-                for r, _ in group:
-                    text = re.sub(r'^extern [^;\n]*\b' + re.escape(r['symbol']) + r'\s*(?:\[[^\]]*\])*;', '', text, flags=re.M)
-                forward = []
-                for r, _ in group:
-                    if header := r.get('header'):
-                        forward.append(f'#include "{header["path"]}"')
-                    else:
-                        forward.append('extern ' + r['definition'] + ';')
-                includes = list(dict.fromkeys(re.findall(r'^#include[^\n]+', text, re.M)))
-                text = re.sub(r'^#include[^\n]+\n', '', text, flags=re.M)
-                text = re.sub(r'^/\* Generated by fzgx data-import;[^\n]+\n', '', text, flags=re.M)
-                text = ('/* Generated by fzgx data-import; provenance in state/dataimports/. */\n'
-                        + '\n'.join(includes) + '\n\n' + '\n'.join(forward) + '\n\n' + text)
-                path = scratch / f'{first["module"]}__{first["symbol"]}.c'
-                path.write_text(text)
-                obj = path.with_suffix('.o')
-                cp = oracle.compile_source(p, first['module'], path, obj, include_dirs=[scratch])
-                if cp.returncode:
-                    raise ValueError((cp.stdout + cp.stderr)[-1800:])
-                section = Elf(obj.read_bytes()).section(first['section'])
-                if section is None or first['address'] % section['addralign']:
-                    raise ValueError('group must begin at the compiler section alignment')
-                for r, _ in group:
-                    r.update(source=source_name, unit_start=first['address'],
-                             unit_size=padded_end - first['address'],
-                             section_size=end - first['address'],
-                             unit_align=section['addralign'])
-                    validate(p, r, obj)
-                validate_padding(group, obj)
-                records.extend(r for r, _ in group)
-            except ValueError as e:
-                # A contiguous run can span retail objects whose headers conflict, or start
-                # off the compiler's section alignment because its predecessor is owned
-                # elsewhere. Retry it as independent chunks that each begin at an aligned
-                # member: every chunk is still compiled and validated on its own.
-                # Cut only where the previous member's word-rounded end meets the cut:
-                # a padding gap between chunks would belong to no split.
-                # Never cut inside an existing unit's range either: its split is one piece.
-                def _owner(rec):
-                    return p.unit_of(p.find_symbol(rec['symbol'], rec['module']))
-                cuts = [i for i, (r, _) in enumerate(group) if i and r['address'] % 8 == 0
-                        and ((group[i - 1][0]['address'] + group[i - 1][0]['size'] + 3) & -4) == r['address']
-                        and (_owner(r) is None or _owner(r) != _owner(group[i - 1][0]))]
-                if not cuts and not regenerate and any(r['method'] == 'declared-bss' for r, _ in group):
-                    # A header type that does not reproduce the retail extent: keep the
-                    # storage as an opaque byte array of the retail size instead.
+        def rescue():
+            # An unowned BSS run boxed in by owned splits would be dropped by DTK
+            # with its symbols; import it too, as opaque storage of its retail extent.
+            added = False
+            for run in isolated_runs(p, records):
+                key = tuple(sym.name for sym in run)
+                if key in rescued:
+                    continue
+                rescued.add(key)
+                try:
+                    if any(sym.scope != 'global' for sym in run):
+                        continue
+                    # A one-byte run compiles at alignment 1, so the compiler check below
+                    # would pass an odd start that dtk cannot carry as a split.
+                    # Leave those to isolate_guard (4-aligned rescues are measured to link).
+                    if run[0].addr % 4:
+                        continue
                     retry = []
-                    for r, src in group:
-                        if r['method'] == 'declared-bss':
-                            src, r = generate(p, p.find_symbol(r['symbol'], r['module']), opaque_bss=True)
+                    for sym in run:
+                        src, r = generate(p, sym, opaque_bss=True, scalar_byte=True)
                         retry.append((r, src))
-                    pending.insert(0, retry)
+                except (ValueError, KeyError):
                     continue
-                if cuts and not regenerate:
-                    bounds = [0] + cuts + [len(group)]
-                    pending[:0] = [group[a:b] for a, b in zip(bounds, bounds[1:])]
-                    continue
-                skipped.extend(dict(symbol=r['symbol'], reason=str(e)) for r, _ in group)
-            if not pending and not regenerate:
-                # An unowned BSS run boxed in by owned splits would be dropped by DTK
-                # with its symbols; import it too, as opaque storage of its retail extent.
-                for run in isolated_runs(p, records):
-                    key = tuple(sym.name for sym in run)
-                    if key in rescued:
-                        continue
-                    rescued.add(key)
-                    try:
-                        if any(sym.scope != 'global' for sym in run):
-                            continue
-                        # A one-byte run compiles at alignment 1, so the compiler check below
-                        # would pass an odd start that dtk cannot carry as a split (measured:
-                        # lbl_1_bss_8E51D vanished). Leave those to isolate_guard.
-                        if run[0].addr % 8:
-                            continue
+                names_in_run = set(key)
+                skipped[:] = [x for x in skipped if x['symbol'].split(':')[-1] not in names_in_run]
+                pending.append(retry)
+                added = True
+            return added
+        while True:
+            while pending:
+                group = pending.pop(0)
+                try:
+                    first, last = group[0][0], group[-1][0]
+                    end = last['address'] + last['size']
+                    # DTK starts residual auto data on a word boundary. The linker
+                    # supplies trailing zeros when aligning that next input; adding
+                    # a C padding array would itself align and insert extra bytes.
+                    padded_end = (end + 3) & -4
+                    retail_regions = regions(p, first['module'], first['section'])
+                    if any(base + len(raw) == end for base, raw in retail_regions):
+                        padded_end = end
+                    for base, raw in retail_regions:
+                        if raw and base <= first['address'] < base + len(raw):
+                            if end > base + len(raw):
+                                raise ValueError('object extends past the retail section end')
+                            # An unaligned section end is the split end; never round past it.
+                            padded_end = min(padded_end, base + len(raw))
+                    # NOBITS sections have no retail bytes to compare against: a BSS
+                    # group that nothing follows is the section tail, and rounding it
+                    # up would extend the split past the section (dtk rejects that).
+                    # dtk also ends a DOL section at its last symbol (main .data: 0x8015B919, not
+                    # the header's 0x8015B920), so the same tail rule holds there.
+                    if (first['section'] in BSS or first['module'] == 'main') and not any(
+                            s.section == first['section'] and s.addr >= end
+                            for s in p.symbols(first['module']).values()):
+                        padded_end = end
+                    owner = p.unit_of(p.find_symbol(first['symbol'], first['module']))
+                    # Zero padding up to an existing split that follows closely (alignment of
+                    # that split's unit) has no symbol of its own; own it, or no split would.
+                    following = [sp.start for sp in p.splits(first['module'])
+                                 if sp.section == first['section'] and sp.unit != owner and sp.start >= padded_end]
+                    if following:
+                        gap_end = min(following)
+                        if (0 < gap_end - padded_end < 8
+                                and not any(sm.section == first['section'] and end <= sm.addr < gap_end
+                                            for sm in p.symbols(first['module']).values())
+                                and (first['section'] in BSS or any(
+                                    base <= end and gap_end <= base + len(raw) and not any(raw[end-base:gap_end-base])
+                                    for base, raw in retail_regions))):
+                            padded_end = gap_end
+                    if padded_end != end:
+                        if any(s.section == first['section'] and end <= s.addr < padded_end
+                               for s in p.symbols(first['module']).values()):
+                            raise ValueError('trailing split needs its adjacent data symbol')
+                        if any(s.unit != owner and s.section == first['section'] and s.start < padded_end and end < s.end
+                               for s in p.splits(first['module'])):
+                            raise ValueError('trailing padding belongs to another split')
+                        if first['section'] not in BSS and not any(
+                                base <= end <= padded_end <= base + len(raw) and not any(raw[end-base:padded_end-base])
+                                for base, raw in retail_regions):
+                            raise ValueError('trailing padding is not zero or exceeds the section')
+                    source_name = f'{p.module_src_prefix(first["module"])}/data/{first["symbol"]}.c'
+                    # MWCC emits unreferenced BSS definitions in reverse order.
+                    # Data-only units have no code accesses to establish an order;
+                    # reverse their definitions while retaining the retail layout
+                    # for validation and split ownership.
+                    definitions = reversed(group) if first['section'] in BSS else group
+                    text = '\n'.join(source for _, source in definitions)
+                    # The group now owns some relocation targets. Their real
+                    # declarations replace the address-only external fallback.
+                    for r, _ in group:
+                        text = re.sub(r'^extern [^;\n]*\b' + re.escape(r['symbol']) + r'\s*(?:\[[^\]]*\])*;', '', text, flags=re.M)
+                    forward = []
+                    for r, _ in group:
+                        if header := r.get('header'):
+                            forward.append(f'#include "{header["path"]}"')
+                        else:
+                            forward.append('extern ' + r['definition'] + ';')
+                    includes = list(dict.fromkeys(re.findall(r'^#include[^\n]+', text, re.M)))
+                    text = re.sub(r'^#include[^\n]+\n', '', text, flags=re.M)
+                    text = re.sub(r'^/\* Generated by fzgx data-import;[^\n]+\n', '', text, flags=re.M)
+                    text = ('/* Generated by fzgx data-import; provenance in state/dataimports/. */\n'
+                            + '\n'.join(includes) + '\n\n' + '\n'.join(forward) + '\n\n' + text)
+                    path = scratch / f'{first["module"]}__{first["symbol"]}.c'
+                    path.write_text(text)
+                    obj = path.with_suffix('.o')
+                    cp = oracle.compile_source(p, first['module'], path, obj, include_dirs=[scratch])
+                    if cp.returncode:
+                        raise ValueError((cp.stdout + cp.stderr)[-1800:])
+                    section = Elf(obj.read_bytes()).section(first['section'])
+                    if section is None or first['address'] % section['addralign']:
+                        raise ValueError('group must begin at the compiler section alignment')
+                    for r, _ in group:
+                        r.update(source=source_name, unit_start=first['address'],
+                                 unit_size=padded_end - first['address'],
+                                 section_size=end - first['address'],
+                                 unit_align=section['addralign'])
+                        validate(p, r, obj)
+                    validate_padding(group, obj)
+                    records.extend(r for r, _ in group)
+                except ValueError as e:
+                    # A contiguous run can span retail objects whose headers conflict, or start
+                    # off the compiler's section alignment because its predecessor is owned
+                    # elsewhere. Retry it as independent chunks that each begin at an aligned
+                    # member: every chunk is still compiled and validated on its own.
+                    # Cut only where the previous member's word-rounded end meets the cut:
+                    # a padding gap between chunks would belong to no split.
+                    # Never cut inside an existing unit's range either: its split is one piece.
+                    def _owner(rec):
+                        return p.unit_of(p.find_symbol(rec['symbol'], rec['module']))
+                    cuts = [i for i, (r, _) in enumerate(group) if i and r['address'] % 8 == 0
+                            and ((group[i - 1][0]['address'] + group[i - 1][0]['size'] + 3) & -4) == r['address']
+                            and (_owner(r) is None or _owner(r) != _owner(group[i - 1][0]))]
+                    if not cuts and not regenerate and any(r['method'] == 'declared-bss' for r, _ in group):
+                        # A header type that does not reproduce the retail extent: keep the
+                        # storage as an opaque byte array of the retail size instead.
                         retry = []
-                        for sym in run:
-                            src, r = generate(p, sym, opaque_bss=True)
+                        for r, src in group:
+                            if r['method'] == 'declared-bss':
+                                src, r = generate(p, p.find_symbol(r['symbol'], r['module']), opaque_bss=True)
                             retry.append((r, src))
-                    except (ValueError, KeyError):
+                        pending.insert(0, retry)
                         continue
-                    names_in_run = set(key)
-                    skipped[:] = [x for x in skipped if x['symbol'].split(':')[-1] not in names_in_run]
-                    pending.append(retry)
-        if not regenerate:
-            records = isolate_guard(p, records, skipped)
+                    if cuts and not regenerate:
+                        bounds = [0] + cuts + [len(group)]
+                        pending[:0] = [group[a:b] for a, b in zip(bounds, bounds[1:])]
+                        continue
+                    skipped.extend(dict(symbol=r['symbol'], reason=str(e)) for r, _ in group)
+                if not pending and not regenerate:
+                    rescue()
+            if regenerate:
+                break
+            # One withdrawal at a time: the run it exposes gets a rescue attempt before
+            # the guard withdraws the next chunk, or one bad run cascades over a section.
+            before = len(records)
+            records = isolate_guard(p, records, skipped, steps=1)
             # An existing data unit is re-imported whole or not at all: if a retry or
             # the isolation guard dropped any of its members, leave the unit as it is.
             while True:
@@ -766,7 +780,10 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 records = [r for r in records if r not in drop]
                 skipped.extend(dict(symbol=r['symbol'], reason='existing data unit only partly importable')
                                for r in drop)
-                records = isolate_guard(p, records, skipped)
+                records = isolate_guard(p, records, skipped, steps=1)
+            # Withdrawals expose new boxed-in runs; give each one rescue attempt.
+            if not rescue() and len(records) == before:
+                break
         applied = bool(apply and records and not (regenerate and skipped))
         if applied:
             _install(p, records, scratch)
@@ -797,7 +814,7 @@ def isolated_runs(p, records):
     return runs
 
 
-def isolate_guard(p, records, skipped):
+def isolate_guard(p, records, skipped, steps=None):
     """Never leave a run of unowned objects boxed in by owned splits.
 
     Outside BSS the same situation is a hard dtk error ("Unsplit data in .rodata from
@@ -810,7 +827,7 @@ def isolate_guard(p, records, skipped):
     is isolated.
     """
     changed = True
-    while changed:
+    while changed and steps != 0:
         changed = False
         new = {r['symbol']: r for r in records}
         for module, section in sorted({(r['module'], r['section']) for r in records}):
@@ -830,7 +847,9 @@ def isolate_guard(p, records, skipped):
                 # Measured: dtk can only carry an unowned run as an auto object when it
                 # starts on the section alignment. Withdrawing the chunk on the left moves
                 # the run's start back to that chunk's aligned start, which ends the cascade.
-                if i and j < len(syms) and syms[i].addr % 8:
+                # A boxed-in BSS run vanishes even from an aligned start (measured:
+                # lbl_1_bss_8E518..8E51E between two new chunks).
+                if i and j < len(syms) and (syms[i].addr % 8 or section in BSS):
                     victim = new.get(syms[i - 1].name) or new.get(syms[j].name)
                     if victim is not None:
                         start = victim['unit_start']
@@ -840,6 +859,8 @@ def isolate_guard(p, records, skipped):
                                             reason=f'would isolate unowned {syms[i].name} between splits')
                                        for r in drop)
                         changed = True
+                        if steps is not None:
+                            steps -= 1
                         break
                 i = j
             if changed:

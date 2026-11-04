@@ -4,5 +4,5 @@
 extern u8 lbl_1_bss_89780[32];
 
 
-
+/* Storage extent is known; the header type does not reproduce the retail layout. */
 __declspec(section ".data") u8 lbl_1_bss_89780[32] __attribute__((aligned(32)));

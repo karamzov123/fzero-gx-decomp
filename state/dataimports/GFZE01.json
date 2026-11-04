@@ -55092,6 +55092,30 @@
     "unit_size": 8,
     "unit_start": 3944
   },
+  "main_rel:lbl_1_bss_100": {
+    "address": 256,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_100",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_100",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_100.c",
+    "symbol": "lbl_1_bss_100",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 256
+  },
   "main_rel:lbl_1_bss_1010": {
     "address": 4112,
     "align": 16,
@@ -55189,6 +55213,30 @@
     "unit_align": 8,
     "unit_size": 40,
     "unit_start": 4120
+  },
+  "main_rel:lbl_1_bss_104": {
+    "address": 260,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_104",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_104",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_100.c",
+    "symbol": "lbl_1_bss_104",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 256
   },
   "main_rel:lbl_1_bss_1040": {
     "address": 4160,
@@ -55292,6 +55340,30 @@
     "unit_size": 120,
     "unit_start": 4168
   },
+  "main_rel:lbl_1_bss_108": {
+    "address": 264,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_108",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_108",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_108.c",
+    "symbol": "lbl_1_bss_108",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 264
+  },
   "main_rel:lbl_1_bss_108C": {
     "address": 4236,
     "align": 4,
@@ -55325,6 +55397,30 @@
     "unit_align": 8,
     "unit_size": 120,
     "unit_start": 4168
+  },
+  "main_rel:lbl_1_bss_10C": {
+    "address": 268,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_10C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_10C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_108.c",
+    "symbol": "lbl_1_bss_10C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 264
   },
   "main_rel:lbl_1_bss_10C0": {
     "address": 4288,
@@ -55389,6 +55485,54 @@
     "unit_align": 8,
     "unit_size": 112,
     "unit_start": 4312
+  },
+  "main_rel:lbl_1_bss_110": {
+    "address": 272,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_110",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_110",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_110.c",
+    "symbol": "lbl_1_bss_110",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 272
+  },
+  "main_rel:lbl_1_bss_114": {
+    "address": 276,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_114",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_114",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_110.c",
+    "symbol": "lbl_1_bss_114",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 272
   },
   "main_rel:lbl_1_bss_1148": {
     "address": 4424,
@@ -55501,6 +55645,606 @@
     "unit_size": 1616,
     "unit_start": 4448
   },
+  "main_rel:lbl_1_bss_118": {
+    "address": 280,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_118",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_118",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_118.c",
+    "symbol": "lbl_1_bss_118",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 280
+  },
+  "main_rel:lbl_1_bss_11C": {
+    "address": 284,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_11C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_11C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_118.c",
+    "symbol": "lbl_1_bss_11C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 280
+  },
+  "main_rel:lbl_1_bss_120": {
+    "address": 288,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_120",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_120",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_120.c",
+    "symbol": "lbl_1_bss_120",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 288
+  },
+  "main_rel:lbl_1_bss_124": {
+    "address": 292,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_124",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_124",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_120.c",
+    "symbol": "lbl_1_bss_124",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 288
+  },
+  "main_rel:lbl_1_bss_128": {
+    "address": 296,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_128",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_128",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_128.c",
+    "symbol": "lbl_1_bss_128",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 296
+  },
+  "main_rel:lbl_1_bss_12C": {
+    "address": 300,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_12C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_12C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_128.c",
+    "symbol": "lbl_1_bss_12C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 296
+  },
+  "main_rel:lbl_1_bss_130": {
+    "address": 304,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_130",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_130",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_130.c",
+    "symbol": "lbl_1_bss_130",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 304
+  },
+  "main_rel:lbl_1_bss_134": {
+    "address": 308,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_134",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_134",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_130.c",
+    "symbol": "lbl_1_bss_134",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 304
+  },
+  "main_rel:lbl_1_bss_138": {
+    "address": 312,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_138",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_138",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_138.c",
+    "symbol": "lbl_1_bss_138",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 312
+  },
+  "main_rel:lbl_1_bss_13C": {
+    "address": 316,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_13C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_13C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_138.c",
+    "symbol": "lbl_1_bss_13C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 312
+  },
+  "main_rel:lbl_1_bss_140": {
+    "address": 320,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_140",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_140",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_140.c",
+    "symbol": "lbl_1_bss_140",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 320
+  },
+  "main_rel:lbl_1_bss_144": {
+    "address": 324,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_144",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_144",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_140.c",
+    "symbol": "lbl_1_bss_144",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 320
+  },
+  "main_rel:lbl_1_bss_148": {
+    "address": 328,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_148",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_148",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_148.c",
+    "symbol": "lbl_1_bss_148",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 328
+  },
+  "main_rel:lbl_1_bss_14C": {
+    "address": 332,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_14C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_14C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_148.c",
+    "symbol": "lbl_1_bss_14C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 328
+  },
+  "main_rel:lbl_1_bss_150": {
+    "address": 336,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_150",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_150",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_150.c",
+    "symbol": "lbl_1_bss_150",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 336
+  },
+  "main_rel:lbl_1_bss_154": {
+    "address": 340,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_154",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_154",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_150.c",
+    "symbol": "lbl_1_bss_154",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 336
+  },
+  "main_rel:lbl_1_bss_158": {
+    "address": 344,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_158",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_158",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_158.c",
+    "symbol": "lbl_1_bss_158",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 344
+  },
+  "main_rel:lbl_1_bss_15C": {
+    "address": 348,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_15C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_15C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_158.c",
+    "symbol": "lbl_1_bss_15C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 344
+  },
+  "main_rel:lbl_1_bss_160": {
+    "address": 352,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_160",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_160",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_160.c",
+    "symbol": "lbl_1_bss_160",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 352
+  },
+  "main_rel:lbl_1_bss_164": {
+    "address": 356,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_164",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_164",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_160.c",
+    "symbol": "lbl_1_bss_164",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 352
+  },
+  "main_rel:lbl_1_bss_168": {
+    "address": 360,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_168",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_168",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_168.c",
+    "symbol": "lbl_1_bss_168",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 360
+  },
+  "main_rel:lbl_1_bss_16C": {
+    "address": 364,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_16C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_16C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_168.c",
+    "symbol": "lbl_1_bss_16C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 360
+  },
+  "main_rel:lbl_1_bss_170": {
+    "address": 368,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_170",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_170",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_170.c",
+    "symbol": "lbl_1_bss_170",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 368
+  },
+  "main_rel:lbl_1_bss_174": {
+    "address": 372,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_174",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_174",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_170.c",
+    "symbol": "lbl_1_bss_174",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 368
+  },
+  "main_rel:lbl_1_bss_178": {
+    "address": 376,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_178",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_178",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_178.c",
+    "symbol": "lbl_1_bss_178",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 376
+  },
   "main_rel:lbl_1_bss_17AC": {
     "address": 6060,
     "align": 4,
@@ -55592,6 +56336,30 @@
     "unit_align": 16,
     "unit_size": 16,
     "unit_start": 6064
+  },
+  "main_rel:lbl_1_bss_17C": {
+    "address": 380,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_17C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_17C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_178.c",
+    "symbol": "lbl_1_bss_17C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 376
   },
   "main_rel:lbl_1_bss_17C0": {
     "address": 6080,
@@ -55758,6 +56526,30 @@
     "unit_size": 8,
     "unit_start": 6136
   },
+  "main_rel:lbl_1_bss_180": {
+    "address": 384,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_180",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_180",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_180.c",
+    "symbol": "lbl_1_bss_180",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 384
+  },
   "main_rel:lbl_1_bss_1800": {
     "address": 6144,
     "align": 32,
@@ -55827,6 +56619,182 @@
     "unit_align": 32,
     "unit_size": 9000,
     "unit_start": 6144
+  },
+  "main_rel:lbl_1_bss_184": {
+    "address": 388,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_184",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_184",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_180.c",
+    "symbol": "lbl_1_bss_184",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 384
+  },
+  "main_rel:lbl_1_bss_188": {
+    "address": 392,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_188",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_188",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_188.c",
+    "symbol": "lbl_1_bss_188",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 392
+  },
+  "main_rel:lbl_1_bss_18C": {
+    "address": 396,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_18C",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_18C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_188.c",
+    "symbol": "lbl_1_bss_18C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 392
+  },
+  "main_rel:lbl_1_bss_190": {
+    "address": 400,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_190",
+        "path": "src/rel/movie/movie.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_190",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_190",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_190.c",
+    "symbol": "lbl_1_bss_190",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 400
+  },
+  "main_rel:lbl_1_bss_194": {
+    "address": 404,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_194",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_194",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_190.c",
+    "symbol": "lbl_1_bss_194",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 400
+  },
+  "main_rel:lbl_1_bss_198": {
+    "address": 408,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "char lbl_1_bss_198[]",
+        "path": "src/rel/interview/interview.c"
+      },
+      {
+        "declaration": "char lbl_1_bss_198[][64]",
+        "path": "src/rel/movie/_prolog.c"
+      },
+      {
+        "declaration": "char lbl_1_bss_198[][64]",
+        "path": "src/rel/movie/_prolog.c"
+      },
+      {
+        "declaration": "char lbl_1_bss_198[]",
+        "path": "src/rel/profile/fn_16_14D4.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_198[]",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_198[]",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_198[]",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "char lbl_1_bss_198[]",
+        "path": "src/rel/title/title.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_198[1984]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 1984,
+    "sha256": "5b4a97decc57a48382234b6f23e27a26357ea1855d3c052ff4db94e6f91e37ee",
+    "size": 1984,
+    "source": "rel/main_rel/data/lbl_1_bss_198.c",
+    "symbol": "lbl_1_bss_198",
+    "unit_align": 8,
+    "unit_size": 1984,
+    "unit_start": 408
   },
   "main_rel:lbl_1_bss_25B80": {
     "address": 154496,
@@ -60841,6 +61809,10 @@
       {
         "declaration": "u8 lbl_1_bss_7AC90[12]",
         "path": "src/rel/main_rel/enemy_ctrl.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_7AC90[12]",
+        "path": "src/rel/main_rel/enemy_ctrl.c"
       }
     ],
     "definition": "u8 lbl_1_bss_7AC90[12]",
@@ -60851,14 +61823,301 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 12,
+    "section_size": 16,
     "sha256": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
     "size": 12,
     "source": "rel/main_rel/data/lbl_1_bss_7AC90.c",
     "symbol": "lbl_1_bss_7AC90",
     "unit_align": 16,
-    "unit_size": 12,
+    "unit_size": 16,
     "unit_start": 502928
+  },
+  "main_rel:lbl_1_bss_7AC9C": {
+    "address": 502940,
+    "align": 4,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_7AC9C[4]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_13B98",
+      "fn_1_106EB0"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_7AC90.c",
+    "symbol": "lbl_1_bss_7AC9C",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 502928
+  },
+  "main_rel:lbl_1_bss_7ACA0": {
+    "address": 502944,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_7ACA0 lbl_1_bss_7ACA0",
+        "path": "include/rel/main_rel/enemy_ctrl.h"
+      },
+      {
+        "declaration": "struct fn_1_D07C4_lbl_1_bss_7ACA0 lbl_1_bss_7ACA0",
+        "path": "src/rel/main_rel/enemy_ctrl.c"
+      }
+    ],
+    "definition": "Obj_1_bss_7ACA0 lbl_1_bss_7ACA0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_CB028",
+      "fn_1_CB404",
+      "fn_1_CB424",
+      "fn_1_D0728",
+      "fn_1_D07AC",
+      "fn_1_D07C4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 48,
+    "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
+    "size": 48,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACA0.c",
+    "symbol": "lbl_1_bss_7ACA0",
+    "unit_align": 32,
+    "unit_size": 48,
+    "unit_start": 502944
+  },
+  "main_rel:lbl_1_bss_7ACD0": {
+    "address": 502992,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "struct fn_1_D07E0_lbl_1_bss_7ACD0 lbl_1_bss_7ACD0",
+        "path": "src/rel/main_rel/enemy_ctrl.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_7ACD0[8]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D07E0"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACD0.c",
+    "symbol": "lbl_1_bss_7ACD0",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 502992
+  },
+  "main_rel:lbl_1_bss_7ACD8": {
+    "address": 503000,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_7ACD8_Target *lbl_1_bss_7ACD8",
+        "path": "include/rel/main_rel/face.h"
+      },
+      {
+        "declaration": "State_7ACD8 lbl_1_bss_7ACD8",
+        "path": "src/rel/main_rel/face.c"
+      },
+      {
+        "declaration": "FaceManager lbl_1_bss_7ACD8",
+        "path": "src/rel/main_rel/face.c"
+      }
+    ],
+    "definition": "Obj_1_bss_7ACD8_Target *lbl_1_bss_7ACD8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D27B8",
+      "fn_1_D1848",
+      "fn_1_D1C94",
+      "fn_1_D1F88",
+      "fn_1_D2404",
+      "fn_1_D2D24",
+      "fn_1_D2D58"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACD8.c",
+    "symbol": "lbl_1_bss_7ACD8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 503000
+  },
+  "main_rel:lbl_1_bss_7ACDC": {
+    "address": 503004,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_7ACDC",
+        "path": "src/rel/main_rel/enemy_ctrl.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_7ACDC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D123C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACD8.c",
+    "symbol": "lbl_1_bss_7ACDC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 503000
+  },
+  "main_rel:lbl_1_bss_7ACE0": {
+    "address": 503008,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_7ACE0",
+        "path": "src/rel/main_rel/enemy_ctrl.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_7ACE0[5]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D123C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6,
+    "sha256": "8855508aade16ec573d21e6a485dfd0a7624085c1a14b5ecdd6485de0c6839a4",
+    "size": 5,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACE0.c",
+    "symbol": "lbl_1_bss_7ACE0",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 503008
+  },
+  "main_rel:lbl_1_bss_7ACE5": {
+    "address": 503013,
+    "align": 1,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_7ACE5",
+        "path": "include/rel/main_rel/face.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_7ACE5",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D2D48",
+      "fn_1_D2D58",
+      "fn_1_D2E44"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACE0.c",
+    "symbol": "lbl_1_bss_7ACE5",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 503008
+  },
+  "main_rel:lbl_1_bss_7ACE8": {
+    "address": 503016,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_7ACE8",
+        "path": "include/rel/main_rel/face.h"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_7ACE8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D2D38",
+      "fn_1_D2E44"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACE8.c",
+    "symbol": "lbl_1_bss_7ACE8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 503016
+  },
+  "main_rel:lbl_1_bss_7ACEC": {
+    "address": 503020,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_7ACEC",
+        "path": "src/rel/main_rel/face.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_7ACEC",
+        "path": "src/rel/main_rel/face.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_7ACEC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D1780"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACE8.c",
+    "symbol": "lbl_1_bss_7ACEC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 503016
+  },
+  "main_rel:lbl_1_bss_7ACF0": {
+    "address": 503024,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_7ACF0",
+        "path": "include/rel/main_rel/face.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_7ACF0[8]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_D1780",
+      "fn_1_D17E8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "rel/main_rel/data/lbl_1_bss_7ACF0.c",
+    "symbol": "lbl_1_bss_7ACF0",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 503024
   },
   "main_rel:lbl_1_bss_7ACF8": {
     "address": 503032,
@@ -62598,12 +63857,16 @@
     "align": 32,
     "declarations": [
       {
+        "declaration": "u8 lbl_1_bss_89780",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
         "declaration": "u8 lbl_1_bss_89780[32]",
         "path": "src/rel/main_rel/accessory.c"
       }
     ],
     "definition": "u8 lbl_1_bss_89780[32]",
-    "method": "declared-bss",
+    "method": "opaque-bss-header-mismatch",
     "module": "main_rel",
     "references": [
       "fn_1_12999C"
@@ -62618,6 +63881,2676 @@
     "unit_align": 32,
     "unit_size": 32,
     "unit_start": 563072
+  },
+  "main_rel:lbl_1_bss_897A0": {
+    "address": 563104,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_897A0",
+        "path": "include/rel/main_rel/archive.h"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A0",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A0",
+        "path": "src/rel/main_rel/archive.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_897A0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12A2D0",
+      "fn_1_12A350",
+      "fn_1_12A4B0",
+      "fn_1_12A6D8",
+      "fn_1_12A7C4",
+      "fn_1_12A8A4",
+      "fn_1_12A9BC",
+      "fn_1_12AAC8",
+      "fn_1_12AB38",
+      "fn_1_12AC28",
+      "fn_1_12ADC8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_897A0.c",
+    "symbol": "lbl_1_bss_897A0",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 563104
+  },
+  "main_rel:lbl_1_bss_897A4": {
+    "address": 563108,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_897A4",
+        "path": "src/rel/main_rel/archive.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_897A4",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12A2B8",
+      "fn_1_12ABB4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_897A0.c",
+    "symbol": "lbl_1_bss_897A4",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 563104
+  },
+  "main_rel:lbl_1_bss_897A8": {
+    "address": 563112,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_897A8",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A8",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A8",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A8",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A8",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897A8",
+        "path": "src/rel/main_rel/accessory.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_897A8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12A2C4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6968,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_897A8.c",
+    "symbol": "lbl_1_bss_897A8",
+    "unit_align": 8,
+    "unit_size": 6968,
+    "unit_start": 563112
+  },
+  "main_rel:lbl_1_bss_897AC": {
+    "address": 563116,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_897AC lbl_1_bss_897AC",
+        "path": "include/rel/main_rel/archive.h"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897AC[1741]",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897AC[1741]",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897AC[1741]",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897AC[1741]",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897AC[1741]",
+        "path": "src/rel/main_rel/accessory.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_897AC[1741]",
+        "path": "src/rel/main_rel/accessory.c"
+      }
+    ],
+    "definition": "Obj_1_bss_897AC lbl_1_bss_897AC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12A290",
+      "fn_1_12A2D0",
+      "fn_1_12A350",
+      "fn_1_12A6D8",
+      "fn_1_12A734",
+      "fn_1_12AAC8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6968,
+    "sha256": "ddb54a5168790e5786433ef304ff9c0621b7f54b326f4154d9c05aa25b701968",
+    "size": 6964,
+    "source": "rel/main_rel/data/lbl_1_bss_897A8.c",
+    "symbol": "lbl_1_bss_897AC",
+    "unit_align": 8,
+    "unit_size": 6968,
+    "unit_start": 563112
+  },
+  "main_rel:lbl_1_bss_8B2E0": {
+    "address": 570080,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8B2E0 lbl_1_bss_8B2E0",
+        "path": "include/rel/main_rel/archive.h"
+      }
+    ],
+    "definition": "Obj_1_bss_8B2E0 lbl_1_bss_8B2E0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12AF7C",
+      "fn_1_12B5B4",
+      "fn_1_12B664",
+      "fn_1_12F358"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 192,
+    "sha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5",
+    "size": 192,
+    "source": "rel/main_rel/data/lbl_1_bss_8B2E0.c",
+    "symbol": "lbl_1_bss_8B2E0",
+    "unit_align": 32,
+    "unit_size": 192,
+    "unit_start": 570080
+  },
+  "main_rel:lbl_1_bss_8B3A0": {
+    "address": 570272,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "include/rel/main_rel/globals.h"
+      },
+      {
+        "declaration": "struct fn_3_4380_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "Bss8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "struct fn_1_12B120_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "struct fn_1_12B3F8_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/custom_memcard.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/driver.c"
+      },
+      {
+        "declaration": "Obj8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/game.c"
+      },
+      {
+        "declaration": "struct fn_1_34E08_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/game.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/main_rel/game.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/ghost.c"
+      },
+      {
+        "declaration": "GhostLoadState lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/ghost.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/phys.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/phys.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "lbl_1_bss_8B3A0_t lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/main_rel/stcoli.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_14_268_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "struct fn_14_2FC_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "fn_14_904_Game lbl_1_bss_8B3A0",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "fn_14_1090_Game lbl_1_bss_8B3A0",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "struct fn_14_7EAC_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "struct fn_14_B398_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8B3A0",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "struct fn_13_0_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/replay/_prolog.c"
+      },
+      {
+        "declaration": "struct Fn10834State lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[0x9f]",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[0x9f]",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[0x9f]",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/record.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct State lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelMenu lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct SelObject lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Global lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "GlobalState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "GlobalState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "GameState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_4838_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_4D78_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_578C_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobals lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct S8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_804C_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "BssObject lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "GlobalSel lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelCtl lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobal lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_8BB8_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobal lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobal lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct SelState98 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobA25C lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_A90C_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobal lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobal lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobal lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "GState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_CFAC_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_D044_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelDrawState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "volatile s16 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_10168_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelBlinkState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_14FDC_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_15B20_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct fn_10_17814_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobal lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Sel8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelState lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelSlot lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelSlot lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Ent8B3A0 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelSlot lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelInfo lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelGlobals lbl_1_bss_8B3A0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "struct fn_7_13CC_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B3A0[]",
+        "path": "src/rel/title/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_8_704_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/title/fn_8_704.c"
+      },
+      {
+        "declaration": "struct _prolog_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/title/title.c"
+      },
+      {
+        "declaration": "struct fn_8_954_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/title/title.c"
+      },
+      {
+        "declaration": "struct Title8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/title/title.c"
+      },
+      {
+        "declaration": "struct fn_8_5C54_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0",
+        "path": "src/rel/title/title.c"
+      }
+    ],
+    "definition": "Obj_1_bss_8B3A0 lbl_1_bss_8B3A0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "_prolog",
+      "fn_1_3867C",
+      "fn_1_C3A0C",
+      "fn_1_F3BC0",
+      "fn_1_139440",
+      "fn_1_13C5EC",
+      "fn_1_13E080",
+      "fn_1_14083C",
+      "fn_1_152FAC",
+      "fn_1_12B120",
+      "fn_1_12B3BC",
+      "fn_1_12B3F8",
+      "fn_1_12B664",
+      "fn_1_12BB18",
+      "fn_1_12BF7C",
+      "fn_1_12C110",
+      "fn_1_12C47C",
+      "fn_1_12D404",
+      "fn_1_12DAEC",
+      "fn_1_12E0B8",
+      "fn_1_12E424",
+      "fn_1_12E468",
+      "fn_1_12ECA8",
+      "fn_1_12F128",
+      "fn_1_12F150",
+      "fn_1_12F17C",
+      "fn_1_12F194",
+      "fn_1_12F1E8",
+      "fn_1_12F228",
+      "fn_1_12F258",
+      "fn_1_151EF8",
+      "fn_1_1528D0",
+      "fn_1_152A28",
+      "fn_1_152CB4",
+      "fn_1_107930",
+      "fn_1_82724",
+      "fn_1_82C70",
+      "fn_1_95950",
+      "fn_1_13198C",
+      "fn_1_131C08",
+      "fn_1_132488",
+      "fn_1_1324C4",
+      "fn_1_132774",
+      "fn_1_C24A4",
+      "fn_1_C6F8C",
+      "fn_1_C7224",
+      "fn_1_31C3C",
+      "fn_1_33A20",
+      "fn_1_34AC0",
+      "fn_1_34E08",
+      "fn_1_3B7D4",
+      "fn_1_3CE94",
+      "fn_1_3EB78",
+      "fn_1_3FC9C",
+      "fn_1_EB85C",
+      "fn_1_EB8F4",
+      "fn_1_EC910",
+      "fn_1_EF5E0",
+      "fn_1_C34F0",
+      "fn_1_C36EC",
+      "fn_1_E8938",
+      "fn_1_157820",
+      "fn_1_7B218",
+      "fn_1_1363F0",
+      "fn_1_1375C0",
+      "fn_1_1380F0",
+      "fn_1_138144",
+      "fn_1_138A04",
+      "fn_1_138E44",
+      "fn_1_1392E0",
+      "fn_1_139A3C",
+      "fn_1_139AEC",
+      "fn_1_139D60",
+      "fn_1_13A038",
+      "fn_1_13A21C",
+      "fn_1_13A460",
+      "fn_1_13A654",
+      "fn_1_13B328",
+      "fn_1_13C1A0",
+      "fn_1_13D02C",
+      "fn_1_13FA88",
+      "fn_1_13FB24",
+      "fn_1_13FB8C",
+      "fn_1_141C10",
+      "fn_1_141F94",
+      "fn_1_142004",
+      "fn_1_38CF4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 592,
+    "sha256": "f18e4c8388d95251d22fdb63456987c14f67d4027576801db5bcb985dc061565",
+    "size": 332,
+    "source": "rel/main_rel/data/lbl_1_bss_8B3A0.c",
+    "symbol": "lbl_1_bss_8B3A0",
+    "unit_align": 32,
+    "unit_size": 592,
+    "unit_start": 570272
+  },
+  "main_rel:lbl_1_bss_8B4EC": {
+    "address": 570604,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8B4EC[128]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B4EC[128]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B4EC[128]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B4EC[128]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8B4EC[32]",
+        "path": "src/rel/main_rel/enemy_ctrl.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8B4EC[128]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12D254"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 592,
+    "sha256": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+    "size": 128,
+    "source": "rel/main_rel/data/lbl_1_bss_8B3A0.c",
+    "symbol": "lbl_1_bss_8B4EC",
+    "unit_align": 32,
+    "unit_size": 592,
+    "unit_start": 570272
+  },
+  "main_rel:lbl_1_bss_8B56C": {
+    "address": 570732,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8B56C lbl_1_bss_8B56C",
+        "path": "include/rel/main_rel/archive.h"
+      },
+      {
+        "declaration": "Obj_1_bss_8B56C lbl_1_bss_8B56C",
+        "path": "src/rel/main_rel/archive.c"
+      }
+    ],
+    "definition": "Obj_1_bss_8B56C lbl_1_bss_8B56C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12D354",
+      "fn_1_12D404",
+      "fn_1_12DAEC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 592,
+    "sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4",
+    "size": 96,
+    "source": "rel/main_rel/data/lbl_1_bss_8B3A0.c",
+    "symbol": "lbl_1_bss_8B56C",
+    "unit_align": 32,
+    "unit_size": 592,
+    "unit_start": 570272
+  },
+  "main_rel:lbl_1_bss_8B5CC": {
+    "address": 570828,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8B5CC[32]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8B5CC[8]",
+        "path": "src/rel/main_rel/enemy_ctrl.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8B5CC[32]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12ECA8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 592,
+    "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+    "size": 32,
+    "source": "rel/main_rel/data/lbl_1_bss_8B3A0.c",
+    "symbol": "lbl_1_bss_8B5CC",
+    "unit_align": 32,
+    "unit_size": 592,
+    "unit_start": 570272
+  },
+  "main_rel:lbl_1_bss_8B5EC": {
+    "address": 570860,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8B5EC",
+        "path": "include/rel/main_rel/archive.h"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8B5EC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12F10C",
+      "fn_1_12F118"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 592,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8B3A0.c",
+    "symbol": "lbl_1_bss_8B5EC",
+    "unit_align": 32,
+    "unit_size": 592,
+    "unit_start": 570272
+  },
+  "main_rel:lbl_1_bss_8B5F0": {
+    "address": 570864,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8B5F0",
+        "path": "include/rel/main_rel/sound.h"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B5F0",
+        "path": "src/rel/main_rel/game.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B5F0",
+        "path": "src/rel/main_rel/sound.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B5F0",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B5F0",
+        "path": "src/rel/story/story_mode.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8B5F0",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_382C4",
+      "fn_1_141C10",
+      "fn_1_A1DCC",
+      "fn_1_A2210",
+      "fn_1_A24CC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 5168,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8B5F0.c",
+    "symbol": "lbl_1_bss_8B5F0",
+    "unit_align": 16,
+    "unit_size": 5168,
+    "unit_start": 570864
+  },
+  "main_rel:lbl_1_bss_8B5F1": {
+    "address": 570865,
+    "align": 1,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8B5F1",
+        "path": "include/rel/main_rel/sound.h"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B5F1",
+        "path": "src/rel/main_rel/game.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B5F1",
+        "path": "src/rel/main_rel/sound.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B5F1",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8B5F1",
+        "path": "src/rel/story/story_mode.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8B5F1",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_382C4",
+      "fn_1_141C10",
+      "fn_1_A1DCC",
+      "fn_1_A2210",
+      "fn_1_A24CC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 5168,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8B5F0.c",
+    "symbol": "lbl_1_bss_8B5F1",
+    "unit_align": 16,
+    "unit_size": 5168,
+    "unit_start": 570864
+  },
+  "main_rel:lbl_1_bss_8B5F4": {
+    "address": 570868,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8B5F4 lbl_1_bss_8B5F4",
+        "path": "include/rel/main_rel/game.h"
+      },
+      {
+        "declaration": "BurnerWork lbl_1_bss_8B5F4",
+        "path": "src/rel/main_rel/burner.c"
+      },
+      {
+        "declaration": "fn_10_5230_lbl_1_bss_8B5F4 lbl_1_bss_8B5F4",
+        "path": "src/rel/sel/sel.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8B5F4[32]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_3867C",
+      "fn_1_30054",
+      "fn_1_35BC4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 5168,
+    "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+    "size": 32,
+    "source": "rel/main_rel/data/lbl_1_bss_8B5F0.c",
+    "symbol": "lbl_1_bss_8B5F4",
+    "unit_align": 16,
+    "unit_size": 5168,
+    "unit_start": 570864
+  },
+  "main_rel:lbl_1_bss_8B614": {
+    "address": 570900,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "struct State lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_1038.c"
+      },
+      {
+        "declaration": "struct State lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_14D4.c"
+      },
+      {
+        "declaration": "struct fn_16_18CC_Entry lbl_1_bss_8B614[]",
+        "path": "src/rel/profile/fn_16_18CC.c"
+      },
+      {
+        "declaration": "struct fn_16_1A24_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_1A24.c"
+      },
+      {
+        "declaration": "struct State lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_1D18.c"
+      },
+      {
+        "declaration": "struct fn_16_1F1C_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_1F1C.c"
+      },
+      {
+        "declaration": "struct fn_16_2054_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_2054.c"
+      },
+      {
+        "declaration": "struct fn_16_20F4_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_20F4.c"
+      },
+      {
+        "declaration": "struct fn_16_23A8_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_23A8.c"
+      },
+      {
+        "declaration": "struct fn_16_24FC_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_24FC.c"
+      },
+      {
+        "declaration": "struct State lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_2560.c"
+      },
+      {
+        "declaration": "struct fn_16_2B68_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_2B68.c"
+      },
+      {
+        "declaration": "struct fn_16_2EEC_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_2EEC.c"
+      },
+      {
+        "declaration": "struct ProfileMenuState lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_3340.c"
+      },
+      {
+        "declaration": "struct ProfileMenuState lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_3BCC.c"
+      },
+      {
+        "declaration": "struct fn_16_4490_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_4490.c"
+      },
+      {
+        "declaration": "struct fn_16_5F18_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_5F18.c"
+      },
+      {
+        "declaration": "struct fn_16_607C_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_607C.c"
+      },
+      {
+        "declaration": "Struct_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_61D4.c"
+      },
+      {
+        "declaration": "ProfileState lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_6508.c"
+      },
+      {
+        "declaration": "struct fn_16_69B8_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_69B8.c"
+      },
+      {
+        "declaration": "struct fn_16_6B24_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_6B24.c"
+      },
+      {
+        "declaration": "struct fn_16_96C_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_96C.c"
+      },
+      {
+        "declaration": "struct fn_16_A38_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_A38.c"
+      },
+      {
+        "declaration": "struct fn_16_AA8_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_AA8.c"
+      },
+      {
+        "declaration": "struct fn_16_B10_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_B10.c"
+      },
+      {
+        "declaration": "struct fn_16_B24_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_B24.c"
+      },
+      {
+        "declaration": "struct fn_16_CAC_lbl_1_bss_8B614 lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_CAC.c"
+      },
+      {
+        "declaration": "struct fn_16_E20_state lbl_1_bss_8B614",
+        "path": "src/rel/profile/fn_16_E20.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8B614[5132]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 5168,
+    "sha256": "517fd9399f951f0d9ea89febd719652e0592af8e540fc33585a70d5fe029ef98",
+    "size": 5132,
+    "source": "rel/main_rel/data/lbl_1_bss_8B5F0.c",
+    "symbol": "lbl_1_bss_8B614",
+    "unit_align": 16,
+    "unit_size": 5168,
+    "unit_start": 570864
+  },
+  "main_rel:lbl_1_bss_8CA20": {
+    "address": 576032,
+    "align": 32,
+    "declarations": [],
+    "definition": "u16 lbl_1_bss_8CA20",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/main_rel/data/lbl_1_bss_8CA20.c",
+    "symbol": "lbl_1_bss_8CA20",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 576032
+  },
+  "main_rel:lbl_1_bss_8CA22": {
+    "address": 576034,
+    "align": 2,
+    "declarations": [],
+    "definition": "u16 lbl_1_bss_8CA22",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/main_rel/data/lbl_1_bss_8CA20.c",
+    "symbol": "lbl_1_bss_8CA22",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 576032
+  },
+  "main_rel:lbl_1_bss_8CA24": {
+    "address": 576036,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8CA24",
+        "path": "include/rel/main_rel/sound.h"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA24",
+        "path": "src/rel/main_rel/sound.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA24",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA24",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA24",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA24",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA24",
+        "path": "src/rel/sel/sel.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8CA24",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_A1DCC",
+      "fn_1_A2210",
+      "fn_1_A24CC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8CA20.c",
+    "symbol": "lbl_1_bss_8CA24",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 576032
+  },
+  "main_rel:lbl_1_bss_8CA26": {
+    "address": 576038,
+    "align": 2,
+    "declarations": [
+      {
+        "declaration": "s16 lbl_1_bss_8CA26",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8CA26",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8CA26",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8CA26",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8CA26",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8CA26",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8CA26",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "s16 lbl_1_bss_8CA26",
+        "path": "src/rel/sel/sel.c"
+      }
+    ],
+    "definition": "u16 lbl_1_bss_8CA26",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/main_rel/data/lbl_1_bss_8CA20.c",
+    "symbol": "lbl_1_bss_8CA26",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 576032
+  },
+  "main_rel:lbl_1_bss_8CA28": {
+    "address": 576040,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8CA28 lbl_1_bss_8CA28",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8CA28 lbl_1_bss_8CA28",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8CA28",
+        "path": "src/rel/sel/sel.c"
+      }
+    ],
+    "definition": "Obj_1_bss_8CA28 lbl_1_bss_8CA28",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_8CED0",
+      "fn_1_139AEC",
+      "fn_1_139D60",
+      "fn_1_139F18",
+      "fn_1_13A038",
+      "fn_1_13A21C",
+      "fn_1_13A460",
+      "fn_1_13A654"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 24,
+    "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0",
+    "size": 24,
+    "source": "rel/main_rel/data/lbl_1_bss_8CA28.c",
+    "symbol": "lbl_1_bss_8CA28",
+    "unit_align": 8,
+    "unit_size": 24,
+    "unit_start": 576040
+  },
+  "main_rel:lbl_1_bss_8CA40": {
+    "address": 576064,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8CA40",
+        "path": "include/rel/main_rel/archive.h"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8CA40",
+        "path": "include/rel/main_rel/custom_memcard.h"
+      },
+      {
+        "declaration": "struct fn_1_130EE8_lbl_1_bss_8CA40 lbl_1_bss_8CA40",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "MemcardState lbl_1_bss_8CA40",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "MemcardState lbl_1_bss_8CA40",
+        "path": "src/rel/main_rel/custom_memcard.c"
+      },
+      {
+        "declaration": "CustomMemcardState lbl_1_bss_8CA40",
+        "path": "src/rel/main_rel/custom_memcard.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8CA40",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_130EE8",
+      "fn_1_130F98",
+      "fn_1_131004",
+      "fn_1_131050",
+      "fn_1_131084",
+      "fn_1_1310B8",
+      "fn_1_1310E0",
+      "fn_1_1310FC",
+      "fn_1_131154",
+      "fn_1_131194",
+      "fn_1_1312F0",
+      "fn_1_131390",
+      "fn_1_1314A4",
+      "fn_1_131558",
+      "fn_1_131620"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6464,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8CA40.c",
+    "symbol": "lbl_1_bss_8CA40",
+    "unit_align": 32,
+    "unit_size": 6464,
+    "unit_start": 576064
+  },
+  "main_rel:lbl_1_bss_8CA44": {
+    "address": 576068,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "s32 lbl_1_bss_8CA44[10]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_8CA44[10]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_8CA44[10]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_8CA44[10]",
+        "path": "src/rel/main_rel/archive.c"
+      }
+    ],
+    "definition": "s32 lbl_1_bss_8CA44[10]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_130F98"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6464,
+    "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
+    "size": 40,
+    "source": "rel/main_rel/data/lbl_1_bss_8CA40.c",
+    "symbol": "lbl_1_bss_8CA44",
+    "unit_align": 32,
+    "unit_size": 6464,
+    "unit_start": 576064
+  },
+  "main_rel:lbl_1_bss_8CA6C": {
+    "address": 576108,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8CA6C[1605]",
+        "path": "src/rel/main_rel/custom_memcard.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8CA6C[1605]",
+        "path": "src/rel/main_rel/custom_memcard.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8CA6C[1605]",
+        "path": "src/rel/main_rel/custom_memcard.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8CA6C[1605]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1317B4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6464,
+    "sha256": "0b06e0549a263559e442329812035d4f3a965ac0347fe64bc34aee85723d48ae",
+    "size": 6420,
+    "source": "rel/main_rel/data/lbl_1_bss_8CA40.c",
+    "symbol": "lbl_1_bss_8CA6C",
+    "unit_align": 32,
+    "unit_size": 6464,
+    "unit_start": 576064
+  },
+  "main_rel:lbl_1_bss_8E380": {
+    "address": 582528,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E380",
+        "path": "include/rel/main_rel/custom_memcard.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E380",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1317C4",
+      "fn_1_1318B8",
+      "fn_1_1318D4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 72,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8E380.c",
+    "symbol": "lbl_1_bss_8E380",
+    "unit_align": 32,
+    "unit_size": 72,
+    "unit_start": 582528
+  },
+  "main_rel:lbl_1_bss_8E384": {
+    "address": 582532,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8E384 lbl_1_bss_8E384",
+        "path": "include/rel/main_rel/custom_memcard.h"
+      }
+    ],
+    "definition": "Obj_1_bss_8E384 lbl_1_bss_8E384",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1317C4",
+      "fn_1_1318D4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 72,
+    "sha256": "1751ac12e70e15b4f76c16775cd329ae55973b612521dab2de828a5cdb6c8ab3",
+    "size": 68,
+    "source": "rel/main_rel/data/lbl_1_bss_8E380.c",
+    "symbol": "lbl_1_bss_8E384",
+    "unit_align": 32,
+    "unit_size": 72,
+    "unit_start": 582528
+  },
+  "main_rel:lbl_1_bss_8E3C8": {
+    "address": 582600,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E3C8[8]",
+        "path": "src/rel/main_rel/custom_memcard.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E3C8[8]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_131C08"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "rel/main_rel/data/lbl_1_bss_8E3C8.c",
+    "symbol": "lbl_1_bss_8E3C8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582600
+  },
+  "main_rel:lbl_1_bss_8E3D0": {
+    "address": 582608,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "s32 lbl_1_bss_8E3D0[]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_8E3D0[]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_8E3D0[]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_8E3D0[]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_8E3D0[]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "s32 lbl_1_bss_8E3D0[]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E3D0[16]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_139A3C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+    "size": 16,
+    "source": "rel/main_rel/data/lbl_1_bss_8E3D0.c",
+    "symbol": "lbl_1_bss_8E3D0",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 582608
+  },
+  "main_rel:lbl_1_bss_8E3E0": {
+    "address": 582624,
+    "align": 4,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_8E3E0[4]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_13C5EC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 72,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E3E0.c",
+    "symbol": "lbl_1_bss_8E3E0",
+    "unit_align": 8,
+    "unit_size": 72,
+    "unit_start": 582624
+  },
+  "main_rel:lbl_1_bss_8E3E4": {
+    "address": 582628,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E3E4[0x20]",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E3E4[0x20]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_13F81C",
+      "fn_1_13F848",
+      "fn_1_13F8B0",
+      "fn_1_13F8C4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 72,
+    "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+    "size": 32,
+    "source": "rel/main_rel/data/lbl_1_bss_8E3E0.c",
+    "symbol": "lbl_1_bss_8E3E4",
+    "unit_align": 8,
+    "unit_size": 72,
+    "unit_start": 582624
+  },
+  "main_rel:lbl_1_bss_8E404": {
+    "address": 582660,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E404[0x20]",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E404[0x20]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_13F948",
+      "fn_1_13F974",
+      "fn_1_13F9DC",
+      "fn_1_13F9F0"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 72,
+    "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+    "size": 32,
+    "source": "rel/main_rel/data/lbl_1_bss_8E3E0.c",
+    "symbol": "lbl_1_bss_8E404",
+    "unit_align": 8,
+    "unit_size": 72,
+    "unit_start": 582624
+  },
+  "main_rel:lbl_1_bss_8E424": {
+    "address": 582692,
+    "align": 4,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_8E424[4]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_141C10"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 72,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E3E0.c",
+    "symbol": "lbl_1_bss_8E424",
+    "unit_align": 8,
+    "unit_size": 72,
+    "unit_start": 582624
+  },
+  "main_rel:lbl_1_bss_8E428": {
+    "address": 582696,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8E428 lbl_1_bss_8E428",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      }
+    ],
+    "definition": "Obj_1_bss_8E428 lbl_1_bss_8E428",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144F40",
+      "fn_1_144E90",
+      "fn_1_144EE8",
+      "fn_1_149B64",
+      "fn_1_149BF4",
+      "fn_1_149C2C",
+      "fn_1_149E2C",
+      "fn_1_149F04",
+      "fn_1_149F5C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 24,
+    "sha256": "de47c9b27eb8d300dbb5f2c353e632c393262cf06340c4fa7f1b40c4cbd36f90",
+    "size": 20,
+    "source": "rel/main_rel/data/lbl_1_bss_8E428.c",
+    "symbol": "lbl_1_bss_8E428",
+    "unit_align": 8,
+    "unit_size": 24,
+    "unit_start": 582696
+  },
+  "main_rel:lbl_1_bss_8E43C": {
+    "address": 582716,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E43C lbl_1_bss_8E43C",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E43C lbl_1_bss_8E43C",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E43C lbl_1_bss_8E43C",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E43C lbl_1_bss_8E43C",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E43C lbl_1_bss_8E43C",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E43C lbl_1_bss_8E43C",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E43C[4]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_149C64"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 24,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E428.c",
+    "symbol": "lbl_1_bss_8E43C",
+    "unit_align": 8,
+    "unit_size": 24,
+    "unit_start": 582696
+  },
+  "main_rel:lbl_1_bss_8E440": {
+    "address": 582720,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E440 lbl_1_bss_8E440",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E440 lbl_1_bss_8E440",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E440 lbl_1_bss_8E440",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E440 lbl_1_bss_8E440",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E440 lbl_1_bss_8E440",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_149C64_lbl_1_bss_8E440 lbl_1_bss_8E440",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E440[216]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_149C64"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 216,
+    "sha256": "a5645e7a3fa0866cde8842c4dab96567507c3d1a3c028b816bc63f6966367b70",
+    "size": 216,
+    "source": "rel/main_rel/data/lbl_1_bss_8E440.c",
+    "symbol": "lbl_1_bss_8E440",
+    "unit_align": 32,
+    "unit_size": 216,
+    "unit_start": 582720
+  },
+  "main_rel:lbl_1_bss_8E518": {
+    "address": 582936,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8E518 lbl_1_bss_8E518",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      },
+      {
+        "declaration": "Obj518 lbl_1_bss_8E518",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "fn_1_14A17C_Obj_1_bss_8E518 lbl_1_bss_8E518",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_14A9D0_lbl_1_bss_8E518 lbl_1_bss_8E518",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "fn_1_14BC40_Obj lbl_1_bss_8E518",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "fn_1_14BD94_Obj lbl_1_bss_8E518",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_14BE30_lbl_1_bss_8E518 lbl_1_bss_8E518",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8E518 lbl_1_bss_8E518",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E518[5]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_14BFD8",
+      "fn_1_14C35C",
+      "fn_1_14A028",
+      "fn_1_14A17C",
+      "fn_1_14A328",
+      "fn_1_14A9D0",
+      "fn_1_14AED4",
+      "fn_1_14B1FC",
+      "fn_1_14B62C",
+      "fn_1_14B93C",
+      "fn_1_14BC40",
+      "fn_1_14BD94",
+      "fn_1_14BE30",
+      "fn_1_14C6F8",
+      "fn_1_14CA4C",
+      "fn_1_14CAC8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6,
+    "sha256": "8855508aade16ec573d21e6a485dfd0a7624085c1a14b5ecdd6485de0c6839a4",
+    "size": 5,
+    "source": "rel/main_rel/data/lbl_1_bss_8E518.c",
+    "symbol": "lbl_1_bss_8E518",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582936
+  },
+  "main_rel:lbl_1_bss_8E51D": {
+    "address": 582941,
+    "align": 1,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "include/rel/main_rel/game.h"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/main_rel/burner.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/main_rel/burner.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/main_rel/burner.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/main_rel/burner.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/main_rel/game.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/main_rel/stcoli.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/main_rel/stcoli.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E51D",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "struct fn_8_D034_lbl_1_bss_8E51D lbl_1_bss_8E51D",
+        "path": "src/rel/title/operation.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E51D",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_9D260",
+      "fn_1_359B8",
+      "fn_1_3B11C",
+      "fn_1_1420A4",
+      "fn_1_144E90",
+      "fn_1_144EE8",
+      "fn_1_147A04",
+      "fn_1_149DA4",
+      "fn_1_149DE8",
+      "fn_1_149E2C",
+      "fn_1_149F04",
+      "fn_1_149F5C",
+      "fn_1_14BED0",
+      "fn_1_14BFB8",
+      "fn_1_14C864",
+      "fn_1_14C9A0",
+      "fn_1_2D038"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 6,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8E518.c",
+    "symbol": "lbl_1_bss_8E51D",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582936
+  },
+  "main_rel:lbl_1_bss_8E520": {
+    "address": 582944,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8E520",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8E520",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_14A00C",
+      "fn_1_14BFB8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 5,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E520.c",
+    "symbol": "lbl_1_bss_8E520",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 582944
+  },
+  "main_rel:lbl_1_bss_8E524": {
+    "address": 582948,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E524",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E524",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144E90",
+      "fn_1_144EE8",
+      "fn_1_149DA4",
+      "fn_1_149DE8",
+      "fn_1_149E2C",
+      "fn_1_149F04",
+      "fn_1_149F5C",
+      "fn_1_14A00C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 5,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8E520.c",
+    "symbol": "lbl_1_bss_8E524",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 582944
+  },
+  "main_rel:lbl_1_bss_8E528": {
+    "address": 582952,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8E528",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8E528",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8E528",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144F40",
+      "fn_1_1498B8",
+      "fn_1_14AE94",
+      "fn_1_14B1BC",
+      "fn_1_14B500",
+      "fn_1_14B8FC",
+      "fn_1_14BED0",
+      "fn_1_14C7F8",
+      "fn_1_14C864"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 5,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E528.c",
+    "symbol": "lbl_1_bss_8E528",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582952
+  },
+  "main_rel:lbl_1_bss_8E52C": {
+    "address": 582956,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E52C",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      },
+      {
+        "declaration": "struct fn_1_14BCBC_lbl_1_bss_8E52C lbl_1_bss_8E52C",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E52C",
+        "path": "src/rel/sel/sel.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E52C",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_146C88",
+      "fn_1_147508",
+      "fn_1_147A04",
+      "fn_1_14BCBC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 5,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8E528.c",
+    "symbol": "lbl_1_bss_8E52C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582952
+  },
+  "main_rel:lbl_1_bss_8E530": {
+    "address": 582960,
+    "align": 4,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_8E530[4]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144F40"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E530.c",
+    "symbol": "lbl_1_bss_8E530",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582960
+  },
+  "main_rel:lbl_1_bss_8E534": {
+    "address": 582964,
+    "align": 4,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_8E534[4]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144F40"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E530.c",
+    "symbol": "lbl_1_bss_8E534",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582960
+  },
+  "main_rel:lbl_1_bss_8E538": {
+    "address": 582968,
+    "align": 8,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_8E538[4]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144F40"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E538.c",
+    "symbol": "lbl_1_bss_8E538",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582968
+  },
+  "main_rel:lbl_1_bss_8E53C": {
+    "address": 582972,
+    "align": 4,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_8E53C[4]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144F40"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E538.c",
+    "symbol": "lbl_1_bss_8E53C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582968
+  },
+  "main_rel:lbl_1_bss_8E540": {
+    "address": 582976,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8E540",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8E540",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8E540",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_14AE94",
+      "fn_1_14B500",
+      "fn_1_14C7F8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E540.c",
+    "symbol": "lbl_1_bss_8E540",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 582976
+  },
+  "main_rel:lbl_1_bss_8E544": {
+    "address": 582980,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8E544",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8E544",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_14B1BC",
+      "fn_1_14B8FC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E540.c",
+    "symbol": "lbl_1_bss_8E544",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 582976
+  },
+  "main_rel:lbl_1_bss_8E548": {
+    "address": 582984,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E548",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E548[8]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144F40",
+      "fn_1_147188",
+      "fn_1_14A1AC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "rel/main_rel/data/lbl_1_bss_8E548.c",
+    "symbol": "lbl_1_bss_8E548",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 582984
+  },
+  "main_rel:lbl_1_bss_8E550": {
+    "address": 582992,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E550",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E550",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1498B8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8E550.c",
+    "symbol": "lbl_1_bss_8E550",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 582992
+  },
+  "main_rel:lbl_1_bss_8E554": {
+    "address": 582996,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8E554",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E554[5]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1498B8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "8855508aade16ec573d21e6a485dfd0a7624085c1a14b5ecdd6485de0c6839a4",
+    "size": 5,
+    "source": "rel/main_rel/data/lbl_1_bss_8E550.c",
+    "symbol": "lbl_1_bss_8E554",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 582992
+  },
+  "main_rel:lbl_1_bss_8E559": {
+    "address": 583001,
+    "align": 1,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E559",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E559",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_148950",
+      "fn_1_1492E0"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8E550.c",
+    "symbol": "lbl_1_bss_8E559",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 582992
+  },
+  "main_rel:lbl_1_bss_8E55C": {
+    "address": 583004,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8E55C",
+        "path": "src/rel/sel/sel.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E55C[4]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8E550.c",
+    "symbol": "lbl_1_bss_8E55C",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 582992
+  },
+  "main_rel:lbl_1_bss_8E560": {
+    "address": 583008,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8E560",
+        "path": "src/rel/sel/sel.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E560[16]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+    "size": 16,
+    "source": "rel/main_rel/data/lbl_1_bss_8E560.c",
+    "symbol": "lbl_1_bss_8E560",
+    "unit_align": 32,
+    "unit_size": 16,
+    "unit_start": 583008
+  },
+  "main_rel:lbl_1_bss_8E570": {
+    "address": 583024,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8E570[9]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8E570[9]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_147A04"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 37,
+    "sha256": "6db65fd59fd356f6729140571b5bcd6bb3b83492a16e1bf0a3884442fc3c8a0e",
+    "size": 36,
+    "source": "rel/main_rel/data/lbl_1_bss_8E570.c",
+    "symbol": "lbl_1_bss_8E570",
+    "unit_align": 16,
+    "unit_size": 40,
+    "unit_start": 583024
+  },
+  "main_rel:lbl_1_bss_8E594": {
+    "address": 583060,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8E594",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8E594",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_147A04"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 37,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8E570.c",
+    "symbol": "lbl_1_bss_8E594",
+    "unit_align": 16,
+    "unit_size": 40,
+    "unit_start": 583024
+  },
+  "main_rel:lbl_1_bss_8E598": {
+    "address": 583064,
+    "align": 8,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_8E598[148]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_14CEB8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 280,
+    "sha256": "3b18c58c739716e76429634a61375c45b3b5cd470c22ab6d3e14cee23dd992e1",
+    "size": 148,
+    "source": "rel/main_rel/data/lbl_1_bss_8E598.c",
+    "symbol": "lbl_1_bss_8E598",
+    "unit_align": 8,
+    "unit_size": 280,
+    "unit_start": 583064
+  },
+  "main_rel:lbl_1_bss_8E62C": {
+    "address": 583212,
+    "align": 4,
+    "declarations": [],
+    "definition": "u8 lbl_1_bss_8E62C[132]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_14CEB8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 280,
+    "sha256": "115bad14f1c9f2c027a84de21b107015722cb76be8d0abf3760ad8e00d6c24a5",
+    "size": 132,
+    "source": "rel/main_rel/data/lbl_1_bss_8E598.c",
+    "symbol": "lbl_1_bss_8E62C",
+    "unit_align": 8,
+    "unit_size": 280,
+    "unit_start": 583064
   },
   "main_rel:lbl_1_bss_8E6B0": {
     "address": 583344,
@@ -62634,25 +66567,885 @@
       {
         "declaration": "u8 lbl_1_bss_8E6B0[308]",
         "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E6B0[308]",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8E6B0[308]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
       }
     ],
     "definition": "u8 lbl_1_bss_8E6B0[308]",
     "method": "declared-bss",
     "module": "main_rel",
     "references": [
-      "fn_1_14FEAC",
-      "fn_1_798"
+      "fn_1_798",
+      "fn_1_14FEAC"
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 308,
+    "section_size": 1752,
     "sha256": "9575b2125169377b2ade7b401ea36c81228331d971f49664d9648d4f255d4868",
     "size": 308,
     "source": "rel/main_rel/data/lbl_1_bss_8E6B0.c",
     "symbol": "lbl_1_bss_8E6B0",
     "unit_align": 16,
-    "unit_size": 308,
+    "unit_size": 1752,
     "unit_start": 583344
+  },
+  "main_rel:lbl_1_bss_8E7E4": {
+    "address": 583652,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "struct fn_1_798_slot lbl_1_bss_8E7E4[]",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_1_798_slot lbl_1_bss_8E7E4[]",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_1_798_slot lbl_1_bss_8E7E4[]",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_1_798_slot lbl_1_bss_8E7E4[]",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_8E7E4[722]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "u16 lbl_1_bss_8E7E4[722]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_798",
+      "fn_1_14FEAC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 1752,
+    "sha256": "90ebb694c6e15523caa8196f148f47d1c9c477a48c49d638354530e0c2b811ba",
+    "size": 1444,
+    "source": "rel/main_rel/data/lbl_1_bss_8E6B0.c",
+    "symbol": "lbl_1_bss_8E7E4",
+    "unit_align": 16,
+    "unit_size": 1752,
+    "unit_start": 583344
+  },
+  "main_rel:lbl_1_bss_8ED88": {
+    "address": 585096,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8ED88",
+        "path": "include/rel/main_rel/bg_aur.h"
+      },
+      {
+        "declaration": "struct fn_1_151C9C_lbl_1_bss_8ED88 lbl_1_bss_8ED88",
+        "path": "src/rel/main_rel/bg_aur.c"
+      }
+    ],
+    "definition": "u16 lbl_1_bss_8ED88",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_151BDC",
+      "fn_1_151C9C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/main_rel/data/lbl_1_bss_8ED88.c",
+    "symbol": "lbl_1_bss_8ED88",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 585096
+  },
+  "main_rel:lbl_1_bss_8ED8C": {
+    "address": 585100,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u16 lbl_1_bss_8ED8C",
+        "path": "src/rel/main_rel/bg_aur.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_8ED8C",
+        "path": "src/rel/main_rel/bg_aur.c"
+      }
+    ],
+    "definition": "u16 lbl_1_bss_8ED8C",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_151C3C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/main_rel/data/lbl_1_bss_8ED88.c",
+    "symbol": "lbl_1_bss_8ED8C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 585096
+  },
+  "main_rel:lbl_1_bss_8ED8E": {
+    "address": 585102,
+    "align": 2,
+    "declarations": [
+      {
+        "declaration": "u16 lbl_1_bss_8ED8E",
+        "path": "src/rel/main_rel/bg_aur.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_8ED8E",
+        "path": "src/rel/main_rel/bg_aur.c"
+      }
+    ],
+    "definition": "u16 lbl_1_bss_8ED8E",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_151C3C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/main_rel/data/lbl_1_bss_8ED88.c",
+    "symbol": "lbl_1_bss_8ED8E",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 585096
+  },
+  "main_rel:lbl_1_bss_8ED90": {
+    "address": 585104,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8ED90",
+        "path": "include/rel/main_rel/bg_tow.h"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8ED90",
+        "path": "include/rel/main_rel/rep_memcard.h"
+      },
+      {
+        "declaration": "struct fn_1_154708_lbl_1_bss_8ED90 lbl_1_bss_8ED90",
+        "path": "src/rel/main_rel/bg_tow.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8ED90[4]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_154708",
+      "fn_1_1547FC",
+      "fn_1_1549B8",
+      "fn_1_154A08",
+      "fn_1_154BE4",
+      "fn_1_154CD0",
+      "fn_1_154D84",
+      "fn_1_154E34"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8ED90.c",
+    "symbol": "lbl_1_bss_8ED90",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 585104
+  },
+  "main_rel:lbl_1_bss_8ED94": {
+    "address": 585108,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8ED94 lbl_1_bss_8ED94",
+        "path": "include/rel/main_rel/rep_memcard.h"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8ED94[12]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_154CD0",
+      "fn_1_154D84",
+      "fn_1_154E34"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
+    "size": 12,
+    "source": "rel/main_rel/data/lbl_1_bss_8ED90.c",
+    "symbol": "lbl_1_bss_8ED94",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 585104
+  },
+  "main_rel:lbl_1_bss_8EDA0": {
+    "address": 585120,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8EDA0",
+        "path": "src/rel/main_rel/bg_tow.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8EDA0",
+        "path": "src/rel/main_rel/bg_tow.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8EDA0",
+        "path": "src/rel/main_rel/bg_tow.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8EDA0",
+        "path": "src/rel/main_rel/rep_memcard.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8EDA0",
+        "path": "src/rel/main_rel/rep_memcard.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8EDA0",
+        "path": "src/rel/main_rel/rep_memcard.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8EDA0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_154930",
+      "fn_1_154E24"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 80,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_8EDA0.c",
+    "symbol": "lbl_1_bss_8EDA0",
+    "unit_align": 32,
+    "unit_size": 80,
+    "unit_start": 585120
+  },
+  "main_rel:lbl_1_bss_8EDA4": {
+    "address": 585124,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8EDA4 lbl_1_bss_8EDA4",
+        "path": "include/rel/main_rel/bg_tow.h"
+      }
+    ],
+    "definition": "Obj_1_bss_8EDA4 lbl_1_bss_8EDA4",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1548A8",
+      "fn_1_154930"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 80,
+    "sha256": "f2c0d5456a983ecd12e314fcfa19879179fc8424343baeb1325457472ae85601",
+    "size": 76,
+    "source": "rel/main_rel/data/lbl_1_bss_8EDA0.c",
+    "symbol": "lbl_1_bss_8EDA4",
+    "unit_align": 32,
+    "unit_size": 80,
+    "unit_start": 585120
+  },
+  "main_rel:lbl_1_bss_8EDF0": {
+    "address": 585200,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8EDF0 lbl_1_bss_8EDF0",
+        "path": "include/rel/main_rel/rep_memcard.h"
+      },
+      {
+        "declaration": "struct fn_1_154E4C_lbl_1_bss_8EDF0 lbl_1_bss_8EDF0",
+        "path": "src/rel/main_rel/rep_memcard.c"
+      }
+    ],
+    "definition": "Obj_1_bss_8EDF0 lbl_1_bss_8EDF0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_154E4C",
+      "fn_1_154ED0",
+      "fn_1_154F1C",
+      "fn_1_154F74",
+      "fn_1_154F88",
+      "fn_1_154F98",
+      "fn_1_154FA8",
+      "fn_1_154FC0",
+      "fn_1_154FD8",
+      "fn_1_155120",
+      "fn_1_15530C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 304,
+    "sha256": "e2fc162ed9124452d23c85e81d60a0c228f414c3214a5de635737e25fbd29ac1",
+    "size": 304,
+    "source": "rel/main_rel/data/lbl_1_bss_8EDF0.c",
+    "symbol": "lbl_1_bss_8EDF0",
+    "unit_align": 16,
+    "unit_size": 304,
+    "unit_start": 585200
+  },
+  "main_rel:lbl_1_bss_8EF20": {
+    "address": 585504,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8EF20 lbl_1_bss_8EF20",
+        "path": "include/rel/main_rel/ranking.h"
+      }
+    ],
+    "definition": "Obj_1_bss_8EF20 lbl_1_bss_8EF20",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1554D0",
+      "fn_1_15555C",
+      "fn_1_1555B0",
+      "fn_1_1556B4",
+      "fn_1_155FB4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 72,
+    "sha256": "834a709ba2534ebe3ee1397fd4f7bd288b2acc1d20a08d6c862dcd99b6f04400",
+    "size": 72,
+    "source": "rel/main_rel/data/lbl_1_bss_8EF20.c",
+    "symbol": "lbl_1_bss_8EF20",
+    "unit_align": 32,
+    "unit_size": 72,
+    "unit_start": 585504
+  },
+  "main_rel:lbl_1_bss_8EF68": {
+    "address": 585576,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8EF68 lbl_1_bss_8EF68",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      },
+      {
+        "declaration": "fn_1_14B500_Entry lbl_1_bss_8EF68[]",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      }
+    ],
+    "definition": "Obj_1_bss_8EF68 lbl_1_bss_8EF68",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_144F40",
+      "fn_1_14B500"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 1144,
+    "sha256": "7f079a43b601f72ccb08113d0e16422786f18f27e3e2c01d88e1b24b3b239f12",
+    "size": 1144,
+    "source": "rel/main_rel/data/lbl_1_bss_8EF68.c",
+    "symbol": "lbl_1_bss_8EF68",
+    "unit_align": 8,
+    "unit_size": 1144,
+    "unit_start": 585576
+  },
+  "main_rel:lbl_1_bss_8F3E0": {
+    "address": 586720,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8F3E0",
+        "path": "include/rel/main_rel/ranking.h"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8F3E0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_155F7C",
+      "fn_1_155F9C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 64,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c",
+    "symbol": "lbl_1_bss_8F3E0",
+    "unit_align": 32,
+    "unit_size": 64,
+    "unit_start": 586720
+  },
+  "main_rel:lbl_1_bss_8F3E4": {
+    "address": 586724,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8F3E4 lbl_1_bss_8F3E4",
+        "path": "include/rel/main_rel/ranking.h"
+      }
+    ],
+    "definition": "Obj_1_bss_8F3E4 lbl_1_bss_8F3E4",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_155F8C",
+      "fn_1_155FA8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 64,
+    "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0",
+    "size": 24,
+    "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c",
+    "symbol": "lbl_1_bss_8F3E4",
+    "unit_align": 32,
+    "unit_size": 64,
+    "unit_start": 586720
+  },
+  "main_rel:lbl_1_bss_8F3FC": {
+    "address": 586748,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8F3FC[9]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F3FC[9]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F3FC[9]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F3FC[9]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F3FC[9]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F3FC[9]",
+        "path": "src/rel/main_rel/ranking.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8F3FC[9]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_156198"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 64,
+    "sha256": "6db65fd59fd356f6729140571b5bcd6bb3b83492a16e1bf0a3884442fc3c8a0e",
+    "size": 36,
+    "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c",
+    "symbol": "lbl_1_bss_8F3FC",
+    "unit_align": 32,
+    "unit_size": 64,
+    "unit_start": 586720
+  },
+  "main_rel:lbl_1_bss_8F420": {
+    "address": 586784,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8F420[8]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8F420[8]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8F420[8]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8F420[8]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8F420[8]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8F420[8]",
+        "path": "src/rel/main_rel/ranking.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8F420[8]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_15656C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "rel/main_rel/data/lbl_1_bss_8F420.c",
+    "symbol": "lbl_1_bss_8F420",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 586784
+  },
+  "main_rel:lbl_1_bss_8F428": {
+    "address": 586792,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8F428 lbl_1_bss_8F428",
+        "path": "include/rel/main_rel/ranking.h"
+      },
+      {
+        "declaration": "Entry lbl_1_bss_8F428",
+        "path": "src/rel/main_rel/ranking.c"
+      }
+    ],
+    "definition": "Obj_1_bss_8F428 lbl_1_bss_8F428",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_15659C",
+      "fn_1_15665C",
+      "fn_1_1566F8",
+      "fn_1_156730",
+      "fn_1_156754",
+      "fn_1_1567A8",
+      "fn_1_156884"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 320,
+    "sha256": "7b6436b0c98f62380866d9432c2af0ee08ce16a171bda6951aecd95ee1307d61",
+    "size": 320,
+    "source": "rel/main_rel/data/lbl_1_bss_8F428.c",
+    "symbol": "lbl_1_bss_8F428",
+    "unit_align": 8,
+    "unit_size": 320,
+    "unit_start": 586792
+  },
+  "main_rel:lbl_1_bss_8F568": {
+    "address": 587112,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8F568 lbl_1_bss_8F568",
+        "path": "include/rel/main_rel/ranking.h"
+      },
+      {
+        "declaration": "struct fn_1_1577D0_lbl_1_bss_8F568 lbl_1_bss_8F568",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "Obj_1_bss_8F568 lbl_1_bss_8F568",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_8F568",
+        "path": "src/rel/main_rel/ranking.c"
+      }
+    ],
+    "definition": "Obj_1_bss_8F568 lbl_1_bss_8F568",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1577D0",
+      "fn_1_157820",
+      "fn_1_1578C4",
+      "fn_1_157950",
+      "fn_1_157FC8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+    "size": 16,
+    "source": "rel/main_rel/data/lbl_1_bss_8F568.c",
+    "symbol": "lbl_1_bss_8F568",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 587112
+  },
+  "main_rel:lbl_1_bss_8F578": {
+    "address": 587128,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8F578",
+        "path": "include/rel/main_rel/ranking.h"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8F578",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_157920",
+      "fn_1_157940"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_8F578.c",
+    "symbol": "lbl_1_bss_8F578",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 587128
+  },
+  "main_rel:lbl_1_bss_8F57C": {
+    "address": 587132,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_8F57C[3]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F57C[3]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F57C[3]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F57C[3]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F57C[3]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_8F57C[3]",
+        "path": "src/rel/main_rel/ranking.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_8F57C[3]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_157930"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
+    "size": 12,
+    "source": "rel/main_rel/data/lbl_1_bss_8F578.c",
+    "symbol": "lbl_1_bss_8F57C",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 587128
+  },
+  "main_rel:lbl_1_bss_8F588": {
+    "address": 587144,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_8F588[0x2F0]",
+        "path": "include/rel/main_rel/ranking.h"
+      },
+      {
+        "declaration": "int lbl_1_bss_8F588[]",
+        "path": "src/rel/main_rel/ranking.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_8F588[0x2F0]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1594AC",
+      "fn_1_159588",
+      "fn_1_1596DC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 752,
+    "sha256": "cb92b2277c7e07535d3df05479d7f0fa8a2f5f920ba92ed4acbcbc58a7b14227",
+    "size": 752,
+    "source": "rel/main_rel/data/lbl_1_bss_8F588.c",
+    "symbol": "lbl_1_bss_8F588",
+    "unit_align": 8,
+    "unit_size": 752,
+    "unit_start": 587144
+  },
+  "main_rel:lbl_1_bss_8F878": {
+    "address": 587896,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8F878 lbl_1_bss_8F878",
+        "path": "include/rel/main_rel/ranking.h"
+      },
+      {
+        "declaration": "struct fn_1_1598C4_lbl_1_bss_8F878 lbl_1_bss_8F878",
+        "path": "src/rel/main_rel/ranking.c"
+      }
+    ],
+    "definition": "Obj_1_bss_8F878 lbl_1_bss_8F878",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_1598C4",
+      "fn_1_159AE0",
+      "fn_1_15AC00",
+      "fn_1_15AC10",
+      "fn_1_15B3E8",
+      "fn_1_15B3F8",
+      "fn_1_15B408",
+      "fn_1_15B418"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 88,
+    "sha256": "10eef285deef7a4b7c82b22aa53589b7833df29de3814649c772bbd5c832f365",
+    "size": 88,
+    "source": "rel/main_rel/data/lbl_1_bss_8F878.c",
+    "symbol": "lbl_1_bss_8F878",
+    "unit_align": 8,
+    "unit_size": 88,
+    "unit_start": 587896
+  },
+  "main_rel:lbl_1_bss_8F8D0": {
+    "address": 587984,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8F8D0 lbl_1_bss_8F8D0",
+        "path": "include/rel/main_rel/bg_win.h"
+      }
+    ],
+    "definition": "Obj_1_bss_8F8D0 lbl_1_bss_8F8D0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_15B970",
+      "fn_1_15BA78"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 16,
+    "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+    "size": 16,
+    "source": "rel/main_rel/data/lbl_1_bss_8F8D0.c",
+    "symbol": "lbl_1_bss_8F8D0",
+    "unit_align": 16,
+    "unit_size": 16,
+    "unit_start": 587984
+  },
+  "main_rel:lbl_1_bss_8F8E0": {
+    "address": 588000,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_8F8E0 lbl_1_bss_8F8E0",
+        "path": "include/rel/main_rel/bg_win.h"
+      }
+    ],
+    "definition": "Obj_1_bss_8F8E0 lbl_1_bss_8F8E0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_15BB34",
+      "fn_1_15BBC4",
+      "fn_1_15BEBC",
+      "fn_1_15C0AC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 160,
+    "sha256": "b393978842a0fa3d3e1470196f098f473f9678e72463cb65ec4ab5581856c2e4",
+    "size": 160,
+    "source": "rel/main_rel/data/lbl_1_bss_8F8E0.c",
+    "symbol": "lbl_1_bss_8F8E0",
+    "unit_align": 32,
+    "unit_size": 160,
+    "unit_start": 588000
+  },
+  "main_rel:lbl_1_bss_8F980": {
+    "address": 588160,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u16 lbl_1_bss_8F980[16]",
+        "path": "src/rel/main_rel/bg_win.c"
+      }
+    ],
+    "definition": "u16 lbl_1_bss_8F980[16]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_15BCDC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 32,
+    "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+    "size": 32,
+    "source": "rel/main_rel/data/lbl_1_bss_8F980.c",
+    "symbol": "lbl_1_bss_8F980",
+    "unit_align": 32,
+    "unit_size": 32,
+    "unit_start": 588160
+  },
+  "main_rel:lbl_1_bss_8F9A0": {
+    "address": 588192,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u16 lbl_1_bss_8F9A0[480]",
+        "path": "src/rel/main_rel/bg_win.c"
+      }
+    ],
+    "definition": "u16 lbl_1_bss_8F9A0[480]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_15BCDC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 960,
+    "sha256": "3dc463a76fc170607c07b104c3cb531362ce7d6e10c1a34e0c0f370aeae08ce8",
+    "size": 960,
+    "source": "rel/main_rel/data/lbl_1_bss_8F9A0.c",
+    "symbol": "lbl_1_bss_8F9A0",
+    "unit_align": 32,
+    "unit_size": 960,
+    "unit_start": 588192
   },
   "main_rel:lbl_1_bss_8FD60": {
     "address": 589152,
@@ -62884,14 +67677,18 @@
       {
         "declaration": "u32 lbl_1_bss_958[2]",
         "path": "src/rel/main_rel/load.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_958[2]",
+        "path": "src/rel/main_rel/motasglist.c"
       }
     ],
     "definition": "u32 lbl_1_bss_958[2]",
     "method": "declared-bss",
     "module": "main_rel",
     "references": [
-      "fn_1_4502C",
-      "fn_1_46BFC"
+      "fn_1_46BFC",
+      "fn_1_4502C"
     ],
     "relocations": [],
     "section": ".bss",
@@ -64769,6 +69566,10 @@
       {
         "declaration": "u16 lbl_1_bss_990[28]",
         "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_990[28]",
+        "path": "src/rel/main_rel/_prolog.c"
       }
     ],
     "definition": "u16 lbl_1_bss_990[28]",
@@ -64787,6 +69588,1848 @@
     "unit_align": 16,
     "unit_size": 56,
     "unit_start": 2448
+  },
+  "main_rel:lbl_1_bss_9C8": {
+    "address": 2504,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "CalPad lbl_1_bss_9C8[4]",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "CalPad lbl_1_bss_9C8[4]",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_347C_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "SelRow lbl_1_bss_9C8[4]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Entry9C8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct S9C8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "fn_10_7A10_Pad lbl_1_bss_9C8[4]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct S9C8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelSlot lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct ControllerState lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelSlot9C8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelRowA25C lbl_1_bss_9C8[4]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "S9C8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9C8[]",
+        "path": "src/rel/title/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_8_704_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/title/fn_8_704.c"
+      },
+      {
+        "declaration": "struct fn_8_954_lbl_1_bss_9C8 lbl_1_bss_9C8",
+        "path": "src/rel/title/title.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_9C8[48]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 48,
+    "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
+    "size": 48,
+    "source": "rel/main_rel/data/lbl_1_bss_9C8.c",
+    "symbol": "lbl_1_bss_9C8",
+    "unit_align": 8,
+    "unit_size": 48,
+    "unit_start": 2504
+  },
+  "main_rel:lbl_1_bss_9F8": {
+    "address": 2552,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "include/rel/main_rel/globals.h"
+      },
+      {
+        "declaration": "Controller lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "Pad_1_bss_9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_3_3F20_entry lbl_1_bss_9F8[1]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "Controller lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "PadState lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "Pad_1_bss_9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "Pad_1_bss_9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "Pad_1_bss_9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "CustomizeInput lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "Controller lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "fn_3_A12C_Pad lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "fn_3_B270_Pad lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "PadInput lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "PadInput17100 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "PadInput lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "struct InputState lbl_1_bss_9F8",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "PadButtons lbl_1_bss_9F8[4]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "struct InputState lbl_1_bss_9F8",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "struct InputState lbl_1_bss_9F8",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "struct fn_3_10B68_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "PadInput lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "struct fn_3_10B68_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "struct fn_3_10B68_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "struct fn_3_13508_Table lbl_1_bss_9F8",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "struct fn_3_13508_Table lbl_1_bss_9F8",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A264_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A488_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A648_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "InterviewInput lbl_1_bss_9F8[]",
+        "path": "src/rel/interview/interview.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "B870Bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/camera.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/driver.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/ghost.c"
+      },
+      {
+        "declaration": "struct fn_1_E174_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/live_camera.c"
+      },
+      {
+        "declaration": "LcInput lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/live_camera.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/memcard.c"
+      },
+      {
+        "declaration": "CardSlotInfo lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/memcard.c"
+      },
+      {
+        "declaration": "MemcardDvdState lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/memcard.c"
+      },
+      {
+        "declaration": "B03CC_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/memcard.c"
+      },
+      {
+        "declaration": "Unk9F8_1_B277C lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/memcard.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/phys.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/main_rel/ranking.c"
+      },
+      {
+        "declaration": "Obj9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "struct fn_1_14BCBC_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "fn_5_4C8_Pad lbl_1_bss_9F8[]",
+        "path": "src/rel/movie/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "CalPads lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_4834_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_8720_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_9C14_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_4_9C14_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct Input34 lbl_1_bss_9F8",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "struct fn_14_7EAC_lbl_1_bss_9F8 lbl_1_bss_9F8[4]",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_9F8",
+        "path": "src/rel/profile/fn_16_1A24.c"
+      },
+      {
+        "declaration": "struct fn_16_20F4_9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/profile/fn_16_20F4.c"
+      },
+      {
+        "declaration": "struct fn_16_24FC_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/profile/fn_16_24FC.c"
+      },
+      {
+        "declaration": "struct fn_16_E20_entry lbl_1_bss_9F8[]",
+        "path": "src/rel/profile/fn_16_E20.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_9F8[5]",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_9F8[5]",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_9F8[5]",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_9F8[5]",
+        "path": "src/rel/sel/name_entry.c"
+      },
+      {
+        "declaration": "SelInput lbl_1_bss_9F8[4]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct SelTile lbl_1_bss_9F8",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Entry9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct S9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct S9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct S9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct S9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelEntry lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct S9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Sel9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "struct PadState lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelSlot9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "SelInfoA25C lbl_1_bss_9F8[4]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "S9F8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "Fn72CPad lbl_1_bss_9F8[]",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "struct fn_7_1134_entry lbl_1_bss_9F8[]",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "struct StoryFlags_1BA8 lbl_1_bss_9F8",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "StoryInput lbl_1_bss_9F8[]",
+        "path": "src/rel/story/story_mode.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/title/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_8_704_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/title/fn_8_704.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_9F8[]",
+        "path": "src/rel/title/operation.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8[]",
+        "path": "src/rel/title/operation.c"
+      },
+      {
+        "declaration": "struct fn_8_954_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/title/title.c"
+      },
+      {
+        "declaration": "struct TitleInput lbl_1_bss_9F8",
+        "path": "src/rel/title/title.c"
+      },
+      {
+        "declaration": "struct fn_15_644_lbl_1_bss_9F8 lbl_1_bss_9F8",
+        "path": "src/rel/winning/winning.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_9F8",
+        "path": "src/rel/winning/winning.c"
+      }
+    ],
+    "definition": "Obj_1_bss_9F8 lbl_1_bss_9F8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_10AF0",
+      "fn_1_2FAA0",
+      "fn_1_7C7CC",
+      "fn_1_B4AC0",
+      "fn_1_C42F4",
+      "fn_1_E5CC4",
+      "fn_1_14BFD8",
+      "fn_1_12B664",
+      "fn_1_12BB18",
+      "fn_1_12F358",
+      "fn_1_15C0AC",
+      "fn_1_6BC0",
+      "fn_1_ABAC",
+      "fn_1_B870",
+      "fn_1_83858",
+      "fn_1_9012C",
+      "fn_1_913FC",
+      "fn_1_7D6B8",
+      "fn_1_7E1DC",
+      "fn_1_AAB98",
+      "fn_1_C24A4",
+      "fn_1_36B10",
+      "fn_1_391F0",
+      "fn_1_402D4",
+      "fn_1_40354",
+      "fn_1_EB8F4",
+      "fn_1_EF97C",
+      "fn_1_103B0",
+      "fn_1_11544",
+      "fn_1_1189C",
+      "fn_1_11C08",
+      "fn_1_1212C",
+      "fn_1_DA6C",
+      "fn_1_DE14",
+      "fn_1_E174",
+      "fn_1_EE44",
+      "fn_1_AB64C",
+      "fn_1_ABB4C",
+      "fn_1_AD264",
+      "fn_1_AECCC",
+      "fn_1_B03CC",
+      "fn_1_B171C",
+      "fn_1_B277C",
+      "fn_1_B3900",
+      "fn_1_B40C0",
+      "fn_1_B8EDC",
+      "fn_1_BA144",
+      "fn_1_E733C",
+      "fn_1_E7764",
+      "fn_1_E828C",
+      "fn_1_157820",
+      "fn_1_A5DEC",
+      "fn_1_141C10",
+      "fn_1_14A028",
+      "fn_1_14A328",
+      "fn_1_14A9D0",
+      "fn_1_14AED4",
+      "fn_1_14B1FC",
+      "fn_1_14B62C",
+      "fn_1_14B93C",
+      "fn_1_14BCBC",
+      "fn_1_14BED0",
+      "fn_1_14C864",
+      "fn_1_14C9A0",
+      "fn_1_14CAC8",
+      "fn_1_2C97C",
+      "fn_1_2EE3C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 80,
+    "sha256": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8",
+    "size": 80,
+    "source": "rel/main_rel/data/lbl_1_bss_9F8.c",
+    "symbol": "lbl_1_bss_9F8",
+    "unit_align": 8,
+    "unit_size": 80,
+    "unit_start": 2552
+  },
+  "main_rel:lbl_1_bss_A48": {
+    "address": 2632,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_A48 lbl_1_bss_A48",
+        "path": "include/rel/main_rel/camera.h"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_A48[64]",
+        "path": "src/rel/main_rel/archive.c"
+      },
+      {
+        "declaration": "B870Bss_A48 lbl_1_bss_A48",
+        "path": "src/rel/main_rel/camera.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_A48[]",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_16_20F4_A48 lbl_1_bss_A48[]",
+        "path": "src/rel/profile/fn_16_20F4.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_A48[]",
+        "path": "src/rel/sel/sel.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_A48[]",
+        "path": "src/rel/title/operation.c"
+      }
+    ],
+    "definition": "Obj_1_bss_A48 lbl_1_bss_A48",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_12BB18",
+      "fn_1_B870",
+      "fn_1_BD54"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 64,
+    "sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+    "size": 64,
+    "source": "rel/main_rel/data/lbl_1_bss_A48.c",
+    "symbol": "lbl_1_bss_A48",
+    "unit_align": 8,
+    "unit_size": 64,
+    "unit_start": 2632
+  },
+  "main_rel:lbl_1_bss_A8": {
+    "address": 168,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_A8",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_A8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_A8.c",
+    "symbol": "lbl_1_bss_A8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 168
+  },
+  "main_rel:lbl_1_bss_A88": {
+    "address": 2696,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_A88 lbl_1_bss_A88",
+        "path": "include/rel/main_rel/car.h"
+      },
+      {
+        "declaration": "struct fn_1_83858_lbl_1_bss_A88 lbl_1_bss_A88",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_A88[24]",
+        "path": "src/rel/main_rel/sound.c"
+      },
+      {
+        "declaration": "BssA88 lbl_1_bss_A88[4]",
+        "path": "src/rel/main_rel/sound.c"
+      }
+    ],
+    "definition": "Obj_1_bss_A88 lbl_1_bss_A88",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_83694",
+      "fn_1_83858",
+      "fn_1_A31E4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 24,
+    "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0",
+    "size": 24,
+    "source": "rel/main_rel/data/lbl_1_bss_A88.c",
+    "symbol": "lbl_1_bss_A88",
+    "unit_align": 8,
+    "unit_size": 24,
+    "unit_start": 2696
+  },
+  "main_rel:lbl_1_bss_AA0": {
+    "address": 2720,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_AA0[0x150]",
+        "path": "include/rel/main_rel/memcard.h"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_AA0[336]",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_AA0[336]",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_AA0[336]",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_AA0",
+        "path": "src/rel/option/_prolog.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_AA0[0x150]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_3B34",
+      "fn_1_C3378",
+      "fn_1_C34F0"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 336,
+    "sha256": "52a3e0804d93dc525ec3c67ef8ac5b01756ecf0513e36f3c19435e4c82cb5d29",
+    "size": 336,
+    "source": "rel/main_rel/data/lbl_1_bss_AA0.c",
+    "symbol": "lbl_1_bss_AA0",
+    "unit_align": 32,
+    "unit_size": 336,
+    "unit_start": 2720
+  },
+  "main_rel:lbl_1_bss_AC": {
+    "address": 172,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_AC",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_AC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_A8.c",
+    "symbol": "lbl_1_bss_AC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 168
+  },
+  "main_rel:lbl_1_bss_B0": {
+    "address": 176,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_B0",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_B0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_B0.c",
+    "symbol": "lbl_1_bss_B0",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 176
+  },
+  "main_rel:lbl_1_bss_B4": {
+    "address": 180,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_B4",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_B4",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_B0.c",
+    "symbol": "lbl_1_bss_B4",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 176
+  },
+  "main_rel:lbl_1_bss_B8": {
+    "address": 184,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_B8",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_B8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_B8.c",
+    "symbol": "lbl_1_bss_B8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 184
+  },
+  "main_rel:lbl_1_bss_BC": {
+    "address": 188,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_BC",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_BC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_B8.c",
+    "symbol": "lbl_1_bss_BC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 184
+  },
+  "main_rel:lbl_1_bss_BF0": {
+    "address": 3056,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Entry_BF0 lbl_1_bss_BF0[]",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "StickInput lbl_1_bss_BF0[]",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "struct fn_3_17100_lbl_1_bss_BF0 lbl_1_bss_BF0",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "f32 lbl_1_bss_BF0[32]",
+        "path": "src/rel/main_rel/camera.c"
+      },
+      {
+        "declaration": "f32 lbl_1_bss_BF0[32]",
+        "path": "src/rel/main_rel/cloth.c"
+      },
+      {
+        "declaration": "f32 lbl_1_bss_BF0[32]",
+        "path": "src/rel/main_rel/phys.c"
+      },
+      {
+        "declaration": "struct fn_16_20F4_BF0 lbl_1_bss_BF0[]",
+        "path": "src/rel/profile/fn_16_20F4.c"
+      }
+    ],
+    "definition": "f32 lbl_1_bss_BF0[32]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_C770",
+      "fn_1_102C08",
+      "fn_1_E828C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 128,
+    "sha256": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+    "size": 128,
+    "source": "rel/main_rel/data/lbl_1_bss_BF0.c",
+    "symbol": "lbl_1_bss_BF0",
+    "unit_align": 8,
+    "unit_size": 128,
+    "unit_start": 3056
+  },
+  "main_rel:lbl_1_bss_C0": {
+    "address": 192,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_C0",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_C0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_C0.c",
+    "symbol": "lbl_1_bss_C0",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 192
+  },
+  "main_rel:lbl_1_bss_C4": {
+    "address": 196,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_C4",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_C4",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_C0.c",
+    "symbol": "lbl_1_bss_C4",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 192
+  },
+  "main_rel:lbl_1_bss_C70": {
+    "address": 3184,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_C70 lbl_1_bss_C70",
+        "path": "include/rel/main_rel/car.h"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_C70",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "TitleMotion lbl_1_bss_C70",
+        "path": "src/rel/title/operation.c"
+      }
+    ],
+    "definition": "Obj_1_bss_C70 lbl_1_bss_C70",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_83694",
+      "fn_1_83858"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 80,
+    "sha256": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8",
+    "size": 80,
+    "source": "rel/main_rel/data/lbl_1_bss_C70.c",
+    "symbol": "lbl_1_bss_C70",
+    "unit_align": 8,
+    "unit_size": 80,
+    "unit_start": 3184
+  },
+  "main_rel:lbl_1_bss_C8": {
+    "address": 200,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_C8",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_C8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_C8.c",
+    "symbol": "lbl_1_bss_C8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 200
+  },
+  "main_rel:lbl_1_bss_CC": {
+    "address": 204,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_CC",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_CC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_C8.c",
+    "symbol": "lbl_1_bss_CC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 200
+  },
+  "main_rel:lbl_1_bss_CC0": {
+    "address": 3264,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_CC0[152]",
+        "path": "src/rel/main_rel/camera.c"
+      },
+      {
+        "declaration": "struct fn_1_83858_lbl_1_bss_CC0 lbl_1_bss_CC0",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_CC0[152]",
+        "path": "src/rel/main_rel/sound.c"
+      },
+      {
+        "declaration": "BssCC0 lbl_1_bss_CC0[152]",
+        "path": "src/rel/main_rel/sound.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_CC0",
+        "path": "src/rel/title/operation.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_CC0[152]",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_ABAC",
+      "fn_1_83858",
+      "fn_1_A31E4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 152,
+    "sha256": "85ada57e1f601e962d705f389285adb4e74f450bc00672240dfef7399d82457f",
+    "size": 152,
+    "source": "rel/main_rel/data/lbl_1_bss_CC0.c",
+    "symbol": "lbl_1_bss_CC0",
+    "unit_align": 32,
+    "unit_size": 152,
+    "unit_start": 3264
+  },
+  "main_rel:lbl_1_bss_D0": {
+    "address": 208,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_D0",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_D0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_D0.c",
+    "symbol": "lbl_1_bss_D0",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 208
+  },
+  "main_rel:lbl_1_bss_D4": {
+    "address": 212,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_D4",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_D4",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_D0.c",
+    "symbol": "lbl_1_bss_D4",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 208
+  },
+  "main_rel:lbl_1_bss_D58": {
+    "address": 3416,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "include/rel/main_rel/bg_cas.h"
+      },
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "include/rel/main_rel/camera.h"
+      },
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "include/rel/main_rel/car.h"
+      },
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "include/rel/main_rel/game.h"
+      },
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "include/rel/main_rel/sel_static_disp.h"
+      },
+      {
+        "declaration": "struct Struct_lbl_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/car_colchg/_prolog.c"
+      },
+      {
+        "declaration": "struct Struct_lbl_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/car_colchg/car_colchg.c"
+      },
+      {
+        "declaration": "struct Struct_lbl_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/car_colchg/car_colchg.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_D58",
+        "path": "src/rel/car_colchg/car_colchg.c"
+      },
+      {
+        "declaration": "struct fn_3_17100_lbl_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "fn_17_50F0_Buttons lbl_1_bss_D58",
+        "path": "src/rel/interview/interview.c"
+      },
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/main_rel/bg_cas.c"
+      },
+      {
+        "declaration": "B870Bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/main_rel/camera.c"
+      },
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/main_rel/camera.c"
+      },
+      {
+        "declaration": "u16 lbl_1_bss_D58[12]",
+        "path": "src/rel/main_rel/font.c"
+      },
+      {
+        "declaration": "struct fn_1_A6480_d58 lbl_1_bss_D58",
+        "path": "src/rel/main_rel/relocation.c"
+      },
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "Obj_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/main_rel/sel_static_disp.c"
+      },
+      {
+        "declaration": "D58 lbl_1_bss_D58",
+        "path": "src/rel/movie/_prolog.c"
+      },
+      {
+        "declaration": "CalD58 lbl_1_bss_D58",
+        "path": "src/rel/option/_prolog.c"
+      },
+      {
+        "declaration": "fn_14_1090_Pad lbl_1_bss_D58",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "fn_14_8A54_Pad lbl_1_bss_D58",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "fn_14_A3DC_Pad lbl_1_bss_D58",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "struct fn_14_B400_lbl_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/pilotpoint/pilotpoint.c"
+      },
+      {
+        "declaration": "struct fn_15_644_lbl_1_bss_D58 lbl_1_bss_D58",
+        "path": "src/rel/winning/winning.c"
+      },
+      {
+        "declaration": "fn_15_4124_Ctrl lbl_1_bss_D58",
+        "path": "src/rel/winning/winning.c"
+      }
+    ],
+    "definition": "Obj_1_bss_D58 lbl_1_bss_D58",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_B4AC0",
+      "fn_1_10161C",
+      "fn_1_1018BC",
+      "fn_1_B870",
+      "fn_1_C770",
+      "fn_1_CC5C",
+      "fn_1_8CC04",
+      "fn_1_9012C",
+      "fn_1_913FC",
+      "fn_1_4BD4C",
+      "fn_1_36B10",
+      "fn_1_3E6D8",
+      "fn_1_A6480",
+      "fn_1_14AED4",
+      "fn_1_14B1FC",
+      "fn_1_14B62C",
+      "fn_1_14B93C",
+      "fn_1_14BED0",
+      "fn_1_14C864"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 24,
+    "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0",
+    "size": 24,
+    "source": "rel/main_rel/data/lbl_1_bss_D58.c",
+    "symbol": "lbl_1_bss_D58",
+    "unit_align": 8,
+    "unit_size": 24,
+    "unit_start": 3416
+  },
+  "main_rel:lbl_1_bss_D70": {
+    "address": 3440,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "struct fn_1_83858_lbl_1_bss_D70 lbl_1_bss_D70",
+        "path": "src/rel/main_rel/car.c"
+      },
+      {
+        "declaration": "u8 lbl_1_data_2B60[4],lbl_1_bss_D70[8]",
+        "path": "src/rel/main_rel/game.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_D70[8]",
+    "method": "opaque-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_83858",
+      "fn_1_331EC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "rel/main_rel/data/lbl_1_bss_D70.c",
+    "symbol": "lbl_1_bss_D70",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 3440
+  },
+  "main_rel:lbl_1_bss_D78": {
+    "address": 3448,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_D78",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_D78",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_D78",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_D78",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_D78",
+        "path": "src/rel/main_rel/_prolog.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_D78",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_3C78",
+      "fn_1_3C98",
+      "fn_1_3CC4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 47,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_D78.c",
+    "symbol": "lbl_1_bss_D78",
+    "unit_align": 8,
+    "unit_size": 48,
+    "unit_start": 3448
+  },
+  "main_rel:lbl_1_bss_D7C": {
+    "address": 3452,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_D7C",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_D7C",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_D7C",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_D7C[40]",
+        "path": "src/rel/main_rel/_prolog.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_D7C[40]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main_rel",
+    "references": [
+      "fn_1_3BDC",
+      "fn_1_3C18"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 47,
+    "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
+    "size": 40,
+    "source": "rel/main_rel/data/lbl_1_bss_D78.c",
+    "symbol": "lbl_1_bss_D7C",
+    "unit_align": 8,
+    "unit_size": 48,
+    "unit_start": 3448
+  },
+  "main_rel:lbl_1_bss_D8": {
+    "address": 216,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_D8",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_D8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_D8.c",
+    "symbol": "lbl_1_bss_D8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 216
+  },
+  "main_rel:lbl_1_bss_DA4": {
+    "address": 3492,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_DA4",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_DA4",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_DA4",
+        "path": "src/rel/main_rel/_prolog.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_DA4",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_3C78"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 47,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_D78.c",
+    "symbol": "lbl_1_bss_DA4",
+    "unit_align": 8,
+    "unit_size": 48,
+    "unit_start": 3448
+  },
+  "main_rel:lbl_1_bss_DA5": {
+    "address": 3493,
+    "align": 1,
+    "declarations": [
+      {
+        "declaration": "struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5",
+        "path": "src/rel/main_rel/_prolog.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_DA5",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_3C98"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 47,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_D78.c",
+    "symbol": "lbl_1_bss_DA5",
+    "unit_align": 8,
+    "unit_size": 48,
+    "unit_start": 3448
+  },
+  "main_rel:lbl_1_bss_DA6": {
+    "address": 3494,
+    "align": 2,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_1_bss_DA6",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_DA6",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_DA6",
+        "path": "src/rel/main_rel/_prolog.c"
+      }
+    ],
+    "definition": "u8 lbl_1_bss_DA6",
+    "method": "opaque-bss-scalar",
+    "module": "main_rel",
+    "references": [
+      "fn_1_3CC4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 47,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/main_rel/data/lbl_1_bss_D78.c",
+    "symbol": "lbl_1_bss_DA6",
+    "unit_align": 8,
+    "unit_size": 48,
+    "unit_start": 3448
+  },
+  "main_rel:lbl_1_bss_DA8": {
+    "address": 3496,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_DA8",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_DA8",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_DA8",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "Manager *lbl_1_bss_DA8",
+        "path": "src/rel/main_rel/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_DA8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_4030",
+      "fn_1_4060",
+      "fn_1_407C",
+      "fn_1_41A8",
+      "fn_1_426C",
+      "fn_1_43A4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_DA8.c",
+    "symbol": "lbl_1_bss_DA8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 3496
+  },
+  "main_rel:lbl_1_bss_DAC": {
+    "address": 3500,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_DAC",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_DAC",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_DAC",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "struct fn_1_3CF0_Mgr *lbl_1_bss_DAC",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "Manager *lbl_1_bss_DAC",
+        "path": "src/rel/main_rel/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_1_bss_DAC",
+        "path": "src/rel/main_rel/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_DAC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [
+      "fn_1_3CF0",
+      "fn_1_3F8C",
+      "fn_1_4010",
+      "fn_1_407C",
+      "fn_1_41A8",
+      "fn_1_426C",
+      "fn_1_4310",
+      "fn_1_4324",
+      "fn_1_4338",
+      "fn_1_434C",
+      "fn_1_435C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_DA8.c",
+    "symbol": "lbl_1_bss_DAC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 3496
   },
   "main_rel:lbl_1_bss_DB0": {
     "address": 3504,
@@ -64866,6 +71509,30 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 3512
+  },
+  "main_rel:lbl_1_bss_DC": {
+    "address": 220,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_DC",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_DC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_D8.c",
+    "symbol": "lbl_1_bss_DC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 216
   },
   "main_rel:lbl_1_bss_DC0": {
     "address": 3520,
@@ -64962,6 +71629,150 @@
     "unit_align": 32,
     "unit_size": 408,
     "unit_start": 3520
+  },
+  "main_rel:lbl_1_bss_E0": {
+    "address": 224,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_E0",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_E0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_E0.c",
+    "symbol": "lbl_1_bss_E0",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 224
+  },
+  "main_rel:lbl_1_bss_E4": {
+    "address": 228,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_E4",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_E4",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_E0.c",
+    "symbol": "lbl_1_bss_E4",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 224
+  },
+  "main_rel:lbl_1_bss_E8": {
+    "address": 232,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_E8",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_E8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_E8.c",
+    "symbol": "lbl_1_bss_E8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 232
+  },
+  "main_rel:lbl_1_bss_EC": {
+    "address": 236,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_EC",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_EC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_E8.c",
+    "symbol": "lbl_1_bss_EC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 232
+  },
+  "main_rel:lbl_1_bss_F0": {
+    "address": 240,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_F0",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_F0",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_F0.c",
+    "symbol": "lbl_1_bss_F0",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 240
+  },
+  "main_rel:lbl_1_bss_F4": {
+    "address": 244,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_F4",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_F4",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_F0.c",
+    "symbol": "lbl_1_bss_F4",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 240
   },
   "main_rel:lbl_1_bss_F58": {
     "address": 3928,
@@ -65259,6 +72070,54 @@
     "unit_align": 8,
     "unit_size": 144,
     "unit_start": 3960
+  },
+  "main_rel:lbl_1_bss_F8": {
+    "address": 248,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_F8",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_F8",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_F8.c",
+    "symbol": "lbl_1_bss_F8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 248
+  },
+  "main_rel:lbl_1_bss_FC": {
+    "address": 252,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_1_bss_FC",
+        "path": "src/rel/movie_module/_prolog.c"
+      }
+    ],
+    "definition": "u32 lbl_1_bss_FC",
+    "method": "declared-bss",
+    "module": "main_rel",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/main_rel/data/lbl_1_bss_F8.c",
+    "symbol": "lbl_1_bss_FC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 248
   },
   "main_rel:lbl_1_data_0": {
     "address": 0,
