@@ -167,7 +167,8 @@ def is_text_pool(data):
             decoded = value.decode('shift_jis')
         except UnicodeDecodeError:
             return False
-        if any(not c.isprintable() and c not in '\r\n\t' for c in decoded):
+        # U+3000 (ideographic space) is ordinary Japanese text but not str.isprintable().
+        if any(not c.isprintable() and c not in '\r\n\t\u3000' for c in decoded):
             return False
     return True
 
@@ -912,12 +913,14 @@ def data_groups(p, ready, preserve_units=False):
                     join = any(base <= end <= r['address'] <= base + len(data)
                                and not any(data[end-base:r['address']-base])
                                for base, data in regions(p, r['module'], r['section']))
-                if any(s.section == r['section'] and s.start < r['address'] and end < s.end
-                       and s.unit != p.unit_of(p.find_symbol(r['symbol'], r['module']))
-                       for s in p.splits(r['module'])):
-                    join = False
                 old = p.unit_of(p.find_symbol(prev['symbol'], prev['module']))
                 new = p.unit_of(p.find_symbol(r['symbol'], r['module']))
+                # The padding between them may belong to either member's own unit,
+                # never to a third split.
+                if any(s.section == r['section'] and s.start < r['address'] and end < s.end
+                       and s.unit not in (old, new)
+                       for s in p.splits(r['module'])):
+                    join = False
                 if preserve_units and old != new and (old or new):
                     join = False
         if join:

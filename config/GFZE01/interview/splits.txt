@@ -255,21 +255,6 @@ rel/interview/data/lbl_17_bss_170.c:
 rel/interview/data/lbl_17_bss_198.c:
 	.bss        start:0x00000198 end:0x00000370 align:8
 
-rel/interview/data/lbl_17_data_0.c:
-	.data       start:0x00000000 end:0x000001A4 align:8
-
-rel/interview/data/lbl_17_data_5EE90.c:
-	.data       start:0x0005EE90 end:0x000625A4 align:8
-
-rel/interview/data/lbl_17_data_62638.c:
-	.data       start:0x00062638 end:0x0006267C align:8
-
-rel/interview/data/lbl_17_data_626B0.c:
-	.data       start:0x000626B0 end:0x000626D4 align:8
-
-rel/interview/data/lbl_17_data_62700.c:
-	.data       start:0x00062700 end:0x0006282C align:8
-
 rel/interview/data/lbl_17_data_628B8.c:
 	.data       start:0x000628B8 end:0x000628C8 align:8
 
@@ -314,3 +299,6 @@ rel/interview/data/lbl_17_rodata_E0.c:
 
 rel/interview/data/lbl_17_rodata_1B8.c:
 	.rodata     start:0x000001B8 end:0x00000324 align:8
+
+rel/interview/data/lbl_17_data_0.c:
+	.data       start:0x00000000 end:0x000628B8 align:8

@@ -80,3 +80,17 @@ checks all 738 cells rather than inferring padding from a sample.
 `fn_16_1038` uses a `0x3000` pilot stride and `0x800` language stride for
 `lbl_16_bss_B0B8`, the corresponding 503,808-byte working buffer. The recovered
 headers expose both layouts; recipes retain the evidence used to select them.
+
+## Interview camera tracks (2026-11-04)
+
+`include/rel/interview/camera_track.h` declares 656 tracks (`InterviewCameraMove[]`,
+403 KB with the adjacent text) recovered from `fn_17_7A74` and `fn_17_7728`:
+`lbl_17_data_63190` holds 41 sets of 16 track pointers. Each 0x54-byte move holds a
+frame count, a blend rate, two 0x24-byte camera keys (flags, eye, target, fov, roll) and a mode
+(0 linear, 3 ease, 2 blend). All 4,623 retail moves have zero padding, zero flags, finite floats
+and one of those three modes. A recovered header outside `data/` is how unreferenced
+objects get a type: `declarations()` picks up its externs and `declared_record_initializer`
+emits the typed initializer. Two fixes came with it. `is_text_pool` accepts U+3000
+(the ideographic space, which `str.isprintable()` rejects). Grouping now lets padding owned by
+either neighbour's unit join them. Two unnamed per-language string-pointer tables
+(`lbl_17_data_6282C`, `lbl_17_data_6288C`) were named in `symbols.txt`.
