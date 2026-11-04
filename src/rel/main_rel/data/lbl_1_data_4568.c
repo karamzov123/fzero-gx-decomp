@@ -7,6 +7,12 @@
 extern Obj_1_data_4754 lbl_1_data_4754;
 extern Obj_1_data_47B4 lbl_1_data_47B4;
 extern LiveCameraPreset lbl_1_data_4AA0[55];
+extern u32 lbl_1_data_5180;
+extern u32 lbl_1_data_5184;
+extern char lbl_1_data_5188[6];
+extern u8 lbl_1_data_5190;
+extern u8 lbl_1_data_5194[0x34];
+extern u8 lbl_1_data_51C8[0x28];
 
 
 extern char lbl_1_data_4508[];
@@ -720,5 +726,45 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     0.0f,
     {0x00U, 0x4FU, 0x00U, 0x00U}
 }
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 lbl_1_data_5180 __attribute__((aligned(8))) = 0x00010000U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 lbl_1_data_5184 __attribute__((aligned(4))) = 0x00008000U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_5188[6] __attribute__((aligned(8))) = "som.c";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_5190 __attribute__((aligned(8))) = 0xFFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_5194[0x34] __attribute__((aligned(4))) = {
+    0x73U, 0x74U, 0x61U, 0x67U, 0x65U, 0x2FU, 0x43U, 0x4FU, 0x4CU, 0x49U, 0x5FU, 0x43U, 0x4FU, 0x55U, 0x52U, 0x53U, 0x45U, 0x25U, 0x30U, 0x32U, 0x64U, 0x2EU, 0x6CU, 0x7AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x73U, 0x74U, 0x61U, 0x67U, 0x65U, 0x2FU, 0x43U, 0x4FU, 0x4CU, 0x49U, 0x5FU, 0x43U, 0x4FU, 0x55U, 0x52U, 0x53U, 0x45U, 0x30U, 0x31U, 0x2EU, 0x6CU, 0x7AU, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_51C8[0x28] __attribute__((aligned(8))) = {
+    0x73U, 0x74U, 0x63U, 0x6FU, 0x6CU, 0x69U, 0x2EU, 0x63U, 0x00U, 0x00U, 0x00U, 0x00U, 0x63U, 0x61U, 0x6EU, 0x6EU, 0x6FU, 0x74U, 0x20U, 0x52U, 0x65U, 0x61U, 0x64U, 0x00U, 0x63U, 0x61U, 0x6EU, 0x6EU, 0x6FU, 0x74U, 0x20U, 0x43U, 0x6CU, 0x6FU, 0x73U, 0x65U, 0x00U, 0x00U, 0x00U, 0x00U
 };
 #pragma explicit_zero_data reset

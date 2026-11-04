@@ -1,0 +1,79 @@
+#ifndef DATA_LBL_1_DATA_1D514_H
+#define DATA_LBL_1_DATA_1D514_H
+
+#include "types.h"
+
+typedef struct {
+    void (*at_0)(void);
+    void (*at_4)(void);
+    void (*at_8)(void);
+    void (*at_C)(void);
+    void (*at_10)(void);
+    void (*at_14)(void);
+    void (*at_18)(void);
+    void (*at_1C)(void);
+    void (*at_20)(void);
+    void (*at_24)(void);
+    void (*at_28)(void);
+    void (*at_2C)(void);
+    void (*at_30)(void);
+    void (*at_34)(void);
+    void (*at_38)(void);
+    void (*at_3C)(void);
+    void (*at_40)(void);
+    void (*at_44)(void);
+    void (*at_48)(void);
+    void (*at_4C)(void);
+    void (*at_50)(void);
+    void (*at_54)(void);
+    void (*at_58)(void);
+    void (*at_5C)(void);
+    void (*at_60)(void);
+    void (*at_64)(void);
+    void (*at_68)(void);
+    void (*at_6C)(void);
+    void (*at_70)(void);
+    void (*at_74)(void);
+    void (*at_78)(void);
+    void (*at_7C)(void);
+    void (*at_80)(void);
+    void (*at_84)(void);
+    void (*at_88)(void);
+    void (*at_8C)(void);
+    void (*at_90)(void);
+    void (*at_94)(void);
+    void (*at_98)(void);
+    void (*at_9C)(void);
+    void (*at_A0)(void);
+    void (*at_A4)(void);
+    void (*at_A8)(void);
+    void (*at_AC)(void);
+    void (*at_B0)(void);
+    void (*at_B4)(void);
+    void (*at_B8)(void);
+    void (*at_BC)(void);
+    void (*at_C0)(void);
+    void (*at_C4)(void);
+    void (*at_C8)(void);
+    void (*at_CC)(void);
+    void (*at_D0)(void);
+    void (*at_D4)(void);
+    void (*at_D8)(void);
+    void (*at_DC)(void);
+    void (*at_E0)(void);
+    void (*at_E4)(void);
+    void (*at_E8)(void);
+    void (*at_EC)(void);
+    void (*at_F0)(void);
+    void (*at_F4)(void);
+    void (*at_F8)(void);
+    void (*at_FC)(void);
+    void (*at_100)(void);
+    void (*at_104)(void);
+    void (*at_108)(void);
+    void (*at_10C)(void);
+    u32 at_110;
+} Data_lbl_1_data_1D514;
+extern Data_lbl_1_data_1D514 lbl_1_data_1D514;
+
+#endif

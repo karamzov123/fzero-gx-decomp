@@ -692,8 +692,12 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                 # member: every chunk is still compiled and validated on its own.
                 # Cut only where the previous member's word-rounded end meets the cut:
                 # a padding gap between chunks would belong to no split.
+                # Never cut inside an existing unit's range either: its split is one piece.
+                def _owner(rec):
+                    return p.unit_of(p.find_symbol(rec['symbol'], rec['module']))
                 cuts = [i for i, (r, _) in enumerate(group) if i and r['address'] % 8 == 0
-                        and ((group[i - 1][0]['address'] + group[i - 1][0]['size'] + 3) & -4) == r['address']]
+                        and ((group[i - 1][0]['address'] + group[i - 1][0]['size'] + 3) & -4) == r['address']
+                        and (_owner(r) is None or _owner(r) != _owner(group[i - 1][0]))]
                 if not cuts and not regenerate and any(r['method'] == 'declared-bss' for r, _ in group):
                     # A header type that does not reproduce the retail extent: keep the
                     # storage as an opaque byte array of the retail size instead.
@@ -743,7 +747,10 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                         partial.add(owner)
                 if not partial:
                     break
-                drop = [r for r in records if p.unit_of(p.find_symbol(r['symbol'], r['module'])) in partial]
+                # Withdraw whole chunks: a chunk's source is generated from its first member.
+                starts = {(r['module'], r.get('unit_start')) for r in records
+                          if p.unit_of(p.find_symbol(r['symbol'], r['module'])) in partial}
+                drop = [r for r in records if (r['module'], r.get('unit_start')) in starts]
                 records = [r for r in records if r not in drop]
                 skipped.extend(dict(symbol=r['symbol'], reason='existing data unit only partly importable')
                                for r in drop)
@@ -808,8 +815,11 @@ def isolate_guard(p, records, skipped):
                 while j < len(syms) and not owned[j]:
                     j += 1
                 # syms[i:j] is a maximal unowned run
-                if i and j < len(syms):
-                    victim = new.get(syms[j].name) or new.get(syms[i - 1].name)
+                # Measured: dtk can only carry an unowned run as an auto object when it
+                # starts on the section alignment. Withdrawing the chunk on the left moves
+                # the run's start back to that chunk's aligned start, which ends the cascade.
+                if i and j < len(syms) and syms[i].addr % 8:
+                    victim = new.get(syms[i - 1].name) or new.get(syms[j].name)
                     if victim is not None:
                         start = victim['unit_start']
                         drop = [r for r in records if r['module'] == module and r.get('unit_start') == start]
