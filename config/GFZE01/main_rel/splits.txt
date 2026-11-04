@@ -7635,9 +7635,6 @@ rel/main_rel/motasglist/fn_1_4247C.c:
 rel/main_rel/bg_aur/fn_1_152CB4.c:
 	.text       start:0x00152CB4 end:0x00152FAC align:4
 
-rel/main_rel/stcoli/fn_1_216F0.c:
-	.text       start:0x000216F0 end:0x0002192C align:4
-
 rel/main_rel/accessory/fn_1_112F40.c:
 	.text       start:0x00112F40 end:0x001132E4 align:4
 
@@ -9446,3 +9443,75 @@ rel/main_rel/sel_static_disp/fn_1_141C10.c:
 
 rel/main_rel/car/fn_1_81164.c:
 	.text       start:0x00081164 end:0x00081408 align:4
+
+rel/main_rel/car/fn_1_8F62C.c:
+	.text       start:0x0008F62C end:0x0008FE74 align:4
+
+rel/main_rel/car/fn_1_8E7D0.c:
+	.text       start:0x0008E7D0 end:0x0008F198 align:4
+
+rel/main_rel/phys/fn_1_EA314.c:
+	.text       start:0x000EA314 end:0x000EB074 align:4
+
+rel/main_rel/phys/fn_1_E7F88.c:
+	.text       start:0x000E7F88 end:0x000E828C align:4
+
+rel/main_rel/phys/fn_1_E7764.c:
+	.text       start:0x000E7764 end:0x000E7E00 align:4
+
+rel/main_rel/car/fn_1_913FC.c:
+	.text       start:0x000913FC end:0x000924CC align:4
+
+rel/main_rel/car/fn_1_80294.c:
+	.text       start:0x00080294 end:0x00080C18 align:4
+
+rel/main_rel/phys/fn_1_E828C.c:
+	.text       start:0x000E828C end:0x000E86FC align:4
+
+rel/main_rel/stcoli/fn_1_25A14.c:
+	.text       start:0x00025A14 end:0x000266A8 align:4
+
+rel/main_rel/car/fn_1_9012C.c:
+	.text       start:0x0009012C end:0x000913FC align:4
+
+rel/main_rel/stcoli/fn_1_1D0CC.c:
+	.text       start:0x0001D0CC end:0x0001DCD8 align:4
+
+rel/main_rel/stcoli/fn_1_1DCD8.c:
+	.text       start:0x0001DCD8 end:0x0001EBD4 align:4
+
+rel/main_rel/stcoli/fn_1_29A0C.c:
+	.text       start:0x00029A0C end:0x0002A214 align:4
+
+rel/main_rel/stcoli/fn_1_19AE0.c:
+	.text       start:0x00019AE0 end:0x0001ACC0 align:4
+
+rel/main_rel/stcoli/fn_1_1B2A4.c:
+	.text       start:0x0001B2A4 end:0x0001C0D0 align:4
+
+rel/main_rel/stcoli/fn_1_1C0D0.c:
+	.text       start:0x0001C0D0 end:0x0001D0CC align:4
+
+rel/main_rel/phys/fn_1_E2DCC.c:
+	.text       start:0x000E2DCC end:0x000E3324 align:4
+
+rel/main_rel/stcoli/fn_1_216F0.c:
+	.text       start:0x000216F0 end:0x0002192C align:4
+
+rel/main_rel/stcoli/fn_1_2F294.c:
+	.text       start:0x0002F294 end:0x0002FAA0 align:4
+
+rel/main_rel/stcoli/fn_1_210A8.c:
+	.text       start:0x000210A8 end:0x000214C4 align:4
+
+rel/main_rel/stcoli/fn_1_1ACC0.c:
+	.text       start:0x0001ACC0 end:0x0001B010 align:4
+
+rel/main_rel/car/fn_1_92554.c:
+	.text       start:0x00092554 end:0x000933D8 align:4
+
+rel/main_rel/car/fn_1_8B9B8.c:
+	.text       start:0x0008B9B8 end:0x0008C3EC align:4
+
+rel/main_rel/car/fn_1_892FC.c:
+	.text       start:0x000892FC end:0x0008A168 align:4
