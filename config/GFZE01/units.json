@@ -88386,10 +88386,29 @@
     "symbols": [
       "fn_4_4DF8"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
+    "tu": "rel/option/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_4_rodata_0",
+      "@54": "lbl_4_rodata_0+0x48",
+      "@9": "lbl_4_rodata_0+0x8",
+      "@22": "lbl_4_rodata_0+0x18",
+      "@36": "lbl_4_rodata_0+0x30",
+      "@31": "lbl_4_rodata_0+0x28",
+      "@45": "lbl_4_rodata_0+0x3C",
+      "@623": "jumptable_4_data_2AA4",
+      "@559": "lbl_4_data_29BC",
+      "@130": "lbl_4_rodata_100",
+      "@625": "jumptable_4_data_2A80",
+      "@626": "jumptable_4_data_2A28",
+      "@627": "jumptable_4_data_29D0",
+      "...bss.0": "lbl_4_bss_0",
+      "fzgx_obj_lbl_4_bss_0": "lbl_4_bss_0",
+      "...data.0": "lbl_4_data_0",
+      "fzgx_obj_lbl_4_data_0": "lbl_4_data_0"
+    }
   },
   {
     "module": "option",
