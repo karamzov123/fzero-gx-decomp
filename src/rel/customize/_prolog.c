@@ -147,6 +147,254 @@ void fn_3_0(u32 arg0, s32 arg1) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_3_0 */
 
+/* fzgx:begin _prolog */
+#include "rel/customize/globals.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} PrologVec;
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    u8 pad_8[4];
+} PrologCourse;
+
+typedef struct {
+    u8 pad_0[0x324];
+    s32 unk_324;
+    u8 pad_328[0x440 - 0x328];
+} PrologRec;
+
+typedef struct {
+    u32 flags;
+    u16 unk_4;
+    u16 unk_6;
+    u16 unk_8;
+    u16 unk_A;
+    u8 pad_C[0x24];
+} PrologF0;
+
+typedef struct {
+    u8 pad[0x64];
+} PrologSlot;
+
+typedef struct {
+    u8 pad_0[0x48F8];
+    u32 unk_48F8;
+} PrologRecords;
+
+typedef struct {
+    s32 unk_0;
+    u8 unk_4;
+} PrologFlags970;
+
+extern void fn_3_844(void);
+extern void fn_3_8F8(void);
+extern void fn_3_BA0(void);
+extern void fn_3_1308C(u32, u32, u32);
+extern void fn_3_11F60(u32, u32);
+extern void fn_3_5CE4(PrologVec *, PrologVec *);
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_1_A0680(void);
+extern u32 fn_1_45D0(u32, u32, const char *, int);
+extern void fn_1_3CF0(u32, u32);
+extern u32 fn_1_435C(u32);
+extern s32 fn_1_3F8C(const char *, void (*)(void), u32, u32);
+extern void fn_1_5124(u32, u32);
+extern void fn_80074CF4(f32, f32, f32);
+extern void OSReport(const char *, ...);
+extern void *memset(void *, int, u32);
+extern u16 fn_1_A5DB0(void);
+extern u16 fn_1_A5D88(void);
+extern void fn_1_8CED0(PrologSlot *, u16, u16);
+extern void fn_1_8D0A4(PrologSlot *);
+extern void fn_1_47F74(s32);
+extern void fn_1_411A4(u32);
+extern u32 fn_1_7BA08(u16, u16, u16);
+extern void fn_1_7BA48(u32);
+extern s32 fn_1_465D0(const char *, s32);
+extern void fn_1_F8D5C(s16, PrologCourse *);
+extern int sprintf(char *, const char *, ...);
+extern void fn_1_545B8(void);
+extern void fn_1_7BAF8(void);
+
+extern u32 lbl_801A6410[];
+extern u32 lbl_801A66C8[];
+extern u32 lbl_801A66B4;
+extern PrologFlags970 lbl_1_bss_970;
+extern s16 lbl_1_bss_96A;
+extern void (*lbl_1_bss_7167C)(void);
+extern void (*lbl_1_bss_71680)(void);
+extern void (*lbl_1_bss_71684)(void);
+extern PrologRecords lbl_1_bss_7F0C0;
+
+u8 fzgx_obj_lbl_3_bss_0[8];
+u8 fzgx_pool_prolog_bss_8[8];
+u32 lbl_3_bss_C__fzgx_offset_4;
+u8 fzgx_pool_prolog_bss_14[0xF0 - 0x14];
+PrologF0 fzgx_obj_lbl_3_bss_F0;
+u8 fzgx_pool_prolog_bss_120[0x20];
+u8 fzgx_pool_prolog_bss_140[0x20700];
+u32 lbl_3_bss_140__fzgx_offset_20700;
+u16 fzgx_obj_lbl_3_bss_20844;
+u32 fzgx_obj_lbl_3_bss_20848;
+u32 fzgx_obj_lbl_3_bss_2084C;
+u32 fzgx_obj_lbl_3_bss_20850;
+u32 lbl_3_bss_20854__fzgx_offset_0;
+u8 fzgx_pool_prolog_bss_20858[8];
+PrologRec fzgx_obj_lbl_3_bss_20860[4];
+u8 fzgx_obj_lbl_3_bss_21960[0x2880];
+PrologSlot fzgx_obj_lbl_3_bss_241E0[4];
+u32 lbl_3_bss_24370__fzgx_offset_0;
+
+/* the TU's .data objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the rest */
+static u8 fzgx_obj_lbl_3_data_0[0xA8] = {1};
+static u8 fzgx_pool_gap_A8[0x1164 - 0xA8] = {1};
+static char lbl_3_data_1134__fzgx_offset_30[0x1C] = "vehicle/vehicle_sel.arc.lz";
+static char lbl_3_data_1134__fzgx_offset_4C[0x20] = "vehicle_parts/parts_all.arc.lz";
+static char lbl_3_data_1134__fzgx_offset_6C[0x14] = "%s/selst%02d.tpl.lz";
+static char lbl_3_data_1134__fzgx_offset_80[0x8] = "stage";
+static char lbl_3_data_1134__fzgx_offset_88[0x14] = "%s/selst%02d.gma.lz";
+static u8 fzgx_pool_gap_11D0[0xC] = {0x00, 0x01, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+static char lbl_3_data_11DC__fzgx_offset_0[0xC] = "customize.c";
+static char lbl_3_data_11DC__fzgx_offset_C[0xC] = "DrawOrdSys";
+static char lbl_3_data_11DC__fzgx_offset_18[0x18] = "Start Customize : %d\n";
+static char lbl_3_data_11DC__fzgx_offset_30[0xC] = "LightMain";
+const f32 fzgx_pool_prolog_rodata_0[10] = { 0.0f, 320.0f, 240.0f, 0.001f, 0.01f, 0.5f, 480.0f, 2.0f, 176.0f, 0.0f };
+const PrologVec fzgx_pool_init_pos = { 0.0f, 10.0f, 10.0f };
+const PrologVec fzgx_pool_init_rot = { 0.0f, 0.0f, 0.0f };
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") void fzgx_data_layout__prolog(void) {
+    volatile char v;  /* fzgx-allow: S2 layout primer sink: MWCC emits .data objects in first-access order */
+    v = fzgx_obj_lbl_3_data_0[0];
+    v = fzgx_pool_gap_A8[0];
+    v = lbl_3_data_1134__fzgx_offset_30[0];
+    v = lbl_3_data_1134__fzgx_offset_4C[0];
+    v = lbl_3_data_1134__fzgx_offset_6C[0];
+    v = lbl_3_data_1134__fzgx_offset_80[0];
+    v = lbl_3_data_1134__fzgx_offset_88[0];
+    v = fzgx_pool_gap_11D0[0];
+    v = lbl_3_data_11DC__fzgx_offset_0[0];
+    v = lbl_3_data_11DC__fzgx_offset_C[0];
+    v = lbl_3_data_11DC__fzgx_offset_18[0];
+    v = lbl_3_data_11DC__fzgx_offset_30[0];
+}
+__declspec(section ".fzgxpool") void fzgx_rodata_layout__prolog(void) {
+    volatile f32 v;  /* fzgx-allow: S2 layout primer sink: MWCC emits .rodata objects in first-access order */
+    v = fzgx_pool_prolog_rodata_0[0];
+    v = fzgx_pool_init_pos.x;
+    v = fzgx_pool_init_rot.x;
+    v = 0.25f;
+}
+__declspec(section ".fzgxpool") void fzgx_bss_layout__prolog(void) {
+    fn_80008BEC(fzgx_obj_lbl_3_bss_0, 0, sizeof(fzgx_obj_lbl_3_bss_0));
+    fn_80008BEC(fzgx_pool_prolog_bss_8, 0, sizeof(fzgx_pool_prolog_bss_8));
+    fn_80008BEC(&lbl_3_bss_C__fzgx_offset_4, 0, sizeof(lbl_3_bss_C__fzgx_offset_4));
+    fn_80008BEC(fzgx_pool_prolog_bss_14, 0, sizeof(fzgx_pool_prolog_bss_14));
+    fn_80008BEC(&fzgx_obj_lbl_3_bss_F0, 0, sizeof(fzgx_obj_lbl_3_bss_F0));
+    fn_80008BEC(fzgx_pool_prolog_bss_120, 0, sizeof(fzgx_pool_prolog_bss_120));
+    fn_80008BEC(fzgx_pool_prolog_bss_140, 0, sizeof(fzgx_pool_prolog_bss_140));
+    fn_80008BEC(&lbl_3_bss_140__fzgx_offset_20700, 0, sizeof(lbl_3_bss_140__fzgx_offset_20700));
+    fn_80008BEC(&fzgx_obj_lbl_3_bss_20844, 0, sizeof(fzgx_obj_lbl_3_bss_20844));
+    fn_80008BEC(&fzgx_obj_lbl_3_bss_20848, 0, sizeof(fzgx_obj_lbl_3_bss_20848));
+    fn_80008BEC(&fzgx_obj_lbl_3_bss_2084C, 0, sizeof(fzgx_obj_lbl_3_bss_2084C));
+    fn_80008BEC(&fzgx_obj_lbl_3_bss_20850, 0, sizeof(fzgx_obj_lbl_3_bss_20850));
+    fn_80008BEC(&lbl_3_bss_20854__fzgx_offset_0, 0, sizeof(lbl_3_bss_20854__fzgx_offset_0));
+    fn_80008BEC(fzgx_pool_prolog_bss_20858, 0, sizeof(fzgx_pool_prolog_bss_20858));
+    fn_80008BEC(fzgx_obj_lbl_3_bss_20860, 0, sizeof(fzgx_obj_lbl_3_bss_20860));
+    fn_80008BEC(fzgx_obj_lbl_3_bss_21960, 0, sizeof(fzgx_obj_lbl_3_bss_21960));
+    fn_80008BEC(fzgx_obj_lbl_3_bss_241E0, 0, sizeof(fzgx_obj_lbl_3_bss_241E0));
+    fn_80008BEC(&lbl_3_bss_24370__fzgx_offset_0, 0, sizeof(lbl_3_bss_24370__fzgx_offset_0));
+}
+
+#pragma section RX ".text"
+
+void _prolog(void) {
+    char buf2[0x20];
+    char buf1[0x20];
+    PrologVec pos;
+    PrologVec rot;
+    s32 id;
+    s16 k;
+    u16 i;
+    s16 j;
+    u32 count;
+
+    fn_80008BEC(&fzgx_obj_lbl_3_bss_20844, 0, 2);
+    fzgx_obj_lbl_3_bss_20848 = 1;
+    fn_1_A0680();
+    fzgx_obj_lbl_3_bss_2084C = fn_1_45D0(lbl_801A6410[0], 0x9BC, lbl_3_data_11DC__fzgx_offset_0, 0x3BA);
+    fzgx_obj_lbl_3_bss_20850 = fn_1_45D0(lbl_801A6410[0], 0x9BC, lbl_3_data_11DC__fzgx_offset_0, 0x3BB);
+    fn_1_3CF0(fzgx_obj_lbl_3_bss_2084C, 0x20);
+    fn_1_3CF0(fzgx_obj_lbl_3_bss_20850, 0x20);
+    lbl_1_bss_970.unk_0 = 0;
+    lbl_1_bss_970.unk_4 = 0;
+    fn_1_435C(fzgx_obj_lbl_3_bss_2084C);
+    fn_1_435C(fzgx_obj_lbl_3_bss_20850);
+    fn_1_3F8C(lbl_3_data_11DC__fzgx_offset_C, fn_1_545B8, 0, 0xE);
+    fn_1_5124(fzgx_obj_lbl_3_bss_2084C, fzgx_obj_lbl_3_bss_20850);
+    fn_80074CF4(0.25f, 0.25f, 0.25f);
+    OSReport(lbl_3_data_11DC__fzgx_offset_18, lbl_801A66C8[0]);
+    lbl_1_bss_96A = 0x5C;
+    fzgx_obj_lbl_3_bss_F0.flags |= 0x80000000;
+    lbl_1_bss_7167C = fn_3_844;
+    lbl_1_bss_71680 = fn_3_8F8;
+    lbl_1_bss_71684 = fn_3_BA0;
+    lbl_3_bss_20854__fzgx_offset_0 = fn_1_45D0(lbl_801A6410[0], 0xAE40, lbl_3_data_11DC__fzgx_offset_0, 0x3ED);
+    for (i = 0; i < 0x29; i++) {
+        memset((void *)(lbl_3_bss_20854__fzgx_offset_0 + i * 0x440), 0, 0x440);
+        *(s32 *)(lbl_3_bss_20854__fzgx_offset_0 + i * 0x440 + 0x324) = -1;
+    }
+    fn_80008BEC(fzgx_obj_lbl_3_bss_20860, 0, sizeof(fzgx_obj_lbl_3_bss_20860));
+    fzgx_obj_lbl_3_bss_20860[0].unk_324 = -1;
+    fzgx_obj_lbl_3_bss_20860[1].unk_324 = -1;
+    fzgx_obj_lbl_3_bss_20860[2].unk_324 = -1;
+    fzgx_obj_lbl_3_bss_20860[3].unk_324 = -1;
+    fn_80008BEC(fzgx_obj_lbl_3_bss_21960, 0, sizeof(fzgx_obj_lbl_3_bss_21960));
+    fn_3_1308C(lbl_3_bss_140__fzgx_offset_20700, fzgx_obj_lbl_3_bss_2084C, fzgx_obj_lbl_3_bss_20850);
+    fn_3_11F60(fzgx_obj_lbl_3_bss_2084C, fzgx_obj_lbl_3_bss_20850);
+    for (j = 0; j < sizeof(fzgx_obj_lbl_3_bss_241E0) / sizeof(fzgx_obj_lbl_3_bss_241E0[0]); j++) {
+        fn_1_8CED0(&fzgx_obj_lbl_3_bss_241E0[j], fn_1_A5D88(), fn_1_A5DB0());
+        fn_1_8D0A4(&fzgx_obj_lbl_3_bss_241E0[j]);
+    }
+    fn_1_47F74(0x9A);
+    fn_1_47F74(0xA0);
+    fn_1_47F74(0x89);
+    fn_1_411A4(1);
+    fn_1_411A4(3);
+    lbl_3_bss_C__fzgx_offset_4 = fn_1_45D0(lbl_801A6410[0], fn_1_7BA08(0x20, 0x20, 0x40), lbl_3_data_11DC__fzgx_offset_0, 0x40F);
+    fn_1_7BA48(lbl_3_bss_C__fzgx_offset_4);
+    fn_1_435C(fzgx_obj_lbl_3_bss_20850);
+    fn_1_3F8C(lbl_3_data_11DC__fzgx_offset_30, fn_1_7BAF8, lbl_3_bss_C__fzgx_offset_4, 2);
+    rot = fzgx_pool_init_rot;
+    pos = fzgx_pool_init_pos;
+    fn_3_5CE4(&pos, &rot);
+    fzgx_obj_lbl_3_bss_F0.unk_6 = 0;
+    fzgx_obj_lbl_3_bss_F0.unk_8 = 0;
+    fzgx_obj_lbl_3_bss_F0.unk_A = lbl_801A66B4;
+    count = lbl_1_bss_7F0C0.unk_48F8;
+    lbl_3_bss_24370__fzgx_offset_0 = (count > 99999) ? 99999 : count;
+    fn_1_465D0(lbl_3_data_1134__fzgx_offset_30, 2);
+    fn_1_465D0(lbl_3_data_1134__fzgx_offset_4C, 2);
+    for (k = 0; k < 0x2C; k++) {
+        PrologCourse info;
+        fn_1_F8D5C(k, &info);
+        if (info.unk_2 == 1 && (id = info.unk_6) >= 0) {
+            sprintf(buf1, lbl_3_data_1134__fzgx_offset_6C, lbl_3_data_1134__fzgx_offset_80, id);
+            sprintf(buf2, lbl_3_data_1134__fzgx_offset_88, lbl_3_data_1134__fzgx_offset_80, id);
+            fn_1_465D0(buf1, 1);
+            fn_1_465D0(buf2, 1);
+        }
+    }
+}
+/* fzgx:end _prolog */
+
 /* fzgx:begin fn_3_844 */
 extern void fn_3_2B774(void);
 extern void fn_3_BD30(void);

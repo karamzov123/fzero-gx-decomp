@@ -1091,3 +1091,6 @@ rel/customize/data/lbl_3_rodata_800.c:
 
 rel/customize/data/lbl_3_rodata_8F0.c:
 	.rodata     start:0x000008F0 end:0x00000960 align:8
+
+rel/customize/_prolog/_prolog.c:
+	.text       start:0x0000042C end:0x00000844 align:4
