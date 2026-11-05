@@ -36739,6 +36739,17 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80078944.c",
+    "symbols": [
+      "fn_80078944"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
     "source": "dol/fn_800789D8.c",
     "symbols": [
       "fn_800789D8"
