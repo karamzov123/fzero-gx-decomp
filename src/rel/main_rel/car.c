@@ -24497,7 +24497,7 @@ void fn_1_900C4(void) {
 }
 /* fzgx:end fn_1_900C4 */
 
-/* fzgx:begin fn_1_9012C pool noprologue */
+/* fzgx:begin fn_1_9012C noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/car.h"
