@@ -2,6 +2,11 @@
 #include "types.h"
 
 extern u8 lbl_1_bss_8E6B0[308];
+extern u16 lbl_1_bss_8E7E4[722];
+
+
+
+__declspec(section ".data") u16 lbl_1_bss_8E7E4[722] __attribute__((aligned(4)));
 
 
 

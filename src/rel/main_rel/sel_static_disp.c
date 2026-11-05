@@ -6686,6 +6686,119 @@ void fn_1_13FB8C(u32 arg0, u32 arg1, s16 arg2, s16 arg3, s32 arg4, f32 arg5) {
 }
 /* fzgx:end fn_1_13FB8C */
 
+/* fzgx:begin fn_1_14083C */
+extern const f32 lbl_1_rodata_861C, lbl_1_rodata_8638, lbl_1_rodata_863C, lbl_1_rodata_8818;
+extern const f32 lbl_1_rodata_9178, lbl_1_rodata_917C, lbl_1_rodata_9180, lbl_1_rodata_9188, lbl_1_rodata_918C, lbl_1_rodata_9190;
+extern const f32 lbl_1_rodata_85F0, lbl_1_rodata_8A30, lbl_1_rodata_9174, lbl_1_rodata_9184;
+extern const f64 lbl_1_rodata_8600;
+extern f32 lbl_1_rodata_26F8[22];
+extern u32 lbl_1_rodata_9170;
+extern void fn_1_50164(FontDrawPacket *, f32, f32, f32, f32);
+extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
+extern int fn_1_4F734(FontDrawPacket *);
+
+#define CLAMP(x) (f32)((x) < lbl_1_rodata_861C ? lbl_1_rodata_861C : (x) > lbl_1_rodata_863C ? lbl_1_rodata_863C : (x))
+#define MAXF(a, b) ((a) > (b) ? (a) : (b))
+static inline f32 max_f(f32 a, f32 b) { return a > b ? a : b; }
+static inline void inv_clamp(f32 *out, f32 x, f32 d) {
+    f32 t = max_f(x, lbl_1_rodata_861C) / d;
+    *out = lbl_1_rodata_863C - (t < lbl_1_rodata_861C ? lbl_1_rodata_861C
+        : MAXF(x, lbl_1_rodata_861C) / d > lbl_1_rodata_863C ? lbl_1_rodata_863C
+        : MAXF(x, lbl_1_rodata_861C) / d);
+}
+static inline f32 half_f(f32 h) { return h * lbl_1_rodata_85F0; }
+static inline f32 half_max(f32 h) {
+    f32 m = lbl_1_rodata_9178;
+    if (h > m) m = h;
+    m = m * lbl_1_rodata_85F0;
+    return m;
+}
+static inline f32 clamp_f(f32 x) { return CLAMP(x); }
+static inline f32 inverse_clamp_f(f32 k, f32 x, f32 d) { return k - CLAMP(max_f(x, lbl_1_rodata_861C) / d); }
+static inline void position_f(FontDrawPacket *p, f32 x, f32 y, f32 z) { p->x = x; p->y = y; p->z = z; }
+#define position(p,x,y,z) position_f((p),(s16)(x),(s16)(y),(z))
+static inline void position_edge(FontDrawPacket *p, f32 x, f32 y, f32 h, f32 z, int side) {
+    p->x = x;
+    p->z = z;
+    if (side) p->y = y + (f32)(h * lbl_1_rodata_85F0);
+    else p->y = y - (f32)(h * lbl_1_rodata_85F0);
+}
+#pragma opt_common_subs off
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+void fn_1_14083C(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5, f32 arg6) {
+    u32 v0;
+    f32 v2, v3, v5, v6, v7, v8, v9, v10;
+    f32 v14, v16, v17, v18, v19, v21, v22, v23, v24, v26, v27, v28, v29, v31, v32, v34, v33;
+    FontDrawPacket loc_8;
+    f32 v13, v15, v12;
+    v3 = lbl_1_rodata_863C;
+    v0 = lbl_1_bss_8B3A0.unk_140;
+    if ((v0 & 0x80000000) != 0) {
+        v2 = (f32)lbl_1_bss_8B3A0.unk_148;
+        v5 = v2 * lbl_1_rodata_85F0;
+        if (v0 & 2) {
+            v6 = (f32)lbl_1_bss_8B3A0.unk_146 / v5;
+            v2 = lbl_1_rodata_861C;
+            v2 = v6 < v2 ? v2 : v6 > v3 ? v3 : v6;
+            v3 = v2;
+        } else if (v0 & 1) {
+            inv_clamp(&v3, (f32)lbl_1_bss_8B3A0.unk_146 - v5, v5);
+        }
+    } else if (lbl_1_bss_8B3A0.unk_0 == -1) return;
+    loc_8 = *(FontDrawPacket *)lbl_1_rodata_26F8;
+    loc_8.image = 0xA109;
+    position(&loc_8,arg0,arg1,arg5);
+    v12 = (f32)(s16)arg2 * v3;
+    v13 = v12 / lbl_1_rodata_9174;
+    loc_8.alpha = arg6 * clamp_f(v13);
+    loc_8.flags = arg4;
+    v15 = (f32)(s16)arg3 * v3;
+    fn_1_50164(&loc_8, v12 > lbl_1_rodata_917C ? v12 : lbl_1_rodata_917C,
+        v15 > lbl_1_rodata_9178 ? v15 : lbl_1_rodata_9178,
+        lbl_1_rodata_8818, lbl_1_rodata_9180);
+    loc_8 = *(FontDrawPacket *)lbl_1_rodata_26F8;
+    loc_8.image = 18;
+    position(&loc_8,arg0,arg1,lbl_1_rodata_85F0 + arg5);
+    v18 = lbl_1_rodata_9184 * v12;
+    v19 = v18 / lbl_1_rodata_9174;
+    loc_8.flags = arg4;
+    loc_8.alpha = lbl_1_rodata_9188 * clamp_f(v19);
+    *(u32 *)((u8 *)&loc_8 + 56) = lbl_1_rodata_9170;
+    fn_1_50164(&loc_8,
+        v18 > lbl_1_rodata_9174 ? v18 : lbl_1_rodata_9174,
+        lbl_1_rodata_8A30 * v15 > lbl_1_rodata_918C ? lbl_1_rodata_8A30 * v15 : lbl_1_rodata_918C,
+        lbl_1_rodata_8638,lbl_1_rodata_8638);
+    loc_8 = *(FontDrawPacket *)lbl_1_rodata_26F8;
+    loc_8.image = 0xA109;
+    loc_8.flags = 6;
+    loc_8.x = (f32)(s16)arg0;
+    v26 = (f32)(s16)arg1;
+    v27 = half_f(v15 > lbl_1_rodata_9178 ? v15 : lbl_1_rodata_9178);
+    v28 = arg5 - lbl_1_rodata_9190;
+    loc_8.z = v28;
+    v29 = v26 - v27;
+    loc_8.y = v29;
+    loc_8.alpha = arg6 * CLAMP(v13);
+    fn_1_51678(&loc_8,loc_8.image,68,0,8,28);
+    fn_1_4F734(&loc_8);
+    loc_8 = *(FontDrawPacket *)lbl_1_rodata_26F8;
+    loc_8.image = 0xA109;
+    loc_8.flags = 14;
+    loc_8.x = (f32)(s16)arg0;
+    v31 = (f32)(s16)arg1;
+    v15 = v15 > lbl_1_rodata_9178 ? v15 : lbl_1_rodata_9178;
+    v34 = v15 * lbl_1_rodata_85F0;
+    v33 = arg5 - lbl_1_rodata_9190;
+    loc_8.z = v33;
+    v34 = v31 + v34;
+    loc_8.y = v34;
+    loc_8.alpha = arg6 * CLAMP(v13);
+    fn_1_51678(&loc_8,loc_8.image,68,64,8,28);
+    fn_1_4F734(&loc_8);
+}
+/* fzgx:end fn_1_14083C */
+
 /* fzgx:begin fn_1_14108C noprologue */
 #include "types.h"
 #include "font.h"

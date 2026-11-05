@@ -168,12 +168,6 @@ rel/winning/data/lbl_15_data_30.c:
 rel/winning/data/lbl_15_data_60.c:
 	.data       start:0x00000060 end:0x00000068 align:8
 
-rel/winning/data/lbl_15_data_68.c:
-	.data       start:0x00000068 end:0x00000070 align:8
-
-rel/winning/data/lbl_15_data_70.c:
-	.data       start:0x00000070 end:0x00000090 align:8
-
 rel/winning/data/lbl_15_data_1C40.c:
 	.data       start:0x00001C40 end:0x00001C50 align:8
 
@@ -200,6 +194,18 @@ rel/winning/data/lbl_15_data_1DF8.c:
 
 rel/winning/data/lbl_15_data_1F70.c:
 	.data       start:0x00001F70 end:0x00001F7D align:8
+
+rel/winning/data/lbl_15_bss_0.c:
+	.bss        start:0x00000000 end:0x00000010 align:8
+
+rel/winning/data/lbl_15_bss_78.c:
+	.bss        start:0x00000078 end:0x00000088 align:8
+
+rel/winning/data/lbl_15_data_68.c:
+	.data       start:0x00000068 end:0x00000070 align:8
+
+rel/winning/data/lbl_15_data_70.c:
+	.data       start:0x00000070 end:0x00000090 align:8
 
 rel/winning/data/lbl_15_rodata_90.c:
 	.rodata     start:0x00000090 end:0x00000098 align:8

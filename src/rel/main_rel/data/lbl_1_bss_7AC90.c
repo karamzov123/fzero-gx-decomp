@@ -2,6 +2,11 @@
 #include "types.h"
 
 extern u8 lbl_1_bss_7AC90[12];
+extern u8 lbl_1_bss_7AC9C[4];
+
+
+/* Storage extent is known; element/field types are not recovered. */
+__declspec(section ".data") u8 lbl_1_bss_7AC9C[4] __attribute__((aligned(4)));
 
 
 

@@ -3,6 +3,16 @@
 
 extern char lbl_10_data_42E8[12];
 extern char lbl_10_data_42F4[12];
+extern char lbl_10_data_4300[12];
+extern char lbl_10_data_430C[12];
+extern char lbl_10_data_4318[196];
+extern char lbl_10_data_43DC[63];
+extern char lbl_10_data_441C[16];
+extern char lbl_10_data_442C[16];
+extern char lbl_10_data_443C[16];
+extern char lbl_10_data_444C[16];
+extern char lbl_10_data_445C[88];
+extern char lbl_10_data_44B4[43];
 
 
 
@@ -14,4 +24,73 @@ __declspec(section ".data") char lbl_10_data_42E8[12] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_42F4[12] __attribute__((aligned(4))) = "Caution FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_4300[12] __attribute__((aligned(8))) = "Caution SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_430C[12] __attribute__((aligned(4))) = "Caution ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_4318[196] __attribute__((aligned(8))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\360\215\267\202\265\215\236\202\336\221O\202"
+    "\311\203X\203\215\203b\203g\202\311\210\331\217\355\202\252\202\310\202\242\202\251\212m\224F"
+    "\202\265\202\304\202\255\202\276\202\263\202\242\201B\n\t\201u\202e\202y\202d\202q\202n\201@\202"
+    "f\202w\201v\210\310\212O\202\314\203f\201[\203^\202\360\223\374\202\352\202\310\202\242\202\305"
+    "\216g\227p\202\267\202\351\202\261\202\306\202\360\220\204\217\247\202\265\202\334\202\267\201B"
+    "\n\t\203v\203\214\203C\222\206\202\314\203J\201[\203h\202\314\224\262\202\253\215\267\202\265"
+    "\202\315\201A\220\342\221\316\202\311\202\250\202\342\202\337\202\255\202\276\202\263\202\242"
+    "\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_43DC[63] __attribute__((aligned(4))) = "NINTENDO GAMECUBE Memory Card\n\tcan not\tbe used at this time. \n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_441C[16] __attribute__((aligned(4))) = "Memcard Off GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_442C[16] __attribute__((aligned(4))) = "Memcard Off FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_443C[16] __attribute__((aligned(4))) = "Memcard Off SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_444C[16] __attribute__((aligned(4))) = "Memcard Off ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_445C[88] __attribute__((aligned(4))) = "\202\275\202\276\215\241\201A\202m\202h\202m\202s\202d\202m\202c\202n\201@\202f\202`\202l\202d"
+    "\202b\202t\202a\202d\n\t\203\201\203\202\203\212\201[\203J\201[\203h\202\360\216g\227p\202\267"
+    "\202\351\202\261\202\306\202\252\202\305\202\253\202\334\202\271\202\361\201B\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_44B4[43] __attribute__((aligned(4))) = "Memory Card ca not be used at this time. \n";
 #pragma explicit_zero_data reset

@@ -75,6 +75,9 @@ rel/movie/data/lbl_5_bss_0.c:
 rel/movie/data/lbl_5_bss_20.c:
 	.bss        start:0x00000020 end:0x00000040 align:8
 
+rel/movie/data/lbl_5_bss_B90.c:
+	.bss        start:0x00000B90 end:0x00000BB8 align:8
+
 rel/movie/data/lbl_5_data_0.c:
 	.data       start:0x00000000 end:0x0000140C align:8
 

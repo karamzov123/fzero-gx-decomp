@@ -2,9 +2,283 @@
 #include "types.h"
 
 extern char lbl_1_data_44468[16];
+extern char lbl_1_data_44478[17];
+extern char lbl_1_data_4448C[32];
+extern char lbl_1_data_444AC[15];
+extern char lbl_1_data_444BC[20];
+extern char lbl_1_data_444D0[12];
+extern char lbl_1_data_444DC[20];
+extern char lbl_1_data_444F0[7];
+extern char lbl_1_data_444F8[12];
+extern char lbl_1_data_44504[10];
+extern char lbl_1_data_44510[16];
+extern char lbl_1_data_44520[10];
+extern char lbl_1_data_4452C[16];
+extern char lbl_1_data_4453C[12];
+extern char lbl_1_data_44548[16];
+extern char lbl_1_data_44558[14];
+extern char lbl_1_data_44568[20];
+extern char lbl_1_data_4457C[15];
+extern char lbl_1_data_4458C[28];
+extern char lbl_1_data_445A8[13];
+extern char lbl_1_data_445B8[20];
+extern char lbl_1_data_445CC[11];
+extern char lbl_1_data_445D8[16];
+extern char lbl_1_data_445E8[10];
+extern char lbl_1_data_445F4[20];
+extern char lbl_1_data_44608[10];
+extern char lbl_1_data_44614[16];
+extern char lbl_1_data_44624[9];
+extern char lbl_1_data_44630[16];
+extern char lbl_1_data_44640[16];
+extern char lbl_1_data_44650[20];
+extern char lbl_1_data_44664[12];
+extern char lbl_1_data_44670[20];
+extern char lbl_1_data_44684[10];
+extern char lbl_1_data_44690[16];
+extern char lbl_1_data_446A0[15];
+extern char lbl_1_data_446B0[24];
+extern char lbl_1_data_446C8[13];
+extern char lbl_1_data_446D8[20];
+extern char lbl_1_data_446EC[11];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_44468[16] __attribute__((aligned(8))) = "\203\212\203o\203C\203A\203T\203\223\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44478[17] __attribute__((aligned(8))) = "Final Revolution";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_4448C[32] __attribute__((aligned(4))) = "\203t\203@\203C\203i\203\213\201@\203\214\203{\203\212\203\205\201[\203V\203\207\203\223\000\000"
+    "\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_444AC[15] __attribute__((aligned(4))) = "Notorious Gear";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_444BC[20] __attribute__((aligned(4))) = "\203m\201[\203g\203\212\203A\203X\201@\203M\203A\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_444D0[12] __attribute__((aligned(8))) = "Trailblazer";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_444DC[20] __attribute__((aligned(4))) = "\203g\203\214\203C\203\213\203u\203\214\203C\203U\201[\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_444F0[7] __attribute__((aligned(8))) = "Enigma";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_444F8[12] __attribute__((aligned(8))) = "\203G\203j\203O\203}\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44504[10] __attribute__((aligned(4))) = "Alexander";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44510[16] __attribute__((aligned(8))) = "\203A\203\214\203N\203T\203\223\203_\201[\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44520[10] __attribute__((aligned(8))) = "Excalibur";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_4452C[16] __attribute__((aligned(4))) = "\203G\203N\203X\203J\203\212\203o\201[\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_4453C[12] __attribute__((aligned(4))) = "Hermes Star";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44548[16] __attribute__((aligned(8))) = "\203w\203\213\203\201\203X \203X\203^\201[";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44558[14] __attribute__((aligned(8))) = "Thunder Storm";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44568[20] __attribute__((aligned(8))) = "\203T\203\223\203_\201[\201@\203X\203g\201[\203\200\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_4457C[15] __attribute__((aligned(4))) = "Crazy Minotaur";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_4458C[28] __attribute__((aligned(4))) = "\203N\203\214\203C\203W\201[\201@\203~\203m\203^\203E\203\211\203X\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_445A8[13] __attribute__((aligned(8))) = "Kaleidoscope";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_445B8[20] __attribute__((aligned(8))) = "\203J\203\214\203C\203h\203X\203R\201[\203v\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_445CC[11] __attribute__((aligned(4))) = "Eliminator";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_445D8[16] __attribute__((aligned(8))) = "\203G\203\212\203~\203l\203C\203^\201[\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_445E8[10] __attribute__((aligned(8))) = "Long Shot";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_445F4[20] __attribute__((aligned(4))) = "\203\215\203\223\203O\201@\203V\203\207\203b\203g\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44608[10] __attribute__((aligned(8))) = "Salvation";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44614[16] __attribute__((aligned(4))) = "\203T\203\213\203x\203C\203V\203\207\203\223\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44624[9] __attribute__((aligned(4))) = "Sleipnir";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44630[16] __attribute__((aligned(8))) = "\203X\203\214\203C\203v\203j\203\213\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44640[16] __attribute__((aligned(8))) = "Emerald Pegasus";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44650[20] __attribute__((aligned(8))) = "\203G\203\201\203\211\203\213\203h \203y\203K\203T\203X";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44664[12] __attribute__((aligned(4))) = "Master Work";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44670[20] __attribute__((aligned(8))) = "\203}\203X\203^\201[\201@\203\217\201[\203N\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44684[10] __attribute__((aligned(4))) = "Van Guard";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_44690[16] __attribute__((aligned(8))) = "\203\224\203@\203\223\201@\203K\201[\203h\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_446A0[15] __attribute__((aligned(8))) = "Splash Mermaid";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_446B0[24] __attribute__((aligned(8))) = "\203X\203v\203\211\203b\203V\203\205 \203}\201[\203\201\203C\203h";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_446C8[13] __attribute__((aligned(8))) = "Aqua Griffin";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_446D8[20] __attribute__((aligned(8))) = "\203A\203N\203A\201@\203O\203\212\203t\203B\203\223\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_446EC[11] __attribute__((aligned(4))) = "Turbulence";
 #pragma explicit_zero_data reset

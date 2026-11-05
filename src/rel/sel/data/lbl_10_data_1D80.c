@@ -2,9 +2,16 @@
 #include "types.h"
 
 extern char lbl_10_data_1D80[12];
+extern char lbl_10_data_1D8C[12];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_1D80[12] __attribute__((aligned(8))) = "ITA Machine";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1D8C[12] __attribute__((aligned(4))) = "\203}\203V\203\223\201@\201@\000";
 #pragma explicit_zero_data reset

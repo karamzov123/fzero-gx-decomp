@@ -138,12 +138,6 @@ rel/profile/data/lbl_16_data_82B00.c:
 rel/profile/data/lbl_16_data_82BF8.c:
 	.data       start:0x00082BF8 end:0x00082D98 align:8
 
-rel/profile/data/lbl_16_data_82D98.c:
-	.data       start:0x00082D98 end:0x00082DB8 align:8
-
-rel/profile/data/lbl_16_data_82DB8.c:
-	.data       start:0x00082DB8 end:0x00082DC0 align:8
-
 rel/profile/data/lbl_16_data_82DC0.c:
 	.data       start:0x00082DC0 end:0x00082DD0 align:8
 
@@ -197,3 +191,9 @@ rel/profile/data/lbl_16_data_82F18.c:
 
 rel/profile/data/lbl_16_data_83500.c:
 	.data       start:0x00083500 end:0x00083524 align:8
+
+rel/profile/data/lbl_16_data_82D98.c:
+	.data       start:0x00082D98 end:0x00082DB8 align:8
+
+rel/profile/data/lbl_16_data_82DB8.c:
+	.data       start:0x00082DB8 end:0x00082DC0 align:8
