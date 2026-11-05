@@ -1533,6 +1533,71 @@ void fn_1_76448(struct fn_1_76448_Arg0 *arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_76448 */
 
+/* fzgx:begin fn_1_76504 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/screen_effect.h"
+
+typedef struct fn_1_76504_Effect {
+    u8 pad_0[0xA0];
+    u32 unk_A0[15];
+    s32 unk_DC;
+    u8 pad_E0[0x2C];
+} fn_1_76504_Effect;
+
+typedef struct fn_1_76504_Kind {
+    u8 pad_0[0x5];
+    u8 count;
+} fn_1_76504_Kind;
+
+extern void OSPanic(const char *, int, const char *, ...);
+extern void fn_1_76650(void *);
+extern void fn_1_76DC0(s32);
+extern void fn_1_76704(void *, s32);
+extern void fn_1_76964(void *);
+extern void fn_1_769FC(void *, u8);
+extern void fn_1_76A94(void *, u8);
+extern void fn_1_76DBC(void);
+
+u8 fn_1_76504(s32 kind, s32 arg1, s32 flag) {
+    u8 *data = (u8 *)&lbl_1_data_1D960;
+    fn_1_76504_Effect *effect;
+    u8 i;
+    u8 j;
+
+    if (lbl_1_bss_6D14C.unk_0 != 0) {
+        return 0xFF;
+    }
+    if (kind == 0 || kind >= 0x26) {
+        return 0xFF;
+    }
+    for (i = 0; i < 8; i++) {
+        effect = (fn_1_76504_Effect *)((u8 *)&lbl_1_bss_6C8EC + i * 0x10C);
+        if (effect->unk_DC == 0) {
+            goto found;  /* fzgx-allow: S1 retail falls from the exhausted loop straight into OSPanic */
+        }
+    }
+    OSPanic((const char *)data + 0x160, 0x879, (const char *)data + 0x2F4);
+found:
+    fn_1_76650(effect);
+    effect->unk_DC = kind;
+    fn_1_76DC0(effect->unk_DC);
+    fn_1_76704(effect, arg1);
+    fn_1_76964(effect);
+    kind = (s32)(data + 0x58);
+    for (j = 0; j < ((u8 *)kind)[effect->unk_DC * 6 + 5]; j++) {
+        if (flag != 0) {
+            fn_1_769FC(effect, j);
+            fn_1_76A94(effect, j);
+        } else {
+            effect->unk_A0[j] = 0;
+        }
+    }
+    fn_1_76DBC();
+    return i;
+}
+/* fzgx:end fn_1_76504 */
+
 /* fzgx:begin fn_1_76650 */
 typedef struct fn_1_76650_ScreenEffect {
     u8 pad_00[0xa0];
