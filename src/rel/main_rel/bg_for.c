@@ -1446,6 +1446,177 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
 #pragma opt_strength_reduction reset
 /* fzgx:end fn_1_DE9C4 */
 
+/* fzgx:begin fn_1_DF6AC */
+#include "psvec.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec;
+
+extern f32 lbl_8006D534(Vec *, Vec *);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_80008BA8(void *, void *, u32);
+extern void fn_80008BEC(void *, int, u32);
+extern void lbl_8006D5F0(Vec *, Vec *, f32);
+extern void lbl_8006D668(Vec *);
+
+/* bg_for.c's literal pool up to 1.0f at 0x28, so -1.0f, 0.0f and 1.0f land at retail's offsets */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = -1.0f;
+    s = 0.9999998807907104f;
+    s = 1.0000001192092896f;
+    s = -1.0000001192092896f;
+    s = -0.9999998807907104f;
+}
+static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.1920928955078125e-07;
+    s = 0.0f;
+    s = 5.0f;
+    s = 1.0f;
+}
+#pragma section code_type ".text"
+
+/* as in fn_1_DDF80 and fn_1_DE180, whose code this repeats: retail reloads each field at every use */
+#pragma opt_common_subs off
+/* keeps the sqrt results as named values, which retail holds in f20/f21 below the parameters */
+#pragma opt_dead_assignments off
+
+static inline void cross(Vec *a, Vec *b, Vec *out) {
+    f32 ax;
+    f32 ay;
+    f32 az;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    f32 x;
+    f32 y;
+    f32 z;
+
+    ay = a->y;
+    bz = b->z;
+    az = a->z;
+    bx = b->x;
+    by = b->y;
+    ax = a->x;
+
+    y = az * bx;
+    y -= ax * bz;
+    z = ax * by;
+    z -= ay * bx;
+    x = ay * bz;
+    x -= az * by;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+static inline f32 dot(Vec *a, Vec *b) {
+    f32 result;
+    f32 ay;
+    f32 az;
+    f32 ax;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    ax = a->x;
+    bx = b->x;
+    ay = a->y;
+    by = b->y;
+    az = a->z;
+    bz = b->z;
+    result = ax * bx;
+    result += ay * by;
+    result += az * bz;
+    return result;
+}
+
+/* as fn_1_DE180's perp: retail sets up the normalise argument before the test */
+static inline void perp(Vec *a, Vec *b, Vec *out) {
+    Vec *n = out;
+
+    cross(a, b, out);
+    cross(out, b, out);
+    if (dot(out, out) > 0.0f) {
+        lbl_8006D668(n);
+    }
+}
+
+/* a helper of its own gives the -1.0 retail's register order (fn_1_DDF80) */
+static inline void flip(Vec *v) {
+    psvec_scale(v, -1.0f, v);
+}
+
+/* fn_1_DDF80's body; retail inlines it twice, which needs a larger inline size limit */
+#pragma inline_max_size(4096)
+static inline void split(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
+    Vec pos;
+    f32 c;
+    f32 s;
+
+    c = lbl_8006D534(a, b);
+    s = lbl_8006D0B4(1.0f - (f32)(c * c));
+    fn_80008BA8(along, b, sizeof(Vec));
+    lbl_8006D5F0(along, along, along_scale * c);
+    fn_80008BA8(&pos, a, sizeof(Vec));
+    perp(&pos, b, side);
+    if (!(dot(&pos, side) > 0.0f)) {
+        flip(side);
+    }
+    psvec_scale(side, side_scale * s, side);
+}
+
+void fn_1_DF6AC(Vec *a, Vec *b, Vec *c, Vec *out_b, Vec *out_c, f32 scale_b, f32 scale_c, f32 k0, f32 k1, f32 k2,
+                f32 unused) {
+    Vec along_b;
+    Vec along_c;
+    Vec side_b;
+    Vec side_c;
+    Vec dir;
+    f32 len_b;
+    f32 len_c;
+    f32 u; /* declared before t: retail keeps u in f27 above t in f26 */
+    f32 t;
+    Vec *src;
+
+    split(b, a, &along_b, &side_b, scale_b, scale_b);
+    split(c, a, &along_c, &side_c, scale_c, scale_c);
+    len_b = lbl_8006D0B4(dot(&along_b, &along_b));
+    len_c = lbl_8006D0B4(dot(&along_c, &along_c));
+    /* the (f32) casts keep each product a separate fmuls, as retail has no fmadds here */
+    t = ((f32)(len_b * ((1.0f + k2) * k0)) + (f32)(len_c * (f32)(k1 - (f32)(k0 * k2)))) / (k0 + k1);
+    u = t + (f32)(-k2 * (len_b - len_c));
+    src = &along_b;
+    if (dot(src, src) != 0.0f) {
+        fn_80008BA8(&dir, src, sizeof(Vec));
+    } else {
+        src = &along_c;
+        if (dot(src, src) != 0.0f) {
+            fn_80008BA8(&dir, src, sizeof(Vec));
+        } else {
+            fn_80008BEC(out_b, 0, sizeof(Vec));
+            fn_80008BEC(out_c, 0, sizeof(Vec));
+            return;
+        }
+    }
+    lbl_8006D668(&dir);
+    psvec_scale(&dir, u, &along_b);
+    psvec_scale(&dir, t, &along_c);
+    psvec_add(&along_b, &side_b, out_b);
+    psvec_add(&along_c, &side_c, out_c);
+}
+
+#pragma inline_max_size reset
+#pragma opt_dead_assignments reset
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_DF6AC */
+
 /* fzgx:begin fn_1_E1934 */
 typedef struct {
     u8 pad0[0x8];

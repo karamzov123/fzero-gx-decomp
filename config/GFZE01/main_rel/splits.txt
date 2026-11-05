@@ -16277,3 +16277,39 @@ rel/main_rel/sel_static_disp/fn_1_14083C.c:
 
 rel/main_rel/memcard/fn_1_C3A0C.c:
 	.text       start:0x000C3A0C end:0x000C40A0 align:4
+
+rel/main_rel/_prolog/fn_1_95C.c:
+	.text       start:0x0000095C end:0x00000E34 align:4
+
+rel/main_rel/motasglist/fn_1_44A74.c:
+	.text       start:0x00044A74 end:0x0004502C align:4
+
+rel/main_rel/camera/fn_1_B724.c:
+	.text       start:0x0000B724 end:0x0000B81C align:4
+
+rel/main_rel/effect/fn_1_65748.c:
+	.text       start:0x00065748 end:0x00065AAC align:4
+
+rel/main_rel/face/fn_1_D27B8.c:
+	.text       start:0x000D27B8 end:0x000D2D24 align:4
+
+rel/main_rel/effect/fn_1_5D91C.c:
+	.text       start:0x0005D91C end:0x0005DFA4 align:4
+
+rel/main_rel/effect/fn_1_648DC.c:
+	.text       start:0x000648DC end:0x00064E1C align:4
+
+rel/main_rel/bg_common/fn_1_106084.c:
+	.text       start:0x00106084 end:0x001067A8 align:4
+
+rel/main_rel/bg_san/fn_1_DC764.c:
+	.text       start:0x000DC764 end:0x000DCB10 align:4
+
+rel/main_rel/sel_static_disp/fn_1_14C35C.c:
+	.text       start:0x0014C35C end:0x0014C6F8 align:4
+
+rel/main_rel/burner/fn_1_9D420.c:
+	.text       start:0x0009D420 end:0x0009D77C align:4
+
+rel/main_rel/bg_for/fn_1_DF6AC.c:
+	.text       start:0x000DF6AC end:0x000DFBBC align:4

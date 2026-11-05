@@ -1091,3 +1091,9 @@ rel/customize/data/lbl_3_bss_7EE40.c:
 
 rel/customize/data/lbl_3_bss_87000.c:
 	.bss        start:0x00087000 end:0x00087040 align:32
+
+rel/customize/emb_paste_editor/fn_3_F984.c:
+	.text       start:0x0000F984 end:0x0000FD30 align:4
+
+rel/customize/toolkit/fn_3_29C94.c:
+	.text       start:0x00029C94 end:0x0002A2F8 align:4

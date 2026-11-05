@@ -7983,6 +7983,169 @@ void fn_1_9D3E8(void *arg0, s32 arg1, s32 arg2) {
 }
 /* fzgx:end fn_1_9D3E8 */
 
+/* fzgx:begin fn_1_9D420 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/background.h"
+
+/* a placed object's skeletal animator (+0x38) */
+typedef struct {
+    u32 unk_0;
+    void *unk_4;
+    u8 pad_8[0x4];
+    u8 *unk_C;
+} fn_1_9D420_Animator;
+
+typedef struct {
+    u8 pad_0[0x4];
+    char *unk_4;
+} fn_1_9D420_Lod;
+
+typedef struct {
+    u8 pad_0[0x8];
+    fn_1_9D420_Lod *unk_8;
+} fn_1_9D420_SceneObject;
+
+/* a placed object (0x40 bytes) */
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x4];
+    fn_1_9D420_SceneObject *unk_8;
+    u8 pad_C[0x2C];
+    fn_1_9D420_Animator *unk_38;
+    u8 pad_3C[0x4];
+} fn_1_9D420_Object;
+
+typedef struct {
+    char *unk_0;
+    u32 unk_4;
+    void *unk_8;
+} fn_1_9D420_Entry;
+
+typedef struct {
+    u8 pad_0[0x24];
+    void *unk_24;
+} fn_1_9D420_Skeleton;
+
+extern u32 lbl_801A6410;
+extern u32 lbl_1_bss_6EA78;
+extern u32 lbl_1_bss_6EA7C;
+extern void fn_80006E10(void *);
+extern void **fn_1_4630(u32, u32, const char *, s32);
+extern u32 strlen(const char *);
+extern s32 fn_8006FC5C(const char *, const char *, u32);
+extern int sprintf(char *, const char *, ...);
+extern s32 fn_1_45730(void *, void *);
+extern s32 fn_1_45B2C(void *);
+extern void *fn_1_45D0(u32, u32, const char *, s32);
+extern void fn_1_458A0(void *, void *, u32, u32);
+extern void fn_1_45850(void *);
+extern void fn_1_4247C(void *, void *, void *);
+extern void fn_1_426E4(void *, void *);
+extern u32 fn_1_41488(void *, char *);
+extern void fn_1_4270C(void *, u32, u16);
+
+/* the retail TU's .data objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base (lbl_1_data_2A0C0); the fzgx_pool_gap_ objects span the retail objects in between, and the
+ * last gap ends where retail's string literals for this function start (0x2CC38) */
+u32 fzgx_obj_lbl_1_data_2A0C0[4] = {1};
+u8 fzgx_pool_gap_2A0D0[0x2C824 - 0x2A0D0] = {1};
+u8 fzgx_obj_lbl_1_data_2C824[0xC] = {1};
+fn_1_9D420_Entry lbl_1_data_2C824__fzgx_offset_C[5] = {{NULL, 1}};
+u8 fzgx_pool_gap_2C86C[0x2CB60 - 0x2C86C] = {1};
+char fzgx_obj_lbl_1_data_2CB60[0x2C] = "background.c";
+u8 fzgx_pool_gap_2CB8C[0x2CC38 - 0x2CB8C] = {1};
+
+/* looks up the entry named "M<n>" (n from byte 8 of the animator's +0xC record) in its skeleton's +0x24 table
+ * and passes its index to fn_1_4270C, index 0 when there is no such entry */
+static inline void fn_1_9D420_motion(fn_1_9D420_Animator *anim) {
+    fn_1_9D420_Skeleton *skel;
+    char key[3];
+    u32 index;
+    u8 c;
+
+    c = anim->unk_C[8];
+    skel = anim->unk_4;
+    key[0] = 'M';
+    key[1] = c + '0';
+    key[2] = 0;
+    index = fn_1_41488(skel->unk_24, key);
+    if (index == 0xFFFFFFFF) {
+        index = 0;
+    }
+    fn_1_4270C(skel, 0, index);
+}
+
+void fn_1_9D420(fn_1_9D420_Object *obj, s32 count) {
+    s32 skl_size;
+    s32 mta_size;
+    u8 info[0x60];
+    char path[0x80];
+    s32 i;
+    s32 j;
+    char *name;
+    u32 diff;
+    u32 nlen;
+    u32 mlen;
+    char *model;
+    void **skl;
+    void **mta;
+
+    fn_80006E10("motion");
+    lbl_1_bss_6EA78 = (u32)fn_1_4630(lbl_801A6410, 0x14, fzgx_obj_lbl_1_data_2CB60, 0x8D3);
+    lbl_1_bss_6EA7C = (u32)fn_1_4630(lbl_801A6410, 0x14, fzgx_obj_lbl_1_data_2CB60, 0x8D4);
+    for (i = 0; i < count; i++, obj++) {
+        if ((obj->unk_0 & 0x1000) && obj->unk_38 != NULL) {
+            for (j = 0; j < 5; j++) {
+                name = lbl_1_data_2C824__fzgx_offset_C[j].unk_0;
+                model = obj->unk_8->unk_8->unk_4;
+                nlen = strlen(name);
+                mlen = strlen(model);
+                diff = mlen - nlen;
+                if (((diff == 5 && fn_8006FC5C(&model[mlen - 5], "_SKL0", strlen("_SKL0")) != 0) ||
+                     (diff == 4 && fn_8006FC5C(&model[mlen - 4], "_SKL", strlen("_SKL")) != 0)) &&
+                    fn_8006FC5C(name, model, nlen) != 0) {
+                    skl = (void **)lbl_1_bss_6EA7C;
+                    if (skl[j] == NULL) {
+                        sprintf(path, "%s.skl", name);
+                        if (fn_1_45730(path, info) != 0) {
+                            skl_size = fn_1_45B2C(info);
+                            skl_size = (skl_size + 0x1F) & ~0x1F;
+                            skl[j] = fn_1_45D0(lbl_801A6410, skl_size, fzgx_obj_lbl_1_data_2CB60, 0x8F5);
+                            fn_1_458A0(info, skl[j], skl_size, 0);
+                            fn_1_45850(info);
+                        }
+                    }
+                    if (skl[j] != NULL) {
+                        obj->unk_38->unk_0 = j;
+                        obj->unk_38->unk_4 =
+                            fn_1_45D0(lbl_801A6410, *(u16 *)skl[j] * 0x18C + 0x70, fzgx_obj_lbl_1_data_2CB60, 0x8FC);
+                        fn_1_4247C(obj->unk_38->unk_4, (u8 *)obj->unk_38->unk_4 + 0x70, skl[j]);
+                    }
+                    mta = (void **)lbl_1_bss_6EA78;
+                    if (mta[j] == NULL) {
+                        sprintf(path, "%s_test.mta", name);
+                        if (fn_1_45730(path, info) != 0) {
+                            mta_size = fn_1_45B2C(info);
+                            mta_size = (mta_size + 0x1F) & ~0x1F;
+                            mta[j] = fn_1_45D0(lbl_801A6410, mta_size, fzgx_obj_lbl_1_data_2CB60, 0x907);
+                            fn_1_458A0(info, mta[j], mta_size, 0);
+                            fn_1_45850(info);
+                        }
+                    }
+                    if (mta[j] != NULL) {
+                        fn_1_426E4(obj->unk_38->unk_4, mta[j]);
+                        fn_1_9D420_motion(obj->unk_38);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    fn_80006E10("..");
+}
+/* fzgx:end fn_1_9D420 */
+
 /* fzgx:begin fn_1_F8E30 noprologue */
 #include "types.h"
 

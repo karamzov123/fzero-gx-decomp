@@ -2601,6 +2601,212 @@ void fn_1_449A8(void *vector) {
 }
 /* fzgx:end fn_1_449A8 */
 
+/* fzgx:begin fn_1_44A74 */
+#include "dolphin/hw_regs.h"
+
+extern void lbl_8006D668(void *vector);
+extern void lbl_8006DBAC(void *value);
+extern void lbl_8006DB74(void *value);
+extern void lbl_8006D7B0(void);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006E1F0(void *, f32, f32, f32);
+extern f32 *lbl_801A6D00;
+extern const f32 lbl_1_rodata_F54;
+extern const f32 lbl_1_rodata_F74;
+extern const f32 lbl_1_rodata_F80;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+/* one 0x18C-byte entry of the object's table at +0x8 */
+typedef struct Node {
+    u8 pad_0[4];
+    u16 unk_4;
+    u16 unk_6;
+    u8 pad_8[0xC];
+    f32 unk_14;
+    u8 pad_18[0x70];
+    f32 unk_88[3][4];
+    u8 pad_B8[0x18C - 0xB8];
+} Node;
+
+typedef struct {
+    u8 pad_0[8];
+    Node *unk_8;
+} Obj;
+
+#define LC_MTX ((f32 *)LC_BASE)
+
+static inline Vec3 *cross(Vec3 *a, Vec3 *b, Vec3 *out) {
+    f32 ax;
+    f32 ay;
+    f32 az;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    f32 x;
+    f32 y;
+    f32 z;
+
+    ay = a->y;
+    az = a->z;
+    ax = a->x;
+    bz = b->z;
+    bx = b->x;
+    by = b->y;
+
+    x = ay * bz;
+    x -= az * by;
+    y = az * bx;
+    y -= ax * bz;
+    z = ax * by;
+    z -= ay * bx;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+    return out;
+}
+
+/* fn_1_44884, which MWCC inlines here */
+static inline void fn_1_44884_inlined(Vec3 *dir) {
+    Vec3 side;
+    Vec3 up;
+    Vec3 *pu = &up;
+
+    pu->x = lbl_801A6D00[2];
+    pu->y = lbl_801A6D00[6];
+    pu->z = lbl_801A6D00[10];
+    lbl_8006D668(cross(pu, dir, &side));
+    cross(dir, &side, pu);
+    lbl_801A6D00[0] = dir->x;
+    lbl_801A6D00[4] = dir->y;
+    lbl_801A6D00[8] = dir->z;
+    lbl_801A6D00[1] = side.x;
+    lbl_801A6D00[5] = side.y;
+    lbl_801A6D00[9] = side.z;
+    lbl_801A6D00[2] = pu->x;
+    lbl_801A6D00[6] = pu->y;
+    lbl_801A6D00[10] = pu->z;
+}
+
+/* sets the translation of the locked-cache matrix A */
+static inline void set_translate(Vec3 *v) {
+    f32 *m = LC_MTX;
+    f32 x = v->x;
+    f32 y = v->y;
+    f32 z = v->z;
+
+    m[3] = x;
+    m[7] = y;
+    m[11] = z;
+}
+
+/* retail keeps fn_1_44884's reloads and argument setup in its three inlined copies, as fn_1_44884 does */
+#pragma opt_propagation off
+/* retail translates mtxA in place (each fmadds result in its LC column register) */
+#pragma opt_lifetimes off
+void fn_1_44A74(Obj *object, Node *entry) {
+    f32 tz;
+    f32 ty;
+    f32 tx;
+    Node *chain[3];
+    Vec3 v;
+    Vec3 w;
+    Vec3 p;
+    Vec3 *pp = &p;
+    Node *nodes;
+    Node *node;
+    Node *root;
+    s32 n;
+    f32 len;
+    f32 a;
+    f32 b;
+    f32 x;
+    f32 h;
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 bb;
+    f32 s;
+
+    nodes = object->unk_8;
+    n = 0;
+    if (entry->unk_4 & 0x100) {
+        return;
+    }
+    for (node = &nodes[entry->unk_6]; !(node->unk_4 & 2); node = &nodes[node->unk_6]) {
+        if (n == 2 || node->unk_6 == -1) {
+            break;
+        }
+        chain[n++] = node;
+    }
+    if (n == 0 || (n == 1 && chain[0]->unk_14 > lbl_1_rodata_F80)) {
+        chain[n++] = node;
+    }
+    lbl_8006DBAC(node->unk_88);
+    v.x = dx = entry->unk_88[0][3] - lbl_801A6D00[3];
+    len = dx * dx;
+    v.y = dy = entry->unk_88[1][3] - lbl_801A6D00[7];
+    len += dy * dy;
+    v.z = dz = entry->unk_88[2][3] - lbl_801A6D00[11];
+    len += dz * dz;
+    len = lbl_8006D0B4(len);
+    lbl_8006D668(&v);
+    fn_1_44884_inlined(&v);
+    if (n > 1) {
+        a = chain[0]->unk_14;
+        b = entry->unk_14;
+        bb = b * b;
+        x = ((f32)(a * a) - bb + (f32)(len * len)) / (lbl_1_rodata_F74 * len);
+        if (a > x) {
+            h = lbl_8006D0B4((f32)(a * a) - (f32)(x * x));
+        } else {
+            x = a;
+            h = lbl_1_rodata_F54;
+        }
+        if (!(chain[0]->unk_4 & 8)) {
+            h = -h;
+        }
+        lbl_8006E1F0(&w, x, h, lbl_1_rodata_F54);
+        root = chain[1];
+        pp->x = root->unk_88[0][3] + w.x;
+        pp->y = root->unk_88[1][3] + w.y;
+        pp->z = root->unk_88[2][3] + w.z;
+        lbl_8006D668(&w);
+        fn_1_44884_inlined(&w);
+        lbl_8006DB74(root->unk_88);
+        w.x = entry->unk_88[0][3] - p.x;
+        w.y = entry->unk_88[1][3] - p.y;
+        w.z = entry->unk_88[2][3] - p.z;
+        lbl_8006D668(&w);
+        fn_1_44884_inlined(&w);
+        set_translate(pp);
+        lbl_8006DB74(chain[0]->unk_88);
+    } else {
+        lbl_8006DB74(chain[0]->unk_88);
+    }
+    s = entry->unk_14;
+    tx = LC_MTX[0];
+    tx = tx * s + LC_MTX[3];
+    ty = LC_MTX[4];
+    ty = ty * s + LC_MTX[7];
+    tz = LC_MTX[8];
+    tz = tz * s + LC_MTX[11];
+    LC_MTX[3] = tx;
+    LC_MTX[7] = ty;
+    LC_MTX[11] = tz;
+    if (entry->unk_4 & 4) {
+        lbl_8006D7B0();
+    }
+    lbl_8006DB74(entry->unk_88);
+}
+#pragma opt_propagation reset
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_44A74 */
+
 /* fzgx:begin fn_1_4502C */
 extern void fn_1_46EB4(u32, u32);
 extern u32 lbl_1_bss_958[2];
