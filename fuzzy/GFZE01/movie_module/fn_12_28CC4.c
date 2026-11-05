@@ -1,5 +1,6 @@
-/* Non-matching: best partial attempt (94.23% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.92% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
+#pragma use_lmw_stmw on
 #include "types.h"
 #include "sofdec/sj.h"
 
@@ -16,17 +17,15 @@ typedef struct VideoWork {
     u8 unknown_08C[0x18];
     int picture_type;
 } VideoWork;
+typedef struct Timer { u8 reserved_000[0x1C]; TimeCode current_timecode; Snapshot initial; Snapshot maximum; Snapshot total; Snapshot current; Snapshot previous; } Timer;
+typedef struct TimerState { u8 raw[0x100]; } TimerState;
 typedef struct TransportSetup { const void *entries[4]; } TransportSetup;
 typedef struct Handle {
     TransportSetup *setup;
     u8 unknown_004[0x968];
     int need_data;
-    u8 unknown_970[0x36C];
-    Snapshot initial;
-    Snapshot maximum;
-    Snapshot total;
-    Snapshot current;
-    Snapshot previous;
+    u8 unknown_970[0x334];
+    TimerState timer_state;
     u8 unknown_DA4[0x20];
     int reference_origin;
     u8 unknown_DC8[0x18];
@@ -82,51 +81,59 @@ static inline void skip_endcode(Handle *handle, SJ *stream) {
     stream->interface->unget_chunk(stream, 1, &chunk);
 }
 
-static inline int concat_time(Handle *handle) {
-    VideoWork *work = handle->video;
-    int time;
-    int result;
-    if (fn_12_2D73C(handle, 6) == 0) {
-        Snapshot *maximum = &handle->maximum;
-        Snapshot *initial = &handle->initial;
-        if (maximum->valid == 0) {
-            time = 0;
-        } else {
-            TimeCode code = maximum->timecode;
-            int value;
-            int scale;
-            code.frame_offset++;
-            fn_12_2E374(&code, &value, &scale);
-            time = value - initial->value;
-        }
+static inline int calc_time(Snapshot *maximum, Snapshot *initial, int *value, int *scale) {
+    if (maximum->valid == 0) {
+        return 0;
     } else {
-        int samples;
-        int sample_rate;
+        TimeCode timecode = maximum->timecode;
+        timecode.frame_offset++;
+        fn_12_2E374(&timecode, value, scale);
+        return *value - initial->value;
+    }
+}
+static inline int concat(Handle *handle, SJ *stream, VideoWork *work) {
+    int concat_time;
+    int samples;
+    int sample_rate;
+    int value;
+    int scale;
+    int result;
+    int time_unit;
+    if (fn_12_2D73C(handle, 6) == 0) {
+        Timer *timer = (Timer *)&handle->timer_state;
+        concat_time = calc_time(&timer->maximum, &timer->initial, &value, &scale);
+    } else {
         if (handle->setup->entries[3] != lbl_12_rodata_A18) {
             samples = 0;
             sample_rate = 44100;
         } else if (fn_12_22FBC(handle, &samples, &sample_rate) == 0) {
-            return -1;
+            concat_time = -1;
+            goto check_sample_time; /* donor sfmpv_Concat flow */
         }
+        time_unit = ((Timer *)&handle->timer_state)->initial.scale;
         handle->samples += samples;
-        time = UTY_MulDiv(handle->samples, handle->initial.scale, sample_rate) - handle->reference_offset;
-        if (time < 0) time = 0;
-        if (time < 0) return -1;
+        concat_time = UTY_MulDiv(handle->samples, time_unit, sample_rate) - handle->reference_offset;
+        if (concat_time < 0) {
+            concat_time = 0;
+        }
+    check_sample_time:
+        if (concat_time < 0) {
+            result = -1;
+            goto check_status; /* donor sfmpv_Concat flow */
+        }
     }
-    if (time > 0) {
-        fn_12_23120(handle, time);
+    if (concat_time > 0) {
+        fn_12_23120(handle, concat_time);
         work->concat_count++;
     }
-    fn_12_2EE48(&handle->initial, 0x7FFFFFFF);
-    fn_12_2EE48(&handle->maximum, -1);
+    fn_12_2EE48(&((Timer *)&handle->timer_state)->initial, 0x7FFFFFFF);
+    fn_12_2EE48(&((Timer *)&handle->timer_state)->maximum, -1);
     work->decode_mode = 0xC0;
     result = 0;
-    return result;
-}
-
-static inline int concat(Handle *handle, SJ *stream) {
-    int result = concat_time(handle);
-    if (result == -1) return -1;
+check_status:
+    if (result == -1) {
+        return -1;
+    }
     skip_endcode(handle, stream);
     return 0;
 }
@@ -155,10 +162,10 @@ static inline int check_decode(Handle *handle, int result, int consumed) {
     return error;
 }
 
-static inline int skip_picture(Handle *handle, SJ *stream) {
-    VideoWork *work = handle->video;
-    Snapshot *current = &handle->current;
-    Snapshot *previous = &handle->previous;
+static inline int skip_picture(Handle *handle, SJ *stream, VideoWork *work) {
+    Timer *timer = (Timer *)&handle->timer_state;
+    Snapshot *current = &timer->current;
+    Snapshot *previous = &timer->previous;
     void *decoder = work->decoder;
     int before;
     int consumed;
@@ -179,28 +186,31 @@ static inline int skip_picture(Handle *handle, SJ *stream) {
 }
 
 static inline const u8 *search_transfer(Transfer *transfer, int mask, int *code) {
+    u8 boundary[8];
     const u8 *delimiter;
-    u8 joined[6];
-    int tail;
-    int head;
-    int count;
+    long tail;
+    long head;
     int i;
-    const u8 *scan;
+    int found_code;
     delimiter = fn_12_A0D8(transfer->chunks[0].data, transfer->chunks[0].len, mask);
     if (delimiter != 0) {
         *code = fn_12_A2C4(delimiter);
         return delimiter;
     }
-    if (transfer->chunks[1].len == 0) return 0;
+    head = transfer->chunks[1].len;
+    if (head == 0) {
+        return 0;
+    }
     tail = transfer->chunks[0].len < 3 ? transfer->chunks[0].len : 3;
-    head = transfer->chunks[1].len < 3 ? transfer->chunks[1].len : 3;
-    memcpy(joined, transfer->chunks[0].data + transfer->chunks[0].len - tail, tail);
-    memcpy(joined + tail, transfer->chunks[1].data, head);
-    count = tail + head - 3;
-    scan = joined;
-    for (i = 0; i < count; i++, scan++) {
-        *code = fn_12_A2C4(scan);
-        if ((*code & mask) != 0) return transfer->chunks[0].data + transfer->chunks[0].len - tail + i;
+    head = head < 3 ? transfer->chunks[1].len : 3;
+    memcpy(boundary, transfer->chunks[0].data + transfer->chunks[0].len - tail, tail);
+    memcpy(boundary + tail, transfer->chunks[1].data, head);
+    for (i = 0; i < tail + head - 3; i++) {
+        found_code = fn_12_A2C4(boundary + i);
+        if ((found_code & mask) != 0) {
+            *code = found_code;
+            return transfer->chunks[0].data + transfer->chunks[0].len - tail + i;
+        }
     }
     delimiter = fn_12_A0D8(transfer->chunks[1].data, transfer->chunks[1].len, mask);
     if (delimiter != 0) {
@@ -231,10 +241,12 @@ static inline void go_delimiter(Handle *handle, int mask) {
     fn_12_22008(handle, handle->video_parameter, consumed);
 }
 
+#pragma opt_common_subs off
 int fn_12_28CC4(Handle *handle, int active_size, int delimiter_type, int *processed) {
-    int result;
-    Snapshot *total;
     VideoWork *work;
+    Snapshot *total;
+    int result;
+    Timer *timer = (Timer *)&handle->timer_state;
     int buffer_index;
     SJ *stream;
     SJCK chunk;
@@ -249,12 +261,12 @@ int fn_12_28CC4(Handle *handle, int active_size, int delimiter_type, int *proces
     if ((delimiter_type & 0xC8) != 0) fn_12_2AC80(handle, 1);
     if (delimiter_type == 0x80) {
         int index = handle->video_parameter;
-        total = &handle->total;
+        total = &timer->total;
         if (handle->video_state < 0) handle->video_state = fn_12_21F28(handle, index) + 4;
-        if (total->value < 0) *total = handle->maximum;
+        if (total->value < 0) *total = timer->maximum;
     }
     if (delimiter_type == 0x80 && fn_12_23250(handle) != 0) {
-        if (concat(handle, stream) == 0) *processed = 1;
+        if (concat(handle, stream, handle->video) == 0) *processed = 1;
     } else if (delimiter_type == 0x80 && fn_12_231A0(handle) != 0) {
         skip_endcode(handle, stream);
         *processed = 1;
@@ -274,7 +286,7 @@ int fn_12_28CC4(Handle *handle, int active_size, int delimiter_type, int *proces
     } else if ((delimiter_type & 2) != 0) {
         if (handle->reference_offset < 0) return 0;
         if (fn_12_27884(handle, &chunk) != 0) {
-            result = skip_picture(handle, stream);
+            result = skip_picture(handle, stream, handle->video);
             if (result == 0) *processed = 1;
         } else result = fn_12_27478(handle, stream);
     } else if (delimiter_type != 0x80) {
