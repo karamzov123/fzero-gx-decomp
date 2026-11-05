@@ -1097,3 +1097,12 @@ rel/customize/emb_paste_editor/fn_3_F984.c:
 
 rel/customize/toolkit/fn_3_29C94.c:
 	.text       start:0x00029C94 end:0x0002A2F8 align:4
+
+rel/customize/emb_memcard/fn_3_C400.c:
+	.text       start:0x0000C400 end:0x0000CE94 align:4
+
+rel/customize/emb_paste_editor/fn_3_10CB8.c:
+	.text       start:0x00010CB8 end:0x000113AC align:4
+
+rel/customize/toolkit/fn_3_21300.c:
+	.text       start:0x00021300 end:0x000225F8 align:4

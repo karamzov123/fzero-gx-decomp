@@ -349,6 +349,341 @@ do_work:
 }
 /* fzgx:end fn_1_568F8 */
 
+/* fzgx:begin fn_1_56D4C */
+typedef signed long s32;
+
+typedef unsigned char u8;
+
+typedef unsigned long u32;
+
+typedef float f32;
+typedef double f64;
+
+typedef struct fn_1_568F8_Color {
+u8 r;
+u8 g;
+u8 b;
+u8 a;
+} fn_1_568F8_Color;
+typedef struct fn_1_568F8_Vec3 {
+f32 x;
+f32 y;
+f32 z;
+} fn_1_568F8_Vec3;
+typedef struct fn_1_568F8_Pool {
+fn_1_568F8_Color tev_color; /* 0x00 */
+f32 zero; /* 0x04 */
+fn_1_568F8_Vec3 axis_x; /* 0x08 */
+fn_1_568F8_Vec3 axis_y; /* 0x14 */
+fn_1_568F8_Vec3 axis_z; /* 0x20 */
+fn_1_568F8_Vec3 up; /* 0x2c */
+fn_1_568F8_Color clear_color; /* 0x38 */
+fn_1_568F8_Color chan_color; /* 0x3c */
+f32 neg_three; /* 0x40 */
+f32 one; /* 0x44 */
+f32 twenty; /* 0x48 */
+f32 three; /* 0x4c */
+f32 hundred; /* 0x50 */
+f32 size; /* 0x54 */
+} fn_1_568F8_Pool;
+
+
+typedef struct fn_1_56D4C_Vec3 {
+f32 x;
+f32 y;
+f32 z;
+} fn_1_56D4C_Vec3;
+typedef struct fn_1_56D4C_Pool {
+u8 pad_0[0x4];
+f32 zero; /* 0x04 */
+u8 pad_8[0x3c];
+f32 one; /* 0x44 */
+f32 twenty; /* 0x48 */
+u8 pad_4c[0xc];
+fn_1_56D4C_Vec3 axis_x; /* 0x58 */
+fn_1_56D4C_Vec3 axis_y; /* 0x64 */
+fn_1_56D4C_Vec3 axis_z; /* 0x70 */
+fn_1_56D4C_Vec3 trans; /* 0x7c */
+f32 six; /* 0x88 */
+f32 fade; /* 0x8c */
+} fn_1_56D4C_Pool;
+typedef struct fn_1_56D4C_Target {
+u32 flags;
+u8 pad_4[0x148];
+f32 mtx[3][4]; /* 0x14c */
+u8 pad_17c[0x40];
+fn_1_56D4C_Vec3 dir; /* 0x1bc */
+f32 dist; /* 0x1c8 */
+u8 pad_1cc[0x8];
+fn_1_56D4C_Vec3 pos; /* 0x1d4 */
+} fn_1_56D4C_Target;
+typedef struct fn_1_56D4C_Entry {
+u32 flags;
+u32 unk_4;
+f32 alpha; /* 0x08 */
+f32 mtx[3][4]; /* 0x0c */
+u8 pad_3c[0xc];
+fn_1_56D4C_Target *target; /* 0x48 */
+} fn_1_56D4C_Entry;
+
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28B0[1] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x0
+};
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28B4[16] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x0, 0x3F800000, 0x0, 0x0, 0x0, 0x3F800000, 0x0, 0x0,
+    0x0, 0x3F800000, 0x0, 0x0, 0x0, 0x0, 0xFF00FF, 0xC0400000  /* fzgx-allow: A1 retail data bytes */
+};
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28F4[1] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x3F800000
+};
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28B0_48[4] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x41A00000, 0x40400000, 0x42C80000, 0x43000000
+};
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28B0_58[3] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x3F800000, 0x0, 0x0
+};
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28B0_64[3] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x0, 0x3F800000, 0x0
+};
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28B0_70[3] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x0, 0x0, 0x3F800000
+};
+static inline fn_1_56D4C_Vec3 fn_1_56D4C_translation(void) {
+    fn_1_56D4C_Vec3 v = { 0.0f, 0.0f, 0.0f };
+    return v;
+}
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28B0_88[1] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x40C00000
+};
+static const u32 fzgx_pool_rodata_lbl_1_rodata_28B0_8C[5] = {  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x3D4CCCCD, 0x40186666, 0x66666666, 0x43300000, 0x0
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_data_layout_lbl_1_rodata_28B0(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: keeps the retail .data objects in retail order */
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0;
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28B4;
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28F4;
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_48;
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_58;
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_64;
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_70;
+    { fn_1_56D4C_Vec3 v = fn_1_56D4C_translation(); s = *(u8 *)&v; }
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_88;
+    s = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_8C;
+}
+#pragma section code_type ".text"
+
+extern f64 __fabs(f64);
+extern s32 fn_1_66B8(s32, f32);
+extern void lbl_8006DBAC(void *);
+extern f32 lbl_8006D668(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DF44(void);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E15C(f32, f32, f32);
+extern void lbl_8006DFC4(void *);
+extern void *lbl_801A6D00;
+static inline void fn_1_56D4C_cross_values(f32 bz, f32 by, f32 bx, f32 ay, f32 az, f32 ax, fn_1_56D4C_Vec3 *out) {
+f32 x;
+f32 y;
+f32 z;
+z = ax * by;
+y = az * bx;
+x = ay * bz;
+z -= ay * bx;
+y -= ax * bz;
+x -= az * by;
+out->z = z;
+out->y = y;
+out->x = x;
+}
+#define fn_1_56D4C_cross(a, b, out) fn_1_56D4C_cross_values((b)->z, (b)->y, (b)->x, (a)->y, (a)->z, (a)->x, out)
+static inline void fn_1_56D4C_cross_simple(fn_1_56D4C_Vec3 *a, fn_1_56D4C_Vec3 *b, fn_1_56D4C_Vec3 *out) {
+f32 ax;
+f32 ay;
+f32 az;
+f32 bx;
+f32 by;
+f32 bz;
+f32 x;
+f32 y;
+f32 z;
+ay = a->y;
+az = a->z;
+ax = a->x;
+bx = b->x;
+bz = b->z;
+by = b->y;
+x = ay * bz;
+y = az * bx;
+z = ax * by;
+x -= az * by;
+y -= ax * bz;
+z -= ay * bx;
+out->x = x;
+out->y = y;
+out->z = z;
+}
+static inline void fn_1_56D4C_cross_second(fn_1_56D4C_Vec3 *a, fn_1_56D4C_Vec3 *b, fn_1_56D4C_Vec3 *out) {
+f32 ax;
+f32 ay;
+f32 az;
+f32 bx;
+f32 by;
+f32 bz;
+f32 x;
+f32 y;
+f32 z;
+ay = a->y;
+bz = b->z;
+az = a->z;
+bx = b->x;
+by = b->y;
+ax = a->x;
+x = ay * bz;
+y = az * bx;
+z = ax * by;
+x -= az * by;
+y -= ax * bz;
+z -= ay * bx;
+out->x = x;
+out->y = y;
+out->z = z;
+}
+static inline void fn_1_56D4C_negate(fn_1_56D4C_Vec3 *src, fn_1_56D4C_Vec3 *dst) {
+dst->x = -src->x;
+dst->y = -src->y;
+dst->z = -src->z;
+}
+/* locked-cache current matrix (translation column) */
+void fn_1_56D4C(fn_1_56D4C_Entry *entry) {
+
+f32 z;
+f32 y;
+f32 x;
+fn_1_56D4C_Target *target;
+    void * lab_t0;
+f32 (*m)[4];
+f32 dist;
+f32 ax;
+f32 ay;
+f32 az;
+f32 alpha;
+fn_1_56D4C_Vec3 *axis;
+fn_1_56D4C_Vec3 c;
+f32 a[3];
+f32 b[3];
+f32 e[3];
+fn_1_56D4C_Vec3 f;
+f32 d[3];
+fn_1_56D4C_Vec3 axis_x;
+fn_1_56D4C_Vec3 axis_y;
+fn_1_56D4C_Vec3 axis_z;
+target = entry->target;
+entry->flags &= ~3;
+if (target->flags & 0x8000) {
+dist = (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_48)));
+} else {
+dist = target->dist;
+}
+lbl_8006DBAC(target->mtx);
+if (dist <= (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B4))) || !fn_1_66B8(0, (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_88))))) {
+entry->flags &= ~4;
+return;
+}
+entry->flags |= 1;
+ax = __fabs(target->dir.x);
+ay = __fabs(target->dir.y);
+az = __fabs(target->dir.z);
+if (ax <= ay && ax <= az) {
+axis_x = (*(fn_1_56D4C_Vec3 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_58)));
+axis = &axis_x;
+} else if (ay <= az && ay <= ax) {
+axis_y = (*(fn_1_56D4C_Vec3 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_64)));
+axis = &axis_y;
+} else {
+axis_z = (*(fn_1_56D4C_Vec3 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_70)));
+axis = &axis_z;
+}
+if ((entry->flags >> 1) & 1) {
+*(fn_1_56D4C_Vec3 *)a = *axis;
+*(fn_1_56D4C_Vec3 *)b = target->dir;
+fn_1_56D4C_cross ((fn_1_56D4C_Vec3 *)a, (fn_1_56D4C_Vec3 *)b, &c);
+fn_1_56D4C_cross ((fn_1_56D4C_Vec3 *)b, &c, (fn_1_56D4C_Vec3 *)a);
+fn_1_56D4C_cross (&c, (fn_1_56D4C_Vec3 *)a, (fn_1_56D4C_Vec3 *)b);
+lab_t0 = &c;
+lbl_8006D668(lab_t0);
+lab_t0 = (fn_1_56D4C_Vec3 *)a;
+lbl_8006D668(lab_t0);
+lab_t0 = (fn_1_56D4C_Vec3 *)b;
+lbl_8006D668(lab_t0);
+entry->mtx[0][0] = c.x;
+entry->mtx[0][1] = a[0];
+entry->mtx[0][2] = b[0];
+entry->mtx[0][3] = target->pos.x;
+entry->mtx[1][0] = c.y;
+entry->mtx[1][1] = a[1];
+entry->mtx[1][2] = b[1];
+entry->mtx[1][3] = target->pos.y;
+entry->mtx[2][0] = c.z;
+entry->mtx[2][1] = a[2];
+entry->mtx[2][2] = b[2];
+entry->mtx[2][3] = target->pos.z;
+} else {
+fn_1_56D4C_negate(&target->dir, (fn_1_56D4C_Vec3 *)d);
+fn_1_56D4C_cross_simple (axis, (fn_1_56D4C_Vec3 *)d, (fn_1_56D4C_Vec3 *)e);
+lab_t0 = (fn_1_56D4C_Vec3 *)e;
+lbl_8006D668(lab_t0);
+fn_1_56D4C_cross_second ((fn_1_56D4C_Vec3 *)d, (fn_1_56D4C_Vec3 *)e, &f);
+lab_t0 = &f;
+lbl_8006D668(lab_t0);
+{
+fn_1_56D4C_Vec3 trans = fn_1_56D4C_translation();
+m = lbl_801A6D00;
+m[0][0] = e[0];
+m[0][1] = f.x;
+m[0][2] = d[0];
+m[0][3] = trans.x;
+m[1][0] = e[1];
+m[1][1] = f.y;
+m[1][2] = d[1];
+m[1][3] = trans.y;
+m[2][0] = e[2];
+m[2][1] = f.z;
+m[2][2] = d[2];
+m[2][3] = trans.z;
+}
+lbl_8006DAEC();
+lbl_8006DF44();
+lbl_8006DB74((u8 *)lbl_801A6D00 + 0x60);
+lbl_8006DB30();
+lbl_8006E15C((*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28F4))), (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28F4))), (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B4))));
+lbl_8006DFC4((u8 *)lbl_801A6D00 + 0x60);
+lbl_8006DFC4(target->mtx);
+x = *(volatile f32 *)&target->pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+y = target->pos.y;
+z = target->pos.z;
+((f32 (*)[4])0xE0000000) [0][3] = x;
+((f32 (*)[4])0xE0000000) [1][3] = y;
+((f32 (*)[4])0xE0000000) [2][3] = z;
+lbl_8006DB74(entry->mtx);
+}
+alpha = (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B0_8C))) * dist;
+entry->flags |= 4;
+if (alpha < (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B4)))) {
+alpha = (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28B4)));
+} else if (alpha > (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28F4)))) {
+alpha = (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28F4)));
+}
+entry->alpha = alpha;
+if (target->flags & 0x8000) {
+entry->alpha = (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_28F4)));
+}
+}
+/* fzgx:end fn_1_56D4C */
+
 /* fzgx:begin fn_1_571E8 */
 #include "types.h"
 

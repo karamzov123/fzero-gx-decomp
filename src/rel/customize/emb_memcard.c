@@ -49,6 +49,265 @@ void fn_3_C328(void) {
 }
 /* fzgx:end fn_3_C328 */
 
+/* fzgx:begin fn_3_C400 */
+#include "font.h"
+
+typedef struct { u32 unk_0; } Sig_fn_1_4FC50_InputObject;
+extern s32 fn_1_4FC50(Sig_fn_1_4FC50_InputObject *, u32, u16, u16, u32);
+extern s32 fn_1_A5DC4(void);
+extern u8 lbl_1_rodata_26F8[];
+extern u16 fn_1_48690(u32);
+#define DRAW() fn_1_4F734(&pkt)
+#define INIT() (pkt = *(FontDrawPacket *)lbl_1_rodata_26F8)
+/* Pool primer: retail lays the TU literal pool out in first-use order, so the
+ * loop's 129/15 come before 10/0 (the loop hoists them). Reference the
+ * literals in retail order first; the section is dropped at integration. */
+#pragma section code_type ".fzgxpool"
+extern void fzgx_pool_sink(f32);
+void fzgx_pool_fn_3_C400(void) {
+    fzgx_pool_sink(50.0f);
+    fzgx_pool_sink(500.0f);
+    fzgx_pool_sink(31.2f);
+    fzgx_pool_sink(312.0f);
+    fzgx_pool_sink(68.0f);
+    fzgx_pool_sink(20.0f);
+    fzgx_pool_sink(96.0f);
+    fzgx_pool_sink(1.36f);
+    fzgx_pool_sink(161.0f);
+    fzgx_pool_sink(1.015625f);
+    fzgx_pool_sink(129.0f);
+    fzgx_pool_sink(15.0f);
+    fzgx_pool_sink(10.0f);
+    fzgx_pool_sink(0.0f);
+    fzgx_pool_sink(86.0f);
+    fzgx_pool_sink(0.5f);
+    fzgx_pool_sink(139.0f);
+    fzgx_pool_sink(75.0f);
+}
+#pragma section code_type ".text"
+#pragma opt_propagation off
+void fn_3_C400(u32 arg0, u32 arg1) {
+    u8 *p_lbl_1_rodata_26F8;
+    s32 v12;
+#define v7 (v6 + 169) /* recomputed expression: retail keeps it as a CSE web above the locals */
+    s32 left;
+    s32 right;
+    s32 offset;
+    s32 v0;
+    s32 clamped;
+    s32 c;
+    s32 clamped2;
+    s32 c2;
+    f32 v35;
+    f32 alpha_value;
+    f32 x;
+    f32 v37;
+    f32 v38;
+    f32 v39;
+    f32 v36;
+    s32 v47;
+    s32 alpha;
+    Obj_3_bss_7EE40 *slot;
+    s16 v6;
+    s32 v40;
+    s16 v1;
+    s16 v50;
+    s16 v51;
+    FontDrawPacket pkt;
+    v6 = 0;
+    v40 = 0;
+    if ((s8)fn_1_A5DC4() != 0) {
+        v0 = lbl_3_bss_7EDD8.unk_24;
+        c = v0 - 5;
+        if (c < 0) clamped = 0;
+        else { clamped = 10; if (c <= 10) clamped = c; }
+        offset = (s32)((f32)(50.0f * (f32)clamped) - 500.0f);
+        c = v0 - 15;
+        if (c < 0) clamped = 0;
+        else { clamped = 10; if (c <= 10) clamped = c; }
+        v1 = clamped;
+    } else {
+        v0 = lbl_3_bss_7EDD8.unk_24;
+        c2 = v0 - 5;
+        if (c2 < 0) clamped2 = 0;
+        else { clamped2 = 10; if (c2 <= 10) clamped2 = c2; }
+        offset = (s32)((f32)(31.2f * (f32)clamped2) - 312.0f);
+        c2 = v0 - 15;
+        if (c2 < 0) clamped2 = 0;
+        else { clamped2 = 10; if (c2 <= 10) clamped2 = c2; }
+        v1 = clamped2;
+    }
+    v6 = offset;
+    if (v7 >= 0) {
+        INIT();
+        x = (f32)(v6 + 25);
+        pkt.image = 0x8924;
+        pkt.y = 68.0f;
+        pkt.x = x;
+        pkt.z = 20.0f;
+        pkt.flags = 5;
+        fn_1_51678(&pkt, 0x8924, 0, 0, 144, 28);
+        DRAW();
+    }
+    v12 = v6 + 313;
+    if (v12 >= 0) {
+        INIT();
+        pkt.flags = 5;
+        pkt.image = 0x8924;
+        pkt.x = (f32)v7;
+        pkt.y = 68.0f;
+        pkt.z = 20.0f;
+        pkt.flags = 0x80005;
+        fn_1_51678(&pkt, 0x8924, 0, 0, 144, 28);
+        DRAW();
+    }
+    if (v7 >= 0) {
+        INIT();
+        x = (f32)(v6 + 25);
+        pkt.image = 0x8924;
+        pkt.y = 96.0f;
+        pkt.x = x;
+        pkt.z = 20.0f;
+        pkt.flags = 5;
+        fn_1_51678(&pkt, 0x8924, 0, 29, 144, 2);
+        pkt.scale_y = 1.36f;
+        DRAW();
+    }
+    if (v12 >= 0) {
+        INIT();
+        x = (f32)v7;
+        pkt.image = 0x8924;
+        pkt.y = 96.0f;
+        pkt.x = x;
+        pkt.z = 20.0f;
+        pkt.flags = 0x80005;
+        fn_1_51678(&pkt, 0x8924, 0, 29, 144, 2);
+        pkt.scale_y = 1.36f;
+        DRAW();
+    }
+    if (v7 >= 0) {
+        INIT();
+        x = (f32)(v6 + 25);
+        pkt.image = 0x8924;
+        pkt.y = 161.0f;
+        pkt.x = x;
+        pkt.z = 20.0f;
+        pkt.flags = 5;
+        fn_1_51678(&pkt, 0x8924, 0, 32, 144, 12);
+        DRAW();
+    }
+    if (v12 >= 0) {
+        INIT();
+        x = (f32)v7;
+        pkt.image = 0x8924;
+        pkt.y = 161.0f;
+        pkt.x = x;
+        pkt.z = 20.0f;
+        pkt.flags = 0x80005;
+        fn_1_51678(&pkt, 0x8924, 0, 32, 144, 12);
+        DRAW();
+    }
+    alpha = v1 * 65535;
+    v35 = 1.015625f;
+    v36 = 10.0f;
+    v37 = v35 * (f32)v1;
+    v39 = v37 / v36;
+    p_lbl_1_rodata_26F8 = lbl_1_rodata_26F8;
+    v40 = 0;
+    while ((u8)v40 < 4) {
+        pkt = *(FontDrawPacket *)p_lbl_1_rodata_26F8;
+        if ((s8)fn_1_A5DC4() != 0 && (u8)v40 == 0)
+            pkt.x = (f32)((u8)v40 * 69 + 65);
+        else
+            pkt.x = (f32)((u8)v40 * 69 + 66);
+        pkt.y = 129.0f;
+        pkt.z = 15.0f;
+        v38 = 0.0f;
+        pkt.flags = 10;
+        if ((s8)fn_1_A5DC4() != 0) {
+            if ((u8)v40 != 0)
+                pkt.scale_x = (f32)v1 / 10.0f;
+            else
+                pkt.scale_x = (f32)v1 / 10.0f;
+        } else {
+            pkt.scale_x = v37 / 10.0f;
+        }
+        pkt.scale_y = v39;
+        pkt.rotation_z = (s16)((f32)alpha / v36);
+        if (v38 != pkt.scale_x && v38 != pkt.scale_y) {
+            slot = (Obj_3_bss_7EE40 *)((u8 *)&lbl_3_bss_7EE40 + (u8)v40 * 0x2060);
+            if (slot->unk_24 & 0x80000000) {
+                fn_1_4FC50((Sig_fn_1_4FC50_InputObject *)&pkt, 5, 64, 64, (u32)((u8 *)slot + 128));
+            } else {
+                pkt.image = 0x8916;
+                pkt.scale_x = (f32)v1 / v36;
+                pkt.scale_y = pkt.scale_x;
+                DRAW();
+            }
+        }
+        v40++;
+    }
+    v47 = lbl_3_bss_7EDD8.unk_15 * 69;
+    v50 = v47 + 21;
+    v51 = v47 + 77;
+    INIT();
+    pkt.image = 0x890B;
+    if ((left = v50 + v6) + fn_1_48690(0x890B) >= 0) {
+        x = (f32)left;
+        pkt.y = 86.0f;
+        pkt.z = 10.0f;
+        pkt.x = x;
+        if (!(lbl_3_bss_7EDD8.unk_C & 0x40000000))
+            pkt.alpha = 0.5f;
+        pkt.flags = 5;
+        DRAW();
+    }
+    if ((right = v51 + v6) + fn_1_48690(0x890B) >= 0) {
+        x = (f32)right;
+        pkt.y = 86.0f;
+        pkt.z = 10.0f;
+        pkt.x = x;
+        if (!(lbl_3_bss_7EDD8.unk_C & 0x40000000))
+            pkt.alpha = 0.5f;
+        pkt.flags = 5;
+        pkt.flags |= 0x80000;
+        DRAW();
+    }
+    if (left + fn_1_48690(0x890B) >= 0) {
+        x = (f32)left;
+        pkt.y = 139.0f;
+        pkt.z = 10.0f;
+        pkt.x = x;
+        if (!(lbl_3_bss_7EDD8.unk_C & 0x40000000))
+            pkt.alpha = 0.5f;
+        pkt.flags = 0x100005;
+        DRAW();
+    }
+    if (right + fn_1_48690(0x890B) >= 0) {
+        x = (f32)right;
+        pkt.y = 139.0f;
+        pkt.z = 10.0f;
+        pkt.x = x;
+        if (!(lbl_3_bss_7EDD8.unk_C & 0x40000000))
+            pkt.alpha = 0.5f;
+        pkt.flags |= 0x80000;
+        DRAW();
+    }
+    if (v6 + 38 + fn_1_48690(0x8914) >= 0) {
+        INIT();
+        x = (f32)(v6 + 38);
+        pkt.image = 0x8914;
+        pkt.y = 75.0f;
+        pkt.x = x;
+        pkt.z = 10.0f;
+        pkt.flags = 5;
+        DRAW();
+    }
+}
+
+#pragma opt_propagation reset
+/* fzgx:end fn_3_C400 */
+
 /* fzgx:begin fn_3_CE94 noprologue */
 #include "types.h"
 #include "font.h"

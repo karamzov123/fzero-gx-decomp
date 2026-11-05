@@ -16316,3 +16316,21 @@ rel/main_rel/burner/fn_1_9D420.c:
 
 rel/main_rel/bg_for/fn_1_DF6AC.c:
 	.text       start:0x000DF6AC end:0x000DFBBC align:4
+
+rel/main_rel/shadowmap/fn_1_56D4C.c:
+	.text       start:0x00056D4C end:0x000571E8 align:4
+
+rel/main_rel/camera/fn_1_5948.c:
+	.text       start:0x00005948 end:0x0000627C align:4
+
+rel/main_rel/effect/fn_1_5EB98.c:
+	.text       start:0x0005EB98 end:0x0005F5C4 align:4
+
+rel/main_rel/sel_static_disp/fn_1_133E04.c:
+	.text       start:0x00133E04 end:0x00134A4C align:4
+
+rel/main_rel/bg_for/fn_1_DE4B0.c:
+	.text       start:0x000DE4B0 end:0x000DE9C4 align:4
+
+rel/main_rel/memcard/fn_1_B4AC0.c:
+	.text       start:0x000B4AC0 end:0x000B5258 align:4

@@ -1185,6 +1185,340 @@ void fn_3_10B68(void) {
 #pragma opt_pointer_analysis reset
 /* fzgx:end fn_3_10B68 */
 
+/* fzgx:begin fn_3_10CB8 pool noprologue */
+#include "types.h"
+
+/* Layouts of the emb_paste_editor.c objects this function touches. */
+typedef struct { s16 x, y, z; } Pos3;
+typedef struct { f32 x, y, z; } Vec;
+typedef struct { Vec a; Vec b; } View;
+typedef struct {
+    u32 unk_0;
+    View view;
+    u32 unk_1C;
+    u32 unk_20;
+} Cam;
+
+typedef struct {
+    u8 pad_0[0x4];
+    u32 unk_4;
+    Pos3 unk_8;
+    u8 pad_E[0x1A];
+    View unk_28;
+    f32 unk_40;
+    f32 unk_44;
+    u8 pad_48[0x2018];
+} PasteEntry;
+
+typedef struct {
+    u8 pad_0[0x7];
+    u8 unk_7;
+    u8 pad_8[0x18];
+    PasteEntry unk_20[4];
+    u8 pad_81A0[0x20];
+} PasteSlot;
+
+typedef struct {
+    PasteSlot *unk_0;
+    u8 pad_4[0x8];
+} Obj7EDC0;
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u8 pad_8[0x2];
+    s16 unk_A;
+    u32 unk_C;
+    u32 unk_10;
+    u8 unk_14;
+    u8 unk_15;
+    u8 pad_16[0x2];
+    u32 unk_18;
+    s16 unk_1C;
+    u8 unk_1E;
+    u8 unk_1F;
+    u8 unk_20;
+    u8 unk_21;
+    s16 unk_22;
+    s16 unk_24;
+    Pos3 unk_26;
+    u32 unk_2C[4];
+    u8 unk_3C;
+    u8 pad_3D[0x9];
+    u8 unk_46;
+    u8 unk_47;
+    s16 unk_48;
+    u8 pad_4A[0x2];
+    s16 unk_4C;
+    s16 unk_4E;
+    u8 unk_50;
+    u8 unk_51;
+    u8 pad_52[0x16];
+} EditorState;
+
+typedef struct { u16 unk_0; u8 pad_2[0x12]; } InputEntry;
+typedef struct {
+    union {
+        InputEntry unk_0[1];
+        struct { u8 pad8[8]; InputEntry unk_8[1]; };
+    };
+} InputState;
+
+extern InputState lbl_1_bss_9F8;
+extern PasteSlot lbl_3_bss_7EE40;
+extern PasteSlot lbl_3_bss_87040;
+extern void lbl_8006D5A4(Vec *a, Vec *b, Vec *out, f32 t);
+extern void fn_1_A2D84(u32);
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_80008BA8(void *, void *, u32);
+extern u32 camera_update_state(void *);
+extern u32 fn_3_11A38(void);
+extern void fzgx_touch(void *);
+
+/* The TU's .bss from lbl_3_bss_7EDC0 to lbl_3_bss_9F6BC: retail addresses these off one base. */
+Obj7EDC0 fzgx_obj_lbl_3_bss_7EDC0;
+u8 fzgx_obj_lbl_3_bss_7EDCC[0xC];
+EditorState fzgx_obj_lbl_3_bss_7EDD8;
+u8 fzgx_pad_7EE40[0x20800];
+Cam fzgx_obj_lbl_3_bss_9F640;
+u8 fzgx_pad_9F664[0x8];
+Cam fzgx_obj_lbl_3_bss_9F66C;
+Cam fzgx_obj_lbl_3_bss_9F690;
+u8 fzgx_pad_9F6B4[0x4];
+f32 fzgx_obj_lbl_3_bss_9F6B8;
+Pos3 fzgx_obj_lbl_3_bss_9F6BC;
+
+/* Retail lbl_3_rodata_288 pool, in order: words this function does not read are tables. */
+static const union { u32 w[13]; const u32 v[13]; } fzgx_pool_init_fzgx_pool_table_0 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x42480000, 0x43FA0000, 0x41F9999A, 0x439C0000, 0x42880000, 0x41A00000, 0x42C00000, 0x3FAE147B,
+    0x43210000, 0x3F820000, 0x43010000, 0x41700000, 0x41200000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_0(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_0.v);
+    o[0] = 0.0f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[4]; const u32 v[4]; } fzgx_pool_init_fzgx_pool_table_38 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x42AC0000, 0x3F000000, 0x430B0000, 0x42960000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_38(f64 *d) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_38.v);
+    d[0] = 4503601774854144.0;
+}
+#pragma section code_type ".text"
+static const union { u32 w[27]; const u32 v[27]; } fzgx_pool_init_fzgx_pool_table_50 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0xFFFF0000, 0xFFFF0000, 0xFFFFFF00, 0x43390000, 0x43340000, 0x438A0000, 0x42E80000, 0x40E00000,
+    0x434D0000, 0x41366666, 0x42200000, 0x47800000, 0x42700000, 0x42A00000, 0x43890000, 0x3F155555,
+    0x3F0AAAAB, 0x3EEAAAAB, 0x43300000, 0x0, 0x43A00000, 0x43700000, 0x40A00000, 0x40C33333,
+    0x3F4CCCCD, 0x43640000, 0x437C0000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_50(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_50.v);
+    o[0] = 0.1f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[12]; const u32 v[12]; } fzgx_pool_init_fzgx_pool_table_C0 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0xC1F00000, 0x443B8000, 0x42400000, 0x44250000, 0x42300000, 0x41C00000, 0x43970000, 0x428C0000,
+    0x43A50000, 0x3FA28F5C, 0x43C30000, 0x439A0000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_C0(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_C0.v);
+    o[0] = 1.0f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[52]; const u32 v[52]; } fzgx_pool_init_fzgx_pool_table_F4 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x43B80000, 0x43B40000, 0x41F00000, 0x3ECCCCCD, 0x47000000, 0x3F680000, 0x3F6C0000, 0x3F700000,
+    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x40A00000, 0xC1700000,  /* fzgx-allow: A1 retail data bytes */
+    0x0, 0x40200000, 0xC1700000, 0x0, 0x40A00000, 0xC1700000, 0x0, 0x40200000,  /* fzgx-allow: A1 retail data bytes */
+    0xC1700000, 0x0, 0x0, 0x0, 0x40A00000, 0xC1700000, 0x0, 0x40200000,  /* fzgx-allow: A1 retail data bytes */
+    0xC1700000, 0x425C0000, 0x47AFC800, 0x42BE0000, 0x41880000, 0x43B10000, 0x439B0000, 0x43B68000,  /* fzgx-allow: A1 retail data bytes */
+    0x430F0000, 0x419A6632, 0x3C23D70A, 0x3F400000, 0x43AF8000, 0x43C18000, 0x3F19999A, 0x3F333333,
+    0x43AE0000, 0x43C00000, 0xFFFFFFFF, 0x43480000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_F4(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_F4.v);
+    o[0] = 0.05f;
+    o[1] = 0.35f;
+    o[2] = 0.0005f;
+    o[3] = 0.002f;
+    o[4] = 0.005f;
+}
+void fzgx_bss_primer(void) {
+    fzgx_touch(&fzgx_obj_lbl_3_bss_7EDC0);
+    fzgx_touch(fzgx_obj_lbl_3_bss_7EDCC);
+    fzgx_touch(&fzgx_obj_lbl_3_bss_7EDD8);
+    fzgx_touch(fzgx_pad_7EE40);
+    fzgx_touch(&fzgx_obj_lbl_3_bss_9F640);
+    fzgx_touch(fzgx_pad_9F664);
+    fzgx_touch(&fzgx_obj_lbl_3_bss_9F66C);
+    fzgx_touch(&fzgx_obj_lbl_3_bss_9F690);
+    fzgx_touch(fzgx_pad_9F6B4);
+    fzgx_touch(&fzgx_obj_lbl_3_bss_9F6B8);
+    fzgx_touch(&fzgx_obj_lbl_3_bss_9F6BC);
+}
+#pragma section code_type ".text"
+
+#define STATE fzgx_obj_lbl_3_bss_7EDD8
+#define CAM fzgx_obj_lbl_3_bss_9F640
+#define CAM_TARGET fzgx_obj_lbl_3_bss_9F66C
+#define VIEW fzgx_obj_lbl_3_bss_9F690
+#define BLEND fzgx_obj_lbl_3_bss_9F6B8
+#define POS_TARGET fzgx_obj_lbl_3_bss_9F6BC
+
+#define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
+
+static inline void count_active(void) {
+    s16 i;
+    s16 n = 0;
+    for (i = 0; i < 4; i++) {
+        if (lbl_3_bss_7EE40.unk_20[i].unk_4 & 0x80000000) {
+            n++;
+        }
+    }
+    lbl_3_bss_7EE40.unk_7 = n;
+}
+
+static inline void set_vec(Vec *v, f32 x, f32 y, f32 z) {
+    v->x = x;
+    v->y = y;
+    v->z = z;
+}
+
+static inline f32 clamp_blend(f32 *bound, f32 blend) {
+    *bound = 0.0f;
+    if (blend < *bound) {
+        return *bound;
+    }
+    *bound = 1.0f;
+    if (blend > *bound) {
+        return *bound;
+    }
+    *bound = blend;
+    return *bound;
+}
+
+#pragma fp_contract off
+void fn_3_10CB8(void) {
+    PasteEntry *cur;
+    PasteEntry *bak;
+    u8 active;
+    s32 n;
+
+    cur = &lbl_3_bss_7EE40.unk_20[STATE.unk_15];
+    bak = &lbl_3_bss_87040.unk_20[STATE.unk_15];
+    active = __rlwnm(cur->unk_4, 1, 31, 31);
+
+    if (__rlwnm(STATE.unk_10, 8, 31, 31) && BLEND < 1.0f) {
+        f32 r;
+        STATE.unk_26.x = STATE.unk_26.x + BLEND * (POS_TARGET.x - STATE.unk_26.x);
+        STATE.unk_26.y = STATE.unk_26.y + BLEND * (POS_TARGET.y - STATE.unk_26.y);
+        CAM.view.a.z = CAM.view.a.z + BLEND * (CAM_TARGET.view.a.z - CAM.view.a.z);
+        lbl_8006D5A4(&VIEW.view.a, &CAM_TARGET.view.a, &VIEW.view.a, BLEND);
+        lbl_8006D5A4(&VIEW.view.b, &CAM_TARGET.view.b, &VIEW.view.b, BLEND);
+        {
+            volatile Cam *snapshot = &VIEW; /* Retail snapshot loads. */
+            f32 bound, blend;
+            set_vec(&CAM.view.a, snapshot->view.a.x, snapshot->view.a.y,
+                    ((volatile Cam *)&CAM)->view.a.z);  /* fzgx-allow: S2 volatile view keeps the verified load order */
+            set_vec(&CAM.view.b, snapshot->view.b.x, snapshot->view.b.y, snapshot->view.b.z);
+            blend = 0.1f + BLEND;
+            BLEND = clamp_blend(&bound, blend);
+        }
+        return;
+    }
+
+    if ((lbl_1_bss_9F8.unk_8[STATE.unk_14].unk_0 >> 4) & 1) {
+        BLEND = 0.0f;
+        STATE.unk_10 = STATE.unk_C;
+        STATE.unk_C = 0x1000000;
+        CAM_TARGET = CAM;
+        POS_TARGET = STATE.unk_26;
+        return;
+    }
+
+    fn_3_11A38();
+    if ((lbl_1_bss_9F8.unk_8[STATE.unk_14].unk_0 >> 8) & 1) {
+        fn_1_A2D84(0xA9010100);
+        if (active) {
+            fn_80008BEC(cur, 0, 0x2060);
+            count_active();
+        } else {
+            cur->unk_4 = 0x80000000;
+            fn_80008BA8(cur, bak, 0x2060);
+            count_active();
+        }
+    }
+
+    if ((lbl_1_bss_9F8.unk_8[STATE.unk_14].unk_0 >> 9) & 1) {
+        PasteEntry *saved = &fzgx_obj_lbl_3_bss_7EDC0.unk_0[STATE.unk_46].unk_20[STATE.unk_15];
+        fn_1_A2D84(0xA9010200);
+        if (active) {
+            fn_80008BEC(cur, 0, 0x2060);
+            STATE.unk_2C[STATE.unk_15] = 0;
+            fn_80008BA8(cur, bak, 0x2060);
+            cur->unk_4 |= 0x80000000;
+            STATE.unk_C = 0x40000000;
+            STATE.unk_2C[STATE.unk_15] = 1;
+            count_active();
+        } else {
+            fn_80008BEC(bak, 0, 0x2060);
+            fn_80008BEC(cur, 0, 0x2060);
+            if (saved->unk_4 & 0x80000000) {
+                STATE.unk_2C[STATE.unk_15] = 1;
+                STATE.unk_C = 0x40000000;
+            } else {
+                STATE.unk_2C[STATE.unk_15] = 0;
+                STATE.unk_C = 0x8000000;
+            }
+            camera_update_state(&VIEW);
+        }
+    } else {
+        s16 dir;
+        EditorState *s = &STATE;
+        PasteEntry *e = &lbl_3_bss_87040.unk_20[STATE.unk_15];
+        f32 step;
+        s16 held;
+        step = 0.0f;
+        held = s->unk_50;
+        dir = 0;
+        if ((lbl_1_bss_9F8.unk_0[STATE.unk_14].unk_0 >> 10) & 1) {
+            dir = 1;
+        }
+        /* Retail reloads the input selector. */
+        if ((lbl_1_bss_9F8.unk_0[*(volatile u8 *)&STATE.unk_14].unk_0 >> 11) & 1) {
+            dir = -1;
+        }
+        if (dir) {
+            n = (s16)held + 1;
+            s->unk_50 = CLAMP(n, 0, 255);
+        } else {
+            s->unk_50 = 0;
+        }
+        step += 0.0005f * dir;
+        if (s->unk_50 >= 15) {
+            step += 0.002f * dir;
+        }
+        if (s->unk_50 >= 30) {
+            step += 0.005f * dir;
+        }
+        e->unk_40 = CLAMP(e->unk_40 + step, 0.05f, 0.35f);
+        e->unk_44 = CLAMP(e->unk_44 + step, 0.05f, 0.35f);
+        if (!active) {
+            PasteEntry *out = &lbl_3_bss_87040.unk_20[STATE.unk_15];
+            out->unk_8 = STATE.unk_26;
+            out->unk_28 = VIEW.view;
+            camera_update_state(&CAM);
+        }
+    }
+}
+#pragma fp_contract reset
+/* fzgx:end fn_3_10CB8 */
+
 /* fzgx:begin fn_3_113AC noprologue */
 #include "types.h"
 

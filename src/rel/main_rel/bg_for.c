@@ -1287,6 +1287,246 @@ void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_DE180 */
 
+/* fzgx:begin fn_1_DE4B0 pool */
+#include "psvec.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} DE4B0Vec;
+
+typedef struct {
+    f32 x, y, z, w;
+} DE4B0Quat;
+
+typedef struct {
+    s16 x;
+    s16 y;
+    s16 z;
+} DE4B0Angles;
+
+typedef struct {
+    u8 pad_0[0xC];
+    s16 mode;
+    u8 pad_E[0x54 - 0xE];
+    DE4B0Vec pos;
+    u8 pad_60[0x6C - 0x60];
+    DE4B0Vec rot;
+    u8 pad_78[0x88 - 0x78];
+    DE4B0Vec vel;
+    u8 pad_94[0xC4 - 0x94];
+    u8 mtx[0x30];
+    u8 pad_F4[0x138 - 0xF4];
+    u64 flags;
+} DE4B0Obj;
+
+extern u32 lbl_801A63C0;
+extern void fn_1_E5840(void *, const void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1C0(void *, void *);
+extern void lbl_8006E1B0(void *, void *);
+extern f32 lbl_8006D668(void *);
+extern void fn_80008BA8(void *, const void *, u32);
+extern void fn_8006E978(DE4B0Quat *, DE4B0Vec *, DE4B0Vec *);
+extern void mathutil_mtxA_from_quat(DE4B0Quat *);
+extern void fn_8006F6A8(DE4B0Angles *);
+
+/*
+ * The literal pool lbl_1_rodata_6780 is shared by the whole retail TU; the
+ * tables and primers below lay it out so this function's literals land on
+ * retail's offsets.
+ */
+extern void fzgx_pool_sink(const void *, f32);
+
+#pragma section RX ".fzgxpool"
+
+__declspec(section ".fzgxpool") void fzgx_pool_primer0(void) {
+    fzgx_pool_sink(0, -1.0f);
+}
+static const u32 pool_6784[7] = {
+    0x3F7FFFFE, 0x3F800001, 0xBF800001, 0xBF7FFFFE,
+    0x00000000, 0x3E800000, 0x00000000,
+};
+__declspec(section ".fzgxpool") void fzgx_pool_primer1(void) {
+    fzgx_pool_sink(pool_6784, 0.0f);
+    fzgx_pool_sink(pool_6784, 5.0f);
+    fzgx_pool_sink(pool_6784, 1.0f);
+}
+static const u32 pool_67AC[1] = { 0x00FF00FF };
+__declspec(section ".fzgxpool") void fzgx_pool_primer2(void) {
+    fzgx_pool_sink(pool_67AC, 0.1f);
+    fzgx_pool_sink(pool_67AC, 0.5f);
+    fzgx_pool_sink(pool_67AC, 10.0f);
+    fzgx_pool_sink(pool_67AC, 182.04445f);
+    fzgx_pool_sink(pool_67AC, 176.0f);
+}
+static const f32 pool_67C4[2] = { 0.0f, -0.0027222224f };
+__declspec(section ".fzgxpool") void fzgx_pool_primer3(void) {
+    fzgx_pool_sink(pool_67C4, 0.0f);
+}
+
+#pragma section RX ".text"
+
+/* the vector helpers of fn_1_DDF80 / fn_1_DE180 in this TU, under the same
+ * propagation setting; cross writes its result through an f32 pointer so a
+ * local result stays in memory */
+#pragma opt_propagation off
+
+static inline void cross(DE4B0Vec *a, DE4B0Vec *b, DE4B0Vec *out) {
+    f32 ax;
+    f32 ay;
+    f32 az;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 *dst = (f32 *)out;
+
+    ay = a->y;
+    bz = b->z;
+    az = a->z;
+    bx = b->x;
+    by = b->y;
+    ax = a->x;
+
+    x = ay * bz;
+    x -= az * by;
+    y = az * bx;
+    y -= ax * bz;
+    z = ax * by;
+    z -= ay * bx;
+    dst[0] = x;
+    dst[1] = y;
+    dst[2] = z;
+}
+
+static inline f32 dot(DE4B0Vec *a, DE4B0Vec *b) {
+    f32 result;
+    f32 ay;
+    f32 az;
+    f32 ax;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    ax = a->x;
+    bx = b->x;
+    ay = a->y;
+    by = b->y;
+    az = a->z;
+    bz = b->z;
+    result = ax * bx;
+    result += ay * by;
+    result += az * bz;
+    return result;
+}
+
+/* a helper of its own gives the -1.0 and the final scale retail's register order (as in fn_1_DDF80) */
+static inline void flip(DE4B0Vec *v) {
+    psvec_scale(v, -1.0f, v);
+}
+
+static inline s16 DE4B0_sign(f32 v) {
+    if (v < -1.1920929e-07f) {
+        return -1;
+    } else if (v > 1.1920929e-07f) {
+        return 1;
+    }
+    return 0;
+}
+
+void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
+    DE4B0Vec out;
+    DE4B0Vec up = { 0.0f, 1.0f, 0.0f };
+
+    if ((obj->flags & 0x100000000ULL) == 0) {
+        return;
+    }
+    switch (obj->mode) {
+    case 1:
+        if ((obj->flags & 0x400000000ULL) != 0) {
+            DE4B0Vec axisA = { 0.0f, 1.0f, 0.0f };
+            DE4B0Vec axisB = { 1.0f, 0.0f, 0.0f };
+            DE4B0Vec rot;
+            DE4B0Quat quat;
+            DE4B0Angles angles;
+            u32 seed;
+
+            lbl_8006DBAC(obj->mtx);
+            seed = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+            lbl_801A63C0 = seed;
+            if ((s32)((seed >> 16) & 0x7FFF) % 2 != 0) {
+                lbl_8006E1C0(&axisA, &axisA);
+                lbl_8006D668(&axisA);
+                fn_80008BA8(&out, &axisA, sizeof(DE4B0Vec));
+            } else {
+                lbl_8006E1C0(&axisB, &axisB);
+                lbl_8006D668(&axisB);
+                fn_80008BA8(&out, &axisB, sizeof(DE4B0Vec));
+            }
+            fn_8006E978(&quat, &out, dir);
+            mathutil_mtxA_from_quat(&quat);
+            fn_8006F6A8(&angles);
+            rot.x = 9.58738e-05f * angles.x;
+            rot.y = 9.58738e-05f * angles.y;
+            rot.z = 9.58738e-05f * angles.z;
+            fn_1_E5840(obj, &rot);
+        } else {
+            DE4B0Vec side[1];
+            DE4B0Vec top[1];
+            DE4B0Vec base[1];
+            DE4B0Vec velDir[1];
+            DE4B0Vec normal[1];
+            DE4B0Vec rot;
+            DE4B0Quat quat;
+            DE4B0Angles angles;
+            s32 same;
+            f32 d;
+
+            same = 0;
+            top[0].y = 1.5f * obj->vel.y;
+            top[0].x = top[0].z = 0.0f;
+            if (obj->vel.x == 0.0f && obj->vel.y == 0.0f && obj->vel.z == 0.0f) {
+                return;
+            }
+            lbl_8006DBAC(obj->mtx);
+            lbl_8006E1B0(top, top);
+            lbl_8006E1B0(&obj->vel, base);
+            lbl_8006E1C0(&obj->vel, velDir);
+            lbl_8006E1C0(&up, &up);
+            lbl_8006D668(&up);
+            cross(velDir, dir, side);
+            cross(side, dir, normal);
+            d = -dot(normal, base);
+            if (DE4B0_sign((d + dot(normal, top)) * (d + dot(normal, &obj->pos))) > 0) {
+                same = 1;
+            }
+            if (same == 1) {
+                fn_80008BA8(&out, &up, sizeof(DE4B0Vec));
+            } else {
+                cross(side, &up, &out);
+                lbl_8006D668(&out);
+            }
+            if (dot(dir, &out) < 0.0f) {
+                flip(&out);
+            }
+            fn_8006E978(&quat, &out, dir);
+            mathutil_mtxA_from_quat(&quat);
+            fn_8006F6A8(&angles);
+            rot.x = 9.58738e-05f * angles.x;
+            rot.y = 9.58738e-05f * angles.y;
+            rot.z = 9.58738e-05f * angles.z;
+            psvec_scale(&rot, 0.1f, &obj->rot);
+        }
+        break;
+    }
+}
+
+#pragma opt_propagation reset
+/* fzgx:end fn_1_DE4B0 */
+
 /* fzgx:begin fn_1_DE9C4 noprologue */
 #include "types.h"
 #include "rel/main_rel/bg_for.h"
