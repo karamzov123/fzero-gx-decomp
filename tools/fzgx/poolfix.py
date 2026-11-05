@@ -216,11 +216,11 @@ class Elf:
         ro = self.section(section_name)
         if ro is None:
             return True
-        others = [s for s in self.symbols()
-                  if s["shndx"] == ro["index"] and (s["info"] & 0xF) == STT_OBJECT and s["name"] not in private_names]
-        # the pool primer's tables (fzgx_pool_table*) are private pool bytes like the `@` literals
-        if any(not s['name'].startswith(('@', 'fzgx_pool_')) for s in others):
-            return False
+        # Any object left here after retargeting is a private copy: a literal (`@N`), a primer
+        # table, or a layout scaffold standing in for retail's objects (whatever its name:
+        # harvested bodies spell them `pool_6784`, `lbl_7_bss_1960_fill_1961`, `gPorts`).
+        # The proof that dropping it is safe is reachability, checked next, not its name;
+        # the linked hashes are the final gate.
         # MWCC can retain unused initializer objects after optimizing their
         # consumers away. Drop them only when no relocation (including one via
         # the section symbol) can still reach this section.
@@ -285,7 +285,7 @@ def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
     # range keeps the bytes); our private copies are dropped with their section
     elf.drop_section('.fzgxpool')  # the pool primer (see fixup_evidence.shared_pool_primer)
     done, skipped = elf.retarget(mapping)
-    emptied = (elf.drop_private_rodata(list(pooled)) if pooled else True) and (elf.drop_private_data(data_names) if data_names else True)
+    pending = (['.rodata'] if pooled else []) + (['.data'] if data_names else [])
     for name in sorted(small_sections):
         if name in ('.bss', '.sbss'):
             section = elf.section(name)
@@ -294,7 +294,15 @@ def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
             # owns. Keep those definitions; only externalized copies disappear.
             if defined and all(s['name'] in mapping.values() for s in defined):
                 continue
-        emptied = elf.drop_private_rodata(list(pooled), name) and emptied
+        pending.append(name)
+    # A private section can only be emptied once nothing else reaches it, and a layout
+    # scaffold's .data can point into its own .rodata: retry until no section empties.
+    while pending:
+        left = [name for name in pending if not elf.drop_private_rodata(list(pooled), name)]
+        if len(left) == len(pending):
+            break
+        pending = left
+    emptied = not pending
     obj.write_bytes(bytes(elf.data))
     return {"retargeted": done, "skipped": skipped, "rodata_emptied": emptied}
 
