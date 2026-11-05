@@ -28667,11 +28667,7 @@ void fn_1_C40A0(Racer *racer)
 }
 /* fzgx:end fn_1_C40A0 */
 
-/* fzgx:begin fn_1_C42F4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/memcard.h"
-
+/* fzgx:begin fn_1_C42F4 */
 /* the CPU block of a machine (+0x484) */
 typedef struct {
     u32 unk_0;

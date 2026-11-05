@@ -20416,7 +20416,6 @@ s32 fn_1_2AF0C(HoverMachine *racer, HoverVec *normal) {
     return result;
 }
 /* fzgx:end fn_1_2AF0C */
-||||||| Stash base
 
 /* fzgx:begin fn_1_2B478 */
 struct fn_1_2B478_Arg0 {

@@ -16334,3 +16334,30 @@ rel/main_rel/bg_for/fn_1_DE4B0.c:
 
 rel/main_rel/memcard/fn_1_B4AC0.c:
 	.text       start:0x000B4AC0 end:0x000B5258 align:4
+
+rel/main_rel/game/fn_1_36330.c:
+	.text       start:0x00036330 end:0x00036A94 align:4
+
+rel/main_rel/_prolog/fn_1_3308.c:
+	.text       start:0x00003308 end:0x00003920 align:4
+
+rel/main_rel/effect_car/fn_1_6D7BC.c:
+	.text       start:0x0006D7BC end:0x0006DD68 align:4
+
+rel/main_rel/stcoli/fn_1_2AF0C.c:
+	.text       start:0x0002AF0C end:0x0002B478 align:4
+
+rel/main_rel/background/fn_1_9C724.c:
+	.text       start:0x0009C724 end:0x0009CC40 align:4
+
+rel/main_rel/memcard/fn_1_C42F4.c:
+	.text       start:0x000C42F4 end:0x000C47B4 align:4
+
+rel/main_rel/sel_static_disp/fn_1_148950.c:
+	.text       start:0x00148950 end:0x001490FC align:4
+
+rel/main_rel/game/fn_1_32200.c:
+	.text       start:0x00032200 end:0x00032600 align:4
+
+rel/main_rel/game/fn_1_2FAA0.c:
+	.text       start:0x0002FAA0 end:0x0002FDBC align:4
