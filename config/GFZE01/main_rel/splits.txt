@@ -7566,9 +7566,6 @@ rel/main_rel/replay/fn_1_F326C.c:
 rel/main_rel/game/fn_1_39420.c:
 	.text       start:0x00039420 end:0x000395CC align:4
 
-rel/main_rel/accessory/fn_1_10B5A8.c:
-	.text       start:0x0010B5A8 end:0x0010B7D8 align:4
-
 rel/main_rel/motasglist/fn_1_4247C.c:
 	.text       start:0x0004247C end:0x000426AC align:4
 
@@ -16361,3 +16358,6 @@ rel/main_rel/game/fn_1_32200.c:
 
 rel/main_rel/game/fn_1_2FAA0.c:
 	.text       start:0x0002FAA0 end:0x0002FDBC align:4
+
+rel/main_rel/accessory/fn_1_10B5A8.c:
+	.text       start:0x0010B5A8 end:0x0010B7D8 align:4
