@@ -25294,6 +25294,7 @@ void fn_1_C42F4(Machine *cars)
 /* fzgx:begin fn_1_C4ABC noprologue */
 #include "types.h"
 #include "dolphin/hw_regs.h"
+#include "lc_mtx.h"
 
 /* a CPU route slot (.bss 0x7AC48 points to an array of them) */
 typedef struct {
@@ -25796,14 +25797,6 @@ static inline u8 cpu_wanted_state(Progress *prog) {
     }
 }
 
-/* sets a matrix translation; the same guarded helper also matches fn_1_83CB0 and fn_1_6C87C */
-static inline void mtx_set_translate(f32 (*mtx)[4], f32 x, f32 y, f32 z) {
-    if (mtx != NULL) {
-        mtx[0][3] = x;
-        mtx[1][3] = y;
-        mtx[2][3] = z;
-    }
-}
 void fn_1_C4ABC(Machine *car) {
     f32 boost;
     f32 a[3];
