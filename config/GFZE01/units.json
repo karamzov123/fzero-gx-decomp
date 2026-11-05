@@ -43459,6 +43459,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/background/fn_1_9DFB8.c",
+    "symbols": [
+      "fn_1_9DFB8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/background/fn_1_9E14C.c",
     "symbols": [
       "fn_1_9E14C"
