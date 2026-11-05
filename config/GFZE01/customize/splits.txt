@@ -1106,3 +1106,6 @@ rel/customize/emb_paste_editor/fn_3_10CB8.c:
 
 rel/customize/toolkit/fn_3_21300.c:
 	.text       start:0x00021300 end:0x000225F8 align:4
+
+rel/customize/_prolog/_prolog.c:
+	.text       start:0x0000042C end:0x00000844 align:4
