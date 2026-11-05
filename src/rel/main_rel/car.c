@@ -3921,8 +3921,6 @@ void fn_1_81164(Fn81164Car *car, s16 from, s16 to) {
     car->unk_37C[from] = NULL;
     car->unk_3B8 = to;
 }
-
-/* fzgx:end fn_1_81164 */
 /* fzgx:end fn_1_81164 */
 
 /* fzgx:begin fn_1_81408 noprologue */
@@ -18054,9 +18052,7 @@ void fn_1_8DBA4(u8 value) {
 }
 /* fzgx:end fn_1_8DBA4 */
 
-/* fzgx:begin fn_1_8DBB0 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_8DBB0 */
 typedef struct {
     u8 pad_0[0x9];
     u8 unk_9;

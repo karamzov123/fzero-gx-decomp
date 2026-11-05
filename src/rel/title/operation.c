@@ -1948,11 +1948,8 @@ void fn_8_8C80(void) {
 }
 /* fzgx:end fn_8_8C80 */
 
-/* fzgx:begin fn_8_8E00 noprologue */
-#include "types.h"
+/* fzgx:begin fn_8_8E00 */
 #include "rel/main_rel/game.h"
-#include "types.h"
-#include "types.h"
 
 /* begin game/main_rel/adxt_stop_types.h (fork-deltawave784/windows-and-types@b1e6f2df) */
 #ifndef GAME_MAIN_REL_ADXT_STOP_TYPES_H

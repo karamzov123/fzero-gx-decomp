@@ -1287,8 +1287,20 @@ void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_DE180 */
 
-/* fzgx:begin fn_1_DE4B0 pool */
+/* fzgx:begin fn_1_DE4B0 */
 #include "psvec.h"
+
+extern void OSPanic(const char *, int, const char *, ...);
+extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DD14(void *, void *);
+extern void fn_1_A7024(f32, f32, f32, f32);
+extern void fn_8006F1F0(void *, void *, void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DCDC(void);
+extern void lbl_8006DB30(void);
+extern void fn_1_E1408(void *, void *);
+
 
 typedef struct {
     f32 x;

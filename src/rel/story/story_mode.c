@@ -4514,7 +4514,7 @@ s32 fn_7_4EF8(u32 arg0, f32 arg1, f32 arg2) {
 }
 /* fzgx:end fn_7_4EF8 */
 
-/* fzgx:begin fn_7_4FD0 pool */
+/* fzgx:begin fn_7_4FD0 */
 #include "rel/story/story_mode.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/globals.h"

@@ -953,6 +953,26 @@ extern void fn_1_7BD6C(int);
 extern void fn_80074CF4(f32, f32, f32);
 
 
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_801A6410;
+extern u32 lbl_3_data_1A18;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_C1394(u32 *arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
+extern u32 lbl_3_rodata_288[60];
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
+extern void fn_1_7BCCC(struct Vec3 *);
+extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035420(struct GXLightObj *, f32, int);
+extern void fn_800356AC(struct GXLightObj *, u32 *);
+extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
+extern void fn_1_7BB80(struct GXLightObj *, int);
+extern void fn_1_7BD6C(int);
+extern void fn_80074CF4(f32, f32, f32);
+
+
 struct fn_3_D9A0_lbl_3_bss_87000_0_E12 {
     u16 unk_0;
     u16 pad_2;

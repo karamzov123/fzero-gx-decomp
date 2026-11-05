@@ -5750,8 +5750,26 @@ s32 fn_3_20B3C(s16 *arg0) {
 }
 /* fzgx:end fn_3_20B3C */
 
-/* fzgx:begin fn_3_21300 pool */
+/* fzgx:begin fn_3_21300 */
 #include "font.h"
+
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32, u32, u8 *, int);
+extern const f32 lbl_3_rodata_740;
+extern void fn_3_1ABD8(void *arg0, s16 x1, s16 y1, s16 x2, s16 y2, u32 *value);
+extern void fn_3_1B130(void *, s16, s16, u32 *);
+extern void fn_3_149AC(void);
+extern void fn_3_1BA20(void *target, s16 x, s16 y, s16 z, s16 w, s32 *value);
+extern void fn_3_1BF08(void *, s16, s16, s16, s16, u32 *);
+extern u8 lbl_3_bss_A2458[8];
+extern void fn_3_BD98(void);
+extern void fn_3_BEF0(void);
+extern void fn_3_BE88(void);
+extern void fn_3_156A8(void);
+extern void fn_80074188(s16, s16, s16, s16);
+extern void fn_1_5233C(void *, void *);
+extern struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8;
+
 
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
@@ -6536,6 +6554,24 @@ void fn_3_21300(s16 arg0, s16 arg1, s16 arg2) {
 
 /* fzgx:begin fn_3_225F8 */
 #include "font.h"
+
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32, u32, u8 *, int);
+extern const f32 lbl_3_rodata_740;
+extern void fn_3_1ABD8(void *arg0, s16 x1, s16 y1, s16 x2, s16 y2, u32 *value);
+extern void fn_3_1B130(void *, s16, s16, u32 *);
+extern void fn_3_149AC(void);
+extern void fn_3_1BA20(void *target, s16 x, s16 y, s16 z, s16 w, s32 *value);
+extern void fn_3_1BF08(void *, s16, s16, s16, s16, u32 *);
+extern u8 lbl_3_bss_A2458[8];
+extern void fn_3_BD98(void);
+extern void fn_3_BEF0(void);
+extern void fn_3_BE88(void);
+extern void fn_3_156A8(void);
+extern void fn_80074188(s16, s16, s16, s16);
+extern void fn_1_5233C(void *, void *);
+extern struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8;
+
 
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, u8 *, int);

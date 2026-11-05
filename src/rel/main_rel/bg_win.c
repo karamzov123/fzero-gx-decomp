@@ -297,6 +297,21 @@ void fn_1_15BB34(void *value) {
 /* fzgx:end fn_1_15BB34 */
 
 /* fzgx:begin fn_1_15BBC4 */
+extern u32 lbl_1_bss_8FD60[2];
+extern int fn_1_15BCDC(void *);
+extern void fn_1_4060(void);
+
+extern u32 lbl_1_bss_8FE80[8];
+
+extern void *fn_1_435C(void *);
+extern void fn_1_15E220(u8 *value);
+extern void fn_1_3F8C(void *, void *, u8 *, s32);
+extern u32 lbl_1_bss_8FEA0;
+extern u8 lbl_1_bss_8FE7C;
+extern u32 strlen(const char *str);
+extern s32 fn_8006FC1C(const char *a, const char *b);
+extern void fn_1_15E1E8(u8 *value);
+
 typedef struct {
     u8 unk_0;
     u8 unk_1;

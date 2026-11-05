@@ -7785,7 +7785,7 @@ void fn_1_B40C0(void *arg0)
 }
 /* fzgx:end fn_1_B40C0 */
 
-/* fzgx:begin fn_1_B4AC0 pool noprologue */
+/* fzgx:begin fn_1_B4AC0 noprologue */
 #include "types.h"
 #include "rel/main_rel/memcard.h"
 
@@ -19714,7 +19714,7 @@ void fn_1_B9DE8(MemcardArg *arg0) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_B9DE8 */
 
-/* fzgx:begin fn_1_BA144 pool noprologue */
+/* fzgx:begin fn_1_BA144 noprologue */
 typedef signed char s8;
 typedef signed short s16;
 typedef signed long s32;

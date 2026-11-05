@@ -1185,7 +1185,7 @@ void fn_3_10B68(void) {
 #pragma opt_pointer_analysis reset
 /* fzgx:end fn_3_10B68 */
 
-/* fzgx:begin fn_3_10CB8 pool noprologue */
+/* fzgx:begin fn_3_10CB8 noprologue */
 #include "types.h"
 
 /* Layouts of the emb_paste_editor.c objects this function touches. */

@@ -459,6 +459,23 @@ extern f32 lbl_1_bss_3E05C;
 
 extern void *fn_1_48730(u32 value);
 
+extern void fn_1_48214(int index, int enabled);
+extern void fn_1_4DDC0(void);
+extern void fn_1_4F724(void);
+extern s32 lbl_801A6410;
+extern void OSPanic(const unsigned char *, ...);
+extern int fn_1_45D0(int, int, const unsigned char *, int);
+extern int fn_80008F88(int, int);
+extern void fn_8006FDEC(void);
+extern void fn_80009064(u32 value);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
+extern void *fn_1_48730(u32 value);
+extern void fn_1_47AD4(Obj_1_data_FCD4 *obj, u8 value, int arg2, int arg3);
+extern f32 lbl_1_rodata_10C0[5];
+extern f32 lbl_1_bss_3E05C;
+
+extern void *fn_1_48730(u32 value);
+
 #ifndef GAME_MAIN_REL_BITMAP_TYPES_H
 #define GAME_MAIN_REL_BITMAP_TYPES_H
 

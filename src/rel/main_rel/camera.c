@@ -4613,6 +4613,48 @@ void fn_1_C3B8(void) {
 /* fzgx:end fn_1_C3B8 */
 
 /* fzgx:begin fn_1_C770 */
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
 typedef struct {
     u32 w[9];
 } CamKey;
