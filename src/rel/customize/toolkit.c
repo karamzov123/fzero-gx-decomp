@@ -12323,3 +12323,230 @@ void fn_3_2C290(fn_3_2C290_Arg *arg0) {
 }
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_3_2C290 */
+
+/* fzgx:begin fn_3_2C73C */
+#pragma fp_contract off
+#pragma opt_lifetimes off
+#pragma opt_propagation off
+
+#define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
+
+typedef struct { f32 x, y, z; } fn_3_2C73C_Vec;
+typedef struct { u32 a, b, c; } fn_3_2C73C_Word3;
+
+struct fn_3_2C73C_Pool {
+    u8 pad_0[0x188];
+    f32 one;            /* 0x188 */
+    u8 pad_18C[0x1D0 - 0x18C];
+    f32 zero;           /* 0x1D0 */
+    u8 pad_1D4[0x22C - 0x1D4];
+    f32 ten;            /* 0x22C */
+    u8 pad_230[0x578 - 0x230];
+    f32 fourteen;       /* 0x578 */
+    u8 pad_57C[0x6B8 - 0x57C];
+    fn_3_2C73C_Word3 init; /* 0x6B8 */
+    f32 base_y;         /* 0x6C4 */
+    f32 scale_y;        /* 0x6C8 */
+};
+
+typedef struct {
+    s16 x, y, z;
+} fn_3_2C73C_Src;
+
+struct fn_3_2C73C_State {
+    u8 pad_0[0x34];
+    s16 unk_34;
+    u8 pad_36[0x2];
+    fn_3_2C73C_Vec pos;     /* 0x38 */
+    fn_3_2C73C_Word3 init;  /* 0x44 */
+    fn_3_2C73C_Src src; /* 0x50 */
+};
+
+
+
+
+typedef struct {
+    u8 pad_0[0x390];
+    u32 flags;
+} fn_3_2C73C_Obj;
+
+#pragma force_active on
+Obj_3_bss_A2460 lbl_3_bss_A2460;
+static u8 fzgx_bss_gap_8[0x2C];
+s16 lbl_3_bss_A2494;
+fn_3_2C73C_Vec lbl_3_bss_A2498;
+fn_3_2C73C_Word3 lbl_3_bss_A24A4;
+fn_3_2C73C_Src lbl_3_bss_A24B0;
+static const u32 fzgx_pool_table_0[98] = {
+    0x3F333333, 0xFFFFFF00, 0xFFFF0000, 0xFF000000, 0x0000FF00, 0xFFF200FF, 0xFFFF0000, 0x3EEAAAAB,
+    0x438E0000, 0x43A48000, 0x42C80000, 0x3F6AAAAB, 0x43B40000, 0x3F0AAAAB, 0x43DC8000, 0x43A60000,
+    0x43AC8000, 0x43B30000, 0x3EF99999, 0x43C58000, 0x43A58000, 0x43B38000, 0x43A00000, 0x43B50000,
+    0x43480000, 0x43A18000, 0x43BE8000, 0x41500000, 0x3C008081, 0x40C00000, 0x40E00000, 0x3E189899,
+    0x3E048485, 0x43040000, 0x43160000, 0x3F4CCCCD, 0x3E99999A, 0x00000000, 0x43300000, 0x80000000,
+    0x00004A00, 0x00005400, 0x00003800, 0x00003E00, 0x00003700, 0x00005500, 0x00003000, 0x00003500,
+    0x00003A00, 0x00004000, 0x00004400, 0x00005000, 0x00003300, 0x00002E00, 0x00003100, 0x00004F00,
+    0x00003900, 0x00003D00, 0x00004C00, 0x00003F00, 0x00004800, 0x00005200, 0x00004500, 0x00005300,
+    0x00003C00, 0x00005600, 0x00004300, 0x00004200, 0x00003200, 0x00002F00, 0x00003400, 0x00003600,
+    0x00004D00, 0x00004600, 0x00004100, 0x00005100, 0x00004E00, 0x00004700, 0x00003B00, 0x00004B00,
+    0x00004900, 0xFFF200FF, 0xFFFF0000, 0x43BE0000, 0x43A70000, 0x3ED00000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x43F00000, 0x44200000, 0x42780000, 0x3FABABAC,
+    0x41000000, 0x3E000000,
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_prime_188(volatile f32 *p) { *p = 1.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_18c[17] = {
+    0x3F000000, 0x43570000, 0x40400000, 0x43340000, 0x42B40000, 0x43700000, 0x42300000, 0x42B3CCCD,
+    0x42200000, 0x46800000, 0x47800000, 0x42700000, 0x42A00000, 0x43E60000, 0x3F2AAAAB, 0x3F1B9B9C,
+    0xC0400000,  /* fzgx-allow: A1 retail pool bytes */
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_prime_1d0(volatile f32 *p) { *p = 0.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_1d4[22] = {
+    0x3F1E9E9F, 0x3F018182, 0x43580000, 0x3E4CCCCD, 0x430C0000, 0x437A0000, 0x43C80000, 0x44098000,
+    0x3EEEEEEF, 0x43300000, 0x00000000, 0x00000000, 0x41200000, 0xC0A00000, 0x00000000, 0x00000000,  /* fzgx-allow: A1 retail pool bytes */
+    0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xBF000000, 0x43360B61,
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_prime_22c(volatile f32 *p) { *p = 10.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_230[210] = {
+    0x00000000, 0x41200000, 0xC0A00000, 0x00000000, 0x00000000, 0x00000000, 0x40700000, 0x40600000,  /* fzgx-allow: A1 retail pool bytes */
+    0x3D4CCCCD, 0x00000000, 0x41200000, 0xC0A00000, 0x00000000, 0x00000000, 0x00000000, 0x3E800000,  /* fzgx-allow: A1 retail pool bytes */
+    0x00000000, 0x41200000, 0xC0A00000, 0x00000000, 0x00000000, 0x00000000, 0x40612121, 0x410CB4B5,  /* fzgx-allow: A1 retail pool bytes */
+    0x4128D8D9, 0x439D8000, 0x40000000, 0x3FA66666, 0x3F19999A, 0x3F20A0A1, 0x3F40C0C1, 0x40666666,
+    0x41100000, 0x00000000, 0x41200000, 0xC0A00000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,  /* fzgx-allow: A1 retail pool bytes */
+    0x00000000, 0x00000000, 0x00000003, 0x00020001, 0x00000001, 0x00020003, 0x00000000, 0x40A00000,
+    0xC1700000, 0x00000000, 0x00000000, 0x00000000, 0x40A6C6C7, 0x00000000, 0x00000000, 0xBE58D8D9,  /* fzgx-allow: A1 retail pool bytes */
+    0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00FFFF00, 0x00FFFF00,
+    0x00FF0000, 0x00FF0000, 0x00FF0000, 0x00FF0000, 0xFFFF0000, 0x43850000, 0x42F00000, 0x4408C000,
+    0x432D0000, 0x41B80000, 0x435F0000, 0x43808000, 0x41A00000, 0x41400000, 0x42878000, 0x40200000,
+    0x3EB33333, 0x3E19999A, 0x41300000, 0x41800000, 0x00FFFF00, 0x00FFFF00, 0x00FF0000, 0x00FF0000,
+    0x438F0000, 0x43190000, 0x438A8000, 0xC28E0000, 0x432C0000, 0x427C0000, 0x40800000, 0x41C00000,
+    0x40A00000, 0x00170018, 0x0019001F, 0xFFFFFF00, 0xFFFF0000, 0x3DCCCCCD, 0x42FE0000, 0xC0000000,  /* fzgx-allow: A1 retail pool bytes */
+    0x41700000, 0x3ED55555, 0x19FF1900, 0x19FF1900, 0x19FF1900, 0x00FFFF00, 0x00FFFF00, 0xFFFF0000,
+    0x43210000, 0x438B0000, 0x43380000, 0x423C0000, 0x43450000, 0x43868000, 0x43350000, 0x43180000,
+    0x43948000, 0x42090000, 0x42180000, 0x43460000, 0x438A0000, 0x00FFFF00, 0x00FFFF00, 0x00FFFF00,
+    0x00FFFF00, 0x00006500, 0x00006D00, 0x00008000, 0x00005800, 0x00006900, 0x00007500, 0x00006400,
+    0x00007400, 0x00006300, 0x00006C00, 0x00005A00, 0x00006E00, 0x00008200, 0x00006B00, 0x00007900,
+    0x00006800, 0x00006A00, 0x00005900, 0x00006F00, 0x00005700, 0x00007200, 0x00007E00, 0x00007300,
+    0x00007100, 0x00005B00, 0x00008100, 0x00006200, 0x00007A00, 0x00005D00, 0x00007C00, 0x00005C00,
+    0x00006100, 0x00006000, 0x00005E00, 0x00007F00, 0x00005F00, 0x00007700, 0x00007000, 0x00007600,
+    0x00007800, 0x00007D00, 0x00006700, 0x00007B00, 0x00006600, 0x00FFFF00, 0x00FFFF00, 0x00FFFF00,
+    0x3F400000, 0x42140000, 0x42940000, 0x41D00000, 0x428C0000, 0x00FFFF00, 0x00FFFF00, 0x00FFFF00,
+    0x00FFFF00, 0x43130000, 0x439E8000, 0x42F40000, 0x431C0000, 0x43980000, 0x44160000, 0x3DCCCCD0,
+    0x3EAE147A, 0xC2CC0000, 0x42CC0000, 0x3F666666, 0x3F28F5C3, 0x42BE0000, 0x42A80000, 0x00230024,
+    0x00250000, 0xFFFFFF00, 0xFFFF0000, 0xFFF20000, 0x42E80000, 0x41F00000, 0x42080000, 0x43430000,
+    0x43870000, 0x434A0000,
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_prime_578(volatile f32 *p) { *p = 14.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_57c[79] = {
+    0x434C0000, 0x41AC0000, 0x3FC00000, 0x42400000, 0x42EA0000, 0x43260000, 0x437F0000, 0x41E80000,
+    0x19FF1900, 0x19FF1900, 0x19FF1900, 0xFFFF0000, 0x41D80000, 0x42800000, 0x43000000, 0x43470000,
+    0x43560000, 0x43420000, 0x43790000, 0x431D0000, 0x438D0000, 0x00000000, 0xC1A00000, 0x00000000,
+    0x42980000, 0x43650000, 0x43958000, 0x3FAAAAAB, 0x428A0000, 0x42AA0000, 0x439A8000, 0x00000000,
+    0xC1A00000, 0x00000000, 0x439A0000, 0x00020001, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0x00FF0000,
+    0xFFFFFF00, 0xC2C40000, 0x00000000, 0x40568000, 0x00000000, 0x00000000, 0x42616667, 0x41173333,
+    0x0000A309, 0x0000A307, 0x0000A308, 0x0000A31C, 0x0000A318, 0x0000A31A, 0x0000A31D, 0x0000A319,
+    0x0000A31B, 0xFFF200FF, 0x41880000, 0x43030000, 0x433E0000, 0x42900000, 0x42580000, 0x43270000,
+    0x43530000, 0x433E199A, 0x3EF8F8F9, 0x3F1C9C9D, 0xFFFFFFFF, 0x44148000, 0x42F80000, 0x43140000,
+    0x41C80000, 0x43960000, 0x3A83126F, 0x00000000, 0x00000000, 0xFFD00000, 0x43080000,
+};
+static const fn_3_2C73C_Word3 fn_3_2C73C_init = {0, 0, 0};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_prime_6c4(volatile f32 *p) { *p = -99.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_prime_6c8(volatile f32 *p) { *p = 4.30000019f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma force_active reset
+
+#pragma force_active on
+Obj_3_bss_A2460 lbl_3_bss_A2460;
+static u8 fzgx_bss_gap_8[0x2C];
+s16 lbl_3_bss_A2494;
+fn_3_2C73C_Vec lbl_3_bss_A2498;
+fn_3_2C73C_Word3 lbl_3_bss_A24A4;
+fn_3_2C73C_Src lbl_3_bss_A24B0;
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_prime(void) {
+    lbl_3_bss_A2460.unk_0 = 0;
+    fzgx_bss_gap_8[0] = 0;
+    lbl_3_bss_A2494 = 0;
+    lbl_3_bss_A2498.x = 0.0f;
+    lbl_3_bss_A24A4.a = 0;
+    lbl_3_bss_A24B0.x = 0;
+}
+#pragma section code_type ".text"
+#pragma force_active reset
+extern u32 fn_3_2C290(void *);
+extern void fn_1_151BDC(u32);
+extern void fn_1_8D1EC(void *, u32 (*)(void *), void *);
+
+static inline void fn_3_2C73C_set(fn_3_2C73C_Vec *out, f32 z, f32 y, f32 x) {
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+extern const struct fn_3_2C73C_Pool lbl_3_rodata_768;
+
+#pragma opt_propagation on
+static inline void fn_3_2C73C_lerp(fn_3_2C73C_Vec *a, fn_3_2C73C_Vec *b,
+    fn_3_2C73C_Src * __restrict src, f32 inv, f32 ratio) {
+    f32 x, y, z;
+    x = a->x * inv + b->x * ratio;
+    y = a->y * inv + b->y * ratio;
+    z = a->z * inv + b->z * ratio;
+    lbl_3_bss_A24B0 = *src;
+    fn_3_2C73C_set(&lbl_3_bss_A2498, z, y, x);
+}
+
+#pragma opt_lifetimes off
+#pragma opt_propagation off
+void fn_3_2C73C(u32 arg0, fn_3_2C73C_Obj **ctx, fn_3_2C73C_Vec *a, fn_3_2C73C_Vec *b,
+                fn_3_2C73C_Src * __restrict src, f32 value, f32 max) {
+    const struct fn_3_2C73C_Pool *pool;
+    fn_3_2C73C_Obj *obj;
+    struct fn_3_2C73C_State *st;
+    f32 base_y;
+    f32 scale_y;
+    f32 t;
+    f32 ratio;
+    f32 inv;
+    f32 clamped_y;
+
+    pool = &lbl_3_rodata_768;
+    obj = *ctx;
+
+    t = pool->zero;
+    t = CLAMP(value, t, max);
+    ratio = t / max;
+    inv = pool->one - ratio;
+    fn_3_2C73C_lerp(a, b, src, inv, ratio);
+    lbl_3_bss_A24A4 = pool->init;
+    lbl_3_bss_A2494 = (s16)t;
+    lbl_3_bss_241E0.unk_38 = 0;
+    lbl_3_bss_241E0.unk_58 = 0;
+
+    {
+        f32 scale = pool->fourteen;
+        value = pool->zero;
+        value = CLAMP(t, value, pool->ten);
+        value = scale * value;
+        lbl_3_bss_241E0.unk_0 = value;
+    }
+    base_y = pool->base_y;
+    scale_y = pool->scale_y;
+    clamped_y = CLAMP(t, pool->zero, max);
+    lbl_3_bss_241E0.unk_4 = base_y + scale_y * clamped_y;
+
+    if (obj->flags & 0x04000000) {
+        fn_1_151BDC(arg0);
+    }
+    fn_1_8D1EC(&lbl_3_bss_241E0, fn_3_2C290, ctx);
+}
+/* fzgx:end fn_3_2C73C */
