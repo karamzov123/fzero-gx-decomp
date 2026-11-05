@@ -25290,3 +25290,1384 @@ void fn_1_C42F4(Machine *cars)
     }
 }
 /* fzgx:end fn_1_C42F4 */
+
+/* fzgx:begin fn_1_C4ABC noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
+#include "lc_mtx.h"
+
+/* a CPU route slot (.bss 0x7AC48 points to an array of them) */
+typedef struct {
+    u32 zone;
+    f32 pos[3];
+    u32 mask;
+} CpuSlot;
+
+/* a course zone: a stretch of track with a lateral window */
+typedef struct {
+    f32 start;
+    f32 end;
+    f32 left;
+    f32 right;
+    u8 type;
+    u8 group;
+    u8 pad_12[2];
+} CpuZone;
+
+/* the pre-pass per-race table (.bss 0x7AC50 points to it) */
+typedef struct {
+    u32 unk_0[30];
+    u32 unk_78[30];
+    u32 unk_F0[30];
+    u32 unk_168[30];
+    u8 unk_1E0[30];
+    u8 unk_1FE[30];
+} CpuPairs;
+
+/* the difficulty tuning (.bss 0x7AC64) */
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+    f32 unk_20;
+} CpuLevel;
+
+/* a CPU personality (.rodata 0x5168 + 0x40) */
+typedef struct {
+    u8 lane;
+    u8 boost;
+    u8 shuffle;
+    u8 unk_3;
+    u8 attack;
+    u8 speed;
+    u8 unk_6;
+    u8 unk_7;
+    u32 flags;
+} CpuParams;
+
+/* the CPU block of a machine (+0x484) */
+typedef struct {
+    u32 flags;
+    f32 steer;
+    f32 unk_8;
+    f32 throttle;
+    f32 unk_10;
+    f32 unk_14;
+    f32 target;
+    f32 lateral;
+    f32 prev_lateral;
+    f32 unk_24;
+    u8 state;
+    u8 next_state;
+    u8 rival;
+    u8 zone;
+    u8 state_timer;
+    u8 unk_2D;
+    u8 unk_2E;
+    u8 timer;
+    u8 blink;
+    u8 lane;
+    u8 pad_32[2];
+    u8 unk_34;
+    u8 spin_timer;
+    u8 zone_type;
+    u8 start_delay;
+    u8 param;
+    u8 cooldown;
+    u8 unk_3A;
+    u8 pad_3B;
+    u32 unk_3C;
+    u8 pad_40[4];
+    f32 last_pos;
+} CpuBlock;
+
+typedef struct {
+    u32 flags;
+    s16 id;
+    u8 pad_6[0x16];
+    f32 unk_1C;
+    u8 pad_20[0x5C];
+    f32 pos[3];
+    u8 pad_88[0x64];
+    f32 mtx[3][4];
+    u8 pad_11C[0x60];
+    f32 unk_17C;
+    u8 pad_180[4];
+    f32 speed;
+    u8 pad_188[2];
+    u8 unk_18A;
+    u8 pad_18B[0x31];
+    f32 unk_1BC[3];
+    u8 pad_1C8[0x2BC];
+    CpuBlock *ai;
+    u8 pad_488[0x620 - 0x488];
+} Machine;
+
+/* a machine progress record (fn_1_8627C) */
+typedef struct {
+    u8 pad_0[0x7C];
+    u32 unk_7C;
+    u8 pad_80[4];
+    f32 unk_84;
+    s32 unk_88;
+    s32 unk_8C;
+    u8 pad_90[0x68];
+    f32 unk_F8;
+    u8 pad_FC[4];
+    f32 unk_100;
+    u16 unk_104;
+    u8 pad_106[2];
+    f32 unk_108;
+    u8 pad_10C[9];
+    u8 unk_115;
+    u8 pad_116[2];
+    s32 unk_118;
+} Progress;
+
+typedef struct {
+    u8 pad_0[0x90];
+    f32 *unk_90;
+} Course;
+
+typedef struct {
+    u32 unk_0;
+    u8 unk_4;
+} GameState;
+
+/* the retail TU .bss objects this function uses, at their retail offsets, so MWCC
+   addresses them off one section base */
+CpuSlot *fzgx_obj_lbl_1_bss_7AC48;
+u16 lbl_1_bss_7AC48__fzgx_offset_4;
+CpuPairs *fzgx_obj_lbl_1_bss_7AC50;
+s8 *fzgx_obj_lbl_1_bss_7AC54;
+f32 (*lbl_1_bss_7AC54__fzgx_offset_4)[3];
+u32 lbl_1_bss_7AC54__fzgx_offset_8;
+f32 *lbl_1_bss_7AC54__fzgx_offset_C;
+CpuLevel fzgx_obj_lbl_1_bss_7AC64;
+f32 fzgx_obj_lbl_1_bss_7AC88;
+CpuZone *lbl_1_bss_7AC88__fzgx_offset_4;
+u8 fzgx_obj_lbl_1_bss_7AC90;
+u8 lbl_1_bss_7AC90__fzgx_offset_1;
+u8 lbl_1_bss_7AC90__fzgx_offset_2;
+u8 lbl_1_bss_7AC90__fzgx_offset_3;
+f32 lbl_1_bss_7AC90__fzgx_offset_4;
+f32 lbl_1_bss_7AC90__fzgx_offset_8;
+f32 fzgx_obj_lbl_1_bss_7AC9C;
+
+#define cpu_slots fzgx_obj_lbl_1_bss_7AC48
+#define cpu_slot_count lbl_1_bss_7AC48__fzgx_offset_4
+#define cpu_pairs fzgx_obj_lbl_1_bss_7AC50
+#define cpu_lines fzgx_obj_lbl_1_bss_7AC54
+#define cpu_points lbl_1_bss_7AC54__fzgx_offset_4
+#define cpu_ranges lbl_1_bss_7AC54__fzgx_offset_C
+#define cpu_level fzgx_obj_lbl_1_bss_7AC64
+#define cpu_line_step fzgx_obj_lbl_1_bss_7AC88
+#define cpu_zones lbl_1_bss_7AC88__fzgx_offset_4
+#define cpu_enabled fzgx_obj_lbl_1_bss_7AC90
+#define cpu_best_rank lbl_1_bss_7AC90__fzgx_offset_1
+#define cpu_worst_rank lbl_1_bss_7AC90__fzgx_offset_2
+#define cpu_best_progress lbl_1_bss_7AC90__fzgx_offset_4
+#define cpu_worst_progress lbl_1_bss_7AC90__fzgx_offset_8
+#define cpu_line_scale fzgx_obj_lbl_1_bss_7AC9C
+
+u32 fzgx_obj_lbl_1_data_3D230 = 1;    /* the CPU random generator */
+#define cpu_seed fzgx_obj_lbl_1_data_3D230
+
+/* retail .rodata 0x5168..0x57E4 (the CPU tables), so the literals below land at retail offsets */
+const u32 fzgx_pool_lbl_1_rodata_5168[16] = {
+    0x62552D46, 0x64640A00, 0x645A3250, 0x6E6E1405, 0x665E3C5A, 0x7D7D2314, 0x67604664, 0x8787371E,
+    0x64646464, 0x64646464, 0x665F3250, 0x82821E0A, 0x6964415A, 0x8C8C2814, 0x6C664B64, 0x96963228,
+};
+const CpuParams fzgx_pool_lbl_1_rodata_5168__fzgx_offset_40[41] = {
+    { 2, 75, 70, 75, 0, 25, 100, 0, 0x80000000 },
+    { 1, 80, 90, 75, 0, 30, 100, 0, 0x80000000 },
+    { 2, 70, 100, 80, 0, 30, 100, 0, 0x80000000 },
+    { 3, 80, 95, 85, 20, 25, 100, 0, 0x80000000 },
+    { 0, 85, 90, 90, 80, 25, 100, 0, 0x20000000 },
+    { 1, 100, 85, 95, 80, 10, 100, 0, 0x80000000 },
+    { 0, 100, 100, 100, 0, 25, 100, 0, 0x40000000 },
+    { 3, 70, 90, 95, 0, 30, 100, 0, 0x80000000 },
+    { 2, 90, 90, 95, 0, 20, 100, 0, 0x20000000 },
+    { 3, 75, 85, 80, 0, 30, 100, 0, 0x80000000 },
+    { 1, 80, 80, 70, 0, 30, 100, 0, 0x80000000 },
+    { 3, 90, 95, 75, 0, 30, 100, 0, 0x80000000 },
+    { 1, 70, 100, 80, 0, 25, 100, 0, 0x80000000 },
+    { 2, 80, 95, 85, 0, 30, 100, 0, 0x80000000 },
+    { 1, 75, 90, 90, 20, 35, 100, 0, 0x80000000 },
+    { 0, 100, 85, 95, 0, 30, 100, 0, 0x80000000 },
+    { 2, 90, 100, 90, 0, 30, 100, 0, 0x80000000 },
+    { 3, 75, 80, 95, 0, 30, 100, 0, 0x10000000 },
+    { 0, 80, 80, 90, 0, 25, 100, 0, 0x80000000 },
+    { 2, 75, 85, 80, 0, 30, 100, 0, 0x80000000 },
+    { 0, 90, 95, 75, 0, 30, 100, 0, 0x80000000 },
+    { 3, 100, 100, 70, 0, 20, 100, 0, 0x80000000 },
+    { 2, 70, 80, 80, 0, 30, 100, 0, 0x80000000 },
+    { 0, 80, 95, 85, 50, 30, 100, 0, 0x80000000 },
+    { 1, 75, 90, 90, 80, 30, 100, 0, 0x80000000 },
+    { 1, 90, 85, 95, 0, 30, 100, 0, 0x80000000 },
+    { 2, 80, 80, 90, 0, 30, 100, 0, 0x80000000 },
+    { 2, 70, 80, 95, 0, 30, 100, 0, 0x80000000 },
+    { 3, 80, 80, 90, 0, 30, 100, 0, 0x80000000 },
+    { 0, 80, 70, 95, 80, 15, 100, 0, 0x40000000 },
+    { 0, 100, 100, 80, 80, 15, 100, 0, 0x40000000 },
+    { 0, 100, 100, 90, 80, 20, 100, 0, 0x80000000 },
+    { 1, 70, 100, 80, 0, 30, 100, 0, 0x80000000 },
+    { 0, 80, 85, 85, 0, 30, 100, 0, 0x80000000 },
+    { 3, 75, 90, 90, 0, 30, 100, 0, 0x80000000 },
+    { 0, 100, 95, 95, 0, 30, 100, 0, 0x80000000 },
+    { 1, 80, 80, 90, 0, 30, 100, 0, 0x80000000 },
+    { 1, 70, 90, 95, 0, 30, 100, 0, 0x80000000 },
+    { 3, 80, 80, 90, 0, 30, 100, 0, 0x80000000 },
+    { 0, 75, 85, 80, 0, 30, 100, 0, 0x80000000 },
+    { 2, 95, 100, 95, 0, 30, 100, 0, 0x80000000 },
+};
+const u32 fzgx_pool_lbl_1_rodata_5168__fzgx_offset_22C[276] = {
+    0x44E10000, 0x44ED8000, 0x452F0000, 0x454BC000, 0x45674000, 0x456D8000, 0x45834000, 0x4585C000,
+    0x4592E000, 0x45A8C000, 0x45BB8000, 0x45F96000, 0xBF800000, 0xBF800000, 0x44110000, 0x44480000,
+    0x45098000, 0x45354000, 0x457A0000, 0x458CA000, 0x45B54000, 0x45D16000, 0x45FA0000, 0x4607F000,
+    0x464E4000, 0x4668D000, 0x466D8000, 0x46716800, 0xBF800000, 0xBF800000, 0x45B22000, 0x45CB2000,
+    0x4636D000, 0x46403000, 0xBF800000, 0xBF800000, 0x459DD000, 0x45A0F000, 0x45B54000, 0x45B86000,
+    0xBF800000, 0xBF800000, 0x3F800000, 0x43C80000, 0x45674000, 0x45992000, 0x45D16000, 0x45F0A000,
+    0x46002000, 0x4607F000, 0x460CA000, 0x46115000, 0x467D2000, 0x468A4800, 0xBF800000, 0xBF800000,
+    0x44ED8000, 0x45322000, 0x4625A000, 0x46354000, 0x4644E000, 0x46610000, 0xBF800000, 0xBF800000,
+    0x3F800000, 0x44278000, 0x45C1C000, 0x45CB2000, 0x45DAC000, 0x45E42000, 0x45F3C000, 0x45FD2000,
+    0x46435000, 0x465DE000, 0x46610000, 0x466E4800, 0xBF800000, 0xBF800000, 0x44BB8000, 0x44ED8000,
+    0x452F0000, 0x454E4000, 0x45A28000, 0x45AD7000, 0x45D16000, 0x45D48000, 0xBF800000, 0xBF800000,
+    0x42480000, 0x43FA0000, 0x46787000, 0x46866000, 0xBF800000, 0xBF800000, 0x45610000, 0x4573C000,
+    0xBF800000, 0xBF800000, 0x464E9000, 0x4654F800, 0xBF800000, 0xBF800000, 0x43DC0000, 0x444A8000,
+    0x44D70000, 0x4507A000, 0x45412000, 0x45D39000, 0x460B1000, 0x4628C000, 0x4639C800, 0x4642D800,
+    0x46816000, 0x46834000, 0x46898000, 0x468FC000, 0xBF800000, 0xBF800000, 0x432F0000, 0x43D70000,
+    0x45A28000, 0x45A8C000, 0x461DD000, 0x4620F000, 0x46487800, 0x466A6000, 0x46802000, 0x4681B000,
+    0x469E9800, 0x46A02800, 0xBF800000, 0xBF800000, 0x44048000, 0x444D4000, 0x450FC000, 0x451C4000,
+    0x454DA000, 0x455AC000, 0x45A2D000, 0x45AA5000, 0x45A2D000, 0x45AD7000, 0x45B86000, 0x45BF9000,
+    0x45CF3000, 0x45D66000, 0x45F0F000, 0x45F5F000, 0x45FDC000, 0x46034000, 0x46075000, 0x460A4800,
+    0x4616A000, 0x46199800, 0x46200000, 0x4622F800, 0x46296000, 0x462C5800, 0x4644E000, 0x465AC000,
+    0x466D8000, 0x46775800, 0xBF800000, 0xBF800000, 0x44BB8000, 0x44D48000, 0xBF800000, 0xBF800000,
+    0x43A00000, 0x44F78000, 0x45098000, 0x45462000, 0x45778000, 0x45816000, 0x458DE000, 0x45AE6000,
+    0x45D2A000, 0x45D7A000, 0x45E6F000, 0x4605E800, 0x46315800, 0x46412000, 0x4661C800, 0x466EC000,
+    0x468C3C00, 0x468DA400, 0xBF800000, 0xBF800000, 0x45802000, 0x45857000, 0x459F6000, 0x45A28000,
+    0x45B54000, 0x45BB8000, 0x45D61000, 0x45D93000, 0x4601B000, 0x4604A800, 0x460B1000, 0x460CA000,
+    0x46115000, 0x4612E000, 0x46234800, 0x46255000, 0x462BB800, 0x462DC000, 0x46383800, 0x4639C800,
+    0xBF800000, 0xBF800000, 0x44688000, 0x44960000, 0x45610000, 0x45CE4000, 0x46002000, 0x46115000,
+    0x4636D000, 0x463B8000, 0x4694D400, 0x469D0800, 0xBF800000, 0xBF800000, 0x43480000, 0x43FA0000,
+    0x45DAC000, 0x45E10000, 0xBF800000, 0xBF800000, 0x3C23D70A, 0x42480000, 0x45EA6000, 0x45FA0000,
+    0x460B1000, 0x46160000, 0x46593000, 0x465C5000, 0x46642000, 0x466A6000, 0xBF800000, 0xBF800000,
+    0x44960000, 0x44E74000, 0x455AC000, 0x457A0000, 0x45C80000, 0x45DE8000, 0x45F0A000, 0x45FD2000,
+    0x4612E000, 0x46250000, 0x463D1000, 0x46435000, 0x46499000, 0x46548000, 0x466A6000, 0x466F1000,
+    0xBF800000, 0xBF800000, 0x45898000, 0x4592E000, 0x45E42000, 0x45F0A000, 0x46034000, 0x4604D000,
+    0x46034000, 0x4604D000, 0x463D1000, 0x4644E000, 0x46629000, 0x46723000, 0x46898000, 0x468D6800,
+    0x46A28000, 0x46A4D800, 0xBF800000, 0xBF800000,
+};
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer(volatile f64 *d, volatile f32 *f) { /* retail literal-pool order */
+    *f = 0.0f;
+    *d = 0.0;
+    *f = 32767.0f;
+    *d = 0.01;
+    *d = 4503599627370496.0;
+    *d = 0.00390625;
+    *d = -1.0;
+    *d = 1.0;
+    *d = 0.5;
+    *d = 4503601774854144.0;
+    *d = 1.2;
+    *d = 1.1;
+    *d = 1.05;
+    *d = 1.025;
+    *d = 10.0;
+    *d = 5.0;
+    *d = 0.2;
+    *d = 100.0;
+    *d = 20.0;
+    *d = 1.6;
+    *d = 21.0;
+    *d = 15.0;
+    *f = 1.0f;
+    *d = 0.25;
+    *d = -0.42;
+    *d = 0.42;
+    *f = 0.4f;
+    *f = -0.4f;
+    *f = 100000.0f;
+    *d = 4.0;
+    *f = 6000.0f;
+    *d = 1e-05;
+    *d = 2.0;
+    *d = 95.0;
+    *d = 0.4;
+    *d = 150.0;
+    *d = 99.0;
+    *f = 10000000.0f;
+    *f = 10000.0f;
+    *d = 3000.0;
+    *d = 1000.0;
+    *d = 500.0;
+    *f = 20.0f;
+    *d = 50.0 / 9.0;
+    *d = 0.8;
+    *d = 200.0;
+    *d = 400.0;
+    *d = 1.5;
+    *d = 800.0;
+    *d = 1.25;
+    *d = 50.0;
+    *d = 300.0;
+    *f = 0.5f;
+    *d = 0.9;
+    *f = 1.1920929e-07f;
+    *f = 8.0f;
+    *d = 0.025;
+    *d = 0.1;
+    *f = 4096.0f;
+    *d = 1.3;
+    *d = -0.006;
+    *d = 0.45;
+    *f = 2048.0f;
+}
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = (u32)fzgx_obj_lbl_1_bss_7AC48;
+    s = lbl_1_bss_7AC48__fzgx_offset_4;
+    s = (u32)fzgx_obj_lbl_1_bss_7AC50;
+    s = (u32)fzgx_obj_lbl_1_bss_7AC54;
+    s = (u32)lbl_1_bss_7AC54__fzgx_offset_4;
+    s = lbl_1_bss_7AC54__fzgx_offset_8;
+    s = (u32)lbl_1_bss_7AC54__fzgx_offset_C;
+    s = fzgx_obj_lbl_1_bss_7AC64.unk_0;
+    s = fzgx_obj_lbl_1_bss_7AC88;
+    s = (u32)lbl_1_bss_7AC88__fzgx_offset_4;
+    s = fzgx_obj_lbl_1_bss_7AC90;
+    s = lbl_1_bss_7AC90__fzgx_offset_1;
+    s = lbl_1_bss_7AC90__fzgx_offset_2;
+    s = lbl_1_bss_7AC90__fzgx_offset_3;
+    s = lbl_1_bss_7AC90__fzgx_offset_4;
+    s = lbl_1_bss_7AC90__fzgx_offset_8;
+    s = fzgx_obj_lbl_1_bss_7AC9C;
+}
+#pragma section code_type ".text"
+
+extern GameState lbl_1_bss_3C30;
+extern Course *lbl_1_bss_3BE0;
+extern s32 fn_1_3F164(void);
+extern void fn_1_12F4A8(Machine *car);
+extern void fn_1_130C84(Machine *car);
+extern void lbl_8006DC6C(f32 (*mtx)[4]);
+extern Progress *fn_1_8627C(s32 index);
+extern u32 fn_1_214C4(f32 *out, f32 pos, u32 state);
+extern u8 fn_1_86624(void);
+extern f32 fn_1_8CAF4(s32 a, s32 b);
+extern f32 fn_1_8CA70(s32 a, s32 b);
+extern f32 fn_1_8652C(s32 index);
+extern s16 lbl_8006D24C(f32 x, f32 y);
+extern f32 lbl_8006D0B4(f32 x);
+extern void fn_8006E250(f32 *src, f32 *dst);
+extern void fn_8006E2B0(f32 *src, f32 *dst);
+extern s32 fn_1_8677C(s32 index);
+extern f64 __fabs(f64);
+extern int __abs(int);
+#define abs(x) __abs(x)
+#define fabs(x) __fabs(x)
+
+#define CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+#define SIGN(x) ((x) > 0.0 ? 1.0 : ((x) < 0.0 ? -1.0 : 0.0))
+#define LINE(lane, i) cpu_lines[((lane) << 9) + (i)]
+#define POINT(lane, i) cpu_points[(i) + ((lane) << 9)]
+
+#define cpu_params fzgx_pool_lbl_1_rodata_5168__fzgx_offset_40
+
+static inline u32 cpu_rand(void) {
+    cpu_seed = cpu_seed * 0x41C64E6D + 0x3039;
+    return (cpu_seed >> 16) & 0x7FFF;
+}
+
+static inline s32 cpu_bit(u32 mask, s32 n) {
+    return __rlwnm(mask, (n + 1) & 31, 31, 31);
+}
+
+/* the squared length of (x, y) */
+static inline f32 cpu_mag2(f32 x, f32 y) {
+    return __fmadds(y, y, x * x);
+}
+
+static inline s32 cpu_line_scan(CpuBlock *ai, s32 from, f32 *t) {
+    s32 k;
+    s32 j;
+    s32 found;
+
+    found = 0;
+    for (k = 1; k < 30; k++) {
+        j = k + from;
+        if (j >= 512) {
+            j -= 512;
+        }
+        if (LINE(ai->lane, j) != -128) {
+            found = j;
+            break;
+        }
+    }
+    if (k > 2) {
+        *t = 0.0f;
+    }
+    return found;
+}
+
+static inline f32 cpu_sub(f32 p, f32 q) {
+    p -= q;
+    return p;
+}
+
+static inline f32 cpu_madd(f32 *a, f32 *b, f32 sum) {
+    f32 z = b[2];
+
+    z = cpu_sub(a[2], z);
+    return __fmadds(z, z, sum);
+}
+
+static inline f32 cpu_dist2(f32 *a, f32 *b) {
+    f32 y = b[1];
+
+    y = cpu_sub(a[1], y);
+    y *= y;
+    return cpu_madd(a, b, y);
+}
+
+#pragma fp_contract off
+
+/* deal this machine in or out of every route slot */
+static inline void cpu_deal_slots(Machine *car, CpuBlock *ai) {
+    CpuSlot *slot = cpu_slots;
+    u32 threshold = 32767.0f * cpu_level.unk_1C * (0.01 * cpu_params[ai->param].shuffle);
+    u32 i;
+
+    for (i = 0; i < cpu_slot_count; i++, slot++) {
+        if (threshold < cpu_rand()) {
+            slot->mask &= ~((u32)0x80000000 >> car->id);
+        } else {
+            slot->mask |= (u32)0x80000000 >> car->id;
+        }
+    }
+}
+
+/* 1 when pos lies outside every no-attack range */
+static inline s32 cpu_outside_ranges(f32 pos) {
+    f32 *range = cpu_ranges;
+
+    if (range == NULL) {
+        return 1;
+    }
+    do {
+        if (pos > range[0] && pos < range[1]) {
+            return 0;
+        }
+        range += 2;
+    } while (range[0] > 0.0);
+    return 1;
+}
+
+static inline s16 cpu_find_slot(u32 zone) {
+    s16 found = -1;
+    u32 i;
+
+    for (i = 0; i < cpu_slot_count; i++) {
+        if (zone == cpu_slots[i].zone) {
+            found = i;
+            break;
+        }
+    }
+    return found;
+}
+
+/* the state the race position asks for */
+static inline u8 cpu_wanted_state(Progress *prog) {
+    if (cpu_best_rank >= prog->unk_115) {
+        return 0;
+    } else if (cpu_worst_rank > prog->unk_115) {
+        return 1;
+    } else {
+        return 2;
+    }
+}
+
+void fn_1_C4ABC(Machine *car) {
+    f32 boost;
+    f32 a[3];
+    f32 b[3];
+    f32 c[3];
+    f32 d[3];
+    s32 slot;
+    f32 v[3];
+    f32 tmp;
+    Progress *prog;
+    Progress *other;
+    CpuZone *zone;
+    f32 max_speed;
+    u32 zi;
+    s16 abs_angle;
+    CpuZone *z;
+    f32 scale;
+    f32 rival_lat;
+    f32 ahead;
+    f32 rival_side;
+    f32 best_dist;
+    f32 best_side;
+    f32 gap;
+    f32 side_gap;
+    f32 aim;
+    f32 best;
+    f32 lo;
+    f32 lim;
+    f32 side;
+    CpuBlock *ai;
+    s16 dir;
+    f32 hi;
+    f32 dist;
+    f32 base;
+    f32 first_start;
+    f32 room;
+    s32 inside;
+    s32 done;
+    s32 none;
+    s32 first;
+    s32 use_line;
+    s16 angle;
+    f32 t;
+    u32 i;
+    u32 mask;
+    u8 want;
+
+    rival_lat = 0.0f;
+    rival_side = rival_lat;
+    done = 0;
+    if (cpu_enabled == 0) {
+        return;
+    }
+    if (fn_1_3F164() != 0) {
+        return;
+    }
+    ai = car->ai;
+    if (ai == NULL) {
+        return;
+    }
+
+    /* waiting on the grid */
+    if ((*(u32 *)ai >> 29) & 1 && (car->flags & 0x8000)) {
+        if (ai->start_delay == 0xFF) {
+            ai->start_delay = (s32)(cpu_rand() * 120) / 32767;
+            cpu_deal_slots(car, car->ai);
+        }
+        if (ai->start_delay != 0) {
+            ai->throttle = 0.0f;
+            if (lbl_1_bss_3C30.unk_0 & 0x4000) {
+                ai->start_delay--;
+            }
+        } else {
+            ai->throttle = 1.0f;
+        }
+        return;
+    }
+    if (ai->flags & 1) {
+        fn_1_12F4A8(car);
+        return;
+    }
+    if ((ai->flags >> 1) & 1) {
+        fn_1_130C84(car);
+        return;
+    }
+
+    lbl_8006DC6C(car->mtx);
+    {
+        f32 x;
+
+        x = car->pos[0];
+        base = car->pos[1];
+        dist = car->pos[2];
+        mtx_set_translate((void *)LC_BASE, x, base, dist);
+    }
+    prog = fn_1_8627C(car->id);
+    max_speed = prog->unk_84;
+    scale = 1.0f / max_speed;
+    ai->prev_lateral = ai->lateral;
+    ai->lateral = prog->unk_108 * scale;
+    ai->unk_3C = fn_1_214C4(&tmp, prog->unk_100, ai->unk_3C);
+    if (car->flags & 0x40000) {
+        cpu_deal_slots(car, ai);
+    }
+
+    angle = (s16)prog->unk_104;
+    dir = angle > 0 ? 1 : (angle < 0 ? -1 : 0);
+    if ((prog->unk_7C & 0x1400000) && fabs(ai->lateral) > 0.25) {
+        dir *= -1;
+    }
+    abs_angle = abs(angle);
+
+    switch (ai->state) {
+    case 4:
+        ai->timer--;
+        if (car->flags & 0x800000) {
+            ai->timer = 4;
+            if (ai->unk_2D < 10) {
+                ai->unk_2D++;
+            }
+        }
+        if (ai->timer == 0) {
+            ai->flags |= 0x2000000;
+            ai->state = 1;
+            ai->unk_2D = 0;
+        }
+        break;
+    case 3:
+        if (abs_angle < 0x3000 && ai->spin_timer == 0) {
+            ai->target = CLAMP(ai->lateral, -0.42, 0.42);
+            ai->spin_timer = 120;
+        }
+        if (ai->spin_timer != 0) {
+            ai->spin_timer--;
+            if (ai->spin_timer == 0) {
+                ai->state = 1;
+            }
+        }
+        break;
+    case 5:
+    case 6:
+        if (!cpu_outside_ranges(prog->unk_100)) {
+            ai->timer = 0;
+            ai->flags |= 0x2000000;
+            ai->state = 1;
+            ai->rival = 99;
+        } else {
+            ai->timer--;
+            if (ai->timer == 0) {
+                ai->flags |= 0x2000000;
+                ai->state = 1;
+                ai->rival = 99;
+            }
+        }
+        break;
+    }
+
+    /* pick a rival to attack */
+    switch (ai->state) {
+    case 3:
+    case 4:
+        break;
+    default:
+        if (car->flags & 0x800000) {
+            if (((ai->flags >> 28) & 1) && ai->zone_type != 1) {
+                ai->flags &= ~0x10000000;
+                ai->zone = 0xFF;
+                ai->zone_type = 0xFF;
+            }
+            ai->timer = 4;
+            ai->unk_2D = 1;
+            ai->state = 4;
+            ai->state_timer = 0;
+        } else {
+            if (abs_angle > 0x3800 && !((ai->flags >> 16) & 1)) {
+                if (ai->lateral < 0.0) {
+                    ai->target = 0.4f;
+                } else {
+                    ai->target = -0.4f;
+                }
+                ai->state = 3;
+                ai->state_timer = 0;
+            }
+            if (ai->state != 6 && !((ai->flags >> 28) & 1) && !(car->flags & 2) && cpu_outside_ranges(prog->unk_100)) {
+                s8 count;
+                u32 best_index;
+                u32 best_kind;
+                u32 kind;
+
+                count = (s8)fn_1_86624();
+                best_dist = 100000.0f;
+                best_index = 99;
+                best_kind = 0;
+                for (i = 0; i < count; i++) {
+                    kind = 0;
+                    if (car->id == i) {
+                        continue;
+                    }
+                    if (ai->rival == i && ai->timer != 0) {
+                        continue;
+                    }
+                    if (cpu_pairs->unk_1E0[car->id] != cpu_pairs->unk_1E0[i]) {
+                        continue;
+                    }
+                    gap = fn_1_8CAF4(car->id, i);
+                    if (fabs(best_dist) < fabs(gap)) {
+                        continue;
+                    }
+                    side_gap = fn_1_8CA70(car->id, i);
+                    if (cpu_bit(cpu_pairs->unk_0[car->id], i) && fabs(side_gap) < 4.0) {
+                        if (car->unk_17C > fn_1_8652C(i)) {
+                            kind = 1;
+                        }
+                    }
+                    if ((cpu_bit(cpu_pairs->unk_0[car->id], i) || cpu_bit(cpu_pairs->unk_78[car->id], i)) && fabs(side_gap) < 10.0) {
+                        u32 r = cpu_seed * 0x41C64E6D + 0x3039;
+
+                        cpu_seed = r;
+                        r = (r >> 16) & 0x7FFF;
+                        if (32767.0f * (cpu_level.unk_20 * cpu_params[ai->param].attack) / 6000.0f > r) {
+                            kind = 2;
+                        }
+                    }
+                    if (kind != 0) {
+                        best_dist = gap;
+                        best_index = i;
+                        best_side = side_gap;
+                        best_kind = kind;
+                    }
+                }
+                if (best_index != 99 && !((ai->flags >> 2) & 1)) {
+                    ai->state_timer = 0;
+                    ai->timer = 60;
+                    if (best_kind == 1) {
+                        ai->state = 5;
+                    } else {
+                        ai->state = 6;
+                    }
+                    ai->rival = best_index;
+                    other = fn_1_8627C(best_index);
+                    {
+                        f32 lat = other->unk_108;
+
+                        rival_lat = fabs(lat) < 1e-05 ? 1e-05 : lat;
+                    }
+                    rival_side = fabs(best_side) < 1e-05 ? 1e-05 : best_side;
+                }
+            }
+        }
+        break;
+    }
+
+    /* settle on the state the race position asks for */
+    switch (ai->state) {
+    case 0:
+    case 1:
+    case 2:
+        want = cpu_wanted_state(prog);
+        if ((ai->flags >> 25) & 1) {
+            ai->flags &= ~0x2000000;
+            ai->state = want;
+            ai->state_timer = 0;
+        } else if (want != *(u8 *)&ai->state) {
+            if (ai->state_timer == 0) {
+                ai->next_state = want;
+                ai->state_timer = 60;
+            } else {
+                ai->state_timer--;
+                if (ai->state_timer == 0) {
+                    ai->state = ai->next_state;
+                }
+            }
+        } else {
+            ai->state_timer = 0;
+        }
+        break;
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+        break;
+    }
+
+    /* choose the lateral target */
+    if ((ai->flags >> 29) & 1) {
+        ai->target = ai->lateral;
+        done = 1;
+        ai->flags &= ~0x20000000;
+        ai->unk_2E = 180;
+        ai->unk_3A = 0xFF;
+        ai->flags |= 0x8000000;
+    }
+    if (!done && ai->state == 3) {
+        done = 1;
+    }
+    if (!done && ai->state == 6) {
+        ai->target = scale * fn_1_8627C(ai->rival)->unk_108;
+        done = 1;
+    }
+    if (!done && rival_lat != 0.0) {
+        inside = 0;
+        if (fabs(rival_side) > 2.0) {
+            f32 s = rival_side < 0.0 ? 1.0 : -1.0;
+
+            aim = 5.0 * s + rival_lat;
+            if (fabs(aim) < 0.5 * max_speed - 5.0) {
+                inside = 1;
+            }
+        }
+        if (!inside) {
+            f32 s = rival_lat < 0.0 ? -1.0 : 1.0;
+
+            aim = s * (fabs(rival_lat) - 5.0);
+        }
+        done = 1;
+        ai->target = aim * scale;
+    }
+    if (!done && ((ai->flags >> 27) & 1)) {
+        done = 1;
+    }
+    if (ai->cooldown != 0) {
+        ai->cooldown--;
+    }
+    if (!done && ai->cooldown == 0) {
+        if (car->speed < (f32)cpu_params[ai->param].speed && !cpu_bit(ai->flags, 28) && cpu_level.unk_3 == 0 && !(ai->flags & 0x14000000)) {
+            for (zone = cpu_zones; zone->end > -1.0; zone++) {
+                if (zone->type != 1 || zone->end < prog->unk_100) {
+                    continue;
+                }
+                if (zone->group == ai->lane % (prog->unk_88 - 1) + 1) {
+                    ai->flags |= 0x4000000;
+                } else if (prog->unk_88 <= 1) {
+                    ai->unk_34 = zone->group - 1;
+                    ai->flags |= 0x4000000;
+                    break;
+                }
+            }
+        }
+        if (car->speed > 95.0 && ((ai->flags >> 26) & 1)) {
+            ai->flags &= ~0x4000000;
+        }
+
+        best = ai->target;
+        zi = 0;
+        for (z = cpu_zones; z->end > -1.0; zi++, z++) {
+            if (ai->zone == zi) {
+                continue;
+            }
+            if (prog->unk_8C != 0 && z->group != prog->unk_8C) {
+                continue;
+            }
+            if (((*(u32 *)ai >> 20) & 1) && z->type != 1) {
+                continue;
+            }
+            if (z->start - 150.0 > prog->unk_100) {
+                continue;
+            }
+            if (z->type == 1 && !cpu_bit(ai->flags, 28)) {
+                if (cpu_level.unk_3 != 0) {
+                    continue;
+                }
+                if (z->end < prog->unk_100) {
+                    continue;
+                }
+                if (car->speed > 95.0) {
+                    continue;
+                }
+                if ((prog->unk_7C & 0x400000) && fabs(ai->lateral) > 0.25) {
+                    continue;
+                }
+                if (ai->lateral > z->left && ai->lateral < z->right) {
+                    tmp = ai->lateral;
+                } else {
+                    if (!(prog->unk_7C & 0x1400000)) {
+                        lim = 0.5 - 10.0 * scale;
+                        lo = CLAMP(z->left, -lim, lim);
+                        hi = CLAMP(z->right, -lim, lim);
+                    } else {
+                        lo = z->left;
+                        hi = z->right;
+                    }
+                    if (ai->lateral < lo) {
+                        hi = lo + 0.5 * (hi - lo);
+                    }
+                    if (ai->lateral > hi) {
+                        lo = lo + 0.5 * (hi - lo);
+                    }
+                    tmp = lo + (hi - lo) * (cpu_rand() / 32767.0f);
+                }
+                if ((ai->flags >> 28) & 1) {
+                    if (ai->zone_type == 3 || fabs(ai->lateral - tmp) < fabs(ai->lateral - best)) {
+                        best = tmp;
+                        ai->zone = zi;
+                        ai->zone_type = z->type;
+                    }
+                    continue;
+                }
+            } else {
+                if (z->type != 3) {
+                    continue;
+                }
+                if (ai->zone_type == 1) {
+                    continue;
+                }
+                if (cpu_level.unk_2 != 0) {
+                    continue;
+                }
+                if (z->start < prog->unk_100) {
+                    continue;
+                }
+                if (car->flags & 2) {
+                    continue;
+                }
+                slot = cpu_find_slot(zi);
+                if (slot == -1) {
+                    mask = 0;
+                } else {
+                    mask = cpu_slots[slot].mask;
+                }
+                if (!cpu_bit(mask, car->id)) {
+                    continue;
+                }
+                tmp = max_speed * (0.5 * (z->left + z->right));
+                if (prog->unk_7C & 0x1400000) {
+                    f32 alt;
+
+                    if (tmp < 0.0) {
+                        alt = tmp + max_speed;
+                    } else {
+                        alt = tmp - max_speed;
+                    }
+                    tmp = tmp - prog->unk_108;
+                    alt = alt - prog->unk_108;
+                    tmp = fabs(tmp) < fabs(alt) ? tmp : alt;
+                    if (fabs(tmp) > 0.4 * max_speed) {
+                        continue;
+                    }
+                } else {
+                    tmp = tmp - prog->unk_108;
+                }
+                if (abs(lbl_8006D24C(tmp, z->end - prog->unk_100)) > 0x1000) {
+                    continue;
+                }
+                tmp = 0.5 * (z->right + z->left);
+                if ((ai->flags >> 28) & 1) {
+                    if (ai->zone_type == 1) {
+                        continue;
+                    }
+                    if (fabs(ai->lateral - tmp) < fabs(ai->lateral - best)) {
+                        best = tmp;
+                        ai->zone = zi;
+                        ai->zone_type = z->type;
+                    }
+                    continue;
+                }
+            }
+            best = tmp;
+            ai->zone = zi;
+            ai->zone_type = z->type;
+            ai->flags |= 0x10000000;
+            if (z->type == 1) {
+                ai->flags &= ~0x4000000;
+            }
+            if (ai->state == 5 || ai->state == 6) {
+                ai->timer = 0;
+                ai->state = 1;
+                ai->rival = 99;
+            }
+        }
+        if (ai->state != 5) {
+            ai->target = best;
+        }
+    }
+    if (!done && ai->state == 5) {
+        done = 1;
+    }
+    if (!done && ((ai->flags >> 28) & 1) && ai->zone_type == 1) {
+        done = 1;
+        zone = &cpu_zones[ai->zone];
+        if ((prog->unk_8C != 0 && zone->group != prog->unk_8C) || car->speed > 99.0 || zone->end < prog->unk_100 ||
+            ((prog->unk_7C & 0x400000) && fabs(ai->lateral) > 0.25)) {
+            ai->flags &= ~0x10000000;
+            ai->zone = 0xFF;
+            ai->zone_type = 0xFF;
+            done = 0;
+        }
+    }
+
+    /* steer along the course line */
+    if (!done) {
+        use_line = 1;
+        if (((ai->flags >> 28) & 1) && ai->zone_type == 3) {
+            slot = cpu_find_slot(ai->zone);
+            zone = &cpu_zones[ai->zone];
+            if (!(prog->unk_7C & 0x1400000) && fabs(ai->lateral) > fabs(ai->prev_lateral) && fabs(ai->lateral) > 0.4 && !(car->flags & 2)) {
+                ai->flags &= ~0x10000000;
+                ai->zone = 0xFF;
+                ai->zone_type = 0xFF;
+                ai->cooldown = 5;
+            } else if ((prog->unk_8C != 0 && zone->group != prog->unk_8C) || zone->start < prog->unk_100) {
+                ai->flags &= ~0x10000000;
+                ai->zone = 0xFF;
+                ai->zone_type = 0xFF;
+            } else {
+                fn_8006E250(car->pos, a);
+                fn_8006E250(cpu_slots[slot].pos, b);
+                use_line = 0;
+            }
+        }
+        if (use_line) {
+            s32 next;
+            s32 prev;
+            s32 far;
+            s32 idx;
+            s32 n;
+
+            idx = prog->unk_100 * cpu_line_scale;
+            n = 0;
+            while (LINE(ai->lane, idx) == -128) {
+                n++;
+                if (--idx < 0) {
+                    idx += 512;
+                }
+            }
+            t = cpu_line_scale * (prog->unk_100 - cpu_line_step * (idx + n));
+            next = idx;
+            do {
+                if (++next >= 512) {
+                    next -= 512;
+                }
+            } while (LINE(ai->lane, next) == -128);
+            far = cpu_line_scan(ai, next, &t);
+            prev = far;
+            do {
+                if (--prev < 0) {
+                    prev += 512;
+                }
+            } while (LINE(ai->lane, prev) == -128);
+            fn_8006E250(POINT(ai->lane, idx), a);
+            fn_8006E250(POINT(ai->lane, next), c);
+            fn_8006E250(POINT(ai->lane, prev), d);
+            fn_8006E250(POINT(ai->lane, far), b);
+            a[0] = a[0] * (1.0 - t) + c[0] * t;
+            a[1] = a[1] * (1.0 - t) + c[1] * t;
+            a[2] = a[2] * (1.0 - t) + c[2] * t;
+            b[0] = d[0] * (1.0 - t) + b[0] * t;
+            b[1] = d[1] * (1.0 - t) + b[1] * t;
+            b[2] = d[2] * (1.0 - t) + b[2] * t;
+        }
+        dist = b[0];
+        side = SIGN(dist);
+        dist = fabs(dist);
+        angle = -lbl_8006D24C(a[0] - b[0], lbl_8006D0B4(cpu_dist2(a, b)));
+        dir = angle > 0 ? 1 : (angle < 0 ? -1 : 0);
+        abs_angle = abs(angle);
+        ai->target = ai->lateral + b[0] * scale;
+        ahead = -b[2];
+    } else {
+        f32 want_lat = ai->target * max_speed;
+        f32 off = want_lat - prog->unk_108;
+
+        if (prog->unk_7C & 0x1400000) {
+            f32 off_r = want_lat - (prog->unk_108 + max_speed);
+            f32 off_l = want_lat - (prog->unk_108 - max_speed);
+
+            if (fabs(off) > fabs(off_r)) {
+                off = off_r;
+            }
+            if (fabs(off) > fabs(off_l)) {
+                off = off_l;
+            }
+        }
+        side = SIGN(off);
+        dist = fabs(off);
+        ahead = 0.0f;
+    }
+
+    /* boost */
+    if (ai->state == 4 || (ai->state == 3 && ai->spin_timer == 0) ||
+        (ai->state == 6 && fn_1_8CAF4(car->id, ai->rival) < 0.0) || ai->unk_3A != 0 || ((ai->flags >> 4) & 1)) {
+        boost = 0.0f;
+    } else {
+        none = 1;
+        first = 1;
+        tmp = 10000000.0f;
+        for (zone = cpu_zones; zone->end > -1.0; zone++) {
+            if (zone->type != 1) {
+                continue;
+            }
+            if (zone->group != 0 && prog->unk_8C != 0 && zone->group != prog->unk_8C) {
+                continue;
+            }
+            if (first) {
+                first_start = zone->start;
+                first = 0;
+            }
+            if (zone->end < prog->unk_100) {
+                continue;
+            }
+            if (zone->start < prog->unk_100 && zone->end > prog->unk_100 && (zone->group == 0 || zone->group == prog->unk_8C)) {
+                tmp = 0.0f;
+                none = 0;
+                break;
+            }
+            if (zone->start - prog->unk_100 < tmp) {
+                tmp = zone->start - prog->unk_100;
+                none = 0;
+            }
+        }
+        if (none) {
+            if (prog->unk_118 == lbl_1_bss_3C30.unk_4 - 1 && cpu_level.unk_0 > 1 && cpu_level.unk_0 < 5) {
+                tmp = *lbl_1_bss_3BE0->unk_90 - prog->unk_100;
+            } else if (!first) {
+                tmp = *lbl_1_bss_3BE0->unk_90 + first_start - prog->unk_100;
+            } else {
+                tmp = 10000.0f;
+            }
+        }
+        if (cpu_level.unk_0 == 0) {
+            tmp = tmp > 3000.0 ? tmp : 3000.0;
+        } else if (cpu_level.unk_0 == 1) {
+            tmp = tmp > 1000.0 ? tmp : 1000.0;
+        } else if (cpu_level.unk_0 == 2) {
+            tmp = tmp > 500.0 ? tmp : 500.0;
+        }
+        boost = cpu_params[ai->param].boost / 100.0;
+        if (tmp > 0.0) {
+            boost = boost * ((car->speed / 20.0f) / (tmp / (50.0 / 9.0)));
+        }
+        switch (ai->state) {
+        case 0:
+            boost *= 0.8;
+        case 1:
+            boost *= 0.8;
+        case 2:
+        case 5:
+        case 6:
+            if (car->unk_17C < 200.0) {
+                boost *= 2.0;
+            } else if (car->unk_17C < 400.0) {
+                boost *= 1.5;
+            } else if (car->unk_17C < 800.0) {
+                boost *= 1.25;
+            }
+            boost *= cpu_level.unk_1C;
+            if ((ai->flags >> 21) & 1) {
+                boost *= 1.5;
+            }
+            break;
+        }
+    }
+
+    /* throttle */
+    if (ai->state == 3 && ai->spin_timer == 0) {
+        ai->unk_10 = 1.0f;
+    } else {
+        ai->unk_10 = 0.0f;
+    }
+    switch (ai->state) {
+    case 0:
+        tmp = prog->unk_F8 - cpu_best_progress - 50.0;
+        tmp = CLAMP(tmp, 0.0, 300.0);
+        if (cpu_best_rank == prog->unk_115) {
+            ai->throttle = 1.0f;
+        } else {
+            ai->throttle = cpu_level.unk_8 + tmp / 300.0 * (cpu_level.unk_C - cpu_level.unk_8);
+        }
+        break;
+    default:
+    case 1:
+        ai->throttle = cpu_level.unk_8;
+        break;
+    case 2:
+        tmp = cpu_worst_progress - prog->unk_F8 - 50.0;
+        tmp = CLAMP(tmp, 0.0, 300.0);
+        ai->throttle = cpu_level.unk_8 + tmp / 300.0 * (cpu_level.unk_4 - cpu_level.unk_8);
+        break;
+    case 4:
+        ai->throttle = 0.5f;
+        break;
+    case 3:
+        if (abs_angle < 0x4000) {
+            ai->throttle = cpu_level.unk_4;
+        } else {
+            ai->throttle = 0.0f;
+        }
+        break;
+    case 5:
+        if (ai->throttle < cpu_level.unk_C) {
+            ai->throttle = cpu_level.unk_C;
+        }
+        break;
+    case 6:
+        if (fn_1_8CAF4(car->id, ai->rival) > 0.0f) {
+            ai->throttle = cpu_level.unk_4;
+        } else {
+            ai->throttle = 0.0f;
+        }
+        break;
+    }
+    switch (ai->state) {
+    case 0:
+    case 1:
+    case 2:
+        if ((ai->flags >> 15) & 1) {
+            ai->throttle *= 1.1;
+        } else if ((ai->flags >> 14) & 1) {
+            ai->throttle *= 0.9;
+        }
+        break;
+    }
+    if (!((ai->flags >> 24) & 1) || (car->flags & 0x3800000)) {
+        if (fn_1_8677C(car->id) != 0) {
+            if (ai->blink > 254) {
+                ai->blink = 253;
+            }
+            ai->blink++;
+            if (ai->blink & 1) {
+                ai->throttle = 0.0f;
+            }
+            boost = 0.0f;
+        }
+    }
+    if ((ai->flags >> 23) & 1) {
+        ai->flags |= 0x40000000;
+    }
+    if (boost < 1.1920929e-07f) {
+        ai->flags &= ~0x20000;
+    } else if (car->speed > (f32)cpu_params[ai->param].speed) {
+        if (car->unk_18A == 0 && ((ai->flags >> 17) & 1)) {
+            ai->flags |= 0x80000000;
+            ai->flags &= ~0x20000;
+        } else if (cpu_rand() / 32767.0f < boost) {
+            if (car->unk_18A != 0) {
+                ai->flags |= 0x20000;
+            } else {
+                ai->flags |= 0x80000000;
+            }
+        }
+    }
+
+    /* steering */
+    base = 0.0f;
+    lo = 8.0f;
+    hi = 20.0f;
+    if ((*(u32 *)ai >> 22) & 1) {
+        lo = lo * (0.8 * car->unk_1C / 20.0);
+    }
+    if ((ai->flags >> 18) & 1) {
+        if (dist < lo) {
+            ai->flags &= ~0x40000;
+        }
+    } else if (dist > 20.0f) {
+        ai->flags |= 0x40000;
+    }
+    if ((ai->flags >> 19) & 1) {
+        if (abs_angle < 0x600) {
+            ai->flags &= ~0x80000;
+        }
+    } else if (abs_angle > 0x2000) {
+        ai->flags |= 0x80000;
+    }
+    if (!((ai->flags >> 28) & 1)) {
+        base = ai->unk_24;
+        if (!(prog->unk_7C & 0x1400000)) {
+            f64 used = max_speed * fabs(ai->lateral);
+            f64 limit = 0.5 * max_speed - 10.0;
+
+            if (base + used > limit) {
+                room = limit - used;
+                base = room > 0.0f ? room : 0.0f;
+            }
+        }
+        lo += base;
+        hi += base;
+    }
+    switch (ai->state) {
+    case 4:
+        if (abs_angle < 0x2000) {
+            ai->steer = 0.025 * cpu_level.unk_14 + fabs(ai->steer);
+        } else {
+            ai->steer = fabs(ai->steer) - 0.1 * cpu_level.unk_14;
+        }
+        dir = side;
+        break;
+    case 3:
+    default:
+        if (ai->state == 3 && ai->spin_timer == 0) {
+            if (car->unk_17C < 400.0) {
+                ai->steer = cpu_level.unk_14;
+                dir = -side;
+            } else {
+                ai->steer = 0.0f;
+            }
+        } else if ((ai->flags >> 18) & 1) {
+            if (dist > hi) {
+                ai->steer = cpu_level.unk_14;
+                dir = side;
+            } else if (dist > lo) {
+                ai->steer = cpu_level.unk_14 * ((dist - lo) / (hi - lo));
+                dir = side;
+            } else {
+                ai->steer = 0.0f;
+            }
+        } else if (abs_angle > 0x1000) {
+            ai->steer = cpu_level.unk_14;
+        } else {
+            ai->steer = abs_angle / 4096.0f * cpu_level.unk_14;
+        }
+        break;
+    }
+    switch (ai->state) {
+    case 4:
+        ai->unk_14 = cpu_level.unk_18;
+        break;
+    case 3:
+    default:
+        if (ai->state == 3 && ai->spin_timer == 0) {
+            if (car->unk_17C < 400.0) {
+                ai->unk_14 = -cpu_level.unk_18;
+            } else {
+                ai->unk_14 = 0.0f;
+            }
+            break;
+        }
+        if ((ai->flags >> 19) & 1) {
+            if (abs_angle > 0x1000) {
+                ai->unk_14 = cpu_level.unk_18;
+            } else {
+                ai->unk_14 = abs_angle / 4096.0f * cpu_level.unk_18;
+            }
+            side = dir;
+        } else if (dist < base) {
+            ai->unk_14 = 0.0f;
+        } else if (dist < lo) {
+            ai->unk_14 = cpu_level.unk_18 * ((dist - base) / (lo - base));
+        } else {
+            ai->unk_14 = cpu_level.unk_18;
+        }
+        if (!((ai->flags >> 19) & 1) && ahead > 50.0) {
+            f32 fade = 1.3 + -0.006 * ahead;
+
+            ai->unk_14 *= CLAMP(fade, 0.1, 1.0);
+        }
+        break;
+    }
+    if (car->flags & 2) {
+        if (ai->last_pos != prog->unk_100 && fabs(ai->lateral) < 0.45) {
+            ai->unk_8 = 1.0f;
+        } else {
+            f32 tilt;
+
+            fn_8006E2B0(car->unk_1BC, v);
+            tilt = lbl_8006D24C(-v[2], v[1]) / 2048.0f;
+            ai->unk_8 = CLAMP(tilt, -1.0, 1.0);
+            ai->throttle = cpu_level.unk_4;
+        }
+    } else {
+        ai->unk_8 = 0.0f;
+    }
+    if (ai->state == 6) {
+        ai->flags |= 0x100000;
+    }
+    ai->steer = CLAMP(ai->steer, -cpu_level.unk_14, cpu_level.unk_14);
+    ai->unk_8 = CLAMP(ai->unk_8, -1.0, 1.0);
+    ai->unk_14 = CLAMP(ai->unk_14, -cpu_level.unk_18, cpu_level.unk_18);
+    ai->throttle = CLAMP(ai->throttle, 0.0, cpu_level.unk_4);
+    ai->unk_10 = CLAMP(ai->unk_10, 0.0, 1.0);
+    ai->steer = ai->steer * dir;
+    ai->unk_14 = ai->unk_14 * side;
+    ai->last_pos = prog->unk_100;
+}
+#pragma fp_contract reset
+/* fzgx:end fn_1_C4ABC */
