@@ -571,6 +571,46 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/_prolog/_prolog.c",
+    "symbols": [
+      "_prolog"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_0",
+      "@9": "lbl_3_rodata_0+0x40",
+      "...bss.0": "lbl_3_bss_0",
+      "fzgx_obj_lbl_3_bss_0": "lbl_3_bss_0",
+      "lbl_3_bss_C__fzgx_offset_4": "lbl_3_bss_C+0x4",
+      "fzgx_obj_lbl_3_bss_F0": "lbl_3_bss_F0",
+      "lbl_3_bss_140__fzgx_offset_20700": "lbl_3_bss_140+0x20700",
+      "fzgx_obj_lbl_3_bss_20844": "lbl_3_bss_20844",
+      "fzgx_obj_lbl_3_bss_20848": "lbl_3_bss_20848",
+      "fzgx_obj_lbl_3_bss_2084C": "lbl_3_bss_2084C",
+      "fzgx_obj_lbl_3_bss_20850": "lbl_3_bss_20850",
+      "lbl_3_bss_20854__fzgx_offset_0": "lbl_3_bss_20854",
+      "fzgx_obj_lbl_3_bss_20860": "lbl_3_bss_20860",
+      "fzgx_obj_lbl_3_bss_21960": "lbl_3_bss_21960",
+      "fzgx_obj_lbl_3_bss_241E0": "lbl_3_bss_241E0",
+      "lbl_3_bss_24370__fzgx_offset_0": "lbl_3_bss_24370",
+      "...data.0": "lbl_3_data_0",
+      "fzgx_obj_lbl_3_data_0": "lbl_3_data_0",
+      "lbl_3_data_1134__fzgx_offset_30": "lbl_3_data_1134+0x30",
+      "lbl_3_data_1134__fzgx_offset_4C": "lbl_3_data_1134+0x4C",
+      "lbl_3_data_1134__fzgx_offset_6C": "lbl_3_data_1134+0x6C",
+      "lbl_3_data_1134__fzgx_offset_80": "lbl_3_data_1134+0x80",
+      "lbl_3_data_1134__fzgx_offset_88": "lbl_3_data_1134+0x88",
+      "lbl_3_data_11DC__fzgx_offset_0": "lbl_3_data_11DC",
+      "lbl_3_data_11DC__fzgx_offset_C": "lbl_3_data_11DC+0xC",
+      "lbl_3_data_11DC__fzgx_offset_18": "lbl_3_data_11DC+0x18",
+      "lbl_3_data_11DC__fzgx_offset_30": "lbl_3_data_11DC+0x30"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/_prolog/fn_3_0.c",
     "symbols": [
       "fn_3_0"
