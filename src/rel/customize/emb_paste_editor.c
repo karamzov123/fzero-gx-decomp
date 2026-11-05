@@ -14,6 +14,120 @@ extern void fn_1_426C(s16);
 extern void fn_80008BA8(struct Sig_fn_8004E278_fn_8004E278_Arg0 *, u32, u32);
 extern void fn_80008BEC(struct Sig_fn_8004E278_fn_8004E278_Arg0 *, int, u32);
 
+/* fzgx:begin fn_3_F984 noprologue */
+#include "types.h"
+
+/* lbl_3_bss_7EDD8: only the word this function writes */
+typedef struct {
+    u8 pad_0[0xC];
+    u32 unk_C;
+} View_3_bss_7EDD8;
+
+typedef struct {
+    u8 pad_0[0x40];
+} View_3_bss_87000;
+
+extern View_3_bss_7EDD8 lbl_3_bss_7EDD8;
+extern View_3_bss_87000 lbl_3_bss_87000;
+extern u8 lbl_3_data_32DC[0x13];
+/* the two card rows' states: retail reads and writes 0x32F0 and 0x32F1, though symbols.txt sizes
+ * lbl_3_data_32F0 as one byte; as an array the reset stores schedule as retail's do */
+extern u8 lbl_3_data_32F0[2];
+
+/* lbl_1_bss_77380: two rows of 128 0x30-byte entries */
+typedef struct {
+    u8 pad_0[0x24];
+    u32 unk_24;
+    u8 pad_28[0x4];
+    void *unk_2C;
+} Entry_1_bss_77380;
+
+/* lbl_3_bss_87000 in 0xC-byte parts, one per row of lbl_1_bss_77380 */
+typedef struct {
+    s16 unk_0;
+    u8 *unk_4;
+    void **unk_8;
+} Part_3_bss_87000;
+
+extern Entry_1_bss_77380 lbl_1_bss_77380[2][128];
+extern u8 lbl_3_bss_9F664;
+extern u8 lbl_3_bss_9F665[43];
+extern u32 lbl_801A6410;
+
+extern void fn_1_B9BE0(void);
+extern u8 fn_1_B7C00(void);
+extern int fn_1_B7E98(s32);
+extern void fn_1_B9CCC(s32, u32);
+extern int fn_1_B7CD4(void);
+extern void *fn_1_45D0(u32, u32, char *, u32);
+extern void fn_80008BA8(void *, void *, u32);
+extern void fn_1_B9C0C(void);
+extern void fn_1_FE004(void);
+
+#define PART(row) (((Part_3_bss_87000 *)&lbl_3_bss_87000)[row])
+
+/* card row `row`: on its first pass fn_1_B9CCC(row, 16); once fn_1_B7CD4 reports done, copies each
+ * lbl_1_bss_77380 entry's 0x2000-byte block into a new allocation and stores the clamped count; returns the
+ * row's next state */
+static inline u8 copy_row(s32 row, u8 *state) {
+    u8 i;
+    u8 count;
+    u8 next;
+
+    if (fn_1_B7E98(row) != 0) {
+        if (*state == 0) {
+            fn_1_B9CCC(row, 16);
+            *state = 1;
+            next = 1;
+        } else if (fn_1_B7CD4() != 0 && *state == 1) {
+            count = 0;
+            for (i = 0; i < 128; i++) {
+                if (lbl_1_bss_77380[row][i].unk_24 == 0 || lbl_1_bss_77380[row][i].unk_2C == NULL) {
+                    PART(row).unk_8[i] = NULL;
+                } else {
+                    PART(row).unk_8[i] = fn_1_45D0(lbl_801A6410, 0x2000, (char *)lbl_3_data_32DC, 0x61B);
+                    fn_80008BA8(PART(row).unk_8[i], lbl_1_bss_77380[row][i].unk_2C, 0x2000);
+                    PART(row).unk_4[i] = 1;
+                    count++;
+                }
+            }
+            PART(row).unk_0 = count < 9 ? 9 : count > 128 ? 128 : count;
+            *state = 2;
+            next = 2;
+        } else {
+            PART(row).unk_0 = 9;
+            return 2;
+        }
+        return next;
+    } else {
+        return 2;
+    }
+}
+
+void fn_3_F984(void) {
+    if (lbl_3_bss_9F664 == 0) {
+        fn_1_B9BE0();
+        lbl_3_bss_9F664 = 1;
+    } else if (fn_1_B7C00() == 0) {
+        if (lbl_3_data_32F0[0] < 2) {
+            lbl_3_data_32F0[0] = copy_row(0, &lbl_3_data_32F0[0]);
+        } else if (lbl_3_data_32F0[1] < 2) {
+            lbl_3_data_32F0[1] = copy_row(1, &lbl_3_data_32F0[1]);
+        } else if (lbl_3_bss_9F665[0] == 0) {
+            fn_1_B9C0C();
+            lbl_3_bss_9F665[0] = 1;
+        } else {
+            lbl_3_data_32F0[1] = 0;
+            lbl_3_data_32F0[0] = 0;
+            lbl_3_bss_7EDD8.unk_C = 0x40000000;
+            lbl_3_bss_9F664 = 0;
+            lbl_3_bss_9F665[0] = 0;
+            fn_1_FE004();
+        }
+    }
+}
+/* fzgx:end fn_3_F984 */
+
 /* fzgx:begin fn_3_FD30 noprologue */
 #include "types.h"
 

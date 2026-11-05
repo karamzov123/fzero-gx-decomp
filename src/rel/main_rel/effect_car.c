@@ -2122,6 +2122,7 @@ void fn_1_6BFB8(u32 arg0) {
 /* fzgx:begin fn_1_6C87C noprologue */
 #include "types.h"
 #include "rel/main_rel/effect_car.h"
+#include "lc_mtx.h"
 
 typedef struct { f32 x, y, z; } Fn1_6C87CVec;
 
@@ -2348,12 +2349,10 @@ void fn_1_6C87C(Fn1_6C87CCar *car, Fn1_6C87CVec *dir, f32 arg2) {
     work.unk_34 = *(u32 *)(lbl_1_bss_38458->unk_8 + 0x168);
     pos = fzgx_pool_dir_init;
     lbl_8006DC6C(car->unk_b8);
-    x = *(volatile f32 *)&car->unk_3c.x; /* Locked-cache column: retain the initial load order. */
+    x = car->unk_3c.x;
     y = car->unk_3c.y;
     z = car->unk_3c.z;
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
+    mtx_set_translate((void *)LC_BASE, x, y, z);
     lbl_8006E1B0(&pos, &pos);
 
     if (speed < 500.0f) {

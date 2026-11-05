@@ -16656,6 +16656,131 @@ void fn_10_12C14(void) {
 #pragma fp_contract reset
 /* fzgx:end fn_10_12C14 */
 
+/* fzgx:begin fn_10_12E34 */
+#include "font.h"
+
+extern u32 lbl_801A63C0;
+extern u32 lbl_801A66A0;
+extern int __abs(int);
+extern void DCFlushRange(void *, u32);
+extern void GXInvalidateTexAll(void);
+extern void GXInitTexObj(void *, void *, u16, u16, u32, u32, u32, u8);
+extern void fn_80073778(void *, s32);
+extern void fn_80073898(u32);
+extern void fn_800738E0(s32, s32, s32);
+extern void fn_80073D60(s32, s32, s32, s32, s32);
+extern void fn_80073A58(s32, void *, s32);
+extern void fn_800739E0(s32, s32, s32);
+extern void lbl_8006D784(void *);
+extern void GXLoadPosMtxImm(void *, u32);
+extern void GXLoadTexMtxImm(void *, u32, u32);
+
+/* the TU's .rodata pool in retail order, ahead of this function's constants; it comes before the .bss layout
+ * and its first primer reads the pool base three times, so MWCC ranks the .rodata base first (retail r31) */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[18] = {0x00000000, 0x0000B500, 0x0000B600, 0x0000AD00, 0x0000B300, 0x0000B800, 0x0000B200, 0x0000B100, 0x0000AE00, 0x0000B400, 0x0000B900, 0x0000B000, 0x0000AF00, 0x0000B700, 0x00000000, 0x00000000, 0x00F0F0FF, 0x3F800000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    const u32 *volatile cp; volatile f32 s;  /* fzgx-allow: S2 pool primer sinks */
+    cp = fzgx_pool_table1;
+    s = 0.5f;
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table3[14] = {0x3E4CCCCD, 0x3ECCCCCD, 0x43A00000, 0x40400000, 0x43A18000, 0x40800000, 0x40A00000, 0x40C00000, 0x3E800000, 0x46800000, 0x47800000, 0x42700000, 0x3FF00000, 0x3F0E38E4};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f64 d;  /* fzgx-allow: S2 pool primer sink */
+    d = 4503601774854144.0;
+}
+static const u32 fzgx_pool_table5[241] = {0x43300000, 0x00000000, 0x00110012, 0x00130014, 0x00150012, 0x00130014, 0x00000000, 0x00F0F0FF, 0x00000000, 0x00F0F0FF, 0x00010002, 0x00030004, 0x00050006, 0x00070008, 0x0009000A, 0x000B000C, 0x00110012, 0x00130014, 0x00150012, 0x00130014, 0x00FF0000, 0xFFFFFF00, 0x00FF0000, 0xFFFFFF00, 0x00FF0000, 0x00FF0000, 0x426C0000, 0x42A40000, 0x429A0000, 0x42C40000, 0x41C80000, 0x42E60000, 0x3F333333, 0x41100000, 0x3F2AAAAB, 0x43D78000, 0x00000000, 0x00000000, 0x42740000, 0x42A20000, 0x42DC0000, 0x42200000, 0x42A00000, 0x43520000, 0x43660000, 0x43B78000, 0x425C0000, 0x42980000, 0x42C80000, 0x43B68000, 0x42960000, 0x42EA0000, 0x3EEAAAAB, 0x43250000, 0x431B0000, 0x42AE0000, 0x43380000, 0x42B40000, 0x43BE8000, 0x43ED8000, 0x432E0000, 0x43D38000, 0x43420000, 0x46000000, 0x41A00000, 0xC6000000, 0x43B50000, 0x44030000, 0x42900000, 0x41300000, 0x3F666666, 0x3F0AAAAB, 0xC0800000, 0x43A70000, 0x43AA8000, 0xC0C00000, 0x3F200000, 0x43AD0000, 0x43530000, 0x43210000, 0x43400000, 0x3D8F5C29, 0x00170018, 0x0019001A, 0x001B001C, 0x001D001E, 0x001F0021, 0x00220000, 0x00FF0000, 0xFFFFFF00, 0x00FF0000, 0xFFFFFF00, 0x00FF0000, 0xFFFFFF00, 0x00FF0000, 0xFFFFFF00, 0x00FF0000, 0x42EE0000, 0x430D0000, 0x43200000, 0x43230000, 0x422C0000, 0x43020000, 0x00000000, 0x40568000, 0x00000000, 0x4050E000, 0x00000000, 0x40368000, 0x00000000, 0x41B40000, 0x3C23D70A, 0x3F6AAAAB, 0x40000000, 0x43700000, 0x38D1B717, 0x438B0000, 0x439E0000, 0xFFFFFFFF, 0x3F400000, 0x437A0000, 0x43BA8000, 0x43B10000, 0x42880000, 0x3F5DDDDE, 0xBF800000, 0x430C0000, 0x42480000, 0x3DCCCCCD, 0x441B0000, 0x41C00000, 0x41200000, 0x43C00000, 0x44200000, 0x3F155555, 0x3F19999A, 0x000000FF, 0x000000FF, 0x41880000, 0x43A90000, 0x43160000, 0x41700000, 0x439E8000, 0xC2D40000, 0x439F0000, 0x42D40000, 0x43A68000, 0xC2AE0000, 0x3DB851EC, 0xC1300000, 0x44214000, 0x44344000, 0x43A50000, 0x3F7D70A4, 0x43270000, 0x42180000, 0x000000FF, 0x41000000, 0x43B70000, 0x41400000, 0x41600000, 0x3F428F5C, 0x000000FF, 0x4270A3D7, 0x438C0000, 0x40B66666, 0x40900000, 0x3F34FDF4, 0xFF9CFF9C, 0xFF9CFF9C, 0x00310069, 0x009F00D5, 0x010B0141, 0x017701AD, 0x01E30219, 0x025203E8, 0x03E803E8, 0x03E80000, 0x80808000, 0x42C60000, 0x423C0000, 0x42860000, 0x42800000, 0x435B0000, 0x44148000, 0x44144000, 0x42400000, 0x3EC7AE14, 0x3EDADADB, 0x00000000, 0x42380000, 0x43760000, 0x42F00000, 0x43EB0000, 0x43770000, 0x42340000, 0x42080000, 0x43810000, 0x3E99999A, 0x43A40000, 0x43850000, 0x43940000, 0x43A30000, 0x43860000, 0x41E00000, 0x43950000, 0xFF9CFF9C, 0xFF9CFF9C, 0x00310069, 0x009F00D5, 0x010B0141, 0x017701AD, 0x01E30219, 0x025103E8, 0x03E803E8, 0x03E80000, 0x00000001, 0x00020003, 0x00030000, 0x00010002, 0x00020003, 0x00000001, 0x00010002, 0x00030000, 0x00000001, 0x00020002, 0x00000001, 0x00010002, 0x00000000, 0x00000001, 0x00010000, 0x00000000, 0x43360B61, 0x3D4CCCCD, 0x42FE0000, 0x405B53F8, 0x3A83126F, 0x00000000, 0xC1A00000, 0x00000000, 0x43AB8000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = 32767.0f;
+}
+#pragma section code_type ".text"
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+u8 fzgx_obj_lbl_10_bss_55680;
+u8 fzgx_pool_gap_55681;
+u8 fzgx_pool_gap_55682;
+u8 fzgx_pool_gap_55683;
+u8 fzgx_pool_gap_55684[0x14];
+f32 fzgx_obj_lbl_10_bss_55698[2];
+f32 lbl_10_bss_55698__fzgx_offset_8;
+u8 fzgx_pool_gap_556A4[0x1C];
+u16 lbl_10_bss_55698__fzgx_offset_28[0x200];
+u32 lbl_10_bss_55698__fzgx_offset_428[8];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = fzgx_obj_lbl_10_bss_55680;
+    s = fzgx_pool_gap_55681;
+    s = fzgx_pool_gap_55682;
+    s = fzgx_pool_gap_55683;
+    s = *(u8 *)&fzgx_pool_gap_55684;
+    s = *(u8 *)&fzgx_obj_lbl_10_bss_55698;
+    s = *(u8 *)&lbl_10_bss_55698__fzgx_offset_8;
+    s = *(u8 *)&fzgx_pool_gap_556A4;
+    s = *(u8 *)&lbl_10_bss_55698__fzgx_offset_28;
+    s = *(u8 *)&lbl_10_bss_55698__fzgx_offset_428;
+}
+#pragma section code_type ".text"
+
+static inline s32 rand15(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+void fn_10_12E34(const FontDrawPacket *packet, FontVertex *vertices) {
+    f32 mtx[3][4];
+    f32 m23[2][3];
+    s32 i;
+    s32 j;
+    u8 n;
+    u16 texel;
+
+    for (i = 0; i < 128; i++) {
+        n = rand15() % 14 - 7;
+        texel = ((n + 0x80) << 8) | 0x80;
+        for (j = 0; j < 4; j++) {
+            /* retail reads packet+0x54 as a float (lfs), though font.h types it u32 */
+            if ((s32)*(f32 *)&packet->unk_54 != 0) {
+                if (__abs((s32)((lbl_801A66A0 >> 1) & 0x7F) - i) < 2) {
+                    lbl_10_bss_55698__fzgx_offset_28[i * 4 + j] = texel;
+                } else {
+                    lbl_10_bss_55698__fzgx_offset_28[i * 4 + j] = 0x8080;
+                }
+            } else {
+                lbl_10_bss_55698__fzgx_offset_28[i * 4 + j] = texel;
+            }
+        }
+    }
+    DCFlushRange(lbl_10_bss_55698__fzgx_offset_28, 0x400);
+    GXInvalidateTexAll();
+    GXInitTexObj(lbl_10_bss_55698__fzgx_offset_428, lbl_10_bss_55698__fzgx_offset_28, 4, 128, 3, 1, 1, 0);
+    fn_80073778(lbl_10_bss_55698__fzgx_offset_428, 2);
+    fn_80073898(1);
+    fn_800738E0(0, 0, 2);
+    fn_80073D60(0, 0, 1, 0, 1);
+    if (lbl_801A66A0 % 3 == 0) {
+        lbl_10_bss_55698__fzgx_offset_8 = (f32)rand15() / 32767.0f;
+    }
+    m23[0][0] = 0.5f;
+    m23[0][1] = 0.0f;
+    m23[0][2] = 0.0f;
+    m23[1][0] = 0.0f;
+    m23[1][1] = 0.5f;
+    m23[1][2] = 0.0f;
+    fn_80073A58(1, m23, 1);
+    fn_800739E0(0, 1, 1);
+    lbl_8006D784(mtx);
+    GXLoadPosMtxImm(mtx, 0);
+    GXLoadTexMtxImm(mtx, 0x1E, 1);
+}
+/* fzgx:end fn_10_12E34 */
+
 /* fzgx:begin fn_10_13128 noprologue */
 #include "types.h"
 #include "types.h"

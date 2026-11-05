@@ -1973,6 +1973,198 @@ void fn_1_DC6FC(void *context) {
 }
 /* fzgx:end fn_1_DC6FC */
 
+/* fzgx:begin fn_1_DC764 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "dolphin/hw_regs.h"
+
+/* .rodata 0x66D0: the literals fn_1_DC208 and fn_1_DC454 pool before this function's own */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+    s = 0.6499999761581421f;
+    s = 0.75f;
+    s = 1.0f;
+    s = 0.0f;
+    s = 182.04444885253906f;
+    d = 0.5;
+    d = 2.0;
+    d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} SanVec;
+
+/* the handler fn_1_DC6FC registers this callback with */
+typedef struct {
+    u8 unk_00[4];
+    void (*unk_04)(void);
+    void *unk_08;
+} Handler;
+
+typedef struct {
+    u8 pad_0[0x2260];
+    void *unk_2260;
+    s16 unk_2264[4];
+} SanObj;
+
+typedef struct {
+    u8 pad_0[0x108];
+    f32 unk_108;
+} SanProgress;
+
+extern s32 fn_1_5910(void);
+extern s16 camera_get_mode(void);
+extern void fn_1_869B0(s32, SanVec *);
+extern void fn_1_862A8(s32, SanVec *);
+extern SanProgress *fn_1_8627C(s32);
+extern void fn_1_681C(u8, SanVec *);
+extern void fn_1_6914(u8, SanVec *);
+extern f32 lbl_8006D6FC(SanVec *, SanVec *);
+extern f32 lbl_8006D188(s32);
+extern u32 lbl_801A66A0;
+extern void GXGetProjectionv(f32 *);
+extern void C_MTXOrtho(f32 (*)[4], f32, f32, f32, f32, f32, f32);
+extern void fn_800737E4(f32 (*)[4], s32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void fn_80072558(void);
+extern void fn_1_5621C(f32, f32, f32, f32);
+extern void fn_80074A60(s32, s32);
+extern void lbl_8006D860(f32, f32, f32);
+extern void fn_80072B7C(s32);
+extern void fn_1_56000(u8, u8, u8);
+extern void lbl_8006DB74(f32 (*)[4]);
+extern void fn_1_560F0(s32, f32 (*)[4]);
+extern void fn_1_556B8(void *);
+extern void fn_80074A6C(void);
+extern void fn_80072270(f32 *);
+
+static inline void san_cross(const SanVec *a, const SanVec *b, SanVec *out) {
+    f32 ax, ay, az, bx, bz, by;
+    f32 x, y, z;
+
+    ay = a->y;
+    bz = b->z;
+    az = a->z;
+    bx = b->x;
+    by = b->y;
+    ax = a->x;
+    x = ay * bz;
+    y = az * bx;
+    z = ax * by;
+    x = x - az * by;
+    y = y - ax * bz;
+    z = z - ay * bx;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+/* the viewport's own pad port (fn_1_5910) and its camera mode */
+static inline s32 view_mode(s32 *port) {
+    *port = fn_1_5910();
+    return camera_get_mode();
+}
+
+#define LC_MTX ((f32 *)LC_BASE)
+
+/* moves the locked-cache matrix A's translation by t times its first column */
+static inline void lc_translate(f32 t) {
+    f32 tx;
+    f32 ty;
+    f32 tz;
+
+    tx = LC_MTX[0];
+    tx = tx * t + LC_MTX[3];
+    ty = LC_MTX[4];
+    ty = ty * t + LC_MTX[7];
+    tz = LC_MTX[8];
+    tz = tz * t + LC_MTX[11];
+    LC_MTX[3] = tx;
+    LC_MTX[7] = ty;
+    LC_MTX[11] = tz;
+}
+
+/* retail translates mtxA in place (each fmadds result in its column-0 load register), as in fn_1_44A74 */
+#pragma opt_lifetimes off
+void fn_1_DC764(Handler *handler) {
+    SanObj *obj = handler->unk_08;
+    void *model = obj->unk_2260;
+    s32 port;
+    s32 mode;
+    SanVec from;
+    SanVec to;
+    SanVec dir;
+    SanVec fwd;
+    SanVec up;
+    SanVec side;
+    f32 proj[7];
+    f32 ortho[4][4];
+    f32 mtx[3][4];
+    f32 lateral;
+    f32 d;
+    f32 d2;
+    f32 size;
+    f32 scale;
+    f32 base;
+    f32 wave;
+    f32 x;
+    f32 t;
+    s8 sign;
+
+    mode = view_mode(&port);
+    if (mode == -1) {
+        return;
+    }
+    if (obj->unk_2264[port] <= 0) {
+        return;
+    }
+    fn_1_869B0(mode, &fwd);
+    fn_1_862A8(mode, &up);
+    san_cross(&fwd, &up, &side);
+    lateral = fn_1_8627C(mode)->unk_108;
+    fn_1_681C(port, &from);
+    fn_1_6914(port, &to);
+    dir.x = to.x - from.x;
+    dir.y = to.y - from.y;
+    dir.z = to.z - from.z;
+    d = lbl_8006D6FC(&fwd, &dir);
+    sign = (d > 0.0f) ? 1 : -1;
+    d2 = lbl_8006D6FC(&side, &dir);
+    wave = 0.85f + (f32)(0.15f * lbl_8006D188(65536.0f * (lbl_801A66A0 % 60) / 60.0f));
+    base = 0.0f;
+    size = base + (f64)(wave / 2.0f * __fabs(d));
+    scale = size * obj->unk_2264[port] / 30.0f;
+    GXGetProjectionv(proj);
+    C_MTXOrtho(ortho, 5.0f, -5.0f, -5.0f, 5.0f, 0.1f, 90000.0f);
+    fn_800737E4(ortho, 1);
+    lbl_8006D7F4(0.0f, 0.0f, -0.1f);
+    fn_80072558();
+    fn_1_5621C(scale, scale, scale, 1.0f);
+    fn_80074A60(1, 1);
+    x = -(sign * (d2 + lateral / 60.0f));
+    lbl_8006D860(1.0 / (1.0 + (f64)(3.0 * __fabs(x))), 1.0f, 1.0f);
+    t = (x > 0.0f) ? 0.0f : -(3.0f * x);
+    lc_translate(t);
+    fn_80072B7C(0);
+    fn_1_56000(1, 3, 0);
+    lbl_8006DB74(mtx);
+    fn_1_560F0(0, mtx);
+    fn_1_556B8(model);
+    fn_80072B7C(1);
+    fn_1_56000(1, 3, 1);
+    fn_1_5621C(1.0f, 1.0f, 1.0f, 1.0f);
+    fn_80074A6C();
+    fn_80072270(proj);
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_DC764 */
+
 /* fzgx:begin fn_1_DCB10 */
 #include "rel/main_rel/bg_san.h"
 

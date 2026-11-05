@@ -628,6 +628,295 @@ void fn_1_D2404(void) {
 }
 /* fzgx:end fn_1_D2404 */
 
+/* fzgx:begin fn_1_D27B8 noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
+
+typedef struct FaceVec {
+    f32 x;
+    f32 y;
+    f32 z;
+} FaceVec;
+
+typedef struct FaceColor {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} FaceColor;
+
+typedef struct FaceEntry {
+    u32 flags;
+    u32 id;
+    s32 unk8;
+    u8 padC[4];
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    FaceVec prev;
+    FaceVec pos;
+    u32 unk38;
+    u32 unk3C;
+    u8 pad40[0x20];
+    void *unk60;
+} FaceEntry;
+
+typedef struct FaceManager {
+    FaceEntry *entries;
+    void **list4;
+    void **list8;
+    u8 countC;
+    u8 countD;
+} FaceManager;
+
+typedef struct FaceRacer {
+    u8 pad0[0x94];
+    u32 unk94;
+    u32 unk98;
+    u32 unk9C;
+    u32 unkA0;
+    u32 unkA4;
+    u8 padA8[0x190 - 0xA8];
+    u32 unk190;
+    u8 pad194[2];
+    u8 unk196;
+    u8 pad197[0x478 - 0x197];
+    f32 unk478;
+} FaceRacer;
+
+extern FaceManager lbl_1_bss_7ACD8;
+extern s32 lbl_1_data_3D924;
+extern u8 lbl_1_data_3DB00[0x2C];
+extern void *lbl_801A6D00;
+extern u32 lbl_801A66A0;
+
+extern u32 fn_1_58C4(void);
+extern void fn_1_D2F50(void);
+extern void fn_1_D2F84(void);
+extern void fn_1_550A8(void);
+extern void fn_1_550E0(void);
+extern s16 fn_1_3F0C8(void);
+extern void fn_1_56298(f32, f32, f32, f32);
+extern f32 fn_1_867F8(u32);
+extern FaceRacer *fn_1_86254(u32);
+extern void fn_1_556B8(void *);
+extern void lbl_8006DD14(void *, void *);
+extern void fn_80038F10(f32 *);
+extern void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
+extern void GXGetProjectionv(f32 *);
+extern void fn_80074918(u8, s32, u8);
+extern void C_MTXPerspective(f32 (*)[4], f32, f32, f32, f32);
+extern void fn_800737E4(f32 (*)[4], s32);
+extern void fn_80038EEC(f32, f32, f32, f32, f32, f32);
+extern void fn_80074188(u32, u32, u32, u32);
+extern void fn_8006F120(FaceVec *, FaceVec *);
+extern void lbl_8006DB74(void *);
+extern void fn_80074CF4(f32, f32, f32);
+extern void lbl_8006D758(void);
+extern void fn_80074300(u32, u32, u32, u32);
+extern void fn_80074438(s32, s32, s32, s32);
+extern void fn_800744F8(FaceColor, u32);
+extern void fn_8003526C(void *, u8);
+extern void fn_80007C2C(void);
+extern void fn_80077A18(void);
+extern void *fn_80071268(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void fn_80072558(void);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(f32 *);
+
+#pragma section code_type ".fzgxpool"
+/* layout primer: TU pool 0x0-0x57, the literals of the functions before this one */
+static void fzgx_pool_layout(FaceVec *out, f32 *f, f64 *d, u32 u) {
+    FaceVec v0 = { 0.0f, 0.0f, 1.8f };
+    FaceVec v1 = { 0.0f, 0.0f, 0.0f };
+    out[0] = v0;
+    out[1] = v1;
+    f[0] = 0.08f;
+    d[0] = 0.1;
+    f[1] = 1.8f;
+    f[2] = 10.0f;
+    d[1] = 0.5;
+    f[3] = 32767.0f;
+    d[2] = 1.8f;
+    d[3] = 0.2;
+    f[4] = (f32)u;
+}
+
+/* layout primer: this function's literals at 0x58-0x6B */
+static void fzgx_pool_layout_2(f32 *f) {
+    f[5] = 5.0f;
+    f[6] = 0.1f;
+    f[7] = 90000.0f;
+    f[8] = 0.0f;
+    f[9] = 1.0f;
+}
+
+/* -0.02f at 0x6C, the mtxA z offset: read through this object it stays a variable (retail keeps it in f5) */
+const f32 fzgx_pool_face_depth[1] = { -0.02f };
+
+/* layout primer: this function's literals at 0x70-0x78, before its initializers at 0x7C */
+static void fzgx_pool_layout_3(f32 *f) {
+    f[11] = 4e-5f;
+    f[12] = 65536.0f;
+    f[13] = 10430.378f;
+}
+#pragma section code_type ".text"
+
+static inline void face_set_color(void) {
+    FaceColor c = { 0, 0, 0, 0 };
+    fn_800744F8(c, 0xFFFFFF);
+}
+
+#define MTXA ((f32 *)LC_BASE)
+
+/* retail translates mtxA in place (each fmadds result in its multiplicand register) */
+#pragma opt_lifetimes off
+void fn_1_D27B8(void) {
+    FaceManager *mgr = &lbl_1_bss_7ACD8;
+    f32 tz;
+    f32 ty;
+    f32 tx;
+    f32 saved[3][4];
+    f32 persp[4][4];
+    f32 view[3][4];
+    f32 viewport[6];
+    f32 proj[7];
+    u32 sx;
+    u32 sy;
+    u32 sw;
+    u32 sh;
+    void *model;
+    s32 i;
+    FaceEntry *e;
+    u32 id;
+    FaceRacer *racer;
+    f32 energy;
+    s32 period;
+    f32 t;
+    f32 a;
+    f32 b;
+    f32 k;
+    f64 size;
+    f32 rx;
+    f32 ry;
+    u32 seed;
+    f32 dz;
+
+    if (fn_1_58C4() <= 1 && lbl_1_data_3D924 != -1) {
+        fn_1_D2F50();
+        lbl_8006DD14((u8 *)lbl_801A6D00 + 0x30, saved);
+        fn_80038F10(viewport);
+        GXGetScissor(&sx, &sy, &sw, &sh);
+        GXGetProjectionv(proj);
+        fn_1_550A8();
+        fn_80074918(1, 7, 0);
+        C_MTXPerspective(persp, 5.0f, 1.0f, 0.1f, 90000.0f);
+        fn_800737E4(persp, 0);
+        fn_80038EEC(512.0f, 352.0f, 128.0f, 128.0f, 0.0f, 1.0f);
+        fn_80074188(512, 352, 128, 128);
+        e = mgr->entries;
+        for (i = 0; i < mgr->countD; i++, e++) {
+            if (e->unk10 < 6) {
+                if (fn_1_3F0C8() == 42) {
+                    e->unk38 = e->unk3C = 0;
+                }
+                {
+                    FaceVec zero = { 0.0f, 0.0f, 0.0f };
+                    fn_8006F120(&e->prev, &zero);
+                }
+                lbl_8006DB74((u8 *)lbl_801A6D00 + 0x30);
+                if (e->unk38 != 0 && fn_1_3F0C8() == 41) {
+                    if (e->unk38 % 3 == 0) {
+                        fn_1_56298(0.5f, 0.5f, 0.5f, 0.5f);
+                    } else {
+                        fn_1_56298(0.1f, 0.1f, 0.1f, 0.5f);
+                    }
+                } else {
+                    fn_1_56298(0.0f, 0.0f, 0.0f, 0.0f);
+                }
+                energy = fn_1_867F8(e->id);
+                if (energy < 25.0f && fn_1_3F0C8() == 41) {
+                    period = 30;
+                    if (energy < 15.0f) {
+                        period = 15;
+                    }
+                    t = (f32)(lbl_801A66A0 % period) / (f32)period;
+                    t = t < 0.1f ? 0.1f : (t > 1.0f ? 1.0f : t);
+                    fn_80074CF4(1.0f, t, t);
+                } else {
+                    fn_80074CF4(1.0f, 1.0f, 1.0f);
+                }
+                model = mgr->list4[e->id];
+                lbl_8006D758();
+                fn_80074300(512, 352, 128, 128);
+                size = 64.0;
+                fn_80074438((s32)size, (s32)size, 5, 1);
+                face_set_color();
+                fn_8003526C(e->unk60, 1);
+                fn_80007C2C();
+                if (model != NULL) {
+                    id = e->id;
+                    fn_80077A18();
+                    lbl_8006DB74(view);
+                    model = fn_80071268(model, lbl_1_data_3DB00);
+                    if (model != NULL) {
+                        lbl_8006DFE8(view);
+                        mathutil_mtxA_rotate_x(-0x4000);
+                        mathutil_mtxA_rotate_z(-0x4000);
+                        dz = fzgx_pool_face_depth[0];
+                        tx = MTXA[2];
+                        tx = tx * dz + MTXA[3];
+                        ty = MTXA[6];
+                        ty = ty * dz + MTXA[7];
+                        tz = MTXA[10];
+                        tz = tz * dz + MTXA[11];
+                        MTXA[3] = tx;
+                        MTXA[7] = ty;
+                        MTXA[11] = tz;
+                        if (fn_1_3F0C8() == 41) {
+                            racer = fn_1_86254(id);
+                            if (racer->unk190 != 0) {
+                                if (racer->unk196 != 0) {
+                                    mathutil_mtxA_rotate_z(-racer->unk190);
+                                } else {
+                                    mathutil_mtxA_rotate_z(racer->unk190);
+                                }
+                            }
+                            seed = racer->unk94 ^ racer->unk98 ^ racer->unk9C;
+                            a = (f32)((seed ^ racer->unkA4) & 0xFFFF) / 65536.0f;
+                            b = (f32)((seed ^ racer->unkA0) & 0xFFFF) / 65536.0f;
+                            k = 4e-5f * racer->unk478;
+                            rx = k * a;
+                            ry = k * b;
+                            mathutil_mtxA_rotate_x((s16)(10430.378f * rx) * 2);
+                            mathutil_mtxA_rotate_y((s16)(10430.378f * ry) * 2);
+                        }
+                        fn_80072558();
+                        fn_1_556B8(model);
+                    }
+                    fn_8003526C(e->unk60, 1);
+                }
+                GXInvalidateTexAll();
+                fn_1_56298(0.0f, 0.0f, 0.0f, 0.0f);
+            }
+        }
+        fn_80074918(1, 3, 1);
+        fn_1_550E0();
+        lbl_8006DD14(saved, (u8 *)lbl_801A6D00 + 0x30);
+        fn_80038EEC(viewport[0], viewport[1], viewport[2], viewport[3], viewport[4], viewport[5]);
+        fn_80074188(sx, sy, sw, sh);
+        fn_80072270(proj);
+        fn_1_D2F84();
+    }
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_D27B8 */
+
 /* fzgx:begin fn_1_D2D24 */
 Obj_1_bss_7ACD8_Target *fn_1_D2D24(s32 index) {
     return &lbl_1_bss_7ACD8[index];
