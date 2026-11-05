@@ -27909,7 +27909,7 @@ u32 fn_1_C39FC(void) {
 }
 /* fzgx:end fn_1_C39FC */
 
-/* fzgx:begin fn_1_C3A0C pool noprologue */
+/* fzgx:begin fn_1_C3A0C noprologue */
 #include "types.h"
 #include "game/main_rel/live_camera_types.h"
 #include "rel/main_rel/memcard.h"

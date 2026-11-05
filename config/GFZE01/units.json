@@ -101420,11 +101420,24 @@
     "symbols": [
       "fn_1_C3A0C"
     ],
-    "status": "nonmatching",
+    "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/memcard.c",
-    "pool": true
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_5168",
+      "...data.0": "lbl_1_data_3D138",
+      "lbl_1_data_3D138": "lbl_1_data_3D138",
+      "lbl_1_data_3D158": "lbl_1_data_3D158",
+      "lbl_1_data_3D230": "lbl_1_data_3D230",
+      "lbl_1_data_3D234": "lbl_1_data_3D234",
+      "...bss.0": "lbl_1_bss_7AC48",
+      "fzgx_obj_lbl_1_bss_7AC48": "lbl_1_bss_7AC48",
+      "lbl_1_bss_7AC50": "lbl_1_bss_7AC50",
+      "lbl_1_bss_7AC54": "lbl_1_bss_7AC54",
+      "lbl_1_bss_7AC64": "lbl_1_bss_7AC64",
+      "lbl_1_bss_7AC88": "lbl_1_bss_7AC88"
+    }
   },
   {
     "module": "main_rel",
