@@ -215,6 +215,15 @@
   "source": "fork-deltawave784/windows-and-types@b1e6f2df",
   "status": "matched"
  },
+ "fn_1_133E04": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793895269,
+  "mw": "GC/1.3.2",
+  "sha256": "b48367a60d07af86a84e06c1323745737e311bd424890594b88315d6e2d09321",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
+  "status": "matched"
+ },
  "fn_1_13ABA8": {
   "flags": "",
   "kind": "raw",
@@ -377,6 +386,15 @@
   "source": "fork-deltawave784/windows-and-types@8c8d7cc3",
   "status": "matched"
  },
+ "fn_1_56D4C": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793894766,
+  "mw": "GC/1.3.2",
+  "sha256": "68572e138bab13d050c7938eef994d89e787801f693ac340d61ab9c2f42e15a3",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
+  "status": "matched"
+ },
  "fn_1_5745C": {
   "flags": "",
   "kind": "raw",
@@ -393,6 +411,15 @@
   "mw": "GC/1.3.2",
   "sha256": "f8adf0a31c8c630e87cc309aabe3a5b15604e5e0ee8152da89222b5d783f091a",
   "source": "fork-deltawave784/windows-and-types@b1e6f2df",
+  "status": "matched"
+ },
+ "fn_1_5948": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793894891,
+  "mw": "GC/1.3.2",
+  "sha256": "ed86cfc3cedd90bbadafca76a44ead752241a5c3753ab04ea37965f54b7b64a1",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
   "status": "matched"
  },
  "fn_1_59770": {
@@ -421,6 +448,15 @@
   "sha256": "1ba6a8353334d246ddb1ca09e212bbcb2580226e2a2c73b54814f539071b52a9",
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
   "status": "pool"
+ },
+ "fn_1_5EB98": {
+  "flags": "",
+  "kind": "selective+trim",
+  "landed": 1793895015,
+  "mw": "GC/1.3.2",
+  "sha256": "71bf6ca0edef7257841c6451e09b41d03ac990a46f9929db8bb7e7282366faac",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
+  "status": "matched"
  },
  "fn_1_6028C": {
   "flags": "",
@@ -548,6 +584,15 @@
   "source": "fork-deltawave784/windows-and-types@8c8d7cc3",
   "status": "matched"
  },
+ "fn_1_B4AC0": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793895316,
+  "mw": "GC/1.3.2",
+  "sha256": "a3fa5f898f8b9546af0bab9bee1451d5fd115f9df5bdadfe2ca0055a14f472eb",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
+  "status": "pool"
+ },
  "fn_1_B8EDC": {
   "flags": "",
   "kind": "raw",
@@ -555,6 +600,15 @@
   "mw": "GC/1.3.2",
   "sha256": "aeee786905c2ae07cb7eb7081a96449385758e65acbbcb0d49660e1938b52d0f",
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
+  "status": "pool"
+ },
+ "fn_1_BA144": {
+  "flags": "",
+  "kind": "preprocessed",
+  "landed": 1793895475,
+  "mw": "GC/1.3.2",
+  "sha256": "609f6887d0677a26e3ba20426653e7278ab0d2590ae48cbadd164d7329598295",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
   "status": "pool"
  },
  "fn_1_C24A4": {
@@ -565,16 +619,6 @@
   "sha256": "88d9810dd231ff573377002f37ebe5edb1441464dc3b1652864d50a39cc3266b",
   "source": "fork-deltawave784/windows-and-types@b1e6f2df",
   "status": "pool"
- },
- "fn_1_C3A0C": {
-  "flags": "",
-  "kind": "raw+fork-headers+s16-local",
-  "landed": 1793831538,
-  "mw": "GC/1.3.2",
-  "sha256": "1fe07907d60341539cb719004efecce29ab5ae0f0938492851a3f550461ead9e",
-  "source": "fork-deltawave784/windows-and-types@6a718733",
-  "status": "matched",
-  "note": "fork declares lbl_1_bss_960 s16 module-wide; here a local s16 read of it keeps retail's single lha"
  },
  "fn_1_C770": {
   "flags": "",
@@ -602,6 +646,15 @@
   "sha256": "c17a5061ff6c7be7bb5bb0b74bd918e7a67630f6d3f5e212fd7bf6e44dfff374",
   "source": "fork-deltawave784/windows-and-types@8c8d7cc3",
   "status": "matched"
+ },
+ "fn_1_DE4B0": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793895283,
+  "mw": "GC/1.3.2",
+  "sha256": "8989c292eefc5c8967ad2ac5f017c6fef809c557ef61f77e16fe8f4878b570b3",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
+  "status": "pool"
  },
  "fn_1_E3324": {
   "flags": "",
@@ -693,6 +746,15 @@
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
   "status": "matched"
  },
+ "fn_3_10CB8": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793895299,
+  "mw": "GC/1.3.2",
+  "sha256": "f1cf1f48282218ab72f9c6354b8779b07f7ddb89a6f61cfd3a3111080d0c66b8",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
+  "status": "pool"
+ },
  "fn_3_149AC": {
   "flags": "",
   "kind": "raw",
@@ -747,6 +809,15 @@
   "source": "fork-deltawave784/windows-and-types@4b722344",
   "status": "matched"
  },
+ "fn_3_21300": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793895332,
+  "mw": "GC/1.3.2",
+  "sha256": "227c088ce91acd0bb2a9c00fd1d264af5dd014484aca6bbc60f3787127c0cc9c",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
+  "status": "pool"
+ },
  "fn_3_23A1C": {
   "flags": "",
   "kind": "raw",
@@ -790,6 +861,15 @@
   "mw": "GC/1.3.2",
   "sha256": "922ade0022568d3b4efa4d53bfbe407d5880a42fa19f91bfc00f1ada29d56b2a",
   "source": "fork-deltawave784/windows-and-types@4b722344",
+  "status": "matched"
+ },
+ "fn_3_C400": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793895141,
+  "mw": "GC/1.3.2",
+  "sha256": "153b8c7992e561cf605301232d7e0f454b61db9ca4031172b3e03b0f43c60951",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
   "status": "matched"
  },
  "fn_3_CB4": {
@@ -867,10 +947,10 @@
  "fn_7_4FD0": {
   "flags": "",
   "kind": "selective+swap+trim",
-  "landed": 1793806569,
+  "landed": 1793895351,
   "mw": "GC/1.3.2",
-  "sha256": "ce07994b18e1420beebddd406f22f6f1bffd2b2fd47fc164e9700bd7278fedb6",
-  "source": "fork-deltawave784/windows-and-types@8c8d7cc3",
+  "sha256": "0765ad859eb4dccfc6b68e61188d47badfa77bd27d567563876fabe1c172e2db",
+  "source": "fork-deltawave784/windows-and-types@e1e1c2d2",
   "status": "pool"
  },
  "fn_8003EC44": {
