@@ -33560,9 +33560,27 @@
     "symbols": [
       "fn_80060C54"
     ],
-    "status": "nonmatching",
-    "mw_version": null,
-    "extra_cflags": []
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "@415": "lbl_801A7290",
+      "@398": "lbl_801A7280",
+      "@413": "lbl_801A7288",
+      "@399": "lbl_801A72F0",
+      "@400": "lbl_801A72D8",
+      "@401": "lbl_801A72F8",
+      "@402": "lbl_801A7300",
+      "@403": "lbl_801A7308",
+      "@404": "lbl_801A72A0",
+      "@407": "lbl_801A72C8",
+      "@405": "lbl_801A72B8",
+      "@406": "lbl_801A72C0",
+      "@408": "lbl_801A72D0",
+      "@409": "lbl_801A72E0",
+      "@410": "lbl_801A72E8",
+      "@411": "lbl_801A7310"
+    }
   },
   {
     "module": "main",
