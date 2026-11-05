@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (88.65% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (95.07% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -81,62 +81,56 @@ extern void fn_1_F9888(s16);
  * the old entry's unk_2 is 1 and course_map_load(unk_6) when the new one's is; scrolls (fn_3_BD00, +0xC4) when the
  * cursor leaves the rows fn_3_7A08 reports. Bit 8 of +0x8 takes the entry's unk_4 from 7F0C0 +0x48F8 when
  * fn_1_F9028(unk_0) is 0 and the amount covers it. Returns -1 when bit 9 of +0x0 is set, else 0 */
-static inline s16 fn_3_7360_array_read(s32 index, s16 *array) { return array[index]; }
-#pragma opt_strength_reduction off
 s32 fn_3_7360(void) {
-    struct { u32 value; } delta;
     s16 old;
+    Obj_3_bss_20 *s;
     s16 lo;
     s16 d;
     s16 id;
-    s32 timer;
+    u32 delta;
     s16 hi;
     s16 cost;
     s16 port;
 
     port = fzgx_obj_lbl_3_bss_F0.unk_6;
-    delta.value = 0;
+    delta = 0;
     if ((lbl_1_bss_9F8[port].unk_10 >> 3) & 1 || (lbl_1_bss_9F8[port].unk_12 >> 3) & 1) {
-        delta.value = -1;
+        delta = -1;
     }
     if ((lbl_1_bss_9F8[port].unk_10 >> 2) & 1 || (lbl_1_bss_9F8[port].unk_12 >> 2) & 1) {
-        delta.value++;
+        delta++;
     }
 
-    d = delta.value;
-    old = fzgx_obj_lbl_3_bss_20.unk_C2;
+    d = delta;
+    s = &fzgx_obj_lbl_3_bss_20;
+    old = s->unk_C2;
     {
         s32 cur;
-        s32 last;
 
         cur = old;
         cur += d;
         if (cur < 0) {
             cur = 0;
-        } else if (cur > (last = fzgx_obj_lbl_3_bss_7EBA0 - 1)) {
-            cur = last;
+        } else if (cur > fzgx_obj_lbl_3_bss_7EBA0 - 1) {
+            cur = fzgx_obj_lbl_3_bss_7EBA0 - 1;
         }
-        fzgx_obj_lbl_3_bss_20.unk_C2 = cur;
+        s->unk_C2 = cur;
     }
-    timer = 10;
-    if (fn_3_7360_array_read(0, fzgx_obj_lbl_3_bss_18) + 1 < 10) {
-        timer = fn_3_7360_array_read(0, fzgx_obj_lbl_3_bss_18) + 1;
-    }
-    fzgx_obj_lbl_3_bss_18[0] = timer;
-    if (old != fzgx_obj_lbl_3_bss_20.unk_C2) {
+    fzgx_obj_lbl_3_bss_18[0] = (fzgx_obj_lbl_3_bss_18[0] + 1 < 10) ? fzgx_obj_lbl_3_bss_18[0] + 1 : 10;
+    if (old != s->unk_C2) {
         fzgx_obj_lbl_3_bss_18[0] = 0;
         fn_1_A2D84(0xA9010000);
         lbl_801A66A8 = 0;
-        if (old != fzgx_obj_lbl_3_bss_20.unk_C2) {
+        if (old != s->unk_C2) {
             fn_3_7A08(&lo, &hi, 6);
-            if (fzgx_obj_lbl_3_bss_20.unk_C2 < lo || fzgx_obj_lbl_3_bss_20.unk_C2 > hi) {
-                fn_3_BD00(delta.value, 0, (s16)(d * 10), 0x08000001);
-                fzgx_obj_lbl_3_bss_20.unk_C4 -= delta.value;
+            if (s->unk_C2 < lo || s->unk_C2 > hi) {
+                fn_3_BD00(delta, 0, (s16)(d * 10), 0x08000001);
+                fzgx_obj_lbl_3_bss_20.unk_C4 -= delta;
             }
         }
     }
     if ((lbl_1_bss_9F8[port].unk_8 >> 8) & 1) {
-        Entry_3_bss_7E6F0 *entry = &fzgx_obj_lbl_3_bss_7E6F0[fzgx_obj_lbl_3_bss_20.unk_C2];
+        Entry_3_bss_7E6F0 *entry = &fzgx_obj_lbl_3_bss_7E6F0[s->unk_C2];
 
         id = entry->unk_0;
         cost = entry->unk_A;
@@ -157,5 +151,3 @@ s32 fn_3_7360(void) {
     }
     return 0;
 }
-#pragma opt_strength_reduction reset
-
