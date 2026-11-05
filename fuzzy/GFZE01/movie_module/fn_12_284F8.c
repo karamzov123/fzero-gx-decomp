@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.83% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.52% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -160,8 +160,11 @@ static inline int sfmpv_ChkGopTc(SfdHandle *handle, MPVPictureInfo *picture) {
     int scale;
     int window;
     int result;
+    s32 tmp_ra1;
 
-    if (maximum->valid == 0) {
+    tmp_ra1 = maximum->valid;
+
+    if (((0) == (tmp_ra1))) {
         result = 0;
     } else {
         sfmpv_GetTc(&current_timecode, picture);
@@ -196,12 +199,24 @@ static inline void sfmpv_ReformTc(SfdHandle *handle, SfdMpvFrameWork *work, MPVP
 }
 
 #pragma opt_strength_reduction off
+#pragma opt_lifetimes off
+#pragma opt_common_subs off
+static inline const int fn_12_284F8_array_read(const int *array, s32 index) { return array[index]; }
+#pragma opt_common_subs reset
+
+static inline SfdMpvFrameWork * fn_12_284F8_read_pointer(SfdHandle * owner) { return owner->video_work; }
 int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_header) {
+    SfdMpvTimeCodeSnapshot *current_snapshot;
+    int fzgx_value_;
+    SfdMpvFrameWork * fzgx_live__;
     int fzgx_value;
     SfdMpvPlaybackSettings *settings;
     SfdMpvFrameWork * fzgx_live_;
-    SfdMpvTimeCodeSnapshot *current_snapshot;
+    SfdMpvTimeCodeSnapshot *maximum_snapshot;
+    SfdMpvFrameWork * fzgx_live___2;
+    int new_group;
     SfdMpvFrameWork *work = handle->video_work;
+    MPVContext *decoder;
     SfdMpvDecodeTimer *timer = &handle->timer_state;
     MPVPictureInfo *picture = &work->picture_info;
     SfdTimeCode initial_timecode;
@@ -213,7 +228,6 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
     SJ * stream_local = stream;
     const unsigned char *delimiter;
     SfdPtsEntry pts_entry;
-    int timestamp;
     int decode_result;
     int consumed;
     int result;
@@ -227,16 +241,17 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
     int pts_buffer_index;
     SfdMpvFrameWork *pts_work;
     SfdMpvFrameWork * fzgx_live;
-    SfdMpvTimeCodeSnapshot *maximum_snapshot;
     SfdMpvFrameWork *cache_work;
     SfdMpvFrameWork *output_work;
-    int new_group;
+    SfdMpvSeekCache * cache;
+    s32 tmp_call5;
 
 {
-    MPVContext *decoder = work->decoder;
+    decoder = work->decoder;
     fn_12_CA84(decoder, work->picture_buffer, work->picture_buffer_size);
+    consumed = fn_80057D88(stream_local, 0, 1);
     decode_result = fn_12_C2C8(decoder, stream_local);
-    consumed = fn_80057D88(stream_local, 0, 1) - (fn_80057D88(stream_local, 0, 1));
+    consumed = fn_80057D88(stream_local, 0, 1) - consumed;
     switch (decode_result) {
     case 0:
         result = 0;
@@ -245,7 +260,8 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
         if (consumed > 0) {
             result = 0;
         } else {
-            result = fn_12_24A88(handle, -2);
+            tmp_call5 = fn_12_24A88(handle, -2);
+            result = tmp_call5;
         }
         break;
     case -3:
@@ -270,15 +286,19 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
     }
     if (work->field_10C != picture->group_count) {
         fzgx_value = picture->group_count;
-        work->field_10C = fzgx_value;
+        fzgx_value_ = fzgx_value;
+        work->field_10C = fzgx_value_;
         work->field_110 = 1;
     } else {
         work->field_110 = 0;
     }
 
     new_group = work->field_110;
+{
+    int timestamp;
     timestamp = -1;
-    fzgx_live_ = handle->video_work;
+    fzgx_live__ = fn_12_284F8_read_pointer(handle);
+    fzgx_live_ = fzgx_live__;
     fzgx_live = fzgx_live_;
     pts_work = fzgx_live;
     pts_buffer_index = handle->video_parameter;
@@ -286,12 +306,12 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
     if (delimiter != 0) {
         fn_12_2CDD0(handle, pts_buffer_index, delimiter, &pts_entry);
         if (pts_entry.pts >= 0) {
-            int rate = lbl_12_rodata_E10[picture->frame_rate_code];
+            int rate = fn_12_284F8_array_read(lbl_12_rodata_E10, picture->frame_rate_code);
             int temporal_reference = picture->temporal_reference;
             int delta;
 
             if (handle->timer_state.initial_pts < 0) {
-                int initial_pts = pts_entry.pts - UTY_MulDiv(temporal_reference, 22497920, rate);
+                int initial_pts = pts_entry.pts - UTY_MulDiv(temporal_reference, 22500000, rate);
                 initial_pts = initial_pts > 0 ? initial_pts : 0;
                 handle->timer_state.initial_pts = initial_pts;
             }
@@ -314,7 +334,7 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
                 }
                 delta = temporal_reference - pts_work->field_118;
                 pts_work->field_120 = pts_work->field_120 > delta ? pts_work->field_120 : delta;
-                timestamp += UTY_MulDiv(pts_work->field_11C + delta, 90000000, rate);
+                timestamp += UTY_MulDiv(pts_work->field_11C + delta, 22500000, rate);
                 timestamp = timestamp > 0 ? timestamp : 0;
             }
         }
@@ -324,6 +344,7 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
     }
 
     sfmpv_ReformTc(handle, work, picture, timestamp);
+}
 
     if (timer->initial.valid == 0) {
         sfmpv_GetTc(&initial_timecode, picture);
@@ -349,7 +370,8 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
     }
 
     settings = &handle->playback_settings;
-    fzgx_live_ = handle->video_work;
+    fzgx_live__ = handle->video_work;
+    fzgx_live_ = fzgx_live__;
     fzgx_live = fzgx_live_;
     output_work = fzgx_live;
     if (settings->bit_rate != 0) {
@@ -371,11 +393,11 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
     }
 
     cache_bit_rate = bit_rate;
-    fzgx_live_ = handle->video_work;
+    fzgx_live___2 = handle->video_work;
+    fzgx_live_ = fzgx_live___2;
     fzgx_live = fzgx_live_;
     cache_work = fzgx_live;
     {
-        SfdMpvSeekCache *cache;
         void *seek_work = handle->seek_work;
 
         if (seek_work == 0) {
@@ -420,6 +442,8 @@ int fn_12_284F8(SfdHandle *handle, const SJCK *header, SJ *stream, int decode_he
     settings->vbv_buffer_size = published_vbv_size;
     return fn_12_27C58(handle, settings);
 }
+#pragma opt_lifetimes reset
+
 #pragma opt_strength_reduction reset
 
 
