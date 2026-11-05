@@ -116,7 +116,8 @@ brew install ninja
 uv run tools/prepare_orig.py --version GFZE01   # extracts targets, derives main.rel
 python3 configure.py --version GFZE01 && ninja  # downloads dtk/objdiff/wibo/compilers on first run
 uv run tools/fzgx.py sync                       # loads 7,308 functions into .fzgx/ledger.db
-uv run tools/fzgx.py restore                    # (optional) load state/ledger.json history
+uv run tools/fzgx.py restore                    # (optional, FRESH ledger only) load state/ledger.json history;
+                                                # on an existing ledger it reverts newer rows: run `fzgx sync` after
 ```
 
 ## Agent workflow
@@ -181,6 +182,11 @@ Rules that hold for everyone:
   applies it after every compile (`mwcc_pool` rule from `configure.py`), so the function
   matches and links from C. If the private rodata cannot be emptied the function is a
   *pool match*: accepted and spliced, retail object still linked (`link_state=pool`).
+  Private sections are emptied when no relocation still reaches them, whatever the copies are
+  named (harvested primer tables, layout scaffolds); `fzgx fixup --pool-upgrades --apply` relinks
+  accepted pool-only C (43 on 2026-11-05). A `nonmatching` unit whose block now matches, or a
+  ledger-matched function with no unit (a PR merge dropped 10), shows in `fzgx honest
+  --uncredited`: re-submit its TU block.
   REL pool reads must use the relocation target's section: offsets overlap across
   `.text`, `.rodata` and `.data`. DOL strings use address-based segment lookup.
   Shared BSS copies use the same binding path after symbol, size and zero-section
