@@ -3417,6 +3417,92 @@ for (fzgx_loop_i_7616 = 0; fzgx_loop_i_7616 < 3; fzgx_loop_i_7616++) {
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_1_B4D4 */
 
+/* fzgx:begin fn_1_B724 noprologue */
+#include "types.h"
+
+typedef struct {
+    f32 x, y, z;
+} CamVec;
+
+typedef struct {
+    u32 unk_0;
+    CamVec unk_4;
+    CamVec unk_10;
+    f32 unk_1C;
+    s16 unk_20;
+} CamKey;
+
+typedef struct {
+    s32 unk_0;
+    s32 unk_4;
+    s32 unk_8;
+    f32 unk_C;
+} CamCtl;
+
+extern f32 lbl_8006D0B4(f32);
+
+/* the retail TU's .bss objects this function uses, in retail order, so MWCC addresses them off one section base */
+u32 fzgx_obj_lbl_1_bss_1010;
+u8 lbl_1_bss_1014;
+u8 fzgx_pool_gap_1015;  /* retail writes this byte (stb at 0x1015); symbols.txt names no object there */
+u16 fzgx_pool_gap_1016;
+CamKey fzgx_obj_camera_state;
+f32 lbl_1_bss_103C;
+f32 lbl_1_bss_1040;
+f32 lbl_1_bss_1044;
+u8 fzgx_obj_camera_flag_0;
+u8 fzgx_obj_camera_flag_1;
+u16 fzgx_pool_gap_104A;
+CamCtl lbl_1_bss_104C;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
+    s = *(u8 *)&lbl_1_bss_1014;
+    s = *(u8 *)&fzgx_pool_gap_1015;
+    s = *(u8 *)&fzgx_pool_gap_1016;
+    s = *(u8 *)&fzgx_obj_camera_state;
+    s = *(u8 *)&lbl_1_bss_103C;
+    s = *(u8 *)&lbl_1_bss_1040;
+    s = *(u8 *)&lbl_1_bss_1044;
+    s = *(u8 *)&fzgx_obj_camera_flag_0;
+    s = *(u8 *)&fzgx_obj_camera_flag_1;
+    s = *(u8 *)&fzgx_pool_gap_104A;
+    s = *(u8 *)&lbl_1_bss_104C;
+}
+#pragma section code_type ".text"
+
+void fn_1_B724(CamVec *pos, CamVec *at, s16 roll, f32 fov) {
+    f32 dz, dy, dx;
+
+    fzgx_obj_camera_state.unk_4 = *pos;
+    fzgx_obj_camera_state.unk_10 = *at;
+    dx = fzgx_obj_camera_state.unk_4.x;
+    dy = fzgx_obj_camera_state.unk_4.y;
+    dz = fzgx_obj_camera_state.unk_4.z;
+    dx -= fzgx_obj_camera_state.unk_10.x;
+    dy -= fzgx_obj_camera_state.unk_10.y;
+    dz -= fzgx_obj_camera_state.unk_10.z;
+    dx *= dx;
+    dx += dy * dy;
+    dx += dz * dz;
+    fzgx_obj_camera_state.unk_1C = fov;
+    fzgx_obj_camera_state.unk_20 = roll;
+    lbl_1_bss_103C = lbl_8006D0B4(dx);
+    lbl_1_bss_1040 = 1.0f;
+    lbl_1_bss_1044 = 0.1f;
+    fzgx_obj_camera_flag_0 = 1;
+    fzgx_obj_camera_flag_1 = 1;
+    lbl_1_bss_1014 = 0;
+    fzgx_pool_gap_1015 = 0;
+    lbl_1_bss_104C.unk_0 = 0;
+    lbl_1_bss_104C.unk_4 = 0;
+    lbl_1_bss_104C.unk_8 = 200;
+    lbl_1_bss_104C.unk_C = 0.01f;
+}
+/* fzgx:end fn_1_B724 */
+
 /* fzgx:begin fn_1_B81C */
 struct fn_1_B81C_Copy12 { u32 a[3]; };
 
@@ -3623,6 +3709,146 @@ void fn_1_B870(void) {
 }
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_B870 */
+
+/* fzgx:begin fn_1_BD54 */
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+/* the camera TU's .rodata pool in retail order, ahead of this function's constants */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = 1.0f;
+    s = 0.10000000149011612f;
+    s = 0.009999999776482582f;
+    s = 55.0f;
+}
+static const u32 fzgx_pool_table2[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.04000000000000001;
+    d = 1.0;
+    d = 4.0;
+    d = 140.0;
+    d = 50.0;
+    d = 60.0;
+    d = 0.09;
+    d = 0.3;
+    d = 0.1;
+    d = 90000.0;
+    d = 4503599627370496.0;
+    d = 4503601774854144.0;
+    d = 0.02;
+    s = 60.0f;
+    s = 15.0f;
+    s = 0.8999999761581421f;
+    s = 0.0f;
+}
+#pragma section code_type ".text"
+
+#define MTXA ((f32(*)[4])LC_BASE)
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} BD54Vec;
+
+typedef struct {
+    u32 unk_0;
+    BD54Vec unk_4;
+    BD54Vec unk_10;
+    f32 unk_1C;
+    s16 unk_20;
+} BD54Camera;
+
+extern u32 fn_1_10780C(BD54Vec *, BD54Vec *, BD54Vec *, f32 *);
+extern u32 fn_80008C20(void *, void *, void *);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void fn_8006FB20(void *, f32);
+extern void lbl_8006DB74(void *);
+extern void fn_8006F3E4(s16 *, s16 *, s16 *);
+extern void lbl_8006DF44(void);
+
+/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
+ * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
+f32 fzgx_obj_lbl_1_bss_1010;
+u8 fzgx_pool_gap_1014[4];
+BD54Camera fzgx_obj_camera_state;
+u8 fzgx_pool_gap_103C[0x10];
+u8 fzgx_obj_lbl_1_bss_104C[0x10];
+u8 lbl_1_bss_104C__fzgx_offset_10[0x30];
+u8 lbl_1_bss_108C[52];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
+    s = *(u8 *)&fzgx_pool_gap_1014;
+    s = *(u8 *)&fzgx_obj_camera_state;
+    s = *(u8 *)&fzgx_pool_gap_103C;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_104C;
+    s = *(u8 *)&lbl_1_bss_104C__fzgx_offset_10;
+    s = *(u8 *)&lbl_1_bss_108C;
+}
+
+#pragma section code_type ".text"
+
+static inline void track_follow(BD54Vec *t, BD54Vec *a) {
+    f32 (*src)[4];
+    f32 (*dst)[4];
+    f32 x;
+    f32 z;
+    f32 y;
+
+    /* one name for the reads, one for the writes: as a chained pair the locked-cache matrix address stays a
+     * real local, which gives retail's saved-register order (.bss base r29, flags r30) */
+    dst = src = MTXA;
+    psvec_set(t, src[2][3], src[1][3], src[0][3]);
+    x = fzgx_obj_camera_state.unk_4.x += 0.1 * (t->x - fzgx_obj_camera_state.unk_4.x);
+    y = fzgx_obj_camera_state.unk_4.y += 0.1 * (t->y - fzgx_obj_camera_state.unk_4.y);
+    z = fzgx_obj_camera_state.unk_4.z += 0.1 * (t->z - fzgx_obj_camera_state.unk_4.z);
+    fzgx_obj_camera_state.unk_10.x += 0.1 * (a->x - fzgx_obj_camera_state.unk_10.x);
+    fzgx_obj_camera_state.unk_10.y += 0.1 * (a->y - fzgx_obj_camera_state.unk_10.y);
+    fzgx_obj_camera_state.unk_10.z += 0.1 * (a->z - fzgx_obj_camera_state.unk_10.z);
+    dst[0][3] = x;
+    dst[1][3] = y;
+    dst[2][3] = z;
+}
+
+/* retail multiplies and adds in separate fmul/fadd steps; with contraction MWCC fuses them into fmadd */
+#pragma fp_contract off
+void fn_1_BD54(void) {
+    s16 rotY;
+    s16 rotX;
+    BD54Vec t;
+    BD54Vec a;
+    BD54Vec b;
+    BD54Vec c;
+    f32 value;
+    u32 flags;
+
+    lbl_1_data_4068 += (s8)lbl_1_bss_A48.unk_3 * 2;
+    fzgx_obj_lbl_1_bss_1010 += 0.02 * (s8)lbl_1_bss_A48.unk_2;
+    flags = fn_1_10780C(&a, &b, &c, &value);
+    fn_80008C20(&a, &b, &c);
+    if ((flags & 0x1400000) && !(flags & 1)) {
+        lbl_8006E0B4(fzgx_obj_lbl_1_bss_1010, value, 60.0f);
+    } else {
+        lbl_8006E0B4(fzgx_obj_lbl_1_bss_1010, 15.0f, 60.0f);
+    }
+    mathutil_mtxA_rotate_x((s16)lbl_1_data_4068);
+    track_follow(&t, &a);
+    fn_8006FB20(lbl_1_bss_104C__fzgx_offset_10, 0.9f);
+    lbl_8006DB74(lbl_1_bss_104C__fzgx_offset_10);
+    fn_8006F3E4(&rotX, &rotY, &fzgx_obj_camera_state.unk_20);
+    lbl_8006DF44();
+    lbl_8006DB74(lbl_1_bss_108C);
+}
+#pragma fp_contract reset
+/* fzgx:end fn_1_BD54 */
 
 /* fzgx:begin fn_1_BFA0 noprologue */
 #include "types.h"

@@ -314,3 +314,12 @@ rel/interview/data/lbl_17_rodata_E0.c:
 
 rel/interview/data/lbl_17_rodata_1B8.c:
 	.rodata     start:0x000001B8 end:0x00000324 align:8
+
+rel/interview/interview/fn_17_49DC.c:
+	.text       start:0x000049DC end:0x00004E50 align:4
+
+rel/interview/interview/fn_17_1DA4.c:
+	.text       start:0x00001DA4 end:0x00002414 align:4
+
+rel/interview/interview/fn_17_DB4.c:
+	.text       start:0x00000DB4 end:0x00001794 align:4
