@@ -56,7 +56,9 @@ def headroom(path) -> dict[str, Any]:
 
 def guard(path):
     h=headroom(path)
-    if h['free_bytes']<8<<30 or h['free_inodes']<100000:
+    # btrfs and similar report zero total inodes: no fixed inode limit to exhaust.
+    inodes_limited = os.statvfs(path).f_files > 0
+    if h['free_bytes']<8<<30 or (inodes_limited and h['free_inodes']<100000):
         raise RuntimeError('Fixup disk/inode reserve exhausted; refuse new generation')
 
 def digest(path):

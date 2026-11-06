@@ -62,7 +62,9 @@ def resource_snapshot():
         except (OSError, ValueError):
             pass
     return dict(available_bytes=int(memory['MemAvailable'].split()[0])*1024,
-                free_bytes=disk.f_bavail*disk.f_frsize,free_inodes=disk.f_favail,
+                free_bytes=disk.f_bavail*disk.f_frsize,
+                # btrfs and similar report zero total inodes: no fixed inode limit.
+                free_inodes=disk.f_favail if disk.f_files else None,
                 temperature_c=max(temperatures,default=0),
                 battery_percent=min(batteries,default=100),on_ac=any(ac) if ac else not batteries)
 
@@ -74,7 +76,7 @@ def launch_hold(active, parallel, stats=None):
         stats=resource_snapshot() if stats is None else stats
         if stats['available_bytes'] < 2 << 30:return 'Host memory reserve below 2 GiB; holding new batches.'
         if stats['free_bytes'] < 8 << 30:return 'Host disk reserve below 8 GiB; holding new batches.'
-        if stats['free_inodes'] < 100000:return 'Host inode reserve below 100000; holding new batches.'
+        if stats['free_inodes'] is not None and stats['free_inodes'] < 100000:return 'Host inode reserve below 100000; holding new batches.'
         if stats['temperature_c'] >= 90:return 'Host temperature at least 90 C; holding new batches.'
         if not stats['on_ac'] and stats['battery_percent'] <= 25:return 'Host battery at most 25% off AC; holding new batches.'
     except (OSError, KeyError, ValueError) as error:
