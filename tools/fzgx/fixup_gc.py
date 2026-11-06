@@ -50,15 +50,18 @@ def release(fd):
 
 def headroom(path) -> dict[str, Any]:
     d=os.statvfs(path)
-    return dict(free_bytes=d.f_bavail*d.f_frsize, free_inodes=d.f_favail,
+    # btrfs and similar report zero total inodes: there is no fixed inode limit,
+    # so free_inodes is None and no inode reserve applies (see _inodes_below).
+    return dict(free_bytes=d.f_bavail*d.f_frsize, free_inodes=d.f_favail if d.f_files else None,
                 used_inode_percent=round(100*(1-d.f_favail/d.f_files),2) if d.f_files else None,
                 used_block_percent=round(100*(1-d.f_bavail/d.f_blocks),2) if d.f_blocks else None)
 
+def _inodes_below(h: dict[str, Any], n: int) -> bool:
+    return h['free_inodes'] is not None and h['free_inodes']<n
+
 def guard(path):
     h=headroom(path)
-    # btrfs and similar report zero total inodes: no fixed inode limit to exhaust.
-    inodes_limited = os.statvfs(path).f_files > 0
-    if h['free_bytes']<8<<30 or (inodes_limited and h['free_inodes']<100000):
+    if h['free_bytes']<8<<30 or _inodes_below(h, 100000):
         raise RuntimeError('Fixup disk/inode reserve exhausted; refuse new generation')
 
 def digest(path):
@@ -216,7 +219,7 @@ def compact(session,archive_root,dry_run=True,min_age=86400,max_files=20000) -> 
         # worst-case tar/gzip payload and leave a separate 256 MiB write reserve.
         required=sum(p.stat().st_size for p in files)
         required=(required*102+99)//100+len(files)*4096
-        if required>space['free_bytes']-(256<<20) or space['free_inodes']<3:
+        if required>space['free_bytes']-(256<<20) or _inodes_below(space, 3):
             return dict(result,status='pressure',reason='insufficient temporary archive reserve')
         tmp=archive_root/('partial-'+str(time.time_ns())+'.tar.gz')
         members=[]
@@ -265,7 +268,7 @@ def restore(archive,session,member=None):
         guard(session)
         space=headroom(session)
         required=sum(((r['cookie'][2]+4095)//4096)*4096 for r in missing)
-        if required>space['free_bytes']-(8<<30) or sum(len(PurePosixPath(r['path']).parts) for r in missing)>space['free_inodes']-100000:
+        if required>space['free_bytes']-(8<<30) or _inodes_below(space, sum(len(PurePosixPath(r['path']).parts) for r in missing)+100000):
             raise ValueError('restore would exhaust disk/inode reserve')
         wanted={r['path']:r for r in rows};restored=0
         with tarfile.open(archive,'r:gz') as tf:
@@ -316,7 +319,7 @@ def main(argv=None):
                 acted+=1
                 if acted>=args.max_sessions:break
     after=headroom(STATE_DIR)
-    pressure=after['free_bytes']<30<<30 or after['free_inodes']<1000000 or (after['used_inode_percent'] is not None and after['used_inode_percent']>=75)
+    pressure=after['free_bytes']<30<<30 or _inodes_below(after, 1000000) or (after['used_inode_percent'] is not None and after['used_inode_percent']>=75)
     status=dict(timestamp=time.time(),status='pressure' if pressure else 'healthy',before=before,after=after,results=results,deleted_files=sum(r['deleted_files'] for r in results),deleted_bytes=sum(r['deleted_bytes'] for r in results))
     if args.status:
         args.status.parent.mkdir(parents=True,exist_ok=True);tmp=args.status.with_suffix('.tmp');tmp.write_text(json.dumps(status,indent=2));tmp.replace(args.status)
