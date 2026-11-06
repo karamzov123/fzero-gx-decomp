@@ -37141,9 +37141,8 @@
       "fn_80078344"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "mw_version": "GC/1.3",
+    "extra_cflags": []
   },
   {
     "module": "main",
