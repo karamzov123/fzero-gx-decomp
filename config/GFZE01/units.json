@@ -105926,7 +105926,7 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "asm": true
+    "tu": "rel/main_rel/screen_effect.c"
   },
   {
     "module": "main_rel",
@@ -108229,7 +108229,7 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "asm": true
+    "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
     "module": "main_rel",

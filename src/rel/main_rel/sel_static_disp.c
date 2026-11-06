@@ -13466,6 +13466,66 @@ void fn_1_149DE8(void) {
 }
 /* fzgx:end fn_1_149DE8 */
 
+/* fzgx:begin fn_1_149E2C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct fn_1_149E2C_Racer {
+    u8 pad_0[0xE];
+    u8 unk_E;
+    u8 pad_F[0x9];
+    u16 unk_18;
+    u8 pad_1A[0x1E];
+    u32 unk_38;
+    u8 pad_3C[0x64];
+} fn_1_149E2C_Racer;
+
+typedef struct fn_1_149E2C_Sel {
+    u8 pad_0[0x9];
+    u8 count;
+    u8 pad_A[0x4];
+    u8 order[0xC6];
+    fn_1_149E2C_Racer racers[1];
+} fn_1_149E2C_Sel;
+
+extern void fn_1_144F40(u32 arg0, u32 arg1);
+extern void fn_1_49410(void);
+extern void fn_1_495FC(void);
+extern void fn_1_495C8(s32 arg0);
+extern void fn_1_49614(void);
+
+void fn_1_149E2C(void) {
+    u32 best;
+    u32 most;
+    u32 i;
+    fn_1_149E2C_Racer *racer;
+
+    lbl_1_bss_8E428.unk_0 = (u32)&lbl_1_bss_3C30 + 0xe;
+    if (lbl_1_bss_8E51D == lbl_1_bss_8E524) {
+        fn_1_144F40(2, 0);
+    }
+    fn_1_49410();
+    fn_1_495FC();
+    fn_1_495C8(9);
+    best = 0x0633B063;
+    most = 0;
+    for (i = 0; i < ((fn_1_149E2C_Sel *)&lbl_1_bss_3C30)->count; i++) {
+        racer = &((fn_1_149E2C_Sel *)&lbl_1_bss_3C30)->racers[((fn_1_149E2C_Sel *)&lbl_1_bss_3C30)->order[i]];
+        if (racer->unk_E != 0xFE) {
+            if (best > racer->unk_38) {
+                best = racer->unk_38;
+            }
+            if (most < racer->unk_18) {
+                most = racer->unk_18;
+            }
+        }
+    }
+    fn_1_49614();
+}
+/* fzgx:end fn_1_149E2C */
+
 /* fzgx:begin fn_1_149F04 */
 void fn_1_149F04(void) {
     lbl_1_bss_8E428.unk_0 = (u32)((u8 *)&lbl_1_bss_3C30 + 0x1394);
