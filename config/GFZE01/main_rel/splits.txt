@@ -16361,3 +16361,27 @@ rel/main_rel/accessory/fn_1_10B5A8.c:
 
 rel/main_rel/accessory/fn_1_120804.c:
 	.text       start:0x00120804 end:0x00122348 align:4
+
+rel/main_rel/bg_for/fn_1_DF2A4.c:
+	.text       start:0x000DF2A4 end:0x000DF6AC align:4
+
+rel/main_rel/bg_for/fn_1_E1408.c:
+	.text       start:0x000E1408 end:0x000E1934 align:4
+
+rel/main_rel/font/fn_1_48D80.c:
+	.text       start:0x00048D80 end:0x000492F0 align:4
+
+rel/main_rel/effect/fn_1_638E8.c:
+	.text       start:0x000638E8 end:0x00064098 align:4
+
+rel/main_rel/burner/fn_1_84860.c:
+	.text       start:0x00084860 end:0x000850C4 align:4
+
+rel/main_rel/effect_car/fn_1_68B6C.c:
+	.text       start:0x00068B6C end:0x000694A4 align:4
+
+rel/main_rel/accessory/fn_1_11677C.c:
+	.text       start:0x0011677C end:0x001171B8 align:4
+
+rel/main_rel/spline/fn_1_F65A0.c:
+	.text       start:0x000F65A0 end:0x000F70C0 align:4

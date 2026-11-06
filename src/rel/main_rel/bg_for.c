@@ -1698,6 +1698,222 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
 #pragma opt_strength_reduction reset
 /* fzgx:end fn_1_DE9C4 */
 
+/* fzgx:begin fn_1_DF2A4 */
+#include "psvec.h"
+
+#pragma fp_contract on
+#pragma opt_propagation off
+
+typedef struct DF2A4Vec { f32 x, y, z; } DF2A4Vec;
+typedef struct DF2A4Mtx { f32 m[3][4]; } DF2A4Mtx;
+
+extern u8 lbl_1_rodata_6780[];
+extern void lbl_8006DBAC(void *);
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_8006E2B0(void *, void *);
+extern f32 lbl_8006D534(void *, void *);
+extern void lbl_8006D5F0(void *, void *, f32);
+extern void fn_8006E250(void *, void *);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DC34(void *);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006D758(void);
+extern s32 fn_1_DEDC4(void *, void *, void *, DF2A4Vec *, DF2A4Vec *, DF2A4Vec *, DF2A4Vec *, f32);
+
+static inline f32 vec_dot_read_pointer(DF2A4Vec * owner) { return owner->y; }
+static inline void vec_dot(DF2A4Vec *a, DF2A4Vec *b, f32 *dot) {
+    f32 result;
+    f32 ax;
+    f32 bx;
+    f32 by;
+    f32 ay;
+    ax = a->x;
+    bx = b->x;
+    by = b->y;
+    ay = a->y;
+    bx = ax * bx;
+    bx += ay * by;
+    bx += a->z * b->z;
+    *dot = bx;
+}
+
+#pragma opt_common_subs off
+static inline void vec_dot_plane(DF2A4Vec *a, DF2A4Vec *b, f32 *dot) {
+    f32 result;
+    f32 ay;
+    f32 az;
+    f32 ax;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    bx = b->x;
+    ax = a->x;
+    by = b->y;
+    ay = a->y;
+    bz = b->z;
+    az = a->z;
+    result = ax * bx;
+    result += ay * by;
+    result += az * bz;
+    *dot = result;
+}
+static inline s32 distance_outside(f32 bound, f32 distance) {
+    return distance * distance > bound;
+}
+
+static inline void plane_distance(DF2A4Vec *a, DF2A4Vec *b, DF2A4Vec *normal, f32 *dot) {
+    DF2A4Vec d;
+    psvec_sub(a, b, &d);
+    vec_dot(&d, normal, dot);
+}
+
+static inline void plane_distance_second(DF2A4Vec *a, DF2A4Vec *b, DF2A4Vec *normal, DF2A4Vec *hit, const f32 *scale) {
+    f32 dist;
+    DF2A4Vec d;
+    psvec_sub(a, b, &d);
+    vec_dot_plane(&d, normal, &dist);
+    lbl_8006D5F0(normal, hit, *scale * dist);
+}
+
+static inline s32 plane_outside(DF2A4Vec *a, DF2A4Vec *b, DF2A4Vec *normal, f32 bound) {
+    f32 dist;
+    plane_distance(a, b, normal, &dist);
+    return dist * dist > bound;
+}
+
+static inline void fn_1_DF2A4_bound(f32 radius, f32 height, f32 *bound) {
+    f32 result = radius * radius;
+    result += height * height;
+    *bound = result;
+}
+static inline f32 fn_1_DF2A4_operand_pointer(const f32 *left, f32 right) {
+    f32 result = *left * right;
+    return result;
+}
+#define fn_1_DF2A4_operand(left, right) fn_1_DF2A4_operand_pointer(&(left), right)
+static inline void fn_1_DF2A4_translation(DF2A4Vec *out) {
+    f32 x = *(f32 *)(0xE0000000 + 0x0C);
+    f32 y = *(f32 *)(0xE0000000 + 0x1C);
+    f32 z = *(f32 *)(0xE0000000 + 0x2C);
+    psvec_set(out, z, y, x);
+}
+#pragma opt_lifetimes off
+s16 fn_1_DF2A4(DF2A4Vec *pos, DF2A4Vec * __restrict prev, void *mtx, DF2A4Vec *point, DF2A4Vec *normal,
+               DF2A4Vec *hit, DF2A4Vec *out, f32 radius, f32 height) {
+    u8 *pool = lbl_1_rodata_6780;
+    DF2A4Mtx mtxB;
+    DF2A4Mtx mtxA;
+    DF2A4Vec up;
+    DF2A4Vec nrm;
+    DF2A4Vec p68;
+    DF2A4Vec p5c;
+    DF2A4Vec off;
+    DF2A4Vec lpos;
+    DF2A4Vec lprev;
+    DF2A4Vec rot;
+    DF2A4Vec pt;
+    f32 finalY, finalX;
+    f32 dist;
+    f32 boundSquared;
+    register f32 cosv;
+    f32 firstY, firstX;
+    f32 secondY, secondX;
+    f32 dd;
+    f32 side;
+    s16 sign;
+    s16 result;
+
+    up = *(DF2A4Vec *)(pool + 0xC0);
+    lbl_8006DBAC(mtx);
+    {
+    f32 dist;
+    fn_1_DF2A4_bound(radius, height, &dist);
+    plane_distance(prev, point, normal, &boundSquared);
+    boundSquared *= boundSquared;
+    if (boundSquared > dist) {
+        fn_80008BEC(out, 0, 12);
+        return 0;
+    }
+    }
+    fn_8006E2B0(normal, &nrm);
+    cosv = lbl_8006D534(&up, &nrm);
+    if (__fabs(cosv) < *(f64 *)(pool + 0x18)) {
+        fn_80008BEC(out, 0, 12);
+        lbl_8006D5F0(normal, &off, -radius);
+        psvec_add(pos, &off, &p5c);
+        psvec_add(prev, &off, &p68);
+        {
+        f32 px, py, pz;
+        f32 nx, ny, nz;
+        f32 sx, sy;
+        f32 tx, ty;
+        f32 dotPoint, dotPos, dotPrev;
+        nx = normal->x;
+        sx = p5c.x;
+        tx = p68.x;
+        ny = normal->y;
+        sy = p5c.y;
+        ty = p68.y;
+        nz = normal->z;
+        dotPoint = nx * point->x;
+        dotPoint += ny * point->y;
+        dotPoint += nz * point->z;
+        dotPos = nx * sx;
+        dotPos += ny * sy;
+        dotPos += nz * p5c.z;
+        dotPrev = nx * tx;
+        dotPrev += ny * ty;
+        dotPrev += nz * p68.z;
+        dd = -dotPoint;
+        side = (dd + dotPos) * (dd + dotPrev);
+        }
+        if (side < *(f32 *)(pool + 0x78)) {
+            sign = -1;
+        } else if (side > *(f32 *)(pool + 0x7C)) {
+            sign = 1;
+        } else {
+            sign = 0;
+        }
+        if (sign > 0) {
+            return 0;
+        }
+        plane_distance_second(&p68, point, normal, hit, (f32 *)(pool + 0xB8));
+        fn_8006E250(&p68, out);
+        return 2;
+    }
+    height = *(f32 *)(pool + 0x34) * height;
+    fn_8006E250(point, &pt);
+    fn_80008BEC(&rot, 0, 12);
+    rot.y = height;
+    if (cosv > *(f32 *)(pool + 0x20)) {
+        mathutil_mtxA_rotate_x(-0x8000);
+    }
+    lbl_8006E0A4(&rot);
+    lbl_8006DB74(&mtxB);
+    psvec_set(&lpos, *(f32 *)(0xE0000000 + 0x2C), *(f32 *)(0xE0000000 + 0x1C), *(f32 *)(0xE0000000 + 0x0C));
+    lbl_8006DC34(&mtxA);
+    lbl_8006D7DC(pos);
+    lbl_8006DFC4(&mtxA);
+    lbl_8006E0A4(&rot);
+    psvec_set(&lprev, *(f32 *)(0xE0000000 + 0x2C), *(f32 *)(0xE0000000 + 0x1C), *(f32 *)(0xE0000000 + 0x0C));
+    result = fn_1_DEDC4(&lprev, &lpos, &mtxB, point, normal, hit, out, radius);
+    if (result != 0) {
+        lbl_8006D758();
+        if (cosv > *(f32 *)(pool + 0x20)) {
+            mathutil_mtxA_rotate_x(-0x8000);
+        }
+        out->y = height;
+        lbl_8006E0A4(out);
+        fn_1_DF2A4_translation(out);
+    }
+    return result;
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_DF2A4 */
+
 /* fzgx:begin fn_1_DF6AC */
 #include "psvec.h"
 
@@ -1868,6 +2084,233 @@ void fn_1_DF6AC(Vec *a, Vec *b, Vec *c, Vec *out_b, Vec *out_c, f32 scale_b, f32
 #pragma opt_dead_assignments reset
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_DF6AC */
+
+/* fzgx:begin fn_1_E1408 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} E1408Vec;
+
+typedef struct {
+    u8 pad0[0x18];
+    f32 field18;
+    f32 field1C;
+    u8 pad20[0x24];
+    E1408Vec field44;
+    f32 field50;
+    E1408Vec pos;
+    E1408Vec vel;
+    u8 pad6C[0x18];
+    f32 field84;
+    u8 pad88[0x6c];
+    f32 fieldF4;
+    u8 padF8[0x40];
+    union {
+        u64 flags;
+        struct {
+            u32 hi;
+            u32 lo;
+        } w;
+    } f138;
+    u32 mask140;
+    void *other;
+} E1408Object;
+
+typedef struct {
+    f32 unk_0;
+    u8 pad4[0x1c];
+    f32 unk_20;
+    u8 pad24[0x10];
+    f32 unk_34;
+    u8 pad38[0x3c];
+    f32 unk_74;
+    u8 pad78[0x4];
+    f32 unk_7C;
+    u8 pad80[0x34];
+    f32 unk_B4;
+    u8 padB8[0x14];
+    f32 unk_CC;
+} E1408Pool;
+
+extern E1408Pool lbl_1_rodata_6780;
+extern void fn_1_DF6AC(void *, void *, void *, void *, void *, f32, f32, f32, f32, f32, f32);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006D5A4(void *, void *, void *, f32);
+extern void lbl_8006D5F0(void *, f32, void *);
+
+/* Earliest time t at which two moving spheres of combined radius r touch. */
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+static inline f32 E1408_length(f32 u, f32 v, f32 w) {
+    f32 length = u * u;
+    length += v * v;
+    length += w * w;
+    return length;
+}
+#pragma opt_lifetimes off
+static inline s32 E1408_sweep(E1408Pool *pool, E1408Vec *dp, E1408Vec *dv, f32 r, f32 *t) {
+    f32 B;
+    f32 A;
+    f32 C;
+    f32 length;
+    f32 u;
+    f32 zero;
+    f32 disc;
+    f32 y = dp->y;
+    f32 x = dp->x;
+    f32 z = dp->z;
+
+    A = x * x;
+    A += y * y;
+    A += z * z;
+    if (A < pool->unk_7C) {
+        return 0;
+    }
+
+    {
+        f32 v = dv->y;
+        f32 w = dv->z;
+        u = *(volatile f32 *)&dv->x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+        length = u * u;
+        length += v * v;
+        length += w * w;
+        B = u * x;
+        B += v * y;
+        B += w * z;
+        C = length - (f32)(r * r);
+    }
+    zero = pool->unk_20;
+    disc = (f32)(B * B) - (f32)(A * C);
+    if (disc < zero) {
+        return 0;
+    }
+    if (C <= zero) {
+        *t = zero;
+        return 1;
+    }
+    if (C + (B + (A + B)) > zero) {
+        if (B >= zero) {
+            return 0;
+        }
+        if (-B >= A) {
+            return 0;
+        }
+    }
+    *t = -(B + lbl_8006D0B4(disc)) / A;
+    return 1;
+}
+
+/* Whether `me` may push `other` out of the way. */
+#pragma opt_propagation off
+static inline u32 E1408_pushes(u64 me, u64 other, u32 result) {
+
+    if (((me & 0x80000) != 0 && (other & 0x80000) == 0) || ((me & 0x40000) == 0 && (other & 0x40000) != 0)) {
+        result = 1;
+    }
+    return result;
+}
+
+#pragma opt_propagation off
+static inline u64 E1408_flags_core(u64 fa, u64 fb, u32 pa, u32 pb) {
+    if (((fa & 0x80000) != 0 && (fb & 0x80000) == 0) || ((fa & 0x40000) == 0 && (fb & 0x40000) != 0)) {
+        pa = 1;
+    }
+    if (((fb & 0x80000) != 0 && (fa & 0x80000) == 0) || ((fb & 0x40000) == 0 && (fa & 0x40000) != 0)) {
+        pb = 1;
+    }
+    return ((u64)pb << 32) | pa;
+}
+static inline u64 E1408_flags(u32 pb, u32 pa, u32 fb, u64 fa) {
+    fa = (u32)fa;
+    if (((fa & 0x80000) != 0 && ((u64)fb & 0x80000) == 0) || ((fa & 0x40000) == 0 && ((u64)fb & 0x40000) != 0)) {
+        pa = 1;
+    }
+    if ((((u64)fb & 0x80000) != 0 && (fa & 0x80000) == 0) || (((u64)fb & 0x40000) == 0 && (fa & 0x40000) != 0)) {
+        pb = 1;
+    }
+    return pb | ((u64)pa << 32);
+}
+
+#pragma opt_propagation reset
+static inline f32 fn_1_E1408_read_pointer(E1408Object * owner) { return owner->fieldF4; }
+#pragma opt_propagation off
+static inline void E1408_add_reverse(E1408Vec *pos, E1408Vec *delta, f32 scale) {
+    psvec_add(pos, delta, pos);
+    psvec_scale(delta, scale, delta);
+}
+static inline void E1408_separate(E1408Vec *a, E1408Vec *b, E1408Vec *delta, f32 scale) {
+    psvec_add(a, delta, a);
+    psvec_scale(delta, scale, delta);
+    psvec_add(b, delta, b);
+}
+#pragma opt_propagation on
+s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
+    E1408Vec n;
+    E1408Vec dp;
+    E1408Vec dv;
+    E1408Vec t20;
+    E1408Vec t14;
+    E1408Vec t8;
+    E1408Pool *pool;
+    u32 pushA;
+    u32 pushB;
+    f32 r;
+    f32 t;
+    u64 fa;
+    u64 fb;
+
+    pool = &lbl_1_rodata_6780;
+    if ((a->f138.flags & 0x40) != 0 || (b->f138.flags & 0x40) != 0) {
+        return 0;
+    }
+    if ((a->mask140 & b->mask140) == 0) {
+        return 0;
+    }
+
+    psvec_sub(&a->vel, &b->vel, &dv);
+    psvec_sub(&a->pos, &b->pos, &dp);
+    psvec_sub(&dp, &dv, &dp);
+    r = (f32)(pool->unk_CC * a->field84 * fn_1_E1408_read_pointer(a)) + (f32)(pool->unk_CC * b->field84 * fn_1_E1408_read_pointer(b));
+    if (E1408_sweep(pool, &dp, &dv, r, &t) == 0) {
+        return 0;
+    }
+
+    lbl_8006D5A4(&a->vel, &a->pos, &a->pos, t);
+    lbl_8006D5A4(&b->vel, &b->pos, &b->pos, t);
+    psvec_sub(&b->pos, &a->pos, &n);
+
+    fa = E1408_flags(0, 0, (u32)b->f138.flags, (u64)(u32)a->f138.flags);
+    pushA = (u32)(fa >> 32);
+    pushB = (u32)fa;
+
+    if (pushB == 1) {
+        lbl_8006D5F0(&n, pool->unk_74 * r, &t20);
+        psvec_add(&a->pos, &t20, &b->pos);
+    } else if (pushA == 1) {
+        lbl_8006D5F0(&n, -(pool->unk_74 * r), &t14);
+        psvec_add(&b->pos, &t14, &a->pos);
+    } else {
+        lbl_8006D5F0(&n, -(pool->unk_B4 * r), &t8);
+        E1408_separate(&a->pos, &b->pos, &t8, pool->unk_0);
+    }
+
+    if ((a->f138.flags & 0x800000) != 0 || (b->f138.flags & 0x800000) != 0) {
+        return 0;
+    }
+    fn_1_DF6AC(&n, &a->field44, &b->field44, &a->field44, &b->field44, a->field50, b->field50, a->field1C,
+               b->field1C, pool->unk_34 * (a->field18 + b->field18), pool->unk_20);
+    a->f138.flags |= 0x20000000;
+    b->f138.flags |= 0x20000000;
+    a->other = b;
+    b->other = a;
+    return 1;
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_E1408 */
 
 /* fzgx:begin fn_1_E1934 */
 typedef struct {

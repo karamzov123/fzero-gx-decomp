@@ -7229,3 +7229,9 @@ dol/fn_8005FDE0.c:
 
 dol/fn_80078944.c:
 	.text       start:0x80078944 end:0x800789D8 align:4
+
+dol/fn_800643F4.c:
+	.text       start:0x800643F4 end:0x800647B8 align:4
+
+dol/fn_80075240.c:
+	.text       start:0x80075240 end:0x800756B0 align:4

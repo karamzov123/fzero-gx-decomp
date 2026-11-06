@@ -1682,3 +1682,6 @@ rel/sel/data/lbl_10_bss_51740.c:
 
 rel/sel/sel/fn_10_12E34.c:
 	.text       start:0x00012E34 end:0x00013128 align:4
+
+rel/sel/sel/fn_10_13B24.c:
+	.text       start:0x00013B24 end:0x00013D64 align:4

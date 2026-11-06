@@ -13827,6 +13827,352 @@ void fn_1_63858(struct fn_1_63858_Object *object) {
 }
 /* fzgx:end fn_1_63858 */
 
+/* fzgx:begin fn_1_638E8 noprologue */
+#include "dolphin/hw_regs.h"
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+#include "game/vec3.h"
+#include "rel/main_rel/effect.h"
+#include "dolphin/os/OSFastCast.h"
+
+/* begin game/main_rel/car_test_types.h (fork-deltawave784/windows-and-types@f88123fa) */
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+// Types (and the externs that name them) of car_test.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+
+#pragma fp_contract on
+#pragma pool_data on
+#pragma force_active on
+static const u32 fzgx_pool_table_0[] = {0x42700000};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_4(volatile f32 *p) { p[0] = 0.1f; p[1] = 32767.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_c[] = {0x3D4CCCCD, 0x3FB1EB85, 0x1EB851EC, 0x469C4000, 0x00000000};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_20(volatile f64 *p) { p[0] = 4503599627370496.0; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_28(volatile f32 *p) { p[0] = 1.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_2c[] = {0xBCF5C28F, 0x402E0000, 0x00000000, 0x43300000, 0x80000000, 0x3FF80000, 0x00000000};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_48(volatile f64 *p) { p[0] = 0.5; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_50[] = {0x00000000};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_54(volatile f32 *p) { p[0] = 0.5f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_58[] = {0x41000000};
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_5c(volatile f32 *p) { p[0] = 255.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_60[] = {0x41700000, 0x3E4CCCCD, 0x3DA3D70A, 0x3E800000, 0x3F7AE148, 0x3F7D70A4, 0x42200000, 0x41A00000};
+static const f32 fzgx_pool_scale_80[1] = { 1.5f };
+static const u32 fzgx_pool_table_84[] = {0x3EE66666, 0xC0000000, 0x3DAAAAAB, 0x3E19999A};  /* fzgx-allow: A1 retail pool bytes */
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_94(volatile f32 *p) { p[0] = 0.125f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_98[] = {0xBECCCCCD, 0xBE99999A, 0x40000000, 0x437A0000, 0x3FE33333, 0x33333333, 0x3FD99999, 0x9999999A, 0x3E99999A, 0xBB83126F, 0x3C888889, 0x47800000, 0x45800000, 0x3F75C28F};
+static const f32 fzgx_pool_scale_d0[1] = { 0.4f };
+static const u32 fzgx_pool_table_d4[] = {0x3D4ED917, 0x3D50E560, 0x3F733333, 0x3F666666, 0x00000000, 0x4062C000, 0x00000000, 0x40240000, 0x00000000, 0x40080000, 0x00000000, 0x00000000, 0x3DCCCCCD, 0xC019999A, 0x40A00000, 0x3FF33333, 0x33333333, 0x3FB99999, 0x9999999A, 0x41200000, 0x41900000, 0x3FE66666, 0x66666666, 0x40490000, 0x00000000, 0x00000000, 0x3DCCCCCD, 0xC019999A, 0x41980000, 0x40380000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_150(volatile f32 *p) { p[0] = 0.7071067690849304f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+static const u32 fzgx_pool_table_154[] = {0x00000000, 0x00000000, 0x00000000, 0x406FE000, 0x00000000, 0x3FECCCCC, 0xCCCCCCCD, 0x3B83126F, 0x3A83126F, 0x3C23D70A, 0xB4000000, 0x43700000, 0x42C80000, 0x43960000, 0x43480000, 0x461C4000, 0x459C4000, 0x434C0000, 0x42AA0000, 0xBD4CCCCD, 0x40800000, 0xBD75C28F, 0xBF000000, 0xBF800000, 0x00000000, 0x3FC99999, 0x9999999A, 0x44000000, 0x3CF5C28F, 0x424C0000, 0x42B00000, 0xC0080000, 0x00000000, 0x40900000, 0x40C00000, 0x3F8CCCCD, 0x00000000, 0x3F666666, 0xBF8CCCCD, 0x00000000, 0x3F666666, 0x00000000, 0x00000000, 0xBF333333, 0x00000000, 0x00000000, 0x00000000, 0x3F99999A, 0x42480000, 0x3CCCCCCD};  /* fzgx-allow: A1 retail pool bytes */
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer_21c(volatile f32 *p) { p[0] = 0.8f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
+#pragma section code_type ".text"
+#pragma force_active reset
+
+struct Sig_fn_1_867CC_fn_1_867CC_Arg1 { u32 unk_0, unk_4, unk_8; };
+struct Sig_fn_1_9EA94_fn_1_9EA94_Arg0 {
+    Fn183D28Vec3 unk_0;
+    f32 unk_C;
+    u16 unk_10;
+    u8 pad_12[2];
+    u8 color[4];
+};
+struct fn_1_638E8_row { Fn183D28Vec3 a[8]; };
+struct fn_1_638E8_Arg0 { u8 pad_0[8]; u32 unk_8; };
+struct fn_1_638E8_lbl_1_rodata_2950 {
+    u8 pad_0[4]; f32 unk_4; f32 unk_8; u8 pad_C[0x14];
+    f64 unk_20; f32 unk_28; u8 pad_2C[0x1C]; f64 unk_48;
+    u8 pad_50[4]; f32 unk_54; u8 pad_58[4]; f32 unk_5C;
+    u8 pad_60[0x20]; f32 unk_80; u8 pad_84[0x10]; f32 unk_94;
+    u8 pad_98[0x38]; f32 unk_D0; u8 pad_D4[0x7C]; f32 unk_150;
+    u8 pad_154[0xC8]; f32 unk_21C;
+};
+struct fn_1_638E8_lbl_801A66CC { u32 unk_0; };
+struct fn_1_638E8_lbl_801A6D00_T {
+    u8 pad_0[0x3C]; f32 unk_3C; u8 pad_40[0xC]; f32 unk_4C;
+    u8 pad_50[0xC]; f32 unk_5C;
+};
+
+extern struct fn_1_638E8_lbl_801A66CC lbl_801A66CC;
+extern struct fn_1_638E8_lbl_801A6D00_T *lbl_801A6D00;
+extern f32 lbl_8006D0B4(f32);
+extern s16 camera_get_entry_field_0xa4(u32);
+extern s32 fn_1_3F164(void);
+extern s32 fn_1_54E34(void *, f32);
+extern s32 fn_1_5910(void);
+extern u32 fn_1_707C(u32);
+extern u32 fn_1_867CC(u32, struct Sig_fn_1_867CC_fn_1_867CC_Arg1 *);
+extern u32 lbl_8006DCA4(void);
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+extern void *memset(void *, int, u32);
+extern void fn_1_9EA94(struct Sig_fn_1_9EA94_fn_1_9EA94_Arg0 *);
+extern void fn_8006F9A4(f32, Vec3 *, Vec3 *, void *);
+extern void fn_800720B0(u32);
+extern void fn_80072864(u32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_800735C8(s32, s32);
+extern void fn_80073620(s32, s32);
+extern void fn_80073678(u32);
+extern void fn_80073778(void *, s32);
+extern void fn_80073C6C(s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_80074660(u32);
+extern void fn_80074788(u32);
+extern void fn_80074918(u8, s32, u8);
+extern void lbl_8006D7B0(void);
+extern void lbl_8006D848(f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DBAC(Vec3 *);
+extern void lbl_8006DFC4(void *);
+
+extern f32 __fmadds(f32, f32, f32);
+
+#pragma opt_propagation off
+static inline void fn_1_638E8_locked_cache(f32 **ptr) {
+    *ptr = (f32 *)LC_BASE;
+}
+
+#pragma opt_propagation on
+#pragma opt_lifetimes off
+void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
+    f32 *locked_ptr;
+    u32 v33;
+    const struct fn_1_638E8_lbl_1_rodata_2950 *p_lbl_1_rodata_2950;
+    s16 v2;
+    Fn183D28Vec3 *v52;
+    Fn183D28Vec3 *v17;
+    struct fn_1_638E8_row *v38;
+    s16 v14;
+    u8 *v0;
+    u32 v35;
+    u32 v1;
+    u32 v34;
+    u32 v42;
+    s32 v16;
+    f64 v18;
+    u32 v19;
+    f32 v20, v21, v24;
+    u32 v25;
+    f32 v47, v46, v45, v44, v43;
+    f64 v32;
+    f32 v31;
+    f32 v30;
+    u32 v37;
+    s32 v40;
+    u32 v41;
+    u32 v49;
+    f32 v48, v50, v51, v53;
+    f32 v57, v58, v59;
+    f32 v54, v55;
+    register f32 v61;
+    struct { f32 a[12]; } loc_80;
+    struct { u32 a[12]; } loc_50;
+    struct Sig_fn_1_9EA94_fn_1_9EA94_Arg0 loc_38;
+    struct Sig_fn_1_867CC_fn_1_867CC_Arg1 loc_2C;
+    Fn183D28Vec3 loc_20;
+    Fn183D28Vec3 loc_14;
+    u8 loc_10, loc_C, loc_8;
+    s32 t0;
+    s32 t4;
+    s32 t5;
+    s32 t6;
+    s32 t7;
+    s32 t13;
+    s32 t14;
+#define locked (locked_ptr = (f32 *)LC_BASE)
+
+    v0 = (u8 *)arg0->unk_8;
+    t0 = fn_1_5910();
+    if (camera_get_entry_field_0xa4((t0 & 0xFF)) == 0 &&
+        (s32)fn_1_707C((*(s16 *)((u8 *)v0 + 24) & 0xFF)) != 0) {
+        v1 = 1;
+    } else {
+        v1 = 0;
+    }
+    fn_1_867CC(*(s16 *)((u8 *)v0 + 24), &loc_2C);
+    t4 = fn_1_3F164();
+    if (t4 != 0) {
+        t5 = fn_1_5910();
+        switch (t5) {
+        case 0: v2 = (s16)((*(s16 *)((u8 *)v0 + 172) - 1) % 8); break;
+        case 1: v2 = (s16)((*(s16 *)((u8 *)v0 + 174) - 1) % 8); break;
+        case 2: v2 = (s16)((*(s16 *)((u8 *)v0 + 176) - 1) % 8); break;
+        case 3: v2 = (s16)((*(s16 *)((u8 *)v0 + 88) - 1) % 8); break;
+        default: v2 = (s16)((*(s16 *)((u8 *)v0 + 172) - 1) % 8); break;
+        }
+    } else {
+        struct fn_1_638E8_row *v15;
+        t6 = fn_1_5910();
+        switch (t6) {
+        case 0: v14 = *(s16 *)((u8 *)v0 + 172); break;
+        case 1: v14 = *(s16 *)((u8 *)v0 + 174); break;
+        case 2: v14 = *(s16 *)((u8 *)v0 + 176); break;
+        case 3: v14 = *(s16 *)((u8 *)v0 + 88); break;
+        default: v14 = *(s16 *)((u8 *)v0 + 172); break;
+        }
+        v15 = *(struct fn_1_638E8_row **)((u8 *)v0 + 56);
+        v17 = &v15->a[v14] + fn_1_5910() * 8;
+        lbl_8006DCA4();
+        lbl_8006E1B0((Fn183D28Vec3 *)(v0 + 60), v17 + 1);
+        v18 = 0.5;
+        v19 = lbl_801A66CC.unk_0;
+        loc_20.x = v18 * (f32)(*(f32 *)((u8 *)v0 + 60) + *(f32 *)((u8 *)v0 + 96));
+        loc_20.y = v18 * (f32)(*(f32 *)((u8 *)v0 + 64) + *(f32 *)((u8 *)v0 + 100));
+        loc_20.z = v18 * (f32)(*(f32 *)((u8 *)v0 + 68) + *(f32 *)((u8 *)v0 + 104));
+        v20 = v18 * (f32)(lbl_801A6D00->unk_3C + *(f32 *)((u8 *)v19 + 12));
+        v21 = v18 * (f32)(lbl_801A6D00->unk_4C + *(f32 *)((u8 *)v19 + 28));
+        v24 = v18 * (f32)(lbl_801A6D00->unk_5C + *(f32 *)((u8 *)v19 + 44));
+        fn_8006F9A4(0.5f, (Vec3 *)v19, (Vec3 *)((u32)lbl_801A6D00 + 48), &loc_80);
+        loc_80.a[3] = v20;
+        loc_80.a[7] = v21;
+        loc_80.a[11] = v24;
+        lbl_8006DBAC((Vec3 *)&loc_80);
+        lbl_8006E1B0(&loc_20, (Fn183D28Vec3 *)v17);
+        v25 = *(u32 *)((u8 *)v0 + 20);
+        if ((s32)v25 < 8) {
+            *(u32 *)((u8 *)v0 + 20) = v25 + 2;
+            v2 = (s16)(((s16)v14 + 2) % 8);
+        } else {
+            *(u32 *)((u8 *)v0 + 20) = 8;
+            v2 = (s16)(((s16)v14 + 2) % 8);
+        }
+        t13 = fn_1_5910();
+        switch (t13) {
+        case 0: *(u16 *)((u8 *)v0 + 172) = v2; break;
+        case 1: *(u16 *)((u8 *)v0 + 174) = v2; break;
+        case 2: *(u16 *)((u8 *)v0 + 176) = v2; break;
+        case 3: *(u16 *)((u8 *)v0 + 88) = v2; break;
+        default: *(u16 *)((u8 *)v0 + 172) = v2; break;
+        }
+    }
+#undef locked
+#define locked locked_ptr
+    v30 = 0.1f;
+    v31 = 1.0f;
+    v33 = 0x41C64E6D;
+
+    v43 = 0.8f;
+    v44 = 255.0f;
+    v45 = 0.125f;
+    v46 = 0.5f;
+    v47 = 32767.0f;
+    v35 = 0;
+    while (v35 < *(u32 *)((u8 *)v0 + 20)) {
+        v38 = *(struct fn_1_638E8_row **)((u8 *)v0 + 56);
+        v52 = &v38->a[v2] + fn_1_5910() * 8;
+        v48 = v30 * *(f32 *)((u8 *)v0 + 180);
+        v41 = v35 / *(u32 *)((u8 *)v0 + 20);
+        v50 = v48 * (f32)(v31 - (f32)v41);
+        v37 = lbl_1_bss_38458->unk_8;
+        v42 = *(u32 *)((u8 *)v37 + 112);
+        v37 = lbl_1_data_1D628 * v33 + 12345;
+        v49 = (v37 >> 16) & 0x7FFF;
+        lbl_1_data_1D628 = v37;
+        v51 = v43 * v50;
+        v53 = v45 + (f32)(v46 * v50);
+        v54 = v30 + v51;
+        v55 = v44 * (f32)(v53 * (f32)(v31 + (f32)((f32)v49 / v47)));
+        v55 = v55 * (f32)(v31 - (f32)(v35 / *(u32 *)((u8 *)v0 + 20)));
+        fn_1_638E8_locked_cache(&locked_ptr);
+        if ((u8)v1 != 0) {
+            v54 = v54 * fzgx_pool_scale_d0[0];
+            v55 = v55 * fzgx_pool_scale_80[0];
+        }
+        fn_80074788(0);
+        fn_80072864(0);
+        fn_800745A4(0, 1, 4, 60, 0, 125);
+        fn_800734A8(0, 0, 0, 255);
+        fn_80072AB0(0, 0, 0);
+        fn_800735C8(0, 12);
+        fn_80073620(0, 28);
+        fn_80073C6C(0);
+        fn_80072C24(0, 15, 15, 15, 14);
+        fn_80072D64(0, 0, 0, 0, 1, 0);
+        fn_80072CC4(0, 7, 6, 4, 7);
+        fn_80072E20(0, 0, 0, 0, 1, 0);
+        fn_80073678(1);
+        fn_80074660(1);
+        fn_80074918(1, 3, 0);
+        fn_800720B0(0);
+        fn_800728A8(1, 4, 1, 0);
+        fn_80073778(*(void **)((u8 *)v42 + 36), 0);
+        memset(&loc_38, 0, 24);
+        v57 = v55 * *(f32 *)((u8 *)v0 + 28);
+        v58 = v55 * *(f32 *)((u8 *)v0 + 32);
+        v59 = v55 * *(f32 *)((u8 *)v0 + 36);
+        loc_10 = __OSf32tou8(v57);
+        loc_38.color[0] = loc_10;
+        loc_C = __OSf32tou8(v58);
+        loc_38.color[1] = loc_C;
+        loc_8 = __OSf32tou8(v59);
+        loc_38.color[3] = 255;
+        loc_38.color[2] = loc_8;
+        loc_14 = *(Fn183D28Vec3 *)v52;
+        lbl_8006D7B0();
+        locked[3] = loc_14.x;
+        locked[7] = loc_14.y;
+        locked[11] = loc_14.z;
+        if (fn_1_54E34((void *)(v42 + 8), v54) != 0) {
+            register f32 y;
+            y = loc_14.y;
+            v61 = loc_14.x * loc_14.x;
+            v61 = __fmadds(y, y, v61);
+            v61 = __fmadds(loc_14.z, loc_14.z, v61);
+            v61 = lbl_8006D0B4(v61);
+            if (v61 > 0.1f + v54) {
+                lbl_8006DB74(&loc_50);
+                lbl_8006D848((f32)(v61 - v54) / v61);
+                lbl_8006DFC4(&loc_50);
+            }
+            loc_38.unk_0 = *(Fn183D28Vec3 *)(v42 + 8);
+            loc_38.unk_C = 0.7071067690849304f * v54;
+            loc_38.unk_10 = 0;
+            fn_1_9EA94(&loc_38);
+        }
+        v35++;
+        v2 = (s16)(((s16)v2 + 1) % 8);
+    }
+}
+/* fzgx:end fn_1_638E8 */
+
 /* fzgx:begin fn_1_64098 */
 typedef struct Fn164098Object {
     u8 pad[0xae];

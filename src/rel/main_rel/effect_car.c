@@ -774,6 +774,354 @@ void fn_1_68B68(void) {
 }
 /* fzgx:end fn_1_68B68 */
 
+/* fzgx:begin fn_1_68B6C noprologue */
+#include "types.h"
+
+#pragma fp_contract on
+
+typedef struct Vec68B6C {
+    f32 x, y, z;
+} Vec68B6C;
+
+typedef struct Effect68B6C {
+    u8 pad0[0x8];
+    u32 attr;
+    s16 kind;
+    u8 padE[0xa];
+    s16 id;
+    u16 flags;
+    Vec68B6C color;
+    u8 pad28[0x14];
+    Vec68B6C offset;
+    Vec68B6C tangent;
+    u8 pad54[0x1c];
+    Vec68B6C direction;
+    u8 pad7c[0x18];
+    Vec68B6C position;
+    Vec68B6C velocity;
+    s16 lifetime;
+    u8 padAe[0xa];
+    u32 mtx[12];
+} Effect68B6C;
+
+typedef struct Car68B6C {
+    u8 pad0[0x390];
+    u32 flags;
+    u8 pad394[0x26];
+    s16 state;
+} Car68B6C;
+
+typedef struct Player68B6C {
+    u8 pad0[0x475];
+    s8 camera;
+} Player68B6C;
+
+extern void *memset(void *, int, u32);
+extern Player68B6C *fn_1_86254(int);
+extern Car68B6C *fn_1_868C0(s8);
+extern void fn_1_862D4(int, Vec68B6C *);
+extern void fn_1_8658C(int, Vec68B6C *);
+extern void fn_1_8636C(int, void *);
+extern void fn_1_862A8(int, Vec68B6C *);
+extern f32 lbl_8006D668(void *);
+extern void lbl_8006D5F0(void *, void *, f32);
+extern void fn_1_A33F0(s32, f32);
+extern void lbl_8006DD14(void *, void *);
+extern void fn_1_6CF3C(void *, void *, f32, f32);
+extern u16 fn_1_584AC(void);
+extern f32 lbl_8006D0B4(f32);
+extern s16 fn_1_58F50(const void *);
+extern s16 camera_get_entry_field_0xa4(u32);
+extern void fn_1_6E140(Vec68B6C *, Vec68B6C *, f32);
+
+/* Primes the shared effect-car literal pool in retail order. */
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_68B6C(f32 *f, f64 *d) {
+    f[0] = 0.0f;
+    f[1] = -1.0f;
+    f[2] = 25.0f;
+    f[3] = 15.0f;
+    f[4] = 8.0f;
+    f[5] = 150.0f;
+    f[6] = 10.0f;
+    f[7] = 0.5f;
+    f[8] = 0.125f;
+    f[9] = 32767.0f;
+    f[10] = 30.0f;
+    f[11] = 20.0f;
+    f[12] = 1200.0f;
+    f[13] = 0.15f;
+    d[0] = 4503601774854144.0;
+    d[1] = 4503599627370496.0;
+    f[14] = 255.0f;
+    f[15] = 102.0f;
+    d[2] = 0.8;
+    f[16] = 1.6f;
+    f[17] = 3.0f;
+    f[18] = 0.01f;
+    f[19] = 0.6f;
+    d[3] = 0.3;
+    f[20] = 0.7f;
+    f[21] = 0.2f;
+    f[22] = 0.4f;
+    f[23] = 0.1f;
+    f[24] = 1.5f;
+    d[4] = 2.0;
+    f[25] = 0.8f;
+    f[26] = 1.0f;
+    f[27] = 85.0f;
+    f[28] = 0.25f;
+}
+#pragma section code_type ".text"
+
+static inline void sub68B6C(const Vec68B6C *a, const Vec68B6C *b, void *vout) {
+    Vec68B6C *out = vout;
+    out->x = a->x - b->x;
+    out->y = a->y - b->y;
+    out->z = a->z - b->z;
+}
+
+static inline f32 mul68B6C(f32 a, f32 b) {
+    return a * b;
+}
+
+static inline f32 dot68B6C(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
+    f32 v = ax * bx;
+    v = __fmadds(ay, by, v);
+    v = __fmadds(az, bz, v);
+    return v;
+}
+
+#pragma fp_contract off
+#pragma opt_lifetimes off
+void fn_1_68B6C(s8 a, s8 b) {
+    f32 intensity;
+    f32 spread;
+    Effect68B6C effect;
+    u32 matA[12];
+    u32 matB[12];
+    Vec68B6C posA;
+    Vec68B6C posB;
+    Vec68B6C prevA;
+    Vec68B6C prevB;
+    Vec68B6C velA;
+    Vec68B6C velB;
+    Vec68B6C upA;
+    Vec68B6C upB;
+    Vec68B6C dir;
+    f32 rel[3];
+    Player68B6C *pa;
+    Player68B6C *pb;
+    Car68B6C *carA;
+    Car68B6C *carB;
+    s8 ia;
+    s8 ib;
+    f32 speed;
+    f32 spread_r1;
+    f32 lenA_r1;
+    f32 c255, c1_5, c0_5, c0_1, c0_7, c0_4, cRand, c0_0, c85, c1_0, c0_8;
+    f64 c2_0;
+    f32 lenB;
+    f32 scale;
+    f32 dot;
+    f32 bx, by, bz;
+    f32 ax, ay, az;
+    f32 k;
+    s32 effectType;
+    s32 id;
+
+    ia = a;
+    ib = b;
+    pa = fn_1_86254(ia);
+    pb = fn_1_86254(ib);
+    carA = fn_1_868C0(a);
+    carB = fn_1_868C0(b);
+    {
+        s32 state = carA->state;
+        if (carA->flags & 0x1000000) return;
+        if (carB->flags & 0x1000000) return;
+        if (state >= 3 && pa->camera == -1) return;
+    }
+
+    memset(&effect, 0, 0xe8);
+    effect.flags = 0xffff;
+    effect.color.x = 255.0f;
+    effect.color.y = 102.0f;
+    effect.color.z = 0.0f;
+    fn_1_862D4(ia, &posA);
+    fn_1_862D4(ib, &posB);
+    fn_1_8658C(ia, &prevA);
+    fn_1_8658C(ib, &prevB);
+    fn_1_8636C(ia, matA);
+    fn_1_8636C(ib, matB);
+    velA.x = posA.x - prevA.x;
+    velA.y = posA.y - prevA.y;
+    velA.z = posA.z - prevA.z;
+    velB.x = posB.x - prevB.x;
+    velB.y = posB.y - prevB.y;
+    velB.z = posB.z - prevB.z;
+    rel[0] = velB.x - velA.x;
+    rel[1] = velB.y - velA.y;
+    rel[2] = velB.z - velA.z;
+    dir.x = posB.x - posA.x;
+    dir.y = posB.y - posA.y;
+    dir.z = posB.z - posA.z;
+    lbl_8006D668(&dir);
+    fn_1_862A8(ia, &upA);
+    fn_1_862A8(ib, &upB);
+    upA.x += 0.8 * dir.x;
+    upA.y += 0.8 * dir.y;
+    upA.z += 0.8 * dir.z;
+    upB.x -= 0.8 * dir.x;
+    upB.y -= 0.8 * dir.y;
+    upB.z -= 0.8 * dir.z;
+    lbl_8006D5F0(&dir, &dir, 1.6f);
+    {
+        register f32 length;
+        Vec68B6C *r = (Vec68B6C *)rel;
+        length = r->x * r->x;
+        length = __fmadds(r->y, r->y, length);
+        length = __fmadds(r->z, r->z, length);
+        speed = length;
+    }
+    posA.x += dir.x;
+    posA.y += dir.y;
+    posA.z += dir.z;
+    speed = 3.0f * speed;
+    intensity = speed < 0.01f ? 0.01f : speed > 0.6f ? 0.6f : speed;
+    id = a;
+    fn_1_A33F0(id, intensity);
+    effect.offset = posA;
+    effect.tangent = velA;
+    effect.id = a;
+    lbl_8006DD14(matA, effect.mtx);
+    fn_1_6CF3C(&effect, &upA, 0.3 * intensity, 0.7f);
+    posB.x -= dir.x;
+    posB.y -= dir.y;
+    posB.z -= dir.z;
+    effect.offset = posB;
+    effect.tangent = velB;
+    effect.id = b;
+    lbl_8006DD14(matB, effect.mtx);
+    fn_1_6CF3C(&effect, &upB, 0.3 * intensity, 0.7f);
+    if (intensity <= 0.2f) return;
+
+    cRand = 32767.0f;
+    c0_4 = 0.4f;
+    c0_7 = 0.7f;
+    c0_1 = 0.1f;
+    c0_5 = 0.5f;
+    c1_5 = 1.5f;
+    c2_0 = 2.0;
+    c0_8 = 0.8f;
+    c255 = 255.0f;
+    c1_0 = 1.0f;
+    c85 = 85.0f;
+    c0_0 = 0.0f;
+    for (effectType = 1; effectType < 2; effectType++) {
+    memset(&effect, 0, 0xe8);
+    {
+        register f32 v0, v1;
+        f32 v2, v3;
+        register f32 lengthA, lengthB;
+        v0 = velA.x;
+        lengthA = v0 * v0;
+        v1 = velA.y;
+        lengthA = __fmadds(v1, v1, lengthA);
+        v0 = velA.z;
+        v2 = velB.x;
+        lengthA = __fmadds(v0, v0, lengthA);
+        lengthB = v2 * v2;
+        v2 = velB.y;
+        lengthB = __fmadds(v2, v2, lengthB);
+        v3 = velB.z;
+        lengthB = __fmadds(v3, v3, lengthB);
+        lenA_r1 = lengthA;
+        lenB = lengthB;
+    }
+    if (lenA_r1 >= lenB) {
+        id = a;
+    } else {
+        id = b;
+    }
+    effect.id = id;
+    effect.kind = 5;
+    effect.flags = 1;
+    if (effectType == 2) {
+        effect.attr |= 0x8000;
+    } else {
+        effect.attr |= 0x10000;
+    }
+    effect.offset = posA;
+    scale = c0_7 + c0_4 * ((f32)fn_1_584AC() / cRand);
+    effect.tangent.x = velA.x * scale;
+    effect.tangent.y = velA.y * scale;
+    effect.tangent.z = velA.z * scale;
+    spread_r1 = lbl_8006D0B4((dot68B6C(velA.x, velA.y, velA.z, velA.x, velA.y, velA.z)));
+    spread_r1 = c0_1 * spread_r1;
+    effect.tangent.x += spread_r1 * ((f32)fn_1_584AC() / cRand - c0_5);
+    effect.tangent.y += spread_r1 * ((f32)fn_1_584AC() / cRand - c0_5);
+    effect.tangent.z += spread_r1 * ((f32)fn_1_584AC() / cRand - c0_5);
+    {
+        register f32 tz, d, uz, uy;
+        f64 ux;
+        register f32 ty, tx, projection;
+        tx = effect.tangent.x;
+        ux = upA.x;
+        tz = effect.tangent.z;
+        ty = effect.tangent.y;
+        uy = upA.y;
+        uz = upA.z;
+        projection = tx * (f32)ux;
+        projection = __fmadds(ty, uy, projection);
+        projection = __fmadds(tz, uz, projection);
+        d = -projection;
+        {
+            Vec68B6C correction;
+            correction.x = d * (f32)ux;
+            correction.y = d * uy;
+            correction.z = d * uz;
+            effect.tangent.x = tx + correction.x;
+            effect.tangent.y = ty + correction.y;
+            effect.tangent.z = tz + correction.z;
+        }
+    }
+    effect.position = posB;
+    bx = c1_5 * velB.x;
+    by = c1_5 * velB.y;
+    bz = c1_5 * velB.z;
+    effect.velocity.x = bx;
+    effect.velocity.y = by;
+    effect.velocity.z = bz;
+    spread = lbl_8006D0B4(dot68B6C(effect.velocity.x, effect.velocity.y, effect.velocity.z, effect.velocity.x, effect.velocity.y, effect.velocity.z));
+    spread = c2_0 * spread;
+    effect.velocity.x += spread * ((f32)fn_1_584AC() / cRand - c0_5);
+    effect.velocity.y += spread * ((f32)fn_1_584AC() / cRand - c0_5);
+    effect.velocity.z += spread * ((f32)fn_1_584AC() / cRand - c0_5);
+    {
+        f32 colorScale = c0_8 + 0.2f * ((f32)fn_1_584AC() / cRand);
+        effect.color.x = (c255 * (c0_5 * (c1_0 + colorScale))) / c255;
+        effect.color.y = (c85 * colorScale) / c255;
+        effect.color.z = c0_0;
+    }
+    effect.direction.x = upA.x + c0_4 * ((f32)fn_1_584AC() / cRand - c0_5);
+    effect.direction.y = upA.y + c0_4 * ((f32)fn_1_584AC() / cRand - c0_5);
+    effect.direction.z = upA.z + c0_4 * ((f32)fn_1_584AC() / cRand - c0_5);
+    lbl_8006D668(&effect.direction);
+    effect.lifetime = 24;
+    fn_1_58F50(&effect);
+    }
+    if (speed <= 0.5f) return;
+    if (camera_get_entry_field_0xa4((u8)pa->camera) == 0) return;
+    if (camera_get_entry_field_0xa4((u8)pb->camera) == 0) return;
+    k = speed / 4.0f;
+    k = k < 0.1f ? 0.1f : k > 1.0f ? 1.0f : k;
+    fn_1_6E140(&posA, &velA, k);
+    fn_1_6E140(&posB, &velB, k);
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_68B6C */
+
 /* fzgx:begin fn_1_69BBC */
 typedef struct EffectCar {
     u8 pad_00[0x1a];
