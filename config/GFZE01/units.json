@@ -30606,9 +30606,11 @@
       "fn_80050BD4"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
