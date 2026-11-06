@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (98.52% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.34% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -46,13 +46,13 @@ extern void lbl_8006DBAC(void *);
 extern void lbl_8006E1B0(void *, void *);
 extern void lbl_8006D758(void);
 extern f32 fn_1_1289F0(void *, void *, void *);
-extern u32 mathutil_mtxA_rotate_y(u32);
+extern void mathutil_mtxA_rotate_y(s16);
 
 void fn_1_10B800(struct Accessory *acc) {
-    struct PoolObj *pool = &lbl_1_rodata_7AB8;
-    Vec3 c1 = pool->v[0];
-    Vec3 c2 = pool->v[1];
-    s32 angle;
+    Vec3 c1;
+    Vec3 c2;
+    struct PoolObj *pool;
+    s16 angle;
     s16 d = 0x100;
     u8 *base;
     u8 *p;
@@ -63,6 +63,10 @@ void fn_1_10B800(struct Accessory *acc) {
     u32 i;
     u32 j;
     struct Rec *rec;
+
+    pool = &lbl_1_rodata_7AB8;
+    c1 = pool->v[0];
+    c2 = pool->v[1];
 
     if (acc != 0 && acc->arg != 0) {
         base = (u8 *)fn_80077B14(acc->arg);
