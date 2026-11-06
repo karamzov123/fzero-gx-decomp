@@ -5400,6 +5400,17 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/toolkit/fn_3_1ADA4.c",
+    "symbols": [
+      "fn_3_1ADA4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/toolkit.c"
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/toolkit/fn_3_1AE40.c",
     "symbols": [
       "fn_3_1AE40"

@@ -1115,3 +1115,6 @@ rel/customize/toolkit/fn_3_2C73C.c:
 
 rel/customize/toolkit/fn_3_24138.c:
 	.text       start:0x00024138 end:0x00024BC0 align:4
+
+rel/customize/toolkit/fn_3_1ADA4.c:
+	.text       start:0x0001ADA4 end:0x0001AE40 align:4
