@@ -27099,9 +27099,12 @@
       "fn_80038944"
     ],
     "status": "matching",
-    "mw_version": null,
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "asm": true
+    "pool": {
+      "...bss.0": "lbl_801783A0",
+      "lbl_801783A0": "lbl_801783A0"
+    }
   },
   {
     "module": "main",
