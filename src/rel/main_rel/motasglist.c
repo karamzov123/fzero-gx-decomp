@@ -878,6 +878,114 @@ void fn_1_42458(Fn142458Data *dst, const Fn142458Data *src) {
 }
 /* fzgx:end fn_1_42458 */
 
+/* fzgx:begin fn_1_4247C */
+extern const f32 lbl_1_rodata_F50;
+extern const f32 lbl_1_rodata_F54;
+extern void fn_1_4322C(void *);
+extern void mathutil_mtxA_from_quat(void *);
+extern void lbl_8006DB74(void *);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006D784(void *);
+extern u32 strlen(const char *);
+
+typedef struct Vec4247C { f32 x, y, z; } Vec4247C;
+typedef struct Object4247C {
+    u16 count, flags;
+    f32 value4;
+    u8 *entries;
+    f32 valueC, value10, value14;
+    f32 value18, value1C, value20;
+    u32 value24;
+    f32 value28, value2C, value30, value34, value38;
+    u32 value3C;
+    u8 value40[0x18];
+    u8 value58[0x18];
+} Object4247C;
+
+#pragma opt_propagation off
+#pragma fp_contract on
+#pragma opt_common_subs on
+static inline void fn_1_4247C_set(Vec4247C *v) {
+    v->x = lbl_1_rodata_F50;
+    v->y = lbl_1_rodata_F50;
+    v->z = lbl_1_rodata_F50;
+}
+
+void fn_1_4247C(Object4247C *object, u8 *entries, u8 *data) {
+    f32 vy;
+    f32 vz;
+    Vec4247C *v;
+    u32 offset;
+    u8 *p;
+    u32 i;
+    u32 length;
+    u32 adv;
+    u32 next;
+    u8 *quat;
+
+    object->value4 = lbl_1_rodata_F50;
+    object->count = *(u16 *)data;
+    object->entries = entries;
+    object->valueC = lbl_1_rodata_F50;
+    object->value10 = lbl_1_rodata_F50;
+    object->value14 = lbl_1_rodata_F50;
+    object->value24 = 0;
+    object->flags = 0x100;
+    object->value28 = lbl_1_rodata_F54;
+    object->value2C = lbl_1_rodata_F54;
+    object->value18 = lbl_1_rodata_F54;
+    object->value1C = lbl_1_rodata_F54;
+    object->value20 = lbl_1_rodata_F54;
+    object->value30 = lbl_1_rodata_F54;
+    object->value34 = lbl_1_rodata_F54;
+    object->value38 = lbl_1_rodata_F54;
+    fn_1_4322C(object->value40);
+    fn_1_4322C(object->value58);
+
+    p = data + 4;
+    i = 0;
+    offset = 0;
+    while (i < object->count) {
+        *(u16 *)(object->entries + offset + 6) = *(u16 *)p;
+        *(u16 *)(object->entries + offset + 4) = *(u16 *)(p + 2);
+        p += 4;
+        quat = p;
+        p += 0x10;
+        mathutil_mtxA_from_quat(quat);
+        lbl_8006DB74(object->entries + offset + 0x28);
+        quat = p;
+        mathutil_mtxA_from_quat(quat);
+        lbl_8006DB74(object->entries + offset + 0x58);
+        *(f32 *)(object->entries + offset + 8) = *(f32 *)(p + 0x10);
+        *(f32 *)(object->entries + offset + 0xc) = *(f32 *)(p + 0x14);
+        *(f32 *)(object->entries + offset + 0x10) = *(f32 *)(p + 0x18);
+        p += 0x1c;
+        v = (Vec4247C *)(object->entries + offset + 8);
+        {
+            f32 square = v->x * v->x;
+            vy = v->y;
+            square = vy * vy + square;
+            vz = v->z;
+            square = vz * vz + square;
+            *(f32 *)(object->entries + offset + 0x14) = lbl_8006D0B4(square);
+        }
+        *(Vec4247C *)(object->entries + offset + 0x18) = *(Vec4247C *)(object->entries + offset + 8);
+        *(f32 *)(object->entries + offset + 0x24) = lbl_1_rodata_F50;
+        *(u8 **)(object->entries + offset) = p;
+        *(u32 *)(object->entries + offset + 0xd0) = 0;
+        fn_1_4247C_set((Vec4247C *)(object->entries + offset + 0xb8));
+        lbl_8006D784(object->entries + offset + 0x88);
+        length = strlen((char *)p);
+        adv = length + (3 - (length & 3));
+        next = adv + 1;
+        p += next;
+        offset += 0x18c;
+        i++;
+    }
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_4247C */
+
 /* fzgx:begin fn_1_426AC */
 typedef struct Fn1426ACObject {
     u16 count;
