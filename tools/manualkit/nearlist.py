@@ -39,11 +39,13 @@ def best_body(symbol):
 
 
 def main():
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    min_percent = 0.0
-    for i, a in enumerate(sys.argv):
+    args, min_percent = [], 0.0
+    rest = iter(sys.argv[1:])
+    for a in rest:
         if a == '--min-percent':
-            min_percent = float(sys.argv[i + 1])
+            min_percent = float(next(rest))  # its value is not the output path
+        elif not a.startswith('--'):
+            args.append(a)
     out_path = Path(args[0]) if args else ROOT / '.fzgx' / 'nearlist.json'
     p, l = Project(), Ledger()
     rows = l.db.execute("SELECT symbol, module, size, best_percent FROM functions "
