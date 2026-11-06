@@ -7594,6 +7594,130 @@ void fn_1_141A80(s16 arg0) {
 }
 /* fzgx:end fn_1_141A80 */
 
+/* fzgx:begin fn_1_141C10 */
+extern u32 lbl_801A66A0;
+extern u32 lbl_1_bss_8E424;
+extern u8 lbl_1_bss_8B5F0;
+extern u8 lbl_1_bss_8B5F1;
+extern f32 lbl_1_rodata_26F8[22];
+extern const f32 lbl_1_rodata_8658;
+extern const f32 lbl_1_rodata_92B8;
+extern const f32 lbl_1_rodata_8B84;
+extern const f32 lbl_1_rodata_8B2C;
+extern const f32 lbl_1_rodata_8B30;
+extern const f32 lbl_1_rodata_9164;
+extern const f32 lbl_1_rodata_8D9C;
+extern const f32 lbl_1_rodata_8960;
+extern const f32 lbl_1_rodata_8A54;
+extern const f32 lbl_1_rodata_863C;
+extern const f32 lbl_1_rodata_87F4;
+extern const f32 lbl_1_rodata_85F0;
+extern u8 fn_1_F8CF0(s32);
+extern f32 lbl_8006D188(u32);
+extern void fn_1_49410(void);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_495C8(void *);
+extern void fn_1_49528(u32 *);
+extern void fn_1_4A0D8(const char *);
+
+static inline s32 fn_1_141C10_elapsed(const u32 *last) {
+    s32 elapsed;
+    u32 start;
+    const u32 *current;
+    start = *(volatile const u32 *)last;  /* fzgx-allow: S2 volatile keeps the verified access order */
+    current = &lbl_801A66A0;
+    elapsed = *(volatile const u32 *)current;  /* fzgx-allow: S2 volatile keeps the verified access order */
+    elapsed = elapsed - start;
+    return elapsed;
+}
+
+void fn_1_141C10(u8 arg0) {
+    s32 flag;
+    s32 blink;
+    u8 *table;
+    u32 idx;
+    s32 diff;
+    f32 wave;
+    f32 scaled;
+    s32 level;
+    FontDrawPacket packet;
+    u8 bytes[4];
+    u32 color;
+
+    flag = 0;
+    blink = 0;
+    if ((*(&lbl_1_bss_9F8.unk_8 + lbl_1_bss_8B3A0.unk_9E * 10) >> 4) & 1) {
+        lbl_1_bss_8E424 = lbl_801A66A0;
+    }
+    table = (u8 *)&lbl_1_data_2B0D4;
+    idx = arg0;
+    if (table[idx] == 1 || table[idx] == 17) {
+        if (fn_1_F8CF0(0)) {
+            flag = 1;
+            if (lbl_1_bss_8B5F0 == 1) {
+                blink = 1;
+            } else {
+                blink = 0;
+            }
+        }
+    }
+    if (table[idx] == 4) {
+        if (fn_1_F8CF0(1)) {
+            flag = 1;
+            if (lbl_1_bss_8B5F1 == 1) {
+                blink = 1;
+            } else {
+                blink = 0;
+            }
+        }
+    }
+    if (flag == 0) {
+        return;
+    }
+
+    packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+    packet.image = 0x10000 - 0x5EF5;
+    packet.x = lbl_1_rodata_8658;
+    packet.y = lbl_1_rodata_92B8;
+    packet.z = lbl_1_rodata_8B84;
+    packet.flags = 10;
+    if (blink == 0) {
+        packet.color[2] = 0x80;
+        packet.color[1] = 0x80;
+        packet.color[0] = 0x80;
+    }
+    if (blink != 0) {
+        diff = fn_1_141C10_elapsed(&lbl_1_bss_8E424);
+        if ((u32)diff < 15) {
+            wave = lbl_8006D188((s32)(lbl_1_rodata_9164 + (lbl_1_rodata_8B2C * (f32)(diff % 60)) / lbl_1_rodata_8B30));
+            level = (s32)(lbl_1_rodata_8D9C * wave);
+            packet.color_add[2] = level;
+            packet.color_add[1] = level;
+            packet.color_add[0] = level;
+        }
+    }
+    fn_1_4F734(&packet);
+
+    fn_1_49410();
+    fn_1_496FC(lbl_1_rodata_8658, lbl_1_rodata_8960);
+    fn_1_4954C(lbl_1_rodata_8A54);
+    fn_1_495C8((void *)9);
+    if (blink == 0) {
+        diff = lbl_801A66A0 - lbl_1_bss_8E424;
+        scaled = lbl_1_rodata_863C + lbl_8006D188((s32)(lbl_1_rodata_9164 + (lbl_1_rodata_8B2C * (f32)(diff % 60)) / lbl_1_rodata_8B30));
+        bytes[3] = 0;
+        level = (s32)(lbl_1_rodata_87F4 * scaled / 2.0f);
+        bytes[2] = level;
+        bytes[1] = level;
+        bytes[0] = level;
+        color = *(u32 *)bytes;
+        fn_1_49528(&color);
+    }
+    fn_1_4A0D8((const char *)lbl_1_data_41B3C);
+}
+/* fzgx:end fn_1_141C10 */
+
 /* fzgx:begin fn_1_141F94 */
 typedef struct fn_1_141F94_Entry {
     u8 pad[0x0E];

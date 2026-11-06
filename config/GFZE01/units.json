@@ -107953,9 +107953,13 @@
       "fn_1_141C10"
     ],
     "status": "matching",
-    "mw_version": null,
+    "mw_version": "GC/1.3",
     "extra_cflags": [],
-    "asm": true
+    "tu": "rel/main_rel/sel_static_disp.c",
+    "pool": {
+      "@46": "lbl_1_rodata_8600",
+      "@44": "lbl_1_rodata_85F0"
+    }
   },
   {
     "module": "main_rel",
