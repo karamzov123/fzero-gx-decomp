@@ -667,6 +667,97 @@ s32 fn_1_152A28(s16 id, s16 y, s16 x, Cell *table, s16 nrows, s16 ncols) {
 }
 /* fzgx:end fn_1_152A28 */
 
+/* fzgx:begin fn_1_152CB4 */
+#define CELL_HIDDEN 0x80000000
+#define CELL_LOCKED 0x40000000
+
+typedef struct fn_1_152CB4_Cell {
+    s16 id;
+    u8 pad[2];
+    u32 flags;
+} fn_1_152CB4_Cell;
+
+static inline s32 fn_1_152CB4_get(s16 grp, s16 ent, fn_1_152CB4_Cell *table, s16 cols) {
+    if (lbl_1_bss_8B3A0.unk_94 & 0x20000) {
+        if (table[grp * cols + ent].flags & (CELL_HIDDEN | CELL_LOCKED))
+            return -1;
+    } else {
+        if (table[grp * cols + ent].flags & CELL_LOCKED)
+            return -1;
+    }
+    if (table[grp * cols + ent].id == -1)
+        return -1;
+    return table[grp * cols + ent].id;
+}
+
+static inline void fn_1_152CB4_find(s16 id, fn_1_152CB4_Cell *table, s16 rows, s16 cols, u32 mask, s16 *grp, s16 *ent) {
+    s16 i;
+    s16 j;
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            if ((table[i * cols + j].flags & mask) == 0 && id == table[i * cols + j].id) {
+                *grp = i;
+                *ent = j;
+                return;
+            }
+        }
+    }
+}
+
+s32 fn_1_152CB4(s32 id, s16 y, s16 x, fn_1_152CB4_Cell *table, s16 nrows, s16 ncols) {
+    s16 cols = ncols;
+    s16 ent;
+    s16 grp;
+    s16 prev;
+    s32 res;
+    s16 rows = nrows;
+    s16 total = (s16)(rows * cols);
+    s16 saved;
+
+    if (lbl_1_bss_8B3A0.unk_94 & 0x20000) {
+        if ((s16)id != -1) {
+            fn_1_152CB4_find((s16)id, table, rows, cols, (CELL_HIDDEN | CELL_LOCKED), &grp, &ent);
+        }
+    } else {
+        if ((s16)id != -1) {
+            fn_1_152CB4_find((s16)id, table, rows, cols, CELL_LOCKED, &grp, &ent);
+        }
+    }
+    saved = ent;
+    if (x != 0) {
+        do {
+            prev = ent;
+            ent = (s16)((ent + x + total) % cols);
+            if (x > 0 && prev > ent)
+                break;
+            if (x < 0 && prev < ent)
+                break;
+            res = fn_1_152CB4_get(grp, ent, table, cols);
+            if ((s16)res >= 0) {
+                id = res;
+                saved = ent;
+            }
+        } while ((s16)res < 0);
+        ent = saved;
+    }
+    if (y != 0) {
+        do {
+            prev = grp;
+            grp = (s16)((grp + y + total) % rows);
+            if (y > 0 && prev > grp)
+                break;
+            if (y < 0 && prev < grp)
+                break;
+            res = fn_1_152CB4_get(grp, ent, table, cols);
+            if ((s16)res >= 0) {
+                id = res;
+            }
+        } while ((s16)res < 0);
+    }
+    return id;
+}
+/* fzgx:end fn_1_152CB4 */
+
 /* fzgx:begin fn_1_153988 */
 // fn_1_153988: empty in retail (single blr).
 void fn_1_153988(void) {

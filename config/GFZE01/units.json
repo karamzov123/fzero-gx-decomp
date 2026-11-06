@@ -44232,9 +44232,9 @@
       "fn_1_152CB4"
     ],
     "status": "matching",
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "asm": true
+    "tu": "rel/main_rel/bg_aur.c"
   },
   {
     "module": "main_rel",
