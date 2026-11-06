@@ -816,3 +816,34 @@ Observed across 93 functions in PR #164 (`interview.c`, `cloth.c`, `sel.c`):
 - When retail instruction scheduling loads struct/vector members in one order (e.g., `x`, `z`, `y`) and stores them in another (e.g., `y` first, then `x` and `z`), normal C assignment statements reorder stores to match declaration order. Casting through `u32 *` arrays and ordering the explicit array element copies reproduces retail's exact interleaved load/store schedule without inline assembly.
 
 
+
+### Scalar induction coordinates, call-site `extsh`, and GX field order (`fn_3_1ADA4`, `fn_80072014`, 2026-11-06)
+
+- **A stepped coordinate argument is `base + i`, not a second counter.** Retail
+  `extsh r30, r5` straight into a callee-saved register, `addi r30, r30, 1` per iteration
+  and `extsh r5, r30` at the call is the strength-reduced shadow of
+  `for (i = 0; (s16)i < half; i++) f(..., top + i, ...)`. Writing `y = top; ... y++` instead
+  adds an `extsh r8, r5; mr r29, r8` copy and shifts the entry schedule; 4,000+ declaration,
+  statement-order, scope and pragma permutations of the two-counter body never closed the
+  residual (five rows, 34/39 words), and the natural spelling matched outright. This is the
+  scalar counterpart of the loop-pointer and dual-induction rules above: an unexplained
+  `mr rX, rT` right after a definition of a stepped local points to an induction shadow.
+- **Call-site extension follows the callee prototype, not the argument.** With an `s16`
+  parameter the caller re-extends a value it computed (`extsh r5, r30`, `extsh r8, r0`); an
+  `s32`/`int` parameter passes the register raw (`mr r4, r26`). Retail passing one value raw
+  and another extended to the same callee means the prototype mixes the two; give the block
+  its own `extern` with those types rather than adding casts.
+- **`s16` parameters versus `s32` with casts.** GC/1.3.2 trusts an `s16` parameter's
+  extension when forwarding it but re-extends it for arithmetic only sometimes; an `s32`
+  parameter read as `(s16)p` always gives `extsh` at the use. Retail `extsh rN, rP` before a
+  subtraction plus the same parameter forwarded raw is the `s32`-with-cast spelling.
+- **GX register fields: put the inserted value first.** Under GC/1.3.2,
+  `reg = (v << s) | (reg & ~M)` lowers as retail's `rlwinm rT, reg, 0, mask; rlwimi rT, v, s, ...`
+  for every field. `(reg & ~M) | (v << s)` lets the compiler fold the first field's mask
+  away when `reg` is a zero-extended byte load (`slwi; rlwimi 0,24,31`).
+- **Unsolved here, measured (`fn_80072014`, 72%):** a cached `GXSetFogColor`-style setter.
+  Bit operations, the `rlwinm r0; mr r10, r0` copies (`opt_lifetimes off`) and all first-block
+  registers reproduce, but retail schedules `lwz gx` after the cache store of the red byte
+  while every spelling tried (statement permutations, pointer views, integer-cast addresses,
+  `const gx`, FIFO object forms, scheduling pragmas, compiler versions) hoists it to the start
+  of the block.
