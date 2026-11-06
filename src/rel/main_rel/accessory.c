@@ -4166,6 +4166,522 @@ void fn_1_10DDE4(Rope *rope) {
 }
 /* fzgx:end fn_1_10DDE4 */
 
+/* fzgx:begin fn_1_10E3B4 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.1920928955078125e-07;
+    s = 0.009999999776482582f;
+}
+static const u32 fzgx_pool_table3[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1e-07;
+}
+static const u32 fzgx_pool_table5[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+    s = 0.25f;
+}
+static const u32 fzgx_pool_table7[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+    d = 0.0013611111376020642;
+    s = 0.0027222223579883575f;
+    s = -1.0f;
+    s = 0.0f;
+    s = -2.0f;
+    s = 2.0f;
+    s = 1.1920928955078125e-07f;
+    s = -1.0000001192092896f;
+}
+static const u32 fzgx_pool_table9[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep9(void) { const u32 *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = -0.0013611111789941788f;
+    s = -0.0027222223579883575f;
+    s = 9.999999747378752e-05f;
+    s = 1.0f;
+    s = 0.00039999998989515007f;
+    s = 0.02500000037252903f;
+    s = 0.004224999807775021f;
+    d = 0.0749999976158142;
+    d = 0.3;
+    s = -0.01899999938905239f;
+    s = 0.05700000002980232f;
+    s = 0.0009609999833628535f;
+}
+static const u32 fzgx_pool_table11[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep11(void) { const u32 *volatile cp; cp = fzgx_pool_table11; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime12(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.04099999949336052;
+    d = -1.0;
+    s = 0.75f;
+    s = -0.25f;
+}
+static const u32 fzgx_pool_table13[9] = {0xBF800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3E0D4FDF, 0x3B83126F, 0x3DED9168};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep13(void) { const u32 *volatile cp; cp = fzgx_pool_table13; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.06499999761581421f;
+    s = 0.06500999629497528f;
+}
+static const u32 fzgx_pool_table15[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep15(void) { const u32 *volatile cp; cp = fzgx_pool_table15; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime16(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 8.0;
+    s = 0.00390625f;
+}
+static const u32 fzgx_pool_table17[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep17(void) { const u32 *volatile cp; cp = fzgx_pool_table17; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.05;
+    d = 0.0027222223579883575;
+    d = 0.02;
+    d = 0.0001;
+}
+static const u32 fzgx_pool_table19[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep19(void) { const u32 *volatile cp; cp = fzgx_pool_table19; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime20(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.04899999871850014f;
+    s = 0.002500000176951289f;
+    s = 0.05000000074505806f;
+    s = -0.125f;
+}
+static const u32 fzgx_pool_table21[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep21(void) { const u32 *volatile cp; cp = fzgx_pool_table21; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime22(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.015;
+    s = -0.5f;
+}
+static const u32 fzgx_pool_table23[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep23(void) { const u32 *volatile cp; cp = fzgx_pool_table23; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime24(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.045;
+    s = 0.00022499999613501132f;
+}
+static const u32 fzgx_pool_table25[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep25(void) { const u32 *volatile cp; cp = fzgx_pool_table25; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime26(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.2;
+    d = 0.8;
+    d = 0.5;
+    s = 0.029999999329447746f;
+    s = 0.0010000000474974513f;
+    s = 0.11500000208616257f;
+    s = 0.02016400173306465f;
+    s = 0.1420000046491623f;
+    s = 0.017160998657345772f;
+    s = 0.13099999725818634f;
+    s = 0.07999999821186066f;
+    s = 0.02250000089406967f;
+    s = 0.15000000596046448f;
+    s = 0.20000000298023224f;
+    s = 0.04000000283122063f;
+    s = 0.027000000700354576f;
+    s = 0.016384001821279526f;
+    s = 0.12800000607967377f;
+    s = 0.14100000262260437f;
+    s = 0.016899999231100082f;
+    s = 0.12999999523162842f;
+    s = 0.050999999046325684f;
+    s = 0.014161000959575176f;
+    s = 0.11900000274181366f;
+    s = 0.18299999833106995f;
+    s = 0.013225000351667404f;
+    s = 0.2980000078678131f;
+    s = 0.800000011920929f;
+    s = 9.0f;
+    s = 0.0012000000569969416f;
+    s = 32767.0f;
+    s = 0.004800000227987766f;
+    s = 0.0006000000284984708f;
+    s = -32768.0f;
+    s = 65536.0f;
+    s = 39.0f;
+    s = 0.0020000000949949026f;
+    s = 29.0f;
+    s = -0.0010000000474974513f;
+    s = 0.550000011920929f;
+    s = 0.4000000059604645f;
+    s = 0.10000000149011612f;
+}
+static const u32 fzgx_pool_table27[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep27(void) { const u32 *volatile cp; cp = fzgx_pool_table27; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime28(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    s = 9.999999747378752e-06f;
+    s = 0.00279999990016222f;
+    s = 0.002300000051036477f;
+    s = 0.021904001012444496f;
+}
+#pragma section code_type ".text"
+
+typedef struct { f32 x, y, z; } Vec;
+typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+ u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
+};
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006DC20(void);
+extern void lbl_8006E1B0(Vec *, Vec *);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D0E8(f32);
+extern void fn_8006E250(Vec *, Vec *);
+extern f32 lbl_8006D668(void *);
+extern f32 lbl_8006D188(s32);
+typedef struct Node {
+ u8 flags, pad1, count, pad3;
+ u16 links[6];
+ Vec pos, prev, local, vel;
+ f32 weight;
+} Node;
+typedef struct { Node *a, *b; f32 length; } Link;
+typedef struct { u8 pad[8]; u8 *base; } Model;
+typedef struct { u8 pad[0x8c]; s32 kind; u8 pad90[0x148 - 0x90]; u8 unk148[8]; Model *model; } Owner;
+typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
+ struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
+ u32 pad14, count, linkCount, pad20; Node *nodes; Link *links; } Work;
+extern u8 lbl_1_data_3F510[];
+extern u32 lbl_801A63C0;
+extern u32 lbl_801A66A0;
+extern const char *fn_1_950E8(void *);
+extern int fn_80083BCC(const char *, const char *);
+extern void fn_1_108128(void *, s32);
+
+#pragma opt_propagation off
+static inline u32 *fn_1_10E3B4_indices(u8 *base) {
+ u32 *indices = (u32 *)(base + 0xaac);
+ return indices;
+}
+#define INDEX(i) (fn_1_10E3B4_indices(data)[i])
+
+static inline void fn_1_10E3B4_sphere(Work *arg0, u32 base, f32 cx, f32 cy, f32 cz, f32 radius, f32 strength) {
+ Vec center;
+ Vec diff;
+ u32 ki;
+ Node *kn;
+ center.x = cx; center.y = cy; center.z = cz;
+ lbl_8006DBAC(arg0->owner->model->base + base);
+ lbl_8006E1B0(&center, &center);
+ for (ki = 0, kn = arg0->nodes; ki < arg0->count; ki++, kn++) {
+  if (!(kn->flags & 1)) {
+   f32 x, y, z, r;
+   x = kn->pos.x; y = kn->pos.y; z = kn->pos.z;
+   x -= center.x; y -= center.y; z -= center.z;
+   r = (f32)(x * x) + y * y + z * z;
+   if (r < radius) {
+    psvec_sub_scale_add(&kn->pos, &center, strength * lbl_8006D0E8(r), &diff, &kn->pos);
+   }
+  }
+ }
+}
+static inline void fn_1_10E3B4_spherec(Work *arg0, u32 *count, u32 base, f32 cx, f32 cy, f32 cz, f32 radius, f32 strength) {
+ Vec center;
+ Vec diff;
+ u32 ki;
+ Node *kn;
+ center.x = cx; center.y = cy; center.z = cz;
+ lbl_8006DBAC(arg0->owner->model->base + base);
+ lbl_8006E1B0(&center, &center);
+ for (ki = 0, kn = arg0->nodes; ki < (*count = arg0->count); ki++, kn++) {
+  if (!(kn->flags & 1)) {
+   f32 x, y, z, r;
+   x = kn->pos.x; y = kn->pos.y; z = kn->pos.z;
+   x -= center.x; y -= center.y; z -= center.z;
+   r = (f32)(x * x) + y * y + z * z;
+   if (r < radius) {
+    psvec_sub_scale_add(&kn->pos, &center, strength * lbl_8006D0E8(r), &diff, &kn->pos);
+   }
+  }
+ }
+}
+static inline void fn_1_10E3B4_spherex(Work *arg0, u32 base, f32 cx, f32 cy, f32 cz, f32 radius, f32 strength) {
+ Vec center;
+ Vec diff;
+ u32 ki;
+ Node *kn;
+ center.y = cy; center.x = cx; center.z = cz;
+ lbl_8006DBAC(arg0->owner->model->base + base);
+ lbl_8006E1B0(&center, &center);
+ for (ki = 0, kn = arg0->nodes; ki < arg0->count; ki++, kn++) {
+  if (!(kn->flags & 1)) {
+   f32 x, y, z, r;
+   x = kn->pos.x; y = kn->pos.y; z = kn->pos.z;
+   x -= center.x; y -= center.y; z -= center.z;
+   r = (f32)(x * x) + y * y + z * z;
+   if (r < radius) {
+    psvec_sub_scale_add(&kn->pos, &center, strength * lbl_8006D0E8(r), &diff, &kn->pos);
+   }
+  }
+ }
+}
+static inline void fn_1_10E3B4_sphere4(Work *arg0, u32 count, u32 base, f32 cx, f32 cy, f32 cz, f32 radius, f32 strength) {
+ Vec center;
+ Vec diff;
+ u32 ki;
+ Node *kn;
+ center.y = cy; center.x = cx; center.z = cz;
+ lbl_8006DBAC(arg0->owner->model->base + base);
+ lbl_8006E1B0(&center, &center);
+ for (ki = count / 4, kn = arg0->nodes; ki < count; ki++, kn++) {
+  if (!(kn->flags & 1)) {
+   f32 x, y, z, r;
+   x = kn->pos.x; y = kn->pos.y; z = kn->pos.z;
+   x -= center.x; y -= center.y; z -= center.z;
+   r = (f32)(x * x) + y * y + z * z;
+   if (r < radius) {
+    psvec_sub_scale_add(&kn->pos, &center, strength * lbl_8006D0E8(r), &diff, &kn->pos);
+   }
+  }
+ }
+}
+#define LINKFIX { \
+ f32 inv; \
+ f32 r; \
+ f32 wa; \
+ inv = lbl_8006D118(len, &len); \
+ r = lbl_8006D0B4(l->length); \
+ len = inv * (len - r); \
+ psvec_scale(&delta, len, &delta); \
+ wa = a->weight; \
+ r = 1.0f / (wa + b->weight); \
+ psvec_scale_add(&a->pos, &delta, -wa * r, &a->pos); \
+ psvec_scale_add(&b->pos, &delta, b->weight * r, &b->pos); \
+}
+static inline void fn_1_10E3B4_fall(Node *n, f32 g) {
+ n->pos.y -= 0.5 * g;
+ n->vel.y -= g;
+}
+static inline f32 fn_1_10E3B4_randf(f32 scale) {
+ lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+ return scale * ((f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
+}
+static inline f32 fn_1_10E3B4_rand(void) {
+ lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+ return (f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f;
+}
+
+#pragma opt_common_subs off
+static inline void fn_1_10E3B4_loop0(Work *arg0) {
+ u32 i1;
+ Node *n1;
+ for (i1 = 0, n1 = arg0->nodes; i1 < arg0->count; i1++, n1++) {
+  lbl_8006DBE4();
+  lbl_8006E1B0(&n1->local, &n1->pos);
+ }
+}
+
+void fn_1_10E3B4(Work *arg0) {
+ u32 li;
+ f32 w1;
+ u32 i6;
+ s32 lim;
+ Vec delta;
+ Node *fn;
+ u32 vi;
+ Node *n3;
+ f32 c1a8;
+ f32 len;
+ u8 *model3;
+ Link *l;
+ f32 c68;
+ u32 fj;
+ u32 fi;
+ u32 count;
+ Node *vn;
+ s32 kmax;
+ u8 *fmodel;
+ Node *a;
+ Vec random;
+ Node *b;
+ u32 i3;
+ u32 i2;
+ s32 wi;
+ Vec d;
+ Node *n2;
+ f32 g;
+ Vec push;
+ Owner *owner;
+ u8 *data = lbl_1_data_3F510;
+ f32 w2;
+ Node *wn;
+ u16 *lp;
+ Vec target;
+ s32 n;
+ s32 k;
+ Node *n6;
+ if (arg0 && arg0->obj) {
+  fn_80077B14(arg0->obj);
+  n = (arg0->owner->kind == 2) ? 7 : 13;
+  if (arg0->flags & 2) {
+   arg0->flags &= ~2;
+   owner = arg0->owner;
+   lbl_8006DBAC(owner->model->base + INDEX(arg0->index) * 396 + 136);
+   lbl_8006DAEC();
+   fn_1_10E3B4_loop0(arg0);
+   lbl_8006DC20();
+  }
+  for (i2 = 0, n2 = arg0->nodes; i2 < arg0->count; i2++, n2++) {
+   if (!(n2->flags & 1)) {
+    n2->prev = n2->pos;
+    n2->pos.y -= 0.5 * (g = 0.0027222224f);
+    n2->vel.y -= 0.0027222224f;
+    if (n2->pos.y < 0.01f) {
+     n2->flags |= 4;
+     psvec_scale_add(&n2->pos, &n2->vel, 0.03f, &n2->pos);
+    } else {
+     n2->flags &= ~4;
+     psvec_add(&n2->pos, &n2->vel, &n2->pos);
+    }
+   }
+  }
+  owner = arg0->owner;
+  model3 = owner->model->base + INDEX(arg0->index) * 396;
+  for (i3 = 0, n3 = arg0->nodes; i3 < arg0->count; i3++, n3++) {
+   lbl_8006DBAC(model3 + 136);
+   lbl_8006DAEC();
+   if (n3->flags & 1) {
+    lbl_8006DBE4();
+    lbl_8006E1B0(&n3->local, &n3->pos);
+   }
+   lbl_8006DC20();
+  }
+  kmax = (arg0->owner->kind == 2) ? 2 : 4;
+  lim = (n - 1) * 2;
+  c68 = 0.0f;
+  c1a8 = 0.115f;
+  for (k = 0; k < kmax; k++) {
+   for (li = 0, l = arg0->links; li < arg0->linkCount; li++, l++) {
+    a = l->a; b = l->b;
+    if (a && b) {
+     f32 x, y, z;
+     psvec_sub(&a->pos, &b->pos, &delta);
+     x = delta.x; y = delta.y; z = delta.z;
+     len = (f32)(x * x) + y * y + z * z;
+     if (len - 0.0001f > l->length) LINKFIX
+     if (len + 0.001f < l->length && (s32)li < lim) LINKFIX
+     if ((y = a->pos.y) < 0.01f || b->pos.y < 0.01f) {
+      if (y < 0.01f) a->pos.y = 0.01f;
+      if (b->pos.y < 0.01f) b->pos.y = 0.01f;
+      psvec_sub(&a->pos, &b->pos, &delta);
+      x = delta.x * delta.x;
+      x += delta.y * delta.y;
+      x += delta.z * delta.z;
+      len = x;
+      LINKFIX
+     }
+    }
+   }
+   fn_1_10E3B4_sphere(arg0, 0x214, c1a8, c68, c68, 0.020164002f, 0.142f);
+   fn_1_10E3B4_spherec(arg0, &count, 0x1948, c68, c68, c68, 0.017160999f, 0.131f);
+   if (arg0->owner->kind == 2) {
+    fn_1_10E3B4_sphere4(arg0, count, 0x1c60, 0.08f, 0.0f, 0.0f, 0.0225f, 0.15f);
+    fn_1_10E3B4_sphere4(arg0, arg0->count, 0x241c, 0.08f, 0.0f, 0.0f, 0.0225f, 0.15f);
+    fn_1_10E3B4_sphere4(arg0, arg0->count, 0x1dec, 0.08f, 0.0f, 0.0f, 0.0225f, 0.15f);
+    fn_1_10E3B4_sphere4(arg0, arg0->count, 0x1dec, 0.2f, 0.0f, 0.0f, 0.040000003f, 0.2f);
+    fn_1_10E3B4_sphere4(arg0, arg0->count, 0x25a8, 0.08f, 0.0f, 0.0f, 0.0225f, 0.15f);
+    fn_1_10E3B4_sphere4(arg0, arg0->count, 0x25a8, 0.2f, 0.0f, 0.0f, 0.040000003f, 0.2f);
+   } else {
+    fn_1_10E3B4_spherex(arg0, 0x1c60, 0.027f, 0.0f, 0.0f, 0.016384002f, 0.128f);
+    fn_1_10E3B4_spherex(arg0, 0x1c60, 0.141f, 0.0f, 0.0f, 0.0169f, 0.13f);
+    fn_1_10E3B4_spherex(arg0, 0x241c, 0.027f, 0.0f, 0.0f, 0.016384002f, 0.128f);
+    fn_1_10E3B4_spherex(arg0, 0x241c, 0.141f, 0.0f, 0.0f, 0.0169f, 0.13f);
+    fn_1_10E3B4_spherex(arg0, 0x1dec, 0.051f, 0.0f, 0.0f, 0.014161001f, 0.119f);
+    fn_1_10E3B4_spherex(arg0, 0x1dec, 0.183f, 0.0f, 0.0f, 0.013225f, 0.115f);
+    fn_1_10E3B4_spherex(arg0, 0x1dec, 0.298f, 0.0f, 0.0f, 0.0225f, 0.15f);
+    fn_1_10E3B4_spherex(arg0, 0x25a8, 0.051f, 0.0f, 0.0f, 0.014161001f, 0.119f);
+    fn_1_10E3B4_spherex(arg0, 0x25a8, 0.183f, 0.0f, 0.0f, 0.013225f, 0.115f);
+    fn_1_10E3B4_spherex(arg0, 0x25a8, 0.298f, 0.0f, 0.0f, 0.0225f, 0.15f);
+   }
+  }
+  if (fn_80083BCC(fn_1_950E8(&arg0->owner->unk148), (const char *)(data + 0x102c)) == 0 ||
+      fn_80083BCC(fn_1_950E8(&arg0->owner->unk148), (const char *)(data + 0x1034)) == 0) {
+   for (wi = 0, wn = arg0->nodes; wi < arg0->count; wi++, wn++) {
+    if (wi >= 3) {
+     s32 m = (wi - 3) % n;
+     w2 = 0.2f + (0.8f * (f32)m) / 9.0f;
+     w1 = 0.2f + (0.8f * (f32)(n - m)) / 9.0f;
+    } else {
+     w1 = 0.0f;
+    }
+    wn->vel.x *= 0.8; wn->vel.y *= 0.8; wn->vel.z *= 0.8;
+    wn->vel.x += (f64)(0.2 * (wn->pos.x - wn->prev.x));
+    wn->vel.y += (f64)(0.2 * (wn->pos.y - wn->prev.y));
+    wn->vel.z += (f64)(0.2 * (wn->pos.z - wn->prev.z));
+    wn->vel.x -= (f32)(w1 * fn_1_10E3B4_randf(0.0012f));
+    wn->vel.y += (f32)(w1 * (fn_1_10E3B4_randf(0.0048f) - 0.001f));
+    wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((wi + lbl_801A66A0) % 39)) / 39.0f))));
+    wn->vel.z += (f32)(w2 * (0.0012f * fn_1_10E3B4_rand()));
+    wn->vel.y += (f32)(w2 * (0.002f * fn_1_10E3B4_rand()));
+    wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((wi + lbl_801A66A0) % 29)) / 29.0f))));
+   }
+  } else {
+   if (lbl_801A66A0 % 60 < 20) {
+    owner = arg0->owner;
+    lbl_8006DBAC(owner->model->base + INDEX(arg0->index) * 396 + 136);
+    lbl_8006DAEC();
+    for (i6 = 0, n6 = arg0->nodes; i6 < arg0->count; i6++, n6++) {
+     if (!(n6->flags & 4)) {
+      lbl_8006DBE4();
+      lbl_8006E1B0(&n6->local, &target);
+      psvec_sub(&n6->pos, &target, &push);
+      lbl_8006D668(&push);
+      psvec_scale_add(&n6->vel, &push, -0.001f, &n6->vel);
+     }
+    }
+    lbl_8006DC20();
+   }
+   for (vi = 0, vn = arg0->nodes; vi < arg0->count; vi++, vn++) {
+    fn_1_1286F4((Sig_fn_1_1286F4_Vec3f *)&random);
+    psvec_scale(&vn->vel, 0.55f, &vn->vel);
+    psvec_sub(&vn->pos, &vn->prev, &d);
+    psvec_scale_add(&vn->vel, &d, 0.4f, &vn->vel);
+    if (vn->flags & 4) {
+     psvec_scale_add(&vn->vel, &random, 0.1f, &vn->vel);
+    } else {
+     psvec_scale_add(&vn->vel, &random, 0.5f, &vn->vel);
+    }
+   }
+  }
+  fn_1_108128(arg0, n);
+  fmodel = (u8 *)fn_80077B14(arg0->obj);
+  owner = arg0->owner;
+  lbl_8006DBAC(owner->model->base + INDEX(arg0->index) * 396 + 136);
+  for (fi = 0, fn = arg0->nodes; fi < arg0->count; fi++, fn++) {
+   for (fj = 0, lp = (u16 *)fn; (s32)fj < fn->count; lp++, fj++) {
+    fn_8006E250(&fn->pos, (Vec *)(fmodel + (lp[2] << 6)));
+   }
+  }
+ }
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_10E3B4 */
+
 /* fzgx:begin fn_1_110008 noprologue */
 #include "types.h"
 #include "types.h"
