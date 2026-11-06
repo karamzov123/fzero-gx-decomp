@@ -3429,6 +3429,442 @@ s16 fn_5_2C54(u8 *arg0, s32 arg1, s32 arg2) {
 #pragma opt_propagation reset
 /* fzgx:end fn_5_2C54 */
 
+/* fzgx:begin fn_5_2E00 noprologue */
+#include "types.h"
+#include "font.h"
+#include "dolphin/gx.h"
+
+typedef struct FontParams {
+    u8 unk_00[0x30];
+    u32 unk_30;
+    f32 unk_34;
+    u8 unk_38[0x58 - 0x38];
+} FontParams;
+
+struct fn_5_2E00_Object;
+struct fn_5_2E00_VTable { u8 pad[0x20]; s32 (*getState)(struct fn_5_2E00_Object *); };
+struct fn_5_2E00_Object { struct fn_5_2E00_VTable *vtable; };
+struct fn_5_2E00_Color4 { u8 r, g, b, a; };
+struct fn_5_2E00_Color8 { s16 r, g, b, a; };
+struct fn_5_2E00_Entry { s16 kind; s16 index; s16 pad; };
+
+extern f32 fn_8006CD40(f32);
+extern int fn_1_4F734(FontDrawPacket *);
+extern s32 fn_1_A5DC4(void);
+extern const f32 lbl_5_rodata_0;
+
+#pragma force_active on
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+struct fn_5_2E00_Object *fzgx_obj_lbl_5_bss_0;
+u8 lbl_5_bss_0__fzgx_offset_4[0x10];
+s8 lbl_5_bss_0__fzgx_offset_14;
+u8 lbl_5_bss_0__fzgx_offset_15;
+u8 lbl_5_bss_0__fzgx_offset_16;
+u8 lbl_5_bss_0__fzgx_offset_17;
+u32 lbl_5_bss_0__fzgx_offset_18;
+u32 lbl_5_bss_0__fzgx_offset_1C;
+u32 lbl_5_bss_20[8];
+s8 lbl_5_bss_40;
+u8 lbl_5_bss_40__fzgx_offset_1;
+u16 lbl_5_bss_40__fzgx_offset_2;
+s32 lbl_5_bss_40__fzgx_offset_4;
+u8 lbl_5_bss_40__fzgx_offset_8;
+u8 lbl_5_bss_40__fzgx_offset_9;
+s16 lbl_5_bss_40__fzgx_offset_A;
+s16 lbl_5_bss_40__fzgx_offset_C;
+s16 lbl_5_bss_40__fzgx_offset_E;
+s16 lbl_5_bss_40__fzgx_offset_10;
+u16 lbl_5_bss_40__fzgx_offset_12;
+f32 lbl_5_bss_40__fzgx_offset_14;
+f32 lbl_5_bss_40__fzgx_offset_18;
+u8 lbl_5_bss_40__fzgx_offset_1C;
+u8 lbl_5_bss_5D;
+u8 fzgx_pool_lbl_5_bss_0_gap_5E;
+s8 lbl_5_bss_5F;
+u8 fzgx_pool_lbl_5_bss_0_gap_60;
+s8 lbl_5_bss_61;
+u16 lbl_5_bss_61__fzgx_offset_1;
+s16 lbl_5_bss_61__fzgx_offset_3;
+u8 lbl_5_bss_61__fzgx_offset_5;
+u8 lbl_5_bss_61__fzgx_offset_6;
+f32 lbl_5_bss_61__fzgx_offset_7;
+u8 lbl_5_bss_61__fzgx_offset_B[0x1C];
+u8 lbl_5_bss_61__fzgx_offset_27[0x20];
+u8 lbl_5_bss_61__fzgx_offset_47[0x20];
+u32 lbl_5_bss_61__fzgx_offset_67;
+u32 lbl_5_bss_61__fzgx_offset_6B;
+u8 lbl_5_bss_61__fzgx_offset_6F[0x4C];
+struct fn_5_2E00_Entry lbl_5_bss_61__fzgx_offset_BB[420];
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_5_bss_0;
+    s = *(u8 *)&lbl_5_bss_0__fzgx_offset_4;
+    s = *(u8 *)&lbl_5_bss_0__fzgx_offset_14;
+    s = *(u8 *)&lbl_5_bss_0__fzgx_offset_15;
+    s = *(u8 *)&lbl_5_bss_0__fzgx_offset_16;
+    s = *(u8 *)&lbl_5_bss_0__fzgx_offset_17;
+    s = *(u8 *)&lbl_5_bss_0__fzgx_offset_18;
+    s = *(u8 *)&lbl_5_bss_0__fzgx_offset_1C;
+    s = *(u8 *)&lbl_5_bss_20;
+    s = *(u8 *)&lbl_5_bss_40;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_1;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_2;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_4;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_8;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_9;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_A;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_C;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_E;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_10;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_12;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_14;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_18;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_1C;
+    s = *(u8 *)&lbl_5_bss_5D;
+    s = *(u8 *)&fzgx_pool_lbl_5_bss_0_gap_5E;
+    s = *(u8 *)&lbl_5_bss_5F;
+    s = *(u8 *)&fzgx_pool_lbl_5_bss_0_gap_60;
+    s = *(u8 *)&lbl_5_bss_61;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_1;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_3;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_5;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_6;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_7;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_B;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_27;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_47;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_67;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_6B;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_6F;
+    s = *(u8 *)&lbl_5_bss_61__fzgx_offset_BB;
+}
+
+static void fzgx_pool_primer_head(f32 *dst, s32 value) {
+    dst[0] = 0.0f;
+    dst[1] = 1.0f;
+    dst[2] = 0.1f;
+    dst[3] = 8.0f;
+    dst[4] = 0.5f;
+    dst[5] = value;
+}
+/* Packed colors belonging to the preceding movie drawing code. */
+static const union { u32 w[4]; const u32 v[4]; } fzgx_pool_init_fzgx_pool_table_20 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x80FF80FF, 0xFF0000FF, 0x80FF80FF, 0xFFFF80FF  /* fzgx-allow: A1 retail data bytes */
+}};
+static void fzgx_pool_primer_middle(f32 *dst) {
+    dst[0] = 12.0f;
+    dst[1] = 4.0f;
+    dst[2] = 80.0f;
+    dst[3] = 360.0f;
+    dst[4] = 0.6f;
+}
+static const union { u32 w[1]; const u32 v[1]; } fzgx_pool_init_fzgx_pool_table_44 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x0
+}};
+static void fzgx_pool_primer_tail(f32 *dst) {
+    dst[0] = 59.94f;
+    dst[1] = 0.75f;
+    dst[2] = 0.0166666675f;
+    dst[3] = 30000.0f;
+    dst[4] = 0.03125f;
+    dst[5] = 24.0f;
+    dst[6] = 320.0f;
+    dst[7] = 321.0f;
+    dst[8] = 500.0f;
+}
+#pragma section code_type ".text"
+#pragma force_active reset
+
+extern u32 fn_1_13ABA8(u32);
+extern u32 lbl_1_rodata_26F8;
+extern char lbl_5_data_176C[22];
+extern void fn_1_133DBC(void *);
+extern void fn_1_134AD4(void);
+extern void fn_1_1380F0(void *);
+extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
+extern void fn_1_52070(u32);
+extern void fn_1_52088(void);
+extern void fn_1_520A0(void);
+extern void fn_8006CD50(void);
+extern s32 fn_1_4E724(FontParams *);
+extern u8 fn_1_40ED4(void);
+extern s32 fn_1_4E92C(s32, u32, s16, s16, u32);
+extern void fn_1_520CC(void);
+extern void fn_80074660(u32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_80073678(u32);
+extern void fn_80073C6C(s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800735C8(s32, s32);
+extern void fn_80073620(s32, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_8003726C(u32, void *);
+extern void fn_800736C0(u32, void *);
+extern void fn_800729B0(s32, s32, s32, s32, s32);
+extern void fn_80074788(u32);
+extern void fn_80073898(u32);
+extern void fn_80074918(u8, s32, u8);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_80073778(void *, s32);
+extern void fn_800724C8(void);
+extern void fn_8007245C(u32);
+extern void fn_8007264C(u32, s32, s32, s32, u8);
+extern void fn_80072864(u32);
+extern void fn_8003462C(u32, u32, u32);
+extern void fn_80072808(void);
+
+#define TEMPLATE (*(FontDrawPacket *)&lbl_1_rodata_26F8)
+#define PACKET_F(p,o) (*(f32 *)((u8 *)&(p) + (o)))
+#define PACKET_C(p,o) (*(struct fn_5_2E00_Color4 *)((u8 *)&(p) + (o)))
+#define SCALE_X(p) PACKET_F(p, 0x10)
+#define SCALE_Y(p) PACKET_F(p, 0x14)
+#define COLOR(p) PACKET_C(p, 0x38)
+#define SHADOW(p) PACKET_C(p, 0x3C)
+
+#define MOV_W lbl_5_bss_40__fzgx_offset_A
+#define MOV_H lbl_5_bss_40__fzgx_offset_C
+#define MOV_X lbl_5_bss_40__fzgx_offset_E
+#define MOV_Y lbl_5_bss_40__fzgx_offset_10
+#define MOV_SX lbl_5_bss_40__fzgx_offset_14
+#define MOV_SY lbl_5_bss_40__fzgx_offset_18
+#define FADE lbl_5_bss_61__fzgx_offset_7
+#define FIFO_Z 0.00010000000474974513f
+
+/* (f32) casts around products keep MWCC from contracting them into fmadds */
+void fn_5_2E00(void) {
+    struct fn_5_2E00_Entry *entry;
+    f32 posY;
+    f32 screenW;
+    f32 screenH;
+    f32 savedAspect;
+    f32 alpha;
+    s32 x;
+    s32 y;
+    f32 right;
+    f32 left;
+    f32 top;
+    f32 bottom;
+    f32 width;
+    s16 h;
+    FontDrawPacket loc_128;
+    FontDrawPacket loc_D0;
+    FontDrawPacket loc_78;
+    FontDrawPacket loc_20;
+
+    entry = &lbl_5_bss_61__fzgx_offset_BB[lbl_5_bss_0__fzgx_offset_14];
+    if (lbl_5_bss_5F != 0) {
+        fn_1_134AD4();
+        fn_1_13ABA8(0x20000000);
+        fn_1_1380F0(lbl_5_data_176C);
+        loc_128 = TEMPLATE;
+        loc_128.image = 0x9301;
+        loc_128.x = 167.0f;
+        loc_128.y = 38.0f;
+        loc_128.z = 90.0f;
+        loc_128.flags = 10;
+        fn_1_4F734(&loc_128);
+        fn_1_133DBC(NULL);
+    }
+    if (lbl_5_bss_61 != 0) {
+        fn_1_52070(16);
+        loc_D0 = TEMPLATE;
+        loc_D0.image = 256;
+        loc_D0.x = 16.0f;
+        loc_D0.y = 464.0f;
+        loc_D0.z = 0.01f;
+        loc_D0.flags = 13;
+        loc_D0.alpha = FADE;
+        fn_1_51678(&loc_D0, 256, 0, 0, 250, 34);
+        fn_1_4F734(&loc_D0);
+        fn_1_52088();
+        fn_1_52070(624);
+        loc_D0 = TEMPLATE;
+        loc_D0.image = 257;
+        loc_D0.x = 616.0f;
+        loc_D0.y = 424.0f;
+        loc_D0.z = 2.0f;
+        loc_D0.flags = 7;
+        loc_D0.alpha = FADE;
+        fn_1_4F734(&loc_D0);
+        loc_D0.image = 259;
+        loc_D0.alpha = 0.75f * FADE;
+        loc_D0.z = 3.0f;
+        fn_1_4F734(&loc_D0);
+        fn_1_52088();
+    }
+    if ((s8)fn_1_A5DC4() != 0) {
+        screenW = 640.0f;
+        screenH = 360.0f;
+    } else {
+        screenW = 640.0f;
+        screenH = 480.0f;
+    }
+    savedAspect = fn_8006CD40(screenH);
+    fn_8006CD50();
+    switch (entry->kind) {
+    case 3:
+    case 4:
+        fn_1_520A0();
+        fn_1_52088();
+        x = (f32)MOV_X + (f32)((screenW - (f32)(s16)((f32)MOV_W * MOV_SX)) / 2.0f);
+        h = MOV_H;
+        y = (f32)MOV_Y + (f32)((screenH - (f32)(s16)((f32)h * MOV_SX)) / 2.0f);
+        loc_78 = TEMPLATE;
+        width = (f32)((f32)MOV_W * MOV_SX) / 8.0f;
+        PACKET_F(loc_78, 0x4) = (f32)(s16)x;
+        posY = (480.0f * (f32)(s16)y) / screenH;
+        loc_78.z += 0.1f;
+        loc_78.image = 18;
+        SCALE_X(loc_78) *= width;
+        SCALE_Y(loc_78) *= ((480.0f * (f32)((f32)h * MOV_SY)) / screenH) / 8.0f;
+        COLOR(loc_78) = (struct fn_5_2E00_Color4){0, 0, 0, 255};
+        loc_78.y = posY;
+        fn_1_4E724((FontParams *)&loc_78);
+        if (entry->kind == 3) {
+            loc_78 = TEMPLATE;
+            loc_78.y = posY;
+            loc_78.x = (f32)(s16)x;
+            SCALE_X(loc_78) *= (f32)((f32)MOV_W * MOV_SX) / 320.0f;
+            SCALE_Y(loc_78) *= ((480.0f * (f32)((f32)MOV_H * MOV_SY)) / screenH) / 240.0f;
+            loc_78.image = entry->index + 0x8701;
+            fn_1_4E724((FontParams *)&loc_78);
+        } else if (entry->kind == 4) {
+            if (entry->index < fn_1_40ED4()) {
+                loc_78 = TEMPLATE;
+                loc_78.y = posY;
+                loc_78.x = (f32)(s16)x;
+                SCALE_X(loc_78) *= (f32)((f32)MOV_W * MOV_SX) / 320.0f;
+                SCALE_Y(loc_78) *= ((480.0f * (f32)((f32)MOV_H * MOV_SY)) / screenH) / 224.0f;
+                SHADOW(loc_78).r = 160;
+                SHADOW(loc_78).g = 128;
+                SHADOW(loc_78).b = 80;
+                COLOR(loc_78).r = 160;
+                COLOR(loc_78).g = 160;
+                COLOR(loc_78).b = 160;
+                fn_1_4E92C((s32)&loc_78, 1, 320, 224, lbl_5_bss_61__fzgx_offset_6B);
+            }
+        }
+        fn_1_520CC();
+        break;
+    case 2:
+        if (fzgx_obj_lbl_5_bss_0->vtable->getState(fzgx_obj_lbl_5_bss_0) == 2) {
+            fn_80074660(2);
+            fn_800745A4(0, 1, 4, 60, 0, 125);
+            fn_800745A4(1, 1, 4, 60, 0, 125);
+            fn_80073678(4);
+            fn_80073C6C(0);
+            fn_80073C6C(1);
+            fn_80073C6C(2);
+            fn_80073C6C(3);
+            fn_800734A8(0, 0, 1, 255);
+            fn_80072C24(0, 15, 8, 14, 2);
+            fn_80072D64(0, 0, 0, 0, 0, 0);
+            fn_80072CC4(0, 7, 4, 6, 1);
+            fn_80072E20(0, 1, 0, 0, 0, 0);
+            fn_800735C8(0, 12);
+            fn_80073620(0, 28);
+            fn_80072AB0(0, 0, 1);
+            fn_800734A8(1, 1, 0, 255);
+            fn_80072C24(1, 15, 8, 14, 0);
+            fn_80072D64(1, 0, 0, 1, 0, 0);
+            fn_80072CC4(1, 7, 4, 6, 0);
+            fn_80072E20(1, 0, 0, 1, 0, 0);
+            fn_800735C8(1, 13);
+            fn_80073620(1, 29);
+            fn_80072AB0(1, 0, 0);
+            fn_800734A8(2, 0, 1, 255);
+            fn_80072C24(2, 15, 8, 14, 0);
+            fn_80072D64(2, 0, 0, 0, 1, 0);
+            fn_80072CC4(2, 7, 4, 6, 0);
+            fn_80072E20(2, 1, 0, 0, 1, 0);
+            fn_800735C8(2, 14);
+            fn_80073620(2, 30);
+            fn_80072AB0(2, 0, 2);
+            fn_800734A8(3, 255, 255, 255);
+            fn_80072C24(3, 0, 1, 14, 15);
+            fn_80072D64(3, 0, 0, 0, 1, 0);
+            fn_80072CC4(3, 7, 7, 7, 7);
+            fn_80072E20(3, 0, 0, 0, 1, 0);
+            fn_80072AB0(3, 0, 0);
+            fn_800735C8(3, 15);
+            { struct fn_5_2E00_Color8 color_18 = {-111, 0, -138, 68};
+              fn_8003726C(1, &color_18); }
+            { struct fn_5_2E00_Color4 color_14 = {102, 0, 255, 50};
+              fn_800736C0(0, &color_14); }
+            { struct fn_5_2E00_Color4 color_10 = {148, 0, 148, 148};
+              fn_800736C0(1, &color_10); }
+            { struct fn_5_2E00_Color4 color_C = {203, 0, 5, 207};
+              fn_800736C0(2, &color_C); }
+            { struct fn_5_2E00_Color4 color_8 = {0, 255, 0, 0};
+              fn_800736C0(3, &color_8); }
+            fn_800729B0(0, 0, 1, 2, 3);
+            fn_800729B0(1, 0, 3, 3, 3);
+            fn_800729B0(2, 0, 0, 3, 0);
+            fn_80074788(0);
+            fn_80073898(0);
+            fn_80074918(1, 7, 0);
+            fn_800728A8(1, 1, 0, 0);
+            fn_80073778(lbl_5_bss_61__fzgx_offset_27, 0);
+            fn_80073778(lbl_5_bss_61__fzgx_offset_47, 1);
+            fn_800724C8();
+            fn_8007245C(0x2200);
+            fn_8007264C(0, 9, 1, 4, 0);
+            fn_8007264C(0, 13, 1, 3, 0);
+            fn_80072864(2);
+            fn_8003462C(128, 0, 4);
+            h = MOV_H;
+            left = (f32)MOV_X + (f32)((screenW - (f32)((f32)MOV_W * MOV_SX)) / 2.0f);
+            top = (f32)MOV_Y + (f32)((screenH - (f32)((f32)h * MOV_SX)) / 2.0f);
+            right = left + (f32)((f32)MOV_W * MOV_SX);
+            GXWGFifo.f32 = right;
+            GXWGFifo.f32 = top;
+            GXWGFifo.f32 = FIFO_Z;
+            GXWGFifo.u16 = 1;
+            GXWGFifo.u16 = 0;
+            GXWGFifo.f32 = right;
+            bottom = top + (f32)((f32)h * MOV_SY);
+            GXWGFifo.f32 = bottom;
+            GXWGFifo.f32 = FIFO_Z;
+            GXWGFifo.u16 = 1;
+            GXWGFifo.u16 = 1;
+            GXWGFifo.f32 = left;
+            GXWGFifo.f32 = bottom;
+            GXWGFifo.f32 = FIFO_Z;
+            GXWGFifo.u16 = 0;
+            GXWGFifo.u16 = 1;
+            GXWGFifo.f32 = left;
+            GXWGFifo.f32 = top;
+            GXWGFifo.f32 = FIFO_Z;
+            GXWGFifo.u16 = 0;
+            GXWGFifo.u16 = 0;
+            fn_80072808();
+        }
+        break;
+    }
+    fn_1_520A0();
+    fn_1_52088();
+    loc_20 = TEMPLATE;
+    loc_20.x = (f32)(s16)((f32)MOV_X + (f32)((screenW - (f32)(s16)((f32)MOV_W * MOV_SX)) / 2.0f));
+    loc_20.y = (480.0f * (f32)(s16)((f32)MOV_Y + (f32)((screenH - (f32)(s16)((f32)MOV_H * MOV_SX)) / 2.0f))) / screenH;
+    loc_20.z = 0.10001f;
+    SCALE_X(loc_20) = (f32)((f32)MOV_W * MOV_SX) / 8.0f;
+    SCALE_Y(loc_20) = ((480.0f * (f32)((f32)MOV_H * MOV_SY)) / screenH) / 8.0f;
+    loc_20.flags = 5;
+    loc_20.image = 18;
+    COLOR(loc_20) = (struct fn_5_2E00_Color4){0, 0, 0, 0};
+    loc_20.alpha = 1.0f - FADE;
+    fn_1_4E724((FontParams *)&loc_20);
+    fn_1_520CC();
+    fn_8006CD40(savedAspect);
+}
+/* fzgx:end fn_5_2E00 */
+
 /* fzgx:begin fn_5_3BF8 */
 typedef u32 (*fn_5_3BF8_Fn0)(u32);
 struct fn_5_3BF8_lbl_5_bss_0 {
