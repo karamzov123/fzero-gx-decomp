@@ -45669,9 +45669,35 @@
       "fn_1_106EB0"
     ],
     "status": "matching",
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "asm": true
+    "tu": "rel/main_rel/bg_common.c",
+    "pool": {
+      "...data.0": "lbl_1_data_3F428",
+      "@57": "lbl_1_data_3F428+0x4",
+      "@58": "lbl_1_data_3F428+0x10",
+      "@74": "lbl_1_rodata_7A48",
+      "@59": "lbl_1_rodata_7A50",
+      "@60": "lbl_1_data_3F428+0x30",
+      "@61": "lbl_1_data_3F428+0x44",
+      "@62": "lbl_1_data_3F428+0x58",
+      "@63": "lbl_1_data_3F428+0x6C",
+      "@64": "lbl_1_data_3F428+0x74",
+      "@65": "lbl_1_data_3F428+0x7C",
+      "@66": "lbl_1_rodata_7A58",
+      "@67": "lbl_1_data_3F428+0x8C",
+      "@68": "lbl_1_data_3F428+0x90",
+      "@69": "lbl_1_data_3F428+0xA4",
+      "@70": "lbl_1_data_3F428+0xB8",
+      "@71": "lbl_1_data_3F428+0xCC",
+      "@72": "lbl_1_data_3F428+0xD4",
+      "...bss.0": "lbl_1_bss_86EC0",
+      "fzgx_obj_lbl_1_bss_86EC0": "lbl_1_bss_86EC0",
+      "fzgx_obj_lbl_1_bss_86EC4": "lbl_1_bss_86EC4",
+      "fzgx_obj_lbl_1_bss_86EC7": "lbl_1_bss_86EC7",
+      "fzgx_obj_lbl_1_bss_86ECC": "lbl_1_bss_86ECC",
+      "fzgx_obj_lbl_1_data_3F428": "lbl_1_data_3F428"
+    }
   },
   {
     "module": "main_rel",

@@ -2226,6 +2226,122 @@ void fn_1_106EA4(f32 arg0) {
 }
 /* fzgx:end fn_1_106EA4 */
 
+/* fzgx:begin fn_1_106EB0 */
+#include "fpscr.h"
+
+typedef struct fn_1_106EB0_Line {
+    u8 pad_0[0x3C];
+    f32 scl_x;
+    f32 scl_y;
+    u8 pad_44[0x28];
+    f32 hcylin;
+    u8 pad_70[0xC];
+    u32 flags;
+    u8 pad_80[0x80];
+    f32 unk_100;
+    u8 pad_104[0x4];
+    f32 rel_xpos;
+} fn_1_106EB0_Line;
+
+typedef struct fn_1_106EB0_Obj {
+    u32 flags;
+    u8 pad_4[0x498];
+    fn_1_106EB0_Line *line;
+} fn_1_106EB0_Obj;
+
+extern f32 lbl_1_bss_7AC9C;
+extern void OSPanic(const char *, int, const char *, ...);
+extern u8 *fn_1_C6F70(void);
+extern f32 fn_1_20258(fn_1_106EB0_Line *, f32 *);
+extern void fn_1_A8EB0(s32, s32);
+extern void fn_1_A8DD4(const char *, ...);
+extern void fn_1_A8E78(const char *);
+
+s16 fzgx_obj_lbl_1_data_3F428 = -1;
+
+u8 *fzgx_obj_lbl_1_bss_86EC0;
+u8 fzgx_obj_lbl_1_bss_86EC4;
+u8 fzgx_pad_86EC5;
+u8 fzgx_pad_86EC6;
+u8 fzgx_obj_lbl_1_bss_86EC7;
+f32 fzgx_pad_86EC8;
+s16 fzgx_obj_lbl_1_bss_86ECC;
+u8 fzgx_pad_86ECE;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_86EC0;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_86EC4;
+    s = *(u8 *)&fzgx_pad_86EC5;
+    s = *(u8 *)&fzgx_pad_86EC6;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_86EC7;
+    s = *(u8 *)&fzgx_pad_86EC8;
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_86ECC;
+    s = *(u8 *)&fzgx_pad_86ECE;
+}
+#pragma section code_type ".text"
+
+static inline void fn_1_106EB0_init(fn_1_106EB0_Obj *obj) {
+    fn_1_106EB0_Line *first;
+
+    first = obj->line;
+    if (fzgx_obj_lbl_1_bss_86EC0 != NULL) {
+        OSPanic("get_line.c", 0x3b, "get_line.c: il is already used.");
+    }
+    fzgx_obj_lbl_1_bss_86EC0 = fn_1_C6F70();
+    fzgx_pad_86EC5 = 0;
+    fzgx_pad_86EC6 = 0;
+    fzgx_obj_lbl_1_bss_86EC7 = 0;
+    fzgx_pad_86EC8 = fpscr_floor(first->unk_100 * lbl_1_bss_7AC9C);
+    fzgx_obj_lbl_1_bss_86ECC = 0;
+    fzgx_obj_lbl_1_data_3F428 = -1;
+    fzgx_obj_lbl_1_bss_86EC4 = 1;
+}
+
+void fn_1_106EB0(fn_1_106EB0_Obj *obj) {
+    f32 pos;
+    f32 scale;
+    s8 val;
+    fn_1_106EB0_Line *line;
+    f32 width;
+
+
+    if (!fzgx_obj_lbl_1_bss_86EC4) {
+        fn_1_106EB0_init(obj);
+    }
+    if (obj->flags & 0x04000000) {
+        return;
+    }
+    line = obj->line;
+    width = fn_1_20258(line, &scale);
+    val = (f32)fpscr_floor(256.0 * (line->rel_xpos / width));
+    fn_1_A8EB0(1, 0x1e);
+    fn_1_A8DD4("rel_xpos: %6.2f\n", line->rel_xpos);
+    fn_1_A8DD4("   scale: %6.2f\n", scale);
+    fn_1_A8DD4("   width: %6.2f\n", width);
+    fn_1_A8DD4("    OUT?: %s\n", (line->flags & 1) ? "TRUE " : "FALSE");
+    if ((line->flags & 0x02200000) || 0.0f == scale) {
+        fn_1_A8E78("\n\n");
+    } else if (line->flags & 0x01800000) {
+        fn_1_A8DD4("  hcylin: %6.2f\n\n", line->hcylin);
+    } else if (line->flags & 0x00400000) {
+        fn_1_A8DD4("   scl_x: %6.2f\n", line->scl_x);
+        fn_1_A8DD4("   scl_y: %6.2f\n", line->scl_y);
+    } else {
+        OSPanic("get_line.c", 0x6f, "???\n");
+    }
+    fn_1_A8DD4("     val: %4d\n", val);
+    pos = fpscr_floor(line->unk_100 * lbl_1_bss_7AC9C);
+    if (pos != fzgx_pad_86EC8) {
+        fzgx_pad_86EC8 = pos;
+        fzgx_obj_lbl_1_bss_86ECC = pos;
+        fzgx_obj_lbl_1_bss_86EC0[(u16)fzgx_obj_lbl_1_bss_86ECC + (fzgx_obj_lbl_1_bss_86EC7 << 9)] = val;
+        fzgx_pad_86ECE = val;
+    }
+}
+/* fzgx:end fn_1_106EB0 */
+
 /* fzgx:begin fn_1_1071C0 */
 void fn_1_1071C0(void) {
     if (lbl_1_bss_86EC4 != 0) {
