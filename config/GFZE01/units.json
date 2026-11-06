@@ -34304,9 +34304,19 @@
       "fn_80067DE4"
     ],
     "status": "matching",
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "asm": true
+    "pool": {
+      "...bss.0": "lbl_801932A8",
+      "fzgx_obj_lbl_801932A8": "lbl_801932A8",
+      "fzgx_obj_lbl_80193308": "lbl_80193308",
+      "fzgx_obj_lbl_80193368": "lbl_80193368",
+      "fzgx_obj_lbl_80193404": "lbl_80193404",
+      "fzgx_obj_lbl_801934A0": "lbl_801934A0",
+      "fzgx_obj_lbl_80193680": "lbl_80193680",
+      "fzgx_obj_lbl_80193860": "lbl_80193860",
+      "fzgx_obj_lbl_801939B4": "lbl_801939B4"
+    }
   },
   {
     "module": "main",
