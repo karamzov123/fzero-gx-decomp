@@ -7235,3 +7235,6 @@ dol/fn_800643F4.c:
 
 dol/fn_80075240.c:
 	.text       start:0x80075240 end:0x800756B0 align:4
+
+dol/gTRKInterruptVectorTable.c:
+	.init       start:0x800035E4 end:0x80005518 align:4
