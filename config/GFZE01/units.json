@@ -33323,9 +33323,8 @@
       "fn_8005A59C"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": []
   },
   {
     "module": "main",
