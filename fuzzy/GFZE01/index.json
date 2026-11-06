@@ -852,7 +852,7 @@
  {
   "symbol": "fn_1_115BE8",
   "module": "main_rel",
-  "percent": 92.15,
+  "percent": 99.29,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
@@ -3296,7 +3296,7 @@
  {
   "symbol": "fn_8000659C",
   "module": "main",
-  "percent": 93.58,
+  "percent": 96.3,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
