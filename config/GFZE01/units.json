@@ -36375,9 +36375,8 @@
       "fn_800736C0"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "mw_version": "GC/2.5",
+    "extra_cflags": []
   },
   {
     "module": "main",
