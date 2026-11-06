@@ -4726,6 +4726,119 @@ void *fn_1_7A67C(EffectTable *table) {
 }
 /* fzgx:end fn_1_7A67C */
 
+/* fzgx:begin fn_1_7A6B4 */
+#include "fpscr.h"
+
+typedef struct fn_1_7A6B4_Curve {
+    void *keys;
+    u32 count;
+} fn_1_7A6B4_Curve;
+
+typedef struct fn_1_7A6B4_Anim {
+    fn_1_7A6B4_Curve rot[3];
+    fn_1_7A6B4_Curve pos[3];
+} fn_1_7A6B4_Anim;
+
+typedef struct fn_1_7A6B4_Source {
+    f32 unk_0;
+    f32 unk_4;
+    f32 unk_8;
+    s16 rot_x;
+    s16 rot_y;
+    s16 rot_z;
+    u16 flags;
+    fn_1_7A6B4_Anim *anim;
+    f32 base_x;
+    f32 base_y;
+    f32 base_z;
+    u8 pad_24[0xE4];
+    f32 start;
+    f32 end;
+    u8 pad_110[0x3A0];
+} fn_1_7A6B4_Source;
+
+extern const f32 lbl_1_rodata_332C;
+extern const f32 lbl_1_rodata_3330;
+extern f32 fn_1_9E14C(void *, u32, f32);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006E0C8(void *);
+extern void lbl_8006DB74(void *);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_z(s16);
+
+void fn_1_7A6B4(void) {
+    Obj_1_bss_3BE0_Target **manager;
+    Obj_1_bss_3BE4 *dst;
+    fn_1_7A6B4_Source *src;
+    s32 i;
+    fn_1_7A6B4_Anim *anim;
+    f32 t;
+    f32 len;
+
+
+    manager = &lbl_1_bss_3BE0;
+    dst = (Obj_1_bss_3BE4 *)lbl_1_bss_3BE4.unk_0;
+    i = 0;
+    src = (fn_1_7A6B4_Source *)(*manager)->unk_1C;
+    while (i < (s32)(*manager)->unk_18) {
+        anim = src->anim;
+        if (anim != 0) {
+            t = lbl_1_data_1DFA4.unk_0;
+            if (!(src->flags & 1)) {
+                len = src->end - src->start;
+                t -= (f32)(len * (f32)fpscr_floor(t / len));
+                t += src->start;
+            }
+            t /= lbl_1_rodata_332C;
+            if (anim->rot[0].count != 0) {
+                dst->unk_26 = dst->unk_20;
+                dst->unk_20 = lbl_1_rodata_3330 * fn_1_9E14C(anim->rot[0].keys, anim->rot[0].count, t);
+            }
+            if (anim->rot[1].count != 0) {
+                dst->unk_28 = dst->unk_22;
+                dst->unk_22 = lbl_1_rodata_3330 * fn_1_9E14C(anim->rot[1].keys, anim->rot[1].count, t);
+            }
+            if (anim->rot[2].count != 0) {
+                dst->unk_2A = dst->unk_24;
+                dst->unk_24 = lbl_1_rodata_3330 * fn_1_9E14C(anim->rot[2].keys, anim->rot[2].count, t);
+            }
+            if (anim->pos[0].count != 0) {
+                dst->unk_14 = dst->unk_8 - src->base_x;
+                dst->unk_8 = fn_1_9E14C(anim->pos[0].keys, anim->pos[0].count, t);
+            }
+            if (anim->pos[1].count != 0) {
+                dst->unk_18 = dst->unk_C - src->base_y;
+                dst->unk_C = fn_1_9E14C(anim->pos[1].keys, anim->pos[1].count, t);
+            }
+            if (anim->pos[2].count != 0) {
+                dst->unk_1C = dst->unk_10 - src->base_z;
+                dst->unk_10 = fn_1_9E14C(anim->pos[2].keys, anim->pos[2].count, t);
+            }
+            lbl_8006D7DC(&dst->unk_8);
+            mathutil_mtxA_rotate_z(dst->unk_24);
+            mathutil_mtxA_rotate_y(dst->unk_22);
+            mathutil_mtxA_rotate_x(dst->unk_20 - src->rot_x);
+            mathutil_mtxA_rotate_y(-src->rot_y);
+            mathutil_mtxA_rotate_z(-src->rot_z);
+            lbl_8006E0C8(src);
+            lbl_8006DB74((u8 *)dst + 0x2c);
+            lbl_8006D7DC(&dst->unk_14);
+            mathutil_mtxA_rotate_z(dst->unk_2A);
+            mathutil_mtxA_rotate_y(dst->unk_28);
+            mathutil_mtxA_rotate_x(dst->unk_26 - src->rot_x);
+            mathutil_mtxA_rotate_y(-src->rot_y);
+            mathutil_mtxA_rotate_z(-src->rot_z);
+            lbl_8006E0C8(src);
+            lbl_8006DB74((u8 *)dst + 0x5c);
+        }
+        i++;
+        dst++;
+        src++;
+    }
+}
+/* fzgx:end fn_1_7A6B4 */
+
 /* fzgx:begin fn_1_7A9B8 */
 typedef struct {
     u8 pad_0[0xf4];
