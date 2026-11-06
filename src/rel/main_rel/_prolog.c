@@ -1297,6 +1297,59 @@ u32 fn_1_1DF0(u16 *state, s8 *values, u32 flags) {
 }
 /* fzgx:end fn_1_1DF0 */
 
+/* fzgx:begin fn_1_1FE8 */
+#include "dolphin/types.h"
+#include "dolphin/hw_regs.h"
+
+#ifndef GAME_MAIN_REL__PROLOG_TYPES_H
+#define GAME_MAIN_REL__PROLOG_TYPES_H
+
+#endif  // GAME_MAIN_REL__PROLOG_TYPES_H
+
+extern u8 lbl_1_rodata_C4[60];
+
+struct fn_1_1FE8_Arg1 {
+    s8 unk_0; s8 unk_1; s8 unk_2; s8 unk_3;
+    u8 unk_4; u8 unk_5; u8 unk_6; u8 unk_7;
+};
+static inline s32 absval(s32 x) { return __abs(x); }
+s8 fn_1_1FE8(u16 *arg0, struct fn_1_1FE8_Arg1 *arg1, u32 arg2, s8 arg3) {
+    u32 v1 = (u16)arg2;
+    s8 v5 = 0;
+    u8 *v7;
+    u16 v2;
+    u32 v6;
+    u32 v3;
+    s32 v0;
+    if ((arg2 >> 15) & 1) return 0;
+    v6 = v1 & 15;
+    if (v6) {
+        v2 = *arg0;
+        v3 = __cntlzw(v6);
+        while (v6 != 0) {
+            v7 = &lbl_1_rodata_C4[(31-v3)*2];
+            if (__rlwnm(v2, (v7[0]+1)&31, 31, 31)) v5 -= 25;
+            if (__rlwnm(v2, (v7[1]+1)&31, 31, 31)) v5 += 25;
+            v6 &= ~(0x80000000U >> v3);
+            v3 = __cntlzw(v6);
+        }
+    }
+    if (v5 != 0) {
+        v0 = arg3 + v5;
+        v5 = (v0 < -100) ? -100 : ((v0 > 100) ? 100 : v0);
+    }
+    v1 = arg2 & 0x3f0;
+    if (!v1) return v5;
+    if ((v1 >> 4) & 1) { if (v5 < __abs((s8)arg1->unk_0)) v5 = arg1->unk_0; }
+    if ((v1 >> 5) & 1) { if (v5 < __abs((s8)arg1->unk_1)) v5 = arg1->unk_1; }
+    if ((v1 >> 6) & 1) { if (v5 < __abs((s8)arg1->unk_2)) v5 = arg1->unk_2; }
+    if ((v1 >> 7) & 1) { if (v5 < __abs((s8)arg1->unk_3)) v5 = arg1->unk_3; }
+    if ((v1 >> 8) & 1) { if (v5 < __abs(arg1->unk_5 - arg1->unk_4)) v5 = arg1->unk_5 - arg1->unk_4; }
+    if ((v1 >> 9) & 1) { s32 v27 = arg1->unk_6 - arg1->unk_7; if (v5 < __abs(v27)) v5 = v27; }
+    return v5;
+}
+/* fzgx:end fn_1_1FE8 */
+
 /* fzgx:begin fn_1_2F04 noprologue */
 typedef signed char s8;
 
