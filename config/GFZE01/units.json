@@ -105988,17 +105988,7 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/screen_effect.c",
-    "pool": {
-      "...data.0": "lbl_1_data_1D960",
-      "lbl_1_data_1D960": "lbl_1_data_1D960",
-      "lbl_1_data_1D9B8": "lbl_1_data_1D9B8",
-      "lbl_1_data_1DAC0": "lbl_1_data_1DAC0",
-      "jumptable_1_data_1DB04": "jumptable_1_data_1DB04",
-      "lbl_1_data_1DB9C": "lbl_1_data_1DB9C",
-      "jumptable_1_data_1DBC0": "jumptable_1_data_1DBC0",
-      "lbl_1_data_1DC54": "lbl_1_data_1DC54"
-    }
+    "tu": "rel/main_rel/screen_effect.c"
   },
   {
     "module": "main_rel",
@@ -108309,7 +108299,7 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "asm": true
+    "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
     "module": "main_rel",
