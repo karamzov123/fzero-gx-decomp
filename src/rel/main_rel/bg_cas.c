@@ -2515,6 +2515,74 @@ void fn_1_FDD7C(BgCasRacer **arg0, BgCasScene *scene) {
 }
 /* fzgx:end fn_1_FDD7C */
 
+/* fzgx:begin fn_1_FDEC8 */
+extern f32 lbl_1_rodata_7614[2];
+extern f32 lbl_1_rodata_761C[13];
+extern int fn_1_FCF50(void);
+extern void *fn_1_563B8(void *);
+extern void fn_1_566EC(s32, s32);
+extern void fn_1_7EB8C(void *, f32);
+extern void fn_1_7F20C(void *, s32, f32);
+extern void fn_1_7F1E8(void *, s32, f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DBAC(void *);
+extern void fn_80072558(void);
+
+typedef struct {
+    u8 pad_0[0x32C];
+    u8 *unk_32C;
+    u8 pad_330[0x60];
+    u32 unk_390;
+    u8 pad_394[0x26];
+    s16 unk_3BA;
+} fn_1_FDEC8_Racer;
+
+typedef struct {
+    u8 pad_0[0x40F0];
+    s16 *unk_40F0;
+} fn_1_FDEC8_Scene;
+
+void fn_1_FDEC8(fn_1_FDEC8_Racer **arg0, fn_1_FDEC8_Scene *scene) {
+    s16 index;
+    u8 mtx[0x30];
+    s32 mode;
+    fn_1_FDEC8_Racer *racer;
+    void *saved;
+    s16 state;
+    f32 value;
+
+    lbl_8006DB74(mtx);
+    racer = *arg0;
+    state = racer->unk_3BA;
+    if (state == 3) {
+        racer->unk_3BA = 2;
+    }
+    if (scene->unk_40F0 != NULL) {
+        index = *scene->unk_40F0;
+        if (racer->unk_32C == NULL) {
+            value = lbl_1_rodata_7614[0];
+        } else {
+            value = lbl_1_rodata_761C[0];
+        }
+        saved = fn_1_563B8((void *)fn_1_FCF50);
+        mode = index;
+        fn_1_566EC(1, 0xFF);
+        if (index == 0) {
+            fn_1_7EB8C(racer, value);
+        } else if (racer->unk_390 & 0x04000000) {
+            fn_1_7F20C(racer, mode, value);
+        } else {
+            fn_1_7F1E8(racer, mode, value);
+        }
+        fn_1_566EC(0, 0);
+        fn_1_563B8(saved);
+        racer->unk_3BA = state;
+    }
+    lbl_8006DBAC(mtx);
+    fn_80072558();
+}
+/* fzgx:end fn_1_FDEC8 */
+
 /* fzgx:begin fn_1_FDFF4 */
 #include "rel/main_rel/bg_cas.h"
 
