@@ -313,6 +313,64 @@ f32 fn_1_A6FE8(void) {
 }
 /* fzgx:end fn_1_A6FE8 */
 
+/* fzgx:begin fn_1_A7024 */
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
+struct fn_1_A7024_lbl_1_rodata_49F8 {
+    u8 pad_0[0x8];
+    f64 unk_8;
+    f64 unk_10;
+    f32 unk_18;
+    u8 pad_1C[0x4];
+    f64 unk_20;
+    f64 unk_28;
+};
+
+const f32 fn_1_A7024_pool_primer[2] = {1.7777777910232544f, 1.3333333730697632f};
+
+extern f32 lbl_8006D21C(u32);
+extern const f32 lbl_1_rodata_49F8;
+extern void fn_800721FC(f32, f32, f32, f32);
+
+#pragma opt_propagation off
+#pragma opt_common_subs off
+void fn_1_A7024(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+    const struct fn_1_A7024_lbl_1_rodata_49F8 *p_lbl_1_rodata_49F8;
+    f64 v0;
+    f64 v1;
+    f64 v2;
+    u32 v3;
+    f32 v4;
+    f64 v5;
+    f64 v6;
+    f64 v7;
+    f32 loc_8;
+    f64 t1;
+
+    arg0 = arg0 < 0.5 ? 0.5 : (arg0 > 135.0 ? 135.0 : (f64)arg0);
+    loc_8 = arg0;
+    v3 = (*(u32 *)&loc_8) & 0x7F800000;
+    if ((v3 - 0x7F800000) == 0) {
+        arg0 = 55.0f;
+    }
+    fn_800721FC(arg0, arg1, arg2, arg3);
+    *(f32 *)&lbl_1_bss_6F608.unk_0 = arg0;
+    *(f32 *)&lbl_1_bss_6F608.unk_8 = arg2;
+    *(f32 *)&lbl_1_bss_6F608.unk_C = arg3;
+    *(f32 *)&lbl_1_bss_6F608.unk_4 = arg1;
+    *(f32 *)&lbl_1_bss_6F608.unk_10 = lbl_8006D21C((s32)(182.04444885253906 * (0.5 * arg0)));
+    v7 = 1.0 / *(f32 *)&lbl_1_bss_6F608.unk_10;
+    *(f32 *)&lbl_1_bss_6F608.unk_14 = (f32)v7;
+}
+/* fzgx:end fn_1_A7024 */
+
 /* fzgx:begin fn_1_A714C */
 void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d) {
     if (a != 0) {
