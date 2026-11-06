@@ -1046,6 +1046,83 @@ void fn_1_1030A4(Cloth *self) {
 }
 /* fzgx:end fn_1_1030A4 */
 
+/* fzgx:begin fn_1_1030D4 */
+#include "fpscr.h"
+
+typedef struct fn_1_1030D4_Anim {
+    f32 start;
+    f32 end;
+    u8 pad_8[0x6C];
+    u32 keys_x;
+    u32 count_x;
+    u8 pad_7C[0x10];
+    u32 keys_y;
+    u32 count_y;
+    u8 pad_94[0x10];
+    u32 keys_z;
+    u32 count_z;
+} fn_1_1030D4_Anim;
+
+typedef struct fn_1_1030D4_Obj {
+    u8 pad_0[0x18];
+    s16 rot_x;
+    s16 rot_y;
+    s16 rot_z;
+    u16 flags;
+    u8 pad_20[0x10];
+    fn_1_1030D4_Anim *anim;
+} fn_1_1030D4_Obj;
+
+typedef struct fn_1_1030D4_Arg {
+    fn_1_1030D4_Obj *obj;
+    u32 pad_4;
+    u32 flags;
+} fn_1_1030D4_Arg;
+
+extern const f32 lbl_1_rodata_78D0;
+extern const f32 lbl_1_rodata_78D4;
+extern f32 fn_1_9E14C(u32, u32, f32);
+
+void fn_1_1030D4(fn_1_1030D4_Arg *arg) {
+    fn_1_1030D4_Obj *obj;
+    fn_1_1030D4_Anim *anim;
+    f32 t;
+    f32 len;
+
+    if (!((arg->flags >> 30) & 1)) {
+        return;
+    }
+    obj = arg->obj;
+    anim = obj->anim;
+    if (obj == 0) {
+        return;
+    }
+    if (anim == 0) {
+        return;
+    }
+    t = lbl_1_data_2A7E0.unk_1C - anim->start;
+    len = anim->end - anim->start;
+    if (obj->flags & 1) {
+        if (t > len) {
+            t = len;
+        }
+    } else {
+        t -= (f32)(len * (f32)fpscr_floor(t / len));
+    }
+    t += anim->start;
+    t /= lbl_1_rodata_78D0;
+    if (anim->count_x != 0) {
+        obj->rot_x = lbl_1_rodata_78D4 * fn_1_9E14C(anim->keys_x, anim->count_x, t);
+    }
+    if (anim->count_y != 0) {
+        obj->rot_y = lbl_1_rodata_78D4 * fn_1_9E14C(anim->keys_y, anim->count_y, t);
+    }
+    if (anim->count_z != 0) {
+        obj->rot_z = lbl_1_rodata_78D4 * fn_1_9E14C(anim->keys_z, anim->count_z, t);
+    }
+}
+/* fzgx:end fn_1_1030D4 */
+
 /* fzgx:begin fn_1_1050D0 noprologue */
 #include "types.h"
 #include "dolphin/types.h"
