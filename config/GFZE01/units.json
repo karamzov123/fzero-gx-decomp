@@ -39452,6 +39452,17 @@
   },
   {
     "module": "main",
+    "source": "dol/gTRKInterruptVectorTable.c",
+    "symbols": [
+      "gTRKInterruptVectorTable"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
     "source": "dol/gdev_cc_close.c",
     "symbols": [
       "gdev_cc_close"
