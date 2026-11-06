@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (93.58% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (96.30% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -83,7 +83,7 @@ void fn_8000659C(void) {
             if (v5 >= 0) {
                 fn_80005EDC();
                 v6 = 0;
-                v9 = v6;
+                v9 = v6 * 4;
                 v11 = lbl_801A66F4 + v5;
 #pragma fp_contract off
                 for (; v6 < v11->count; v9 += 4, v6++) {
