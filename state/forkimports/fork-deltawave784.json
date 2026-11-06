@@ -143,6 +143,15 @@
   "source": "fork-deltawave784/windows-and-types@4b722344",
   "status": "matched"
  },
+ "fn_12_11204": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793986796,
+  "mw": "GC/1.3.2",
+  "sha256": "661d053ca6c2be35ab0b8d06fa9034f9b54f42c363f0d7fc4261625d29b3b00d",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
+  "status": "matched"
+ },
  "fn_12_3D624": {
   "flags": "",
   "kind": "raw",
@@ -151,6 +160,15 @@
   "sha256": "73f2cabcb0ee4441222dbea96cb1a6876e0a898b51a26437cb0c4cd5c148b9f4",
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
   "status": "pool"
+ },
+ "fn_12_7870": {
+  "flags": "",
+  "kind": "fixup-import",
+  "landed": 1793986796,
+  "mw": "GC/1.3.2",
+  "sha256": "5698f11b167cbdc602876c833cd91f9bab2d6c0ae7ac5e39bd3498e1d965b295",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
+  "status": "matched"
  },
  "fn_14_34FC": {
   "flags": "",
@@ -195,6 +213,15 @@
   "mw": "GC/1.3.2",
   "sha256": "700c8dfebf5af98a369e97ae92484296f24b8cf03dca638c1aaeed18eeb92641",
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
+  "status": "matched"
+ },
+ "fn_1_112F40": {
+  "flags": "",
+  "kind": "fork-headers",
+  "landed": 1793986796,
+  "mw": "GC/1.3.2",
+  "sha256": "12540973a376877d5e0f783eb55f329470e7e9f34bd81820dcccc43eb0d11ba4",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
   "status": "matched"
  },
  "fn_1_1138C": {
@@ -287,6 +314,15 @@
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
   "status": "matched"
  },
+ "fn_1_141C10": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793986796,
+  "mw": "GC/1.3",
+  "sha256": "1956c23a4542ee4e7df1db0d28e25b748b91dc18bdf7ac6c98653ef6583bb3c8",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
+  "status": "matched"
+ },
  "fn_1_146C88": {
   "flags": "",
   "kind": "raw+tidy",
@@ -375,6 +411,15 @@
   "mw": "GC/1.3.2",
   "sha256": "0b3fb54d57b5e6121a9747f60df4a92c4f35dc7ae2003238625262e2b42b2470",
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
+  "status": "matched"
+ },
+ "fn_1_1FE8": {
+  "flags": "",
+  "kind": "selective+trim",
+  "landed": 1793986796,
+  "mw": "GC/1.3.2",
+  "sha256": "3f25acef818fae8c2674a80e2112ab5daf51c414bd9f5db89f444763759e07ef",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
   "status": "matched"
  },
  "fn_1_2221C": {
@@ -656,6 +701,15 @@
   "source": "fork-deltawave784/windows-and-types@8c8d7cc3",
   "status": "matched"
  },
+ "fn_1_A7024": {
+  "flags": "",
+  "kind": "ours-prologue",
+  "landed": 1793986796,
+  "mw": "GC/1.3.2",
+  "sha256": "4d12d22f856b2c5907f1decade16fd383513782ca4290c6c8c381427705cd2a3",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
+  "status": "matched"
+ },
  "fn_1_B4AC0": {
   "flags": "",
   "kind": "raw",
@@ -861,6 +915,15 @@
   "mw": "GC/1.3",
   "sha256": "78fc5b756e3bdba575ab0b18168da9e9cb219173a3e197c5ba54b01a6ecdfa58",
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
+  "status": "matched"
+ },
+ "fn_3_15A0": {
+  "flags": "",
+  "kind": "fixup-import",
+  "landed": 1793986796,
+  "mw": "GC/1.3.2",
+  "sha256": "ae16d5030efd47cd24b09196a1b821ef3c6225a2bdf964d2c3527c028524a9dd",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
   "status": "matched"
  },
  "fn_3_15F44": {
@@ -1097,6 +1160,24 @@
   "source": "fork-deltawave784/windows-and-types@4b722344",
   "status": "matched"
  },
+ "fn_80050BD4": {
+  "flags": "-use_lmw_stmw on",
+  "kind": "raw",
+  "landed": 1793986796,
+  "mw": "GC/1.3.2",
+  "sha256": "5f73110c7d828b7245d0bdf91d3cd14f974bac14c48994c72d973f019de89599",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
+  "status": "matched"
+ },
+ "fn_8005A59C": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793986796,
+  "mw": "GC/1.2.5n",
+  "sha256": "13573f52ee06e8feb0543ceadc40d18fa387988f8f2bc56e38708306db022cbd",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
+  "status": "matched"
+ },
  "fn_8005FDE0": {
   "flags": "",
   "kind": "fork-headers+trim",
@@ -1148,6 +1229,15 @@
   "landed": 1793983130,
   "mw": "GC/1.3.2",
   "sha256": "a1097b6ca34ee93fac0187dc599a85678ea84186e0ff8dbd0042ccc1a8fcbacf",
+  "source": "fork-deltawave784/windows-and-types@f88123fa",
+  "status": "matched"
+ },
+ "fn_80078344": {
+  "flags": "",
+  "kind": "raw",
+  "landed": 1793986796,
+  "mw": "GC/1.3",
+  "sha256": "a668722b8bd4cc342494bbd68256eb6470c4c194bc961146f1b8e20f60e5bd43",
   "source": "fork-deltawave784/windows-and-types@f88123fa",
   "status": "matched"
  },
