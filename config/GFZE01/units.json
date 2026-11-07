@@ -42085,6 +42085,20 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_123050.c",
+    "symbols": [
+      "fn_1_123050"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/accessory.c",
+    "pool": {
+      "fzgx_pool_table_0": "lbl_1_rodata_7AB8"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_1244F0.c",
     "symbols": [
       "fn_1_1244F0"
@@ -86162,6 +86176,27 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_5B7F8.c",
+    "symbols": [
+      "fn_1_5B7F8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_2950",
+      "@63": "lbl_1_rodata_2988",
+      "@50": "lbl_1_rodata_295C",
+      "@59": "lbl_1_rodata_2978",
+      "@71": "lbl_1_rodata_29A4",
+      "@73": "lbl_1_rodata_29AC",
+      "@195": "lbl_1_rodata_2A5C",
+      "@198": "lbl_1_rodata_2A70"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/effect/fn_1_5BF6C.c",
     "symbols": [
       "fn_1_5BF6C"
@@ -86197,6 +86232,27 @@
     "tu": "rel/main_rel/effect.c",
     "pool": {
       "@8": "lbl_1_rodata_2988"
+    }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_5C058.c",
+    "symbols": [
+      "fn_1_5C058"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_2950",
+      "@57": "lbl_1_rodata_2988",
+      "@50": "lbl_1_rodata_295C",
+      "@54": "lbl_1_rodata_2978",
+      "@61": "lbl_1_rodata_29A4",
+      "@63": "lbl_1_rodata_29AC",
+      "@102": "lbl_1_rodata_2A5C",
+      "@105": "lbl_1_rodata_2A70"
     }
   },
   {
@@ -87691,6 +87747,26 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/effect.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/effect/fn_1_662D8.c",
+    "symbols": [
+      "fn_1_662D8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_2950",
+      "@69": "lbl_1_rodata_29AC",
+      "@29": "lbl_1_rodata_2950",
+      "@64": "lbl_1_rodata_29A4",
+      "@44": "lbl_1_rodata_2978",
+      "@49": "lbl_1_rodata_2988",
+      "@119": "lbl_1_rodata_2B2C"
+    }
   },
   {
     "module": "main_rel",
@@ -105716,6 +105792,17 @@
     ],
     "status": "matching",
     "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/replay.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/replay/fn_1_F3BC0.c",
+    "symbols": [
+      "fn_1_F3BC0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3",
     "extra_cflags": [],
     "tu": "rel/main_rel/replay.c"
   },
@@ -124302,6 +124389,19 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_3DBE0.c",
+    "symbols": [
+      "fn_12_3DBE0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "movie_module",

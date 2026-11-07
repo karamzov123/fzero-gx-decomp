@@ -16388,3 +16388,18 @@ rel/main_rel/spline/fn_1_F65A0.c:
 
 rel/main_rel/car/fn_1_8A1B4.c:
 	.text       start:0x0008A1B4 end:0x0008B880 align:4
+
+rel/main_rel/effect/fn_1_5C058.c:
+	.text       start:0x0005C058 end:0x0005C780 align:4
+
+rel/main_rel/effect/fn_1_5B7F8.c:
+	.text       start:0x0005B7F8 end:0x0005BF6C align:4
+
+rel/main_rel/replay/fn_1_F3BC0.c:
+	.text       start:0x000F3BC0 end:0x000F43F0 align:4
+
+rel/main_rel/effect/fn_1_662D8.c:
+	.text       start:0x000662D8 end:0x00067294 align:4
+
+rel/main_rel/accessory/fn_1_123050.c:
+	.text       start:0x00123050 end:0x001244F0 align:4

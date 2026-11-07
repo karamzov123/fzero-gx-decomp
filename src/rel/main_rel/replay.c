@@ -1090,6 +1090,190 @@ void fn_1_F3AB0(Obj_1_bss_7EFD8 *obj) {
 }
 /* fzgx:end fn_1_F3AB0 */
 
+/* fzgx:begin fn_1_F3BC0 */
+#ifndef GAME_MAIN_REL_REPLAY_TYPES_H
+#define GAME_MAIN_REL_REPLAY_TYPES_H
+
+#endif  // GAME_MAIN_REL_REPLAY_TYPES_H
+
+/* end game/main_rel/replay_types.h */
+
+extern s16 fn_1_7B054(void);
+extern u32 lbl_801A63D0;
+extern u32 OSGetTick(void);
+
+extern union ReplayGhost_F3BC0 *fn_1_36AD0(void);
+extern void OSReport(const char *, ...);
+extern void fn_1_154CD0(u32, u32);
+extern void fn_1_3EF14(u8 *);
+extern void fn_1_78950(void);
+extern void fn_1_7899C(void);
+extern void fn_1_F43F0(u8 *, u32 *, u32, u32, u32);
+extern void fn_1_F444C(u8 *, u32 *, u32, f32);
+extern void fn_80008BEC(u8 *, int, u32);
+
+typedef struct {
+    u8 unk_0, unk_1, unk_2, unk_3, unk_4;
+} ReplayDriver_F3BC0;
+
+typedef union ReplayGhost_F3BC0 {
+    u32 unk_0;
+    u8 bytes[0x81C0];
+} ReplayGhost_F3BC0;
+
+typedef struct {
+    u32 a : 15;
+    u32 b : 3;
+    u32 c : 5;
+    u32 d : 5;
+    u32 pad_0 : 4;
+    u32 e : 15;
+    u32 f : 5;
+    u32 g : 5;
+    u32 h : 5;
+    u32 pad_4 : 2;
+    f32 first[4][3];
+    f32 second[4][3];
+    f32 tail[6];
+} ReplayEntry_F3BC0;
+
+typedef struct {
+    u8 pad_0[0xFF4C];
+    ReplayEntry_F3BC0 entries[1];
+} ReplayData_F3BC0;
+
+typedef struct {
+    u8 a;
+    s8 b, c, d;
+    u8 e, f, g;
+} ReplaySample_F3BC0;
+
+typedef struct {
+    u8 pad_0[0xA4];
+    ReplaySample_F3BC0 samples[1];
+} ReplaySamples_F3BC0;
+
+static inline void ReplayWriteGhostByte_F3BC0(u32 value, u8 *buffer, u32 *bits) {
+    fn_1_F43F0(buffer, bits, value, 8, 0x8C000);
+}
+
+void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    u32 v2;
+    u32 v3;
+    u8 v8;
+    u32 v9;
+    u32 v28;
+    u32 v12;
+    u64 ghostOffset;
+    struct { u8 a[0x14ac]; } loc_10;
+    u32 loc_8[2];
+    /* frame */
+    u8 * t20;
+    u8 * t21;
+    u8 *v0;
+    fn_1_78950();
+    v0 = (u8 *)lbl_801A63D0;
+    fn_80008BEC((u8 *)v0, 0, (0x90000 - 16384));
+    loc_8[0] = 0;
+    fn_1_3EF14((u8 *)&loc_10);
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (OSGetTick() & 0xFF), 8, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, 5, 7, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (s16)fn_1_7B054(), 6, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_7EFD8.unk_40->unk_98, 32, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_7EFD8.unk_40->unk_9C, 32, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (u32)loc_10.a[9], 5, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_8B3A0.unk_8, 3, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (u32)loc_10.a[5], 2, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((*(u32 *)&loc_10 & 0x20000) != 0), 1, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (u32)loc_10.a[4], 7, (0x90000 - 16384));
+    v3 = 0;
+    v2 = 0;
+    while ((u32)v2 < loc_10.a[9]) {
+    v9 = (u32)&((ReplayDriver_F3BC0 *)lbl_1_bss_7EFD8.unk_40)[v2];
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 0), 1, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 1), 6, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 4), 5, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 3), 7, (0x90000 - 16384));
+    if (*(u8 *)((u8 *)v9 + 0) != 0) {
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 2), 2, (0x90000 - 16384));
+    v12 = v2 * 0x81C0;
+    t20 = (u8 *)(fn_1_36AD0());
+    v9 = ((ReplayGhost_F3BC0 *)(t20 + v12))->unk_0;
+    t21 = (u8 *)(fn_1_36AD0());
+    OSReport((const char *)lbl_1_data_3E8D4, ((ReplayGhost_F3BC0 *)(t21 + v12))->unk_0, 0x80000000, v9);
+    v8 = (v9 & 0x80000000) != 0;
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, v8, 1, (0x90000 - 16384));
+    if (v8 != 0) {
+    v9 = 0;
+    do {
+    t20 = (u8 *)fn_1_36AD0();
+    ghostOffset = (s32)v12 + (s32)v9;
+    ReplayWriteGhostByte_F3BC0(t20[ghostOffset], v0, loc_8);
+    } while (++v9 < 33216);
+    }
+    v3++;
+    }
+    v2++;
+    }
+    v3 = (v3 & 0xFF);
+    v2 = 0;
+    while ((u32)v2 < v3) {
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (&lbl_1_bss_7EFD8.unk_3C)[v2], 1, (0x90000 - 16384));
+    v2++;
+    }
+    v2 = 0;
+    while ((u32)v2 < v3) {
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((&lbl_1_bss_7EFD8.unk_38)[v2] - 1), 2, (0x90000 - 16384));
+    v2++;
+    }
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_7EFD8.unk_8, 20, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u16 *)((u8 *)lbl_1_bss_7EFD8.unk_40 + 0xFEF0), 8, (0x90000 - 16384));
+    v2 = 0;
+    while ((u32)v2 < *(u16 *)((u8 *)(v28 = (u32)lbl_1_bss_7EFD8.unk_40) + 0xFEF0)) {
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].a, 14, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].e, 14, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].b, 4, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].c, 5, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].d, 5, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].f, 5, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].g, 5, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].h, 5, (0x90000 - 16384));
+    v9 = 0;
+    while ((u32)v9 < lbl_1_bss_7EFD8.unk_18) {
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].first[v9][0]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].first[v9][1]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].first[v9][2]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].second[v9][0]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].second[v9][1]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].second[v9][2]);
+    v9++;
+    }
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].tail[0]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].tail[1]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].tail[2]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].tail[3]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].tail[4]);
+    fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].tail[5]);
+    v2++;
+    }
+    ((Obj_1_bss_7EFD8_At40 *)v28)->unk_A0 = ((Obj_1_bss_7EFD8_At40 *)v28)->unk_A2;
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_7EFD8.unk_40->unk_A0, 14, (0x90000 - 16384));
+    v2 = 0;
+    while ((u32)v2 <= ((Obj_1_bss_7EFD8_At40 *)(v28 = (u32)lbl_1_bss_7EFD8.unk_40))->unk_A0) {
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)v28)->samples[v2].a, 8, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].d, 8, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].e, 7, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].f, 7, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].g, 8, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].b, 8, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].c, 8, (0x90000 - 16384));
+    v2++;
+    }
+    fn_1_154CD0((u32)v0, ((((u32)(loc_8[0] + 7) >> 3) + 31) & ~0x1F));
+    fn_1_7899C();
+}
+/* fzgx:end fn_1_F3BC0 */
+
 /* fzgx:begin fn_1_F43F0 */
 void fn_1_F43F0(u8 *bits, u32 *position, u32 mask, u32 count, u32 limit) {
     u32 value;

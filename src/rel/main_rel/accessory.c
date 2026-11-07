@@ -16783,6 +16783,438 @@ void fn_1_12295C(Rope *rope) {
 }
 /* fzgx:end fn_1_12295C */
 
+/* fzgx:begin fn_1_123050 noprologue */
+#include "dolphin/types.h"
+#include "types.h"
+#include "types.h"
+#include "psvec.h"
+
+#ifndef REL_MAIN_REL_ACCESSORY_H
+#define REL_MAIN_REL_ACCESSORY_H
+#ifndef REL_MAIN_REL_GLOBALS_H
+#define REL_MAIN_REL_GLOBALS_H
+
+// lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
+extern u8 lbl_1_data_3FFBC[0x574];
+
+#endif  // REL_MAIN_REL_GLOBALS_H
+
+#endif  // REL_MAIN_REL_ACCESSORY_H
+
+/* end rel/main_rel/accessory.h */
+
+#pragma section ".fzgxpool"
+const u32 fzgx_pool_table_0[324] = {
+0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3E800000, 0x00000000, 0x3C23D70A, 0x00000000, 0x00000000, 0x00000000, 0x3E7AD7F2, 0x9ABCAF48, 0x00000000, 0x00000000, 0x00000000, 0x3F000000, 0x3E800000, 0x00000000, 0x43300000, 0x00000000, 0x3F564CE9, 0xF49F49F4, 0x3B326750, 0xBF800000, 0x00000000, 0xC0000000, 0x40000000, 0x34000000, 0xBF800001, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xBAB26750, 0xBB326750, 0x38D1B717, 0x3F800000, 0x39D1B717, 0x3CCCCCCD, 0x3B8A71DE, 0x3FB33333, 0x28F5C28F, 0x3FD33333, 0x33333333, 0xBC9BA5E3, 0x3D6978D5, 0x3A7BEB9E, 0x00000000, 0x3FA4FDF3, 0xB1EB851F, 0xBFF00000, 0x00000000, 0x3F400000, 0xBE800000, 0xBF800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3E0D4FDF, 0x3B83126F, 0x3DED9168, 0x3D851EB8, 0x3D8523F6, 0x00000000, 0x40200000, 0x00000000, 0x3B800000, 0x00000000, 0x3FA99999, 0x9999999A, 0x3F664CEA, 0x00000000, 0x3F947AE1, 0x47AE147B, 0x3F1A36E2, 0xEB1C432D, 0x00000000, 0x00000000, 0x00000000, 0x3D48B439, 0x3B23D70B, 0x3D4CCCCD, 0xBE000000, 0x00000000, 0x3F8EB851, 0xEB851EB8, 0xBF000000, 0x00000000, 0x3FA70A3D, 0x70A3D70A, 0x396BEDFA, 0x00000000, 0x3FC99999, 0x9999999A, 0x3FE99999, 0x9999999A, 0x3FE00000, 0x00000000, 0x3CF5C28F, 0x3A83126F, 0x3DEB851F, 0x3CA52EFA, 0x3E116873, 0x3C8C9539, 0x3E0624DD, 0x3DA3D70A, 0x3CB851EC, 0x3E19999A, 0x3E4CCCCD, 0x3D23D70B, 0x3CDD2F1B, 0x3C8637BE, 0x3E03126F, 0x3E10624E, 0x3C8A71DE, 0x3E051EB8, 0x3D50E560, 0x3C68038B, 0x3DF3B646, 0x3E3B645A, 0x3C58ADAC, 0x3E989375, 0x3F4CCCCD, 0x41100000, 0x3A9D4952, 0x46FFFE00, 0x3B9D4952, 0x3A1D4952, 0xC7000000, 0x47800000, 0x421C0000, 0x3B03126F, 0x41E80000, 0xBA83126F, 0x3F0CCCCD, 0x3ECCCCCD, 0x3DCCCCCD, 0x00000000, 0x43300000, 0x80000000, 0x3727C5AC, 0x3B378034, 0x3B16BB99, 0x3CB37005, 0x3E178D50, 0x3CECBFB2, 0x3E2E147B, 0x3C23D70B, 0x3FF00000, 0x00000000, 0x47000000, 0x41400000, 0x3DF5C28F, 0x3D8F5C29, 0xBD178D50, 0x3DB851EC, 0x3D9DB22D, 0x3DE56042, 0x3E3851EC, 0xBC54FDF4, 0x3D8D4FDF, 0xBB03126F, 0x3CAC0831, 0xBCAC0831, 0x3D75C28F, 0x3D99999A, 0x3DAE147B, 0x3DBC6A7F, 0x3D71A9FC, 0x3D6147AE, 0x3D978D50, 0x3DEF9DB2, 0xBD449BA6, 0x3D449BA6, 0x3D03126F, 0x3D872B02, 0xBCA3D70A, 0x3DCAC083, 0x3E083127, 0xBD4CCCCD, 0x3D916873, 0x3DC28F5C, 0xBC1374BC, 0x3BC49BA6, 0x3D3851EC, 0x3D343958, 0x3D9374BC, 0x3DC6A7F0, 0xBC75C28F, 0x3DE978D5, 0x3E9F3B64, 0x3D1FBE77, 0xBE624DD3, 0x3F09BA5E, 0x3DA5E354, 0xBEF0A3D7, 0x3DAC0831, 0x3DD70A3D, 0x3CFDF3B6, 0x3DD91687, 0xBCFDF3B6, 0x00000000, 0x3FE851EB, 0x851EB852, 0x3D408312, 0x3DDD2F1B, 0x3DB020C5, 0x3D8B4396, 0x3B449BA6, 0x3B656042, 0x3B86594B, 0x00000000, 0x00000000, 0x00000000, 0x3F3AC2B2, 0x58BF258C, 0x3F4AC2B2, 0x58BF258C, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3B6BEDFA, 0x3DFDF3B6, 0x3BFDC161, 0x3DB43958, 0x3D83126F, 0x3BE1BD1E, 0x3DA9FBE7, 0x3C83126F, 0x3BC75C4B, 0x3D9FBE77, 0x3D178D50, 0x00000000, 0x00000000, 0x00000000, 0xBDF5C28F, 0x00000000, 0x00000000, 0x00000000, 0x41880000, 0x40C00000, 0xBF333333, 0x3F666666, 0x3F99999A, 0x3B8EBCC7, 0x3B73DC06, 0x3D79DB23, 0x3BA52EFA, 0x3F174BC7, 0x3E820E63, 0x3F010625, 0xBC9374BC, 0xBC656042, 0x3C9374BC, 0x3D7DF3B6, 0x3B54ED2D, 0xBCC49BA6, 0x3EB33333, 0x00000000, 0x00000000, 0x00000000, 0x3FF0CCCC, 0xC0000000, 0x3FE66666, 0x66666666, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3B83126F, 0xBB83126F, 0x3BA0902E, 0x3E818937, 0x3D42A886, 0x3E5F3B64, 0xBE818937, 0x3DFAE147, 0x3C272219, 0x3DCED917, 0xBF245A1D, 0x3F0C8B44, 0x3F0169D4, 0x3F360419, 0x43AF0000, 0x41F00000, 0x3B79096C, 0x3AC49BA6, 0x3A03126F, 0x3DA7EF9E, 0x3C2A758A, 0x3DD0E560, 0x3BB851EC, 0xBCE56042, 0x3E87AE14, 0x3C463F14, 0x3DE147AE, 0x3BD1B717, 0xBCCCCCCD, 0x3E0D4FDF, 0x3C34A233, 0x3FE2E147, 0xAE147AE1, 0x3FD99999, 0x9999999A  /* fzgx-allow: A1 retail pool bytes */
+};
+#pragma section ".rodata"
+
+typedef struct SimVec { f32 x, y, z; } SimVec;
+typedef struct SimNode {
+    u8 flags, pad1, count, pad3;
+    u16 links[6];
+    SimVec pos, prev, local, vel;
+    f32 mass;
+} SimNode;
+typedef struct SimLink { SimNode *a, *b; f32 length; } SimLink;
+typedef struct SimBones { u8 pad0[8]; u8 *data; } SimBones;
+typedef struct SimModel {
+    u8 pad0[0x8c]; s32 kind;
+    u8 pad90[0xc0]; SimBones *bones;
+} SimModel;
+typedef struct SimRope {
+    u8 flags; u8 pad1[7]; u32 id;
+    SimModel *model; void *mesh;
+    s32 timer; u32 count, link_count, pad20;
+    SimNode *nodes; SimLink *links;
+} SimRope;
+
+extern u32 lbl_801A63C0;
+extern s32 fn_80077B14(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DC20(void);
+extern f32 lbl_8006D118(f32 *, f32);
+#define lbl_8006D118(p) (lbl_8006D118)((p), *(p))
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D0E8(f32);
+extern f32 lbl_8006D668(void *);
+extern void fn_1_1286F4(void *);
+extern u32 fn_1_108128(void *, u32);
+extern void fn_8006E250(void *, void *);
+
+#define PF(o) (*(const f32 *)(pool + (o)))
+#define PD(o) (*(const f64 *)(pool + (o)))
+
+#define BONE(r, n) ((r)->model->bones->data + (n) * 0x18c + 0x88)
+#define MODELROOT(r) ((r)->model->bones->data)
+#define BONEID(r) (((u32 *)lbl_1_data_3FFBC)[(r)->id])
+
+static inline f32 sim_dot(const SimVec *v) {
+    f32 result = v->x * v->x;
+    result += v->y * v->y;
+    result += v->z * v->z;
+    return result;
+}
+
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+static inline void sim_integrate(SimNode *n, u8 *pool) {
+    f64 gravity;
+    f32 acceleration;
+    gravity = *(const f64 *)(pool + 0x58);
+    acceleration = *(const f32 *)(pool + 0x60);
+    n->prev = n->pos;
+    n->pos.x += n->vel.x;
+    n->pos.y += n->vel.y;
+    n->pos.z += n->vel.z;
+    n->pos.y -= gravity;
+    n->vel.y -= acceleration;
+}
+#pragma opt_lifetimes on
+
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+static inline void sim_reset(SimRope *r) {
+    u32 index;
+    SimNode *node;
+    node = r->nodes;
+    for (index = 0; index < r->count; index++, node++) {
+        lbl_8006DBE4();
+        lbl_8006E1B0(&node->local, &node->pos);
+    }
+}
+#pragma opt_lifetimes on
+static inline void sim_sphere(SimRope *r, s32 bone, f32 x, f32 y, f32 z,
+                             u32 radius2_offset, u32 radius_offset, u8 *pool) {
+    SimVec center, delta;
+    u32 i;
+    SimNode *n;
+    center.x = x; center.y = y; center.z = z;
+    lbl_8006DBAC(BONE(r, bone));
+    lbl_8006E1B0(&center, &center);
+    n = r->nodes;
+    for (i = 0; i < r->count; i++, n++) {
+        if (!(n->flags & 1)) {
+            f32 len, dz, dy;
+            len = n->pos.x - center.x;
+            dy = n->pos.y - center.y;
+            dz = n->pos.z - center.z;
+            len *= len;
+            len += dy * dy;
+            len += dz * dz;
+            if (len < PF(radius2_offset)) {
+                f32 s = PF(radius_offset) * lbl_8006D0E8(len);
+                psvec_sub_scale_add(&n->pos, &center, s, &delta, &n->pos);
+            }
+        }
+    }
+}
+
+#pragma opt_propagation on
+#pragma fp_contract on
+#define pool literal_pool
+#pragma opt_common_subs off
+#pragma opt_lifetimes on
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+static inline f32 fn_1_123050_read_pointer(SimNode *owner) {
+    f32 mass;
+    mass = owner->mass;
+    return mass;
+}
+#pragma opt_lifetimes on
+#pragma opt_propagation on
+static inline f32 sim_inverse_mass(SimNode *a, SimNode *b, u8 *pool) {
+    return PF(0xa0) / (a->mass + b->mass);
+}
+#pragma opt_propagation on
+#pragma opt_lifetimes on
+#pragma inline_max_size(4096)
+#pragma opt_lifetimes on
+#pragma opt_propagation on
+#pragma opt_common_subs off
+#pragma opt_lifetimes on
+#pragma opt_propagation off
+static inline f32 sim_mass_ratio(f32 mb, f32 ma, f32 one) {
+    f32 numerator, sum, a_mass, b_mass;
+    b_mass = mb;
+    a_mass = ma;
+    numerator = one;
+    sum = a_mass + b_mass;
+    return numerator / sum;
+}
+#pragma opt_propagation on
+#pragma opt_lifetimes on
+static inline void sim_apply_pair(SimNode *a, SimNode *b, SimVec *delta, f32 length, f32 one) {
+    f32 ma, mb, sum;
+    psvec_scale(delta, length, delta);
+    sum = one / (a->mass + b->mass);
+    ma = sum * a->mass;
+    mb = b->mass * sum;
+    psvec_scale_add(&a->pos, delta, -ma, &a->pos);
+    psvec_scale_add(&b->pos, delta, mb, &b->pos);
+}
+static inline void sim_velocity(SimRope *r, u8 *literal_pool) {
+    SimVec noise;
+    SimNode *n;
+    u32 i;
+    f64 damping, inherit, noise_scale;
+    f32 pos_y;
+    n = r->nodes;
+    damping = PD(0x500);
+    inherit = PD(0x508);
+    noise_scale = PD(0x198);
+    for (i = 0; i < r->count; i++, n++) {
+        fn_1_1286F4(&noise);
+        n->vel.x *= damping;
+        n->vel.y *= damping;
+        n->vel.z *= damping;
+        n->vel.x += (f64)(inherit * (n->pos.x - n->prev.x));
+        pos_y = n->pos.y;
+        n->vel.y += (f64)(inherit * (pos_y - n->prev.y));
+        n->vel.z += (f64)(inherit * (n->pos.z - n->prev.z));
+        n->vel.x += (f64)(noise_scale * noise.x);
+        n->vel.y += (f64)(noise_scale * noise.y);
+        n->vel.z += (f64)(noise_scale * noise.z);
+    }
+}
+#undef pool
+#define pool literal_pool
+#undef fzgx_pool_table_0
+#pragma opt_propagation on
+static inline void sim_upload(SimRope *r, u8 *vertices) {
+    u32 pass;
+    s32 j;
+    SimNode *n;
+    n = r->nodes;
+    for (pass = 0; pass < r->count; pass++, n++) {
+        for (j = 0; j < n->count; j++)
+            fn_8006E250(&n->pos, vertices + n->links[j] * 0x40);
+    }
+}
+static inline void sim_reset_args(SimRope *r, SimNode *node, u32 index) {
+    for (; index < r->count; index++, node++) {
+        lbl_8006DBE4();
+        lbl_8006E1B0(&node->local, &node->pos);
+    }
+}
+static inline void sim_pin(SimRope *r) {
+    u32 index;
+    u8 *bone;
+    SimNode *n;
+    bone = MODELROOT(r) + BONEID(r) * 0x18c;
+    n = r->nodes;
+    for (index = 0; index < r->count; index++, n++) {
+        lbl_8006DBAC(bone + 0x88);
+        lbl_8006DAEC();
+        if (n->flags & 1) {
+            lbl_8006DBE4();
+            lbl_8006E1B0(&n->local, &n->pos);
+        }
+        lbl_8006DC20();
+    }
+}
+static inline void sim_pull(SimRope *r, u8 *unused_bone, SimNode *unused_node, u32 unused_index,
+                            SimVec *anchor, SimVec *diff, u8 *literal_pool) {
+    u8 *bone;
+    SimNode *n;
+    u32 i;
+    bone = MODELROOT(r) + BONEID(r) * 0x18c;
+    n = r->nodes;
+    for (i = 0; i < r->count; i++, n++) {
+        f32 pos_y;
+        lbl_8006DBAC(bone + 0x88);
+        lbl_8006E1B0(&n->local, anchor);
+        diff->x = n->pos.x - anchor->x;
+        pos_y = n->pos.y;
+        diff->y = pos_y - anchor->y;
+        diff->z = n->pos.z - anchor->z;
+        lbl_8006D668(diff);
+        n->vel.x -= (f32)(PF(0x1a4) * diff->x);
+        n->vel.y -= (f32)(PF(0x1a4) * diff->y);
+        n->vel.z -= (f32)(PF(0x1a4) * diff->z);
+    }
+}
+void fn_1_123050(SimRope *r) {
+    f32 fzgx_live;
+    f32 pair_weight;
+    SimVec delta, noise, diff, anchor;
+    f32 length;
+    SimLink *link;
+    SimNode *a, *b, *n;
+    u32 i;
+    u8 *bone, *vertices;
+    s32 j;
+    register u32 iterations_value;
+    register u32 solve_iterations;
+    u8 *literal_pool;
+    u32 compress_count, pass, ndiv;
+    f32 headx, heady, zero, leftx, rightx, chesty, arm_x, arm_y, outerx, lowx, lowy;
+    f32 pull;
+    f64 noise_scale, inherit, damping;
+
+    literal_pool = (u8 *)fzgx_pool_table_0;
+    solve_iterations = 4;
+    if (r && r->mesh) {
+    fn_80077B14(r->mesh);
+    if (r->flags & 2) {
+        r->flags &= ~2;
+        lbl_8006DBAC(BONE(r, BONEID(r)));
+        lbl_8006DAEC();
+        i = 0;
+        n = r->nodes;
+        sim_reset_args(r, n, i);
+        lbl_8006DC20();
+    }
+    ndiv = (r->model->kind == 2) ? 8 : 12;
+    n = r->nodes;
+    for (i = 0; i < r->count; i++, n++) {
+        if (!(n->flags & 1)) {
+            n->prev = n->pos;
+            n->pos.x += n->vel.x;
+            n->pos.y += n->vel.y;
+            n->pos.z += n->vel.z;
+            n->pos.y -= PD(0x58);
+            n->vel.y -= PF(0x60);
+        }
+    }
+    sim_pin(r);
+    solve_iterations = (r->model->kind == 2) ? 2 : 4;
+    zero = PF(0x68);
+    heady = PF(0x4d0);
+    headx = PF(0x348);
+    leftx = PF(0x488);
+    rightx = PF(0x278);
+    chesty = PF(0xc0);
+    arm_y = PF(0x4e0);
+    arm_x = PF(0x4e4);
+    outerx = PF(0x1bc);
+    lowy = PF(0x4f4);
+    lowx = PF(0x4f8);
+    compress_count = (ndiv - 1) * 4;
+    for (pass = 0; pass < solve_iterations; pass++) {
+        link = r->links;
+        for (i = 0; i < r->link_count; i++, link++) {
+            a = link->a; b = link->b;
+            if (a && b) {
+                f32 epsilon, dz, dy, dx;
+                dx = a->pos.x - b->pos.x;
+                dy = a->pos.y - b->pos.y;
+                dz = a->pos.z - b->pos.z;
+                delta.x = dx;
+                delta.y = dy;
+                delta.z = dz;
+                length = (f32)(dx * dx) + dy * dy + dz * dz;
+                if (length - PF(0x9c) > link->length) {
+                    f32 inv = lbl_8006D118(&length);
+                    f32 rest = lbl_8006D0B4(link->length);
+                    f64 one;
+                    f32 ma, mb, sum, mass_a, mass_b;
+                    one = PF(0xa0);
+                    length = inv * (length - rest);
+                    psvec_scale(&delta, length, &delta);
+                    mass_a = a->mass;
+                    mass_b = b->mass;
+                    sum = PF(0xa0) / (mass_a + mass_b);
+                    ma = mass_a * sum;
+                    mb = mass_b * sum;
+                    psvec_scale_add(&a->pos, &delta, -ma, &a->pos);
+                    psvec_scale_add(&b->pos, &delta, mb, &b->pos);
+                }
+                if (PF(0x1a4) + length < link->length && i < compress_count) {
+                    f32 inv = lbl_8006D118(&length);
+                    f32 rest = lbl_8006D0B4(link->length);
+                    f32 ma, mb, sum, one, mass_b, mass_a;
+                    sum = PF(0xa0);
+                    length = inv * (length - rest);
+                    psvec_scale(&delta, length, &delta);
+                    mass_a = a->mass;
+                    mass_b = b->mass;
+                    sum = PF(0xa0) / (mass_a + mass_b);
+                    ma = mass_a * sum;
+                    mb = mass_b * sum;
+                    psvec_scale_add(&a->pos, &delta, -ma, &a->pos);
+                    psvec_scale_add(&b->pos, &delta, mb, &b->pos);
+                }
+                fzgx_live = a->pos.y;
+                if ((fzgx_live < PF(0x68) || b->pos.y < PF(0x68)) &&
+                    !(a->flags & 1) && !(b->flags & 1)) {
+                    f32 inv;
+                    f32 rest, ma, mb, sum, one, mass_b, mass_a;
+                    if (fzgx_live < PF(0x68)) a->pos.y = PF(0x248);
+                    if (b->pos.y < PF(0x68)) b->pos.y = PF(0x248);
+                    psvec_sub(&a->pos, &b->pos, &delta);
+                    length = sim_dot(&delta);
+                    inv = lbl_8006D118(&length);
+                    rest = lbl_8006D0B4(link->length);
+                    sum = PF(0xa0);
+                    length = inv * (length - rest);
+                    psvec_scale(&delta, length, &delta);
+                    mass_a = a->mass;
+                    mass_b = b->mass;
+                    sum = PF(0xa0) / (mass_a + mass_b);
+                    ma = mass_a * sum;
+                    mb = mass_b * sum;
+                    psvec_scale_add(&a->pos, &delta, -ma, &a->pos);
+                    psvec_scale_add(&b->pos, &delta, mb, &b->pos);
+                }
+            }
+        }
+        sim_sphere(r, 16, headx, heady, zero, 0x4d4, 0x4d8, pool);
+        sim_sphere(r, 18, leftx, zero, zero, 0x398, 0x2a8, pool);
+        sim_sphere(r, 18, rightx, zero, zero, 0x4dc, 0x2ac, pool);
+        sim_sphere(r, 19, zero, chesty, zero, 0x4dc, 0x2ac, pool);
+        sim_sphere(r, 19, arm_x, arm_y, zero, 0x4e8, 0x4ec, pool);
+        sim_sphere(r, 23, leftx, zero, zero, 0x398, 0x2a8, pool);
+        sim_sphere(r, 23, rightx, zero, zero, 0x4dc, 0x2ac, pool);
+        sim_sphere(r, 24, zero, chesty, zero, 0x4dc, 0x2ac, pool);
+        sim_sphere(r, 24, arm_x, arm_y, zero, 0x4e8, 0x4ec, pool);
+        sim_sphere(r, 18, outerx, zero, zero, 0x4f0, 0x1bc, pool);
+        sim_sphere(r, 19, lowx, lowy, zero, 0x4fc, 0x32c, pool);
+        sim_sphere(r, 23, outerx, zero, zero, 0x4f0, 0x1bc, pool);
+        sim_sphere(r, 24, lowx, lowy, zero, 0x4fc, 0x32c, pool);
+    }
+    if (r->timer < 35) {
+        bone = MODELROOT(r) + BONEID(r) * 0x18c;
+        n = r->nodes;
+        i = 0;
+        sim_pull(r, bone, n, i, &anchor, &diff, pool);
+    }
+    r->timer--;
+    if (r->timer < 0) {
+        s32 random;
+        lbl_801A63C0 = lbl_801A63C0 * 0x676a4b6b + 0x33cb;
+        random = (lbl_801A63C0 >> 16) & 0x7fff;
+        r->timer = random % 20 + 40;
+    }
+    n = r->nodes;
+    for (i = 0; i < r->count; i++, n++) {
+        fn_1_1286F4(&noise);
+        n->vel.x *= PD(0x500);
+        n->vel.y *= PD(0x500);
+        n->vel.z *= PD(0x500);
+        n->vel.x += (f64)(PD(0x508) * (n->pos.x - n->prev.x));
+        fzgx_live = n->pos.y;
+        n->vel.y += (f64)(PD(0x508) * (fzgx_live - n->prev.y));
+        n->vel.z += (f64)(PD(0x508) * (n->pos.z - n->prev.z));
+        n->vel.x += (f64)(PD(0x198) * noise.x);
+        n->vel.y += (f64)(PD(0x198) * noise.y);
+        n->vel.z += (f64)(PD(0x198) * noise.z);
+    }
+    fn_1_108128(r, ndiv);
+    vertices = (u8 *)fn_80077B14(r->mesh);
+    lbl_8006DBAC(BONE(r, BONEID(r)));
+    sim_upload(r, vertices);
+    }
+}
+#pragma opt_common_subs reset
+
+#undef pool
+/* fzgx:end fn_1_123050 */
+
 /* fzgx:begin fn_1_1244F0 noprologue */
 #include "types.h"
 #include "types.h"
