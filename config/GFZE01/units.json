@@ -108733,6 +108733,27 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_144F40.c",
+    "symbols": [
+      "fn_1_144F40"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sel_static_disp.c",
+    "pool": {
+      "@22": "lbl_1_rodata_93E8",
+      "@32": "lbl_1_rodata_9480",
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "fzgx_pool_rodata_0": "lbl_1_rodata_92C0",
+      "...bss.0": "lbl_1_bss_8E428",
+      "lbl_1_bss_8E428": "lbl_1_bss_8E428",
+      "lbl_1_bss_8E43C": "lbl_1_bss_8E43C",
+      "lbl_1_bss_8E440": "lbl_1_bss_8E440"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sel_static_disp/fn_1_145B58.c",
     "symbols": [
       "fn_1_145B58"

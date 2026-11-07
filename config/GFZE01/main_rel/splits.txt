@@ -16427,13 +16427,21 @@ rel/main_rel/_prolog/_prolog.c:
 
 rel/main_rel/enemy_ctrl/fn_1_C96A4.c:
 	.text       start:0x000C96A4 end:0x000CA218 align:4
+
 rel/main_rel/accessory/fn_1_11492C.c:
 	.text       start:0x0011492C end:0x001154D0 align:4
+
 rel/main_rel/_prolog/fn_1_21E4.c:
 	.text       start:0x000021E4 end:0x00002F04 align:4
+
 rel/main_rel/memcard/fn_1_B5F20.c:
 	.text       start:0x000B5F20 end:0x000B6B28 align:4
+
 rel/main_rel/font/fn_1_4C16C.c:
 	.text       start:0x0004C16C end:0x0004CDE4 align:4
+
 rel/main_rel/enemy_ctrl/fn_1_C8294.c:
 	.text       start:0x000C8294 end:0x000C8DC0 align:4
+
+rel/main_rel/sel_static_disp/fn_1_144F40.c:
+	.text       start:0x00144F40 end:0x00145B58 align:4
