@@ -1285,6 +1285,218 @@ fn_1_4F734(&loc_C);
 }
 /* fzgx:end fn_1_C7CBC */
 
+/* fzgx:begin fn_1_C96A4 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/enemy_ctrl.h"
+
+typedef struct Color {
+    u8 r, g, b, a;
+} Color;
+
+typedef struct Actor {
+    u8 pad_0[0x118];
+    s32 unk_118;
+    u8 pad_11C[0x58];
+    u8 min;
+    u8 sec;
+    u16 ms;
+    u8 pad_178[0x74];
+    u8 best_min;
+    u8 best_sec;
+    u16 best_ms;
+} Actor;
+
+typedef struct Sprite {
+    s32 used;
+    u8 pad_4[2];
+    s16 state;
+    FontDrawPacket packet;
+    u8 pad_60[0x18];
+    void (*func)(void *);
+    u32 unk_7C;
+} Sprite;
+
+extern Actor *fn_1_8627C(void *);
+extern f32 fn_1_867F8(void *);
+extern u16 fn_1_48690(u32);
+extern u16 fn_1_486C4(u32);
+extern u32 fn_1_5910(void);
+extern s16 fn_1_3F0C8(void);
+extern u32 fn_1_864E8(void *);
+extern Sprite *fn_1_4DF60(void);
+extern void fn_1_CA218(void *);
+extern f32 lbl_1_rodata_26F8[22];
+extern const u32 lbl_1_rodata_5D34;
+extern u32 lbl_801A66A0;
+extern const f32 lbl_1_rodata_5CB0;
+extern const f32 lbl_1_rodata_5CF4;
+extern const f32 lbl_1_rodata_5CF8;
+extern const f32 lbl_1_rodata_5CFC;
+extern const f32 lbl_1_rodata_5D00;
+extern const f32 lbl_1_rodata_5D04;
+extern const f32 lbl_1_rodata_5D08;
+extern const f32 lbl_1_rodata_5D10;
+extern const f32 lbl_1_rodata_5D38;
+extern const f32 lbl_1_rodata_5D24;
+extern const f32 lbl_1_rodata_5C80;
+extern const f32 lbl_1_rodata_5D28;
+extern const f32 lbl_1_rodata_5D2C;
+extern const f32 lbl_1_rodata_5CCC;
+extern const f32 lbl_1_rodata_5D20;
+extern const f32 lbl_1_rodata_5D3C;
+
+#pragma opt_propagation off
+void fn_1_C96A4(void *arg0, s32 x, s32 y) {
+    Color add;
+    FontDrawPacket packet;
+    u32 width;
+    Actor *actor;
+    void *obj;
+    BOOL flag;
+    u32 cur;
+    u32 best;
+    f32 value;
+    f32 full;
+    f32 alpha;
+    s32 sum;
+    s32 period;
+    Sprite *sprite;
+
+    actor = fn_1_8627C(arg0);
+    best = actor->best_min * 60000 + actor->best_sec * 1000 + actor->best_ms;
+    cur = actor->min * 60000 + actor->sec * 1000 + actor->ms;
+    width = lbl_1_rodata_5CB0 * (cur != 0 ? best - cur : 9999);
+    obj = arg0;
+    full = fn_1_48690(0x9416) * fn_1_867F8(obj) / lbl_1_rodata_5CF4;
+    flag = width < full - lbl_1_rodata_5CF8;
+    alpha = lbl_1_rodata_5CFC;
+    if (!(((u32 *)&lbl_1_data_3D544)[fn_1_5910()] >> 30 & 1)) {
+        return;
+    }
+    if (flag) {
+        add.r = add.g = add.b = 80;
+    } else {
+        add.r = add.g = add.b = 0;
+    }
+    value = fn_1_867F8(obj);
+    if (value < lbl_1_rodata_5D00 && fn_1_3F0C8() == 41) {
+        period = 30;
+        if (value < lbl_1_rodata_5D04) {
+            period = 15;
+        }
+        value = (f32)(lbl_801A66A0 % period) / period;
+        alpha = (value < lbl_1_rodata_5D08) ? lbl_1_rodata_5D08 : ((value > lbl_1_rodata_5CFC) ? lbl_1_rodata_5CFC : value);
+    }
+
+    packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+    packet.image = 0x9400;
+    packet.x = x + 89;
+    packet.y = y + 22;
+    fn_1_4F734(&packet);
+
+    packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+    packet.image = 0x9417;
+    fn_1_51678(&packet, packet.image, 0, 0, fn_1_48690(0x9417), 10);
+    packet.x = x;
+    packet.y = y;
+    packet.z = lbl_1_rodata_5D10;
+    fn_1_4F734(&packet);
+
+    packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+    packet.image = 0x9417;
+    fn_1_51678(&packet, packet.image, 0, 14, fn_1_48690(0x9417), 10);
+    packet.x = x;
+    packet.y = y + 10;
+    packet.z = lbl_1_rodata_5D38;
+    fn_1_4F734(&packet);
+
+    if (actor->unk_118 + 1 >= 2) {
+        packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+        packet.image = 0x9416;
+        if (flag) {
+            value = (width + 16) * fn_1_867F8(obj) / lbl_1_rodata_5CF4;
+        } else {
+            value = full;
+        }
+        fn_1_51678(&packet, packet.image, 0, 0, value, fn_1_486C4(0x9416));
+        packet.x = x + 4;
+        packet.y = y + 4;
+        *(Color *)packet.color_add = add;
+        packet.color[0] = packet.color[0] * alpha;
+        packet.color[1] = packet.color[1] * alpha;
+        packet.color[2] = packet.color[2] * alpha;
+        packet.z = lbl_1_rodata_5D24;
+        packet.scale_y *= lbl_1_rodata_5C80 / fn_1_486C4(packet.image);
+        fn_1_4F734(&packet);
+    }
+
+    packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+    packet.image = 0x9436;
+    packet.x = x + 4;
+    packet.y = y + 4;
+    packet.scale_x *= full / fn_1_48690(packet.image);
+    packet.scale_y *= lbl_1_rodata_5C80 / fn_1_486C4(packet.image);
+    *(Color *)packet.color = *(const Color *)&lbl_1_rodata_5D34;
+    sum = packet.color[0] + add.r;
+    packet.color[0] = (sum < 255) ? sum : 255;
+    sum = packet.color[1] + add.g;
+    packet.color[1] = (sum < 255) ? sum : 255;
+    sum = packet.color[2] + add.b;
+    packet.color[2] = (sum < 255) ? sum : 255;
+    packet.color[0] = packet.color[0] * alpha;
+    packet.color[1] = packet.color[1] * alpha;
+    packet.color[2] = packet.color[2] * alpha;
+    packet.z = lbl_1_rodata_5D28;
+    fn_1_4F734(&packet);
+
+    packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+    packet.image = 0x9451;
+    packet.x = x + 4;
+    packet.y = y + 4;
+    packet.scale_x *= fn_1_48690(0x9416) / fn_1_48690(packet.image);
+    packet.scale_y *= lbl_1_rodata_5C80 / fn_1_486C4(packet.image);
+    packet.z = lbl_1_rodata_5D2C;
+    fn_1_4F734(&packet);
+
+    if (flag) {
+        packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+        packet.image = 0x9450;
+        packet.x = x + 4 + width;
+        packet.y = y + 4;
+        packet.z = lbl_1_rodata_5CCC;
+        packet.scale_y *= lbl_1_rodata_5C80 / fn_1_486C4(packet.image);
+        fn_1_4F734(&packet);
+    }
+
+    if (!(((u32 *)&lbl_1_data_3D544)[fn_1_5910()] >> 20 & 1)) {
+        return;
+    }
+    if (!(fn_1_864E8(obj) & 0x40)) {
+        return;
+    }
+    if (fn_1_864E8(obj) & 0x800) {
+        return;
+    }
+    sprite = fn_1_4DF60();
+    if (sprite == NULL) {
+        return;
+    }
+    sprite->packet.image = 0x9410;
+    sprite->packet.x = x - 8;
+    sprite->packet.y = y - 12;
+    sprite->packet.z = lbl_1_rodata_5D20;
+    sprite->packet.scale_y *= lbl_1_rodata_5D3C;
+    if ((s32)lbl_1_bss_4E6A8 != 0) {
+        sprite->packet.flags |= 0x8000000;
+        sprite->packet.depth = (s32)lbl_1_bss_4E6AC;
+    }
+    sprite->state = 0;
+    sprite->func = fn_1_CA218;
+}
+/* fzgx:end fn_1_C96A4 */
+
 /* fzgx:begin fn_1_CA218 */
 typedef struct EnemyCtrl_CA218 {
     u32 value;
