@@ -89322,21 +89322,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C96A4.c",
-    "symbols": [
-      "fn_1_C96A4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@68": "lbl_1_rodata_5CE8",
-      "@71": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/enemy_ctrl/fn_1_C8294.c",
     "symbols": [
       "fn_1_C8294"
@@ -89350,6 +89335,21 @@
       "@94": "lbl_1_rodata_5C00",
       "@85": "lbl_1_rodata_5CB0",
       "@86": "lbl_1_rodata_5CD0"
+    }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_C96A4.c",
+    "symbols": [
+      "fn_1_C96A4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/enemy_ctrl.c",
+    "pool": {
+      "@68": "lbl_1_rodata_5CE8",
+      "@71": "lbl_1_rodata_5C00"
     }
   },
   {
@@ -89633,6 +89633,25 @@
     "pool": {
       "@117": "lbl_1_rodata_5C00",
       "@119": "lbl_1_rodata_5CE8"
+    }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_CEB38.c",
+    "symbols": [
+      "fn_1_CEB38"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/enemy_ctrl.c",
+    "pool": {
+      "@6": "lbl_1_rodata_5FB8",
+      "@7": "lbl_1_rodata_5FC0",
+      "@77": "lbl_1_rodata_5C00",
+      "@72": "lbl_1_data_3D5B0",
+      "@79": "lbl_1_rodata_5CE8",
+      "...data.0": "lbl_1_data_3D290"
     }
   },
   {
