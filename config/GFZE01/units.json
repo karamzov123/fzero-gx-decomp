@@ -89322,21 +89322,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C96A4.c",
-    "symbols": [
-      "fn_1_C96A4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@68": "lbl_1_rodata_5CE8",
-      "@71": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/enemy_ctrl/fn_1_C8294.c",
     "symbols": [
       "fn_1_C8294"
@@ -89350,6 +89335,21 @@
       "@94": "lbl_1_rodata_5C00",
       "@85": "lbl_1_rodata_5CB0",
       "@86": "lbl_1_rodata_5CD0"
+    }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_C96A4.c",
+    "symbols": [
+      "fn_1_C96A4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/enemy_ctrl.c",
+    "pool": {
+      "@68": "lbl_1_rodata_5CE8",
+      "@71": "lbl_1_rodata_5C00"
     }
   },
   {
@@ -106906,6 +106906,32 @@
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "@6": "lbl_1_rodata_31A0"
+    }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/screen_effect/fn_1_77C5C.c",
+    "symbols": [
+      "fn_1_77C5C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/2.5",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/screen_effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_3180",
+      "@27": "lbl_1_rodata_31D8",
+      "@29": "lbl_1_rodata_31E8",
+      "@16": "lbl_1_rodata_31AC",
+      "@13": "lbl_1_rodata_31A0",
+      "...bss.0": "lbl_1_bss_6C8D8",
+      "lbl_1_bss_6C8D8": "lbl_1_bss_6C8D8",
+      "lbl_1_bss_6C8DC": "lbl_1_bss_6C8DC",
+      "lbl_1_bss_6C8E4": "lbl_1_bss_6C8E4",
+      "lbl_1_bss_6C8E8": "lbl_1_bss_6C8E8",
+      "lbl_1_bss_6C8EC": "lbl_1_bss_6C8EC",
+      "lbl_1_bss_6D14C": "lbl_1_bss_6D14C",
+      "lbl_1_bss_6D1A8": "lbl_1_bss_6D1A8"
     }
   },
   {

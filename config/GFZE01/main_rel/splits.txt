@@ -16437,3 +16437,6 @@ rel/main_rel/font/fn_1_4C16C.c:
 	.text       start:0x0004C16C end:0x0004CDE4 align:4
 rel/main_rel/enemy_ctrl/fn_1_C8294.c:
 	.text       start:0x000C8294 end:0x000C8DC0 align:4
+
+rel/main_rel/screen_effect/fn_1_77C5C.c:
+	.text       start:0x00077C5C end:0x0007879C align:4
