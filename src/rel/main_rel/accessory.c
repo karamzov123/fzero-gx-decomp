@@ -14701,6 +14701,267 @@ void fn_1_11CD3C(Work *arg0) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_11CD3C */
 
+/* fzgx:begin fn_1_11DE2C noprologue */
+#include "types.h"
+
+extern u8 lbl_1_data_3FFBC[0x574];
+
+typedef struct {
+    f32 x, y, z;
+} Vec;
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+    u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
+};
+extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1B0(Vec *, Vec *);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_8006E250(Vec *, Vec *);
+extern const u8 lbl_1_rodata_7AB8[];
+
+typedef struct Node {
+    u8 flags, kind, count, pad3;
+    u16 links[6];
+    Vec pos, prev, local, vel;
+    f32 weight;
+} Node;
+typedef struct { Node *a, *b; f32 length; } Link;
+typedef struct { u8 pad[8]; u8 *base; } Model;
+typedef struct { u8 pad[0x150]; Model *model; } Owner;
+typedef struct {
+    u8 flags; u8 pad[7]; u32 index; Owner *owner;
+    struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
+    u32 pad14, count, linkCount, count2;
+    Node *nodes; Link *links; Node *nodes2;
+} Work;
+
+#define F(o) (*(const f32 *)(pool + (o)))
+#define D(o) (*(const f64 *)(pool + (o)))
+#define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
+
+static inline f32 link_measure(Node *a, Node *b, Vec *dp) {
+    f32 x;
+    f32 y;
+    f32 z;
+    x = a->pos.x - b->pos.x;
+    y = a->pos.y - b->pos.y;
+    z = a->pos.z - b->pos.z;
+    (*dp).x = x; (*dp).y = y; (*dp).z = z;
+    { f32 d; d = x * x; d += y * y; d += z * z; return d; }
+}
+
+#define delta (*dp)
+static inline void link_constrain(const u8 *pool, Node *a, Node *b, Link *l, f32 *len, Vec *dp) {
+    f32 wb;
+    f32 inv;
+    f32 s;
+    f32 wa;
+    f32 fb;
+    f32 r;
+    f32 fa;
+    f32 cx;
+    f32 cy;
+    f32 cz;
+    f32 x;
+    inv = lbl_8006D118(*len, len);
+    r = lbl_8006D0B4(l->length);
+    s = inv * (*len - r);
+    *len = s;
+    cx = delta.x * s; cy = delta.y * s; cz = delta.z * s;
+    wa = a->weight; wb = b->weight;
+    x = a->pos.x;
+    delta.x = cx; delta.y = cy; delta.z = cz;
+    r = F(0xa0) / (wa + wb);
+    fa = wa * r; fb = wb * r;
+    a->pos.x = x - (f32)(cx * fa);
+    a->pos.y -= (f32)(cy * fa);
+    a->pos.z -= (f32)(cz * fa);
+    b->pos.x += (f32)(cx * fb);
+    b->pos.y += (f32)(cy * fb);
+    b->pos.z += (f32)(cz * fb);
+}
+#undef delta
+#define LINKFIX { link_constrain(pool, a, b, l, &len, dp); }
+
+#define SPHERE(CX, CY, CZ, RADIUS, STRENGTH) { \
+    Vec diffv; \
+    Vec center; \
+    Vec *qp = &diffv; \
+    u8 *mb = arg0->owner->model->base; \
+    center.x = CX; center.y = CY; center.z = CZ; \
+    lbl_8006DBAC(mb + 532); \
+    lbl_8006E1B0(&center, &center); \
+    for (ki = 0, kn = arg0->nodes2; ki < arg0->count2; ki++, kn++) { \
+        if (!(kn->flags & 1)) { \
+            f32 y, x, z, r, s; \
+            x = kn->pos.x - center.x; \
+            y = kn->pos.y - center.y; \
+            z = kn->pos.z - center.z; \
+            qp->x = x; qp->y = y; qp->z = z; \
+            r = (f32)(x * x) + y * y + z * z; \
+            if (r < RADIUS) { \
+                s = STRENGTH / lbl_8006D0B4(r); \
+                kn->pos.x = center.x + (f32)(qp->x * s); \
+                kn->pos.y = center.y + (f32)(qp->y * s); \
+                kn->pos.z = center.z + (f32)(qp->z * s); \
+            } \
+        } \
+    } \
+}
+
+#define OFFSET(T, IDX) { \
+    Node *src = &arg0->nodes2[IDX]; \
+    delta.x = src->pos.x - src->local.x; \
+    delta.y = src->pos.y - src->local.y; \
+    delta.z = src->pos.z - src->local.z; \
+    for (oi = 0, on = arg0->nodes; oi < arg0->count; oi++, on++) { \
+        if (on->kind == T) { \
+            on->pos.x = on->local.x + delta.x; \
+            on->pos.y = on->local.y + delta.y; \
+            on->pos.z = on->local.z + delta.z; \
+        } \
+    } \
+}
+
+void fn_1_11DE2C(Work *arg0) {
+    const u8 *pool = lbl_1_rodata_7AB8;
+    u8 *fmodel;
+    Node *fn;
+    Node *b;
+    Node *na;
+    u32 ki;
+    Node *kn;
+    s32 fj;
+    u32 vi;
+    u32 i4;
+    u32 fi;
+    u32 k;
+    u32 i3;
+    Node *n3;
+    u16 *lp;
+    u32 i2;
+    u8 *model4;
+    Node *n2;
+    u32 oi;
+    u8 *model3;
+    Node *jn;
+    u32 i1b;
+    Node *on;
+    u32 li;
+    Node *n1b;
+    Node *vn;
+    u32 j;
+    Node *a;
+    Node *n1;
+    u32 i1;
+    Node *nb;
+    Link *l;
+    u8 *model1;
+    Vec deltav;
+    Vec *dp = &deltav;
+#define delta (*dp)
+    Vec tmp;
+    f32 len;
+
+    if (arg0 && arg0->obj) {
+        fn_80077B14(arg0->obj);
+        if (arg0->flags & 2) {
+            arg0->flags &= ~2;
+            model1 = arg0->owner->model->base + INDEX(arg0->index) * 396;
+            for (i1 = 0, n1 = arg0->nodes; i1 < arg0->count; i1++, n1++) {
+                lbl_8006DBAC(model1 + 136);
+                lbl_8006E1B0(&n1->local, &n1->pos);
+            }
+            for (i1b = 0, n1b = arg0->nodes2; i1b < arg0->count2; i1b++, n1b++) {
+                lbl_8006DBAC(model1 + 136);
+                lbl_8006E1B0(&n1b->local, &n1b->pos);
+            }
+        }
+        for (i2 = 0, n2 = arg0->nodes2; i2 < arg0->count2; i2++, n2++) {
+            if (!(n2->flags & 1)) {
+                n2->prev = n2->pos;
+                n2->pos.x += n2->vel.x;
+                n2->pos.y += n2->vel.y;
+                n2->pos.z += n2->vel.z;
+                n2->pos.y -= D(0x58);
+                n2->vel.y -= F(0x60);
+            }
+        }
+        model3 = arg0->owner->model->base + INDEX(arg0->index) * 396;
+        for (i3 = 0, n3 = arg0->nodes2; i3 < arg0->count2; i3++, n3++) {
+            if (n3->flags & 1) {
+                lbl_8006DBAC(model3 + 136);
+                lbl_8006E1B0(&n3->local, &n3->pos);
+            }
+        }
+        for (k = 0; k < 4; k++) {
+            for (li = 0, l = arg0->links; li < arg0->linkCount; li++, l++) {
+                a = l->a; b = l->b;
+                if (a && b) {
+                    f32 y, z, x;
+                    x = a->pos.x - b->pos.x;
+                    y = a->pos.y - b->pos.y;
+                    z = a->pos.z - b->pos.z;
+                    delta.x = x; delta.y = y; delta.z = z;
+                    len = (f32)(x * x) + y * y + z * z;
+                    if (len - F(0x9c) > l->length) LINKFIX
+                    if (len - F(0x1a4) < l->length && li >= 10) {
+                        if (a->pos.y < F(0x68)) a->pos.y = F(0x248);
+                        if (b->pos.y < F(0x68)) b->pos.y = F(0x248);
+                        len = link_measure(a, b, dp);
+                        LINKFIX
+                    }
+                }
+            }
+        }
+        SPHERE(F(0x1e4), F(0x484), F(0x68), F(0x3b8), F(0x3bc))
+        SPHERE(F(0x1e4), F(0x488), F(0x2a0), F(0x3f4), F(0x2d4))
+        SPHERE(F(0x1e4), F(0x488), F(0x2a4), F(0x3f4), F(0x2d4))
+        SPHERE(F(0x3fc), F(0x1a4), F(0x68), F(0x48c), F(0x27c))
+        SPHERE(F(0x30c), F(0x68), F(0x490), F(0x494), F(0x498))
+        SPHERE(F(0x30c), F(0x68), F(0x49c), F(0x494), F(0x498))
+        model4 = arg0->owner->model->base + INDEX(arg0->index) * 396;
+        for (i4 = 0, na = arg0->nodes, nb = arg0->nodes2; i4 < 10; i4++, na += 4, nb++) {
+            if (na->kind == 0 || na->kind == 1) {
+                lbl_8006DBAC(model4 + 136);
+                lbl_8006E1B0(&nb->local, &tmp);
+                delta.x = nb->pos.x - tmp.x;
+                delta.y = nb->pos.y - tmp.y;
+                delta.z = nb->pos.z - tmp.z;
+                for (j = 0, jn = na; j < 4; j++, jn++) {
+                    lbl_8006DBAC(model4 + 136);
+                    lbl_8006E1B0(&jn->local, &tmp);
+                    jn->pos.x = tmp.x + delta.x;
+                    jn->pos.y = tmp.y + delta.y;
+                    jn->pos.z = tmp.z + delta.z;
+                }
+            }
+        }
+        OFFSET(2, 10)
+        OFFSET(3, 11)
+        OFFSET(4, 12)
+        OFFSET(5, 13)
+        for (vi = 0, vn = arg0->nodes2; vi < arg0->count2; vi++, vn++) {
+            vn->vel.x = vn->pos.x - vn->prev.x;
+            vn->vel.y = vn->pos.y - vn->prev.y;
+            vn->vel.z = vn->pos.z - vn->prev.z;
+            vn->vel.x *= F(0x3ec);
+            vn->vel.z *= F(0x3ec);
+            if (vn->vel.y > F(0x68)) vn->vel.y *= F(0x200);
+        }
+        fmodel = (u8 *)fn_80077B14(arg0->obj);
+        lbl_8006DBAC(arg0->owner->model->base + INDEX(arg0->index) * 396 + 136);
+        for (fi = 0, fn = arg0->nodes; fi < arg0->count; fi++, fn++) {
+            for (fj = 0, lp = (u16 *)fn; fj < fn->count; lp++, fj++) {
+                fn_8006E250(&fn->pos, (Vec *)(fmodel + (lp[2] << 6)));
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_11DE2C */
+
 /* fzgx:begin fn_1_11ED0C noprologue */
 #include "types.h"
 #include "types.h"
