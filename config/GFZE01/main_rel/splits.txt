@@ -16435,3 +16435,5 @@ rel/main_rel/memcard/fn_1_B5F20.c:
 	.text       start:0x000B5F20 end:0x000B6B28 align:4
 rel/main_rel/font/fn_1_4C16C.c:
 	.text       start:0x0004C16C end:0x0004CDE4 align:4
+rel/main_rel/enemy_ctrl/fn_1_C8294.c:
+	.text       start:0x000C8294 end:0x000C8DC0 align:4
