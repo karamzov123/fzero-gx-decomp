@@ -89656,6 +89656,25 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_CEB38.c",
+    "symbols": [
+      "fn_1_CEB38"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/enemy_ctrl.c",
+    "pool": {
+      "@6": "lbl_1_rodata_5FB8",
+      "@7": "lbl_1_rodata_5FC0",
+      "@77": "lbl_1_rodata_5C00",
+      "@72": "lbl_1_data_3D5B0",
+      "@79": "lbl_1_rodata_5CE8",
+      "...data.0": "lbl_1_data_3D290"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/enemy_ctrl/fn_1_CF5B0.c",
     "symbols": [
       "fn_1_CF5B0"
