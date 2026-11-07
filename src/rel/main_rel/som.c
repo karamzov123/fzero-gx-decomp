@@ -330,6 +330,578 @@ void fn_1_13A28(Fn1_13A28 *arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_13A28 */
 
+/* fzgx:begin fn_1_13B98 noprologue */
+#include "types.h"
+
+typedef struct ColiAnimTrack {
+    s32 count;
+    void *keys;
+} ColiAnimTrack;
+
+typedef struct ColiAnim {
+    ColiAnimTrack tracks[6];
+} ColiAnim;
+
+typedef struct ColiBank {
+    void **first;
+    void **second;
+} ColiBank;
+
+typedef struct ColiExtra {
+    u8 pad_0[0xC];
+    f32 unk_C;
+} ColiExtra;
+
+typedef struct ColiObject {
+    f32 x, y, z;
+    s16 rx, ry, rz;
+    u8 pad_12[2];
+    ColiAnim *anim;
+    f32 ox, oy, oz;
+    void *unk_24;
+    void **banks0[14];
+    u8 pad_60[0x10];
+    s32 columns;
+    s32 rows;
+    void *unk_78;
+    void **banks1[14];
+    u8 pad_B4[4];
+    void *unk_B8;
+    u8 pad_BC[4];
+    void *unk_C0;
+    u8 pad_C4[4];
+    void *unk_C8;
+    u8 pad_CC[4];
+    void *unk_D0;
+    u8 pad_D4[4];
+    void *unk_D8;
+    u8 pad_DC[4];
+    void *unk_E0;
+    u8 pad_E4[4];
+    void *unk_E8;
+    u8 pad_EC[8];
+    ColiExtra *extra;
+    u8 pad_F8[0xC];
+    u32 flags;
+    f32 unk_108;
+    f32 unk_10C;
+    ColiBank unk_110[2];
+    u8 pad_120[0x4B0 - 0x120];
+} ColiObject;
+
+typedef struct ColiModelRef {
+    u32 unk_0;
+    void *unk_4;
+    void *unk_8;
+} ColiModelRef;
+
+typedef struct ColiSub54Anim {
+    u8 pad_0[0x30];
+    void *unk_30;
+    u8 pad_34[0x14];
+    void *unk_48;
+    u8 pad_4C[0x14];
+    void *unk_60;
+    u8 pad_64[0x14];
+    void *unk_78;
+    u8 pad_7C[0x14];
+    void *unk_90;
+    u8 pad_94[0x14];
+    void *unk_A8;
+    u8 pad_AC[0x14];
+    void *unk_C0;
+    u8 pad_C4[0x14];
+    void *unk_D8;
+    u8 pad_DC[0x14];
+    void *unk_F0;
+    u8 pad_F4[0x14];
+    void *unk_108;
+    u8 pad_10C[0x14];
+    void *unk_120;
+} ColiSub54Anim;
+
+typedef struct ColiSub54Ptrs {
+    void *unk_0;
+    void *unk_4;
+    void *unk_8;
+    void *unk_C;
+} ColiSub54Ptrs;
+
+typedef struct ColiSub54C {
+    u8 pad_0[0xC];
+    void *unk_C;
+} ColiSub54C;
+
+typedef struct ColiSub54 {
+    u8 pad_0[8];
+    void *unk_8;
+    u8 pad_C[0x24];
+    ColiSub54Anim *unk_30;
+    ColiSub54Ptrs *unk_34;
+    ColiSub54C *unk_38;
+    void *unk_3C;
+} ColiSub54;
+
+typedef struct ColiRec24 {
+    void *unk_0;
+    u8 pad_4[0x20];
+} ColiRec24;
+
+typedef struct ColiElem {
+    u32 unk_0;
+    void *unk_4;
+    u8 pad_8[8];
+} ColiElem;
+
+typedef struct ColiGroupC {
+    u8 pad_0[0x1C];
+    void *unk_1C;
+    void *unk_20;
+} ColiGroupC;
+
+typedef struct ColiGroup {
+    u32 unk_0;
+    s32 count;
+    ColiElem *elems;
+    ColiGroupC *unk_C;
+} ColiGroup;
+
+typedef struct ColiRec70 {
+    void *unk_0;
+    u8 pad_4[0x20];
+    void *unk_24;
+    u8 pad_28[4];
+    void *unk_2C;
+    u8 pad_30[4];
+    void *unk_34;
+    u8 pad_38[4];
+    void *unk_3C;
+    u8 pad_40[4];
+    void *unk_44;
+    u8 pad_48[4];
+    void *unk_4C;
+    u8 pad_50[4];
+    void *unk_54;
+    u8 pad_58[4];
+    void *unk_5C;
+    u8 pad_60[0x10];
+} ColiRec70;
+
+typedef struct ColiRecA0 {
+    u8 pad_0[0xC];
+    void *unk_C;
+    u8 pad_10[4];
+    void *unk_14;
+    u8 pad_18[4];
+    void *unk_1C;
+    u8 pad_20[0x80];
+} ColiRecA0;
+
+typedef struct ColiRec38 {
+    u8 pad_0[0x10];
+    ColiAnim *anim;
+    u8 pad_14[0x24];
+} ColiRec38;
+
+typedef struct ColiHeader {
+    f32 unk_0;
+    f32 unk_4;
+    s32 modelCount;
+    ColiModelRef *models;
+    u8 pad_10[4];
+    void *unk_14;
+    s32 objectCount;
+    ColiObject *objects;
+    void *unk_20;
+    void *unk_24;
+    u8 pad_28[4];
+    void *unk_2C;
+    u8 pad_30[0xC];
+    void *unk_3C;
+    u8 pad_40[4];
+    void *unk_44;
+    s32 sub54Count;
+    u8 pad_4C[8];
+    ColiSub54 *sub54;
+    u8 pad_58[4];
+    s32 rec24Count;
+    ColiRec24 *rec24;
+    s32 groupCount;
+    ColiGroup *groups;
+    s32 wordCount;
+    void **words;
+    s32 rec70Count;
+    ColiRec70 *rec70;
+    u8 pad_7C[4];
+    ColiAnim *unk_80;
+    void *unk_84;
+    s32 recA0Count;
+    ColiRecA0 *recA0;
+    f32 *unk_90;
+    u8 pad_94[4];
+    void *unk_98;
+    u8 pad_9C[4];
+    void *unk_A0;
+    u8 pad_A4[4];
+    void *unk_A8;
+    u8 pad_AC[4];
+    void *unk_B0;
+    s32 rec38Count;
+    ColiRec38 *rec38;
+    void **grid;
+    u8 pad_C0[0x10];
+    s32 gridColumns;
+    s32 gridRows;
+} ColiHeader;
+
+typedef struct ColiRuntime {
+    u32 flags;
+    u8 pad_4[4];
+    f32 x, y, z;
+    f32 dx, dy, dz;
+    s16 rx, ry, rz;
+    s16 rx2, ry2, rz2;
+    u8 mtx_2C[0x30];
+    u8 mtx_5C[0x30];
+    u8 pad_8C[0xC];
+    f32 unk_98;
+    u32 unk_9C;
+} ColiRuntime;
+
+extern u8 lbl_1_bss_3BC0[32];
+extern void *lbl_801A6410;
+extern ColiHeader *lbl_1_bss_3BE0;
+extern ColiRuntime *lbl_1_bss_3BE4;
+extern f32 lbl_1_bss_7AC88;
+extern f32 lbl_1_bss_7AC9C;
+
+extern int sprintf(char *, const char *, ...);
+extern int fn_1_45730(void *, void *);
+extern int fn_1_458A0(void *, void *, u32, u32);
+extern int fn_1_45850(void *);
+extern void *fn_1_45D0(void *, u32, void *, u32);
+extern void fn_1_46B4(void *, void *, void *, u32);
+extern void fn_1_12860(void *, void *);
+extern void OSPanic(const char *, int, const char *, ...);
+extern void fn_1_13A28(void *, void *);
+extern void fn_800793D4(void *, int, u32);
+extern void fn_80008BEC(void *, int, u32);
+extern void lbl_8006D758(void);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006E0C8(void *);
+extern void fn_1_9D420(void *, s32);
+extern void fn_1_14DE8(s32);
+
+s8 lbl_1_data_5190 = -1;
+
+#define OFFSET_TO_PTR(base, offset) (void *)((u32)(offset) + (u32)(base))
+
+static inline void adjust_anim_ptrs(ColiAnim **pAnim, ColiHeader *base) {
+    *pAnim = OFFSET_TO_PTR(base, *pAnim);
+    if ((*pAnim)->tracks[0].keys != NULL)
+        (*pAnim)->tracks[0].keys = OFFSET_TO_PTR(base, (*pAnim)->tracks[0].keys);
+    if ((*pAnim)->tracks[1].keys != NULL)
+        (*pAnim)->tracks[1].keys = OFFSET_TO_PTR(base, (*pAnim)->tracks[1].keys);
+    if ((*pAnim)->tracks[2].keys != NULL)
+        (*pAnim)->tracks[2].keys = OFFSET_TO_PTR(base, (*pAnim)->tracks[2].keys);
+    if ((*pAnim)->tracks[3].keys != NULL)
+        (*pAnim)->tracks[3].keys = OFFSET_TO_PTR(base, (*pAnim)->tracks[3].keys);
+    if ((*pAnim)->tracks[4].keys != NULL)
+        (*pAnim)->tracks[4].keys = OFFSET_TO_PTR(base, (*pAnim)->tracks[4].keys);
+    if ((*pAnim)->tracks[5].keys != NULL)
+        (*pAnim)->tracks[5].keys = OFFSET_TO_PTR(base, (*pAnim)->tracks[5].keys);
+}
+
+static inline void adjust_sub54_anim(ColiSub54Anim **pAnim, ColiHeader *base) {
+    *pAnim = OFFSET_TO_PTR(base, *pAnim);
+    if ((*pAnim)->unk_30 != NULL) (*pAnim)->unk_30 = OFFSET_TO_PTR(base, (*pAnim)->unk_30);
+    if ((*pAnim)->unk_48 != NULL) (*pAnim)->unk_48 = OFFSET_TO_PTR(base, (*pAnim)->unk_48);
+    if ((*pAnim)->unk_60 != NULL) (*pAnim)->unk_60 = OFFSET_TO_PTR(base, (*pAnim)->unk_60);
+    if ((*pAnim)->unk_78 != NULL) (*pAnim)->unk_78 = OFFSET_TO_PTR(base, (*pAnim)->unk_78);
+    if ((*pAnim)->unk_90 != NULL) (*pAnim)->unk_90 = OFFSET_TO_PTR(base, (*pAnim)->unk_90);
+    if ((*pAnim)->unk_A8 != NULL) (*pAnim)->unk_A8 = OFFSET_TO_PTR(base, (*pAnim)->unk_A8);
+    if ((*pAnim)->unk_C0 != NULL) (*pAnim)->unk_C0 = OFFSET_TO_PTR(base, (*pAnim)->unk_C0);
+    if ((*pAnim)->unk_D8 != NULL) (*pAnim)->unk_D8 = OFFSET_TO_PTR(base, (*pAnim)->unk_D8);
+    if ((*pAnim)->unk_F0 != NULL) (*pAnim)->unk_F0 = OFFSET_TO_PTR(base, (*pAnim)->unk_F0);
+    if ((*pAnim)->unk_108 != NULL) (*pAnim)->unk_108 = OFFSET_TO_PTR(base, (*pAnim)->unk_108);
+    if ((*pAnim)->unk_120 != NULL) (*pAnim)->unk_120 = OFFSET_TO_PTR(base, (*pAnim)->unk_120);
+}
+
+static inline void adjust_sub54_ptrs(ColiSub54Ptrs **pPtrs, ColiHeader *base) {
+    *pPtrs = OFFSET_TO_PTR(base, *pPtrs);
+    if ((*pPtrs)->unk_0 != NULL) (*pPtrs)->unk_0 = (void *)((u32)base + (u32)(*pPtrs)->unk_0);
+    if ((*pPtrs)->unk_4 != NULL) (*pPtrs)->unk_4 = (void *)((u32)base + (u32)(*pPtrs)->unk_4);
+    if ((*pPtrs)->unk_8 != NULL) (*pPtrs)->unk_8 = (void *)((u32)base + (u32)(*pPtrs)->unk_8);
+    if ((*pPtrs)->unk_C != NULL) (*pPtrs)->unk_C = (void *)((u32)base + (u32)(*pPtrs)->unk_C);
+}
+
+static inline void adjust_sub54_c(ColiSub54C **pC, ColiHeader *base) {
+    *pC = OFFSET_TO_PTR(base, *pC);
+    if ((*pC)->unk_C != NULL) (*pC)->unk_C = OFFSET_TO_PTR(base, (*pC)->unk_C);
+}
+
+#define RELOC(field) if ((field) != NULL) (field) = OFFSET_TO_PTR(lbl_1_bss_3BE0, (field))
+
+static inline void init_runtimes(void) {
+    u32 saved;
+    ColiRuntime *rt = lbl_1_bss_3BE4;
+    ColiObject *obj;
+    s32 i;
+
+        for (i = 0, obj = lbl_1_bss_3BE0->objects; i < lbl_1_bss_3BE0->objectCount; i++, obj++, rt++) {
+            saved = rt->unk_9C;
+            fn_80008BEC(rt, 0, sizeof(ColiRuntime));
+            rt->unk_9C = saved;
+            rt->x = obj->x;
+            rt->y = obj->y;
+            rt->z = obj->z;
+            rt->dx = obj->x - obj->ox;
+            rt->dy = obj->y - obj->oy;
+            rt->dz = obj->z - obj->oz;
+            rt->rx = obj->rx;
+            rt->ry = obj->ry;
+            rt->rz = obj->rz;
+            rt->rx2 = obj->rx;
+            rt->ry2 = obj->ry;
+            rt->rz2 = obj->rz;
+            lbl_8006D758();
+            lbl_8006DB74(rt->mtx_2C);
+            lbl_8006E0C8(&obj->ox);
+            lbl_8006DB74(rt->mtx_5C);
+            if (obj->extra != NULL) {
+                rt->unk_98 = obj->extra->unk_C;
+            }
+            rt->flags |= obj->flags;
+        }
+}
+
+void fn_1_13B98(s32 course, s32 initModels) {
+    char path[32];
+    u8 file[0x5C];
+    u32 compSize;
+    u32 uncompSize;
+    void *compData;
+    void *uncompData;
+    s32 i;
+
+    if (lbl_1_data_5190 != -1) {
+        course = lbl_1_data_5190;
+        lbl_1_data_5190 = -1;
+    }
+    sprintf(path, "stage/COLI_COURSE%02d.lz", course);
+    if (fn_1_45730(path, file) == 0) {
+        fn_1_45730("stage/COLI_COURSE01.lz", file);
+    }
+    fn_1_458A0(file, lbl_1_bss_3BC0, 0x20, 0);
+    compSize = (__lwbrx(lbl_1_bss_3BC0, 0) + 0x27) & ~0x1F;
+    uncompSize = (__lwbrx(lbl_1_bss_3BC0, 4) + 0x1F) & ~0x1F;
+    uncompData = fn_1_45D0(lbl_801A6410, uncompSize, "stcoli.c", 0x181);
+    compData = fn_1_45D0(lbl_801A6410, compSize, "stcoli.c", 0x182);
+    if (fn_1_458A0(file, compData, compSize, 0) < 0) {
+        OSPanic("stcoli.c", 0x184, "cannot Read");
+    }
+    if (fn_1_45850(file) == 0) {
+        OSPanic("stcoli.c", 0x185, "cannot Close");
+    }
+    fn_1_12860(compData, uncompData);
+    fn_1_46B4(lbl_801A6410, compData, "stcoli.c", 0x189);
+
+    lbl_1_bss_3BE0 = uncompData;
+    if (lbl_1_bss_3BE0->models != NULL) {
+        ColiModelRef *model;
+        void *prev = NULL;
+
+        RELOC(lbl_1_bss_3BE0->models);
+        for (i = 0, model = lbl_1_bss_3BE0->models; i < lbl_1_bss_3BE0->modelCount; i++, model++) {
+            RELOC(model->unk_4);
+            RELOC(model->unk_8);
+            if (prev != model->unk_8) {
+                fn_1_13A28(model->unk_8, lbl_1_bss_3BE0);
+            }
+            prev = model->unk_8;
+        }
+    }
+    RELOC(lbl_1_bss_3BE0->unk_14);
+    lbl_1_bss_3BE0->objects = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->objects);
+    {
+        ColiObject *obj;
+
+        for (i = 0, obj = lbl_1_bss_3BE0->objects; i < lbl_1_bss_3BE0->objectCount; i++, obj++) {
+            s32 j;
+
+            if (0.0f == obj->unk_108 && 0.0f == obj->unk_10C) {
+                obj->unk_108 = lbl_1_bss_3BE0->unk_0;
+                obj->unk_10C = lbl_1_bss_3BE0->unk_4;
+            }
+            if (obj->anim != NULL) {
+                adjust_anim_ptrs(&obj->anim, lbl_1_bss_3BE0);
+            }
+            RELOC(obj->unk_24);
+            for (j = 0; j < 14; j++) {
+                if (obj->banks0[j] != NULL) {
+                    s32 k;
+                    void **q;
+
+                    obj->banks0[j] = OFFSET_TO_PTR(lbl_1_bss_3BE0, obj->banks0[j]);
+                    for (k = 0, q = obj->banks0[j]; k < obj->columns * obj->rows; k++, q++) {
+                        RELOC(*q);
+                    }
+                }
+            }
+            RELOC(obj->unk_78);
+            for (j = 0; j < 14; j++) {
+                if (obj->banks1[j] != NULL) {
+                    s32 k;
+                    void **q;
+
+                    obj->banks1[j] = OFFSET_TO_PTR(lbl_1_bss_3BE0, obj->banks1[j]);
+                    for (k = 0, q = obj->banks1[j]; k < obj->columns * obj->rows; k++, q++) {
+                        RELOC(*q);
+                    }
+                }
+            }
+            RELOC(obj->unk_B8);
+            RELOC(obj->unk_C0);
+            RELOC(obj->unk_C8);
+            RELOC(obj->unk_D0);
+            RELOC(obj->unk_D8);
+            RELOC(obj->unk_E0);
+            RELOC(obj->extra);
+            RELOC(obj->unk_E8);
+            for (j = 0; j < 2; j++) {
+                RELOC(obj->unk_110[j].first);
+                RELOC(obj->unk_110[j].second);
+            }
+        }
+    }
+    RELOC(lbl_1_bss_3BE0->unk_20);
+    RELOC(lbl_1_bss_3BE0->unk_24);
+    RELOC(lbl_1_bss_3BE0->unk_2C);
+    RELOC(lbl_1_bss_3BE0->unk_3C);
+    RELOC(lbl_1_bss_3BE0->unk_44);
+    RELOC(lbl_1_bss_3BE0->rec24);
+    for (i = 0; i < lbl_1_bss_3BE0->rec24Count; i++) {
+        lbl_1_bss_3BE0->rec24[i].unk_0 = (void *)((u32)lbl_1_bss_3BE0 + (u32)lbl_1_bss_3BE0->rec24[i].unk_0);
+    }
+    RELOC(lbl_1_bss_3BE0->words);
+    for (i = 0; i < lbl_1_bss_3BE0->wordCount; i++) {
+        lbl_1_bss_3BE0->words[i] = (void *)((u32)lbl_1_bss_3BE0 + (u32)lbl_1_bss_3BE0->words[i]);
+    }
+    if (lbl_1_bss_3BE0->unk_80 != NULL) {
+        ColiAnim *anim;
+
+        lbl_1_bss_3BE0->unk_80 = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->unk_80);
+        anim = lbl_1_bss_3BE0->unk_80;
+        anim->tracks[0].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[0].keys);
+        anim->tracks[1].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[1].keys);
+        anim->tracks[2].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[2].keys);
+        anim->tracks[3].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[3].keys);
+        anim->tracks[4].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[4].keys);
+        anim->tracks[5].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[5].keys);
+    }
+    RELOC(lbl_1_bss_3BE0->unk_84);
+    RELOC(lbl_1_bss_3BE0->recA0);
+    for (i = 0; i < lbl_1_bss_3BE0->recA0Count; i++) {
+        ColiRecA0 *rec = &lbl_1_bss_3BE0->recA0[i];
+
+        RELOC(rec->unk_C);
+        RELOC(rec->unk_14);
+        RELOC(rec->unk_1C);
+    }
+    RELOC(lbl_1_bss_3BE0->rec70);
+    for (i = 0; i < lbl_1_bss_3BE0->rec70Count; i++) {
+        ColiRec70 *rec = &lbl_1_bss_3BE0->rec70[i];
+
+        rec->unk_0 = OFFSET_TO_PTR(lbl_1_bss_3BE0, rec->unk_0);
+        RELOC(rec->unk_24);
+        RELOC(rec->unk_2C);
+        RELOC(rec->unk_34);
+        RELOC(rec->unk_3C);
+        RELOC(rec->unk_44);
+        RELOC(rec->unk_4C);
+        RELOC(rec->unk_54);
+        if (rec->unk_4C != NULL) {
+            rec->unk_5C = OFFSET_TO_PTR(lbl_1_bss_3BE0, rec->unk_5C);
+        }
+    }
+    RELOC(lbl_1_bss_3BE0->unk_90);
+    RELOC(lbl_1_bss_3BE0->unk_98);
+    RELOC(lbl_1_bss_3BE0->unk_A0);
+    RELOC(lbl_1_bss_3BE0->unk_A8);
+    RELOC(lbl_1_bss_3BE0->unk_B0);
+    if (lbl_1_bss_3BE0->rec38 != NULL) {
+        ColiRec38 *rec;
+
+        lbl_1_bss_3BE0->rec38 = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->rec38);
+        for (i = 0, rec = lbl_1_bss_3BE0->rec38; i < lbl_1_bss_3BE0->rec38Count; i++, rec++) {
+            if (rec->anim != NULL) {
+                adjust_anim_ptrs(&rec->anim, lbl_1_bss_3BE0);
+            }
+        }
+    }
+    if (lbl_1_bss_3BE0->grid != NULL) {
+        void **cell;
+
+        lbl_1_bss_3BE0->grid = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->grid);
+        for (i = 0, cell = lbl_1_bss_3BE0->grid; i < lbl_1_bss_3BE0->gridColumns * lbl_1_bss_3BE0->gridRows; i++, cell++) {
+            RELOC(*cell);
+        }
+    }
+    if (lbl_1_bss_3BE0->sub54 != NULL) {
+        ColiSub54 *sub;
+
+        lbl_1_bss_3BE0->sub54 = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->sub54);
+        for (i = 0, sub = lbl_1_bss_3BE0->sub54; i < lbl_1_bss_3BE0->sub54Count; i++, sub++) {
+            if (sub->unk_30 != NULL) {
+                adjust_sub54_anim(&sub->unk_30, lbl_1_bss_3BE0);
+            }
+            if (sub->unk_34 != NULL) {
+                adjust_sub54_ptrs(&sub->unk_34, lbl_1_bss_3BE0);
+            }
+            if (sub->unk_38 != NULL) {
+                adjust_sub54_c(&sub->unk_38, lbl_1_bss_3BE0);
+            }
+            RELOC(sub->unk_3C);
+            sub->unk_8 = OFFSET_TO_PTR(lbl_1_bss_3BE0, sub->unk_8);
+        }
+    }
+    if (lbl_1_bss_3BE0->groupCount > 0) {
+        ColiGroup *group;
+
+        lbl_1_bss_3BE0->groups = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->groups);
+        for (i = 0, group = lbl_1_bss_3BE0->groups; i < lbl_1_bss_3BE0->groupCount; i++, group++) {
+            ColiElem *elem;
+            s32 j;
+
+            group->elems = OFFSET_TO_PTR(lbl_1_bss_3BE0, group->elems);
+            for (j = 0, elem = group->elems; j < group->count; j++, elem++) {
+                elem->unk_4 = OFFSET_TO_PTR(lbl_1_bss_3BE0, elem->unk_4);
+            }
+            if (group->unk_C != NULL) {
+                ColiGroupC *c;
+
+                group->unk_C = OFFSET_TO_PTR(lbl_1_bss_3BE0, group->unk_C);
+                c = group->unk_C;
+                RELOC(c->unk_1C);
+                RELOC(c->unk_20);
+            }
+        }
+    }
+
+    lbl_1_bss_3BE4 = fn_1_45D0(lbl_801A6410, lbl_1_bss_3BE0->objectCount * sizeof(ColiRuntime), "stcoli.c", 0x2A7);
+    fn_800793D4(lbl_1_bss_3BE4, 0, lbl_1_bss_3BE0->objectCount * sizeof(ColiRuntime));
+    init_runtimes();
+    if (initModels != 0 && lbl_1_bss_3BE0->sub54 != NULL) {
+        fn_1_9D420(lbl_1_bss_3BE0->sub54, lbl_1_bss_3BE0->sub54Count);
+    }
+    lbl_1_bss_7AC88 = *lbl_1_bss_3BE0->unk_90 / 512.0f;
+    lbl_1_bss_7AC9C = 512.0f / *lbl_1_bss_3BE0->unk_90;
+    if (lbl_1_bss_3BE0->models != NULL) {
+        fn_1_14DE8(course);
+    }
+}
+/* fzgx:end fn_1_13B98 */
+
 /* fzgx:begin fn_1_14D5C */
 void fn_1_14D5C(char *arg0, int arg1) {
     char buffer[32];
