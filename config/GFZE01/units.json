@@ -3915,6 +3915,26 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/editor/fn_3_17854.c",
+    "symbols": [
+      "fn_3_17854"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/editor.c",
+    "pool": {
+      "...data.0": "lbl_3_data_35C0",
+      "...rodata.0": "lbl_3_rodata_5F0",
+      "@9": "lbl_3_rodata_5FC",
+      "@193": "lbl_3_data_35C0+0x40",
+      "@195": "lbl_3_data_35C0+0x48",
+      "@197": "lbl_3_data_35C0+0x50",
+      "fzgx_obj_lbl_3_data_35C0": "lbl_3_data_35C0"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/editor/fn_3_18614.c",
     "symbols": [
       "fn_3_18614"
