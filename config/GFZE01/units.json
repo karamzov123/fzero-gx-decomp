@@ -40706,6 +40706,49 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/_prolog/fn_1_21E4.c",
+    "symbols": [
+      "fn_1_21E4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_70",
+      "...data.0": "lbl_1_data_2A40",
+      "@14": "lbl_1_rodata_B8",
+      "@15": "lbl_1_rodata_C0",
+      "@10": "lbl_1_rodata_A0",
+      "...bss.0": "lbl_1_bss_978",
+      "lbl_1_bss_978": "lbl_1_bss_978",
+      "lbl_1_bss_980": "lbl_1_bss_980",
+      "lbl_1_bss_990": "lbl_1_bss_990",
+      "lbl_1_bss_990__fzgx_offset_8": "lbl_1_bss_990+0x8",
+      "lbl_1_bss_9C8": "lbl_1_bss_9C8",
+      "fzgx_obj_lbl_1_bss_9F8": "lbl_1_bss_9F8",
+      "fzgx_obj_lbl_1_bss_A48": "lbl_1_bss_A48",
+      "fzgx_obj_lbl_1_bss_A88": "lbl_1_bss_A88",
+      "fzgx_obj_lbl_1_bss_AA0": "lbl_1_bss_AA0",
+      "lbl_1_data_2A40": "lbl_1_data_2A40",
+      "lbl_1_data_2A4C": "lbl_1_data_2A4C",
+      "lbl_1_data_2A54": "lbl_1_data_2A54",
+      "lbl_1_data_2A60": "lbl_1_data_2A60",
+      "lbl_1_data_2A68": "lbl_1_data_2A68",
+      "lbl_1_data_2A74": "lbl_1_data_2A74",
+      "lbl_1_data_2A7C": "lbl_1_data_2A7C",
+      "lbl_1_data_2AC0": "lbl_1_data_2AC0",
+      "lbl_1_data_2B40": "lbl_1_data_2B40",
+      "lbl_1_data_2B50": "lbl_1_data_2B50",
+      "lbl_1_data_2B58": "lbl_1_data_2B58",
+      "lbl_1_data_2B60": "lbl_1_data_2B60",
+      "lbl_1_data_2B64": "lbl_1_data_2B64",
+      "lbl_1_data_2B68": "lbl_1_data_2B68",
+      "lbl_1_data_2B78": "lbl_1_data_2B78"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/_prolog/fn_1_2F04.c",
     "symbols": [
       "fn_1_2F04"
