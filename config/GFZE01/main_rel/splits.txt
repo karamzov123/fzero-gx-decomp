@@ -16457,3 +16457,5 @@ rel/main_rel/sel_static_disp/fn_1_144F40.c:
 	.text       start:0x00144F40 end:0x00145B58 align:4
 rel/main_rel/burner/fn_1_139440.c:
 	.text       start:0x00139440 end:0x00139A3C align:4
+rel/main_rel/bg_for/fn_1_E07B8.c:
+	.text       start:0x000E07B8 end:0x000E1408 align:4
