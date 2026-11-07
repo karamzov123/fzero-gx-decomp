@@ -16447,3 +16447,5 @@ rel/main_rel/phys/fn_1_E5CC4.c:
 	.text       start:0x000E5CC4 end:0x000E733C align:4
 rel/main_rel/light/fn_1_7C7CC.c:
 	.text       start:0x0007C7CC end:0x0007D694 align:4
+rel/main_rel/screen_effect/fn_1_77C5C.c:
+	.text       start:0x00077C5C end:0x0007879C align:4

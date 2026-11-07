@@ -2644,6 +2644,254 @@ void fn_1_77B80(u32 arg0) {
 }
 /* fzgx:end fn_1_77B80 */
 
+/* fzgx:begin fn_1_77C5C noprologue */
+#include "types.h"
+
+#pragma fp_contract off
+
+typedef struct Elem {
+    s16 x;
+    s16 y;
+    u32 unk_4;
+    u32 unk_8;
+} Elem;
+
+typedef struct Node {
+    struct Node *next;
+    u32 count;
+    Elem *elems;
+} Node;
+
+/* screen_effect.c .bss in retail order */
+static u32 lbl_1_bss_6C8D8;
+static u32 lbl_1_bss_6C8DC[2];
+static u32 lbl_1_bss_6C8E4;
+static u32 lbl_1_bss_6C8E8;
+static u8 lbl_1_bss_6C8EC[0x860];
+static u8 lbl_1_bss_6D14C[0x5C];
+static u32 lbl_1_bss_6D1A8[3];
+static BOOL sGridInit;
+static Node sGridNode;
+static Elem sGridElems[66];
+static u32 sGridAlpha[66];
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_bss_order(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink */
+    s = *(u8 *)&lbl_1_bss_6C8D8;
+    s = *(u8 *)&lbl_1_bss_6C8DC;
+    s = *(u8 *)&lbl_1_bss_6C8E4;
+    s = *(u8 *)&lbl_1_bss_6C8E8;
+    s = *(u8 *)&lbl_1_bss_6C8EC;
+    s = *(u8 *)&lbl_1_bss_6D14C;
+    s = *(u8 *)&lbl_1_bss_6D1A8;
+    s = *(u8 *)&sGridInit;
+    s = *(u8 *)&sGridNode;
+    s = *(u8 *)&sGridElems;
+    s = *(u8 *)&sGridAlpha;
+}
+#pragma section code_type ".text"
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[8] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFF910000, 0xFF760044, 0x6600FF32, 0x94009494, 0xCB0005CF, 0x00FF0000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 255.0f;
+    s = 40.0f;
+    s = 1.0f;
+    s = 0.5f;
+    s = 0.02500000037252903f;
+    s = 40.959999084472656f;
+    s = 409.6000061035156f;
+    s = 2.0f;
+    s = -2.0f;
+    s = 0.009999999776482582f;
+    s = 0.003000000026077032f;
+    s = 5.0f;
+    s = 15.0f;
+    d = 4503601774854144.0;
+    d = 4503599627370496.0;
+    s = 480.0f;
+    s = 0.949999988079071f;
+    s = 640.0f;
+    s = 30.0f;
+    s = 127.0f;
+    s = 0.20000000298023224f;
+    s = -128.0f;
+    s = 320.0f;
+    s = 0.25f;
+}
+static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.3;
+    d = -128.0;
+    d = 127.0;
+    s = 0.0009765625f;
+    s = 32.0f;
+    s = 1.4600000381469727f;
+    s = 639.0f;
+    s = 10.0f;
+    s = 0.1422991007566452f;
+}
+#pragma section code_type ".text"
+
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    s16 unk_8;
+    s16 unk_A;
+} fn_1_77C5C_Rect;
+
+typedef struct {
+    s16 unk_0;
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+} fn_1_77C5C_Size;
+
+typedef union {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+    f32 f32;
+} WGPipe;
+
+volatile WGPipe GXWGFifo : 0xCC008000; /* fzgx-allow: A1 write-gather FIFO port */
+
+extern u8 lbl_1_data_1DAC0[0x44];
+extern u8 lbl_1_data_1DB9C[0x24];
+extern u16 fn_1_A5DB0(void);
+extern void fn_1_9E598(Node *);
+extern u8 fn_1_7879C(u32);
+extern void OSPanic(const char *, int, const char *, ...);
+extern void fn_8007245C(u32);
+extern void fn_8003462C(u32, u32, u32);
+extern void fn_800724C8(void);
+
+static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
+    GXWGFifo.u8 = r;
+    GXWGFifo.u8 = g;
+    GXWGFifo.u8 = b;
+    GXWGFifo.u8 = a;
+}
+
+static inline void GXTexCoord2f32(const f32 s, const f32 t) {
+    GXWGFifo.f32 = s;
+    GXWGFifo.f32 = t;
+}
+
+static inline BOOL fn_1_77C5C_in_unit(f32 v) {
+    if (v > 1.0f) {
+        return FALSE;
+    }
+    if (v < 0.0f) {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+void fn_1_77C5C(const f32 *pos, const fn_1_77C5C_Rect *rect, const fn_1_77C5C_Size *size) {
+    f32 s[4];
+    f32 t[4];
+    s32 j;
+    s32 i;
+    f32 vx[4];
+    f32 vy[4];
+    f32 vs[4];
+    f32 vt[4];
+    u8 a0;
+    u8 a1;
+    u8 a2;
+    u8 a3;
+
+    if (!sGridInit) {
+        sGridNode.count = 66;
+        sGridNode.elems = sGridElems;
+        for (i = 0; i <= 5; i++) {
+            for (j = 0; j <= 10; j++) {
+                sGridNode.elems[i * 11 + j].x = 639.0f * (pos[0] * (10 - j) / 10.0f + pos[3] * j / 10.0f) / 640.0f;
+                sGridNode.elems[i * 11 + j].y = (pos[1] * (5 - i) / 5.0f + pos[10] * i / 5.0f) * (fn_1_A5DB0() - 1) / 480.0f;
+                sGridNode.elems[i * 11 + j].unk_4 = 0;
+            }
+        }
+        sGridInit = 1;
+    }
+
+    fn_1_9E598(&sGridNode);
+
+    s[0] = s[3] = (f32)(rect->unk_0 - size->unk_0) / (f32)size->unk_4;
+    s[1] = s[2] = (f32)(rect->unk_0 + rect->unk_4 - size->unk_0) / (f32)size->unk_4;
+    t[0] = t[1] = (f32)((s32)((f32)(rect->unk_2 * fn_1_A5DB0()) / 480.0f) - size->unk_2) / (f32)size->unk_6;
+    t[2] = t[3] = (f32)((s32)((f32)(rect->unk_2 * fn_1_A5DB0()) / 480.0f) + (s32)((f32)(rect->unk_6 * fn_1_A5DB0()) / 480.0f) - size->unk_2) / (f32)size->unk_6;
+
+    for (i = 0; i < 4; i++) {
+        if (!fn_1_77C5C_in_unit(s[i]) || !fn_1_77C5C_in_unit(t[i])) {
+            OSPanic((const char *)lbl_1_data_1DAC0, 3108, (const char *)lbl_1_data_1DB9C);
+        }
+    }
+
+    for (i = 0; i <= 5; i++) {
+        for (j = 0; j <= 10; j++) {
+            if (i != 5) {
+                sGridAlpha[i * 11 + j] += 0.2f * (s32)(sGridNode.elems[i * 11 + j].unk_4 - sGridAlpha[i * 11 + j]);
+            } else {
+                sGridAlpha[i * 11 + j] = 0;
+            }
+        }
+    }
+
+    fn_8007245C(0x2A00);
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 10; j++) {
+            vx[0] = vx[3] = rect->unk_8 + pos[0] * (10 - j) / 10.0f + pos[3] * j / 10.0f;
+            vx[1] = vx[2] = rect->unk_8 + pos[0] * (10 - (j + 1)) / 10.0f + pos[3] * (j + 1) / 10.0f;
+            vy[0] = vy[1] = rect->unk_A + pos[1] * (5 - i) / 5.0f + pos[10] * i / 5.0f;
+            vy[2] = vy[3] = rect->unk_A + pos[1] * (5 - (i + 1)) / 5.0f + pos[10] * (i + 1) / 5.0f;
+            vs[0] = vs[3] = s[0] * (10 - j) / 10.0f + s[1] * j / 10.0f;
+            vs[1] = vs[2] = s[0] * (10 - (j + 1)) / 10.0f + s[1] * (j + 1) / 10.0f;
+            vt[0] = vt[1] = t[0] * (5 - i) / 5.0f + t[3] * i / 5.0f;
+            vt[2] = vt[3] = t[0] * (5 - (i + 1)) / 5.0f + t[3] * (i + 1) / 5.0f;
+            a0 = fn_1_7879C(sGridAlpha[i * 11 + j]);
+            a1 = fn_1_7879C(sGridAlpha[i * 11 + (j + 1)]);
+            a2 = fn_1_7879C(sGridAlpha[(i + 1) * 11 + (j + 1)]);
+            a3 = fn_1_7879C(sGridAlpha[(i + 1) * 11 + j]);
+            fn_8003462C(0x80, 0, 4);
+            GXPosition3f32(vx[0], vy[0], 0.0f);
+            GXColor4u8(0, 0, 0, a0);
+            GXTexCoord2f32(vs[0], vt[0]);
+            GXPosition3f32(vx[1], vy[1], 0.0f);
+            GXColor4u8(0, 0, 0, a1);
+            GXTexCoord2f32(vs[1], vt[1]);
+            GXPosition3f32(vx[2], vy[2], 0.0f);
+            GXColor4u8(0, 0, 0, a2);
+            GXTexCoord2f32(vs[2], vt[2]);
+            GXPosition3f32(vx[3], vy[3], 0.0f);
+            GXColor4u8(0, 0, 0, a3);
+            GXTexCoord2f32(vs[3], vt[3]);
+        }
+    }
+    fn_800724C8();
+
+    for (i = 0; i <= 5; i++) {
+        for (j = 0; j <= 10; j++) {
+            sGridNode.elems[i * 11 + j].unk_4 = 0;
+        }
+    }
+}
+/* fzgx:end fn_1_77C5C */
+
 /* fzgx:begin fn_1_7879C */
 extern const f32 lbl_1_rodata_323C;
 extern const f64 lbl_1_rodata_31D8;
