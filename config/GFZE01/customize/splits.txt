@@ -1121,3 +1121,6 @@ rel/customize/toolkit/fn_3_1ADA4.c:
 
 rel/customize/_prolog/fn_3_8A90.c:
 	.text       start:0x00008A90 end:0x0000968C align:4
+
+rel/customize/toolkit/fn_3_255DC.c:
+	.text       start:0x000255DC end:0x000268D0 align:4

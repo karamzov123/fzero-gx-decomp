@@ -1133,6 +1133,391 @@ void fn_1_69BBC(EffectCar *car) {
 }
 /* fzgx:end fn_1_69BBC */
 
+/* fzgx:begin fn_1_69BCC noprologue */
+#include "types.h"
+
+typedef struct Vec69BCC {
+    f32 x, y, z;
+} Vec69BCC;
+
+typedef struct Source69BCC {
+    u8 pad0[0x18];
+    Vec69BCC pos;
+    Vec69BCC normal;
+} Source69BCC;
+
+typedef struct Effect69BCC {
+    u8 pad0[0x8];
+    u32 attr;
+    s16 kind;
+    u8 padE[0x6];
+    s32 timer;
+    s16 id;
+    u16 flags;
+    Vec69BCC color;
+    u8 pad28[0x10];
+    Source69BCC *source;
+    Vec69BCC offset;
+    Vec69BCC tangent;
+    u8 pad54[0x1c];
+    Vec69BCC direction;
+    u8 pad7c[0x18];
+    Vec69BCC position;
+    Vec69BCC velocity;
+    s16 lifetime;
+    u8 padAE[0x4];
+    u16 state;
+    u8 padB4[0x4];
+    u32 mtx[12];
+} Effect69BCC;
+
+typedef struct Car69BCC {
+    u8 pad0[0x390];
+    u32 flags;
+} Car69BCC;
+
+typedef struct Player69BCC {
+    u8 pad0[0x475];
+    u8 camera;
+} Player69BCC;
+
+typedef struct Obj69BCC {
+    u8 pad0[0x138];
+    u64 flags;
+    u8 pad140[0x30];
+    Vec69BCC normal;
+} Obj69BCC;
+
+extern void *memset(void *, int, u32);
+extern Car69BCC *fn_1_868C0(s8);
+extern u32 fn_1_58C4(void);
+extern void fn_1_681C(u8, Vec69BCC *);
+extern f32 lbl_8006D0B4(f32);
+extern u32 fn_1_864E8(int);
+extern f32 lbl_8006D668(void *);
+extern Obj69BCC *fn_1_E54A8(s16, s16);
+extern s16 fn_1_E5430(s16);
+extern void fn_1_862D4(int, Vec69BCC *);
+extern u16 fn_1_584AC(void);
+extern s16 fn_1_58F50(const void *);
+extern void fn_1_8636C(int, void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1F0(void *, f32, f32, f32);
+extern void fn_1_6CF3C(void *, void *, f32, f32);
+extern Player69BCC *fn_1_86254(int);
+extern s16 camera_get_entry_field_0xa4(u32);
+extern void fn_1_6E140(Vec69BCC *, Vec69BCC *, f32);
+extern void fn_1_A2FC8(s32, f32);
+
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_69BCC_0(f32 *f, f64 *d) {
+    f[0] = 0.0f;
+    f[1] = -1.0f;
+    f[2] = 25.0f;
+    f[3] = 15.0f;
+    f[4] = 8.0f;
+    f[5] = 150.0f;
+    f[6] = 10.0f;
+    f[7] = 0.5f;
+    f[8] = 0.125f;
+    f[9] = 32767.0f;
+    f[10] = 30.0f;
+    f[11] = 20.0f;
+    f[12] = 1200.0f;
+    f[13] = 0.15f;
+    d[0] = 4503601774854144.0;
+    d[1] = 4503599627370496.0;
+    f[14] = 255.0f;
+    f[15] = 102.0f;
+    d[2] = 0.8;
+    f[16] = 1.6f;
+    f[17] = 3.0f;
+    f[18] = 0.01f;
+    f[19] = 0.6f;
+    d[3] = 0.3;
+    f[20] = 0.7f;
+    f[21] = 0.2f;
+    f[22] = 0.4f;
+    f[23] = 0.1f;
+    f[24] = 1.5f;
+    d[4] = 2.0;
+    f[25] = 0.8f;
+    f[26] = 1.0f;
+    f[27] = 85.0f;
+    f[28] = 0.25f;
+}
+#pragma section code_type ".text"
+const u32 fzgx_pool_table_69BCC[3] = { 0, 0, 0 };
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_69BCC_1(f32 *f, f64 *d) {
+    f[0] = 100.0f;
+    f[1] = 3.5f;
+    f[2] = 23.0f;
+    f[3] = 60.0f;
+    f[4] = 4.0f;
+    f[5] = 0.00000011920928955078125f;
+    f[6] = 136.0f;
+    f[7] = 0.03f;
+    d[0] = 0.5;
+    f[8] = 0.3f;
+}
+#pragma section code_type ".text"
+
+static inline f32 dot69BCC(f32 x, f32 y, f32 z) {
+    f32 v = x * x;
+    v = __fmadds(y, y, v);
+    v = __fmadds(z, z, v);
+    return v;
+}
+
+static inline f32 dist69BCC(const Vec69BCC *a, const Vec69BCC *b) {
+    f32 x, y, z;
+    x = a->x;
+    y = a->y;
+    z = a->z;
+    x -= b->x;
+    y -= b->y;
+    z -= b->z;
+    return lbl_8006D0B4(dot69BCC(x, y, z));
+}
+
+static inline f32 camDist69BCC(Vec69BCC *pos) {
+    Vec69BCC cam;
+    u32 count;
+    u32 i;
+    f32 d;
+    count = fn_1_58C4();
+    fn_1_681C(0, &cam);
+    d = dist69BCC(pos, &cam);
+    for (i = 1; i < count; i++) {
+        fn_1_681C(i, &cam);
+        d = d < dist69BCC(pos, &cam) ? d : dist69BCC(pos, &cam);
+    }
+    return d;
+}
+
+static inline void reject69BCC(Vec69BCC *t, const Vec69BCC *n) {
+    f32 proj;
+    f32 x = t->x;
+    f32 y = t->y;
+    f32 z = t->z;
+    f32 d;
+    proj = x * n->x;
+    proj = __fmadds(y, n->y, proj);
+    proj = __fmadds(z, n->z, proj);
+    d = -proj;
+    t->x = x + d * n->x;
+    t->y = y + d * n->y;
+    t->z = z + d * n->z;
+}
+
+static inline void rejectl69BCC(Vec69BCC *t, const Vec69BCC *n) {
+    f32 proj;
+    f32 x = t->x;
+    f32 y = t->y;
+    f32 nx = n->x;
+    f32 ny = n->y;
+    f32 z = t->z;
+    f32 nz = n->z;
+    f32 d;
+    proj = x * nx;
+    proj = __fmadds(y, ny, proj);
+    proj = __fmadds(z, nz, proj);
+    d = -proj;
+    t->x = x + d * nx;
+    t->y = y + d * ny;
+    t->z = z + d * nz;
+}
+
+#pragma fp_contract off
+#pragma opt_lifetimes off
+void fn_1_69BCC(Effect69BCC *effect) {
+    Effect69BCC spark;
+    Effect69BCC glow;
+    Effect69BCC trail;
+    Vec69BCC normal;
+    Vec69BCC prev;
+    Vec69BCC delta;
+    Vec69BCC carPos;
+    Vec69BCC up;
+    Source69BCC *source;
+    f32 minDist;
+    f32 speed;
+    f32 power;
+    f32 k;
+    s32 n;
+
+    source = effect->source;
+    if (source == NULL) {
+        return;
+    }
+    if (fn_1_868C0(effect->id)->flags & 0x1000000) {
+        return;
+    }
+    prev = effect->offset;
+    effect->offset = source->pos;
+    minDist = camDist69BCC(&effect->offset);
+    if (minDist > 60.0f) {
+        return;
+    }
+    if (fn_1_864E8(effect->id) & 0x1000000) {
+        return;
+    }
+    normal = source->normal;
+    power = 4.0f * lbl_8006D668(&normal);
+    delta.x = effect->offset.x - prev.x;
+    delta.y = effect->offset.y - prev.y;
+    delta.z = effect->offset.z - prev.z;
+    speed = lbl_8006D0B4(dot69BCC(delta.x, delta.y, delta.z));
+
+    if (effect->state & 1) {
+        s32 stop = 0;
+        if (effect->timer != 0) {
+            effect->timer--;
+            if (power <= 1.1920929e-07f) {
+                stop = 1;
+            }
+        } else if (power < 0.1f || speed < 1.0f) {
+            stop = 1;
+        }
+        if (stop) {
+            effect->state &= ~3;
+        }
+    } else {
+        if (effect->timer != 0) {
+            effect->timer--;
+        }
+        if (power > 0.0f && speed > 0.0f && (fn_1_864E8(effect->id) & 0x800000)) {
+            if (effect->timer == 0) {
+                effect->state |= 3;
+            } else {
+                effect->state |= 1;
+            }
+            effect->timer = 30;
+        } else if (speed > 0.0f) {
+            s16 index;
+            s16 type;
+            for (type = 0; type < 6; type++) {
+                for (index = 0; index < fn_1_E5430(type); index++) {
+                    if (fn_1_E54A8(type, index)->flags & 0x40000000000ULL) {
+                        normal = fn_1_E54A8(type, index)->normal;
+                        power = 4.0f * lbl_8006D668(&normal);
+                        if (effect->timer == 0) {
+                            effect->state |= 3;
+                        } else {
+                            effect->state |= 1;
+                        }
+                        effect->timer = 30;
+                        fn_1_E54A8(type, index)->flags &= ~0x40000000000ULL;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if (effect->state & 1) {
+        fn_1_862D4(effect->id, &carPos);
+        memset(&spark, 0, 0xe8);
+        spark.id = effect->id;
+        spark.kind = 5;
+        spark.flags = 1;
+        spark.attr |= 0x8000;
+        if (effect->state & 2) {
+            n = (fn_1_584AC() & 1) + 3;
+            effect->state &= ~2;
+        } else {
+            n = 1;
+        }
+        for (; n > 0; n--) {
+            f32 scale;
+            f32 spread;
+            spark.offset = effect->offset;
+            scale = 0.7f + 0.4f * ((f32)fn_1_584AC() / 32767.0f);
+            spark.tangent.x = delta.x * scale;
+            spark.tangent.y = delta.y * scale;
+            spark.tangent.z = delta.z * scale;
+            spark.tangent.x += 0.1f * speed * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            spark.tangent.y += 0.1f * speed * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            spark.tangent.z += 0.1f * speed * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            rejectl69BCC(&spark.tangent, &normal);
+            spark.position.x = 0.5f * (spark.offset.x + carPos.x);
+            spark.position.y = 0.5f * (spark.offset.y + carPos.y);
+            spark.position.z = 0.5f * (spark.offset.z + carPos.z);
+            spark.velocity.x = 1.5f * delta.x;
+            spark.velocity.y = 1.5f * delta.y;
+            spark.velocity.z = 1.5f * delta.z;
+            spread = lbl_8006D0B4(dot69BCC(spark.velocity.x, spark.velocity.y, spark.velocity.z));
+            spark.velocity.x += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            spark.velocity.y += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            spark.velocity.z += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            {
+                f32 shade = 0.8f + 0.2f * ((f32)fn_1_584AC() / 32767.0f);
+                spark.color.x = (255.0f * (0.5f * (1.0f + shade))) / 255.0f;
+                spark.color.y = (85.0f * shade) / 255.0f;
+                spark.color.z = 0.0f;
+            }
+            spark.direction.x = normal.x + 0.4f * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            spark.direction.y = normal.y + 0.4f * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            spark.direction.z = normal.z + 0.4f * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+            lbl_8006D668(&spark.direction);
+            spark.lifetime = 24;
+            fn_1_58F50(&spark);
+        }
+    }
+
+    if (power > 0.0f && speed > 0.0f) {
+        f32 push;
+        f32 width;
+        memset(&glow, 0, 0xe8);
+        glow.flags = 0xffff;
+        glow.id = effect->id;
+        fn_1_8636C(glow.id, glow.mtx);
+        glow.color.x = 136.0f;
+        glow.color.y = 136.0f;
+        glow.color.z = 0.0f;
+        k = 0.03f * (power * speed);
+        glow.offset = effect->offset;
+        glow.tangent = delta;
+        reject69BCC(&glow.tangent, &normal);
+        push = k < 0.0f ? 0.0f : k > 0.5f ? 0.5f : k;
+        glow.tangent.x = glow.tangent.x + push * normal.x;
+        glow.tangent.y = glow.tangent.y + push * normal.y;
+        glow.tangent.z = glow.tangent.z + push * normal.z;
+        width = k < 0.01f ? 0.01f : k > 0.4f ? 0.4f : k;
+        lbl_8006DBAC(glow.mtx);
+        lbl_8006E1F0(&up, 0.0f, 1.0f, 0.0f);
+        up.x += 0.5 * normal.x;
+        up.y += 0.5 * normal.y;
+        up.z += 0.5 * normal.z;
+        fn_1_6CF3C(&glow, &up, width, 0.7f);
+    }
+
+    if (power > 0.5f && speed > 0.5f && (fn_1_864E8(effect->id) & 0x800000)) {
+        f32 s = power / 4.0f;
+        s = s < 0.5f ? 0.5f : s > 1.0f ? 1.0f : s;
+        if (camera_get_entry_field_0xa4(fn_1_86254(effect->id)->camera) != 0) {
+            fn_1_6E140(&effect->offset, &delta, s);
+        }
+    }
+
+    if (fn_1_864E8(effect->id) & 0x800000) {
+        fn_1_A2FC8(effect->id, power);
+    }
+
+    if (power > 0.3f && speed > 0.3f && (fn_1_864E8(effect->id) & 0x800000)) {
+        memset(&trail, 0, 0xe8);
+        trail.flags = 1;
+        trail.id = effect->id;
+        fn_1_8636C(trail.id, trail.mtx);
+        trail.offset = effect->offset;
+        trail.tangent = delta;
+    }
+}
+#pragma opt_lifetimes reset
+#pragma fp_contract reset
+/* fzgx:end fn_1_69BCC */
+
 /* fzgx:begin fn_1_6A7A4 noprologue */
 #include "types.h"
 
