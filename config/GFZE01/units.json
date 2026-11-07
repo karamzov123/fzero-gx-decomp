@@ -40503,6 +40503,34 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/_prolog/_prolog.c",
+    "symbols": [
+      "_prolog"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/_prolog.c",
+    "pool": {
+      "...data.0": "lbl_1_data_0",
+      "...rodata.0": "lbl_1_rodata_0",
+      "...bss.0": "lbl_1_bss_0",
+      "fzgx_obj_lbl_1_bss_0": "lbl_1_bss_0",
+      "fzgx_obj_lbl_1_bss_4": "lbl_1_bss_4",
+      "lbl_1_bss_4__fzgx_offset_4": "lbl_1_bss_4+0x4",
+      "fzgx_obj_lbl_1_bss_C": "lbl_1_bss_C",
+      "lbl_1_bss_C__fzgx_offset_4": "lbl_1_bss_C+0x4",
+      "lbl_1_bss_C__fzgx_offset_24": "lbl_1_bss_C+0x24",
+      "lbl_1_bss_C__fzgx_offset_44": "lbl_1_bss_C+0x44",
+      "fzgx_obj_lbl_1_bss_54": "lbl_1_bss_54",
+      "fzgx_obj_lbl_1_bss_58": "lbl_1_bss_58",
+      "lbl_1_bss_58__fzgx_offset_20": "lbl_1_bss_58+0x20",
+      "lbl_1_bss_58__fzgx_offset_24": "lbl_1_bss_58+0x24",
+      "lbl_1_bss_58__fzgx_offset_28": "lbl_1_bss_58+0x28"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/_prolog/fn_1_1280.c",
     "symbols": [
       "fn_1_1280"
