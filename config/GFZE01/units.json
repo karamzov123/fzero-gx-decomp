@@ -34305,6 +34305,17 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_80065F34.c",
+    "symbols": [
+      "fn_80065F34"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {}
+  },
+  {
+    "module": "main",
     "source": "dol/fn_80066C14.c",
     "symbols": [
       "fn_80066C14"
