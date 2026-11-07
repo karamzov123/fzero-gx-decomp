@@ -3299,7 +3299,7 @@
  {
   "symbol": "_prolog",
   "module": "sel",
-  "percent": 86.7,
+  "percent": 95.87,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
