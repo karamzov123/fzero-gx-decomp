@@ -49676,6 +49676,25 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/camera/fn_1_90E0.c",
+    "symbols": [
+      "fn_1_90E0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/camera.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_200",
+      "@481": "jumptable_1_data_39B8",
+      "@485": "lbl_1_rodata_388",
+      "mathutil_mtxA_rotate_x__fzgx_offset_C": "mathutil_mtxA_rotate_x+0xC",
+      "...data.0": "lbl_1_data_3678",
+      "fzgx_pool_rodata_lbl_1_rodata_200": "lbl_1_rodata_200"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/camera/fn_1_A888.c",
     "symbols": [
       "fn_1_A888"
