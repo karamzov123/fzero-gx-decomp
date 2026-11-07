@@ -16442,3 +16442,6 @@ rel/main_rel/font/fn_1_4C16C.c:
 
 rel/main_rel/enemy_ctrl/fn_1_C8294.c:
 	.text       start:0x000C8294 end:0x000C8DC0 align:4
+
+rel/main_rel/phys/fn_1_E5CC4.c:
+	.text       start:0x000E5CC4 end:0x000E733C align:4
