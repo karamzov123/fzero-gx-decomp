@@ -8652,6 +8652,165 @@ char *fn_1_F8E30(s16 index, s16 category, char *buffer) {
 }
 /* fzgx:end fn_1_F8E30 */
 
+/* fzgx:begin fn_1_139440 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/burner.h"
+#include "fpscr_trunc.h"
+
+typedef struct {
+    u8 r, g, b, a;
+} Color;
+
+/* 0x81C0-byte machine entry */
+typedef struct {
+    u32 flags;
+    u8 pad_4[0x819C];
+    u8 image_index;
+    u8 pad_81A1[0x1F];
+} MachineEntry;
+
+extern u32 lbl_801A66A0;
+extern const f32 lbl_1_rodata_85F0;
+extern const f32 lbl_1_rodata_861C;
+extern const f32 lbl_1_rodata_8638;
+extern const f32 lbl_1_rodata_863C;
+extern const f32 lbl_1_rodata_87DC;
+extern const f32 lbl_1_rodata_88B8;
+extern const f32 lbl_1_rodata_8B98;
+
+extern int fn_1_139A3C(s16);
+extern MachineEntry *fn_1_36AD0(void);
+extern void fn_1_14FC80(s16, MachineParameterRecord *);
+extern void fn_80008BA8(void *, const void *, u32);
+extern void fn_1_22B10(MachineParameterRecord *, f32);
+extern void fn_1_229EC(MachineParameterRecord *, f32 *, f32 *);
+extern Color fn_1_539CC(Color, Color, f32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_1_A9868(void);
+extern void fn_1_AA350(s16 *, s16 *, Color *, u32);
+extern void fn_1_AA538(void);
+extern void fn_800724C8(void);
+extern void fn_8007245C(u32);
+extern void fn_80074788(u32);
+extern void fn_80074660(u32);
+extern void fn_80073678(u32);
+extern void fn_80073898(u32);
+extern void fn_80073C6C(s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
+extern void fn_80074918(u8, s32, u8);
+extern void fn_800720B0(s32);
+extern void fn_80072864(u32);
+
+extern Color lbl_1_rodata_8B88;
+extern Color lbl_1_rodata_8B8C;
+extern Color lbl_1_rodata_8B90;
+extern Color lbl_1_rodata_8B94;
+
+#pragma fp_contract off
+void fn_1_139440(f32 value, s32 x, s32 y, s32 w, s32 h, s16 machine, s16 index) {
+    s16 xs[302];
+    s16 ys[302];
+    Color colors[602];
+    MachineParameterRecord params;
+    f32 pos;
+    f32 mag;
+    Color color;
+    s32 i;
+    s16 *px;
+    s16 *py;
+    Color *pc;
+    s32 frame;
+    s32 slot;
+    s32 active;
+    f32 phase;
+    f32 speed;
+
+    pos = lbl_1_rodata_861C;
+    mag = lbl_1_rodata_861C;
+    slot = index;
+    px = xs;
+    py = ys;
+    pc = colors;
+    if (lbl_1_bss_8B3A0.unk_94 & 0x40000000) {
+        slot = 0;
+    }
+    active = fn_1_139A3C(slot);
+    if (machine < 41) {
+        fn_80008BA8(&params, &lbl_1_data_28060.entries[machine], sizeof(params));
+    } else if (!(fn_1_36AD0()[index].flags & 0x40000000)) {
+        fn_80008BA8(&params, &lbl_1_data_28060.entries[fn_1_36AD0()[index].image_index], sizeof(params));
+    } else {
+        fn_1_14FC80(index, &params);
+    }
+    fn_1_22B10(&params, value);
+    for (i = 0; i < 750; i++) {
+        Color c0 = lbl_1_rodata_8B88;
+        Color c1 = lbl_1_rodata_8B8C;
+        Color c2 = lbl_1_rodata_8B90;
+        Color c3 = lbl_1_rodata_8B94;
+        frame = lbl_801A66A0;
+        fn_1_229EC(&params, &pos, &mag);
+        speed = pos;
+        if (i % 10 == 0 || i == 749) {
+            phase = lbl_1_rodata_863C + lbl_1_rodata_85F0 * ((f32)i / lbl_1_rodata_8B98) - (f32)(frame % 220) / lbl_1_rodata_88B8;
+            phase = phase - fpscr_trunc(phase);
+            if (active != 0 && (frame - *(u32 *)((u8 *)&lbl_1_bss_8B3A0 + slot * 4 + 0xF0) > i / 50 || *(s32 *)((u8 *)&lbl_1_bss_8B3A0 + slot * 4 + 0x100) == 9)) {
+                if (phase < lbl_1_rodata_85F0) {
+                    color = fn_1_539CC(c2, c3, lbl_1_rodata_863C - lbl_1_rodata_8638 * phase);
+                } else {
+                    color = fn_1_539CC(c3, c2, lbl_1_rodata_863C - (lbl_1_rodata_8638 * phase - lbl_1_rodata_863C));
+                }
+            } else {
+                if (phase < lbl_1_rodata_85F0) {
+                    color = fn_1_539CC(c0, c1, lbl_1_rodata_863C - lbl_1_rodata_8638 * phase);
+                } else {
+                    color = fn_1_539CC(c1, c0, lbl_1_rodata_863C - (lbl_1_rodata_8638 * phase - lbl_1_rodata_863C));
+                }
+            }
+            color.a = 0xA0;
+            *px++ = x + i * w / 750;
+            *py++ = y + h;
+            *pc++ = color;
+            *px++ = x + i * w / 750;
+            *py++ = (y + h) - (f32)h * speed / lbl_1_rodata_87DC;
+            *pc++ = color;
+        }
+    }
+    fn_800728A8(1, 4, 5, 0);
+    fn_1_A9868();
+    fn_1_AA350(xs, ys, colors, 0x98);
+    fn_1_AA538();
+    fn_800724C8();
+    fn_8007245C(0x2200);
+    fn_80074788(0);
+    fn_80074660(1);
+    fn_80073678(1);
+    fn_80073898(0);
+    fn_80073C6C(0);
+    fn_800745A4(0, 1, 4, 0x3C, 0, 0x7D);
+    fn_800734A8(0, 0, 0, 0xFF);
+    fn_80072AB0(0, 0, 0);
+    fn_80072C24(0, 0xF, 2, 8, 4);
+    fn_80072D64(0, 0, 0, 0, 1, 0);
+    fn_80072CC4(0, 7, 1, 4, 2);
+    fn_80072E20(0, 0, 0, 0, 1, 0);
+    fn_800747D0(4, 0, 0, 0, 0, 2, 2);
+    fn_80074918(1, 7, 0);
+    fn_800728A8(1, 4, 5, 0);
+    fn_800720B0(0);
+    fn_80072864(2);
+}
+#pragma fp_contract reset
+/* fzgx:end fn_1_139440 */
+
 /* fzgx:begin fn_1_13EE60 */
 typedef struct {
     u32 flags;
