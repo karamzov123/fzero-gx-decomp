@@ -16409,3 +16409,6 @@ rel/main_rel/camera/fn_1_90E0.c:
 
 rel/main_rel/bg_cas/fn_1_10069C.c:
 	.text       start:0x0010069C end:0x001011CC align:4
+
+rel/main_rel/som/fn_1_13B98.c:
+	.text       start:0x00013B98 end:0x00014CB4 align:4
