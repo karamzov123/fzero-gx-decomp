@@ -44565,6 +44565,38 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/bg_cas/fn_1_10069C.c",
+    "symbols": [
+      "fn_1_10069C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_cas.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_76A8",
+      "@14": "lbl_1_rodata_76A8+0x8",
+      "@110": "lbl_1_rodata_76A8+0x124",
+      "@73": "lbl_1_rodata_76A8+0xBC",
+      "@5": "lbl_1_rodata_76A8",
+      "@111": "lbl_1_rodata_76A8+0x128",
+      "@99": "lbl_1_rodata_76A8+0xF8",
+      "@112": "lbl_1_rodata_76A8+0x12C",
+      "@27": "lbl_1_rodata_76A8+0x20",
+      "@113": "lbl_1_rodata_76A8+0x130",
+      "@41": "lbl_1_rodata_76A8+0x48",
+      "@97": "lbl_1_rodata_76A8+0xF0",
+      "@122": "lbl_1_rodata_76A8+0x138",
+      "@40": "lbl_1_rodata_76A8+0x44",
+      "@123": "lbl_1_rodata_76A8+0x140",
+      "@72": "lbl_1_rodata_76A8+0xB8",
+      "@124": "lbl_1_rodata_76A8+0x144",
+      "@125": "lbl_1_rodata_76A8+0x148",
+      "mathutil_mtxA_rotate_z__fzgx_offset_C": "mathutil_mtxA_rotate_z+0xC"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/bg_cas/fn_1_1011CC.c",
     "symbols": [
       "fn_1_1011CC"

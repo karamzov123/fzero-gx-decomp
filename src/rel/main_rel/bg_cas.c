@@ -5183,6 +5183,517 @@ active:
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_FFE7C */
 
+/* fzgx:begin fn_1_10069C noprologue */
+#include "types.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/burner.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+#include "game/vec3.h"
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+#include "rel/main_rel/globals.h"
+#include "dolphin/gx.h"
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = 6600.0f;
+    s = 110.0f;
+    s = 60.0f;
+    s = 15.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+}
+static const u32 fzgx_pool_table6[3] = {0x00000000, 0x00000000, 0xBF800000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 100.0f;
+    s = 300.0f;
+    s = 32767.0f;
+    s = 4.0f;
+    s = 10.0f;
+    s = 2.0f;
+    s = 200.0f;
+    s = 400.0f;
+    s = 2500.0f;
+    s = 1000.0f;
+    s = 1400.0f;
+    d = 0.5;
+    d = 5.0;
+    s = 7.0f;
+    s = 2.5f;
+    s = 768.0f;
+}
+static const u32 fzgx_pool_table8[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+    s = 0.10000000149011612f;
+    s = 0.5f;
+    s = 0.25f;
+    s = 0.05000000074505806f;
+    s = -2000.0f;
+    s = 1.0199999809265137f;
+    s = 30.0f;
+    s = 22.0f;
+    d = 0.9;
+    s = 0.6000000238418579f;
+    s = 0.4000000059604645f;
+    s = 255.0f;
+    s = 0.800000011920929f;
+    s = 0.30000001192092896f;
+    s = 1.2999999523162842f;
+    s = 0.7071067690849304f;
+}
+static const u32 fzgx_pool_table10[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.1;
+    d = 1280.0;
+    s = 0.8999999761581421f;
+}
+static const u32 fzgx_pool_table12[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.98;
+    s = 20.0f;
+    s = 0.20000000298023224f;
+    s = 6.0f;
+    s = 0.019999999552965164f;
+    s = 0.15000000596046448f;
+    s = 1.5f;
+    s = -0.07500000298023224f;
+    s = -0.10000000149011612f;
+    s = 180.0f;
+    s = 0.03999999910593033f;
+    s = 0.0005000000237487257f;
+    s = -0.15000000596046448f;
+    s = -0.20000000298023224f;
+    s = 0.04999999701976776f;
+    s = -10.0f;
+    s = 0.1666666716337204f;
+    s = 3.799999952316284f;
+}
+static const u32 fzgx_pool_table14[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep14(void) { const u32 *volatile cp; cp = fzgx_pool_table14; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime15(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = -0.1;
+    s = 9.0f;
+    s = 127.5f;
+    s = 25.5f;
+}
+static const u32 fzgx_pool_table16[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep16(void) { const u32 *volatile cp; cp = fzgx_pool_table16; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+#ifndef GAME_MAIN_REL_BURNER_TYPES_H
+#define GAME_MAIN_REL_BURNER_TYPES_H
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_9CCE8_Vec3;
+
+extern void fn_8006E294(fn_1_9CCE8_Vec3 *);
+
+#endif  // GAME_MAIN_REL_BURNER_TYPES_H
+#ifndef GAME_MAIN_REL_CAMERA_TYPES_H
+#define GAME_MAIN_REL_CAMERA_TYPES_H
+
+
+typedef struct Transform {
+    u8 pad_08[0x8];
+    f32 unk_08;
+    u8 pad_0c[0xc];
+    f32 unk_18;
+    u8 pad_1c[0xc];
+    f32 unk_28;
+    u8 pad_2c[0x24];
+    u8 unk_50[0x2c];
+    u32 unk_7C;
+} Transform;
+
+typedef struct CameraStateLocal {
+    u8 pad_d4[0xd4];
+    f32 unk_D4;
+    f32 unk_D8;
+    f32 unk_DC;
+} CameraStateLocal;
+
+extern Transform *lbl_801A6D00;
+extern CameraStateLocal *lbl_801A66CC;
+
+#endif  // GAME_MAIN_REL_CAMERA_TYPES_H
+
+/* end game/main_rel/camera_types.h */
+/* begin game/main_rel/car_test_types.h (fork-deltawave784/windows-and-types@f88123fa) */
+#ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
+#define GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+// Types (and the externs that name them) of car_test.c, hoisted out of its prologue so that
+// a block can compile standalone and under the prologue. Hand-owned (librarian).
+
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+
+#endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
+
+/* end game/main_rel/car_test_types.h */
+
+typedef struct F65Vec { f32 x, y, z; } F65Vec;
+
+typedef struct F65Node {
+    F65Vec pos;     /* 0x00 */
+    F65Vec unk_C;   /* 0x0C */
+    F65Vec prev;    /* 0x18 */
+    f32 alpha;      /* 0x24 */
+    f32 size;       /* 0x28 */
+    f32 unk_2C;
+    s32 unk_30;
+} F65Node; /* 0x34 */
+
+struct fn_1_10069C_Arg0 {
+    void *unk_0;
+    u8 pad_4[4];
+    f32 unk_8;
+    u8 pad_C[8];
+    F65Node nodes[20]; /* 0x14 */
+};
+
+typedef struct F65Color { u8 r, g, b, a; } F65Color;
+typedef struct F65Mtx { f32 m[3][4]; } F65Mtx;
+
+extern f32 lbl_8006D668(void *);
+extern f32 lbl_8006D0B4(f32);
+extern s32 fn_1_54E34(void *, f32);
+extern u32 GXLoadPosMtxImm(u32, u32);
+extern u32 fn_800720B0(u32);
+extern void fn_800736C0(u32, F65Color);
+extern s16 lbl_8006D24C(f32, f32);
+extern u32 lbl_8006D7DC(void *);
+extern u32 lbl_8006DB74(void *);
+extern u32 lbl_8006E0C8(void *);
+extern void lbl_8006D1BC(s16, f32 *, f32 *);
+extern void mathutil_mtxA_rotate_z__fzgx_offset_C(f32, f32);
+extern void fn_8003462C(u32, u32, u32);
+extern void fn_8007245C(u32);
+extern void fn_800724C8(void);
+extern void fn_80072864(u32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_800735C8(s32, s32);
+extern void fn_80073620(s32, s32);
+extern void fn_80073678(u32);
+extern void fn_80073778(void *, s32);
+extern void fn_80073898(u32);
+extern void fn_80073C6C(s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_80074660(u32);
+extern void fn_80074788(u32);
+extern void fn_80074918(u8, s32, u8);
+extern void lbl_8006D758(void);
+extern void lbl_8006DBAC(Vec3 *);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E15C(f32, f32, f32);
+
+static inline F65Color F65AssignColor(F65Color *dst, F65Color src) {
+    *dst = src;
+    return src;
+}
+
+
+/* Eight dummy vertices that flush the previous draw state. */
+#define F65_DUMMY_QUADS()                                                   \
+    do {                                                                    \
+        F65_DUMMY_VTX(); F65_DUMMY_VTX(); F65_DUMMY_VTX(); F65_DUMMY_VTX(); \
+        F65_DUMMY_VTX(); F65_DUMMY_VTX(); F65_DUMMY_VTX(); F65_DUMMY_VTX(); \
+    } while (0)
+#define F65_DUMMY_VTX()                                                     \
+    GXWGFifo.f32 = 0.0f;                                                    \
+    GXWGFifo.f32 = 0.0f;                                                    \
+    GXWGFifo.f32 = -10.0f;                                                  \
+    GXWGFifo.f32 = 0.0f;                                                    \
+    GXWGFifo.f32 = 0.0f
+
+/* Byte view of the current colour: indexed access keeps &cur.g/&cur.b live. */
+#define CUR(i) (((u8 *)&cur)[i])
+
+static inline f32 F65Scale(f32 factor, f32 age) {
+    return 1.0f - (f32)((age - 1.0f) * factor);
+}
+
+static inline f32 F65SquaredXY(f32 x, f32 y) {
+    return x * x + y * y;
+}
+
+static inline f32 F65SquareAdd(f32 value, f32 sum) {
+    return sum + value * value;
+}
+
+static inline f32 F65LengthSq(const F65Vec *v) {
+    return v->x * v->x + v->y * v->y + v->z * v->z;
+}
+
+static inline f32 F65SquaredYX(f32 y, f32 x) {
+    return x * x + y * y;
+}
+
+void fn_1_10069C(struct fn_1_10069C_Arg0 *obj) {
+#define arg0 effect
+    F65Vec quad[4];
+    F65Mtx mtxA;
+    F65Mtx mtxB;
+    F65Mtx mtxC;
+    F65Mtx mtxD;
+    F65Vec pos;
+    F65Vec dir;
+    f32 snap[3];
+    f32 offset[3];
+    F65Color cur;
+    F65Color newColor;
+    f32 sn;
+    f32 cs;
+    s32 n;
+    F65Node *node;
+    s32 k;
+    f32 one;
+    f32 scale;
+    f32 alpha;
+    f32 size;
+    f32 grow;
+    f32 dist;
+    f32 ratio;
+    f32 width;
+    f32 len;
+    f32 ex;
+    f32 ey;
+    struct fn_1_10069C_Arg0 *effect;
+    s32 j;
+    s32 i;
+
+    effect = obj;
+    scale = F65Scale(0.049999997f, arg0->unk_8);
+    scale = scale < 0.8f ? 0.8f : scale > 1.0f ? 1.0f : scale;
+
+    fn_80073778(arg0->unk_0, 0);
+    fn_800728A8(1, 1, 1, 0);
+    fn_80074918(1, 3, 0);
+    fn_800720B0(0);
+    fn_80072864(0);
+    fn_80073C6C(0);
+    fn_800745A4(0, 1, 4, 60, 0, 125);
+    fn_800734A8(0, 0, 0, 255);
+    fn_800735C8(0, 12);
+    fn_80073620(0, 28);
+    fn_80072C24(0, 15, 8, 14, 15);
+    fn_80072D64(0, 0, 0, 0, 1, 0);
+    fn_80072CC4(0, 7, 4, 6, 7);
+    fn_80072E20(0, 0, 0, 0, 1, 0);
+    fn_80073678(1);
+    fn_80074660(1);
+    fn_80073898(0);
+    fn_80074788(0);
+    fn_800724C8();
+    fn_8007245C(0x2200);
+    lbl_8006D758();
+    GXLoadPosMtxImm((u32)lbl_801A6D00, 0);
+
+    CUR(0) = 216;
+    CUR(1) = 122;
+    CUR(2) = 76;
+    CUR(3) = 255;
+    fn_800736C0(0, cur);
+    fn_8003462C(0x90, 0, 8);
+    F65_DUMMY_QUADS();
+
+    lbl_8006DBAC((Vec3 *)((u8 *)lbl_801A6D00 + 0x30));
+    fn_8006E294((fn_1_9CCE8_Vec3 *)snap);
+    if (snap[0] < 0.0f) {
+        snap[0] -= 6.0f;
+    }
+    if (snap[1] < 0.0f) {
+        snap[1] -= 6.0f;
+    }
+    if (snap[2] < 0.0f) {
+        snap[2] -= 6.0f;
+    }
+    snap[0] = 6.0f * (s32)(0.16666667f * snap[0]);
+    snap[1] = 6.0f * (s32)(0.16666667f * snap[1]);
+    snap[2] = 6.0f * (s32)(0.16666667f * snap[2]);
+    lbl_8006E0A4(snap);
+    lbl_8006DB74(&mtxA);
+    lbl_8006DBAC((Vec3 *)lbl_801A66CC);
+    lbl_8006E0A4(snap);
+    lbl_8006DB74(&mtxB);
+
+    for (i = -1; i <= 1; i++) {
+        offset[2] = 6.0f * i;
+        for (j = -1; j <= 1; j++) {
+            offset[1] = 6.0f * j;
+            for (k = -1; k <= 1; k++) {
+                offset[0] = 6.0f * k;
+                lbl_8006DBAC((Vec3 *)&mtxA);
+                lbl_8006E0A4(offset);
+                lbl_8006DB74(&mtxC);
+                lbl_8006DBAC((Vec3 *)&mtxB);
+                lbl_8006E0A4(offset);
+                lbl_8006DB74(&mtxD);
+
+                node = arg0->nodes;
+                n = 20;
+                do {
+                    alpha = node->alpha * scale;
+                    /* goto: shared loop-step exit for every rejected node */
+                    if (alpha <= 0.0f) {
+                        goto next; /* Keep the verified branch to next. */
+                    }
+                    size = 2.0f * node->size;
+                    ratio = (f32)(3.8f * arg0->unk_8) + 1.0f;
+                    grow = ratio < 1.0f ? 1.0f : ratio > 20.0f ? 20.0f : ratio;
+                    lbl_8006DBAC((Vec3 *)&mtxC);
+                    if (fn_1_54E34(node, size * grow) == 0) {
+                        goto next; /* goto: loop step */
+                    }
+                    lbl_8006E1B0((Fn183D28Vec3 *)node, (Fn183D28Vec3 *)&pos);
+                    if (pos.z >= -0.1) {
+                        goto next; /* goto: loop step */
+                    }
+                    dist = pos.x * pos.x;
+                    dist = F65SquareAdd(pos.y, dist);
+                    dist += pos.z * pos.z;
+                    dist = lbl_8006D0B4(dist);
+                    if (dist > 10.0f) {
+                        goto next; /* goto: loop step */
+                    }
+                    if (dist > 9.0f) {
+                        alpha *= 10.0f - dist;
+                    } else if (dist < 1.0f) {
+                        alpha *= dist;
+                    }
+                    lbl_8006DBAC((Vec3 *)&mtxD);
+                    dir.x = node->pos.x - node->prev.x;
+                    dir.y = node->pos.y - node->prev.y;
+                    dir.z = node->pos.z - node->prev.z;
+                    lbl_8006E1B0((Fn183D28Vec3 *)&dir, (Fn183D28Vec3 *)&dir);
+                    if (dir.z >= -0.1) {
+                        goto next; /* goto: loop step */
+                    }
+                    if (dir.z >= -0.1) {
+                        goto next; /* goto: loop step */
+                    }
+                    {
+                        f32 left = pos.x - size;
+                        f32 bottom = pos.y - size;
+                        f32 right = pos.x + size;
+                        f32 top = pos.y + size;
+                        quad[0].z = pos.z;
+                        quad[1].z = pos.z;
+                        quad[2].z = pos.z;
+                        quad[3].z = pos.z;
+                        quad[0].x = left;
+                        quad[0].y = bottom;
+                        quad[1].x = right;
+                        quad[1].y = bottom;
+                        quad[2].x = right;
+                        quad[2].y = top;
+                        quad[3].x = left;
+                        quad[3].y = top;
+                        dir.x = dir.x * (pos.z / dir.z);
+                        dir.y = dir.y * (pos.z / dir.z);
+                        dir.z = pos.z;
+                        snap[0] = dir.x - pos.x;
+                        snap[1] = dir.y - pos.y;
+                    }
+                    if (0.0f != snap[0] || 0.0f != snap[1]) {
+                        snap[2] = 0.0f;
+                        len = lbl_8006D668(snap);
+                        pos.x -= (f32)(size * snap[0]);
+                        pos.y -= (f32)(size * snap[1]);
+                        dir.x += (f32)(size * snap[0]);
+                        dir.y += (f32)(size * snap[1]);
+                        width = 2.0f * size;
+                        len += width;
+                        lbl_8006D7DC(&pos);
+                        lbl_8006D1BC(lbl_8006D24C(snap[1], snap[0]), &sn, &cs);
+                        mathutil_mtxA_rotate_z__fzgx_offset_C(sn, cs);
+                        lbl_8006E15C(len / width, 1.0f, 1.0f);
+                        mathutil_mtxA_rotate_z__fzgx_offset_C(-sn, cs);
+                        lbl_8006E0C8(&pos);
+                        lbl_8006E1B0((Fn183D28Vec3 *)&quad[0], (Fn183D28Vec3 *)&quad[0]);
+                        lbl_8006E1B0((Fn183D28Vec3 *)&quad[1], (Fn183D28Vec3 *)&quad[1]);
+                        lbl_8006E1B0((Fn183D28Vec3 *)&quad[2], (Fn183D28Vec3 *)&quad[2]);
+                        lbl_8006E1B0((Fn183D28Vec3 *)&quad[3], (Fn183D28Vec3 *)&quad[3]);
+                    }
+                    newColor.r = 255.0f * alpha;
+                    newColor.g = 127.5f * alpha;
+                    newColor.b = 25.5f * alpha;
+                    if (CUR(0) != newColor.r || CUR(1) != newColor.g || CUR(2) != newColor.b) {
+                        newColor.a = 255;
+                        fn_800736C0(0, F65AssignColor(&cur, newColor));
+                        fn_8003462C(0x90, 0, 8);
+                        F65_DUMMY_QUADS();
+                    }
+                    fn_8003462C(0x80, 0, 4);
+                    GXWGFifo.f32 = quad[0].x;
+                    GXWGFifo.f32 = quad[0].y;
+                    GXWGFifo.f32 = quad[0].z;
+                    GXWGFifo.f32 = 0.0f;
+                    GXWGFifo.f32 = 0.0f;
+                    GXWGFifo.f32 = quad[1].x;
+                    GXWGFifo.f32 = quad[1].y;
+                    GXWGFifo.f32 = quad[1].z;
+                    GXWGFifo.f32 = 1.0f;
+                    GXWGFifo.f32 = 0.0f;
+                    GXWGFifo.f32 = quad[2].x;
+                    GXWGFifo.f32 = quad[2].y;
+                    GXWGFifo.f32 = quad[2].z;
+                    GXWGFifo.f32 = 1.0f;
+                    GXWGFifo.f32 = 1.0f;
+                    GXWGFifo.f32 = quad[3].x;
+                    GXWGFifo.f32 = quad[3].y;
+                    GXWGFifo.f32 = quad[3].z;
+                    GXWGFifo.f32 = 0.0f;
+                    GXWGFifo.f32 = 1.0f;
+                next:
+                    node++;
+                } while (--n > 0);
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_10069C */
+
 /* fzgx:begin fn_1_1011CC */
 void fn_1_1011CC(int arg0, int arg1) {
     fn_80074788(0);
