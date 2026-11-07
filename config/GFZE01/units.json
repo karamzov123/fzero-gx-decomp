@@ -98410,6 +98410,24 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/light/fn_1_7C7CC.c",
+    "symbols": [
+      "fn_1_7C7CC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/light.c",
+    "pool": {
+      "@20": "lbl_1_rodata_33AC",
+      "@19": "lbl_1_rodata_33A8",
+      "@84": "lbl_1_data_1EFDC",
+      "...data.0": "lbl_1_data_1EEB0",
+      "...rodata.0": "lbl_1_rodata_33A8"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/live_camera/fn_1_10138.c",
     "symbols": [
       "fn_1_10138"
