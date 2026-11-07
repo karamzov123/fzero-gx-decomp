@@ -131408,6 +131408,26 @@
   },
   {
     "module": "profile",
+    "source": "rel/profile/fn_16_4E90.c",
+    "symbols": [
+      "fn_16_4E90"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "...rodata.0": "lbl_16_rodata_58",
+      "@33": "lbl_16_rodata_58+0x48",
+      "@19": "lbl_16_rodata_58+0x2C",
+      "@16": "lbl_16_rodata_58+0x20",
+      "@42": "lbl_16_rodata_AC",
+      "@14": "lbl_16_rodata_58+0x18",
+      "@10": "lbl_16_rodata_58+0x8",
+      "@11": "lbl_16_rodata_58+0xC"
+    }
+  },
+  {
+    "module": "profile",
     "source": "rel/profile/fn_16_5F18.c",
     "symbols": [
       "fn_16_5F18"
