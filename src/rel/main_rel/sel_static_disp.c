@@ -10082,6 +10082,431 @@ void fn_1_144EE8(void) {
 }
 /* fzgx:end fn_1_144EE8 */
 
+/* fzgx:begin fn_1_144F40 noprologue */
+#include "types.h"
+#include "font.h"
+#include "fpscr_trunc.h"
+
+/* one results row: the layout fn_1_145C6C .. fn_1_1498B8 read */
+typedef struct {
+    u8 r, g, b, a;
+} Color;
+
+typedef struct {
+    u32 image;
+    f32 x, y, z;
+    f32 scale_x, scale_y;
+    f32 u0, v0, u1, v1;
+    s16 rotation_z, rotation_y;
+    f32 alpha;
+    u32 flags;
+    f32 depth;
+    Color color, color_add;
+    u32 format;
+    u16 width, height;
+    void *pixels;
+    FontDrawPacket *secondary;
+    void (*vertex_callback)(FontDrawPacket *packet, FontVertex *vertices);
+    u32 unk_54;
+} Packet;
+
+typedef struct {
+    s32 x;          /* 0x00 */
+    s32 y;          /* 0x04 */
+    s32 unk_8;      /* 0x08 */
+    s32 unk_C;      /* 0x0C */
+    s32 unk_10;     /* 0x10 */
+    s32 unk_14;     /* 0x14 */
+    f32 unk_18;     /* 0x18 */
+    f32 unk_1C;     /* 0x1C */
+    s32 unk_20;     /* 0x20 */
+    s32 unk_24;     /* 0x24 */
+    void *unk_28;   /* 0x28 */
+    u32 unk_2C;     /* 0x2C */
+    u32 unk_30;     /* 0x30 */
+    u8 unk_34;      /* 0x34 */
+    u8 unk_35;      /* 0x35 */
+    u8 unk_36;
+    u8 unk_37;
+    u8 unk_38;
+    u8 unk_39;
+    u8 pad_3A[2];
+    u32 unk_3C;     /* 0x3C */
+    u16 unk_40;     /* 0x40 */
+    u16 unk_42[5];  /* 0x42 */
+    s32 unk_4C;     /* 0x4C */
+    u8 pad_50[4];
+    u16 unk_54;     /* 0x54 */
+    u8 unk_56[5];   /* 0x56 */
+    u8 pad_5B;
+    s32 unk_5C;     /* 0x5C */
+    u8 unk_60;
+    u8 unk_61;
+    u16 unk_62;
+    s32 unk_64;
+    s32 unk_68;
+    s32 unk_6C;
+    s32 unk_70;
+    s32 unk_74;
+    s32 unk_78;
+    Packet packet[3]; /* 0x7C */
+} Row;
+
+/* one 0x38-byte entry of lbl_1_bss_8EF68 */
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u8 unk_8[0x10];
+    u16 unk_18;
+    u8 unk_1A;
+    u8 unk_1B;
+    u8 unk_1C;
+    u8 unk_1D;
+    u8 unk_1E;
+    u8 unk_1F;
+    u8 pad_20[0x18];
+} Entry;
+
+/* one seat's 0xA0-byte result record at lbl_1_bss_3C30+0xD4 */
+typedef struct {
+    u32 unk_0;
+    u16 unk_4;
+    u8 pad_6[2];
+    u8 unk_8;
+    u8 unk_9[5];
+    u8 unk_E[0x16];
+    u32 unk_24[10];
+    u16 unk_4C[5];
+    u8 pad_56[0x2A];
+    u8 unk_80;
+    u8 pad_81;
+    u8 unk_82;
+    u8 unk_83;
+    u8 pad_84[0x1A];
+    u16 unk_9E;
+} Record;
+
+typedef struct {
+    u8 pad_0[6];
+    u8 unk_6;
+    u8 pad_7[2];
+    u8 unk_9;
+    u8 pad_A[0x9D];
+    u8 unk_A7;
+    u8 pad_A8[0x2C];
+    Record unk_D4[30];
+} Setup;
+
+
+/* the viewport block: separate TU statics at the start of .bss (dtk splits at 8E43C/8E440): the
+ * order table, then two horizontal spans and one vertical */
+static u8 *lbl_1_bss_8E428;
+static u32 view_x0;
+static u32 view_w0;
+static u32 view_x1;
+static u32 view_w1;
+static u32 lbl_1_bss_8E43C;
+static u32 lbl_1_bss_8E440;
+extern f32 lbl_1_bss_8E530;
+extern f32 lbl_1_bss_8E534;
+extern s32 lbl_1_bss_8E538;
+extern s32 lbl_1_bss_8E53C;
+extern u8 lbl_1_bss_8E548;
+extern u32 lbl_1_bss_8E528;
+extern Setup lbl_1_bss_3C30;
+extern Entry lbl_1_bss_8EF68[];
+extern s16 lbl_1_bss_960;
+extern u32 lbl_801A66A4;
+extern const FontDrawPacket lbl_1_rodata_26F8;
+extern char lbl_1_data_424D0[];
+extern char lbl_1_data_424E4[];
+extern char lbl_1_data_424F8[];
+extern char lbl_1_data_4250C[];
+extern char lbl_1_data_42520[];
+extern char lbl_1_data_42534[];
+extern char lbl_1_data_42548[];
+extern char lbl_1_data_4255C[];
+
+
+extern void fn_1_52070(u32);
+extern void fn_1_52088(void);
+extern void *fn_80008BEC(void *, int, u32);
+extern void fn_1_51914(FontDrawPacket *);
+extern void fn_1_A2D84(u32);
+extern u32 __cvt_fp2unsigned(f32);
+extern void fn_1_145C6C(s32, Row *);
+extern BOOL fn_1_145B58(s32, Row *);
+extern void fn_1_146550(s32, Row *);
+extern void fn_1_146B5C(s32, Row *);
+extern void fn_1_146C88(s32, Row *);
+extern void fn_1_147188(s32, Row *);
+extern void fn_1_147508(s32, Row *);
+extern void fn_1_147A04(s32, Row *);
+extern void fn_1_148444(s32, Row *);
+extern void fn_1_148738(s32, Row *);
+extern void fn_1_148950(s32, Row *);
+extern void fn_1_1490FC(s32, Row *);
+extern void fn_1_1492E0(s32, Row *);
+extern void fn_1_1498B8(s32, f32, s32, s32, s32, s32, s32);
+extern void fn_1_149BF4(FontDrawPacket *, FontVertex *);
+extern void fn_1_149C2C(FontDrawPacket *, FontVertex *);
+extern void fn_1_149C64(FontDrawPacket *, FontVertex *);
+
+/* retail .rodata (lbl_1_rodata_92C0) up to this function's own constants at 0x414 */
+#define FZGX_PACKET(cb) \
+    { 0, 0.0f, 0.0f, 0.1f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0, 0, 1.0f, 0x04000000, 0.0f, \
+      { 0xFF, 0xFF, 0xFF, 0xFF }, { 0, 0, 0, 0 }, 0, 0, 0, NULL, NULL, cb, 0 }
+
+#pragma section code_type ".fzgxpool"
+static const Packet fzgx_pool_rodata_0 = FZGX_PACKET(fn_1_149BF4);
+static const Packet fzgx_pool_rodata_58 = FZGX_PACKET(fn_1_149C2C);
+static const Packet fzgx_pool_rodata_B0 = FZGX_PACKET(fn_1_149C64);
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_0(void) { const Packet *volatile cp; cp = &fzgx_pool_rodata_0; cp = &fzgx_pool_rodata_58; cp = &fzgx_pool_rodata_B0; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_108(void) { volatile f32 s; s = 0.0f; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_rodata_10C[6] = {0x3F755555, 0x41B80000, 0x40000000, 0x3F2AAAAB, 0x3F000000, 0x3F155555};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_10C(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_10C; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_128(s32 n) { volatile f32 s; s = (f32)n; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_rodata_130[36] = {0x44150000, 0x44040000, 0x0000001A, 0x00000023, 0x0000009C, 0x000000A5, 0x00000018, 0x00000021, 0x00000085, 0x0000008E, 0x000000F2, 0x000000FB, 0xC0C0C000, 0xC0800000, 0x42200000, 0x43F00000, 0x44200000, 0x47AFC800, 0x3E99999A, 0x3F333333, 0xBF800000, 0x43500000, 0xC47A0000, 0xC2480000, 0x3F800000, 0x41200000, 0x430C0000, 0x43600000, 0x437E0000, 0x43800000, 0xC0C00000, 0x40A00000, 0x40800000, 0x41400000, 0x41700000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_130(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_130; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_1C0(u32 n) { volatile f32 s; s = (f32)n; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_rodata_1C8[93] = {0x4E4F204E, 0x414D4500, 0x4E4F2044, 0x41544100, 0x42C80000, 0x43AF0000, 0x42300000, 0x41000000, 0xFFFFFFFF, 0x00F0E6FF, 0x007873FF, 0xA0FF00FF, 0x0000001A, 0x00000023, 0x0000013C, 0x00000145, 0x00000018, 0x00000021, 0x00000065, 0x0000006E, 0x000000B2, 0x000000BB, 0x41F00000, 0x3F400000, 0x42580000, 0x43AB8000, 0x47800000, 0x42F00000, 0x3EB33333, 0xFFFFFFFF, 0x00F0E6FF, 0x007873FF, 0xFFFF00FF, 0xFFFF00FF, 0x8080FFFF, 0x0000001A, 0x00000023, 0x0000013C, 0x00000145, 0x00000018, 0x00000021, 0x00000065, 0x0000006E, 0x000000B2, 0x000000BB, 0x19FF1900, 0x19FF1900, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x406FE000, 0x00000000, 0x41A00000, 0x0000001A, 0x00000023, 0x0000013C, 0x00000145, 0xFFFFFF00, 0x19FF1900, 0x0000001A, 0x00000023, 0x0000013C, 0x00000145, 0x19FF1900, 0x00FFFFFF, 0x00FFFFFF, 0xFFFFFF00, 0x3F4CCCCD, 0xC0000000, 0x0000001A, 0x00000023, 0x0000013C, 0x00000145, 0x00000018, 0x00000021, 0x0000001A, 0x00000023, 0x0000013C, 0x00000145, 0x00000018, 0x00000021, 0xFFFF00FF, 0x19FF1900, 0x00000000, 0x0000001A, 0x00000023, 0x0000013C, 0x00000145, 0x19FF1900};  /* fzgx-allow: A1 retail pool bytes */
+static const char *const fzgx_pool_rodata_33C[8] = {lbl_1_data_424D0, lbl_1_data_424E4, lbl_1_data_424F8, lbl_1_data_4250C, lbl_1_data_42520, lbl_1_data_42534, lbl_1_data_42548, lbl_1_data_4255C};  /* fzgx-allow: A1 retail pool pointers */
+static const u32 fzgx_pool_rodata_35C[46] = {0x42880000, 0x42AC0000, 0x3EC00000, 0x42A00000, 0x41600000, 0x41A80000, 0x3F8CCCCD, 0x43C78000, 0x440F8000, 0x3F59999A, 0x43FF0000, 0x19FF1900, 0x19FF1900, 0xF4962800, 0xF4962800, 0xFFFF0000, 0x00000000, 0xFFFFFF00, 0xF4962800, 0xF4962800, 0xFFFF0000, 0x00000000, 0xFFFFFF00, 0xF4962800, 0xFFFF00FF, 0x00000000, 0x19FF1900, 0x19FF1900, 0xF4962800, 0xF4962800, 0x8080FF00, 0x00000000, 0xFFFFFF00, 0xF4962800, 0xF4962800, 0x8080FF00, 0x00000000, 0xFFFFFF00, 0x43B10000, 0x42A80000, 0x41B00000, 0x3F266666, 0x43400000, 0x42400000, 0x42380000, 0x425C0000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_1C8(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_1C8; }
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_33C(void) { const char *const *volatile cp; cp = fzgx_pool_rodata_33C; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep_35C(void) { const u32 *volatile cp; cp = fzgx_pool_rodata_35C; }  /* fzgx-allow: S2 pool primer sink */  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_bss_order(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink */
+    s = *(u8 *)&lbl_1_bss_8E428;
+    s = *(u8 *)&view_x0;
+    s = *(u8 *)&view_w0;
+    s = *(u8 *)&view_x1;
+    s = *(u8 *)&view_w1;
+    s = *(u8 *)&lbl_1_bss_8E43C;
+    s = *(u8 *)&lbl_1_bss_8E440;
+}
+#pragma section code_type ".text"
+
+static inline BOOL in_4_5(s32 mode) {
+    BOOL r = TRUE;
+    if (!((u32)(mode - 4) <= 1)) r = FALSE;
+    return r;
+}
+static inline BOOL in_4_5_9(s32 mode) {
+    BOOL r = TRUE;
+    if (!in_4_5(mode) && mode != 9) r = FALSE;
+    return r;
+}
+static inline BOOL in_4_5_9_10(s32 mode) {
+    BOOL r = TRUE;
+    if (!in_4_5_9(mode) && mode != 10) r = FALSE;
+    return r;
+}
+static inline BOOL in_4_5_6_9_10(s32 mode) {
+    BOOL r = TRUE;
+    if (!in_4_5_9_10(mode) && mode != 6) r = FALSE;
+    return r;
+}
+static inline BOOL in_8_9(s32 mode) {
+    BOOL r = TRUE;
+    if (!((u32)(mode - 8) <= 1)) r = FALSE;
+    return r;
+}
+static inline BOOL in_8_9_10(s32 mode) {
+    BOOL r = TRUE;
+    if (!in_8_9(mode) && mode != 10) r = FALSE;
+    return r;
+}
+static inline BOOL in_0_1(s32 mode) {
+    BOOL r = TRUE;
+    if (!((u32)mode <= 1)) r = FALSE;
+    return r;
+}
+static inline BOOL in_0_2_7_8(s32 mode) {
+    BOOL r = FALSE;
+    if (mode == 0 || mode == 2 || mode == 8 || mode == 7) r = TRUE;
+    return r;
+}
+
+static inline BOOL in_range(const Row *row, s32 hi) {
+    return row->unk_20 > hi ? FALSE : row->unk_20 >= 0;
+}
+
+#define MIN(a, b) ((a) > (b) ? (b) : (a))
+#define CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : (x) > (hi) ? (hi) : (x))
+
+#define CLIP(pos, size, x, w, max) \
+    pos = (u32)MIN((f32)(x), max); \
+    size = (u32)(MIN((f32)(pos + (w)), max) - (f32)pos)
+
+
+static inline BOOL in_any(s32 mode) {
+    BOOL r = TRUE;
+    if (!in_0_2_7_8(mode) && !in_4_5_6_9_10(mode)) r = FALSE;
+    return r;
+}
+
+void fn_1_144F40(s32 mode, u8 *arg1) {
+    Row rowbuf;
+    Row *row = &rowbuf;
+    FontDrawPacket packet;
+    s32 i;
+    Entry *e;
+    Record *rec;
+    s32 idx;
+    u32 left;
+    s32 k;
+
+    fn_1_52070(0x140);
+    fn_80008BEC(row, 0, sizeof(*row));
+    if (in_0_2_7_8(mode) || in_4_5_6_9_10(mode)) {
+        row->unk_18 = lbl_1_bss_8E530;
+        row->unk_1C = lbl_1_bss_8E538;
+    } else {
+        row->unk_18 = lbl_1_bss_8E534;
+        row->unk_1C = lbl_1_bss_8E53C;
+    }
+    if (arg1 == NULL) {
+        row->unk_34 = lbl_1_bss_3C30.unk_6;
+    } else {
+        row->unk_34 = arg1[0];
+    }
+    packet = lbl_1_rodata_26F8;
+    packet.image = 0x9437;
+    fn_1_51914(&packet);
+    fn_1_145C6C(mode, row);
+
+    row->unk_10 = 0;
+    row->unk_14 = 0;
+    if (in_4_5_6_9_10(mode)) {
+        row->x = 0x9E;
+        row->y = 0x48;
+        row->unk_8 = 1;
+        row->unk_C = 1;
+        row->unk_10 = -2;
+        row->unk_14 = -4;
+    } else if (in_8_9_10(mode)) {
+        row->x = 0x68;
+        row->y = 0x41;
+        row->unk_8 = 1;
+        row->unk_C = 1;
+    } else if (in_0_1(mode)) {
+        row->x = 0x6C;
+        row->y = 0x38;
+        row->unk_8 = 1;
+        row->unk_C = 1;
+    } else if (lbl_1_bss_8E548 <= 4) {
+        row->x = 0x77;
+        row->y = 0x48;
+        row->unk_8 = 0;
+        row->unk_C = 0;
+    } else {
+        row->x = 0x6C;
+        row->y = 0x38;
+        row->unk_8 = 1;
+        row->unk_C = 1;
+    }
+    row->unk_68 = in_any(mode) ? 0 : 10;
+    row->unk_78 = lbl_801A66A4 - lbl_1_bss_8E528;
+    if (row->unk_78 == 16) {
+        fn_1_A2D84(0xA9010600);
+    }
+
+    for (i = -row->unk_8; i < lbl_1_bss_8E548 + row->unk_C; i++) {
+        row->unk_20 = i + (s32)row->unk_18;
+        if (in_4_5_6_9_10(mode)) {
+            if (!in_range(row, 9)) {
+                continue;
+            }
+            e = &lbl_1_bss_8EF68[row->unk_20];
+            row->unk_24 = e->unk_1B;
+            row->unk_28 = e->unk_8;
+            row->unk_30 = e->unk_0;
+            row->unk_3C = e->unk_4;
+            row->unk_40 = e->unk_18;
+            row->unk_35 = e->unk_1A;
+            row->unk_36 = e->unk_1C;
+            row->unk_37 = e->unk_1D;
+            row->unk_38 = e->unk_1E;
+            row->unk_39 = e->unk_1F;
+        } else if (in_8_9_10(mode)) {
+            if (!in_range(row, lbl_1_bss_3C30.unk_9 - 1)) {
+                continue;
+            }
+            idx = lbl_1_bss_8E428[row->unk_20];
+            row->unk_4C = idx;
+            rec = &lbl_1_bss_3C30.unk_D4[idx];
+            row->unk_5C = rec->unk_E[lbl_1_bss_3C30.unk_A7];
+            row->unk_24 = rec->unk_80;
+            row->unk_2C = rec->unk_0;
+            row->unk_35 = rec->unk_82;
+            row->unk_30 = rec->unk_24[lbl_1_bss_3C30.unk_A7];
+        } else {
+            if (!in_range(row, lbl_1_bss_3C30.unk_9 - 1)) {
+                continue;
+            }
+            idx = lbl_1_bss_8E428[row->unk_20];
+            row->unk_4C = idx;
+            rec = &lbl_1_bss_3C30.unk_D4[idx];
+            row->unk_5C = rec->unk_E[lbl_1_bss_3C30.unk_A7];
+            row->unk_54 = rec->unk_4;
+            row->unk_62 = rec->unk_9E;
+            row->unk_24 = rec->unk_80;
+            row->unk_35 = rec->unk_82;
+            row->unk_2C = rec->unk_0;
+            for (k = 0; k < 5; k++) {
+                row->unk_56[k] = rec->unk_9[k];
+                row->unk_42[k] = rec->unk_4C[k];
+            }
+            row->unk_30 = rec->unk_24[lbl_1_bss_3C30.unk_A7];
+            row->unk_60 = rec->unk_8;
+            row->unk_61 = rec->unk_83;
+        }
+        row->packet[0] = fzgx_pool_rodata_0;
+        row->packet[1] = fzgx_pool_rodata_58;
+        row->packet[2] = fzgx_pool_rodata_B0;
+        if (fn_1_145B58(mode, row)) {
+            static const Color fzgx_pool_color = {0xFA, 0xDC, 0x82, 0xFF};
+            Color color_add = {0, 0, 0, 0};
+            row->packet[2].color = fzgx_pool_color;
+            row->packet[1].color = fzgx_pool_color;
+            row->packet[0].color = fzgx_pool_color;
+            row->packet[2].color_add = color_add;
+            row->packet[1].color_add = color_add;
+            row->packet[0].color_add = color_add;
+        }
+        row->unk_6C = CLAMP(555 - row->unk_78 * 40, 0, 555);
+        row->unk_70 = row->unk_6C + CLAMP(610 - row->unk_78 * 40, 0, 55);
+        row->unk_74 = row->unk_6C + CLAMP(row->unk_78 * 60 - 1415, -455, 0);
+        row->unk_64 = row->x + (f32)(row->y * (i - (row->unk_18 - fpscr_trunc(row->unk_18))));
+        left = 0;
+        view_x0 = left;
+        view_x1 = view_w0 = 120 + row->unk_68 + row->unk_6C;
+        view_w1 = 640;
+        lbl_1_bss_8E43C = row->x - 6;
+        lbl_1_bss_8E440 = lbl_1_bss_8E548 * row->y;
+        CLIP(view_x0, view_w0, left, view_w0, 639.0f);
+        CLIP(view_x1, view_w1, view_x1, 640, 639.0f);
+        CLIP(lbl_1_bss_8E43C, lbl_1_bss_8E440, lbl_1_bss_8E43C, lbl_1_bss_8E440, 479.0f);
+        fn_1_146550(mode, row);
+        fn_1_146B5C(mode, row);
+        fn_1_146C88(mode, row);
+        fn_1_147188(mode, row);
+        fn_1_147508(mode, row);
+        fn_1_147A04(mode, row);
+        fn_1_148444(mode, row);
+        fn_1_148738(mode, row);
+        fn_1_148950(mode, row);
+        fn_1_1490FC(mode, row);
+    }
+    fn_1_1492E0(mode, row);
+    if (lbl_1_bss_960 != 10) {
+        fn_1_1498B8(mode, row->unk_1C, lbl_1_bss_8E548, row->y, row->x, row->unk_10, row->unk_14);
+    }
+    fn_1_52088();
+}
+/* fzgx:end fn_1_144F40 */
+
 /* fzgx:begin fn_1_145B58 noprologue */
 #include "types.h"
 #include "rel/main_rel/sel_static_disp.h"
