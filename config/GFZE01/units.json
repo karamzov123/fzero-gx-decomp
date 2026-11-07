@@ -41887,6 +41887,22 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_11492C.c",
+    "symbols": [
+      "fn_1_11492C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/accessory.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_7AB8",
+      "@62": "lbl_1_rodata_7B58",
+      "@42": "lbl_1_rodata_7B20"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_1154D0.c",
     "symbols": [
       "fn_1_1154D0"
