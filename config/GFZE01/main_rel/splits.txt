@@ -16424,3 +16424,6 @@ rel/main_rel/accessory/fn_1_11DE2C.c:
 
 rel/main_rel/_prolog/_prolog.c:
 	.text       start:0x00000000 end:0x00000634 align:4
+
+rel/main_rel/memcard/fn_1_B5F20.c:
+	.text       start:0x000B5F20 end:0x000B6B28 align:4
