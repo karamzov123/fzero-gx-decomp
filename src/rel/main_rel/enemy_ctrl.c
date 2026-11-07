@@ -1285,6 +1285,239 @@ fn_1_4F734(&loc_C);
 }
 /* fzgx:end fn_1_C7CBC */
 
+/* fzgx:begin fn_1_C8294 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/enemy_ctrl.h"
+
+typedef struct EnemyCtrlFace {
+    u32 unk_0;
+    u32 unk_4;
+    u8 pad_8[0x10];
+    s32 unk_18;
+    u8 pad_1C[0x1C];
+    u32 unk_38;
+    u32 unk_3C;
+    u8 pad_40[0x20];
+    u32 unk_60;
+} EnemyCtrlFace;
+
+typedef struct EnemyCtrlEntry {
+    s16 x;
+    s16 y;
+    f32 scale;
+    s16 ofs_x;
+    s16 ofs_y;
+} EnemyCtrlEntry;
+
+extern u32 fn_1_58C4(void);
+extern EnemyCtrlFace *fn_1_D2D24(s32);
+extern EnemyCtrlFace *fn_1_D2D58(s32);
+extern s32 fn_1_D2D38(void);
+extern u16 fn_1_584AC(void);
+extern u16 fn_1_48690(u32);
+extern u16 fn_1_486C4(u32);
+extern void fn_1_51914(const FontDrawPacket *);
+extern void fn_1_51990(FontDrawPacket *);
+extern s32 fn_1_4FC50(FontDrawPacket *, u32, u16, u16, u32);
+extern void fn_1_53830(u32, f32, u8, volatile u8 *, volatile u8 *);  /* fzgx-allow: S2 prototype matches the definition in font.c */
+extern void fn_1_C7CBC(s16, s16, s16, s32, f32, f32);
+extern s32 fn_1_40B20(void);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_49514(u32 *);
+extern void fn_1_4955C(f32, f32);
+extern f32 lbl_8006D188(s32);
+extern u32 lbl_801A66A0;
+extern f32 lbl_1_rodata_26F8[22];
+extern const f32 lbl_1_rodata_5C48;
+extern const f64 lbl_1_rodata_5C98;
+extern const f32 lbl_1_rodata_5CA0;
+extern const f64 lbl_1_rodata_5CA8;
+extern const f64 lbl_1_rodata_5CB8;
+extern const f64 lbl_1_rodata_5CC0;
+extern const f32 lbl_1_rodata_5CC8;
+extern const f32 lbl_1_rodata_5CCC;
+extern const f32 lbl_1_rodata_5CD4;
+extern const f32 lbl_1_rodata_5CD8;
+extern const f32 lbl_1_rodata_5CDC;
+extern const f32 lbl_1_rodata_5CE0;
+extern const f32 lbl_1_rodata_5CE4;
+extern const u32 lbl_1_rodata_5C90;
+extern const u32 lbl_1_rodata_5C94;
+
+#pragma fp_contract off
+s16 fn_1_C8294(const EnemyCtrlEntry *entries, u8 count, s32 flag) {
+    FontDrawPacket packet;
+    FontDrawPacket head;
+    u32 color;
+    s32 n;
+    s16 result;
+    u32 img0;
+    u32 img1;
+    s32 i;
+    u32 img2;
+    u32 img3;
+    u32 img4;
+    s32 digits;
+    EnemyCtrlFace *obj;
+    s16 dx;
+    s16 dy;
+    s16 px;
+    s16 py;
+    s32 cx;
+    s32 cy;
+    s32 active;
+    f32 range;
+    f32 fade;
+
+    result = -1;
+    img0 = flag ? 0x9437 : 0x9728;
+    img1 = flag ? 0x944C : 0x972F;
+    img2 = flag ? 0x9454 : 0x9734;
+    img3 = flag ? 0x9453 : 0x9714;
+    img4 = flag ? 0x9418 : 0x9714;
+    digits = flag ? 11 : 20;
+
+    if (fn_1_58C4() > 1) {
+        return -1;
+    }
+    if (fn_1_D2D24(0) == NULL) {
+        return -1;
+    }
+
+    head = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+    head.image = img0;
+    fn_1_51914(&head);
+
+    if (count > 6) {
+        count = 6;
+    }
+    n = count;
+    for (i = 0; i < n; i++) {
+        active = 0;
+        obj = fn_1_D2D58(i);
+        if (obj == NULL) {
+            continue;
+        }
+        if (obj == NULL) {
+            dx = 0;
+            dy = 0;
+        } else if (obj->unk_3C == 0 && obj->unk_38 != 0) {
+            range = lbl_1_rodata_5C98 * (obj->unk_38 / lbl_1_rodata_5C48);
+            dx = range * (fn_1_584AC() / lbl_1_rodata_5CA0 - lbl_1_rodata_5CA8);
+            dy = range * (fn_1_584AC() / lbl_1_rodata_5CA0 - lbl_1_rodata_5CA8);
+        } else {
+            dx = 0;
+            dy = 0;
+        }
+        cx = entries[i].x + entries[i].scale / 2;
+        cy = entries[i].y + entries[i].scale / 2;
+        px = cx + dx;
+        py = cy + dy;
+
+        packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+        packet.image = img2;
+        packet.x = px;
+        packet.y = py;
+        packet.z = i * 10 + 7;
+        packet.scale_x *= entries[i].scale / fn_1_48690(img2);
+        packet.scale_y *= entries[i].scale / fn_1_486C4(img2);
+        packet.flags = 10;
+        fn_1_4F734(&packet);
+
+        if (fn_1_D2D38()) {
+            if (obj->unk_18 == 0) {
+                active = 1;
+            }
+        } else {
+            if (obj->unk_18 != -1) {
+                active = 1;
+            }
+        }
+
+        if (active) {
+            packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+            packet.image = img1;
+            packet.x = px;
+            packet.y = py;
+            packet.z = i * 10 + 6;
+            packet.scale_x *= entries[i].scale / fn_1_48690(img2);
+            packet.scale_y *= entries[i].scale / fn_1_486C4(img2);
+            *(u32 *)packet.color = lbl_1_rodata_5C90;
+            packet.alpha = lbl_1_rodata_5CB8 + lbl_1_rodata_5CC0 * lbl_8006D188(lbl_1_rodata_5CC8 * (f32)(lbl_801A66A0 % 30) / lbl_1_rodata_5CCC);
+            packet.flags = 10;
+            fn_1_4F734(&packet);
+        }
+
+        if (obj != NULL && obj->unk_60 != 0) {
+            packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+            packet.x = px;
+            packet.y = py;
+            packet.z = i * 10 + 5;
+            packet.scale_x *= entries[i].scale / 64;
+            packet.scale_y *= entries[i].scale / 64;
+            packet.flags = 10;
+            fn_1_51990(&packet);
+            fn_1_4FC50(&packet, 5, 0x40, 0x40, obj->unk_60);
+        }
+
+        packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+        packet.image = img3;
+        packet.x = px;
+        packet.y = py;
+        packet.z = i * 10 + 4;
+        packet.scale_x *= entries[i].scale / fn_1_48690(img2);
+        packet.scale_y *= entries[i].scale / fn_1_486C4(img2);
+        packet.flags = 10;
+        fn_1_4F734(&packet);
+
+        packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+        packet.image = img4;
+        packet.x = px;
+        packet.y = py;
+        packet.z = i * 10 + 3;
+        packet.scale_x *= entries[i].scale / fn_1_48690(img2);
+        packet.scale_y *= entries[i].scale / fn_1_486C4(img2);
+        packet.flags = 10;
+        if (active) {
+            fade = lbl_1_rodata_5CD4 * (lbl_1_rodata_5CD4 * entries[i].scale) / lbl_1_rodata_5CD8;
+            fn_1_53830(60, lbl_1_rodata_5CDC, 50, packet.color_add, packet.color);
+            fn_1_C7CBC(px, py, i * 10 + 5, flag, fade, fade);
+        }
+        fn_1_4F734(&packet);
+
+        if (obj->unk_4 == fn_1_40B20()) {
+            packet = *(const FontDrawPacket *)lbl_1_rodata_26F8;
+            packet.image = 0x9407;
+            packet.x = px;
+            packet.y = lbl_1_rodata_5CE0 + py;
+            packet.z = i * 10 + 2;
+            packet.flags = 10;
+            fn_1_4F734(&packet);
+        }
+
+        fn_1_49410();
+        fn_1_494DC(digits);
+        fn_1_496FC(dx + entries[i].ofs_x, dy + entries[i].ofs_y);
+        fn_1_4954C(i * 10 + 2);
+        color = lbl_1_rodata_5C94;
+        fn_1_49514(&color);
+        if (!flag) {
+            fn_1_4955C(lbl_1_rodata_5CE4, lbl_1_rodata_5CE4);
+        }
+        fn_1_4AE0C((const char *)&lbl_1_data_3D570, i + 1);
+        if (active) {
+            result = i;
+        }
+    }
+    return result;
+}
+#pragma fp_contract reset
+/* fzgx:end fn_1_C8294 */
+
 /* fzgx:begin fn_1_CA218 */
 typedef struct EnemyCtrl_CA218 {
     u32 value;
