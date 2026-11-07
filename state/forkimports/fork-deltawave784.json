@@ -161,6 +161,15 @@
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
   "status": "pool"
  },
+ "fn_12_3DBE0": {
+  "flags": "-use_lmw_stmw on",
+  "kind": "raw",
+  "landed": 1794019804,
+  "mw": "GC/1.3.2",
+  "sha256": "2b9be3477542c6f7139c23ffca24664cbd1092bb3509fa2f509c76dd7cc39a33",
+  "source": "fork-deltawave784/windows-and-types@842a08a9",
+  "status": "matched"
+ },
  "fn_12_7870": {
   "flags": "",
   "kind": "fixup-import",
@@ -258,6 +267,15 @@
   "mw": "GC/1.3.2",
   "sha256": "6f47693c0cf093ad71337845a0514fed4f094d6feab56bb9d9b658f65de6a55b",
   "source": "fork-deltawave784/windows-and-types@b1e6f2df",
+  "status": "matched"
+ },
+ "fn_1_123050": {
+  "flags": "",
+  "kind": "fork-headers+trim+tidy",
+  "landed": 1794020323,
+  "mw": "GC/1.3.2",
+  "sha256": "d216e278935f3e2a0f7a5a31f9622b1ef687bfeeaaa0e39e48d38f202551dc0d",
+  "source": "fork-deltawave784/windows-and-types@842a08a9",
   "status": "matched"
  },
  "fn_1_1244F0": {
@@ -521,6 +539,24 @@
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
   "status": "matched"
  },
+ "fn_1_5B7F8": {
+  "flags": "",
+  "kind": "selective+trim",
+  "landed": 1794020052,
+  "mw": "GC/1.3.2",
+  "sha256": "0e7d2443d69a386c49772024e0444c62559576810f2fd8ea2d6f72fd9eb10093",
+  "source": "fork-deltawave784/windows-and-types@842a08a9",
+  "status": "matched"
+ },
+ "fn_1_5C058": {
+  "flags": "",
+  "kind": "selective+trim",
+  "landed": 1794019930,
+  "mw": "GC/1.3.2",
+  "sha256": "7b4f1c990d7ed7c1e9e84f2446fb5edd1257b8aac89891108b0e6f0fa3e88521",
+  "source": "fork-deltawave784/windows-and-types@842a08a9",
+  "status": "matched"
+ },
  "fn_1_5C83C": {
   "flags": "",
   "kind": "selective+trim",
@@ -573,6 +609,15 @@
   "mw": "GC/1.3.2",
   "sha256": "fbdc018ce11b413b2b05582478ba7fcdb90ccb55d0eb3e21814d18a997d72f34",
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
+  "status": "matched"
+ },
+ "fn_1_662D8": {
+  "flags": "",
+  "kind": "selective+trim+tidy",
+  "landed": 1794020196,
+  "mw": "GC/1.3.2",
+  "sha256": "941ca849a82bd465001825129ced890d8b863181b937341dcea3694735a8d4bd",
+  "source": "fork-deltawave784/windows-and-types@842a08a9",
   "status": "matched"
  },
  "fn_1_67680": {
@@ -853,6 +898,15 @@
   "sha256": "5d11f6af4d2d2a3aa9e180a0f3379344ee562275a6e22d3c44be0e2bf0287835",
   "source": "fork-deltawave784/windows-and-types@215f1cd8",
   "status": "pool"
+ },
+ "fn_1_F3BC0": {
+  "flags": "",
+  "kind": "selective+trim",
+  "landed": 1794020065,
+  "mw": "GC/1.3",
+  "sha256": "e886868ef8db73b46b5255479c5935dea64d4e893553af5a52b893405930d1ff",
+  "source": "fork-deltawave784/windows-and-types@842a08a9",
+  "status": "matched"
  },
  "fn_1_F4810": {
   "flags": "",
