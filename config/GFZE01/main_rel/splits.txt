@@ -16443,5 +16443,15 @@ rel/main_rel/font/fn_1_4C16C.c:
 rel/main_rel/enemy_ctrl/fn_1_C8294.c:
 	.text       start:0x000C8294 end:0x000C8DC0 align:4
 
+rel/main_rel/phys/fn_1_E5CC4.c:
+	.text       start:0x000E5CC4 end:0x000E733C align:4
+rel/main_rel/light/fn_1_7C7CC.c:
+	.text       start:0x0007C7CC end:0x0007D694 align:4
+rel/main_rel/screen_effect/fn_1_77C5C.c:
+	.text       start:0x00077C5C end:0x0007879C align:4
+rel/main_rel/enemy_ctrl/fn_1_CEB38.c:
+	.text       start:0x000CEB38 end:0x000CF5B0 align:4
+rel/main_rel/bg_for/fn_1_DFBBC.c:
+	.text       start:0x000DFBBC end:0x000E07B8 align:4
 rel/main_rel/sel_static_disp/fn_1_144F40.c:
 	.text       start:0x00144F40 end:0x00145B58 align:4

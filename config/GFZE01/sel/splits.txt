@@ -1688,3 +1688,6 @@ rel/sel/sel/fn_10_13B24.c:
 
 rel/sel/sel/fn_10_6518.c:
 	.text       start:0x00006518 end:0x00007130 align:4
+
+rel/sel/sel/fn_10_B2C8.c:
+	.text       start:0x0000B2C8 end:0x0000BD64 align:4

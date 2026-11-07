@@ -1127,3 +1127,6 @@ rel/customize/toolkit/fn_3_255DC.c:
 
 rel/customize/editor/fn_3_17854.c:
 	.text       start:0x00017854 end:0x0001857C align:4
+
+rel/customize/toolkit/fn_3_278F8.c:
+	.text       start:0x000278F8 end:0x00028378 align:4
