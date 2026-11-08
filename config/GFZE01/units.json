@@ -137263,6 +137263,25 @@
   },
   {
     "module": "sel",
+    "source": "rel/sel/sel/fn_10_12024.c",
+    "symbols": [
+      "fn_10_12024"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/sel/sel.c",
+    "pool": {
+      "...rodata.0": "lbl_10_rodata_158",
+      "@5": "lbl_10_rodata_158+0x44",
+      "@22": "lbl_10_rodata_1E0",
+      "@24": "lbl_10_rodata_1E8",
+      "@6": "lbl_10_rodata_158+0x48",
+      "@301": "lbl_10_rodata_588"
+    }
+  },
+  {
+    "module": "sel",
     "source": "rel/sel/sel/fn_10_12C14.c",
     "symbols": [
       "fn_10_12C14"
