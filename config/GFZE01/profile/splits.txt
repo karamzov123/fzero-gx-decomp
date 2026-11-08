@@ -200,3 +200,6 @@ rel/profile/data/lbl_16_data_82DB8.c:
 
 rel/profile/fn_16_4E90.c:
 	.text       start:0x00004E90 end:0x00005F18 align:4
+
+rel/profile/_prolog.c:
+	.text       start:0x00000000 end:0x000006E4 align:4
