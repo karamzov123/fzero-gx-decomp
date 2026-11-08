@@ -1694,3 +1694,6 @@ rel/sel/sel/fn_10_B2C8.c:
 
 rel/sel/sel/fn_10_12024.c:
 	.text       start:0x00012024 end:0x00012C14 align:4
+
+rel/sel/_prolog/_prolog.c:
+	.text       start:0x00000044 end:0x00000834 align:4
