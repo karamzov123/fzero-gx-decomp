@@ -6561,6 +6561,237 @@ void fn_1_13E054(void* arg0, void* arg1, void* arg2, int arg3) {
 }
 /* fzgx:end fn_1_13E054 */
 
+/* fzgx:begin fn_1_13E080 noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+
+/* fn_1_128E8C's output: the course record (time, machine and its parts) */
+typedef struct {
+    u8 minutes;
+    u8 seconds;
+    u16 ms;
+    u8 machine[4];  /* [0] machine id (41+ = custom, then three part ids) */
+    u8 unk_8;       /* 0-100, the bar position */
+    u8 unk_9;       /* cell of the 6x7 sheet at 0xA000 */
+    u16 unk_A;
+    u8 pad_C[0xC];
+    u16 valid;
+} RecordTime;
+
+typedef struct {
+    u32 image;
+    f32 x, y, z;
+    f32 scale_x, scale_y;
+    f32 u0, v0, u1, v1;
+    s16 rotation_z, rotation_y;
+    f32 alpha;
+    u32 flags;
+    f32 depth;
+    u32 color;
+    u8 color_add[4];
+    u32 format;
+    u16 width, height;
+    void *pixels;
+    void *secondary;
+    void *vertex_callback;
+    u32 unk_54;
+} RecordPacket;
+
+extern u32 lbl_801A66B4;
+extern RecordPacket lbl_1_rodata_26F8;
+extern const f32 lbl_1_rodata_85E8;
+extern const u32 lbl_1_rodata_8DF8;
+extern const f32 lbl_1_rodata_86C4;
+extern const f32 lbl_1_rodata_8B34;
+extern const f32 lbl_1_rodata_8E00;
+extern const f32 lbl_1_rodata_85F4;
+extern const f32 lbl_1_rodata_85FC;
+extern const f32 lbl_1_rodata_8E04;
+extern const f32 lbl_1_rodata_861C;
+extern const f32 lbl_1_rodata_863C;
+extern const f32 lbl_1_rodata_85F0;
+extern const f32 lbl_1_rodata_8E08;
+extern const f32 lbl_1_rodata_8E0C;
+extern const u32 lbl_1_rodata_8DFC;
+extern const f32 lbl_1_rodata_8E10;
+extern const f32 lbl_1_rodata_8E14;
+extern const f32 lbl_1_rodata_8E1C;
+extern const f32 lbl_1_rodata_8E20;
+extern const f32 lbl_1_rodata_8E18;
+extern const f32 lbl_1_rodata_8664;
+extern const f32 lbl_1_rodata_87DC;
+extern const f32 lbl_1_rodata_8E24;
+extern const f32 lbl_1_rodata_8E28;
+extern const f32 lbl_1_rodata_8E2C;
+extern const f32 lbl_1_rodata_8E30;
+extern const f32 lbl_1_rodata_8E34;
+
+extern void fn_1_12EF80(s16, s16 *, s16 *);
+extern void fn_1_128E8C(u8, RecordTime *);
+extern u16 fn_1_486C4(u32);
+extern u16 fn_1_48690(u32);
+extern void fn_1_50164(f32, f32, f32, f32, RecordPacket *);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16);
+extern void fn_1_495B0(u32);
+extern void fn_1_52250(void *, void *);
+extern void fn_1_49738(void (*)(void *, void *));
+extern void fn_1_49748(f32);
+extern void fn_1_495C8(s32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+/* retail evaluates the scales before the language argument, so they precede it (same registers);
+ * sel_static_disp.c's definitions list them later. Both callees still match with this order. */
+/* Parameter order from the call sites: retail evaluates the two scale floats before the
+ * language argument, so they precede it (the GPR and FPR argument numbering is unchanged;
+ * the definitions still match in this order). */
+extern void fn_1_135D7C(s16, s16, s16, s16, f32, f32, s16, s16, s16, f32);
+extern void fn_1_1358BC(s16, s16, s32, s16, f32, f32, s16, u8, u8, u8, f32);
+
+/* the course record panel at (x, y): with no record (or the default 8'44"287), a box the size of `image`
+ * with a centred message; otherwise `image`, the time, the bar, the machine (with its parts when custom)
+ * and the cell from unk_9 */
+#pragma opt_common_subs off
+void fn_1_13E080(s32 x, s32 y, u32 image, s32 height) {
+    RecordPacket packet;
+    RecordTime rec;
+    s16 a;
+    s16 b;
+    s32 row;
+    s32 col;
+    u8 machine;
+    s32 bottom;
+    f32 offset;
+
+    fn_1_12EF80(lbl_1_bss_8B3A0.unk_90, &a, &b);
+    fn_1_128E8C((a - 6) * 6 + b, &rec);
+    if (rec.valid == 0 || (rec.minutes == 8 && rec.seconds == 44 && rec.ms == 287)) {
+        packet = lbl_1_rodata_26F8;
+        packet.image = 12;
+        packet.x = x;
+        bottom = y + height;
+        packet.y = bottom;
+        packet.z = lbl_1_rodata_85E8;
+        packet.color = lbl_1_rodata_8DF8;
+        fn_1_50164(fn_1_48690(image), fn_1_486C4(image), lbl_1_rodata_86C4, lbl_1_rodata_86C4, &packet);
+        fn_1_49410();
+        fn_1_494DC(5);
+        fn_1_495B0(0x80000000);
+        fn_1_49738(fn_1_52250);
+        fn_1_49748(lbl_1_rodata_8B34);
+        fn_1_495C8(9);
+        fn_1_496FC(x + fn_1_48690(image) / 2, bottom + fn_1_486C4(image) / 2);
+        fn_1_4AE0C((const char *)&lbl_1_data_41E1C);
+        return;
+    }
+
+    packet = lbl_1_rodata_26F8;
+    packet.image = image;
+    packet.x = x;
+    packet.y = y + height;
+    packet.z = lbl_1_rodata_85E8;
+    fn_1_4F734((FontDrawPacket *)&packet);
+
+    packet = lbl_1_rodata_26F8;
+    packet.image = 0x9E05;
+    packet.flags = 5;
+    packet.x = x + 169;
+    packet.y = y + 37;
+    packet.z = lbl_1_rodata_8E00;
+    fn_1_4F734((FontDrawPacket *)&packet);
+
+    packet = lbl_1_rodata_26F8;
+    packet.image = 0x9E04;
+    packet.flags = 6;
+    offset = lbl_1_rodata_85FC * (rec.unk_8 / lbl_1_rodata_85F4);
+    packet.x = (x + 173) + offset;
+    packet.y = y + 36;
+    packet.z = lbl_1_rodata_8E04;
+    fn_1_4F734((FontDrawPacket *)&packet);
+
+    packet = lbl_1_rodata_26F8;
+    packet.image = 0x9E28;
+    packet.flags = 5;
+    packet.u0 = lbl_1_rodata_861C;
+    packet.u1 = lbl_1_rodata_863C;
+    packet.v0 = lbl_1_rodata_85F0;
+    packet.v1 = lbl_1_rodata_8E08;
+    packet.x = x + 62;
+    packet.y = y + 59;
+    packet.scale_x = lbl_1_rodata_863C;
+    packet.scale_y = lbl_1_rodata_8E0C;
+    packet.z = lbl_1_rodata_8E04;
+    packet.color = lbl_1_rodata_8DFC;
+    fn_1_4F734((FontDrawPacket *)&packet);
+
+    fn_1_49410();
+    fn_1_495B0(0x80000000);
+    fn_1_495C8(0);
+    fn_1_494DC(0x24);
+    fn_1_4954C(lbl_1_rodata_8E04);
+    fn_1_4955C(lbl_1_rodata_8E10, lbl_1_rodata_8E10);
+    fn_1_496FC(x + 74, y + 70);
+    fn_1_4AE0C((const char *)lbl_1_data_41E24, rec.minutes, rec.seconds, rec.ms);
+
+    machine = rec.machine[0];
+    if (machine < 41) {
+        packet = lbl_1_rodata_26F8;
+        row = machine / 6;
+        col = machine % 6;
+        packet.image = 0x9E2D;
+        packet.flags = 10;
+        packet.u0 = lbl_1_rodata_8E14 * col;
+        packet.u1 = lbl_1_rodata_8E14 * (col + 1);
+        packet.v0 = lbl_1_rodata_8E18 * row;
+        packet.v1 = lbl_1_rodata_8E18 * (row + 1);
+        packet.x = x + 29;
+        packet.y = y + 60;
+        packet.scale_x = lbl_1_rodata_8E1C;
+        packet.scale_y = lbl_1_rodata_8E20;
+        packet.z = lbl_1_rodata_8E04;
+        fn_1_4F734((FontDrawPacket *)&packet);
+        fn_1_135D7C(x + 132, y + 45, 10, rec.machine[0], lbl_1_rodata_8664, lbl_1_rodata_8664,
+                    lbl_801A66B4, 0, 0, lbl_1_rodata_87DC);
+    } else {
+        packet = lbl_1_rodata_26F8;
+        packet.image = 0x9E2D;
+        packet.flags = 10;
+        packet.u0 = lbl_1_rodata_8E24;
+        packet.u1 = lbl_1_rodata_863C;
+        packet.v0 = lbl_1_rodata_8E28;
+        packet.v1 = lbl_1_rodata_863C;
+        packet.x = x + 29;
+        packet.y = y + 60;
+        packet.scale_x = lbl_1_rodata_8E1C;
+        packet.scale_y = lbl_1_rodata_8E20;
+        packet.z = lbl_1_rodata_8E04;
+        fn_1_4F734((FontDrawPacket *)&packet);
+        fn_1_1358BC(x + 132, y + 46, 10, rec.machine[0], lbl_1_rodata_8E2C, lbl_1_rodata_8E2C,
+                    lbl_801A66B4, rec.machine[1], rec.machine[2], rec.machine[3], lbl_1_rodata_87DC);
+    }
+
+    packet = lbl_1_rodata_26F8;
+    row = rec.unk_9 / 6;
+    col = rec.unk_9 % 6;
+    packet.image = 0xA000;
+    packet.flags = 10;
+    packet.u0 = lbl_1_rodata_8E14 * col;
+    packet.u1 = lbl_1_rodata_8E14 * (col + 1);
+    packet.v0 = lbl_1_rodata_8E18 * row;
+    packet.v1 = lbl_1_rodata_8E18 * (row + 1);
+    packet.x = x + 226;
+    packet.y = y + 60;
+    packet.scale_x = lbl_1_rodata_8E30;
+    packet.scale_y = lbl_1_rodata_8E34;
+    packet.z = lbl_1_rodata_8E04;
+    fn_1_4F734((FontDrawPacket *)&packet);
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_13E080 */
+
 /* fzgx:begin fn_1_13EA9C noprologue */
 #include "types.h"
 #include "font.h"
