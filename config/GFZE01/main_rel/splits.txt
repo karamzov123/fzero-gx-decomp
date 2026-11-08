@@ -16498,3 +16498,6 @@ rel/main_rel/sel_static_disp/fn_1_146550.c:
 
 rel/main_rel/sel_static_disp/fn_1_14CEB8.c:
 	.text       start:0x0014CEB8 end:0x0014D5CC align:4
+
+rel/main_rel/effect_car/fn_1_694A4.c:
+	.text       start:0x000694A4 end:0x00069BBC align:4
