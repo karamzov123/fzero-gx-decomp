@@ -16513,3 +16513,6 @@ rel/main_rel/live_camera/fn_1_10AF0.c:
 
 rel/main_rel/bg_lig/fn_1_D7EF4.c:
 	.text       start:0x000D7EF4 end:0x000D8388 align:4
+
+rel/main_rel/bg_for/fn_1_DEDC4.c:
+	.text       start:0x000DEDC4 end:0x000DF2A4 align:4

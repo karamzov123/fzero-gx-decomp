@@ -1698,6 +1698,212 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
 #pragma opt_strength_reduction reset
 /* fzgx:end fn_1_DE9C4 */
 
+/* fzgx:begin fn_1_DEDC4 */
+#include "psvec.h"
+#include "game/vec3.h"
+#include "mathutil_vec_dot_prod.h"
+
+/* bg_for.c's literal pool up to the first half of the 0x98 table, so this function's literals and its
+ * {0, 1, 0} initializer land at retail's offsets (0xA4-0xBC) */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
+    s = -1.0f;
+    s = 0.9999998807907104f;
+    s = 1.0000001192092896f;
+    s = -1.0000001192092896f;
+    s = -0.9999998807907104f;
+}
+static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.1920928955078125e-07;
+    s = 0.0f;
+    s = 5.0f;
+    s = 1.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.10000000149011612f;
+    s = 0.5f;
+    s = 10.0f;
+    s = 182.04444885253906f;
+    d = 4503599627370496.0;
+    s = -0.0027222223579883575f;
+}
+static const u32 fzgx_pool_table6[9] = {0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 9.58738019107841e-05f;
+    s = 1.5f;
+    s = -1.1920928955078125e-07f;
+    s = 1.1920928955078125e-07f;
+    d = 4503601774854144.0;
+    s = 60.0f;
+    s = 1000000.0f;
+    s = 250000.0f;
+    s = 20.0f;
+}
+static const u32 fzgx_pool_table8[3] = {0x00000000, 0x3F800000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+
+extern void lbl_8006DBAC(void *);
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_8006E2B0(Vec3 *, Vec3 *);
+extern f32 lbl_8006D534(Vec3 *, Vec3 *);
+extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
+extern void fn_8006E250(Vec3 *, Vec3 *);
+extern f32 lbl_8006D0E8(f32);
+extern void lbl_8006D668(Vec3 *);
+extern void lbl_8006E1C0(Vec3 *, Vec3 *);
+
+/* as in fn_1_DFBBC and fn_1_DF2A4: retail reloads every field at each use and keeps the
+ * side test's component loads as named values */
+#pragma opt_common_subs off
+#pragma opt_dead_assignments off
+
+/* signed distance of p from the plane through point */
+static inline f32 plane_dist(Vec3 *p, Vec3 *point, Vec3 *normal) {
+    Vec3 d;
+    psvec_sub(p, point, &d);
+    return mathutil_vec_dot_prod(&d, normal);
+}
+
+/* 1 if c is +1, -1 if it is -1 (within one ulp), else 0 */
+static inline s16 unit_sign(f32 c) {
+    if (0.9999998807907104f <= c && 1.0000001192092896f >= c) {
+        return 1;
+    }
+    if (-1.0000001192092896f <= c && -0.9999998807907104f >= c) {
+        return -1;
+    }
+    return 0;
+}
+
+static inline f32 xz_sq(Vec3 *v) {
+    f32 r;
+    r = v->x * v->x;
+    r += v->z * v->z;
+    return r;
+}
+
+static inline void flip(Vec3 *v) {
+    psvec_scale(v, -1.0f, v);
+}
+
+s16 fn_1_DEDC4(Vec3 *a, Vec3 *b, void *mtx, Vec3 *point, Vec3 *normal, Vec3 *hit, Vec3 *out, f32 radius) {
+    Vec3 up = {0.0f, 1.0f, 0.0f};
+    Vec3 nrm;
+    Vec3 npt;
+    Vec3 pos;
+    f32 ofs;
+    f32 side;
+    f32 dist;
+    f32 d;
+    f32 reach;
+    s16 sign;
+
+    fn_80008BEC(out, 0, 12);
+    {
+        f32 nx;
+        f32 ny;
+        f32 nz;
+        f32 ax;
+        f32 ay;
+        f32 az;
+        f32 bx;
+        f32 by;
+        f32 bz;
+        f32 dot_point;
+        f32 dot_a;
+        f32 dot_b;
+        nx = normal->x;
+        ax = a->x;
+        bx = b->x;
+        ny = normal->y;
+        ay = a->y;
+        by = b->y;
+        nz = normal->z;
+        az = a->z;
+        bz = b->z;
+        dot_point = nx * point->x;
+        dot_point += ny * point->y;
+        dot_point += nz * point->z;
+        dot_a = nx * ax;
+        dot_a += ny * ay;
+        dot_a += nz * az;
+        dot_b = nx * bx;
+        dot_b += ny * by;
+        dot_b += nz * bz;
+        ofs = -dot_point;
+        side = (ofs + dot_a) * (ofs + dot_b);
+    }
+    if (side < -0.01f) {
+        sign = -1;
+    } else if (side > 0.01f) {
+        sign = 1;
+    } else {
+        sign = 0;
+    }
+    dist = plane_dist(b, point, normal);
+    lbl_8006DBAC(mtx);
+    fn_8006E2B0(normal, &nrm);
+    if (unit_sign(lbl_8006D534(&nrm, &up))) {
+        /* floor or ceiling */
+        if (sign > 0) {
+            return 0;
+        }
+        lbl_8006D5F0(normal, hit, -1.01f * dist);
+        return 1;
+    }
+    fn_8006E250(point, &npt);
+    if (sign >= 0) {
+        if (dist > radius) {
+            return 0;
+        }
+        d = -mathutil_vec_dot_prod(&nrm, &npt);
+        reach = __fabs(d) * lbl_8006D0E8(xz_sq(&nrm));
+        if (reach > radius) {
+            return 0;
+        }
+        nrm.y = 0.0f;
+        lbl_8006D668(&nrm);
+        psvec_scale(&nrm, radius, out);
+        if (d * ((f32)(nrm.x * out->x) + (f32)(nrm.z * out->z) - d) > 0.0f) {
+            flip(out);
+        }
+        lbl_8006E1C0(out, &pos);
+        psvec_scale(normal, 0.0001f * plane_dist(&pos, point, normal), hit);
+    } else {
+        f32 cross_d;
+        cross_d = -mathutil_vec_dot_prod(&nrm, &npt);
+        reach = __fabs(cross_d) * lbl_8006D0E8(xz_sq(&nrm));
+        nrm.y = 0.0f;
+        lbl_8006D668(&nrm);
+        psvec_scale(&nrm, radius, out);
+        if (reach <= radius) {
+            if (cross_d * ((f32)(nrm.x * out->x) + (f32)(nrm.z * out->z) - cross_d) <= 0.0f) {
+                flip(out);
+            }
+        } else {
+            flip(out);
+        }
+        lbl_8006E1C0(out, &pos);
+        psvec_scale(normal, 0.0001f * plane_dist(&pos, point, normal), hit);
+    }
+    return 3;
+}
+
+#pragma opt_dead_assignments reset
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_DEDC4 */
+
 /* fzgx:begin fn_1_DF2A4 */
 #include "psvec.h"
 
