@@ -1936,6 +1936,580 @@ packed_flag:
 }
 /* fzgx:end fn_1_ECF88 */
 
+/* fzgx:begin fn_1_ED540 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+#pragma fp_contract on
+
+typedef struct { f32 x, y, z; } GVec;
+typedef struct { u8 r, g, b, a; } GColor;
+typedef struct { f32 m[3][4]; } GMtx;
+
+typedef struct {
+    void **model;
+    u32 a, b;
+} GModelSlot;
+
+
+typedef struct GCar {
+    u8 pad_000[0x328];
+    s8 unk_328;
+    u8 pad_329[0x334 - 0x329];
+    GModelSlot models[3];
+    u8 pad_358[0x390 - 0x358];
+    u32 flags;
+    u8 pad_394[0x3A0 - 0x394];
+    void *unk_3A0;
+    u8 pad_3A4[0x3BA - 0x3A4];
+    s16 unk_3BA;
+} GCar;
+
+typedef struct { u8 data[0x620]; } GObj;
+
+u32 lbl_1_bss_7B180[2];
+s32 ghostActive;
+u32 lbl_1_bss_7B188__fzgx_offset_4;
+u32 lbl_1_bss_7B190[2];
+u32 lbl_1_bss_7B198;
+u32 lbl_1_bss_7B19C;
+s32 ghostLastFlag;
+u32 lbl_1_bss_7B1A4[2];
+u8 lbl_1_bss_7B1AC[0x13D8];
+u8 lbl_1_bss_7C584[0x1FC];
+f32 * ghostKeyTable[5];
+u32 lbl_1_bss_7C584__fzgx_offset_210[45];
+s32 ghostMode;
+u32 lbl_1_bss_7C848__fzgx_offset_4;
+u32 lbl_1_bss_7C850;
+s32 ghostBonus;
+u32 lbl_1_bss_7C850__fzgx_offset_8;
+u8 lbl_1_bss_7C85C[0x71];
+u8 lbl_1_bss_7C8CD;
+u8 ghostCount;
+u8 lbl_1_bss_7C8CE__fzgx_offset_1;
+u32 lbl_1_bss_7C8CE__fzgx_offset_2[2];
+GVec ghostPos[5];
+GCar * ghostCar[5];
+void * ghostAlt[5];
+s32 ghostTime;
+u32 lbl_1_bss_7C914__fzgx_offset_2C[2];
+s32 ghostShowTime;
+u32 lbl_1_bss_7C94C[13];
+u16 ghostFrame[5];
+u16 lbl_1_bss_7C94C__fzgx_offset_3E;
+u32 lbl_1_bss_7C94C__fzgx_offset_40[6];
+u32 ghostKeyCount[5];
+u32 lbl_1_bss_7C94C__fzgx_offset_EC[40];
+GMtx ghostShadowMtx[5];
+GObj ghostObj[5];
+u8 lbl_1_bss_7E9E8[0x18];
+u8 lbl_1_bss_7EA00[0x28];
+u32 ghostTimer;
+u32 lbl_1_bss_7EA00__fzgx_offset_2C[3];
+u32 lbl_1_bss_7EA38[3];
+GMtx ghostMtx[5];
+GVec ghostPos2[5];
+s32 ghostTimes[5];
+u8 lbl_1_bss_7EA38__fzgx_offset_14C[0x12C];
+s32 ghostDiff;
+
+/* the retail TU .data ahead of the string literals */
+u32 fzgx_pool_table_0[55] = {
+    0x4F564552, 0x54414B45, 0x00000000, 0x4A554D50,
+    0x00000000, 0x454E454D, 0x59484954, 0x00000000,
+    0x57414C4C, 0x48495400, 0x53494445, 0x42595349,
+    0x44450000, 0x53544152, 0x54000000, 0x474F414C,
+    0x00000000, 0x4C415000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x67686F73, 0x7430302E,
+    0x62696E00, 0x67686F73, 0x7430312E, 0x62696E00,
+    0x67686F73, 0x7430322E, 0x62696E00, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000,
+};
+u32 fzgx_pool_funcs_DC[17] = { 0 };
+u32 fzgx_pool_table_120[5] = { 0x4F726967, 0x696E616C, 0x204D6163, 0x68696E65, 0x00000000 };
+u32 fzgx_pool_table_134[1] = { 0x00000000 };
+u32 fzgx_pool_table_138[5] = { 0x8349838A, 0x83578369, 0x838B837D, 0x83568393, 0x00000000 };
+u32 fzgx_pool_ptrs_14C[6] = { 0 };
+u32 fzgx_pool_table_164[3] = { 0x53746166, 0x66204768, 0x6F737400 };
+u32 fzgx_pool_table_170[5] = { 0x8358835E, 0x83628374, 0x8353815B, 0x83588367, 0x00000000 };
+u32 fzgx_pool_ptrs_184[6] = { 0 };
+u32 fzgx_pool_table_19C[78] = {
+    0x53454C45, 0x43542047, 0x484F5354, 0x00000000,
+    0x47484F53, 0x54205345, 0x4C454354, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0xFFFFFFFF, 0xFFFFFFFF,
+    0xFFFF0000, 0xFFFFFFFF, 0x0000000C, 0x0000001D,
+    0x0000000E, 0x00000017, 0x00000004, 0x00000000,
+    0x00000016, 0x0000001D, 0x0000000C, 0x00000017,
+    0x00000016, 0x00000000, 0x0000001D, 0x0000001B,
+    0x00000004, 0x0000000F, 0x00000004, 0x00000000,
+    0x0000001D, 0x00000011, 0x00000015, 0x0000000C,
+    0x00000014, 0x00000000, 0x00000027, 0x00000005,
+    0x0000001F, 0x00000004, 0x00000028, 0x0000001F,
+    0x0003B3C4, 0x000382B3, 0x001382E7, 0x0013B38B,
+    0x0020F129, 0x00000000, 0x0010714B, 0x002192B1,
+    0x001230A9, 0x0021A322, 0x0011A225, 0x00000000,
+    0x0022838D, 0x00218381, 0x0023B075, 0x00232128,
+    0x00232328, 0x00000000, 0x0023A28A, 0x00209351,
+    0x00206394, 0x0023B04C, 0x0020310C, 0x00000000,
+    0x001062B2, 0x001260B2, 0x00206345, 0x00312110,
+    0x003322E4, 0x0002E37D,
+};
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink */
+    s = *(u8 *)&lbl_1_bss_7B180;
+    s = *(u8 *)&ghostActive;
+    s = *(u8 *)&lbl_1_bss_7B188__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_7B190;
+    s = *(u8 *)&lbl_1_bss_7B198;
+    s = *(u8 *)&lbl_1_bss_7B19C;
+    s = *(u8 *)&ghostLastFlag;
+    s = *(u8 *)&lbl_1_bss_7B1A4;
+    s = *(u8 *)&lbl_1_bss_7B1AC;
+    s = *(u8 *)&lbl_1_bss_7C584;
+    s = *(u8 *)&ghostKeyTable;
+    s = *(u8 *)&lbl_1_bss_7C584__fzgx_offset_210;
+    s = *(u8 *)&ghostMode;
+    s = *(u8 *)&lbl_1_bss_7C848__fzgx_offset_4;
+    s = *(u8 *)&lbl_1_bss_7C850;
+    s = *(u8 *)&ghostBonus;
+    s = *(u8 *)&lbl_1_bss_7C850__fzgx_offset_8;
+    s = *(u8 *)&lbl_1_bss_7C85C;
+    s = *(u8 *)&lbl_1_bss_7C8CD;
+    s = *(u8 *)&ghostCount;
+    s = *(u8 *)&lbl_1_bss_7C8CE__fzgx_offset_1;
+    s = *(u8 *)&lbl_1_bss_7C8CE__fzgx_offset_2;
+    s = *(u8 *)&ghostPos;
+    s = *(u8 *)&ghostCar;
+    s = *(u8 *)&ghostAlt;
+    s = *(u8 *)&ghostTime;
+    s = *(u8 *)&lbl_1_bss_7C914__fzgx_offset_2C;
+    s = *(u8 *)&ghostShowTime;
+    s = *(u8 *)&lbl_1_bss_7C94C;
+    s = *(u8 *)&ghostFrame;
+    s = *(u8 *)&lbl_1_bss_7C94C__fzgx_offset_3E;
+    s = *(u8 *)&lbl_1_bss_7C94C__fzgx_offset_40;
+    s = *(u8 *)&ghostKeyCount;
+    s = *(u8 *)&lbl_1_bss_7C94C__fzgx_offset_EC;
+    s = *(u8 *)&ghostShadowMtx;
+    s = *(u8 *)&ghostObj;
+    s = *(u8 *)&lbl_1_bss_7E9E8;
+    s = *(u8 *)&lbl_1_bss_7EA00;
+    s = *(u8 *)&ghostTimer;
+    s = *(u8 *)&lbl_1_bss_7EA00__fzgx_offset_2C;
+    s = *(u8 *)&lbl_1_bss_7EA38;
+    s = *(u8 *)&ghostMtx;
+    s = *(u8 *)&ghostPos2;
+    s = *(u8 *)&ghostTimes;
+    s = *(u8 *)&lbl_1_bss_7EA38__fzgx_offset_14C;
+    s = *(u8 *)&ghostDiff;
+}
+/* string literals in TU first-use order (-str reuse shares them with the body) */
+static void fzgx_str_layout(void) {
+    char *volatile s;  /* fzgx-allow: S2 layout primer sink */
+    s = "ghost.c";
+    s = "GhostCalc";
+    s = "GhostDisp";
+    s = "story_ghost/%s";
+    s = "StoryGhost : %s  %d\n";
+    s = "./staff_ghost/ghost%d.dat";
+    s = "pcarobj[%d]\n";
+    s = "carobj[%d]\n";
+    s = "save_\?\?\?[%d]\n";
+    s = "vehicle_parts/";
+    s = "..";
+    s = "vehicle/%s_e.arc.lz";
+    s = "vehicle/%s_p.arc.lz";
+    s = "vehicle/";
+    s = "result_code: %d\n";
+    s = "%02d:%02d:%03d";
+    s = "%s";
+    s = "ghost_data[%d]\n";
+}
+#pragma section code_type ".text"
+extern u8 lbl_1_data_3E358[];
+extern s16 lbl_1_bss_960;
+extern u32 lbl_801A66A0;
+
+extern const GVec lbl_1_rodata_6CBC;
+extern const f32 lbl_1_rodata_6C90;
+extern const f32 lbl_1_rodata_6B60;
+extern const f32 lbl_1_rodata_6BD0;
+extern const f32 lbl_1_rodata_6CF4;
+extern const f32 lbl_1_rodata_6CEC;
+extern const f32 lbl_1_rodata_6CF0;
+extern const f32 lbl_1_rodata_6CF8;
+extern const f32 lbl_1_rodata_6BBC;
+extern const f32 lbl_1_rodata_6CFC;
+extern const f32 lbl_1_rodata_6D00;
+extern const f32 lbl_1_rodata_6C18;
+extern const f64 lbl_1_rodata_6D08;
+extern const f32 lbl_1_rodata_6D10;
+extern const GColor lbl_1_rodata_6CC8;
+extern const GColor lbl_1_rodata_6CCC;
+extern const GColor lbl_1_rodata_6CD0;
+extern const GColor lbl_1_rodata_6CD4;
+extern const GColor lbl_1_rodata_6CD8;
+extern const GColor lbl_1_rodata_6CDC;
+extern const f32 lbl_1_rodata_6D14;
+extern const f32 lbl_1_rodata_6D1C;
+extern const f32 lbl_1_rodata_6D18;
+extern const GColor lbl_1_rodata_6CE0;
+extern const GColor lbl_1_rodata_6CE4;
+extern const GColor lbl_1_rodata_6CE8;
+extern const f32 lbl_1_rodata_6D24;
+extern const f32 lbl_1_rodata_6D20;
+
+extern int fn_1_4C10(void);
+extern void fn_1_984F0(void *);
+extern void fn_1_F143C(void *, s32, const void *, const void *, void *);
+extern void fn_1_F23E8(void);
+extern void fn_1_98634(f32);
+extern void fn_1_983CC(void *, void *);
+extern void fn_1_56298(f32, f32, f32, f32);
+extern void fn_1_5621C(f32, f32, f32, f32);
+extern s32 fn_1_5910(void);
+extern void fn_1_681C(u32, void *);
+extern void fn_1_56000(u8, u8, u8);
+extern void fn_1_55FF0(f32);
+extern void fn_1_14E5E4(void *, s16, f32);
+extern void fn_1_556B8(void *);
+extern void fn_1_87610(void *, void *);
+extern void fn_1_875B4(void *, void *, s8, f32);
+extern void fn_1_875EC(void *, void *, s8, f32);
+extern s32 fn_1_3F164(void);
+extern void fn_1_49410(void);
+extern void fn_1_495FC(void);
+extern void fn_1_495C8(s32);
+extern void fn_1_494DC(s32);
+extern void fn_1_495B0(u32);
+extern void fn_1_49514(void *);
+extern u32 fn_1_58C4(void);
+extern void fn_1_4955C(f32, f32);
+extern f32 fn_1_51AC0(f32);
+extern f32 fn_1_519FC(f32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4AE0C(const char *, ...);
+extern void fn_1_495A0(f32);
+extern void fn_80008BEC(void *, int, u32);
+extern void lbl_8006DD14(void *, void *);
+extern void lbl_8006D758(void);
+extern void lbl_8006DB74(void *);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D668(void *);
+extern u32 lbl_8006DCA4(void);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E14C(f32);
+extern void fn_80072558(void);
+extern u32 lbl_8006DAEC(void);
+extern void lbl_8006DC20(void);
+extern void fn_80074A60(u32, u32);
+extern void OSPanic(const char *, int, const char *, ...);
+extern void fn_80074A6C(void);
+extern f64 __fabs(f64);
+extern int __abs(int);
+
+#define gclamp(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+#define gfade(d) (lbl_1_rodata_6CEC * (gclamp((d) - lbl_1_rodata_6CF4, lbl_1_rodata_6B60, lbl_1_rodata_6CF0) / lbl_1_rodata_6CF8))
+#define SCREEN_SCALE (fn_1_58C4() == 1 ? lbl_1_rodata_6BD0 : lbl_1_rodata_6D14)
+#define SIGN_CHAR(t) ((t) > 0 ? ':' : ((t) < 0 ? ';' : ' '))
+
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+/* Dead-store elimination off, as fn_1_F23E8 in this file: retail keeps the fade reset
+ * before the ghost loop until register allocation. */
+#pragma opt_dead_assignments off
+void fn_1_ED540(void) {
+    GVec *posTable;
+    GMtx *shadow;
+    s32 i;
+    s32 best;
+    s32 lod;
+    f32 d;
+    f32 fade;
+    f32 len;
+    f32 alpha;
+    u16 frames;
+    GMtx mtx;
+    GMtx mtx2;
+    GVec pos;
+    GVec cam;
+
+    if (ghostActive == 0) {
+        return;
+    }
+    if (fn_1_4C10() != 0) {
+        s32 n;
+        for (n = 0; n < ghostCount; n++) {
+            fn_1_984F0(&ghostObj[n]);
+        }
+        return;
+    }
+    if (ghostCount <= 1) {
+        lod = 0;
+    } else if (ghostCount <= 3) {
+        lod = 1;
+    } else {
+        lod = 2;
+    }
+    posTable = ghostPos;
+    shadow = ghostShadowMtx;
+    best = 0x80000001;  /* fzgx-allow: A1 sentinel (INT_MIN + 1), not an address */
+    fade = 0.0f;  /* reset before the loop; every path sets fade again before reading it */
+    for (i = 0; i < ghostCount; i++) {
+        fn_80008BEC(shadow, 0, sizeof(GMtx));
+        lbl_8006DD14(&ghostMtx[i], &mtx);
+        pos = ghostPos2[i];
+        {
+            s32 t = ghostTimes[i];
+            if (best < t) {
+                best = t;
+            }
+        }
+        if (ghostMode >= 0) {
+            if (i == 0 && ghostFrame[0] <= 1) {
+                GVec up = lbl_1_rodata_6CBC;
+                lbl_8006D758();
+                lbl_8006DB74(&mtx2);
+                fn_1_F143C(&ghostObj[1], 0, &up, &up, &mtx2);
+                fn_1_F23E8();
+                fn_1_98634(lbl_1_rodata_6C90);
+                fn_1_983CC(&ghostObj[1], ghostCar[0]);
+                fn_1_98634(lbl_1_rodata_6B60);
+            } else {
+                fn_1_984F0(&ghostObj[1]);
+            }
+        }
+        frames = ghostFrame[i];
+        if (frames > 1 && !(ghostKeyTable[i][ghostKeyCount[i] - 1] <= (f32)frames)) {
+            if (ghostKeyTable[i][ghostKeyCount[i] - 1] <= (f32)(frames + 1) && ghostBonus == 0) {
+                ghostBonus = 1;
+            }
+            d = lbl_1_rodata_6B60;
+            fn_1_56298(d, d, d, d);
+            d = lbl_1_rodata_6BD0;
+            fn_1_5621C(d, d, d, d);
+            fn_1_681C((u8)fn_1_5910(), &cam);
+            {
+                f32 dz;
+                f32 dy;
+                f32 dist;
+                f32 dx;
+                dx = cam.x;
+                dx -= pos.x;
+                dy = cam.y;
+                dy -= pos.y;
+                dz = cam.z;
+                dz -= pos.z;
+                dist = dx * dx;
+                dist += dy * dy;
+                dist += dz * dz;
+                fade = gclamp(gfade(dist), lbl_1_rodata_6B60, lbl_1_rodata_6BBC);
+            }
+            if (fade < lbl_1_rodata_6CFC) {
+                goto next; /* skip the draw; the loop tail still advances the shadow pointer */
+            }
+            fn_1_681C((u8)fn_1_5910(), &cam);
+            psvec_sub(&pos, &cam, &cam);
+            d = cam.x * cam.x;
+            d = cam.y * cam.y + d;
+            d = cam.z * cam.z + d;
+            len = lbl_8006D0B4(d);
+            lbl_8006D668(&cam);
+            psvec_scale(&cam, lbl_1_rodata_6CFC, &cam);
+            psvec_add(&pos, &cam, &cam);
+            fn_1_56000(1, 3, 1);
+            lbl_8006DCA4();
+            lbl_8006E0A4(&cam);
+            lbl_8006DFC4(&mtx);
+            lbl_8006E14C((lbl_1_rodata_6CFC + len) / len);
+            fn_80072558();
+            fn_1_55FF0(lbl_1_rodata_6D00);
+            if (ghostLastFlag != 0 && i == ghostCount - 1) {
+                d = lbl_1_rodata_6C18;
+                fn_1_5621C(d, d, lbl_1_rodata_6BD0, lbl_1_rodata_6BD0);
+            } else {
+                d = lbl_1_rodata_6BD0;
+                fn_1_5621C(d, d, lbl_1_rodata_6C18, d);
+            }
+            if (ghostAlt[i] != NULL) {
+                fn_1_14E5E4(ghostAlt[i], ghostCar[i]->unk_3BA, lbl_1_rodata_6D00);
+            } else if (ghostCar[i] != NULL) {
+                fn_1_556B8(*ghostCar[i]->models[lod].model);
+                lbl_8006DAEC();
+                fn_1_87610(ghostCar[i], ghostCar[i]);
+                { GCar *car = ghostCar[i]; fn_1_875B4(car, car, (s8)car->unk_3BA, lbl_1_rodata_6D00); }
+                lbl_8006DC20();
+            }
+            d = lbl_1_rodata_6BD0;
+            fn_1_5621C(d, d, d, d);
+            fn_1_56000(1, 3, 1);
+            fn_1_681C((u8)fn_1_5910(), &cam);
+            {
+                f32 dz;
+                f32 dy;
+                f32 dist;
+                f32 dx;
+                dx = cam.x;
+                dx -= pos.x;
+                dy = cam.y;
+                dy -= pos.y;
+                dz = cam.z;
+                dz -= pos.z;
+                dist = dx * dx;
+                dist += dy * dy;
+                dist += dz * dz;
+                fade = gclamp(gfade(dist), lbl_1_rodata_6B60, lbl_1_rodata_6BBC);
+            }
+            lbl_8006DCA4();
+            lbl_8006E0A4(&pos);
+            lbl_8006DFC4(&mtx);
+            lbl_8006DB74(shadow);
+            fn_80072558();
+            {
+                s32 j;
+                for (j = 0; j < i; j++) {
+                    if (__fabs(ghostPos[i].x - posTable[j].x) < lbl_1_rodata_6D08 &&
+                        __fabs(ghostPos[i].y - posTable[j].y) < lbl_1_rodata_6D08 &&
+                        __fabs(ghostPos[i].z - posTable[j].z) < lbl_1_rodata_6D08) {
+                        if (lbl_801A66A0 / 60 % 5 == i) {
+                            fn_80008BEC(&ghostShadowMtx[j], 0, sizeof(GMtx));
+                        } else {
+                            fn_80008BEC(shadow, 0, sizeof(GMtx));
+                        }
+                    }
+                    break;
+                }
+            }
+            if (ghostFrame[i] < 60) {
+                fade *= (f32)ghostFrame[i] / lbl_1_rodata_6D10;
+            }
+            fn_1_55FF0(fade);
+            fn_80074A60(4, 1);
+            if (ghostLastFlag != 0 && i == ghostCount - 1) {
+                d = lbl_1_rodata_6C18;
+                fn_1_5621C(d, d, lbl_1_rodata_6BD0, lbl_1_rodata_6BD0);
+            } else {
+                d = lbl_1_rodata_6BD0;
+                fn_1_5621C(d, d, lbl_1_rodata_6C18, d);
+            }
+            if (ghostCar[i] != NULL) {
+                lbl_8006DB74(&mtx);
+                if (ghostCar[i]->flags & 0x4000000) {
+                    if (ghostCar[i]->unk_3A0 == NULL) {
+                        return;
+                    }
+                    fn_1_14E5E4(ghostCar[i]->unk_3A0, lod, fade);
+                } else {
+                    if (ghostCar[i]->unk_328 >= 41) {
+                        OSPanic("ghost.c", 2845, "type is invalid\n");
+                    }
+                    fn_1_556B8(*ghostCar[i]->models[lod].model);
+                    lbl_8006DAEC();
+                    fn_1_87610(ghostCar[i], ghostCar[i]);
+                    fn_1_875EC(ghostCar[i], ghostCar[i], (s8)ghostCar[i]->unk_3BA, fade);
+                    lbl_8006DC20();
+                }
+            }
+            fn_80074A6C();
+            d = lbl_1_rodata_6BD0;
+            fn_1_5621C(d, d, d, d);
+            fn_1_56000(1, 3, 1);
+        }
+next:
+        shadow++;
+    }
+
+    if (ghostShowTime != 0 && (lbl_1_bss_960 == 2 || lbl_1_bss_960 == 9)) {
+        if (ghostBonus != 0) {
+            ghostTime = ghostBonus + best;
+            if (fn_1_3F164() == 0) {
+                ghostBonus += 16;
+            }
+        } else {
+            ghostTime = best;
+        }
+        if (ghostCount != 0) {
+            fn_1_49410();
+            fn_1_495FC();
+            fn_1_495C8(2);
+            fn_1_494DC(10);
+            fn_1_495B0(0x80000000);
+            if (ghostBonus != 0) {
+                if (ghostTime > 0) {
+                    GColor color = lbl_1_rodata_6CC8;
+                    fn_1_49514(&color);
+                } else if (ghostTime == 0) {
+                    GColor color = lbl_1_rodata_6CCC;
+                    fn_1_49514(&color);
+                } else {
+                    GColor color = lbl_1_rodata_6CD0;
+                    fn_1_49514(&color);
+                }
+            } else {
+                if (ghostTime > 0) {
+                    GColor color = lbl_1_rodata_6CD4;
+                    fn_1_49514(&color);
+                } else if (ghostTime == 0) {
+                    GColor color = lbl_1_rodata_6CD8;
+                    fn_1_49514(&color);
+                } else {
+                    GColor color = lbl_1_rodata_6CDC;
+                    fn_1_49514(&color);
+                }
+            }
+            fn_1_4955C(lbl_1_rodata_6BBC * SCREEN_SCALE, lbl_1_rodata_6BBC * SCREEN_SCALE);
+            fn_1_496FC(fn_1_519FC(lbl_1_rodata_6D18), fn_1_51AC0(lbl_1_rodata_6D1C));
+            fn_1_4AE0C("%c%02d<%02d=%03d", SIGN_CHAR(ghostTime),
+                       __abs(ghostTime) / 60000, __abs(ghostTime) % 60000 / 1000, __abs(ghostTime) % 1000);
+        }
+    }
+    if (ghostCount != 0 && ghostTimer != 0) {
+        if (ghostTimer % 20 > 7) {
+            fn_1_49410();
+            fn_1_495FC();
+            fn_1_495C8(9);
+            if (ghostTimer > 165) {
+                alpha = (f32)(180 - ghostTimer) / lbl_1_rodata_6CF4;
+            } else if (ghostTimer < 15) {
+                alpha = (f32)ghostTimer / lbl_1_rodata_6CF4;
+            } else {
+                alpha = lbl_1_rodata_6BD0;
+            }
+            fn_1_494DC(10);
+            fn_1_495B0(0x80000000);
+            if (ghostDiff > 0) {
+                GColor color = lbl_1_rodata_6CE0;
+                fn_1_49514(&color);
+            } else if (ghostDiff == 0) {
+                GColor color = lbl_1_rodata_6CE4;
+                fn_1_49514(&color);
+            } else {
+                GColor color = lbl_1_rodata_6CE8;
+                fn_1_49514(&color);
+            }
+            fn_1_4955C(alpha * SCREEN_SCALE, SCREEN_SCALE);
+            fn_1_495A0(lbl_1_rodata_6BBC * alpha);
+            fn_1_496FC(fn_1_519FC(lbl_1_rodata_6D20), fn_1_51AC0(lbl_1_rodata_6D24));
+            fn_1_4AE0C("%c%02d<%02d=%03d", SIGN_CHAR(ghostDiff),
+                       __abs(ghostDiff) / 60000, __abs(ghostDiff) % 60000 / 1000, __abs(ghostDiff) % 1000);
+        }
+        if (fn_1_3F164() == 0) {
+            ghostTimer--;
+        }
+    }
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_ED540 */
+
 /* fzgx:begin fn_1_EE3F4 */
 extern void fn_1_F143C(void *, s32, void *, void *, void *);
 

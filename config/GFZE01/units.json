@@ -97501,6 +97501,50 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/ghost/fn_1_ED540.c",
+    "symbols": [
+      "fn_1_ED540"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/ghost.c",
+    "pool": {
+      "...data.0": "lbl_1_data_3E358",
+      "@282": "lbl_1_rodata_6B68",
+      "@283": "lbl_1_rodata_6C88",
+      "@27": "lbl_1_data_3E62C",
+      "@279": "lbl_1_data_3E73C",
+      "...bss.0": "lbl_1_bss_7B180",
+      "lbl_1_bss_7B180": "lbl_1_bss_7B180",
+      "lbl_1_bss_7B188__fzgx_offset_4": "lbl_1_bss_7B188+0x4",
+      "lbl_1_bss_7B190": "lbl_1_bss_7B190",
+      "lbl_1_bss_7B198": "lbl_1_bss_7B198",
+      "lbl_1_bss_7B19C": "lbl_1_bss_7B19C",
+      "lbl_1_bss_7B1A4": "lbl_1_bss_7B1A4",
+      "lbl_1_bss_7B1AC": "lbl_1_bss_7B1AC",
+      "lbl_1_bss_7C584": "lbl_1_bss_7C584",
+      "lbl_1_bss_7C584__fzgx_offset_210": "lbl_1_bss_7C584+0x210",
+      "lbl_1_bss_7C848__fzgx_offset_4": "lbl_1_bss_7C848+0x4",
+      "lbl_1_bss_7C850": "lbl_1_bss_7C850",
+      "lbl_1_bss_7C850__fzgx_offset_8": "lbl_1_bss_7C850+0x8",
+      "lbl_1_bss_7C85C": "lbl_1_bss_7C85C",
+      "lbl_1_bss_7C8CD": "lbl_1_bss_7C8CD",
+      "lbl_1_bss_7C8CE__fzgx_offset_1": "lbl_1_bss_7C8CE+0x1",
+      "lbl_1_bss_7C8CE__fzgx_offset_2": "lbl_1_bss_7C8CE+0x2",
+      "lbl_1_bss_7C914__fzgx_offset_2C": "lbl_1_bss_7C914+0x2C",
+      "lbl_1_bss_7C94C": "lbl_1_bss_7C94C",
+      "lbl_1_bss_7C94C__fzgx_offset_3E": "lbl_1_bss_7C94C+0x3E",
+      "lbl_1_bss_7C94C__fzgx_offset_40": "lbl_1_bss_7C94C+0x40",
+      "lbl_1_bss_7E9E8": "lbl_1_bss_7E9E8",
+      "lbl_1_bss_7EA00": "lbl_1_bss_7EA00",
+      "lbl_1_bss_7EA00__fzgx_offset_2C": "lbl_1_bss_7EA00+0x2C",
+      "lbl_1_bss_7EA38": "lbl_1_bss_7EA38",
+      "lbl_1_bss_7EA38__fzgx_offset_14C": "lbl_1_bss_7EA38+0x14C"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/ghost/fn_1_EE3F4.c",
     "symbols": [
       "fn_1_EE3F4"
