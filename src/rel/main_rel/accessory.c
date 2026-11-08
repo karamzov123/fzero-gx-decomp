@@ -22295,6 +22295,365 @@ void fn_1_128F54(void) {
 }
 /* fzgx:end fn_1_128F54 */
 
+/* fzgx:begin fn_1_12907C */
+#include "psvec.h"
+#include "font.h"
+
+extern f64 __fabs(f64);
+
+typedef struct {
+    u8 r, g, b, a;
+} Color_12907C;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_layout(void) {
+    volatile f32 s; /* fzgx-allow: S2 pool primer sink: fixes the TU literal order */
+    s = 0.0f;
+    s = -4.8f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    u8 pad_0[0x104];
+    u16 angle;   /* 0x104 */
+    u8 pad_106[2];
+    f32 height;  /* 0x108 */
+} Car_12907C;
+
+typedef struct {
+    f32 x, y, z;
+} Vec_12907C;
+
+extern FontDrawPacket lbl_1_rodata_26F8;
+extern u32 fn_1_5910(void);
+extern s32 fn_1_6B48(u32 index);
+extern s32 fn_1_6EC0(u8);
+extern void fn_1_12999C(void);
+extern u32 fn_1_864E8(s32);
+extern u32 fn_1_3F7E0(void);
+extern u32 fn_1_86810(s32);
+extern Car_12907C *fn_1_8627C(s32);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern f32 fn_1_A71BC(void);
+extern void fn_1_862D4(s32, Vec_12907C *);
+extern void lbl_8006D9D8(void *);
+extern void lbl_8006D7B0(void);
+extern s32 camera_get_state(void);
+extern s32 lbl_8006D24C(f32, f32);
+extern s32 fn_1_485A8(s32);
+
+/* Translate the locked-cache matrix along its y column: m[i][3] += m[i][1] * y. */
+static inline void mtxA_translate_y(f32 y) {
+    f32 *mtx = (f32 *)0xE0000000;  /* fzgx-allow: A2 locked matrix */
+    f32 s = y;
+    f32 x0, x1, y0, y1, z0, z1;
+    x0 = mtx[1];
+    x1 = mtx[3];
+    y0 = mtx[5];
+    y1 = mtx[7];
+    z0 = mtx[9];
+    z1 = mtx[11];
+    x0 = x0 * s + x1;
+    y0 = y0 * s + y1;
+    z0 = z0 * s + z1;
+    mtx[3] = x0;
+    mtx[7] = y0;
+    mtx[11] = z0;
+}
+
+
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+#define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
+/* base + x * rate, kept unfused. */
+static inline f32 remap(f32 x, f32 base, f32 rate) {
+    return base + (f32)(x * rate);
+}
+
+void fn_1_12907C(void) {
+    s32 player;
+    f32 dist;
+    u32 target;
+    s16 id;
+    s16 angle;
+    s32 count;
+    f32 dh;
+    f32 height;
+    s16 tilt;
+    f32 scale;
+    f32 h;
+    f32 dummy;
+    f32 aspect;
+    Vec_12907C pos;
+    Vec_12907C v;
+    f32 inv;
+    f32 y;
+    f32 x;
+    f32 sx;
+    f32 sy;
+    f32 m;
+    f32 size;
+    f32 fov;
+    FontDrawPacket packet;
+    s8 mode;
+
+    player = fn_1_5910();
+    dist = ((f32 *)&lbl_1_bss_89770)[player];
+    target = ((u32 *)&lbl_1_bss_89760)[player];
+    id = fn_1_6B48(player);
+    if (fn_1_6EC0(player) == 0) {
+        return;
+    }
+    fn_1_12999C();
+    if (dist < -100.0f) {
+        return;
+    }
+    if (0.0f == dist) {
+        return;
+    }
+    if (fn_1_864E8(id) & 0x10880) {
+        return;
+    }
+    if (fn_1_864E8(target) & 0x8000880) {
+        return;
+    }
+    count = fn_1_3F7E0();
+    if ((u8)fn_1_86810(id) + 1 >= count) {
+        return;
+    }
+    height = fn_1_8627C(target)->height;
+    {
+        Car_12907C *car = fn_1_8627C(id);
+        dh = height - car->height;
+        tilt = (s16)car->angle;
+    }
+    scale = 1.0f;
+    if (dh > 40.0f) {
+        return;
+    }
+    if (dh < -40.0f) {
+        return;
+    }
+    if (tilt > 0x3000) {
+        return;
+    }
+    if (tilt < -0x3000) {
+        return;
+    }
+    fn_1_A714C(&dummy, &h, &dummy, &dummy);
+    fov = fn_1_A71BC();
+    aspect = 1.0f / h;
+    fn_1_862D4(target, &pos);
+    lbl_8006D9D8(&pos);
+    lbl_8006D7B0();
+    mtxA_translate_y(0.2f);
+    psvec_set(&v, ((f32 *)0xE0000000)[11], ((f32 *)0xE0000000)[7], ((f32 *)0xE0000000)[3]);  /* fzgx-allow: A2 locked matrix */
+    if (v.z > -1.0f) {
+        v.z = -1.0f;
+    }
+    inv = -1.0f / v.z;
+    sx = aspect * (inv * (v.x * fov));
+    sy = inv * (v.y * fov);
+    mode = camera_get_state();
+    y = 445.0f;
+    switch (mode) {
+    case 0:
+        x = 320.0f + (f32)(20.0f * sx);
+        if (x < 15.0f) {
+            x = 15.0f;
+        } else if (x > 625.0f) {
+            x = 625.0f;
+        }
+        break;
+    case 1:
+        switch (player) {
+        case 0:
+            {
+                f32 t = 320.0f + (f32)(90.0f * sx);
+                x = (t < 15.0f) ? 15.0f : ((t > 625.0f) ? 625.0f : t);
+            }
+            y = 225.0f;
+            break;
+        case 1:
+            {
+                f32 t = 320.0f + (f32)(90.0f * sx);
+                x = (t < 15.0f) ? 15.0f : ((t > 625.0f) ? 625.0f : t);
+            }
+            break;
+        }
+        break;
+    case 2:
+        x = 10.0f * sx;
+        switch (player) {
+        case 0:
+            x += 160.0f;
+            if (x < 18.0f) {
+                x = 18.0f;
+            } else if (x > 302.0f) {
+                x = 302.0f;
+            }
+            break;
+        case 1:
+            x += 480.0f;
+            if (x < 338.0f) {
+                x = 338.0f;
+            } else if (x > 622.0f) {
+                x = 622.0f;
+            }
+            break;
+        }
+        break;
+    case 3:
+        switch (player) {
+        case 0:
+            {
+                f32 t = 320.0f + (f32)(20.0f * sx);
+                x = (t < 15.0f) ? 15.0f : ((t > 625.0f) ? 625.0f : t);
+            }
+            y = 225.0f;
+            break;
+        case 1:
+            {
+                f32 t = 160.0f + (f32)(10.0f * sx);
+                x = (t < 10.0f) ? 10.0f : ((t > 310.0f) ? 310.0f : t);
+            }
+            scale = 0.5f;
+            break;
+        case 2:
+            {
+                f32 t = 480.0f + (f32)(10.0f * sx);
+                x = (t < 330.0f) ? 330.0f : ((t > 630.0f) ? 630.0f : t);
+            }
+            scale = 0.5f;
+            break;
+        }
+        break;
+    case 4:
+        switch (player) {
+        case 1:
+            {
+                f32 t = 320.0f + (f32)(20.0f * sx);
+                x = (t < 15.0f) ? 15.0f : ((t > 625.0f) ? 625.0f : t);
+            }
+            y = 225.0f;
+            break;
+        case 0:
+            {
+                f32 t = 160.0f + (f32)(10.0f * sx);
+                x = (t < 10.0f) ? 10.0f : ((t > 310.0f) ? 310.0f : t);
+            }
+            scale = 0.5f;
+            break;
+        case 2:
+            {
+                f32 t = 480.0f + (f32)(10.0f * sx);
+                x = (t < 330.0f) ? 330.0f : ((t > 630.0f) ? 630.0f : t);
+            }
+            scale = 0.5f;
+            break;
+        }
+        break;
+    case 5:
+        switch (player) {
+        case 2:
+            {
+                f32 t = 320.0f + (f32)(20.0f * sx);
+                x = (t < 15.0f) ? 15.0f : ((t > 625.0f) ? 625.0f : t);
+            }
+            y = 225.0f;
+            break;
+        case 0:
+            {
+                f32 t = 160.0f + (f32)(10.0f * sx);
+                x = (t < 10.0f) ? 10.0f : ((t > 310.0f) ? 310.0f : t);
+            }
+            scale = 0.5f;
+            break;
+        case 1:
+            {
+                f32 t = 480.0f + (f32)(10.0f * sx);
+                x = (t < 330.0f) ? 330.0f : ((t > 630.0f) ? 630.0f : t);
+            }
+            scale = 0.5f;
+            break;
+        }
+        break;
+    case 6:
+    case 8:
+        x = 20.0f * sx;
+        scale = 0.5f;
+        switch (player) {
+        case 0:
+            x += 160.0f;
+            if (x < 10.0f) {
+                x = 10.0f;
+            } else if (x > 310.0f) {
+                x = 310.0f;
+            }
+            y = 225.0f;
+            break;
+        case 1:
+            x += 480.0f;
+            if (x < 330.0f) {
+                x = 330.0f;
+            } else if (x > 630.0f) {
+                x = 630.0f;
+            }
+            y = 225.0f;
+            break;
+        case 2:
+            x += 160.0f;
+            if (x < 10.0f) {
+                x = 10.0f;
+            } else if (x > 310.0f) {
+                x = 310.0f;
+            }
+            break;
+        case 3:
+            x += 480.0f;
+            if (x < 330.0f) {
+                x = 330.0f;
+            } else if (x > 630.0f) {
+                x = 630.0f;
+            }
+            break;
+        }
+        break;
+    }
+    m = (__fabs(sx) > __fabs(sy)) ? __fabs(sx) : __fabs(sy);
+    if (m > 0.8f) {
+        f32 k = 0.8f / m;
+        v.x *= k;
+        v.y *= k;
+        angle = lbl_8006D24C(v.y - (f32)(0.2f * k), v.x) + 0x4000;
+    } else {
+        angle = lbl_8006D24C(v.y - (f32)(0.2f * m), v.x) + 0x4000;
+    }
+    packet = lbl_1_rodata_26F8;
+    if (fn_1_485A8(0x94)) {
+        packet.image = 0x944F;
+    } else if (fn_1_485A8(0x97)) {
+        packet.image = 0x9732;
+    }
+    if ((s32)packet.image != 0) {
+        static const Color_12907C color = {0xFF, 0x88, 0x33, 0x88};
+        size = CLAMP(remap(-dist, 1.0504202f, -0.010504202f), 0.5f, 1.0f);
+        size *= scale;
+        packet.x = x;
+        packet.y = y;
+        packet.z = 1.0f;
+        packet.rotation_z = angle / 2;
+        packet.scale_x *= size;
+        packet.scale_y *= size;
+        *(Color_12907C *)packet.color = color;
+        packet.flags = 10;
+        fn_1_4F734(&packet);
+    }
+}
+#pragma opt_lifetimes reset
+#pragma opt_propagation reset
+/* fzgx:end fn_1_12907C */
+
 /* fzgx:begin fn_1_12999C noprologue */
 #include "types.h"
 
