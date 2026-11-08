@@ -16480,3 +16480,6 @@ rel/main_rel/memcard/fn_1_BB974.c:
 
 rel/main_rel/burner/fn_1_98F28.c:
 	.text       start:0x00098F28 end:0x0009A0A4 align:4
+
+rel/main_rel/bg_aur/fn_1_152FAC.c:
+	.text       start:0x00152FAC end:0x00153988 align:4
