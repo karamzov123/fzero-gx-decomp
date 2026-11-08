@@ -1122,6 +1122,246 @@ void fn_1_68B6C(s8 a, s8 b) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_68B6C */
 
+/* fzgx:begin fn_1_694A4 noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "lc_mtx.h"
+
+typedef struct Vec694A4 {
+    f32 x, y, z;
+} Vec694A4;
+
+typedef struct Player694A4 {
+    u8 pad0[0x475];
+    u8 camera;
+} Player694A4;
+
+typedef struct Effect694A4 {
+    u8 pad0[0x8];
+    u32 attr;
+    s16 kind;
+    u8 padE[0x2];
+    s32 timer;
+    u8 pad14[0x4];
+    s16 id;
+    u16 flags;
+    Vec694A4 color;
+    u8 pad28[0x4];
+    f32 scale;
+    u8 pad30[0x8];
+    Player694A4 *source;
+    Vec694A4 offset;
+    Vec694A4 tangent;
+    u8 pad54[0x1c];
+    Vec694A4 direction;
+    u8 pad7c[0x18];
+    Vec694A4 position;
+    Vec694A4 velocity;
+    s16 lifetime;
+    u8 padAE[0xa];
+    u32 mtx[12];
+} Effect694A4;
+
+extern void *memset(void *, int, u32);
+extern void fn_1_A5594(u32, Vec694A4 *);
+extern void fn_1_8636C(int, void *);
+extern void fn_1_862D4(int, Vec694A4 *);
+extern void fn_1_862A8(int, Vec694A4 *);
+extern void fn_1_8658C(int, Vec694A4 *);
+extern Player694A4 *fn_1_86254(int);
+extern void lbl_8006DD14(void *, void *);
+extern void fn_1_6CF3C(void *, void *, f32, f32);
+extern void fn_1_6D7BC(void *, void *, f32);
+extern void fn_1_6FFA0(void *, void *, u32);
+extern void fn_1_714A8(void *, void *, u32, f32);
+extern void fn_1_7099C(void *, void *, u32, f32, f32);
+extern u16 fn_1_584AC(void);
+extern f32 lbl_8006D0B4(f32);
+extern f32 lbl_8006D668(void *);
+extern s16 fn_1_58F50(const void *);
+extern void lbl_8006DC6C(void *);
+extern void fn_8006E250(void *, void *);
+extern s16 camera_get_entry_field_0xa4(u32);
+extern void fn_1_6E140(Vec694A4 *, Vec694A4 *, f32);
+
+/* Primes the shared effect-car literal pool in retail order. */
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_694A4(f32 *f, f64 *d) {
+    f[0] = 0.0f;
+    f[1] = -1.0f;
+    f[2] = 25.0f;
+    f[3] = 15.0f;
+    f[4] = 8.0f;
+    f[5] = 150.0f;
+    f[6] = 10.0f;
+    f[7] = 0.5f;
+    f[8] = 0.125f;
+    f[9] = 32767.0f;
+    f[10] = 30.0f;
+    f[11] = 20.0f;
+    f[12] = 1200.0f;
+    f[13] = 0.15f;
+    d[0] = 4503601774854144.0;
+    d[1] = 4503599627370496.0;
+    f[14] = 255.0f;
+    f[15] = 102.0f;
+    d[2] = 0.8;
+    f[16] = 1.6f;
+    f[17] = 3.0f;
+    f[18] = 0.01f;
+    f[19] = 0.6f;
+    d[3] = 0.3;
+    f[20] = 0.7f;
+    f[21] = 0.2f;
+    f[22] = 0.4f;
+    f[23] = 0.1f;
+    f[24] = 1.5f;
+    d[4] = 2.0;
+    f[25] = 0.8f;
+    f[26] = 1.0f;
+    f[27] = 85.0f;
+    f[28] = 0.25f;
+}
+#pragma section code_type ".text"
+
+static inline f32 dot694A4(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
+    f32 v = ax * bx;
+    v = __fmadds(ay, by, v);
+    v = __fmadds(az, bz, v);
+    return v;
+}
+
+static inline f32 clamp694A4(f32 x, f32 lo, f32 hi) {
+    return x < lo ? lo : x > hi ? hi : x;
+}
+
+#pragma fp_contract off
+#pragma opt_lifetimes off
+#pragma opt_propagation off
+void fn_1_694A4(s32 id, Vec694A4 *pos, Vec694A4 *up, f32 scale) {
+    static const Vec694A4 zero = { 0.0f, 0.0f, 0.0f };
+    Effect694A4 effect;
+    u32 mtx[12];
+    Vec694A4 carPos;
+    Vec694A4 prev;
+    Vec694A4 vel;
+    Vec694A4 normal;
+    f32 spread;
+
+    fn_1_A5594(0xA9092F00, pos);
+    memset(&effect, 0, sizeof(effect));
+    fn_1_8636C(id, mtx);
+    fn_1_862D4(id, &carPos);
+    fn_1_862A8(id, &normal);
+    fn_1_8658C(id, &prev);
+    psvec_sub(&carPos, &prev, &vel);
+    effect.offset = *pos;
+    effect.tangent = vel;
+    effect.source = fn_1_86254(id);
+    effect.id = id;
+    lbl_8006DD14(mtx, effect.mtx);
+    effect.color.x = 255.0f;
+    effect.color.y = 102.0f;
+    effect.color.z = 0.0f;
+    fn_1_6CF3C(&effect, up, scale, 0.7f);
+    fn_1_6CF3C(&effect, up, scale, 0.7f);
+    fn_1_6CF3C(&effect, up, scale, 0.7f);
+    fn_1_6D7BC(&effect, &normal, 100.0f);
+    fn_1_6D7BC(&effect, &normal, 100.0f);
+    fn_1_6D7BC(&effect, &normal, 100.0f);
+    fn_1_6D7BC(&effect, &normal, 100.0f);
+    effect.tangent = zero;
+    fn_1_6FFA0(&effect, &normal, 38);
+    fn_1_714A8(&effect, &normal, 22, 3.5f);
+    fn_1_714A8(&effect, &normal, 22, 3.5f);
+    fn_1_7099C(&effect, &normal, 0, 0.1f, 30.0f);
+
+    memset(&effect, 0, sizeof(effect));
+    effect.id = id;
+    effect.kind = 5;
+    effect.flags = 1;
+    effect.attr |= 0x10000;
+    effect.offset = *pos;
+    {
+        f32 s = 0.7f + 0.4f * ((f32)fn_1_584AC() / 32767.0f);
+        Vec694A4 *t = &effect.tangent;
+        t->x = vel.x * s;
+        t->y = vel.y * s;
+        t->z = vel.z * s;
+    }
+    spread = 0.1f * lbl_8006D0B4(dot694A4(vel.x, vel.y, vel.z, vel.x, vel.y, vel.z));
+    effect.tangent.x += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    effect.tangent.y += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    effect.tangent.z += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    {
+        f32 tz, nz, ny, nx, ty, tx, d;
+        tx = effect.tangent.x;
+        ty = effect.tangent.y;
+        tz = effect.tangent.z;
+        nx = normal.x;
+        ny = normal.y;
+        nz = normal.z;
+        d = tx * nx;
+        d = __fmadds(ty, ny, d);
+        d = __fmadds(tz, nz, d);
+        d = 23.0f - d;
+        effect.tangent.x = tx + d * nx;
+        effect.tangent.y = ty + d * ny;
+        effect.tangent.z = tz + d * nz;
+    }
+    effect.position = carPos;
+    effect.velocity.x = 1.5f * vel.x;
+    effect.velocity.y = 1.5f * vel.y;
+    effect.velocity.z = 1.5f * vel.z;
+    spread = 2.0 * lbl_8006D0B4(dot694A4(effect.velocity.x, effect.velocity.y, effect.velocity.z, effect.velocity.x, effect.velocity.y, effect.velocity.z));
+    effect.velocity.x += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    effect.velocity.y += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    effect.velocity.z += spread * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    {
+        f32 shade = 0.8f + 0.2f * ((f32)fn_1_584AC() / 32767.0f);
+        effect.color.x = (255.0f * (0.5f * (1.0f + shade))) / 255.0f;
+        effect.color.y = (85.0f * shade) / 255.0f;
+        effect.color.z = 0.0f;
+    }
+    effect.direction.x = normal.x + 0.4f * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    effect.direction.y = normal.y + 0.4f * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    effect.direction.z = normal.z + 0.4f * ((f32)fn_1_584AC() / 32767.0f - 0.5f);
+    lbl_8006D668(&effect.direction);
+    effect.lifetime = 24;
+    fn_1_58F50(&effect);
+
+    memset(&effect, 0, sizeof(effect));
+    effect.id = id;
+    effect.kind = 38;
+    effect.flags = 1;
+    effect.timer = 60;
+    lbl_8006DC6C(mtx);
+    {
+        f32 z, y, x;
+        x = carPos.x;
+        y = carPos.y;
+        z = carPos.z;
+        mtx_set_translate((void *)LC_BASE, x, y, z);
+    }
+    fn_8006E250(pos, &effect.position);
+    effect.scale = scale;
+    fn_1_58F50(&effect);
+
+    if (scale <= 0.1f) {
+        return;
+    }
+    {
+        f32 k = clamp694A4(scale, 0.1f, 1.0f);
+        if (camera_get_entry_field_0xa4(fn_1_86254(id)->camera) != 0) {
+            fn_1_6E140(&carPos, &vel, k);
+        }
+    }
+}
+#pragma opt_lifetimes reset
+#pragma opt_propagation reset
+#pragma fp_contract reset
+/* fzgx:end fn_1_694A4 */
+
 /* fzgx:begin fn_1_69BBC */
 typedef struct EffectCar {
     u8 pad_00[0x1a];
