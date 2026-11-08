@@ -11127,6 +11127,122 @@ void fn_1_1461C8(s32 mode, u32 index) {
 }
 /* fzgx:end fn_1_1461C8 */
 
+/* fzgx:begin fn_1_146550 */
+/* one results row (layout shared with fn_1_144F40's Row) */
+typedef struct {
+    u8 pad_0[0x64];
+    s32 unk_64;
+    s32 unk_68;
+    s32 unk_6C;
+    s32 unk_70;
+    s32 unk_74;
+    s32 unk_78;
+    FontDrawPacket packet[3]; /* 0x7C */
+} fn_1_146550_Row;
+
+extern const f32 lbl_1_rodata_9700[3];
+
+static inline BOOL fn_1_146550_isC(s32 mode) {
+    BOOL r = FALSE;
+    if (mode == 1 || mode == 3) {
+        r = TRUE;
+    }
+    return r;
+}
+
+#pragma opt_lifetimes off
+void fn_1_146550(s32 mode, fn_1_146550_Row *__restrict row) {
+    FontDrawPacket packet;
+    FontDrawPacket sub;
+    s32 j;
+    s32 x;
+    s32 n;
+    s32 dx;
+    s32 dx2;
+    s32 i;
+
+    packet = row->packet[0];
+    packet.image = 0x9723;
+    packet.x = (f32)(32 + row->unk_68 + row->unk_70);
+    packet.y = (f32)row->unk_64;
+    packet.z = lbl_1_rodata_9700[0];
+    fn_1_51678(&packet, 0x9723, 0, 0, 18, 48);
+    fn_1_4F734(&packet);
+
+    packet = row->packet[1];
+    packet.image = 0x9723;
+    packet.x = (f32)(row->unk_74 + 590);
+    packet.y = (f32)row->unk_64;
+    packet.z = lbl_1_rodata_9700[0];
+    fn_1_51678(&packet, 0x9723, 18, 0, 18, 48);
+    fn_1_4F734(&packet);
+
+    packet = row->packet[0];
+    n = row->unk_70;
+    x = row->unk_68;
+    packet.image = 0x9709;
+    packet.y = (f32)row->unk_64;
+    packet.z = lbl_1_rodata_9700[0];
+    for (i = 0, dx = 0; i < 3; i++, dx += 20) {
+        packet.x = (f32)(50 + x + dx + n);
+        fn_1_4F734(&packet);
+    }
+
+    packet = row->packet[1];
+    packet.image = 0x9709;
+    packet.y = (f32)row->unk_64;
+    packet.z = lbl_1_rodata_9700[0];
+    for (j = 3; j < 10; j++) {
+        packet.x = (f32)(50 + row->unk_68 + j * 20 + row->unk_74);
+        if (j == 9 && fn_1_146550_isC(mode)) {
+            sub = packet;
+            fn_1_51678(&sub, packet.image, 0, 0, 10, 48);
+            fn_1_4F734(&sub);
+        } else {
+            fn_1_4F734(&packet);
+        }
+    }
+
+    x = row->unk_74;
+    for (n = 0, dx2 = 270; n < 5; n++, dx2 += 20) {
+        packet.x = (f32)(x + dx2);
+        fn_1_4F734(&packet);
+    }
+    x = row->unk_74;
+    for (n = 0, dx2 = 390; n < 5; n++, dx2 += 20) {
+        packet.x = (f32)(x + dx2);
+        fn_1_4F734(&packet);
+    }
+    x = row->unk_74;
+    for (n = 0, dx2 = 510; n < 4; n++, dx2 += 20) {
+        packet.x = (f32)(x + dx2);
+        fn_1_4F734(&packet);
+    }
+
+    packet = row->packet[1];
+    packet.image = 0x970A;
+    packet.x = (f32)(row->unk_74 + 250);
+    packet.y = (f32)row->unk_64;
+    packet.z = lbl_1_rodata_9700[0];
+    fn_1_4F734(&packet);
+
+    packet = row->packet[1];
+    packet.image = 0x970A;
+    packet.x = (f32)(row->unk_74 + 370);
+    packet.y = (f32)row->unk_64;
+    packet.z = lbl_1_rodata_9700[0];
+    fn_1_4F734(&packet);
+
+    packet = row->packet[1];
+    packet.image = 0x970A;
+    packet.x = (f32)(row->unk_74 + 490);
+    packet.y = (f32)row->unk_64;
+    packet.z = lbl_1_rodata_9700[0];
+    fn_1_4F734(&packet);
+}
+#pragma opt_lifetimes reset
+/* fzgx:end fn_1_146550 */
+
 /* fzgx:begin fn_1_146B5C */
 #pragma opt_propagation off
 void fn_1_146B5C(u32 unused, u8 *arg1) {
