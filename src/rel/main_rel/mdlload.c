@@ -1330,6 +1330,157 @@ void fn_1_D523C(D523C_State *state) {
 }
 /* fzgx:end fn_1_D523C */
 
+/* fzgx:begin fn_1_D550C */
+#include "game/vec3.h"
+
+typedef struct {
+    Vec3 pos;
+    Vec3 vel;
+    Vec3 scale;
+    f32 value;
+    s16 phase;
+    s16 step;
+    s16 count;
+} MdlSpark;
+
+extern u32 lbl_801A63C0;
+extern void *lbl_801A6D00;
+extern void fn_1_681C(u8, void *);
+extern void fn_1_6898(u8, void *);
+extern void fn_1_6914(u8, void *);
+extern void fn_1_6990(u8, void *);
+extern s16 camera_get_mode(void);
+extern f32 fn_1_8652C(s32);
+extern void fn_1_8636C(s32, void *);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern f32 fn_1_A71AC(void);
+/* SMB1 mathutil_mtxA_tf_vec / mathutil_vec_normalize_len (DOL mathutil asm) */
+extern void lbl_8006E1C0(Vec3 *src, Vec3 *dst);
+extern f32 lbl_8006D668(Vec3 *v);
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d; /* fzgx-allow: S2 pool primer sinks */
+    s = 30.0f; s = 0.6499999761581421f; s = 0.75f; s = 1.0f; s = 0.0f; s = 182.04444885253906f;
+    d = 0.5; d = 2.0; d = 4503599627370496.0;
+    s = 0.5f; s = 0.02500000037252903f; s = 0.9900000095367432f; s = 1.649999976158142f; s = 3000.0f; s = 100.0f;
+}
+static const u32 fzgx_pool_table2[67] = {0x00000000, 0x00000000, 0x0000000E, 0x0000000E, 0x00000000, 0x00000000, 0x0000000E, 0x0000000E, 0x0000000C, 0x0000000C, 0x00000009, 0x00000009, 0x0000000C, 0x0000000C, 0x00000009, 0x00000009, 0x00000000, 0x00000000, 0xFFFFFF4C, 0xFFFFFF4C, 0x00000000, 0x00000000, 0xFFFFFF4C, 0xFFFFFF4C, 0xFFFFFFE2, 0xFFFFFFE2, 0x00000000, 0x00000000, 0xFFFFFFE2, 0xFFFFFFE2, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000014, 0xFFFFFFEC, 0x00000000, 0x00000000, 0x00000014, 0xFFFFFFEC, 0x0000000A, 0xFFFFFFF6, 0xFFFFFFF6, 0x0000000A, 0x0000000A, 0xFFFFFFF6, 0xFFFFFFF6, 0x0000000A, 0x00000000, 0x00000000, 0x00000014, 0x00000014, 0x00000000, 0x00000000, 0xFFFFFFEC, 0xFFFFFFEC, 0x0000000A, 0x0000000A, 0xFFFFFFF6, 0xFFFFFFF6, 0xFFFFFFF6, 0xFFFFFFF6, 0x0000000A, 0x0000000A, 0x00000000, 0x3F800000, 0x00000000};
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp = fzgx_pool_table2; (void)cp; } /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) { volatile f32 s = 0.8999999761581421f; s = 32767.0f; (void)s; } /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_table4[1] = {0};
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp = fzgx_pool_table4; (void)cp; } /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) { volatile f32 s; volatile f64 d; d = 4503601774854144.0; s = 23.0f; s = 24.0f; (void)s; (void)d; } /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_table6[3] = {0, 0, 0};
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp = fzgx_pool_table6; (void)cp; } /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+static const Vec3 spark_dir = {0.0f, 0.0f, -1.0f};
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6b(void) { const Vec3 *volatile cp = &spark_dir; (void)cp; } /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; /* fzgx-allow: S2 pool primer sinks */
+    s = 1.5f; s = 10.0f; s = 136.0f; s = 90.0f; s = 0.6000000238418579f; s = 0.4000000059604645f; s = 96.0f;
+}
+#pragma section code_type ".text"
+
+// pos += dir * len
+static inline void spark_offset(Vec3 *pos, Vec3 *dir, f32 len) {
+    pos->x += (f32)(dir->x * len);
+    pos->y += (f32)(dir->y * len);
+    pos->z += (f32)(dir->z * len);
+}
+
+// out = a x b
+static inline void spark_cross(f32 *a, f32 *b, f32 *out) {
+    f32 a0 = a[0];
+    f32 a1 = a[1];
+    f32 a2 = a[2];
+    f32 x;
+    f32 y;
+    f32 z;
+
+    x = a1 * b[2];
+    x -= a2 * b[1];
+    y = a2 * b[0];
+    y -= a0 * b[2];
+    z = a0 * b[1];
+    z -= a1 * b[0];
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+}
+
+// *out = range * a random value in [-0.5, 0.5]
+static inline void spark_rand_range(f32 *out, f32 range, s32 r) {
+    *out = range * (r / 32767.0f - 0.5f);
+}
+
+/* one step of the executable's random generator, lbl_801A63C0 */
+static inline s32 spark_rand15(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+void fn_1_D550C(void *arg) {
+    MdlSpark *e = arg;
+    Vec3 eye;
+    Vec3 at;
+    Vec3 v48;
+    Vec3 dir;
+    Vec3 up;
+    Vec3 side;
+    Vec3 pos;
+    f32 size;
+    f32 s;
+    f32 a;
+    f32 b;
+    f32 c;
+    f32 d;
+    s32 mode;
+    f32 base;
+    f32 dist;
+    f32 t;
+    s32 r;
+
+    fn_1_681C(0, &eye);
+    fn_1_6898(0, &at);
+    fn_1_6914(0, &v48);
+    fn_1_6990(0, &up);
+    mode = camera_get_mode();
+    if (mode < 0) {
+        return;
+    }
+    dir = spark_dir;
+    fn_1_8636C(mode, lbl_801A6D00);
+    lbl_8006E1C0(&dir, &dir);
+    lbl_8006D668(&dir);
+    fn_1_A714C(&a, &b, &c, &d);
+    pos = eye;
+    t = (f32)(1.5f * (spark_rand15() / 32767.0f)) - 0.5f;
+    base = fn_1_8652C(mode) / 10.0f;
+    r = spark_rand15();
+    dist = base + (c + (f32)(t * (100.0f - c)));
+    spark_offset(&pos, &dir, dist);
+    spark_rand_range(&s, (dist / 10.0f) * fn_1_A71AC(), r);
+    r = spark_rand15();
+    spark_offset(&pos, &up, s);
+    spark_cross((f32 *)&dir, (f32 *)&up, (f32 *)&side);
+    spark_rand_range(&s, b * (dist * fn_1_A71AC()), r);
+    spark_offset(&pos, &side, s);
+    e->pos = pos;
+    size = 136.0f * (1.0f - t);
+    e->scale.x = size;
+    e->scale.y = size;
+    e->scale.z = size;
+    e->value = (90.0f + base) * (0.6f + (f32)(0.4f * (spark_rand15() / 32767.0f)));
+    e->phase = spark_rand15();
+    e->step = 96.0f * (spark_rand15() / 32767.0f - 0.5f);
+    e->count = 20;
+}
+/* fzgx:end fn_1_D550C */
+
 /* fzgx:begin fn_1_D5958 */
 // fn_1_D5958: iterate through 4 structures, calling fn_1_D550C on each.
 void fn_1_D5958(void *arg) {

@@ -100349,6 +100349,32 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/mdlload/fn_1_D550C.c",
+    "symbols": [
+      "fn_1_D550C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/mdlload.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_6168",
+      "@38": "lbl_1_rodata_6168+0x160",
+      "@29": "lbl_1_rodata_6168+0x158",
+      "@53": "lbl_1_rodata_6168+0x188",
+      "@14": "lbl_1_rodata_6168+0x30",
+      "@54": "lbl_1_rodata_6168+0x18C",
+      "@19": "lbl_1_rodata_6168+0x44",
+      "@8": "lbl_1_rodata_6168+0xC",
+      "@56": "lbl_1_rodata_6168+0x194",
+      "@55": "lbl_1_rodata_6168+0x190",
+      "@58": "lbl_1_rodata_6168+0x19C",
+      "@57": "lbl_1_rodata_6168+0x198",
+      "@59": "lbl_1_rodata_6168+0x1A0"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/mdlload/fn_1_D5958.c",
     "symbols": [
       "fn_1_D5958"

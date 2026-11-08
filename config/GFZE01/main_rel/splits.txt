@@ -16489,3 +16489,6 @@ rel/main_rel/accessory/fn_1_12907C.c:
 
 rel/main_rel/accessory/fn_1_117D5C.c:
 	.text       start:0x00117D5C end:0x001185B4 align:4
+
+rel/main_rel/mdlload/fn_1_D550C.c:
+	.text       start:0x000D550C end:0x000D5958 align:4
