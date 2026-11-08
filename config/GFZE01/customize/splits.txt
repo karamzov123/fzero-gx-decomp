@@ -1130,3 +1130,6 @@ rel/customize/editor/fn_3_17854.c:
 
 rel/customize/toolkit/fn_3_278F8.c:
 	.text       start:0x000278F8 end:0x00028378 align:4
+
+rel/customize/_prolog/fn_3_7360.c:
+	.text       start:0x00007360 end:0x00007594 align:4
