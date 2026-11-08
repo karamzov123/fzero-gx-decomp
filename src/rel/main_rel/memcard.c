@@ -20778,6 +20778,155 @@ return 2;
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_BA144 */
 
+/* fzgx:begin fn_1_BB974 noprologue */
+#include "types.h"
+
+/* one save file in a card's directory listing */
+typedef struct {
+    u8 used;            /* 0x00 */
+    u8 type;            /* 0x01 */
+    u8 pad_2[0x22];
+    u32 size;           /* 0x24 */
+    u32 time;           /* 0x28: seconds */
+    void *info;         /* 0x2C */
+} McFile;
+
+typedef struct {
+    u8 unk_0, unk_1, unk_2, unk_3, unk_4, unk_5, unk_6, unk_7;
+} McFileKey;
+
+extern McFile lbl_1_bss_77380[2][128];
+extern McFileKey lbl_1_bss_7A39C[2][127];
+
+// Sorts both cards' directory listings: type 2 files first, then type 4, then the rest;
+// the type 2, 4 and 5 groups are each ordered by time.
+void fn_1_BB974(void) {
+    s32 i;
+    s32 j;
+    s32 count;
+    s32 start;
+    s32 n;
+    s32 card;
+    McFile *files;
+    McFileKey *keys;
+    McFile file1;
+    McFile file5;
+    McFile file4;
+    McFile file3;
+    McFile file2;
+    McFileKey key1;
+    McFileKey key5;
+    McFileKey key4;
+    McFileKey key3;
+    McFileKey key2;
+
+    for (card = 0; card < 2; card++) {
+        files = lbl_1_bss_77380[card];
+        keys = lbl_1_bss_7A39C[card];
+
+        count = 0;
+        for (i = 0; i < 127; i++) {
+            if (files[i].size != 0) {
+                count++;
+            }
+        }
+
+        /* type 2 files to the front */
+        for (i = 0; i < count - 1; i++) {
+            for (j = i + 1; j < count; j++) {
+                if (files[i].type != 2 && files[j].type == 2) {
+                    file1 = files[i];
+                    files[i] = files[j];
+                    files[j] = file1;
+                    key1 = keys[i];
+                    keys[i] = keys[j];
+                    keys[j] = key1;
+                }
+            }
+        }
+
+        /* type 4 files right after them */
+        start = 0;
+        for (i = 0; i < 127; i++) {
+            if (files[i].type == 2) {
+                start++;
+            }
+        }
+        for (i = start; i < count - 1; i++) {
+            for (j = i + 1; j < count; j++) {
+                if (files[i].type != 4 && files[j].type == 4) {
+                    file2 = files[i];
+                    files[i] = files[j];
+                    files[j] = file2;
+                    key2 = keys[i];
+                    keys[i] = keys[j];
+                    keys[j] = key2;
+                }
+            }
+        }
+
+        /* each group by time */
+        start = 0;
+        for (i = 0; i < 127; i++) {
+            if (files[i].type == 2) {
+                start++;
+            }
+        }
+        for (i = 0; i < start - 1; i++) {
+            for (j = i + 1; j < start; j++) {
+                if (files[i].time > files[j].time) {
+                    file3 = files[i];
+                    files[i] = files[j];
+                    files[j] = file3;
+                    key3 = keys[i];
+                    keys[i] = keys[j];
+                    keys[j] = key3;
+                }
+            }
+        }
+
+        n = 0;
+        for (i = 0; i < 127; i++) {
+            if (files[i].type == 4) {
+                n++;
+            }
+        }
+        for (i = start; i < start + n - 1; i++) {
+            for (j = i + 1; j < start + n; j++) {
+                if (files[i].time > files[j].time) {
+                    file4 = files[i];
+                    files[i] = files[j];
+                    files[j] = file4;
+                    key4 = keys[i];
+                    keys[i] = keys[j];
+                    keys[j] = key4;
+                }
+            }
+        }
+        start += n;
+
+        n = 0;
+        for (i = 0; i < 127; i++) {
+            if (files[i].type == 5) {
+                n++;
+            }
+        }
+        for (i = start; i < start + n - 1; i++) {
+            for (j = i + 1; j < start + n; j++) {
+                if (files[i].time > files[j].time) {
+                    file5 = files[i];
+                    files[i] = files[j];
+                    files[j] = file5;
+                    key5 = keys[i];
+                    keys[i] = keys[j];
+                    keys[j] = key5;
+                }
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_BB974 */
+
 /* fzgx:begin fn_1_BC29C */
 #include "rel/main_rel/memcard.h"
 
