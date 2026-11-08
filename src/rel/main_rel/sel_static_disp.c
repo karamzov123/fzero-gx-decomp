@@ -6912,6 +6912,236 @@ void fn_1_13EDDC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, s32 arg4) {
 }
 /* fzgx:end fn_1_13EDDC */
 
+/* fzgx:begin fn_1_13EF64 noprologue */
+#include "types.h"
+#include "font.h"
+
+typedef struct {
+    u8 r, g, b, a;
+} StatColor;
+
+typedef struct {
+    f32 x, y, z;
+} StatVec;
+
+/* machine parameter record (0xB4 bytes, see burner.h MachineParameterRecord) */
+typedef struct {
+    const char *name;
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    u8 pad_10[0x10];
+    f32 unk_20;
+    u8 pad_24[0x20];
+    f32 unk_44;
+    u8 pad_48[0xC];
+    StatVec unk_54;
+    u8 pad_60[0xC];
+    StatVec unk_6C;
+} StatRecord;
+
+typedef struct {
+    u32 image;
+    f32 x, y, z;
+    f32 scale_x, scale_y;
+    f32 u0, v0, u1, v1;
+    s16 rotation_z, rotation_y;
+    f32 alpha;
+    u32 flags;
+    f32 depth;
+    StatColor color;
+    u8 color_add[4];
+    u32 format;
+    u16 width, height;
+    void *pixels;
+    void *secondary;
+    void *vertex_callback;
+    u32 unk_54;
+} StatPacket;
+
+extern StatPacket lbl_1_rodata_26F8;
+extern const f32 lbl_1_rodata_8808;
+extern const f32 lbl_1_rodata_8D7C;
+extern const f32 lbl_1_rodata_8A30;
+extern const f32 lbl_1_rodata_861C;
+extern const f32 lbl_1_rodata_863C;
+extern const f32 lbl_1_rodata_8B34;
+extern const f32 lbl_1_rodata_8BF4;
+extern const f32 lbl_1_rodata_87AC;
+extern const f32 lbl_1_rodata_87E8;
+extern const f32 lbl_1_rodata_85EC;
+extern const f32 lbl_1_rodata_85F0;
+extern const f32 lbl_1_rodata_8E90;
+extern const f32 lbl_1_rodata_8A28;
+extern const f32 lbl_1_rodata_8E9C;
+extern const f32 lbl_1_rodata_8E94;
+extern const f32 lbl_1_rodata_8EA0;
+extern const f32 lbl_1_rodata_8E98;
+extern const f32 lbl_1_rodata_8EA4;
+extern const f32 lbl_1_rodata_8A4C;
+extern const f32 lbl_1_rodata_86F8;
+extern const f32 lbl_1_rodata_8EA8;
+extern const f32 lbl_1_rodata_8EAC;
+extern const f32 lbl_1_rodata_87B4;
+extern const f32 lbl_1_rodata_8EB0;
+extern const f32 lbl_1_rodata_8B6C;
+
+extern f32 lbl_8006D0B4(f32);  /* square root */
+
+static inline f32 stat_clamp(f32 x, f32 lo, f32 hi) {
+    f32 r;
+    if (x < lo) {
+        r = lo;
+    } else if (x > hi) {
+        r = hi;
+    } else {
+        r = x;
+    }
+    return r;
+}
+
+#pragma fp_contract off
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+void fn_1_13EF64(s16 x, s16 y, s16 z, StatRecord *rec, s32 image, StatColor *colorp, void *callback, f32 alpha) {
+    StatColor color;
+    StatPacket packet;
+    f32 dx;
+    f32 dz;
+    f32 t;
+    f32 a;
+    f32 b;
+    f32 d;
+    f32 len;    /* sqrt term, then the right-hand level */
+    f32 g;
+    f32 weight;
+    f32 top;
+    f32 left;
+    f32 h;      /* level from unk_44, then the right-hand scale */
+    f32 w;      /* weight term, then the bottom level and scale */
+
+    color = *colorp;
+
+    t = stat_clamp(rec->unk_44, lbl_1_rodata_8808, lbl_1_rodata_8D7C);
+    t = (t - lbl_1_rodata_8808) / lbl_1_rodata_8A30;
+    t = stat_clamp(t, lbl_1_rodata_861C, lbl_1_rodata_863C);
+    t = lbl_1_rodata_863C + lbl_1_rodata_8B34 * (lbl_1_rodata_863C - t);
+    h = stat_clamp(t, lbl_1_rodata_861C, lbl_1_rodata_8B34);
+
+    d = lbl_1_rodata_8BF4 - rec->unk_8;
+    b = rec->unk_C - lbl_1_rodata_87AC;
+    a = d;
+    if (d < lbl_1_rodata_861C) {
+        a = d * lbl_1_rodata_87E8;
+        b *= lbl_1_rodata_85EC;
+    }
+    a += lbl_1_rodata_863C;
+    b += lbl_1_rodata_863C;
+    a = b * a - lbl_1_rodata_863C;
+    t = lbl_1_rodata_85F0 + lbl_1_rodata_8E90 * a;
+    t = stat_clamp(t, lbl_1_rodata_87AC, lbl_1_rodata_863C);
+    left = t;
+    if (t < lbl_1_rodata_85F0) {
+        left = t * lbl_1_rodata_8A28;
+    }
+
+    left *= lbl_1_rodata_8B34;
+    dx = lbl_1_rodata_85F0 * (rec->unk_54.x + rec->unk_6C.x);
+    dz = lbl_1_rodata_85F0 * (rec->unk_6C.z - rec->unk_54.z);
+    w = (rec->unk_4 - lbl_1_rodata_8E94) / lbl_1_rodata_8E98;
+    g = lbl_1_rodata_863C + (rec->unk_20 - lbl_1_rodata_8E9C) / lbl_1_rodata_8EA0;
+    len = lbl_8006D0B4(dx * dx + dz * dz);
+    weight = rec->unk_4;
+    t = g - w;
+    t -= weight * len / lbl_1_rodata_8EA4;
+    t = lbl_1_rodata_8A4C * t;
+    w = stat_clamp(t, lbl_1_rodata_861C, lbl_1_rodata_863C);
+    w *= lbl_1_rodata_8B34;
+
+    t = (weight - lbl_1_rodata_86F8) / lbl_1_rodata_8EA8;
+    t = stat_clamp(t, lbl_1_rodata_861C, lbl_1_rodata_85EC);
+    t = rec->unk_8 * (lbl_1_rodata_8EAC - t);
+    t = stat_clamp(t, lbl_1_rodata_87B4, lbl_1_rodata_8A28);
+    t = (t - lbl_1_rodata_87B4) / lbl_1_rodata_8EB0;
+    t = stat_clamp(t, lbl_1_rodata_861C, lbl_1_rodata_863C);
+    t = lbl_1_rodata_863C + lbl_1_rodata_8B34 * t;
+    len = stat_clamp(t, lbl_1_rodata_861C, lbl_1_rodata_8B34);
+
+    if (image == 18) {
+        h *= lbl_1_rodata_8B6C;
+        left *= lbl_1_rodata_8B6C;
+        len *= lbl_1_rodata_8B6C;
+    }
+
+    packet = lbl_1_rodata_26F8;
+    packet.image = image;
+    packet.x = x;
+    packet.y = y;
+    packet.z = z;
+    packet.flags = 0x8000D;
+    packet.scale_x = left /= lbl_1_rodata_8B34;
+    packet.scale_y = top = h / lbl_1_rodata_8B34;
+    packet.color = color;
+    packet.alpha = alpha;
+    if (callback != NULL) {
+        packet.vertex_callback = callback;
+        packet.flags |= 0x4000000;
+    }
+    fn_1_4F734((FontDrawPacket *)&packet);
+
+    packet = lbl_1_rodata_26F8;
+    packet.image = image;
+    packet.x = x;
+    packet.y = y;
+    packet.z = z;
+    packet.flags = 15;
+    packet.scale_x = h = len / lbl_1_rodata_8B34;
+    packet.scale_y = top;
+    packet.color = color;
+    packet.alpha = alpha;
+    if (callback != NULL) {
+        packet.vertex_callback = callback;
+        packet.flags |= 0x4000000;
+    }
+    fn_1_4F734((FontDrawPacket *)&packet);
+
+    packet = lbl_1_rodata_26F8;
+    packet.image = image;
+    packet.x = x;
+    packet.y = y;
+    packet.z = z;
+    packet.flags = 0x180005;
+    packet.scale_x = left;
+    packet.scale_y = w /= lbl_1_rodata_8B34;
+    packet.color = color;
+    packet.alpha = alpha;
+    if (callback != NULL) {
+        packet.vertex_callback = callback;
+        packet.flags |= 0x4000000;
+    }
+    fn_1_4F734((FontDrawPacket *)&packet);
+
+    packet = lbl_1_rodata_26F8;
+    packet.image = image;
+    packet.x = x;
+    packet.y = y;
+    packet.z = z;
+    packet.flags = 0x100007;
+    packet.scale_x = h;
+    packet.scale_y = w;
+    packet.color = color;
+    packet.alpha = alpha;
+    if (callback != NULL) {
+        packet.vertex_callback = callback;
+        packet.flags |= 0x4000000;
+    }
+    fn_1_4F734((FontDrawPacket *)&packet);
+}
+#pragma opt_lifetimes reset
+#pragma opt_common_subs reset
+#pragma fp_contract reset
+/* fzgx:end fn_1_13EF64 */
+
 /* fzgx:begin fn_1_13F72C */
 typedef struct {
     s16 first;
