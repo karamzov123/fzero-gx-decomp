@@ -16501,3 +16501,6 @@ rel/main_rel/sel_static_disp/fn_1_14CEB8.c:
 
 rel/main_rel/effect_car/fn_1_694A4.c:
 	.text       start:0x000694A4 end:0x00069BBC align:4
+
+rel/main_rel/sel_static_disp/fn_1_13EF64.c:
+	.text       start:0x0013EF64 end:0x0013F72C align:4
