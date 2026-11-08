@@ -16468,3 +16468,6 @@ rel/main_rel/bg_san/fn_1_D9224.c:
 
 rel/main_rel/ghost/fn_1_ED540.c:
 	.text       start:0x000ED540 end:0x000EE3F4 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_C8DC0.c:
+	.text       start:0x000C8DC0 end:0x000C96A4 align:4
