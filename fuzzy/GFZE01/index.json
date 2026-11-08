@@ -1944,7 +1944,7 @@
  {
   "symbol": "fn_80072014",
   "module": "main",
-  "percent": 67.95,
+  "percent": 97.9,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
