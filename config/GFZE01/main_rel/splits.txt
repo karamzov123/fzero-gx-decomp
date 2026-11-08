@@ -16486,3 +16486,6 @@ rel/main_rel/bg_aur/fn_1_152FAC.c:
 
 rel/main_rel/accessory/fn_1_12907C.c:
 	.text       start:0x0012907C end:0x0012999C align:4
+
+rel/main_rel/accessory/fn_1_117D5C.c:
+	.text       start:0x00117D5C end:0x001185B4 align:4
