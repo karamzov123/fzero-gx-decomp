@@ -131580,6 +131580,24 @@
   },
   {
     "module": "profile",
+    "source": "rel/profile/_prolog.c",
+    "symbols": [
+      "_prolog"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "...data.0": "lbl_16_data_0",
+      "@19": "lbl_16_rodata_0",
+      "@20": "lbl_16_data_82BF8",
+      "fzgx_obj_lbl_16_data_0": "lbl_16_data_0",
+      "...bss.0": "lbl_16_bss_0",
+      "fzgx_obj_lbl_16_bss_0": "lbl_16_bss_0"
+    }
+  },
+  {
+    "module": "profile",
     "source": "rel/profile/data/lbl_16_bss_0.c",
     "symbols": [
       "lbl_16_bss_0",
