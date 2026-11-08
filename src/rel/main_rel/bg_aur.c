@@ -758,6 +758,186 @@ s32 fn_1_152CB4(s32 id, s16 y, s16 x, fn_1_152CB4_Cell *table, s16 nrows, s16 nc
 }
 /* fzgx:end fn_1_152CB4 */
 
+/* fzgx:begin fn_1_152FAC noprologue */
+#include "types.h"
+
+#define CELL_HIDDEN 0x80000000  /* fzgx-allow: A1 flag bit, not an address */
+#define CELL_LOCKED 0x40000000
+
+typedef struct fn_1_152FAC_Cell {
+    s16 id;
+    u8 pad[2];
+    u32 flags;
+} fn_1_152FAC_Cell;
+
+typedef struct fn_1_152FAC_Pos {
+    s16 grp;
+    s16 ent;
+} fn_1_152FAC_Pos;
+
+struct fn_1_152FAC_lbl_1_bss_8B3A0 {
+    u8 pad_0[0x94];
+    u32 unk_94;
+    u8 pad_98[0x18];
+    fn_1_152FAC_Pos cur[4];
+    fn_1_152FAC_Pos repeat[4];
+    fn_1_152FAC_Pos anchor[4];
+};
+
+extern struct fn_1_152FAC_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0;
+
+static inline s32 fn_1_152FAC_get(s16 grp, s16 ent, fn_1_152FAC_Cell *table, s16 cols) {
+    if (lbl_1_bss_8B3A0.unk_94 & 0x20000) {
+        if (table[grp * cols + ent].flags & (CELL_HIDDEN | CELL_LOCKED))
+            return -1;
+    } else {
+        if (table[grp * cols + ent].flags & CELL_LOCKED)
+            return -1;
+    }
+    if (table[grp * cols + ent].id == -1)
+        return -1;
+    return table[grp * cols + ent].id;
+}
+
+static inline void fn_1_152FAC_find(s16 id, fn_1_152FAC_Cell *table, s16 rows, s16 cols, u32 mask, s16 *grp, s16 *ent) {
+    s16 i;
+    s16 j;
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            if ((table[i * cols + j].flags & mask) == 0 && id == table[i * cols + j].id) {
+                *grp = i;
+                *ent = j;
+                return;
+            }
+        }
+    }
+}
+
+static inline s16 fn_1_152FAC_scan_grp(s16 grp, s16 ent, s16 step, fn_1_152FAC_Cell *table, s16 rows, s16 cols, s16 *found) {
+    s16 cnt = 0;
+    do {
+        cnt++;
+        grp += step;
+        if (grp < 0 || rows - 1 < grp) {
+            return 100;
+        }
+    } while ((s16)fn_1_152FAC_get(grp, ent, table, cols) < 0);
+    *found = grp;
+    return cnt;
+}
+
+static inline s16 fn_1_152FAC_scan_ent(s16 grp, s16 ent, s16 step, fn_1_152FAC_Cell *table, s16 cols, s16 *found) {
+    s16 cnt = 0;
+    do {
+        cnt++;
+        ent += step;
+        if (ent < 0 || cols - 1 < ent) {
+            return 100;
+        }
+    } while ((s16)fn_1_152FAC_get(grp, ent, table, cols) < 0);
+    *found = ent;
+    return cnt;
+}
+
+s32 fn_1_152FAC(s16 idx, s32 id, s16 y, s16 x, fn_1_152FAC_Cell *table, s16 rows, s16 cols) {
+    s16 total = (s16)(rows * cols);
+    s16 grp;
+    s16 ent;
+    s16 lo;
+    s16 hi;
+    s16 lo_cnt;
+    s16 hi_cnt;
+
+    if (lbl_1_bss_8B3A0.unk_94 & 0x20000) {
+        if ((s16)id != -1) {
+            fn_1_152FAC_find((s16)id, table, rows, cols, (CELL_HIDDEN | CELL_LOCKED), &grp, &ent);
+        }
+    } else {
+        if ((s16)id != -1) {
+            fn_1_152FAC_find((s16)id, table, rows, cols, CELL_LOCKED, &grp, &ent);
+        }
+    }
+    if (x != 0) {
+        do {
+            ent = (s16)((ent + x + total) % cols);
+            id = fn_1_152FAC_get(lbl_1_bss_8B3A0.anchor[idx].grp, ent, table, cols);
+            if ((s16)id < 0) {
+                lo_cnt = fn_1_152FAC_scan_grp(lbl_1_bss_8B3A0.anchor[idx].grp, ent, -1, table, rows, cols, &lo);
+                hi_cnt = fn_1_152FAC_scan_grp(lbl_1_bss_8B3A0.anchor[idx].grp, ent, 1, table, rows, cols, &hi);
+                if (lo_cnt != 100 || hi_cnt != 100) {
+                    if (lo_cnt < hi_cnt) {
+                        id = fn_1_152FAC_get(lo, ent, table, cols);
+                    } else {
+                        id = fn_1_152FAC_get(hi, ent, table, cols);
+                    }
+                }
+            } else {
+                lbl_1_bss_8B3A0.repeat[idx].grp = 0;
+            }
+        } while ((s16)id < 0);
+        lbl_1_bss_8B3A0.anchor[idx].ent = ent;
+        lbl_1_bss_8B3A0.repeat[idx].ent = 0;
+    }
+    if (y != 0) {
+        do {
+            grp = (s16)((grp + y + total) % rows);
+            id = fn_1_152FAC_get(grp, lbl_1_bss_8B3A0.anchor[idx].ent, table, cols);
+            if ((s16)id < 0) {
+                lo_cnt = fn_1_152FAC_scan_ent(grp, lbl_1_bss_8B3A0.anchor[idx].ent, -1, table, cols, &lo);
+                hi_cnt = fn_1_152FAC_scan_ent(grp, lbl_1_bss_8B3A0.anchor[idx].ent, 1, table, cols, &hi);
+                if (lo_cnt != 100 || hi_cnt != 100) {
+                    if (lo_cnt < hi_cnt) {
+                        id = fn_1_152FAC_get(grp, lo, table, cols);
+                    } else {
+                        id = fn_1_152FAC_get(grp, hi, table, cols);
+                    }
+                }
+            } else {
+                lbl_1_bss_8B3A0.repeat[idx].ent = 0;
+            }
+        } while ((s16)id < 0);
+        lbl_1_bss_8B3A0.anchor[idx].grp = grp;
+        lbl_1_bss_8B3A0.repeat[idx].grp = 0;
+    }
+    if (lbl_1_bss_8B3A0.unk_94 & 0x8000) {
+        if (y != 0) {
+            if (lbl_1_bss_8B3A0.cur[idx].ent == ent) {
+                lbl_1_bss_8B3A0.repeat[idx].ent++;
+            } else {
+                lbl_1_bss_8B3A0.repeat[idx].ent = 0;
+            }
+            if (lbl_1_bss_8B3A0.repeat[idx].ent > 2) {
+                lbl_1_bss_8B3A0.repeat[idx].ent = 0;
+                lbl_1_bss_8B3A0.anchor[idx].ent = lbl_1_bss_8B3A0.cur[idx].ent;
+            }
+        }
+        if (x != 0) {
+            if (lbl_1_bss_8B3A0.cur[idx].grp == grp) {
+                lbl_1_bss_8B3A0.repeat[idx].grp++;
+            } else {
+                lbl_1_bss_8B3A0.repeat[idx].grp = 0;
+            }
+            if (lbl_1_bss_8B3A0.repeat[idx].grp > 2) {
+                lbl_1_bss_8B3A0.repeat[idx].grp = 0;
+                lbl_1_bss_8B3A0.anchor[idx].grp = lbl_1_bss_8B3A0.cur[idx].grp;
+            }
+        }
+    }
+    if (lbl_1_bss_8B3A0.unk_94 & 0x20000) {
+        if ((s16)id != -1) {
+            fn_1_152FAC_find((s16)id, table, rows, cols, (CELL_HIDDEN | CELL_LOCKED), &grp, &ent);
+        }
+    } else {
+        if ((s16)id != -1) {
+            fn_1_152FAC_find((s16)id, table, rows, cols, CELL_LOCKED, &grp, &ent);
+        }
+    }
+    lbl_1_bss_8B3A0.cur[idx].ent = ent;
+    lbl_1_bss_8B3A0.cur[idx].grp = grp;
+    return id;
+}
+/* fzgx:end fn_1_152FAC */
+
 /* fzgx:begin fn_1_153988 */
 // fn_1_153988: empty in retail (single blr).
 void fn_1_153988(void) {

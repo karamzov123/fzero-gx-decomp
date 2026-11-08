@@ -16474,3 +16474,6 @@ rel/main_rel/enemy_ctrl/fn_1_C8DC0.c:
 
 rel/main_rel/sel_static_disp/fn_1_13E080.c:
 	.text       start:0x0013E080 end:0x0013EA9C align:4
+
+rel/main_rel/bg_aur/fn_1_152FAC.c:
+	.text       start:0x00152FAC end:0x00153988 align:4
