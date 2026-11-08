@@ -3022,6 +3022,181 @@ f32 fn_1_9A0A8(u8 *p)
 #pragma peephole reset
 /* fzgx:end fn_1_9A0A8 */
 
+/* fzgx:begin fn_1_9A1E8 */
+typedef struct {
+    f32 x, y, z;
+} Vec;
+
+typedef struct {
+    u8 a, b, c, d;
+} BurnerParam;
+
+typedef struct {
+    u32 w[4];
+} BurnerColor;
+
+typedef struct {
+    s16 unk_0;
+    BurnerParam unk_2;
+    u8 unk_6[4];
+    u8 pad_A[0x2];
+    u32 unk_C[4];
+    f32 unk_1C[4];
+    u8 pad_2C[0x10];
+    u32 unk_3C;
+    u32 unk_40;
+    u32 unk_44;
+    u8 pad_48[0x28];
+    u8 unk_70;
+    u8 pad_71[0x7];
+    u32 unk_78;
+    u32 unk_7C;
+    u32 unk_80;
+    s32 unk_84;
+    u32 unk_88;
+    BurnerColor unk_8C;
+    f32 unk_9C;
+    u16 unk_A0;
+    u8 pad_A2[0x2];
+} BurnerState;
+
+
+typedef struct {
+    u8 pad_0[0x4];
+    void (*init)(void);
+    u8 pad_8[0x1C];
+} Data2ABAC;
+
+typedef struct {
+    u8 pad_0[0x30];
+} Data2C8D0;
+
+typedef struct {
+    u8 unk_0;
+    s8 unk_1;
+} Obj9C;
+
+extern u32 lbl_801A63C0;
+extern u32 lbl_801A66A0;
+extern Vec lbl_1_bss_6EA10[4];
+extern u32 lbl_1_bss_6EA40[4];
+extern Obj9C lbl_1_bss_9C;
+extern void fn_80008BEC(void *, int, u32);
+extern void fn_1_9D9E4(void);
+extern void fn_1_102FD0(void);
+extern void fn_1_9AD20(void);
+extern s16 fn_1_7B054(void);
+extern u32 fn_1_58C4(void);
+
+u32 fzgx_obj_lbl_1_data_2A0C0[4] = {1};
+u8 fzgx_pool_gap_2A0D0[0x2A7E0 - 0x2A0D0] = {1};
+BurnerState fzgx_obj_lbl_1_data_2A7E0 = {1};
+BurnerParam fzgx_obj_lbl_1_data_2A884[21] = {1};
+u8 fzgx_pool_gap_2A8D8[0x2ABAC - 0x2A8D8] = {1};
+Data2ABAC fzgx_obj_lbl_1_data_2ABAC[22] = {1};
+u8 fzgx_pool_gap_2AEC4[0x2C8D0 - 0x2AEC4] = {1};
+Data2C8D0 fzgx_obj_lbl_1_data_2C8D0 = {1};
+BurnerColor fzgx_obj_lbl_1_data_2C900 = {1};
+BurnerColor fzgx_obj_lbl_1_data_2C910[37] = {1};
+
+static inline s32 rand(void)
+{
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+static inline void srand(u32 seed)
+{
+    lbl_801A63C0 = seed ^ 0xCAE87FB5;
+}
+
+static inline Vec vec_zero(void)
+{
+    Vec v = {0.0f, 0.0f, 0.0f};
+    return v;
+}
+
+void fn_1_9A1E8(void)
+{
+    s16 index = fzgx_obj_lbl_1_data_2A7E0.unk_0;
+    u32 s3c = fzgx_obj_lbl_1_data_2A7E0.unk_3C;
+    u32 seed = fzgx_obj_lbl_1_data_2A7E0.unk_40;
+    u32 s78 = fzgx_obj_lbl_1_data_2A7E0.unk_78;
+    u32 s7c = fzgx_obj_lbl_1_data_2A7E0.unk_7C;
+    u32 s80 = fzgx_obj_lbl_1_data_2A7E0.unk_80;
+    u8 s70 = fzgx_obj_lbl_1_data_2A7E0.unk_70;
+    u32 next;
+    s16 course;
+    BurnerColor *color;
+    s32 i;
+    u32 viewports;
+    s16 mode;
+
+    fn_80008BEC(&fzgx_obj_lbl_1_data_2A7E0, 0, sizeof(BurnerState));
+    fzgx_obj_lbl_1_data_2A7E0.unk_0 = index;
+    fzgx_obj_lbl_1_data_2A7E0.unk_3C = s3c;
+    fzgx_obj_lbl_1_data_2A7E0.unk_40 = seed;
+    fzgx_obj_lbl_1_data_2A7E0.unk_78 = s78;
+    fzgx_obj_lbl_1_data_2A7E0.unk_7C = s7c;
+    fzgx_obj_lbl_1_data_2A7E0.unk_80 = s80;
+    fzgx_obj_lbl_1_data_2A7E0.unk_70 = s70;
+    for (i = 0; i < 4; i++) {
+        fzgx_obj_lbl_1_data_2A7E0.unk_6[i] = 0;
+        fzgx_obj_lbl_1_data_2A7E0.unk_C[i] = 0;
+        fzgx_obj_lbl_1_data_2A7E0.unk_1C[i] = 0.0f;
+    }
+    fzgx_obj_lbl_1_data_2A7E0.unk_2 = fzgx_obj_lbl_1_data_2A884[fzgx_obj_lbl_1_data_2A7E0.unk_0 > 0 ? fzgx_obj_lbl_1_data_2A7E0.unk_0 : 0];
+    for (i = 0; i < 4; i++) {
+        lbl_1_bss_6EA10[i] = vec_zero();
+        lbl_1_bss_6EA40[i] = 0;
+    }
+    next = rand();
+    srand(seed);
+    fzgx_obj_lbl_1_data_2A7E0.unk_44 = rand();
+    fn_1_9D9E4();
+    fn_1_102FD0();
+    if (fzgx_obj_lbl_1_data_2A7E0.unk_0 > 0) {
+        fzgx_obj_lbl_1_data_2ABAC[fzgx_obj_lbl_1_data_2A7E0.unk_0].init();
+    } else {
+        fn_1_9AD20();
+    }
+    fzgx_obj_lbl_1_data_2A7E0.unk_40 = lbl_801A66A0 + rand();
+    srand(next);
+    course = fn_1_7B054();
+    if (fzgx_obj_lbl_1_data_2A7E0.unk_84 != 0) {
+        viewports = 4;
+    } else {
+        viewports = fn_1_58C4();
+    }
+    fzgx_obj_lbl_1_data_2A7E0.unk_88 = viewports;
+    color = &fzgx_obj_lbl_1_data_2C900;
+    if ((u32)course < 37) {
+        color = &fzgx_obj_lbl_1_data_2C910[course];
+    }
+    fzgx_obj_lbl_1_data_2A7E0.unk_8C = *color;
+    fzgx_obj_lbl_1_data_2A7E0.unk_9C = 0.0f;
+    mode = *(s16 *)&lbl_1_bss_960;
+    if (mode == 9 && lbl_1_bss_84.unk_14 != 0) {
+        fzgx_obj_lbl_1_data_2A7E0.unk_9C = *(f32 *)lbl_1_bss_84.unk_14;
+        lbl_1_bss_84.unk_14 = 0;
+    }
+    fzgx_obj_lbl_1_data_2A7E0.unk_A0 = 0xF00;
+    if (mode == 9) {
+        switch (lbl_1_bss_9C.unk_1) {
+        case 0:
+            fzgx_obj_lbl_1_data_2A7E0.unk_A0 = 0x100;
+            break;
+        case 1:
+            fzgx_obj_lbl_1_data_2A7E0.unk_A0 = 0x200;
+            break;
+        case 2:
+            fzgx_obj_lbl_1_data_2A7E0.unk_A0 = 0x400;
+            break;
+        }
+    }
+}
+/* fzgx:end fn_1_9A1E8 */
+
 /* fzgx:begin fn_1_9A508 */
 extern u8 lbl_1_rodata_EB4[124];
 extern void *lbl_801A6410;
