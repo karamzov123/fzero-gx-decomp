@@ -12628,6 +12628,570 @@ void fn_1_117424(Rope *rope) {
 }
 /* fzgx:end fn_1_117424 */
 
+/* fzgx:begin fn_1_117D5C */
+#include "game/vec3.h"
+#include "mathutil.h"
+
+u32 fzgx_obj_lbl_1_data_3F510[0x1A] = {1};
+u8 fzgx_pool_gap_3F578[0x454] = {1};
+u8 fzgx_obj_lbl_1_data_3F9CC[0x13] = {1};
+u8 fzgx_pool_gap_3F9E0[0x2CC] = {1};
+u32 fzgx_obj_lbl_1_data_3FCAC[0xC4] = {1};
+u32 fzgx_obj_lbl_1_data_3FFBC[0x15D] = {1};
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_data_prime(void) {
+    void *volatile p;  /* fzgx-allow: S2 pool primer sink */
+    p = fzgx_obj_lbl_1_data_3F510;
+    p = fzgx_pool_gap_3F578;
+    p = fzgx_obj_lbl_1_data_3F9CC;
+    p = fzgx_pool_gap_3F9E0;
+    p = fzgx_obj_lbl_1_data_3FCAC;
+    p = fzgx_obj_lbl_1_data_3FFBC;
+}
+#pragma section code_type ".text"
+#pragma section code_type ".text"
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.1920928955078125e-07;
+    s = 0.009999999776482582f;
+}
+static const u32 fzgx_pool_table5[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1e-07;
+}
+static const u32 fzgx_pool_table7[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+    s = 0.25f;
+}
+static const u32 fzgx_pool_table9[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep9(void) { const u32 *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+    d = 0.0013611111376020642;
+    s = 0.0027222223579883575f;
+    s = -1.0f;
+    s = 0.0f;
+}
+__declspec(section ".fzgxpool") static void fzgx_pool_prime12(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = -2.0f;
+    s = 2.0f;
+    s = 1.1920928955078125e-07f;
+    s = -1.0000001192092896f;
+}
+static const u32 fzgx_pool_table13[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep13(void) { const u32 *volatile cp; cp = fzgx_pool_table13; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = -0.0013611111789941788f;
+    s = -0.0027222223579883575f;
+    s = 9.999999747378752e-05f;
+    s = 1.0f;
+    s = 0.00039999998989515007f;
+    s = 0.02500000037252903f;
+    s = 0.004224999807775021f;
+    d = 0.0749999976158142;
+    d = 0.3;
+    s = -0.01899999938905239f;
+    s = 0.05700000002980232f;
+    s = 0.0009609999833628535f;
+}
+static const u32 fzgx_pool_table15[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep15(void) { const u32 *volatile cp; cp = fzgx_pool_table15; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime16(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.04099999949336052;
+    d = -1.0;
+    s = 0.75f;
+    s = -0.25f;
+}
+static const u32 fzgx_pool_table17[9] = {0xBF800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3E0D4FDF, 0x3B83126F, 0x3DED9168};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep17(void) { const u32 *volatile cp; cp = fzgx_pool_table17; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.06499999761581421f;
+    s = 0.06500999629497528f;
+}
+static const u32 fzgx_pool_table19[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep19(void) { const u32 *volatile cp; cp = fzgx_pool_table19; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime20(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 8.0;
+    s = 0.00390625f;
+}
+static const u32 fzgx_pool_table21[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep21(void) { const u32 *volatile cp; cp = fzgx_pool_table21; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime22(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.05;
+    d = 0.0027222223579883575;
+    d = 0.02;
+    d = 0.0001;
+}
+static const u32 fzgx_pool_table23[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep23(void) { const u32 *volatile cp; cp = fzgx_pool_table23; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime24(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.04899999871850014f;
+    s = 0.002500000176951289f;
+    s = 0.05000000074505806f;
+    s = -0.125f;
+}
+static const u32 fzgx_pool_table25[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep25(void) { const u32 *volatile cp; cp = fzgx_pool_table25; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime26(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.015;
+    s = -0.5f;
+}
+static const u32 fzgx_pool_table27[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep27(void) { const u32 *volatile cp; cp = fzgx_pool_table27; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime28(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.045;
+    s = 0.00022499999613501132f;
+}
+static const u32 fzgx_pool_table29[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep29(void) { const u32 *volatile cp; cp = fzgx_pool_table29; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime30(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.2;
+    d = 0.8;
+    d = 0.5;
+    s = 0.029999999329447746f;
+    s = 0.0010000000474974513f;
+    s = 0.11500000208616257f;
+    s = 0.02016400173306465f;
+    s = 0.1420000046491623f;
+    s = 0.017160998657345772f;
+    s = 0.13099999725818634f;
+    s = 0.07999999821186066f;
+    s = 0.02250000089406967f;
+    s = 0.15000000596046448f;
+    s = 0.20000000298023224f;
+    s = 0.04000000283122063f;
+    s = 0.027000000700354576f;
+    s = 0.016384001821279526f;
+    s = 0.12800000607967377f;
+    s = 0.14100000262260437f;
+    s = 0.016899999231100082f;
+    s = 0.12999999523162842f;
+    s = 0.050999999046325684f;
+    s = 0.014161000959575176f;
+    s = 0.11900000274181366f;
+    s = 0.18299999833106995f;
+    s = 0.013225000351667404f;
+    s = 0.2980000078678131f;
+    s = 0.800000011920929f;
+    s = 9.0f;
+    s = 0.0012000000569969416f;
+    s = 32767.0f;
+    s = 0.004800000227987766f;
+    s = 0.0006000000284984708f;
+    s = -32768.0f;
+    s = 65536.0f;
+    s = 39.0f;
+    s = 0.0020000000949949026f;
+    s = 29.0f;
+    s = -0.0010000000474974513f;
+    s = 0.550000011920929f;
+    s = 0.4000000059604645f;
+    s = 0.10000000149011612f;
+}
+static const u32 fzgx_pool_table31[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep31(void) { const u32 *volatile cp; cp = fzgx_pool_table31; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime32(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    s = 9.999999747378752e-06f;
+    s = 0.00279999990016222f;
+    s = 0.002300000051036477f;
+    s = 0.021904001012444496f;
+    s = 0.14800000190734863f;
+    s = 0.02890000119805336f;
+    s = 0.17000000178813934f;
+    s = 0.010000000707805157f;
+    d = 1.0;
+    s = 32768.0f;
+    s = 12.0f;
+    s = 0.11999999731779099f;
+    s = 0.07000000029802322f;
+    s = -0.03700000047683716f;
+    s = 0.09000000357627869f;
+    s = 0.07699999958276749f;
+    s = 0.1120000034570694f;
+    s = 0.18000000715255737f;
+    s = -0.013000000268220901f;
+    s = 0.0689999982714653f;
+    s = -0.0020000000949949026f;
+    s = 0.020999999716877937f;
+    s = -0.020999999716877937f;
+    s = 0.05999999865889549f;
+    s = 0.07500000298023224f;
+    s = 0.08500000089406967f;
+    s = 0.09200000017881393f;
+    s = 0.05900000035762787f;
+    s = 0.054999999701976776f;
+    s = 0.07400000095367432f;
+    s = 0.11699999868869781f;
+    s = -0.04800000041723251f;
+    s = 0.04800000041723251f;
+    s = 0.03200000151991844f;
+    s = 0.06599999964237213f;
+    s = -0.019999999552965164f;
+    s = 0.0989999994635582f;
+    s = 0.13300000131130219f;
+    s = -0.05000000074505806f;
+    s = 0.07100000232458115f;
+    s = 0.0949999988079071f;
+    s = -0.008999999612569809f;
+    s = 0.006000000052154064f;
+    s = 0.04500000178813934f;
+    s = 0.04399999976158142f;
+    s = 0.07199999690055847f;
+    s = 0.09700000286102295f;
+    s = -0.014999999664723873f;
+    s = 0.11400000005960464f;
+    s = 0.3109999895095825f;
+    s = 0.039000000804662704f;
+    s = -0.22100000083446503f;
+    s = 0.5379999876022339f;
+    s = 0.08100000023841858f;
+    s = -0.4699999988079071f;
+    s = 0.08399999886751175f;
+    s = 0.10499999672174454f;
+    s = 0.03099999949336052f;
+    s = 0.10599999874830246f;
+    s = -0.03099999949336052f;
+}
+static const u32 fzgx_pool_table33[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep33(void) { const u32 *volatile cp; cp = fzgx_pool_table33; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime34(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.76;
+    s = 0.04699999839067459f;
+    s = 0.1080000028014183f;
+    s = 0.0860000029206276f;
+    s = 0.06800000369548798f;
+    s = 0.003000000026077032f;
+    s = 0.0035000001080334187f;
+    s = 0.004100000020116568f;
+}
+static const u32 fzgx_pool_table41[34] = {0x00000000, 0x00000000, 0x00000000, 0x3F3AC2B2, 0x58BF258C, 0x3F4AC2B2, 0x58BF258C, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x3B6BEDFA, 0x3DFDF3B6, 0x3BFDC161, 0x3DB43958, 0x3D83126F, 0x3BE1BD1E, 0x3DA9FBE7, 0x3C83126F, 0x3BC75C4B, 0x3D9FBE77, 0x3D178D50, 0x00000000, 0x00000000, 0x00000000, 0xBDF5C28F, 0x00000000, 0x00000000, 0x00000000, 0x41880000, 0x40C00000, 0xBF333333};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep41(void) { const u32 *volatile cp; cp = fzgx_pool_table41; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime42(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.8999999761581421f;
+}
+#pragma section code_type ".text"
+
+
+typedef struct RopeNode {
+    u8 flags;
+    u8 pad_1;
+    u8 linkCount;
+    u8 pad_3;
+    u16 links[6];
+    Vec3 pos;
+    Vec3 prev;
+    Vec3 local;
+    Vec3 vel;
+    f32 mass;
+} RopeNode;
+
+typedef struct RopeLink {
+    RopeNode *a;
+    RopeNode *b;
+    f32 length;
+} RopeLink;
+
+typedef struct RopeModel {
+    u8 pad_0[0x88];
+    Vec3 mtx;
+    u8 pad_94[0x18C - 0x94];
+} RopeModel;
+
+typedef struct RopeModelList {
+    u8 pad_0[0x8];
+    RopeModel *models;
+} RopeModelList;
+
+typedef struct RopeOwner {
+    u8 pad_0[0x150];
+    RopeModelList *list;
+} RopeOwner;
+
+typedef struct Rope {
+    u8 flags;
+    u8 pad_1[0x7];
+    u32 kind;
+    RopeOwner *owner;
+    void *skin;
+    u8 pad_14[0x4];
+    u32 count;
+    u32 linkCount;
+    u32 count2;
+    RopeNode *nodes;
+    RopeLink *links;
+    RopeNode *nodes2;
+} Rope;
+
+typedef struct SkinMtx {
+    Vec3 v;
+    u8 pad_C[0x34];
+} SkinMtx;
+
+extern void *fn_80077B14(void *);
+extern u8 *fn_80083970(u8 *, const u8 *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006E1B0(void *, void *);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_8006E250(void *, void *);
+
+#define ROPE_MODELS(r) ((r)->owner->list->models)
+#define ROPE_INDEX(r) (fzgx_obj_lbl_1_data_3FFBC[(r)->kind])
+
+/* Hand each node's position to fn_8006E250 once per linked skin entry. */
+static inline void rope_skin(Rope *rope, SkinMtx *skin) {
+    u32 i;
+    s32 k;
+    RopeNode *n;
+
+    for (i = 0, n = rope->nodes; i < rope->count; i++, n++) {
+        for (k = 0; k < n->linkCount; k++) {
+            fn_8006E250(&n->pos, &skin[n->links[k]].v);
+        }
+    }
+}
+
+void fn_1_117D5C(Rope *rope) {
+    Vec3 d;
+    Vec3 *dp = &d;
+    Vec3 b2;
+    Vec3 tmp;
+    f32 len;
+    RopeModel *model4;
+    u32 i5;
+    u32 i4;
+    u32 i2;
+    u32 i3;
+    u32 i9;
+    RopeNode *n4;
+    RopeModel *model8;
+    SkinMtx *skin;
+    u32 i7;
+    RopeModel *model7;
+    RopeNode *p;
+    RopeNode *n5;
+    RopeNode *n2;
+    u32 j6;
+    RopeNode *first;
+    u32 i8;
+    u32 k8;
+    RopeNode *n7;
+    u32 k6;
+    RopeNode *n9;
+    RopeNode *b;
+    u32 j8;
+    RopeNode *a;
+    RopeNode *n3;
+    RopeNode *n1;
+    RopeNode *n8;
+    RopeModel *model1;
+    RopeLink *l;
+    u32 i1;
+    f32 inv;
+    f32 r;
+    f32 wa;
+    f32 wb;
+    f32 sa;
+    f32 sb;
+    f32 scale;
+    f32 dy;
+    f32 dx;
+    f32 dz;
+
+    if (rope != NULL && rope->skin != NULL) {
+        fn_80077B14(rope->skin);
+        fn_80083970((u8 *)fzgx_obj_lbl_1_data_3FCAC[rope->kind], fzgx_obj_lbl_1_data_3F9CC);
+        if (rope->flags & 2) {
+            rope->flags &= ~2;
+            model1 = &ROPE_MODELS(rope)[ROPE_INDEX(rope)];
+            for (i1 = 0, n1 = rope->nodes; i1 < rope->count; i1++, n1++) {
+                lbl_8006DBAC(&model1->mtx);
+                lbl_8006E1B0(&n1->local, &n1->pos);
+            }
+            for (i2 = 0, n2 = rope->nodes2; i2 < rope->count2; i2++, n2++) {
+                lbl_8006DBAC(&model1->mtx);
+                lbl_8006E1B0(&n2->local, &n2->pos);
+            }
+        }
+
+        for (i3 = 0, n3 = rope->nodes2; i3 < rope->count2; i3++, n3++) {
+            if (!(n3->flags & 1)) {
+                n3->prev = n3->pos;
+                n3->pos.x += n3->vel.x;
+                n3->pos.y += n3->vel.y;
+                n3->pos.z += n3->vel.z;
+                n3->pos.y = n3->pos.y - 0.0013611111376020642;
+                n3->vel.y -= 0.0027222223579883575f;
+            }
+        }
+
+        model4 = &ROPE_MODELS(rope)[ROPE_INDEX(rope)];
+        for (i4 = 0, n4 = rope->nodes; i4 < rope->count; i4++, n4++) {
+            if (n4->flags & 1) {
+                lbl_8006DBAC(&model4->mtx);
+                lbl_8006E1B0(&n4->local, &n4->pos);
+            }
+        }
+        for (i5 = 0, n5 = rope->nodes2; i5 < rope->count2; i5++, n5++) {
+            if (n5->flags & 1) {
+                lbl_8006DBAC(&model4->mtx);
+                lbl_8006E1B0(&n5->local, &n5->pos);
+            }
+        }
+
+        for (k6 = 0; k6 < 4; k6++) {
+            for (j6 = 0, l = rope->links; j6 < rope->linkCount; j6++, l++) {
+                a = l->a;
+                b = l->b;
+                if (a != NULL && b != NULL) {
+                    dx = a->pos.x - b->pos.x;
+                    dy = a->pos.y - b->pos.y;
+                    dz = a->pos.z - b->pos.z;
+                    len = mathutil_sum_of_sq_3(dx, dy, dz);
+                    dp->x = dx;
+                    dp->y = dy;
+                    dp->z = dz;
+                    if (len - 0.0001f > l->length) {
+                        inv = lbl_8006D118(len, &len);
+                        r = lbl_8006D0B4(l->length);
+                        len = inv * (len - r);
+                        dp->x *= len;
+                        dp->y *= len;
+                        dp->z *= len;
+                        wa = a->mass;
+                        wb = b->mass;
+                        r = 1.0f / (wa + wb);
+                        sa = wa * r;
+                        sb = wb * r;
+                        a->pos.x -= (f32)(dp->x * sa);
+                        a->pos.y -= (f32)(dp->y * sa);
+                        a->pos.z -= (f32)(dp->z * sa);
+                        b->pos.x += (f32)(dp->x * sb);
+                        b->pos.y += (f32)(dp->y * sb);
+                        b->pos.z += (f32)(dp->z * sb);
+                    }
+                    if (len - 0.001f < l->length) {
+                        f32 dy;
+                        f32 dx;
+                        f32 dz;
+                        if (a->pos.y < 0.0f) {
+                            a->pos.y = 1e-05f;
+                        }
+                        if (b->pos.y < 0.0f) {
+                            b->pos.y = 1e-05f;
+                        }
+                        dx = a->pos.x - b->pos.x;
+                        dy = a->pos.y - b->pos.y;
+                        dz = a->pos.z - b->pos.z;
+                        len = mathutil_sum_of_sq_3(dx, dy, dz);
+                        dp->x = dx;
+                        dp->y = dy;
+                        dp->z = dz;
+                        inv = lbl_8006D118(len, &len);
+                        r = lbl_8006D0B4(l->length);
+                        len = inv * (len - r);
+                        dp->x *= len;
+                        dp->y *= len;
+                        dp->z *= len;
+                        wa = a->mass;
+                        wb = b->mass;
+                        r = 1.0f / (wa + wb);
+                        sa = wa * r;
+                        sb = wb * r;
+                        a->pos.x -= (f32)(dp->x * sa);
+                        a->pos.y -= (f32)(dp->y * sa);
+                        a->pos.z -= (f32)(dp->z * sa);
+                        b->pos.x += (f32)(dp->x * sb);
+                        b->pos.y += (f32)(dp->y * sb);
+                        b->pos.z += (f32)(dp->z * sb);
+                    }
+                }
+            }
+        }
+
+        model7 = &ROPE_MODELS(rope)[ROPE_INDEX(rope)];
+        for (i7 = 0, n7 = rope->nodes2; i7 < rope->count2; i7++, n7++) {
+            if (!(n7->flags & 1)) {
+                lbl_8006DBAC(&model7->mtx);
+                lbl_8006E1B0(&n7->local, &tmp);
+                scale = (f32)i7 / (f32)rope->count2;
+                scale = 1.0f - scale;
+                b2.x = (tmp.x - n7->pos.x) * (0.2f * scale * (1.0f + n7->mass));
+                b2.y = (tmp.y - n7->pos.y) * (0.2f * scale * (1.0f + n7->mass));
+                b2.z = (tmp.z - n7->pos.z) * (0.2f * scale * (1.0f + n7->mass));
+                n7->pos.x += b2.x;
+                n7->pos.y += b2.y;
+                n7->pos.z += b2.z;
+            }
+        }
+
+        model8 = &ROPE_MODELS(rope)[ROPE_INDEX(rope)];
+        first = rope->nodes;
+        for (i8 = 0; i8 < rope->count; i8++, first++) {
+            if (!(first->flags & 1)) {
+                break;
+            }
+        }
+        n8 = rope->nodes2;
+        n8++;
+        for (k8 = 0; k8 < 14; k8++, first += 6, n8++) {
+            lbl_8006DBAC(&model8->mtx);
+            lbl_8006E1B0(&n8->local, &b2);
+            dp->x = n8->pos.x - b2.x;
+            dp->y = n8->pos.y - b2.y;
+            dp->z = n8->pos.z - b2.z;
+            for (j8 = 0, p = first; j8 < 6; j8++, p++) {
+                lbl_8006DBAC(&model8->mtx);
+                lbl_8006E1B0(&p->local, &b2);
+                p->pos.x = b2.x + dp->x;
+                p->pos.y = b2.y + dp->y;
+                p->pos.z = b2.z + dp->z;
+            }
+        }
+
+        for (i9 = 0, n9 = rope->nodes2; i9 < rope->count2; i9++, n9++) {
+            n9->vel.x = n9->pos.x - n9->prev.x;
+            n9->vel.y = n9->pos.y - n9->prev.y;
+            n9->vel.z = n9->pos.z - n9->prev.z;
+            n9->vel.x *= 0.9f;
+            n9->vel.z *= 0.9f;
+            if (n9->vel.y > 0.0f) {
+                n9->vel.y *= 0.8f;
+            }
+        }
+
+        skin = fn_80077B14(rope->skin);
+        lbl_8006DBAC(&ROPE_MODELS(rope)[ROPE_INDEX(rope)].mtx);
+        rope_skin(rope, skin);
+    }
+}
+/* fzgx:end fn_1_117D5C */
+
 /* fzgx:begin fn_1_1188CC noprologue */
 #include "types.h"
 #include "types.h"

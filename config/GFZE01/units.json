@@ -42086,6 +42086,28 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_117D5C.c",
+    "symbols": [
+      "fn_1_117D5C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/accessory.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_7AB8",
+      "@69": "lbl_1_rodata_7B58",
+      "@49": "lbl_1_rodata_7B20",
+      "@45": "lbl_1_rodata_7B08",
+      "...data.0": "lbl_1_data_3F510",
+      "fzgx_obj_lbl_1_data_3F510": "lbl_1_data_3F510",
+      "fzgx_obj_lbl_1_data_3F9CC": "lbl_1_data_3F9CC",
+      "fzgx_obj_lbl_1_data_3FCAC": "lbl_1_data_3FCAC",
+      "fzgx_obj_lbl_1_data_3FFBC": "lbl_1_data_3FFBC"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_1188CC.c",
     "symbols": [
       "fn_1_1188CC"
