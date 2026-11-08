@@ -47150,6 +47150,21 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/bg_san/fn_1_D9224.c",
+    "symbols": [
+      "fn_1_D9224"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_san.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_6490",
+      "@12": "lbl_1_rodata_64A0"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/bg_san/fn_1_D9D8C.c",
     "symbols": [
       "fn_1_D9D8C"
