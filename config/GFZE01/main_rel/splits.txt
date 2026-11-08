@@ -16510,3 +16510,6 @@ rel/main_rel/accessory/fn_1_10976C.c:
 
 rel/main_rel/live_camera/fn_1_10AF0.c:
 	.text       start:0x00010AF0 end:0x0001138C align:4
+
+rel/main_rel/bg_lig/fn_1_D7EF4.c:
+	.text       start:0x000D7EF4 end:0x000D8388 align:4

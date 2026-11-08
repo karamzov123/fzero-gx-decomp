@@ -1605,6 +1605,193 @@ void fn_1_D7C44(LigEvt *arg0) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_D7C44 */
 
+/* fzgx:begin fn_1_D7EF4 noprologue */
+#include "types.h"
+#include "game/vec3.h"
+#include "mathutil_vec_cross_prod.h"
+
+typedef struct {
+    Vec3 pos;
+    Vec3 vel;
+    Vec3 scale;
+    f32 value;
+    s16 phase;
+    s16 step;
+    s16 count;
+    u8 pad2e[0x2];
+} fn_1_D7A10_LigEntry;
+
+extern u32 lbl_801A63C0;
+extern void *lbl_801A6D00;
+extern void fn_1_681C(u8, Vec3 *);
+extern void fn_1_6898(u8, Vec3 *);
+extern void fn_1_6914(u8, Vec3 *);
+extern void fn_1_6990(u8, Vec3 *);
+extern s16 camera_get_mode(void);
+extern f32 fn_1_8652C(s32);
+extern void fn_1_8636C(s32, void *);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern f32 fn_1_A71AC(void);
+/* SMB1 mathutil_mtxA_tf_vec / mathutil_vec_normalize_len (DOL mathutil asm) */
+extern void lbl_8006E1C0(Vec3 *src, Vec3 *dst);
+extern void lbl_8006D668(Vec3 *v);
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[4] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 100.0f;
+    s = 3.0f;
+}
+static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.7;
+    d = 0.3;
+    s = 32767.0f;
+    s = 235.0f;
+    s = 80.0f;
+    s = 30.0f;
+    d = 512.0;
+    d = 0.5;
+    d = 300.0;
+    d = 17.0;
+    s = 3276.800048828125f;
+}
+static const u32 fzgx_pool_table5[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    d = 0.98;
+    s = 0.07999999821186066f;
+}
+static const u32 fzgx_pool_table7[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.99;
+    d = 0.02;
+    s = 400.0f;
+    s = 0.7071067690849304f;
+    s = 1.0f;
+}
+static const u32 fzgx_pool_table9[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep9(void) { const u32 *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 2.0;
+    d = 4503599627370496.0;
+}
+
+static const u32 fzgx_pool_table11[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep11(void) { const u32 *volatile cp; cp = fzgx_pool_table11; }  /* fzgx-allow: S2 pool primer sink */
+static const Vec3 lig_down = {0.0f, 0.0f, -1.0f};
+__declspec(section ".fzgxpool") static void fzgx_pool_keep11b(void) { const Vec3 *volatile cp; cp = &lig_down; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime12(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.5f;
+    s = 0.5f;
+    s = 10.0f;
+    s = 5.0f;
+    s = 0.6000000238418579f;
+    s = 170.0f;
+    s = 120.0f;
+    s = 32.0f;
+    s = 90.0f;
+    s = 0.4000000059604645f;
+    s = 768.0f;
+}
+#pragma section code_type ".text"
+
+#define LIG_CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+
+static inline s32 rand15(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+// A rand15() value as a float in [-0.5, 0.5].
+static inline f32 lig_randf(s32 r) {
+    return (f32)r / 32767.0f - 0.5f;
+}
+
+// out = base + dir * len
+static inline void lig_offset(Vec3 *out, Vec3 *base, Vec3 *dir, f32 len) {
+    out->x = base->x + (f32)(dir->x * len);
+    out->y = base->y + (f32)(dir->y * len);
+    out->z = base->z + (f32)(dir->z * len);
+}
+
+// max scaled down by t
+static inline f32 lig_fade(f32 t, f32 max) {
+    return max - (f32)(t * max);
+}
+
+// Respawns a lighting entry at a random point in front of the camera.
+void fn_1_D7EF4(fn_1_D7A10_LigEntry *e, u32 index) {
+    Vec3 eye;
+    Vec3 at;
+    Vec3 target;
+    Vec3 dir;
+    Vec3 up;
+    Vec3 side;
+    Vec3 pos;
+    f32 a;
+    f32 b;
+    f32 c;
+    f32 d;
+    s32 mode;
+    f32 scale;
+    f32 base;
+    f32 dist;
+    f32 t;
+    f32 s;
+    f32 k;
+    s32 r;
+
+    fn_1_681C(index, &eye);
+    fn_1_6898(index, &at);
+    fn_1_6914(index, &target);
+    fn_1_6990(index, &up);
+    mode = camera_get_mode();
+    if (mode < 0) {
+        return;
+    }
+    scale = fn_1_8652C(mode);
+    dir = lig_down;
+    fn_1_8636C(mode, lbl_801A6D00);
+    lbl_8006E1C0(&dir, &dir);
+    lbl_8006D668(&dir);
+    fn_1_A714C(&a, &b, &c, &d);
+    base = scale / 10.0f;
+    pos = eye;
+    t = (f32)(1.5f * ((f32)rand15() / 32767.0f)) - 0.5f;
+    r = rand15();
+    dist = base + (c + (f32)(t * (100.0f - c)));
+    lig_offset(&pos, &pos, &dir, dist);
+    s = (dist / 10.0f) * fn_1_A71AC() * lig_randf(r);
+    r = rand15();
+    lig_offset(&pos, &pos, &up, s);
+    mathutil_vec_cross_prod(&dir, &up, &side);
+    s = b * (dist * fn_1_A71AC()) * lig_randf(r);
+    lig_offset(&pos, &pos, &side, s);
+    pos.x += 5.0f;
+    e->pos = pos;
+    k = LIG_CLAMP(lig_fade(t, 1.0f), 0.0f, 0.6f);
+    e->scale.x = 170.0f * k;
+    e->scale.y = 120.0f * k;
+    e->scale.z = 32.0f * k;
+    e->value = (90.0f + base) * (0.6f + (f32)(0.4f * ((f32)rand15() / 32767.0f)));
+    e->phase = rand15();
+    e->step = 768.0f * lig_randf(rand15());
+    e->count = 15;
+}
+/* fzgx:end fn_1_D7EF4 */
+
 /* fzgx:begin fn_1_D8388 */
 extern u32 fn_1_58C4(void);
 
