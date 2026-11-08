@@ -23405,6 +23405,26 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8000659C.c",
+    "symbols": [
+      "fn_8000659C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "@128": "jumptable_8012208C",
+      "@123": "lbl_801A6ED0",
+      "@124": "lbl_801A6ED8",
+      "@130": "lbl_801A6EF0",
+      "@125": "lbl_801A6EE0",
+      "@126": "lbl_801A6EB0",
+      "@122": "lbl_801A6EB8",
+      "@127": "lbl_801A6EE8"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_800068F4.c",
     "symbols": [
       "fn_800068F4"
