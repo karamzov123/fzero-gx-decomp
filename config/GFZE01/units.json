@@ -110246,6 +110246,23 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_14CEB8.c",
+    "symbols": [
+      "fn_1_14CEB8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sel_static_disp.c",
+    "pool": {
+      "...data.0": "lbl_1_data_42878",
+      "fzgx_obj_lbl_1_data_42878": "lbl_1_data_42878",
+      "fzgx_obj_lbl_1_data_42CC8": "lbl_1_data_42CC8",
+      "lbl_1_data_43C28__fzgx_offset_8": "lbl_1_data_43C28+0x8"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sel_static_disp/fn_1_14D5CC.c",
     "symbols": [
       "fn_1_14D5CC"

@@ -17708,6 +17708,191 @@ void fn_1_14CAC8(void) {
 }
 /* fzgx:end fn_1_14CAC8 */
 
+/* fzgx:begin fn_1_14CEB8 noprologue */
+#include "types.h"
+#include "rel/main_rel/sel_static_disp.h"
+
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u8 *fn_80083970(const u8 *str, const u8 *needle);
+extern u8 lbl_1_bss_8E598[148];
+extern u8 lbl_1_bss_8E62C[132];
+extern const u8 lbl_1_rodata_9828[172];
+extern const u8 lbl_1_rodata_98D4[208];
+
+/* the retail TU's .data from lbl_1_data_42878, the section base this function addresses: the symbol page of
+ * the name entry grid (42CC8), the ASCII NG words (43410) and the Shift-JIS NG words (43C30); the
+ * fzgx_pool_gap_ objects span the retail objects in between */
+char fzgx_obj_lbl_1_data_42878[4] = "NON";
+u8 fzgx_pool_gap_4287C[0x44C] = {1};
+u8 fzgx_obj_lbl_1_data_42CC8[0x50] = {1};
+u8 fzgx_pool_gap_42D18[0x6F8] = {1};
+u8 *lbl_1_data_4340C__fzgx_offset_4[130] = {0};
+u8 fzgx_pool_gap_43618[0x618] = {1};
+u8 *lbl_1_data_43C28__fzgx_offset_8[145] = {0};
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_data_prime(void) {
+    void *volatile p;  /* fzgx-allow: S2 pool primer sink */
+    p = fzgx_obj_lbl_1_data_42878;
+    p = fzgx_pool_gap_4287C;
+    p = fzgx_obj_lbl_1_data_42CC8;
+    p = fzgx_pool_gap_42D18;
+    p = lbl_1_data_4340C__fzgx_offset_4;
+    p = fzgx_pool_gap_43618;
+    p = lbl_1_data_43C28__fzgx_offset_8;
+}
+#pragma section code_type ".text"
+
+/* clears *flag unless the Shift-JIS character at s is the full-width form of the ASCII character c */
+static inline void filter_ascii(u8 *flag, const char *s, u8 c) {
+    u8 upper;
+    u8 lower;
+
+    if (c < 0x40) {
+        upper = lower = c + 0x1F;  /* digits */
+    } else {
+        upper = c - 1;  /* lower-case letter: full-width upper case */
+        lower = c + 0x20;
+    }
+    if (!((u8)s[0] == 0x82 && upper == (u8)s[1]) && !((u8)s[0] == 0x82 && lower == (u8)s[1])) {
+        *flag = 0;
+    }
+}
+
+/* Name entry NG-word filter: name holds up to eight Shift-JIS characters. Returns 1 (and replaces every
+ * character with a full-width asterisk) when the name spells an NG word, else 0. */
+s32 fn_1_14CEB8(u8 *name) {
+    u8 buf[3];
+    s32 found = 0;
+    s32 symbols_only = 1;
+    u32 i;
+    u32 j;
+    u32 k;
+    u8 *p;
+    u8 *kana;
+    s32 known;
+
+    /* skip leading full-width spaces; an all-space name is cleared */
+    for (i = 0; i < 8; i++) {
+        if (name[i * 2] != 0x81 || name[i * 2 + 1] != 0x40) {
+            break;
+        }
+    }
+    if (i == 8) {
+        name[0] = 0;
+        return 0;
+    }
+    /* a lone full-width X */
+    if (name[i * 2] == 0x82 && (name[i * 2 + 1] == 0x77 || name[i * 2 + 1] == 0x98)) {
+        found = 1;
+        i++;
+        while (name[i * 2] != 0) {
+            if (name[i * 2] == 0x81 && name[i * 2 + 1] == 0x40) {
+                i++;
+            } else {
+                found = 0;
+                break;
+            }
+        }
+        if (found) {
+            goto mark; /* NG word found: overwrite the whole name */
+        }
+    }
+
+    fn_80008BEC(lbl_1_bss_8E598, 1, 0x91);
+    fn_80008BEC(lbl_1_bss_8E62C, 1, 0x82);
+    buf[2] = 0;
+    j = 0;
+    for (i = 0; i < 8; i++) {
+        p = &name[i * 2];
+        if (p[0] == 0) {
+            break;
+        }
+        if (p[0] == 0x81 && p[1] == 0x40) {
+            continue;
+        }
+        known = 0;
+        for (k = 0; k < 36; k++) {
+            if (p[0] == fzgx_obj_lbl_1_data_42CC8[k * 2] && p[1] == fzgx_obj_lbl_1_data_42CC8[k * 2 + 1]) {
+                known = 1;
+                break;
+            }
+        }
+        if (known) {
+            continue;
+        }
+        symbols_only = 0;
+        /* j-th character of every Shift-JIS NG word still in the running; hiragana also match katakana */
+        for (k = 0; k < 145; k++) {
+            if (lbl_1_bss_8E598[k] == 0) {
+                continue;
+            }
+            buf[0] = lbl_1_data_43C28__fzgx_offset_8[k][j * 2];
+            buf[1] = lbl_1_data_43C28__fzgx_offset_8[k][j * 2 + 1];
+            kana = fn_80083970(lbl_1_rodata_9828, buf);
+            if (kana == NULL) {
+                if (!(p[0] == lbl_1_data_43C28__fzgx_offset_8[k][j * 2] && p[1] == lbl_1_data_43C28__fzgx_offset_8[k][j * 2 + 1])) {
+                    lbl_1_bss_8E598[k] = 0;
+                }
+            } else {
+                kana = kana + (lbl_1_rodata_98D4 - lbl_1_rodata_9828);
+                if (!(p[0] == lbl_1_data_43C28__fzgx_offset_8[k][j * 2] && p[1] == lbl_1_data_43C28__fzgx_offset_8[k][j * 2 + 1]) &&
+                    !(kana[0] == p[0] && kana[1] == p[1])) {
+                    lbl_1_bss_8E598[k] = 0;
+                }
+            }
+            if (lbl_1_data_43C28__fzgx_offset_8[k][j * 2 + 2] == 0 && lbl_1_bss_8E598[k] != 0) {
+                found = 1;
+                goto mark; /* NG word found: overwrite the whole name */
+            }
+        }
+        /* j-th character of every ASCII NG word still in the running */
+        for (k = 0; k < 130; k++) {
+            if (lbl_1_bss_8E62C[k] == 0) {
+                continue;
+            }
+            filter_ascii(&lbl_1_bss_8E62C[k], (char *)p, lbl_1_data_4340C__fzgx_offset_4[k][j]);
+            if (lbl_1_data_4340C__fzgx_offset_4[k][j + 1] == 0 && lbl_1_bss_8E62C[k] != 0) {
+                found = 1;
+                goto mark; /* NG word found: overwrite the whole name */
+            }
+        }
+        j++;
+    }
+    if (symbols_only) {
+        return 0;
+    }
+    /* a full-length name that is a prefix of an NG word */
+    if (j == 8) {
+        for (k = 0; k < 145; k++) {
+            if (lbl_1_bss_8E598[k] != 0) {
+                found = 1;
+                goto mark; /* NG word found: overwrite the whole name */
+            }
+        }
+        for (k = 0; k < 130; k++) {
+            if (lbl_1_bss_8E62C[k] != 0) {
+                found = 1;
+                goto mark; /* NG word found: overwrite the whole name */
+            }
+        }
+    }
+
+mark:
+    if (found) {
+        for (i = 0; i < 8; i++) {
+            if (name[i * 2] == 0) {
+                break;
+            }
+            name[i * 2] = 0x81;
+            name[i * 2 + 1] = 0x96;
+        }
+        return 1;
+    }
+    return 0;
+}
+/* fzgx:end fn_1_14CEB8 */
+
 /* fzgx:begin fn_1_14D5CC */
 // Keep sampling candidates until one satisfies the required and forbidden flags.
 s16 fn_1_14D5CC(s16 arg0, u32 required_mask, u32 forbidden_mask) {
