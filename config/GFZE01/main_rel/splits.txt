@@ -16477,3 +16477,6 @@ rel/main_rel/sel_static_disp/fn_1_13E080.c:
 
 rel/main_rel/memcard/fn_1_BB974.c:
 	.text       start:0x000BB974 end:0x000BC29C align:4
+
+rel/main_rel/burner/fn_1_98F28.c:
+	.text       start:0x00098F28 end:0x0009A0A4 align:4

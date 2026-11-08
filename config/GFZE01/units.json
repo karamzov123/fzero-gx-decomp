@@ -48861,6 +48861,21 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/burner/fn_1_98F28.c",
+    "symbols": [
+      "fn_1_98F28"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/burner.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_4100",
+      "@56": "lbl_1_rodata_4104"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/burner/fn_1_9A0A4.c",
     "symbols": [
       "fn_1_9A0A4"
