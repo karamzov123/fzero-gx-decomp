@@ -120569,8 +120569,7 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "pool": {}
+    "extra_cflags": []
   },
   {
     "module": "movie_module",
