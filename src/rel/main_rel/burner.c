@@ -2336,6 +2336,561 @@ void fn_1_98E18(fn_1_98E18_Burner *b) {
 }
 /* fzgx:end fn_1_98E18 */
 
+/* fzgx:begin fn_1_98F28 */
+#include "psvec.h"
+#include "dolphin/hw_regs.h"
+#include "dolphin/os/OSFastCast.h"
+#include "lc_mtx.h"
+#include "mathutil_mtxA_set_translate.h"
+
+typedef Vec3 fn_1_98F28_Vec;
+
+typedef struct {
+    u8 r, g, b, a;
+} fn_1_98F28_Color;
+
+typedef struct {
+    fn_1_98F28_Vec pos;
+    f32 size;
+    s16 rot;
+    u16 flags;
+    fn_1_98F28_Color color;
+} fn_1_98F28_Sprite;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s16 cam;
+    s16 kind;
+} fn_1_98F28_Owner;
+
+typedef struct {
+    u8 pad_0[0x8];
+    fn_1_98F28_Vec pos;
+    u8 pad_14[0x10];
+    void *tex;
+} fn_1_98F28_Emitter;
+
+typedef struct {
+    u8 pad_0[0xC];
+    u8 rot[0x18];
+    f32 scale;
+    u8 pad_28[0x1C];
+    s32 flags;
+    fn_1_98F28_Owner *owner;
+    fn_1_98F28_Vec dir;
+    fn_1_98F28_Vec pos;
+    u8 pad_64[0xC];
+    s16 angle;
+    f32 speed;
+    fn_1_98F28_Vec trail[4][21];
+    fn_1_98F28_Vec color;
+    u8 mtx[0x30];
+    f32 bright;
+    s32 boost;
+} fn_1_98F28_Burner;
+
+typedef struct {
+    u8 pad_0[0x8];
+    fn_1_98F28_Burner *burner;
+} fn_1_98F28_Event;
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 14.0f;
+    s = 0.0f;
+    s = 900.0f;
+    s = 2.0f;
+    s = 10.0f;
+}
+static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.0;
+    d = 0.8;
+    d = 0.1;
+    s = 0.003921568859368563f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.0;
+    s = 0.15000000596046448f;
+    s = 0.10000000149011612f;
+    s = 0.10999999940395355f;
+    s = 0.11999999731779099f;
+    d = 4503601774854144.0;
+    s = 0.5f;
+    s = 1.7000000476837158f;
+    s = 1.0f;
+    s = 40.0f;
+    s = 5.0f;
+    s = 0.05000000074505806f;
+    s = 0.800000011920929f;
+    s = 1.6000001430511475f;
+    s = 0.6000000238418579f;
+    s = 0.7071067690849304f;
+    s = -1.8000000715255737f;
+    s = 1.2000000476837158f;
+    s = 0.23999999463558197f;
+    s = 0.6399999856948853f;
+    s = -0.20000000298023224f;
+    s = -2.0999999046325684f;
+    s = 32768.0f;
+    s = 24576.0f;
+    s = 53248.0f;
+    s = 40960.0f;
+    s = 0.75f;
+    s = 0.11313708871603012f;
+    s = 80.0f;
+    s = 9.999999046325684f;
+    s = 0.8999999761581421f;
+    s = 0.20000000298023224f;
+    s = 32767.0f;
+    s = 4.0f;
+    s = 0.25f;
+    s = 0.4000000059604645f;
+    s = 0.949999988079071f;
+}
+static const u32 fzgx_pool_table6[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.05;
+    d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+
+extern f32 fn_1_9A0A8(void *);
+extern f32 fn_1_A71AC(void);
+extern f32 fn_800728A8(s32, s32, s32, s32);
+extern f32 lbl_8006D534(void *, void *);
+extern s16 camera_get_mode(void);
+extern s32 fn_1_54E34(void *arg0, f32 arg1);
+extern u32 fn_1_584AC(void);
+extern int fn_1_6EC0(u8);
+extern u32 fn_1_5910(void);
+extern u32 fn_1_58C4(void);
+extern void fn_1_9E608(s32, fn_1_98F28_Sprite *);
+extern void fn_1_9EA94(fn_1_98F28_Sprite *);
+extern void fn_1_6A0C(u8, u32);
+extern u32 fn_800720B0(u32);
+extern s32 lbl_8006D9D8(void *);
+extern void lbl_8006D7B0(s32);
+extern void lbl_8006DCA4(void);
+extern void *memset(void *dest, int value, u32 size);
+extern void fn_80072864(u32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_800735C8(s32, s32);
+extern void fn_80073620(s32, s32);
+extern void fn_80073678(u32);
+extern void fn_80073778(void *, s32);
+extern void fn_80073898(u32);
+extern void fn_80073C6C(s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_80074660(u32);
+extern void fn_80074788(u32);
+extern void fn_80074918(u8, s32, u8);
+extern void lbl_8006D758(void);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DF44(void);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E0A4(void *arg0);
+extern void lbl_8006E14C(f32);
+extern void lbl_8006E15C(f32, f32, f32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006E1C0(void *mtx, void *dst);
+extern u32 lbl_801A6D00;
+extern s32 lbl_1_bss_6EA0C;
+
+#define LC_MTX ((f32 *)LC_BASE)
+
+static inline void fn_1_98F28_near_clip(f32 z, f32 depth) {
+    if (z < -(depth + 0.1f)) {
+        lbl_8006DB74((void *)(lbl_801A6D00 + 0x60));
+        lbl_8006D758();
+        lbl_8006E14C((depth + z) / z);
+        lbl_8006DFC4((void *)(lbl_801A6D00 + 0x60));
+    }
+}
+
+static inline void fn_1_98F28_min(f32 *v, f32 hi) {
+    if (*v > hi) {
+        *v = hi;
+    }
+}
+
+static inline f32 fn_1_98F28_clamp(f32 v, f32 lo, f32 hi) {
+    return v < lo ? lo : (v > hi ? hi : v);
+}
+
+void fn_1_98F28(fn_1_98F28_Event *event) {
+    fn_1_98F28_Burner *b = event->burner;
+    s16 ang;
+    fn_1_98F28_Emitter *em;
+    fn_1_98F28_Owner *owner = b->owner;
+    s32 i;
+    fn_1_98F28_Vec pos;
+    fn_1_98F28_Vec dir;
+    fn_1_98F28_Vec fwd;
+    fn_1_98F28_Vec color;
+    f32 size;
+    f32 bright;
+    f32 speed;
+    f32 sz;
+    f32 t;
+    f32 fade;
+    f32 dist;
+    f32 z;
+    fn_1_98F28_Emitter *emit;
+
+    color = b->color;
+    bright = fn_1_9A0A8(owner);
+    if (1.0f == bright) {
+        if (b->bright > 0.0f) {
+            bright = b->bright;
+        }
+    }
+    size = b->scale;
+    if (b->speed > 1.0) {
+        size *= 1.0f + (b->speed - 1.0f) / 40.0f;
+    }
+    if (b->boost) {
+        size *= 1.0f + (f32)(b->boost * b->boost) / 900.0f / 5.0f;
+    }
+    fade = 1.0f - (f32)(0.05f * (b->flags & 1));
+    dist = fn_1_A71AC();
+    dir = b->dir;
+    lbl_8006DCA4();
+    lbl_8006E1C0(&dir, &fwd);
+    fn_80074788(0);
+    fn_80072864(0);
+    fn_800745A4(0, 1, 4, 60, 0, 125);
+    fn_800734A8(0, 0, 0, 255);
+    fn_80072AB0(0, 0, 0);
+    fn_800735C8(0, 12);
+    fn_80073620(0, 28);
+    fn_80073C6C(0);
+    fn_80072C24(0, 15, 14, 12, 15);
+    fn_80072D64(0, 0, 0, 0, 1, 0);
+    fn_80072CC4(0, 7, 6, 4, 7);
+    fn_80072E20(0, 0, 0, 0, 1, 0);
+    fn_80073678(1);
+    fn_80074660(1);
+    fn_80073898(0);
+    fn_80073C6C(0);
+    fn_80074918(1, 3, 0);
+    fn_800720B0(0);
+    fn_800728A8(1, 4, 1, 0);
+    if (fn_1_6EC0(fn_1_5910())) {
+        if (owner->cam == camera_get_mode()) {
+            fn_80074918(1, 7, 0);
+        }
+    }
+
+    emit = *(fn_1_98F28_Emitter **)(lbl_1_bss_38458->unk_8 + 0x88);
+    if (b->speed > 1.0f) {
+        lbl_8006DCA4();
+        lbl_8006DFC4(b->mtx);
+        lbl_8006E0A4(b->rot);
+        sz = size * ((0.8f + 1.6000001f / b->speed) * fade);
+        if (owner->kind == 4) {
+            sz *= 0.6f;
+        }
+        if (fn_1_54E34(&emit->pos, sz)) {
+            fn_1_98F28_Sprite p;
+            fn_1_98F28_Vec c;
+            fn_80073778(emit->tex, 0);
+            p.flags = 0;
+            p.pos = emit->pos;
+            p.size = 0.70710677f * sz;
+            p.rot = b->angle;
+            t = b->speed - 1.0f;
+            fn_1_98F28_min(&t, 1.0f);
+            c.x = bright * (color.x * t);
+            c.y = bright * (color.y * t);
+            c.z = bright * (color.z * t);
+            p.color.r = __OSf32tou8(c.x);
+            p.color.g = __OSf32tou8(c.y);
+            p.color.b = __OSf32tou8(c.z);
+            p.color.a = 255;
+            fn_1_9EA94(&p);
+        }
+    }
+
+    if ((1.0f + fwd.z) * b->speed > 0.0f) {
+        emit = *(fn_1_98F28_Emitter **)(lbl_1_bss_38458->unk_8 + 0x70);
+        lbl_8006D7B0(lbl_8006D9D8(&b->pos));
+        sz = (1.7f * fade) * size;
+        if (owner->kind == 4) {
+            sz *= 0.6f;
+        }
+        if (fn_1_54E34(&emit->pos, sz)) {
+            fn_1_98F28_Sprite p;
+            fn_1_98F28_Vec c;
+            z = LC_MTX[11];
+            psvec_set(&pos, z, LC_MTX[7], LC_MTX[3]);
+            fn_1_98F28_near_clip(z, 1.7f);
+            fn_80073778(emit->tex, 0);
+            p.flags = 0;
+            p.pos = emit->pos;
+            p.size = 0.70710677f * sz;
+            p.rot = 0;
+            t = b->speed;
+            fn_1_98F28_min(&t, 1.0f);
+            t = t * (0.5f * (1.0f + fwd.z));
+            c.x = bright * (color.x * t);
+            c.y = bright * (color.y * t);
+            c.z = bright * (color.z * t);
+            p.color.r = __OSf32tou8(c.x);
+            p.color.g = __OSf32tou8(c.y);
+            p.color.b = __OSf32tou8(c.z);
+            p.color.a = 255;
+            fn_1_9EA94(&p);
+        }
+    }
+
+    if (fwd.z > 0.0f) {
+        speed = b->speed;
+        if (speed > 1.2f) {
+            f32 ex = speed - 1.2f;
+            emit = *(fn_1_98F28_Emitter **)(lbl_1_bss_38458->unk_8 + 0xb8);
+            lbl_8006D7B0(lbl_8006D9D8(&b->pos));
+            sz = 0.24f + (f32)(0.64f * fwd.z);
+            psvec_set(&pos, LC_MTX[11], LC_MTX[7], LC_MTX[3]);
+            if (pos.z < 0.0f) {
+                sz = dist * (sz * (-0.2f * pos.z));
+                if (fn_1_54E34(&emit->pos, sz)) {
+                    fn_1_98F28_Sprite p;
+                    fn_1_98F28_Vec c;
+                    z = pos.z;
+                    fn_1_98F28_near_clip(z, 2.0f);
+                    fn_80073778(emit->tex, 0);
+                    p.flags = 0;
+                    p.pos = emit->pos;
+                    p.size = 0.70710677f * sz;
+                    t = (2.0f * ex) / (-0.2f * pos.z);
+                    fn_1_98F28_min(&t, 0.5f);
+                    t = t * fwd.z;
+                    t = t * (0.5f + (f32)(0.5f * (b->flags & 1)));
+                    c.x = bright * (color.x * t);
+                    c.y = bright * (color.y * t);
+                    c.z = bright * (color.z * t);
+                    p.color.r = __OSf32tou8(c.x);
+                    p.color.g = __OSf32tou8(c.y);
+                    p.color.b = __OSf32tou8(c.z);
+                    p.color.a = 255;
+                    lbl_8006E15C(1.0f, 0.6f, 1.0f);
+                    psvec_set(&pos, LC_MTX[11], LC_MTX[7], LC_MTX[3]);
+                    p.rot = ((f32)(32768.0f * pos.x) + (f32)(24576.0f * pos.y)) / pos.z;
+                    fn_1_9EA94(&p);
+                    p.rot = (s16)(((f32)(53248.0f * pos.x) + (f32)(40960.0f * pos.y)) / pos.z) + 0x6000;
+                    p.size *= 0.75f;
+                    fn_1_9EA94(&p);
+                }
+            }
+        }
+    }
+
+    {
+        fn_1_98F28_Sprite buf[21];
+        f32 fa;
+        f32 edge;
+        f32 g;
+
+        memset(buf, 0, 0x1e1);
+        lbl_8006DCA4();
+        lbl_8006E1B0(&b->pos, &pos);
+        edge = (f32)(1.0 - __fabs(lbl_8006D534(&pos, &fwd)));
+        fa = 0.11313709f * (10.0f + (f32)(80.0f * edge));
+        fa = -(fa * size / (pos.z * dist));
+        if (fa > 0.05f) {
+            fn_1_98F28_Color col;
+            fn_1_98F28_Vec c;
+            s32 n;
+            fn_1_98F28_Sprite *pp;
+            f32 rem;
+            f32 cy;
+            f32 cz;
+            f32 sz;
+
+            if (fa > 0.15f) {
+                g = 1.0f;
+            } else {
+                g = 9.999999f * (fa - 0.05f);
+            }
+            rem = b->speed;
+            cy = color.y;
+            cz = color.z;
+            sz = 0.11313709f * (1.0f + (f32)(0.9f * rem));
+            sz *= size;
+            em = *(fn_1_98F28_Emitter **)(lbl_1_bss_38458->unk_8 + 0x168);
+            c.x = bright * (color.x * g);
+            c.y = bright * (cy * g);
+            c.z = bright * (cz * g);
+            col.r = __OSf32tou8(c.x);
+            col.g = __OSf32tou8(c.y);
+            col.b = __OSf32tou8(c.z);
+            col.a = 255;
+            ang = b->angle;
+            pp = buf;
+            n = 0;
+            pos = b->pos;
+            fn_1_6A0C(fn_1_5910(), lbl_801A6D00);
+            mathutil_mtxA_set_translate(&b->pos);
+            lbl_8006DF44();
+            while (rem > 0.0f) {
+                lbl_8006E1B0(&pos, &b->trail[lbl_1_bss_6EA08][n]);
+                pp->pos = pos;
+                pp->pos.x += (f32)(0.2f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
+                pp->pos.y += (f32)(0.2f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
+                pp->pos.z += (f32)(0.2f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
+                pp->size = 0.70710677f * sz;
+                pp->rot = ang;
+                if (rem < 4.0f) {
+                                        c.x = bright * (g * (color.x * (rem / 4.0f)));
+                    c.y = bright * (g * (cy * (rem / 4.0f)));
+                    c.z = bright * (g * (cz * (rem / 4.0f)));
+                    pp->color.r = __OSf32tou8(c.x);
+                    pp->color.g = __OSf32tou8(c.y);
+                    pp->color.b = __OSf32tou8(c.z);
+                    pp->color.a = 255;
+                } else {
+                    pp->color = col;
+                }
+                rem -= 0.5f;
+                pp++;
+                pos.x += (f32)(0.4f * (dir.x * sz));
+                pos.y += (f32)(0.4f * (dir.y * sz));
+                pos.z += (f32)(0.4f * (dir.z * sz));
+                n++;
+                ang += 0x2345;
+                sz *= 0.95f;
+            }
+            fn_80073778(em->tex, 0);
+            lbl_8006DCA4();
+            if (n > 0) {
+                fn_1_9E608(n, buf);
+            }
+        }
+    }
+
+    if (fn_1_58C4() < 2) {
+        if (owner->cam == camera_get_mode()) {
+            if (fn_1_6EC0(fn_1_5910())) {
+                if (lbl_1_bss_6EA0C == 0 && (s32)lbl_1_bss_6EA08 >= 3) {
+                    lbl_1_bss_6EA0C = 1;
+                }
+                if (lbl_1_bss_6EA0C != 0) {
+                    f32 g;
+                    f32 rem;
+                    f32 cy = color.y;
+                    f32 cz = color.z;
+
+                    for (i = 0; i < 4; i++) {
+                        fn_1_98F28_Sprite buf2[21];
+                        fn_1_98F28_Color col;
+                        fn_1_98F28_Vec c;
+                        s32 n;
+                        fn_1_98F28_Sprite *pp;
+                        s32 j;
+                        s32 age;
+                        f32 sz;
+
+                        memset(buf2, 0, 0x1e1);
+                        lbl_8006DCA4();
+                        lbl_8006E1B0(&b->pos, &pos);
+                        rem = b->speed;
+                        g = 1.0f;
+                        em = *(fn_1_98F28_Emitter **)(lbl_1_bss_38458->unk_8 + 0x168);
+                        sz = 0.11313709f * (1.0f + (f32)(0.9f * rem));
+            sz *= size;
+                        if (i < (s32)lbl_1_bss_6EA08) {
+                            age = i + 4;
+                            age -= (s32)lbl_1_bss_6EA08;
+                        } else {
+                            age = i - (s32)lbl_1_bss_6EA08;
+                        }
+                        g = g * (0.25f * (f32)age);
+                        c.x = bright * (color.x * g);
+                        c.y = bright * (cy * g);
+                        c.z = bright * (cz * g);
+                        col.r = __OSf32tou8(c.x);
+                        col.g = __OSf32tou8(c.y);
+                        col.b = __OSf32tou8(c.z);
+                        col.a = 255;
+                        ang = b->angle;
+                        pp = buf2;
+                        n = 0;
+                        pos = b->pos;
+                        fn_1_6A0C(fn_1_5910(), lbl_801A6D00);
+                        mathutil_mtxA_set_translate(&b->pos);
+                        for (j = 0; rem > 0.0f; rem -= 0.5f, j++) {
+                            fn_1_98F28_Vec *prev = &b->trail[lbl_1_bss_6EA08][j];
+                            fn_1_98F28_Vec *cur = &b->trail[i][j];
+                            f32 dz;
+                            f32 dy;
+                            f32 dx;
+                            f32 d2;
+                            dx = cur->x;
+                            dy = cur->y;
+                            dz = cur->z;
+                            dx -= prev->x;
+                            dy -= prev->y;
+                            dz -= prev->z;
+                            d2 = dx * dx;
+                            d2 += dy * dy;
+                            d2 += dz * dz;
+                            if (d2 < 0.05) {
+                                continue;
+                            }
+                            {
+                                lbl_8006E1B0(cur, pp);
+                                pp->pos.x += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
+                                pp->pos.y += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
+                                pp->pos.z += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
+                                pp->size = 0.70710677f * sz * fn_1_98F28_clamp(2.0f * d2, 0.1f, 1.0f);
+                                pp->rot = ang;
+                                if (rem < 4.0f) {
+                                                                        c.x = bright * (g * (color.x * (rem / 4.0f)));
+                                    c.y = bright * (g * (cy * (rem / 4.0f)));
+                                    c.z = bright * (g * (cz * (rem / 4.0f)));
+                                    pp->color.r = __OSf32tou8(c.x);
+                                    pp->color.g = __OSf32tou8(c.y);
+                                    pp->color.b = __OSf32tou8(c.z);
+                                    pp->color.a = 255;
+                                } else {
+                                    pp->color = col;
+                                }
+                                ang += 0x2345;
+                                n++;
+                                pos.x += (f32)(0.4f * (dir.x * sz));
+                                pos.y += (f32)(0.4f * (dir.y * sz));
+                                pos.z += (f32)(0.4f * (dir.z * sz));
+                                pp++;
+                                sz *= 0.95f;
+                            }
+                        }
+                        fn_80073778(em->tex, 0);
+                        lbl_8006DCA4();
+                        if (n > 0) {
+                            fn_1_9E608(n, buf2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_98F28 */
+
 /* fzgx:begin fn_1_9A0A4 */
 // fn_1_9A0A4: empty in retail (single blr).
 void fn_1_9A0A4(void) {
