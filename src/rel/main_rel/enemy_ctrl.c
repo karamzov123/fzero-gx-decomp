@@ -5332,6 +5332,84 @@ void fn_1_D0E74(void) {
 }
 /* fzgx:end fn_1_D0E74 */
 
+/* fzgx:begin fn_1_D0F60 */
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} GXColor;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer(volatile f64 *d, volatile f32 *f) {  /* fzgx-allow: S2 pool primer sinks */
+    *f = 480.0f;
+    *d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+
+extern void fn_1_A9868(void);
+extern u16 fn_1_A5DB0(void);
+extern void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color);
+extern void fn_1_A9B70(s16 x, s16 y, s16 w, s16 h, GXColor color);
+extern void fn_1_AA538(void);
+extern void fn_8003432C(u16 x, u16 y, u32 *color);
+
+/* Debug EFB magnifier: reads the (cols+1) x (rows+1) framebuffer pixels around (unk_4, unk_6)
+ * with GXPeekARGB (fn_8003432C) and draws each as a cell_w x cell_h square at (x0, y0), outlining
+ * the centre cell and the sampled area in white. Off-screen pixels are skipped. */
+void fn_1_D0F60(void) {
+    s32 cell_w;
+    s32 cell_h;
+    s32 i;
+    s32 j;
+    s32 x0;
+    s32 y0;
+    s32 cols;
+    s32 rows;
+    s32 hw;
+    s32 hh;
+    s32 y;
+    u32 argb;
+    GXColor c;
+
+    cols = lbl_1_data_3D648.unk_10;
+    rows = lbl_1_data_3D648.unk_12;
+    x0 = lbl_1_data_3D648.unk_16;
+    y0 = lbl_1_data_3D648.unk_18;
+    cell_w = lbl_1_data_3D648.unk_14;
+    cell_h = lbl_1_data_3D648.unk_14;
+    hw = cols / 2;
+    hh = rows / 2;
+    fn_1_A9868();
+    for (i = -hw; i <= hw; i++) {
+        for (j = -hh; j <= hh; j++) {
+            if (((lbl_1_data_3D648.unk_4 + i) > 639.0f ? 0 : (lbl_1_data_3D648.unk_4 + i) >= 0)
+                && ((y = lbl_1_data_3D648.unk_6 + j) > fn_1_A5DB0() - 1 ? 0 : y >= 0)) {
+                fn_8003432C(lbl_1_data_3D648.unk_4 + i, y, &argb);
+                c.a = (argb & 0xFF000000) >> 24;
+                c.r = (argb & 0xFF0000) >> 16;
+                c.g = (argb & 0xFF00) >> 8;
+                c.b = argb & 0xFF;
+                fn_1_A9FFC(x0 + i * cell_w + 1, y0 + j * cell_h + 1, cell_w - 1, cell_h - 1, c);
+                if (i == 0 && j == 0) {
+                    static const GXColor white = {0xFF, 0xFF, 0xFF, 0xFF};
+                    fn_1_A9B70(x0 - 1, y0 - 1, cell_w + 2, cell_h + 2, white);
+                }
+            }
+        }
+    }
+    {
+        static const GXColor white = {0xFF, 0xFF, 0xFF, 0xFF};
+        fn_1_A9B70(lbl_1_data_3D648.unk_4 - hw - 1,
+                   480.0f * (lbl_1_data_3D648.unk_6 - hh - 1) / fn_1_A5DB0(),
+                   cols + 2,
+                   480.0f * (rows + 2) / fn_1_A5DB0(),
+                   white);
+    }
+    fn_1_AA538();
+}
+/* fzgx:end fn_1_D0F60 */
+
 /* fzgx:begin fn_1_D123C */
 typedef struct {
     u32 flags;

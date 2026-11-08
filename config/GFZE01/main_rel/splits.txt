@@ -16522,3 +16522,6 @@ rel/main_rel/mdlload/fn_1_D550C.c:
 
 rel/main_rel/burner/fn_1_9A1E8.c:
 	.text       start:0x0009A1E8 end:0x0009A508 align:4
+
+rel/main_rel/enemy_ctrl/fn_1_D0F60.c:
+	.text       start:0x000D0F60 end:0x000D123C align:4

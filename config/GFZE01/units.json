@@ -90359,6 +90359,22 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_D0F60.c",
+    "symbols": [
+      "fn_1_D0F60"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/enemy_ctrl.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_6078",
+      "@6": "lbl_1_rodata_6080",
+      "@5": "lbl_1_rodata_6078"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/enemy_ctrl/fn_1_D123C.c",
     "symbols": [
       "fn_1_D123C"
