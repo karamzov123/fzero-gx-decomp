@@ -16516,3 +16516,6 @@ rel/main_rel/bg_lig/fn_1_D7EF4.c:
 
 rel/main_rel/bg_for/fn_1_DEDC4.c:
 	.text       start:0x000DEDC4 end:0x000DF2A4 align:4
+
+rel/main_rel/mdlload/fn_1_D550C.c:
+	.text       start:0x000D550C end:0x000D5958 align:4
