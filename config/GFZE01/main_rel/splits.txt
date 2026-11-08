@@ -16489,3 +16489,6 @@ rel/main_rel/accessory/fn_1_12907C.c:
 
 rel/main_rel/accessory/fn_1_117D5C.c:
 	.text       start:0x00117D5C end:0x001185B4 align:4
+
+rel/main_rel/bg_lig/fn_1_D7EF4.c:
+	.text       start:0x000D7EF4 end:0x000D8388 align:4
