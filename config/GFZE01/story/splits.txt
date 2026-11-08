@@ -242,3 +242,6 @@ rel/story/data/lbl_7_rodata_780.c:
 
 rel/story/data/lbl_7_rodata_788.c:
 	.rodata     start:0x00000788 end:0x00000798 align:8
+
+rel/story/story_mode/fn_7_4108.c:
+	.text       start:0x00004108 end:0x000041FC align:4

@@ -3860,6 +3860,135 @@ u32 fn_7_4094(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 /* fzgx:end fn_7_4094 */
 
+/* fzgx:begin fn_7_4108 */
+#include "rel/story/story_mode.h"
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} Color;
+
+typedef struct {
+    u8 unk_0;
+    u8 pad_1[0x3];
+    Obj_7_bss_1960_At4 *unk_4;
+    u8 unk_8;
+    u8 pad_9[0x3];
+    u32 unk_C;
+    Color unk_10[2];
+    u8 unk_18[2];
+    u8 pad_1A[0x2];
+    f32 unk_1C[2];
+    f32 unk_24[2];
+    u8 unk_2C;
+    u8 pad_2D[0x3];
+    u32 unk_30;
+} StoryReset;
+
+extern const Color lbl_7_rodata_780;
+extern const f32 lbl_7_rodata_784;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+u8 fzgx_obj_lbl_7_bss_1960;
+u8 lbl_7_bss_1960_fill_1961;
+u16 lbl_7_bss_1960_fill_1962;
+Obj_7_bss_1960_At4 *lbl_7_bss_1960_4;
+u8 lbl_7_bss_1960_8;
+u8 lbl_7_bss_1960_fill_1969;
+u16 lbl_7_bss_1960_fill_196A;
+u32 lbl_7_bss_1960_C;
+Color lbl_7_bss_1960_10[2];
+u8 lbl_7_bss_1960_18[2];
+u16 lbl_7_bss_1960_fill_197A;
+f32 lbl_7_bss_1960_1C[2];
+f32 lbl_7_bss_1960_24[2];
+u8 lbl_7_bss_1960_2C;
+u8 lbl_7_bss_1960_fill_198D;
+u16 lbl_7_bss_1960_fill_198E;
+u32 lbl_7_bss_1960_30;
+u32 lbl_7_bss_1960_fill_1994[55];
+u8 lbl_7_bss_1960_fill_1A70;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_7_bss_1960;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1961;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1962;
+    s = *(u8 *)&lbl_7_bss_1960_4;
+    s = *(u8 *)&lbl_7_bss_1960_8;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1969;
+    s = *(u8 *)&lbl_7_bss_1960_fill_196A;
+    s = *(u8 *)&lbl_7_bss_1960_C;
+    s = *(u8 *)&lbl_7_bss_1960_10;
+    s = *(u8 *)&lbl_7_bss_1960_18;
+    s = *(u8 *)&lbl_7_bss_1960_fill_197A;
+    s = *(u8 *)&lbl_7_bss_1960_1C;
+    s = *(u8 *)&lbl_7_bss_1960_24;
+    s = *(u8 *)&lbl_7_bss_1960_2C;
+    s = *(u8 *)&lbl_7_bss_1960_fill_198D;
+    s = *(u8 *)&lbl_7_bss_1960_fill_198E;
+    s = *(u8 *)&lbl_7_bss_1960_30;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1994;
+    s = *(u8 *)&lbl_7_bss_1960_fill_1A70;
+}
+#pragma section code_type ".text"
+
+static inline void fn_7_4108_loop1(u32 *flags) {
+    u32 *p;
+    u8 i;
+    for (i = 0, p = flags + 0x88; i < 8; i++, p++) {
+        *p = 0;
+    }
+}
+
+#pragma opt_common_subs off
+void fn_7_4108(u32 *flags, u32 arg1, u32 arg2) {
+    
+    Color color[2];
+    Color *p_color;
+    f32 *p_f2;
+    f32 *p_f1;
+    u32 *p;
+    u8 i;
+
+    p = flags;
+    for (i = 0; i < 128; i++, p++) {
+        *p = 0;
+    }
+    fn_7_4108_loop1(flags);
+    {
+    u32 * fzgx_loop_p_2379;
+for (fzgx_loop_p_2379 = flags + 0x80, i = 0; i < 8; i++, fzgx_loop_p_2379++) {
+        *fzgx_loop_p_2379 = -1;
+    }
+    p = fzgx_loop_p_2379;
+}
+
+    p_color = lbl_7_bss_1960_10;
+    p_f2 = lbl_7_bss_1960_24;
+    p_f1 = lbl_7_bss_1960_1C;
+
+    lbl_7_bss_1960_4 = (Obj_7_bss_1960_At4 *)arg2;
+    lbl_7_bss_1960_8 = 0;
+    lbl_7_bss_1960_C = 0;
+    fzgx_obj_lbl_7_bss_1960 = 0;
+    color[0] = lbl_7_rodata_780;
+    color[1] = lbl_7_rodata_780;
+    for (i = 0; i < 2; i++) {
+        p_color[i] = ((i)[color]);
+        (lbl_7_bss_1960_18)[i] = 0;
+        p_f2[i] = lbl_7_rodata_784;
+        p_f1[i] = lbl_7_rodata_784;
+    }
+    lbl_7_bss_1960_2C = 0;
+    lbl_7_bss_1960_30 = arg1;
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_7_4108 */
+
 /* fzgx:begin fn_7_41FC */
 #include "rel/story/story_mode.h"
 

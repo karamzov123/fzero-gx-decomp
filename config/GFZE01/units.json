@@ -141078,6 +141078,21 @@
   },
   {
     "module": "story",
+    "source": "rel/story/story_mode/fn_7_4108.c",
+    "symbols": [
+      "fn_7_4108"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/story/story_mode.c",
+    "pool": {
+      "...bss.0": "lbl_7_bss_1960",
+      "fzgx_obj_lbl_7_bss_1960": "lbl_7_bss_1960"
+    }
+  },
+  {
+    "module": "story",
     "source": "rel/story/story_mode/fn_7_41FC.c",
     "symbols": [
       "fn_7_41FC"
