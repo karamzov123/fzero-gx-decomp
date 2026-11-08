@@ -34,7 +34,7 @@ static inline FontGlyph *find_glyph(s32 code) {
     return NULL;
 }
 
-void fn_800060D8(u8 *str, f32 x, f32 y, f32 z) {
+void fn_800060D8(f32 x, f32 y, f32 z, u8 *str) {
     GXTexObj obj;
     FontGlyph *glyph;
     u32 code;
