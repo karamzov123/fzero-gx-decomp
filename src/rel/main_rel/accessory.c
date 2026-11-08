@@ -900,6 +900,410 @@ void fn_1_1091D4(u32 arg0) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_1091D4 */
 
+/* fzgx:begin fn_1_10976C noprologue */
+#include "types.h"
+#include "rel/main_rel/accessory.h"
+#include "mathutil_vec_cross_prod.h"
+#include "mathutil_mtxA_translate_col.h"
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.1920928955078125e-07;
+    s = 0.009999999776482582f;
+}
+static const u32 fzgx_pool_table3[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1e-07;
+}
+static const u32 fzgx_pool_table5[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+    s = 0.25f;
+}
+static const u32 fzgx_pool_table7[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+    d = 0.0013611111376020642;
+    s = 0.0027222223579883575f;
+    s = -1.0f;
+    s = 0.0f;
+    s = -2.0f;
+    s = 2.0f;
+    s = 1.1920928955078125e-07f;
+    s = -1.0000001192092896f;
+}
+#pragma section code_type ".text"
+
+typedef Vec3 RopeVec;
+
+typedef struct RopeNode {
+    u8 flags, pad1, count, pad3;
+    u16 links[6];
+    RopeVec pos, prev, local, vel;
+    f32 weight;
+} RopeNode;
+
+typedef struct { RopeNode *a, *b; f32 length; } RopeLink;
+typedef struct { u8 pad[8]; u8 *base; } RopeModel;
+typedef struct { u8 pad[0x150]; RopeModel *model; } RopeOwner;
+typedef struct {
+    u8 flags; u8 pad[7]; u32 index; RopeOwner *owner; void *obj;
+    u32 pad14, count, linkCount, pad20; RopeNode *nodes; RopeLink *links;
+} RopeWork;
+
+extern void *fn_80077B14(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006E1B0(RopeVec *, RopeVec *);
+extern void lbl_8006DC20(void);
+extern f32 lbl_8006D118(f32, f32 *);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006D668(RopeVec *);
+extern void fn_8006E250(RopeVec *, void *);
+
+#define ROPE_BASE(w) ((w)->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[(w)->index] * 0x18c)
+
+static inline void rope_save_pos(RopeWork *w) {
+    RopeNode *n;
+    u32 i;
+    RopeVec *dst;
+    for (i = 0, n = w->nodes, dst = (RopeVec *)&lbl_1_bss_88B50; i < w->count; i++, n++) {
+        if (!(n->flags & 1)) {
+            *dst = n->pos;
+            dst++;
+        }
+    }
+}
+
+
+void fn_1_10976C(RopeWork *arg0) {
+    RopeLink *l5;
+    RopeNode *n1;
+    u32 i5;
+    RopeNode *q5;
+    RopeLink *l;
+    u32 i1;
+    RopeNode *n3;
+    u32 vi;
+    u32 fj;
+    u8 *model4;
+    u8 *model3;
+    RopeNode *a;
+    u32 fi;
+    u32 i3;
+    RopeLink *l6;
+    RopeNode *fn;
+    RopeNode *q6;
+    u32 i6;
+    u32 j6;
+    u32 li;
+    u8 *fmodel;
+    RopeNode *n6;
+    u16 *lp;
+    u32 i4;
+    u32 i2;
+    u32 j5;
+    RopeNode *b;
+    RopeNode *n2;
+    RopeNode *n5;
+    RopeNode *p5;
+    RopeNode *n4;
+    RopeNode *p6;
+    RopeNode *vn;
+    RopeVec v;
+    RopeVec dif;
+    RopeVec t;
+    RopeVec g;
+    f32 len;
+    u8 *mb;
+    f32 inv;
+    f32 r;
+    f32 fa;
+    f32 fb;
+
+    if (arg0 && arg0->obj) {
+        fn_80077B14(arg0->obj);
+        if (arg0->flags & 2) {
+            arg0->flags &= ~2;
+            lbl_8006DBAC(ROPE_BASE(arg0) + 0x88);
+            lbl_8006DAEC();
+            for (i1 = 0, n1 = arg0->nodes; i1 < arg0->count; i1++, n1++) {
+                lbl_8006DBE4();
+                lbl_8006E1B0(&n1->local, &n1->pos);
+            }
+            lbl_8006DC20();
+        }
+        g.x = 0.0f;
+        g.y = -9.8f / 3600.0f;
+        g.z = 0.0f;
+        for (i2 = 0, n2 = arg0->nodes; i2 < arg0->count; i2++, n2++) {
+            if (!(n2->flags & 1)) {
+                n2->prev = n2->pos;
+                n2->pos.x += n2->vel.x + g.x * 0.5f;
+                n2->pos.y += n2->vel.y + g.y * 0.5f;
+                n2->pos.z += n2->vel.z + g.z * 0.5f;
+                n2->vel.x += g.x;
+                n2->vel.y += g.y;
+                n2->vel.z += g.z;
+            }
+        }
+        model3 = ROPE_BASE(arg0);
+        for (i3 = 0, n3 = arg0->nodes; i3 < arg0->count; i3++, n3++) {
+            lbl_8006DBAC(model3 + 0x88);
+            lbl_8006DAEC();
+            if (n3->flags & 1) {
+                lbl_8006DBE4();
+                lbl_8006E1B0(&n3->local, &n3->pos);
+            }
+            lbl_8006DC20();
+        }
+        for (li = 0, l = arg0->links; li < arg0->linkCount; li++, l++) {
+            a = l->a;
+            b = l->b;
+            if (a && b) {
+                f32 x;
+                f32 y;
+                f32 z;
+                x = a->pos.x - b->pos.x;
+                v.x = x;
+                y = a->pos.y - b->pos.y;
+                v.y = y;
+                z = a->pos.z - b->pos.z;
+                v.z = z;
+                len = (f32)(x * x) + y * y + z * z;
+                if (len - 0.0001f > l->length) {
+                    inv = lbl_8006D118(len, &len);
+                    r = lbl_8006D0B4(l->length);
+                    len = inv * (len - r);
+                    v.x *= len;
+                    v.y *= len;
+                    v.z *= len;
+                    r = 1.0f / (a->weight + b->weight);
+                    fa = a->weight * r;
+                    fb = b->weight * r;
+                    a->pos.x -= (f32)(v.x * fa);
+                    a->pos.y -= (f32)(v.y * fa);
+                    a->pos.z -= (f32)(v.z * fa);
+                    b->pos.x += (f32)(v.x * fb);
+                    b->pos.y += (f32)(v.y * fb);
+                    b->pos.z += (f32)(v.z * fb);
+                    a->vel.x = a->pos.x - a->prev.x;
+                    a->vel.y = a->pos.y - a->prev.y;
+                    a->vel.z = a->pos.z - a->prev.z;
+                    b->vel.x = b->pos.x - b->prev.x;
+                    b->vel.y = b->pos.y - b->prev.y;
+                    b->vel.z = b->pos.z - b->prev.z;
+                }
+            }
+        }
+        model4 = ROPE_BASE(arg0);
+        for (i4 = 0, n4 = arg0->nodes; i4 < arg0->count; i4++, n4++) {
+            f32 x;
+            f32 d;
+            f32 y;
+            f32 z;
+            lbl_8006DBAC(model4 + 0x88);
+            lbl_8006E1B0(&n4->local, &t);
+            x = n4->pos.x - t.x;
+            dif.x = x;
+            d = x * x;
+            y = n4->pos.y - t.y;
+            dif.y = y;
+            d += y * y;
+            z = n4->pos.z - t.z;
+            dif.z = z;
+            d += z * z;
+            len = d;
+            if (len > 0.0004f) {
+                len = lbl_8006D0B4(0.0004f / len);
+                n4->pos.x = t.x + (f32)(dif.x * len);
+                n4->pos.y = t.y + (f32)(dif.y * len);
+                n4->pos.z = t.z + (f32)(dif.z * len);
+                n4->prev = n4->pos;
+            }
+        }
+        mb = arg0->owner->model->base;
+        {
+            RopeVec center = {0.0f, 0.0f, 0.0f};
+            v = center;
+        }
+        lbl_8006DBAC(mb + 0x844);
+        mathutil_mtxA_translate_z(0.025f);
+        lbl_8006E1B0(&v, &v);
+        for (i5 = 0, n5 = arg0->nodes; i5 < arg0->count; i5++, n5++) {
+            if (!(n5->flags & 1)) {
+                f32 x;
+                f32 d;
+                f32 y;
+                f32 z;
+                x = n5->pos.x - v.x;
+                dif.x = x;
+                d = x * x;
+                y = n5->pos.y - v.y;
+                dif.y = y;
+                d += y * y;
+                z = n5->pos.z - v.z;
+                dif.z = z;
+                d += z * z;
+                len = d;
+                if (len < 0.065f * 0.065f) {
+                    RopeVec c;
+                    for (j5 = 0, l5 = arg0->links; j5 < arg0->linkCount; j5++, l5++) {
+                        p5 = l5->a;
+                        q5 = l5->b;
+                        if (p5 && q5) {
+                            if (p5 == n5 && (q5->flags & 1)) {
+                                p5 = q5;
+                                break;
+                            }
+                            if (q5 == n5 && (p5->flags & 1)) {
+                                break;
+                            }
+                            p5 = NULL;
+                        }
+                    }
+                    if (p5) {
+                        dif.x = p5->pos.x - n5->pos.x;
+                        dif.y = p5->pos.y - n5->pos.y;
+                        dif.z = p5->pos.z - n5->pos.z;
+                        t.x = v.x - n5->pos.x;
+                        t.y = v.y - n5->pos.y;
+                        t.z = v.z - n5->pos.z;
+                        lbl_8006D668(&dif);
+                        lbl_8006D668(&t);
+                        mathutil_vec_cross_prod(&dif, &t, &c);
+                        c.x += n5->pos.x;
+                        c.y += n5->pos.y;
+                        c.z += n5->pos.z;
+                        c.x += p5->pos.x;
+                        c.y += p5->pos.y;
+                        c.z += p5->pos.z;
+                        c.x *= 0.5f;
+                        c.y *= 0.5f;
+                        c.z *= 0.5f;
+                        c.x -= n5->pos.x;
+                        c.y -= n5->pos.y;
+                        c.z -= n5->pos.z;
+                        lbl_8006D668(&c);
+                        mathutil_vec_cross_prod(&dif, &c, &t);
+                        lbl_8006D668(&t);
+                        len = 0.065f + 0.01 - lbl_8006D0B4(len);
+                        len *= 0.3;
+                        n5->pos.x += (f32)(t.x * len);
+                        n5->pos.y += (f32)(t.y * len);
+                        n5->pos.z += (f32)(t.z * len);
+                        n5->prev = n5->pos;
+                        i5--;
+                        n5--;
+                    }
+                }
+            }
+        }
+        mb = arg0->owner->model->base;
+        {
+            RopeVec center = {0.0f, 0.0f, 0.0f};
+            v = center;
+        }
+        lbl_8006DBAC(mb + 0x844);
+        mathutil_mtxA_translate_x(-0.019f);
+        mathutil_mtxA_translate_z(0.057f);
+        lbl_8006E1B0(&v, &v);
+        for (i6 = 0, n6 = arg0->nodes; i6 < arg0->count; i6++, n6++) {
+            if (!(n6->flags & 1)) {
+                f32 x;
+                f32 d;
+                f32 y;
+                f32 z;
+                x = n6->pos.x - v.x;
+                dif.x = x;
+                d = x * x;
+                y = n6->pos.y - v.y;
+                dif.y = y;
+                d += y * y;
+                z = n6->pos.z - v.z;
+                dif.z = z;
+                d += z * z;
+                len = d;
+                if (len < 0.031f * 0.031f) {
+                    RopeVec c;
+                    for (j6 = 0, l6 = arg0->links; j6 < arg0->linkCount; j6++, l6++) {
+                        p6 = l6->a;
+                        q6 = l6->b;
+                        if (p6 && q6) {
+                            if (p6 == n6 && (q6->flags & 1)) {
+                                p6 = q6;
+                                break;
+                            }
+                            if (q6 == n6 && (p6->flags & 1)) {
+                                break;
+                            }
+                            p6 = NULL;
+                        }
+                    }
+                    if (p6) {
+                        dif.x = p6->pos.x - n6->pos.x;
+                        dif.y = p6->pos.y - n6->pos.y;
+                        dif.z = p6->pos.z - n6->pos.z;
+                        t.x = v.x - n6->pos.x;
+                        t.y = v.y - n6->pos.y;
+                        t.z = v.z - n6->pos.z;
+                        lbl_8006D668(&dif);
+                        lbl_8006D668(&t);
+                        mathutil_vec_cross_prod(&dif, &t, &c);
+                        c.x += n6->pos.x;
+                        c.y += n6->pos.y;
+                        c.z += n6->pos.z;
+                        c.x += p6->pos.x;
+                        c.y += p6->pos.y;
+                        c.z += p6->pos.z;
+                        c.x *= 0.5f;
+                        c.y *= 0.5f;
+                        c.z *= 0.5f;
+                        c.x -= n6->pos.x;
+                        c.y -= n6->pos.y;
+                        c.z -= n6->pos.z;
+                        lbl_8006D668(&c);
+                        mathutil_vec_cross_prod(&dif, &c, &t);
+                        lbl_8006D668(&t);
+                        len = 0.031f + 0.01 - lbl_8006D0B4(len);
+                        len *= 0.3;
+                        n6->pos.x += (f32)(t.x * len);
+                        n6->pos.y += (f32)(t.y * len);
+                        n6->pos.z += (f32)(t.z * len);
+                        n6->prev = n6->pos;
+                        i6--;
+                        n6--;
+                    }
+                }
+            }
+        }
+        for (vi = 0, vn = arg0->nodes; vi < arg0->count; vi++, vn++) {
+            vn->vel.x = vn->pos.x - vn->prev.x;
+            vn->vel.y = vn->pos.y - vn->prev.y;
+            vn->vel.z = vn->pos.z - vn->prev.z;
+        }
+        rope_save_pos(arg0);
+        fmodel = fn_80077B14(arg0->obj);
+        lbl_8006DBAC(ROPE_BASE(arg0) + 0x88);
+        for (fi = 0, fn = arg0->nodes; fi < arg0->count; fi++, fn++) {
+            for (fj = 0, lp = (u16 *)fn; (s32)fj < fn->count; lp++, fj++) {
+                fn_8006E250(&fn->pos, fmodel + (lp[2] << 6));
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_10976C */
+
 /* fzgx:begin fn_1_10A43C noprologue */
 #include "types.h"
 
