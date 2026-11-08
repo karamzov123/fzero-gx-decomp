@@ -16507,3 +16507,6 @@ rel/main_rel/sel_static_disp/fn_1_13EF64.c:
 
 rel/main_rel/accessory/fn_1_10976C.c:
 	.text       start:0x0010976C end:0x0010A43C align:4
+
+rel/main_rel/live_camera/fn_1_10AF0.c:
+	.text       start:0x00010AF0 end:0x0001138C align:4
