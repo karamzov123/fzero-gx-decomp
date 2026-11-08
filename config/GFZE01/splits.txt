@@ -7241,3 +7241,6 @@ dol/gTRKInterruptVectorTable.c:
 
 dol/fn_80065F34.c:
 	.text       start:0x80065F34 end:0x80066C14 align:4
+
+dol/mathutil_mtxA_from_quat.c:
+	.text       start:0x8006E498 end:0x8006E540 align:4
