@@ -102,6 +102,320 @@ s32 fn_1_D8FC4(s32 arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_D8FC4 */
 
+/* fzgx:begin fn_1_D9224 noprologue */
+#include "types.h"
+#include "mathutil.h"
+
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[4] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table2[7] = {0x42C80000, 0x40400000, 0x00000000, 0x3FE66666, 0x66666666, 0x3FD33333, 0x33333333};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 32767.0f;
+}
+static const u32 fzgx_pool_table3[13] = {0x436B0000, 0x42A00000, 0x41F00000, 0x40800000, 0x00000000, 0x3FE00000, 0x00000000, 0x4072C000, 0x00000000, 0x40310000, 0x00000000, 0x454CCCCD, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+}
+static const u32 fzgx_pool_table4[10] = {0x3FEF5C28, 0xF5C28F5C, 0x3DA3D70A, 0x00000000, 0x3FEFAE14, 0x7AE147AE, 0x3F947AE1, 0x47AE147B, 0x43C80000, 0x3F3504F3};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+}
+static const u32 fzgx_pool_table5[35] = {0x00000000, 0x40000000, 0x00000000, 0x43300000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xBF800000, 0x3FC00000, 0x3F000000, 0x41200000, 0x40A00000, 0x3F19999A, 0x432A0000, 0x42F00000, 0x42000000, 0x42B40000, 0x3ECCCCCD, 0x44400000, 0x00000000, 0x3FA99999, 0x9999999A, 0x40200000, 0x3DCCCCCD, 0x42480000, 0x41A00000, 0x428C0000, 0x42040000, 0x41700000, 0x3F266666, 0x3F400000, 0x43360B61};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_D9224_Vec;
+
+/* one 0x44-byte node of the state's node array */
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u16 unk_4[4];
+    u8 pad_C[4];
+    fn_1_D9224_Vec unk_10;
+    fn_1_D9224_Vec unk_1C;
+    fn_1_D9224_Vec unk_28;
+    fn_1_D9224_Vec unk_34;
+    f32 unk_40;
+} fn_1_D9224_Node;
+
+/* one 0xC-byte link between two nodes */
+typedef struct {
+    fn_1_D9224_Node *unk_0;
+    fn_1_D9224_Node *unk_4;
+    f32 unk_8;
+} fn_1_D9224_Link;
+
+typedef struct {
+    u8 pad_0[0xC];
+    u32 unk_C;
+    u32 unk_10;
+    fn_1_D9224_Node *unk_14;
+    fn_1_D9224_Link *unk_18;
+    fn_1_D9224_Vec *unk_1C;
+} fn_1_D9224_State;
+
+/* 0x40-byte vertex of the model returned by fn_80077B14 */
+typedef struct {
+    fn_1_D9224_Vec unk_0;
+    u8 pad_C[0x29];
+    u8 unk_35;
+    u8 pad_36[0xA];
+} fn_1_D9224_Vertex;
+
+struct fn_1_D9224_lbl_801A6410 {
+    u32 unk_0;
+};
+
+extern struct fn_1_D9224_lbl_801A6410 lbl_801A6410;
+extern u8 lbl_1_data_3DC50[0x9];
+extern void *fn_1_4630(u32, u32, const char *, s32);
+extern void *fn_80077B64(void *);
+extern void *fn_80077B14(void *);
+extern void fn_80008BEC(void *, int, u32);
+extern f32 lbl_8006D0B4(f32);
+
+static inline f32 sqdist_D9224(fn_1_D9224_Vec *a, fn_1_D9224_Vec *b) {
+    f32 dx = a->x;
+    f32 dy = a->y;
+    f32 dz = a->z;
+    dx -= b->x;
+    dy -= b->y;
+    dz -= b->z;
+    dx = dx * dx;
+    dx += dy * dy;
+    dx += dz * dz;
+    return dx;
+}
+
+#define CLAMP_D9224(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+
+void fn_1_D9224(fn_1_D9224_State *state, void *model) {
+    u32 *count;
+    fn_1_D9224_Vertex *verts;
+    u32 i;
+    u32 j;
+    u32 k;
+    u32 c;
+    fn_1_D9224_Node *a;
+    fn_1_D9224_Node *b;
+    fn_1_D9224_Node *p;
+    fn_1_D9224_Node *first;
+    fn_1_D9224_Node *best;
+    f32 min;
+    f32 d;
+    f32 f;
+    fn_1_D9224_Vec ref;
+    fn_1_D9224_Node t1;
+    fn_1_D9224_Node tmp;
+    fn_1_D9224_Node t6;
+    fn_1_D9224_Node t5;
+    fn_1_D9224_Node t4;
+    fn_1_D9224_Node t3;
+    fn_1_D9224_Node t2;
+
+    if (model != NULL) {
+        state->unk_C = 0;
+        state->unk_10 = 0;
+        count = fn_80077B64(model);
+        verts = fn_80077B14(model);
+        state->unk_14 = fn_1_4630(lbl_801A6410.unk_0, *count * sizeof(fn_1_D9224_Node), (const char *)lbl_1_data_3DC50, 0x516);
+        state->unk_1C = fn_1_4630(lbl_801A6410.unk_0, *count * sizeof(fn_1_D9224_Vec), (const char *)lbl_1_data_3DC50, 0x517);
+        for (i = 0; i < *count; i++) {
+            state->unk_1C[i] = verts->unk_0;
+            verts++;
+        }
+
+        verts = fn_80077B14(model);
+        state->unk_C = 0;
+        for (i = 0; i < *count; i++, verts++) {
+            fn_1_D9224_Node *nodes = state->unk_14;
+            u32 found = -1;
+            u32 m = state->unk_C;
+            fn_1_D9224_Node *g = nodes;
+
+            for (j = 0; j < m; j++, g++) {
+                if (sqdist_D9224(&g->unk_10, &verts->unk_0) < 1e-05) {
+                    found = j;
+                    break;
+                }
+            }
+
+            if (found != -1) {
+                g = &nodes[found];
+                g->unk_4[g->unk_2] = i;
+                state->unk_14[found].unk_2++;
+            } else {
+                g = &nodes[state->unk_C];
+                g->unk_28 = verts->unk_0;
+                g->unk_1C = g->unk_28;
+                g->unk_10 = g->unk_1C;
+                {
+                    fn_1_D9224_Vec zero = {0.0f, 0.0f, 0.0f};
+                    g->unk_34 = zero;
+                }
+                g->unk_0 = verts->unk_35;
+                fn_80008BEC(g->unk_4, 0xFF, sizeof(g->unk_4));
+                g->unk_2 = 1;
+                g->unk_4[0] = i;
+                g->unk_1 = 0;
+                state->unk_C++;
+            }
+        }
+
+        p = state->unk_14;
+        for (i = 0; i < state->unk_C; i++, p++) {
+            if (p->unk_0 & 1) {
+                p->unk_40 = -1.0f;
+                p->unk_0 = 0;
+            } else {
+                p->unk_40 = 0.0f;
+                p->unk_0 = 1;
+            }
+        }
+
+        a = state->unk_14;
+        for (i = 0; i < state->unk_C - 1; i++, a++) {
+            b = &state->unk_14[i] + 1;
+            for (j = i + 1; j < state->unk_C; j++, b++) {
+                if (!(a->unk_0 & 1) && (b->unk_0 & 1)) {
+                    t1 = *a;
+                    *a = *b;
+                    *b = t1;
+                }
+            }
+        }
+
+        a = state->unk_14;
+        for (i = 0; i < state->unk_C - 1; i++, a++) {
+            b = &state->unk_14[i] + 1;
+            for (j = i + 1; j < state->unk_C; j++, b++) {
+                if (!(a->unk_0 & 1) && !(b->unk_0 & 1) && a->unk_10.x > b->unk_10.x) {
+                    t2 = *a;
+                    *a = *b;
+                    *b = t2;
+                }
+            }
+        }
+
+        a = state->unk_14;
+        for (i = 0; i < state->unk_C; i++, a++) {
+            if (!(a->unk_0 & 1)) {
+                break;
+            }
+        }
+
+        first = a;
+        for (i = 0; i < 8; i++, a++) {
+            for (j = i + 1, b = a + 1; j < 9; j++, b++) {
+                if (a->unk_10.y < b->unk_10.y) {
+                    t3 = *a;
+                    *a = *b;
+                    *b = t3;
+                }
+            }
+        }
+
+        for (k = 0, first += 9; k < 10; k++, first += 11) {
+            for (i = 0, a = first; i < 10; i++, a++) {
+                for (j = i + 1, b = a + 1; j < 11; j++, b++) {
+                    if (a->unk_10.y < b->unk_10.y) {
+                        t4 = *a;
+                        *a = *b;
+                        *b = t4;
+                    }
+                }
+            }
+        }
+
+        best = state->unk_14;
+        min = 100000.0f;
+        ref.x = best[33].unk_10.x;
+        ref.y = best[42].unk_10.y;
+        for (i = 0, a = best; i < state->unk_C - 1; i++, a++) {
+            if (a->unk_0 & 1) {
+                /* Planar distance through the 3D kernel: z is a literal 0.0f, which retail squares. */
+                d = lbl_8006D0B4(mathutil_sum_of_sq_3(a->unk_10.x - ref.x, a->unk_10.y - ref.y, 0.0f));
+                if (min > d) {
+                    min = d;
+                    best = a;
+                }
+            }
+        }
+        t5 = state->unk_14[31];
+        state->unk_14[31] = *best;
+        *best = t5;
+
+        best = state->unk_14;
+        min = 100000.0f;
+        ref.x = best[41].unk_10.x;
+        ref.y = best[52].unk_10.y;
+        for (i = 0, a = best; i < state->unk_C; i++, a++) {
+            if (a->unk_0 & 1) {
+                d = lbl_8006D0B4(mathutil_sum_of_sq_3(a->unk_10.x - ref.x, a->unk_10.y - ref.y, 0.0f));
+                if (min > d) {
+                    min = d;
+                    best = a;
+                }
+            }
+        }
+        t6 = state->unk_14[32];
+        state->unk_14[32] = *best;
+        *best = t6;
+
+        tmp = state->unk_14[32];
+        for (i = 33, a = &state->unk_14[33]; i < 42; i++, a++) {
+            a[-1] = a[0];
+        }
+        state->unk_14[41] = tmp;
+
+        for (i = 0, a = &state->unk_14[31]; i < state->unk_C - 31; i++, a++) {
+            f = (f32)((s32)i / 11 + 1) / 12.0f;
+            a->unk_40 = -CLAMP_D9224(f, 0.0f, 1.0f);
+            if (i == 0 || i == 10) {
+                a->unk_40 = 0.0f;
+            }
+        }
+
+        state->unk_10 = 220;
+        state->unk_18 = fn_1_4630(lbl_801A6410.unk_0, state->unk_10 * sizeof(fn_1_D9224_Link), (const char *)lbl_1_data_3DC50, 0x5C7);
+
+        c = 0;
+        for (i = 0, a = &state->unk_14[31]; i < state->unk_C - 32; i++, a++) {
+            if ((i + 1) % 11 != 0) {
+                state->unk_18[c].unk_0 = a;
+                state->unk_18[c].unk_4 = a + 1;
+                state->unk_18[c].unk_8 = mathutil_sum_of_sq_3(a->unk_10.x - (a + 1)->unk_10.x, a->unk_10.y - (a + 1)->unk_10.y, a->unk_10.z - (a + 1)->unk_10.z);
+                c++;
+            }
+        }
+        for (i = 0, a = &state->unk_14[31]; i < state->unk_C - 42; i++, a++) {
+            state->unk_18[c].unk_0 = a;
+            state->unk_18[c].unk_4 = a + 11;
+            state->unk_18[c].unk_8 = mathutil_sum_of_sq_3(a->unk_10.x - (a + 11)->unk_10.x, a->unk_10.y - (a + 11)->unk_10.y, a->unk_10.z - (a + 11)->unk_10.z);
+            c++;
+        }
+    }
+}
+/* fzgx:end fn_1_D9224 */
+
 /* fzgx:begin fn_1_D9D8C */
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[12] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001, 0x00000000, 0x42C80000, 0x40400000, 0x00000000, 0x3FE66666, 0x66666666, 0x3FD33333, 0x33333333};  /* fzgx-allow: A1 retail pool bytes */
