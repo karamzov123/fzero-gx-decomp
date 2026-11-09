@@ -1133,3 +1133,6 @@ rel/customize/toolkit/fn_3_278F8.c:
 
 rel/customize/_prolog/fn_3_7360.c:
 	.text       start:0x00007360 end:0x00007594 align:4
+
+rel/customize/emb_paste_editor/fn_3_11A38.c:
+	.text       start:0x00011A38 end:0x00011F60 align:4

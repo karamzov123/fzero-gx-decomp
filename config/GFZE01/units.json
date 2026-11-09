@@ -4402,6 +4402,26 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/emb_paste_editor/fn_3_11A38.c",
+    "symbols": [
+      "fn_3_11A38"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/customize/emb_paste_editor.c",
+    "pool": {
+      "...rodata.0": "lbl_3_rodata_288",
+      "@24": "lbl_3_rodata_288+0x34",
+      "@29": "lbl_3_rodata_288+0x48",
+      "@44": "lbl_3_rodata_288+0xBC",
+      "@34": "lbl_3_rodata_288+0x6C",
+      "@23": "lbl_3_rodata_288+0x30",
+      "@39": "lbl_3_rodata_288+0xA8"
+    }
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/emb_paste_editor/fn_3_11F60.c",
     "symbols": [
       "fn_3_11F60"
