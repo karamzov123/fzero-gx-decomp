@@ -1880,6 +1880,289 @@ void fn_3_11994(s16 arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg_sp0) {
 }
 /* fzgx:end fn_3_11994 */
 
+/* fzgx:begin fn_3_11A38 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+typedef struct { f32 x, y, z; } Vec;
+typedef struct { Vec a; Vec b; } View;
+typedef struct {
+    u32 unk_0;
+    View view;
+    u32 unk_1C;
+    u32 unk_20;
+} Cam;
+
+/* One controller's analog state (lbl_1_bss_BF0[port]). */
+typedef struct {
+    f32 stick_x;
+    f32 stick_y;
+    f32 substick_x;
+    f32 substick_y;
+    f32 trigger_l;
+    f32 trigger_r;
+    u8 pad_18[0x8];
+} AnalogPad;
+
+typedef struct {
+    u32 unk_0;
+    u32 unk_4;
+    u8 pad_8[0x2];
+    s16 unk_A;
+    u32 unk_C;
+    u32 unk_10;
+    u8 unk_14;
+    u8 unk_15;
+    u8 pad_16[0x2];
+    u32 unk_18;
+    s16 unk_1C;
+    u8 unk_1E;
+    u8 unk_1F;
+    u8 unk_20;
+    u8 unk_21;
+    s16 unk_22;
+    s16 unk_24;
+    s16 unk_26;
+    s16 unk_28;
+    u16 unk_2A;
+    u32 unk_2C[4];
+    u8 unk_3C;
+    u8 pad_3D[0x9];
+    u8 unk_46;
+    u8 unk_47;
+    s16 unk_48;
+    u8 pad_4A[0x2];
+    s16 unk_4C;
+    s16 unk_4E;
+    u8 unk_50;
+    u8 unk_51;
+    u8 pad_52[0x16];
+} EditorState;
+
+typedef struct Customize Customize;
+
+extern AnalogPad lbl_1_bss_BF0[];
+extern EditorState lbl_3_bss_7EDD8;
+extern Customize *lbl_3_bss_7EDCC;
+extern Cam lbl_3_bss_9F640;
+extern Cam lbl_3_bss_9F690;
+
+extern void fn_3_12E4C(Customize *self, u8 index, Vec *lo, Vec *hi);
+extern void lbl_8006D758(void);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void fn_80072558(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void fn_8006E250(void *, void *);
+extern void fn_80008BA8(void *, void *, u32);
+extern f64 __fabs(f64);
+extern void fzgx_touch(void *);
+
+/* Retail lbl_3_rodata_288 pool up to this function's literals: words read only by other
+ * functions are tables, the ones it reads are native literals. */
+static const union { u32 w[12]; const u32 v[12]; } fzgx_pool_init_fzgx_pool_table_0 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x42480000, 0x43FA0000, 0x41F9999A, 0x439C0000, 0x42880000, 0x41A00000, 0x42C00000, 0x3FAE147B,
+    0x43210000, 0x3F820000, 0x43010000, 0x41700000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_0(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_0.v);
+    o[0] = 10.0f;
+    o[1] = 0.0f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[4]; const u32 v[4]; } fzgx_pool_init_fzgx_pool_table_38 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x42AC0000, 0x3F000000, 0x430B0000, 0x42960000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_38(f64 *d) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_38.v);
+    d[0] = 4503601774854144.0;
+}
+#pragma section code_type ".text"
+static const union { u32 w[7]; const u32 v[7]; } fzgx_pool_init_fzgx_pool_table_50 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0xFFFF0000, 0xFFFF0000, 0xFFFFFF00, 0x43390000, 0x43340000, 0x438A0000, 0x42E80000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_50(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_50.v);
+    o[0] = 7.0f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[14]; const u32 v[14]; } fzgx_pool_init_fzgx_pool_table_70 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x434D0000, 0x41366666, 0x42200000, 0x47800000, 0x42700000, 0x42A00000, 0x43890000, 0x3F155555,
+    0x3F0AAAAB, 0x3EEAAAAB, 0x43300000, 0x0, 0x43A00000, 0x43700000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_70(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_70.v);
+    o[0] = 5.0f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[4]; const u32 v[4]; } fzgx_pool_init_fzgx_pool_table_AC = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x40C33333, 0x3F4CCCCD, 0x43640000, 0x437C0000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_AC(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_AC.v);
+    o[0] = 0.1f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[55]; const u32 v[55]; } fzgx_pool_init_fzgx_pool_table_C0 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0xC1F00000, 0x443B8000, 0x42400000, 0x44250000, 0x42300000, 0x41C00000, 0x43970000, 0x428C0000,
+    0x43A50000, 0x3FA28F5C, 0x43C30000, 0x439A0000, 0x3F800000,
+    0x43B80000, 0x43B40000, 0x41F00000, 0x3ECCCCCD, 0x47000000, 0x3F680000, 0x3F6C0000, 0x3F700000,
+    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x40A00000, 0xC1700000,  /* fzgx-allow: A1 retail data bytes */
+    0x0, 0x40200000, 0xC1700000, 0x0, 0x40A00000, 0xC1700000, 0x0, 0x40200000,  /* fzgx-allow: A1 retail data bytes */
+    0xC1700000, 0x0, 0x0, 0x0, 0x40A00000, 0xC1700000, 0x0, 0x40200000,  /* fzgx-allow: A1 retail data bytes */
+    0xC1700000, 0x425C0000, 0x47AFC800, 0x42BE0000, 0x41880000, 0x43B10000, 0x439B0000, 0x43B68000,  /* fzgx-allow: A1 retail data bytes */
+    0x430F0000, 0x419A6632
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_C0(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_C0.v);
+    o[0] = 0.01f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[9]; const u32 v[9]; } fzgx_pool_init_fzgx_pool_table_1A0 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x3F400000, 0x43AF8000, 0x43C18000, 0x3F19999A, 0x3F333333, 0x43AE0000, 0x43C00000, 0xFFFFFFFF,
+    0x43480000
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_1A0(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_1A0.v);
+    o[0] = 0.05f;
+}
+#pragma section code_type ".text"
+static const union { u32 w[4]; const u32 v[4]; } fzgx_pool_init_fzgx_pool_table_1C8 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x3EB33333, 0x3A03126F, 0x3B03126F, 0x3BA3D70A
+}};
+#pragma section code_type ".fzgxpool"
+void fzgx_pool_primer_1C8(f32 *o) {
+    fzgx_touch((void *)fzgx_pool_init_fzgx_pool_table_1C8.v);
+}
+#pragma section code_type ".text"
+
+
+#define STATE lbl_3_bss_7EDD8
+#define CAM lbl_3_bss_9F640
+#define VIEW lbl_3_bss_9F690
+
+#define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
+
+static inline void set_vec(Vec *v, f32 x, f32 y, f32 z) {
+    v->x = x;
+    v->y = y;
+    v->z = z;
+}
+
+#pragma fp_contract off
+#pragma opt_dead_assignments off
+void fn_3_11A38(void) {
+    Vec hi;
+    Vec lo;
+    Vec pos;
+    Vec move;
+    f32 stick_y;
+    f32 stick_x;
+    f32 yaw;
+    f32 pitch;
+    f32 trigger;
+    f32 rate;
+    f32 speed;
+
+    stick_x = lbl_1_bss_BF0[STATE.unk_14].stick_x;
+    stick_y = lbl_1_bss_BF0[STATE.unk_14].stick_y;
+    yaw = 0.0f;
+    pitch = 0.0f;
+
+    if (__fabs(stick_y) >= 0.75) {
+        if (STATE.unk_4E > 40) {
+            pitch = 256.0f * stick_y;
+        } else {
+            pitch = 128.0f * stick_y;
+        }
+        STATE.unk_4E++;
+    } else {
+        STATE.unk_4E = 0;
+    }
+
+    if (__fabs(stick_x) >= 0.75) {
+        if (STATE.unk_4C > 40) {
+            yaw = 512.0f * stick_x;
+        } else {
+            yaw = 256.0f * stick_x;
+        }
+        STATE.unk_4C++;
+    } else {
+        STATE.unk_4C = 0;
+    }
+
+    STATE.unk_26 = CLAMP(STATE.unk_26 + pitch, 2048.0f, 16383.0f);
+    STATE.unk_28 = STATE.unk_28 + yaw;
+
+    trigger = lbl_1_bss_BF0[STATE.unk_14].trigger_l - lbl_1_bss_BF0[STATE.unk_14].trigger_r;
+    rate = 0.0f;
+    if (trigger != 0.0f) {
+        s32 n = STATE.unk_51 + 1;
+        STATE.unk_51 = CLAMP(n, 0, 255);
+    } else {
+        STATE.unk_51 = 0;
+    }
+    rate += 0.1f;
+
+    if (__rlwnm(STATE.unk_C, 7, 31, 31)) {
+        CAM.view.a.z = CLAMP(CAM.view.a.z + trigger * rate, 4.5f, 7.0f);
+    } else if (__rlwnm(STATE.unk_C, 8, 31, 31)) {
+        CAM.view.a.z = CLAMP(CAM.view.a.z + trigger * rate, 4.5f, 10.0f);
+    }
+
+    move.z = move.y = move.x = speed = 0.0f;
+    if (__fabs(lbl_1_bss_BF0[STATE.unk_14].substick_x) <= 0.1f &&
+        __fabs(lbl_1_bss_BF0[STATE.unk_14].substick_y) <= 0.1f) {
+        STATE.unk_48 = 0;
+    } else {
+        STATE.unk_48++;
+    }
+    if (STATE.unk_48) {
+        if (STATE.unk_48 > 40) {
+            speed = 0.05f;
+        } else if (STATE.unk_48 > 20) {
+            speed = 0.025f;
+        } else {
+            speed = 0.01f;
+        }
+    }
+    if (__fabs(lbl_1_bss_BF0[STATE.unk_14].substick_x) >= 0.5) {
+        move.x = lbl_1_bss_BF0[STATE.unk_14].substick_x;
+    }
+    if (__fabs(lbl_1_bss_BF0[STATE.unk_14].substick_y) >= 0.5) {
+        move.y = lbl_1_bss_BF0[STATE.unk_14].substick_y;
+    }
+    psvec_scale_add(&VIEW.view.b, &move, speed, &pos);
+
+    lbl_8006D758();
+    mathutil_mtxA_rotate_y(STATE.unk_28);
+    mathutil_mtxA_rotate_x(STATE.unk_26);
+    fn_80072558();
+    lbl_8006E1B0(&pos, &pos);
+    fn_3_12E4C(lbl_3_bss_7EDCC, STATE.unk_1C, &lo, &hi);
+    set_vec(&pos, CLAMP(pos.x, lo.x, hi.x), CLAMP(pos.y, lo.y, hi.y), CLAMP(pos.z, lo.z, hi.z));
+    fn_8006E250(&pos, &pos);
+    pos.z = 0.0f;
+    fn_80008BA8(&CAM.view.b, &pos, sizeof(Vec));
+    fn_80008BA8(&VIEW.view.b, &pos, sizeof(Vec));
+    {
+        f32 eye_z = CAM.view.a.z;
+        f32 dist = 5.0f;
+        set_vec(&CAM.view.a, pos.x, pos.y, eye_z);
+        set_vec(&VIEW.view.a, pos.x, pos.y, dist);
+    }
+}
+#pragma fp_contract reset
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_3_11A38 */
+
 /* fzgx:begin fn_3_11F60 */
 struct Fn3State {
     u32 value0;
