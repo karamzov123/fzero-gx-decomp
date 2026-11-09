@@ -45,7 +45,7 @@
  {
   "symbol": "fn_10_AE14",
   "module": "sel",
-  "percent": 97.67,
+  "percent": 99.52,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
@@ -92,7 +92,7 @@
  {
   "symbol": "fn_12_11F5C",
   "module": "movie_module",
-  "percent": 58.93,
+  "percent": 98.37,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
@@ -521,7 +521,7 @@
  {
   "symbol": "fn_1_2CBAC",
   "module": "main_rel",
-  "percent": 96.78,
+  "percent": 97.29,
   "mw": "GC/1.3.2",
   "flags": [
    "-nodefaults",
@@ -1063,7 +1063,7 @@
  {
   "symbol": "fn_8006BCF8",
   "module": "main",
-  "percent": 43.61,
+  "percent": 97.14,
   "mw": "GC/1.2.5n",
   "flags": [
    "-nodefaults",

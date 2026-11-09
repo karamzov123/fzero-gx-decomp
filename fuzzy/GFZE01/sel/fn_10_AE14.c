@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (97.67% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (99.52% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 typedef signed char s8;
 typedef signed short s16;
@@ -153,13 +153,13 @@ static inline s16 sel_sign(s16 x) {
 return x < 0 ? -1 : (x > 0);
 }
 static inline void sel_move_cursor(fn_10_AB98_SelCursor *cursor, s32 step, s16 opos) {
-s8 i;
 s32 blocked;
 s32 pos;
 s32 next;
 struct { s16 value; } count;
 s16 dir;
 s32 tmp_ra6;
+struct { s8 value; } i;
 if (cursor->unk_8C == 0) {
 s16 st = step;
 pos = opos;
@@ -182,7 +182,7 @@ pos = next > 110 ? 0 : (next < 0 ? 110 : next);
 cursor->unk_8E = pos;
 cursor->unk_90 = cursor->unk_8E;
 } else {
-i = 0;
+i.value = 0;
 do {
 blocked = 0;
 next = cursor->unk_8E + step;
@@ -201,11 +201,11 @@ step = blocked;
 }
 }
 }
-i++;
+i.value++;
 if (cursor->unk_90 != -1 && (s8)lbl_10_data_2B4[cursor->unk_90] != 0 && blocked == 0) {
 break;
 }
-} while (i < 6);
+} while (i.value < 6);
 }
 }
 typedef struct fn_10_AE14_Pad {
@@ -240,62 +240,44 @@ extern void fn_1_A2D84(u32);
 extern void fn_1_12F358(s16);
 
 #pragma opt_common_subs off
-static inline s16 fn_10_AE14_loop1(fn_10_AE14_Pad *pads, fn_10_AE14_Player *players) {
-    s16 d;
-    s16 i;
-        d = 0;
-        for (i = 0; i < 4; i++) {
-            if (players[i].unk_A == -1) {
-                continue;
-            }
-            if (!__rlwnm(*(u32 *)((u8 *)&lbl_1_bss_8B3A0 + 0x98), (i + 1) & 31, 31, 31)) {
-                continue;
-            }
-            if ((pads[i].unk_12 >> 8) & 1) {
-                d--;
-            }
-            if ((pads[i].unk_12 >> 9) & 1) {
-                d++;
-            }
-            if ((pads[i].unk_12 >> 9) & 1) {
-                fn_1_12F128(i);
-            } else if ((pads[i].unk_12 >> 8) & 1) {
-                fn_1_12F128(i);
-            }
-        }
-    return d;
-}
 
-void fn_10_AE14(fn_10_AB98_SelCursor *cursor) {
+static inline void sel_pad_step2(fn_10_AE14_Player *players, fn_10_AE14_Pad *pads, u8 *flags, s32 *pstep) {
     s16 i;
-    s16 old;
-    struct { fn_10_AE14_Player *value; } players;
-    s16 d;
-    struct { fn_10_AE14_Pad *value; } pads;
-    s32 step;
-
-    players.value = lbl_1_bss_9C8;
-    pads.value = lbl_1_bss_9F8;
-    step = 0;
-    for (i = 0; i < 4; i++) {
-        if (players.value[i].unk_A == -1) {
+    for (i = 0; i < 4; players++, pads++, i++) {
+        if (players->unk_A == -1) {
             continue;
         }
-        if (!__rlwnm(*(u32 *)((u8 *)&lbl_1_bss_8B3A0 + 0x98), (i + 1) & 31, 31, 31)) {
+        if (!__rlwnm(*(u32 *)(flags + 0x98), (i + 1) & 31, 31, 31)) {
             continue;
         }
-        if ((pads.value[i].unk_10 & 1) || (pads.value[i].unk_12 & 1)) {
-            step--;
+        if ((pads->unk_10 & 1) || (pads->unk_12 & 1)) {
+            (*pstep)--;
         }
-        if (((pads.value[i].unk_10 >> 1) & 1) || ((pads.value[i].unk_12 >> 1) & 1)) {
-            step++;
+        if (((pads->unk_10 >> 1) & 1) || ((pads->unk_12 >> 1) & 1)) {
+            (*pstep)++;
         }
-        if (((pads.value[i].unk_10 >> 1) & 1) || ((pads.value[i].unk_12 >> 1) & 1)) {
+        if (((pads->unk_10 >> 1) & 1) || ((pads->unk_12 >> 1) & 1)) {
             fn_1_12F128(i);
-        } else if ((pads.value[i].unk_10 & 1) || (pads.value[i].unk_12 & 1)) {
+        } else if ((pads->unk_10 & 1) || (pads->unk_12 & 1)) {
             fn_1_12F128(i);
         }
     }
+}
+
+void fn_10_AE14(fn_10_AB98_SelCursor *cursor) {
+    struct { u8 *value; } base;
+    s16 d;
+    s16 i;
+    s16 old;
+    fn_10_AE14_Player *players;
+    fn_10_AE14_Pad *pads;
+    s32 step;
+
+    players = lbl_1_bss_9C8;
+    pads = lbl_1_bss_9F8;
+    step = 0;
+    base.value = (u8 *)&lbl_1_bss_8B3A0;
+    sel_pad_step2(players, pads, base.value, &step);
     if (((fn_10_AE14_State *)&lbl_1_bss_8B3A0)->unk_0 == 1) {
         step = 0;
     }
@@ -306,17 +288,43 @@ void fn_10_AE14(fn_10_AB98_SelCursor *cursor) {
     }
     fn_1_12F358(cursor->unk_90);
     if (((fn_10_AE14_State *)&lbl_1_bss_8B3A0)->unk_0 == 10) {
-        d = fn_10_AE14_loop1(pads.value, players.value);
+        d = 0;
+        for (i = 0; i < 4; players++, pads++, i++) {
+            if (players->unk_A == -1) {
+                continue;
+            }
+            if (!__rlwnm(*(u32 *)(base.value + 0x98), (i + 1) & 31, 31, 31)) {
+                continue;
+            }
+            if ((pads->unk_12 >> 8) & 1) {
+                d--;
+            }
+            if ((pads->unk_12 >> 9) & 1) {
+                d++;
+            }
+            if ((pads->unk_12 >> 9) & 1) {
+                fn_1_12F128(i);
+            } else if ((pads->unk_12 >> 8) & 1) {
+                fn_1_12F128(i);
+            }
+        }
         if (d != 0) {
-            s32 v = ((fn_10_AE14_State *)&lbl_1_bss_8B3A0)->unk_9C + d;
-            ((fn_10_AE14_State *)&lbl_1_bss_8B3A0)->unk_9C = v > 3 ? 0 : (v < 0 ? 3 : v);
+            fn_10_AE14_State *st;
+            s32 v;
+            st = ((fn_10_AE14_State *)&lbl_1_bss_8B3A0);
+            v = st->unk_9C + d;
+            st->unk_9C = v > 3 ? 0 : (v < 0 ? 3 : v);
             fn_1_A2D84(0xA9010000);
         }
-        if (((fn_10_AE14_State *)&lbl_1_bss_8B3A0)->unk_9C == 3 && ((lbl_1_bss_D58.unk_2 >> 8) & 1)) {
-            ((fn_10_AE14_State *)&lbl_1_bss_8B3A0)->unk_9C = 5;
-        }
-        if (((fn_10_AE14_State *)&lbl_1_bss_8B3A0)->unk_9C == 5 && !((lbl_1_bss_D58.unk_2 >> 8) & 1)) {
-            ((fn_10_AE14_State *)&lbl_1_bss_8B3A0)->unk_9C = 3;
+        {
+            fn_10_AE14_State *st;
+            st = ((fn_10_AE14_State *)&lbl_1_bss_8B3A0);
+            if (st->unk_9C == 3 && ((lbl_1_bss_D58.unk_2 >> 8) & 1)) {
+                st->unk_9C = 5;
+            }
+            if (st->unk_9C == 5 && !((lbl_1_bss_D58.unk_2 >> 8) & 1)) {
+                st->unk_9C = 3;
+            }
         }
     }
     if (step != 0 && (cursor->unk_94 & 0x80000000) == 0) {
