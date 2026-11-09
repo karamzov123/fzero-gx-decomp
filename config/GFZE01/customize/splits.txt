@@ -1136,3 +1136,6 @@ rel/customize/_prolog/fn_3_7360.c:
 
 rel/customize/emb_paste_editor/fn_3_11A38.c:
 	.text       start:0x00011A38 end:0x00011F60 align:4
+
+rel/customize/emb_memcard/fn_3_E6F8.c:
+	.text       start:0x0000E6F8 end:0x0000F044 align:4
