@@ -27629,8 +27629,7 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "extra_cflags": []
   },
   {
     "module": "main",
@@ -27640,8 +27639,7 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "extra_cflags": []
   },
   {
     "module": "main",
