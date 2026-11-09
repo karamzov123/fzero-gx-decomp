@@ -16,6 +16,7 @@ import os
 import platform
 import shutil
 import stat
+import time
 import urllib.request
 import zipfile
 from typing import Callable, Dict
@@ -117,6 +118,29 @@ def download(url, response, output) -> None:
         os.replace(tmp, output)
 
 
+def fetch_url(req, context=None, max_retries=5):
+    for attempt in range(max_retries):
+        try:
+            kwargs = {}
+            if context is not None:
+                kwargs["context"] = context
+            return urllib.request.urlopen(req, **kwargs)
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and attempt < max_retries - 1:
+                wait_time = 2 ** attempt
+                print(f"HTTP {e.code} received from {req.full_url}, retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
+                time.sleep(wait_time)
+                continue
+            raise
+        except (urllib.error.URLError, TimeoutError) as e:
+            if attempt < max_retries - 1 and str(e).find("CERTIFICATE_VERIFY_FAILED") == -1:
+                wait_time = 2 ** attempt
+                print(f"Network error ({e}) downloading {req.full_url}, retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
+                time.sleep(wait_time)
+                continue
+            raise
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("tool", help="Tool name")
@@ -130,7 +154,7 @@ def main() -> None:
     print(f"Downloading {url} to {output}")
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     try:
-        with urllib.request.urlopen(req) as response:
+        with fetch_url(req) as response:
             download(url, response, output)
     except urllib.error.URLError as e:
         if str(e).find("CERTIFICATE_VERIFY_FAILED") == -1:
@@ -144,7 +168,7 @@ def main() -> None:
             )
             return
 
-        with urllib.request.urlopen(
+        with fetch_url(
             req, context=ssl.create_default_context(cafile=certifi.where())
         ) as response:
             download(url, response, output)

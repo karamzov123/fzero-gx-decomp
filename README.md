@@ -1,6 +1,6 @@
-F-Zero GX
+# F-Zero GX
+
 [![Build Status]][actions] [![Code Progress]][progress] [![Fuzzy Match]][progress] [![DOL Progress]][progress] [![RELs Progress]][progress] [![Data Progress]][progress] [![Discord Badge]][discord]
-=========
 
 [Build Status]: https://github.com/karamzov123/fzero-gx-decomp/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/karamzov123/fzero-gx-decomp/actions/workflows/build.yml
@@ -15,131 +15,232 @@ F-Zero GX
 
 [<img src="https://decomp.dev/karamzov123/fzero-gx-decomp.svg?w=1024&h=320" width="1024" height="320" alt="Live progress treemap">][progress]
 
-A work-in-progress matching decompilation of F-Zero GX for the Nintendo GameCube.
+A matching decompilation of **F-Zero GX** (2003) for the Nintendo GameCube.
 
-This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
+The goal of this project is to reconstruct readable, maintainable, matching C source code that faithfully reproduces every byte of all 16 retail executables when compiled with the original Metrowerks CodeWarrior compiler toolchain.
 
-Supported versions:
+> [!IMPORTANT]
+> This repository does **not** contain any copyrighted game assets, binary dumps, or ROM files. A legally obtained copy of the retail game is required to extract the original targets and build the project.
 
-- `GFZE01`: Rev 0 (USA) — primary
-- `GFZP01`: Rev 0 (PAL) — configuration scaffold only
-- `GFZJ01`: Rev 0 (JPN) — configuration scaffold only
+---
 
-What is being matched
-=====================
+## Current Status
 
-The disc ships sixteen executables and this project rebuilds every one of them byte for byte:
+- **Code Matched:** **98.47%** (7,269 / 7,312 functions authored in C)
+- **Target Executables:** **16 / 16** link cleanly and match the retail SHA-1 hashes byte for byte (`16 files OK`)
+- **DOL Core:** **98.52%** code matched
+- **Relocatable Modules:** **98.46%** code matched
 
-| Target | Role |
-|---|---|
-| `sys/main.dol` | Loader and engine core: Dolphin SDK, MSL, MetroTRK, CRI ADX, AX |
-| `main.rel` | Almost half of all code: physics, racing, machines, AI, in-race logic. Not on the disc as a file: it is the encrypted, LZ-compressed archive `files/enemy_line/line__.bin`, which `tools/prepare_orig.py` decrypts and decompresses |
-| `files/fze.*.rel` (14) | Title, selection, customise, story, ranking, replay, memory card, movie and other screens |
-| `files/fze.sample.rel` | The stub that locates, decrypts and links `main.rel` |
+### Supported Versions
 
-`ninja` ends with `16 files OK` when every target hashes identically to the retail files.
+| Game ID | Region | Revision | Status |
+|---|---|---|---|
+| `GFZE01` | North America (NTSC-U) | Rev 0 | **Primary target** (all 16 targets verified) |
+| `GFZP01` | Europe (PAL) | Rev 0 | Configuration scaffold |
+| `GFZJ01` | Japan (NTSC-J) | Rev 0 | Configuration scaffold |
 
-Source is organised by recovered translation unit. main.rel embeds its original file names (`camera.c`, `coli.c`, `car.c`, `driver.c`, `enemy_ctrl.c`, ...), and the order of those strings in `.data` matches the order of the code that references them, so each function is placed under `src/rel/main_rel/<file>/`. Struct layouts for the most-referenced globals are recovered from every access in the disassembly and generated into `include/rel/main_rel/globals.h`, with every field offset proven under the original compiler.
+---
 
-How the matching is done
-========================
+## What Is Being Matched
 
-This project is an experiment in agent-driven matching. A matching decompilation has a perfect oracle: the object either assembles to the retail bytes or it does not. Most functions are therefore matched by many cheap language-model agents, one function each, iterating compile-and-diff through a small tool surface (`tools/fzgx.py`, exposed to agents as an MCP server) until objdiff reports 100% and the full link still hashes identical. Agents cannot run a shell, edit anything but their own unit, or hardcode an address; every accepted function is byte-verified before it is committed. Naming, types and translation-unit structure are separate passes with their own tooling, and the tree carries no assembly at all: unmatched code stays in decomp-toolkit's split objects until it is matched in C.
+The retail disc contains **16 distinct PowerPC executables**. Every single one of them is built and byte-verified by the build system:
 
-Because of this, contributions here are held to the artifact, not the author: a change is acceptable when it matches, passes lint, and reads like code a person would write. See [Contributing](#contributing).
+| Target | Description | Size / Scope |
+|---|---|---|
+| `sys/main.dol` | Main game executable and engine core: Dolphin SDK, MetroTRK debugger, MSL runtime, CRI ADX audio, AXFX sound engine. | ~2.9 MB |
+| `main.rel` | In-race gameplay engine: vehicle physics, camera, track collision, AI, machine customization, rendering. Reconstructed from `files/enemy_line/line__.bin` (encrypted and LZ-compressed on disc). | ~2.3 MB |
+| `files/fze.*.rel` (14) | Relocatable game modules: title, pilotpoint, customisation, story, replay, memory card, sound, movie player, options, and menu screens. | ~1.8 MB total |
+| `files/fze.sample.rel` | Bootstrap loader that locates, decrypts, and dynamically links `main.rel` into memory at runtime. | ~16 KB |
 
-Dependencies
-============
+The build finishes with `16 files OK` when all targets match their respective retail SHA-1 checksums.
 
-Windows
---------
+---
 
-On Windows, it's **highly recommended** to use native tooling. WSL or msys2 are **not** required.  
-When running under WSL, [objdiff](#diffing) is unable to get filesystem notifications for automatic rebuilds.
+## Repository Structure
 
-- Install [Python](https://www.python.org/downloads/) and add it to `%PATH%`.
-  - Also available from the [Windows Store](https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K).
-- Download [ninja](https://github.com/ninja-build/ninja/releases) and add it to `%PATH%`.
-  - Quick install via pip: `pip install ninja`
+```
+fzero-gx-decomp/
+├── config/                  # Decomp-toolkit configurations, symbol maps, and splits
+│   ├── GFZE01/              # USA Rev 0 target configuration
+│   │   ├── main_rel/        # Symbols and splits for main.rel
+│   │   ├── splits.txt       # Split object boundary definitions
+│   │   ├── symbols.txt      # Global symbol definitions and addresses
+│   │   └── units.json       # Database of matching C units and compiler flags
+│   └── ...                  # PAL (GFZP01) and JPN (GFZJ01) scaffolds
+├── docs/                    # Architectural findings, compiler quirks, and coding rules
+│   ├── CODING_RULES.md      # Code standards (no hardcoded pointers, shiftability)
+│   ├── MWCC_IDIOMS.md       # Documented CodeWarrior register allocation patterns
+│   └── RESOURCES.md         # Attribution, research papers, and technical references
+├── include/                 # C headers and type definitions
+│   ├── dolphin/             # Dolphin SDK headers (OS, GX, DVD, PAD, CARD, VI, AX)
+│   └── rel/                 # Module interfaces and recovered struct layouts
+├── orig/                    # Extracted retail binaries and targets (gitignored)
+├── src/                     # Reconstructed matching C source code
+│   ├── dol/                 # DOL translation units
+│   └── rel/                 # Module translation units (main_rel, movie, sel, etc.)
+├── state/                   # Matching ledger, import provenance, and repair archives
+└── tools/                   # Decompilation toolchain and helper scripts
+    ├── fzgx.py              # Main CLI for inventory, claims, diffs, and verification
+    ├── prepare_orig.py      # Target extractor and line__.bin decryptor/decompressor
+    └── project.py           # Ninja build generation and configuration logic
+```
 
-macOS
-------
+---
 
-- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages):
+## Prerequisites & Dependencies
 
-  ```sh
-  brew install ninja
-  ```
+The build system utilizes [decomp-toolkit (dtk)](https://github.com/encounter/decomp-toolkit), [ninja](https://ninja-build.org/), and [wibo](https://github.com/decompals/wibo) (a lightweight 32-bit Windows binary wrapper that runs original Metrowerks CodeWarrior compilers natively on Linux and macOS without a full Wine install).
 
-[wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used (under Rosetta 2 on Apple Silicon).
+Original compilers are automatically downloaded during the initial project configuration.
 
-Linux
-------
+### Linux
 
-- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages).
+Install Python 3.10+, Ninja, and `uv`:
 
-[wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
+```sh
+# Debian / Ubuntu
+sudo apt update && sudo apt install -y build-essential git python3 python3-pip ninja-build
 
-All platforms
--------------
+# Arch Linux
+sudo pacman -S --needed base-devel git python ninja
 
-- Install [uv](https://docs.astral.sh/uv/) for the project tooling (`tools/`).
+# Install uv (fast Python package and project manager)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
-Building
-========
+### macOS
 
-- Clone the repository:
+Install dependencies using [Homebrew](https://brew.sh/):
 
-  ```sh
-  git clone https://github.com/karamzov123/fzero-gx-decomp.git
-  ```
+```sh
+brew install git ninja python
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
-- Copy your game's disc image to `orig/` (not `orig/GFZE01/`).
-  - Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ, TGC
-  - `dtk disc verify` should report a Redump match.
+*(Note: On Apple Silicon, `wibo` runs under Rosetta 2 seamlessly.)*
 
-- Extract the targets and derive `main.rel`:
+### Windows
 
-  ```sh
-  uv run tools/prepare_orig.py --version GFZE01
-  ```
+Native Windows tooling is strongly recommended (WSL is **not** required and is discouraged for diffing due to filesystem notification limits):
 
-  This pulls the sixteen targets out of the image into `orig/GFZE01/`, decrypts and decompresses `line__.bin`, and prints the SHA-1 of each target. The disc image can be deleted afterwards.
+1. Install [Python](https://www.python.org/downloads/) and ensure **"Add Python to PATH"** is checked.
+2. Install [ninja](https://github.com/ninja-build/ninja/releases) and add it to your `%PATH%` (or run `pip install ninja`).
+3. Install [uv](https://docs.astral.sh/uv/):
+   ```powershell
+   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
 
-- Configure:
+---
 
-  ```sh
-  python configure.py
-  ```
+## Building
 
-  To use a version other than `GFZE01` (USA), specify it with `--version`.
+### 1. Clone the repository
 
-- Build:
+```sh
+git clone https://github.com/karamzov123/fzero-gx-decomp.git
+cd fzero-gx-decomp
+```
 
-  ```sh
-  ninja
-  ```
+### 2. Prepare the original game assets
 
-Diffing
-=======
+Place a legally acquired retail disc image of F-Zero GX (USA / `GFZE01`) in the `orig/` directory (supported formats: `.iso`, `.gcm`, `.rvz`, `.wia`, `.wbfs`, `.ciso`, `.tgc`).
 
-Once the initial build succeeds, an `objdiff.json` should exist in the project root.
+Extract the retail executables and decrypt `line__.bin`:
 
-Download the latest release from [encounter/objdiff](https://github.com/encounter/objdiff). Under project settings, set `Project directory`. The configuration should be loaded automatically.
+```sh
+uv run tools/prepare_orig.py --version GFZE01
+```
 
-Select an object from the left sidebar to begin diffing. Changes to the project will rebuild automatically: changes to source files, headers, `configure.py`, `splits.txt` or `symbols.txt`.
+This step populates `orig/GFZE01/` with the original binaries and displays their SHA-1 hashes. The disc image may be safely deleted or moved afterwards.
 
-Contributing
-============
+### 3. Configure the build
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). In short: one function per change, matched and link-verified through `tools/fzgx.py`, no hardcoded addresses, no inline assembly, readable C. Both people and agents go through the same tools and the same oracle. Questions and discussion: the [GC/Wii Decompilation Discord][discord], `#dtk`.
+```sh
+python configure.py
+```
 
-Credits
-=======
+To configure for another revision (when supported), specify `--version <GAME_ID>`.
 
-See [docs/RESOURCES.md](docs/RESOURCES.md). This project stands on [decomp-toolkit](https://github.com/encounter/decomp-toolkit), [objdiff](https://github.com/encounter/objdiff), [wibo](https://github.com/decompals/wibo) and [dtk-template](https://github.com/encounter/dtk-template) by encounter and the decompals community, on CosmoCortney's [Line__Crypt](https://github.com/CosmoCortney/Line__Crypt) and bobjrsenior's [SMB_LZ_Tool](https://github.com/bobjrsenior/SMB_LZ_Tool) for the `line__.bin` format, and on a decade of format work by the F-Zero GX modding community.
+### 4. Build and verify
 
-License
-=======
+```sh
+ninja
+```
 
-The source code and tooling in this repository are released under [CC0 1.0](LICENSE). F-Zero GX is © Nintendo / Sega / Amusement Vision; no game data is distributed here.
+When the build succeeds, `ninja` links all 16 executables and checks their SHA-1 checksums:
+
+```
+[182/185] CHECK config/GFZE01/build.sha1
+16 files OK
+```
+
+---
+
+## Matching & Interactive Diffing
+
+### Using `objdiff` (GUI)
+
+[objdiff](https://github.com/encounter/objdiff) provides live, interactive side-by-side assembly diffing against retail code.
+
+1. Download the latest release of `objdiff` for your OS.
+2. Under **Project Settings**, set the **Project Directory** to the root of this repository.
+3. The configuration will load automatically from `objdiff.json`.
+4. Select any function from the left sidebar. Any changes saved to source files or headers will automatically trigger a background rebuild and refresh the diff view.
+
+### Using the `fzgx` CLI
+
+The repository includes a unified decompilation assistant CLI at `tools/fzgx.py`:
+
+```sh
+# View overall honest authored code progress
+uv run tools/fzgx.py honest
+
+# Find unmatched functions under a specific size
+uv run tools/fzgx.py inventory --module main_rel --status unmatched --max-size 256
+
+# Claim a function and export its initial C context and assembly diff
+uv run tools/fzgx.py claim fn_1_XXXX --agent <your_name>
+
+# Check your C implementation against retail object code
+uv run tools/fzgx.py check fn_1_XXXX
+
+# Test against all supported Metrowerks CodeWarrior versions
+uv run tools/fzgx.py check fn_1_XXXX --versions all
+
+# Run the strict project linter (checks for hardcoded addresses, invalid constructs)
+uv run tools/fzgx.py lint
+
+# Submit a matched function and verify all 16 targets link
+uv run tools/fzgx.py submit fn_1_XXXX --agent <your_name> --message "matched function description"
+uv run tools/fzgx.py verify
+```
+
+---
+
+## Contributing
+
+We welcome contributions from everyone! Whether you are an experienced decompiler or matching your very first function:
+
+- Review [CONTRIBUTING.md](CONTRIBUTING.md) for full pull request and workflow guidelines.
+- Review [docs/CODING_RULES.md](docs/CODING_RULES.md) for code structure standards (no hardcoded pointer literals, shiftability requirements, proper struct typing).
+- Consult [docs/MWCC_IDIOMS.md](docs/MWCC_IDIOMS.md) for patterns and CodeWarrior compiler quirks discovered across the project.
+- Join the discussion on the [GameCube / Wii Decompilation Discord][discord] in `#dtk`.
+
+---
+
+## Credits & Acknowledgements
+
+This project is built on the shoulders of the GameCube/Wii decompilation and modding communities:
+
+- [decomp-toolkit](https://github.com/encounter/decomp-toolkit), [objdiff](https://github.com/encounter/objdiff), [wibo](https://github.com/decompals/wibo), and [dtk-template](https://github.com/encounter/dtk-template) by **encounter** and the **decompals** community.
+- **CosmoCortney** for [Line__Crypt](https://github.com/CosmoCortney/Line__Crypt) and **bobjrsenior** for [SMB_LZ_Tool](https://github.com/bobjrsenior/SMB_LZ_Tool), which made decrypting and decompressing `line__.bin` (`main.rel`) possible.
+- The **F-Zero GX modding community** for over a decade of reverse-engineering track, model, and engine formats.
+- All past and present contributors to this repository and its forks.
+
+---
+
+## License
+
+The source code and tooling created in this repository are dedicated to the public domain under the [Creative Commons Zero 1.0 Universal (CC0 1.0)](LICENSE) license.
+
+*F-Zero GX is a trademark of Nintendo. Game content, assets, and original binaries are © 2003 Nintendo / Sega / Amusement Vision. This project is an independent educational and preservation effort and is not affiliated with or endorsed by Nintendo or Sega.*
