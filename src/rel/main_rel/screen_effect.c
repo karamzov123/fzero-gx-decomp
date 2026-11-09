@@ -2620,6 +2620,237 @@ void fn_1_772E0(void) {
 }
 /* fzgx:end fn_1_772E0 */
 
+/* fzgx:begin fn_1_77384 noprologue */
+#include "types.h"
+
+extern u32 lbl_1_bss_6C8D8;
+
+#pragma fp_contract off
+
+/* screen_effect.c .data in retail order */
+u8 lbl_1_data_1D960[88] = {0x00,0x00,0x00,0x01,0x00,0x00,0x00,0x11,0x00,0x00,0x00,0x01,0x00,0x00,0x00,0x39,0x00,0x00,0x00,0x01,0x00,0x00,0x00,0x3A,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x01,0x00,0x00,0x00,0x01,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x13,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x01,0x00,0x00,0x00,0x27};
+u8 lbl_1_data_1D9B8[248] = {0x00,0x00,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x01,0x06,0x00,0x00,0x00,0x00,0x01,0x06,0x00,0x00,0x00,0x00,0x01,0x06,0x00,0x00,0x00,0x00,0x01,0x06,0x00,0x00,0x00,0x00,0x01,0x06,0x00,0x00,0x00,0x00,0x01,0x06,0x00,0x00,0x00,0x00,0x01,0x06,0x06,0x00,0x00,0x00,0x02,0x06,0x06,0x00,0x00,0x00,0x02,0x06,0x06,0x00,0x00,0x00,0x02,0x06,0x06,0x00,0x00,0x00,0x02,0x00,0x01,0x06,0x00,0x00,0x03,0x00,0x01,0x06,0x00,0x00,0x03,0x00,0x01,0x06,0x00,0x00,0x03,0x00,0x01,0x06,0x03,0x00,0x04,0x00,0x00,0x00,0x00,0x00,0x01,0x04,0x06,0x00,0x00,0x00,0x02,0x04,0x06,0x00,0x00,0x00,0x02,0x04,0x06,0x00,0x00,0x00,0x02,0x04,0x06,0x00,0x00,0x00,0x02,0x04,0x06,0x00,0x00,0x00,0x02,0x04,0x06,0x00,0x00,0x00,0x02,0x04,0x06,0x00,0x00,0x00,0x02,0x04,0x06,0x00,0x00,0x00,0x02,0x06,0x06,0x00,0x00,0x00,0x02,0x06,0x03,0x00,0x00,0x00,0x02,0x06,0x03,0x00,0x00,0x00,0x02,0x05,0x00,0x00,0x00,0x00,0x01,0x06,0x00,0x00,0x00,0x00,0x01,0x05,0x04,0x00,0x00,0x00,0x02,0x09,0x00,0x00,0x00,0x00,0x01,0x04,0x08,0x00,0x00,0x00,0x02,0x04,0x00,0x00,0x00,0x00,0x01,0x01,0x01,0x06,0x00,0x00,0x03,0x06,0x00,0x00,0x00,0x00,0x01,0x00,0x01,0x07,0x00,0x00,0x03,0x04,0x00,0x00,0x00,0x00,0x01,0x30,0x50,0x60,0x20,0x38,0x62,0x34,0x20,0x60,0x60,0x50,0x40,0x60,0x50,0x50,0x30,0x70,0x50,0x40,0x20};
+u8 lbl_1_data_1D9B8__fzgx_offset_F8[4] = {0x30,0x50,0x60,0x20};
+f32 lbl_1_data_1D9B8__fzgx_offset_FC = 1.0f;
+f32 lbl_1_data_1D9B8__fzgx_offset_100 = 1.0f;
+u8 lbl_1_data_1D9B8__fzgx_offset_104[4] = {0x08,0x00,0x00,0x00};
+u8 lbl_1_data_1DAC0[68] = {0x73,0x63,0x72,0x65,0x65,0x6E,0x5F,0x65,0x66,0x66,0x65,0x63,0x74,0x2E,0x63,0x00,0x43,0x61,0x6E,0x27,0x74,0x20,0x44,0x6F,0x75,0x62,0x6C,0x65,0x20,0x43,0x72,0x65,0x61,0x74,0x65,0x20,0x48,0x65,0x61,0x70,0x0A,0x00,0x00,0x00,0x45,0x72,0x72,0x6F,0x72,0x21,0x20,0x3A,0x20,0x57,0x72,0x6F,0x6E,0x67,0x20,0x56,0x61,0x6C,0x75,0x65,0x2E,0x00,0x00,0x00};
+#pragma explicit_zero_data on
+u32 jumptable_1_data_1DB04[38] = {0};
+char lbl_1_data_1DB9C[] = "Error!: draw_quad   (s,t) is wrong\n";
+u32 jumptable_1_data_1DBC0[37] = {0};
+char lbl_1_data_1DC54[] = "Error!: ScrefcSetMode   Manager is Full\n";
+char lbl_1_data_1DC80[] = "Error!: ScrefcSetModeLocsize   Copy size is zero.\n";
+char lbl_1_data_1DCB4[] = "Error!:noise_update";
+#pragma explicit_zero_data reset
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_data_prime(void) {
+    const void *volatile sink;  /* fzgx-allow: S2 discarded section-base order primer */
+    sink = lbl_1_data_1D960;
+    sink = lbl_1_data_1D9B8;
+    sink = lbl_1_data_1DAC0;
+}
+static const u32 fzgx_pool_table1[8] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFF910000, 0xFF760044, 0x6600FF32, 0x94009494, 0xCB0005CF, 0x00FF0000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+    s = 255.0f;
+    s = 40.0f;
+    s = 1.0f;
+    s = 0.5f;
+    s = 0.02500000037252903f;
+    s = 40.959999084472656f;
+    s = 409.6000061035156f;
+    s = 2.0f;
+    s = -2.0f;
+    s = 0.009999999776482582f;
+    s = 0.003000000026077032f;
+    s = 5.0f;
+    s = 15.0f;
+    d = 4503601774854144.0;
+    d = 4503599627370496.0;
+    s = 480.0f;
+    s = 0.949999988079071f;
+    s = 640.0f;
+    s = 30.0f;
+    s = 127.0f;
+    s = 0.20000000298023224f;
+    s = -128.0f;
+    s = 320.0f;
+    s = 0.25f;
+}
+static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.3;
+    d = -128.0;
+    d = 127.0;
+    s = 0.0009765625f;
+    s = 32.0f;
+    s = 1.4600000381469727f;
+    s = 639.0f;
+    s = 10.0f;
+    s = 0.1422991007566452f;
+}
+#pragma section code_type ".text"
+typedef struct {
+    u8 pad_0[0xA0];
+    u32 unk_A0[2];
+    u8 pad_A8[0x38];
+    s32 unk_E0;
+} fn_1_77384_Work;
+
+extern u32 lbl_801A63C0;
+extern void OSPanic(const char *, int, const char *, ...);
+extern s32 lbl_8006D2AC(f32);
+extern f32 lbl_8006D188(s32);
+extern s32 lbl_8006D3D0(f32);
+extern f32 lbl_8006D21C(s32);
+extern void DCFlushRange(void *, u32);
+
+static inline s32 fn_1_77384_rand(void) {
+    lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
+    return (lbl_801A63C0 >> 16) & 0x7FFF;
+}
+
+#define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+
+void fn_1_77384(fn_1_77384_Work *work) {
+    u16 shift;
+    s32 i;
+    s32 n;
+    s32 y;
+    s32 x;
+    s32 offset;
+    s32 row;
+    s8 dx;
+    s8 dy;
+    f32 depth = 30.0f;
+
+    shift = 0;
+    for (i = 1, n = 2; i <= 10; i++, n <<= 1) {
+        if (n == 64) {
+            shift = i;
+        }
+    }
+    if (shift == 0) {
+        OSPanic((const char *)lbl_1_data_1DAC0, 2847, lbl_1_data_1DCB4);
+    }
+
+    for (y = 0; y < 64; y++) {
+        {
+            s32 range = lbl_1_data_1D9B8__fzgx_offset_104[0];
+            row = fn_1_77384_rand() % (range * 2 + 1) - range;
+        }
+        for (x = 0; x < 64; x++) {
+            switch (lbl_1_bss_6C8D8) {
+            case 0:
+                dx = row;
+                dy = 0;
+                break;
+            case 1:
+                dx = row;
+                dy = 0;
+                break;
+            case 2: {
+                s32 range = lbl_1_data_1D9B8__fzgx_offset_104[0];
+                dx = fn_1_77384_rand() % (range * 2 + 1) - range;
+                dy = fn_1_77384_rand() % (range * 2 + 1) - range;
+                break;
+            }
+            case 3: {
+                s32 v = MIN(127.0f, (f32)((work->unk_E0 * 2) % 64) * (0.2f * __abs(y % 16 - 8)));
+                if (y % 32 < 16) {
+                    dx = v;
+                    dy = 0;
+                } else {
+                    dx = -v;
+                    dy = 0;
+                }
+                break;
+            }
+            case 4: {
+                f32 f = (320.0f - x) / 4.0f;
+                s8 t = CLAMP(f, -128.0f, 127.0f);
+                dx = CLAMP(t * (30 - work->unk_E0) * (0.3 + 0.2f * __abs(y % 16 - 8)), -128.0, 127.0);
+                dy = 0;
+                break;
+            }
+            case 5: {
+                s16 size = lbl_1_data_1D9B8__fzgx_offset_104[0] * 2;
+                s16 cx = size / 2 + size * (x / size);
+                s16 cy = size / 2 + size * (y / size);
+                s32 tx;
+                s32 ty;
+                if (cx - x < -128) tx = -128; else tx = (cx - x > 127) ? 127 : cx - x;
+                dx = tx;
+                if (cy - y < -128) ty = -128; else ty = (cy - y > 127) ? 127 : cy - y;
+                dy = ty;
+                break;
+            }
+            case 6: {
+                s16 size = lbl_1_data_1D9B8__fzgx_offset_104[0];
+                s16 cx;
+                s16 cy;
+                if ((y / size) % 2 != 0) {
+                    cx = size / 2 + size * (x / size);
+                } else {
+                    cx = size * ((x - size / 2) / size);
+                }
+                cy = size / 2 + size * (y / size);
+                dx = cx - x + fn_1_77384_rand() % (size * 2) - size;
+                dy = cy - y + fn_1_77384_rand() % (size * 2) - size;
+                break;
+            }
+            case 7: {
+                s16 size = lbl_1_data_1D9B8__fzgx_offset_104[0];
+                s32 jx = fn_1_77384_rand() % (size / 2);
+                s32 jy = fn_1_77384_rand() % (size / 2);
+                s32 quarter = size / 4;
+                s16 rx = x + jx - quarter;
+                s16 ry = y + jy - quarter;
+                s16 cx;
+                s16 cy;
+                if ((ry / size) % 2 != 0) {
+                    cx = size / 2 + size * (rx / size);
+                } else {
+                    cx = size * ((rx - size / 2) / size);
+                }
+                cy = size / 2 + size * (ry / size);
+                dx = cx - rx;
+                dy = cy - ry;
+                break;
+            }
+            case 8: {
+                f32 k = -depth / 1024.0f;
+                f32 ka = k * (x - 32.0f);
+                f32 h0 = depth + ka * (x - 32.0f);
+                f32 kb = k * ((x + 1) - 32.0f);
+                f32 h1 = depth + kb * ((x + 1) - 32.0f);
+                s32 a = lbl_8006D2AC(h1 - h0);
+                dx = -h0 * lbl_8006D21C((s16)(a - lbl_8006D3D0(1.46f * lbl_8006D188(a))));
+                dy = 0;
+                break;
+            }
+            case 9:
+            default:
+                dx = 0;
+                dy = 0;
+                break;
+            }
+            offset = ((((x & 3) | ((x >> 2) << 4)) | ((y & 3) << 2)) | ((y >> 2) << (shift + 2))) * 2;
+            ((u8 *)work->unk_A0[1])[offset] = dx + 0x80;
+            ((u8 *)work->unk_A0[1])[offset + 1] = dy + 0x80;
+        }
+    }
+    DCFlushRange((void *)work->unk_A0[1], 0x2000);
+}
+/* fzgx:end fn_1_77384 */
+
 /* fzgx:begin fn_1_77B80 noprologue */
 #include "types.h"
 
