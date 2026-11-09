@@ -27,13 +27,19 @@
 #define OS_FASTCAST_S8 4
 #define OS_FASTCAST_S16 5
 
+/* __OSf32tou8 does the byte load inside the asm into a register local, as the SDK does
+ * (fn_1_59EE4: the C load gives the lbz a later register number than the following address,
+ * which swaps r4/r5; the asm load into `ret` gives retail's order). Every other user is
+ * unchanged (all 16 targets OK). */
 static inline u8 __OSf32tou8(register f32 inF) {
     f32 tmp;
-    register f32 *ptr = &tmp;
+    register f32 *tmpPtr = &tmp;
+    register u8 ret;
     asm {
-        psq_st inF, 0(ptr), 1, OS_FASTCAST_U8
+        psq_st inF, 0(tmpPtr), 1, OS_FASTCAST_U8
+        lbz ret, 0(tmpPtr)
     }
-    return *(u8 *)ptr;
+    return ret;
 }
 
 static inline u16 __OSf32tou16(register f32 inF) {
