@@ -102899,6 +102899,21 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_C1CFC.c",
+    "symbols": [
+      "fn_1_C1CFC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard.c",
+    "pool": {
+      "@96": "lbl_1_rodata_4CB8",
+      "@94": "lbl_1_rodata_4CC0"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/memcard/fn_1_C23CC.c",
     "symbols": [
       "fn_1_C23CC"

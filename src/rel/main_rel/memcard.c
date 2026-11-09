@@ -28265,6 +28265,144 @@ void fn_1_C1ACC(u32 arg0, MemcardEntry *arg1) {
 }
 /* fzgx:end fn_1_C1ACC */
 
+/* fzgx:begin fn_1_C1CFC noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+extern void *lbl_801A6410;
+extern void *fn_1_45D0(void *heap, u32 size, Obj_1_data_3C7B8 *file, s32 line);
+extern void fn_1_46B4(void *heap, void *p, Obj_1_data_3C7B8 *file, s32 line);
+extern void *memcpy(void *dst, const void *src, u32 n);
+
+static inline u32 GetA3(s16 texel) { return (texel >> 12) & 7; }
+/* Rescales an RGB5A3 tiled texture of w x h texels by scale (box filter). */
+void *fn_1_C1CFC(void *src, u32 w, u32 h, f32 scale) {
+    u8 *tmp;
+    u8 *q;
+    u32 c;
+    u32 y;
+    u32 *red;
+    u32 *green;
+    u32 n;
+    u32 *blue;
+    u32 by;
+    u32 bx;
+    u32 r;
+    u32 x;
+    u32 j;
+    u32 k;
+    u32 *alpha;
+    u32 a;
+    u8 *out;
+    u32 i;
+    u32 idx;
+    u32 nh;
+    u16 px;
+    u8 *dst;
+    u32 g;
+    u32 b;
+    u32 nw;
+    u32 row;
+    u32 size;
+    u32 sr;
+    u32 sg;
+    u8 *p;
+    u16 *sp;
+    void *vp;
+    u32 sb;
+    u32 sa;
+
+    n = w * h;
+    size = scale * (scale * n);
+    out = fn_1_45D0(lbl_801A6410, size * 2, &lbl_1_data_3C7B8, 0x3328);
+    tmp = fn_1_45D0(lbl_801A6410, size * 2, &lbl_1_data_3C7B8, 0x3329);
+    red = fn_1_45D0(lbl_801A6410, n * 4, &lbl_1_data_3C7B8, 0x332B);
+    green = fn_1_45D0(lbl_801A6410, n * 4, &lbl_1_data_3C7B8, 0x332C);
+    blue = fn_1_45D0(lbl_801A6410, n * 4, &lbl_1_data_3C7B8, 0x332D);
+    alpha = fn_1_45D0(lbl_801A6410, n * 4, &lbl_1_data_3C7B8, 0x332E);
+
+    dst = tmp;
+    p = src;
+    for (by = 0; by < w / 4; by++) {
+        for (bx = 0; bx < h / 4; bx++) {
+            for (k = 0; k < 16; k++) {
+                memcpy(&px, p, 2);
+                p += 2;
+                c = px;
+                if (c & 0x8000) {
+                    row = by * 4 + k / 4;
+                    idx = bx * 4 + k % 4 + row * h;
+                    alpha[idx] = 255;
+                    red[idx] = ((c & 0x7C00) >> 10) * 255 / 31;
+                    green[idx] = ((c >> 5) & 0x1F) * 255 / 31;
+                    blue[idx] = (c & 0x1F) * 255 / 31;
+                } else {
+                    row = by * 4 + k / 4;
+                    idx = bx * 4 + k % 4 + row * h;
+                    alpha[idx] = GetA3(c) * 255 / 7;
+                    red[idx] = ((c & 0xF00) >> 8) * 255 / 15;
+                    green[idx] = ((c & 0xF0) >> 4) * 255 / 15;
+                    blue[idx] = (c & 0xF) * 255 / 15;
+                }
+            }
+        }
+    }
+
+    for (y = 0; y < w * scale; y++) {
+        for (x = 0; x < h * scale; x++) {
+            sa = 0;
+            sb = 0;
+            sg = 0;
+            sr = 0;
+            for (j = 0; j < 1.0f / scale; j++) {
+                for (i = 0; i < 1.0f / scale; i++) {
+                    idx = ((u32)(y / scale) + j) * h + (i + (u32)(x / scale));
+                    sr += red[idx];
+                    sg += green[idx];
+                    sb += blue[idx];
+                    sa += alpha[idx];
+                }
+            }
+            r = sr * (scale * scale);
+            g = sg * (scale * scale);
+            b = sb * (scale * scale);
+            a = sa * (scale * scale);
+            c = (((r >> 4) & 0xF) << 8) | (((g >> 4) & 0xF) << 4) | ((b >> 4) & 0xF) | (((a >> 5) & 7) << 12);
+            if (a >= 0xE0) {
+                c = (((r >> 3) & 0x1F) << 10) | (((g >> 3) & 0x1F) << 5) | ((b >> 3) & 0x1F) | 0x8000;
+            }
+            px = c;
+            memcpy(dst, &px, 2);
+            dst += 2;
+        }
+    }
+
+    nw = h * scale;
+    nh = w * scale;
+    q = out;
+    for (by = 0; by < nh; by += 4) {
+        for (bx = 0; bx < nw; bx += 4) {
+            p = tmp + (by * nw + bx) * 2;
+            memcpy(q, p, 8);
+            p = tmp + ((by + 1) * nw + bx) * 2;
+            memcpy(q + 8, p, 8);
+            p = tmp + ((by + 2) * nw + bx) * 2;
+            memcpy(q + 16, p, 8);
+            p = tmp + ((by + 3) * nw + bx) * 2;
+            memcpy(q + 24, p, 8);
+            q += 32;
+        }
+    }
+
+    fn_1_46B4(lbl_801A6410, alpha, &lbl_1_data_3C7B8, 0x3380);
+    fn_1_46B4(lbl_801A6410, blue, &lbl_1_data_3C7B8, 0x3381);
+    fn_1_46B4(lbl_801A6410, green, &lbl_1_data_3C7B8, 0x3382);
+    fn_1_46B4(lbl_801A6410, red, &lbl_1_data_3C7B8, 0x3383);
+    fn_1_46B4(lbl_801A6410, tmp, &lbl_1_data_3C7B8, 0x3385);
+    return out;
+}
+/* fzgx:end fn_1_C1CFC */
+
 /* fzgx:begin fn_1_C23CC */
 extern void fn_80008BA8(void *arg0, void *arg1, u32 arg2);
 
