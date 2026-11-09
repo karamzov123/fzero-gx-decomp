@@ -119192,12 +119192,32 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_118E8.c",
+    "symbols": [
+      "fn_12_118E8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_11A8.c",
     "symbols": [
       "fn_12_11A8"
     ],
     "status": "matching",
     "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "movie_module",
+    "source": "rel/movie_module/fn_12_11CE0.c",
+    "symbols": [
+      "fn_12_11CE0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
   {
