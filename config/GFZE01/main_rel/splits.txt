@@ -16531,3 +16531,6 @@ rel/main_rel/game/fn_1_3867C.c:
 
 rel/main_rel/screen_effect/fn_1_77384.c:
 	.text       start:0x00077384 end:0x00077B80 align:4
+
+rel/main_rel/memcard/fn_1_C1CFC.c:
+	.text       start:0x000C1CFC end:0x000C23CC align:4
