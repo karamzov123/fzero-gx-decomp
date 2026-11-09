@@ -26,10 +26,10 @@ The goal of this project is to reconstruct readable, maintainable, matching C so
 
 ## Current Status
 
-- **Code Matched:** **98.47%** (7,269 / 7,312 functions authored in C)
+- **Code Matched:** **98.53%** (7,272 / 7,312 functions authored in C)
 - **Target Executables:** **16 / 16** link cleanly and match the retail SHA-1 hashes byte for byte (`16 files OK`)
-- **DOL Core:** **98.52%** code matched
-- **Relocatable Modules:** **98.46%** code matched
+- **DOL Core:** **98.61%** code matched
+- **Relocatable Modules:** **98.51%** code matched
 
 ### Supported Versions
 
