@@ -33873,6 +33873,21 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8005C478.c",
+    "symbols": [
+      "fn_8005C478"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "@31": "lbl_801A7218",
+      "@29": "lbl_801A7228",
+      "@28": "lbl_801A7220"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8005C5C8.c",
     "symbols": [
       "fn_8005C5C8"
