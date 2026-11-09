@@ -1519,6 +1519,711 @@ void fn_1_59D54(fn_1_59D54_Effect *effect) {
 }
 /* fzgx:end fn_1_59D54 */
 
+/* fzgx:begin fn_1_59EE4 noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "dolphin/os/OSFastCast.h"
+#include "mathutil.h"
+
+typedef struct {
+    f32 x, y, z;
+} Fn59EE4Vec;
+
+typedef struct {
+    u8 r, g, b, a;
+} Fn59EE4Color;
+
+typedef struct {
+    Fn59EE4Vec pos;
+    Fn59EE4Color color;
+} Fn59EE4Vertex;
+
+typedef struct {
+    Fn59EE4Vec pos;
+    f32 radius;
+    u16 unk_10;
+    u16 unk_12;
+    Fn59EE4Color color;
+} Fn59EE4Glow;
+
+typedef struct {
+    s32 type;
+    f32 time;
+    f32 value;
+    f32 tanIn;
+    f32 tanOut;
+} Fn59EE4CurveKey;
+
+typedef struct {
+    u8 pad_0[0xf90];
+    u32 seed;
+    u8 pad_f94[0x1c];
+    Fn59EE4CurveKey curve_x[2];
+    Fn59EE4CurveKey curve_y[2];
+    Fn59EE4CurveKey curve_z[2];
+} Fn59EE4Data;
+
+typedef struct {
+    u8 pad_0[0xd4];
+    Fn59EE4Vec work;
+} Fn59EE4Scratch;
+
+typedef struct {
+    u8 pad_0[0x8];
+    u32 flags;
+    u8 pad_c[0x4];
+    s32 frame;
+    u8 pad_14[0x4];
+    s16 id;
+    u8 pad_1a[0x2];
+    f32 color[3];
+    u8 pad_28[0x14];
+    Fn59EE4Vec pos;
+    u8 pad_48[0x28];
+    f32 bend[3];
+    u8 pad_7c[0x18];
+    Fn59EE4Vec dir;
+    u8 pad_a0[0xc];
+    s16 max_count;
+    u8 pad_ae[0x6];
+    f32 scale;
+} Fn59EE4Effect;
+
+typedef struct {
+    u8 pad_0[0x3ba];
+    s16 mode;
+} Fn59EE4Racer;
+
+typedef struct {
+    u8 pad_0[0x475];
+    u8 camera;
+} Fn59EE4Owner;
+
+extern u8 fn_1_5942C__fzgx_offset_0[];
+extern u8 fn_1_5944C__fzgx_offset_0[];
+extern u8 fn_1_5946C__fzgx_offset_0[];
+extern u8 fn_1_5948C__fzgx_offset_0[];
+extern u8 fn_1_594AC__fzgx_offset_0[];
+extern u8 fn_1_594CC__fzgx_offset_0[];
+extern u8 fn_1_594EC__fzgx_offset_0[];
+extern u8 fn_1_594F0__fzgx_offset_0[];
+extern u8 fn_1_594F4__fzgx_offset_0[];
+extern u8 fn_1_594F8__fzgx_offset_0[];
+extern u8 fn_1_594FC__fzgx_offset_0[];
+extern u8 fn_1_59500__fzgx_offset_0[];
+extern u8 fn_1_59504__fzgx_offset_0[];
+extern u8 fn_1_59508__fzgx_offset_0[];
+extern u8 fn_1_5950C__fzgx_offset_0[];
+extern u8 fn_1_59510__fzgx_offset_0[];
+extern u8 fn_1_59514__fzgx_offset_0[];
+extern u8 fn_1_5962C__fzgx_offset_0[];
+extern u8 fn_1_59770__fzgx_offset_0[];
+extern u8 fn_1_59A70__fzgx_offset_0[];
+extern u8 fn_1_59A74__fzgx_offset_0[];
+extern u8 fn_1_59B00__fzgx_offset_0[];
+extern u8 fn_1_59B90__fzgx_offset_0[];
+extern u8 fn_1_59CC4__fzgx_offset_0[];
+extern u8 fn_1_59CC8__fzgx_offset_0[];
+extern u8 fn_1_59D54__fzgx_offset_0[];
+extern u8 fn_1_59EE4__fzgx_offset_0[];
+extern u8 fn_1_5A8CC__fzgx_offset_0[];
+extern u8 fn_1_5A8D0__fzgx_offset_0[];
+extern u8 fn_1_5A8DC__fzgx_offset_0[];
+extern u8 fn_1_5ABC4__fzgx_offset_0[];
+extern u8 fn_1_5ABC8__fzgx_offset_0[];
+extern u8 fn_1_5ABCC__fzgx_offset_0[];
+extern u8 fn_1_5AC48__fzgx_offset_0[];
+extern u8 fn_1_5AF28__fzgx_offset_0[];
+extern u8 fn_1_5B074__fzgx_offset_0[];
+extern u8 fn_1_5B078__fzgx_offset_0[];
+extern u8 fn_1_5B188__fzgx_offset_0[];
+extern u8 fn_1_5B30C__fzgx_offset_0[];
+extern u8 fn_1_5B3CC__fzgx_offset_0[];
+extern u8 fn_1_5B3D0__fzgx_offset_0[];
+extern u8 fn_1_5B450__fzgx_offset_0[];
+extern u8 fn_1_5B578__fzgx_offset_0[];
+extern u8 fn_1_5B6F0__fzgx_offset_0[];
+extern u8 fn_1_5B6F4__fzgx_offset_0[];
+extern u8 fn_1_5B780__fzgx_offset_0[];
+extern u8 fn_1_5B7F8__fzgx_offset_0[];
+extern u8 fn_1_5BF6C__fzgx_offset_0[];
+extern u8 fn_1_5BF70__fzgx_offset_0[];
+extern u8 fn_1_5BFF0__fzgx_offset_0[];
+extern u8 fn_1_5C058__fzgx_offset_0[];
+extern u8 fn_1_5C780__fzgx_offset_0[];
+extern u8 fn_1_5C784__fzgx_offset_0[];
+extern u8 fn_1_5C83C__fzgx_offset_0[];
+extern u8 fn_1_5CA00__fzgx_offset_0[];
+extern u8 fn_1_5D010__fzgx_offset_0[];
+extern u8 fn_1_5D014__fzgx_offset_0[];
+extern u8 fn_1_5D020__fzgx_offset_0[];
+extern u8 fn_1_5D1B8__fzgx_offset_0[];
+extern u8 fn_1_5D374__fzgx_offset_0[];
+extern u8 fn_1_5D378__fzgx_offset_0[];
+extern u8 fn_1_5D4FC__fzgx_offset_0[];
+extern u8 fn_1_5D500__fzgx_offset_0[];
+extern u8 fn_1_5D718__fzgx_offset_0[];
+extern u8 fn_1_5D88C__fzgx_offset_0[];
+extern u8 fn_1_5D918__fzgx_offset_0[];
+extern u8 fn_1_5D91C__fzgx_offset_0[];
+extern u8 fn_1_5DFA4__fzgx_offset_0[];
+extern u8 fn_1_5E3C4__fzgx_offset_0[];
+extern u8 fn_1_5E4D8__fzgx_offset_0[];
+extern u8 fn_1_5EB08__fzgx_offset_0[];
+extern u8 fn_1_5F5C4__fzgx_offset_0[];
+extern u8 fn_1_5F5C8__fzgx_offset_0[];
+extern u8 fn_1_5F654__fzgx_offset_0[];
+extern u8 fn_1_5F9B8__fzgx_offset_0[];
+extern u8 fn_1_5FE24__fzgx_offset_0[];
+extern u8 fn_1_5FE28__fzgx_offset_0[];
+extern u8 fn_1_5FE2C__fzgx_offset_0[];
+extern u8 fn_1_5FE30__fzgx_offset_0[];
+extern u8 fn_1_5FFAC__fzgx_offset_0[];
+extern u8 fn_1_5FFB0__fzgx_offset_0[];
+extern u8 fn_1_60170__fzgx_offset_0[];
+extern u8 fn_1_601B4__fzgx_offset_0[];
+extern u8 fn_1_6028C__fzgx_offset_0[];
+extern u8 fn_1_60734__fzgx_offset_0[];
+extern u8 fn_1_60880__fzgx_offset_0[];
+extern u8 fn_1_60B80__fzgx_offset_0[];
+extern u8 fn_1_60C70__fzgx_offset_0[];
+extern u8 fn_1_60C74__fzgx_offset_0[];
+extern u8 fn_1_60C84__fzgx_offset_0[];
+extern u8 fn_1_60C88__fzgx_offset_0[];
+extern u8 fn_1_60D54__fzgx_offset_0[];
+extern u8 fn_1_60F7C__fzgx_offset_0[];
+extern u8 fn_1_60F80__fzgx_offset_0[];
+extern u8 fn_1_60F84__fzgx_offset_0[];
+extern u8 fn_1_61070__fzgx_offset_0[];
+extern u8 fn_1_611EC__fzgx_offset_0[];
+extern u8 fn_1_61370__fzgx_offset_0[];
+extern u8 fn_1_61640__fzgx_offset_0[];
+extern u8 fn_1_61760__fzgx_offset_0[];
+extern u8 fn_1_617A4__fzgx_offset_0[];
+extern u8 fn_1_618B8__fzgx_offset_0[];
+extern u8 fn_1_619E4__fzgx_offset_0[];
+extern u8 fn_1_61C84__fzgx_offset_0[];
+extern u8 fn_1_61C88__fzgx_offset_0[];
+extern u8 fn_1_61CA8__fzgx_offset_0[];
+extern u8 fn_1_61CC8__fzgx_offset_0[];
+extern u8 fn_1_61CE8__fzgx_offset_0[];
+extern u8 fn_1_62AF8__fzgx_offset_0[];
+extern u8 fn_1_62C84__fzgx_offset_0[];
+extern u8 fn_1_62E9C__fzgx_offset_0[];
+extern u8 fn_1_6312C__fzgx_offset_0[];
+extern u8 fn_1_63130__fzgx_offset_0[];
+extern u8 fn_1_6313C__fzgx_offset_0[];
+extern u8 fn_1_632D4__fzgx_offset_0[];
+extern u8 fn_1_633BC__fzgx_offset_0[];
+extern u8 fn_1_633C0__fzgx_offset_0[];
+extern u8 fn_1_63514__fzgx_offset_0[];
+extern u8 fn_1_635BC__fzgx_offset_0[];
+extern u8 fn_1_63858__fzgx_offset_0[];
+extern u8 fn_1_64098__fzgx_offset_0[];
+extern u8 fn_1_640A4__fzgx_offset_0[];
+extern u8 fn_1_642E8__fzgx_offset_0[];
+extern u8 fn_1_645C8__fzgx_offset_0[];
+extern u8 fn_1_645CC__fzgx_offset_0[];
+extern u8 fn_1_645D0__fzgx_offset_0[];
+extern u8 fn_1_645D4__fzgx_offset_0[];
+extern u8 fn_1_64760__fzgx_offset_0[];
+extern u8 fn_1_648D4__fzgx_offset_0[];
+extern u8 fn_1_648D8__fzgx_offset_0[];
+extern u8 fn_1_648DC__fzgx_offset_0[];
+extern u8 fn_1_64E1C__fzgx_offset_0[];
+extern u8 fn_1_64F2C__fzgx_offset_0[];
+extern u8 fn_1_64FB8__fzgx_offset_0[];
+extern u8 fn_1_65268__fzgx_offset_0[];
+extern u8 fn_1_65420__fzgx_offset_0[];
+extern u8 fn_1_65424__fzgx_offset_0[];
+extern u8 fn_1_654B0__fzgx_offset_0[];
+extern u8 fn_1_656C8__fzgx_offset_0[];
+extern u8 fn_1_65AAC__fzgx_offset_0[];
+extern u8 fn_1_65AB0__fzgx_offset_0[];
+extern u8 fn_1_65B58__fzgx_offset_0[];
+extern u8 fn_1_65B5C__fzgx_offset_0[];
+extern u8 fn_1_65CDC__fzgx_offset_0[];
+extern u8 fn_1_65E58__fzgx_offset_0[];
+extern u8 fn_1_65E88__fzgx_offset_0[];
+extern u8 fn_1_65E8C__fzgx_offset_0[];
+extern u8 fn_1_660EC__fzgx_offset_0[];
+extern u8 fn_1_66254__fzgx_offset_0[];
+extern u8 fn_1_662D4__fzgx_offset_0[];
+extern u8 fn_1_662D8__fzgx_offset_0[];
+extern u8 fn_1_67294__fzgx_offset_0[];
+extern u8 fn_1_67414__fzgx_offset_0[];
+extern u8 fn_1_6742C__fzgx_offset_0[];
+extern u8 fn_1_67430__fzgx_offset_0[];
+extern u8 fn_1_6755C__fzgx_offset_0[];
+extern u8 fn_1_6766C__fzgx_offset_0[];
+extern u8 fn_1_6767C__fzgx_offset_0[];
+extern u8 fn_1_67680__fzgx_offset_0[];
+extern u8 fn_1_67D0C__fzgx_offset_0[];
+extern u8 fn_1_67E94__fzgx_offset_0[];
+extern u8 fn_1_67F20__fzgx_offset_0[];
+extern u8 fn_1_68054__fzgx_offset_0[];
+extern u8 fn_1_680F4__fzgx_offset_0[];
+extern u8 lbl_1_data_1CC68__fzgx_offset_0[];
+extern u8 lbl_1_data_1CC78__fzgx_offset_0[];
+extern u8 lbl_1_data_1CC8C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CC9C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CCAC__fzgx_offset_0[];
+extern u8 lbl_1_data_1CCC0__fzgx_offset_0[];
+extern u8 lbl_1_data_1CCD0__fzgx_offset_0[];
+extern u8 lbl_1_data_1CCE4__fzgx_offset_0[];
+extern u8 lbl_1_data_1CCFC__fzgx_offset_0[];
+extern u8 lbl_1_data_1CD14__fzgx_offset_0[];
+extern u8 lbl_1_data_1CD30__fzgx_offset_0[];
+extern u8 lbl_1_data_1CD48__fzgx_offset_0[];
+extern u8 lbl_1_data_1CD60__fzgx_offset_0[];
+extern u8 lbl_1_data_1CD7C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CD88__fzgx_offset_0[];
+extern u8 lbl_1_data_1CD98__fzgx_offset_0[];
+extern u8 lbl_1_data_1CDA8__fzgx_offset_0[];
+extern u8 lbl_1_data_1CDB8__fzgx_offset_0[];
+extern u8 lbl_1_data_1CDCC__fzgx_offset_0[];
+extern u8 lbl_1_data_1CDE0__fzgx_offset_0[];
+extern u8 lbl_1_data_1CDF4__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE04__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE10__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE20__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE30__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE44__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE58__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE68__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE78__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE8C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CE9C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CEB0__fzgx_offset_0[];
+extern u8 lbl_1_data_1CEC8__fzgx_offset_0[];
+extern u8 lbl_1_data_1CEDC__fzgx_offset_0[];
+extern u8 lbl_1_data_1CEF0__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF08__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF1C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF30__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF4C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF58__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF6C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF78__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF84__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF90__fzgx_offset_0[];
+extern u8 lbl_1_data_1CF9C__fzgx_offset_0[];
+extern u8 lbl_1_data_1CFA8__fzgx_offset_0[];
+extern u8 lbl_1_data_1CFB4__fzgx_offset_0[];
+extern u8 lbl_1_data_1CFC0__fzgx_offset_0[];
+extern u8 lbl_1_data_1CFCC__fzgx_offset_0[];
+extern u8 lbl_1_data_1CFD8__fzgx_offset_0[];
+extern u8 lbl_1_data_1CFE4__fzgx_offset_0[];
+extern u8 lbl_1_data_1CFF0__fzgx_offset_0[];
+extern u8 lbl_1_data_1CFFC__fzgx_offset_0[];
+extern u8 lbl_1_data_1D008__fzgx_offset_0[];
+extern u8 lbl_1_data_1D014__fzgx_offset_0[];
+extern u8 lbl_1_data_1D020__fzgx_offset_0[];
+extern u8 lbl_1_data_1D02C__fzgx_offset_0[];
+extern u8 lbl_1_data_1D038__fzgx_offset_0[];
+extern u8 lbl_1_data_1D044__fzgx_offset_0[];
+extern u8 lbl_1_data_1D050__fzgx_offset_0[];
+extern u8 lbl_1_data_1D05C__fzgx_offset_0[];
+extern u8 lbl_1_data_1D068__fzgx_offset_0[];
+extern u8 lbl_1_data_1D074__fzgx_offset_0[];
+extern u8 lbl_1_data_1D080__fzgx_offset_0[];
+extern u8 lbl_1_data_1D08C__fzgx_offset_0[];
+extern u8 lbl_1_data_1D098__fzgx_offset_0[];
+extern u8 lbl_1_data_1D0A4__fzgx_offset_0[];
+extern u8 lbl_1_data_1D0B0__fzgx_offset_0[];
+extern u8 lbl_1_data_1D0BC__fzgx_offset_0[];
+static u32 fzgx_pool_native_lbl_1_data_1C698_gap_0[996] = {  /* fzgx-allow: A1 measured pool bytes and bindings */
+    0x00000000, 0x00000001, 0x00000002, 0x00000003, 0x00000004, 0x00000005, 0x00000006, 0x00000007,
+    0x00000008, 0x00000009, 0x0000000A, 0x0000000B, 0x0000000C, 0x0000000D, 0x0000000E, 0x0000000F,
+    0x00000010, 0x00000011, 0x00000012, 0x00000013, 0x00000014, 0x00000015, 0x00000016, 0x00000017,
+    0x00000018, 0x00000019, 0x0000001A, 0x0000001B, 0x0000001C, 0x0000001D, 0x0000001E, 0x0000001F,
+    0x00000020, 0x00000021, 0x00000022, 0x00000023, 0x00000024, 0x00000025, 0x00000026, 0x00000027,
+    0x00000028, 0x00000029, 0x0000002A, 0x0000002B, 0x0000002C, 0x0000002D, 0x0000002E, 0x0000002F,
+    0x00000030, 0x00000031, 0x00000032, 0x00000033, 0x00000034, 0x00000035, 0x00000036, 0x00000037,
+    0x00000038, 0x00000039, 0x0000003A, 0x0000003B, 0x0000003C, 0x0000003D, 0x0000003E, 0x0000003F,
+    0x00000040, 0x00000041, 0x00000042, 0x00000043, 0x00000044, 0x00000045, 0x00000046, 0x00000047,
+    0x00000048, 0x00000049, 0x0000004A, 0x0000004B, 0x0000004C, 0x0000004D, 0x0000004E, 0x0000004F,
+    0x00000050, 0x00000051, 0x00000052, 0x00000053, 0x00000054, 0x00000055, 0x00000056, 0x00000057,
+    0x00000058, 0x00000059, 0x0000005A, 0x0000005B, 0x0000005C, 0x0000005D, 0x0000005E, 0x0000005F,
+    0x00000060, 0x00000061, 0x00000062, 0x00000063, 0x00000064, 0x00000065, 0x00000066, 0x00000067,
+    0x00000068, 0x00000069, 0x0000006A, 0x0000006B, 0x0000006C, 0x0000006D, 0x0000006E, 0x0000006F,
+    0x00000070, 0x00000071, 0x00000072, 0x00000073, 0x00000074, 0x00000075, 0x00000076, 0x00000077,
+    0x00000078, 0x00000079, 0x0000007A, 0x0000007B, 0x0000007C, 0x0000007D, 0x0000007E, 0x0000007F,
+    0x00000080, 0x00000081, 0x00000082, 0x00000083, 0x00000084, 0x00000085, 0x00000086, 0x00000087,
+    0x00000088, 0x00000089, 0x0000008A, 0x0000008B, 0x0000008C, 0x0000008D, 0x0000008E, 0x0000008F,
+    0x00000090, 0x00000091, 0x00000092, 0x00000093, 0x00000094, 0x00000095, 0x00000096, 0x00000097,
+    0x00000098, 0x00000099, 0x0000009A, 0x0000009B, 0x0000009C, 0x0000009D, 0x0000009E, 0x0000009F,
+    0x000000A0, 0x000000A1, 0x000000A2, 0x000000A3, 0x000000A4, 0x000000A5, 0x000000A6, 0x000000A7,
+    0x000000A8, 0x000000A9, 0x000000AA, 0x000000AB, 0x000000AC, 0x000000AD, 0x000000AE, 0x000000AF,
+    0x000000B0, 0x000000B1, 0x000000B2, 0x000000B3, 0x000000B4, 0x000000B5, 0x000000B6, 0x000000B7,
+    0x000000B8, 0x000000B9, 0x000000BA, 0x000000BB, 0x000000BC, 0x000000BD, 0x000000BE, 0x000000BF,
+    0x000000C0, 0x000000C1, 0x000000C2, 0x000000C3, 0x000000C4, 0x000000C5, 0x000000C6, 0x000000C7,
+    0x000000C8, 0x000000C9, 0x000000CA, 0x000000CB, 0x000000CC, 0x000000CD, 0x000000CE, 0x000000CF,
+    0x000000D0, 0x000000D1, 0x000000D2, 0x000000D3, 0x000000D4, 0x000000D5, 0x000000D6, 0x000000D7,
+    0x000000D8, 0x000000D9, 0x000000DA, 0x000000DB, 0x000000DC, 0x000000DD, 0x000000DE, 0x000000DF,
+    0x000000E0, 0x000000E1, 0x000000E2, 0x000000E3, 0x000000E4, 0x000000E5, 0x000000E6, 0x000000E7,
+    0x000000E8, 0x000000E9, 0x00000000, 0x00000001, 0x00000002, 0x00000003, 0x00000004, 0x00000005,
+    0x00000006, 0x00000007, 0x00000008, 0x00000009, 0x0000000A, 0x0000000B, 0x0000000C, 0x0000000D,
+    0x0000000E, 0x0000000F, 0x00000010, 0x00000011, 0x00000012, 0x00000013, 0x00000014, 0x00000015,
+    0x00000016, 0x00000000, 0x00000017, 0x0000001A, 0x0000001B, 0x0000001C, 0x0000001D, 0x0000001E,
+    0x0000001F, 0x00000020, 0x00000021, 0x00000022, 0x00000018, 0x00000019, 0x00000023, 0x00000024,
+    0x00000025, 0x00000026, 0x00000027, 0x00000028, 0x00000029, 0x0000002A, 0x0000002B, 0x0000002C,
+    0x0000002D, 0x0000002E, 0x0000002F, 0x00000030, 0x00000031, 0x00000032, 0x00000033, 0x00000034,
+    0x00000035, 0x00000036, 0x00000037, 0x00000038, 0x00000039, 0x0000003A, 0x0000003B, 0x0000003C,
+    0x0000003D, 0x0000003E, 0x0000003F, 0x00000040, 0x00000041, 0x00000042, 0x00000043, 0x00000044,
+    0x00000045, 0x00000046, 0x00000047, 0x00000048, 0x00000049, 0x0000004A, 0x0000004B, 0x0000004C,
+    0x0000004D, 0x0000004E, 0x0000004F, 0x00000050, 0x00000051, 0x00000052, 0x00000053, 0x00000054,
+    0x00000055, 0x00000056, 0x00000057, 0x00000058, 0x00000059, 0x0000005A, 0x0000005B, 0x0000005C,
+    0x0000005D, 0x0000005E, 0x0000005F, 0x00000060, 0x00000061, 0x00000062, 0x00000063, 0x00000064,
+    0x00000065, 0x00000066, 0x00000067, 0x00000068, 0x00000069, 0x0000006A, 0x0000006B, 0x0000006C,
+    0x0000006D, 0x0000006E, 0x0000006F, 0x00000070, 0x00000071, 0x00000072, 0x00000073, 0x00000074,
+    0x00000075, 0x00000076, 0x00000077, 0x00000078, 0x00000079, 0x0000007A, 0x0000007B, 0x0000007C,
+    0x0000007D, 0x0000007E, 0x0000007F, 0x00000080, 0x00000081, 0x00000082, 0x00000083, 0x00000084,
+    0x00000085, 0x00000086, 0x00000087, 0x00000088, 0x00000000, 0xBF800000, 0x00000000, (u32)lbl_1_data_1CC68__fzgx_offset_0,
+    0x45545F43, 0x4F4C495F, 0x50415254, 0x49434C45, 0x00000000, 0x45545F43, 0x41525F45, 0x46464543,
+    0x54000000, 0x45545F44, 0x52494654, 0x5F505443, 0x4C000000, 0x45545F43, 0x41525354, 0x41425F53,
+    0x52495030, 0x31000000, 0x45545F43, 0x41525F43, 0x4F4C4950, 0x00000000, 0x45545F43, 0x41525F54,
+    0x48554E44, 0x45523031, 0x00000000, 0x45545F52, 0x4F434B45, 0x545F5354, 0x4152545F, 0x45335343,
+    0x4E000000, 0x45545F52, 0x53544152, 0x545F4533, 0x53434E5F, 0x5054434C, 0x00000000, 0x45545F52,
+    0x53544152, 0x545F4533, 0x53434E5F, 0x5054434C, 0x46524147, 0x00000000, 0x45545F52, 0x53544152,
+    0x545F4533, 0x53434E5F, 0x52494E47, 0x00000000, 0x45545F43, 0x41525F46, 0x524F4E54, 0x5F544855,
+    0x4E444552, 0x00000000, 0x45545F43, 0x41525F46, 0x524F4E54, 0x5F544855, 0x4E444552, 0x5F4F5554,
+    0x00000000, 0x45545F43, 0x41525F42, 0x454C5400, 0x45545F43, 0x41525F53, 0x4D4F4B45, 0x00000000,
+    0x45545F43, 0x41525F52, 0x45504149, 0x52000000, 0x45545F43, 0x41525F53, 0x5041524B, 0x00000000,
+    0x45545F43, 0x41525F54, 0x48554E44, 0x45523032, 0x00000000, 0x45545F43, 0x41525F54, 0x48554E44,
+    0x45523033, 0x00000000, 0x45545F43, 0x41525F45, 0x4D455247, 0x454E4359, 0x00000000, 0x45545F42,
+    0x475F5448, 0x554E4445, 0x52303100, 0x45545F43, 0x41525F4C, 0x45414600, 0x45545F43, 0x41525F48,
+    0x49544D41, 0x524B0000, 0x45545F43, 0x41525F48, 0x49544D41, 0x524B3200, 0x45545F43, 0x41525F54,
+    0x5552424F, 0x5F454E44, 0x00000000, 0x45545F43, 0x41525F4A, 0x554D505F, 0x5054434C, 0x00000000,
+    0x45545F48, 0x424F4152, 0x445F504C, 0x414E4500, 0x45545F43, 0x41525F57, 0x41544552, 0x00000000,
+    0x45545F43, 0x41525F57, 0x41544552, 0x5F534D4F, 0x4B450000, 0x45545F43, 0x41525F53, 0x50494E5F,
+    0x41544B00, 0x45545F43, 0x41525F42, 0x5245414B, 0x5F534D4F, 0x4B450000, 0x45545F43, 0x41525F42,
+    0x5245414B, 0x5F535441, 0x52545F50, 0x54434C00, 0x45545F43, 0x41525F42, 0x5245414B, 0x5F505443,
+    0x4C000000, 0x45545F43, 0x41525F42, 0x5245414B, 0x5F42414C, 0x4C000000, 0x45545F43, 0x41525F42,
+    0x5245414B, 0x5F42414C, 0x4C5F424F, 0x4D420000, 0x45545F43, 0x41525F42, 0x4F4D425F, 0x46495245,
+    0x00000000, 0x45545F43, 0x41525F42, 0x4F4D425F, 0x4D495353, 0x494C4500, 0x45545F43, 0x41525F42,
+    0x4F4D425F, 0x4D495353, 0x494C455F, 0x534D4F4B, 0x45000000, 0x45545F43, 0x41525F55, 0x464F0000,
+    0x45545F43, 0x41525F42, 0x4F4D425F, 0x4354524C, 0x00000000, 0x45545F43, 0x41525F44, 0x49525400,
+    0x45545F44, 0x4D593030, 0x31000000, 0x45545F44, 0x4D593030, 0x32000000, 0x45545F44, 0x4D593030,
+    0x33000000, 0x45545F44, 0x4D593030, 0x34000000, 0x45545F54, 0x4D503030, 0x31000000, 0x45545F54,
+    0x4D503030, 0x32000000, 0x45545F54, 0x4D503030, 0x33000000, 0x45545F54, 0x4D503030, 0x34000000,
+    0x45545F54, 0x4D503030, 0x35000000, 0x45545F54, 0x4D503030, 0x36000000, 0x45545F54, 0x4D503030,
+    0x37000000, 0x45545F54, 0x4D503030, 0x38000000, 0x45545F54, 0x4D503030, 0x39000000, 0x45545F54,
+    0x4D503031, 0x30000000, 0x45545F54, 0x4D503031, 0x31000000, 0x45545F54, 0x4D503031, 0x32000000,
+    0x45545F54, 0x4D503031, 0x33000000, 0x45545F54, 0x4D503031, 0x34000000, 0x45545F54, 0x4D503031,
+    0x35000000, 0x45545F54, 0x4D503031, 0x36000000, 0x45545F54, 0x4D503031, 0x37000000, 0x45545F54,
+    0x4D503031, 0x38000000, 0x45545F54, 0x4D503031, 0x39000000, 0x45545F54, 0x4D503032, 0x30000000,
+    0x45545F54, 0x4D503032, 0x31000000, 0x45545F54, 0x4D503032, 0x32000000, 0x45545F54, 0x4D503032,
+    0x33000000, 0x45545F54, 0x4D503032, 0x34000000, (u32)lbl_1_data_1CC78__fzgx_offset_0, (u32)lbl_1_data_1CC8C__fzgx_offset_0, (u32)lbl_1_data_1CC9C__fzgx_offset_0, (u32)lbl_1_data_1CCAC__fzgx_offset_0,
+    (u32)lbl_1_data_1CCC0__fzgx_offset_0, (u32)lbl_1_data_1CCD0__fzgx_offset_0, (u32)lbl_1_data_1CCE4__fzgx_offset_0, (u32)lbl_1_data_1CCFC__fzgx_offset_0, (u32)lbl_1_data_1CD14__fzgx_offset_0, (u32)lbl_1_data_1CD30__fzgx_offset_0, (u32)lbl_1_data_1CD48__fzgx_offset_0, (u32)lbl_1_data_1CD60__fzgx_offset_0,
+    (u32)lbl_1_data_1CD7C__fzgx_offset_0, (u32)lbl_1_data_1CD88__fzgx_offset_0, (u32)lbl_1_data_1CD98__fzgx_offset_0, (u32)lbl_1_data_1CDA8__fzgx_offset_0, (u32)lbl_1_data_1CDB8__fzgx_offset_0, (u32)lbl_1_data_1CDCC__fzgx_offset_0, (u32)lbl_1_data_1CDE0__fzgx_offset_0, (u32)lbl_1_data_1CDF4__fzgx_offset_0,
+    (u32)lbl_1_data_1CE04__fzgx_offset_0, (u32)lbl_1_data_1CE10__fzgx_offset_0, (u32)lbl_1_data_1CE20__fzgx_offset_0, (u32)lbl_1_data_1CE30__fzgx_offset_0, (u32)lbl_1_data_1CE44__fzgx_offset_0, (u32)lbl_1_data_1CE58__fzgx_offset_0, (u32)lbl_1_data_1CE68__fzgx_offset_0, (u32)lbl_1_data_1CE78__fzgx_offset_0,
+    (u32)lbl_1_data_1CE8C__fzgx_offset_0, (u32)lbl_1_data_1CE9C__fzgx_offset_0, (u32)lbl_1_data_1CEB0__fzgx_offset_0, (u32)lbl_1_data_1CEC8__fzgx_offset_0, (u32)lbl_1_data_1CEDC__fzgx_offset_0, (u32)lbl_1_data_1CEF0__fzgx_offset_0, (u32)lbl_1_data_1CF08__fzgx_offset_0, (u32)lbl_1_data_1CF1C__fzgx_offset_0,
+    (u32)lbl_1_data_1CF30__fzgx_offset_0, (u32)lbl_1_data_1CF4C__fzgx_offset_0, (u32)lbl_1_data_1CF58__fzgx_offset_0, (u32)lbl_1_data_1CF6C__fzgx_offset_0, (u32)lbl_1_data_1CF78__fzgx_offset_0, (u32)lbl_1_data_1CF84__fzgx_offset_0, (u32)lbl_1_data_1CF90__fzgx_offset_0, (u32)lbl_1_data_1CF9C__fzgx_offset_0,
+    (u32)lbl_1_data_1CFA8__fzgx_offset_0, (u32)lbl_1_data_1CFB4__fzgx_offset_0, (u32)lbl_1_data_1CFC0__fzgx_offset_0, (u32)lbl_1_data_1CFCC__fzgx_offset_0, (u32)lbl_1_data_1CFD8__fzgx_offset_0, (u32)lbl_1_data_1CFE4__fzgx_offset_0, (u32)lbl_1_data_1CFF0__fzgx_offset_0, (u32)lbl_1_data_1CFFC__fzgx_offset_0,
+    (u32)lbl_1_data_1D008__fzgx_offset_0, (u32)lbl_1_data_1D014__fzgx_offset_0, (u32)lbl_1_data_1D020__fzgx_offset_0, (u32)lbl_1_data_1D02C__fzgx_offset_0, (u32)lbl_1_data_1D038__fzgx_offset_0, (u32)lbl_1_data_1D044__fzgx_offset_0, (u32)lbl_1_data_1D050__fzgx_offset_0, (u32)lbl_1_data_1D05C__fzgx_offset_0,
+    (u32)lbl_1_data_1D068__fzgx_offset_0, (u32)lbl_1_data_1D074__fzgx_offset_0, (u32)lbl_1_data_1D080__fzgx_offset_0, (u32)lbl_1_data_1D08C__fzgx_offset_0, (u32)lbl_1_data_1D098__fzgx_offset_0, (u32)lbl_1_data_1D0A4__fzgx_offset_0, (u32)lbl_1_data_1D0B0__fzgx_offset_0, (u32)lbl_1_data_1D0BC__fzgx_offset_0,
+    (u32)fn_1_59504__fzgx_offset_0, (u32)fn_1_5942C__fzgx_offset_0, (u32)fn_1_59514__fzgx_offset_0, (u32)fn_1_59A74__fzgx_offset_0, (u32)fn_1_594AC__fzgx_offset_0, (u32)fn_1_59CC8__fzgx_offset_0, (u32)fn_1_5A8D0__fzgx_offset_0, (u32)fn_1_5ABCC__fzgx_offset_0,
+    (u32)fn_1_5B078__fzgx_offset_0, (u32)fn_1_5B3D0__fzgx_offset_0, (u32)fn_1_5B6F4__fzgx_offset_0, (u32)fn_1_5BF70__fzgx_offset_0, (u32)fn_1_5C784__fzgx_offset_0, (u32)fn_1_5D014__fzgx_offset_0, (u32)fn_1_5D378__fzgx_offset_0, (u32)fn_1_5D88C__fzgx_offset_0,
+    (u32)fn_1_5E3C4__fzgx_offset_0, (u32)fn_1_5F5C8__fzgx_offset_0, (u32)fn_1_5FE28__fzgx_offset_0, (u32)fn_1_5FFB0__fzgx_offset_0, (u32)fn_1_60734__fzgx_offset_0, (u32)fn_1_60C74__fzgx_offset_0, (u32)fn_1_60F7C__fzgx_offset_0, (u32)fn_1_611EC__fzgx_offset_0,
+    (u32)fn_1_617A4__fzgx_offset_0, (u32)fn_1_61C88__fzgx_offset_0, (u32)fn_1_62AF8__fzgx_offset_0, (u32)fn_1_63130__fzgx_offset_0, (u32)fn_1_633C0__fzgx_offset_0, (u32)fn_1_64098__fzgx_offset_0, (u32)fn_1_645CC__fzgx_offset_0, (u32)fn_1_648D4__fzgx_offset_0,
+    (u32)fn_1_64F2C__fzgx_offset_0, (u32)fn_1_65424__fzgx_offset_0, (u32)fn_1_65AB0__fzgx_offset_0, (u32)fn_1_6766C__fzgx_offset_0, (u32)fn_1_67E94__fzgx_offset_0, (u32)fn_1_65E58__fzgx_offset_0, (u32)fn_1_66254__fzgx_offset_0, (u32)fn_1_67414__fzgx_offset_0,
+    (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0,
+    (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0,
+    (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0,
+    (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F4__fzgx_offset_0, 0x00000000, (u32)fn_1_59508__fzgx_offset_0, (u32)fn_1_5944C__fzgx_offset_0, (u32)fn_1_5962C__fzgx_offset_0,
+    (u32)fn_1_59B00__fzgx_offset_0, (u32)fn_1_594CC__fzgx_offset_0, (u32)fn_1_59D54__fzgx_offset_0, (u32)fn_1_5A8DC__fzgx_offset_0, (u32)fn_1_5AC48__fzgx_offset_0, (u32)fn_1_5B188__fzgx_offset_0, (u32)fn_1_5B450__fzgx_offset_0, (u32)fn_1_5B780__fzgx_offset_0,
+    (u32)fn_1_5BFF0__fzgx_offset_0, (u32)fn_1_5C83C__fzgx_offset_0, (u32)fn_1_5D020__fzgx_offset_0, (u32)fn_1_5D500__fzgx_offset_0, (u32)fn_1_5D91C__fzgx_offset_0, (u32)fn_1_5E4D8__fzgx_offset_0, (u32)fn_1_5F654__fzgx_offset_0, (u32)fn_1_5FE2C__fzgx_offset_0,
+    (u32)fn_1_601B4__fzgx_offset_0, (u32)fn_1_60880__fzgx_offset_0, (u32)fn_1_60C88__fzgx_offset_0, (u32)fn_1_60F84__fzgx_offset_0, (u32)fn_1_61370__fzgx_offset_0, (u32)fn_1_618B8__fzgx_offset_0, (u32)fn_1_61CA8__fzgx_offset_0, (u32)fn_1_62C84__fzgx_offset_0,
+    (u32)fn_1_6313C__fzgx_offset_0, (u32)fn_1_635BC__fzgx_offset_0, (u32)fn_1_640A4__fzgx_offset_0, (u32)fn_1_645D4__fzgx_offset_0, (u32)fn_1_648DC__fzgx_offset_0, (u32)fn_1_64FB8__fzgx_offset_0, (u32)fn_1_654B0__fzgx_offset_0, (u32)fn_1_65B5C__fzgx_offset_0,
+    (u32)fn_1_67680__fzgx_offset_0, (u32)fn_1_67F20__fzgx_offset_0, (u32)fn_1_65E8C__fzgx_offset_0, (u32)fn_1_662D8__fzgx_offset_0, (u32)fn_1_67430__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0,
+    (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0,
+    (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0,
+    (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0,
+    (u32)fn_1_594F8__fzgx_offset_0, 0x00000000, (u32)fn_1_5950C__fzgx_offset_0, (u32)fn_1_5946C__fzgx_offset_0, (u32)fn_1_59770__fzgx_offset_0, (u32)fn_1_59B90__fzgx_offset_0, (u32)fn_1_594EC__fzgx_offset_0, (u32)fn_1_59EE4__fzgx_offset_0,
+    (u32)fn_1_5ABC4__fzgx_offset_0, (u32)fn_1_5AF28__fzgx_offset_0, (u32)fn_1_5B30C__fzgx_offset_0, (u32)fn_1_5B578__fzgx_offset_0, (u32)fn_1_5B7F8__fzgx_offset_0, (u32)fn_1_5C058__fzgx_offset_0, (u32)fn_1_5CA00__fzgx_offset_0, (u32)fn_1_5D1B8__fzgx_offset_0,
+    (u32)fn_1_5D718__fzgx_offset_0, (u32)fn_1_5DFA4__fzgx_offset_0, (u32)fn_1_5EB08__fzgx_offset_0, (u32)fn_1_5F9B8__fzgx_offset_0, (u32)fn_1_5FE30__fzgx_offset_0, (u32)fn_1_6028C__fzgx_offset_0, (u32)fn_1_60B80__fzgx_offset_0, (u32)fn_1_60D54__fzgx_offset_0,
+    (u32)fn_1_61070__fzgx_offset_0, (u32)fn_1_61640__fzgx_offset_0, (u32)fn_1_619E4__fzgx_offset_0, (u32)fn_1_61CC8__fzgx_offset_0, (u32)fn_1_62E9C__fzgx_offset_0, (u32)fn_1_632D4__fzgx_offset_0, (u32)fn_1_63858__fzgx_offset_0, (u32)fn_1_642E8__fzgx_offset_0,
+    (u32)fn_1_64760__fzgx_offset_0, (u32)fn_1_64E1C__fzgx_offset_0, (u32)fn_1_65268__fzgx_offset_0, (u32)fn_1_656C8__fzgx_offset_0, (u32)fn_1_65CDC__fzgx_offset_0, (u32)fn_1_67D0C__fzgx_offset_0, (u32)fn_1_68054__fzgx_offset_0, (u32)fn_1_660EC__fzgx_offset_0,
+    (u32)fn_1_67294__fzgx_offset_0, (u32)fn_1_6755C__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0,
+    (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0,
+    (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0,
+    (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, 0x00000000, (u32)fn_1_59510__fzgx_offset_0,
+    (u32)fn_1_5948C__fzgx_offset_0, (u32)fn_1_59A70__fzgx_offset_0, (u32)fn_1_59CC4__fzgx_offset_0, (u32)fn_1_594F0__fzgx_offset_0, (u32)fn_1_5A8CC__fzgx_offset_0, (u32)fn_1_5ABC8__fzgx_offset_0, (u32)fn_1_5B074__fzgx_offset_0, (u32)fn_1_5B3CC__fzgx_offset_0,
+    (u32)fn_1_5B6F0__fzgx_offset_0, (u32)fn_1_5BF6C__fzgx_offset_0, (u32)fn_1_5C780__fzgx_offset_0, (u32)fn_1_5D010__fzgx_offset_0, (u32)fn_1_5D374__fzgx_offset_0, (u32)fn_1_5D4FC__fzgx_offset_0, (u32)fn_1_5D918__fzgx_offset_0, (u32)fn_1_5F5C4__fzgx_offset_0,
+    (u32)fn_1_5FE24__fzgx_offset_0, (u32)fn_1_5FFAC__fzgx_offset_0, (u32)fn_1_60170__fzgx_offset_0, (u32)fn_1_60C70__fzgx_offset_0, (u32)fn_1_60C84__fzgx_offset_0, (u32)fn_1_60F80__fzgx_offset_0, (u32)fn_1_61760__fzgx_offset_0, (u32)fn_1_61C84__fzgx_offset_0,
+    (u32)fn_1_61CE8__fzgx_offset_0, (u32)fn_1_6312C__fzgx_offset_0, (u32)fn_1_633BC__fzgx_offset_0, (u32)fn_1_63514__fzgx_offset_0, (u32)fn_1_645C8__fzgx_offset_0, (u32)fn_1_645D0__fzgx_offset_0, (u32)fn_1_648D8__fzgx_offset_0, (u32)fn_1_65420__fzgx_offset_0,
+    (u32)fn_1_65AAC__fzgx_offset_0, (u32)fn_1_65B58__fzgx_offset_0, (u32)fn_1_6767C__fzgx_offset_0, (u32)fn_1_680F4__fzgx_offset_0, (u32)fn_1_65E88__fzgx_offset_0, (u32)fn_1_662D4__fzgx_offset_0, (u32)fn_1_6742C__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0,
+    (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0,
+    (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0,
+    (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0,
+    (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0, 0x00000000,
+};
+static u32 fzgx_pool_native_lbl_1_data_1C698_seed = 1;  /* fzgx-allow: A1 measured pool bytes and bindings */
+static u32 fzgx_pool_native_lbl_1_data_1C698_gap_F94[7] = {0x65666665, 0x63742E63, 0x00000000, (u32)fn_1_594F4__fzgx_offset_0, (u32)fn_1_594F8__fzgx_offset_0, (u32)fn_1_594FC__fzgx_offset_0, (u32)fn_1_59500__fzgx_offset_0};  /* fzgx-allow: A1 measured pool bytes and bindings */
+static Fn59EE4CurveKey fzgx_pool_native_lbl_1_data_1C698_curve_x[2] = {{2, 0.0f, 0.0f, 0.0f, 0.0f}, {2, 1.0f, 0.0f, 0.0f, 0.0f}};  /* fzgx-allow: A1 measured pool bytes and bindings */
+static Fn59EE4CurveKey fzgx_pool_native_lbl_1_data_1C698_curve_y[2] = {{2, 0.0f, 0.0f, 0.0f, 0.0f}, {2, 1.0f, 0.0f, 0.0f, 0.0f}};  /* fzgx-allow: A1 measured pool bytes and bindings */
+static Fn59EE4CurveKey fzgx_pool_native_lbl_1_data_1C698_curve_z[2] = {{2, 0.0f, 0.0f, 0.0f, 0.0f}, {2, 1.0f, 0.0f, 0.0f, 0.0f}};  /* fzgx-allow: A1 measured pool bytes and bindings */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_data_base_prime(void) {
+    const void *volatile s;  /* fzgx-allow: S2 data base primer sink: the retail TU addressed .data off its section base before its literal pool; the section is dropped at integration */
+    s = &fzgx_pool_native_lbl_1_data_1C698_gap_0;
+    s = &fzgx_pool_native_lbl_1_data_1C698_seed;
+    s = &fzgx_pool_native_lbl_1_data_1C698_gap_F94;
+    s = &fzgx_pool_native_lbl_1_data_1C698_curve_x;
+}
+#pragma section code_type ".text"
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 60.0f;
+    s = 0.10000000149011612f;
+    s = 32767.0f;
+    s = 0.05000000074505806f;
+    d = 0.07;
+    s = 20000.0f;
+    s = 0.0f;
+    d = 4503599627370496.0;
+    s = 1.0f;
+    s = -0.029999999329447746f;
+    d = 15.0;
+    d = 4503601774854144.0;
+    d = 1.5;
+    d = 0.5;
+}
+static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.5f;
+    s = 8.0f;
+    s = 255.0f;
+    s = 15.0f;
+    s = 0.20000000298023224f;
+    s = 0.07999999821186066f;
+    s = 0.25f;
+    s = 0.9800000190734863f;
+    s = 0.9900000095367432f;
+    s = 40.0f;
+    s = 20.0f;
+    s = 1.5f;
+    s = 0.44999998807907104f;
+    s = -2.0f;
+    s = 0.0833333358168602f;
+    s = 0.15000000596046448f;
+    s = 0.125f;
+    s = -0.4000000059604645f;
+    s = -0.30000001192092896f;
+    s = 2.0f;
+    s = 250.0f;
+    d = 0.6;
+    d = 0.4;
+}
+#pragma section code_type ".text"
+
+extern Fn59EE4Scratch *lbl_801A66CC;
+extern Fn59EE4Racer *fn_1_868C0(s8);
+extern Fn59EE4Owner *fn_1_86254(int);
+extern s32 fn_1_6EC0(u8);
+extern s16 camera_get_entry_field_0xa4(u32);
+extern void fn_1_862D4(int, Fn59EE4Vec *);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DCA4(void);
+extern s32 fn_1_54E34(void *, f32);
+extern void lbl_8006D5F0(void *, void *, f32);
+extern f32 fn_1_9E14C(s32, Fn59EE4CurveKey *, f32);
+extern s32 fn_1_581AC(u16, u16, void *);
+extern f32 fn_1_A71AC(void);
+extern void lbl_8006E1B0(void *, void *);
+extern f32 fn_1_8652C(int);
+extern s32 fn_1_9F9A4(void *);
+
+#define CURVE_x fzgx_pool_native_lbl_1_data_1C698_curve_x
+#define CURVE_y fzgx_pool_native_lbl_1_data_1C698_curve_y
+#define CURVE_z fzgx_pool_native_lbl_1_data_1C698_curve_z
+#define SEED fzgx_pool_native_lbl_1_data_1C698_seed
+
+
+static inline f32 fn_1_59EE4_vec_len(Fn59EE4Vec *v) {
+    return lbl_8006D0B4(mathutil_sum_of_sq_3(v->x, v->y, v->z));
+}
+
+static inline f32 fn_1_59EE4_randf(void) {
+    SEED = SEED * 0x41C64E6D + 0x3039;
+    return (f32)((SEED >> 16) & 0x7FFF) / 32767.0f;
+}
+
+static inline f32 fn_1_59EE4_jitter(f32 amount) {
+    return amount * (fn_1_59EE4_randf() - 0.5f);
+}
+
+static inline void fn_1_59EE4_to_color(Fn59EE4Color *c, Fn59EE4Vec *v) {
+    c->r = __OSf32tou8(v->x);
+    c->g = __OSf32tou8(v->y);
+    c->b = __OSf32tou8(v->z);
+    c->a = 255;
+}
+
+#define FN_1_59EE4_CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+
+void fn_1_59EE4(Fn59EE4Effect *effect) {
+    Fn59EE4Vertex verts[12];
+    Fn59EE4Vec pts[2];
+    Fn59EE4Glow glow;
+    Fn59EE4Vec target;
+    Fn59EE4Vec delta;
+    Fn59EE4Vec mid;
+    Fn59EE4Vec prev;
+    Fn59EE4Vec cur;
+    Fn59EE4Vec start;
+    f32 radii[2];
+    Fn59EE4Color color;
+    f32 dist;
+    f32 len;
+    f32 k;
+    f32 bright;
+    f32 bend;
+    f32 scale;
+    f32 t;
+    f32 step;
+    f32 size;
+    f32 spark;
+    f32 depth;
+    f32 radius;
+    Fn59EE4Vec *w;
+    s32 i;
+    Fn59EE4Vertex *out;
+    s32 n;
+    s16 count;
+
+    if (fn_1_868C0(effect->id)->mode >= 5) {
+        Fn59EE4Owner *owner = fn_1_86254(effect->id);
+        if ((s8)owner->camera == -1 || fn_1_6EC0(owner->camera) == 0 ||
+            camera_get_entry_field_0xa4(owner->camera) != 0) {
+            return;
+        }
+    }
+
+    fn_1_862D4(effect->id, &target);
+    pts[1] = target;
+    pts[0] = effect->pos;
+    psvec_sub(&pts[1], &pts[0], &delta);
+    mid = delta;
+    dist = fn_1_59EE4_vec_len(&delta);
+    len = dist;
+    if (dist > 1.5f) {
+        len -= 1.5f;
+        k = (dist - 1.5f) / dist;
+        psvec_scale(&mid, k, &mid);
+    }
+    len *= 0.5f;
+    psvec_scale_add(&pts[0], &mid, 0.5f, &mid);
+    lbl_8006DCA4();
+    if (fn_1_54E34(&mid, len) == 0) {
+        return;
+    }
+
+    psvec_scale(&delta, 1.5f / dist, &lbl_801A66CC->work);
+    psvec_sub(&pts[1], &lbl_801A66CC->work, &pts[1]);
+
+    bright = effect->scale * (0.45f * effect->scale);
+    if (bright > 1.0f) {
+        bright = 255.0f;
+    } else {
+        bright *= 255.0f;
+    }
+    psvec_scale(effect->color, bright, &lbl_801A66CC->work);
+    fn_1_59EE4_to_color(&color, &lbl_801A66CC->work);
+
+    scale = effect->scale;
+    psvec_sub(&effect->dir, &target, &lbl_801A66CC->work);
+    bend = -2.0f * scale;
+    lbl_8006D5F0(&lbl_801A66CC->work, &lbl_801A66CC->work, 1.0f + scale);
+
+    CURVE_x[0].value = pts[1].x;
+    CURVE_x[0].tanOut = CURVE_x[0].tanIn = lbl_801A66CC->work.x;
+    CURVE_x[1].value = pts[0].x;
+    CURVE_x[1].tanOut = CURVE_x[1].tanIn = effect->bend[0] * bend;
+    CURVE_y[0].value = pts[1].y;
+    CURVE_y[0].tanOut = CURVE_y[0].tanIn = lbl_801A66CC->work.y;
+    CURVE_y[1].value = pts[0].y;
+    CURVE_y[1].tanOut = CURVE_y[1].tanIn = effect->bend[1] * bend;
+    CURVE_z[0].value = pts[1].z;
+    CURVE_z[0].tanOut = CURVE_z[0].tanIn = lbl_801A66CC->work.z;
+    CURVE_z[1].value = pts[0].z;
+    CURVE_z[1].tanOut = CURVE_z[1].tanIn = effect->bend[2] * bend;
+
+    start = pts[1];
+    verts[0].pos = start;
+    verts[0].color = color;
+    prev = start;
+    out = &verts[1];
+    step = 1.0f / 12.0f;
+    for (i = 5; i > 0; i--) {
+        t = 1.0f - (f32)((f32)(i + 1) * step);
+        cur.x = fn_1_9E14C(2, CURVE_x, t);
+        cur.y = fn_1_9E14C(2, CURVE_y, t);
+        cur.z = fn_1_9E14C(2, CURVE_z, t);
+        {
+            Fn59EE4Vertex *v = &out[1];
+            v->pos.x = cur.x + fn_1_59EE4_jitter(0.25f);
+            v->pos.y = cur.y + fn_1_59EE4_jitter(0.25f);
+            v->pos.z = cur.z + fn_1_59EE4_jitter(0.25f);
+            v->color = color;
+        }
+        psvec_add(&cur, &prev, &lbl_801A66CC->work);
+        psvec_scale(&lbl_801A66CC->work, 0.5f, &lbl_801A66CC->work);
+        w = &lbl_801A66CC->work;
+        out[0].pos.x = w->x + fn_1_59EE4_jitter(0.15f);
+        out[0].pos.y = w->y + fn_1_59EE4_jitter(0.15f);
+        out[0].pos.z = w->z + fn_1_59EE4_jitter(0.15f);
+        out[0].color = color;
+        prev = cur;
+        out += 2;
+    }
+    out->pos = pts[0];
+    out->color = color;
+
+    n = effect->frame * 2 + 5;
+    if (n > effect->max_count) {
+        n = effect->max_count;
+    }
+    count = n;
+    fn_1_581AC(count, 12, verts);
+
+    size = 0.25f * effect->scale;
+    spark = 255.0f * ((0.125f + (f32)(0.5f * size)) * (1.0f + fn_1_59EE4_randf()));
+    glow.unk_12 = 0;
+    psvec_scale(effect->color, spark, &lbl_801A66CC->work);
+    fn_1_59EE4_to_color(&glow.color, &lbl_801A66CC->work);
+
+    depth = fn_1_A71AC();
+    lbl_8006E1B0(&pts[0], &lbl_801A66CC->work);
+    radii[0] = size * FN_1_59EE4_CLAMP(-0.4f * lbl_801A66CC->work.z * depth, 0.2f, 1.5f);
+    lbl_8006E1B0(&pts[1], &lbl_801A66CC->work);
+    radii[1] = size * FN_1_59EE4_CLAMP(-0.3f * lbl_801A66CC->work.z * depth, 0.2f, 1.5f);
+
+    for (i = 0; i <= 1; i++) {
+        if (i == 1 && ((effect->flags >> 16) & 1)) {
+            return;
+        }
+        if (fn_1_54E34(&pts[i], radii[i])) {
+            if ((effect->flags >> 16) & 1) {
+                f32 s = fn_1_8652C(effect->id);
+                f32 k = FN_1_59EE4_CLAMP(s / 250.0f + (i == 0 ? 0.2f : 0.5f), 1.0f, 2.0f);
+                radius = k * radii[i] * (0.6 + (f64)(0.4 * fn_1_59EE4_randf()));
+            } else {
+                radius = radii[i];
+            }
+            glow.pos = pts[i];
+            glow.radius = radius;
+            glow.unk_10 = 0;
+            fn_1_9F9A4(&glow);
+        }
+    }
+}
+/* fzgx:end fn_1_59EE4 */
+
 /* fzgx:begin fn_1_5A8CC */
 // fn_1_5A8CC: empty in retail (single blr).
 void fn_1_5A8CC(void) {
