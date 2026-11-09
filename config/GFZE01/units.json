@@ -107564,6 +107564,35 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/screen_effect/fn_1_77384.c",
+    "symbols": [
+      "fn_1_77384"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/screen_effect.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_3180",
+      "@173": "jumptable_1_data_1DCC8",
+      "@27": "lbl_1_rodata_31D8",
+      "...data.0": "lbl_1_data_1D960",
+      "lbl_1_data_1D960": "lbl_1_data_1D960",
+      "lbl_1_data_1D9B8": "lbl_1_data_1D9B8",
+      "lbl_1_data_1D9B8__fzgx_offset_F8": "lbl_1_data_1D9B8+0xF8",
+      "lbl_1_data_1D9B8__fzgx_offset_FC": "lbl_1_data_1D9B8+0xFC",
+      "lbl_1_data_1D9B8__fzgx_offset_100": "lbl_1_data_1D9B8+0x100",
+      "lbl_1_data_1D9B8__fzgx_offset_104": "lbl_1_data_1D9B8+0x104",
+      "lbl_1_data_1DAC0": "lbl_1_data_1DAC0",
+      "jumptable_1_data_1DB04": "jumptable_1_data_1DB04",
+      "lbl_1_data_1DB9C": "lbl_1_data_1DB9C",
+      "jumptable_1_data_1DBC0": "jumptable_1_data_1DBC0",
+      "lbl_1_data_1DC54": "lbl_1_data_1DC54",
+      "lbl_1_data_1DC80": "lbl_1_data_1DC80"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/screen_effect/fn_1_77B80.c",
     "symbols": [
       "fn_1_77B80"
