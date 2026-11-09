@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (96.78% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.29% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 #include "rel/main_rel/stcoli.h"
@@ -26,7 +26,7 @@ extern s16 fn_1_12EF24(s16, s16);
 typedef struct {
     u16 unk_0;
     u8 count_u16;       /* 0x02 */
-    u8 count_u8;        /* 0x03 */
+    s8 count_u8;        /* 0x03 */
     u8 list_u8[4];      /* 0x04 */
     u16 list_u16[0x6C]; /* 0x08 */
     u8 pad_E0[4];
@@ -39,6 +39,7 @@ typedef struct {
 
 #define UNLOCK (*(UnlockView *)&lbl_1_bss_5138)
 
+#pragma opt_loop_invariants off
 static inline s32 fn_1_2CBAC_fallback(s16 kind, s16 player, s16 index) {
     s32 count;
     s32 n;
@@ -99,6 +100,8 @@ static inline s32 fn_1_2CBAC_fallback(s16 kind, s16 player, s16 index) {
     return found;
 }
 }
+#pragma opt_loop_invariants reset
+
 
 static inline s32 fn_1_2CBAC_active(Obj_1_bss_3C30 *game) {
     if (game->unk_5 != 1) {
@@ -143,8 +146,8 @@ static inline void fn_1_2CBAC_loop2(void) {
 }
 
 void fn_1_2CBAC(void) {
-    s32 i;
     s32 active;
+    s32 i;
     Obj_1_bss_3C30 *game;
     s32 kind;
     u8 player;
@@ -187,8 +190,8 @@ void fn_1_2CBAC(void) {
         state = 1;
     }
 
-    entry = (u16 *)(lbl_1_rodata_DCDC + player * 20 + (index * 4 + state * 2));
-    for (i = state; i > 0; i--, entry--) {
+    entry = (u16 *)(((((lbl_1_rodata_DCDC + player * 20)) + (((index * 4)) + ((state * 2))))));
+    for (i = state; i > 0; entry--, i--) {
         id = entry[-1];
         if (id == 0xFFFE) {
             found = fn_1_2CBAC_loop1();
@@ -196,9 +199,9 @@ void fn_1_2CBAC(void) {
                 break;
             }
         } else if (id != 0xFFFF && fn_1_F7EDC((s16)id) == 0) {
-            found = 1;
             UNLOCK.list_u8[UNLOCK.count_u8++] = id;
             break;
+            found = 1;
         }
     }
 
@@ -221,7 +224,7 @@ void fn_1_2CBAC(void) {
         choice = 5;
     }
     UNLOCK.unk_0 = ((u16 *)(lbl_1_rodata_DBE4 + player * 60 + index * 12))[choice];
-    if (player == 3) {
+    if ((s32)player == 3) {
         all = 1;
         for (i = 0; i < 4; i++) {
             if (fn_1_FA180(3, (u8)i) == 0) {

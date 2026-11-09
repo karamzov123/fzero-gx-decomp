@@ -1,4 +1,4 @@
-/* Non-matching: best partial attempt (43.61% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (97.14% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
 
@@ -21,23 +21,53 @@ extern const f32 lbl_801A7388;
 extern const f32 lbl_801A7370;
 extern const f32 lbl_801A738C;
 
-void fn_8006BCF8(Fn8006BCF8Pad *arg0) {
-    Fn8006BCF8Conv cv;
-    s32 i;
-    s32 acc;
+static inline void fill_zero(void *dst, unsigned long n) {
+    unsigned long *lpd;
+    unsigned char *cpd;
+    unsigned long i;
+    unsigned long v = 0;
 
-    memset(arg0, 0, 0x40);
+    lpd = (unsigned long *)dst - 1;
+    i = n >> 5;
+    if (i) {
+        do {
+            *++lpd = v;
+            *++lpd = v;
+            *++lpd = v;
+            *++lpd = v;
+            *++lpd = v;
+            *++lpd = v;
+            *++lpd = v;
+            *++lpd = v;
+        } while (--i);
+    }
+    i = (n & 31) >> 2;
+    if (i) {
+        do {
+            *++lpd = v;
+        } while (--i);
+    }
+    cpd = (unsigned char *)(lpd + 1) - 1;
+    n &= 3;
+    if (n) {
+        do {
+            *++cpd = v;
+        } while (--n);
+    }
+}
+
+void fn_8006BCF8(Fn8006BCF8Pad *arg0) {
+    s32 i;
+
+    fill_zero(arg0, 0x40);
     if (lbl_801A6C98[0] == 0) {
-        acc = 0;
         for (i = 0; i < 0x40; i++) {
             f32 v;
-
-            cv.w[0] = 0x43300000;
-            cv.w[1] = i ^ 0x8000;
-            v = (f32)fn_800883E8(((f32)(cv.d - lbl_801A7380)) * lbl_801A7388 * lbl_801A7370);
-            lbl_8019E094[i] = (u16)(acc / 63);
-            lbl_8019E014[i] = (u16)(lbl_801A738C * v);
-            acc += 0x400;
+            f32 t;
+            t = lbl_801A7388 * (f32)i;
+            v = fn_800883E8(t * lbl_801A7370);
+            lbl_8019E014[i] = lbl_801A738C * v;
+            lbl_8019E094[i] = (i * 0x400) / 63;
         }
         lbl_801A6C98[0] = 1;
     }
