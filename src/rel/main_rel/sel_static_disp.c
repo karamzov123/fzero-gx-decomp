@@ -5657,6 +5657,202 @@ void fn_1_13C1A0(u8 *arg0) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_13C1A0 */
 
+/* fzgx:begin fn_1_13C5EC noprologue */
+#include "types.h"
+#include "font.h"
+#include "rel/main_rel/globals.h"
+
+typedef struct { u8 r, g, b, a; } fn_1_13C5EC_Color;
+
+
+extern void fn_1_141C10(u8);
+extern void fn_1_12EF80(s16, s16 *, s16 *);
+extern void fn_1_140EE8(u8, int, int);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_14108C(s16, s32, s32);
+extern void fn_1_141614(s16);
+extern void fn_1_141754(s32, s32);
+extern s32 fn_1_40F34(void);
+extern s16 fn_1_12EF24(s16, s16);
+extern void fn_1_51564(u16, u16, u16, u16, u16, u16);
+extern void fn_1_5158C(FontDrawPacket *, u32, s16, s16);
+extern void fn_1_141A80(s16);
+extern f32 lbl_8006D188(u32);
+
+extern u8 lbl_1_data_2B0D4[0x70];
+extern u8 lbl_1_data_2B144[24];
+extern f32 lbl_1_rodata_26F8[22];
+extern u32 lbl_801A66A0;
+extern f32 lbl_1_bss_8E3E0;
+extern f32 lbl_1_data_41DE8;
+extern fn_1_13C5EC_Color lbl_1_rodata_8D80;
+extern fn_1_13C5EC_Color lbl_1_rodata_8D84;
+extern const f32 lbl_1_rodata_85F0;
+
+static inline f32 fn_1_13C5EC_clamp(f32 x, f32 lo, f32 hi) {
+    return (x < lo) ? lo : ((x > hi) ? hi : x);
+}
+
+
+#pragma pool_data off
+#pragma fp_contract off
+#pragma opt_propagation off
+void fn_1_13C5EC(u8 arg0) {
+    FontDrawPacket packet;
+    fn_1_13C5EC_Color hi;
+    fn_1_13C5EC_Color lo;
+    s16 group;
+    s16 sel;
+    s32 y;
+    s32 i;
+    s16 id;
+    s32 selected;
+    s32 tick;
+    s32 glow;
+    f32 frame;
+    s32 icon;
+    s16 idx;
+    f32 alpha;
+    f32 pulse;
+
+    sel = 0;
+    if (*(s16 *)&lbl_1_bss_960 != 9) {
+        fn_1_141C10(arg0);
+    }
+    id = arg0;
+    fn_1_12EF80(id, &group, &sel);
+    fn_1_140EE8(arg0, 0, 0);
+    if (fn_1_B7C00() != 0) {
+        return;
+    }
+    fn_1_14108C(group, 0x44, 0x78);
+    fn_1_141614(id);
+    fn_1_141754(0x4D, 0x15C);
+    for (i = 0, y = 154; i < 5; i++, y += 82) {
+        hi = lbl_1_rodata_8D80;
+        lo = lbl_1_rodata_8D84;
+        selected = (i == sel);
+        if (selected) {
+            pulse = 40.0f * (1.0f + lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0 % 60) / 60.0f)));
+            hi.r = hi.g = hi.b = (s32)(pulse * lbl_1_rodata_85F0);
+        }
+        if (!selected) {
+            lo.r = lo.g = lo.b = 0xA0;
+        }
+        if (i == sel) {
+            if (fn_1_40F34() >= 40) {
+                lbl_1_bss_8E3E0 = lbl_1_bss_8E3E0 + 0.3f * (lbl_1_bss_8E3E0 - 41.0f);
+                lbl_1_bss_8E3E0 = fn_1_13C5EC_clamp(lbl_1_bss_8E3E0, 0.0f, 40.0f);
+            } else {
+                lbl_1_bss_8E3E0 = 40.0f;
+            }
+            if ((fn_1_40F34() > 75) ? 0 : (fn_1_40F34() >= 60)) {
+                tick = fn_1_40F34() - 60;
+                frame = tick % 30;
+                glow = (s32)(255.0f * lbl_8006D188((s32)(65536.0f * frame / 30.0f)));
+            } else {
+                glow = 0;
+            }
+            if (fn_1_40F34() >= 190) {
+                lbl_1_data_41DE8 = lbl_1_data_41DE8 + 0.5f * (0.05f - lbl_1_data_41DE8);
+                lbl_1_data_41DE8 = fn_1_13C5EC_clamp(lbl_1_data_41DE8, 0.05f, 1.0f);
+            } else {
+                lbl_1_data_41DE8 = 1.0f;
+            }
+            alpha = (40.0f - lbl_1_bss_8E3E0) / 40.0f;
+            packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+            packet.image = 0xA10D;
+            packet.x = (f32)y - (40.0f + lbl_1_bss_8E3E0);
+            packet.y = 366.0f - (40.0f + lbl_1_bss_8E3E0);
+            packet.z = 35.0f;
+            packet.alpha = alpha;
+            fn_1_4F734(&packet);
+
+            packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+            packet.image = 0xA10D;
+            packet.x = (f32)y + (40.0f + lbl_1_bss_8E3E0);
+            packet.y = 366.0f - (40.0f + lbl_1_bss_8E3E0);
+            packet.z = 35.0f;
+            packet.flags = 0x80007;
+            packet.alpha = alpha;
+            fn_1_4F734(&packet);
+
+            packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+            packet.image = 0xA10D;
+            packet.x = (f32)y - (40.0f + lbl_1_bss_8E3E0);
+            packet.y = 366.0f + (40.0f + lbl_1_bss_8E3E0);
+            packet.z = 35.0f;
+            packet.flags = 0x10000D;
+            packet.alpha = alpha;
+            fn_1_4F734(&packet);
+
+            packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+            packet.image = 0xA10D;
+            packet.x = (f32)y + (40.0f + lbl_1_bss_8E3E0);
+            packet.y = 366.0f + (40.0f + lbl_1_bss_8E3E0);
+            packet.z = 35.0f;
+            packet.flags = 0x18000F;
+            packet.alpha = alpha;
+            fn_1_4F734(&packet);
+
+            if (lbl_1_data_41DE8 > 0.060000002f) {
+                packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+                packet.image = 0xA10C;
+                packet.x = (f32)y;
+                packet.y = 366.0f;
+                packet.z = 35.0f;
+                packet.scale_x *= (2.0f - alpha) / lbl_1_data_41DE8;
+                packet.scale_y *= (2.0f - alpha) * lbl_1_data_41DE8;
+                packet.flags = 10;
+                packet.alpha = alpha;
+                packet.color_add[0] = packet.color_add[1] = packet.color_add[2] = (s32)fn_1_13C5EC_clamp(128.0f * (1.0f - lbl_1_data_41DE8) + glow, 0.0f, 255.0f);
+                fn_1_4F734(&packet);
+            }
+        }
+        idx = fn_1_12EF24(group, i);
+        if (lbl_1_bss_8B3A0.unk_8C == 0) {
+            idx = lbl_1_bss_8B3A0.unk_90;
+        }
+        icon = lbl_1_data_2B144[lbl_1_data_2B0D4[idx]];
+
+        packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+        packet.x = (f32)y;
+        packet.y = 366.0f;
+        packet.z = 60.0f;
+        packet.flags = 10;
+        packet.image = 0xA100;
+        fn_1_51564(0, 0, 0x48, 0x48, 7, 2);
+        fn_1_5158C(&packet, packet.image, (icon - 1) % 7, (icon - 1) / 7);
+        *(fn_1_13C5EC_Color *)packet.color_add = hi;
+        *(fn_1_13C5EC_Color *)packet.color = lo;
+        fn_1_4F734(&packet);
+
+        packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+        packet.image = 0xA10E;
+        packet.x = (f32)y;
+        packet.y = 366.0f;
+        packet.z = 50.0f;
+        *(fn_1_13C5EC_Color *)packet.color_add = hi;
+        packet.flags = 10;
+        fn_1_4F734(&packet);
+
+        packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+        packet.image = 0xA12F;
+        packet.x = (f32)y;
+        packet.y = 366.0f;
+        packet.z = 40.0f;
+        packet.flags = 10;
+        fn_1_4F734(&packet);
+    }
+    if (sel != -1) {
+        fn_1_141A80(id);
+    }
+}
+#pragma opt_propagation reset
+#pragma fp_contract reset
+#pragma pool_data reset
+/* fzgx:end fn_1_13C5EC */
+
 /* fzgx:begin fn_1_13D02C noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
