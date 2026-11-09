@@ -127223,9 +127223,10 @@
       "fn_12_CF2C"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-O4,s"
+    ]
   },
   {
     "module": "movie_module",
