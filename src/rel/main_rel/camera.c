@@ -1761,6 +1761,546 @@ void fn_1_727C(void) {
 }
 /* fzgx:end fn_1_727C */
 
+/* fzgx:begin fn_1_739C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "dolphin/os/OSFastCast.h"
+
+typedef struct {
+    f32 x, y, z;
+} Vec;
+
+typedef struct {
+    u8 pad_0[0x2];
+    s16 unk_2;
+    u8 pad_4[0x1f8];
+} CameraEntry;
+
+typedef struct {
+    u8 pad_0[0x6];
+    s16 unk_6;
+} CameraValue;
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 pad_3;
+    u8 unk_4;
+    u8 unk_5;
+    u8 unk_6;
+    u8 pad_7;
+    u16 unk_8;
+    u8 unk_A;
+    u8 pad_B;
+    f32 unk_C;
+    f32 unk_10;
+} SoundSlot;
+
+typedef struct {
+    u8 pad_0[0x68];
+    f32 unk_68;
+    u8 pad_6C[0x10];
+    u32 unk_7C;
+    u8 pad_80[0x98];
+    u32 unk_118;
+} SoundTarget;
+
+typedef struct {
+    u8 pad_0[0x49c];
+    SoundTarget *unk_49C;
+} SoundCar;
+
+typedef struct {
+    u8 pad_0[0x6];
+    u8 unk_6;
+    u8 pad_7[0x14b1];
+} RaceInfo;
+
+extern s16 fn_1_3F0C8(void);
+extern void fn_1_862D4(s32, Vec *);
+extern int camera_compare_values(const void *, const void *);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+extern u32 fn_1_864E8(s32);
+extern u8 fn_1_A3D5C(u32, s8 *, s8 *, u8 *);
+extern f32 fn_1_86544(s32);
+extern s32 fn_1_3FC48(void);
+extern void fn_1_A47F4(s32, u8, u8, s8 *, s8 *);
+extern void fn_1_A4268(u32, u32, u8, u8);
+extern void fn_1_A3654(u32, u32);
+extern void fn_1_A358C(s32);
+extern void fn_1_A2DF4(s32, u32, s32);
+extern u32 fn_1_86514(s32);
+extern f32 fn_1_8652C(s32);
+extern void fn_1_A2D84(u32);
+extern SoundCar *fn_1_86254(s32);
+extern void fn_1_A4BC8(u32, u8, SoundTarget *);
+extern void fn_1_3EF14(RaceInfo *);
+extern void fn_80067344(u32, u32, u32, u32);
+
+extern u32 lbl_801A66C8[2];
+extern SoundSlot lbl_1_bss_6F1E4[4];
+extern s8 lbl_1_bss_6F2C4;
+extern u32 lbl_1_bss_6F2C8[4];
+extern u8 lbl_1_bss_6F520[4];
+extern f32 lbl_1_bss_6F524[];
+extern u8 lbl_1_bss_6F59C[];
+extern f32 lbl_1_data_35C8[];
+
+extern const f32 lbl_1_rodata_194;
+extern const f32 lbl_1_rodata_1AC;
+extern const f32 lbl_1_rodata_1E8;
+extern const f32 lbl_1_rodata_1EC;
+extern const f32 lbl_1_rodata_1F0;
+extern const f32 lbl_1_rodata_1F4;
+extern const f32 lbl_1_rodata_1F8;
+extern const f32 lbl_1_rodata_1FC;
+
+/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
+Obj_1_bss_F68_Target *fzgx_obj_lbl_1_bss_F68;
+CameraEntry *fzgx_obj_game_camera_entries;
+CameraValue *fzgx_obj_live_camera;
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_bss_layout(void) {
+    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
+    s = *(u8 *)&fzgx_obj_lbl_1_bss_F68;
+    s = *(u8 *)&fzgx_obj_game_camera_entries;
+    s = *(u8 *)&fzgx_obj_live_camera;
+}
+#pragma section code_type ".text"
+
+
+static inline s16 camera_get_id(s32 index) {
+    Obj_1_bss_F68_Target *state = fzgx_obj_lbl_1_bss_F68;
+
+    if (state == 0) {
+        return -1;
+    }
+    if ((state->unk_0 & 0x80000000) != 0) {
+        return -1;
+    }
+    switch ((s8)state->unk_48) {
+    case 9:
+    case 10:
+        return fzgx_obj_live_camera->unk_6;
+    case 11:
+        return -1;
+    default:
+        return fzgx_obj_game_camera_entries[index].unk_2;
+    }
+}
+
+static inline u32 camera_get_index(void) {
+    Obj_1_bss_F68_Target *state = fzgx_obj_lbl_1_bss_F68;
+    u32 status;
+
+    if (state == 0) {
+        status = 0;
+    } else if ((state->unk_0 & 0x80000000) != 0) {
+        status = 0;
+    } else {
+        status = state->unk_4A;
+    }
+    return status;
+}
+
+static inline s16 camera_get_mode(void) {
+    s16 value = camera_get_id(camera_get_index());
+
+    if (value == 0xff) {
+        value = -1;
+    }
+    return value;
+}
+
+static inline u32 camera_get_count(void) {
+    Obj_1_bss_F68_Target *state = fzgx_obj_lbl_1_bss_F68;
+    s32 kind;
+
+    if (state == 0) {
+        return 0;
+    }
+    kind = state->unk_48;
+    if (kind == 11) {
+        return 1;
+    }
+    if ((state->unk_0 & 0x80000000) != 0) {
+        return 1;
+    }
+    return state->unk_49;
+}
+
+static inline f32 dist_sq(Vec *a, Vec *b) {
+    f32 dx;
+    f32 dy;
+    f32 dz;
+
+    dx = a->x;
+    dx -= b->x;
+    dy = a->y;
+    dy -= b->y;
+    dz = a->z;
+    dz -= b->z;
+    dx *= dx;
+    dx += dy * dy;
+    dx += dz * dz;
+    return dx;
+}
+
+static inline f32 CLAMP(f32 x, f32 lo, f32 hi) {
+    if (x < lo) {
+        return lo;
+    }
+    if (x > hi) {
+        return hi;
+    }
+    return x;
+}
+
+void fn_1_739C(Vec *pos, u8 count, u8 max) {
+    s8 first;
+    s32 id;
+    u32 me;
+    u8 level;
+    u32 flags;
+    u8 prev[4];
+    u32 numCams;
+    u8 vol;
+    s16 mode;
+    s8 i;
+    s8 j;
+    s8 others;
+    u8 k;
+    u8 slotA;
+    u8 slotB;
+    f32 speed;
+    s8 m;
+    s8 done;
+    u8 gain;
+    u32 n;
+    s32 found;
+    s32 kk;
+
+    SoundTarget *target;
+    s8 pan;
+    s8 span;
+    s8 echoA;
+    s8 echoB;
+    u8 fade;
+
+    Vec p;
+    RaceInfo info;
+
+    mode = fn_1_3F0C8();
+    if (mode == 0x27) {
+        return;
+    }
+
+    id = camera_get_mode();
+    for (kk = 0; kk < 4; kk++) {
+        prev[kk] = lbl_1_bss_6F1E4[kk].unk_1;
+    }
+    numCams = camera_get_count();
+    me = fzgx_obj_lbl_1_bss_F68->unk_4A;
+    if (max > count) {
+        max = count;
+    }
+
+    for (i = 0; i < count; i++) {
+        lbl_1_bss_6F59C[i] = i;
+        fn_1_862D4(i, &p);
+        lbl_1_bss_6F524[i] = dist_sq(&p, pos);
+    }
+    qsort(lbl_1_bss_6F59C, count, 1, camera_compare_values);
+
+    if (max > 4) {
+        lbl_1_bss_6F2C4 = 4;
+    } else {
+        lbl_1_bss_6F2C4 = max;
+    }
+
+    switch (numCams) {
+    case 1:
+        if (lbl_1_bss_6F2C4 == 1) {
+            others = 0;
+            first = 0;
+        } else if (lbl_1_bss_6F2C4 < 4) {
+            others = lbl_1_bss_6F2C4 - 1;
+            first = 1;
+        } else {
+            others = 3;
+            first = 1;
+        }
+        break;
+    case 2:
+        if (lbl_1_bss_6F2C4 == 2) {
+            others = 0;
+            first = 0;
+        } else if (lbl_1_bss_6F2C4 < 4) {
+            if (me == 1) {
+                others = 1;
+                first = 3;
+            } else {
+                others = 0;
+                first = 0;
+            }
+        } else {
+            others = 1;
+            first = me + 2;
+        }
+        break;
+    case 3:
+        others = 0;
+        first = 0;
+        break;
+    case 4:
+    default:
+        others = 0;
+        first = 0;
+        break;
+    }
+
+    for (j = 0; j < count; j++) {
+        if (id == lbl_1_bss_6F59C[j]) {
+            flags = fn_1_864E8(id);
+            level = fn_1_A3D5C(id, &pan, &span, &fade);
+            speed = fn_1_86544(id);
+            if (mode == 0x28 && fn_1_3FC48() == 0) {
+                if (numCams == 1) {
+                    speed *= lbl_1_rodata_1AC;
+                } else if (numCams == 2) {
+                    speed *= lbl_1_rodata_1E8;
+                } else if (numCams == 3) {
+                    speed *= lbl_1_rodata_1EC;
+                }
+            }
+            speed *= lbl_1_rodata_1F0;
+            vol = __OSf32tou8(CLAMP(speed, 1.0f, 127.0f));
+
+            if (lbl_1_bss_6F59C[j] != lbl_1_bss_6F1E4[me].unk_1) {
+                lbl_1_bss_6F1E4[me].unk_1 = lbl_1_bss_6F59C[j];
+                lbl_1_bss_6F1E4[me].unk_0 |= 3;
+            } else {
+                lbl_1_bss_6F1E4[me].unk_0 &= ~1;
+            }
+            lbl_1_bss_6F1E4[me].unk_C = lbl_1_bss_6F524[lbl_1_bss_6F59C[j]];
+            lbl_1_bss_6F1E4[me].unk_2 = fade;
+            lbl_1_bss_6F1E4[me].unk_4 = pan;
+            lbl_1_bss_6F1E4[me].unk_5 = span;
+            lbl_1_bss_6F1E4[me].unk_A = level;
+            if (lbl_1_bss_6F1E4[me].unk_0 & 2) {
+                u8 now = lbl_1_bss_6F1E4[me].unk_6;
+                u8 d = now - vol;
+                if (__abs(d) > 4) {
+                    if (d > 0) {
+                        lbl_1_bss_6F1E4[me].unk_6 = now + 4;
+                    } else {
+                        lbl_1_bss_6F1E4[me].unk_6 = now - 4;
+                    }
+                }
+            } else {
+                lbl_1_bss_6F1E4[me].unk_0 &= ~2;
+                lbl_1_bss_6F1E4[me].unk_6 = vol;
+            }
+
+            fn_1_A47F4(me, vol, me, &echoA, &echoB);
+            if (fade != 0) {
+                fn_80067344(1, 0x10, 0xb0270000, fade);
+                fn_80067344(1, 0x10, 0xb02a0000, pan);
+            }
+            fn_1_A4268(id, flags, me, level);
+            fn_1_A3654(id, me);
+            fn_1_A358C(id);
+
+            if (level != 0) {
+                slotA = 0;
+                slotB = 0;
+                if (flags & 0x880) {
+                    fn_1_A2DF4(me, 0xa5100000, 0);
+                    fn_1_A2DF4(me, 0xa6000000, 0);
+                } else {
+                    fn_1_A2DF4(me, 0xa5100000, level);
+                    fn_1_A2DF4(me, 0xa5200000, pan);
+                    fn_1_A2DF4(me, 0xa6000000, vol);
+                }
+                for (k = 0; k < numCams; k++) {
+                    if (lbl_1_bss_6F1E4[k].unk_1 != 0xff && !(fn_1_864E8(lbl_1_bss_6F1E4[k].unk_1) & 0x80) &&
+                        ((fn_1_86514(lbl_1_bss_6F1E4[k].unk_1) >> 29) & 1)) {
+                        slotA = k;
+                        break;
+                    }
+                }
+                for (k = 0; k < numCams; k++) {
+                    if (lbl_1_bss_6F1E4[k].unk_1 != 0xff && !(fn_1_864E8(lbl_1_bss_6F1E4[k].unk_1) & 0x80) &&
+                        ((fn_1_86514(lbl_1_bss_6F1E4[k].unk_1) >> 25) & 1)) {
+                        slotB = k;
+                        break;
+                    }
+                }
+                if (slotA == me) {
+                    if (((fn_1_86514(id) >> 29) & 1) && !(flags & 0x80)) {
+                        fn_1_A2DF4(4, 0xa5100000, level);
+                        fn_1_A2DF4(4, 0xa6000000, vol);
+                    } else if (((lbl_801A66C8[0] + 1) & 7) == 0) {
+                        fn_1_A2DF4(4, 0xa6000000, 0);
+                    }
+                }
+                if (slotB == me) {
+                    if (((fn_1_86514(id) >> 25) & 1) && !(flags & 0x80)) {
+                        fn_1_A2DF4(5, 0xa5100000, level);
+                        fn_1_A2DF4(5, 0xa6000000, vol);
+                    } else if (((lbl_801A66C8[0] + 2) & 7) == 0) {
+                        fn_1_A2DF4(5, 0xa6000000, 0);
+                    }
+                }
+                if (((fn_1_86514(id) >> 26) & 1) && fn_1_8652C(id) > lbl_1_rodata_1F8 &&
+                    !(lbl_1_bss_6F1E4[me].unk_0 & 4)) {
+                    fn_1_A2D84(0xa90a0700);
+                    lbl_1_bss_6F1E4[me].unk_0 |= 4;
+                } else {
+                    lbl_1_bss_6F1E4[me].unk_0 &= ~4;
+                }
+                switch (fzgx_obj_lbl_1_bss_F68->unk_48) {
+                case 9:
+                    fn_1_A2DF4(me, 0xa7000000, echoA);
+                    fn_1_A2DF4(me, 0xa7100000, echoB);
+                    break;
+                default:
+                    if (((lbl_801A66C8[0] + 3) & 7) == 0) {
+                        fn_1_A2DF4(me, 0xa7000000, 0);
+                    }
+                    if (((lbl_801A66C8[0] + 4) & 7) == 0) {
+                        fn_1_A2DF4(me, 0xa7100000, 0);
+                    }
+                    break;
+                }
+            }
+
+            target = fn_1_86254(id)->unk_49C;
+            if (target != 0) {
+                fn_1_A4BC8(id, me, target);
+                if (numCams < 2 && target != 0 && target != (SoundTarget *)-1) {
+                    if ((target->unk_7C & 0x1400000) && !(target->unk_7C & 1)) {
+                        f32 rate = target->unk_68;
+                        u8 tone;
+                        u8 pitch;
+
+                        fn_1_3EF14(&info);
+                        rate *= lbl_1_rodata_1FC;
+                        tone = __OSf32tou8(rate);
+
+                        pitch = tone + 0x39;
+                        if (info.unk_6 == 13) {
+                            pitch = tone + 0x32;
+                        }
+                        fn_80067344(1, 0x10, 0xb02d0000, 0x3d);
+                        fn_1_A2DF4(0, 0xa5400000, pitch);
+                    } else {
+                        if (((lbl_801A66C8[0] + 5) & 7) == 0) {
+                            fn_80067344(1, 0x10, 0xb02d0000, 0);
+                        }
+                        if (((lbl_801A66C8[0] + 6) & 7) == 0) {
+                            fn_1_A2DF4(0, 0xa5400000, 0);
+                        }
+                    }
+                }
+                lbl_1_bss_6F520[me] = target->unk_118;
+            }
+            lbl_1_bss_6F2C8[me] = flags;
+        }
+    }
+
+    for (done = 0, m = 0, n = 0; done < others; n++, m++) {
+        if (id == lbl_1_bss_6F59C[n]) {
+            continue;
+        }
+        gain = lbl_1_data_35C8[first] * fn_1_A3D5C(lbl_1_bss_6F59C[n], &pan, &span, &fade);
+        speed = fn_1_86544(lbl_1_bss_6F59C[n]);
+        if (mode == 0x28 && fn_1_3FC48() == 0) {
+            if (numCams == 1) {
+                speed *= lbl_1_rodata_1AC;
+            } else if (numCams == 2) {
+                speed *= lbl_1_rodata_1E8;
+            } else if (numCams == 3) {
+                speed *= lbl_1_rodata_1EC;
+            }
+        }
+        speed *= lbl_1_rodata_1F0;
+        vol = __OSf32tou8(CLAMP(speed, 1.0f, 127.0f));
+
+        if (lbl_1_bss_6F59C[n] != lbl_1_bss_6F1E4[me].unk_1) {
+            found = 0;
+            for (kk = 0; kk < 4; kk++) {
+                if (prev[kk] == lbl_1_bss_6F59C[n]) {
+                    found = 1;
+                }
+            }
+            lbl_1_bss_6F1E4[first].unk_1 = lbl_1_bss_6F59C[n];
+            if (!found) {
+                lbl_1_bss_6F1E4[first].unk_0 |= 3;
+                lbl_1_bss_6F1E4[first].unk_8 = lbl_801A66C8[0] % 3 + 1;
+                fn_1_A2DF4(first, 0xa5000000, lbl_1_bss_6F1E4[first].unk_8);
+            } else {
+                lbl_1_bss_6F1E4[first].unk_0 &= ~1;
+            }
+        }
+        lbl_1_bss_6F1E4[first].unk_C = lbl_1_bss_6F524[lbl_1_bss_6F59C[n]];
+        lbl_1_bss_6F1E4[first].unk_2 = fade;
+        lbl_1_bss_6F1E4[first].unk_4 = pan;
+        lbl_1_bss_6F1E4[first].unk_5 = span;
+        lbl_1_bss_6F1E4[first].unk_A = gain;
+        if (lbl_1_bss_6F1E4[first].unk_0 & 2) {
+            u8 now = lbl_1_bss_6F1E4[first].unk_6;
+            u8 d = now - vol;
+            if (__abs(d) > 4) {
+                if (d > 0) {
+                    lbl_1_bss_6F1E4[first].unk_6 = now + 4;
+                } else {
+                    lbl_1_bss_6F1E4[first].unk_6 = now - 4;
+                }
+            } else {
+                lbl_1_bss_6F1E4[first].unk_0 &= ~2;
+            }
+        } else {
+            lbl_1_bss_6F1E4[first].unk_6 = vol;
+        }
+
+        fn_1_A47F4(first, vol, me, &echoA, &echoB);
+        if (fade != 0) {
+            fn_80067344(1, 0x10, 0xb0270000, fade);
+            fn_80067344(1, 0x10, 0xb02a0000, pan);
+        }
+        fn_1_A3654(lbl_1_bss_6F59C[n], first);
+        fn_1_A358C(lbl_1_bss_6F59C[n]);
+        flags = fn_1_864E8(lbl_1_bss_6F59C[n]);
+        if (gain != 0 && !(flags & 0x880)) {
+            if (((lbl_801A66C8[0] + m) & 3) == 0) {
+                fn_1_A2DF4(first, 0xa5100000, gain);
+                fn_1_A2DF4(first, 0xa5200000, pan);
+                fn_1_A2DF4(first, 0xa7000000, echoA);
+                fn_1_A2DF4(first, 0xa7100000, echoB);
+                fn_1_A2DF4(first, 0xa6000000, vol);
+            }
+            if (((fn_1_86514(lbl_1_bss_6F59C[n]) >> 26) & 1) && fn_1_8652C(lbl_1_bss_6F59C[n]) > lbl_1_rodata_1F8 &&
+                !(lbl_1_bss_6F1E4[first].unk_0 & 4)) {
+                fn_1_A2D84(0xa90a0700);
+                lbl_1_bss_6F1E4[first].unk_0 |= 4;
+            } else {
+                lbl_1_bss_6F1E4[first].unk_0 &= ~4;
+            }
+        } else if (lbl_1_bss_6F1E4[first].unk_1 != 0xff) {
+            fn_1_A2DF4(first, 0xa6000000, 0);
+            fn_1_A2DF4(first, 0xa5100000, 0);
+            lbl_1_bss_6F1E4[first].unk_1 = 0xff;
+        }
+        lbl_1_bss_6F2C8[first] = flags;
+        done++;
+        first++;
+    }
+}
+/* fzgx:end fn_1_739C */
+
 /* fzgx:begin camera_compare_values */
 s32 camera_compare_values(const u8 *lhs_index, const u8 *rhs_index) {
     f32 *camera_values = &lbl_1_bss_6F524.unk_0;

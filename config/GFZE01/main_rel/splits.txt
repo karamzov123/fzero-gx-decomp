@@ -16542,3 +16542,6 @@ rel/main_rel/effect/fn_1_59EE4.c:
 
 rel/main_rel/spline/fn_1_FAB40.c:
 	.text       start:0x000FAB40 end:0x000FB0A8 align:4
+
+rel/main_rel/camera/fn_1_739C.c:
+	.text       start:0x0000739C end:0x00008250 align:4
