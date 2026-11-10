@@ -8796,6 +8796,176 @@ sel_move_cursor(cursor, 0);
 }
 /* fzgx:end fn_10_AB98 */
 
+/* fzgx:begin fn_10_AE14 */
+/* fzgx:begin fn_10_AE14 noprologue */
+
+typedef struct fn_10_AE14_Cursor {
+    u8 pad_0[0x8C];
+    s16 group;      /* 0x8C: 0 = flat list, else grid row */
+    s16 column;     /* 0x8E */
+    s16 index;      /* 0x90 */
+    u8 pad_92[0x2];
+    u32 flags;      /* 0x94 */
+} fn_10_AE14_Cursor;
+
+typedef struct fn_10_AE14_Sel {
+    s16 mode;
+    u8 pad_2[0x96];
+    u32 players;    /* 0x98: active player mask, bit n+1 = player n */
+    s16 option;     /* 0x9C */
+} fn_10_AE14_Sel;
+
+typedef struct fn_10_AE14_Pad {
+    u8 pad_0[0x2];
+    u16 held;
+} fn_10_AE14_Pad;
+
+extern fn_10_AE14_Sel lbl_1_bss_8B3A0;
+extern u8 lbl_1_bss_9C8[];
+extern u8 lbl_1_bss_9F8[];
+extern fn_10_AE14_Pad lbl_1_bss_D58;
+extern s8 lbl_10_data_2B4[];
+extern s16 fn_1_12EF24(s16, s16);
+extern void fn_1_12F128(s16);
+extern void fn_1_12F358(s16);
+extern void fn_1_7B2E8(s16);
+extern void fn_1_A2D84(u32);
+extern s32 fn_1_F89E4(u8);
+
+/* volatile: controller flags are sampled independently for each test (fzgx-allow: S2) */
+#define PADW(p, o) (*(volatile u16 *)((p) + (o)))
+
+#define WRAP(v, max) ((v) > (max) ? 0 : (v) < 0 ? (max) : (v))
+
+#pragma inline_max_size(10000)
+#pragma inline_max_total_size(10000)
+static inline s16 fn_10_AE14_option_input(u8 *ctrls, u8 *pads) {
+    s16 i;
+    u32 rep;
+    s16 vdir = 0;
+    for (i = 0; i < 4; ctrls += 12, pads += 20, i++) {
+        if ((s8)ctrls[10] != -1 && __rlwnm(lbl_1_bss_8B3A0.players, (i + 1) & 31, 31, 31)) {
+            if ((PADW(pads, 18) >> 8) & 1) vdir--;
+            if ((PADW(pads, 18) >> 9) & 1) vdir++;
+            rep = PADW(pads, 18);
+            if ((rep >> 9) & 1) fn_1_12F128(i);
+            else if ((rep >> 8) & 1) fn_1_12F128(i);
+        }
+    }
+    return vdir;
+}
+
+static inline void fn_10_AE14_tail(fn_10_AE14_Cursor *cursor, s32 dir, s16 old) {
+    s32 move_;
+    s16 fmove;
+    s8 tries;
+    s16 step;
+    s16 steps;
+    s32 next;
+    s32 skip;
+    move_ = dir;
+    if (cursor->group == 0) {
+        /* flat list 0..0x6E, skipping locked entries */
+        fmove = dir;
+        next = old;
+        next = next < 0 ? 0 : next > 0x6E ? 0x6E : next;
+        if ((cursor->flags & 2) && fmove == 0 && lbl_10_data_2B4[next] == 0) {
+            fmove = 1;
+        }
+        steps = __abs(fmove);
+        step = fmove < 0 ? -1 : fmove > 0;
+        while (steps-- > 0) {
+            next = WRAP(next + step, 0x6E);
+            if (cursor->flags & 2) {
+                while (lbl_10_data_2B4[next] == 0) {
+                    next = WRAP(next + step, 0x6E);
+                }
+            }
+        }
+        cursor->column = next;
+        cursor->index = cursor->column;
+    } else {
+        /* grid row: columns 0..5, skipping empty or locked slots */
+        tries = 0;
+        do {
+            skip = 0;
+            cursor->column = WRAP(cursor->column + move_, 5);
+            cursor->index = fn_1_12EF24(cursor->group, cursor->column);
+            if (cursor->index == -1 && move_ == 0) {
+                move_ = 1;
+            }
+            if (cursor->group == 5 &&
+                ((cursor->column == 5 && fn_1_F89E4(0) == 0) ||
+                 (cursor->column != 5 && fn_1_F89E4(cursor->column + 1) == 0))) {
+                skip = 1;
+                if (move_ == 0) {
+                    move_ = skip;
+                }
+            }
+            tries++;
+        } while ((cursor->index == -1 || lbl_10_data_2B4[cursor->index] == 0 || skip) && tries < 6);
+    }
+    if (old != cursor->index) {
+        fn_1_A2D84(0xA9010000);
+    }
+    fn_1_12F358(cursor->index);
+
+}
+
+void fn_10_AE14(fn_10_AE14_Cursor *cursor) {
+    struct { s16 value; } i;
+    u32 rep;
+    u32 now;
+    u8 *ctrl;
+    u8 *pad;
+    u8 *ctrls_;
+    u8 *pads_;
+    s32 dir;
+    dir = 0;
+    for (i.value = 0; i.value < 4; i.value++) {
+        if ((s8)lbl_1_bss_9C8[i.value * 12 + 10] != -1 && __rlwnm(lbl_1_bss_8B3A0.players, (i.value + 1) & 31, 31, 31)) {
+            if ((PADW(lbl_1_bss_9F8 + i.value * 20, 16) & 1) || (PADW(lbl_1_bss_9F8 + i.value * 20, 18) & 1)) dir--;
+            if (((PADW(lbl_1_bss_9F8 + i.value * 20, 16) >> 1) & 1) || ((PADW(lbl_1_bss_9F8 + i.value * 20, 18) >> 1) & 1)) dir++;
+            now = PADW(lbl_1_bss_9F8 + i.value * 20, 16);
+            if (((now >> 1) & 1) || (((rep = PADW(lbl_1_bss_9F8 + i.value * 20, 18)) >> 1) & 1)) fn_1_12F128(i.value);
+            else if ((now & 1) || (rep & 1)) fn_1_12F128(i.value);
+        }
+    }
+    if (lbl_1_bss_8B3A0.mode == 1) {
+        dir = 0;
+    }
+
+    fn_10_AE14_tail(cursor, dir, cursor->index);
+    if (lbl_1_bss_8B3A0.mode == 10) {
+        s16 vdir = 0;
+        s16 j;
+        for (j = 0; j < 4; j++) {
+            if ((s8)lbl_1_bss_9C8[j * 12 + 10] != -1 && __rlwnm(lbl_1_bss_8B3A0.players, (j + 1) & 31, 31, 31)) {
+                if ((PADW(lbl_1_bss_9F8 + j * 20, 18) >> 8) & 1) vdir--;
+                if ((PADW(lbl_1_bss_9F8 + j * 20, 18) >> 9) & 1) vdir++;
+                rep = PADW(lbl_1_bss_9F8 + j * 20, 18);
+                if ((rep >> 9) & 1) fn_1_12F128(j);
+                else if ((rep >> 8) & 1) fn_1_12F128(j);
+            }
+        }
+        if (vdir != 0) {
+            lbl_1_bss_8B3A0.option = WRAP(lbl_1_bss_8B3A0.option + vdir, 3);
+            fn_1_A2D84(0xA9010000);
+        }
+        if (lbl_1_bss_8B3A0.option == 3 && ((lbl_1_bss_D58.held >> 8) & 1)) {
+            lbl_1_bss_8B3A0.option = 5;
+        }
+        if (lbl_1_bss_8B3A0.option == 5 && !((lbl_1_bss_D58.held >> 8) & 1)) {
+            lbl_1_bss_8B3A0.option = 3;
+        }
+    }
+    if (dir != 0 && !(cursor->flags & 0x80000000)) {
+        fn_1_7B2E8(cursor->index);
+    }
+}
+/* fzgx:end fn_10_AE14 */
+/* fzgx:end fn_10_AE14 */
+
 /* fzgx:begin fn_10_B2C8 */
 typedef struct {
     s16 unk_0;
