@@ -3804,6 +3804,269 @@ void fn_1_FA89C(SplineMain *arg0) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_FA89C */
 
+/* fzgx:begin fn_1_FAB40 */
+#include "dolphin/hw_regs.h"
+
+/* fzgx:begin fn_1_FAB40 noprologue */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[4] = {0x00000000, 0x028001E0, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = -1.0f;
+    d = 4503599627370496.0;
+    d = 4503601774854144.0;
+    s = 490000.0f;
+    s = 20.0f;
+    s = 13.0f;
+    s = 0.5f;
+    d = 50.0;
+    d = 10.0;
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x, y, z;
+} Vec3;
+typedef struct {
+    f32 value0, value4, value8;
+} Sig_fn_8006F900_Fn8006F900Data;
+
+extern const f32 lbl_1_rodata_7480[];
+extern Obj_1_data_3EED0 lbl_1_data_3EED0;
+extern Obj_1_data_3EF30 lbl_1_data_3EF30;
+extern u32 lbl_801A6D00;
+extern s32 fn_1_5910(void);
+extern s16 fn_1_3F0C8(void);
+extern s32 fn_1_58C4(void);
+extern s32 fn_1_5948(s32);
+extern void fn_1_681C(u32, Vec3 *);
+extern s32 fn_1_54E34(void *, f32);
+extern void fn_1_76BD0(u8, u8);
+extern void *fn_1_72714(u8, u32);
+extern void fn_1_627C(s32);
+extern f32 fn_1_A71AC(void);
+extern void fn_1_55FF0(f32);
+extern void fn_1_556B8(void *);
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E0A4(void *);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void lbl_8006E14C(f32);
+extern void lbl_8006E13C(void *);
+extern void fn_80072558(void);
+extern void fn_800724C8(void);
+extern void fn_80073778(void *, s32);
+extern void fn_80072864(u32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80072EDC(s32, s32);
+extern void fn_80073C6C(s32);
+extern void fn_80073678(u32);
+extern void fn_80074660(u32);
+extern void fn_80073898(u32);
+extern void fn_80074788(u32);
+extern void fn_8007245C(u32);
+extern void fn_80074918(u8, s32, u8);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void fn_8006F900(Vec3 *, Sig_fn_8006F900_Fn8006F900Data *, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DB30(void);
+extern void lbl_8006DFD8(void *);
+extern u32 GXLoadTexMtxImm(u32, u32, u32);
+extern void fn_8003462C(u32, u32, u32);
+extern void lbl_8006DC20(void);
+
+
+typedef struct {
+    u32 flags;
+    u32 mask;
+    u32 unk8;
+    Vec3 origin;
+    s16 rx, ry, rz;
+    s16 pad1e;
+    Vec3 scale;
+} DrawRecord;
+
+typedef struct {
+    u8 count;
+    u8 pad1[3];
+    DrawRecord *records[16];
+    f32 matrix[4][12];
+    u8 pad104[0x64];
+    u32 image;
+} DrawList;
+
+#pragma opt_dead_assignments on
+/* Preserve the retail multiply operand order after inlining. */
+static inline f32 fn_1_FAB40_operand(f32 right, f32 left) { return left * right; }
+#pragma inline_max_size(10000)
+#pragma inline_max_total_size(10000)
+/* The early return exits both visibility loops without an extra branch. */
+static inline void visibility(u8 *selected, DrawList *list, Vec3 *pos) {
+    s32 count;
+    /* Scalarized index and explicit cursor preserve distinct register homes. */
+    struct { s32 value; } j;
+    s32 i;
+    u8 *scan;
+    DrawRecord *record;
+    Vec3 *origin;
+    f32 dx, dy, dz;
+    count = fn_1_58C4();
+    for (i = 0; (s32)i < count; i++) {
+        fn_1_5948(i);
+        lbl_8006DCA4();
+        fn_1_681C((u8)i, pos);
+        for (scan = (u8 *)list, j.value = 0; j.value < list->count; scan += 4, j.value++) {
+            record = *(DrawRecord **)(scan + 4);
+            if ((record->mask == -1U || (record->mask & lbl_1_data_2A7E0.unk_50)) &&
+                (record->flags & lbl_1_data_2A7E0.unk_4C)) {
+                origin = &record->origin;
+                dx = pos->x;
+                dx = dx - origin->x;
+                dy = pos->y - origin->y;
+                dz = pos->z - origin->z;
+                if ((f32)(dx * dx) + dy * dy + dz * dz < (490000.0f) &&
+                    fn_1_54E34(origin, (20.0f))) {
+                    *selected = 0;
+                    return;
+                }
+            }
+        }
+    }
+}
+
+void fn_1_FAB40(void) {
+    Vec3 vertices[4];
+    f32 matrix[12];
+    Vec3 pos;
+    Sig_fn_8006F900_Fn8006F900Data transformed;
+    Vec3 center;
+    Obj_1_data_2A7E0_At3C *obj;
+    struct { u8 value; } selected;
+    s32 count;
+    DrawList *list;
+    s32 j;
+    DrawRecord *record_2;
+    u8 *indices;
+    Vec3 *points;
+    /* Unsigned address induction, with the retail signed loop comparison. */
+    u32 i;
+    s32 k;
+
+    obj = lbl_1_data_2A7E0.unk_3C;
+    list = (DrawList *)((u8 *)obj + 4);
+    fn_1_5910();
+    if (list->count == 0)
+        return;
+    if (fn_1_3F0C8() == 45)
+        return;
+    selected.value = 1;
+    visibility(&selected.value, list, &pos);
+    fn_1_76BD0((u8)obj->unk_16C, selected.value);
+    count = fn_1_58C4();
+    for (i = 0; (s32)i < count; i++) {
+        fn_1_5948(i);
+        for (j = 0; j < list->count; j++) {
+            record_2 = list->records[j];
+            if ((record_2->mask == -1U || (record_2->mask & lbl_1_data_2A7E0.unk_50)) &&
+                (record_2->flags & lbl_1_data_2A7E0.unk_4C)) {
+                lbl_8006DCA4();
+                lbl_8006E0A4(&record_2->origin);
+                mathutil_mtxA_rotate_z(record_2->rz);
+                mathutil_mtxA_rotate_y(record_2->ry);
+                mathutil_mtxA_rotate_x(record_2->rx);
+                mathutil_mtxA_rotate_z(0x1c71);
+                mathutil_mtxA_rotate_y(0);
+                mathutil_mtxA_rotate_x(0x2000);
+                lbl_8006E14C((13.0f));
+                lbl_8006E13C(&record_2->scale);
+                fn_80072558();
+                fn_800724C8();
+                fn_80073778(fn_1_72714((u8)list->image, 0), 0);
+                fn_80072864(2);
+                fn_800745A4(0, 0, 0, 30, 0, 125);
+                fn_800734A8(0, 0, 0, 255);
+                fn_80072EDC(0, 3);
+                fn_80073C6C(0);
+                fn_80073678(1);
+                fn_80074660(1);
+                fn_80073898(0);
+                fn_80074788(0);
+                fn_8007245C(512);
+                fn_80074918(1, 3, 0);
+                fn_800728A8(1, 4, 0, 0);
+                lbl_8006DAEC();
+                indices = (u8 *)&lbl_1_data_3EED0;
+                points = (Vec3 *)&lbl_1_data_3EF30;
+                for (k = 0; k < 6; k++) {
+                    lbl_8006DBE4();
+                    vertices[0] = points[indices[k * 16]];
+                    vertices[1] = points[indices[k * 16 + 1]];
+                    vertices[2] = points[indices[k * 16 + 2]];
+                    vertices[3] = points[indices[k * 16 + 3]];
+                    center.x = fn_1_FAB40_operand(0.5f, vertices[0].x + vertices[2].x);
+                    center.y = fn_1_FAB40_operand(0.5f, vertices[0].y + vertices[2].y);
+                    center.z = fn_1_FAB40_operand(0.5f, vertices[0].z + vertices[2].z);
+                    fn_8006F900(&center, &transformed, fn_1_A71AC());
+                    lbl_8006DAEC();
+                    lbl_8006D7F4(50.0 * -transformed.value0,
+                                10.0 * -transformed.value4,
+                                (0.0f));
+                    lbl_8006DB74(matrix);
+                    lbl_8006DB30();
+                    lbl_8006DFD8(matrix);
+                    lbl_8006DFD8((list->matrix[i]));
+                    GXLoadTexMtxImm(lbl_801A6D00, 30, 0);
+                    fn_8003462C(128, 0, 4);
+                    /* fzgx-allow: S2 GX FIFO stores must remain ordered hardware writes. */
+                    #define FIFO (*(volatile f32 *)GX_FIFO_BASE)
+                    FIFO = vertices[0].x;
+                    FIFO = vertices[0].y;
+                    FIFO = vertices[0].z;
+                    FIFO = vertices[1].x;
+                    FIFO = vertices[1].y;
+                    FIFO = vertices[1].z;
+                    FIFO = vertices[2].x;
+                    FIFO = vertices[2].y;
+                    FIFO = vertices[2].z;
+                    FIFO = vertices[3].x;
+                    FIFO = vertices[3].y;
+                    FIFO = vertices[3].z;
+                    #undef FIFO
+                }
+                lbl_8006DC20();
+                if (obj->unk_170) {
+                    fn_80074918(1, 3, 1);
+                    lbl_8006DCA4();
+                    lbl_8006E0A4(&record_2->origin);
+                    mathutil_mtxA_rotate_z(record_2->rz);
+                    mathutil_mtxA_rotate_y(record_2->ry);
+                    mathutil_mtxA_rotate_x(record_2->rx);
+                    lbl_8006E13C(&record_2->scale);
+                    fn_80072558();
+                    fn_1_55FF0((0.5f));
+                    fn_1_556B8((void *)obj->unk_170);
+                    fn_1_55FF0((1.0f));
+                }
+            }
+        }
+        fn_1_627C(i);
+    }
+}
+#pragma opt_dead_assignments reset
+
+/* fzgx:end fn_1_FAB40 */
+/* fzgx:end fn_1_FAB40 */
+
 /* fzgx:begin fn_1_FB0A8 */
 Obj_1_bss_84428 *fn_1_FB0A8(void) {
     return &lbl_1_bss_84428;
