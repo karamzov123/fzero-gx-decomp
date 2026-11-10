@@ -127422,6 +127422,19 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_DC78.c",
+    "symbols": [
+      "fn_12_DC78"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "@19": "jumptable_12_data_B0"
+    }
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_E0C8.c",
     "symbols": [
       "fn_12_E0C8"
