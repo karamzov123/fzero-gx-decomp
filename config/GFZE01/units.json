@@ -30690,6 +30690,20 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8004F55C.c",
+    "symbols": [
+      "fn_8004F55C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": {}
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8004F6B0.c",
     "symbols": [
       "fn_8004F6B0"
