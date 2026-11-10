@@ -16539,3 +16539,6 @@ rel/main_rel/memcard/fn_1_C1CFC.c:
 
 rel/main_rel/effect/fn_1_59EE4.c:
 	.text       start:0x00059EE4 end:0x0005A8CC align:4
+
+rel/main_rel/bitmap/fn_1_4A0D8.c:
+	.text       start:0x0004A0D8 end:0x0004AC20 align:4
