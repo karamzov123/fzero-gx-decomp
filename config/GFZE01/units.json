@@ -30674,6 +30674,22 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8004EFA8.c",
+    "symbols": [
+      "fn_8004EFA8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "pool": {}
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8004F6B0.c",
     "symbols": [
       "fn_8004F6B0"
