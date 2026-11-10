@@ -28460,6 +28460,24 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8004313C.c",
+    "symbols": [
+      "fn_8004313C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": {}
+  },
+  {
+    "module": "main",
     "source": "dol/fn_800433A4.c",
     "symbols": [
       "fn_800433A4"
