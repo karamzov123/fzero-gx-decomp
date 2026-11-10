@@ -126298,6 +126298,20 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_4F3C.c",
+    "symbols": [
+      "fn_12_4F3C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "@26": "lbl_12_rodata_658",
+      "@25": "lbl_12_rodata_650"
+    }
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_52C4.c",
     "symbols": [
       "fn_12_52C4"
