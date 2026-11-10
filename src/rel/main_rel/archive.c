@@ -3906,6 +3906,790 @@ void fn_1_12F358(u16 arg0) {
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_1_12F358 */
 
+/* fzgx:begin fn_1_12F4A8 noprologue */
+#include "types.h"
+#include "psvec.h"
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = 0.0f;
+    s = 0.5f;
+}
+static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 40.0;
+    s = 0.30000001192092896f;
+    s = -0.41999998688697815f;
+    s = 0.8399999737739563f;
+    s = -0.22499999403953552f;
+    s = 0.15000000596046448f;
+    s = 0.3499999940395355f;
+    s = 0.023148147389292717f;
+    s = -0.10000000149011612f;
+    s = 2.0f;
+    s = 9.999999747378752e-06f;
+    s = 10.0f;
+    s = 0.05000000074505806f;
+    s = 1000.0f;
+    s = 50.0f;
+    s = 3000.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.15000000596046448;
+    s = 20.0f;
+    s = 5.0f;
+    s = 0.800000011920929f;
+}
+static const u32 fzgx_pool_table6[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.4000000059604645;
+    s = 600.0f;
+    s = 0.6000000238418579f;
+    s = 1.2999999523162842f;
+    s = -0.47999998927116394f;
+    s = 0.47999998927116394f;
+    s = 1.5f;
+    s = 1.75f;
+    s = 1.2000000476837158f;
+    d = 1.3;
+    s = 0.01666666753590107f;
+    s = -0.125f;
+    s = 0.125f;
+    s = 0.10000000149011612f;
+    s = 2.5f;
+    s = -0.44999998807907104f;
+    s = 0.44999998807907104f;
+    s = 100.0f;
+    s = -0.05000000074505806f;
+    s = 800.0f;
+    s = 0.949999988079071f;
+    s = 500.0f;
+    d = 10.0;
+    s = -0.4000000059604645f;
+    s = 0.4000000059604645f;
+    s = 120.0f;
+    s = 40.0f;
+    d = 1000.0;
+    s = -0.3799999952316284f;
+    s = 0.7599999904632568f;
+    d = 0.3499999940395355;
+    s = 0.25f;
+}
+static const u32 fzgx_pool_table8[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.0;
+    d = 0.02;
+    d = 1.0099999904632568;
+    d = 1.0199999809265137;
+    s = 1.0499999523162842f;
+}
+static const u32 fzgx_pool_table10[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 1.0299999713897705;
+    d = 50.0;
+    d = 25.0;
+    d = 1.100000023841858;
+    d = 0.05;
+    s = -2.0f;
+}
+static const u32 fzgx_pool_table12[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 5.0;
+    d = 4503601774854144.0;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec;
+
+/* the CPU block of a machine (+0x484) */
+typedef struct {
+    u32 flags;
+    f32 steer;
+    f32 unk_8;
+    f32 throttle;
+    f32 unk_10;
+    f32 unk_14;
+    f32 target;
+    f32 lateral;
+    f32 prev_lateral;
+    f32 unk_24;
+    u8 pad_28[0xA];
+    u8 mode;
+} CpuBlock;
+
+typedef struct {
+    u32 flags;
+    s16 id;
+    s16 unk_6;
+    u8 pad_8[0x74];
+    Vec pos;
+    u8 pad_88[0xF4];
+    f32 unk_17C;
+    u8 pad_180[4];
+    f32 speed;
+    u8 pad_188[0x2FC];
+    CpuBlock *ai;
+} Machine;
+
+/* a machine progress record (fn_1_8627C) */
+typedef struct {
+    u8 pad_0[0x50];
+    Vec front;
+    Vec up;
+    f32 unk_68;
+    u8 pad_6C[0x8C];
+    f32 unk_F8;
+    u8 pad_FC[8];
+    u16 unk_104;
+    u8 pad_106[2];
+    f32 unk_108;
+} Progress;
+
+typedef struct {
+    u32 flags;
+} Pad;
+
+typedef struct {
+    f32 unk_0;
+    f32 unk_4;
+} LaneEntry;
+
+extern s8 lbl_1_bss_9C[8];
+extern LaneEntry lbl_1_data_40BD8[30];
+extern u32 lbl_801A63C0;
+
+extern Progress *fn_1_8627C(s32);
+extern Pad *fn_1_86254(s32);
+extern void fn_1_130B8C(CpuBlock *, Progress *);
+extern void fn_1_C4ABC(Machine *);
+extern void *fn_1_E54A8(s16, s16);
+extern Vec *fn_1_E5750(void *);
+extern Vec *fn_1_E5748(void *);
+extern f32 *fn_1_E5768(void *);
+extern f32 fn_1_E57E4(void *);
+extern s16 fn_1_E5430(s16);
+extern u32 fn_1_864E8(s32);
+extern f32 fn_1_8652C(s32);
+extern f32 lbl_8006D534(Vec *, Vec *);
+extern f32 lbl_8006D0B4(f32);
+extern f64 __fabs(f64);
+extern int __abs(int);
+
+static inline void vec_cross(Vec *a, Vec *b, Vec *out) {
+    f32 ax, ay, az, bx, by, bz;
+    f32 x, y, z;
+
+    ay = a->y;
+    bz = b->z;
+    az = a->z;
+    bx = b->x;
+    by = b->y;
+    ax = a->x;
+    x = ay * bz;
+    y = az * bx;
+    z = ax * by;
+    x -= az * by;
+    y -= ax * bz;
+    z -= ay * bx;
+    out->x = x;
+    out->y = y;
+    out->z = z;
+}
+
+static inline f32 vec_dist2(Vec *a, Vec *b) {
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 d;
+    f32 bx;
+    f32 by;
+    f32 bz;
+    dx = a->x;
+    dy = a->y;
+    dz = a->z;
+    bx = b->x;
+    by = b->y;
+    bz = b->z;
+    dx -= bx;
+    dy -= by;
+    dz -= bz;
+    d = dx * dx;
+    d += dy * dy;
+    d += dz * dz;
+    return d;
+}
+
+static inline f32 vec_len2(Vec *v) {
+    f32 d;
+    f32 x = v->x;
+    f32 y = v->y;
+    f32 z = v->z;
+    d = x * x;
+    d += y * y;
+    d += z * z;
+    return d;
+}
+
+#define CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+static inline f64 mind(f64 a, f64 b) {
+    if (a < b) {
+        return a;
+    }
+    return b;
+}
+
+static inline void cpu_pedals(CpuBlock *ai, f32 brake, f32 accel) {
+    ai->unk_10 = brake;
+    ai->throttle = accel;
+}
+
+/* WARNING: compiler-diff device, not original code: returns its argument through a helper local. MWCC keeps
+ * a helper local as its own register object, numbered below every expression temporary, so a value passed
+ * through here is coloured after the plain temporaries around it. Used twice in the case 5-8 header of
+ * fn_1_12F4A8 to give the four early loads retail's registers (f3/f1/f2/f0); the original source of that
+ * register order is unknown. */
+static inline f32 compiler_diff_keep(f32 x) {
+    f32 kept = x;
+    return kept;
+}
+
+#pragma opt_propagation off
+/* WARNING: compiler-diff device, not original code: keeps the dead pedal compare in the case 5-8 header
+ * (see there) until register allocation. The body is exact with the pragma on; whether it has other
+ * dead assignments that the pragma also keeps was not checked. */
+#pragma opt_dead_assignments off
+void fn_1_12F4A8(Machine *m) {
+    CpuBlock *ai;
+    Progress *self;
+    s8 level;
+    Pad *pad;
+    Progress *leader;
+    Progress *second;
+    u8 found;
+    s32 i;
+    void *obj;
+    f32 selfRatio;
+    f32 leaderRatio;
+    f32 r;
+    f32 dot;
+    f32 lensq;
+    f32 len2;
+    f32 pos;
+    f32 saved;
+    f32 lim;
+    s32 ahead29;
+    s32 near29;
+    s32 near2_29;
+    s16 savedId;
+    s32 j;
+    s32 near;
+    s32 far;
+    s32 near30;
+    s32 near2_30;
+    s32 ahead30;
+    s16 savedId30;
+    f64 d;
+    Vec base;
+    Vec scaled;
+    Vec ofs;
+    Vec pt;
+    Vec diff;
+    Vec cross;
+    f32 lookScale; /* compiler-diff device locals, see the case 5-8 header */
+    f32 speed;
+    s32 pedalCmp;
+
+    level = lbl_1_bss_9C[1];
+    self = fn_1_8627C(m->id);
+    ai = m->ai;
+    pad = fn_1_86254(0);
+    leader = fn_1_8627C(0);
+
+    switch (ai->mode) {
+    case 1:
+        cpu_pedals(ai, 1.0f, 0.0f);
+        ai->lateral = 0.0f;
+        fn_1_130B8C(ai, self);
+        break;
+    case 2:
+        cpu_pedals(ai, 0.0f, 0.5f);
+        ai->lateral = 0.0f;
+        fn_1_130B8C(ai, self);
+        break;
+    case 3:
+        near = __fabs(leader->unk_F8 - self->unk_F8) < 40.0;
+        ai->unk_10 = 0.0f;
+        if (near && !(m->flags & 0x2800000)) {
+            ai->throttle = 0.3f;
+            ai->lateral = -0.42f + (f32)(0.84f * (f32)((m->id >> 1) & 1));
+        } else {
+            ai->throttle = 0.3f;
+            ai->lateral = -0.225f + (f32)(0.15f * (f32)(m->id % 4));
+        }
+        fn_1_130B8C(ai, self);
+        break;
+    case 4:
+        ai->flags &= ~1;
+        ai->flags |= 0x10;
+        fn_1_C4ABC(m);
+        ai->flags &= ~0x10;
+        ai->throttle *= 0.35f;
+        m->flags &= ~0x60;
+        ai->flags |= 1;
+        break;
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+        found = 0;
+        /* WARNING: compiler-diff device, not original code: the look-ahead constant sits in a local, the speed
+         * and the lateral position go through compiler_diff_keep, and the scale statement is split around the
+         * ratio, only so that MWCC numbers the four values 0.0231 < unk_108 < unk_17C < unk_68 and colours
+         * them f3/f2/f1/f0 as retail does. The honest form is
+         * `psvec_scale(&self->front, 0.023148148f * m->unk_17C, &scaled); selfRatio = self->unk_108 / self->unk_68;`. */
+        lookScale = 0.023148148f;
+        speed = compiler_diff_keep(m->unk_17C);
+        selfRatio = compiler_diff_keep(self->unk_108) / self->unk_68;
+        psvec_scale(&self->front, lookScale * speed, &scaled);
+        leaderRatio = leader->unk_108 / leader->unk_68;
+        psvec_add(&m->pos, &scaled, &base);
+        ai->unk_10 = 0.0f;
+        /* WARNING: compiler-diff device, not original code: a dead float compare between the two pedal stores.
+         * Kept alive by `#pragma opt_dead_assignments off`, its mfcr is a scheduling barrier during the first
+         * schedule (retail loads the 1.0 for throttle only after the look-ahead point is stored); the compare
+         * is deleted after register allocation, which also forces the second schedule retail shows. Nothing of
+         * it reaches the object code. The honest form is `cpu_pedals(ai, 0.0f, 1.0f);`. */
+        pedalCmp = ai->unk_10 < ai->throttle;
+        ai->throttle = 1.0f;
+        ai->unk_24 = 0.0f;
+        ai->lateral = -0.1f;
+        for (i = 0; i < fn_1_E5430(2); i++) {
+            obj = fn_1_E54A8(2, i);
+            psvec_scale(fn_1_E5750(obj), 2.0f, &ofs);
+            psvec_add(fn_1_E5748(obj), &ofs, &pt);
+            pt.y = 0.00001f + base.y;
+            lensq = vec_dist2(&pt, &base);
+            r = 10.0f + (f32)(fn_1_E57E4(obj) * *fn_1_E5768(obj));
+            if (lensq < r * r) {
+                psvec_sub(&pt, &base, &diff);
+                vec_cross(&self->up, &self->front, &cross);
+                dot = lbl_8006D534(&cross, &diff);
+                len2 = vec_len2(&diff);
+                r -= lbl_8006D0B4(len2 * (1.0f - dot * dot / len2));
+                pos = self->unk_108 / self->unk_68;
+                if (dot < 0.0f) {
+                    ai->lateral = pos - r / self->unk_68;
+                } else {
+                    ai->lateral = pos + r / self->unk_68;
+                }
+                pos = self->unk_108 / self->unk_68;
+                if (dot < 0.0f) {
+                    ai->lateral = pos - r / self->unk_68;
+                } else {
+                    ai->lateral = pos + r / self->unk_68;
+                }
+                found = 1;
+                ai->throttle = 1.0f + (f32)(0.05f * (f32)(ai->mode - 5));
+            }
+        }
+        switch (ai->mode) {
+        case 5:
+            if (((m->unk_17C < 1000.0f && !found) || leader->unk_F8 > self->unk_F8 - 50.0f) &&
+                self->unk_F8 < 3000.0f) {
+                m->flags |= 0x40;
+            }
+            if (self->unk_F8 < 1000.0f) {
+                ai->lateral = self->unk_108 / self->unk_68;
+            }
+        case 6:
+            if (__fabs(selfRatio - leaderRatio) < 0.15f &&
+                self->unk_F8 - leader->unk_F8 < 20.0f * (f32)(s32)(((pad->flags >> 5) & 1) + 1) && !found &&
+                self->unk_F8 > 5.0f + leader->unk_F8 && !(m->flags & 0x20) && !level &&
+                (pad->flags & 0x20008)) {
+                m->flags |= 8;
+            }
+            if (ai->mode == 5) {
+                ai->throttle = 0.8f + (f32)(0.05f * (f32)level);
+            } else if ((!found && __fabs(self->unk_108 / self->unk_68) < 0.4f) || (pad->flags & 0x20028)) {
+                if (m->unk_17C > 600.0f && leader->unk_F8 < self->unk_F8) {
+                    ai->throttle = 0.5f;
+                } else if (!found) {
+                    ai->throttle = 1.0f;
+                    m->flags |= 0x40;
+                } else {
+                    ai->throttle = 0.5f;
+                    if (m->unk_17C > 600.0f) {
+                        ai->unk_10 = 1.0f;
+                    }
+                }
+            } else {
+                ai->throttle = 0.6f;
+            }
+            break;
+        case 7:
+        case 8:
+            ai->throttle = 1.3f;
+            break;
+        }
+        ai->lateral = CLAMP(ai->lateral, -0.48f, 0.48f);
+        fn_1_130B8C(ai, self);
+        break;
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14: {
+        f32 prev;
+        prev = ai->unk_24;
+        ai->unk_10 = 0.0f;
+        ai->flags &= ~1;
+        switch (ai->mode) {
+        case 14:
+            ai->flags |= 0x10;
+        case 13:
+            ai->flags |= 8;
+        case 12:
+            ai->flags |= 4;
+        }
+        ai->unk_24 = 0.0f;
+        fn_1_C4ABC(m);
+        if (ai->mode == 9) {
+            ai->throttle *= 1.5f;
+        } else if (ai->mode == 10) {
+            ai->throttle *= 1.75f;
+        } else if (ai->mode == 11) {
+            ai->throttle *= 2.0f;
+        } else {
+            ai->throttle *= 1.2f;
+        }
+        ai->throttle = mind(ai->throttle, 1.3);
+        ai->unk_24 = prev;
+        ai->flags |= 1;
+        ai->flags &= ~4;
+        ai->flags &= ~8;
+        ai->flags &= ~0x10;
+        break;
+    }
+    case 15:
+    case 16:
+    case 17: {
+        f32 frac;
+        frac = 1.0f;
+        for (j = 0; j < 30; j++) {
+            if (fn_1_864E8(j) & 0x880) {
+                frac -= 0.016666668f;
+            }
+        }
+        second = fn_1_8627C(1);
+        lim = lbl_1_data_40BD8[m->id].unk_0 / self->unk_68;
+        ai->lateral = leader->unk_108 / leader->unk_68;
+        ai->lateral = CLAMP(ai->lateral, -0.125f, 0.125f);
+        ai->lateral += lim;
+        if (self->unk_104 > 0x400 && self->unk_104 < 0x8000) {
+            ai->lateral += 0.1f;
+        } else if (self->unk_104 > 0x8000 && self->unk_104 < 0xFC00) {
+            ai->lateral -= 0.1f;
+        }
+        if (ai->mode == 17) {
+            ai->lateral *= 2.5f;
+        }
+        ai->lateral = CLAMP(ai->lateral, -0.45f + 0.1f * lim, 0.45f + 0.1f * lim);
+        ai->unk_10 = 0.0f;
+        if (m->id == 1 || ai->mode != 15) {
+            if (pad->flags & 0x20) {
+                ai->throttle = 1.3f;
+            } else if (self->unk_F8 - leader->unk_F8 >
+                       frac * (2.0f * (lbl_1_data_40BD8[0].unk_4 - lbl_1_data_40BD8[1].unk_4))) {
+                ai->throttle = 0.6f;
+            } else {
+                ai->throttle = 0.8f;
+            }
+        } else if (fn_1_864E8(1) & 0x880) {
+            ai->throttle = 1.3f;
+            if ((f32)__abs((s32)(leader->unk_F8 - self->unk_F8)) < 5.0f) {
+                ai->lateral = leader->unk_108 / leader->unk_68;
+            }
+        } else {
+            ai->throttle = ((second->unk_F8 - self->unk_F8) -
+                            (lbl_1_data_40BD8[m->id].unk_4 - lbl_1_data_40BD8[1].unk_4)) / 5.0f;
+        }
+        if (ai->throttle > 1.3) {
+            ai->throttle = 1.3f;
+        } else if (ai->throttle < 0.0f) {
+            ai->throttle = 0.0f;
+            ai->unk_10 = 100.0f * -ai->throttle;
+        }
+        if (second->unk_F8 - leader->unk_F8 < frac * (lbl_1_data_40BD8[0].unk_4 - lbl_1_data_40BD8[1].unk_4)) {
+            m->flags |= 0x40;
+        }
+        fn_1_130B8C(ai, self);
+        break;
+    }
+    case 18:
+    case 19: {
+        f32 laneOfs;
+        second = fn_1_8627C(1);
+        laneOfs = lbl_1_data_40BD8[m->id].unk_0 / self->unk_68;
+        ai->lateral = leader->unk_108 / leader->unk_68;
+        ai->unk_10 = 0.0f;
+        ai->throttle = 10.0f + leader->unk_F8 - self->unk_F8;
+        if (ai->throttle > 1.3) {
+            ai->throttle = 1.3f;
+        } else if (ai->throttle < 0.0f) {
+            if (ai->mode == 19) {
+                if (ai->throttle > -0.05f) {
+                    m->flags |= 8;
+                }
+                ai->throttle = 0.8f;
+                if (m->unk_17C > 800.0f) {
+                    ai->unk_10 = 1.0f;
+                }
+            } else {
+                r = 0.95f * fn_1_8652C(0);
+                if (fn_1_8652C(m->id) > r && fn_1_8652C(m->id) > 600.0f) {
+                    ai->throttle = 0.0f;
+                    ai->unk_10 = 100.0f * -ai->throttle;
+                } else if (ai->throttle > -0.1f &&
+                           (s32)(((lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB) >> 16) & 7) < level * 2 + 1) {
+                    m->flags |= 8;
+                } else {
+                    ai->throttle = 0.8f;
+                }
+            }
+            if (fn_1_8652C(m->id) < 500.0f) {
+                ai->throttle = 0.8f;
+            }
+        }
+        if (ai->mode == 18 && self->unk_F8 > second->unk_F8) {
+            ai->throttle = 0.5f;
+            if (m->unk_17C > 500.0f) {
+                ai->unk_10 = 1.0f;
+            }
+        }
+        if (__fabs(self->unk_F8 - leader->unk_F8) > 10.0) {
+            ai->lateral += laneOfs;
+        }
+        ai->lateral = CLAMP(ai->lateral, -0.4f, 0.4f);
+        fn_1_130B8C(ai, self);
+        break;
+    }
+    case 20:
+        near = __fabs(leader->unk_F8 - self->unk_F8) < 120.0f - (f32)(40.0f * (f32)level);
+        far = __fabs(leader->unk_F8 - self->unk_F8) > 1000.0;
+        ai->unk_10 = 0.0f;
+        if (near && !(m->flags & 0x2800000)) {
+            if (m->unk_17C > 500.0f) {
+                ai->unk_10 = 0.5f;
+            }
+            ai->throttle = 0.6f;
+            ai->lateral = -0.38f + (f32)(0.76f * (f32)((m->id >> 1) & 1));
+        } else {
+            ai->lateral = -0.225f + (f32)(0.15f * (f32)(m->id % 4));
+            if (far) {
+                ai->throttle = 0.5f;
+            } else {
+                ai->throttle = 1.0f;
+            }
+        }
+        fn_1_130B8C(ai, self);
+        break;
+    case 21:
+    case 22:
+    case 23:
+        savedId = m->unk_6;
+        ai->flags &= ~1;
+        ai->flags |= 0x10;
+        m->unk_6 = m->id;
+        fn_1_C4ABC(m);
+        m->unk_6 = savedId;
+        ai->flags &= ~0x10;
+        m->flags &= ~0x60;
+        ai->flags |= 1;
+        break;
+    case 24:
+        if (__fabs(self->unk_108 / self->unk_68) < 0.35f) {
+            ai->throttle = 0.25f;
+        } else {
+            cpu_pedals(ai, 1.0f, 0.0f);
+        }
+        ai->lateral = -0.38f + (f32)(0.76f * (f32)((m->id >> 1) & 1));
+        fn_1_130B8C(ai, self);
+        break;
+    case 25: {
+        f32 prev;
+        prev = ai->unk_24;
+        ai->flags &= ~1;
+        ai->flags &= ~0x08000000;
+        ai->unk_24 = 0.0f;
+        fn_1_C4ABC(m);
+        ai->throttle *= 1.0 + (f64)(0.02 * level);
+        ai->throttle = mind(ai->throttle, 1.3);
+        ai->unk_24 = prev;
+        ai->flags |= 1;
+        break;
+    }
+    case 26: {
+        f32 prev;
+        prev = ai->unk_24;
+        ai->flags &= ~1;
+        ai->flags &= ~0x08000000;
+        ai->unk_24 = 0.0f;
+        fn_1_C4ABC(m);
+        ai->throttle *= 1.01f + (f64)(0.02 * level);
+        ai->throttle = mind(ai->throttle, 1.3);
+        ai->unk_24 = prev;
+        ai->flags |= 1;
+        break;
+    }
+    case 27: {
+        f32 prev;
+        prev = ai->unk_24;
+        ai->flags &= ~1;
+        ai->flags &= ~0x08000000;
+        ai->unk_24 = 0.0f;
+        fn_1_C4ABC(m);
+        ai->throttle *= 1.02f + (f64)(0.02 * level);
+        if (leader->unk_F8 > self->unk_F8 - 100.0f) {
+            ai->throttle *= 1.05f;
+        }
+        ai->throttle = mind(ai->throttle, 1.3);
+        ai->unk_24 = prev;
+        ai->flags |= 1;
+        break;
+    }
+    case 28: {
+        f32 prev;
+        prev = ai->unk_24;
+        ai->flags &= ~1;
+        ai->flags &= ~0x08000000;
+        ai->unk_24 = 0.0f;
+        fn_1_C4ABC(m);
+        ai->throttle *= 1.03f + (f64)(0.02 * level);
+        ai->throttle = mind(ai->throttle, 1.3);
+        ai->unk_24 = prev;
+        ai->flags |= 1;
+        break;
+    }
+    case 29:
+        ahead29 = leader->unk_F8 > self->unk_F8;
+        d = __fabs(leader->unk_F8 - self->unk_F8);
+        near29 = d < 50.0;
+        near2_29 = d < 25.0;
+        ai->unk_10 = 0.0f;
+        if ((ahead29 && !near2_29) || (!ahead29 && !near29)) {
+            saved = ai->unk_24;
+            ai->flags &= ~1;
+            ai->unk_24 = 0.0f;
+            fn_1_C4ABC(m);
+            ai->throttle *= 1.1f + (f64)(0.05 * level);
+            ai->throttle = mind(ai->throttle, 1.3);
+            ai->unk_24 = saved;
+            ai->flags |= 1;
+            break;
+        }
+        if (m->flags & 8) {
+            ai->throttle = 1.3f;
+            ai->lateral = leader->unk_108 / leader->unk_68;
+        } else if (ahead29) {
+            m->flags |= 8;
+            ai->throttle = 1.3f;
+            ai->lateral = leader->unk_108 / leader->unk_68;
+        } else if (near29 && !near2_29) {
+            m->flags |= 8;
+            ai->throttle = 0.8f;
+            ai->lateral = leader->unk_108 / leader->unk_68;
+        } else {
+            ai->throttle = 1.3f;
+            ai->lateral = -2.0f * leader->unk_108 / leader->unk_68;
+        }
+        if (self->unk_104 > 0x400 && self->unk_104 < 0x8000) {
+            ai->lateral += 0.1f;
+        } else if (self->unk_104 > 0x8000 && self->unk_104 < 0xFC00) {
+            ai->lateral -= 0.1f;
+        }
+        ai->lateral = CLAMP(ai->lateral, -0.45f, 0.45f);
+        fn_1_130B8C(ai, self);
+        break;
+    case 30:
+    case 31:
+    case 32:
+    case 33: {
+        f32 prev;
+        prev = ai->unk_24;
+        savedId30 = m->unk_6;
+        ahead30 = leader->unk_F8 > self->unk_F8 - 5.0f;
+        d = __fabs(leader->unk_F8 - self->unk_F8);
+        near30 = d < 10.0;
+        near2_30 = d < 5.0;
+        cpu_pedals(ai, 0.0f, ai->throttle);
+        ai->flags &= ~1;
+        ai->flags |= 0xC;
+        m->unk_6 = 6;
+        ai->unk_24 = 0.0f;
+        fn_1_C4ABC(m);
+        m->unk_6 = savedId30;
+        switch (ai->mode) {
+        case 33:
+            ai->flags |= 0x10;
+        case 30:
+            ai->throttle *= 2.0f;
+            break;
+        case 31:
+            ai->throttle *= 1.5f;
+            break;
+        case 32:
+            ai->throttle *= 0.8f;
+            if (m->unk_17C > 800.0f) {
+                ai->unk_10 = 1.0f;
+            }
+            break;
+        }
+        ai->throttle = mind(ai->throttle, 1.3);
+        ai->unk_24 = prev;
+        ai->flags |= 1;
+        if (near2_30) {
+            m->flags |= 0x20;
+        } else if (near30 && ai->mode != 33) {
+            ai->lateral = leader->unk_108 / leader->unk_68;
+            if (ahead30) {
+                m->flags |= 0x20020;
+            } else {
+                m->flags |= 8;
+            }
+            ai->lateral = CLAMP(ai->lateral, -0.45f, 0.45f);
+            fn_1_130B8C(ai, self);
+        }
+        if (m->speed < 50.0f) {
+            m->flags &= ~0x20;
+        }
+        break;
+    }
+    }
+}
+#pragma opt_dead_assignments reset
+#pragma opt_propagation reset
+/* fzgx:end fn_1_12F4A8 */
+
 /* fzgx:begin fn_1_130B8C */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
