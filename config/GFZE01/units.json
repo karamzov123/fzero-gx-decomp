@@ -127380,6 +127380,17 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_D55C.c",
+    "symbols": [
+      "fn_12_D55C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {}
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_D60.c",
     "symbols": [
       "fn_12_D60"
