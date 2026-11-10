@@ -1,130 +1,199 @@
-/* Non-matching: best partial attempt (58.61% in the project ledger). Scored for the
+/* Non-matching: best partial attempt (86.99% in the project ledger). Scored for the
  * fuzzy match only; never linked. Refresh with tools/fuzzy_report.py export. */
 #include "types.h"
+#include "dolphin/gx.h"
+#include "rel/main_rel/globals.h"
 #include "rel/main_rel/spline.h"
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_table1[4] = {0x00000000, 0x028001E0, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = -1.0f;
+    d = 4503599627370496.0;
+    d = 4503601774854144.0;
+    s = 490000.0f;
+    s = 20.0f;
+    s = 13.0f;
+    s = 0.5f;
+    d = 50.0;
+    d = 10.0;
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
 
-typedef struct {
-    f32 x, y, z;
-} Vec3;
-typedef struct {
-    f32 value0, value4, value8;
-} Sig_fn_8006F900_Fn8006F900Data;
+typedef struct SplineVec {
+    f32 x;
+    f32 y;
+    f32 z;
+} SplineVec;
 
-extern f32 lbl_1_rodata_7480[];
-extern Obj_1_data_3EED0 lbl_1_data_3EED0;
-extern Obj_1_data_3EF30 lbl_1_data_3EF30;
+typedef struct SplineOut {
+    f32 x;
+    f32 y;
+    f32 z;
+} SplineOut;
+
+typedef struct SplineRec {
+    u32 mask;
+    u32 flags;
+    u8 pad_8[4];
+    SplineVec pos;
+    s16 rot_x;
+    s16 rot_y;
+    s16 rot_z;
+    u8 pad_1E[2];
+    SplineVec scale;
+} SplineRec;
+
+typedef struct SplineList {
+    u8 count;
+    u8 pad_1[3];
+    SplineRec *recs[16];
+    f32 mtx[4][3][4];
+    u8 pad_104[0x64];
+    u32 model;
+} SplineList;
+
+typedef struct SplineObj {
+    u32 unk_0;
+    SplineList list;
+    u32 extra;
+} SplineObj;
+
 extern u32 lbl_801A6D00;
-extern s32 fn_1_5910(void);
+extern void fn_1_5910(void);
 extern s16 fn_1_3F0C8(void);
 extern s32 fn_1_58C4(void);
-extern s32 fn_1_5948(s32);
-extern void fn_1_681C(u32, Vec3 *);
-extern s32 fn_1_54E34(void *, f32);
-extern void fn_1_76BD0(u8, u8);
-extern void *fn_1_72714(u8, u32);
+extern void fn_1_5948(s32);
+extern void fn_1_681C(u8, SplineVec *);
+extern s32 fn_1_54E34(SplineVec *, f32);
+extern void fn_1_76BD0(u8, s32);
+extern void *fn_1_72714(u8, s32);
 extern void fn_1_627C(s32);
 extern f32 fn_1_A71AC(void);
 extern void fn_1_55FF0(f32);
-extern void fn_1_556B8(void *);
+extern void fn_1_556B8(u32);
 extern void lbl_8006DCA4(void);
-extern void lbl_8006E0A4(void *);
-extern void mathutil_mtxA_rotate_z(s32);
-extern void mathutil_mtxA_rotate_y(s32);
-extern void mathutil_mtxA_rotate_x(s32);
+extern void lbl_8006E0A4(SplineVec *);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_x(s16);
 extern void lbl_8006E14C(f32);
-extern void lbl_8006E13C(void *);
+extern void lbl_8006E13C(SplineVec *);
 extern void fn_80072558(void);
 extern void fn_800724C8(void);
 extern void fn_80073778(void *, s32);
-extern void fn_80072864(u32);
-extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
-extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80072864(s32);
+extern void fn_800745A4(s32, s32, s32, s32, s32, s32);
+extern void fn_800734A8(s32, s32, s32, s32);
 extern void fn_80072EDC(s32, s32);
 extern void fn_80073C6C(s32);
-extern void fn_80073678(u32);
-extern void fn_80074660(u32);
-extern void fn_80073898(u32);
-extern void fn_80074788(u32);
-extern void fn_8007245C(u32);
-extern void fn_80074918(u8, s32, u8);
+extern void fn_80073678(s32);
+extern void fn_80074660(s32);
+extern void fn_80073898(s32);
+extern void fn_80074788(s32);
+extern void fn_8007245C(s32);
+extern void fn_80074918(s32, s32, s32);
 extern void fn_800728A8(s32, s32, s32, s32);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DBE4(void);
-extern void fn_8006F900(Vec3 *, Sig_fn_8006F900_Fn8006F900Data *, f32);
+extern void fn_8006F900(SplineVec *, SplineOut *, f32);
 extern void lbl_8006D7F4(f32, f32, f32);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DB30(void);
-extern void lbl_8006DFD8(void);
-extern u32 GXLoadTexMtxImm(u32, u32, u32);
-extern void fn_8003462C(u32, u32, u32);
+extern void lbl_8006DFD8(void *);
+extern void GXLoadTexMtxImm(u32, u32, u32);
+extern void fn_8003462C(s32, s32, s32);
 extern void lbl_8006DC20(void);
 
+static inline f32 fn_1_FAB40_dist2(SplineVec *a, SplineVec *b) {
+    f32 dx;
+    f32 dy;
+    f32 dz;
+
+    dx = a->x;
+    dx -= b->x;
+    dy = a->y - b->y;
+    dz = a->z - b->z;
+    return dz * dz + (dy * dy + dx * dx);
+}
+
 void fn_1_FAB40(void) {
-    Obj_1_data_2A7E0_At3C *obj = lbl_1_data_2A7E0.unk_3C;
-    u8 *list = (u8 *)obj + 4;
-    s32 selected;
-    s32 count, i, j, k;
-    Vec3 pos;
-    u32 mask;
-    f32 scale = lbl_1_rodata_7480[13];
-    Sig_fn_8006F900_Fn8006F900Data transformed;
-    f32 matrix[12];
-    f32 vertices[12];
-    Obj_1_data_3EED0 *indices;
-    Obj_1_data_3EF30 *points;
+    SplineVec quad[4];
+    f32 mtx[3][4];
+    SplineVec pos;
+    SplineOut out;
+    SplineVec center;
+    s32 i;
+    s32 j1;
+    s32 k;
+    SplineList *list;
+    s32 j;
+    SplineRec *rec;
+    s32 count;
+    s32 i1;
+    SplineRec *rec1;
+    SplineVec *p;
+    SplineObj *obj;
+    s32 visible;
+    s16 lab_t0;
 
+    obj = (SplineObj *)lbl_1_data_2A7E0.unk_3C;
+    list = &obj->list;
     fn_1_5910();
-    if (*list == 0)
+    if (list->count == 0) {
         return;
-    if (fn_1_3F0C8() == 45)
+    }
+    if (fn_1_3F0C8() == 45) {
         return;
-    selected = 1;
-
+    }
+    visible = 1;
     count = fn_1_58C4();
-    for (i = 0; i < count; i++) {
-        fn_1_5948(i);
+    for (i1 = 0; i1 < count; i1++) {
+        fn_1_5948(i1);
         lbl_8006DCA4();
-        fn_1_681C(i & 0xff, &pos);
-        for (j = 0; j < *list; j++) {
-            u8 *record = *(u8 **)(list + 4 + j * 4);
-            u32 flags = *(u32 *)(record + 4);
-            if (((flags + 0x10000) == 0xffff || (flags & lbl_1_data_2A7E0.unk_50)) &&
-                (*(u32 *)record & lbl_1_data_2A7E0.unk_4C)) {
-                Vec3 *origin = (Vec3 *)(record + 0xc);
-                f32 dx = pos.x - origin->x;
-                f32 dy = pos.y - origin->y;
-                f32 dz = pos.z - origin->z;
-                f32 dist = dx * dx + dy * dy + dz * dz;
-                if (dist < lbl_1_rodata_7480[10] &&
-                    fn_1_54E34(origin, lbl_1_rodata_7480[11]))
-                    selected = 0;
+        fn_1_681C(i1, &pos);
+        for (j1 = 0; j1 < list->count; j1++) {
+            rec1 = list->recs[j1];
+            if ((rec1->flags == -1 || (rec1->flags & lbl_1_data_2A7E0.unk_50)) &&
+                (rec1->mask & lbl_1_data_2A7E0.unk_4C)) {
+                p = &rec1->pos;
+                if (fn_1_FAB40_dist2(&pos, p) < 490000.0f && fn_1_54E34(p, 20.0f) != 0) {
+                    visible = 0;
+                    goto done;
+                }
             }
         }
     }
-    mask = obj->unk_16C;
-    fn_1_76BD0(mask & 0xff, selected);
+done:
+    fn_1_76BD0(obj->list.model, visible);
 
     count = fn_1_58C4();
     for (i = 0; i < count; i++) {
         fn_1_5948(i);
-        for (j = 0; j < *list; j++) {
-            u8 *record = *(u8 **)(list + 4 + j * 4);
-            u32 flags = *(u32 *)(record + 4);
-            if ((flags + 0x10000 == 0xffff || (flags & lbl_1_data_2A7E0.unk_50)) &&
-                (*(u32 *)record & lbl_1_data_2A7E0.unk_4C)) {
+        for (j = 0; j < list->count; j++) {
+            rec = list->recs[j];
+            if ((rec->flags == -1 || (rec->flags & lbl_1_data_2A7E0.unk_50)) &&
+                (rec->mask & lbl_1_data_2A7E0.unk_4C)) {
                 lbl_8006DCA4();
-                lbl_8006E0A4(record + 0xc);
-                mathutil_mtxA_rotate_z(*(s16 *)(record + 0x1c));
-                mathutil_mtxA_rotate_y(*(s16 *)(record + 0x1a));
-                mathutil_mtxA_rotate_x(*(s16 *)(record + 0x18));
-                mathutil_mtxA_rotate_z(0x1c71);
+                lbl_8006E0A4(&rec->pos);
+                lab_t0 = rec->rot_z;
+                mathutil_mtxA_rotate_z(lab_t0);
+                mathutil_mtxA_rotate_y(rec->rot_y);
+                mathutil_mtxA_rotate_x(rec->rot_x);
+                lab_t0 = 0x1C71;
+                mathutil_mtxA_rotate_z(lab_t0);
                 mathutil_mtxA_rotate_y(0);
                 mathutil_mtxA_rotate_x(0x2000);
-                lbl_8006E14C(lbl_1_rodata_7480[12]);
-                lbl_8006E13C(record + 0x20);
+                lbl_8006E14C(13.0f);
+                lbl_8006E13C(&rec->scale);
                 fn_80072558();
                 fn_800724C8();
-                fn_80073778(fn_1_72714(((u8 *)obj)[0x168], 0), 0);
+                fn_80073778(fn_1_72714(list->model, 0), 0);
                 fn_80072864(2);
                 fn_800745A4(0, 0, 0, 30, 0, 125);
                 fn_800734A8(0, 0, 0, 255);
@@ -134,61 +203,58 @@ void fn_1_FAB40(void) {
                 fn_80074660(1);
                 fn_80073898(0);
                 fn_80074788(0);
-                fn_8007245C(512);
+                fn_8007245C(0x200);
                 fn_80074918(1, 3, 0);
                 fn_800728A8(1, 4, 0, 0);
                 lbl_8006DAEC();
-
                 for (k = 0; k < 6; k++) {
-                    u8 *idx = (u8 *)indices + k * 16;
-                    Vec3 *a = (Vec3 *)((u8 *)points + idx[0] * 12);
-                    Vec3 *b = (Vec3 *)((u8 *)points + idx[2] * 12);
-                    Vec3 *c = (Vec3 *)((u8 *)points + idx[1] * 12);
-                    Vec3 *d = (Vec3 *)((u8 *)points + idx[3] * 12);
-                    vertices[0] = (a->x + b->x) * scale;
-                    vertices[1] = (a->y + b->y) * scale;
-                    vertices[2] = (a->z + b->z) * scale;
-                    vertices[3] = (c->x + d->x) * scale;
-                    vertices[4] = (c->y + d->y) * scale;
-                    vertices[5] = (c->z + d->z) * scale;
-                    vertices[6] = (b->x + c->x) * scale;
-                    vertices[7] = (b->y + c->y) * scale;
-                    vertices[8] = (b->z + c->z) * scale;
-                    vertices[9] = (d->x + a->x) * scale;
-                    vertices[10] = (d->y + a->y) * scale;
-                    vertices[11] = (d->z + a->z) * scale;
-                    vertices[12] = (a->x + c->x) * scale;
-                    vertices[13] = (a->y + c->y) * scale;
-                    vertices[14] = (a->z + c->z) * scale;
-                    vertices[15] = (b->x + d->x) * scale;
-                    vertices[16] = (b->y + d->y) * scale;
-                    vertices[17] = (b->z + d->z) * scale;
-                    fn_8006F900((Vec3 *)vertices, &transformed, fn_1_A71AC());
+                    lbl_8006DBE4();
+                    quad[0] = ((SplineVec *)&lbl_1_data_3EF30)[((u8 (*)[16])&lbl_1_data_3EED0)[k][0]];
+                    quad[2] = ((SplineVec *)&lbl_1_data_3EF30)[((u8 (*)[16])&lbl_1_data_3EED0)[k][2]];
+                    quad[1] = ((SplineVec *)&lbl_1_data_3EF30)[((u8 (*)[16])&lbl_1_data_3EED0)[k][1]];
+                    quad[3] = ((SplineVec *)&lbl_1_data_3EF30)[((u8 (*)[16])&lbl_1_data_3EED0)[k][3]];
+                    center.x = (quad[0].x + quad[2].x) / 2.0f;
+                    center.y = (quad[0].y + quad[2].y) / 2.0f;
+                    center.z = (quad[0].z + quad[2].z) / 2.0f;
+                    fn_8006F900(&center, &out, fn_1_A71AC());
                     lbl_8006DAEC();
-                    lbl_8006D7F4(-transformed.value0 * 50.0f,
-                                  -transformed.value4 * 10.0f, 0.0f);
-                    lbl_8006DB74(matrix);
+                    lbl_8006D7F4(50.0 * -out.x, 10.0 * -out.y, 0.0f);
+                    lbl_8006DB74(mtx);
                     lbl_8006DB30();
-                    lbl_8006DFD8();
-                    lbl_8006DFD8();
+                    lbl_8006DFD8(mtx);
+                    lbl_8006DFD8(list->mtx[i]);
                     GXLoadTexMtxImm(lbl_801A6D00, 30, 0);
-                    fn_8003462C(128, 0, 4);
-                    *(volatile f32 *)0xCC008000 = vertices[0];
-                    *(volatile f32 *)0xCC008000 = vertices[1];
-                    *(volatile f32 *)0xCC008000 = vertices[2];
-                    *(volatile f32 *)0xCC008000 = vertices[3];
-                    *(volatile f32 *)0xCC008000 = vertices[4];
-                    *(volatile f32 *)0xCC008000 = vertices[5];
-                    *(volatile f32 *)0xCC008000 = vertices[6];
-                    *(volatile f32 *)0xCC008000 = vertices[7];
-                    *(volatile f32 *)0xCC008000 = vertices[8];
-                    *(volatile f32 *)0xCC008000 = vertices[9];
-                    *(volatile f32 *)0xCC008000 = vertices[10];
-                    *(volatile f32 *)0xCC008000 = vertices[11];
+                    fn_8003462C(0x80, 0, 4);
+                    GXWGFifo.f32 = quad[0].x;
+                    GXWGFifo.f32 = quad[0].y;
+                    GXWGFifo.f32 = quad[0].z;
+                    GXWGFifo.f32 = quad[1].x;
+                    GXWGFifo.f32 = quad[1].y;
+                    GXWGFifo.f32 = quad[1].z;
+                    GXWGFifo.f32 = quad[2].x;
+                    GXWGFifo.f32 = quad[2].y;
+                    GXWGFifo.f32 = quad[2].z;
+                    GXWGFifo.f32 = quad[3].x;
+                    GXWGFifo.f32 = quad[3].y;
+                    GXWGFifo.f32 = quad[3].z;
+                }
+                lbl_8006DC20();
+                if (obj->extra != 0) {
+                    fn_80074918(1, 3, 1);
+                    lbl_8006DCA4();
+                    lbl_8006E0A4(&rec->pos);
+                    lab_t0 = rec->rot_z;
+                    mathutil_mtxA_rotate_z(lab_t0);
+                    mathutil_mtxA_rotate_y(rec->rot_y);
+                    mathutil_mtxA_rotate_x(rec->rot_x);
+                    lbl_8006E13C(&rec->scale);
+                    fn_80072558();
+                    fn_1_55FF0(0.5f);
+                    fn_1_556B8(obj->extra);
+                    fn_1_55FF0(1.0f);
                 }
             }
         }
         fn_1_627C(i);
     }
-    lbl_8006DC20();
 }
