@@ -51,7 +51,7 @@ typedef struct {
 
 extern Entry_1_bss_77380 lbl_1_bss_77380[2][128];
 extern u8 lbl_3_bss_9F664;
-extern u8 lbl_3_bss_9F665[43];
+extern u8 lbl_3_bss_9F664__fzgx_offset_1[43];
 extern u32 lbl_801A6410;
 
 extern void fn_1_B9BE0(void);
@@ -113,15 +113,15 @@ void fn_3_F984(void) {
             lbl_3_data_32F0[0] = copy_row(0, &lbl_3_data_32F0[0]);
         } else if (lbl_3_data_32F0[1] < 2) {
             lbl_3_data_32F0[1] = copy_row(1, &lbl_3_data_32F0[1]);
-        } else if (lbl_3_bss_9F665[0] == 0) {
+        } else if (lbl_3_bss_9F664__fzgx_offset_1[0] == 0) {
             fn_1_B9C0C();
-            lbl_3_bss_9F665[0] = 1;
+            lbl_3_bss_9F664__fzgx_offset_1[0] = 1;
         } else {
             lbl_3_data_32F0[1] = 0;
             lbl_3_data_32F0[0] = 0;
             lbl_3_bss_7EDD8.unk_C = 0x40000000;
             lbl_3_bss_9F664 = 0;
-            lbl_3_bss_9F665[0] = 0;
+            lbl_3_bss_9F664__fzgx_offset_1[0] = 0;
             fn_1_FE004();
         }
     }

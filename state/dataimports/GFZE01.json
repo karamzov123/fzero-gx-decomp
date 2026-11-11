@@ -2578,14 +2578,18 @@
       {
         "declaration": "s16 lbl_3_bss_7EBB0[41]",
         "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "s16 lbl_3_bss_7EBB0[41]",
+        "path": "src/rel/customize/toolkit.c"
       }
     ],
     "definition": "s16 lbl_3_bss_7EBB0[41]",
     "method": "declared-bss",
     "module": "customize",
     "references": [
-      "fn_3_255DC",
-      "fn_3_83CC"
+      "fn_3_83CC",
+      "fn_3_255DC"
     ],
     "relocations": [],
     "section": ".bss",
@@ -2605,14 +2609,18 @@
       {
         "declaration": "s16 lbl_3_bss_7EC02",
         "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "s16 lbl_3_bss_7EC02",
+        "path": "src/rel/customize/toolkit.c"
       }
     ],
     "definition": "s16 lbl_3_bss_7EC02",
     "method": "declared-bss",
     "module": "customize",
     "references": [
-      "fn_3_255DC",
-      "fn_3_83CC"
+      "fn_3_83CC",
+      "fn_3_255DC"
     ],
     "relocations": [],
     "section": ".bss",
@@ -2629,6 +2637,10 @@
     "address": 519172,
     "align": 4,
     "declarations": [
+      {
+        "declaration": "u32 lbl_3_bss_7EC04",
+        "path": "src/rel/customize/_prolog.c"
+      },
       {
         "declaration": "u32 lbl_3_bss_7EC04",
         "path": "src/rel/customize/toolkit.c"
@@ -2717,6 +2729,10 @@
       {
         "declaration": "u32 lbl_3_bss_7ED58[18]",
         "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_7ED58[18]",
+        "path": "src/rel/customize/emb_memcard.c"
       },
       {
         "declaration": "u32 lbl_3_bss_7ED58[18]",
@@ -2826,11 +2842,11 @@
     "method": "declared-bss",
     "module": "customize",
     "references": [
-      "fn_3_E6F8",
-      "fn_3_10CB8",
       "fn_3_CE94",
       "fn_3_E5D4",
+      "fn_3_E6F8",
       "fn_3_10260",
+      "fn_3_10CB8",
       "fn_3_113AC",
       "fn_3_11FB4",
       "fn_3_11FF0",
@@ -2851,7 +2867,12 @@
   "customize:lbl_3_bss_7EDCC": {
     "address": 519628,
     "align": 4,
-    "declarations": [],
+    "declarations": [
+      {
+        "declaration": "Customize *lbl_3_bss_7EDCC",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      }
+    ],
     "definition": "u8 lbl_3_bss_7EDCC[12]",
     "method": "opaque-bss",
     "module": "customize",
@@ -2886,11 +2907,19 @@
         "path": "src/rel/customize/emb_memcard.c"
       },
       {
+        "declaration": "View_3_bss_7EDD8 lbl_3_bss_7EDD8",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
         "declaration": "Obj_3_bss_7EDD8 lbl_3_bss_7EDD8",
         "path": "src/rel/customize/emb_paste_editor.c"
       },
       {
         "declaration": "struct fn_3_10B68_lbl_3_bss_7EDD8 lbl_3_bss_7EDD8",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "EditorState lbl_3_bss_7EDD8",
         "path": "src/rel/customize/emb_paste_editor.c"
       }
     ],
@@ -2898,10 +2927,8 @@
     "method": "declared-bss",
     "module": "customize",
     "references": [
-      "fn_3_C400",
-      "fn_3_F984",
-      "fn_3_11A38",
       "fn_3_12910",
+      "fn_3_C400",
       "fn_3_CE94",
       "fn_3_D9A0",
       "fn_3_F044",
@@ -2912,9 +2939,11 @@
       "fn_3_118BC",
       "fn_3_11930",
       "fn_3_11974",
+      "fn_3_11A38",
       "fn_3_11F60",
       "fn_3_11FA0",
-      "fn_3_11FB4"
+      "fn_3_11FB4",
+      "fn_3_F984"
     ],
     "relocations": [],
     "section": ".bss",
@@ -2944,6 +2973,10 @@
         "path": "src/rel/customize/emb_memcard.c"
       },
       {
+        "declaration": "Slot2060 lbl_3_bss_7EE40[]",
+        "path": "src/rel/customize/emb_memcard.c"
+      },
+      {
         "declaration": "PasteSlot lbl_3_bss_7EE40",
         "path": "src/rel/customize/emb_paste_editor.c"
       },
@@ -2953,6 +2986,10 @@
       },
       {
         "declaration": "Obj_3_bss_7EE40 lbl_3_bss_7EE40",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "PasteSlot lbl_3_bss_7EE40",
         "path": "src/rel/customize/emb_paste_editor.c"
       },
       {
@@ -2965,14 +3002,14 @@
     "module": "customize",
     "references": [
       "fn_3_C400",
-      "fn_3_E6F8",
-      "fn_3_10CB8",
       "fn_3_CE94",
       "fn_3_E5D4",
+      "fn_3_E6F8",
       "fn_3_F044",
       "fn_3_10260",
       "fn_3_104C4",
       "fn_3_106FC",
+      "fn_3_10CB8",
       "fn_3_113AC",
       "fn_3_11FF0",
       "fn_3_FD30"
@@ -3041,6 +3078,10 @@
         "path": "src/rel/customize/emb_memcard.c"
       },
       {
+        "declaration": "View_3_bss_87000 lbl_3_bss_87000",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
         "declaration": "Obj_3_bss_87000 lbl_3_bss_87000",
         "path": "src/rel/customize/emb_paste_editor.c"
       }
@@ -3049,9 +3090,9 @@
     "method": "declared-bss",
     "module": "customize",
     "references": [
-      "fn_3_F984",
       "fn_3_D9A0",
-      "fn_3_106FC"
+      "fn_3_106FC",
+      "fn_3_F984"
     ],
     "relocations": [],
     "section": ".bss",
@@ -3071,6 +3112,26 @@
       {
         "declaration": "Obj_3_bss_87040 lbl_3_bss_87040",
         "path": "include/rel/customize/emb_paste_editor.h"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_87040[33216]",
+        "path": "src/rel/customize/emb_memcard.c"
+      },
+      {
+        "declaration": "Obj_3_bss_87040_Part lbl_3_bss_87040[]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "Obj_3_bss_87040 lbl_3_bss_87040",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "PasteSlot lbl_3_bss_87040",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "PasteSlot lbl_3_bss_87040",
+        "path": "src/rel/customize/emb_paste_editor.c"
       }
     ],
     "definition": "Obj_3_bss_87040 lbl_3_bss_87040",
@@ -3079,10 +3140,10 @@
     "references": [
       "fn_3_F044",
       "fn_3_10260",
+      "fn_3_104C4",
       "fn_3_106FC",
       "fn_3_10CB8",
-      "fn_3_113AC",
-      "fn_3_104C4"
+      "fn_3_113AC"
     ],
     "relocations": [],
     "section": ".bss",
@@ -3095,10 +3156,295 @@
     "unit_size": 33216,
     "unit_start": 553024
   },
+  "customize:lbl_3_bss_8F200": {
+    "address": 586240,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_3_bss_8F200[]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_8F200[]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_8F200[]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_8F200[]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      }
+    ],
+    "definition": "u8 lbl_3_bss_8F200[66624]",
+    "method": "opaque-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_11F60"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 66624,
+    "sha256": "bf099edfb0bb8927d246f1d9de573a9f1a589f6a54e262525697802c68aa86c4",
+    "size": 66624,
+    "source": "rel/customize/data/lbl_3_bss_8F200.c",
+    "symbol": "lbl_3_bss_8F200",
+    "unit_align": 32,
+    "unit_size": 66624,
+    "unit_start": 586240
+  },
+  "customize:lbl_3_bss_9F640": {
+    "address": 652864,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_9F640 lbl_3_bss_9F640",
+        "path": "include/rel/customize/emb_paste_editor.h"
+      },
+      {
+        "declaration": "Cam lbl_3_bss_9F640",
+        "path": "src/rel/customize/emb_memcard.c"
+      },
+      {
+        "declaration": "Obj_3_bss_9F640 lbl_3_bss_9F640",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "Cam lbl_3_bss_9F640",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      }
+    ],
+    "definition": "u8 lbl_3_bss_9F640[36]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "customize",
+    "references": [
+      "fn_3_E6F8",
+      "fn_3_106FC",
+      "fn_3_11A38"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 80,
+    "sha256": "6db65fd59fd356f6729140571b5bcd6bb3b83492a16e1bf0a3884442fc3c8a0e",
+    "size": 36,
+    "source": "rel/customize/data/lbl_3_bss_9F640.c",
+    "symbol": "lbl_3_bss_9F640",
+    "unit_align": 8,
+    "unit_size": 80,
+    "unit_start": 652864
+  },
+  "customize:lbl_3_bss_9F664": {
+    "address": 652900,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u8 lbl_3_bss_9F664",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      }
+    ],
+    "definition": "u8 lbl_3_bss_9F664[44]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "customize",
+    "references": [
+      "fn_3_F984"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 80,
+    "sha256": "85759b3811ff7dc47b03792ac85317be51431a3f9e01dcafce317ed736a391b0",
+    "size": 44,
+    "source": "rel/customize/data/lbl_3_bss_9F640.c",
+    "symbol": "lbl_3_bss_9F664",
+    "unit_align": 8,
+    "unit_size": 80,
+    "unit_start": 652864
+  },
+  "customize:lbl_3_bss_9F690": {
+    "address": 652944,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_9F690 lbl_3_bss_9F690",
+        "path": "include/rel/customize/emb_paste_editor.h"
+      },
+      {
+        "declaration": "Obj_3_bss_9F690 lbl_3_bss_9F690",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "Cam lbl_3_bss_9F690",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      }
+    ],
+    "definition": "Obj_3_bss_9F690 lbl_3_bss_9F690",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_106FC",
+      "fn_3_11A38"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8408,
+    "sha256": "da98e56ce9038e04b7b9878907bb42aa5adbd1678025a83bcc48a0165eab492f",
+    "size": 8408,
+    "source": "rel/customize/data/lbl_3_bss_9F690.c",
+    "symbol": "lbl_3_bss_9F690",
+    "unit_align": 8,
+    "unit_size": 8408,
+    "unit_start": 652944
+  },
+  "customize:lbl_3_bss_A1768": {
+    "address": 661352,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_3_bss_A1768",
+        "path": "include/rel/customize/emb_paste_editor.h"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A1768",
+        "path": "include/rel/customize/emblem.h"
+      },
+      {
+        "declaration": "EmblemState lbl_3_bss_A1768",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "u32 lbl_3_bss_A1768",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_1308C",
+      "fn_3_130A8",
+      "fn_3_130C8",
+      "fn_3_1338C",
+      "fn_3_13508",
+      "fn_3_14080"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/customize/data/lbl_3_bss_A1768.c",
+    "symbol": "lbl_3_bss_A1768",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 661352
+  },
+  "customize:lbl_3_bss_A176C": {
+    "address": 661356,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_3_bss_A176C",
+        "path": "include/rel/customize/emblem.h"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A176C",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u32 *lbl_3_bss_A176C",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "u32 lbl_3_bss_A176C",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_13D98",
+      "fn_3_1402C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/customize/data/lbl_3_bss_A1768.c",
+    "symbol": "lbl_3_bss_A176C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 661352
+  },
+  "customize:lbl_3_bss_A1770": {
+    "address": 661360,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 *lbl_3_bss_A1770",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u32 *lbl_3_bss_A1770",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "u8 lbl_3_bss_A1770[4]",
+    "method": "opaque-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_142C4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/customize/data/lbl_3_bss_A1770.c",
+    "symbol": "lbl_3_bss_A1770",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 661360
+  },
+  "customize:lbl_3_bss_A1774": {
+    "address": 661364,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 *lbl_3_bss_A1774",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u32 *lbl_3_bss_A1774",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "u8 lbl_3_bss_A1774[4]",
+    "method": "opaque-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_142C4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/customize/data/lbl_3_bss_A1770.c",
+    "symbol": "lbl_3_bss_A1774",
+    "unit_align": 16,
+    "unit_size": 8,
+    "unit_start": 661360
+  },
   "customize:lbl_3_bss_A1778": {
     "address": 661368,
     "align": 8,
     "declarations": [
+      {
+        "declaration": "u8 lbl_3_bss_A1778[12]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_A1778[12]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_A1778[12]",
+        "path": "src/rel/customize/emb_paste_editor.c"
+      },
       {
         "declaration": "u8 lbl_3_bss_A1778[12]",
         "path": "src/rel/customize/emb_paste_editor.c"
@@ -3112,14 +3458,489 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 12,
+    "section_size": 32,
     "sha256": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
     "size": 12,
     "source": "rel/customize/data/lbl_3_bss_A1778.c",
     "symbol": "lbl_3_bss_A1778",
     "unit_align": 8,
-    "unit_size": 12,
+    "unit_size": 32,
     "unit_start": 661368
+  },
+  "customize:lbl_3_bss_A1784": {
+    "address": 661380,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_A1784 lbl_3_bss_A1784",
+        "path": "include/rel/customize/customize.h"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A1784[5]",
+        "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "struct fn_3_BE10_lbl_3_bss_A1784 lbl_3_bss_A1784",
+        "path": "src/rel/customize/customize.c"
+      }
+    ],
+    "definition": "Obj_3_bss_A1784 lbl_3_bss_A1784",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_BD98",
+      "fn_3_BE10"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 32,
+    "sha256": "de47c9b27eb8d300dbb5f2c353e632c393262cf06340c4fa7f1b40c4cbd36f90",
+    "size": 20,
+    "source": "rel/customize/data/lbl_3_bss_A1778.c",
+    "symbol": "lbl_3_bss_A1784",
+    "unit_align": 8,
+    "unit_size": 32,
+    "unit_start": 661368
+  },
+  "customize:lbl_3_bss_A1798": {
+    "address": 661400,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "s32 lbl_3_bss_A1798",
+        "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A1798",
+        "path": "src/rel/customize/editor.c"
+      }
+    ],
+    "definition": "s32 lbl_3_bss_A1798",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_BF1C",
+      "fn_3_18960"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/customize/data/lbl_3_bss_A1798.c",
+    "symbol": "lbl_3_bss_A1798",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 661400
+  },
+  "customize:lbl_3_bss_A179C": {
+    "address": 661404,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_3_bss_A179C",
+        "path": "include/rel/customize/customize.h"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A179C",
+        "path": "include/rel/customize/toolkit.h"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/_prolog.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "s32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/editor.c"
+      },
+      {
+        "declaration": "s32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/toolkit.c"
+      },
+      {
+        "declaration": "s32 lbl_3_bss_A179C",
+        "path": "src/rel/customize/toolkit.c"
+      }
+    ],
+    "definition": "u32 lbl_3_bss_A179C",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_C128",
+      "fn_3_C3B4",
+      "fn_3_18960",
+      "fn_3_1A068",
+      "fn_3_1A0F4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "rel/customize/data/lbl_3_bss_A1798.c",
+    "symbol": "lbl_3_bss_A179C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 661400
+  },
+  "customize:lbl_3_bss_A17A0": {
+    "address": 661408,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_A17A0 lbl_3_bss_A17A0",
+        "path": "include/rel/customize/emblem.h"
+      },
+      {
+        "declaration": "u8 lbl_3_bss_A17A0[44]",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A17A0",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "EmblemState lbl_3_bss_A17A0",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "EmblemState lbl_3_bss_A17A0",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "struct fn_3_14600_lbl_3_bss_A17A0 lbl_3_bss_A17A0",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "Obj_3_bss_A17A0 lbl_3_bss_A17A0",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_1349C",
+      "fn_3_137AC",
+      "fn_3_14008",
+      "fn_3_1401C",
+      "fn_3_14074",
+      "fn_3_141A8",
+      "fn_3_1441C",
+      "fn_3_1443C",
+      "fn_3_1445C",
+      "fn_3_14600"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 46,
+    "sha256": "85759b3811ff7dc47b03792ac85317be51431a3f9e01dcafce317ed736a391b0",
+    "size": 44,
+    "source": "rel/customize/data/lbl_3_bss_A17A0.c",
+    "symbol": "lbl_3_bss_A17A0",
+    "unit_align": 32,
+    "unit_size": 48,
+    "unit_start": 661408
+  },
+  "customize:lbl_3_bss_A17CC": {
+    "address": 661452,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "s16 lbl_3_bss_A17CC",
+        "path": "include/rel/customize/emblem.h"
+      },
+      {
+        "declaration": "s16 lbl_3_bss_A17CC",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "s16 lbl_3_bss_A17CC",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_1402C",
+      "fn_3_14064"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 46,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/customize/data/lbl_3_bss_A17A0.c",
+    "symbol": "lbl_3_bss_A17CC",
+    "unit_align": 32,
+    "unit_size": 48,
+    "unit_start": 661408
+  },
+  "customize:lbl_3_bss_A17D0": {
+    "address": 661456,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "struct fn_3_137AC_Sel lbl_3_bss_A17D0",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "struct fn_3_137AC_lbl_3_bss_A17D0 lbl_3_bss_A17D0",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "u8 lbl_3_bss_A17D0[2]",
+    "method": "opaque-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_137AC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 3080,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/customize/data/lbl_3_bss_A17D0.c",
+    "symbol": "lbl_3_bss_A17D0",
+    "unit_align": 16,
+    "unit_size": 3080,
+    "unit_start": 661456
+  },
+  "customize:lbl_3_bss_A17D2": {
+    "address": 661458,
+    "align": 2,
+    "declarations": [
+      {
+        "declaration": "s16 lbl_3_bss_A17D2",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "s16 lbl_3_bss_A17D2",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "s16 lbl_3_bss_A17D2",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_1349C"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 3080,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "rel/customize/data/lbl_3_bss_A17D0.c",
+    "symbol": "lbl_3_bss_A17D2",
+    "unit_align": 16,
+    "unit_size": 3080,
+    "unit_start": 661456
+  },
+  "customize:lbl_3_bss_A17D4": {
+    "address": 661460,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_A17D4 lbl_3_bss_A17D4",
+        "path": "include/rel/customize/emblem.h"
+      },
+      {
+        "declaration": "EmblemEntry lbl_3_bss_A17D4[128]",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "EmblemEntry lbl_3_bss_A17D4[128]",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "struct fn_3_14600_lbl_3_bss_A17D4 lbl_3_bss_A17D4",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "Obj_3_bss_A17D4 lbl_3_bss_A17D4",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_141A8",
+      "fn_3_1445C",
+      "fn_3_14600"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 3080,
+    "sha256": "5031a367fe3fb91c0001b930bb179e0d723d123ea53df7704d9d9de7708a2074",
+    "size": 3076,
+    "source": "rel/customize/data/lbl_3_bss_A17D0.c",
+    "symbol": "lbl_3_bss_A17D4",
+    "unit_align": 16,
+    "unit_size": 3080,
+    "unit_start": 661456
+  },
+  "customize:lbl_3_bss_A23D8": {
+    "address": 664536,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u16 lbl_3_bss_A23D8",
+        "path": "include/rel/customize/emblem.h"
+      },
+      {
+        "declaration": "u16 lbl_3_bss_A23D8",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u16 lbl_3_bss_A23D8",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u16 lbl_3_bss_A23D8",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u16 lbl_3_bss_A23D8",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u16 lbl_3_bss_A23D8",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "u8 lbl_3_bss_A23D8[8]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "customize",
+    "references": [
+      "fn_3_146C0",
+      "fn_3_14778",
+      "fn_3_14794",
+      "fn_3_149AC",
+      "fn_3_14BBC",
+      "fn_3_14E18",
+      "fn_3_152BC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "rel/customize/data/lbl_3_bss_A23D8.c",
+    "symbol": "lbl_3_bss_A23D8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 664536
+  },
+  "customize:lbl_3_bss_A23E0": {
+    "address": 664544,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_3_bss_A23E0",
+        "path": "include/rel/customize/emblem.h"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A23E0",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A23E0",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A23E0",
+        "path": "src/rel/customize/emblem.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_A23E0",
+        "path": "src/rel/customize/emblem.c"
+      }
+    ],
+    "definition": "u8 lbl_3_bss_A23E0[8]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "customize",
+    "references": [
+      "fn_3_14794",
+      "fn_3_149AC",
+      "fn_3_14BBC",
+      "fn_3_14E18",
+      "fn_3_152BC"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "rel/customize/data/lbl_3_bss_A23E0.c",
+    "symbol": "lbl_3_bss_A23E0",
+    "unit_align": 32,
+    "unit_size": 8,
+    "unit_start": 664544
+  },
+  "customize:lbl_3_bss_A23E8": {
+    "address": 664552,
+    "align": 8,
+    "declarations": [],
+    "definition": "u8 lbl_3_bss_A23E8[1]",
+    "method": "opaque-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_169B8"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 32,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "size": 1,
+    "source": "rel/customize/data/lbl_3_bss_A23E8.c",
+    "symbol": "lbl_3_bss_A23E8",
+    "unit_align": 8,
+    "unit_size": 32,
+    "unit_start": 664552
+  },
+  "customize:lbl_3_bss_A23EC": {
+    "address": 664556,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Obj_3_bss_A23EC lbl_3_bss_A23EC",
+        "path": "include/rel/customize/editor.h"
+      }
+    ],
+    "definition": "Obj_3_bss_A23EC lbl_3_bss_A23EC",
+    "method": "declared-bss",
+    "module": "customize",
+    "references": [
+      "fn_3_1552C",
+      "fn_3_1560C",
+      "fn_3_15620",
+      "fn_3_1563C",
+      "fn_3_156A8",
+      "fn_3_156D0",
+      "fn_3_15F44",
+      "fn_3_1683C",
+      "fn_3_16E14"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 32,
+    "sha256": "3addfb141cd7c9c4c6543a82191a3707ac29c7a041217782e61d4d91c691aee8",
+    "size": 28,
+    "source": "rel/customize/data/lbl_3_bss_A23E8.c",
+    "symbol": "lbl_3_bss_A23EC",
+    "unit_align": 8,
+    "unit_size": 32,
+    "unit_start": 664552
   },
   "customize:lbl_3_bss_A2408": {
     "address": 664584,

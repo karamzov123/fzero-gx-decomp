@@ -842,7 +842,7 @@ void fn_3_146BC(void) {
 
 /* fzgx:begin fn_3_146C0 */
 extern u16 lbl_3_bss_A23D8;
-extern u16 lbl_3_bss_A23DA[3];
+extern u16 lbl_3_bss_A23D8__fzgx_offset_2[3];
 extern void fn_3_14BBC(void *, s16, s16, s16, u32 *);
 
 void fn_3_146C0(void *arg0, s16 x, s16 y, s16 delta, u32 *arg4) {
@@ -865,7 +865,7 @@ void fn_3_146C0(void *arg0, s16 x, s16 y, s16 delta, u32 *arg4) {
         }
     }
 
-    if (y <= 0 || y >= lbl_3_bss_A23DA[0] - 1) {
+    if (y <= 0 || y >= lbl_3_bss_A23D8__fzgx_offset_2[0] - 1) {
         return;
     }
     value = *arg4;
@@ -1020,7 +1020,7 @@ extern u32 fn_1_45B2C(void *);
 extern void fn_1_458A0(void *, void *, u32, u32);
 extern void fn_1_45850(void *);
 extern s32 fn_1_F7BE4(u32);
-extern u16 lbl_3_bss_A23DA[3];
+extern u16 lbl_3_bss_A23D8__fzgx_offset_2[3];
 extern void fn_3_14BBC(void *, s16, s16, s16, u32 *);
 extern void fn_3_14E18(void *, s16, void *, s16, void *);
 

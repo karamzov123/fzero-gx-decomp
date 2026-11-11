@@ -2701,9 +2701,139 @@
   },
   {
     "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_8F200.c",
+    "symbols": [
+      "lbl_3_bss_8F200"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_9F640.c",
+    "symbols": [
+      "lbl_3_bss_9F640",
+      "lbl_3_bss_9F664"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_9F690.c",
+    "symbols": [
+      "lbl_3_bss_9F690"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_A1768.c",
+    "symbols": [
+      "lbl_3_bss_A1768",
+      "lbl_3_bss_A176C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_A1770.c",
+    "symbols": [
+      "lbl_3_bss_A1770",
+      "lbl_3_bss_A1774"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
     "source": "rel/customize/data/lbl_3_bss_A1778.c",
     "symbols": [
-      "lbl_3_bss_A1778"
+      "lbl_3_bss_A1778",
+      "lbl_3_bss_A1784"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_A1798.c",
+    "symbols": [
+      "lbl_3_bss_A1798",
+      "lbl_3_bss_A179C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_A17A0.c",
+    "symbols": [
+      "lbl_3_bss_A17A0",
+      "lbl_3_bss_A17CC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_A17D0.c",
+    "symbols": [
+      "lbl_3_bss_A17D0",
+      "lbl_3_bss_A17D2",
+      "lbl_3_bss_A17D4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_A23D8.c",
+    "symbols": [
+      "lbl_3_bss_A23D8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_A23E0.c",
+    "symbols": [
+      "lbl_3_bss_A23E0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_bss_A23E8.c",
+    "symbols": [
+      "lbl_3_bss_A23E8",
+      "lbl_3_bss_A23EC"
     ],
     "status": "matching",
     "data": true,
@@ -4666,7 +4796,10 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
+    "tu": "rel/customize/emb_paste_editor.c",
+    "pool": {
+      "lbl_3_bss_9F664__fzgx_offset_1": "lbl_3_bss_9F664+0x1"
+    }
   },
   {
     "module": "customize",
@@ -4940,7 +5073,10 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
+    "tu": "rel/customize/emblem.c",
+    "pool": {
+      "lbl_3_bss_A23D8__fzgx_offset_2": "lbl_3_bss_A23D8+0x2"
+    }
   },
   {
     "module": "customize",
