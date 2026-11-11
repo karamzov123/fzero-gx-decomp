@@ -43235,6 +43235,17 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/accessory/fn_1_10B800.c",
+    "symbols": [
+      "fn_1_10B800"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/accessory.c"
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_10BA00.c",
     "symbols": [
       "fn_1_10BA00"
