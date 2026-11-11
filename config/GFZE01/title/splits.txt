@@ -575,3 +575,6 @@ rel/title/data/lbl_8_data_8438.c:
 
 rel/title/data/lbl_8_rodata_C28.c:
 	.rodata     start:0x00000C28 end:0x00000C2C align:8
+
+rel/title/_prolog/fn_8_0.c:
+	.text       start:0x00000000 end:0x000004D8 align:4

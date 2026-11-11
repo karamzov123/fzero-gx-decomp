@@ -143970,6 +143970,22 @@
   },
   {
     "module": "title",
+    "source": "rel/title/_prolog/fn_8_0.c",
+    "symbols": [
+      "fn_8_0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/title/_prolog.c",
+    "pool": {
+      "...rodata.0": "lbl_8_rodata_0",
+      "@8": "lbl_8_rodata_C",
+      "@7": "lbl_8_rodata_8"
+    }
+  },
+  {
+    "module": "title",
     "source": "rel/title/_prolog/fn_8_4D8.c",
     "symbols": [
       "fn_8_4D8"
