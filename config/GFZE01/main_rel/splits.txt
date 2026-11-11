@@ -16551,3 +16551,6 @@ rel/main_rel/bitmap/fn_1_4A0D8.c:
 
 rel/main_rel/archive/fn_1_12F4A8.c:
 	.text       start:0x0012F4A8 end:0x00130B8C align:4
+
+rel/main_rel/effect/fn_1_5FFB0.c:
+	.text       start:0x0005FFB0 end:0x00060170 align:4
