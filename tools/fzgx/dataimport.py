@@ -433,7 +433,14 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False):
         recovered = None
         for d in decls:
             if d['path'].startswith('include/'):
-                recovered = declared_record_initializer(sym, d, data, relocation_values)
+                try:
+                    recovered = declared_record_initializer(sym, d, data, relocation_values)
+                except ValueError:
+                    # Access-derived header layouts (padding plus the fields code touches)
+                    # need not place every retail pointer; the anonymous table below does.
+                    extras.append(f'/* {d["declaration"].split()[0]} (header) does not place every '
+                                  'retail pointer; fields follow the relocations. */')
+                    recovered = None
                 if recovered:
                     break
         known = None

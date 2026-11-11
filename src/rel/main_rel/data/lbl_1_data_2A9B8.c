@@ -2,6 +2,7 @@
 #include "types.h"
 #include "rel/main_rel/data/lbl_1_data_2AA24.h"
 #include "rel/main_rel/data/lbl_1_data_2AB54.h"
+#include "rel/main_rel/data/lbl_1_data_2ABAC.h"
 
 extern char lbl_1_data_2A9B8[11];
 extern char lbl_1_data_2A9C4[12];
@@ -25,6 +26,10 @@ extern char lbl_1_data_2AB1C[16];
 extern char lbl_1_data_2AB2C[20];
 extern char lbl_1_data_2AB40[20];
 #include "rel/main_rel/data/lbl_1_data_2AB54.h"
+#include "rel/main_rel/data/lbl_1_data_2ABAC.h"
+extern char lbl_1_data_2AEC4[7];
+extern char lbl_1_data_2AECC[7];
+extern char lbl_1_data_2AED4[9];
 
 
 
@@ -226,4 +231,344 @@ __declspec(section ".data") Data_lbl_1_data_2AB54 lbl_1_data_2AB54 __attribute__
     (u8 *)&lbl_1_data_2AA7C,
     0x00000000U
 };
+#pragma explicit_zero_data reset
+
+
+extern void fn_1_101348(void);
+extern void fn_1_1013A0(void);
+extern void fn_1_1013C0(void);
+extern void fn_1_1013C4(void);
+extern void fn_1_101400(void);
+extern void fn_1_101404(void);
+extern void fn_1_101424(void);
+extern void fn_1_101428(void);
+extern void fn_1_101448(void);
+extern void fn_1_10144C(void);
+extern void fn_1_101454(void);
+extern void fn_1_150500(void);
+extern void fn_1_150518(void);
+extern void fn_1_150570(void);
+extern void fn_1_150574(void);
+extern void fn_1_1505B4(void);
+extern void fn_1_150608(void);
+extern void fn_1_150650(void);
+extern void fn_1_151764(void);
+extern void fn_1_15176C(void);
+extern void fn_1_153988(void);
+extern void fn_1_15398C(void);
+extern void fn_1_1539D0(void);
+extern void fn_1_153A28(void);
+extern void fn_1_153AAC(void);
+extern void fn_1_153AB0(void);
+extern void fn_1_153AF4(void);
+extern void fn_1_1543E8(void);
+extern void fn_1_154410(void);
+extern void fn_1_1586A8(void);
+extern void fn_1_1586AC(void);
+extern void fn_1_158980(void);
+extern void fn_1_158984(void);
+extern void fn_1_15903C(void);
+extern void fn_1_159040(void);
+extern void fn_1_159060(void);
+extern void fn_1_159064(void);
+extern void fn_1_15906C(void);
+extern void fn_1_15B428(void);
+extern void fn_1_15B42C(void);
+extern void fn_1_15B4F8(void);
+extern void fn_1_15B4FC(void);
+extern void fn_1_15B51C(void);
+extern void fn_1_15B520(void);
+extern void fn_1_15B540(void);
+extern void fn_1_15B698(void);
+extern void fn_1_15B70C(void);
+extern void fn_1_D3C00(void);
+extern void fn_1_D3C04(void);
+extern void fn_1_D3C58(void);
+extern void fn_1_D3CF4(void);
+extern void fn_1_D3DDC(void);
+extern void fn_1_D3E08(void);
+extern void fn_1_D3E8C(void);
+extern void fn_1_D5C68(void);
+extern void fn_1_D5C70(void);
+extern void fn_1_D720C(void);
+extern void fn_1_D7274(void);
+extern void fn_1_D744C(void);
+extern void fn_1_D74C4(void);
+extern void fn_1_D75CC(void);
+extern void fn_1_D7688(void);
+extern void fn_1_D76EC(void);
+extern void fn_1_D8F4C(void);
+extern void fn_1_D8FC4(void);
+extern void fn_1_DA7B8(void);
+extern void fn_1_DA7E4(void);
+extern void fn_1_DA9F0(void);
+extern void fn_1_DAA34(void);
+extern void fn_1_DAA58(void);
+extern void fn_1_DAAC4(void);
+extern void fn_1_DAAF8(void);
+extern void fn_1_DAB5C(void);
+extern void fn_1_DABB4(void);
+extern void fn_1_DAD68(void);
+extern void fn_1_DAD6C(void);
+extern void fn_1_DADA8(void);
+extern void fn_1_DAE24(void);
+extern void fn_1_DAEF8(void);
+extern void fn_1_DAEFC(void);
+extern void fn_1_DAF90(void);
+extern void fn_1_DC1B8(void);
+extern void fn_1_DC1C0(void);
+extern void fn_1_DC204(void);
+extern void fn_1_DC208(void);
+extern void fn_1_DC264(void);
+extern void fn_1_DC268(void);
+extern void fn_1_DC2F8(void);
+extern void fn_1_DC33C(void);
+extern void fn_1_DC3A0(void);
+extern void fn_1_DCB9C(void);
+extern void fn_1_DCBF4(void);
+extern void fn_1_F5AAC(void);
+extern void fn_1_F5AB0(void);
+extern void fn_1_F5AEC(void);
+extern void fn_1_F5AF0(void);
+extern void fn_1_F5B38(void);
+extern void fn_1_F5B3C(void);
+extern void fn_1_F5B84(void);
+extern void fn_1_F70C0(void);
+extern void fn_1_F70C8(void);
+extern void fn_1_FA6C0(void);
+extern void fn_1_FA75C(void);
+extern void fn_1_FA82C(void);
+extern void fn_1_FA830(void);
+extern void fn_1_FA854(void);
+extern void fn_1_FA878(void);
+extern void fn_1_FA898(void);
+extern void fn_1_FB770(void);
+extern void fn_1_FB798(void);
+extern void fn_1_FE5E0(void);
+extern void fn_1_FE5E4(void);
+extern void fn_1_FE640(void);
+extern void fn_1_FE644(void);
+extern void fn_1_FE780(void);
+extern void fn_1_FE784(void);
+extern void fn_1_FE7D4(void);
+/* Obj_1_data_2ABAC (header) does not place every retail pointer; fields follow the relocations. */
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2ABAC lbl_1_data_2ABAC __attribute__((aligned(4))) = {
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_1_1013C0,
+    fn_1_1013C4,
+    fn_1_101400,
+    fn_1_101404,
+    fn_1_101424,
+    fn_1_101428,
+    fn_1_101448,
+    fn_1_10144C,
+    fn_1_101454,
+    fn_1_DAD68,
+    fn_1_DAD6C,
+    fn_1_DADA8,
+    fn_1_DAE24,
+    fn_1_DAEF8,
+    fn_1_DAEFC,
+    fn_1_DAF90,
+    fn_1_DC1B8,
+    fn_1_DC1C0,
+    fn_1_DAD68,
+    fn_1_DAD6C,
+    fn_1_DADA8,
+    fn_1_DAE24,
+    fn_1_DAEF8,
+    fn_1_DAEFC,
+    fn_1_DAF90,
+    fn_1_DC1B8,
+    fn_1_DC1C0,
+    fn_1_DA7B8,
+    fn_1_DA7E4,
+    fn_1_DA9F0,
+    fn_1_DAA34,
+    fn_1_DAA58,
+    fn_1_DAAC4,
+    fn_1_DAAF8,
+    fn_1_DAB5C,
+    fn_1_DABB4,
+    fn_1_DA7B8,
+    fn_1_DA7E4,
+    fn_1_DA9F0,
+    fn_1_DAA34,
+    fn_1_DAA58,
+    fn_1_DAAC4,
+    fn_1_DAAF8,
+    fn_1_DAB5C,
+    fn_1_DABB4,
+    fn_1_D3C00,
+    fn_1_D3C04,
+    fn_1_D3C58,
+    fn_1_D3CF4,
+    fn_1_D3DDC,
+    fn_1_D3E08,
+    fn_1_D3E8C,
+    fn_1_D5C68,
+    fn_1_D5C70,
+    fn_1_D3C00,
+    fn_1_D3C04,
+    fn_1_D3C58,
+    fn_1_D3CF4,
+    fn_1_D3DDC,
+    fn_1_D3E08,
+    fn_1_D3E8C,
+    fn_1_D5C68,
+    fn_1_D5C70,
+    fn_1_D720C,
+    fn_1_D7274,
+    fn_1_D744C,
+    fn_1_D74C4,
+    fn_1_D75CC,
+    fn_1_D7688,
+    fn_1_D76EC,
+    fn_1_D8F4C,
+    fn_1_D8FC4,
+    fn_1_D720C,
+    fn_1_D7274,
+    fn_1_D744C,
+    fn_1_D74C4,
+    fn_1_D75CC,
+    fn_1_D7688,
+    fn_1_D76EC,
+    fn_1_D8F4C,
+    fn_1_D8FC4,
+    fn_1_DC204,
+    fn_1_DC208,
+    fn_1_DC264,
+    fn_1_DC268,
+    fn_1_DC2F8,
+    fn_1_DC33C,
+    fn_1_DC3A0,
+    fn_1_DCB9C,
+    fn_1_DCBF4,
+    fn_1_F5AAC,
+    fn_1_F5AB0,
+    fn_1_F5AEC,
+    fn_1_F5AF0,
+    fn_1_F5B38,
+    fn_1_F5B3C,
+    fn_1_F5B84,
+    fn_1_F70C0,
+    fn_1_F70C8,
+    fn_1_F5AAC,
+    fn_1_F5AB0,
+    fn_1_F5AEC,
+    fn_1_F5AF0,
+    fn_1_F5B38,
+    fn_1_F5B3C,
+    fn_1_F5B84,
+    fn_1_F70C0,
+    fn_1_F70C8,
+    fn_1_FA6C0,
+    fn_1_FA75C,
+    fn_1_FA82C,
+    fn_1_FA830,
+    fn_1_FA854,
+    fn_1_FA878,
+    fn_1_FA898,
+    fn_1_FB770,
+    fn_1_FB798,
+    fn_1_FE5E0,
+    fn_1_FE5E4,
+    fn_1_FE640,
+    fn_1_FE644,
+    fn_1_FE780,
+    fn_1_FE784,
+    fn_1_FE7D4,
+    fn_1_101348,
+    fn_1_1013A0,
+    fn_1_153988,
+    fn_1_15398C,
+    fn_1_1539D0,
+    fn_1_153A28,
+    fn_1_153AAC,
+    fn_1_153AB0,
+    fn_1_153AF4,
+    fn_1_1543E8,
+    fn_1_154410,
+    fn_1_150500,
+    fn_1_150518,
+    fn_1_150570,
+    fn_1_1505B4,
+    fn_1_150574,
+    fn_1_150608,
+    fn_1_150650,
+    fn_1_151764,
+    fn_1_15176C,
+    fn_1_1013C0,
+    fn_1_1013C4,
+    fn_1_101400,
+    fn_1_101404,
+    fn_1_101424,
+    fn_1_101428,
+    fn_1_101448,
+    fn_1_10144C,
+    fn_1_101454,
+    fn_1_1013C0,
+    fn_1_1013C4,
+    fn_1_101400,
+    fn_1_101404,
+    fn_1_101424,
+    fn_1_101428,
+    fn_1_101448,
+    fn_1_10144C,
+    fn_1_101454,
+    fn_1_1586A8,
+    fn_1_1586AC,
+    fn_1_158980,
+    fn_1_158984,
+    fn_1_15903C,
+    fn_1_159040,
+    fn_1_159060,
+    fn_1_159064,
+    fn_1_15906C,
+    fn_1_15B428,
+    fn_1_15B42C,
+    fn_1_15B4F8,
+    fn_1_15B4FC,
+    fn_1_15B51C,
+    fn_1_15B520,
+    fn_1_15B540,
+    fn_1_15B698,
+    fn_1_15B70C,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2AEC4[7] __attribute__((aligned(4))) = "bg_mut";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2AECC[7] __attribute__((aligned(4))) = "bg_por";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2AED4[9] __attribute__((aligned(4))) = "bg_por_s";
 #pragma explicit_zero_data reset

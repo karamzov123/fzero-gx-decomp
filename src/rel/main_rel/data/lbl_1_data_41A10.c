@@ -2,9 +2,16 @@
 #include "types.h"
 
 extern char lbl_1_data_41A10[32];
+extern char lbl_1_data_41A30[];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_41A10[32] __attribute__((aligned(8))) = "Error!:sels_disp_tatebou_kagi \n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_41A30[] __attribute__((aligned(8))) = "%s\n";
 #pragma explicit_zero_data reset
