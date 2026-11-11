@@ -252,29 +252,11 @@ rel/interview/data/lbl_17_data_628C8.c:
 rel/interview/data/lbl_17_data_628E0.c:
 	.data       start:0x000628E0 end:0x000628E8 align:8
 
-rel/interview/data/lbl_17_data_64150.c:
-	.data       start:0x00064150 end:0x0006419C align:8
-
-rel/interview/data/lbl_17_data_64328.c:
-	.data       start:0x00064328 end:0x0006455E align:8
-
-rel/interview/data/lbl_17_rodata_0.c:
-	.rodata     start:0x00000000 end:0x00000024 align:8
-
-rel/interview/data/lbl_17_rodata_38.c:
-	.rodata     start:0x00000038 end:0x00000068 align:8
-
 rel/interview/data/lbl_17_data_0.c:
 	.data       start:0x00000000 end:0x000628B8 align:8
 
 rel/interview/data/lbl_17_bss_58.c:
 	.bss        start:0x00000058 end:0x00000060 align:8
-
-rel/interview/data/lbl_17_rodata_E0.c:
-	.rodata     start:0x000000E0 end:0x000001B8 align:8
-
-rel/interview/data/lbl_17_rodata_1B8.c:
-	.rodata     start:0x000001B8 end:0x00000324 align:8
 
 rel/interview/interview/fn_17_49DC.c:
 	.text       start:0x000049DC end:0x00004E50 align:4
@@ -284,15 +266,6 @@ rel/interview/interview/fn_17_1DA4.c:
 
 rel/interview/interview/fn_17_DB4.c:
 	.text       start:0x00000DB4 end:0x00001794 align:4
-
-rel/interview/data/lbl_17_bss_10.c:
-	.bss        start:0x00000010 end:0x00000018 align:8
-
-rel/interview/data/lbl_17_bss_18.c:
-	.bss        start:0x00000018 end:0x00000020 align:8
-
-rel/interview/data/lbl_17_bss_20.c:
-	.bss        start:0x00000020 end:0x00000058 align:8
 
 rel/interview/data/lbl_4_data_628E8.c:
 	.data       start:0x000628E8 end:0x00062978 align:8
@@ -330,11 +303,23 @@ rel/interview/data/lbl_17_data_63BD0.c:
 rel/interview/data/lbl_17_data_63D20.c:
 	.data       start:0x00063D20 end:0x00063E30 align:8
 
+rel/interview/data/lbl_17_bss_10.c:
+	.bss        start:0x00000010 end:0x00000018 align:8
+
+rel/interview/data/lbl_17_bss_18.c:
+	.bss        start:0x00000018 end:0x00000020 align:8
+
+rel/interview/data/lbl_17_bss_20.c:
+	.bss        start:0x00000020 end:0x00000058 align:8
+
 rel/interview/data/lbl_17_data_63E30.c:
-	.data       start:0x00063E30 end:0x00063E50 align:8
+	.data       start:0x00063E30 end:0x0006419C align:8
 
-rel/interview/data/lbl_17_data_63E50.c:
-	.data       start:0x00063E50 end:0x000640A0 align:8
+rel/interview/data/lbl_17_data_64328.c:
+	.data       start:0x00064328 end:0x0006455E align:8
 
-rel/interview/data/lbl_17_data_640A0.c:
-	.data       start:0x000640A0 end:0x00064150 align:8
+rel/interview/data/lbl_17_rodata_0.c:
+	.rodata     start:0x00000000 end:0x00000024 align:8
+
+rel/interview/data/lbl_17_rodata_38.c:
+	.rodata     start:0x00000038 end:0x00000324 align:8

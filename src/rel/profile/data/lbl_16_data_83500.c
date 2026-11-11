@@ -2,9 +2,16 @@
 #include "types.h"
 
 extern char lbl_16_data_83500[33];
+extern char lbl_16_data_83524[22];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_16_data_83500[33] __attribute__((aligned(8))) = "c0x83ad %s c0x83a6 %s c0x83a0 %s";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_16_data_83524[22] __attribute__((aligned(4))) = "\203\200\201[\203r\201[\203v\203\215\203t\203B\201[\203\213\n";
 #pragma explicit_zero_data reset

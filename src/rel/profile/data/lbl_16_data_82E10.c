@@ -4,6 +4,7 @@
 extern char lbl_16_data_82E10[11];
 extern char lbl_16_data_82E1C[8];
 extern char lbl_16_data_82E24[22];
+extern char lbl_16_data_82E3C[12];
 
 
 
@@ -21,4 +22,10 @@ __declspec(section ".data") char lbl_16_data_82E1C[8] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_16_data_82E24[22] __attribute__((aligned(4))) = "Machine Introductions";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_16_data_82E3C[12] __attribute__((aligned(4))) = "\203}\203V\203\223\217\320\211\356\000";
 #pragma explicit_zero_data reset

@@ -6,6 +6,8 @@ extern char lbl_10_data_4DDC[18];
 extern char lbl_10_data_4DF0[18];
 extern char lbl_10_data_4E04[18];
 extern char lbl_10_data_4E18[18];
+extern char lbl_10_data_4E2C[32];
+extern char lbl_10_data_4E4C[35];
 
 
 
@@ -35,4 +37,17 @@ __declspec(section ".data") char lbl_10_data_4E04[18] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_4E18[18] __attribute__((aligned(8))) = "PLEASE_SET_UP ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_4E2C[32] __attribute__((aligned(4))) = "\203J\201[\203h\202\314\220\335\222\350\202\360\215s\202\301\202\304\202\255\202\276\202\263\202"
+    "\242\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_4E4C[35] __attribute__((aligned(4))) = "Do you have a F-ZERO LICENSE CARD\077";
 #pragma explicit_zero_data reset

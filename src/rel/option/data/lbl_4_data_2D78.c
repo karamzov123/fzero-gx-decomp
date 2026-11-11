@@ -4,6 +4,7 @@
 extern char lbl_4_data_2D78[17];
 extern char lbl_4_data_2D8C[16];
 extern char lbl_4_data_2D9C[23];
+extern char lbl_4_data_2DB4[332];
 
 
 
@@ -21,4 +22,18 @@ __declspec(section ".data") char lbl_4_data_2D8C[16] __attribute__((aligned(4)))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_4_data_2D9C[23] __attribute__((aligned(4))) = "option_card_gdata_disp";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_2DB4[332] __attribute__((aligned(4))) = "option_save_wait_disp\000\000\000\202`\202a\202b\202c\202d\202e\202f\202g\202h\202i\202j\202k"
+    "\202l\202m\202n\202o\202p\202q\202r\202s\202t\202u\202v\202w\202x\202y\000\000\000\000\202\201"
+    "\202\202\202\203\202\204\202\205\202\206\202\207\202\210\202\211\202\212\202\213\202\214\202\215"
+    "\202\216\202\217\202\220\202\221\202\222\202\223\202\224\202\225\202\226\202\227\202\230\202\231"
+    "\202\232\000\000\000\000\201C\201D\201H\201I\201{\201|\201^\201_\201\201\201\203\201\204\201F"
+    "\201G\201L\201M\201O\201Q\201b\201i\201j\201m\201n\201o\201p\201\220\201\223\201\224\201\225\201"
+    "\226\201\227\201@\000\000\202O\202P\202Q\202R\202S\202T\202U\202V\202W\202X\000\000\000\000ABCDE"
+    "FGHIJKLMNOPQRSTUVWXYZ\000\000abcdefghijklmnopqrstuvwxyz\000\000,.\077!+-/\\=<>:;'`^_|()[]{}$%#&*"
+    "@  \000\000\000\0000123456789\000\000\000\000\000";
 #pragma explicit_zero_data reset

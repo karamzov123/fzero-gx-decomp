@@ -2,9 +2,23 @@
 #include "types.h"
 
 extern char lbl_16_data_82E48[11];
+extern char lbl_16_data_82E54[16];
+extern char lbl_16_data_82E64[9];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_16_data_82E48[11] __attribute__((aligned(8))) = "View Movie";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_16_data_82E54[16] __attribute__((aligned(4))) = "\203\200\201[\203r\201[\202\360\214\251\202\351\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_16_data_82E64[9] __attribute__((aligned(4))) = "Rotation";
 #pragma explicit_zero_data reset
