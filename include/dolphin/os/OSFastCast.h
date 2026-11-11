@@ -51,13 +51,18 @@ static inline u16 __OSf32tou16(register f32 inF) {
     return *(u16 *)ptr;
 }
 
+/* SDK form: the byte load and sign extension are inside the asm (fn_1_A47F4 keeps the extsb
+ * before its stb, which a C load would drop). */
 static inline s8 __OSf32tos8(register f32 inF) {
     f32 tmp;
-    register f32 *ptr = &tmp;
+    register f32 *tmpPtr = &tmp;
+    register s8 out;
     asm {
-        psq_st inF, 0(ptr), 1, OS_FASTCAST_S8
+        psq_st inF, 0(tmpPtr), 1, OS_FASTCAST_S8
+        lbz out, 0(tmpPtr)
+        extsb out, out
     }
-    return *(s8 *)ptr;
+    return out;
 }
 
 static inline s16 __OSf32tos16(register f32 inF) {
