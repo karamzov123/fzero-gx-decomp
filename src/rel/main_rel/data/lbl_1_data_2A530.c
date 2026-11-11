@@ -3,6 +3,7 @@
 #include "rel/main_rel/data/lbl_1_data_2A580.h"
 #include "rel/main_rel/data/lbl_1_data_2A5DC.h"
 #include "rel/main_rel/data/lbl_1_data_2A62C.h"
+#include "rel/main_rel/data/lbl_1_data_2A674.h"
 
 extern char lbl_1_data_2A530[8];
 extern char lbl_1_data_2A538[11];
@@ -18,6 +19,10 @@ extern char lbl_1_data_2A608[13];
 extern char lbl_1_data_2A618[12];
 extern char lbl_1_data_2A624[8];
 #include "rel/main_rel/data/lbl_1_data_2A62C.h"
+extern u16 lbl_1_data_2A664[4];
+extern char lbl_1_data_2A66C[5];
+#include "rel/main_rel/data/lbl_1_data_2A674.h"
+extern char lbl_1_data_2A684[9];
 
 
 
@@ -155,4 +160,35 @@ __declspec(section ".data") Data_lbl_1_data_2A62C lbl_1_data_2A62C __attribute__
     0x00000003U,
     0x00000000U
 };
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u16 lbl_1_data_2A664[4] __attribute__((aligned(4))) = {
+    0x0000U, 0x0003U, 0x0000U, 0x0000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A66C[5] __attribute__((aligned(4))) = "CUBE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A674 lbl_1_data_2A674 __attribute__((aligned(4))) = {
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A66C,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A684[9] __attribute__((aligned(4))) = "FTV_LOGO";
 #pragma explicit_zero_data reset

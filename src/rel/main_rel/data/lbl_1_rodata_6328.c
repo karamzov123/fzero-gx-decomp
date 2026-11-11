@@ -146,7 +146,7 @@ extern const u8 lbl_1_rodata_6E38[440];
 #include "rel/main_rel/data/lbl_1_rodata_7050.h"
 extern const f64 lbl_1_rodata_7470;
 extern const f64 lbl_1_rodata_7478;
-extern const f32 lbl_1_rodata_7480[4];
+extern const f32 lbl_1_rodata_7480[];
 extern const f32 lbl_1_rodata_7490[];
 extern const f32 lbl_1_rodata_7494;
 extern const f64 lbl_1_rodata_7498;
@@ -1523,7 +1523,7 @@ __declspec(section ".rodata") const f64 lbl_1_rodata_7478 __attribute__((aligned
 
 
 #pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_7480[4] __attribute__((aligned(4))) = {
+__declspec(section ".rodata") const f32 lbl_1_rodata_7480[] __attribute__((aligned(4))) = {
     0.0f, 1.88089858e-37f, 0.0f, 1.40129846e-45f
 };
 #pragma explicit_zero_data reset

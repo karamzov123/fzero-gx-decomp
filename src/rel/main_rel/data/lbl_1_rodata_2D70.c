@@ -210,7 +210,7 @@ extern char lbl_1_data_1F054[];
 extern char lbl_1_data_1F05C[];
 extern char lbl_1_data_1F064[];
 extern char lbl_1_data_1F06C[];
-extern u8 lbl_1_data_1F074[];
+extern char lbl_1_data_1F074[];
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const Data_lbl_1_rodata_33B0 lbl_1_rodata_33B0 __attribute__((aligned(4))) = {
     0x418A9066U,

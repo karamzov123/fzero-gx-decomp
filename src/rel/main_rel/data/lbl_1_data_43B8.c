@@ -2,6 +2,8 @@
 #include "types.h"
 
 extern u8 lbl_1_data_43B8[0xC];
+extern char lbl_1_data_43C4[5];
+extern char lbl_1_data_43CC[9];
 
 
 
@@ -9,4 +11,16 @@ extern u8 lbl_1_data_43B8[0xC];
 __declspec(section ".data") u8 lbl_1_data_43B8[0xC] __attribute__((aligned(8))) = {
     0x4FU, 0x56U, 0x45U, 0x52U, 0x54U, 0x41U, 0x4BU, 0x45U, 0x00U, 0x00U, 0x00U, 0x00U
 };
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_43C4[5] __attribute__((aligned(4))) = "JUMP";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_43CC[9] __attribute__((aligned(4))) = "ENEMYHIT";
 #pragma explicit_zero_data reset

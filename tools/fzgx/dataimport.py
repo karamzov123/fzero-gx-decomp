@@ -32,6 +32,53 @@ def regions(p, module, section):
     return list(layout.values()) if module == 'main' else [layout.get(section, (0, b''))]
 
 
+REL_SECTION_INDEX = {'.text': 1, '.ctors': 2, '.dtors': 3, '.rodata': 4, '.data': 5}
+
+
+def rel_relocation_sites(p, module, section):
+    """Offsets in a REL section that the retail relocation tables patch at load time.
+
+    A REL file stores every relocated word as zero, so "all zero" retail bytes are not
+    padding when a relocation lands on them (lbl_1_data_5C6C's string pointer at 0x5CBC).
+    The DOL has no relocation tables.
+    """
+    cache = p.__dict__.setdefault('_rel_reloc_sites', {})
+    if (module, section) in cache:
+        return cache[(module, section)]
+    sites = set()
+    if module != 'main' and section in REL_SECTION_INDEX:
+        layout_cfg = (p.config_dir / 'config.yml').read_text().splitlines()
+        obj = None
+        for i, line in enumerate(layout_cfg):
+            if line.strip() == f'name: {module}':
+                obj = next(l.split(':', 1)[1].strip() for l in reversed(layout_cfg[:i]) if l.startswith('- object:'))
+                break
+        data = (ROOT / 'orig' / p.version / obj).read_bytes() if obj else b''
+        if data:
+            imp_off, imp_size = struct.unpack_from('>II', data, 0x28)
+            want = REL_SECTION_INDEX[section]
+            for i in range(imp_size // 8):
+                _, pos = struct.unpack_from('>II', data, imp_off + 8 * i)
+                current, offset = None, 0
+                while True:
+                    delta, kind, sec, _ = struct.unpack_from('>HBBI', data, pos)
+                    pos += 8
+                    if kind == 203:      # R_DOLPHIN_END
+                        break
+                    if kind == 202:      # R_DOLPHIN_SECTION
+                        current, offset = sec, 0
+                        continue
+                    offset += delta
+                    if kind != 201 and current == want:   # R_DOLPHIN_NOP only advances
+                        sites.add(offset)
+    cache[(module, section)] = sites
+    return sites
+
+
+def relocated_between(p, module, section, start, end):
+    return any(start <= site < end for site in rel_relocation_sites(p, module, section))
+
+
 def declarations(p):
     if hasattr(p, '_data_declarations'):
         return p._data_declarations
@@ -671,9 +718,10 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                         if (0 < gap_end - padded_end < 8
                                 and not any(sm.section == first['section'] and end <= sm.addr < gap_end
                                             for sm in p.symbols(first['module']).values())
-                                and (first['section'] in BSS or any(
+                                and (first['section'] in BSS or (any(
                                     base <= end and gap_end <= base + len(raw) and not any(raw[end-base:gap_end-base])
-                                    for base, raw in retail_regions))):
+                                    for base, raw in retail_regions)
+                                    and not relocated_between(p, first['module'], first['section'], end, gap_end)))):
                             padded_end = gap_end
                     if padded_end != end:
                         if any(s.section == first['section'] and end <= s.addr < padded_end
@@ -682,9 +730,10 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                         if any(s.unit != owner and s.section == first['section'] and s.start < padded_end and end < s.end
                                for s in p.splits(first['module'])):
                             raise ValueError('trailing padding belongs to another split')
-                        if first['section'] not in BSS and not any(
+                        if first['section'] not in BSS and (not any(
                                 base <= end <= padded_end <= base + len(raw) and not any(raw[end-base:padded_end-base])
-                                for base, raw in retail_regions):
+                                for base, raw in retail_regions)
+                                or relocated_between(p, first['module'], first['section'], end, padded_end)):
                             raise ValueError('trailing padding is not zero or exceeds the section')
                     source_name = f'{p.module_src_prefix(first["module"])}/data/{first["symbol"]}.c'
                     # MWCC emits unreferenced BSS definitions in reverse order.
@@ -897,7 +946,8 @@ def boundary_closure(p, names):
             if (other.module, other.name) in selected:
                 continue
             unit = p.unit_record(p.unit_of(other)) if p.unit_of(other) else None
-            zero = other.size <= 8 and not any(p.bytes_at(other.module, other.name) or b'\1')
+            zero = (other.size <= 8 and not any(p.bytes_at(other.module, other.name) or b'\1')
+                    and not relocated_between(p, other.module, other.section, other.addr, other.end))
             if zero or (unit and unit.get('data')):
                 selected[(other.module, other.name)] = other
                 pending.append(other)
@@ -944,7 +994,8 @@ def data_groups(p, ready, preserve_units=False):
                 else:
                     join = any(base <= end <= r['address'] <= base + len(data)
                                and not any(data[end-base:r['address']-base])
-                               for base, data in regions(p, r['module'], r['section']))
+                               for base, data in regions(p, r['module'], r['section'])) and not \
+                        relocated_between(p, r['module'], r['section'], end, r['address'])
                 old = p.unit_of(p.find_symbol(prev['symbol'], prev['module']))
                 new = p.unit_of(p.find_symbol(r['symbol'], r['module']))
                 # The padding between them may belong to either member's own unit,

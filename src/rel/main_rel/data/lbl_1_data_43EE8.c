@@ -2,9 +2,16 @@
 #include "types.h"
 
 extern char lbl_1_data_43EE8[11];
+extern char lbl_1_data_43EF4[20];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_43EE8[11] __attribute__((aligned(8))) = "Super Nova";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_43EF4[20] __attribute__((aligned(4))) = "\203X\201[\203p\201[\201@\203m\203\224\203@\000\000\000";
 #pragma explicit_zero_data reset

@@ -5,6 +5,15 @@
 #include "rel/main_rel/data/lbl_1_data_2A1AC.h"
 #include "rel/main_rel/data/lbl_1_data_2A200.h"
 #include "rel/main_rel/data/lbl_1_data_2A2AC.h"
+#include "rel/main_rel/data/lbl_1_data_2A31C.h"
+#include "rel/main_rel/data/lbl_1_data_2A35C.h"
+#include "rel/main_rel/data/lbl_1_data_2A384.h"
+#include "rel/main_rel/data/lbl_1_data_2A3B4.h"
+#include "rel/main_rel/data/lbl_1_data_2A3CC.h"
+#include "rel/main_rel/data/lbl_1_data_2A41C.h"
+#include "rel/main_rel/data/lbl_1_data_2A444.h"
+#include "rel/main_rel/data/lbl_1_data_2A484.h"
+#include "rel/main_rel/data/lbl_1_data_2A49C.h"
 
 extern Obj_1_data_28060 lbl_1_data_28060;
 extern u8 lbl_1_data_2A0C0[0x10];
@@ -36,6 +45,31 @@ extern char lbl_1_data_2A280[13];
 extern char lbl_1_data_2A290[13];
 extern char lbl_1_data_2A2A0[12];
 #include "rel/main_rel/data/lbl_1_data_2A2AC.h"
+extern u16 lbl_1_data_2A30C[4];
+extern char lbl_1_data_2A314[5];
+#include "rel/main_rel/data/lbl_1_data_2A31C.h"
+extern char lbl_1_data_2A32C[13];
+extern char lbl_1_data_2A33C[14];
+extern char lbl_1_data_2A34C[15];
+#include "rel/main_rel/data/lbl_1_data_2A35C.h"
+extern char lbl_1_data_2A37C[8];
+#include "rel/main_rel/data/lbl_1_data_2A384.h"
+#include "rel/main_rel/data/lbl_1_data_2A3B4.h"
+extern char lbl_1_data_2A3C4[7];
+#include "rel/main_rel/data/lbl_1_data_2A3CC.h"
+extern char lbl_1_data_2A3DC[15];
+extern char lbl_1_data_2A3EC[15];
+extern char lbl_1_data_2A3FC[13];
+extern char lbl_1_data_2A40C[14];
+#include "rel/main_rel/data/lbl_1_data_2A41C.h"
+#include "rel/main_rel/data/lbl_1_data_2A444.h"
+extern u16 lbl_1_data_2A46C[4];
+extern u16 lbl_1_data_2A474[4];
+extern char lbl_1_data_2A47C[5];
+#include "rel/main_rel/data/lbl_1_data_2A484.h"
+extern char lbl_1_data_2A494[5];
+#include "rel/main_rel/data/lbl_1_data_2A49C.h"
+extern char lbl_1_data_2A4B4[12];
 
 
 extern char lbl_1_data_27E20[];
@@ -509,4 +543,244 @@ __declspec(section ".data") Data_lbl_1_data_2A2AC lbl_1_data_2A2AC __attribute__
     0x00000003U,
     0x00000000U
 };
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u16 lbl_1_data_2A30C[4] __attribute__((aligned(4))) = {
+    0x0000U, 0x0003U, 0x0000U, 0x0000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A314[5] __attribute__((aligned(4))) = "FLAG";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A31C lbl_1_data_2A31C __attribute__((aligned(4))) = {
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A314,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A32C[13] __attribute__((aligned(4))) = "FOR_EFF_HA01";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A33C[14] __attribute__((aligned(4))) = "FOR_RENZ_FREA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A34C[15] __attribute__((aligned(4))) = "FOR_EFF_GRNLIG";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A35C lbl_1_data_2A35C __attribute__((aligned(4))) = {
+    0x00000001U,
+    (u8 *)&lbl_1_data_2A32C,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A33C,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A34C,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A37C[8] __attribute__((aligned(4))) = "FOR_SUN";
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A384 lbl_1_data_2A384 __attribute__((aligned(4))) = {
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A37C,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A210,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A21C,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A228,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A234,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A3B4 lbl_1_data_2A3B4 __attribute__((aligned(4))) = {
+    0x00000001U,
+    (u8 *)&lbl_1_data_2A1FC,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A3C4[7] __attribute__((aligned(4))) = "S_SHIP";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A3CC lbl_1_data_2A3CC __attribute__((aligned(4))) = {
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A3C4,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A3DC[15] __attribute__((aligned(4))) = "SAN_WAVE_PAT_M";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A3EC[15] __attribute__((aligned(4))) = "SAN_WAVE_PAT_S";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A3FC[13] __attribute__((aligned(4))) = "GOROFRAG_vtx";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A40C[14] __attribute__((aligned(4))) = "GOROFRAG2_vtx";
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A41C lbl_1_data_2A41C __attribute__((aligned(4))) = {
+    0x00000001U,
+    (u8 *)&lbl_1_data_2A3DC,
+    0x00000001U,
+    (u8 *)&lbl_1_data_2A3EC,
+    0x00000001U,
+    (u8 *)&lbl_1_data_2A3FC,
+    0x00000001U,
+    (u8 *)&lbl_1_data_2A40C,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A444 lbl_1_data_2A444 __attribute__((aligned(4))) = {
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A210,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A21C,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A228,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A234,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u16 lbl_1_data_2A46C[4] __attribute__((aligned(4))) = {
+    0x0000U, 0x0003U, 0x0000U, 0x0000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u16 lbl_1_data_2A474[4] __attribute__((aligned(4))) = {
+    0x0000U, 0x0003U, 0x0000U, 0x0000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A47C[5] __attribute__((aligned(4))) = "DICE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A484 lbl_1_data_2A484 __attribute__((aligned(4))) = {
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A47C,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A494[5] __attribute__((aligned(4))) = "COIN";
+#pragma explicit_zero_data reset
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_2A49C lbl_1_data_2A49C __attribute__((aligned(4))) = {
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A494,
+    0x00000000U,
+    (u8 *)&lbl_1_data_2A47C,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2A4B4[12] __attribute__((aligned(4))) = "MET_COMET02";
 #pragma explicit_zero_data reset

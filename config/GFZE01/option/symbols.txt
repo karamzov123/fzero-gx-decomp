@@ -115,6 +115,7 @@ lbl_4_data_38 = .data:0x00000038; // type:object size:0x12 data:string
 lbl_4_data_4C = .data:0x0000004C; // type:object size:0x2C
 lbl_4_data_78 = .data:0x00000078; // type:object size:0x3 data:string
 lbl_4_data_7C = .data:0x0000007C; // type:object size:0x4 data:string
+lbl_13_data_80 = .data:0x00000080; // type:object size:0x30
 lbl_4_data_B0 = .data:0x000000B0; // type:object size:0x18
 lbl_4_data_C8 = .data:0x000000C8; // type:object size:0x38
 lbl_4_data_100 = .data:0x00000100; // type:object size:0x30

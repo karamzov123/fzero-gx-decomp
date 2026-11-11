@@ -19,6 +19,7 @@ extern const u32 lbl_1_rodata_7A0C[1];
 extern const u32 lbl_1_rodata_7A10[12];
 extern const f32 lbl_1_rodata_7A40[2];
 extern const f32 lbl_1_rodata_7A48;
+extern const u8 lbl_1_rodata_7A4C[4];
 
 
 
@@ -146,4 +147,12 @@ __declspec(section ".rodata") const f32 lbl_1_rodata_7A40[2] __attribute__((alig
 
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const f32 lbl_1_rodata_7A48 __attribute__((aligned(4))) = 176.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u8 lbl_1_rodata_7A4C[4] __attribute__((aligned(4))) = {
+    0x80U, 0x00U, 0x00U, 0x00U
+};
 #pragma explicit_zero_data reset
