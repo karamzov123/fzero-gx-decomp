@@ -46944,7 +46944,7 @@
     "source": "dol/data/lbl_80095EA0.c",
     "symbol": "lbl_80095EA0",
     "unit_align": 32,
-    "unit_size": 16,
+    "unit_size": 32,
     "unit_start": 2148097696
   },
   "main:lbl_80121EC0": {

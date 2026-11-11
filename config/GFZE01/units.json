@@ -21370,6 +21370,17 @@
   },
   {
     "module": "main",
+    "source": "dol/data/lbl_80095EC0.c",
+    "symbols": [
+      "lbl_80095EC0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/data/lbl_80121EC0.c",
     "symbols": [
       "lbl_80121EC0"

@@ -114,3 +114,23 @@ withdraws one chunk per step and the rescue retries the exposed run in between. 
 bytes and halfwords are scalars, because MWCC 4-aligns every array (even `u8[1]`) and every struct.
 Two dtk symbols that are really one object with an interior reference cannot both be emitted:
 `lbl_1_bss_4E6D0` (0x16002) and the 2-aligned `lbl_1_bss_646D2` that follows it.
+
+## Extracted assets (2026-11-11)
+
+Game assets (texture, image or audio payloads, not tables the code indexes) follow the
+dtk-template convention instead of the importer: list the symbol under `extract:` in
+`config/GFZE01/config.yml` (`header_type: raw`), and define it in a data unit whose initializer
+is `#include "assets/<symbol>.inc"`. dtk writes that header from the user's own disc during the
+split, into `build/GFZE01/include/assets/`, so the repository never contains the bytes and a clean
+`configure.py && ninja` regenerates them before anything compiles. The data matches by
+construction, and the 16 hashes stay the gate.
+
+First use: `lbl_80095EC0`, the 0x8C000-byte (640 x 448 x 2) initialized buffer in main `.data`
+(about 90 KB of CMPR-like blocks, the rest zero, unreferenced by code). dtk had cut it at an
+invented boundary (`lbl_8011851B`), so the two symbols are now one object. The preceding string
+unit `lbl_80095EA0` owns the 0x11 bytes of padding up to the 32-aligned buffer (split end
+0x80095EC0): without that, dtk emits a gap symbol that overruns the 16-byte split and objdiff's
+report fails. Main data went from 44.4% to 94.5%.
+
+Use this only for payloads with no relocations and no structure the code reads field by field;
+typed tables still go through `data-import`.

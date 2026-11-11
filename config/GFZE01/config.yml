@@ -13,6 +13,13 @@ detect_objects: true
 detect_strings: true
 write_asm: true
 
+# Assets: dtk writes these from the user's disc copy at split time (build/GFZE01/include),
+# so the C source can #include the bytes without the repository containing them.
+extract:
+- symbol: lbl_80095EC0
+  header: assets/lbl_80095EC0.inc
+  header_type: raw
+
 # Function-boundary analysis stalls on a jump-table region here
 # ("Overlapping functions 1:0x8006D1C4-1:0x8006D21C"). See docs/batches/m0.md.
 skip_cfa_ranges:

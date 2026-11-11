@@ -6526,7 +6526,10 @@ dol/data/TRK_Use_BBA.c:
 	.bss        start:0x801A5648 end:0x801A63B0 align:8
 
 dol/data/lbl_80095EA0.c:
-	.data       start:0x80095EA0 end:0x80095EB0 align:32
+	.data       start:0x80095EA0 end:0x80095EC0 align:32
+
+dol/data/lbl_80095EC0.c:
+	.data       start:0x80095EC0 end:0x80121EC0 align:32
 
 dol/data/lbl_801220C0.c:
 	.data       start:0x801220C0 end:0x801225F4 align:32
