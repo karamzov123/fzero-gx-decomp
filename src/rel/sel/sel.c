@@ -6475,7 +6475,7 @@ void fn_10_8600(void) {
 /* fzgx:end fn_10_8600 */
 
 /* fzgx:begin fn_10_8780 */
-extern u8 lbl_10_bss_55601[7];
+extern u8 lbl_10_bss_55600__fzgx_offset_1[7];
 extern u8 lbl_10_bss_55600;
 extern int fn_1_4C10(void);
 extern u8 fn_1_D66A8(void);
@@ -6485,7 +6485,7 @@ u8 fn_10_8780(void) {
     if (fn_1_4C10() != 0) {
         return 1;
     }
-    if (lbl_10_bss_55601[0] == 0) {
+    if (lbl_10_bss_55600__fzgx_offset_1[0] == 0) {
         return 0;
     }
     if (fn_1_D66A8() == 0) {
@@ -11677,7 +11677,7 @@ extern void fn_10_25CB0(void);
 extern s32 fn_10_25888(void);
 extern void fn_10_25BC8(void);
 extern void fn_10_1B684(void);
-extern u8 lbl_10_bss_55601[7];
+extern u8 lbl_10_bss_55600__fzgx_offset_1[7];
 extern u8 lbl_10_bss_55600;
 extern int fn_1_D66A8(void);
 extern int fn_1_D66A0();
@@ -25041,7 +25041,7 @@ void fn_10_175F0(Panel175F0 * __restrict arg0, s32 arg1) {
 /* fzgx:end fn_10_175F0 */
 
 /* fzgx:begin fn_10_1772C */
-extern u16 lbl_10_bss_51752[27];
+extern u16 lbl_10_bss_51750__fzgx_offset_2[27];
 extern u8 lbl_10_data_6008[20];
 extern int sprintf(char *, const u8 *, ...);
 extern void fn_10_1C2D8(void *);
@@ -25065,7 +25065,7 @@ void fn_10_1772C(void) {
     int i;
     struct SelEntry entry;
 
-    if (lbl_10_bss_51752[0] == 0) {
+    if (lbl_10_bss_51750__fzgx_offset_2[0] == 0) {
         for (i = 0; i < 4; i++) {
             entry.even = ((i % 2) == 0);
             entry.divisible = ((i % 3) == 0);
@@ -28209,7 +28209,7 @@ extern void fn_10_25CB0(void);
 extern s32 fn_10_25888(void);
 extern void fn_10_25BC8(void);
 extern void fn_10_1B684(void);
-extern u8 lbl_10_bss_55601[7];
+extern u8 lbl_10_bss_55600__fzgx_offset_1[7];
 extern u8 lbl_10_bss_55600;
 extern int fn_1_D66A8(void);
 extern int fn_1_D66A0();
@@ -32544,7 +32544,7 @@ extern void fn_10_25CB0(void);
 extern s32 fn_10_25888(void);
 extern void fn_10_25BC8(void);
 extern void fn_10_1B684(void);
-extern u8 lbl_10_bss_55601[7];
+extern u8 lbl_10_bss_55600__fzgx_offset_1[7];
 extern u8 lbl_10_bss_55600;
 extern int fn_1_D66A8(void);
 extern int fn_1_D66A0();

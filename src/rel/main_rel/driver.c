@@ -3322,7 +3322,7 @@ u8 fzgx_pool_lbl_1_bss_716C0_gap_718B2;
 u8 fzgx_pool_lbl_1_bss_716C0_gap_718B2_fill_718B3;
 s32 fzgx_obj_lbl_1_bss_718B4;
 u8 lbl_1_bss_718B8;
-u8 lbl_1_bss_718B9;
+u8 lbl_1_bss_718B8__fzgx_offset_1;
 u16 lbl_1_bss_718B9__fzgx_offset_1;
 s32 lbl_1_bss_718B9__fzgx_offset_3;
 void *fzgx_obj_lbl_1_bss_718C0;
@@ -3347,7 +3347,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_pool_lbl_1_bss_716C0_gap_718B2_fill_718B3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718B4;
     s = *(u8 *)&lbl_1_bss_718B8;
-    s = *(u8 *)&lbl_1_bss_718B9;
+    s = *(u8 *)&lbl_1_bss_718B8__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718C0;
@@ -3394,7 +3394,7 @@ void fn_1_AA590(void)
     fzgx_pool_lbl_1_bss_716C0_gap_718B2 = 0xff;
     fzgx_obj_lbl_1_bss_718B4 = 0;
     lbl_1_bss_718B8 = 0;
-    lbl_1_bss_718B9 = 0;
+    lbl_1_bss_718B8__fzgx_offset_1 = 0;
     lbl_1_bss_718B9__fzgx_offset_3 = 0;
     fn_1_C3378();
     fzgx_obj_lbl_1_bss_718C0 = (u8 *)&fzgx_obj_lbl_1_bss_718E0 + 0x55c2;
@@ -3607,7 +3607,7 @@ u8 fzgx_pool_lbl_1_bss_716C0_gap_718B2;
 u8 fzgx_pool_lbl_1_bss_716C0_gap_718B2_fill_718B3;
 u32 fzgx_obj_lbl_1_bss_718B4;
 u8 lbl_1_bss_718B8;
-u8 lbl_1_bss_718B9;
+u8 lbl_1_bss_718B8__fzgx_offset_1;
 u16 lbl_1_bss_718B9__fzgx_offset_1;
 u32 lbl_1_bss_718B9__fzgx_offset_3;
 u32 fzgx_obj_lbl_1_bss_718C0[8];
@@ -3633,7 +3633,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_pool_lbl_1_bss_716C0_gap_718B2_fill_718B3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718B4;
     s = *(u8 *)&lbl_1_bss_718B8;
-    s = *(u8 *)&lbl_1_bss_718B9;
+    s = *(u8 *)&lbl_1_bss_718B8__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718C0;
@@ -5458,7 +5458,7 @@ void fn_1_AA6D8(u8 kind, u8 slot, DriverParam *param) {
     }
     entry->unk_2 = kind;
     lbl_1_bss_718B8 = 0;
-    lbl_1_bss_718B9 = 0;
+    lbl_1_bss_718B8__fzgx_offset_1 = 0;
     lbl_1_bss_772C8[0] = 0;
 
     if (kind == 6) {

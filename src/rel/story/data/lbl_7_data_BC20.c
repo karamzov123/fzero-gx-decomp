@@ -98,7 +98,7 @@ extern char lbl_7_data_13A3C[];
 extern char lbl_7_data_13A4C[];
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_BC20 lbl_7_data_BC20 __attribute__((aligned(8))) = {
     0x00000010U,
@@ -192,7 +192,7 @@ __declspec(section ".data") Data_lbl_7_data_BC20 lbl_7_data_BC20 __attribute__((
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,
@@ -939,7 +939,7 @@ __declspec(section ".data") Data_lbl_7_data_C010 lbl_7_data_C010 __attribute__((
 #pragma explicit_zero_data reset
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_C958 lbl_7_data_C958 __attribute__((aligned(8))) = {
     0x00000010U,
@@ -1027,7 +1027,7 @@ __declspec(section ".data") Data_lbl_7_data_C958 lbl_7_data_C958 __attribute__((
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,
@@ -4107,7 +4107,7 @@ __declspec(section ".data") Data_lbl_7_data_D4C8 lbl_7_data_D4C8 __attribute__((
 #pragma explicit_zero_data reset
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_100A8 lbl_7_data_100A8 __attribute__((aligned(8))) = {
     0x00000010U,
@@ -4183,7 +4183,7 @@ __declspec(section ".data") Data_lbl_7_data_100A8 lbl_7_data_100A8 __attribute__
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,
@@ -5139,7 +5139,7 @@ __declspec(section ".data") Data_lbl_7_data_109C0 lbl_7_data_109C0 __attribute__
 #pragma explicit_zero_data reset
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_11470 lbl_7_data_11470 __attribute__((aligned(8))) = {
     0x00000000U,
@@ -5221,7 +5221,7 @@ __declspec(section ".data") Data_lbl_7_data_11470 lbl_7_data_11470 __attribute__
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,
@@ -6331,7 +6331,7 @@ __declspec(section ".data") Data_lbl_7_data_117B8 lbl_7_data_117B8 __attribute__
 #pragma explicit_zero_data reset
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_12790 lbl_7_data_12790 __attribute__((aligned(8))) = {
     0x00000000U,
@@ -6377,7 +6377,7 @@ __declspec(section ".data") Data_lbl_7_data_12790 lbl_7_data_12790 __attribute__
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,

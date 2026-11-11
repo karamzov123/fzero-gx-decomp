@@ -657,9 +657,6 @@ rel/sel/sel/fn_10_1E9CC.c:
 rel/sel/sel/fn_10_1F688.c:
 	.text       start:0x0001F688 end:0x0001FEF4 align:4
 
-rel/sel/data/lbl_10_bss_51748.c:
-	.bss        start:0x00051748 end:0x00051750 align:8
-
 rel/sel/data/lbl_10_data_0.c:
 	.data       start:0x00000000 end:0x00000200 align:8
 
@@ -1653,6 +1650,27 @@ rel/sel/data/lbl_10_rodata_1D68.c:
 rel/sel/data/lbl_10_rodata_1D70.c:
 	.rodata     start:0x00001D70 end:0x00001E28 align:8
 
+rel/sel/sel/fn_10_12E34.c:
+	.text       start:0x00012E34 end:0x00013128 align:4
+
+rel/sel/sel/fn_10_13B24.c:
+	.text       start:0x00013B24 end:0x00013D64 align:4
+
+rel/sel/sel/fn_10_6518.c:
+	.text       start:0x00006518 end:0x00007130 align:4
+
+rel/sel/sel/fn_10_B2C8.c:
+	.text       start:0x0000B2C8 end:0x0000BD64 align:4
+
+rel/sel/sel/fn_10_12024.c:
+	.text       start:0x00012024 end:0x00012C14 align:4
+
+rel/sel/_prolog/_prolog.c:
+	.text       start:0x00000044 end:0x00000834 align:4
+
+rel/sel/sel/fn_10_AE14.c:
+	.text       start:0x0000AE14 end:0x0000B2C8 align:4
+
 rel/sel/data/lbl_10_bss_0.c:
 	.bss        start:0x00000000 end:0x00000018 align:32
 
@@ -1680,23 +1698,47 @@ rel/sel/data/lbl_10_bss_4EEC0.c:
 rel/sel/data/lbl_10_bss_51740.c:
 	.bss        start:0x00051740 end:0x00051748 align:32
 
-rel/sel/sel/fn_10_12E34.c:
-	.text       start:0x00012E34 end:0x00013128 align:4
+rel/sel/data/lbl_10_bss_51748.c:
+	.bss        start:0x00051748 end:0x00051750 align:8
 
-rel/sel/sel/fn_10_13B24.c:
-	.text       start:0x00013B24 end:0x00013D64 align:4
+rel/sel/data/lbl_10_bss_51750.c:
+	.bss        start:0x00051750 end:0x00051788 align:16
 
-rel/sel/sel/fn_10_6518.c:
-	.text       start:0x00006518 end:0x00007130 align:4
+rel/sel/data/lbl_10_bss_51788.c:
+	.bss        start:0x00051788 end:0x00055600 align:8
 
-rel/sel/sel/fn_10_B2C8.c:
-	.text       start:0x0000B2C8 end:0x0000BD64 align:4
+rel/sel/data/lbl_10_bss_55600.c:
+	.bss        start:0x00055600 end:0x00055608 align:32
 
-rel/sel/sel/fn_10_12024.c:
-	.text       start:0x00012024 end:0x00012C14 align:4
+rel/sel/data/lbl_10_bss_55608.c:
+	.bss        start:0x00055608 end:0x00055668 align:8
 
-rel/sel/_prolog/_prolog.c:
-	.text       start:0x00000044 end:0x00000834 align:4
+rel/sel/data/lbl_10_bss_55668.c:
+	.bss        start:0x00055668 end:0x00055670 align:8
 
-rel/sel/sel/fn_10_AE14.c:
-	.text       start:0x0000AE14 end:0x0000B2C8 align:4
+rel/sel/data/lbl_10_bss_55670.c:
+	.bss        start:0x00055670 end:0x00055680 align:16
+
+rel/sel/data/lbl_10_bss_55680.c:
+	.bss        start:0x00055680 end:0x00055688 align:32
+
+rel/sel/data/lbl_10_bss_55688.c:
+	.bss        start:0x00055688 end:0x00055690 align:8
+
+rel/sel/data/lbl_10_bss_55690.c:
+	.bss        start:0x00055690 end:0x00055698 align:8
+
+rel/sel/data/lbl_10_bss_55698.c:
+	.bss        start:0x00055698 end:0x00055AE0 align:8
+
+rel/sel/data/lbl_10_bss_55AE0.c:
+	.bss        start:0x00055AE0 end:0x00055B30 align:32
+
+rel/sel/data/lbl_10_bss_55B30.c:
+	.bss        start:0x00055B30 end:0x00055CD8 align:16
+
+rel/sel/data/lbl_10_bss_55CE0.c:
+	.bss        start:0x00055CE0 end:0x00055CE3 align:32
+
+rel/sel/data/lbl_10_bss_55CD8.c:
+	.bss        start:0x00055CD8 end:0x00055CE0 align:8

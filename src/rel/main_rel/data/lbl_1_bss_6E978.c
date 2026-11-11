@@ -2,6 +2,11 @@
 #include "types.h"
 
 extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+
+
+
+__declspec(section ".data") s32 lbl_1_bss_6E984 __attribute__((aligned(4)));
 
 
 

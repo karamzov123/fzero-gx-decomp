@@ -28,7 +28,7 @@ extern u8 lbl_7_data_6DB0[];
 #include "rel/story/data/lbl_7_data_6E40.h"
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_0 lbl_7_data_0 __attribute__((aligned(8))) = {
     0x00000010U,
@@ -128,7 +128,7 @@ __declspec(section ".data") Data_lbl_7_data_0 lbl_7_data_0 __attribute__((aligne
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,
@@ -694,7 +694,7 @@ __declspec(section ".data") Data_lbl_7_data_348 lbl_7_data_348 __attribute__((al
 #pragma explicit_zero_data reset
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_A98 lbl_7_data_A98 __attribute__((aligned(8))) = {
     0x00000000U,
@@ -746,7 +746,7 @@ __declspec(section ".data") Data_lbl_7_data_A98 lbl_7_data_A98 __attribute__((al
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,
@@ -2014,7 +2014,7 @@ __declspec(section ".data") Data_lbl_7_data_DC8 lbl_7_data_DC8 __attribute__((al
 #pragma explicit_zero_data reset
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_1FF8 lbl_7_data_1FF8 __attribute__((aligned(8))) = {
     0x00000000U,
@@ -2060,7 +2060,7 @@ __declspec(section ".data") Data_lbl_7_data_1FF8 lbl_7_data_1FF8 __attribute__((
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,
@@ -6346,7 +6346,7 @@ __declspec(section ".data") Data_lbl_7_data_25B0 lbl_7_data_25B0 __attribute__((
 #pragma explicit_zero_data reset
 
 
-extern u8 lbl_1_bss_9E[];
+extern u8 lbl_1_bss_9C[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Data_lbl_7_data_6618 lbl_7_data_6618 __attribute__((aligned(8))) = {
     0x00000000U,
@@ -6398,7 +6398,7 @@ __declspec(section ".data") Data_lbl_7_data_6618 lbl_7_data_6618 __attribute__((
     0x00000000U,
     0x00000000U,
     0x00040004U,
-    (u8 *)&lbl_1_bss_9E,
+    (u8 *)&lbl_1_bss_9C + 2,
     0x00000000U,
     0x00000000U,
     0x00000000U,

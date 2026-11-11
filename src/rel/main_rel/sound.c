@@ -2887,7 +2887,7 @@ u16 lbl_1_bss_6F2D8__fzgx_offset_3C;
 u8 lbl_1_bss_6F316;
 u8 lbl_1_bss_6F317;
 u16 fzgx_pool_lbl_1_bss_6EA98_gap_6F318;
-u8 lbl_1_bss_6F31A;
+u8 lbl_1_bss_6F318__fzgx_offset_2;
 u8 lbl_1_bss_6F31A__fzgx_offset_1;
 s16 lbl_1_bss_6F31A__fzgx_offset_2[2];
 f32 lbl_1_bss_6F31A__fzgx_offset_6;  /* retail addresses both floats base-relative: two scalars, not an array */
@@ -2942,7 +2942,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_1_bss_6F316;
     s = *(u8 *)&lbl_1_bss_6F317;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA98_gap_6F318;
-    s = *(u8 *)&lbl_1_bss_6F31A;
+    s = *(u8 *)&lbl_1_bss_6F318__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_6F31A__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_6F31A__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_6F31A__fzgx_offset_6;
@@ -2991,7 +2991,7 @@ void fn_1_A2210(u8 cue)
     if (id != -1) {
         handles = fzgx_obj_lbl_1_bss_6EAD0;
         handle = handles[1];
-        if (!lbl_1_bss_6F31A && handle != 0 && handle != 0xFFFFFFFF) {
+        if (!lbl_1_bss_6F318__fzgx_offset_2 && handle != 0 && handle != 0xFFFFFFFF) {
             if (handle == handles[0]) {
                 flags = fzgx_obj_lbl_1_bss_6EAB4;
                 fzgx_obj_lbl_1_bss_6EAB4 = flags & ~4;
@@ -4017,18 +4017,20 @@ void fn_1_A2DC4(u32 arg0) {
 /* fzgx:end fn_1_A2DC4 */
 
 /* fzgx:begin fn_1_A2DF4 */
+extern Obj_1_bss_6EAC6 lbl_1_bss_6EAB4__fzgx_offset_12;
 // Forwards the sound event while sound processing is enabled.
 void fn_1_A2DF4(s32 arg0, void *arg1, s32 arg2) {
-    if (lbl_1_bss_6EAC6.unk_0 != 0) {
+    if (lbl_1_bss_6EAB4__fzgx_offset_12.unk_0 != 0) {
         fn_80063094(arg0, arg1, arg2);
     }
 }
 /* fzgx:end fn_1_A2DF4 */
 
 /* fzgx:begin fn_1_A2E24 */
+extern Obj_1_bss_6EAC6 lbl_1_bss_6EAB4__fzgx_offset_12;
 // Notifies the sound system when sound processing is enabled.
 void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2) {
-    if (lbl_1_bss_6EAC6.unk_0 != 0) {
+    if (lbl_1_bss_6EAB4__fzgx_offset_12.unk_0 != 0) {
         fn_800674FC(arg0, arg1, arg2);
     }
 }
@@ -5845,6 +5847,7 @@ void fn_1_A5858(u8 value) {
 /* fzgx:end fn_1_A5858 */
 
 /* fzgx:begin fn_1_A5864 */
+extern Obj_1_bss_6EAC6 lbl_1_bss_6EAB4__fzgx_offset_12;
 void fn_1_A5864(void) {
     if (lbl_1_bss_6EAD0.unk_0 != 0) {
         if (lbl_1_bss_6EAD0.unk_0->unk_0 != 0 &&
@@ -5862,13 +5865,13 @@ void fn_1_A5864(void) {
         }
 
         if (fn_1_3FC38() != 0) {
-            if (lbl_1_bss_6EAC6.unk_0 != 0) {
+            if (lbl_1_bss_6EAB4__fzgx_offset_12.unk_0 != 0) {
                 fn_800674FC(0x10, 0xA0000300, 0);
             }
-            if (lbl_1_bss_6EAC6.unk_0 != 0) {
+            if (lbl_1_bss_6EAB4__fzgx_offset_12.unk_0 != 0) {
                 fn_800674FC(0x10, 0xA0000400, 0);
             }
-            if (lbl_1_bss_6EAC6.unk_0 != 0) {
+            if (lbl_1_bss_6EAB4__fzgx_offset_12.unk_0 != 0) {
                 fn_800674FC(0, 0xA0020000, 0);
             }
         }

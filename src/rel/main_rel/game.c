@@ -241,7 +241,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -581,7 +581,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -4168,7 +4168,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -4424,7 +4424,7 @@ typedef struct {
 extern const f32 lbl_1_rodata_BD8[];
 extern void fn_1_15E260(s32 arg0);
 extern u16 lbl_1_bss_25B80;
-extern u8 lbl_1_bss_26B1D;
+extern u8 lbl_1_bss_26B18__fzgx_offset_5;
 
 #pragma optpointer_analysis off
 #pragma opt_strength_reduction off
@@ -4505,9 +4505,9 @@ int fn_1_32600(FnObj_1_32600* obj) {
         if (obj->unk_0 & 0x00000800) {
             cond = 1;
         }
-        lbl_1_bss_26B1D++;
+        lbl_1_bss_26B18__fzgx_offset_5++;
         if (cond) {
-            if (lbl_1_bss_26B1D > 0x1e) {
+            if (lbl_1_bss_26B18__fzgx_offset_5 > 0x1e) {
                 obj->unk_0 |= 0x10000000;
                 return 1;
             }
@@ -5323,7 +5323,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -7233,7 +7233,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -7611,10 +7611,11 @@ void fn_1_35174(void) {
 /* fzgx:end fn_1_35174 */
 
 /* fzgx:begin fn_1_35178 */
+extern s16 lbl_1_bss_3C1C__fzgx_offset_E;
 // Decrement the counter while the associated state is active.
 void fn_1_35178(u32* arg0) {
     if (fn_1_3EFA8() == 0) {
-        switch (lbl_1_bss_3C2A) {
+        switch (lbl_1_bss_3C1C__fzgx_offset_E) {
         case 0x29:
             if ((lbl_1_bss_3C30.unk_0 & 0x00000800) == 0) {
                 if (lbl_1_bss_3C30.unk_5 == 2) {
@@ -7623,7 +7624,7 @@ void fn_1_35178(u32* arg0) {
                     if (lbl_1_bss_3C30.unk_14A8 != value) {
                         lbl_1_bss_3C30.unk_14A8 = value;
                     }
-                    if (*(s16*)&lbl_1_bss_26B7A[0] == -1 ||
+                    if (*(s16*)&lbl_1_bss_26B5C__fzgx_offset_1E[0] == -1 ||
                         *(s16*)&lbl_1_bss_26300 == -1) {
                         lbl_1_bss_3C30.unk_5 = 6;
                     }
@@ -12751,7 +12752,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -14237,7 +14238,7 @@ struct Sig_fn_8004BD5C_fn_8004BD5C_Arg0 { u8 pad_0[0x71]; s8 unk_71; };
 typedef struct Sig_ADXT_Pause_ADXTHandle Sig_ADXT_Pause_ADXTHandle;
 extern s32 fn_8004BD5C(struct Sig_fn_8004BD5C_fn_8004BD5C_Arg0 *);
 extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern u8 lbl_1_bss_6F31A[138];
+extern u8 lbl_1_bss_6F318__fzgx_offset_2[138];
 extern void *fn_1_435C(void *);
 extern void fn_1_4310(u32);
 extern void fn_1_4A00(s32, u8, void *);
@@ -14526,7 +14527,7 @@ void fn_1_391F0(void) {
  s32 v8;
  s32 v9;
  u16 v10;
- if (lbl_1_bss_6F31A[0] != 0) v1 = 1;
+ if (lbl_1_bss_6F318__fzgx_offset_2[0] != 0) v1 = 1;
  else v1 = fn_8004BD5C((struct Sig_fn_8004BD5C_fn_8004BD5C_Arg0 *)lbl_1_bss_6EAD0.unk_0->unk_0);
  if (v1 == 0 && (s8)lbl_1_bss_381F5 != 0) return;
  if ((s8)lbl_1_bss_381F5 != 0) {
@@ -14816,7 +14817,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -16974,7 +16975,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -20336,7 +20337,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -21687,7 +21688,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -22250,7 +22251,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -23318,7 +23319,7 @@ void fn_1_3ED8C(RaceSetup *setup, u8 unk_4, u8 unk_1404, u8 course, u8 unk_7, u8
     setup->unk_1470 = 0;
     setup->unk_146E = 1500;
     fzgx_obj_lbl_1_bss_26C5C = 0;
-    /* retail stores one byte at 0x26B7C (stb), though symbols.txt types lbl_1_bss_26B7A as 2-byte data */
+    /* retail stores one byte at 0x26B7C (stb), though symbols.txt types lbl_1_bss_26B5C__fzgx_offset_1E as 2-byte data */
     fzgx_pool_fzgx_obj_lbl_1_bss_26B7A__b2 = 0;
     fzgx_obj_lbl_1_bss_3C00[0] = 0;
     fzgx_obj_lbl_1_bss_262F4 = 1;
@@ -23340,13 +23341,14 @@ void fn_1_3EF08(u8 value) {
 /* fzgx:end fn_1_3EF08 */
 
 /* fzgx:begin fn_1_3EF14 */
+extern Obj_1_bss_3C12 lbl_1_bss_3C10__fzgx_offset_2;
 static inline s16 current_mode(void) {
     return *(s16 *)&lbl_1_bss_960;
 }
 
 // Selects the appropriate buffer initialization based on the current mode.
 void fn_1_3EF14(void *arg1) {
-    if (lbl_1_bss_3C12.unk_0 != 0 ||
+    if (lbl_1_bss_3C10__fzgx_offset_2.unk_0 != 0 ||
         (u16)(current_mode() - 13) <= 1 ||
         current_mode() == 10 ||
         current_mode() == 16) {
@@ -23358,9 +23360,10 @@ void fn_1_3EF14(void *arg1) {
 /* fzgx:end fn_1_3EF14 */
 
 /* fzgx:begin fn_1_3EF8C */
+extern Obj_1_bss_3C12 lbl_1_bss_3C10__fzgx_offset_2;
 // Stores the value unless initialization has already occurred.
 void fn_1_3EF8C(u8 value) {
-    if (lbl_1_bss_3C12.unk_0 == 0) {
+    if (lbl_1_bss_3C10__fzgx_offset_2.unk_0 == 0) {
         lbl_1_data_5B7C = value;
     }
 }
@@ -23393,10 +23396,11 @@ s32 fn_1_3EFA8(void) {
 /* fzgx:end fn_1_3EFA8 */
 
 /* fzgx:begin fn_1_3EFF0 */
+extern u8 lbl_1_bss_3C10__fzgx_offset_1;
 void fn_1_3EFF0(u32 arg1, u8 arg2) {
     lbl_1_bss_25E74[0] = arg1;
     lbl_1_bss_3C10 = arg2;
-    lbl_1_bss_3C11 = 1;
+    lbl_1_bss_3C10__fzgx_offset_1 = 1;
     lbl_1_bss_26C58 = 0;
     lbl_1_bss_26C64 = 0;
 }
@@ -23409,15 +23413,16 @@ void fn_1_3F02C(u32 arg1) {
 /* fzgx:end fn_1_3F02C */
 
 /* fzgx:begin fn_1_3F038 */
+extern u8 lbl_1_bss_3C10__fzgx_offset_1;
 // Initializes the game state and reports whether startup has completed.
 int fn_1_3F038(void) {
     if (lbl_1_bss_26C58 != 0) {
         return 1;
     }
 
-    if (lbl_1_bss_3C11 != 0) {
+    if (lbl_1_bss_3C10__fzgx_offset_1 != 0) {
         fn_1_36330();
-        lbl_1_bss_3C11 = 0;
+        lbl_1_bss_3C10__fzgx_offset_1 = 0;
     }
 
     fn_1_36B10();
@@ -23435,8 +23440,9 @@ int fn_1_3F038(void) {
 /* fzgx:end fn_1_3F038 */
 
 /* fzgx:begin fn_1_3F0C8 */
+extern s16 lbl_1_bss_3C1C__fzgx_offset_E;
 s16 fn_1_3F0C8(void) {
-    return lbl_1_bss_3C2A;
+    return lbl_1_bss_3C1C__fzgx_offset_E;
 }
 /* fzgx:end fn_1_3F0C8 */
 
@@ -23450,9 +23456,10 @@ u8 *fn_1_3F0D8(u32 index, f32 *value, u8 *flag) {
 /* fzgx:end fn_1_3F0D8 */
 
 /* fzgx:begin fn_1_3F114 */
+extern Obj_1_bss_3C12 lbl_1_bss_3C10__fzgx_offset_2;
 // Returns the current global status byte when the subsystem is enabled.
 u8 fn_1_3F114(void) {
-    if (lbl_1_bss_3C12.unk_0 != 0) {
+    if (lbl_1_bss_3C10__fzgx_offset_2.unk_0 != 0) {
         return lbl_1_bss_3C30.unk_4;
     }
     return 0;
@@ -23460,8 +23467,9 @@ u8 fn_1_3F114(void) {
 /* fzgx:end fn_1_3F114 */
 
 /* fzgx:begin fn_1_3F13C */
+extern Obj_1_bss_3C12 lbl_1_bss_3C10__fzgx_offset_2;
 u8 fn_1_3F13C(void) {
-    if (lbl_1_bss_3C12.unk_0 != 0) {
+    if (lbl_1_bss_3C10__fzgx_offset_2.unk_0 != 0) {
         return lbl_1_bss_3C30.unk_5;
     }
     return 0xff;
@@ -23495,10 +23503,11 @@ s32 fn_1_3F164(void) {
 /* fzgx:end fn_1_3F164 */
 
 /* fzgx:begin fn_1_3F1AC */
+extern Obj_1_bss_3C12 lbl_1_bss_3C10__fzgx_offset_2;
 u32 fn_1_3F1AC(u32 arg0) {
     u32 v0;
     v0 = arg0;
-    if ((*(u8 *)&lbl_1_bss_3C12) == 0) {
+    if ((*(u8 *)&lbl_1_bss_3C10__fzgx_offset_2) == 0) {
     v0 = 0;
     return v0;
     }
@@ -23936,6 +23945,7 @@ void fn_1_3F8D0(void) {
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
 #include "rel/main_rel/game.h"
+extern s16 lbl_1_bss_3C1C__fzgx_offset_E;
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[1] = {0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
@@ -24190,7 +24200,7 @@ void fn_1_3F8EC(f32 arg0) {
     f32 q2;
     f32 q1;
 
-    if (camera_get_flags() == 0 && (s16)camera_get_status() == 1 && lbl_1_bss_3C2A < 42) {
+    if (camera_get_flags() == 0 && (s16)camera_get_status() == 1 && lbl_1_bss_3C1C__fzgx_offset_E < 42) {
         id = fn_1_5910();
         e = camera_get_entry_field_0x2((u8)id);
         if ((s16)e != -1) {
@@ -24287,8 +24297,9 @@ u32 fn_1_3FC28(void) {
 /* fzgx:end fn_1_3FC28 */
 
 /* fzgx:begin fn_1_3FC38 */
+extern Obj_1_bss_3C12 lbl_1_bss_3C10__fzgx_offset_2;
 u8 fn_1_3FC38(void) {
-    return lbl_1_bss_3C12.unk_0;
+    return lbl_1_bss_3C10__fzgx_offset_2.unk_0;
 }
 /* fzgx:end fn_1_3FC38 */
 
@@ -24968,7 +24979,7 @@ extern u32 OSGetTick(void);
 extern void fn_1_A0978(void);
 extern void fn_1_35174(void);
 extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B7A[3];
+extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
 extern u16 lbl_1_bss_26300;
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_80008BEC(void *dest, int value, u32 size);
@@ -25024,7 +25035,7 @@ extern u8 lbl_1_A9011300;
 extern u8 lbl_1_A9011100;
 extern u8 lbl_1_A9011000;
 extern u16 lbl_1_bss_25B80;
-extern u8 lbl_1_bss_26B1D;
+extern u8 lbl_1_bss_26B18__fzgx_offset_5;
 extern void fn_1_15E260(s32 index);
 
 #pragma section code_type ".fzgxpool"

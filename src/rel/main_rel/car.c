@@ -554,8 +554,8 @@ extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
 extern u8 lbl_1_bss_6DA5C[30];
 extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
 extern void fn_1_8B8A4(void *arg);
-extern u8 lbl_1_bss_6DA7A;
-extern u8 lbl_1_bss_6DA7B[5];
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern u8 lbl_1_rodata_3DD8[84];
@@ -4580,12 +4580,13 @@ void fn_1_8176C(u32 value) {
 /* fzgx:end fn_1_8176C */
 
 /* fzgx:begin fn_1_81778 */
+extern u8 lbl_1_bss_6D83C__fzgx_offset_E;
 void fn_1_81778(void) {
     s32 offset;
     s32 i;
     i = 0;
     offset = 0;
-    while (i < *(s8 *)&lbl_1_bss_6D84A) {
+    while (i < *(s8 *)&lbl_1_bss_6D83C__fzgx_offset_E) {
         *((u32 *)((u8 *)lbl_1_bss_6D838 + offset)) |= 0x8000;
         i++;
         offset += 0x620;
@@ -4594,13 +4595,14 @@ void fn_1_81778(void) {
 /* fzgx:end fn_1_81778 */
 
 /* fzgx:begin fn_1_817C0 */
+extern u8 lbl_1_bss_6D83C__fzgx_offset_E;
 void fn_1_817C0(void) {
     s32 offset;
     s32 i;
 
     i = 0;
     offset = 0;
-    while (i < (s8)lbl_1_bss_6D84A) {
+    while (i < (s8)lbl_1_bss_6D83C__fzgx_offset_E) {
         u32 *value = (u32 *)((u8 *)lbl_1_bss_6D838 + offset);
         *value &= 0xFFFF7FFF;
         i++;
@@ -8767,8 +8769,8 @@ extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
 extern u8 lbl_1_bss_6DA5C[30];
 extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
 extern void fn_1_8B8A4(void *arg);
-extern u8 lbl_1_bss_6DA7A;
-extern u8 lbl_1_bss_6DA7B[5];
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern u8 lbl_1_rodata_3DD8[84];
@@ -9370,6 +9372,7 @@ void fn_1_86194(void) {
 /* fzgx:end fn_1_86194 */
 
 /* fzgx:begin fn_1_861B4 */
+extern u8 lbl_1_bss_6D83C__fzgx_offset_E;
 // Processes active car entries before finalizing the car table.
 void fn_1_861B4(void) {
     u32 i;
@@ -9377,7 +9380,7 @@ void fn_1_861B4(void) {
 
     i = 0;
     car = lbl_1_bss_6D838;
-    while (i < (s8)lbl_1_bss_6D84A) {
+    while (i < (s8)lbl_1_bss_6D83C__fzgx_offset_E) {
         if (car->unk_0 & 0x04000000) {
             fn_1_C489C(car);
         }
@@ -9595,8 +9598,9 @@ void fn_1_8658C(int index, Vec3U32 *out) {
 /* fzgx:end fn_1_8658C */
 
 /* fzgx:begin fn_1_86624 */
+extern u8 lbl_1_bss_6D83C__fzgx_offset_E;
 u8 fn_1_86624(void) {
-    return lbl_1_bss_6D84A;
+    return lbl_1_bss_6D83C__fzgx_offset_E;
 }
 /* fzgx:end fn_1_86624 */
 
@@ -9757,6 +9761,7 @@ s16 fn_1_8683C(int index) {
 /* fzgx:end fn_1_8683C */
 
 /* fzgx:begin fn_1_86854 */
+extern u8 lbl_1_bss_6D83C__fzgx_offset_E;
 typedef struct {
     u8 pad_0[0x328];
     u8 id;
@@ -9766,7 +9771,7 @@ typedef struct {
 
 fn_1_86854_Entry *fn_1_86854(int id) {
     fn_1_86854_Entry *base = (*((fn_1_86854_Entry * *)&lbl_1_bss_6D83C));
-    s8 count = (*((s8 *)&lbl_1_bss_6D84A));
+    s8 count = (*((s8 *)&lbl_1_bss_6D83C__fzgx_offset_E));
     s8 i;
 
     for (i = 0; i < count; i++) {
@@ -9784,8 +9789,9 @@ fn_1_86854_Entry *fn_1_86854(int id) {
 /* fzgx:end fn_1_86854 */
 
 /* fzgx:begin fn_1_868C0 */
+extern u8 lbl_1_bss_6D83C__fzgx_offset_E;
 void *fn_1_868C0(s8 index) {
-    if (index < (s8)lbl_1_bss_6D84A) {
+    if (index < (s8)lbl_1_bss_6D83C__fzgx_offset_E) {
         if (lbl_1_bss_6D83C.unk_0 != 0) {
             return (void *)((u8 *)lbl_1_bss_6D83C.unk_0 + index * 0x440);
         }
@@ -10348,8 +10354,8 @@ extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
 extern u8 lbl_1_bss_6DA5C[30];
 extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
 extern void fn_1_8B8A4(void *arg);
-extern u8 lbl_1_bss_6DA7A;
-extern u8 lbl_1_bss_6DA7B[5];
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern u8 lbl_1_rodata_3DD8[84];
@@ -15808,8 +15814,8 @@ extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
 extern u8 lbl_1_bss_6DA5C[30];
 extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
 extern void fn_1_8B8A4(void *arg);
-extern u8 lbl_1_bss_6DA7A;
-extern u8 lbl_1_bss_6DA7B[5];
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern u8 lbl_1_rodata_3DD8[84];
@@ -16420,7 +16426,7 @@ void fn_1_8B9B8(Race8B9B8 *race) {
 
 /* fzgx:begin fn_1_8C3EC */
 u8 fn_1_8C3EC(void) {
-    return lbl_1_bss_6DA7A;
+    return lbl_1_bss_6DA5C__fzgx_offset_1E;
 }
 /* fzgx:end fn_1_8C3EC */
 
@@ -16428,7 +16434,7 @@ u8 fn_1_8C3EC(void) {
 // fn_1_8C3FC: Load byte from BSS and return
 
 u8 fn_1_8C3FC(void) {
-    return lbl_1_bss_6DA7B[0];
+    return lbl_1_bss_6DA5C__fzgx_offset_1F[0];
 }
 /* fzgx:end fn_1_8C3FC */
 
@@ -17000,8 +17006,9 @@ u32 *fn_1_8C9E0(void) {
 /* fzgx:end fn_1_8C9E0 */
 
 /* fzgx:begin fn_1_8C9F4 */
+extern u8 lbl_1_bss_6D83C__fzgx_offset_E;
 u8 *fn_1_8C9F4(void) {
-    return &lbl_1_bss_6D84A;
+    return &lbl_1_bss_6D83C__fzgx_offset_E;
 }
 /* fzgx:end fn_1_8C9F4 */
 
@@ -19871,8 +19878,8 @@ extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
 extern u8 lbl_1_bss_6DA5C[30];
 extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
 extern void fn_1_8B8A4(s32);
-extern u8 lbl_1_bss_6DA7A;
-extern u8 lbl_1_bss_6DA7B[5];
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern u8 lbl_1_rodata_3DD8[84];
@@ -20835,8 +20842,8 @@ extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
 extern u8 lbl_1_bss_6DA5C[30];
 extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
 extern void fn_1_8B8A4(void *arg);
-extern u8 lbl_1_bss_6DA7A;
-extern u8 lbl_1_bss_6DA7B[5];
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern u8 lbl_1_rodata_3DD8[84];
@@ -30369,8 +30376,8 @@ extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
 extern u8 lbl_1_bss_6DA5C[30];
 extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
 extern void fn_1_8B8A4(void *arg);
-extern u8 lbl_1_bss_6DA7A;
-extern u8 lbl_1_bss_6DA7B[5];
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern u8 lbl_1_rodata_3DD8[84];

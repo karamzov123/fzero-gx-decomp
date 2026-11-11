@@ -1423,6 +1423,7 @@ void fn_1_FCF74(void) {
 /* fzgx:begin fn_1_FCFA4 noprologue */
 #include "types.h"
 #include "rel/main_rel/bg_cas.h"
+extern Obj_1_bss_850C6 lbl_1_bss_850C0__fzgx_offset_6;
 
 typedef struct {
     u8 r, g, b, a;
@@ -1499,7 +1500,7 @@ void fn_1_FCFA4(void *arg0) {
     if (f0 != 0 && f0((void *)((u8 *)m + 0x10000)) != 0) {
         return;
     }
-    if (lbl_1_bss_850C6.unk_0 != 0) {
+    if (lbl_1_bss_850C0__fzgx_offset_6.unk_0 != 0) {
         return;
     }
     if ((m->unk_C & 0x40000000) != 0) {
@@ -2585,18 +2586,20 @@ void fn_1_FDEC8(fn_1_FDEC8_Racer **arg0, fn_1_FDEC8_Scene *scene) {
 
 /* fzgx:begin fn_1_FDFF4 */
 #include "rel/main_rel/bg_cas.h"
+extern Obj_1_bss_850C6 lbl_1_bss_850C0__fzgx_offset_6;
 
 // Mark the background-collision object as active.
 void fn_1_FDFF4(void) {
-    lbl_1_bss_850C6.unk_0 = 1;
+    lbl_1_bss_850C0__fzgx_offset_6.unk_0 = 1;
 }
 /* fzgx:end fn_1_FDFF4 */
 
 /* fzgx:begin fn_1_FE004 */
 #include "rel/main_rel/bg_cas.h"
+extern Obj_1_bss_850C6 lbl_1_bss_850C0__fzgx_offset_6;
 
 void fn_1_FE004(void) {
-    lbl_1_bss_850C6.unk_0 = 0;
+    lbl_1_bss_850C0__fzgx_offset_6.unk_0 = 0;
 }
 /* fzgx:end fn_1_FE004 */
 

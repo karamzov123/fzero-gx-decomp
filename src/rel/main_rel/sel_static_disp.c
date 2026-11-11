@@ -8444,7 +8444,7 @@ extern int fn_1_5910(void);
 extern u32 fn_1_58C4(void);
 extern void fn_1_52070(int);
 extern void fn_1_52088(void);
-extern u8 lbl_1_bss_26B1E[46];
+extern u8 lbl_1_bss_26B18__fzgx_offset_6[46];
 extern void fn_1_1421D8(u32, u32, u32);
 extern void fn_1_1424E8(u32, u32, u32);
 extern void fn_1_14267C(u32, u32, u32);
@@ -8463,7 +8463,7 @@ void fn_1_1420E0(void) {
     v = fn_1_5910();
     flag = lbl_1_bss_3C30.unk_8;
     mask = (u8)(1 << v);
-    if (flag < 1 || !(lbl_1_bss_26B1E[0] & mask)) {
+    if (flag < 1 || !(lbl_1_bss_26B18__fzgx_offset_6[0] & mask)) {
         return;
     }
     fn_1_52070(0x140);

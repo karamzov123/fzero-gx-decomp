@@ -1715,7 +1715,7 @@ typedef struct {
 } Fn1_727C_Globals;
 
 extern u8 lbl_1_bss_6F244[128];
-extern u8 lbl_1_bss_6EAC6[10];
+extern u8 lbl_1_bss_6EAB4__fzgx_offset_12[10];
 
 extern s32 fn_1_3F864(void);
 extern s32 fn_1_4C10(void);
@@ -1734,7 +1734,7 @@ void fn_1_727C(void) {
     camera_index = globals->state->unk_4A;
     if (!(globals->state != 0 && index != 0 && (lbl_1_bss_6EAB4.unk_0 & 0x20) == 0
         && fn_1_3F864() != 0 && fn_1_4C10() == 0 && lbl_1_bss_6F244[0] != 0
-        && lbl_1_bss_6EAC6[0] != 0)) {
+        && lbl_1_bss_6EAB4__fzgx_offset_12[0] != 0)) {
         return;
     } else {
         switch (fn_1_3F0C8()) {

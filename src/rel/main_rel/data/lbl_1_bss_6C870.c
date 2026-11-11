@@ -4,5 +4,5 @@
 extern u8 lbl_1_bss_6C870[8];
 
 
-/* Storage extent is known; element/field types are not recovered. */
+/* Storage extent is known; the header type does not reproduce the retail layout. */
 __declspec(section ".data") u8 lbl_1_bss_6C870[8] __attribute__((aligned(16)));

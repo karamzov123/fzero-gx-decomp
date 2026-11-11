@@ -28,8 +28,9 @@ def main():
     if not s or not o or s[1] != o[1]:
         raise SystemExit('both symbols must be objects in the same section')
     s_addr, s_size, o_addr, o_size = int(s[2], 16), int(s[3], 16), int(o[2], 16), int(o[3], 16)
-    if o_addr + o_size != s_addr:
-        raise SystemExit(f'{slice_} does not follow {owner} directly')
+    between = [int(a, 16) for a in re.findall(r'^\w+ = ' + re.escape(o[1]) + r':0x([0-9A-Fa-f]+);', text, re.M)]
+    if not o_addr + o_size <= s_addr or any(o_addr < a < s_addr for a in between):
+        raise SystemExit(f'{slice_} does not follow {owner} (another symbol lies between)')
     delta = s_addr - o_addr
     alias = f'{owner}__fzgx_offset_{delta:X}'
     new_size = s_addr + s_size - o_addr

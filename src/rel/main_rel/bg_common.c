@@ -2391,7 +2391,7 @@ typedef struct Sig_fn_1_20258_Fn_1_20258 {
 } Sig_fn_1_20258_Fn_1_20258;
 extern f32 fn_1_20258(Sig_fn_1_20258_Fn_1_20258 *, f32 *);
 extern f32 lbl_1_bss_7AC88[2];
-extern u8 lbl_1_bss_86EC7[5];
+extern u8 lbl_1_bss_86EC4__fzgx_offset_3[5];
 extern u32 fn_1_17920(u32, void *, f32);
 extern u32 fn_1_214C4(void *, u32, f32);
 extern void lbl_8006DC6C(void *);
@@ -2444,11 +2444,11 @@ u32 fn_1_1071E8(u8 *arg0,u32 arg1,void *arg2,void *arg3,void *arg4) {
  fn_1_17920(t0,0,loc_8);
  v1=*(s32*)(arg0+28);
  if(v1==1) v2=0;
- else v2=lbl_1_bss_86EC7[0]%(v1-1)+1;
+ else v2=lbl_1_bss_86EC4__fzgx_offset_3[0]%(v1-1)+1;
  v4=(void*)(arg0+(v2<<7)+1024);
  t2=fn_1_20258(v4,&loc_C);
- if(*(s8*)((u8*)lbl_1_bss_86EC0+(arg1+(lbl_1_bss_86EC7[0]<<9)))==-128) {
-  while(arg1!=0 && *(s8*)((u8*)lbl_1_bss_86EC0+(arg1+(lbl_1_bss_86EC7[0]<<9)))==-128) --arg1;
+ if(*(s8*)((u8*)lbl_1_bss_86EC0+(arg1+(lbl_1_bss_86EC4__fzgx_offset_3[0]<<9)))==-128) {
+  while(arg1!=0 && *(s8*)((u8*)lbl_1_bss_86EC0+(arg1+(lbl_1_bss_86EC4__fzgx_offset_3[0]<<9)))==-128) --arg1;
  }
  if(0.0==loc_C) {
   f32 z,y,x;
@@ -2459,16 +2459,16 @@ u32 fn_1_1071E8(u8 *arg0,u32 arg1,void *arg2,void *arg3,void *arg4) {
  } else lbl_8006DBAC(v4);
  if(v4->flags&1) loc_C=-loc_C;
  if(v4->flags&0x02200000) {
-  TRANSLATE_COL(a, 0, (f32)(t2*(*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC7[0]<<9))/256.0)));
+  TRANSLATE_COL(a, 0, (f32)(t2*(*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC4__fzgx_offset_3[0]<<9))/256.0)));
   half=0.0f;
  } else if(v4->flags&0x01800000) {
   if(1.0!=loc_C) lbl_8006E15C(1.0f,loc_C,1.0f);
-  mathutil_mtxA_rotate_z((s32)(32768.0*(v4->field6c*(*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC7[0]<<9))/128.0))));
+  mathutil_mtxA_rotate_z((s32)(32768.0*(v4->field6c*(*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC4__fzgx_offset_3[0]<<9))/128.0))));
   TRANSLATE_COL(b, 1, (f32)(0.5*-v4->field68));
   half=0.5*v4->field68;
  } else {
   width=0.5*(v4->field3c/t2);
-  pos=*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC7[0]<<9))/256.0;
+  pos=*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC4__fzgx_offset_3[0]<<9))/256.0;
   sign=pos>0.0f?1.0:-1.0;
   if(1.0!=loc_C) lbl_8006E15C(1.0f,loc_C,1.0f);
   if(__fabs(pos)<width) {

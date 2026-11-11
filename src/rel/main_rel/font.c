@@ -5472,9 +5472,10 @@ void fn_1_4EDAC(FontDrawPacket *arg0, f32 arg1, f32 arg2) {
 /* fzgx:end fn_1_4EDAC */
 
 /* fzgx:begin fn_1_4F724 */
+extern Obj_1_bss_646D2 lbl_1_bss_4E6D0__fzgx_offset_16002;
 // Clear the font state value before the next initialization.
 void fn_1_4F724(void) {
-    lbl_1_bss_646D2.unk_0 = 0;
+    lbl_1_bss_4E6D0__fzgx_offset_16002.unk_0 = 0;
 }
 /* fzgx:end fn_1_4F724 */
 
@@ -5514,7 +5515,7 @@ typedef struct Resource {
 } Resource;
 extern State lbl_1_bss_4C678;
 extern Config lbl_1_data_1C500;
-extern u16 lbl_1_bss_646D2;
+extern u16 lbl_1_bss_4E6D0__fzgx_offset_16002;
 extern u8 *lbl_801A6D00;
 extern Resource lbl_1_data_FCD4[];
 extern void fn_1_A71CC(void), fn_800724C8(void), lbl_8006D758(void), fn_80072558(void),
@@ -5618,7 +5619,7 @@ int fn_1_4F734(FontDrawPacket *input) {
         fn_80074918(1, 3, 1);
         return result;
     } else {
-        u16 count = lbl_1_bss_646D2;
+        u16 count = lbl_1_bss_4E6D0__fzgx_offset_16002;
         FontDrawPacket *dst;
         if (count >= config->capacity) {
             if (!state->warned) {
@@ -5636,13 +5637,14 @@ int fn_1_4F734(FontDrawPacket *input) {
             dst->flags |= 0x08000000;
             dst->depth = (f32)state->override_value;
         }
-        lbl_1_bss_646D2++;
+        lbl_1_bss_4E6D0__fzgx_offset_16002++;
         return 1;
     }
 }
 /* fzgx:end fn_1_4F734 */
 
 /* fzgx:begin fn_1_4FC50 */
+extern Obj_1_bss_646D2 lbl_1_bss_4E6D0__fzgx_offset_16002;
 typedef struct {
     u32 unk_0;
 } InputObject;
@@ -5654,7 +5656,7 @@ s32 fn_1_4FC50(InputObject *obj, u32 arg1, u16 arg2, u16 arg3, u32 arg4) {
     if (obj->unk_0 >= 0xffff0000) {
         return 0;
     }
-    index = lbl_1_bss_646D2.unk_0;
+    index = lbl_1_bss_4E6D0__fzgx_offset_16002.unk_0;
     if (index >= lbl_1_data_1C500) {
         return 0;
     }
@@ -5672,7 +5674,7 @@ s32 fn_1_4FC50(InputObject *obj, u32 arg1, u16 arg2, u16 arg3, u32 arg4) {
         entry->unk_34 = (f32)(s32)lbl_1_bss_4E6AC;
     }
 
-    lbl_1_bss_646D2.unk_0++;
+    lbl_1_bss_4E6D0__fzgx_offset_16002.unk_0++;
     return 1;
 }
 /* fzgx:end fn_1_4FC50 */
@@ -5680,6 +5682,7 @@ s32 fn_1_4FC50(InputObject *obj, u32 arg1, u16 arg2, u16 arg3, u32 arg4) {
 /* fzgx:begin fn_1_4FD64 noprologue */
 #include "types.h"
 #include "rel/main_rel/font.h"
+extern Obj_1_bss_646D2 lbl_1_bss_4E6D0__fzgx_offset_16002;
 
 typedef void FontDrawPacket;
 extern u8 *lbl_801A66CC;
@@ -5728,10 +5731,10 @@ void fn_1_4FD64(f32 arg0) {
     u32 lab_t4;
     u32 lab_t0;
     a = (u16 *)(lbl_801A66CC + 0x8B8);
-    for (i = 0; i < lbl_1_bss_646D2.unk_0; i++) {
+    for (i = 0; i < lbl_1_bss_4E6D0__fzgx_offset_16002.unk_0; i++) {
         a[i] = i;
     }
-    qsort(a, lbl_1_bss_646D2.unk_0, 2, (int (*)(const void *, const void *))fn_1_4E0A4);
+    qsort(a, lbl_1_bss_4E6D0__fzgx_offset_16002.unk_0, 2, (int (*)(const void *, const void *))fn_1_4E0A4);
     fn_1_A71CC();
     fn_800724C8();
     fn_8007245C(0x2200);
@@ -5755,7 +5758,7 @@ void fn_1_4FD64(f32 arg0) {
     lbl_8006D758();
     fn_80072558();
     lbl_801A6D00[0x197] = 0xFF;
-    for (i = 0; i < lbl_1_bss_646D2.unk_0; i++) {
+    for (i = 0; i < lbl_1_bss_4E6D0__fzgx_offset_16002.unk_0; i++) {
         Obj_1_data_1C504_Target *e = (Obj_1_data_1C504_Target *)((u8 *)lbl_1_data_1C504 + a[i] * 0x58);
         u32 fl = *(volatile u32 *)&e->unk_30; // volatile: retail reads packet flags anew in each drawing path.
         if (fl & 0x2000000) continue;
@@ -5801,7 +5804,7 @@ void fn_1_4FD64(f32 arg0) {
     }
     fn_1_A722C();
     fn_80074918(1, 3, 1);
-    lbl_1_bss_646D2.unk_0 = 0;
+    lbl_1_bss_4E6D0__fzgx_offset_16002.unk_0 = 0;
 }
 /* fzgx:end fn_1_4FD64 */
 
@@ -6351,6 +6354,7 @@ void fn_1_517EC(FontDrawPacket *p, s16 x, s16 y, s16 width, s16 height, s16 text
 /* fzgx:end fn_1_517EC */
 
 /* fzgx:begin fn_1_51914 */
+extern Obj_1_bss_646D2 lbl_1_bss_4E6D0__fzgx_offset_16002;
 typedef struct {
     u32 words[22];
 } fn_1_51914_state;
@@ -6360,7 +6364,7 @@ void fn_1_51914(const fn_1_51914_state *src) {
     fn_1_51914_state state = *src;
 
     lbl_1_bss_4C678 = (u32)lbl_1_data_1C504 +
-        (u32)lbl_1_bss_646D2.unk_0 * 0x58;
+        (u32)lbl_1_bss_4E6D0__fzgx_offset_16002.unk_0 * 0x58;
     state.words[12] |= 0x2000000;
     fn_1_4F734( (FontDrawPacket *)(void *)(&state));
 }

@@ -693,6 +693,9 @@ s32 fn_1_15C35C(s32 a, s32 b, s32 c, s32 d) {
 /* fzgx:end fn_1_15C35C */
 
 /* fzgx:begin fn_1_15C36C */
+extern Obj_1_bss_26B1E lbl_1_bss_26B18__fzgx_offset_6;
+extern u8 lbl_1_bss_26B18__fzgx_offset_2;
+extern u8 lbl_1_bss_26B18__fzgx_offset_1;
 extern s32 fn_1_5910(void);
 extern void fn_80038F10(f32 *values);
 extern void fn_1_15EFEC(s32 index);
@@ -725,9 +728,9 @@ void fn_1_15C36C(void) {
     *(output + ((4) * (index)) + 2) = (*((2) + (values)));
     *(output + ((4) * (index)) + 3) = (*((3) + (values)));
 
-    flags = lbl_1_bss_26B1E.unk_0 |
-            lbl_1_bss_26B19 |
-            lbl_1_bss_26B1A |
+    flags = lbl_1_bss_26B18__fzgx_offset_6.unk_0 |
+            lbl_1_bss_26B18__fzgx_offset_1 |
+            lbl_1_bss_26B18__fzgx_offset_2 |
             lbl_1_bss_26B18;
     hit = flags & mask;
 
@@ -1407,9 +1410,9 @@ extern void fn_1_49614(void);
 extern void fn_1_A4C9C(int, u8);
 
 extern u8 lbl_1_bss_26B18;
-extern u8 lbl_1_bss_26B1A;
-extern u8 lbl_1_bss_26B19;
-extern u8 lbl_1_bss_26B1E;
+extern u8 lbl_1_bss_26B18__fzgx_offset_2;
+extern u8 lbl_1_bss_26B18__fzgx_offset_1;
+extern u8 lbl_1_bss_26B18__fzgx_offset_6;
 extern u32 lbl_1_bss_3C30;
 
 typedef struct {
@@ -1427,11 +1430,11 @@ void fn_1_15DFD4(int index, int flags) {
     flags &= 0xff;
     if (lbl_1_bss_26B18 & flags) {
         state = 4;
-    } else if (lbl_1_bss_26B1A & flags) {
+    } else if (lbl_1_bss_26B18__fzgx_offset_2 & flags) {
         state = 2;
-    } else if (lbl_1_bss_26B19 & flags) {
+    } else if (lbl_1_bss_26B18__fzgx_offset_1 & flags) {
         state = 1;
-    } else if (lbl_1_bss_26B1E & flags) {
+    } else if (lbl_1_bss_26B18__fzgx_offset_6 & flags) {
         state = 3;
     } else {
         return;
