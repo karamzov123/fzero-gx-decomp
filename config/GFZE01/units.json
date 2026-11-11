@@ -168963,7 +168963,24 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "asm": true
+    "tu": "rel/winning/winning.c",
+    "pool": {
+      "...rodata.0": "lbl_15_rodata_0",
+      "@42": "lbl_15_rodata_90",
+      "@23": "lbl_15_rodata_0+0x5C",
+      "@13": "lbl_15_rodata_0",
+      "@310": "jumptable_15_data_1F20",
+      "@22": "lbl_15_rodata_0+0x58",
+      "...data.0": "lbl_15_data_0",
+      "...bss.0": "lbl_15_bss_0",
+      "fzgx_obj_lbl_15_bss_0": "lbl_15_bss_0",
+      "lbl_15_bss_14__fzgx_offset_0": "lbl_15_bss_14",
+      "lbl_15_bss_14__fzgx_offset_4": "lbl_15_bss_14+0x4",
+      "lbl_15_bss_2C__fzgx_offset_0": "lbl_15_bss_2C",
+      "lbl_15_bss_35__fzgx_offset_7": "lbl_15_bss_35+0x7",
+      "lbl_15_bss_154__fzgx_offset_0": "lbl_15_bss_154",
+      "lbl_15_bss_154__fzgx_offset_4": "lbl_15_bss_154+0x4"
+    }
   },
   {
     "module": "winning",
