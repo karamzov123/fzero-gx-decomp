@@ -20492,6 +20492,31 @@
   },
   {
     "module": "main",
+    "source": "dol/data/__global_destructor_chain.c",
+    "symbols": [
+      "__global_destructor_chain",
+      "__aborting",
+      "__atexit_curr_func"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/__stdio_exit.c",
+    "symbols": [
+      "__stdio_exit",
+      "__console_exit"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/data/gDBCommTable.c",
     "symbols": [
       "gDBCommTable"
@@ -20506,6 +20531,18 @@
     "source": "dol/data/gTRKCPUState.c",
     "symbols": [
       "gTRKCPUState"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/gTRKInputPendingPtr.c",
+    "symbols": [
+      "gTRKInputPendingPtr",
+      "lbl_801A6E08"
     ],
     "status": "matching",
     "data": true,
@@ -20555,6 +20592,17 @@
       "lbl_80090088",
       "lbl_80090090",
       "lbl_80090098"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_800900A0.c",
+    "symbols": [
+      "lbl_800900A0"
     ],
     "status": "matching",
     "data": true,
@@ -20838,6 +20886,17 @@
     "symbols": [
       "lbl_80091160",
       "lbl_80091198"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_800911E0.c",
+    "symbols": [
+      "lbl_800911E0"
     ],
     "status": "matching",
     "data": true,
@@ -21394,6 +21453,17 @@
     "symbols": [
       "lbl_800953A0",
       "lbl_800953CC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_800953D8.c",
+    "symbols": [
+      "lbl_800953D8"
     ],
     "status": "matching",
     "data": true,
@@ -22121,6 +22191,17 @@
     "source": "dol/data/lbl_80152860.c",
     "symbols": [
       "lbl_80152860"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_8015A860.c",
+    "symbols": [
+      "lbl_8015A860"
     ],
     "status": "matching",
     "data": true,
@@ -23267,6 +23348,919 @@
     "source": "dol/data/lbl_801A5638.c",
     "symbols": [
       "lbl_801A5638"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6638.c",
+    "symbols": [
+      "lbl_801A6638"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6640.c",
+    "symbols": [
+      "lbl_801A6640",
+      "lbl_801A6644"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6648.c",
+    "symbols": [
+      "lbl_801A6648",
+      "lbl_801A664C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6650.c",
+    "symbols": [
+      "lbl_801A6650"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6658.c",
+    "symbols": [
+      "lbl_801A6658"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6660.c",
+    "symbols": [
+      "lbl_801A6660"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6668.c",
+    "symbols": [
+      "lbl_801A6668"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6670.c",
+    "symbols": [
+      "lbl_801A6670"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6678.c",
+    "symbols": [
+      "lbl_801A6678"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6680.c",
+    "symbols": [
+      "lbl_801A6680"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6688.c",
+    "symbols": [
+      "lbl_801A6688"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6BF0.c",
+    "symbols": [
+      "lbl_801A6BF0",
+      "lbl_801A6BF4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6BF8.c",
+    "symbols": [
+      "lbl_801A6BF8",
+      "lbl_801A6BFC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C00.c",
+    "symbols": [
+      "lbl_801A6C00",
+      "lbl_801A6C04"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C08.c",
+    "symbols": [
+      "lbl_801A6C08"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C10.c",
+    "symbols": [
+      "lbl_801A6C10",
+      "lbl_801A6C14"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C18.c",
+    "symbols": [
+      "lbl_801A6C18",
+      "lbl_801A6C1C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C28.c",
+    "symbols": [
+      "lbl_801A6C28"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C30.c",
+    "symbols": [
+      "lbl_801A6C30",
+      "lbl_801A6C34"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C38.c",
+    "symbols": [
+      "lbl_801A6C38",
+      "lbl_801A6C3C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C40.c",
+    "symbols": [
+      "lbl_801A6C40",
+      "lbl_801A6C44"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C48.c",
+    "symbols": [
+      "lbl_801A6C48",
+      "lbl_801A6C4C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C50.c",
+    "symbols": [
+      "lbl_801A6C50",
+      "lbl_801A6C54"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C58.c",
+    "symbols": [
+      "lbl_801A6C58"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C60.c",
+    "symbols": [
+      "lbl_801A6C60",
+      "lbl_801A6C64"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C68.c",
+    "symbols": [
+      "lbl_801A6C68",
+      "lbl_801A6C6C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C70.c",
+    "symbols": [
+      "lbl_801A6C70",
+      "lbl_801A6C74"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C78.c",
+    "symbols": [
+      "lbl_801A6C78",
+      "lbl_801A6C7C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C80.c",
+    "symbols": [
+      "lbl_801A6C80"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C88.c",
+    "symbols": [
+      "lbl_801A6C88",
+      "lbl_801A6C8C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C90.c",
+    "symbols": [
+      "lbl_801A6C90",
+      "lbl_801A6C94"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6C98.c",
+    "symbols": [
+      "lbl_801A6C98"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CA0.c",
+    "symbols": [
+      "lbl_801A6CA0",
+      "lbl_801A6CA4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CA8.c",
+    "symbols": [
+      "lbl_801A6CA8",
+      "lbl_801A6CAC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CB0.c",
+    "symbols": [
+      "lbl_801A6CB0",
+      "lbl_801A6CB4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CB8.c",
+    "symbols": [
+      "lbl_801A6CB8",
+      "lbl_801A6CBC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CC0.c",
+    "symbols": [
+      "lbl_801A6CC0",
+      "lbl_801A6CC4",
+      "lbl_801A6CC6"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CC8.c",
+    "symbols": [
+      "lbl_801A6CC8",
+      "lbl_801A6CCC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CD0.c",
+    "symbols": [
+      "lbl_801A6CD0",
+      "lbl_801A6CD4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CD8.c",
+    "symbols": [
+      "lbl_801A6CD8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CE0.c",
+    "symbols": [
+      "lbl_801A6CE0",
+      "lbl_801A6CE4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CE8.c",
+    "symbols": [
+      "lbl_801A6CE8",
+      "lbl_801A6CE9",
+      "lbl_801A6CEA",
+      "lbl_801A6CEC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CF0.c",
+    "symbols": [
+      "lbl_801A6CF0",
+      "lbl_801A6CF4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6CF8.c",
+    "symbols": [
+      "lbl_801A6CF8",
+      "lbl_801A6CFC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D00.c",
+    "symbols": [
+      "lbl_801A6D00"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D08.c",
+    "symbols": [
+      "lbl_801A6D08",
+      "lbl_801A6D0C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D10.c",
+    "symbols": [
+      "lbl_801A6D10",
+      "lbl_801A6D14"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D18.c",
+    "symbols": [
+      "lbl_801A6D18",
+      "lbl_801A6D1C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D20.c",
+    "symbols": [
+      "lbl_801A6D20",
+      "lbl_801A6D24"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D28.c",
+    "symbols": [
+      "lbl_801A6D28",
+      "lbl_801A6D2C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D30.c",
+    "symbols": [
+      "lbl_801A6D30"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D38.c",
+    "symbols": [
+      "lbl_801A6D38"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D40.c",
+    "symbols": [
+      "lbl_801A6D40",
+      "lbl_801A6D44"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D48.c",
+    "symbols": [
+      "lbl_801A6D48",
+      "lbl_801A6D4C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D50.c",
+    "symbols": [
+      "lbl_801A6D50",
+      "lbl_801A6D54"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D58.c",
+    "symbols": [
+      "lbl_801A6D58",
+      "lbl_801A6D5C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D60.c",
+    "symbols": [
+      "lbl_801A6D60",
+      "lbl_801A6D64"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D68.c",
+    "symbols": [
+      "lbl_801A6D68",
+      "lbl_801A6D6C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D70.c",
+    "symbols": [
+      "lbl_801A6D70",
+      "lbl_801A6D74"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D78.c",
+    "symbols": [
+      "lbl_801A6D78",
+      "lbl_801A6D7C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D80.c",
+    "symbols": [
+      "lbl_801A6D80",
+      "lbl_801A6D84"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D88.c",
+    "symbols": [
+      "lbl_801A6D88"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D90.c",
+    "symbols": [
+      "lbl_801A6D90",
+      "lbl_801A6D94"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6D98.c",
+    "symbols": [
+      "lbl_801A6D98",
+      "lbl_801A6D9C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6DA0.c",
+    "symbols": [
+      "lbl_801A6DA0",
+      "lbl_801A6DA4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6DA8.c",
+    "symbols": [
+      "lbl_801A6DA8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6DB0.c",
+    "symbols": [
+      "lbl_801A6DB0",
+      "lbl_801A6DB4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6DB8.c",
+    "symbols": [
+      "lbl_801A6DB8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6DD8.c",
+    "symbols": [
+      "lbl_801A6DD8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6DE0.c",
+    "symbols": [
+      "lbl_801A6DE0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6DE8.c",
+    "symbols": [
+      "lbl_801A6DE8",
+      "lbl_801A6DF0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6DF8.c",
+    "symbols": [
+      "lbl_801A6DF8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6E10.c",
+    "symbols": [
+      "lbl_801A6E10"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6E18.c",
+    "symbols": [
+      "lbl_801A6E18",
+      "lbl_801A6E1C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6E20.c",
+    "symbols": [
+      "lbl_801A6E20"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6E28.c",
+    "symbols": [
+      "lbl_801A6E28",
+      "lbl_801A6E2C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6E30.c",
+    "symbols": [
+      "lbl_801A6E30",
+      "lbl_801A6E34"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A6E38.c",
+    "symbols": [
+      "lbl_801A6E38",
+      "lbl_801A6E3C"
     ],
     "status": "matching",
     "data": true,

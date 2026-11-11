@@ -898,7 +898,10 @@ def isolate_guard(p, records, skipped, steps=None):
                 # the run's start back to that chunk's aligned start, which ends the cascade.
                 # A boxed-in BSS run vanishes even from an aligned start (measured:
                 # lbl_1_bss_8E518..8E51E between two new chunks).
-                if i and j < len(syms) and (syms[i].addr % 8 or section in BSS):
+                # The DOL is stricter: an unowned run between splits fails the split even from
+                # an aligned start (measured: __DVDVersion/autoInvalidation, .sdata 0x801A6478,
+                # "Unsplit data in .sdata ... to next split").
+                if i and j < len(syms) and (syms[i].addr % 8 or section in BSS or module == 'main'):
                     victim = new.get(syms[i - 1].name) or new.get(syms[j].name)
                     if victim is not None:
                         start = victim['unit_start']
