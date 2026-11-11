@@ -50883,9 +50883,13 @@
       "fn_1_9AF80"
     ],
     "status": "matching",
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "asm": true
+    "asm": true,
+    "tu": "rel/main_rel/burner.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_41F0"
+    }
   },
   {
     "module": "main_rel",

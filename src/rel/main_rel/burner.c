@@ -7463,6 +7463,399 @@ void fn_1_9ADCC(Obj_1_data_2A7E0_At3C *arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_9ADCC */
 
+/* fzgx:begin fn_1_9AF80 noprologue */
+#include "types.h"
+#include "fpscr.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/burner.h"
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 0.0f;
+}
+static const u32 fzgx_pool_table2[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 6885000.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503599627370496.0;
+}
+static const u32 fzgx_pool_table6[2] = {0x000000FF, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    s = 60.0f;
+}
+static const u32 fzgx_pool_table8[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 0.5;
+    d = 1.0;
+    s = 182.04444885253906f;
+}
+static const u32 fzgx_pool_table10[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
+#pragma section code_type ".text"
+
+typedef struct fn_1_9AF80_Vec {
+    f32 x, y, z;
+} fn_1_9AF80_Vec;
+
+/* one keyframe track: a cursor per player slot, then the key list */
+typedef struct fn_1_9AF80_Track {
+    s32 cursor[4];
+    u32 count;
+    void *keys;
+} fn_1_9AF80_Track;
+
+typedef struct fn_1_9AF80_Anim {
+    f32 start;                      /* 0x00 */
+    f32 end;                        /* 0x04 */
+    s32 frame[4];                   /* 0x08 */
+    u32 mask;                       /* 0x18 */
+    fn_1_9AF80_Track scale[3];      /* 0x1C */
+    fn_1_9AF80_Track rot[3];        /* 0x64 */
+    fn_1_9AF80_Track pos[3];        /* 0xAC */
+    fn_1_9AF80_Track visible;       /* 0xF4 */
+    fn_1_9AF80_Track alpha;         /* 0x10C */
+} fn_1_9AF80_Anim;
+
+typedef struct fn_1_9AF80_Entry {
+    s32 lo;
+    s32 hi;
+    u8 unk_8;
+    u8 unk_9;
+    u8 pad_A;
+    s8 hold;
+    s32 frame[4];
+} fn_1_9AF80_Entry;
+
+typedef struct fn_1_9AF80_Owner {
+    u8 pad_0[0x4C];
+    f32 frame;
+} fn_1_9AF80_Owner;
+
+typedef struct fn_1_9AF80_List {
+    u32 unk_0;
+    fn_1_9AF80_Owner *owner;
+    s32 count;
+    fn_1_9AF80_Entry *entries;
+} fn_1_9AF80_List;
+
+typedef struct fn_1_9AF80_Dest {
+    u8 pad_0[0x10];
+    fn_1_9AF80_Vec pos;
+    s16 rot[3];
+    fn_1_9AF80_Vec scale;
+} fn_1_9AF80_Dest;
+
+typedef struct fn_1_9AF80_Sub {
+    u8 pad_0[0x8];
+    u32 unk_8;
+} fn_1_9AF80_Sub;
+
+typedef struct fn_1_9AF80_Model {
+    u8 pad_0[0x8];
+    fn_1_9AF80_Sub *sub;
+    u32 *flags;
+} fn_1_9AF80_Model;
+
+typedef struct fn_1_9AF80_Obj {
+    u32 flags;                      /* 0x00 */
+    u32 unk_4;
+    fn_1_9AF80_Model *model;        /* 0x08 */
+    fn_1_9AF80_Vec pos;             /* 0x0C */
+    s16 rot[3];                     /* 0x18 */
+    u16 mode;                       /* 0x1E */
+    fn_1_9AF80_Vec scale;           /* 0x20 */
+    f32 alpha;                      /* 0x2C */
+    fn_1_9AF80_Anim *anim;          /* 0x30 */
+    fn_1_9AF80_Dest *dest;          /* 0x34 */
+    fn_1_9AF80_List *list;          /* 0x38 */
+    u32 unk_3C;
+} fn_1_9AF80_Obj;
+
+extern s8 fn_1_86624(void);
+extern void fn_1_9ADCC(Obj_1_data_2A7E0_At3C *list, s32 arg1);
+extern void fn_1_42E74(void *object);
+extern void fn_1_862D4(u32 index, void *out);
+extern u32 fn_1_1FB80(void *pos, s32 mask);
+extern f32 fn_1_9E170(u32 count, void *keys, s32 *cursor, f32 t);
+
+static inline void fn_1_9AF80_tick(s32 *frame, s32 start, s32 end, s32 hold, s32 wrap) {
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        if (frame[i] != -1 && frame[i] != -2) {
+            frame[i]++;
+            if (frame[i] >= end) {
+                if (wrap) {
+                    frame[i] = -2;
+                } else if (hold) {
+                    frame[i] = -1;
+                } else {
+                    frame[i] = start;
+                }
+            }
+        }
+    }
+}
+
+static inline s32 fn_1_9AF80_restart(fn_1_9AF80_List *list) {
+    s32 found = 0;
+    s32 j = 0;
+    fn_1_9AF80_Entry *entry = list->entries;
+    fn_1_9AF80_Owner *owner = list->owner;
+    s32 *frame;
+
+    for (; j < list->count; j++, entry++) {
+        frame = &entry->frame[lbl_1_data_2A7E0.unk_60];
+        if (*frame >= 0) {
+            owner->frame = (f32)entry->lo + (f32)(*frame % (entry->hi - entry->lo));
+            fn_1_42E74(owner);
+            found = 1;
+            break;
+        }
+    }
+    return found;
+}
+
+static inline void fn_1_9AF80_copy(fn_1_9AF80_Obj *obj) {
+    fn_1_9AF80_Dest *dest = obj->dest;
+
+    dest->pos = obj->pos;
+    dest->rot[0] = obj->rot[0];
+    dest->rot[1] = obj->rot[1];
+    dest->rot[2] = obj->rot[2];
+    dest->scale = obj->scale;
+}
+
+void fn_1_9AF80(fn_1_9AF80_Obj *obj, s32 count, s32 reset) {
+    s32 j;
+    fn_1_9AF80_Obj *first;
+    fn_1_9AF80_Anim *anim;
+    fn_1_9AF80_List *list;
+    fn_1_9AF80_Entry *entry;
+    u32 *flags;
+    u32 mask;
+    u32 bit;
+    u32 slot;
+    s32 player;
+    s32 player2;
+    s32 i;
+    s32 done;
+    s32 frame;
+    s32 *cur;
+    u32 loc[3];
+    f32 t;
+    f32 len;
+    f32 now;
+
+    if (!obj) {
+        return;
+    }
+    first = obj;
+    mask = fn_1_9D260();
+    if (reset) {
+        s32 n;
+
+        for (n = 0; n < count; n++) {
+            obj->flags &= ~0x60000000;
+            anim = obj->anim;
+            if (anim && (obj->flags & 0x40000)) {
+                anim->frame[0] = anim->frame[1] = anim->frame[2] = anim->frame[3] = -1;
+            }
+            list = obj->list;
+            if (list) {
+                entry = list->entries;
+                for (j = 0; j < list->count; j++, entry++) {
+                    if (entry->hold >= 0) {
+                        entry->frame[0] = entry->frame[1] = entry->frame[2] = entry->frame[3] = -1;
+                    }
+                }
+            }
+            obj++;
+        }
+        obj = first;
+    }
+
+    for (i = 0; i < count; i++, obj++) {
+        if (count != 1 && (obj->flags & 0x20000)) {
+            flags = obj->model->flags;
+            fn_1_9AF80_copy(obj);
+            if (obj->flags & 0x20000000) {
+                obj->flags &= ~0x20000000;
+                obj->flags |= 0x40000000;
+            }
+            if (flags && (*flags & 0x4000) && !(obj->mode & lbl_1_data_2A7E0.unk_A0)) {
+                continue;
+            }
+        }
+        obj->flags &= ~0x800000;
+        if (!(obj->flags & mask)) {
+            continue;
+        }
+        bit = (obj->model->sub->unk_8 != 0) ? 0x800000 : 0;
+        if (bit == 0 && !obj->model->flags) {
+            continue;
+        }
+        anim = obj->anim;
+        list = obj->list;
+        if (count != 1) {
+            done = 0;
+            if (obj->flags & 0x40000) {
+                if (lbl_1_data_2A7E0.pad_3[((obj->mode >> 14) & 3) + 3] != 0) {
+                    fn_1_9AF80_tick(anim->frame, anim->start, anim->end, 1, obj->mode & 1);
+                }
+                done = 1;
+            }
+            if (list) {
+                entry = list->entries;
+                for (j = 0; j < list->count; j++, entry++) {
+                    if (lbl_1_data_2A7E0.pad_3[((obj->mode >> 14) & 3) + 3] != 0) {
+                        if (list->entries->lo == 0 && list->entries->hi == 0) {
+                            if (list->owner) {
+                                frame = (s32)list->owner->frame + 1;
+                                entry->frame[0] = entry->frame[1] = entry->frame[2] = entry->frame[3] = frame;
+                            }
+                        } else if (anim) {
+                            fn_1_9AF80_tick(entry->frame, anim->start, anim->end, entry->hold, obj->mode & 1);
+                        } else {
+                            fn_1_9AF80_tick(entry->frame, entry->lo, entry->hi, entry->hold, obj->mode & 1);
+                        }
+                    }
+                }
+                done = 1;
+            }
+            if (done) {
+                continue;
+            }
+        }
+        obj->flags |= bit;
+        slot = lbl_1_data_2A7E0.unk_60;
+        if (list && list->owner) {
+            player = lbl_1_data_2A7E0.unk_5C;
+            if (player >= 0 && player < fn_1_86624() && slot < 4) {
+                obj->flags &= ~0x800000;
+                fn_1_9ADCC((Obj_1_data_2A7E0_At3C *)list, 1);
+                if (fn_1_9AF80_restart(list)) {
+                    obj->flags |= 0x800000;
+                } else {
+                    fn_1_9ADCC((Obj_1_data_2A7E0_At3C *)list, 0);
+                    if (fn_1_9AF80_restart(list)) {
+                        obj->flags |= 0x800000;
+                    }
+                }
+            }
+        }
+        if (!anim) {
+            continue;
+        }
+        if (obj->flags & 0x40000) {
+            player2 = lbl_1_data_2A7E0.unk_5C;
+            if ((obj->flags & 0xE0) && !(obj->flags & lbl_1_data_2A7E0.unk_48)) {
+                obj->flags &= ~0x800000;
+            } else if (player2 >= 0 && player2 < fn_1_86624() && slot < 4) {
+                cur = &anim->frame[slot];
+                if (*cur == -1) {
+                    fn_1_862D4(player2, loc);
+                    if (anim->mask & fn_1_1FB80(loc, 0xFFFF0000)) {
+                        *cur = 0;
+                    }
+                }
+                if (*cur < 0) {
+                    obj->flags &= ~0x800000;
+                } else {
+                    now = *cur;
+                }
+            } else {
+                obj->flags &= ~0x800000;
+            }
+            if (!(obj->flags & 0x800000)) {
+                continue;
+            }
+        } else {
+            now = (&lbl_1_data_2A7E0.unk_1C)[(obj->mode >> 14) & 3];
+        }
+        t = now - anim->start;
+        len = anim->end - anim->start;
+        if (obj->mode & 1) {
+            if (t > len) {
+                t = len;
+            }
+        } else {
+            t -= (f32)(len * (f32)fpscr_floor(t / len));
+        }
+        t += anim->start;
+        t /= 60.0f;
+        if (obj->mode & 0x80) {
+            if (*(s16 *)&lbl_1_bss_960 == 9 && lbl_1_bss_84.unk_14 != 0) {
+                lbl_1_data_2A7E0.unk_9C -= *(f32 *)lbl_1_bss_84.unk_14;
+                lbl_1_bss_84.unk_14 = 0;
+            }
+            t -= lbl_1_data_2A7E0.unk_9C;
+        }
+        if (anim->visible.keys &&
+            fn_1_9E170(anim->visible.count, anim->visible.keys, &anim->visible.cursor[slot], t) < 0.5) {
+            obj->flags &= ~0x800000;
+            continue;
+        }
+        if (anim->alpha.keys) {
+            obj->alpha = fn_1_9E170(anim->alpha.count, anim->alpha.keys, &anim->alpha.cursor[slot], t);
+            if (obj->alpha >= 1.0) {
+                obj->flags &= ~0x800000;
+                continue;
+            }
+        }
+        if (anim->scale[0].keys) {
+            obj->scale.x = fn_1_9E170(anim->scale[0].count, anim->scale[0].keys, &anim->scale[0].cursor[slot], t);
+        }
+        if (anim->scale[1].keys) {
+            obj->scale.y = fn_1_9E170(anim->scale[1].count, anim->scale[1].keys, &anim->scale[1].cursor[slot], t);
+        }
+        if (anim->scale[2].keys) {
+            obj->scale.z = fn_1_9E170(anim->scale[2].count, anim->scale[2].keys, &anim->scale[2].cursor[slot], t);
+        }
+        if (anim->rot[0].keys) {
+            obj->rot[0] = 182.04444885253906f * fn_1_9E170(anim->rot[0].count, anim->rot[0].keys, &anim->rot[0].cursor[slot], t);
+        }
+        if (anim->rot[1].keys) {
+            obj->rot[1] = 182.04444885253906f * fn_1_9E170(anim->rot[1].count, anim->rot[1].keys, &anim->rot[1].cursor[slot], t);
+        }
+        if (anim->rot[2].keys) {
+            obj->rot[2] = 182.04444885253906f * fn_1_9E170(anim->rot[2].count, anim->rot[2].keys, &anim->rot[2].cursor[slot], t);
+        }
+        if (anim->pos[0].keys) {
+            obj->pos.x = fn_1_9E170(anim->pos[0].count, anim->pos[0].keys, &anim->pos[0].cursor[slot], t);
+        }
+        if (anim->pos[1].keys) {
+            obj->pos.y = fn_1_9E170(anim->pos[1].count, anim->pos[1].keys, &anim->pos[1].cursor[slot], t);
+        }
+        if (anim->pos[2].keys) {
+            obj->pos.z = fn_1_9E170(anim->pos[2].count, anim->pos[2].keys, &anim->pos[2].cursor[slot], t);
+        }
+    }
+
+    if (reset) {
+        obj = first;
+        for (i = 0; i < count; i++) {
+            if (obj->flags & 0x20000) {
+                fn_1_9AF80_copy(obj);
+            }
+            obj++;
+        }
+    }
+}
+/* fzgx:end fn_1_9AF80 */
+
 /* fzgx:begin fn_1_9BBE4 noprologue */
 #include "types.h"
 #include "psvec.h"
