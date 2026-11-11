@@ -31,7 +31,7 @@ The goal of this project is to reconstruct readable, maintainable, matching C so
 - **Target Executables:** **16 / 16** link cleanly and match the retail SHA-1 hashes byte for byte (`16 files OK`)
 - **DOL Core:** **98.84%** code matched (2,195 / 2,206 functions)
 - **Relocatable Modules:** **99.49%** code matched (5,094 / 5,106 functions)
-- **Data Matched:** **89.40%** (game assets such as textures are extracted from your disc at build time, never committed)
+- **Data Matched:** **94.57%** (game assets such as textures are extracted from your disc at build time, never committed)
 
 The two code numbers measure different things: objdiff counts every function whose object bytes
 match, including hand-written or not-yet-converted assembly units; `fzgx honest` counts only

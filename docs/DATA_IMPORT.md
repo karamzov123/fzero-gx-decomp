@@ -134,3 +134,23 @@ report fails. Main data went from 44.4% to 94.5%.
 
 Use this only for payloads with no relocations and no structure the code reads field by field;
 typed tables still go through `data-import`.
+
+## Interior slices (2026-11-11)
+
+MWCC 4-aligns every array and every struct, and only scalars take 1- or 2-byte alignment. A
+multi-byte dtk "object" at a 2- or 1-aligned address therefore cannot be compiled as its own
+definition: it is a field of a larger object that dtk cut at a code reference (for example
+`lbl_3_bss_A23DA` is `+2` of the emblem canvas struct that `fn_3_14778` already casts
+`lbl_3_bss_A23D8` to). These slices made the importer's layouts come out a few bytes long and,
+through the isolation guard, stranded every neighbour: 260 KB of `.bss` sat behind 25 slices.
+
+`uv run python tools/manualkit/interior.py MODULE SLICE OWNER` folds a slice back: `symbols.txt`
+drops it and grows the owner, blocks that use it name `OWNER__fzgx_offset_D`, and their pool maps
+retarget that to `OWNER+D` after compile, so code bytes and relocations do not change. Fold into
+the nearest 4-aligned owner (walk back over odd-addressed owners, folding them too). After a
+fold, also repoint every existing pool-map key or value that names the slice, and give blocks
+that saw the slice only through a generated header an alias declaration of that header's type.
+A data initializer that points at a slice becomes `(u8 *)&OWNER + D`. Verify with the 16 hashes
+and objdiff's function count; then import the module's `.bss` as usual.
+
+Result: all of customize, main_rel and sel `.bss` imported; data 89.4% -> 94.6%.
