@@ -54,6 +54,7 @@ extern char lbl_1_data_420E8[11];
 extern char lbl_1_data_420F4[11];
 extern char lbl_1_data_42100[11];
 extern char lbl_1_data_4210C[11];
+extern u8 lbl_1_data_42118[28];
 
 
 
@@ -371,4 +372,12 @@ __declspec(section ".data") char lbl_1_data_42100[11] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_4210C[11] __attribute__((aligned(4))) = "Master ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_42118[28] __attribute__((aligned(8))) = {
+    0x83U, 0x7DU, 0x83U, 0x58U, 0x83U, 0x5EU, 0x81U, 0x5BU, 0x00U, 0x00U, 0x00U, 0x00U, 0x25U, 0x73U, 0x20U, 0x00U, 0x81U, 0xA3U, 0x00U, 0x00U, 0x25U, 0x30U, 0x32U, 0x64U, 0x00U, 0x00U, 0x00U, 0x00U
+};
 #pragma explicit_zero_data reset

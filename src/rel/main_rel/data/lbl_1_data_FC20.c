@@ -9,6 +9,7 @@ extern char lbl_1_data_FC6C[22];
 extern char lbl_1_data_FC84[22];
 extern char lbl_1_data_FC9C[22];
 extern char lbl_1_data_FCB4[20];
+extern char lbl_1_data_FCC8[9];
 
 
 
@@ -56,4 +57,10 @@ __declspec(section ".data") char lbl_1_data_FC9C[22] __attribute__((aligned(4)))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_FCB4[20] __attribute__((aligned(4))) = "bmp/bmp_view.tpl.lz";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_FCC8[9] __attribute__((aligned(8))) = "BMP_VIEW";
 #pragma explicit_zero_data reset

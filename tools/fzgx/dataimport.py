@@ -900,8 +900,12 @@ def isolate_guard(p, records, skipped, steps=None):
                 # lbl_1_bss_8E518..8E51E between two new chunks).
                 # The DOL is stricter: an unowned run between splits fails the split even from
                 # an aligned start (measured: __DVDVersion/autoInvalidation, .sdata 0x801A6478,
-                # "Unsplit data in .sdata ... to next split").
-                if i and j < len(syms) and (syms[i].addr % 8 or section in BSS or module == 'main'):
+                # "Unsplit data in .sdata ... to next split"). A REL's initialized run is carried
+                # as an auto object from any word-aligned start (measured 2026-11-11: main_rel
+                # jumptable_1_data_3439C at 4 mod 8 after a data unit; 3,383 objects imported
+                # around such runs, all 16 hashes OK). Withdrawing the left group there used to
+                # strand whole contiguous tables (24 KB behind that one jump table).
+                if i and j < len(syms) and (section in BSS or module == 'main'):
                     victim = new.get(syms[i - 1].name) or new.get(syms[j].name)
                     if victim is not None:
                         start = victim['unit_start']

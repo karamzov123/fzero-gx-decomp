@@ -2,9 +2,18 @@
 #include "types.h"
 
 extern char lbl_1_data_27E08[9];
+extern u8 lbl_1_data_27E14[12];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_27E08[9] __attribute__((aligned(8))) = "burner.c";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_27E14[12] __attribute__((aligned(4))) = {
+    0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
+};
 #pragma explicit_zero_data reset
