@@ -912,7 +912,9 @@ def isolate_guard(p, records, skipped, steps=None):
                 # jumptable_1_data_3439C at 4 mod 8 after a data unit; 3,383 objects imported
                 # around such runs, all 16 hashes OK). Withdrawing the left group there used to
                 # strand whole contiguous tables (24 KB behind that one jump table).
-                if i and j < len(syms) and (section in BSS or module == 'main'):
+                # The same holds for the DOL's .data and .rodata (measured: 277 objects around
+                # VIGetTvFormat's @724 jump table); only its small-data sections stay strict.
+                if i and j < len(syms) and (section in BSS or (module == 'main' and section not in ('.data', '.rodata'))):
                     victim = new.get(syms[i - 1].name) or new.get(syms[j].name)
                     if victim is not None:
                         start = victim['unit_start']

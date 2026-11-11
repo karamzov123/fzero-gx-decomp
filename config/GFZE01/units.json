@@ -20286,6 +20286,28 @@
   },
   {
     "module": "main",
+    "source": "dol/data/Type.c",
+    "symbols": [
+      "Type"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/XYNTSC.c",
+    "symbols": [
+      "XYNTSC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/data/__DVDLowAlarmForWA.c",
     "symbols": [
       "__DVDLowAlarmForWA"
@@ -20325,17 +20347,6 @@
     "source": "dol/data/__OSErrorTable.c",
     "symbols": [
       "__OSErrorTable"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/__files.c",
-    "symbols": [
-      "__files"
     ],
     "status": "matching",
     "data": true,
@@ -21175,20 +21186,14 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_800929F8.c",
+    "source": "dol/data/lbl_800929D8.c",
     "symbols": [
+      "lbl_800929D8",
       "lbl_800929F8",
-      "lbl_80092A18"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_80092BD8.c",
-    "symbols": [
+      "lbl_80092A18",
+      "lbl_80092AB8",
+      "lbl_80092B38",
+      "lbl_80092B58",
       "lbl_80092BD8",
       "lbl_80092C08",
       "lbl_80092C18",
@@ -21672,6 +21677,19 @@
   },
   {
     "module": "main",
+    "source": "dol/data/lbl_80122030.c",
+    "symbols": [
+      "lbl_80122030",
+      "lbl_80122044",
+      "lbl_8012205C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/data/lbl_801220C0.c",
     "symbols": [
       "lbl_801220C0",
@@ -21681,7 +21699,130 @@
       "lbl_80122104",
       "lbl_801221A0",
       "lbl_801221C0",
-      "OSDataPool"
+      "OSDataPool",
+      "lbl_801225F4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80122A58.c",
+    "symbols": [
+      "lbl_80122A58"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80122F50.c",
+    "symbols": [
+      "lbl_80122F50"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801230D0.c",
+    "symbols": [
+      "lbl_801230D0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80123A60.c",
+    "symbols": [
+      "lbl_80123A60"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80123A90.c",
+    "symbols": [
+      "lbl_80123A90"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80123AB8.c",
+    "symbols": [
+      "lbl_80123AB8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80123AF0.c",
+    "symbols": [
+      "lbl_80123AF0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80123B20.c",
+    "symbols": [
+      "lbl_80123B20"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80123B50.c",
+    "symbols": [
+      "lbl_80123B50",
+      "Si"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80123BB8.c",
+    "symbols": [
+      "lbl_80123BB8"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80123C98.c",
+    "symbols": [
+      "lbl_80123C98"
     ],
     "status": "matching",
     "data": true,
@@ -21720,7 +21861,10 @@
     "module": "main",
     "source": "dol/data/lbl_80124110.c",
     "symbols": [
-      "lbl_80124110"
+      "lbl_80124110",
+      "fstLoad_GameNameFormat",
+      "lbl_80124172",
+      "lbl_801241C8"
     ],
     "status": "matching",
     "data": true,
@@ -21732,6 +21876,83 @@
     "source": "dol/data/lbl_80124428.c",
     "symbols": [
       "lbl_80124428"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80124598.c",
+    "symbols": [
+      "lbl_80124598"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801245E0.c",
+    "symbols": [
+      "lbl_801245E0"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80124800.c",
+    "symbols": [
+      "lbl_80124800"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80126240.c",
+    "symbols": [
+      "lbl_80126240"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80128160.c",
+    "symbols": [
+      "lbl_80128160"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80128180.c",
+    "symbols": [
+      "lbl_80128180"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80128190.c",
+    "symbols": [
+      "lbl_80128190"
     ],
     "status": "matching",
     "data": true,
@@ -21795,6 +22016,17 @@
     "symbols": [
       "lbl_8012B030",
       "lbl_8012B06C"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_8012B0A8.c",
+    "symbols": [
+      "lbl_8012B0A8"
     ],
     "status": "matching",
     "data": true,
@@ -22161,17 +22393,8 @@
     "module": "main",
     "source": "dol/data/lbl_8015AD48.c",
     "symbols": [
-      "lbl_8015AD48"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015AF98.c",
-    "symbols": [
+      "lbl_8015AD48",
+      "__files",
       "lbl_8015AF98"
     ],
     "status": "matching",
@@ -40889,10 +41112,10 @@
     "collapsed": true,
     "pool": {
       "@24": "@35",
-      "@25": "@36",
+      "@25": "fstLoad_GameNameFormat",
       "@29": "@40",
       "@30": "@41",
-      "...data.0": "@36",
+      "...data.0": "fstLoad_GameNameFormat",
       "block$14": "block$16"
     }
   },
