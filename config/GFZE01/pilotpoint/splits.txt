@@ -216,12 +216,6 @@ rel/pilotpoint/data/lbl_14_data_0.c:
 rel/pilotpoint/data/lbl_14_data_AD8.c:
 	.data       start:0x00000AD8 end:0x00000AE0 align:8
 
-rel/pilotpoint/data/lbl_14_data_AF8.c:
-	.data       start:0x00000AF8 end:0x00000B74 align:8
-
-rel/pilotpoint/data/lbl_14_data_C10.c:
-	.data       start:0x00000C10 end:0x000011FC align:8
-
 rel/pilotpoint/data/lbl_14_bss_0.c:
 	.bss        start:0x00000000 end:0x00000018 align:32
 
@@ -336,15 +330,6 @@ rel/pilotpoint/data/lbl_14_data_A28.c:
 rel/pilotpoint/data/lbl_14_data_A40.c:
 	.data       start:0x00000A40 end:0x00000A9C align:8
 
-rel/pilotpoint/data/lbl_14_data_BB0.c:
-	.data       start:0x00000BB0 end:0x00000BF8 align:8
-
-rel/pilotpoint/data/lbl_14_data_1280.c:
-	.data       start:0x00001280 end:0x0000201C align:8
-
-rel/pilotpoint/data/lbl_14_data_20E0.c:
-	.data       start:0x000020E0 end:0x00002160 align:8
-
 rel/pilotpoint/data/lbl_14_data_2530.c:
 	.data       start:0x00002530 end:0x00002568 align:8
 
@@ -408,17 +393,41 @@ rel/pilotpoint/data/lbl_14_data_3480.c:
 rel/pilotpoint/data/lbl_14_rodata_0.c:
 	.rodata     start:0x00000000 end:0x0000054C align:8
 
-rel/pilotpoint/data/lbl_14_data_2160.c:
-	.data       start:0x00002160 end:0x000021B8 align:8
-
-rel/pilotpoint/data/lbl_14_data_21B8.c:
-	.data       start:0x000021B8 end:0x00002480 align:8
-
 rel/pilotpoint/data/lbl_14_data_2480.c:
 	.data       start:0x00002480 end:0x000024C8 align:8
 
 rel/pilotpoint/data/lbl_14_data_24C8.c:
 	.data       start:0x000024C8 end:0x00002530 align:8
+
+rel/pilotpoint/data/lbl_5_data_200.c:
+	.data       start:0x00000200 end:0x000002E0 align:8
+
+rel/pilotpoint/data/lbl_5_data_AE0.c:
+	.data       start:0x00000AE0 end:0x00000AF8 align:8
+
+rel/pilotpoint/data/lbl_14_data_AF8.c:
+	.data       start:0x00000AF8 end:0x00000BB0 align:8
+
+rel/pilotpoint/data/lbl_14_data_BB0.c:
+	.data       start:0x00000BB0 end:0x00000BF8 align:8
+
+rel/pilotpoint/data/lbl_5_data_BF8.c:
+	.data       start:0x00000BF8 end:0x00000C10 align:8
+
+rel/pilotpoint/data/lbl_14_data_C10.c:
+	.data       start:0x00000C10 end:0x00001280 align:8
+
+rel/pilotpoint/data/lbl_14_data_1280.c:
+	.data       start:0x00001280 end:0x000020E0 align:8
+
+rel/pilotpoint/data/lbl_14_data_20E0.c:
+	.data       start:0x000020E0 end:0x00002160 align:8
+
+rel/pilotpoint/data/lbl_14_data_2160.c:
+	.data       start:0x00002160 end:0x000021B8 align:8
+
+rel/pilotpoint/data/lbl_14_data_21B8.c:
+	.data       start:0x000021B8 end:0x00002480 align:8
 
 rel/pilotpoint/data/lbl_14_data_2F48.c:
 	.data       start:0x00002F48 end:0x00002FB0 align:8

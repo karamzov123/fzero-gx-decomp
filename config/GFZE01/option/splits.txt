@@ -258,9 +258,6 @@ rel/option/data/lbl_4_bss_5678.c:
 rel/option/data/lbl_4_bss_5680.c:
 	.bss        start:0x00005680 end:0x00005686 align:8
 
-rel/option/data/lbl_4_data_0.c:
-	.data       start:0x00000000 end:0x00000080 align:8
-
 rel/option/data/lbl_4_data_1818.c:
 	.data       start:0x00001818 end:0x00001958 align:8
 
@@ -429,26 +426,17 @@ rel/option/data/lbl_4_data_2D78.c:
 rel/option/data/lbl_4_data_2F20.c:
 	.data       start:0x00002F20 end:0x00002F40 align:8
 
-rel/option/data/lbl_4_rodata_0.c:
-	.rodata     start:0x00000000 end:0x0000049C align:8
-
-rel/option/data/lbl_4_rodata_520.c:
-	.rodata     start:0x00000520 end:0x00000630 align:8
-
-rel/option/data/lbl_4_rodata_788.c:
-	.rodata     start:0x00000788 end:0x00000848 align:8
-
-rel/option/data/lbl_4_rodata_9B0.c:
-	.rodata     start:0x000009B0 end:0x00000A9C align:8
-
-rel/option/data/lbl_4_rodata_B00.c:
-	.rodata     start:0x00000B00 end:0x00000B6C align:8
-
-rel/option/data/lbl_4_data_B0.c:
-	.data       start:0x000000B0 end:0x000014D0 align:8
+rel/option/data/lbl_4_data_0.c:
+	.data       start:0x00000000 end:0x000014D0 align:8
 
 rel/option/data/lbl_4_data_1500.c:
 	.data       start:0x00001500 end:0x00001520 align:8
+
+rel/option/data/lbl_4_data_1520.c:
+	.data       start:0x00001520 end:0x00001528 align:8
+
+rel/option/data/lbl_4_data_1528.c:
+	.data       start:0x00001528 end:0x00001558 align:8
 
 rel/option/data/lbl_4_data_1558.c:
 	.data       start:0x00001558 end:0x00001588 align:8
@@ -461,6 +449,9 @@ rel/option/data/lbl_4_data_1660.c:
 
 rel/option/data/lbl_4_data_1678.c:
 	.data       start:0x00001678 end:0x00001688 align:8
+
+rel/option/data/lbl_4_data_1688.c:
+	.data       start:0x00001688 end:0x000016A0 align:8
 
 rel/option/data/lbl_4_data_16A0.c:
 	.data       start:0x000016A0 end:0x00001718 align:8
@@ -489,6 +480,9 @@ rel/option/data/lbl_4_data_17F0.c:
 rel/option/data/lbl_4_data_1810.c:
 	.data       start:0x00001810 end:0x00001818 align:8
 
+rel/option/data/lbl_4_data_1F40.c:
+	.data       start:0x00001F40 end:0x00001F50 align:8
+
 rel/option/data/lbl_4_data_1F50.c:
 	.data       start:0x00001F50 end:0x00001F60 align:8
 
@@ -509,6 +503,9 @@ rel/option/data/lbl_4_data_3058.c:
 
 rel/option/data/lbl_4_data_3070.c:
 	.data       start:0x00003070 end:0x000030E0 align:8
+
+rel/option/data/lbl_4_rodata_0.c:
+	.rodata     start:0x00000000 end:0x00000B6C align:8
 
 rel/option/data/lbl_4_rodata_C30.c:
 	.rodata     start:0x00000C30 end:0x00000C34 align:8

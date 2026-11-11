@@ -3,6 +3,47 @@
 #include "rel/option/globals.h"
 #include "rel/option/data/lbl_4_data_10.h"
 #include "rel/option/data/lbl_4_data_4C.h"
+#include "rel/option/data/lbl_13_data_80.h"
+#include "rel/option/data/lbl_4_data_C8.h"
+#include "rel/option/data/lbl_4_data_130.h"
+#include "rel/option/data/lbl_4_data_1A4.h"
+#include "rel/option/data/lbl_4_data_210.h"
+#include "rel/option/data/lbl_4_data_284.h"
+#include "rel/option/data/lbl_4_data_2F0.h"
+#include "rel/option/data/lbl_4_data_34C.h"
+#include "rel/option/data/lbl_4_data_3B8.h"
+#include "rel/option/data/lbl_4_data_438.h"
+#include "rel/option/data/lbl_4_data_4F0.h"
+#include "rel/option/data/lbl_4_data_57C.h"
+#include "rel/option/data/lbl_4_data_5A0.h"
+#include "rel/option/data/lbl_4_data_5D8.h"
+#include "rel/option/data/lbl_4_data_660.h"
+#include "rel/option/data/lbl_4_data_724.h"
+#include "rel/option/data/lbl_4_data_7DC.h"
+#include "rel/option/data/lbl_4_data_86C.h"
+#include "rel/option/data/lbl_4_data_8A8.h"
+#include "rel/option/data/lbl_4_data_8D8.h"
+#include "rel/option/data/lbl_4_data_8F8.h"
+#include "rel/option/data/lbl_4_data_934.h"
+#include "rel/option/data/lbl_4_data_984.h"
+#include "rel/option/data/lbl_4_data_9D8.h"
+#include "rel/option/data/lbl_4_data_A30.h"
+#include "rel/option/data/lbl_4_data_A78.h"
+#include "rel/option/data/lbl_4_data_AAC.h"
+#include "rel/option/data/lbl_4_data_B90.h"
+#include "rel/option/data/lbl_4_data_CB0.h"
+#include "rel/option/data/lbl_4_data_D6C.h"
+#include "rel/option/data/lbl_4_data_DA0.h"
+#include "rel/option/data/lbl_4_data_DF0.h"
+#include "rel/option/data/lbl_4_data_E58.h"
+#include "rel/option/data/lbl_4_data_E98.h"
+#include "rel/option/data/lbl_4_data_F08.h"
+#include "rel/option/data/lbl_4_data_FD8.h"
+#include "rel/option/data/lbl_4_data_10A0.h"
+#include "rel/option/data/lbl_4_data_111C.h"
+#include "rel/option/data/lbl_4_data_11AC.h"
+#include "rel/option/data/lbl_4_data_1260.h"
+#include "rel/option/data/lbl_4_data_144C.h"
 
 extern u8 lbl_4_data_0[0xC];
 extern u8 lbl_4_data_C[4];
@@ -11,6 +52,91 @@ extern char lbl_4_data_38[18];
 #include "rel/option/data/lbl_4_data_4C.h"
 extern char lbl_4_data_78[3];
 extern char lbl_4_data_7C[4];
+#include "rel/option/data/lbl_13_data_80.h"
+extern char lbl_4_data_B0[24];
+#include "rel/option/data/lbl_4_data_C8.h"
+extern char lbl_4_data_100[48];
+#include "rel/option/data/lbl_4_data_130.h"
+extern char lbl_4_data_170[24];
+extern char lbl_4_data_188[28];
+#include "rel/option/data/lbl_4_data_1A4.h"
+extern char lbl_4_data_1BC[83];
+#include "rel/option/data/lbl_4_data_210.h"
+extern char lbl_4_data_254[46];
+#include "rel/option/data/lbl_4_data_284.h"
+extern char lbl_4_data_2CC[34];
+#include "rel/option/data/lbl_4_data_2F0.h"
+extern char lbl_4_data_32C[32];
+#include "rel/option/data/lbl_4_data_34C.h"
+extern char lbl_4_data_37C[60];
+#include "rel/option/data/lbl_4_data_3B8.h"
+extern char lbl_4_data_400[56];
+#include "rel/option/data/lbl_4_data_438.h"
+extern char lbl_4_data_480[112];
+#include "rel/option/data/lbl_4_data_4F0.h"
+extern char lbl_4_data_578[4];
+#include "rel/option/data/lbl_4_data_57C.h"
+extern char lbl_4_data_59C[3];
+#include "rel/option/data/lbl_4_data_5A0.h"
+extern char lbl_4_data_5C0[23];
+#include "rel/option/data/lbl_4_data_5D8.h"
+extern char lbl_4_data_610[80];
+#include "rel/option/data/lbl_4_data_660.h"
+extern char lbl_4_data_6D4[79];
+#include "rel/option/data/lbl_4_data_724.h"
+extern char lbl_4_data_790[74];
+#include "rel/option/data/lbl_4_data_7DC.h"
+extern char lbl_4_data_85C[14];
+#include "rel/option/data/lbl_4_data_86C.h"
+extern char lbl_4_data_89C[12];
+#include "rel/option/data/lbl_4_data_8A8.h"
+#include "rel/option/data/lbl_4_data_8D8.h"
+#include "rel/option/data/lbl_4_data_8F8.h"
+extern char lbl_4_data_918[27];
+#include "rel/option/data/lbl_4_data_934.h"
+extern char lbl_4_data_970[19];
+#include "rel/option/data/lbl_4_data_984.h"
+extern char lbl_4_data_9C0[24];
+#include "rel/option/data/lbl_4_data_9D8.h"
+extern char lbl_4_data_A10[32];
+#include "rel/option/data/lbl_4_data_A30.h"
+extern char lbl_4_data_A70[7];
+#include "rel/option/data/lbl_4_data_A78.h"
+extern char lbl_4_data_AA0[12];
+#include "rel/option/data/lbl_4_data_AAC.h"
+extern char lbl_4_data_AD4[188];
+#include "rel/option/data/lbl_4_data_B90.h"
+extern char lbl_4_data_C18[152];
+#include "rel/option/data/lbl_4_data_CB0.h"
+extern char lbl_4_data_D50[18];
+extern char lbl_4_data_D64[8];
+#include "rel/option/data/lbl_4_data_D6C.h"
+extern char lbl_4_data_D84[17];
+extern char lbl_4_data_D98[8];
+#include "rel/option/data/lbl_4_data_DA0.h"
+extern char lbl_4_data_DB8[53];
+#include "rel/option/data/lbl_4_data_DF0.h"
+extern char lbl_4_data_E48[15];
+#include "rel/option/data/lbl_4_data_E58.h"
+extern char lbl_4_data_E88[15];
+#include "rel/option/data/lbl_4_data_E98.h"
+extern char lbl_4_data_EC8[61];
+#include "rel/option/data/lbl_4_data_F08.h"
+extern char lbl_4_data_F64[116];
+#include "rel/option/data/lbl_4_data_FD8.h"
+extern char lbl_4_data_107C[35];
+#include "rel/option/data/lbl_4_data_10A0.h"
+extern char lbl_4_data_10E8[49];
+#include "rel/option/data/lbl_4_data_111C.h"
+extern char lbl_4_data_116C[62];
+#include "rel/option/data/lbl_4_data_11AC.h"
+#include "rel/option/data/lbl_4_data_1260.h"
+extern char lbl_4_data_1418[12];
+extern char lbl_4_data_1424[16];
+extern char lbl_4_data_1434[12];
+extern char lbl_4_data_1440[12];
+#include "rel/option/data/lbl_4_data_144C.h"
+extern char lbl_4_data_14A0[48];
 
 
 
@@ -82,4 +208,1501 @@ __declspec(section ".data") char lbl_4_data_78[3] __attribute__((aligned(8))) = 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_4_data_7C[4] __attribute__((aligned(4))) = "OFF";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_13_data_80 lbl_13_data_80 __attribute__((aligned(8))) = {
+    (u8 *)&lbl_4_data_78,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_78,
+    (u8 *)&lbl_4_data_7C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_7C,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_B0[24] __attribute__((aligned(8))) = "Use \203\255 or \203\265 to choose.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_C8 lbl_4_data_C8 __attribute__((aligned(8))) = {
+    0x83AD82A9U,
+    0x83B582C5U,
+    0x8D8096DAU,
+    0x82F09149U,
+    0x82F182C5U,
+    0x82AD82BEU,
+    0x82B382A2U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_B0,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C8
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_100[48] __attribute__((aligned(8))) = "Move \203\255 or \203\265 Left or Right to change controls.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_130 lbl_4_data_130 __attribute__((aligned(8))) = {
+    0x83AD82A9U,
+    0x83B582CCU,
+    0x8DB68945U,
+    0x82C59180U,
+    0x8DEC82F0U,
+    0x95CF8D58U,
+    0x82B582C4U,
+    0x82AD82BEU,
+    0x82B382A2U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_100,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_130
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_170[24] __attribute__((aligned(8))) = "Please wait a moment...";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_188[28] __attribute__((aligned(8))) = "\202\265\202\316\202\347\202\255\202\250\221\322\202\277\202\255\202\276\202\263\202\242\201B"
+    "\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_1A4 lbl_4_data_1A4 __attribute__((aligned(4))) = {
+    (u8 *)&lbl_4_data_170,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_188
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_1BC[83] __attribute__((aligned(4))) = "Press the A Button on the Controller to be adjusted. Press the B Button to finish.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_210 lbl_4_data_210 __attribute__((aligned(8))) = {
+    0x95CF8D58U,
+    0x82B782E9U,
+    0x83528393U,
+    0x8367838DU,
+    0x815B8389U,
+    0x82C5839FU,
+    0x82F0899FU,
+    0x82B582C4U,
+    0x82AD82BEU,
+    0x82B382A2U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_1BC,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_210
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_254[46] __attribute__((aligned(4))) = "Rotate the Control Stick one full revolution.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_284 lbl_4_data_284 __attribute__((aligned(4))) = {
+    0x83528393U,
+    0x8367838DU,
+    0x815B838BU,
+    0x83588365U,
+    0x83428362U,
+    0x834E82F0U,
+    0x88EA9474U,
+    0x82C989F1U,
+    0x82B582C4U,
+    0x82AD82BEU,
+    0x82B382A2U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_254,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_284
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_2CC[34] __attribute__((aligned(4))) = "Please adjust the steering wheel.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_2F0 lbl_4_data_2F0 __attribute__((aligned(8))) = {
+    0x836E8393U,
+    0x8368838BU,
+    0x82CC92B2U,
+    0x90AE82F0U,
+    0x8D7382C8U,
+    0x82C182C4U,
+    0x82AD82BEU,
+    0x82B382A2U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_2CC,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_2F0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_32C[32] __attribute__((aligned(4))) = "Return to the default settings\077";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_34C lbl_4_data_34C __attribute__((aligned(4))) = {
+    0x8F898AFAU,
+    0x90DD92E8U,
+    0x82C996DFU,
+    0x82B582DCU,
+    0x82B782A9U,
+    0x81480000U,
+    (u8 *)&lbl_4_data_32C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_34C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_37C[60] __attribute__((aligned(4))) = "Select the Controller to be changed using either \203\255 or \203\265.\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_3B8 lbl_4_data_3B8 __attribute__((aligned(8))) = {
+    0x83AD82A9U,
+    0x83B582C5U,
+    0x95CF8D58U,
+    0x82B782E9U,
+    0x83528393U,
+    0x8367838DU,
+    0x815B8389U,
+    0x82F09149U,
+    0x82F182C5U,
+    0x82AD82BEU,
+    0x82B382A2U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_37C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_3B8
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_400[56] __attribute__((aligned(8))) = "Move \203\255 or \203\265 Left or Right to change Rumble settings.\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_438 lbl_4_data_438 __attribute__((aligned(8))) = {
+    0x83AD82A9U,
+    0x83B582CCU,
+    0x8DB68945U,
+    0x82C59055U,
+    0x93AE82CCU,
+    0x90DD92E8U,
+    0x82F095CFU,
+    0x8D5882B5U,
+    0x82C482ADU,
+    0x82BE82B3U,
+    0x82A28142U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_400,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_438
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_480[112] __attribute__((aligned(8))) = "The Controller has been disconnected.\n Reconnect the Controller in Socket %d or\n press the A B"
+    "utton on another.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_4F0 lbl_4_data_4F0 __attribute__((aligned(8))) = {
+    0x83528393U,
+    0x8367838DU,
+    0x815B8389U,
+    0x82AA8A4FU,
+    0x82B382EAU,
+    0x82DC82B5U,
+    0x82BD8142U,
+    0x0A835283U,
+    0x93836783U,
+    0x8D815B83U,
+    0x89837C81U,
+    0x5B836725U,
+    0x6482C982U,
+    0xB382B582U,
+    0xC882A882U,
+    0xB782A981U,
+    0x410A91BCU,
+    0x82CC8352U,
+    0x83938367U,
+    0x838D815BU,
+    0x838982C5U,
+    0x839F837BU,
+    0x835E8393U,
+    0x82F0899FU,
+    0x82B582C4U,
+    0x82AD82BEU,
+    0x82B382A2U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_480,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_4F0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_578[4] __attribute__((aligned(8))) = "YES";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_57C lbl_4_data_57C __attribute__((aligned(4))) = {
+    0x82CD82A2U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_578,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_57C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_59C[3] __attribute__((aligned(4))) = "NO";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_5A0 lbl_4_data_5A0 __attribute__((aligned(8))) = {
+    0x82A282A2U,
+    0x82A60000U,
+    (u8 *)&lbl_4_data_59C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_5A0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_5C0[23] __attribute__((aligned(8))) = "Change Option Settings";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_5D8 lbl_4_data_5D8 __attribute__((aligned(8))) = {
+    0x83498376U,
+    0x83568387U,
+    0x839390DDU,
+    0x92E882F0U,
+    0x8D7382C8U,
+    0x82A282DCU,
+    0x82B78142U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_5C0,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_5D8
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_610[80] __attribute__((aligned(8))) = "Adjust the Calibration.\nPress the A Button on the Controller\nyou want adjusted.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_660 lbl_4_data_660 __attribute__((aligned(8))) = {
+    0x83528393U,
+    0x8367838DU,
+    0x815B8389U,
+    0x82CC834CU,
+    0x8383838AU,
+    0x8375838CU,
+    0x815B8356U,
+    0x83878393U,
+    0x82F08D73U,
+    0x82C882A2U,
+    0x82DC82B7U,
+    0x81420A95U,
+    0xCF8D5882U,
+    0xB782E983U,
+    0x52839383U,
+    0x67838D81U,
+    0x5B838982U,
+    0xC5839F82U,
+    0xF0899F82U,
+    0xB582C482U,
+    0xAD82BE82U,
+    0xB382A281U,
+    0x42000000U,
+    (u8 *)&lbl_4_data_610,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_660
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_6D4[79] __attribute__((aligned(4))) = "Customize the Controller.\nPress the A Button on the Controller to be adjusted.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_724 lbl_4_data_724 __attribute__((aligned(4))) = {
+    0x83528393U,
+    0x8367838DU,
+    0x815B8389U,
+    0x82CC834AU,
+    0x8358835EU,
+    0x837D8343U,
+    0x835982F0U,
+    0x8D7382C8U,
+    0x82A282DCU,
+    0x82B78142U,
+    0x0A95CF8DU,
+    0x5882B782U,
+    0xE9835283U,
+    0x93836783U,
+    0x8D815B83U,
+    0x8982C583U,
+    0x9F82F089U,
+    0x9F82B582U,
+    0xC482AD82U,
+    0xBE82B382U,
+    0xA2814200U,
+    (u8 *)&lbl_4_data_6D4,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_724
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_790[74] __attribute__((aligned(8))) = "Controller Rumble Settings.\n Press the A Button to select the Controller.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_7DC lbl_4_data_7DC __attribute__((aligned(4))) = {
+    0x83528393U,
+    0x8367838DU,
+    0x815B8389U,
+    0x82CC9055U,
+    0x93AE82CCU,
+    0x90DD92E8U,
+    0x82F08D73U,
+    0x82C882A2U,
+    0x82DC82B7U,
+    0x81420A83U,
+    0x52839383U,
+    0x67838D81U,
+    0x5B838982U,
+    0xF0914982U,
+    0xF182C583U,
+    0x9F82F089U,
+    0x9F82B582U,
+    0xC482AD82U,
+    0xBE82B382U,
+    0xA2814200U,
+    (u8 *)&lbl_4_data_790,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_7DC,
+    (u8 *)&lbl_4_data_400,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_438
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_85C[14] __attribute__((aligned(4))) = "Save changes\077";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_86C lbl_4_data_86C __attribute__((aligned(4))) = {
+    0x95CF8D58U,
+    0x82F095DBU,
+    0x91B682B5U,
+    0x82DC82B7U,
+    0x82A98148U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_85C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_86C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_89C[12] __attribute__((aligned(4))) = "Is this OK\077";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_8A8 lbl_4_data_8A8 __attribute__((aligned(8))) = {
+    0x82B182EAU,
+    0x82C582E6U,
+    0x82EB82B5U,
+    0x82A282C5U,
+    0x82B782A9U,
+    0x81480000U,
+    (u8 *)&lbl_4_data_89C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_8A8
+};
+#pragma explicit_zero_data reset
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_8D8 lbl_4_data_8D8 __attribute__((aligned(8))) = {
+    0x8163826EU,
+    0x826D0000U,
+    (u8 *)&lbl_4_data_8D8,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_8D8
+};
+#pragma explicit_zero_data reset
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_8F8 lbl_4_data_8F8 __attribute__((aligned(8))) = {
+    0x826E8265U,
+    0x82650000U,
+    (u8 *)&lbl_4_data_8F8,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_8F8
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_918[27] __attribute__((aligned(8))) = "Change Controller Settings";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_934 lbl_4_data_934 __attribute__((aligned(4))) = {
+    0x83528393U,
+    0x8367838DU,
+    0x815B8389U,
+    0x82CC90DDU,
+    0x92E882F0U,
+    0x8D7382C8U,
+    0x82A282DCU,
+    0x82B78142U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_918,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_934
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_970[19] __attribute__((aligned(8))) = "Manage Memory Card";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_984 lbl_4_data_984 __attribute__((aligned(4))) = {
+    0x83818382U,
+    0x838A815BU,
+    0x834A815BU,
+    0x836882CCU,
+    0x8AC7979DU,
+    0x82F08D73U,
+    0x82C882A2U,
+    0x82DC82B7U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_970,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_984
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_9C0[24] __attribute__((aligned(8))) = "Select Screen Settings ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_9D8 lbl_4_data_9D8 __attribute__((aligned(8))) = {
+    0x89E696CAU,
+    0x8382815BU,
+    0x836882CCU,
+    0x90DD92E8U,
+    0x82F08D73U,
+    0x82C882A2U,
+    0x82DC82B7U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_9C0,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_9D8
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_A10[32] __attribute__((aligned(8))) = "Use \203\255 or \203\265 to choose a mode \000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_A30 lbl_4_data_A30 __attribute__((aligned(8))) = {
+    0x83AD82A9U,
+    0x83B582CCU,
+    0x8DB68945U,
+    0x82C58382U,
+    0x815B8368U,
+    0x82F09149U,
+    0x82F182C5U,
+    0x82AD82BEU,
+    0x82B382A2U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_A10,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_A30
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_A70[7] __attribute__((aligned(8))) = "Normal";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_A78 lbl_4_data_A78 __attribute__((aligned(8))) = {
+    0x836D815BU,
+    0x837D838BU,
+    0x8365838CU,
+    0x83720000U,
+    (u8 *)&lbl_4_data_A70,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_A78
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_AA0[12] __attribute__((aligned(8))) = "Wide Screen";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_AAC lbl_4_data_AAC __attribute__((aligned(4))) = {
+    0x838F8343U,
+    0x83688365U,
+    0x838C8372U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_AA0,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_AAC
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_AD4[188] __attribute__((aligned(4))) = "Move the Control Stick around in a circle until the figures on the\n left side do not change. Ad"
+    "just play using the \203\265 Control Pad.\n Press the X Button to return to the default settings"
+    ".\000\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_B90 lbl_4_data_B90 __attribute__((aligned(8))) = {
+    0x8DB691A4U,
+    0x82CC907DU,
+    0x8C6082AAU,
+    0x95CF89BBU,
+    0x82B582C8U,
+    0x82AD82C8U,
+    0x82E982DCU,
+    0x82C583ADU,
+    0x82F088EAU,
+    0x947482C9U,
+    0x89F182B5U,
+    0x82C482ADU,
+    0x82BE82B3U,
+    0x82A28142U,
+    0x0A83B582U,
+    0xC5975682U,
+    0xD182F092U,
+    0xB290AE82U,
+    0xB582C482U,
+    0xAD82BE82U,
+    0xB382A281U,
+    0x420A83B4U,
+    0x82C58F89U,
+    0x8AFA90DDU,
+    0x92E882C9U,
+    0x96DF82B9U,
+    0x82DC82B7U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_AD4,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_B90
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_C18[152] __attribute__((aligned(8))) = "Turn the steering wheel Left and Right and press\nthe A Button at the point you want to set as t"
+    "he\n limit. Use the L and R Buttons to adjust game play. ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_CB0 lbl_4_data_CB0 __attribute__((aligned(8))) = {
+    0x836E8393U,
+    0x8368838BU,
+    0x82F08DB6U,
+    0x894582C9U,
+    0x89F182B5U,
+    0x81418CC0U,
+    0x8A4582C6U,
+    0x82B582BDU,
+    0x82A288CAU,
+    0x927582C5U,
+    0x839F82F0U,
+    0x899F82B5U,
+    0x82C482ADU,
+    0x82BE82B3U,
+    0x82A28142U,
+    0x0A826B81U,
+    0x95827183U,
+    0x67838A83U,
+    0x4B815B83U,
+    0x7B835E83U,
+    0x9382C597U,
+    0x5682D182U,
+    0xF092B290U,
+    0xAE82B582U,
+    0xC482AD82U,
+    0xBE82B382U,
+    0xA281420AU,
+    0x83B482C5U,
+    0x8F898AFAU,
+    0x90DD92E8U,
+    0x82C996DFU,
+    0x82B982DCU,
+    0x82B78142U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_C18,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_CB0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_D50[18] __attribute__((aligned(8))) = "Before correction";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_D64[8] __attribute__((aligned(4))) = "\225\342\220\263\221O\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_D6C lbl_4_data_D6C __attribute__((aligned(4))) = {
+    (u8 *)&lbl_4_data_D50,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_D64
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_D84[17] __attribute__((aligned(4))) = "After correction";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_D98[8] __attribute__((aligned(8))) = "\225\342\220\263\214\343\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_DA0 lbl_4_data_DA0 __attribute__((aligned(8))) = {
+    (u8 *)&lbl_4_data_D84,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_D98
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_DB8[53] __attribute__((aligned(8))) = "Game Data Controls\nInsert a Memory Card into Slot A.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_DF0 lbl_4_data_DF0 __attribute__((aligned(8))) = {
+    0x8351815BU,
+    0x83808366U,
+    0x815B835EU,
+    0x82CC9180U,
+    0x8DEC0A83U,
+    0x81838283U,
+    0x8A815B83U,
+    0x4A815B83U,
+    0x6882F083U,
+    0x58838D83U,
+    0x62836782U,
+    0x6082C993U,
+    0xFC82EA82U,
+    0xC482AD82U,
+    0xBE82B382U,
+    0xA2814200U,
+    (u8 *)&lbl_4_data_DB8,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_DF0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_E48[15] __attribute__((aligned(8))) = "Load Game Data";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_E58 lbl_4_data_E58 __attribute__((aligned(8))) = {
+    0x8351815BU,
+    0x83808366U,
+    0x815B835EU,
+    0x82CC838DU,
+    0x815B8368U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_E48,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_E58
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_E88[15] __attribute__((aligned(8))) = "Save Game Data";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_E98 lbl_4_data_E98 __attribute__((aligned(8))) = {
+    0x8351815BU,
+    0x83808366U,
+    0x815B835EU,
+    0x82CC835AU,
+    0x815B8375U,
+    0x00000000U,
+    (u8 *)&lbl_4_data_E88,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_E98
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_EC8[61] __attribute__((aligned(8))) = "There is no Game Data on this Memory Card.\n Saving new data.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_F08 lbl_4_data_F08 __attribute__((aligned(8))) = {
+    0x83818382U,
+    0x838A815BU,
+    0x834A815BU,
+    0x836882C9U,
+    0x0A835181U,
+    0x5B838083U,
+    0x66815B83U,
+    0x5E82AA8CU,
+    0xA982C282U,
+    0xA982E882U,
+    0xDC82B982U,
+    0xF181420AU,
+    0x90568B4BU,
+    0x835A815BU,
+    0x837582B5U,
+    0x82DC82B7U,
+    0x81420000U,
+    (u8 *)&lbl_4_data_EC8,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_F08
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_F64[116] __attribute__((aligned(4))) = "There is no Game Data on the Memory Card.\nIf you save, the Game Data currently loaded\nwill all"
+    " be lost. Is that OK\077";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_FD8 lbl_4_data_FD8 __attribute__((aligned(8))) = {
+    0x83818382U,
+    0x838A815BU,
+    0x834A815BU,
+    0x836882C9U,
+    0x8351815BU,
+    0x83808366U,
+    0x815B835EU,
+    0x82AA8CA9U,
+    0x82C282A9U,
+    0x82E882DCU,
+    0x82B982F1U,
+    0x81420A90U,
+    0x568B4B83U,
+    0x5A815B83U,
+    0x7582B782U,
+    0xE982C68CU,
+    0xBB8DDD83U,
+    0x8D815B83U,
+    0x6882B382U,
+    0xEA82C482U,
+    0xA282E983U,
+    0x51815B83U,
+    0x80836681U,
+    0x5B835E82U,
+    0xAA0A9153U,
+    0x82C48FC1U,
+    0x82A682C4U,
+    0x82B582DCU,
+    0x82A282DCU,
+    0x82B782AAU,
+    0x814182E6U,
+    0x82EB82B5U,
+    0x82A282C5U,
+    0x82B782A9U,
+    0x3F000000U,
+    (u8 *)&lbl_4_data_F64,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_FD8
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_107C[35] __attribute__((aligned(4))) = "There is no Memory Card in Slot A.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_10A0 lbl_4_data_10A0 __attribute__((aligned(8))) = {
+    0x8358838DU,
+    0x83628367U,
+    0x826082C9U,
+    0x0A838183U,
+    0x82838A81U,
+    0x5B834A81U,
+    0x5B836882U,
+    0xAA8CA982U,
+    0xC282A982U,
+    0xE882DC82U,
+    0xB982F181U,
+    0x42000000U,
+    (u8 *)&lbl_4_data_107C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_10A0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_10E8[49] __attribute__((aligned(8))) = "Register this name on the Memory Card in Slot A.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_111C lbl_4_data_111C __attribute__((aligned(4))) = {
+    0x82B182CCU,
+    0x96BC914FU,
+    0x82C58381U,
+    0x8382838AU,
+    0x815B834AU,
+    0x815B8368U,
+    0x82C90A93U,
+    0x6F985E82U,
+    0xB582C482U,
+    0xE082E682U,
+    0xEB82B582U,
+    0xA282C582U,
+    0xB782A93FU,
+    0x00000000U,
+    (u8 *)&lbl_4_data_10E8,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_111C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_116C[62] __attribute__((aligned(4))) = "There is no Memory Card in Slot A.\n The game cannot be saved.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_11AC lbl_4_data_11AC __attribute__((aligned(4))) = {
+    0x8358838DU,
+    0x83628367U,
+    0x826082C9U,
+    0x83818382U,
+    0x838A815BU,
+    0x834A815BU,
+    0x836882AAU,
+    0x8CA982C2U,
+    0x82A982E8U,
+    0x82DC82B9U,
+    0x82F18142U,
+    0x0A835A81U,
+    0x5B837582U,
+    0xC582AB82U,
+    0xDC82B982U,
+    0xF182C582U,
+    0xB582BD81U,
+    0x42000000U,
+    (u8 *)&lbl_4_data_116C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_11AC,
+    0xFF00FFFFU,
+    0x257300FFU,
+    0xFFFF0000U,
+    0x6F707469U,
+    0x6F6E2E63U,
+    0x00000000U,
+    0x53656C53U,
+    0x5F446973U,
+    0x70506F6CU,
+    0x79676F6EU,
+    0x42470000U,
+    0x53656C53U,
+    0x5F446973U,
+    0x70537072U,
+    0x69746542U,
+    0x47000000U,
+    0x6F707469U,
+    0x6F6E5F63U,
+    0x6F6D6D6FU,
+    0x6E5F6469U,
+    0x73700000U
+};
+#pragma explicit_zero_data reset
+
+
+extern void fn_4_347C(void);
+extern void fn_4_3568(void);
+extern void fn_4_406C(void);
+extern void fn_4_4784(void);
+extern void fn_4_4834(void);
+extern void fn_4_4B10(void);
+extern void fn_4_6678(void);
+extern void fn_4_6720(void);
+extern void fn_4_78E0(void);
+extern void fn_4_7C38(void);
+extern void fn_4_7CA4(void);
+extern void fn_4_7D94(void);
+extern void fn_4_80EC(void);
+extern void fn_4_8158(void);
+extern void fn_4_8248(void);
+extern void fn_4_869C(void);
+extern void fn_4_8720(void);
+extern void fn_4_898C(void);
+extern void fn_4_89E4(void);
+extern void fn_4_8A54(void);
+extern void fn_4_8AE0(void);
+extern void fn_4_8DC0(void);
+extern void fn_4_8E38(void);
+extern void fn_4_9A78(void);
+extern void fn_4_9B20(void);
+extern void fn_4_9C14(void);
+extern void fn_4_A734(void);
+extern void fn_4_D10(void);
+extern void fn_4_D7C(void);
+extern void fn_4_EA0(void);
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_1260 lbl_4_data_1260 __attribute__((aligned(8))) = {
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F4DU,
+    0x454E5500U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_D10,
+    fn_4_D7C,
+    fn_4_EA0,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F53U,
+    0x4156455FU,
+    0x57414954U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_9B20,
+    fn_4_9C14,
+    fn_4_A734,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F43U,
+    0x54524C5FU,
+    0x4D454E55U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_7C38,
+    fn_4_7CA4,
+    fn_4_7D94,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F43U,
+    0x4152445FU,
+    0x4D454E55U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_80EC,
+    fn_4_8158,
+    fn_4_8248,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F57U,
+    0x49444500U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_869C,
+    fn_4_8720,
+    fn_4_898C,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F43U,
+    0x414C4942U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_347C,
+    fn_4_3568,
+    fn_4_406C,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F52U,
+    0x554D424CU,
+    0x45000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_4784,
+    fn_4_4834,
+    fn_4_4B10,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F50U,
+    0x43555354U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_6678,
+    fn_4_6720,
+    fn_4_78E0,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F43U,
+    0x4152445FU,
+    0x4D414E41U,
+    0x47450000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_89E4,
+    fn_4_8A54,
+    fn_4_8AE0,
+    0x534D445FU,
+    0x4F505449U,
+    0x4F4E5F43U,
+    0x4152445FU,
+    0x47444154U,
+    0x41000000U,
+    0x00000000U,
+    0x00000000U,
+    fn_4_8DC0,
+    fn_4_8E38,
+    fn_4_9A78
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_1418[12] __attribute__((aligned(8))) = "Memory Card";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_1424[16] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_1434[12] __attribute__((aligned(4))) = "Screen Mode";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_1440[12] __attribute__((aligned(8))) = "\211\346\226\312\203\202\201[\203h\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_4_data_144C lbl_4_data_144C __attribute__((aligned(4))) = {
+    0x004D0000U,
+    (u8 *)&lbl_4_data_0,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_10,
+    0x004E0000U,
+    (u8 *)&lbl_4_data_1418,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_1424,
+    0x004F0000U,
+    (u8 *)&lbl_4_data_1434,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_1440
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_14A0[48] __attribute__((aligned(8))) = "option_menu_disp\000\000\000\000X:%4d\n\000\000Y:%4d\000\000\000%s%4d\000\000\000%4d";
 #pragma explicit_zero_data reset

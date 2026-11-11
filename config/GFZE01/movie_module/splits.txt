@@ -2541,24 +2541,6 @@ rel/movie_module/data/lbl_12_bss_1CC80.c:
 rel/movie_module/data/lbl_12_bss_1E088.c:
 	.bss        start:0x0001E088 end:0x0001E3DC align:8
 
-rel/movie_module/data/lbl_12_data_68.c:
-	.data       start:0x00000068 end:0x000000B0 align:8
-
-rel/movie_module/data/lbl_12_data_D38.c:
-	.data       start:0x00000D38 end:0x00000EA0 align:8
-
-rel/movie_module/data/lbl_12_rodata_0.c:
-	.rodata     start:0x00000000 end:0x000004F0 align:8
-
-rel/movie_module/data/lbl_12_rodata_570.c:
-	.rodata     start:0x00000570 end:0x0000069C align:8
-
-rel/movie_module/data/lbl_12_rodata_760.c:
-	.rodata     start:0x00000760 end:0x00000938 align:8
-
-rel/movie_module/data/lbl_12_rodata_9F0.c:
-	.rodata     start:0x000009F0 end:0x00002E9C align:8
-
 rel/movie_module/fn_12_847C.c:
 	.text       start:0x0000847C end:0x000086B8 align:4
 
@@ -2588,3 +2570,18 @@ rel/movie_module/fn_12_4F3C.c:
 
 rel/movie_module/fn_12_D55C.c:
 	.text       start:0x0000D55C end:0x0000D948 align:4
+
+rel/movie_module/data/lbl_12_data_0.c:
+	.data       start:0x00000000 end:0x00000030 align:8
+
+rel/movie_module/data/lbl_12_data_68.c:
+	.data       start:0x00000068 end:0x000000B0 align:8
+
+rel/movie_module/data/lbl_12_data_D38.c:
+	.data       start:0x00000D38 end:0x00000EA0 align:8
+
+rel/movie_module/data/lbl_12_rodata_0.c:
+	.rodata     start:0x00000000 end:0x000004F0 align:8
+
+rel/movie_module/data/lbl_12_rodata_570.c:
+	.rodata     start:0x00000570 end:0x00002E9C align:8

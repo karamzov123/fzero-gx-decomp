@@ -42,6 +42,7 @@ extern char lbl_14_data_11BC[13];
 extern char lbl_14_data_11CC[13];
 extern char lbl_14_data_11DC[13];
 extern char lbl_14_data_11EC[13];
+extern char lbl_14_data_11FC[132];
 
 
 
@@ -312,4 +313,14 @@ __declspec(section ".data") char lbl_14_data_11DC[13] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_14_data_11EC[13] __attribute__((aligned(4))) = "Encoding ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_14_data_11FC[132] __attribute__((aligned(4))) = "\202\261\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\315\216g\227p\202\305\202\253"
+    "\202\334\202\271\202\361\201B\n\t\202m\202h\202m\202s\202d\202m\202c\202n\201@\202f\202`\202l"
+    "\202d\202b\202t\202a\202d\202\305\217\211\212\372\211\273\202\265\202\304\202\255\202\276\202"
+    "\263\202\242\201B\n\t\203\201\203\202\203\212\201[\203J\201[\203h\202\360\224\262\202\242\202"
+    "\304\202\255\202\276\202\263\202\242\201B\n\000\000";
 #pragma explicit_zero_data reset

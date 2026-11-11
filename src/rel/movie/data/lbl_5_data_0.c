@@ -2,14 +2,14 @@
 #include "types.h"
 #include "rel/movie/data/lbl_5_data_40.h"
 
-extern u8 lbl_5_data_0[];
+extern u8 lbl_5_data_0[20];
 extern u8 lbl_5_data_14[0x2C];
 #include "rel/movie/data/lbl_5_data_40.h"
 
 
 
 #pragma explicit_zero_data on
-__declspec(section ".data") u8 lbl_5_data_0[] __attribute__((aligned(8))) = {
+__declspec(section ".data") u8 lbl_5_data_0[20] __attribute__((aligned(8))) = {
     0x02U, 0xE4U, 0x01U, 0x9AU, 0x01U, 0xF4U, 0x01U, 0xFEU, 0x02U, 0xDAU, 0x01U, 0x40U, 0x02U, 0x80U, 0x03U, 0xCAU, 0x02U, 0xD0U, 0x00U, 0x00U
 };
 #pragma explicit_zero_data reset

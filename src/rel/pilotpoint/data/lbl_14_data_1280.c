@@ -83,6 +83,7 @@ extern char lbl_14_data_1FEC[12];
 extern char lbl_14_data_1FF8[12];
 extern char lbl_14_data_2004[12];
 extern char lbl_14_data_2010[12];
+extern char lbl_14_data_201C[196];
 
 
 
@@ -615,4 +616,17 @@ __declspec(section ".data") char lbl_14_data_2004[12] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_14_data_2010[12] __attribute__((aligned(8))) = "Caution ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_14_data_201C[196] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\360\215\267\202\265\215\236\202\336\221O\202"
+    "\311\203X\203\215\203b\203g\202\311\210\331\217\355\202\252\202\310\202\242\202\251\212m\224F"
+    "\202\265\202\304\202\255\202\276\202\263\202\242\201B\n\t\201u\202e\202y\202d\202q\202n\201@\202"
+    "f\202w\201v\210\310\212O\202\314\203f\201[\203^\202\360\223\374\202\352\202\310\202\242\202\305"
+    "\216g\227p\202\267\202\351\202\261\202\306\202\360\220\204\217\247\202\265\202\334\202\267\201B"
+    "\n\t\203v\203\214\203C\222\206\202\314\203J\201[\203h\202\314\224\262\202\253\215\267\202\265"
+    "\202\315\201A\220\342\221\316\202\311\202\250\202\342\202\337\202\255\202\276\202\263\202\242"
+    "\201B\000";
 #pragma explicit_zero_data reset

@@ -162,12 +162,6 @@ rel/winning/data/lbl_15_bss_D0.c:
 rel/winning/data/lbl_15_data_0.c:
 	.data       start:0x00000000 end:0x00000020 align:8
 
-rel/winning/data/lbl_15_data_30.c:
-	.data       start:0x00000030 end:0x00000050 align:8
-
-rel/winning/data/lbl_15_data_60.c:
-	.data       start:0x00000060 end:0x00000068 align:8
-
 rel/winning/data/lbl_15_data_1C40.c:
 	.data       start:0x00001C40 end:0x00001C50 align:8
 
@@ -177,35 +171,38 @@ rel/winning/data/lbl_15_data_1C50.c:
 rel/winning/data/lbl_15_data_1C68.c:
 	.data       start:0x00001C68 end:0x00001C70 align:8
 
-rel/winning/data/lbl_15_data_1C70.c:
-	.data       start:0x00001C70 end:0x00001C78 align:8
-
-rel/winning/data/lbl_15_data_1C78.c:
-	.data       start:0x00001C78 end:0x00001C80 align:8
-
-rel/winning/data/lbl_15_data_1D10.c:
-	.data       start:0x00001D10 end:0x00001D50 align:8
-
-rel/winning/data/lbl_15_data_1DB0.c:
-	.data       start:0x00001DB0 end:0x00001DB4 align:8
-
-rel/winning/data/lbl_15_data_1DF8.c:
-	.data       start:0x00001DF8 end:0x00001E6C align:8
-
-rel/winning/data/lbl_15_data_1F70.c:
-	.data       start:0x00001F70 end:0x00001F7D align:8
-
 rel/winning/data/lbl_15_bss_0.c:
 	.bss        start:0x00000000 end:0x00000010 align:8
 
 rel/winning/data/lbl_15_bss_78.c:
 	.bss        start:0x00000078 end:0x00000088 align:8
 
+rel/winning/data/lbl_15_data_20.c:
+	.data       start:0x00000020 end:0x00000030 align:8
+
+rel/winning/data/lbl_15_data_30.c:
+	.data       start:0x00000030 end:0x00000050 align:8
+
+rel/winning/data/lbl_15_data_50.c:
+	.data       start:0x00000050 end:0x00000060 align:8
+
+rel/winning/data/lbl_15_data_60.c:
+	.data       start:0x00000060 end:0x00000068 align:8
+
 rel/winning/data/lbl_15_data_68.c:
 	.data       start:0x00000068 end:0x00000070 align:8
 
 rel/winning/data/lbl_15_data_70.c:
 	.data       start:0x00000070 end:0x00000090 align:8
+
+rel/winning/data/lbl_15_data_240.c:
+	.data       start:0x00000240 end:0x00001C40 align:8
+
+rel/winning/data/lbl_15_data_1C70.c:
+	.data       start:0x00001C70 end:0x00001F20 align:8
+
+rel/winning/data/lbl_15_data_1F70.c:
+	.data       start:0x00001F70 end:0x00001F7D align:8
 
 rel/winning/data/lbl_15_rodata_90.c:
 	.rodata     start:0x00000090 end:0x00000098 align:8

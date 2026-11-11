@@ -237,18 +237,6 @@ rel/interview/interview/fn_17_1798.c:
 rel/interview/interview/fn_17_50F0.c:
 	.text       start:0x000050F0 end:0x000058E0 align:4
 
-rel/interview/data/lbl_17_data_62978.c:
-	.data       start:0x00062978 end:0x000629B8 align:8
-
-rel/interview/data/lbl_17_data_62A18.c:
-	.data       start:0x00062A18 end:0x00062A38 align:8
-
-rel/interview/data/lbl_17_data_62A48.c:
-	.data       start:0x00062A48 end:0x000630C0 align:8
-
-rel/interview/data/lbl_17_data_630D0.c:
-	.data       start:0x000630D0 end:0x00063150 align:8
-
 rel/interview/data/lbl_17_bss_170.c:
 	.bss        start:0x00000170 end:0x00000198 align:8
 
@@ -264,24 +252,6 @@ rel/interview/data/lbl_17_data_628C8.c:
 rel/interview/data/lbl_17_data_628E0.c:
 	.data       start:0x000628E0 end:0x000628E8 align:8
 
-rel/interview/data/lbl_17_data_63190.c:
-	.data       start:0x00063190 end:0x00063BD0 align:8
-
-rel/interview/data/lbl_17_data_63BD0.c:
-	.data       start:0x00063BD0 end:0x00063D20 align:8
-
-rel/interview/data/lbl_17_data_63D20.c:
-	.data       start:0x00063D20 end:0x00063E30 align:8
-
-rel/interview/data/lbl_17_data_63E30.c:
-	.data       start:0x00063E30 end:0x00063E50 align:8
-
-rel/interview/data/lbl_17_data_63E50.c:
-	.data       start:0x00063E50 end:0x000640A0 align:8
-
-rel/interview/data/lbl_17_data_640A0.c:
-	.data       start:0x000640A0 end:0x00064150 align:8
-
 rel/interview/data/lbl_17_data_64150.c:
 	.data       start:0x00064150 end:0x0006419C align:8
 
@@ -296,15 +266,6 @@ rel/interview/data/lbl_17_rodata_38.c:
 
 rel/interview/data/lbl_17_data_0.c:
 	.data       start:0x00000000 end:0x000628B8 align:8
-
-rel/interview/data/lbl_17_bss_10.c:
-	.bss        start:0x00000010 end:0x00000018 align:8
-
-rel/interview/data/lbl_17_bss_18.c:
-	.bss        start:0x00000018 end:0x00000020 align:8
-
-rel/interview/data/lbl_17_bss_20.c:
-	.bss        start:0x00000020 end:0x00000058 align:8
 
 rel/interview/data/lbl_17_bss_58.c:
 	.bss        start:0x00000058 end:0x00000060 align:8
@@ -323,3 +284,57 @@ rel/interview/interview/fn_17_1DA4.c:
 
 rel/interview/interview/fn_17_DB4.c:
 	.text       start:0x00000DB4 end:0x00001794 align:4
+
+rel/interview/data/lbl_17_bss_10.c:
+	.bss        start:0x00000010 end:0x00000018 align:8
+
+rel/interview/data/lbl_17_bss_18.c:
+	.bss        start:0x00000018 end:0x00000020 align:8
+
+rel/interview/data/lbl_17_bss_20.c:
+	.bss        start:0x00000020 end:0x00000058 align:8
+
+rel/interview/data/lbl_4_data_628E8.c:
+	.data       start:0x000628E8 end:0x00062978 align:8
+
+rel/interview/data/lbl_17_data_62978.c:
+	.data       start:0x00062978 end:0x000629B8 align:8
+
+rel/interview/data/lbl_4_data_629B8.c:
+	.data       start:0x000629B8 end:0x00062A18 align:8
+
+rel/interview/data/lbl_17_data_62A18.c:
+	.data       start:0x00062A18 end:0x00062A38 align:8
+
+rel/interview/data/lbl_4_data_62A38.c:
+	.data       start:0x00062A38 end:0x00062A48 align:8
+
+rel/interview/data/lbl_17_data_62A48.c:
+	.data       start:0x00062A48 end:0x000630C0 align:8
+
+rel/interview/data/lbl_4_data_630C0.c:
+	.data       start:0x000630C0 end:0x000630D0 align:8
+
+rel/interview/data/lbl_17_data_630D0.c:
+	.data       start:0x000630D0 end:0x00063150 align:8
+
+rel/interview/data/lbl_4_data_63150.c:
+	.data       start:0x00063150 end:0x00063190 align:8
+
+rel/interview/data/lbl_17_data_63190.c:
+	.data       start:0x00063190 end:0x00063BD0 align:8
+
+rel/interview/data/lbl_17_data_63BD0.c:
+	.data       start:0x00063BD0 end:0x00063D20 align:8
+
+rel/interview/data/lbl_17_data_63D20.c:
+	.data       start:0x00063D20 end:0x00063E30 align:8
+
+rel/interview/data/lbl_17_data_63E30.c:
+	.data       start:0x00063E30 end:0x00063E50 align:8
+
+rel/interview/data/lbl_17_data_63E50.c:
+	.data       start:0x00063E50 end:0x000640A0 align:8
+
+rel/interview/data/lbl_17_data_640A0.c:
+	.data       start:0x000640A0 end:0x00064150 align:8
