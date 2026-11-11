@@ -2,7 +2,7 @@
 
 The title-screen animation `fn_8_A954` is linked and checksum-verified at commit `3285fc7ad1593cf6fda578fca2a8a167c0bdd8bb`. It was published through fork PR https://github.com/karamzov123/fzgx/pull/14 and merged into fork main. This does not claim an upstream merge.
 
-No additional function reached an exact match in this follow-up. The source snapshots in `docs/partial-candidates/20261013/` are explicitly research-only and are not wired into `config/GFZE01/units.json` or any split. Do not count them as authored matching code.
+No additional function reached an exact match in this follow-up. The source snapshots in `docs/archive/partial-candidates/20261013/` are explicitly research-only and are not wired into `config/GFZE01/units.json` or any split. Do not count them as authored matching code.
 
 ## fn_1_64FB8: effect/camera transform update
 

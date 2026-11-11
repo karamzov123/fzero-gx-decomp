@@ -51,7 +51,7 @@ The opencode transport was retired for these lanes on measured evidence: the ope
 
 At the latest readback, `fzgx-fleet.service` and `fzgx-awake.service` are active. The refreshed Ninja/DTK gate passed all 16 target hashes before work. The Eww bar was reopened on monitor 0; its OpenCode tile read 3/3 sessions active and showed four lanes, with lane 4's retry timer. The small-model trial evidence remains limited: `gpt-6-luna` is the Codex catalog ID (not `gpt-6-luna-900k`) and has no exact-match evidence in the bounded trials; Space Bunny is explicitly selected by the owner despite its recent non-match trial outcomes. Keep the six-tool/no-shell matcher boundary and do not claim a match before link verification.
 
-The repaired seed path and bounded Claude results are recorded below/at [the fleet resume](FLEET-RESUME-2026-10-07.md). Sonnet 5.5 and Haiku 5.5 both hit Anthropic `429 usage_limit_reached` before inference; their effectiveness is untested and nested subagents remain disabled.
+The repaired seed path and bounded Claude results are recorded below/at [the fleet resume](archive/FLEET-RESUME-2026-10-07.md). Sonnet 5.5 and Haiku 5.5 both hit Anthropic `429 usage_limit_reached` before inference; their effectiveness is untested and nested subagents remain disabled.
 
 GitHub publishing uses the existing authorized `fzgx-integrator.timer`, which is active. Fresh publisher-receipt and `git ls-remote origin refs/heads/main` readback confirmed `b40b1db4322c8c793e4193628f45418ac35e8cb8`. It publishes verified committed snapshots only and does not stage working-tree edits. The local `origin/main` tracking ref may remain stale because the publisher deliberately does not fetch; use its receipt plus `ls-remote` for live status.
 
@@ -67,17 +67,17 @@ Two wibo SIGABRT core records at 16:13 identify the same GC/1.3.2 fixup probe fo
 
 The previous test-only hold and Exo-only policy below are historical and have been superseded by the latest explicit owner direction. See the live `model-policy.json`, `control-v3.json`, and service status for current operation.
 
-See [the current completion frontier](COMPLETION-FRONTIER-2026-10-07.md) for Exo's prior native-client admission findings, model-free declared-BSS recovery, and the large-candidate residual limits. Its test-only execution instructions predate this renewed owner authorization; the no-shell matcher boundary and data-ownership cautions remain valid.
+See [the current completion frontier](archive/COMPLETION-FRONTIER-2026-10-07.md) for Exo's prior native-client admission findings, model-free declared-BSS recovery, and the large-candidate residual limits. Its test-only execution instructions predate this renewed owner authorization; the no-shell matcher boundary and data-ownership cautions remain valid.
 
 ## Superseded test-only snapshot (pre-authorization)
 
 The following completion-frontier findings retain historical evidence but do not define current launch controls. The renewed owner direction above and the live policy/control files take precedence.
 
-See [the current completion frontier](COMPLETION-FRONTIER-2026-10-07.md) for Exo's prior native-client admission findings, model-free declared-BSS recovery, and large-candidate residual limits. Its test-only execution instructions predate the current fleet authorization; the no-shell matcher boundary and data-ownership cautions remain valid.
+See [the current completion frontier](archive/COMPLETION-FRONTIER-2026-10-07.md) for Exo's prior native-client admission findings, model-free declared-BSS recovery, and large-candidate residual limits. Its test-only execution instructions predate the current fleet authorization; the no-shell matcher boundary and data-ownership cautions remain valid.
 
 ## Historical audited operating envelope (2026-10-07)
 
-See [the completion/overnight audit](OVERNIGHT-AUDIT-2026-10-07.md) for the measured whole-project baseline, resource evidence, tests, and unresolved blockers. This entry supersedes older capacity/model counts below: standing sessions are Claude ×2, GPT ×2, AGY ×1; Cline is off. Only oc1/oc4 remain in the surge family set, one session each; oc1 explicitly pins Fledge Alpha Free, oc4 Space Bunny. Both were held for 24 hours after real failed transport/tool-use trials, not promoted on catalog availability. The global ceiling is eight actual sessions, with host admission safeguards and a systemd resource envelope. OpenCode models are pinned per command rather than written into shared agent configuration.
+See [the completion/overnight audit](archive/OVERNIGHT-AUDIT-2026-10-07.md) for the measured whole-project baseline, resource evidence, tests, and unresolved blockers. This entry supersedes older capacity/model counts below: standing sessions are Claude ×2, GPT ×2, AGY ×1; Cline is off. Only oc1/oc4 remain in the surge family set, one session each; oc1 explicitly pins Fledge Alpha Free, oc4 Space Bunny. Both were held for 24 hours after real failed transport/tool-use trials, not promoted on catalog availability. The global ceiling is eight actual sessions, with host admission safeguards and a systemd resource envelope. OpenCode models are pinned per command rather than written into shared agent configuration.
 
 `honest` now includes the root DOL and its objects. `tools/fleet_audit.py` provides read-only, atomic full-project snapshots; `fzgx-audit.timer` refreshes them every thirty minutes without model requests. Pre-existing dirty source modules are quarantined from dispatch for each daemon run. The overnight fleet was started without newly enabling it on every boot; `fzgx-awake.service` holds a sleep/idle inhibitor while the fleet is active. The Oracle VM's full root filesystem makes it ineligible for workers until storage headroom is restored.
 

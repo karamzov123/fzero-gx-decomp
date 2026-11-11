@@ -26,10 +26,16 @@ The goal of this project is to reconstruct readable, maintainable, matching C so
 
 ## Current Status
 
-- **Code Matched:** **98.53%** (7,272 / 7,312 functions authored in C)
+- **Code Matched:** **99.37%** of code bytes (7,289 / 7,312 functions match retail; objdiff)
+- **Written in C:** **7,137** functions, **97.99%** of code bytes (`fzgx honest`); 153 matched functions are still assembly units
 - **Target Executables:** **16 / 16** link cleanly and match the retail SHA-1 hashes byte for byte (`16 files OK`)
-- **DOL Core:** **98.61%** code matched
-- **Relocatable Modules:** **98.51%** code matched
+- **DOL Core:** **98.84%** code matched (2,195 / 2,206 functions)
+- **Relocatable Modules:** **99.49%** code matched (5,094 / 5,106 functions)
+- **Data Matched:** **78.09%**
+
+The two code numbers measure different things: objdiff counts every function whose object bytes
+match, including hand-written or not-yet-converted assembly units; `fzgx honest` counts only
+functions with a compiled C body. The project is complete when every function is C.
 
 ### Supported Versions
 

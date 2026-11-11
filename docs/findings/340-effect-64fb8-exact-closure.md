@@ -2,7 +2,7 @@
 
 `fn_1_64FB8` now matches **100.0%**, with **zero differing instruction rows**, and passes the linked checksum gate. The function is 688 bytes / 172 instructions. Source and integration are in commit `36f65841d163bb23f1927aefd53631537d9a4c26`.
 
-The older partial source under `docs/partial-candidates/20261013/fn_1_64FB8.c` and finding 339 are historical experiment snapshots, not the current canonical implementation. The canonical block is `src/rel/main_rel/effect.c#fn_1_64FB8`, with its standalone build unit and pool mapping recorded in `config/GFZE01/units.json`.
+The older partial source under `docs/archive/partial-candidates/20261013/fn_1_64FB8.c` and finding 339 are historical experiment snapshots, not the current canonical implementation. The canonical block is `src/rel/main_rel/effect.c#fn_1_64FB8`, with its standalone build unit and pool mapping recorded in `config/GFZE01/units.json`.
 
 ## What closed the residual
 
