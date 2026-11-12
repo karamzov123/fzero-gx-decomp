@@ -22,6 +22,8 @@ extern void fn_13_AFC(void);
 extern void fn_13_B00(void);
 extern void fn_13_B08(void);
 extern void fn_1_A8F78(void);
+extern void fn_1_3EF14(void *header);
+extern void fn_1_F4794(u16 count);
 
 /* fzgx:begin fn_13_0 noprologue */
 #include "types.h"
@@ -196,8 +198,6 @@ void fn_13_0(void) {
 
 extern u32 lbl_13_bss_4;
 extern u32 fn_1_F453C(u32 stream, u32 *pos, u32 bits);
-extern void fn_1_3EF14(void *header);
-extern void fn_1_F4794(u16 count);
 extern void fn_80008BA8(void *dst, void *src, u32 size);
 
 typedef struct {
