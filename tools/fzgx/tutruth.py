@@ -112,6 +112,8 @@ def cast_calls(body: str, name: str, old: List[str], new: List[str], force: bool
         for (a, b), t_old, t_new in reversed(list(zip(spans, old, new))):
             if t_old == '...' or t_new == '...' or _same(t_old, t_new):
                 continue
+            if not t_old.split() or not t_new.split():
+                continue  # an unparsed (empty) parameter type: nothing to cast to (winning.c crashed here)
             if not force and t_old.split()[-1] in INTS and t_new.split()[-1] in INTS:
                 continue  # integer widening/sign at the call is the parameter's own conversion
             arg = text[a:b].strip()

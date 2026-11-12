@@ -255,14 +255,17 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
                 if cp3.returncode != 0:
                     continue
                 try:
-                    old_b = tufile.parse(cp3.stdout).get(u["symbols"][0])
+                    old_tf = tufile.parse(cp3.stdout)
+                    old_b = old_tf.get(u["symbols"][0])
                 except ValueError:
-                    old_b = None
+                    old_tf, old_b = None, None
                 tf = tufile.load(p, tu_src)
                 b = tf.get(u["symbols"][0])
                 if old_b is not None and b is not None:
                     b.body, b.flags = old_b.body, list(old_b.flags)
                     if "noprologue" not in b.flags:
+                        # self-contained under the prologue it matched with, not today's
+                        b.body = old_tf.prologue.rstrip("\n") + "\n\n" + b.body
                         b.flags.append("noprologue")
                     tufile._write_atomic(tufile.tu_path(p, tu_src), tf.render())
                     tufile.write_gen(p, u, tf)

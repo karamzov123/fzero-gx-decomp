@@ -54,6 +54,28 @@ def private_type_names(body: str) -> Set[str]:
 _EXTERN_RE = re.compile(r"^\s*extern\s+[^;=]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*;", re.M)
 
 
+_BUILTIN_WORDS = {'void', 'int', 'char', 'short', 'long', 'unsigned', 'signed', 'float', 'double',
+                  's8', 'u8', 's16', 'u16', 's32', 'u32', 's64', 'u64', 'f32', 'f64', 'BOOL', 'size_t',
+                  'extern', 'const', 'volatile', 'static', 'inline', 'register'}
+
+
+def _type_words(decl: str, name: str) -> Set[str]:
+    """Typedef names a declaration needs (struct/union/enum tags excluded: an incomplete tag is
+    legal in an extern declaration)."""
+    from .tutruth import _sig  # lazy: tutruth imports this module
+    sig = _sig(decl)
+    text = (sig[0] + ' ' + ' '.join(sig[2])) if sig else re.sub(r'\[[^\]]*\]', '', decl.split('=')[0])
+    text = re.sub(r'\b(?:struct|union|enum)\s+[A-Za-z_]\w*', ' ', text)
+    return set(re.findall(r'(?<![\w])[A-Za-z_]\w*', text)) - {name, '...'} - _BUILTIN_WORDS
+
+
+def visible_in(decl: str, name: str, known: Set[str]) -> bool:
+    """Whether a declaration can live in the prologue: every typedef name it uses is declared by
+    the prologue itself or its headers (winning.c hoisted `extern FontDrawPacket ...;` whose type
+    only a block's own #include "font.h" provided)."""
+    return not (_type_words(decl, name) - known)
+
+
 def _declared_in(p: Project, include_line: str) -> Set[str]:
     """Names declared extern by a header, by the text itself (comments and hex sizes included)."""
     m = re.search(r'#include\s+"([^"]+)"', include_line)
@@ -80,7 +102,7 @@ def _idents(text: str) -> Set[str]:
     return set(re.findall(r"[A-Za-z_]\w*", text))
 
 
-def object_views(p: Project, tf: tufile.TuFile) -> List[str]:
+def object_views(p: Project, tf: tufile.TuFile, known: Optional[Set[str]] = None) -> List[str]:
     """Bind conflicting object declarations once, retaining each block's typed access.
 
     A scalar and a recovered record can describe the same retail storage. Dropping
@@ -128,7 +150,8 @@ def object_views(p: Project, tf: tufile.TuFile) -> List[str]:
         if sym is None or sym.kind != 'object':
             continue
         if name not in canonical:
-            public = [t for t in variants[name] if not (_idents(t[0]) & private)]
+            public = [t for t in variants[name] if not (_idents(t[0]) & private)
+                      and (known is None or visible_in(f'extern {t[0]} {name}{t[1]};', name, known))]
             if public:
                 typ, dims = min(public, key=lambda t: (bool(re.search(r'\b(?:struct|union)\b', t[0])), t))
             elif getattr(sym, 'size', 0):
@@ -190,9 +213,14 @@ def _committed_block(p: Project, tu_source: str, name: str, body: str, flags: Li
     cp = subprocess.run(["git", "show", f"HEAD:src/{tu_source}"], cwd=ROOT, text=True, capture_output=True)
     if cp.returncode == 0:
         try:
-            b = tufile.parse(cp.stdout).get(name)
+            old = tufile.parse(cp.stdout)
+            b = old.get(name)
             if b is not None:
-                return b.body, list(b.flags)
+                if "noprologue" in b.flags:
+                    return b.body, list(b.flags)
+                # it matched under the committed prologue, which this pass may have changed: carry
+                # that prologue along, self-contained (exactly the text its unit compiled as)
+                return old.prologue.rstrip("\n") + "\n\n" + b.body, list(b.flags) + ["noprologue"]
         except ValueError:
             pass
     return body, flags
@@ -250,7 +278,8 @@ def reconcile_tu(p: Project, tu_source: str, v) -> Dict[str, object]:
 
     # 2. private typedefs that collide
     out["renamed"] = len(isolate_typedefs(tf, header_typedefs))
-    out["object_views"] = object_views(p, tf)
+    known = header_typedefs | private_type_names(tufile.prologue_decls(tf)) | _BUILTIN_WORDS
+    out["object_views"] = object_views(p, tf, known)
 
     # 3. declarations, symbol by symbol
     definitions: Dict[str, str] = {}
@@ -260,7 +289,7 @@ def reconcile_tu(p: Project, tu_source: str, v) -> Dict[str, object]:
         private_types = private_type_names(b.body)
         for m in DEF_RE.finditer(b.body):
             definer[m.group(2)] = b.name
-            if _idents(m.group(1)) & private_types:
+            if _idents(m.group(1)) & private_types or not visible_in('extern ' + m.group(1).strip() + ';', m.group(2), known):
                 private_typed.add(m.group(2))
             else:
                 definitions[m.group(2)] = "extern " + m.group(1).strip() + ";"
@@ -269,7 +298,7 @@ def reconcile_tu(p: Project, tu_source: str, v) -> Dict[str, object]:
     for b in tf.blocks:
         private_types = private_type_names(b.body)
         for n, ln in _decls(b.body):
-            if _idents(ln) & private_types or n in private_typed:
+            if _idents(ln) & private_types or n in private_typed or not visible_in(ln, n, known):
                 continue  # names a block-private type: cannot leave the block
             variants.setdefault(n, Counter())[ln] += 1
             where.setdefault(n, set()).add(b.name)
