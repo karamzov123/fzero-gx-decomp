@@ -11,6 +11,29 @@ extern void fn_8_4D8(void);
 extern int fn_8_6FC(void);
 extern void fn_8_704(void);
 extern s32 fn_8_754(void);
+extern f32 lbl_8_rodata_0[];
+extern u32 GXLoadTexMtxImm(u32, u32, u32);
+extern u32 OSGetTick(void);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DAEC(void);
+extern void DCFlushRange(void *, u32);
+extern void fn_800729B0(s32, s32, s32, s32, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80073678(u32);
+extern void fn_80073778(void *, s32);
+extern void fn_80073898(u32);
+extern void fn_80073C6C(s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_80074660(u32);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E15C(f32, f32, f32);
+extern u8 lbl_8_bss_C;
+extern u8 lbl_8_bss_20[];
 
 /* fzgx:begin fn_8_0 */
 /* fzgx:begin fn_8_0 noprologue */
@@ -78,30 +101,8 @@ struct fn_8_0_lbl_801A6D00 {
 };
 
 extern struct fn_8_0_lbl_801A6D00 lbl_801A6D00;
-extern struct fn_8_0_lbl_8_rodata_0 lbl_8_rodata_0;
-extern u32 GXLoadTexMtxImm(u32, u32, u32);
-extern u32 OSGetTick(void);
-extern void lbl_8006D7F4(f32, f32, f32);
-extern void lbl_8006DAEC(void);
-extern void DCFlushRange(void *, u32);
+
 extern void GXInitTexObj(Sig_GXInitTexObj_GXTexObj *, void *, u16, u16, Sig_GXInitTexObj_GXTexFmt, Sig_GXInitTexObj_GXTexWrapMode, Sig_GXInitTexObj_GXTexWrapMode, u8);
-extern void fn_800729B0(s32, s32, s32, s32, s32);
-extern void fn_80072AB0(s32, s32, s32);
-extern void fn_80072C24(s32, s32, s32, s32, s32);
-extern void fn_80072CC4(s32, s32, s32, s32, s32);
-extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
-extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
-extern void fn_800734A8(u32, s32, s32, s32);
-extern void fn_80073678(u32);
-extern void fn_80073778(void *, s32);
-extern void fn_80073898(u32);
-extern void fn_80073C6C(s32);
-extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
-extern void fn_80074660(u32);
-extern void lbl_8006DB30(void);
-extern void lbl_8006E15C(f32, f32, f32);
-extern u8 lbl_8_bss_C;
-extern u8 lbl_8_bss_20[];
 
 /* Tiled 16x16 I8 offset; out-of-range tile bases select byte zero. */
 inline static s32 fire_texel_offset(u32 x, u32 y, u32 buf)
@@ -246,8 +247,6 @@ void fn_8_0(void)
 
 #pragma opt_strength_reduction reset
 #pragma opt_loop_invariants reset
-
-/* fzgx:end fn_8_0 */
 /* fzgx:end fn_8_0 */
 
 /* fzgx:begin fn_8_4D8 noprologue */
@@ -545,7 +544,21 @@ s32 fn_8_754(void) {
 }
 /* fzgx:end fn_8_754 */
 
-/* fzgx:begin fn_8_784 */
+/* fzgx:begin fn_8_784 noprologue */
+#include "types.h"
+#include "rel/title/globals.h"
+extern u32 fn_1_D0790(void);
+extern u8 lbl_8_bss_230;
+extern struct fn_8_784_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
+extern struct fn_8_784_lbl_8_bss_22C lbl_8_bss_22C;
+extern u32 fn_1_5370(u32, u32);
+extern u32 fn_1_A1588(u32, u32);
+extern u32 lbl_8_bss_228;
+extern void fn_8_4D8(void);
+extern int fn_8_6FC(void);
+extern void fn_8_704(void);
+extern s32 fn_8_754(void);
+
 struct fn_8_784_lbl_8_bss_22C {
     u32 unk_0;
 };
