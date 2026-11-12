@@ -5299,6 +5299,129 @@ void fn_1_A4268(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 /* fzgx:end fn_1_A4268 */
 
+/* fzgx:begin fn_1_A47F4 noprologue */
+#include "types.h"
+#include "game/vec3.h"
+#include "dolphin/os/OSFastCast.h"
+#include "mathutil_vec_distance_sq.h"
+
+typedef struct {
+    u8 flags;
+    u8 id;
+    u8 pad2[0xE];
+    f32 pitch;
+} SndSlot;
+
+extern SndSlot lbl_1_bss_6F1E4[];
+
+extern void fn_1_862D4(u8, Vec3 *);
+extern void fn_1_8658C(u8, Vec3 *);
+extern f32 fn_1_8652C(u8);
+extern void fn_1_681C(u32, Vec3 *);
+extern void fn_1_6898(u32, Vec3 *);
+extern s16 camera_get_mode(void);
+extern s32 camera_get_state(void);
+extern f32 lbl_8006D0B4(f32);
+
+
+#pragma pool_data off
+
+static inline f32 CLAMP(f32 x, f32 lo, f32 hi) {
+    if (x < lo) {
+        return lo;
+    }
+    if (x > hi) {
+        return hi;
+    }
+    return x;
+}
+
+
+void fn_1_A47F4(s32 index, u8 vol, u32 player, s8 *pitch, s8 *fine) {
+    s32 closer;
+    s32 faster;
+    u8 id;
+    s32 mode;
+    s32 state;
+    f32 speed;
+    f32 bend;
+    f32 scale;
+    f32 d0;
+    f32 d1;
+    f32 base;
+    f32 dist;
+    f32 rel;
+    Vec3 pos;
+    Vec3 next;
+    Vec3 cam;
+    Vec3 eye;
+
+    id = lbl_1_bss_6F1E4[index].id;
+    fn_1_862D4(id, &pos);
+    fn_1_8658C(id, &next);
+    speed = fn_1_8652C(id);
+    fn_1_681C(player, &cam);
+    fn_1_6898(player, &eye);
+
+    dist = 216.0 * lbl_8006D0B4(mathutil_vec_distance_sq(&cam, &eye));
+    d1 = mathutil_vec_distance_sq(&next, &eye);
+    d0 = mathutil_vec_distance_sq(&pos, &cam);
+    if (d0 <= d1) {
+        closer = 1;
+    } else {
+        closer = 0;
+    }
+    if (dist > speed) {
+        faster = 1;
+    } else {
+        faster = 0;
+    }
+    base = 1.7322835f * __OSu8tof32(&vol);
+    base = 220.0f + base;
+    rel = dist - speed;
+    if (speed >= 1025.0f) {
+        speed = 1025.0f;
+    }
+    if (dist >= 925.0f) {
+        dist = 925.0f;
+    }
+    speed = 1225.0f - speed;
+    dist = 1225.0f - dist;
+
+    mode = camera_get_mode();
+    state = camera_get_state();
+    if (mode == id && (s8)state != 9) {
+        scale = 1.0f;
+    } else if (faster) {
+        scale = 1.0f;
+    } else {
+        rel = __fabs(rel);
+        if (rel > 50.0f) {
+            scale = 50.0f / rel;
+        } else {
+            scale = 1.0f;
+        }
+    }
+    bend = base * (dist / (speed * scale));
+    bend = (bend - base) / 1.0594631;
+    bend = 0.01f * bend;
+    bend = CLAMP(bend, -3.0f, 32.0f);
+    if (closer | (lbl_1_bss_6F1E4[index].flags & 1)) {
+        lbl_1_bss_6F1E4[index].pitch = bend;
+    } else {
+        bend = lbl_1_bss_6F1E4[index].pitch;
+        bend -= 1.0f;
+        bend = CLAMP(bend, -3.0f, 32.0f);
+        lbl_1_bss_6F1E4[index].pitch = bend;
+    }
+    *pitch = __OSf32tos8(bend);
+    bend = (bend - __OSs8tof32(pitch)) / 0.015625f;
+    *fine = __OSf32tos8(bend);
+    *pitch = (*pitch < -3) ? -3 : ((*pitch > 32) ? 32 : *pitch);
+    *fine = (*fine < -64) ? -64 : ((*fine > 63) ? 63 : *fine);
+}
+/* fzgx:end fn_1_A47F4 */
+
 /* fzgx:begin fn_1_A4BC8 noprologue */
 #include "types.h"
 
