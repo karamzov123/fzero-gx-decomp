@@ -479,16 +479,17 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False):
         known = None
         from .sdkimport import integer_expression
         for d in decls:
-            match = re.fullmatch(r'(?:const\s+)?(' + '|'.join(BASIC) + r')\s+' + re.escape(sym.name) + r'\s*(\[[^\]]*\])?', d['declaration'])
+            match = re.fullmatch(r'(?:const\s+)?(' + '|'.join(BASIC) + r')\s+' + re.escape(sym.name) + r'\s*((?:\[[^\]]*\]\s*)*)', d['declaration'])
             if not match or (kind in ('f32', 'f64', 'char') and match[1] != kind):
                 continue
             width = BASIC[match[1]][0]
-            bound = match[2][1:-1].strip() if match[2] else None
             try:
-                count = 1
-                if match[2]:
-                    count = integer_expression(bound) if bound else sym.size // width
-            except (ValueError, SyntaxError):
+                # Every bound counts (s32 rates[2][4]); only the first may be left empty.
+                dims = [b.strip() for b in re.findall(r'\[([^\]]*)\]', match[2])]
+                inner = math.prod(integer_expression(b) for b in dims[1:])
+                count = inner * (integer_expression(dims[0]) if dims and dims[0]
+                                 else sym.size // width // inner if dims else 1)
+            except (ValueError, SyntaxError, ZeroDivisionError):
                 continue
             # Inferred externs may cover only a prefix or an oversized view,
             # neither of which defines this retail object's measured extent.

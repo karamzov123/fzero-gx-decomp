@@ -52083,6 +52083,66 @@
     "unit_size": 8320,
     "unit_start": 2148710712
   },
+  "main:lbl_8012D9B8": {
+    "address": 2148719032,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_8012D9B8[1]",
+        "path": "include/dol/mpeg_audio.h"
+      },
+      {
+        "declaration": "struct fn_80050670_lbl_8012D9B8 lbl_8012D9B8[]",
+        "path": "src/dol/fn_80050670.c"
+      }
+    ],
+    "definition": "u32 lbl_8012D9B8[1]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_80050670"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 12292,
+    "sha256": "560231689713a5933b6c8ac3e6b2f243730e49e1c6b0c610c41e8e8dad26044c",
+    "size": 4,
+    "source": "dol/data/lbl_8012D9B8.c",
+    "symbol": "lbl_8012D9B8",
+    "unit_align": 8,
+    "unit_size": 12296,
+    "unit_start": 2148719032
+  },
+  "main:lbl_8012D9BC": {
+    "address": 2148719036,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "MpaAllocEntry lbl_8012D9BC[1][32][16]",
+        "path": "include/dol/mpeg_audio.h"
+      },
+      {
+        "declaration": "u32 lbl_8012D9BC[]",
+        "path": "src/dol/fn_80050670.c"
+      }
+    ],
+    "definition": "MpaAllocEntry lbl_8012D9BC[1][32][16]",
+    "method": "declared-record",
+    "module": "main",
+    "references": [
+      "fn_80050670"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 12292,
+    "sha256": "98d8988ff28ba84cc81a2cbbc330640bfacf3326adf5171d91bf61f5e905ef4c",
+    "size": 12288,
+    "source": "dol/data/lbl_8012D9B8.c",
+    "symbol": "lbl_8012D9BC",
+    "unit_align": 8,
+    "unit_size": 12296,
+    "unit_start": 2148719032
+  },
   "main:lbl_801309C0": {
     "address": 2148731328,
     "align": 32,
@@ -52105,13 +52165,125 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 136,
+    "section_size": 7192,
     "sha256": "4b45c7376ae659bf2fb36535a54475311275110ae7e1c55280774d6e045608bc",
     "size": 136,
     "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_801309C0",
     "unit_align": 32,
-    "unit_size": 136,
+    "unit_size": 7192,
+    "unit_start": 2148731328
+  },
+  "main:lbl_80130A48": {
+    "address": 2148731464,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_80130A48[64]",
+        "path": "include/dol/mpeg_audio.h"
+      },
+      {
+        "declaration": "struct fn_80050698_lbl_80130A48 lbl_80130A48[]",
+        "path": "src/dol/fn_80050698.c"
+      }
+    ],
+    "definition": "f32 lbl_80130A48[64]",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80050698"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 7192,
+    "sha256": "30038768c54e9cb476b314ed20e723764dc236c7b4a738a4b009dd7c3da4cd5c",
+    "size": 256,
+    "source": "dol/data/lbl_801309C0.c",
+    "symbol": "lbl_80130A48",
+    "unit_align": 32,
+    "unit_size": 7192,
+    "unit_start": 2148731328
+  },
+  "main:lbl_80130B48": {
+    "address": 2148731720,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "s32 lbl_80130B48[2][4]",
+        "path": "src/dol/fn_800510D8.c"
+      }
+    ],
+    "definition": "s32 lbl_80130B48[2][4]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_800510D8"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 7192,
+    "sha256": "b8f730a03f96798dc3a01ce54c1fe51e427752da9785e4ffa6208ef78cfe4945",
+    "size": 32,
+    "source": "dol/data/lbl_801309C0.c",
+    "symbol": "lbl_80130B48",
+    "unit_align": 32,
+    "unit_size": 7192,
+    "unit_start": 2148731328
+  },
+  "main:lbl_80130B68": {
+    "address": 2148731752,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "s32 lbl_80130B68[3][4]",
+        "path": "src/dol/fn_800510D8.c"
+      }
+    ],
+    "definition": "s32 lbl_80130B68[3][4]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_800510D8"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 7192,
+    "sha256": "124cc911d117944abb6bc5e9e27a51b306b9b5e5c38c1ae8967ccd8858c29692",
+    "size": 48,
+    "source": "dol/data/lbl_801309C0.c",
+    "symbol": "lbl_80130B68",
+    "unit_align": 32,
+    "unit_size": 7192,
+    "unit_start": 2148731328
+  },
+  "main:lbl_80130B98": {
+    "address": 2148731800,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_80130B98[10]",
+        "path": "include/dol/mpeg_audio.h"
+      },
+      {
+        "declaration": "struct fn_80050698_lbl_80130B98 lbl_80130B98[]",
+        "path": "src/dol/fn_80050698.c"
+      }
+    ],
+    "definition": "u32 lbl_80130B98[10]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_80050698"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 7192,
+    "sha256": "35a605ea40388e95c4a56e80b46ba9f519458dd5a0a6a6836e760bb44159603d",
+    "size": 40,
+    "source": "dol/data/lbl_801309C0.c",
+    "symbol": "lbl_80130B98",
+    "unit_align": 32,
+    "unit_size": 7192,
     "unit_start": 2148731328
   },
   "main:lbl_80130BC0": {
@@ -52243,14 +52415,14 @@
       }
     ],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
     "size": 64,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_80130BC0",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_80130C00": {
     "address": 2148731904,
@@ -52269,14 +52441,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "3eadeac5b565bf75e731c29bb3c0e3f60890e35c71ba841418c4666cf79f3670",
     "size": 96,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_80130C00",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_80130C60": {
     "address": 2148732000,
@@ -52295,14 +52467,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "5495c6b5e5d8f98e96b1ee7bea7b9e014dee7cdad794c8af6a3a5f667a4a5775",
     "size": 384,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_80130C60",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_80130DE0": {
     "address": 2148732384,
@@ -52321,14 +52493,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "bcb60cf1fa0bcc3ce757caef7cc16b7a905083cbb7302cfe625d2f4dda027cfa",
     "size": 3072,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_80130DE0",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_801319E0": {
     "address": 2148735456,
@@ -52347,14 +52519,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "537763845c4a2d04651c31d31be54a725bb7c675f5a49b51867cc039aeb16fdb",
     "size": 2176,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_801319E0",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_80132260": {
     "address": 2148737632,
@@ -52469,14 +52641,14 @@
       }
     ],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "39f37f8d1931b3bdf767e7510dd69509fbf23af1f7654933d0a4d291cbdd4418",
     "size": 104,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_80132260",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_801322C8": {
     "address": 2148737736,
@@ -52512,14 +52684,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
     "size": 8,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_801322C8",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_801322D0": {
     "address": 2148737744,
@@ -52606,14 +52778,14 @@
       }
     ],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
     "size": 48,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_801322D0",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_80132300": {
     "address": 2148737792,
@@ -52700,14 +52872,14 @@
       }
     ],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
     "size": 48,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_80132300",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_80132330": {
     "address": 2148737840,
@@ -52726,14 +52898,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "cd3f026399114aaa1d38a008feacda398fc5acb46455dbb3fc4ab13f27937e86",
     "size": 448,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_80132330",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_801324F0": {
     "address": 2148738288,
@@ -52848,14 +53020,14 @@
       }
     ],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "39f37f8d1931b3bdf767e7510dd69509fbf23af1f7654933d0a4d291cbdd4418",
     "size": 104,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_801324F0",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_80132558": {
     "address": 2148738392,
@@ -52874,14 +53046,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "b40711a88c7039756fb8a73827eabe2c0fe5a0346ca7e0a104adc0fc764f528d",
     "size": 4,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_80132558",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_8013255C": {
     "address": 2148738396,
@@ -52905,14 +53077,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 6680,
+    "section_size": 7192,
     "sha256": "9036107b9e0ca10acd3f75cb28bddccde21d67f0115987281948170cfb64005f",
     "size": 124,
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbol": "lbl_8013255C",
     "unit_align": 32,
-    "unit_size": 6680,
-    "unit_start": 2148731840
+    "unit_size": 7192,
+    "unit_start": 2148731328
   },
   "main:lbl_80132788": {
     "address": 2148738952,

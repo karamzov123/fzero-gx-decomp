@@ -22207,9 +22207,10 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_801309C0.c",
+    "source": "dol/data/lbl_8012D9B8.c",
     "symbols": [
-      "lbl_801309C0"
+      "lbl_8012D9B8",
+      "lbl_8012D9BC"
     ],
     "status": "matching",
     "data": true,
@@ -22218,8 +22219,13 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_80130BC0.c",
+    "source": "dol/data/lbl_801309C0.c",
     "symbols": [
+      "lbl_801309C0",
+      "lbl_80130A48",
+      "lbl_80130B48",
+      "lbl_80130B68",
+      "lbl_80130B98",
       "lbl_80130BC0",
       "lbl_80130C00",
       "lbl_80130C60",
