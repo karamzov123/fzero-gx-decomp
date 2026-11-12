@@ -32,6 +32,23 @@ from .project import ROOT, Project
 DEF_RE = re.compile(r"^((?:[A-Za-z_][\w\s\*]*?)\b([A-Za-z_]\w*)\s*\(([^;{}()]*)\))\s*\{", re.M)
 TYPEDEF_NAME_RE = re.compile(r"^\}\s*([A-Za-z_]\w*)\s*;", re.M)
 TAG_RE = re.compile(r"^typedef\s+struct\s+([A-Za-z_]\w*)\s*\{", re.M)
+# Private type names a block defines, in every spelling agents write: the closing `} Name;` of a
+# multi-line typedef (TYPEDEF_NAME_RE), one-line `typedef struct {...} Name;`, plain
+# `typedef T Name;` / `typedef T Name[N];`, function-pointer `typedef R (*Name)(...)`, and any
+# `struct|union|enum Tag {` definition. Missing the one-line form hoisted
+# `extern const SelectionPanel lbl_1_rodata_26F8;` without its typedef (car_colchg, 2026-11-12).
+_ONE_LINE_TYPEDEF_RE = re.compile(r"\btypedef\s+(?:struct|union|enum)\s*\w*\s*\{[^{}]*\}\s*([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*;")
+_PLAIN_TYPEDEF_RE = re.compile(r"^\s*typedef\s+[^;{}()]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*;", re.M)
+_FNPTR_TYPEDEF_RE = re.compile(r"\btypedef\s+[^;{}]*?\(\s*\*\s*([A-Za-z_]\w*)\s*\)\s*\(")
+_ANY_TAG_RE = re.compile(r"\b(?:struct|union|enum)\s+([A-Za-z_]\w*)\s*\{")
+
+
+def private_type_names(body: str) -> Set[str]:
+    """Every type name (typedef or struct/union/enum tag) a block body defines."""
+    names: Set[str] = set()
+    for rx in (TYPEDEF_NAME_RE, TAG_RE, _ONE_LINE_TYPEDEF_RE, _PLAIN_TYPEDEF_RE, _FNPTR_TYPEDEF_RE, _ANY_TAG_RE):
+        names.update(rx.findall(body))
+    return names
 
 
 _EXTERN_RE = re.compile(r"^\s*extern\s+[^;=]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*;", re.M)
@@ -101,12 +118,23 @@ def object_views(p: Project, tf: tufile.TuFile) -> List[str]:
     conflicts = {n for n, types in variants.items()
                  if len(types | ({canonical[n]} if n in canonical else set())) > 1}
     additions = []
+    # a type a block defines for itself is invisible in the prologue: never pick a view that
+    # names one (car_colchg's `const SelectionPanel lbl_1_rodata_26F8` broke every block)
+    private = set()
+    for b in tf.blocks:
+        private |= private_type_names(b.body)
     for name in sorted(conflicts):
         sym = p.resolve(name)
         if sym is None or sym.kind != 'object':
             continue
         if name not in canonical:
-            typ, dims = min(variants[name], key=lambda t: (bool(re.search(r'\b(?:struct|union)\b', t[0])), t))
+            public = [t for t in variants[name] if not (_idents(t[0]) & private)]
+            if public:
+                typ, dims = min(public, key=lambda t: (bool(re.search(r'\b(?:struct|union)\b', t[0])), t))
+            elif getattr(sym, 'size', 0):
+                typ, dims = 'u8', f'[{sym.size:#x}]'  # neutral storage view; each block keeps its typed cast
+            else:
+                continue
             canonical[name] = typ, dims
             additions.append(f'extern {typ} {name}{dims};')
     repaired = []
@@ -145,7 +173,7 @@ def isolate_typedefs(tf: tufile.TuFile, header_typedefs: Set[str]) -> List[Tuple
     (block, old, new) renames applied (in memory)."""
     owners: Dict[str, List[str]] = {}
     for b in tf.blocks:
-        for n in set(TYPEDEF_NAME_RE.findall(b.body)) | set(TAG_RE.findall(b.body)):
+        for n in private_type_names(b.body):
             owners.setdefault(n, []).append(b.name)
     renames = []
     for n, bs in owners.items():
@@ -229,7 +257,7 @@ def reconcile_tu(p: Project, tu_source: str, v) -> Dict[str, object]:
     definer: Dict[str, str] = {}
     private_typed: Set[str] = set()  # defined with a block-private parameter type: never hoisted
     for b in tf.blocks:
-        private_types = set(TYPEDEF_NAME_RE.findall(b.body)) | set(TAG_RE.findall(b.body))
+        private_types = private_type_names(b.body)
         for m in DEF_RE.finditer(b.body):
             definer[m.group(2)] = b.name
             if _idents(m.group(1)) & private_types:
@@ -239,7 +267,7 @@ def reconcile_tu(p: Project, tu_source: str, v) -> Dict[str, object]:
     variants: Dict[str, Counter] = OrderedDict()
     where: Dict[str, Set[str]] = {}
     for b in tf.blocks:
-        private_types = set(TYPEDEF_NAME_RE.findall(b.body)) | set(TAG_RE.findall(b.body))
+        private_types = private_type_names(b.body)
         for n, ln in _decls(b.body):
             if _idents(ln) & private_types or n in private_typed:
                 continue  # names a block-private type: cannot leave the block
@@ -254,7 +282,10 @@ def reconcile_tu(p: Project, tu_source: str, v) -> Dict[str, object]:
         for b in tf.blocks:
             if b.name not in where[n] and pat.search(b.body):
                 where[n].add(b.name)
-    prologue_decl_names = set(tufile._header_items(tufile.prologue_decls(tf)))
+    # bare prototypes (`u16 f(char *, ...);`, no `extern`) declare a name too: missing them
+    # hoisted a second, conflicting declaration of fn_1_3F8C in car_colchg.c (2026-11-12)
+    prologue_decl_names = set(tufile._header_items(tufile.prologue_decls(tf))) | \
+        {n for n, _ in _decls(tufile.prologue_decls(tf))}
 
     def strip_decl(b, n):
         b.body = "\n".join(ln for ln in b.body.splitlines()
