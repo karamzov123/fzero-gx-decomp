@@ -147,7 +147,10 @@ def _lock(path: Path):
 
 def _write_atomic(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
+    # a per-writer temporary: tu-finish runs TUs in 12 threads, and two writers of one generated
+    # unit with a shared `.tmp` name raced (main_rel, fn_1_4E724.c.tmp vanished before its rename)
+    import os, threading
+    tmp = path.with_suffix(path.suffix + f".{os.getpid()}.{threading.get_ident()}.tmp")
     tmp.write_text(text)
     tmp.replace(path)
 

@@ -278,6 +278,34 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
                 diag["block_restored"] = restored
             failed = [] if linked else _failed_units(cp2.stdout + cp2.stderr)
             bad_tus = sorted({units_by_src[f + ".c"]["tu"] for f in failed if f + ".c" in units_by_src and units_by_src[f + ".c"].get("tu")})
+        if not linked and not failed:
+            # the link ran but a hash differs: put back only the blocks that differ, each
+            # self-contained under its committed prologue, before giving up whole TU files
+            # (pilotpoint: one block, fn_14_1090, verified 100% per function but linked 12
+            # words different; restoring the whole TU threw away 67 good blocks)
+            diag = oracle.byte_diff(p, module)
+            culprits = [f for f, _ in diag.get("text_diffs", [])]
+            if culprits and not diag.get("sections"):
+                by_sym = {u["symbols"][0]: u for u in p.load_units() if u.get("module") == module and u.get("tu")}
+                put_back = []
+                for f in culprits:
+                    u = by_sym.get(f)
+                    if u is None:
+                        continue
+                    tf = tufile.load(p, u["tu"])
+                    b = tf.get(f)
+                    if b is None:
+                        continue
+                    b.body, b.flags = reconcile._committed_block(p, u["tu"], f, b.body, b.flags)
+                    tufile._write_atomic(tufile.tu_path(p, u["tu"]), tf.render())
+                    tufile.write_gen(p, u, tf)
+                    put_back.append(f)
+                if put_back and len(put_back) == len(culprits):
+                    oracle.configure(p)
+                    linked = oracle.relink(p).returncode == 0
+                    if linked:
+                        restored = put_back
+                        diag["block_restored"] = put_back
         if not linked:
             if not failed:  # the link ran: a hash mismatch, name it by function
                 diag = oracle.byte_diff(p, module)
