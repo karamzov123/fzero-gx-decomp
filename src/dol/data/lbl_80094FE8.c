@@ -2,11 +2,109 @@
 #include "types.h"
 
 extern const u32 lbl_80094FE8[10];
+extern const u32 lbl_80095010[8];
+extern const char lbl_80095030[880];
+extern const u32 lbl_800953A0[11];
+extern const u32 lbl_800953CC[3];
+extern const f32 lbl_800953D8[12];
+extern const int lbl_80095408[];
+extern const int lbl_80095510[];
+extern const int lbl_80095590[];
+extern const f64 lbl_800955A0[8];
+extern const f64 lbl_800955E0[13];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const u32 lbl_80094FE8[10] __attribute__((aligned(8))) = {
     0x00000000U, 0x7FFFFFFFU, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_80095010[8] __attribute__((aligned(8))) = {
+    0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const char lbl_80095030[880] __attribute__((aligned(8))) = "\000Argument list too long\000Permission denied\000Resource temporarily unavailable\000Bad file "
+    "descriptor\000Device busy\000No child processes\000Resource deadlock avoided\000Numerical argume"
+    "nt out of domain\000File exists\000Bad address\000File too large\000File Position Error\000Wide "
+    "character encoding error\000Interrupted system call\000Invalid argument\000Input/output error"
+    "\000Is a directory\000Too many open files\000Too many links\000File name too long\000Too many op"
+    "en files in system\000Operation not supported by device\000No such file or directory\000No error"
+    " detected\000Exec format error\000No locks available\000Cannot allocate memory\000No space left "
+    "on device\000Function not implemented\000Not a directory\000Directory not empty\000Inappropriate"
+    " ioctl for device\000Device not configured\000Operation not permitted\000Broken pipe\000Result t"
+    "oo large\000Read-only file system\000Signal error\000Illegal seek\000No such process\000Unknown "
+    "error\000Cross-device link\000Unknown Error (%d)\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_800953A0[11] __attribute__((aligned(8))) = {
+    0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_800953CC[3] __attribute__((aligned(4))) = {
+    0x494E4649U, 0x4E495459U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_800953D8[12] __attribute__((aligned(8))) = {
+    1.875f, 0.0f, 1.9375f, 0.0f, 0.0f, 0.0f, 1.77124059f, 2.0f, 0.0f, 0.0f, 0.20018737f, 415.625183f
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const int lbl_80095408[] __attribute__((aligned(8))) = {
+    10680707, 7228996, 1387004, 2578385, 16069853, 12639074, 9804092, 4427841, 16666979, 11263675, 12935607, 2387514, 4345298, 14681673, 3074569, 13734428, 16653803, 1880361, 10960616, 8533493, 3062596, 8710556, 7349940, 6258241, 3772886, 3769171, 3798172, 8675211, 12450088, 3874808, 9961438, 366607, 15675153, 9132554, 7151469, 3571407, 2607881, 12013382, 4155038, 6285869, 7677882, 13102053, 15825725, 473591, 9065106, 15363067, 6271263, 9264392, 5636912, 4652155, 7056368, 13614112, 10155062, 1944035, 9527646, 15080200, 6658437, 6231200, 6832269, 16767104, 5075751, 3212806, 1398474, 7579849, 6349435, 12618859
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const int lbl_80095510[] __attribute__((aligned(8))) = {
+    1073291771, 1074340347, 1074977148, 1075388923, 1075800698, 1076025724, 1076231611, 1076437499, 1076643386, 1076849274, 1076971356, 1077074300, 1077177244, 1077280187, 1077383131, 1077486075, 1077589019, 1077691962, 1077794906, 1077897850, 1077968460, 1078019932, 1078071404, 1078122876, 1078174348, 1078225820, 1078277292, 1078328763, 1078380235, 1078431707, 1078483179, 1078534651
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const int lbl_80095590[] __attribute__((aligned(8))) = {
+    2, 3, 4, 6
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f64 lbl_800955A0[8] __attribute__((aligned(8))) = {
+    1.5707962512969971, 7.5497894158615964e-08, 5.3903025299577648e-15, 3.2820034158079129e-22, 1.2706557530806761e-29, 1.2293330898111133e-36, 2.7337005381646456e-44, 2.1674168387780482e-51
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f64 lbl_800955E0[13] __attribute__((aligned(8))) = {
+    0.33333333333333409, 0.13333333333320124, 0.053968253976226052, 0.021869488294859542, 0.0088632398235993001, 0.0035920791075913124, 0.0014562094543252903, 0.0005880412408202641, 0.00024646313481846991, 7.8179444293955709e-05, 7.1407249138260819e-05, -1.8558637485527546e-05, 2.5907305186363371e-05
 };
 #pragma explicit_zero_data reset

@@ -24,7 +24,8 @@ SECTIONS = BSS | {'.data', '.rodata', '.sdata', '.sdata2'}
 BASIC = {'u8': (1, 'B'), 's8': (1, 'b'), 'char': (1, 'B'),
          'u16': (2, 'H'), 's16': (2, 'h'), 'u32': (4, 'I'), 's32': (4, 'i'),
          'u64': (8, 'Q'), 's64': (8, 'q'), 'f32': (4, 'f'), 'float': (4, 'f'),
-         'f64': (8, 'd'), 'double': (8, 'd'), 'int': (4, 'i')}
+         'f64': (8, 'd'), 'double': (8, 'd'), 'int': (4, 'i'),
+         'short': (2, 'h'), 'unsigned char': (1, 'B')}
 
 
 def regions(p, module, section):
@@ -754,6 +755,14 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                     # reverse their definitions while retaining the retail layout
                     # for validation and split ownership.
                     definitions = reversed(group) if first['section'] in BSS else group
+                    # A member's alignment is the largest power of two dividing its address (up
+                    # to the section default), so a later member can ask for more than the group
+                    # start has (lbl_800909C0 at a 32-aligned address after an 8-aligned string)
+                    # and the section would outgrow the start. Cap it at the start's alignment;
+                    # validate() below still checks every member's offset against retail.
+                    cap = first['align']
+                    definitions = [(r, source.replace(f'aligned({r["align"]}))', f'aligned({cap}))')
+                                    if r['align'] > cap else source) for r, source in definitions]
                     text = '\n'.join(source for _, source in definitions)
                     # The group now owns some relocation targets. Their real
                     # declarations replace the address-only external fallback.

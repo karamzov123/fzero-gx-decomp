@@ -4,6 +4,9 @@
 extern u8 gTRKRestoreFlags[9];
 extern u32 gTRKExceptionStatus[4];
 extern u32 lbl_8015B884[5];
+extern u32 lbl_8015B898[];
+extern u32 gDBCommTable[10];
+extern char lbl_8015B900[25];
 
 
 
@@ -27,4 +30,26 @@ __declspec(section ".data") u32 gTRKExceptionStatus[4] __attribute__((aligned(4)
 __declspec(section ".data") u32 lbl_8015B884[5] __attribute__((aligned(4))) = {
     0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U
 };
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 lbl_8015B898[] __attribute__((aligned(8))) = {
+    0x00000100U, 0x00000200U, 0x00000300U, 0x00000400U, 0x00000500U, 0x00000600U, 0x00000700U, 0x00000800U, 0x00000900U, 0x00000C00U, 0x00000D00U, 0x00000F00U, 0x00001300U, 0x00001400U, 0x00001700U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 gDBCommTable[10] __attribute__((aligned(8))) = {
+    0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8015B900[25] __attribute__((aligned(8))) = "Can't select EXI2 port!\n";
 #pragma explicit_zero_data reset
